@@ -184,11 +184,18 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
       }
       const needed=stages.map(stage=>dependencies(stage)),shared=new Set(externalLibrary.filter(asset=>needed.filter(ids=>ids.has(asset.id)).length>=2).map(asset=>asset.id));
       const sharedAssets=externalLibrary.filter(asset=>shared.has(asset.id));
-      const used=new Set(needed.flatMap(ids=>[...ids])),editorExtras=externalLibrary.filter(asset=>!used.has(asset.id));
+      const used=new Set(needed.flatMap(ids=>[...ids])),compat33=externalLibrary.filter(asset=>asset.id.startsWith('act4compat33:v1:')),compat34=externalLibrary.filter(asset=>asset.id.startsWith('act4compat34:v1:'));
+      assert(compat33.length===0||compat33.length===2,'Stage 33 compatibility bundle must contain both pinned assets');
+      assert(compat33.every(asset=>!used.has(asset.id)),'Compatibility art must not be a normal stage dependency');
+      assert(compat34.length===0||compat34.length===1,'Stage 34 compatibility bundle must contain the pinned asset');
+      assert(compat34.every(asset=>!used.has(asset.id)),'Compatibility art must not be a normal stage dependency');
+      const compatIds=new Set([...compat33,...compat34].map(asset=>asset.id)),editorExtras=externalLibrary.filter(asset=>!used.has(asset.id)&&!compatIds.has(asset.id));
       const sharedPacket=assetPacket(sharedAssets),extrasPacket=assetPacket(editorExtras);
       // Full Workshop reuses the exact chapter bundles instead of shipping a
       // second complete library. Keep unused editor assets and canonical order.
       const manifest={base:await json('campaign-base',base),libraryOrder:externalLibrary.map(asset=>asset.id),editorExtras:await json('campaign-editor-extras',extrasPacket.value),stages:[],unitTemplates:stages.flatMap(stage=>stage.units.filter(unit=>unit.kind?.startsWith('boss:'))).filter((unit,index,all)=>all.findIndex(other=>other.kind===unit.kind)===index),catalog:stages.map(stage=>({id:stage.id,name:stage.name,width:stage.width,height:stage.height,backdrop:stage.backdrop,metadata:stage.metadata,playerRoster:stage.units.filter(u=>u.team==='player').map(u=>u.kind),pending:true})),shared:await json('campaign-shared',sharedPacket.value),stageLibraries:[],assetEncodings:{shared:sharedPacket.encoding,stageLibraries:[],editorExtras:extrasPacket.encoding},assetPaths:{base:assetPaths(base),stages:[],shared:assetPaths(sharedAssets),stageLibraries:[],editorExtras:assetPaths(editorExtras)}};
+      if(compat33.length){const packet=assetPacket(compat33);manifest.compatibility33=await json('campaign-compat-33',packet.value);manifest.assetPaths.compatibility33=assetPaths(compat33);manifest.assetEncodings.compatibility33=packet.encoding;}
+      if(compat34.length){const packet=assetPacket(compat34);manifest.compatibility34=await json('campaign-compat-34',packet.value);manifest.assetPaths.compatibility34=assetPaths(compat34);manifest.assetEncodings.compatibility34=packet.encoding;}
       assert.equal(new Set(manifest.libraryOrder).size,externalLibrary.length,'Campaign asset IDs must be unique');
       for(let n=0;n<stages.length;n++){const stage=await externalize(stages[n],`chapter-${n+1}`);manifest.stages.push(await json('chapter-'+String(n+1).padStart(2,'0'),stage));manifest.assetPaths.stages.push(assetPaths(stage));const assets=externalLibrary.filter(asset=>needed[n].has(asset.id)&&!shared.has(asset.id)),packet=assetPacket(assets);manifest.stageLibraries.push(await json('chapter-'+String(n+1).padStart(2,'0')+'-assets',packet.value));manifest.assetPaths.stageLibraries.push(assetPaths(assets));manifest.assetEncodings.stageLibraries.push(packet.encoding);}
       projectManifest=await json('campaign',manifest);
@@ -267,7 +274,11 @@ catch(error){if(globalThis.HonroStartup)globalThis.HonroStartup.failed(error);el
   const gameHtml=(base='',embedded=false)=>`<!doctype html>\n<html lang="ko"><head><meta charset="utf-8">${base}<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="theme-color" content="#101b20"><title>혼로 · HONRO</title><script>globalThis.HONRO_EMBEDDED=new URLSearchParams(location.search).get('embedded')==='1';if(HONRO_EMBEDDED)document.documentElement.classList.add('honro-embedded');</script><style>${criticalStyle}</style>${embedded?'':imagePreloads}</head>${shell.replace('<!--HONRO_STARTUP_TITLE-->',embedded?'':initialTitle)}${embedded?'':`<script>${startup}</script>`}${scriptTag(gameEntry)}</body></html>\n`;
   const gameDocument=await emit('entries','game','html',gameHtml('<base href="../../">',true));
   const editorModule=await emit('runtime','workshop-app','js',await read('workshop/src/app.js'));
-  const workshopEntry=await bootstrap('workshop',[...common,stageRules,editorModule],{playtest:gameDocument+'?embedded=1'});
+  // The editor compiles tagged Act 4 actors too, before it opens the game
+  // iframe. Load only the required pilot contract in the editor itself.
+  const pilotReference=entries.find(e=>e.global==='HONRO_ACT4_PILOT_COMBAT_REFERENCE'),pilotRuntime=entries.find(e=>e.name==='shared/runtime/act4-pilot-combat.js'),workshopPilot=[];
+  if(pilotReference&&pilotRuntime){workshopPilot.push(await dataModule('workshop-act4-pilot-reference',{HONRO_ACT4_PILOT_COMBAT_REFERENCE:pilotReference.data}));workshopPilot.push(await emit('runtime','workshop-act4-pilot-combat','js',pilotRuntime.code));}
+  const workshopEntry=await bootstrap('workshop',[...common,stageRules,...workshopPilot,editorModule],{playtest:gameDocument+'?embedded=1'});
   const workshopHtml=(await read('workshop/src/index.html')).replace('<style>/*STYLE*/</style>',cssTag(workshopStyle)).replace('<script>/*SCRIPT*/</script>',scriptTag(workshopEntry));
   await writeGenerated(destination,gameHtml());
   await writeGenerated(path.join(root,'index.html'),gameHtml());

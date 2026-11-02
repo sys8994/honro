@@ -1,0 +1,9 @@
+import assert from'node:assert/strict';import vm from'node:vm';import{readFileSync}from'node:fs';import{createCanvas}from'@napi-rs/canvas';
+class Scene{}Scene.prototype.liveWater=()=> 'prior';Scene.prototype.landmark=function(){};Scene.prototype._isForeground=()=>false;Scene.prototype.background=function(){};Scene.prototype._worldCacheKey=()=>'';
+const g=vm.createContext({HonroScene:Scene});vm.runInContext(readFileSync('shared/map/bounds.js','utf8'),g);vm.runInContext(readFileSync('shared/runtime/act4-pilot-art.js','utf8'),g);
+const h={surface:3762.5,left:0,right:6656,bottom:4600,shore:[[0,3762.5],[0,4600]],continuousSea:{version:1,depth:1600,stage40:true}};
+const battle={honroStage:40,honroMap:{nativeArt:{version:1,coveredTerrainIds:[]},act4:{harborWater:h}}};
+function draw(y,scale=1){const cv=createCanvas(240,500),ctx=cv.getContext('2d'),s=new Scene();Object.assign(s,{canvas:{getBoundingClientRect:()=>({width:240,height:500})},x:120/scale,y:y+250/scale,scale,time:0});ctx.scale(scale,scale);ctx.translate(0,-y);assert.equal(s.liveWater(ctx,battle),'prior');return ctx;}
+const before=JSON.stringify(battle),a=draw(5000),b=draw(5200);assert.equal(a.getImageData(200,450,1,1).data[3],255);assert.deepEqual([...a.getImageData(200,250,1,1).data],[...b.getImageData(200,50,1,1).data]);assert.equal(draw(11000,.057352941176470586).getImageData(200,450,1,1).data[3],255);assert.equal(draw(3700).getImageData(200,10,1,1).data[3],0);assert.equal(JSON.stringify(battle),before);
+for(const bad of [undefined,false,'true']){h.continuousSea.stage40=bad;assert.equal(draw(5000).getImageData(200,450,1,1).data[3],0);}h.continuousSea.stage40=true;for(const bad of [NaN,299,10001]){h.continuousSea.depth=bad;assert.equal(draw(5000).getImageData(200,450,1,1).data[3],0);}
+console.log('PASS explicit40 opt-in, unchanged3762.5 surface, opaque portrait depth, world-fixed gradient, no battle mutation, absent/invalid fallback');

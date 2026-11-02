@@ -1,0 +1,27 @@
+{
+  "reason": "Root apply_patch had added one extra trailing newline; source logic/content unchanged",
+  "initialEvidenceDirectory": "_local/reports/approved36-reward-binding/initial-extra-newline-evidence",
+  "files": [
+    {
+      "path": "shared/map/schema.js",
+      "initialSha256": "c1852e41aa63ffb5c3bad900432a75d7b1896ab37c22e58e31298092d427b6d4",
+      "finalSha256": "089a61a698b9447a5713fe19d3beb9bbed8e9000b98ef13a5592e8dd3380a7a3",
+      "removedBytes": 1,
+      "onlyTrailingNewlineChanged": true
+    },
+    {
+      "path": "shared/runtime/act4-coast-events.js",
+      "initialSha256": "09d5e04b4da4c0dac543d7d4ef42e47036fa293f87cdd8c7e4059b156eefc2a5",
+      "finalSha256": "05ee90f49ad40bf6a0fb11b048156c22100d97f7c4853e774a0391a19b01c63c",
+      "removedBytes": 1,
+      "onlyTrailingNewlineChanged": true
+    },
+    {
+      "path": "tests/act4-stage36-elite-reward.mjs",
+      "initialSha256": "e020cad7b33dbc752c5ae5f9eb8bababa0240d2b0ca5d9d2e846cca780e25c7b",
+      "finalSha256": "909ff3dd21721ebce7e0d6fbc77dd0ff5cfd5254f2efa9b62dcab9ab34f7374e",
+      "removedBytes": 1,
+      "onlyTrailingNewlineChanged": true
+    }
+  ]
+}

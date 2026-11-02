@@ -23,13 +23,77 @@ const C=G.HONRO_CORE,ROSTER=['archer','mage','knight','occultist'],KEY='honro-fi
 // Only official Act4 snapshots reference immutable, already-shipped artwork.
 // Physics, mutable actor/event state and modified/custom assets remain inline.
 function assetSignature(text){let h=2166136261;for(let i=0;i<text.length;i++){h^=text.charCodeAt(i);h=Math.imul(h,16777619);}return text.length+':'+(h>>>0).toString(16);}
+// Cache only the deterministic hash, never asset validation: every save still
+// serializes the current provider and battle art and compares their full serialized text.
+// A provider mutation therefore invalidates this entry before it can be reused.
+// Keep at most 9 million UTF-16 code units and prefer the largest source texts.
+const PROVIDER_HASH_CACHE_LIMIT=9000000,providerHashCache=new Map();let providerHashChars=0;
+function providerSignature(key,text){
+ const previous=typeof key==='string'?providerHashCache.get(key):null;
+ if(previous&&previous.text===text)return previous.signature;
+ if(previous){providerHashCache.delete(key);providerHashChars-=previous.size;}
+ return assetSignature(text);
+}
+// Only publish after a live placement has matched this provider exactly.
+function rememberProviderSignature(key,text,signature){
+ if(typeof key!=='string'||providerHashCache.has(key)||typeof text!=='string')return;
+ const size=key.length+text.length;if(size>PROVIDER_HASH_CACHE_LIMIT)return;
+ while(providerHashChars+size>PROVIDER_HASH_CACHE_LIMIT){
+  let smallest=null;for(const entry of providerHashCache)if(!smallest||entry[1].size<smallest[1].size)smallest=entry;
+  if(!smallest||smallest[1].size>=size)return;
+  providerHashCache.delete(smallest[0]);providerHashChars-=smallest[1].size;
+ }
+ providerHashCache.set(key,{text,signature,size});providerHashChars+=size;
+}
+// Exact archived 33 QA art; never apply to custom or arbitrary signatures.
+const ACT4_33_LEGACY=Object.freeze({'approved33:near-west':'446435:980e0bba','approved33:body':'2183752:7b7b6e'});
+function legacy33Art(b,id,signature,library){
+ if(!b||b.honroCustom||b.mode!=='campaign'||b.honroAct4Official!==1||b.honroStage!==33||typeof signature!=='string'||ACT4_33_LEGACY[id]!==signature)return null;
+ const archived=library.get('act4compat33:v1:'+id);if(!archived?.vector||archived.collision?.length||archived.interactionType)return null;
+ const asset={...archived,id},text=JSON.stringify(asset);if(assetSignature(text)!==signature)return null;return{asset,text,signature};
+}
+function needsLegacy33Art(b){
+ if(!b||b.honroCustom||b.mode!=='campaign'||b.honroAct4Official!==1||b.honroStage!==33)return false;
+ for(const items of [b.honroLandmarks,b.honroElements,b.honroEnvironment?.placements])for(const item of items||[]){
+  const a=item?.asset,sig=ACT4_33_LEGACY[a?.id];if(!sig)continue;
+  if(a.honroStaticAssetRef===1&&a.signature===sig)return true;
+  if(a.vector&&assetSignature(JSON.stringify(a))===sig)return true;
+ }
+ return false;
+}
+function verifyLegacy33Assets(items){
+ if(!Array.isArray(items)||items.length!==2)return false;const library=new Map(items.map(a=>[a?.id,a]));
+ if(library.size!==2)return false;const b={mode:'campaign',honroAct4Official:1,honroStage:33};
+ return Object.entries(ACT4_33_LEGACY).every(([id,sig])=>!!legacy33Art(b,id,sig,library));
+}
+// Only the exact previous official stage-34 BODY can use this lazy archive.
+const ACT4_34_LEGACY=Object.freeze({'approved34:body':'3417265:bff32c0d'});
+function legacy34Art(b,id,signature,library){
+ if(!b||b.honroCustom||b.mode!=='campaign'||b.honroAct4Official!==1||b.honroStage!==34||typeof signature!=='string'||ACT4_34_LEGACY[id]!==signature)return null;
+ const archived=library.get('act4compat34:v1:'+id);if(!archived?.vector||archived.collision?.length||archived.interactionType)return null;
+ const asset={...archived,id},text=JSON.stringify(asset);if(assetSignature(text)!==signature)return null;return{asset,text,signature};
+}
+function needsLegacy34Art(b){
+ if(!b||b.honroCustom||b.mode!=='campaign'||b.honroAct4Official!==1||b.honroStage!==34)return false;
+ for(const items of [b.honroLandmarks,b.honroElements,b.honroEnvironment?.placements])for(const item of items||[]){
+  const a=item?.asset,sig=ACT4_34_LEGACY[a?.id];if(!sig)continue;
+  if(a.honroStaticAssetRef===1&&a.signature===sig)return true;
+  if(a.vector&&assetSignature(JSON.stringify(a))===sig)return true;
+ }
+ return false;
+}
+function verifyLegacy34Assets(items){
+ if(!Array.isArray(items)||items.length!==1)return false;const library=new Map(items.map(a=>[a?.id,a]));
+ if(library.size!==1)return false;const b={mode:'campaign',honroAct4Official:1,honroStage:34};
+ return Object.entries(ACT4_34_LEGACY).every(([id,sig])=>!!legacy34Art(b,id,sig,library));
+}
 function compactBattleArt(b){
  if(!b||b.honroCustom||b.mode!=='campaign'||b.honroAct4Official!==1||b.honroStage<31||b.honroStage>40)return b;
  const library=new Map((G.HONRO_PROJECT?.library||[]).map(a=>[a.id,a])),texts=new Map();let changed=false;const out={...b};
  const compactItems=items=>items.map(item=>{
   const asset=item.asset,source=asset?.vector&&library.get(asset.id);if(!source)return item;
-  let row=texts.get(asset.id);if(!row){const text=JSON.stringify(source);row={text,signature:assetSignature(text)};texts.set(asset.id,row);}
-  if(JSON.stringify(asset)!==row.text)return item;
+  const key=asset.id;let row=texts.get(key);if(!row){const text=JSON.stringify(source);row={text,signature:providerSignature(key,text)};texts.set(asset.id,row);}
+  const assetText=JSON.stringify(asset);if(assetText!==row.text){const legacy=legacy33Art(b,asset.id,ACT4_33_LEGACY[asset.id],library)||legacy34Art(b,asset.id,ACT4_34_LEGACY[asset.id],library);if(!legacy||assetText!==legacy.text)return item;row=legacy;}else rememberProviderSignature(key,row.text,row.signature);
   changed=true;return{...item,asset:{honroStaticAssetRef:1,id:asset.id,signature:row.signature}};
  });
  for(const key of ['honroLandmarks','honroElements'])if(Array.isArray(b[key]))out[key]=compactItems(b[key]);
@@ -41,9 +105,9 @@ function restoreBattleArt(b){
  for(const items of [b?.honroLandmarks,b?.honroElements,b?.honroEnvironment?.placements])for(const item of items||[]){
   const ref=item.asset;if(!ref||ref.honroStaticAssetRef===undefined)continue;
   if(ref.honroStaticAssetRef!==1||typeof ref.id!=='string'||typeof ref.signature!=='string')return false;
-  const source=library.get(ref.id);if(!source)return false;
+  let source=library.get(ref.id);if(!source)return false;
   if(!signatures.has(ref.id))signatures.set(ref.id,assetSignature(JSON.stringify(source)));
-  if(signatures.get(ref.id)!==ref.signature)return false;
+  if(signatures.get(ref.id)!==ref.signature){const legacy=legacy33Art(b,ref.id,ref.signature,library)||legacy34Art(b,ref.id,ref.signature,library);if(!legacy)return false;source=legacy.asset;}
   replacements.push([item,source]);
  }
  // Resolve only after campaign lazy loading and revision checks, atomically.
@@ -62,13 +126,13 @@ function migrate(text){
   G.HonroProgression.repairRecruits(p);G.HonroProgression.reconcileCampAllocations(p);if(x.equipment===undefined)delete p.equipment;G.HonroEquipment.migrate(p);return p;
  }catch{throw failure('migration');}
 }
-// Immutable local raw archives for the Act4 revision3 transition. No index,
+// Immutable local raw archives for Act4 map revision transitions. No index,
 // deletion or overwrite. Exact bytes, not a hash alone, determine deduplication.
 const ARCHIVE_PREFIX=KEY+'-act4-before-map-revision-3-';
 function archiveMetadata(text){
  try{const p=JSON.parse(text),b=p?.honroBattle;
   if(!b||b.honroCustom||b.honroMapOrigin==='workshop'||b.mode!=='campaign'||b.honroStage<31||b.honroStage>40)return null;
-  return {stage:b.honroStage,fromRevision:b.honroCampaignMapRevision??null,toRevision:3};
+  return {stage:b.honroStage,fromRevision:b.honroCampaignMapRevision??null,toRevision:G.HonroCampaignMapRevision.current(b.honroStage)};
  }catch{return null;}
 }
 function archiveRows(){
@@ -76,7 +140,7 @@ function archiveRows(){
  const rows=[];for(let i=0;i<storage.length;i++){const key=storage.key(i);if(typeof key!=='string'||!key.startsWith(ARCHIVE_PREFIX))continue;const text=storage.getItem(key);if(typeof text!=='string')throw failure('archive-storage');rows.push({key,text,metadata:archiveMetadata(text)});}
  return rows.sort((a,b)=>a.key.localeCompare(b.key));
 }
-function needsArchive(text){const m=archiveMetadata(text);if(!m)return false;try{return G.HonroCampaignMapRevision.current(m.stage)===3&&G.HonroCampaignMapRevision.obsolete(JSON.parse(text).honroBattle);}catch{return false;}}
+function needsArchive(text){const m=archiveMetadata(text);if(!m)return false;try{return G.HonroCampaignMapRevision.current(m.stage)>=3&&G.HonroCampaignMapRevision.obsolete(JSON.parse(text).honroBattle);}catch{return false;}}
 function preserveOriginal(text){
  if(typeof text!=='string'||!needsArchive(text))return;
  try{const duplicate=archiveRows().find(row=>row.text===text);if(duplicate){if(G.localStorage.getItem(duplicate.key)!==text)throw failure('archive-verify');return;}
@@ -125,5 +189,5 @@ function create(){
   cancelRetry(){retryCandidate=null;}
  };
 }
-G.HonroProfileStore={create,fresh,migrate,compactBattleArt,restoreBattleArt};
+G.HonroProfileStore={create,fresh,migrate,compactBattleArt,restoreBattleArt,needsLegacy33Art,verifyLegacy33Assets,needsLegacy34Art,verifyLegacy34Assets};
 })(globalThis);

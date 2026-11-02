@@ -106,10 +106,27 @@
     function makeWorld(st,p,training=false,cls='archer',skill){return G.HonroWorld.build(st,p,training,cls,skill,initializeTrainingBattle);}
     class App {
         constructor() { this.root = $('app'); this.modal = $('modal'); this.profileStore = G.HonroProfileStore.create(); this.normalProfile = this.profileStore.initial; this.debugMode = !!this.normalProfile.settings.debugMode && !G.HONRO_EMBEDDED; this.profile = this.debugMode ? debugProfile(this.normalProfile) : this.normalProfile; this.engine = null; this.scene = null; this.screen = 'title'; this.stageId = this.profile.lastStage || 1; this.cls = this.profile.recruited[0]; this.profileImportSequence = 0; this.branch = 0; this.selectedByUnit = {}; this.selected = 'A01'; this.charging = false; this.power = .58; this.keys = new Set(); this.stick = { x: 0, y: 0 }; this.contacts = new Map(); this.audio = C.AudioEngine ? new G.HonroAudio() : null; this.audio?.configure(this.profile.settings); this.prev = performance.now(); this.acc = 0; this.uiAge = 0; this.dirty = false; this.dialogue = null; this.preview = null; this.trainingClass = 'archer'; this.trainingSkill = 'A01'; this.trainingPassives = {}; this.trainingRanks = {}; this.eventText = ''; this.eventUntil = 0; this.banterQueue=[]; this.banterCurrent=null; this.banterUntil=0; this.bind(); }
-        persist() { if(G.HONRO_EMBEDDED||this.customMap||this.profileStore.locked)return false; G.HonroMukjongAudio?.observe(this); G.HonroProgression.persist(this); G.HonroSplitCampaign?.persist(this); this.profile.party = [...this.profile.recruited]; if(this.debugMode)return; this.normalProfile=this.profile; if (!this.profileStore.save(this.profile) && !this.storageWarned) {
+        persist() { if(G.HONRO_EMBEDDED||this.customMap)return false;if(this.profileStore.locked){if(this.done&&!this.debugMode)this.outcomeSaveWarning();return false;} G.HonroMukjongAudio?.observe(this); G.HonroProgression.persist(this); G.HonroSplitCampaign?.persist(this); this.profile.party = [...this.profile.recruited]; if(this.debugMode)return; this.normalProfile=this.profile; const saved=this.profileStore.save(this.profile);if(!saved&&!this.storageWarned){
             this.storageWarned = true;
             this.notify('이 환경에서는 자동 기록이 제한돼. 설정에서 기록 파일을 보관해줘.');
-        } }
+        }if(saved){this.storageWarned=false;document.getElementById('outcome-save-warning')?.remove();}else if(this.done)this.outcomeSaveWarning();return saved; }
+        outcomeSaveWarning() {
+            if(document.getElementById('outcome-save-warning'))return;
+            const node=document.createElement('aside');node.id='outcome-save-warning';node.className='outcome-save-warning';node.setAttribute('role','alert');
+            const help=this.profileStore.locked?'기록 복구가 필요합니다. 설정의 기록·관리에서 보존된 원본을 확인해 주세요.':'저장 공간을 확인한 뒤 다시 저장하거나 설정에서 현재 기록을 내보내세요.';
+            node.innerHTML='<div><strong>결과를 저장하지 못했습니다.</strong><p>새로고침하면 완료와 경험치가 사라질 수 있습니다. '+help+'</p></div><button type="button">다시 저장</button>';
+            node.querySelector('button').addEventListener('click',()=>{if(this.persist()===true)this.notify('기록을 저장했습니다.');});document.body.append(node);
+        }
+        flushBattleSave() {
+            const e=this.engine;
+            if(!this.dirty||!e||this.screen!=='battle'||this.pendingJourneyLaunch||this.training||this.done)return;
+            this.dirty=false;
+            G.HonroProgression.syncRoster(this.profile,e.b);
+            // The Act 4 persist wrapper immediately snapshots the live battle,
+            // including its dialogue cursor. Avoid cloning the same battle twice.
+            if(!G.HonroAct4Campaign?.active(e.b))this.profile.honroBattle=clone(e.b);
+            this.persist({compactAct4Autosave:true});
+        }
         campaignReady(){if(!this.profileStore.locked||this.customMap||G.HONRO_EMBEDDED)return true;this.recoverProfile();return false;}
         recoverProfile(){G.HonroMenuUI.recovery(this);}
         replaceProfile(result){
@@ -404,7 +421,7 @@
             if(!this.campaignReady())return;
             if(G.HonroActEndings?.show(this))return;
             const target=G.HonroCampaignLoader?.destination(this.profile);
-            if(target&&G.HonroCampaignEntry?.defer(this,target,()=>this.continue()))return;
+            if(target&&G.HonroCampaignEntry?.defer(this,target,()=>this.continue(),this.profile.honroBattle))return;
             G.HonroCampaignMapRevision.discard(this.profile);
             const restart=this.profile.honroMapRestart;
             if(restart){this.engine=null;this.persist();this.launch(restart);this.notify('지형이 개편되어 현재 장 입구에서 다시 시작합니다. 성장과 장착은 유지됩니다.'+(restart>=31&&restart<=40&&this.profileStore.archives().items?.length?' 개편 전 원본은 설정의 기록·관리에서 내보낼 수 있습니다.':''));return;}
@@ -656,7 +673,7 @@
             const stablePause=this.modalKind==='pause-dialog'&&this.modal.classList.contains('open')&&!this.dialogue&&!this.preview&&!this.training&&!this.customMap&&!this.done&&
                 !G.HonroReinforcementCamera?.active(scene)&&!scene.storyFrame&&!scene.storyTween&&!scene.storyFrozen&&!scene.goalFocus&&!scene.editorView&&!scene.skillPreview&&
                 !(scene.focusUntil>now)&&!(scene.speakerUntil>now)&&dt===0&&effectDt===0&&paused&&
-                G.HonroAuthoredFarArt?.ready(e.b.honroStage,e.b.honroPreviewFar)&&document.fonts?.status==='loaded'&&!scene.ctx.isContextLost?.();
+                G.HonroAuthoredFarArt?.ready(e.b.honroStage,e.b.honroPreviewFar,e.b)&&document.fonts?.status==='loaded'&&!scene.ctx.isContextLost?.();
             const paint=()=>scene.render(e,dt,this.selected,this.power,this.charging,effectDt,paused);
             if(!stablePause){scene._pausedBattleFrame=null;return paint();}
             if(!scene._pauseContextListener){scene._pauseContextListener=true;for(const name of ['contextlost','contextrestored'])canvas.addEventListener(name,()=>{scene._pausedBattleFrame=null;});}
@@ -784,7 +801,7 @@
             document.addEventListener('input',e=>{const k=e.target.dataset?.setting;if(k==='volume'||k==='musicVolume'){const output=this.modal.querySelector(`[data-volume-for="${k}"]`);if(output)output.textContent=Math.round(Number(e.target.value)*100)+'%';}});
             window.addEventListener('resize',()=>{if(this.screen==='rest')G.HonroRestJourney?.layoutRest();if(this.screen==='journey')document.querySelector('.journey-map-scroll')?._journeyResize?.();});
             document.addEventListener('visibilitychange',()=>{this.reportClock=null;if(document.hidden)this.cancelInput();this.updateAudio();});
-            window.addEventListener('pagehide',()=>this.cancelInput());
+            window.addEventListener('pagehide',()=>{this.cancelInput();this.flushBattleSave();});
             // Game text is UI, not a document. Cancel selection, dragging and long-press menus throughout the app.
             for(const type of ['selectstart','dragstart','contextmenu'])document.addEventListener(type,e=>{if(e.target?.closest?.('#app,#modal'))e.preventDefault();},{capture:true,passive:false});
             document.addEventListener('selectionchange',()=>{const selection=window.getSelection();if(selection&&!selection.isCollapsed&&(this.root.contains(selection.anchorNode)||this.modal.contains(selection.anchorNode)))selection.removeAllRanges();});
@@ -845,6 +862,7 @@
             document.addEventListener('visibilitychange', () => { this.cancelInput(); if (document.hidden && this.engine && !this.done && !this.dialogue && !this.endingGallery?.debug) {
                 this.pause();
                 this.dirty = true;
+                this.flushBattleSave();
             } });
             window.addEventListener('blur', () => { this.cancelInput(); });
             document.addEventListener('click', e => { G.HonroEquipmentUI.outside(this,e);if(e.target===this.modal)return; let el = e.target.closest('[data-action]'); if (!el || el.disabled)
@@ -1145,10 +1163,18 @@
                 try {
                     if(this.debugMode)throw Error('디버그 모드를 끈 뒤 기록을 가져오세요.');
                     const request=++this.profileImportSequence,text=await el.files[0].text();
+                    // Prepare the imported battle's immutable art before the store
+                    // compacts it. The title may have loaded a different chapter.
+                    const inspected=G.HonroProfileStore.migrate(text),battle=inspected.honroBattle;
+                    if(battle?.mode==='campaign'&&!battle.honroCustom&&battle.honroAct4Official===1&&battle.honroStage>=31&&battle.honroStage<=40){
+                        if(G.HonroCampaignLoader){await G.HonroCampaignLoader.ensureStage(battle.honroStage);await G.HonroCampaignLoader.ensureBattleArt?.(battle);}
+                        if(request!==this.profileImportSequence)return;
+                        if(!G.HonroProfileStore.restoreBattleArt(battle))throw Error('기록의 지형 그림을 확인하지 못했습니다. 기존 기록은 유지됩니다.');
+                    }
                     if(request===this.profileImportSequence&&this.replaceProfile(this.profileStore.importText(text)))this.notify('기록을 불러왔어.');
                 }
                 catch (err) {
-                    this.notify(this.debugMode?'디버그 모드를 끈 뒤 기록을 가져오세요.':'기록 파일을 읽지 못했습니다. 현재 기록은 유지됩니다.');
+                    this.notify(this.debugMode?'디버그 모드를 끈 뒤 기록을 가져오세요.':err.message?.startsWith('기록의 지형 그림')?err.message:'기록 파일을 읽지 못했습니다. 현재 기록은 유지됩니다.');
                 }
                 el.value = '';
             } });
@@ -1163,11 +1189,23 @@
         } }
         equipConfirm(i) {const id=this.equipIncoming;if(!Number.isInteger(i)||i<1||i>3||!this.canEquip(id))return;const l=this.profile.loadouts[this.cls],j=l.indexOf(id),old=l[i];if(j===i)return;l[i]=id;if(j>0)l[j]=old||'';C.sanitizeLoadout(this.profile,this.cls);this.saveCampAllocation();const context=this.equipReturn;this.equipReturn=null;this.showCamp();if(context)this.restoreTalent(context);}
         nextDialogue(){G.HonroStory.next(this);}
-        export() { if(this.profileStore.locked)return this.exportOriginal(); if (this.engine && !this.training && !this.debugMode && !this.done) {
+        async export() { if(this.profileStore.locked)return this.exportOriginal(); if (this.engine && !this.training && !this.debugMode && !this.done) {
             G.HonroProgression.syncRoster(this.profile,this.engine.b);
             this.profile.honroBattle = clone(this.engine.b);
             G.HonroProgression.persist(this);
-        } this.downloadProfile(JSON.stringify(this.debugMode?this.normalProfile:this.profile)); }
+        }
+            const profile=this.debugMode?this.normalProfile:this.profile,b=profile.honroBattle;
+            const refs=[b?.honroLandmarks,b?.honroElements,b?.honroEnvironment?.placements].some(items=>Array.isArray(items)&&items.some(item=>item?.asset?.honroStaticAssetRef!==undefined));
+            if(!refs){this.downloadProfile(JSON.stringify(profile));return;}
+            // Portable exports contain art, including when the title loaded a
+            // compact autosave for a chapter whose provider is not loaded yet.
+            const portable=clone(profile);
+            try{
+                if(G.HonroCampaignLoader){await G.HonroCampaignLoader.ensureStage(b.honroStage);await G.HonroCampaignLoader.ensureBattleArt?.(portable.honroBattle);}
+                if(!G.HonroProfileStore.restoreBattleArt(portable.honroBattle))throw Error('asset mismatch');
+                this.downloadProfile(JSON.stringify(portable));
+            }catch{this.notify('기록의 지형 그림을 확인하지 못해 내보내지 못했습니다.');}
+        }
         frame(now) {
             if(this.endingGallery?.debug){this.prev=now;requestAnimationFrame(t=>this.frame(t));return;}
             this.updateAudio();
@@ -1196,6 +1234,8 @@
                         this.acc += dt * this.playbackSpeed();
                         // .06s frame cap × 4 speed × 120Hz needs up to 29 substeps.
                         e.planningBudget(4);
+                        const moving=e.b.side===0&&e.b.phase==='aim'?e.active:null;
+                        const beforeMotion=moving&&[moving.x,moving.y,moving.vx,moving.vy,moving.moveLeft];
                         try{
                         for (let k = 0; k < 32 && this.acc >= 1 / 120; k++) {
                             if (e.canAct()) {
@@ -1214,6 +1254,9 @@
                             if (G.HonroAct3Void?.blocked(this)||this.dialogue||G.HonroStory.turnPaused(this)||['won', 'lost'].includes(e.b.phase)){this.acc=0;break;}
                         }
                         }finally{e.planningBudget();}
+                        // Walking and airborne motion do not necessarily emit a save event.
+                        // Mark only actual changes; the existing throttle batches snapshots.
+                        if(moving&&beforeMotion.some((v,i)=>v!==[moving.x,moving.y,moving.vx,moving.vy,moving.moveLeft][i]))this.dirty=true;
                         if (['won', 'lost'].includes(e.b.phase) && !this.training&&!this.dialogue)
                             this.outcome();
                     }
@@ -1230,11 +1273,7 @@
                     }else this.updateChargeDisplay();
                     if (this.dirty && !this.pendingJourneyLaunch && !this.training && !this.done && now - (this.lastSave || 0) > 1200) {
                         this.lastSave = now;
-                        this.dirty = false;
-                        G.HonroProgression.syncRoster(this.profile,e.b);
-                        if (!this.done)
-                            this.profile.honroBattle = clone(e.b);
-                        this.persist();
+                        this.flushBattleSave();
                     }
                 }
             }

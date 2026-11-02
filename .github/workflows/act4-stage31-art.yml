@@ -1,0 +1,122 @@
+name: Stage31 direct visual review
+run-name: Stage31 visual review · ${{ github.sha }}
+
+on:
+  push:
+    branches: ['work/act4-stage31-art-direct/**']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: act4-qa-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  smoke:
+    if: github.repository == 'sys8994/honro'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      CI: 'true'
+      HONRO_QA_URL: http://127.0.0.1:8770/HONRO.html
+      HONRO_QA_OUT: _local/reports/github-qa
+      # Provenance only. The actual executable source is always github.sha.
+      HONRO_QA_BASE: 2112600b8ae90dc23082b372eca9dd3d2ee68bef
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+          fetch-depth: 1
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c # v6.0.0
+        with:
+          python-version: '3.12'
+      - name: Record exact source and tool versions
+        run: |
+          mkdir -p "$HONRO_QA_OUT"
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          { git rev-parse HEAD; node --version; npm --version; python --version; } | tee "$HONRO_QA_OUT/versions.txt"
+          sha256sum package-lock.json game/package-lock.json > "$HONRO_QA_OUT/lock-sha256.txt"
+      - name: Install exact lockfile dependencies
+        id: install
+        run: |
+          set -o pipefail
+          npm ci 2>&1 | tee "$HONRO_QA_OUT/npm-ci.log"
+          npm ci --prefix game 2>&1 | tee "$HONRO_QA_OUT/npm-ci-game.log"
+      - name: Install pinned Playwright and its Chromium
+        id: browser_install
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: |
+          set -o pipefail
+          python -m pip install 'playwright==1.58.0' 2>&1 | tee "$HONRO_QA_OUT/playwright-install.log"
+          python -m playwright install --with-deps chromium 2>&1 | tee "$HONRO_QA_OUT/chromium-install.log"
+      - name: Assemble hash-verified candidate in a disposable QA worktree
+        id: candidate_build
+        if: ${{ !cancelled() && steps.install.outcome == 'success' && steps.browser_install.outcome == 'success' }}
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          for revision in \
+            6f65b57fa7d389daec0f3932c7b094cff1b2dcc9 \
+            a5c521b384ef9086194cfaafcf36291f06e05569 \
+            c5df56daf71d62d28d308d982bc431b3c75fb98d; do
+            git fetch --no-tags --depth=1 origin "$revision"
+          done
+          python tools/act4-rc/restore.py | tee "$HONRO_QA_OUT/candidate-restore.log"
+          python tools/act4-rc/assemble.py | tee "$HONRO_QA_OUT/candidate-assembly.log"
+          node tools/act4-rc/preflight.mjs | tee "$HONRO_QA_OUT/candidate-preflight.log"
+          echo '48c4c4deb9aec62518bde72e9c8668f36817da8f2626e7f8a736b0bd8af65b43  _local/act4-rc/world.json' | sha256sum -c -
+          preview="$RUNNER_TEMP/honro-act4-preview"
+          git worktree add --detach "$preview" "$GITHUB_SHA"
+          ln -s "$GITHUB_WORKSPACE/node_modules" "$preview/node_modules"
+          ln -s "$GITHUB_WORKSPACE/game/node_modules" "$preview/game/node_modules"
+          cp _local/act4-rc/world.json "$preview/shared/data/act4/world.json"
+          (
+            cd "$preview"
+            node tools/act4-source/world-source.mjs pack
+            # This flag is confined to the disposable QA copy. It is not a
+            # production package, guard approval, master change or deployment.
+            HONRO_ACT4_RELEASE=1 node workshop/build.mjs
+            sha256sum HONRO.html web/manifest.json
+          ) 2>&1 | tee "$HONRO_QA_OUT/candidate-build.log"
+      - name: Capture Stage31 views and existing reference stages
+        id: art_capture
+        if: ${{ !cancelled() && steps.candidate_build.outcome == 'success' }}
+        continue-on-error: true
+        env:
+          HONRO_CAPTURE_URL: http://127.0.0.1:8870/HONRO.html
+        run: |
+          set -o pipefail
+          python -m http.server 8870 --bind 127.0.0.1 --directory "$RUNNER_TEMP/honro-act4-preview" > "$HONRO_QA_OUT/server.log" 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          sleep 2
+          for stage in 31 3 30; do
+            HONRO_CAPTURE_STAGE="$stage" HONRO_CAPTURE_OUT="$HONRO_QA_OUT/stage$stage-art" python tools/act4-ci/capture-stage-art.py
+          done
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage31-art-${{ github.sha }}-${{ github.run_attempt }}
+          path: _local/reports/github-qa/
+          if-no-files-found: error
+          retention-days: 7
+      - name: Check capture execution (not visual acceptance)
+        if: always()
+        env:
+          CHECK_OUTCOMES: ${{ toJSON(steps) }}
+        run: |
+          python - <<'PY2'
+          import json,os
+          steps=json.loads(os.environ['CHECK_OUTCOMES'])
+          failed={k:steps.get(k,{}).get('outcome','missing') for k in ['install','browser_install','candidate_build','art_capture'] if steps.get(k,{}).get('outcome')!='success'}
+          if failed:raise SystemExit(str(failed))
+          PY2

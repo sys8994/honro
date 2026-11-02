@@ -1,0 +1,308 @@
+{
+  "checks": [
+    "anchor HP intent origin unchanged",
+    "wood-top",
+    "wood-bow",
+    "empty-sky",
+    "excluded-lower-void",
+    "excluded-west-gap",
+    "saved JSON battle rehydrates authored damage without injection",
+    "authored geometry cache obeys sceneVersion invalidation",
+    "nonprojectile body collision unchanged",
+    "AoE one existing identity even when two shapes are in radius",
+    "negative sky AoE",
+    "homing steers toward separate aim, no anchor mutation",
+    "ultimate targetId guidance uses same target aim",
+    "critical bonus keeps existing coefficient on authored region",
+    "phase/special sweeps share authored region, not sky box",
+    "generated guided child resolves to the same identity once",
+    "death preserves hull/path",
+    "broken/missing opt-in fallback 17",
+    "broken/missing opt-in fallback 18",
+    "broken/missing opt-in fallback 19",
+    "broken/missing opt-in fallback 20",
+    "broken/missing opt-in fallback 21"
+  ],
+  "shots": [
+    {
+      "name": "lower-A01",
+      "aim": {
+        "angle": 85,
+        "power": 0.65
+      },
+      "prediction": {
+        "unit": "a4-wreck",
+        "x": 3809.988912792312,
+        "y": 2391.136077531778
+      },
+      "steps": 63,
+      "pending": 0,
+      "contacts": [
+        {
+          "id": "a4-wreck",
+          "x": 3809.988912792312,
+          "y": 2391.136077531778
+        }
+      ],
+      "calls": [
+        {
+          "id": "a4-wreck",
+          "damage": 261.01
+        }
+      ],
+      "bossLoss": 148,
+      "npcLoss": [
+        {
+          "id": "a4-rescue-0",
+          "loss": 0
+        },
+        {
+          "id": "a4-rescue-1",
+          "loss": 0
+        },
+        {
+          "id": "a4-rescue-2",
+          "loss": 0
+        },
+        {
+          "id": "a4-rescue-3",
+          "loss": 0
+        }
+      ],
+      "terrainUnchanged": true
+    },
+    {
+      "name": "lower-explosion-M01",
+      "aim": {
+        "angle": 83,
+        "power": 0.85
+      },
+      "prediction": {
+        "unit": "a4-wreck",
+        "x": 3821.2628973563305,
+        "y": 2386.248661607612
+      },
+      "steps": 51,
+      "pending": 0,
+      "contacts": [
+        {
+          "id": "a4-wreck",
+          "x": 3821.2628973563305,
+          "y": 2386.248661607612
+        }
+      ],
+      "calls": [
+        {
+          "id": "a4-wreck",
+          "damage": 277.27857119999965
+        }
+      ],
+      "bossLoss": 192,
+      "npcLoss": [
+        {
+          "id": "a4-rescue-0",
+          "loss": 0
+        },
+        {
+          "id": "a4-rescue-1",
+          "loss": 0
+        },
+        {
+          "id": "a4-rescue-2",
+          "loss": 0
+        },
+        {
+          "id": "a4-rescue-3",
+          "loss": 0
+        }
+      ],
+      "terrainUnchanged": true
+    },
+    {
+      "name": "upper-manual",
+      "aim": {
+        "angle": 145,
+        "power": 0.85
+      },
+      "prediction": {
+        "unit": "a4-wreck",
+        "x": 2806.5156475131157,
+        "y": 1932.7853510025568
+      },
+      "steps": 358,
+      "pending": 0,
+      "contacts": [
+        {
+          "id": "a4-wreck",
+          "x": 2806.5156475131157,
+          "y": 1932.7853510025568
+        }
+      ],
+      "calls": [
+        {
+          "id": "a4-wreck",
+          "damage": 261.01
+        }
+      ],
+      "bossLoss": 148,
+      "npcLoss": [
+        {
+          "id": "a4-rescue-0",
+          "loss": 0
+        },
+        {
+          "id": "a4-rescue-1",
+          "loss": 0
+        },
+        {
+          "id": "a4-rescue-2",
+          "loss": 0
+        },
+        {
+          "id": "a4-rescue-3",
+          "loss": 0
+        }
+      ],
+      "terrainUnchanged": true
+    },
+    {
+      "name": "lower-autoaim",
+      "aim": {
+        "angle": 116.42379046647802,
+        "power": 0.6439573019600929,
+        "score": 851.1392
+      },
+      "prediction": {
+        "unit": "a4-wreck",
+        "x": 3705.0849705348455,
+        "y": 2561.0837063124336
+      },
+      "steps": 25,
+      "pending": 0,
+      "contacts": [
+        {
+          "id": "a4-wreck",
+          "x": 3705.0849705348455,
+          "y": 2561.0837063124336
+        }
+      ],
+      "calls": [
+        {
+          "id": "a4-wreck",
+          "damage": 261.01
+        }
+      ],
+      "bossLoss": 148,
+      "npcLoss": [
+        {
+          "id": "a4-rescue-0",
+          "loss": 0
+        },
+        {
+          "id": "a4-rescue-1",
+          "loss": 0
+        },
+        {
+          "id": "a4-rescue-2",
+          "loss": 0
+        },
+        {
+          "id": "a4-rescue-3",
+          "loss": 0
+        }
+      ],
+      "terrainUnchanged": true
+    },
+    {
+      "name": "NPC-intercept",
+      "aim": {
+        "angle": 170,
+        "power": 1
+      },
+      "prediction": {
+        "unit": "a4-rescue-3",
+        "x": 3944.5,
+        "y": 2248.282643755716
+      },
+      "steps": 68,
+      "pending": 0,
+      "contacts": [
+        {
+          "id": "a4-rescue-3",
+          "x": 3944.5,
+          "y": 2248.282643755716
+        }
+      ],
+      "calls": [
+        {
+          "id": "a4-rescue-3",
+          "damage": 261.01
+        }
+      ],
+      "bossLoss": 0,
+      "npcLoss": [
+        {
+          "id": "a4-rescue-0",
+          "loss": 0
+        },
+        {
+          "id": "a4-rescue-1",
+          "loss": 0
+        },
+        {
+          "id": "a4-rescue-2",
+          "loss": 0
+        },
+        {
+          "id": "a4-rescue-3",
+          "loss": 63.90000000000009
+        }
+      ],
+      "terrainUnchanged": true
+    }
+  ],
+  "fallback": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30
+  ],
+  "criticalLosses": [
+    72,
+    59
+  ],
+  "guidedChild": {
+    "scope": "existing child generator/flight fixture; ultimate root placed at known launch point, not full cast acceptance",
+    "mode": "arcBolt",
+    "targetId": "a4-wreck",
+    "steps": 19,
+    "hpLoss": 133,
+    "calls": 1
+  }
+}

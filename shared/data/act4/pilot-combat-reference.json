@@ -1,0 +1,129 @@
+{
+  "version": 2,
+  "referenceId": "declared-normal-entry-six-stat-starter-v1",
+  "status": "native-contact-calibrated-play-unmeasured",
+  "stages": {
+    "31": {
+      "level": 22,
+      "referenceHp": 1085,
+      "referenceArmor": 0.272,
+      "roles": {
+        "guard": {
+          "counterSkills": [
+            "A01"
+          ],
+          "referenceShot": 177,
+          "hits": 1.5,
+          "eliteHits": 1.8,
+          "hp": 266,
+          "eliteHp": 319,
+          "incomingDamagePerAttackUnit": {
+            "LS09": 23
+          }
+        },
+        "bow": {
+          "counterSkills": [
+            "A01",
+            "M01"
+          ],
+          "referenceShot": 248,
+          "hits": 1.5,
+          "eliteHits": 1.8,
+          "hp": 372,
+          "eliteHp": 446,
+          "incomingDamagePerAttackUnit": {
+            "LA01": 48.8
+          }
+        },
+        "bind": {
+          "counterSkills": [
+            "M01",
+            "O01"
+          ],
+          "referenceShot": 198,
+          "hits": 1.5,
+          "eliteHits": 1.8,
+          "hp": 297,
+          "eliteHp": 356,
+          "incomingDamagePerAttackUnit": {
+            "HSH01": 15.8,
+            "HSH02": 30.3
+          }
+        },
+        "arc": {
+          "counterSkills": [
+            "M01",
+            "S00"
+          ],
+          "referenceShot": 162.5,
+          "hits": 1.5,
+          "eliteHits": 1.8,
+          "hp": 244,
+          "eliteHp": 293,
+          "incomingDamagePerAttackUnit": {
+            "HWD01": 25.7,
+            "HWD02": 35.4
+          }
+        },
+        "close": {
+          "counterSkills": [
+            "A01",
+            "M01"
+          ],
+          "referenceShot": 221,
+          "hits": 1.5,
+          "eliteHits": 1.8,
+          "hp": 332,
+          "eliteHp": 398,
+          "incomingDamagePerAttackUnit": {
+            "HMO01": 31.1,
+            "HMO02": 34.5
+          }
+        },
+        "midboss": {
+          "counterSkills": [
+            "A01",
+            "M01",
+            "S00",
+            "O01"
+          ],
+          "referenceShot": 158.8,
+          "hits": 7.5,
+          "hp": 1191,
+          "plan": {
+            "partyRounds": 2.5,
+            "guardedRounds": 2,
+            "exposedRounds": 0.5,
+            "attackActionsPerRound": 3,
+            "reservedMovementSupportActions": 1,
+            "guardFullPartyDamage": 569,
+            "exposedFullPartyDamage": 900,
+            "status": "planning-model-not-measured-kill-rounds"
+          },
+          "incomingDamagePerAttackUnit": {
+            "HWD01": 29.1
+          }
+        }
+      }
+    }
+  },
+  "evidence": {
+    "fixture": "tests/fixtures/act4-pilot-damage-reference-31.json",
+    "sha256": "90011cae4e1c424b32afb6cec05bbd0a7d0d634f34f91e286209226cc69004ce",
+    "scope": "Fixed plan entry level; six legal stat investments; starter personal equipment; three legal attempts per declared chosen skill. Basic skills remain rank1. No profile outcome adaptation. Mean noncritical single-target cast, native collision/impact/armor/existence; analytic successful-contact flight, not player accuracy or play evidence.",
+    "incomingScope": "Native enemy per-skill successful contact against fixed reference archer mitigation; attack10 to reduce integer rounding, no defense bypass, no live party scaling. Other hero classes deliberately retain distinct HP/armor.",
+    "sourceHashes": {
+      "shared/engine/src/engine.ts": "dde628474a97a4b380b9e7d518329e3d315a4f6bd23085481811b768ca51f28b",
+      "shared/engine/src/data.ts": "337d96d72bdf81d54f98283ca6b7d57399ff7059af4074de2ead7345db97b06c",
+      "shared/engine/src/progression.ts": "d9da3e3cdc36e2c798dc662019fa3bf1642da05c02ad2ff7624a474d2cd111b7",
+      "shared/engine/src/existence.ts": "ff6d1a78e8fda0dcdc6d0aafdb66dad934407ef4d4f80e8a7e114e8981520d15",
+      "shared/engine/src/skillMechanics.ts": "4bc17931e2ee7445952a0ccbf1676b8f6fcf0ad97b33186f8077445ecc38a3a7",
+      "shared/engine/src/skillRedesignData.ts": "a499482be7a1d45f159bf565fa2e26f823a075447d244502f96540c5df9e97ff",
+      "shared/engine/src/warriorMechanics.ts": "5c5d37acb99ae02bc3ffafd3566de0fbe9633423cdac3a00186a0c82e3460e2d",
+      "shared/engine/src/warriorData.ts": "07c6917ebfd5004d5fda90ff0f5030f0aa88ecf0a6b2528a700d16a7bfe96a0a",
+      "shared/engine/src/occultData.ts": "a7984df73d1451a04dcd8bc57abedd66c32292f21b27620b740a5defe62f438c",
+      "shared/engine/src/equipment.ts": "bdea8b5b62d475268e375011ee13c53cd220874a38cda20ec1f2715fc4ea165c",
+      "shared/runtime/progression.js": "d0a3da6460c6a6f9cbc9160bdd4d46b24ccc0e8021855e3ab3fe597dee9e5c74"
+    }
+  }
+}

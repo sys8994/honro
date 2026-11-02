@@ -1,0 +1,78 @@
+name: Verify resident separation and Stage40 escort
+on:
+  push:
+    branches: ['work/act4-escort-direct/**']
+permissions:
+  contents: write
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    env:
+      HONRO_CAPTURE_URL: http://127.0.0.1:8870/HONRO.html
+      HONRO_CAPTURE_OUT: _local/reports/escort-review
+      HONRO40_FINISH: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Install pinned tools and run collision regressions
+        run: |
+          npm ci
+          npm ci --prefix game
+          node tests/act4-resident-separation.mjs
+          node tests/act4-return-follower-guards.mjs
+          node tests/act4-resident-platform-drop-resume.mjs
+          python -m pip install 'playwright==1.58.0'
+          python -m playwright install chromium
+          if ! python -c 'from playwright.sync_api import sync_playwright; w=sync_playwright().start(); b=w.chromium.launch(headless=True); b.close(); w.stop()'; then python -m playwright install-deps chromium; fi
+      - name: Build unpublished preview and rerun current-runtime Engine probes
+        run: |
+          set -euo pipefail
+          mkdir -p "$HONRO_CAPTURE_OUT"
+          mapfile -t refs < <(node --input-type=module -e 'import fs from "node:fs";import {selectPublishedGenerations} from "./shared/web-retention.mjs";for(const g of selectPublishedGenerations(JSON.parse(fs.readFileSync("web/manifest.json")).publishedGenerations,{now:Date.now()})){if(!/^[a-f0-9]{40}$/.test(g.sourceSha))throw Error("Invalid ref");console.log(g.sourceSha)}')
+          git fetch --no-tags --depth=1 origin 44e428c8ea019bec9f2f4ed5c9ce81458247149f "${refs[@]}"
+          node tools/release/retain-published-web.mjs 44e428c8ea019bec9f2f4ed5c9ce81458247149f --published-at 2026-11-01T06:40:00Z --evidence https://github.com/sys8994/honro/actions/runs/41281619576
+          HONRO_ACT4_RELEASE=1 node tools/act4-ci/refresh-stage31-probes.mjs prepare "$HONRO_CAPTURE_OUT"
+          # Preview only. Changed runtime cannot pass the production gate until
+          # fresh Stage31 objective evidence exists. The gate is checked below.
+          HONRO_ACT4_RELEASE=1 node workshop/build.mjs | tee "$HONRO_CAPTURE_OUT/build.log"
+          sha256sum HONRO.html web/manifest.json > "$HONRO_CAPTURE_OUT/served-sha256.txt"
+      - name: Fresh UI Stage31 objective and Stage40 escort plus reload
+        run: |
+          set -euo pipefail
+          python -m http.server 8870 --bind 127.0.0.1 > "$HONRO_CAPTURE_OUT/server.log" 2>&1 &
+          server=$!;trap 'kill "$server" 2>/dev/null || true' EXIT
+          sleep 2
+          HONRO_RUN_DIR="$HONRO_CAPTURE_OUT/stage31" python tools/act4-ci/stage31-fullplay.py > "$HONRO_CAPTURE_OUT/stage31.log" 2>&1 &
+          stage31=$!
+          HONRO_CAPTURE_OUT="$HONRO_CAPTURE_OUT/stage40" python tools/act4-ci/stage40-opening/play.py > "$HONRO_CAPTURE_OUT/stage40.log" 2>&1 &
+          stage40=$!
+          set +e
+          wait "$stage31"; status31=$?
+          wait "$stage40"; status40=$?
+          set -e
+          test "$status31" = 0 && test "$status40" = 0
+      - name: Bind genuine probe results and enforce unchanged production gate
+        run: |
+          set -euo pipefail
+          node tools/act4-ci/refresh-stage31-probes.mjs attach "$HONRO_CAPTURE_OUT"
+          HONRO_ACT4_RELEASE=1 node tools/stage31/check-release.mjs
+      - name: Preserve tested candidate without publishing
+        run: |
+          git add web HONRO.html HONRO_WORKSHOP.html index.html tools/stage31/production-package.json
+          git -c user.name='honro release automation' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Build tested resident separation candidate'
+          git push origin HEAD:refs/heads/work/act4-escort-candidate/${GITHUB_SHA}
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: escort-review-${{ github.sha }}
+          path: _local/reports/escort-review/
+          retention-days: 7

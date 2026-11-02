@@ -4,8 +4,10 @@ import path from 'node:path';
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {runtime} from '../../game/tests/helpers.mjs';
+import {loadPilotRuntime} from './pilot-runtime.mjs';
 process.env.HONRO_ACT4_RELEASE='1';
 const [command='audit',file,stageId='stage-31',destination]=process.argv.slice(2),g=await runtime({legacyMaps:false}),P=g.HonroProductionContract;
+await loadPilotRuntime(g);
 const project=file?JSON.parse(await readFile(file,'utf8')):JSON.parse(JSON.stringify(g.HONRO_PROJECT));
 if(command==='seed'){
  const draft=P.begin(project,stageId);await mkdir('_local/reports/stage31-direct',{recursive:true});const out=destination||'_local/reports/stage31-direct/production-draft.json';await writeFile(out,JSON.stringify(draft,null,2)+'\n');console.log(out);

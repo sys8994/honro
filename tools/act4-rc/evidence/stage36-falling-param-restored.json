@@ -1,0 +1,60 @@
+{
+  "stage": 36,
+  "round": 12,
+  "door": {
+    "phase": "fallen",
+    "time": 1,
+    "soundAt": 787.9731999999109,
+    "renderedAt": 787.9731999999109
+  },
+  "assetId": "act4rc:stage36-door",
+  "pose": {
+    "version": 1,
+    "fallenScaleY": 0.25,
+    "fallenOffsetY": 79
+  },
+  "heroes": [
+    {
+      "id": "archer",
+      "hp": 1596.3,
+      "dead": false
+    },
+    {
+      "id": "mage",
+      "hp": 1263.7,
+      "dead": false
+    },
+    {
+      "id": "knight",
+      "hp": 3421.6000000000004,
+      "dead": false
+    },
+    {
+      "id": "occultist",
+      "hp": 1956.9,
+      "dead": false
+    }
+  ],
+  "reward": {
+    "state": "committed",
+    "choiceGroup": null,
+    "selectedItemId": "itm_hw_06",
+    "notified": true
+  },
+  "owned": 1,
+  "sameContextReload": {
+    "door": {
+      "phase": "fallen",
+      "time": 1,
+      "soundAt": 787.9731999999109,
+      "renderedAt": 787.9731999999109
+    },
+    "owned": 1,
+    "reward": {
+      "state": "committed",
+      "choiceGroup": null,
+      "selectedItemId": "itm_hw_06",
+      "notified": true
+    }
+  }
+}

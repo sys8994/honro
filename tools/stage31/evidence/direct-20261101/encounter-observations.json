@@ -1,0 +1,261 @@
+{
+  "scope": "actual stored shot metadata and sampled positions in run41264482610; not hit counts or role quality by label alone",
+  "groups": [
+    {
+      "group": "west-entry",
+      "distinctActorsWithRecordedShots": 4,
+      "fired": [
+        {
+          "actor": "pilot31-west-entry-7",
+          "skill": "HSH01"
+        },
+        {
+          "actor": "pilot31-west-entry-5",
+          "skill": "HWD01"
+        },
+        {
+          "actor": "pilot31-west-entry-8",
+          "skill": "LA01"
+        },
+        {
+          "actor": "pilot31-west-entry-6",
+          "skill": "LA01"
+        }
+      ],
+      "movement": [
+        {
+          "actor": "pilot31-west-entry-1",
+          "maxDisplacement": 0.0
+        },
+        {
+          "actor": "pilot31-west-entry-2",
+          "maxDisplacement": 4.38
+        },
+        {
+          "actor": "pilot31-west-entry-3",
+          "maxDisplacement": 0.0
+        },
+        {
+          "actor": "pilot31-west-entry-4",
+          "maxDisplacement": 0.0
+        },
+        {
+          "actor": "pilot31-west-entry-5",
+          "maxDisplacement": 369.35
+        },
+        {
+          "actor": "pilot31-west-entry-6",
+          "maxDisplacement": 11.86
+        },
+        {
+          "actor": "pilot31-west-entry-7",
+          "maxDisplacement": 333.45
+        },
+        {
+          "actor": "pilot31-west-entry-8",
+          "maxDisplacement": 82.17
+        }
+      ]
+    },
+    {
+      "group": "west-crossfire",
+      "distinctActorsWithRecordedShots": 7,
+      "fired": [
+        {
+          "actor": "pilot31-west-crossfire-3",
+          "skill": "HMO01"
+        },
+        {
+          "actor": "pilot31-west-crossfire-4",
+          "skill": "HMO02"
+        },
+        {
+          "actor": "pilot31-west-crossfire-8",
+          "skill": "LS09"
+        },
+        {
+          "actor": "pilot31-west-crossfire-2",
+          "skill": "LA01"
+        },
+        {
+          "actor": "pilot31-west-crossfire-5",
+          "skill": "HSH01"
+        },
+        {
+          "actor": "pilot31-west-crossfire-6",
+          "skill": "LA01"
+        },
+        {
+          "actor": "pilot31-west-crossfire-9",
+          "skill": "LA01"
+        }
+      ],
+      "movement": [
+        {
+          "actor": "pilot31-west-crossfire-1",
+          "maxDisplacement": 0.0
+        },
+        {
+          "actor": "pilot31-west-crossfire-2",
+          "maxDisplacement": 210.87
+        },
+        {
+          "actor": "pilot31-west-crossfire-3",
+          "maxDisplacement": 227.71
+        },
+        {
+          "actor": "pilot31-west-crossfire-4",
+          "maxDisplacement": 367.18
+        },
+        {
+          "actor": "pilot31-west-crossfire-5",
+          "maxDisplacement": 215.46
+        },
+        {
+          "actor": "pilot31-west-crossfire-6",
+          "maxDisplacement": 207.49
+        },
+        {
+          "actor": "pilot31-west-crossfire-7",
+          "maxDisplacement": 0.0
+        },
+        {
+          "actor": "pilot31-west-crossfire-8",
+          "maxDisplacement": 0.0
+        },
+        {
+          "actor": "pilot31-west-crossfire-9",
+          "maxDisplacement": 355.82
+        }
+      ]
+    },
+    {
+      "group": "ridge-court",
+      "distinctActorsWithRecordedShots": 7,
+      "fired": [
+        {
+          "actor": "pilot31-ridge-court-3",
+          "skill": "LA01"
+        },
+        {
+          "actor": "pilot31-ridge-court-6",
+          "skill": "LA01"
+        },
+        {
+          "actor": "pilot31-ridge-court-7",
+          "skill": "HSH01"
+        },
+        {
+          "actor": "pilot31-ridge-court-9",
+          "skill": "LA01"
+        },
+        {
+          "actor": "pilot31-ridge-court-1",
+          "skill": "HMO02"
+        },
+        {
+          "actor": "pilot31-ridge-court-4",
+          "skill": "HMO01"
+        },
+        {
+          "actor": "pilot31-ridge-court-8",
+          "skill": "HWD01"
+        }
+      ],
+      "movement": [
+        {
+          "actor": "pilot31-ridge-court-1",
+          "maxDisplacement": 335.6
+        },
+        {
+          "actor": "pilot31-ridge-court-2",
+          "maxDisplacement": 0.0
+        },
+        {
+          "actor": "pilot31-ridge-court-3",
+          "maxDisplacement": 333.38
+        },
+        {
+          "actor": "pilot31-ridge-court-4",
+          "maxDisplacement": 31.42
+        },
+        {
+          "actor": "pilot31-ridge-court-5",
+          "maxDisplacement": 0.0
+        },
+        {
+          "actor": "pilot31-ridge-court-6",
+          "maxDisplacement": 0.0
+        },
+        {
+          "actor": "pilot31-ridge-court-7",
+          "maxDisplacement": 607.73
+        },
+        {
+          "actor": "pilot31-ridge-court-8",
+          "maxDisplacement": 286.96
+        },
+        {
+          "actor": "pilot31-ridge-court-9",
+          "maxDisplacement": 366.71
+        }
+      ]
+    },
+    {
+      "group": "lookout-return",
+      "distinctActorsWithRecordedShots": 4,
+      "fired": [
+        {
+          "actor": "pilot31-lookout-return-4",
+          "skill": "HMO01"
+        },
+        {
+          "actor": "pilot31-lookout-return-2",
+          "skill": "LA01"
+        },
+        {
+          "actor": "pilot31-lookout-return-3",
+          "skill": "HSH01"
+        },
+        {
+          "actor": "pilot31-lookout-return-8",
+          "skill": "LA01"
+        }
+      ],
+      "movement": [
+        {
+          "actor": "pilot31-lookout-return-1",
+          "maxDisplacement": 0.0
+        },
+        {
+          "actor": "pilot31-lookout-return-2",
+          "maxDisplacement": 333.38
+        },
+        {
+          "actor": "pilot31-lookout-return-3",
+          "maxDisplacement": 409.56
+        },
+        {
+          "actor": "pilot31-lookout-return-4",
+          "maxDisplacement": 682.55
+        },
+        {
+          "actor": "pilot31-lookout-return-5",
+          "maxDisplacement": 491.25
+        },
+        {
+          "actor": "pilot31-lookout-return-6",
+          "maxDisplacement": 779.5
+        },
+        {
+          "actor": "pilot31-lookout-return-7",
+          "maxDisplacement": 301.48
+        },
+        {
+          "actor": "pilot31-lookout-return-8",
+          "maxDisplacement": 466.23
+        }
+      ]
+    }
+  ]
+}

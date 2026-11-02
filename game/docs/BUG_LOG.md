@@ -5124,6 +5124,25 @@ commonReviewRevision의 첫 혼령 대기열은 생성 후 소단/sceneTarget가
 
 전경 그림만 별도 viewport raster에 보관하고 동행 보호 영역은 cache 밖에서 적용한다. 슬롯은 6M pixels 상한이며 카메라/크기 변경 시 이전 buffer를 해제하고 전경이 사라지면 슬롯도 해제한다. 물리·schema·기존 충돌 자산 분류는 바꾸지 않았다. `tools/stage31-production/test-foreground.mjs`는 native 실제 renderer의 순서/반투명 안내 픽셀/동행·목표 보호/cache 수명, 모바일 DPR1.7 메모리 상한 및 FORE 없는 31·35·3장의 이전 renderer 대비 PNG byte 동일성을 확인한다. 색상 fixture는 합성 검증용이며 캠페인 완주·미술 승인·공개 배포 증거가 아니다.
 
+### 2026-10-31 — Act 4 pilot combat dependency
+
+The clean runtime omitted the opt-in pilot combat module used by tagged Act 4 candidates. Reconnected the unchanged reviewed module, its v2 reference, and the explicit one-round activation option; fresh tagged maps now fail preflight when required pieces are absent. Published untagged data are unchanged. Focused tests and remaining browser/play limits are recorded in [ACT4_PILOT_COMBAT_DEPENDENCY.md](integration/ACT4_PILOT_COMBAT_DEPENDENCY.md).
+
+### Act 4 RC map revision archive (2026-10-31)
+
+An existing Stage 31 battle recorded map revision 4, so candidate geography uses independent map revision 5; story/equipment proof revision stays 3. The prior preservation condition only archived obsolete Act 4 saves when the current map revision equalled 3. It now applies to revision 3 and later, retaining the original exact bytes before the battle is restarted. `tests/act4-map-revision-rc.mjs`, `tests/act4-rc-archive.mjs` and `tests/campaign-map-revision.mjs` exercise the map/progression boundary, original backup, quota failure, and Workshop/earlier-stage exclusions. Browser/device migration and final release evidence remain separate.
+
+- Act 4 RC archive display: archive metadata hard-coded destination map revision 3 while RC maps use revision 5. The source battle bytes and archive key stay untouched; the displayed destination now derives from the current map revision. The archive regression checks source revision 4, destination revision 5, exact original bytes and quota failure. Previously archived rows describe their relation to the current map, not an independently recorded historical transition.
+
+- Active-player fall P0 integration: `ea392e1` advances a dead active actor after other actors settle, with `checkEnd` before advancing. Its first placement returned before updating attached zones while waiting; a regression with a living airborne ally reproduced stale zone position (expected y=466.0212114585937, actual y=465.732539137097). The dead-actor branch now runs after the existing attachment update. Redesign/occult/warrior/beast/passive ticks still run before it; during a dead-active aim tick, no flight/summon/enemy branch is applicable, and `checkEnd` still runs before transition. Campaign stage 19's existing noncombat-walk early return is unchanged. This is a global engine change, not Act 4-only. Existing whole-campaign gameplay and exact mission regressions remain necessary.
+### 2026-10-31 — title direct handoff
+
+Title `여정 이어가기` could choose an older hub before honoring a saved direct chapter handoff. Route matching pending handoffs through the existing direct continuation; keep suspended battles and explicit hub requests unchanged. Model and actual browser proof, including fixture and pre-existing broad-suite limits, are in [ACT4_PENDING_DIRECT_TITLE.md](integration/ACT4_PENDING_DIRECT_TITLE.md).
+
+## 2026-11-01 · 4막8장 목재 확대 경계
+- 원인: 별도 목재 추적 겹의 픽셀 계단형 경로/알파 마스크. 겹 삭제는 재질·접합 표현을 잃어 폐기했다.
+- 수정: 실제 Inkscape의 제한적 경로 단순화,흰 바탕 교정. 바위·문자·충돌·배치·전투는 그대로다. 기존 진행 저장을 위해 새 자산ID와 원본 공급자를 함께 유지한다.
+- 확인: 실제 게임 정상/확대 비교 및 이전 UI 저장 재개/재로드41279902381 통과. 신규 활성 BODY 약18.4% 축소,호환 원본 때문에 전송 묶음은약0.45MB 증가. 실제 휴대폰 성능이나 새 전체 완주 검증으로 확대하지 않는다.
 ### 2026-11-01 · UX 정돈 1: 즉시 결함
 - 원인/변경: 전투 중 우하단 배경음 표기가 조준 각도·힘 수치와 겹침 → 전투 화면에서는 곡이 바뀔 때 5초만 표시(메뉴 화면은 상시). 쉼터 대화 패널 아래로 비활성 하단 버튼이 비침 → 대화 중 숨김. 설정 창 최상단의 금색 '전체화면'을 제목 아래 보조 버튼으로 낮춤. 허공터 '이 기예로 수련'을 활성 주 버튼 색으로. 모닥불 탭 '스킬'→'기예', 조이스틱 'MOVE / AIM'→'이동 · 조준'. 쉼터·모닥불·타이틀 보조 글씨 최소 11px.
 - 확인: 데스크톱·모바일 세로/가로 실제 화면 전후, equipment-browser·bgm-transitions 통과. ui-buttons·combat-action-layout·passive-status-layout은 master에서도 동일하게 실패하는 기존 실패로 범위 밖. 전투 HUD 글씨(7–9px)와 모바일 목표 문구 잘림은 HUD 재배치(UX 3)에서 처리.

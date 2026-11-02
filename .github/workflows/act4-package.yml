@@ -1,0 +1,54 @@
+name: Build reviewed Act4 candidate
+on:
+  push:
+    branches: ['work/act4-package-direct/**']
+permissions:
+  contents: write
+concurrency:
+  group: act4-package-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  package:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 1
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Restore selected source and preserve published assets
+        run: |
+          set -euo pipefail
+          for revision in 6f65b57fa7d389daec0f3932c7b094cff1b2dcc9 a5c521b384ef9086194cfaafcf36291f06e05569 c5df56daf71d62d28d308d982bc431b3c75fb98d 7238c788662cdfc55947d51dbe6cfe3a46768d0b; do
+            git fetch --no-tags --depth=1 origin "$revision"
+          done
+          npm ci
+          npm ci --prefix game
+          python tools/act4-rc/restore.py
+          python tools/act4-rc/assemble.py
+          node tools/act4-rc/preflight.mjs
+          # A shallow checkout lacks older published Git objects even when
+          # their retained files exist. Fetch exactly the retained source refs.
+          mapfile -t published_refs < <(node --input-type=module -e 'import fs from "node:fs";import {selectPublishedGenerations} from "./shared/web-retention.mjs";const m=JSON.parse(fs.readFileSync("web/manifest.json"));for(const g of selectPublishedGenerations(m.publishedGenerations||[],{now:Date.now()})){if(!/^[a-f0-9]{40}$/.test(g.sourceSha))throw Error("Invalid publication ref");console.log(g.sourceSha)}')
+          if ((${#published_refs[@]})); then git fetch --no-tags --depth=1 origin "${published_refs[@]}"; fi
+          node tools/release/retain-published-web.mjs 7238c788662cdfc55947d51dbe6cfe3a46768d0b --published-at 2026-10-31T12:20:23Z --evidence https://github.com/sys8994/honro/actions/runs/41200502315
+          python tools/act4-ci/stage38-toe/prepare.py _local/act4-rc/world.json shared/data/act4/world.json
+          node tools/act4-source/world-source.mjs pack
+          mkdir -p _local/pruned
+          node tools/act4-source/prune-unused.mjs shared/data/act4/world.json _local/pruned/world.json _local/pruned/report.json
+          cp _local/pruned/world.json shared/data/act4/world.json
+          node tools/act4-source/world-source.mjs pack
+          HONRO_ACT4_RELEASE=1 npm run build
+      - name: Commit generated candidate to a non-production branch
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          git add shared/data/act4/world.parts web HONRO.html HONRO_WORKSHOP.html index.html
+          git diff --cached --stat
+          git -c user.name='honro release automation' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Build pruned Act4 assets and retain the published asset graph'
+          # No master write, force push, PR approval or Pages deployment here.
+          git push origin HEAD:refs/heads/work/act4-generated-candidate/20261101

@@ -1,0 +1,235 @@
+name: Act4 direct QA smoke
+run-name: Act4 QA smoke · ${{ github.sha }}
+
+on:
+  push:
+    branches: ['work/act4-direct-qa/**']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: act4-qa-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  smoke:
+    if: github.repository == 'sys8994/honro'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    env:
+      CI: 'true'
+      HONRO_QA_URL: http://127.0.0.1:8770/HONRO.html
+      HONRO_QA_OUT: _local/reports/github-qa
+      # Provenance only. The actual executable source is always github.sha.
+      HONRO_QA_BASE: 2112600b8ae90dc23082b372eca9dd3d2ee68bef
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+          fetch-depth: 1
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c # v6.0.0
+        with:
+          python-version: '3.12'
+      - name: Record exact source and tool versions
+        run: |
+          mkdir -p "$HONRO_QA_OUT"
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          { git rev-parse HEAD; node --version; npm --version; python --version; } | tee "$HONRO_QA_OUT/versions.txt"
+          sha256sum package-lock.json game/package-lock.json > "$HONRO_QA_OUT/lock-sha256.txt"
+      - name: Install exact lockfile dependencies
+        id: install
+        run: |
+          set -o pipefail
+          npm ci 2>&1 | tee "$HONRO_QA_OUT/npm-ci.log"
+          npm ci --prefix game 2>&1 | tee "$HONRO_QA_OUT/npm-ci-game.log"
+      - name: Focused models, exact TypeScript and operation guard
+        id: models
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          node tools/act4-source/world-source.mjs materialize
+          status=0
+          for command in \
+            'npm --prefix game run typecheck' \
+            'node tests/act4-map-revision-rc.mjs' \
+            'node tests/active-player-fall-turn.mjs' \
+            'node tests/act4-water-entry-ledge.mjs' \
+            'node tests/act4-return-event-geometry.mjs' \
+            'node tests/act4-rc-archive.mjs' \
+            'npm run test:release-guard'; do
+            echo "RUN: $command" | tee -a "$HONRO_QA_OUT/models.log"
+            bash -eo pipefail -c "$command" 2>&1 | tee -a "$HONRO_QA_OUT/models.log" || status=1
+          done
+          exit "$status"
+      - name: Production contact and route contract regressions
+        id: production_contract
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          npm run test:production-contract 2>&1 | tee "$HONRO_QA_OUT/production-contract.log"
+      - name: Build canonical source through unchanged production guard
+        id: build
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          # No HONRO_ACT4_RELEASE flag. No assembled candidate is installed here.
+          npm run build 2>&1 | tee "$HONRO_QA_OUT/build.log"
+          sha256sum HONRO.html web/manifest.json > "$HONRO_QA_OUT/build-sha256.txt"
+      - name: Install pinned Playwright and its Chromium
+        id: browser_install
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: |
+          set -o pipefail
+          python -m pip install 'playwright==1.58.0' 2>&1 | tee "$HONRO_QA_OUT/playwright-install.log"
+          python -m playwright install --with-deps chromium 2>&1 | tee "$HONRO_QA_OUT/chromium-install.log"
+      - name: Official UI first-entry smoke
+        id: browser
+        if: ${{ !cancelled() && steps.browser_install.outcome == 'success' }}
+        timeout-minutes: 5
+        env:
+          HONRO_BUILD_OUTCOME: ${{ steps.build.outcome }}
+        run: |
+          set -o pipefail
+          if [[ "$HONRO_BUILD_OUTCOME" != success ]]; then
+            # A failed build is not a release pass. Only the unchanged checked-in
+            # site may serve as a separate browser-capability check in that case.
+            git diff --exit-code -- HONRO.html web/
+          fi
+          sha256sum HONRO.html web/manifest.json > "$HONRO_QA_OUT/served-build-sha256.txt"
+          python -m http.server 8770 --bind 127.0.0.1 > "$HONRO_QA_OUT/server.log" 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          ready=0
+          for attempt in {1..30}; do
+            if curl --fail --silent --output /dev/null "$HONRO_QA_URL"; then ready=1; break; fi
+            sleep 1
+          done
+          test "$ready" = 1
+          python tools/act4-ci/browser-smoke.py 2>&1 | tee "$HONRO_QA_OUT/browser.log"
+      - name: Assemble hash-verified candidate in a disposable QA worktree
+        id: candidate_build
+        if: ${{ !cancelled() && steps.install.outcome == 'success' && steps.browser_install.outcome == 'success' }}
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          for revision in \
+            6f65b57fa7d389daec0f3932c7b094cff1b2dcc9 \
+            a5c521b384ef9086194cfaafcf36291f06e05569 \
+            c5df56daf71d62d28d308d982bc431b3c75fb98d; do
+            git fetch --no-tags --depth=1 origin "$revision"
+          done
+          python tools/act4-rc/restore.py | tee "$HONRO_QA_OUT/candidate-restore.log"
+          python tools/act4-rc/assemble.py | tee "$HONRO_QA_OUT/candidate-assembly.log"
+          node tools/act4-rc/preflight.mjs | tee "$HONRO_QA_OUT/candidate-preflight.log"
+          echo '48c4c4deb9aec62518bde72e9c8668f36817da8f2626e7f8a736b0bd8af65b43  _local/act4-rc/world.json' | sha256sum -c -
+          preview="$RUNNER_TEMP/honro-act4-preview"
+          git worktree add --detach "$preview" "$GITHUB_SHA"
+          ln -s "$GITHUB_WORKSPACE/node_modules" "$preview/node_modules"
+          ln -s "$GITHUB_WORKSPACE/game/node_modules" "$preview/game/node_modules"
+          cp _local/act4-rc/world.json "$preview/shared/data/act4/world.json"
+          (
+            cd "$preview"
+            node tools/act4-source/world-source.mjs pack
+            # This flag is confined to the disposable QA copy. It is not a
+            # production package, guard approval, master change or deployment.
+            HONRO_ACT4_RELEASE=1 node workshop/build.mjs
+            sha256sum HONRO.html web/manifest.json
+          ) 2>&1 | tee "$HONRO_QA_OUT/candidate-build.log"
+      - name: Recorded Stage34 recovery through real UI import and Continue
+        id: stage34_water
+        if: ${{ !cancelled() && steps.candidate_build.outcome == 'success' }}
+        continue-on-error: true
+        timeout-minutes: 6
+        env:
+          HONRO_QA_URL: http://127.0.0.1:8870/HONRO.html
+        run: |
+          set -o pipefail
+          python -m http.server 8870 --bind 127.0.0.1 --directory "$RUNNER_TEMP/honro-act4-preview" > "$HONRO_QA_OUT/stage34-server.log" 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          ready=0
+          for attempt in {1..30}; do
+            if curl --fail --silent --output /dev/null "$HONRO_QA_URL"; then ready=1; break; fi
+            sleep 1
+          done
+          test "$ready" = 1
+          python tools/act4-ci/water-recovery-ui.py 2>&1 | tee "$HONRO_QA_OUT/stage34-water.log"
+      - name: Stage31 exact-runtime design card and focused probes
+        id: stage31_probes
+        if: ${{ !cancelled() && steps.candidate_build.outcome == 'success' }}
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          evidence="$GITHUB_WORKSPACE/$HONRO_QA_OUT/stage31-models"
+          mkdir -p "$evidence"
+          cd "$RUNNER_TEMP/honro-act4-preview"
+          node tools/stage31/prepare-draft.mjs _local/stage31-ci | tee "$evidence/prepare.log"
+          cp _local/stage31-ci/card.json _local/stage31-ci/audit.json "$evidence/"
+          node tools/stage31/probes.mjs _local/stage31-ci/draft.json stage-31 tools/stage31/evidence/probes/honro-stage31-input-probes-v4.json "$evidence/probes.json" | tee "$evidence/probes.log"
+      - name: Stage31 actual browser battle and four-person boarding
+        id: stage31_fullplay
+        if: ${{ !cancelled() && steps.candidate_build.outcome == 'success' }}
+        continue-on-error: true
+        timeout-minutes: 25
+        env:
+          HONRO_QA_ORIGIN: http://127.0.0.1:8870
+          HONRO_RUN_DIR: _local/reports/github-qa/stage31-fullplay
+        run: |
+          set -o pipefail
+          cp _local/act4-rc/candidates/stage31.json "$RUNNER_TEMP/honro-act4-preview/candidate31.json"
+          python -m http.server 8870 --bind 127.0.0.1 --directory "$RUNNER_TEMP/honro-act4-preview" > "$HONRO_QA_OUT/stage31-server.log" 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          ready=0
+          for attempt in {1..30}; do
+            if curl --fail --silent --output /dev/null "$HONRO_QA_ORIGIN/HONRO.html"; then ready=1; break; fi
+            sleep 1
+          done
+          test "$ready" = 1
+          python tools/act4-ci/stage31-fullplay.py 2>&1 | tee "$HONRO_QA_OUT/stage31-fullplay.log"
+      - name: Record all outcomes, including failures and skipped steps
+        if: always()
+        env:
+          STEP_OUTCOMES: ${{ toJSON(steps) }}
+        run: |
+          mkdir -p "$HONRO_QA_OUT"
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          result = {"sourceCommit": os.environ["GITHUB_SHA"], "baseCommit": os.environ["HONRO_QA_BASE"],
+                    "runId": os.environ["GITHUB_RUN_ID"], "attempt": os.environ["GITHUB_RUN_ATTEMPT"],
+                    "releaseApproved": False, "scope": "Canonical smoke, recorded Stage34 recovery, Stage31 focused probes and tool-assisted full play; not release approval",
+                    "steps": json.loads(os.environ["STEP_OUTCOMES"])}
+          Path(os.environ["HONRO_QA_OUT"], "run.json").write_text(json.dumps(result, indent=2) + "\n")
+          PY
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
+        if: always()
+        with:
+          name: act4-qa-${{ github.sha }}-${{ github.run_attempt }}
+          path: _local/reports/github-qa/
+          if-no-files-found: error
+          retention-days: 7
+      - name: Fail the run if any required check failed or was skipped
+        if: always()
+        env:
+          CHECK_OUTCOMES: ${{ toJSON(steps) }}
+        run: |
+          python - <<'PY'
+          import json, os
+          steps = json.loads(os.environ['CHECK_OUTCOMES'])
+          required = ['install', 'models', 'production_contract', 'build', 'browser_install', 'browser',
+                      'candidate_build', 'stage34_water', 'stage31_probes', 'stage31_fullplay']
+          failed = {name: steps.get(name, {}).get('outcome', 'missing') for name in required
+                    if steps.get(name, {}).get('outcome') != 'success'}
+          if failed:
+              raise SystemExit('Failed or unexecuted checks (not a release pass): ' + json.dumps(failed))
+          PY

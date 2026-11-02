@@ -1,0 +1,22 @@
+import json,hashlib,copy,os
+from pathlib import Path
+from playwright.sync_api import sync_playwright
+root=Path(__file__).resolve().parents[2];src=Path(os.environ.get('HONRO_STAGE34_PORTABLE',root/'_local/act4-rc/stage33-old-save/stage34-before-ui-export.json'));raw=src.read_bytes();assert hashlib.sha256(raw).hexdigest()=='9f96357c20c051286561bf5aa2b127a93d9224044f9dfed1944c5b75cd6415c3'
+print('source sha',hashlib.sha256(raw).hexdigest(),flush=True);original=json.loads(raw);assets=[x['asset'] for x in original['honroBattle']['honroLandmarks'] if x.get('asset',{}).get('id')=='approved34:body'];assert len(assets)==1;old=assets[0];originalBattle=original['honroBattle'];compact=copy.deepcopy(original)
+for key in ['honroLandmarks','honroElements']:
+ for item in compact['honroBattle'][key]:
+  if item.get('asset',{}).get('id')=='approved34:body':item['asset']={'honroStaticAssetRef':1,'id':'approved34:body','signature':'3417265:bff32c0d'}
+out=root/'_local/act4-rc';(out/'stage34-old-compact-derived.json').write_text(json.dumps(compact,ensure_ascii=False));bad=copy.deepcopy(compact)
+for key in ['honroLandmarks','honroElements']:
+ for item in bad['honroBattle'][key]:
+  if item.get('asset',{}).get('id')=='approved34:body':item['asset']['signature']='3417265:bad'
+(out/'stage34-bad-derived.json').write_text(json.dumps(bad,ensure_ascii=False));results=[]
+with sync_playwright() as w:
+ browser=w.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox'])
+ for kind,file in [('portable',src),('compact-derived',out/'stage34-old-compact-derived.json'),('bad-derived',out/'stage34-bad-derived.json')]:
+  c=browser.new_context(viewport={'width':1280,'height':800});p=c.new_page();events=[];errors=[];p.on('pageerror',lambda e:errors.append(str(e)));p.on('request',lambda r:events.append(r.url) if 'campaign-compat-34' in r.url else None);p.goto(os.environ.get('HONRO_QA_URL','http://127.0.0.1:8896/HONRO.html'));p.wait_for_function('window.HonroApp');owner=json.loads((root/'tests/fixtures/act4-rc/support-entry-fixture.json').read_text())['profile'];p.evaluate('(v)=>localStorage.setItem("honro-first-act-profile-1",JSON.stringify(v))',owner);prior=p.evaluate("localStorage.getItem('honro-first-act-profile-1')");p.locator('[data-action="settings"]').first.click();p.get_by_text('기록·관리',exact=False).click();p.get_by_text('JSON 기록 가져오기',exact=True).click();p.get_by_text('파일 선택',exact=True).click();p.locator('#file-import').set_input_files(str(file));p.wait_for_timeout(4000)
+  if kind=='bad-derived':
+   state=p.evaluate("()=>({raw:localStorage.getItem('honro-first-act-profile-1'),notice:document.querySelector('#notice')?.textContent,stage:HonroApp.profile.honroBattle?.honroStage})");assert state['raw']==prior and state.get('stage')!=34 and not events and not errors;results.append({'kind':kind,'originalPreserved':True,'noCompatibilityFetch':True,'notice':state['notice']});print('bad rejection',results[-1],flush=True);c.close();continue
+  p.wait_for_function('HonroApp.profile?.honroBattle?.honroStage===34',timeout=30000);stored=p.evaluate("()=>JSON.parse(localStorage.getItem('honro-first-act-profile-1'))");rows=[x['asset'] for x in stored['honroBattle']['honroLandmarks'] if x.get('asset',{}).get('id')=='approved34:body'];assert len(rows)==1 and rows[0]['signature']=='3417265:bff32c0d' and events;p.reload();p.wait_for_function('window.HonroApp');p.get_by_text('이어서 걷기',exact=True).click();p.wait_for_function('HonroApp.engine?.b?.honroStage===34',timeout=60000);p.keyboard.press('Escape');p.wait_for_timeout(300);v=p.evaluate('''()=>{const b=HonroApp.engine.b;return {round:b.round,terrain:b.terrain,units:b.units.map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp})),body:b.honroLandmarks.find(x=>x.asset?.id==='approved34:body').asset}}''');assert v['round']==originalBattle['round'] and v['terrain']==originalBattle['terrain'] and v['body']==old and all(x['hp']==y['hp'] for x,y in zip(v['units'],originalBattle['units'])) and not errors;delta=max(max(abs(x['x']-y['x']),abs(x['y']-y['y'])) for x,y in zip(v['units'],originalBattle['units']));assert delta<30;results.append({'kind':kind,'round':v['round'],'assetsExact':True,'hpExact':True,'terrainExact':True,'maxNaturalPositionDelta':delta,'compatRequests':len(events),'errors':errors});print('restore',results[-1],flush=True);c.close()
+ browser.close()
+assert hashlib.sha256(src.read_bytes()).hexdigest()==hashlib.sha256(raw).hexdigest();(out/'stage34-v6-legacy-results.json').write_text(json.dumps(results,ensure_ascii=False,indent=2))

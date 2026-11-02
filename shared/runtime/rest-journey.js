@@ -257,6 +257,9 @@ function requestRest(app){
  // protected owner. A later explicit campaign entry still asks to replace it.
  if(app.training||app.customMap||G.HONRO_EMBEDDED)return showRest(app);
  if(['rest','camp','journey'].includes(app.screen)&&!active(app.profile))return showRest(app);
+ // A cleared chapter can leave an uninterrupted direct handoff in the save.
+ // Resume it before choosing an older hub, which would mask pendingDirect.
+ if(app.screen==='title'&&!active(app.profile)&&state(app.profile).pendingDirect&&state(app.profile).pendingDirect===data().next(app.profile)?.stageId)return showRest(app);
  return requestMove(app,{action:'rest',id:hubId(app)});
 }
 function requestMove(app,move){

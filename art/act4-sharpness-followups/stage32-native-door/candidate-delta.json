@@ -1,0 +1,32 @@
+{
+  "scope": "QA candidate delta only; no world install or full mission claim",
+  "baseSha256": "e22e8d2773728ef3443a93b95192dab0b64c711c5f484a8cad24c671f3b902b9",
+  "assetSha256": "e5f6c170b1b4c3778d7c9681e017cd002d539f8677e9567ced595c92119a4058",
+  "assetBytes": 423282,
+  "candidateSha256": "681d13c6ba2cf1b93a031fd0e0aed80ecb83e51a6428aeec637c4f905cec8aa0",
+  "candidateBytes": 3158994,
+  "operations": [
+    {
+      "op": "append",
+      "path": "/library",
+      "valueFrom": "wood-door.asset.json"
+    },
+    {
+      "op": "add",
+      "path": "/stages/0/design/vectorShelterDoor",
+      "value": {
+        "version": 1,
+        "assetId": "approved32:wood-door-extract",
+        "bodyAssetId": "approved32:body",
+        "bodyInstanceId": "approved32-body",
+        "terrainId": "approved32-yard",
+        "x": 2998,
+        "y": 674,
+        "w": 120,
+        "h": 193
+      }
+    }
+  ],
+  "serialization": "UTF-8 json.dumps(ensure_ascii=False,separators=(comma,colon))",
+  "invariance": "Removing exactly these two additions restores the original project value; actors, terrain, interaction data and original art are unchanged."
+}

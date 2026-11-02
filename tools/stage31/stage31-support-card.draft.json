@@ -1,0 +1,238 @@
+{
+  "candidateFingerprint": "draft-v1-f7f5e672-3533842",
+  "card": {
+    "intent": "",
+    "referenceStages": [],
+    "budget": null,
+    "preserve": {
+      "objectiveIds": [],
+      "eventIds": [],
+      "partyIds": [
+        "archer",
+        "mage",
+        "knight",
+        "occultist"
+      ],
+      "story": {
+        "id": 31,
+        "requires": [
+          30
+        ],
+        "objective": "act4",
+        "goal": "물길과 선착장을 확보하기",
+        "steps": [],
+        "playableRoster": [
+          "archer",
+          "mage",
+          "knight",
+          "occultist"
+        ]
+      }
+    },
+    "routes": [],
+    "encounters": [
+      {
+        "id": "west-entry",
+        "purpose": "",
+        "targetZone": null,
+        "members": [
+          {
+            "id": "pilot31-west-entry-1",
+            "role": "",
+            "supportId": "approved31-entry"
+          },
+          {
+            "id": "pilot31-west-entry-2",
+            "role": "",
+            "supportId": "approved31-entry"
+          },
+          {
+            "id": "pilot31-west-entry-3",
+            "role": "",
+            "supportId": "approved31-entry"
+          },
+          {
+            "id": "pilot31-west-entry-4",
+            "role": "",
+            "supportId": "approved31-entry"
+          },
+          {
+            "id": "pilot31-west-entry-5",
+            "role": "",
+            "supportId": "approved31-upper-west"
+          },
+          {
+            "id": "pilot31-west-entry-6",
+            "role": "",
+            "supportId": "approved31-upper-west"
+          },
+          {
+            "id": "pilot31-west-entry-7",
+            "role": "",
+            "supportId": "approved31-entry"
+          },
+          {
+            "id": "pilot31-west-entry-8",
+            "role": "",
+            "supportId": "approved31-entry"
+          }
+        ]
+      },
+      {
+        "id": "west-crossfire",
+        "purpose": "",
+        "targetZone": null,
+        "members": [
+          {
+            "id": "pilot31-west-crossfire-1",
+            "role": "",
+            "supportId": "approved31-low-flank"
+          },
+          {
+            "id": "pilot31-west-crossfire-2",
+            "role": "",
+            "supportId": "approved31-low-flank"
+          },
+          {
+            "id": "pilot31-west-crossfire-3",
+            "role": "",
+            "supportId": "approved31-low-flank"
+          },
+          {
+            "id": "pilot31-west-crossfire-4",
+            "role": "",
+            "supportId": "approved31-upper-west"
+          },
+          {
+            "id": "pilot31-west-crossfire-5",
+            "role": "",
+            "supportId": "approved31-low-flank"
+          },
+          {
+            "id": "pilot31-west-crossfire-6",
+            "role": "",
+            "supportId": "approved31-upper-west"
+          },
+          {
+            "id": "pilot31-west-crossfire-7",
+            "role": "",
+            "supportId": "approved31-low-flank"
+          },
+          {
+            "id": "pilot31-west-crossfire-8",
+            "role": "",
+            "supportId": "approved31-upper-west"
+          },
+          {
+            "id": "pilot31-west-crossfire-9",
+            "role": "",
+            "supportId": "approved31-upper-west"
+          }
+        ]
+      },
+      {
+        "id": "ridge-court",
+        "purpose": "",
+        "targetZone": null,
+        "members": [
+          {
+            "id": "pilot31-ridge-court-1",
+            "role": "",
+            "supportId": "approved31-east-return"
+          },
+          {
+            "id": "pilot31-ridge-court-2",
+            "role": "",
+            "supportId": "approved31-east-return"
+          },
+          {
+            "id": "pilot31-ridge-court-3",
+            "role": "",
+            "supportId": "approved31-upper-east"
+          },
+          {
+            "id": "pilot31-ridge-court-4",
+            "role": "",
+            "supportId": "approved31-east-return"
+          },
+          {
+            "id": "pilot31-ridge-court-5",
+            "role": "",
+            "supportId": "approved31-east-return"
+          },
+          {
+            "id": "pilot31-ridge-court-6",
+            "role": "",
+            "supportId": "approved31-upper-east"
+          },
+          {
+            "id": "pilot31-ridge-court-7",
+            "role": "",
+            "supportId": "approved31-east-return"
+          },
+          {
+            "id": "pilot31-ridge-court-8",
+            "role": "",
+            "supportId": "approved31-east-return"
+          },
+          {
+            "id": "pilot31-ridge-court-9",
+            "role": "",
+            "supportId": "approved31-east-return"
+          }
+        ]
+      },
+      {
+        "id": "lookout-return",
+        "purpose": "",
+        "targetZone": null,
+        "members": [
+          {
+            "id": "pilot31-lookout-return-1",
+            "role": "",
+            "supportId": "approved31-low-flank"
+          },
+          {
+            "id": "pilot31-lookout-return-2",
+            "role": "",
+            "supportId": "approved31-low-flank"
+          },
+          {
+            "id": "pilot31-lookout-return-3",
+            "role": "",
+            "supportId": "approved31-upper-east"
+          },
+          {
+            "id": "pilot31-lookout-return-4",
+            "role": "",
+            "supportId": "approved31-low-flank"
+          },
+          {
+            "id": "pilot31-lookout-return-5",
+            "role": "",
+            "supportId": "approved31-low-flank"
+          },
+          {
+            "id": "pilot31-lookout-return-6",
+            "role": "",
+            "supportId": "approved31-low-flank"
+          },
+          {
+            "id": "pilot31-lookout-return-7",
+            "role": "",
+            "supportId": "approved31-east-return"
+          },
+          {
+            "id": "pilot31-lookout-return-8",
+            "role": "",
+            "supportId": "approved31-east-return"
+          }
+        ]
+      }
+    ],
+    "assetExceptions": [],
+    "cameraViews": [],
+    "requiredProbes": []
+  },
+  "releaseApproved": false
+}

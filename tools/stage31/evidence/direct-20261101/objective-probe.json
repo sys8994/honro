@@ -1,0 +1,953 @@
+{
+  "id": "boarding-objective",
+  "kind": "objective",
+  "runner": "honro-production-engine-v1",
+  "fingerprint": "draft-v1-90b5493a-3537083",
+  "result": "pass",
+  "runtimeSha256": "d4ff59e914ed609b863cb79cdf14397ec86889365b0c653214aa013d8c3ca94e",
+  "scope": "tool-assisted normal UI battle and boarding from a prepared stage31 entry profile; not natural 1–30 play or human success probability",
+  "sourceRunId": 41264482610,
+  "sourceCommit": "ab25208c6a0e6c846e78521441d82463f22fa6f0",
+  "observations": [
+    {
+      "step": "drop-2700",
+      "round": 15,
+      "active": "archer",
+      "x": 6273.809251529644,
+      "y": 2733.9179833673256,
+      "boarding": {
+        "stage": 31,
+        "round": 15,
+        "phase": "aim",
+        "active": "archer",
+        "dialogue": false,
+        "can": true,
+        "boat": {
+          "phase": "docked",
+          "x": 6547.5
+        },
+        "complete": false,
+        "enemies": 0,
+        "heroes": [
+          {
+            "id": "archer",
+            "x": 6273.809251529644,
+            "y": 2733.9179833673256,
+            "hp": 752,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "mage",
+            "x": 6425.929002264633,
+            "y": 2739.895266817642,
+            "hp": 858,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "knight",
+            "x": 5947.154598039503,
+            "y": 2727.14309196079,
+            "hp": 906,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "occultist",
+            "x": 5789.226206346941,
+            "y": 2403.255931748977,
+            "hp": 989,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          }
+        ]
+      }
+    },
+    {
+      "step": "walk-6480",
+      "round": 15,
+      "active": "archer",
+      "x": 6509.225376405294,
+      "y": 2745.4483584270197,
+      "boarding": {
+        "stage": 31,
+        "round": 15,
+        "phase": "aim",
+        "active": "archer",
+        "dialogue": false,
+        "can": true,
+        "boat": {
+          "phase": "docked",
+          "x": 6547.5
+        },
+        "complete": false,
+        "enemies": 0,
+        "heroes": [
+          {
+            "id": "archer",
+            "x": 6509.225376405294,
+            "y": 2745.4483584270197,
+            "hp": 752,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "mage",
+            "x": 6425.929002264633,
+            "y": 2739.895266817642,
+            "hp": 858,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "knight",
+            "x": 5947.154598039503,
+            "y": 2727.14309196079,
+            "hp": 906,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "occultist",
+            "x": 5789.226206346941,
+            "y": 2403.255931748977,
+            "hp": 989,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          }
+        ]
+      }
+    },
+    {
+      "step": "drop-3366",
+      "round": 15,
+      "active": "archer",
+      "x": 6509.225376405294,
+      "y": 2806.1482556172223,
+      "boarding": {
+        "stage": 31,
+        "round": 15,
+        "phase": "aim",
+        "active": "archer",
+        "dialogue": false,
+        "can": true,
+        "boat": {
+          "phase": "docked",
+          "x": 6547.5
+        },
+        "complete": false,
+        "enemies": 0,
+        "heroes": [
+          {
+            "id": "archer",
+            "x": 6509.225376405294,
+            "y": 2806.1482556172223,
+            "hp": 752,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "mage",
+            "x": 6425.929002264633,
+            "y": 2739.895266817642,
+            "hp": 858,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "knight",
+            "x": 5947.154598039503,
+            "y": 2727.14309196079,
+            "hp": 906,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "occultist",
+            "x": 5789.226206346941,
+            "y": 2403.255931748977,
+            "hp": 989,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          }
+        ]
+      }
+    },
+    {
+      "step": "drop-3366",
+      "round": 15,
+      "active": "archer",
+      "x": 6509.225376405294,
+      "y": 3366,
+      "boarding": {
+        "stage": 31,
+        "round": 15,
+        "phase": "aim",
+        "active": "archer",
+        "dialogue": false,
+        "can": true,
+        "boat": {
+          "phase": "docked",
+          "x": 6547.5
+        },
+        "complete": false,
+        "enemies": 0,
+        "heroes": [
+          {
+            "id": "archer",
+            "x": 6509.225376405294,
+            "y": 3366,
+            "hp": 752,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "mage",
+            "x": 6425.929002264633,
+            "y": 2739.895266817642,
+            "hp": 858,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "knight",
+            "x": 5947.154598039503,
+            "y": 2727.14309196079,
+            "hp": 906,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "occultist",
+            "x": 5789.226206346941,
+            "y": 2403.255931748977,
+            "hp": 989,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          }
+        ]
+      }
+    },
+    {
+      "step": "walk-6480",
+      "round": 15,
+      "active": "mage",
+      "x": 6490.28614494638,
+      "y": 2744.1857429964252,
+      "boarding": {
+        "stage": 31,
+        "round": 15,
+        "phase": "aim",
+        "active": "mage",
+        "dialogue": false,
+        "can": true,
+        "boat": {
+          "phase": "docked",
+          "x": 6547.5
+        },
+        "complete": false,
+        "enemies": 0,
+        "heroes": [
+          {
+            "id": "archer",
+            "x": 6509.225376405294,
+            "y": 3366,
+            "hp": 752,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "mage",
+            "x": 6490.28614494638,
+            "y": 2744.1857429964252,
+            "hp": 858,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "knight",
+            "x": 5947.154598039503,
+            "y": 2727.14309196079,
+            "hp": 906,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "occultist",
+            "x": 5789.226206346941,
+            "y": 2403.255931748977,
+            "hp": 989,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          }
+        ]
+      }
+    },
+    {
+      "step": "drop-3366",
+      "round": 15,
+      "active": "mage",
+      "x": 6490.28614494638,
+      "y": 2830.210089827749,
+      "boarding": {
+        "stage": 31,
+        "round": 15,
+        "phase": "aim",
+        "active": "mage",
+        "dialogue": false,
+        "can": true,
+        "boat": {
+          "phase": "docked",
+          "x": 6547.5
+        },
+        "complete": false,
+        "enemies": 0,
+        "heroes": [
+          {
+            "id": "archer",
+            "x": 6509.225376405294,
+            "y": 3366,
+            "hp": 752,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "mage",
+            "x": 6490.28614494638,
+            "y": 2830.210089827749,
+            "hp": 858,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "knight",
+            "x": 5947.154598039503,
+            "y": 2727.14309196079,
+            "hp": 906,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "occultist",
+            "x": 5789.226206346941,
+            "y": 2403.255931748977,
+            "hp": 989,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          }
+        ]
+      }
+    },
+    {
+      "step": "drop-3366",
+      "round": 15,
+      "active": "mage",
+      "x": 6490.28614494638,
+      "y": 3366,
+      "boarding": {
+        "stage": 31,
+        "round": 15,
+        "phase": "aim",
+        "active": "mage",
+        "dialogue": false,
+        "can": true,
+        "boat": {
+          "phase": "docked",
+          "x": 6547.5
+        },
+        "complete": false,
+        "enemies": 0,
+        "heroes": [
+          {
+            "id": "archer",
+            "x": 6509.225376405294,
+            "y": 3366,
+            "hp": 752,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "mage",
+            "x": 6490.28614494638,
+            "y": 3366,
+            "hp": 858,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "knight",
+            "x": 5947.154598039503,
+            "y": 2727.14309196079,
+            "hp": 906,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "occultist",
+            "x": 5789.226206346941,
+            "y": 2403.255931748977,
+            "hp": 989,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          }
+        ]
+      }
+    },
+    {
+      "step": "walk-6480",
+      "round": 15,
+      "active": "knight",
+      "x": 6493.534176295848,
+      "y": 2744.402278419723,
+      "boarding": {
+        "stage": 31,
+        "round": 15,
+        "phase": "aim",
+        "active": "knight",
+        "dialogue": false,
+        "can": true,
+        "boat": {
+          "phase": "docked",
+          "x": 6547.5
+        },
+        "complete": false,
+        "enemies": 0,
+        "heroes": [
+          {
+            "id": "archer",
+            "x": 6509.225376405294,
+            "y": 3366,
+            "hp": 752,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "mage",
+            "x": 6490.28614494638,
+            "y": 3366,
+            "hp": 858,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "knight",
+            "x": 6493.534176295848,
+            "y": 2744.402278419723,
+            "hp": 906,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "occultist",
+            "x": 5789.226206346941,
+            "y": 2403.255931748977,
+            "hp": 989,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          }
+        ]
+      }
+    },
+    {
+      "step": "drop-3366",
+      "round": 15,
+      "active": "knight",
+      "x": 6493.534176295848,
+      "y": 2825.5004443710204,
+      "boarding": {
+        "stage": 31,
+        "round": 15,
+        "phase": "aim",
+        "active": "knight",
+        "dialogue": false,
+        "can": true,
+        "boat": {
+          "phase": "docked",
+          "x": 6547.5
+        },
+        "complete": false,
+        "enemies": 0,
+        "heroes": [
+          {
+            "id": "archer",
+            "x": 6509.225376405294,
+            "y": 3366,
+            "hp": 752,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "mage",
+            "x": 6490.28614494638,
+            "y": 3366,
+            "hp": 858,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "knight",
+            "x": 6493.534176295848,
+            "y": 2825.5004443710204,
+            "hp": 906,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "occultist",
+            "x": 5789.226206346941,
+            "y": 2403.255931748977,
+            "hp": 989,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          }
+        ]
+      }
+    },
+    {
+      "step": "drop-3366",
+      "round": 15,
+      "active": "knight",
+      "x": 6493.534176295848,
+      "y": 3366,
+      "boarding": {
+        "stage": 31,
+        "round": 15,
+        "phase": "aim",
+        "active": "knight",
+        "dialogue": false,
+        "can": true,
+        "boat": {
+          "phase": "docked",
+          "x": 6547.5
+        },
+        "complete": false,
+        "enemies": 0,
+        "heroes": [
+          {
+            "id": "archer",
+            "x": 6509.225376405294,
+            "y": 3366,
+            "hp": 752,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "mage",
+            "x": 6490.28614494638,
+            "y": 3366,
+            "hp": 858,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "knight",
+            "x": 6493.534176295848,
+            "y": 3366,
+            "hp": 906,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "occultist",
+            "x": 5789.226206346941,
+            "y": 2403.255931748977,
+            "hp": 989,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          }
+        ]
+      }
+    },
+    {
+      "step": "walk-5955",
+      "round": 15,
+      "active": "occultist",
+      "x": 5979.059848244121,
+      "y": 2727.7811969648824,
+      "boarding": {
+        "stage": 31,
+        "round": 15,
+        "phase": "aim",
+        "active": "occultist",
+        "dialogue": false,
+        "can": true,
+        "boat": {
+          "phase": "docked",
+          "x": 6547.5
+        },
+        "complete": false,
+        "enemies": 0,
+        "heroes": [
+          {
+            "id": "archer",
+            "x": 6509.225376405294,
+            "y": 3366,
+            "hp": 752,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "mage",
+            "x": 6490.28614494638,
+            "y": 3366,
+            "hp": 858,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "knight",
+            "x": 6493.534176295848,
+            "y": 3366,
+            "hp": 906,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "occultist",
+            "x": 5979.059848244121,
+            "y": 2727.7811969648824,
+            "hp": 989,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          }
+        ]
+      }
+    },
+    {
+      "step": "walk-6480",
+      "round": 15,
+      "active": "occultist",
+      "x": 6499.983470857243,
+      "y": 2744.832231390483,
+      "boarding": {
+        "stage": 31,
+        "round": 15,
+        "phase": "aim",
+        "active": "occultist",
+        "dialogue": false,
+        "can": true,
+        "boat": {
+          "phase": "docked",
+          "x": 6547.5
+        },
+        "complete": false,
+        "enemies": 0,
+        "heroes": [
+          {
+            "id": "archer",
+            "x": 6509.225376405294,
+            "y": 3366,
+            "hp": 752,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "mage",
+            "x": 6490.28614494638,
+            "y": 3366,
+            "hp": 858,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "knight",
+            "x": 6493.534176295848,
+            "y": 3366,
+            "hp": 906,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "occultist",
+            "x": 6499.983470857243,
+            "y": 2744.832231390483,
+            "hp": 989,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          }
+        ]
+      }
+    },
+    {
+      "step": "drop-3366",
+      "round": 15,
+      "active": "occultist",
+      "x": 6499.983470857243,
+      "y": 2816.148967256997,
+      "boarding": {
+        "stage": 31,
+        "round": 15,
+        "phase": "aim",
+        "active": "occultist",
+        "dialogue": false,
+        "can": true,
+        "boat": {
+          "phase": "docked",
+          "x": 6547.5
+        },
+        "complete": false,
+        "enemies": 0,
+        "heroes": [
+          {
+            "id": "archer",
+            "x": 6509.225376405294,
+            "y": 3366,
+            "hp": 752,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "mage",
+            "x": 6490.28614494638,
+            "y": 3366,
+            "hp": 858,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "knight",
+            "x": 6493.534176295848,
+            "y": 3366,
+            "hp": 906,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "occultist",
+            "x": 6499.983470857243,
+            "y": 2816.148967256997,
+            "hp": 989,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          }
+        ]
+      }
+    },
+    {
+      "step": "drop-3366",
+      "round": 15,
+      "active": "occultist",
+      "x": 6499.983470857243,
+      "y": 3366,
+      "boarding": {
+        "stage": 31,
+        "round": 15,
+        "phase": "aim",
+        "active": "occultist",
+        "dialogue": false,
+        "can": true,
+        "boat": {
+          "phase": "docked",
+          "x": 6547.5
+        },
+        "complete": false,
+        "enemies": 0,
+        "heroes": [
+          {
+            "id": "archer",
+            "x": 6509.225376405294,
+            "y": 3366,
+            "hp": 752,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "mage",
+            "x": 6490.28614494638,
+            "y": 3366,
+            "hp": 858,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "knight",
+            "x": 6493.534176295848,
+            "y": 3366,
+            "hp": 906,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "occultist",
+            "x": 6499.983470857243,
+            "y": 3366,
+            "hp": 989,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          }
+        ]
+      }
+    },
+    {
+      "step": "objective-result",
+      "round": 15,
+      "active": "occultist",
+      "x": 6499.983470857243,
+      "y": 3366,
+      "boarding": {
+        "stage": 31,
+        "round": 15,
+        "phase": "won",
+        "active": "occultist",
+        "dialogue": false,
+        "can": false,
+        "boat": {
+          "phase": "boarded",
+          "x": 6547.5
+        },
+        "complete": true,
+        "enemies": 0,
+        "heroes": [
+          {
+            "id": "archer",
+            "x": 6509.225376405294,
+            "y": 3366,
+            "hp": 752,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "mage",
+            "x": 6490.28614494638,
+            "y": 3366,
+            "hp": 1868,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "knight",
+            "x": 6493.534176295848,
+            "y": 3366,
+            "hp": 906,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "occultist",
+            "x": 6499.983470857243,
+            "y": 3366,
+            "hp": 1928,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          }
+        ]
+      }
+    },
+    {
+      "final": {
+        "stage": 31,
+        "round": 15,
+        "phase": "won",
+        "active": "occultist",
+        "dialogue": false,
+        "can": false,
+        "boat": {
+          "phase": "boarded",
+          "x": 6547.5
+        },
+        "complete": true,
+        "enemies": 0,
+        "heroes": [
+          {
+            "id": "archer",
+            "x": 6509.225376405294,
+            "y": 3366,
+            "hp": 752,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "mage",
+            "x": 6490.28614494638,
+            "y": 3366,
+            "hp": 1868,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "knight",
+            "x": 6493.534176295848,
+            "y": 3366,
+            "hp": 906,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          },
+          {
+            "id": "occultist",
+            "x": 6499.983470857243,
+            "y": 3366,
+            "hp": 1928,
+            "dead": false,
+            "acted": false,
+            "grounded": true
+          }
+        ]
+      },
+      "pageErrors": []
+    }
+  ]
+}

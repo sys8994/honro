@@ -134,3 +134,13 @@
 - **Don’t Starve**: Klei 개발자 인터뷰는 대부분의 아트를 Flash에서 만들고 자체 애니메이션 형식으로 export했다고 설명한다. 최종 렌더링이 벡터라는 근거로 확대하지 않는다. 부품 이름·원점·레이어·export 계약의 중요성을 참고한다. [개발자 인터뷰](https://www.gamedeveloper.com/design/road-to-the-igf-klei-entertainment-s-i-don-t-starve-i-).
 - **Inkscape**: 컬러 추적은 색별 객체를 만들며 100% 복제가 아니고 이후 편집이 복잡해질 수 있다. [추적 안내](https://inkscape-manuals.readthedocs.io/en/latest/tracing-an-image.html). Simplify는 오차 허용치 안에서 곡선을 근사하는 절충이다. [공식 코드 설명](https://inkscape.gitlab.io/inkscape/doxygen/classPath.html).
 - **도구 설계 참고**: [Unity SpriteShape Controller](https://docs.unity3d.com/Packages/com.unity.2d.spriteshape@10.0/manual/SSController.html)의 spline/렌더/충돌 구분, [Godot Polygon2D](https://docs.godotengine.org/en/stable/classes/class_polygon2d.html)와 [CollisionPolygon2D](https://docs.godotengine.org/en/stable/classes/class_collisionpolygon2d.html)의 분리. 출시 게임 사례가 아니라 편집 구조의 참고다. 이번 계획은 엔진 이전을 요구하지 않는다.
+
+## 10. 실제 제작 오류에서 추가한 연결 검사 — 2026-11-01
+
+- 새 native vector 자산도 공통 자산 스키마를 따른다. `visual`은 배열이며, `reference`의 실제 로컬 경계·높이·밑동·배율 범위를 빠뜨리지 않는다. 렌더 화면이 정상이어도 엄격한 내보내기 검사에서 실패할 수 있다. 새 자산 등록 직후 canonical schema/관련 release 검사를 먼저 돌리고 플레이 검사 시간을 사용한다. 검사기를 느슨하게 만들어 통과시키지 않는다.
+- 기존 장면으로 돌아갈 수 있는 연결 바위는 왼쪽/오른쪽 접근을 따로 검사한다. 작은 계단만 추가해도 오버행에 머리가 막힐 수 있다. 실제 장비·NPC 점유·물 높이를 유지한 이동 진단 다음에 정상 입력의 새 입장 경로를 확인한다. 통제된 물리 진단을 실제 클리어 통계로 세지 않는다.
+- 색 추적의 원본 알파 경계와 충돌 접촉면 등록은 별개다. 좌표 정합·의도적 clip·하단 매립을 raw→최적화 오차가 작다는 수치로 숨기지 않는다. 정상 줌과 확대 화면에서 접지·잔여 투명 틈·기존 지형과의 중복 그림을 확인한다.
+- 새 바위 한 개의 선명도 개선을 전체 장면의 미술 통과로 확대하지 않는다. 기존 목재 외곽의 톱니·밝은 테두리나 다른 재질의 미해결 상태를 별도로 기록한다.
+
+- 중복 추적 겹을 발견해도 통째로 지워 세부 표현까지 잃지 않는다. 삭제 전후를 비교하고,필요하면 원래 레이어의 실제 Inkscape 경로 단순화를 제한된 오차로 수행한다. 목재의 난간·매듭·접합과 보행면을 함께 본다. 전체 subpath 수 유지가 시각 검수를 대신하지 않는다.
+- 저장이 자산ID+서명을 참조하면 같은ID의 그림 교체도 복원을 깨뜨릴 수 있다. 미술 때문에 전 장 지형 버전을 올리지 않는다. 새 자산ID와 필요한 원본 공급자를 분리하고 실제 이전 저장의 정상 재개/재로드를 확인한다. 활성 자산 크기·호환 원본을 포함한 전체 용량·실제 전송량을 구분해 보고한다.

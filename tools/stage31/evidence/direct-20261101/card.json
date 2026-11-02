@@ -1,0 +1,453 @@
+{
+  "candidateFingerprint": "draft-v1-90b5493a-3537083",
+  "card": {
+    "intent": "상층 둑길과 아래쪽 물가를 활용해 위협을 정리한 뒤 동행 전원이 오른쪽 선착장에서 배에 오른다.",
+    "referenceStages": [
+      "stage-3",
+      "stage-30"
+    ],
+    "budget": {
+      "initial": 34,
+      "elites": 4,
+      "activeLimit": 6,
+      "finiteSpawnCount": 0,
+      "rationale": "초기 배치와 동시 활성 상한은 실제 생성 전투에서 확인했다. 별도 스테이지 증원 이벤트는 선언되지 않았다."
+    },
+    "preserve": {
+      "objectiveIds": [],
+      "eventIds": [],
+      "partyIds": [
+        "archer",
+        "mage",
+        "knight",
+        "occultist"
+      ],
+      "story": {
+        "id": 31,
+        "requires": [
+          30
+        ],
+        "objective": "act4",
+        "goal": "물길과 선착장을 확보하기",
+        "steps": [],
+        "playableRoster": [
+          "archer",
+          "mage",
+          "knight",
+          "occultist"
+        ]
+      }
+    },
+    "routes": [
+      {
+        "id": "upper-to-harbor",
+        "role": "primary",
+        "purpose": "브라우저 기록의 상층 진행과 하강 후 선착장 접근",
+        "points": [
+          {
+            "x": 315,
+            "y": 2455.875,
+            "supportId": "approved31-entry"
+          },
+          {
+            "x": 1800,
+            "y": 1926,
+            "supportId": "approved31-entry"
+          },
+          {
+            "x": 2974,
+            "y": 1422.391304347826,
+            "supportId": "approved31-upper-west"
+          },
+          {
+            "x": 4203,
+            "y": 1095.1744186046512,
+            "supportId": "approved31-upper-east"
+          },
+          {
+            "x": 5574,
+            "y": 1557.1,
+            "supportId": "approved31-upper-east"
+          },
+          {
+            "x": 5922,
+            "y": 2230.65,
+            "supportId": "approved31-east-return"
+          },
+          {
+            "x": 6105,
+            "y": 2730.3,
+            "supportId": "approved31-boarding"
+          },
+          {
+            "x": 6402,
+            "y": 2956.65,
+            "supportId": "approved31-harbor-stair"
+          }
+        ]
+      },
+      {
+        "id": "lower-flank",
+        "role": "alternate",
+        "purpose": "브라우저 기록의 아래쪽 물가 측면 접근",
+        "points": [
+          {
+            "x": 1560,
+            "y": 1965.9782608695652,
+            "supportId": "approved31-entry"
+          },
+          {
+            "x": 1877,
+            "y": 2564.8709677419356,
+            "supportId": "approved31-low-flank"
+          },
+          {
+            "x": 3129,
+            "y": 2913.4,
+            "supportId": "approved31-low-flank"
+          },
+          {
+            "x": 4731,
+            "y": 3075.7,
+            "supportId": "approved31-low-flank"
+          },
+          {
+            "x": 5833,
+            "y": 2346.35,
+            "supportId": "approved31-east-return"
+          }
+        ]
+      }
+    ],
+    "encounters": [
+      {
+        "id": "west-entry",
+        "purpose": "배치된 순찰군이 선언된 지지면에서 지정한 동행 이동 구간을 압박하도록 계획한다. 실제 시야·발사·도달 여부는 별도 검증한다.",
+        "targetZone": {
+          "x": 315,
+          "y": 1800,
+          "w": 1908,
+          "h": 700
+        },
+        "members": [
+          {
+            "id": "pilot31-west-entry-1",
+            "role": "vanguard",
+            "supportId": "approved31-entry"
+          },
+          {
+            "id": "pilot31-west-entry-2",
+            "role": "pursuer",
+            "supportId": "approved31-entry"
+          },
+          {
+            "id": "pilot31-west-entry-3",
+            "role": "pursuer",
+            "supportId": "approved31-entry"
+          },
+          {
+            "id": "pilot31-west-entry-4",
+            "role": "vanguard",
+            "supportId": "approved31-entry"
+          },
+          {
+            "id": "pilot31-west-entry-5",
+            "role": "area-denial",
+            "supportId": "approved31-upper-west"
+          },
+          {
+            "id": "pilot31-west-entry-6",
+            "role": "overwatch",
+            "supportId": "approved31-upper-west"
+          },
+          {
+            "id": "pilot31-west-entry-7",
+            "role": "area-denial",
+            "supportId": "approved31-entry"
+          },
+          {
+            "id": "pilot31-west-entry-8",
+            "role": "ranged-support",
+            "supportId": "approved31-entry"
+          }
+        ]
+      },
+      {
+        "id": "west-crossfire",
+        "purpose": "배치된 순찰군이 선언된 지지면에서 지정한 동행 이동 구간을 압박하도록 계획한다. 실제 시야·발사·도달 여부는 별도 검증한다.",
+        "targetZone": {
+          "x": 1696,
+          "y": 1550,
+          "w": 1450,
+          "h": 1280
+        },
+        "members": [
+          {
+            "id": "pilot31-west-crossfire-1",
+            "role": "ranged-support",
+            "supportId": "approved31-low-flank"
+          },
+          {
+            "id": "pilot31-west-crossfire-2",
+            "role": "ranged-support",
+            "supportId": "approved31-low-flank"
+          },
+          {
+            "id": "pilot31-west-crossfire-3",
+            "role": "pursuer",
+            "supportId": "approved31-low-flank"
+          },
+          {
+            "id": "pilot31-west-crossfire-4",
+            "role": "pursuer",
+            "supportId": "approved31-upper-west"
+          },
+          {
+            "id": "pilot31-west-crossfire-5",
+            "role": "area-denial",
+            "supportId": "approved31-low-flank"
+          },
+          {
+            "id": "pilot31-west-crossfire-6",
+            "role": "overwatch",
+            "supportId": "approved31-upper-west"
+          },
+          {
+            "id": "pilot31-west-crossfire-7",
+            "role": "vanguard",
+            "supportId": "approved31-low-flank"
+          },
+          {
+            "id": "pilot31-west-crossfire-8",
+            "role": "vanguard",
+            "supportId": "approved31-upper-west"
+          },
+          {
+            "id": "pilot31-west-crossfire-9",
+            "role": "overwatch",
+            "supportId": "approved31-upper-west"
+          }
+        ]
+      },
+      {
+        "id": "ridge-court",
+        "purpose": "배치된 순찰군이 선언된 지지면에서 지정한 동행 이동 구간을 압박하도록 계획한다. 실제 시야·발사·도달 여부는 별도 검증한다.",
+        "targetZone": {
+          "x": 5000,
+          "y": 1300,
+          "w": 1150,
+          "h": 1500
+        },
+        "members": [
+          {
+            "id": "pilot31-ridge-court-1",
+            "role": "pursuer",
+            "supportId": "approved31-east-return"
+          },
+          {
+            "id": "pilot31-ridge-court-2",
+            "role": "vanguard",
+            "supportId": "approved31-east-return"
+          },
+          {
+            "id": "pilot31-ridge-court-3",
+            "role": "overwatch",
+            "supportId": "approved31-upper-east"
+          },
+          {
+            "id": "pilot31-ridge-court-4",
+            "role": "pursuer",
+            "supportId": "approved31-east-return"
+          },
+          {
+            "id": "pilot31-ridge-court-5",
+            "role": "vanguard",
+            "supportId": "approved31-east-return"
+          },
+          {
+            "id": "pilot31-ridge-court-6",
+            "role": "overwatch",
+            "supportId": "approved31-upper-east"
+          },
+          {
+            "id": "pilot31-ridge-court-7",
+            "role": "area-denial",
+            "supportId": "approved31-east-return"
+          },
+          {
+            "id": "pilot31-ridge-court-8",
+            "role": "area-denial",
+            "supportId": "approved31-east-return"
+          },
+          {
+            "id": "pilot31-ridge-court-9",
+            "role": "ranged-support",
+            "supportId": "approved31-east-return"
+          }
+        ]
+      },
+      {
+        "id": "lookout-return",
+        "purpose": "배치된 순찰군이 선언된 지지면에서 지정한 동행 이동 구간을 압박하도록 계획한다. 실제 시야·발사·도달 여부는 별도 검증한다.",
+        "targetZone": {
+          "x": 3500,
+          "y": 2600,
+          "w": 1585,
+          "h": 550
+        },
+        "members": [
+          {
+            "id": "pilot31-lookout-return-1",
+            "role": "ranged-support",
+            "supportId": "approved31-low-flank"
+          },
+          {
+            "id": "pilot31-lookout-return-2",
+            "role": "ranged-support",
+            "supportId": "approved31-low-flank"
+          },
+          {
+            "id": "pilot31-lookout-return-3",
+            "role": "area-denial",
+            "supportId": "approved31-upper-east"
+          },
+          {
+            "id": "pilot31-lookout-return-4",
+            "role": "pursuer",
+            "supportId": "approved31-low-flank"
+          },
+          {
+            "id": "pilot31-lookout-return-5",
+            "role": "pursuer",
+            "supportId": "approved31-low-flank"
+          },
+          {
+            "id": "pilot31-lookout-return-6",
+            "role": "vanguard",
+            "supportId": "approved31-low-flank"
+          },
+          {
+            "id": "pilot31-lookout-return-7",
+            "role": "ranged-support",
+            "supportId": "approved31-east-return"
+          },
+          {
+            "id": "pilot31-lookout-return-8",
+            "role": "ranged-support",
+            "supportId": "approved31-east-return"
+          }
+        ]
+      }
+    ],
+    "assetExceptions": [
+      {
+        "assetId": "approved31:coastal-foundation",
+        "reason": "해안 원경과 플레이 지형의 바닥 연결을 표현하는 전용 기반."
+      },
+      {
+        "assetId": "approved31:body",
+        "reason": "해당 장의 해안 실루엣과 층별 암면을 표현하는 본체."
+      },
+      {
+        "assetId": "approved31:harbor-piling",
+        "reason": "선착장의 목재 지지 구조물."
+      },
+      {
+        "assetId": "approved31:harbor-stair",
+        "reason": "선착장 접근 계단의 시각 요소."
+      },
+      {
+        "assetId": "a4:boat",
+        "reason": "기존 승선 목표에 사용하는 4막 공통 배 자산."
+      }
+    ],
+    "cameraViews": [
+      {
+        "id": "overview",
+        "kind": "overview",
+        "x": 3456,
+        "y": 2304,
+        "scale": 0.2053622361665716,
+        "width": 1440,
+        "height": 900
+      },
+      {
+        "id": "normal",
+        "kind": "normal",
+        "x": 1400,
+        "y": 2000,
+        "scale": 0.5,
+        "width": 1440,
+        "height": 900
+      },
+      {
+        "id": "close",
+        "kind": "close",
+        "x": 1400,
+        "y": 2000,
+        "scale": 1,
+        "width": 1440,
+        "height": 900
+      },
+      {
+        "id": "min-zoom",
+        "kind": "min-zoom",
+        "x": 3456,
+        "y": 2304,
+        "scale": 0.21176470588235294,
+        "width": 1440,
+        "height": 900
+      },
+      {
+        "id": "mobile",
+        "kind": "mobile",
+        "x": 1400,
+        "y": 2000,
+        "scale": 0.5,
+        "width": 390,
+        "height": 844
+      },
+      {
+        "id": "left-edge",
+        "kind": "left-edge",
+        "x": 0,
+        "y": 2200,
+        "scale": 0.5,
+        "width": 1440,
+        "height": 900
+      },
+      {
+        "id": "right-edge",
+        "kind": "right-edge",
+        "x": 6912,
+        "y": 2200,
+        "scale": 0.5,
+        "width": 1440,
+        "height": 900
+      }
+    ],
+    "requiredProbes": [
+      {
+        "id": "entry-route",
+        "kind": "route",
+        "claim": "실제 이동 입력으로 입구 지지면의 두 지점을 통과한다."
+      },
+      {
+        "id": "entry-shot",
+        "kind": "shot",
+        "claim": "실제 발사 입력으로 선언한 적에게 피해를 준다."
+      },
+      {
+        "id": "west-enemy-action",
+        "kind": "enemy-action",
+        "claim": "서쪽 교전군이 실제 접근하거나 아군에게 피해를 준다."
+      },
+      {
+        "id": "boarding-objective",
+        "kind": "objective",
+        "claim": "실제 App 상호작용으로 목표 승선을 완료한다."
+      }
+    ]
+  },
+  "releaseApproved": false
+}

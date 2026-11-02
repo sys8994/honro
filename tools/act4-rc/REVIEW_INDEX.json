@@ -1,0 +1,107 @@
+{
+  "version": 3,
+  "kind": "QA-only review index",
+  "createdUtc": "2026-10-31T15:13:07.109Z",
+  "baselineMaster": "7238c788662cdfc55947d51dbe6cfe3a46768d0b",
+  "releaseApproved": false,
+  "requirements": [
+    "Bind exact runtime, far-image and candidate hashes before acceptance.",
+    "Stages31/34/39 author pilot combat tags: require the intended HonroAct4PilotCombat behavior and reference/activation dependencies. Do not silently use generic fallback.",
+    "Keep existing saves and prior QA evidence; do not change candidate or runtime mid-run.",
+    "A Native or static browser image pass is not a full mission or device-performance pass."
+  ],
+  "candidates": [
+    {
+      "stage": 31,
+      "act": 4,
+      "chapter": 1,
+      "payload": "art/act4-sharp-candidates/stage31.candidate.json.xz.b64",
+      "manifest": "art/act4-sharp-candidates/stage31.manifest.json",
+      "rawSha256": "cebd6fa4858c7770739f236bbace39ef02ede43e1493ad82c0acadf10c695ff7",
+      "note": "Latest sharp art; prior v40 gameplay completed; integrated-runtime retest pending"
+    },
+    {
+      "stage": 32,
+      "act": 4,
+      "chapter": 2,
+      "payload": "art/act4-sharp-candidates/stage32-native-door.candidate.json.xz.b64",
+      "manifest": "art/act4-sharp-candidates/stage32-native-door.manifest.json",
+      "rawSha256": "681d13c6ba2cf1b93a031fd0e0aed80ecb83e51a6428aeec637c4f905cec8aa0",
+      "note": "Native wood door; geometry unchanged; prior v9 gameplay completed"
+    },
+    {
+      "stage": 33,
+      "act": 4,
+      "chapter": 3,
+      "payload": "art/act4-sharp-candidates/stage33-west-seam-v4.candidate.json.xz.b64",
+      "manifest": "art/act4-sharp-candidates/stage33-west-seam-v4.transfer.manifest.json",
+      "rawSha256": "a3b1fd368c82b86800bd719962408a506da2ad7b15a318c312210aebc2b94985",
+      "note": "West seam v4: actual Chromium scoped seam/opening review passed; protected gameplay geometry unchanged; full current-source mission/performance acceptance remains separate"
+    },
+    {
+      "stage": 34,
+      "act": 4,
+      "chapter": 4,
+      "payload": "art/act4-sharp-candidates/stage34-foundation-v6.candidate.json.xz.b64",
+      "manifest": "art/act4-sharp-candidates/stage34-foundation-v6.transfer.manifest.json",
+      "rawSha256": "1afeaf3218259130c0c21964483bb26e31f683d3a6a31d6ff726f687efcee248",
+      "note": "Foundation v6: actual Chromium scoped joins and full-height east pan reviewed at 83f579ea; collision/actors unchanged. Whole-stage art, current integrated gameplay and performance acceptance remain separate."
+    },
+    {
+      "stage": 35,
+      "act": 4,
+      "chapter": 5,
+      "payload": "art/act4-sharp-candidates/stage35-envfix.candidate.json.xz.b64",
+      "manifest": "art/act4-sharp-candidates/stage35-envfix.manifest.json",
+      "rawSha256": "9f3fbf1956d568f5f6cad54a570e5dd59886379b4772b5cc6bc7a774895869ab",
+      "note": "Environment repair retains validated blockedShot opt-in"
+    },
+    {
+      "stage": 36,
+      "act": 4,
+      "chapter": 6,
+      "payload": "art/act4-sharp-candidates/stage36-envfix.candidate.json.xz.b64",
+      "manifest": "art/act4-sharp-candidates/stage36-envfix.manifest.json",
+      "rawSha256": "6636c9580e45f5d539c9a7c7b75d443e9e3346d2f6f15ede6696b5563b45eaaf",
+      "note": "Environment repair retains validated eliteReward36 opt-in"
+    },
+    {
+      "stage": 37,
+      "act": 4,
+      "chapter": 7,
+      "payload": "art/act4-sharp-candidates/stage37.candidate.json.xz.b64",
+      "manifest": "art/act4-sharp-candidates/stage37.manifest.json",
+      "rawSha256": "4c4c73ec8d500619b65c1f1ad90e12ec5942ec11f4b5759451e7d311cc5ba1b8",
+      "note": "Initial browser art reviewed; normal full gameplay pending"
+    },
+    {
+      "stage": 38,
+      "act": 4,
+      "chapter": 8,
+      "payload": "art/act4-sharp-candidates/stage38-envfix-v2.candidate.json.xz.b64",
+      "manifest": "art/act4-sharp-candidates/stage38-envfix-v2.manifest.json",
+      "rawSha256": "6e84a8e16b3d6eb42f6e715e923947f6bdf92e6a0a6f3461a4a4a394ff103dc0",
+      "note": "Roof matte correction; muted left and new right environment joins"
+    },
+    {
+      "stage": 39,
+      "act": 4,
+      "chapter": 9,
+      "payload": "art/act4-sharp-candidates/stage39.candidate.json.xz.b64",
+      "manifest": "art/act4-sharp-candidates/stage39.manifest.json",
+      "rawSha256": "0bb8dd43bf33af941c88800c4e7e13bbf2c7d3dd924444c035c997daad8f5dcb",
+      "note": "Natural 50-point damage shape and v4 firing/inspection presentation; pilot combat dependency required"
+    },
+    {
+      "stage": 40,
+      "act": 4,
+      "chapter": 10,
+      "payload": "art/act4-sharp-candidates/stage40-env-v4-opt.candidate.json.xz.b64",
+      "manifest": "art/act4-sharp-candidates/stage40-env-v4-opt.manifest.json",
+      "rawSha256": "c41085576168a69839cf1fb731ffcf329b37d2a7691d8a7b8d9c5ce704c60322",
+      "note": "Environment joins and static boat removed; follower opt-in; lossless structural optimization"
+    }
+  ],
+  "updatedUtc": "2026-10-31T23:09:47.488Z",
+  "previousIndexCommit": "c5df56daf71d62d28d308d982bc431b3c75fb98d"
+}
