@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-02T17:09:21.207Z",
+  "generatedAt": "2026-11-02T17:40:58.101Z",
   "criteriaSource": "git:3872295f:tools/quality-gate/criteria-v3.json.gz",
   "criteriaRawSha256": "e2183e74492a4cb61338f8a691a51f23e7af2205fb9148ae6f6b2c138311aa54",
   "scope": "Released-v4 baseline gameplay calibration. Diagnostic completed/failed/censored runs are retained separately. No overall pass or human-fun inference.",
@@ -322,10 +322,8 @@
         "wins": 1,
         "n": 1,
         "fraction": 1,
-        "wilson95": [
-          0.20654931437724644,
-          0.9999999999999999
-        ],
+        "inference": null,
+        "eligibility": "Selected diagnostic terminal counts only; incomplete and legacy-item runs prevent inferential acceptance",
         "censored": 3
       },
       "trials": [
@@ -639,10 +637,8 @@
         "wins": 1,
         "n": 2,
         "fraction": 0.5,
-        "wilson95": [
-          0.09453120573423457,
-          0.9054687942657654
-        ],
+        "inference": null,
+        "eligibility": "Selected diagnostic terminal counts only; incomplete and legacy-item runs prevent inferential acceptance",
         "censored": 0
       },
       "trials": [
@@ -983,10 +979,8 @@
         "wins": 0,
         "n": 4,
         "fraction": 0,
-        "wilson95": [
-          0,
-          0.48989083645458353
-        ],
+        "inference": null,
+        "eligibility": "Selected diagnostic terminal counts only; incomplete and legacy-item runs prevent inferential acceptance",
         "censored": 2
       },
       "trials": [
@@ -1941,10 +1935,8 @@
         "wins": 0,
         "n": 1,
         "fraction": 0,
-        "wilson95": [
-          0,
-          0.7934506856227534
-        ],
+        "inference": null,
+        "eligibility": "Selected diagnostic terminal counts only; incomplete and legacy-item runs prevent inferential acceptance",
         "censored": 5
       },
       "trials": [
@@ -2636,10 +2628,8 @@
         "wins": 1,
         "n": 1,
         "fraction": 1,
-        "wilson95": [
-          0.20654931437724644,
-          0.9999999999999999
-        ],
+        "inference": null,
+        "eligibility": "Selected diagnostic terminal counts only; incomplete and legacy-item runs prevent inferential acceptance",
         "censored": 6
       },
       "trials": [
@@ -2902,10 +2892,8 @@
         "wins": 3,
         "n": 3,
         "fraction": 1,
-        "wilson95": [
-          0.4385029682449681,
-          1
-        ],
+        "inference": null,
+        "eligibility": "Selected diagnostic terminal counts only; incomplete and legacy-item runs prevent inferential acceptance",
         "censored": 0
       },
       "trials": [
@@ -3218,10 +3206,8 @@
         "wins": 1,
         "n": 2,
         "fraction": 0.5,
-        "wilson95": [
-          0.09453120573423457,
-          0.9054687942657654
-        ],
+        "inference": null,
+        "eligibility": "Selected diagnostic terminal counts only; incomplete and legacy-item runs prevent inferential acceptance",
         "censored": 7
       },
       "trials": [

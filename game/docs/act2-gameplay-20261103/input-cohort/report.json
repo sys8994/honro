@@ -3,7 +3,7 @@
   "criteriaSource": "git:3872295f:tools/quality-gate/criteria-v3.json.gz",
   "criteriaSha256": "e2183e74492a4cb61338f8a691a51f23e7af2205fb9148ae6f6b2c138311aa54",
   "releaseApproved": false,
-  "pending": 6,
+  "pending": 5,
   "groups": [
     {
       "stage": 11,
@@ -18,7 +18,8 @@
         70,
         85
       ],
-      "clearRateGate": "FAIL_OUT_OF_RANGE",
+      "clearRateGate": "FAIL_INSUFFICIENT_FINITE_RESOLUTION",
+      "processInterrupted": 0,
       "successfulRounds": [
         27
       ],
@@ -30,7 +31,8 @@
       ],
       "roundTargetPassN": 0,
       "ceilingPassN": 0,
-      "timingGate": "FAIL",
+      "successfulTimingGate": "FAIL_OUT_OF_RANGE",
+      "hard20Gate": "FAIL_OBSERVED_OVER_20",
       "eventualCompletionBounds": [
         0.5,
         0.5
@@ -49,7 +51,8 @@
         70,
         85
       ],
-      "clearRateGate": "FAIL_OUT_OF_RANGE",
+      "clearRateGate": "FAIL_INSUFFICIENT_FINITE_RESOLUTION",
+      "processInterrupted": 0,
       "successfulRounds": [],
       "successfulRoundMean": null,
       "successfulRoundMedian": null,
@@ -59,7 +62,8 @@
       ],
       "roundTargetPassN": 0,
       "ceilingPassN": 0,
-      "timingGate": "FAIL",
+      "successfulTimingGate": "FAIL_NO_SUCCESSFUL_OBSERVATIONS",
+      "hard20Gate": "FAIL_OBSERVED_OVER_20",
       "eventualCompletionBounds": [
         0.0,
         1.0
@@ -78,7 +82,8 @@
         70,
         85
       ],
-      "clearRateGate": "FAIL_OUT_OF_RANGE",
+      "clearRateGate": "FAIL_INSUFFICIENT_FINITE_RESOLUTION",
+      "processInterrupted": 0,
       "successfulRounds": [
         23,
         21
@@ -91,7 +96,8 @@
       ],
       "roundTargetPassN": 0,
       "ceilingPassN": 0,
-      "timingGate": "FAIL",
+      "successfulTimingGate": "FAIL_OUT_OF_RANGE",
+      "hard20Gate": "FAIL_OBSERVED_OVER_20",
       "eventualCompletionBounds": [
         1.0,
         1.0
@@ -110,7 +116,8 @@
         75,
         90
       ],
-      "clearRateGate": "FAIL_OUT_OF_RANGE",
+      "clearRateGate": "FAIL_INSUFFICIENT_FINITE_RESOLUTION",
+      "processInterrupted": 0,
       "successfulRounds": [
         11
       ],
@@ -122,7 +129,8 @@
       ],
       "roundTargetPassN": 1,
       "ceilingPassN": 1,
-      "timingGate": "FAIL",
+      "successfulTimingGate": "PASS",
+      "hard20Gate": "FAIL_OBSERVED_OVER_20",
       "eventualCompletionBounds": [
         0.5,
         1.0
@@ -141,7 +149,8 @@
         75,
         90
       ],
-      "clearRateGate": "FAIL_OUT_OF_RANGE",
+      "clearRateGate": "FAIL_INSUFFICIENT_FINITE_RESOLUTION",
+      "processInterrupted": 0,
       "successfulRounds": [
         28,
         35
@@ -154,7 +163,8 @@
       ],
       "roundTargetPassN": 0,
       "ceilingPassN": 0,
-      "timingGate": "FAIL",
+      "successfulTimingGate": "FAIL_OUT_OF_RANGE",
+      "hard20Gate": "FAIL_OBSERVED_OVER_20",
       "eventualCompletionBounds": [
         1.0,
         1.0
@@ -173,7 +183,8 @@
         75,
         90
       ],
-      "clearRateGate": "FAIL_OUT_OF_RANGE",
+      "clearRateGate": "FAIL_INSUFFICIENT_FINITE_RESOLUTION",
+      "processInterrupted": 0,
       "successfulRounds": [
         9,
         9
@@ -186,7 +197,8 @@
       ],
       "roundTargetPassN": 0,
       "ceilingPassN": 2,
-      "timingGate": "FAIL",
+      "successfulTimingGate": "FAIL_OUT_OF_RANGE",
+      "hard20Gate": "OBSERVED_WITHIN_BOUND",
       "eventualCompletionBounds": [
         1.0,
         1.0
@@ -196,8 +208,8 @@
       "stage": 16,
       "policy": "objective",
       "registeredN": 2,
-      "pending": 2,
-      "wins": 0,
+      "pending": 1,
+      "wins": 1,
       "deathTerminals": 0,
       "unfinished": 0,
       "finiteClearPercent": null,
@@ -205,17 +217,21 @@
         75,
         90
       ],
-      "clearRateGate": "FAIL_PENDING",
-      "successfulRounds": [],
-      "successfulRoundMean": null,
-      "successfulRoundMedian": null,
+      "clearRateGate": "FAIL_INSUFFICIENT_FINITE_RESOLUTION",
+      "processInterrupted": 0,
+      "successfulRounds": [
+        11
+      ],
+      "successfulRoundMean": 11,
+      "successfulRoundMedian": 11,
       "roundTarget": [
         11,
         14
       ],
-      "roundTargetPassN": 0,
-      "ceilingPassN": 0,
-      "timingGate": "FAIL",
+      "roundTargetPassN": 1,
+      "ceilingPassN": 1,
+      "successfulTimingGate": "FAIL_PENDING",
+      "hard20Gate": "FAIL_PENDING",
       "eventualCompletionBounds": null
     },
     {
@@ -231,7 +247,8 @@
         75,
         90
       ],
-      "clearRateGate": "FAIL_PENDING",
+      "clearRateGate": "FAIL_INSUFFICIENT_FINITE_RESOLUTION",
+      "processInterrupted": 0,
       "successfulRounds": [],
       "successfulRoundMean": null,
       "successfulRoundMedian": null,
@@ -241,7 +258,8 @@
       ],
       "roundTargetPassN": 0,
       "ceilingPassN": 0,
-      "timingGate": "FAIL",
+      "successfulTimingGate": "FAIL_PENDING",
+      "hard20Gate": "FAIL_PENDING",
       "eventualCompletionBounds": null
     },
     {
@@ -257,7 +275,8 @@
         75,
         90
       ],
-      "clearRateGate": "FAIL_PENDING",
+      "clearRateGate": "FAIL_INSUFFICIENT_FINITE_RESOLUTION",
+      "processInterrupted": 0,
       "successfulRounds": [],
       "successfulRoundMean": null,
       "successfulRoundMedian": null,
@@ -267,7 +286,8 @@
       ],
       "roundTargetPassN": 0,
       "ceilingPassN": 0,
-      "timingGate": "FAIL",
+      "successfulTimingGate": "FAIL_PENDING",
+      "hard20Gate": "FAIL_PENDING",
       "eventualCompletionBounds": null
     }
   ],
@@ -314,6 +334,12 @@
       "engineRecoveries": [],
       "legacyItemApi": "disabled; no Engine.item calls",
       "stopReason": null,
+      "sourceHashes": {
+        "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+        "stageSha256": "3f3d00195e127cc344aa0fb76b7d1895ea8db53e520964b0b4139fc175b2c163",
+        "geometrySha256": "83f5319feeb2fc40bc90180be216f63546c677ff63be2e296fb9cce5a967e5af",
+        "entryProfileSha256": "bdd57169392f49aa19260691a2d904641ce0d4853af0d57e0c31d8d283cb0b54"
+      },
       "initialEncounter": {
         "hostilesExcludingObjectives": 43,
         "engineFlagRanks": {
@@ -431,6 +457,12 @@
       "engineRecoveries": [],
       "legacyItemApi": "disabled; no Engine.item calls",
       "stopReason": null,
+      "sourceHashes": {
+        "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+        "stageSha256": "3f3d00195e127cc344aa0fb76b7d1895ea8db53e520964b0b4139fc175b2c163",
+        "geometrySha256": "83f5319feeb2fc40bc90180be216f63546c677ff63be2e296fb9cce5a967e5af",
+        "entryProfileSha256": "4d91fe78841e656617d48a04f97bbed3bcdd9eaa35e4ab5654fe68228ec7dbba"
+      },
       "initialEncounter": {
         "hostilesExcludingObjectives": 43,
         "engineFlagRanks": {
@@ -545,6 +577,12 @@
       "engineRecoveries": [],
       "legacyItemApi": "disabled; no Engine.item calls",
       "stopReason": "diagnostic round bound; unfinished, not game loss",
+      "sourceHashes": {
+        "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+        "stageSha256": "3f3d00195e127cc344aa0fb76b7d1895ea8db53e520964b0b4139fc175b2c163",
+        "geometrySha256": "83f5319feeb2fc40bc90180be216f63546c677ff63be2e296fb9cce5a967e5af",
+        "entryProfileSha256": "fc33e5cab215e72a6fe8be60a34e3050c39fa5d8c55c29299727c759f93e8cac"
+      },
       "initialEncounter": {
         "hostilesExcludingObjectives": 43,
         "engineFlagRanks": {
@@ -662,6 +700,12 @@
       "engineRecoveries": [],
       "legacyItemApi": "disabled; no Engine.item calls",
       "stopReason": "diagnostic round bound; unfinished, not game loss",
+      "sourceHashes": {
+        "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+        "stageSha256": "3f3d00195e127cc344aa0fb76b7d1895ea8db53e520964b0b4139fc175b2c163",
+        "geometrySha256": "83f5319feeb2fc40bc90180be216f63546c677ff63be2e296fb9cce5a967e5af",
+        "entryProfileSha256": "df7524826811e033e743c6ef2b7ed0ba03f933a0965cdacf6a5765ffa292a690"
+      },
       "initialEncounter": {
         "hostilesExcludingObjectives": 43,
         "engineFlagRanks": {
@@ -779,6 +823,12 @@
       "engineRecoveries": [],
       "legacyItemApi": "disabled; no Engine.item calls",
       "stopReason": null,
+      "sourceHashes": {
+        "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+        "stageSha256": "3f3d00195e127cc344aa0fb76b7d1895ea8db53e520964b0b4139fc175b2c163",
+        "geometrySha256": "83f5319feeb2fc40bc90180be216f63546c677ff63be2e296fb9cce5a967e5af",
+        "entryProfileSha256": "f8b1fd85ee567fadc6650acc5ac69b9ecc150c692800aa2d46bd7a7238d26112"
+      },
       "initialEncounter": {
         "hostilesExcludingObjectives": 43,
         "engineFlagRanks": {
@@ -896,6 +946,12 @@
       "engineRecoveries": [],
       "legacyItemApi": "disabled; no Engine.item calls",
       "stopReason": null,
+      "sourceHashes": {
+        "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+        "stageSha256": "3f3d00195e127cc344aa0fb76b7d1895ea8db53e520964b0b4139fc175b2c163",
+        "geometrySha256": "83f5319feeb2fc40bc90180be216f63546c677ff63be2e296fb9cce5a967e5af",
+        "entryProfileSha256": "36c208910eee3be63a7e6b4dbf2766aa5c968c3163e8cbdbd466c05fbf945d62"
+      },
       "initialEncounter": {
         "hostilesExcludingObjectives": 43,
         "engineFlagRanks": {
@@ -1016,6 +1072,12 @@
       "engineRecoveries": [],
       "legacyItemApi": "disabled; no Engine.item calls",
       "stopReason": "diagnostic round bound; unfinished, not game loss",
+      "sourceHashes": {
+        "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+        "stageSha256": "ead36ee94041845704affb39c2005866c9dd2c0bd64ed70538f72b39f372a5d4",
+        "geometrySha256": "b64a4d1b3b6c4907ce483a4c0c685699fc07a0eca4fd6d4fdd99a7d3e132edb9",
+        "entryProfileSha256": "3ae4ecf52d42b64850d56b169c3593385f33d62ec5e545a4fa817383daa47592"
+      },
       "initialEncounter": {
         "hostilesExcludingObjectives": 22,
         "engineFlagRanks": {
@@ -1129,6 +1191,12 @@
       "engineRecoveries": [],
       "legacyItemApi": "disabled; no Engine.item calls",
       "stopReason": null,
+      "sourceHashes": {
+        "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+        "stageSha256": "ead36ee94041845704affb39c2005866c9dd2c0bd64ed70538f72b39f372a5d4",
+        "geometrySha256": "b64a4d1b3b6c4907ce483a4c0c685699fc07a0eca4fd6d4fdd99a7d3e132edb9",
+        "entryProfileSha256": "dbad456042208084ad9d5bb8a881ffc178c31af99874d92336fad89cecd9aaab"
+      },
       "initialEncounter": {
         "hostilesExcludingObjectives": 22,
         "engineFlagRanks": {
@@ -1239,6 +1307,12 @@
       "engineRecoveries": [],
       "legacyItemApi": "disabled; no Engine.item calls",
       "stopReason": null,
+      "sourceHashes": {
+        "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+        "stageSha256": "ead36ee94041845704affb39c2005866c9dd2c0bd64ed70538f72b39f372a5d4",
+        "geometrySha256": "b64a4d1b3b6c4907ce483a4c0c685699fc07a0eca4fd6d4fdd99a7d3e132edb9",
+        "entryProfileSha256": "939e56168bea4336e0c1f60fdc47a71b9366e7f7ca23fe38c4acc1486ff57f5a"
+      },
       "initialEncounter": {
         "hostilesExcludingObjectives": 22,
         "engineFlagRanks": {
@@ -1355,6 +1429,12 @@
       "engineRecoveries": [],
       "legacyItemApi": "disabled; no Engine.item calls",
       "stopReason": null,
+      "sourceHashes": {
+        "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+        "stageSha256": "ead36ee94041845704affb39c2005866c9dd2c0bd64ed70538f72b39f372a5d4",
+        "geometrySha256": "b64a4d1b3b6c4907ce483a4c0c685699fc07a0eca4fd6d4fdd99a7d3e132edb9",
+        "entryProfileSha256": "537883cd0188e9847b9394a058039f65e11d789d85187f00f1a3c311f3905daf"
+      },
       "initialEncounter": {
         "hostilesExcludingObjectives": 22,
         "engineFlagRanks": {
@@ -1470,6 +1550,12 @@
       "engineRecoveries": [],
       "legacyItemApi": "disabled; no Engine.item calls",
       "stopReason": null,
+      "sourceHashes": {
+        "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+        "stageSha256": "ead36ee94041845704affb39c2005866c9dd2c0bd64ed70538f72b39f372a5d4",
+        "geometrySha256": "b64a4d1b3b6c4907ce483a4c0c685699fc07a0eca4fd6d4fdd99a7d3e132edb9",
+        "entryProfileSha256": "64224087008b3da69b7880837ec410c679f8d921c0b990ec0543d4d04da0cfba"
+      },
       "initialEncounter": {
         "hostilesExcludingObjectives": 22,
         "engineFlagRanks": {
@@ -1582,6 +1668,12 @@
       "engineRecoveries": [],
       "legacyItemApi": "disabled; no Engine.item calls",
       "stopReason": null,
+      "sourceHashes": {
+        "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+        "stageSha256": "ead36ee94041845704affb39c2005866c9dd2c0bd64ed70538f72b39f372a5d4",
+        "geometrySha256": "b64a4d1b3b6c4907ce483a4c0c685699fc07a0eca4fd6d4fdd99a7d3e132edb9",
+        "entryProfileSha256": "ebe6353afeb3813112491fb2c8348aab8e845e0325c615de8ee2d2e1fa3c65fd"
+      },
       "initialEncounter": {
         "hostilesExcludingObjectives": 22,
         "engineFlagRanks": {
@@ -1655,8 +1747,170 @@
       "stage": 16,
       "policy": "objective",
       "inputSeed": 757356291,
-      "status": "pending",
-      "evidence": "_local/reports/act2-gameplay-20261103/input-cohort/16-objective-757356291/result.json"
+      "status": "won",
+      "evidence": "_local/reports/act2-gameplay-20261103/input-cohort/16-objective-757356291/result.json",
+      "round": 11,
+      "kills": 6,
+      "fallen": [],
+      "damageTaken": 2170.3,
+      "damageDealt": 13927,
+      "skills": {
+        "A02": 8,
+        "M11": 9,
+        "O02": 6,
+        "S03": 3,
+        "O08": 2,
+        "A01": 2
+      },
+      "goals": {
+        "16.elder": true,
+        "16.disciple": true,
+        "16.safe": true,
+        "16.testimony": true,
+        "16.work-exit": true
+      },
+      "engineRngAtEntry": {
+        "seed": 19388,
+        "rng": 19388,
+        "engineStageId": 1,
+        "chapterId": 16,
+        "canonicalSeed": 19388,
+        "inheritedContinuation": false
+      },
+      "sourceCommit": "212b5739b4ca5b9ab4f9686e6539d899b75b3467",
+      "runnerSha256": "0cbf4d2b520a571c88938694ea28c4a7371492435470a7d973a696264f7acc4d",
+      "resultSha256": "96200cb700207061105247ddc2e33cc0786e3680a2939933f7199d19853a7e61",
+      "externalWrites": [],
+      "engineRecoveries": [],
+      "legacyItemApi": "disabled; no Engine.item calls",
+      "stopReason": null,
+      "sourceHashes": {
+        "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+        "stageSha256": "8ca631cc998c7cb825de788a9e5556a9c6f8d713d0fb1883675fc6bd863cc681",
+        "geometrySha256": "f69004f0047c531874690ebff8c1042a9dc2d28e80618557e972c6e47d5d9986",
+        "entryProfileSha256": "077d436ead24ac1d7f1f56f811b824ba28b08e842f1dfa74cb5951d70a73eb51"
+      },
+      "initialEncounter": {
+        "hostilesExcludingObjectives": 49,
+        "engineFlagRanks": {
+          "ordinary": 36,
+          "ordinaryElite": 13
+        },
+        "classes": {
+          "archer": 15,
+          "occultist": 26,
+          "mage": 8
+        },
+        "caveat": "Flags/classes are not validated distinct patterns or simultaneous combat."
+      },
+      "routeObservations": {
+        "rawInputOperations": {
+          "move": 33,
+          "fire": 30,
+          "defend": 8,
+          "jump": 8,
+          "land": 8,
+          "recovery-jump": 4,
+          "nav-replan": 4,
+          "E": 2
+        },
+        "matchedLandings": 8,
+        "visitedSupportIds": [
+          "act2-floor",
+          "tm-cloister-stair",
+          "tm-east-stone-bridge",
+          "tm-east-stone-stair",
+          "tm-great-hall-plinth",
+          "tm-processional-bridge",
+          "tm-processional-stair",
+          "tm-processional-upper",
+          "tm-shelter-veranda"
+        ],
+        "interactions": [
+          {
+            "round": 2,
+            "frame": 9191,
+            "goal": "16.disciple",
+            "op": "E",
+            "hero": "occultist",
+            "target": "16.elder"
+          },
+          {
+            "round": 3,
+            "frame": 10999,
+            "goal": "16.safe",
+            "op": "E",
+            "hero": "occultist",
+            "target": "16.disciple"
+          }
+        ],
+        "caveat": "Raw inputs/supports do not establish meaningful tactical elevation or mandatory route minima."
+      },
+      "spawnEvents": [
+        {
+          "round": 3,
+          "frame": 11076,
+          "id": "event-16",
+          "side": 1,
+          "cls": "archer",
+          "source": "v4.16.temple-record-answer",
+          "x": 8330,
+          "y": 4633.859649122807
+        },
+        {
+          "round": 3,
+          "frame": 11076,
+          "id": "event-17",
+          "side": 1,
+          "cls": "occultist",
+          "source": "v4.16.temple-record-answer",
+          "x": 8450,
+          "y": 4686.491228070176
+        },
+        {
+          "round": 3,
+          "frame": 11076,
+          "id": "event-18",
+          "side": 1,
+          "cls": "occultist",
+          "source": "v4.16.temple-record-answer",
+          "x": 8380,
+          "y": 4425.789473684211
+        },
+        {
+          "round": 3,
+          "frame": 11461,
+          "id": "event-20",
+          "side": 1,
+          "cls": "archer",
+          "source": "v4.16.temple-cloister-answer",
+          "x": 3370,
+          "y": 4688.333333333333
+        },
+        {
+          "round": 3,
+          "frame": 11461,
+          "id": "event-21",
+          "side": 1,
+          "cls": "occultist",
+          "source": "v4.16.temple-cloister-answer",
+          "x": 3500,
+          "y": 4580
+        },
+        {
+          "round": 3,
+          "frame": 11461,
+          "id": "event-22",
+          "side": 1,
+          "cls": "mage",
+          "source": "v4.16.temple-cloister-answer",
+          "x": 3430,
+          "y": 4408.333333333333
+        }
+      ],
+      "terminalSha256": "36491f0149666c1e1435d81aa24e63fdd941860f59c4c4554222783c23f066f4",
+      "roundTargetPass": true,
+      "ceilingPass": true
     },
     {
       "stage": 16,
@@ -1701,6 +1955,10 @@
     "meaningful landings/routes",
     "normal-growth entry reference applicability",
     "final integrated art/source replay",
-    "normal-browser complete gameplay"
+    "normal-browser complete gameplay",
+    "effective enemy damage-rate and normal-kill actions",
+    "macro difficulty curve",
+    "exclusive required miniboss counts",
+    "all applicable stage-special metrics and original classification (not enumerated as satisfied)"
   ]
 }
