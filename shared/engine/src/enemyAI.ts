@@ -391,6 +391,15 @@ export function targetOptions(e:Engine,u:Unit,primary:Unit,limit=3):Unit[]{
  const foes=b.units.filter(v=>v!==primary&&!v.dead&&v.hp>0&&!v.eaterCapturedBy&&(v.side===0||(v.side===2&&(v as any).honroAlly)));
  return [primary,...foes.sort((x,z)=>Math.hypot(x.x-u.x,x.y-u.y)-Math.hypot(z.x-u.x,z.y-u.y)).slice(0,limit-1)];
 }
+/** Light search for a secondary target: exact ballistic seeds only (no grid), screened then
+ * confirmed. Used when comparing targets so each extra target costs ~13 screens, not ~50. */
+export function* quickShotSteps(e:Engine,u:Unit,t:Unit,skills:Skill[]):Generator<void,{skill:Skill;aim:{angle:number;power:number;score:number}}|null,unknown>{
+ for(const s of skills.slice(0,3)){if(!e.npcShotInReach(u,s))continue;
+  for(const aim of e.shotSeeds(u,s,t,1,true)){const hit=e.aiPredict(u,s,aim.angle,aim.power,t),v=shotImpactValue(e,u,s,hit);yield;
+   if(v.enemyDamage>0&&v.net>2)return {skill:s,aim:{...aim,score:200}};}
+ }
+ return null;
+}
 /** 0: single fixed target (explorer); 1: weighs other targets; 2: also kill/focus priorities. */
 export function tacticsLevel(e:Engine){const d=e.b.difficulty;return d==='explorer'?0:d==='story'?1:2;}
 /** Expected worth of a viable shot: damage, finishing a hero, joining this round's focus target. */
@@ -403,6 +412,8 @@ export function shotWorth(e:Engine,u:Unit,target:Unit,value:{enemyDamage:number;
  }
  return worth;
 }
+/** Screening predictions one move plan may spend on lane scoring (reset per plan). */
+let screenBudget=Infinity;
 function* shotOpportunity(e:Engine,u:Unit,target:Unit,p:Vec):Generator<void,number,unknown>{
  if(beastKind(u)){const ghost={...u,...p,facing:target.x>=p.x?1:-1};return beastContact(e,ghost,target)?100:-Math.min(100,Math.hypot(p.x-target.x,p.y-target.y)*.2);}
  if(waterfallTactics(e))return yield* waterfallShotOpportunity(e,u,target,p);
@@ -416,7 +427,8 @@ function* shotOpportunity(e:Engine,u:Unit,target:Unit,p:Vec):Generator<void,numb
  for(const s of skills){if(!e.npcShotInReach(ghost,s))continue;const blast=e.effective(s,ghost).radius;
   for(const t of targetOptions(e,u,target,2)){const right=t.x>=p.x;
    const fan=(t.y>p.y+80?[-35,15,55,78]:[18,40,62,82]).flatMap(elev=>[.6,1].map(power=>({angle:right?elev:180-elev,power})));
-   for(const aim of [...e.shotSeeds(ghost,s,t),...fan]){
+   for(const aim of t===target?[...e.shotSeeds(ghost,s,t),...fan]:e.shotSeeds(ghost,s,t)){
+    if(--screenBudget<0)return best;
     const hit=e.aiPredict(ghost,s,aim.angle,aim.power,t),value=shotImpactValue(e,ghost,s,hit);yield;
     if(value.enemyDamage>0&&value.net>2)return 35+clamp(shotWorth(e,ghost,t,value),-120,90);
     if(t!==target)continue;
@@ -469,7 +481,7 @@ export function* planEnemyMoveSteps(e:Engine,u:Unit,target:Unit,attackFailed=fal
  const lure=lureStakeFor(e,u);if(lure)return yield* planLuredMove(e,u,target,lure);
  if(flyingEnemy(u))return yield* planFlight(e,u,target,attackFailed);
  if(u.fixed||u.dead||u.moveLeft<35||!e.grounded(u))return;
- const budget=Math.min(u.moveLeft,610),start={x:u.x,y:u.y},poses=candidates(e,u,target);
+ const budget=Math.min(u.moveLeft,610),start={x:u.x,y:u.y},poses=candidates(e,u,target);screenBudget=160;
  const reachable:Stance[]=[];
  for(const p of poses){const leg=yield* traceTravelSteps(e,u,start,p,budget);if(leg)reachable.push({...p,cost:leg.cost,path:[{...p,jump:leg.jump,...(leg.jumpX!==undefined?{jumpX:leg.jumpX}:{})}],score:positionScore(e,u,target,p)-leg.cost*.025});yield;
   // Candidates already have tactical priority. Three reachable alternatives are

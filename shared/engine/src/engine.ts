@@ -33,7 +33,7 @@ import type { Battle, Unit, Projectile, Skill, Side, Terrain, Vec, Zone, Event, 
 import { SKILLS, STAGES, ENEMIES, CLASSES } from './data';
 import {attackForHit,attackForSkill,calculateDamage,existenceMultiplier,migrateAirborneBalance} from './existence';
 import {lureStakeFor} from './totemBehavior';
-import { targetOptions, tacticsLevel, shotWorth, rankEnemyQueueSteps, type EnemyQueuePriority, planEnemyLuresSteps, planEnemyMoveSteps, advanceEnemyMove, targetFor, chooseEnemyShotSteps, finishPlanning, friendlyFireRisk, shotViable, shotImpactValue, flyingEnemy, knockbackFlyingEnemy, planWaitingFlights, FLY_MOVE_BUDGET } from './enemyAI';
+import { targetOptions, tacticsLevel, shotWorth, quickShotSteps, rankEnemyQueueSteps, type EnemyQueuePriority, planEnemyLuresSteps, planEnemyMoveSteps, advanceEnemyMove, targetFor, chooseEnemyShotSteps, finishPlanning, friendlyFireRisk, shotViable, shotImpactValue, flyingEnemy, knockbackFlyingEnemy, planWaitingFlights, FLY_MOVE_BUDGET } from './enemyAI';
 import { G, STEP, WORLD_W, WORLD_H, clamp, rad, poly, segRect, segmentTerrain, segmentProjectileTerrain, topAt, terrainSurfaces, terrainSlopeAt, terrainRectIntersects, dist, AIM_MIN, AIM_MAX } from './math';
 import { createBattle, groundY, makeEnemy, makeUnit } from './world';
 import { grantXP, applyHero, applyLevelUp, levelOf, TALENT_MAP, passiveBonus, recommendedLevel, equippedRank, passiveRank, skillDamageFactor, skillRadiusFactor, skillManaFactor, volleyCount, volleyDamage, knockbackResistance, ultimateUnlocked } from './progression';
@@ -503,10 +503,12 @@ export class Engine {
         const right = target.x > u.x, blast = this.effective(s, u).radius;
         let best = { angle: right ? 45 : 135, power: Math.min(.62,maxPower), score: -1e9 },useful=false;
         if(u.side!==0&&!this.npcShotInReach(u,s,allowAllyTarget?target:undefined,maxPower))return best;
-        const npcScreen=u.side!==0;
+        // Full-precision confirmations of screened candidates are capped (an arrow confirmation
+        // replays a cloned battle); a lane the screen keeps over-estimating is not chased forever.
+        const npcScreen=u.side!==0;let confirms=0;
         const score = (a: number, p: number) => {
             let hit = npcScreen ? this.aiPredict(u, s, a, p, target) : this.predict(u, s, a, p, target, false);
-            if(npcScreen){const quick=shotImpactValue(this,u,s,hit,allowAllyTarget?target.id:undefined);if(quick.enemyDamage>0&&quick.net>2)hit=this.predict(u,s,a,p,target,false);}
+            if(npcScreen){const quick=shotImpactValue(this,u,s,hit,allowAllyTarget?target.id:undefined);if(quick.enemyDamage>0&&quick.net>2){if(confirms>=4)return -1e8;confirms++;hit=this.predict(u,s,a,p,target,false);}}
             const d = Math.hypot(hit.x - target.x, hit.y - (target.y - target.h * .52));
             let sc = -(Math.min(d, hit.closest + 140));
             if (hit.unit === target.id)
@@ -2383,7 +2385,7 @@ export class Engine {
             // round's focus target), instead of committing to the nearest-first target and holding.
             let bestWorth=-Infinity,bestTarget=target,bestChoice=choice;
             for(const t of targetOptions(this,u,target,3)){
-                const c=t===target?choice:yield* chooseEnemyShotSteps(this,u,t,available),v=shotViable(this,u,c.skill,t,c.aim.angle,c.aim.power);yield;
+                const c=t===target?choice:yield* quickShotSteps(this,u,t,available);if(!c)continue;const v=shotViable(this,u,c.skill,t,c.aim.angle,c.aim.power);yield;
                 if(!v.ok)continue;const worth=shotWorth(this,u,t,v as any)+(t===target?6:0);
                 if(worth>bestWorth){bestWorth=worth;bestTarget=t;bestChoice=c;}
             }
