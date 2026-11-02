@@ -23,5 +23,11 @@
     "tools/act1-qa/legacy-controller.mjs": "be14d503f8c0b31a7f832d44d5457739fccc0689c1e92d00856df3c7a583c121",
     "tools/act1-qa/player-operations.mjs": "fbc8d0b429e7834a85f106bb5ff1e39170493018ea23d6e97b66888cba5c5e05"
   },
-  "stopping": "Existing finite220000-iteration/90round diagnostic cap, no round20 clipping, preserve failures."
+  "stopping": "Existing finite220000-iteration/90round diagnostic cap, no round20 clipping, preserve failures.",
+  "additionalDiagnosticAfterFirstOutcomes": {
+    "stage": 6,
+    "seed": 2361,
+    "policy": "cover-focused-noitems-appops-calibrated-v2",
+    "reason": "Swap scout from knight to mage, retaining knight+archer boss fighters; first diagnosticR10 informs this separately declared alternative, not blind cohort expansion."
+  }
 }

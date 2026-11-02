@@ -47,3 +47,9 @@ Three observations exceed20R (Stage3 route21, Stage6 cover22/route24). These are
 ## Evidence and stopping
 
 Calibrations are separately named/versioned; source registration is `calibration-v2-registration.json`. All15 frozen generated controller strings were checked byte-identical after the conditional adapter extension. No gameplay source changed. Local browser launch lacks Chromium executable; root's fixed real-browser executor owns representative UI confirmation/publication. Overall acceptance remains incomplete/out-of-range pending required effective-action, valid-landing, special-metric and actual-UI gates.
+
+## Calibration outcomes (separate from frozen cohort)
+
+- Stage3v2 clean sourceef48be13: mage legally interacted withledgerR9, actual victoryR10,2survivors. This removes3R of artificial archer-wait delay versus frozenflowR13, but6–8R target remains missed. No criterion change.
+- Stage6v2 clean sourceef48be13: actual victoryR10,3survivors,carrier1686HP/x6317,requiredmidboss dead.22 actual player launches,14 planned atmidboss; damage spansR3–10. Console66total fire calls included hostile fire and is not player-shot count. This establishes a legal target-band route without HP/speed/terrain changes, not a registered overall pass.18hostiles survive andbridge-boars/pursuit remain pending, which current completion allows; encounter-pressure gates therefore remain separate.
+- A separately declared nextStage6 diagnostic swaps the scout fromknight tomage, preservingknight+archer boss fighters; it is informed by the first outcome, not a blind cohort addition.
