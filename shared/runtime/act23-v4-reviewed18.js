@@ -135,8 +135,8 @@ function eligibility(app,site){const b=app.engine.b,m=physical(b),q=mem(b);
  return undefined;
 }
 function attach(app,e){discardEndedBoundary(e.b);if(e.honroReviewed18Bound)return;e.honroReviewed18Bound=true;
- // Prediction output is pure simulation; only a collected, available active-hero
- // preview may supply narrative observation proof (never AI probes or stale HUD skills).
+ // Keep collected active-hero observations (including cast-time planning).
+ // Exclude collect=false probes and unavailable stale skills; this is not a HUD-selection gate.
  const predict=e.predict;e.predict=function(u,skill,...args){const out=predict.call(e,u,skill,...args);if(api.active(e.b)&&args[3]!==false&&V.alive(u)&&u.side===0&&u.id===e.b.active&&e.b.side===0&&!app.dialogue&&G.HonroStakeCrossing.skills(e.b,u)?.includes(skill?.id)&&e.b.honroBellDescent.terrainIds.includes(out.terrain)){const q=mem(e.b);q.bellAim=true;q.bellAimProof={actor:u.id,skill:skill.id,terrain:out.terrain,endpoint:{x:out.x,y:out.y}};}return out;};
  const hurt=e.hurt;e.hurt=function(u,...args){const watching=api.active(e.b)&&u?.id==='act2-keeper'&&alive(u),oldHp=u?.hp,owner=unit(e.b,args[1]),source=args[5]||'normal',witness=watching&&V.heroes(e.b).some(h=>sight(e,h,u));const out=hurt.call(e,u,...args);
   if(watching&&u.hp<oldHp){const q=mem(e.b);q.bossHits=(q.bossHits||0)+1;if(!alive(u)){q.death={method:owner?.honroSpirit||owner?.summoned?'spirit':source,environment:source==='environment',witnessed:witness,instant:q.bossHits===1,point:{x:u.x,y:u.y}};S.cleanupDeath(app);cancelKeeper(app);lastBreath(app,owner);}}return out;};

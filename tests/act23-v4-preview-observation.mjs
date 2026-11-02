@@ -29,6 +29,19 @@ for(const stage of [16,18]){
  assert(proof(),`${stage}: legal collected preview observes`);
  for(const key of ['x','y','terrain','unit','closest'])assert.deepEqual(legal[key],physical[key],`${stage}: physical ${key} unchanged`);
  const valid=JSON.stringify(proof());
+ // Collected calls are not synonymous with selected-HUD previews. Preserve
+ // the existing cast-time caller contract (bell-anomaly/occultMechanics):
+ // a legal active skill can observe with a different selection/in flight.
+ const oldSelected=app.selected,oldPhase=b.phase;
+ app.selected='not-the-observed-skill';b.phase='flight';
+ // Explicit fixture reset makes this assert newly written proof, not old retention.
+ if(stage===16)delete memory().discipleAim;
+ else {delete memory().bellAimProof;delete memory().bellAim;}
+ const collectedCast=e.predict(u,C.SKILLS.A01,95,.45,target,true);
+ assert.equal(JSON.stringify(proof()),valid,`${stage}: collected cast-shaped call remains eligible`);
+ assert.deepEqual(plain(collectedCast),plain(legal));
+ app.selected=oldSelected;b.phase=oldPhase;
+
  // Omitted collect means true in the production Engine signature.
  assert.deepEqual(plain(e.predict(u,C.SKILLS.A01,95,.45,target)),plain(legal));
  assert.equal(JSON.stringify(proof()),valid);
