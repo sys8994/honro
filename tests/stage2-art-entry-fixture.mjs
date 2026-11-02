@@ -1,0 +1,4 @@
+import assert from'node:assert/strict';import{readFile}from'node:fs/promises';import{appHarness,plain}from'./app-regression-helpers.mjs';
+process.env.HONRO_ACT1_STAGE2_CANDIDATE='1';const h=await appHarness({productionStory:true}),g=h.g,fixture=JSON.parse(await readFile('tests/fixtures/act1-art/stage02-entry.json','utf8')),profile=fixture.profile,old=plain(profile);delete old.honroJourney;
+let a=h.load(old);assert.equal(a.screen,'title');g.HonroRestJourney.requestRest(a);h.finish(a);assert.equal(g.HonroRestJourney.restNext(a).stageId,1,'Old fixture title rest correctly returns to prior hub');
+a=h.load(profile);g.HonroRestJourney.requestRest(a);h.finish(a);assert.equal(a.engine.b.honroStage,2);assert.equal(a.engine.active.h,92);assert.equal(a.profile.settings.debugMode,false);assert.equal(a.engine.unit('p-archer').x,290);console.log('Current title rest action + legitimate direct-handoff fixture enters Stage2; no live battle edits PASS');

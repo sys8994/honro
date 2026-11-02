@@ -1,5 +1,5 @@
 {
-  "scope": "Declared Stage1-cleared entry fixture from preserved stage02-road-strategy normal-resource evidence. Not a natural campaign playthrough. Removes only old live battle before launch; no live HP/position/movement edits.",
+  "scope": "Declared Stage1-cleared entry fixture from preserved stage02-road-strategy normal-resource evidence. Not a natural campaign playthrough. Removes only old live battle before launch; no live HP/position/movement edits. Includes the normal recordOutcome direct-handoff marker pendingDirect=2; without it the title rest action legitimately returns to hub1. This marker is set before loading, not during battle.",
   "source": "game/docs/stage-review/stage02-road-strategy/evidence/combat/combat.json:entryProfile",
   "profile": {
     "version": 2,
@@ -600,6 +600,11 @@
           ]
         ]
       }
-    ]
+    ],
+    "honroJourney": {
+      "version": 1,
+      "talked": {},
+      "pendingDirect": 2
+    }
   }
 }

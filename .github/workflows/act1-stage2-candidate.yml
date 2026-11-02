@@ -33,6 +33,7 @@ jobs:
           node tests/act1-body-candidate.mjs
           node tests/stage2-continuous-art-rim.mjs
           node tests/stage2-continuous-candidate.mjs
+          node tests/stage2-art-entry-fixture.mjs
           python -m pip install 'playwright==1.58.0'
           python -m playwright install --with-deps chromium
       - name: Preserve published assets and prepare unpublished evidence preview
@@ -61,16 +62,19 @@ jobs:
           wait "$stage31"; status31=$?
           wait "$stage2"; status2=$?
           set -e
-          test "$status31" = 0 && test "$status2" = 0
+          echo "STAGE2_STATUS=$status2" >> "$GITHUB_ENV"
+          test "$status31" = 0
       - name: Bind measured evidence then enforce the production gate
         run: |
           set -euo pipefail
           node tools/act4-ci/refresh-stage31-probes.mjs attach "$OUT"
+          cp tools/stage31/production-package.json "$OUT/stage31-production-package.json"
           npm run build | tee "$OUT/gated-build.log"
           sha256sum HONRO.html web/manifest.json > "$OUT/final-served-sha256.txt"
       - name: Preserve checked candidate without master publication
         run: |
           set -euo pipefail
+          test "$STAGE2_STATUS" = 0
           git add web HONRO.html HONRO_WORKSHOP.html index.html tools/stage31/production-package.json
           git -c user.name='honro release automation' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m "Build checked Stage2 terrain candidate from $GITHUB_SHA"
           git push origin "HEAD:refs/heads/work/act1-stage2-generated/$GITHUB_SHA"

@@ -31,6 +31,7 @@ jobs:
           npm ci
           npm ci --prefix game
           node tests/stage2-continuous-candidate.mjs
+          node tests/stage2-art-entry-fixture.mjs
           node tools/act4-ci/refresh-stage31-probes.mjs prepare "$HONRO_QA_OUT/engine-probes"
           # Evidence preview only, never published or promoted. Release still requires the unchanged production gate.
           node workshop/build.mjs
