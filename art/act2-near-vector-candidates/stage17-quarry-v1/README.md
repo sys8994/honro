@@ -1,5 +1,7 @@
-# Stage17 quarry near-terrain candidate
+# Stage17 fractured charcoal geology candidate (revision3)
 
-Strict side-view, image-derived actual Inkscape trace. Original map11200×8200 and hero92 unchanged. Static rock only: no far scenery, people, wood machinery or mutable gate. Source/provenance retained. Exact authored raw compressed losslessly; final optimized pack ≥30% smaller. Identical actual native canonicalSolid/contactInset composition at1×/2× tested. Native screenshots are visual previews, not browser/gameplay acceptance.
+Replaces the browser-rejected broad empty slabs with image-derived charcoal geology. Existing canonical cave hosts, actor scale92, collision, camera, story, machinery/wood and mutable gate remain unchanged. Fine playable-contact clusters transition into larger deep-domain facets. No repeated texture wallpaper or hand-coded geology polygons.
 
-Rejected local v1 sources had artificial stripe bands and oversized pale caps; selected v2 uses broad irregular geological faces. Continuous dark outer base path retained exact, locals use bounded curve reduction and lossless path serialization. No threshold relaxed. Parent integrates build hook and owns actual browser/normal play acceptance.
+Actual Inkscape fixed-palette trace: local isolated-component cleanup90, outer300. Immutable authored RAW retained. Final SVG pack894226bytes versus1679371 RAW (46.7523% reduction). Protected/native actual composition comparison at1×/2× passes unchanged limits for all three assets. Outer RAW reference uses lossless token packing and bbox-disconnected contour grouping; parsed equality and hash record retained, holes never broken apart. This is reference registration, not changed runtime limits.
+
+Source iteration record: `../stage17-geology-v3`; focused review: `tools/act2-vector-production/STAGE17_ART_REVIEW.md`. Native final previews are `_local/reports/stage17-v3-final-review`. The remote integration owner must inspect actual browser/gameplay. Deep-domain and far-right out-of-play maxzoom remain coarser than playable contacts and are explicitly awaiting final visual disposition; numeric pass is not release approval.
