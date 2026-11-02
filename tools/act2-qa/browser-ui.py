@@ -12,8 +12,8 @@ out=Path(os.environ.get('HONRO_QA_OUT','_local/reports/act2-gameplay-ui'));out.m
 stage=int(os.environ.get('HONRO_STAGE','19'));result={'passed':False,'stage':stage,'scope':__doc__,'source':os.environ.get('GITHUB_SHA'),'errors':[]};events=[]
 def save():
  (out/'result.json').write_text(json.dumps(result,ensure_ascii=False,indent=2));(out/'events.json').write_text(json.dumps(events,ensure_ascii=False))
-try:
- with sync_playwright() as w:
+with sync_playwright() as w:
+ try:
   browser=w.chromium.launch(headless=True);p=browser.new_page(viewport={'width':1440,'height':900});p.on('pageerror',lambda e:result['errors'].append(str(e)))
   p.goto(os.environ.get('HONRO_QA_URL','http://127.0.0.1:8870/HONRO.html'),wait_until='domcontentloaded');p.wait_for_function('window.HonroApp',timeout=60000)
   if os.environ.get('HONRO_ENTRY_PROFILE'):
@@ -40,7 +40,7 @@ try:
     elif book.count():book.first.click()
    p.wait_for_timeout(350)
   result['entryBoundary']=p.evaluate('''()=>{const a=HonroApp;return{stage:a.engine?.b?.honroStage,phase:a.engine?.b?.phase,done:a.done,screen:a.screen,dialogue:!!a.dialogue,can:a.canInput(),storage:a.storageReason,pendingDirect:a.profile?.pendingDirect,body:document.body.innerText.slice(0,14000),buttons:[...document.querySelectorAll('button')].filter(x=>x.getClientRects().length).map(x=>({text:x.innerText,action:x.dataset.action,id:x.dataset.id,disabled:x.disabled}))}}''');save();p.screenshot(path=str(out/'entry-boundary.png'))
-  p.wait_for_function(f'HonroApp.engine?.b?.honroStage==={stage} && HonroApp.canInput()',timeout=1000)
+  p.wait_for_function(f'HonroApp.engine?.b?.honroStage==={stage}',timeout=1000) # Dialogue may start after the entry screenshot; ready() handles it.
   def state():return p.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b,u=e.active;return{round:b.round,side:b.side,phase:b.phase,appDone:a.done,cleared:a.profile.cleared?.[b.honroStage]||null,active:u?.id,cls:u?.cls,x:u?.x,y:u?.y,angle:u?.angle,facing:u?.facing,moveLeft:u?.moveLeft,jumpCost:u&&e.jumpCost(u),grounded:u&&e.grounded(u),can:a.canInput(),dialogue:!!a.dialogue,shots:b.shots,drop:u&&e.canDrop(),camera:{x:a.scene.x,y:a.scene.y,scale:a.scene.scale},health:b.units.filter(v=>v.side===0&&!v.summoned).map(v=>({id:v.id,hp:v.hp,maxHp:v.maxHp,dead:v.dead,x:v.x,y:v.y})),enemies:b.units.filter(v=>v.side===1).map(v=>({id:v.id,hp:v.hp,dead:v.dead,x:v.x,y:v.y,kind:v.honroVariant})),seed:b.seed,rng:b.rng,completedGoals:Object.keys(b.honroState?.act2?.done||{}).filter(k=>b.honroState.act2.done[k])}}''')
   def record(op,**extra):
    row={'op':op,'state':state(),'time':time.time(),**extra};events.append(row);save();print(json.dumps(row,ensure_ascii=False),flush=True)
@@ -128,13 +128,13 @@ try:
   result['final']=state();result['stageCleared']=result['final']['phase']=='won' and result['final']['appDone'] and bool(result['final']['cleared']);result['passed']=(result['stageCleared'] if stage==19 else len([e for e in events if e['op']=='fire'])>=1 and len([e for e in events if e['op']=='moved' and e.get('actual') and abs(e['actual']['x']-e['fromX'])+abs(e['actual']['y']-e['fromY'])>=20])>=2) and not result['errors'];result['passScope']='Stage19 objective clear or Stages11/15/20 bounded input observation, NOT whole-stage QA approval';result['roundTargetAssessment']='Recorded separately; UI clear is not whole gameplay/fun approval';p.screenshot(path=str(out/'terminal.png'));result['stored']=json.loads(p.evaluate('localStorage.getItem("honro-first-act-profile-1")'));
   if stage==19:assert result['stored'].get('cleared',{}).get('19'), 'Normal App outcome must persist cleared19'
   browser.close()
-except Exception:
- result['passed']=False
- result['exception']=traceback.format_exc()
- try:
-  p.screenshot(path=str(out/'failure.png'))
-  result['failureBoundary']=p.evaluate('''()=>({body:document.body.innerText.slice(0,14000),stage:window.HonroApp?.engine?.b?.honroStage,phase:window.HonroApp?.engine?.b?.phase,dialogue:!!window.HonroApp?.dialogue})''')
-  if 'state' in globals():result['last']=state()
- except Exception:pass
-finally:save()
+ except Exception:
+  result['passed']=False
+  result['exception']=traceback.format_exc()
+  try:
+   p.screenshot(path=str(out/'failure.png'))
+   result['failureBoundary']=p.evaluate('''()=>({body:document.body.innerText.slice(0,14000),stage:window.HonroApp?.engine?.b?.honroStage,phase:window.HonroApp?.engine?.b?.phase,dialogue:!!window.HonroApp?.dialogue})''')
+   if 'state' in globals():result['last']=state()
+  except Exception:pass
+ finally:save()
 if not result['passed']:raise SystemExit(1)
