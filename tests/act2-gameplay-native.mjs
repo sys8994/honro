@@ -81,8 +81,10 @@ for(let turn=0;turn<actionLimit&&!['won','lost'].includes(b.phase);turn++){
  const urgent=foes.find(v=>targetIds.has(v.id)),near=foes.filter(v=>dist(v,u)<(policy==='survival'?1500:1100));
  // Recovery is a committed action, never followed by pursuit in the same turn.
  if(policy==='survival'&&hpFraction(u)<.28){const threat=near[0];if(threat){const points=canonical.design.space.routes.flatMap(r=>r.anchors).filter(p=>dist(p,u)<1000&&dist(p,threat)>dist(u,threat)+250).sort((a,z)=>dist(z,threat)-dist(a,threat));if(points[0])nav.advance(u,points[0],false);}if(ready()){if(b.items.heal>0&&audit.production(()=>e.item('heal')))record({op:'heal-item-retreat',hero:u.cls});else{record({op:'defend-retreat',hero:u.cls});audit.production(()=>app.defend());}}continue;}
+ if(id===16&&goal?.id==='16.safe'&&u.x>2655&&u.x<3300){nav.advance(u,destination,false);if(!ready())continue;}
  let fired=false;for(const t of near.filter(v=>targetIds.has(v.id)||policy==='survival').slice(0,3))if(fireAt(u,t)){fired=true;break;}if(fired)continue;
  if(urgent){destination=urgent;nav.advance(u,{...destination,approachRange:policy==='height'&&u.cls!=='knight'?700:undefined},true);}else if(destination)nav.advance(u,destination,false);
+ if(id===13&&goal?.id==='gate')for(let climb=0;climb<4&&ready()&&u.x<4518&&u.moveLeft>e.jumpCost(u)+50;climb++){const oldY=u.y,step=b.terrain.find(t=>t.id==='v4.13.latch-step.'+(u.y>3990?0:u.y>3845?1:2));const next=u.y>3705?{id:'gate-shelf-chain',x:step.x+step.w/2,y:step.y}:{id:'inside-gate',x:4545,y:4090};nav.advance(u,next,false);if(Math.abs(oldY-u.y)<5)break;}
  if(!ready())continue;if(interact())continue;
  foes=foes.filter(v=>!v.dead&&dist(v,u)<1400);for(const t of foes.slice(0,3))if(fireAt(u,t)){fired=true;break;}
  if(!fired){record({op:'defend',hero:u.cls,position:{x:u.x,y:u.y},moveLeft:u.moveLeft});audit.production(()=>app.defend());}
