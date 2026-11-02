@@ -1,0 +1,14 @@
+{
+  "schema": "honro-act1-airborne-v5/v1",
+  "stage": 3,
+  "seed": 2331,
+  "policy": "objective-focused-flow-noitems-appops-budgetrecovery-distance-calibrated-v2-airborne-v5",
+  "scope": "Separate controller calibration afterR10v2. Observed airborne charge rejection followed by defend nearx1080 wastedR2\u20134 fullmovement. Continue ordinary lateral input toward declared landing and wait until grounded before fallback shot/defend. Retain alternate companion ledger, detached planning and exact live guard. No runtime edits.",
+  "sourceHashes": {
+    "tools/act1-qa/adapt-positioning.mjs": "5246c7c2bb7ec580141b33fb33caaa2421e39a73ce5c26d5b7d3bcec016e0539",
+    "tools/act1-qa/calibrate-positioning-v2.mjs": "b0a5aa3c227b14107bb658a2162a505511318f20b1e95e199d9f726c3a12edb3",
+    "tools/act1-qa/legacy-controller.mjs": "be14d503f8c0b31a7f832d44d5457739fccc0689c1e92d00856df3c7a583c121",
+    "tools/act1-qa/player-operations.mjs": "fbc8d0b429e7834a85f106bb5ff1e39170493018ea23d6e97b66888cba5c5e05"
+  },
+  "stopping": "Original finite220000iteration/90round cap; failed controls retained."
+}

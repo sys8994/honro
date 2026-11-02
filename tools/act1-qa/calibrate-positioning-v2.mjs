@@ -7,6 +7,7 @@ export function calibratePositioningV2(source,stage,policy){
  source=source.replace('return best;}','if(JSON.stringify(live.b)!==before)throw Error(\'Detached aim changed live battle\');return best;}');
  if(stage===3){
   source=source.replace("&&poses.some(p=>p.actor==='p-archer'&&p.goal===5550)",'');
+  if(policy.includes('airborne-v5'))source=source.replace('if(st.jumping){',"if(!e.grounded(u)){const landing=st.jumping?.x??p.jumpTo??p.x;if(u.moveLeft>8&&Math.abs(landing-u.x)>5)e.move(Math.sign(landing-u.x),C.STEP);step();continue;}if(st.jumping){");
   return source;
  }
  // Keep one companion on the rescue/exit path; the other two focus the actual
