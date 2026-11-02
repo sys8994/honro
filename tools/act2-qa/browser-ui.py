@@ -27,6 +27,17 @@ try:
    if nxt.count() and nxt.first.is_enabled():nxt.first.click()
    elif p.evaluate('!!HonroApp.dialogue'):p.keyboard.press('Enter')
    elif enter.count():enter.first.click()
+   else:
+    # Direct-link chapters have no matching rest hub when using a declared
+    # reward fixture without pendingDirect. Use the ordinary journey book.
+    travel=p.locator(f'[data-action="journey-travel"][data-id="{stage}"]:visible')
+    pin=p.locator(f'[data-action="journey-select"][data-id="{stage}"]:visible')
+    book=p.locator('[data-action="journey-book"]:visible')
+    confirm=p.locator('[data-action="confirm-journey-launch"]:visible')
+    if confirm.count():confirm.first.click()
+    elif travel.count():travel.first.click()
+    elif pin.count():pin.first.click()
+    elif book.count():book.first.click()
    p.wait_for_timeout(350)
   result['entryBoundary']=p.evaluate('''()=>{const a=HonroApp;return{stage:a.engine?.b?.honroStage,phase:a.engine?.b?.phase,done:a.done,screen:a.screen,dialogue:!!a.dialogue,can:a.canInput(),storage:a.storageReason,pendingDirect:a.profile?.pendingDirect,body:document.body.innerText.slice(0,14000),buttons:[...document.querySelectorAll('button')].filter(x=>x.getClientRects().length).map(x=>({text:x.innerText,action:x.dataset.action,id:x.dataset.id,disabled:x.disabled}))}}''');save();p.screenshot(path=str(out/'entry-boundary.png'))
   p.wait_for_function(f'HonroApp.engine?.b?.honroStage==={stage} && HonroApp.canInput()',timeout=1000)
