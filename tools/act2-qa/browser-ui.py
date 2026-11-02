@@ -56,6 +56,10 @@ with sync_playwright() as w:
     p.wait_for_timeout(350)
    return False
   p.wait_for_timeout(1600);record('initial');p.screenshot(path=str(out/'initial-normal.png'))
+  # Initial narration is modal: consume ordinary Next before camera input.
+  # Never force hover through a story overlay or skip authored pages.
+  assert ready(), 'Initial narration/input boundary did not settle'
+  record('initial-dialogue-settled')
   p.locator('#battlecanvas').hover();p.mouse.wheel(0,4000);p.wait_for_timeout(900);p.screenshot(path=str(out/'initial-monsters-overview.png'));record('initial-overview')
   for _ in range(14):
    if state()['camera']['scale']>=.6:break
