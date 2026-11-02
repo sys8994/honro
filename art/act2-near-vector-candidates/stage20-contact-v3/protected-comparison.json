@@ -1,0 +1,190 @@
+{
+  "scope": "High-precision authoring reference vs unchanged-budget validated production draw; actual clip and contact protected. Not source-concept fidelity, browser or gameplay approval.",
+  "qualityPass": true,
+  "vectorHashes": [
+    {
+      "id": "act2-traced:stage20-outer-v1",
+      "sha256": "8d60925d42868d0877cef7f7b7c5388e969a004679c3eb67526a4844aad7b959"
+    },
+    {
+      "id": "act2-traced:stage20-west-v2",
+      "sha256": "3b31eb17aceb7369b30610d6ff3b19e958cf1154f1f9abb823f08e8be9a97d62"
+    },
+    {
+      "id": "act2-traced:stage20-east-v2",
+      "sha256": "1dc3e0e13f066bf8d48f73fabf01b2a004a8b62054c343574f0aaa80cb14a2e5"
+    }
+  ],
+  "rows": [
+    {
+      "view": {
+        "name": "entry",
+        "x": 400,
+        "y": 4550,
+        "scale": 1,
+        "width": 1440,
+        "height": 900
+      },
+      "rgbMAE255": 0.0021756761707365513,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.0,
+      "changedPixelFraction": 0.0,
+      "silhouetteMaxOffsetPx": 0.0,
+      "protectedChangedPixelFraction": 0.0,
+      "protectedRgbMAE255": 0.0,
+      "protectedSilhouetteMaxOffsetPx": 0.0,
+      "protectedColorEdgeRawMaxOffsetPx": 0.0,
+      "protectedColorEdgeMaxOffsetPx": 0.0,
+      "protectedRgbQuantizationTolerance255": 1,
+      "protectedQuantizationPixels": 0,
+      "pass": true
+    },
+    {
+      "view": {
+        "name": "entry-2x",
+        "x": 400,
+        "y": 4520,
+        "scale": 2,
+        "width": 1440,
+        "height": 900
+      },
+      "rgbMAE255": 0.0035923488903790712,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.0,
+      "changedPixelFraction": 0.0,
+      "silhouetteMaxOffsetPx": 0.0,
+      "protectedChangedPixelFraction": 0.0,
+      "protectedRgbMAE255": 0.0,
+      "protectedSilhouetteMaxOffsetPx": 0.0,
+      "protectedColorEdgeRawMaxOffsetPx": 0.0,
+      "protectedColorEdgeMaxOffsetPx": 0.0,
+      "protectedRgbQuantizationTolerance255": 1,
+      "protectedQuantizationPixels": 0,
+      "pass": true
+    },
+    {
+      "view": {
+        "name": "shelf",
+        "x": 5100,
+        "y": 3650,
+        "scale": 1,
+        "width": 1440,
+        "height": 900
+      },
+      "rgbMAE255": 0.005450638476759195,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.0,
+      "changedPixelFraction": 0.0,
+      "silhouetteMaxOffsetPx": 0.0,
+      "protectedChangedPixelFraction": 0.0,
+      "protectedRgbMAE255": 0.0,
+      "protectedSilhouetteMaxOffsetPx": 0.0,
+      "protectedColorEdgeRawMaxOffsetPx": 0.0,
+      "protectedColorEdgeMaxOffsetPx": 0.0,
+      "protectedRgbQuantizationTolerance255": 1,
+      "protectedQuantizationPixels": 0,
+      "pass": true
+    },
+    {
+      "view": {
+        "name": "shelf-2x",
+        "x": 5100,
+        "y": 3570,
+        "scale": 2,
+        "width": 1440,
+        "height": 900
+      },
+      "rgbMAE255": 0.00047916831681504846,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.0,
+      "changedPixelFraction": 0.0,
+      "silhouetteMaxOffsetPx": 0.0,
+      "protectedChangedPixelFraction": 0.0,
+      "protectedRgbMAE255": 0.0,
+      "protectedSilhouetteMaxOffsetPx": 0.0,
+      "protectedColorEdgeRawMaxOffsetPx": 0.0,
+      "protectedColorEdgeMaxOffsetPx": 0.0,
+      "protectedRgbQuantizationTolerance255": 1,
+      "protectedQuantizationPixels": 0,
+      "pass": true
+    },
+    {
+      "view": {
+        "name": "exit",
+        "x": 8450,
+        "y": 2650,
+        "scale": 1,
+        "width": 1440,
+        "height": 900
+      },
+      "rgbMAE255": 0.0024607747327536345,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 7.716049026385008e-07,
+      "changedPixelFraction": 0.0,
+      "silhouetteMaxOffsetPx": 0.0,
+      "protectedChangedPixelFraction": 0.0,
+      "protectedRgbMAE255": 9.965653589460999e-05,
+      "protectedSilhouetteMaxOffsetPx": 0.0,
+      "protectedColorEdgeRawMaxOffsetPx": 0.0,
+      "protectedColorEdgeMaxOffsetPx": 0.0,
+      "protectedRgbQuantizationTolerance255": 1,
+      "protectedQuantizationPixels": 0,
+      "pass": true
+    },
+    {
+      "view": {
+        "name": "exit-2x",
+        "x": 8450,
+        "y": 2560,
+        "scale": 2,
+        "width": 1440,
+        "height": 900
+      },
+      "rgbMAE255": 1.1316981726849917e-05,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.0,
+      "changedPixelFraction": 0.0,
+      "silhouetteMaxOffsetPx": 0.0,
+      "protectedChangedPixelFraction": 0.0,
+      "protectedRgbMAE255": 0.0,
+      "protectedSilhouetteMaxOffsetPx": 0.0,
+      "protectedColorEdgeRawMaxOffsetPx": 0.0,
+      "protectedColorEdgeMaxOffsetPx": 0.0,
+      "protectedRgbQuantizationTolerance255": 1,
+      "protectedQuantizationPixels": 0,
+      "pass": true
+    },
+    {
+      "view": {
+        "name": "roof",
+        "x": 2100,
+        "y": 1000,
+        "scale": 0.35,
+        "width": 1440,
+        "height": 900
+      },
+      "rgbMAE255": 0.0031728772446513176,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 6.944443612155737e-06,
+      "changedPixelFraction": 0.0,
+      "silhouetteMaxOffsetPx": 0.0,
+      "pass": true
+    },
+    {
+      "view": {
+        "name": "deep",
+        "x": 4500,
+        "y": 8200,
+        "scale": 0.25,
+        "width": 1440,
+        "height": 900
+      },
+      "rgbMAE255": 0.007377614267170429,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.0,
+      "changedPixelFraction": 0.0,
+      "silhouetteMaxOffsetPx": 0.0,
+      "pass": true
+    }
+  ]
+}
