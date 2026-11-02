@@ -79,7 +79,7 @@ try:
  elif stage in [5,10]:
   commands=json.loads((ROOT/f'tools/act1-qa/stage{stage}-ui-commands.json').read_text())['commands']
   memory={};reactive_plan=(ROOT/'tools/act1-qa/browser-reactive-plan.js').read_text() if reactive else None
-  if reactive:result['controllerPolicy']='reactive-authored-objectives-v1';result['policyRegistration']='tools/act1-qa/browser-reactive-registration.json'
+  if reactive:result['controllerPolicy']='reactive-authored-objectives-detached-v2';result['policyRegistration']='tools/act1-qa/browser-reactive-registration.json'
   for index in range(240 if reactive else len(commands)):
    if not ready():break
    if reactive and (stage==10 or index>=45):

@@ -2,7 +2,7 @@
   "schema": "honro-browser-reactive-registration/v1",
   "registeredBeforeRuns": true,
   "candidateGameplay": "8b3a5e41",
-  "policy": "reactive-authored-objectives-v1",
+  "policy": "reactive-authored-objectives-detached-v2",
   "stages": [
     5,
     10
@@ -12,9 +12,18 @@
   "stage10": "Reactive current-binding attack, natural route climb, knight S08 before survival/pursuit, prioritize threats targeting Sodan, guard positions2200/2340/2580, archer scouts actualexit at hold4, anylivingactor exits once actualhold6 ready. Defend recovery for nonknight below40%HP after moving.",
   "limits": "240 ordinary input intentions and existing30minute CI observation; unfinished/exception/death fail receipt. Never force victory or erase failed prior traces.",
   "sourceHashes": {
-    "tools/act1-qa/browser-ui.py": "c5de48f6ddd7715966c767c1e6c73553e44805f5b543f4603f35269667521f2e",
-    "tools/act1-qa/browser-reactive-plan.js": "ba98245b3e8b73f8598396ccacdecee58831ddcb4afd0a367a7d7bc62bc40ac4",
+    "tools/act1-qa/browser-ui.py": "91e1b88fab973868bfeb65cc2354b4b755c45eb6a4818541670aa4b22c8912af",
+    "tools/act1-qa/browser-reactive-plan.js": "95e5ad8ddbfed44fb87a0b32c0c18104fd7ddfbbe869b3056243aa70f448a435",
     "tools/act4-ci/precise_aim.py": "4385177fdf3fdfb874ad7381045652ec69e2fd9f75ab698550f5a4ca70748980"
   },
-  "preRunCalibration": "Before first browser run: native reactive10 revealed actual exit victory can occur during a following charge. Wait observes actual terminalphase and releases key; no launch receipt is claimed, result still requires actualwon/noexception. Old native terminalwin+driverexception trace preserved."
+  "preRunCalibration": "Before first browser run: native reactive10 revealed actual exit victory can occur during a following charge. Wait observes actual terminalphase and releases key; no launch receipt is claimed, result still requires actualwon/noexception. Old native terminalwin+driverexception trace preserved.",
+  "priorRegistration": {
+    "policy": "reactive-authored-objectives-v1",
+    "sourceHashes": {
+      "tools/act1-qa/browser-ui.py": "c5de48f6ddd7715966c767c1e6c73553e44805f5b543f4603f35269667521f2e",
+      "tools/act1-qa/browser-reactive-plan.js": "ba98245b3e8b73f8598396ccacdecee58831ddcb4afd0a367a7d7bc62bc40ac4",
+      "tools/act4-ci/precise_aim.py": "4385177fdf3fdfb874ad7381045652ec69e2fd9f75ab698550f5a4ca70748980"
+    }
+  },
+  "isolation": "Every reactive prediction uses a JSON-cloned battle and new production Engine. Exact serialized live battle guard retained. Regression poisons detached prediction cache and forbids calls on live predictor; Stage5/10 live battle/profile unchanged. Separate instrumentation calibration, no gameplay criteria changed."
 }

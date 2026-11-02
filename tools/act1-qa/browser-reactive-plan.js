@@ -1,6 +1,7 @@
 (q)=>{
- const app=HonroApp,e=app.engine,b=e.b,C=HONRO_CORE,u=e.active,before=JSON.stringify(b),memory=q.memory||{},key=b.round+':'+u.id;
- function finish(command){if(JSON.stringify(b)!==before)throw Error('Reactive planning mutated live battle');return{command:command&&{hero:u.cls,...command},memory};}
+ // Predictions may populate caches; never lend them the live battle or actors.
+ const app=HonroApp,C=HONRO_CORE,live=app.engine.b,before=JSON.stringify(live),e=new C.Engine(JSON.parse(before)),b=e.b,u=e.active,memory=q.memory||{},key=b.round+':'+u.id;
+ function finish(command){if(JSON.stringify(live)!==before)throw Error('Reactive planning mutated live battle');return{command:command&&{hero:u.cls,...command},memory};}
  const defend=reason=>({op:'defend',reason});
  function attack(target,only=null){if(!target||target.dead)return null;let best=null;
   for(const id of only||u.loadout){const s=C.SKILLS[id];if(!s||s.passive||id==='S08'||!u.loadout.includes(id)||e.cooldownLeft(u,id)>0)continue;
