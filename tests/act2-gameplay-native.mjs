@@ -66,7 +66,6 @@ for(let turn=0;turn<actionLimit&&!['won','lost'].includes(b.phase);turn++){
  const specialist=goal?.requiredClass&&e.heroesAlive().find(u=>u.cls===goal.requiredClass&&!u.acted);if(specialist)e.select(specialist.id);
  const u=e.active;if(!u||u.side!==0||u.dead){stopReason='no usable hero';break;}
  if(interact())continue;
- if(policy==='survival'&&healStake(u))continue;
  const marker=b.honroMarkers.find(m=>m.id===goal?.id),spirit=goal?.spiritId&&e.unit(goal.spiritId),weak=spirit&&(spirit.dead||spirit.hp<=spirit.maxHp*.4);
  let destination=marker||g.HonroObjectives.state(b,app.stage).targets[0],targetIds=new Set(goal?.defeatIds||[]);
  if(goal?.kind==='clear'&&!goal.defeatIds)for(const v of e.alive(1))if(goal.cohorts?v.honroCohort===goal.cohorts:marker&&dist(v,marker)<(goal.radius||650))targetIds.add(v.id);
@@ -88,6 +87,8 @@ for(let turn=0;turn<actionLimit&&!['won','lost'].includes(b.phase);turn++){
  const urgent=foes.find(v=>targetIds.has(v.id)),near=foes.filter(v=>dist(v,u)<(policy==='survival'?1500:1100));
  // Recovery is a committed action, never followed by pursuit in the same turn.
  if(policy==='survival'&&hpFraction(u)<.28){const threat=near[0];if(threat){const points=canonical.design.space.routes.flatMap(r=>r.anchors).filter(p=>dist(p,u)<1000&&dist(p,threat)>dist(u,threat)+250).sort((a,z)=>dist(z,threat)-dist(a,threat));if(points[0])nav.advance(u,points[0],false);}if(ready()){record({op:'defend-retreat',hero:u.cls});audit.production(()=>app.defend());}continue;}
+ // Emergency retreat/defend above takes precedence over optional recovery casting.
+ if(policy==='survival'&&healStake(u))continue;
  if(id===16&&goal?.id==='16.safe'&&u.x>2655&&u.x<3300){nav.advance(u,destination,false);if(!ready())continue;}
  let fired=false;for(const t of near.filter(v=>(!forceVantage||atVantage)&&(targetIds.has(v.id)||policy==='survival')).slice(0,3))if(fireAt(u,t)){fired=true;break;}if(fired)continue;
  if(forceVantage)nav.advance(u,vantage,false);else if(urgent){destination=urgent;nav.advance(u,{...destination,approachRange:policy==='height'&&u.cls!=='knight'?700:undefined},true);}else if(destination)nav.advance(u,destination,false);
