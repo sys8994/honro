@@ -36,7 +36,7 @@ function author(map){const n=map.metadata.stageId;if(n<11||n>17)return;const ini
  map.events=(map.events||[]).filter(e=>e.honroDensityResponse&&replacement[e.honroDensityTrigger?.objectiveDone]).map(e=>{const id='v4.'+n+'.'+e.id;return{...e,id,warning:id+'.warning',text:undefined,when:{after:'density-gate-'+id},action:retag(e.action,id),honroDensityAlternatives:e.honroDensityAlternatives?.map(rows=>rows.map(a=>retag(a,id))),honroDensityTrigger:{...e.honroDensityTrigger,objectiveDone:replacement[e.honroDensityTrigger.objectiveDone]}};});
 }
 function prepare(b){if(!active(b))return;mem(b);for(const key of ['honroQuarryRevision','honroTempleVersion','honroTempleEscortRevision','honroWorksiteVersion'])b[key]=0;
- delete mem(b).recurrence?.cameraCue;returnParts(b);
+ delete mem(b).recurrence?.cameraCue;returnParts(b);restoreWorksiteAccess(b);
  if(b.honroStage===17){for(const id of ['17.mason','17.gilchan']){const u=unit(b,id);if(u){u.name=id;u.honroProtected=true;}}}
 }
 // A carried part remains one object. Reopen its existing socket after carrier
@@ -80,6 +80,10 @@ function advanceWorksite(app,dt){const e=app.engine,b=e.b,spec=b.honroV4Worksite
 function complete(app,s){V.completeStep(app,s,app.engine.active);}
 function finish(app){app.dirty=true;if(!app.checkMission(app.engine))app.engine.finishAction();return true;}
 function open(b,id){let changed=false;for(const list of [b.terrain,b.honroWorldTerrain]){const t=list?.find(t=>t.id===id);if(t&&!t.broken){t.broken=true;changed=true;}}if(changed)b.sceneVersion=(b.sceneVersion||0)+1;}
+// Legacy repair opened the main passage before defense. V4 splits that repair
+// into physical assembly and a secured pin; restore access only after both,
+// including legitimate saves made before this compatibility transition existed.
+function restoreWorksiteAccess(b){if(!active(b)||b.honroStage!==17||!b.honroV4Worksite)return;const a=mem(b),done=V.mem(b).done,mesh=a.proof['17.mesh'],lock=a.proof['17.lock'];if(!done['17.mesh']||!done['17.lock']||mesh?.worker!=='17.mason'||mesh.parts?.workerCarrier!=='17.gilchan'||lock?.pinSeated!==true)return;open(b,'gate-repair');}
 function extract(app,s){const e=app.engine,b=e.b,u=unit(b,s.target),spirit=unit(b,s.spiritId);if(!alive(u)||s.requiredClass&&e.active?.cls!==s.requiredClass)return false;
  if(alive(spirit)){G.HonroProgression?.defeat(e,spirit,e.active);spirit.hp=0;spirit.dead=true;spirit.honroReleased=true;b.queue=b.queue.filter(id=>id!==spirit.id);}u.honroResolved=true;u.honroHypnotized=false;mem(b).proof[s.id]={target:u.id,serial:serial(b)};complete(app,s);return finish(app);}
 function drain(b){const a=mem(b);if(a.drained)return;a.drained=true;a.drainPending=true;
@@ -90,7 +94,7 @@ function use(app,m){const e=app.engine,b=e.b,current=V.current(b),s=V.steps(b).f
  if(s.id==='sluice'){(b.honroEquipmentFacts??={}).sluiceInteraction={actor:e.active.id,round:b.round};drain(b);complete(app,s);return finish(app);}
  if(s.kind==='v4-extract')return extract(app,s);
  if(s.kind==='v4-rescue'){if(!alive(unit(b,s.target)))return false;a.proof[s.id]={target:s.target,serial:serial(b)};complete(app,s);return finish(app);}
- if(s.id==='17.lock'){a.proof[s.id]={actor:e.active.id,serial:serial(b),pinSeated:true};complete(app,s);return finish(app);}
+ if(s.id==='17.lock'){a.proof[s.id]={actor:e.active.id,serial:serial(b),pinSeated:true};complete(app,s);restoreWorksiteAccess(b);return finish(app);}
  if(s.id==='17.wheel'&&b.honroV4Worksite){worksite(b).wheelRequested={actor:e.active.id,serial:serial(b)};return finish(app);}
  if(s.id==='17.load-test'){worksite(b).loadRequest={actor:e.active.id,serial:serial(b)};return finish(app);}
  if(s.kind==='v4-work'){if(s.id==='17.mesh'&&!a.proof['17.parts'])return false;if(threats(b,m,280).length)return false;a.work[s.id]??={elapsed:0,actor:e.active.id,serial:serial(b),working:true};return finish(app);}
@@ -125,7 +129,7 @@ function defense(app,s){const e=app.engine,b=e.b,a=mem(b),m=mark(b,s.id),q=a.def
  q.sources[id]=b.units.filter(u=>!previous.has(u.id)).map(u=>u.id);return;}
  const ids=Object.values(q.sources).flat();if(Object.keys(q.sources).length===2&&q.progress>=3&&ids.every(id=>!alive(unit(b,id))))a.proof[s.id]={actions:q.progress,sources:clone(q.sources)};
 }
-function tick(app,dt){const e=app.engine,b=e.b;if(!active(b))return;returnParts(b);if(paused(app))return;if(b.honroStage===17&&b.honroV4Worksite)advanceWorksite(app,Math.max(0,Math.min(dt,.05)));const s=V.current(b);if(!s)return;const a=mem(b);if(a.drainPending){if(G.HonroStage15Drain?.active(b)){if(G.HonroStage15Drain.transition(b).ok)a.drainPending=false;}else{const ids=b.honroDrainRevealTerrains||[];if(ids.every(id=>{const t=b.terrain.find(t=>t.id===id);return t&&!b.units.some(u=>alive(u)&&C.terrainRectIntersects(t,u.x-u.r-4,u.y-u.h-4,u.r*2+8,u.h+10,.01));})){for(const list of [b.terrain,b.honroWorldTerrain])for(const id of ids){const t=list?.find(t=>t.id===id);if(t)t.broken=false;}a.drainPending=false;}}if(!a.drainPending)b.sceneVersion=(b.sceneVersion||0)+1;}const p=mark(b,s.id),delta=Math.max(0,Math.min(dt,.05));
+function tick(app,dt){const e=app.engine,b=e.b;if(!active(b))return;returnParts(b);restoreWorksiteAccess(b);if(paused(app))return;if(b.honroStage===17&&b.honroV4Worksite)advanceWorksite(app,Math.max(0,Math.min(dt,.05)));const s=V.current(b);if(!s)return;const a=mem(b);if(a.drainPending){if(G.HonroStage15Drain?.active(b)){if(G.HonroStage15Drain.transition(b).ok)a.drainPending=false;}else{const ids=b.honroDrainRevealTerrains||[];if(ids.every(id=>{const t=b.terrain.find(t=>t.id===id);return t&&!b.units.some(u=>alive(u)&&C.terrainRectIntersects(t,u.x-u.r-4,u.y-u.h-4,u.r*2+8,u.h+10,.01));})){for(const list of [b.terrain,b.honroWorldTerrain])for(const id of ids){const t=list?.find(t=>t.id===id);if(t)t.broken=false;}a.drainPending=false;}}if(!a.drainPending)b.sceneVersion=(b.sceneVersion||0)+1;}const p=mark(b,s.id),delta=Math.max(0,Math.min(dt,.05));
  if(s.kind==='v4-escort')escort(app,s,delta);
  if(s.kind==='v4-world'&&b.units.some(u=>hero(u)&&near(u,p,300))){a.ambientElapsed=(a.ambientElapsed||0)+delta;if(!a.lowBellAudible&&G.HonroMukjongAudio?.playCandidate?.(app,.82))a.lowBellAudible=true;if(a.ambientElapsed>=1.8)a.proof[s.id]={soulNorth:true,lowBellVisual:true,lowBellAudible:a.lowBellAudible===true,elapsed:a.ambientElapsed};}
  if(s.kind==='v4-recurrence'&&b.units.some(u=>hero(u)&&near(u,p,300))){const q=a.recurrence??={elapsed:0,passes:0};q.elapsed+=delta;const spec=b.honroV4Recurrence,duration=spec.duration;q.passes=Math.min(2,Math.floor(q.elapsed/duration));
@@ -145,7 +149,7 @@ function sweepStop(b,u,from,to){const n=Math.max(1,Math.ceil(Math.max(Math.abs(t
 // false, fallApexY is retained, and ordinary gravity resumes as soon as the
 // blocker moves. Never teleport, fix the NPC in place, or ignore settleBusy.
 function settleBodyReservation(u,from,stop){const descending=u.y>=from.y&&u.vy>=0;u.x=stop.x;u.y=stop.y;u.vx=u.vy=0;if(descending&&!u.equipmentState?.motion&&!u.platformDrop){u.jumping=false;u.airborne=false;}}
-const engines=new WeakSet();function attach(app,e){if(!active(e.b)||engines.has(e))return;returnParts(e.b);engines.add(e);
+const engines=new WeakSet();function attach(app,e){if(!active(e.b)||engines.has(e))return;returnParts(e.b);restoreWorksiteAccess(e.b);engines.add(e);
  const owns=u=>{const s=V.current(e.b);return !u.fixed&&(s?.kind==='v4-escort'&&s.target===u.id||e.b.honroStage===17&&e.b.honroV4Worksite&&['17.mason','17.gilchan'].includes(u.id));};
  const walk=e.walk;e.walk=function(u,...args){if(!owns(u))return walk.call(e,u,...args);const from={x:u.x,y:u.y},left=u.moveLeft,out=walk.call(e,u,...args),stop=sweepStop(e.b,u,from,u);if(stop){const travelled=Math.hypot(u.x-from.x,u.y-from.y),actual=Math.hypot(stop.x-from.x,stop.y-from.y);u.moveLeft=left-(left-u.moveLeft)*(travelled?actual/travelled:0);u.x=stop.x;u.y=stop.y;}return out;};
  const integrate=e.integrateBody;e.integrateBody=function(u,dt,...args){const from=owns(u)?{x:u.x,y:u.y}:null,out=integrate.call(e,u,dt,...args);if(from){const stop=sweepStop(e.b,u,from,u);if(stop)settleBodyReservation(u,from,stop);}return out;};

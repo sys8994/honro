@@ -1,0 +1,152 @@
+{
+  "source": "/tmp/honro-stage17-ground-fresh/checkpoint.json",
+  "sourceSha256": "8eceb8323fbfb4965d6b7d3a751dfd9fcefd6de473bc2c801b83defc042434d2",
+  "gzipSha256": "0ae6a6c22718b821f65cadc2882bde026f43774d3c86263a9120e9cd263cdf5e",
+  "scope": "Exact exported checkpoint from interrupted fresh native App ground-policy run, R34; naturalContinue fixture, not fresh success/cohort proof",
+  "provenance": {
+    "actualEntry": [
+      {
+        "cls": "archer",
+        "level": 13,
+        "hp": 769,
+        "maxHp": 769,
+        "loadout": [
+          "A01",
+          "A02",
+          "A09",
+          "A05"
+        ],
+        "equipmentIds": [
+          "itm_se_01"
+        ],
+        "ranks": {
+          "A01": 1,
+          "A14": 1,
+          "A02": 7,
+          "A11": 1,
+          "A09": 7,
+          "A05": 7
+        }
+      },
+      {
+        "cls": "mage",
+        "level": 13,
+        "hp": 828,
+        "maxHp": 828,
+        "loadout": [
+          "M01",
+          "M04",
+          "M03",
+          "M11"
+        ],
+        "equipmentIds": [
+          "itm_da_01"
+        ],
+        "ranks": {
+          "M01": 1,
+          "M06": 1,
+          "M02": 1,
+          "M04": 7,
+          "M03": 7,
+          "M11": 7
+        }
+      },
+      {
+        "cls": "knight",
+        "level": 13,
+        "hp": 1421,
+        "maxHp": 1421,
+        "loadout": [
+          "S00",
+          "S03",
+          "S05",
+          "S09"
+        ],
+        "equipmentIds": [
+          "itm_hw_01"
+        ],
+        "ranks": {
+          "S00": 1,
+          "S03": 8,
+          "S05": 8,
+          "S09": 7
+        }
+      },
+      {
+        "cls": "occultist",
+        "level": 13,
+        "hp": 963,
+        "maxHp": 963,
+        "loadout": [
+          "O01",
+          "O02",
+          "O08",
+          "O11"
+        ],
+        "equipmentIds": [
+          "itm_so_01"
+        ],
+        "ranks": {
+          "O01": 1,
+          "O02": 7,
+          "O06": 1,
+          "O07": 1,
+          "O08": 7,
+          "O11": 7
+        }
+      }
+    ],
+    "checkoutCommit": "2b93d09b1c8d7a92056617d3198f6c33743d095c",
+    "runnerSha256": "3101fd75e0cb1924b791a3aa935a209aadf990626d56983f13a236d89c53624a",
+    "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+    "stageSha256": "d629d58dfcb14ae418dbd1d6fd2baf268db5511c07496f872bf6dd9c7ba81991",
+    "geometrySha256": "e76242dc549d2a3ab86c70f2ac0ac1bbc3826d424309bcdb737c87425a177f81",
+    "entryProfileSha256": "5dc54202cddbeae474a5617df962d083b6ea9325a6f11e609ed519f3ccfe6be5",
+    "entryLevel": 15.6,
+    "policy": "objective",
+    "seed": 757356291,
+    "seedPurpose": "controller-input-variation-only",
+    "engineRngAtEntry": {
+      "seed": 19388,
+      "rng": 19388,
+      "engineStageId": 1,
+      "chapterId": 17,
+      "canonicalSeed": 19388,
+      "inheritedContinuation": false
+    },
+    "inputVariation": {
+      "seed": 757356291,
+      "aimErrorDegrees": [
+        -0.15,
+        0.15
+      ],
+      "powerError": 0
+    },
+    "legacyItemApi": "disabled; no Engine.item calls",
+    "operationMode": "NATIVE_APP_ACTION_WITH_PRODUCTION_SELECTED_PREVIEW",
+    "fileHashEncoding": "raw bytes (earlier a40a/a7afb diagnostic helper hashes used Buffer JSON serialization; see audit note)",
+    "plannerMode": "Detached production Engine clone; full live battle equality guard before actual input",
+    "previewHelperSha256": "3104e44cd91c7bd70e67460f5c71cd546ed301734feec9e6087f1b5ca531b4f7",
+    "purePlannerSha256": "cd2d9b812ad8d02a633be2da7a7f9494dd17b66d50b78b1f46c70d2985cae15c",
+    "clockOriginMs": 0,
+    "navigationSha256": "c31db6b0681bc6c970c6f16aa9580314c177f2870891b8a85b206cc1d5a472f0",
+    "runtimeTrees": {
+      "shared": "99ede24bf687259756e91b27b9696181c575d795",
+      "game/src": "3c0d79c865cd13a09df6c7dd498f20da991d3e2e"
+    },
+    "adapterSha256": "fbc8d0b429e7834a85f106bb5ff1e39170493018ea23d6e97b66888cba5c5e05",
+    "adapterSource": "Act1 optional renderer callback b85a1858 (baseline a819d4a9)",
+    "inputMapping": {
+      "defend": "App.defend",
+      "select": "App.selectHero",
+      "jump": "App.jump",
+      "movement": "App stick intent consumed by actual App.frame,120Hz",
+      "drop": "ordinary walk-off fall, NOT Alt platform drop",
+      "fire": "Actual App beginCharge/frame elapsed/releaseCharge; idealized legal facing/aim gesture, not browser pointer",
+      "interaction": "visible nearest context-button target only",
+      "dialogue": "Story.next with production guard",
+      "clock": "Shared adapter actual App.frame with C.STEP elapsed; Next-only narration"
+    },
+    "scope": "Synthetic legacy-budget rewardXpAt(plan.entryLevel), legal training, production-auto-equipped starter personal equipment. Prior clearance flags only unlock requested chapter; no claim earlier chapters were played. Production reviewed-v4 actual App frame/actions with DOM/storage/render/clock doubles and idealized aim; not browser input."
+  }
+}
