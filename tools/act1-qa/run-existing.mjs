@@ -107,6 +107,19 @@ if(stage===10&&policy.includes('scout')){
 }
 if(stage===10){code=code.replace("h.click('journey-enter',{id:'11'});","app.export();await writeFile(out+'/after-stage10-rest-profile.json',JSON.stringify({profile:await h.exported(),scope:'Actual no-state-edit Stage10 outcome -> ordinary result-continue -> rest recruitment; captured BEFORE Stage11 launch. Prior9 was declared historical victory fixture, not continuous campaign.'}));h.click('journey-enter',{id:'11'});");}
 if(policy.includes('noitems')){code=code.replace('if(u.hp<u.maxHp*.45&&b.items.heal)', 'if(false&&u.hp<u.maxHp*.45&&b.items.heal)');code=code.replace('if(u.hp<u.maxHp*.5&&b.items.heal)', 'if(false&&u.hp<u.maxHp*.5&&b.items.heal)');code=code.replace('if(useSupplies&&u.hp<u.maxHp*.45&&b.items.heal>0)', 'if(false&&useSupplies&&u.hp<u.maxHp*.45&&b.items.heal>0)');}
+if(stage===10&&policy.includes('appops')){
+ if(!policy.includes('modern')||!policy.includes('noitems'))throw Error('Stage10 App adapter requires modern/noitems');
+ code="import {createPlayerOperations} from '"+new URL('./player-operations.mjs',import.meta.url).href+"';\n"+code;
+ code=code.replace('appHarness({productionStory:true})','appHarness({productionStory:true,productionInputActions:true})');
+ code=code.replace('function instrument(){',`let ops,opsBaseFrames=0;
+function playerFire(id,angle,power){angle=((angle+85)%360+360)%360-85;if(angle>265)return false;const ok=audit.production(()=>ops.fire(id,angle,power));ms=ops.now;frames=opsBaseFrames+ops.frames;return ok;}
+function instrument(){opsBaseFrames=frames;ops=createPlayerOperations({app,g,C,record:r=>record(r)});`);
+ code=code.replace(/function tick\(\)\{[^\n]+\n/,"function tick(){audit.production(()=>ops.frame());ms=ops.now;frames=opsBaseFrames+ops.frames;audit.guard();}\n");
+ code=code.replaceAll('e.fire(','playerFire(').replaceAll('e.move(','ops.move(').replaceAll('e.jump(u)','audit.production(()=>ops.jump(u))').replaceAll('app.defend()','ops.defend()').replaceAll("e.item('heal')","ops.item('heal')");
+ code=code.replace('JSON.stringify({phase:b.phase,round:b.round,actions,damage,continues,initial,battleEnd,audit:audit.log})','JSON.stringify({operationMode:"NATIVE_APP_ACTION_SIMULATION",phase:b.phase,round:b.round,actions,damage,continues,initial,battleEnd,audit:audit.log})');
+ const ending=code.indexOf('for(let n=0;n<300&&app.dialogue;n++)tick();');if(ending<0)throw Error('Missing terminal boundary');
+ code=code.slice(0,ending)+`for(let n=0;n<20000&&(!app.profile.cleared[10]||app.dialogue);n++)tick();assert(app.profile.cleared[10]);h.click('result-continue');for(let n=0;n<20000&&app.dialogue;n++)tick();assert.equal(app.screen,'rest');assert(app.profile.recruited.includes('occultist'));app.export();await writeFile(out+'/after-stage10-rest-profile.json',JSON.stringify({profile:await h.exported(),scope:'Actual App outcome and normal result continuation; declared predecessor history'}));await writeFile(out+'/result.json',JSON.stringify({won:true,round:battleEnd.round,operationMode:'NATIVE_APP_ACTION_SIMULATION',externalWrites:audit.log.externalWrites.length,recoveries:audit.log.recoveries.length,recruited:app.profile.recruited,scope:'Actual App controls with DOM/render/clock doubles; not browser'}));console.log('PASS actualApp10',battleEnd.round);\n`;
+}
 if(stage===8&&policy.includes('appops')){
  assertAppPolicy();
  function assertAppPolicy(){if(!policy.includes('modern')||!policy.includes('noitems'))throw Error('Stage8 App adapter requires modern/noitems policy');}
