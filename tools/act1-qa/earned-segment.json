@@ -1,0 +1,113 @@
+{
+  "schema": "honro-act1-earned-segment/v1",
+  "scope": "Actual zero-item native App/Engine input segment8→9→10; NOT continuous1→10 campaign or browser evidence. Chapters1–7 current first-clear reward fixture; declared legal allocation before8. No respec/training/equipment modification between8/9/10.",
+  "runtimeCandidate": "Baseline292 plus authorized Stage8 staging fix, sourcefcfa4e6a85b6faff317da574e8b5ae50b27a6f3e",
+  "stages": [
+    {
+      "stage": 8,
+      "round": 16,
+      "outcome": "won",
+      "itemsUsed": [],
+      "externalWrites": 0,
+      "recoveries": 0,
+      "combatEvidence": "/workspace/scratch/fff510b4df37/honro-act1-stage8-staging/_local/reports/act1-gameplay-20261103/stage8-focused-modern-routefirst-flowall-meleeclose-noitems-settlement-1124/trace.json",
+      "combatSha256": "a49a8af4c40ff35b190670b571623da7a189ddc11a7d2492154d8cb09576b615",
+      "settledProfile": "/workspace/scratch/fff510b4df37/honro-act1-stage8-staging/_local/reports/act1-gameplay-20261103/stage8-focused-modern-routefirst-flowall-meleeclose-noitems-settlement-1124/victory-profile.json",
+      "profileSha256": "628430aa31bd4221707cd49f58d8076244916747aaf10c18114e7b9f814d4377",
+      "xp": {
+        "mage": 11247,
+        "archer": 11103,
+        "knight": 11482,
+        "occultist": 0
+      },
+      "party": [
+        "archer",
+        "mage",
+        "knight"
+      ],
+      "priorSavedClearRounds": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 16
+      },
+      "continuationCaveat": "Stage8 exactR16Continue only repairs observer terminal reader drain; same original trial1123, not independent new sample."
+    },
+    {
+      "stage": 9,
+      "round": 2,
+      "outcome": "won",
+      "itemsUsed": [],
+      "externalWrites": 0,
+      "recoveries": 0,
+      "combatEvidence": "/workspace/scratch/fff510b4df37/honro-act1-stage8-staging/_local/reports/act1-gameplay-20261103/stage9-modern-fastpath-noitems-earned8-1125/combat.json",
+      "combatSha256": "d0e74ae491283cfd642156683fd34895aaa8e882d43189e16002eabb53a42c1c",
+      "settledProfile": "/workspace/scratch/fff510b4df37/honro-act1-stage8-staging/_local/reports/act1-gameplay-20261103/stage9-modern-fastpath-noitems-earned8-1125/victory-profile.json",
+      "profileSha256": "0b285c72c47ade7d2ce457e25d436946997ebbaab4e77059e0633f8aa19e04b8",
+      "xp": {
+        "mage": 16229,
+        "archer": 16086,
+        "knight": 12194,
+        "occultist": 0
+      },
+      "party": [
+        "archer",
+        "mage",
+        "knight"
+      ],
+      "priorSavedClearRounds": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 16,
+        "9": 2
+      },
+      "continuationCaveat": null
+    },
+    {
+      "stage": 10,
+      "round": 11,
+      "outcome": "won",
+      "itemsUsed": [],
+      "externalWrites": 0,
+      "recoveries": 0,
+      "combatEvidence": "/workspace/scratch/fff510b4df37/honro-act1-stage8-staging/_local/reports/act1-gameplay-20261103/stage10-modern-bestshot-protector-intercept-noitems-recover-scout-earned89-1126/combat.json",
+      "combatSha256": "42cc92a3ac2368984f0bfb99dfee036f3f286d57f88850513280d2aa08f4ab22",
+      "settledProfile": "/workspace/scratch/fff510b4df37/honro-act1-stage8-staging/_local/reports/act1-gameplay-20261103/stage10-modern-bestshot-protector-intercept-noitems-recover-scout-earned89-1126/after-stage10-rest-profile.json",
+      "profileSha256": "59c3eb81978de5ea3d5d090a6f50fa1de8c23d3ba704ecb362222a10128b2375",
+      "xp": {
+        "mage": 18491,
+        "archer": 22346,
+        "knight": 15804,
+        "occultist": 12741
+      },
+      "party": [
+        "archer",
+        "mage",
+        "knight",
+        "occultist"
+      ],
+      "priorSavedClearRounds": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 16,
+        "9": 2,
+        "10": 11
+      },
+      "continuationCaveat": null
+    }
+  ]
+}
