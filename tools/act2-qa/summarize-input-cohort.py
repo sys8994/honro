@@ -31,6 +31,15 @@ for s in m['stages']:
   rate=100*wins/n if not pending else None
   groups.append({'stage':s,'policy':p,'registeredN':n,'pending':pending,'wins':wins,'deathTerminals':losses,'unfinished':n-pending-wins-losses,'finiteClearPercent':rate,'clearRateRequired':criteria[s]['clearRate'],'clearRateGate':'FAIL_PENDING' if pending else ('PASS' if criteria[s]['clearRate'][0]<=rate<=criteria[s]['clearRate'][1] else 'FAIL_OUT_OF_RANGE'),'successfulRounds':rounds,'successfulRoundMean':statistics.mean(rounds) if rounds else None,'successfulRoundMedian':statistics.median(rounds) if rounds else None,'roundTarget':criteria[s]['rounds'],'roundTargetPassN':sum(x.get('roundTargetPass',False) for x in cases),'ceilingPassN':sum(x.get('ceilingPass',False) for x in cases),'timingGate':'PASS' if all(x.get('roundTargetPass',False) for x in cases) else 'FAIL','eventualCompletionBounds':[wins/n,(n-losses)/n] if not pending else None})
 report={'scope':'Preregistered finite-policy input robustness, canonical fixed engine RNG, two aim-jitter streams per policy. Synthetic declared entry budgets. Not human probability, not independent random-engine draws. Unfinished at bound is not death. Successful-round statistics are conditional on success. Original clearRate denotes finite registered policy trial ratio, not human population rate. Policies are reported separately; no iid pooling or inferential binomial CI. Eventual completion bounds retain unfinished uncertainty.','criteriaSource':c['source'],'criteriaSha256':c['rawSha256'],'releaseApproved':False,'pending':sum(x['status']=='pending' for x in rows),'groups':groups,'cases':rows,'unmeasuredRequiredGates':['required engagement attribution','effective enemy action classifier','distinct miniboss telegraph/counterplay','meaningful landings/routes','normal-growth entry reference applicability','final integrated art/source replay','normal-browser complete gameplay']}
+for g in groups:
+ assert g['wins']+g['deathTerminals']+g['unfinished']+g['pending']==g['registeredN']
+ assert g['roundTargetPassN']<=g['wins'] and g['ceilingPassN']<=g['wins']
+for row in rows:
+ if row['status']!='pending':
+  assert row['runnerSha256']==m['files']['tests/act2-gameplay-cohort-20261103.mjs']
+  assert not row['externalWrites'] and not row['engineRecoveries']
+  assert row['engineRngAtEntry']['seed']==row['engineRngAtEntry']['canonicalSeed']
+  assert row['legacyItemApi']=='disabled; no Engine.item calls'
 out=ROOT/'game/docs/act2-gameplay-20261103/input-cohort';out.mkdir(exist_ok=True)
 (out/'report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
 lines=['# Registered Act2 input cohort — not release approval','',report['scope'],'',f"Pending cases: {report['pending']}/18.",'','| Stage | Policy | Win / death / unfinished / pending | Finite clear | Required | Successful rounds | Target / ≤20 passed |','|---|---|---|---|---|---|---|']
