@@ -1,0 +1,20 @@
+{
+  "worldRect": [
+    -4000,
+    0,
+    12300,
+    4500
+  ],
+  "originalPlayBounds": [
+    0,
+    0,
+    4300,
+    3300
+  ],
+  "renderOnlyOutsidePlayX": true,
+  "source": "canonical world terrains plus existing rear cliffs",
+  "collisionChanges": false,
+  "cameraChanges": false,
+  "actorChanges": false,
+  "review": "side-pan and minzoom required; solid base fill alone rejected by user"
+}

@@ -1,0 +1,37 @@
+{
+  "stage": 2,
+  "status": "NATIVE_VISUAL_CANDIDATE",
+  "userRejected": "Plain base-color side domain looked like pasted filler walls. Canvas frame seam checks alone were insufficient.",
+  "fix": [
+    "Generate continuous side geology against existing world outline, not arbitrary rectangular filler",
+    "Use same geology for rear cliff and foundation so playBounds are not a visible art seam",
+    "Retain body foreground color shapes without its opaque rectangular base",
+    "Keep physical walk rims inside playBounds; suppress decorative outside-domain walk hints only for this marked Stage2 candidate"
+  ],
+  "sourceSvgBytes": {
+    "body": 170826,
+    "continuation": 365645
+  },
+  "worldRect": [
+    -4000,
+    0,
+    12300,
+    4500
+  ],
+  "originalMap": [
+    4300,
+    3300
+  ],
+  "physicsSha256": "83d6754b36a2380e8aaf78ca738ba38a2f9476a2df95886c82d56caddcb75159",
+  "nativeViews": [
+    "overview",
+    "edge-left",
+    "edge-right"
+  ],
+  "nativeFormat": true,
+  "collisionUnchanged": true,
+  "browserAccepted": false,
+  "storageQuotaAccepted": false,
+  "productionAccepted": false,
+  "optimizationNote": "Body uses .001 local-grid serialization. Continuation uses .1 local grid and .04 local curve bound outside source contact geometry; max world bound must be checked with render pixels. Palette5 is intentional lower-detail authoring, not lossless palette reduction."
+}
