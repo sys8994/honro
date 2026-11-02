@@ -1,0 +1,11 @@
+# Released-runtime App breadth diagnostic
+
+Runtime base: `8b3a5e41d736a5bde776ea9581bec49eaa3a8195`. No new Act2 art integrated here. Each11–20 needs an actual current-App diagnostic before repeated20-case sensitivity batches. These selected policies are not a registered clear-rate sample and no outcome is replaced.
+
+- Common operations: actual App.frame, legal selected aim, elapsed beginCharge/release, App movement intent/jump/defend/select, nearest visible interaction, Next-only dialogue. Native DOM/render/storage/clock doubles; production selected aiming guide runs on native canvas. Not browser evidence.
+- Candidate scoring: detached production Engine with live full-battle equality assertion before input; no restoring live flags. Stage15/16 focused clone endpoint parity and purity passed at entry;18/20 separately calibrated by complex worker. This is not exhaustive skill/position parity.
+- Clock origin0 before App construction; canonical Engine seed untouched (engineStageId1→19388). Input seed757356291 varies only aim±.15°. No item API or actor/resource/quest corrections.
+- Entry: declared legacy rewardXpAt(plan.entryLevel) budget, legal training and starter personal accessories for12–20, NOT continuous campaign or approved normal-growth reference. Stage11 keeps its separately documented observed8–10 ancestor/equipment reference where used; do not equate these profiles.
+- One generic full-run lane, one complex18→20 lane. Each full diagnostic ≤45display rounds/280controller loops (explicit censored unfinished, not death); user hard20 assessed separately. Process ceiling20minutes prevents an unavailable stage monopolizing breadth, recorded as process interruption not loss. No tuning noise/targets to pass original bands.
+- Generic order:19noncombat first, then12survival,13survival,14rescue+escort-formation survival,16objective with post-witness pocket clearance/observation,17objective/high-pocket,15height,11survival. Existing failed pilots remain separate.14formation is supported by exact normal-withdrawal probe;17gate bottleneck may remain, and must not be called a geometry bug from failed heuristics.
+- Required original criteria and final integrated-art/browser checks remain fail-closed. Outcomes, deaths, timing misses and controller failures remain visible. Breadth completion is not fun approval.
