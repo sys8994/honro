@@ -9,6 +9,11 @@ ROOT=Path(__file__).resolve().parents[2];sys.path.insert(0,str(ROOT/'tools/act4-
 from precise_aim import aim_with_joystick
 out=Path(os.environ.get('HONRO_QA_OUT','_local/reports/act1-gameplay-ui'));out.mkdir(parents=True,exist_ok=True)
 reactive=os.environ.get('HONRO_REACTIVE_POLICY')=='1';stage=int(os.environ.get('HONRO_STAGE','1'));result={'passed':False,'stage':stage,'scope':__doc__,'source':os.environ.get('GITHUB_SHA'),'errors':[]};events=[]
+def aim_terminal(aim, current):
+ """A terminal battle interrupts aiming, never converts a missed aim into success."""
+ if current['phase'] in ['won','lost']:return True
+ assert aim['passed'],'Aim precision failed'
+ return False
 def save():
  (out/'result.json').write_text(json.dumps(result,ensure_ascii=False,indent=2));(out/'events.json').write_text(json.dumps(events,ensure_ascii=False))
 try:
@@ -132,7 +137,9 @@ try:
     assert choice,'No safe current runtime shot for declared command'
     if state()['facing']!=(-1 if choice['angle']>90 else 1):
      key='ArrowLeft' if choice['angle']>90 else 'ArrowRight';p.keyboard.down(key);p.wait_for_timeout(25);p.keyboard.up(key);p.wait_for_timeout(100)
-    p.keyboard.press('Digit'+str(choice['idx']+1));p.wait_for_timeout(100);aim=aim_with_joystick(p,choice['angle'],state);record('aim',aim=aim,choice=choice);assert aim['passed'],'Aim precision failed'
+    p.keyboard.press('Digit'+str(choice['idx']+1));p.wait_for_timeout(100);aim=aim_with_joystick(p,choice['angle'],state);record('aim',aim=aim,choice=choice)
+    if aim_terminal(aim,state()):
+     record('terminal-during-aim',choice=choice,reason='Actual authored objective/death settled during pointer gesture; no successful aim or shot receipt claimed');break
     p.keyboard.down('Space')
     try:p.wait_for_function('(power)=>["won","lost"].includes(HonroApp.engine.b.phase) || (HonroApp.charging && HonroApp.chargePower(performance.now())>=power)',arg=choice['power'],timeout=8000,polling=16)
     finally:p.keyboard.up('Space')
