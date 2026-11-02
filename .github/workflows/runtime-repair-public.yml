@@ -1,0 +1,53 @@
+name: Verify published natural-save softlock repairs
+on:
+  push:
+    branches: ['work/runtime-repair-public/**']
+permissions:
+  contents: read
+jobs:
+  public-regressions:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      HONRO_QA_URL: https://sys8994.github.io/honro/HONRO.html?repair=8b3a5e41d736a5bde776ea9581bec49eaa3a8195
+      OUT: _local/reports/runtime-repair-public
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Verify exact deployed bytes, not an older cached release
+        run: |
+          mkdir -p "$OUT"
+          python - <<'PY'
+          import urllib.request,time,hashlib,json,os
+          from pathlib import Path
+          expected={'HONRO.html':'fad94bee15be5de44333417dbaef198a6a1e35cc63f3a6fba5503740298fd0f5','web/manifest.json':'6d21cb97f1dc5c99e7c0dda9416718dac87038ed059233611899cb75298ee127'}
+          observations=[]
+          for attempt in range(30):
+           actual={}
+           for path in expected:
+            data=urllib.request.urlopen('https://sys8994.github.io/honro/'+path+'?repair=8b3a5e41-'+str(attempt),timeout=30).read();actual[path]=hashlib.sha256(data).hexdigest()
+           observations.append(actual)
+           if actual==expected:break
+           time.sleep(10)
+          Path(os.environ['OUT']+'/deployed-hashes.json').write_text(json.dumps({'expected':expected,'observed':observations,'passed':actual==expected},indent=2))
+          assert actual==expected,'Published bytes not yet the validated repair release'
+          PY
+      - name: Install browser
+        run: |
+          python -m pip install 'playwright==1.58.0'
+          python -m playwright install --with-deps chromium
+      - name: Exercise real public UI from unchanged natural saves
+        run: |
+          HONRO_QA_OUT="$OUT/stage8-reader" python tests/stage8-staging-reader-browser.py
+          HONRO_QA_OUT="$OUT/stage14-settle" python tools/act2-qa/stage14-postfix-ui.py
+          HONRO_STAGE=17 HONRO_QA_OUT="$OUT/stage17-hoist" python tools/act2-qa/retained-interactions-ui.py
+          HONRO_STAGE=18 HONRO_QA_OUT="$OUT/stage18-bell" python tools/act2-qa/retained-interactions-ui.py
+          python tools/act2-qa/assert-browser-receipts.py "$OUT/stage8-reader/result.json" "$OUT/stage14-settle/result.json" "$OUT/stage17-hoist/result.json" "$OUT/stage18-bell/result.json"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: runtime-repair-public-${{ github.sha }}
+          path: _local/reports/runtime-repair-public/
+          retention-days: 7
