@@ -21,6 +21,7 @@ export async function appHarness({productionStory=false,productionInputActions=f
  vm.runInContext(await readFile('game/vendor/ui/fa.js','utf8'),g);
  g.HONRO_JOURNEY_MAPS=JSON.parse(await readFile('shared/assets/journey-maps/v1/manifest.json','utf8'));
  for(const file of ['journey-images','journey-art','rest-journey','menu-ui','clear-report-ui','equipment-ui','story','training'])vm.runInContext(await readFile(`shared/runtime/${file}.js`,'utf8'),g);
+ if(productionInputActions)vm.runInContext(await readFile('shared/runtime/interactions.js','utf8'),g);
  const source=await readFile('shared/runtime/main.js','utf8'),hook=/    const app=new App\(\),loader=G.HonroCampaignLoader[\s\S]*?(?=    G.HONRO_TOOLS)/;assert.equal((source.match(hook)||[]).length,1);
  vm.runInContext(source.replace(hook,'G.AppRegression={App,fresh};'),g);const {App,fresh}=g.AppRegression;
  for(const name of ['inputs','updateHUD','updateAudio','updateChargeDisplay','cancelInput','drawPortraits'])if(!(productionInputActions&&name==='cancelInput'))App.prototype[name]=function(){};

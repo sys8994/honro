@@ -161,8 +161,9 @@ for st in report['stages']:
  hitRows=[r for r in rows if r['stage']==st['stage'] and r.get('sourceDirtyAtStart')==''and r.get('runnerSha256')and not r.get('controllerCalibrationStatus','').startswith('INVALID')and r['observed'].get('noncriticalNormalHitPctHp',{}).get('n')]
  hitValues=[v for r in hitRows for v in r['observed']['noncriticalNormalHitPctHp']['values']]
 
+ st['registeredRoundsDiagnostic']={'n':len(rounds),'median':statistics.median(rounds)if rounds else None,'meanReferenceOnly':statistics.mean(rounds)if rounds else None,'target':ds['rounds'],'medianWithinTarget':ds['rounds'][0]<=statistics.median(rounds)<=ds['rounds'][1]if rounds else None,'definitionSource':'Original criteria sourceMetadata.act3-4.definitions.ranges (scope 1–4)'}
  st['gates']={
- 'registeredPolicyMeanRounds':numeric_gate(statistics.mean(rounds)if rounds else None,ds['rounds'],n=len(rounds),eligible=registeredEligible and st['stage']==1,scope='Finite preregistered successful policy runs; fixed RNG, failures recorded separately; not human pacing estimate'),
+ 'registeredPolicyMedianRounds':numeric_gate(statistics.median(rounds)if rounds else None,ds['rounds'],n=len(rounds),eligible=False,scope='Original v3 ranges uses successful-run MEDIAN. Frozen Engine-model median is diagnostic pending App-operation corroboration; mean is reference only'),
  'registeredPolicyClearRate':numeric_gate(len(wins)/len(rs)*100 if rs else None,ds['clearRate'],n=len(rs),eligible=False,scope='Original finite registered-policy criterion; recorded frozen cohort is Engine-action model, pending complete App-operation corroboration. Fixed RNG/tiny input errors; NOT independent human probability or broad robustness.'),
  'hard20RegisteredProgression':numeric_gate(sum(r['round']>20 for r in rs)if rs else None,[0,0],n=len(rs),eligible=registeredEligible and st['stage']==1,scope='Registered ordinary-policy trials; calibration over20 logs retained separately, never clipped'),
  'minibossCompositionAndMandatoryRole':{'status':'FAIL_MISSING_MEASUREMENT','target':ds['miniboss'],'scope':'Initial typed count is diagnostic; required encounter/mandatory-role and event composition not fully audited'},
