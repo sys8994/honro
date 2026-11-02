@@ -10,7 +10,7 @@
   ],
   "sourceSvgBytes": {
     "body": 170826,
-    "continuation": 365645
+    "continuation": 451206
   },
   "worldRect": [
     -4000,
@@ -30,8 +30,85 @@
   ],
   "nativeFormat": true,
   "collisionUnchanged": true,
-  "browserAccepted": false,
-  "storageQuotaAccepted": false,
+  "browserAccepted": true,
+  "storageQuotaAccepted": true,
   "productionAccepted": false,
-  "optimizationNote": "Body uses .001 local-grid serialization. Continuation uses .1 local grid and .04 local curve bound outside source contact geometry; max world bound must be checked with render pixels. Palette5 is intentional lower-detail authoring, not lossless palette reduction."
+  "optimizationNote": "Continuation .1 grid failed 1x alpha silhouette (2.236px > 1.5px). Replaced with .01 grid, epsilon .04; same-raw 1x/2x pixel checks pass unchanged thresholds. Art approval and browser checks remain separately scoped.",
+  "browserEvidence": {
+    "run": "https://github.com/sys8994/honro/actions/runs/41411520167",
+    "sourceSha": "af26ca07c6ced5d8a5bceacc686352dfc77abf17",
+    "scope": "Declared normal Stage1-cleared direct-handoff fixture; Stage2 entry, movement, jump/landing, camera pan and fresh-browser save/reload. Not full combat clearance or existing storage archive quota coverage.",
+    "storageChars": 2408037
+  },
+  "pixelComparison": {
+    "body": {
+      "limits": {
+        "rgbMAE255": 2,
+        "silhouettePx": 1.5,
+        "protectedRgbMAE255": 1,
+        "protectedPx": 0.5,
+        "protectedChangedPixelFraction": 0.05
+      },
+      "width": 1720,
+      "scales": [
+        1,
+        2
+      ],
+      "errors": {
+        "1": {
+          "rgbMAE255": 0.0014299489557743073,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.000387156440410763,
+          "changedPixelFraction": 1.7618040873854827e-06,
+          "silhouetteMaxOffsetPx": 1.0,
+          "pass": true
+        },
+        "2": {
+          "rgbMAE255": 0.0011475967476144433,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.000550673867110163,
+          "changedPixelFraction": 6.496652572233968e-06,
+          "silhouetteMaxOffsetPx": 1.0,
+          "pass": true
+        }
+      },
+      "qualityPass": true,
+      "svgSha256": "6dfa87e890dc07f4f4bd24e1351ab11eb6089aef07dacce70375aa7e37fa4567"
+    },
+    "continuation": {
+      "limits": {
+        "rgbMAE255": 2,
+        "silhouettePx": 1.5,
+        "protectedRgbMAE255": 1,
+        "protectedPx": 0.5,
+        "protectedChangedPixelFraction": 0.05
+      },
+      "width": 2048,
+      "scales": [
+        1,
+        2
+      ],
+      "errors": {
+        "1": {
+          "rgbMAE255": 0.013818223960697651,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.007251204922795296,
+          "changedPixelFraction": 0.00011343249332443258,
+          "silhouetteMaxOffsetPx": 1.0,
+          "pass": true
+        },
+        "2": {
+          "rgbMAE255": 0.009656915441155434,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.0056114885956048965,
+          "changedPixelFraction": 9.527836265843896e-05,
+          "silhouetteMaxOffsetPx": 1.0,
+          "pass": true
+        }
+      },
+      "qualityPass": true,
+      "svgSha256": "d7f3546d9eb7e917fda7d5ed7eb96229ca2953db4c31ccf1c94e13911face10c"
+    }
+  },
+  "visualApprovalScope": "User approved overall map-edge treatment. Numerical fidelity does not certify topology or every view."
 }
