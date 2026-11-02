@@ -10,6 +10,7 @@ for(const stage of [5,10]){
  const app=h.load(entry.profile||entry);app.launch(stage);g.HonroApp=app;
  const ops=createPlayerOperations({app,g,C});assert(ops.ready());
  const live=app.engine,before=JSON.stringify(live.b),profile=JSON.stringify(app.profile);
+ const replica=JSON.parse(before);new C.Engine(replica);assert.equal(JSON.stringify(replica),before,'Detached Engine preserves exact source battle');
  for(const method of ['predict','shotSeeds'])live[method]=()=>{throw Error(`Planner used live ${method}`);};
  const predict=C.Engine.prototype.predict;let predictions=0;
  C.Engine.prototype.predict=function(...args){assert.notEqual(this,live);this.b.qaPredictionCacheProbe=true;predictions++;return predict.apply(this,args);};
