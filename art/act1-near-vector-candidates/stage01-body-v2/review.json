@@ -1,0 +1,195 @@
+{
+  "status": "CANDIDATE_NOT_ACCEPTED",
+  "productionDataChanged": false,
+  "sourceImageSha256": "cef4626c74f583de9b7e11df55cd9805880ebb0ca2e91b373826e9256ae09f08",
+  "svgSha256": "3dc679a1fce51a948b5cf8e86531dfe9b96efe5307403d2436b8a16c4c07ed55",
+  "svgBytes": 319400,
+  "trace": "Actual Inkscape cumulative binary tracing with fixed 8 colors, speckles64, independent alpha path speckles0",
+  "palette": [
+    "#28413d",
+    "#3b504d",
+    "#4d625e",
+    "#6e7673",
+    "#87908a",
+    "#435536",
+    "#738061",
+    "#586b42"
+  ],
+  "authoringChange": "New BODY-specific art, not a lossless optimization of original whole-scene art. Original accepted whole-scene candidate is retained.",
+  "nativeImport": "PASS_WITH_EXISTING_LIMITS",
+  "views": [
+    {
+      "preset": "start",
+      "report": {
+        "stage": 1,
+        "staticClipHosts": 5,
+        "visualAcceptance": false,
+        "prototypeOnly": true,
+        "results": [
+          {
+            "variant": "before",
+            "view": {
+              "width": 1440,
+              "height": 736,
+              "scale": 0.94,
+              "x": 765.9574468085107,
+              "y": 1336.6918702317707
+            },
+            "heroHeight": 92,
+            "units": 9,
+            "physicsSha256": "26cd087485569ae4f91562f09b23018debb7c9f5e2bbcaae81ebbb78ebf5d6fa",
+            "renderPure": true,
+            "scope": "Native production renderer, no browser/UI/input/combat acceptance"
+          },
+          {
+            "variant": "body-preview",
+            "view": {
+              "width": 1440,
+              "height": 736,
+              "scale": 0.94,
+              "x": 765.9574468085107,
+              "y": 1336.6918702317707
+            },
+            "heroHeight": 92,
+            "units": 9,
+            "physicsSha256": "26cd087485569ae4f91562f09b23018debb7c9f5e2bbcaae81ebbb78ebf5d6fa",
+            "renderPure": true,
+            "scope": "Native production renderer, no browser/UI/input/combat acceptance"
+          }
+        ]
+      }
+    },
+    {
+      "preset": "middle",
+      "report": {
+        "stage": 1,
+        "staticClipHosts": 5,
+        "visualAcceptance": false,
+        "prototypeOnly": true,
+        "results": [
+          {
+            "variant": "before",
+            "view": {
+              "width": 1440,
+              "height": 736,
+              "scale": 0.94,
+              "x": 2600,
+              "y": 1450
+            },
+            "heroHeight": 92,
+            "units": 9,
+            "physicsSha256": "26cd087485569ae4f91562f09b23018debb7c9f5e2bbcaae81ebbb78ebf5d6fa",
+            "renderPure": true,
+            "scope": "Native production renderer, no browser/UI/input/combat acceptance"
+          },
+          {
+            "variant": "body-preview",
+            "view": {
+              "width": 1440,
+              "height": 736,
+              "scale": 0.94,
+              "x": 2600,
+              "y": 1450
+            },
+            "heroHeight": 92,
+            "units": 9,
+            "physicsSha256": "26cd087485569ae4f91562f09b23018debb7c9f5e2bbcaae81ebbb78ebf5d6fa",
+            "renderPure": true,
+            "scope": "Native production renderer, no browser/UI/input/combat acceptance"
+          }
+        ]
+      }
+    },
+    {
+      "preset": "east",
+      "report": {
+        "stage": 1,
+        "staticClipHosts": 5,
+        "visualAcceptance": false,
+        "prototypeOnly": true,
+        "results": [
+          {
+            "variant": "before",
+            "view": {
+              "width": 1440,
+              "height": 736,
+              "scale": 0.94,
+              "x": 4500,
+              "y": 900
+            },
+            "heroHeight": 92,
+            "units": 9,
+            "physicsSha256": "26cd087485569ae4f91562f09b23018debb7c9f5e2bbcaae81ebbb78ebf5d6fa",
+            "renderPure": true,
+            "scope": "Native production renderer, no browser/UI/input/combat acceptance"
+          },
+          {
+            "variant": "body-preview",
+            "view": {
+              "width": 1440,
+              "height": 736,
+              "scale": 0.94,
+              "x": 4500,
+              "y": 900
+            },
+            "heroHeight": 92,
+            "units": 9,
+            "physicsSha256": "26cd087485569ae4f91562f09b23018debb7c9f5e2bbcaae81ebbb78ebf5d6fa",
+            "renderPure": true,
+            "scope": "Native production renderer, no browser/UI/input/combat acceptance"
+          }
+        ]
+      }
+    },
+    {
+      "preset": "mobile",
+      "report": {
+        "stage": 1,
+        "staticClipHosts": 5,
+        "visualAcceptance": false,
+        "prototypeOnly": true,
+        "results": [
+          {
+            "variant": "before",
+            "view": {
+              "width": 390,
+              "height": 696,
+              "scale": 0.82,
+              "x": 250,
+              "y": 1336.6918702317707
+            },
+            "heroHeight": 92,
+            "units": 9,
+            "physicsSha256": "26cd087485569ae4f91562f09b23018debb7c9f5e2bbcaae81ebbb78ebf5d6fa",
+            "renderPure": true,
+            "scope": "Native production renderer, no browser/UI/input/combat acceptance"
+          },
+          {
+            "variant": "body-preview",
+            "view": {
+              "width": 390,
+              "height": 696,
+              "scale": 0.82,
+              "x": 250,
+              "y": 1336.6918702317707
+            },
+            "heroHeight": 92,
+            "units": 9,
+            "physicsSha256": "26cd087485569ae4f91562f09b23018debb7c9f5e2bbcaae81ebbb78ebf5d6fa",
+            "renderPure": true,
+            "scope": "Native production renderer, no browser/UI/input/combat acceptance"
+          }
+        ]
+      }
+    }
+  ],
+  "visualAcceptance": false,
+  "blockers": [
+    "Large moss/rock motifs and native near-prop styling still need integration review.",
+    "Original auxiliary branch platforms retain prior art; body-only layer does not replace them.",
+    "Static native views are not browser/play/physics-contact acceptance."
+  ],
+  "physicsChanged": false,
+  "characterScaleChanged": false,
+  "cameraScaleChanged": false
+}
