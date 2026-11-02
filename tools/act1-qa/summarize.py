@@ -111,7 +111,7 @@ for row in rows:
  raw=json.loads((ROOT/row['evidence']).read_text());rawSource=raw.get('source');row['sourceCommit']=resultMeta.get('sourceCommit',meta.get('sourceCommit'))or(rawSource if isinstance(rawSource,str)and len(rawSource)==40 else None)or recordedInitialSource
  row['sourceEvidence']=({'path':str(initialFile.relative_to(ROOT)),'sha256':digest(initialFile)}if recordedInitialSource else None)
  row['sourceProvenanceStatus']='Recorded commit'if row['sourceCommit']else 'MISSING_COMMIT: preserve raw/controller hashes; do not infer exact source'
- row['operationMode']=raw.get('operationMode')or raw.get('provenance',{}).get('operationMode')or('NATIVE_APP_ACTION_SIMULATION'if raw.get('schema')=='honro-stage5-input-trace/v1'or(row['stage']==5 and 'final-normal'in row['evidence'])else 'ENGINE_ACTION_MODEL')
+ row['operationMode']=raw.get('operationMode')or raw.get('provenance',{}).get('operationMode')or resultMeta.get('operationMode')or('NATIVE_APP_ACTION_SIMULATION'if raw.get('schema')=='honro-stage5-input-trace/v1'or(row['stage']==5 and 'final-normal'in row['evidence'])else 'ENGINE_ACTION_MODEL')
  row['controllerFileSha256']=digest(folder/'controller.js')if(folder/'controller.js').exists()else meta.get('adaptedSha256')
  row['runnerSha256']=raw.get('runnerSha256');row['sourceDirtyAtStart']=raw.get('sourceDirtyAtStart',meta.get('sourceDirty','NOT_RECORDED'))
  if raw.get('damageFx') is not None:
