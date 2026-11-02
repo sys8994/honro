@@ -1,0 +1,8 @@
+{
+  "prompt": "Use case: stylized-concept. Create a flat vector-ready near terrain material for HONRO Stage18, a Korean dark-fantasy subterranean giant-bell chamber. First image is exact SIDE-ELEVATION terrain silhouette guide; preserve its connected shapes, apertures and aspect ratio. Second image is style reference only. No people, characters, bells, chains, machinery, buildings, objects, distant mountains or scenery. This is the continuous outer geology substrate, extending past all screen edges, quiet large connected dark slate strata. Keep the huge central chamber EMPTY and transparent. Broad irregular planar bands, no tiny texture, no bright fake walkway. Use only 4-5 flat opaque colors: deep #283b46, slate #3b505a, grey slate #5b7078, muted grey #89918b, tiny muted ochre #898675 accents. Flat hard-edged shapes, NO gradient, shading blur, outlines, tiny cracks, pebbles, grass, text or border. Visually elegant simple material with restrained density, not painterly. Transparent background. Fill the canonical solid silhouette; no extra geometry outside it.",
+  "referenced_image_paths": [
+    "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage18/domain-v1/guide.png",
+    "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage15/west-flat-v2/source.png"
+  ],
+  "transparent_background": true
+}

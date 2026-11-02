@@ -1,0 +1,35 @@
+{
+  "id": "act2-traced:stage18-domain-v1",
+  "name": "Stage18 domain-v1",
+  "bounds": {
+    "x": -6000,
+    "y": -2000,
+    "w": 25600,
+    "h": 16000
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": -6000,
+    "y": 14000
+  },
+  "semanticLayer": "BODY",
+  "preserveCompounds": true,
+  "transform": [
+    16.14123581336696,
+    0,
+    0,
+    16.129032258064516,
+    -6000,
+    -2000
+  ],
+  "params": {
+    "bodyTerrainIds": [
+      "act2-floor",
+      "cave-roof"
+    ],
+    "bodyBaseColor": "#283b46"
+  }
+}
