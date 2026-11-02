@@ -1,0 +1,9 @@
+{
+  "prompt": "Create HONRO Stage15 two fixed natural rock arches/raised rock paths, using FIRST canonical side-view mask exactly. Only fill grey shapes; leave all white outside completely transparent. Preserve BOTH silhouettes and space between. Second/third references specify restrained flat-vector faceted geological style, not their vegetation. Strict orthographic side elevation. These shapes together span 5000 world units; an actual hero is92 units, about28 pixels tall in1536px guide. Surface rock facets must read at this scale: irregular connected blue-slate layers with occasional warm-grey exposed faces, small breaks near walking edges but not noisy microdetails. Main palette #283b46 #344953 #465c65 #64757b #8a8a7d, crisp solid 8–10 colors, no gradients, no moss blanket, no rounded cow-print stones. Taller left cliff has major vertical mineral planes supporting its rising path, lower right cliff slopes upward. Keep exact heights and narrow upper path profile. No added props, planks, water, wheel, humans, symbols, lettering, outlines or white halos. These are fixed geology only; moving and interactive objects stay in game.",
+  "referenced_image_paths": [
+    "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage15/arches-v1/guide.png",
+    "/workspace/scratch/fff510b4df37/honro-act1-production/stage02/body-v2/source.png",
+    "/workspace/scratch/fff510b4df37/honro-act1-production/stage10/floor-v4/source.png"
+  ],
+  "transparent_background": true
+}

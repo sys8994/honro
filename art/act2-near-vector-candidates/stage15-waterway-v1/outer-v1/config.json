@@ -1,0 +1,35 @@
+{
+  "id": "act2-traced:stage15-outer-v1",
+  "name": "Stage15 outer-v1",
+  "bounds": {
+    "x": -6000,
+    "y": -500,
+    "w": 20000,
+    "h": 8500
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": -6000,
+    "y": 8000
+  },
+  "semanticLayer": "BODY",
+  "preserveCompounds": true,
+  "transform": [
+    10.38961038961039,
+    0,
+    0,
+    10.40391676866585,
+    -6000,
+    -500
+  ],
+  "params": {
+    "bodyTerrainIds": [
+      "act2-floor",
+      "cave-roof"
+    ],
+    "bodyBaseColor": "#283b46"
+  }
+}

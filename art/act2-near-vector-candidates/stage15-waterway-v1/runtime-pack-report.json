@@ -1,0 +1,30 @@
+{
+  "stage": 15,
+  "nativeBakedPackBytes": 128221,
+  "assets": [
+    {
+      "file": "shared/data/act2/stage15-outer-v1.json",
+      "bytes": 46769,
+      "sha256": "80db4a7222e1c03ce1cebfee28b070cb79a9f3d11bf51c731bfc0bab97d05974"
+    },
+    {
+      "file": "shared/data/act2/stage15-west-flat-v2.json",
+      "bytes": 24344,
+      "sha256": "76b509795e1efca9735562d25e7fd7f25338c9f680d59702a9377d01c398d711"
+    },
+    {
+      "file": "shared/data/act2/stage15-east-flat-v2.json",
+      "bytes": 19236,
+      "sha256": "278a4e13bde8a7a33d0ccdf3fcdbe25a3fd4c2797136477cdcf7bf6dd5f3454d"
+    },
+    {
+      "file": "shared/data/act2/stage15-arches-flat-v2.json",
+      "bytes": 37872,
+      "sha256": "7f03b5ee3033dce87bd3eca6fe9b9c0b01409da412dd85c26f2c865070fd6b0e"
+    }
+  ],
+  "sourceBase": "292c1122",
+  "rawCampaignSha256": "54b1e47abe6b7c4d05fd1bf5eefb7702d127d1b37335411147d8590df4413f47",
+  "sourceBinding": "stage15-art-source.json raw pre-author lock; separate effective runtime/clip parity test",
+  "qaScope": "Native only, no browser/fullplay/Pages/save-quota claim"
+}

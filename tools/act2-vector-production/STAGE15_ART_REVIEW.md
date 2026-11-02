@@ -1,0 +1,18 @@
+# Stage15 traced waterway: review scope and rejected attempts
+
+- Canonical source map: 8000×6000; original extended domain retained. Floor/roof, two permanent rock arches only. Native wood stepping supports, waterwheel, pulleys, moving water and dynamic drained ledge are not baked.
+- Initial raster composite revealed rectangular panel boundaries. Those panels were not accepted. Local raw-derived components intersecting a canvas edge were omitted, and dark local bases removed; retained material ends are image-derived, not new hand-drawn rocks. The outer substrate remains continuous.
+- Initial five/four-color traces of the first concepts revealed tonal mottling at normal zoom. They were not accepted. The west/east/arch concepts were cleaned through image generation, with exact submitted prompts saved in advance. Cleaned arches use three semantic colors to avoid splitting a single near-threshold face into mottled patches.
+- A relative-moveto extraction draft incorrectly changed implicit line commands after `m` into absolute coordinates after `M`. This was caught in native overview (long triangular fans), fixed by retaining implicit relative line semantics, and not accepted. The final extraction keeps original Inkscape operands except the absolute initial moveto and explicit retained relative-line marker.
+- Full numeric precision serialization attempts with protected color-edge drift were rejected. Final choice requires immutable authored raw comparison at both1×/2×, unchanged limits, exact protected/contact portions, zero raster nodes and direct native review. A low RGB average cannot substitute for this gate.
+- Native images are not real browser, combat, route-clear, save-quota or Pages evidence. Drain rendering uses the existing named visual-state fixture on clones, with its known contact limitations reported. Real gameplay QA is separate.
+
+## Shipping composition and edge-quantization scope
+
+Immutable RAW and optimized native art are rendered through the **same actual** canonical-solid/contact-inset clip, original world geometry, actors, water, far layers and opaque authored substrate. Outer floor/roof uses #283b46; permanent rock arches use #243c44 to avoid bright original-material strips under the trace. Neither local overlay has a flat rectangle. Hidden drained ledge is never a host. Standalone `qa-bbox` alpha/color failures remain failed supplementary diagnostics; they are not relabeled passes.
+
+A low-density full-domain protected-edge failure was traced to a west-overlay highlight contour whose neighboring antialias pixel differed by two RGB levels. No tolerance exception was accepted. The entire 12-segment source contour was restored verbatim from immutable RAW, and token-identical whitespace packing offsets the additional bytes. The original protected ROI, comparator, alpha-exact / RGB≤1 allowance and all numerical limits remain unchanged.
+
+## Final native review
+
+All four actual-composition parts pass both source-density scales; final SVG pack reduction30.567%. Final native import is JSON-identical to the viewed contact candidate. Entry/crown/east, overview, mobile, both ends and water before/after fixture were directly inspected. Canonical contact highlights remain visible, no rectangle seams or floating fragments were introduced, original92-unit actors retain scale, native wood and both exit routes remain legible. Before-drain view has no static ledge paint; after-drain view shows the original revealed ledge. Screenshot hashes and fixture limits are retained in the candidate package. Focused raw/effective/canonical-clip parity passes. Browser/full gameplay/Pages remain separate.

@@ -1,0 +1,35 @@
+{
+  "id": "act2-traced:stage15-east-flat-v2",
+  "name": "Stage15 east-flat-v2",
+  "bounds": {
+    "x": 3500,
+    "y": 900,
+    "w": 5000,
+    "h": 4900
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 3500,
+    "y": 5800
+  },
+  "semanticLayer": "BODY",
+  "preserveCompounds": true,
+  "transform": [
+    3.946329913180742,
+    0,
+    0,
+    3.94842868654311,
+    3500,
+    900
+  ],
+  "params": {
+    "bodyTerrainIds": [
+      "act2-floor",
+      "cave-roof"
+    ],
+    "bodyBaseColor": "#283b46"
+  }
+}
