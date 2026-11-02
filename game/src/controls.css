@@ -1,11 +1,14 @@
+/* Shared reservation: the fixed item control must stay below the tallest minimap. */
+:root{--honro-minimap-top:10px;--honro-minimap-max-height:min(132px,calc(100dvh - 290px))}
+@media(max-width:620px){:root{--honro-minimap-top:8px;--honro-minimap-max-height:min(108px,calc(100dvh - 290px))}}
 /* Active battle controls. Fixed skill tiles, flexible space on both sides. */
 .honro .debug-badge{display:inline-flex;align-items:center;flex:none;border:1px solid #d7aa69a8;border-radius:5px;background:#413121d9;color:#f5d6a5;padding:3px 7px;font:700 10px/1.2 system-ui,sans-serif;letter-spacing:.02em;white-space:nowrap}
 .honro .debug-help{margin:5px 0 0;color:#d5b98d;font-size:11px;line-height:1.5}
 .honro .debug-setting label{font-weight:650;color:#f1d6aa}
 .honro .debug-map .map-node.open:not(.selected) .atlas-pin{border-color:#d7aa69;color:#e9c995}
 @media(max-width:620px){.honro .debug-badge{font-size:9px;padding:2px 5px}.honro .battle-title-row .debug-badge{max-width:130px;overflow:hidden;text-overflow:ellipsis}}
-.honro #app .battle-screen .minimap-dock{position:absolute;top:10px;right:12px;z-index:5;display:flex;flex-direction:column;align-items:flex-end;max-width:35vw}
-.honro #app .battle-screen .minimap-dock #minimap{position:static!important;inset:auto!important;min-width:0!important;max-width:100%!important;max-height:min(132px,calc(100dvh - 290px))!important;box-sizing:border-box}
+.honro #app .battle-screen .minimap-dock{position:absolute;top:var(--honro-minimap-top);right:12px;z-index:5;display:flex;flex-direction:column;align-items:flex-end;max-width:35vw}
+.honro #app .battle-screen .minimap-dock #minimap{position:static!important;inset:auto!important;min-width:0!important;max-width:100%!important;max-height:var(--honro-minimap-max-height)!important;box-sizing:border-box}
 .honro #app .battle-screen .minimap-dock[hidden]{display:none}
 .honro #app .battle-title-row{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
 .honro #app .battle-title-row b{margin:0}
@@ -18,7 +21,7 @@
 .honro #app #wind-right{left:50%;border-radius:0 4px 4px 0}
 .honro #app .wind-gauge small{font-size:8px;line-height:1;color:#d7cbaa;text-shadow:0 1px 2px #061115}
 .honro #app .honro-compact-hud #joystick{transform:none!important}
-@media(max-width:620px){.honro #app .battle-screen .minimap-dock{top:8px;right:8px;max-width:31vw}.honro #app .battle-screen .minimap-dock #minimap{max-height:min(108px,calc(100dvh - 290px))!important}.honro #app .battle-title-row{gap:5px}.honro #app #turn-text{font-size:9px}.honro #app .honro-compact-hud .joystick .wind-gauge{width:var(--joystick-size)}}
+@media(max-width:620px){.honro #app .battle-screen .minimap-dock{top:var(--honro-minimap-top);right:8px;max-width:31vw}.honro #app .battle-screen .minimap-dock #minimap{max-height:var(--honro-minimap-max-height)!important}.honro #app .battle-title-row{gap:5px}.honro #app #turn-text{font-size:9px}.honro #app .honro-compact-hud .joystick .wind-gauge{width:var(--joystick-size)}}
 .honro #app .honro-compact-hud .combat-status{min-height:16px;margin-top:3px;color:#a5b7b0;font-size:11px;line-height:1.4;word-break:keep-all;overflow-wrap:anywhere}
 .honro #app .honro-compact-hud .combat-status[data-limited=true]{color:#ead09c}
 .honro #app .honro-compact-hud .player-chip.status-impaired small{color:#edbb85!important}
