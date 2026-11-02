@@ -198,11 +198,23 @@ export function planWaitingFlights(e:Engine){
    const dx=target.x-u.x,dy=target.y-target.h*.5-u.y,d=Math.hypot(dx,dy);
    for(const turn of [0,Math.PI/6,-Math.PI/6,Math.PI/3,-Math.PI/3]){const a=Math.atan2(dy,dx)+turn,p={x:u.x+Math.cos(a)*Math.min(budget,d),y:u.y+Math.sin(a)*Math.min(budget,d)};if(routeGuardAllows(e,u,p)&&flightLeg(e,u,p)){goal=p;break;}}
   }
+  // Act4 local encounter flyers can voluntarily leave the activation band.
+  // Their former spawn-near patrol candidates then exceed the96-unit budget,
+  // leaving them permanently stranded. Return in paid, swept steps instead;
+  // this does not awaken them or grant an attack slot.
+  let returning=false;
+  if(!goal&&!eligible.has(u.id)&&(b as any).honroAct4EncounterRevision===1&&(u as any).honroDensityCell&&Number.isFinite(u.spawnX)&&Number.isFinite(u.spawnY)){
+   const dx=u.spawnX-u.x,dy=u.spawnY-u.y,d=Math.hypot(dx,dy);
+   if(d>41)for(const turn of [0,Math.PI/6,-Math.PI/6,Math.PI/3,-Math.PI/3]){
+    const angle=Math.atan2(dy,dx)+turn,step=Math.min(budget,d-24),p={x:u.x+Math.cos(angle)*step,y:u.y+Math.sin(angle)*step};
+    if(Math.hypot(p.x-u.spawnX,p.y-u.spawnY)<d-4&&routeGuardAllows(e,u,p)&&flightLeg(e,u,p)){goal=p;returning=true;break;}
+   }
+  }
   if(!goal){
    const seed=[...u.id].reduce((v,c)=>v+c.charCodeAt(0),0),anchor=eligible.has(u.id)?u:{x:u.spawnX,y:u.spawnY};
    for(let i=0;i<8;i++){const a=(seed+b.round*3+i)*Math.PI/4,p={x:anchor.x+Math.cos(a)*32,y:anchor.y+Math.sin(a)*24};if(Math.hypot(p.x-u.x,p.y-u.y)>=8&&Math.hypot(p.x-u.x,p.y-u.y)<=budget&&routeGuardAllows(e,u,p)&&flightLeg(e,u,p)){goal=p;break;}}
   }
-  if(goal)u.aiMove={round:b.round,targetId:target?.id||'',path:[{...goal,jump:false}],waitingFlight:true,index:0,elapsed:0,stalled:0,lastX:u.x,lastY:u.y,jumping:false,intent:target?'공중 예비대 접근':'횃대 주변 비행'};
+  if(goal)u.aiMove={round:b.round,targetId:target?.id||'',path:[{...goal,jump:false}],waitingFlight:true,index:0,elapsed:0,stalled:0,lastX:u.x,lastY:u.y,jumping:false,intent:returning?'공중 교전 구역 복귀':target?'공중 예비대 접근':'횃대 주변 비행'};
  }
 }
 function advanceFlight(e:Engine,u:Unit,dt:number){

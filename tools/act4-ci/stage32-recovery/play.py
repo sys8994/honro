@@ -1,5 +1,5 @@
-"""Actual UI restart opening audit. Existing stats/terrain; no balance edits.
-Declared preserved campaign profile. Revised42-enemy diagnostic, not cohort acceptance.
+"""Actual31→32 normal-UI progression diagnostic, not cohort acceptance.
+Recorded earned profile, normal input, no live state injection.
 """
 import json,lzma,os,time,traceback,hashlib,math
 from pathlib import Path
@@ -65,7 +65,12 @@ const impactValue=(skill,hit)=>{const eff=e.effective(skill,u),r=Math.max(1,eff.
     t=min(foes,key=lambda v:abs(v['x']-x)+abs(v['y']-s['y']))
     if t['y']>s['y']+160 and abs(t['x']-x)<360 and s['canDrop']:
      p.keyboard.press('Alt');p.wait_for_timeout(1500);ready();record('supported-lower-lane');view();pl=plan();continue
-    goal=t['x']-(130 if s['active']=='knight' else 220) if t['x']>x else t['x']+180
+    support=s.get('support','')
+    if support=='approved32-lower-lane' and t['y']<s['y']-180:
+     goal=1606 if x>1640 else 1855
+    elif support=='approved32-central-stair':goal=1855
+    elif support=='approved32-underpass' and t['y']<s['y']-180:goal=1110
+    else:goal=t['x']-(130 if s['active']=='knight' else 220) if t['x']>x else t['x']+180
     if abs(goal-x)<35:break
     direction='ArrowRight' if goal>x else 'ArrowLeft'
     before=s;hold(direction,min(450,max(25,abs(goal-s['x'])/420*1000)));ready();after=state();record('move',{'target':t['id'],'direction':direction})
