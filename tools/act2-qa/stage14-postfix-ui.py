@@ -40,6 +40,7 @@ try:
    p.wait_for_timeout(100)
   record('npc-physical-settlement');result['observedGroundedAfterMoves']=observed;result['npcDisplacement']={'dx':state()['npc']['x']-initial['npc']['x'],'dy':state()['npc']['y']-initial['npc']['y']};result['passed']=observed and abs(result['npcDisplacement']['dy'])>5 and not result['errors'];p.screenshot(path=str(out/'terminal.png'));browser.close()
 except Exception:
+ result['passed']=False
  result['exception']=traceback.format_exc()
  try:record('exception');p.screenshot(path=str(out/'failure.png'))
  except Exception:pass
