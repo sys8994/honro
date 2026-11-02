@@ -146,7 +146,7 @@
       "id": "A2.S18.BRANCH.01",
       "speaker_channel": "휘겸 · dialogue",
       "condition": "E04 조기처치 AND !rescued18",
-      "text": "아직 밑에 사람이 있소. 고정구부터 거시오.",
+      "text": "……끝까지 종만 붙들었구려. 아직 밑에 사람이 있소. 고정구부터 거시오.",
       "speaker_guard": "화자가 실제 출연·생존한 경우. DEATH.01은 치명타 직후의 짧은 사망 경계에서만 예외."
     },
     {
@@ -202,7 +202,7 @@
       "id": "A2.S18.COMPLETE.02",
       "speaker_channel": "소단 · dialogue",
       "condition": "E07 두드림이 남아 있음",
-      "text": "아직 안에서 두드려요.",
+      "text": "이렇게 큰 종 안에서…… 아직 두드려요. 유헌 씨 혼도 저 종 곁으로 갔어요. 붙잡지 않았어요.",
       "speaker_guard": "화자가 실제 출연·생존한 경우. DEATH.01은 치명타 직후의 짧은 사망 경계에서만 예외."
     },
     {
@@ -276,7 +276,7 @@
       "id": "EDGE.ARRIVALS_18_0",
       "speaker_channel": "서술 · arrival",
       "condition": "장 도착 때 한 번",
-      "text": "묵종이 공동 아래를 막고 있었다. 줄을 쥔 유헌 아래로 사람 하나가 걸어갔다."
+      "text": "거대한 청동 종이 공동 아래를 막고 있었다. 올려다봐도 꼭대기가 어둠에 묻혔다. 줄을 쥔 유헌 아래로 사람 하나가 걸어갔다."
     },
     {
       "id": "EDGE.OPTIONAL_18_ARCHER_0",

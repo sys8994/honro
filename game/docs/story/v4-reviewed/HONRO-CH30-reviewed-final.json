@@ -6,7 +6,7 @@
       "id": "A3.S30.INTRO.01",
       "speaker_channel": "연실 · dialogue",
       "condition": "ferry_scene_enter; 연실의 배와 주민을 호송 중인 곽진이 실제 화면에 보임",
-      "text": "이쪽이에요! 배는 아직 움직일 수 있어요.",
+      "text": "이쪽이에요! 아버지 배를 고쳐서 끌고 내려왔어요. 아직 움직일 수 있어요.",
       "audience": "현장 동행",
       "delivery": "scene",
       "once": true,
@@ -138,7 +138,7 @@
       "id": "A3.S30.THIRTEEN.02",
       "speaker_channel": "연실 · dialogue",
       "condition": "ferryman_testimony; 구조한 현재 나루 사공과 대화; 모든 호송 완료 후 안전함",
-      "text": "아버지 장부에 있던 그분들이에요.",
+      "text": "아버지 장부에 있던 그분들이에요. 장부를 들고 이 물길을 따라 내려온 것도 그래서예요.",
       "audience": "현장 동행",
       "delivery": "scene",
       "once": true,
@@ -272,7 +272,7 @@
       "id": "EDGE.ARRIVALS_30_0",
       "speaker_channel": "서술 · arrival",
       "condition": "장 도착 때 한 번",
-      "text": "나루에서 연실의 배가 사람을 싣고 있었다. 강 쪽에서 밀려오는 것들이 부두로 붙었다."
+      "text": "연목에서 아버지의 배를 끌고 내려온 연실이 나루에서 사람을 싣고 있었다. 강 쪽에서 밀려오는 것들이 부두로 붙었다."
     },
     {
       "id": "EDGE.OPTIONAL_30_ARCHER_0",
@@ -398,7 +398,7 @@
       "id": "EDGE.ENDINGPLACE_NEXTTEXT",
       "speaker_channel": "서술 · place_label",
       "condition": "장소 UI",
-      "text": "넷째 막 · 끊긴 옛길은 준비 중입니다."
+      "text": "넷째 막 · 끊긴 옛길"
     },
     {
       "id": "EDGE.RUNTIME.JOURNAL.EVIDENCE30.ROUTE",
