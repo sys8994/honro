@@ -4,7 +4,7 @@
 import assert from 'node:assert/strict';
 export const SUPPORTED_PLAYER_OPERATIONS=new Set(['frame','ready','move','aim','selectSkill','fire','jump','drop','select','defend','interact','dialogueNext']);
 export function assertSupportedPlayerOperation(name){assert(SUPPORTED_PLAYER_OPERATIONS.has(name),`Unsupported player operation: ${name}`);}
-export function createPlayerOperations({app,g,C,record=()=>{}}){
+export function createPlayerOperations({app,g,C,record=()=>{},render=()=>{}}){
  let now=g.performance.now(),pendingMove=0,frames=0;g.performance={now:()=>now};
  const e=()=>app.engine,active=()=>e().active,terminal=()=>['won','lost'].includes(e().b.phase);
  const log=(op,data={})=>record({op:'app-operation',operation:op,round:e().b.round,actor:active()?.id,frame:frames,...data});
@@ -12,7 +12,7 @@ export function createPlayerOperations({app,g,C,record=()=>{}}){
  function frame(){
   assertSupportedPlayerOperation('frame');now+=C.STEP*1000;frames++;
   if(app.dialogue)g.HonroStory.next(app);
-  app.stick.x=pendingMove;pendingMove=0;app.scene.render=()=>{};app.frame(now);app.stick.x=0;
+  app.stick.x=pendingMove;pendingMove=0;app.scene.render=render;app.frame(now);app.stick.x=0;
   if(app.lastError)throw Error('Production App.frame failed: '+app.lastError);
  }
  function ready(limit=30000){for(let n=0;n<limit&&!allowed()&&!terminal();n++)frame();return allowed();}
