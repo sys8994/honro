@@ -35,6 +35,7 @@ try:
   p.wait_for_function('HonroApp.canInput()',timeout=60000);record('normal-input-resumed');p.screenshot(path=str(out/'resumed.png'))
   result['final']=state();result['passed']=not result['errors'] and not result['final']['lastError'];browser.close()
 except Exception:
+ result['passed']=False
  result['exception']=traceback.format_exc()
  try:result['last']=state();p.screenshot(path=str(out/'failure.png'))
  except Exception:pass
