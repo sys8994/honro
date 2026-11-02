@@ -1,0 +1,295 @@
+{
+  "raw": "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage11/lower-v2/trace8/raw.svg",
+  "candidate": "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage11/lower-v2/final.svg",
+  "rawStats": {
+    "sourceBytes": 90157,
+    "paths": 7,
+    "commands": 2724,
+    "segments": 2526,
+    "endpointNodesUpperBound": 2724,
+    "explicitCommandLetters": 1297,
+    "subpaths": 198,
+    "pathChars": 89561,
+    "maxPathChars": 26344
+  },
+  "candidateStats": {
+    "sourceBytes": 65348,
+    "paths": 7,
+    "commands": 2725,
+    "segments": 2527,
+    "endpointNodesUpperBound": 2725,
+    "explicitCommandLetters": 1309,
+    "subpaths": 198,
+    "pathChars": 64959,
+    "maxPathChars": 15717
+  },
+  "visualApproval": "NOT REVIEWED",
+  "config": {
+    "width": 1889,
+    "scales": [
+      1,
+      2
+    ],
+    "limits": {
+      "rgbMAE255": 0.8,
+      "silhouettePx": 1.5,
+      "protectedRgbMAE255": 1,
+      "protectedPx": 0.5,
+      "protectedChangedPixelFraction": 0.05
+    },
+    "protectedPolylines": [
+      {
+        "points": [
+          [
+            1314.9402597402598,
+            24.5
+          ],
+          [
+            1364.0051948051948,
+            14.7
+          ]
+        ],
+        "width": 6
+      },
+      {
+        "points": [
+          [
+            1364.0051948051948,
+            14.7
+          ],
+          [
+            1405.7103896103897,
+            49.0
+          ]
+        ],
+        "width": 6
+      },
+      {
+        "points": [
+          [
+            49.064935064935064,
+            171.5
+          ],
+          [
+            196.25974025974025,
+            132.3
+          ]
+        ],
+        "width": 6
+      },
+      {
+        "points": [
+          [
+            196.25974025974025,
+            132.3
+          ],
+          [
+            367.987012987013,
+            147.0
+          ]
+        ],
+        "width": 6
+      },
+      {
+        "points": [
+          [
+            367.987012987013,
+            147.0
+          ],
+          [
+            564.2467532467532,
+            166.6
+          ]
+        ],
+        "width": 6
+      },
+      {
+        "points": [
+          [
+            564.2467532467532,
+            166.6
+          ],
+          [
+            735.974025974026,
+            159.25
+          ]
+        ],
+        "width": 6
+      },
+      {
+        "points": [
+          [
+            735.974025974026,
+            159.25
+          ],
+          [
+            932.2337662337662,
+            149.45
+          ]
+        ],
+        "width": 6
+      },
+      {
+        "points": [
+          [
+            932.2337662337662,
+            149.45
+          ],
+          [
+            1128.4935064935064,
+            144.55
+          ]
+        ],
+        "width": 6
+      },
+      {
+        "points": [
+          [
+            1128.4935064935064,
+            144.55
+          ],
+          [
+            1324.7532467532467,
+            159.25
+          ]
+        ],
+        "width": 6
+      },
+      {
+        "points": [
+          [
+            1324.7532467532467,
+            159.25
+          ],
+          [
+            1496.4805194805194,
+            154.35
+          ]
+        ],
+        "width": 6
+      },
+      {
+        "points": [
+          [
+            1496.4805194805194,
+            154.35
+          ],
+          [
+            1717.2727272727273,
+            110.25
+          ]
+        ],
+        "width": 6
+      },
+      {
+        "points": [
+          [
+            1717.2727272727273,
+            110.25
+          ],
+          [
+            1839.935064935065,
+            98.0
+          ]
+        ],
+        "width": 6
+      }
+    ],
+    "sourcePalette": [
+      [
+        41,
+        58,
+        53
+      ],
+      [
+        57,
+        73,
+        66
+      ],
+      [
+        75,
+        89,
+        80
+      ],
+      [
+        86,
+        97,
+        39
+      ],
+      [
+        103,
+        114,
+        100
+      ],
+      [
+        114,
+        123,
+        51
+      ],
+      [
+        125,
+        132,
+        119
+      ]
+    ]
+  },
+  "errors": {
+    "1": {
+      "rgbMAE255": 0.0009068540530279279,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 6.545762880705297e-05,
+      "changedPixelFraction": 0.0,
+      "silhouetteMaxOffsetPx": 1.0,
+      "protectedChangedPixelFraction": 0.0,
+      "protectedRgbMAE255": 0.002071191556751728,
+      "protectedSilhouetteMaxOffsetPx": 0.0,
+      "protectedColorEdgeRawMaxOffsetPx": 0.0,
+      "protectedColorEdgeMaxOffsetPx": 0.0,
+      "protectedRgbQuantizationTolerance255": 0,
+      "protectedQuantizationPixels": 0,
+      "pass": true
+    },
+    "2": {
+      "rgbMAE255": 0.000860707659740001,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 7.737345731584355e-05,
+      "changedPixelFraction": 7.943886924806979e-07,
+      "silhouetteMaxOffsetPx": 0.0,
+      "protectedChangedPixelFraction": 0.0,
+      "protectedRgbMAE255": 0.00048412298201583326,
+      "protectedSilhouetteMaxOffsetPx": 0.0,
+      "protectedColorEdgeRawMaxOffsetPx": 0.0,
+      "protectedColorEdgeMaxOffsetPx": 0.0,
+      "protectedRgbQuantizationTolerance255": 0,
+      "protectedQuantizationPixels": 0,
+      "pass": true
+    }
+  },
+  "timings": {
+    "raw-1": {
+      "width": 1889,
+      "height": 833,
+      "decodeMs": 9.127594999999985,
+      "drawMs": 2.955959000000007
+    },
+    "candidate-1": {
+      "width": 1889,
+      "height": 833,
+      "decodeMs": 9.226511000000016,
+      "drawMs": 3.156378000000018
+    },
+    "raw-2": {
+      "width": 3778,
+      "height": 1666,
+      "decodeMs": 26.404829000000063,
+      "drawMs": 18.321436000000062
+    },
+    "candidate-2": {
+      "width": 3778,
+      "height": 1666,
+      "decodeMs": 19.83264500000007,
+      "drawMs": 37.345946000000026
+    }
+  },
+  "qualityPass": true
+}

@@ -1,0 +1,19 @@
+{
+  "sourceSha256": "5320f53a0e6eb0888204af97d2ce8cfb116d8a76dd7ea0f8b4c2e027b6e70c95",
+  "sourceBytes": 136686,
+  "outputBytes": 126450,
+  "epsilonLocalUnits": 0.04,
+  "maxCurveReplacementBoundLocalUnits": 0.03922873539339778,
+  "absoluteCoordinateRoundingBound": 0.007071067811865475,
+  "protectedConfiguration": "../honro-act2-vector-rollout/stage11/entry-rock-v1/pixel-config.json",
+  "protectedSegmentPrecision": 1e-06,
+  "protectedAlphaPathsUnchanged": false,
+  "counts": {
+    "cubicToLine": 15,
+    "cubicToQuadratic": 28,
+    "keptCubic": 670,
+    "protectedPaths": 4
+  },
+  "topologyReview": "NOT_CERTIFIED",
+  "visualReview": "PENDING"
+}

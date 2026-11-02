@@ -1,0 +1,96 @@
+{
+  "status": "Native visual candidate reviewed",
+  "reviews": [
+    {
+      "round": 1,
+      "result": "Rejected oversized west/central/lower contact detail; reduced before optimization."
+    },
+    {
+      "round": 2,
+      "result": "Corrected east world coverage to x22000; removed buried floor contact rims through canonical solid overlap masks."
+    },
+    {
+      "round": 3,
+      "result": "Added production-only firing-rock skin; rejected rectangular local floor overlay boundary and replaced with decorative angular taper within unchanged floor."
+    },
+    {
+      "round": 4,
+      "result": "Reviewed actual native entry, representative contacts, underpass, mobile and both map edges. Clear contact, continuous geology, no white matte halos or rectangular material crop boundary. Existing contact lines, rear cliff, pine/timber architecture, actors and geometry intentionally unchanged."
+    }
+  ],
+  "scope": "Native production renderer; not browser or play-clear acceptance",
+  "views": [
+    {
+      "name": "entry",
+      "path": "/workspace/scratch/fff510b4df37/honro-act2-stage11/_local/reports/stage11-art-preview/entry-after.png",
+      "sha256": "aa754c819a128b72b91bbc5f8bfbcc6acc5c9dbe9b185d820aa360248cb1bbb0"
+    },
+    {
+      "name": "west-contact",
+      "path": "/workspace/scratch/fff510b4df37/honro-act2-stage11/_local/reports/stage11-art-preview/west-contact-after.png",
+      "sha256": "03a364dec39d5c79185107804d4cd25350c84c2f7842cd6d9cb7db9bef21daba"
+    },
+    {
+      "name": "crown-contact",
+      "path": "/workspace/scratch/fff510b4df37/honro-act2-stage11/_local/reports/stage11-art-preview/crown-contact-after.png",
+      "sha256": "205805e56d5bf1dc8a76cd43f78e532800a5f3091223c74960ffe6e9b3d5ba92"
+    },
+    {
+      "name": "central",
+      "path": "/workspace/scratch/fff510b4df37/honro-act2-stage11/_local/reports/stage11-art-preview/central-after.png",
+      "sha256": "ef28b2e0abf98e76ddfa142f8b1751a100f8158ca551c6fccca30b0c01a9d486"
+    },
+    {
+      "name": "lower",
+      "path": "/workspace/scratch/fff510b4df37/honro-act2-stage11/_local/reports/stage11-art-preview/lower-after.png",
+      "sha256": "01e04cb03fc9781a13c6b0dd6fda84085d57228ef231c9c0abf90e2b7144b531"
+    },
+    {
+      "name": "east",
+      "path": "/workspace/scratch/fff510b4df37/honro-act2-stage11/_local/reports/stage11-art-preview/east-after.png",
+      "sha256": "8bb2345bfc188ade442d737a50010de15062ca40140187d9a0f9d984198e738b"
+    },
+    {
+      "name": "overview",
+      "path": "/workspace/scratch/fff510b4df37/honro-act2-stage11/_local/reports/stage11-art-preview/overview-after.png",
+      "sha256": "40b5efa3c1b00bf8b7f7e308ca28e7fa4c47065a6ae7551ded3b7fe6fe05140b"
+    },
+    {
+      "name": "mobile",
+      "path": "/workspace/scratch/fff510b4df37/honro-act2-stage11/_local/reports/stage11-art-preview/mobile-after.png",
+      "sha256": "04ec8b33aad92e33a2bf494bc3bddfe1e0942a52ecd539a770cce5fcf3fe8829"
+    },
+    {
+      "name": "mobile-min",
+      "path": "/workspace/scratch/fff510b4df37/honro-act2-stage11/_local/reports/stage11-art-preview/mobile-min-after.png",
+      "sha256": "e02450edeb9684eace9c3fde9e51f12daf12644ef81b3fa9090044ad4b14b0eb"
+    },
+    {
+      "name": "minimum-center",
+      "path": "/workspace/scratch/fff510b4df37/honro-act2-stage11/_local/reports/stage11-art-preview/minimum-center-after.png",
+      "sha256": "cbaf9d07e3cdb9bdeaf373c5c777518ed00b62bc951ebe4a5a1da0d7238e951b"
+    },
+    {
+      "name": "edge-left",
+      "path": "/workspace/scratch/fff510b4df37/honro-act2-stage11/_local/reports/stage11-art-preview/edge-left-after.png",
+      "sha256": "f397fabe2df032f2b64190b31dd35f187b2e62551bbfd37d490a0f9502a660be"
+    },
+    {
+      "name": "edge-right",
+      "path": "/workspace/scratch/fff510b4df37/honro-act2-stage11/_local/reports/stage11-art-preview/edge-right-after.png",
+      "sha256": "c3633d7251fb7e097fe26a511ea9140ae610f452cb7e12d6de15f1bed93fff33"
+    },
+    {
+      "name": "underpass",
+      "path": "/workspace/scratch/fff510b4df37/honro-act2-stage11/_local/reports/stage11-art-preview/underpass-after.png",
+      "sha256": "4fa01dad6c89cb96b8ce47eaede3aa18984daab013c2ca85f1fa8140ea2c2f06"
+    }
+  ],
+  "sourceInvariantTest": "tests/stage11-art-candidate.mjs",
+  "metrics": "Every part 1x/2x qualityPass; lexical cleanup pixel identity 1x/2x; unchanged strict metric limits",
+  "knownLimits": [
+    "Existing unskinned rear cliff decorative geology and timber/pine assets preserved by scope.",
+    "Source rasters external; per-part hashes/path recorded.",
+    "Public integration and live browser/gameplay validation owned by parent."
+  ]
+}

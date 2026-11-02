@@ -1,0 +1,244 @@
+{
+  "raw": "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage11/floor-domain-v1/trace8/raw.svg",
+  "candidate": "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage11/floor-domain-v1/final.svg",
+  "rawStats": {
+    "sourceBytes": 73100,
+    "paths": 7,
+    "commands": 2086,
+    "segments": 1904,
+    "endpointNodesUpperBound": 2086,
+    "explicitCommandLetters": 1131,
+    "subpaths": 182,
+    "pathChars": 72502,
+    "maxPathChars": 18984
+  },
+  "candidateStats": {
+    "sourceBytes": 54525,
+    "paths": 7,
+    "commands": 2096,
+    "segments": 1914,
+    "endpointNodesUpperBound": 2096,
+    "explicitCommandLetters": 1074,
+    "subpaths": 182,
+    "pathChars": 54134,
+    "maxPathChars": 11915
+  },
+  "visualApproval": "NOT REVIEWED",
+  "config": {
+    "width": 1212,
+    "scales": [
+      1,
+      2
+    ],
+    "limits": {
+      "rgbMAE255": 0.8,
+      "silhouettePx": 1.5,
+      "protectedRgbMAE255": 1,
+      "protectedPx": 0.5,
+      "protectedChangedPixelFraction": 0.05
+    },
+    "protectedPolylines": [
+      {
+        "points": [
+          [
+            259.7142857142857,
+            21.633333333333333
+          ],
+          [
+            324.64285714285717,
+            21.633333333333333
+          ]
+        ],
+        "width": 6
+      },
+      {
+        "points": [
+          [
+            324.64285714285717,
+            21.633333333333333
+          ],
+          [
+            359.27142857142854,
+            86.53333333333333
+          ]
+        ],
+        "width": 6
+      },
+      {
+        "points": [
+          [
+            359.27142857142854,
+            86.53333333333333
+          ],
+          [
+            432.85714285714283,
+            173.06666666666666
+          ]
+        ],
+        "width": 6
+      },
+      {
+        "points": [
+          [
+            432.85714285714283,
+            173.06666666666666
+          ],
+          [
+            519.4285714285714,
+            194.7
+          ]
+        ],
+        "width": 6
+      },
+      {
+        "points": [
+          [
+            519.4285714285714,
+            194.7
+          ],
+          [
+            735.8571428571429,
+            194.7
+          ]
+        ],
+        "width": 6
+      },
+      {
+        "points": [
+          [
+            735.8571428571429,
+            194.7
+          ],
+          [
+            822.4285714285714,
+            155.76
+          ]
+        ],
+        "width": 6
+      },
+      {
+        "points": [
+          [
+            822.4285714285714,
+            155.76
+          ],
+          [
+            887.3571428571429,
+            90.86
+          ]
+        ],
+        "width": 6
+      },
+      {
+        "points": [
+          [
+            887.3571428571429,
+            90.86
+          ],
+          [
+            952.2857142857143,
+            51.92
+          ]
+        ],
+        "width": 6
+      }
+    ],
+    "protectedRgbQuantizationTolerance255": 1,
+    "sourcePalette": [
+      [
+        41,
+        58,
+        53
+      ],
+      [
+        57,
+        73,
+        66
+      ],
+      [
+        75,
+        89,
+        80
+      ],
+      [
+        86,
+        97,
+        39
+      ],
+      [
+        103,
+        114,
+        100
+      ],
+      [
+        114,
+        123,
+        51
+      ],
+      [
+        125,
+        132,
+        119
+      ]
+    ]
+  },
+  "errors": {
+    "1": {
+      "rgbMAE255": 0.0010897410102188587,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.00026379755581729114,
+      "changedPixelFraction": 2.542627144070339e-06,
+      "silhouetteMaxOffsetPx": 1.0,
+      "protectedChangedPixelFraction": 0.0,
+      "protectedRgbMAE255": 0.006213354412466288,
+      "protectedSilhouetteMaxOffsetPx": 0.0,
+      "protectedColorEdgeRawMaxOffsetPx": 1.4142135623730951,
+      "protectedColorEdgeMaxOffsetPx": 0.0,
+      "protectedRgbQuantizationTolerance255": 1,
+      "protectedQuantizationPixels": 1,
+      "pass": true
+    },
+    "2": {
+      "rgbMAE255": 0.0007904960657469928,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.0001452475698897615,
+      "changedPixelFraction": 1.1123993755307734e-06,
+      "silhouetteMaxOffsetPx": 1.0,
+      "protectedChangedPixelFraction": 0.0,
+      "protectedRgbMAE255": 0.0025494357105344534,
+      "protectedSilhouetteMaxOffsetPx": 0.0,
+      "protectedColorEdgeRawMaxOffsetPx": 1.4142135623730951,
+      "protectedColorEdgeMaxOffsetPx": 0.0,
+      "protectedRgbQuantizationTolerance255": 1,
+      "protectedQuantizationPixels": 1,
+      "pass": true
+    }
+  },
+  "timings": {
+    "raw-1": {
+      "width": 1212,
+      "height": 1298,
+      "decodeMs": 8.349567999999977,
+      "drawMs": 8.761285000000044
+    },
+    "candidate-1": {
+      "width": 1212,
+      "height": 1298,
+      "decodeMs": 8.157873999999993,
+      "drawMs": 2.9256239999999707
+    },
+    "raw-2": {
+      "width": 2424,
+      "height": 2596,
+      "decodeMs": 33.83138799999995,
+      "drawMs": 15.910091999999963
+    },
+    "candidate-2": {
+      "width": 2424,
+      "height": 2596,
+      "decodeMs": 16.985468000000026,
+      "drawMs": 13.775522000000024
+    }
+  },
+  "qualityPass": true
+}

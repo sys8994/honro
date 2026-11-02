@@ -1,0 +1,16 @@
+{
+  "part": "floor-domain-v1",
+  "sourceImage": "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage11/floor-domain-v1/source.png",
+  "sourceSha256": "080792ec382f2d503051c6b5303fda8b265135474d679ba1ba8965b2f9836e7e",
+  "preparedImageSha256": "2e605468d4f5605095d26dd99d8ba6e17186d517f6b0950191221101beb6d600",
+  "immutableRawSha256": "fc5d3e8f1e30f1e07f66eaf759e7ef9335b0a921e3d6e95fe7f4d0c491c2f9b0",
+  "optimizedSha256": "67d9bc78d4e1edcc630240939f5aaeafa3c445983371f07ede1c0084cee564ff",
+  "nativeSha256": "c7b5bf103d692661d7cae8e28c6af7bac0c9a340d7f9eb010163c740aa3f3690",
+  "rawBytes": 73100,
+  "optimizedBytes": 54525,
+  "nativeBytes": 70162,
+  "qualityPass": true,
+  "sourceScaleGate": "Native actor-size 92 world-unit hero; original camera scale retained",
+  "scope": "Material-only; canonical body/contact clips; no raster runtime asset",
+  "sourceGeneration": "Imagegen reference-based source with canonical silhouette guide. Production brief below is a reconstruction, not a verbatim API prompt."
+}
