@@ -107,6 +107,20 @@ if(stage===10&&policy.includes('scout')){
 }
 if(stage===10){code=code.replace("h.click('journey-enter',{id:'11'});","app.export();await writeFile(out+'/after-stage10-rest-profile.json',JSON.stringify({profile:await h.exported(),scope:'Actual no-state-edit Stage10 outcome -> ordinary result-continue -> rest recruitment; captured BEFORE Stage11 launch. Prior9 was declared historical victory fixture, not continuous campaign.'}));h.click('journey-enter',{id:'11'});");}
 if(policy.includes('noitems')){code=code.replace('if(u.hp<u.maxHp*.45&&b.items.heal)', 'if(false&&u.hp<u.maxHp*.45&&b.items.heal)');code=code.replace('if(u.hp<u.maxHp*.5&&b.items.heal)', 'if(false&&u.hp<u.maxHp*.5&&b.items.heal)');code=code.replace('if(useSupplies&&u.hp<u.maxHp*.45&&b.items.heal>0)', 'if(false&&useSupplies&&u.hp<u.maxHp*.45&&b.items.heal>0)');}
+if(stage===8&&policy.includes('appops')){
+ assertAppPolicy();
+ function assertAppPolicy(){if(!policy.includes('modern')||!policy.includes('noitems'))throw Error('Stage8 App adapter requires modern/noitems policy');}
+ code="import {createPlayerOperations} from '"+new URL('./player-operations.mjs',import.meta.url).href+"';\n"+code;
+ code=code.replace('appHarness({productionStory:true})','appHarness({productionStory:true,productionInputActions:true})');
+ code=code.replace('function instrument(){',`let ops,opsBaseFrames=0;
+function playerFire(id,angle,power){angle=((angle+85)%360+360)%360-85;if(angle>265)return false;const accepted=liveAudit.production(()=>ops.fire(id,angle,power));virtualMs=ops.now;frames=opsBaseFrames+ops.frames;return accepted;}
+function instrument(){opsBaseFrames=frames;ops=createPlayerOperations({app,g,C,record});`);
+ code=code.replace('navigationState:nav?.snapshot()||resume?.navigatorState}',"navigationState:nav?.snapshot()||resume?.navigatorState,playerOperations:{move:(...v)=>ops.move(...v),jump:(...v)=>liveAudit.production(()=>ops.jump(...v))}}");
+ code=code.replace('virtualMs+=C.STEP*1000;app.scene.render=()=>{};if(app.dialogue)liveAudit.production(()=>g.HonroStory.next(app));liveAudit.production(()=>app.frame(virtualMs));liveAudit.guard();frames++;','liveAudit.production(()=>ops.frame());virtualMs=ops.now;frames=opsBaseFrames+ops.frames;liveAudit.guard();');
+ code=code.replaceAll('e.fire(','playerFire(').replaceAll('app.defend()','ops.defend()').replaceAll("e.item('heal')","ops.item('heal')");
+ code=code.replace('const provenance={policy,','const provenance={operationMode:"NATIVE_APP_ACTION_SIMULATION",scope:"Actual App operations with DOM/render/clock doubles; prior1–7 completion reward fixtures, not continuous campaign",policy,');
+ if(code.includes('app.frame(virtualMs)')||code.includes('e.fire('))throw Error('Residual direct Stage8 operation');
+}
 code=code.replace(/from\s*(['"])(\.[^'"]+)\1/g,(_,q,s)=>'from '+q+pathToFileURL(path.resolve(path.dirname(file),s)).href+q);
 code=code.replaceAll('await readFile(new URL(import.meta.url))',`await readFile(${JSON.stringify(file)})`);
 const actualParts=await(await import(pathToFileURL(path.resolve('shared/build.mjs')))).runtimeParts({vector:false,render:false,productionStory:true});const actualRuntimeSha256=createHash('sha256').update(actualParts.join('\n')).digest('hex');

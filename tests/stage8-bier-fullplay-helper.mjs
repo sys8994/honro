@@ -2,7 +2,8 @@
  * Walk links need continuous production support. A short discontinuity uses
  * the existing ordinary jump/landing path, including for restored route state.
  * All motion still uses production Engine inputs and the real move budget. */
-export function escortNavigator(g,b,e,{tick,ready,record,stageId=8,routes=null,navigationState=null}){
+export function escortNavigator(g,b,e,{tick,ready,record,stageId=8,routes=null,navigationState=null,playerOperations=null}){
+ const controls=playerOperations||e;
  const C=g.HONRO_CORE,stage=g.HONRO_PROJECT.stages[stageId-1],nodes=[],edges=[],map=new Map(),bySurface=new Map(),nav=new Map(JSON.parse(JSON.stringify(navigationState?.nav||[]))),failed=new Map((navigationState?.failed||[]).map(([k,v])=>[k,new Set(v)]));
  const distance=(a,z)=>Math.hypot(a.x-z.x,a.y-z.y),surface=u=>e.contactSurface(u.x,u.y-5,u.y+5)?.t?.id;
  function node(p){const key=`${p.surfaceId}:${p.x.toFixed(1)}:${p.y.toFixed(1)}`;if(map.has(key))return map.get(key);const i=nodes.length;nodes.push({...p});edges.push([]);map.set(key,i);if(!bySurface.has(p.surfaceId))bySurface.set(p.surfaceId,new Set());bySurface.get(p.surfaceId).add(i);return i;}
@@ -48,7 +49,7 @@ export function escortNavigator(g,b,e,{tick,ready,record,stageId=8,routes=null,n
  }
  function advance(u,point,enemy=false){supportCache.clear();let state=nav.get(u.id);if(!state||state.point.id!==point.id||state.point.surfaceId!==point.surfaceId||distance(state.point,point)>160||state.enemy!==enemy||state.point.approachRange!==point.approachRange||state.index>=state.links.length){state=route(u,point,enemy);if(!state){record({op:'nav-blocked',hero:u.cls,reason:'no graph route',position:{x:u.x,y:u.y},goal:point});return;}nav.set(u.id,state);}const start={x:u.x,y:u.y};let still=0,recoveryCount=0;
   for(let n=0;n<1600&&ready()&&u.moveLeft>8;n++){
-   if(state.air){const a=state.air,from=state.links[state.index]?.from,isDrop=a.kind==='drop',outward=isDrop&&!state.departed&&a.stepOffX!==undefined,aimX=outward?a.stepOffX:a.x;if(Math.abs(u.x-aimX)>3)e.move(Math.sign(aimX-u.x)*(a.speed||(isDrop?1:.35)),C.STEP);tick();state.airFrames++;
+   if(state.air){const a=state.air,from=state.links[state.index]?.from,isDrop=a.kind==='drop',outward=isDrop&&!state.departed&&a.stepOffX!==undefined,aimX=outward?a.stepOffX:a.x;if(Math.abs(u.x-aimX)>3)controls.move(Math.sign(aimX-u.x)*(a.speed||(isDrop?1:.35)),C.STEP);tick();state.airFrames++;
     if(isDrop&&!state.departed&&(a.stepOffX===undefined||Math.abs(u.x-a.stepOffX)<8&&u.y>state.airStartY+8))state.departed=true;
     const landed=e.grounded(u)&&(isDrop?state.departed&&surface(u)===a.support&&Math.abs(u.x-a.x)<18:state.airFrames>30&&surface(u)===a.support&&Math.abs(u.x-a.x)<22);
     if(landed){if(surface(u)!==a.support){failLink(u,state,'ordinary jump landed on a different support; reject this proposal');break;}record({op:'land',hero:u.cls,x:u.x,y:u.y,support:surface(u),expected:a.support,matched:true});state.air=null;state.index++;}
@@ -63,18 +64,18 @@ export function escortNavigator(g,b,e,{tick,ready,record,stageId=8,routes=null,n
     record({op:'walk-edge-jump',hero:u.cls,from,to:link.point,reason:'saved walk edge has no continuous production support'});link.from=from;link.mode=jumpMode(link.point);
    }
    const p=link.mode?link.from:link.point;const reached=Math.abs(u.x-p.x)<14&&Math.abs(u.y-p.y)<55&&e.grounded(u)&&(!p.surfaceId||surface(u)===p.surfaceId);
-   if(reached){if(link.mode){if(link.mode.kind==='jump'){if(u.moveLeft<e.jumpCost(u)+Math.abs(link.mode.x-u.x)+65)break;if(!e.jump(u))break;record({op:'jump',hero:u.cls,from:{x:u.x,y:u.y},to:link.mode});}if(link.mode.kind==='drop')record({op:'drop',hero:u.cls,from:{x:u.x,y:u.y},to:link.mode});state.air=link.mode;state.airFrames=0;state.airStartY=u.y;state.departed=false;continue;}state.index++;continue;}
+   if(reached){if(link.mode){if(link.mode.kind==='jump'){if(u.moveLeft<e.jumpCost(u)+Math.abs(link.mode.x-u.x)+65)break;if(!controls.jump(u))break;record({op:'jump',hero:u.cls,from:{x:u.x,y:u.y},to:link.mode});}if(link.mode.kind==='drop')record({op:'drop',hero:u.cls,from:{x:u.x,y:u.y},to:link.mode});state.air=link.mode;state.airFrames=0;state.airStartY=u.y;state.departed=false;continue;}state.index++;continue;}
    if(!link.mode&&e.grounded(u)&&Math.abs(u.y-p.y)>350&&Math.abs(u.x-p.x)<180){record({op:'nav-replan',hero:u.cls,reason:'ordinary fall left a route waypoint above reach',position:{x:u.x,y:u.y},goal:p});nav.delete(u.id);break;}
    const old={x:u.x,y:u.y},dx=p.x-u.x,surfaceSeam=p.surfaceId&&surface(u)!==p.surfaceId&&e.grounded(u)&&Math.abs(u.y-p.y)<55;
    // A topological seam may be a few pixels beyond the old 5px stopping band.
    // Continue ordinary fine walking into the declared surface, in the existing
    // route's direction; never mark the neighbouring ground as the bridge.
-   if(Math.abs(dx)<=5&&surfaceSeam){const next=state.links[state.index+1]?.point||p,dir=Math.sign(next.x-(link.from?.x??u.x))||Math.sign(dx);if(dir)e.move(dir*.35,C.STEP);}
-   else if(Math.abs(dx)>5)e.move(Math.sign(dx)*(Math.abs(dx)<22?.35:1),C.STEP);
-   if(e.grounded(u)&&(still>12&&Math.abs(u.x-p.x)>25||Math.abs(u.x-p.x)<25&&u.y-p.y>80)){if(recoveryCount>=3){record({op:'nav-replan',hero:u.cls,reason:'three ordinary recovery jumps did not reach waypoint',position:{x:u.x,y:u.y},goal:p});nav.delete(u.id);break;}if(e.jump(u)){recoveryCount++;record({op:'recovery-jump',hero:u.cls,x:u.x,y:u.y,goal:p});still=0;}}
+   if(Math.abs(dx)<=5&&surfaceSeam){const next=state.links[state.index+1]?.point||p,dir=Math.sign(next.x-(link.from?.x??u.x))||Math.sign(dx);if(dir)controls.move(dir*.35,C.STEP);}
+   else if(Math.abs(dx)>5)controls.move(Math.sign(dx)*(Math.abs(dx)<22?.35:1),C.STEP);
+   if(e.grounded(u)&&(still>12&&Math.abs(u.x-p.x)>25||Math.abs(u.x-p.x)<25&&u.y-p.y>80)){if(recoveryCount>=3){record({op:'nav-replan',hero:u.cls,reason:'three ordinary recovery jumps did not reach waypoint',position:{x:u.x,y:u.y},goal:p});nav.delete(u.id);break;}if(controls.jump(u)){recoveryCount++;record({op:'recovery-jump',hero:u.cls,x:u.x,y:u.y,goal:p});still=0;}}
    tick();still=distance(old,u)<.02?still+1:0;if(still>100){record({op:'nav-blocked',hero:u.cls,position:{x:u.x,y:u.y},support:surface(u),goal:p});nav.delete(u.id);break;}
   }
-  for(let i=0;i<300&&ready()&&!e.grounded(u);i++){if(state.air&&Math.abs(u.x-state.air.x)>3)e.move(Math.sign(state.air.x-u.x)*(state.air.speed||.35),C.STEP);tick();}
+  for(let i=0;i<300&&ready()&&!e.grounded(u);i++){if(state.air&&Math.abs(u.x-state.air.x)>3)controls.move(Math.sign(state.air.x-u.x)*(state.air.speed||.35),C.STEP);tick();}
   if(distance(start,u)>1)record({op:'move',hero:u.cls,from:start,to:{x:u.x,y:u.y},support:surface(u),goal:{id:point.id,x:point.x,y:point.y}});
  }
  return{advance,clear:id=>nav.delete(id),surface,nodes:nodes.length,snapshot:()=>JSON.parse(JSON.stringify({nav:[...nav],failed:[...failed].map(([k,v])=>[k,[...v]])})),inspectRoute:(u,p,enemy=false)=>route(u,p,enemy)};
