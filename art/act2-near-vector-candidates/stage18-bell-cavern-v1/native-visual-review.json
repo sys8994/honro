@@ -383,6 +383,114 @@
       "bellShiftVisualFixture": null
     },
     {
+      "label": "bottom-edge",
+      "name": "before",
+      "view": {
+        "x": 6800,
+        "y": 9840,
+        "scale": 0.21176470588235294,
+        "w": 1440,
+        "h": 900
+      },
+      "actualCamera": {
+        "x": 6800,
+        "y": 9840,
+        "scale": 0.21176470588235294
+      },
+      "heroHeight": 92,
+      "bellShiftVisualFixture": null
+    },
+    {
+      "label": "bottom-edge",
+      "name": "after",
+      "view": {
+        "x": 6800,
+        "y": 9840,
+        "scale": 0.21176470588235294,
+        "w": 1440,
+        "h": 900
+      },
+      "actualCamera": {
+        "x": 6800,
+        "y": 9840,
+        "scale": 0.21176470588235294
+      },
+      "heroHeight": 92,
+      "bellShiftVisualFixture": null
+    },
+    {
+      "label": "mobile-ceiling",
+      "name": "before",
+      "view": {
+        "x": 6800,
+        "y": -1800,
+        "scale": 0.057352941176470586,
+        "w": 390,
+        "h": 844
+      },
+      "actualCamera": {
+        "x": 6800,
+        "y": -1800,
+        "scale": 0.057352941176470586
+      },
+      "heroHeight": 92,
+      "bellShiftVisualFixture": null
+    },
+    {
+      "label": "mobile-ceiling",
+      "name": "after",
+      "view": {
+        "x": 6800,
+        "y": -1800,
+        "scale": 0.057352941176470586,
+        "w": 390,
+        "h": 844
+      },
+      "actualCamera": {
+        "x": 6800,
+        "y": -1800,
+        "scale": 0.057352941176470586
+      },
+      "heroHeight": 92,
+      "bellShiftVisualFixture": null
+    },
+    {
+      "label": "mobile-bottom",
+      "name": "before",
+      "view": {
+        "x": 6800,
+        "y": 9840,
+        "scale": 0.057352941176470586,
+        "w": 390,
+        "h": 844
+      },
+      "actualCamera": {
+        "x": 6800,
+        "y": 9840,
+        "scale": 0.057352941176470586
+      },
+      "heroHeight": 92,
+      "bellShiftVisualFixture": null
+    },
+    {
+      "label": "mobile-bottom",
+      "name": "after",
+      "view": {
+        "x": 6800,
+        "y": 9840,
+        "scale": 0.057352941176470586,
+        "w": 390,
+        "h": 844
+      },
+      "actualCamera": {
+        "x": 6800,
+        "y": 9840,
+        "scale": 0.057352941176470586
+      },
+      "heroHeight": 92,
+      "bellShiftVisualFixture": null
+    },
+    {
       "label": "left-maxzoom",
       "name": "before",
       "view": {
@@ -491,6 +599,7 @@
       "bellShiftVisualFixture": 180
     }
   ],
+  "visualReview": "Stage18 corrected fullcanonical coverage visually passed at recorded desktop/mobile legaledges; Stage19 independent review pending",
   "inspectedViews": [
     "entry",
     "floor",
@@ -500,60 +609,74 @@
     "edge-right",
     "left-maxzoom",
     "right-maxzoom",
-    "ceiling"
+    "ceiling",
+    "bottom-edge",
+    "mobile-ceiling",
+    "mobile-bottom"
   ],
-  "visualReview": "V2 accepted art direction by root; native edge/mobile/bell fixture visually reviewed; no browser or gameplay claim",
   "screenshots": [
     {
-      "file": "_local/reports/stage18-art-preview-v2/mobile-after.png",
+      "file": "_local/reports/stage18-domain-coverage-fix/mobile-after.png",
       "sha256": "191f47dc2b446b4eb1b88de74a2cf5e132d241c495937a6b49a032b2b7e5f3f6"
     },
     {
-      "file": "_local/reports/stage18-art-preview-v2/bell-shifted-after.png",
+      "file": "_local/reports/stage18-domain-coverage-fix/bell-shifted-after.png",
       "sha256": "caa62a281c17cd9f9cbab161013de506cc6bccf33c7960e1902e9e4e0307e766"
     },
     {
-      "file": "_local/reports/stage18-art-preview-v2/bell-after.png",
+      "file": "_local/reports/stage18-domain-coverage-fix/bell-after.png",
       "sha256": "181f8667b5c04a590d270ab77970417e7e39c5399f6556001c75a99279f27412"
     },
     {
-      "file": "_local/reports/stage18-art-preview-v2/ceiling-after.png",
-      "sha256": "eca31562813197f99f7a1f44c8c128cf153ecc890988e27e527babe7048dc598"
+      "file": "_local/reports/stage18-domain-coverage-fix/mobile-bottom-after.png",
+      "sha256": "26db22e152b4e365d512892b077ee09c3a9d6f4fd21f7867f41e4a8f492506a5"
     },
     {
-      "file": "_local/reports/stage18-art-preview-v2/edge-left-after.png",
+      "file": "_local/reports/stage18-domain-coverage-fix/ceiling-after.png",
+      "sha256": "bcc47ff35bd470a008a4833c1695cecbcacb8d11a346b75951c9abfa432e6576"
+    },
+    {
+      "file": "_local/reports/stage18-domain-coverage-fix/edge-left-after.png",
       "sha256": "fdd0e970c03693cc228a57fc9962380b9a34b7b8d275371e70513148c2308106"
     },
     {
-      "file": "_local/reports/stage18-art-preview-v2/west-after.png",
+      "file": "_local/reports/stage18-domain-coverage-fix/west-after.png",
       "sha256": "53c71b0e683d398453d376cd87ff03e20cf681316e0cebf9dce34d690ab56b61"
     },
     {
-      "file": "_local/reports/stage18-art-preview-v2/right-maxzoom-after.png",
+      "file": "_local/reports/stage18-domain-coverage-fix/right-maxzoom-after.png",
       "sha256": "c4e84e0f417623316cc60914ff3238fd02be66e1447a56fd0b464a07633473e7"
     },
     {
-      "file": "_local/reports/stage18-art-preview-v2/overview-after.png",
+      "file": "_local/reports/stage18-domain-coverage-fix/overview-after.png",
       "sha256": "86f6a6042dfc77eaac07387389a7ff75acae083f542ccefbff34fb140749e6b3"
     },
     {
-      "file": "_local/reports/stage18-art-preview-v2/floor-after.png",
+      "file": "_local/reports/stage18-domain-coverage-fix/floor-after.png",
       "sha256": "94a0d98c6b28ef71fa8e6941490d6d0a898a884523c9e448932c5fa0ee42ab5f"
     },
     {
-      "file": "_local/reports/stage18-art-preview-v2/entry-after.png",
+      "file": "_local/reports/stage18-domain-coverage-fix/entry-after.png",
       "sha256": "e183d541fd33a209fcc8c139b834ffc82d22663028b21c144c3d288a57219d28"
     },
     {
-      "file": "_local/reports/stage18-art-preview-v2/east-after.png",
+      "file": "_local/reports/stage18-domain-coverage-fix/east-after.png",
       "sha256": "80c14a63996c63524be00ae735623ec92228d7531a776df92612d93448d182c7"
     },
     {
-      "file": "_local/reports/stage18-art-preview-v2/edge-right-after.png",
+      "file": "_local/reports/stage18-domain-coverage-fix/mobile-ceiling-after.png",
+      "sha256": "44a72f4ab40c7b2db6bb86422bb37da836115801a00af22b1bd9e898d12b4552"
+    },
+    {
+      "file": "_local/reports/stage18-domain-coverage-fix/bottom-edge-after.png",
+      "sha256": "7ae73ac1e84f12fbc4683c338c3d9f45fc8a4a5cc94f577dfcada5b1f68e8e3b"
+    },
+    {
+      "file": "_local/reports/stage18-domain-coverage-fix/edge-right-after.png",
       "sha256": "45bd6c3413a5cbb2160a21601be875633cd63118e2778a1ab0fdea6875bb5741"
     },
     {
-      "file": "_local/reports/stage18-art-preview-v2/left-maxzoom-after.png",
+      "file": "_local/reports/stage18-domain-coverage-fix/left-maxzoom-after.png",
       "sha256": "78c15f705ef7b8d418f9c3f95cec4ce4b64a8c8c33c0ef8b19741f89ee5a6e19"
     }
   ]
