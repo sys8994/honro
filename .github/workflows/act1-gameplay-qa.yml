@@ -14,6 +14,8 @@ jobs:
             entry: game/docs/stage-review/stage08-bier/evidence/normal-victory-profile.json
           - stage: 5
             entry: tools/act1-qa/fixtures/stage5-entry.json
+          - stage: 10
+            entry: tools/act1-qa/fixtures/stage10-entry.json
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     env:
@@ -38,6 +40,9 @@ jobs:
           trap 'kill $! 2>/dev/null || true' EXIT
           sleep 2
           python tools/act1-qa/browser-ui.py > "$HONRO_QA_OUT/browser.log" 2>&1
+      - name: Require explicit successful UI receipt
+        run: |
+          python -c 'import json,os; from pathlib import Path; d=json.loads((Path(os.environ["HONRO_QA_OUT"])/"result.json").read_text()); assert d.get("passed") is True and not d.get("exception") and not d.get("errors") and d.get("final",{}).get("phase")=="won"'
       - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
         if: always()
         with:

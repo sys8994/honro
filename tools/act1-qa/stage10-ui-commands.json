@@ -1,0 +1,458 @@
+{
+  "scope": "Observed no-item native R11 clear. Declared legal entry allocation; browser recomputes aim and fails actor mismatch. Pending real UI calibration.",
+  "commands": [
+    {
+      "op": "shoot",
+      "hero": "archer",
+      "round": 1,
+      "target": "sodan-binding",
+      "skill": "A14",
+      "nativeAim": {
+        "angle": 46.95407597019996,
+        "power": 0.963942394415019
+      }
+    },
+    {
+      "op": "climb",
+      "hero": "mage",
+      "round": 1,
+      "x": 1150,
+      "y": 2827.2413793103447,
+      "support": "outer-yard"
+    },
+    {
+      "op": "shoot",
+      "hero": "mage",
+      "round": 1,
+      "target": "sodan-binding",
+      "skill": "M11",
+      "nativeAim": {
+        "angle": 53.89558120772279,
+        "power": 0.9425536892280871
+      }
+    },
+    {
+      "op": "climb",
+      "hero": "knight",
+      "round": 1,
+      "x": 2110,
+      "y": 2355.5,
+      "support": "outer-yard"
+    },
+    {
+      "op": "shoot",
+      "hero": "knight",
+      "round": 1,
+      "target": "foe-1",
+      "skill": "S03",
+      "nativeAim": {
+        "angle": 27.928815383815614,
+        "power": 1
+      }
+    },
+    {
+      "op": "shoot",
+      "hero": "archer",
+      "round": 2,
+      "target": "sodan-binding",
+      "skill": "A02",
+      "nativeAim": {
+        "angle": 50.17429017612343,
+        "power": 0.9568704097559393
+      }
+    },
+    {
+      "op": "shoot",
+      "hero": "mage",
+      "round": 2,
+      "target": "sodan-binding",
+      "skill": "M11",
+      "nativeAim": {
+        "angle": 51.2648781896206,
+        "power": 0.9495353096106115
+      }
+    },
+    {
+      "op": "climb",
+      "hero": "knight",
+      "round": 2,
+      "x": 2110,
+      "y": 2355.5,
+      "support": "outer-yard"
+    },
+    {
+      "op": "climb",
+      "hero": "knight",
+      "round": 2,
+      "x": 2280,
+      "y": 2177.4615384615386,
+      "support": "altar-step-1"
+    },
+    {
+      "op": "shoot",
+      "hero": "knight",
+      "round": 2,
+      "target": "sodan-binding",
+      "skill": "S09",
+      "nativeAim": {
+        "angle": 61.80367050038624,
+        "power": 0.09212473196992199
+      }
+    },
+    {
+      "op": "shoot",
+      "hero": "archer",
+      "round": 3,
+      "target": "sodan-binding",
+      "skill": "A14",
+      "nativeAim": {
+        "angle": 46.99302918047171,
+        "power": 0.9686318024006532
+      }
+    },
+    {
+      "op": "shoot",
+      "hero": "mage",
+      "round": 3,
+      "target": "sodan-binding",
+      "skill": "M11",
+      "nativeAim": {
+        "angle": 53.66685669717676,
+        "power": 0.9468852006469678
+      }
+    },
+    {
+      "op": "shoot",
+      "hero": "knight",
+      "round": 3,
+      "target": "sodan-binding",
+      "skill": "S09",
+      "nativeAim": {
+        "angle": 63.90979617379602,
+        "power": 0.09201804300921711
+      }
+    },
+    {
+      "op": "shoot",
+      "hero": "archer",
+      "round": 4,
+      "target": "sodan-binding",
+      "skill": "A02",
+      "nativeAim": {
+        "angle": 48.985948751391476,
+        "power": 0.989491315542501
+      }
+    },
+    {
+      "op": "shoot",
+      "hero": "mage",
+      "round": 4,
+      "target": "sodan-binding",
+      "skill": "M11",
+      "nativeAim": {
+        "angle": 50.23434973739509,
+        "power": 0.9716463083694106
+      }
+    },
+    {
+      "op": "shoot",
+      "hero": "knight",
+      "round": 4,
+      "target": "sodan-binding",
+      "skill": "S09",
+      "nativeAim": {
+        "angle": 64.29965518499142,
+        "power": 0.09199823322824499
+      }
+    },
+    {
+      "op": "shoot",
+      "hero": "archer",
+      "round": 5,
+      "target": "sodan-binding",
+      "skill": "A02",
+      "nativeAim": {
+        "angle": 55.822121220070436,
+        "power": 0.9780626329519355
+      }
+    },
+    {
+      "op": "climb",
+      "hero": "mage",
+      "round": 5,
+      "x": 1250,
+      "y": 2620,
+      "support": "west-step"
+    },
+    {
+      "op": "climb",
+      "hero": "mage",
+      "round": 5,
+      "x": 1300,
+      "y": 2435.6521739130435,
+      "support": "gallery-link-west"
+    },
+    {
+      "op": "climb",
+      "hero": "mage",
+      "round": 5,
+      "x": 1300,
+      "y": 2265,
+      "support": "west-gallery"
+    },
+    {
+      "op": "climb",
+      "hero": "mage",
+      "round": 5,
+      "x": 1660,
+      "y": 2225.5555555555557,
+      "support": "west-gallery"
+    },
+    {
+      "op": "shoot",
+      "hero": "mage",
+      "round": 5,
+      "target": "foe-6-cluster",
+      "skill": "M11",
+      "nativeAim": {
+        "angle": -81.0701298935212,
+        "power": 0.15252739985615338
+      }
+    },
+    {
+      "op": "shoot",
+      "hero": "knight",
+      "round": 5,
+      "target": null,
+      "skill": "S08",
+      "nativeAim": {
+        "angle": null,
+        "power": 0.3
+      }
+    },
+    {
+      "op": "walk",
+      "hero": "archer",
+      "round": 6,
+      "x": 2200
+    },
+    {
+      "op": "shoot",
+      "hero": "archer",
+      "round": 6,
+      "target": "event-45",
+      "skill": "A02",
+      "nativeAim": {
+        "angle": 60.523359852646465,
+        "power": 0.7217323503594095
+      }
+    },
+    {
+      "op": "walk",
+      "hero": "mage",
+      "round": 6,
+      "x": 2340
+    },
+    {
+      "op": "defend",
+      "hero": "mage",
+      "round": 6
+    },
+    {
+      "op": "shoot",
+      "hero": "knight",
+      "round": 6,
+      "target": null,
+      "skill": "S08",
+      "nativeAim": {
+        "angle": null,
+        "power": 0.3
+      }
+    },
+    {
+      "op": "walk",
+      "hero": "archer",
+      "round": 7,
+      "x": 2200
+    },
+    {
+      "op": "shoot",
+      "hero": "archer",
+      "round": 7,
+      "target": "event-52",
+      "skill": "A02",
+      "nativeAim": {
+        "angle": 51.612840343912865,
+        "power": 0.5039720235259272
+      }
+    },
+    {
+      "op": "walk",
+      "hero": "mage",
+      "round": 7,
+      "x": 2340
+    },
+    {
+      "op": "defend",
+      "hero": "mage",
+      "round": 7
+    },
+    {
+      "op": "shoot",
+      "hero": "knight",
+      "round": 7,
+      "target": null,
+      "skill": "S08",
+      "nativeAim": {
+        "angle": null,
+        "power": 0.3
+      }
+    },
+    {
+      "op": "walk",
+      "hero": "archer",
+      "round": 8,
+      "x": 2200
+    },
+    {
+      "op": "shoot",
+      "hero": "archer",
+      "round": 8,
+      "target": "event-52",
+      "skill": "A01",
+      "nativeAim": {
+        "angle": 62.200104602898016,
+        "power": 0.5926120395876394
+      }
+    },
+    {
+      "op": "walk",
+      "hero": "mage",
+      "round": 8,
+      "x": 2340
+    },
+    {
+      "op": "defend",
+      "hero": "mage",
+      "round": 8
+    },
+    {
+      "op": "shoot",
+      "hero": "knight",
+      "round": 8,
+      "target": null,
+      "skill": "S08",
+      "nativeAim": {
+        "angle": null,
+        "power": 0.3
+      }
+    },
+    {
+      "op": "walk",
+      "hero": "archer",
+      "round": 9,
+      "x": 4860
+    },
+    {
+      "op": "shoot",
+      "hero": "archer",
+      "round": 9,
+      "target": "event-52",
+      "skill": "A02",
+      "nativeAim": {
+        "angle": 103.74230100904765,
+        "power": 0.6876963729751696
+      }
+    },
+    {
+      "op": "walk",
+      "hero": "mage",
+      "round": 9,
+      "x": 2340
+    },
+    {
+      "op": "defend",
+      "hero": "mage",
+      "round": 9
+    },
+    {
+      "op": "shoot",
+      "hero": "knight",
+      "round": 9,
+      "target": null,
+      "skill": "S08",
+      "nativeAim": {
+        "angle": null,
+        "power": 0.3
+      }
+    },
+    {
+      "op": "walk",
+      "hero": "archer",
+      "round": 10,
+      "x": 4860
+    },
+    {
+      "op": "shoot",
+      "hero": "archer",
+      "round": 10,
+      "target": "event-39",
+      "skill": "A02",
+      "nativeAim": {
+        "angle": 141.92083145637514,
+        "power": 0.942858782115895
+      }
+    },
+    {
+      "op": "walk",
+      "hero": "mage",
+      "round": 10,
+      "x": 2340
+    },
+    {
+      "op": "shoot",
+      "hero": "mage",
+      "round": 10,
+      "target": "event-39",
+      "skill": "M11",
+      "nativeAim": {
+        "angle": -0.6021569755766808,
+        "power": 0.7061797342017424
+      }
+    },
+    {
+      "op": "walk",
+      "hero": "knight",
+      "round": 10,
+      "x": 2580
+    },
+    {
+      "op": "shoot",
+      "hero": "knight",
+      "round": 10,
+      "target": "foe-7",
+      "skill": "S03",
+      "nativeAim": {
+        "angle": -21.326828868103053,
+        "power": 1
+      }
+    },
+    {
+      "op": "walk",
+      "hero": "archer",
+      "round": 11,
+      "x": 4860
+    },
+    {
+      "op": "shoot",
+      "hero": "archer",
+      "round": 11,
+      "target": "event-39",
+      "skill": "A14",
+      "nativeAim": {
+        "angle": 131.62595937445457,
+        "power": 0.7509928101879778
+      }
+    }
+  ]
+}
