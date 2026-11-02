@@ -1,0 +1,28 @@
+{
+  "scope": "Exact unmodified legal-input natural-run export; no HP/pose/turn/proof normalization",
+  "baseline": "292c1122fcd75256c366ec15e815fb4adcfbd7b2",
+  "trial": "14-survival-101-cal2",
+  "files": {
+    "initial.json": {
+      "path": "tests/fixtures/act2-gameplay/stage14-natural-settle-lock-initial.json.gz",
+      "rawSha256": "c5395a84bf1068961b16ff7fd5bd93ccaf943e17d1373057b803228c55cb8a6e",
+      "gzSha256": "4a77edbc991a955e30be299c1b7484218586722c46cd8930967af6dad716e195",
+      "rawBytes": 1544935,
+      "gzBytes": 121687
+    },
+    "terminal.json": {
+      "path": "tests/fixtures/act2-gameplay/stage14-natural-settle-lock-terminal.json.gz",
+      "rawSha256": "ea4bdc109728465965d0fe01fe22889b036380d500f937c169091c5f63110204",
+      "gzSha256": "2165adef8554c4d77296b5968d6c6bf7d7567efcf1013e3218e60ded081669ee",
+      "rawBytes": 1532813,
+      "gzBytes": 207753
+    },
+    "terminal.json.freeze-probe.json": {
+      "path": "tests/fixtures/act2-gameplay/stage14-natural-settle-lock-terminal.json.freeze-probe.json.gz",
+      "rawSha256": "b3b2990de7d5942342784cd74449736e9f12e9180312f311c398178e1f919c41",
+      "gzSha256": "932e783dd1895f71150bd57b81dc67a289834b4f58f3761fe787edd3ad3aa4f5",
+      "rawBytes": 2251,
+      "gzBytes": 513
+    }
+  }
+}
