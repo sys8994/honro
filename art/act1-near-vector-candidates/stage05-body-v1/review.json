@@ -1,0 +1,50 @@
+{
+  "stage": 5,
+  "scope": "5 static BODY slots only; no wood, water, actors or gameplay changes",
+  "status": "NATIVE_REVIEWED_BROWSER_PENDING",
+  "originalMap": [
+    6400,
+    4300
+  ],
+  "heroHeight": 92,
+  "parts": [
+    {
+      "part": "floor-v4",
+      "rawBytes": 164151,
+      "finalBytes": 109777,
+      "reductionPercent": 33.12437938239792
+    },
+    {
+      "part": "shoulder-v1",
+      "rawBytes": 86496,
+      "finalBytes": 56609,
+      "reductionPercent": 34.55304291527932
+    },
+    {
+      "part": "cave-v1",
+      "rawBytes": 60112,
+      "finalBytes": 39726,
+      "reductionPercent": 33.91336172478041
+    },
+    {
+      "part": "cliff-v1",
+      "rawBytes": 256827,
+      "finalBytes": 167006,
+      "reductionPercent": 34.97334781779175
+    },
+    {
+      "part": "brow-v1",
+      "rawBytes": 19467,
+      "finalBytes": 12643,
+      "reductionPercent": 35.05419427749524
+    }
+  ],
+  "nativeGeometryAndRenderChecks": true,
+  "browserAccepted": false,
+  "gameplayAccepted": false,
+  "lessons": [
+    "Reject giant green ribbons and material scale despite pixel optimization PASS",
+    "Local patch rectangle seams rejected; regenerate integrated source before final trace",
+    "Keep cave negative space and dynamic waterfall outside static BODY"
+  ]
+}

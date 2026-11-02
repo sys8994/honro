@@ -1,3 +1,4 @@
+import {applyStage5ArtCandidate} from '../act1-vector-production/apply-stage5-candidate.mjs';
 /** ACT1 outdoor place composition. Decorative references never become physics.
  * The original mission/terrain/actor data is retained; replacement lists affect
  * only legacy landmark paint. Every new foreground root uses a live map support. */
@@ -133,5 +134,5 @@ export async function applyAct1SceneComposition(project){
   const rear=st.elements.filter(e=>e.id.startsWith(PREFIX)&&e.assetId==='act1-scene:valley-granite');
   st.elements=[...st.elements.filter(e=>!e.id.startsWith(PREFIX)),...rear,...st.elements.filter(e=>e.id.startsWith(PREFIX)&&!rear.includes(e))];
  }
- return project;
+ return applyStage5ArtCandidate(project);
 }
