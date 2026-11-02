@@ -31,9 +31,13 @@ def normalize(stage,label,initial,final,damage,actions,path,cohort=False,seed=No
  row['observed']['acceptedJumpCommands']=sum(a.get('op')=='jump'for a in commands) if commands else None
  row['observed']['acceptedDropCommands']=sum(a.get('op')=='drop'for a in commands) if commands else None
  row['observed']['itemCommands']=[a for a in actions if a.get('op')in ['item','ordinary-heal','ordinary-item']]
- row['normalUiApplicability']='UNVALIDATED_LEGACY_ITEM_API: no current UI binding found' if row['observed']['itemCommands'] else 'No item API calls observed; remaining controls/entry/UI still require verification'
+ row['observed']['playerEngineWaitCommands']=[a for a in actions if a.get('op')=='wait'and isinstance(a.get('before'),dict)and a['before'].get('id')in playerids]
+ row['observed']['normalAppDefendCommands']=sum(a.get('op')=='app-defend'and a.get('accepted')is True for a in actions)
+ row['normalUiApplicability']='UNVALIDATED_LEGACY_ITEM_API: no current UI binding found' if row['observed']['itemCommands'] else 'UNVALIDATED_ENGINE_WAIT_API: differs from normal App.defend HP/focus recovery'if row['observed']['playerEngineWaitCommands']else 'No inaccessible item/wait calls observed; remaining controls/entry/UI still require verification'
+
  row['observed']['finalHeroes']=[{'id':u['id'],'hp':u.get('hp'),'maxHp':u.get('maxHp'),'dead':u.get('dead'),'x':u.get('x'),'y':u.get('y')}for u in allus.values()if u['id']in playerids]
  row['observed']['finalObjectiveState']=final.get('honroState')
+ row['observed']['collectedFiniteSupplyPoints']=[{'id':m['id'],'x':m['x'],'y':m['y'],'label':m.get('label')}for m in final.get('honroMarkers',[])if m.get('type')=='rest'and m.get('collected')]
  route={}
  for uid in playerids:
   ps=[u for sample in poses or []for u in sample.get('units',[])if u['id']==uid]
@@ -100,6 +104,7 @@ for row in rows:
  raw=json.loads((ROOT/row['evidence']).read_text());rawSource=raw.get('source');row['sourceCommit']=resultMeta.get('sourceCommit',meta.get('sourceCommit'))or(rawSource if isinstance(rawSource,str)and len(rawSource)==40 else None)or recordedInitialSource
  row['sourceEvidence']=({'path':str(initialFile.relative_to(ROOT)),'sha256':digest(initialFile)}if recordedInitialSource else None)
  row['sourceProvenanceStatus']='Recorded commit'if row['sourceCommit']else 'MISSING_COMMIT: preserve raw/controller hashes; do not infer exact source'
+ row['controllerFileSha256']=digest(folder/'controller.js')if(folder/'controller.js').exists()else meta.get('adaptedSha256')
  row['runnerSha256']=raw.get('runnerSha256');row['sourceDirtyAtStart']=raw.get('sourceDirtyAtStart',meta.get('sourceDirty','NOT_RECORDED'))
  if raw.get('damageFx') is not None:
   hits=[v for v in raw['damageFx']if v.get('ownerSide')==1 and v.get('targetSide')==0 and v.get('critical')is False and not v.get('ownerElite')and not v.get('ownerMidboss')and not v.get('ownerMajorBoss')and v.get('targetMaxHp')]
@@ -151,6 +156,9 @@ for folder in OUT.glob('ui-*'):
 for st in report['stages']:
 
  ds=PLAN['stages'][st['stage']-1]['design'];rs=[r for r in rows if r['stage']==st['stage']and r['cohort']];wins=[r for r in rs if r['phase']=='won'];rounds=[r['round']for r in wins]
+ hitRows=[r for r in rows if r['stage']==st['stage'] and r.get('sourceDirtyAtStart')==''and r.get('runnerSha256')and not r.get('controllerCalibrationStatus','').startswith('INVALID')and r['observed'].get('noncriticalNormalHitPctHp',{}).get('n')]
+ hitValues=[v for r in hitRows for v in r['observed']['noncriticalNormalHitPctHp']['values']]
+
  st['gates']={
  'registeredPolicyMeanRounds':numeric_gate(statistics.mean(rounds)if rounds else None,ds['rounds'],n=len(rounds),eligible=registeredEligible and st['stage']==1,scope='Finite preregistered successful policy runs; fixed RNG, failures recorded separately; not human pacing estimate'),
  'registeredPolicyClearRate':numeric_gate(len(wins)/len(rs)*100 if rs else None,ds['clearRate'],n=len(rs),eligible=registeredEligible and st['stage']==1,scope='Original finite registered-policy criterion. Fixed RNG/tiny input errors; NOT independent human probability or broad robustness.'),
@@ -161,11 +169,13 @@ for st in report['stages']:
  'stageSpecialMetrics':{'status':'FAIL_MISSING_MEASUREMENT','criteria':PLAN['stages'][st['stage']-1]['specialMetrics']},
  'originalObjectiveAndProgressionIntegrity':{'status':'FAIL_MISSING_MEASUREMENT','scope':'Representative outcome does not cover all authored mandatory events/save paths; Stage8 baseline softlock separately reproduced'},
  'effectiveEnemyActions':numeric_gate(None,ds['actualEnemyActions'],scope='All effective approach/control/pressure and zero phases not fully classified'),
- 'normalEnemyNoncriticalHitPctHp':numeric_gate(None,ds['enemyAttackPctHP'],scope='Original single normal noncritical hit/maxHP criterion; actual emitted damage samples being audited, not per-action sum. Old HP-loss samples may be capped by remaining HP.'),
+ 'normalEnemyNoncriticalHitPctHp':numeric_gate(statistics.mean(hitValues)if hitValues else None,ds['enemyAttackPctHP'],n=len(hitValues),eligible=False,scope='Exact emitted noncritical ordinary-enemy damaging-hit samples; original single-hit metric, not action sum. Mean diagnostic; sample-band scope not promoted to global pressure coverage.'),
  'requiredRouteEngagements':numeric_gate(None,ds['requiredEngagements'],scope='Damage-backed lower bound is not complete engagement classification'),
  'routeElevationRatio':numeric_gate(None,ds['verticalTravelRatio'],scope='Required support/landing graph not fully measured'),
  'normalUIObjective':{'status':'PASS' if st['stage']in uiReceipts else 'FAIL_MISSING_MEASUREMENT','evidence':uiReceipts.get(st['stage']),'scope':'Representative normal UI objective only; not whole art/fun approval'},
  'readabilityApproval':{'status':'FAIL_MISSING_MEASUREMENT','scope':'Partial representative screenshot inspection is not complete approval'}}
+ st['gates']['normalEnemyNoncriticalHitPctHp']['sampleRange']=[min(hitValues),max(hitValues)]if hitValues else None
+ st['gates']['normalEnemyNoncriticalHitPctHp']['evidence']=[r['evidence']for r in hitRows]
  st['acceptance']=overall(list(st['gates'].values()))
 (OUT/'measurements.json').write_text(json.dumps(report,ensure_ascii=False,indent=2))
 md=['# Act1 gameplay QA — incomplete / fail closed','',report['statement'],'','## Preregistered Stage1 cohort','', '| Policy | n | Clear | Mean / median / range R | Uncertainty |','|---|---:|---:|---|---|']
