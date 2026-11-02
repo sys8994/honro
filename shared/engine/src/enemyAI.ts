@@ -400,8 +400,9 @@ export function* quickShotSteps(e:Engine,u:Unit,t:Unit,skills:Skill[]):Generator
  }
  return null;
 }
-/** 0: single fixed target (explorer); 1: weighs other targets; 2: also kill/focus priorities. */
-export function tacticsLevel(e:Engine){const d=e.b.difficulty;return d==='explorer'?0:d==='story'?1:2;}
+/** 0: single fixed target (explorer); 1: weighs other targets (story, normal); 2: also kill/focus
+ * priorities (veteran, nightmare). Normal stays at 1: focus fire overturned the authored Stage31 balance. */
+export function tacticsLevel(e:Engine){const d=e.b.difficulty;return d==='explorer'?0:d==='veteran'||d==='nightmare'?2:1;}
 /** Expected worth of a viable shot: damage, finishing a hero, joining this round's focus target. */
 export function shotWorth(e:Engine,u:Unit,target:Unit,value:{enemyDamage:number;net:number}){
  let worth=value.net;
