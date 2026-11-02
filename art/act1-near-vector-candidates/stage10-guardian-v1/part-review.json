@@ -1,8 +1,28 @@
 {
   "stage": 10,
-  "status": "TREE_AND_BOUGHS_ACCEPTED_FLOOR_VISUAL_REWORK",
-  "tree": "Both protected knot ROIs exact RGBA at1x/2x. Maxpart59917 below60000; no tolerance.",
-  "boughs": "213contours retained; silhouette1px at1x/2x. Canonical oneWay top faces get4-unit art inset.",
-  "floor": "v2 numeric tests passed but native visual review rejected rounded stone/cow-print pattern and noisy midtone band. Recreate from approved Stage2 angular granite style, preserve Stage10 geometry.",
+  "status": "NATIVE_COMPOSITION_ACCEPTED_BROWSER_PENDING",
+  "scope": "Terrain material and guardian tree art only; original gameplay geometry, story, enemy placement and camera retained. Not combat/fun approval.",
+  "rawSvgBytes": 878735,
+  "finalSvgBytes": 614720,
+  "reductionPercent": 30.044895215287983,
+  "perPart30PercentClaim": false,
+  "nativeViews": [
+    "entry",
+    "hill",
+    "boughs",
+    "crown",
+    "overview",
+    "mobile",
+    "edge-left",
+    "edge-right"
+  ],
+  "tree": "Protected knots and original cloth group preserved; dynamic offering ropes unchanged.",
+  "ground": "Main v4 local gameplay material above extension-v4; shared six colors, canonical terrain clip and 4-unit contact inset. Source quantization tone islands remain on a few rock faces but do not obscure contacts.",
+  "rejected": [
+    "floor-v2 rounded/cow-print pattern despite numerical pass",
+    "floor-v3 wrong material scale from full dummy-domain mapping",
+    "unclipped v4/v3 rectangular source joins"
+  ],
+  "sourceGuard": "Captured before narrative author pipeline; runtime-author-added sodan-binding separately checked in actual authored source/quest records.",
   "releaseApproved": false
 }

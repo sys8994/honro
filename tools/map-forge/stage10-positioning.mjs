@@ -1,3 +1,4 @@
+import {applyStage10ArtCandidate} from '../act1-vector-production/apply-stage10-candidate.mjs';
 /** Accessible side galleries for the existing guardian-tree confrontation.
  * Story, original actors, branch climb, binding and finale anchors are preserved. */
 export function applyStage10Positioning(project){
@@ -14,5 +15,5 @@ export function applyStage10Positioning(project){
  const sites={'foe-0-cluster':[1180,'west-step'],'foe-3-cluster':[1862,'outer-yard'],'foe-6-cluster':[1690,'west-gallery'],'foe-1-cluster':[2075,'altar-step-3'],'foe-4-cluster':[2680,'altar-step-2'],'foe-7-cluster':[3290,'outer-yard'],'foe-2-cluster':[3500,'east-step'],'foe-5-cluster':[4310,'outer-yard']};
  for(const[id,[x,support]]of Object.entries(sites))s.design.positioning.clusterPositions[id]={x,y:top(support,x)};
  s.design.positioning.roles=['서쪽 계단 전위/회랑 측면 경비','중앙 비탈의 중갑 차단과 가지 끝 혼령 견제','주박 아래 전위와 두 번째 가지 수비','동쪽 복귀길/계단 차단과 바깥 후위'];
- return project;
+ return applyStage10ArtCandidate(project);
 }

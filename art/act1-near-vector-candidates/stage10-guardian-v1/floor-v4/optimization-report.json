@@ -1,0 +1,158 @@
+{
+  "sourceSha256": "e81a20f1d85ae5f063dd0c4d40b6b3407edef861ec95ed000e6c23abdbc468f8",
+  "sourceBytes": 182537,
+  "outputBytes": 152788,
+  "reductionPercent": 16.297517763521917,
+  "epsilonLocalUnits": 0.04,
+  "maxCurveReplacementBoundLocalUnits": 0.039723046905568764,
+  "absoluteCoordinateRoundingBound": 0.007071067811865476,
+  "protectedRule": "Preserve original textual geometry for every contour touching 24px-expanded actual canonical polyline region (segment/box intersection, not broad diagonal bounding boxes), preserving all original moveto states. Lossless lexical minification only on protected contours. Interior bounded geometry independently regenerated from immutable world.svg.",
+  "counts": {
+    "protectedContours": 64,
+    "protectedSegments": 4047,
+    "cubicToLine": 8,
+    "cubicToQuadratic": 27,
+    "keptCubic": 539
+  },
+  "topologyReview": "NOT_CERTIFIED",
+  "visualReview": "Main source/trace/candidate reviewed. Overall floor NOT accepted: external joins failed and are owned by separate extension worker/root. Actual merged-native and browser acceptance remain pending.",
+  "chosen": "final.svg",
+  "qualityPass": true,
+  "nativeImportPass": true,
+  "nativeBytes": 153923,
+  "nativeNodeCount": 15,
+  "comparisonReport": "/workspace/scratch/fff510b4df37/honro-act1-production/stage10/floor-v4/qa/e004-contactline/comparison.json",
+  "errors": {
+    "1": {
+      "rgbMAE255": 0.0003483356558717787,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.0,
+      "changedPixelFraction": 1.021508891213389e-06,
+      "silhouetteMaxOffsetPx": 0.0,
+      "protectedChangedPixelFraction": 0.0,
+      "protectedRgbMAE255": 0.0,
+      "protectedSilhouetteMaxOffsetPx": 0.0,
+      "protectedColorEdgeRawMaxOffsetPx": 0.0,
+      "protectedColorEdgeMaxOffsetPx": 0.0,
+      "protectedRgbQuantizationTolerance255": 0,
+      "protectedQuantizationPixels": 0,
+      "pass": true
+    },
+    "2": {
+      "rgbMAE255": 0.00020153549849055707,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 1.7885759007185698e-06,
+      "changedPixelFraction": 0.0,
+      "silhouetteMaxOffsetPx": 0.0,
+      "protectedChangedPixelFraction": 0.0,
+      "protectedRgbMAE255": 7.187922165030614e-05,
+      "protectedSilhouetteMaxOffsetPx": 0.0,
+      "protectedColorEdgeRawMaxOffsetPx": 0.0,
+      "protectedColorEdgeMaxOffsetPx": 0.0,
+      "protectedRgbQuantizationTolerance255": 0,
+      "protectedQuantizationPixels": 0,
+      "pass": true
+    }
+  },
+  "rawStats": {
+    "sourceBytes": 182537,
+    "paths": 6,
+    "commands": 5064,
+    "segments": 4955,
+    "endpointNodesUpperBound": 5064,
+    "explicitCommandLetters": 1786,
+    "subpaths": 109,
+    "pathChars": 181915,
+    "maxPathChars": 44393
+  },
+  "finalStats": {
+    "sourceBytes": 152788,
+    "paths": 6,
+    "commands": 5072,
+    "segments": 4963,
+    "endpointNodesUpperBound": 5072,
+    "explicitCommandLetters": 1781,
+    "subpaths": 109,
+    "pathChars": 152166,
+    "maxPathChars": 37350
+  },
+  "registration": {
+    "worldRect": [
+      -500,
+      1700,
+      6000,
+      2800
+    ],
+    "bodyTerrainIds": [
+      "outer-yard"
+    ],
+    "bodyBaseColor": "#263630",
+    "anchor": {
+      "x": 0,
+      "y": 0
+    },
+    "collision": [],
+    "originalGameplayX": [
+      0,
+      5000
+    ],
+    "overlapWorldUnits": 500
+  },
+  "palette": [
+    "#263630",
+    "#35454d",
+    "#4c5b65",
+    "#a6a38e",
+    "#354931",
+    "#536537"
+  ],
+  "sourceToRaw": {
+    "method": "Actual Inkscape cumulative binary tracing, final SIX semantic colors, speckles24, remove-white-background. Source\u2192accepted BODY palette mapping applied once before immutable world registration.",
+    "traceReport": "trace6/trace-report.json",
+    "unselectedDiagnostic": "trace7 (initial seven-color diagnostic, superseded by explicit six-color shared palette contract).",
+    "rootSourceGate": "Approved main direction after exact-camera actor-context overlay; no further main generation requested."
+  },
+  "trials": [
+    {
+      "candidate": "e004-stateful-alpha",
+      "qualityPass": false,
+      "candidateBytes": 147027,
+      "report": "/workspace/scratch/fff510b4df37/honro-act1-production/stage10/floor-v4/qa/e004-stateful-alpha/comparison.json"
+    },
+    {
+      "candidate": "e004-contactline",
+      "qualityPass": true,
+      "candidateBytes": 152788,
+      "report": "/workspace/scratch/fff510b4df37/honro-act1-production/stage10/floor-v4/qa/e004-contactline/comparison.json"
+    },
+    {
+      "candidate": "e004-stateful",
+      "qualityPass": false,
+      "candidateBytes": 146189,
+      "report": "/workspace/scratch/fff510b4df37/honro-act1-production/stage10/floor-v4/qa/e004-stateful/comparison.json"
+    },
+    {
+      "candidate": "e004-contours",
+      "qualityPass": true,
+      "candidateBytes": 155378,
+      "report": "/workspace/scratch/fff510b4df37/honro-act1-production/stage10/floor-v4/qa/e004-contours/comparison.json"
+    }
+  ],
+  "optimizationDecision": "Chosen lightest candidate that passed unchanged strict1x/2x protected gates. Stateful candidates19.5\u201319.9% smaller failed1x protected alpha by1px, retained. Individual main reduction16.3%; root must check total-pack30% target rather than relax contact limits.",
+  "hashes": {
+    "source.png": "41c627ab0add433fbf2f18a252828474006ed79f1f2e050de4e7cb43ddae2e37",
+    "trace6/raw.svg": "a7c44d6b512cf254be677880a70717f5cb165978097e661d87949053ea32a49d",
+    "world.svg": "e81a20f1d85ae5f063dd0c4d40b6b3407edef861ec95ed000e6c23abdbc468f8",
+    "final.svg": "a12e7e6ed72983ff859054aeecd0dcc9cda7ab9f91215b391f0326695a18b132",
+    "native.json": "56afe651ea58c89a11053e69cf1dc543b0dfd42372538f8e632b2aa928cb1a8a",
+    "config.json": "972bcdead8eee61cb3e0083402cbbe05329cfafc3d99548238b80619146548f1",
+    "pixel-config.json": "f64a542dee219b32aec8625655ee4b6bf77cbfdf3c359ea2d7f9c0dc08154e72"
+  },
+  "finalOverlayReview": {
+    "paths": [
+      "vector-native-overlay/entry.png",
+      "vector-native-overlay/hill.png"
+    ],
+    "result": "Exact target-rendered optimized SVG over unchanged native actor/camera images reviewed. Thin moss and angular material begin near playable contact; secondary granite planes remain legible. Small traced flecks exist on a few planes. This overlay is not actual final engine integration; outside joins intentionally unresolved."
+  }
+}

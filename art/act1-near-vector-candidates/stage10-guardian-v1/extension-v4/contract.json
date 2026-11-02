@@ -1,0 +1,56 @@
+{
+  "worldRect": [
+    -4000,
+    1300,
+    13000,
+    5500
+  ],
+  "guidePixels": [
+    3120,
+    1320
+  ],
+  "approvedMainRect": [
+    -500,
+    1700,
+    6000,
+    2800
+  ],
+  "approvedMainGuideBox": [
+    840,
+    96,
+    2280,
+    768
+  ],
+  "geometry": "Canonical outer-yard polygon, unchanged",
+  "scope": "Full visible domain reference; generated extension only, immutable approved main remains integration priority",
+  "collisionChanges": false,
+  "cameraChanges": false,
+  "sourcePixels": [
+    1927,
+    816
+  ],
+  "fullCanonicalPolygonPreserved": true,
+  "finalPalette": [
+    "#263630",
+    "#35454d",
+    "#4c5b65",
+    "#a6a38e",
+    "#354931",
+    "#536537"
+  ],
+  "integrationOrder": [
+    "existing canonical outer-yard basal underpaint",
+    "extension-v4 full visible-domain BODY",
+    "approved floor-v4 main BODY exact rect"
+  ],
+  "clip": "Original outer-yard polygon; no collision changes. Main rectangle priority uses identical basal color, no alpha blend.",
+  "mainPriorityWorldRect": [
+    -500,
+    1700,
+    6000,
+    2800
+  ],
+  "semanticProtection": "Outer visible contact world x[-4000,-500] and[5500,9000], 16px ROI at2048 width, all current limits retained; hidden central extension excluded from protected semantics, not global checks.",
+  "approvedDeepBase": "Root accepted quiet six-color deep base; no seventh-color strata.",
+  "status": "Strict 1x/2x optimization QA passed. Native import validates; native render parity measured. Integration/browser/gameplay/deployment remain parent-owned."
+}

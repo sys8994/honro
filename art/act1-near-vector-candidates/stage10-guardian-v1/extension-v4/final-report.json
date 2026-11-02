@@ -1,0 +1,106 @@
+{
+  "nativeParity": {
+    "1": {
+      "rgbaMAE255": 2.56544998556582e-05,
+      "maxDifference": 4,
+      "changedPixelFraction": 6.935172488452656e-05,
+      "sameShape": true
+    },
+    "2": {
+      "rgbaMAE255": 0.0,
+      "maxDifference": 0,
+      "changedPixelFraction": 0.0,
+      "sameShape": true
+    }
+  },
+  "sourceToRaw": {
+    "semanticSolidRgbMAE255": 0.33818540675436143,
+    "note": "Fixed six-palette source versus native cumulative trace after semantic world remapping; excludes exterior and antialias blend-boundary colors. Original imagegen-to-six-palette visual loss is separately visible in source/semantic previews."
+  },
+  "rawSha256": "430f9476ffeeff178b457189bdfc537fdfbc0dfd9d58d46692997ed9c3eebaa5",
+  "finalSha256": "a04ab47c2c34b855c3659cb2fb9e2c538fa411fe1199c555bec44d6677ce8614",
+  "rawBytes": 164644,
+  "finalBytes": 121041,
+  "rawStats": {
+    "sourceBytes": 164644,
+    "paths": 6,
+    "commands": 4755,
+    "segments": 4636,
+    "endpointNodesUpperBound": 4755,
+    "explicitCommandLetters": 1842,
+    "subpaths": 119,
+    "pathChars": 164019,
+    "maxPathChars": 44246
+  },
+  "finalStats": {
+    "sourceBytes": 121041,
+    "paths": 6,
+    "commands": 4755,
+    "segments": 4636,
+    "endpointNodesUpperBound": 4755,
+    "explicitCommandLetters": 1969,
+    "subpaths": 119,
+    "pathChars": 120416,
+    "maxPathChars": 32987
+  },
+  "strictQualityPass": true,
+  "strictErrors": {
+    "1": {
+      "rgbMAE255": 0.003517292905598879,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.0016537285409867764,
+      "changedPixelFraction": 3.1574769053117785e-05,
+      "silhouetteMaxOffsetPx": 1.0,
+      "protectedChangedPixelFraction": 0.0,
+      "protectedRgbMAE255": 0.00017503030539955944,
+      "protectedSilhouetteMaxOffsetPx": 0.0,
+      "protectedColorEdgeRawMaxOffsetPx": 0.0,
+      "protectedColorEdgeMaxOffsetPx": 0.0,
+      "protectedRgbQuantizationTolerance255": 0,
+      "protectedQuantizationPixels": 0,
+      "pass": true
+    },
+    "2": {
+      "rgbMAE255": 0.0026589559856802225,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.001073908875696361,
+      "changedPixelFraction": 1.9300210978072708e-05,
+      "silhouetteMaxOffsetPx": 1.0,
+      "protectedChangedPixelFraction": 0.0,
+      "protectedRgbMAE255": 8.71575903147459e-05,
+      "protectedSilhouetteMaxOffsetPx": 0.0,
+      "protectedColorEdgeRawMaxOffsetPx": 0.0,
+      "protectedColorEdgeMaxOffsetPx": 0.0,
+      "protectedRgbQuantizationTolerance255": 0,
+      "protectedQuantizationPixels": 0,
+      "pass": true
+    }
+  },
+  "optimizationPercent": 26.483200116615247,
+  "perPart30Percent": false,
+  "aggregateQualification": "Parent permitted aggregate Stage10 terrain pack30%. With main147027/tree278610/bough62917:609595 final /878735 raw =30.6281%. Recalculate when integrating actualmain.",
+  "visualReview": {
+    "scope": "Actual HonroVectorArt native JSON rendering over unchanged native screenshot; original camera/actors and canonical terrain clip retained. Extension final plus known passing main contour candidate. Not full engine integration or browser test.",
+    "extension": "native.json",
+    "main": "floor-v4/native-candidate-e004-contours.json",
+    "worldRect": [
+      -4000,
+      1300,
+      13000,
+      5500
+    ],
+    "contactInsetNote": "Existing source overlay diagnostic retains parent 4world-unit playable contact inset, no physics changes.",
+    "reviewed": [
+      "overview",
+      "edge-left",
+      "edge-right",
+      "right-join-200pct"
+    ],
+    "visualFinding": "Native linework crisp, material continues across both main extent joins; shared basal six-color fill removes vertical rectangular color joins. Source-to-six-color trace creates small tonal islands in some granite faces, visible at200%; not introduced by optimization. Quiet deep mass accepted by root; generated low-contrast broad strata intentionally collapse under agreed palette.",
+    "limitations": [
+      "Native overlay is not deployed browser acceptance",
+      "Main final may differ from currently used known passing main contour candidate; parent must rerender combined final",
+      "Perpart26.4832%, aggregate must be recalculated with actual delivered main"
+    ]
+  }
+}

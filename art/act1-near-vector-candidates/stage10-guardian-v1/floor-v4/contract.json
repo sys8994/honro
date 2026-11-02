@@ -1,0 +1,57 @@
+{
+  "hosts": [
+    "outer-yard"
+  ],
+  "worldRect": [
+    -500,
+    1700,
+    6000,
+    2800
+  ],
+  "originalGameplayX": [
+    0,
+    5000
+  ],
+  "overlapWorldUnits": 500,
+  "sourceRole": "Localized gameplay BODY material source, not full-domain extension. Canonical polygon coordinates unchanged; only authoring viewport cropped.",
+  "heroWorldHeight": 92,
+  "guidePixels": [
+    2400,
+    1120
+  ],
+  "targetHeroPixelsAtGuide": 36.8,
+  "surfaceFeatureScaleWorld": {
+    "graniteFaceWidth": [
+      150,
+      350
+    ],
+    "graniteFaceHeight": [
+      100,
+      250
+    ],
+    "mossVerticalDepth": [
+      25,
+      55
+    ]
+  },
+  "integrationStatus": "Main source approved by root after actor-context overlay; main trace/optimization underway. Outer joins rejected and assigned to separate worker.",
+  "collisionChanges": false,
+  "cameraChanges": false,
+  "actorChanges": false,
+  "id": "act1-traced:stage10-floor-v4",
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "semanticLayer": "BODY",
+  "collision": [],
+  "bodyBaseColor": "#263630",
+  "finalPalette": [
+    "#263630",
+    "#35454d",
+    "#4c5b65",
+    "#a6a38e",
+    "#354931",
+    "#536537"
+  ]
+}
