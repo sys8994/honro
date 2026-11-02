@@ -14,6 +14,11 @@
       "entry": "Same declared synthetic fixture as first frozen cohort unless a separate observed earned entry is validated before registration."
     },
     {
+      "stage": 15,
+      "policy": "height",
+      "entry": "Same declared fixture; efficient height route retained even if its measured turns fall below original band. Do not slow it just to pass."
+    },
+    {
       "stage": 16,
       "policy": "objective",
       "entry": "Same declared synthetic fixture; must validate living bell-soul observer route before freezing."
@@ -23,6 +28,7 @@
   "seedRule": "first8hex SHA256(act2-post-calibration-v1|stage|policy|index), index0..19; seed list fixed before these samples are run",
   "gatesBeforeLaunch": [
     "Finish original18cases and preserve all outcomes",
+    "Validate separate actual App.frame + beginCharge/release adapter pilots; frozen prior Engine-action cohort is not rewritten",
     "Validate controller normal input accessibility, required authored observations, emergency ordering and settlement",
     "Freeze complete runner/navigation/profile/runtime/criteria hashes and bounds in a new registration commit",
     "Declare entry ancestry and candidate-versus-baseline source; never mix runtime fixes silently",
@@ -96,6 +102,28 @@
       4000538635,
       2334205521,
       111150651
+    ],
+    "15-height": [
+      2036661316,
+      1884997500,
+      1848350257,
+      1269037594,
+      3456131736,
+      3139479452,
+      4028472074,
+      2080041654,
+      637535526,
+      1731553315,
+      3757395999,
+      2301067255,
+      2492495718,
+      707077051,
+      502589421,
+      1944487737,
+      263997143,
+      995186318,
+      528407904,
+      2300063478
     ]
   }
 }
