@@ -13,7 +13,7 @@ parser=argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--out',default='_local/reports/preview-observation-browser')
 args=parser.parse_args();out=ROOT/args.out;out.mkdir(parents=True,exist_ok=True)
 fixture=json.loads((ROOT/'tests/fixtures/act23-v4-preview-entry.json').read_text())
-report={'passed':False,'scope':__doc__,'fixture':fixture,'sourceSHA':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'rows':[],'pageErrors':[],'httpFailures':[],'exception':None}
+report={'passed':False,'scope':__doc__,'fixture':fixture,'sourceSHA':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'rows':[],'pageErrors':[],'httpFailures':[],'entryReceipts':[],'failureState':None,'exception':None}
 
 SETUP="""({stage,party})=>{
  const p=HonroProfileStore.fresh();p.recruited=[...party];p.party=[...party];
@@ -71,6 +71,11 @@ try:
                     receipt=page.evaluate(SETUP,{'stage':stage,'party':fixture['party']});assert not receipt['hasBattle']
                     page.reload();page.wait_for_function('!!globalThis.HonroApp',timeout=120000)
                     page.locator('[data-action="rest"]').first.click();drain(page)
+                    # Rest transitions intentionally reject trusted clicks for400ms.
+                    # Wait for the real guard to expire; never overwrite it or use
+                    # synthetic events to bypass normal input protection.
+                    page.wait_for_function('performance.now()>=(HonroApp.journeyInputAfter||0)',timeout=5000)
+                    report['entryReceipts'].append(page.evaluate('stage=>({stage,screen:HonroApp.screen,now:performance.now(),inputAfter:HonroApp.journeyInputAfter||0,hasBattle:!!HonroApp.engine?.b})',stage))
                     page.locator(f'[data-action="journey-enter"][data-id="{stage}"]').click()
                     page.wait_for_function('(stage)=>HonroApp.engine?.b.honroStage===stage',arg=stage,timeout=120000)
                     drain(page)
@@ -81,6 +86,10 @@ try:
                     assert not row['debugMode'],row
                     assert all(r['unchanged'] and not r['exception'] for r in row['rows']),row
                 except Exception:
+                    try:
+                        report['failureState']=page.evaluate('()=>({screen:globalThis.HonroApp?.screen,stage:globalThis.HonroApp?.engine?.b?.honroStage,dialogue:!!globalThis.HonroApp?.dialogue,inputAfter:globalThis.HonroApp?.journeyInputAfter,now:performance.now(),pendingEntry:globalThis.HonroCampaignEntry?.isPending(globalThis.HonroApp),lastError:globalThis.HonroApp?.lastError,bodyText:document.body.innerText.slice(0,3000)})')
+                    except Exception as diagnostic_error:
+                        report['failureState']={'diagnosticError':str(diagnostic_error)}
                     page.screenshot(path=str(out/f'{label}-failure.png'),full_page=True)
                     raise
                 finally:ctx.close()
