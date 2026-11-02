@@ -1,0 +1,97 @@
+{
+  "runId": 41494028353,
+  "url": "https://github.com/sys8994/honro/actions/runs/41494028353",
+  "rows": [
+    {
+      "stage": 15,
+      "artifactId": 13166191196,
+      "source": "1156714f950bf3686a743a78ce68015d387681e6",
+      "zipSha256": "275a0fe0195c1173c84af8abd630b71e524613a6f3a421e377afc199bffeb6d2",
+      "verifiedReceiptPassed": true,
+      "normalUiStageClear": false,
+      "scope": "Stage19 complete ordinary UI/App persistence or bounded movement/aim/fire observation only; no whole gameplay/fun approval",
+      "exception": null,
+      "errors": [],
+      "round": 2,
+      "fires": 5,
+      "actualMoveSegments": 8,
+      "evidenceFiles": {
+        "served-sha256.txt": "84839f40868caa45f7cb4b822ce4de5ea44e7e31d8bed2b87d423d3d2487a592",
+        "source.txt": "e7142ad92faf29e752808521d40252b084f10d1b4324c5eafe7d3ebac0867871",
+        "terminal.png": "647b391d4a2c93babb2ba5fef3bcfa75100938f6ad8df66d86136f44bffa2161",
+        "initial-monsters-overview.png": "39273a9b913d5b0cc457563df21a9fb03c587da99443a5059a3f2f7d23c1ba46",
+        "result.json.gz": "7dbdb9bde2aa615df80b10aa6e7dfe6ee58c6a7f8b1e25e36a3a1c15f717c749",
+        "initial-normal.png": "8b2cf4f26f3eefdc922598b9db2ae97fbd385d3842921d421f819fd652e8bc3e",
+        "events.json.gz": "3814daf81de9baa972f482b786521c3240dee59a7c5b9f2af7693ea722fe56b0"
+      }
+    },
+    {
+      "stage": 20,
+      "artifactId": 13165767043,
+      "source": "1156714f950bf3686a743a78ce68015d387681e6",
+      "zipSha256": "b421c1df165193439c1153181d2dad1ca2538c8dc6252f71594a010f7bf7ab92",
+      "verifiedReceiptPassed": true,
+      "normalUiStageClear": false,
+      "scope": "Stage19 complete ordinary UI/App persistence or bounded movement/aim/fire observation only; no whole gameplay/fun approval",
+      "exception": null,
+      "errors": [],
+      "round": 2,
+      "fires": 5,
+      "actualMoveSegments": 8,
+      "evidenceFiles": {
+        "served-sha256.txt": "84839f40868caa45f7cb4b822ce4de5ea44e7e31d8bed2b87d423d3d2487a592",
+        "source.txt": "e7142ad92faf29e752808521d40252b084f10d1b4324c5eafe7d3ebac0867871",
+        "terminal.png": "ee7e3cd87a6e03f192359c5c444f32b987bc5788522af77a7c8b582efa880733",
+        "initial-monsters-overview.png": "111d96fea8a852dbefd18a8b1ac52d3e677f54bc2ec2aea10d8ff71848ce0d10",
+        "result.json.gz": "542e9057230d00c896058ac9bef27f4d3500d792e128c9ef63661c96e7bb92e7",
+        "initial-normal.png": "916cb4cf98ec1065c91088fa116281eac84ab866d02baa90a5afac103419b738",
+        "events.json.gz": "774af41d87828599ac29310473ff9ea5e2d87a7024caaded2014e969fec8ec55"
+      }
+    },
+    {
+      "stage": 11,
+      "artifactId": 13165677154,
+      "source": "1156714f950bf3686a743a78ce68015d387681e6",
+      "zipSha256": "2eaa5700787e988d922995e2af40f06549a4f33a29d27907885535384b5c117b",
+      "verifiedReceiptPassed": true,
+      "normalUiStageClear": false,
+      "scope": "Stage19 complete ordinary UI/App persistence or bounded movement/aim/fire observation only; no whole gameplay/fun approval",
+      "exception": null,
+      "errors": [],
+      "round": 2,
+      "fires": 3,
+      "actualMoveSegments": 5,
+      "evidenceFiles": {
+        "served-sha256.txt": "84839f40868caa45f7cb4b822ce4de5ea44e7e31d8bed2b87d423d3d2487a592",
+        "source.txt": "e7142ad92faf29e752808521d40252b084f10d1b4324c5eafe7d3ebac0867871",
+        "terminal.png": "d5ebbedabd6e43eaced9128e47dc0d1b86062856d24b4305ca2ce5122ad3de55",
+        "initial-monsters-overview.png": "ef6504a9cad20f58c093f465d478e17681f459d7e01deb405c1d7e8c891e7dc4",
+        "result.json.gz": "f2b40f8204e070ecd4bb50686c82383658b1d66d0d4d0c7d223ffaa5f0195ab4",
+        "initial-normal.png": "aae18994f9870202cd43543f7ab4a0ca96250932f8a69e7dd3849974e0f68dcf",
+        "events.json.gz": "145e9bff691c631d81e3cc89ae12578a388d532449fc8557bd75dd5bc38006e5"
+      }
+    },
+    {
+      "stage": 19,
+      "artifactId": 13165033469,
+      "source": "1156714f950bf3686a743a78ce68015d387681e6",
+      "zipSha256": "4eb72941e27d54a0ab75193b195afef95bc0bffe306446207268315f7d7751a3",
+      "verifiedReceiptPassed": false,
+      "normalUiStageClear": false,
+      "scope": "Stage19 complete ordinary UI/App persistence or bounded movement/aim/fire observation only; no whole gameplay/fun approval",
+      "exception": "Traceback (most recent call last):\n  File \"/home/runner/work/honro/honro/tools/act2-qa/browser-ui.py\", line 31, in <module>\n    p.wait_for_function(f'HonroApp.engine?.b?.honroStage==={stage} && HonroApp.canInput()',timeout=1000)\n  File \"/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/sync_api/_generated.py\", line 11599, in wait_for_function\n    self._sync(\n  File \"/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_sync_base.py\", line 115, in _sync\n    return task.result()\n           ^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_page.py\", line 1110, in wait_for_function\n    return await self._main_frame.wait_for_function(**locals_to_params(locals()))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_frame.py\", line 878, in wait_for_function\n    await self._channel.send(\"waitForFunction\", self._timeout, params)\n  File \"/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py\", line 69, in send\n    return await self._connection.wrap_api_call(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py\", line 559, in wrap_api_call\n    raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nplaywright._impl._errors.TimeoutError: Page.wait_for_function: Timeout 1000ms exceeded.\n",
+      "errors": [],
+      "round": null,
+      "fires": 0,
+      "actualMoveSegments": 0,
+      "evidenceFiles": {
+        "served-sha256.txt": "84839f40868caa45f7cb4b822ce4de5ea44e7e31d8bed2b87d423d3d2487a592",
+        "source.txt": "e7142ad92faf29e752808521d40252b084f10d1b4324c5eafe7d3ebac0867871",
+        "result.json.gz": "153b124c4cdf48af70bac876126b5f0af6cd2ed4f86ff36ee8f6d3d4b614a470",
+        "events.json.gz": "d15254cd9d142b950433cb8d1c0efb328352fa04db90c0f4d6eb2a68dead445f"
+      }
+    }
+  ],
+  "finalArtApproval": false,
+  "releaseApproved": false
+}
