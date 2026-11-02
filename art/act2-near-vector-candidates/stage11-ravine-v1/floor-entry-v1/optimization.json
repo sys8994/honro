@@ -1,0 +1,19 @@
+{
+  "sourceSha256": "09dc33ff5ae263ad593107f7966168528bda895a435754ca89f049a056a3cedb",
+  "sourceBytes": 207987,
+  "outputBytes": 146454,
+  "epsilonLocalUnits": 0.04,
+  "maxCurveReplacementBoundLocalUnits": 0.03983512869035645,
+  "absoluteCoordinateRoundingBound": 0.007071067811865475,
+  "protectedConfiguration": "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage11/floor-entry-v1/pixel-config.json",
+  "protectedSegmentPrecision": 1e-06,
+  "protectedAlphaPathsUnchanged": false,
+  "counts": {
+    "cubicToLine": 47,
+    "cubicToQuadratic": 254,
+    "keptCubic": 2703,
+    "protectedPaths": 3
+  },
+  "topologyReview": "NOT_CERTIFIED",
+  "visualReview": "PENDING"
+}
