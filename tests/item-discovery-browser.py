@@ -2,6 +2,7 @@
 This is not a normal build or release-gate pass. Cleared chapters are fixtures.
 """
 import json, os
+from contextlib import nullcontext
 from playwright.sync_api import sync_playwright
 from browser_support import launch, serve_game, ROOT
 PRODUCTION=os.environ.get('HONRO_ITEM_UI_MODE')=='production'
@@ -24,7 +25,7 @@ def shot(page,label,name):
 def pending(page):
     return page.evaluate("Object.values(HonroApp.profile.equipment.rewardLedger).filter(r=>r.state==='pending').length")
 rows=[]
-with serve_game() as base,sync_playwright() as p:
+with (nullcontext(os.environ['HONRO_ITEM_UI_URL']) if os.environ.get('HONRO_ITEM_UI_URL') else serve_game()) as base,sync_playwright() as p:
  browser=launch(p)
  for label,size in [('mobile',{'width':390,'height':844}),('small',{'width':320,'height':568}),('landscape',{'width':844,'height':390}),('desktop',{'width':1280,'height':800})]:
   ctx=browser.new_context(viewport=size,is_mobile=label!='desktop',has_touch=label!='desktop');page=ctx.new_page();errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
