@@ -1,9 +1,17 @@
 {
   "scope": "Preregistered finite-policy input robustness, canonical fixed engine RNG, two aim-jitter streams per policy. Synthetic declared entry budgets. Not human probability, not independent random-engine draws. Unfinished at bound is not death. Successful-round statistics are conditional on success. Original clearRate denotes finite registered policy trial ratio, not human population rate. Policies are reported separately; no iid pooling or inferential binomial CI. Eventual completion bounds retain unfinished uncertainty.",
+  "controllerEligibility": {
+    "nativeInputsOnly": true,
+    "noEngineWaitOrItems": true,
+    "exactVisibleInteractionTarget": "UNVERIFIED_IN_FROZEN_TRACE",
+    "realTimePacing": "NOT_VALIDATED_120HZ_PHYSICS_60HZ_SYNTHETIC_CLOCK",
+    "dropLabel": "walk-off fall, not Alt platform drop",
+    "audit": "../OPERATION_MAPPING_AUDIT.md"
+  },
   "criteriaSource": "git:3872295f:tools/quality-gate/criteria-v3.json.gz",
   "criteriaSha256": "e2183e74492a4cb61338f8a691a51f23e7af2205fb9148ae6f6b2c138311aa54",
   "releaseApproved": false,
-  "pending": 5,
+  "pending": 2,
   "groups": [
     {
       "stage": 11,
@@ -208,6 +216,69 @@
       "stage": 16,
       "policy": "objective",
       "registeredN": 2,
+      "pending": 0,
+      "wins": 1,
+      "deathTerminals": 0,
+      "unfinished": 1,
+      "finiteClearPercent": 50.0,
+      "clearRateRequired": [
+        75,
+        90
+      ],
+      "clearRateGate": "FAIL_INSUFFICIENT_FINITE_RESOLUTION",
+      "processInterrupted": 0,
+      "successfulRounds": [
+        11
+      ],
+      "successfulRoundMean": 11,
+      "successfulRoundMedian": 11,
+      "roundTarget": [
+        11,
+        14
+      ],
+      "roundTargetPassN": 1,
+      "ceilingPassN": 1,
+      "successfulTimingGate": "PASS",
+      "hard20Gate": "FAIL_OBSERVED_OVER_20",
+      "eventualCompletionBounds": [
+        0.5,
+        1.0
+      ]
+    },
+    {
+      "stage": 16,
+      "policy": "survival",
+      "registeredN": 2,
+      "pending": 1,
+      "wins": 1,
+      "deathTerminals": 0,
+      "unfinished": 0,
+      "finiteClearPercent": null,
+      "clearRateRequired": [
+        75,
+        90
+      ],
+      "clearRateGate": "FAIL_INSUFFICIENT_FINITE_RESOLUTION",
+      "processInterrupted": 0,
+      "successfulRounds": [
+        39
+      ],
+      "successfulRoundMean": 39,
+      "successfulRoundMedian": 39,
+      "roundTarget": [
+        11,
+        14
+      ],
+      "roundTargetPassN": 0,
+      "ceilingPassN": 0,
+      "successfulTimingGate": "FAIL_PENDING",
+      "hard20Gate": "FAIL_OBSERVED_OVER_20",
+      "eventualCompletionBounds": null
+    },
+    {
+      "stage": 16,
+      "policy": "height",
+      "registeredN": 2,
       "pending": 1,
       "wins": 1,
       "deathTerminals": 0,
@@ -230,62 +301,6 @@
       ],
       "roundTargetPassN": 1,
       "ceilingPassN": 1,
-      "successfulTimingGate": "FAIL_PENDING",
-      "hard20Gate": "FAIL_PENDING",
-      "eventualCompletionBounds": null
-    },
-    {
-      "stage": 16,
-      "policy": "survival",
-      "registeredN": 2,
-      "pending": 2,
-      "wins": 0,
-      "deathTerminals": 0,
-      "unfinished": 0,
-      "finiteClearPercent": null,
-      "clearRateRequired": [
-        75,
-        90
-      ],
-      "clearRateGate": "FAIL_INSUFFICIENT_FINITE_RESOLUTION",
-      "processInterrupted": 0,
-      "successfulRounds": [],
-      "successfulRoundMean": null,
-      "successfulRoundMedian": null,
-      "roundTarget": [
-        11,
-        14
-      ],
-      "roundTargetPassN": 0,
-      "ceilingPassN": 0,
-      "successfulTimingGate": "FAIL_PENDING",
-      "hard20Gate": "FAIL_PENDING",
-      "eventualCompletionBounds": null
-    },
-    {
-      "stage": 16,
-      "policy": "height",
-      "registeredN": 2,
-      "pending": 2,
-      "wins": 0,
-      "deathTerminals": 0,
-      "unfinished": 0,
-      "finiteClearPercent": null,
-      "clearRateRequired": [
-        75,
-        90
-      ],
-      "clearRateGate": "FAIL_INSUFFICIENT_FINITE_RESOLUTION",
-      "processInterrupted": 0,
-      "successfulRounds": [],
-      "successfulRoundMean": null,
-      "successfulRoundMedian": null,
-      "roundTarget": [
-        11,
-        14
-      ],
-      "roundTargetPassN": 0,
-      "ceilingPassN": 0,
       "successfulTimingGate": "FAIL_PENDING",
       "hard20Gate": "FAIL_PENDING",
       "eventualCompletionBounds": null
@@ -1916,15 +1931,347 @@
       "stage": 16,
       "policy": "objective",
       "inputSeed": 1306340843,
-      "status": "pending",
-      "evidence": "_local/reports/act2-gameplay-20261103/input-cohort/16-objective-1306340843/result.json"
+      "status": "unfinished",
+      "evidence": "_local/reports/act2-gameplay-20261103/input-cohort/16-objective-1306340843/result.json",
+      "round": 46,
+      "kills": 9,
+      "fallen": [
+        "p-archer",
+        "p-mage"
+      ],
+      "damageTaken": 3604.2,
+      "damageDealt": 18485,
+      "skills": {
+        "A02": 11,
+        "M11": 8,
+        "O02": 35,
+        "S03": 5,
+        "O08": 5,
+        "A01": 4,
+        "O01": 3
+      },
+      "goals": {
+        "16.elder": true,
+        "16.disciple": true,
+        "16.safe": true,
+        "16.testimony": true,
+        "16.work-exit": true
+      },
+      "engineRngAtEntry": {
+        "seed": 19388,
+        "rng": 19388,
+        "engineStageId": 1,
+        "chapterId": 16,
+        "canonicalSeed": 19388,
+        "inheritedContinuation": false
+      },
+      "sourceCommit": "f751298bc259b36c84c36e850d4d17761afe14a2",
+      "runnerSha256": "0cbf4d2b520a571c88938694ea28c4a7371492435470a7d973a696264f7acc4d",
+      "resultSha256": "0b1387663476e12a8d6800ba745ed3fb2e9667387926a7532fc92e224dd949fd",
+      "externalWrites": [],
+      "engineRecoveries": [],
+      "legacyItemApi": "disabled; no Engine.item calls",
+      "stopReason": "diagnostic round bound; unfinished, not game loss",
+      "sourceHashes": {
+        "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+        "stageSha256": "8ca631cc998c7cb825de788a9e5556a9c6f8d713d0fb1883675fc6bd863cc681",
+        "geometrySha256": "f69004f0047c531874690ebff8c1042a9dc2d28e80618557e972c6e47d5d9986",
+        "entryProfileSha256": "64471e1b3a0d639dca6c044ffa9fcba50ca6f0ac69b814b9d6dd82b0df1e62b2"
+      },
+      "initialEncounter": {
+        "hostilesExcludingObjectives": 49,
+        "engineFlagRanks": {
+          "ordinary": 36,
+          "ordinaryElite": 13
+        },
+        "classes": {
+          "archer": 15,
+          "occultist": 26,
+          "mage": 8
+        },
+        "caveat": "Flags/classes are not validated distinct patterns or simultaneous combat."
+      },
+      "routeObservations": {
+        "rawInputOperations": {
+          "move": 34,
+          "fire": 71,
+          "defend": 40,
+          "jump": 8,
+          "land": 8,
+          "recovery-jump": 4,
+          "nav-replan": 4,
+          "E": 2
+        },
+        "matchedLandings": 8,
+        "visitedSupportIds": [
+          "act2-floor",
+          "tm-cloister-stair",
+          "tm-east-stone-bridge",
+          "tm-east-stone-stair",
+          "tm-great-hall-plinth",
+          "tm-processional-bridge",
+          "tm-processional-stair",
+          "tm-processional-upper",
+          "tm-shelter-veranda"
+        ],
+        "interactions": [
+          {
+            "round": 2,
+            "frame": 9191,
+            "goal": "16.disciple",
+            "op": "E",
+            "hero": "occultist",
+            "target": "16.elder"
+          },
+          {
+            "round": 3,
+            "frame": 10999,
+            "goal": "16.safe",
+            "op": "E",
+            "hero": "occultist",
+            "target": "16.disciple"
+          }
+        ],
+        "caveat": "Raw inputs/supports do not establish meaningful tactical elevation or mandatory route minima."
+      },
+      "spawnEvents": [
+        {
+          "round": 3,
+          "frame": 11076,
+          "id": "event-16",
+          "side": 1,
+          "cls": "archer",
+          "source": "v4.16.temple-record-answer",
+          "x": 8330,
+          "y": 4633.859649122807
+        },
+        {
+          "round": 3,
+          "frame": 11076,
+          "id": "event-17",
+          "side": 1,
+          "cls": "occultist",
+          "source": "v4.16.temple-record-answer",
+          "x": 8450,
+          "y": 4686.491228070176
+        },
+        {
+          "round": 3,
+          "frame": 11076,
+          "id": "event-18",
+          "side": 1,
+          "cls": "occultist",
+          "source": "v4.16.temple-record-answer",
+          "x": 8380,
+          "y": 4425.789473684211
+        },
+        {
+          "round": 3,
+          "frame": 11461,
+          "id": "event-20",
+          "side": 1,
+          "cls": "archer",
+          "source": "v4.16.temple-cloister-answer",
+          "x": 3370,
+          "y": 4688.333333333333
+        },
+        {
+          "round": 3,
+          "frame": 11461,
+          "id": "event-21",
+          "side": 1,
+          "cls": "occultist",
+          "source": "v4.16.temple-cloister-answer",
+          "x": 3500,
+          "y": 4580
+        },
+        {
+          "round": 3,
+          "frame": 11461,
+          "id": "event-22",
+          "side": 1,
+          "cls": "mage",
+          "source": "v4.16.temple-cloister-answer",
+          "x": 3430,
+          "y": 4408.333333333333
+        }
+      ],
+      "terminalSha256": "694a073f2d198660e27dd6549aa05f1ca04a136206d43f5fd3a0747681471e80",
+      "roundTargetPass": false,
+      "ceilingPass": false
     },
     {
       "stage": 16,
       "policy": "survival",
       "inputSeed": 757356291,
-      "status": "pending",
-      "evidence": "_local/reports/act2-gameplay-20261103/input-cohort/16-survival-757356291/result.json"
+      "status": "won",
+      "evidence": "_local/reports/act2-gameplay-20261103/input-cohort/16-survival-757356291/result.json",
+      "round": 39,
+      "kills": 29,
+      "fallen": [],
+      "damageTaken": 3264.9,
+      "damageDealt": 30139,
+      "skills": {
+        "A02": 16,
+        "M11": 23,
+        "O02": 31,
+        "S03": 12,
+        "A01": 15,
+        "M10": 2,
+        "O08": 2
+      },
+      "goals": {
+        "16.elder": true,
+        "16.disciple": true,
+        "16.safe": true,
+        "16.testimony": true,
+        "16.work-exit": true
+      },
+      "engineRngAtEntry": {
+        "seed": 19388,
+        "rng": 19388,
+        "engineStageId": 1,
+        "chapterId": 16,
+        "canonicalSeed": 19388,
+        "inheritedContinuation": false
+      },
+      "sourceCommit": "a18cf26a6bda49c15e08b33da46f054661c9d3a9",
+      "runnerSha256": "0cbf4d2b520a571c88938694ea28c4a7371492435470a7d973a696264f7acc4d",
+      "resultSha256": "32f88a1cead4d1f9a3ea273ed8aa1b62370157cfc1f7fc983b120850178696a4",
+      "externalWrites": [],
+      "engineRecoveries": [],
+      "legacyItemApi": "disabled; no Engine.item calls",
+      "stopReason": null,
+      "sourceHashes": {
+        "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+        "stageSha256": "8ca631cc998c7cb825de788a9e5556a9c6f8d713d0fb1883675fc6bd863cc681",
+        "geometrySha256": "f69004f0047c531874690ebff8c1042a9dc2d28e80618557e972c6e47d5d9986",
+        "entryProfileSha256": "d91c45a5718878a48b95fcb98798c363b156ffcfe89d86a29573288b90c31aa9"
+      },
+      "initialEncounter": {
+        "hostilesExcludingObjectives": 49,
+        "engineFlagRanks": {
+          "ordinary": 36,
+          "ordinaryElite": 13
+        },
+        "classes": {
+          "archer": 15,
+          "occultist": 26,
+          "mage": 8
+        },
+        "caveat": "Flags/classes are not validated distinct patterns or simultaneous combat."
+      },
+      "routeObservations": {
+        "rawInputOperations": {
+          "fire": 99,
+          "move": 43,
+          "defend": 51,
+          "heal-stake": 2,
+          "jump": 8,
+          "land": 6,
+          "recovery-jump": 5,
+          "nav-replan": 15,
+          "E": 2,
+          "drop": 2
+        },
+        "matchedLandings": 6,
+        "visitedSupportIds": [
+          "act2-floor",
+          "tm-cloister-stair",
+          "tm-east-stone-bridge",
+          "tm-east-stone-stair",
+          "tm-great-hall-plinth",
+          "tm-processional-bridge",
+          "tm-processional-stair",
+          "tm-processional-upper",
+          "tm-shelter-step",
+          "tm-shelter-veranda"
+        ],
+        "interactions": [
+          {
+            "round": 20,
+            "frame": 40940,
+            "goal": "16.disciple",
+            "op": "E",
+            "hero": "occultist",
+            "target": "16.elder"
+          },
+          {
+            "round": 21,
+            "frame": 41249,
+            "goal": "16.safe",
+            "op": "E",
+            "hero": "occultist",
+            "target": "16.disciple"
+          }
+        ],
+        "caveat": "Raw inputs/supports do not establish meaningful tactical elevation or mandatory route minima."
+      },
+      "spawnEvents": [
+        {
+          "round": 21,
+          "frame": 41326,
+          "id": "event-109",
+          "side": 1,
+          "cls": "archer",
+          "source": "v4.16.temple-record-answer",
+          "x": 8330,
+          "y": 4633.859649122807
+        },
+        {
+          "round": 21,
+          "frame": 41326,
+          "id": "event-110",
+          "side": 1,
+          "cls": "occultist",
+          "source": "v4.16.temple-record-answer",
+          "x": 8450,
+          "y": 4686.491228070176
+        },
+        {
+          "round": 21,
+          "frame": 41326,
+          "id": "event-111",
+          "side": 1,
+          "cls": "occultist",
+          "source": "v4.16.temple-record-answer",
+          "x": 8380,
+          "y": 4425.789473684211
+        },
+        {
+          "round": 21,
+          "frame": 41649,
+          "id": "event-112",
+          "side": 1,
+          "cls": "archer",
+          "source": "v4.16.temple-cloister-answer",
+          "x": 3370,
+          "y": 4688.333333333333
+        },
+        {
+          "round": 21,
+          "frame": 41649,
+          "id": "event-113",
+          "side": 1,
+          "cls": "occultist",
+          "source": "v4.16.temple-cloister-answer",
+          "x": 3500,
+          "y": 4580
+        },
+        {
+          "round": 21,
+          "frame": 41649,
+          "id": "event-114",
+          "side": 1,
+          "cls": "mage",
+          "source": "v4.16.temple-cloister-answer",
+          "x": 3430,
+          "y": 4408.333333333333
+        }
+      ],
+      "terminalSha256": "531f86b861392c462f6b59b6da3aa49d500bc4444795c9eb58704c9735e13f41",
+      "roundTargetPass": false,
+      "ceilingPass": false
     },
     {
       "stage": 16,
@@ -1937,8 +2284,170 @@
       "stage": 16,
       "policy": "height",
       "inputSeed": 757356291,
-      "status": "pending",
-      "evidence": "_local/reports/act2-gameplay-20261103/input-cohort/16-height-757356291/result.json"
+      "status": "won",
+      "evidence": "_local/reports/act2-gameplay-20261103/input-cohort/16-height-757356291/result.json",
+      "round": 11,
+      "kills": 8,
+      "fallen": [],
+      "damageTaken": 1876.1,
+      "damageDealt": 12548,
+      "skills": {
+        "M11": 9,
+        "O02": 6,
+        "A11": 7,
+        "S03": 4,
+        "O08": 1,
+        "O01": 1
+      },
+      "goals": {
+        "16.elder": true,
+        "16.disciple": true,
+        "16.safe": true,
+        "16.testimony": true,
+        "16.work-exit": true
+      },
+      "engineRngAtEntry": {
+        "seed": 19388,
+        "rng": 19388,
+        "engineStageId": 1,
+        "chapterId": 16,
+        "canonicalSeed": 19388,
+        "inheritedContinuation": false
+      },
+      "sourceCommit": "1261dd6da286c52ac4ffa1bdebcf8ad572a8a33b",
+      "runnerSha256": "0cbf4d2b520a571c88938694ea28c4a7371492435470a7d973a696264f7acc4d",
+      "resultSha256": "93913cc2a04fa44f7224d8870d0330c451b2c14588de65f6387d102ee3a42a16",
+      "externalWrites": [],
+      "engineRecoveries": [],
+      "legacyItemApi": "disabled; no Engine.item calls",
+      "stopReason": null,
+      "sourceHashes": {
+        "projectSha256": "c65a226aa1d6ae551f18fa9e7bbf0cbc1d330493d6e1d8efb6d1b6d1aaff58db",
+        "stageSha256": "8ca631cc998c7cb825de788a9e5556a9c6f8d713d0fb1883675fc6bd863cc681",
+        "geometrySha256": "f69004f0047c531874690ebff8c1042a9dc2d28e80618557e972c6e47d5d9986",
+        "entryProfileSha256": "d5ca43a2fda3cc389e13f357e4d650a0aad1f533960daadb625306db630a4ccb"
+      },
+      "initialEncounter": {
+        "hostilesExcludingObjectives": 49,
+        "engineFlagRanks": {
+          "ordinary": 36,
+          "ordinaryElite": 13
+        },
+        "classes": {
+          "archer": 15,
+          "occultist": 26,
+          "mage": 8
+        },
+        "caveat": "Flags/classes are not validated distinct patterns or simultaneous combat."
+      },
+      "routeObservations": {
+        "rawInputOperations": {
+          "move": 32,
+          "defend": 11,
+          "fire": 28,
+          "jump": 9,
+          "land": 9,
+          "recovery-jump": 5,
+          "nav-replan": 4,
+          "E": 2
+        },
+        "matchedLandings": 9,
+        "visitedSupportIds": [
+          "act2-floor",
+          "tm-cloister-stair",
+          "tm-east-stone-bridge",
+          "tm-east-stone-stair",
+          "tm-great-hall-plinth",
+          "tm-processional-bridge",
+          "tm-processional-stair",
+          "tm-processional-upper",
+          "tm-shelter-veranda"
+        ],
+        "interactions": [
+          {
+            "round": 2,
+            "frame": 8586,
+            "goal": "16.disciple",
+            "op": "E",
+            "hero": "occultist",
+            "target": "16.elder"
+          },
+          {
+            "round": 3,
+            "frame": 10372,
+            "goal": "16.safe",
+            "op": "E",
+            "hero": "occultist",
+            "target": "16.disciple"
+          }
+        ],
+        "caveat": "Raw inputs/supports do not establish meaningful tactical elevation or mandatory route minima."
+      },
+      "spawnEvents": [
+        {
+          "round": 3,
+          "frame": 10449,
+          "id": "event-14",
+          "side": 1,
+          "cls": "archer",
+          "source": "v4.16.temple-record-answer",
+          "x": 8330,
+          "y": 4633.859649122807
+        },
+        {
+          "round": 3,
+          "frame": 10449,
+          "id": "event-15",
+          "side": 1,
+          "cls": "occultist",
+          "source": "v4.16.temple-record-answer",
+          "x": 8450,
+          "y": 4686.491228070176
+        },
+        {
+          "round": 3,
+          "frame": 10449,
+          "id": "event-16",
+          "side": 1,
+          "cls": "occultist",
+          "source": "v4.16.temple-record-answer",
+          "x": 8380,
+          "y": 4425.789473684211
+        },
+        {
+          "round": 3,
+          "frame": 10835,
+          "id": "event-18",
+          "side": 1,
+          "cls": "archer",
+          "source": "v4.16.temple-cloister-answer",
+          "x": 3370,
+          "y": 4688.333333333333
+        },
+        {
+          "round": 3,
+          "frame": 10835,
+          "id": "event-19",
+          "side": 1,
+          "cls": "occultist",
+          "source": "v4.16.temple-cloister-answer",
+          "x": 3500,
+          "y": 4580
+        },
+        {
+          "round": 3,
+          "frame": 10835,
+          "id": "event-20",
+          "side": 1,
+          "cls": "mage",
+          "source": "v4.16.temple-cloister-answer",
+          "x": 3430,
+          "y": 4408.333333333333
+        }
+      ],
+      "terminalSha256": "63edc320066ef721e531ee67d13f857b0215d7ea21d00149ebf63047b3eacd20",
+      "roundTargetPass": true,
+      "ceilingPass": true
     },
     {
       "stage": 16,
