@@ -1,0 +1,62 @@
+{
+  "sourceSha256": "5ca841b51c8eeb19a7dc2f7b796bf189141ff869850774b6f8617da12ee3511d",
+  "inkscapeRawSha256": "b0e0109a94f42ccdc70b47b3ed0b93ea73137e52c440bf5f297e4dd1fa227bfd",
+  "authoredRawSha256": "1245a172d2f047556f6bf8652585d7fb7c135a930cade27071974cc3673728f9",
+  "removed": [
+    {
+      "layer": 0,
+      "reason": "Omit dark base to expose continuous outer substrate"
+    },
+    {
+      "layer": 1,
+      "bbox": [
+        0.0,
+        352.5616493449815,
+        1381.522221531668,
+        1022.4409083064672
+      ],
+      "reason": "Edge-touching source component omitted to prevent rectangular material boundary"
+    },
+    {
+      "layer": 1,
+      "bbox": [
+        42.5,
+        0.14000358750000003,
+        438.11198,
+        58.0
+      ],
+      "reason": "Edge-touching source component omitted to prevent rectangular material boundary"
+    },
+    {
+      "layer": 2,
+      "bbox": [
+        0.0,
+        354.95945,
+        420.26335000000006,
+        495.0
+      ],
+      "reason": "Edge-touching source component omitted to prevent rectangular material boundary"
+    },
+    {
+      "layer": 2,
+      "bbox": [
+        202.94627192052468,
+        -0.01577151,
+        435.5,
+        57.701896436819204
+      ],
+      "reason": "Edge-touching source component omitted to prevent rectangular material boundary"
+    },
+    {
+      "layer": 3,
+      "bbox": [
+        1.5,
+        357.89160000000004,
+        109.5,
+        398.03994
+      ],
+      "reason": "Edge-touching source component omitted to prevent rectangular material boundary"
+    }
+  ],
+  "noNewArtworkGeometry": true
+}

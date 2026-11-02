@@ -1,0 +1,39 @@
+{
+  "id": "act2-traced:stage17-west-v2",
+  "name": "Stage17 west-v2",
+  "bounds": {
+    "x": -500,
+    "y": 2800,
+    "w": 6000,
+    "h": 4700
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": -500,
+    "y": 7500
+  },
+  "semanticLayer": "BODY",
+  "preserveCompounds": true,
+  "transform": [
+    4.2283298097251585,
+    0,
+    0,
+    4.238052299368801,
+    -500,
+    2800
+  ],
+  "params": {
+    "bodyTerrainIds": [
+      "act2-floor",
+      "cave-roof",
+      "ws-west-work-buttress",
+      "ws-west-machine-plinth",
+      "ws-service-vault-tooth",
+      "ws-west-upper-rock"
+    ],
+    "bodyBaseColor": "#283b46"
+  }
+}
