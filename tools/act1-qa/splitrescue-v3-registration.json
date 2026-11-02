@@ -1,0 +1,14 @@
+{
+  "schema": "honro-act1-splitrescue-v3/v1",
+  "stage": 7,
+  "seed": 2370,
+  "policy": "objective-focused-flow-noitems-appops-splitrescue-v3",
+  "scope": "Separate diagnostic informed by frozen resident-2 losses, not replacement cohort. Mage rescue-first runner; archer/knight move toward threatened floor before attack and prioritize enemies near endangered residents. Any eligible active companion may rescue. Actual App input, detached predictions, no game-stat/objective/terrain edits.",
+  "sourceHashes": {
+    "tools/act1-qa/adapt-positioning.mjs": "216a7d2486e72563852d6cd97749205a88da23377041d5a12c0168d20fcbd231",
+    "tools/act1-qa/calibrate-rescue-v3.mjs": "e33516ebe8d61dc63acde82125c4d93dfb52f86c18b601f538273708dace0898",
+    "tools/act1-qa/legacy-controller.mjs": "be14d503f8c0b31a7f832d44d5457739fccc0689c1e92d00856df3c7a583c121",
+    "tools/act1-qa/player-operations.mjs": "fbc8d0b429e7834a85f106bb5ff1e39170493018ea23d6e97b66888cba5c5e05"
+  },
+  "stopping": "Existing finite220000-iteration/90round cap; preserve losses and invalid controls."
+}
