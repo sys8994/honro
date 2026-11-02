@@ -1,0 +1,72 @@
+{
+  "stage": 4,
+  "status": "NATIVE_VISUAL_CANDIDATE",
+  "assetId": "act1-traced:stage04-body-v2",
+  "bodyHosts": [
+    "gate-basin"
+  ],
+  "excluded": [
+    "wood decks",
+    "burned gallery",
+    "yard stone",
+    "NPCs",
+    "siege actors",
+    "evacuation objective",
+    "backdrop"
+  ],
+  "worldRect": [
+    -4000,
+    0,
+    12600,
+    6000
+  ],
+  "originalMap": [
+    4600,
+    3500
+  ],
+  "rawSha256": "fe2bdf3ed0531bf26c85842bd031ff0d868cdc99ad2c68553387707e9867d189",
+  "finalSha256": "344790fcf98c4b1a94db2ac135c2e5df081efd48c8dcbff6e7380fa3bd43c910",
+  "rawBytes": 121605,
+  "finalBytes": 82027,
+  "nativeViews": [
+    "start",
+    "middle",
+    "overview",
+    "east",
+    "mobile",
+    "edge-left",
+    "edge-right"
+  ],
+  "collisionUnchanged": true,
+  "physicsSha256": "42a07cd2bc7a2ddc2aad7eb3790ea75af26ae4ae16178a04951bb6b948679342",
+  "pixelErrors": {
+    "1": {
+      "rgbMAE255": 0.003373298328369856,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.001028645783662796,
+      "changedPixelFraction": 1.0016025641025641e-05,
+      "silhouetteMaxOffsetPx": 1.0,
+      "pass": true
+    },
+    "2": {
+      "rgbMAE255": 0.002530928933992982,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.0010364087065681815,
+      "changedPixelFraction": 1.2770432692307692e-05,
+      "silhouetteMaxOffsetPx": 1.0,
+      "pass": true
+    }
+  },
+  "pixelLimits": {
+    "rgbMAE255": 2,
+    "silhouettePx": 1.5,
+    "protectedRgbMAE255": 1,
+    "protectedPx": 0.5,
+    "protectedChangedPixelFraction": 0.05
+  },
+  "qualityPass": true,
+  "browserAccepted": false,
+  "productionAccepted": false,
+  "candidateCommit": "e22b20903cb2d4b17ea54bb03c7e59a6af358741",
+  "materialContext": "Gate approach earth/mud/charred courtyard with local stone; not uniform mossy granite."
+}
