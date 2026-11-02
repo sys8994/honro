@@ -1,4 +1,4 @@
-"""Normal UI stage1 route/shot evidence. Read-only runtime planning, no live writes.
+"""Normal UI stage1 route/shot or stage9 objective-first evidence. Read-only runtime planning, no live writes.
 Fresh profile unless an explicitly declared entry JSON is provided. Tool assisted,
 not human clear-rate/fun evidence. Screenshots and failures are always retained.
 """
@@ -48,34 +48,89 @@ try:
    if state()['camera']['scale']>=.6:break
    p.mouse.wheel(0,-120);p.wait_for_timeout(100)
   planner=(ROOT/'tools/act4-ci/normal-shot-plan.js').read_text();goals=[690,930,1500,2000,2300,2700,3100,3430,3760,4100,4650,4900,5210];goal=0
-  assert stage==1,'Other-stage routes require explicit validated route profiles, not guessed adaptation'
-  for action in range(35):
-   if not ready():break
-   initial=state();still=0;jumped_entry=False
-   for pulse in range(180):
-    s=state()
-    if not s['can'] or s['active']!=initial['active'] or s['phase'] in ['won','lost'] or s['moveLeft']<6:break
-    while goal<len(goals)-1 and s['x']>goals[goal]-14:goal+=1
-    if goal==len(goals)-1 and abs(s['x']-goals[goal])<14:break
-    if goal==1 and s['x']<760 and s['grounded'] and not jumped_entry and s['moveLeft']>s['jumpCost']+200:p.keyboard.press('Control');jumped_entry=True;record('entry-jump')
-    if still>=3 and s['grounded'] and s['moveLeft']>s['jumpCost']+100:p.keyboard.press('Control');still=0;record('obstacle-jump')
-    key='ArrowRight' if goals[goal]>s['x'] else 'ArrowLeft';p.keyboard.down(key);p.wait_for_timeout(100);p.keyboard.up(key)
-    after=state();still=still+1 if abs(after['x']-s['x'])<1 else 0
-    if still>12:record('movement-blocked',goal=goals[goal]);break
-   if not ready():break
-   record('moved',goal=goals[goal]);p.screenshot(path=str(out/f'round-{state()["round"]}-route.png'))
-   plan=p.evaluate(planner,False);choice=plan['best'];record('plan',plan=plan)
-   if choice and state()['facing']!=(-1 if choice['angle']>90 else 1):
-    key='ArrowLeft' if choice['angle']>90 else 'ArrowRight';p.keyboard.down(key);p.wait_for_timeout(70);p.keyboard.up(key);p.wait_for_timeout(200);choice=p.evaluate(planner,True)['best']
-   if choice:
-    p.keyboard.press('Digit'+str(choice['idx']+1));p.wait_for_timeout(150);aim=aim_with_joystick(p,choice['angle'],state);record('aim',aim=aim,choice=choice);assert aim['passed'],'Aim precision failed'
-    before=state();safe=p.evaluate('''q=>{const e=HonroApp.engine,u=e.active,t=e.unit(q.target),s=HONRO_CORE.SKILLS[q.id];return [-.1,0,.1].every(d=>{const v=HONRO_CORE.shotViable(e,u,s,t,u.angle+d,1);return v.ok&&v.risk<.5&&v.enemyDamage>0})}''',choice)
-    assert safe,'Actual angle target no longer safe';p.keyboard.down('Space')
-    try:p.wait_for_function('HonroApp.charging && HonroApp.chargePower(performance.now())>=1',timeout=8000,polling=16)
-    finally:p.keyboard.up('Space')
-    p.wait_for_timeout(100);actual=p.evaluate('id=>HonroApp.engine.b.lastShots?.[id]',before['active']);record('fire',choice=choice,actual=actual);assert actual and actual['skill']==choice['id'] and abs(actual['power']-1)<1e-9
-   else:p.keyboard.press('f');record('defend-no-safe-shot')
-   p.wait_for_timeout(300)
+  if stage==1:
+   for action in range(35):
+    if not ready():break
+    initial=state();still=0;jumped_entry=False
+    for pulse in range(180):
+     s=state()
+     if not s['can'] or s['active']!=initial['active'] or s['phase'] in ['won','lost'] or s['moveLeft']<6:break
+     while goal<len(goals)-1 and s['x']>goals[goal]-14:goal+=1
+     if goal==len(goals)-1 and abs(s['x']-goals[goal])<14:break
+     if goal==1 and s['x']<760 and s['grounded'] and not jumped_entry and s['moveLeft']>s['jumpCost']+200:p.keyboard.press('Control');jumped_entry=True;record('entry-jump')
+     if still>=3 and s['grounded'] and s['moveLeft']>s['jumpCost']+100:p.keyboard.press('Control');still=0;record('obstacle-jump')
+     key='ArrowRight' if goals[goal]>s['x'] else 'ArrowLeft';p.keyboard.down(key);p.wait_for_timeout(100);p.keyboard.up(key)
+     after=state();still=still+1 if abs(after['x']-s['x'])<1 else 0
+     if still>12:record('movement-blocked',goal=goals[goal]);break
+    if not ready():break
+    record('moved',goal=goals[goal]);p.screenshot(path=str(out/f'round-{state()["round"]}-route.png'))
+    plan=p.evaluate(planner,False);choice=plan['best'];record('plan',plan=plan)
+    if choice and state()['facing']!=(-1 if choice['angle']>90 else 1):
+     key='ArrowLeft' if choice['angle']>90 else 'ArrowRight';p.keyboard.down(key);p.wait_for_timeout(70);p.keyboard.up(key);p.wait_for_timeout(200);choice=p.evaluate(planner,True)['best']
+    if choice:
+     p.keyboard.press('Digit'+str(choice['idx']+1));p.wait_for_timeout(150);aim=aim_with_joystick(p,choice['angle'],state);record('aim',aim=aim,choice=choice);assert aim['passed'],'Aim precision failed'
+     before=state();safe=p.evaluate('''q=>{const e=HonroApp.engine,u=e.active,t=e.unit(q.target),s=HONRO_CORE.SKILLS[q.id];return [-.1,0,.1].every(d=>{const v=HONRO_CORE.shotViable(e,u,s,t,u.angle+d,1);return v.ok&&v.risk<.5&&v.enemyDamage>0})}''',choice)
+     assert safe,'Actual angle target no longer safe';p.keyboard.down('Space')
+     try:p.wait_for_function('HonroApp.charging && HonroApp.chargePower(performance.now())>=1',timeout=8000,polling=16)
+     finally:p.keyboard.up('Space')
+     p.wait_for_timeout(100);actual=p.evaluate('id=>HonroApp.engine.b.lastShots?.[id]',before['active']);record('fire',choice=choice,actual=actual);assert actual and actual['skill']==choice['id'] and abs(actual['power']-1)<1e-9
+    else:p.keyboard.press('f');record('defend-no-safe-shot')
+    p.wait_for_timeout(300)
+  elif stage==5:
+   commands=json.loads((ROOT/'tools/act1-qa/stage5-ui-commands.json').read_text())['commands']
+   for index,command in enumerate(commands):
+    if command['op'] in ['quit','state','plan']:continue
+    if not ready():break
+    before=state();op=command['op'];record('replay-command',index=index,command=command)
+    if op in ['walk','jump']:
+     if op=='jump':p.keyboard.press('Control');p.wait_for_timeout(50)
+     still=0
+     for pulse in range(220):
+      st=state()
+      if not st['can'] or st['active']!=before['active'] or st['moveLeft']<3:break
+      dx=command['x']-st['x']
+      if abs(dx)<8 and (op=='walk' or st['grounded']):break
+      if abs(dx)>=5:
+       key='ArrowRight' if dx>0 else 'ArrowLeft';p.keyboard.down(key);p.wait_for_timeout(20 if abs(dx)<25 else max(20,int(80*command.get('input',1))));p.keyboard.up(key)
+      p.wait_for_timeout(30)
+      after=state();still=still+1 if abs(after['x']-st['x'])<.5 and after['grounded'] else 0
+      if still>10:break
+     record('replay-moved',index=index,command=command)
+    elif op=='defend':p.keyboard.press('f');record('defend')
+    elif op=='interact':
+     mid=command.get('id','receiver-5');eligible=p.evaluate("id=>HonroInteractions.eligibility(HonroApp,HonroApp.engine.b.honroMarkers.find(m=>m.id===id)).ok",mid);assert eligible,'Normal interaction not reachable';p.keyboard.press('e');record('interact',marker=mid)
+    elif op=='detonate':p.keyboard.press('Space');record('detonate')
+    elif op=='shoot':
+     choice=p.evaluate("""q=>{const e=HonroApp.engine,u=e.active,C=HONRO_CORE,t=e.unit(q.target),s=C.SKILLS[q.skill];if(!t||t.dead||!u.loadout.includes(q.skill)||e.cooldownLeft(u,q.skill)>0)return null;for(const a of e.shotSeeds(u,s,t)){if(!e.canAfford(s,u,a.power))continue;const v=C.shotViable(e,u,s,t,a.angle,a.power),p=e.predict(u,s,a.angle,a.power,undefined,false);if(t.honroObjectiveTarget?p.unit===t.id||p.terrain===t.id:v.ok&&v.risk<.5&&v.enemyDamage>0)return {...a,id:q.skill,target:t.id,idx:u.loadout.indexOf(q.skill)};}return null;}""",command)
+     assert choice,'No safe current runtime shot for declared command'
+     if state()['facing']!=(-1 if choice['angle']>90 else 1):
+      key='ArrowLeft' if choice['angle']>90 else 'ArrowRight';p.keyboard.down(key);p.wait_for_timeout(25);p.keyboard.up(key);p.wait_for_timeout(100)
+     p.keyboard.press('Digit'+str(choice['idx']+1));p.wait_for_timeout(100);aim=aim_with_joystick(p,choice['angle'],state);record('aim',aim=aim,choice=choice);assert aim['passed'],'Aim precision failed'
+     p.keyboard.down('Space')
+     try:p.wait_for_function('(power)=>HonroApp.charging && HonroApp.chargePower(performance.now())>=power',arg=choice['power'],timeout=8000,polling=16)
+     finally:p.keyboard.up('Space')
+     p.wait_for_timeout(100);actual=p.evaluate('id=>HonroApp.engine.b.lastShots?.[id]',before['active']);record('fire',choice=choice,actual=actual);assert actual and actual['skill']==choice['id'],'Normal charge did not fire selected skill'
+    else:raise AssertionError('Unsupported replay input '+op)
+    if op not in ['walk','jump']:p.screenshot(path=str(out/f'command-{index}-{op}.png'))
+    p.wait_for_timeout(150)
+  elif stage==9:
+   for action in range(30):
+    if not ready():break
+    initial=state();marker=p.evaluate("()=>HonroApp.engine.b.honroMarkers.filter(m=>m.action==='receiver'&&!m.collected).sort((a,z)=>a.x-z.x)[0]||null")
+    if not marker:break
+    for pulse in range(220):
+     st=state()
+     if not st['can'] or st['active']!=initial['active']:break
+     eligible=p.evaluate("id=>HonroInteractions.eligibility(HonroApp,HonroApp.engine.b.honroMarkers.find(m=>m.id===id)).ok",marker['id'])
+     if eligible:break
+     if st['moveLeft']<5:break
+     key='ArrowRight' if marker['x']>st['x'] else 'ArrowLeft';p.keyboard.down(key);p.wait_for_timeout(100);p.keyboard.up(key)
+    if not ready():break
+    eligible=p.evaluate("id=>HonroInteractions.eligibility(HonroApp,HonroApp.engine.b.honroMarkers.find(m=>m.id===id)).ok",marker['id'])
+    if eligible:p.keyboard.press('e');record('receiver-interact',marker=marker['id'])
+    else:p.keyboard.press('f');record('defend-after-move',marker=marker['id'])
+    p.screenshot(path=str(out/f'objective-action-{action}.png'));p.wait_for_timeout(300)
+  else:raise AssertionError('Other stages require validated route controller')
   result['final']=state();result['passed']=result['final']['phase']=='won' and not result['errors'];result['roundTargetAssessment']='Recorded separately; UI clear is not whole gameplay/fun approval';p.screenshot(path=str(out/'terminal.png'));result['stored']=json.loads(p.evaluate('localStorage.getItem("honro-first-act-profile-1")'));browser.close()
 except Exception:
  result['exception']=traceback.format_exc()
