@@ -39,6 +39,7 @@ function navigation(){const key=id===12?g.HonroStage12Quarry.memory(b).gate:id==
  // New reviewed-v4 shot rock is not in legacy authored routes. Real contact
  // poses propose navigation inputs; they never move actors or assert reachability.
  for(const t of b.terrain.filter(t=>t.honroV4FiringRock||t.honroWorkAccess)){const anchors=[];for(let x=t.x+8;x<t.x+t.w-8;x+=24){const y=C.topAt(t,x);if(C.validTerrainContactPose(b.terrain,{...e.active,x,y}))anchors.push({x,y,surfaceId:t.id});}if(anchors.length)routes.push({id:'compiled-contact-'+t.id,anchors});}
+ if(id===13){const t=b.terrain.find(t=>t.id==='act2-floor');routes.push({id:'inside-latch-crown-input',anchors:[{x:4430,y:3655,surfaceId:'v4.13.latch-step.2',jumpTo:{x:4550,support:t.id,speed:.65}},{x:4550,y:C.topAt(t,4550),surfaceId:t.id}]});}
  if(id===11){const rock='v4.11.firing-rock',base=b.terrain.find(t=>t.id==='rv-west-shoulder');routes.push({id:'reviewed-rock-step-inputs',anchors:[{x:820,y:6400,surfaceId:rock,jumpTo:{x:940,support:rock,speed:.65}},{x:940,y:6300,surfaceId:rock,jumpTo:{x:1060,support:rock,speed:.65}},{x:1060,y:6200,surfaceId:rock,jumpTo:{x:1180,support:rock,speed:.65}},{x:1180,y:6100,surfaceId:rock,dropTo:{x:1320,support:base.id,stepOffX:1290,speed:.65}},{x:1320,y:C.topAt(base,1320),surfaceId:base.id}]});}
  nav=navigator(g,b,e,{tick,ready,record,stageId:id,routes});}
 async function save(label){app.export();const p=await h.exported();await writeFile(out+'/'+label+'.json',JSON.stringify({provenance,profile:p,b:plain(b),actions,rounds,damage,births,notices,frames,audit:{externalWrites:audit.log.externalWrites,recoveries:audit.log.recoveries}}));}
@@ -71,6 +72,10 @@ for(let turn=0;turn<actionLimit&&!['won','lost'].includes(b.phase);turn++){
  if(id===12&&goal?.id==='12.recurrence'){const loop=g.HonroAct23V4Act2Scenes.memory(b).loop;destination=loop?.phase==='out'?b.honroV4Recurrence.checkpoint:b.honroV4Recurrence.landmark;}
  if(goal?.kind==='route')destination=b.honroMarkers.find(m=>m.id===(policy==='height'?'route-upper-exit':'route-lower-exit'))||destination;
  if(goal?.target&&['v4-extract','v4-rescue'].includes(goal.kind)&&(!spirit||weak))destination=e.unit(goal.target)||destination;
+ if(id===13&&goal?.id==='gate'&&u.x<4518){const step=b.terrain.find(t=>t.id==='v4.13.latch-step.'+(u.y>3990?0:u.y>3845?1:2));if(u.y>3705)destination={id:'gate-work-shelf-'+step.id,x:step.x+step.w/2,y:step.y};else destination={id:'inside-gate',x:4545,y:4090};}
+ if(id===16&&goal?.id==='16.safe'){const t=b.terrain.find(t=>t.id==='tm-shelter-veranda');destination={id:'leave-npc-recovery-lane',x:2500,y:C.topAt(t,2500)};for(const v of e.alive(1))if(dist(v,b.honroV4Recovery.elder)<650)targetIds.add(v.id);}
+ if(id===17&&goal?.id==='17.brace'){const z=b.honroV4Worksite.braceHazard;for(const v of e.alive(1))if(v.x+v.r>z.x&&v.x-v.r<z.x+z.w&&v.y>z.y&&v.y-v.h<z.y+z.h)targetIds.add(v.id);}
+
  if(id===20&&['escort','v4-regroup'].includes(goal?.kind)){const convoy=(b.honroV4Convoy||[]).map(id=>e.unit(id)).filter(v=>v&&!v.dead);if(convoy.length)destination=convoy.sort((a,z)=>a.x-z.x)[0];}
  let foes=e.alive(1).filter(v=>!v.honroObjectiveTarget&&(!extractionSpiritIds.has(v.id)||v.id===spirit?.id)&&(g.HonroAct2.visible(b,v)||v.id===spirit?.id)&&!(weak&&v.id===spirit?.id)).sort((a,z)=>Number(targetIds.has(z.id))-Number(targetIds.has(a.id))||dist(a,u)-dist(z,u));
  const urgent=foes.find(v=>targetIds.has(v.id)),near=foes.filter(v=>dist(v,u)<(policy==='survival'?1500:1100));
