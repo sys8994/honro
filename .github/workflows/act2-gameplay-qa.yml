@@ -2,6 +2,17 @@ name: Act2 normal UI gameplay observation
 on:
   push:
     branches: ['work/act2-gameplay-qa/**']
+    paths:
+      - '.github/workflows/act2-gameplay-qa.yml'
+      - 'tools/act2-qa/browser-ui.py'
+      - 'tools/act2-qa/precise_aim.py'
+      - 'tools/act4-ci/normal-shot-plan.js'
+      - 'tests/fixtures/act2-gameplay/stage11-declared-entry.json'
+      - 'tests/fixtures/act2-gameplay/stage15-declared-entry.json'
+      - 'tests/fixtures/act2-gameplay/stage19-declared-entry.json'
+      - 'tests/fixtures/act2-gameplay/stage20-declared-entry.json'
+      - 'HONRO.html'
+      - 'web/**'
 permissions:
   contents: read
 jobs:
