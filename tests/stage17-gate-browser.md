@@ -65,3 +65,23 @@ transient no-battle mocks. Failure screenshots are attempted independently of
 the observer so a future observer error cannot suppress the actual pixels.
 Actual Continue/cross/autosave/reload remains pending a corrected focused CI run;
 local Chromium execution remains unavailable. No full combat replay is required.
+
+### Authored walking interruption (run 41548793487)
+
+The corrected observer measured a valid initial repair within 689 ms: both gate
+terrains opened and the exact objectives, party, HP and resources were preserved.
+Archer moved from x8879.629 to x9235.504 at y4580, spending ordinary movement,
+then the authored `A2.S17.MID.11` clear-sightline dialogue paused input. Artifact
+`13190536087` preserves the failed assertion and actual `failure.png`; this is
+not yet a crossing/autosave/reload pass. Source `act23-v4-reviewed17.js` uses
+`clearShot(app,q.clearShot)` to start the one-shot `shot` scene; its reviewed row
+says “축에는 안 닿습니다. 앞의 놈부터 쏘겠습니다.”
+
+The controller now releases direction, permits only this observed row, records
+its ID/text and ordinary visible Next click, verifies exact resources/objectives
+while paused, and resumes held direction only after normal grounded input returns.
+Unknown rows/choices and resource changes still fail; no outcome choices are
+selected. A bounded 15-second interruption handler stays within the original
+20-second crossing deadline. A model test checks release → Next → resume order
+and rejects unknown dialogue/resource mutations. Eight helper/JS tests pass;
+actual final crossing/save/reload is still pending the focused corrected run.

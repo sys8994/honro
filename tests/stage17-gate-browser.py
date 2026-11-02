@@ -31,7 +31,7 @@ SNAPSHOT='''()=>{const a=HonroApp,e=a.engine,b=e?.b,p=a.profile;
  actors:b.units.filter(u=>u.side===0&&!u.summoned).map(u=>Object.fromEntries(fields.map(k=>[k,u[k]??null]))),
  gates:[b.terrain,b.honroWorldTerrain].flatMap(ts=>(ts||[]).filter(t=>t.id==='gate-repair').map(t=>({...Object.fromEntries(['id','x','y','w','h','vertices','mat','oneWay'].map(k=>[k,t[k]??null])),broken:!!t.broken})))};};
  const stored=JSON.parse(localStorage.getItem('honro-first-act-profile-1')||'null');
- return {time:performance.now(),screen:a.screen,dialogue:!!a.dialogue,can:!!a.canInput(),grounded:!!(e?.active&&e.grounded(e.active)),
+ return {time:performance.now(),screen:a.screen,dialogue:!!a.dialogue,dialogueRow:a.dialogue?.lines?.[a.dialogue.index]?.[2]?.rowId??null,dialogueText:a.dialogue?.lines?.[a.dialogue.index]?.[1]??null,can:!!a.canInput(),grounded:!!(e?.active&&e.grounded(e.active)),
  locked:!!a.profileStore.locked,warning:!!document.getElementById('outcome-save-warning'),live:project(b,p),stored:stored&&project(stored.honroBattle,stored)};}'''
 
 def check_gate(receipt):
@@ -64,6 +64,28 @@ def preserved(before,after,movement=False):
 def crossed(receipt):
  u=active(receipt);gate=receipt['gates'][0]
  return u['x']-u['r']>gate['x']+gate['w']+2 and gate['y']<u['y']-u['r']<gate['y']+gate['h']
+
+def resume_walk_after_dialogue(page,interrupted,records):
+ # The observed one-shot clear-sightline narration is not a choice or objective.
+ # Release movement before Next; require exact battle preservation while paused.
+ page.keyboard.up('ArrowRight')
+ deadline=time.monotonic()+15
+ while time.monotonic()<deadline:
+  s=page.evaluate(SNAPSHOT)
+  assert not s['locked'] and not s['warning'],'Save blocked during walking dialogue'
+  check_gate(s['live']);preserved(interrupted['live'],s['live'])
+  if not s['dialogue']:
+   if s['can'] and s['grounded']:
+    page.keyboard.down('ArrowRight');return s
+  else:
+   assert s['dialogueRow']=='A2.S17.MID.11','Unexpected walking dialogue requires review, not automatic choices'
+   nxt=page.locator('[data-action="dialogue-next"]:visible')
+   assert nxt.count()==1,'Expected one normal dialogue Next button'
+   if nxt.first.is_enabled():
+    records.append({'row':s['dialogueRow'],'text':s['dialogueText'],'input':'dialogue-next click','time':s['time']})
+    nxt.first.click()
+  page.wait_for_timeout(50)
+ raise AssertionError('Authored walking dialogue did not restore ordinary input within15s')
 
 def run(args):
  from playwright.sync_api import sync_playwright
@@ -114,7 +136,12 @@ def run(args):
     page.keyboard.down('ArrowRight')
     try:
      while time.monotonic()<deadline:
-      s=page.evaluate(SNAPSHOT);r=s['live'];assert s['can'] and r['active']==baseline['active'] and r['round']==34,'Input context changed during bounded crossing'
+      s=page.evaluate(SNAPSHOT)
+      if s['dialogue']:
+       page.screenshot(path=str(out/'crossing-dialogue.png'))
+       preserved(loaded['live'],s['live'],movement=True)
+       s=resume_walk_after_dialogue(page,s,result.setdefault('walkingDialogue',[]))
+      r=s['live'];assert s['can'] and r['active']==baseline['active'] and r['round']==34,'Input context changed during bounded crossing'
       a=active(r);result['samples'].append({'time':s['time'],'x':a['x'],'y':a['y'],'moveLeft':a['moveLeft'],'grounded':s['grounded']})
       assert a['moveLeft']>3,'Crossing exhausted ordinary movement'
       if crossed(r):break
@@ -191,6 +218,22 @@ class HelperTests(unittest.TestCase):
    self.assertEqual(observed['stored'],expected)
    self.assertFalse(observed['locked']);self.assertFalse(observed['warning'])
    self.assertEqual(observed['can'],bool(live_b))
+ def test_walking_dialogue_releases_next_then_resumes_without_mutation(self):
+  from types import SimpleNamespace
+  before={'live':self.sample(),'dialogue':True,'dialogueRow':'A2.S17.MID.11','dialogueText':'authored line','time':1,'locked':False,'warning':False,'can':False,'grounded':True}
+  after={**before,'dialogue':False,'can':True}
+  events=[];states=iter([before,after]);button=SimpleNamespace(is_enabled=lambda:True,click=lambda:events.append('Next'))
+  page=SimpleNamespace(keyboard=SimpleNamespace(up=lambda k:events.append('up'),down=lambda k:events.append('down')),
+   evaluate=lambda expression:next(states),locator=lambda selector:SimpleNamespace(count=lambda:1,first=button),wait_for_timeout=lambda ms:None)
+  records=[];self.assertEqual(resume_walk_after_dialogue(page,before,records),after)
+  self.assertEqual(events,['up','Next','down']);self.assertEqual(records[0]['row'],'A2.S17.MID.11')
+  for change in ['unknown-row','resource-change']:
+   bad=copy.deepcopy(before)
+   if change=='unknown-row':bad['dialogueRow']='choice'
+   else:bad['live']['actors'][0]['hp']-=1
+   states=iter([bad]);events.clear()
+   with self.assertRaises(AssertionError):resume_walk_after_dialogue(page,before,[])
+   self.assertEqual(events,['up'])
  def test_open_requires_both_real_proofs_and_both_terrains(self):
   a=self.sample();check_gate(a)
   for mutate in [lambda s:s['gates'][1].update(broken=False),lambda s:s['proof']['17.lock'].update(pinSeated=False),lambda s:s['proof']['17.mesh']['parts'].clear()]:
