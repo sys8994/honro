@@ -1,0 +1,600 @@
+{
+  "registration": "tests/fixtures/act2-gameplay/input-cohort-registration.json",
+  "scope": "All18 registered bounded cases, unchanged raw evidence. No replacement, population inference or browser equivalence. Runtime/runner/input identities validated by summary tool.",
+  "cases": [
+    {
+      "case": "11-height-1306340843",
+      "files": {
+        "initial.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/11-height-1306340843/initial.json.gz",
+          "rawSha256": "c6513a1dfca818d3aa572af4d4bdee37718691b43206014e7153b2787c3fa829",
+          "gzSha256": "682714ef3b85b7d68b0e04fb2c6133be17d2a7a89b47d0d69c92978745488fdf",
+          "rawBytes": 1036644,
+          "gzBytes": 95556
+        },
+        "terminal.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/11-height-1306340843/terminal.json.gz",
+          "rawSha256": "68dd0f821c6b149811819467726682bc72e123410f320c8593b97f1cc187348f",
+          "gzSha256": "d8a5de258b8e5f708c095e35a7a349e9223d454afb6860b3bea72105ba9d8fb2",
+          "rawBytes": 617626,
+          "gzBytes": 111537
+        },
+        "result.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/11-height-1306340843/result.json.gz",
+          "rawSha256": "b91c4a4e1e4e7466d8e9f9c3dbd99a177e17210041a9242c952f93b45205fefd",
+          "gzSha256": "70ec1730f80543003a34125e20b603c909f6f5954d8d4c0a1a751cbd83b236dd",
+          "rawBytes": 5094,
+          "gzBytes": 1773
+        },
+        "process.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/11-height-1306340843/process.json.gz",
+          "rawSha256": "f664028d07261c98a009cd6f684c39a6c1111f7926f42f920066231220265eec",
+          "gzSha256": "2fc3cd675e1c25dc6ced1f258760b3a16b6b4ae7ea03167e2bf3e96f53d29630",
+          "rawBytes": 205,
+          "gzBytes": 166
+        }
+      }
+    },
+    {
+      "case": "11-height-757356291",
+      "files": {
+        "initial.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/11-height-757356291/initial.json.gz",
+          "rawSha256": "1cbc126847434b4c7b180a1798c5f9f940da4b33df78d1be4ea019f499931c52",
+          "gzSha256": "31defba1c347c7da4d832753a4f54ebc4487467b88a72f97643017fe8aaff0aa",
+          "rawBytes": 1036642,
+          "gzBytes": 95559
+        },
+        "terminal.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/11-height-757356291/terminal.json.gz",
+          "rawSha256": "f8b00643b68527fab2bd27750b0c3df249ccf16ed8c78d5e08981e92927e9e95",
+          "gzSha256": "cfa815e09142cff79cf5abf83b665db8d05afadeebbf0ebf5bbb8ffb7e1c2d16",
+          "rawBytes": 621729,
+          "gzBytes": 112303
+        },
+        "result.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/11-height-757356291/result.json.gz",
+          "rawSha256": "626de93be274f0834f39586016d123c76a00181d2e6d5a090c1d6660916fe6f5",
+          "gzSha256": "05fac32a20e05a57fd080e172c59150fbd56b3ddadaa19c6d312bc01449ccbb6",
+          "rawBytes": 5044,
+          "gzBytes": 1764
+        },
+        "process.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/11-height-757356291/process.json.gz",
+          "rawSha256": "795251d8b8d25893633948b58cf1b996e5dc5db93b6f2d2c9dc908646981744c",
+          "gzSha256": "fc3b202c6a38740e5df9657176df14beac9d47b8522c483c531148307fbcdd5a",
+          "rawBytes": 205,
+          "gzBytes": 166
+        }
+      }
+    },
+    {
+      "case": "11-objective-1306340843",
+      "files": {
+        "initial.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/11-objective-1306340843/initial.json.gz",
+          "rawSha256": "e9857fbb48dce39a43c1eb2cf8a7ab65fb8dabaea67c51f1c57f21e58b4e7ecc",
+          "gzSha256": "74753c40c69ece6cbf93a5aa4b20ee26b7fce2fb90df4ef68a7c9393fcf8484d",
+          "rawBytes": 1036917,
+          "gzBytes": 95582
+        },
+        "terminal.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/11-objective-1306340843/terminal.json.gz",
+          "rawSha256": "f381c52538d1c21d52d4b60001314a221850687d3f9c9631c0ee0cabb3940505",
+          "gzSha256": "32959f709e1e857e42b452fe80ed318777e04bee6bda993d096b10fc60b64be4",
+          "rawBytes": 617379,
+          "gzBytes": 111356
+        },
+        "result.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/11-objective-1306340843/result.json.gz",
+          "rawSha256": "868bee6000b88d65b83d2ca1e42e08752197be8290f80e2fac1ecea373fe0c5a",
+          "gzSha256": "7f4df2dcadc0731390b492c6902e7df587c66bffb5fa2a4f8690e1e03cdf22a5",
+          "rawBytes": 3440,
+          "gzBytes": 1368
+        },
+        "process.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/11-objective-1306340843/process.json.gz",
+          "rawSha256": "b64db2c0e60274e3b1d463de764a72434030c25a45dc4bf2f464981b26b03e61",
+          "gzSha256": "79454584e2dbc31a79483967630bc5eeca01394fd47dd6288a344168b90315a3",
+          "rawBytes": 205,
+          "gzBytes": 166
+        }
+      }
+    },
+    {
+      "case": "11-objective-757356291",
+      "files": {
+        "initial.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/11-objective-757356291/initial.json.gz",
+          "rawSha256": "409bcdbc8853bcbd4f68d290bd32c5937a5b9e09330c75341f5bb2bb20a99ced",
+          "gzSha256": "3623b5423a0f57600541712f39c7bec40695af849a01c88d8e61c427d82b2669",
+          "rawBytes": 1036915,
+          "gzBytes": 95580
+        },
+        "terminal.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/11-objective-757356291/terminal.json.gz",
+          "rawSha256": "875ab3adbae71fafcb84630785d56082f36aad613ca85844c4d655fb636c47f4",
+          "gzSha256": "76ea7c08c499293cf0bc1ee5dc8a0cf586032c4ad00b572164146702975b1d7b",
+          "rawBytes": 633792,
+          "gzBytes": 113728
+        },
+        "result.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/11-objective-757356291/result.json.gz",
+          "rawSha256": "dbb9498e6bcebba79aa4684cf21bc6c771e1b4c52d5c9fe49580a3f7767121b7",
+          "gzSha256": "da37b392f4f3b125ced877eb28b3d616c389a88002b6e81a9b3187bd78724ec4",
+          "rawBytes": 5124,
+          "gzBytes": 1788
+        },
+        "process.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/11-objective-757356291/process.json.gz",
+          "rawSha256": "60171fa2a57542bc6ed46be096bdb038834d76e7995736fb61546fcf1cf0eee0",
+          "gzSha256": "f1d3c6bad7114d789cf2d70f669d8ce0816b631e3e5ee19f1aec67a371f8041d",
+          "rawBytes": 205,
+          "gzBytes": 166
+        }
+      }
+    },
+    {
+      "case": "11-survival-1306340843",
+      "files": {
+        "initial.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/11-survival-1306340843/initial.json.gz",
+          "rawSha256": "a5e148fa0541855fe6d0dcea1d8fa9ce665dfe72a94b8c9884939899f80f836f",
+          "gzSha256": "41890aee6c5150a348a38f2e307da37a3544bf06528a95eb4f6f11bad15a7099",
+          "rawBytes": 1036783,
+          "gzBytes": 95579
+        },
+        "terminal.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/11-survival-1306340843/terminal.json.gz",
+          "rawSha256": "46947a2f8baa5cc518740458cf5cec24b1bcca6fd54a66fa0ad188af35d6def0",
+          "gzSha256": "7f14f15ddab9c4eb13a5f9c3005d89d47e7fb8d018b84fb56ba2834451b7a59a",
+          "rawBytes": 1156849,
+          "gzBytes": 206539
+        },
+        "result.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/11-survival-1306340843/result.json.gz",
+          "rawSha256": "8b1d2efc76fd40df5577aa3d7b302d0bc45a461bad9802e36aa8d1819af0ebb9",
+          "gzSha256": "b0ea3e811366dca859e5b9e5340b03542a5976137dd43e7977b4cede6028a6aa",
+          "rawBytes": 3755,
+          "gzBytes": 1441
+        },
+        "process.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/11-survival-1306340843/process.json.gz",
+          "rawSha256": "a248d241413e00e033e68756243615979972887efeff68f1e0619339045d3e15",
+          "gzSha256": "fcf5025fa313e327735bb8e1134350a3793fcb2043643a16a1605d54c6f4d6b1",
+          "rawBytes": 205,
+          "gzBytes": 166
+        }
+      }
+    },
+    {
+      "case": "11-survival-757356291",
+      "files": {
+        "initial.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/11-survival-757356291/initial.json.gz",
+          "rawSha256": "b18356410177c90f84287dbaffa6a67d5b7944fe29fbb66abdf5a2549023ccd7",
+          "gzSha256": "4167079c7e59d07895ca1a0370f49842a7d9ff1e3be29a38114a9108bf62658d",
+          "rawBytes": 1036781,
+          "gzBytes": 95578
+        },
+        "terminal.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/11-survival-757356291/terminal.json.gz",
+          "rawSha256": "b43906eb8fc17d99dd15ccad6f577990655e561bb90708ea4807c125a894003e",
+          "gzSha256": "08664dab1cc98781048fb0cb1a6f3c09b8268d5db74eda7b053bfc2bcb8a56ee",
+          "rawBytes": 1159311,
+          "gzBytes": 207182
+        },
+        "result.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/11-survival-757356291/result.json.gz",
+          "rawSha256": "5039eb2fd988b1cb5bcffe75ab3271833b965de7713057a0ffb702b6cc3c6e0c",
+          "gzSha256": "7468ab0cd21ee94e817a410f2ab595ded7e067ecda7b8a56f7a4369b7b931c5e",
+          "rawBytes": 3740,
+          "gzBytes": 1435
+        },
+        "process.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/11-survival-757356291/process.json.gz",
+          "rawSha256": "70153c3586456b090cc4569493187668689a75efa8514a169e6e9b022aff7ce6",
+          "gzSha256": "6b393086d6453f9614557bb7e174c3442f6095e06990bcc8bd84adbe04be0100",
+          "rawBytes": 205,
+          "gzBytes": 166
+        }
+      }
+    },
+    {
+      "case": "15-height-1306340843",
+      "files": {
+        "initial.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/15-height-1306340843/initial.json.gz",
+          "rawSha256": "36c11a71e1ca48c550225485d16ed8a2442d901f9373025d504d4f7760477e5f",
+          "gzSha256": "de0a4bf32aa465825c8dca3a4ab37945e91c9fe4c13a34f55d693bb1670e4752",
+          "rawBytes": 589164,
+          "gzBytes": 47070
+        },
+        "terminal.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/15-height-1306340843/terminal.json.gz",
+          "rawSha256": "705e8a286ba5a138378a7508e9a351e2da206d65531e37c2aef015f97aa53d53",
+          "gzSha256": "935f1784a15b006db776f781ad445e7c4b8ca4d71a437e05271e04d92ca9a84b",
+          "rawBytes": 314314,
+          "gzBytes": 54793
+        },
+        "result.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/15-height-1306340843/result.json.gz",
+          "rawSha256": "4f17793aac7111c4f8a5ea9da71e0e1cfa827f18ceec070658d545a72a4dc288",
+          "gzSha256": "4567d4f8f09aa5d7631214ecf44e601468814df61abd91820a9431ad438d6a73",
+          "rawBytes": 5376,
+          "gzBytes": 1938
+        },
+        "process.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/15-height-1306340843/process.json.gz",
+          "rawSha256": "0c35e47d35ed9b480773c4df2e7a3acb8486dfe7e5acc6386da6bf6018533417",
+          "gzSha256": "771941acd0f2fc7760f78e48d3262c2aec57619278d8893b53183aa345b0d7b5",
+          "rawBytes": 205,
+          "gzBytes": 167
+        }
+      }
+    },
+    {
+      "case": "15-height-757356291",
+      "files": {
+        "initial.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/15-height-757356291/initial.json.gz",
+          "rawSha256": "3c63d08339fba49a6dd739adf3086c4ede0aaa2c426bbd59aec6dd33aee003d7",
+          "gzSha256": "e16d7616eefd8ee07eb23f18dfe8453b266f69252e7edef012dab7ddbc176ebe",
+          "rawBytes": 589162,
+          "gzBytes": 47072
+        },
+        "terminal.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/15-height-757356291/terminal.json.gz",
+          "rawSha256": "2e656deb7b071b561ae2d54c62268e5b45797cec45cd45f55e9cdbe483c00b97",
+          "gzSha256": "48b91c16518c681f3815159201e2193c3541f23336cc70d1c7fe9b53511a3d0b",
+          "rawBytes": 315342,
+          "gzBytes": 54844
+        },
+        "result.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/15-height-757356291/result.json.gz",
+          "rawSha256": "51776473552219b97f240d674f6154cab20baf21baf42c740a2e72d7c03acce5",
+          "gzSha256": "bc97d2c920b7ab1a635208b7f81b8966de817320eeb5b3c038b3f3f1d3c0b860",
+          "rawBytes": 5430,
+          "gzBytes": 1950
+        },
+        "process.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/15-height-757356291/process.json.gz",
+          "rawSha256": "2bf2943d532bfb9cb11eab3ee3aa77494e41ff064343c395fd80bf70e596d0d8",
+          "gzSha256": "e6e760eba47e9c0dc03c70c1a459003d9168eea88d5e9181c233bba0c4860a3b",
+          "rawBytes": 205,
+          "gzBytes": 165
+        }
+      }
+    },
+    {
+      "case": "15-objective-1306340843",
+      "files": {
+        "initial.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/15-objective-1306340843/initial.json.gz",
+          "rawSha256": "9ee44e82a21ee14f748429261ae3dcf70f7a43fe508dc0a00c6bb6fb7dd0eede",
+          "gzSha256": "78e3f9ba18ac14451a2707e0c1aee781188ec151938b337fb81e9daa7131d0c5",
+          "rawBytes": 589437,
+          "gzBytes": 47104
+        },
+        "terminal.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/15-objective-1306340843/terminal.json.gz",
+          "rawSha256": "34276e56f8f2da573b71b12ae5c33f39b05d41838357ad5ac9e52119af202b2b",
+          "gzSha256": "4b3bdd47a96b7e1c4fde4dc9de28d839493f49d85184605f46098cecdc9cad94",
+          "rawBytes": 323225,
+          "gzBytes": 56014
+        },
+        "result.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/15-objective-1306340843/result.json.gz",
+          "rawSha256": "27224b62327b274aeba9d53220dd4fe9e41b4147220bc71df773b91e30454c97",
+          "gzSha256": "c6d441a61afd4548d0f8f669c2adcfcfde0ba124445893feac6affe99824b304",
+          "rawBytes": 5419,
+          "gzBytes": 1964
+        },
+        "process.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/15-objective-1306340843/process.json.gz",
+          "rawSha256": "2f227607dcd7a1dd0208399528201e7e218330f12592523ece35e6a750753ad4",
+          "gzSha256": "b55cc7aad91359fb91b770a2d8924141f145ec567f2bbae6970d9f6c64b73971",
+          "rawBytes": 205,
+          "gzBytes": 166
+        }
+      }
+    },
+    {
+      "case": "15-objective-757356291",
+      "files": {
+        "initial.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/15-objective-757356291/initial.json.gz",
+          "rawSha256": "f33c7e3f5be6c6536bf07d04ef0a927906fed7460d852b641b5f2014adea4dca",
+          "gzSha256": "8c3615340358db401c083feaf5ac52e834e14054d2f250c907d52d8b85be8b7d",
+          "rawBytes": 589435,
+          "gzBytes": 47105
+        },
+        "terminal.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/15-objective-757356291/terminal.json.gz",
+          "rawSha256": "17af428114470b1ad35068e9f2f25be11f82d7801a5d68268a3d9302e4ba8dd1",
+          "gzSha256": "b273b5827cd76d1b3df32bfd35404c449f367a8160691510e50b96053761fe4c",
+          "rawBytes": 606482,
+          "gzBytes": 99433
+        },
+        "result.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/15-objective-757356291/result.json.gz",
+          "rawSha256": "cb7f1db579e6c87e2a0557469e3bcd161f78fb651b0026f8adf871ba69129489",
+          "gzSha256": "324bbe23cf1626eb27c75d6758445af5396d57638a365945560fd0b7966e006e",
+          "rawBytes": 3588,
+          "gzBytes": 1421
+        },
+        "process.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/15-objective-757356291/process.json.gz",
+          "rawSha256": "c40d5d47a01bae30f1e17c32e2312910cc88d8be583a7767b4a022879d40ebcb",
+          "gzSha256": "562463caa2d831c8d52fe44f5ce4be5bd559c3117b5ff472049a8463482339a1",
+          "rawBytes": 205,
+          "gzBytes": 167
+        }
+      }
+    },
+    {
+      "case": "15-survival-1306340843",
+      "files": {
+        "initial.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/15-survival-1306340843/initial.json.gz",
+          "rawSha256": "4cdc8b7ff08d9343c673d67db8158c03989ea2ae1173cf15c744569ba6dee1a0",
+          "gzSha256": "66b9ae62c935b1e4321db665dfa843d91b43b0ad9fed30827d82787a7f56ccdd",
+          "rawBytes": 589303,
+          "gzBytes": 47092
+        },
+        "terminal.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/15-survival-1306340843/terminal.json.gz",
+          "rawSha256": "b5e2bbc0bb64ccca63984d289c70b2508e977197de2cb1eb42b3dcbc9887ac7e",
+          "gzSha256": "5faa97e2a1b4d96d5e5b83b935bf8bca25dc21630222211164e326f8ec1a061f",
+          "rawBytes": 397570,
+          "gzBytes": 67414
+        },
+        "result.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/15-survival-1306340843/result.json.gz",
+          "rawSha256": "b5efc689c5a48744efd8a02f3e7f83b97aa53618cf77e73ff17c2f8918151032",
+          "gzSha256": "609fba0c554e4de5245f029b0f950e169176e5fc74a060e964a6b284106b6d19",
+          "rawBytes": 5506,
+          "gzBytes": 1979
+        },
+        "process.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/15-survival-1306340843/process.json.gz",
+          "rawSha256": "8f0e48604dbe1571e12dd35d4cf433fc58d07b914e4cf412cfeac8a03e5e9c5c",
+          "gzSha256": "8662c2dcb49bdbab7d2705cf3d0f624348b7b1093f35465ae0f46b4acb7be6f7",
+          "rawBytes": 205,
+          "gzBytes": 167
+        }
+      }
+    },
+    {
+      "case": "15-survival-757356291",
+      "files": {
+        "initial.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/15-survival-757356291/initial.json.gz",
+          "rawSha256": "dfc0bf812a8e8aa468db59d7b7a2011b378765c94e54ed1f0262fe1181f549df",
+          "gzSha256": "733651cb5b30634df078f8c67c0934b2ad98d4b4074e3a7d5b35325f4854a3ae",
+          "rawBytes": 589301,
+          "gzBytes": 47091
+        },
+        "terminal.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/15-survival-757356291/terminal.json.gz",
+          "rawSha256": "7a8345b7714d83900af7e99b4a3d561e19129b5e316e17b70213c3964de1df44",
+          "gzSha256": "a309e0b1f8456611158a891da0cec374cc131acd58be9278bc5e06a0e38255a6",
+          "rawBytes": 374793,
+          "gzBytes": 63917
+        },
+        "result.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/15-survival-757356291/result.json.gz",
+          "rawSha256": "bf08b0dce1222be1944578cdec2505b679b52463fa0d460420ca20d35a021290",
+          "gzSha256": "444fca5f3b4a4843da2e59ac1317c870e440a1927fa8677cdf03bc5c6bd6f413",
+          "rawBytes": 5477,
+          "gzBytes": 1973
+        },
+        "process.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/15-survival-757356291/process.json.gz",
+          "rawSha256": "e756d84b9a2bbf49680f17a6b5255bb99b04326efd78b67c6eeb2ad8211a5341",
+          "gzSha256": "bb66789f866cbe892695aa9a6159c373c0559d9bc3c5a15ac65a5888aec2afd0",
+          "rawBytes": 205,
+          "gzBytes": 167
+        }
+      }
+    },
+    {
+      "case": "16-height-1306340843",
+      "files": {
+        "initial.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/16-height-1306340843/initial.json.gz",
+          "rawSha256": "6b94db250bf1ad4a05bbac322a87871f204d1543bdbfe7e2a39ce94eebce6c53",
+          "gzSha256": "2022e0d2e98628c79f124fd091c04267196acca82dcdf407de573cb8fe963d58",
+          "rawBytes": 1272223,
+          "gzBytes": 111440
+        },
+        "terminal.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/16-height-1306340843/terminal.json.gz",
+          "rawSha256": "6ee7d6bca7f63f559a3f085d19c8c9faa40d59334e905a068a478fb11a6802d7",
+          "gzSha256": "dff4255616b5c67f50a2024bea4745ef88a2be76475852f2ba5a079dab827ca5",
+          "rawBytes": 824832,
+          "gzBytes": 121007
+        },
+        "result.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/16-height-1306340843/result.json.gz",
+          "rawSha256": "9c4d17bdf56906d9a01288a17f3575780081bde97e5637b651bf2aeaa65444ad",
+          "gzSha256": "7462370996070f2c55561f92f1a4313fbdcee811947e1f00eb1e0d98c03efaf2",
+          "rawBytes": 5688,
+          "gzBytes": 1934
+        },
+        "process.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/16-height-1306340843/process.json.gz",
+          "rawSha256": "4ca5692bbaf4a3d199c83241bb85ffccaec21fef337af11f7e3ee8d68102b0b2",
+          "gzSha256": "7ee283371e9e4a27de18b3d4f8924c0ec5c60a3eea6968ab8bd02b440d9852ea",
+          "rawBytes": 205,
+          "gzBytes": 167
+        }
+      }
+    },
+    {
+      "case": "16-height-757356291",
+      "files": {
+        "initial.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/16-height-757356291/initial.json.gz",
+          "rawSha256": "d8a577886f1c8c75eaae557afac708d94a9fc1a617200b92e27e87cd470a98f0",
+          "gzSha256": "df5f5540fee7f62459cb00ac9a2d0cf5cdc5a755cfe796d6f0d7da50a2bc9ddb",
+          "rawBytes": 1272221,
+          "gzBytes": 111441
+        },
+        "terminal.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/16-height-757356291/terminal.json.gz",
+          "rawSha256": "63edc320066ef721e531ee67d13f857b0215d7ea21d00149ebf63047b3eacd20",
+          "gzSha256": "65e024a6b5c48afa65357f8b2d246f2cef2f7d46a8929cd46ff7e36d30091c24",
+          "rawBytes": 824831,
+          "gzBytes": 121059
+        },
+        "result.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/16-height-757356291/result.json.gz",
+          "rawSha256": "93913cc2a04fa44f7224d8870d0330c451b2c14588de65f6387d102ee3a42a16",
+          "gzSha256": "cc30aa1f131fd3362a0cb74fd270f77acdd6ff411e016547f2655e70c2960a9e",
+          "rawBytes": 5681,
+          "gzBytes": 1932
+        },
+        "process.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/16-height-757356291/process.json.gz",
+          "rawSha256": "97e67213ea717277fd6438ece79b991fc2659502d3e90e99fe2dc873382a3b69",
+          "gzSha256": "42650ee3aa6c4a45d6801cc8c49cdc202b769aa07cc46eb944c03b6e63b78f22",
+          "rawBytes": 205,
+          "gzBytes": 166
+        }
+      }
+    },
+    {
+      "case": "16-objective-1306340843",
+      "files": {
+        "initial.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/16-objective-1306340843/initial.json.gz",
+          "rawSha256": "cf3144cc56887b49cadda6fdd74e77c6228cec6ffb7475408887178c297177ea",
+          "gzSha256": "e0873cfddf517b0285c96e9ca862d478386983a5aca3dcb43a6db68829c3627e",
+          "rawBytes": 1272496,
+          "gzBytes": 111469
+        },
+        "terminal.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/16-objective-1306340843/terminal.json.gz",
+          "rawSha256": "694a073f2d198660e27dd6549aa05f1ca04a136206d43f5fd3a0747681471e80",
+          "gzSha256": "6366aac3311616b733fe7ca03fa3fbce5107729843d26bc7fd887c5025360bfe",
+          "rawBytes": 1589720,
+          "gzBytes": 228631
+        },
+        "result.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/16-objective-1306340843/result.json.gz",
+          "rawSha256": "0b1387663476e12a8d6800ba745ed3fb2e9667387926a7532fc92e224dd949fd",
+          "gzSha256": "5654a6f7ea746d3b124c40873d5b96a176bf0912eaf00bf7bfd01925508bf7d1",
+          "rawBytes": 3686,
+          "gzBytes": 1443
+        },
+        "process.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/16-objective-1306340843/process.json.gz",
+          "rawSha256": "0c9d1e0556ed1ac95fb872e56228d42d457cf65cae17b7747d52c02cf58dc423",
+          "gzSha256": "92fc55b42d844be157dd98c253dc87b4b6a069a924dda29832f39889c8c66b6b",
+          "rawBytes": 205,
+          "gzBytes": 165
+        }
+      }
+    },
+    {
+      "case": "16-objective-757356291",
+      "files": {
+        "initial.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/16-objective-757356291/initial.json.gz",
+          "rawSha256": "ed48ad752b9c30596afc3500bf3d0f678bba4a8c91ece1d1acd09b01e083f1b8",
+          "gzSha256": "699316c3e4b4ae14c2766d5dc69ee3416aa5487c555bb22df33bb154470568c9",
+          "rawBytes": 1272494,
+          "gzBytes": 111467
+        },
+        "terminal.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/16-objective-757356291/terminal.json.gz",
+          "rawSha256": "36491f0149666c1e1435d81aa24e63fdd941860f59c4c4554222783c23f066f4",
+          "gzSha256": "3daff884611f2a1477601a18a28386b076e60eaf05f327d670f478a3af8f4245",
+          "rawBytes": 828165,
+          "gzBytes": 121191
+        },
+        "result.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/16-objective-757356291/result.json.gz",
+          "rawSha256": "96200cb700207061105247ddc2e33cc0786e3680a2939933f7199d19853a7e61",
+          "gzSha256": "8b5cc6719b8416f24424bc4fce5b1b9d2e276b222fba4e71702850d1005f297b",
+          "rawBytes": 5737,
+          "gzBytes": 1959
+        },
+        "process.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/16-objective-757356291/process.json.gz",
+          "rawSha256": "a7cffc96c2b91fe71c87abdc0eca5e9b03834db21be050bf8a118e412f08e363",
+          "gzSha256": "040538f56b95623dae52379d29fcd6a472fcca44cfcd396a2dac5ceb4885fcf1",
+          "rawBytes": 205,
+          "gzBytes": 166
+        }
+      }
+    },
+    {
+      "case": "16-survival-1306340843",
+      "files": {
+        "initial.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/16-survival-1306340843/initial.json.gz",
+          "rawSha256": "ba2daee49ac077f41e04480084062a6f7e4fa1b341230751bcd45a5dcaa35659",
+          "gzSha256": "1b61f7010eafb1e77db8f2c3c6c7677352116358efb773885ec6297b67851dd1",
+          "rawBytes": 1272362,
+          "gzBytes": 111465
+        },
+        "terminal.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/16-survival-1306340843/terminal.json.gz",
+          "rawSha256": "f6fe8f06daa75442c5afdc27206f737d3eb40dc36339461024205524ad9e94d2",
+          "gzSha256": "db3188e94d00782cdaf6732fe373823ea58af3d1d93e983c2bf4e00ec0501614",
+          "rawBytes": 895963,
+          "gzBytes": 131007
+        },
+        "result.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/16-survival-1306340843/result.json.gz",
+          "rawSha256": "6ed7b1ff0fc7dcf6bd01dd512b6267990b6d9ce9ab474f97f54905e4bf63a546",
+          "gzSha256": "86d5a84d8535452c0e2e22ab0853c08b1f480934374b6acfd59b8ddabb163790",
+          "rawBytes": 5688,
+          "gzBytes": 1944
+        },
+        "process.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/16-survival-1306340843/process.json.gz",
+          "rawSha256": "919ad4b01d35af647bcb5efbfda800354ea881813180d8f11da3b3b57ac28dca",
+          "gzSha256": "2c093bab4b2e12940e33ca3c231e7e528d067a5e24776bd091365b5359538c61",
+          "rawBytes": 205,
+          "gzBytes": 168
+        }
+      }
+    },
+    {
+      "case": "16-survival-757356291",
+      "files": {
+        "initial.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/16-survival-757356291/initial.json.gz",
+          "rawSha256": "1e6bdc7248ebfbdf739b9baedd029b7cc2a61d9c5d2f5516d7085c8ffedfb8f4",
+          "gzSha256": "bc4735881463ae012795662025e8b9ccad6267c33a8ab77da68d7b8c14c2be9d",
+          "rawBytes": 1272360,
+          "gzBytes": 111461
+        },
+        "terminal.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/16-survival-757356291/terminal.json.gz",
+          "rawSha256": "531f86b861392c462f6b59b6da3aa49d500bc4444795c9eb58704c9735e13f41",
+          "gzSha256": "1d1a11ea5b8beda4df5185a5e762e5dbf0aebc70514c2453969bea18d9249c4b",
+          "rawBytes": 900291,
+          "gzBytes": 131472
+        },
+        "result.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/16-survival-757356291/result.json.gz",
+          "rawSha256": "32f88a1cead4d1f9a3ea273ed8aa1b62370157cfc1f7fc983b120850178696a4",
+          "gzSha256": "3c7586a22be580e290ffba77f45b98677423aee4ec16cd195affb20f7e3a5d96",
+          "rawBytes": 5686,
+          "gzBytes": 1941
+        },
+        "process.json": {
+          "path": "tests/fixtures/act2-gameplay/input-cohort-completed/16-survival-757356291/process.json.gz",
+          "rawSha256": "450722b80cd64303e8830c03f51fb7f87121ffa9888f9d6d93667a1c585a3338",
+          "gzSha256": "e093be56f85d556b416644a149de3afc2f9d4ac326112f74bdf157b633f871a6",
+          "rawBytes": 205,
+          "gzBytes": 166
+        }
+      }
+    }
+  ]
+}
