@@ -9,7 +9,6 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     env:
-      HONRO_ACT4_RELEASE: '1'
       OUT: _local/reports/item-discovery-release
       HONRO_QA_ORIGIN: http://127.0.0.1:8870
     steps:
@@ -29,12 +28,15 @@ jobs:
           npm ci --prefix game
           node tests/equipment-app.mjs
           node tests/equipment-state.mjs
+          HONRO_ACT4_RELEASE=1 node tests/act4-equipment-release.mjs
       - name: Explicit UI source overlay, not a production build
         run: |
           python -m pip install 'playwright==1.58.0'
           python -m playwright install --with-deps chromium
           python tests/item-discovery-browser.py
       - name: Retain published graphs and prepare unpublished gate preview
+        env:
+          HONRO_ACT4_RELEASE: '1'
         run: |
           set -euo pipefail
           mkdir -p "$OUT"
@@ -67,6 +69,7 @@ jobs:
           set -euo pipefail
           node tests/equipment-app.mjs
           node tests/equipment-state.mjs
+          HONRO_ACT4_RELEASE=1 node tests/act4-equipment-release.mjs
           HONRO_ITEM_UI_MODE=production HONRO_ITEM_UI_OUT="$OUT/final-ui" python tests/item-discovery-browser.py
       - name: Preserve checked candidate; no master publication
         run: |
