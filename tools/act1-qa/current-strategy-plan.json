@@ -7,7 +7,8 @@
   "sourceHashes": {
     "tools/act1-qa/legacy-controller.mjs": "be14d503f8c0b31a7f832d44d5457739fccc0689c1e92d00856df3c7a583c121",
     "tools/act1-qa/adapt-positioning.mjs": "3aab6915c979615267c351efe5a2c66e93cce0083552b048bea7c63c4f4bcdc0",
-    "tools/act1-qa/player-operations.mjs": "fbc8d0b429e7834a85f106bb5ff1e39170493018ea23d6e97b66888cba5c5e05"
+    "tools/act1-qa/player-operations.mjs": "fbc8d0b429e7834a85f106bb5ff1e39170493018ea23d6e97b66888cba5c5e05",
+    "tests/app-regression-helpers.mjs": "0e1f2720b97845cdc30f1ff948ab1eed27d52f1e359003d7a23d13df62fa43ee"
   },
   "policies": {
     "2": [
@@ -129,5 +130,6 @@
     }
   ],
   "aggregation": "Original successful-run median and finite terminal clear proportion; preserve deaths, unfinished and invalid controls separately. No automatic acceptance if control or entry applicability unverified.",
-  "stopping": "Existing finite observation caps retained; no force-completion, clipping to20R or live-state correction. No after-outcome policy edits in this batch."
+  "stopping": "Existing finite observation caps retained; no force-completion, clipping to20R or live-state correction. No after-outcome policy edits in this batch.",
+  "calibrationRevision": "Before any batch cases: preserve exact production HUD selection prelude and normal0.11s refresh cadence; no after-outcome policy change."
 }
