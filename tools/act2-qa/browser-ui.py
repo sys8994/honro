@@ -29,7 +29,7 @@ try:
    elif enter.count():enter.first.click()
    p.wait_for_timeout(350)
   p.wait_for_function(f'HonroApp.engine?.b?.honroStage==={stage} && HonroApp.canInput()',timeout=1000)
-  def state():return p.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b,u=e.active;return{round:b.round,side:b.side,phase:b.phase,active:u?.id,cls:u?.cls,x:u?.x,y:u?.y,angle:u?.angle,facing:u?.facing,moveLeft:u?.moveLeft,jumpCost:u&&e.jumpCost(u),grounded:u&&e.grounded(u),can:a.canInput(),dialogue:!!a.dialogue,shots:b.shots,drop:u&&e.canDrop(),camera:{x:a.scene.x,y:a.scene.y,scale:a.scene.scale},health:b.units.filter(v=>v.side===0&&!v.summoned).map(v=>({id:v.id,hp:v.hp,maxHp:v.maxHp,dead:v.dead,x:v.x,y:v.y})),enemies:b.units.filter(v=>v.side===1).map(v=>({id:v.id,hp:v.hp,dead:v.dead,x:v.x,y:v.y,kind:v.honroVariant})),seed:b.seed,rng:b.rng,completedGoals:Object.keys(b.honroState?.act2?.done||{}).filter(k=>b.honroState.act2.done[k])}}''')
+  def state():return p.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b,u=e.active;return{round:b.round,side:b.side,phase:b.phase,appDone:a.done,cleared:a.profile.cleared?.[b.honroStage]||null,active:u?.id,cls:u?.cls,x:u?.x,y:u?.y,angle:u?.angle,facing:u?.facing,moveLeft:u?.moveLeft,jumpCost:u&&e.jumpCost(u),grounded:u&&e.grounded(u),can:a.canInput(),dialogue:!!a.dialogue,shots:b.shots,drop:u&&e.canDrop(),camera:{x:a.scene.x,y:a.scene.y,scale:a.scene.scale},health:b.units.filter(v=>v.side===0&&!v.summoned).map(v=>({id:v.id,hp:v.hp,maxHp:v.maxHp,dead:v.dead,x:v.x,y:v.y})),enemies:b.units.filter(v=>v.side===1).map(v=>({id:v.id,hp:v.hp,dead:v.dead,x:v.x,y:v.y,kind:v.honroVariant})),seed:b.seed,rng:b.rng,completedGoals:Object.keys(b.honroState?.act2?.done||{}).filter(k=>b.honroState.act2.done[k])}}''')
   def record(op,**extra):
    row={'op':op,'state':state(),'time':time.time(),**extra};events.append(row);save();print(json.dumps(row,ensure_ascii=False),flush=True)
   def ready():
@@ -104,8 +104,20 @@ try:
     else:p.keyboard.press('f');record('defend-after-move',marker=choice['id'])
     p.screenshot(path=str(out/f'objective-action-{action}.png'));p.wait_for_timeout(600)
   else:raise AssertionError('Unsupported Act2 UI stage')
-  result['final']=state();result['stageCleared']=result['final']['phase']=='won';result['passed']=(result['stageCleared'] if stage==19 else len([e for e in events if e['op']=='fire'])>=1 and len([e for e in events if e['op']=='moved' and e.get('actual') and abs(e['actual']['x']-e['fromX'])+abs(e['actual']['y']-e['fromY'])>=20])>=2) and not result['errors'];result['passScope']='Stage19 objective clear or Stages11/15/20 bounded input observation, NOT whole-stage QA approval';result['roundTargetAssessment']='Recorded separately; UI clear is not whole gameplay/fun approval';p.screenshot(path=str(out/'terminal.png'));result['stored']=json.loads(p.evaluate('localStorage.getItem("honro-first-act-profile-1")'));browser.close()
+  if stage==19 and state()['phase']=='won':
+   deadline=time.monotonic()+60
+   while time.monotonic()<deadline:
+    st=state()
+    if st['appDone'] and st['cleared'] and not st['dialogue']:break
+    nxt=p.locator('[data-action="dialogue-next"]:visible')
+    if nxt.count() and nxt.first.is_enabled():nxt.first.click()
+    elif st['dialogue']:p.keyboard.press('Enter')
+    p.wait_for_timeout(350)
+  result['final']=state();result['stageCleared']=result['final']['phase']=='won' and result['final']['appDone'] and bool(result['final']['cleared']);result['passed']=(result['stageCleared'] if stage==19 else len([e for e in events if e['op']=='fire'])>=1 and len([e for e in events if e['op']=='moved' and e.get('actual') and abs(e['actual']['x']-e['fromX'])+abs(e['actual']['y']-e['fromY'])>=20])>=2) and not result['errors'];result['passScope']='Stage19 objective clear or Stages11/15/20 bounded input observation, NOT whole-stage QA approval';result['roundTargetAssessment']='Recorded separately; UI clear is not whole gameplay/fun approval';p.screenshot(path=str(out/'terminal.png'));result['stored']=json.loads(p.evaluate('localStorage.getItem("honro-first-act-profile-1")'));
+  if stage==19:assert result['stored'].get('cleared',{}).get('19'), 'Normal App outcome must persist cleared19'
+  browser.close()
 except Exception:
+ result['passed']=False
  result['exception']=traceback.format_exc()
  try:result['last']=state();p.screenshot(path=str(out/'failure.png'))
  except Exception:pass
