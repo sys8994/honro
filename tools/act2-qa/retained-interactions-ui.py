@@ -10,8 +10,8 @@ fixture=Path(f'tests/fixtures/act2-gameplay/stage{stage}-'+('dead-hoist' if stag
 raw=fixture.read_bytes();saved=json.loads(gzip.decompress(raw));out=Path(os.environ.get('HONRO_QA_OUT',f'_local/reports/stage{stage}-retained-ui'));out.mkdir(parents=True,exist_ok=True)
 r={'passed':False,'stage':stage,'scope':__doc__,'source':os.environ.get('GITHUB_SHA'),'fixture':str(fixture),'fixtureSha256':hashlib.sha256(raw).hexdigest(),'events':[],'errors':[]}
 def save():(out/'result.json').write_text(json.dumps(r,ensure_ascii=False,indent=2))
-try:
- with sync_playwright() as w:
+with sync_playwright() as w:
+ try:
   browser=w.chromium.launch(headless=True);p=browser.new_page(viewport={'width':1440,'height':960});p.on('pageerror',lambda e:r['errors'].append(str(e)))
   p.goto(os.environ.get('HONRO_QA_URL','http://127.0.0.1:8870/HONRO.html'),wait_until='domcontentloaded');p.wait_for_function('window.HonroApp',timeout=60000)
   p.evaluate('v=>localStorage.setItem("honro-first-act-profile-1",JSON.stringify(v))',saved['profile']);p.reload(wait_until='domcontentloaded');p.wait_for_function('window.HonroApp');p.locator('.title-actions button.primary:visible').click();p.wait_for_function(f'HonroApp.engine?.b?.honroStage==={stage}',timeout=60000)
@@ -48,9 +48,9 @@ try:
     p.wait_for_timeout(150)
    final=state();assert final['liftDone'],'Completed-shot bookkeeping still blocked ordinary bell lift'
   r['final']=final;record('regression-boundary');p.screenshot(path=str(out/'terminal.png'));assert not r['errors'],r['errors'];browser.close();r['passed']=True
-except Exception:
- r['passed']=False;r['exception']=traceback.format_exc()
- try:record('exception');p.screenshot(path=str(out/'failure.png'))
- except Exception:pass
-finally:save()
+ except Exception:
+  r['passed']=False;r['exception']=traceback.format_exc()
+  try:record('exception');p.screenshot(path=str(out/'failure.png'))
+  except Exception:pass
+ finally:save()
 if not r['passed']:raise SystemExit(1)

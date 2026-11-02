@@ -10,8 +10,8 @@ out=Path(os.environ.get('HONRO_QA_OUT','_local/reports/stage14-postfix-ui'));out
 fixture=Path('tests/fixtures/act2-gameplay/stage14-natural-settle-lock-terminal.json.gz');saved=json.loads(gzip.decompress(fixture.read_bytes()))
 result={'passed':False,'scope':__doc__,'source':os.environ.get('GITHUB_SHA'),'fixture':str(fixture),'events':[],'errors':[]}
 def save():(out/'result.json').write_text(json.dumps(result,ensure_ascii=False,indent=2))
-try:
- with sync_playwright() as w:
+with sync_playwright() as w:
+ try:
   browser=w.chromium.launch(headless=True);p=browser.new_page(viewport={'width':1440,'height':960});p.on('pageerror',lambda e:result['errors'].append(str(e)))
   url=os.environ.get('HONRO_QA_URL','http://127.0.0.1:8870/HONRO.html');p.goto(url,wait_until='domcontentloaded');p.wait_for_function('window.HonroApp',timeout=60000)
   p.evaluate('v=>localStorage.setItem("honro-first-act-profile-1",JSON.stringify(v))',saved['profile']);p.reload(wait_until='domcontentloaded');p.wait_for_function('window.HonroApp');p.locator('.title-actions button.primary:visible').click();p.wait_for_function('HonroApp.engine?.b?.honroStage===14',timeout=60000)
@@ -39,10 +39,10 @@ try:
    if s['dialogue']:dialogue()
    p.wait_for_timeout(100)
   record('npc-physical-settlement');result['observedGroundedAfterMoves']=observed;result['npcDisplacement']={'dx':state()['npc']['x']-initial['npc']['x'],'dy':state()['npc']['y']-initial['npc']['y']};result['passed']=observed and abs(result['npcDisplacement']['dy'])>5 and not result['errors'];p.screenshot(path=str(out/'terminal.png'));browser.close()
-except Exception:
- result['passed']=False
- result['exception']=traceback.format_exc()
- try:record('exception');p.screenshot(path=str(out/'failure.png'))
- except Exception:pass
-finally:save()
+ except Exception:
+  result['passed']=False
+  result['exception']=traceback.format_exc()
+  try:record('exception');p.screenshot(path=str(out/'failure.png'))
+  except Exception:pass
+ finally:save()
 if not result['passed']:raise SystemExit(1)
