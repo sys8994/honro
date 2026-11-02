@@ -1,0 +1,52 @@
+{
+  "stage": 8,
+  "status": "NATIVE_REVIEWED_BROWSER_PENDING",
+  "scope": "Seven unchanged terrain hosts in four BODY groups plus recessed wall and rooted pine",
+  "parts": [
+    {
+      "part": "floor-v1",
+      "rawBytes": 157260,
+      "finalBytes": 104165
+    },
+    {
+      "part": "west-root-v1",
+      "rawBytes": 93019,
+      "finalBytes": 59685
+    },
+    {
+      "part": "shoulders-v1",
+      "rawBytes": 186725,
+      "finalBytes": 121039
+    },
+    {
+      "part": "court-v1",
+      "rawBytes": 67868,
+      "finalBytes": 44094
+    },
+    {
+      "part": "rear-v1",
+      "rawBytes": 136633,
+      "finalBytes": 96237
+    },
+    {
+      "part": "pine-v1",
+      "rawBytes": 121458,
+      "finalBytes": 80574
+    }
+  ],
+  "rawBytes": 762963,
+  "finalBytes": 505794,
+  "reduction": 0.3370661486861093,
+  "minimumPackReduction": 0.3,
+  "note": "Rear wall alone retains more contour data and is29.6% smaller; totalpack33.7%. No node-count-as-quality claim.",
+  "preserved": [
+    "9600x5500 map and actor/camera scale",
+    "terrain and world polygons",
+    "houses, timber, quest objects, encounter and event data",
+    "rear coverage first3paths and masonry children9onward"
+  ],
+  "remaining": [
+    "normal browser and responsive checks",
+    "master and Pages exact-public verification"
+  ]
+}
