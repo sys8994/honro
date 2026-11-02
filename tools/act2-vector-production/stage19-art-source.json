@@ -1,0 +1,34 @@
+{
+  "stage": 19,
+  "rawStageSha256": "606bc6117a5c31173aa3c1d62c8f918a6d7e24eaeeac53234aa1f1c28eee232f",
+  "sharedSourceStage": 18,
+  "sharedManifest": "stage18-art-source.json",
+  "sharedManifestSha256": "f957663de7807f75c43ae192737aca544807f4dfd40760d1fc5d8867d22272a1",
+  "scope": "Reuse canonical Stage18 static material assets; independent Stage19 placement proof required.",
+  "assets": [
+    {
+      "file": "stage18-domain-v1.json",
+      "assetId": "act2-traced:stage18-domain-v1",
+      "sha256": "434cd2a8d4c603ff563cd1006bbc1c33bdb4170f459b0c320b26da3e141083bf",
+      "canonicalSha256": "72a4bf51cb43a73544b354c1c095006839a98e4e089214a53b6ec887ec171484"
+    },
+    {
+      "file": "stage18-floor-local-v2.json",
+      "assetId": "act2-traced:stage18-floor-local-v2",
+      "sha256": "26f0cec9b5367738e855507085aa521f9b4af3572af56278548e2553ac60aa2f",
+      "canonicalSha256": "6869f52f46e17a55b48c1d5f5c508c86b96b998d00e70d897c272790680d1b36"
+    },
+    {
+      "file": "stage18-west-v2.json",
+      "assetId": "act2-traced:stage18-west-v2",
+      "sha256": "bfff45eedb627ca5b1ddc71ecfd6b7650eb6bb76457e73d5abb2a1c23490e444",
+      "canonicalSha256": "40d46a3895cc7bcd6768e9abfd5b2e972b5589c6198ce73819948348941d01a2"
+    },
+    {
+      "file": "stage18-east-v2.json",
+      "assetId": "act2-traced:stage18-east-v2",
+      "sha256": "01eeca2f98cd6b016e57be015a1412b07a791e38ac89384a560f2ea3052aabee",
+      "canonicalSha256": "e3c8ee9331c067b786cce3fce3d8ffc0916f17f0755c56857a9afcb451dc70b9"
+    }
+  ]
+}

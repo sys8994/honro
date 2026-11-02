@@ -1,18 +1,20 @@
-# Stage19 awaiting shared Stage18 materials
+# Stage19 shared material handoff
 
-Status: **DEPENDENCY_WAIT**, not completed or accepted.
+Status: **native parity PASS; visual ceiling edge BLOCKED**. Not full acceptance or deployment.
 
-Stage19 source and scripts are ready. The final Stage18 material manifest/bytes and its strict optimization proofs are still being finalized by the Stage18 producer. No shared build hook has been changed.
+Final Stage18 dependency merged: `e4719c714a2239ecd1c67edcdef68016e7175674`. Uses four exact `act2-traced:stage18-*` assets, no source or vector copies. Stage19 manifest validates file-byte SHA plus canonical parsed SHA. Unique Stage19 element IDs. Apply18 then19: zero duplicate library assets and18 unchanged.
 
-Resume:
-1. Merge the final Stage18 candidate commit into this worktree (preserve Stage19 scripts).
-2. Run `node tools/act2-vector-production/bind-stage19-shared-assets.mjs`. This validates each shared asset and writes Stage19's own placement record. Do not copy source PNGs/SVGs or create renamed duplicate assets.
-3. Run `node tests/stage19-shared-traced-art.mjs`. It separately verifies19 raw/effective source invariants, canonicalSolid/contactInset equivalence, noncombat story/units unchanged, and18→19 library ID deduplication.
-4. Under `/tmp/honro-heavy-art.lock`, run `node tools/act2-vector-production/preview-stage19-art.mjs` and inspect entry/farewell/bell/mobile/minzoom/edges. `full-map-diagnostic` is explicitly below gameplay minimum zoom; do not call it a legal camera view.
-5. Package19-specific test receipt/views/documentation, retaining exact shared18 optimization/provenance references. Commit coherent changes and send root SHA/tree. Root owns build integration, browser save/input QA and publication.
+Commands:
+- `node tools/act2-vector-production/bind-stage19-shared-assets.mjs`
+- `node tests/stage19-shared-traced-art.mjs`
+- `flock /tmp/honro-heavy-art.lock node tools/act2-vector-production/preview-stage19-art.mjs`
 
-Shared contract: same `act2-traced:stage18-*` asset IDs/files, Stage19-only `act2-stage19-traced-*` element IDs. Existing exact-ID assets are reused; differing contents fail. Mutable native bell parts are excluded. Original19 dimensions13600×9600, heroes92, entry6240/7402.6667.
+Independent test PASS: raw source guard, original13600×9600 map and92 actors, original terrains/world/units/waters/markers/objectives/state, exact effective canonical/contact clips, native bell shift parity180/720. Authored noncombat farewell: no enemies or combat requirements invented.
 
-Raw18 versus19 differs only in five native iron bell pieces. All static terrain records match. Independent19 compiled world has66 terrain records. Parent-directed authored palette refinement on common material (#88887e→#68777b) is an explicit nonlossless art-direction change; original Inkscape RAW remains preserved by18. It must not be described as a lossless optimizer step.
+Native entry/farewell/bell/mobile and legal left/right min/max visually inspected. V1 broad pale ribbon gone. **Ceiling at legal focus.top=-1800/minZoom0.21176470588235294 reveals a horizontal two-tone source boundary absent from before**. Root and18 producer informed; shared domain must be corrected and all impacted proofs rerun before full visual acceptance. Do not silently exempt the view or change camera bounds. Current exact images/hashes and findings recorded in `art/act2-near-vector-candidates/stage19-farewell-shared-v1/visual-review.json`.
 
-Intermediate source previews, not acceptance: `_local/reports/stage19-shared-source-preview/` and `_local/reports/stage19-palette-preview/`. Initial pale ribbon concern was raised with18; inspect the refined result before acceptance.
+Mobile uses original.94 scale (no character shrink), original camera crops party; browser portrait framing remains root check. Fullmap .105 diagnostic is below legal gameplay minimum and not a gameplay screenshot.
+
+Shared optimization proof belongs to18: immutable RAW533445→364814B,31.6117%; actual canonical/contact1×2×8/8. Stage19 does not claim new reduction measurement. Palette refinement is declared nonlossless art direction; original trace remains preserved in shared source.
+
+Root owns build integration, browser/full story QA, publication/master. No shared runtime/build files edited by19.
