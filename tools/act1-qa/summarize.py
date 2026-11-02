@@ -100,7 +100,12 @@ for row in rows:
  raw=json.loads((ROOT/row['evidence']).read_text());rawSource=raw.get('source');row['sourceCommit']=resultMeta.get('sourceCommit',meta.get('sourceCommit'))or(rawSource if isinstance(rawSource,str)and len(rawSource)==40 else None)or recordedInitialSource
  row['sourceEvidence']=({'path':str(initialFile.relative_to(ROOT)),'sha256':digest(initialFile)}if recordedInitialSource else None)
  row['sourceProvenanceStatus']='Recorded commit'if row['sourceCommit']else 'MISSING_COMMIT: preserve raw/controller hashes; do not infer exact source'
+ row['runnerSha256']=raw.get('runnerSha256');row['sourceDirtyAtStart']=raw.get('sourceDirtyAtStart',meta.get('sourceDirty','NOT_RECORDED'))
+ if raw.get('damageFx') is not None:
+  hits=[v for v in raw['damageFx']if v.get('ownerSide')==1 and v.get('targetSide')==0 and v.get('critical')is False and not v.get('ownerElite')and not v.get('ownerMidboss')and not v.get('ownerMajorBoss')and v.get('targetMaxHp')]
+  values=[v['damage']/v['targetMaxHp']*100 for v in hits];row['observed']['noncriticalNormalHitPctHp']={'n':len(values),'values':values,'mean':statistics.mean(values)if values else None,'median':statistics.median(values)if values else None,'range':[min(values),max(values)]if values else None,'source':'Production emitted damage text includes actual damage/critical/attackId; HP-loss truncation avoided. Fully shield-absorbed no-damage hits not in this event sample.','sampleScope':'Separate instrumentation diagnostic, not additional registered cohort cases'}
  row['controllerCalibrationStatus']='INVALID_PLANNED_SKILL_CALLER_MISMATCH'if row['stage']==2 and 'focused'in row['policy']and 'skillmatch'not in row['policy']else 'Diagnostic calibration unless separately preregistered'
+ if row['stage']==1 and row.get('inputErrorSeed')==1127:row['controllerCalibrationStatus']='INVALID_POLICY_SUFFIX_ROUTING: observer suffix changed exact route-policy branch; retained diagnostic, not equivalent frozen route'
  row['runtimeSha256']=meta.get('actualRuntimeSha256')
  row['legacyRuntimePartsHash']=resultMeta.get('runtimeSha256')
  row['legacyRuntimeHashScope']='Historical Stage8 test hashes runtimeParts without productionStory:true; NOT a complete hash of actual selected production-story runtime'if row['legacyRuntimePartsHash']else None
@@ -156,7 +161,7 @@ for st in report['stages']:
  'stageSpecialMetrics':{'status':'FAIL_MISSING_MEASUREMENT','criteria':PLAN['stages'][st['stage']-1]['specialMetrics']},
  'originalObjectiveAndProgressionIntegrity':{'status':'FAIL_MISSING_MEASUREMENT','scope':'Representative outcome does not cover all authored mandatory events/save paths; Stage8 baseline softlock separately reproduced'},
  'effectiveEnemyActions':numeric_gate(None,ds['actualEnemyActions'],scope='All effective approach/control/pressure and zero phases not fully classified'),
- 'normalEnemyDamagePerAction':numeric_gate(None,ds['enemyAttackPctHP'],scope='Per-hit diagnostics are not accepted action aggregates'),
+ 'normalEnemyNoncriticalHitPctHp':numeric_gate(None,ds['enemyAttackPctHP'],scope='Original single normal noncritical hit/maxHP criterion; actual emitted damage samples being audited, not per-action sum. Old HP-loss samples may be capped by remaining HP.'),
  'requiredRouteEngagements':numeric_gate(None,ds['requiredEngagements'],scope='Damage-backed lower bound is not complete engagement classification'),
  'routeElevationRatio':numeric_gate(None,ds['verticalTravelRatio'],scope='Required support/landing graph not fully measured'),
  'normalUIObjective':{'status':'PASS' if st['stage']in uiReceipts else 'FAIL_MISSING_MEASUREMENT','evidence':uiReceipts.get(st['stage']),'scope':'Representative normal UI objective only; not whole art/fun approval'},
