@@ -1,0 +1,43 @@
+{
+  "scope": "Minimal copied native QA helpers, runtime resolves integration checkout; no whole-repo copy",
+  "sources": [
+    {
+      "source": "honro-act2-released-app-qa/tools/act2-qa/player-operations.mjs",
+      "destination": "tools/act2-qa/stage17-gate-player-operations.mjs",
+      "sourceSha256": "fbc8d0b429e7834a85f106bb5ff1e39170493018ea23d6e97b66888cba5c5e05",
+      "destinationSha256": "fbc8d0b429e7834a85f106bb5ff1e39170493018ea23d6e97b66888cba5c5e05"
+    },
+    {
+      "source": "honro-act2-released-app-qa/tools/act2-qa/production-aim-preview.mjs",
+      "destination": "tools/act2-qa/stage17-gate-production-aim-preview.mjs",
+      "sourceSha256": "3104e44cd91c7bd70e67460f5c71cd546ed301734feec9e6087f1b5ca531b4f7",
+      "destinationSha256": "3104e44cd91c7bd70e67460f5c71cd546ed301734feec9e6087f1b5ca531b4f7"
+    },
+    {
+      "source": "honro-act2-released-app-qa/tools/act2-qa/pure-planning.mjs",
+      "destination": "tools/act2-qa/stage17-gate-pure-planning.mjs",
+      "sourceSha256": "cd2d9b812ad8d02a633be2da7a7f9494dd17b66d50b78b1f46c70d2985cae15c",
+      "destinationSha256": "cd2d9b812ad8d02a633be2da7a7f9494dd17b66d50b78b1f46c70d2985cae15c"
+    },
+    {
+      "source": "honro-act2-released-app-qa/tests/act2-gameplay-app-navigation.mjs",
+      "destination": "tools/act2-qa/stage17-gate-navigation.mjs",
+      "sourceSha256": "c31db6b0681bc6c970c6f16aa9580314c177f2870891b8a85b206cc1d5a472f0",
+      "destinationSha256": "c31db6b0681bc6c970c6f16aa9580314c177f2870891b8a85b206cc1d5a472f0"
+    },
+    {
+      "source": "honro-act2-released-app-qa/tests/app-regression-helpers.mjs",
+      "destination": "tools/act2-qa/stage17-gate-app-harness.mjs",
+      "sourceSha256": "0e1f2720b97845cdc30f1ff948ab1eed27d52f1e359003d7a23d13df62fa43ee",
+      "adaptation": "Only import path to same-checkout game/tests/helpers.mjs; its runtimeParts resolves art-integrate/shared/build.mjs",
+      "destinationSha256": "73f56938f8637f3139f303809b362d7ffcdde9f9b0728c902ab4cac5dc604592"
+    },
+    {
+      "source": "honro-act2-released-app-qa/tests/act2-gameplay-app-ground-summon.mjs",
+      "destination": "tools/act2-qa/stage17-gate-regression.mjs",
+      "sourceSha256": "75dec7ac35d72c3feb81617b4d81dab6f6a6e6696e6e8cc5d8be0c2672007a9c",
+      "adaptation": "Stage17only; imports same-checkout copiedhelpers; provenance; nav graph refresh iff observed gatebroken statechanges. Original firing, loadouts, inputseed and top3 remain unchanged.",
+      "destinationSha256": "fa102d02a94da2cb6a0696dc839afaa95e5e93b3aafcd4af2b21429568a9ee5e"
+    }
+  ]
+}
