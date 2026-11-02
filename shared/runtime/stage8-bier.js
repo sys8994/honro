@@ -136,7 +136,11 @@ function warnWave(app,source){const b=app.engine.b,m=memory(b);if(m.warnings[sou
 function prepareWaves(app){const b=app.engine?.b;if(!active(b)||cleanup(app)||paused(app))return;const m=memory(b),seals=G.HonroQuestTargets.records(b).filter(t=>t.honroSeal);m.sealIdsSeen=seals.filter(t=>t.broken).map(t=>t.id);
  if(m.sealIdsSeen.length)warnWave(app,sources[0]);if(alive(boss(b))){if(m.completedOnce)warnWave(app,sources[1]);if(boss(b).hp<=boss(b).maxHp*.35)warnWave(app,sources[2]);}
 }
-function transition(app){const b=app.engine?.b;if(!active(b)||cleanup(app))return;const m=memory(b),seals=G.HonroQuestTargets.records(b).filter(t=>t.honroSeal);acceptOpportunity(app);if(m.completedOnce||m.status==='moving'||m.status==='cancelled')return;
+function transition(app){const b=app.engine?.b;if(!active(b)||cleanup(app))return;const m=memory(b),seals=G.HonroQuestTargets.records(b).filter(t=>t.honroSeal);
+ // Older generic manual readers could consume the scene without executing the
+ // dedicated walk. Resume from the actual saved pose, never mark it arrived.
+ if(m.status==='moving'&&!app.dialogue&&!(b.honroState.storyQueue||[]).some(l=>l[2]?.stagingRequest?.id===SCENE)){cancelScene(app);m.status='blocked';m.reason='상여의 길을 다음 안전한 행동 끝에 다시 확인합니다.';}
+ acceptOpportunity(app);if(m.completedOnce||m.status==='moving'||m.status==='cancelled')return;
  if(m.status==='anchored'){if(paused(app)||seals.length!==2||seals.some(t=>!t.broken)||!alive(boss(b)))return;Object.assign(m,{status:'announced',triggerSerial:serial(b),announcedSerial:serial(b),eligibleAfterSerial:serial(b)+1,announcedRound:b.round,offered:{},playerOpportunity:null,reason:'두 결박이 풀렸다. 상여가 중앙 아래뜰을 향한다. 다음 행동에서 그 길을 비우세요.'});publishNotice(app);app.dirty=true;offer(app);return;}
  offer(app);if(!m.playerOpportunity){m.reason='동행의 새로운 행동이 끝난 뒤 상여의 길을 확인합니다.';return;}m.status='blocked';
  if(!safeBoundary(app))return;const route=chooseRoute(app);m.blockers=route.blocked||[];
@@ -150,7 +154,7 @@ function transition(app){const b=app.engine?.b;if(!active(b)||cleanup(app))retur
 }
 function settle(app){const b=app.engine.b,m=memory(b);if(!alive(boss(b))||m.completedOnce)return false;m.status='settled';m.completedOnce=1;delete m.sceneJournal;m.completedSerial=serial(b);m.completedRound=b.round;m.reason='빈 상여가 중앙 아래뜰에 멎었다.';m.blockers=[];delete boss(b).honroScenePose;app.dirty=true;return true;}
 function blockMotion(app,blocks){const b=app.engine.b,m=memory(b);m.status='blocked';m.blockers=blocks;m.reason='상여 이동 보류 · '+[...new Set(blocks.map(p=>p.label))].slice(0,2).join('·')+' · 안전한 다음 행동 끝에 다시 확인합니다.';delete boss(b)?.honroScenePose;cancelScene(app);publishNotice(app);app.dirty=true;app.engine.emit?.('save');}
-function advanceScene(app,dt,skip=false){const e=app.engine,b=e.b,m=memory(b),s=app.dialogue?.staging;if(cleanup(app)||!ownedScene(app)||m.status!=='moving'||s.complete||scenePaused(app))return false;if(!safeMotion(app,true)){blockMotion(app,[{kind:'action',id:'busy',label:'진행 중인 행동'}]);return false;}
+function advanceScene(app,dt,skip=false){const e=app.engine,b=e.b,m=memory(b),s=app.dialogue?.staging?.bierMotion||app.dialogue?.staging;if(cleanup(app)||!ownedScene(app)||m.status!=='moving'||s.complete||scenePaused(app))return false;if(!safeMotion(app,true)){blockMotion(app,[{kind:'action',id:'busy',label:'진행 중인 행동'}]);return false;}
  let budget=skip?60000:Math.max(0,dt)*900,changed=false;
  // A subpixel budget tail can be smaller than walkStep's progress epsilon.
  // Resume from the same validated pose next frame instead of inventing a gap.
@@ -164,10 +168,14 @@ function advanceScene(app,dt,skip=false){const e=app.engine,b=e.b,m=memory(b),s=
  if(ownedScene(app)&&s.steps[s.cursor]?.type==='dialogue'){s.complete=true;settle(app);}if(ownedScene(app)){G.HonroStoryStaging.snapshot(app);b.honroStory=clone(app.dialogue);app.dirty=true;}return changed;
 }
 let installed=false;
-function installScene(){const S=G.HonroStoryStaging;if(!S||installed)return;installed=true;const tick=S.tick,skip=S.skipMotion,finish=S.finish;
- S.tick=function(app,now){if(!active(app.engine?.b)||!ownedScene(app))return tick(app,now);cleanup(app);if(!ownedScene(app))return;if(app.dialogue.staging.complete)return tick(app,now);const dt=app.stagingLastTime==null?0:Math.min(.06,Math.max(0,(now-app.stagingLastTime)/1000));app.stagingLastTime=now;if(scenePaused(app))return;const cursor=app.dialogue.staging.cursor;advanceScene(app,dt);if(ownedScene(app)&&(cursor!==app.dialogue.staging.cursor||app.dialogue.staging.complete)){G.HonroStory.draw(app);G.HonroStory.save(app);}};
- S.skipMotion=function(app){if(!active(app.engine?.b)||!ownedScene(app))return skip(app);if(scenePaused(app))return false;const out=advanceScene(app,0,true);if(ownedScene(app)){G.HonroStory.draw(app);G.HonroStory.save(app);}return out;};
- S.finish=function(app,natural=false){if(!active(app.engine?.b)||!ownedScene(app))return finish(app,natural);if(scenePaused(app))return true;if(!app.dialogue.staging.complete){advanceScene(app,0,true);if(!ownedScene(app))return true;if(!app.dialogue.staging.complete)return true;}return finish(app,natural);};
+function installScene(){const S=G.HonroStoryStaging;if(!S||installed)return;installed=true;const tick=S.tick,skip=S.skipMotion,finish=S.finish,reader=S.reader;
+ // Keep the caption's manual reader, but retain physical movement separately:
+ // generic cue motion must never commit this collision-checked boss route.
+ S.reader=function(lines,options){const staging=options.staging;if(staging?.id!==SCENE)return reader(lines,options);const motion=staging.bierMotion||(!staging.manualReader?clone(staging):null),out=reader(lines,options);if(motion){out.options.staging.bierMotion=motion;out.options.staging.cues=(out.options.staging.cues||[]).map(cues=>cues.filter(c=>!(c.type==='move'&&c.actor==='boss')));}return out;};
+ const motion=app=>app.dialogue?.staging?.bierMotion||app.dialogue?.staging;
+ S.tick=function(app,now){if(!active(app.engine?.b)||!ownedScene(app))return tick(app,now);cleanup(app);if(!ownedScene(app))return;const s=motion(app);if(s.complete)return tick(app,now);const dt=app.stagingLastTime==null?0:Math.min(.06,Math.max(0,(now-app.stagingLastTime)/1000));app.stagingLastTime=now;if(scenePaused(app))return;const cursor=s.cursor;advanceScene(app,dt);if(ownedScene(app)&&(cursor!==s.cursor||s.complete)){G.HonroStory.draw(app);G.HonroStory.save(app);}};
+ S.skipMotion=function(app){if(!active(app.engine?.b)||!ownedScene(app))return skip(app);if(scenePaused(app))return false;const manual=!!app.dialogue.staging.bierMotion,out=advanceScene(app,0,true);if(ownedScene(app)){G.HonroStory.draw(app);G.HonroStory.save(app);}return manual?(!ownedScene(app)||!motion(app).complete):out;};
+ S.finish=function(app,natural=false){if(!active(app.engine?.b)||!ownedScene(app))return finish(app,natural);if(scenePaused(app))return true;if(app.dialogue.staging.manualReader&&!app.dialogue.staging.bierMotion&&memory(app.engine.b).status==='moving'){blockMotion(app,[{kind:'route',id:'legacy-reader',label:'저장된 이동 경로 재확인'}]);return true;}if(!motion(app).complete){advanceScene(app,0,true);if(!ownedScene(app))return true;if(!motion(app).complete)return true;}return finish(app,natural);};
 }
 function entryFor(b,source){const base=spec(b).entries?.[source];if(!base||source!=='stage8-low-health'||!G.HonroEncounterDensity?.active(b))return base;
  const saved=b.honroState?.stage8Bier?.warnings?.[source]?.entry;if(saved)return saved;
