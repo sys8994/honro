@@ -38,6 +38,7 @@ jobs:
           node tests/stage5-body-candidate.mjs
           node tests/stage6-body-candidate.mjs
           node tests/stage7-art-candidate.mjs
+          node tests/stage8-art-candidate.mjs
           node tests/act1-body-candidate.mjs
           node tests/stage2-continuous-art-rim.mjs
           node tests/stage2-continuous-candidate.mjs
@@ -49,8 +50,8 @@ jobs:
           set -euo pipefail
           mkdir -p "$OUT"
           mapfile -t refs < <(node --input-type=module -e 'import fs from "node:fs";import {selectPublishedGenerations} from "./shared/web-retention.mjs";for(const g of selectPublishedGenerations(JSON.parse(fs.readFileSync("web/manifest.json")).publishedGenerations,{now:Date.now()})){if(!/^[a-f0-9]{40}$/.test(g.sourceSha))throw Error("Invalid ref");console.log(g.sourceSha)}')
-          git fetch --no-tags --depth=1 origin 7cd794dd91868264028a71d34e842558f1b7c43a "${refs[@]}"
-          node tools/release/retain-published-web.mjs 7cd794dd91868264028a71d34e842558f1b7c43a --published-at 2026-11-02T12:29:00Z --evidence https://github.com/sys8994/honro/actions/runs/41444743194
+          git fetch --no-tags --depth=1 origin 2b712bea98079f9455cf93d669c1b39d4ae5512f "${refs[@]}"
+          node tools/release/retain-published-web.mjs 2b712bea98079f9455cf93d669c1b39d4ae5512f --published-at 2026-11-02T12:53:47Z --evidence https://github.com/sys8994/honro/actions/runs/41448146380
           node tools/act4-ci/refresh-stage31-probes.mjs prepare "$OUT"
           # Established evidence-only bootstrap. This preview is NOT publishable.
           # The unchanged production gate is enforced after fresh normal UI evidence.
