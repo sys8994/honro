@@ -83,3 +83,9 @@ Cleanbdfbbba7, separatev6 diagnostic: wonR13,12actual player launches/1defend,3a
 4. **Tactical/readability priority:** Stage7 has at least two meaningfully different successful protection routes, both7R, plus preserved opening-combat-first losses. Below9–12 is a pacing shortfall, not a reason to add idle turns or declare protection gameplay bad. Ensure danger/rescue priority is readable in actualUI; do not automatically buffresidentHP to make inefficient strategies win.
 
 No broad balancing change is proposed before remaining coverage. These are bounded recommendations and diagnostic results, not authorizations to redesign story/objectives/terrain or declarations of subjective fun.
+
+### Preserved Stage3 v5 controller failure
+
+The airborne-v5 diagnostic reached its original220000-controller-iteration cap atR2/phaseaim, twoheroesalive, ledgerfalse, no exception. Native Engine tick instrumentation records330027calls because one Appframe may invoke more than oneEnginetick; these are not330027useractions. This is **INCOMPLETE_CONTROLLER**, not a successful2Rrun, game loss or map softlock. The legacy runner's zero process exit is not an acceptance receipt.
+
+An accepted fallback obstacle jump was not stored in the existing `st.jumping` landing tracker. After landing beyond the obsolete1080 launchwaypoint, the driver walked backward and stallednear1179 with331movement, below its generic350fallbackjump threshold. Separately registeredv7 links that accepted jump to existingdeclaredlanding1320; source6a8f8b3b. No position, velocity, terrain, budget or objective is changed. Thev5trace remains unchanged and is not pooled with successfuldiagnostics.
