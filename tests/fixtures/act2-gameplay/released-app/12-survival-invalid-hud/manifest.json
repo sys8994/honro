@@ -1,0 +1,22 @@
+{
+  "initial.json": {
+    "rawSha256": "9585401d783f6bd670c811785207ddcb8be237af22dba5a35072ee5bae3d43ed",
+    "gzipSha256": "7e1aaa7ab64692f7460463d5048ca1d083174957bcd19a9e794dee61f69ebe47",
+    "path": "tests/fixtures/act2-gameplay/released-app/12-survival-invalid-hud/initial.json.gz"
+  },
+  "checkpoint.json": {
+    "rawSha256": "aeaadb60438078cf764f5db6bf99d8e967db166d179e9ede6837daa4693ce27c",
+    "gzipSha256": "e9fb81b6fd7b727ef3cfc973f22a0ff39c52c2e1cb85b640eaa23ae21dc2c299",
+    "path": "tests/fixtures/act2-gameplay/released-app/12-survival-invalid-hud/checkpoint.json.gz"
+  },
+  "process.json": {
+    "rawSha256": "53666f19926062c58b2846cfe5575a67b59a96ff8d5e986149a4d23ad02c273d",
+    "gzipSha256": "3bdb8b484e6e2166150193d26f6913487baa7e47c83c60cb52cadcddab613ff8",
+    "path": "tests/fixtures/act2-gameplay/released-app/12-survival-invalid-hud/process.json.gz"
+  },
+  "process.log": {
+    "rawSha256": "0b976de1190964754fd6436a01906dbd77646903e41bcd33f6ccf09b5085e21a",
+    "gzipSha256": "43ff04766706791f3810fcbcdce82c5031b31fdd66c46c332dd7bd15c0d30129",
+    "path": "tests/fixtures/act2-gameplay/released-app/12-survival-invalid-hud/process.log.gz"
+  }
+}
