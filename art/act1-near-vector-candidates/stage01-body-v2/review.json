@@ -185,11 +185,55 @@
   ],
   "visualAcceptance": false,
   "blockers": [
-    "Large moss/rock motifs and native near-prop styling still need integration review.",
-    "Original auxiliary branch platforms retain prior art; body-only layer does not replace them.",
-    "Static native views are not browser/play/physics-contact acceptance."
+    "Browser/render-performance and actual gameplay/contact acceptance not run.",
+    "Whole stage and extreme camera-domain art acceptance remains open."
   ],
   "physicsChanged": false,
   "characterScaleChanged": false,
-  "cameraScaleChanged": false
+  "cameraScaleChanged": false,
+  "bodyUnitNormalViewReview": "USABLE_IN_FOUR_NATIVE_STATIC_VIEWS; not whole-stage acceptance",
+  "overviewReview": "Original prototype exposed rectangular color seams at artwork frame; same-domain base material prototype removes the frame without changing geometry. Browser and extreme pan still unverified.",
+  "prototypeRevision": "source-solid-only + full existing terrain domain underpaint",
+  "overviewEvidence": {
+    "stage": 1,
+    "staticClipHosts": 2,
+    "bodyTerrainIds": [
+      "forest-floor",
+      "ridge-east-extension"
+    ],
+    "visualAcceptance": false,
+    "prototypeOnly": true,
+    "results": [
+      {
+        "variant": "before",
+        "view": {
+          "width": 1440,
+          "height": 736,
+          "scale": 0.21176470588235294,
+          "x": 2700,
+          "y": 1500
+        },
+        "heroHeight": 92,
+        "units": 9,
+        "physicsSha256": "26cd087485569ae4f91562f09b23018debb7c9f5e2bbcaae81ebbb78ebf5d6fa",
+        "renderPure": true,
+        "scope": "Native production renderer, no browser/UI/input/combat acceptance"
+      },
+      {
+        "variant": "body-preview",
+        "view": {
+          "width": 1440,
+          "height": 736,
+          "scale": 0.21176470588235294,
+          "x": 2700,
+          "y": 1500
+        },
+        "heroHeight": 92,
+        "units": 9,
+        "physicsSha256": "26cd087485569ae4f91562f09b23018debb7c9f5e2bbcaae81ebbb78ebf5d6fa",
+        "renderPure": true,
+        "scope": "Native production renderer, no browser/UI/input/combat acceptance"
+      }
+    ]
+  }
 }
