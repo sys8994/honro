@@ -1,0 +1,33 @@
+{
+  "runId": 41490924433,
+  "url": "https://github.com/sys8994/honro/actions/runs/41490924433",
+  "rows": [
+    {
+      "stage": 11,
+      "artifactId": 13163828401,
+      "source": "af846825c8b4a96b469467a5b792f1e307f0bf11",
+      "passed": true,
+      "exception": null,
+      "errors": [],
+      "normalUiStageClear": false,
+      "scope": "bounded movement/jump/aim/fire observation only",
+      "events": 40,
+      "fireEvents": 4,
+      "zipSha256": "de8fe9ecf8c6e1f252b97b3f519a7faf69fd477238d21a27abffb58b4d0e0f27"
+    },
+    {
+      "stage": 19,
+      "artifactId": 13163558932,
+      "source": "af846825c8b4a96b469467a5b792f1e307f0bf11",
+      "passed": false,
+      "exception": "Traceback (most recent call last):\n  File \"/home/runner/work/honro/honro/tools/act2-qa/browser-ui.py\", line 31, in <module>\n    p.wait_for_function(f'HonroApp.engine?.b?.honroStage==={stage} && HonroApp.canInput()',timeout=1000)\n  File \"/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/sync_api/_generated.py\", line 11599, in wait_for_function\n    self._sync(\n  File \"/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_sync_base.py\", line 115, in _sync\n    return task.result()\n           ^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_page.py\", line 1110, in wait_for_function\n    return await self._main_frame.wait_for_function(**locals_to_params(locals()))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_frame.py\", line 878, in wait_for_function\n    await self._channel.send(\"waitForFunction\", self._timeout, params)\n  File \"/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py\", line 69, in send\n    return await self._connection.wrap_api_call(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py\", line 559, in wrap_api_call\n    raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nplaywright._impl._errors.TimeoutError: Page.wait_for_function: Timeout 1000ms exceeded.\n",
+      "errors": [],
+      "normalUiStageClear": false,
+      "scope": "pre-game entry timeout; no gameplay evidence",
+      "events": 0,
+      "fireEvents": 0,
+      "zipSha256": "9a86a091c95496ea2a1c454b32c85f9709232d4df9084ff65ab6efdfff3afb07"
+    }
+  ],
+  "interpretation": "Stage11 raw receipt has no exception/page errors; screenshot/source inspected. Stage19 inferred navigation cause: authored18→19 direct link lacks rest19, declared prior-reward fixture has no pendingDirect, title routes previous hub18. Actual timeout boundary was not captured by old driver; new driver adds boundary evidence and ordinary journey-book navigation. Not final-art or full-stage acceptance."
+}
