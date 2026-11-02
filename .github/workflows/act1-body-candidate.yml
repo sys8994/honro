@@ -3,7 +3,7 @@ on:
   push:
     branches: ['work/act1-body-rollout/**']
 permissions:
-  contents: read
+  contents: write
 jobs:
   verify:
     runs-on: ubuntu-24.04
@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
           ref: ${{ github.sha }}
-          persist-credentials: false
+          persist-credentials: true
       - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
         with:
           node-version: '22'
@@ -28,6 +28,9 @@ jobs:
           npm ci
           npm ci --prefix game
           node tests/act1-body-candidate.mjs
+          mapfile -t published_refs < <(node --input-type=module -e 'import fs from "node:fs";import {selectPublishedGenerations} from "./shared/web-retention.mjs";const m=JSON.parse(fs.readFileSync("web/manifest.json"));for(const g of selectPublishedGenerations(m.publishedGenerations||[],{now:Date.now()})){if(!/^[a-f0-9]{40}$/.test(g.sourceSha))throw Error("Invalid ref");console.log(g.sourceSha)}')
+          git fetch --no-tags --depth=1 origin 16edcc8a00f851481ab7686c49c3ddffd5485906 "${published_refs[@]}"
+          node tools/release/retain-published-web.mjs 16edcc8a00f851481ab7686c49c3ddffd5485906 --published-at 2026-11-02T04:26:04Z --evidence https://github.com/sys8994/honro/actions/runs/41388247954
           npm run build
           python -m pip install 'playwright==1.58.0'
           python -m playwright install --with-deps chromium
@@ -47,3 +50,12 @@ jobs:
           name: act1-body-candidate-${{ github.sha }}
           path: _local/reports/act1-body-browser/
           retention-days: 7
+      - name: Package only after all checks pass
+        if: success() && github.ref == 'refs/heads/work/act1-body-rollout/latest-20261102'
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          git add web HONRO.html HONRO_WORKSHOP.html index.html
+          git -c user.name='honro release automation' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m "Build checked Stage1 BODY release from $GITHUB_SHA"
+          git push origin "HEAD:refs/heads/work/act1-generated/$GITHUB_SHA"
+          # No master update or Pages deployment; parent reviews the generated commit.
