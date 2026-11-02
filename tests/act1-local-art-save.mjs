@@ -37,7 +37,7 @@ const library=g.HONRO_PROJECT.library;g.HONRO_PROJECT.library=[];
 try{const independent=plain(compact);assert(S.restoreBattleArt(independent));assert.deepEqual(independent,original);}finally{g.HONRO_PROJECT.library=library;}
 
 // All currently published Act1 BODY stages use the same self-contained format.
-for(const stageId of [1,2,3,4,5,6,7,8]){const stage=g.HONRO_PROJECT.stages.find(s=>s.metadata?.stageId===stageId);const battle=plain(g.HonroMaps.createBattle(stage,g.HONRO_PROJECT,undefined,{origin:'campaign'}));const packed=plain(S.compactBattleArt(battle));assert(packed.honroLocalArtTable,`Missing table for stage${stageId}`);assert(S.restoreBattleArt(packed));assert.deepEqual(packed,battle,`Stage${stageId} roundtrip`);}
+for(const stageId of [1,2,3,4,5,6,7,8,9]){const stage=g.HONRO_PROJECT.stages.find(s=>s.metadata?.stageId===stageId);const battle=plain(g.HonroMaps.createBattle(stage,g.HONRO_PROJECT,undefined,{origin:'campaign'}));const packed=plain(S.compactBattleArt(battle));assert(packed.honroLocalArtTable,`Missing table for stage${stageId}`);assert(S.restoreBattleArt(packed));assert.deepEqual(packed,battle,`Stage${stageId} roundtrip`);}
 
 const malformed=[];
 function bad(change){const b=plain(compact);change(b);const before=JSON.stringify(b);assert.equal(S.restoreBattleArt(b),false);assert.equal(JSON.stringify(b),before,'failed restore partially mutated snapshot');malformed.push(b);}
@@ -81,5 +81,5 @@ try{
  assert.equal(title.profileStore.save(profile),false);assert.equal(h.storage.get(KEY),goodBytes);assert.deepEqual(profile.honroBattle,original);
 }finally{g.localStorage=storage;}
 
-const result={passed:true,scope:'Production App/model with DOM and storage doubles; normal-reward Stage2 fixture. No continuous campaign, browser quota or combat-clear claim.',publishedStageRoundtrips:[1,2,3,4,5,6,7,8],inlineProfileChars:inline.length,compactProfileChars:saved.length,reductionPercent:100*(1-saved.length/inline.length),tableAssets:2,roundtrip:true,mutationIsolation:true,providerIndependent:true,oldInlineCompatible:true,portableExportInline:true,atomicMalformedRejections:malformed.length,syntheticQuotaBoundary:limit,archivesUntouched:true};
+const result={passed:true,scope:'Production App/model with DOM and storage doubles; normal-reward Stage2 fixture. No continuous campaign, browser quota or combat-clear claim.',publishedStageRoundtrips:[1,2,3,4,5,6,7,8,9],inlineProfileChars:inline.length,compactProfileChars:saved.length,reductionPercent:100*(1-saved.length/inline.length),tableAssets:2,roundtrip:true,mutationIsolation:true,providerIndependent:true,oldInlineCompatible:true,portableExportInline:true,atomicMalformedRejections:malformed.length,syntheticQuotaBoundary:limit,archivesUntouched:true};
 await mkdir('_local/reports/act1-local-art-save',{recursive:true});await writeFile('_local/reports/act1-local-art-save/result.json',JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));

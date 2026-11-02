@@ -28,6 +28,8 @@ jobs:
           npm ci
           npm ci --prefix game
           node tests/stage9-art-candidate.mjs
+          node tests/act1-local-art-save.mjs
+          node tests/act4-story-compact-save.mjs
           node tests/vector-compound-parts.mjs
           python -m pip install numpy==2.3.5 Pillow==13.0.0 scipy==1.17.0 svgpathtools==1.7.2
           python tests/vector-protected-metric.py
