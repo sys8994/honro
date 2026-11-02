@@ -21,24 +21,24 @@ try:
    nxt=p.locator('[data-action="dialogue-next"]:visible')
    if nxt.count() and nxt.first.is_enabled():nxt.first.click()
    elif state()['dialogue']:p.keyboard.press('Enter')
-  record('continued-natural-save');p.screenshot(path=str(out/'initial.png'))
+  record('continued-natural-save');initial=state();assert not initial['npc']['grounded'],'Initial body reservation must not fake terrain support';result['heroMovement']=[];p.screenshot(path=str(out/'initial.png'))
   until=time.monotonic()+100
   while time.monotonic()<until and not state()['can']:dialogue();p.wait_for_timeout(200)
   record('input-boundary');assert state()['can'],'No ordinary input boundary after candidate fix'
   for hero in ['p-archer','p-mage','p-knight']:
    if state()['dialogue']:dialogue()
    chip=p.locator('[data-action="select-hero"][data-id="'+hero+'"]:visible');assert chip.count(),'Missing ordinary hero selector';chip.click();p.wait_for_timeout(150);assert state()['active']==hero,'Hero cannot be selected at this boundary'
-   record('selected-'+hero);p.keyboard.down('ArrowLeft')
+   record('selected-'+hero);before=next(u for u in state()['heroes'] if u['id']==hero);p.keyboard.down('ArrowLeft')
    try:p.wait_for_timeout(650)
    finally:p.keyboard.up('ArrowLeft')
-   record('moved-'+hero);p.screenshot(path=str(out/('moved-'+hero+'.png')))
+   after=next(u for u in state()['heroes'] if u['id']==hero);delta={'id':hero,'dx':after['x']-before['x'],'dy':after['y']-before['y']};result['heroMovement'].append(delta);assert abs(delta['dx'])>=20,'Ordinary left input did not move blocking hero';record('moved-'+hero);p.screenshot(path=str(out/('moved-'+hero+'.png')))
   observed=False;until=time.monotonic()+30
   while time.monotonic()<until:
    s=state()
    if s['npc']['grounded'] and not s['npc'].get('jumping') and not s['npc'].get('airborne'):observed=True;break
    if s['dialogue']:dialogue()
    p.wait_for_timeout(100)
-  record('npc-physical-settlement');result['observedGroundedAfterMoves']=observed;result['passed']=observed and not result['errors'];p.screenshot(path=str(out/'terminal.png'));browser.close()
+  record('npc-physical-settlement');result['observedGroundedAfterMoves']=observed;result['npcDisplacement']={'dx':state()['npc']['x']-initial['npc']['x'],'dy':state()['npc']['y']-initial['npc']['y']};result['passed']=observed and abs(result['npcDisplacement']['dy'])>5 and not result['errors'];p.screenshot(path=str(out/'terminal.png'));browser.close()
 except Exception:
  result['exception']=traceback.format_exc()
  try:record('exception');p.screenshot(path=str(out/'failure.png'))
