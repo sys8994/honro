@@ -40,6 +40,9 @@ jobs:
           trap 'kill $! 2>/dev/null || true' EXIT
           sleep 2
           python tools/act1-qa/browser-ui.py > "$HONRO_QA_OUT/browser.log" 2>&1
+      - name: Require explicit successful UI receipt
+        run: |
+          python -c 'import json,os; from pathlib import Path; d=json.loads((Path(os.environ["HONRO_QA_OUT"])/"result.json").read_text()); assert d.get("passed") is True and not d.get("exception") and not d.get("errors") and d.get("final",{}).get("phase")=="won"'
       - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
         if: always()
         with:

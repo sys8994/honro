@@ -3,6 +3,7 @@
  * recorded as a deviation, never relabelled passed; actual configured bound
  * remains checked. Uses current productionStory selection. */
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
+import {execFileSync} from 'node:child_process';
 import path from 'node:path';import {pathToFileURL} from 'node:url';import {createHash} from 'node:crypto';
 const stage=Number(process.argv[2]),files={8:'tests/stage8-bier-fullplay.mjs',9:'tests/stage9-normal-play.mjs',10:'tests/stage10-normal-play.mjs'};
 if(!files[stage])throw Error('Supported8/9/10 only');
@@ -20,6 +21,7 @@ if(stage===10&&policy.includes('gear')){
 }
 if(stage===8&&policy.includes('modern')){
  code=code.replace(/function story\(\)\{[^\n]+\n/,"function story(){return false;}\n");
+ code=code.replaceAll('for(let i=0;app.dialogue&&i<300;i++)story();','for(let i=0;app.dialogue&&i<20000;i++)tick();assert(!app.dialogue,"Normal terminal reader drained through App.frame");');
  code=code.replace("e.tick(C.STEP);if(!app.dialogue)liveAudit.production(()=>app.missionTick(C.STEP));liveAudit.guard();frames++;","app.scene.render=()=>{};if(app.dialogue)liveAudit.production(()=>g.HonroStory.next(app));liveAudit.production(()=>app.frame(virtualMs));liveAudit.guard();frames++;");
  code=code.replace("if(!u||u.dead){stopReason='no living active hero';break;}","if(!u||u.dead){stopReason='no living active hero';break;}if(u.cls==='knight'&&u.hp<u.maxHp*.65&&u.loadout.includes('S08')&&e.cooldownLeft(u,'S08')===0&&e.canAfford(C.SKILLS.S08,u,1)&&e.fire('S08',u.angle,.3)){record({op:'fire',hero:u.cls,skill:'S08',reason:'ordinary counterstance before pursuit'});continue;}");
 }
@@ -95,5 +97,5 @@ if(stage===10){code=code.replace("h.click('journey-enter',{id:'11'});","app.expo
 if(policy.includes('noitems')){code=code.replace('if(u.hp<u.maxHp*.5&&b.items.heal)', 'if(false&&u.hp<u.maxHp*.5&&b.items.heal)');code=code.replace('if(useSupplies&&u.hp<u.maxHp*.45&&b.items.heal>0)', 'if(false&&useSupplies&&u.hp<u.maxHp*.45&&b.items.heal>0)');}
 code=code.replace(/from\s*(['"])(\.[^'"]+)\1/g,(_,q,s)=>'from '+q+pathToFileURL(path.resolve(path.dirname(file),s)).href+q);
 code=code.replaceAll('await readFile(new URL(import.meta.url))',`await readFile(${JSON.stringify(file)})`);
-const generated=path.resolve(dir,'adapted-controller.mjs');await writeFile(generated,code);await writeFile(dir+'/adapter.json',JSON.stringify({stage,seed,policy,source:file,originalSha256:createHash('sha256').update(await readFile(file)).digest('hex'),adaptedSha256:createHash('sha256').update(code).digest('hex'),scope:'Native calibration. Fixed old cap4 deviations are recorded, NOT passed. No balance/map/state/goal changes.'},null,2));
+const generated=path.resolve(dir,'adapted-controller.mjs');await writeFile(generated,code);await writeFile(dir+'/adapter.json',JSON.stringify({stage,seed,policy,sourceCommit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),sourceDirty:execFileSync('git',['status','--short'],{encoding:'utf8'}).trim(),source:file,originalSha256:createHash('sha256').update(await readFile(file)).digest('hex'),adaptedSha256:createHash('sha256').update(code).digest('hex'),scope:'Native calibration. Fixed old cap4 deviations are recorded, NOT passed. No balance/map/state/goal changes.'},null,2));
 await import(pathToFileURL(generated));

@@ -1,7 +1,7 @@
 """Fail-closed partial evidence index. Never treats raw totals as fun approval."""
-import json,glob,statistics,hashlib,html
+import json,glob,statistics,hashlib,html,subprocess
 from collections import Counter
-from gates import numeric_gate,overall
+from gates import numeric_gate,overall,ui_receipt_gate
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2];OUT=ROOT/'_local/reports/act1-gameplay-20261103';PLAN=json.loads((ROOT/'tools/act1-qa/plan.json').read_text());rows=[]
 def digest(p):return hashlib.sha256(p.read_bytes()).hexdigest()
@@ -24,7 +24,7 @@ def normalize(stage,label,initial,final,damage,actions,path,cohort=False,seed=No
   k=u.get('honroVariant',u.get('honroType',u.get('cls','unknown')));kinds[k]=kinds.get(k,0)+1
  playerfires=[a for a in actions if a.get('op',a.get('kind')) in ['fire','shot','fire-seal','fire-binding','fire-input'] and (not a.get('before') or str(a['before'].get('id','')).startswith('p-'))]
  round_=final.get('round');target=PLAN['stages'][stage-1]['design']['rounds']
- row={'stage':stage,'policy':label,'cohort':cohort,'inputErrorSeed':seed,'engineSeed':initial.get('seed'),'scope':scope,'evidence':str(path.relative_to(ROOT)),'sha256':digest(path),'phase':final.get('phase'),'round':round_,'roundTarget':target,'trialRoundInTarget':target[0]<=round_<=target[1] if round_ else None,'hard20Exceeded':round_>20 if round_ else None,'winnerReason':final.get('winnerReason'),'entry':{'difficulty':initial.get('difficulty'),'heroes':[{'cls':u['cls'],'level':u.get('level'),'hp':u.get('maxHp'),'loadout':u.get('loadout'),'ranks':u.get('ranks')}for u in hero]},'composition':{'initialEnemiesExcludingObjectiveTargets':len(foes),'initialElites':sum(bool(u.get('elite'))for u in foes),'archetypes':kinds,'initialObjectiveTargets':sum(bool(u.get('honroObjectiveTarget'))for u in initial.get('units',[])),'initialHostileStoryActorsNotKillTargets':[u['id']for u in initial.get('units',[])if stage==10 and u.get('id')=='boss'and u.get('side')==1]},'observed':{'kills':sum(u.get('side')==1 and not u.get('honroObjectiveTarget') and (u.get('dead') or u.get('hp',1)<=0)for u in allus.values()),'survivingHeroes':sum(u.get('side')==0 and not u.get('summoned') and not u.get('dead') and u.get('hp',0)>0 for u in allus.values()),'playerFireCommands':len(playerfires),'partyHpDamage':taken,'protectedNpcHpDamage':protected,'alliedNpcHpDamage':allied,'npcHpDamageById':npcById,'damageToHostileSideIncludingTargets':dealt,'damageBackedEngagementLowerBound':len(engaged),'damageBackedEngagedIds':sorted(engaged),'normalEnemyHitPctHpDiagnostic':{'n':len(normalpct),'mean':statistics.mean(normalpct)if normalpct else None,'range':[min(normalpct),max(normalpct)]if normalpct else None}},'missingEssential':['validated enemy effective-action denominator incl zero phases','normal enemy damage per-action aggregation','accepted full required support graph and elevation ratio','valid jump/drop/landing attribution','stage-specific special metric comparison','readability and native UI scene review','human-independent tactics assessment'], 'acceptance':'FAIL_UNMEASURED'}
+ row={'stage':stage,'policy':label,'cohort':cohort,'inputErrorSeed':seed,'engineSeed':initial.get('seed'),'scope':scope,'evidence':str(path.relative_to(ROOT)),'sha256':digest(path),'phase':final.get('phase'),'round':round_,'roundTarget':target,'trialRoundInTarget':target[0]<=round_<=target[1] if round_ else None,'hard20Exceeded':round_>20 if round_ else None,'winnerReason':final.get('winnerReason'),'entry':{'difficulty':initial.get('difficulty'),'heroes':[{'cls':u['cls'],'level':u.get('level'),'hp':u.get('maxHp'),'loadout':u.get('loadout'),'ranks':u.get('ranks')}for u in hero]},'composition':{'initialEnemiesExcludingObjectiveTargets':len(foes),'initialElites':sum(bool(u.get('elite'))and not u.get('honroMidboss')and u['id']!='boss'for u in foes),'initialMinibosses':sum(bool(u.get('honroMidboss'))for u in foes),'initialMajorBosses':sum(u['id']=='boss'and not u.get('honroMidboss')for u in foes),'archetypes':kinds,'initialObjectiveTargets':sum(bool(u.get('honroObjectiveTarget'))for u in initial.get('units',[])),'initialHostileStoryActorsNotKillTargets':[u['id']for u in initial.get('units',[])if stage==10 and u.get('id')=='boss'and u.get('side')==1]},'observed':{'kills':sum(u.get('side')==1 and not u.get('honroObjectiveTarget') and (u.get('dead') or u.get('hp',1)<=0)for u in allus.values()),'survivingHeroes':sum(u.get('side')==0 and not u.get('summoned') and not u.get('dead') and u.get('hp',0)>0 for u in allus.values()),'playerFireCommands':len(playerfires),'partyHpDamage':taken,'protectedNpcHpDamage':protected,'alliedNpcHpDamage':allied,'npcHpDamageById':npcById,'damageToHostileSideIncludingTargets':dealt,'damageBackedEngagementLowerBound':len(engaged),'damageBackedEngagedIds':sorted(engaged),'normalEnemyHitPctHpDiagnostic':{'n':len(normalpct),'mean':statistics.mean(normalpct)if normalpct else None,'range':[min(normalpct),max(normalpct)]if normalpct else None}},'missingEssential':['validated enemy effective-action denominator incl zero phases','normal enemy damage per-action aggregation','accepted full required support graph and elevation ratio','valid jump/drop/landing attribution','stage-specific special metric comparison','readability and native UI scene review','human-independent tactics assessment'], 'acceptance':'FAIL_UNMEASURED'}
  playerids={u['id']for u in hero}
  commands=[a for a in actions if isinstance(a.get('before'),dict) and a['before'].get('id')in playerids and a.get('accepted')is True]
  row['observed']['acceptedSkills']=dict(Counter(a.get('args',[None])[0]for a in commands if a.get('op')=='fire')) if commands else dict(Counter(a.get('skill')for a in playerfires if a.get('skill')))
@@ -96,25 +96,60 @@ for row in rows:
  adapter=folder/'adapter.json';result=folder/'result.json'
  meta=json.loads(adapter.read_text())if adapter.exists()else {}
  resultMeta=json.loads(result.read_text())if result.exists()else {}
- row['sourceCommit']=resultMeta.get('sourceCommit',meta.get('sourceCommit'))
+ raw=json.loads((ROOT/row['evidence']).read_text());rawSource=raw.get('source');row['sourceCommit']=resultMeta.get('sourceCommit',meta.get('sourceCommit'))or(rawSource if isinstance(rawSource,str)and len(rawSource)==40 else None)
+ row['sourceProvenanceStatus']='Recorded commit'if row['sourceCommit']else 'MISSING_COMMIT: preserve raw/controller hashes; do not infer exact source'
+ row['controllerCalibrationStatus']='INVALID_PLANNED_SKILL_CALLER_MISMATCH'if row['stage']==2 and 'focused'in row['policy']and 'skillmatch'not in row['policy']else 'Diagnostic calibration unless separately preregistered'
  row['runtimeSha256']=resultMeta.get('runtimeSha256')
- row['candidateScope']='Separate Stage8 staging-fix candidate' if 'postfix' in folder.name or folder.is_symlink() else 'Baseline292 gameplay / QA controller revisions'
+ row['candidateScope']='UNVERIFIED_SOURCE_METADATA'
+ if row['runtimeSha256']=='45f5e5a9d1d915a4adf3e74e6a1681221f37780eea38d958af4722a43290442f':row['candidateScope']='Stage8 staging-fix runtime verified by recorded content hash'
+ elif row['sourceCommit']:
+  try:
+   if subprocess.run(['git','diff','--quiet','292c1122fcd75256c366ec15e815fb4adcfbd7b2',row['sourceCommit'],'--','shared/runtime','shared/engine','game/src'],cwd=ROOT).returncode==0:row['candidateScope']='Baseline292 gameplay verified from recorded commit'
+  except Exception:pass
+ row['runtimeHashStatus']='Recorded'if row['runtimeSha256']else 'MISSING_RUNTIME_HASH; commit comparison may establish tracked source only'
+ row['continuationHistory']=resultMeta.get('previousPolicies',[])
+ if row['stage']==8 and row['phase']=='won':row['postVictoryStatus']='Normal result/rest/journey9 verified'if(folder/'stage9-entry.json').exists()else 'COMBAT_WON; post-victory reader/progression unverified or harness assertion failed'
+
+registration=json.loads((ROOT/'tools/act1-qa/stage1-cohort.json').read_text())
+registered=[r for r in rows if r['cohort']and r['stage']==1]
+expectedPairs={(policy,seed)for policy in registration['policies']for seed in registration['seeds']}
+actualPairs=[(r['policy'],r['inputErrorSeed'])for r in registered]
+registrationChecks={'exactUniqueCases':len(actualPairs)==len(expectedPairs)and set(actualPairs)==expectedPairs,'terminalOnly':all(r['phase']in ['won','lost']for r in registered),'noLegacyItemCalls':all(not r['observed']['itemCommands']for r in registered),'sourceHashesMatch':True,'baselineGameplayUnchanged':True}
+for sha in {r['sourceCommit']for r in registered}:
+ try:
+  for file,expected in registration['sourceHashes'].items():
+   if hashlib.sha256(subprocess.check_output(['git','show',sha+':'+file],cwd=ROOT)).hexdigest()!=expected:registrationChecks['sourceHashesMatch']=False
+  if subprocess.run(['git','diff','--quiet',registration['candidateGameplay'],sha,'--','shared/runtime','shared/engine','game/src'],cwd=ROOT).returncode:registrationChecks['baselineGameplayUnchanged']=False
+ except Exception:registrationChecks['sourceHashesMatch']=False;registrationChecks['baselineGameplayUnchanged']=False
+registeredEligible=bool(registered)and all(registrationChecks.values())
 groups=[]
 for policy in sorted({r['policy']for r in rows if r['cohort']}):
  rs=[r for r in rows if r['policy']==policy and r['cohort']];wins=[r for r in rs if r['phase']=='won'];rounds=[r['round']for r in wins];n=len(rs);groups.append({'policy':policy,'n':n,'clears':len(wins),'clearRatePct':len(wins)/n*100,'humanClearRate':None,'uncertainty':'Fixed engine RNG, tool policy and tiny input errors do not establish a human-population confidence interval.','meanClearRounds':statistics.mean(rounds)if rounds else None,'medianClearRounds':statistics.median(rounds)if rounds else None,'clearRoundRange':[min(rounds),max(rounds)]if rounds else None,'hard20Exceedances':sum(r['hard20Exceeded']for r in rs),'engineSeedCount':len({r['engineSeed']for r in rs}),'seedScope':'input error seeds, canonical fixed game RNG','stageAcceptance':'FAIL_UNMEASURED'})
-report={'schema':'honro-act1-gameplay-measurements/v1','candidateGameplay':'292c1122fcd75256c366ec15e815fb4adcfbd7b2','originalCriteria':PLAN['source'],'overall':'FAIL_INCOMPLETE','statement':'Native inputs and declared fixtures only unless separately linked to verified UI run. Clear is not fun approval. Failed controller calibration excluded from general-policy rate.','stages':[{'stage':i,'runs':sum(r['stage']==i for r in rows),'acceptance':'FAIL_UNMEASURED','requiredRounds':PLAN['stages'][i-1]['design']['rounds'],'requiredEngagements':PLAN['stages'][i-1]['design']['requiredEngagements']}for i in range(1,11)],'cohorts':groups,'runs':sorted(rows,key=lambda r:(r['stage'],r['policy'],r.get('inputErrorSeed')or 0))}
+report={'schema':'honro-act1-gameplay-measurements/v1','candidateGameplay':'292c1122fcd75256c366ec15e815fb4adcfbd7b2','originalCriteria':PLAN['source'],'overall':'FAIL_INCOMPLETE','statement':'Native inputs and declared fixtures only unless separately linked to verified UI run. Clear is not fun approval. Failed controller calibration excluded from general-policy rate.','stages':[{'stage':i,'runs':sum(r['stage']==i for r in rows),'acceptance':'FAIL_UNMEASURED','requiredRounds':PLAN['stages'][i-1]['design']['rounds'],'requiredEngagements':PLAN['stages'][i-1]['design']['requiredEngagements']}for i in range(1,11)],'registrationChecks':registrationChecks,'registeredCohortEligible':registeredEligible,'humanPopulationRate':{'required':False,'measured':False,'scope':'Original criteria explicitly concern finite registered policies, not human probability.'},'macroGates':{'risingDifficultyWithIntentionalPeaks':{'status':'FAIL_MISSING_MEASUREMENT','scope':'Requires comparable accepted effective-action/damage/policy evidence across acts; do not infer from enemy totals.'}},'cohorts':groups,'runs':sorted(rows,key=lambda r:(r['stage'],r['policy'],r.get('inputErrorSeed')or 0))}
 uiReceipts={}
 for folder in OUT.glob('ui-*'):
  result=folder/'result.json';events=folder/'events.json'
  if not result.exists()or not events.exists():continue
  u=json.loads(result.read_text());ev=json.loads(events.read_text());final=u.get('final',{})
- if u.get('stage')and final.get('phase')=='won'and not u.get('errors')and any(e.get('op')in ['fire','receiver-interact','interact']for e in ev):uiReceipts[u['stage']]={'result':str(result.relative_to(ROOT)),'sha256':digest(result),'eventsSha256':digest(events),'source':u.get('source')}
+ sourceFile=folder/'source.txt';hashFile=folder/'served-sha256.txt';source=sourceFile.read_text().strip()if sourceFile.exists()else None;served={}
+ if hashFile.exists():
+  for line in hashFile.read_text().splitlines():
+   parts=line.split();
+   if len(parts)==2:served[parts[1].lstrip('*')]=parts[0]
+ expected={name:digest(ROOT/name)for name in ['HONRO.html','web/manifest.json']}
+ if ui_receipt_gate(u,ev,source=source,served=served,expected=expected,artifacts_complete=(folder/'terminal.png').exists()):uiReceipts[u['stage']]={'result':str(result.relative_to(ROOT)),'sha256':digest(result),'eventsSha256':digest(events),'source':u.get('source')}
 for st in report['stages']:
 
  ds=PLAN['stages'][st['stage']-1]['design'];rs=[r for r in rows if r['stage']==st['stage']and r['cohort']];wins=[r for r in rs if r['phase']=='won'];rounds=[r['round']for r in wins]
  st['gates']={
- 'roundMeanProxy':numeric_gate(statistics.mean(rounds)if rounds else None,ds['rounds'],n=len(rounds),eligible=False,scope='Fixed-RNG controller cohort only, not validated human pacing'),
- 'humanClearRate':numeric_gate(None,ds['clearRate'],scope='No human population sample'),
+ 'registeredPolicyMeanRounds':numeric_gate(statistics.mean(rounds)if rounds else None,ds['rounds'],n=len(rounds),eligible=registeredEligible and st['stage']==1,scope='Finite preregistered successful policy runs; fixed RNG, failures recorded separately; not human pacing estimate'),
+ 'registeredPolicyClearRate':numeric_gate(len(wins)/len(rs)*100 if rs else None,ds['clearRate'],n=len(rs),eligible=registeredEligible and st['stage']==1,scope='Original finite registered-policy criterion. Fixed RNG/tiny input errors; NOT independent human probability or broad robustness.'),
+ 'hard20RegisteredProgression':numeric_gate(sum(r['round']>20 for r in rs)if rs else None,[0,0],n=len(rs),eligible=registeredEligible and st['stage']==1,scope='Registered ordinary-policy trials; calibration over20 logs retained separately, never clipped'),
+ 'minibossCompositionAndMandatoryRole':{'status':'FAIL_MISSING_MEASUREMENT','target':ds['miniboss'],'scope':'Initial typed count is diagnostic; required encounter/mandatory-role and event composition not fully audited'},
+ 'majorBossTelegraphAndCounterplay':{'status':'FAIL_MISSING_MEASUREMENT'if ds['majorBossCount'][1]else 'PASS','target':ds['majorBossCount'],'scope':'Required authored boss role, warnings and response not fully audited'if ds['majorBossCount'][1]else 'Not applicable: original majorBossCount=[0,0]'},
+ 'applicableJumpDropLandingTransitions':{'status':'FAIL_MISSING_MEASUREMENT','scope':'Vertical/combined requires valid transitions; other types need explicit applicability review, not invented jump quotas'},
+ 'stageSpecialMetrics':{'status':'FAIL_MISSING_MEASUREMENT','criteria':PLAN['stages'][st['stage']-1]['specialMetrics']},
+ 'originalObjectiveAndProgressionIntegrity':{'status':'FAIL_MISSING_MEASUREMENT','scope':'Representative outcome does not cover all authored mandatory events/save paths; Stage8 baseline softlock separately reproduced'},
  'effectiveEnemyActions':numeric_gate(None,ds['actualEnemyActions'],scope='All effective approach/control/pressure and zero phases not fully classified'),
  'normalEnemyDamagePerAction':numeric_gate(None,ds['enemyAttackPctHP'],scope='Per-hit diagnostics are not accepted action aggregates'),
  'requiredRouteEngagements':numeric_gate(None,ds['requiredEngagements'],scope='Damage-backed lower bound is not complete engagement classification'),
