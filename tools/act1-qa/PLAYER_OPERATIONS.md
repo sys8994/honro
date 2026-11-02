@@ -27,3 +27,5 @@ This mapping separates **Engine-action/model physics**, **native App action simu
 - Modern8–10 uses App.frame and guarded outcomes, but direct Engine fire means idealized Engine-action input, not full App charge simulation. Real UI receipts stay separate.
 
 No new large acceptance batch should begin until the common App-operation adapter passes unsupported-method/guard tests and representative calibration. Direct actor/resource/phase/goal writes remain forbidden in every mode.
+
+Browser calibration follow-up (41496219330): Stage5 R10 shot at near maximum range and Stage10 R5 point-blank M11 had no predicted viable shot. New controller policy permits at most three 120ms ordinary arrow-key pulses, approaching a distant declared target or retreating from one within120 units, then replans the same skill/target. Every correction records before/after. No safe plan still fails; this is a separate adaptive controller revision, not retroactive success of prior traces.
