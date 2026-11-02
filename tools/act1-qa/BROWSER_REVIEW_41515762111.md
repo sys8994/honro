@@ -37,3 +37,7 @@ Original downloads are extracted under `_local/reports/pass41515762111/stage{1,5
 | 10 | 13176420147 | `command-43-shoot.png` (visible5/6 protection hold), `terminal.png` |
 
 Historical failure evidence remains separately under `_local/reports/fail5/` and `fail10/`; no failed traces were replaced. These artifacts establish the two input-driver repairs and representative actual UI clears, while Stage5/10 round-band deviations and broader campaign/gameplay acceptance remain separate.
+
+## Later closure of the post-victory gap
+
+Actual focused run41543440284 on149f1a2f restored these exact unchanged genuine WON saves with matching original game bytes, then verified authored result/ending, destination/recruitment, persisted completion and reload/Continue without duplicate rewards. See [post-win coverage](POST_WIN_COVERAGE.md#actual-browser-verification-completed--2026-11-02-2314-utc). The original run remains terminal-dialogue-only evidence; the new run separately closes progression/save coverage for these three records, without implying continuous campaign lineage or changing the timing bands above.
