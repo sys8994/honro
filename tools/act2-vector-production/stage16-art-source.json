@@ -1,0 +1,1766 @@
+{
+  "version": 1,
+  "stage": 16,
+  "scope": "After authored tactical layout; before runtime projectAuthors. Decorative BODY only.",
+  "rawStageSha256": "25e625ad63d88243d5ed9da1727cfface53e70de81379461ac961eb13f22ce0e",
+  "source": {
+    "width": 11000,
+    "height": 7600,
+    "playBounds": {
+      "left": 0,
+      "top": 0,
+      "right": 11000,
+      "bottom": 7600
+    },
+    "terrainBounds": {
+      "left": -6000,
+      "top": -24000,
+      "right": 17000,
+      "bottom": 31600
+    },
+    "terrains": [
+      {
+        "id": "act2-floor",
+        "name": "act2-floor",
+        "type": "solid",
+        "points": [
+          {
+            "x": 0,
+            "y": 5480
+          },
+          {
+            "x": 1100,
+            "y": 5480
+          },
+          {
+            "x": 1800,
+            "y": 5450
+          },
+          {
+            "x": 2300,
+            "y": 5320
+          },
+          {
+            "x": 2800,
+            "y": 5360
+          },
+          {
+            "x": 3200,
+            "y": 5520
+          },
+          {
+            "x": 3800,
+            "y": 5800
+          },
+          {
+            "x": 4800,
+            "y": 5910
+          },
+          {
+            "x": 5700,
+            "y": 5950
+          },
+          {
+            "x": 6500,
+            "y": 5960
+          },
+          {
+            "x": 7400,
+            "y": 5800
+          },
+          {
+            "x": 8000,
+            "y": 5650
+          },
+          {
+            "x": 8800,
+            "y": 4840
+          },
+          {
+            "x": 9400,
+            "y": 4800
+          },
+          {
+            "x": 10300,
+            "y": 4750
+          },
+          {
+            "x": 11000,
+            "y": 4750
+          },
+          {
+            "x": 11500,
+            "y": 4818.359375
+          },
+          {
+            "x": 12000,
+            "y": 4832.506666666666
+          },
+          {
+            "x": 12500,
+            "y": 4687.973333333333
+          },
+          {
+            "x": 13000,
+            "y": 4527.44
+          },
+          {
+            "x": 13500,
+            "y": 4496.172839506173
+          },
+          {
+            "x": 14000,
+            "y": 4550.493827160494
+          },
+          {
+            "x": 14500,
+            "y": 4623.333333333333
+          },
+          {
+            "x": 15000,
+            "y": 4668.395061728395
+          },
+          {
+            "x": 15500,
+            "y": 4635.709287068085
+          },
+          {
+            "x": 16000,
+            "y": 4531.831170724596
+          },
+          {
+            "x": 16500,
+            "y": 4421.392331243622
+          },
+          {
+            "x": 17000,
+            "y": 4370
+          },
+          {
+            "x": 17000,
+            "y": 31600
+          },
+          {
+            "x": -6000,
+            "y": 31600
+          },
+          {
+            "x": -6000,
+            "y": 5160
+          },
+          {
+            "x": -5500,
+            "y": 5221.670797492346
+          },
+          {
+            "x": -5000,
+            "y": 5354.197404869515
+          },
+          {
+            "x": -4500,
+            "y": 5478.851144481703
+          },
+          {
+            "x": -4000,
+            "y": 5521.783264746227
+          },
+          {
+            "x": -3500,
+            "y": 5571.851851851852
+          },
+          {
+            "x": -3000,
+            "y": 5652.78463648834
+          },
+          {
+            "x": -2500,
+            "y": 5713.141289437585
+          },
+          {
+            "x": -2000,
+            "y": 5686.72
+          },
+          {
+            "x": -1500,
+            "y": 5544.023703703704
+          },
+          {
+            "x": -1000,
+            "y": 5415.54962962963
+          },
+          {
+            "x": -500,
+            "y": 5425.3125
+          }
+        ],
+        "baseMaterial": "rock",
+        "breakable": false,
+        "oneWay": false,
+        "layer": "terrain",
+        "properties": {
+          "surfaceKind": "cave",
+          "honroCave": true,
+          "honroTemple": true,
+          "honroSpaceSurfaceId": "act2-floor",
+          "honroSurfaceRole": "floor",
+          "honroWalkEdges": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "optional": false
+        },
+        "detail": {
+          "spacing": 18,
+          "roughness": 0,
+          "seed": 16,
+          "optimizeEpsilon": 0
+        },
+        "playProjection": {
+          "bounds": {
+            "left": 0,
+            "top": 0,
+            "right": 11000,
+            "bottom": 8500
+          },
+          "start": {
+            "x": 0,
+            "y": 5480
+          }
+        }
+      },
+      {
+        "id": "cave-roof",
+        "name": "cave-roof",
+        "type": "solid",
+        "points": [
+          {
+            "x": 17000,
+            "y": -24000
+          },
+          {
+            "x": 17000,
+            "y": 2981.99999989282
+          },
+          {
+            "x": 16500,
+            "y": 3033.392330676158
+          },
+          {
+            "x": 16000,
+            "y": 3143.831167720166
+          },
+          {
+            "x": 15500,
+            "y": 3247.7092711611654
+          },
+          {
+            "x": 15000,
+            "y": 3280.3949775093615
+          },
+          {
+            "x": 14500,
+            "y": 3235.3328874365
+          },
+          {
+            "x": 14000,
+            "y": 3162.491466364146
+          },
+          {
+            "x": 13500,
+            "y": 3108.160340293399
+          },
+          {
+            "x": 13000,
+            "y": 3139.3738230423305
+          },
+          {
+            "x": 12500,
+            "y": 3299.6229600893807
+          },
+          {
+            "x": 12000,
+            "y": 3442.6516190126094
+          },
+          {
+            "x": 11500,
+            "y": 3420.537843652447
+          },
+          {
+            "x": 11000,
+            "y": 3310
+          },
+          {
+            "x": 9500,
+            "y": 3050
+          },
+          {
+            "x": 8750,
+            "y": 2900
+          },
+          {
+            "x": 8150,
+            "y": 2140
+          },
+          {
+            "x": 7300,
+            "y": 1530
+          },
+          {
+            "x": 6100,
+            "y": 1210
+          },
+          {
+            "x": 4600,
+            "y": 1360
+          },
+          {
+            "x": 3300,
+            "y": 2100
+          },
+          {
+            "x": 2100,
+            "y": 3100
+          },
+          {
+            "x": 1100,
+            "y": 3700
+          },
+          {
+            "x": 0,
+            "y": 3900
+          },
+          {
+            "x": -500,
+            "y": 3889.555648936133
+          },
+          {
+            "x": -1000,
+            "y": 3888.1492299925067
+          },
+          {
+            "x": -1500,
+            "y": 4018.20163386739
+          },
+          {
+            "x": -2000,
+            "y": 4161.19603815629
+          },
+          {
+            "x": -2500,
+            "y": 4187.67363292069
+          },
+          {
+            "x": -3000,
+            "y": 4127.327614673989
+          },
+          {
+            "x": -3500,
+            "y": 4046.3968386733554
+          },
+          {
+            "x": -4000,
+            "y": 3996.328630950039
+          },
+          {
+            "x": -4500,
+            "y": 3953.396582341576
+          },
+          {
+            "x": -5000,
+            "y": 3828.74285626347
+          },
+          {
+            "x": -5500,
+            "y": 3696.216251442559
+          },
+          {
+            "x": -6000,
+            "y": 3634.5454544330278
+          },
+          {
+            "x": -6000,
+            "y": -24000
+          }
+        ],
+        "baseMaterial": "rock",
+        "breakable": false,
+        "oneWay": false,
+        "layer": "terrain",
+        "properties": {
+          "surfaceKind": "cave",
+          "honroCave": true,
+          "honroTemple": true,
+          "honroSpaceSurfaceId": "cave-roof",
+          "honroSurfaceRole": "ceiling",
+          "honroWalkEdges": [],
+          "optional": false,
+          "honroCeiling": true
+        },
+        "detail": {
+          "spacing": 18,
+          "roughness": 0,
+          "seed": 16,
+          "optimizeEpsilon": 0
+        },
+        "playProjection": {
+          "bounds": {
+            "left": 0,
+            "top": 0,
+            "right": 11000,
+            "bottom": 8500
+          },
+          "start": {
+            "x": 0,
+            "y": -800
+          }
+        }
+      },
+      {
+        "id": "tm-processional-stair",
+        "name": "tm-processional-stair",
+        "type": "solid",
+        "points": [
+          {
+            "x": 1800,
+            "y": 5450
+          },
+          {
+            "x": 2300,
+            "y": 5320
+          },
+          {
+            "x": 2550,
+            "y": 5250
+          },
+          {
+            "x": 2550,
+            "y": 5520
+          },
+          {
+            "x": 2200,
+            "y": 5700
+          },
+          {
+            "x": 1800,
+            "y": 5650
+          }
+        ],
+        "baseMaterial": "rock",
+        "breakable": false,
+        "oneWay": false,
+        "layer": "terrain",
+        "properties": {
+          "surfaceKind": "cave",
+          "honroCave": true,
+          "honroTemple": true,
+          "honroSpaceSurfaceId": "tm-processional-stair",
+          "honroSurfaceRole": "shelf",
+          "honroWalkEdges": [
+            0,
+            1
+          ],
+          "optional": false
+        },
+        "detail": {
+          "spacing": 18,
+          "roughness": 0,
+          "seed": 16,
+          "optimizeEpsilon": 0
+        }
+      },
+      {
+        "id": "tm-processional-bridge",
+        "name": "tm-processional-bridge",
+        "type": "solid",
+        "points": [
+          {
+            "x": 2690,
+            "y": 5211
+          },
+          {
+            "x": 2800,
+            "y": 5180
+          },
+          {
+            "x": 3500,
+            "y": 4850
+          },
+          {
+            "x": 3500,
+            "y": 4940
+          },
+          {
+            "x": 2800,
+            "y": 5270
+          },
+          {
+            "x": 2690,
+            "y": 5301
+          }
+        ],
+        "baseMaterial": "wood",
+        "breakable": false,
+        "oneWay": true,
+        "layer": "terrain",
+        "properties": {
+          "surfaceKind": "wood",
+          "honroCave": true,
+          "honroTemple": true,
+          "honroSpaceSurfaceId": "tm-processional-bridge",
+          "honroSurfaceRole": "shelf",
+          "honroWalkEdges": [
+            0,
+            1
+          ],
+          "optional": true
+        },
+        "detail": {
+          "spacing": 18,
+          "roughness": 0,
+          "seed": 16,
+          "optimizeEpsilon": 0
+        }
+      },
+      {
+        "id": "tm-processional-upper",
+        "name": "tm-processional-upper",
+        "type": "solid",
+        "points": [
+          {
+            "x": 3500,
+            "y": 4850
+          },
+          {
+            "x": 3900,
+            "y": 4750
+          },
+          {
+            "x": 4350,
+            "y": 4370
+          },
+          {
+            "x": 4600,
+            "y": 4250
+          },
+          {
+            "x": 4580,
+            "y": 4840
+          },
+          {
+            "x": 4170,
+            "y": 5060
+          },
+          {
+            "x": 3630,
+            "y": 5250
+          },
+          {
+            "x": 3500,
+            "y": 5130
+          }
+        ],
+        "baseMaterial": "rock",
+        "breakable": false,
+        "oneWay": false,
+        "layer": "terrain",
+        "properties": {
+          "surfaceKind": "cave",
+          "honroCave": true,
+          "honroTemple": true,
+          "honroSpaceSurfaceId": "tm-processional-upper",
+          "honroSurfaceRole": "shelf",
+          "honroWalkEdges": [
+            0,
+            1,
+            2
+          ],
+          "optional": false
+        },
+        "detail": {
+          "spacing": 18,
+          "roughness": 0,
+          "seed": 16,
+          "optimizeEpsilon": 0
+        }
+      },
+      {
+        "id": "tm-great-hall-plinth",
+        "name": "tm-great-hall-plinth",
+        "type": "solid",
+        "points": [
+          {
+            "x": 4600,
+            "y": 4250
+          },
+          {
+            "x": 5150,
+            "y": 4250
+          },
+          {
+            "x": 5920,
+            "y": 4250
+          },
+          {
+            "x": 6700,
+            "y": 4250
+          },
+          {
+            "x": 7350,
+            "y": 4250
+          },
+          {
+            "x": 7440,
+            "y": 4740
+          },
+          {
+            "x": 7180,
+            "y": 5160
+          },
+          {
+            "x": 6740,
+            "y": 5050
+          },
+          {
+            "x": 6450,
+            "y": 4630
+          },
+          {
+            "x": 6100,
+            "y": 4580
+          },
+          {
+            "x": 5740,
+            "y": 4670
+          },
+          {
+            "x": 5500,
+            "y": 5170
+          },
+          {
+            "x": 5000,
+            "y": 5100
+          },
+          {
+            "x": 4730,
+            "y": 4740
+          }
+        ],
+        "baseMaterial": "rock",
+        "breakable": false,
+        "oneWay": false,
+        "layer": "terrain",
+        "properties": {
+          "surfaceKind": "cave",
+          "honroCave": true,
+          "honroTemple": true,
+          "honroSpaceSurfaceId": "tm-great-hall-plinth",
+          "honroSurfaceRole": "shelf",
+          "honroWalkEdges": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "optional": false
+        },
+        "detail": {
+          "spacing": 18,
+          "roughness": 0,
+          "seed": 16,
+          "optimizeEpsilon": 0
+        }
+      },
+      {
+        "id": "tm-east-stone-stair",
+        "name": "tm-east-stone-stair",
+        "type": "solid",
+        "points": [
+          {
+            "x": 7350,
+            "y": 4250
+          },
+          {
+            "x": 7850,
+            "y": 4400
+          },
+          {
+            "x": 8110,
+            "y": 4530
+          },
+          {
+            "x": 8130,
+            "y": 4830
+          },
+          {
+            "x": 7900,
+            "y": 5020
+          },
+          {
+            "x": 7580,
+            "y": 4930
+          },
+          {
+            "x": 7330,
+            "y": 4550
+          }
+        ],
+        "baseMaterial": "rock",
+        "breakable": false,
+        "oneWay": false,
+        "layer": "terrain",
+        "properties": {
+          "surfaceKind": "cave",
+          "honroCave": true,
+          "honroTemple": true,
+          "honroSpaceSurfaceId": "tm-east-stone-stair",
+          "honroSurfaceRole": "shelf",
+          "honroWalkEdges": [
+            0,
+            1
+          ],
+          "optional": false
+        },
+        "detail": {
+          "spacing": 18,
+          "roughness": 0,
+          "seed": 16,
+          "optimizeEpsilon": 0
+        }
+      },
+      {
+        "id": "tm-east-stone-bridge",
+        "name": "tm-east-stone-bridge",
+        "type": "solid",
+        "points": [
+          {
+            "x": 8230,
+            "y": 4590
+          },
+          {
+            "x": 8800,
+            "y": 4840
+          },
+          {
+            "x": 8800,
+            "y": 4940
+          },
+          {
+            "x": 8230,
+            "y": 4690
+          }
+        ],
+        "baseMaterial": "wood",
+        "breakable": false,
+        "oneWay": true,
+        "layer": "terrain",
+        "properties": {
+          "surfaceKind": "wood",
+          "honroCave": true,
+          "honroTemple": true,
+          "honroSpaceSurfaceId": "tm-east-stone-bridge",
+          "honroSurfaceRole": "shelf",
+          "honroWalkEdges": [
+            0
+          ],
+          "optional": true
+        },
+        "detail": {
+          "spacing": 18,
+          "roughness": 0,
+          "seed": 16,
+          "optimizeEpsilon": 0
+        }
+      },
+      {
+        "id": "tm-shelter-veranda",
+        "name": "tm-shelter-veranda",
+        "type": "solid",
+        "points": [
+          {
+            "x": 2640,
+            "y": 5030
+          },
+          {
+            "x": 3130,
+            "y": 4990
+          },
+          {
+            "x": 3460,
+            "y": 4858.857142857143
+          },
+          {
+            "x": 3460,
+            "y": 4958.857142857143
+          },
+          {
+            "x": 3130,
+            "y": 5090
+          },
+          {
+            "x": 2640,
+            "y": 5130
+          }
+        ],
+        "baseMaterial": "wood",
+        "breakable": false,
+        "oneWay": true,
+        "layer": "terrain",
+        "properties": {
+          "surfaceKind": "wood",
+          "honroCave": true,
+          "honroTemple": true,
+          "honroSpaceSurfaceId": "tm-shelter-veranda",
+          "honroSurfaceRole": "shelf",
+          "honroWalkEdges": [
+            0,
+            1
+          ],
+          "optional": true
+        },
+        "detail": {
+          "spacing": 18,
+          "roughness": 0,
+          "seed": 16,
+          "optimizeEpsilon": 0
+        }
+      },
+      {
+        "id": "tm-shelter-step",
+        "name": "tm-shelter-step",
+        "type": "solid",
+        "points": [
+          {
+            "x": 2400,
+            "y": 5180
+          },
+          {
+            "x": 2700,
+            "y": 5160
+          },
+          {
+            "x": 2700,
+            "y": 5235
+          },
+          {
+            "x": 2400,
+            "y": 5255
+          }
+        ],
+        "baseMaterial": "wood",
+        "breakable": false,
+        "oneWay": true,
+        "layer": "terrain",
+        "properties": {
+          "surfaceKind": "wood",
+          "honroCave": true,
+          "honroTemple": true,
+          "honroSpaceSurfaceId": "tm-shelter-step",
+          "honroSurfaceRole": "shelf",
+          "honroWalkEdges": [
+            0
+          ],
+          "optional": true
+        },
+        "detail": {
+          "spacing": 18,
+          "roughness": 0,
+          "seed": 16,
+          "optimizeEpsilon": 0
+        }
+      },
+      {
+        "id": "tm-cloister-stair",
+        "name": "tm-cloister-stair",
+        "type": "solid",
+        "points": [
+          {
+            "x": 3020,
+            "y": 4998.979591836735
+          },
+          {
+            "x": 3260,
+            "y": 4780
+          },
+          {
+            "x": 3500,
+            "y": 4580
+          },
+          {
+            "x": 3720,
+            "y": 4420
+          },
+          {
+            "x": 3970,
+            "y": 4200
+          },
+          {
+            "x": 4240,
+            "y": 3960
+          },
+          {
+            "x": 4240,
+            "y": 4055
+          },
+          {
+            "x": 3970,
+            "y": 4295
+          },
+          {
+            "x": 3720,
+            "y": 4515
+          },
+          {
+            "x": 3500,
+            "y": 4675
+          },
+          {
+            "x": 3260,
+            "y": 4875
+          },
+          {
+            "x": 3020,
+            "y": 5093.979591836735
+          }
+        ],
+        "baseMaterial": "wood",
+        "breakable": false,
+        "oneWay": true,
+        "layer": "terrain",
+        "properties": {
+          "surfaceKind": "wood",
+          "honroCave": true,
+          "honroTemple": true,
+          "honroSpaceSurfaceId": "tm-cloister-stair",
+          "honroSurfaceRole": "shelf",
+          "honroWalkEdges": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "optional": true
+        },
+        "detail": {
+          "spacing": 18,
+          "roughness": 0,
+          "seed": 16,
+          "optimizeEpsilon": 0
+        }
+      },
+      {
+        "id": "tm-cloister-landing",
+        "name": "tm-cloister-landing",
+        "type": "solid",
+        "points": [
+          {
+            "x": 4240,
+            "y": 3960
+          },
+          {
+            "x": 4540,
+            "y": 3830
+          },
+          {
+            "x": 4820,
+            "y": 3830
+          },
+          {
+            "x": 4850,
+            "y": 3970
+          },
+          {
+            "x": 4570,
+            "y": 4100
+          },
+          {
+            "x": 4280,
+            "y": 4110
+          },
+          {
+            "x": 4170,
+            "y": 4050
+          }
+        ],
+        "baseMaterial": "rock",
+        "breakable": false,
+        "oneWay": false,
+        "layer": "terrain",
+        "properties": {
+          "surfaceKind": "cave",
+          "honroCave": true,
+          "honroTemple": true,
+          "honroSpaceSurfaceId": "tm-cloister-landing",
+          "honroSurfaceRole": "shelf",
+          "honroWalkEdges": [
+            0,
+            1
+          ],
+          "optional": true
+        },
+        "detail": {
+          "spacing": 18,
+          "roughness": 0,
+          "seed": 16,
+          "optimizeEpsilon": 0
+        }
+      },
+      {
+        "id": "tm-cloister-return",
+        "name": "tm-cloister-return",
+        "type": "solid",
+        "points": [
+          {
+            "x": 3180,
+            "y": 3540
+          },
+          {
+            "x": 3600,
+            "y": 3560
+          },
+          {
+            "x": 3990,
+            "y": 3670
+          },
+          {
+            "x": 4440,
+            "y": 3873.3333333333335
+          },
+          {
+            "x": 4440,
+            "y": 3973.3333333333335
+          },
+          {
+            "x": 3990,
+            "y": 3770
+          },
+          {
+            "x": 3600,
+            "y": 3660
+          },
+          {
+            "x": 3180,
+            "y": 3640
+          }
+        ],
+        "baseMaterial": "wood",
+        "breakable": false,
+        "oneWay": true,
+        "layer": "terrain",
+        "properties": {
+          "surfaceKind": "wood",
+          "honroCave": true,
+          "honroTemple": true,
+          "honroSpaceSurfaceId": "tm-cloister-return",
+          "honroSurfaceRole": "shelf",
+          "honroWalkEdges": [
+            0,
+            1,
+            2
+          ],
+          "optional": true
+        },
+        "detail": {
+          "spacing": 18,
+          "roughness": 0,
+          "seed": 16,
+          "optimizeEpsilon": 0
+        }
+      },
+      {
+        "id": "tm-cloister-turn",
+        "name": "tm-cloister-turn",
+        "type": "solid",
+        "points": [
+          {
+            "x": 3060,
+            "y": 3730
+          },
+          {
+            "x": 3360,
+            "y": 3740
+          },
+          {
+            "x": 3360,
+            "y": 3825
+          },
+          {
+            "x": 3060,
+            "y": 3815
+          }
+        ],
+        "baseMaterial": "wood",
+        "breakable": false,
+        "oneWay": true,
+        "layer": "terrain",
+        "properties": {
+          "surfaceKind": "wood",
+          "honroCave": true,
+          "honroTemple": true,
+          "honroSpaceSurfaceId": "tm-cloister-turn",
+          "honroSurfaceRole": "shelf",
+          "honroWalkEdges": [
+            0
+          ],
+          "optional": true
+        },
+        "detail": {
+          "spacing": 18,
+          "roughness": 0,
+          "seed": 16,
+          "optimizeEpsilon": 0
+        }
+      },
+      {
+        "id": "tm-cloister-foot",
+        "name": "tm-cloister-foot",
+        "type": "solid",
+        "points": [
+          {
+            "x": 3260,
+            "y": 3930
+          },
+          {
+            "x": 3520,
+            "y": 3930
+          },
+          {
+            "x": 3520,
+            "y": 4015
+          },
+          {
+            "x": 3260,
+            "y": 4015
+          }
+        ],
+        "baseMaterial": "wood",
+        "breakable": false,
+        "oneWay": true,
+        "layer": "terrain",
+        "properties": {
+          "surfaceKind": "wood",
+          "honroCave": true,
+          "honroTemple": true,
+          "honroSpaceSurfaceId": "tm-cloister-foot",
+          "honroSurfaceRole": "shelf",
+          "honroWalkEdges": [
+            0
+          ],
+          "optional": true
+        },
+        "detail": {
+          "spacing": 18,
+          "roughness": 0,
+          "seed": 16,
+          "optimizeEpsilon": 0
+        }
+      },
+      {
+        "id": "tm-cloister-link",
+        "name": "tm-cloister-link",
+        "type": "solid",
+        "points": [
+          {
+            "x": 3400,
+            "y": 4090
+          },
+          {
+            "x": 3670,
+            "y": 4090
+          },
+          {
+            "x": 3670,
+            "y": 4175
+          },
+          {
+            "x": 3400,
+            "y": 4175
+          }
+        ],
+        "baseMaterial": "wood",
+        "breakable": false,
+        "oneWay": true,
+        "layer": "terrain",
+        "properties": {
+          "surfaceKind": "wood",
+          "honroCave": true,
+          "honroTemple": true,
+          "honroSpaceSurfaceId": "tm-cloister-link",
+          "honroSurfaceRole": "shelf",
+          "honroWalkEdges": [
+            0
+          ],
+          "optional": true
+        },
+        "detail": {
+          "spacing": 18,
+          "roughness": 0,
+          "seed": 16,
+          "optimizeEpsilon": 0
+        }
+      },
+      {
+        "id": "tm-west-reflection-wall",
+        "name": "tm-west-reflection-wall",
+        "type": "solid",
+        "points": [
+          {
+            "x": 4690,
+            "y": 3670
+          },
+          {
+            "x": 4770,
+            "y": 3670
+          },
+          {
+            "x": 4770,
+            "y": 3830
+          },
+          {
+            "x": 4690,
+            "y": 3830
+          }
+        ],
+        "baseMaterial": "rock",
+        "breakable": false,
+        "oneWay": false,
+        "layer": "terrain",
+        "properties": {
+          "surfaceKind": "cave",
+          "honroCave": true,
+          "honroTemple": true,
+          "honroSpaceSurfaceId": "tm-west-reflection-wall",
+          "honroSurfaceRole": "wall",
+          "honroWalkEdges": [
+            0
+          ],
+          "optional": true
+        },
+        "detail": {
+          "spacing": 18,
+          "roughness": 0,
+          "seed": 16,
+          "optimizeEpsilon": 0
+        }
+      },
+      {
+        "id": "tm-hall-side-gallery",
+        "name": "tm-hall-side-gallery",
+        "type": "solid",
+        "points": [
+          {
+            "x": 4820,
+            "y": 3830
+          },
+          {
+            "x": 5250,
+            "y": 3710
+          },
+          {
+            "x": 5560,
+            "y": 3710
+          },
+          {
+            "x": 5560,
+            "y": 3815
+          },
+          {
+            "x": 5250,
+            "y": 3815
+          },
+          {
+            "x": 4820,
+            "y": 3935
+          }
+        ],
+        "baseMaterial": "wood",
+        "breakable": false,
+        "oneWay": true,
+        "layer": "terrain",
+        "properties": {
+          "surfaceKind": "wood",
+          "honroCave": true,
+          "honroTemple": true,
+          "honroSpaceSurfaceId": "tm-hall-side-gallery",
+          "honroSurfaceRole": "shelf",
+          "honroWalkEdges": [
+            0,
+            1
+          ],
+          "optional": true
+        },
+        "detail": {
+          "spacing": 18,
+          "roughness": 0,
+          "seed": 16,
+          "optimizeEpsilon": 0
+        }
+      },
+      {
+        "id": "tm-hall-gallery-step",
+        "name": "tm-hall-gallery-step",
+        "type": "solid",
+        "points": [
+          {
+            "x": 5480,
+            "y": 3900
+          },
+          {
+            "x": 5740,
+            "y": 3900
+          },
+          {
+            "x": 5740,
+            "y": 3980
+          },
+          {
+            "x": 5480,
+            "y": 3980
+          }
+        ],
+        "baseMaterial": "wood",
+        "breakable": false,
+        "oneWay": true,
+        "layer": "terrain",
+        "properties": {
+          "surfaceKind": "wood",
+          "honroCave": true,
+          "honroTemple": true,
+          "honroSpaceSurfaceId": "tm-hall-gallery-step",
+          "honroSurfaceRole": "shelf",
+          "honroWalkEdges": [
+            0
+          ],
+          "optional": true
+        },
+        "detail": {
+          "spacing": 18,
+          "roughness": 0,
+          "seed": 16,
+          "optimizeEpsilon": 0
+        }
+      },
+      {
+        "id": "tm-hall-gallery-foot",
+        "name": "tm-hall-gallery-foot",
+        "type": "solid",
+        "points": [
+          {
+            "x": 5520,
+            "y": 4090
+          },
+          {
+            "x": 5800,
+            "y": 4090
+          },
+          {
+            "x": 5800,
+            "y": 4175
+          },
+          {
+            "x": 5520,
+            "y": 4175
+          }
+        ],
+        "baseMaterial": "wood",
+        "breakable": false,
+        "oneWay": true,
+        "layer": "terrain",
+        "properties": {
+          "surfaceKind": "wood",
+          "honroCave": true,
+          "honroTemple": true,
+          "honroSpaceSurfaceId": "tm-hall-gallery-foot",
+          "honroSurfaceRole": "shelf",
+          "honroWalkEdges": [
+            0
+          ],
+          "optional": true
+        },
+        "detail": {
+          "spacing": 18,
+          "roughness": 0,
+          "seed": 16,
+          "optimizeEpsilon": 0
+        }
+      },
+      {
+        "id": "tm-undercroft-tooth",
+        "name": "tm-undercroft-tooth",
+        "type": "solid",
+        "points": [
+          {
+            "x": 3860,
+            "y": 5260
+          },
+          {
+            "x": 4160,
+            "y": 5200
+          },
+          {
+            "x": 4460,
+            "y": 5300
+          },
+          {
+            "x": 4380,
+            "y": 5520
+          },
+          {
+            "x": 4140,
+            "y": 5540
+          },
+          {
+            "x": 3910,
+            "y": 5400
+          }
+        ],
+        "baseMaterial": "rock",
+        "breakable": false,
+        "oneWay": false,
+        "layer": "terrain",
+        "properties": {
+          "surfaceKind": "cave",
+          "honroCave": true,
+          "honroTemple": true,
+          "honroSpaceSurfaceId": "tm-undercroft-tooth",
+          "honroSurfaceRole": "ceiling",
+          "honroWalkEdges": [],
+          "optional": true,
+          "honroCeiling": true
+        },
+        "detail": {
+          "spacing": 18,
+          "roughness": 0,
+          "seed": 16,
+          "optimizeEpsilon": 0
+        }
+      },
+      {
+        "id": "tm-lower-prayer-ledge",
+        "name": "tm-lower-prayer-ledge",
+        "type": "solid",
+        "points": [
+          {
+            "x": 4760,
+            "y": 5730
+          },
+          {
+            "x": 5150,
+            "y": 5730
+          },
+          {
+            "x": 5150,
+            "y": 5810
+          },
+          {
+            "x": 4760,
+            "y": 5810
+          }
+        ],
+        "baseMaterial": "wood",
+        "breakable": false,
+        "oneWay": true,
+        "layer": "terrain",
+        "properties": {
+          "surfaceKind": "wood",
+          "honroCave": true,
+          "honroTemple": true,
+          "honroSpaceSurfaceId": "tm-lower-prayer-ledge",
+          "honroSurfaceRole": "shelf",
+          "honroWalkEdges": [
+            0
+          ],
+          "optional": true
+        },
+        "detail": {
+          "spacing": 18,
+          "roughness": 0,
+          "seed": 16,
+          "optimizeEpsilon": 0
+        }
+      },
+      {
+        "id": "tm-undercroft-reflector",
+        "name": "tm-undercroft-reflector",
+        "type": "solid",
+        "points": [
+          {
+            "x": 6670,
+            "y": 5790
+          },
+          {
+            "x": 6790,
+            "y": 5790
+          },
+          {
+            "x": 6810,
+            "y": 5940
+          },
+          {
+            "x": 6670,
+            "y": 5940
+          }
+        ],
+        "baseMaterial": "rock",
+        "breakable": false,
+        "oneWay": false,
+        "layer": "terrain",
+        "properties": {
+          "surfaceKind": "cave",
+          "honroCave": true,
+          "honroTemple": true,
+          "honroSpaceSurfaceId": "tm-undercroft-reflector",
+          "honroSurfaceRole": "wall",
+          "honroWalkEdges": [
+            0
+          ],
+          "optional": true
+        },
+        "detail": {
+          "spacing": 18,
+          "roughness": 0,
+          "seed": 16,
+          "optimizeEpsilon": 0
+        }
+      },
+      {
+        "id": "tm-east-undercroft-stair",
+        "name": "tm-east-undercroft-stair",
+        "type": "solid",
+        "points": [
+          {
+            "x": 7400,
+            "y": 5800
+          },
+          {
+            "x": 7700,
+            "y": 5570
+          },
+          {
+            "x": 8030,
+            "y": 5200
+          },
+          {
+            "x": 8330,
+            "y": 4930
+          },
+          {
+            "x": 8620,
+            "y": 4760
+          },
+          {
+            "x": 8620,
+            "y": 4860
+          },
+          {
+            "x": 8330,
+            "y": 5030
+          },
+          {
+            "x": 8030,
+            "y": 5300
+          },
+          {
+            "x": 7700,
+            "y": 5670
+          },
+          {
+            "x": 7400,
+            "y": 5900
+          }
+        ],
+        "baseMaterial": "wood",
+        "breakable": false,
+        "oneWay": true,
+        "layer": "terrain",
+        "properties": {
+          "surfaceKind": "wood",
+          "honroCave": true,
+          "honroTemple": true,
+          "honroSpaceSurfaceId": "tm-east-undercroft-stair",
+          "honroSurfaceRole": "shelf",
+          "honroWalkEdges": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "optional": true
+        },
+        "detail": {
+          "spacing": 18,
+          "roughness": 0,
+          "seed": 16,
+          "optimizeEpsilon": 0
+        }
+      },
+      {
+        "id": "tm-archive-walk",
+        "name": "tm-archive-walk",
+        "type": "solid",
+        "points": [
+          {
+            "x": 8970,
+            "y": 4655
+          },
+          {
+            "x": 9260,
+            "y": 4495
+          },
+          {
+            "x": 9760,
+            "y": 4475
+          },
+          {
+            "x": 10070,
+            "y": 4615
+          },
+          {
+            "x": 10070,
+            "y": 4715
+          },
+          {
+            "x": 9760,
+            "y": 4575
+          },
+          {
+            "x": 9260,
+            "y": 4595
+          },
+          {
+            "x": 8970,
+            "y": 4755
+          }
+        ],
+        "baseMaterial": "wood",
+        "breakable": false,
+        "oneWay": true,
+        "layer": "terrain",
+        "properties": {
+          "surfaceKind": "wood",
+          "honroCave": true,
+          "honroTemple": true,
+          "honroSpaceSurfaceId": "tm-archive-walk",
+          "honroSurfaceRole": "shelf",
+          "honroWalkEdges": [
+            0,
+            1,
+            2
+          ],
+          "optional": true
+        },
+        "detail": {
+          "spacing": 18,
+          "roughness": 0,
+          "seed": 16,
+          "optimizeEpsilon": 0
+        }
+      },
+      {
+        "id": "tm-archive-return",
+        "name": "tm-archive-return",
+        "type": "solid",
+        "points": [
+          {
+            "x": 10200,
+            "y": 4600
+          },
+          {
+            "x": 10480,
+            "y": 4600
+          },
+          {
+            "x": 10480,
+            "y": 4685
+          },
+          {
+            "x": 10200,
+            "y": 4685
+          }
+        ],
+        "baseMaterial": "wood",
+        "breakable": false,
+        "oneWay": true,
+        "layer": "terrain",
+        "properties": {
+          "surfaceKind": "wood",
+          "honroCave": true,
+          "honroTemple": true,
+          "honroSpaceSurfaceId": "tm-archive-return",
+          "honroSurfaceRole": "shelf",
+          "honroWalkEdges": [
+            0
+          ],
+          "optional": true
+        },
+        "detail": {
+          "spacing": 18,
+          "roughness": 0,
+          "seed": 16,
+          "optimizeEpsilon": 0
+        }
+      }
+    ]
+  },
+  "sourceFields": [
+    "id",
+    "name",
+    "width",
+    "height",
+    "backdrop",
+    "metadata",
+    "terrains",
+    "materials",
+    "elements",
+    "units",
+    "events",
+    "encounters",
+    "objectives",
+    "markers",
+    "layers",
+    "meta",
+    "initialState",
+    "environment",
+    "design",
+    "routes",
+    "anchors",
+    "playBounds",
+    "terrainBounds",
+    "terrainDomainVersion"
+  ],
+  "assets": [
+    {
+      "file": "stage16-floor-west.json",
+      "assetId": "act2-traced:stage16-floor-west",
+      "sha256": "c28922d6367407572b376374fc055f083488fda9ef07e79045ce2790e8aa736d"
+    },
+    {
+      "file": "stage16-floor-under.json",
+      "assetId": "act2-traced:stage16-floor-under",
+      "sha256": "8b489419d2275416a1c1f15b1a675f2d83757af00d576cd16e8ba439a9b5fd2a"
+    },
+    {
+      "file": "stage16-floor-east.json",
+      "assetId": "act2-traced:stage16-floor-east",
+      "sha256": "dbc476bc2c81ab22bd6c422fb215dc5846a50ea328fcda62040d21a65cf90470"
+    },
+    {
+      "file": "stage16-roof.json",
+      "assetId": "act2-traced:stage16-roof",
+      "sha256": "9705f610fff099e68830fc091dd27cdf46596c88908fd6ea80595ae938a9a151"
+    }
+  ]
+}
