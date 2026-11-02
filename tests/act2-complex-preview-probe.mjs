@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import vm from 'node:vm';
 import {readFile,mkdir,writeFile} from 'node:fs/promises';
-import {appHarness,plain} from './app-regression-helpers.mjs';
+import {appHarness,plain} from './act2-complex-app-harness.mjs';
 import {createPlayerOperations} from '../tools/act2-qa/player-operations.mjs';
 import {detachedPlanner} from '../tools/act2-qa/pure-planning.mjs';
 import {productionAimPreview} from '../tools/act2-qa/production-aim-preview.mjs';

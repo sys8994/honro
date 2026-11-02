@@ -1,0 +1,14 @@
+{
+  "status": "invalid-interrupted-harness",
+  "reason": "No-op App.updateHUD allowed indefinitely stale selected skill during actual preview; not a game loss, pass, or valid play evidence. Interrupted after R11 checkpoint.",
+  "files": {
+    "initial": {
+      "rawSha256": "536f542615bc8ec2370c5fbed1df602366522836654433faff4a584fc88826b8",
+      "gzipSha256": "857e624833dd747479c86471fe8e1c4168571e83ce51e616f68db9eb68b04d6e"
+    },
+    "checkpoint": {
+      "rawSha256": "f83c8e93c531047b95f85134f73bd9afbfa8975241b84bb97a6c634b72c68350",
+      "gzipSha256": "e50657516c0878d97326e73367ed47d68761c22bde61e8eb3ac6e9681ea1fb22"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+/** Bounded production HUD/selection and preview timing probe, not a playthrough. */
+import assert from 'node:assert/strict';import vm from 'node:vm';import{readFile,mkdir,writeFile}from'node:fs/promises';
+import{appHarness}from'./act2-complex-app-harness.mjs';import{auditQuarryEngine}from'./stage12-quarry-fullplay-helper.mjs';
+import{createPlayerOperations}from'../tools/act2-qa/player-operations.mjs';import{productionAimPreview}from'../tools/act2-qa/production-aim-preview.mjs';
+const id=18,h=await appHarness({productionStory:true,productionInputActions:true}),{g,C}=h;vm.runInContext(await readFile('shared/runtime/interactions.js','utf8'),g);
+const p=h.profileThrough(id-1);p.settings.difficulty='normal';g.performance={now:()=>0};const app=h.load(p);app.launch(id);const e=app.engine,b=e.b,events=[],invalid=[];
+const preview=productionAimPreview({app,g,C,record:v=>events.push(v)});let ops;
+function render(engine,dt,selected,...rest){const u=engine.active;if(u&&engine.b.phase==='aim'&&!u.summoned&&!app.dialogue&&!app.scene.storyFrozen&&engine.canAct()&&selected&&!g.HonroStakeCrossing.skills(engine.b,u).includes(selected))invalid.push({frame:ops.frames,round:b.round,actor:u.id,selected,loadout:[...u.loadout]});return preview.render(engine,dt,selected,...rest);}
+ops=createPlayerOperations({app,g,C,render,record:v=>events.push(v)});const audit=auditQuarryEngine(b,e,()=>({round:b.round,frame:ops.frames}));
+for(let n=0;n<3&&!['won','lost'].includes(b.phase);n++){audit.production(()=>ops.ready());audit.guard();if(!app.canInput())break;audit.production(()=>ops.defend());audit.guard();}
+audit.production(()=>ops.ready());audit.guard();assert(!app.lastError);const r={round:b.round,phase:b.phase,frames:ops.frames,preview:preview.stats(),invalidSelectedFrames:invalid.length,invalidExamples:invalid.slice(0,8),externalWrites:audit.log.externalWrites,recoveries:audit.log.recoveries,scope:'Three actual App.defend turns under production updateHUD with DOM/canvas doubles; records but does not suppress selected-guide timing. No browser or full play.'};assert.equal(r.externalWrites.length,0);await mkdir('_local/reports/act2-complex-app-probe',{recursive:true});await writeFile('_local/reports/act2-complex-app-probe/18-hud.json',JSON.stringify(r,null,2));console.log(JSON.stringify(r));
