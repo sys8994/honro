@@ -36,11 +36,16 @@ def board_party(p, record, screenshot):
         quiet();landed();u=actor();direction='ArrowRight' if x>u['x'] else 'ArrowLeft'
         p.keyboard.down(direction)
         if jump:p.keyboard.press('Control')
+        last_x=u['x'];jumps=0
         try:
-            for _ in range(160):
+            for tick in range(160):
                 p.wait_for_timeout(50);u=actor()
                 if state()['dialogue'] or (u.get('moveLeft') or 0)<=1:break
                 if direction=='ArrowRight' and u['x']>=x-4 or direction=='ArrowLeft' and u['x']<=x+4:break
+                if tick and tick%10==0:
+                    if abs(u['x']-last_x)<5 and u['grounded'] and jumps<4:
+                        p.keyboard.press('Control');jumps+=1;record('boarding-jump-steep-step',state())
+                    last_x=u['x']
         finally:p.keyboard.up(direction)
         landed();observe(('jump-' if jump else 'walk-')+str(x))
         u=actor();reached=(direction=='ArrowRight' and u['x']>=x-4) or (direction=='ArrowLeft' and u['x']<=x+4)
