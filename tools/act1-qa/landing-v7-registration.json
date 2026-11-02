@@ -1,0 +1,14 @@
+{
+  "schema": "honro-act1-landing-v7/v1",
+  "stage": 3,
+  "seed": 2332,
+  "policy": "objective-focused-flow-noitems-appops-budgetrecovery-distance-calibrated-v2-airborne-v5-landing-v7",
+  "scope": "Separate recovery after preserved v5 finite-cap incompleteR2. Register accepted obstacle fallback jump with existing declared p.jumpTo landing, preventing walkback to obsolete launchwaypoint. Keep airborne continuation and any-companion ledger, original limits, detached prediction, actual App controls. No runtime edits.",
+  "sourceHashes": {
+    "tools/act1-qa/adapt-positioning.mjs": "5246c7c2bb7ec580141b33fb33caaa2421e39a73ce5c26d5b7d3bcec016e0539",
+    "tools/act1-qa/calibrate-positioning-v2.mjs": "83c29d134788e637d01599a76d761d0d8ff68252f29d359452909bcd9941aae5",
+    "tools/act1-qa/legacy-controller.mjs": "be14d503f8c0b31a7f832d44d5457739fccc0689c1e92d00856df3c7a583c121",
+    "tools/act1-qa/player-operations.mjs": "fbc8d0b429e7834a85f106bb5ff1e39170493018ea23d6e97b66888cba5c5e05"
+  },
+  "stopping": "Original220000iteration/90round cap; preserve failed traces."
+}
