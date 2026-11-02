@@ -31,6 +31,7 @@ jobs:
           node tests/stage8-staging-reader-regression.mjs
           node tests/act2-reserved-body-settle.mjs
           node tests/act2-retained-interaction-regression.mjs > /tmp/retained-interaction-native.log
+          node tests/act23-v4-preview-observation.mjs
           node tests/act23-v4-act2-scenes.mjs
           node tests/act23-v4-reviewed17.mjs
           node tests/act23-v4-stage18.mjs
@@ -57,8 +58,8 @@ jobs:
           set -euo pipefail
           mkdir -p "$OUT"
           mapfile -t refs < <(node --input-type=module -e 'import fs from "node:fs";import {selectPublishedGenerations} from "./shared/web-retention.mjs";for(const g of selectPublishedGenerations(JSON.parse(fs.readFileSync("web/manifest.json")).publishedGenerations,{now:Date.now()})){if(!/^[a-f0-9]{40}$/.test(g.sourceSha))throw Error("Invalid ref");console.log(g.sourceSha)}')
-          git fetch --no-tags --depth=1 origin c1a8cc243c7681b03f9e7b8c182164f62deaae2e "${refs[@]}"
-          node tools/release/retain-published-web.mjs c1a8cc243c7681b03f9e7b8c182164f62deaae2e --published-at 2026-11-02T18:24:55Z --evidence https://github.com/sys8994/honro/actions/runs/41500035506
+          git fetch --no-tags --depth=1 origin 594d5dce6fa48163a41e5dce03c2df3decc79bfd "${refs[@]}"
+          node tools/release/retain-published-web.mjs 594d5dce6fa48163a41e5dce03c2df3decc79bfd --published-at 2026-11-02T19:02:27Z --evidence https://github.com/sys8994/honro/actions/runs/41505739252
           node tools/act4-ci/refresh-stage31-probes.mjs prepare "$OUT"
           # Evidence capture only; final npm run build must enforce the production gate.
           node workshop/build.mjs | tee "$OUT/preview-build.log"
@@ -87,6 +88,7 @@ jobs:
           server=$!; trap 'kill "$server" 2>/dev/null || true' EXIT
           sleep 2
           failed=0
+          if ! HONRO_BASE_URL="http://127.0.0.1:8870" python tests/act23-v4-preview-observation-browser.py --out "$OUT/preview-observation"; then failed=1; fi
           if ! HONRO_QA_OUT="$OUT/stage8-reader" python tests/stage8-staging-reader-browser.py; then failed=1; fi
           if ! HONRO_QA_OUT="$OUT/stage14-settle" python tools/act2-qa/stage14-postfix-ui.py; then failed=1; fi
           if ! HONRO_STAGE=17 HONRO_QA_OUT="$OUT/stage17-hoist" python tools/act2-qa/retained-interactions-ui.py; then failed=1; fi
