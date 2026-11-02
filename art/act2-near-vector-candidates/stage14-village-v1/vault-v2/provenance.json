@@ -1,0 +1,28 @@
+{
+  "part": "vault-v2",
+  "submittedReferences": [
+    {
+      "submittedPath": "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage14/vault-v1/guide.png",
+      "sha256": "3210c29c2f26eb9dde2d4a64f8e93acbb8535bdf097e20488d7fb86dc8ab0810",
+      "preservedPath": "submitted-references/3210c29c2f26eb9dde2d4a64f8e93acbb8535bdf097e20488d7fb86dc8ab0810.png"
+    }
+  ],
+  "sourceSha256": "b5abc0f6d5734728241362d00425ae5aa0b7453d0e2ff89d7c1a3bcb50c59ef1",
+  "promptSha256": "0a513c9bdb71da7dd2c4062afb510b2fe70de9a2a7a801347428c3c61b91e9b6",
+  "rawSha256": "e703b7364385f84f346c876a9568b52e4d3eb58f88a6b5c76a3cc3e7106fc244",
+  "finalSha256": "f9e0d233e542e6d61f4862aa32d537ba8f3d8309c3b9fc059475c10e40a02d81",
+  "nativeFileSha256": "853cec7efd84ebbf09418799f187e31464eeb859745d6dacbccd7f37463541ba",
+  "rawBytes": 153154,
+  "finalBytes": 127812,
+  "nativeBytes": 108702,
+  "rawGzipPath": "vault-v2/immutable-raw.svg.gz",
+  "finalPath": "vault-v2/final.svg",
+  "qualityComparison": "vault-v2/comparison.json",
+  "sourceToTrace": {
+    "visibleRgbMAE255": 1.564834164145207,
+    "binaryAlphaDisagreementFraction": 0.0007781225504873755,
+    "scope": "Palette reduction and binary Inkscape trace losses, not optimizer loss or artwork approval"
+  },
+  "sourceGeneration": "Exact submitted JSON prompt and referenced_image_paths saved before imagegen; original PNG immutable.",
+  "localSourcePath": "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage14/vault-v2/source.png"
+}

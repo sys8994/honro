@@ -1,0 +1,28 @@
+{
+  "part": "domain-v3",
+  "submittedReferences": [
+    {
+      "submittedPath": "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage14/domain-v2/source.png",
+      "sha256": "1eec66f43b4daddf4fb347930e59cda084e5416d0cd64a3bf18e0beb6051d961",
+      "preservedPath": "submitted-references/1eec66f43b4daddf4fb347930e59cda084e5416d0cd64a3bf18e0beb6051d961.png"
+    }
+  ],
+  "sourceSha256": "44734fb493836b3fa747b6a9997970f202537bfcd7b322bd30e7db9ed20d21af",
+  "promptSha256": "3bb828ff04556b72b6110f021a1ea30ec29de1e3443c5f84dd58f2bd6e034ebd",
+  "rawSha256": "f1240f7b62b804a7ed85cfed31625f2e9e29ee9503d831f1836bc9eb148b68fb",
+  "finalSha256": "3c2176fc0b0c94d6dc216c3d06ed27a62a0a0687165c25e60bfc9f1ff7b253a7",
+  "nativeFileSha256": "e13a1b978d050d3a9be1cc4acd8cbde21163da2c2e71772d06d55b02f87f28a9",
+  "rawBytes": 68142,
+  "finalBytes": 52754,
+  "nativeBytes": 59309,
+  "rawGzipPath": "domain-v3/immutable-raw.svg.gz",
+  "finalPath": "domain-v3/final.svg",
+  "qualityComparison": "domain-v3/comparison.json",
+  "sourceToTrace": {
+    "visibleRgbMAE255": 2.892109015414284,
+    "binaryAlphaDisagreementFraction": 0.0005104155278192353,
+    "scope": "Palette reduction and binary Inkscape trace losses, not optimizer loss or artwork approval"
+  },
+  "sourceGeneration": "Exact submitted JSON prompt and referenced_image_paths saved before imagegen; original PNG immutable.",
+  "localSourcePath": "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage14/domain-v3/source.png"
+}

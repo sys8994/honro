@@ -1,0 +1,75 @@
+{
+  "width": 1380,
+  "scales": [
+    1,
+    2
+  ],
+  "limits": {
+    "rgbMAE255": 2,
+    "silhouettePx": 1.5,
+    "protectedRgbMAE255": 1,
+    "protectedPx": 0.5,
+    "protectedChangedPixelFraction": 0.05
+  },
+  "protectedPolylines": [
+    {
+      "points": [
+        [
+          90.0,
+          105.0
+        ],
+        [
+          509.99999999999994,
+          105.0
+        ]
+      ],
+      "width": 12
+    },
+    {
+      "points": [
+        [
+          509.99999999999994,
+          105.0
+        ],
+        [
+          750.0,
+          360.0
+        ]
+      ],
+      "width": 12
+    },
+    {
+      "points": [
+        [
+          750.0,
+          360.0
+        ],
+        [
+          990.0,
+          360.0
+        ]
+      ],
+      "width": 12
+    },
+    {
+      "points": [
+        [
+          990.0,
+          360.0
+        ],
+        [
+          1320.0,
+          793.5
+        ]
+      ],
+      "width": 12
+    }
+  ],
+  "protectedRgbQuantizationTolerance255": 1,
+  "preserveRawColors": [
+    "#293a3e",
+    "#77817b",
+    "#979789"
+  ],
+  "composition": "Exact native canonicalSolid/contactInset; actual underpaint and immutable domain context; two darkest complete local skin base colors omitted identically to native. Original free SVG remains immutable and separately reported."
+}

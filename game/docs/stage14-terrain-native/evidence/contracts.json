@@ -1,0 +1,53 @@
+{
+  "passed": true,
+  "preHookSha256": "d3340e79e62b2646a8bdc955d139369f51fba9eb3384416d70aac0ff052a5344",
+  "effectiveOriginalSha256": "846cb9e6ecff4e97bbe7b95d4ec63e31dc5c3054effa3bdd01ec4d807fc92df7",
+  "effectiveRestoredSha256": "846cb9e6ecff4e97bbe7b95d4ec63e31dc5c3054effa3bdd01ec4d807fc92df7",
+  "checkedFields": [
+    "terrain",
+    "honroWorldTerrain",
+    "units",
+    "width",
+    "height",
+    "honroMarkers",
+    "honroEvents",
+    "honroAuthoredEvents",
+    "honroObjectives",
+    "honroAct2Steps",
+    "honroCamera",
+    "honroPlayBounds",
+    "honroTerrainBounds",
+    "honroState",
+    "honroRescueSpec",
+    "honroAct23V4"
+  ],
+  "fieldHashes": {
+    "terrain": "d62b9b573f108550c518116feac1c41c5137edeca0d4d7f2684c61239af49e34",
+    "honroWorldTerrain": "60533d7366dc4aaf0834d01640ca7537620ea1765201a57bc71b2377e686dd9a",
+    "units": "d542d4824970a60f6bac2a7bbf64ea16800565dd470ac29a468d9b3ad0b3b8dc",
+    "width": "c18da8721686119d700c7def51b098d14e2e1858564616d3971c089081b83509",
+    "height": "b3ed5e985986a671f23cd2b17c079c0a18015d570e133f894cf1aedceae8407a",
+    "honroMarkers": "3ef3915893dbba1f13384a039f407d3cbc0d11b331aa304be62329fcb9dda1e8",
+    "honroEvents": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "honroAuthoredEvents": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "honroObjectives": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "honroAct2Steps": "86f8b15f1b94aa0903a0f3e4de46e537d8598dc33d68ced7effa424f46b4e4be",
+    "honroCamera": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "honroPlayBounds": "961e9b45bbdb35fd0284a3da1926f8791548f3008729788c6bd1ce68b45a8f31",
+    "honroTerrainBounds": "daefe0609e9090c3432316bdb762bca598c22d138aba31a8325f9f1603e3217f",
+    "honroState": "eac91ee49370c7cae498d71dafe990a56d33e275b4efca490d74f103327e81b6",
+    "honroRescueSpec": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+    "honroAct23V4": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+  },
+  "unchangedOtherStages": 29,
+  "assetIds": [
+    "act2-traced:stage14-domain-v3",
+    "act2-traced:stage14-upper-v2",
+    "act2-traced:stage14-west-v1",
+    "act2-traced:stage14-east-v1",
+    "act2-traced:stage14-family-v1",
+    "act2-traced:stage14-refuge-v2",
+    "act2-traced:stage14-vault-v2"
+  ],
+  "scope": "Pre-runtime-author source guard plus separate production-story effective stage and compiled battle equivalence. Not browser/save/UI/combat completion."
+}

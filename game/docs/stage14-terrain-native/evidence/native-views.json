@@ -1,0 +1,422 @@
+{
+  "stage": 14,
+  "scope": "Native production renderer only; no browser or gameplay acceptance",
+  "geometryUnchanged": true,
+  "focus": {
+    "left": -320,
+    "top": -1800,
+    "right": 7920,
+    "bottom": 10640
+  },
+  "minimumZoom": 0.21176470588235294,
+  "reports": [
+    {
+      "label": "entry",
+      "name": "before",
+      "requestedView": {
+        "x": 700,
+        "y": 1300,
+        "scale": 0.82,
+        "w": 1600,
+        "h": 1000
+      },
+      "actualCamera": {
+        "x": 700,
+        "y": 1300,
+        "scale": 0.82
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "entry",
+      "name": "after",
+      "requestedView": {
+        "x": 700,
+        "y": 1300,
+        "scale": 0.82,
+        "w": 1600,
+        "h": 1000
+      },
+      "actualCamera": {
+        "x": 700,
+        "y": 1300,
+        "scale": 0.82
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "market",
+      "name": "before",
+      "requestedView": {
+        "x": 4600,
+        "y": 3700,
+        "scale": 0.82,
+        "w": 1600,
+        "h": 1000
+      },
+      "actualCamera": {
+        "x": 4600,
+        "y": 3700,
+        "scale": 0.82
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "market",
+      "name": "after",
+      "requestedView": {
+        "x": 4600,
+        "y": 3700,
+        "scale": 0.82,
+        "w": 1600,
+        "h": 1000
+      },
+      "actualCamera": {
+        "x": 4600,
+        "y": 3700,
+        "scale": 0.82
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "family",
+      "name": "before",
+      "requestedView": {
+        "x": 4200,
+        "y": 6500,
+        "scale": 0.82,
+        "w": 1600,
+        "h": 1000
+      },
+      "actualCamera": {
+        "x": 4200,
+        "y": 6500,
+        "scale": 0.82
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "family",
+      "name": "after",
+      "requestedView": {
+        "x": 4200,
+        "y": 6500,
+        "scale": 0.82,
+        "w": 1600,
+        "h": 1000
+      },
+      "actualCamera": {
+        "x": 4200,
+        "y": 6500,
+        "scale": 0.82
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "refuge",
+      "name": "before",
+      "requestedView": {
+        "x": 4000,
+        "y": 8000,
+        "scale": 0.82,
+        "w": 1600,
+        "h": 1000
+      },
+      "actualCamera": {
+        "x": 4000,
+        "y": 8000,
+        "scale": 0.82
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "refuge",
+      "name": "after",
+      "requestedView": {
+        "x": 4000,
+        "y": 8000,
+        "scale": 0.82,
+        "w": 1600,
+        "h": 1000
+      },
+      "actualCamera": {
+        "x": 4000,
+        "y": 8000,
+        "scale": 0.82
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "vault",
+      "name": "before",
+      "requestedView": {
+        "x": 4000,
+        "y": 1500,
+        "scale": 0.82,
+        "w": 1600,
+        "h": 1000
+      },
+      "actualCamera": {
+        "x": 4000,
+        "y": 1500,
+        "scale": 0.82
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "vault",
+      "name": "after",
+      "requestedView": {
+        "x": 4000,
+        "y": 1500,
+        "scale": 0.82,
+        "w": 1600,
+        "h": 1000
+      },
+      "actualCamera": {
+        "x": 4000,
+        "y": 1500,
+        "scale": 0.82
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "overview",
+      "name": "before",
+      "requestedView": {
+        "x": 3800,
+        "y": 5200,
+        "scale": 0.085,
+        "w": 1600,
+        "h": 1000
+      },
+      "actualCamera": {
+        "x": 3800,
+        "y": 5200,
+        "scale": 0.085
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "overview",
+      "name": "after",
+      "requestedView": {
+        "x": 3800,
+        "y": 5200,
+        "scale": 0.085,
+        "w": 1600,
+        "h": 1000
+      },
+      "actualCamera": {
+        "x": 3800,
+        "y": 5200,
+        "scale": 0.085
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "minzoom",
+      "name": "before",
+      "requestedView": {
+        "x": 3800,
+        "y": 5200,
+        "scale": 0.21176470588235294,
+        "w": 1440,
+        "h": 900
+      },
+      "actualCamera": {
+        "x": 3800,
+        "y": 5200,
+        "scale": 0.21176470588235294
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "minzoom",
+      "name": "after",
+      "requestedView": {
+        "x": 3800,
+        "y": 5200,
+        "scale": 0.21176470588235294,
+        "w": 1440,
+        "h": 900
+      },
+      "actualCamera": {
+        "x": 3800,
+        "y": 5200,
+        "scale": 0.21176470588235294
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "mobile",
+      "name": "before",
+      "requestedView": {
+        "x": 790,
+        "y": 1266,
+        "scale": 0.2220833333333333,
+        "w": 390,
+        "h": 844
+      },
+      "actualCamera": {
+        "x": 790,
+        "y": 1266,
+        "scale": 0.2220833333333333
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "mobile",
+      "name": "after",
+      "requestedView": {
+        "x": 790,
+        "y": 1266,
+        "scale": 0.2220833333333333,
+        "w": 390,
+        "h": 844
+      },
+      "actualCamera": {
+        "x": 790,
+        "y": 1266,
+        "scale": 0.2220833333333333
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "edge-left",
+      "name": "before",
+      "requestedView": {
+        "x": -320,
+        "y": 1400,
+        "scale": 0.21176470588235294,
+        "w": 1440,
+        "h": 900
+      },
+      "actualCamera": {
+        "x": -320,
+        "y": 1400,
+        "scale": 0.21176470588235294
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "edge-left",
+      "name": "after",
+      "requestedView": {
+        "x": -320,
+        "y": 1400,
+        "scale": 0.21176470588235294,
+        "w": 1440,
+        "h": 900
+      },
+      "actualCamera": {
+        "x": -320,
+        "y": 1400,
+        "scale": 0.21176470588235294
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "edge-right",
+      "name": "before",
+      "requestedView": {
+        "x": 7920,
+        "y": 8100,
+        "scale": 0.21176470588235294,
+        "w": 1440,
+        "h": 900
+      },
+      "actualCamera": {
+        "x": 7920,
+        "y": 8100,
+        "scale": 0.21176470588235294
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "edge-right",
+      "name": "after",
+      "requestedView": {
+        "x": 7920,
+        "y": 8100,
+        "scale": 0.21176470588235294,
+        "w": 1440,
+        "h": 900
+      },
+      "actualCamera": {
+        "x": 7920,
+        "y": 8100,
+        "scale": 0.21176470588235294
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "ceiling-edge",
+      "name": "before",
+      "requestedView": {
+        "x": 3800,
+        "y": -1800,
+        "scale": 0.21176470588235294,
+        "w": 1440,
+        "h": 900
+      },
+      "actualCamera": {
+        "x": 3800,
+        "y": -1800,
+        "scale": 0.21176470588235294
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "ceiling-edge",
+      "name": "after",
+      "requestedView": {
+        "x": 3800,
+        "y": -1800,
+        "scale": 0.21176470588235294,
+        "w": 1440,
+        "h": 900
+      },
+      "actualCamera": {
+        "x": 3800,
+        "y": -1800,
+        "scale": 0.21176470588235294
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "bottom-edge",
+      "name": "before",
+      "requestedView": {
+        "x": 3800,
+        "y": 10640,
+        "scale": 0.21176470588235294,
+        "w": 1440,
+        "h": 900
+      },
+      "actualCamera": {
+        "x": 3800,
+        "y": 10640,
+        "scale": 0.21176470588235294
+      },
+      "heroHeight": 92
+    },
+    {
+      "label": "bottom-edge",
+      "name": "after",
+      "requestedView": {
+        "x": 3800,
+        "y": 10640,
+        "scale": 0.21176470588235294,
+        "w": 1440,
+        "h": 900
+      },
+      "actualCamera": {
+        "x": 3800,
+        "y": 10640,
+        "scale": 0.21176470588235294
+      },
+      "heroHeight": 92
+    }
+  ]
+}
