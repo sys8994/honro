@@ -87,10 +87,10 @@ function verifyLegacy34Assets(items){
  if(library.size!==1)return false;const b={mode:'campaign',honroAct4Official:1,honroStage:34};
  return Object.entries(ACT4_34_LEGACY).every(([id,sig])=>!!legacy34Art(b,id,sig,library));
 }
-// Act1 uses a self-contained table inside each snapshot. It never looks up
+// Acts 1–2 use a self-contained table inside each snapshot. It never looks up
 // current provider artwork: old saves and portable exports retain exact art.
-const localAct1=b=>!!b&&!b.honroCustom&&b.honroMapOrigin!=='workshop'&&b.mode==='campaign'&&Number.isInteger(b.honroStage)&&b.honroStage>=1&&b.honroStage<=10;
-const localArtAsset=a=>!!a&&typeof a.id==='string'&&a.id.startsWith('act1-traced:')&&a.vector&&Array.isArray(a.collision)&&a.collision.length===0&&!a.interactionType&&a.honroStaticAssetRef===undefined&&a.honroLocalArtRef===undefined;
+const localCampaignArt=b=>!!b&&!b.honroCustom&&b.honroMapOrigin!=='workshop'&&b.mode==='campaign'&&Number.isInteger(b.honroStage)&&b.honroStage>=1&&b.honroStage<=20;
+const localArtAsset=a=>!!a&&typeof a.id==='string'&&(a.id.startsWith('act1-traced:')||a.id.startsWith('act2-traced:'))&&a.vector&&Array.isArray(a.collision)&&a.collision.length===0&&!a.interactionType&&a.honroStaticAssetRef===undefined&&a.honroLocalArtRef===undefined;
 const LOCAL_ART_HASH_CACHE_LIMIT=3000000,localArtHashCache=new Map();let localArtHashChars=0;
 function localArtSignature(text){
  if(localArtHashCache.has(text))return localArtHashCache.get(text);
@@ -103,9 +103,9 @@ function resolveLocalArt(b){
  const items=localArtItems(b),table=b?.honroLocalArtTable,hasTable=!!b&&Object.prototype.hasOwnProperty.call(b,'honroLocalArtTable');
  const refs=items.filter(item=>item?.asset?.honroLocalArtRef!==undefined);
  if(!hasTable&&!refs.length)return{table:false,replacements:[]};
- if(!localAct1(b)||!hasTable||!table||table.version!==1||!Array.isArray(table.assets)||!table.assets.length||table.assets.length>32||Object.keys(table).some(k=>!['version','assets'].includes(k)))return null;
+ if(!localCampaignArt(b)||!hasTable||!table||table.version!==1||!Array.isArray(table.assets)||!table.assets.length||table.assets.length>32||Object.keys(table).some(k=>!['version','assets'].includes(k)))return null;
  if(!table.assets.every(localArtAsset))return null;
- // Provider references never belong in this Act1-only local-table format.
+ // Provider references never belong in this self-contained local-table format.
  if(items.some(item=>item?.asset?.honroStaticAssetRef!==undefined))return null;
  const signatures=new Map(),used=new Set(),replacements=[];
  for(const item of refs){
@@ -142,7 +142,7 @@ function compactLocalArt(b){
  return out;
 }
 function compactBattleArt(b){
- if(localAct1(b))return compactLocalArt(b);
+ if(localCampaignArt(b))return compactLocalArt(b);
  if(!b||b.honroCustom||b.mode!=='campaign'||b.honroAct4Official!==1||b.honroStage<31||b.honroStage>40)return b;
  const library=new Map((G.HONRO_PROJECT?.library||[]).map(a=>[a.id,a])),texts=new Map();let changed=false;const out={...b};
  const compactItems=items=>items.map(item=>{

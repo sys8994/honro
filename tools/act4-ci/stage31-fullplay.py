@@ -6,6 +6,10 @@ import json,time,os,hashlib,atexit,lzma
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 root=Path(__file__).resolve().parents[2];out=Path(os.environ.get('HONRO_RUN_DIR',str(root/'_local/act4-rc/fullplay31')));out.mkdir(parents=True,exist_ok=True); events=out/'tactical-v8-events.jsonl';profile=json.loads((root/'tests/fixtures/act4-rc/support-entry-fixture.json').read_text())['profile'];f=events.open('x')
+def emergency_survival(assessment):
+ # Use only the existing visible/observed assessment, never future enemy damage.
+ return assessment['needed'] and (assessment['critical'] or assessment['exposed'])
+
 errors=[]
 result={'passed':False,'releaseApproved':False,'sourceCommit':os.environ.get('GITHUB_SHA'),
         'scope':'tool-assisted normal-input Stage31 battle and boarding from synthetic campaign entry',
@@ -86,9 +90,11 @@ with sync_playwright() as w:
    if after['active']!=before['active'] or not after['can'] or not after['grounded']:return True
    if abs(after['x']-before['x'])<20:break
   q=survival()
-  if state()['can'] and state()['grounded'] and (initial['low'] or q['exposed']):
-   p.keyboard.press('f');p.wait_for_timeout(2500);record('survival-defend-'+str(n),{'assessment':q});return True
-  return False
+  # A safety action is committed: leaving the warning must not immediately
+  # send this actor back into pursuit. End normally even if exposure cleared.
+  if state()['can'] and state()['grounded']:
+   p.keyboard.press('f');p.wait_for_timeout(2500);record('survival-defend-'+str(n),{'assessment':q})
+  return True
  check=p.evaluate('''async()=>{const c=await (await fetch('/candidate31.json')).json(),s=HONRO_PROJECT.stages.find(x=>x.metadata?.stageId===31),b=HonroApp.engine.b;return {stageEqual:JSON.stringify(s)===JSON.stringify(c.stages[0]),assets:c.library.map(v=>({id:v.id,equal:JSON.stringify(v)===JSON.stringify(HONRO_PROJECT.library.find(x=>x.id===v.id))})),enemies:b.units.filter(x=>x.side===1).length,allies:b.units.filter(x=>x.side===0&&!x.summoned).length,custom:b.honroCustom}}''');assert check['stageEqual'] and all(x['equal'] for x in check['assets']) and check['enemies']==34 and check['allies']==4 and not check['custom'],check
  record('entry',{'candidateCheck':check});capture(path=str(out/'tactical-v8-entry.png'))
  for n in range(120):
@@ -104,6 +110,9 @@ with sync_playwright() as w:
   warning=p.evaluate('''()=>{const a=HonroApp;return a.engine.b.units.filter(v=>v.honroPilotCombat?.phase==='telegraph').map(v=>({id:v.id,target:v.honroPilotCombat.target,visible:HonroAct4TerrainPreview.eventAPI.inView(a,v.honroPilotCombat.target,25)}))}''')
   if warning:
    record('warning-before-'+str(n),{'warning':warning,'body':p.locator('body').inner_text()[:1800]});capture(path=str(out/('warning-v8-before-'+str(n)+'.png')));p.wait_for_timeout(2500);record('warning-after-'+str(n),{'warning':warning});capture(path=str(out/('warning-v8-after-'+str(n)+'.png')))
+  # Emergency movement has priority over stationary counter-stance, including
+  # its small heal. S08 must not consume a critically injured actor's escape.
+  if emergency_survival(survival()) and survive(n):continue
   stance=p.evaluate('''()=>{const a=HonroApp,e=a.engine,u=e.active,s=HONRO_CORE.SKILLS.S08;
    if(u?.cls!=='knight'||u.hp>u.maxHp*.55||!e.grounded(u)||!a.canInput())return null;
    const idx=u.loadout.indexOf('S08');if(idx<0||!e.skillAllowed(s,u)||e.cooldownLeft(u,'S08')>0||!e.canAfford(s,u,.3))return null;
@@ -152,6 +161,9 @@ with sync_playwright() as w:
    desired_facing=-1 if choice['angle']>90 else 1
    if state()['facing']!=desired_facing:
     key='ArrowLeft' if desired_facing<0 else 'ArrowRight';p.keyboard.down(key);p.wait_for_timeout(80);p.keyboard.up(key);p.wait_for_timeout(300);pl=plan(True);observe(pl);choice=pl['best']
+  # Pursuit (and the facing tap) changed the tactical position. Re-observe
+  # before committing a shot; do not rely on pre-movement projectile safety.
+  if emergency_survival(survival()) and survive(n):continue
   if choice:
    p.keyboard.press('Digit'+str(choice['idx']+1));p.wait_for_timeout(200)
    from precise_aim import aim_with_joystick

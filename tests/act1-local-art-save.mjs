@@ -28,7 +28,7 @@ const variantsPacked=plain(S.compactBattleArt(duplicateVariants));assert.equal(v
 // A warm signature cache must never mask subsequent source mutation.
 const mutated=plain(original);for(const item of [...mutated.honroLandmarks,...mutated.honroElements])if(item.asset?.id==='act1-traced:stage02-body-v2')item.asset.params.cacheMutation='new exact bytes';
 const mutatedPacked=plain(S.compactBattleArt(mutated));assert(S.restoreBattleArt(mutatedPacked));assert.deepEqual(mutatedPacked,mutated);
-for(const changedScope of [{honroCustom:true},{honroMapOrigin:'workshop'},{honroStage:11},{mode:'practice'}]){
+for(const changedScope of [{honroCustom:true},{honroMapOrigin:'workshop'},{honroStage:21},{mode:'practice'}]){
  const custom={...original,...changedScope};assert.strictEqual(S.compactBattleArt(custom),custom);
 }
 
