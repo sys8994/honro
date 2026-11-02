@@ -63,6 +63,10 @@ for(let turn=0;turn<actionLimit&&!['won','lost'].includes(b.phase);turn++){
  // Timed in-world story and NPC tasks advance under actual mission ticks.
  const prior=g.HonroAct2.current(b)?.id;for(let n=0;n<90&&ready()&&g.HonroAct2.current(b)?.id===prior;n++)tick();if(!ready())continue;
  let goal=g.HonroAct2.current(b);if(!goal){for(let n=0;n<180&&ready();n++)tick();goal=g.HonroAct2.current(b);}
+ // Witness completion is not the final visual observation: move the living
+ // authored soul observer to the bell source before heading to the work exit.
+ const witnessObserver=id===16&&g.HonroAct23V4Reviewed16.heard(b)&&!g.HonroAct23V4Reviewed16.memory(b).trappedObserved?(e.heroesAlive().find(v=>v.cls==='mage')||e.heroesAlive().find(v=>v.cls==='occultist')):null;
+ if(witnessObserver&&!witnessObserver.acted)e.select(witnessObserver.id);
  const specialist=goal?.requiredClass&&e.heroesAlive().find(u=>u.cls===goal.requiredClass&&!u.acted);if(specialist)e.select(specialist.id);
  const u=e.active;if(!u||u.side!==0||u.dead){stopReason='no usable hero';break;}
  if(interact())continue;
@@ -82,6 +86,8 @@ for(let turn=0;turn<actionLimit&&!['won','lost'].includes(b.phase);turn++){
  if(id===17&&goal?.id==='17.brace'){const z=b.honroV4Worksite.braceHazard;for(const v of e.alive(1))if(v.x+v.r>z.x&&v.x-v.r<z.x+z.w&&v.y>z.y&&v.y-v.h<z.y+z.h)targetIds.add(v.id);}
 
  if(id===20&&['escort','v4-regroup'].includes(goal?.kind)){const convoy=(b.honroV4Convoy||[]).map(id=>e.unit(id)).filter(v=>v&&!v.dead);if(convoy.length)destination=convoy.sort((a,z)=>a.x-z.x)[0];}
+ const forceWitnessObservation=witnessObserver?.id===u.id;if(forceWitnessObservation)destination={id:'authored-bell-souls-observation',...b.honroV4Reviewed16.bellSource};
+ if(id===16&&!goal&&!forceWitnessObservation)destination=b.honroMarkers.find(m=>m.id==='16.work-exit');
  const forceVantage=id===17&&goal?.id==='17.defense'&&['archer','mage'].includes(u.cls)&&!b.terrain.find(t=>t.id==='gate-repair')?.broken,vantage={id:'authored-east-fire-pocket',x:7770,y:3101.6666666666665},atVantage=dist(u,vantage)<100;if(forceVantage)destination=vantage;
  let foes=e.alive(1).filter(v=>!v.honroObjectiveTarget&&!(id===17&&v.id==='act2-hoist')&&(!extractionSpiritIds.has(v.id)||v.id===spirit?.id)&&(g.HonroAct2.visible(b,v)||v.id===spirit?.id)&&!(weak&&v.id===spirit?.id)).sort((a,z)=>Number(targetIds.has(z.id))-Number(targetIds.has(a.id))||dist(a,u)-dist(z,u));
  const urgent=foes.find(v=>targetIds.has(v.id)),near=foes.filter(v=>dist(v,u)<(policy==='survival'?1500:1100));
@@ -90,8 +96,8 @@ for(let turn=0;turn<actionLimit&&!['won','lost'].includes(b.phase);turn++){
  // Emergency retreat/defend above takes precedence over optional recovery casting.
  if(policy==='survival'&&healStake(u))continue;
  if(id===16&&goal?.id==='16.safe'&&u.x>2655&&u.x<3300){nav.advance(u,destination,false);if(!ready())continue;}
- let fired=false;for(const t of near.filter(v=>(!forceVantage||atVantage)&&(targetIds.has(v.id)||policy==='survival')).slice(0,3))if(fireAt(u,t)){fired=true;break;}if(fired)continue;
- if(forceVantage)nav.advance(u,vantage,false);else if(urgent){destination=urgent;nav.advance(u,{...destination,approachRange:policy==='height'&&u.cls!=='knight'?700:undefined},true);}else if(destination)nav.advance(u,destination,false);
+ let fired=false;for(const t of near.filter(v=>!forceWitnessObservation&&(!forceVantage||atVantage)&&(targetIds.has(v.id)||policy==='survival')).slice(0,3))if(fireAt(u,t)){fired=true;break;}if(fired)continue;
+ if(forceWitnessObservation)nav.advance(u,destination,false);else if(forceVantage)nav.advance(u,vantage,false);else if(urgent){destination=urgent;nav.advance(u,{...destination,approachRange:policy==='height'&&u.cls!=='knight'?700:undefined},true);}else if(destination)nav.advance(u,destination,false);
  if(id===13&&goal?.id==='gate')for(let climb=0;climb<4&&ready()&&u.x<4518&&u.moveLeft>e.jumpCost(u)+50;climb++){const oldY=u.y,step=b.terrain.find(t=>t.id==='v4.13.latch-step.'+(u.y>3990?0:u.y>3845?1:2));const next=u.y>3705?{id:'gate-shelf-chain',x:step.x+step.w/2,y:step.y}:{id:'inside-gate',x:4545,y:4090};nav.advance(u,next,false);if(Math.abs(oldY-u.y)<5)break;}
  if(!ready())continue;if(interact())continue;
  foes=foes.filter(v=>!v.dead&&dist(v,u)<(forceVantage?3300:1400));for(const t of foes.slice(0,3))if(fireAt(u,t)){fired=true;break;}
