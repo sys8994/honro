@@ -6,13 +6,15 @@ from playwright.sync_api import sync_playwright
 from browser_support import launch, serve_game, ROOT
 PRODUCTION=os.environ.get('HONRO_ITEM_UI_MODE')=='production'
 OUT=ROOT/os.environ.get('HONRO_ITEM_UI_OUT','_local/reports/item-discovery');OUT.mkdir(parents=True,exist_ok=True)
-RESET=r'''(through)=>{const a=HonroApp;a.frame=()=>{};a.close();const p=HonroProfileStore.fresh();p.settings.sound=false;p.settings.music=false;p.settings.debugMode=false;p.honroJourney={version:1,restStageId:through?21:2,talked:{}};if(through){p.recruited=['archer','mage','knight','occultist'];for(let i=1;i<=through;i++)p.cleared[i]={visits:1};}a.replaceProfile(a.profileStore.importText(JSON.stringify(p)));a.engine=null;a.scene=null;a.done=false;a.equipmentSelected=null;a.equipmentFilter=null;a.equipmentTransferId=null;HonroEquipment.observe(a);a.showCamp('archer');}'''
+RESET=r'''(through)=>{const a=HonroApp;a.frame=()=>{};a.close();const p=HonroProfileStore.fresh();p.settings.sound=false;p.settings.music=false;p.settings.debugMode=false;p.honroJourney={version:1,restStageId:through?21:2,talked:{}};if(through){p.recruited=['archer','mage','knight','occultist'];for(let i=1;i<=through;i++)p.cleared[i]={visits:1};}a.replaceProfile(a.profileStore.importText(JSON.stringify(p)));a.engine=null;a.scene=null;a.done=false;a.equipmentSelected=null;a.equipmentFilter=null;a.equipmentTransferId=null;HonroEquipment.observe(a);a.showCamp('archer');HonroEquipmentUI.tick(a);}'''
 BATTLE=r'''()=>{const a=HonroApp;for(let n=0;a.dialogue&&n<50;n++)HonroStory.finish(a);a.turnNotice=null;a.close();const b=a.engine.b;b.phase='aim';b.side=0;b.projectiles=[];delete b.volley;for(const u of b.units)Object.assign(u,{vx:0,vy:0,airborne:false,jumping:false});a.equipmentNextCheck=0;a.equipmentNextToast=Infinity;HonroEquipmentUI.tick(a);a.scene.render(a.engine,0,a.selected,a.power,false,0,true);}'''
 def overlay(page):
     if PRODUCTION:return
     for f in ['shared/runtime/equipment-ui.js','shared/runtime/rest-journey.js']:
         page.add_script_tag(content=(ROOT/f).read_text())
-    page.add_style_tag(content=(ROOT/'game/src/equipment.css').read_text())
+    # Replace the equipment stylesheet in place, not append another cascade.
+    # Removed baseline declarations (e.g. rotated reward thumbnails) must disappear.
+    page.evaluate('''css=>{const old=document.querySelector('link[href*="game-src-equipment."],[data-equipment-source-overlay]');if(!old)throw Error('Equipment stylesheet not found');const style=document.createElement('style');style.dataset.equipmentSourceOverlay='true';style.textContent=css;old.replaceWith(style);}''',(ROOT/'game/src/equipment.css').read_text())
 def battle(page):
     page.evaluate('HonroApp.launch(21)')
     page.wait_for_function('HonroApp.engine?.b.honroStage===21&&HonroApp.screen==="battle"')
@@ -32,7 +34,7 @@ with serve_game() as base,sync_playwright() as p:
   overlay(page);page.evaluate(RESET,20);assert pending(page)==6
   link=page.locator('.equipment-unclaimed');assert '보상' not in link.inner_text();assert '물건 살피기' in link.inner_text();assert link.locator('b').count()==0
   assert page.locator('.equipment-bag-heading').evaluate('e=>e.nextElementSibling.matches(".equipment-unclaimed")')
-  shot(page,label,'after-bag');link.click();assert page.locator('.equipment-reward-item').count()==3;assert page.locator('.equipment-confirm').is_disabled()
+  assert not page.locator('#equipment-pending-battle').is_visible();shot(page,label,'after-bag');link.click();assert page.locator('.equipment-reward-item').count()==3;assert page.locator('.equipment-confirm').is_disabled()
   assert page.locator('.equipment-source').inner_text().startswith('7장');assert '가져갈 물건' in page.locator('.equipment-reward-head').inner_text();assert '보상' not in page.locator('.equipment-choice-dialog').inner_text()
   assert page.locator('.equipment-options').count()>0
   page.locator('.equipment-reward-item[data-id="itm_co_04"]').click();assert page.get_by_role('button',name='챙긴다',exact=True).is_enabled();shot(page,label,'after-choice')

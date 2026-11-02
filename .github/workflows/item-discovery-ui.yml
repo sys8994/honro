@@ -26,6 +26,7 @@ jobs:
         run: |
           npm ci
           npm ci --prefix game
+          python tools/act4-ci/test_precise_aim.py
           node tests/equipment-app.mjs
           node tests/equipment-state.mjs
           HONRO_ACT4_RELEASE=1 node tests/act4-equipment-release.mjs
