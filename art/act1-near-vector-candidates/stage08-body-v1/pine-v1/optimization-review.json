@@ -1,0 +1,256 @@
+{
+  "raw": "/workspace/scratch/fff510b4df37/honro-act1-production/stage08/pine-v1/world.svg",
+  "candidate": "/workspace/scratch/fff510b4df37/honro-act1-production/stage08/pine-v1/protected-exact.svg",
+  "rawStats": {
+    "sourceBytes": 121458,
+    "paths": 3,
+    "commands": 3161,
+    "segments": 3020,
+    "endpointNodesUpperBound": 3161,
+    "explicitCommandLetters": 1078,
+    "subpaths": 141,
+    "pathChars": 121035,
+    "maxPathChars": 44501
+  },
+  "candidateStats": {
+    "sourceBytes": 80574,
+    "paths": 3,
+    "commands": 3170,
+    "segments": 3029,
+    "endpointNodesUpperBound": 3170,
+    "explicitCommandLetters": 3257,
+    "subpaths": 141,
+    "pathChars": 80151,
+    "maxPathChars": 29070
+  },
+  "visualApproval": "NOT REVIEWED",
+  "config": {
+    "width": 2048,
+    "scales": [
+      1,
+      2
+    ],
+    "limits": {
+      "rgbMAE255": 2,
+      "silhouettePx": 1.5,
+      "protectedRgbMAE255": 1,
+      "protectedPx": 0.5,
+      "protectedChangedPixelFraction": 0.05
+    },
+    "scope": "Immutable raw vs optimized; tree knot protected, original branch placement independently checked.",
+    "protectedRects": [
+      [
+        780,
+        650,
+        240,
+        240
+      ]
+    ],
+    "sourcePalette": [
+      [
+        40,
+        58,
+        48
+      ],
+      [
+        80,
+        87,
+        71
+      ],
+      [
+        119,
+        123,
+        96
+      ]
+    ]
+  },
+  "errors": {
+    "1": {
+      "rgbMAE255": 0.008072487078607082,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.007588328793644905,
+      "changedPixelFraction": 8.148757008575198e-05,
+      "silhouetteMaxOffsetPx": 1.0,
+      "protectedChangedPixelFraction": 0.0,
+      "protectedRgbMAE255": 0.0006446556653827429,
+      "protectedSilhouetteMaxOffsetPx": 0.0,
+      "protectedColorEdgeRawMaxOffsetPx": 0.0,
+      "protectedColorEdgeMaxOffsetPx": 0.0,
+      "protectedRgbQuantizationTolerance255": 0,
+      "protectedQuantizationPixels": 0,
+      "pass": true
+    },
+    "2": {
+      "rgbMAE255": 0.005442231893539429,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.004239315632730722,
+      "changedPixelFraction": 3.584380670570769e-05,
+      "silhouetteMaxOffsetPx": 1.0,
+      "protectedChangedPixelFraction": 0.0,
+      "protectedRgbMAE255": 0.00038053945172578096,
+      "protectedSilhouetteMaxOffsetPx": 0.0,
+      "protectedColorEdgeRawMaxOffsetPx": 1.0,
+      "protectedColorEdgeMaxOffsetPx": 1.0,
+      "protectedRgbQuantizationTolerance255": 0,
+      "protectedQuantizationPixels": 0,
+      "pass": true
+    }
+  },
+  "timings": {
+    "raw-1": {
+      "width": 2048,
+      "height": 1516,
+      "decodeMs": 12.791661999999974,
+      "drawMs": 4.232414000000006
+    },
+    "candidate-1": {
+      "width": 2048,
+      "height": 1516,
+      "decodeMs": 12.376476000000025,
+      "drawMs": 4.299904000000026
+    },
+    "raw-2": {
+      "width": 4096,
+      "height": 3031,
+      "decodeMs": 33.80215099999998,
+      "drawMs": 29.661956000000032
+    },
+    "candidate-2": {
+      "width": 4096,
+      "height": 3031,
+      "decodeMs": 31.737431000000015,
+      "drawMs": 32.07397000000003
+    }
+  },
+  "qualityPass": true,
+  "sourceBytes": 121458,
+  "finalBytes": 80574,
+  "reduction": 0.33661018623721783,
+  "failureAndCorrection": "Initial simplification failed knot ROI; retain source segment precision inside protected ROI, no relaxed pixel threshold.",
+  "initialFailedComparison": {
+    "raw": "/workspace/scratch/fff510b4df37/honro-act1-production/stage08/pine-v1/world.svg",
+    "candidate": "/workspace/scratch/fff510b4df37/honro-act1-production/stage08/pine-v1/compact.svg",
+    "rawStats": {
+      "sourceBytes": 121458,
+      "paths": 3,
+      "commands": 3161,
+      "segments": 3020,
+      "endpointNodesUpperBound": 3161,
+      "explicitCommandLetters": 1078,
+      "subpaths": 141,
+      "pathChars": 121035,
+      "maxPathChars": 44501
+    },
+    "candidateStats": {
+      "sourceBytes": 79112,
+      "paths": 3,
+      "commands": 3167,
+      "segments": 3026,
+      "endpointNodesUpperBound": 3167,
+      "explicitCommandLetters": 3257,
+      "subpaths": 141,
+      "pathChars": 78689,
+      "maxPathChars": 28380
+    },
+    "visualApproval": "NOT REVIEWED",
+    "config": {
+      "width": 2048,
+      "scales": [
+        1,
+        2
+      ],
+      "limits": {
+        "rgbMAE255": 2,
+        "silhouettePx": 1.5,
+        "protectedRgbMAE255": 1,
+        "protectedPx": 0.5,
+        "protectedChangedPixelFraction": 0.05
+      },
+      "scope": "Immutable raw vs optimized; tree knot protected, original branch placement independently checked.",
+      "protectedRects": [
+        [
+          780,
+          650,
+          240,
+          240
+        ]
+      ],
+      "sourcePalette": [
+        [
+          40,
+          58,
+          48
+        ],
+        [
+          80,
+          87,
+          71
+        ],
+        [
+          119,
+          123,
+          96
+        ]
+      ]
+    },
+    "errors": {
+      "1": {
+        "rgbMAE255": 0.00830762181431055,
+        "rgbP99_255": 0.0,
+        "alphaMAE255": 0.0077068558894097805,
+        "changedPixelFraction": 8.019922905672824e-05,
+        "silhouetteMaxOffsetPx": 1.0,
+        "protectedChangedPixelFraction": 0.0,
+        "protectedRgbMAE255": 0.010609660297632217,
+        "protectedSilhouetteMaxOffsetPx": 1.0,
+        "protectedColorEdgeRawMaxOffsetPx": 2.0,
+        "protectedColorEdgeMaxOffsetPx": 2.0,
+        "protectedRgbQuantizationTolerance255": 0,
+        "protectedQuantizationPixels": 0,
+        "pass": false
+      },
+      "2": {
+        "rgbMAE255": 0.00565254595130682,
+        "rgbP99_255": 0.0,
+        "alphaMAE255": 0.004345880355685949,
+        "changedPixelFraction": 3.56827109452326e-05,
+        "silhouetteMaxOffsetPx": 1.0,
+        "protectedChangedPixelFraction": 0.0,
+        "protectedRgbMAE255": 0.00840180553495884,
+        "protectedSilhouetteMaxOffsetPx": 1.0,
+        "protectedColorEdgeRawMaxOffsetPx": 1.0,
+        "protectedColorEdgeMaxOffsetPx": 1.0,
+        "protectedRgbQuantizationTolerance255": 0,
+        "protectedQuantizationPixels": 0,
+        "pass": true
+      }
+    },
+    "timings": {
+      "raw-1": {
+        "width": 2048,
+        "height": 1516,
+        "decodeMs": 17.33537800000005,
+        "drawMs": 5.100232000000005
+      },
+      "candidate-1": {
+        "width": 2048,
+        "height": 1516,
+        "decodeMs": 12.853141999999991,
+        "drawMs": 4.710413000000017
+      },
+      "raw-2": {
+        "width": 4096,
+        "height": 3031,
+        "decodeMs": 30.596535000000017,
+        "drawMs": 28.89427599999999
+      },
+      "candidate-2": {
+        "width": 4096,
+        "height": 3031,
+        "decodeMs": 30.673338,
+        "drawMs": 32.29798999999997
+      }
+    },
+    "qualityPass": false
+  }
+}

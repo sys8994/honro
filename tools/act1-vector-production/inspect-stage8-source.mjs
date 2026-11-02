@@ -1,6 +1,7 @@
 /** Offline production-scene A/B. No terrain, unit, camera or game data writes. */
 import vm from 'node:vm';import assert from'node:assert/strict';import{readFile,writeFile,mkdir}from'node:fs/promises';import{createHash}from'node:crypto';import{createCanvas,Image as NativeImage,Path2D,DOMMatrix,GlobalFonts}from'@napi-rs/canvas';import{runtimeParts,root}from'../../shared/build.mjs';
 const id=8,out=`${root}/_local/reports/stage8-original`;await mkdir(out,{recursive:true});GlobalFonts.registerFromPath('/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc','sans-serif');
+process.env.HONRO_ACT1_STAGE8_CANDIDATE='0';
 let seed=3910;const math=Object.create(Math);math.random=()=>((seed=(seed*1664525+1013904223)>>>0)/2**32);
 function canvas(w=300,h=150){const c=createCanvas(w,h);Object.defineProperties(c,{clientWidth:{get:()=>c.width},clientHeight:{get:()=>c.height}});c.getBoundingClientRect=()=>({left:0,top:0,width:c.width,height:c.height});return c;}
 class Image extends NativeImage{set src(v){super.src=typeof v==='string'&&v.startsWith('data:')?Buffer.from(v.split(',')[1],'base64'):v;}get src(){return super.src;}}
