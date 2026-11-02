@@ -2,7 +2,7 @@
 A continued native-App checkpoint, not fresh playthrough or browser clear evidence.
 Only the initial entire-profile import writes storage; all later actions use UI.
 """
-import argparse,copy,gzip,hashlib,json,os,subprocess,time,traceback,unittest
+import argparse,ast,copy,gzip,hashlib,json,os,subprocess,time,traceback,unittest
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 GZIP_SHA='0ae6a6c22718b821f65cadc2882bde026f43774d3c86263a9120e9cd263cdf5e'
@@ -29,7 +29,7 @@ SNAPSHOT='''()=>{const a=HonroApp,e=a.engine,b=e?.b,p=a.profile;
  done:m?.done,proof:Object.fromEntries(['17.mesh','17.lock'].map(k=>[k,proof[k]??null])),
  markers:Object.fromEntries((b.honroMarkers||[]).map(m=>[m.id,!!m.collected])),party:p.party,recruited:p.recruited,
  actors:b.units.filter(u=>u.side===0&&!u.summoned).map(u=>Object.fromEntries(fields.map(k=>[k,u[k]??null]))),
- gates:[b.terrain,b.honroWorldTerrain].flatMap(ts=>(ts||[]).filter(t=>t.id==='gate-repair').map(t=>({...Object.fromEntries(['id','x','y','w','h','vertices','mat','oneWay'].map(k=>[k,t[k]??null])),broken:!!t.broken}))};};
+ gates:[b.terrain,b.honroWorldTerrain].flatMap(ts=>(ts||[]).filter(t=>t.id==='gate-repair').map(t=>({...Object.fromEntries(['id','x','y','w','h','vertices','mat','oneWay'].map(k=>[k,t[k]??null])),broken:!!t.broken})))};};
  const stored=JSON.parse(localStorage.getItem('honro-first-act-profile-1')||'null');
  return {time:performance.now(),screen:a.screen,dialogue:!!a.dialogue,can:!!a.canInput(),grounded:!!(e?.active&&e.grounded(e.active)),
  locked:!!a.profileStore.locked,warning:!!document.getElementById('outcome-save-warning'),live:project(b,p),stored:stored&&project(stored.honroBattle,stored)};}'''
@@ -141,8 +141,10 @@ def run(args):
     page.screenshot(path=str(out/'reloaded-crossed-gate.png'))
     result['passed']=not result['errors'];save()
    except Exception:
-    try:snapshot('failureState');page.screenshot(path=str(out/'failure.png'))
-    except Exception:pass
+    try:snapshot('failureState')
+    except Exception as observer_error:result['failureObserverError']=str(observer_error)
+    try:page.screenshot(path=str(out/'failure.png'))
+    except Exception as screenshot_error:result['failureScreenshotError']=str(screenshot_error)
     raise
    finally:browser.close()
  except Exception:result['exception']=traceback.format_exc();result['passed']=False
@@ -154,6 +156,41 @@ class HelperTests(unittest.TestCase):
   actor={k:None for k in FIELDS};actor.update(id='p-archer',cls='archer',side=0,hp=100,maxHp=100,focus=50,maxFocus=50,moveLeft=500,dead=False,x=80,y=50,r=2)
   gate={k:None for k in GEOMETRY};gate.update(id='gate-repair',x=100,y=0,w=10,h=100,broken=True)
   return {'stage':17,'round':34,'side':0,'phase':'aim','active':'p-archer','shots':77,'shotId':150,'done':{'17.mesh':True,'17.lock':True},'proof':{'17.mesh':{'worker':'17.mason','parts':{'workerCarrier':'17.gilchan'}},'17.lock':{'pinSeated':True}},'markers':{},'party':['archer'],'recruited':['archer'],'actors':[actor],'gates':[copy.deepcopy(gate),copy.deepcopy(gate)]}
+ def test_all_browser_injected_javascript_parses(self):
+  expressions=[]
+  for call in ast.walk(ast.parse(Path(__file__).read_text())):
+   if not isinstance(call,ast.Call) or not isinstance(call.func,ast.Attribute):continue
+   if call.func.attr not in {'evaluate','wait_for_function','add_init_script'}:continue
+   value=call.args[0]
+   if isinstance(value,ast.Name):
+    self.assertEqual(value.id,'SNAPSHOT','New dynamic browser expression needs explicit parse coverage')
+    expressions.append(SNAPSHOT)
+   else:
+    self.assertIsInstance(value,ast.Constant)
+    expressions.append(value.value)
+  self.assertGreaterEqual(len(expressions),5)
+  subprocess.run(['node','-e',"const xs=JSON.parse(require('fs').readFileSync(0,'utf8'));for(const x of xs)new Function('return ('+x+');');"],input=json.dumps(expressions),text=True,check=True)
+ def test_browser_snapshot_executes_and_matches_reference(self):
+  expected=self.sample()
+  b={'honroStage':17,'round':34,'side':0,'phase':'aim','active':'p-archer','shots':77,'shot':150,
+   'honroState':{'act23v4':{'done':expected['done'],'earlyAct2':{'proof':expected['proof']}}},
+   'honroMarkers':[],'units':expected['actors'],'terrain':[expected['gates'][0]],'honroWorldTerrain':[expected['gates'][1]]}
+  profile={'party':expected['party'],'recruited':expected['recruited'],'honroBattle':b}
+  # Execute the exact browser expression, not a parallel Python-only implementation.
+  # The observer must also tolerate the normal no-battle interval after Continue.
+  harness="""const fs=require('fs'),v=JSON.parse(fs.readFileSync(0,'utf8'));
+   global.HonroApp={engine:{b:v.b,active:v.b?.units[0],grounded:()=>true},profile:v.profile,
+    screen:'battle',dialogue:null,canInput:()=>!!v.b,profileStore:{locked:false}};
+   global.localStorage={getItem:()=>JSON.stringify(v.profile)};
+   global.document={getElementById:()=>null};
+   process.stdout.write(JSON.stringify(eval('('+v.expression+')')()));"""
+  for live_b in [b,None]:
+   raw=subprocess.check_output(['node','-e',harness],input=json.dumps({'expression':SNAPSHOT,'b':live_b,'profile':profile}),text=True)
+   observed=json.loads(raw)
+   self.assertEqual(observed['live'],expected if live_b else None)
+   self.assertEqual(observed['stored'],expected)
+   self.assertFalse(observed['locked']);self.assertFalse(observed['warning'])
+   self.assertEqual(observed['can'],bool(live_b))
  def test_open_requires_both_real_proofs_and_both_terrains(self):
   a=self.sample();check_gate(a)
   for mutate in [lambda s:s['gates'][1].update(broken=False),lambda s:s['proof']['17.lock'].update(pinSeated=False),lambda s:s['proof']['17.mesh']['parts'].clear()]:

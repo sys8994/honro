@@ -50,3 +50,18 @@ The existing `tools/stage31/check-release.mjs` normal gate validates the saved c
 Output artifact: `stage17-repaired-gate-<generated SHA>`, containing prerequisite/API and package hash receipts, the normal gate log, harness hash, browser log and the test's three screenshots/structured result. A prerequisite mismatch, package/source drift, missing fixture/evidence, normal gate failure or browser failure remains an explicit failure.
 
 Workflow authoring validation: Python compilation and YAML parsing pass; the existing five pure probe helper cases pass; malformed ref values (branch, short SHA, uppercase SHA and shell-like input) are rejected. The actual generated candidate is not available locally yet, so the final package/API/gate/browser steps remain unexecuted until the publisher supplies its verified exact ref. No workflow was dispatched during authoring.
+
+### Observer syntax regression (run 41548197804)
+
+The first focused CI run reached normal title Continue, then the test observer
+failed to parse (`Page.evaluate: SyntaxError: missing ) after argument list`).
+Its exact artifact is `13188939789`, on request `ade6453e` and generated candidate
+`781cb3bc0441b58330105e812cef8b16c7473c4d`. This is a harness failure before any
+crossing measurement, not evidence of a gate/game failure or successful crossing.
+The missing `flatMap` closing parenthesis is corrected without changing fixture,
+game bytes, movement, or assertions. Self-tests now parse every injected browser
+JavaScript expression with Node and execute the exact snapshot against live and
+transient no-battle mocks. Failure screenshots are attempted independently of
+the observer so a future observer error cannot suppress the actual pixels.
+Actual Continue/cross/autosave/reload remains pending a corrected focused CI run;
+local Chromium execution remains unavailable. No full combat replay is required.
