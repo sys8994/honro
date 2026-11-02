@@ -111,13 +111,13 @@ for row in rows:
  raw=json.loads((ROOT/row['evidence']).read_text());rawSource=raw.get('source');row['sourceCommit']=resultMeta.get('sourceCommit',meta.get('sourceCommit'))or(rawSource if isinstance(rawSource,str)and len(rawSource)==40 else None)or recordedInitialSource
  row['sourceEvidence']=({'path':str(initialFile.relative_to(ROOT)),'sha256':digest(initialFile)}if recordedInitialSource else None)
  row['sourceProvenanceStatus']='Recorded commit'if row['sourceCommit']else 'MISSING_COMMIT: preserve raw/controller hashes; do not infer exact source'
- row['operationMode']=raw.get('operationMode')or('NATIVE_APP_ACTION_SIMULATION'if raw.get('schema')=='honro-stage5-input-trace/v1'or(row['stage']==5 and 'final-normal'in row['evidence'])else 'ENGINE_ACTION_MODEL')
+ row['operationMode']=raw.get('operationMode')or raw.get('provenance',{}).get('operationMode')or('NATIVE_APP_ACTION_SIMULATION'if raw.get('schema')=='honro-stage5-input-trace/v1'or(row['stage']==5 and 'final-normal'in row['evidence'])else 'ENGINE_ACTION_MODEL')
  row['controllerFileSha256']=digest(folder/'controller.js')if(folder/'controller.js').exists()else meta.get('adaptedSha256')
  row['runnerSha256']=raw.get('runnerSha256');row['sourceDirtyAtStart']=raw.get('sourceDirtyAtStart',meta.get('sourceDirty','NOT_RECORDED'))
  if raw.get('damageFx') is not None:
   hits=[v for v in raw['damageFx']if v.get('ownerSide')==1 and v.get('targetSide')==0 and v.get('critical')is False and not v.get('ownerElite')and not v.get('ownerMidboss')and not v.get('ownerMajorBoss')and v.get('targetMaxHp')]
   values=[v['damage']/v['targetMaxHp']*100 for v in hits];row['observed']['noncriticalNormalHitPctHp']={'n':len(values),'values':values,'mean':statistics.mean(values)if values else None,'median':statistics.median(values)if values else None,'range':[min(values),max(values)]if values else None,'source':'Production emitted damage text includes actual damage/critical/attackId; HP-loss truncation avoided. Fully shield-absorbed no-damage hits not in this event sample.','sampleScope':'Separate instrumentation diagnostic, not additional registered cohort cases'}
- row['controllerCalibrationStatus']='INVALID_PLANNED_SKILL_CALLER_MISMATCH'if row['stage']==2 and 'focused'in row['policy']and 'skillmatch'not in row['policy']else 'Diagnostic calibration unless separately preregistered'
+ row['controllerCalibrationStatus']='INVALID_PLANNED_SKILL_CALLER_MISMATCH'if row['stage']==2 and 'focused'in row['policy']and (folder/'controller.js').exists()and "e.fire('A01',shot.p.angle,shot.p.power)"in(folder/'controller.js').read_text()else 'Diagnostic calibration unless separately preregistered'
  if row['stage']==1 and row.get('inputErrorSeed')==1127:row['controllerCalibrationStatus']='INVALID_POLICY_SUFFIX_ROUTING: observer suffix changed exact route-policy branch; retained diagnostic, not equivalent frozen route'
  row['runtimeSha256']=meta.get('actualRuntimeSha256')
  row['legacyRuntimePartsHash']=resultMeta.get('runtimeSha256')
