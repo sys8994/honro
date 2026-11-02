@@ -1,6 +1,6 @@
 {
   "schema": "honro-act1-terrain-production-v1",
-  "status": "concept-scale-revision",
+  "status": "all-standalone-candidates-ready-integration-blocked",
   "scope": "Static near/play terrain vector assets only; no people or distant scenery. Preserve current geometry. No deployment acceptance claimed.",
   "steps": [
     "source",
@@ -32,12 +32,28 @@
       "height": 2200,
       "geometryDigest": "4616b4ecfb6775f6b491d78a189ef9058b62351a73e1da79905d683ce1b47434",
       "terrains": 7,
-      "status": "concept-scale-review-required",
-      "currentStep": 2,
+      "status": "art-candidate-ready-integration-unverified",
+      "currentStep": 6,
       "totalSteps": 6,
       "passedSteps": [
-        "source"
-      ]
+        "source",
+        "trace",
+        "size-budget",
+        "pure-vector",
+        "native-format"
+      ],
+      "completedArtifacts": [
+        "concept",
+        "standalone-svg",
+        "standalone-preview",
+        "native-format-candidate"
+      ],
+      "contactRegistration": "UNVERIFIED",
+      "normalZoomReview": "FAILED_PROTOTYPE",
+      "gameplayAcceptance": false,
+      "deploymentAcceptance": false,
+      "finalBytes": 646102,
+      "reductionPercent": 41.55
     },
     {
       "stage": 2,
@@ -46,12 +62,28 @@
       "height": 3300,
       "geometryDigest": "cf96ae37e95ae9b44494ab3c8cb37c64f29c5b6de71193b40a18eb14eae5a229",
       "terrains": 14,
-      "status": "concept-scale-review-required",
-      "currentStep": 2,
+      "status": "art-candidate-ready-integration-unverified",
+      "currentStep": 6,
       "totalSteps": 6,
       "passedSteps": [
-        "source"
-      ]
+        "source",
+        "trace",
+        "size-budget",
+        "pure-vector",
+        "native-format"
+      ],
+      "completedArtifacts": [
+        "concept",
+        "standalone-svg",
+        "standalone-preview",
+        "native-format-candidate"
+      ],
+      "contactRegistration": "UNVERIFIED",
+      "normalZoomReview": "NOT_RUN",
+      "gameplayAcceptance": false,
+      "deploymentAcceptance": false,
+      "finalBytes": 1574036,
+      "reductionPercent": 46.12
     },
     {
       "stage": 3,
@@ -60,12 +92,28 @@
       "height": 3100,
       "geometryDigest": "259b0371e4eeb108ebbdc8d5f27f9c447632a4ed7ef8c5cf202921fce3e3d468",
       "terrains": 11,
-      "status": "concept-scale-review-required",
-      "currentStep": 2,
+      "status": "art-candidate-ready-integration-unverified",
+      "currentStep": 6,
       "totalSteps": 6,
       "passedSteps": [
-        "source"
-      ]
+        "source",
+        "trace",
+        "size-budget",
+        "pure-vector",
+        "native-format"
+      ],
+      "completedArtifacts": [
+        "concept",
+        "standalone-svg",
+        "standalone-preview",
+        "native-format-candidate"
+      ],
+      "contactRegistration": "UNVERIFIED",
+      "normalZoomReview": "NOT_RUN",
+      "gameplayAcceptance": false,
+      "deploymentAcceptance": false,
+      "finalBytes": 985034,
+      "reductionPercent": 30.94
     },
     {
       "stage": 4,
@@ -74,12 +122,28 @@
       "height": 3500,
       "geometryDigest": "689f219cbc46881e56f9950b86eacb924390e4eb3f1f541b755888fffc337da7",
       "terrains": 10,
-      "status": "concept-scale-review-required",
-      "currentStep": 2,
+      "status": "art-candidate-ready-integration-unverified",
+      "currentStep": 6,
       "totalSteps": 6,
       "passedSteps": [
-        "source"
-      ]
+        "source",
+        "trace",
+        "size-budget",
+        "pure-vector",
+        "native-format"
+      ],
+      "completedArtifacts": [
+        "concept",
+        "standalone-svg",
+        "standalone-preview",
+        "native-format-candidate"
+      ],
+      "contactRegistration": "UNVERIFIED",
+      "normalZoomReview": "NOT_RUN",
+      "gameplayAcceptance": false,
+      "deploymentAcceptance": false,
+      "finalBytes": 965855,
+      "reductionPercent": 30.76
     },
     {
       "stage": 5,
@@ -88,12 +152,28 @@
       "height": 4300,
       "geometryDigest": "984cb2ca815d4ea360055429d1b748353490526b37b7e962fb32d60457e1ebf9",
       "terrains": 11,
-      "status": "concept-scale-review-required",
-      "currentStep": 2,
+      "status": "art-candidate-ready-integration-unverified",
+      "currentStep": 6,
       "totalSteps": 6,
       "passedSteps": [
-        "source"
-      ]
+        "source",
+        "trace",
+        "size-budget",
+        "pure-vector",
+        "native-format"
+      ],
+      "completedArtifacts": [
+        "concept",
+        "standalone-svg",
+        "standalone-preview",
+        "native-format-candidate"
+      ],
+      "contactRegistration": "UNVERIFIED",
+      "normalZoomReview": "NOT_RUN",
+      "gameplayAcceptance": false,
+      "deploymentAcceptance": false,
+      "finalBytes": 966618,
+      "reductionPercent": 34.73
     },
     {
       "stage": 6,
@@ -102,12 +182,28 @@
       "height": 3800,
       "geometryDigest": "c77ecc09e271152b30d58645a2a9801ff11cfd5f1385c48a641da094e9c04b33",
       "terrains": 13,
-      "status": "concept-scale-review-required",
-      "currentStep": 2,
+      "status": "art-candidate-ready-integration-unverified",
+      "currentStep": 6,
       "totalSteps": 6,
       "passedSteps": [
-        "source"
-      ]
+        "source",
+        "trace",
+        "size-budget",
+        "pure-vector",
+        "native-format"
+      ],
+      "completedArtifacts": [
+        "concept",
+        "standalone-svg",
+        "standalone-preview",
+        "native-format-candidate"
+      ],
+      "contactRegistration": "UNVERIFIED",
+      "normalZoomReview": "NOT_RUN",
+      "gameplayAcceptance": false,
+      "deploymentAcceptance": false,
+      "finalBytes": 661775,
+      "reductionPercent": 31.29
     },
     {
       "stage": 7,
@@ -116,12 +212,28 @@
       "height": 5000,
       "geometryDigest": "66f751339f9afb91bb7e2418babaae5367cb5f82d48c92d0a7ac9a89f05b0c4a",
       "terrains": 15,
-      "status": "concept-scale-review-required",
-      "currentStep": 2,
+      "status": "art-candidate-ready-integration-unverified",
+      "currentStep": 6,
       "totalSteps": 6,
       "passedSteps": [
-        "source"
-      ]
+        "source",
+        "trace",
+        "size-budget",
+        "pure-vector",
+        "native-format"
+      ],
+      "completedArtifacts": [
+        "concept",
+        "standalone-svg",
+        "standalone-preview",
+        "native-format-candidate"
+      ],
+      "contactRegistration": "UNVERIFIED",
+      "normalZoomReview": "NOT_RUN",
+      "gameplayAcceptance": false,
+      "deploymentAcceptance": false,
+      "finalBytes": 1087740,
+      "reductionPercent": 39.06
     },
     {
       "stage": 8,
@@ -130,12 +242,28 @@
       "height": 5500,
       "geometryDigest": "0fb449448ac3980efd5491ed9195f27d9ea4381ee42ce3b7a42dd8dbe2d2493c",
       "terrains": 22,
-      "status": "concept-scale-review-required",
-      "currentStep": 2,
+      "status": "art-candidate-ready-integration-unverified",
+      "currentStep": 6,
       "totalSteps": 6,
       "passedSteps": [
-        "source"
-      ]
+        "source",
+        "trace",
+        "size-budget",
+        "pure-vector",
+        "native-format"
+      ],
+      "completedArtifacts": [
+        "concept",
+        "standalone-svg",
+        "standalone-preview",
+        "native-format-candidate"
+      ],
+      "contactRegistration": "UNVERIFIED",
+      "normalZoomReview": "NOT_RUN",
+      "gameplayAcceptance": false,
+      "deploymentAcceptance": false,
+      "finalBytes": 889951,
+      "reductionPercent": 42.59
     },
     {
       "stage": 9,
@@ -144,12 +272,28 @@
       "height": 3500,
       "geometryDigest": "9b943f3d3da3c377c02c8a6b1e7c5e0a0034bba9ffdca7e1bdd58575571fb231",
       "terrains": 7,
-      "status": "concept-scale-review-required",
-      "currentStep": 2,
+      "status": "art-candidate-ready-integration-unverified",
+      "currentStep": 6,
       "totalSteps": 6,
       "passedSteps": [
-        "source"
-      ]
+        "source",
+        "trace",
+        "size-budget",
+        "pure-vector",
+        "native-format"
+      ],
+      "completedArtifacts": [
+        "concept",
+        "standalone-svg",
+        "standalone-preview",
+        "native-format-candidate"
+      ],
+      "contactRegistration": "UNVERIFIED",
+      "normalZoomReview": "NOT_RUN",
+      "gameplayAcceptance": false,
+      "deploymentAcceptance": false,
+      "finalBytes": 1059175,
+      "reductionPercent": 34.45
     },
     {
       "stage": 10,
@@ -158,12 +302,31 @@
       "height": 3900,
       "geometryDigest": "59c6b1ad3c29dba4d4c8b9a50fa85fa23024efecc70cef6137604959b03bae4b",
       "terrains": 12,
-      "status": "concept-scale-review-required",
-      "currentStep": 2,
+      "status": "art-candidate-ready-integration-unverified",
+      "currentStep": 6,
       "totalSteps": 6,
       "passedSteps": [
-        "source"
-      ]
+        "source",
+        "trace",
+        "size-budget",
+        "pure-vector",
+        "native-format"
+      ],
+      "completedArtifacts": [
+        "concept",
+        "standalone-svg",
+        "standalone-preview",
+        "native-format-candidate"
+      ],
+      "contactRegistration": "UNVERIFIED",
+      "normalZoomReview": "NOT_RUN",
+      "gameplayAcceptance": false,
+      "deploymentAcceptance": false,
+      "finalBytes": 862873,
+      "reductionPercent": 42.39
     }
-  ]
+  ],
+  "integrationBlocker": "Stage1 full-scene clipping prototype rejected: oversized interior motifs, false tan walking bands, old-prop style mismatch. Preserve original colliders/camera/actors; do not roll out this prototype.",
+  "stepsAreNotAcceptanceCounter": true,
+  "updatedAt": "2026-11-02T03:58:00Z"
 }

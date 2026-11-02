@@ -10,8 +10,11 @@
       "maxFinalBytes": 773808,
       "minimumReductionFraction": 0.3,
       "baselineMessage": "Sentinel_d07922a51b9881918e48c7598abbfd44",
-      "status": "PENDING",
-      "collisionRegistration": "UNVERIFIED"
+      "status": "SIZE_PASS_ONLY",
+      "collisionRegistration": "UNVERIFIED",
+      "finalBytes": 646102,
+      "reductionPercent": 41.55,
+      "finalSha256": "676d90cf153c6498d9101fb5fbef01d07e36e4c71580888fbcd1b26db6cb9c7c"
     },
     {
       "stage": 2,
@@ -20,22 +23,165 @@
       "maxFinalBytes": 2044840,
       "minimumReductionFraction": 0.3,
       "baselineMessage": "Sentinel_d07922a51b9881918e48c7598abbfd44",
-      "status": "PENDING",
+      "status": "SIZE_PASS_ONLY",
+      "collisionRegistration": "UNVERIFIED",
+      "finalBytes": 1574036,
+      "reductionPercent": 46.12,
+      "finalSha256": "acf21c11e0faa364cf7e0d03052d4e415ccd00bcccad128350c79596fe0aeb02"
+    },
+    {
+      "stage": 3,
+      "baselineBytes": 1426364,
+      "sha256": "00d6f19a9107ed10c9353b5bd73e94b8e4a03431b5b25f0415519534295e79b0",
+      "maxFinalBytes": 998454,
+      "source": "First standard12foreground-color Inkscape trace; no intentional baseline inflation",
+      "world": [
+        6500,
+        3100
+      ],
+      "contactRegistration": "UNVERIFIED",
+      "status": "SIZE_PASS_ONLY",
+      "finalBytes": 985034,
+      "reductionPercent": 30.94,
+      "finalSha256": "986f012ce02cda5abe050aabe4c3daa2bae131f4213608c061f8b4d5a8d64a6a",
+      "collisionRegistration": "UNVERIFIED"
+    },
+    {
+      "stage": 4,
+      "baselineBytes": 1395011,
+      "sha256": "622b874dbf1face05951f8bb59d122a552de8b5e578bbc7f6ef43c706c296c20",
+      "maxFinalBytes": 976507,
+      "source": "First standard12foreground-color Inkscape trace; no intentional baseline inflation",
+      "world": [
+        4600,
+        3500
+      ],
+      "contactRegistration": "UNVERIFIED",
+      "status": "SIZE_PASS_ONLY",
+      "finalBytes": 965855,
+      "reductionPercent": 30.76,
+      "finalSha256": "f442b88a1829fc581f8d9c4d47f4fbd2a9f508300ebae06905633d33c277d35f",
+      "collisionRegistration": "UNVERIFIED"
+    },
+    {
+      "stage": 5,
+      "baselineBytes": 1480855,
+      "sha256": "6db1bc93325e48feec21b51d60e60aaa12acc45c004d454386f9de2965df5e7c",
+      "maxFinalBytes": 1036598,
+      "source": "First standard12foreground-color Inkscape trace; no intentional baseline inflation",
+      "world": [
+        6400,
+        4300
+      ],
+      "contactRegistration": "UNVERIFIED",
+      "status": "SIZE_PASS_ONLY",
+      "finalBytes": 966618,
+      "reductionPercent": 34.73,
+      "finalSha256": "9697426089774baf7bf05504c103e7cfae3f3c59ac8e70a38734942a5f6c4d7e",
+      "collisionRegistration": "UNVERIFIED"
+    },
+    {
+      "stage": 6,
+      "baselineBytes": 963206,
+      "sha256": "a469c52b247bad169d1cdbc7e1be262e163c67a34f7bdc2cde3798cd1fa7ec68",
+      "maxFinalBytes": 674244,
+      "source": "First standard12foreground-color Inkscape trace; no intentional baseline inflation",
+      "world": [
+        6600,
+        3800
+      ],
+      "contactRegistration": "UNVERIFIED",
+      "status": "SIZE_PASS_ONLY",
+      "finalBytes": 661775,
+      "reductionPercent": 31.29,
+      "finalSha256": "1353fa4b958d9c688a93636252fe92f3c02e2e2cd97d11cb49cb548e6fb3962b",
+      "collisionRegistration": "UNVERIFIED"
+    },
+    {
+      "stage": 7,
+      "baselineBytes": 1784935,
+      "sha256": "fecb86738f29363a7854800eeba3e14e57d00f69c1634470d101b20abf21dddb",
+      "maxFinalBytes": 1219656,
+      "source": "First standard12foreground-color Inkscape trace; no intentional baseline inflation",
+      "world": [
+        3600,
+        5000
+      ],
+      "contactRegistration": "UNVERIFIED",
+      "supersededInvalidAlphaBaseline": {
+        "stage": 7,
+        "baselineBytes": 1742366,
+        "sha256": "a4ecb92e01e501ef35c0c357281b4c19d826ac17346d1b13f3251c5f8471f97f",
+        "maxFinalBytes": 1219656,
+        "source": "First standard12foreground-color Inkscape trace; no intentional baseline inflation",
+        "world": [
+          3600,
+          5000
+        ],
+        "contactRegistration": "UNVERIFIED"
+      },
+      "note": "Transparent-alpha baseline corrected; retain the stricter previous byte ceiling, no budget relaxation.",
+      "status": "SIZE_PASS_ONLY",
+      "finalBytes": 1087740,
+      "reductionPercent": 39.06,
+      "finalSha256": "84d8bbcfced0ce605c0bf8659c46d39d1c6c2d724239448312bff5ada58db52c",
+      "collisionRegistration": "UNVERIFIED"
+    },
+    {
+      "stage": 8,
+      "baselineBytes": 1550052,
+      "sha256": "3de89c1cbb4c9f0840f7575afb8731bc0e53c0c5926cf5f29ffd186d606385bd",
+      "maxFinalBytes": 1085036,
+      "source": "First standard12foreground-color Inkscape trace; no intentional baseline inflation",
+      "world": [
+        9600,
+        5500
+      ],
+      "contactRegistration": "UNVERIFIED",
+      "status": "SIZE_PASS_ONLY",
+      "finalBytes": 889951,
+      "reductionPercent": 42.59,
+      "finalSha256": "4b422cdf8e6377a1575f87acdde9ecd402dafa479fc37640ff2e6edda0414899",
+      "collisionRegistration": "UNVERIFIED"
+    },
+    {
+      "stage": 9,
+      "baselineBytes": 1615921,
+      "sha256": "6560f322fb7219e94c68f2a1b712e1514b1a0b25faf7e5de71bb658707939100",
+      "maxFinalBytes": 1131144,
+      "source": "First standard12foreground-color Inkscape trace; no intentional baseline inflation",
+      "world": [
+        3600,
+        3500
+      ],
+      "contactRegistration": "UNVERIFIED",
+      "status": "SIZE_PASS_ONLY",
+      "finalBytes": 1059175,
+      "reductionPercent": 34.45,
+      "finalSha256": "38a43107eb02658fc32a67a9c75ed495493416bbf55096a3afc1117b4e1ef2d7",
+      "collisionRegistration": "UNVERIFIED"
+    },
+    {
+      "stage": 10,
+      "baselineBytes": 1497832,
+      "sha256": "1923389b42868cf4bc85223e279fe0e2dca67a9b23297198c772bdfd6af4cd9b",
+      "maxFinalBytes": 1048482,
+      "source": "First standard12foreground-color Inkscape trace; no intentional baseline inflation",
+      "world": [
+        5000,
+        3900
+      ],
+      "contactRegistration": "UNVERIFIED",
+      "status": "SIZE_PASS_ONLY",
+      "finalBytes": 862873,
+      "reductionPercent": 42.39,
+      "finalSha256": "a2b12b2c0f7d84bef8d28212aa4e06757a436c697c1f7d8a49d023b53a92e1af",
       "collisionRegistration": "UNVERIFIED"
     }
   ],
   "remainingStages": {
-    "stages": [
-      3,
-      4,
-      5,
-      6,
-      7,
-      8,
-      9,
-      10
-    ],
-    "baselineStatus": "UNSET",
-    "acceptance": "BLOCKED_UNTIL_BASELINE_AND_REVIEW"
+    "stages": [],
+    "baselineStatus": "FROZEN",
+    "acceptance": "SIZE_PASS_DOES_NOT_IMPLY_VISUAL_OR_GAMEPLAY_PASS"
   }
 }

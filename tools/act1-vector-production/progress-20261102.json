@@ -1,0 +1,465 @@
+{
+  "updatedAt": "2026-11-02T03:58:00Z",
+  "scope": "Evidence index only. Workspace candidate art delivered as ZIP; not production art or deployed stages.",
+  "standalonePackageLibraryId": "libfile_2d39a5a646e0819189000fa6db58be6e",
+  "stages": [
+    {
+      "stage": 1,
+      "name": "연목 고갯길",
+      "world": [
+        5400,
+        2200
+      ],
+      "sourceGeometryDigest": "4616b4ecfb6775f6b491d78a189ef9058b62351a73e1da79905d683ce1b47434",
+      "sourceConceptUnits": [
+        0.0,
+        0.0,
+        1964.0,
+        801.0
+      ],
+      "uniformArtScale": 2.74949083503055,
+      "baselineBytes": 1105441,
+      "maxBytes": 773808,
+      "finalBytes": 646102,
+      "reductionPercent": 41.55,
+      "onCurveNodes": 21585,
+      "sha256": "676d90cf153c6498d9101fb5fbef01d07e36e4c71580888fbcd1b26db6cb9c7c",
+      "sizeGate": "PASS",
+      "pureVector": true,
+      "bottomOpaqueFraction": 1.0,
+      "visualReview": "Standalone full-view reviewed; not runtime acceptance",
+      "contactRegistration": "UNVERIFIED",
+      "gameplayAcceptance": false,
+      "moduleSeparation": "Color paths are not semantic modules",
+      "directLegacyImport": "FAIL",
+      "directLegacyImportReason": "path: inseparable contour/hole component is 128792 characters (42 contours), limit 60000. In Inkscape simplify this component with silhouette/hole protection or divide into separately authored non-overlapping objects; do not blindly break apart holes.",
+      "preparedNativeImport": "PASS",
+      "preparedNativeImportScope": "After bounded coordinate serialization and existing dParts importer; not direct source SVG, contact or gameplay approval."
+    },
+    {
+      "stage": 2,
+      "name": "상여 위의 높은 길",
+      "world": [
+        4300,
+        3300
+      ],
+      "sourceGeometryDigest": "cf96ae37e95ae9b44494ab3c8cb37c64f29c5b6de71193b40a18eb14eae5a229",
+      "sourceConceptUnits": [
+        0.0,
+        0.0,
+        1433.0,
+        1098.0
+      ],
+      "uniformArtScale": 3.0054644808743167,
+      "baselineBytes": 2921201,
+      "maxBytes": 2044840,
+      "finalBytes": 1574036,
+      "reductionPercent": 46.12,
+      "onCurveNodes": 49409,
+      "sha256": "acf21c11e0faa364cf7e0d03052d4e415ccd00bcccad128350c79596fe0aeb02",
+      "sizeGate": "PASS",
+      "pureVector": true,
+      "bottomOpaqueFraction": 1.0,
+      "visualReview": "Standalone full-view reviewed; not runtime acceptance",
+      "contactRegistration": "UNVERIFIED",
+      "gameplayAcceptance": false,
+      "moduleSeparation": "Color paths are not semantic modules",
+      "directLegacyImport": "FAIL",
+      "directLegacyImportReason": "path: inseparable contour/hole component is 132170 characters (109 contours), limit 60000. In Inkscape simplify this component with silhouette/hole protection or divide into separately authored non-overlapping objects; do not blindly break apart holes.",
+      "preparedNativeImport": "PASS",
+      "preparedNativeImportScope": "After bounded coordinate serialization and existing dParts importer; not direct source SVG, contact or gameplay approval."
+    },
+    {
+      "stage": 3,
+      "name": "나루의 남은 장부",
+      "world": [
+        6500,
+        3100
+      ],
+      "sourceGeometryDigest": "259b0371e4eeb108ebbdc8d5f27f9c447632a4ed7ef8c5cf202921fce3e3d468",
+      "sourceConceptUnits": [
+        0.0,
+        0.0,
+        1816.0,
+        866.0
+      ],
+      "uniformArtScale": 3.579676674364896,
+      "baselineBytes": 1426364,
+      "maxBytes": 998454,
+      "finalBytes": 985034,
+      "reductionPercent": 30.94,
+      "onCurveNodes": 31469,
+      "sha256": "986f012ce02cda5abe050aabe4c3daa2bae131f4213608c061f8b4d5a8d64a6a",
+      "sizeGate": "PASS",
+      "pureVector": true,
+      "bottomOpaqueFraction": 1.0,
+      "visualReview": "Standalone full-view reviewed; not runtime acceptance",
+      "contactRegistration": "UNVERIFIED",
+      "gameplayAcceptance": false,
+      "moduleSeparation": "Color paths are not semantic modules",
+      "directLegacyImport": "FAIL",
+      "directLegacyImportReason": "path: inseparable contour/hole component is 198900 characters (78 contours), limit 60000. In Inkscape simplify this component with silhouette/hole protection or divide into separately authored non-overlapping objects; do not blindly break apart holes.",
+      "preparedNativeImport": "PASS",
+      "preparedNativeImportScope": "After bounded coordinate serialization and existing dParts importer; not direct source SVG, contact or gameplay approval."
+    },
+    {
+      "stage": 4,
+      "name": "문 밖에 남은 사람들",
+      "world": [
+        4600,
+        3500
+      ],
+      "sourceGeometryDigest": "689f219cbc46881e56f9950b86eacb924390e4eb3f1f541b755888fffc337da7",
+      "sourceConceptUnits": [
+        0.0,
+        0.0,
+        1438.0,
+        1094.0
+      ],
+      "uniformArtScale": 3.19926873857404,
+      "baselineBytes": 1395011,
+      "maxBytes": 976507,
+      "finalBytes": 965855,
+      "reductionPercent": 30.76,
+      "onCurveNodes": 28761,
+      "sha256": "f442b88a1829fc581f8d9c4d47f4fbd2a9f508300ebae06905633d33c277d35f",
+      "sizeGate": "PASS",
+      "pureVector": true,
+      "bottomOpaqueFraction": 1.0,
+      "visualReview": "Standalone full-view reviewed; not runtime acceptance",
+      "contactRegistration": "UNVERIFIED",
+      "gameplayAcceptance": false,
+      "moduleSeparation": "Color paths are not semantic modules",
+      "directLegacyImport": "FAIL",
+      "directLegacyImportReason": "path: inseparable contour/hole component is 176866 characters (45 contours), limit 60000. In Inkscape simplify this component with silhouette/hole protection or divide into separately authored non-overlapping objects; do not blindly break apart holes.",
+      "preparedNativeImport": "PASS",
+      "preparedNativeImportScope": "After bounded coordinate serialization and existing dParts importer; not direct source SVG, contact or gameplay approval."
+    },
+    {
+      "stage": 5,
+      "name": "폭포 틈의 한 발",
+      "world": [
+        6400,
+        4300
+      ],
+      "sourceGeometryDigest": "984cb2ca815d4ea360055429d1b748353490526b37b7e962fb32d60457e1ebf9",
+      "sourceConceptUnits": [
+        0.0,
+        0.0,
+        1530.0,
+        1028.0
+      ],
+      "uniformArtScale": 4.183006535947713,
+      "baselineBytes": 1480855,
+      "maxBytes": 1036598,
+      "finalBytes": 966618,
+      "reductionPercent": 34.73,
+      "onCurveNodes": 31214,
+      "sha256": "9697426089774baf7bf05504c103e7cfae3f3c59ac8e70a38734942a5f6c4d7e",
+      "sizeGate": "PASS",
+      "pureVector": true,
+      "bottomOpaqueFraction": 1.0,
+      "visualReview": "Standalone full-view reviewed; not runtime acceptance",
+      "contactRegistration": "UNVERIFIED",
+      "gameplayAcceptance": false,
+      "moduleSeparation": "Color paths are not semantic modules",
+      "directLegacyImport": "FAIL",
+      "directLegacyImportReason": "path: inseparable contour/hole component is 150568 characters (69 contours), limit 60000. In Inkscape simplify this component with silhouette/hole protection or divide into separately authored non-overlapping objects; do not blindly break apart holes.",
+      "preparedNativeImport": "PASS",
+      "preparedNativeImportScope": "After bounded coordinate serialization and existing dParts importer; not direct source SVG, contact or gameplay approval."
+    },
+    {
+      "stage": 6,
+      "name": "끊어진 나무다리",
+      "world": [
+        6600,
+        3800
+      ],
+      "sourceGeometryDigest": "c77ecc09e271152b30d58645a2a9801ff11cfd5f1385c48a641da094e9c04b33",
+      "sourceConceptUnits": [
+        0.0,
+        0.0,
+        1653.0,
+        951.0
+      ],
+      "uniformArtScale": 3.995793901156677,
+      "baselineBytes": 963206,
+      "maxBytes": 674244,
+      "finalBytes": 661775,
+      "reductionPercent": 31.29,
+      "onCurveNodes": 21434,
+      "sha256": "1353fa4b958d9c688a93636252fe92f3c02e2e2cd97d11cb49cb548e6fb3962b",
+      "sizeGate": "PASS",
+      "pureVector": true,
+      "bottomOpaqueFraction": 1.0,
+      "visualReview": "Standalone full-view reviewed; not runtime acceptance",
+      "contactRegistration": "UNVERIFIED",
+      "gameplayAcceptance": false,
+      "moduleSeparation": "Color paths are not semantic modules",
+      "directLegacyImport": "FAIL",
+      "directLegacyImportReason": "path: inseparable contour/hole component is 113481 characters (72 contours), limit 60000. In Inkscape simplify this component with silhouette/hole protection or divide into separately authored non-overlapping objects; do not blindly break apart holes.",
+      "preparedNativeImport": "PASS",
+      "preparedNativeImportScope": "After bounded coordinate serialization and existing dParts importer; not direct source SVG, contact or gameplay approval."
+    },
+    {
+      "stage": 7,
+      "name": "살아 있는 사람을 꺼내는 법",
+      "world": [
+        3600,
+        5000
+      ],
+      "sourceGeometryDigest": "66f751339f9afb91bb7e2418babaae5367cb5f82d48c92d0a7ac9a89f05b0c4a",
+      "sourceConceptUnits": [
+        0.0,
+        0.0,
+        1064.0,
+        1478.0
+      ],
+      "uniformArtScale": 3.3834586466165413,
+      "baselineBytes": 1784935,
+      "maxBytes": 1219656,
+      "finalBytes": 1087740,
+      "reductionPercent": 39.06,
+      "onCurveNodes": 34145,
+      "sha256": "84d8bbcfced0ce605c0bf8659c46d39d1c6c2d724239448312bff5ada58db52c",
+      "sizeGate": "PASS",
+      "pureVector": true,
+      "bottomOpaqueFraction": 1.0,
+      "visualReview": "Standalone full-view reviewed; not runtime acceptance",
+      "contactRegistration": "UNVERIFIED",
+      "gameplayAcceptance": false,
+      "moduleSeparation": "Color paths are not semantic modules",
+      "directLegacyImport": "FAIL",
+      "directLegacyImportReason": "path: inseparable contour/hole component is 195869 characters (137 contours), limit 60000. In Inkscape simplify this component with silhouette/hole protection or divide into separately authored non-overlapping objects; do not blindly break apart holes.",
+      "preparedNativeImport": "PASS",
+      "preparedNativeImportScope": "After bounded coordinate serialization and existing dParts importer; not direct source SVG, contact or gameplay approval."
+    },
+    {
+      "stage": 8,
+      "name": "돌아오는 빈 상여",
+      "world": [
+        9600,
+        5500
+      ],
+      "sourceGeometryDigest": "0fb449448ac3980efd5491ed9195f27d9ea4381ee42ce3b7a42dd8dbe2d2493c",
+      "sourceConceptUnits": [
+        0.0,
+        0.0,
+        1656.0,
+        950.0
+      ],
+      "uniformArtScale": 5.797101449275362,
+      "baselineBytes": 1550052,
+      "maxBytes": 1085036,
+      "finalBytes": 889951,
+      "reductionPercent": 42.59,
+      "onCurveNodes": 28004,
+      "sha256": "4b422cdf8e6377a1575f87acdde9ecd402dafa479fc37640ff2e6edda0414899",
+      "sizeGate": "PASS",
+      "pureVector": true,
+      "bottomOpaqueFraction": 1.0,
+      "visualReview": "Standalone full-view reviewed; not runtime acceptance",
+      "contactRegistration": "UNVERIFIED",
+      "gameplayAcceptance": false,
+      "moduleSeparation": "Color paths are not semantic modules",
+      "directLegacyImport": "FAIL",
+      "directLegacyImportReason": "path: inseparable contour/hole component is 159865 characters (100 contours), limit 60000. In Inkscape simplify this component with silhouette/hole protection or divide into separately authored non-overlapping objects; do not blindly break apart holes.",
+      "preparedNativeImport": "PASS",
+      "preparedNativeImportScope": "After bounded coordinate serialization and existing dParts importer; not direct source SVG, contact or gameplay approval."
+    },
+    {
+      "stage": 9,
+      "name": "바람 없는 마당",
+      "world": [
+        3600,
+        3500
+      ],
+      "sourceGeometryDigest": "9b943f3d3da3c377c02c8a6b1e7c5e0a0034bba9ffdca7e1bdd58575571fb231",
+      "sourceConceptUnits": [
+        0.0,
+        0.0,
+        1272.0,
+        1236.0
+      ],
+      "uniformArtScale": 2.831715210355987,
+      "baselineBytes": 1615921,
+      "maxBytes": 1131144,
+      "finalBytes": 1059175,
+      "reductionPercent": 34.45,
+      "onCurveNodes": 34455,
+      "sha256": "38a43107eb02658fc32a67a9c75ed495493416bbf55096a3afc1117b4e1ef2d7",
+      "sizeGate": "PASS",
+      "pureVector": true,
+      "bottomOpaqueFraction": 1.0,
+      "visualReview": "Standalone full-view reviewed; not runtime acceptance",
+      "contactRegistration": "UNVERIFIED",
+      "gameplayAcceptance": false,
+      "moduleSeparation": "Color paths are not semantic modules",
+      "directLegacyImport": "FAIL",
+      "directLegacyImportReason": "path: inseparable contour/hole component is 177794 characters (135 contours), limit 60000. In Inkscape simplify this component with silhouette/hole protection or divide into separately authored non-overlapping objects; do not blindly break apart holes.",
+      "preparedNativeImport": "PASS",
+      "preparedNativeImportScope": "After bounded coordinate serialization and existing dParts importer; not direct source SVG, contact or gameplay approval."
+    },
+    {
+      "stage": 10,
+      "name": "소단 — 놓지 못한 밤",
+      "world": [
+        5000,
+        3900
+      ],
+      "sourceGeometryDigest": "59c6b1ad3c29dba4d4c8b9a50fa85fa23024efecc70cef6137604959b03bae4b",
+      "sourceConceptUnits": [
+        0.0,
+        0.0,
+        1420.0,
+        1108.0
+      ],
+      "uniformArtScale": 3.5211267605633805,
+      "baselineBytes": 1497832,
+      "maxBytes": 1048482,
+      "finalBytes": 862873,
+      "reductionPercent": 42.39,
+      "onCurveNodes": 28596,
+      "sha256": "a2b12b2c0f7d84bef8d28212aa4e06757a436c697c1f7d8a49d023b53a92e1af",
+      "sizeGate": "PASS",
+      "pureVector": true,
+      "bottomOpaqueFraction": 1.0,
+      "visualReview": "Standalone full-view reviewed; not runtime acceptance",
+      "contactRegistration": "UNVERIFIED",
+      "gameplayAcceptance": false,
+      "moduleSeparation": "Color paths are not semantic modules",
+      "directLegacyImport": "FAIL",
+      "directLegacyImportReason": "path: inseparable contour/hole component is 129294 characters (100 contours), limit 60000. In Inkscape simplify this component with silhouette/hole protection or divide into separately authored non-overlapping objects; do not blindly break apart holes.",
+      "preparedNativeImport": "PASS",
+      "preparedNativeImportScope": "After bounded coordinate serialization and existing dParts importer; not direct source SVG, contact or gameplay approval."
+    }
+  ],
+  "nativePreparedValidation": {
+    "scope": "Native vector renderer vs independent prepared SVG path instructions, same ordered transform operations; not gameplay/contact verification",
+    "stages": [
+      {
+        "stage": 1,
+        "validatorErrors": [],
+        "changedChannels": 0,
+        "maxDelta": 0,
+        "meanChannelError": 0,
+        "exactSourcePixelParity": true
+      },
+      {
+        "stage": 2,
+        "validatorErrors": [],
+        "changedChannels": 0,
+        "maxDelta": 0,
+        "meanChannelError": 0,
+        "exactSourcePixelParity": true
+      },
+      {
+        "stage": 3,
+        "validatorErrors": [],
+        "changedChannels": 0,
+        "maxDelta": 0,
+        "meanChannelError": 0,
+        "exactSourcePixelParity": true
+      },
+      {
+        "stage": 4,
+        "validatorErrors": [],
+        "changedChannels": 0,
+        "maxDelta": 0,
+        "meanChannelError": 0,
+        "exactSourcePixelParity": true
+      },
+      {
+        "stage": 5,
+        "validatorErrors": [],
+        "changedChannels": 0,
+        "maxDelta": 0,
+        "meanChannelError": 0,
+        "exactSourcePixelParity": true
+      },
+      {
+        "stage": 6,
+        "validatorErrors": [],
+        "changedChannels": 0,
+        "maxDelta": 0,
+        "meanChannelError": 0,
+        "exactSourcePixelParity": true
+      },
+      {
+        "stage": 7,
+        "validatorErrors": [],
+        "changedChannels": 0,
+        "maxDelta": 0,
+        "meanChannelError": 0,
+        "exactSourcePixelParity": true
+      },
+      {
+        "stage": 8,
+        "validatorErrors": [],
+        "changedChannels": 0,
+        "maxDelta": 0,
+        "meanChannelError": 0,
+        "exactSourcePixelParity": true
+      },
+      {
+        "stage": 9,
+        "validatorErrors": [],
+        "changedChannels": 0,
+        "maxDelta": 0,
+        "meanChannelError": 0,
+        "exactSourcePixelParity": true
+      },
+      {
+        "stage": 10,
+        "validatorErrors": [],
+        "changedChannels": 0,
+        "maxDelta": 0,
+        "meanChannelError": 0,
+        "exactSourcePixelParity": true
+      }
+    ]
+  },
+  "runtimePrototype": {
+    "stage": 1,
+    "staticClipHosts": 5,
+    "results": [
+      {
+        "variant": "before",
+        "view": {
+          "width": 1440,
+          "height": 736,
+          "scale": 0.94,
+          "x": 765.9574468085107,
+          "y": 1336.6918702317707
+        },
+        "heroHeight": 92,
+        "units": 9,
+        "physicsSha256": "26cd087485569ae4f91562f09b23018debb7c9f5e2bbcaae81ebbb78ebf5d6fa",
+        "renderPure": true,
+        "scope": "Native production renderer, no browser/UI/input/combat acceptance"
+      },
+      {
+        "variant": "body-preview",
+        "view": {
+          "width": 1440,
+          "height": 736,
+          "scale": 0.94,
+          "x": 765.9574468085107,
+          "y": 1336.6918702317707
+        },
+        "heroHeight": 92,
+        "units": 9,
+        "physicsSha256": "26cd087485569ae4f91562f09b23018debb7c9f5e2bbcaae81ebbb78ebf5d6fa",
+        "renderPure": true,
+        "scope": "Native production renderer, no browser/UI/input/combat acceptance"
+      }
+    ]
+  },
+  "visualDecision": "FAIL",
+  "visualBlockers": [
+    "Tan bands inside solids imply nonexistent walking surfaces.",
+    "Large foliage/rock motifs read as camouflage at normal camera scale.",
+    "Full-scene clipping loses authored silhouette and clashes with retained native props."
+  ],
+  "nextRequired": "Separate source-aligned body material from contact-edge and supported near objects; review at native camera scale before wider integration."
+}
