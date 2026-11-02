@@ -62,12 +62,24 @@ def compare(raw,candidate,scale,config):
         if config.get('protectionMode','feature')=='feature':
             # Internal color contour protection via per-palette masks, not alpha alone.
             colors=np.array(config.get('sourcePalette',[[0,0,0],[255,255,255]]),dtype=np.float32)
-            maximum=0.
+            tolerance=config.get('protectedRgbQuantizationTolerance255',0)
+            if tolerance not in (0,1): raise ValueError('Protected RGB quantization tolerance must be explicitly 0 or 1')
+            # Optional 8-bit raster rounding tolerance. Alpha must remain exact.
+            # Keep reference-directed masks: deleting ambiguous pixels can erase thin features.
+            jitter=region & (np.max(abs(a[:,:,:3]-b[:,:,:3])*255,axis=2)<=tolerance+1e-4) & (a[:,:,3]==b[:,:,3]) if tolerance else np.zeros_like(region)
+            maximum=0.;rawMaximum=0.;tolerated=np.zeros_like(region)
             for color in colors:
                 ma=(np.max(abs(a[:,:,:3]*255-color),axis=2)<4)&(a[:,:,3]>=.5)
                 mb=(np.max(abs(b[:,:,:3]*255-color),axis=2)<4)&(b[:,:,3]>=.5)
-                if (edge(ma)&region).any() or (edge(mb)&region).any(): maximum=max(maximum,distance(ma,mb,region))
+                if (edge(ma)&region).any() or (edge(mb)&region).any():
+                    rawMaximum=max(rawMaximum,distance(ma,mb,region))
+                    tolerated |= jitter & (ma!=mb)
+                    adjusted=np.where(jitter,ma,mb)
+                    maximum=max(maximum,distance(ma,adjusted,region))
+            result['protectedColorEdgeRawMaxOffsetPx']=rawMaximum
             result['protectedColorEdgeMaxOffsetPx']=maximum
+            result['protectedRgbQuantizationTolerance255']=tolerance
+            result['protectedQuantizationPixels']=int(tolerated.sum())
     limits=config.get('limits',{})
     passed=result['rgbMAE255']<=limits.get('rgbMAE255',2) and result['silhouetteMaxOffsetPx']<=limits.get('silhouettePx',1.5)*scale
     if region.any(): passed &= result['protectedRgbMAE255']<=limits.get('protectedRgbMAE255',1) and result['protectedSilhouetteMaxOffsetPx']<=limits.get('protectedPx',.5)*scale and result['protectedChangedPixelFraction']<=limits.get('protectedChangedPixelFraction',.05)
