@@ -1,0 +1,75 @@
+{
+  "stage": 3,
+  "status": "NATIVE_VISUAL_CANDIDATE",
+  "assetId": "act1-traced:stage03-body-v7",
+  "bodyHosts": [
+    "ferry-ground"
+  ],
+  "excluded": [
+    "wood docks",
+    "cargo steps",
+    "warehouse roof",
+    "props",
+    "actors",
+    "backdrop",
+    "combat redesign"
+  ],
+  "worldRect": [
+    -4000,
+    0,
+    14500,
+    5000
+  ],
+  "originalMap": [
+    6500,
+    3100
+  ],
+  "rawSha256": "ad2eb1bfe10ec803772755bd2202c779c10936f7ad8d6788f1d0d940a17e30ab",
+  "finalSha256": "d5094175495bee640b3319ad9f609896b487bed4273f61e8b8ada9bd8ebc016b",
+  "rawBytes": 340580,
+  "finalBytes": 223512,
+  "nativeViews": [
+    "start",
+    "overview",
+    "east",
+    "mobile",
+    "edge-left",
+    "edge-right"
+  ],
+  "collisionUnchanged": true,
+  "physicsSha256": "5ab86b73ff907e5d84cf26109ebc41745c79c26a9de2d0e74934a158f729357c",
+  "pixelErrors": {
+    "1": {
+      "rgbMAE255": 0.007224968168884516,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.0008410056470893323,
+      "changedPixelFraction": 1.5907179532577903e-05,
+      "silhouetteMaxOffsetPx": 1.0,
+      "pass": true
+    },
+    "2": {
+      "rgbMAE255": 0.006069572176784277,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.0014804051024839282,
+      "changedPixelFraction": 2.7491755931303117e-05,
+      "silhouetteMaxOffsetPx": 1.0,
+      "pass": true
+    }
+  },
+  "pixelLimits": {
+    "rgbMAE255": 2,
+    "silhouettePx": 1.5,
+    "protectedRgbMAE255": 1,
+    "protectedPx": 0.5,
+    "protectedChangedPixelFraction": 0.05
+  },
+  "qualityPass": true,
+  "browserAccepted": false,
+  "productionAccepted": false,
+  "candidateCommit": "13b38714fea74f7b068c8748683f4055b86977e1",
+  "failureLessons": [
+    "Reject oversized isolated rock/moss islands even when size and pixel metrics pass.",
+    "Five-color candidate exceeded unchanged compound-character limit. Four-color source authoring removes unnecessary dark-shade layer; same-raw fidelity comparison applies to the new four-color raw only.",
+    "Do not turn source map into a smaller scene or resize actors. Camera checks must use local surface heights."
+  ]
+}
