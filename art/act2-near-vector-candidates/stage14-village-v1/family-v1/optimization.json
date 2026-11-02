@@ -1,0 +1,22 @@
+{
+  "sourceSha256": "5a7d55d0e0a0c77b030cbb8ef57ea338d2235408827637d359ebb31e4d71bc9e",
+  "sourceBytes": 212852,
+  "outputBytes": 145010,
+  "reductionPercent": 31.872850619209594,
+  "epsilonLocalUnits": 0.04,
+  "preservedWholePathColors": [
+    "#979789"
+  ],
+  "maxCurveReplacementBoundLocalUnits": 0.03987937455830868,
+  "absoluteCoordinateRoundingBound": 0.07071067811865477,
+  "protectedRule": "Preserve original textual geometry for contours touching 9.0 local-unit expanded canonical polyline region; lexical minification only. Interior bounded geometry regenerated from immutable raw.svg.",
+  "counts": {
+    "protectedContours": 49,
+    "protectedSegments": 1940,
+    "cubicToLine": 38,
+    "cubicToQuadratic": 130,
+    "keptCubic": 1915
+  },
+  "topologyReview": "NOT_CERTIFIED",
+  "visualReview": "PENDING"
+}

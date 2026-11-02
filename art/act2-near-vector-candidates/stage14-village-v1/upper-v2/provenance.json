@@ -1,0 +1,28 @@
+{
+  "part": "upper-v2",
+  "submittedReferences": [
+    {
+      "submittedPath": "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage14/upper-v1/source.png",
+      "sha256": "ce353ada83d9cf8f5dda474b1713d741058e4f9063a2a9b12f4cf5c46ca0fc41",
+      "preservedPath": "submitted-references/ce353ada83d9cf8f5dda474b1713d741058e4f9063a2a9b12f4cf5c46ca0fc41.png"
+    }
+  ],
+  "sourceSha256": "0cfbd1738a15f301fcc8fc50708c01b3b5f9ca6164085a2bcabbe2143cca493f",
+  "promptSha256": "8a9c290ba3dcb65865026837a4bb6ca0e185d87719cc77f3ab9f0aeddfd79ba0",
+  "rawSha256": "46996017a3c033b7bab0f53b90778792b853349dc46bb76980165eda45b49b39",
+  "finalSha256": "226fc9657f6b3fa7909c07a74ee8787bf49902db4515a907fac0c1a9d19f1339",
+  "nativeFileSha256": "dfcc4cec7c99cc466cca5eedc660b6eb4c0e4c8c15e6a45b7aa92dba08e5ac06",
+  "rawBytes": 399289,
+  "finalBytes": 271245,
+  "nativeBytes": 176010,
+  "rawGzipPath": "upper-v2/immutable-raw.svg.gz",
+  "finalPath": "upper-v2/final.svg",
+  "qualityComparison": "upper-v2/comparison.json",
+  "sourceToTrace": {
+    "visibleRgbMAE255": 4.009863264746353,
+    "binaryAlphaDisagreementFraction": 0.0008797355708110857,
+    "scope": "Palette reduction and binary Inkscape trace losses, not optimizer loss or artwork approval"
+  },
+  "sourceGeneration": "Exact submitted JSON prompt and referenced_image_paths saved before imagegen; original PNG immutable.",
+  "localSourcePath": "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage14/upper-v2/source.png"
+}

@@ -1,0 +1,33 @@
+{
+  "part": "east-v1",
+  "submittedReferences": [
+    {
+      "submittedPath": "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage14/east-v1/guide.png",
+      "sha256": "2c70344f64288bae3714f60da74856230a46035adcddfd11c366c396a29f5b36",
+      "preservedPath": "submitted-references/2c70344f64288bae3714f60da74856230a46035adcddfd11c366c396a29f5b36.png"
+    },
+    {
+      "submittedPath": "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage14/upper-v1/source.png",
+      "sha256": "ce353ada83d9cf8f5dda474b1713d741058e4f9063a2a9b12f4cf5c46ca0fc41",
+      "preservedPath": "submitted-references/ce353ada83d9cf8f5dda474b1713d741058e4f9063a2a9b12f4cf5c46ca0fc41.png"
+    }
+  ],
+  "sourceSha256": "ceebf891ba689841b0a16f01ae63bb3b00efeaa882ae6d4811c302c41ffdf2ef",
+  "promptSha256": "b6aec3864e41506f4481987abe8ad2a51471a2286fb72e1d5b789b68568a8d4d",
+  "rawSha256": "2ba330bdd0291d207c7e5e81a75ff8746b104c50582466ab72f5758cd9afbd47",
+  "finalSha256": "1351f52ab414474293a00a36b96c1997466f1de008990d496085c9da72e74893",
+  "nativeFileSha256": "3ce30db84805c8e65278dfe0d8281c43c114e510e954c9ae29c2d8ebbb2a3e81",
+  "rawBytes": 551047,
+  "finalBytes": 358204,
+  "nativeBytes": 362540,
+  "rawGzipPath": "east-v1/immutable-raw.svg.gz",
+  "finalPath": "east-v1/final.svg",
+  "qualityComparison": "east-v1/comparison.json",
+  "sourceToTrace": {
+    "visibleRgbMAE255": 6.135243827329882,
+    "binaryAlphaDisagreementFraction": 0.0017322624339431863,
+    "scope": "Palette reduction and binary Inkscape trace losses, not optimizer loss or artwork approval"
+  },
+  "sourceGeneration": "Exact submitted JSON prompt and referenced_image_paths saved before imagegen; original PNG immutable.",
+  "localSourcePath": "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage14/east-v1/source.png"
+}

@@ -1,0 +1,36 @@
+{
+  "id": "act2-traced:stage14-domain-v3",
+  "name": "Stage14 cavern geology domain-v3",
+  "bounds": {
+    "x": -6000,
+    "y": -24000,
+    "w": 19600,
+    "h": 58400
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 34400
+  },
+  "semanticLayer": "BODY",
+  "preserveCompounds": true,
+  "transform": [
+    26.960110041265473,
+    0,
+    0,
+    26.98706099815157,
+    -6000,
+    -24000
+  ],
+  "params": {
+    "bodyTerrainIds": [
+      "v14-upper-hamlet",
+      "v14-refuge-ground",
+      "v14-cavern-vault"
+    ],
+    "bodyBaseColor": "#293a3e"
+  }
+}
