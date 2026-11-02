@@ -31,6 +31,8 @@ def board_party(p, record, screenshot):
         assert s['round']<=20,s
         assert all(h['hp']>0 and not h['dead'] for h in s['heroes']),s
         assert s['active']==hero,('Unexpected actor handoff',s)
+    # Less than ten world units cannot cover the next path pulse. Normal F
+    # avoids repeatedly trying to jump with a sub-tick movement remainder.
     class MovementBudgetExhausted(Exception):pass
     def walk(x,jump=False):
         quiet();landed();u=actor();direction='ArrowRight' if x>u['x'] else 'ArrowLeft'
@@ -40,7 +42,7 @@ def board_party(p, record, screenshot):
         try:
             for tick in range(160):
                 p.wait_for_timeout(50);u=actor()
-                if state()['dialogue'] or (u.get('moveLeft') or 0)<=1:break
+                if state()['dialogue'] or (u.get('moveLeft') or 0)<10:break
                 if direction=='ArrowRight' and u['x']>=x-4 or direction=='ArrowLeft' and u['x']<=x+4:break
                 if tick and tick%10==0:
                     if abs(u['x']-last_x)<5 and u['grounded'] and jumps<4:
@@ -50,7 +52,7 @@ def board_party(p, record, screenshot):
         landed();observe(('jump-' if jump else 'walk-')+str(x))
         u=actor();reached=(direction=='ArrowRight' and u['x']>=x-4) or (direction=='ArrowLeft' and u['x']<=x+4)
         if not reached:
-            if (u.get('moveLeft') or 0)<=1:raise MovementBudgetExhausted()
+            if (u.get('moveLeft') or 0)<10:raise MovementBudgetExhausted()
             raise AssertionError(('Walk target not reached; do not drop from wrong ledge',x,u))
     def drop_to(y):
         for _ in range(5):
