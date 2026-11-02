@@ -36,6 +36,7 @@ jobs:
           node tests/act23-v4-stage18.mjs
           node tests/act1-local-art-save.mjs
           node tests/act2-local-art-save.mjs
+          node tests/stage19-equipment-save.mjs
           HONRO_ACT2_ART_CANDIDATES=0 node tests/stage11-art-candidate.mjs
           HONRO_ACT2_ART_CANDIDATES=0 node tests/stage12-traced-art.mjs
           HONRO_ACT2_ART_CANDIDATES=0 node tools/act2-vector-production/test-stage13-candidate.mjs
@@ -49,15 +50,34 @@ jobs:
           node tests/act2-traced-art-integrated.mjs
           python tools/act4-ci/test_precise_aim.py
           python tools/act4-ci/test_stage31_survival.py
-      - name: Retain public graphs and verify unchanged measured runtime contract
+      - name: Retain published graphs and prepare unpublished evidence capture
+        env:
+          HONRO_ACT4_RELEASE: '1'
         run: |
           set -euo pipefail
           mkdir -p "$OUT"
           mapfile -t refs < <(node --input-type=module -e 'import fs from "node:fs";import {selectPublishedGenerations} from "./shared/web-retention.mjs";for(const g of selectPublishedGenerations(JSON.parse(fs.readFileSync("web/manifest.json")).publishedGenerations,{now:Date.now()})){if(!/^[a-f0-9]{40}$/.test(g.sourceSha))throw Error("Invalid ref");console.log(g.sourceSha)}')
           git fetch --no-tags --depth=1 origin c1a8cc243c7681b03f9e7b8c182164f62deaae2e "${refs[@]}"
           node tools/release/retain-published-web.mjs c1a8cc243c7681b03f9e7b8c182164f62deaae2e --published-at 2026-11-02T18:24:55Z --evidence https://github.com/sys8994/honro/actions/runs/41500035506
-          # Genuine fresh Stage31 package from CI41496327053, unchanged runtime digest/fingerprint.
-          # npm run build MUST verify it normally. No evidence bootstrap or bypass here.
+          node tools/act4-ci/refresh-stage31-probes.mjs prepare "$OUT"
+          # Evidence capture only; final npm run build must enforce the production gate.
+          node workshop/build.mjs | tee "$OUT/preview-build.log"
+          sha256sum HONRO.html web/manifest.json > "$OUT/preview-served-sha256.txt"
+      - name: Unchanged Stage31 fresh first-shot trials and normal-input objective
+        run: |
+          set -euo pipefail
+          python -m http.server 8870 --bind 127.0.0.1 > "$OUT/server.log" 2>&1 &
+          server=$!; trap 'kill "$server" 2>/dev/null || true' EXIT
+          sleep 2
+          for trial in 1 2 3; do
+            HONRO_FIRST_SHOT_DIAGNOSTIC=1 HONRO_RUN_DIR="$OUT/first-shot-$trial" python tools/act4-ci/stage31-fullplay.py > "$OUT/first-shot-$trial.log" 2>&1
+          done
+          HONRO_RUN_DIR="$OUT/stage31" python tools/act4-ci/stage31-fullplay.py > "$OUT/stage31.log" 2>&1
+      - name: Bind genuine measured evidence and enforce normal production gate
+        run: |
+          set -euo pipefail
+          node tools/act4-ci/refresh-stage31-probes.mjs attach "$OUT"
+          cp tools/stage31/production-package.json "$OUT/stage31-production-package.json"
           npm run build | tee "$OUT/gated-build.log"
           sha256sum HONRO.html web/manifest.json > "$OUT/final-served-sha256.txt"
       - name: Actual browser natural-save regressions on final production build

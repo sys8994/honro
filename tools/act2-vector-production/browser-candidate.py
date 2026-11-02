@@ -55,7 +55,9 @@ try:
    r['final']=state();assert not r['errors'] and not r['final']['lastError'];browser.close();r['passed']=True
   except Exception:
    r['passed']=False
-   try:r['last']=state();p.screenshot(path=str(out/'failure.png'))
+   try:r['last']=state()
+   except Exception:pass
+   try:r['failureUI']=p.evaluate('({text:document.body.innerText,profileStore:window.HonroApp?.profileStore?.state})');p.screenshot(path=str(out/'failure.png'))
    except Exception:pass
    raise
 except Exception:r['exception']=traceback.format_exc()
