@@ -1,0 +1,51 @@
+{
+  "stage": 16,
+  "parts": [
+    {
+      "part": "floor-west",
+      "immutableInkscapeBytes": 22433,
+      "authoredRawBytes": 18982,
+      "finalSvgBytes": 16807,
+      "rawSha256": "046509729474563b6af3beeb80b15e7e3713465d2f522d06b2681cae8cd3ab90",
+      "authoredRawSha256": "4057e4c1ecd67636adc5430f9dc515203d8bc262147ef4ef23a6dcad3553c144",
+      "finalSha256": "ce4dc7eb352fa51cef020906880fe0c72cddf1dad2da5497859ed97f063fb33d",
+      "qualityPass": true
+    },
+    {
+      "part": "floor-under",
+      "immutableInkscapeBytes": 22254,
+      "authoredRawBytes": 18136,
+      "finalSvgBytes": 11409,
+      "rawSha256": "bde078540ab95aca072e9bc2122927521932ebf3c91e416394b9c0b43cef6e01",
+      "authoredRawSha256": "484bda7565cfd03d7ea393b0b26ae25fef9c3632849dd1d1f4b1a6bf07c36162",
+      "finalSha256": "1adcd7eb7268078a4df64270dd7459537d14704919b39ea1aeeeeb49e72a6325",
+      "qualityPass": true
+    },
+    {
+      "part": "floor-east",
+      "immutableInkscapeBytes": 19518,
+      "authoredRawBytes": 16356,
+      "finalSvgBytes": 10667,
+      "rawSha256": "d5ace54c588d9e52c9132a7e386150cf82ed773c42bfe840b04e0a97a482292b",
+      "authoredRawSha256": "51ba37ec38b905cc0dce5ce64b73ccbcd23d0661d7889f83c862170adcce225c",
+      "finalSha256": "5acfa525ab9f124a3e39a364c9f0ff572cfc99d36f48958c64086f1f939ef1a7",
+      "qualityPass": true
+    },
+    {
+      "part": "roof",
+      "immutableInkscapeBytes": 15117,
+      "authoredRawBytes": 15116,
+      "finalSvgBytes": 12541,
+      "rawSha256": "ded06e0d703a0902cd4e444285ca041e6e2d3a19ff81a9a842bdacc36bd7f5fc",
+      "authoredRawSha256": "e97bd1b903a07adfc33d30ec92a91900b8d43d949416185125979a8455a6395b",
+      "finalSha256": "71a1442836c77288b640664fc98f21d199ee910c24d66bfef7404c333470e469",
+      "qualityPass": true
+    }
+  ],
+  "immutableRawPackBytes": 79322,
+  "authoredRawPackBytes": 68590,
+  "finalSvgPackBytes": 51424,
+  "scope": "Near terrain material candidate; original architecture retained. Native invariance and composed strict 1x/2x checks. No browser/gameplay/deployment claim.",
+  "reductionVsImmutablePercent": 35.170570585713925,
+  "reductionVsAuthoredPercent": 25.026971861787427
+}

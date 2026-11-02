@@ -1,0 +1,35 @@
+{
+  "id": "act2-traced:stage16-floor-under",
+  "name": "Stage16 floor-under",
+  "bounds": {
+    "x": 3200,
+    "y": 5400,
+    "w": 5200,
+    "h": 2300
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 0
+  },
+  "semanticLayer": "BODY",
+  "preserveCompounds": true,
+  "transform": [
+    3.3854166666666665,
+    0,
+    0,
+    2.24609375,
+    3200,
+    5400
+  ],
+  "params": {
+    "bodyTerrainIds": [
+      "act2-floor"
+    ],
+    "bodyBaseColor": "#283e49",
+    "localMaterial": true
+  }
+}

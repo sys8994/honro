@@ -51,7 +51,7 @@ for name in ['floor-west','floor-under','floor-east','roof']:
   return False
  def rnd(z):return complex(round(z.real,2),round(z.imag,2))
  for ix,e in enumerate([e for e in root.iter()if e.tag.endswith('path')]):
-  if ix==0 and freezeFirst:e.set('d',mini(e.get('d')));continue
+  if name=='floor-west' or (ix==0 and freezeFirst):e.set('d',mini(e.get('d')));continue
   output=[];subs=parse_path(e.get('d')).continuous_subpaths();chunks=re.findall(r'[Mm][^Mm]*',e.get('d'));assert len(chunks)==len(subs)
   for subi,(sub,chunk) in enumerate(zip(subs,chunks)):
    # Right-domain canonical-edge coverage: keep whole original contours, not rounded prefixes.

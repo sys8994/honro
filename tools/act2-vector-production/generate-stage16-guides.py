@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 from PIL import Image,ImageDraw
-root=Path('/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage16');s=json.load(open('/workspace/scratch/fff510b4df37/honro-act2-stage16/_local/reports/stage16-original/source.json'))['stage']
+root=Path('../honro-act2-vector-rollout/stage16');root.mkdir(parents=True,exist_ok=True);s=json.load(open('_local/reports/stage16-original/source.json'))['stage']
 parts={'floor-west':([-700,4900,4800,2500],['act2-floor']),'floor-east':([6600,4000,5200,3000],['act2-floor']),'floor-under':([3200,5400,5200,2300],['act2-floor']),'roof':([-6000,-3000,23000,7500],['cave-roof'])}
 for n,(r,ids) in parts.items():
  p=root/n;p.mkdir(exist_ok=True);W,H=1536,1024;x,y,w,h=r;im=Image.new('RGB',(W,H),'white');d=ImageDraw.Draw(im)

@@ -1,0 +1,59 @@
+{
+  "scope": "Native raw pre-hook and effective runtime author pipeline separately; no browser/full-combat acceptance",
+  "rawStageSha256": "25e625ad63d88243d5ed9da1727cfface53e70de81379461ac961eb13f22ce0e",
+  "effectiveStageSha256": "7aba80646b724c65eb3f3ff3d7576b008e44266360b3bbe0d208d95f97c4232a",
+  "physicsSha256": "1d07b62259c2bf823ea3c7e0f0ef56f14185ef003ee17fff0a2a40352f6f408f",
+  "worldSha256": "b319c141707acaecc37cecb93928c4235567c3ea7e8e6a5ad5f63cc5a5267c30",
+  "effectiveAuthoredTerrainIds": [
+    "act2-floor",
+    "cave-roof",
+    "tm-processional-stair",
+    "tm-processional-bridge",
+    "tm-processional-upper",
+    "tm-great-hall-plinth",
+    "tm-east-stone-stair",
+    "tm-east-stone-bridge",
+    "tm-shelter-veranda",
+    "tm-shelter-step",
+    "tm-cloister-stair",
+    "tm-cloister-landing",
+    "tm-cloister-return",
+    "tm-cloister-turn",
+    "tm-cloister-foot",
+    "tm-cloister-link",
+    "tm-west-reflection-wall",
+    "tm-hall-side-gallery",
+    "tm-hall-gallery-step",
+    "tm-hall-gallery-foot",
+    "tm-undercroft-tooth",
+    "tm-lower-prayer-ledge",
+    "tm-undercroft-reflector",
+    "tm-east-undercroft-stair",
+    "tm-archive-walk",
+    "tm-archive-return"
+  ],
+  "originalStageSize": [
+    11000,
+    7600
+  ],
+  "heroHeight": 92,
+  "addedAssets": [
+    "act2-traced:stage16-floor-west",
+    "act2-traced:stage16-floor-under",
+    "act2-traced:stage16-floor-east",
+    "act2-traced:stage16-roof"
+  ],
+  "passed": [
+    "raw-stage sourceguard",
+    "negative geometry drift",
+    "duplicate application guard",
+    "no input mutation",
+    "only stage16 changed",
+    "existing library/props preserved",
+    "effective authored stage exact except decorative additions",
+    "compiled collision exact",
+    "effective world terrain exact",
+    "actor positions/sizes exact",
+    "native vector validation/no bitmap"
+  ]
+}
