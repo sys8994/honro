@@ -2,12 +2,12 @@
  * Heroes pass their turn; the enemy side plays N rounds at the live 4 ms/frame
  * planning budget. Reports per enemy action: frames to decide, attack vs hold,
  * predictions, plan restarts, and damage dealt to the player's side.
- * usage: node tests/enemy-ai-metrics.mjs [stage ...] [--rounds 3] [--json out.json] */
+ * usage: node tests/enemy-ai-metrics.mjs [stage ...] [--rounds 3] [--difficulty veteran] [--json out.json] */
 import {writeFileSync} from 'node:fs';
 import {guidanceRuntime} from './act2-guidance-helpers.mjs';
 const args = process.argv.slice(2), opt = (k, d) => args.includes(k) ? args[args.indexOf(k) + 1] : d;
-const rounds = +opt('--rounds', 3), jsonOut = opt('--json');
-const stages = args.filter((a, i) => /^\d+$/.test(a) && !['--rounds', '--json'].includes(args[i - 1])).map(Number);
+const rounds = +opt('--rounds', 3), jsonOut = opt('--json'), difficulty = opt('--difficulty');
+const stages = args.filter((a, i) => /^\d+$/.test(a) && !['--rounds', '--json', '--difficulty'].includes(args[i - 1])).map(Number);
 const g = await guidanceRuntime();
 const STEP = 1 / 120, FRAME_TICKS = 2;   // ~60 fps with two 120 Hz substeps per frame
 const report = {};
@@ -15,6 +15,7 @@ for (const id of stages.length ? stages : [3, 9, 15, 21, 27, 33]) {
   const map = g.HONRO_PROJECT.stages.find(s => s.metadata.stageId === id);
   if (!map) continue;
   const b = g.HonroMaps.createBattle(map, g.HONRO_PROJECT); g.HonroStageRules?.sanitizeStageBattle?.(b);
+  if (difficulty) b.difficulty = difficulty;
   const e = new g.HONRO_CORE.Engine(b, () => {}, true);
   let preds = 0, predMs = 0, restarts = 0;
   const pr = e.predict.bind(e); e.predict = (...a) => { const t = performance.now(); const r = pr(...a); predMs += performance.now() - t; preds++; return r; };

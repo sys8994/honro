@@ -34,7 +34,7 @@ import type { Battle, Unit, Projectile, Skill, Side, Terrain, Vec, Zone, Event, 
 import { SKILLS, STAGES, ENEMIES, CLASSES } from './data';
 import {attackForHit,attackForSkill,calculateDamage,existenceMultiplier,migrateAirborneBalance} from './existence';
 import {lureStakeFor} from './totemBehavior';
-import { targetOptions, tacticsLevel, shotWorth, quickShotSteps, rankEnemyQueueSteps, type EnemyQueuePriority, planEnemyLuresSteps, planEnemyMoveSteps, advanceEnemyMove, targetFor, chooseEnemyShotSteps, finishPlanning, friendlyFireRisk, shotViable, shotImpactValue, flyingEnemy, knockbackFlyingEnemy, planWaitingFlights, FLY_MOVE_BUDGET } from './enemyAI';
+import { targetOptions, tacticsLevel, smartAim, shotWorth, quickShotSteps, rankEnemyQueueSteps, type EnemyQueuePriority, planEnemyLuresSteps, planEnemyMoveSteps, advanceEnemyMove, targetFor, chooseEnemyShotSteps, finishPlanning, friendlyFireRisk, shotViable, shotImpactValue, flyingEnemy, knockbackFlyingEnemy, planWaitingFlights, FLY_MOVE_BUDGET } from './enemyAI';
 import { G, STEP, WORLD_W, WORLD_H, clamp, rad, poly, segRect, segmentTerrain, segmentProjectileTerrain, topAt, terrainSurfaces, terrainSlopeAt, terrainRectIntersects, dist, AIM_MIN, AIM_MAX } from './math';
 import { createBattle, groundY, makeEnemy, makeUnit } from './world';
 import { grantXP, applyHero, applyLevelUp, levelOf, TALENT_MAP, passiveBonus, recommendedLevel, equippedRank, passiveRank, skillDamageFactor, skillRadiusFactor, skillManaFactor, volleyCount, volleyDamage, knockbackResistance, ultimateUnlocked } from './progression';
@@ -523,7 +523,7 @@ export class Engine {
         if(u.side!==0&&!this.npcShotInReach(u,s,allowAllyTarget?target:undefined,maxPower))return best;
         // Full-precision confirmations of screened candidates are capped (an arrow confirmation
         // replays a cloned battle); a lane the screen keeps over-estimating is not chased forever.
-        const npcScreen=u.side!==0;let confirms=0;
+        const npcScreen=u.side!==0&&smartAim(this);let confirms=0;
         const score = (a: number, p: number) => {
             let hit = npcScreen ? this.aiPredict(u, s, a, p, target) : this.predict(u, s, a, p, target, false);
             if(npcScreen){const quick=shotImpactValue(this,u,s,hit,allowAllyTarget?target.id:undefined);if(quick.enemyDamage>0&&quick.net>2){if(confirms>=4)return -1e8;confirms++;hit=this.predict(u,s,a,p,target,false);}}
@@ -542,7 +542,7 @@ export class Engine {
                 sc -= 500;
             return sc;
         };
-        if(u.side!==0||wreckDamage(this.b,target))for(const seed of this.shotSeeds(u,s,target,maxPower,true)){
+        if(u.side!==0||wreckDamage(this.b,target))for(const seed of this.shotSeeds(u,s,target,maxPower,smartAim(this))){
             const sc=score(seed.angle,seed.power);if(sc>best.score)best={...seed,score:sc};
             yield;if(useful)return {...seed,score:sc};
         }
@@ -2414,7 +2414,7 @@ export class Engine {
         const betrayal=target.side===u.side&&target.id!==u.id&&(target.betrayalUntil||0)>=b.round;
         const betrayalSkill=available.find(v=>v.radius<70)||available[0];
         let choice=betrayal?{skill:betrayalSkill,aim:yield* this.searchShot(u,betrayalSkill,target,true)}:yield* chooseEnemyShotSteps(this,u,target,available);
-        if(!betrayal){
+        if(!betrayal&&smartAim(this)){
             // Weigh the reachable targets by what a real shot would achieve (finish a hero, join the
             // round's focus target), instead of committing to the nearest-first target and holding.
             let bestWorth=-Infinity,bestTarget=target,bestChoice=choice;
@@ -2433,7 +2433,7 @@ export class Engine {
         // Accuracy noise may not turn a safe decision into a suicidal shot through allies or a solid wall.
         let viable=shotViable(this,u,sk,target,aim.angle,aim.power,betrayal?target.id:undefined);
         if(!viable.ok){aim.angle=safeAngle;aim.power=safePower;viable=shotViable(this,u,sk,target,aim.angle,aim.power,betrayal?target.id:undefined);}
-        if(!viable.ok&&!betrayal&&tacticsLevel(this)<1){
+        if(!viable.ok&&!betrayal&&!smartAim(this)){
             const alternatives=this.b.units.filter(v=>!v.dead&&v.id!==target!.id&&(v.side===0||v.side===2&&((v as any).honroAlly||v.id==='objective')))
                 .sort((a,c)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(c.x-u.x,c.y-u.y)).slice(0,2);
             for(const candidate of alternatives){const shot=yield* chooseEnemyShotSteps(this,u,candidate,available),test=shotViable(this,u,shot.skill,candidate,shot.aim.angle,shot.aim.power);

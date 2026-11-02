@@ -44,7 +44,7 @@ function* queueShotReadySteps(e:Engine,u:Unit,target:Unit):Generator<void,boolea
  const skills=u.loadout.map(id=>SKILLS[id]).filter(s=>s&&!s.passive&&s.damage>0&&e.manaCost(s,u)<=u.focus&&!((u.cooldowns?.[s.id]||0)>e.b.round)&&e.npcShotInReach(u,s)).slice(0,3);
  const right=target.x>=u.x,budget=6,perSkill=Math.floor(budget/Math.max(1,skills.length));
  for(const skill of skills){const seeds=e.shotSeeds(u,skill,target).slice(0,perSkill-1);seeds.push({angle:right?50:130,power:1});
-  for(const aim of seeds){const hit=e.aiPredict(u,skill,aim.angle,aim.power,target),v=shotImpactValue(e,u,skill,hit),ok=v.enemyDamage>0&&v.net>2;yield;if(ok)return true;}
+  for(const aim of seeds){const ok=smartAim(e)?(()=>{const hit=e.aiPredict(u,skill,aim.angle,aim.power,target),v=shotImpactValue(e,u,skill,hit);return v.enemyDamage>0&&v.net>2;})():shotViable(e,u,skill,target,aim.angle,aim.power).ok;yield;if(ok)return true;}
  }
  return false;
 }
@@ -402,7 +402,11 @@ export function* quickShotSteps(e:Engine,u:Unit,t:Unit,skills:Skill[]):Generator
 }
 /** 0: single fixed target (explorer); 1: weighs other targets (story, normal); 2: also kill/focus
  * priorities (veteran, nightmare). Normal stays at 1: focus fire overturned the authored Stage31 balance. */
-export function tacticsLevel(e:Engine){const d=e.b.difficulty;return d==='explorer'?0:d==='veteran'||d==='nightmare'?2:1;}
+export function tacticsLevel(e:Engine){const d=e.b.difficulty;return d==='veteran'||d==='nightmare'?2:0;}
+/** Sharper aim search (lane-first stances, dense ballistic seeds, coarse screening, target
+ * comparison, kill/focus) is a difficulty feature. Explorer/story/normal keep the authored
+ * aim search: the stronger search overturned Stage31's verified balance in fresh UI play. */
+export function smartAim(e:Engine){return tacticsLevel(e)>=2;}
 /** Expected worth of a viable shot: damage, finishing a hero, joining this round's focus target. */
 export function shotWorth(e:Engine,u:Unit,target:Unit,value:{enemyDamage:number;net:number}){
  let worth=value.net;
@@ -413,9 +417,39 @@ export function shotWorth(e:Engine,u:Unit,target:Unit,value:{enemyDamage:number;
  }
  return worth;
 }
+/** Authored (pre-2026-11) stance lane heuristic, kept for explorer/story/normal. */
+function* legacyShotOpportunity(e:Engine,u:Unit,target:Unit,p:Vec):Generator<void,number,unknown>{
+ if(beastKind(u)){const ghost={...u,...p,facing:target.x>=p.x?1:-1};return beastContact(e,ghost,target)?100:-Math.min(100,Math.hypot(p.x-target.x,p.y-target.y)*.2);}
+ if(waterfallTactics(e))return yield* waterfallShotOpportunity(e,u,target,p);
+ if(Math.hypot(p.x-target.x,p.y-target.y)>1900)return -90;
+ const ghost:Unit={...u,x:p.x,y:p.y,vx:0,vy:0};
+ const skills=u.loadout.map(id=>SKILLS[id]).filter(s=>s&&!s.passive&&e.manaCost(s,u)<=u.focus).slice(0,2);
+ let best=-90;
+ for(const s of skills){const right=target.x>=p.x,blast=e.effective(s,ghost).radius;
+  if(!e.npcShotInReach(ghost,s))continue;
+  for(const aim of e.shotSeeds(ghost,s,target)){
+   const hit=e.predict(ghost,s,aim.angle,aim.power,target,false),value=shotImpactValue(e,ghost,s,hit);
+   yield;if(value.enemyDamage>0&&value.net>2)return 35+clamp(value.net,-120,60);
+  }
+  // This is a position heuristic, not the final aim search. Sample three arcs;
+  // the selected position is aimed precisely only once, after movement.
+  for(const elev of (target.y>p.y+80?[-35,35,78]:[18,50,82]))for(const power of [1]){
+   const angle=right?elev:180-elev,hit=e.predict(ghost,s,angle,power,target,false);
+   const d=Math.hypot(hit.x-target.x,hit.y-(target.y-target.h*.5));
+   let score=-Math.min(90,Math.min(d,hit.closest+100)*.18);
+   if(hit.unit===target.id)score=35;
+   else if(blast>0&&d<blast)score=25;
+   const value=shotImpactValue(e,ghost,s,hit);
+   score+=clamp(value.net,-120,60);
+   best=Math.max(best,score);yield;if(value.enemyDamage>0&&value.net>2)return best;
+  }
+ }
+ return best;
+}
 /** Screening predictions one move plan may spend on lane scoring (reset per plan). */
 let screenBudget=Infinity;
 function* shotOpportunity(e:Engine,u:Unit,target:Unit,p:Vec):Generator<void,number,unknown>{
+ if(!smartAim(e))return yield* legacyShotOpportunity(e,u,target,p);
  if(beastKind(u)){const ghost={...u,...p,facing:target.x>=p.x?1:-1};return beastContact(e,ghost,target)?100:-Math.min(100,Math.hypot(p.x-target.x,p.y-target.y)*.2);}
  if(waterfallTactics(e))return yield* waterfallShotOpportunity(e,u,target,p);
  if(Math.hypot(p.x-target.x,p.y-target.y)>1900)return -90;
