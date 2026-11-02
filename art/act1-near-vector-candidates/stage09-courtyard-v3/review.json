@@ -1,0 +1,31 @@
+{
+  "stage": 9,
+  "status": "NATIVE_REVIEWED_BROWSER_PENDING",
+  "parts": [
+    {
+      "part": "rear-v1",
+      "raw": 86081,
+      "final": 56099
+    },
+    {
+      "part": "floor-v3",
+      "raw": 108392,
+      "final": 70978
+    },
+    {
+      "part": "ledges-v1",
+      "raw": 43540,
+      "final": 28897
+    }
+  ],
+  "rawBytes": 238013,
+  "finalBytes": 155974,
+  "reduction": 0.3446828534575842,
+  "visualRejection": "Floorv2 passed pixel metrics but near-surface boulders were too large relative to normal92-unit actors. v3 redraws only near-surface faces at smaller scale, preserving original map geometry.",
+  "preserved": [
+    "map3600x3500",
+    "terrain/world polygon",
+    "houses, pine grove, timber, receivers and evacuation events",
+    "rear outer coverage"
+  ]
+}
