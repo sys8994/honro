@@ -1,0 +1,14 @@
+{
+  "schema": "honro-act1-descent-v6/v1",
+  "stage": 2,
+  "seed": 2321,
+  "policy": "objective-focused-follow-noitems-appops-convoy-v4-descent-v6",
+  "scope": "Separate diagnostic: v4R15 descended one-way branches but stopped on solid left-descent-stone-mid x1110\u20131500,y2110 because convoy+700 was behind hero. Continue ordinary rightward walking off this solid shelf while above convoy floor; never drop through solid, teleport or force input. Continue airborne motion until grounded before shot/defend, respect App.canInput. Same blocker priority/detached planner.",
+  "sourceHashes": {
+    "tools/act1-qa/adapt-positioning.mjs": "5246c7c2bb7ec580141b33fb33caaa2421e39a73ce5c26d5b7d3bcec016e0539",
+    "tools/act1-qa/calibrate-convoy-v4.mjs": "fe6c5e1a7aef85d6f0ed0227bf943ff88844e0c9d67be5cd18388964f372d480",
+    "tools/act1-qa/legacy-controller.mjs": "be14d503f8c0b31a7f832d44d5457739fccc0689c1e92d00856df3c7a583c121",
+    "tools/act1-qa/player-operations.mjs": "fbc8d0b429e7834a85f106bb5ff1e39170493018ea23d6e97b66888cba5c5e05"
+  },
+  "stopping": "Original160000iteration cap; preserve failures."
+}
