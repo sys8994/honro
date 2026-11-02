@@ -18,6 +18,12 @@ const asset=next.library.at(-1);assert.deepEqual(Array.from(g.HonroVectorArt.val
 const oldMap=g.HonroMaps.compile(before,original),newMap=g.HonroMaps.compile(after,next);
 assert.deepEqual(plain(newMap.terrain),plain(oldMap.terrain));assert.deepEqual(plain(newMap.worldTerrain),plain(oldMap.worldTerrain));
 assert.equal(newMap.landmarks.length,oldMap.landmarks.length+1);assert.equal(newMap.elements.at(-1).collisionIds.length,0);
+g.HONRO_PROJECT=next;
+const battle=g.HonroMaps.createBattle(after,next),serialized=JSON.stringify(g.HonroProfileStore.compactBattleArt(battle)),restored=JSON.parse(serialized);
+assert(g.HonroProfileStore.restoreBattleArt(restored));
+assert.deepEqual(plain(restored.terrain),plain(battle.terrain));
+for(const key of ['honroLandmarks','honroElements'])assert.deepEqual(restored[key].find(e=>e.id==='act1-traced-body-candidate').asset,plain(asset),key+' reload lost BODY data');
+console.log(JSON.stringify({scope:'Native JSON save roundtrip only, not browser storage quota approval',battleUtf8Bytes:Buffer.byteLength(serialized),battleUtf16Bytes:serialized.length*2}));
 const broken=plain(original);broken.stages.find(s=>s.metadata?.stageId===1).terrains[0].points[0].y+=1;
 assert.throws(()=>applyAct1BodyCandidate(broken),/geometry changed/);
 assert.throws(()=>applyAct1BodyCandidate(next),/Duplicate/);

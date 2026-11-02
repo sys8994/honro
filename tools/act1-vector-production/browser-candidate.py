@@ -22,9 +22,11 @@ try:
   r['entry']=p.evaluate(state);assert len(r['entry']['bodies'])==1,r['entry'];assert r['entry']['bodies'][0]['clip'];assert r['entry']['bodies'][0]['collisionIds']==0;assert r['entry']['h']==92;assert abs(r['entry']['camera']['scale']-.94)<.01,r['entry']['camera']
   p.screenshot(path=str(out/'entry.png'))
   p.keyboard.down('ArrowRight');p.wait_for_timeout(700);p.keyboard.up('ArrowRight');r['inputs'].append('hold:ArrowRight:700ms');p.wait_for_timeout(200);r['moved']=p.evaluate(state);assert r['moved']['x']>r['entry']['x']+1,(r['entry'],r['moved'])
+  p.wait_for_function('HonroApp.canInput() && HonroApp.engine.grounded(HonroApp.engine.active)',timeout=10000);r['preJump']=p.evaluate(state);assert r['preJump']['grounded']
   p.keyboard.press('Control');r['inputs'].append('key:Control');p.wait_for_timeout(150);r['jump']=p.evaluate(state);p.screenshot(path=str(out/'jump.png'));assert not r['jump']['grounded'],r['jump']
   p.wait_for_timeout(2000);r['landed']=p.evaluate(state);assert r['landed']['grounded'] and r['landed']['hp']>0,r['landed'];p.screenshot(path=str(out/'landed.png'))
   r['frameIntervals']=p.evaluate('''() => new Promise(resolve=>{const a=[];let last;function f(t){if(last!==undefined)a.push(t-last);last=t;if(a.length>=45)resolve(a);else requestAnimationFrame(f)}requestAnimationFrame(f)})''');r['frameMedianMs']=sorted(r['frameIntervals'])[len(r['frameIntervals'])//2]
+  p.locator('#battlecanvas').hover();p.mouse.wheel(0,4000);r['inputs'].append('wheel:4000');p.wait_for_timeout(1200);r['overview']=p.evaluate(state);p.screenshot(path=str(out/'overview.png'))
   assert not r['errors'],r['errors'];r['passed']=True;browser.close()
 except Exception:r['error']=traceback.format_exc()
 finally:(out/'result.json').write_text(json.dumps(r,ensure_ascii=False,indent=2)+'\n');print(json.dumps(r,ensure_ascii=False),flush=True)
