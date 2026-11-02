@@ -5253,3 +5253,12 @@ Title `여정 이어가기` could choose an older hub before honoring a saved di
 ## 2026-11-02 · Stage31 저장 회귀 재검증의 생존 조작 교정
 
 2장 저장·이동·점프·재접속 실제 Chromium 검사는 통과했으나 새 Stage31 증거 실행41425320822는 R14 설오 사망으로 반려됐다. R13 방어 직후371HP+201shield였고 이전 관측 피해734보다 적었다. 적이1400 거리 밖으로 나가면 안전하다고 간주하고 두 번의 짧은 이동 뒤 끝내는 검수 조작이 원인으로 확인됐다. 실제 저장에 이동력2229/2680이 남았고 가장 가까운 적은1449 거리에서 이동력550을 보유했다. 이 근거로 적 난이도나 저장 코드를 탓하지 않는다. 검수 컨트롤러만 화면에서 관측한 원거리 적도 계속 고려하고, 실제 남은 이동력·착지·이동 가능한 경로를 확인하며 후퇴하도록 수정한다. 방어는 정상 F 입력이다. 4인 생존·20라운드·승선 gate를 낮추지 않으며 새 실행이 통과할 때까지 배포하지 않는다.
+
+
+## 2026-11-03 — Reviewed 16/18 prediction observation provenance
+
+- Cause: both narrative `predict` wrappers wrote proof during `collect=false` hypothetical scoring. A render before HUD reconciliation could also record another class's previous selected skill as the new hero's observation.
+- Fix: gate only observation writes on collected prediction (`collect !== false`, preserving Engine's default `true`), living active player hero/player side, no dialogue, and `HonroStakeCrossing.skills(b,u)` membership. Do not infer ownership from a class prefix; the production availability API is authoritative. Prediction itself, collision output, damage, objective conditions, frame order and existing saved proofs are unchanged.
+- Regression: `node tests/act23-v4-preview-observation.mjs` failed on baseline c1a8cc243c7681b03f9e7b8c182164f62deaae2e with four cases: stages 16 and 18 each mutated the full battle for `collect=false` and overwrote valid proof with mage+A01. After the guard it passes: byte-identical probe and stale-skill states; valid collected and default-collect observations; identical physical results for rejected inactive/player-side/dialogue contexts.
+- Related unchanged contracts pass: `node tests/act23-v4-reviewed14.mjs`, `node tests/act23-v4-reviewed16.mjs`, `node tests/act23-v4-reviewed18.mjs`. These are controlled App/Engine/story fixtures with DOM doubles, not natural route, real-browser, difficulty, or whole-stage acceptance. Fresh actual-App/prod browser verification and deployment belong to the integration owner.
+- SOP: hypothetical candidate scoring uses `collect=false` (prefer a detached engine for bulk planning) and must assert live-state immutability. Visible-preview provenance additionally requires a currently available skill; fixing the controller alone does not protect the real render-before-HUD transient. Never restore contaminated flags after a probe to manufacture a clean test.

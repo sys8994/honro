@@ -135,7 +135,9 @@ function eligibility(app,site){const b=app.engine.b,m=physical(b),q=mem(b);
  return undefined;
 }
 function attach(app,e){discardEndedBoundary(e.b);if(e.honroReviewed18Bound)return;e.honroReviewed18Bound=true;
- const predict=e.predict;e.predict=function(u,skill,...args){const out=predict.call(e,u,skill,...args);if(api.active(e.b)&&u?.side===0&&e.b.honroBellDescent.terrainIds.includes(out.terrain)){const q=mem(e.b);q.bellAim=true;q.bellAimProof={actor:u.id,skill:skill.id,terrain:out.terrain,endpoint:{x:out.x,y:out.y}};}return out;};
+ // Prediction output is pure simulation; only a collected, available active-hero
+ // preview may supply narrative observation proof (never AI probes or stale HUD skills).
+ const predict=e.predict;e.predict=function(u,skill,...args){const out=predict.call(e,u,skill,...args);if(api.active(e.b)&&args[3]!==false&&V.alive(u)&&u.side===0&&u.id===e.b.active&&e.b.side===0&&!app.dialogue&&G.HonroStakeCrossing.skills(e.b,u)?.includes(skill?.id)&&e.b.honroBellDescent.terrainIds.includes(out.terrain)){const q=mem(e.b);q.bellAim=true;q.bellAimProof={actor:u.id,skill:skill.id,terrain:out.terrain,endpoint:{x:out.x,y:out.y}};}return out;};
  const hurt=e.hurt;e.hurt=function(u,...args){const watching=api.active(e.b)&&u?.id==='act2-keeper'&&alive(u),oldHp=u?.hp,owner=unit(e.b,args[1]),source=args[5]||'normal',witness=watching&&V.heroes(e.b).some(h=>sight(e,h,u));const out=hurt.call(e,u,...args);
   if(watching&&u.hp<oldHp){const q=mem(e.b);q.bossHits=(q.bossHits||0)+1;if(!alive(u)){q.death={method:owner?.honroSpirit||owner?.summoned?'spirit':source,environment:source==='environment',witnessed:witness,instant:q.bossHits===1,point:{x:u.x,y:u.y}};S.cleanupDeath(app);cancelKeeper(app);lastBreath(app,owner);}}return out;};
  const recover=e.recover;e.recover=function(u,...args){const watching=api.active(e.b)&&u?.id==='act2-keeper'&&alive(u),witness=watching&&V.heroes(e.b).some(h=>Math.abs(h.x-u.x)<1800&&sight(e,h,u));const out=recover.call(e,u,...args);if(watching&&!alive(u)){mem(e.b).death={method:'fall',environment:true,witnessed:witness,point:{x:u.x,y:u.y}};S.cleanupDeath(app);cancelKeeper(app);}return out;};
