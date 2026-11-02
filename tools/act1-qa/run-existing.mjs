@@ -7,7 +7,7 @@ import path from 'node:path';import {pathToFileURL} from 'node:url';import {crea
 const stage=Number(process.argv[2]),files={8:'tests/stage8-bier-fullplay.mjs',9:'tests/stage9-normal-play.mjs',10:'tests/stage10-normal-play.mjs'};
 if(!files[stage])throw Error('Supported8/9/10 only');
 const file=files[stage],seed=Number(process.argv[3]||1103),policy=process.argv[4]||'baseline',dir=`_local/reports/act1-gameplay-20261103/stage${stage}-${policy}-${seed}`;await mkdir(dir,{recursive:true});
-process.env.HONRO_OUT=dir;process.env.HONRO_FULLPLAY_OUT=dir;process.env.HONRO_FULLPLAY_CURRENT_ENTRY='1';process.env.HONRO_FULLPLAY_SUPPLIES='1';
+process.env.HONRO_OUT=dir;process.env.HONRO_FULLPLAY_OUT=dir;process.env.HONRO_FULLPLAY_CURRENT_ENTRY='1';process.env.HONRO_FULLPLAY_SUPPLIES=policy.includes('noitems')?'0':'1';
 let code=await readFile(file,'utf8');code=code.replaceAll('appHarness()','appHarness({productionStory:true})');
 code=code.replaceAll("assert(b.queue.length<=4)","assert(b.queue.length<=b.enemyLimit);if(b.side===1&&b.queue.length>4)record({op:'legacy-cap-deviation',oldExpected:4,observed:b.queue.length,configured:b.enemyLimit})");
 // Seed initialization occurs before launch, and affects RNG only, not battle values.
@@ -25,6 +25,13 @@ if(stage===8&&policy.includes('modern')){
 }
 if(stage===8&&policy.includes('meleeclose')){
  code=code.replace('function attack(u,target){',"function attack(u,target){if(u.cls==='knight'&&target.id==='boss'&&distance(u,target)>350&&u.moveLeft>200)return false;");
+}
+if(stage===8&&policy.includes('routefirst')){
+ // Reach the authored objective standing area before spending this turn's
+ // attack. The old 1850-range pre-movement shot could strand the party far
+ // from the second binding for many enemy phases. No movement/state shortcut.
+ code=code.replace("for(const v of nearby().filter(v=>distance(v,u)<300).slice(0,2))", "for(const v of nearby().filter(v=>distance(v,u)<300&&(!target?.honroSeal||distance(u,destination(u,target))<220)).slice(0,2))");
+ code=code.replace("if(target?.honroSeal&&attackSeal(u,target))continue;", "if(target?.honroSeal&&distance(u,destination(u,target))<220&&attackSeal(u,target))continue;");
 }
 if(stage===8&&policy.includes('diagnostic')){
  code=code.replace('liveAudit.guard();frames++;',"liveAudit.guard();frames++;if(app.lastError)throw Error('Production App.frame reported: '+app.lastError);");

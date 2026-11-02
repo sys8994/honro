@@ -70,6 +70,15 @@ for folder in OUT.glob('stage8-*'):
  p=folder/'result.json';initial=folder/'initial.json';final=folder/'final-battle.json';trace=folder/'trace.json'
  if p.exists()and initial.exists()and final.exists():
   d=json.loads(trace.read_text());normalize(8,folder.name,json.loads(initial.read_text())['initial']['battle'],json.loads(final.read_text()),d['damage'],d['actions'],trace,scope='Current reward/recruit fixture, native input calibration')
+# Preserve candidate identity per row, especially the isolated Stage8 fix.
+for row in rows:
+ folder=(ROOT/row['evidence']).parent
+ adapter=folder/'adapter.json';result=folder/'result.json'
+ meta=json.loads(adapter.read_text())if adapter.exists()else {}
+ resultMeta=json.loads(result.read_text())if result.exists()else {}
+ row['sourceCommit']=resultMeta.get('sourceCommit',meta.get('sourceCommit'))
+ row['runtimeSha256']=resultMeta.get('runtimeSha256')
+ row['candidateScope']='Separate Stage8 staging-fix candidate' if 'postfix' in folder.name or folder.is_symlink() else 'Baseline292 gameplay / QA controller revisions'
 groups=[]
 for policy in sorted({r['policy']for r in rows if r['cohort']}):
  rs=[r for r in rows if r['policy']==policy and r['cohort']];wins=[r for r in rs if r['phase']=='won'];rounds=[r['round']for r in wins];n=len(rs);groups.append({'policy':policy,'n':n,'clears':len(wins),'clearRatePct':len(wins)/n*100,'humanClearRate':None,'uncertainty':'Fixed engine RNG, tool policy and tiny input errors do not establish a human-population confidence interval.','meanClearRounds':statistics.mean(rounds)if rounds else None,'medianClearRounds':statistics.median(rounds)if rounds else None,'clearRoundRange':[min(rounds),max(rounds)]if rounds else None,'hard20Exceedances':sum(r['hard20Exceeded']for r in rs),'engineSeedCount':len({r['engineSeed']for r in rs}),'seedScope':'input error seeds, canonical fixed game RNG','stageAcceptance':'FAIL_UNMEASURED'})

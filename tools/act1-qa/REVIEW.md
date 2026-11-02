@@ -1,0 +1,26 @@
+# Act1 gameplay review — measured, not accepted
+
+Checkpoint: 2026-11-03 02:19 KST. **Overall FAIL_INCOMPLETE.** Original v3 quantitative cards recovered (see `plan.json`); no replacement targets invented. `evidence-snapshot.json` publishes measured diagnostic rows and fail-closed gates. Raw traces remain indexed by path/hash. Revisions, continued saves and deterministic replays are not independent samples.
+
+| Stage | Original round target | Concrete observed result / decision evidence | Outstanding judgment |
+|---|---:|---|---|
+| 1 | 4–6 | Actual Chromium fresh journey R5, 4 attacks, 2 jumps, 1 kill. Three native policies: route5 / lower6 / cover8; lower preserves15 extra HP, cover costs3 rounds without HP benefit. | Low kills can fit escape. Required landing counts/highground benefit not established; human rate unmeasured. |
+| 2 | 5–7 | Legacy zero-item escort R16; focused R14 uses one inaccessible legacy item. Carriage pauses for nearby threats, so approaching/clearing threats rather than exit walking dominates. | Strong pacing concern; newer zero-item route running. Controller limitations do not prove unavoidable minimum. |
+| 3 | 6–8 | Zero-item move-first R11 versus conservative R17, route R19. Faster objective approach trades more party exposure for fewer unnecessary fights. | All observed successful policies exceed target; no validated human mean. |
+| 4 | 7–9 | Three policies R9, consistent with authored eight defense cycles. Party/protected-NPC damage and skills differ despite fixed duration. | Must inspect meaningful choices and effective pressure, not call policies identical from round count. |
+| 5 | 7–10 | Recorded App input replay R12 zero items. New autonomous policies lose R12/R37 from ritual/path/target sequencing. | Single R12 is trial-outside-target, not aggregate-mean proof. Actual UI replay pending. |
+| 6 | 8–11 | Zero-item objective R18. Prior route22 / cover20 / universal move-first38; rushing ahead harms escort sequencing. | Long escort pressure; intended midboss present. Separate AI movement mistakes from balance. |
+| 7 | 9–12 | Objective move-first R7 (zero item calls) / explicit no-items R8; other routes lose villagers R7/R14 while all heroes survive. | Real rescue-versus-fighting tradeoff. Faster clear is below proposal; not automatic fun failure or pass. |
+| 8 | 11–14 | Baseline actual saved R24 softlocks during bier staging. Isolated mechanical fix passes natural-save/fresh regression. Fixed legacy-item run losesR40, boss121HP. Fixed zero-item policy losesR20 before second binding. | Runtime bug fix is separate from gameplay acceptance. Pre-movement long-range attacks strand party; fresh objective-standing-first calibration running. |
+| 9 | 7–9 | Genuine fresh prior8 fixture R2, zero kills,24 foes alive, two queued waves bypassed. Two ordinary receiver interactions meet authored predicate. | Required engagement/pacing pressure gap. Extra hold was deliberately removed; adding idle turns/kill-all would be design change, not authorized bug repair. UI fast path pending. |
+| 10 | 12–16 | Zero-item R11, six defense cycles, actual withdrawal, four kills; archer scouts exit at cycle4 while mage/knight protect Sodan. All defend until cycle6 loses Sodan during extra exit travel. | Finale engagement/pressure concern remains. Actual UI controller pending; low-charge precision may fail and must not be repaired by state writes. |
+
+## Evidence boundaries
+
+- Stage1 frozen cohort: 3 policies ×4 tiny aim-error seeds, fixed Engine RNG. Conditional controller robustness only, no human confidence interval or human clear-rate claim.
+- Entries use declared first-clear reward/recruit fixtures and historical actual-victory profiles plus affordable pre-entry SP allocation. **Not a continuous 1→10 campaign.** New Stage10 settled four-person profile preserves actual R11 outcome/recruitment; earlier reward-fixture history remains disclosed.
+- Legacy `Engine.item()` has no discovered current UI binding. Runs using it are Engine-only/UI-unvalidated, not normal-player clear evidence. No-item results are explicitly separated.
+- Current initial enemy variety is measured, not a role-count quota: Stage1 hound/crow/stag;2 hound/crow/boar/bat;3 adds humans/warden;5 ghost/shade and ritual target;6 warden midboss;7 two elites;8 bier boss/bindings;9 two elites;10 Sodan binding becomes protected ally. Presence alone does not prove encounter quality.
+- Missing effective enemy-action denominators, per-action damage grouping, required support/landing graph, human clear rates and complete readability review remain FAIL. Damage-backed engagements are lower bounds, not a passed route-encounter gate.
+- Actual browser evidence currently verified only Stage1 run41479507798. Native App/Engine traces use render/storage/clock doubles and cannot substitute for normal UI.
+- No runtime balance, map, story objective, equipment or HP was changed by this QA branch. Stage8 mechanical repair is isolated on its authorized branch and still needs browser/deployment verification.
