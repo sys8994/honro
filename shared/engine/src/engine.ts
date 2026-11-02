@@ -33,7 +33,7 @@ import type { Battle, Unit, Projectile, Skill, Side, Terrain, Vec, Zone, Event, 
 import { SKILLS, STAGES, ENEMIES, CLASSES } from './data';
 import {attackForHit,attackForSkill,calculateDamage,existenceMultiplier,migrateAirborneBalance} from './existence';
 import {lureStakeFor} from './totemBehavior';
-import { rankEnemyQueueSteps, type EnemyQueuePriority, planEnemyLuresSteps, planEnemyMoveSteps, advanceEnemyMove, targetFor, chooseEnemyShotSteps, finishPlanning, friendlyFireRisk, shotViable, shotImpactValue, flyingEnemy, knockbackFlyingEnemy, planWaitingFlights, FLY_MOVE_BUDGET } from './enemyAI';
+import { targetOptions, tacticsLevel, shotWorth, rankEnemyQueueSteps, type EnemyQueuePriority, planEnemyLuresSteps, planEnemyMoveSteps, advanceEnemyMove, targetFor, chooseEnemyShotSteps, finishPlanning, friendlyFireRisk, shotViable, shotImpactValue, flyingEnemy, knockbackFlyingEnemy, planWaitingFlights, FLY_MOVE_BUDGET } from './enemyAI';
 import { G, STEP, WORLD_W, WORLD_H, clamp, rad, poly, segRect, segmentTerrain, segmentProjectileTerrain, topAt, terrainSurfaces, terrainSlopeAt, terrainRectIntersects, dist, AIM_MIN, AIM_MAX } from './math';
 import { createBattle, groundY, makeEnemy, makeUnit } from './world';
 import { grantXP, applyHero, applyLevelUp, levelOf, TALENT_MAP, passiveBonus, recommendedLevel, equippedRank, passiveRank, skillDamageFactor, skillRadiusFactor, skillManaFactor, volleyCount, volleyDamage, knockbackResistance, ultimateUnlocked } from './progression';
@@ -80,6 +80,11 @@ export class Engine {
     private planningRemaining=Infinity;
     /** Diagnostics: partial enemy plans discarded because the battle changed mid-search. */
     planRestarts=0;
+    /** >0 while the enemy AI screens many candidate shots. Uniform-force HONRO projectiles
+     * are integrated exactly by advanceLinear for any step, so screening uses 1/24 s swept
+     * segments instead of 1/80 s; every shot is confirmed at full precision before firing. */
+    aiCoarse=0;
+    aiPredict(u:Unit,s:Skill,angle:number,power:number,target?:Unit){this.aiCoarse++;try{return this.predict(u,s,angle,power,target,false);}finally{this.aiCoarse--;}}
     private enemyPlanning?:{key:ReturnType<Engine['planningKey']>;steps:Generator<void,void,unknown>};
     /** Runtime-only work budget; saves resume an unfinished decision from its input state. */
     planningBudget(ms?:number){this.planningRemaining=ms??Infinity;}
@@ -351,7 +356,10 @@ export class Engine {
     predict(u: Unit, skill: Skill, angle: number, power: number, target?: Unit, collect = true, ignoreUnits = false): Prediction {
         if(this.noncombatWalk())return {points:[],x:u.x,y:u.y,closest:99999};
         const martial=warriorPrediction(this,u,skill,angle,power);if(martial)return martial;
-        const custom=redesignPrediction(this,u,skill,angle,power,false,ignoreUnits);if(custom)return custom;
+        // Screening plain/piercing arrows uses the shared force integrator below; the replay on a
+        // cloned battle (exact chains/splits) is kept for the guide and the final confirmation.
+        const screenArrow=this.aiCoarse>0&&(skill.mode==='arrow'||skill.mode==='pierce');
+        const custom=screenArrow?null:redesignPrediction(this,u,skill,angle,power,false,ignoreUnits);if(custom)return custom;
         const body = BODY.has(skill.mode), origin = this.projectileOrigin(u, skill, angle), v = this.velocity(u, skill, angle, power);
         let x = origin.x, y = origin.y, vx = v.vx, vy = v.vy, apex = false, bounce = 0, pierce = 0, meteor = false, closest = 99999;
         const points: Vec[] = [], ignored: string[] = SOUL_SKILLS.has(skill.id)?this.actors(u.side).map(v=>v.id):[], skips: string[] = [];
@@ -361,7 +369,7 @@ export class Engine {
         const rangeProbe={x,y,flightAge:0} as Projectile;
         if(skill.cls==='occultist')initializePlayerRange(rangeProbe,u,skill);
         const bounded=!!rangeProbe.flightRange,newWraith=bounded&&skill.id==='O05';
-        const dt = collect||skill.id==='O05'||bounded ? STEP : 1 / 80, r = body ? u.r : ARROWS.has(skill.mode) ? 3 : 6;
+        const dt = collect||skill.id==='O05'||bounded ? STEP : this.aiCoarse>0&&(skill.mode.startsWith('honro')||screenArrow)&&!this.b.fields.length&&!this.b.drafts.length&&!this.b.physics?.regions?.length ? 1 / 24 : 1 / 80, r = body ? u.r : ARROWS.has(skill.mode) ? 3 : 6;
         let age=0,keeperEchoUsed=false,predictionOwner=u.id;
         for (let i = 0; i < Math.ceil((skill.id==='O05'?WRAITH_OUTBOUND_SECONDS:skill.mode.startsWith('honro')?6:12.2) / dt); i++) {
             age+=dt;Object.assign(rangeProbe,{x,y,flightAge:age});
@@ -450,10 +458,13 @@ export class Engine {
     }
     /** Invert constant-force flight to seed aiming, then validate against the real trajectory.
      * Spatial fields, obstacles and special skills still use prediction and the bounded fallback. */
-    shotSeeds(u:Unit,s:Skill,target:Unit,maxPower=1){
+    shotSeeds(u:Unit,s:Skill,target:Unit,maxPower=1,dense=false){
         const speed=this.effective(s,u).speed,baseTime=Math.max(.12,Math.hypot(target.x-u.x,target.y-u.y)/((270+535*maxPower)*speed*.86));
         const gravity=s.gravity??1,seeds:{angle:number;power:number}[]=[];
-        for(const factor of [1,1.2,.85,1.5,1.9,2.4]){
+        // Each factor is an exact ballistic solution with a different flight time (flat → lobbed).
+        // The denser fan finds the gap between an ally in front and a low ceiling; each costs
+        // one coarse screening prediction.
+        for(const factor of dense?[1,1.2,.85,1.5,1.9,2.4,.7,1.1,1.35,1.7,2.15,2.7,3.1]:[1,1.2,.85,1.5,1.9,2.4]){
             const t=baseTime*factor;let angle=target.x>=u.x?20:160,power=0;
             for(let i=0;i<3;i++){
                 const o=this.origin(u,angle,BODY.has(s.mode)),a=this.forceSample({...o,wind:s.wind,gravityScale:gravity,drag:dragFor(s),skill:s.id});
@@ -490,8 +501,10 @@ export class Engine {
         const right = target.x > u.x, blast = this.effective(s, u).radius;
         let best = { angle: right ? 45 : 135, power: Math.min(.62,maxPower), score: -1e9 },useful=false;
         if(u.side!==0&&!this.npcShotInReach(u,s,allowAllyTarget?target:undefined,maxPower))return best;
+        const npcScreen=u.side!==0;
         const score = (a: number, p: number) => {
-            const hit = this.predict(u, s, a, p, target, false);
+            let hit = npcScreen ? this.aiPredict(u, s, a, p, target) : this.predict(u, s, a, p, target, false);
+            if(npcScreen){const quick=shotImpactValue(this,u,s,hit,allowAllyTarget?target.id:undefined);if(quick.enemyDamage>0&&quick.net>2)hit=this.predict(u,s,a,p,target,false);}
             const d = Math.hypot(hit.x - target.x, hit.y - (target.y - target.h * .52));
             let sc = -(Math.min(d, hit.closest + 140));
             if (hit.unit === target.id)
@@ -507,7 +520,7 @@ export class Engine {
                 sc -= 500;
             return sc;
         };
-        if(u.side!==0)for(const seed of this.shotSeeds(u,s,target,maxPower)){
+        if(u.side!==0)for(const seed of this.shotSeeds(u,s,target,maxPower,true)){
             const sc=score(seed.angle,seed.power);if(sc>best.score)best={...seed,score:sc};
             yield;if(useful)return {...seed,score:sc};
         }
@@ -2356,7 +2369,18 @@ export class Engine {
         if(!available.length){u.shield=Math.max(u.shield,18);u.shieldUntil=b.teamEnds[0]+1;this.finishAction();return;}
         const betrayal=target.side===u.side&&target.id!==u.id&&(target.betrayalUntil||0)>=b.round;
         const betrayalSkill=available.find(v=>v.radius<70)||available[0];
-        const choice=betrayal?{skill:betrayalSkill,aim:yield* this.searchShot(u,betrayalSkill,target,true)}:yield* chooseEnemyShotSteps(this,u,target,available);
+        let choice=betrayal?{skill:betrayalSkill,aim:yield* this.searchShot(u,betrayalSkill,target,true)}:yield* chooseEnemyShotSteps(this,u,target,available);
+        if(!betrayal){
+            // Weigh the reachable targets by what a real shot would achieve (finish a hero, join the
+            // round's focus target), instead of committing to the nearest-first target and holding.
+            let bestWorth=-Infinity,bestTarget=target,bestChoice=choice;
+            for(const t of targetOptions(this,u,target,3)){
+                const c=t===target?choice:yield* chooseEnemyShotSteps(this,u,t,available),v=shotViable(this,u,c.skill,t,c.aim.angle,c.aim.power);yield;
+                if(!v.ok)continue;const worth=shotWorth(this,u,t,v as any)+(t===target?6:0);
+                if(worth>bestWorth){bestWorth=worth;bestTarget=t;bestChoice=c;}
+            }
+            target=bestTarget;choice=bestChoice;
+        }
         let sk=choice.skill,aim=choice.aim;
         const error=DIFFICULTIES[b.difficulty].aim;
         const safeAngle=aim.angle,safePower=aim.power;
@@ -2365,7 +2389,7 @@ export class Engine {
         // Accuracy noise may not turn a safe decision into a suicidal shot through allies or a solid wall.
         let viable=shotViable(this,u,sk,target,aim.angle,aim.power,betrayal?target.id:undefined);
         if(!viable.ok){aim.angle=safeAngle;aim.power=safePower;viable=shotViable(this,u,sk,target,aim.angle,aim.power,betrayal?target.id:undefined);}
-        if(!viable.ok&&!betrayal){
+        if(!viable.ok&&!betrayal&&tacticsLevel(this)<1){
             const alternatives=this.b.units.filter(v=>!v.dead&&v.id!==target!.id&&(v.side===0||v.side===2&&((v as any).honroAlly||v.id==='objective')))
                 .sort((a,c)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(c.x-u.x,c.y-u.y)).slice(0,2);
             for(const candidate of alternatives){const shot=yield* chooseEnemyShotSteps(this,u,candidate,available),test=shotViable(this,u,shot.skill,candidate,shot.aim.angle,shot.aim.power);
@@ -2381,6 +2405,7 @@ export class Engine {
             u.shield=Math.max(u.shield,Math.round(u.maxHp*.08));u.shieldUntil=b.teamEnds[0]+1;u.intent=viable.reason==='blocked'?'사선 없음 · 방어':'공격 보류 · 방어';this.finishAction();return;
         }
         u.angle=aim.angle;u.lastPower=aim.power;u.facing=target.x>=u.x?1:-1;
+        if(tacticsLevel(this)>=2&&target.side!==u.side)(b as any).honroAiFocus={round:b.round,target:target.id};
         if(!this.fire(sk.id,aim.angle,aim.power,true))this.finishAction();
     }
     checkEnd() {

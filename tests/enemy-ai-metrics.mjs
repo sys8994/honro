@@ -33,7 +33,7 @@ for (const id of stages.length ? stages : [3, 9, 15, 21, 27, 33]) {
         if (k === 'think') think++; cats[k] = (cats[k] || 0) + 1; }
       const act = b.side === 1 ? b.active : null;
       if (act !== cur) {
-        if (cur) { const u = e.unit(cur); actions.push({ id: cur, role: u?.role, frames: frames - start, think: think - t0, preds: preds - p0, predMs: Math.round(predMs - m0), damage: Math.round(hp0 - heroHp()), intent: u?.intent, fired: (u?.lastShot ?? -1) }); }
+        if (cur) { const u = e.unit(cur); actions.push({ id: cur, role: u?.role, frames: frames - start, think: think - t0, preds: preds - p0, predMs: Math.round(predMs - m0), damage: Math.round(hp0 - heroHp()), intent: u?.intent, near: u ? Math.round(Math.min(...b.units.filter(v => !v.dead && v.side === 0).map(v => Math.hypot(v.x - u.x, v.y - u.y)))) : 0, dy: u ? Math.round(Math.min(...b.units.filter(v => !v.dead && v.side === 0).map(v => v.y - u.y))) : 0 }); }
         cur = act; start = frames; t0 = think; p0 = preds; m0 = predMs; hp0 = heroHp();
       }
     }

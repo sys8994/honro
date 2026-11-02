@@ -44,7 +44,7 @@ function* queueShotReadySteps(e:Engine,u:Unit,target:Unit):Generator<void,boolea
  const skills=u.loadout.map(id=>SKILLS[id]).filter(s=>s&&!s.passive&&s.damage>0&&e.manaCost(s,u)<=u.focus&&!((u.cooldowns?.[s.id]||0)>e.b.round)&&e.npcShotInReach(u,s)).slice(0,3);
  const right=target.x>=u.x,budget=6,perSkill=Math.floor(budget/Math.max(1,skills.length));
  for(const skill of skills){const seeds=e.shotSeeds(u,skill,target).slice(0,perSkill-1);seeds.push({angle:right?50:130,power:1});
-  for(const aim of seeds){const ok=shotViable(e,u,skill,target,aim.angle,aim.power).ok;yield;if(ok)return true;}
+  for(const aim of seeds){const hit=e.aiPredict(u,skill,aim.angle,aim.power,target),v=shotImpactValue(e,u,skill,hit),ok=v.enemyDamage>0&&v.net>2;yield;if(ok)return true;}
  }
  return false;
 }
@@ -289,6 +289,11 @@ function positionScore(e:Engine,u:Unit,target:Unit,p:Vec){
  let score=-Math.max(0,lo-distance)*.29-Math.max(0,distance-hi)*.36-dangerAt(e,u,p);
  // Distinct firing positions reduce splash risk; clustering to get shields is handled below.
  for(const f of e.actors(1))if(f.id!==u.id){const d=Math.hypot(p.x-f.x,p.y-f.y);if(d<165)score-=(165-d)*.18;}
+ // Do not stand in a teammate's firing lane. Fixed shooters (turrets, wardens on posts)
+ // cannot step around a body parked between them and their target.
+ for(const f of e.actors(1)){if(f.id===u.id||!f.fixed||beastKind(f))continue;const ft=e.b.units.find(v=>v.id===(f.aiMove?.targetId))||target;
+  const ax=f.x,ay=f.y-f.h*.55,bx=ft.x,by=ft.y-ft.h*.5,dx=bx-ax,dy=by-ay,l2=dx*dx+dy*dy||1,t=clamp(((p.x-ax)*dx+(p.y-u.h*.5-ay)*dy)/l2,0,1);
+  if(t>.02&&t<.7){const d=Math.hypot(ax+dx*t-p.x,ay+dy*t-(p.y-u.h*.5));if(d<u.h*.6+40)score-=55*(1-d/(u.h*.6+40))+15;}}
  score+=clamp((target.y-p.y)*.045,-22,22);
  score-=Math.max(0,p.y-target.y-85)*(HEAVY.has(u.role)?.19:.14);
  if(u.role==='healer'){
@@ -379,6 +384,25 @@ function* waterfallShotOpportunity(e:Engine,u:Unit,target:Unit,p:Vec):Generator<
  }
  return best;
 }
+/** Targets an ordinary enemy may weigh. Scripted, cursed and objective-round targets stay sole. */
+export function targetOptions(e:Engine,u:Unit,primary:Unit,limit=3):Unit[]{
+ const b=e.b,scripted=(u as any).honroTargetId&&((u as any).honroTargetUntil||0)>=b.round;
+ if(scripted||primary.side===u.side||primary.id==='objective'||tacticsLevel(e)<1)return [primary];
+ const foes=b.units.filter(v=>v!==primary&&!v.dead&&v.hp>0&&!v.eaterCapturedBy&&(v.side===0||(v.side===2&&(v as any).honroAlly)));
+ return [primary,...foes.sort((x,z)=>Math.hypot(x.x-u.x,x.y-u.y)-Math.hypot(z.x-u.x,z.y-u.y)).slice(0,limit-1)];
+}
+/** 0: single fixed target (explorer); 1: weighs other targets; 2: also kill/focus priorities. */
+export function tacticsLevel(e:Engine){const d=e.b.difficulty;return d==='explorer'?0:d==='story'?1:2;}
+/** Expected worth of a viable shot: damage, finishing a hero, joining this round's focus target. */
+export function shotWorth(e:Engine,u:Unit,target:Unit,value:{enemyDamage:number;net:number}){
+ let worth=value.net;
+ if(tacticsLevel(e)>=2){
+  if(value.enemyDamage>=target.hp+target.shield-.5)worth+=70;
+  const focus=(e.b as any).honroAiFocus;if(focus?.round===e.b.round&&focus.target===target.id)worth+=22;
+  if(target.cls==='mage'||target.cls==='occultist')worth+=8;
+ }
+ return worth;
+}
 function* shotOpportunity(e:Engine,u:Unit,target:Unit,p:Vec):Generator<void,number,unknown>{
  if(beastKind(u)){const ghost={...u,...p,facing:target.x>=p.x?1:-1};return beastContact(e,ghost,target)?100:-Math.min(100,Math.hypot(p.x-target.x,p.y-target.y)*.2);}
  if(waterfallTactics(e))return yield* waterfallShotOpportunity(e,u,target,p);
@@ -386,23 +410,21 @@ function* shotOpportunity(e:Engine,u:Unit,target:Unit,p:Vec):Generator<void,numb
  const ghost:Unit={...u,x:p.x,y:p.y,vx:0,vy:0};
  const skills=u.loadout.map(id=>SKILLS[id]).filter(s=>s&&!s.passive&&e.manaCost(s,u)<=u.focus).slice(0,2);
  let best=-90;
- for(const s of skills){const right=target.x>=p.x,blast=e.effective(s,ghost).radius;
-  if(!e.npcShotInReach(ghost,s))continue;
-  for(const aim of e.shotSeeds(ghost,s,target)){
-   const hit=e.predict(ghost,s,aim.angle,aim.power,target,false),value=shotImpactValue(e,ghost,s,hit);
-   yield;if(value.enemyDamage>0&&value.net>2)return 35+clamp(value.net,-120,60);
-  }
-  // This is a position heuristic, not the final aim search. Sample three arcs;
-  // the selected position is aimed precisely only once, after movement.
-  for(const elev of (target.y>p.y+80?[-35,35,78]:[18,50,82]))for(const power of [1]){
-   const angle=right?elev:180-elev,hit=e.predict(ghost,s,angle,power,target,false);
-   const d=Math.hypot(hit.x-target.x,hit.y-(target.y-target.h*.5));
-   let score=-Math.min(90,Math.min(d,hit.closest+100)*.18);
-   if(hit.unit===target.id)score=35;
-   else if(blast>0&&d<blast)score=25;
-   const value=shotImpactValue(e,ghost,s,hit);
-   score+=clamp(value.net,-120,60);
-   best=Math.max(best,score);yield;if(value.enemyDamage>0&&value.net>2)return best;
+ // Lane-aware: the analytic seeds plus a coarse arc fan, screened with the cheap exact-force
+ // integrator against every target this enemy may weigh. A position scores by the best real
+ // lane it opens, not by three fixed full-power arcs.
+ for(const s of skills){if(!e.npcShotInReach(ghost,s))continue;const blast=e.effective(s,ghost).radius;
+  for(const t of targetOptions(e,u,target,2)){const right=t.x>=p.x;
+   const fan=(t.y>p.y+80?[-35,15,55,78]:[18,40,62,82]).flatMap(elev=>[.6,1].map(power=>({angle:right?elev:180-elev,power})));
+   for(const aim of [...e.shotSeeds(ghost,s,t),...fan]){
+    const hit=e.aiPredict(ghost,s,aim.angle,aim.power,t),value=shotImpactValue(e,ghost,s,hit);yield;
+    if(value.enemyDamage>0&&value.net>2)return 35+clamp(shotWorth(e,ghost,t,value),-120,90);
+    if(t!==target)continue;
+    const d=Math.hypot(hit.x-t.x,hit.y-(t.y-t.h*.5));
+    let score=-Math.min(90,Math.min(d,hit.closest+100)*.18);
+    if(blast>0&&d<blast)score=25;
+    best=Math.max(best,score+clamp(value.net,-120,60));
+   }
   }
  }
  return best;
@@ -549,4 +571,8 @@ export function* chooseEnemyShotSteps(e:Engine,u:Unit,target:Unit,skills:Skill[]
   if(outcome.ok)return {skill,aim};
  }
  return best!;
+}
+/** Diagnostics for tests/enemy-ai-scene.mjs: candidate stances with range and lane scores. */
+export function debugMoveOptions(e:Engine,u:Unit,target:Unit){
+ return candidates(e,u,target).map(p=>({x:Math.round(p.x),y:Math.round(p.y),position:Math.round(positionScore(e,u,target,p)),lane:Math.round(finishPlanning(shotOpportunity(e,u,target,p))),reach:!!traceTravel(e,u,u,p,Math.min(u.moveLeft,610))}));
 }
