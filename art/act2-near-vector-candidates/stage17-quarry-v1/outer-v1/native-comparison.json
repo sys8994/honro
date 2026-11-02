@@ -1,38 +1,38 @@
 {
   "part": "outer-v1",
-  "candidateSvgSha256": "130da64107d1c60667ddc96cc6a8ff0e3f837bb151ebf07f0c17fc6cfa13bb93",
-  "rawSvgSha256": "f7ce4a31a6d24c237a482c93f00ea4fa706efc916161f1741e3ad8b29f758497",
-  "nativeCandidateSha256": "0431a676f1cf6ca53f3c5f9a83a5ade82d70c15d5a9d58dd47439cb48600699c",
+  "candidateSvgSha256": "1eec572f98f8b8a45eeacc79978feacc2502df1c1da3fae2df7b611c68d98d2d",
+  "rawSvgSha256": "b6ed8b0fec16e7c9c0297acf13be7f17f11be4f2c010264686c96cdd87609f4b",
+  "nativeCandidateSha256": "7e0a3bf6f85791775e670b2911c3745570a95337b6099280d238f6b95d771ba7",
   "qualityPass": true,
   "errors": {
     "1": {
-      "rgbMAE255": 0.0031162151135504246,
-      "rgbP99_255": 0.0,
+      "rgbMAE255": 0.022473495453596115,
+      "rgbP99_255": 1.000015139579773,
       "alphaMAE255": 0.0,
-      "changedPixelFraction": 4.096319211409396e-07,
+      "changedPixelFraction": 0.0,
       "silhouetteMaxOffsetPx": 0.0,
       "protectedChangedPixelFraction": 0.0,
-      "protectedRgbMAE255": 6.330516043817624e-05,
+      "protectedRgbMAE255": 0.0003165272355545312,
       "protectedSilhouetteMaxOffsetPx": 0.0,
-      "protectedColorEdgeRawMaxOffsetPx": 0.0,
+      "protectedColorEdgeRawMaxOffsetPx": 2.23606797749979,
       "protectedColorEdgeMaxOffsetPx": 0.0,
       "protectedRgbQuantizationTolerance255": 1,
-      "protectedQuantizationPixels": 0,
+      "protectedQuantizationPixels": 2,
       "pass": true
     },
     "2": {
-      "rgbMAE255": 0.0020212659146636724,
-      "rgbP99_255": 0.0,
+      "rgbMAE255": 0.018708230927586555,
+      "rgbP99_255": 0.9999999403953552,
       "alphaMAE255": 0.0,
-      "changedPixelFraction": 1.2288957634228187e-06,
+      "changedPixelFraction": 0.0,
       "silhouetteMaxOffsetPx": 0.0,
       "protectedChangedPixelFraction": 0.0,
-      "protectedRgbMAE255": 0.00010273270891048014,
+      "protectedRgbMAE255": 0.0003240040969103575,
       "protectedSilhouetteMaxOffsetPx": 0.0,
-      "protectedColorEdgeRawMaxOffsetPx": 0.0,
+      "protectedColorEdgeRawMaxOffsetPx": 3.605551275463989,
       "protectedColorEdgeMaxOffsetPx": 0.0,
       "protectedRgbQuantizationTolerance255": 1,
-      "protectedQuantizationPixels": 0,
+      "protectedQuantizationPixels": 3,
       "pass": true
     }
   },
@@ -995,39 +995,39 @@
     "protectedRoiExpansionSourcePixels": 0,
     "sourcePalette": [
       [
+        32,
+        37,
+        43
+      ],
+      [
         41,
-        48,
-        57
+        47,
+        53
       ],
       [
-        53,
+        52,
+        58,
+        64
+      ],
+      [
         64,
-        72
+        71,
+        77
       ],
       [
-        69,
-        81,
-        91
+        76,
+        83,
+        89
       ],
       [
-        77,
-        85,
-        83
+        89,
+        97,
+        104
       ],
       [
-        96,
-        107,
-        117
-      ],
-      [
-        119,
-        124,
-        112
-      ],
-      [
-        136,
-        136,
-        126
+        104,
+        110,
+        115
       ]
     ],
     "shippingComposition": "Actual production Scene, same original world geometry/base, canonicalSolid+contactInset, same original actors/water/far-image layers and source density. Standalone alpha failures remain failed supplementary diagnostics."

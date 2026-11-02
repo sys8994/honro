@@ -1,39 +1,39 @@
 {
   "part": "west-v2",
-  "rawBytes": 64948,
-  "finalBytes": 44121,
-  "nativeBytes": 45272,
-  "reductionPercent": 32.06719221531071,
+  "rawBytes": 453693,
+  "finalBytes": 288771,
+  "nativeBytes": 290178,
+  "reductionPercent": 36.351012689197326,
   "qualityPass": true,
   "errors": {
     "1": {
-      "rgbMAE255": 0.018154636025428772,
-      "rgbP99_255": 0.0,
+      "rgbMAE255": 0.015486415475606918,
+      "rgbP99_255": 0.9999999403953552,
       "alphaMAE255": 0.0,
-      "changedPixelFraction": 7.731658225216867e-05,
+      "changedPixelFraction": 0.0,
       "silhouetteMaxOffsetPx": 0.0,
       "protectedChangedPixelFraction": 0.0,
-      "protectedRgbMAE255": 5.687540033250116e-05,
+      "protectedRgbMAE255": 0.0009441328002139926,
       "protectedSilhouetteMaxOffsetPx": 0.0,
-      "protectedColorEdgeRawMaxOffsetPx": 0.0,
+      "protectedColorEdgeRawMaxOffsetPx": 5.0,
       "protectedColorEdgeMaxOffsetPx": 0.0,
       "protectedRgbQuantizationTolerance255": 1,
-      "protectedQuantizationPixels": 0,
+      "protectedQuantizationPixels": 4,
       "pass": true
     },
     "2": {
-      "rgbMAE255": 0.018000097945332527,
+      "rgbMAE255": 0.014468816109001637,
       "rgbP99_255": 0.0,
       "alphaMAE255": 0.0,
-      "changedPixelFraction": 0.00021800741225201656,
+      "changedPixelFraction": 1.5843561936919807e-07,
       "silhouetteMaxOffsetPx": 0.0,
       "protectedChangedPixelFraction": 0.0,
-      "protectedRgbMAE255": 2.8342742552922573e-06,
+      "protectedRgbMAE255": 0.0008361172513104975,
       "protectedSilhouetteMaxOffsetPx": 0.0,
-      "protectedColorEdgeRawMaxOffsetPx": 0.0,
-      "protectedColorEdgeMaxOffsetPx": 0.0,
+      "protectedColorEdgeRawMaxOffsetPx": 8.246211251235321,
+      "protectedColorEdgeMaxOffsetPx": 1.0,
       "protectedRgbQuantizationTolerance255": 1,
-      "protectedQuantizationPixels": 0,
+      "protectedQuantizationPixels": 19,
       "pass": true
     }
   },
@@ -500,52 +500,52 @@
     "protectedRoiExpansionSourcePixels": 0,
     "sourcePalette": [
       [
+        32,
+        37,
+        43
+      ],
+      [
         41,
-        48,
-        57
+        47,
+        53
       ],
       [
-        53,
+        52,
+        58,
+        64
+      ],
+      [
         64,
-        72
+        71,
+        77
       ],
       [
-        69,
-        81,
-        91
+        76,
+        83,
+        89
       ],
       [
-        77,
-        85,
-        83
+        89,
+        97,
+        104
       ],
       [
-        96,
-        107,
-        117
-      ],
-      [
-        119,
-        124,
-        112
-      ],
-      [
-        136,
-        136,
-        126
+        104,
+        110,
+        115
       ]
     ],
     "shippingComposition": "Actual production Scene, same original world geometry/base, canonicalSolid+contactInset, same original actors/water/far-image layers and source density. Standalone alpha failures remain failed supplementary diagnostics."
   },
   "losslessXmlDeclarationRemoval": true,
-  "normalizedRendererInputSha256": "2673af97f85e7d2874f2dac8372f3eef910e433c01cbec3ec85d0c74ceb25c73",
+  "normalizedRendererInputSha256": "6aab517a7e9503c6028d562e2178571d5ba8bf8196941d363a3d4ddae625f287",
   "hashes": {
-    "source.png": "5ca841b51c8eeb19a7dc2f7b796bf189141ff869850774b6f8617da12ee3511d",
-    "authored-raw.svg": "1245a172d2f047556f6bf8652585d7fb7c135a930cade27071974cc3673728f9",
-    "authored-raw.svg.gz": "0f5c10084e58c84ad6a85d2f8a85e85cf70dbbe48e9767b089205988d2442fa2",
-    "final.svg": "eb91517544f4b692a748c4ee27c855aace3677c11f09a8d2e960b61ce546838d",
-    "native.json": "f8e6f53ded9ab30f0021a9c48cb84ade187dd4c6cd771e47fc4c86dce3b10a16",
-    "submitted-prompt.json": "e22c662407f039747bb7c2e94dec2ff0677c564b2c0cd02e778d14685efeb294",
+    "source.png": "53b3f7f9fb58c9964047b3a42da7c3391d80809bfc7eb0643683c6df2f5dc949",
+    "authored-raw.svg": "28be37be7dd4bdd58caf3b887db310e9c89d76dd450a850735e5ca5fee7a1dd0",
+    "authored-raw.svg.gz": "7df09286ac023f8a6e0ba28d41a91c66a3ad2495c3c1e95f574756ab4a5a2cef",
+    "final.svg": "f976088b3b2dbb3af0b43e79576293bb69f5b719223bf9a4b1a7b61ee045b071",
+    "native.json": "57393f96f4ff126ad9122077cbbdb7e8e1f55fcbb2bee71433a1674948f2ac5f",
+    "submitted-prompt.json": "e3f9acaadc3185f34a690d0dd1cfcf5d061927633f1ed81f6edc23a86cfb2034",
     "config.json": "bf775d3afa41df27b324eb767aaa5d9b835c16da4c43a23fa99866d5a0ed0597",
     "pixel-config.json": "fe09f81dcf911d8c6e7ab0b37a58b114d6fc7f81058f507c793681b2b7d369e6"
   }

@@ -1,8 +1,8 @@
 {
-  "prompt": "Use case: stylized-concept. Produce a flat vector-ready MATERIAL SKIN for a Korean underground quarry game, true orthographic sideview. Image1 is an EXACT dark-solid/beige-empty level silhouette guide. Retain EVERY boundary and opening exactly. Paint only solid dark areas. Image2 shows a rejected draft: its broad horizontal colored STRIPES look artificial; do NOT repeat that defect. Replace bands with large irregular ANGULAR rock faces and truncated broad slate fracture planes, grouped around each ledge and rounded underhang. About 12\u201320 big organic unequal planes over this whole panel, with quiet dark base between groups, NOT dozens of tiny fragments. Use ONLY 5 solid colors: dark charcoal#29343d, dark slate#45515b, slate#606b75, subdued olive stone#777c70, and a very little muted gray#88887e. No gradients, texture, grain, stippling, fine cracks, noise, little pebbles or smooth blurred shading. Contact highlights must be narrow, irregular and subtle, NOT a continuous pale uniform ribbon. Main raised rock volumes have 2\u20134 natural planar faces each. Keep a dark base margin at outer image edges; colored details terminate naturally before left/right/bottom image edges so separate material modules have no rectangular seam. Maintain guide geometry; do not invent or remove a passage, floating rock, platform. Leave every beige region untouched beige. No characters, people, text, scenery, background, buildings, vegetation, ropes or machinery. Crisp vector contour drawing with readable geology at native actor scale.",
-  "referenced_image_paths": [
-    "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage17/east-v2/guide.png",
-    "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage17/east-v1/source.png"
-  ],
-  "transparent_background": false
+  "revision": "stage17-geology-v3",
+  "tool": "image_gen.imagegen",
+  "selectedFile": "exec-192f258e-fed5-4a64-94db-9d3fcf56bf7e.png",
+  "reference": "art/act2-near-vector-candidates/stage17-quarry-v1/east-v2/source.png",
+  "direction": "2026-11-02 root visual rejection: replace almost featureless slabs with sober dark grey geology, human-scale near-surface fractures and restrained larger deep forms, no huge parallel bands, no wallpaper. Preserve exact source silhouette, no new geometry. Edit existing image-derived source; Inkscape trace, immutable raw and protected optimization; canonical clipping/collision unchanged. Three native visual iterations and final source/edge/mobile comparisons required.\n",
+  "promptRecordNote": "Exact tool invocation retained in conversation; this metadata record written after completion. West detailed prompt saved before generation in material-revision-prompt.txt."
 }
