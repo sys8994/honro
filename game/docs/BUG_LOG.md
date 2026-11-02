@@ -5225,3 +5225,8 @@ Title `여정 이어가기` could choose an older hub before honoring a saved di
 - Preserve original ferry-ground, wood docks/roof, actors, encounters, camera and story; add only clipped non-colliding BODY art. Normal build gate remains unchanged.
 - Reject oversized isolated rock/moss motifs even when pixel/size checks pass. Use the accepted connected geology style and thinner contact moss; raw4-color340580B ->223512B (34.37%), 1x/2x max silhouette1px. Fifth dark shade produced a >240000-character compound; authored4-color revision removes unnecessary shadow detail without raising engine limits.
 - Source geometry/hash and native save roundtrip pass. Browser release workflow still must verify current rest-hub3 navigation, actual movement/jump, save/reload and responsive views before promotion. Stage3 historical entry fixture has only ordinary Stage1/2 completion rewards; no live resource edits.
+
+### 2026-11-02 — Stage4 earth BODY candidate
+- Keep gate-basin original points, defensive wood decks, burned gallery, separate stone prop, NPCs and evacuation contract. Only non-colliding BODY art changes.
+- Respect the gate approach materials: earth/mud/charred ground and local stone, not uniform mossy granite. Concept -> vector-ready image -> actual Inkscape six-color trace -> bounded optimization121605B to82027B(32.55%); 1x/2x max silhouette1px. Native start/middle/east/full/mobile/end views preserve actor92 and original collision hash.
+- Native source lock and JSON save roundtrip pass. Normal browser entry/movement/jump/reload/responsive checks and public verification remain release requirements. The historical fixture uses only legal Stage1–3 completion rewards; no live resource changes.

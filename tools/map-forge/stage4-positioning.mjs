@@ -1,3 +1,4 @@
+import {applyStage4ArtCandidate} from '../act1-vector-production/apply-stage4-candidate.mjs';
 /** Gate defense keeps both slopes and the eight-round refugee evacuation. */
 export function applyStage4Positioning(project){
  const s=project.stages.find(s=>s.metadata?.stageId===4);if(!s)return project;
@@ -17,5 +18,5 @@ export function applyStage4Positioning(project){
  'foe-5-cluster':{x:3850,y:1590},
  'foe-6-cluster':{x:2820,y:top('gate-basin',2820)}
  },roles:['문 앞 전위4','불탄 회랑1/수레 분지3','동쪽 비탈 예비2','감시대 사수2/공중2']};
- return project;
+ return applyStage4ArtCandidate(project);
 }
