@@ -1,0 +1,126 @@
+{
+  "raw": "/workspace/scratch/fff510b4df37/honro-act1-production/stage08/shoulders-v1/world.svg",
+  "candidate": "/workspace/scratch/fff510b4df37/honro-act1-production/stage08/shoulders-v1/compact.svg",
+  "rawStats": {
+    "sourceBytes": 186725,
+    "paths": 4,
+    "commands": 5312,
+    "segments": 5095,
+    "endpointNodesUpperBound": 5312,
+    "explicitCommandLetters": 2212,
+    "subpaths": 217,
+    "pathChars": 186235,
+    "maxPathChars": 76163
+  },
+  "candidateStats": {
+    "sourceBytes": 121039,
+    "paths": 4,
+    "commands": 5316,
+    "segments": 5099,
+    "endpointNodesUpperBound": 5316,
+    "explicitCommandLetters": 5427,
+    "subpaths": 217,
+    "pathChars": 120549,
+    "maxPathChars": 48870
+  },
+  "visualApproval": "NOT REVIEWED",
+  "config": {
+    "width": 2048,
+    "scales": [
+      1,
+      2
+    ],
+    "limits": {
+      "rgbMAE255": 2,
+      "silhouettePx": 1.5,
+      "protectedRgbMAE255": 1,
+      "protectedPx": 0.5,
+      "protectedChangedPixelFraction": 0.05
+    },
+    "scope": "Immutable registered raw versus final; canonical collision contact separately locked.",
+    "sourcePalette": [
+      [
+        38,
+        52,
+        43
+      ],
+      [
+        57,
+        72,
+        61
+      ],
+      [
+        80,
+        90,
+        72
+      ],
+      [
+        115,
+        116,
+        90
+      ]
+    ]
+  },
+  "errors": {
+    "1": {
+      "rgbMAE255": 0.00610989797860384,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.0047188508324325085,
+      "changedPixelFraction": 4.6125461254612545e-05,
+      "silhouetteMaxOffsetPx": 1.4142135623730951,
+      "pass": true
+    },
+    "2": {
+      "rgbMAE255": 0.0043980698101222515,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.0030610784888267517,
+      "changedPixelFraction": 2.287411241239395e-05,
+      "silhouetteMaxOffsetPx": 1.0,
+      "pass": true
+    }
+  },
+  "timings": {
+    "raw-1": {
+      "width": 2048,
+      "height": 1355,
+      "decodeMs": 20.291461000000027,
+      "drawMs": 9.392266000000006
+    },
+    "candidate-1": {
+      "width": 2048,
+      "height": 1355,
+      "decodeMs": 16.999760999999978,
+      "drawMs": 3.6610900000000015
+    },
+    "raw-2": {
+      "width": 4096,
+      "height": 2711,
+      "decodeMs": 31.79893199999998,
+      "drawMs": 32.69244400000002
+    },
+    "candidate-2": {
+      "width": 4096,
+      "height": 2711,
+      "decodeMs": 30.342829999999992,
+      "drawMs": 25.606683000000032
+    }
+  },
+  "qualityPass": true,
+  "optimization": {
+    "sourceSha256": "af22a1f8eee5dcc302e769986d28fa958864c5b0eb153c5ba8aff1ed9a5c793a",
+    "sourceBytes": 186725,
+    "outputBytes": 121039,
+    "epsilonLocalUnits": 0.04,
+    "maxCurveReplacementBoundLocalUnits": 0.03994793625616134,
+    "absoluteCoordinateRoundingBound": 0.007071067811865475,
+    "protectedAlphaPathsUnchanged": false,
+    "counts": {
+      "cubicToLine": 85,
+      "cubicToQuadratic": 286,
+      "keptCubic": 3025,
+      "protectedPaths": 0
+    },
+    "topologyReview": "NOT_CERTIFIED",
+    "visualReview": "PENDING"
+  }
+}
