@@ -2,7 +2,7 @@
 
 Preregistered finite-policy input robustness, canonical fixed engine RNG, two aim-jitter streams per policy. Synthetic declared entry budgets. Not human probability, not independent random-engine draws. Unfinished at bound is not death. Successful-round statistics are conditional on success. Original clearRate denotes finite registered policy trial ratio, not human population rate. Policies are reported separately; no iid pooling or inferential binomial CI. Eventual completion bounds retain unfinished uncertainty.
 
-Pending cases: 9/18.
+Pending cases: 8/18.
 
 | Stage | Policy | Win / death / unfinished / pending | Finite clear | Required | Successful rounds | Target / ≤20 passed |
 |---|---|---|---|---|---|---|
@@ -11,7 +11,7 @@ Pending cases: 9/18.
 | 11 | height | 2 / 0 / 0 / 0 | 100.0% | [70, 85]% | [23, 21] | 0/2 / 0/2 |
 | 15 | objective | 1 / 0 / 1 / 0 | 50.0% | [75, 90]% | [11] | 1/2 / 1/2 |
 | 15 | survival | 1 / 0 / 0 / 1 | None% | [75, 90]% | [28] | 0/2 / 0/2 |
-| 15 | height | 0 / 0 / 0 / 2 | None% | [75, 90]% | [] | 0/2 / 0/2 |
+| 15 | height | 1 / 0 / 0 / 1 | None% | [75, 90]% | [9] | 0/2 / 1/2 |
 | 16 | objective | 0 / 0 / 0 / 2 | None% | [75, 90]% | [] | 0/2 / 0/2 |
 | 16 | survival | 0 / 0 / 0 / 2 | None% | [75, 90]% | [] | 0/2 / 0/2 |
 | 16 | height | 0 / 0 / 0 / 2 | None% | [75, 90]% | [] | 0/2 / 0/2 |

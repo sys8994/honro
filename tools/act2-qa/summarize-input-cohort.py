@@ -1,6 +1,7 @@
 """Read-only finite registered-cohort summary; unfinished cases remain denominators."""
 from pathlib import Path
 import json,hashlib,statistics,html
+from collections import Counter
 ROOT=Path(__file__).resolve().parents[2]
 b=ROOT/'_local/reports/act2-gameplay-20261103/input-cohort'
 m=json.loads((ROOT/'tests/fixtures/act2-gameplay/input-cohort-registration.json').read_text())
@@ -17,6 +18,12 @@ for s in m['stages']:
    if r:
     settled=r.get('appOutcome',{}).get('done') and r.get('phase') in ('won','lost')
     row.update(status=r['phase'] if settled else 'unfinished',round=r['round'],kills=r['kills'],fallen=r['fallen'],damageTaken=r.get('hpDamageTaken'),damageDealt=r.get('hpDamageDealt'),skills=r.get('skills'),goals=r.get('done'),engineRngAtEntry=r.get('engineRngAtEntry'),sourceCommit=r.get('checkoutCommit'),runnerSha256=r.get('runnerSha256'),resultSha256=hashlib.sha256(f.read_bytes()).hexdigest(),externalWrites=r.get('externalWrites'),engineRecoveries=r.get('engineRecoveries'),legacyItemApi=r.get('legacyItemApi'),stopReason=r.get('stopReason'))
+    t=json.loads((d/'terminal.json').read_text()); initial=json.loads((d/'initial.json').read_text()); actions=t['actions']; units=initial['battle']['units']
+    enemies=[u for u in units if u.get('side')==1 and not u.get('honroObjectiveTarget')]
+    rank=lambda u: 'majorBoss' if u.get('boss') or u.get('honroBoss') else ('miniboss' if u.get('honroMidboss') else ('ordinaryElite' if u.get('elite') else 'ordinary'))
+    row['initialEncounter']={'hostilesExcludingObjectives':len(enemies),'engineFlagRanks':dict(Counter(rank(u) for u in enemies)),'classes':dict(Counter(u.get('cls','unknown') for u in enemies)),'caveat':'Flags/classes are not validated distinct patterns or simultaneous combat.'}
+    row['routeObservations']={'rawInputOperations':dict(Counter(a['op'] for a in actions)),'matchedLandings':sum(a['op']=='land' and a.get('matched',False) for a in actions),'visitedSupportIds':sorted({a['support'] for a in actions if a.get('support')}),'interactions':[a for a in actions if a['op']=='E'],'caveat':'Raw inputs/supports do not establish meaningful tactical elevation or mandatory route minima.'}
+    row['spawnEvents']=t['births'];row['terminalSha256']=hashlib.sha256((d/'terminal.json').read_bytes()).hexdigest()
     row['roundTargetPass']=row['status']=='won' and criteria[s]['rounds'][0]<=row['round']<=criteria[s]['rounds'][1]
     row['ceilingPass']=row['status']=='won' and row['round']<=20
    rows.append(row);cases.append(row)
