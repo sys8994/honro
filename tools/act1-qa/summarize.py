@@ -104,6 +104,7 @@ for row in rows:
  raw=json.loads((ROOT/row['evidence']).read_text());rawSource=raw.get('source');row['sourceCommit']=resultMeta.get('sourceCommit',meta.get('sourceCommit'))or(rawSource if isinstance(rawSource,str)and len(rawSource)==40 else None)or recordedInitialSource
  row['sourceEvidence']=({'path':str(initialFile.relative_to(ROOT)),'sha256':digest(initialFile)}if recordedInitialSource else None)
  row['sourceProvenanceStatus']='Recorded commit'if row['sourceCommit']else 'MISSING_COMMIT: preserve raw/controller hashes; do not infer exact source'
+ row['operationMode']=raw.get('operationMode')or('NATIVE_APP_ACTION_SIMULATION'if raw.get('schema')=='honro-stage5-input-trace/v1'or(row['stage']==5 and 'final-normal'in row['evidence'])else 'ENGINE_ACTION_MODEL')
  row['controllerFileSha256']=digest(folder/'controller.js')if(folder/'controller.js').exists()else meta.get('adaptedSha256')
  row['runnerSha256']=raw.get('runnerSha256');row['sourceDirtyAtStart']=raw.get('sourceDirtyAtStart',meta.get('sourceDirty','NOT_RECORDED'))
  if raw.get('damageFx') is not None:
@@ -161,7 +162,7 @@ for st in report['stages']:
 
  st['gates']={
  'registeredPolicyMeanRounds':numeric_gate(statistics.mean(rounds)if rounds else None,ds['rounds'],n=len(rounds),eligible=registeredEligible and st['stage']==1,scope='Finite preregistered successful policy runs; fixed RNG, failures recorded separately; not human pacing estimate'),
- 'registeredPolicyClearRate':numeric_gate(len(wins)/len(rs)*100 if rs else None,ds['clearRate'],n=len(rs),eligible=registeredEligible and st['stage']==1,scope='Original finite registered-policy criterion. Fixed RNG/tiny input errors; NOT independent human probability or broad robustness.'),
+ 'registeredPolicyClearRate':numeric_gate(len(wins)/len(rs)*100 if rs else None,ds['clearRate'],n=len(rs),eligible=False,scope='Original finite registered-policy criterion; recorded frozen cohort is Engine-action model, pending complete App-operation corroboration. Fixed RNG/tiny input errors; NOT independent human probability or broad robustness.'),
  'hard20RegisteredProgression':numeric_gate(sum(r['round']>20 for r in rs)if rs else None,[0,0],n=len(rs),eligible=registeredEligible and st['stage']==1,scope='Registered ordinary-policy trials; calibration over20 logs retained separately, never clipped'),
  'minibossCompositionAndMandatoryRole':{'status':'FAIL_MISSING_MEASUREMENT','target':ds['miniboss'],'scope':'Initial typed count is diagnostic; required encounter/mandatory-role and event composition not fully audited'},
  'majorBossTelegraphAndCounterplay':{'status':'FAIL_MISSING_MEASUREMENT'if ds['majorBossCount'][1]else 'PASS','target':ds['majorBossCount'],'scope':'Required authored boss role, warnings and response not fully audited'if ds['majorBossCount'][1]else 'Not applicable: original majorBossCount=[0,0]'},
