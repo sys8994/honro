@@ -59,7 +59,9 @@ function occupants(b,shapes=memory(b).bell.segment?.sweep||[]){const out=[],add=
  return out;
 }
 function paused(app){return !!app.dialogue||!!app.modal?.classList.contains('open')||!!app.storyHistoryOpen||!!G.HonroStory?.turnPaused?.(app);}
-function safe(app){const b=app.engine.b;return !paused(app)&&!app.done&&!['won','lost','ally'].includes(b.phase)&&!b.keeperRitual?.cast&&!b.cast&&B.safeBoundary(app);}
+// b.cast retains completed-shot refund bookkeeping in normal campaign play.
+// Actual motion/projectile/action-boundary checks live in safeBoundary.
+function safe(app){const b=app.engine.b;return !paused(app)&&!app.done&&!['won','lost','ally'].includes(b.phase)&&!b.keeperRitual?.cast&&B.safeBoundary(app);}
 function begin(app,kind,to,toX=memory(app.engine.b).bell.offsetX){const b=app.engine.b,m=memory(b);if(m.bell.segment||m.bell.status==='moving')return false;
  m.bell.segment={kind,from:m.bell.offset,to,fromX:m.bell.offsetX,toX,sweep:segmentSweep(b,to,toX),warnSerial:serial(b),heroes:b.units.filter(hero).map(u=>u.id),offered:{},opportunities:{},elapsed:0,duration:b.honroV4Stage18.duration};m.bell.status='warning';m.bell.blockers=[];slot(app,'18.'+kind+'.warning',{from:{x:m.bell.offsetX,y:m.bell.offset},to:{x:toX,y:to},brakeMarker:'18.brake',survivorId:RESIDENT,safeRegion:clone(b.honroV4Stage18.safeRegion)});app.dirty=true;app.engine.emit?.('save');return true;
 }

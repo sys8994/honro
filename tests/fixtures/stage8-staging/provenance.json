@@ -1,0 +1,15 @@
+{
+  "scope": "Unmodified profile export from actual native production Engine/App normal-input Stage8 run. Declared current first-clear/recruit fixture through7 and legal SP allocation; not continuous campaign and not browser. No battle state synthesized for this fixture.",
+  "candidateGameplay": "292c1122fcd75256c366ec15e815fb4adcfbd7b2",
+  "sourceCheckpointSHA256": "3515d526c6aeca02c708d5d446766747a93930cca097d984cf33d8dc2be93fd9",
+  "profileSHA256": "96f0662ca7696080fe4bf0936b5be855925fc83a66651e86f1de38e2e17d568f",
+  "sourceCommands": "tools/act1-qa/run-existing.mjs 8 1103 focused-modern, original tests/stage8-bier-fullplay.mjs; exact R24 Continue after external process interruption",
+  "round": 24,
+  "phase": "aim",
+  "expectedFault": {
+    "status": "moving",
+    "completedOnce": 0,
+    "sceneOnce": "done",
+    "honroStory": null
+  }
+}

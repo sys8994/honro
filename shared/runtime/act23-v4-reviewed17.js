@@ -101,5 +101,14 @@ const rig=q.hoistAttempt||{angle:0,hookLift:0,ropeTaut:false},rigX=p.x+190;c.beg
 const outcome=V.recordOutcome;V.recordOutcome=function(app,won){outcome(app,won);const b=app.engine?.b,h=app.profile.honroAct23V4History?.stages?.[17];if(won&&api.active(b)&&h)h.reviewedPhysical={revision:1,sourceRun:b.session,hoistSeparated:separated(b),hoistSeparation:clone(mem(b).hoistSeparation||null),hoistLiftAttemptObserved:clone(mem(b).hoistLiftAttemptObserved||null),witness16_heard:mem(b).witness16_heard===true,axisTurned:base(b).proof['17.wheel']?.rotationCount===1&&base(b).wheelAngle===Math.PI*2,wheel:{angle:base(b).wheelAngle||0,rotationCount:base(b).proof['17.wheel']?.rotationCount||0},locksClosed:base(b).proof['17.lock']?.pinSeated===true,loadTestPassed:base(b).proof['17.load-test']?.locksClosed===true&&base(b).proof['17.load-test']?.ropeTaut===true};};
 const complete=b=>separated(b)&&B.complete(b)&&api.done(b,'depart')&&!!mem(b).journal;
 P.register(17,{mapRevision:517,actors:{'석공':'17.mason','길찬':'17.gilchan'},author,prepare,allow,drive,before,eligibility,use,optional,draw,attach,objective:b=>base(b).proof['17.mesh']?id('OBJECTIVE.04'):separated(b)?id('OBJECTIVE.03'):base(b).proof['17.brace']?id('OBJECTIVE.02'):id('OBJECTIVE.01'),failure:b=>b.phase==='lost'||B.failure(b)?id('FAIL.01'):null,complete,present(b,out){if(!complete(b))return out;const r=api.row('EDGE.RUNTIME.STAGE17.PROTECT_LABEL');return{...out,completionText:r.text,checklist:[{id:r.id,text:r.text,done:true}],visibleChecklist:[{id:r.id,text:r.text,done:true}]};},state:b=>({reviewedWitness16Missing:!mem(b).witness16_heard})});
+// A destroyed hoist retains its authored frame and attached spirit until
+// separation. Ordinary dead residents remain non-interactable.
+const previousInteractionTarget=G.HonroObjectives.interactionTarget;
+G.HonroObjectives.interactionTarget=function(b,m){
+ if(api.active(b)&&m?.id==='17.hoist'&&m.target==='act2-hoist'&&!m.collected&&b.honroMarkers?.includes(m)){
+  const h=unit(b,'act2-hoist');if(h?.honroHoistSpiritAttached===true&&h.honroReleased!==true&&Number.isFinite(h.x)&&Number.isFinite(h.y))return h;
+ }
+ return previousInteractionTarget(b,m);
+};
 G.HonroAct23V4Reviewed17={memory:mem,allow,witnessed,elderObserved,separated,optional,complete,clearShot};
 })(globalThis);

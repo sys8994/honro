@@ -1,0 +1,13 @@
+/** Immutable natural saves, production Continue/select/interaction/defend inputs.
+ * DOM doubles; not full-stage or browser clearance evidence. */
+import assert from 'node:assert/strict';import vm from 'node:vm';import {readFile,mkdir,writeFile} from 'node:fs/promises';import {gunzipSync} from 'node:zlib';import {appHarness,plain} from './app-regression-helpers.mjs';
+const rows=[];
+for(const stage of [17,18]){
+ const file=`tests/fixtures/act2-gameplay/stage${stage}-${stage===17?'dead-hoist':'cast'}-404/terminal.json.gz`,saved=JSON.parse(gunzipSync(await readFile(file))),h=await appHarness({productionStory:true}),{g,C}=h;let now=0;g.performance={now:()=>now};vm.runInContext(await readFile('shared/runtime/interactions.js','utf8'),g);const a=h.load(saved.profile);a.continue();h.finish(a);assert(a.engine);const e=a.engine,b=e.b;assert.equal(b.honroStage,stage);
+ const tick=()=>{now+=1000/60;if(!a.dialogue){e.tick(C.STEP);if(!a.dialogue)a.missionTick(C.STEP);}g.HonroStory.tick(a,now);if(a.dialogue)h.finish(a);};
+ if(stage===17){const m=b.honroMarkers.find(m=>m.id==='17.hoist'),u=e.unit('act2-hoist');assert(u.dead&&u.hp===0&&u.honroHoistSpiritAttached);assert.equal(g.HonroAct2.current(b).id,'17.hoist');const candidates=[];
+  for(const hero of e.heroesAlive()){e.select(hero.id);const q=g.HonroInteractions.eligibility(a,m);candidates.push({id:hero.id,cls:hero.cls,ok:q.ok,reason:q.reason});}
+  const chosen=candidates.find(x=>x.ok);assert(chosen,JSON.stringify(candidates));e.select(chosen.id);const before={x:u.x,y:u.y,hp:u.hp,dead:u.dead};assert(g.HonroInteractions.use(a,m));assert(g.HonroAct23V4Reviewed17.separated(b));assert.equal(u.x,before.x);assert.equal(u.y,before.y);assert.equal(u.hp,0);assert(u.dead&&!u.honroHoistSpiritAttached);assert.notEqual(g.HonroAct2.current(b).id,'17.hoist');assert.equal(g.HonroObjectives.interactionTarget(b,m),undefined);rows.push({stage,passed:true,normalInteraction:true,candidates,framePreserved:true});
+ }else{const m=g.HonroAct23V4Stage18.memory(b);assert(b.cast?.refunded);assert.equal(m.liftDone,false);const before={round:b.round,cast:plain(b.cast),bell:plain(m.bell)};assert(a.canInput());a.defend();for(let n=0;n<1800&&!m.liftDone&&!a.done;n++)tick();assert(m.liftDone,JSON.stringify({bell:m.bell,phase:b.phase,cast:b.cast,actorBoundary:a.actorBoundary}));rows.push({stage,passed:true,before,after:{round:b.round,bell:plain(m.bell),liftDone:m.liftDone},normalDefendAndTicks:true});}
+}
+await mkdir('_local/reports/act2-retained-interactions',{recursive:true});await writeFile('_local/reports/act2-retained-interactions/result.json',JSON.stringify({passed:true,scope:'Natural-save App regression, not full-clear/browser proof',rows},null,2));console.log(JSON.stringify(rows));
