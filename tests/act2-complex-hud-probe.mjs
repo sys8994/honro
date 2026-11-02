@@ -1,8 +1,8 @@
 /** Bounded production HUD/selection and preview timing probe, not a playthrough. */
 import assert from 'node:assert/strict';import vm from 'node:vm';import{readFile,mkdir,writeFile}from'node:fs/promises';
-import{appHarness}from'./act2-complex-app-harness.mjs';import{auditQuarryEngine}from'./stage12-quarry-fullplay-helper.mjs';
+import{appHarness}from'./app-regression-helpers.mjs';import{auditQuarryEngine}from'./stage12-quarry-fullplay-helper.mjs';
 import{createPlayerOperations}from'../tools/act2-qa/player-operations.mjs';import{productionAimPreview}from'../tools/act2-qa/production-aim-preview.mjs';
-const id=18,h=await appHarness({productionStory:true,productionInputActions:true}),{g,C}=h;vm.runInContext(await readFile('shared/runtime/interactions.js','utf8'),g);
+const id=18,h=await appHarness({productionStory:true,productionInputActions:true}),{g,C}=h;// productionInputActions harness installs interactions exactly once.
 const p=h.profileThrough(id-1);p.settings.difficulty='normal';g.performance={now:()=>0};const app=h.load(p);app.launch(id);const e=app.engine,b=e.b,events=[],invalid=[];
 const preview=productionAimPreview({app,g,C,record:v=>events.push(v)});let ops;
 function render(engine,dt,selected,...rest){const u=engine.active;if(u&&engine.b.phase==='aim'&&!u.summoned&&!app.dialogue&&!app.scene.storyFrozen&&engine.canAct()&&selected&&!g.HonroStakeCrossing.skills(engine.b,u).includes(selected))invalid.push({frame:ops.frames,round:b.round,actor:u.id,selected,loadout:[...u.loadout]});return preview.render(engine,dt,selected,...rest);}

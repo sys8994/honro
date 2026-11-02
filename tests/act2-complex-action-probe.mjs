@@ -2,14 +2,15 @@
 import assert from 'node:assert/strict';
 import vm from 'node:vm';
 import {readFile,mkdir,writeFile} from 'node:fs/promises';
-import {appHarness,plain} from './act2-complex-app-harness.mjs';
+import {appHarness,plain} from './app-regression-helpers.mjs';
 import {auditQuarryEngine} from './stage12-quarry-fullplay-helper.mjs';
 import {createPlayerOperations} from '../tools/act2-qa/player-operations.mjs';
 import {detachedPlanner} from '../tools/act2-qa/pure-planning.mjs';
 import {productionAimPreview} from '../tools/act2-qa/production-aim-preview.mjs';
 const id=Number(process.argv[2]||18);assert([18,20].includes(id));
 const h=await appHarness({productionStory:true,productionInputActions:true}),{g,C}=h;
-vm.runInContext(await readFile('shared/runtime/interactions.js','utf8'),g);const profile=h.profileThrough(id-1);profile.settings.difficulty='normal';profile.settings.debugMode=false;
+// productionInputActions harness installs interactions exactly once.
+const profile=h.profileThrough(id-1);profile.settings.difficulty='normal';profile.settings.debugMode=false;
 g.performance={now:()=>0};const app=h.load(profile);app.launch(id);const e=app.engine,b=e.b,events=[];
 const preview=productionAimPreview({app,g,C,record:x=>events.push(x)}),ops=createPlayerOperations({app,g,C,render:preview.render,record:x=>events.push(x)}),audit=auditQuarryEngine(b,e,()=>({round:b.round,frame:ops.frames}));
 audit.production(()=>ops.ready());audit.guard();assert(app.canInput());const rngAtEntry={seed:b.seed,rng:b.rng};
