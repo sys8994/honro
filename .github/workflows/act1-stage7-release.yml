@@ -29,7 +29,7 @@ jobs:
           npm ci --prefix game
           node tests/stage7-art-candidate.mjs
           node tests/vector-compound-parts.mjs
-          python -m pip install numpy==2.3.5 Pillow==13.0.0 scipy==1.17.0
+          python -m pip install numpy==2.3.5 Pillow==13.0.0 scipy==1.17.0 svgpathtools==1.7.2
           python tests/vector-protected-metric.py
           python tests/vector-import-preserved.py
           # Fresh Stage71 evidence is inherited from verified candidate f775181.
