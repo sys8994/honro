@@ -1,0 +1,53 @@
+name: Check published Stage4 terrain
+on:
+  push:
+    branches: ['work/act1-stage4-public/**']
+permissions:
+  contents: read
+jobs:
+  public:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      HONRO_QA_URL: https://sys8994.github.io/honro/HONRO.html?release=stage4-continuous-v2
+      HONRO_CAPTURE_URL: https://sys8994.github.io/honro/HONRO.html?release=stage4-continuous-v2
+      HONRO_QA_OUT: _local/reports/stage4-public-qa
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Wait for the exact published files
+        run: |
+          python - <<'PY'
+          import pathlib,urllib.request,time,hashlib,json
+          root='https://sys8994.github.io/honro/';files=['HONRO.html','web/manifest.json'];expected={p:hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest() for p in files};deadline=time.monotonic()+600
+          while True:
+            actual={}
+            for p in files:
+              try:actual[p]=hashlib.sha256(urllib.request.urlopen(root+p+'?release=stage4-continuous-v2',timeout=30).read()).hexdigest()
+              except Exception as e:actual[p]=str(e)
+            if actual==expected:break
+            if time.monotonic()>deadline:raise RuntimeError({'expected':expected,'actual':actual})
+            time.sleep(10)
+          out=pathlib.Path('_local/reports/stage4-public-qa');out.mkdir(parents=True,exist_ok=True);(out/'published-hashes.json').write_text(json.dumps(actual,indent=2));print(actual)
+          PY
+      - name: Install pinned browser
+        run: |
+          python -m pip install 'playwright==1.58.0'
+          python -m playwright install --with-deps chromium
+      - name: Inspect the actual public deployment
+        run: |
+          set -euo pipefail
+          python tools/act1-vector-production/browser-stage4.py > "$HONRO_QA_OUT/stage4.log" 2>&1
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: public-stage4-${{ github.sha }}
+          path: _local/reports/stage4-public-qa/
+          retention-days: 7
+
+
