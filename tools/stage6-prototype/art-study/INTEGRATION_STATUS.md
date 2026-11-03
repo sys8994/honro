@@ -64,3 +64,6 @@ The 5-color east preview (run 41663936318) remained visually weak, and circular 
 
 ## Distinct eastern exposure study
 Independent review of run 41665596693 found the west exposure promising but its abrupt lower edge and plain east/below regions still unfinished. This candidate replaces the east radial fade with a separate east-facing, irregularly bounded source-traced exposure, 5-color Inkscape speckle 80, clipped to unchanged road collision. It is unapproved until source protected fidelity, ground contact, mobile, both edges and whole scene are reviewed.
+
+## Lower cliff connection study
+An independently generated lower rock exposure was traced and positioned beneath the reviewed promising west exposure. Both are clipped to the unchanged physical terrain. This is a visual-only study; source fidelity, natural connection, repeated stripes, runtime cost, save behavior and whole-scene/mobile review remain open. The east exposure in the parent candidate is likewise not yet visually approved.
