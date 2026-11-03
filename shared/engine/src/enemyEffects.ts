@@ -17,10 +17,11 @@ const live=(u?:Unit)=>!!u&&!u.dead&&u.hp>0&&!u.eaterCapturedBy;
 const hero=(u?:Unit)=>live(u)&&u!.side===0&&!u!.summoned&&!u!.enthrall;
 export function enemyEffectEligible(b:Battle,u:Unit,skill:string){return b.honroMonsterEffectsRevision===1&&u.side===1&&live(u)&&skillOK(skill)&&u.honroMonsterEffectSkill===skill;}
 export function releaseEnemySoftBind(u:Unit,grace=1){const bind=u.enemySoftBind;if(!bind)return;if(!u.acted&&bind.started)u.moveLeft=Math.min(u.maxMove*(u.bound>0?.45:1),u.moveLeft+bind.withheld);delete u.enemySoftBind;u.enemyControlGrace=Math.max(u.enemyControlGrace||0,grace);}
-export function clearEnemyEffects(b:Battle){for(const u of b.units){delete u.enemyEffectCast;delete u.enemyEffectRecovery;delete u.enemySoftBind;delete u.enemyPush;delete u.enemyControlGrace;}}
+export function clearEnemyEffects(b:Battle){for(const u of b.units){delete u.enemyEffectCast;delete u.enemyEffectRecovery;delete u.enemyEffectCooldown;delete u.enemySoftBind;delete u.enemyPush;delete u.enemyControlGrace;}}
 export function observeEnemyEffectWarning(e:Engine,ownerId:string,serial:number){const c=e.unit(ownerId)?.enemyEffectCast;if(!c||c.serial!==serial)return false;c.seen=true;offerEnemyEffectResponses(e);return true;}
 export function offerEnemyEffectResponses(e:Engine){if(!e.canAct())return;const u=e.active!;if(!hero(u)||u.stunnedRound===e.b.round||u.meleeFollow==='ready')return;for(const owner of e.b.units){const c=owner.enemyEffectCast;if(c?.seen){if(!c.offeredIds.includes(u.id))c.offeredIds.push(u.id);if(c.target===u.id)c.offered=true;}}}
 export function enemyEffectActionCompleted(e:Engine,u?:Unit){
+ if(u&&u.side===1&&!u.acted&&!u.enemyEffectCast&&(u.enemyEffectCooldown||0)>0)u.enemyEffectCooldown!--;
  if(!u||u.acted||!hero(u)||e.b.side!==0||u.stunnedRound===e.b.round||u.meleeFollow==='ready')return;
  for(const owner of e.b.units){const c=owner.enemyEffectCast;if(c?.seen&&c.offeredIds.includes(u.id)){if(!c.respondedIds.includes(u.id))c.respondedIds.push(u.id);if(c.target===u.id)c.responded=true;}}
  if(u.enemySoftBind)releaseEnemySoftBind(u);else if(u.enemyControlGrace)u.enemyControlGrace--;
@@ -30,6 +31,7 @@ export function prepareEnemyEffect(e:Engine,u:Unit,skill:string,target:Unit,angl
  const b=e.b,hit={x:target.x,y:target.y-target.h*.45};
  if(!effectLineClear(e,u,hit))return false;
  u.enemyEffectCast={version:1,serial:b.nextId++,skill:skill as EnemyEffectSkill,target:target.id,origin:{x:u.x,y:u.y},angle,power,impact:{x:hit.x,y:hit.y},radius:e.effective(SKILLS[skill],u).radius,direction:target.x>=u.x?1:-1,createdTeamEnd:b.teamEnds[0],seen:false,offered:false,responded:false,wind:b.wind,sceneVersion:b.sceneVersion,offeredIds:[],respondedIds:[]};
+ u.enemyEffectCooldown=2;
  u.intent=SKILLS[skill].name+' · 예고';e.message(`${u.name} · ${u.intent}`);e.finishAction();return true;
 }
 function effectLineClear(e:Engine,u:Unit,to:Vec){
@@ -120,6 +122,7 @@ export function validateEnemyEffects(b:Battle){
  if(b.honroMonsterEffectsRevision!==1){delete b.honroMonsterEffectsRevision;clearEnemyEffects(b);for(const p of b.projectiles){delete p.enemyEffectAttack;delete p.enemyEffectWind;}return;}
  let repaired=false;
  for(const u of b.units){
+  if(u.enemyEffectCooldown!==undefined&&(!Number.isInteger(u.enemyEffectCooldown)||!n(u.enemyEffectCooldown,0,2))){delete u.enemyEffectCooldown;repaired=true;}
   const recovery=u.enemyEffectRecovery;if(recovery&&(!id(recovery.attackId)||!Number.isSafeInteger(recovery.serial)||!n(recovery.serial))){delete u.enemyEffectRecovery;repaired=true;}
   if(u.honroMonsterEffectSkill!==undefined&&!skillOK(u.honroMonsterEffectSkill)){delete u.honroMonsterEffectSkill;repaired=true;}
   const c=u.enemyEffectCast;if(c&&!(c.version===1&&Number.isSafeInteger(c.serial)&&n(c.serial)&&skillOK(c.skill)&&u.honroMonsterEffectSkill===c.skill&&id(c.target)&&vec(c.origin)&&vec(c.impact)&&n(c.angle,-180,360)&&n(c.power,0,1)&&n(c.radius,0,300)&&[-1,1].includes(c.direction)&&n(c.createdTeamEnd)&&n(c.wind,-1000,1000)&&n(c.sceneVersion)&&Array.isArray(c.offeredIds)&&c.offeredIds.length<=80&&c.offeredIds.every(id)&&Array.isArray(c.respondedIds)&&c.respondedIds.length<=80&&c.respondedIds.every(v=>id(v)&&c.offeredIds.includes(v))&&[c.seen,c.offered,c.responded].every(x=>typeof x==='boolean')&&(!c.responded||c.offered)&&(!c.offered||c.seen))){delete u.enemyEffectCast;repaired=true;}

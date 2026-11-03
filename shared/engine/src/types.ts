@@ -223,6 +223,7 @@ export interface Unit {
     /** Enemy aim telegraph: the chosen shot is shown for a moment, then fired unchanged. */
     honroMonsterEffectSkill?: EnemyEffectSkill;
     enemyEffectCast?: EnemyEffectCast;
+    enemyEffectCooldown?: number;
     enemyEffectRecovery?: {attackId:string;serial:number};
     enemySoftBind?: EnemySoftBind;
     enemyPush?: EnemyPush;

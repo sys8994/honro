@@ -1,4 +1,4 @@
-import {interruptEnemyEffect,validateEnemyEffects,observeEnemyEffectWarning,offerEnemyEffectResponses,enemyEffectActionCompleted,prepareEnemyEffect,resolveEnemyEffect,enemyEffectDamage,enemyEffectMovementBudget,tickEnemyEffects,clearEnemyEffects,releaseEnemySoftBind} from './enemyEffects';
+import {enemyEffectEligible,interruptEnemyEffect,validateEnemyEffects,observeEnemyEffectWarning,offerEnemyEffectResponses,enemyEffectActionCompleted,prepareEnemyEffect,resolveEnemyEffect,enemyEffectDamage,enemyEffectMovementBudget,tickEnemyEffects,clearEnemyEffects,releaseEnemySoftBind} from './enemyEffects';
 import {wreckDamage,damageNearest,damageContact,damageAim,damageCritical} from './wreckDamage';
 import {gearCapture,gearHas,gearBody,gearCanPay,gearPay,gearTurn,gearRegen,gearGuard,gearImpulse,gearAlly,gearState,gearCycle,gearFrostSlow,gearStepMove,gearEarthMove,gearWallContact,gearPreservesWood,gearSpreadWeak,gearTravelSpent,gearReturn,gearLandingRetreat,gearPass} from './equipmentCombat';
 import {equipmentActor,equipmentParam,equipmentCast,equipmentManaCost,equipmentPrimary,equipmentSoulVector} from './equipment';
@@ -2402,6 +2402,8 @@ export class Engine {
         }
         // All decisions below use the position reached by walking/jumping, not a planned position.
         target=targetFor(this,u)||target;
+        const pilot=u.honroMonsterEffectSkill;
+        if(pilot&&enemyEffectEligible(b,u,pilot)&&!(u.enemyEffectCooldown||0)&&prepareEnemyEffect(this,u,pilot,target,target.x>=u.x?35:145,.5))return;
         if(beginKeeperRitual(this,u,target))return;
         if(beastKind(u)){
             const sk=SKILLS[u.loadout[0]];
@@ -2420,7 +2422,7 @@ export class Engine {
             for(const e of this.actors(1).filter(v=>!v.summoned&&!v.honroObjectiveTarget&&Math.hypot(v.x-u.x,v.y-u.y)<700)){e.shield=Math.max(e.shield,Math.round(e.maxHp*.16));e.shieldUntil=b.teamEnds[0]+1;}
             this.fx('ring',u.x,u.y-u.h*.5,'#beccea',75);this.message(`${u.name} · 방호 부여`);this.finishAction();return;
         }
-        const available=u.loadout.map(id=>SKILLS[id]).filter(sk=>sk&&!sk.passive&&this.manaCost(sk,u)<=u.focus);
+        const available=u.loadout.map(id=>SKILLS[id]).filter(sk=>sk&&!sk.passive&&this.manaCost(sk,u)<=u.focus&&!enemyEffectEligible(b,u,sk.id));
         if(!available.length){u.shield=Math.max(u.shield,18);u.shieldUntil=b.teamEnds[0]+1;this.finishAction();return;}
         const betrayal=target.side===u.side&&target.id!==u.id&&(target.betrayalUntil||0)>=b.round;
         const betrayalSkill=available.find(v=>v.radius<70)||available[0];
