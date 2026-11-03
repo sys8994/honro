@@ -1,8 +1,8 @@
 (function(G){'use strict';
 // A fresh authored battle explicitly opts in. No Continue upgrades, global
 // activation/range/cap changes, new victory conditions or growth changes.
-const C=G.HONRO_CORE,E=G.HonroEncounters,W=G.HonroAllies,stages=new Set([8,9,11,12,16,17,18,21,23,24,30]);
-const active=b=>!!b&&!b.honroCustom&&stages.has(b.honroStage)&&b.honroEncounterDensityRevision===1;
+const C=G.HONRO_CORE,E=G.HonroEncounters,W=G.HonroAllies,stages=new Set([6,8,9,11,12,16,17,18,21,23,24,30]);
+const active=b=>!!b&&!b.honroCustom&&stages.has(b.honroStage)&&b.honroEncounterDensityRevision===1&&(b.honroStage!==6||b.honroStage6PursuitRevision===1);
 const alive=u=>u&&!u.dead&&u.hp>0,hero=u=>alive(u)&&u.side===0&&!u.summoned&&!u.enthrall;
 const memory=b=>(b.honroState.encounterDensity??={version:1,alert:{},warnings:{},entries:{}});
 const serial=b=>b.honroState.actorTurnSerial||0;
@@ -60,7 +60,7 @@ function warnings(b){const hs=b.honroState,m=memory(b),all={...m.warnings};
 }
 function observeWarnings(b){const m=memory(b),hs=b.honroState;m.existingWarnings??={};
  // Stage9 keeps its original Act1 spawn/tuning path and only borrows this gate.
- if(b.honroStage===9)for(const id of hs.pendingEvents||[]){const ev=b.honroEvents.find(ev=>ev.id===id);if(ev?.honroTacticalWarning===1&&!hs.flags['event:'+id])m.existingWarnings[id]??={serial:serial(b),round:b.round,offered:{}};}
+ if(b.honroStage===9||b.honroStage===6&&b.honroStage6PursuitRevision===1)for(const id of hs.pendingEvents||[]){const ev=b.honroEvents.find(ev=>ev.id===id);if(ev?.honroTacticalWarning===1&&(b.honroStage!==6||id==='pursuit')&&!hs.flags['event:'+id])m.existingWarnings[id]??={serial:serial(b),round:b.round,offered:{}};}
  if(b.honroStage===11){for(const id of hs.pendingEvents||[]){const ev=b.honroEvents.find(ev=>ev.id===id);if(ev?.honroStage11Response===1&&!hs.flags['event:'+id])m.existingWarnings[id]??={serial:serial(b),round:b.round,offered:{}};}
  for(const [index,w]of Object.entries(hs.ravineComposition?.echoWarnings||{}))m.existingWarnings['hold-knots-'+(Number(index)*3)]=w;}
 }
@@ -83,7 +83,7 @@ function prepareOpportunity(app){const e=app.engine,b=e.b,a=e.honroDensityAction
 // consume every slot before an announced wave's first turn. Reserve at most
 // one of the existing slots, never an extra action; retain two local defenders.
 function reserveQueue(e){const b=e.b;if(!active(b)||b.honroDensityQueueReserve!==1||b.enemyLimit<3)return b.queue;
- const candidates=e.combatEnemies().filter(u=>u.stunnedRound!==b.round),waiting=u=>!!u&&Number.isInteger(u.honroDensityBornRound)&&u.lastAct<u.honroDensityBornRound;
+ const candidates=e.combatEnemies().filter(u=>u.stunnedRound!==b.round&&(b.honroStage!==6||u.honroSpawnSource==='pursuit')),waiting=u=>!!u&&(b.honroStage!==6||u.honroSpawnSource==='pursuit')&&Number.isInteger(u.honroDensityBornRound)&&u.lastAct<u.honroDensityBornRound;
  if(b.queue.some(id=>waiting(e.unit(id))))return b.queue;
  const heroes=e.heroesAlive(),distance=u=>Math.min(...heroes.map(h=>Math.hypot(h.x-u.x,h.y-u.y)));
  const displaced=e.enemyQueuePriority?.(e.unit(b.queue.at(-1))),relevant=u=>{const p=e.enemyQueuePriority?.(u);return !!p&&p.tier>0&&(!displaced||p.tier>displaced.tier||p.tier===displaced.tier&&p.band<=displaced.band+1);};
