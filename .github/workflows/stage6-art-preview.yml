@@ -25,6 +25,8 @@ jobs:
           npm ci
           npm ci --prefix game
           node tests/stage6-art-preview.mjs
+          node tests/stage6-trace-equivalence.mjs
+          node tests/stage6-underlay-protected.mjs
           node tests/stage6-render-coverage-preview.mjs
           # Direct builder is used solely for this labelled preview, not release evidence.
           HONRO_STAGE6_ART_PREVIEW=1 node workshop/build.mjs

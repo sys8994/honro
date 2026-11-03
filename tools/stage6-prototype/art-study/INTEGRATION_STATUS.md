@@ -112,3 +112,6 @@ The same-scale extension (run 41688439940) removed the small-stone mismatch but 
 
 ## Edge taper width comparison
 Independent review of run 41690551160 found that the boundary taper also obscured much of the lower formation. This comparison shifts the radial center above the source and narrows its outer taper, preserving zero alpha at the side and bottom boundaries while retaining more interior color. The local native Canvas protected-band diagnostic remains 0 changed pixels; source fidelity, entire camera range, visual continuity and browser correctness remain unapproved.
+
+## SVG import equivalence evidence
+The original west and east five-color speckle-4 SVG traces and their imported native vectors were rendered in native Canvas at their 1x source sizes. Both matched in every RGBA channel (1919×820 and 1942×809). `tests/stage6-trace-equivalence.mjs` reproduces this; the nonproduction preview workflow also executes it and the underlay diagnostic. This is SVG-to-native equivalence only, not proof that the generated PNG or final visual composition is approved.
