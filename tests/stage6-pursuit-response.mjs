@@ -13,7 +13,7 @@ function paintNotice(){frames=[];g.HonroObjectives.refresh(app);for(let i=0;i<2;
 
 let now=g.performance.now();g.performance={now:()=>now};
 const ops={frame(){now+=C.STEP*1000;if(app.dialogue)g.HonroStory.next(app);app.scene.render=()=>{};app.frame(now);if(app.lastError)throw Error(app.lastError);},ready(limit=30000){for(let i=0;i<limit&&!app.canInput()&&!['won','lost'].includes(b.phase);i++)this.frame();return app.canInput();},defend(){if(!app.canInput())return false;const u=e.active,before=[b.phase,b.side,b.round,u.id,u.acted];app.defend();return before.some((v,i)=>v!==[b.phase,b.side,b.round,e.active?.id,u.acted][i]);}};
-assert(ops.ready());const freshSnapshot=structuredClone(b);assert.equal(b.honroStage6PursuitRevision,1);assert.equal(b.honroEvents.find(x=>x.id==='pursuit').action.n,2);
+assert(ops.ready());const freshSnapshot=structuredClone(b);assert.equal(b.honroStage6PursuitRevision,1);assert.equal(b.honroEvents.find(x=>x.id==='pursuit').action.n,2);assert.equal(b.honroEvents.find(x=>x.id==='bridge-boars').action.n,2,'front wave leaves room for existing rear pressure');assert.equal(g.HonroEncounters.populationCap(b),22,'no population cap increase');
 // Explicit fixture makes capacity available; it does not claim natural kills.
 for(const u of e.alive(1).slice(0,8)){u.hp=0;u.dead=true;}
 for(const ev of b.honroEvents)if(ev.id!=='pursuit')b.honroState.flags['event:'+ev.id]=true;
