@@ -97,3 +97,6 @@ The 29th preview still had a visible boundary between west exposure and lower te
 
 ## Pre-intersected underlay diagnostic
 The initial runtime clip candidate changed 818 color channels by up to 9/255 within a 35,100-pixel native-Canvas road band compared with the baseline. Removing the underlay artwork but retaining the empty transform group produced exactly the same differences; underlay versus empty group changed zero channels in that band. Inkscape source intersection was then used to pre-cut the underlay; the same group-vs-removed differences persisted. This diagnostic does NOT prove browser equality, does NOT relax the prior protected-region failure, and does NOT grant visual approval. Exact mask path and pre-intersected source are preserved.
+
+## Road-following lower mask
+The runtime-mask preview (run 41682653657) exposed a horizontal edge at the constant-height portion of its lower mask. This follow-up replaces the constant section with a road-following pre-intersection, retaining a nominal 81 world-unit offset from the physical road. The native Canvas diagnostic still reports 818 changed channels versus removing the entire group, but zero differences between the underlay and an empty group in the road band; this is not a browser or aesthetic pass.
