@@ -70,3 +70,6 @@ An independently generated lower rock exposure was traced and positioned beneath
 
 ## Five-color full-domain underlay study
 The lower overlay (run 41667721221) failed independent review as repeated narrow waves and a visible seam. This study removes that overlay and uses the earlier denser full-domain source with five-color trace instead of the rejected three-color trace, keeping independent west/east exposures. The input remains Lanczos-downsampled and unprotected source error, surface contrast, visual repetition, render performance and save integrity remain open.
+
+## Connected full-domain rock bed study
+The previous 5-color underlay (run 41668797169) failed visual review as camouflage. A new full-bleed, nonrepeating connected angular stone source was traced after preserving both original and half-resolution Lanczos trace input; Inkscape 5 colors/speckle 80 passed the existing native importer. The candidate retains the separately authored west/east exposures. Full scene and mobile, hard cuts, source fidelity, path cost and save behavior remain unapproved.
