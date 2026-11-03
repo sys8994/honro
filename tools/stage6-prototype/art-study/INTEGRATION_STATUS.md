@@ -40,3 +40,6 @@ The prior layered preview (run 41651761883) failed visual review due to an artif
 
 ## Full-domain natural-rock study
 The slope-matched candidate (run 41653359581) improved west detail but revealed an unacceptable rectangular boundary at overview and camera-domain views. This follow-up uses a new edge-to-edge source based on that rock language, Inkscape 1.4 three-color trace, and a uniform scale covering the entire camera domain. No terrain collision changes. Browser appearance, source color fidelity and runtime costs are not yet approved.
+
+## Feathered local formation study
+The full-domain source alone (run 41654827536) passed continuity but failed visual review because rocks were too large and the walking slope lacked detail. This study overlays the earlier slope-matched traced paths, fading each color through native radial alpha gradients into the full-domain source. It changes neither collision nor save code. Pixel continuity, performance, path/gradient limits and independent visual acceptance require fresh testing.
