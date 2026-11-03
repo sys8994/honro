@@ -2,14 +2,14 @@
 import base64,json,os,pathlib
 from playwright.sync_api import sync_playwright
 from browser_support import ROOT,launch
-OUT=ROOT/'_local/reports/monster-natural';F=ROOT/'tests/fixtures/monster-natural'
+ROOTOUT=ROOT/'_local/reports/monster-natural';PREFLIGHT=os.environ.get('HONRO_NATURAL_PREFLIGHT')=='1';OUT=ROOTOUT/'preflight' if PREFLIGHT else ROOTOUT;OUT.mkdir(parents=True,exist_ok=True);F=ROOT/'tests/fixtures/monster-natural'
 BASE=os.environ.get('HONRO_MONSTER_BASE_URL','http://127.0.0.1:8871')
-manifest=json.loads((OUT/'controller-manifest.json').read_text());request=json.loads((ROOT/'tools/monster-a1-qa/request.json').read_text())
+manifest=json.loads((ROOTOUT/'controller-manifest.json').read_text());request=json.loads((ROOT/'tools/monster-a1-qa/request.json').read_text())
 SCHEDULER=r'''(()=>{const request=window.requestAnimationFrame.bind(window),cancel=window.cancelAnimationFrame.bind(window),pending=new Set();let manual=false;window.requestAnimationFrame=fn=>{if(manual)return 0;let id;id=request(t=>{pending.delete(id);fn(t);});pending.add(id);return id;};window.cancelAnimationFrame=id=>{pending.delete(id);cancel(id);};window.qaStopScheduling=()=>{manual=true;for(const id of pending)cancel(id);pending.clear();};})()'''
 rows=[];branch_errors=[]
 with sync_playwright() as pw:
  browser=launch(pw)
- for stage in [5,8]:
+ for stage in ([5] if PREFLIGHT else [5,8]):
   dest=OUT/f'stage{stage}';dest.mkdir(exist_ok=True);context=browser.new_context(viewport={'width':1440,'height':900},accept_downloads=True)
   # Deterministic manual App.frame replaces scheduling only, not frame/render logic.
   context.add_init_script(SCHEDULER)
@@ -23,10 +23,10 @@ with sync_playwright() as pw:
   failure=None
   try:
    p.goto(BASE+'/HONRO.html');p.wait_for_function('!!window.HonroApp',timeout=45000)
-   p.evaluate('()=>{qaStopScheduling();}');p.add_script_tag(path=str(OUT/'controller.js'))
+   p.evaluate('()=>{qaStopScheduling();}');p.add_script_tag(path=str(ROOTOUT/'controller.js'))
    entry=json.loads((F/f'stage{stage}-entry.json').read_text())
    if stage==5:entry['commands']=json.loads((F/'stage5-ui-commands.json').read_text())['commands']
-   meta={**manifest,'stage':stage,'runtimeSha256':request['expected']['runtimeSha256'],'difficulty':'story','seed':1228 if stage==8 else 'production default'}
+   meta={**manifest,'stage':stage,'preflight':PREFLIGHT,'runtimeSha256':request['expected']['runtimeSha256'],'difficulty':'story','seed':1228 if stage==8 else 'production default'}
    if stage==8:p.evaluate('()=>{let state=1228>>>0;Math.random=()=>{state+=0x6D2B79F5;let t=state;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return((t^t>>>14)>>>0)/4294967296;};}')
    p.evaluate('async q=>{await qaInstall(q.entry,q.meta);}',{'entry':entry,'meta':meta})
    p.wait_for_function('(stage)=>HonroApp.engine?.b.honroStage===stage',arg=stage)
@@ -48,14 +48,14 @@ with sync_playwright() as pw:
   context.close()
   # Reuse the genuine production export, with normal file import and pointer Continue.
   # No checkpoint means the pilot was not naturally offered: report that gap, never invent one.
-  if result_path.exists() and result['checkpoints']:
+  if not PREFLIGHT and result_path.exists() and result['checkpoints']:
    checkpoint=result['checkpoints'][0];savepath=dest/(checkpoint['label']+'.json')
    for mobile,kind in [(False,'accept'),(False,'dodge'),(False,'interrupt'),(True,'dodge')]:
     branch=f"{'mobile' if mobile else 'desktop'}-{kind}"
     ctx=browser.new_context(viewport={'width':390,'height':844} if mobile else {'width':1440,'height':900},is_mobile=mobile,has_touch=mobile)
     ctx.add_init_script(SCHEDULER);bp=ctx.new_page()
     try:
-     bp.goto(BASE+'/HONRO.html');bp.wait_for_function('!!window.HonroApp');bp.evaluate('()=>{qaStopScheduling();}');bp.add_script_tag(path=str(OUT/'controller.js'))
+     bp.goto(BASE+'/HONRO.html');bp.wait_for_function('!!window.HonroApp');bp.evaluate('()=>{qaStopScheduling();}');bp.add_script_tag(path=str(ROOTOUT/'controller.js'))
      bp.evaluate('q=>{qaAttach(q.entry,q.meta);}',{'entry':entry,'meta':meta})
      bp.locator('#file-import').set_input_files(str(savepath));bp.wait_for_function('HonroApp.screen==="title"')
      button=bp.locator('[data-action="continue"]').first
@@ -76,4 +76,9 @@ with sync_playwright() as pw:
  browser.close()
 (OUT/'summary.json').write_text(json.dumps({'scope':manifest['scope'],'rows':rows,'branchErrors':branch_errors},ensure_ascii=False,indent=2))
 assert all(not r['failure'] and not r['pageErrors'] for r in rows) and not branch_errors,(rows,branch_errors)
+if PREFLIGHT:
+ result=json.loads((OUT/'stage5/natural-result.json').read_text());trace=json.loads((OUT/'stage5/trace.json').read_text())
+ assert result['result']['index']==2 and len([a for a in trace['actions'] if a['op']=='intent'])==2,'Controller did not advance beyond evidence sink to second command'
+ assert (OUT/'stage5/round-1.canvas.png').exists() and result['preflightExport']['honroBattle'],'Missing real canvas/persisted checkpoint'
+ print('PASS REAL BROWSER Stage5 two normal commands, checkpoint export and canvas; Stage8 intentionally not part of startup preflight',flush=True)
 print(json.dumps(rows,ensure_ascii=False))

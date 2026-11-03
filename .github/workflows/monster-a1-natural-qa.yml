@@ -39,7 +39,9 @@ jobs:
           python -m http.server 8871 --bind 127.0.0.1 > _local/reports/monster-natural/server.log 2>&1 &
           server=$!; trap 'kill "$server" 2>/dev/null || true' EXIT
           sleep 2
-          HONRO_MONSTER_BASE_URL="$(cat _local/reports/monster-a1-visual-qa/base-url.txt)" timeout 1500 python tests/monster-natural-browser.py
+          export HONRO_MONSTER_BASE_URL="$(cat _local/reports/monster-a1-visual-qa/base-url.txt)"
+          timeout 180 env HONRO_NATURAL_PREFLIGHT=1 python tests/monster-natural-browser.py
+          timeout 1500 python tests/monster-natural-browser.py
           git diff --exit-code -- HONRO.html HONRO_WORKSHOP.html index.html web tools/stage31/production-package.json
       - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
         if: always()
