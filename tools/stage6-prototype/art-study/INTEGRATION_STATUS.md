@@ -67,3 +67,6 @@ Independent review of run 41665596693 found the west exposure promising but its 
 
 ## Lower cliff connection study
 An independently generated lower rock exposure was traced and positioned beneath the reviewed promising west exposure. Both are clipped to the unchanged physical terrain. This is a visual-only study; source fidelity, natural connection, repeated stripes, runtime cost, save behavior and whole-scene/mobile review remain open. The east exposure in the parent candidate is likewise not yet visually approved.
+
+## Five-color full-domain underlay study
+The lower overlay (run 41667721221) failed independent review as repeated narrow waves and a visible seam. This study removes that overlay and uses the earlier denser full-domain source with five-color trace instead of the rejected three-color trace, keeping independent west/east exposures. The input remains Lanczos-downsampled and unprotected source error, surface contrast, visual repetition, render performance and save integrity remain open.
