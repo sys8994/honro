@@ -11,5 +11,6 @@ with tempfile.TemporaryDirectory() as d:
  # Important small feature: low global mean cannot override a protected detail.
  im=Image.new('RGBA',(100,100),'white');ImageDraw.Draw(im).rectangle((40,40,42,42),fill='black');im.save(a);Image.new('RGBA',(100,100),'white').save(b)
  r=o.compare(a,b,1,{'protectedRects':[[35,35,15,15]],'sourcePalette':[[0,0,0],[255,255,255]]});assert r['rgbMAE255']<2 and not r['pass']
+ assert o.path_parts({'tag':'g','children':[{'tag':'path','dParts':['M0 0Z','M1 1Z']},{'tag':'path','d':'M2 2Z'}]})==['M0 0Z','M1 1Z','M2 2Z']
  svg=Path(d)/'counts.svg';svg.write_text('<svg><path d="M0 0l1 0 1 0 1 0z"/></svg>');r=o.stats(svg);assert r['segments']==4 and r['commands']==5
  print('PASS: identity, edge offset, small protected feature failure, implicit path command accounting')

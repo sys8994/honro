@@ -29,6 +29,16 @@ def stats(path):
     subpaths=sum(len(re.findall('[Mm]',d)) for d in ds)
     return {'sourceBytes':path.stat().st_size,'paths':len(ds),'commands':segments+subpaths,'segments':segments,'endpointNodesUpperBound':segments+subpaths,'explicitCommandLetters':sum(len(re.findall('[MmZzLlHhVvCcSsQqTtAa]',d)) for d in ds),'subpaths':subpaths,'pathChars':sum(map(len,ds)),'maxPathChars':max(map(len,ds),default=0)}
 
+def path_parts(node):
+    """Collect actual validator-sized path chunks, including compound dParts."""
+    out=[]
+    if node.get('tag')=='path':
+        if 'd' in node: out.append(node['d'])
+        elif 'dParts' in node: out.extend(node['dParts'])
+        else: raise ValueError('Compiled path lacks d or dParts')
+    for child in node.get('children',[]): out.extend(path_parts(child))
+    return out
+
 def edge(mask): return mask ^ binary_erosion(mask)
 def distance(a,b,region=None):
     ea,eb=edge(a),edge(b)
@@ -118,11 +128,7 @@ def main():
         try:
             asset=importer.compile_svg(path.read_text(),asset_config)
             row['budgetPass']=True;row['nodes']=asset['params']['nodeCount']
-            ds=[]
-            def walk(n):
-                if n['tag']=='path': ds.append(n['d'])
-                for c in n.get('children',[]):walk(c)
-            walk(asset['vector']['root']);row['normalizedMaxPathChars']=max(map(len,ds),default=0);row['normalizedPaths']=len(ds)
+            ds=path_parts(asset['vector']['root']);row['normalizedMaxPathChars']=max(map(len,ds),default=0);row['normalizedPaths']=len(ds)
             path.with_suffix('.json').write_text(json.dumps(asset,separators=(',',':')))
         except Exception as exc: row['budgetPass']=False;row['diagnostic']=str(exc)
         row['importSeconds']=time.monotonic()-start
