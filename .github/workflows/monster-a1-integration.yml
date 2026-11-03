@@ -34,6 +34,7 @@ jobs:
           node tests/monster-effects-mechanics.mjs | tee "$OUT/native-mechanics.log"
           node tests/monster-effects-app.mjs | tee "$OUT/native-app.log"
           node tests/monster-signals.mjs | tee "$OUT/native-signals.log"
+          node tests/monster-effects-browser-harness.mjs | tee "$OUT/browser-harness-preflight.log"
           python tools/act4-ci/test_precise_aim.py
           python tools/act4-ci/test_stage31_survival.py
       - name: Retain published graphs

@@ -28,9 +28,16 @@ with sync_playwright() as pw, (nullcontext(os.environ['HONRO_MONSTER_BASE_URL'])
  for mobile in [False,True]:
   context=browser.new_context(viewport={'width':390,'height':844} if mobile else {'width':1440,'height':900},is_mobile=mobile,has_touch=mobile,accept_downloads=True)
   p=context.new_page();errors=[];p.on('pageerror',lambda error:errors.append(str(error)))
-  p.goto(url+'/HONRO.html');p.wait_for_function('window.HonroApp',timeout=45000)
-  p.evaluate("window.monsterCanonical=value=>JSON.stringify(value,(_key,v)=>v&&typeof v==='object'&&!Array.isArray(v)?Object.fromEntries(Object.entries(v).sort(([a],[b])=>a.localeCompare(b))):v)")
-  p.evaluate("window.monsterPaint=()=>{const a=HonroApp,paused=!!a.dialogue||!!HonroStory.turnPaused(a,performance.now())||a.modal.classList.contains('open')||!!a.done;a.renderBattleFrame(a.engine,0,0,paused);return paused;}")
+  try:
+   p.goto(url+'/HONRO.html');p.wait_for_function('window.HonroApp',timeout=45000)
+   p.evaluate("()=>{window.monsterCanonical=value=>JSON.stringify(value,(_key,v)=>v&&typeof v==='object'&&!Array.isArray(v)?Object.fromEntries(Object.entries(v).sort(([a],[b])=>a.localeCompare(b))):v);}")
+   p.evaluate("()=>{window.monsterPaint=()=>{const a=HonroApp,paused=!!a.dialogue||!!HonroStory.turnPaused(a,performance.now())||a.modal.classList.contains('open')||!!a.done;a.renderBattleFrame(a.engine,0,0,paused);return paused;};}")
+  except Exception as error:
+   startup={'error':str(error),'pageErrors':errors}
+   try:
+    startup['state']=p.evaluate("()=>({url:location.href,ready:!!window.HonroApp,screen:window.HonroApp?.screen,engine:!!window.HonroApp?.engine,scene:!!window.HonroApp?.scene})");p.screenshot(path=str(OUT/('mobile-startup-failure.png' if mobile else 'desktop-startup-failure.png')))
+   except Exception as capture_error:startup['captureError']=str(capture_error)
+   (OUT/('mobile-startup-failure.json' if mobile else 'desktop-startup-failure.json')).write_text(json.dumps(startup,ensure_ascii=False,indent=2));raise
   for stage,offset,kind in [(5,-160,'hit'),(5,-160,'dodge'),(8,-100,'hit')]:
    name=f"{'mobile' if mobile else 'desktop'}-{stage}-{kind}"
    try:
