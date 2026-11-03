@@ -1,4 +1,4 @@
-import {monsterA2Eligible,markedMonsterTarget} from './monsterA2';
+import {monsterA2Eligible,markedMonsterTarget,monsterSeerHoldsFormation} from './monsterA2';
 /** Bounded tactical movement. Every candidate is tested with the same locomotion/contact code
  * as a real unit. Planning cannot damage, teleport, change RNG, or mutate the live roster. */
 import {beastKind,beastReach,beastContact} from './beastMelee';
@@ -517,6 +517,7 @@ export function* planEnemyLuresSteps(e:Engine):Generator<void,boolean,unknown>{
 export function planEnemyMove(e:Engine,u:Unit,target:Unit){return finishPlanning(planEnemyMoveSteps(e,u,target));}
 export function* planEnemyMoveSteps(e:Engine,u:Unit,target:Unit,attackFailed=false):Generator<void,AIMovePlan|undefined,unknown>{
  const lure=lureStakeFor(e,u);if(lure)return yield* planLuredMove(e,u,target,lure);
+ if(monsterSeerHoldsFormation(e,u))return;
  if(flyingEnemy(u))return yield* planFlight(e,u,target,attackFailed);
  if(u.fixed||u.dead||u.moveLeft<35||!e.grounded(u))return;
  const budget=Math.min(u.moveLeft,610),start={x:u.x,y:u.y},poses=candidates(e,u,target);screenBudget=160;

@@ -16,6 +16,13 @@ export interface MonsterA2Warning {
 const live=(u?:Unit)=>!!u&&!u.dead&&u.hp>0&&!u.eaterCapturedBy;
 const hero=(u?:Unit)=>live(u)&&equipmentActor(u)&&!u!.honroObjectiveTarget;
 export function monsterA2Eligible(b:Battle,u?:Unit){return b.honroMonsterCombatRevision===2&&live(u)&&u!.side===1&&!u!.enthrall&&(u!.honroMonsterA2Kind==='seer'||u!.honroMonsterA2Kind==='growth'&&!!u!.honroMonsterGrowthGeometry);}
+/** A grounded support caster preserves a viable formation instead of melee-chasing
+ * off its platform. No authored anchor, movement refund, or altered shot rules. */
+export function monsterSeerHoldsFormation(e:Engine,u:Unit){
+ if(!monsterA2Eligible(e.b,u)||u.honroMonsterA2Kind!=='seer'||!e.grounded(u))return false;
+ const ally=e.unit(u.honroMonsterMarkAlly||'');
+ return !!(live(ally)&&ally!.side===1&&!ally!.enthrall&&ally!.loadout.length===1&&ally!.loadout[0]==='LA01'&&Math.hypot(ally!.x-u.x,ally!.y-u.y)<=650&&clearLine(e.b,center(u),center(ally!)));
+}
 export function monsterPose(u:Unit):MonsterPose{return u.monsterA2Animation?.pose||(u.monsterA2Warning?.kind==='growthStrike'?'prepare':(u.monsterA2Cooldown||0)>0&&!u.monsterA2Warning?'recover':'idle');}
 function capsulePolygon(a:Vec,b:Vec,r:number){const angle=Math.atan2(b.y-a.y,b.x-a.x),points:Vec[]=[];for(let i=0;i<=6;i++){const q=angle+Math.PI/2+Math.PI*i/6;points.push({x:a.x+Math.cos(q)*r,y:a.y+Math.sin(q)*r});}for(let i=0;i<=6;i++){const q=angle-Math.PI/2+Math.PI*i/6;points.push({x:b.x+Math.cos(q)*r,y:b.y+Math.sin(q)*r});}return points;}
 const geometryCache=new WeakMap<Unit,{key:string;table:GrowthGeometry;shape:ReturnType<typeof makeMonsterShape>}>();
