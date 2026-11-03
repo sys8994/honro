@@ -1,3 +1,4 @@
+import {applyStage6ReviewedPursuit} from '../tools/stage6-prototype/reviewed-pursuit.mjs';
 import {applyStage6ArtPreview} from '../tools/stage6-prototype/art-preview.mjs';
 import {applyStage6IntegratedPreview} from '../tools/stage6-prototype/integrated-preview.mjs';
 import {applyAct4FinaleRevision} from './act4-finale-revision.mjs';
@@ -40,7 +41,7 @@ import {buildActors} from '../tools/actor-forge/build.mjs';
 export const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=async p=>(await readFile(path.join(root,p),'utf8')).replace(/\r\n/g,'\n');
 export const modelFiles=['action-prompts','narrative-catalogue','content','story-content-v0','story-content-v1','story-content','terrain-space','map-engine','battlefield-layouts',
-  'clear-report','split-campaign','campaign-map-revision','stake-crossing','contribution-xp','progression','equipment-state','profile-store','encounters','world','act1-roster','difficulty','allies','sodan-withdrawal','mission','objectives','objective-contributions','combat-status','authored','act2-content','act2','stage11-ravine-encounters','stage17-worksite','stage16-temple','act3-content','act3-encounters','act3-objectives','objective-revision','stage18-bell','stage30-ferry','stage12-quarry','stage23-escort','objective-guidance','journey-content','act3-journey','story-staging','story-direction','story-framing','stage8-bier','encounter-density','stage14-vertical','stage22-vertical','route-branches','narrative-revision','stage11-trace-exit','stage2-airborne','stage5-waterfall-geometry','stage5-waterfall','stage5-positioning','quest-targets','story-canon-v1','bell-anomaly','act3-void','evidence-quests','stage2-layered-road','act2-pacing'];
+  'clear-report','split-campaign','campaign-map-revision','stake-crossing','contribution-xp','progression','equipment-state','profile-store','encounters','world','act1-roster','difficulty','allies','sodan-withdrawal','mission','objectives','objective-contributions','combat-status','authored','act2-content','act2','stage11-ravine-encounters','stage17-worksite','stage16-temple','act3-content','act3-encounters','act3-objectives','objective-revision','stage18-bell','stage30-ferry','stage12-quarry','stage23-escort','objective-guidance','journey-content','act3-journey','story-staging','story-direction','story-framing','stage8-bier','encounter-density','stage14-vertical','stage22-vertical','route-branches','narrative-revision','stage11-trace-exit','stage2-airborne','stage5-waterfall-geometry','stage5-waterfall','stage5-positioning','stage6-pursuit','quest-targets','story-canon-v1','bell-anomaly','act3-void','evidence-quests','stage2-layered-road','act2-pacing'];
 
 modelFiles.push('player-turn-order','stage11-quest-simplification','stage14-rescue-gates','stage15-drain-contact','stage18-short-quest','keeper-ritual','stage19-farewell');
 modelFiles.push('act23-v4','act23-v4-act2','act23-v4-act2-scenes','act23-v4-stage18','act23-v4-act3','act23-v4-city','act23-v4-stage29','act23-v4-stage30','act23-v4-ch11-scenes','act23-v4-reviewed','act23-v4-reviewed-chapters','act23-v4-reviewed12','act23-v4-reviewed13','act23-v4-reviewed14','act23-v4-reviewed15','act23-v4-reviewed16','act23-v4-reviewed17','act23-v4-reviewed18','act23-v4-reviewed19','act23-v4-reviewed20','act23-v4-reviewed-common','act23-v4-ch21-scenes','act23-v4-ch21-reviewed','act23-v4-ch22-reviewed','act3-v4-reviewed-core','act23-v4-ch23-reviewed','act23-v4-ch24-reviewed','act3-v4-reviewed-waterworks','act23-v4-ch25-reviewed','act23-v4-ch27-reviewed','act23-v4-ch26-reviewed','act23-v4-ch28-reviewed','act23-v4-ch29-reviewed-spear','act23-v4-ch29-reviewed','act23-v4-ch30-reviewed');
@@ -150,7 +151,7 @@ export async function runtimeEntries({vector=true,render=true,app=false,producti
   if(project.stages.some(s=>s.metadata?.stageId===13&&s.design?.stoneFinish?.revision===1))project=applyStage13VectorFinish(project);
   project=applyReviewedAct2Art(project);
   if(act4Enabled){const act4=applyAct4FinaleRevision(JSON.parse(await read('shared/data/act4/world.json')));project={...project,stages:[...project.stages,...act4.stages],library:[...project.library,...act4.library.filter(a=>!project.library.some(b=>b.id===a.id))]};}
-  project=applyStage6IntegratedPreview(applyStage6ArtPreview(project));
+  project=applyStage6ReviewedPursuit(applyStage6IntegratedPreview(applyStage6ArtPreview(project)));
   parts.push({name:'campaign',project,code:'globalThis.HONRO_PROJECT='+authorProjectExpression(JSON.stringify(project))+';'});
   if(vector){
     await buildParty();

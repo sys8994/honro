@@ -31,6 +31,8 @@ jobs:
           node tests/stage6-integrated-preview.mjs
           node tests/stage6-render-coverage-preview.mjs
           node tests/stage6-descent-view-preview.mjs
+          node tests/stage6-reviewed-pursuit.mjs
+          node tests/stage6-pursuit-response.mjs
           node tests/stage6-integrated-entry.mjs
           # Review only. The unchanged production Stage31 gate is not waived.
           node workshop/build.mjs
