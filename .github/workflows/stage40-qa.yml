@@ -37,6 +37,8 @@ jobs:
           node tools/stage40-qa/scope-contract.mjs | tee "$OUT/scope.log"
           node tools/stage40-qa/placement-correction.test.mjs | tee "$OUT/placement.log"
           node tools/stage40-qa/split-role-route.test.mjs | tee "$OUT/split-role-route.log"
+          node tools/stage40-qa/coast-flank-route.test.mjs
+          node tools/stage40-qa/split-role-route.test.mjs
           node tools/stage40-qa/build-browser-planner.mjs
           git diff --exit-code -- tools/stage40-qa/browser-planner.js
           python -m py_compile tools/stage40-qa/browser-play.py tools/stage40-qa/escort_inputs.py
@@ -100,7 +102,7 @@ jobs:
       - name: Register immutable source and run one full Stage40 UI comparison
         run: |
           set -euo pipefail
-          node --input-type=module -e 'import fs from "node:fs";import {createHash} from "node:crypto";import {runtimeDigest} from "./tools/stage31/probes.mjs";const hash=p=>createHash("sha256").update(fs.readFileSync(p)).digest("hex");fs.writeFileSync(process.env.OUT+"/protocol.json",JSON.stringify({sourceCommit:process.env.GITHUB_SHA,runId:process.env.GITHUB_RUN_ID,runtimeSha256:await runtimeDigest(),htmlSha256:hash("HONRO.html"),manifestSha256:hash("web/manifest.json"),stage31PackageSha256:hash("tools/stage31/production-package.json"),driverSha256:hash("tools/stage40-qa/browser-play.py"),plannerSha256:hash("tools/stage40-qa/browser-planner.js"),limits:{combatDiagnosticRounds:24,totalCompletionRounds:20,combatWallSeconds:3600},scope:"One new normal Stage40 entry from the original prepared profile, with verified split dock roles and responded-warning queue correction; combat plus safe return/settlement/reload. All old failures retained. Not earned1-39, cohort or human fun approval. Production hold."},null,2))'
+          node --input-type=module -e 'import fs from "node:fs";import {createHash} from "node:crypto";import {runtimeDigest} from "./tools/stage31/probes.mjs";const hash=p=>createHash("sha256").update(fs.readFileSync(p)).digest("hex");fs.writeFileSync(process.env.OUT+"/protocol.json",JSON.stringify({sourceCommit:process.env.GITHUB_SHA,runId:process.env.GITHUB_RUN_ID,runtimeSha256:await runtimeDigest(),htmlSha256:hash("HONRO.html"),manifestSha256:hash("web/manifest.json"),stage31PackageSha256:hash("tools/stage31/production-package.json"),driverSha256:hash("tools/stage40-qa/browser-play.py"),plannerSha256:hash("tools/stage40-qa/browser-planner.js"),limits:{combatDiagnosticRounds:24,totalCompletionRounds:20,combatWallSeconds:3600},scope:"One new normal Stage40 entry from the original prepared profile, with current-facing-first firing, observed broad coast flank and proved upper-archer Drop, preserving split dock roles and responded-warning queue correction; combat plus safe return/settlement/reload. All old failures retained. Not earned1-39, cohort or human fun approval. Production hold."},null,2))'
           python -m http.server 8870 --bind 127.0.0.1 > "$OUT/final-server.log" 2>&1 &
           server=$!; trap 'kill "$server" 2>/dev/null || true' EXIT
           sleep 2

@@ -77,7 +77,7 @@ with sync_playwright() as w:
     old=expected[u['id']]
     assert u['hp']==old['hp'] and u['dead']==bool(old.get('dead')) and u.get('moveLeft')==old.get('moveLeft'),('Resume changed resources',u['id'])
    (out/'resume-resource-proof.json').write_text(json.dumps(actual,indent=2))
-  (out/'entry-budget.json').write_text(json.dumps(budget,indent=2));view();p.screenshot(path=str(out/'entry.png'));started=time.monotonic();selected=set()
+  (out/'entry-budget.json').write_text(json.dumps(budget,indent=2));view();p.screenshot(path=str(out/'entry.png'));started=time.monotonic();selected=set();departed_overwatch=False
   for turn in range(140):
    if time.monotonic()-started>3600:raise TimeoutError('Registered60-minute combat observation bound')
    ready();s=state()
@@ -89,13 +89,23 @@ with sync_playwright() as w:
    warnings();priority=p.evaluate(bridge,'priority')
    if priority:choose(priority)
    actor=state()['active'];goal=None;support=None;retreat=p.evaluate(bridge,'tide')
+   # Only exposed coast roles get the independently demonstrated broad flank.
+   # Observed warning and tide responses retain precedence over firing.
+   coast_handled=False
+   if not retreat and not p.evaluate(bridge,'warning-goal') and actor!='knight' and state()['support']=='approved40-coast-west':
+    q=p.evaluate(bridge,'plan-faced')
+    if q['choice']:coast_handled=True;record('coast-current-facing-choice',q)
+    else:
+     flank=p.evaluate(bridge,'coast-flank')
+     if flank:coast_handled=True;walk_to(actor,flank['x']);record('observed-coast-flank',flank)
+
    if retreat:
     if state()['support'] in ['a4-return-deck','approved40-departure-ramp']:join_stair(actor)
     if state()['active']==actor:walk_to(actor,retreat['refuge']);record('visible-tide-retreat')
-   for _ in range(0 if retreat else 30):
+   for _ in range(0 if retreat or coast_handled else 30):
     s=state()
     if s['active']!=actor or not s['can'] or s['move']<120:break
-    if goal is None or support!=s['support']:goal=p.evaluate(bridge,'goal');support=s['support']
+    if goal is None or support!=s['support']:goal=p.evaluate(bridge,'goal-no-overwatch' if departed_overwatch and actor=='archer' else 'goal');support=s['support']
     if not goal:break
     dx=goal['x']-s['x']
     if abs(dx)<(20 if goal.get('jumpLanding') or goal.get('deckJoin') else 35):
@@ -115,7 +125,19 @@ with sync_playwright() as w:
    if state()['active']!=actor:continue
    # Read the existing save object only; never force/replace a battle snapshot.
    (out/('turn-profile-%03d.json.xz'%turn)).write_bytes(lzma.compress(p.evaluate('JSON.stringify(HonroApp.profile)').encode()))
-   view();q=p.evaluate(bridge,'plan');record('plan',q);c=q['choice']
+   view();q=p.evaluate(bridge,'plan-faced');record('plan-current-facing',q);c=q['choice']
+   if not c and actor=='archer' and state()['support']=='approved40-dock-stair':
+    walk_to(actor,1900)
+    if state()['active']==actor and state()['canDrop']:
+     p.keyboard.press('Alt');p.wait_for_timeout(1400);ready();z=record('unproductive-overwatch-normal-drop')
+     assert z['active']!=actor or z['support']=='approved40-dock','Observed overwatch Drop did not land on dock'
+     if z['active']==actor:
+      departed_overwatch=True
+      if z['facing']<0:hold('ArrowRight',60);ready()
+      q=p.evaluate(bridge,'plan-faced');record('dock-current-facing-replan',q);c=q['choice']
+   if state()['active']!=actor:continue
+   if not c and not coast_handled:
+    q=p.evaluate(bridge,'plan');record('fallback-unrestricted-plan',q);c=q['choice']
    if c:
     s=state();face=-1 if c['angle']>90 else 1
     if s['facing']!=face:hold('ArrowLeft' if face<0 else 'ArrowRight',60);ready();q=p.evaluate(bridge,'plan-faced');c=q['choice'];record('replan-facing',q)

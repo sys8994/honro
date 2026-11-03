@@ -1,9 +1,10 @@
 /** QA policy only: existing dock/stair positions independently demonstrated in
  * actual saved-profile browser play. Uses living current actors, never rounds. */
-export function splitDockRoleGoal(u,{support,foes,heroes,surface}){
+export function splitDockRoleGoal(u,{support,foes,heroes,surface,departedOverwatch=false}){
  const dock=foes.filter(v=>!v.dead&&v.hp>0&&['approved40-dock','approved40-dock-stair'].includes(surface(v)));
  if(!dock.length)return null;
  if(u.cls==='archer'){
+  if(departedOverwatch)return null;
   if(support==='approved40-dock')return{x:1900,jumpLanding:'approved40-dock-stair',kind:'split-overwatch-connection'};
   if(support==='approved40-dock-stair')return{x:2120,kind:'split-overwatch-fire',hold:true};
  }

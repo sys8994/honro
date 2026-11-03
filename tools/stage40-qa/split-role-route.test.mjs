@@ -13,3 +13,6 @@ for(const cls of ['archer','mage','occultist'])assert.equal(goal({cls},{...args,
 assert.equal(goal({cls:'mage'},{...args,support:'a4-return-deck'}),null);
 assert.equal(goal({cls:'knight'},args),null);
 console.log('Split dock roles, living-target gating and injured-ally support rejoin passed; geometry fixtures only.');
+assert.equal(goal({cls:'archer'},{...args,departedOverwatch:true}),null);
+assert.equal(goal({cls:'archer'},{...args,support:'approved40-dock-stair',departedOverwatch:true}),null);
+assert.equal(goal({cls:'mage'},{...args,departedOverwatch:true}).x,2152);

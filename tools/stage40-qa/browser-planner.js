@@ -31,10 +31,11 @@ function finaleRoleGoal(u,{support,foes,surface}){
 }
 /** QA policy only: existing dock/stair positions independently demonstrated in
  * actual saved-profile browser play. Uses living current actors, never rounds. */
-function splitDockRoleGoal(u,{support,foes,heroes,surface}){
+function splitDockRoleGoal(u,{support,foes,heroes,surface,departedOverwatch=false}){
  const dock=foes.filter(v=>!v.dead&&v.hp>0&&['approved40-dock','approved40-dock-stair'].includes(surface(v)));
  if(!dock.length)return null;
  if(u.cls==='archer'){
+  if(departedOverwatch)return null;
   if(support==='approved40-dock')return{x:1900,jumpLanding:'approved40-dock-stair',kind:'split-overwatch-connection'};
   if(support==='approved40-dock-stair')return{x:2120,kind:'split-overwatch-fire',hold:true};
  }
@@ -44,6 +45,20 @@ function splitDockRoleGoal(u,{support,foes,heroes,surface}){
   const frontNeedsSupport=heroes.some(v=>v.id!==u.id&&!v.dead&&v.hp>0&&v.hp<v.maxHp*.65&&v.x>1400&&Math.hypot(v.x-u.x,v.y-u.y)>600);
   const rear=dock.some(v=>v.x<1400);
   return{x:frontNeedsSupport||!rear?1630:1050,kind:frontNeedsSupport?'split-support-rejoin':rear?'split-rear-fire':'split-forward-support',hold:true};
+ }
+ return null;
+}
+/** QA movement policy: one forward flank using only present visible geometry.
+ * Never force all roles to attack; a useful current-facing shot takes priority. */
+function coastFlankGoal(u,{support,foes,heroes,surface,topAt,terrains}){
+ if(u.cls==='knight'||support!=='approved40-coast-west'||u.moveLeft<350)return null;
+ const target=foes.filter(v=>!v.dead&&v.hp>0&&surface(v)===support&&v.x>=u.x).sort((a,z)=>a.x-z.x)[0];if(!target)return null;
+ const terrain=terrains.find(t=>t.id===support);if(!terrain)return null;
+ const base=target.x+280;
+ for(const x of [base,base+160,base+320]){
+  const y=topAt(terrain,x);if(!Number.isFinite(y)||Math.hypot(x-u.x,y-u.y)>u.moveLeft-100)continue;
+  if(heroes.some(v=>v.id!==u.id&&!v.dead&&v.hp>0&&Math.hypot(v.x-x,v.y-y)<(u.r||24)+(v.r||24)+70))continue;
+  return{x,y,target:target.id,kind:'observed-coast-flank'};
  }
  return null;
 }
@@ -116,7 +131,7 @@ function evaluateInputTolerance(C,b,actorId,id,angle,power,nominal){
  }
  return{safeUseful:true,minimumDamage:Math.min(...samples.map(s=>s.damage)),samples,scope:'bounded current-state samples; not a player-visible guide or universal guarantee'};
 }
-function routeGoal(u){const support=surface(u),role=splitDockRoleGoal(u,{support,foes:foes(),heroes:heroes(),surface})||dockCleanupGoal(u,{support,foes:foes(),surface})||upperRecoveryGoal(u,{support,foes:foes(),surface})||finaleDeckGoal(u,{b,support,foes:foes(),surface})||(u.cls==='knight'?finaleRoleGoal(u,{support,foes:foes(),surface}):null);if(role)return role;const same=foes().filter(v=>surface(v)===support&&Math.abs(v.y-u.y)<700),spacing=u.cls==='knight'?145:310;
+function routeGoal(u,{departedOverwatch=false}={}){const support=surface(u),role=splitDockRoleGoal(u,{support,foes:foes(),heroes:heroes(),surface,departedOverwatch})||dockCleanupGoal(u,{support,foes:foes(),surface})||upperRecoveryGoal(u,{support,foes:foes(),surface})||finaleDeckGoal(u,{b,support,foes:foes(),surface})||(u.cls==='knight'?finaleRoleGoal(u,{support,foes:foes(),surface}):null);if(role)return role;const same=foes().filter(v=>surface(v)===support&&Math.abs(v.y-u.y)<700),spacing=u.cls==='knight'?145:310;
  if(same.length){const t=same.sort((a,z)=>Math.abs(a.x-u.x)-Math.abs(z.x-u.x))[0];return{x:t.x+(t.x>=u.x?-spacing:spacing),target:t.id,kind:'same-support-approach'};}
  if(support==='approved40-coast-west')return{x:2660,drop:true,kind:'coast-to-stair'};
  if(support==='approved40-dock-stair')return{x:1800,kind:'stair-to-dock'};
@@ -153,4 +168,4 @@ function healing(){const u=e.active,id='O13',s=C.SKILLS[id];if(u.cls!=='occultis
  for(const aim of pe.shotSeeds(pu,s,t)){if(!pe.canAfford(s,pu,aim.power))continue;const hit=pe.predict(pu,s,aim.angle,aim.power,t,false),d=Math.hypot(hit.x-t.x,hit.y-t.y);if(d<180&&(!choice||d<choice.d))choice={id,...aim,d,target:ally.id,method:'support-warden'};}
  assert.equal(JSON.stringify(b),snap);return choice;
 }
-if(op==='return-goal')return upperConnectionGoal(e.active,surface(e.active));if(op==='tide')return tideRetreatRequired(b,e.active)?{refuge:tideRefuge(e.active.cls)}:null;if(op==='goal')return warningEscapeGoal(e,e.active,{surface,separated:g.HonroTerrain.separated})||routeGoal(e.active);if(op==='priority')return currentWarnings(b).map(w=>e.unit(w.target.id)).find(u=>u&&!u.dead&&!u.acted&&u.side===0)?.id;const u=e.active,requiredFacing=op==='plan-faced'?u.facing:null;let support=healing();if(support&&requiredFacing!==null&&(support.angle>90?-1:1)!==requiredFacing)support=null;let choice=support||plan(requiredFacing);if(u.cls==='knight'&&u.hp<u.maxHp*.35&&(!choice||choice.score<350)&&u.loadout.includes('S08')&&!e.cooldownLeft(u,'S08')&&e.canAfford(C.SKILLS.S08,u,.2))choice={id:'S08',angle:u.facing>0?0:180,power:.2,method:'low-health-response'};return{choice:choice&&{...choice,idx:u.loadout.indexOf(choice.id)},rejected:actions};}
+if(op==='return-goal')return upperConnectionGoal(e.active,surface(e.active));if(op==='tide')return tideRetreatRequired(b,e.active)?{refuge:tideRefuge(e.active.cls)}:null;if(op==='coast-flank')return coastFlankGoal(e.active,{support:surface(e.active),foes:foes(),heroes:heroes(),surface,topAt:C.topAt,terrains:b.terrain});if(op==='warning-goal')return warningEscapeGoal(e,e.active,{surface,separated:g.HonroTerrain.separated});if(op==='goal-no-overwatch')return warningEscapeGoal(e,e.active,{surface,separated:g.HonroTerrain.separated})||routeGoal(e.active,{departedOverwatch:true});if(op==='goal')return warningEscapeGoal(e,e.active,{surface,separated:g.HonroTerrain.separated})||routeGoal(e.active);if(op==='priority')return currentWarnings(b).map(w=>e.unit(w.target.id)).find(u=>u&&!u.dead&&!u.acted&&u.side===0)?.id;const u=e.active,requiredFacing=op==='plan-faced'?u.facing:null;let support=healing();if(support&&requiredFacing!==null&&(support.angle>90?-1:1)!==requiredFacing)support=null;let choice=support||plan(requiredFacing);if(u.cls==='knight'&&u.hp<u.maxHp*.35&&(!choice||choice.score<350)&&u.loadout.includes('S08')&&!e.cooldownLeft(u,'S08')&&e.canAfford(C.SKILLS.S08,u,.2))choice={id:'S08',angle:u.facing>0?0:180,power:.2,method:'low-health-response'};return{choice:choice&&{...choice,idx:u.loadout.indexOf(choice.id)},rejected:actions};}
