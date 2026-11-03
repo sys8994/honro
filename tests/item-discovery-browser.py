@@ -35,7 +35,7 @@ with serve_game() as base,sync_playwright() as p:
   link=page.locator('.equipment-unclaimed');assert '보상' not in link.inner_text();assert '물건 살피기' in link.inner_text();assert link.locator('b').count()==0
   assert page.locator('.equipment-bag-heading').evaluate('e=>e.nextElementSibling.matches(".equipment-unclaimed")')
   assert not page.locator('#equipment-pending-battle').is_visible();shot(page,label,'after-bag');link.click();assert page.locator('.equipment-reward-item').count()==3;assert page.locator('.equipment-confirm').is_disabled()
-  assert page.locator('.equipment-source').inner_text().startswith('7장');assert '가져갈 물건' in page.locator('.equipment-reward-head').inner_text();assert '보상' not in page.locator('.equipment-choice-dialog').inner_text()
+  assert page.locator('.equipment-source').count()==0;assert '가져갈 물건' in page.locator('.equipment-reward-head').inner_text();assert '보상' not in page.locator('.equipment-choice-dialog').inner_text()
   assert page.locator('.equipment-options').count()>0
   page.locator('.equipment-reward-item[data-id="itm_co_04"]').click();assert page.get_by_role('button',name='챙긴다',exact=True).is_enabled();shot(page,label,'after-choice')
   page.get_by_role('button',name='나중에',exact=True).click();assert pending(page)==6

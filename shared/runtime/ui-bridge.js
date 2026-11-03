@@ -3,7 +3,7 @@ const C=G.HONRO_CORE,H=G.HONRO_CONTENT;
 // Font Awesome Free 6.7.2 xmark, CC BY 4.0, Copyright Fonticons, Inc.
 // https://github.com/FortAwesome/Font-Awesome/blob/6.7.2/svgs/solid/xmark.svg
 G.HonroFA.data.xmark={icon:[384,512,[], 'f00d', 'M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z']};
-const translations=[[/용병/g,'동행'],[/스킬트리/g,'수련'],[/스킬/g,'기예'],[/궁극기/g,'비기'],[/패시브/g,'상시 기예'],[/액티브/g,'사용 기예'],[/마법사/g,'도사'],[/심령술사/g,'영매'],[/검사/g,'무사'],[/Lv\./g,'경지 '],[/MP 회복/g,'기력 회복'],[/\bHP\b/g,'체력'],[/\bMP\b/g,'기력'],[/\bSP\b/g,'수련점'],[/출전 기술/g,'갖춘 기예'],[/기술/g,'기예'],[/추천 분배/g,'고르게 익히기'],[/초기화/g,'돌려받기']];
+const translations=[[/용병/g,'동행'],[/스킬트리/g,'수련'],[/스킬/g,'기예'],[/궁극기/g,'비기'],[/패시브/g,'상시 기예'],[/액티브/g,'사용 기예'],[/마법사/g,'도사'],[/심령술사/g,'영매'],[/검사/g,'무사'],[/Lv\./g,'경지 '],[/MP 회복/g,'기력 회복'],[/\bHP\b/g,'체력'],[/\bMP\b/g,'기력'],[/\bSP로/g,'수련점으로'],[/\bSP\b/g,'수련점'],[/출전 기술/g,'갖춘 기예'],[/기술/g,'기예'],[/추천 분배/g,'고르게 익히기'],[/초기화/g,'돌려받기']];
 const actionMap={'camp-branch':'branch','talent-plus':'rank-plus','talent-minus':'rank-minus','auto-train':'autotrain','choose-slot':'slot','ultimate-detail':'talent','equip-prompt':'equip'};
 // Legacy campView accepts image URLs. Its detached template gets transparent
 // markers only; localize replaces them with the shared retained canvas hosts.

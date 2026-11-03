@@ -94,3 +94,6 @@
 
 /* ---------- rest camp on portrait phones: zoomed scene lifted clear of the action bar ---------- */
 .honro #app .rest-world{top:calc(50% - var(--rest-height,111.111112%)/2 - var(--rest-lift,0px))}
+
+/* 2026-11-03 taste pass: the 7px joystick mode caption was unreadable decoration. */
+.honro #app #joystick .stick-mode{display:none!important}
