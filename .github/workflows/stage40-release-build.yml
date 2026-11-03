@@ -1,0 +1,150 @@
+name: Build verified Stage40 release without repeating gameplay
+on:
+  push:
+    branches: ['work/stage40-release-build/**']
+permissions:
+  contents: write
+  actions: read
+jobs:
+  release-candidate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      OUT: _local/reports/stage40-release-build
+      QA31_RUN: '41741783067'
+      QA31_SOURCE: 4d1681ebbbcdac0e51e4e93e4715ca7c3b613def
+      QA40_RUN: '41741783067'
+      QA40_SOURCE: 4d1681ebbbcdac0e51e4e93e4715ca7c3b613def
+      HONRO_ACT4_RELEASE: '1'
+      PUBLIC_BASE: e7a387532f8249e3bdf315a80a01b56c258d8830
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Obtain exact successful measured artifacts
+        run: |
+          set -euo pipefail
+          mkdir -p "$OUT"
+          python - <<'PY'
+          import json,os,subprocess,hashlib,zipfile,stat
+          from pathlib import Path
+          repo='sys8994/honro';temp=Path(os.environ['RUNNER_TEMP'])/'stage40-release-evidence';temp.mkdir()
+          summary={}
+          assert os.environ['QA31_RUN']==os.environ['QA40_RUN'] and os.environ['QA31_SOURCE']==os.environ['QA40_SOURCE'],'Use both artifacts from the one final scoped QA run'
+          def api(path):return json.loads(subprocess.check_output(['gh','api','repos/'+repo+'/'+path]))
+          for stage in [31,40]:
+           run=int(os.environ['QA'+str(stage)+'_RUN']);source=os.environ['QA'+str(stage)+'_SOURCE'];meta=api('actions/runs/'+str(run))
+           assert meta['head_sha']==source and meta['status']=='completed' and meta['conclusion']=='success',meta
+           name='act4-cleanup-stage'+str(stage)+'-'+source
+           rows=api('actions/runs/'+str(run)+'/artifacts')['artifacts'];found=[a for a in rows if a['name']==name and not a['expired']];assert len(found)==1
+           a=found[0];archive=temp/('stage'+str(stage)+'.zip')
+           with archive.open('wb') as f:subprocess.run(['gh','api','repos/'+repo+'/actions/artifacts/'+str(a['id'])+'/zip'],stdout=f,check=True)
+           data=archive.read_bytes();digest=hashlib.sha256(data).hexdigest();assert len(data)==a['size_in_bytes'] and 'sha256:'+digest==a['digest']
+           dest=temp/('stage'+str(stage));dest.mkdir()
+           with zipfile.ZipFile(archive) as z:
+            assert sum(i.file_size for i in z.infolist())<250_000_000
+            for i in z.infolist():
+             p=Path(i.filename);assert not p.is_absolute() and '..' not in p.parts and not stat.S_ISLNK(i.external_attr>>16)
+            z.extractall(dest)
+           result=json.loads((dest/('stage31' if stage==31 else 'browser')/'result.json').read_text());assert result['sourceCommit']==source and result['passed'] and not result['errors']
+           if stage==31:
+            assert result['complete'] and result['final']['phase']=='won' and result['final']['round']<=20
+            assert 'Stage31: production evidence present and current.' in (dest/'normal-gate.log').read_text()
+            package=(dest/'stage31-production-package.json').read_bytes();record=json.loads(package)
+            probes=record['production']['probeResults'][record['stageId']]
+            objective=[p for p in probes if p['id']=='boarding-objective'];assert len(objective)==1
+            objective=objective[0];assert objective['sourceCommit']==source and objective['sourceRunId']==run
+            embedded=[o['freshUiResult'] for o in objective['observations'] if 'freshUiResult' in o]
+            assert embedded==[result],'Measured package does not embed this exact UI result'
+            focused=json.loads((dest/'focused-probes.json').read_text())
+            assert focused['sourceCommit']==source and all(p['result']=='pass' and p['runtimeSha256']==focused['digest'] for p in probes)
+            package_sha=hashlib.sha256(package).hexdigest()
+           else:
+            assert 'PASS exact baseline enemyAI preservation' in (dest/'preserved-source-core.log').read_text()
+            assert result['entryRound']==15 and result['continuationOf']==41690685003
+            assert result['escort']['passed'] and result['escort']['functionalContinuation'] and result['escort']['round']<=23 and result['escort']['sameOriginalContextPostVictoryReload']
+            first=json.loads((dest/'first-cast/result.json').read_text())
+            assert first['sourceCommit']==source and first['passed'] and not first['errors'] and first['entryRound']==1 and first['continuationOf'] is None
+            assert first['focused']=='First normal-input cast only; no stage completion claim'
+            assert (dest/'first-cast/first-cast.png').stat().st_size>0
+            for part,oldstage,oldround,oldrun in [('outside-save',40,18,41690685003),('outside-save31',31,20,41721169502)]:
+             check=json.loads((dest/part/'result.json').read_text())
+             assert check['sourceCommit']==source and check['stage']==oldstage and check['sourceRound']==oldround and check['sourceRun']==oldrun and check['passed'] and not check['errors']
+            guide=json.loads((dest/'guide/results.json').read_text())
+            expected_views={(w,h,locale) for w,h in [(1440,900),(844,390)] for locale in ['ko-KR','en-US']}
+            assert len(guide)==4 and {(r['viewport'][0],r['viewport'][1],r['locale']) for r in guide}==expected_views
+            for r in guide:
+             assert r['passed'] and not r['errors'] and r['idle']['assist'] is False and len(r['observations'])==3
+             view=dest/'guide'/('%sx%s-%s'%(*r['viewport'],r['locale']))
+             assert all((view/name).stat().st_size>0 for name in ['idle.png','charge-0.png','charge-1.png','charge-2.png'])
+            a1=json.loads((dest/'a1-browser/summary.json').read_text())
+            expected_cases={device+'-'+case for device in ['desktop','mobile'] for case in ['5-hit','5-dodge','8-hit']}
+            assert a1['status']=='passed' and len(a1['rows'])==6 and {r['case'] for r in a1['rows']}==expected_cases
+            assert all(r['pauseExact'] and r['fileInputPointerContinueExact'] and r['offscreenAcknowledgementStable'] and r['continue']['exact'] for r in a1['rows'])
+           html=[line.split()[0] for line in (dest/'preview-sha256.txt').read_text().splitlines() if line.split()[-1]=='HONRO.html'];assert len(html)==1
+           summary[str(stage)]={'run':run,'source':source,'artifact':a['id'],'artifactSha256':digest,'htmlSha256':html[0]}
+          assert summary['31']['htmlSha256']==summary['40']['htmlSha256'],'Separate measured products differ'
+          summary['stage31PackageSha256']=package_sha
+          summary['stage40Scope']='Fresh first cast plus exact historical R15 final-battle-to-return/settlement/reload within 23R, old-save compatibility and four guide views. Not fresh whole Stage40 combat or subjective fun approval.'
+          Path('tools/stage31/production-package.json').write_bytes(package)
+          Path(os.environ['OUT']+'/measured-sources.json').write_text(json.dumps(summary,indent=2))
+          PY
+      - name: Register the verified active publication with all retained bytes checked
+        run: |
+          set -euo pipefail
+          curl -fLsS "https://raw.githubusercontent.com/sys8994/honro/$PUBLIC_BASE/web/manifest.json" -o "$RUNNER_TEMP/published-source-manifest.json"
+          node --test tools/release/register-current-publication.test.mjs
+          node tools/release/register-current-publication.mjs \
+            --source-manifest "$RUNNER_TEMP/published-source-manifest.json" \
+            --expected-blob-sha 3b0911b3ab3b69b54a07e81639074c4f6df136b3 \
+            --source-sha "$PUBLIC_BASE" \
+            --published-at 2026-11-03T14:50:11Z \
+            --evidence https://github.com/sys8994/honro/actions/runs/41657268203 | tee "$OUT/publication-registration.json"
+      - name: Enforce unchanged release gate and build the measured product
+        run: |
+          set -euo pipefail
+          npm ci
+          npm ci --prefix game
+          npm --prefix game run typecheck
+          npm run build | tee "$OUT/gated-build.log"
+          python - <<'PY'
+          import json,os,hashlib
+          from pathlib import Path
+          s=json.loads(Path(os.environ['OUT']+'/measured-sources.json').read_text())
+          sha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest()
+          assert sha('tools/stage31/production-package.json')==s['stage31PackageSha256'],'Measured package bytes changed'
+          assert sha('HONRO.html')==s['40']['htmlSha256'],'Normal build differs from actually tested product'
+          Path(os.environ['OUT']+'/built-hashes.json').write_text(json.dumps({p:sha(p) for p in ['HONRO.html','web/manifest.json','tools/stage31/production-package.json']},indent=2))
+          PY
+      - name: Commit only scoped generated files to a non-public review branch
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import subprocess
+          allowed=lambda p:p in ['HONRO.html','HONRO_WORKSHOP.html','index.html','workshop/HONRO_MAP_WORKSHOP.html','tools/stage31/production-package.json'] or p.startswith('web/')
+          names=set(subprocess.check_output(['git','diff','HEAD','--name-only','--no-renames','-z']).decode().split('\0'))|set(subprocess.check_output(['git','ls-files','--others','--exclude-standard','-z']).decode().split('\0'))
+          unexpected=sorted(p for p in names if p and not allowed(p));assert not unexpected,unexpected
+          PY
+          git add -- HONRO.html HONRO_WORKSHOP.html index.html workshop/HONRO_MAP_WORKSHOP.html web tools/stage31/production-package.json
+          git diff --cached --check
+          git config user.name 'HONRO release verification'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "Build verified Stage40 release from $GITHUB_SHA"
+          target="work/stage40-release-generated/$GITHUB_RUN_ID"
+          git push origin "HEAD:refs/heads/$target"
+          expected=$(git rev-parse HEAD)
+          actual=$(git ls-remote origin "refs/heads/$target" | cut -f1)
+          test "$actual" = "$expected"
+          printf '%s\n' "$expected" > "$OUT/generated-head.txt"
+          printf '%s\n' "$target" > "$OUT/generated-branch.txt"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage40-release-build-${{ github.sha }}
+          path: _local/reports/stage40-release-build/
+          retention-days: 7

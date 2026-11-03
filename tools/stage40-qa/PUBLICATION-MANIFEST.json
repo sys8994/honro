@@ -555,6 +555,16 @@
       "native": "22ce96dc59f23ce3d82f956ef72a60b335d45984",
       "canonical": "6e1dbd71e2c73e6c8abe7471f90cc6aac3dd4492",
       "tree": "d33c86f8410f23114a7591ab918702585c5aec3f"
+    },
+    {
+      "native": "9a9ff1af2c6677ba4bf62a03e30b444858f2cc4b",
+      "canonical": "5c33b3ac079c3c19fc8409c4f2b39cbe798413cb",
+      "tree": "ee71bb36fee333e821e3d6c611ba0bf054cbca16"
+    },
+    {
+      "native": "0226cfc8962539ce08d15f8711b35edd177ce83d",
+      "canonical": "4d1681ebbbcdac0e51e4e93e4715ca7c3b613def",
+      "tree": "515e6de63e683c12cc3ad699a7c4b938851194ef"
     }
   ],
   "pendingPublication": null,
@@ -822,8 +832,8 @@
     "baseMaster": "e7a387532f8249e3bdf315a80a01b56c258d8830",
     "lastReadUtc": "2026-11-03T23:42:58Z",
     "branch": "work/stage40-current/20261103",
-    "remoteHeadBeforeThisRecord": "3446f42ea9f9c8ec8d3439939a1a77226fed2ab7",
-    "productSource": "695d3ef1dd998167ac63c371645a8987b3fef2f2",
+    "remoteHeadBeforeThisRecord": "4d1681ebbbcdac0e51e4e93e4715ca7c3b613def",
+    "productSource": "4d1681ebbbcdac0e51e4e93e4715ca7c3b613def",
     "currentComparisonRun": 41733657544,
     "currentComparisonSource": "5834456fa5cb5a04c13a1768da4292ce14b2186f",
     "comparisonStatus": "completed failure: first Stage40 candidate R25 boss383HP, no return; Stage31 R13 combat/R14 boarding passed on first runtime",
@@ -896,6 +906,9 @@
         "Stage40 voluntary destination restriction"
       ],
       "notClaimed": "New final-source wholeR1 Stage40 completion or corridor causal improvement"
-    }
+    },
+    "finalReviewRun": 41741783067,
+    "finalReviewSource": "4d1681ebbbcdac0e51e4e93e4715ca7c3b613def",
+    "finalReviewStatus": "in_progress, full official31 and preserved40 partial regression, not a new whole40 run"
   }
 }
