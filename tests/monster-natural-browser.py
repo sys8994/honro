@@ -5,13 +5,14 @@ from browser_support import ROOT,launch
 OUT=ROOT/'_local/reports/monster-natural';F=ROOT/'tests/fixtures/monster-natural'
 BASE=os.environ.get('HONRO_MONSTER_BASE_URL','http://127.0.0.1:8871')
 manifest=json.loads((OUT/'controller-manifest.json').read_text());request=json.loads((ROOT/'tools/monster-a1-qa/request.json').read_text())
+SCHEDULER=r'''(()=>{const request=window.requestAnimationFrame.bind(window),cancel=window.cancelAnimationFrame.bind(window),pending=new Set();let manual=false;window.requestAnimationFrame=fn=>{if(manual)return 0;let id;id=request(t=>{pending.delete(id);fn(t);});pending.add(id);return id;};window.cancelAnimationFrame=id=>{pending.delete(id);cancel(id);};window.qaStopScheduling=()=>{manual=true;for(const id of pending)cancel(id);pending.clear();};})()'''
 rows=[];branch_errors=[]
 with sync_playwright() as pw:
  browser=launch(pw)
  for stage in [5,8]:
   dest=OUT/f'stage{stage}';dest.mkdir(exist_ok=True);context=browser.new_context(viewport={'width':1440,'height':900},accept_downloads=True)
   # Deterministic manual App.frame replaces scheduling only, not frame/render logic.
-  context.add_init_script('(()=>{window.requestAnimationFrame=()=>0;window.cancelAnimationFrame=()=>{};})()')
+  context.add_init_script(SCHEDULER)
   p=context.new_page();errors=[];p.on('pageerror',lambda e:errors.append(str(e)));p.set_default_timeout(60000)
   def evidence(_source,name,data):
    path=dest/pathlib.Path(name).name;path.write_text(data)
@@ -20,7 +21,7 @@ with sync_playwright() as pw:
   failure=None
   try:
    p.goto(BASE+'/HONRO.html');p.wait_for_function('!!window.HonroApp',timeout=45000)
-   p.add_script_tag(path=str(OUT/'controller.js'))
+   p.evaluate('()=>{qaStopScheduling();}');p.add_script_tag(path=str(OUT/'controller.js'))
    entry=json.loads((F/f'stage{stage}-entry.json').read_text())
    if stage==5:entry['commands']=json.loads((F/'stage5-ui-commands.json').read_text())['commands']
    meta={**manifest,'stage':stage,'runtimeSha256':request['expected']['runtimeSha256'],'difficulty':'story','seed':1228 if stage==8 else 'production default'}
@@ -34,7 +35,7 @@ with sync_playwright() as pw:
   except Exception as error:
    failure=str(error)
    try:
-    p.screenshot(path=str(dest/'failure.png'));(dest/'failure-state.json').write_text(json.dumps(p.evaluate('()=>({screen:HonroApp.screen,battle:HonroApp.engine?.b,events:window.qa?.events,lastError:HonroApp.lastError,dialogue:HonroApp.dialogue,modal:HonroApp.modal.classList.contains("open")})'),ensure_ascii=False))
+    p.screenshot(path=str(dest/'failure.png'));(dest/'failure-state.json').write_text(json.dumps(p.evaluate('()=>({screen:window.HonroApp?.screen,battle:window.HonroApp?.engine?.b,events:window.qa?.events,lastError:window.HonroApp?.lastError,dialogue:window.HonroApp?.dialogue,modal:window.HonroApp?.modal.classList.contains("open")})'),ensure_ascii=False))
    except Exception as nested:failure+='; capture: '+str(nested)
   result_path=dest/'natural-result.json'
   if result_path.exists():
@@ -50,9 +51,9 @@ with sync_playwright() as pw:
    for mobile,kind in [(False,'accept'),(False,'dodge'),(False,'interrupt'),(True,'dodge')]:
     branch=f"{'mobile' if mobile else 'desktop'}-{kind}"
     ctx=browser.new_context(viewport={'width':390,'height':844} if mobile else {'width':1440,'height':900},is_mobile=mobile,has_touch=mobile)
-    ctx.add_init_script('(()=>{window.requestAnimationFrame=()=>0;window.cancelAnimationFrame=()=>{};})()');bp=ctx.new_page()
+    ctx.add_init_script(SCHEDULER);bp=ctx.new_page()
     try:
-     bp.goto(BASE+'/HONRO.html');bp.wait_for_function('!!window.HonroApp');bp.add_script_tag(path=str(OUT/'controller.js'))
+     bp.goto(BASE+'/HONRO.html');bp.wait_for_function('!!window.HonroApp');bp.evaluate('()=>{qaStopScheduling();}');bp.add_script_tag(path=str(OUT/'controller.js'))
      bp.evaluate('q=>{qaAttach(q.entry,q.meta);}',{'entry':entry,'meta':meta})
      bp.locator('#file-import').set_input_files(str(savepath));bp.wait_for_function('HonroApp.screen==="title"')
      button=bp.locator('[data-action="continue"]').first
