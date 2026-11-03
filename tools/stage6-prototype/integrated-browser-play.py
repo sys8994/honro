@@ -14,6 +14,14 @@ def record(op,**kw):R['inputs'].append({'time':round(time.monotonic()-START,2),'
 def snap(page,label):
  s=page.evaluate(STATE);R['milestones'].append({'label':label,**s});page.screenshot(path=str(OUT/(label+'.png')));return s
 
+def checkpoint(page,label):
+ # Preserve a normal serialized checkpoint for narrow follow-up, without
+ # rewriting actor state or replacing the live battle.
+ ok=page.evaluate('()=>{HonroApp.flushBattleSave();return HonroApp.persist()}')
+ saved=page.evaluate('()=>localStorage.getItem("honro-first-act-profile-1")')
+ if ok and saved:(OUT/(label+'-save.json.gz')).write_bytes(gzip.compress(saved.encode()))
+ record('checkpoint',label=label,ok=ok)
+
 def pulse(page,key,ms):
  page.keyboard.down(key);page.wait_for_timeout(ms);page.keyboard.up(key)
 
@@ -75,7 +83,7 @@ try:
     if enter.count():enter.first.click()
    page.wait_for_timeout(150)
   R['entry']=snap(page,'natural-entry');assert R['entry']['revision']==4
-  high=[{'x':1250,'jump':1400},{'x':2200,'fire':'west-cover'},{'x':2470,'jump':2820},{'x':3630,'jump':4020},{'x':4800,'drop':'lower-lookout'},{'x':4800,'fire':'lookout-cover','drop':'lower-road'},{'x':3550},{'x':5350},{'x':6380}]
+  high=[{'x':1250,'jump':1400,'landing':'bridge-west'},{'x':2200,'fire':'west-cover'},{'x':2470,'jump':2820,'landing':'bridge-mid'},{'x':3630,'jump':4020,'landing':'bridge-east'},{'x':4800,'drop':'lower-lookout'},{'x':4800,'fire':'lookout-cover','drop':'lower-road'},{'x':3550},{'x':5350},{'x':6380}]
   low=[{'x':1250},{'x':2450},{'x':3100},{'x':3850},{'x':4100},{'x':5350},{'x':6380}]
   policy={};last_sample=-1;mobile_done=False;last_round=0
   # Wall-clock limit is an infrastructure bound, not a round/fun criterion.
@@ -95,11 +103,15 @@ try:
     page.wait_for_timeout(80);continue
    if st['jump']:
     if u['ground'] and time.monotonic()-st['jump']['at']>.4:
-     record('landing',state=s);st['jump']=None;st['goal']+=1
+     page.keyboard.up(st['jump']['key']);record('landing',state=s,expected=st['jump']['support'])
+     if u['support']!=st['jump']['support']:
+      R['status']='route-failed-wrong-landing';R['routeFailure']={'expected':st['jump']['support'],'actual':u['support'],'state':s};break
+     st['jump']=None;st['goal']+=1
     else:
-     dx=st['jump']['x']-u['x']
-     if abs(dx)>9 and u['move']>5:pulse(page,'ArrowRight' if dx>0 else 'ArrowLeft',min(100,max(18,abs(dx)/500*1000)))
-     else:page.wait_for_timeout(70)
+     # Keep ordinary movement held through the jump, like a player. The
+     # previous pulse loop inserted input gaps between every browser read.
+     if (st['jump']['x']-u['x'])*st['jump']['direction']<7 or u['move']<=5:page.keyboard.up(st['jump']['key'])
+     record('jump-sample',state={'round':s['round'],'active':u});page.wait_for_timeout(35)
     continue
    if not u['ground']:page.wait_for_timeout(80);continue
    if u['cls']!='archer' and u['support'] in ['bridge-west','bridge-mid','bridge-east','lower-lookout'] and u['canDrop']:
@@ -112,14 +124,21 @@ try:
      st['fired'].append(goal['fire']);snap(page,goal['fire']+'-before');shoot_or_defend(page,goal['fire']);continue
     if goal.get('drop'):
      if not u['canDrop']:
-      record('drop-not-ready',state=s);page.wait_for_timeout(200);continue
+      record('drop-not-ready',state=s)
+      expected='bridge-east' if goal['drop']=='lower-lookout' else 'lower-lookout'
+      if u['support']!=expected:
+       R['status']='route-failed-wrong-drop-support';R['routeFailure']={'expected':expected,'actual':u['support'],'state':s};break
+      if not u.get('drop'):
+       R['status']='route-failed-drop-unavailable';R['routeFailure']={'expected':expected,'state':s};break
+      page.wait_for_timeout(200);continue
      if goal['drop']=='lower-road' and not mobile_done:
       assert page.evaluate('()=>{HonroApp.flushBattleSave();return HonroApp.persist()}'),'checkpoint save failed';saved=page.evaluate('()=>JSON.parse(localStorage.getItem("honro-first-act-profile-1"))');(OUT/'natural-lookout-save.json.gz').write_bytes(gzip.compress(json.dumps(saved).encode()));mobile_drop(browser,saved);mobile_done=True;page.bring_to_front();page.wait_for_timeout(100)
       if page.evaluate('HonroApp.modal.classList.contains("open")'):page.keyboard.press('Escape')
      page.locator('#drop').click();record('drop',target=goal['drop'],state=s);st['dropping']=goal['drop'];continue
     if goal.get('jump'):
      if u['move']<abs(goal['jump']-u['x'])+120:shoot_or_defend(page,'movement-budget');continue
-     page.locator('#jump').click();record('jump',target=goal['jump'],state=s);st['jump']={'x':goal['jump'],'at':time.monotonic()};continue
+     checkpoint(page,'pre-jump-'+goal['landing']+'-r'+str(s['round']))
+     direction=1 if goal['jump']>u['x'] else -1;key='ArrowRight' if direction>0 else 'ArrowLeft';page.keyboard.down(key);page.keyboard.press('Control');record('jump',target=goal['jump'],expected=goal['landing'],state=s,after=page.evaluate(STATE));st['jump']={'x':goal['jump'],'at':time.monotonic(),'key':key,'direction':direction,'support':goal['landing']};continue
     st['goal']=min(st['goal']+1,len(plan)-1);goal=plan[st['goal']]
    if u['move']<35:shoot_or_defend(page,'movement-budget');continue
    dx=goal['x']-u['x'];pulse(page,'ArrowRight' if dx>0 else 'ArrowLeft',min(100,max(18,abs(dx)/500*1000)))
@@ -127,7 +146,7 @@ try:
    if st['still']>25:
     record('route-blocked',goal=goal,state=after);shoot_or_defend(page,'route-blocked');st['still']=0
   else:R['status']='incomplete-wall-clock-limit'
-  R['final']=snap(page,'final');R['policyState']=policy;R['partialKnockoutsAreNotFailure']=True;browser.close()
+  checkpoint(page,'final');R['final']=snap(page,'final');R['policyState']=policy;R['partialKnockoutsAreNotFailure']=True;browser.close()
 except Exception:R['status']='execution-error';R['error']=traceback.format_exc()
 finally:
  R['elapsedSeconds']=time.monotonic()-START;(OUT/'result.json').write_text(json.dumps(R,ensure_ascii=False,indent=2));print(json.dumps({k:v for k,v in R.items() if k not in ['samples','inputs','milestones']},ensure_ascii=False),flush=True)
