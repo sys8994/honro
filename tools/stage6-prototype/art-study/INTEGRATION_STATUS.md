@@ -82,3 +82,6 @@ The preceding panorama (run 41671931896) improved continuity but independent rev
 
 ## Panorama with distinct surface formations
 Independent overview and detailed review of the preceding panorama (run 41673852519) rejected weak repetitive/camouflage-like surface detail, despite removing the V-shaped fracture. This experiment retains its quiet continuous lower bed but restores the earlier independently traced west and east surface exposures. The overlap boundaries, duplication, terrain readability, source fidelity, mobile view and exact-candidate performance/save tests are still pending.
+
+## Geological-region panorama study
+The geological guide composed from the exact physical road and proposed strata was used only as conceptual input; a generated source copied the guide as a symmetric V and was rejected before implementation. This separate source revision organizes varied left, center, right and deeper strata in one composition, retaining the previously promising surface exposures. Original and half-size trace input are preserved; physical terrain remains authoritative. Source fidelity, symmetry, actual composition and mobile review remain pending.
