@@ -3,8 +3,14 @@ on:
   workflow_dispatch:
     inputs:
       generated_ref:
-        description: 'Exact40-character generated commit from successful c5 run41543828006; not source c5 or a branch'
+        description: 'Exact40-character generated commit from a successful allowed integration run; not a source commit or branch'
         required: true
+        type: string
+      source_ref:
+        description: 'Exact source parent of generated candidate; omit only for original c5'
+        type: string
+      prerequisite_run:
+        description: 'Successful allowed integration run for that exact source; paired with source_ref'
         type: string
       public:
         description: 'Only after confirmed Pages deployment: verify the actual public site instead of localhost'
@@ -35,27 +41,37 @@ jobs:
         env:
           GENERATED_REF: ${{ inputs.generated_ref }}
           PUBLIC: ${{ inputs.public }}
+          SOURCE_REF: ${{ inputs.source_ref }}
+          PREREQUISITE_RUN: ${{ inputs.prerequisite_run }}
         run: |
           mkdir -p evidence
           python - <<'PY'
           import json,os,re
           from pathlib import Path
           ref=os.environ.get('GENERATED_REF');public=os.environ.get('PUBLIC')=='true'
+          source=os.environ.get('SOURCE_REF');run=os.environ.get('PREREQUISITE_RUN')
           if not ref:
               request=json.loads(Path('qa/.github/qa/stage17-gate-request.json').read_text())
-              assert set(request) in [{'generatedRef'},{'generatedRef','public'}],'Request accepts only generatedRef and optional public boolean'
+              assert 'generatedRef' in request and set(request)<={'generatedRef','public','sourceRef','prerequisiteRun'},'Request accepts only generatedRef, public, sourceRef and prerequisiteRun'
               assert isinstance(request.get('public',False),bool),'public must be a boolean'
               public=request.get('public',False)
+              source=request.get('sourceRef');run=request.get('prerequisiteRun')
               ref=request['generatedRef']
+          assert bool(source)==bool(run),'sourceRef and prerequisiteRun must be paired'
+          source=source or 'c5f9765e369cd6a69d4e7440a65756d8519e4923';run=run or 41543828006
+          assert re.fullmatch('[0-9a-f]{40}',source) and re.fullmatch('[1-9][0-9]*',str(run)),'Invalid immutable source/run'
           assert re.fullmatch('[0-9a-f]{40}',ref),'Supply the exact generated SHA after the prerequisite succeeds'
-          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('ref='+ref+'\npublic='+str(public).lower()+'\n')
-          Path('evidence/request.json').write_text(json.dumps({'generatedRef':ref,'public':public,'harnessSource':os.environ['GITHUB_SHA']},indent=2)+'\n')
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('ref='+ref+'\npublic='+str(public).lower()+'\nsource='+source+'\nrun='+str(run)+'\n')
+          Path('evidence/request.json').write_text(json.dumps({'generatedRef':ref,'public':public,'sourceRef':source,'prerequisiteRun':int(run),'harnessSource':os.environ['GITHUB_SHA']},indent=2)+'\n')
           PY
-      - name: Require completed normal c5 production build and preservation
+      - name: Require completed allowed normal production build and preservation
+        id: prerequisite
         env:
           GH_TOKEN: ${{ github.token }}
           CANDIDATE: ${{ steps.request.outputs.ref }}
-        run: python qa/tools/act2-qa/verify-stage17-generated.py prerequisite --ref "$CANDIDATE" --receipt evidence/prerequisite.json
+        run: |
+          python qa/tools/act2-qa/verify-stage17-generated.py prerequisite --ref "$CANDIDATE" --source "${{ steps.request.outputs.source }}" --run "${{ steps.request.outputs.run }}" --receipt evidence/prerequisite.json
+          python -c 'import json,os; d=json.load(open("evidence/prerequisite.json")); open(os.environ["GITHUB_OUTPUT"],"a").write("artifact="+d["artifact"]+"\n")'
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
           ref: ${{ steps.request.outputs.ref }}
@@ -64,14 +80,14 @@ jobs:
           persist-credentials: false
       - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
         with:
-          name: act2-traced-art-c5f9765e369cd6a69d4e7440a65756d8519e4923
-          run-id: 41543828006
+          name: ${{ steps.prerequisite.outputs.artifact }}
+          run-id: ${{ steps.request.outputs.run }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path: prerequisite
       - name: Match exact generated game, runtime source and genuine fixture
         env:
           CANDIDATE: ${{ steps.request.outputs.ref }}
-        run: python qa/tools/act2-qa/verify-stage17-generated.py package --ref "$CANDIDATE" --candidate candidate --artifact prerequisite --receipt evidence/package-before.json
+        run: python qa/tools/act2-qa/verify-stage17-generated.py package --ref "$CANDIDATE" --source "${{ steps.request.outputs.source }}" --run "${{ steps.request.outputs.run }}" --candidate candidate --artifact prerequisite --receipt evidence/package-before.json
       - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
         with:
           node-version: '22'
@@ -79,6 +95,7 @@ jobs:
       - name: Revalidate saved production evidence without rebuilding or replaying combat
         working-directory: candidate
         run: |
+          set -euo pipefail
           set -euo pipefail
           npm ci
           npm ci --prefix game
@@ -88,8 +105,9 @@ jobs:
           CANDIDATE: ${{ steps.request.outputs.ref }}
         run: |
           python qa/tests/stage17-gate-browser.py --self-test
+          python qa/tests/verify-stage17-generated-test.py
           python -m py_compile qa/tests/stage17-gate-browser.py qa/tools/act2-qa/verify-stage17-generated.py
-          python qa/tools/act2-qa/verify-stage17-generated.py package --ref "$CANDIDATE" --candidate candidate --artifact prerequisite --receipt evidence/package-after.json
+          python qa/tools/act2-qa/verify-stage17-generated.py package --ref "$CANDIDATE" --source "${{ steps.request.outputs.source }}" --run "${{ steps.request.outputs.run }}" --candidate candidate --artifact prerequisite --receipt evidence/package-after.json
           cp qa/tests/stage17-gate-browser.py candidate/tests/stage17-gate-browser.py
           sha256sum qa/tests/stage17-gate-browser.py > evidence/harness-sha256.txt
           python -m pip install 'playwright==1.58.0'

@@ -145,3 +145,25 @@ normal-build provenance gate remains c5-specific until the deployment owner's
 new merged-source build/run contract is verified and explicitly bound. It must
 not be disabled to accept a changed master, and prepared public mode does not
 claim that candidate781cb3 is deployed or is the final merged release.
+
+### Dialogue-preserving merged candidate provenance
+
+The gate additionally accepts the explicitly reviewed
+`.github/workflows/act2-dialogue-integration.yml` contract. Requests for that build
+must pair exact `sourceRef` and numeric `prerequisiteRun` with `generatedRef`;
+`public:true` is still only permitted operationally after confirmed deployment.
+The run must be successfully complete at that exact source and have successful
+normal-build, actual new-arrival/first-shot plus Stage17-entry/save, and generated
+candidate-preservation steps. Artifact name is derived from its verified workflow
+and source, not supplied as an arbitrary download name.
+
+The generated commit must have that source as its sole direct parent. Artifact
+`generated-commit.txt`, final HTML/manifest hashes, source-parity receipt, unchanged
+b411 runtime digest, exact original781 Stage31 package SHA, c5 measured-source and
+c916 published-dialogue parents must agree. Actual Stage31 diagnostic must show
+visible `A4.S31.SEA.01`, damage >0, no errors, `diagnosticPassed:true` and
+`complete:false`; Stage17 entry/save must pass. The ordinary release gate is
+rechecked without rebuilding or replaying combat. The original c5 workflow is
+still accepted only with its original exact source/run. Unknown workflows, source
+mismatches, incomplete runs and missing successful steps fail closed; mocked tests
+cover those rejections. No new run or generated SHA is invented by these options.
