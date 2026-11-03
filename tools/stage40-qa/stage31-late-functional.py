@@ -29,7 +29,7 @@ with sync_playwright() as w:
  try:
   p.goto(os.environ['HONRO_CAPTURE_URL'],wait_until='domcontentloaded');p.wait_for_function('window.HonroApp')
   p.locator('[data-action="settings"]').first.click();p.get_by_text('기록·관리',exact=False).click();p.get_by_text('JSON 기록 가져오기',exact=True).click();p.get_by_text('파일 선택',exact=True).click();p.locator('#file-import').set_input_files(str((out/'source-profile.json').resolve()))
-  p.wait_for_function('HonroApp.profile?.lastStage===31');p.reload();p.wait_for_function('window.HonroApp');p.get_by_text('여정 이어가기',exact=True).click();p.wait_for_function('HonroApp.engine?.b.honroStage===31');ready()
+  p.wait_for_function('HonroApp.profile?.lastStage===31');p.reload();p.wait_for_function('window.HonroApp');p.locator('.title-actions [data-action="continue"]').first.click();p.wait_for_function('HonroApp.engine?.b.honroStage===31');ready()
   s=state();assert s['round']==21 and len(s['enemies'])==1 and s['enemies'][0]['hp']==2,s
   assert p.evaluate('HonroApp.profile.heroes')==saved['heroes']
   for h in s['heroes']:

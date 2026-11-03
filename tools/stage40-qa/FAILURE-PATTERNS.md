@@ -260,3 +260,10 @@ Observed driver issue: incomingDamage stores lifetime maximum, never ages it. Ar
 Register one distinct functional diagnostic: restore that exact normal save (decodedSHA7360f60500bc58a5bcde09c21225b06bb589ee245c98ce45cba61b7ea0d59aee), use ordinary selection/joystick/cast and the existing normal boarding route, record actual final round. An explicit functional-only boarding option has a30R observation bound; ordinary callers retain20R, and this result cannot pass the unchanged release gate. User/coordinator timing decision is pending. No old evidence hash rebind or master publication.
 
 While waiting, run the already registered but unexecuted current-source Stage40 fresh first cast, R15-to-return and guide views on the same unpublished preview. Their result is candidate gameplay evidence, not normal-build/gate or public verification. All outcome files must be kept independently. Runtime code is unchanged by this diagnostic unit.
+
+
+## Current functional41729470340: Stage40 passed, Stage31 menu-locator failure
+
+Exact221035e7 product built successfully. Fresh Stage40 first attack passed; exactR15 normal save continued through combat, four residents safe, all13 required dialogue rows, roster13/11/2, normal settlement and same-context reload inR22 with no JS errors. This is not a newR1 whole-stage or new pacing-candidate result.
+
+Stage31 import succeeded, but the test looked for obsolete title text 여정 이어가기 while the screenshot showed 이어서 걷기. It stopped before combat; no Stage31 completion claim. Replace only this lookup with the existing title continue action selector, already used by the successful Stage40 driver. Register one late-only run on unchanged product221035e7 ancestry, no other whole gameplay repetition. Original artifact13276228445 ZIP SHA256d068c610caa9d08e827d3e025c09b0fef7c9ff9ccbfd07d6d878e8b7dcbfd276 is retained. Stage31 release criteria remain unchanged.
