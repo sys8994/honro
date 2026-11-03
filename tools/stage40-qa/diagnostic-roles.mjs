@@ -8,6 +8,7 @@ import {createFinale} from './bootstrap.mjs';
 import {createRouteGoalLock} from './route-lock.mjs';
 import {finaleRoleGoal} from './role-route.mjs';
 import {evaluateLegalCast} from './legal-cast.mjs';
+import {currentWarnings,warningEscapeGoal} from './warning-route.mjs';
 const out=process.env.HONRO_QA_OUT;if(!out)throw Error('Explicit registered output required');
 await mkdir(out,{recursive:true});
 const hash=x=>createHash('sha256').update(x).digest('hex'),protocol=JSON.parse(await readFile(out+'/protocol.json','utf8'));
@@ -73,11 +74,14 @@ try{
  const selectedRounds=new Set();
  for(let turn=0;turn<120&&b.round<=24&&!['won','lost'].includes(b.phase)&&foes().length;turn++){
   ready();if(!selectedRounds.has(b.round)){selectedRounds.add(b.round);const knight=e.unit('knight');if(knight&&!knight.dead&&!knight.acted)ops.select('knight');}
-  const u=e.active,initial=state();advance(u);ready();if(u!==e.active||u.acted){turns.push({turn,initial,skip:'movement consumed action',final:state()});continue;}
+  const threatened=currentWarnings(b).map(w=>e.unit(w.target.id)).find(v=>v&&!v.dead&&!v.acted&&v.side===0);if(threatened)ops.select(threatened.id);
+  const u=e.active,initial=state(),escape=warningEscapeGoal(e,u,{surface,separated:g.HonroTerrain.separated});
+  if(escape){const before={x:u.x,y:u.y};for(let n=0;n<5&&u===e.active&&u.moveLeft>80&&Math.abs(u.x-escape.x)>25;n++){hold(Math.sign(escape.x-u.x),Math.min(36,Math.max(3,Math.floor(Math.abs(escape.x-u.x)/420/C.STEP))));settle();}actions.push({op:'warning-escape',round:b.round,hero:u.id,goal:escape,before,after:{x:u.x,y:u.y}});}
+  else advance(u);ready();if(u!==e.active||u.acted){turns.push({turn,initial,skip:'movement consumed action',final:state()});continue;}
   let choice=healing()||plan();
   // A safe-shot failure is not an instruction to discard a full movement bar.
   // Try two short, real forward movements to clear a friendly firing lane.
-  for(let n=0;!choice&&n<2&&!finaleRoleGoal(u,{support:surface(u),foes:foes(),surface})?.hold&&u===e.active&&!u.acted&&u.cls!=='knight'&&u.moveLeft>400;n++){
+  for(let n=0;!choice&&n<2&&!escape&&!finaleRoleGoal(u,{support:surface(u),foes:foes(),surface})?.hold&&u===e.active&&!u.acted&&u.cls!=='knight'&&u.moveLeft>400;n++){
    const candidates=foes().filter(v=>Math.abs(v.y-u.y)<650).sort((a,z)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(z.x-u.x,z.y-u.y)),target=candidates[0];if(!target)break;
    const before={x:u.x,y:u.y,support:surface(u),move:u.moveLeft},direction=Math.sign(target.x-u.x)||u.facing;
    hold(direction,45);settle();actions.push({op:'fire-lane-reposition',round:b.round,hero:u.id,target:target.id,before,after:{x:u.x,y:u.y,support:surface(u),move:u.moveLeft}});

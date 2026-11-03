@@ -74,3 +74,20 @@ mage shot across tested legal skills/seeds. Mage's upper-stair role is rejected,
 not counted as strategic variety. Preserve `_local/reports/stage40-design/role-fire-lanes.log`.
 Next focused change only moves mage's proposed firing role to right dock; no
 new whole-stage trial until geometry checks succeed.
+
+## Focused role prototype B
+
+Mage moves to right dock x2050 rather than the rejected upper stair. Separate
+empty-lane reachability and legal full-projectile firing fixtures pass for
+archer high lane and mage dock lane. These fixtures preserve existing terrain,
+42enemy stats/counts and all resident paths; they are not stage play approval.
+Warning decision fixture reacts only to already observed current markers,
+uses body-clear supported movement within remaining budget and rejects unknown,
+blocked or unreachable escape positions. It doesn't infer future attacks.
+
+Next bounded combined comparison uses these independently checked corrections:
+full-cast friendly-fire screening, reachable role separation, observed-warning
+target priority/escape, connected lower-deck activation. Stop at combat terminal,
+R24,450000frames or1200seconds. No repetition without a changed demonstrated cause.
+Success at this step means only diagnostic combat clearance within20; safe
+return, settlement and actual browser/fun remain separate required checks.
