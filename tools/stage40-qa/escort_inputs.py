@@ -2,9 +2,10 @@
 The ferry carries residents; heroes need not take an unnecessary water crossing.
 """
 import time,json,lzma,hashlib
+from pathlib import Path
 
 def finish_escort(p,out):
- events=[];start=time.monotonic()
+ events=[];start=time.monotonic();bridge=(Path(__file__).parent/'browser-planner.js').read_text()
  def state():return p.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b,q=b.honroAct4PreviewState,u=e.active;return{round:b.round,phase:b.phase,side:b.side,active:b.active,can:a.canInput(),dialogue:!!a.dialogue,x:u?.x,y:u?.y,move:u?.moveLeft,grounded:u&&e.grounded(u),support:u&&e.contactSurface(u.x,u.y-4,u.y+5)?.t.id,quiet:HonroAct4TerrainPreview.quietReady(b),foes:b.units.filter(v=>v.side===1&&!v.dead&&v.hp>0).map(v=>v.id),projectiles:b.projectiles.length,volley:!!b.volley,heroes:b.units.filter(v=>v.side===0&&!v.summoned&&!v.honroAct4Resident).map(v=>({id:v.id,x:v.x,y:v.y,hp:v.hp,dead:v.dead,acted:v.acted,grounded:e.grounded(v),support:e.contactSurface(v.x,v.y-4,v.y+5)?.t?.id})),residents:b.units.filter(v=>v.honroAct4Resident).map(v=>({id:v.id,x:v.x,y:v.y,hp:v.hp,dead:v.dead,grounded:e.grounded(v),support:e.contactSurface(v.x,v.y-4,v.y+5)?.t?.id,r:v.r,h:v.h,jumping:v.jumping})),escort:q.returnEscort||null,events:q.events,roster:q.roster,complete:q.complete,water:q.water?.recoveries||[],geometry:b.honroAct4Design.geometry40}}''')
  def record(label):
   s=state();events.append({'step':label,'state':s});(out/'escort-progress.json').write_text(json.dumps(events,ensure_ascii=False));print(label,s['round'],s['escort'] and s['escort']['phase'],flush=True);return s
@@ -45,12 +46,15 @@ def finish_escort(p,out):
    if s['support']=='a4-return-deck':join_stair(id);continue
    if s['move']<100:p.keyboard.press('f');p.wait_for_timeout(1000);continue
    # Upper ridge joins the coast on the east. Never walk off its west cliff.
-   goal=2170 if s['support']=='a4-return-deck' else 5820 if s['support']=='approved40-upper-east' and s['x']<5750 else 1445 if s['support'] in ['approved40-departure-stair','approved40-departure-ramp'] else 2670 if s['support'] in ['approved40-dock','approved40-dock-stair'] else x
+   connection=p.evaluate(bridge,'return-goal')
+   if connection and abs(connection['x']-s['x'])<20:
+    p.keyboard.press('Control');ready();z=record('return-support-jump');assert z['support']==connection['jumpLanding'];continue
+   goal=connection['x'] if connection else 5820 if s['support']=='approved40-upper-east' and s['x']<5750 else 1445 if s['support'] in ['approved40-departure-stair','approved40-departure-ramp'] else 2670 if s['support'] in ['approved40-dock','approved40-dock-stair'] else x
    key='ArrowRight' if goal>s['x'] else 'ArrowLeft';ms=min(400,max(80,abs(goal-s['x'])/420*1000))
    p.keyboard.down(key);p.wait_for_timeout(ms);p.keyboard.up(key);p.wait_for_timeout(500);ready();z=record('escort-walk-'+id)
    if abs(z['x']-s['x'])<12 and z['active']==id and z['move']>120:p.keyboard.press('Control');p.keyboard.down(key);p.wait_for_timeout(260);p.keyboard.up(key);p.wait_for_timeout(900)
   raise TimeoutError('escort route did not reach target')
- ready();s=record('escort-start');g=s['geometry'];pan(g['marks']['boat']);pan(g['marks']['high'])
+ ready();p.wait_for_function('HonroAct4TerrainPreview.quietReady(HonroApp.engine.b)',timeout=15000);s=record('escort-start');g=s['geometry'];pan(g['marks']['boat']);pan(g['marks']['high'])
  if not state()['escort']:
   move_to(next(h['id'] for h in state()['heroes'] if h['hp']>0 and not h['dead']),2610);pan(g['marks']['boat']);pan(g['marks']['high']);ready();record('boarding-trigger')
  assert state()['escort'],'normal boarding trigger not reached'
@@ -70,7 +74,10 @@ def finish_escort(p,out):
   s=state()
   if s['support']=='a4-return-deck':join_stair(h['id']);continue
   if s['move']<100:p.keyboard.press('f');p.wait_for_timeout(900);continue
-  goal=2170 if s['support']=='a4-return-deck' else 1445 if s['support'] in ['approved40-departure-stair','approved40-departure-ramp'] else 2670 if s['support'] in ['approved40-dock','approved40-dock-stair'] else 5820 if s['support']=='approved40-upper-east' and s['x']<5750 else destinations[h['id']]
+  connection=p.evaluate(bridge,'return-goal')
+  if connection and abs(connection['x']-s['x'])<20:
+   p.keyboard.press('Control');ready();z=record('return-support-jump');assert z['support']==connection['jumpLanding'];continue
+  goal=connection['x'] if connection else 1445 if s['support'] in ['approved40-departure-stair','approved40-departure-ramp'] else 2670 if s['support'] in ['approved40-dock','approved40-dock-stair'] else 5820 if s['support']=='approved40-upper-east' and s['x']<5750 else destinations[h['id']]
   key='ArrowRight' if goal>s['x'] else 'ArrowLeft';ms=min(400,max(25,abs(goal-s['x'])/420*1000))
   p.keyboard.down(key);p.wait_for_timeout(ms);p.keyboard.up(key);p.wait_for_timeout(450);ready();z=record('party-return-'+h['id'])
   if abs(z['x']-s['x'])<12 and z['active']==h['id'] and z['move']>120:p.keyboard.press('Control');p.keyboard.down(key);p.wait_for_timeout(220);p.keyboard.up(key);p.wait_for_timeout(800)

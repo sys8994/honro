@@ -83,7 +83,11 @@ with sync_playwright() as w:
     if goal is None or support!=s['support']:goal=p.evaluate(bridge,'goal');support=s['support']
     if not goal:break
     dx=goal['x']-s['x']
-    if abs(dx)<35:
+    if abs(dx)<(20 if goal.get('jumpLanding') or goal.get('deckJoin') else 35):
+     if goal.get('deckJoin'):join_stair(actor);goal=None;continue
+     if goal.get('jumpLanding'):
+      p.keyboard.press('Control');ready();z=record('upper-connection-jump')
+      assert z['active']!=actor or z['support']==goal['jumpLanding'];goal=None;continue
      if goal.get('drop') and s['canDrop']:
       p.keyboard.press('Alt')
       if goal.get('driftRight'):hold('ArrowRight',540)

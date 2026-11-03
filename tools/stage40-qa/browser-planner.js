@@ -31,6 +31,7 @@ function finaleRoleGoal(u,{support,foes,surface}){
 }
 /** Formation uses only current observed units/supports and visible tide state. */
 function tideRetreatRequired(b,u){const t=b.honroAct4PreviewState?.tide,cfg=b.honroAct4Design?.tide;return !!t&&!!cfg&&u.y>=cfg.high-50&&(t.phase==='high'||t.phase==='rising'&&b.round>=t.highRound-1);}
+function deckEntryUnsafe(b){const t=b.honroAct4PreviewState?.tide;return !!t&&(t.phase==='high'||t.phase==='rising'&&b.round>=t.highRound-1);}
 function tideRefuge(cls){return {knight:1550,occultist:1670,mage:1820,archer:1960}[cls]||1800;}
 function finaleDeckGoal(u,{b,support,foes,surface}){
  const danger=tideRetreatRequired(b,u),t=b.honroAct4PreviewState?.tide;
@@ -40,6 +41,7 @@ function finaleDeckGoal(u,{b,support,foes,surface}){
  if(support==='approved40-dock'){
   const front=foes.filter(v=>surface(v)===support&&v.x>=1450&&Math.abs(v.y-u.y)<500).sort((a,z)=>Math.abs(a.x-u.x)-Math.abs(z.x-u.x));
   if(front.length){const v=front[0],spacing=u.cls==='occultist'?360:300;return{x:Math.max(1600,v.x+(v.x>=u.x?-spacing:spacing)),target:v.id,kind:'front-dock-clear'};}
+  if(deckEntryUnsafe(b))return{x:2050,kind:'visible-tide-no-descent',hold:true};
   return{x:2200,drop:true,driftRight:true,kind:'ordinary-deck-drop'};
  }
  if(support==='a4-return-deck')return{x:{mage:2480,archer:2800,occultist:2260}[u.cls],kind:'wide-deck-firing-lane',hold:true};
@@ -60,7 +62,18 @@ function warningEscapeGoal(e,u,{surface,separated}){
  // Prefer supported uphill space; never create a jump/drop/teleport to escape.
  return options.sort((a,z)=>a.y-z.y||Math.abs(a.x-u.x)-Math.abs(z.x-u.x))[0]||null;
 }
-function routeGoal(u){const support=surface(u),role=finaleDeckGoal(u,{b,support,foes:foes(),surface})||(u.cls==='knight'?finaleRoleGoal(u,{support,foes:foes(),surface}):null);if(role)return role;const same=foes().filter(v=>surface(v)===support&&Math.abs(v.y-u.y)<700),spacing=u.cls==='knight'?145:310;
+/** Pursue a previously engaged upper foe through actual support connections.
+ * Never steer horizontally toward an upper target while standing below it. */
+function upperConnectionGoal(u,support){
+ if(support==='a4-return-deck')return{x:2350,deckJoin:true,kind:'upper-recovery-deck-join'};
+ if(support==='approved40-departure-stair')return{x:1460,jumpLanding:'approved40-dock',kind:'upper-recovery-land-on-dock'};
+ if(support==='approved40-dock')return{x:1900,jumpLanding:'approved40-dock-stair',kind:'upper-recovery-land-on-stair'};
+ if(support==='approved40-dock-stair')return{x:2660,jumpLanding:'approved40-coast-west',kind:'upper-recovery-land-on-coast'};
+ return null;
+}
+
+function upperRecoveryGoal(u,{support,foes,surface}){if(!foes.length||!foes.every(v=>surface(v)==='approved40-coast-west'&&v.y<=2500))return null;return upperConnectionGoal(u,support);}
+function routeGoal(u){const support=surface(u),role=upperRecoveryGoal(u,{support,foes:foes(),surface})||finaleDeckGoal(u,{b,support,foes:foes(),surface})||(u.cls==='knight'?finaleRoleGoal(u,{support,foes:foes(),surface}):null);if(role)return role;const same=foes().filter(v=>surface(v)===support&&Math.abs(v.y-u.y)<700),spacing=u.cls==='knight'?145:310;
  if(same.length){const t=same.sort((a,z)=>Math.abs(a.x-u.x)-Math.abs(z.x-u.x))[0];return{x:t.x+(t.x>=u.x?-spacing:spacing),target:t.id,kind:'same-support-approach'};}
  if(support==='approved40-coast-west')return{x:2660,drop:true,kind:'coast-to-stair'};
  if(support==='approved40-dock-stair')return{x:1800,kind:'stair-to-dock'};
@@ -97,4 +110,4 @@ function healing(){const u=e.active,id='O13',s=C.SKILLS[id];if(u.cls!=='occultis
  for(const aim of pe.shotSeeds(pu,s,t)){if(!pe.canAfford(s,pu,aim.power))continue;const hit=pe.predict(pu,s,aim.angle,aim.power,t,false),d=Math.hypot(hit.x-t.x,hit.y-t.y);if(d<180&&(!choice||d<choice.d))choice={id,...aim,d,target:ally.id,method:'support-warden'};}
  assert.equal(JSON.stringify(b),snap);return choice;
 }
-if(op==='tide')return tideRetreatRequired(b,e.active)?{refuge:tideRefuge(e.active.cls)}:null;if(op==='goal')return warningEscapeGoal(e,e.active,{surface,separated:g.HonroTerrain.separated})||routeGoal(e.active);if(op==='priority')return currentWarnings(b).map(w=>e.unit(w.target.id)).find(u=>u&&!u.dead&&!u.acted&&u.side===0)?.id;let choice=healing()||plan();const u=e.active;if(u.cls==='knight'&&u.hp<u.maxHp*.35&&(!choice||choice.score<350)&&u.loadout.includes('S08')&&!e.cooldownLeft(u,'S08')&&e.canAfford(C.SKILLS.S08,u,.2))choice={id:'S08',angle:u.facing>0?0:180,power:.2,method:'low-health-response'};return{choice:choice&&{...choice,idx:u.loadout.indexOf(choice.id)},rejected:actions};}
+if(op==='return-goal')return upperConnectionGoal(e.active,surface(e.active));if(op==='tide')return tideRetreatRequired(b,e.active)?{refuge:tideRefuge(e.active.cls)}:null;if(op==='goal')return warningEscapeGoal(e,e.active,{surface,separated:g.HonroTerrain.separated})||routeGoal(e.active);if(op==='priority')return currentWarnings(b).map(w=>e.unit(w.target.id)).find(u=>u&&!u.dead&&!u.acted&&u.side===0)?.id;let choice=healing()||plan();const u=e.active;if(u.cls==='knight'&&u.hp<u.maxHp*.35&&(!choice||choice.score<350)&&u.loadout.includes('S08')&&!e.cooldownLeft(u,'S08')&&e.canAfford(C.SKILLS.S08,u,.2))choice={id:'S08',angle:u.facing>0?0:180,power:.2,method:'low-health-response'};return{choice:choice&&{...choice,idx:u.loadout.indexOf(choice.id)},rejected:actions};}
