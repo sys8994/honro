@@ -1,0 +1,41 @@
+name: Inspect retained Stage40 QA evidence only
+on:
+  push:
+    branches: ['work/stage40-evidence/**']
+permissions:
+  contents: read
+  actions: read
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Download exact existing archive without rerunning gameplay
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh api repos/sys8994/honro/actions/artifacts/13215393920/zip > /tmp/evidence.zip
+          echo '2f0f62cc9a7d46915f0e3a4d8b473b59abffd47143766ea2631e995042a89f59  /tmp/evidence.zip' | sha256sum -c -
+          python - <<'PY'
+          import zipfile,pathlib,json,hashlib
+          root=pathlib.Path('inspection');root.mkdir();manifest=[];total=0
+          with zipfile.ZipFile('/tmp/evidence.zip') as z:
+            for f in z.infolist():
+              p=pathlib.PurePosixPath(f.filename)
+              assert not p.is_absolute() and '..' not in p.parts
+              keep=not f.is_dir() and not f.filename.endswith('.zip') and f.file_size<100*1024*1024
+              manifest.append({'path':f.filename,'size':f.file_size,'selected':keep})
+              if not keep:continue
+              total+=f.file_size;assert total<400*1024*1024
+              out=root.joinpath(*p.parts);out.parent.mkdir(parents=True,exist_ok=True);data=z.read(f);out.write_bytes(data)
+          (root/'archive-manifest.json').write_text(json.dumps({'sourceRun':41595651979,'sourceArtifact':13215393920,'sha256':'2f0f62cc9a7d46915f0e3a4d8b473b59abffd47143766ea2631e995042a89f59','files':manifest},indent=2))
+          for name in ['browser/result.json','browser.log','protocol.json','stage31/result.json']:
+            p=root/name
+            if p.exists():print(name,p.read_text()[-12000:])
+          PY
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        with:
+          name: stage40-41595651979-inspection
+          path: inspection/
+          retention-days: 7

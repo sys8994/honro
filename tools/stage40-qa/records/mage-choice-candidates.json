@@ -1,0 +1,45 @@
+{
+  "risky": {
+    "id": "M02",
+    "angle": -25.914776914208698,
+    "power": 0.39916608350650723,
+    "score": 740,
+    "target": "final40-west-front-3",
+    "method": "detached-physical-endpoint",
+    "fullCast": {
+      "damage": 740,
+      "targets": [
+        "final40-west-front-6"
+      ]
+    },
+    "idx": 2
+  },
+  "robust": {
+    "id": "M06",
+    "angle": -3.500628418731731,
+    "power": 0.20208291751798027,
+    "score": 340,
+    "target": "final40-west-front-4",
+    "method": "detached-physical-endpoint",
+    "fullCast": {
+      "damage": 340,
+      "targets": [
+        "final40-west-front-2"
+      ]
+    }
+  },
+  "basic": {
+    "id": "M01",
+    "angle": -32.203485672057255,
+    "power": 0.8442115092680337,
+    "score": 255,
+    "target": "final40-west-front-3",
+    "method": "detached-physical-endpoint",
+    "fullCast": {
+      "damage": 255,
+      "targets": [
+        "final40-west-front-2"
+      ]
+    }
+  }
+}

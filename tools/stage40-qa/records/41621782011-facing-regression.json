@@ -1,0 +1,101 @@
+{
+  "scope": "Exact failed R4 save, current-facing selection; not actual browser continuation",
+  "choice": {
+    "id": "S06",
+    "angle": 163.9559430043485,
+    "power": 0.5471067447222117,
+    "score": 729,
+    "targets": [
+      "final40-west-anchor-1",
+      "final40-west-anchor-3"
+    ],
+    "landing": {
+      "x": 2353.5060404929714,
+      "y": 2167.300004410185
+    },
+    "method": "isolated-legal-native-rush",
+    "fullCast": {
+      "damage": 729,
+      "targets": [
+        "final40-west-anchor-1",
+        "final40-west-anchor-3"
+      ]
+    },
+    "nominalScore": 729,
+    "inputTolerance": {
+      "safeUseful": true,
+      "minimumDamage": 729,
+      "samples": [
+        {
+          "angleOffset": 0,
+          "powerOffset": -0.1,
+          "safe": true,
+          "damage": 729,
+          "friendlyDamage": 0
+        },
+        {
+          "angleOffset": 0,
+          "powerOffset": -0.03,
+          "safe": true,
+          "damage": 729,
+          "friendlyDamage": 0
+        },
+        {
+          "angleOffset": 0,
+          "powerOffset": -0.01,
+          "safe": true,
+          "damage": 729,
+          "friendlyDamage": 0
+        },
+        {
+          "angleOffset": 0,
+          "powerOffset": 0,
+          "safe": true,
+          "damage": 729,
+          "friendlyDamage": 0
+        },
+        {
+          "angleOffset": 0,
+          "powerOffset": 0.01,
+          "safe": true,
+          "damage": 729,
+          "friendlyDamage": 0
+        },
+        {
+          "angleOffset": 0,
+          "powerOffset": 0.03,
+          "safe": true,
+          "damage": 729,
+          "friendlyDamage": 0
+        },
+        {
+          "angleOffset": 0,
+          "powerOffset": 0.1,
+          "safe": true,
+          "damage": 729,
+          "friendlyDamage": 0
+        },
+        {
+          "angleOffset": -1,
+          "powerOffset": 0,
+          "safe": true,
+          "damage": 729,
+          "friendlyDamage": 0
+        },
+        {
+          "angleOffset": 1,
+          "powerOffset": 0,
+          "safe": true,
+          "damage": 729,
+          "friendlyDamage": 0
+        }
+      ],
+      "scope": "bounded current-state samples; not a player-visible guide or universal guarantee"
+    }
+  },
+  "round": 4,
+  "active": "knight",
+  "facing": -1,
+  "hp": 2757,
+  "move": 3361
+}

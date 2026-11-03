@@ -1,0 +1,720 @@
+{
+  "status": "User-approved Stage40-only 23-round exception. Actual R1 combat finished R21; exact normal-save continuation finished safe return/settlement/reload R23. Latest-master integration, final-source terrain/gameplay review and public verification pending.",
+  "base": "7d2655bc3f88a7b20fb2d6ea1bc4c611583e9a15",
+  "source": "2ac7cc2a9f686413ee5028f67ee42ffcb10fade4",
+  "branch": "work/stage40-finale/20261103",
+  "productSharedTree": "206f79264ae9a1b91eae0db87871408e293ec2a5",
+  "commits": [
+    "f9c973d33194f1dff68abe0e8fa2a8a9d112cc1f",
+    "c03cd92f38e0e375cdd2437094e9b660f59f1adf",
+    "16f21d99494024a35009aece1c70f4cd0c533ba7",
+    "f5be9ff8f5873e1db0042750de90d2d06c13e31a",
+    "348a5312adc35c54044e88e2401ef6a1da535165",
+    "069b11575100307982868816dd1504df1313f938",
+    "23eb2330f6db913b822e8a673e9f7514cde70342",
+    "38f7a7e657456e6fefe488a7bc4eb8fb2c71dc4a",
+    "2533269ca6ed47a02c3765b2bf9d60c6632244c5",
+    "3416c628b11a154a37a31a77929def5f27448270",
+    "f0406082948cd6c5ee0f21a02f26c4dac4034695",
+    "45a7c413199150b734b419ec65a00f41c5e8985f",
+    "b631d1b1c43f5aa1ef5597c83c909f1b315adf3f",
+    "187651d250732939078c3b20638ce3d822ed01cc",
+    "e47d615a3409312e7fa0bb5e1dbcaca11a96a79b",
+    "16f88a28b8c9f37c3ff5365c163047fb8b6bc8d4",
+    "3e84de7726215bbbda87d14d3a2f45b7d6fe7d90",
+    "37b8fba1408843ba05f4b5413b61ab57f02b2cee",
+    "443b674d684638f0a10a284235f9772c9c773907",
+    "608e5b558a3e24756377968599d01f79136fb3fa",
+    "461bc895581b03b5e323a0a862d0853cf6e97f94",
+    "81dfcd22f6c6b81cf2b0abbb664229b239fb7a50",
+    "e2099c1a0c1fefc42bb1322c12de1f64b01ab67b",
+    "72ec518d6614fee195061c8195de27cb7e1d7e45",
+    "ed3450dda4e27be81d8240eba1d7464196daac48",
+    "d005f07042498a11b6b9994e721e378c6f5b7ea3",
+    "703964120485f0e6a017e6df30102347ec703285",
+    "4401960108d77714d41be9f5eee175b5324d86e8",
+    "1d8c716fb3dd6a85248e272d067397d787bd36c9",
+    "55895d6973258a059863443ae476d411b9d75e75",
+    "ff19cb7725cc4bb27575e61ce0bd7f592bdb2f60",
+    "da455ab67986de2fa9e5e6bf2e464194e21008ae",
+    "259074def81132a7dc5356a58e8d61a43966ef08",
+    "11509ca24516923b412d37fab34463a0f0e7fef1",
+    "d215e3ea45e4ee43263dfd08d0193ae2dbd8917d"
+  ],
+  "files": [
+    {
+      "path": "shared/act4-finale-author.mjs",
+      "sha256": "058fb529bb3200fadd3bafb5d3929871a8e78a4dc667f7b34c5e508f55cdf410"
+    },
+    {
+      "path": "shared/act4-finale-revision.mjs",
+      "sha256": "4ca60debc5c89814943913776970c202db9e503cff4a677efb3d8fd2be32df28"
+    },
+    {
+      "path": "shared/build.mjs",
+      "sha256": "563bc217b0acfd5a30fcd29047dacce6c2f14971981b16ded45bed94a103f7dc"
+    },
+    {
+      "path": "shared/engine/src/engine.ts",
+      "sha256": "a8272a706783b0d75d9f58e5d868b1697b9a1fd0c1b68c046684664af41a1891"
+    },
+    {
+      "path": "shared/map/compiler.js",
+      "sha256": "49f4e21f50eb24ede1e8c7293502e5fe48c2379c209992484d1f6f78f8d6a719"
+    },
+    {
+      "path": "shared/runtime/act4-coast-events.js",
+      "sha256": "d23b49d6ee9c89d6bf835d1aaaed84a5fb6b53ad7b9b624cb5f0045c774f1798"
+    },
+    {
+      "path": "shared/runtime/act4-pilot-art.js",
+      "sha256": "3bab3cf16a24603ccbdae814d283d7b3e44797f5035b556f7efc3e9d5b99a09f"
+    },
+    {
+      "path": "shared/runtime/act4-pilot-combat.js",
+      "sha256": "5c60a89976b4ecf6b193d3dd0740fe6346481a90f27a6b4652d69b4cf44a2edc"
+    },
+    {
+      "path": "shared/runtime/campaign-map-revision.js",
+      "sha256": "baaf9f4263e110a8fcde2b5ba61d40f01dd7bb895f41e954e2811a4e57fdb93c"
+    },
+    {
+      "path": "tools/stage40-qa/DESIGN.md",
+      "sha256": "5d9d934c760c38058604b0a5857fc9895e15e01e431cdeef85ce207c0e808bf2"
+    },
+    {
+      "path": "tools/stage40-qa/analyze-trace.mjs",
+      "sha256": "05374f4ba7b103a2ef10078b27f601d565a7e95ed535d0dcd421db8e68ab5b5c"
+    },
+    {
+      "path": "tools/stage40-qa/bootstrap.mjs",
+      "sha256": "3d795ecf6a9b1895a7f839f2e288f93b4711b791c76e930713af30b28c122ff3"
+    },
+    {
+      "path": "tools/stage40-qa/candidate-entry.mjs",
+      "sha256": "e55870c98bccd29b60d3c85064d28392ebc08727e4aa6c2d43043eb83a1eb645"
+    },
+    {
+      "path": "tools/stage40-qa/candidate-harness.mjs",
+      "sha256": "3f22826953973e821fc5e1ac40ab4a6a74aeb9baba9492d30d0aef4b58feb514"
+    },
+    {
+      "path": "tools/stage40-qa/diagnostic-target-lock.mjs",
+      "sha256": "37dbc8185bd7a0fb9d03e3c3c6da51e66ded1182f3ca0210fce1f9a69eb5fd29"
+    },
+    {
+      "path": "tools/stage40-qa/diagnostic.mjs",
+      "sha256": "f0e74732ad3a2bfe58f2c4a45c8bacc6969fffd0ece23caeb286e0b7d64a09e4"
+    },
+    {
+      "path": "tools/stage40-qa/player-operations.mjs",
+      "sha256": "b73dacacdf7c878255ab4d8f1f823f410881aa2274a843b395e23f90a206bd69"
+    },
+    {
+      "path": "tools/stage40-qa/route-lock.mjs",
+      "sha256": "c542a1f0eff7e83f766f3777521ad1f8f0e58d7ac5431ef4f765109b07c3be9c"
+    },
+    {
+      "path": "tools/stage40-qa/route-lock.test.mjs",
+      "sha256": "0df3f923d90262eadaade54d689685a8b4fecc1a91bde328af00d5dce72f0e9c"
+    },
+    {
+      "path": "tools/stage40-qa/scope-contract.mjs",
+      "sha256": "7d1d27404c8a28fd1e46d116cd0940039cb41089ce499a1a08ddcc2eaf138285"
+    },
+    {
+      "path": "tools/stage40-qa/input-tolerance.mjs",
+      "sha256": "c9bed1e92609f191614c1734557d2d9c3914e047f89c928dfb7bb1b5f378cc20"
+    },
+    {
+      "path": "tools/stage40-qa/dock-cleanup-route.mjs",
+      "sha256": "36ab8784210949f2f6d27384a4349a221b39b4bb66f2c0ed54474a4eb6e812ba"
+    },
+    {
+      "path": "tools/stage40-qa/diagnostic-finishing.mjs",
+      "sha256": "58d96fbb96ccc439982d42ce5f174df36e2345222c44f4b9b92d06234907c627"
+    },
+    {
+      "path": "tools/stage40-qa/browser-planner.js",
+      "sha256": "b3b164a92c5da499f2d512ff29494df3130615da5e645f9ef48d6236df133390"
+    },
+    {
+      "path": "tools/stage40-qa/browser-play.py",
+      "sha256": "7d51147edb849b092f841cb312fa1266c32d2686f877fbb1083b63b0baec4f31"
+    }
+  ],
+  "protected": "Preserve current master changes, dialogue, Stage31–39 data, terrain/residents/escort and save/story contracts. No A2 Stage24 approval-waiting changes. Publish only after current-source review.",
+  "qaWorkflowContract": {
+    "basis": ".github/workflows/monster-a1-integration.yml",
+    "checkout": "exact github.sha; QA-only work/stage40-qa/**",
+    "permissions": "contents:read; no push, master, Pages or production deployment",
+    "steps": [
+      "npm ci; npm ci --prefix game; materialize world",
+      "typecheck; stage40 scope-contract and route-lock unit tests",
+      "Retain current published graphs through existing retention helper",
+      "Restore actual measured Stage31 evidence; reuse only if normal gate accepts exact runtime; if mismatch refresh through existing genuine probes and normal-input Stage31 trials",
+      "Normal npm run build through unchanged gate",
+      "Capture Stage40 browser normal-entry gameplay+safe return and save/viewport, all outcomes",
+      "Always upload logs, traces, screenshots, source/runtime/html/manifest SHA256 and Stage31 package"
+    ],
+    "status": "Executed several frozen failed full runs and bounded diagnostics; current full comparison running. Final coherent integration/readability/fun pending."
+  },
+  "evidence": {
+    "stage40-sweep-approach-02": {
+      "entry.json": "989d6601e65cf72cb0c290a516ef6c1a8f9dba32fb1450f4b2b3c5f125678d33",
+      "protocol.json": "aac6e3b5f3e9d140039e27df954ce7e5dd37c2e90f674b89ac0cba6530e04d38",
+      "turns.jsonl": "4e1817d25f046107bf91bb8629d5080e0325a400c9187653daa58d810245299f",
+      "final-profile.json": "f1226d0eca16dc533e562c24a868ea90dbef11892e9cef4a3904a62d5ca8e83e",
+      "result.json": "5443c1f6f2121477b3fbd4091baaf9d4c5102b28d8ab575365e5d8e4a1461491"
+    },
+    "stage40-target-lock-01": {
+      "entry.json": "34deb04abf20406d55e09c8b6ffb828fbcf827133cf224b01e6a116a2169cf40",
+      "protocol.json": "4bd6919ae1b48c8f9030b30e24855253ed331274c6bae156b500fe47250009e3",
+      "turns.jsonl": "49b4d20a11ace3585c6b647689df503bcc7dc582c52b81e35d81dc47051d6e1a",
+      "final-profile.json": "f15f42eb703c028a97abd04f823e2ceac9f6371b0874c6e072cdacb8b6a97ae9",
+      "result.json": "17477cab3eb4061bc12f5fce9e760f023fd54c9b18884d6871d90f57b708b9f0"
+    },
+    "stage40-roles-01": {
+      "entry.json": "dac7bda3992e444b337858cb91de593bdeeec36e5eb2e5c02ad08ba19d8154b8",
+      "protocol.json": "e2d0f8f3501da1f46e25c75b9dd9cc3e818dabc1a59703470b60f11111ca78d3",
+      "turns.jsonl": "56384cc5d7d3a4dc5e0ffb172fe81ea6896b0cdc074d5c00a3fb9835325c458c",
+      "final-profile.json": "673fa0adc5ca24fcd881babfa1d37859617c35474294c8631559504e99467259",
+      "result.json": "ee4b6bfe41a18eae5f14fd929c487a8d028d452042b534a595dc06d2037946eb"
+    },
+    "stage40-deck-01": {
+      "entry.json": "f1ca5c0dc9fbb272d94680ca40e24adbdbed54b915660fc90f6cccad9e526be3",
+      "protocol.json": "3c41722802bf5fd89ffd929fee42b7c2c146f3082a1c36137ddd503b0446a169",
+      "turns.jsonl": "31142f3ddfc80765b394845921945b7d592f69d88c7a973cd1d2f7ccf9ffbcf2",
+      "final-profile.json": "450709b5483bdf8e21b81acc81fdd429cd021627294e331319fa9010f2453584",
+      "result.json": "1a55c199c556d6fda9fed49a66f438a846884ea5d6819fe90745458796c52c6d"
+    }
+  },
+  "remoteHead": "af6914494b4769adc172f9187b1537ce8455a951",
+  "canonicalNativeMap": [
+    {
+      "native": "f9c973d33194f1dff68abe0e8fa2a8a9d112cc1f",
+      "canonical": "5dff8ab764f6e1601a435c0e567e63b32c51213c",
+      "tree": "c3754d5e93a3317829d64dd7b0f81efda01832cb"
+    },
+    {
+      "native": "c03cd92f38e0e375cdd2437094e9b660f59f1adf",
+      "canonical": "812b7e6a376768abdb493d62479e082335ebdc72",
+      "tree": "093594749edc0633fc74af59ba294b7788867cbc"
+    },
+    {
+      "native": "16f21d99494024a35009aece1c70f4cd0c533ba7",
+      "canonical": "d16bff631b36b4e6b4b108ef25899a66bedfa2af",
+      "tree": "f3194b6ce3257da2187f91e4a7acbf3d26ccaa05"
+    },
+    {
+      "native": "f5be9ff8f5873e1db0042750de90d2d06c13e31a",
+      "canonical": "bf4779ae29affc11046c9ef0df26a34f1cfd11f9",
+      "tree": "17b01399d191e1f42db58d873b18f402a207a0b6"
+    },
+    {
+      "native": "348a5312adc35c54044e88e2401ef6a1da535165",
+      "canonical": "b19656f1c8ae56181bd78a87ce57f4761ee07e64",
+      "tree": "d95fdd2ed4622974aefc5b29bc9264b649eeafc5"
+    },
+    {
+      "native": "069b11575100307982868816dd1504df1313f938",
+      "canonical": "56f3bbe08689e92b8e50ffb9811bda6db91ccbd7",
+      "tree": "39fe30bd5ccb88cf6514c377f4b055f3e53cfb78"
+    },
+    {
+      "native": "23eb2330f6db913b822e8a673e9f7514cde70342",
+      "canonical": "ad6f8145d234a089906e83d192468b5f96ac1f2d",
+      "tree": "03582587dd595bf56cc96f639a78c517a79dd562"
+    },
+    {
+      "native": "38f7a7e657456e6fefe488a7bc4eb8fb2c71dc4a",
+      "canonical": "722e150ff14b3a541bc627538fc51864b97fba26",
+      "tree": "824435b3e7f1fd618e5d37adb6d46b2c138a8d2c"
+    },
+    {
+      "native": "2533269ca6ed47a02c3765b2bf9d60c6632244c5",
+      "canonical": "c57cf36c2d588d022986ff7feff2a3945cc06d34",
+      "tree": "4a6775a3dafd1d065a2ba618477469bda9cc64fc"
+    },
+    {
+      "native": "3416c628b11a154a37a31a77929def5f27448270",
+      "canonical": "f64f92642aaccffac4ddb0ad51601d0dc2f78e96",
+      "tree": "261d7ff02aa4af17449a69f73f0a6ae34ce10bc1"
+    },
+    {
+      "native": "f0406082948cd6c5ee0f21a02f26c4dac4034695",
+      "canonical": "f18ac4677261fc9dbebd9625363d53d8272c50fc",
+      "tree": "16d60612df0fad4833ed29345297d7b15254cd6d"
+    },
+    {
+      "native": "45a7c413199150b734b419ec65a00f41c5e8985f",
+      "canonical": "305d7c9e6b22a54f393a414d7cc0c0231a750c8a",
+      "tree": "7fda634927ba4b261f409baaa781ede90b706338"
+    },
+    {
+      "native": "b631d1b1c43f5aa1ef5597c83c909f1b315adf3f",
+      "canonical": "6d3f93195a8bebd3b66727acfbf35cf078db8fa8",
+      "tree": "f8ebff69fca63766b63a0eb45057b83dc39f2980"
+    },
+    {
+      "native": "187651d250732939078c3b20638ce3d822ed01cc",
+      "canonical": "67a7e94e2584b0c31a5a71a800aae69952a47f3a",
+      "tree": "f7d5cb1263a0df099bda36c0f5efbe0016ad7709"
+    },
+    {
+      "native": "e47d615a3409312e7fa0bb5e1dbcaca11a96a79b",
+      "canonical": "135f7078aad0045b498f838a2afd759d532d672b",
+      "tree": "46cc122909770424ace1bbec6935079f33cafaa7"
+    },
+    {
+      "native": "16f88a28b8c9f37c3ff5365c163047fb8b6bc8d4",
+      "canonical": "f3f130f19c19fb31530eefec2db97860216441ea",
+      "tree": "7f13a7730a5df13c5a2076ae267dccc3b1f82363"
+    },
+    {
+      "native": "3e84de7726215bbbda87d14d3a2f45b7d6fe7d90",
+      "canonical": "a91293a5ec74345b1f32ccc57bb21b5a2622be5b",
+      "tree": "012128f2c98ee9049026d5c5d28c8800a180a4b5"
+    },
+    {
+      "native": "37b8fba1408843ba05f4b5413b61ab57f02b2cee",
+      "canonical": "71a97a16ddc202b09d37d6db0efaa5d16ff4216d",
+      "tree": "be27b385442d7c25a8c97abb9b2d7bf66ac8f002"
+    },
+    {
+      "native": "443b674d684638f0a10a284235f9772c9c773907",
+      "canonical": "6cfac0de319c1765cf85e6f42cbbaad0c871146e",
+      "tree": "147f7971263fe7864022d9375a498cb58a3cae0a"
+    },
+    {
+      "native": "608e5b558a3e24756377968599d01f79136fb3fa",
+      "canonical": "2644d132ab6fde87bdcd168b603a9c90db66c238",
+      "tree": "7de93c207cf5bb788e75ee7b633135c2411a3509"
+    },
+    {
+      "native": "461bc895581b03b5e323a0a862d0853cf6e97f94",
+      "canonical": "74265f8722a7ba74ab6ebc16f0015c9ce9ce6c35",
+      "tree": "fc45166ccba0bd9f75b5dcdb4b0b7e24016b6fdd"
+    },
+    {
+      "native": "81dfcd22f6c6b81cf2b0abbb664229b239fb7a50",
+      "canonical": "bc8a965bedb2bd5a9a34cc750d6c9acac8224950",
+      "tree": "ec1d87177c8027ffc4e85b3ef04fea52931cb349"
+    },
+    {
+      "native": "e2099c1a0c1fefc42bb1322c12de1f64b01ab67b",
+      "canonical": "2937d3fec0b25adcbde0c845a7ad55bfaaaa2a80",
+      "tree": "6efce50ab77a17d2d77b499ff74c6c11c516b782"
+    },
+    {
+      "native": "72ec518d6614fee195061c8195de27cb7e1d7e45",
+      "canonical": "9a246a768876babec884e0df73b5777835e984af",
+      "tree": "28d8fdca709252672e6cb4b96b80ae100b6ddb98"
+    },
+    {
+      "native": "ed3450dda4e27be81d8240eba1d7464196daac48",
+      "canonical": "60075256f82c95bc15a709f5283e53e51b452d6e",
+      "tree": "2980e801574e74dcd13b2235f33c0410cf925011"
+    },
+    {
+      "native": "d005f07042498a11b6b9994e721e378c6f5b7ea3",
+      "canonical": "0c7c3b8da22ce86cd4c0412b00f88fb00f3bece7",
+      "tree": "95b0218049346a2e360eccee235ef856dd91e628"
+    },
+    {
+      "native": "703964120485f0e6a017e6df30102347ec703285",
+      "canonical": "4b50926d7bb08285a74a93548efab635c48f9bd5",
+      "tree": "fd5336582ed8f60f23bf5f14e25994cbb128f647"
+    },
+    {
+      "native": "4401960108d77714d41be9f5eee175b5324d86e8",
+      "canonical": "b5463add579017b58ebac97c003626157d43ab7d",
+      "tree": "10c1640590e849c23c75de069a029980836f1acd"
+    },
+    {
+      "native": "1d8c716fb3dd6a85248e272d067397d787bd36c9",
+      "canonical": "e0cb648f4a0d0aebdf8c7b2279f48d19dda9c4cb",
+      "tree": "4d049190a3c6e41c13cd0dd3e41076985c6963f4"
+    },
+    {
+      "native": "55895d6973258a059863443ae476d411b9d75e75",
+      "canonical": "e809ffc9d12296428aacb614a992497caafbd3e0",
+      "tree": "3697a79992a5eef607dd48d2a2ff33f739e75c0b"
+    },
+    {
+      "native": "ff19cb7725cc4bb27575e61ce0bd7f592bdb2f60",
+      "canonical": "c0ea7984bacf50cfcdff9647e4e02f3a39ad394a",
+      "tree": "7da746a63a4e1b227aceb5d18854de69e5113eb2"
+    },
+    {
+      "native": "da455ab67986de2fa9e5e6bf2e464194e21008ae",
+      "canonical": "ba1a8b03d979dc249a02cc294ae2e7725209f7d8",
+      "tree": "cc0794b456c0897a300e1e52c68dc32c86bce29a"
+    },
+    {
+      "native": "259074def81132a7dc5356a58e8d61a43966ef08",
+      "canonical": "bfbc2277f4004879043e240e0026c426ef886cbf",
+      "tree": "bc7c2000a12ec2f2b8e04a2939f8d28925a4f067"
+    },
+    {
+      "native": "11509ca24516923b412d37fab34463a0f0e7fef1",
+      "canonical": "6c3cac154caf00dfc29b04f5cac029fb2329d247",
+      "tree": "243b3e3e7f04da6d1da88f193246db9c424cf666"
+    },
+    {
+      "native": "d215e3ea45e4ee43263dfd08d0193ae2dbd8917d",
+      "canonical": "4b5e31931249f8fe194047fa22ef5f6def3ab8fd",
+      "tree": "27703b82500a85dd26dd1eb59c0431f03cc71aa0"
+    },
+    {
+      "native": "88f1fc027ea251126aab42ac951218fa06460908",
+      "canonical": "f8bbac4e79e3eec2fc3996f57af0f71eeef9d3fa",
+      "tree": "1548ce31a4a16cef1ff0259ee0cac5f1fa99467a"
+    },
+    {
+      "native": "4df27e74cf0c56158c9f17d9042c0abd065bdc3d",
+      "canonical": "8fefc6d46cf1cfd18b2043ebc32da935b9954269",
+      "tree": "cb4d03e13b3f276ed47f8e54a60d324c65982c3f"
+    },
+    {
+      "native": "034cd5f55b2ec58a8ff54f6f863d70a3e5bde1c1",
+      "canonical": "a3e6c33ba6a1579ef75635c3a4490cc3f70d6da1",
+      "tree": "96bd6ff143c5818a556a62b1f4c250adc48daa6a"
+    },
+    {
+      "native": "312ed370b4ff0123560dcfa6b7ebf95e0e79ca19",
+      "canonical": "382723dd9c6a53ef07e6a1b4773a2173795924d7",
+      "tree": "2246195f0eed24b47e2906e600d66516fbf9f7f7"
+    },
+    {
+      "native": "83af23d703bb4495ba13388502e28983293076bc",
+      "canonical": "d134cb4493b6e9f9670eadc7385ad9c90abf6529",
+      "tree": "0666332c47ac56607beeec026c4cb4095a60bc8c"
+    },
+    {
+      "native": "9a1966f378111bd55669796400d0606ea6350f3f",
+      "canonical": "4ca5cc09b482980538d0ac5bfa054afa4a90929d",
+      "tree": "883ca7f866cc7cbdf9976927b48219ea98d66857"
+    },
+    {
+      "native": "7699467b3332d00ffbc4fed4843b4247ded2c567",
+      "canonical": "2a65b7b12b281c29126bed4b753784bc062bf447",
+      "tree": "381175134ceaa054e2c166baca602f94854df2cd"
+    },
+    {
+      "native": "a807d5e1f84865b1ca443cc7b59301ca0778369d",
+      "canonical": "69996c1d7d71d72447a39b73b6af1a43865b59ca",
+      "tree": "625088d6ae3c654797560ebb771b60fa62b521d3"
+    },
+    {
+      "native": "fcc33e74951f0793045e69ecad236df33c9d71d9",
+      "canonical": "8ded15d639893bf706948015fd9026e0f08e5881",
+      "tree": "d895b20665348814f55eae999521866c9b929ea0"
+    },
+    {
+      "native": "161e9b0b00bba9ddb115ad9a28c7a37b79bb22fa",
+      "canonical": "b11e15c52af1f5d57a2ba8ee647b7c58fc908cd1",
+      "tree": "c9df2b3b47df3cb1cff08811a23a6c0c7a0eec26"
+    },
+    {
+      "native": "96f203cb8d205b07f6c48312cbd8a20401b5d283",
+      "canonical": "e44a2a27f7a2b71244f47bfcb74a9d5ab0c38520",
+      "tree": "da2c3681b14f1d76604eef947e6263cf36e86466"
+    },
+    {
+      "native": "e04ed9a66340cf101a39b21cc9ec4744f071cf38",
+      "canonical": "fbfee413d02901501c4104d57d51d45c274714e7",
+      "tree": "becfe823218130a297d1b52c64b4c6439d82c125"
+    },
+    {
+      "native": "999700742429dad9e832789dc8d1a7d2bf61ae5b",
+      "canonical": "9dd09ec8512c881163d8934611e50bc9f7f2ebeb",
+      "tree": "b7b24d9384286e88f7bdd8ab004b7e59d1e41808"
+    },
+    {
+      "native": "efc5f7ba78ceb9752514e87faf285a81021cb79a",
+      "canonical": "1855db31a7f31fb2ae11cbafd793a71f9be0f34d",
+      "tree": "a20356f8786ad6c123af803aab3a937c9c2bfd4d"
+    },
+    {
+      "native": "d80ec84b4e98bd2f3e8fc48071e5ec12ab2f67b7",
+      "canonical": "322431bf0804e0b8cec5de1517d6655e1a58fa98",
+      "tree": "2ae86b8562620979dab8dd68cb8d9cf8cb12ffc8"
+    },
+    {
+      "native": "6c9d6ba1b37a826a7f53b1c2579e9d23578842c3",
+      "canonical": "b57ae10a73d997c90838a7069ba6b03ad7216ccf",
+      "tree": "e9f2a3b6bcbba2e2c8e02eca1bac3fb8293828f9"
+    },
+    {
+      "native": "391a1fd2f70ca441665c443692030b0c5e0560e1",
+      "canonical": "6c631caf0dd7ad4872f35fb708e9857d0cc6c446",
+      "tree": "c0e63a62ca1ac220c77000953383ba7b008714c7"
+    },
+    {
+      "native": "fc824c229e18ca7958bcf776f001a82dc11a7597",
+      "canonical": "8bed150cb4239838d98efceddad8f46001073663",
+      "tree": "98f4472f928611ce1638994f789364b509a8fce0"
+    },
+    {
+      "native": "53b27000ea153a10a4df9c972927fd11c115b862",
+      "canonical": "8c082225e29398f605407ad0c61c6e39ce406fbc",
+      "tree": "145187f96f58bda43853335c5b33bb35e11a605f"
+    },
+    {
+      "native": "8fd202acd2ca03693d2d2f0d69072626ff47b192",
+      "canonical": "22a12bb08de3aaa8562d37fae1b8c64a2dba0146",
+      "tree": "5d5cb4f917ab575055c0510197a61ff237a78b82"
+    },
+    {
+      "native": "4cc56297d635b6dda9e4bdcb768877bc34222e30",
+      "canonical": "7873f0c3f7a57e989f026666ba8b73d3b9a02dc6",
+      "tree": "606f7bc8e14cc1f8fdc8390e2403224322355849"
+    },
+    {
+      "native": "0573a4777db15eecf65318ae0b02f02ab8bf0511",
+      "canonical": "e234349d2504d7a6e4c1890593d34acf5dc8e99c",
+      "tree": "db311dc93899dbedfc7c12fc53881462fee976d6"
+    }
+  ],
+  "pendingPublication": null,
+  "currentComparison": {
+    "status": "failed, retained",
+    "branch": "work/stage40-qa/coast-boundary-20261103",
+    "run": 41690685003,
+    "source": "583416df681392b4ed2b88d06702f3e3313ce117",
+    "native": "d2172f6462c91c1fa335def80e9f5645a803972e",
+    "artifact": 13263506783,
+    "sha256": "4a6d53d668e9ccd8ee4170c099bbc97df3f52a34358d700db44a1827a85a9e48",
+    "result": "Failed total-time acceptance: all42 defeated onlyR21; all4heroes and4residents alive; no return/settlement; noJSerrors. Actual mage stayed at dock2146 and defendedR6-10,12-13 with unused movement."
+  },
+  "lastFailedComparison": {
+    "source": "4b5e31931249f8fe194047fa22ef5f6def3ab8fd",
+    "runId": 41621782011,
+    "artifactId": 13225465219,
+    "sha256": "3f815e8cee0a5fec4084e0c480973e25e5ed84fc2636349d1ba8630b07e4b413",
+    "outcome": "R4 facing replan controller assertion;37 foes;all heroes/residents alive;9 shots;no stage outcome"
+  },
+  "qaWorkflow": {
+    "path": ".github/workflows/stage40-qa.yml",
+    "trigger": "work/stage40-qa/**",
+    "permissions": "contents:read",
+    "status": "Failed",
+    "buildContract": "Exact SHA; genuine unchanged Stage31 gate; normal build; one actual UI run; artifacts only; no deployment.",
+    "branch": "work/stage40-qa/20261103-r4-continuation-01",
+    "source": "8fefc6d46cf1cfd18b2043ebc32da935b9954269",
+    "runId": 41624405996
+  },
+  "nativeFunctionalComparison": {
+    "protocol": "_local/reports/stage40-finishing-01/protocol.json",
+    "source": "3e84de7726215bbbda87d14d3a2f45b7d6fe7d90",
+    "combatRound": 16,
+    "settlementRound": 18,
+    "originalResult": "post-settlement harness error; retained unchanged",
+    "exactSaveFollowup": "_local/reports/stage40-finishing-01/settled-reload.json",
+    "acceptance": "Native functional evidence chain only",
+    "evidenceSha256": {
+      "protocol.json": "579a5cd2d003622efe43e22e094bb2d8673c359598dd75b27b1867410f7ea81c",
+      "result.json": "23ec42a6711182a43d0def3b91b246f9bb013ca6ca93b05e269ca81a04f6aeb3",
+      "final-profile.json": "14f310cfd694d74f7238bbf8e05acc786b8ebff80062c36741cc3faf3737204c",
+      "settled-reload.json": "26099ef4beaaa73d8743ae32b5924ddae364f22a4adecf913c5c935a86c600d4",
+      "analysis.json": "70923ce522256940abcd4d063750fb4354a9d47ed350e87b07212dadbeac2085"
+    }
+  },
+  "browserFailureHistory": [
+    {
+      "runId": 41594817059,
+      "result": "Setup failed; no gameplay"
+    },
+    {
+      "runId": 41595651979,
+      "result": "Stage31 gate passed;Stage40 R1 aim controller stalled; retained"
+    },
+    {
+      "runId": 41605817603,
+      "result": "R22 all42 cleared;outside total budget;no return"
+    },
+    {
+      "runId": 41610792763,
+      "result": "R25 boss2HP remains;no return"
+    },
+    {
+      "runId": 41621782011,
+      "result": "R4 facing replan controller assertion;37 foes;all heroes/residents alive;9 shots;no stage outcome"
+    },
+    {
+      "runId": 41624405996,
+      "result": "Normal R4 continuation; R25 39/42 defeated; residualHP929/674/3311; archer dead;4 residents alive;no return;noJSerrors"
+    },
+    {
+      "run": 41675108632,
+      "source": "af6914494b4769adc172f9187b1537ce8455a951",
+      "native": "2ac7cc2a9f686413ee5028f67ee42ffcb10fade4",
+      "artifact": 13253961033,
+      "sha256": "27e9ef7d27713d51d7b774feb79206cbc5670b43f430f1d15c654a9d604c3bd1",
+      "result": "R25 34/42 defeated; archer and occultist dead,4 residents alive,no return. Confirmed QA topAt boundary misuse strands mage on east coast; upper archer still had useful shots, so no-choice Drop never triggered."
+    },
+    {
+      "run": 41690685003,
+      "source": "583416df681392b4ed2b88d06702f3e3313ce117",
+      "native": "d2172f6462c91c1fa335def80e9f5645a803972e",
+      "artifact": 13263506783,
+      "sha256": "4a6d53d668e9ccd8ee4170c099bbc97df3f52a34358d700db44a1827a85a9e48",
+      "result": "Failed total-time acceptance: all42 defeated onlyR21; all4heroes and4residents alive; no return/settlement; noJSerrors. Actual mage stayed at dock2146 and defendedR6-10,12-13 with unused movement."
+    }
+  ],
+  "focusedRuns": [
+    {
+      "runId": 41605119986,
+      "scope": "First cast only"
+    },
+    {
+      "runId": 41605698346,
+      "scope": "Fixed-clock Stage31 wrapper pair;9 early states identical;not full-stage equivalence"
+    },
+    {
+      "runId": 41615805406,
+      "scope": "Input sensitivity + exactR25 countercast;M02 actual friendly harm;late boss cleared onlyR25"
+    },
+    {
+      "runId": 41617840917,
+      "scope": "Charge preview capture interference;M06 failed safety outside tested envelope"
+    },
+    {
+      "runId": 41619327758,
+      "scope": "Actual basic M01;255 enemy/zero friendly HP"
+    },
+    {
+      "runId": 41620235189,
+      "scope": "Active guide visiblePC/mobile andko/en locales;no shots;withdraw checkbox premise"
+    },
+    {
+      "runId": 41631876490,
+      "scope": "Actual savedR14 broad flank basicM01 204damage/0friendly; one enemy response;not fullstage"
+    },
+    {
+      "runId": 41633519781,
+      "scope": "Archer upper shot and actualO13 support; assertion wrongly required enemy damage; failed atR14;retained"
+    },
+    {
+      "runId": 41634770553,
+      "scope": "Three-role actual shots/support, one enemy response and R15 support rejoin;all alive;no new warning response occurred;not fullstage",
+      "artifactId": 13230611223,
+      "artifactSha256": "eaf6a6ee1e8ae07620d0ba04f8a8b949ababe9a0a8573b5de68cbc1032de8abf"
+    },
+    {
+      "runId": 41636497702,
+      "scope": "Actual new warning seen R19; four-point retreat search failed despite movement budget; failed and preserved"
+    },
+    {
+      "runId": 41638240125,
+      "scope": "Actual supported631-distance retreat passed; warning never fired throughR24 due enemy queue starvation; failed",
+      "artifactId": 13231614819,
+      "artifactSha256": "35a8e68d3553f0d695b3827df72cb80fca27d9c68685cb78cae530ec9437e6af"
+    },
+    {
+      "runId": 41642048069,
+      "scope": "One unchanged R15-save warning driver comparison on narrow queue patch; fresh genuineStage31 gate required;not whole stage",
+      "source": "fbfee413d02901501c4104d57d51d45c274714e7",
+      "status": "passed-focused-only",
+      "artifactId": 13235351277,
+      "artifactSha256": "158215ef51c5a469322ddfdcd886c8269dea1c1d323e5be32cf2e2505251107d",
+      "outcome": "ActualR19 enemy firing after normal visible response;observedR20;freshStage31R15boarding;allheroes/residentsalive"
+    },
+    {
+      "runId": 41659056373,
+      "status": "mixed-overall-failed",
+      "scope": "ArcherDropA14 actual586/0friendly;mageforward350 facing lost legal shot",
+      "artifactId": 13242710104,
+      "artifactSha256": "d667db09d533e42adf5db46507ab79888057ed6a68d328d9d77848a2e70c3d7a"
+    },
+    {
+      "runId": 41663533879,
+      "status": "passed-focused-only",
+      "scope": "Mage broad240/400 actual979/906 damage,zero friendly;following enemy phase allalive but mage466/675HP loss;not fullstage",
+      "artifactId": 13246520206,
+      "artifactSha256": "717852190a165092758c1775ad7c1f6d77e69ba3c781b46e0e741d6f69503092"
+    },
+    {
+      "run": 41671906865,
+      "source": "0cc69478d92abbccac4a02d36fd666ffba5e4f5d",
+      "native": "a29c69ec3bc6b29366a8d28daa8d10ef601e358f",
+      "artifact": 13250161367,
+      "sha256": "41404762058fa09e6e7fa343abe5ca41136a0064315a925ed358bd8f383542b7",
+      "result": "Joint R4 coast continuation: two useful shots, third normal defense, zero friendly fire; R5 all alive. Not whole-stage acceptance."
+    },
+    {
+      "run": 41685781695,
+      "source": "d08630340b7f032218b1247f646e9603b34d8507",
+      "native": "30b49f00571f06b784f153f565cde53a1498191a",
+      "artifact": 13256162305,
+      "sha256": "39a6733e33eb2dbce8ad589335db5dba3d3f7fa355a609d3fb430fa904bfd286",
+      "result": "Actual east-to-west mage recovery and two normal defensive positions observed. Damage transfer and weak occultist retained. Not whole-stage success."
+    },
+    {
+      "run": 41703469779,
+      "source": "7873f0c3f7a57e989f026666ba8b73d3b9a02dc6",
+      "native": "4cc56297d635b6dda9e4bdcb768877bc34222e30",
+      "artifact": 13264859864,
+      "sha256": "8607c2f6b7f7add887f35591f51d028fe9af55caa0337cc970fa195dece75c04",
+      "result": "Actual R21-save normal functional return completedR23. Resident safety, required story13, roster13/11/2, settlement and same-context reload passed; noJSerrors or waterrecoveries. Prior whole20R failure retained; not final release acceptance."
+    }
+  ],
+  "pendingFunctionalContinuation": {
+    "status": "passed functional continuation; within20 false",
+    "branch": "work/stage40-late-return/20261103",
+    "sourceRun": 41690685003,
+    "entryRound": 21,
+    "entrySha256": "a83ec3c644b23fa613ff81f7d13853c2b6dc3b5e1f2e44de0a40d2ad5935737e",
+    "scope": "Normal saved-state safe return, settlement and reload; prior total20R failure retained; not a whole-run or time-target pass",
+    "runId": 41703469779,
+    "source": "7873f0c3f7a57e989f026666ba8b73d3b9a02dc6",
+    "completedRound": 23,
+    "artifactId": 13264859864,
+    "artifactSha256": "8607c2f6b7f7add887f35591f51d028fe9af55caa0337cc970fa195dece75c04"
+  },
+  "nativeLateReturn": {
+    "sourceRun": 41690685003,
+    "entryRound": 21,
+    "completeRound": 23,
+    "functionalPassed": true,
+    "within20": false,
+    "settled": true,
+    "reloaded": true,
+    "scope": "Native production App controls with DOM/render/clock doubles; actual browser still pending"
+  },
+  "nativeDockLaneComparison": {
+    "sourceRun": 41690685003,
+    "round": 6,
+    "arms": [
+      {
+        "distance": 0,
+        "choice": null
+      },
+      {
+        "distance": -260,
+        "choice": null
+      },
+      {
+        "distance": -520,
+        "choice": "M02",
+        "sampleDamage": 2001
+      }
+    ],
+    "scope": "Normal independent save imports and walking, read-only current-state shots; no actual cast or full-play acceptance"
+  },
+  "stage40RoundException": {
+    "recordedUtc": "2026-11-03T21:12:00Z",
+    "scope": "Stage40 only, total23 rounds including final boss and safe resident return",
+    "question": "4막 10장의 23턴은 기존 20턴 기준에 계속 걸리는 상황이라 판단을 여쭙겠습니다. 마지막 보스전과 주민 귀환을 포함해 이 장에서 23턴 정도를 예외적으로 허용할까요, 아니면 20턴 안팎을 유지하면서 더 줄여볼까요?",
+    "userAnswer": "예외적허용을 해도 좋아. 일단 빠르고 효율적으로 검수해서 배포해",
+    "combatRun": 41690685003,
+    "combatRound": 21,
+    "normalSaveContinuationRun": 41703469779,
+    "finishRound": 23,
+    "historicalWithin20Pass": false,
+    "appliesToOtherStages": false,
+    "noAllHeroSurvivalRequirement": true,
+    "finalIntegrationAccepted": false
+  }
+}

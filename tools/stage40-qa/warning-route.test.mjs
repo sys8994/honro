@@ -1,0 +1,4 @@
+import assert from 'node:assert/strict';
+import {warningEscapeGoal,currentWarnings} from './warning-route.mjs';
+const u={id:'mage',x:2500,y:3600,h:92,moveLeft:1000},boss={id:'boss',side:1,honroPilotCombat:{target:{id:'mage',x:2500,y:3554,seen:true}}},e={b:{units:[boss]},contactSurface:(x)=>({y:3600,t:{id:'a4-return-deck'}})},ctx={surface:()=> 'a4-return-deck',separated:()=>true};
+assert.equal(warningEscapeGoal(e,u,ctx).kind,'seen-warning-evade');assert(warningEscapeGoal(e,u,ctx).x!==u.x);boss.honroPilotCombat.target.seen=false;assert.equal(warningEscapeGoal(e,u,ctx),null);assert.equal(currentWarnings(e.b).length,0);boss.honroPilotCombat.target.seen=true;assert.equal(warningEscapeGoal(e,u,{...ctx,separated:()=>false}),null);assert.equal(warningEscapeGoal(e,{...u,moveLeft:60},ctx),null);console.log('PASS observed-warning, supported escape, body and movement guards');
