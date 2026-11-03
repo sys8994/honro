@@ -1,0 +1,70 @@
+name: Stage6 read-only gated browser QA
+on:
+  push:
+    branches: ['work/stage6-queue-qa-20261103']
+permissions:
+  contents: read
+jobs:
+  qa:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    env:
+      OUT: _local/reports/stage6-gated-qa
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Install dependencies and run Stage6 focused fixture
+        run: |
+          set -euo pipefail
+          mkdir -p "$OUT"
+          npm ci
+          npm ci --prefix game
+          python -m pip install 'playwright==1.58.0'
+          python -m playwright install --with-deps chromium
+          node tests/stage6-pursuit-response.mjs | tee "$OUT/stage6-fixture.log"
+          python tools/act4-ci/test_precise_aim.py
+          python tools/act4-ci/test_stage31_survival.py
+      - name: Prepare unpublished preview for genuine Stage31 measurements
+        env:
+          HONRO_ACT4_RELEASE: '1'
+        run: |
+          set -euo pipefail
+          node tools/act4-ci/refresh-stage31-probes.mjs prepare "$OUT"
+          node workshop/build.mjs | tee "$OUT/preview-build.log"
+      - name: Genuine Stage31 first-shot trials and normal-input fullplay
+        run: |
+          set -euo pipefail
+          python -m http.server 8870 --bind 127.0.0.1 > "$OUT/server.log" 2>&1 &
+          server=$!; trap 'kill "$server" 2>/dev/null || true' EXIT
+          sleep 2
+          for trial in 1 2 3; do
+            HONRO_FIRST_SHOT_DIAGNOSTIC=1 HONRO_RUN_DIR="$OUT/first-shot-$trial" python tools/act4-ci/stage31-fullplay.py > "$OUT/first-shot-$trial.log" 2>&1
+          done
+          HONRO_RUN_DIR="$OUT/stage31" python tools/act4-ci/stage31-fullplay.py > "$OUT/stage31.log" 2>&1
+      - name: Attach measured Stage31 evidence and normal gated build
+        run: |
+          set -euo pipefail
+          node tools/act4-ci/refresh-stage31-probes.mjs attach "$OUT"
+          cp tools/stage31/production-package.json "$OUT/stage31-production-package.json"
+          npm run build | tee "$OUT/gated-build.log"
+          sha256sum HONRO.html web/manifest.json > "$OUT/final-served-sha256.txt"
+      - name: Capture Stage6 initial enemy placement
+        run: |
+          set -euo pipefail
+          python tests/stage6-initial-capture-local.py | tee "$OUT/stage6-browser.log"
+          cp -a _local/reports/stage6-preflight/initial-browser "$OUT/initial-browser"
+          node --input-type=module -e 'import fs from "node:fs";import {runtimeDigest} from "./tools/stage31/probes.mjs";fs.writeFileSync(process.env.OUT+"/receipt.json",JSON.stringify({sourceCommit:process.env.GITHUB_SHA,runId:process.env.GITHUB_RUN_ID,runtimeSha256:await runtimeDigest(),scope:"Stage31 genuine gate and Stage6 initial placement only; not Stage6 gameplay acceptance"},null,2))'
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage6-gated-qa-${{ github.sha }}
+          path: _local/reports/stage6-gated-qa
+          retention-days: 7
