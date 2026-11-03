@@ -115,3 +115,6 @@ Independent review of run 41690551160 found that the boundary taper also obscure
 
 ## SVG import equivalence evidence
 The original west and east five-color speckle-4 SVG traces and their imported native vectors were rendered in native Canvas at their 1x source sizes. Both matched in every RGBA channel (1919×820 and 1942×809). `tests/stage6-trace-equivalence.mjs` reproduces this; the nonproduction preview workflow also executes it and the underlay diagnostic. This is SVG-to-native equivalence only, not proof that the generated PNG or final visual composition is approved.
+
+## Reduced region-source comparison
+The 35th preview (run 41692925211) retained repetitive lower strata. The earlier asymmetrical region source had failed at full strength due to a dark bowl; this comparison reuses that same trace at 50% opacity while preserving the independently traced surface rocks and protected continuation. This is a visual diagnostic only; it does not claim to solve the source-joining problem or the original trace protection failures.
