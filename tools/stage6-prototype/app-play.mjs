@@ -30,9 +30,9 @@ const supportExtents={};const tick=e.tick.bind(e);e.tick=(dt)=>{ticks++;const r=
 if(policy.includes('appops')){
  // This is a deliberate synthetic HUD/paint double, not browser evidence.
  // It allows pursuit timing to be exercised only after two simulated frames.
- let element=null,callbacks=[];const get=g.document.getElementById.bind(g.document),objective=get('objective-text');objective.getAttribute=()=>null;
+ let element=null,callbacks=[];const get=g.document.getElementById.bind(g.document),query=g.document.querySelector.bind(g.document),create=g.document.createElement.bind(g.document),objective=get('objective-text');objective.getAttribute=()=>null;
  const node={clientWidth:320,clientHeight:24,scrollWidth:320,scrollHeight:24,setAttribute(){},remove(){element=null;},getBoundingClientRect(){return {left:10,top:10,right:330,bottom:34,width:320,height:24};}};
- g.innerHeight=900;g.getComputedStyle=()=>({display:'block',visibility:'visible',opacity:'1'});g.document.getElementById=id=>id==='stage6-pursuit-warning'?element:get(id);g.document.querySelector=sel=>sel==='.battle-screen'?{appendChild(n){element=n;}}:null;g.document.createElement=()=>node;
+ g.innerHeight=900;g.getComputedStyle=()=>({display:'block',visibility:'visible',opacity:'1'});g.document.getElementById=id=>id==='stage6-pursuit-warning'?element:get(id);g.document.querySelector=sel=>sel==='.battle-screen'?{appendChild(n){element=n;}}:query(sel);g.document.createElement=tag=>tag==='div'?node:create(tag);
  g.requestAnimationFrame=fn=>{const src=String(fn);if(src.includes('G.requestAnimationFrame')||src.includes('scheduled.delete(b)'))callbacks.push(fn);return callbacks.length;};
  g.QA_OPS=createPlayerOperations({app,g,C,record:row=>inputs.push(row)});const frame=g.QA_OPS.frame;g.QA_OPS.frame=()=>{frame();const q=callbacks;callbacks=[];for(const fn of q)fn();};
 }
