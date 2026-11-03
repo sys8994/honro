@@ -1,7 +1,7 @@
 {
   "status": "DEV ONLY. Latest full browser41646946262 failed atR25 with39/42 defeated;allheroes/residentsalive,no return. Narrow warning correction/freshStage31 passed separately. No18–20 total-round or finalA2/fun acceptance.",
   "base": "7d2655bc3f88a7b20fb2d6ea1bc4c611583e9a15",
-  "source": "53b27000ea153a10a4df9c972927fd11c115b862",
+  "source": "a29c69ec3bc6b29366a8d28daa8d10ef601e358f",
   "branch": "work/stage40-finale/20261103",
   "productSharedTree": "206f79264ae9a1b91eae0db87871408e293ec2a5",
   "commits": [
@@ -189,7 +189,7 @@
       "result.json": "1a55c199c556d6fda9fed49a66f438a846884ea5d6819fe90745458796c52c6d"
     }
   },
-  "remoteHead": "8c082225e29398f605407ad0c61c6e39ce406fbc",
+  "remoteHead": "0cc69478d92abbccac4a02d36fd666ffba5e4f5d",
   "canonicalNativeMap": [
     {
       "native": "f9c973d33194f1dff68abe0e8fa2a8a9d112cc1f",
@@ -603,6 +603,14 @@
       "scope": "Mage broad240/400 actual979/906 damage,zero friendly;following enemy phase allalive but mage466/675HP loss;not fullstage",
       "artifactId": 13246520206,
       "artifactSha256": "717852190a165092758c1775ad7c1f6d77e69ba3c781b46e0e741d6f69503092"
+    },
+    {
+      "run": 41671906865,
+      "source": "0cc69478d92abbccac4a02d36fd666ffba5e4f5d",
+      "native": "a29c69ec3bc6b29366a8d28daa8d10ef601e358f",
+      "artifact": 13250161367,
+      "sha256": "41404762058fa09e6e7fa343abe5ca41136a0064315a925ed358bd8f383542b7",
+      "result": "Joint R4 coast continuation: two useful shots, third normal defense, zero friendly fire; R5 all alive. Not whole-stage acceptance."
     }
   ]
 }
