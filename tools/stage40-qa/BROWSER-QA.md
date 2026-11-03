@@ -1,0 +1,33 @@
+# Stage40 immutable browser QA contract
+
+Status: driver syntax/preflight prepared; NOT RUN, no browser acceptance yet.
+Parent coordinates final A2/shared-engine integration; this branch alone is not
+that final coherent release. The workflow triggers only work/stage40-qa/**,
+never master/Pages, has contents:read, checks out the exact github.sha and has
+no commit/push/deployment steps. Publishing ordinary work/stage40-finale/**
+does not start it. Do not trigger until the native changed-cause result and
+source review identify the coherent candidate to compare.
+
+It retains published graphs, restores genuine Stage31 evidence, reuses only
+if the exact normal gate passes, otherwise runs the unchanged measured
+first-shot trials and objective driver after the specific runtime mismatch.
+It attaches actual measured evidence, then runs ordinary npm run build.
+It never writes a fake attestation, relaxes the gate or uses the old stage40
+noncombat exception. Shared source changes require recompilation.
+
+The single browser comparison imports the original legal prepared profile via
+Settings/file chooser and continues Stage40 normally. Exposed hero selection,
+keyboard move/jump/drop/aim/charge/defend, minimap camera and E interactions
+are the only live mutations. Readonly detached current-state planner refuses
+full-path friendly-fire candidates. No battle injection, hidden Engine.item,
+forged receipt, position or resource write. Failed outcomes, traces and normal
+persisted save are retained. Combat clearance alone never passes: existing
+four-resident return/roster, party exit, result continuation and same-context
+save/reload are required by20 total rounds. A hero casualty alone is not an
+invented rejection gate. Broader profile/cohort, viewport and subjective
+strategy/fun reviews are still separate required work on the final candidate.
+
+The browser planner is generated from the registered deck native functions;
+changes must regenerate it. Real keyboard timing is not bit-identical to the
+native idealized aim gesture. Any driver calibration and outcome must remain
+in the evidence, not be called product impossibility or silently rerun.
