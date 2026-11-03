@@ -61,3 +61,6 @@ The distinct east source preview (run 41662508039) showed little visible structu
 
 ## Organic-edge exposure study
 The 5-color east preview (run 41663936318) remained visually weak, and circular feathering remained visible. This study replaces the two repeated west copies with a single independently generated, irregular-edged transparent rock exposure. Its 5-color Inkscape trace uses speckle 80; source-to-trace protected error and runtime scene acceptance are not yet verified. It is clipped against the unchanged lower-road; no physics are modified. The risk of a floating decal remains explicitly open.
+
+## Distinct eastern exposure study
+Independent review of run 41665596693 found the west exposure promising but its abrupt lower edge and plain east/below regions still unfinished. This candidate replaces the east radial fade with a separate east-facing, irregularly bounded source-traced exposure, 5-color Inkscape speckle 80, clipped to unchanged road collision. It is unapproved until source protected fidelity, ground contact, mobile, both edges and whole scene are reviewed.
