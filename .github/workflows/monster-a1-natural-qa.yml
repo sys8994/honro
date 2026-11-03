@@ -1,4 +1,4 @@
-name: Stage8 genuine wave checkpoint visibility
+name: Stage8 pending warning unpublished UI preview
 on:
   push:
     branches: ['work/monster-a1-natural-qa/**']
@@ -29,12 +29,13 @@ jobs:
           npm ci
           npm ci --prefix game
           node tests/stage8-late-crows.mjs
-      - name: Genuine unchanged Stage31 gate and normal build; no evidence rewrite or replay
+          node tests/stage8-crow-warning.mjs
+      - name: Explicit unpublished UI capture build; final Stage31 gate remains pending
         env:
           HONRO_ACT4_RELEASE: '1'
         run: |
           set -euo pipefail
-          npm run build | tee _local/reports/stage8-crow-qa/normal-build.log
+          node workshop/build.mjs | tee _local/reports/stage8-crow-qa/unpublished-preview-build.log
           python tools/stage8-crow-qa/verify.py --built
           git diff --exit-code -- shared tools/stage31/production-package.json
       - name: Verify genuine same-run R17 checkpoint archive
@@ -65,5 +66,6 @@ jobs:
             _local/reports/monster-natural/
             _local/reports/stage8-crow-qa/
             _local/reports/stage8-late-crows/
+            _local/reports/stage8-crow-warning/
             _local/reports/stage8-crow-visibility/
           retention-days: 7
