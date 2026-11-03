@@ -12,10 +12,10 @@ function oldFloor(t,x){const p=t.points;for(let i=1;i<p.length;i++){const a=p[i-
 export function applyStage6ArtPreview(input){
  const previous=input.stages.find(s=>s.metadata?.stageId===6),oldRoad=previous.terrains.find(t=>t.id==='lower-road');
  const project=authorStage6Prototype(input),s=project.stages.find(s=>s.metadata?.stageId===6),road=s.terrains.find(t=>t.id==='lower-road');
- const rootIds=['landmark-2','landmark-3','place6-west-buttress','place6-mid-buttress','place6-east-buttress','place6-west-rock','place6-west-scree','place6-mid-debris','place6-east-rock','place6-east-pine','place6-east-scree','a1-scene-6-transport-shelter','a1-scene-6-exit-grove-west','a1-scene-6-exit-grove-center','a1-scene-6-exit-grove-east'];
+ const rootIds=['landmark-2','landmark-3','place6-west-scree','place6-mid-debris','place6-east-pine','place6-east-scree','a1-scene-6-transport-shelter','a1-scene-6-exit-grove-west','a1-scene-6-exit-grove-center','a1-scene-6-exit-grove-east'];
  for(const e of s.elements)if(rootIds.includes(e.id))e.y+=floor(e.x)-oldFloor(oldRoad,e.x);
  // Remove old BODY and central pier illustration, whose placements describe the old floor.
- s.elements=s.elements.filter(e=>e.id!=='act1-stage06-traced-body'&&e.id!=='landmark-1');
+ s.elements=s.elements.filter(e=>!['act1-stage06-traced-body','landmark-1','place6-west-buttress','place6-mid-buttress','place6-east-buttress','place6-bridge-rigging'].includes(e.id));
  const west=read('west-matched-runtime.json'),middle=read('middle-grounded-runtime.json'),east=read('east-grounded-runtime.json'),pier=read('pier-runtime-preview.json');
  const contour=road.points.map((p,i)=>(i?'L':'M')+p.x+' '+p.y).join('')+'Z';
  const ext={x:-4000,y:1500,w:14600,h:5200};
