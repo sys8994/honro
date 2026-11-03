@@ -1,0 +1,3 @@
+/** Diagnostic: extend existing broken deck ends; no extra platforms. */
+import {smallDeckRock} from './rock-deck-small.mjs';
+export function connectedBridgeCandidate(input){const p=smallDeckRock(input),s=p.stages.find(v=>v.metadata?.stageId===6),w=s.terrains.find(v=>v.id==='bridge-west')?.points,m=s.terrains.find(v=>v.id==='bridge-mid')?.points,e=s.terrains.find(v=>v.id==='bridge-east')?.points;if(w?.length!==8||m?.length!==6||e?.length!==8)throw Error('Unexpected bridge skeleton');Object.assign(w[3],{x:2530,y:1920});Object.assign(w[4],{x:2530,y:1962});Object.assign(m[2],{x:3700,y:1880});Object.assign(m[3],{x:3700,y:1922});Object.assign(e[0],{x:4000,y:1883});Object.assign(e[7],{x:4000,y:1925});return p;}
