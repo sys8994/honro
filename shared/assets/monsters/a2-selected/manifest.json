@@ -1,0 +1,840 @@
+{
+  "version": 1,
+  "assetRevision": "a2-selected-v1",
+  "status": "ART_DIRECTION_AND_NARROW_BUDGET_SELECTED; LIVE_INTEGRATION_PENDING",
+  "baseHeight": 128,
+  "viewBox": [
+    -85,
+    -150,
+    230,
+    160
+  ],
+  "footPivot": [
+    0,
+    0
+  ],
+  "contract": "Pre-authored vector pose frames, NOT articulated skeletal rigs. Frame selection only; stable foot/pivot and facing root transform. No collision data authored here.",
+  "geometryContract": "baseHeight128 and viewBox remain common; never fit each pose/growth stage to the same visual height. Movement footprint and targetable/hit geometry are unset and simulation-owned. VisualBounds include arms/fan; bodyCoreArtGuide is non-authoritative art metadata only.",
+  "poseMaps": {
+    "eoduksini": {
+      "1": {
+        "idle": "eoduksini-growth1",
+        "prepare": "eoduksini-stage1-prepare",
+        "attack": "eoduksini-stage1-attack",
+        "recover": "eoduksini-stage1-recover"
+      },
+      "2": {
+        "idle": "eoduksini-growth2",
+        "prepare": "eoduksini-stage2-prepare",
+        "attack": "eoduksini-stage2-attack",
+        "recover": "eoduksini-stage2-recover"
+      },
+      "3": {
+        "idle": "eoduksini-growth3",
+        "prepare": "eoduksini-prepare",
+        "attack": "eoduksini-attack",
+        "recover": "eoduksini-recover"
+      }
+    },
+    "jeombokMunyeo": {
+      "idle": "munyeo-flat-idle",
+      "prepare": "munyeo-flat-prepare",
+      "link": "munyeo-flat-link",
+      "recover": "munyeo-flat-recover"
+    }
+  },
+  "fallbacks": {
+    "unknownGrowth": 1,
+    "unknownPose": "idle",
+    "transition": "select prepare \u2192 attack/link \u2192 recover \u2192 idle from simulation state, never invent combat actions in animation",
+    "facing": "root scaleX sign only; no reflow or foot recenter per state"
+  },
+  "sourceProvenance": {
+    "candidateCommit": "3af9c1869c2a8fd1be1e15e44e0828a81fc1b06f",
+    "candidateTree": "8a349f01d2573c43093bef59d5b69f8b3ffff052",
+    "benchmarkRun": 41560464384,
+    "benchmarkArtifact": 13195623878,
+    "referenceAndRawSVG": "Retained outside gameplay bundle in authoring archive; original textured direction retained, flat selected explicitly.",
+    "method": "Generated approved-direction references \u2192 actual Inkscape object-trace \u2192 real path-simplify and semantic boolean intersection/difference/union \u2192 absolute command normalization. No code-invented character polygons."
+  },
+  "budgetDecision": {
+    "scope": "Exactly these16 immutable IDs/hashes only. Global350-anchor gate unchanged.",
+    "eoduksini": {
+      "maxAnchors": 750,
+      "maxPaths": 6,
+      "maxColors": 6,
+      "maxBytes": 30000
+    },
+    "jeombokMunyeo": {
+      "maxAnchors": 2000,
+      "maxPaths": 9,
+      "maxColors": 9,
+      "maxBytes": 75000
+    },
+    "maxTotalSvgBytes": 500000,
+    "directVectorsFirst": true,
+    "requiredRemainingGate": "Actual stage9/24 desktop/mobile visual + frame-cost comparison; microbenchmark CPU is not FPS approval."
+  },
+  "assets": [
+    {
+      "id": "eoduksini-attack",
+      "status": "Selected art direction and narrow budget profile approved; live integration acceptance pending",
+      "file": "eoduksini-attack.svg",
+      "sha256": "e8bb297285c357fb3561dafff9a82b0690d8d0a319ba025be39682b56fd2389f",
+      "anchors": 490,
+      "subpaths": 31,
+      "paths": 6,
+      "colors": 6,
+      "bytes": 20839,
+      "groundCorrection": 0.13497711062039874,
+      "footCenterCorrection": 3.5075061999999995,
+      "footCenterBand": 0.25,
+      "footPivot": [
+        0,
+        0
+      ],
+      "visualOnly": true,
+      "bodyCollisionUnchanged": true,
+      "reference": "eoduksini-trace-reference.png",
+      "raw": "production/eoduksini-attack/raw.svg",
+      "optimization": "actual Inkscape Simplify threshold 0.002 from same raw; 3-decimal absolute M/L/C/Q/Z serialization",
+      "bounds": [
+        -46.874,
+        -105.5037118421876,
+        117.6616693800208,
+        -5.881339472324498e-06
+      ],
+      "rawSha256": "b1a10267d1b4f29a99a496e7727a3d2964d166a76cc59d20d026f584110ae03d",
+      "referenceSha256": "46230efefbd8c6d1303e31301696c90c786fba45b89c6c037306a83aac3460cc",
+      "stateFrameNotBoneRig": true,
+      "bodyCollision": "Not included; preserve simulation-owned body width and collision height independently of these visual bounds.",
+      "rawStats": {
+        "anchors": 1532,
+        "subpaths": 31,
+        "paths": 6,
+        "bytes": 115108,
+        "byteMeaning": "isolated normalized raw SVG, full-precision absolute serialization; not original whole-sheet relative trace byte size"
+      },
+      "gzipBytes": 9321,
+      "visualBounds": [
+        -46.874,
+        -105.5037118421876,
+        117.6616693800208,
+        -5.881339472324498e-06
+      ],
+      "movementFootprint": null,
+      "hitGeometry": null,
+      "damageGeometry": null,
+      "controls": 864
+    },
+    {
+      "id": "eoduksini-growth1",
+      "status": "Selected art direction and narrow budget profile approved; live integration acceptance pending",
+      "file": "eoduksini-growth1.svg",
+      "sha256": "5224dc3883fee75a5d20d8da2013b54e4f26e98bd6187c257efac9f09b0be97c",
+      "anchors": 408,
+      "subpaths": 23,
+      "paths": 6,
+      "colors": 6,
+      "bytes": 16814,
+      "groundCorrection": 0.05136869786623127,
+      "footCenterCorrection": -0.43753444937500663,
+      "footCenterBand": 0.25,
+      "footPivot": [
+        0,
+        0
+      ],
+      "visualOnly": true,
+      "bodyCollisionUnchanged": true,
+      "reference": "eoduksini-trace-reference.png",
+      "raw": "production/eoduksini-growth1/raw.svg",
+      "optimization": "actual Inkscape Simplify threshold 0.002 from same raw; 3-decimal absolute M/L/C/Q/Z serialization",
+      "bounds": [
+        -14.768000000000004,
+        -72.39622209398131,
+        31.539017841842323,
+        0.00012570606669831674
+      ],
+      "rawSha256": "55f20cc8973987c2de773aeea6970cd5798b607f67bf6a45df56d1260447b1d8",
+      "referenceSha256": "46230efefbd8c6d1303e31301696c90c786fba45b89c6c037306a83aac3460cc",
+      "stateFrameNotBoneRig": true,
+      "bodyCollision": "Not included; preserve simulation-owned body width and collision height independently of these visual bounds.",
+      "rawStats": {
+        "anchors": 841,
+        "subpaths": 23,
+        "paths": 6,
+        "bytes": 67981,
+        "byteMeaning": "isolated normalized raw SVG, full-precision absolute serialization; not original whole-sheet relative trace byte size"
+      },
+      "gzipBytes": 7535,
+      "visualBounds": [
+        -14.768000000000004,
+        -72.39622209398131,
+        31.539017841842323,
+        0.00012570606669831674
+      ],
+      "movementFootprint": null,
+      "hitGeometry": null,
+      "damageGeometry": null,
+      "controls": 732
+    },
+    {
+      "id": "eoduksini-growth2",
+      "status": "Selected art direction and narrow budget profile approved; live integration acceptance pending",
+      "file": "eoduksini-growth2.svg",
+      "sha256": "1c2d02f8037f0d17abebebf827395c173f04c68bd43b60392daf702108579296",
+      "anchors": 712,
+      "subpaths": 49,
+      "paths": 6,
+      "colors": 6,
+      "bytes": 25320,
+      "groundCorrection": 0.07461488760931044,
+      "footCenterCorrection": 0.46044850265625015,
+      "footCenterBand": 0.25,
+      "footPivot": [
+        0,
+        0
+      ],
+      "visualOnly": true,
+      "bodyCollisionUnchanged": true,
+      "reference": "eoduksini-trace-reference.png",
+      "raw": "production/eoduksini-growth2/raw.svg",
+      "optimization": "actual Inkscape Simplify threshold 0.002 from same raw; 3-decimal absolute M/L/C/Q/Z serialization; exact raw fingertip region restored with actual Inkscape intersection/difference before final registration",
+      "bounds": [
+        -26.64,
+        -104.20955573468137,
+        38.634712329729524,
+        -0.000169410528289074
+      ],
+      "rawSha256": "6934a043277175b3bdd944e219dea468341b4e5c2d22e464dc3d99f4dc5ac1d0",
+      "referenceSha256": "46230efefbd8c6d1303e31301696c90c786fba45b89c6c037306a83aac3460cc",
+      "stateFrameNotBoneRig": true,
+      "bodyCollision": "Not included; preserve simulation-owned body width and collision height independently of these visual bounds.",
+      "rawStats": {
+        "anchors": 1086,
+        "subpaths": 28,
+        "paths": 6,
+        "bytes": 86693,
+        "byteMeaning": "isolated normalized raw SVG, full-precision absolute serialization; not original whole-sheet relative trace byte size"
+      },
+      "gzipBytes": 11006,
+      "visualBounds": [
+        -26.64,
+        -104.20955573468137,
+        38.634712329729524,
+        -0.000169410528289074
+      ],
+      "movementFootprint": null,
+      "hitGeometry": null,
+      "damageGeometry": null,
+      "controls": 966
+    },
+    {
+      "id": "eoduksini-growth3",
+      "status": "Selected art direction and narrow budget profile approved; live integration acceptance pending",
+      "file": "eoduksini-growth3.svg",
+      "sha256": "c3feccbdea9bd08116e01d0169e72fd6ca5a953ef495918f30c5bd50bdb4f26c",
+      "anchors": 726,
+      "subpaths": 39,
+      "paths": 6,
+      "colors": 6,
+      "bytes": 28355,
+      "groundCorrection": 0.2263051745024381,
+      "footCenterCorrection": -0.04799876718749996,
+      "footCenterBand": 0.25,
+      "footPivot": [
+        0,
+        0
+      ],
+      "visualOnly": true,
+      "bodyCollisionUnchanged": true,
+      "reference": "eoduksini-trace-reference.png",
+      "raw": "production/eoduksini-growth3/raw.svg",
+      "optimization": "actual Inkscape Simplify threshold 0.002 from same raw; 3-decimal absolute M/L/C/Q/Z serialization; exact raw fingertip region restored with actual Inkscape intersection/difference before final registration",
+      "bounds": [
+        -35.55552353102357,
+        -127.61391127437132,
+        64.294,
+        -5.173560736759786e-06
+      ],
+      "rawSha256": "67680b1779bc8f92b768322c8dba0c65cfe69f07d68edac3b425bda1850eff6b",
+      "referenceSha256": "46230efefbd8c6d1303e31301696c90c786fba45b89c6c037306a83aac3460cc",
+      "stateFrameNotBoneRig": true,
+      "bodyCollision": "Not included; preserve simulation-owned body width and collision height independently of these visual bounds.",
+      "rawStats": {
+        "anchors": 1472,
+        "subpaths": 33,
+        "paths": 6,
+        "bytes": 114866,
+        "byteMeaning": "isolated normalized raw SVG, full-precision absolute serialization; not original whole-sheet relative trace byte size"
+      },
+      "gzipBytes": 12578,
+      "visualBounds": [
+        -35.55552353102357,
+        -127.61391127437132,
+        64.294,
+        -5.173560736759786e-06
+      ],
+      "movementFootprint": null,
+      "hitGeometry": null,
+      "damageGeometry": null,
+      "controls": 1128
+    },
+    {
+      "id": "eoduksini-prepare",
+      "status": "Selected art direction and narrow budget profile approved; live integration acceptance pending",
+      "file": "eoduksini-prepare.svg",
+      "sha256": "836558260ff553d29825e63d1596d58930562648cb1b2189d02db8d6bf6b9d3a",
+      "anchors": 518,
+      "subpaths": 34,
+      "paths": 6,
+      "colors": 6,
+      "bytes": 21973,
+      "groundCorrection": 0.1354425677901744,
+      "footCenterCorrection": 0.9820281,
+      "footCenterBand": 0.25,
+      "footPivot": [
+        0,
+        0
+      ],
+      "visualOnly": true,
+      "bodyCollisionUnchanged": true,
+      "reference": "eoduksini-trace-reference.png",
+      "raw": "production/eoduksini-prepare/raw.svg",
+      "optimization": "actual Inkscape Simplify threshold 0.002 from same raw; 3-decimal absolute M/L/C/Q/Z serialization",
+      "bounds": [
+        -48.19160057110568,
+        -122.32683989085517,
+        48.315384254494,
+        0.00031718459591817405
+      ],
+      "rawSha256": "a04c88b19dac3feddf25d60edce48d6b6dd45b956c0dff8e0c0f2b140427d9de",
+      "referenceSha256": "46230efefbd8c6d1303e31301696c90c786fba45b89c6c037306a83aac3460cc",
+      "stateFrameNotBoneRig": true,
+      "bodyCollision": "Not included; preserve simulation-owned body width and collision height independently of these visual bounds.",
+      "rawStats": {
+        "anchors": 1413,
+        "subpaths": 34,
+        "paths": 6,
+        "bytes": 107524,
+        "byteMeaning": "isolated normalized raw SVG, full-precision absolute serialization; not original whole-sheet relative trace byte size"
+      },
+      "gzipBytes": 9841,
+      "visualBounds": [
+        -48.19160057110568,
+        -122.32683989085517,
+        48.315384254494,
+        0.00031718459591817405
+      ],
+      "movementFootprint": null,
+      "hitGeometry": null,
+      "damageGeometry": null,
+      "controls": 916
+    },
+    {
+      "id": "eoduksini-recover",
+      "status": "Selected art direction and narrow budget profile approved; live integration acceptance pending",
+      "file": "eoduksini-recover.svg",
+      "sha256": "4778da16f336727bd19d56294f0ee93015fbeacb8b70b4e5cd002d354e294da2",
+      "anchors": 557,
+      "subpaths": 36,
+      "paths": 6,
+      "colors": 6,
+      "bytes": 23396,
+      "groundCorrection": 0.3560527350132716,
+      "footCenterCorrection": 7.914359675000002,
+      "footCenterBand": 0.25,
+      "footPivot": [
+        0,
+        0
+      ],
+      "visualOnly": true,
+      "bodyCollisionUnchanged": true,
+      "reference": "eoduksini-trace-reference.png",
+      "raw": "production/eoduksini-recover/raw.svg",
+      "optimization": "actual Inkscape Simplify threshold 0.002 from same raw; 3-decimal absolute M/L/C/Q/Z serialization",
+      "bounds": [
+        -26.233000000000008,
+        -108.83579018529923,
+        48.853000000000016,
+        0.0004323868502646988
+      ],
+      "rawSha256": "2bfb5082f59635b36f72c9cbb6980e14085a6e01d1053ec95880d274ac639b6f",
+      "referenceSha256": "46230efefbd8c6d1303e31301696c90c786fba45b89c6c037306a83aac3460cc",
+      "stateFrameNotBoneRig": true,
+      "bodyCollision": "Not included; preserve simulation-owned body width and collision height independently of these visual bounds.",
+      "rawStats": {
+        "anchors": 1344,
+        "subpaths": 36,
+        "paths": 6,
+        "bytes": 101560,
+        "byteMeaning": "isolated normalized raw SVG, full-precision absolute serialization; not original whole-sheet relative trace byte size"
+      },
+      "gzipBytes": 10431,
+      "visualBounds": [
+        -26.233000000000008,
+        -108.83579018529923,
+        48.853000000000016,
+        0.0004323868502646988
+      ],
+      "movementFootprint": null,
+      "hitGeometry": null,
+      "damageGeometry": null,
+      "controls": 984
+    },
+    {
+      "id": "eoduksini-stage1-attack",
+      "status": "Selected art direction and narrow budget profile approved; live integration acceptance pending",
+      "file": "eoduksini-stage1-attack.svg",
+      "sha256": "fc11f4c85015b39b6ffe8b3f958212f3fb09f5e8a733e5b9d3caee8cd5b5ea36",
+      "anchors": 422,
+      "subpaths": 21,
+      "paths": 6,
+      "colors": 6,
+      "bytes": 17931,
+      "groundCorrection": 0.0635243057628257,
+      "footCenterCorrection": -0.1682576328906531,
+      "footCenterBand": 0.25,
+      "footPivot": [
+        0,
+        0
+      ],
+      "visualOnly": true,
+      "bodyCollisionUnchanged": true,
+      "reference": "eoduksini-early-action-reference.png",
+      "raw": "production/eoduksini-stage1-attack/raw.svg",
+      "optimization": "actual Inkscape Simplify threshold 0.002 from same raw; 3-decimal absolute M/L/C/Q/Z serialization",
+      "bounds": [
+        -26.237,
+        -62.392608338465635,
+        71.476,
+        0.00021030397043692028
+      ],
+      "rawSha256": "3b554bfe83931b2a5491e0d1d7882faaf5321b29defff88049ecc1c4cb9c0d79",
+      "referenceSha256": "bbabcb0dbe71affc75a9950eb6603179f4c9b4e0a898422a33c2185ab0bc9f41",
+      "stateFrameNotBoneRig": true,
+      "bodyCollision": "Not included; preserve simulation-owned body width and collision height independently of these visual bounds.",
+      "rawStats": {
+        "anchors": 1014,
+        "subpaths": 21,
+        "paths": 6,
+        "bytes": 74894,
+        "byteMeaning": "isolated normalized raw SVG, full-precision absolute serialization; not original whole-sheet relative trace byte size"
+      },
+      "gzipBytes": 7957,
+      "visualBounds": [
+        -26.237,
+        -62.392608338465635,
+        71.476,
+        0.00021030397043692028
+      ],
+      "movementFootprint": null,
+      "hitGeometry": null,
+      "damageGeometry": null,
+      "controls": 768
+    },
+    {
+      "id": "eoduksini-stage1-prepare",
+      "status": "Selected art direction and narrow budget profile approved; live integration acceptance pending",
+      "file": "eoduksini-stage1-prepare.svg",
+      "sha256": "198a190f9d8504f1194b6b5ea5d51e827ba77c69c0d4513c120dea34f59c6b52",
+      "anchors": 395,
+      "subpaths": 21,
+      "paths": 6,
+      "colors": 6,
+      "bytes": 16768,
+      "groundCorrection": 0.0955383444722595,
+      "footCenterCorrection": 0.014909157031248066,
+      "footCenterBand": 0.25,
+      "footPivot": [
+        0,
+        0
+      ],
+      "visualOnly": true,
+      "bodyCollisionUnchanged": true,
+      "reference": "eoduksini-early-action-reference.png",
+      "raw": "production/eoduksini-stage1-prepare/raw.svg",
+      "optimization": "actual Inkscape Simplify threshold 0.002 from same raw; 3-decimal absolute M/L/C/Q/Z serialization",
+      "bounds": [
+        -35.39003924390652,
+        -68.27725910221463,
+        30.367734105325304,
+        7.822461583151252e-06
+      ],
+      "rawSha256": "af6778b21177a642edf403d013d56caeaf9501f355c2d09d638cdd174190b863",
+      "referenceSha256": "bbabcb0dbe71affc75a9950eb6603179f4c9b4e0a898422a33c2185ab0bc9f41",
+      "stateFrameNotBoneRig": true,
+      "bodyCollision": "Not included; preserve simulation-owned body width and collision height independently of these visual bounds.",
+      "rawStats": {
+        "anchors": 854,
+        "subpaths": 21,
+        "paths": 6,
+        "bytes": 68812,
+        "byteMeaning": "isolated normalized raw SVG, full-precision absolute serialization; not original whole-sheet relative trace byte size"
+      },
+      "gzipBytes": 7348,
+      "visualBounds": [
+        -35.39003924390652,
+        -68.27725910221463,
+        30.367734105325304,
+        7.822461583151252e-06
+      ],
+      "movementFootprint": null,
+      "hitGeometry": null,
+      "damageGeometry": null,
+      "controls": 710
+    },
+    {
+      "id": "eoduksini-stage1-recover",
+      "status": "Selected art direction and narrow budget profile approved; live integration acceptance pending",
+      "file": "eoduksini-stage1-recover.svg",
+      "sha256": "1f8d9f7895fc1977a6e454add97398664a54f736f3181dacf1a6ca1895524131",
+      "anchors": 395,
+      "subpaths": 20,
+      "paths": 6,
+      "colors": 6,
+      "bytes": 16450,
+      "groundCorrection": 0.0,
+      "footCenterCorrection": -0.15537154429687527,
+      "footCenterBand": 0.25,
+      "footPivot": [
+        0,
+        0
+      ],
+      "visualOnly": true,
+      "bodyCollisionUnchanged": true,
+      "reference": "eoduksini-early-action-reference.png",
+      "raw": "production/eoduksini-stage1-recover/raw.svg",
+      "optimization": "actual Inkscape Simplify threshold 0.002 from same raw; 3-decimal absolute M/L/C/Q/Z serialization",
+      "bounds": [
+        -10.444,
+        -63.377503108993274,
+        36.269237126909914,
+        0.0
+      ],
+      "rawSha256": "48afd6a36f365efb47688e3654db8d85c9135cae69e94da149dc69bb78164ecc",
+      "referenceSha256": "bbabcb0dbe71affc75a9950eb6603179f4c9b4e0a898422a33c2185ab0bc9f41",
+      "stateFrameNotBoneRig": true,
+      "bodyCollision": "Not included; preserve simulation-owned body width and collision height independently of these visual bounds.",
+      "rawStats": {
+        "anchors": 787,
+        "subpaths": 20,
+        "paths": 6,
+        "bytes": 62800,
+        "byteMeaning": "isolated normalized raw SVG, full-precision absolute serialization; not original whole-sheet relative trace byte size"
+      },
+      "gzipBytes": 7408,
+      "visualBounds": [
+        -10.444,
+        -63.377503108993274,
+        36.269237126909914,
+        0.0
+      ],
+      "movementFootprint": null,
+      "hitGeometry": null,
+      "damageGeometry": null,
+      "controls": 720
+    },
+    {
+      "id": "eoduksini-stage2-attack",
+      "status": "Selected art direction and narrow budget profile approved; live integration acceptance pending",
+      "file": "eoduksini-stage2-attack.svg",
+      "sha256": "7f57283418c427c0348e6ea506622ece5579dce09a3486c2b6bee3b8213349b6",
+      "anchors": 476,
+      "subpaths": 29,
+      "paths": 6,
+      "colors": 6,
+      "bytes": 20034,
+      "groundCorrection": 0.062463380096014876,
+      "footCenterCorrection": -0.5318957215625,
+      "footCenterBand": 0.25,
+      "footPivot": [
+        0,
+        0
+      ],
+      "visualOnly": true,
+      "bodyCollisionUnchanged": true,
+      "reference": "eoduksini-early-action-reference.png",
+      "raw": "production/eoduksini-stage2-attack/raw.svg",
+      "optimization": "actual Inkscape Simplify threshold 0.002 from same raw; 3-decimal absolute M/L/C/Q/Z serialization",
+      "bounds": [
+        -34.69700000000003,
+        -95.74201860974958,
+        89.88729667089993,
+        0.00021487731501146357
+      ],
+      "rawSha256": "75e76f9462b36bb17f509d5594dd982bcfcdbb84cfe8964badeb423fa339d937",
+      "referenceSha256": "bbabcb0dbe71affc75a9950eb6603179f4c9b4e0a898422a33c2185ab0bc9f41",
+      "stateFrameNotBoneRig": true,
+      "bodyCollision": "Not included; preserve simulation-owned body width and collision height independently of these visual bounds.",
+      "rawStats": {
+        "anchors": 1477,
+        "subpaths": 29,
+        "paths": 6,
+        "bytes": 104974,
+        "byteMeaning": "isolated normalized raw SVG, full-precision absolute serialization; not original whole-sheet relative trace byte size"
+      },
+      "gzipBytes": 8994,
+      "visualBounds": [
+        -34.69700000000003,
+        -95.74201860974958,
+        89.88729667089993,
+        0.00021487731501146357
+      ],
+      "movementFootprint": null,
+      "hitGeometry": null,
+      "damageGeometry": null,
+      "controls": 846
+    },
+    {
+      "id": "eoduksini-stage2-prepare",
+      "status": "Selected art direction and narrow budget profile approved; live integration acceptance pending",
+      "file": "eoduksini-stage2-prepare.svg",
+      "sha256": "677afb871c3b528d1f1569c4aa8d4968cb1ba3e7f72b8e132103364717356c60",
+      "anchors": 526,
+      "subpaths": 27,
+      "paths": 6,
+      "colors": 6,
+      "bytes": 22430,
+      "groundCorrection": 0.08532524834040656,
+      "footCenterCorrection": -0.5891321806250027,
+      "footCenterBand": 0.25,
+      "footPivot": [
+        0,
+        0
+      ],
+      "visualOnly": true,
+      "bodyCollisionUnchanged": true,
+      "reference": "eoduksini-early-action-reference.png",
+      "raw": "production/eoduksini-stage2-prepare/raw.svg",
+      "optimization": "actual Inkscape Simplify threshold 0.002 from same raw; 3-decimal absolute M/L/C/Q/Z serialization",
+      "bounds": [
+        -38.182656260279956,
+        -104.508,
+        40.20419449518369,
+        -0.0003350841281664074
+      ],
+      "rawSha256": "15fe0ea14b37906f24afa500f005225ca0f6522d594333360a3b8ae942721054",
+      "referenceSha256": "bbabcb0dbe71affc75a9950eb6603179f4c9b4e0a898422a33c2185ab0bc9f41",
+      "stateFrameNotBoneRig": true,
+      "bodyCollision": "Not included; preserve simulation-owned body width and collision height independently of these visual bounds.",
+      "rawStats": {
+        "anchors": 1465,
+        "subpaths": 27,
+        "paths": 6,
+        "bytes": 110220,
+        "byteMeaning": "isolated normalized raw SVG, full-precision absolute serialization; not original whole-sheet relative trace byte size"
+      },
+      "gzipBytes": 9999,
+      "visualBounds": [
+        -38.182656260279956,
+        -104.508,
+        40.20419449518369,
+        -0.0003350841281664074
+      ],
+      "movementFootprint": null,
+      "hitGeometry": null,
+      "damageGeometry": null,
+      "controls": 958
+    },
+    {
+      "id": "eoduksini-stage2-recover",
+      "status": "Selected art direction and narrow budget profile approved; live integration acceptance pending",
+      "file": "eoduksini-stage2-recover.svg",
+      "sha256": "907d35045cc06265433ea6f98e405c923a526e443b3b1c277d6bb5482c85a40f",
+      "anchors": 494,
+      "subpaths": 24,
+      "paths": 6,
+      "colors": 6,
+      "bytes": 21011,
+      "groundCorrection": 0.01865343561685051,
+      "footCenterCorrection": -0.4333642188281017,
+      "footCenterBand": 0.25,
+      "footPivot": [
+        0,
+        0
+      ],
+      "visualOnly": true,
+      "bodyCollisionUnchanged": true,
+      "reference": "eoduksini-early-action-reference.png",
+      "raw": "production/eoduksini-stage2-recover/raw.svg",
+      "optimization": "actual Inkscape Simplify threshold 0.002 from same raw; 3-decimal absolute M/L/C/Q/Z serialization",
+      "bounds": [
+        -21.04394879977752,
+        -97.04014921476387,
+        38.827300026405204,
+        -0.0003044971270717012
+      ],
+      "rawSha256": "ba98ad8bec1870292717d7aa306ad1f09b388e962f67d9c5ab18fa8150ff9fe7",
+      "referenceSha256": "bbabcb0dbe71affc75a9950eb6603179f4c9b4e0a898422a33c2185ab0bc9f41",
+      "stateFrameNotBoneRig": true,
+      "bodyCollision": "Not included; preserve simulation-owned body width and collision height independently of these visual bounds.",
+      "rawStats": {
+        "anchors": 1224,
+        "subpaths": 24,
+        "paths": 6,
+        "bytes": 94163,
+        "byteMeaning": "isolated normalized raw SVG, full-precision absolute serialization; not original whole-sheet relative trace byte size"
+      },
+      "gzipBytes": 9388,
+      "visualBounds": [
+        -21.04394879977752,
+        -97.04014921476387,
+        38.827300026405204,
+        -0.0003044971270717012
+      ],
+      "movementFootprint": null,
+      "hitGeometry": null,
+      "damageGeometry": null,
+      "controls": 904
+    },
+    {
+      "id": "munyeo-flat-idle",
+      "variant": "approved-vector-friendly-reference-alternate",
+      "status": "Selected art direction and narrow budget profile approved; live integration acceptance pending",
+      "file": "munyeo-flat-idle.svg",
+      "sha256": "f64bc8bfba4455bb8389e1b4a2edda93a2bd51a090d54522795be7eb86661d46",
+      "anchors": 1304,
+      "controls": 1936,
+      "subpaths": 182,
+      "paths": 9,
+      "colors": 9,
+      "bytes": 48645,
+      "footPivot": [
+        0,
+        0
+      ],
+      "footCenterCorrection": -6.740040738281255,
+      "groundCorrection": 1.078324073474815,
+      "bounds": [
+        -27.861723261718748,
+        -129.6786001227489,
+        22.411684738281245,
+        0.0
+      ],
+      "referenceSha256": "2aa5150fcfd79b6a5b85ef022757077c74d504a84a0e2846c6f839862239a1c4",
+      "reference": "Retained alternate PNG outside runtime/Git. Root approved as alternate direction, not selected final. No raw-original-pixel-equivalence claim.",
+      "method": "Actual Inkscape 10-color smooth stack trace with background removal, speckles5, smoothing0.7, optimize0.25; actual Simplify0.002 from immutable flat raw; absolute0.001-unit serialization; source anatomy unchanged by code.",
+      "visualBounds": [
+        -27.861723261718748,
+        -129.6786001227489,
+        22.411684738281245,
+        0.0
+      ],
+      "movementFootprint": null,
+      "hitGeometry": null,
+      "damageGeometry": null
+    },
+    {
+      "id": "munyeo-flat-prepare",
+      "variant": "approved-vector-friendly-reference-alternate",
+      "status": "Selected art direction and narrow budget profile approved; live integration acceptance pending",
+      "file": "munyeo-flat-prepare.svg",
+      "sha256": "b8b22a858a8ae1e7188b9f8d517639193ea906c0ee5191038f3a85ac528b54fe",
+      "anchors": 1923,
+      "controls": 2806,
+      "subpaths": 303,
+      "paths": 9,
+      "colors": 9,
+      "bytes": 72486,
+      "footPivot": [
+        0,
+        0
+      ],
+      "footCenterCorrection": -0.5580861640624981,
+      "groundCorrection": 1.193508840338012,
+      "bounds": [
+        -38.21764389894599,
+        -124.70016069775566,
+        36.45545233930958,
+        0.0
+      ],
+      "referenceSha256": "2aa5150fcfd79b6a5b85ef022757077c74d504a84a0e2846c6f839862239a1c4",
+      "reference": "Retained alternate PNG outside runtime/Git. Root approved as alternate direction, not selected final. No raw-original-pixel-equivalence claim.",
+      "method": "Actual Inkscape 10-color smooth stack trace with background removal, speckles5, smoothing0.7, optimize0.25; actual Simplify0.002 from immutable flat raw; absolute0.001-unit serialization; source anatomy unchanged by code.",
+      "visualBounds": [
+        -38.21764389894599,
+        -124.70016069775566,
+        36.45545233930958,
+        0.0
+      ],
+      "movementFootprint": null,
+      "hitGeometry": null,
+      "damageGeometry": null
+    },
+    {
+      "id": "munyeo-flat-link",
+      "variant": "approved-vector-friendly-reference-alternate",
+      "status": "Selected art direction and narrow budget profile approved; live integration acceptance pending",
+      "file": "munyeo-flat-link.svg",
+      "sha256": "e7170b55a7305cbb2f14b7bbd1ba45641790bbabecd7a0bb990501bde3cf86c5",
+      "anchors": 1660,
+      "controls": 2464,
+      "subpaths": 270,
+      "paths": 9,
+      "colors": 9,
+      "bytes": 63986,
+      "footPivot": [
+        0,
+        0
+      ],
+      "footCenterCorrection": -1.4714493906250041,
+      "groundCorrection": 0.6676286531695781,
+      "bounds": [
+        -34.663145609375,
+        -133.10952586915954,
+        67.55459031183167,
+        -8.881784197001252e-16
+      ],
+      "referenceSha256": "2aa5150fcfd79b6a5b85ef022757077c74d504a84a0e2846c6f839862239a1c4",
+      "reference": "Retained alternate PNG outside runtime/Git. Root approved as alternate direction, not selected final. No raw-original-pixel-equivalence claim.",
+      "method": "Actual Inkscape 10-color smooth stack trace with background removal, speckles5, smoothing0.7, optimize0.25; actual Simplify0.002 from immutable flat raw; absolute0.001-unit serialization; source anatomy unchanged by code.",
+      "visualBounds": [
+        -34.663145609375,
+        -133.10952586915954,
+        67.55459031183167,
+        -8.881784197001252e-16
+      ],
+      "movementFootprint": null,
+      "hitGeometry": null,
+      "damageGeometry": null
+    },
+    {
+      "id": "munyeo-flat-recover",
+      "variant": "approved-vector-friendly-reference-alternate",
+      "status": "Selected art direction and narrow budget profile approved; live integration acceptance pending",
+      "file": "munyeo-flat-recover.svg",
+      "sha256": "83e8c1e1a6f4ca2b0cf16b6032346a80b5c77b1e3fb53ac27b7c3eb31d646924",
+      "anchors": 1407,
+      "controls": 2124,
+      "subpaths": 186,
+      "paths": 9,
+      "colors": 9,
+      "bytes": 52920,
+      "footPivot": [
+        0,
+        0
+      ],
+      "footCenterCorrection": 0.2203848750000006,
+      "groundCorrection": 0.6401559920662225,
+      "bounds": [
+        -41.83988316865857,
+        -125.38592100207698,
+        32.41381779889898,
+        -4.440892098500626e-16
+      ],
+      "referenceSha256": "2aa5150fcfd79b6a5b85ef022757077c74d504a84a0e2846c6f839862239a1c4",
+      "reference": "Retained alternate PNG outside runtime/Git. Root approved as alternate direction, not selected final. No raw-original-pixel-equivalence claim.",
+      "method": "Actual Inkscape 10-color smooth stack trace with background removal, speckles5, smoothing0.7, optimize0.25; actual Simplify0.002 from immutable flat raw; absolute0.001-unit serialization; source anatomy unchanged by code.",
+      "visualBounds": [
+        -41.83988316865857,
+        -125.38592100207698,
+        32.41381779889898,
+        -4.440892098500626e-16
+      ],
+      "movementFootprint": null,
+      "hitGeometry": null,
+      "damageGeometry": null
+    }
+  ]
+}
