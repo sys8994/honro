@@ -81,6 +81,11 @@ export async function runtimeEntries({vector=true,render=true,app=false,producti
       if(text.split('b.honroCampaignMapRevision===3').length!==2)throw Error('Stage6 coverage revision source changed');
       text=text.replace('b.honroCampaignMapRevision===3','b.honroCampaignMapRevision===4');
     }
+    if(descentStage6&&source==='shared/runtime/objectives.js'){
+      const anchor="  if(scene.goalFocus&&visible){";
+      if(text.split(anchor).length!==2)throw Error('Stage6 objective clearance hook source changed');
+      text=text.replace(anchor,"  if(G.HonroStage6DescentView){const q=G.HonroStage6DescentView.avoidObjective(scene,e,px,py,width);px=q.px;py=q.py;}\n"+anchor);
+    }
     if(descentStage6&&source==='shared/runtime/renderer.js'){
       const anchor="let tx=u.x+(b.phase==='aim'?(u.facing||1)*Math.min(170,w/this.scale*.19):0),ty=G.HonroCamera.followY(u,h,this.scale),speed=4.2;";
       if(text.split(anchor).length!==2)throw Error('Stage6 camera hook source changed');

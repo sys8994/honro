@@ -1,6 +1,6 @@
 (function(G){'use strict';
 // Scene-only, opt-in Stage6 diagnostic. No battle/actor/save/aim writes.
-const states=new WeakMap(),presentation=new WeakMap();
+const states=new WeakMap(),presentation=new WeakMap(),intents=new WeakMap();
 const active=b=>!!b&&b.mode==='campaign'&&b.honroStage===6&&b.honroCanonical===true&&b.honroCustom!==true&&b.honroCampaignMapRevision===4;
 const height=u=>G.HonroPartyPresentationHeight?.(u)||u.h||72;
 function body(u){
@@ -28,12 +28,28 @@ function follow(scene,e,w,h,dt){
  presentation.set(scene,{...(presentation.get(scene)||{}),follow:{...q,settling:Math.abs(z-q.scale)>.003}});
  return{x:q.x,y:q.y,scale:z};
 }
+function context(scene,e){
+ const b=e.b,u=e.active,a=G.HonroApp;
+ if(!active(b)||!u||u.side!==0||scene.manual||G.HonroAttackCamera?.blocksFocus(scene)||scene.storyFrame||scene.storyTween||scene.storyFrozen||scene.goalFocus||a?.dialogue||a?.modal?.classList?.contains('open')||b.phase!=='aim'||b.projectiles.length||!e.canDrop(u))return null;
+ const support=e.contactSurface(u.x,u.y-4,u.y+5)?.t.id;if(support!=='lower-lookout')return null;
+ // Once the player begins aiming, leave the entire main aiming view clear
+ // for the remainder of this turn. No timer, new button or camera takeover.
+ const key=b.round+':'+u.id;let intent=intents.get(scene);if(!intent||intent.key!==key){intent={key,angle:u.angle,skill:a?.selected,hidden:false};intents.set(scene,intent);}
+ if(a?.charging||a?.keys?.has('ArrowUp')||a?.keys?.has('ArrowDown')||Math.abs(a?.stick?.y||0)>.01||Math.abs((u.angle||0)-(intent.angle||0))>.001||a?.selected!==intent.skill)intent.hidden=true;
+ if(intent.hidden)return null;
+ const y=G.HonroWorld.top(b,u.x,u.y,'lower-road');if(!Number.isFinite(y)||y<=u.y+40)return null;
+ const {w,h}=scene.size(),width=Math.min(w-24,w<900?254:300),height=Math.min(148,Math.max(100,h*.18));return{x:12,top:h-height-12,width,height,y};
+}
+function avoidObjective(scene,e,px,py,width){
+ const box=context(scene,e);if(!box)return{px,py};
+ const {w}=scene.size(),lx=Math.max(width/2+6,Math.min(w-width/2-6,px));
+ if(lx+width/2>box.x-4&&lx-width/2<box.x+box.width+4&&py+5>box.top-4&&py-33<box.top+box.height+4)py=box.top-10;
+ presentation.set(scene,{...(presentation.get(scene)||{}),objective:{left:lx-width/2,right:lx+width/2,top:py-33,bottom:py+5}});return{px,py};
+}
 function drawBelow(scene,e){
- const b=e.b,u=e.active,p={insetVisible:false,follow:presentation.get(scene)?.follow||null};presentation.set(scene,p);
- if(!active(b)||!u||u.side!==0||scene.manual||G.HonroAttackCamera?.blocksFocus(scene)||scene.storyFrame||scene.storyTween||scene.goalFocus||b.phase!=='aim'||b.projectiles.length||!e.canDrop(u)||G.HonroApp?.charging)return;
- const support=e.contactSurface(u.x,u.y-4,u.y+5)?.t.id;if(support!=='lower-lookout')return;
- const y=G.HonroWorld.top(b,u.x,u.y,'lower-road');if(!Number.isFinite(y)||y<=u.y+40)return;
- const {w,h,d}=scene.size(),width=Math.min(w-24,w<900?254:300),boxH=Math.min(148,Math.max(100,h*.18)),x=12,top=h-boxH-12,innerH=boxH-23,units=nearby(e,u.x,y),q=frame(units,{x:u.x,y},width,innerH,.6),c=scene.ctx,old={x:scene.x,y:scene.y,scale:scene.scale};
+ const b=e.b,u=e.active,prior=presentation.get(scene),p={insetVisible:false,follow:prior?.follow||null,objective:prior?.objective||null};presentation.set(scene,p);
+ const box=context(scene,e);if(!box)return;const {x,top,width,height:boxH,y}=box;
+ const {d}=scene.size(),innerH=boxH-23,units=nearby(e,u.x,y),q=frame(units,{x:u.x,y},width,innerH,.6),c=scene.ctx,old={x:scene.x,y:scene.y,scale:scene.scale};
  c.save();c.setTransform(d,0,0,d,0,0);c.fillStyle='#102127ef';c.fillRect(x,top,width,boxH);c.strokeStyle='#bba778';c.lineWidth=1;c.strokeRect(x+.5,top+.5,width-1,boxH-1);c.fillStyle='#e5d4a7';c.font='600 11px sans-serif';c.textAlign='left';c.fillText('↓ 현재 위치 아래의 지형과 적',x+8,top+15);
  c.beginPath();c.rect(x+1,top+22,width-2,innerH-1);c.clip();c.translate(x+width/2,top+22+innerH/2);c.scale(q.scale,q.scale);c.translate(-q.x,-q.y);
  try{Object.assign(scene,{x:q.x,y:q.y,scale:q.scale});const ground=b.terrain.find(t=>t.id==='lower-road');if(ground)scene.terrain(c,ground);for(const v of [...units].sort((a,b)=>a.y-b.y))scene.unit(c,v,false,0);scene.tacticalUnitMarkers(c,b,units);c.strokeStyle='#f1d58a';c.lineWidth=2/q.scale;c.setLineDash([4/q.scale,3/q.scale]);c.beginPath();c.ellipse(u.x,y-1,26,8,0,0,Math.PI*2);c.stroke();c.setLineDash([]);c.beginPath();c.moveTo(u.x,y-40/q.scale);c.lineTo(u.x,y-11/q.scale);c.lineTo(u.x-5/q.scale,y-18/q.scale);c.moveTo(u.x,y-11/q.scale);c.lineTo(u.x+5/q.scale,y-18/q.scale);c.stroke();}
@@ -41,5 +57,5 @@ function drawBelow(scene,e){
  Object.assign(p,{insetVisible:true,inset:{x,top,width,height:boxH,landing:{x:u.x,y},frame:q}});
 }
 const S=G.HonroScene?.prototype;if(S){const render=S.render;S.render=function(e,...args){if(this.manual||G.HonroAttackCamera?.blocksFocus(this))states.delete(this);const result=render.call(this,e,...args);drawBelow(this,e);return result;};}
-G.HonroStage6DescentView={active,body,frame,follow,drawBelow,snapshot:scene=>presentation.get(scene)||null};
+G.HonroStage6DescentView={active,body,frame,follow,context,avoidObjective,drawBelow,snapshot:scene=>presentation.get(scene)||null};
 })(globalThis);

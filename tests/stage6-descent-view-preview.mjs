@@ -10,3 +10,8 @@ const s={x:4700,y:2800,scale:.94,manual:false,_cameraHeader:{bottom:50}};assert(
 s.manual=true;const before=JSON.stringify(s);assert.equal(V.follow(s,e,844,276,1/60),null);assert.equal(JSON.stringify(s),before);
 e.b={...b,honroStage:7};s.manual=false;assert.equal(V.follow(s,e,844,276,1/60),null);assert.equal(V.active({...b,honroCampaignMapRevision:3}),false);assert.equal(V.active({...b,honroCustom:true}),false);
 console.log(JSON.stringify({status:'pass',scope:'Pure presentation framing and stage/manual guards; not browser readability',results}));
+
+// The existing objective label moves above the inset; aim intent clears it.
+G.HonroWorld={top:()=>3045};G.HonroApp={selected:'A02',keys:new Set(),stick:{y:0},charging:false};
+e.b=b;b.phase='aim';b.projectiles=[];b.round=6;hero.y=2472;hero.angle=180;e.canDrop=()=>true;e.contactSurface=()=>({t:{id:'lower-lookout'}});s.size=()=>({w:844,h:278,d:1});
+const box=V.context(s,e);assert(box);const q=V.avoidObjective(s,e,70,240,150);assert(q.py+5<box.top);G.HonroApp.keys.add('ArrowUp');assert.equal(V.context(s,e),null);G.HonroApp.keys.clear();assert.equal(V.context(s,e),null);b.round=7;assert(V.context(s,e));G.HonroApp.dialogue={};assert.equal(V.context(s,e),null);

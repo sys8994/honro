@@ -24,6 +24,17 @@ try:
    row={'label':label,'before':snap(page,label+'-lookout')};R['views'].append(row);row['terrainSame']=page.evaluate('(t)=>JSON.stringify(HonroApp.engine.b.terrain)===JSON.stringify(t)',saved['honroBattle']['terrain']);assert row['before']['active']['support']=='lower-lookout' and row['before']['active']['canDrop'],row
    assert row['before']['descent']['insetVisible'],row
    row['presentationNoMutation']=page.evaluate('''()=>{const a=HonroApp,s=a.scene,read=()=>JSON.stringify({units:a.engine.b.units,terrain:a.engine.b.terrain,profile:a.profile,x:s.x,y:s.y,scale:s.scale}),before=read();HonroStage6DescentView.drawBelow(s,a.engine);return before===read();}''');assert row['presentationNoMutation']
+   guide=row['before']['descent'];box=guide['inset'];goal=guide['objective'];row['objectiveClear']=bool(goal and (goal['bottom']<=box['top'] or goal['right']<=box['x'] or goal['left']>=box['x']+box['width']));assert row['objectiveClear'],row
+   # Actual aim adjustment must expose the complete main trajectory and keep
+   # the guide hidden after release, without changing the camera ownership.
+   if mobile:
+    cdp=ctx.new_cdp_session(page);stick=page.locator('#joystick').bounding_box();sx=stick['x']+stick['width']/2;sy=stick['y']+stick['height']/2
+    cdp.send('Input.dispatchTouchEvent',{'type':'touchStart','touchPoints':[{'x':sx,'y':sy}]});cdp.send('Input.dispatchTouchEvent',{'type':'touchMove','touchPoints':[{'x':sx,'y':sy-28}]});page.wait_for_timeout(180);row['aimHeld']=snap(page,label+'-aim-held');cdp.send('Input.dispatchTouchEvent',{'type':'touchEnd','touchPoints':[]})
+   else:
+    page.keyboard.down('ArrowUp');page.wait_for_timeout(180);row['aimHeld']=snap(page,label+'-aim-held');page.keyboard.up('ArrowUp')
+   page.wait_for_timeout(350);row['aimReleased']=snap(page,label+'-aim-released')
+   assert not row['aimHeld']['descent']['insetVisible'] and not row['aimReleased']['descent']['insetVisible'],row
+   assert row['aimReleased']['active']['angle']!=row['before']['active']['angle'] and not row['aimReleased']['camera']['manual'],row
    # Existing user zoom, not a new button or a scripted camera assignment.
    box=page.locator('#battlecanvas').bounding_box();cy=box['y']+box['height']*.45
    if mobile:
@@ -32,7 +43,7 @@ try:
    page.wait_for_timeout(250);row['manual']=snap(page,label+'-manual-existing-zoom');page.wait_for_timeout(600);row['manualLater']=page.evaluate(STATE)
    assert row['manual']['camera']['manual'] and not row['manual']['descent']['insetVisible'],row
    assert all(abs(row['manual']['camera'][k]-row['manualLater']['camera'][k])<.001 for k in ['x','y','scale']),row
-   assert row['manual']['active']['angle']==row['before']['active']['angle'],row
+   assert row['manual']['active']['angle']==row['aimReleased']['active']['angle'],row
    # Fresh natural Continue avoids altering the user's selected manual zoom.
    ctx.close();ctx,page=opened(browser,w,h,mobile);row['beforeDrop']=snap(page,label+'-before-drop')
    if mobile:page.locator('#drop').tap()
