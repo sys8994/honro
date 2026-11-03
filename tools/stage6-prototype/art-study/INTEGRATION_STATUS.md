@@ -109,3 +109,6 @@ Independent review of run 41685378076 found the added lower stones smaller, brig
 
 ## Side-boundary fade study
 The same-scale extension (run 41688439940) removed the small-stone mismatch but exposed its vertical source edge at the far left of the whole-stage view. This candidate adjusts only the lower continuation paint to fade at left, right and bottom; it keeps the original protected west surface trace. Local native Canvas road-band output remains identical with the underlay present, empty or absent. Scene appearance, seams at arbitrary cameras and actual browser behavior remain unapproved.
+
+## Edge taper width comparison
+Independent review of run 41690551160 found that the boundary taper also obscured much of the lower formation. This comparison shifts the radial center above the source and narrows its outer taper, preserving zero alpha at the side and bottom boundaries while retaining more interior color. The local native Canvas protected-band diagnostic remains 0 changed pixels; source fidelity, entire camera range, visual continuity and browser correctness remain unapproved.
