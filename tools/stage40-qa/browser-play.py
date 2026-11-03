@@ -9,13 +9,16 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'act4-ci'))
 from precise_aim import aim_with_joystick
 root=Path(os.environ.get('HONRO_REPO_ROOT','.')).resolve();out=Path(os.environ['HONRO_CAPTURE_OUT']);out.mkdir(parents=True,exist_ok=False)
 bridge=(Path(__file__).parent/'browser-planner.js').read_text()
-resume=os.environ.get('HONRO40_RESUME_R4')=='1'
-profile_file='tools/stage40-qa/records/41621782011-r4-profile.json.xz' if resume else 'tools/act4-rc/fixtures/stage40-checkpoints/sailing-observation-local-storage.json.xz'
-raw=lzma.decompress((root/profile_file).read_bytes());assert hashlib.sha256(raw).hexdigest()==('a5b4f3a9fab47b0350e2690ac9188b973bd7fa39ab000588eece4194f6671810' if resume else '2c8e5d95e1e956059da5ae0b74a02641beed0bccf0932568194b108fec3a8141')
-entry_round=4 if resume else 1
+current_review=os.environ.get('HONRO40_CURRENT_REVIEW')=='1'
+resume=current_review or os.environ.get('HONRO40_RESUME_R4')=='1'
+profile_file='tools/stage40-qa/records/41690685003-r15-start-profile.json.xz' if current_review else 'tools/stage40-qa/records/41621782011-r4-profile.json.xz' if resume else 'tools/act4-rc/fixtures/stage40-checkpoints/sailing-observation-local-storage.json.xz'
+raw=lzma.decompress((root/profile_file).read_bytes());assert hashlib.sha256(raw).hexdigest()==('976a11ab24d4076548b6b02e5a1e7dd04b82c2bf2c9a0d3379466383d582ace7' if current_review else 'a5b4f3a9fab47b0350e2690ac9188b973bd7fa39ab000588eece4194f6671810' if resume else '2c8e5d95e1e956059da5ae0b74a02641beed0bccf0932568194b108fec3a8141')
+entry_round=15 if current_review else 4 if resume else 1
+total_limit=23 if current_review else 20
 (out/'source-profile.json').write_bytes(raw)
 result={'passed':False,'releaseApproved':False,'scope':'Prepared endgame profile, actual browser inputs; not earned1–39/cohort/fun approval','sourceCommit':os.environ.get('GITHUB_SHA'),'events':[],'errors':[]}
-result['continuationOf']=41621782011 if resume else None
+result['continuationOf']=41690685003 if current_review else 41621782011 if resume else None
+if current_review:result['scope']='Current-master integration: exact R15 normal-save final battle through safe return/settlement/reload within explicitly approved23R; not fresh R1 whole-run or subjective fun approval'
 result['entryRound']=entry_round
 with sync_playwright() as w:
  browser=w.chromium.launch(headless=True);context=browser.new_context(viewport={'width':1440,'height':900});p=context.new_page();p.on('pageerror',lambda e:result['errors'].append(str(e)))
@@ -63,7 +66,7 @@ with sync_playwright() as w:
   p.goto(os.environ['HONRO_CAPTURE_URL'],wait_until='domcontentloaded');p.wait_for_function('window.HonroApp')
   p.locator('[data-action="settings"]').first.click();p.get_by_text('기록·관리',exact=False).click();p.get_by_text('JSON 기록 가져오기',exact=True).click();p.get_by_text('파일 선택',exact=True).click();p.locator('#file-import').set_input_files(str((out/'source-profile.json').resolve()))
   p.wait_for_function('HonroApp.profile?.lastStage===40',timeout=120000);p.reload();p.wait_for_function('window.HonroApp');p.locator('.title-actions [data-action="continue"]').first.click();p.wait_for_function('expected=>HonroApp.engine?.b.honroStage===40&&HonroApp.engine.b.round===expected',arg=entry_round,timeout=120000)
-  ready();initial=record('entry');assert initial['proof'] and len(initial['foes'])==(37 if resume else 42) and initial['major']==1 and initial['minis']==2 and initial['finale']==2
+  ready();initial=record('entry');assert initial['proof'] and len(initial['foes'])==(10 if current_review else 37 if resume else 42) and initial['major']==1 and initial['minis']==2 and initial['finale']==2
   # A normal import must retain earned skill ranks/equipment, not add test gear.
   saved=json.loads(raw);budget=p.evaluate('()=>Object.fromEntries(Object.entries(HonroApp.profile.heroes).map(([k,v])=>[k,{xp:v.xp,ranks:v.ranks,equipmentIds:v.equipmentIds,earned:HONRO_CORE.pointsEarned(v),spent:HONRO_CORE.pointsSpent(v,k)}]))')
   for cls,v in budget.items():
@@ -71,7 +74,7 @@ with sync_playwright() as w:
    for k in ['xp','ranks','equipmentIds']:assert v[k]==saved['heroes'][cls][k]
   if resume:
    actual=p.evaluate('()=>{const b=HonroApp.engine.b;return {round:b.round,units:b.units.map(u=>({id:u.id,hp:u.hp,dead:!!u.dead,moveLeft:u.moveLeft}))}}')
-   prior=saved['honroBattle'];assert actual['round']==prior['round']==4
+   prior=saved['honroBattle'];assert actual['round']==prior['round']==entry_round
    expected={u['id']:u for u in prior['units']}
    for u in actual['units']:
     old=expected[u['id']]
@@ -157,9 +160,9 @@ with sync_playwright() as w:
     assert sum(v['hp'] for v in after_cast['foes'])<sum(v['hp'] for v in before_cast['foes']),'First cast caused no observed enemy damage'
     result['passed']=True;result['focused']='First normal-input cast only; no stage completion claim';p.screenshot(path=str(out/'first-cast.png'));raise SystemExit(0)
    if turn%8==0:p.screenshot(path=str(out/('turn-%03d.png'%turn)))
-  final=record('combat-end');p.screenshot(path=str(out/'combat-end.png'));assert not final['foes'] and final['round']<=20,'Combat failed approved time target'
+  final=record('combat-end');p.screenshot(path=str(out/'combat-end.png'));assert not final['foes'] and final['round']<=total_limit,'Combat failed approved time target'
   from escort_inputs import finish_escort
-  result['escort']=finish_escort(p,out);assert not result['errors'];result['passed']=True
+  result['escort']=finish_escort(p,out,functional_continuation=current_review);assert result['escort']['round']<=total_limit;assert not result['errors'];result['passed']=True
  except Exception as error:
   result['failure']=str(error);result['traceback']=traceback.format_exc()
   try:record('failure');p.screenshot(path=str(out/'failure.png'))
