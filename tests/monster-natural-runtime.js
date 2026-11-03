@@ -34,16 +34,18 @@ async function qaFinish(result){await Promise.all(qa.pending);if(qa.meta.preflig
 window.qaCounter=async kind=>{
  const a=HonroApp,e=a.engine,b=e.b,ops=createPlayerOperations({app:a,g,C}),id=b.honroStage===5?'s5-cave-shade':'s8-15',caster=e.unit(id),u=e.active,cast=plain(caster.enemyEffectCast);
  assert(cast&&cast.seen&&cast.offered&&cast.target===u.id&&e.canAct(),'Branch must start from genuine offered target checkpoint');
- const before=plain(b),actions=[];let accepted=false;
+ const imported=plain(b),readyBefore={canInput:!!a.canInput(),dialogue:!!a.dialogue,turnPaused:!!HonroStory.turnPaused(a),frames:ops.frames};
+ ops.frame();assert(ops.ready(3000),'Restored App did not finish ordinary UI settling');assert(b.active===u.id&&b.round===imported.round&&!u.acted&&caster.enemyEffectCast?.serial===cast.serial&&!caster.enemyEffectCast.responded,'UI settling consumed natural response');
+ const before=plain(b),actions=[],readyAfter={canInput:!!a.canInput(),dialogue:!!a.dialogue,turnPaused:!!HonroStory.turnPaused(a),frames:ops.frames};let accepted=false;
  if(kind==='dodge'){
   const direction=u.x<cast.impact.x?-1:1;
-  for(let n=0;n<500&&a.canInput()&&u.moveLeft>3&&Math.hypot(u.x-cast.impact.x,u.y-u.h*.45-cast.impact.y)<=cast.radius+u.r+12;n++){ops.move(direction,C.STEP);ops.frame();}
-  accepted=ops.defend();actions.push({kind,direction,accepted,position:{x:u.x,y:u.y}});
+  for(let n=0;n<500&&u.moveLeft>3&&Math.hypot(u.x-cast.impact.x,u.y-u.h*.45-cast.impact.y)<=cast.radius+u.r+12;n++){assert(ops.ready(3000),'Normal UI pause did not settle during dodge');ops.move(direction,C.STEP);ops.frame();}
+  assert(ops.ready(3000));const outside=Math.hypot(u.x-cast.impact.x,u.y-u.h*.45-cast.impact.y)>cast.radius+u.r;accepted=ops.defend();actions.push({kind,direction,accepted,outside,position:{x:u.x,y:u.y}});assert(accepted&&outside,'Dodge must really move outside warning and consume a normal defense action');
  }else if(kind==='interrupt'){
   const sim=new C.Engine(plain(b)),su=sim.unit(u.id),sk=sim.unit(id);let choice=null;
-  for(const sid of u.loadout){const s=C.SKILLS[sid];if(s.passive||!sim.canAfford(s,su,.5))continue;const aim=sim.bestShot(su,s,sk),v=C.shotViable(sim,su,s,sk,aim.angle,aim.power);if(v.ok&&v.risk<1&&v.enemyDamage>0){choice={sid,...aim};break;}}
-  if(choice)accepted=ops.fire(choice.sid,choice.angle,choice.power);actions.push({kind,choice,accepted});
- }else{accepted=ops.defend();actions.push({kind:'accept-with-defense',accepted});}
+  for(const sid of u.loadout){const s=C.SKILLS[sid];if(s.passive||!sim.canAfford(s,su,.5))continue;if(s.martial&&s.branch==='sword'&&s.damage>0){const angle=Math.atan2(su.y-su.h*.58-(sk.y-sk.h*.5),sk.x-su.x)*180/Math.PI,power=1;if(C.meleeContains(sim,su,sk,C.meleeRange(su,s,power),-angle*Math.PI/180,C.meleeSpan(su,s,power))){choice={sid,angle,power,method:'production meleeContains'};break;}continue;}const aim=sim.bestShot(su,s,sk),v=C.shotViable(sim,su,s,sk,aim.angle,aim.power);if(v.ok&&v.risk<1&&v.enemyDamage>0){choice={sid,...aim};break;}}
+  if(choice){accepted=ops.fire(choice.sid,choice.angle,choice.power);assert(accepted,'Available interrupt must consume an actual App fire');}actions.push({kind,choice,accepted,unavailable:!choice});
+ }else{accepted=ops.defend();assert(accepted,'Accept branch must consume real App defense');actions.push({kind:'accept-with-defense',accepted});}
  if(accepted)for(let n=0;n<30&&caster.enemyEffectCast&&!['won','lost'].includes(b.phase);n++){if(ops.ready()&&caster.enemyEffectCast){const other=e.active;ops.defend();actions.push({kind:'next-normal-defense',actor:other.id});}}
- await a.export();return {kind,accepted,actions,before,after:plain(b),exported:qa.lastExport,scope:'Branch diagnostic from one genuine naturally reached checkpoint; not independent win-rate trial'};
+ await a.export();return {kind,accepted,actions,imported,readyBefore,readyAfter,before,after:plain(b),exported:qa.lastExport,scope:'Branch diagnostic from one genuine naturally reached checkpoint; not independent win-rate trial'};
 };
