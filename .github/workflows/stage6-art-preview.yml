@@ -1,7 +1,7 @@
 name: Stage6 unshipped art preview
 on:
   push:
-    branches: ['work/stage6-vector-art-preview-20261103']
+    branches: ['work/stage6-render-coverage-preview-20261103']
 permissions:
   contents: read
 jobs:
