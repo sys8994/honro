@@ -100,6 +100,8 @@ with sync_playwright() as w:
     if abs(z['x']-s['x'])<12 and z['move']>300:p.keyboard.press('Control');hold('ArrowRight' if dx>0 else 'ArrowLeft',260);ready()
    ready()
    if state()['active']!=actor:continue
+   # Read the existing save object only; never force/replace a battle snapshot.
+   (out/('turn-profile-%03d.json.xz'%turn)).write_bytes(lzma.compress(p.evaluate('JSON.stringify(HonroApp.profile)').encode()))
    view();q=p.evaluate(bridge,'plan');record('plan',q);c=q['choice']
    if c:
     s=state();face=-1 if c['angle']>90 else 1
