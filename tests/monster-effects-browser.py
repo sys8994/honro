@@ -29,6 +29,7 @@ with sync_playwright() as pw, (nullcontext(os.environ['HONRO_MONSTER_BASE_URL'])
   context=browser.new_context(viewport={'width':390,'height':844} if mobile else {'width':1440,'height':900},is_mobile=mobile,has_touch=mobile,accept_downloads=True)
   p=context.new_page();errors=[];p.on('pageerror',lambda error:errors.append(str(error)))
   p.goto(url+'/HONRO.html');p.wait_for_function('window.HonroApp',timeout=45000)
+  p.evaluate("window.monsterCanonical=value=>JSON.stringify(value,(_key,v)=>v&&typeof v==='object'&&!Array.isArray(v)?Object.fromEntries(Object.entries(v).sort(([a],[b])=>a.localeCompare(b))):v)")
   for stage,offset,kind in [(5,-160,'hit'),(5,-160,'dodge'),(8,-100,'hit')]:
    name=f"{'mobile' if mobile else 'desktop'}-{stage}-{kind}"
    p.evaluate('''stage=>{const a=HonroApp;a.close();a.stopBattle();const p=HONRO_TOOLS.fresh();for(let n=1;n<stage;n++)p.cleared[n]={visits:1,rounds:5};p.recruited=stage>=6?['archer','mage','knight']:['archer','mage'];p.party=[...p.recruited];p.settings.sound=p.settings.music=false;for(const cls of p.party)p.heroes[cls].xp=HONRO_CORE.xpAtLevel(16);a.profile=a.normalProfile=p;a.launch(stage);}''',stage)
@@ -40,7 +41,7 @@ with sync_playwright() as pw, (nullcontext(os.environ['HONRO_MONSTER_BASE_URL'])
    assert not p.evaluate('!!HonroApp.dialogue'),'Dialogue must finish through normal Next'
    setup=p.evaluate(SETUP,{'stage':stage,'offset':offset});assert setup['revision']==1 and setup['supported'];assert setup['cast']['seen'] and setup['cast']['offered'],setup
    p.screenshot(path=str(OUT/(name+'-warning.png')))
-   before=p.evaluate('JSON.stringify(HonroApp.engine.b)');activate(p.locator('[data-action="pause"]').first,mobile);activate(p.locator('[data-action="close"]').last,mobile);assert p.evaluate('JSON.stringify(HonroApp.engine.b)')==before,'Pause/close must not spend response'
+   before=p.evaluate('monsterCanonical(HonroApp.engine.b)');activate(p.locator('[data-action="pause"]').first,mobile);activate(p.locator('[data-action="close"]').last,mobile);assert p.evaluate('monsterCanonical(HonroApp.engine.b)')==before,'Pause/close must not spend response'
    # The real renderer offers an offscreen sign without resetting the warning.
    offscreen=p.evaluate('''()=>{const a=HonroApp,e=a.engine,k=e.unit(monsterBrowser.id),before=JSON.stringify(k.enemyEffectCast),x=a.scene.x;a.scene.x=0;a.scene.render(e,0,a.selected,a.power,false,0,true);const same=JSON.stringify(k.enemyEffectCast)===before;a.scene.x=x;return same;}''');assert offscreen
    result=p.evaluate(RESPOND,kind);assert result['actors']==setup['actors']
@@ -50,18 +51,18 @@ with sync_playwright() as pw, (nullcontext(os.environ['HONRO_MONSTER_BASE_URL'])
    # Actual download then normal App Continue (no install of fabricated effect state).
    with p.expect_download() as downloaded:p.evaluate('HonroApp.export()')
    download=downloaded.value;savepath=OUT/(name+'-export.json');download.save_as(str(savepath))
-   continued=p.evaluate('''()=>{const a=HonroApp,before=JSON.stringify(a.engine.b);a.continue();return {exact:before===JSON.stringify(a.engine.b),revision:a.engine.b.honroMonsterEffectsRevision};}''');assert continued=={'exact':True,'revision':1},continued
-   p.evaluate('window.monsterBeforeImport=JSON.stringify(HonroApp.engine.b)');p.locator('#file-import').set_input_files(str(savepath));p.wait_for_function('HonroApp.screen==="title"');activate(p.locator('[data-action="continue"]').first,mobile);p.wait_for_function('!!HonroApp.engine');assert p.evaluate('JSON.stringify(HonroApp.engine.b)===window.monsterBeforeImport'),'File-input import + pointer Continue exact'
+   continued=p.evaluate('''()=>{const a=HonroApp,before=monsterCanonical(a.engine.b);a.continue();return {exact:before===monsterCanonical(a.engine.b),revision:a.engine.b.honroMonsterEffectsRevision};}''');assert continued=={'exact':True,'revision':1},continued
+   p.evaluate('window.monsterBeforeImport=monsterCanonical(HonroApp.engine.b)');p.locator('#file-import').set_input_files(str(savepath));p.wait_for_function('HonroApp.screen==="title"');activate(p.locator('[data-action="continue"]').first,mobile);p.wait_for_function('!!HonroApp.engine');assert p.evaluate('monsterCanonical(HonroApp.engine.b)===window.monsterBeforeImport'),'File-input import + pointer Continue exact'
    p.evaluate('''()=>{const a=HonroApp,u=a.engine.unit('p-archer');a.scene.x=u.x;a.scene.y=u.y-130;a.scene.scale=innerWidth<600?.8:1.15;a.scene.manual=true;a.updateHUD(true);a.scene.render(a.engine,0,a.selected,a.power,false,0,true);}''')
    if mobile:
     p.set_viewport_size({'width':844,'height':390});p.evaluate('HonroApp.scene.render(HonroApp.engine,0,HonroApp.selected,HonroApp.power,false,0,true)');p.screenshot(path=str(OUT/(name+'-landscape.png')));p.set_viewport_size({'width':390,'height':844})
    legacy_exact=None
    if stage==8:
-    p.evaluate('''()=>{const b=JSON.parse(JSON.stringify(HonroApp.engine.b));delete b.honroMonsterEffectsRevision;for(const u of b.units)for(const key of ['honroMonsterEffectSkill','enemyEffectCast','enemyEffectRecovery','enemyEffectCooldown','enemySoftBind','enemyPush','enemyControlGrace','enemyEffectHits'])delete u[key];window.monsterLegacyExpected=JSON.stringify(b);}''')
+    p.evaluate('''()=>{const b=JSON.parse(monsterCanonical(HonroApp.engine.b));delete b.honroMonsterEffectsRevision;for(const u of b.units)for(const key of ['honroMonsterEffectSkill','enemyEffectCast','enemyEffectRecovery','enemyEffectCooldown','enemySoftBind','enemyPush','enemyControlGrace','enemyEffectHits'])delete u[key];window.monsterLegacyExpected=monsterCanonical(b);}''')
     legacy=json.loads(savepath.read_text());legacy['honroBattle'].pop('honroMonsterEffectsRevision',None)
     for unit in legacy['honroBattle']['units']:
      for key in ['honroMonsterEffectSkill','enemyEffectCast','enemyEffectRecovery','enemyEffectCooldown','enemySoftBind','enemyPush','enemyControlGrace','enemyEffectHits']:unit.pop(key,None)
-    legacy_path=OUT/(name+'-legacy-fixture.json');legacy_path.write_text(json.dumps(legacy,ensure_ascii=False));p.locator('#file-import').set_input_files(str(legacy_path));p.wait_for_function('HonroApp.screen==="title"');activate(p.locator('[data-action="continue"]').first,mobile);p.wait_for_function('!!HonroApp.engine');legacy_exact=p.evaluate('HonroApp.engine.b.honroMonsterEffectsRevision===undefined && JSON.stringify(HonroApp.engine.b)===window.monsterLegacyExpected');assert legacy_exact
+    legacy_path=OUT/(name+'-legacy-fixture.json');legacy_path.write_text(json.dumps(legacy,ensure_ascii=False));p.locator('#file-import').set_input_files(str(legacy_path));p.wait_for_function('HonroApp.screen==="title"');activate(p.locator('[data-action="continue"]').first,mobile);p.wait_for_function('!!HonroApp.engine');legacy_exact=p.evaluate('HonroApp.engine.b.honroMonsterEffectsRevision===undefined && monsterCanonical(HonroApp.engine.b)===window.monsterLegacyExpected');assert legacy_exact
    rows.append({'case':name,'dialogueNextPointerCount':dialogue_clicks,'fileInputPointerContinueExact':True,'legacyAbsentVersionFixture':legacy_exact,'setup':setup,'result':result,'continue':continued,'offscreenAcknowledgementStable':offscreen,'pauseExact':True})
   assert not errors,errors;context.close()
  browser.close()
