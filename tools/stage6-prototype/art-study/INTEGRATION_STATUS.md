@@ -34,3 +34,6 @@ The eighth full-domain face remains visually too flat and blotchy in the actual 
 
 ## Layered cliff trial
 The previous rock-cliff preview (run 41650275584) failed visual review: a wide blank band below the road and an obvious horizontal lower edge. This unapproved follow-up overlaps two source-traced cliff copies and cuts the upper copy to an irregular interior edge. Collision and author geometry remain unchanged; fresh browser review is required.
+
+## Slope-matched traced candidate
+The prior layered preview (run 41651761883) failed visual review due to an artificial repeated zigzag band. This candidate uses a separately generated 1586×992 transparent source matched to the controlled west camera, Inkscape 1.4 object-trace 5,false,true,true,4,0.7,0.2, and native unsimplified imported paths. The source is registered with a uniform 1.89 world-units-per-pixel transform, clipped by the exact unchanged lower-road collision. Full-domain seams, source fidelity, persistence, runtime cost and independent review remain unverified.
