@@ -1,5 +1,5 @@
 {
-  "status": "DEV ONLY. Latest whole browser41675108632 failed R25,34/42 defeated,archer/occultist dead,all residents alive,no return. No18–20 total-round or finalA2/fun acceptance.",
+  "status": "User-approved Stage40-only 23-round exception. Actual R1 combat finished R21; exact normal-save continuation finished safe return/settlement/reload R23. Latest-master integration, final-source terrain/gameplay review and public verification pending.",
   "base": "7d2655bc3f88a7b20fb2d6ea1bc4c611583e9a15",
   "source": "2ac7cc2a9f686413ee5028f67ee42ffcb10fade4",
   "branch": "work/stage40-finale/20261103",
@@ -143,7 +143,7 @@
       "sha256": "7d51147edb849b092f841cb312fa1266c32d2686f877fbb1083b63b0baec4f31"
     }
   ],
-  "protected": "Preserve current dialogue and Stage31–39 data. Integrate coherent Stage40 diffs, never replace reviewed.json or whole engine.ts. Production remains on hold.",
+  "protected": "Preserve current master changes, dialogue, Stage31–39 data, terrain/residents/escort and save/story contracts. No A2 Stage24 approval-waiting changes. Publish only after current-source review.",
   "qaWorkflowContract": {
     "basis": ".github/workflows/monster-a1-integration.yml",
     "checkout": "exact github.sha; QA-only work/stage40-qa/**",
@@ -702,5 +702,19 @@
       }
     ],
     "scope": "Normal independent save imports and walking, read-only current-state shots; no actual cast or full-play acceptance"
+  },
+  "stage40RoundException": {
+    "recordedUtc": "2026-11-03T21:12:00Z",
+    "scope": "Stage40 only, total23 rounds including final boss and safe resident return",
+    "question": "4막 10장의 23턴은 기존 20턴 기준에 계속 걸리는 상황이라 판단을 여쭙겠습니다. 마지막 보스전과 주민 귀환을 포함해 이 장에서 23턴 정도를 예외적으로 허용할까요, 아니면 20턴 안팎을 유지하면서 더 줄여볼까요?",
+    "userAnswer": "예외적허용을 해도 좋아. 일단 빠르고 효율적으로 검수해서 배포해",
+    "combatRun": 41690685003,
+    "combatRound": 21,
+    "normalSaveContinuationRun": 41703469779,
+    "finishRound": 23,
+    "historicalWithin20Pass": false,
+    "appliesToOtherStages": false,
+    "noAllHeroSurvivalRequirement": true,
+    "finalIntegrationAccepted": false
   }
 }

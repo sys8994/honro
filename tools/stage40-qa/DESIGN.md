@@ -1,8 +1,8 @@
 # Stage40 finale repair card, 2026-11-03
-Status: diagnosis, NOT gameplay approval, NOT release.
+Status: actual combat R21 and exact normal-save return/settlement/reload R23 verified. User approved Stage40-only 23-round exception on 2026-11-03; current-master integration and public validation pending.
 Base integration source: 7d2655bc3f88a7b20fb2d6ea1bc4c611583e9a15.
 Existing unpublished author: 59fa9eb62f0ab9c89fb7e504a32f9241d9785f38.
-Approved v4: 42 unique enemies including one required major boss and two minibosses; full battle and safe return 18–20R. Preserve terrain/art, four residents, boat2/highpath2, survivor accounting13/11/2, all story/identity/save contracts. Stage39 boss remains optional.
+Approved v4: 42 unique enemies including one required major boss and two minibosses; historical full battle and safe return target18–20R, now explicitly accepted up to23R for Stage40 only. Preserve terrain/art, four residents, boat2/highpath2, survivor accounting13/11/2, all story/identity/save contracts. Stage39 boss remains optional.
 
 Prior evidence preserved in collector _local/reports/act4-recovery:
 - play40-ci-41354740770: R25,11/42 kills,3hero deaths.
