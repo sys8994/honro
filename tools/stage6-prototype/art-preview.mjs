@@ -19,7 +19,7 @@ export function applyStage6ArtPreview(input){
  for(const e of s.elements)if(rootIds.includes(e.id))e.y+=floor(e.x)-oldFloor(oldRoad,e.x);
  // Remove old BODY and central pier illustration, whose placements describe the old floor.
  s.elements=s.elements.filter(e=>!['act1-stage06-traced-body','landmark-1','place6-west-buttress','place6-mid-buttress','place6-east-buttress','place6-bridge-rigging'].includes(e.id));
- const strata=read('terrain-angular-runtime.json'),source=read('continuous-runtime.json'),pier=read('pier-runtime-preview.json'),westPier=read('pier-west-five-runtime.json'),eastPier=read('pier-east-five-runtime.json');
+ const strata=read('terrain-angular-refined-runtime.json'),source=read('continuous-runtime.json'),pier=read('pier-runtime-preview.json'),westPier=read('pier-west-five-runtime.json'),eastPier=read('pier-east-five-runtime.json');
  const contour=road.points.map((p,i)=>(i?'L':'M')+p.x+' '+p.y).join('')+'Z';
  // A single source-traced, full-bleed formation covers the complete tested
  // camera domain. The collision contour alone determines the visible edge.
