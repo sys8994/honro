@@ -1,5 +1,5 @@
 {
-  "status": "User-approved Stage40-only 23-round exception. Actual R1 combat finished R21; exact normal-save continuation finished safe return/settlement/reload R23. Latest-master integration, final-source terrain/gameplay review and public verification pending.",
+  "status": "Current-master integration remains unpublished. Original full Stage40 R21 + exact returnR23 fits the approved Stage40-only exception. Current pre-corridor product passed fresh first cast and exactR15 combatR19/returnR22; not a fresh current whole run. Two-corridor comparison and old-save compatibility remain pending. Stage31 still20R; QA2HP finishing defect is separately documented.",
   "base": "7d2655bc3f88a7b20fb2d6ea1bc4c611583e9a15",
   "source": "2ac7cc2a9f686413ee5028f67ee42ffcb10fade4",
   "branch": "work/stage40-finale/20261103",
@@ -475,6 +475,86 @@
       "native": "0573a4777db15eecf65318ae0b02f02ab8bf0511",
       "canonical": "e234349d2504d7a6e4c1890593d34acf5dc8e99c",
       "tree": "db311dc93899dbedfc7c12fc53881462fee976d6"
+    },
+    {
+      "native": "91360cfb0e8c4503769335ccd33e7fb157171a7b",
+      "canonical": "bccad852c87ac9d1a4f76cc1a4c4bc5556b0c402",
+      "tree": "fae1c132a624257600ed79fe4479448d630f4b7f"
+    },
+    {
+      "native": "30b49f00571f06b784f153f565cde53a1498191a",
+      "canonical": "d08630340b7f032218b1247f646e9603b34d8507",
+      "tree": "9bf916317917d2d0434d3cdd3583ce7b66b23e55"
+    },
+    {
+      "native": "d2172f6462c91c1fa335def80e9f5645a803972e",
+      "canonical": "583416df681392b4ed2b88d06702f3e3313ce117",
+      "tree": "5cd053c10ef3d67f7923a410cc3d6a29c5b90ca2"
+    },
+    {
+      "native": "beba054531991c8cb7a24126bd3c2b31ad8dee0e",
+      "canonical": "34b01764267508a24c5c774aaad76ab4a89b30f4",
+      "tree": "86384897a7c9d0cba1c92fde8485c23d6d0c7969"
+    },
+    {
+      "native": "edf752144bdbd2a4d2ba9d6038ca7b0b649ed625",
+      "canonical": "073a1308ca08fcc5ebff960cffe77007e0ce8ac9",
+      "tree": "2f2f08c6079c1d1e010f5695c6bfad4a30797ef6"
+    },
+    {
+      "native": "afc437b68e5cd4fde6d5b759b433444fb4d189e8",
+      "canonical": "3a7b9b88815eac3bb569c08d145ce8108907a6cc",
+      "tree": "59edf5ad21c75303423ed0d1f78cad859a89c243"
+    },
+    {
+      "native": "0e727e2afa88b23612671f57b543ae159b7b8a05",
+      "canonical": "221035e792c7e0f3abf9783927234193a46b9122",
+      "tree": "7d78a7bfcf6dc37825c0be6e8d8f1a6166f02857"
+    },
+    {
+      "native": "8298327435f76159b9584d7f4585a734f2575d9e",
+      "canonical": "27e5c8b459eaf6e32b603f1b1f549b6154142baf",
+      "tree": "54c1c2bc91b7804d4089a9778ab88ad4d5878090"
+    },
+    {
+      "native": "7e6fa110cebb2b48afcf46ad3dd3327ec8cb39ab",
+      "canonical": "bad04241b09b97ec8cb4156e6f7f789f86e603b8",
+      "tree": "fc9d99907135dfb38ac716fcfb7c947bd98f388b"
+    },
+    {
+      "native": "4332be7fee2818b558f71e75f7e060fc608efcd5",
+      "canonical": "5834456fa5cb5a04c13a1768da4292ce14b2186f",
+      "tree": "f412d438f17dd0cafb4cf315a04a9ec0584e3ec2"
+    },
+    {
+      "native": "944f84b68ce8ebc975a398b28eae3fa8d93c0f66",
+      "canonical": "695d3ef1dd998167ac63c371645a8987b3fef2f2",
+      "tree": "8310d14b506c58540a767befcfd1e1a5ec1151fd"
+    },
+    {
+      "native": "5c19b7a0b163a722b8d6b1e74409af946de010f9",
+      "canonical": "d06ac0a04fd3473c54d0ea12c6a61f58f7e4fee0",
+      "tree": "01ff036f534702ce8c4875f81f151f651896f634"
+    },
+    {
+      "native": "b228677b279b747175e28208f42a680832c98e45",
+      "canonical": "ca9a71ce50639c0e923d1c48aa44c2ae0e8a7c5a",
+      "tree": "54c6def879459076ea10da4387fce91d2ec2d7c1"
+    },
+    {
+      "native": "6d2d6e7c0a44490ca3977addb4cf539513463834",
+      "canonical": "57f8ed8f527bbdcd5dd7a19de5d5742716460447",
+      "tree": "b2cae94b91c4e14c65777176fb3d099742d1bb38"
+    },
+    {
+      "native": "58fc84ecfc16280cb26ce307ba8400e7bc693be1",
+      "canonical": "8d619c2c31adc750e04598fff3eb953aa8c83e62",
+      "tree": "1a41f77353863ad9c64c617ee5888006115c268b"
+    },
+    {
+      "native": "22ce96dc59f23ce3d82f956ef72a60b335d45984",
+      "canonical": "6e1dbd71e2c73e6c8abe7471f90cc6aac3dd4492",
+      "tree": "d33c86f8410f23114a7591ab918702585c5aec3f"
     }
   ],
   "pendingPublication": null,
@@ -658,6 +738,27 @@
       "artifact": 13264859864,
       "sha256": "8607c2f6b7f7add887f35591f51d028fe9af55caa0337cc970fa195dece75c04",
       "result": "Actual R21-save normal functional return completedR23. Resident safety, required story13, roster13/11/2, settlement and same-context reload passed; noJSerrors or waterrecoveries. Prior whole20R failure retained; not final release acceptance."
+    },
+    {
+      "run": 41729470340,
+      "source": "221035e792c7e0f3abf9783927234193a46b9122",
+      "artifact": 13276228445,
+      "sha256": "d068c610caa9d08e827d3e025c09b0fef7c9ff9ccbfd07d6d878e8b7dcbfd276",
+      "result": "Overall failure because late31 menu locator was stale. Independent Stage40 fresh first cast, exactR15 combatR19/returnR22/settlement/reload and4PC/mobile/locale guide observations passed. All4heroes and4residents alive,13story rows, noJS. Not fresh whole currentStage40; prior product before corridors."
+    },
+    {
+      "run": 41732896636,
+      "source": "57f8ed8f527bbdcd5dd7a19de5d5742716460447",
+      "artifact": 13278350365,
+      "sha256": "94b30d715fd207000d653d424d27a44972084881ad1a6738f6caeab7231883a9",
+      "result": "Exact old31 save restored normally toR21. Stationary planner returned no shot,12defenses throughR23; no boarding. Not evidence of unreachable target."
+    },
+    {
+      "run": 41733826155,
+      "source": "8d619c2c31adc750e04598fff3eb953aa8c83e62",
+      "artifact": 13277243020,
+      "sha256": "7f95f6dfac13b17675871c8ecf49ab0c79e370524078af8e41e24fbdbb31aa7b",
+      "result": "Exact old31 save, normal knight approach5956.75→6339.68 with no jump. Sole foe6507.38 HP2 shield0. QA NPC-value floor rejected allshots;12defenses, no boarding, noJS. Actual approach pixels inspected; original failure retained."
     }
   ],
   "pendingFunctionalContinuation": {
@@ -716,5 +817,42 @@
     "appliesToOtherStages": false,
     "noAllHeroSurvivalRequirement": true,
     "finalIntegrationAccepted": false
+  },
+  "currentMasterIntegration": {
+    "baseMaster": "e7a387532f8249e3bdf315a80a01b56c258d8830",
+    "lastReadUtc": "2026-11-03T23:05:00Z",
+    "branch": "work/stage40-current/20261103",
+    "remoteHeadBeforeThisRecord": "ca9a71ce50639c0e923d1c48aa44c2ae0e8a7c5a",
+    "productSource": "695d3ef1dd998167ac63c371645a8987b3fef2f2",
+    "currentComparisonRun": 41733657544,
+    "currentComparisonSource": "5834456fa5cb5a04c13a1768da4292ce14b2186f",
+    "comparisonStatus": "in_progress, first candidate only; wrong-support correction absent; not final evidence",
+    "baselineFinishingRun": 41735690946,
+    "baselineFinishingSource": "6e1dbd71e2c73e6c8abe7471f90cc6aac3dd4492",
+    "baselineFinishingStatus": "in_progress",
+    "excluded": [
+      "Stage6 separate next unit",
+      "A2 and pending Stage24",
+      "pending Stage9/17"
+    ],
+    "releaseApproved": false,
+    "retainedResults": {
+      "tools/stage40-qa/records/41729470340-current-first-cast-result.json.xz": {
+        "sha256": "0b0d033c23f2eb13dc2daf31c88b2b64d1ee24177c40c7699b2e6c33a0dbf88d",
+        "decodedBytes": 181235
+      },
+      "tools/stage40-qa/records/41729470340-current-r15-finish-result.json.xz": {
+        "sha256": "c846cfc737632c2c5eff084ca05934b3bedcd7ff2af686436919689cae2e715a",
+        "decodedBytes": 1326883
+      },
+      "tools/stage40-qa/records/41732896636-stage31-stationary-result.json.xz": {
+        "sha256": "20ab1fdd21ab1d720399cb562fdc143f2f87fc999e44faa7419d69acc987c5dd",
+        "decodedBytes": 83708
+      },
+      "tools/stage40-qa/records/41733826155-stage31-approach-result.json.xz": {
+        "sha256": "710639abbfc95d6367e1861dc1ebcf59b1f17e5a6c58502934de109e7b904745",
+        "decodedBytes": 85911
+      }
+    }
   }
 }

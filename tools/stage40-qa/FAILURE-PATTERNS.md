@@ -260,3 +260,19 @@ Observed driver issue: incomingDamage stores lifetime maximum, never ages it. Ar
 Register one distinct functional diagnostic: restore that exact normal save (decodedSHA7360f60500bc58a5bcde09c21225b06bb589ee245c98ce45cba61b7ea0d59aee), use ordinary selection/joystick/cast and the existing normal boarding route, record actual final round. An explicit functional-only boarding option has a30R observation bound; ordinary callers retain20R, and this result cannot pass the unchanged release gate. User/coordinator timing decision is pending. No old evidence hash rebind or master publication.
 
 While waiting, run the already registered but unexecuted current-source Stage40 fresh first cast, R15-to-return and guide views on the same unpublished preview. Their result is candidate gameplay evidence, not normal-build/gate or public verification. All outcome files must be kept independently. Runtime code is unchanged by this diagnostic unit.
+
+## Current master and final2HP diagnostic,2026-11-03
+
+Current product before the corridor changes passed freshStage40 first cast and
+exactR15 continuation through combatR19, safe resident return/settlement/reload
+R22 in41729470340. This is not freshR1 whole combat. The unrelated31 continuation
+failed on a stale title label, corrected to the actual continue action.
+
+The next two exact old31-save diagnostics retained allHP/growth and resumedR21.
+Stationary41732896636 fired nothing. Actual normal approach41733826155 reached
+knight6339.68 from5956.75 with no jump, against final enemy6507.38. Still no shot.
+The saved enemy hasHP2/shield0; QA uses NPC shotViable's strictly-greater-than2
+net floor while damage is capped by remainingHP. This is a controller decision
+defect, not evidence that the enemy is physically inaccessible. See the narrow
+STAGE31-FINISHING-CORRECTION.md. No product/gate relaxation; failed20R evidence
+stays failed. One original-product focused normal-input verification is running.
