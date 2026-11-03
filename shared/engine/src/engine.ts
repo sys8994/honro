@@ -1,4 +1,4 @@
-import {monsterPose,monsterA2Eligible,monsterDamageGeometry,monsterDamageCritical,beginMonsterHeroCast,observeMonsterA2Warning,offerMonsterA2Response,monsterA2ActionCompleted,monsterA2Damage,decayMonsterGrowth,beginMonsterA2Action,resolveMonsterA2Action,markedMonsterTarget,consumeMonsterMark,tickMonsterA2,clearMonsterA2,validateMonsterA2} from './monsterA2';
+import {monsterPose,monsterA2Eligible,monsterDamageGeometry,monsterDamageCritical,beginMonsterHeroCast,observeMonsterA2Warning,offerMonsterA2Response,monsterA2ActionCompleted,monsterA2Damage,decayMonsterGrowth,beginMonsterA2Action,resolveMonsterA2Action,markedMonsterTarget,monsterMarkProof,consumeMonsterMark,tickMonsterA2,clearMonsterA2,validateMonsterA2} from './monsterA2';
 import {enemyEffectEligible,interruptEnemyEffect,validateEnemyEffects,observeEnemyEffectWarning,offerEnemyEffectResponses,enemyEffectActionCompleted,prepareEnemyEffect,resolveEnemyEffect,enemyEffectDamage,enemyEffectMovementBudget,tickEnemyEffects,clearEnemyEffects,releaseEnemySoftBind} from './enemyEffects';
 import {wreckDamage,damageNearest,damageContact,damageAim,damageCritical} from './wreckDamage';
 import {gearCapture,gearHas,gearBody,gearCanPay,gearPay,gearTurn,gearRegen,gearGuard,gearImpulse,gearAlly,gearState,gearCycle,gearFrostSlow,gearStepMove,gearEarthMove,gearWallContact,gearPreservesWood,gearSpreadWeak,gearTravelSpent,gearReturn,gearLandingRetreat,gearPass} from './equipmentCombat';
@@ -2385,7 +2385,8 @@ export class Engine {
         if(u?.aiAim){
             if(u.aiAim.age<ENEMY_AIM_TELEGRAPH)return;
             const shot=u.aiAim;delete u.aiAim;
-            const marked=markedMonsterTarget(this,u);
+            const marked=markedMonsterTarget(this,u),proof=monsterMarkProof(this,u);
+            if(shot.monsterMark&&(!proof||proof.serial!==shot.monsterMark.serial||proof.ownerId!==shot.monsterMark.ownerId||proof.target!==shot.target)){this.finishAction();return;}
             const fired=!!SKILLS[shot.skill]&&!(u.stun||0)&&this.fire(shot.skill,shot.angle,shot.power,true);
             if(fired&&marked?.id===shot.target)consumeMonsterMark(this,u,shot.target);
             if(!fired)this.finishAction();
@@ -2479,7 +2480,7 @@ export class Engine {
         if(tacticsLevel(this)>=2&&target.side!==u.side)(b as any).honroAiFocus={round:b.round,target:target.id};
         // Show the decided shot (target mark + path) before release; enemyAction fires it unchanged.
         if(prepareEnemyEffect(this,u,sk.id,target,aim.angle,aim.power))return;
-        u.aiAim={skill:sk.id,angle:aim.angle,power:aim.power,target:target.id,age:0};this.emit('change');
+        u.aiAim={skill:sk.id,angle:aim.angle,power:aim.power,target:target.id,age:0,monsterMark:monsterMarkProof(this,u)};this.emit('change');
     }
     checkEnd() {
         const b = this.b;

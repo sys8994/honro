@@ -240,7 +240,7 @@ export interface Unit {
     enemyPush?: EnemyPush;
     enemyControlGrace?: number;
     enemyEffectHits?: string[];
-    aiAim?:{skill:string;angle:number;power:number;target:string;age:number};
+    aiAim?:{skill:string;angle:number;power:number;target:string;age:number;monsterMark?:{ownerId:string;serial:number;target:string}};
     lureRound?:number;
     carriedBy?: number;
     lastStandUsed?: boolean;

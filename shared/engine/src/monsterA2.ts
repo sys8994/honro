@@ -27,7 +27,7 @@ function makeMonsterShape(u:Unit){
  return {version:1 as const,unitId:u.id,projectileHullReplacement:true as const,polygons,capsules,stage,pose,bounds,aim:{x:(core.a.x+core.b.x)/2,y:(core.a.y+core.b.y)/2}};
 }
 export function monsterDamageGeometry(b:Battle,u:Unit){
- if(!monsterA2Eligible(b,u)||u.honroMonsterA2Kind!=='growth')return null;
+ if(b.honroMonsterCombatRevision!==2||!live(u)||u.honroMonsterA2Kind!=='growth'||!u.honroMonsterGrowthGeometry)return null;
  const key=[u.x,u.y,u.h,u.facing,u.monsterGrowth?.stage||1,monsterPose(u)].join('|'),cached=geometryCache.get(u);
  if(cached?.key===key&&cached.table===u.honroMonsterGrowthGeometry)return cached.shape;
  const shape=makeMonsterShape(u);geometryCache.set(u,{key,table:u.honroMonsterGrowthGeometry!,shape});return shape;
@@ -67,7 +67,7 @@ export function beginMonsterA2Action(e:Engine,u:Unit,target:Unit){
  const b=e.b,base={version:1 as const,serial:b.nextId++,target:target.id,origin:{x:u.x,y:u.y},createdTeamEnd:b.teamEnds[0],seen:false,offered:false,responded:false};
  if(u.honroMonsterA2Kind==='seer'){
   const ally=e.unit(u.honroMonsterMarkAlly||'');
-  if(!live(ally)||ally!.side!==1||ally!.enthrall||ally!.loadout.length!==1||ally!.loadout[0]!=='LA01'||Math.hypot(ally!.x-u.x,ally!.y-u.y)>650||!clearLine(b,center(u),center(ally!)))return false;
+  if(!live(ally)||ally!.side!==1||ally!.enthrall||ally!.loadout.length!==1||ally!.loadout[0]!=='LA01'||Math.hypot(ally!.x-u.x,ally!.y-u.y)>650||!clearLine(b,center(u),center(ally!))||!validTarget(e,ally!,target))return false;
   u.monsterA2Warning={...base,kind:'mark',allyId:ally!.id};u.monsterA2Cooldown=1;u.intent='점복 · 표적 연결';
  }else{
   const stage=u.monsterGrowth?.stage||1,reach=[0,95,135,175][stage],direction=target.x>=u.x?1:-1;
@@ -97,6 +97,7 @@ export function markedMonsterTarget(e:Engine,ally:Unit){
   cancelWarning(e,seer);
  }return undefined;
 }
+export function monsterMarkProof(e:Engine,ally:Unit){const target=markedMonsterTarget(e,ally);if(!target)return undefined;for(const seer of e.b.units){const w=seer.monsterA2Warning;if(w?.kind==='mark'&&w.allyId===ally.id&&w.target===target.id&&w.responded)return {ownerId:seer.id,serial:w.serial,target:target.id};}return undefined;}
 export function consumeMonsterMark(e:Engine,ally:Unit,targetId:string){for(const seer of e.b.units){const w=seer.monsterA2Warning;if(w?.kind==='mark'&&w.allyId===ally.id&&w.target===targetId&&w.responded){delete seer.monsterA2Warning;seer.intent='점복 · 연결 끝';}}}
 export function tickMonsterA2(e:Engine,dt:number){
  const b=e.b;if(b.honroMonsterCombatRevision!==2)return;
@@ -117,6 +118,7 @@ export function validateMonsterA2(b:Battle){
   const shape=u.honroMonsterGrowthGeometry;
   if(shape&&![1,2,3].every(stage=>poses.every(pose=>{const cs=shape[stage as 1|2|3]?.[pose];return Array.isArray(cs)&&cs.length>0&&cs.length<=8&&cs.every(c=>point(c.a)&&point(c.b)&&n(c.r,.2,25)&&[c.a,c.b].every(p=>n(p.x,-100,100)&&n(p.y,-150,0)));}))){delete u.honroMonsterGrowthGeometry;delete u.monsterGrowth;repaired=true;}
   const g=u.monsterGrowth;if(g&&(![1,2,3].includes(g.stage)||!n(g.lastHitRound)||!n(g.lastDecayRound)||!g.lastActionsByHero||typeof g.lastActionsByHero!=='object'||Array.isArray(g.lastActionsByHero)||Object.keys(g.lastActionsByHero).length>4||Object.entries(g.lastActionsByHero).some(([key,v])=>!id(key)||!n(v)))){delete u.monsterGrowth;repaired=true;}
+  const proof=u.aiAim?.monsterMark;if(proof&&(!id(proof.ownerId)||!id(proof.target)||!Number.isSafeInteger(proof.serial)||!n(proof.serial))){delete u.aiAim;repaired=true;}
   const w=u.monsterA2Warning;if(w&&!(w.version===1&&['growthStrike','mark'].includes(w.kind)&&Number.isSafeInteger(w.serial)&&n(w.serial)&&id(w.target)&&point(w.origin)&&n(w.createdTeamEnd)&&[w.seen,w.offered,w.responded].every(v=>typeof v==='boolean')&&(!w.responded||w.offered)&&(!w.offered||w.seen)&&(w.kind==='mark'?id(w.allyId):[1,2,3].includes(w.stageAtPrepare!)&&[-1,1].includes(w.direction!)&&n(w.reach,1,200)&&w.area&&point(w.area)&&n(w.area.w,1,200)&&n(w.area.h,1,300)))){delete u.monsterA2Warning;repaired=true;}
   if(u.monsterA2Recovery!==undefined&&typeof u.monsterA2Recovery!=='boolean'){delete u.monsterA2Recovery;repaired=true;}
   if(u.monsterA2Cooldown!==undefined&&(!Number.isInteger(u.monsterA2Cooldown)||!n(u.monsterA2Cooldown,0,2))){delete u.monsterA2Cooldown;repaired=true;}

@@ -242,11 +242,11 @@ export function shotImpactValue(e:Engine,u:Unit,skill:Skill,hit:{x:number;y:numb
 
 export function targetFor(e:Engine,u:Unit):Unit|undefined{
  const b=e.b;
- const marked=markedMonsterTarget(e,u);if(marked)return marked;
  const scriptedId=(u as any).honroTargetId, scriptedUntil=(u as any).honroTargetUntil||0;
  if(scriptedId&&scriptedUntil>=b.round){const scripted=e.unit(scriptedId);if(scripted&&!scripted.dead&&scripted.hp>0)return scripted;}
  const cursed=e.actors(u.side).filter(v=>v.id!==u.id&&(v.betrayalUntil||0)>=b.round&&Math.hypot(v.x-u.x,v.y-u.y)<1450).sort((a,c)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(c.x-u.x,c.y-u.y))[0];
  if(cursed)return cursed;
+ const marked=markedMonsterTarget(e,u);if(marked)return marked;
  if(['escort','defend'].includes(e.stage.objective)&&b.mode==='campaign'&&b.round%2===0){
   const obj=e.unit('objective');if(obj&&!obj.dead&&Math.hypot(obj.x-u.x,obj.y-u.y)<1100)return obj;
  }
