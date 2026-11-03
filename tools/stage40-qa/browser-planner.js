@@ -86,6 +86,18 @@ function dockCleanupGoal(u,{support,foes,surface}){
  }
  return null;
 }
+
+/** QA-controller current-state sensitivity screen, not player-visible certainty.
+ * Uses only current observed battle, skill physics and a bounded input envelope.
+ * Sampling cannot prove safety for every intermediate angle/charge or future turn. */
+function evaluateInputTolerance(C,b,actorId,id,angle,power,nominal){
+ const offsets=[[0,-.10],[0,-.03],[0,-.01],[0,0],[0,.01],[0,.03],[0,.10],[-1,0],[1,0]],samples=[];
+ for(const [da,dp] of offsets){const test=da===0&&dp===0&&nominal?nominal:evaluateLegalCast(C,b,actorId,id,Math.max(-85,Math.min(265,angle+da)),Math.max(0,Math.min(1,power+dp)));
+  samples.push({angleOffset:da,powerOffset:dp,safe:test.safe===true,damage:test.enemyDamage||0,friendlyDamage:test.friendlyDamage||0});
+  if(!test.safe||!(test.enemyDamage>0))return{safeUseful:false,minimumDamage:0,samples,scope:'bounded current-state samples; not a player-visible guide or universal guarantee'};
+ }
+ return{safeUseful:true,minimumDamage:Math.min(...samples.map(s=>s.damage)),samples,scope:'bounded current-state samples; not a player-visible guide or universal guarantee'};
+}
 function routeGoal(u){const support=surface(u),role=dockCleanupGoal(u,{support,foes:foes(),surface})||upperRecoveryGoal(u,{support,foes:foes(),surface})||finaleDeckGoal(u,{b,support,foes:foes(),surface})||(u.cls==='knight'?finaleRoleGoal(u,{support,foes:foes(),surface}):null);if(role)return role;const same=foes().filter(v=>surface(v)===support&&Math.abs(v.y-u.y)<700),spacing=u.cls==='knight'?145:310;
  if(same.length){const t=same.sort((a,z)=>Math.abs(a.x-u.x)-Math.abs(z.x-u.x))[0];return{x:t.x+(t.x>=u.x?-spacing:spacing),target:t.id,kind:'same-support-approach'};}
  if(support==='approved40-coast-west')return{x:2660,drop:true,kind:'coast-to-stair'};
@@ -98,7 +110,7 @@ function routeGoal(u){const support=surface(u),role=dockCleanupGoal(u,{support,f
 function plan(){const u=e.active,live=JSON.stringify(b),pe=new C.Engine(JSON.parse(live),()=>{},true),pu=pe.unit(u.id);let best=null;
  const visible=pe.b.units.filter(v=>v.side===1&&!v.dead&&Math.abs(v.y-pu.y)<=600&&Math.hypot(v.x-pu.x,v.y-pu.y)<1400).sort((a,z)=>Math.hypot(a.x-pu.x,a.y-pu.y)-Math.hypot(z.x-pu.x,z.y-pu.y)).slice(0,6);
  const value=(skill,hit)=>{const eff=pe.effective(skill,pu),r=Math.max(1,eff.radius||0);let score=0;for(const v of visible){const direct=hit.unit===v.id,d=pe.damageDistance(v,hit);if(!direct&&d>=r+v.r)continue;const armor=v.role==='guard'?((pu.x-v.x)*v.facing>0?.4:.05):Math.max(0,v.armor-(v.curseArmor||0)),factor=direct?1:.42+.58*(1-Math.max(0,Math.min(1,d/r)));score+=Math.min(v.hp+(v.shield||0),eff.damage*factor*(1-Math.min(.7,armor))*C.existenceMultiplier(C.attackForSkill(skill),v,pu));}return score;};
- function consider(x){if(!(x.score>0&&(!best||x.score>best.score)))return;const complete=evaluateLegalCast(C,b,u.id,x.id,x.angle,x.power);if(!complete.safe){actions.push({op:'reject-unsafe-cast',round:b.round,hero:u.id,skill:x.id,angle:x.angle,power:x.power,reason:complete,scope:'detached-current-state-rollout'});return;}x.fullCast={damage:complete.enemyDamage,targets:complete.targets};if(complete.enemyDamage>0){x.score=complete.enemyDamage;best=x;}}
+ function consider(x){if(!(x.score>0&&(!best||x.score>best.score)))return;const complete=evaluateLegalCast(C,b,u.id,x.id,x.angle,x.power);if(!complete.safe){actions.push({op:'reject-unsafe-cast',round:b.round,hero:u.id,skill:x.id,angle:x.angle,power:x.power,reason:complete,scope:'detached-current-state-rollout'});return;}x.fullCast={damage:complete.enemyDamage,targets:complete.targets};if(complete.enemyDamage>0){const tolerance=evaluateInputTolerance(C,b,u.id,x.id,x.angle,x.power,complete);if(!tolerance.safeUseful){actions.push({op:'reject-input-sensitive-cast',round:b.round,hero:u.id,skill:x.id,angle:x.angle,power:x.power,tolerance});return;}x.nominalScore=complete.enemyDamage;x.score=tolerance.minimumDamage;x.inputTolerance=tolerance;if(!best||x.score>best.score)best=x;}}
  for(const id of pu.loadout){const s=C.SKILLS[id];if(!s||s.passive||['O13','S08'].includes(id)||!pe.skillAllowed(s,pu)||pe.cooldownLeft(pu,id)>0)continue;
   if(id==='S00'){for(const t of visible){let angle=Math.atan2(pu.y-pu.h*.58-(t.y-t.h*.5),t.x-pu.x)*180/Math.PI;if(angle< -90)angle+=360;for(const power of [1,.7,.2]){if(!pe.canAfford(s,pu,power))continue;const targets=visible.filter(v=>C.meleeContains(pe,pu,v,C.meleeRange(pu,s,power),-angle*Math.PI/180,C.meleeSpan(pu,s,power)));if(!targets.length)continue;const score=targets.reduce((sum,v)=>sum+Math.min(v.hp,pe.effective(s,pu).damage*C.existenceMultiplier(C.attackForSkill(s),v,pu)),0);consider({id,angle,power,score,targets:targets.map(v=>v.id),method:'native-melee-envelope'});}}continue;}
   for(const t of visible.slice(0,id==='S06'?3:5))for(const aim of pe.shotSeeds(pu,s,t).slice(0,id==='S06'?3:6)){

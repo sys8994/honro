@@ -7,7 +7,7 @@ import {evaluateLegalCast} from './legal-cast.mjs';
 const file=process.argv[2],out=process.argv[3];assert(file&&out);
 const snapshot=JSON.parse(execFileSync('xz',['-dc',file],{maxBuffer:128e6}));
 const {C}=await createFinale();const b=snapshot.battle,e=new C.Engine(b,()=>{},true),actions=[];
-const source=await readFile(new URL('diagnostic-finishing.mjs',import.meta.url),'utf8');
+const source=execFileSync('git',['show','4401960108d77714d41be9f5eee175b5324d86e8:tools/stage40-qa/diagnostic-finishing.mjs'],{encoding:'utf8'}); // Frozen historical nominal policy, never silently adopt later selection changes.
 let body=source.slice(source.indexOf('function plan()'),source.indexOf('function healing()'));
 body=body.replace('let best=null;','let best=null,candidates=[];').replace('if(!(x.score>0&&(!best||x.score>best.score)))return;','if(!(x.score>0))return;').replace('x.score=complete.enemyDamage;best=x;','x.score=complete.enemyDamage;best=x;candidates.push(x);').replace('return best;','return candidates;');
 const candidates=new Function('C','b','e','actions','evaluateLegalCast','assert',body+';return plan();')(C,b,e,actions,evaluateLegalCast,assert);

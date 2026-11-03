@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import {readFile,writeFile} from 'node:fs/promises';
+import {execFileSync} from 'node:child_process';
+import {createFinale} from './bootstrap.mjs';
+import {evaluateLegalCast} from './legal-cast.mjs';
+import {evaluateInputTolerance} from './input-tolerance.mjs';
+const dir=process.argv[2];assert(dir);const {C}=await createFinale();const s=JSON.parse(execFileSync('xz',['-dc',dir+'/browser/precast-02.json.xz'],{maxBuffer:128e6})),b=s.battle,e=new C.Engine(b,()=>{},true),actions=[];
+const source=await readFile(new URL('diagnostic-finishing.mjs',import.meta.url),'utf8'),body=source.slice(source.indexOf('function plan()'),source.indexOf('function healing()')),before=JSON.stringify(b),start=performance.now();
+const choice=new Function('C','b','e','actions','evaluateLegalCast','evaluateInputTolerance','assert',body+';return plan();')(C,b,e,actions,evaluateLegalCast,evaluateInputTolerance,assert);
+assert.equal(JSON.stringify(b),before);assert(choice?.inputTolerance?.safeUseful);assert.notEqual(choice.id,'M02');assert(actions.some(x=>x.op==='reject-input-sensitive-cast'&&x.skill==='M02'));
+const result={scope:'Detached captured mage state; no live play or whole-stage proof',choice,actions,elapsedSeconds:(performance.now()-start)/1000};await writeFile(dir+'/planner-input-tolerance.json',JSON.stringify(result,null,2));console.log(JSON.stringify({choice,elapsedSeconds:result.elapsedSeconds},null,2));
