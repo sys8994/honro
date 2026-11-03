@@ -32,11 +32,10 @@ jobs:
           git fetch --no-tags --depth=1 origin 54507cb9c647fafacd68dbc30a8cfc49fba96a55 c916eb7ba2962ae4a6b702843119949dbf484060 c5f9765e369cd6a69d4e7440a65756d8519e4923 781cb3bc0441b58330105e812cef8b16c7473c4d 741c1c8b4726a5f0108c0d903b63fbee194c032b
           mkdir -p "$OUT"
           node tools/act2-dialogue-ci/source-parity.mjs "$OUT"
-      - name: Focused dialogue metadata and repaired gate contracts
+      - name: Focused canonical dialogue and repaired gate contracts
         run: |
           set -euo pipefail
           node tests/act23-v4-reviewed-source-all.mjs | tee "$OUT/reviewed-source.log"
-          node tests/narrative-row-metadata.mjs | tee "$OUT/narrative-metadata.log"
           node tests/stage17-repair-gate.mjs | tee "$OUT/stage17-gate.log"
       - name: Retain actual latest publication then enforce normal build
         run: |

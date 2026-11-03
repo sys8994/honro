@@ -27,9 +27,17 @@ for(const path of new Set([...t.base.keys(),...t.public.keys(),...t.source.keys(
 for(const path of ['shared/data/act2','art/act2-near-vector-candidates'])assert.equal(git('rev-parse','HEAD:'+path).toString(),git('rev-parse',refs.source+':'+path).toString(),'Changed previously tested art tree');
 // Exact file-union validation above rejects extra archive payloads. The source
 // merge itself has only published c916 and production c5 as parents.
+let reviewedRows=0;
+for(const path of [...t.source.keys()].filter(p=>/^shared\/data\/reviewed\/act23-v4-(?:ch\d+|common)\.json$/.test(p))){
+ const before=JSON.parse(git('show',refs.source+':'+path)),after=JSON.parse(git('show','HEAD:'+path));
+ const nonText=row=>Object.fromEntries(Object.entries(row).filter(([key])=>key!=='text'));
+ assert.deepEqual(after.rows.map(nonText),before.rows.map(nonText),'Reviewed IDs/order/conditions/metadata changed: '+path);
+ reviewedRows+=after.rows.length;
+}
+assert.equal(reviewedRows,676);
 const digest=await runtimeDigest();assert.equal(digest,'b411a1760163366d9a44c87f6b975f2de9cba4a867e83a34d6beac1083d91798','Runtime changed: genuine fresh evidence required');
 const bytes=await readFile(packagePath);assert(bytes.equals(git('show',refs.measured+':'+packagePath)),'Measured package must be byte-exact');
 const p=JSON.parse(bytes),objective=p.production.probeResults[p.stageId].find(r=>r.id==='boarding-objective');assert.equal(objective.sourceRunId,41543828006);assert.equal(objective.sourceCommit,refs.source);
 const dirty=git('diff','--name-only','HEAD').toString().trim().split('\n').filter(Boolean).filter(p=>!generated(p));assert.deepEqual(dirty,[],'Uncommitted source edits');
-const report={passed:true,sourceCommit:git('rev-parse','HEAD').toString().trim(),parents:refs,checkedSourcePaths:checked,runtimeSha256:digest,stage31PackageSha256:createHash('sha256').update(bytes).digest('hex'),reusedEvidence:{stage31Run:41543828006,stage17ContinueRun:41549658978},scope:'Exact source/art/runtime equality only; dialogue/browser acceptance separately required'};
+const report={passed:true,sourceCommit:git('rev-parse','HEAD').toString().trim(),parents:refs,checkedSourcePaths:checked,reviewedRows,reviewedNonTextPreserved:true,runtimeSha256:digest,stage31PackageSha256:createHash('sha256').update(bytes).digest('hex'),reusedEvidence:{stage31Run:41543828006,stage17ContinueRun:41549658978},scope:'Exact source/art/runtime equality only; dialogue/browser acceptance separately required'};
 const out=process.argv[2];if(out){await mkdir(out,{recursive:true});await writeFile(out+'/source-parity.json',JSON.stringify(report,null,2)+'\n');}console.log(JSON.stringify(report));
