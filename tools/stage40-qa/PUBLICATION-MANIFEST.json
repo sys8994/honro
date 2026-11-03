@@ -460,6 +460,16 @@
       "native": "53b27000ea153a10a4df9c972927fd11c115b862",
       "canonical": "8c082225e29398f605407ad0c61c6e39ce406fbc",
       "tree": "145187f96f58bda43853335c5b33bb35e11a605f"
+    },
+    {
+      "native": "8fd202acd2ca03693d2d2f0d69072626ff47b192",
+      "canonical": "22a12bb08de3aaa8562d37fae1b8c64a2dba0146",
+      "tree": "5d5cb4f917ab575055c0510197a61ff237a78b82"
+    },
+    {
+      "native": "4cc56297d635b6dda9e4bdcb768877bc34222e30",
+      "canonical": "7873f0c3f7a57e989f026666ba8b73d3b9a02dc6",
+      "tree": "606f7bc8e14cc1f8fdc8390e2403224322355849"
     }
   ],
   "pendingPublication": null,
@@ -638,11 +648,43 @@
     }
   ],
   "pendingFunctionalContinuation": {
-    "status": "registered, not run",
+    "status": "actual browser in progress; native functional return R23 passed",
     "branch": "work/stage40-late-return/20261103",
     "sourceRun": 41690685003,
     "entryRound": 21,
     "entrySha256": "a83ec3c644b23fa613ff81f7d13853c2b6dc3b5e1f2e44de0a40d2ad5935737e",
-    "scope": "Normal saved-state safe return, settlement and reload; prior total20R failure retained; not a whole-run or time-target pass"
+    "scope": "Normal saved-state safe return, settlement and reload; prior total20R failure retained; not a whole-run or time-target pass",
+    "runId": 41703469779,
+    "source": "7873f0c3f7a57e989f026666ba8b73d3b9a02dc6"
+  },
+  "nativeLateReturn": {
+    "sourceRun": 41690685003,
+    "entryRound": 21,
+    "completeRound": 23,
+    "functionalPassed": true,
+    "within20": false,
+    "settled": true,
+    "reloaded": true,
+    "scope": "Native production App controls with DOM/render/clock doubles; actual browser still pending"
+  },
+  "nativeDockLaneComparison": {
+    "sourceRun": 41690685003,
+    "round": 6,
+    "arms": [
+      {
+        "distance": 0,
+        "choice": null
+      },
+      {
+        "distance": -260,
+        "choice": null
+      },
+      {
+        "distance": -520,
+        "choice": "M02",
+        "sampleDamage": 2001
+      }
+    ],
+    "scope": "Normal independent save imports and walking, read-only current-state shots; no actual cast or full-play acceptance"
   }
 }
