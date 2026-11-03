@@ -4,7 +4,8 @@ import vm from 'node:vm';
 import {readFile} from 'node:fs/promises';
 const g=vm.createContext({HONRO_CORE:{},HonroAct2:{},HonroAct3:{},HonroNarrativeCatalogue:{},HonroWorld:{},HonroObjectives:{},HonroJourneyContent:{}});
 vm.runInContext(await readFile('shared/runtime/act23-v4.js','utf8'),g);
-const V=g.HonroAct23V4;
+const V=g.HonroAct23V4,credits=[];
+g.HonroObjectiveContributions={interact:(b,id,actor)=>credits.push({id,actor})};
 g.HonroAct23V4Act2={active:V.active,stepSatisfied:()=>false};
 vm.runInContext(await readFile('shared/runtime/act23-v4-act2-scenes.js','utf8'),g);
 function fixture({heroX=11900,enemy=false,revision=1}={}){
@@ -13,9 +14,9 @@ function fixture({heroX=11900,enemy=false,revision=1}={}){
 }
 const {b,app,m}=fixture();
 g.HonroAct23V4Act2Scenes.tick(app,.01);assert.equal(m.done['11.north'],undefined);
-g.HonroAct23V4Act2Scenes.tick(app,.02);assert(m.act2Scenes.proof['11.north']);assert.equal(m.done['11.north'],true);assert.equal(b.honroMarkers[0].collected,true);assert.equal(m.checkpoints.filter(x=>x.id==='11.north').length,1);
+g.HonroAct23V4Act2Scenes.tick(app,.02);assert(m.act2Scenes.proof['11.north']);assert.equal(m.done['11.north'],true);assert.equal(b.honroMarkers[0].collected,true);assert.equal(credits.length,1);assert.equal(credits[0].actor,undefined,'Automatic world proof must not acquire manual-action XP credit');assert.equal(m.checkpoints.filter(x=>x.id==='11.north').length,1);
 // Departure may now open dialogue and settle the result before another v4 tick.
 app.dialogue={};b.phase='won';V.recordOutcome(app,true);assert(app.profile.honroAct23V4History.stages[11].steps.includes('11.north'));
 app.dialogue=null;b.phase='aim';g.HonroAct23V4Act2Scenes.tick(app,.05);assert.equal(m.checkpoints.filter(x=>x.id==='11.north').length,1);
 for(const options of [{heroX:10000},{enemy:true},{revision:undefined}]){const q=fixture(options);if(options.revision===undefined&&Object.hasOwn(options,'revision'))delete q.b.honroAct23V4Revision;const old=JSON.stringify(q.m);g.HonroAct23V4Act2Scenes.tick(q.app,.05);assert.equal(JSON.stringify(q.m),old);assert.equal(q.b.sceneVersion,0);assert.equal(q.b.honroMarkers[0].collected,undefined);}
-console.log('PASS fulfilled bell checkpoint/history before departure, threshold guard, idempotency, missing proximity, live threat, legacy opt-out');
+console.log('PASS fulfilled bell checkpoint/history before departure, threshold guard, idempotency, missing proximity, live threat, legacy opt-out, unchanged automatic reward attribution');
