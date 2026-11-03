@@ -1,0 +1,67 @@
+name: Stage31 fixed-input Stage6-wrapper isolation only
+on:
+  push:
+    branches: ['work/stage31-wrapper-ab/**']
+permissions:
+  contents: read
+jobs:
+  compare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      HONRO_ACT4_RELEASE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          path: qa
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          ref: 9b2ba7319cceee78c839ccecb36a518c4bf875c2
+          path: source
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Prepare isolated diagnostic dependencies
+        working-directory: source
+        run: |
+          npm ci
+          npm ci --prefix game
+          python -m pip install 'playwright==1.58.0'
+          python -m playwright install --with-deps chromium
+      - name: Register and execute exactly one pair
+        working-directory: source
+        run: |
+          set -euo pipefail
+          mkdir -p ../evidence
+          git rev-parse HEAD > ../evidence/source.txt
+          cp shared/runtime/stage6-pursuit.js ../evidence/original-stage6-pursuit.js
+          printf '%s\n' 'One A/B pair; only stage6-pursuit.js disabled in B. Same original profile/seed and fixed clock/inputs. No production build/release acceptance.' > ../evidence/protocol.txt
+          python -m http.server 8870 --bind 127.0.0.1 > ../evidence/server.log 2>&1 &
+          server=$!; trap 'kill "$server" 2>/dev/null || true' EXIT
+          for variant in A B; do
+            if [ "$variant" = B ]; then
+              printf '%s\n' '// Instrumented diagnostic B: Stage6 pursuit wrappers omitted. No other source change.' > shared/runtime/stage6-pursuit.js
+            fi
+            git diff -- shared > ../evidence/source-$variant.patch
+            node --input-type=module -e 'import {runtimeDigest} from "./tools/stage31/probes.mjs";console.log(await runtimeDigest())' > ../evidence/runtime-$variant.txt
+            node workshop/build.mjs > ../evidence/build-$variant.log 2>&1
+            sha256sum HONRO.html web/manifest.json > ../evidence/served-$variant.txt
+            AB_VARIANT="$variant" AB_OUT="../evidence/$variant" python ../qa/tools/stage40-qa/stage31-fixed-input.py > ../evidence/browser-$variant.log 2>&1 || true
+          done
+          python - <<'PY'
+          import json,pathlib
+          root=pathlib.Path('../evidence');a=json.loads((root/'A/result.json').read_text());b=json.loads((root/'B/result.json').read_text())
+          result={'bothExecuted':a['passed'] and b['passed'],'inputsIdentical':a['inputs']==b['inputs'],'statesIdentical':a['states']==b['states'],'scope':'Bounded pair only, no full-stage or universal equivalence claim'}
+          result['firstDifference']=next(({'index':i,'A':x,'B':y} for i,(x,y) in enumerate(zip(a['states'],b['states'])) if x!=y),None)
+          (root/'comparison.json').write_text(json.dumps(result,indent=2));print(json.dumps(result)[:5000])
+          assert result['bothExecuted'] and result['inputsIdentical']
+          PY
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage31-wrapper-fixed-ab
+          path: evidence/
+          retention-days: 7
