@@ -8,7 +8,7 @@ const app=h.load(profile);app.launch(6);const e=app.engine,b=e.b;
 // Explicit render double for this behavioral fixture; real visual acceptance
 // requires a browser screenshot and is not claimed by this test.
 let painted=false,frames=[],screenReady=true;const originalGet=g.document.getElementById.bind(g.document),screen={appendChild(n){painted=n;}},warning={textContent:'',clientWidth:320,clientHeight:24,scrollWidth:320,scrollHeight:24,setAttribute(){},remove(){painted=false;},getBoundingClientRect(){return {left:10,top:10,right:330,bottom:34,width:320,height:24};}};
-g.innerHeight=900;g.requestAnimationFrame=fn=>{frames.push(fn);return frames.length;};g.getComputedStyle=()=>({display:'block',visibility:'visible',opacity:'1'});g.document.getElementById=id=>id==='stage6-pursuit-warning'?(painted||null):originalGet(id);g.document.querySelector=sel=>sel==='.battle-screen'&&screenReady?screen:null;g.document.createElement=()=>warning;
+originalGet('objective-text').getAttribute=()=>null;g.innerHeight=900;g.requestAnimationFrame=fn=>{frames.push(fn);return frames.length;};g.getComputedStyle=()=>({display:'block',visibility:'visible',opacity:'1'});g.document.getElementById=id=>id==='stage6-pursuit-warning'?(painted||null):originalGet(id);g.document.querySelector=sel=>sel==='.battle-screen'&&screenReady?screen:null;g.document.createElement=()=>warning;
 function paintNotice(){frames=[];g.HonroObjectives.refresh(app);for(let i=0;i<2;i++){const q=frames;frames=[];q.forEach(fn=>fn());}}
 
 let now=g.performance.now();g.performance={now:()=>now};
