@@ -1,0 +1,177 @@
+{
+  "schema": "stage6-prototype-cohort-results/v1",
+  "registration": "prototype-cohort-registration.json",
+  "completedUtc": "2026-11-03T15:06:08Z",
+  "sourceLocalCommit": "6b13ecb9f7bb1d1ac0308965d26113d1789c5991",
+  "runnerSha256": "c6fea6a347560b722d33d2f24a0b4487b78c2869c17187a6a9538fa4670cb58e",
+  "sourceNote": "Sparse worktree uses symlinked shared assets and fixtures, so Git reports those as deleted/untracked; trace records full dirty status and content hashes. This is an unshipped cloned-map prototype.",
+  "cases": [
+    {
+      "set": "exploratory",
+      "inputSeed": 2361,
+      "engineSeed": 19388,
+      "policy": "lower",
+      "phase": "won",
+      "round": 9,
+      "aliveHeroes": 3,
+      "supportSpan": {
+        "p-archer": 1489.84,
+        "p-mage": 1351.22,
+        "p-knight": 1417.63
+      },
+      "traceSha256": "7c0b7fdbc03e3acf6cdb52e42ae807a697cd994f24ad1bf63f2e7db443f127c6",
+      "tracePath": "_local/reports/act1-expedition-baseline-20261103/stage6-authored-prototype-objective-focused-noitems-appops-calibrated-v2-appjitter-2361-cohort-exploratory-lower/trace.json"
+    },
+    {
+      "set": "exploratory",
+      "inputSeed": 2362,
+      "engineSeed": 19388,
+      "policy": "lower",
+      "phase": "won",
+      "round": 9,
+      "aliveHeroes": 3,
+      "supportSpan": {
+        "p-archer": 1489.93,
+        "p-mage": 1346.96,
+        "p-knight": 1417.55
+      },
+      "traceSha256": "e3a0a926f2ed5d23ba4597726429eff1e640cdeba0db7b7e33280faeef9dcc3b",
+      "tracePath": "_local/reports/act1-expedition-baseline-20261103/stage6-authored-prototype-objective-focused-noitems-appops-calibrated-v2-appjitter-2362-cohort-exploratory-lower/trace.json"
+    },
+    {
+      "set": "exploratory",
+      "inputSeed": 2363,
+      "engineSeed": 19388,
+      "policy": "lower",
+      "phase": "won",
+      "round": 10,
+      "aliveHeroes": 3,
+      "supportSpan": {
+        "p-archer": 1469.98,
+        "p-mage": 1348.75,
+        "p-knight": 1417.62
+      },
+      "traceSha256": "dc08502c66afdbadeedb8d6fe6be1f06bae983020cd5dd294d5e9fc2a6933ca6",
+      "tracePath": "_local/reports/act1-expedition-baseline-20261103/stage6-authored-prototype-objective-focused-noitems-appops-calibrated-v2-appjitter-2363-cohort-exploratory-lower/trace.json"
+    },
+    {
+      "set": "holdout",
+      "inputSeed": 2461,
+      "engineSeed": 19388,
+      "policy": "lower",
+      "phase": "won",
+      "round": 8,
+      "aliveHeroes": 3,
+      "supportSpan": {
+        "p-archer": 1377.52,
+        "p-mage": 1357.45,
+        "p-knight": 1417.61
+      },
+      "traceSha256": "dbf6ddf45472eee3d4eb7efc5a1c47bb09252cd93b09a760e8182bdde7557048",
+      "tracePath": "_local/reports/act1-expedition-baseline-20261103/stage6-authored-prototype-objective-focused-noitems-appops-calibrated-v2-appjitter-2461-cohort-holdout-lower/trace.json"
+    },
+    {
+      "set": "holdout",
+      "inputSeed": 2462,
+      "engineSeed": 19388,
+      "policy": "lower",
+      "phase": "won",
+      "round": 10,
+      "aliveHeroes": 3,
+      "supportSpan": {
+        "p-archer": 1469.98,
+        "p-mage": 1348.79,
+        "p-knight": 1417.62
+      },
+      "traceSha256": "5b95657e7b6f68e3824efd826a948b9aa94585aebbf83c052a0b2923352cccd6",
+      "tracePath": "_local/reports/act1-expedition-baseline-20261103/stage6-authored-prototype-objective-focused-noitems-appops-calibrated-v2-appjitter-2462-cohort-holdout-lower/trace.json"
+    },
+    {
+      "set": "exploratory",
+      "inputSeed": 2361,
+      "engineSeed": 19388,
+      "policy": "upper-rejoin",
+      "phase": "won",
+      "round": 8,
+      "aliveHeroes": 3,
+      "supportSpan": {
+        "p-archer": 1478.49,
+        "p-mage": 1347.24,
+        "p-knight": 1417.55
+      },
+      "traceSha256": "c7af28bf8c659556d71b565b935e2e3e9e56731d839935d763ca387f7b9f179d",
+      "tracePath": "_local/reports/act1-expedition-baseline-20261103/stage6-authored-prototype-objective-focused-noitems-appops-calibrated-v2-upper-connected-robust-rejoin-appjitter-2361-cohort-exploratory-upper-rejoin/trace.json"
+    },
+    {
+      "set": "exploratory",
+      "inputSeed": 2362,
+      "engineSeed": 19388,
+      "policy": "upper-rejoin",
+      "phase": "won",
+      "round": 8,
+      "aliveHeroes": 3,
+      "supportSpan": {
+        "p-archer": 1477.31,
+        "p-mage": 1346.76,
+        "p-knight": 1417.64
+      },
+      "traceSha256": "70a18b21a57a81278c750a340bab70831fb3a25ce80fd83e7af79c000fb3139e",
+      "tracePath": "_local/reports/act1-expedition-baseline-20261103/stage6-authored-prototype-objective-focused-noitems-appops-calibrated-v2-upper-connected-robust-rejoin-appjitter-2362-cohort-exploratory-upper-rejoin/trace.json"
+    },
+    {
+      "set": "exploratory",
+      "inputSeed": 2363,
+      "engineSeed": 19388,
+      "policy": "upper-rejoin",
+      "phase": "won",
+      "round": 8,
+      "aliveHeroes": 3,
+      "supportSpan": {
+        "p-archer": 1477.44,
+        "p-mage": 1346.94,
+        "p-knight": 1417.62
+      },
+      "traceSha256": "4af52b55839bb120b7c0e27f29f971eb10d0aeb5b4433f2839da0418ca8bb02a",
+      "tracePath": "_local/reports/act1-expedition-baseline-20261103/stage6-authored-prototype-objective-focused-noitems-appops-calibrated-v2-upper-connected-robust-rejoin-appjitter-2363-cohort-exploratory-upper-rejoin/trace.json"
+    },
+    {
+      "set": "holdout",
+      "inputSeed": 2461,
+      "engineSeed": 19388,
+      "policy": "upper-rejoin",
+      "phase": "won",
+      "round": 9,
+      "aliveHeroes": 3,
+      "supportSpan": {
+        "p-archer": 1477.33,
+        "p-mage": 1346.59,
+        "p-knight": 1417.63
+      },
+      "traceSha256": "3e25fe538fd4493e729d9cb34a7a122867d02df227819b13cf7836ea8bc01aaf",
+      "tracePath": "_local/reports/act1-expedition-baseline-20261103/stage6-authored-prototype-objective-focused-noitems-appops-calibrated-v2-upper-connected-robust-rejoin-appjitter-2461-cohort-holdout-upper-rejoin/trace.json"
+    },
+    {
+      "set": "holdout",
+      "inputSeed": 2462,
+      "engineSeed": 19388,
+      "policy": "upper-rejoin",
+      "phase": "won",
+      "round": 9,
+      "aliveHeroes": 3,
+      "supportSpan": {
+        "p-archer": 1477.41,
+        "p-mage": 1346.84,
+        "p-knight": 1417.63
+      },
+      "traceSha256": "cb9dd99c12dfdd55f8ba36248c68031b9230669ff50d6425f49ca4b90110b5f9",
+      "tracePath": "_local/reports/act1-expedition-baseline-20261103/stage6-authored-prototype-objective-focused-noitems-appops-calibrated-v2-upper-connected-robust-rejoin-appjitter-2462-cohort-holdout-upper-rejoin/trace.json"
+    }
+  ],
+  "limitations": [
+    "App handlers with DOM, rendering and clock doubles; not browser or human play.",
+    "Exploratory fixed-seed sample is too small to estimate a human clear rate or fun.",
+    "Support spans are per character sampled extrema, not proof that all traveled required party path.",
+    "Effective enemy actions and normal noncritical hit percentages are not measured reliably by these traces.",
+    "No final integrated source, final art, production map revision, Stage31 gate or Pages verification."
+  ]
+}
