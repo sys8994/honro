@@ -1,0 +1,195 @@
+{
+  "version": 1,
+  "productionApproval": false,
+  "selectionStatus": "ALTERNATE reference approved; final art/runtime/budget selection pending",
+  "viewBox": [
+    -85,
+    -150,
+    230,
+    160
+  ],
+  "baseHeight": 128,
+  "assets": [
+    {
+      "id": "munyeo-flat-idle",
+      "variant": "approved-vector-friendly-reference-alternate",
+      "status": "UNAPPROVED production candidate; final selection pending comparison",
+      "file": "alternates/munyeo-flat-idle.svg",
+      "sha256": "f64bc8bfba4455bb8389e1b4a2edda93a2bd51a090d54522795be7eb86661d46",
+      "anchors": 1304,
+      "controls": 1936,
+      "subpaths": 182,
+      "paths": 9,
+      "colors": 9,
+      "bytes": 48645,
+      "footPivot": [
+        0,
+        0
+      ],
+      "footCenterCorrection": -6.740040738281255,
+      "groundCorrection": 1.078324073474815,
+      "bounds": [
+        -27.861723261718748,
+        -129.6786001227489,
+        22.411684738281245,
+        0.0
+      ],
+      "referenceSha256": "2aa5150fcfd79b6a5b85ef022757077c74d504a84a0e2846c6f839862239a1c4",
+      "reference": "Retained alternate PNG outside runtime/Git. Root approved as alternate direction, not selected final. No raw-original-pixel-equivalence claim.",
+      "method": "Actual Inkscape 10-color smooth stack trace with background removal, speckles5, smoothing0.7, optimize0.25; actual Simplify0.002 from immutable flat raw; absolute0.001-unit serialization; source anatomy unchanged by code.",
+      "visualBounds": [
+        -27.861723261718748,
+        -129.6786001227489,
+        22.411684738281245,
+        0.0
+      ],
+      "bodyCoreArtGuide": {
+        "bounds": [
+          -34,
+          -129.6786001227489,
+          32,
+          0
+        ],
+        "authority": "Approximate torso/head/root or torso/skirt authoring guide only. NOT collision, targetable region, hurtbox or attack reach. Long arms/fan can extend outside. Gameplay owner must reconcile visible hit regions separately."
+      },
+      "movementFootprint": null,
+      "hitGeometry": null
+    },
+    {
+      "id": "munyeo-flat-prepare",
+      "variant": "approved-vector-friendly-reference-alternate",
+      "status": "UNAPPROVED production candidate; final selection pending comparison",
+      "file": "alternates/munyeo-flat-prepare.svg",
+      "sha256": "b8b22a858a8ae1e7188b9f8d517639193ea906c0ee5191038f3a85ac528b54fe",
+      "anchors": 1923,
+      "controls": 2806,
+      "subpaths": 303,
+      "paths": 9,
+      "colors": 9,
+      "bytes": 72486,
+      "footPivot": [
+        0,
+        0
+      ],
+      "footCenterCorrection": -0.5580861640624981,
+      "groundCorrection": 1.193508840338012,
+      "bounds": [
+        -38.21764389894599,
+        -124.70016069775566,
+        36.45545233930958,
+        0.0
+      ],
+      "referenceSha256": "2aa5150fcfd79b6a5b85ef022757077c74d504a84a0e2846c6f839862239a1c4",
+      "reference": "Retained alternate PNG outside runtime/Git. Root approved as alternate direction, not selected final. No raw-original-pixel-equivalence claim.",
+      "method": "Actual Inkscape 10-color smooth stack trace with background removal, speckles5, smoothing0.7, optimize0.25; actual Simplify0.002 from immutable flat raw; absolute0.001-unit serialization; source anatomy unchanged by code.",
+      "visualBounds": [
+        -38.21764389894599,
+        -124.70016069775566,
+        36.45545233930958,
+        0.0
+      ],
+      "bodyCoreArtGuide": {
+        "bounds": [
+          -34,
+          -124.70016069775566,
+          32,
+          0
+        ],
+        "authority": "Approximate torso/head/root or torso/skirt authoring guide only. NOT collision, targetable region, hurtbox or attack reach. Long arms/fan can extend outside. Gameplay owner must reconcile visible hit regions separately."
+      },
+      "movementFootprint": null,
+      "hitGeometry": null
+    },
+    {
+      "id": "munyeo-flat-link",
+      "variant": "approved-vector-friendly-reference-alternate",
+      "status": "UNAPPROVED production candidate; final selection pending comparison",
+      "file": "alternates/munyeo-flat-link.svg",
+      "sha256": "e7170b55a7305cbb2f14b7bbd1ba45641790bbabecd7a0bb990501bde3cf86c5",
+      "anchors": 1660,
+      "controls": 2464,
+      "subpaths": 270,
+      "paths": 9,
+      "colors": 9,
+      "bytes": 63986,
+      "footPivot": [
+        0,
+        0
+      ],
+      "footCenterCorrection": -1.4714493906250041,
+      "groundCorrection": 0.6676286531695781,
+      "bounds": [
+        -34.663145609375,
+        -133.10952586915954,
+        67.55459031183167,
+        -8.881784197001252e-16
+      ],
+      "referenceSha256": "2aa5150fcfd79b6a5b85ef022757077c74d504a84a0e2846c6f839862239a1c4",
+      "reference": "Retained alternate PNG outside runtime/Git. Root approved as alternate direction, not selected final. No raw-original-pixel-equivalence claim.",
+      "method": "Actual Inkscape 10-color smooth stack trace with background removal, speckles5, smoothing0.7, optimize0.25; actual Simplify0.002 from immutable flat raw; absolute0.001-unit serialization; source anatomy unchanged by code.",
+      "visualBounds": [
+        -34.663145609375,
+        -133.10952586915954,
+        67.55459031183167,
+        -8.881784197001252e-16
+      ],
+      "bodyCoreArtGuide": {
+        "bounds": [
+          -34,
+          -133.10952586915954,
+          32,
+          0
+        ],
+        "authority": "Approximate torso/head/root or torso/skirt authoring guide only. NOT collision, targetable region, hurtbox or attack reach. Long arms/fan can extend outside. Gameplay owner must reconcile visible hit regions separately."
+      },
+      "movementFootprint": null,
+      "hitGeometry": null
+    },
+    {
+      "id": "munyeo-flat-recover",
+      "variant": "approved-vector-friendly-reference-alternate",
+      "status": "UNAPPROVED production candidate; final selection pending comparison",
+      "file": "alternates/munyeo-flat-recover.svg",
+      "sha256": "83e8c1e1a6f4ca2b0cf16b6032346a80b5c77b1e3fb53ac27b7c3eb31d646924",
+      "anchors": 1407,
+      "controls": 2124,
+      "subpaths": 186,
+      "paths": 9,
+      "colors": 9,
+      "bytes": 52920,
+      "footPivot": [
+        0,
+        0
+      ],
+      "footCenterCorrection": 0.2203848750000006,
+      "groundCorrection": 0.6401559920662225,
+      "bounds": [
+        -41.83988316865857,
+        -125.38592100207698,
+        32.41381779889898,
+        -4.440892098500626e-16
+      ],
+      "referenceSha256": "2aa5150fcfd79b6a5b85ef022757077c74d504a84a0e2846c6f839862239a1c4",
+      "reference": "Retained alternate PNG outside runtime/Git. Root approved as alternate direction, not selected final. No raw-original-pixel-equivalence claim.",
+      "method": "Actual Inkscape 10-color smooth stack trace with background removal, speckles5, smoothing0.7, optimize0.25; actual Simplify0.002 from immutable flat raw; absolute0.001-unit serialization; source anatomy unchanged by code.",
+      "visualBounds": [
+        -41.83988316865857,
+        -125.38592100207698,
+        32.41381779889898,
+        -4.440892098500626e-16
+      ],
+      "bodyCoreArtGuide": {
+        "bounds": [
+          -34,
+          -125.38592100207698,
+          32,
+          0
+        ],
+        "authority": "Approximate torso/head/root or torso/skirt authoring guide only. NOT collision, targetable region, hurtbox or attack reach. Long arms/fan can extend outside. Gameplay owner must reconcile visible hit regions separately."
+      },
+      "movementFootprint": null,
+      "hitGeometry": null
+    }
+  ],
+  "geometryContract": "baseHeight128 and viewBox remain common; never fit each pose/growth stage to the same visual height. Movement footprint and targetable/hit geometry are unset and simulation-owned. VisualBounds include arms/fan; bodyCoreArtGuide is non-authoritative art metadata only."
+}

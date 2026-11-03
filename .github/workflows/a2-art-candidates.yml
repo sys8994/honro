@@ -1,0 +1,39 @@
+name: A2 unapproved vector candidate measurements
+on:
+  push:
+    branches: ['art/a2-candidates/**']
+    paths:
+      - 'shared/assets/monsters/a2/**'
+      - 'tools/a2-art-qa/**'
+      - '.github/workflows/a2-art-candidates.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  measure-only:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          ref: ${{ github.sha }}
+          sparse-checkout: |
+            shared/assets/monsters
+            shared/runtime/monster-vector.js
+            tools/a2-art-qa
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Install only pinned browser QA dependency
+        run: |
+          python -m pip install 'playwright==1.58.0'
+          python -m playwright install --with-deps chromium
+      - name: Measure exact candidate sources (no game build or production approval)
+        run: python tools/a2-art-qa/run.py --cpu-rates 1 4 --out _local/reports/a2-art-candidates
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: a2-unapproved-art-${{ github.sha }}
+          path: _local/reports/a2-art-candidates/
+          if-no-files-found: error
