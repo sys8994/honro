@@ -37,8 +37,9 @@ try:
   page.wait_for_function('''()=>{const b=HonroApp.engine.b;return HonroStage6RenderCoveragePreview.covered(b,b.terrain.find(t=>t.id==='pier-east'))}''',timeout=30000)
   page.evaluate('''()=>HonroApp.scene.render(HonroApp.engine,0,HonroApp.selected,.3,false,0)''');page.screenshot(path=str(out/'east-skin-restored.png'))
   # Exercise the normal saved-battle Continue route, including asset restoration.
-  saved=page.evaluate('''()=>{const a=HonroApp;const terrain=JSON.stringify(a.engine.b.terrain);a.profile.honroBattle=structuredClone(a.engine.b);return {terrain,ok:a.persist()};}''')
-  assert saved['ok'],'actual profile save failed'
+  saved=page.evaluate('''()=>{const a=HonroApp;const terrain=JSON.stringify(a.engine.b.terrain);a.profile.honroBattle=structuredClone(a.engine.b);let compact,error=null,probe=null;try{compact=JSON.stringify({...a.profile,honroBattle:HonroProfileStore.compactBattleArt(a.profile.honroBattle)});try{localStorage.setItem('honro-qa-quota-probe',compact);localStorage.removeItem('honro-qa-quota-probe');probe=true;}catch(e){probe=false;error=String(e)}}catch(e){error=String(e)}return {terrain,ok:a.persist(),debug:a.debugMode,embedded:!!HONRO_EMBEDDED,custom:!!a.customMap,store:a.profileStore.state,rawChars:JSON.stringify(a.profile).length,compactChars:compact?.length||null,quotaProbe:probe,error};}''')
+  result['saveDiagnostics']={k:v for k,v in saved.items() if k!='terrain'}
+  assert saved['ok'],'actual profile save failed: '+repr(result['saveDiagnostics'])
   page.reload(wait_until='domcontentloaded');page.wait_for_function('window.HonroApp',timeout=60000)
   result['saveContinue']=page.evaluate('''async(before)=>{await HONRO_APP_READY;const a=HonroApp;a.continue();return {stage:a.engine?.b?.honroStage,terrainUnchanged:before===JSON.stringify(a.engine?.b?.terrain)};}''',saved['terrain'])
   page.wait_for_function('''()=>{const b=HonroApp.engine?.b;return b&&['west','east'].every(n=>HonroStage6RenderCoveragePreview.covered(b,b.terrain.find(t=>t.id==='pier-'+n)))}''',timeout=30000)
