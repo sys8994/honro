@@ -5,6 +5,7 @@ current state only. No HP/pose/kill/scene-flag injection or hidden item actions.
 import os,json,lzma,time,hashlib,traceback,sys
 from pathlib import Path
 from playwright.sync_api import sync_playwright
+from navigation_proof import verify_navigation
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'act4-ci'))
 from precise_aim import aim_with_joystick
 root=Path(os.environ.get('HONRO_REPO_ROOT','.')).resolve();out=Path(os.environ['HONRO_CAPTURE_OUT']);out.mkdir(parents=True,exist_ok=False)
@@ -66,9 +67,9 @@ with sync_playwright() as w:
   if state()['active']==id:return
   p.locator('[data-action="select-hero"][data-id="'+id+'"]').click();p.wait_for_timeout(150);ready()
  try:
-  p.goto(os.environ['HONRO_CAPTURE_URL'],wait_until='domcontentloaded');p.wait_for_function('window.HonroApp')
+  verify_navigation(p.goto(os.environ['HONRO_CAPTURE_URL'],wait_until='domcontentloaded'),out,'entry');p.wait_for_function('window.HonroApp')
   p.locator('[data-action="settings"]').first.click();p.get_by_text('기록·관리',exact=False).click();p.get_by_text('JSON 기록 가져오기',exact=True).click();p.get_by_text('파일 선택',exact=True).click();p.locator('#file-import').set_input_files(str((out/'source-profile.json').resolve()))
-  p.wait_for_function('HonroApp.profile?.lastStage===40',timeout=120000);p.reload();p.wait_for_function('window.HonroApp');p.locator('.title-actions [data-action="continue"]').first.click();p.wait_for_function('expected=>HonroApp.engine?.b.honroStage===40&&HonroApp.engine.b.round===expected',arg=entry_round,timeout=120000)
+  p.wait_for_function('HonroApp.profile?.lastStage===40',timeout=120000);verify_navigation(p.reload(),out,'import-reload');p.wait_for_function('window.HonroApp');p.locator('.title-actions [data-action="continue"]').first.click();p.wait_for_function('expected=>HonroApp.engine?.b.honroStage===40&&HonroApp.engine.b.round===expected',arg=entry_round,timeout=120000)
   ready();initial=record('entry');assert initial['proof'] and len(initial['foes'])==(10 if current_review else 37 if resume else 42) and initial['major']==1 and initial['minis']==2 and initial['finale']==2
   if pacing_review:
    construction=p.evaluate('()=>{const b=HonroApp.engine.b,u=b.units.find(v=>v.id==="final40-dock-stair-5");return{round:b.round,cell:u.honroDensityCell,spawn:{x:u.spawnX,y:u.spawnY},definition:b.honroEncounterDensityActivation[u.honroDensityCell],cap:b.enemyLimit}}')

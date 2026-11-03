@@ -1,0 +1,77 @@
+name: Verify published Stage40 current integration
+on:
+  push:
+    branches: ['work/stage40-current-public/**']
+permissions:
+  contents: read
+jobs:
+  stage40-public:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      OUT: _local/reports/stage40-current-public
+      HONRO_CAPTURE_URL: https://sys8994.github.io/honro/HONRO.html?release=${{ github.sha }}
+      HONRO_DEPLOYED_RELEASE_SHA: ${{ github.sha }}
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          ref: ${{ github.sha }}
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /HONRO.html
+            /web/manifest.json
+            /shared/data/act4/reviewed.json
+            /tools/stage40-qa/
+            /tools/act4-ci/precise_aim.py
+            /tools/act4-rc/fixtures/stage40-checkpoints/sailing-observation-local-storage.json.xz
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Verify published HTML and manifest equal this reviewed release
+        run: |
+          mkdir -p "$OUT"
+          python - <<'PY'
+          import os,json,time,hashlib,urllib.request
+          from pathlib import Path
+          files=['HONRO.html','web/manifest.json']
+          expected={p:hashlib.sha256(Path(p).read_bytes()).hexdigest() for p in files}
+          observations=[]
+          for attempt in range(45):
+           actual={}
+           for p in files:
+            try:
+             data=urllib.request.urlopen('https://sys8994.github.io/honro/'+p+'?stage40='+os.environ['GITHUB_SHA']+'-'+str(attempt),timeout=40).read()
+             actual[p]=hashlib.sha256(data).hexdigest()
+            except Exception as error:actual[p]={'error':str(error)}
+           observations.append(actual)
+           if actual==expected:break
+           time.sleep(10)
+          Path(os.environ['OUT']+'/published-hashes.json').write_text(json.dumps({'source':os.environ['GITHUB_SHA'],'expected':expected,'observations':observations,'passed':actual==expected},indent=2))
+          assert actual==expected,'Public release has not reached reviewed bytes'
+          PY
+      - name: Install pinned real browser
+        run: |
+          python -m pip install 'playwright==1.58.0'
+          python -m playwright install --with-deps chromium
+      - name: Actual public fresh first attack and exact normal-save safe return
+        run: |
+          set -euo pipefail
+          export HONRO_EXPECT_HTML_SHA256="$(sha256sum HONRO.html | cut -d' ' -f1)"
+          HONRO40_FIRST_CAST_ONLY=1 HONRO_CAPTURE_OUT="$OUT/first-cast" python tools/stage40-qa/browser-play.py > "$OUT/first-cast.log" 2>&1
+          HONRO_CAPTURE_OUT="$OUT/return" python tools/stage40-qa/late-return-play.py > "$OUT/return.log" 2>&1
+          python - <<'PY'
+          import json,os
+          from pathlib import Path
+          out=Path(os.environ['OUT'])
+          start=json.loads((out/'first-cast/result.json').read_text())
+          end=json.loads((out/'return/result.json').read_text())
+          assert start['passed'] and not start['errors']
+          assert end['functionalPassed'] and not end['errors'] and end['escort']['round']<=23
+          (out/'summary.json').write_text(json.dumps({'passed':True,'deployedReleaseSha':os.environ['HONRO_DEPLOYED_RELEASE_SHA'],'verifierSourceSha':os.environ['GITHUB_SHA'],'url':os.environ['HONRO_CAPTURE_URL'],'entryAndFirstCast':True,'normalSavedReturnRound':end['escort']['round'],'settlementAndReload':end['escort']['sameOriginalContextPostVictoryReload'],'scope':'Actual public UI first attack and exact normal saved return. Not a fresh public whole-stage R1 run or subjective user fun approval.'},indent=2))
+          PY
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage40-public-${{ github.sha }}
+          path: _local/reports/stage40-current-public/
+          retention-days: 7

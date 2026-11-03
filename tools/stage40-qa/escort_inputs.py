@@ -1,3 +1,4 @@
+from navigation_proof import verify_navigation
 """Normal-input high-road escort after combat, including original-context reload.
 The ferry carries residents; heroes need not take an unnecessary water crossing.
 """
@@ -125,6 +126,6 @@ def finish_escort(p,out,*,functional_continuation=False):
  transition={'immediate':immediate,'settled':before}
  (out/'postwin-notification.json').write_text(json.dumps(transition,ensure_ascii=False,indent=2))
  raw=p.evaluate("localStorage.getItem('honro-first-act-profile-1')");(out/'completed-storage.json.xz').write_bytes(lzma.compress(raw.encode()))
- p.reload();p.wait_for_function('window.HonroApp');p.get_by_text('여정 이어가기',exact=True).click();p.wait_for_function("HonroApp.screen==='rest'",timeout=60000);after=p.evaluate(projection);(out/'postwin-reload.json').write_text(json.dumps({'before':before,'after':after},ensure_ascii=False,indent=2));assert before==after
+ verify_navigation(p.reload(),out,'settled-reload');p.wait_for_function('window.HonroApp');p.get_by_text('여정 이어가기',exact=True).click();p.wait_for_function("HonroApp.screen==='rest'",timeout=60000);after=p.evaluate(projection);(out/'postwin-reload.json').write_text(json.dumps({'before':before,'after':after},ensure_ascii=False,indent=2));assert before==after
  p.screenshot(path=str(out/'same-context-restored.jpg'),type='jpeg',quality=90)
  return {'passed':True,'round':final['round'],'functionalContinuation':functional_continuation,'within20':final['round']<=20,'heroes':final['heroes'],'residents':final['residents'],'roster':final['roster'],'presentedRequired':rows,'retiredRequired':[],'waterRecoveries':final['water'],'sameOriginalContextPostVictoryReload':True,'completedStorageSha256':hashlib.sha256(raw.encode()).hexdigest()}
