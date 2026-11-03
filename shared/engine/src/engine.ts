@@ -906,7 +906,7 @@ export class Engine {
         let armorWithoutSupport=Math.max(0,u.armor),armor = Math.max(0,u.armor-(u.curseArmor||0));
         if (u.role === 'guard' && source)
             armorWithoutSupport=armor = (source.x - u.x) * u.facing > 0 ? .40 : .05;
-        if (u.boss && u.boss !== 5)
+        if (u.boss && u.boss !== 5 && !((u as any).honroAct4FinaleBoss===true && (this.b as any).honroAct4Preview===40 && (this.b as any).honroFinalDefenseRevision===2))
             armorWithoutSupport=armor = (this.b.round % 2 === 0 ? .06 : .29);
         if(primary&&u.side===1&&!u.boss&&!(u as any).honroMidboss&&!(u as any).honroAct2Boss&&!(u as any).honroFinalBoss&&!u.honroObjectiveTarget){const keep=1-(gearHas(p||provenance,'co_armor')?.30:0);armor*=keep;armorWithoutSupport*=keep;}
         if (u.side === 1 && !u.honroObjectiveTarget && u.summonKind!=='eater' && ((globalThis as any).HonroQuestTargets?.records(this.b)||this.b.terrain).some((t:Terrain) => !t.broken && t.device === 'ward'))
