@@ -52,6 +52,21 @@ check('fixed target circle can be dodged, does not track or damage quest terrain
  const q=arena(C),c=warning(E,q),hp=q.hero.hp,terrain=plain(q.b.terrain);turn(q,q.hero);q.e.observeEnemyEffectWarning(q.caster.id,c.serial);
  q.e.move(1,.5);assert(q.hero.x>c.impact.x+c.radius+q.hero.r,'normal movement exits announced circle');q.e.wait();q.e.finishAction(true);q.b.teamEnds[0]++;turn(q,q.caster);E.resolveEnemyEffect(q.e,q.caster);assert.equal(q.hero.hp,hp);assert(!q.hero.enemySoftBind);assert.deepEqual(plain(q.b.terrain),terrain);
 });
+check('hostile direct shield hit interrupts once, DoT does not, and recovery costs its scheduled action',()=>{
+ const q=arena(C),c=warning(E,q);turn(q,q.hero);assert(q.e.fire('A01',0,.1));const p=q.b.projectiles[0];q.caster.shield=100;
+ q.e.hurt(q.caster,10,q.hero.id,false,p);assert(q.caster.enemyEffectCast,'indirect damage does not interrupt');
+ q.e.hurt(q.caster,10,q.hero.id,true,p);assert(!q.caster.enemyEffectCast);assert.equal(q.caster.enemyEffectRecovery.serial,c.serial);const recovery=plain(q.caster.enemyEffectRecovery);
+ q.e.hurt(q.caster,10,q.hero.id,true,p);assert.deepEqual(plain(q.caster.enemyEffectRecovery),recovery,'multi-hit cannot enqueue extra recovery');
+ q.b.projectiles=[];turn(q,q.caster);const hp=q.hero.hp;q.e.enemyAction();assert(!q.caster.enemyEffectRecovery);assert(!q.caster.enemyEffectCast);assert.equal(q.hero.hp,hp);assert.equal(q.b.phase,'review','recovery is a spent scheduled action');
+});
+check('free bind release restores only withheld budget, not movement already spent',()=>{
+ const q=arena(C);attack(E,q);turn(q,q.hero);q.hero.moveLeft=q.hero.maxMove;E.enemyEffectMovementBudget(q.hero);const limited=q.hero.moveLeft;
+ q.e.move(1,.1);const spent=limited-q.hero.moveLeft;assert(spent>0);E.releaseEnemySoftBind(q.hero);assert(Math.abs(q.hero.moveLeft-(q.hero.maxMove-spent))<1e-6);
+});
+check('softbind does not change body-skill launch, and ranged basic fire still works',()=>{
+ const launches=[];for(const bound of [false,true]){const q=arena(C);if(bound)attack(E,q);turn(q,q.hero);Object.assign(q.hero,{cls:'knight',loadout:['S15'],ranks:{S15:1}});assert(q.e.fire('S15',25,.6));const p=q.b.projectiles[0];assert(p?.body);launches.push([p.vx,p.vy,p.gravityScale,p.maxDistance]);}assert.deepEqual(plain(launches[1]),plain(launches[0]));
+ const q=arena(C);attack(E,q);turn(q,q.hero);assert(q.e.fire('A01',45,.5));assert(q.b.projectiles.length>0);
+});
 check('effects and provenance survive engine serialization without actor/turn duplication',()=>{
  const q=arena(C);attack(E,q);const saved=plain(q.b),loaded=new C.Engine(plain(saved));assert.deepEqual(plain(loaded.b.units),saved.units);assert.equal(loaded.b.round,saved.round);assert.deepEqual(plain(loaded.b.teamEnds),saved.teamEnds);assert.equal(loaded.b.nextId,saved.nextId);
  const r=arena(C),c=warning(E,r);turn(r,r.hero);r.e.observeEnemyEffectWarning(r.caster.id,c.serial);const resume=new C.Engine(plain(r.b));assert.deepEqual(plain(resume.unit(r.caster.id).enemyEffectCast),plain(c));
