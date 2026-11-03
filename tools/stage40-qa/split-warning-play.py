@@ -67,9 +67,9 @@ with sync_playwright() as w:
   for u in initial['health']:
    old=next(v for v in saved['honroBattle']['units'] if v['id']==u['id']);assert u['hp']==old['hp'] and abs(u['x']-old['x'])<.1
   observed=None;evaded=None;fired=None
-  for action in range(20):
+  for action in range(36):
    ready();s=state()
-   if s['round']>19:break
+   if s['round']>24:break
    if observed is None:
     current=next((v for v in patterns() if v['pattern'].get('target',{}).get('round',0)>=15),None)
     if current:
@@ -95,6 +95,8 @@ with sync_playwright() as w:
   try:record('failure');p.screenshot(path=str(out/'failure.png'))
   except Exception:pass
  finally:
+  try:(out/'final-storage.json.xz').write_bytes(lzma.compress(p.evaluate("localStorage.getItem('honro-first-act-profile-1')").encode()))
+  except Exception:pass
   result['elapsedSeconds']=time.monotonic()-started if 'started' in locals() else None
   (out/'result.json').write_text(json.dumps(result,ensure_ascii=False,indent=2));browser.close()
 if not result['passed']:raise SystemExit(1)
