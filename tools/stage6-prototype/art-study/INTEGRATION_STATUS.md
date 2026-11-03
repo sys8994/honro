@@ -43,3 +43,5 @@ The slope-matched candidate (run 41653359581) improved west detail but revealed 
 
 ## Feathered local formation study
 The full-domain source alone (run 41654827536) passed continuity but failed visual review because rocks were too large and the walking slope lacked detail. This study overlays the earlier slope-matched traced paths, fading each color through native radial alpha gradients into the full-domain source. It changes neither collision nor save code. Pixel continuity, performance, path/gradient limits and independent visual acceptance require fresh testing.
+
+The first alpha blend (run 41656359641) retained a horizontal edge because opacity was still positive at the source bottom. This follow-up reduces the radius so alpha reaches zero before all source image boundaries; actual runtime pixels still require review.
