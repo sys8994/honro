@@ -167,3 +167,25 @@ rechecked without rebuilding or replaying combat. The original c5 workflow is
 still accepted only with its original exact source/run. Unknown workflows, source
 mismatches, incomplete runs and missing successful steps fail closed; mocked tests
 cover those rejections. No new run or generated SHA is invented by these options.
+
+### Public observer lifecycle correction (run41555631225)
+
+The public run on candidate `152c9a01ef68002183d44702179afa357a286b98`
+completed actual crossing, authored Next, autosave and reload with identical
+saved/reloaded receipts. Its overall verdict remains failed: 573 browser
+responses matched but ten body reads were unavailable during navigation/media
+lifecycles, and tracked legacy BGM `assets/bgm/battle-4.mp3` is not listed in
+`web/manifest.json`. Artifact `13194466548` and the actual reload screenshot
+are preserved under `_local/reports/stage17-public41555631225/`. This is not
+reclassified as a complete public-identity pass.
+
+The observer now reads bodies at `requestfinished`, logs URL/type/failure for
+unavailable or cancelled requests, drains executable/data requests before each
+intentional reload and close, and removes listeners before closing. Missing or
+mismatched HTML/JS/JSON/CSS bodies still fail. Completed HTTP206 media slices
+are checked when available. Media/image/font resources also receive explicitly
+separate full public-GET hashes; these are not labeled browser-body proof.
+Only Git-tracked `assets/bgm` files supplement the verified web manifest;
+unknown assets/origins remain errors. No game, fixture, input, position or
+resource assertion changes. Lifecycle/cancellation, unknown-resource, and
+unavailable/mismatched-code mocks accompany this observer-only correction.

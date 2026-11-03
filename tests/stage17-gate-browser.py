@@ -94,6 +94,10 @@ def public_identity(root,fetch):
  for name in ['HONRO.html','web/manifest.json']:
   expected[name]=hashlib.sha256((root/name).read_bytes()).hexdigest()
   assert hashlib.sha256(fetch(PUBLIC_BASE+name)).hexdigest()==expected[name],'Public deployment does not match exact candidate: '+name
+ # Legacy BGM lives outside web/manifest.json, but is still exact Git-tracked
+ # candidate content. Do not trust arbitrary local files or expand to unknown URLs.
+ for name in subprocess.check_output(['git','ls-files','assets/bgm'],cwd=root,text=True).splitlines():
+  expected[name]=hashlib.sha256((root/name).read_bytes()).hexdigest()
  return expected
 
 def verify_public_response(url,body,expected,content_range=None,root=None):
@@ -110,6 +114,52 @@ def verify_public_response(url,body,expected,content_range=None,root=None):
   return {'path':name,'sha256':digest,'bytes':len(body),'contentRange':content_range,'fullCandidateSha256':expected[name]}
  assert digest==expected[name],'Actual public browser bytes differ from candidate: '+name
  return {'path':name,'sha256':digest,'bytes':len(body)}
+
+class PublicObserver:
+ """Browser-body proof for executable/data resources; separately labeled asset GETs."""
+ def __init__(self,root,expected,fetch,receipt,errors):
+  self.root=root;self.expected=expected;self.fetch=fetch;self.receipt=receipt;self.errors=errors
+  self.pending={};self.assets={}
+  receipt.update(unavailableBodies=[],assetFetches=[])
+ def asset(self,request):return request.resource_type in {'media','image','font'}
+ def started(self,request):self.pending[request]=None
+ def drain(self,page):
+  deadline=time.monotonic()+10
+  while any(not self.asset(request) for request in self.pending) and time.monotonic()<deadline:page.wait_for_timeout(50)
+  assert not any(not self.asset(request) for request in self.pending),'Executable/data requests did not complete before navigation/close'
+ def response(self,response):
+  request=response.request;self.pending[request]=response
+  if response.status not in [200,206]:self.errors.append(f'Public HTTP {response.status}: {response.url}')
+  if self.asset(request):self.assets[response.url]=request.resource_type
+ def finished(self,request):
+  response=self.pending.pop(request,None)
+  if not response:return
+  # Read only completed responses, including available HTTP206 media slices.
+  # Cancelled/unavailable assets retain separately labeled full public GET proof.
+  try:
+   body=response.body()
+  except Exception as error:
+   item={'url':response.url,'type':request.resource_type,'reason':str(error)}
+   self.receipt['unavailableBodies'].append(item)
+   if not self.asset(request):self.errors.append('Missing actual executable/data browser body: '+json.dumps(item))
+   return
+  try:self.receipt['browserResponses'].append(verify_public_response(response.url,body,self.expected,response.header_value('content-range') if response.status==206 else None,self.root))
+  except Exception as error:self.errors.append('Public response identity '+response.url+': '+str(error))
+ def failed(self,request):
+  response=self.pending.pop(request,None)
+  item={'url':request.url,'type':request.resource_type,'reason':request.failure}
+  self.receipt['unavailableBodies'].append(item)
+  if self.asset(request):self.assets[request.url]=request.resource_type
+  else:self.errors.append('Failed executable/data browser request: '+json.dumps(item))
+ def finish(self):
+  for request,response in self.pending.items():
+   if self.asset(request):self.assets[request.url]=request.resource_type
+   else:self.errors.append('Unfinished executable/data browser response: '+request.url)
+  for url,kind in self.assets.items():
+   try:
+    item=verify_public_response(url,self.fetch(url),self.expected)
+    self.receipt['assetFetches'].append({**item,'url':url,'type':kind,'evidence':'independent public GET, not browser response body'})
+   except Exception as error:self.errors.append('Public asset identity '+url+': '+str(error))
 
 def run(args):
  from playwright.sync_api import sync_playwright
@@ -141,13 +191,10 @@ def run(args):
   save()
   with sync_playwright() as w:
    browser=w.chromium.launch(headless=True);page=browser.new_page(viewport={'width':1440,'height':900});page.on('pageerror',lambda e:result['errors'].append(str(e)))
+   observer=None
    if expected_public:
-    def check_response(response):
-     try:
-      assert response.status in [200,206],'Public resource HTTP status '+str(response.status)+': '+response.url
-      result['publicIdentity']['browserResponses'].append(verify_public_response(response.url,response.body(),expected_public,response.header_value('content-range') if response.status==206 else None,ROOT))
-     except Exception as error:result['errors'].append('Public response identity: '+str(error))
-    page.on('response',check_response)
+    observer=PublicObserver(ROOT,expected_public,fetch_public,result['publicIdentity'],result['errors'])
+    page.on('request',observer.started);page.on('response',observer.response);page.on('requestfinished',observer.finished);page.on('requestfailed',observer.failed)
    def snapshot(label):
     s=page.evaluate(SNAPSHOT);result[label]=s;save();return s
    def ready():
@@ -165,6 +212,7 @@ def run(args):
    try:
     page.goto(args.url,wait_until='domcontentloaded');page.wait_for_function('window.HonroApp',timeout=60000)
     page.evaluate('(text)=>localStorage.setItem("honro-first-act-profile-1",text)',serialized)
+    if observer:observer.drain(page)
     page.reload(wait_until='domcontentloaded');page.wait_for_function('window.HonroApp',timeout=60000)
     started=time.monotonic();page.locator('.title-actions [data-action="continue"]:visible').first.click();ready()
     loaded=snapshot('initialLoad');result['initialNormalFrameWindowMs']=round((time.monotonic()-started)*1000)
@@ -202,11 +250,16 @@ def run(args):
      page.wait_for_timeout(100)
     else:raise AssertionError('Normal autosave did not retain gate, resources and crossed position')
     saved=snapshot('autosaved');preserved(loaded['live'],saved['live'],movement=True)
+    if observer:observer.drain(page)
     page.reload(wait_until='domcontentloaded');page.wait_for_function('window.HonroApp',timeout=60000)
     page.locator('.title-actions [data-action="continue"]:visible').first.click();ready()
     restored=snapshot('reloaded');check_gate(restored['live']);preserved(saved['stored'],restored['live']);assert crossed(restored['live'])
     page.screenshot(path=str(out/'reloaded-crossed-gate.png'))
     if expected_public:
+     # Drain completed finite code/data loads before collecting evidence; no
+     # frame freezing or input writes, and no media response-body blocking.
+     observer.drain(page)
+     observer.finish()
      names={item['path'] for item in result['publicIdentity']['browserResponses']}
      assert 'HONRO.html' in names and any(name.endswith('.js') for name in names) and any(name.endswith('.json') for name in names),'Missing actual public game/data response evidence'
     result['passed']=not result['errors'];save()
@@ -216,7 +269,10 @@ def run(args):
     try:page.screenshot(path=str(out/'failure.png'))
     except Exception as screenshot_error:result['failureScreenshotError']=str(screenshot_error)
     raise
-   finally:browser.close()
+   finally:
+    if observer:
+     page.remove_listener('request',observer.started);page.remove_listener('response',observer.response);page.remove_listener('requestfinished',observer.finished);page.remove_listener('requestfailed',observer.failed)
+    browser.close()
  except Exception:result['exception']=traceback.format_exc();result['passed']=False
  finally:save()
  return 0 if result['passed'] else 1
@@ -287,6 +343,40 @@ class HelperTests(unittest.TestCase):
    with self.assertRaises(AssertionError):verify_public_response(PUBLIC_BASE+'web/game.js',b'bad',expected,'bytes 2-4/14',root)
   for url,body in [(PUBLIC_BASE+'web/game.js',b'stale'),('https://other.example/web/game.js',good),(PUBLIC_BASE+'unknown.js',good)]:
    with self.assertRaises(AssertionError):verify_public_response(url,body,expected)
+ def test_public_observer_completed_code_and_separate_streamed_assets(self):
+  from types import SimpleNamespace
+  class Request:
+   def __init__(self,path,kind):self.url=PUBLIC_BASE+path;self.resource_type=kind;self.failure='net::ERR_ABORTED'
+  code=b'code';audio=b'audio';expected={'web/game.js':hashlib.sha256(code).hexdigest(),'assets/bgm/battle-4.mp3':hashlib.sha256(audio).hexdigest()}
+  receipt={'browserResponses':[]};errors=[];observer=PublicObserver(ROOT,expected,lambda url:audio,receipt,errors)
+  request=Request('web/game.js','script');response=SimpleNamespace(request=request,url=request.url,status=200,body=lambda:code)
+  observer.response(response);self.assertEqual(receipt['browserResponses'],[])
+  observer.finished(request);self.assertEqual(len(receipt['browserResponses']),1)
+  request=Request('assets/bgm/battle-4.mp3','media');response=SimpleNamespace(request=request,url=request.url,status=206,body=lambda:self.fail('Streaming body must not be read'))
+  observer.response(response);observer.failed(request);observer.finish()
+  self.assertEqual(errors,[]);self.assertEqual(len(receipt['assetFetches']),1)
+  self.assertIn('not browser response body',receipt['assetFetches'][0]['evidence'])
+  request=Request('web/game.js','script');observer.failed(request)
+  self.assertTrue(any('Failed executable/data' in e for e in errors))
+ def test_public_observer_drains_before_reload_and_rejects_unknown_asset(self):
+  from types import SimpleNamespace
+  request=type('Request',(),{'url':PUBLIC_BASE+'web/game.js','resource_type':'script'})()
+  receipt={'browserResponses':[]};errors=[];body=b'code';observer=PublicObserver(ROOT,{'web/game.js':hashlib.sha256(body).hexdigest()},lambda url:b'unknown',receipt,errors)
+  response=SimpleNamespace(request=request,url=request.url,status=200,body=lambda:body)
+  observer.started(request);observer.response(response);calls=[]
+  def tick(ms):calls.append(ms);observer.finished(request)
+  observer.drain(SimpleNamespace(wait_for_timeout=tick))
+  self.assertEqual(calls,[50]);self.assertEqual(len(receipt['browserResponses']),1)
+  bad=type('Request',(),{'url':PUBLIC_BASE+'assets/unknown.mp3','resource_type':'media','failure':'net::ERR_ABORTED'})()
+  observer.failed(bad);observer.finish();self.assertTrue(any('absent from verified candidate' in e for e in errors))
+ def test_public_observer_does_not_mask_mismatched_or_unavailable_code(self):
+  from types import SimpleNamespace
+  request=type('Request',(),{'url':PUBLIC_BASE+'web/game.js','resource_type':'script'})()
+  for body in [lambda:b'wrong',lambda:(_ for _ in ()).throw(RuntimeError('unavailable'))]:
+   receipt={'browserResponses':[]};errors=[];observer=PublicObserver(ROOT,{'web/game.js':hashlib.sha256(b'correct').hexdigest()},lambda url:b'correct',receipt,errors)
+   response=SimpleNamespace(request=request,url=request.url,status=200,body=body)
+   observer.response(response);observer.finished(request);observer.finish()
+   self.assertTrue(errors);self.assertEqual(receipt['assetFetches'],[])
  def test_open_requires_both_real_proofs_and_both_terrains(self):
   a=self.sample();check_gate(a)
   for mutate in [lambda s:s['gates'][1].update(broken=False),lambda s:s['proof']['17.lock'].update(pinSeated=False),lambda s:s['proof']['17.mesh']['parts'].clear()]:
