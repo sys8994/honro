@@ -375,6 +375,11 @@
       "native": "4df27e74cf0c56158c9f17d9042c0abd065bdc3d",
       "canonical": "8fefc6d46cf1cfd18b2043ebc32da935b9954269",
       "tree": "cb4d03e13b3f276ed47f8e54a60d324c65982c3f"
+    },
+    {
+      "native": "034cd5f55b2ec58a8ff54f6f863d70a3e5bde1c1",
+      "canonical": "a3e6c33ba6a1579ef75635c3a4490cc3f70d6da1",
+      "tree": "96bd6ff143c5818a556a62b1f4c250adc48daa6a"
     }
   ],
   "pendingPublication": null,
@@ -382,8 +387,11 @@
     "source": "8fefc6d46cf1cfd18b2043ebc32da935b9954269",
     "native": "4df27e74cf0c56158c9f17d9042c0abd065bdc3d",
     "runId": 41624405996,
-    "status": "running",
-    "scope": "Exact failed R4 save normal-import continuation;not uninterrupted;total20 includes return;no deployment"
+    "status": "failed",
+    "scope": "Exact failed R4 save normal-import continuation;not uninterrupted;total20 includes return;no deployment",
+    "outcome": "Normal R4 continuation; R25 39/42 defeated; residualHP929/674/3311; archer dead;4 residents alive;no return;noJSerrors",
+    "artifactId": 13227871507,
+    "artifactSha256": "05fe3a6274791f3e30383703a895c4a0ad29c0a81407d164d224ef65cbe8d02a"
   },
   "lastFailedComparison": {
     "source": "4b5e31931249f8fe194047fa22ef5f6def3ab8fd",
@@ -396,7 +404,7 @@
     "path": ".github/workflows/stage40-qa.yml",
     "trigger": "work/stage40-qa/**",
     "permissions": "contents:read",
-    "status": "Running",
+    "status": "Failed",
     "buildContract": "Exact SHA; genuine unchanged Stage31 gate; normal build; one actual UI run; artifacts only; no deployment.",
     "branch": "work/stage40-qa/20261103-r4-continuation-01",
     "source": "8fefc6d46cf1cfd18b2043ebc32da935b9954269",
@@ -438,6 +446,10 @@
     {
       "runId": 41621782011,
       "result": "R4 facing replan controller assertion;37 foes;all heroes/residents alive;9 shots;no stage outcome"
+    },
+    {
+      "runId": 41624405996,
+      "result": "Normal R4 continuation; R25 39/42 defeated; residualHP929/674/3311; archer dead;4 residents alive;no return;noJSerrors"
     }
   ],
   "focusedRuns": [

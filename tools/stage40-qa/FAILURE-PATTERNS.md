@@ -1,0 +1,38 @@
+# Stage40 failure comparison and design review
+
+Scope: same approved 42 IDs / 1 major / 2 mid bosses and original safe-return objective. No final integrated acceptance. Hero loss alone is not rejection. All listed late outcomes exceed the 18–20 total-round target. Native doubles, browser runs, resumed saves and focused fixtures are distinct evidence.
+
+| Evidence | Outcome | Demonstrated cause / limitation |
+|---|---|---|
+| Collector four original diagnostics | R25: 11,30,40,37 of42; 3,2,0,2 deaths | Candidate initially incomplete in timing; not simply controller-only |
+| Native approach / target lock | All42 R22/R23 | Movement/role allocation and full-path friendly-fire issues; no return within target |
+| Native deck / upper fixes | R25:41/42 twice | Tide-entry and upper navigation faults; later positive-damage finishing cutoff |
+| Native finishing | CombatR16 → settlementR18, reload chain | Functional feasibility only, native DOM/clock doubles; original post-settlement harness error retained |
+| Browser41605817603 | All42 R22, all heroes alive | Boss goneR15 but rear dock foes left to knight while ranged held lower deck |
+| Browser41610792763 | R25:41/42, boss2HP, archer dead | New cleanup never activated with boss alive; early actual input diverged; not clean route A/B |
+| Focused41615805406 | M02 only11/35 safe/useful samples; actual72.3 friendly HP | Clear input-sensitive friendly-fire risk. Existing trajectory visible, no explicit friendly-fire label. Actual late S01 can finish2HP only atR25 |
+| Focused41617840917 /41619327758 | M06 friendly41.4 under +.096 charge; M01 actual255 enemy/0 friendly | In-charge screenshot perturbed timing; safer basic skill exists, not universal or whole-stage proof |
+| Browser41621782011 | R4 controller assertion,37 alive | Facing replan reversed direction after normal turn. No stage outcome |
+| Resume41624405996 | R25:39/42, HP929/674/3311; archer dead; no return | Facing fixed. 54 further casts/25 defends. Mage has six consecutive idle turns on dockR13–18; five have no input-tolerance rejection at all |
+
+## Product risks, not waived by controller repairs
+
+- Large vertical separation and simultaneous front/rear dock pressure can leave roles unable to contribute. The browser baseline cleared combat only atR22; one native R18 chain is insufficient to certify normal player pacing.
+- M02 is not reliably safe at the measured starting formation across small charge variation. A continuous visible trajectory helps but allies/bodies and lower-screen HUD can obscure impact. Do not call detached sample calculations player information.
+- The later controller's ±.10 charge safety screen is conservative and can exclude useful options. However it does not explain the five dock turns with no candidate reaching that screen. Nominal geometry, candidate availability, allied body overlap and route positioning must be inspected.
+- R14 mage x1591 and occultist x1609 overlap the forward firing lane; nearest front foe x1692. The current route clamps a nominal300-unit standoff to x1600, leaving the mage in this overlap despite2728 movement remaining. Browser driver lacks the native diagnostic's explicit short firing-lane reposition fallback. This is a concrete controller/formation problem; whether the available terrain offers clear, readable alternatives is still unproved.
+- A game requiring repeated perfect optimal skills or very narrow aim to meet20 is a design problem, even if a planner can eventually solve it. No such optimality claim is established yet.
+
+## Bounded alternative strategy proofs, before any full replay
+
+Use the exact actual R14 mage pre-plan saved profile (turn-profile-042) from resume41624405996, unchanged growth/resources/enemies. Three independent normal native reload arms only: unchanged position, actual rightward walk up to180 world units, actual leftward walk up to220. Stop on collision, actor change, resource exhaustion or120 frames. Inspect available current-state nominal and bounded-tolerance shots and full-path friendly damage. No actor pose, HP, flags, round or enemy-time injection. Report zero-choice and blocked arms as outcomes. This tests a close front firing lane versus rear-side pressure, not arbitrary teleporting or a full stage.
+
+If either strategy is genuinely reachable/useful, prove it with actual browser controls and readable aim before any new whole-stage registration. If both are unusable, inspect connected support/cover and propose a minimal stage-specific placement or firing-ledge change preserving all42 IDs/stats and boss composition, objectives and return route. Do not commit speculative terrain or reduce difficulty to force the budget.
+
+The three registered arms all reached their positions without HP/round/resource reset but returned no selected safe shot. At the original position, all18 sampled M01/M06/M03 trajectories first struck the occultist. At the forward position x1771, nearest enemies are reachable but all sampled hits also threaten allies (minimum nominal M01 friendly risk44.6). At rear x1368, safe-zero-risk M01 candidates miss into terrain; other candidates retain allied overlap. Focus remains688/688, all four skills allowed and cooldown0. This rules out energy exhaustion and shows that a small local sidestep alone is insufficient.
+
+One additional **distinct broad flank** is registered for focused feasibility only: same exact R14 normal reload, walk right toward x2390 (roughly800 units, within2728 available), stop at surface change, actor change,200 frames or resource bound. This is beyond the currently observed archer x1932 and front enemy x2232, rather than another arbitrary short aiming adjustment. Inspect ground support, all current warnings, HP/resources, nearest-target coverage and complete friendly-fire path. No full-stage rerun, no automatic acceptance, no terrain edit. If reachable/useful, actual browser proof must include enemy pressure/counterplay rather than only a posed shot.
+
+The broad flank hit the registered200-frame bound at x2151.52, still on the connected dock, after566 movement spent; HP1978, focus688 and R14 unchanged. M01 aimed toward the elevated stair foe had nine safe/useful samples, minimum335 damage. This is a viable distinct lane in a native focused fixture, not an actual browser or whole-stage result.
+
+Register ONE actual browser focus on work/stage40-dock-flank/20261103-r14-01: exact R14 import, walk toward2152, normal left-facing input, unchanged basic M01 candidate144.519°/0.8041 checked against the observed actual state. Stop if unsafe/unusable; no search for a lucky replacement. Actual release has no in-charge screenshot. Preserve damage and real input, then use normal defends for at most four remaining ally actions to observe one enemy response. Record available warnings, losses and current support. No new whole-stage replay.
