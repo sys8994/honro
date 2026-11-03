@@ -12,6 +12,7 @@ function qaObserve(){
  if(b.honroStage===8){const source='stage8-settled-crows',w=b.honroState?.stage8Bier?.warnings?.[source],entry=b.honroState?.stage8Bier?.entries?.[source],crows=b.units.filter(u=>u.honroSpawnSource===source),sig=canonical({status:w?.status,opportunity:w?.opportunity,ids:entry?.ids,actors:crows.map(u=>({id:u.id,hp:u.hp,lastAct:u.lastAct,dead:u.dead}))});
   if(sig!==qa.lastWave){qa.lastWave=sig;qa.waves.push({frame:qa.frames,round:b.round,phase:b.phase,active:b.active,warning:plain(w||null),entry:plain(entry||null),crows:plain(crows),heroes:plain(e.heroesAlive())});const label=entry?'crows-admitted':w?.opportunity?'crows-response':w?'crows-warning':null;if(label&&!qa.waveCaptures.has(label)){qa.waveCaptures.add(label);qa.captures.push({label,canvas:a.scene.canvas.toDataURL('image/png'),frame:qa.frames,round:b.round,scope:'Canvas-only natural frame, no camera reposition'});}}
  }
+ if(qa.haltAtCrowBirth&&!qa.haltedAtCrowBirth&&b.honroState?.stage8Bier?.entries?.['stage8-settled-crows']){qa.haltedAtCrowBirth=true;throw Error('QA_CROW_BIRTH_BOUNDARY');}
  if(signature!==qa.lastCast){qa.lastCast=signature;qa.events.push({frame:qa.frames,round:b.round,phase:b.phase,active:b.active,pilot:plain(k||null),heroes:plain(e.heroesAlive()),camera:{x:a.scene.x,y:a.scene.y,scale:a.scene.scale},paused:!!a.dialogue||!!HonroStory.turnPaused(a,performance.now())||a.modal.classList.contains('open'),cast:plain(cast||null)});}
  if(cast?.seen&&cast.offered&&cast.target===e.active?.id&&a.canInput()&&!qa.seen.has(cast.serial)&&!qa.checkpointRequested){
   qa.checkpointRequested=true;qa.seen.add(cast.serial);const label=`pilot-${id}-${cast.serial}`,before=canonical(b),canvas=a.scene.canvas.toDataURL('image/png');
@@ -22,6 +23,7 @@ function qaObserve(){
 }
 window.qaAttach=(entry,meta)=>{
  const a=HonroApp;qa.entry=entry;qa.meta=meta;qa.originalEvent=a.event;
+ const hurt=a.engine?.hurt?.bind(a.engine);qa.damage=[];if(hurt)a.engine.hurt=(u,...args)=>{const before={hp:u.hp,shield:u.shield},result=hurt(u,...args),hp=before.hp-u.hp,shield=before.shield-u.shield;if(hp>0||shield>0)qa.damage.push({frame:qa.frames,round:a.engine.b.round,owner:args[1],target:u.id,hp,shield,before,after:{hp:u.hp,shield:u.shield}});return result;};
  const frame=a.frame.bind(a);a.frame=now=>{frame(now);qaObserve();};
  const exp=a.export.bind(a);a.export=(...args)=>{qa.pendingExport=exp(...args);return qa.pendingExport;};
  a.downloadProfile=text=>{const p=JSON.parse(text);qa.lastExport=p;if(qa.captureExport&&canonical(p.honroBattle)===qa.captureExport.battle){qa.checkpoints.push({label:qa.captureExport.label,profile:p});qa.captureExport=null;}};

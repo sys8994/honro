@@ -8,8 +8,9 @@ ops=strip((F/'player-operations.mjs').read_text()).replace('app.scene.render=ren
 common=source('tests/monster-natural-runtime.js')+'\n'+ops
 planner=(F/'stage5-planner.js').read_text()
 run5=source('tests/monster-natural-stage5.js').replace('/*PLANNER*/',planner)
-s=(F/'stage8-controller.mjs').read_text();s=s[s.index('let virtualMs='):];start=s.index('assert.equal(b.honroStage8BierRevision');s='const resume=null;let virtualMs=0;let app=HonroApp,e=app.engine,b=e.b;'+s[start:]
+s=(F/'stage8-controller.mjs').read_text();s=s[s.index('let virtualMs='):];start=s.index('assert.equal(b.honroStage8BierRevision');s='const resume=qa.entry.resume||null;let virtualMs=resume?.virtualMs||0;let app=HonroApp,e=app.engine,b=e.b;'+s[start:]
 s=s[:s.rindex("if(b.phase==='won')")]+"\nawait qaFinish({phase:b.phase,round:b.round,stopReason});"
+s=s.replace(" if(lastRound!==b.round)"," if(window.qaStopAtCrowWarning&&b.honroState.stage8Bier?.warnings?.['stage8-settled-crows']?.status==='announced'&&b.honroState.stage8Bier.warnings['stage8-settled-crows'].offered?.[e.active.id]){window.qaWarningCheckpoint=await save('wave-warning');return;}\n if(lastRound!==b.round)")
 s=s.replace('process.env.HONRO_FULLPLAY_ACTION_LIMIT||450','process.env.HONRO_FULLPLAY_ACTION_LIMIT||150').replace('process.env.HONRO_FULLPLAY_ROUND_LIMIT||65','process.env.HONRO_FULLPLAY_ROUND_LIMIT||25')
 s=s.replace('Normal production inputs with DOM/render/storage/clock doubles; not browser proof.','Production App and renderer in Chromium; virtual clock and programmatic App inputs, not manual pointer-only play.')
 # Retain exact controller, navigator and detached prediction policy. Node IO becomes

@@ -2,9 +2,12 @@
  * This is adapter preflight, not actual browser/gameplay evidence. */
 import assert from 'node:assert/strict';import vm from 'node:vm';import{readFileSync}from'node:fs';import{execFileSync}from'node:child_process';
 const expressions=JSON.parse(execFileSync('python',['-c',`import ast,json
-p=ast.parse(open('tests/monster-natural-browser.py').read());v=[]
-for n in ast.walk(p):
- if isinstance(n,ast.Call) and isinstance(n.func,ast.Attribute) and n.func.attr in ('evaluate','wait_for_function','add_init_script') and n.args and isinstance(n.args[0],ast.Constant) and isinstance(n.args[0].value,str):v.append(n.args[0].value)
+v=[]
+for file in ['tests/monster-natural-browser.py','tests/monster-natural-wave-browser.py']:
+ p=ast.parse(open(file).read())
+ for n in ast.walk(p):
+  if isinstance(n,ast.Call) and isinstance(n.func,ast.Attribute) and n.func.attr in ('evaluate','wait_for_function','add_init_script') and n.args and isinstance(n.args[0],ast.Constant) and isinstance(n.args[0].value,str):v.append(n.args[0].value)
+  if isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and t.id in ['PAINT','READ'] for t in n.targets):v.append(n.value.value)
 print(json.dumps(v))`],{encoding:'utf8'}));
 for(const expression of expressions)new vm.Script('('+expression+')');
 const script=readFileSync('_local/reports/monster-natural/controller.js','utf8');new vm.Script(script);
@@ -20,3 +23,5 @@ vm.runInContext('requestAnimationFrame(()=>requestAnimationFrame(()=>window.boot
 vm.runInContext('requestAnimationFrame(()=>window.accidentalFrame=true);qaStopScheduling();requestAnimationFrame(()=>window.accidentalFrame=true)',context);assert.equal(callbacks.size,0);assert(!context.accidentalFrame);console.log('PASS normal double-rAF boot, then deterministic queued-frame cancellation');
 
 const driver=readFileSync('tests/monster-natural-browser.py','utf8'),sink=driver.slice(driver.indexOf('  def evidence('),driver.indexOf("  p.expose_binding("));assert(!sink.includes('p.screenshot')&&!sink.includes('p.evaluate'),'Exposed synchronous binding must never reenter Playwright page');console.log('PASS non-reentrant evidence sink');
+
+const wave=readFileSync('tests/monster-natural-wave-browser.py','utf8');const waveSink=wave.slice(wave.indexOf(" def evidence("),wave.indexOf(" p.expose_binding("));assert(!waveSink.includes("p.screenshot")&&!waveSink.includes("p.evaluate"));assert(script.includes("qa.entry.resume||null")&&script.includes("qaStopAtCrowWarning"));assert(!wave.includes(".scene.x="));console.log("PASS wave checkpoint continuation, expression parsing and non-reentrant sink");
