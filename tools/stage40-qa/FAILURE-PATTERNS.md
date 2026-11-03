@@ -267,3 +267,8 @@ While waiting, run the already registered but unexecuted current-source Stage40 
 Exact221035e7 product built successfully. Fresh Stage40 first attack passed; exactR15 normal save continued through combat, four residents safe, all13 required dialogue rows, roster13/11/2, normal settlement and same-context reload inR22 with no JS errors. This is not a newR1 whole-stage or new pacing-candidate result.
 
 Stage31 import succeeded, but the test looked for obsolete title text 여정 이어가기 while the screenshot showed 이어서 걷기. It stopped before combat; no Stage31 completion claim. Replace only this lookup with the existing title continue action selector, already used by the successful Stage40 driver. Register one late-only run on unchanged product221035e7 ancestry, no other whole gameplay repetition. Original artifact13276228445 ZIP SHA256d068c610caa9d08e827d3e025c09b0fef7c9ff9ccbfd07d6d878e8b7dcbfd276 is retained. Stage31 release criteria remain unchanged.
+
+
+## Late31 menu fixed, no stationary firing solution
+
+Run41732896636 restored the exact normal save throughR21 with every hero HP/growth preserved. It observed one enemy2HP at6507 and no current stationary safe shot from the party positions;12 normal defenses reachedR23 without movement or damage. This does not prove an unreachable enemy. The next distinct diagnostic adds normal rightward knight walking on the existing upper-east path before searching again, preserving the same original product and save. No full run or gate is retried. Artifact13278350365 ZIP SHA25694b30d715fd207000d653d424d27a44972084881ad1a6738f6caeab7231883a9 retained.
