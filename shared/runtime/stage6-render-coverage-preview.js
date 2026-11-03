@@ -3,8 +3,8 @@
 // diagnostic build. Nothing here mutates battle, save, terrain, or art objects.
 if(G.HonroStage6RenderCoveragePreview)return;
 const EXPECTED=Object.freeze({
- west:{terrain:'14592f4c3c4d3ddd12e6f3021bb3da8507da0a2eec02b5da7c540a8089c5d452',skin:'afdaa133ce8ecc57584e478abffdc283f6c92fd19a65c77c474d96d8f261bb3a'},
- east:{terrain:'9cd0c807fd7b51370695f97b42f1f6c296ace5b8b3a95c2cdd874409095a0c6f',skin:'83d1532aa637b4a1283fcfdda60569f8b09d80485a41db9313ecaa1925d6f26a'}
+ west:{terrain:'14592f4c3c4d3ddd12e6f3021bb3da8507da0a2eec02b5da7c540a8089c5d452',skin:'4f70b980c7413cdbb337956bdc758e1bdae99c05d998164cb111ddd0950e9338'},
+ east:{terrain:'9cd0c807fd7b51370695f97b42f1f6c296ace5b8b3a95c2cdd874409095a0c6f',skin:'016c032beeb425511c3c94a8009d8139ca45e0488451db2a2f1c8f71a12a5045'}
 });
 const states=new WeakMap();let epoch=0;
 function geo(t){return{id:t.id,vertices:t.vertices,x:t.x,y:t.y,w:t.w,h:t.h,broken:t.broken,mat:t.mat,oneWay:t.oneWay,honroElementCollision:t.honroElementCollision};}
