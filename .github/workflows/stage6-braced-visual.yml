@@ -1,7 +1,7 @@
-name: Stage6 braced rock visual study
+name: Stage6 deck rock visual study
 on:
   push:
-    branches: ['work/stage6-braced-visual-preview-20261103']
+    branches: ['work/stage6-deck-visual-preview-20261103']
 permissions:
   contents: read
 jobs:
@@ -43,6 +43,6 @@ jobs:
       - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
         if: always()
         with:
-          name: stage6-braced-visual-${{ github.sha }}
+          name: stage6-deck-visual-${{ github.sha }}
           path: _local/reports/stage6-art-preview/
           retention-days: 7
