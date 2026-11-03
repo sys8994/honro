@@ -1,7 +1,7 @@
 {
   "status": "DEV ONLY. Latest full browser41646946262 failed atR25 with39/42 defeated;allheroes/residentsalive,no return. Narrow warning correction/freshStage31 passed separately. No18–20 total-round or finalA2/fun acceptance.",
   "base": "7d2655bc3f88a7b20fb2d6ea1bc4c611583e9a15",
-  "source": "e04ed9a66340cf101a39b21cc9ec4744f071cf38",
+  "source": "53b27000ea153a10a4df9c972927fd11c115b862",
   "branch": "work/stage40-finale/20261103",
   "productSharedTree": "206f79264ae9a1b91eae0db87871408e293ec2a5",
   "commits": [
@@ -189,7 +189,7 @@
       "result.json": "1a55c199c556d6fda9fed49a66f438a846884ea5d6819fe90745458796c52c6d"
     }
   },
-  "remoteHead": "fbfee413d02901501c4104d57d51d45c274714e7",
+  "remoteHead": "8c082225e29398f605407ad0c61c6e39ce406fbc",
   "canonicalNativeMap": [
     {
       "native": "f9c973d33194f1dff68abe0e8fa2a8a9d112cc1f",
@@ -425,6 +425,41 @@
       "native": "e04ed9a66340cf101a39b21cc9ec4744f071cf38",
       "canonical": "fbfee413d02901501c4104d57d51d45c274714e7",
       "tree": "becfe823218130a297d1b52c64b4c6439d82c125"
+    },
+    {
+      "native": "999700742429dad9e832789dc8d1a7d2bf61ae5b",
+      "canonical": "9dd09ec8512c881163d8934611e50bc9f7f2ebeb",
+      "tree": "b7b24d9384286e88f7bdd8ab004b7e59d1e41808"
+    },
+    {
+      "native": "efc5f7ba78ceb9752514e87faf285a81021cb79a",
+      "canonical": "1855db31a7f31fb2ae11cbafd793a71f9be0f34d",
+      "tree": "a20356f8786ad6c123af803aab3a937c9c2bfd4d"
+    },
+    {
+      "native": "d80ec84b4e98bd2f3e8fc48071e5ec12ab2f67b7",
+      "canonical": "322431bf0804e0b8cec5de1517d6655e1a58fa98",
+      "tree": "2ae86b8562620979dab8dd68cb8d9cf8cb12ffc8"
+    },
+    {
+      "native": "6c9d6ba1b37a826a7f53b1c2579e9d23578842c3",
+      "canonical": "b57ae10a73d997c90838a7069ba6b03ad7216ccf",
+      "tree": "e9f2a3b6bcbba2e2c8e02eca1bac3fb8293828f9"
+    },
+    {
+      "native": "391a1fd2f70ca441665c443692030b0c5e0560e1",
+      "canonical": "6c631caf0dd7ad4872f35fb708e9857d0cc6c446",
+      "tree": "c0e63a62ca1ac220c77000953383ba7b008714c7"
+    },
+    {
+      "native": "fc824c229e18ca7958bcf776f001a82dc11a7597",
+      "canonical": "8bed150cb4239838d98efceddad8f46001073663",
+      "tree": "98f4472f928611ce1638994f789364b509a8fce0"
+    },
+    {
+      "native": "53b27000ea153a10a4df9c972927fd11c115b862",
+      "canonical": "8c082225e29398f605407ad0c61c6e39ce406fbc",
+      "tree": "145187f96f58bda43853335c5b33bb35e11a605f"
     }
   ],
   "pendingPublication": null,
@@ -554,6 +589,20 @@
       "artifactId": 13235351277,
       "artifactSha256": "158215ef51c5a469322ddfdcd886c8269dea1c1d323e5be32cf2e2505251107d",
       "outcome": "ActualR19 enemy firing after normal visible response;observedR20;freshStage31R15boarding;allheroes/residentsalive"
+    },
+    {
+      "runId": 41659056373,
+      "status": "mixed-overall-failed",
+      "scope": "ArcherDropA14 actual586/0friendly;mageforward350 facing lost legal shot",
+      "artifactId": 13242710104,
+      "artifactSha256": "d667db09d533e42adf5db46507ab79888057ed6a68d328d9d77848a2e70c3d7a"
+    },
+    {
+      "runId": 41663533879,
+      "status": "passed-focused-only",
+      "scope": "Mage broad240/400 actual979/906 damage,zero friendly;following enemy phase allalive but mage466/675HP loss;not fullstage",
+      "artifactId": 13246520206,
+      "artifactSha256": "717852190a165092758c1775ad7c1f6d77e69ba3c781b46e0e741d6f69503092"
     }
   ]
 }
