@@ -53,6 +53,7 @@ export function resolveEnemyEffect(e:Engine,u:Unit){
  e.fx('ring',p.x,p.y,p.color,c.radius);e.fx('burst',p.x,p.y,p.color,c.radius);
  e.emit('sound',{name:'hit'});
  for(const v of b.units){
+  if(!enemyEffectEligible(b,u,c.skill))break;
   if(!hero(v)||v.stunnedRound===b.round||!c.respondedIds.includes(v.id)||!effectLineClear(e,u,{x:v.x,y:v.y-v.h*.45}))continue;
   const d=Math.hypot(v.x-p.x,v.y-v.h*.45-p.y);if(d>=c.radius+v.r)continue;
   // All splash victims had a response; the named target alone receives control.
@@ -86,6 +87,7 @@ export function enemyEffectMovementBudget(u:Unit){const bind=u.enemySoftBind;if(
 export function tickEnemyEffects(e:Engine,dt:number){
  const b=e.b;if(b.honroMonsterEffectsRevision!==1||['won','lost'].includes(b.phase)){clearEnemyEffects(b);return;}
  for(const u of b.units){
+  if(!live(u)||u.side!==1)delete u.enemyEffectRecovery;
   const c=u.enemyEffectCast;if(c){
    if(!enemyEffectEligible(b,u,c.skill)||!hero(e.unit(c.target)))delete u.enemyEffectCast;
    else if(b.teamEnds[0]>c.createdTeamEnd&&!c.responded){delete u.enemyEffectCast;u.enemyEffectRecovery={attackId:'response-window-expired',serial:c.serial};}
