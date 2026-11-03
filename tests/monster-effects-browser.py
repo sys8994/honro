@@ -23,6 +23,23 @@ return {hp:u.hp,startHP:q.startHP,x:u.x,startX:q.startX,bind:!!u.enemySoftBind,p
 rows=[]
 def activate(locator,mobile):
  locator.tap() if mobile else locator.click()
+READ_FRAME=r'''()=>{const a=HonroApp,u=a.engine.unit('p-archer'),r=a.scene.canvas.getBoundingClientRect(),s=a.scene;return {x:s.x,y:s.y,scale:s.scale,canvasLeft:r.left,canvasWidth:r.width,head:r.top+r.height/2+(u.y-u.h-s.y)*s.scale,feet:r.top+r.height/2+(u.y-s.y)*s.scale,hudTop:document.querySelector('.honro-compact-hud').getBoundingClientRect().top,headerBottom:document.querySelector('.battle-head').getBoundingClientRect().bottom};}'''
+def frame_target(p,mobile):
+ before=p.evaluate('monsterCanonical(HonroApp.engine.b)');p.evaluate('()=>{HonroApp.updateHUD(true);monsterPaint();}')
+ target=p.evaluate('''()=>{const a=HonroApp,b=a.engine.b,u=a.engine.unit('p-archer'),r=a.scene.canvas.getBoundingClientRect(),hud=document.querySelector('.honro-compact-hud').getBoundingClientRect(),mini=document.querySelector('#minimap').getBoundingClientRect(),feet=Math.min(hud.top-18,r.bottom-18),y=u.y-(feet-r.top-r.height/2)/a.scene.scale;return {x:Math.max(1,Math.min(mini.width-1,u.x/b.width*mini.width)),y:Math.max(1,Math.min(mini.height-1,y/b.height*mini.height))};}''')
+ if mobile:p.locator('#minimap').tap(position=target)
+ else:p.locator('#minimap').click(position=target)
+ p.evaluate('monsterPaint()');frame=p.evaluate(READ_FRAME)
+ # A minimap tap is coarse on tall maps. Finish through the real canvas pointer
+ # pan path, never by assigning camera coordinates after fixture setup.
+ for _ in range(3):
+  delta=frame['hudTop']-18-frame['feet']
+  if abs(delta)<=6:break
+  x=frame['canvasLeft']+frame['canvasWidth']*.12;y=(frame['headerBottom']+frame['hudTop'])/2;delta=max(-y/2,min(y/2,delta))
+  p.mouse.move(x,y);p.mouse.down();p.mouse.move(x,y+delta,steps=8);p.mouse.up();p.evaluate('monsterPaint()');frame=p.evaluate(READ_FRAME)
+ assert p.evaluate('monsterCanonical(HonroApp.engine.b)')==before,'Normal minimap framing must not alter battle'
+ assert frame['head']>=frame['headerBottom']-2 and frame['feet']<=frame['hudTop']-8,frame
+ return frame
 with sync_playwright() as pw, (nullcontext(os.environ['HONRO_MONSTER_BASE_URL']) if os.environ.get('HONRO_MONSTER_BASE_URL') else serve_game()) as url:
  browser=launch(pw)
  for mobile in [False,True]:
@@ -62,9 +79,13 @@ with sync_playwright() as pw, (nullcontext(os.environ['HONRO_MONSTER_BASE_URL'])
     download=downloaded.value;savepath=OUT/(name+'-export.json');download.save_as(str(savepath))
     continued=p.evaluate('''()=>{const a=HonroApp,before=monsterCanonical(a.engine.b);a.continue();return {exact:before===monsterCanonical(a.engine.b),revision:a.engine.b.honroMonsterEffectsRevision};}''');assert continued=={'exact':True,'revision':1},continued
     p.evaluate('window.monsterBeforeImport=monsterCanonical(HonroApp.engine.b)');p.locator('#file-import').set_input_files(str(savepath));p.wait_for_function('HonroApp.screen==="title"');activate(p.locator('[data-action="continue"]').first,mobile);p.wait_for_function('!!HonroApp.engine');assert p.evaluate('monsterCanonical(HonroApp.engine.b)===window.monsterBeforeImport'),'File-input import + pointer Continue exact'
-    p.evaluate('''()=>{const a=HonroApp,u=a.engine.unit('p-archer');a.scene.x=u.x;a.scene.y=u.y-130;a.scene.scale=innerWidth<600?.8:1.15;a.scene.manual=true;a.updateHUD(true);monsterPaint();}''')
+    completion=p.evaluate('''kind=>{const a=HonroApp,e=a.engine,b=e.b,u=e.unit('p-archer'),q=monsterBrowser,tick=(until,max=2400)=>{for(let n=0;n<max&&!until();n++)e.tick(HONRO_CORE.STEP);if(!until())throw Error('Control did not finish');};if(q.stage===8){tick(()=>!u.enemyPush);if(!(u.x<q.startX&&q.startX-u.x<=80&&u.x-u.r>=5790&&HONRO_CORE.validTerrainContactPose(b.terrain,u)))throw Error('Gust end not on safe west court');}else if(kind==='hit'){tick(()=>b.side===0&&b.phase==='aim');if(!e.select(u.id))throw Error('Bound actor cannot take next action');if(u.moveLeft>u.maxMove*.55+.001)throw Error('Missing bound move budget');e.wait();tick(()=>u.acted);if(u.enemySoftBind)throw Error('Bind did not expire');}a.updateHUD(true);return {x:u.x,y:u.y,startX:q.startX,bind:!!u.enemySoftBind,push:!!u.enemyPush,grace:u.enemyControlGrace||0};}''',kind)
+    with p.expect_download() as ended_download:p.evaluate('HonroApp.export()')
+    savepath=OUT/(name+'-ended-export.json');ended_download.value.save_as(str(savepath))
+    ended_continue=p.evaluate('''()=>{const a=HonroApp,before=monsterCanonical(a.engine.b);a.continue();return before===monsterCanonical(a.engine.b);}''');assert ended_continue,'Expired/completed control Continue exact'
+    portrait_frame=frame_target(p,mobile);p.screenshot(path=str(OUT/(name+'-completed.png')));landscape_frame=None
     if mobile:
-     p.set_viewport_size({'width':844,'height':390});p.evaluate('monsterPaint()');p.screenshot(path=str(OUT/(name+'-landscape.png')));p.set_viewport_size({'width':390,'height':844})
+     p.set_viewport_size({'width':844,'height':390});landscape_frame=frame_target(p,mobile);p.screenshot(path=str(OUT/(name+'-landscape.png')));p.set_viewport_size({'width':390,'height':844})
     legacy_exact=None
     if stage==8:
      p.evaluate('''()=>{const b=JSON.parse(monsterCanonical(HonroApp.engine.b));delete b.honroMonsterEffectsRevision;for(const u of b.units)for(const key of ['honroMonsterEffectSkill','enemyEffectCast','enemyEffectRecovery','enemyEffectCooldown','enemySoftBind','enemyPush','enemyControlGrace','enemyEffectHits'])delete u[key];window.monsterLegacyExpected=monsterCanonical(b);}''')
@@ -72,7 +93,7 @@ with sync_playwright() as pw, (nullcontext(os.environ['HONRO_MONSTER_BASE_URL'])
      for unit in legacy['honroBattle']['units']:
       for key in ['honroMonsterEffectSkill','enemyEffectCast','enemyEffectRecovery','enemyEffectCooldown','enemySoftBind','enemyPush','enemyControlGrace','enemyEffectHits']:unit.pop(key,None)
      legacy_path=OUT/(name+'-legacy-fixture.json');legacy_path.write_text(json.dumps(legacy,ensure_ascii=False));p.locator('#file-import').set_input_files(str(legacy_path));p.wait_for_function('HonroApp.screen==="title"');activate(p.locator('[data-action="continue"]').first,mobile);p.wait_for_function('!!HonroApp.engine');legacy_exact=p.evaluate('HonroApp.engine.b.honroMonsterEffectsRevision===undefined && monsterCanonical(HonroApp.engine.b)===window.monsterLegacyExpected');assert legacy_exact
-    rows.append({'case':name,'dialogueNextPointerCount':dialogue_clicks,'fileInputPointerContinueExact':True,'legacyAbsentVersionFixture':legacy_exact,'setup':setup,'result':result,'continue':continued,'offscreenAcknowledgementStable':offscreen,'pauseExact':True})
+    rows.append({'case':name,'completion':completion,'completedContinueExact':ended_continue,'portraitFrame':portrait_frame,'landscapeFrame':landscape_frame,'dialogueNextPointerCount':dialogue_clicks,'fileInputPointerContinueExact':True,'legacyAbsentVersionFixture':legacy_exact,'setup':setup,'result':result,'continue':continued,'offscreenAcknowledgementStable':offscreen,'pauseExact':True})
    except Exception as error:
     failure={'case':name,'error':str(error),'pageErrors':errors}
     try:
