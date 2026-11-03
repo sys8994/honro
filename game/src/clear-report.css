@@ -58,3 +58,7 @@ body:has(#modal.open :is(.result,.clear-report)) #turn-banner{visibility:hidden}
 .honro .outcome-save-warning{position:fixed;z-index:100001;top:max(8px,env(safe-area-inset-top));left:50%;transform:translateX(-50%);box-sizing:border-box;width:min(560px,calc(100vw - 20px));display:flex;gap:12px;align-items:center;padding:12px 14px;border:2px solid #e4af70;border-radius:10px;background:#3b211c;color:#fff3dc;box-shadow:0 4px 20px #000b}
 .honro .outcome-save-warning div{flex:1;min-width:0}.honro .outcome-save-warning p{margin:4px 0 0;font-size:13px;line-height:1.4}.honro .outcome-save-warning button{flex:none;min-height:44px;padding:8px 12px}
 @media(max-width:420px){.honro .outcome-save-warning{align-items:stretch;flex-direction:column;gap:8px}}
+
+/* Defeat/retry-only results: keep the lone secondary action aligned with the primary row. */
+.honro .result-actions>button:first-child:nth-last-child(2){grid-column:1/-1}
+@media(orientation:landscape) and (max-height:500px){.honro .result-actions:has(>button:first-child:nth-last-child(2)){grid-template-columns:1fr 1.5fr}.honro .result-actions>button:first-child:nth-last-child(2){grid-column:auto}}
