@@ -148,7 +148,7 @@ export async function runtimeEntries({vector=true,render=true,app=false,producti
   if(act4Enabled){const act4=JSON.parse(await read('shared/data/act4/world.json'));project={...project,stages:[...project.stages,...act4.stages],library:[...project.library,...act4.library.filter(a=>!project.library.some(b=>b.id===a.id))]};}
   if(process.env.HONRO_STAGE6_ART_PREVIEW==='1'){const {applyStage6ArtPreview}=await import('../tools/stage6-prototype/art-preview.mjs');project=applyStage6ArtPreview(project);}
   // Diagnostic braced-rock variant, never enabled in release builds.
-  if(process.env.HONRO_STAGE6_ROCK_BRACED==='1'){if(process.env.HONRO_STAGE6_ART_PREVIEW!=='1')throw Error('braced study requires art preview');const {smallDeckRock}=await import('../tools/stage6-prototype/rock-deck-small.mjs');project=smallDeckRock(project);}
+  if(process.env.HONRO_STAGE6_ROCK_BRACED==='1'){if(process.env.HONRO_STAGE6_ART_PREVIEW!=='1')throw Error('braced study requires art preview');const {smallDeckRock}=await import('../tools/stage6-prototype/rock-deck-small.mjs');project=smallDeckRock(project);const {addRockContactShadow}=await import('../tools/stage6-prototype/contact-shadow-preview.mjs');project=addRockContactShadow(project);}
   parts.push({name:'campaign',project,code:'globalThis.HONRO_PROJECT='+authorProjectExpression(JSON.stringify(project))+';'});
   if(vector){
     await buildParty();
