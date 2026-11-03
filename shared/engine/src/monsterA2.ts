@@ -81,7 +81,9 @@ export function beginMonsterA2Action(e:Engine,u:Unit,target:Unit){
 export function resolveMonsterA2Action(e:Engine,u:Unit){
  if(!monsterA2Eligible(e.b,u))return false;
  if(u.monsterA2Recovery){delete u.monsterA2Recovery;e.finishAction();return true;}
- const w=u.monsterA2Warning;if(w?.kind!=='growthStrike')return false;
+ const w=u.monsterA2Warning;
+ if(w?.kind==='mark'){u.intent='연결 유지';e.finishAction();return true;}
+ if(w?.kind!=='growthStrike')return false;
  delete u.monsterA2Warning;const t=e.unit(w.target),area=w.area!;
  if(!w.seen||!w.responded||e.b.teamEnds[0]<=w.createdTeamEnd||!validTarget(e,u,t)||Math.hypot(u.x-w.origin.x,u.y-w.origin.y)>2){e.finishAction();return true;}
  const sk=SKILLS.HED01;if(!sk||!e.fire(sk.id,w.direction!>0?0:180,.5,true)){e.finishAction();return true;}
