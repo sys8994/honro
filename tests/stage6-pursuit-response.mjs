@@ -5,6 +5,12 @@ import {appHarness} from './app-regression-helpers.mjs';
 const h=await appHarness({productionStory:true,productionInputActions:true}),{g,C}=h;
 const profile=JSON.parse(await readFile('game/docs/stage-review/stage06-bridge/evidence/entry-profile.json','utf8')).profile;
 const app=h.load(profile);app.launch(6);const e=app.engine,b=e.b;
+// Explicit render double for this behavioral fixture; real visual acceptance
+// requires a browser screenshot and is not claimed by this test.
+let painted=false,frames=[],screenReady=true;const originalGet=g.document.getElementById.bind(g.document),screen={appendChild(n){painted=n;}},warning={textContent:'',clientWidth:320,clientHeight:24,scrollWidth:320,scrollHeight:24,setAttribute(){},remove(){painted=false;},getBoundingClientRect(){return {left:10,top:10,right:330,bottom:34,width:320,height:24};}};
+originalGet('objective-text').getAttribute=()=>null;g.innerHeight=900;g.requestAnimationFrame=fn=>{frames.push(fn);return frames.length;};g.getComputedStyle=()=>({display:'block',visibility:'visible',opacity:'1'});g.document.getElementById=id=>id==='stage6-pursuit-warning'?(painted||null):originalGet(id);g.document.querySelector=sel=>sel==='.battle-screen'&&screenReady?screen:null;g.document.createElement=()=>warning;
+function paintNotice(){frames=[];g.HonroObjectives.refresh(app);for(let i=0;i<2;i++){const q=frames;frames=[];q.forEach(fn=>fn());}}
+
 let now=g.performance.now();g.performance={now:()=>now};
 const ops={frame(){now+=C.STEP*1000;if(app.dialogue)g.HonroStory.next(app);app.scene.render=()=>{};app.frame(now);if(app.lastError)throw Error(app.lastError);},ready(limit=30000){for(let i=0;i<limit&&!app.canInput()&&!['won','lost'].includes(b.phase);i++)this.frame();return app.canInput();},defend(){if(!app.canInput())return false;const u=e.active,before=[b.phase,b.side,b.round,u.id,u.acted];app.defend();return before.some((v,i)=>v!==[b.phase,b.side,b.round,e.active?.id,u.acted][i]);}};
 assert(ops.ready());const freshSnapshot=structuredClone(b);assert.equal(b.honroStage6PursuitRevision,1);assert.equal(b.honroEvents.find(x=>x.id==='pursuit').action.n,2);
@@ -13,14 +19,21 @@ for(const u of e.alive(1).slice(0,8)){u.hp=0;u.dead=true;}
 for(const ev of b.honroEvents)if(ev.id!=='pursuit')b.honroState.flags['event:'+ev.id]=true;
 b.honroState.rescued=true;
 for(let i=0;i<10;i++)ops.frame();
-assert(b.honroState.pendingEvents.includes('pursuit'),'rescue queues warning');
+assert(b.honroState.pendingEvents.includes('pursuit'),'rescue queues warning');assert.match(app.eventText,/아군 턴이 끝나면.*운반대 뒤쪽/,'warning states timing and relative entry');
 assert(!b.units.some(u=>u.honroSpawnSource==='pursuit'),'no entry before actual response');
+assert(!g.HonroStage6Pursuit.shown(app),'unrendered notice cannot count');painted=false;screenReady=false;paintNotice();assert(!g.HonroStage6Pursuit.shown(app),'unready HUD cannot count');screenReady=true;warning.scrollWidth=400;paintNotice();assert(!g.HonroStage6Pursuit.shown(app),'clipped notice cannot count');warning.scrollWidth=320;paintNotice();assert(g.HonroStage6Pursuit.shown(app),'rendered notice earns live receipt');
 assert(ops.ready());const place=g.HonroTerrain.place;g.HonroTerrain.place=()=>null;
 assert(ops.defend(),'real App defend ends an action');
 for(let i=0;i<30000&&!ops.ready(1);i++)ops.frame();
 assert(!b.units.some(u=>u.honroSpawnSource==='pursuit'),'blocked atomic entry has no partial actors');
 const before=b.nextId;for(let i=0;i<10;i++)ops.frame();assert.equal(b.nextId,before,'blocked retries do not consume ids');
 g.HonroTerrain.place=place;
+// Even after a genuine hero response, a mid-turn boundary cannot admit the
+// pursuit before the rest of the party has had its normal actions.
+const event=b.honroEvents.find(x=>x.id==='pursuit'),phase=b.phase;b.phase='aim';app.actorBoundary=e.active?.id;assert.equal(g.HonroAllies.execute(app,{...event.action,source:'pursuit'}),false);assert(!b.units.some(u=>u.honroSpawnSource==='pursuit'));b.phase=phase;
+// Prepared-body counterplay fixture: occupying all three rear choices blocks
+// the atomic entry; these placements are not claimed as a played manoeuvre.
+const heroes=e.heroesAlive(),positions=heroes.map(u=>({u,x:u.x,y:u.y})),carrier=e.unit('objective');for(let i=0;i<heroes.length;i++){heroes[i].x=carrier.x-[450,650,850][i];heroes[i].y=g.HonroWorld.top(b,heroes[i].x,carrier.y,'lower-road');}b.phase='transition';app.actorBoundary=e.active?.id;assert.equal(g.HonroAllies.execute(app,{...event.action,source:'pursuit'}),false,'occupied rear options defer the group');assert(!b.units.some(u=>u.honroSpawnSource==='pursuit'));for(const x of positions){x.u.x=x.x;x.u.y=x.y;}b.phase=phase;
 const act2Tune=g.HonroAct2.tuneEncounter;g.HonroAct2.tuneEncounter=()=>{throw Error('Stage 6 must not use Act 2 tuning');};
 for(let i=0;i<30000&&!b.honroState.flags['event:pursuit'];i++){if(app.canInput())ops.defend();ops.frame();}
 assert.equal(b.honroState.flags['event:pursuit'],true,'entry after a genuine hero response');
@@ -36,6 +49,7 @@ for(const u of units)u.stunnedRound=b.round;assert.deepEqual(g.HonroEncounterDen
 for(const u of units)u.dead=true;assert.deepEqual(g.HonroEncounterDensity.reserveQueue(e),b.queue,'defeated pursuit cannot be reserved');for(const u of units)u.dead=false;
 delete decoy.honroDensityBornRound;const oldStage=b.honroStage;b.honroStage=8;assert.deepEqual(g.HonroEncounterDensity.reserveQueue(e),b.queue,'Stage 8 retains its existing priority comparison');b.honroStage=oldStage;
 e.combatEnemies=oldCombat;e.enemyQueuePriority=oldPriority;b.queue=oldQueue;b.enemyLimit=oldLimit;
+const goal=structuredClone(b),goalObj=goal.units.find(u=>u.id==='objective'),goalBoss=goal.units.find(u=>u.id==='midboss-stage6');goal.honroState.rescued=true;goalObj.x=6380;goalBoss.dead=true;goalBoss.hp=0;assert(g.HonroObjectives.state(goal,app.stage).complete,'pending pursuit must not delay the authored exit');
 const saved=structuredClone(b),count=b.units.length;app.mount(saved);app.actorBoundary=app.engine.active?.id;g.HonroEncounters.update(app,0,{progress:5000,height:2900,broken:0,collected:0});assert.equal(app.engine.b.units.length,count,'mounted saved once flag prevents duplicates');
 const legacy=structuredClone(freshSnapshot);delete legacy.honroStage6PursuitRevision;delete legacy.honroEncounterDensityRevision;delete legacy.honroDensityQueueReserve;const oldEvent=legacy.honroEvents.find(x=>x.id==='pursuit');oldEvent.action.n=4;delete oldEvent.warning;delete oldEvent.honroTacticalWarning;app.mount(legacy);assert.equal(g.HonroStage6Pursuit.active(app.engine.b),false,'old save is not upgraded');assert.equal(g.HonroEncounterDensity.active(app.engine.b),false,'old save does not enter density hook');assert.equal(app.engine.b.honroEvents.find(x=>x.id==='pursuit').action.n,4,'old saved event remains unchanged');
 console.log(JSON.stringify({status:'pass',scope:'prepared state fixture, App defend/frames, not natural campaign',units:units.map(u=>({x:u.x,y:u.y})),objectiveX:obj.x}));

@@ -60,6 +60,7 @@ jobs:
         run: |
           set -euo pipefail
           python tests/stage6-initial-capture-local.py | tee "$OUT/stage6-browser.log"
+          python tests/stage6-warning-browser.py | tee "$OUT/stage6-warning-browser.log"
           cp -a _local/reports/stage6-preflight/initial-browser "$OUT/initial-browser"
           node --input-type=module -e 'import fs from "node:fs";import {runtimeDigest} from "./tools/stage31/probes.mjs";fs.writeFileSync(process.env.OUT+"/receipt.json",JSON.stringify({sourceCommit:process.env.GITHUB_SHA,runId:process.env.GITHUB_RUN_ID,runtimeSha256:await runtimeDigest(),scope:"Stage31 genuine gate and Stage6 initial placement only; not Stage6 gameplay acceptance"},null,2))'
       - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
