@@ -1,0 +1,1085 @@
+{
+  "sourceCommit": "e7a387532f8249e3bdf315a80a01b56c258d8830",
+  "routeSignFixCommit": "037e0637be919c52918ef9dc5f2d296684959460",
+  "freshRuns": {
+    "baseline": {
+      "phase": "won",
+      "round": 18,
+      "stopReason": null,
+      "seconds": 363.46575652999996,
+      "remainingEnemies": 33,
+      "kills": 13,
+      "heroes": [
+        {
+          "cls": "archer",
+          "hp": 794,
+          "maxHp": 794
+        },
+        {
+          "cls": "mage",
+          "hp": 458.13273600000014,
+          "maxHp": 761
+        },
+        {
+          "cls": "knight",
+          "hp": 1429,
+          "maxHp": 1429
+        },
+        {
+          "cls": "occultist",
+          "hp": 510.1669119999999,
+          "maxHp": 784
+        }
+      ],
+      "fallen": [],
+      "done": {
+        "11.thread": true,
+        "11.entry-threat": true,
+        "11.exit-threat": true,
+        "11.exit": true,
+        "11.north": true
+      },
+      "actions": 590,
+      "skills": {
+        "A02": 12,
+        "M11": 13,
+        "S03": 11,
+        "O02": 12,
+        "O11": 2,
+        "O03": 3,
+        "A01": 3,
+        "M10": 4
+      },
+      "hpDamageTaken": 2224.3,
+      "hpDamageDealt": 12954,
+      "shieldDamageDealt": 264,
+      "externalWrites": [],
+      "engineRecoveries": [],
+      "settlementBoundary": {
+        "phase": "won",
+        "appDone": true,
+        "inputReady": false,
+        "projectiles": 0,
+        "volley": false,
+        "actorMotionBusy": false,
+        "activeMelee": [],
+        "dialogue": false,
+        "cast": {
+          "skill": "M10",
+          "refunded": true
+        }
+      },
+      "appOutcome": {
+        "done": true,
+        "cleared": {
+          "visits": 1,
+          "rounds": 18
+        },
+        "history": {
+          "revision": 1,
+          "phase": "A",
+          "run": "honro-map-stage-11-1793732947803",
+          "round": 18,
+          "steps": [
+            "11.thread",
+            "11.entry-threat",
+            "11.exit-threat",
+            "11.exit",
+            "11.north"
+          ],
+          "slots": [
+            "11.reviewed.arrival",
+            "11.reviewed.thread",
+            "11.reviewed.approach",
+            "11.reviewed.advance",
+            "11.reviewed.low-beast",
+            "11.reviewed.high-sightline",
+            "11.reviewed.cover-guide",
+            "11.reviewed.spirit-release",
+            "11.reviewed.north-warning",
+            "11.reviewed.north-pair",
+            "11.reviewed.gather",
+            "11.reviewed.bell",
+            "11.reviewed.reaction",
+            "11.reviewed.depart"
+          ],
+          "reviewedNarrative": {
+            "revision": 1,
+            "status": "gemini_pass1_parent_review_gemini_pass3_complete",
+            "rows": [
+              "EDGE.ARRIVALS_11_0",
+              "A2.S11.INTRO.01",
+              "A2.S11.INTRO.02",
+              "A2.S11.INTRO.03",
+              "A2.S11.INTRO.04",
+              "A2.S11.MID.01",
+              "A2.S11.MID.02",
+              "A2.S11.POPUP.01",
+              "A2.S11.MID.03",
+              "A2.S11.MID.04",
+              "A2.S11.MID.05",
+              "A2.S11.COMPLETE.02",
+              "A2.S11.COMPLETE.05"
+            ],
+            "withheld": []
+          }
+        }
+      },
+      "priorityCoverage": {
+        "decisions": 17,
+        "eligibleDecisions": 14,
+        "attempts": 14,
+        "accepted": 4,
+        "archivedEligibleStates": 3
+      },
+      "projectSha256": "71e33eb754f5a016c065bcbabdc1652fd5b86797cf96096786ac0aec73c9d990",
+      "stageSha256": "4948b86ccd53195018e02fe3f62bbe6630785a3400a06ddd20ed2b1166de85be",
+      "geometrySha256": "83f5319feeb2fc40bc90180be216f63546c677ff63be2e296fb9cce5a967e5af",
+      "entryProfileSha256": "0c4f49bde9acd801ac1b9e6e0d99f4c7af07c1323578243ba23901aa408d6131",
+      "runnerSha256": "5a9847b73f269938e306040a5549155c33b5e19da6389eb0a9b35793a590a8e9",
+      "baselineFixture": {
+        "originalArtifactSha256": "d200e1265a2c7ee5d02bf84ce17952a34227fd59d123a5ad624a8de7871ed5cb",
+        "originalProfileSha256": "08f3195cf9167334401290f7dd938b2950636676a70bf01994cd386c5d9f10e7",
+        "expeditionProfileSha256": "0c4f49bde9acd801ac1b9e6e0d99f4c7af07c1323578243ba23901aa408d6131",
+        "fixtureDiff": [
+          {
+            "path": "settings.difficulty",
+            "before": "normal",
+            "after": "story"
+          }
+        ],
+        "training": "Skipped: original prepared legal growth/loadout/gear inherited byte-for-byte apart from difficulty",
+        "classification": "New expedition baseline diagnostic; previous tactical fixture kept separate"
+      },
+      "operationMode": "NATIVE_APP_ACTION_WITH_PRODUCTION_SELECTED_PREVIEW",
+      "scope": "Loaded original prepared entry fixture; original lineage only, not a continuous campaign. XP/ranks/equipment inherited without budget replacement. Production reviewed-v4 actual App frame/actions with DOM/storage/render/clock doubles and idealized aim; not browser input.",
+      "rawResultSha256": "f5be62eef720f0b143a81f9e59fd6ad32e2ff551d37af2c4b29c7004250ff0e0",
+      "rawTerminalSha256": "4e69c260c1e512b5f637c2aaa7ac1a8b85c41a978f174ae7ed2f7055c90ba6d4",
+      "normalDrops": [],
+      "bellProof": {
+        "postFight": true,
+        "ambientSouls": true,
+        "bell": {
+          "elapsed": 1.1083333333333318,
+          "struck": true,
+          "audible": false,
+          "source": {
+            "from": {
+              "x": 11670,
+              "y": 8000
+            },
+            "to": {
+              "x": 12160,
+              "y": 7930
+            }
+          }
+        }
+      },
+      "narrativeEvents": {
+        "arrival": {
+          "status": "done",
+          "presentedIds": [
+            "EDGE.ARRIVALS_11_0"
+          ]
+        },
+        "thread": {
+          "status": "done",
+          "presentedIds": [
+            "A2.S11.INTRO.01"
+          ]
+        },
+        "approach": {
+          "status": "done",
+          "presentedIds": [
+            "A2.S11.INTRO.02",
+            "A2.S11.INTRO.03"
+          ]
+        },
+        "advance": {
+          "status": "done",
+          "presentedIds": [
+            "A2.S11.INTRO.04"
+          ]
+        },
+        "low-beast": {
+          "status": "done",
+          "presentedIds": [
+            "A2.S11.MID.01"
+          ]
+        },
+        "high-sightline": {
+          "status": "done",
+          "presentedIds": [
+            "A2.S11.MID.02"
+          ]
+        },
+        "cover-guide": {
+          "status": "done",
+          "presentedIds": [
+            "A2.S11.POPUP.01"
+          ]
+        },
+        "spirit-release": {
+          "status": "done",
+          "presentedIds": [
+            "A2.S11.MID.03"
+          ]
+        },
+        "north-warning": {
+          "status": "done",
+          "presentedIds": [
+            "A2.S11.MID.04"
+          ]
+        },
+        "north-pair": {
+          "status": "done",
+          "presentedIds": [
+            "A2.S11.MID.05"
+          ]
+        },
+        "gather": {
+          "status": "skipped",
+          "presentedIds": []
+        },
+        "bell": {
+          "status": "done",
+          "presentedIds": [
+            "A2.S11.COMPLETE.02"
+          ]
+        },
+        "reaction": {
+          "status": "skipped",
+          "presentedIds": []
+        },
+        "depart": {
+          "status": "done",
+          "presentedIds": [
+            "A2.S11.COMPLETE.05"
+          ]
+        }
+      }
+    },
+    "drop-full": {
+      "phase": "won",
+      "round": 17,
+      "stopReason": null,
+      "seconds": 357.54448099,
+      "remainingEnemies": 34,
+      "kills": 12,
+      "heroes": [
+        {
+          "cls": "archer",
+          "hp": 794,
+          "maxHp": 794
+        },
+        {
+          "cls": "mage",
+          "hp": 552.3218240000001,
+          "maxHp": 761
+        },
+        {
+          "cls": "knight",
+          "hp": 1409.601568,
+          "maxHp": 1429
+        },
+        {
+          "cls": "occultist",
+          "hp": 381.44172799999996,
+          "maxHp": 784
+        }
+      ],
+      "fallen": [],
+      "done": {
+        "11.thread": true,
+        "11.entry-threat": true,
+        "11.exit-threat": true,
+        "11.exit": true
+      },
+      "actions": 564,
+      "skills": {
+        "A02": 10,
+        "M11": 13,
+        "S03": 10,
+        "O02": 4,
+        "O11": 4,
+        "O03": 6,
+        "A01": 5,
+        "M10": 2,
+        "O01": 1
+      },
+      "hpDamageTaken": 2262.9,
+      "hpDamageDealt": 12535,
+      "shieldDamageDealt": 104,
+      "externalWrites": [],
+      "engineRecoveries": [],
+      "settlementBoundary": {
+        "phase": "won",
+        "appDone": true,
+        "inputReady": false,
+        "projectiles": 0,
+        "volley": false,
+        "actorMotionBusy": false,
+        "activeMelee": [],
+        "dialogue": false,
+        "cast": {
+          "skill": "M10",
+          "refunded": true
+        }
+      },
+      "appOutcome": {
+        "done": true,
+        "cleared": {
+          "visits": 1,
+          "rounds": 17
+        },
+        "history": {
+          "revision": 1,
+          "phase": "A",
+          "run": "honro-map-stage-11-1793733617535",
+          "round": 17,
+          "steps": [
+            "11.thread",
+            "11.entry-threat",
+            "11.exit-threat",
+            "11.exit"
+          ],
+          "slots": [
+            "11.reviewed.arrival",
+            "11.reviewed.thread",
+            "11.reviewed.approach",
+            "11.reviewed.advance",
+            "11.reviewed.low-beast",
+            "11.reviewed.high-sightline",
+            "11.reviewed.cover-guide",
+            "11.reviewed.spirit-release",
+            "11.reviewed.north-warning",
+            "11.reviewed.north-pair",
+            "11.reviewed.gather",
+            "11.reviewed.bell",
+            "11.reviewed.reaction",
+            "11.reviewed.depart"
+          ],
+          "reviewedNarrative": {
+            "revision": 1,
+            "status": "gemini_pass1_parent_review_gemini_pass3_complete",
+            "rows": [
+              "EDGE.ARRIVALS_11_0",
+              "A2.S11.INTRO.01",
+              "A2.S11.INTRO.02",
+              "A2.S11.INTRO.03",
+              "A2.S11.INTRO.04",
+              "A2.S11.MID.01",
+              "A2.S11.MID.02",
+              "A2.S11.POPUP.01",
+              "A2.S11.MID.03",
+              "A2.S11.MID.04",
+              "A2.S11.MID.05",
+              "A2.S11.COMPLETE.02",
+              "A2.S11.COMPLETE.05"
+            ],
+            "withheld": []
+          }
+        }
+      },
+      "priorityCoverage": {
+        "decisions": 15,
+        "eligibleDecisions": 14,
+        "attempts": 14,
+        "accepted": 4,
+        "archivedEligibleStates": 3
+      },
+      "projectSha256": "71e33eb754f5a016c065bcbabdc1652fd5b86797cf96096786ac0aec73c9d990",
+      "stageSha256": "4948b86ccd53195018e02fe3f62bbe6630785a3400a06ddd20ed2b1166de85be",
+      "geometrySha256": "83f5319feeb2fc40bc90180be216f63546c677ff63be2e296fb9cce5a967e5af",
+      "entryProfileSha256": "0c4f49bde9acd801ac1b9e6e0d99f4c7af07c1323578243ba23901aa408d6131",
+      "runnerSha256": "b650f720f7a70dd375643cfe50908a1a5d361c039cfe670f71b357ac5fc5b3b9",
+      "baselineFixture": {
+        "originalArtifactSha256": "d200e1265a2c7ee5d02bf84ce17952a34227fd59d123a5ad624a8de7871ed5cb",
+        "originalProfileSha256": "08f3195cf9167334401290f7dd938b2950636676a70bf01994cd386c5d9f10e7",
+        "expeditionProfileSha256": "0c4f49bde9acd801ac1b9e6e0d99f4c7af07c1323578243ba23901aa408d6131",
+        "fixtureDiff": [
+          {
+            "path": "settings.difficulty",
+            "before": "normal",
+            "after": "story"
+          }
+        ],
+        "training": "Skipped: original prepared legal growth/loadout/gear inherited byte-for-byte apart from difficulty",
+        "classification": "New expedition baseline diagnostic; previous tactical fixture kept separate"
+      },
+      "operationMode": "NATIVE_APP_ACTION_WITH_PRODUCTION_SELECTED_PREVIEW",
+      "scope": "Loaded original prepared entry fixture; original lineage only, not a continuous campaign. XP/ranks/equipment inherited without budget replacement. Production reviewed-v4 actual App frame/actions with DOM/storage/render/clock doubles and idealized aim; not browser input.",
+      "rawResultSha256": "925e8c942cd3151a41b7870648ee84782dc76cc94df8e71e11a4f72f181045bc",
+      "rawTerminalSha256": "339820a2f004e30f3194c215eba7203f4da297027de3b40e416230fb1d0b9c1d",
+      "normalDrops": [
+        {
+          "round": 10,
+          "frame": 52099,
+          "goal": "11.exit-threat",
+          "op": "east-root-normal-drop",
+          "hero": "occultist",
+          "target": "11.north-spirit",
+          "accepted": true,
+          "before": {
+            "x": 10159.680744519226,
+            "y": 8148.519055176919,
+            "hp": 374,
+            "moveLeft": 1474
+          },
+          "after": {
+            "x": 10159.680744519226,
+            "y": 8778.063851096154,
+            "hp": 371,
+            "moveLeft": 1474
+          },
+          "support": "rv-lower-refuge-rock",
+          "settled": true
+        },
+        {
+          "round": 12,
+          "frame": 57543,
+          "goal": "11.exit-threat",
+          "op": "east-root-normal-drop",
+          "hero": "archer",
+          "target": "rv11-refuge-east-guard-0",
+          "accepted": true,
+          "before": {
+            "x": 10191.082540049898,
+            "y": 8176.1526352439105,
+            "hp": 567,
+            "moveLeft": 1595
+          },
+          "after": {
+            "x": 10191.082540049898,
+            "y": 8771.78349199002,
+            "hp": 567,
+            "moveLeft": 1595
+          },
+          "support": "rv-lower-refuge-rock",
+          "settled": true
+        }
+      ],
+      "bellProof": {
+        "postFight": true,
+        "ambientSouls": true,
+        "bell": {
+          "elapsed": 1.1083333333333318,
+          "struck": true,
+          "audible": false,
+          "source": {
+            "from": {
+              "x": 11670,
+              "y": 8000
+            },
+            "to": {
+              "x": 12160,
+              "y": 7930
+            }
+          }
+        }
+      },
+      "narrativeEvents": {
+        "arrival": {
+          "status": "done",
+          "presentedIds": [
+            "EDGE.ARRIVALS_11_0"
+          ]
+        },
+        "thread": {
+          "status": "done",
+          "presentedIds": [
+            "A2.S11.INTRO.01"
+          ]
+        },
+        "approach": {
+          "status": "done",
+          "presentedIds": [
+            "A2.S11.INTRO.02",
+            "A2.S11.INTRO.03"
+          ]
+        },
+        "advance": {
+          "status": "done",
+          "presentedIds": [
+            "A2.S11.INTRO.04"
+          ]
+        },
+        "low-beast": {
+          "status": "done",
+          "presentedIds": [
+            "A2.S11.MID.01"
+          ]
+        },
+        "high-sightline": {
+          "status": "done",
+          "presentedIds": [
+            "A2.S11.MID.02"
+          ]
+        },
+        "cover-guide": {
+          "status": "done",
+          "presentedIds": [
+            "A2.S11.POPUP.01"
+          ]
+        },
+        "spirit-release": {
+          "status": "done",
+          "presentedIds": [
+            "A2.S11.MID.03"
+          ]
+        },
+        "north-warning": {
+          "status": "done",
+          "presentedIds": [
+            "A2.S11.MID.04"
+          ]
+        },
+        "north-pair": {
+          "status": "done",
+          "presentedIds": [
+            "A2.S11.MID.05"
+          ]
+        },
+        "gather": {
+          "status": "skipped",
+          "presentedIds": []
+        },
+        "bell": {
+          "status": "done",
+          "presentedIds": [
+            "A2.S11.COMPLETE.02"
+          ]
+        },
+        "reaction": {
+          "status": "skipped",
+          "presentedIds": []
+        },
+        "depart": {
+          "status": "done",
+          "presentedIds": [
+            "A2.S11.COMPLETE.05"
+          ]
+        }
+      }
+    },
+    "checkpoint-fix-intermediate": {
+      "phase": "won",
+      "round": 17,
+      "stopReason": null,
+      "seconds": 334.92298728599997,
+      "remainingEnemies": 34,
+      "kills": 12,
+      "heroes": [
+        {
+          "cls": "archer",
+          "hp": 794,
+          "maxHp": 794
+        },
+        {
+          "cls": "mage",
+          "hp": 552.3218240000001,
+          "maxHp": 761
+        },
+        {
+          "cls": "knight",
+          "hp": 1409.601568,
+          "maxHp": 1429
+        },
+        {
+          "cls": "occultist",
+          "hp": 381.44172799999996,
+          "maxHp": 784
+        }
+      ],
+      "fallen": [],
+      "done": {
+        "11.thread": true,
+        "11.entry-threat": true,
+        "11.exit-threat": true,
+        "11.exit": true,
+        "11.north": true
+      },
+      "actions": 564,
+      "skills": {
+        "A02": 10,
+        "M11": 13,
+        "S03": 10,
+        "O02": 4,
+        "O11": 4,
+        "O03": 6,
+        "A01": 5,
+        "M10": 2,
+        "O01": 1
+      },
+      "hpDamageTaken": 2262.9,
+      "hpDamageDealt": 12535,
+      "shieldDamageDealt": 104,
+      "externalWrites": [],
+      "engineRecoveries": [],
+      "settlementBoundary": {
+        "phase": "won",
+        "appDone": true,
+        "inputReady": false,
+        "projectiles": 0,
+        "volley": false,
+        "actorMotionBusy": false,
+        "activeMelee": [],
+        "dialogue": false,
+        "cast": {
+          "skill": "M10",
+          "refunded": true
+        }
+      },
+      "appOutcome": {
+        "done": true,
+        "cleared": {
+          "visits": 1,
+          "rounds": 17
+        },
+        "history": {
+          "revision": 1,
+          "phase": "A",
+          "run": "honro-map-stage-11-1793734195519",
+          "round": 17,
+          "steps": [
+            "11.thread",
+            "11.entry-threat",
+            "11.exit-threat",
+            "11.exit",
+            "11.north"
+          ],
+          "slots": [
+            "11.reviewed.arrival",
+            "11.reviewed.thread",
+            "11.reviewed.approach",
+            "11.reviewed.advance",
+            "11.reviewed.low-beast",
+            "11.reviewed.high-sightline",
+            "11.reviewed.cover-guide",
+            "11.reviewed.spirit-release",
+            "11.reviewed.north-warning",
+            "11.reviewed.north-pair",
+            "11.reviewed.gather",
+            "11.reviewed.bell",
+            "11.reviewed.reaction",
+            "11.reviewed.depart"
+          ],
+          "reviewedNarrative": {
+            "revision": 1,
+            "status": "gemini_pass1_parent_review_gemini_pass3_complete",
+            "rows": [
+              "EDGE.ARRIVALS_11_0",
+              "A2.S11.INTRO.01",
+              "A2.S11.INTRO.02",
+              "A2.S11.INTRO.03",
+              "A2.S11.INTRO.04",
+              "A2.S11.MID.01",
+              "A2.S11.MID.02",
+              "A2.S11.POPUP.01",
+              "A2.S11.MID.03",
+              "A2.S11.MID.04",
+              "A2.S11.MID.05",
+              "A2.S11.COMPLETE.02",
+              "A2.S11.COMPLETE.05"
+            ],
+            "withheld": []
+          }
+        }
+      },
+      "priorityCoverage": {
+        "decisions": 15,
+        "eligibleDecisions": 14,
+        "attempts": 14,
+        "accepted": 4,
+        "archivedEligibleStates": 3
+      },
+      "projectSha256": "71e33eb754f5a016c065bcbabdc1652fd5b86797cf96096786ac0aec73c9d990",
+      "stageSha256": "4948b86ccd53195018e02fe3f62bbe6630785a3400a06ddd20ed2b1166de85be",
+      "geometrySha256": "83f5319feeb2fc40bc90180be216f63546c677ff63be2e296fb9cce5a967e5af",
+      "entryProfileSha256": "0c4f49bde9acd801ac1b9e6e0d99f4c7af07c1323578243ba23901aa408d6131",
+      "runnerSha256": "b650f720f7a70dd375643cfe50908a1a5d361c039cfe670f71b357ac5fc5b3b9",
+      "baselineFixture": {
+        "originalArtifactSha256": "d200e1265a2c7ee5d02bf84ce17952a34227fd59d123a5ad624a8de7871ed5cb",
+        "originalProfileSha256": "08f3195cf9167334401290f7dd938b2950636676a70bf01994cd386c5d9f10e7",
+        "expeditionProfileSha256": "0c4f49bde9acd801ac1b9e6e0d99f4c7af07c1323578243ba23901aa408d6131",
+        "fixtureDiff": [
+          {
+            "path": "settings.difficulty",
+            "before": "normal",
+            "after": "story"
+          }
+        ],
+        "training": "Skipped: original prepared legal growth/loadout/gear inherited byte-for-byte apart from difficulty",
+        "classification": "New expedition baseline diagnostic; previous tactical fixture kept separate"
+      },
+      "operationMode": "NATIVE_APP_ACTION_WITH_PRODUCTION_SELECTED_PREVIEW",
+      "scope": "Loaded original prepared entry fixture; original lineage only, not a continuous campaign. XP/ranks/equipment inherited without budget replacement. Production reviewed-v4 actual App frame/actions with DOM/storage/render/clock doubles and idealized aim; not browser input.",
+      "rawResultSha256": "96e6db0f02c5266dab7a36b56cf15bbb3df8985629399fcb02d870b3f05b1e50",
+      "rawTerminalSha256": "093bb6ed2ee9e2180e31533d26af51e4c39cd662f716c64896438ae98214dd91",
+      "bellProof": {
+        "postFight": true,
+        "ambientSouls": true,
+        "bell": {
+          "elapsed": 1.1083333333333318,
+          "struck": true,
+          "audible": false,
+          "source": {
+            "from": {
+              "x": 11670,
+              "y": 8000
+            },
+            "to": {
+              "x": 12160,
+              "y": 7930
+            }
+          }
+        }
+      },
+      "finalXp": {
+        "mage": 21089,
+        "archer": 24386,
+        "knight": 19681,
+        "occultist": 20232
+      },
+      "northObjectiveCredits": {
+        "goal:interact:11.north": {
+          "knight": 5
+        }
+      },
+      "qualification": "Fresh full play of intermediate 1da45579. The extra manual attribution was found in review and removed in final a636a0fa."
+    }
+  },
+  "focusedDrop": {
+    "input": "/tmp/honro-stage11-current-baseline/round12.json",
+    "scope": "Actual normal Continue and App.drop from a natural R12 snapshot; focused path only",
+    "before": {
+      "id": "p-archer",
+      "x": 10207.970394343683,
+      "y": 8191.013947022441,
+      "hp": 567,
+      "focus": 166,
+      "moveLeft": 1595,
+      "dead": false,
+      "acted": false
+    },
+    "after": {
+      "id": "p-archer",
+      "x": 10207.970394343683,
+      "y": 8768.405921131263,
+      "hp": 567,
+      "focus": 166,
+      "moveLeft": 1595,
+      "dead": false,
+      "acted": false
+    },
+    "supportBefore": "rv-root-east-descent",
+    "supportAfter": "rv-lower-refuge-rock",
+    "frames": 211,
+    "fallDamage": 0,
+    "round": 12,
+    "phase": "aim",
+    "geometryUnchanged": true,
+    "movementBudgetUnchanged": true,
+    "actions": [
+      {
+        "op": "app-operation",
+        "operation": "select",
+        "round": 12,
+        "actor": "p-archer",
+        "frame": 0,
+        "id": "p-archer"
+      },
+      {
+        "op": "app-operation",
+        "operation": "drop",
+        "round": 12,
+        "actor": "p-archer",
+        "frame": 0,
+        "accepted": true
+      }
+    ]
+  },
+  "screens": [
+    {
+      "sourceHash": "71e33eb754f5a016c065bcbabdc1652fd5b86797cf96096786ac0aec73c9d990",
+      "currentSource": "e7a387532f8249e3bdf315a80a01b56c258d8830",
+      "round": 12,
+      "phase": "aim",
+      "input": "/tmp/honro-stage11-current-drop/after.json",
+      "viewId": "refuge",
+      "view": {
+        "x": 9470,
+        "y": 8660,
+        "scale": 0.7
+      },
+      "pngSha256": "21b4ff2e8445df700f570d4dec43e358bae7ceb369a35ccdba18200980be4f4f",
+      "scope": "Production HonroScene Native Canvas, independent process, unmodified actual fresh-play checkpoint. No DOM/HUD/browser screenshot claim."
+    },
+    {
+      "sourceHash": "71e33eb754f5a016c065bcbabdc1652fd5b86797cf96096786ac0aec73c9d990",
+      "currentSource": "e7a387532f8249e3bdf315a80a01b56c258d8830",
+      "round": 1,
+      "phase": "aim",
+      "input": "/tmp/honro-stage11-current-preflight/initial.json",
+      "viewId": "mobile",
+      "view": {
+        "x": 784,
+        "y": 6220,
+        "scale": 0.82,
+        "w": 390,
+        "h": 844
+      },
+      "pngSha256": "b36e2971133f0a2fb2dcb0d6985922bfca7022e41de10b4cb172882497cc2fd9",
+      "scope": "Production HonroScene Native Canvas, independent process, unmodified actual fresh-play checkpoint. No DOM/HUD/browser screenshot claim."
+    },
+    {
+      "sourceHash": "71e33eb754f5a016c065bcbabdc1652fd5b86797cf96096786ac0aec73c9d990",
+      "currentSource": "e7a387532f8249e3bdf315a80a01b56c258d8830",
+      "round": 1,
+      "phase": "aim",
+      "input": "/tmp/honro-stage11-current-preflight/initial.json",
+      "viewId": "overview",
+      "view": {
+        "x": 8000,
+        "y": 7500,
+        "scale": 0.09,
+        "w": 1600,
+        "h": 1000
+      },
+      "pngSha256": "79290fe1a66945489c9cfff7b61af4cff3f34b734972bf97baef50755e6ce824",
+      "scope": "Production HonroScene Native Canvas, independent process, unmodified actual fresh-play checkpoint. No DOM/HUD/browser screenshot claim."
+    },
+    {
+      "sourceHash": "71e33eb754f5a016c065bcbabdc1652fd5b86797cf96096786ac0aec73c9d990",
+      "currentSource": "e7a387532f8249e3bdf315a80a01b56c258d8830",
+      "round": 1,
+      "phase": "aim",
+      "input": "/tmp/honro-stage11-current-preflight/initial.json",
+      "viewId": "overview",
+      "view": {
+        "x": 8000,
+        "y": 7500,
+        "scale": 0.09,
+        "w": 1600,
+        "h": 1000
+      },
+      "pngSha256": "6f50fd053f8cb1b269f45f78c393575caec408f49cd3bad55759e3a83aad1059",
+      "scope": "Production HonroScene Native Canvas, independent process, unmodified actual fresh-play checkpoint. No DOM/HUD/browser screenshot claim."
+    },
+    {
+      "sourceHash": "71e33eb754f5a016c065bcbabdc1652fd5b86797cf96096786ac0aec73c9d990",
+      "currentSource": "e7a387532f8249e3bdf315a80a01b56c258d8830",
+      "round": 1,
+      "phase": "aim",
+      "input": "/tmp/honro-stage11-current-preflight/initial.json",
+      "viewId": "entry",
+      "view": {
+        "x": 1280,
+        "y": 6270,
+        "scale": 0.66
+      },
+      "pngSha256": "40676beffadd5d3a7c605cad863ca25f44629b26c7486f786ad8f82157410c16",
+      "scope": "Production HonroScene Native Canvas, independent process, unmodified actual fresh-play checkpoint. No DOM/HUD/browser screenshot claim."
+    }
+  ],
+  "limitations": [
+    "Native App/frame/input and idealized legal aim, with DOM/storage/audio doubles; not browser or human play",
+    "Prepared original Stage11 profile, not earned continuous campaign",
+    "10-13-round design band is diagnostic only after the latest user instruction; not a standalone release blocker",
+    "Survival count is descriptive. No extra all-heroes-alive approval gate",
+    "No new deployment or master merge"
+  ],
+  "focusedFinalContinue": {
+    "phase": "won",
+    "round": 17,
+    "stopReason": null,
+    "seconds": 6.580622998,
+    "remainingEnemies": 34,
+    "kills": 12,
+    "heroes": [
+      {
+        "cls": "archer",
+        "hp": 794,
+        "maxHp": 794
+      },
+      {
+        "cls": "mage",
+        "hp": 552.3218240000001,
+        "maxHp": 761
+      },
+      {
+        "cls": "knight",
+        "hp": 1409.601568,
+        "maxHp": 1429
+      },
+      {
+        "cls": "occultist",
+        "hp": 381.44172799999996,
+        "maxHp": 784
+      }
+    ],
+    "fallen": [],
+    "done": {
+      "11.thread": true,
+      "11.entry-threat": true,
+      "11.exit-threat": true,
+      "11.exit": true,
+      "11.north": true
+    },
+    "actions": 10,
+    "skills": {
+      "M10": 1
+    },
+    "hpDamageTaken": 0,
+    "hpDamageDealt": 0,
+    "shieldDamageDealt": 0,
+    "externalWrites": [],
+    "engineRecoveries": [],
+    "settlementBoundary": {
+      "phase": "won",
+      "appDone": true,
+      "inputReady": false,
+      "projectiles": 0,
+      "volley": false,
+      "actorMotionBusy": false,
+      "activeMelee": [],
+      "dialogue": false,
+      "cast": {
+        "skill": "M10",
+        "refunded": true
+      }
+    },
+    "appOutcome": {
+      "done": true,
+      "cleared": {
+        "visits": 1,
+        "rounds": 17
+      },
+      "history": {
+        "revision": 1,
+        "phase": "A",
+        "run": "honro-map-stage-11-1793734195519",
+        "round": 17,
+        "steps": [
+          "11.thread",
+          "11.entry-threat",
+          "11.exit-threat",
+          "11.exit",
+          "11.north"
+        ],
+        "slots": [
+          "11.reviewed.arrival",
+          "11.reviewed.thread",
+          "11.reviewed.approach",
+          "11.reviewed.advance",
+          "11.reviewed.low-beast",
+          "11.reviewed.high-sightline",
+          "11.reviewed.cover-guide",
+          "11.reviewed.spirit-release",
+          "11.reviewed.north-warning",
+          "11.reviewed.north-pair",
+          "11.reviewed.gather",
+          "11.reviewed.bell",
+          "11.reviewed.reaction",
+          "11.reviewed.depart"
+        ],
+        "reviewedNarrative": {
+          "revision": 1,
+          "status": "gemini_pass1_parent_review_gemini_pass3_complete",
+          "rows": [
+            "EDGE.ARRIVALS_11_0",
+            "A2.S11.INTRO.01",
+            "A2.S11.INTRO.02",
+            "A2.S11.INTRO.03",
+            "A2.S11.INTRO.04",
+            "A2.S11.MID.01",
+            "A2.S11.MID.02",
+            "A2.S11.POPUP.01",
+            "A2.S11.MID.03",
+            "A2.S11.MID.04",
+            "A2.S11.MID.05",
+            "A2.S11.COMPLETE.02",
+            "A2.S11.COMPLETE.05"
+          ],
+          "withheld": []
+        }
+      }
+    },
+    "priorityCoverage": {
+      "decisions": 0,
+      "eligibleDecisions": 0,
+      "attempts": 0,
+      "accepted": 0,
+      "archivedEligibleStates": 0
+    },
+    "projectSha256": "71e33eb754f5a016c065bcbabdc1652fd5b86797cf96096786ac0aec73c9d990",
+    "stageSha256": "4948b86ccd53195018e02fe3f62bbe6630785a3400a06ddd20ed2b1166de85be",
+    "geometrySha256": "83f5319feeb2fc40bc90180be216f63546c677ff63be2e296fb9cce5a967e5af",
+    "entryProfileSha256": "c190fff58350d244bd50a3483af403d13de5a15f05916ceb29db84fa4c99f4c3",
+    "runnerSha256": "627fe724e2255843f69311570f49a38b12c3e8559c95ad36c9eeeab471e4c101",
+    "baselineFixture": {
+      "originalArtifactSha256": "d200e1265a2c7ee5d02bf84ce17952a34227fd59d123a5ad624a8de7871ed5cb",
+      "originalProfileSha256": "08f3195cf9167334401290f7dd938b2950636676a70bf01994cd386c5d9f10e7",
+      "expeditionProfileSha256": "0c4f49bde9acd801ac1b9e6e0d99f4c7af07c1323578243ba23901aa408d6131",
+      "fixtureDiff": [
+        {
+          "path": "settings.difficulty",
+          "before": "normal",
+          "after": "story"
+        }
+      ],
+      "training": "Skipped: original prepared legal growth/loadout/gear inherited byte-for-byte apart from difficulty",
+      "classification": "New expedition baseline diagnostic; previous tactical fixture kept separate"
+    },
+    "operationMode": "NATIVE_APP_ACTION_WITH_PRODUCTION_SELECTED_PREVIEW",
+    "scope": "Loaded original prepared entry fixture; original lineage only, not a continuous campaign. XP/ranks/equipment inherited without budget replacement. Production reviewed-v4 actual App frame/actions with DOM/storage/render/clock doubles and idealized aim; not browser input.",
+    "rawResultSha256": "da6fda11f27a5d03757d30d863dac6d10f7e0bc9f5ad0e177e0026c118cd4e6f",
+    "rawTerminalSha256": "5edfdb8b0c8f8ef66e7d0429fcb40ce6f9ecaf669d1e823e80553d8f81fbba95",
+    "bellProof": {
+      "postFight": true,
+      "ambientSouls": true,
+      "bell": {
+        "elapsed": 1.1083333333333318,
+        "struck": true,
+        "audible": false,
+        "source": {
+          "from": {
+            "x": 11670,
+            "y": 8000
+          },
+          "to": {
+            "x": 12160,
+            "y": 7930
+          }
+        }
+      }
+    },
+    "finalXp": {
+      "mage": 21093,
+      "archer": 24392,
+      "knight": 19665,
+      "occultist": 20237
+    },
+    "northObjectiveCredits": {},
+    "qualification": "Final a636a0fa normal Continue from real R17. Not a fresh full play. Entry actor resources and poses asserted identical."
+  },
+  "unchangedXpAfterFinalFix": {
+    "baseline": {
+      "mage": 21093,
+      "archer": 24392,
+      "knight": 19665,
+      "occultist": 20237
+    },
+    "final": {
+      "mage": 21093,
+      "archer": 24392,
+      "knight": 19665,
+      "occultist": 20237
+    },
+    "equal": true,
+    "finalNorthManualCreditAbsent": true
+  },
+  "finalCommit": "a636a0faf586ad40f7009dc3d4f94c5bab15ab14",
+  "masterRecheckedAt": "2026-11-03T19:36:25Z",
+  "masterAtRecheck": "e7a387532f8249e3bdf315a80a01b56c258d8830"
+}
