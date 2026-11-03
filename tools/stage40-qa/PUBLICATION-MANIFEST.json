@@ -365,22 +365,32 @@
       "native": "d215e3ea45e4ee43263dfd08d0193ae2dbd8917d",
       "canonical": "4b5e31931249f8fe194047fa22ef5f6def3ab8fd",
       "tree": "27703b82500a85dd26dd1eb59c0431f03cc71aa0"
+    },
+    {
+      "native": "88f1fc027ea251126aab42ac951218fa06460908",
+      "canonical": "f8bbac4e79e3eec2fc3996f57af0f71eeef9d3fa",
+      "tree": "1548ce31a4a16cef1ff0259ee0cac5f1fa99467a"
+    },
+    {
+      "native": "4df27e74cf0c56158c9f17d9042c0abd065bdc3d",
+      "canonical": "8fefc6d46cf1cfd18b2043ebc32da935b9954269",
+      "tree": "cb4d03e13b3f276ed47f8e54a60d324c65982c3f"
     }
   ],
   "pendingPublication": null,
   "currentComparison": {
-    "source": "4b5e31931249f8fe194047fa22ef5f6def3ab8fd",
-    "native": "d215e3ea45e4ee43263dfd08d0193ae2dbd8917d",
-    "runId": 41621782011,
+    "source": "8fefc6d46cf1cfd18b2043ebc32da935b9954269",
+    "native": "4df27e74cf0c56158c9f17d9042c0abd065bdc3d",
+    "runId": 41624405996,
     "status": "running",
-    "scope": "One actual browser original-profile comparison; total20 rounds includes return;60-minute QA computation bound;no deployment"
+    "scope": "Exact failed R4 save normal-import continuation;not uninterrupted;total20 includes return;no deployment"
   },
   "lastFailedComparison": {
-    "source": "b5463add579017b58ebac97c003626157d43ab7d",
-    "runId": 41610792763,
-    "artifactId": 13220691538,
-    "sha256": "c318c42c9d307646bee76613e7a2dc24efbde74833f91732283a32d753927a0d",
-    "outcome": "R25;41/42;boss2HP;archer dead;four residents alive;no return"
+    "source": "4b5e31931249f8fe194047fa22ef5f6def3ab8fd",
+    "runId": 41621782011,
+    "artifactId": 13225465219,
+    "sha256": "3f815e8cee0a5fec4084e0c480973e25e5ed84fc2636349d1ba8630b07e4b413",
+    "outcome": "R4 facing replan controller assertion;37 foes;all heroes/residents alive;9 shots;no stage outcome"
   },
   "qaWorkflow": {
     "path": ".github/workflows/stage40-qa.yml",
@@ -388,9 +398,9 @@
     "permissions": "contents:read",
     "status": "Running",
     "buildContract": "Exact SHA; genuine unchanged Stage31 gate; normal build; one actual UI run; artifacts only; no deployment.",
-    "branch": "work/stage40-qa/20261103-tolerant-01",
-    "source": "4b5e31931249f8fe194047fa22ef5f6def3ab8fd",
-    "runId": 41621782011
+    "branch": "work/stage40-qa/20261103-r4-continuation-01",
+    "source": "8fefc6d46cf1cfd18b2043ebc32da935b9954269",
+    "runId": 41624405996
   },
   "nativeFunctionalComparison": {
     "protocol": "_local/reports/stage40-finishing-01/protocol.json",
@@ -424,6 +434,10 @@
     {
       "runId": 41610792763,
       "result": "R25 boss2HP remains;no return"
+    },
+    {
+      "runId": 41621782011,
+      "result": "R4 facing replan controller assertion;37 foes;all heroes/residents alive;9 shots;no stage outcome"
     }
   ],
   "focusedRuns": [
