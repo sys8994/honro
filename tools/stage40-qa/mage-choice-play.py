@@ -125,11 +125,12 @@ with sync_playwright() as w:
    p.screenshot(path=str(out/'idle-guide.png'))
    p.keyboard.down('Space')
    try:
-    p.wait_for_function('target=>HonroApp.charging&&HonroApp.chargePower(performance.now())>=target',arg=max(0,c['power']-.05),timeout=8000,polling=16)
-    preview_before=p.evaluate('()=>({power:HonroApp.chargePower(performance.now()),preview:HonroApp.scene.preview})')
-    p.screenshot(path=str(out/'charging-guide.png'))
-    preview_after=p.evaluate('()=>({power:HonroApp.chargePower(performance.now()),preview:HonroApp.scene.preview})')
-    (out/'preview-window.json').write_text(json.dumps({'before':preview_before,'after':preview_after},indent=2))
+    if variant!='basic':
+     p.wait_for_function('target=>HonroApp.charging&&HonroApp.chargePower(performance.now())>=target',arg=max(0,c['power']-.05),timeout=8000,polling=16)
+     preview_before=p.evaluate('()=>({power:HonroApp.chargePower(performance.now()),preview:HonroApp.scene.preview})')
+     p.screenshot(path=str(out/'charging-guide.png'))
+     preview_after=p.evaluate('()=>({power:HonroApp.chargePower(performance.now()),preview:HonroApp.scene.preview})')
+     (out/'preview-window.json').write_text(json.dumps({'before':preview_before,'after':preview_after},indent=2))
     p.wait_for_function('target=>HonroApp.charging&&HonroApp.chargePower(performance.now())>=target',arg=max(0,c['power']-.02),timeout=8000,polling=16)
    finally:p.keyboard.up('Space')
    p.wait_for_timeout(1200);ready();record('actual-ui-cast',{'choice':c,'actual':p.evaluate('(id)=>HonroApp.engine.b.lastShots?.[id]',actor)})
