@@ -1,4 +1,5 @@
 import {authorStage6Prototype} from './author.mjs';
+import {splitLegacyRocks} from './rock-split.mjs';
 import {enableExpeditionBaseline,isolateBaselinePlanning} from './baseline-condition.mjs';
 /** Diagnostic reuse of existing positioning controller. Production Engine/App;
  * DOM/render doubles. Old route policies are calibration, not accepted cohorts. */
@@ -12,14 +13,14 @@ import {execFileSync} from 'node:child_process';
 import {appHarness,plain} from '../../tests/app-regression-helpers.mjs';
 const stage=Number(process.argv[2]||1),seed=Number(process.argv[3]||1103),policy=process.argv[4]||'legacy',out=`_local/reports/${process.env.HONRO_QA_BASELINE==='story'?'act1-expedition-baseline-20261103':'act1-gameplay-20261103'}/stage${stage}-authored-prototype-${policy}-${seed}`;
 await mkdir(out,{recursive:true});const sourceAtStart=execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim();const sourceDirtyAtStart=execFileSync('git',['status','--short'],{encoding:'utf8'}).trim(),runnerSha256=createHash('sha256').update(await readFile(new URL(import.meta.url))).digest('hex');
-const h=await appHarness({productionStory:true,productionInputActions:policy.includes('appops')}),{g,C}=h;g.HONRO_PROJECT=authorStage6Prototype(g.HONRO_PROJECT);
+const h=await appHarness({productionStory:true,productionInputActions:policy.includes('appops')}),{g,C}=h;g.HONRO_PROJECT=authorStage6Prototype(g.HONRO_PROJECT);if(process.env.HONRO_STAGE6_ROCK_SPLIT==='1')g.HONRO_PROJECT=splitLegacyRocks(g.HONRO_PROJECT);
 vm.runInContext(`{let state=${seed}>>>0;Math.random=()=>{state+=0x6D2B79F5;let t=state;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return((t^t>>>14)>>>0)/4294967296;};}`,g);
 vm.runInContext(await readFile('shared/runtime/interactions.js','utf8'),g);
 const paths={2:'stage02-positioning',3:'stage03-positioning',4:'stage04-positioning',6:'stage06-bridge',7:'stage07-roots'};
 const entryPath=stage===1?null:`game/docs/stage-review/${paths[stage]}/evidence/entry-profile.json`;
 const profile=entryPath?JSON.parse(await readFile(entryPath)).profile:plain(g.AppRegression.fresh());
 g.QA_BASELINE=enableExpeditionBaseline(h,{out,stage,seed,policy});
-const training=policy.includes('focused')?focusedProfile(g,profile):[];profile.settings.debugMode=false;const app=h.load(profile);app.launch(stage);const greybox={scope:"Unshipped cloned compiled map overlay applied before App launch; no post-launch actor teleport, no final art"};await writeFile(out+"/geometry-fixture.json",JSON.stringify(greybox));g.HonroApp=app;app.scene.render=()=>{};if(!policy.includes('appops'))h.finish(app);
+const training=policy.includes('focused')?focusedProfile(g,profile):[];profile.settings.debugMode=false;const app=h.load(profile);app.launch(stage);const greybox={scope:"Unshipped cloned compiled map overlay applied before App launch; no post-launch actor teleport, no final art; optional explicitly selected rock-split diagnostic"};await writeFile(out+"/geometry-fixture.json",JSON.stringify(greybox));g.HonroApp=app;app.scene.render=()=>{};if(!policy.includes('appops'))h.finish(app);
 g.QA_POLICY=policy.replace(/-damageaudit|-appops/g,'');let aimState=seed>>>0;const aimRandom=()=>{aimState+=0x6D2B79F5;let t=aimState;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return((t^t>>>14)>>>0)/4294967296;};const e=app.engine,b=e.b,initial=plain(b),events=[],inputs=[],damage=[],poses=[];let ticks=0;
 const queueLog=[],switchTeam=e.switchTeam.bind(e);e.switchTeam=function(...args){const from=b.side,phase=b.phase,r=switchTeam(...args);if(from===0&&b.side===1)queueLog.push({round:b.round,queue:[...b.queue],pursuit:b.units.filter(u=>u.honroSpawnSource==='pursuit').map(u=>{const p=e.enemyQueuePriority(u);return{id:u.id,x:u.x,y:u.y,lastAct:u.lastAct,born:u.honroDensityBornRound,tier:p?.tier,band:p?.band,distance:p?.distance,grounded:e.grounded(u)};}),objective:{x:e.unit('objective')?.x,y:e.unit('objective')?.y}});return r;};
 for(const op of ['move','jump','drop','fire','wait','item','select']){const f=e[op]?.bind(e);if(!f)continue;e[op]=(...args)=>{const u=e.active,before=u&&{id:u.id,x:u.x,y:u.y,hp:u.hp,moveLeft:u.moveLeft};const requested=[...args];if(op==='fire'&&u?.side===0&&policy.includes('cohort'))args[1]+=(aimRandom()-.5)*.3;const ret=f(...args);if(op!=='move'||ticks%30===0)inputs.push({tick:ticks,round:b.round,op,requested:requested.map(v=>typeof v==='object'?v.id:v),args:args.map(v=>typeof v==='object'?v.id:v),before,accepted:ret});return ret;};}
