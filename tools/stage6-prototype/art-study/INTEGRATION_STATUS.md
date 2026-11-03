@@ -85,3 +85,6 @@ Independent overview and detailed review of the preceding panorama (run 41673852
 
 ## Geological-region panorama study
 The geological guide composed from the exact physical road and proposed strata was used only as conceptual input; a generated source copied the guide as a symmetric V and was rejected before implementation. This separate source revision organizes varied left, center, right and deeper strata in one composition, retaining the previously promising surface exposures. Original and half-size trace input are preserved; physical terrain remains authoritative. Source fidelity, symmetry, actual composition and mobile review remain pending.
+
+## Quiet bed comparison
+The region-designed source (run 41677330947) was rejected for a dark bowl-like patch; the earlier continuous fractured bed was rejected for repeated contrast. This small comparison restores the prior bed with half its source opacity while keeping the distinct surface rocks unchanged. It does not change gameplay; sparse-detail versus blankness, fidelity and visual acceptance remain open.
