@@ -23,10 +23,10 @@ return {hp:u.hp,startHP:q.startHP,x:u.x,startX:q.startX,bind:!!u.enemySoftBind,p
 rows=[]
 def activate(locator,mobile):
  locator.tap() if mobile else locator.click()
-READ_FRAME=r'''()=>{const a=HonroApp,u=a.engine.unit('p-archer'),r=a.scene.canvas.getBoundingClientRect(),s=a.scene;return {x:s.x,y:s.y,scale:s.scale,canvasLeft:r.left,canvasWidth:r.width,head:r.top+r.height/2+(u.y-u.h-s.y)*s.scale,feet:r.top+r.height/2+(u.y-s.y)*s.scale,hudTop:document.querySelector('.honro-compact-hud').getBoundingClientRect().top,headerBottom:document.querySelector('.battle-head').getBoundingClientRect().bottom};}'''
+READ_FRAME=r'''()=>{const a=HonroApp,u=a.engine.unit('p-archer'),r=a.scene.canvas.getBoundingClientRect(),s=a.scene;const actors=[u,a.engine.unit(monsterBrowser.id)].map(v=>({id:v.id,left:r.left+r.width/2+(v.x-v.r*(v.side===1?3:2)-s.x)*s.scale,right:r.left+r.width/2+(v.x+v.r*(v.side===1?3:2)-s.x)*s.scale,head:r.top+r.height/2+(v.y-v.h-s.y)*s.scale,feet:r.top+r.height/2+(v.y-s.y)*s.scale}));return {actors,viewportWidth:innerWidth,x:s.x,y:s.y,scale:s.scale,canvasLeft:r.left,canvasWidth:r.width,head:r.top+r.height/2+(u.y-u.h-s.y)*s.scale,feet:r.top+r.height/2+(u.y-s.y)*s.scale,hudTop:document.querySelector('.honro-compact-hud').getBoundingClientRect().top,headerBottom:document.querySelector('.battle-head').getBoundingClientRect().bottom};}'''
 def frame_target(p,mobile):
  before=p.evaluate('monsterCanonical(HonroApp.engine.b)');p.evaluate('()=>{HonroApp.updateHUD(true);monsterPaint();}')
- target=p.evaluate('''()=>{const a=HonroApp,b=a.engine.b,u=a.engine.unit('p-archer'),r=a.scene.canvas.getBoundingClientRect(),hud=document.querySelector('.honro-compact-hud').getBoundingClientRect(),mini=document.querySelector('#minimap').getBoundingClientRect(),feet=Math.min(hud.top-18,r.bottom-18),y=u.y-(feet-r.top-r.height/2)/a.scene.scale;return {x:Math.max(1,Math.min(mini.width-1,u.x/b.width*mini.width)),y:Math.max(1,Math.min(mini.height-1,y/b.height*mini.height))};}''')
+ target=p.evaluate('''()=>{const a=HonroApp,b=a.engine.b,u=a.engine.unit('p-archer'),r=a.scene.canvas.getBoundingClientRect(),hud=document.querySelector('.honro-compact-hud').getBoundingClientRect(),mini=document.querySelector('#minimap').getBoundingClientRect(),feet=Math.min(hud.top-18,r.bottom-18),y=u.y-(feet-r.top-r.height/2)/a.scene.scale;return {x:Math.max(1,Math.min(mini.width-1,((u.x+a.engine.unit(monsterBrowser.id).x)/2)/b.width*mini.width)),y:Math.max(1,Math.min(mini.height-1,y/b.height*mini.height))};}''')
  if mobile:p.locator('#minimap').tap(position=target)
  else:p.locator('#minimap').click(position=target)
  p.evaluate('monsterPaint()');frame=p.evaluate(READ_FRAME)
@@ -38,7 +38,7 @@ def frame_target(p,mobile):
   x=frame['canvasLeft']+frame['canvasWidth']*.12;y=(frame['headerBottom']+frame['hudTop'])/2;delta=max(-y/2,min(y/2,delta))
   p.mouse.move(x,y);p.mouse.down();p.mouse.move(x,y+delta,steps=8);p.mouse.up();p.evaluate('monsterPaint()');frame=p.evaluate(READ_FRAME)
  assert p.evaluate('monsterCanonical(HonroApp.engine.b)')==before,'Normal minimap framing must not alter battle'
- assert frame['head']>=frame['headerBottom']-2 and frame['feet']<=frame['hudTop']-8,frame
+ assert all(v['head']>=frame['headerBottom']-2 and v['feet']<=frame['hudTop']-8 and v['left']>=0 and v['right']<=frame['viewportWidth'] for v in frame['actors']),frame
  return frame
 with sync_playwright() as pw, (nullcontext(os.environ['HONRO_MONSTER_BASE_URL']) if os.environ.get('HONRO_MONSTER_BASE_URL') else serve_game()) as url:
  browser=launch(pw)
