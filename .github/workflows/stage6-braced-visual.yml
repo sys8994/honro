@@ -26,6 +26,7 @@ jobs:
           npm ci --prefix game
           node tests/stage6-art-preview.mjs
           node tests/stage6-render-coverage-preview.mjs
+          node tests/stage6-deck-fractures.mjs
           # Direct builder is used solely for this labelled preview, not release evidence.
           HONRO_STAGE6_ART_PREVIEW=1 HONRO_STAGE6_ROCK_BRACED=1 node workshop/build.mjs
           python -m pip install 'playwright==1.58.0'
