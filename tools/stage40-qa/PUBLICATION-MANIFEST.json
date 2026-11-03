@@ -464,9 +464,14 @@
   ],
   "pendingPublication": null,
   "currentComparison": {
-    "status": "registered, not run",
+    "status": "failed, retained",
     "branch": "work/stage40-qa/coast-boundary-20261103",
-    "delta": "Only confirmed coast terrain-bound/contact check versus failed41675108632. Same originalR1 profile and total20-round safe-return gate."
+    "run": 41690685003,
+    "source": "583416df681392b4ed2b88d06702f3e3313ce117",
+    "native": "d2172f6462c91c1fa335def80e9f5645a803972e",
+    "artifact": 13263506783,
+    "sha256": "4a6d53d668e9ccd8ee4170c099bbc97df3f52a34358d700db44a1827a85a9e48",
+    "result": "Failed total-time acceptance: all42 defeated onlyR21; all4heroes and4residents alive; no return/settlement; noJSerrors. Actual mage stayed at dock2146 and defendedR6-10,12-13 with unused movement."
   },
   "lastFailedComparison": {
     "source": "4b5e31931249f8fe194047fa22ef5f6def3ab8fd",
@@ -533,6 +538,14 @@
       "artifact": 13253961033,
       "sha256": "27e9ef7d27713d51d7b774feb79206cbc5670b43f430f1d15c654a9d604c3bd1",
       "result": "R25 34/42 defeated; archer and occultist dead,4 residents alive,no return. Confirmed QA topAt boundary misuse strands mage on east coast; upper archer still had useful shots, so no-choice Drop never triggered."
+    },
+    {
+      "run": 41690685003,
+      "source": "583416df681392b4ed2b88d06702f3e3313ce117",
+      "native": "d2172f6462c91c1fa335def80e9f5645a803972e",
+      "artifact": 13263506783,
+      "sha256": "4a6d53d668e9ccd8ee4170c099bbc97df3f52a34358d700db44a1827a85a9e48",
+      "result": "Failed total-time acceptance: all42 defeated onlyR21; all4heroes and4residents alive; no return/settlement; noJSerrors. Actual mage stayed at dock2146 and defendedR6-10,12-13 with unused movement."
     }
   ],
   "focusedRuns": [
