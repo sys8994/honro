@@ -1,0 +1,14 @@
+# Frozen input-tolerance and late counterplay investigation
+
+Run41610792763 at canonical b5463add579017b58ebac97c003626157d43ab7d failed at R25: 41/42 defeated, boss2 HP, archer dead, other heroes and four residents alive. No safe return, no JS errors. The observed-dock cleanup branch never activated because the boss remained alive. Its narrow route capability is not a whole-stage result. Artifact13220691538 SHA256 c318c42c9d307646bee76613e7a2dc24efbde74833f91732283a32d753927a0d is retained, verified and safely extracted; full events and exact final stored profile are compressed here.
+
+Early divergence precedes the new route condition. The third M02 in both old/new runs had requested power0.39914; actual0.40252 previously dealt723 damage, while actual0.41057 dealt0 in the latest run. Movement and angle also vary, so power alone is not yet isolated as the cause. Both outcomes remain valid failures. At R24 the knight actually dealt595 of597 bossHP; the final2 HP is not rejection by the old damage-score threshold. A read-only native reload of the exact R25 save finds no mage plan, but ordinary hero selection exposes a safe knight S01 plan for2 damage. This prediction requires actual browser proof and does not change the failed round budget.
+
+## One bounded registered calibration
+
+On immutable work/stage40-tolerance/20261103-input-01, unchanged product/runtime:
+1. Original prepared profile, normal UI import/Continue, existing movement and joystick input. Observe only the first three actual casts (maximum16 decisions/R6). Preserve complete pre-cast battle/profile snapshots for diagnosis, without injecting them into the live battle.
+2. For each selected cast, detached current-state full projectile simulations across angle offsets -1,-0.25,0,+0.25,+1 degrees and charge offsets -0.05,-0.03,-0.01,0,+0.01,+0.03,+0.05. Record damage, complete path and friendly fire for every sample, including failures. This is an input-sensitivity matrix, not a forecast of enemy turns or a replacement for measured input. Do not change the chosen shot or normalize actual angle/power to its plan.
+3. Import the exact failed R25 profile through the UI. Select the living knight normally and attempt one current-state planned cast from its existing position, with the same tolerance matrix. No new gear, restored HP, changed enemies, moved actors or overwritten round. Success can establish usable late counterplay only, never an earlier clear or18–20R acceptance.
+
+No further whole-stage replay, new stats or terrain revision is authorized by this diagnostic. Assess whether reasonable input variation preserves meaningful damage and safe ally separation, rather than selecting a lucky seed or flawless aim. Preserve actual pixels and errors. Current product still requires final A2-integrated stage, return, readability and gameplay assessment.
