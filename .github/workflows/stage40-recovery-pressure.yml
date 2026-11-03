@@ -1,0 +1,117 @@
+name: Stage40 bounded recovery and pressure
+on:
+  push:
+    branches: ['work/stage40-recovery-pressure/**']
+permissions:
+  contents: read
+jobs:
+  stage40-qa:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 100
+    env:
+      HONRO40_BASE_REF: 7d2655bc3f88a7b20fb2d6ea1bc4c611583e9a15
+      HONRO40_PRE_PLACEMENT_REF: f18ac4677261fc9dbebd9625363d53d8272c50fc
+      OUT: _local/reports/stage40-gated-qa
+      HONRO_QA_ORIGIN: http://127.0.0.1:8870
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Install pinned browser and validate focused native contracts
+        run: |
+          set -euo pipefail
+          mkdir -p "$OUT"
+          git fetch --no-tags --depth=1 origin "$HONRO40_BASE_REF" "$HONRO40_PRE_PLACEMENT_REF"
+          npm ci
+          npm ci --prefix game
+          python -m pip install 'playwright==1.58.0'
+          python -m playwright install --with-deps chromium
+          npm --prefix game run typecheck
+          node tools/stage40-qa/scope-contract.mjs | tee "$OUT/scope.log"
+          node tools/stage40-qa/placement-correction.test.mjs | tee "$OUT/placement.log"
+          node tools/stage40-qa/build-browser-planner.mjs
+          git diff --exit-code -- tools/stage40-qa/browser-planner.js
+          python -m py_compile tools/stage40-qa/recovery-pressure-play.py tools/stage40-qa/escort_inputs.py
+          python tools/act4-ci/test_precise_aim.py
+          python tools/act4-ci/test_stage31_survival.py
+      - name: Retain published graphs
+        env:
+          HONRO_ACT4_RELEASE: '1'
+        run: |
+          set -euo pipefail
+          mkdir -p "$OUT"
+          mapfile -t refs < <(node --input-type=module -e 'import fs from "node:fs";import {selectPublishedGenerations} from "./shared/web-retention.mjs";for(const g of selectPublishedGenerations(JSON.parse(fs.readFileSync("web/manifest.json")).publishedGenerations,{now:Date.now()})){if(!/^[a-f0-9]{40}$/.test(g.sourceSha))throw Error("Invalid ref");console.log(g.sourceSha)}')
+          git fetch --no-tags --depth=1 origin 152c9a01ef68002183d44702179afa357a286b98 c916eb7ba2962ae4a6b702843119949dbf484060 "${refs[@]}"
+          node tools/release/retain-published-web.mjs c916eb7ba2962ae4a6b702843119949dbf484060 --published-at 2026-11-02T23:52:25Z --evidence https://github.com/sys8994/honro/actions/runs/41548426731
+          node tools/release/retain-published-web.mjs 152c9a01ef68002183d44702179afa357a286b98 --published-at 2026-11-03T00:47:44Z --evidence https://github.com/sys8994/honro/actions/runs/41555131506
+      - name: Verify exact genuine Stage31 evidence against current source
+        id: stage31
+        run: |
+          set -euo pipefail
+          node tools/stage40-qa/restore-measured-stage31.mjs | tee "$OUT/measured-evidence-source.json"
+          if node tools/stage31/check-release.mjs > "$OUT/reuse-gate.log" 2>&1; then
+            cat "$OUT/reuse-gate.log"
+            echo 'fresh=false' >> "$GITHUB_OUTPUT"
+          elif grep -Fxq 'Error: Runtime changed after actual Engine probes.' "$OUT/reuse-gate.log"; then
+            cat "$OUT/reuse-gate.log"
+            echo 'fresh=true' >> "$GITHUB_OUTPUT"
+          else
+            cat "$OUT/reuse-gate.log"
+            exit 1
+          fi
+      - name: Prepare fresh unpublished evidence only after genuine runtime mismatch
+        if: steps.stage31.outputs.fresh == 'true'
+        env:
+          HONRO_ACT4_RELEASE: '1'
+        run: |
+          set -euo pipefail
+          node tools/act4-ci/refresh-stage31-probes.mjs prepare "$OUT"
+          # Capture only. Never publish until fresh measured evidence and normal gate pass.
+          node workshop/build.mjs | tee "$OUT/preview-build.log"
+          sha256sum HONRO.html web/manifest.json > "$OUT/preview-served-sha256.txt"
+      - name: Unchanged Stage31 fresh first-shot trials and normal-input objective
+        if: steps.stage31.outputs.fresh == 'true'
+        run: |
+          set -euo pipefail
+          python -m http.server 8870 --bind 127.0.0.1 > "$OUT/server.log" 2>&1 &
+          server=$!; trap 'kill "$server" 2>/dev/null || true' EXIT
+          sleep 2
+          for trial in 1 2 3; do
+            HONRO_FIRST_SHOT_DIAGNOSTIC=1 HONRO_RUN_DIR="$OUT/first-shot-$trial" python tools/act4-ci/stage31-fullplay.py > "$OUT/first-shot-$trial.log" 2>&1
+          done
+          HONRO_RUN_DIR="$OUT/stage31" python tools/act4-ci/stage31-fullplay.py > "$OUT/stage31.log" 2>&1
+      - name: Bind genuine measured evidence and enforce normal production gate
+        run: |
+          set -euo pipefail
+          if [ "${{ steps.stage31.outputs.fresh }}" = 'true' ]; then
+            node tools/act4-ci/refresh-stage31-probes.mjs attach "$OUT"
+          fi
+          cp tools/stage31/production-package.json "$OUT/stage31-production-package.json"
+          npm run build | tee "$OUT/gated-build.log"
+          sha256sum HONRO.html web/manifest.json > "$OUT/final-served-sha256.txt"
+      - name: Register three independent normal-save recovery and pressure observations
+        run: |
+          set -euo pipefail
+          node --input-type=module -e 'import fs from "node:fs";import {createHash} from "node:crypto";import {runtimeDigest} from "./tools/stage31/probes.mjs";const hash=p=>createHash("sha256").update(fs.readFileSync(p)).digest("hex");fs.writeFileSync(process.env.OUT+"/protocol.json",JSON.stringify({sourceCommit:process.env.GITHUB_SHA,runId:process.env.GITHUB_RUN_ID,runtimeSha256:await runtimeDigest(),htmlSha256:hash("HONRO.html"),manifestSha256:hash("web/manifest.json"),stage31PackageSha256:hash("tools/stage31/production-package.json"),driverSha256:hash("tools/stage40-qa/recovery-pressure-play.py"),plannerSha256:hash("tools/stage40-qa/browser-planner.js"),limits:{combatDiagnosticRounds:24,totalCompletionRounds:20,combatWallSeconds:2400},scope:"Three independent actual saved-state continuations: R6 mage normal east-to-west recovery, R11 upper-post Defend and R11 normal Drop plus Defend; same next enemy phase, all harm retained. No whole-stage comparison. Not earned1-39, cohort or human fun approval. Production hold."},null,2))'
+          python -m http.server 8870 --bind 127.0.0.1 > "$OUT/final-server.log" 2>&1 &
+          server=$!; trap 'kill "$server" 2>/dev/null || true' EXIT
+          sleep 2
+          status=0
+          for mode in mage-recovery upper-defend dock-defend; do
+            HONRO40_CASE="$mode" HONRO_CAPTURE_URL="http://127.0.0.1:8870/HONRO.html" HONRO_CAPTURE_OUT="$OUT/$mode" python tools/stage40-qa/recovery-pressure-play.py > "$OUT/$mode.log" 2>&1 || status=1
+          done
+          exit "$status"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage40-qa-${{ github.sha }}
+          path: |
+            _local/reports/stage40-gated-qa/
+          retention-days: 7
