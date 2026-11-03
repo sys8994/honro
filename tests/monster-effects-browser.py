@@ -33,10 +33,10 @@ def frame_target(p,mobile):
  # A minimap tap is coarse on tall maps. Finish through the real canvas pointer
  # pan path, never by assigning camera coordinates after fixture setup.
  for _ in range(3):
-  delta=frame['hudTop']-18-frame['feet']
-  if abs(delta)<=6:break
-  x=frame['canvasLeft']+frame['canvasWidth']*.12;y=(frame['headerBottom']+frame['hudTop'])/2;delta=max(-y/2,min(y/2,delta))
-  p.mouse.move(x,y);p.mouse.down();p.mouse.move(x,y+delta,steps=8);p.mouse.up();p.evaluate('monsterPaint()');frame=p.evaluate(READ_FRAME)
+  delta=frame['hudTop']-18-frame['feet'];dx=(frame['viewportWidth']-min(v['left'] for v in frame['actors'])-max(v['right'] for v in frame['actors']))/2
+  if abs(delta)<=6 and abs(dx)<=6:break
+  x=frame['canvasLeft']+frame['canvasWidth']*.12;y=(frame['headerBottom']+frame['hudTop'])/2;delta=max(-y/2,min(y/2,delta));dx=max(-frame['canvasWidth']/3,min(frame['canvasWidth']/3,dx))
+  p.mouse.move(x,y);p.mouse.down();p.mouse.move(x+dx,y+delta,steps=8);p.mouse.up();p.evaluate('monsterPaint()');frame=p.evaluate(READ_FRAME)
  assert p.evaluate('monsterCanonical(HonroApp.engine.b)')==before,'Normal minimap framing must not alter battle'
  assert all(v['head']>=frame['headerBottom']-2 and v['feet']<=frame['hudTop']-8 and v['left']>=0 and v['right']<=frame['viewportWidth'] for v in frame['actors']),frame
  return frame
