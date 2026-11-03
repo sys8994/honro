@@ -1,21 +1,33 @@
 {
-  "status": "UNPUBLISHED FAILED DIAGNOSTIC; not release approval",
+  "status": "DEV ONLY. Native R1 to safe return/settlement R18, exact saved outcome reload verified. Original post-settlement harness error retained. Browser, fun, cohort and integrated A2 acceptance pending.",
   "base": "7d2655bc3f88a7b20fb2d6ea1bc4c611583e9a15",
-  "source": "069b11575100307982868816dd1504df1313f938",
+  "source": "37b8fba1408843ba05f4b5413b61ab57f02b2cee",
   "branch": "work/stage40-finale/20261103",
-  "productSharedTree": "bfd01e19952dec64ee25789b1719d3ccb4740b06",
+  "productSharedTree": "3dcef07de2d6c75628db9d0b125527ea94a67684",
   "commits": [
     "f9c973d33194f1dff68abe0e8fa2a8a9d112cc1f",
     "c03cd92f38e0e375cdd2437094e9b660f59f1adf",
     "16f21d99494024a35009aece1c70f4cd0c533ba7",
     "f5be9ff8f5873e1db0042750de90d2d06c13e31a",
     "348a5312adc35c54044e88e2401ef6a1da535165",
-    "069b11575100307982868816dd1504df1313f938"
+    "069b11575100307982868816dd1504df1313f938",
+    "23eb2330f6db913b822e8a673e9f7514cde70342",
+    "38f7a7e657456e6fefe488a7bc4eb8fb2c71dc4a",
+    "2533269ca6ed47a02c3765b2bf9d60c6632244c5",
+    "3416c628b11a154a37a31a77929def5f27448270",
+    "f0406082948cd6c5ee0f21a02f26c4dac4034695",
+    "45a7c413199150b734b419ec65a00f41c5e8985f",
+    "b631d1b1c43f5aa1ef5597c83c909f1b315adf3f",
+    "187651d250732939078c3b20638ce3d822ed01cc",
+    "e47d615a3409312e7fa0bb5e1dbcaca11a96a79b",
+    "16f88a28b8c9f37c3ff5365c163047fb8b6bc8d4",
+    "3e84de7726215bbbda87d14d3a2f45b7d6fe7d90",
+    "37b8fba1408843ba05f4b5413b61ab57f02b2cee"
   ],
   "files": [
     {
       "path": "shared/act4-finale-author.mjs",
-      "sha256": "01a59da5c203d668e8f6aec77cdab565034cb81adaaf20adb4453b81c11fe42f"
+      "sha256": "058fb529bb3200fadd3bafb5d3929871a8e78a4dc667f7b34c5e508f55cdf410"
     },
     {
       "path": "shared/act4-finale-revision.mjs",
@@ -59,7 +71,7 @@
     },
     {
       "path": "tools/stage40-qa/bootstrap.mjs",
-      "sha256": "b0b3cd46f93ebd521325e058c5e74f532041458135acf7a023de2e7eea494d2e"
+      "sha256": "3d795ecf6a9b1895a7f839f2e288f93b4711b791c76e930713af30b28c122ff3"
     },
     {
       "path": "tools/stage40-qa/candidate-entry.mjs",
@@ -67,7 +79,7 @@
     },
     {
       "path": "tools/stage40-qa/candidate-harness.mjs",
-      "sha256": "bbe2bbd280a8c5a23fd8c3d81cc4ad61347a4de19bb5b1de25d259cd10e5a738"
+      "sha256": "3f22826953973e821fc5e1ac40ab4a6a74aeb9baba9492d30d0aef4b58feb514"
     },
     {
       "path": "tools/stage40-qa/diagnostic-target-lock.mjs",
@@ -79,7 +91,7 @@
     },
     {
       "path": "tools/stage40-qa/player-operations.mjs",
-      "sha256": "fbc8d0b429e7834a85f106bb5ff1e39170493018ea23d6e97b66888cba5c5e05"
+      "sha256": "b73dacacdf7c878255ab4d8f1f823f410881aa2274a843b395e23f90a206bd69"
     },
     {
       "path": "tools/stage40-qa/route-lock.mjs",
@@ -94,10 +106,10 @@
       "sha256": "0ba7b691ba47e77fed1402f2d331e213910410517e41f2e90f1ad1bf62af98b0"
     }
   ],
-  "protected": "Do not copy old reviewed.json or complete engine.ts; cherry-pick coherent diffs.31\u201339/current dialogues preserved. Root owns remote integration. No master/Pages.",
+  "protected": "Preserve current dialogue and Stage31\u201339 data. Integrate coherent Stage40 diffs, never replace reviewed.json or whole engine.ts. Production remains on hold.",
   "qaWorkflowContract": {
     "basis": ".github/workflows/monster-a1-integration.yml",
-    "checkout": "exact github.sha; QA-only work/stage40-finale-qa/**",
+    "checkout": "exact github.sha; QA-only work/stage40-qa/**",
     "permissions": "contents:read; no push, master, Pages or production deployment",
     "steps": [
       "npm ci; npm ci --prefix game; materialize world",
@@ -108,7 +120,7 @@
       "Capture Stage40 browser normal-entry gameplay+safe return and save/viewport, all outcomes",
       "Always upload logs, traces, screenshots, source/runtime/html/manifest SHA256 and Stage31 package"
     ],
-    "notYetImplemented": "Stage40 whole-objective browser driver and workflow need final integration source; old smoke does not prove combat or fun"
+    "status": "Driver and QA-only workflow prepared, not run. Final coherent integration, viewport and fun review remain pending."
   },
   "evidence": {
     "stage40-sweep-approach-02": {
@@ -124,6 +136,136 @@
       "turns.jsonl": "49b4d20a11ace3585c6b647689df503bcc7dc582c52b81e35d81dc47051d6e1a",
       "final-profile.json": "f15f42eb703c028a97abd04f823e2ceac9f6371b0874c6e072cdacb8b6a97ae9",
       "result.json": "17477cab3eb4061bc12f5fce9e760f023fd54c9b18884d6871d90f57b708b9f0"
+    },
+    "stage40-roles-01": {
+      "entry.json": "dac7bda3992e444b337858cb91de593bdeeec36e5eb2e5c02ad08ba19d8154b8",
+      "protocol.json": "e2d0f8f3501da1f46e25c75b9dd9cc3e818dabc1a59703470b60f11111ca78d3",
+      "turns.jsonl": "56384cc5d7d3a4dc5e0ffb172fe81ea6896b0cdc074d5c00a3fb9835325c458c",
+      "final-profile.json": "673fa0adc5ca24fcd881babfa1d37859617c35474294c8631559504e99467259",
+      "result.json": "ee4b6bfe41a18eae5f14fd929c487a8d028d452042b534a595dc06d2037946eb"
+    },
+    "stage40-deck-01": {
+      "entry.json": "f1ca5c0dc9fbb272d94680ca40e24adbdbed54b915660fc90f6cccad9e526be3",
+      "protocol.json": "3c41722802bf5fd89ffd929fee42b7c2c146f3082a1c36137ddd503b0446a169",
+      "turns.jsonl": "31142f3ddfc80765b394845921945b7d592f69d88c7a973cd1d2f7ccf9ffbcf2",
+      "final-profile.json": "450709b5483bdf8e21b81acc81fdd429cd021627294e331319fa9010f2453584",
+      "result.json": "1a55c199c556d6fda9fed49a66f438a846884ea5d6819fe90745458796c52c6d"
     }
+  },
+  "remoteHead": "135f7078aad0045b498f838a2afd759d532d672b",
+  "canonicalNativeMap": [
+    {
+      "native": "f9c973d33194f1dff68abe0e8fa2a8a9d112cc1f",
+      "canonical": "5dff8ab764f6e1601a435c0e567e63b32c51213c",
+      "tree": "c3754d5e93a3317829d64dd7b0f81efda01832cb"
+    },
+    {
+      "native": "c03cd92f38e0e375cdd2437094e9b660f59f1adf",
+      "canonical": "812b7e6a376768abdb493d62479e082335ebdc72",
+      "tree": "093594749edc0633fc74af59ba294b7788867cbc"
+    },
+    {
+      "native": "16f21d99494024a35009aece1c70f4cd0c533ba7",
+      "canonical": "d16bff631b36b4e6b4b108ef25899a66bedfa2af",
+      "tree": "f3194b6ce3257da2187f91e4a7acbf3d26ccaa05"
+    },
+    {
+      "native": "f5be9ff8f5873e1db0042750de90d2d06c13e31a",
+      "canonical": "bf4779ae29affc11046c9ef0df26a34f1cfd11f9",
+      "tree": "17b01399d191e1f42db58d873b18f402a207a0b6"
+    },
+    {
+      "native": "348a5312adc35c54044e88e2401ef6a1da535165",
+      "canonical": "b19656f1c8ae56181bd78a87ce57f4761ee07e64",
+      "tree": "d95fdd2ed4622974aefc5b29bc9264b649eeafc5"
+    },
+    {
+      "native": "069b11575100307982868816dd1504df1313f938",
+      "canonical": "56f3bbe08689e92b8e50ffb9811bda6db91ccbd7",
+      "tree": "39fe30bd5ccb88cf6514c377f4b055f3e53cfb78"
+    },
+    {
+      "native": "23eb2330f6db913b822e8a673e9f7514cde70342",
+      "canonical": "ad6f8145d234a089906e83d192468b5f96ac1f2d",
+      "tree": "03582587dd595bf56cc96f639a78c517a79dd562"
+    },
+    {
+      "native": "38f7a7e657456e6fefe488a7bc4eb8fb2c71dc4a",
+      "canonical": "722e150ff14b3a541bc627538fc51864b97fba26",
+      "tree": "824435b3e7f1fd618e5d37adb6d46b2c138a8d2c"
+    },
+    {
+      "native": "2533269ca6ed47a02c3765b2bf9d60c6632244c5",
+      "canonical": "c57cf36c2d588d022986ff7feff2a3945cc06d34",
+      "tree": "4a6775a3dafd1d065a2ba618477469bda9cc64fc"
+    },
+    {
+      "native": "3416c628b11a154a37a31a77929def5f27448270",
+      "canonical": "f64f92642aaccffac4ddb0ad51601d0dc2f78e96",
+      "tree": "261d7ff02aa4af17449a69f73f0a6ae34ce10bc1"
+    },
+    {
+      "native": "f0406082948cd6c5ee0f21a02f26c4dac4034695",
+      "canonical": "f18ac4677261fc9dbebd9625363d53d8272c50fc",
+      "tree": "16d60612df0fad4833ed29345297d7b15254cd6d"
+    },
+    {
+      "native": "45a7c413199150b734b419ec65a00f41c5e8985f",
+      "canonical": "305d7c9e6b22a54f393a414d7cc0c0231a750c8a",
+      "tree": "7fda634927ba4b261f409baaa781ede90b706338"
+    },
+    {
+      "native": "b631d1b1c43f5aa1ef5597c83c909f1b315adf3f",
+      "canonical": "6d3f93195a8bebd3b66727acfbf35cf078db8fa8",
+      "tree": "f8ebff69fca63766b63a0eb45057b83dc39f2980"
+    },
+    {
+      "native": "187651d250732939078c3b20638ce3d822ed01cc",
+      "canonical": "67a7e94e2584b0c31a5a71a800aae69952a47f3a",
+      "tree": "f7d5cb1263a0df099bda36c0f5efbe0016ad7709"
+    },
+    {
+      "native": "e47d615a3409312e7fa0bb5e1dbcaca11a96a79b",
+      "canonical": "135f7078aad0045b498f838a2afd759d532d672b",
+      "tree": "46cc122909770424ace1bbec6935079f33cafaa7"
+    }
+  ],
+  "pendingPublication": {
+    "native": "16f88a28b8c9f37c3ff5365c163047fb8b6bc8d4",
+    "reason": "Awaiting authorization to publish the additional QA report.",
+    "orderedNatives": [
+      "16f88a28b8c9f37c3ff5365c163047fb8b6bc8d4",
+      "3e84de7726215bbbda87d14d3a2f45b7d6fe7d90",
+      "37b8fba1408843ba05f4b5413b61ab57f02b2cee"
+    ],
+    "deniedPath": "tools/stage40-qa/CONTROLLER-CORRECTION.md"
+  },
+  "currentComparison": {
+    "protocol": "_local/reports/stage40-finishing-01/protocol.json",
+    "source": "3e84de7726215bbbda87d14d3a2f45b7d6fe7d90",
+    "combatRound": 16,
+    "settlementRound": 18,
+    "originalResult": "post-settlement harness error; retained unchanged",
+    "exactSaveFollowup": "_local/reports/stage40-finishing-01/settled-reload.json",
+    "acceptance": "Native functional evidence chain only",
+    "evidenceSha256": {
+      "protocol.json": "579a5cd2d003622efe43e22e094bb2d8673c359598dd75b27b1867410f7ea81c",
+      "result.json": "23ec42a6711182a43d0def3b91b246f9bb013ca6ca93b05e269ca81a04f6aeb3",
+      "final-profile.json": "14f310cfd694d74f7238bbf8e05acc786b8ebff80062c36741cc3faf3737204c",
+      "settled-reload.json": "26099ef4beaaa73d8743ae32b5924ddae364f22a4adecf913c5c935a86c600d4",
+      "analysis.json": "70923ce522256940abcd4d063750fb4354a9d47ed350e87b07212dadbeac2085"
+    }
+  },
+  "lastFailedComparison": {
+    "native": "16f88a28b8c9f37c3ff5365c163047fb8b6bc8d4",
+    "path": "_local/reports/stage40-upperfix-01",
+    "outcome": "R25;41/42;four heroes/four residents alive;zero water recoveries;no return"
+  },
+  "qaWorkflow": {
+    "path": ".github/workflows/stage40-qa.yml",
+    "trigger": "work/stage40-qa/**",
+    "permissions": "contents:read",
+    "status": "Not run",
+    "buildContract": "Exact SHA; genuine unchanged Stage31 gate; normal build; one actual UI run; artifacts only; no deployment."
   }
 }
