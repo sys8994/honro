@@ -16,7 +16,7 @@ export function applyStage6ArtPreview(input){
  for(const e of s.elements)if(rootIds.includes(e.id))e.y+=floor(e.x)-oldFloor(oldRoad,e.x);
  // Remove old BODY and central pier illustration, whose placements describe the old floor.
  s.elements=s.elements.filter(e=>!['act1-stage06-traced-body','landmark-1','place6-west-buttress','place6-mid-buttress','place6-east-buttress','place6-bridge-rigging'].includes(e.id));
- const source=read('continuous-runtime.json'),pier=read('pier-runtime-preview.json');
+ const source=read('continuous-runtime.json'),pier=read('pier-runtime-preview.json'),westPier=read('pier-west-five-runtime.json');
  const contour=road.points.map((p,i)=>(i?'L':'M')+p.x+' '+p.y).join('')+'Z';
  // A single source-traced, full-bleed formation covers the complete tested
  // camera domain. The collision contour alone determines the visible edge.
@@ -26,8 +26,9 @@ export function applyStage6ArtPreview(input){
  // One traced support per broken span. Foot and socket are explicitly registered
  // to the physical floor/deck; these are art only and do not add collision.
  for(const [id,x,deck,mirror] of [['west',2000,1875,false],['mid',3150,1830,false],['east',4520,1948,true]]){
-  const ground=floor(x),scale=(ground-deck)/(1500-50),sx=mirror?-scale:scale,tx=x-sx*512,ty=deck-50*scale,asset=clone(pier);
-  asset.id='stage06-prototype:pier-'+id;asset.name='Stage6 '+id+' unshipped pier study';asset.bounds={x:mirror?tx-1024*scale:tx,y:ty,w:1024*scale,h:1536*scale};asset.reference={...asset.reference,bounds:asset.bounds,foot:{x,y:ground}};asset.anchor={x:0,y:0};asset.vector.viewBox=[asset.bounds.x,asset.bounds.y,asset.bounds.w,asset.bounds.h];asset.vector.root={tag:'g',transform:[sx,0,0,scale,tx,ty],children:[clone(pier.vector.root)]};asset.params={...asset.params,previewOnly:true,deckY:deck,groundY:ground};
+  const art=id==='west'?westPier:pier, width=id==='west'?887:1024,height=id==='west'?1774:1536,top=id==='west'?225:50,bottom=id==='west'?1705:1500;
+  const ground=floor(x),scale=(ground-deck)/(bottom-top),sx=mirror?-scale:scale,tx=x-sx*width/2,ty=deck-top*scale,asset=clone(art);
+  asset.id='stage06-prototype:pier-'+id;asset.name='Stage6 '+id+' unshipped pier study';asset.bounds={x:mirror?tx-width*scale:tx,y:ty,w:width*scale,h:height*scale};asset.reference={...asset.reference,bounds:asset.bounds,foot:{x,y:ground}};asset.anchor={x:0,y:0};asset.vector.viewBox=[asset.bounds.x,asset.bounds.y,asset.bounds.w,asset.bounds.h];asset.vector.root={tag:'g',transform:[sx,0,0,scale,tx,ty],children:[clone(art.vector.root)]};asset.params={...asset.params,previewOnly:true,deckY:deck,groundY:ground};
   project.library.push(asset);s.elements.push({id:'stage06-prototype-pier-'+id,assetId:asset.id,x:0,y:0,scale:1,rotation:0,layer:'back',depthLayer:'L1',visualRole:'scenery'});
  }
  return project;
