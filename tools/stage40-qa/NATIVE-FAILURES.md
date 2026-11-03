@@ -103,3 +103,20 @@ under `_local/reports/stage40-roles-01`. Stationary safe firing on the dock was
 not established: rear chase and front pressure overlap, and late survivors
 crowd the departure-stair firing lane. This motivates the narrowly approved
 two-archer placement and demonstrated lower-deck route, not a HP/count nerf.
+
+## deck-01, native b631d1b1 / canonical 6d3f9319
+
+Frozen R25 failure, 41/42 removed, all42 engaged, boss removedR17. One awake
+9HP enemy remained on upper coast at x3554/y2400. Four residents and two heroes
+survived. No full return or20R completion. Runtime670.9seconds. The exact
+protocol/entry/actions/turns/analysis/final saved profile are compressed in
+`records/deck-01-failed.json.xz`; decompress to one JSON evidence bundle.
+
+The occultist's observed-tide retreat atR12 reached the dry departure stair
+without HP loss. By contrast, archer/mage were still ordered to drop from dock
+during visible high tideR13 andR14, causing two457HP/two495HP water recoveries.
+AfterR17, ranged roles incorrectly held deck anchors with only an upper enemy
+remaining. Knight's broad nearest-target fallback steered downhill toward it,
+causing water recoveriesR18/20/22 and eventual death. These are demonstrated
+controller defects, not evidence that ordinary combat pressure is unavoidable.
+Do not delete enemies, nerf stats or mark the posed route tests as a full pass.
