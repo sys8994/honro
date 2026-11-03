@@ -73,3 +73,6 @@ The lower overlay (run 41667721221) failed independent review as repeated narrow
 
 ## Connected full-domain rock bed study
 The previous 5-color underlay (run 41668797169) failed visual review as camouflage. A new full-bleed, nonrepeating connected angular stone source was traced after preserving both original and half-resolution Lanczos trace input; Inkscape 5 colors/speckle 80 passed the existing native importer. The candidate retains the separately authored west/east exposures. Full scene and mobile, hard cuts, source fidelity, path cost and save behavior remain unapproved.
+
+## Continuous panorama study
+Independent review of the prior angular underlay (run 41670570986) rejected large black geometric fractures. This alternative traces one new source generated against the actual whole-stage screenshot, registers it with the screenshot camera transform, feathers its outer limits over a subdued full-domain underlay, and clips everything to unchanged collision. Reference contours are illustrative only; collision remains authoritative. Any remaining seams, lost surface detail, silhouette deviations, protected-region error and mobile performance remain unapproved.
