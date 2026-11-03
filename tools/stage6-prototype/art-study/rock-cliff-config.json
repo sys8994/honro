@@ -1,0 +1,24 @@
+{
+  "id": "stage06-prototype:rock-cliff-study-v1",
+  "name": "Stage 6 cliff material",
+  "semanticLayer": "BODY",
+  "category": "rock",
+  "bounds": {
+    "x": 0,
+    "y": 0,
+    "w": 1999,
+    "h": 787
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 787
+  },
+  "preserveCompounds": true,
+  "params": {
+    "previewOnly": true
+  }
+}
