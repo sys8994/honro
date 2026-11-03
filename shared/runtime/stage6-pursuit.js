@@ -6,6 +6,9 @@ const active=b=>!!b&&!b.honroCustom&&b.honroStage===6&&b.honroStage6PursuitRevis
 W.execute=function(app,action){
  const e=app.engine,b=e?.b;
  if(!active(b)||action?.source!=='pursuit'||action.type!=='spawn')return execute(app,action);
+ // Wait until the allied team has finished moving, so the advertised rear
+ // entry follows the current carrier rather than a stale mid-turn position.
+ if(b.phase!=='transition')return false;
  const objective=e.unit('objective');if(!objective||objective.dead||objective.hp<=0)return false;
  for(const offset of [450,650,850]){
   const x=objective.x-offset;if(x<90||x>b.width-100)continue;
