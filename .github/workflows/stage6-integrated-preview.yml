@@ -4,6 +4,7 @@ on:
     branches: ['work/stage6-integrated-review-20261103']
 permissions:
   contents: read
+  actions: read
 jobs:
   inspect:
     runs-on: ubuntu-24.04
@@ -35,6 +36,25 @@ jobs:
           node workshop/build.mjs
           python -m pip install 'playwright==1.58.0'
           python -m playwright install --with-deps chromium
+      - name: Restore exact natural gameplay checkpoint
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          # Reuse the verified natural checkpoint, not a new full-play attempt.
+          mkdir -p _local/stage6-prior
+          gh api repos/sys8994/honro/actions/artifacts/13269315735 > _local/stage6-prior-meta.json
+          gh api repos/sys8994/honro/actions/artifacts/13269315735/zip > _local/stage6-prior.zip
+          python - <<'PY'
+          import json,hashlib,zipfile
+          from pathlib import Path
+          m=json.loads(Path('_local/stage6-prior-meta.json').read_text())
+          assert m['workflow_run']['head_sha']=='4fa4a106d4e42215f0f67a799385e07627fb2c66'
+          z=Path('_local/stage6-prior.zip')
+          assert hashlib.sha256(z.read_bytes()).hexdigest()=='ad8980ec5668d80a4e3c06987e5f07ac46ccca6827445d62a460ee54311546e2'
+          with zipfile.ZipFile(z) as f:f.extract('integrated-play/natural-lookout-save.json.gz','_local/stage6-prior')
+          assert hashlib.sha256(Path('HONRO.html').read_bytes()).hexdigest()=='724521d1f9ef023ad9cb2374a3fd9551d4cc1ea4f608ea4836bef17f8ea67af7'
+          PY
       - name: Check integrated render, save, and actual input route
         run: |
           set -euo pipefail
@@ -45,7 +65,7 @@ jobs:
           sleep 2
           # Keep each independent result even if a prior QA script fails.
           status=0
-          for script in capture-preview input-camera-review integrated-save-boundary integrated-browser-play; do
+          for script in capture-preview input-camera-review integrated-save-boundary integrated-checkpoint-review; do
             python "tools/stage6-prototype/$script.py" || status=1
           done
           exit "$status"
