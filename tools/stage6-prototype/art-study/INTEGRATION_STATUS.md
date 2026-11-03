@@ -56,3 +56,5 @@ The regional preview (run 41659791145) showed that east rock was separated from 
 
 ## Distinct east formation study
 The shifted mirrored rock (run 41660925460) reduced the blank band but repeated the west. A separately generated east-slope source was traced by Inkscape 1.4 in three colors with speckle 4 and 80; speckle 80 passed native import, and relative to the speckle 4 trace the unprotected whole-image SVG comparison has RGB MAE 0.035/255 and silhouette offset 0 at 1x and 2x. This is not protected-region approval or source-to-trace fidelity evidence. Runtime terrain remains clipped to unchanged collision; natural contact, preserved top edge, seams, visual distinction and performance remain pending.
+
+The distinct east source preview (run 41662508039) showed little visible structure using three colors. Five-color trace with speckle 80 passed native import and relative to the corresponding speckle 4 trace RGB MAE is 0.051/255 with silhouette difference 0 at 1x and 2x, without a protected mask. This follow-up remains an unapproved runtime/visual study.
