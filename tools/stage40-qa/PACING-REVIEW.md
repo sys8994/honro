@@ -147,3 +147,38 @@ west contact, nonmutating candidate generation with physically reachable paid
 steps, then normal defenses and one enemy response. If that enemy does not
 choose to move, report physical candidate traces only, not actual movement.
 The separate freshR1 comparison still decides the new roster's behavior.
+
+
+## Preserve the demonstrated Stage40 product, withdraw unproven adjustment
+
+Run41733657544 failed atR25 with only boss383HP. Dock-stair-5 stayed on the
+authored stair, actedR2–5 andR18–19, and diedR20. Its extra dock activation
+renewed engagement everyR7–20 but the six-slot queue did not select itR6–17.
+The later off-support correction therefore has no observed applicability to
+this failure. Archer died enteringR9; coast anchor clearedR8, dock-leftR16,
+stairR20, departure upperR22, dock-rightR24 and departure lowR25. Mage defended
+nine timesR6–15 at the fixed dock post, but the older successful run also had
+many mage defenses. Inputs diverge fromR1, so no causal regression or gain can
+be assigned to the product change from this comparison alone.
+
+Withdraw both Stage40 changes: restore the exact author bytes from current-
+master source3a7b9b88/221035e7, and make the destination restriction Stage31-only.
+All Stage40 actors/supports take the original candidate path; authored42-unit
+composition, initial coordinates, HP, tide/boss behavior, return and story stay
+unchanged. Pure fixtures verify the authorSHA and no-op filter over normal
+R15/R18 saved actors. This preserves previously demonstrated behavior rather
+than claiming a guaranteed fresh23R result. Stage31 restriction and its old-save
+stepping stones remain narrow and need a new exact-runtime official gate.
+
+Previous actual evidence remains separate: historical wholeR1 combatR21 plus
+exact save returnR23; current-master fresh first cast and R15 combatR19/returnR22.
+The final merged runtime's actual regression must be recorded by its real
+source and scope; do not relabel partial continuation as a fresh whole battle.
+
+The coordinator approved efficient final regression rather than redundant whole
+Stage40 replay: exact source/generated-path preservation checks, actual fresh
+first cast, exact normalR15 save through combat/return/settlement/reload<=23R,
+both old31/40 save response checks, and four PC/mobile-locale guide views.
+Stage31 still runs its entire normal battle/boarding and official20R gate on
+the same exact product. The historical full Stage40 run and final-source partial
+regression are separate evidence, never relabeled as one new whole playthrough.

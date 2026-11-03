@@ -73,7 +73,7 @@ with sync_playwright() as w:
   ready();initial=record('entry');assert initial['proof'] and len(initial['foes'])==(10 if current_review else 37 if resume else 42) and initial['major']==1 and initial['minis']==2 and initial['finale']==2
   if pacing_review:
    construction=p.evaluate('()=>{const b=HonroApp.engine.b,u=b.units.find(v=>v.id==="final40-dock-stair-5");return{round:b.round,cell:u.honroDensityCell,spawn:{x:u.spawnX,y:u.spawnY},definition:b.honroEncounterDensityActivation[u.honroDensityCell],cap:b.enemyLimit}}')
-   assert construction['round']==1 and construction['cell']=='final40-stair-overwatch' and construction['spawn']['x']==2310 and construction['cap']==6,construction
+   assert construction['round']==1 and construction['cell']=='final40-dock-stair' and construction['spawn']['x']==2310 and construction['cap']==6,construction
    result['freshPacingConstruction']=construction
   # A normal import must retain earned skill ranks/equipment, not add test gear.
   saved=json.loads(raw);budget=p.evaluate('()=>Object.fromEntries(Object.entries(HonroApp.profile.heroes).map(([k,v])=>[k,{xp:v.xp,ranks:v.ranks,equipmentIds:v.equipmentIds,earned:HONRO_CORE.pointsEarned(v),spent:HONRO_CORE.pointsSpent(v,k)}]))')

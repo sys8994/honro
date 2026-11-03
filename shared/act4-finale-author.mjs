@@ -27,9 +27,6 @@ export function authorAct4Finale(stage,point){
   for(const [j,[kind,x,special]]of slots.entries()){
    const uid=id+'-'+(j+1),role=kind==='hound'?'close':kind==='possessedArcher'?'bow':'guard';
    const overrides={elite:false,group:140+i,awake:false,aggroUntil:0,fixed:false,honroAct4WaterTrait:special==='boss'?'aquatic':'ground',honroEncounterSupport:support,honroDensityCell:id,honroPilotCombatBudget:true,honroPilotRole:role};
-   // This stair archer covers the adjoining dock, not a second upper-shore
-   // cleanup. Keep the other six members' original activation unchanged.
-   if(uid==='final40-dock-stair-5')overrides.honroDensityCell='final40-stair-overwatch';
    if(special==='arc'||special==='bind')Object.assign(overrides,{name:special==='bind'?'포구 결박귀':'선착장 포격귀',honroMidboss:true,honroPilotMidboss:'harbor',honroPilotVariant:special,honroPilotRole:'midboss',r:26,h:120,armor:.04,honroPilotRelocation:point(stage,support,x+(special==='arc'?150:170))});
    if(special==='boss')Object.assign(overrides,{name:'포구의 들린 장승',boss:40,honroMidboss:false,honroAct4FinaleBoss:true,honroAct4Aquatic:true,r:38,h:160,armor:.12,loadout:['HWD01','HWD02'],honroFinaleHome:point(stage,support,x),honroPilotRelocation:point(stage,support,1935)});
    s.units.push({id:uid,kind,team:'enemy',...point(stage,support,x),facing:-1,encounterGroup:id,...(special==='boss'?{boss:40}:{}),stageOverrides:overrides});members.push(uid);
@@ -40,7 +37,6 @@ export function authorAct4Finale(stage,point){
   // Restrict this access to its departure end; upper shore never wakes it.
   if(key==='departure-low')defs[id].extra=[{support:'a4-return-deck',minX:2170,maxX:3000}];
  }
- defs['final40-stair-overwatch']={supports:['approved40-dock-stair'],extra:[{support:'approved40-dock',minX:1880,maxX:2240}],radius:850,maxHeight:500,engagementRounds:1};
  Object.assign(s.initialState,{honroFinalDefenseRevision:2,honroAct4EncounterRevision:1,honroActiveLimit:6,honroActionBudgetRevision:1,honroEncounterDensityActivation:defs});
  if(s.units.filter(u=>u.team==='enemy').length!==42)throw Error('Finale roster must have42 unique enemies');
  return s;

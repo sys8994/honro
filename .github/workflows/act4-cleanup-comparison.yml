@@ -1,4 +1,4 @@
-name: Compare two scoped Act4 archer cleanup corridors
+name: Verify Stage31 corridor and preserved Stage40 integration
 on:
   push:
     branches: ['work/act4-cleanup-qa/**']
@@ -85,6 +85,7 @@ jobs:
           npm ci --prefix game
           node tools/stage40-qa/cleanup-corridors.test.mjs | tee "$OUT/corridors.log"
           node tools/act4-ci/positive-finisher.test.mjs | tee "$OUT/positive-finisher.log"
+          node tools/stage40-qa/preserved-planner.test.mjs | tee "$OUT/preserved-source-core.log"
           node tests/monster-effects-mechanics.mjs | tee "$OUT/a1-mechanics.log"
           node tests/monster-effects-app.mjs | tee "$OUT/a1-app.log"
           node tests/monster-signals.mjs | tee "$OUT/a1-signals.log"
@@ -92,7 +93,7 @@ jobs:
           sha256sum HONRO.html web/manifest.json > "$OUT/preview-sha256.txt"
           python -m pip install 'playwright==1.58.0'
           python -m playwright install --with-deps chromium
-      - name: A1 browser fixtures and fresh whole Stage40 with approved23R bound
+      - name: A1 and old saves, fresh first cast, exact R15 return and guide pixels
         run: |
           set -euo pipefail
           python -m http.server 8870 --bind 127.0.0.1 > "$OUT/server.log" 2>&1 &
@@ -103,7 +104,9 @@ jobs:
           HONRO_OLD_SAVE_STAGE=31 HONRO_CAPTURE_URL=http://127.0.0.1:8870/HONRO.html HONRO_CAPTURE_OUT="$OUT/outside-save31" python tools/stage40-qa/outside-save-play.py > "$OUT/outside-save31.log" 2>&1 || status=1
           HONRO_MONSTER_BASE_URL=http://127.0.0.1:8870 python tests/monster-effects-browser.py || status=1
           if [ -d _local/reports/monster-effects-browser ]; then cp -a _local/reports/monster-effects-browser "$OUT/a1-browser"; fi
-          HONRO40_PACING_REVIEW=1 HONRO_CAPTURE_URL=http://127.0.0.1:8870/HONRO.html HONRO_CAPTURE_OUT="$OUT/browser" python tools/stage40-qa/browser-play.py > "$OUT/browser.log" 2>&1 || status=1
+          HONRO40_FIRST_CAST_ONLY=1 HONRO_CAPTURE_URL=http://127.0.0.1:8870/HONRO.html HONRO_CAPTURE_OUT="$OUT/first-cast" python tools/stage40-qa/browser-play.py > "$OUT/first-cast.log" 2>&1 || status=1
+          HONRO40_CURRENT_REVIEW=1 HONRO_CAPTURE_URL=http://127.0.0.1:8870/HONRO.html HONRO_CAPTURE_OUT="$OUT/browser" python tools/stage40-qa/browser-play.py > "$OUT/browser.log" 2>&1 || status=1
+          HONRO_CAPTURE_URL=http://127.0.0.1:8870/HONRO.html HONRO_CAPTURE_OUT="$OUT/guide" python tools/stage40-qa/guide-readability.py > "$OUT/guide.log" 2>&1 || status=1
           exit "$status"
       - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
         if: always()

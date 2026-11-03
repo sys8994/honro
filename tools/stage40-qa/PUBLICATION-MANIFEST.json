@@ -1,5 +1,5 @@
 {
-  "status": "Current-master integration remains unpublished. Original full Stage40 R21 + exact returnR23 fits the approved Stage40-only exception. Current pre-corridor product passed fresh first cast and exactR15 combatR19/returnR22; not a fresh current whole run. Two-corridor comparison and old-save compatibility remain pending. Stage31 still20R; QA2HP finishing defect is separately documented.",
+  "status": "Unpublished final integration review. Withdraw unproven Stage40 cell/corridor changes, preserve exact current-master Stage40 behavior. Stage31-only candidate retains unchanged20R gate; Stage40 historical wholeR21 plus exact returnR23 and final-source partial regression remain distinct.",
   "base": "7d2655bc3f88a7b20fb2d6ea1bc4c611583e9a15",
   "source": "2ac7cc2a9f686413ee5028f67ee42ffcb10fade4",
   "branch": "work/stage40-finale/20261103",
@@ -820,7 +820,7 @@
   },
   "currentMasterIntegration": {
     "baseMaster": "e7a387532f8249e3bdf315a80a01b56c258d8830",
-    "lastReadUtc": "2026-11-03T23:05:00Z",
+    "lastReadUtc": "2026-11-03T23:42:58Z",
     "branch": "work/stage40-current/20261103",
     "remoteHeadBeforeThisRecord": "3446f42ea9f9c8ec8d3439939a1a77226fed2ab7",
     "productSource": "695d3ef1dd998167ac63c371645a8987b3fef2f2",
@@ -881,6 +881,21 @@
       "artifactSha256": "406e4070cc844fdbfa64cf2f730a18821b425b2900d7e6d315a63ec338551c08",
       "packageSha256": "17236a1edfb02b53d73b97b1505f1d39cbfd58be24a0167e365fc741b24ca27b",
       "status": "whole normal-input combat and boarding R13, unchanged20R gate passed; affected archer killed before acting, corridor efficacy unproven"
+    },
+    "nextReview": {
+      "mode": "Same-source full officialStage31 and preservedStage40 bounded actual regression",
+      "stage40": [
+        "exact baseline source/compiled no-op path",
+        "fresh normal first cast",
+        "exactR15 normal save through return/settlement/reload<=23R",
+        "old31/40 save import and enemy response",
+        "PC/mobile ko/en guide views"
+      ],
+      "withdrawn": [
+        "Stage40 one-actor cell split",
+        "Stage40 voluntary destination restriction"
+      ],
+      "notClaimed": "New final-source wholeR1 Stage40 completion or corridor causal improvement"
     }
   }
 }
