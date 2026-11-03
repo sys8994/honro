@@ -271,6 +271,7 @@
             }
             G.HonroReinforcementCamera?.checkpoint(this);
             if(this.background)this.background(c,w,h,b);
+            G.HonroTimeOfDay?.sky(this,c,w,h,b);
             this.backgroundReadability?.(c,w,h,b);
             this.weatherParticles(c,b,w,h,effectDt);
             c.save();

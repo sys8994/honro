@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "note": "Story clock per stage, independent of terrain and combat. start/end are HH:MM; the clock moves from start to end as the round goes from 1 to endRound, then holds. clock:false means no visible time (caves, warped spaces). See game/docs/TIME_OF_DAY_PLAN.md.",
+  "profiles": {
+    "default": {
+      "keys": [
+        {"t": "00:00", "sat": 0.45, "mul": ["#2c3850", 0.62], "hor": null, "stars": 0.45},
+        {"t": "04:30", "sat": 0.45, "mul": ["#33405a", 0.58], "hor": ["#6f84a6", 0.10], "stars": 0.30},
+        {"t": "05:30", "sat": 0.55, "mul": ["#55607a", 0.42], "hor": ["#9aaccc", 0.22], "stars": 0.08},
+        {"t": "06:30", "sat": 0.75, "mul": ["#8f98a6", 0.22], "hor": ["#b7c2cf", 0.14]},
+        {"t": "09:00", "sat": 0.85, "mul": ["#c4c8c4", 0.08], "hor": null},
+        {"t": "12:00", "sat": 0.90, "mul": ["#d0d2cc", 0.05], "hor": null},
+        {"t": "15:30", "sat": 0.88, "mul": ["#c7b9a2", 0.10], "hor": ["#d0a070", 0.06]},
+        {"t": "17:30", "sat": 0.80, "mul": ["#a88870", 0.22], "hor": ["#c47a4e", 0.24]},
+        {"t": "18:40", "sat": 0.62, "mul": ["#5e5468", 0.40], "hor": ["#8c5560", 0.14]},
+        {"t": "20:00", "sat": 0.50, "mul": ["#3a4560", 0.55], "hor": null, "stars": 0.25},
+        {"t": "22:00", "sat": 0.45, "mul": ["#303c55", 0.60], "hor": null, "stars": 0.45}
+      ]
+    },
+    "ember-dawn": {
+      "extends": "default",
+      "override": [
+        {"t": "04:30", "sat": 0.45, "mul": ["#3a3d55", 0.58], "hor": ["#8a5a5a", 0.12], "stars": 0.25},
+        {"t": "05:15", "sat": 0.52, "mul": ["#5a4c5c", 0.46], "hor": ["#c0604a", 0.28], "stars": 0.06},
+        {"t": "05:45", "sat": 0.58, "mul": ["#6e5a62", 0.40], "hor": ["#cc6a4c", 0.34]},
+        {"t": "06:30", "sat": 0.70, "mul": ["#8f8590", 0.24], "hor": ["#c98a6a", 0.18]}
+      ]
+    },
+    "cave": {"fixed": {"sat": 0.55, "mul": ["#3b3e45", 0.28], "hor": null}}
+  },
+  "moons": {
+    "act1": {"rise": "19:30", "set": "07:30", "phase": 0.72}
+  },
+  "stages": {
+    "1": {"day": 1, "start": "15:30", "end": "17:00", "endRound": 8, "profile": "default", "moon": "act1"},
+    "2": {"day": 1, "start": "17:20", "end": "18:30", "endRound": 8, "profile": "default", "moon": "act1"},
+    "3": {"day": 1, "start": "18:50", "end": "20:00", "endRound": 8, "profile": "default", "moon": "act1"},
+    "4": {"day": 2, "start": "05:20", "end": "07:00", "endRound": 8, "profile": "default", "moon": "act1"},
+    "5": {"day": 2, "start": "08:30", "end": "10:30", "endRound": 8, "profile": "default"},
+    "6": {"day": 2, "start": "11:00", "end": "13:30", "endRound": 8, "profile": "default"},
+    "7": {"day": 2, "start": "16:30", "end": "18:30", "endRound": 8, "profile": "default", "moon": "act1"},
+    "8": {"day": 2, "start": "19:40", "end": "21:00", "endRound": 8, "profile": "default", "moon": "act1"},
+    "9": {"day": 2, "start": "21:30", "end": "22:40", "endRound": 8, "profile": "default", "moon": "act1"},
+    "10": {"day": 2, "start": "23:00", "end": "05:45", "endRound": 12, "profile": "ember-dawn", "moon": "act1"},
+    "11": {"day": 3, "start": "07:30", "end": "09:00", "endRound": 8, "profile": "default"},
+    "12": {"day": 3, "start": "09:30", "end": "12:00", "endRound": 8, "profile": "default"},
+    "13": {"day": 3, "start": "13:30", "end": "15:30", "endRound": 8, "profile": "default"},
+    "14": {"clock": false, "profile": "cave"},
+    "15": {"clock": false, "profile": "cave"},
+    "16": {"clock": false, "profile": "cave"},
+    "17": {"clock": false, "profile": "cave"},
+    "18": {"clock": false, "profile": "cave"},
+    "19": {"clock": false, "profile": "cave"},
+    "20": {"day": 4, "start": "05:10", "end": "06:40", "endRound": 8, "profile": "default"}
+  }
+}
