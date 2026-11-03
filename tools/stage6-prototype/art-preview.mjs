@@ -16,14 +16,14 @@ export function applyStage6ArtPreview(input){
  for(const e of s.elements)if(rootIds.includes(e.id))e.y+=floor(e.x)-oldFloor(oldRoad,e.x);
  // Remove old BODY and central pier illustration, whose placements describe the old floor.
  s.elements=s.elements.filter(e=>!['act1-stage06-traced-body','landmark-1','place6-west-buttress','place6-mid-buttress','place6-east-buttress','place6-bridge-rigging'].includes(e.id));
- const west=read('west-matched-runtime.json'),middle=read('middle-grounded-runtime.json'),east=read('east-grounded-runtime.json'),pier=read('pier-runtime-preview.json');
+ const west=read('deep-west-runtime.json'),middle=read('deep-middle-runtime.json'),east=read('deep-east2-runtime.json'),pier=read('pier-runtime-preview.json');
  const contour=road.points.map((p,i)=>(i?'L':'M')+p.x+' '+p.y).join('')+'Z';
  const ext={x:-4000,y:1500,w:14600,h:5200};
  // Each section is an independent source-traced formation, registered to the
  // geometry-guide's world-coordinate rectangle; seam clips are visual only.
- const sections=[{zone:'westZone',transform:[2500/1642,0,0,1850/958,0,1650],art:west.vector.root},{zone:'middleZone',transform:[2400/1642,0,0,2150/958,2100,1650],art:middle.vector.root},{zone:'eastZone',transform:[2600/1642,0,0,2050/958,4000,1750],art:east.vector.root}];
+ const sections=[{zone:'westZone',transform:[2500/west.vector.viewBox[2],0,0,3850/west.vector.viewBox[3],0,1650],art:west.vector.root},{zone:'middleZone',transform:[2400/middle.vector.viewBox[2],0,0,3850/middle.vector.viewBox[3],2100,1650],art:middle.vector.root},{zone:'eastZone',transform:[2600/east.vector.viewBox[2],0,0,3750/east.vector.viewBox[3],4000,1750],art:east.vector.root}];
  const zones={road:[contour],westZone:['M-4000 0H2300V10000H-4000Z'],middleZone:['M2300 0H4300V10000H2300Z'],eastZone:['M4300 0H10600V10000H4300Z']};
- const body={...west,id:'stage06-prototype:assembled-body-v1',name:'Stage6 unshipped traced BODY study',bounds:ext,reference:{...west.reference,bounds:ext,foot:{x:0,y:3800},heightM:86.6666666667},params:{...west.params,collisionSource:'lower-road',prototypeGeometrySha256:expected,previewOnly:true},vector:{version:1,viewBox:[ext.x,ext.y,ext.w,ext.h],clips:zones,root:{tag:'g',clipPath:'road',children:[{tag:'path',d:contour,fill:'#2e3c39'},...sections.map(z=>({tag:'g',clipPath:z.zone,children:[{tag:'g',transform:z.transform,children:[clone(z.art)]}]}))]}}};
+ const body={...west,id:'stage06-prototype:assembled-body-v1',name:'Stage6 unshipped traced BODY study',bounds:ext,reference:{...west.reference,bounds:ext,foot:{x:0,y:3800},heightM:86.6666666667},params:{...west.params,collisionSource:'lower-road',prototypeGeometrySha256:expected,previewOnly:true},vector:{version:1,viewBox:[ext.x,ext.y,ext.w,ext.h],clips:zones,root:{tag:'g',clipPath:'road',children:[{tag:'path',d:contour,fill:'#364441'},...sections.map(z=>({tag:'g',clipPath:z.zone,children:[{tag:'g',transform:z.transform,children:[clone(z.art)]}]}))]}}};
  project.library.push(body);s.elements.push({id:'stage06-prototype-body',assetId:body.id,x:0,y:0,scale:1,rotation:0,layer:'prop',depthLayer:'L1',visualRole:'scenery'});
  // One traced support per broken span. Foot and socket are explicitly registered
  // to the physical floor/deck; these are art only and do not add collision.
