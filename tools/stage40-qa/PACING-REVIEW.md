@@ -139,3 +139,11 @@ Run41733657544 is the first candidate comparison, not final corrected-source
 evidence. Its status/result must be retained, and no package from it may have
 its runtime hash rebound to the corrected source. No further product adjustment
 is bundled; HP, starting position, count, tide, story and objective remain fixed.
+
+The corrected-source comparison first imports the exact oldR18 normal save
+(SHA256 f03fcde9fb4123512af7492e37f788c7a5a74e9c02b8cedff78d9708e94c0a7d)
+through visible UI. It verifies unchanged old position/HP/growth, actual coast-
+west contact, nonmutating candidate generation with physically reachable paid
+steps, then normal defenses and one enemy response. If that enemy does not
+choose to move, report physical candidate traces only, not actual movement.
+The separate freshR1 comparison still decides the new roster's behavior.
