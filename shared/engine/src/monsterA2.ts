@@ -14,7 +14,7 @@ export interface MonsterA2Warning {
  allyId?:string;stageAtPrepare?:1|2|3;direction?:number;reach?:number;area?:{x:number;y:number;w:number;h:number};
 }
 const live=(u?:Unit)=>!!u&&!u.dead&&u.hp>0&&!u.eaterCapturedBy;
-const hero=(u?:Unit)=>live(u)&&equipmentActor(u);
+const hero=(u?:Unit)=>live(u)&&equipmentActor(u)&&!u!.honroObjectiveTarget;
 export function monsterA2Eligible(b:Battle,u?:Unit){return b.honroMonsterCombatRevision===2&&live(u)&&u!.side===1&&!u!.enthrall&&(u!.honroMonsterA2Kind==='seer'||u!.honroMonsterA2Kind==='growth'&&!!u!.honroMonsterGrowthGeometry);}
 export function monsterPose(u:Unit):MonsterPose{return u.monsterA2Animation?.pose||(u.monsterA2Warning?.kind==='growthStrike'?'prepare':(u.monsterA2Cooldown||0)>0&&!u.monsterA2Warning?'recover':'idle');}
 function capsulePolygon(a:Vec,b:Vec,r:number){const angle=Math.atan2(b.y-a.y,b.x-a.x),points:Vec[]=[];for(let i=0;i<=6;i++){const q=angle+Math.PI/2+Math.PI*i/6;points.push({x:a.x+Math.cos(q)*r,y:a.y+Math.sin(q)*r});}for(let i=0;i<=6;i++){const q=angle-Math.PI/2+Math.PI*i/6;points.push({x:b.x+Math.cos(q)*r,y:b.y+Math.sin(q)*r});}return points;}
@@ -91,7 +91,7 @@ export function resolveMonsterA2Action(e:Engine,u:Unit){
  e.emit('change');return true;
 }
 export function markedMonsterTarget(e:Engine,ally:Unit){
- if(e.b.honroMonsterCombatRevision!==2)return undefined;
+ if(e.b.honroMonsterCombatRevision!==2||!live(ally)||ally.side!==1||ally.enthrall)return undefined;
  for(const seer of e.b.units){const w=seer.monsterA2Warning;if(w?.kind!=='mark'||w.allyId!==ally.id||!w.seen||!w.responded||!monsterA2Eligible(e.b,seer)||e.b.teamEnds[0]<=w.createdTeamEnd)continue;
   const t=e.unit(w.target);if(validTarget(e,ally,t)&&Math.hypot(seer.x-w.origin.x,seer.y-w.origin.y)<=2&&clearLine(e.b,center(seer),center(ally)))return t;
   cancelWarning(e,seer);
