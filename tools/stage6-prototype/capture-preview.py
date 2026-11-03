@@ -37,9 +37,12 @@ try:
   page.wait_for_function('''()=>{const b=HonroApp.engine.b;return HonroStage6RenderCoveragePreview.covered(b,b.terrain.find(t=>t.id==='pier-east'))}''',timeout=30000)
   page.evaluate('''()=>HonroApp.scene.render(HonroApp.engine,0,HonroApp.selected,.3,false,0)''');page.screenshot(path=str(out/'east-skin-restored.png'))
   # Exercise the normal saved-battle Continue route, including asset restoration.
-  result['saveContinue']=page.evaluate('''()=>{const a=HonroApp;const before=JSON.stringify(a.engine.b.terrain);a.profile.honroBattle=structuredClone(a.engine.b);a.continue();return {stage:a.engine.b.honroStage,terrainUnchanged:before===JSON.stringify(a.engine.b.terrain)};}''')
-  page.wait_for_function('''()=>{const b=HonroApp.engine.b;return ['west','east'].every(n=>HonroStage6RenderCoveragePreview.covered(b,b.terrain.find(t=>t.id==='pier-'+n)))}''',timeout=30000)
-  result['saveContinue']['coverageReverified']=True
+  saved=page.evaluate('''()=>{const a=HonroApp;const terrain=JSON.stringify(a.engine.b.terrain);a.profile.honroBattle=structuredClone(a.engine.b);return {terrain,ok:a.persist()};}''')
+  assert saved['ok'],'actual profile save failed'
+  page.reload(wait_until='domcontentloaded');page.wait_for_function('window.HonroApp',timeout=60000)
+  result['saveContinue']=page.evaluate('''async(before)=>{await HONRO_APP_READY;const a=HonroApp;a.continue();return {stage:a.engine?.b?.honroStage,terrainUnchanged:before===JSON.stringify(a.engine?.b?.terrain)};}''',saved['terrain'])
+  page.wait_for_function('''()=>{const b=HonroApp.engine?.b;return b&&['west','east'].every(n=>HonroStage6RenderCoveragePreview.covered(b,b.terrain.find(t=>t.id==='pier-'+n)))}''',timeout=30000)
+  result['saveContinue']['persistedReload']=True;result['saveContinue']['coverageReverified']=True
   assert result['saveContinue']['terrainUnchanged'],result['saveContinue']
   page.evaluate('''()=>{const a=HonroApp;Object.assign(a.scene,{manual:true,x:5000,y:2550,scale:.48});a.scene.render(a.engine,0,a.selected,.3,false,0)}''');page.screenshot(path=str(out/'east-after-continue.png'))
   result['documentWidth']=page.evaluate('document.documentElement.scrollWidth');result['previewAssets']=page.evaluate('''()=>HonroApp.engine.b.honroLandmarks.filter(l=>l.id.startsWith('stage06-prototype')).map(l=>({id:l.id,asset:l.asset.id,collisions:l.collisionIds.length}))''');browser.close()
