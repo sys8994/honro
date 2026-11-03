@@ -34,7 +34,7 @@ try:
   page.set_viewport_size({'width':1440,'height':900})
   page.evaluate('''()=>{const a=HonroApp,l=a.engine.b.honroLandmarks.find(x=>x.id==='stage06-prototype-pier-east');l.asset.vector.viewBox[2]++;Object.assign(a.scene,{manual:true,x:5000,y:2550,scale:.48});a.scene.render(a.engine,0,a.selected,.3,false,0)}''');page.wait_for_timeout(500);page.screenshot(path=str(out/'east-corrupt-skin-fallback.png'))
   page.evaluate('''()=>{const a=HonroApp,l=a.engine.b.honroLandmarks.find(x=>x.id==='stage06-prototype-pier-east');l.asset.vector.viewBox[2]--;a.scene.render(a.engine,0,a.selected,.3,false,0)}''')
-  page.wait_for_function('''()=>{const b=HonroApp.engine.b;return HonroStage6RenderCoveragePreview.covered(b,b.terrain.find(t=>t.id==='pier-east'))}''',timeout=30000)
+  page.wait_for_function('''()=>{const b=HonroApp.engine.b;return !!window.HonroStage6RenderCoveragePreview&&HonroStage6RenderCoveragePreview.covered(b,b.terrain.find(t=>t.id==='pier-east'))}''',timeout=30000)
   page.evaluate('''()=>HonroApp.scene.render(HonroApp.engine,0,HonroApp.selected,.3,false,0)''');page.screenshot(path=str(out/'east-skin-restored.png'))
   # Synthetic fixture only, for cross-stage save codec compatibility tests.
   # This contains no user profile; it comes from the checked-in entry fixture.
@@ -50,7 +50,7 @@ try:
   assert saved['ok'],'actual profile save failed: '+repr(result['saveDiagnostics'])
   page.reload(wait_until='domcontentloaded');page.wait_for_function('window.HonroApp',timeout=60000)
   result['saveContinue']=page.evaluate('''async(before)=>{await HONRO_APP_READY;const a=HonroApp;a.continue();return {stage:a.engine?.b?.honroStage,terrainUnchanged:before===JSON.stringify(a.engine?.b?.terrain)};}''',saved['terrain'])
-  page.wait_for_function('''()=>{const b=HonroApp.engine?.b;return b&&['west','east'].every(n=>HonroStage6RenderCoveragePreview.covered(b,b.terrain.find(t=>t.id==='pier-'+n)))}''',timeout=30000)
+  page.wait_for_function('''()=>{const b=HonroApp.engine?.b;return b&&!!window.HonroStage6RenderCoveragePreview&&['west','east'].every(n=>HonroStage6RenderCoveragePreview.covered(b,b.terrain.find(t=>t.id==='pier-'+n)))}''',timeout=30000)
   result['saveContinue']['persistedReload']=True;result['saveContinue']['coverageReverified']=True
   assert result['saveContinue']['terrainUnchanged'],result['saveContinue']
   page.evaluate('''()=>{const a=HonroApp;Object.assign(a.scene,{manual:true,x:5000,y:2550,scale:.48});a.scene.render(a.engine,0,a.selected,.3,false,0)}''');page.screenshot(path=str(out/'east-after-continue.png'))
