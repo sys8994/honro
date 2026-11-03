@@ -9,7 +9,7 @@ const EXPECTED=Object.freeze({
 const states=new WeakMap();let epoch=0;
 function geo(t){return{id:t.id,vertices:t.vertices,x:t.x,y:t.y,w:t.w,h:t.h,broken:t.broken,mat:t.mat,oneWay:t.oneWay,honroElementCollision:t.honroElementCollision};}
 function digest(s){if(!G.crypto?.subtle||typeof G.TextEncoder!=='function')return Promise.reject(Error('SHA-256 unavailable'));return G.crypto.subtle.digest('SHA-256',new G.TextEncoder().encode(s)).then(a=>Array.from(new Uint8Array(a),x=>x.toString(16).padStart(2,'0')).join(''));}
-function validBase(b){return !!(b&&b.honroStage===6&&b.honroCustom!==true&&b.honroCanonical===true&&b.honroAuthoredId==='stage-6'&&b.honroMapOrigin==='campaign'&&b.honroMapRevision===20&&b.honroCampaignMapRevision===3);}
+function validBase(b){return !!(b&&b.honroStage===6&&b.honroCustom!==true&&b.honroCanonical===true&&b.honroAuthoredId==='stage-6'&&b.honroMapOrigin==='campaign'&&b.honroMapRevision===20&&b.honroRevision===20&&b.honroCampaignMapRevision===3&&b.mode==='campaign');}
 function record(b,name){
  if(!validBase(b)||!Object.hasOwn(EXPECTED,name)||!G.HonroVectorArt?.draw||!G.HonroVectorArt?.validate||!G.HonroVectorArt?.prepare||!G.HonroTerrainDomain?.render)return null;
  let ts,ls;try{ts=G.HonroTerrainDomain.render(b).filter(t=>t.id==='pier-'+name);ls=(b.honroLandmarks||[]).filter(l=>l.id==='stage06-prototype-pier-'+name);}catch{return null;}
