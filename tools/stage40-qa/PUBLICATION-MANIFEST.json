@@ -1,0 +1,129 @@
+{
+  "status": "UNPUBLISHED FAILED DIAGNOSTIC; not release approval",
+  "base": "7d2655bc3f88a7b20fb2d6ea1bc4c611583e9a15",
+  "source": "069b11575100307982868816dd1504df1313f938",
+  "branch": "work/stage40-finale/20261103",
+  "productSharedTree": "bfd01e19952dec64ee25789b1719d3ccb4740b06",
+  "commits": [
+    "f9c973d33194f1dff68abe0e8fa2a8a9d112cc1f",
+    "c03cd92f38e0e375cdd2437094e9b660f59f1adf",
+    "16f21d99494024a35009aece1c70f4cd0c533ba7",
+    "f5be9ff8f5873e1db0042750de90d2d06c13e31a",
+    "348a5312adc35c54044e88e2401ef6a1da535165",
+    "069b11575100307982868816dd1504df1313f938"
+  ],
+  "files": [
+    {
+      "path": "shared/act4-finale-author.mjs",
+      "sha256": "01a59da5c203d668e8f6aec77cdab565034cb81adaaf20adb4453b81c11fe42f"
+    },
+    {
+      "path": "shared/act4-finale-revision.mjs",
+      "sha256": "4ca60debc5c89814943913776970c202db9e503cff4a677efb3d8fd2be32df28"
+    },
+    {
+      "path": "shared/build.mjs",
+      "sha256": "563bc217b0acfd5a30fcd29047dacce6c2f14971981b16ded45bed94a103f7dc"
+    },
+    {
+      "path": "shared/engine/src/engine.ts",
+      "sha256": "a8272a706783b0d75d9f58e5d868b1697b9a1fd0c1b68c046684664af41a1891"
+    },
+    {
+      "path": "shared/map/compiler.js",
+      "sha256": "49f4e21f50eb24ede1e8c7293502e5fe48c2379c209992484d1f6f78f8d6a719"
+    },
+    {
+      "path": "shared/runtime/act4-coast-events.js",
+      "sha256": "d23b49d6ee9c89d6bf835d1aaaed84a5fb6b53ad7b9b624cb5f0045c774f1798"
+    },
+    {
+      "path": "shared/runtime/act4-pilot-art.js",
+      "sha256": "3bab3cf16a24603ccbdae814d283d7b3e44797f5035b556f7efc3e9d5b99a09f"
+    },
+    {
+      "path": "shared/runtime/act4-pilot-combat.js",
+      "sha256": "5c60a89976b4ecf6b193d3dd0740fe6346481a90f27a6b4652d69b4cf44a2edc"
+    },
+    {
+      "path": "shared/runtime/campaign-map-revision.js",
+      "sha256": "baaf9f4263e110a8fcde2b5ba61d40f01dd7bb895f41e954e2811a4e57fdb93c"
+    },
+    {
+      "path": "tools/stage40-qa/DESIGN.md",
+      "sha256": "5d9d934c760c38058604b0a5857fc9895e15e01e431cdeef85ce207c0e808bf2"
+    },
+    {
+      "path": "tools/stage40-qa/analyze-trace.mjs",
+      "sha256": "05374f4ba7b103a2ef10078b27f601d565a7e95ed535d0dcd421db8e68ab5b5c"
+    },
+    {
+      "path": "tools/stage40-qa/bootstrap.mjs",
+      "sha256": "b0b3cd46f93ebd521325e058c5e74f532041458135acf7a023de2e7eea494d2e"
+    },
+    {
+      "path": "tools/stage40-qa/candidate-entry.mjs",
+      "sha256": "e55870c98bccd29b60d3c85064d28392ebc08727e4aa6c2d43043eb83a1eb645"
+    },
+    {
+      "path": "tools/stage40-qa/candidate-harness.mjs",
+      "sha256": "bbe2bbd280a8c5a23fd8c3d81cc4ad61347a4de19bb5b1de25d259cd10e5a738"
+    },
+    {
+      "path": "tools/stage40-qa/diagnostic-target-lock.mjs",
+      "sha256": "37dbc8185bd7a0fb9d03e3c3c6da51e66ded1182f3ca0210fce1f9a69eb5fd29"
+    },
+    {
+      "path": "tools/stage40-qa/diagnostic.mjs",
+      "sha256": "f0e74732ad3a2bfe58f2c4a45c8bacc6969fffd0ece23caeb286e0b7d64a09e4"
+    },
+    {
+      "path": "tools/stage40-qa/player-operations.mjs",
+      "sha256": "fbc8d0b429e7834a85f106bb5ff1e39170493018ea23d6e97b66888cba5c5e05"
+    },
+    {
+      "path": "tools/stage40-qa/route-lock.mjs",
+      "sha256": "c542a1f0eff7e83f766f3777521ad1f8f0e58d7ac5431ef4f765109b07c3be9c"
+    },
+    {
+      "path": "tools/stage40-qa/route-lock.test.mjs",
+      "sha256": "0df3f923d90262eadaade54d689685a8b4fecc1a91bde328af00d5dce72f0e9c"
+    },
+    {
+      "path": "tools/stage40-qa/scope-contract.mjs",
+      "sha256": "0ba7b691ba47e77fed1402f2d331e213910410517e41f2e90f1ad1bf62af98b0"
+    }
+  ],
+  "protected": "Do not copy old reviewed.json or complete engine.ts; cherry-pick coherent diffs.31\u201339/current dialogues preserved. Root owns remote integration. No master/Pages.",
+  "qaWorkflowContract": {
+    "basis": ".github/workflows/monster-a1-integration.yml",
+    "checkout": "exact github.sha; QA-only work/stage40-finale-qa/**",
+    "permissions": "contents:read; no push, master, Pages or production deployment",
+    "steps": [
+      "npm ci; npm ci --prefix game; materialize world",
+      "typecheck; stage40 scope-contract and route-lock unit tests",
+      "Retain current published graphs through existing retention helper",
+      "Restore actual measured Stage31 evidence; reuse only if normal gate accepts exact runtime; if mismatch refresh through existing genuine probes and normal-input Stage31 trials",
+      "Normal npm run build through unchanged gate",
+      "Capture Stage40 browser normal-entry gameplay+safe return and save/viewport, all outcomes",
+      "Always upload logs, traces, screenshots, source/runtime/html/manifest SHA256 and Stage31 package"
+    ],
+    "notYetImplemented": "Stage40 whole-objective browser driver and workflow need final integration source; old smoke does not prove combat or fun"
+  },
+  "evidence": {
+    "stage40-sweep-approach-02": {
+      "entry.json": "989d6601e65cf72cb0c290a516ef6c1a8f9dba32fb1450f4b2b3c5f125678d33",
+      "protocol.json": "aac6e3b5f3e9d140039e27df954ce7e5dd37c2e90f674b89ac0cba6530e04d38",
+      "turns.jsonl": "4e1817d25f046107bf91bb8629d5080e0325a400c9187653daa58d810245299f",
+      "final-profile.json": "f1226d0eca16dc533e562c24a868ea90dbef11892e9cef4a3904a62d5ca8e83e",
+      "result.json": "5443c1f6f2121477b3fbd4091baaf9d4c5102b28d8ab575365e5d8e4a1461491"
+    },
+    "stage40-target-lock-01": {
+      "entry.json": "34deb04abf20406d55e09c8b6ffb828fbcf827133cf224b01e6a116a2169cf40",
+      "protocol.json": "4bd6919ae1b48c8f9030b30e24855253ed331274c6bae156b500fe47250009e3",
+      "turns.jsonl": "49b4d20a11ace3585c6b647689df503bcc7dc582c52b81e35d81dc47051d6e1a",
+      "final-profile.json": "f15f42eb703c028a97abd04f823e2ceac9f6371b0874c6e072cdacb8b6a97ae9",
+      "result.json": "17477cab3eb4061bc12f5fce9e760f023fd54c9b18884d6871d90f57b708b9f0"
+    }
+  }
+}
