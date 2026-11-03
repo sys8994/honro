@@ -19,3 +19,7 @@ This is analysis of the ten unshipped prototype traces listed in `prototype-coho
 3. Finish art/geometry alignment and safe save revision/Continue, then rerun route, pursuit warning/opportunity and PC/mobile camera/aim/projectile checks on the exact integrated source.
 4. Preserve the Stage31 failed artifact; its full gate remains unresolved. Do not infer late-run equivalence from the first-eight-shot A/B.
 5. Storage is below the pre-registered heavy-test threshold. Existing evidence is retained and additionally archived in `prototype-cohort-evidence-20261103.tar.gz` (SHA-256 `1828543746b9017d9c0b4d545c36fb39ddda3474f8f12a373554447a9c86ca32`). Resume heavy tests only with sufficient durable space and no removal of protected material.
+
+## Focused descent follow-up
+
+The separate [lookout descent diagnosis](lookout-descent-analysis.md) reproduces the 33 HP symptom as fall damage in a prepared App-input fixture and finds a damage-free vertical drop on the unchanged candidate. The tested east detour remains blocked. A subsequent westward walk reaches x3554 but exhausts its budget before the programmed x3550 target. These results do not alter the original ten traces, prove the exact cause in every old trace, or replace natural combat/browser/final-art validation. All four new attempts, including harness failures and the short rejoin, are preserved separately.
