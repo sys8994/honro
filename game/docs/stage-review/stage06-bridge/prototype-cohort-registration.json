@@ -1,0 +1,24 @@
+{
+  "schema": "stage6-prototype-cohort/v1",
+  "registeredAtUtc": "2026-11-03T14:17:00Z",
+  "status": "EXPLORATORY_PRE_REGISTERED_NOT_FINAL_ACCEPTANCE",
+  "purpose": "Compare ordinary lower and deliberate upper-then-conditional-warden-rejoin App input policies on the notched, connected prototype. This is not an established user-mandated sample size, a human win rate, or proof of the final combined source.",
+  "sourceLocalCommitBeforeRegistration": "5d5dcc13",
+  "sourceNote": "Registration itself adds only this file. Do not change runner, runtime, candidate overlay, profile, policies, limits or seeds during this set. If the combined production source changes, retain this set and register and run a new set.",
+  "runner": "tools/stage6-prototype/app-play.mjs",
+  "runnerSha256": "c6fea6a347560b722d33d2f24a0b4487b78c2869c17187a6a9538fa4670cb58e",
+  "candidate": {"baseAuthorSha256":"1c3f1f1825e39cabf653688ed779dcc42d80ce448e4e582173a8eb53cbb80870","brokenEdgeOverlaySha256":"1917c02d729ee55002e92c4d7c246a499fde56c6b0ed329f479931d4d21a5ca2","mode":"unshipped cloned project; no final art or production generator"},
+  "entry": "stage06-bridge/evidence/entry-profile.json, earned-XP-focused allocation, original story/expedition baseline, no midbattle edits or item action",
+  "policies": [
+    {"id":"lower","value":"objective-focused-noitems-appops-calibrated-v2-appjitter"},
+    {"id":"upper-rejoin","value":"objective-focused-noitems-appops-calibrated-v2-upper-connected-robust-rejoin-appjitter"}
+  ],
+  "inputVariation": "For each actual App fire command, deterministic uniform angular offset in [-1,+1] degrees is applied before the App aim handler, seeded by the case seed. Actual charge release remains frame-quantized. The legacy direct engine-layer perturbation is prohibited.",
+  "planning": "Shot seed, prediction and viability use detached copies with live battle and profile mutation guards. All player movement, jump, drop, fire, defend and interaction use existing App handlers. DOM/clock/render are doubles; no browser or human claim.",
+  "exploratorySeeds": [2361,2362,2363],
+  "holdoutSeeds": [2461,2462],
+  "holdoutPolicy": "Run both fixed policies on each holdout seed after all exploratory cases. Do not adjust policies, candidate, inputs or criteria based on the preceding outcomes.",
+  "execution": "One case at a time under /tmp/honro-native-heavy-20261103.lock; one attempt per case, preserve terminal win/loss, incomplete, execution failure and logs distinctly. Do not rerun until success. Abort for an infrastructure failure or unsafe disk pressure; preserve completed traces and report the remainder.",
+  "measure": "Each trace records actual actions, warnings/opportunities, round count, damage, encounter entries, survivors, support samples, source and entry hashes. Compare medians and outliers descriptively; exact v3 8–11R and hard 20R are not changed. Three seeds per policy plus two holdouts are too few to claim a precise 75–90% clear rate. Do not interpret bot outcomes as a fun score.",
+  "priorEvidence": "The original registered seed2360 case is separate. Upper robust/rejoin runs before detached planning were invalidated and are not members of this set."
+}
