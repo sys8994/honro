@@ -65,7 +65,22 @@ export async function skillAudioData(){
 export async function runtimeEntries({vector=true,render=true,app=false,productionStory=app}={}) {
   const parts=[];
   const code=(name,code)=>parts.push({name,code});
-  const file=async source=>code(source,await read(source));
+  const integratedStage6=process.env.HONRO_STAGE6_INTEGRATED_PREVIEW==='1';
+  if(integratedStage6&&process.env.HONRO_STAGE6_ART_PREVIEW!=='1')throw Error('Stage6 integration diagnostic requires explicit nonproduction art preview');
+  const file=async source=>{
+    let text=await read(source);
+    // Explicit diagnostic bundle only: exercise the proposed Stage6 revision
+    // boundary without changing any production chapter or pending 9/17/24 work.
+    if(integratedStage6&&source==='shared/runtime/campaign-map-revision.js'){
+      if(text.split('6:3').length!==2)throw Error('Stage6 preview revision source changed');
+      text=text.replace('6:3','6:4');
+    }
+    if(integratedStage6&&source==='shared/runtime/stage6-render-coverage-preview.js'){
+      if(text.split('b.honroCampaignMapRevision===3').length!==2)throw Error('Stage6 coverage revision source changed');
+      text=text.replace('b.honroCampaignMapRevision===3','b.honroCampaignMapRevision===4');
+    }
+    code(source,text);
+  };
   const data=(name,value)=>parts.push({name,global:name,data:value,code:'globalThis.'+name+'='+JSON.stringify(value)+';'});
   const bgmMetadata=JSON.parse(await read('shared/data/bgm.json'));
   const bgm=(await readdir(path.join(root,'assets/bgm'))).filter(f=>/\.mp3$/i.test(f)).sort();
@@ -147,6 +162,7 @@ export async function runtimeEntries({vector=true,render=true,app=false,producti
   project=applyReviewedAct2Art(project);
   if(act4Enabled){const act4=JSON.parse(await read('shared/data/act4/world.json'));project={...project,stages:[...project.stages,...act4.stages],library:[...project.library,...act4.library.filter(a=>!project.library.some(b=>b.id===a.id))]};}
   if(process.env.HONRO_STAGE6_ART_PREVIEW==='1'){const {applyStage6ArtPreview}=await import('../tools/stage6-prototype/art-preview.mjs');project=applyStage6ArtPreview(project);}
+  if(integratedStage6){const {applyStage6IntegratedPreview}=await import('../tools/stage6-prototype/integrated-preview.mjs');project=applyStage6IntegratedPreview(project);}
   parts.push({name:'campaign',project,code:'globalThis.HONRO_PROJECT='+authorProjectExpression(JSON.stringify(project))+';'});
   if(vector){
     await buildParty();
