@@ -380,6 +380,26 @@
       "native": "034cd5f55b2ec58a8ff54f6f863d70a3e5bde1c1",
       "canonical": "a3e6c33ba6a1579ef75635c3a4490cc3f70d6da1",
       "tree": "96bd6ff143c5818a556a62b1f4c250adc48daa6a"
+    },
+    {
+      "native": "312ed370b4ff0123560dcfa6b7ebf95e0e79ca19",
+      "canonical": "382723dd9c6a53ef07e6a1b4773a2173795924d7",
+      "tree": "2246195f0eed24b47e2906e600d66516fbf9f7f7"
+    },
+    {
+      "native": "83af23d703bb4495ba13388502e28983293076bc",
+      "canonical": "d134cb4493b6e9f9670eadc7385ad9c90abf6529",
+      "tree": "0666332c47ac56607beeec026c4cb4095a60bc8c"
+    },
+    {
+      "native": "9a1966f378111bd55669796400d0606ea6350f3f",
+      "canonical": "4ca5cc09b482980538d0ac5bfa054afa4a90929d",
+      "tree": "883ca7f866cc7cbdf9976927b48219ea98d66857"
+    },
+    {
+      "native": "7699467b3332d00ffbc4fed4843b4247ded2c567",
+      "canonical": "2a65b7b12b281c29126bed4b753784bc062bf447",
+      "tree": "381175134ceaa054e2c166baca602f94854df2cd"
     }
   ],
   "pendingPublication": null,
@@ -476,6 +496,20 @@
     {
       "runId": 41620235189,
       "scope": "Active guide visiblePC/mobile andko/en locales;no shots;withdraw checkbox premise"
+    },
+    {
+      "runId": 41631876490,
+      "scope": "Actual savedR14 broad flank basicM01 204damage/0friendly; one enemy response;not fullstage"
+    },
+    {
+      "runId": 41633519781,
+      "scope": "Archer upper shot and actualO13 support; assertion wrongly required enemy damage; failed atR14;retained"
+    },
+    {
+      "runId": 41634770553,
+      "scope": "Three-role actual shots/support, one enemy response and R15 support rejoin;all alive;no new warning response occurred;not fullstage",
+      "artifactId": 13230611223,
+      "artifactSha256": "eaf6a6ee1e8ae07620d0ba04f8a8b949ababe9a0a8573b5de68cbc1032de8abf"
     }
   ]
 }
