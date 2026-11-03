@@ -36,8 +36,9 @@ The second changed only per-turn approach target retention and two bounded
    loses374HP during archer's R11 A02 action while round remains11, then falls
    afterR15 enemy response (R16). Same-round loss is not proof of its exact
    projectile source; isolated provenance capture is required. Our planner
-   calls shotViable, which predicts the first endpoint, and does not evaluate
-   the full piercing tail. It must not be described as a guaranteed safe shot.
+   calls shotViable, whose scalar impact valuation uses the first contacted
+   unit and terminal point but misses intermediate piercing friendly hits.
+   The production aim guide already renders the full replayed arrow path. It must not be described as a guaranteed safe shot.
 4. Boss warning/fire advances fromR15/16 toR11/12. It targets mage at lower
    deck while knight remains on dock/stair. Logged response=knight means an
    opportunity/action was recorded, not that targeted mage actually evaded.
@@ -62,3 +63,14 @@ and actual warning/response ordering. Keep historical source and outcomes.
 - Only after focused fixtures identify reachable, useful positions register
   one explicit changed-cause comparison. Full return and settlement, save/load,
   viewport/readability and subjective strategy/fun remain required afterward.
+
+## Focused role prototype A, rejected before any full run
+
+Empty-lane movement fixture reaches rear knight x1219/dock for1603 of3501move,
+occultist x1520/dock for1300 of2830, archer x2139/stair for595 of2836,
+mage x2389/stair for298 of2728. These explicitly placed fixtures do not prove
+combat arrival. Firing fixture found a safe archer cross-level shot but no safe
+mage shot across tested legal skills/seeds. Mage's upper-stair role is rejected,
+not counted as strategic variety. Preserve `_local/reports/stage40-design/role-fire-lanes.log`.
+Next focused change only moves mage's proposed firing role to right dock; no
+new whole-stage trial until geometry checks succeed.

@@ -1,0 +1,71 @@
+{
+  "branch": "work/stage40-finale/20261103",
+  "base": "7d2655bc3f88a7b20fb2d6ea1bc4c611583e9a15",
+  "units": [
+    {
+      "native": "f9c973d33194f1dff68abe0e8fa2a8a9d112cc1f",
+      "canonical": "5dff8ab764f6e1601a435c0e567e63b32c51213c",
+      "tree": "c3754d5e93a3317829d64dd7b0f81efda01832cb"
+    },
+    {
+      "native": "c03cd92f38e0e375cdd2437094e9b660f59f1adf",
+      "canonical": "812b7e6a376768abdb493d62479e082335ebdc72",
+      "tree": "093594749edc0633fc74af59ba294b7788867cbc"
+    },
+    {
+      "native": "16f21d99494024a35009aece1c70f4cd0c533ba7",
+      "canonical": "d16bff631b36b4e6b4b108ef25899a66bedfa2af",
+      "tree": "f3194b6ce3257da2187f91e4a7acbf3d26ccaa05"
+    },
+    {
+      "native": "f5be9ff8f5873e1db0042750de90d2d06c13e31a",
+      "canonical": "bf4779ae29affc11046c9ef0df26a34f1cfd11f9",
+      "tree": "17b01399d191e1f42db58d873b18f402a207a0b6"
+    },
+    {
+      "native": "348a5312adc35c54044e88e2401ef6a1da535165",
+      "canonical": "b19656f1c8ae56181bd78a87ce57f4761ee07e64",
+      "tree": "d95fdd2ed4622974aefc5b29bc9264b649eeafc5"
+    },
+    {
+      "native": "069b11575100307982868816dd1504df1313f938",
+      "canonical": "56f3bbe08689e92b8e50ffb9811bda6db91ccbd7",
+      "tree": "39fe30bd5ccb88cf6514c377f4b055f3e53cfb78"
+    },
+    {
+      "native": "23eb2330f6db913b822e8a673e9f7514cde70342",
+      "canonical": "ad6f8145d234a089906e83d192468b5f96ac1f2d",
+      "tree": "03582587dd595bf56cc96f639a78c517a79dd562"
+    },
+    {
+      "native": "38f7a7e657456e6fefe488a7bc4eb8fb2c71dc4a",
+      "canonical": "722e150ff14b3a541bc627538fc51864b97fba26",
+      "tree": "824435b3e7f1fd618e5d37adb6d46b2c138a8d2c"
+    },
+    {
+      "native": "2533269ca6ed47a02c3765b2bf9d60c6632244c5",
+      "canonical": "c57cf36c2d588d022986ff7feff2a3945cc06d34",
+      "tree": "4a6775a3dafd1d065a2ba618477469bda9cc64fc"
+    }
+  ],
+  "readback": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Action completed."
+      }
+    ],
+    "structuredContent": {
+      "branches": [
+        {
+          "branch": "work/stage40-finale/20261103"
+        }
+      ],
+      "cursor": "MQ"
+    },
+    "isError": false
+  },
+  "policy": "Each blob SHA and tree SHA equal native; commits preserve ordered parents; ref leased force:false; no matching workflow trigger; no master or Pages",
+  "verifiedBranchHead": "c57cf36c2d588d022986ff7feff2a3945cc06d34",
+  "verifiedNativeHead": "2533269ca6ed47a02c3765b2bf9d60c6632244c5"
+}
