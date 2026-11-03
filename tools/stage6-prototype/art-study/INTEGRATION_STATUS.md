@@ -48,3 +48,6 @@ The first alpha blend (run 41656359641) retained a horizontal edge because opaci
 
 ## Dense full-domain underlay study
 Independent review of the previous blend found improved continuity but large angular plain areas on both sides. This experiment traces a denser generated source after recording its original and a 397×248 Lanczos trace input, with Inkscape 1.4 three colors and despeckle 80. The unsimplified result passes importer limits, but source feature loss, visual scale/repetition, walking-surface legibility and actual runtime behavior need explicit review. This is an unapproved experiment.
+
+## Regional rock continuity study
+The dense underlay experiment (run 41658607765) failed visual review because trace simplification read as camouflage. This follow-up returns to the full-domain rock and places three feathered copies of the original slope-traced vector at west, midwest and mirrored east ground. They are visual-only and clipped to the same physical road; repeated motifs, budget, quota, physical grounding, desktop/mobile appearance and independent review remain unverified.
