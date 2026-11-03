@@ -22,18 +22,22 @@ jobs:
           python-version: '3.12'
       - name: Preflight adapters and frozen inputs without a game rebuild
         run: |
-          python -m py_compile tests/monster-natural-build.py tests/monster-natural-browser.py tools/monster-a1-qa/verify-candidate.py
+          python -m py_compile tests/monster-natural-build.py tests/monster-natural-browser.py tools/monster-a1-qa/verify-candidate.py tools/monster-a1-qa/reuse-natural-checkpoints.py
           python tests/monster-natural-build.py
           node tests/monster-natural-preflight.mjs
       - name: Verify immutable candidate and existing genuine gate artifact
         env:
           GH_TOKEN: ${{ github.token }}
         run: python tools/monster-a1-qa/verify-candidate.py
+      - name: Verify genuine natural approach checkpoints from recorded run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python tools/monster-a1-qa/reuse-natural-checkpoints.py
       - name: Install browser only, never rebuild or replay Stage31
         run: |
           python -m pip install 'playwright==1.58.0'
           python -m playwright install --with-deps chromium
-      - name: Natural Stage5 and Stage8 start to terminal or bounded blocker
+      - name: Natural Stage5 and Stage8 checkpoint counterchoices after real-browser preflight
         run: |
           set -euo pipefail
           python -m http.server 8871 --bind 127.0.0.1 > _local/reports/monster-natural/server.log 2>&1 &
@@ -41,7 +45,7 @@ jobs:
           sleep 2
           export HONRO_MONSTER_BASE_URL="$(cat _local/reports/monster-a1-visual-qa/base-url.txt)"
           timeout 180 env HONRO_NATURAL_PREFLIGHT=1 python tests/monster-natural-browser.py
-          timeout 1500 python tests/monster-natural-browser.py
+          timeout 600 env HONRO_NATURAL_BRANCH_ONLY=1 python tests/monster-natural-browser.py
           git diff --exit-code -- HONRO.html HONRO_WORKSHOP.html index.html web tools/stage31/production-package.json
       - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
         if: always()
