@@ -16,7 +16,7 @@
       "id": "A2.S12.INTRO.01",
       "speaker_channel": "설오 · 대사",
       "condition": "장면01 길표 첫 통과",
-      "text": "저 고목 아래로 내려가면 됩니다."
+      "text": "길표가 저 고목 아래를 가리킵니다. 그쪽으로 내려가면 됩니다."
     },
     {
       "id": "A2.S12.MID.01",
@@ -82,7 +82,7 @@
       "id": "A2.S12.BRANCH.01",
       "speaker_channel": "설오 · 대사",
       "condition": "장면05 route12=upper 확정",
-      "text": "저 발판을 따라가겠습니다."
+      "text": "저 발판 위라면 아래 길까지 내려다보입니다. 따라가겠습니다."
     },
     {
       "id": "A2.S12.BRANCH.02",
@@ -106,7 +106,7 @@
       "id": "A2.S12.COMPLETE.03",
       "speaker_channel": "설오 · 대사",
       "condition": "장면05 출구 도착",
-      "text": "바위 아래로 길이 이어집니다."
+      "text": "바위 아래로 길이 이어집니다. 이번엔 같은 자리로 돌아오지 않습니다."
     },
     {
       "id": "A2.S12.OBJECTIVE.01",
