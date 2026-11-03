@@ -76,3 +76,6 @@ The previous 5-color underlay (run 41668797169) failed visual review as camoufla
 
 ## Continuous panorama study
 Independent review of the prior angular underlay (run 41670570986) rejected large black geometric fractures. This alternative traces one new source generated against the actual whole-stage screenshot, registers it with the screenshot camera transform, feathers its outer limits over a subdued full-domain underlay, and clips everything to unchanged collision. Reference contours are illustrative only; collision remains authoritative. Any remaining seams, lost surface detail, silhouette deviations, protected-region error and mobile performance remain unapproved.
+
+## Asymmetric panorama revision
+The preceding panorama (run 41671931896) improved continuity but independent review rejected the central thick V-shaped fracture. This source revision removes it and uses smaller irregular faces; the original, half-size Lanczos trace input and 5-color speckle-80 path are preserved. The full-size trace exceeded native budget. All screenshot contour guidance remains illustrative; the physical road clip remains unchanged. Pixel fidelity, potential symmetry, camera edges, performance and mobile gameplay remain unapproved.
