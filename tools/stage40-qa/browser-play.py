@@ -2,16 +2,18 @@
 All live mutations use exposed DOM, keyboard or minimap controls. Planner clones
 current state only. No HP/pose/kill/scene-flag injection or hidden item actions.
 """
-import os,json,lzma,time,hashlib,traceback
+import os,json,lzma,time,hashlib,traceback,sys
 from pathlib import Path
 from playwright.sync_api import sync_playwright
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'act4-ci'))
+from precise_aim import aim_with_joystick
 root=Path(os.environ.get('HONRO_REPO_ROOT','.')).resolve();out=Path(os.environ['HONRO_CAPTURE_OUT']);out.mkdir(parents=True,exist_ok=False)
 bridge=(Path(__file__).parent/'browser-planner.js').read_text()
 raw=lzma.decompress((root/'tools/act4-rc/fixtures/stage40-checkpoints/sailing-observation-local-storage.json.xz').read_bytes());assert hashlib.sha256(raw).hexdigest()=='2c8e5d95e1e956059da5ae0b74a02641beed0bccf0932568194b108fec3a8141'
 (out/'source-profile.json').write_bytes(raw)
 result={'passed':False,'releaseApproved':False,'scope':'Prepared endgame profile, actual browser inputs; not earned1–39/cohort/fun approval','sourceCommit':os.environ.get('GITHUB_SHA'),'events':[],'errors':[]}
 with sync_playwright() as w:
- browser=w.chromium.launch(headless=True);context=browser.new_context(viewport={'width':1440,'height':900});context.tracing.start(screenshots=True,snapshots=True,sources=True);p=context.new_page();p.on('pageerror',lambda e:result['errors'].append(str(e)))
+ browser=w.chromium.launch(headless=True);context=browser.new_context(viewport={'width':1440,'height':900});p=context.new_page();p.on('pageerror',lambda e:result['errors'].append(str(e)))
  def state():return p.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b,u=e.active;return {round:b.round,active:u?.id,phase:b.phase,side:b.side,can:a.canInput(),dialogue:!!a.dialogue,x:u?.x,y:u?.y,facing:u?.facing,angle:u?.angle,move:u?.moveLeft,grounded:u&&e.grounded(u),support:u&&e.contactSurface(u.x,u.y-4,u.y+5)?.t.id,canDrop:e.canDrop(),finale:b.honroFinalDefenseRevision,major:b.units.filter(v=>v.side===1&&v.boss).length,minis:b.units.filter(v=>v.side===1&&v.honroMidboss).length,shots:b.shots,proof:HonroAct4TerrainPreview.proofValid(b),health:b.units.filter(v=>v.side===0&&!v.summoned&&!v.honroAct4Resident).map(v=>({id:v.id,hp:v.hp,dead:v.dead,acted:v.acted,x:v.x,y:v.y})),residents:b.units.filter(v=>v.honroAct4Resident).map(v=>({id:v.id,hp:v.hp,dead:v.dead})),foes:b.units.filter(v=>v.side===1&&!v.dead&&v.hp>0).map(v=>({id:v.id,hp:v.hp,x:v.x,y:v.y})),boss:b.units.find(v=>v.honroAct4FinaleBoss)?.honroPilotCombat}}''')
  def record(label,extra=None):
   s=state();result['events'].append({'label':label,'state':s,'extra':extra});(out/'result.json').write_text(json.dumps(result,ensure_ascii=False,indent=2));print(label,s['round'],s['active'],len(s['foes']),flush=True);return s
@@ -104,15 +106,15 @@ with sync_playwright() as w:
     if s['facing']!=face:hold('ArrowLeft' if face<0 else 'ArrowRight',60);ready();q=p.evaluate(bridge,'plan');c=q['choice'];record('replan-facing',q)
    if not c:before=state();p.keyboard.press('f');p.wait_for_timeout(1100);ready();record('actual-ui-defend',{'actor':before['active'],'move':before['move']});continue
    p.keyboard.press('Digit'+str(c['idx']+1));p.wait_for_timeout(100)
-   for _ in range(20):
-    s=state();delta=c['angle']-s['angle']
-    if abs(delta)<1.5:break
-    hold('ArrowUp' if delta*s['facing']>0 else 'ArrowDown',min(170,max(20,abs(delta)/62*1000)))
-   if abs(state()['angle']-c['angle'])>2.5:record('aim-not-aligned',c);continue
+   aim_result=aim_with_joystick(p,c['angle'],lambda:{**state(),'moveLeft':state()['move']})
+   record('precision-aim',{'choice':c,'inputResult':aim_result})
+   assert aim_result['passed'],'Bounded normal joystick aim did not converge without context change'
    p.keyboard.down('Space')
    try:p.wait_for_function('target=>HonroApp.charging&&HonroApp.chargePower(performance.now())>=target',arg=max(0,c['power']-.02),timeout=8000,polling=16)
    finally:p.keyboard.up('Space')
    p.wait_for_timeout(1200);ready();record('actual-ui-cast',{'choice':c,'actual':p.evaluate('(id)=>HonroApp.engine.b.lastShots?.[id]',actor)})
+   if os.environ.get('HONRO40_FIRST_CAST_ONLY')=='1':
+    result['passed']=True;result['focused']='First normal-input cast only; no stage completion claim';p.screenshot(path=str(out/'first-cast.png'));raise SystemExit(0)
    if turn%8==0:p.screenshot(path=str(out/('turn-%03d.png'%turn)))
   final=record('combat-end');p.screenshot(path=str(out/'combat-end.png'));assert not final['foes'] and final['round']<=20,'Combat failed approved time target'
   from escort_inputs import finish_escort
@@ -124,5 +126,5 @@ with sync_playwright() as w:
  finally:
   try:(out/'final-storage.json.xz').write_bytes(lzma.compress(p.evaluate("localStorage.getItem('honro-first-act-profile-1')").encode()))
   except Exception:pass
-  result['elapsedSeconds']=time.monotonic()-started if 'started' in locals() else None;(out/'result.json').write_text(json.dumps(result,ensure_ascii=False,indent=2));context.tracing.stop(path=str(out/'trace.zip'));browser.close()
+  result['elapsedSeconds']=time.monotonic()-started if 'started' in locals() else None;(out/'result.json').write_text(json.dumps(result,ensure_ascii=False,indent=2));browser.close()
 if not result['passed']:raise SystemExit(1)

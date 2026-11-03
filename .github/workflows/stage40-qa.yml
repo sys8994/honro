@@ -55,7 +55,7 @@ jobs:
         id: stage31
         run: |
           set -euo pipefail
-          node tools/act4-ci/restore-measured-stage31.mjs | tee "$OUT/measured-evidence-source.json"
+          node tools/stage40-qa/restore-measured-stage31.mjs | tee "$OUT/measured-evidence-source.json"
           if node tools/stage31/check-release.mjs > "$OUT/reuse-gate.log" 2>&1; then
             cat "$OUT/reuse-gate.log"
             echo 'fresh=false' >> "$GITHUB_OUTPUT"

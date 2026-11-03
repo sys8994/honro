@@ -41,3 +41,24 @@ f18ac4677261fc9dbebd9625363d53d8272c50fc. The workflow now fetches both exact
 comparison commits and supplies explicit reference variables. Assertions,
 product/driver source and the genuine Stage31 gate are unchanged. This is a
 provenance setup repair, not another failed combat trial or weakened gate.
+
+## R1 input calibration failure retained
+
+Run41595651979 at74265f87 passed fresh normal Stage31 and the build gate, then
+failed the registered40-minute Stage40 bound atR1 with zero shots and all42
+untouched. Repeated open-loop keyboard aim pulses overshot the sameS06 target
+angle-25.50; actual aim ended near-35. This is not a combat/pacing outcome.
+The original6.29GB trace remains in artifact13215393920 (SHA256
+2f0f62cc9a7d46915f0e3a4d8b473b59abffd47143766ea2631e995042a89f59).
+Inspection run41604196596 verified that archive and copied its small records
+and actual screenshots into artifact13216067325 without rerunning gameplay.
+
+Register one focused normal-entry first-cast calibration using the existing
+Stage31 closed-loop joystick helper, unchanged game source/profile/planner.
+A failed convergence now stops immediately, rather than looping40minutes.
+Remove full Playwright snapshots from future runs because repeated planner
+calls generated the oversized trace; retain explicit screenshots, all action
+records and final saved state. The previous trace is not deleted. Reuse only
+byte-exact Stage31 evidence from41595651979, retaining its original provenance
+and requiring the unchanged current production gate. A successful first cast
+is never whole-stage acceptance; another full run requires its own registration.
