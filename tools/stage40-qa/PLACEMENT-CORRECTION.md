@@ -53,3 +53,23 @@ The bounded body-slot probe rejected630: normal compiler displaced it to470.
 Recorded actual radii are24/25/32, so the nominal70 gaps are insufficient.
 The same-support probe found1290 body-clear;930 was already exact. These are
 now the two prototype slots. Compare all other compiled actor coordinates too.
+
+## Registered integrated controller (deck comparison)
+
+Native fixtures demonstrate existing dock drop to the return deck, three safe
+full-projectile boss firing lanes, and a normal jump/land/climb retreat before
+visible high tide. Continuous left walking and long held-left jumping failed
+by passing below the ascending one-way stair; their logs are retained. The
+chosen sequence walks to2350, jumps, waits30frames, walks to2140, releases to
+land on departure stair, then climbs to a dry role-specific refuge. No terrain,
+actor stats, recovery rules or hidden item were changed. Rear-archer pressure
+fixture confirms both archers still fire; the930 archer can retreat far west,
+so compact placement is not assumed to solve all chase costs.
+
+One integrated normal-entry comparison uses the same prepared profile, exact
+42enemy placement, current-observed warning retreat and full-path cast screen.
+The native adapter uses App.defend, never Engine.wait/item. If combat clears
+within20R it saves that exact checkpoint and continues normal return controls,
+production minimap input/observer, existing dialogue/interact, settlement and
+reload. Any return budget overrun remains a failure. Canvas/DOM are doubled,
+so this is functional diagnostic evidence, not visual/fun/browser acceptance.

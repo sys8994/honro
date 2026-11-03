@@ -1,0 +1,4 @@
+import assert from 'node:assert/strict';
+import {finaleDeckGoal,tideRetreatRequired} from './role-route-deck.mjs';
+const b={round:8,honroAct4Design:{tide:{high:3412.5}},honroAct4PreviewState:{tide:{phase:'rising',highRound:10}}},u={cls:'mage',x:2200,y:2893},ctx={b,support:'approved40-dock',foes:[{id:'rear',x:930,y:2744}],surface:()=> 'approved40-dock'};
+assert.equal(finaleDeckGoal(u,ctx).kind,'ordinary-deck-drop');assert.equal(finaleDeckGoal({...u,cls:'knight'},ctx),null);assert(!tideRetreatRequired(b,{...u,y:3600}));b.round=9;assert(tideRetreatRequired(b,{...u,y:3600}));assert(!tideRetreatRequired(b,{...u,y:3200}));assert.equal(finaleDeckGoal({...u,y:3400},{...ctx,support:'approved40-departure-stair'}).kind,'visible-tide-refuge');console.log('PASS separate rear/front goals and visible tide window');

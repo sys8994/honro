@@ -91,3 +91,15 @@ target priority/escape, connected lower-deck activation. Stop at combat terminal
 R24,450000frames or1200seconds. No repetition without a changed demonstrated cause.
 Success at this step means only diagnostic combat clearance within20; safe
 return, settlement and actual browser/fun remain separate required checks.
+
+## roles-01, native f0406082 / canonical f18ac467
+
+Frozen terminal R25,41/42 removed, major boss645HP remaining, mage casualty,
+3surviving heroes and4living residents. It fails20R independently of hero loss;
+hero casualty alone is not a new survival requirement.84loop turns/81logged
+complete rows,14defends,15S06 casts,40unsafe full-cast candidates rejected.
+The local result, turns, damage/resource traces and final profile are retained
+under `_local/reports/stage40-roles-01`. Stationary safe firing on the dock was
+not established: rear chase and front pressure overlap, and late survivors
+crowd the departure-stair firing lane. This motivates the narrowly approved
+two-archer placement and demonstrated lower-deck route, not a HP/count nerf.
