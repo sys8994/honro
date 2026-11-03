@@ -1,0 +1,39 @@
+{
+  "id": "stage06-prototype:pier-west-clean-v1",
+  "name": "Stage 6 west pier trace study",
+  "semanticLayer": "REAR",
+  "category": "prop",
+  "bounds": {
+    "x": 0,
+    "y": 0,
+    "w": 887,
+    "h": 1774
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 443.5,
+    "y": 1700
+  },
+  "preserveCompounds": true,
+  "params": {
+    "previewOnly": true
+  },
+  "protectedRects": [
+    [
+      110,
+      90,
+      300,
+      125
+    ],
+    [
+      100,
+      750,
+      320,
+      240
+    ]
+  ],
+  "width": 512
+}

@@ -1,0 +1,162 @@
+{
+  "raw": "tools/stage6-prototype/art-study/pier-west-clean-raw.svg",
+  "candidate": "/tmp/pier-west-partition.svg",
+  "rawStats": {
+    "sourceBytes": 383386,
+    "paths": 7,
+    "commands": 9970,
+    "segments": 9102,
+    "endpointNodesUpperBound": 9970,
+    "explicitCommandLetters": 3858,
+    "subpaths": 868,
+    "pathChars": 382176,
+    "maxPathChars": 135143
+  },
+  "candidateStats": {
+    "sourceBytes": 453685,
+    "paths": 17,
+    "commands": 10234,
+    "segments": 9309,
+    "endpointNodesUpperBound": 10234,
+    "explicitCommandLetters": 8501,
+    "subpaths": 925,
+    "pathChars": 451663,
+    "maxPathChars": 51354
+  },
+  "visualApproval": "NOT REVIEWED",
+  "config": {
+    "id": "stage06-prototype:pier-west-clean-v1",
+    "name": "Stage 6 west pier trace study",
+    "semanticLayer": "REAR",
+    "category": "prop",
+    "bounds": {
+      "x": 0,
+      "y": 0,
+      "w": 887,
+      "h": 1774
+    },
+    "anchor": {
+      "x": 0,
+      "y": 0
+    },
+    "foot": {
+      "x": 443.5,
+      "y": 1700
+    },
+    "preserveCompounds": true,
+    "params": {
+      "previewOnly": true
+    },
+    "protectedRects": [
+      [
+        110,
+        90,
+        300,
+        125
+      ],
+      [
+        100,
+        750,
+        320,
+        240
+      ]
+    ],
+    "width": 512,
+    "sourcePalette": [
+      [
+        49,
+        52,
+        47
+      ],
+      [
+        61,
+        67,
+        62
+      ],
+      [
+        75,
+        75,
+        59
+      ],
+      [
+        77,
+        80,
+        70
+      ],
+      [
+        100,
+        101,
+        80
+      ],
+      [
+        148,
+        121,
+        97
+      ],
+      [
+        162,
+        138,
+        110
+      ]
+    ]
+  },
+  "errors": {
+    "1": {
+      "rgbMAE255": 0.0090353237465024,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.0009326934814453125,
+      "changedPixelFraction": 1.52587890625e-05,
+      "silhouetteMaxOffsetPx": 1.0,
+      "protectedChangedPixelFraction": 6.124234470691164e-05,
+      "protectedRgbMAE255": 0.018387937918305397,
+      "protectedSilhouetteMaxOffsetPx": 0.0,
+      "protectedColorEdgeRawMaxOffsetPx": 117.15374513859982,
+      "protectedColorEdgeMaxOffsetPx": 117.15374513859982,
+      "protectedRgbQuantizationTolerance255": 0,
+      "protectedQuantizationPixels": 0,
+      "pass": false
+    },
+    "2": {
+      "rgbMAE255": 0.0049946364015340805,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 5.4359428759198636e-05,
+      "changedPixelFraction": 2.384185791015625e-06,
+      "silhouetteMaxOffsetPx": 0.0,
+      "protectedChangedPixelFraction": 1.0936132983377077e-05,
+      "protectedRgbMAE255": 0.009849051013588905,
+      "protectedSilhouetteMaxOffsetPx": 0.0,
+      "protectedColorEdgeRawMaxOffsetPx": 59.665735560705194,
+      "protectedColorEdgeMaxOffsetPx": 59.665735560705194,
+      "protectedRgbQuantizationTolerance255": 0,
+      "protectedQuantizationPixels": 0,
+      "pass": false
+    }
+  },
+  "timings": {
+    "raw-1": {
+      "width": 512,
+      "height": 1024,
+      "decodeMs": 15.311452000000031,
+      "drawMs": 1.0174720000000548
+    },
+    "candidate-1": {
+      "width": 512,
+      "height": 1024,
+      "decodeMs": 15.388797999999952,
+      "drawMs": 0.7954110000000014
+    },
+    "raw-2": {
+      "width": 1024,
+      "height": 2048,
+      "decodeMs": 28.99852199999998,
+      "drawMs": 3.360742000000016
+    },
+    "candidate-2": {
+      "width": 1024,
+      "height": 2048,
+      "decodeMs": 39.31160100000005,
+      "drawMs": 4.725649000000033
+    }
+  },
+  "qualityPass": false
+}
