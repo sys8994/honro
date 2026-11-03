@@ -21,6 +21,8 @@ for(let n=0;n<10&&b.side===0;n++){if(e.canAct())e.wait();tick(()=>b.side!==0||b.
 tick(()=>!!u.enemySoftBind||!!u.enemyPush||!k.enemyEffectCast);a.updateHUD(true);a.scene.render(e,0,a.selected,a.power,false,0,true);
 return {hp:u.hp,startHP:q.startHP,x:u.x,startX:q.startX,bind:!!u.enemySoftBind,push:!!u.enemyPush,cast:!!k.enemyEffectCast,actors:b.units.map(v=>v.id)};}'''
 rows=[]
+def activate(locator,mobile):
+ locator.tap() if mobile else locator.click()
 with sync_playwright() as pw, (nullcontext(os.environ['HONRO_MONSTER_BASE_URL']) if os.environ.get('HONRO_MONSTER_BASE_URL') else serve_game()) as url:
  browser=launch(pw)
  for mobile in [False,True]:
@@ -31,9 +33,14 @@ with sync_playwright() as pw, (nullcontext(os.environ['HONRO_MONSTER_BASE_URL'])
    name=f"{'mobile' if mobile else 'desktop'}-{stage}-{kind}"
    p.evaluate('''stage=>{const a=HonroApp;a.close();a.stopBattle();const p=HONRO_TOOLS.fresh();for(let n=1;n<stage;n++)p.cleared[n]={visits:1,rounds:5};p.recruited=stage>=6?['archer','mage','knight']:['archer','mage'];p.party=[...p.recruited];p.settings.sound=p.settings.music=false;for(const cls of p.party)p.heroes[cls].xp=HONRO_CORE.xpAtLevel(16);a.profile=a.normalProfile=p;a.launch(stage);}''',stage)
    p.wait_for_function('(stage)=>HonroApp.engine?.b.honroStage===stage',arg=stage,timeout=45000)
+   dialogue_clicks=0
+   for _ in range(50):
+    if not p.evaluate('!!HonroApp.dialogue'):break
+    activate(p.locator('[data-action="dialogue-next"]'),mobile);dialogue_clicks+=1
+   assert not p.evaluate('!!HonroApp.dialogue'),'Dialogue must finish through normal Next'
    setup=p.evaluate(SETUP,{'stage':stage,'offset':offset});assert setup['revision']==1 and setup['supported'];assert setup['cast']['seen'] and setup['cast']['offered'],setup
    p.screenshot(path=str(OUT/(name+'-warning.png')))
-   before=p.evaluate('JSON.stringify(HonroApp.engine.b)');p.evaluate('HonroApp.pause()');p.locator('[data-action="close"]').last.click();assert p.evaluate('JSON.stringify(HonroApp.engine.b)')==before,'Pause/close must not spend response'
+   before=p.evaluate('JSON.stringify(HonroApp.engine.b)');activate(p.locator('[data-action="pause"]').first,mobile);activate(p.locator('[data-action="close"]').last,mobile);assert p.evaluate('JSON.stringify(HonroApp.engine.b)')==before,'Pause/close must not spend response'
    # The real renderer offers an offscreen sign without resetting the warning.
    offscreen=p.evaluate('''()=>{const a=HonroApp,e=a.engine,k=e.unit(monsterBrowser.id),before=JSON.stringify(k.enemyEffectCast),x=a.scene.x;a.scene.x=0;a.scene.render(e,0,a.selected,a.power,false,0,true);const same=JSON.stringify(k.enemyEffectCast)===before;a.scene.x=x;return same;}''');assert offscreen
    result=p.evaluate(RESPOND,kind);assert result['actors']==setup['actors']
@@ -44,10 +51,18 @@ with sync_playwright() as pw, (nullcontext(os.environ['HONRO_MONSTER_BASE_URL'])
    with p.expect_download() as downloaded:p.evaluate('HonroApp.export()')
    download=downloaded.value;savepath=OUT/(name+'-export.json');download.save_as(str(savepath))
    continued=p.evaluate('''()=>{const a=HonroApp,before=JSON.stringify(a.engine.b);a.continue();return {exact:before===JSON.stringify(a.engine.b),revision:a.engine.b.honroMonsterEffectsRevision};}''');assert continued=={'exact':True,'revision':1},continued
+   p.evaluate('window.monsterBeforeImport=JSON.stringify(HonroApp.engine.b)');p.locator('#file-import').set_input_files(str(savepath));p.wait_for_function('HonroApp.screen==="title"');activate(p.locator('[data-action="continue"]').first,mobile);p.wait_for_function('!!HonroApp.engine');assert p.evaluate('JSON.stringify(HonroApp.engine.b)===window.monsterBeforeImport'),'File-input import + pointer Continue exact'
    p.evaluate('''()=>{const a=HonroApp,u=a.engine.unit('p-archer');a.scene.x=u.x;a.scene.y=u.y-130;a.scene.scale=innerWidth<600?.8:1.15;a.scene.manual=true;a.updateHUD(true);a.scene.render(a.engine,0,a.selected,a.power,false,0,true);}''')
    if mobile:
     p.set_viewport_size({'width':844,'height':390});p.evaluate('HonroApp.scene.render(HonroApp.engine,0,HonroApp.selected,HonroApp.power,false,0,true)');p.screenshot(path=str(OUT/(name+'-landscape.png')));p.set_viewport_size({'width':390,'height':844})
-   rows.append({'case':name,'setup':setup,'result':result,'continue':continued,'offscreenAcknowledgementStable':offscreen,'pauseExact':True})
+   legacy_exact=None
+   if stage==8:
+    p.evaluate('''()=>{const b=JSON.parse(JSON.stringify(HonroApp.engine.b));delete b.honroMonsterEffectsRevision;for(const u of b.units)for(const key of ['honroMonsterEffectSkill','enemyEffectCast','enemyEffectRecovery','enemyEffectCooldown','enemySoftBind','enemyPush','enemyControlGrace','enemyEffectHits'])delete u[key];window.monsterLegacyExpected=JSON.stringify(b);}''')
+    legacy=json.loads(savepath.read_text());legacy['honroBattle'].pop('honroMonsterEffectsRevision',None)
+    for unit in legacy['honroBattle']['units']:
+     for key in ['honroMonsterEffectSkill','enemyEffectCast','enemyEffectRecovery','enemyEffectCooldown','enemySoftBind','enemyPush','enemyControlGrace','enemyEffectHits']:unit.pop(key,None)
+    legacy_path=OUT/(name+'-legacy-fixture.json');legacy_path.write_text(json.dumps(legacy,ensure_ascii=False));p.locator('#file-import').set_input_files(str(legacy_path));p.wait_for_function('HonroApp.screen==="title"');activate(p.locator('[data-action="continue"]').first,mobile);p.wait_for_function('!!HonroApp.engine');legacy_exact=p.evaluate('HonroApp.engine.b.honroMonsterEffectsRevision===undefined && JSON.stringify(HonroApp.engine.b)===window.monsterLegacyExpected');assert legacy_exact
+   rows.append({'case':name,'dialogueNextPointerCount':dialogue_clicks,'fileInputPointerContinueExact':True,'legacyAbsentVersionFixture':legacy_exact,'setup':setup,'result':result,'continue':continued,'offscreenAcknowledgementStable':offscreen,'pauseExact':True})
   assert not errors,errors;context.close()
  browser.close()
 (OUT/'summary.json').write_text(json.dumps({'status':'passed','scope':'Prepared canonical encounter/profile fixtures; browser renderer, public engine fire/move/wait, export and Continue. Not chapter completion, pointer shooting, or human play approval.','rows':rows},ensure_ascii=False,indent=2))
