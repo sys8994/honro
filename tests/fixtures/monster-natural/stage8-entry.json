@@ -1,0 +1,1611 @@
+{
+  "profile": {
+    "version": 2,
+    "revision": 13,
+    "cleared": {
+      "1": {
+        "visits": 1,
+        "rounds": 0
+      },
+      "2": {
+        "visits": 1,
+        "rounds": 0
+      },
+      "3": {
+        "visits": 1,
+        "rounds": 0
+      },
+      "4": {
+        "visits": 1,
+        "rounds": 0
+      },
+      "5": {
+        "visits": 1,
+        "rounds": 0
+      },
+      "6": {
+        "visits": 1,
+        "rounds": 0
+      },
+      "7": {
+        "visits": 1,
+        "rounds": 0
+      }
+    },
+    "party": [
+      "archer",
+      "mage",
+      "knight"
+    ],
+    "loadouts": {
+      "mage": [
+        "M01",
+        "M06",
+        "M04",
+        "M11"
+      ],
+      "archer": [
+        "A01",
+        "A14",
+        "A02",
+        "A11"
+      ],
+      "knight": [
+        "S00",
+        "S09",
+        "S03",
+        "S05"
+      ],
+      "occultist": [
+        "O01",
+        "O06"
+      ]
+    },
+    "tuning": {
+      "mage": 0.5,
+      "archer": 0.5,
+      "knight": 0.5,
+      "occultist": 0.5
+    },
+    "settings": {
+      "sound": true,
+      "music": false,
+      "volume": 0.35,
+      "assist": false,
+      "shake": true,
+      "quality": "high",
+      "difficulty": "story",
+      "speed": 2,
+      "playerSpeed": 1,
+      "orientation": "landscape",
+      "musicVolume": 0.65,
+      "minimapVisible": true,
+      "debugTerrainOutline": false
+    },
+    "saved": null,
+    "lastStage": 8,
+    "mapNode": 1,
+    "tutorial": false,
+    "heroes": {
+      "mage": {
+        "xp": 7287,
+        "ranks": {
+          "M01": 1,
+          "M06": 1,
+          "M02": 1,
+          "M04": 1,
+          "M03": 1,
+          "M11": 1,
+          "MP01": 3,
+          "MP02": 2
+        },
+        "statTraining": 3,
+        "kills": 0,
+        "damage": 0,
+        "skillRevision": 1,
+        "martialRevision": 1,
+        "equipmentIds": [
+          "itm_da_01"
+        ]
+      },
+      "archer": {
+        "xp": 7287,
+        "ranks": {
+          "A01": 1,
+          "A14": 1,
+          "A02": 1,
+          "A11": 1,
+          "AP01": 4,
+          "AP04": 2,
+          "AP02": 1
+        },
+        "statTraining": 3,
+        "kills": 0,
+        "damage": 0,
+        "skillRevision": 1,
+        "martialRevision": 1,
+        "equipmentIds": [
+          "itm_se_01"
+        ]
+      },
+      "knight": {
+        "xp": 7287,
+        "ranks": {
+          "S00": 1,
+          "S09": 1,
+          "S03": 1,
+          "S05": 1,
+          "S07": 1,
+          "SP01": 2,
+          "SP02": 3
+        },
+        "statTraining": 3,
+        "kills": 0,
+        "damage": 0,
+        "skillRevision": 1,
+        "martialRevision": 1,
+        "equipmentIds": [
+          "itm_hw_01"
+        ]
+      },
+      "occultist": {
+        "xp": 0,
+        "ranks": {
+          "O01": 1,
+          "O06": 1
+        },
+        "statTraining": 0,
+        "kills": 0,
+        "damage": 0,
+        "skillRevision": 1,
+        "martialRevision": 1,
+        "occultRevision": 1
+      }
+    },
+    "recruited": [
+      "archer",
+      "mage",
+      "knight"
+    ],
+    "schema": 5,
+    "game": "honro",
+    "seen": {},
+    "record": [
+      {
+        "place": "돌아오는 빈 상여",
+        "text": "설오 · 요령 소리도 없이 상여가 혼자 갑니다…… 저건 낮에 모셨던 홍만 어르신 상여잖습니까! 왜 다시 제 발로 움직이는 겁니까?\n담허 · 홍만 어르신은 이미 편히 떠나셨네. 비어 있는 상여 틀에 다른 원혼이 기어든 게야.\n설오 · 우리가 아까 폭포 뒤에서 주박목을 부숴서 이리로 흘러든 겁니까?\n담허 · 그 영향일 수도 있네만, 아직 어느 줄에서 떨어져 나온 혼인지는 단정할 수 없네.\n휘겸 · 뒤에서 주민들이 이 길로 내려오고 있소. 어느 쪽 혼이든 상여부터 멈춰 세워야 하오!\n담허 · 양쪽 상여채를 얽어맨 결박부터 끊어 주게. 상여가 멈추면 안에 든 혼은 내가 진으로 받겠네."
+      }
+    ],
+    "honroFlags": {},
+    "equipment": {
+      "schema": 1,
+      "definitionRevision": 1,
+      "runId": "eq-mw0064k1-lfjhoky8",
+      "ownedItemIds": [
+        "itm_se_01",
+        "itm_da_01",
+        "itm_hw_01",
+        "itm_se_02",
+        "itm_da_02",
+        "itm_co_01",
+        "itm_co_02"
+      ],
+      "eligibleEventIds": [],
+      "equippedByClass": {
+        "archer": {
+          "personal": "itm_se_01",
+          "common": null
+        },
+        "mage": {
+          "personal": "itm_da_01",
+          "common": null
+        },
+        "knight": {
+          "personal": "itm_hw_01",
+          "common": null
+        },
+        "occultist": {
+          "personal": null,
+          "common": null
+        }
+      },
+      "rewardLedger": {
+        "eq_se_start": {
+          "state": "committed",
+          "choiceGroup": null,
+          "selectedItemId": "itm_se_01",
+          "notified": false
+        },
+        "eq_da_join": {
+          "state": "committed",
+          "choiceGroup": null,
+          "selectedItemId": "itm_da_01",
+          "notified": false
+        },
+        "eq_hw_join": {
+          "state": "committed",
+          "choiceGroup": null,
+          "selectedItemId": "itm_hw_01",
+          "notified": false
+        },
+        "eq_se_ledger": {
+          "state": "committed",
+          "choiceGroup": null,
+          "selectedItemId": "itm_se_02",
+          "notified": false
+        },
+        "eq_da_gate": {
+          "state": "committed",
+          "choiceGroup": null,
+          "selectedItemId": "itm_da_02",
+          "notified": false
+        },
+        "eq_co_01": {
+          "state": "committed",
+          "choiceGroup": null,
+          "selectedItemId": "itm_co_01",
+          "notified": false
+        },
+        "eq_co_02": {
+          "state": "committed",
+          "choiceGroup": null,
+          "selectedItemId": "itm_co_02",
+          "notified": false
+        },
+        "eq_co_t1_choice": {
+          "state": "pending",
+          "choiceGroup": "cg_co_t1",
+          "selectedItemId": null,
+          "notified": false
+        }
+      },
+      "initialAutoEquip": true,
+      "basicPrepared": [
+        "archer",
+        "mage",
+        "knight"
+      ]
+    },
+    "honroGrowth": {
+      "version": 4,
+      "stages": {
+        "1": {
+          "policy": 3,
+          "combat": {},
+          "cleared": true,
+          "limit": {
+            "start": 0,
+            "end": 180,
+            "total": 180,
+            "combat": 72
+          }
+        },
+        "2": {
+          "policy": 3,
+          "combat": {},
+          "cleared": true,
+          "limit": {
+            "start": 180,
+            "end": 450,
+            "total": 270,
+            "combat": 108
+          }
+        },
+        "3": {
+          "policy": 3,
+          "combat": {},
+          "cleared": true,
+          "limit": {
+            "start": 450,
+            "end": 912,
+            "total": 462,
+            "combat": 185
+          }
+        },
+        "4": {
+          "policy": 3,
+          "combat": {},
+          "cleared": true,
+          "limit": {
+            "start": 912,
+            "end": 1643,
+            "total": 731,
+            "combat": 292
+          }
+        },
+        "5": {
+          "policy": 3,
+          "combat": {},
+          "cleared": true,
+          "limit": {
+            "start": 1643,
+            "end": 2709,
+            "total": 1066,
+            "combat": 426
+          }
+        },
+        "6": {
+          "policy": 3,
+          "combat": {},
+          "cleared": true,
+          "limit": {
+            "start": 2709,
+            "end": 4170,
+            "total": 1461,
+            "combat": 584
+          }
+        },
+        "7": {
+          "policy": 3,
+          "combat": {},
+          "cleared": true,
+          "limit": {
+            "start": 4170,
+            "end": 7287,
+            "total": 3117,
+            "combat": 1247
+          }
+        },
+        "8": {
+          "combat": {},
+          "cleared": false,
+          "limit": {
+            "start": 7287,
+            "end": 11455,
+            "total": 4168,
+            "combat": 1667
+          },
+          "contribution": {
+            "version": 4,
+            "rewardBalance": 1,
+            "sequence": 0,
+            "total": 12504,
+            "combatLimit": 5001,
+            "actors": [
+              "archer",
+              "knight",
+              "mage"
+            ],
+            "factors": {
+              "archer": 1,
+              "mage": 1,
+              "knight": 1
+            },
+            "owners": {
+              "p-archer": "archer",
+              "p-mage": "mage",
+              "p-knight": "knight"
+            },
+            "enemies": {
+              "s8-0": {
+                "id": "s8-0",
+                "hp": 330,
+                "weight": 1,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "s8-1": {
+                "id": "s8-1",
+                "hp": 412,
+                "weight": 1.25,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "s8-2": {
+                "id": "s8-2",
+                "hp": 330,
+                "weight": 1,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "s8-3": {
+                "id": "s8-3",
+                "hp": 205,
+                "weight": 0.78,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "s8-4": {
+                "id": "s8-4",
+                "hp": 330,
+                "weight": 1,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "s8-5": {
+                "id": "s8-5",
+                "hp": 412,
+                "weight": 1.25,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "s8-6": {
+                "id": "s8-6",
+                "hp": 330,
+                "weight": 1,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "s8-7": {
+                "id": "s8-7",
+                "hp": 660,
+                "weight": 2,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "s8-8": {
+                "id": "s8-8",
+                "hp": 330,
+                "weight": 1,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "s8-9": {
+                "id": "s8-9",
+                "hp": 264,
+                "weight": 0.8,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "s8-10": {
+                "id": "s8-10",
+                "hp": 330,
+                "weight": 1,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "s8-11": {
+                "id": "s8-11",
+                "hp": 412,
+                "weight": 1.25,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "s8-12": {
+                "id": "s8-12",
+                "hp": 330,
+                "weight": 1,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "s8-13": {
+                "id": "s8-13",
+                "hp": 205,
+                "weight": 0.78,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "s8-14": {
+                "id": "s8-14",
+                "hp": 264,
+                "weight": 0.8,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "s8-15": {
+                "id": "s8-15",
+                "hp": 528,
+                "weight": 1.6,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "s8-16": {
+                "id": "s8-16",
+                "hp": 330,
+                "weight": 1,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "s8-17": {
+                "id": "s8-17",
+                "hp": 330,
+                "weight": 1,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "s8-18": {
+                "id": "s8-18",
+                "hp": 528,
+                "weight": 1.6,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "s8-19": {
+                "id": "s8-19",
+                "hp": 330,
+                "weight": 1,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "s8-20": {
+                "id": "s8-20",
+                "hp": 256,
+                "weight": 0.9750000000000001,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "s8-21": {
+                "id": "s8-21",
+                "hp": 330,
+                "weight": 1,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "s8-22": {
+                "id": "s8-22",
+                "hp": 528,
+                "weight": 1.6,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "s8-23": {
+                "id": "s8-23",
+                "hp": 205,
+                "weight": 0.78,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "s8-24": {
+                "id": "s8-24",
+                "hp": 330,
+                "weight": 1,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "s8-25": {
+                "id": "s8-25",
+                "hp": 412,
+                "weight": 1.25,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "s8-26": {
+                "id": "s8-26",
+                "hp": 330,
+                "weight": 1,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "s8-27": {
+                "id": "s8-27",
+                "hp": 330,
+                "weight": 1,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "s8-28": {
+                "id": "s8-28",
+                "hp": 264,
+                "weight": 0.8,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "s8-29": {
+                "id": "s8-29",
+                "hp": 205,
+                "weight": 0.78,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "s8-30": {
+                "id": "s8-30",
+                "hp": 660,
+                "weight": 2,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "s8-31": {
+                "id": "s8-31",
+                "hp": 330,
+                "weight": 1,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "s8-32": {
+                "id": "s8-32",
+                "hp": 330,
+                "weight": 1,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "s8-33": {
+                "id": "s8-33",
+                "hp": 205,
+                "weight": 0.78,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "s8-34": {
+                "id": "s8-34",
+                "hp": 256,
+                "weight": 0.9750000000000001,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "s8-35": {
+                "id": "s8-35",
+                "hp": 264,
+                "weight": 0.8,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              },
+              "boss": {
+                "id": "boss",
+                "hp": 2082,
+                "weight": 5,
+                "progress": 0,
+                "damage": {},
+                "support": {},
+                "threats": {},
+                "wounds": {},
+                "controls": {},
+                "defeated": false,
+                "settled": false
+              }
+            },
+            "objectives": {},
+            "objectiveEvidence": {},
+            "paid": {},
+            "spent": 0,
+            "forfeited": 0,
+            "combatSpent": 0,
+            "completed": false
+          },
+          "policy": 4
+        }
+      }
+    },
+    "honroAct23V4PresentationRevision": 1,
+    "honroReviewed11PresentationRevision": 1,
+    "honroReviewedPresentationRevisions": {
+      "12": 512,
+      "13": 513,
+      "14": 514,
+      "15": 515,
+      "16": 516,
+      "17": 517,
+      "18": 518,
+      "19": 519,
+      "20": 520
+    },
+    "honroReviewed21PresentationRevision": 1,
+    "honroReviewed22PresentationRevision": 1,
+    "honroReviewedAct3Presentation": {
+      "23": 1,
+      "24": 1,
+      "25": 1,
+      "26": 1,
+      "27": 1,
+      "28": 1,
+      "29": 1,
+      "30": 1
+    },
+    "honroReviewed30EndingPresentation": 1,
+    "honroNarrative": [
+      {
+        "id": "act1-v6:entry-8",
+        "title": "돌아오는 빈 상여",
+        "lines": [
+          [
+            "휘겸",
+            "덕수가 말한 상여 창고요. 주민들이 내려오기 전에 저 빈 상여부터 멈춰 세웁시다.",
+            {
+              "storyId": "act1-v6:entry-8",
+              "storyTitle": "돌아오는 빈 상여",
+              "optional": false,
+              "rowId": "arrival.8:77748b8525",
+              "arrivalCamera": {
+                "id": "arrival.8:77748b8525",
+                "intent": "situation",
+                "targets": [
+                  {
+                    "anchor": "bier"
+                  }
+                ],
+                "padding": 80,
+                "maxScale": 0.8
+              },
+              "portraitExpression": "base",
+              "camera": {
+                "id": "arrival.8:77748b8525",
+                "intent": "situation",
+                "targets": [
+                  {
+                    "anchor": "bier"
+                  }
+                ],
+                "padding": 80,
+                "maxScale": 0.8,
+                "speakerPolicy": "context-portrait"
+              },
+              "stagingScene": "direction-v2:entry-8"
+            }
+          ],
+          [
+            "설오",
+            "요령 소리도 없이 상여가 혼자 갑니다…… 저건 낮에 모셨던 홍만 어르신 상여잖습니까! 왜 다시 제 발로 움직이는 겁니까?",
+            {
+              "focus": "boss",
+              "rowId": "8.story:b04739f8b2",
+              "direction": [
+                {
+                  "type": "look",
+                  "actor": "archer",
+                  "at": {
+                    "actor": "boss"
+                  },
+                  "pose": "recoil",
+                  "camera": false,
+                  "duration": 650
+                }
+              ],
+              "portraitExpression": "emotion.concern",
+              "storyId": "act1-v6:entry-8",
+              "storyTitle": "돌아오는 빈 상여",
+              "stagingScene": "direction-v2:entry-8",
+              "camera": {
+                "intent": "object-introduction",
+                "targets": [
+                  {
+                    "objective": "boss"
+                  }
+                ],
+                "padding": 85,
+                "maxScale": 0.85,
+                "id": "8.story:b04739f8b2",
+                "speakerPolicy": "context-portrait"
+              }
+            }
+          ],
+          [
+            "담허",
+            "홍만 어르신은 이미 편히 떠나셨네. 비어 있는 상여 틀에 다른 원혼이 기어든 게야.",
+            {
+              "focus": "boss",
+              "rowId": "8.story:fa4518e25c",
+              "direction": [
+                {
+                  "type": "look",
+                  "actor": "mage",
+                  "at": {
+                    "actor": "archer"
+                  },
+                  "pose": "listen",
+                  "camera": false,
+                  "duration": 650
+                }
+              ],
+              "portraitExpression": "base",
+              "storyId": "act1-v6:entry-8",
+              "storyTitle": "돌아오는 빈 상여",
+              "stagingScene": "direction-v2:entry-8",
+              "camera": {
+                "intent": "object-introduction",
+                "targets": [
+                  {
+                    "objective": "boss"
+                  }
+                ],
+                "padding": 85,
+                "maxScale": 0.85,
+                "id": "8.story:fa4518e25c",
+                "speakerPolicy": "context-portrait"
+              }
+            }
+          ],
+          [
+            "설오",
+            "우리가 아까 폭포 뒤에서 주박목을 부숴서 이리로 흘러든 겁니까?",
+            {
+              "rowId": "8.story:5300e054a1",
+              "portraitExpression": "emotion.concern",
+              "storyId": "act1-v6:entry-8",
+              "storyTitle": "돌아오는 빈 상여",
+              "stagingScene": "direction-v2:entry-8",
+              "camera": {
+                "intent": "object-introduction",
+                "targets": [
+                  {
+                    "anchor": "bier"
+                  },
+                  {
+                    "actor": "archer"
+                  }
+                ],
+                "padding": 75,
+                "maxScale": 0.75,
+                "id": "8.story:5300e054a1",
+                "speakerPolicy": "context-portrait"
+              }
+            }
+          ],
+          [
+            "담허",
+            "그 영향일 수도 있네만, 아직 어느 줄에서 떨어져 나온 혼인지는 단정할 수 없네.",
+            {
+              "rowId": "8.story:8fc76a2337",
+              "portraitExpression": "base",
+              "storyId": "act1-v6:entry-8",
+              "storyTitle": "돌아오는 빈 상여",
+              "stagingScene": "direction-v2:entry-8",
+              "camera": {
+                "intent": "object-introduction",
+                "targets": [
+                  {
+                    "anchor": "bier"
+                  },
+                  {
+                    "actor": "archer"
+                  }
+                ],
+                "padding": 75,
+                "maxScale": 0.75,
+                "id": "8.story:8fc76a2337",
+                "speakerPolicy": "context-portrait"
+              }
+            }
+          ],
+          [
+            "휘겸",
+            "뒤에서 주민들이 이 길로 내려오고 있소. 어느 쪽 혼이든 상여부터 멈춰 세워야 하오!",
+            {
+              "rowId": "8.story:a331bb62b8",
+              "portraitExpression": "emotion.resolve",
+              "storyId": "act1-v6:entry-8",
+              "storyTitle": "돌아오는 빈 상여",
+              "stagingScene": "direction-v2:entry-8",
+              "camera": {
+                "intent": "object-introduction",
+                "targets": [
+                  {
+                    "anchor": "bier"
+                  },
+                  {
+                    "actor": "archer"
+                  }
+                ],
+                "padding": 75,
+                "maxScale": 0.75,
+                "id": "8.story:a331bb62b8",
+                "speakerPolicy": "context-portrait"
+              }
+            }
+          ],
+          [
+            "담허",
+            "양쪽 상여채를 얽어맨 결박부터 끊어 주게. 상여가 멈추면 안에 든 혼은 내가 진으로 받겠네.",
+            {
+              "focus": "seal",
+              "rowId": "8.story:c567ef3242",
+              "direction": [
+                {
+                  "type": "look",
+                  "actor": "mage",
+                  "at": {
+                    "goal": "seal"
+                  },
+                  "pose": "inspect",
+                  "camera": false,
+                  "duration": 650
+                },
+                {
+                  "type": "look",
+                  "at": {
+                    "goal": "seal"
+                  },
+                  "duration": 650,
+                  "scale": 0.8
+                }
+              ],
+              "portraitExpression": "base",
+              "storyId": "act1-v6:entry-8",
+              "storyTitle": "돌아오는 빈 상여",
+              "stagingScene": "direction-v2:entry-8",
+              "camera": {
+                "intent": "object-introduction",
+                "targets": [
+                  {
+                    "objective": "seal"
+                  }
+                ],
+                "padding": 85,
+                "maxScale": 0.85,
+                "id": "8.story:c567ef3242",
+                "speakerPolicy": "context-portrait"
+              }
+            }
+          ],
+          [
+            "안내",
+            "상여 결박 1을 공격하세요",
+            {
+              "kind": "guide",
+              "focus": "seal",
+              "storyId": "act1-v6:entry-8",
+              "storyTitle": "돌아오는 빈 상여",
+              "stagingScene": "direction-v2:entry-8",
+              "camera": {
+                "intent": "objective",
+                "targets": [
+                  {
+                    "objective": "seal"
+                  }
+                ],
+                "padding": 100,
+                "maxScale": 0.75,
+                "id": "8:entry:7",
+                "speakerPolicy": "none"
+              }
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  "scope": "Exact baseline initial profile, removing only its freshly auto-saved round1 honroBattle to request a fresh canonical launch8 on A1; no battle imported.",
+  "originSha256": "e2a02bff9edfcca5fe563f3ecb1d4ab44a4f5aab53e836b821808d339851dcdf",
+  "provenance": {
+    "operationMode": "NATIVE_APP_ACTION_SIMULATION",
+    "scope": "Actual App operations with DOM/render/clock doubles; prior1–7 completion reward fixtures, not continuous campaign",
+    "policy": "bier-objectives-first-v4",
+    "rosterMode": "canonical",
+    "basicOnly": false,
+    "useSupplies": false,
+    "sourceHash": "a895710afd95e1c01aa18e80969ccc8fb552d2585b60eece1bbbf29938a2563f",
+    "runtimeSha256": "e5e474c37a0d3b8269c7689e74ffb3076d6c320b2f311eb27b1a515d24710d64",
+    "controllerSha256": "1e7c98a6e4d33e5de10fdd13fc109f027d0c7f3ca561af28df727ac967ec5f40",
+    "navigatorSha256": "a77d46d00bb069f97d200241c1fea865c01129253191cbf6dd44551dbee70088",
+    "entrySha256": "7340b4cb54c4e55fe88aa817f28c44d8f1374a57052689bbf445c449f8f8a901",
+    "sourceCommit": "ba91ac6558268c368bfbd97fb2576d9b759c9069",
+    "dirty": ""
+  },
+  "training": [
+    {
+      "op": "train",
+      "cls": "archer",
+      "id": "A14"
+    },
+    {
+      "op": "train",
+      "cls": "archer",
+      "id": "A02"
+    },
+    {
+      "op": "train",
+      "cls": "archer",
+      "id": "A05"
+    },
+    {
+      "op": "train",
+      "cls": "archer",
+      "id": "A04"
+    },
+    {
+      "op": "train",
+      "cls": "archer",
+      "id": "A07"
+    },
+    {
+      "op": "train",
+      "cls": "archer",
+      "id": "A03"
+    },
+    {
+      "op": "train",
+      "cls": "archer",
+      "id": "A11"
+    },
+    {
+      "op": "ordinary-stat",
+      "cls": "archer"
+    },
+    {
+      "op": "ordinary-stat",
+      "cls": "archer"
+    },
+    {
+      "op": "ordinary-stat",
+      "cls": "archer"
+    },
+    {
+      "op": "ordinary-stat",
+      "cls": "archer"
+    },
+    {
+      "op": "ordinary-stat",
+      "cls": "archer"
+    },
+    {
+      "op": "ordinary-stat",
+      "cls": "archer"
+    },
+    {
+      "op": "train",
+      "cls": "mage",
+      "id": "M06"
+    },
+    {
+      "op": "train",
+      "cls": "mage",
+      "id": "M02"
+    },
+    {
+      "op": "train",
+      "cls": "mage",
+      "id": "M04"
+    },
+    {
+      "op": "train",
+      "cls": "mage",
+      "id": "M03"
+    },
+    {
+      "op": "train",
+      "cls": "mage",
+      "id": "M11"
+    },
+    {
+      "op": "train",
+      "cls": "mage",
+      "id": "M07"
+    },
+    {
+      "op": "train",
+      "cls": "mage",
+      "id": "M10"
+    },
+    {
+      "op": "train",
+      "cls": "mage",
+      "id": "M08"
+    },
+    {
+      "op": "train",
+      "cls": "mage",
+      "id": "M09"
+    },
+    {
+      "op": "ordinary-stat",
+      "cls": "mage"
+    },
+    {
+      "op": "ordinary-stat",
+      "cls": "mage"
+    },
+    {
+      "op": "ordinary-stat",
+      "cls": "mage"
+    },
+    {
+      "op": "ordinary-stat",
+      "cls": "mage"
+    },
+    {
+      "op": "ordinary-stat",
+      "cls": "mage"
+    },
+    {
+      "op": "ordinary-stat",
+      "cls": "mage"
+    },
+    {
+      "op": "train",
+      "cls": "knight",
+      "id": "S01"
+    },
+    {
+      "op": "train",
+      "cls": "knight",
+      "id": "S06"
+    },
+    {
+      "op": "train",
+      "cls": "knight",
+      "id": "S04"
+    },
+    {
+      "op": "train",
+      "cls": "knight",
+      "id": "S09"
+    },
+    {
+      "op": "ordinary-stat",
+      "cls": "knight"
+    },
+    {
+      "op": "ordinary-stat",
+      "cls": "knight"
+    },
+    {
+      "op": "ordinary-stat",
+      "cls": "knight"
+    },
+    {
+      "op": "ordinary-stat",
+      "cls": "knight"
+    },
+    {
+      "op": "ordinary-stat",
+      "cls": "knight"
+    },
+    {
+      "op": "ordinary-stat",
+      "cls": "knight"
+    },
+    {
+      "cls": "archer",
+      "stat": true,
+      "ok": true
+    },
+    {
+      "cls": "archer",
+      "stat": true,
+      "ok": true
+    },
+    {
+      "cls": "archer",
+      "stat": true,
+      "ok": true
+    },
+    {
+      "cls": "archer",
+      "id": "A14",
+      "ok": true,
+      "reason": "existing earned SP"
+    },
+    {
+      "cls": "archer",
+      "id": "A02",
+      "ok": true,
+      "reason": "existing earned SP"
+    },
+    {
+      "cls": "archer",
+      "id": "A11",
+      "ok": true,
+      "reason": "existing earned SP"
+    },
+    {
+      "cls": "archer",
+      "id": "AP01",
+      "ok": true,
+      "reason": "existing earned SP"
+    },
+    {
+      "cls": "archer",
+      "id": "AP01",
+      "ok": true,
+      "reason": "existing earned SP"
+    },
+    {
+      "cls": "archer",
+      "id": "AP01",
+      "ok": true,
+      "reason": "existing earned SP"
+    },
+    {
+      "cls": "archer",
+      "id": "AP01",
+      "ok": true,
+      "reason": "existing earned SP"
+    },
+    {
+      "cls": "archer",
+      "id": "AP04",
+      "ok": true,
+      "reason": "existing earned SP"
+    },
+    {
+      "cls": "archer",
+      "id": "AP04",
+      "ok": true,
+      "reason": "existing earned SP"
+    },
+    {
+      "cls": "archer",
+      "id": "AP02",
+      "ok": true,
+      "reason": "existing earned SP"
+    },
+    {
+      "cls": "mage",
+      "stat": true,
+      "ok": true
+    },
+    {
+      "cls": "mage",
+      "stat": true,
+      "ok": true
+    },
+    {
+      "cls": "mage",
+      "stat": true,
+      "ok": true
+    },
+    {
+      "cls": "mage",
+      "id": "M06",
+      "ok": true,
+      "reason": "existing earned SP"
+    },
+    {
+      "cls": "mage",
+      "id": "M02",
+      "ok": true,
+      "reason": "existing earned SP"
+    },
+    {
+      "cls": "mage",
+      "id": "M04",
+      "ok": true,
+      "reason": "existing earned SP"
+    },
+    {
+      "cls": "mage",
+      "id": "M03",
+      "ok": true,
+      "reason": "existing earned SP"
+    },
+    {
+      "cls": "mage",
+      "id": "M11",
+      "ok": true,
+      "reason": "existing earned SP"
+    },
+    {
+      "cls": "mage",
+      "id": "MP01",
+      "ok": true,
+      "reason": "existing earned SP"
+    },
+    {
+      "cls": "mage",
+      "id": "MP01",
+      "ok": true,
+      "reason": "existing earned SP"
+    },
+    {
+      "cls": "mage",
+      "id": "MP01",
+      "ok": true,
+      "reason": "existing earned SP"
+    },
+    {
+      "cls": "mage",
+      "id": "MP02",
+      "ok": true,
+      "reason": "existing earned SP"
+    },
+    {
+      "cls": "mage",
+      "id": "MP02",
+      "ok": true,
+      "reason": "existing earned SP"
+    },
+    {
+      "cls": "knight",
+      "stat": true,
+      "ok": true
+    },
+    {
+      "cls": "knight",
+      "stat": true,
+      "ok": true
+    },
+    {
+      "cls": "knight",
+      "stat": true,
+      "ok": true
+    },
+    {
+      "cls": "knight",
+      "id": "S09",
+      "ok": true,
+      "reason": "existing earned SP"
+    },
+    {
+      "cls": "knight",
+      "id": "S03",
+      "ok": true,
+      "reason": "existing earned SP"
+    },
+    {
+      "cls": "knight",
+      "id": "S05",
+      "ok": true,
+      "reason": "existing earned SP"
+    },
+    {
+      "cls": "knight",
+      "id": "S07",
+      "ok": true,
+      "reason": "existing earned SP"
+    },
+    {
+      "cls": "knight",
+      "id": "S08",
+      "ok": false,
+      "reason": "용병 Lv.8 필요"
+    },
+    {
+      "cls": "knight",
+      "id": "SP01",
+      "ok": true,
+      "reason": "existing earned SP"
+    },
+    {
+      "cls": "knight",
+      "id": "SP01",
+      "ok": true,
+      "reason": "existing earned SP"
+    },
+    {
+      "cls": "knight",
+      "id": "SP02",
+      "ok": true,
+      "reason": "existing earned SP"
+    },
+    {
+      "cls": "knight",
+      "id": "SP02",
+      "ok": true,
+      "reason": "existing earned SP"
+    },
+    {
+      "cls": "knight",
+      "id": "SP02",
+      "ok": true,
+      "reason": "existing earned SP"
+    }
+  ],
+  "readiness": {
+    "rows": [
+      {
+        "stage": 1,
+        "xp": 180
+      },
+      {
+        "stage": 2,
+        "xp": 450
+      },
+      {
+        "stage": 3,
+        "xp": 912
+      },
+      {
+        "stage": 4,
+        "xp": 1643
+      },
+      {
+        "stage": 5,
+        "xp": 2709
+      },
+      {
+        "stage": 6,
+        "xp": 4170
+      },
+      {
+        "stage": 7,
+        "xp": 7287
+      }
+    ],
+    "xp": 7287,
+    "scope": "Current completion rewards only; not prior combat"
+  }
+}
