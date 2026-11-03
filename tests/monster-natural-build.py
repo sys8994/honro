@@ -25,5 +25,5 @@ const writeFile=async(name,data)=>{await qaWrite(name,data);},h={exported:async(
 script=common+'\nwindow.qaRun5='+run5+';\nwindow.qaRun8=async()=>{'+helpers+det+pre+s+'};\n'
 (OUT/'controller.js').write_text(script)
 subprocess.run(['node','--check',str(OUT/'controller.js')],check=True)
-manifest={'candidate':'fece7f62d05e06e13d8d66cd0a193127984c1a03','scope':'UNPUBLISHED pending-crow UI diagnostic; genuine 6b checkpoint, not final release gate','adapters':{str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [ROOT/'tests/monster-natural-runtime.js',ROOT/'tests/monster-natural-stage5.js',*F.iterdir()] if p.is_file()},'controllerSha256':hashlib.sha256(script.encode()).hexdigest()}
+manifest={'candidate':'4ba62e439ee5382b3db2e6b0080038c8ae16f5d4','scope':'UNPUBLISHED pending-crow UI diagnostic; genuine 6b checkpoint, not final release gate','adapters':{str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [ROOT/'tests/monster-natural-runtime.js',ROOT/'tests/monster-natural-stage5.js',*F.iterdir()] if p.is_file()},'controllerSha256':hashlib.sha256(script.encode()).hexdigest()}
 (OUT/'controller-manifest.json').write_text(json.dumps(manifest,indent=2));print('PASS generated browser policy syntax and frozen fixture provenance')
