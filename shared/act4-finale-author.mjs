@@ -33,6 +33,9 @@ export function authorAct4Finale(stage,point){
   }
   s.encounters.push({id,key:id,unitIds:members,behavior:'guard',purpose});
   defs[id]={supports:[support],radius:key==='dock-left'?1300:850,maxHeight:500,engagementRounds:1};
+  // The adjacent boat deck is an ordinary landing from the narrow ramp.
+  // Restrict this access to its departure end; upper shore never wakes it.
+  if(key==='departure-low')defs[id].extra=[{support:'a4-return-deck',minX:2170,maxX:3000}];
  }
  Object.assign(s.initialState,{honroFinalDefenseRevision:2,honroAct4EncounterRevision:1,honroActiveLimit:6,honroActionBudgetRevision:1,honroEncounterDensityActivation:defs});
  if(s.units.filter(u=>u.team==='enemy').length!==42)throw Error('Finale roster must have42 unique enemies');
