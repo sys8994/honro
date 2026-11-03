@@ -12,6 +12,7 @@ jobs:
     env:
       HONRO_STAGE6_ART_PREVIEW: '1'
       HONRO_STAGE6_INTEGRATED_PREVIEW: '1'
+      HONRO_STAGE6_DESCENT_VIEW_PREVIEW: '1'
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
@@ -31,8 +32,11 @@ jobs:
           node tests/stage6-art-preview.mjs
           node tests/stage6-integrated-preview.mjs
           node tests/stage6-render-coverage-preview.mjs
+          node tests/stage6-descent-view-preview.mjs
           node tests/stage6-integrated-entry.mjs
           # Unshipped diagnostic builder, not release-gate or deployment evidence.
+          HONRO_STAGE6_DESCENT_VIEW_PREVIEW=0 node workshop/build.mjs
+          sha256sum HONRO.html > _local/reports/stage6-art-preview/baseline-sha256.txt
           node workshop/build.mjs
           python -m pip install 'playwright==1.58.0'
           python -m playwright install --with-deps chromium
@@ -53,7 +57,7 @@ jobs:
           z=Path('_local/stage6-prior.zip')
           assert hashlib.sha256(z.read_bytes()).hexdigest()=='ad8980ec5668d80a4e3c06987e5f07ac46ccca6827445d62a460ee54311546e2'
           with zipfile.ZipFile(z) as f:f.extract('integrated-play/natural-lookout-save.json.gz','_local/stage6-prior')
-          assert hashlib.sha256(Path('HONRO.html').read_bytes()).hexdigest()=='724521d1f9ef023ad9cb2374a3fd9551d4cc1ea4f608ea4836bef17f8ea67af7'
+          assert Path('_local/reports/stage6-art-preview/baseline-sha256.txt').read_text().split()[0]=='724521d1f9ef023ad9cb2374a3fd9551d4cc1ea4f608ea4836bef17f8ea67af7'
           PY
       - name: Check integrated render, save, and actual input route
         run: |
@@ -65,7 +69,7 @@ jobs:
           sleep 2
           # Keep each independent result even if a prior QA script fails.
           status=0
-          for script in capture-preview integrated-save-boundary; do
+          for script in capture-preview integrated-save-boundary integrated-checkpoint-review; do
             python "tools/stage6-prototype/$script.py" || status=1
           done
           exit "$status"

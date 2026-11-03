@@ -1,0 +1,45 @@
+(function(G){'use strict';
+// Scene-only, opt-in Stage6 diagnostic. No battle/actor/save/aim writes.
+const states=new WeakMap(),presentation=new WeakMap();
+const active=b=>!!b&&b.mode==='campaign'&&b.honroStage===6&&b.honroCanonical===true&&b.honroCustom!==true&&b.honroCampaignMapRevision===4;
+const height=u=>G.HonroPartyPresentationHeight?.(u)||u.h||72;
+function body(u){
+ let left=u.x-Math.max(u.r*2,height(u)*.65),right=u.x+Math.max(u.r*2,height(u)*.65),top=u.y-height(u)*1.12,bottom=u.y+4;
+ const id=G.HonroMonsterVisual?.kind(u),a=id&&G.HonroMonsterVisual.assets[id];
+ if(a?.viewBox&&a.baseHeight){const [x,y,w,h]=a.viewBox,z=u.h/a.baseHeight;left=u.x+Math.min(x*z*(u.facing||1),(x+w)*z*(u.facing||1));right=u.x+Math.max(x*z*(u.facing||1),(x+w)*z*(u.facing||1));top=Math.min(top,u.y+y*z);bottom=Math.max(bottom,u.y+(y+h)*z);}
+ return{left,right,top,bottom};
+}
+function nearby(e,x,y){return e.b.units.filter(v=>!v.dead&&v.hp>0&&v.side===1&&!v.eaterCapturedBy&&Math.abs(v.x-x)<=350&&Math.abs(v.y-y)<=220&&e.grounded(v));}
+function frame(units,point,w,h,maxScale,{top=8,bottom=h-8,left=10,right=w-10,selected=null}={}){
+ const boxes=z=>units.map(v=>{const a=body(v);a.top=Math.min(a.top,v.y-height(v)-12-(v===selected?50:12)/z);a.bottom+=6/z;return a;}).concat([{left:point.x-42,right:point.x+42,top:point.y-10,bottom:point.y+16}]);
+ const bound=z=>{const a=boxes(z);return{left:Math.min(...a.map(v=>v.left)),right:Math.max(...a.map(v=>v.right)),top:Math.min(...a.map(v=>v.top)),bottom:Math.max(...a.map(v=>v.bottom))};};
+ let lo=.1,hi=Math.max(lo,maxScale);for(let i=0;i<20;i++){const z=(lo+hi)/2,a=bound(z);if((a.right-a.left)*z<=right-left&&(a.bottom-a.top)*z<=bottom-top)lo=z;else hi=z;}
+ const scale=lo,a=bound(scale),x=(a.left+a.right)/2-((left+right)/2-w/2)/scale,y=(a.top+a.bottom)/2-((top+bottom)/2-h/2)/scale;
+ return{x,y,scale,bounds:a,safe:{left,right,top,bottom},units:units.map(v=>v.id)};
+}
+function follow(scene,e,w,h,dt){
+ const b=e.b,u=e.active;if(!active(b)||!u||u.side!==0)return null;
+ if(G.HonroAttackCamera?.blocksFocus(scene)||scene.manual){states.delete(scene);return null;}
+ const support=e.grounded(u)&&e.contactSurface(u.x,u.y-4,u.y+5)?.t.id,zone=support==='lower-road'&&u.x>=4400&&u.x<=5150;
+ let s=states.get(scene);if(!zone){if(!s)return null;const z=s.base+(scene.scale-s.base)*Math.exp(-8*Math.max(0,dt));if(Math.abs(z-s.base)<.001){scene.scale=s.base;states.delete(scene);return null;}return{x:u.x+(u.facing||1)*Math.min(170,w/z*.19),y:G.HonroCamera.followY(u,h,z),scale:z};}
+ if(!s){s={base:scene.scale,width:w};states.set(scene,s);}else if(s.width!==w){s.base*=w/s.width;s.width=w;}
+ const units=[u,...nearby(e,u.x,u.y)],top=Math.max(62,(scene._cameraHeader?.bottom||0)+12),q=frame(units,{x:u.x,y:u.y},w,h,s.base,{top,bottom:h-14,left:18,right:w-18,selected:u});
+ const z=q.scale+(scene.scale-q.scale)*Math.exp(-10*Math.max(0,dt));
+ presentation.set(scene,{...(presentation.get(scene)||{}),follow:{...q,settling:Math.abs(z-q.scale)>.003}});
+ return{x:q.x,y:q.y,scale:z};
+}
+function drawBelow(scene,e){
+ const b=e.b,u=e.active,p={insetVisible:false,follow:presentation.get(scene)?.follow||null};presentation.set(scene,p);
+ if(!active(b)||!u||u.side!==0||scene.manual||G.HonroAttackCamera?.blocksFocus(scene)||scene.storyFrame||scene.storyTween||scene.goalFocus||b.phase!=='aim'||b.projectiles.length||!e.canDrop(u)||G.HonroApp?.charging)return;
+ const support=e.contactSurface(u.x,u.y-4,u.y+5)?.t.id;if(support!=='lower-lookout')return;
+ const y=G.HonroWorld.top(b,u.x,u.y,'lower-road');if(!Number.isFinite(y)||y<=u.y+40)return;
+ const {w,h,d}=scene.size(),width=Math.min(w-24,w<900?254:300),boxH=Math.min(148,Math.max(100,h*.18)),x=12,top=h-boxH-12,innerH=boxH-23,units=nearby(e,u.x,y),q=frame(units,{x:u.x,y},width,innerH,.6),c=scene.ctx,old={x:scene.x,y:scene.y,scale:scene.scale};
+ c.save();c.setTransform(d,0,0,d,0,0);c.fillStyle='#102127ef';c.fillRect(x,top,width,boxH);c.strokeStyle='#bba778';c.lineWidth=1;c.strokeRect(x+.5,top+.5,width-1,boxH-1);c.fillStyle='#e5d4a7';c.font='600 11px sans-serif';c.textAlign='left';c.fillText('↓ 현재 위치 아래의 지형과 적',x+8,top+15);
+ c.beginPath();c.rect(x+1,top+22,width-2,innerH-1);c.clip();c.translate(x+width/2,top+22+innerH/2);c.scale(q.scale,q.scale);c.translate(-q.x,-q.y);
+ try{Object.assign(scene,{x:q.x,y:q.y,scale:q.scale});const ground=b.terrain.find(t=>t.id==='lower-road');if(ground)scene.terrain(c,ground);for(const v of [...units].sort((a,b)=>a.y-b.y))scene.unit(c,v,false,0);scene.tacticalUnitMarkers(c,b,units);c.strokeStyle='#f1d58a';c.lineWidth=2/q.scale;c.setLineDash([4/q.scale,3/q.scale]);c.beginPath();c.ellipse(u.x,y-1,26,8,0,0,Math.PI*2);c.stroke();c.setLineDash([]);c.beginPath();c.moveTo(u.x,y-40/q.scale);c.lineTo(u.x,y-11/q.scale);c.lineTo(u.x-5/q.scale,y-18/q.scale);c.moveTo(u.x,y-11/q.scale);c.lineTo(u.x+5/q.scale,y-18/q.scale);c.stroke();}
+ finally{Object.assign(scene,old);c.restore();}
+ Object.assign(p,{insetVisible:true,inset:{x,top,width,height:boxH,landing:{x:u.x,y},frame:q}});
+}
+const S=G.HonroScene?.prototype;if(S){const render=S.render;S.render=function(e,...args){if(this.manual||G.HonroAttackCamera?.blocksFocus(this))states.delete(this);const result=render.call(this,e,...args);drawBelow(this,e);return result;};}
+G.HonroStage6DescentView={active,body,frame,follow,drawBelow,snapshot:scene=>presentation.get(scene)||null};
+})(globalThis);

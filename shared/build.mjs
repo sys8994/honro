@@ -66,6 +66,8 @@ export async function runtimeEntries({vector=true,render=true,app=false,producti
   const parts=[];
   const code=(name,code)=>parts.push({name,code});
   const integratedStage6=process.env.HONRO_STAGE6_INTEGRATED_PREVIEW==='1';
+  const descentStage6=process.env.HONRO_STAGE6_DESCENT_VIEW_PREVIEW==='1';
+  if(descentStage6&&!integratedStage6)throw Error('Stage6 descent view requires the integrated diagnostic');
   if(integratedStage6&&process.env.HONRO_STAGE6_ART_PREVIEW!=='1')throw Error('Stage6 integration diagnostic requires explicit nonproduction art preview');
   const file=async source=>{
     let text=await read(source);
@@ -78,6 +80,11 @@ export async function runtimeEntries({vector=true,render=true,app=false,producti
     if(integratedStage6&&source==='shared/runtime/stage6-render-coverage-preview.js'){
       if(text.split('b.honroCampaignMapRevision===3').length!==2)throw Error('Stage6 coverage revision source changed');
       text=text.replace('b.honroCampaignMapRevision===3','b.honroCampaignMapRevision===4');
+    }
+    if(descentStage6&&source==='shared/runtime/renderer.js'){
+      const anchor="let tx=u.x+(b.phase==='aim'?(u.facing||1)*Math.min(170,w/this.scale*.19):0),ty=G.HonroCamera.followY(u,h,this.scale),speed=4.2;";
+      if(text.split(anchor).length!==2)throw Error('Stage6 camera hook source changed');
+      text=text.replace(anchor,anchor+"\n                const s6=actorFollow&&G.HonroStage6DescentView?.follow(this,e,w,h,dt);if(s6){this.scale=s6.scale;tx=s6.x;ty=s6.y;speed=8;}");
     }
     code(source,text);
   };
@@ -209,6 +216,7 @@ export async function runtimeEntries({vector=true,render=true,app=false,producti
     }
     if(act4Enabled){data('HONRO_ACT4_PILOT_COMBAT_REFERENCE',JSON.parse(await read('shared/data/act4/pilot-combat-reference.json')));data('HONRO_ACT4_PREVIEW_SEEDS',JSON.parse(await read('shared/data/act4/reviewed.json')));for(const name of ['act4-art','act4-maps','act4-coast-maps','act4-coast-art','act4-events','act4-coast-events','act4-pilot-combat','act4-campaign','act4-pilot-art'])await file(`shared/runtime/${name}.js`);}
     if(process.env.HONRO_STAGE6_ART_PREVIEW==='1')await file('shared/runtime/stage6-render-coverage-preview.js');
+    if(descentStage6)await file('shared/runtime/stage6-descent-view-preview.js');
   }else await file('shared/runtime/stage-rules.js');
   return parts;
 }
