@@ -27,7 +27,7 @@ function record(b,name){
 }
 function covered(b,t){if(!t||!/^pier-(west|east)$/.test(t.id||''))return false;const name=t.id.slice(5),r=record(b,name);if(!r?.ready)return false;try{return JSON.stringify(geo(t))===r.geometry;}catch{return false;}}
 const S=G.HonroScene?.prototype;if(S){const oldTerrain=S.terrain;S.terrain=function(c,t,...args){if(covered(this.battle,t))return;return oldTerrain.call(this,c,t,...args);};
- const oldLandmark=S.landmark;S.landmark=function(c,l,...args){const m=/^stage06-prototype-pier-(west|east)$/.exec(l?.id||''),r=m&&record(this.battle,m[1]);if(r?.ready){try{return oldLandmark.call(this,c,r.detached,...args);}catch{r.ready=false;r.version=++epoch;const t=G.HonroTerrainDomain?.render(this.battle)?.find(x=>x.id==='pier-'+m[1]);if(t)oldTerrain.call(this,c,t);}}return oldLandmark.call(this,c,l,...args);};
+ const oldLandmark=S.landmark;S.landmark=function(c,l,...args){const m=/^stage06-prototype-pier-(west|east)$/.exec(l?.id||''),r=m&&record(this.battle,m[1]);if(r?.ready){try{return oldLandmark.call(this,c,r.detached,...args);}catch{r.ready=false;r.version=++epoch;const t=G.HonroTerrainDomain?.render(this.battle)?.find(x=>x.id==='pier-'+m[1]);if(t)oldTerrain.call(this,c,t);return;}}return oldLandmark.call(this,c,l,...args);};
  const oldKey=S._worldCacheKey;S._worldCacheKey=function(b,...args){const base=oldKey.call(this,b,...args),a=record(b,'west'),z=record(b,'east');return base+':s6-preview:'+[a?.version||0,a?.ready?1:0,z?.version||0,z?.ready?1:0].join(':');};}
 G.HonroStage6RenderCoveragePreview={covered};
 })(globalThis);
