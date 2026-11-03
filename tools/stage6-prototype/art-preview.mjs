@@ -32,7 +32,7 @@ export function applyStage6ArtPreview(input){
  for(const [id,x,deck,mirror] of [['west',2000,1875,false],['mid',3150,1830,false],['east',4520,1948,false]]){
   const art=id==='west'?westPier:id==='east'?eastPier:pier, width=id==='west'?887:1024,height=id==='west'?1774:1536,top=id==='west'?225:50,bottom=id==='west'?1705:1500;
   const ground=floor(x),scale=(ground-deck)/(bottom-top),sx=mirror?-scale:scale,tx=x-sx*width/2,ty=deck-top*scale,asset=clone(art);
-  asset.id='stage06-prototype:pier-'+id;asset.name='Stage6 '+id+' unshipped pier study';asset.bounds={x:mirror?tx-width*scale:tx,y:ty,w:width*scale,h:height*scale};asset.reference={...asset.reference,bounds:asset.bounds,foot:{x,y:ground}};asset.anchor={x:0,y:0};asset.vector.viewBox=[asset.bounds.x,asset.bounds.y,asset.bounds.w,asset.bounds.h];const slope=(floor(x+1)-floor(x-1))/2,baseStart=id==='west'?1400:1100;
+  asset.id='stage06-prototype:pier-'+id;asset.name='Stage6 '+id+' unshipped pier study';asset.bounds={x:mirror?tx-width*scale:tx,y:ty,w:width*scale,h:height*scale};asset.reference={...asset.reference,bounds:asset.bounds,foot:{x,y:ground}};asset.anchor={x:0,y:0};asset.vector.viewBox=[asset.bounds.x,asset.bounds.y,asset.bounds.w,asset.bounds.h];const slope=(floor(x+1)-floor(x-1))/2,baseStart=id==='west'?1500:1300;
   asset.vector.clips={...asset.vector.clips,aboveRoad:[sky],sourceFoot:[`M0 ${baseStart}H${width}V${height}H0Z`]};
   // Overlay an additional copy of the source-traced stone base, sheared to the
   // local road slope. Its upper timber remains unwarped; exact road clips both.
