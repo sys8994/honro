@@ -71,5 +71,12 @@ check('effects and provenance survive engine serialization without actor/turn du
  const q=arena(C);attack(E,q);const saved=plain(q.b),loaded=new C.Engine(plain(saved));assert.deepEqual(plain(loaded.b.units),saved.units);assert.equal(loaded.b.round,saved.round);assert.deepEqual(plain(loaded.b.teamEnds),saved.teamEnds);assert.equal(loaded.b.nextId,saved.nextId);
  const r=arena(C),c=warning(E,r);turn(r,r.hero);r.e.observeEnemyEffectWarning(r.caster.id,c.serial);const resume=new C.Engine(plain(r.b));assert.deepEqual(plain(resume.unit(r.caster.id).enemyEffectCast),plain(c));
 });
+check('corrupt optional control repair preserves battle and respects save event limit',()=>{
+ const q=arena(C);attack(E,q);q.hero.enemySoftBind.factor=.99;q.b.events=Array.from({length:30},(_,i)=>'existing-'+i);
+ const before=plain(q.b),profile=C.defaults();profile.saved=plain(q.b);const loaded=C.validate(profile).saved;
+ assert(loaded,'corrupt optional field must not discard battle');assert(!loaded.units.find(u=>u.id===q.hero.id).enemySoftBind);assert.equal(loaded.events.length,30);
+ assert.equal(loaded.round,before.round);assert.equal(loaded.active,before.active);assert.deepEqual(plain(loaded.teamEnds),before.teamEnds);assert.deepEqual(plain(loaded.units.map(u=>[u.id,u.hp,u.x,u.y])),before.units.map(u=>[u.id,u.hp,u.x,u.y]));
+ const again=C.defaults();again.saved=plain(loaded);assert.deepEqual(plain(C.validate(again).saved),plain(loaded),'repaired save validates repeatedly without further mutation');
+});
 assert.equal(failures.length,0,failures.map(f=>f.name+': '+f.error.message).join('\n'));
 console.log(`PASS monster effects: ${cases} focused production-engine fixture groups`);
