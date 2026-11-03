@@ -1,0 +1,99 @@
+{
+  "raw": "/tmp/stage6-east3-source/raw.svg",
+  "candidate": "/tmp/stage6-east80-source/raw.svg",
+  "rawStats": {
+    "sourceBytes": 254965,
+    "paths": 2,
+    "commands": 7481,
+    "segments": 7063,
+    "endpointNodesUpperBound": 7481,
+    "explicitCommandLetters": 3022,
+    "subpaths": 418,
+    "pathChars": 254576,
+    "maxPathChars": 253450
+  },
+  "candidateStats": {
+    "sourceBytes": 135189,
+    "paths": 2,
+    "commands": 3844,
+    "segments": 3807,
+    "endpointNodesUpperBound": 3844,
+    "explicitCommandLetters": 1161,
+    "subpaths": 37,
+    "pathChars": 134800,
+    "maxPathChars": 133674
+  },
+  "visualApproval": "NOT REVIEWED",
+  "config": {
+    "width": 1586,
+    "scales": [
+      1,
+      2
+    ],
+    "limits": {
+      "rgbMAE255": 2,
+      "silhouettePx": 1.5,
+      "protectedRgbMAE255": 1,
+      "protectedPx": 0.5,
+      "protectedChangedPixelFraction": 0.05
+    },
+    "protectedRects": [],
+    "sourcePalette": [
+      [
+        41,
+        56,
+        49
+      ],
+      [
+        51,
+        66,
+        59
+      ]
+    ]
+  },
+  "errors": {
+    "1": {
+      "rgbMAE255": 0.034591589123010635,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.0,
+      "changedPixelFraction": 0.0,
+      "silhouetteMaxOffsetPx": 0.0,
+      "pass": true
+    },
+    "2": {
+      "rgbMAE255": 0.03432775288820267,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.0,
+      "changedPixelFraction": 0.0,
+      "silhouetteMaxOffsetPx": 0.0,
+      "pass": true
+    }
+  },
+  "timings": {
+    "raw-1": {
+      "width": 1586,
+      "height": 992,
+      "decodeMs": 13.535139000000015,
+      "drawMs": 3.4498219999999833
+    },
+    "candidate-1": {
+      "width": 1586,
+      "height": 992,
+      "decodeMs": 7.342883000000029,
+      "drawMs": 3.214082000000019
+    },
+    "raw-2": {
+      "width": 3172,
+      "height": 1984,
+      "decodeMs": 18.385842000000025,
+      "drawMs": 16.756351999999993
+    },
+    "candidate-2": {
+      "width": 3172,
+      "height": 1984,
+      "decodeMs": 13.382170999999971,
+      "drawMs": 17.013222999999982
+    }
+  },
+  "qualityPass": true
+}
