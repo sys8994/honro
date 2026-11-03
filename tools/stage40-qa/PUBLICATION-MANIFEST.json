@@ -1,5 +1,5 @@
 {
-  "status": "DEV ONLY. Narrow pending-warning queue correction passed actual browser comparison41642048069 and fresh Stage31 R15 boarding/normal gate. Full-stage R25 failure remains;18–20 total safe return, finalA2 and gameplay/fun acceptance pending.",
+  "status": "DEV ONLY. Latest full browser41646946262 failed atR25 with39/42 defeated;allheroes/residentsalive,no return. Narrow warning correction/freshStage31 passed separately. No18–20 total-round or finalA2/fun acceptance.",
   "base": "7d2655bc3f88a7b20fb2d6ea1bc4c611583e9a15",
   "source": "e04ed9a66340cf101a39b21cc9ec4744f071cf38",
   "branch": "work/stage40-finale/20261103",
@@ -429,14 +429,14 @@
   ],
   "pendingPublication": null,
   "currentComparison": {
-    "source": "8fefc6d46cf1cfd18b2043ebc32da935b9954269",
-    "native": "4df27e74cf0c56158c9f17d9042c0abd065bdc3d",
-    "runId": 41624405996,
+    "source": "322431bf0804e0b8cec5de1517d6655e1a58fa98",
+    "native": "d80ec84b4e98bd2f3e8fc48071e5ec12ab2f67b7",
+    "runId": 41646946262,
     "status": "failed",
-    "scope": "Exact failed R4 save normal-import continuation;not uninterrupted;total20 includes return;no deployment",
-    "outcome": "Normal R4 continuation; R25 39/42 defeated; residualHP929/674/3311; archer dead;4 residents alive;no return;noJSerrors",
-    "artifactId": 13227871507,
-    "artifactSha256": "05fe3a6274791f3e30383703a895c4a0ad29c0a81407d164d224ef65cbe8d02a"
+    "scope": "Original preparedR1 normal entry;splitroles and narrowwarningqueue;not role-only A/B",
+    "outcome": "R25 39/42;remainingHP540/509/4633;allheroes/residentsalive;noJSerrors;no return",
+    "artifactId": 13237244865,
+    "artifactSha256": "dc24c940e89cd75b2ef087cd04c0a1a62f8d00527215afca0a1b9ee622067254"
   },
   "lastFailedComparison": {
     "source": "4b5e31931249f8fe194047fa22ef5f6def3ab8fd",
