@@ -18,6 +18,10 @@
 
 `tools/stage6-prototype/author.mjs`는 프로젝트의 복사본에만 비대칭 지면·물과 지상 배우 높이를 적용한다. 어떤 production build 경로도 이 모듈을 가져오지 않으며 기존 BODY 그림을 그대로 남기므로 미술 일치나 배포 후보가 아니다. `tests/stage6-geography-author-prototype.mjs`는 원본과 다른 29장·목표·이벤트·배우 ID 보존, 실제 맵 컴파일의 초기 지상/공중 접촉, 물 표본을 확인한다. 맵 복사본을 App 진입 전에 적용한 story seed2360 단일 실험은 진입 후 좌표/HP 주입 없이 App 입력으로 R11 승리했다. 초기 적21, 전 프레임 지지 고도 설오1470·휘겸1418·담허1347, 추격의 운반대 피해42와 휘겸 대응, 호송 전체 누적 피해204였다. 생산 소스·최종 미술·다수 정책 합격은 아니다.
 
+## 재현 범위
+
+`HONRO_QA_BASELINE=story node tools/stage6-prototype/app-play.mjs 6 2360 objective-focused-noitems-appops-calibrated-v2`는 복제 맵을 App 진입 전에 적용하고 실제 App 이동·기예·방어·대화 입력을 사용한다. 기존 1–5장 합법 보상 준비 프로필, 분리된 조준 계획, 렌더/DOM 더블이며 브라우저 또는 연속 캠페인 증거가 아니다. 결과는 `_local/reports/`에 저장되고 소스·입력·적 큐·피해·매 프레임 지지 범위를 기록한다. 하부 기본 정책 한 seed로 전체 플레이·인간 재미·최종 통합 소스를 승인하지 않는다.
+
 ## 저장·미술·남은 조건
 
 지형 배포 후보가 생기면 6장 전용 campaign map revision을 3에서 4로 올려 구 6장 진행 중 전투만 재시작하고 성장·장착·SP·클리어와 Workshop/타 장을 보존한다. VM의 제안 revision4 fixture에서 구 6장 재시작과 XP+17·기예/훈련·장착/로드아웃·클리어 보존, 동일 revision·타 장·Workshop 전투 불변을 확인했다. production revision은 여전히3이며 실제 사용자 저장 경계는 최종 소스에서 확인한다.
