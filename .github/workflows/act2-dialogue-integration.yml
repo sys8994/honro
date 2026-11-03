@@ -1,0 +1,80 @@
+name: Checked Act2 source plus published dialogue integration
+on:
+  push:
+    branches: ['work/act2-dialogue-integrate/**']
+permissions:
+  contents: write
+jobs:
+  source-integration:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      OUT: _local/reports/act2-dialogue-integration
+      HONRO_QA_ORIGIN: http://127.0.0.1:8870
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Install and bind exact source parents
+        run: |
+          set -euo pipefail
+          npm ci
+          npm ci --prefix game
+          python -m pip install 'playwright==1.58.0'
+          python -m playwright install --with-deps chromium
+          git fetch --no-tags --depth=1 origin 54507cb9c647fafacd68dbc30a8cfc49fba96a55 c916eb7ba2962ae4a6b702843119949dbf484060 c5f9765e369cd6a69d4e7440a65756d8519e4923 781cb3bc0441b58330105e812cef8b16c7473c4d 741c1c8b4726a5f0108c0d903b63fbee194c032b
+          mkdir -p "$OUT"
+          node tools/act2-dialogue-ci/source-parity.mjs "$OUT"
+      - name: Focused dialogue metadata and repaired gate contracts
+        run: |
+          set -euo pipefail
+          node tests/act23-v4-reviewed-source-all.mjs | tee "$OUT/reviewed-source.log"
+          node tests/narrative-row-metadata.mjs | tee "$OUT/narrative-metadata.log"
+          node tests/stage17-repair-gate.mjs | tee "$OUT/stage17-gate.log"
+      - name: Retain actual latest publication then enforce normal build
+        run: |
+          set -euo pipefail
+          mapfile -t refs < <(node --input-type=module -e 'import fs from "node:fs";import {selectPublishedGenerations} from "./shared/web-retention.mjs";for(const g of selectPublishedGenerations(JSON.parse(fs.readFileSync("web/manifest.json")).publishedGenerations,{now:Date.now()})){if(!/^[a-f0-9]{40}$/.test(g.sourceSha))throw Error("Invalid retained ref");console.log(g.sourceSha)}')
+          git fetch --no-tags --depth=1 origin c916eb7ba2962ae4a6b702843119949dbf484060 "${refs[@]}"
+          node tools/release/retain-published-web.mjs c916eb7ba2962ae4a6b702843119949dbf484060 --published-at 2026-11-02T23:52:25Z --evidence https://github.com/sys8994/honro/actions/runs/41548426731 | tee "$OUT/retention.json"
+          # Byte-exact genuine41543828006 package, not old restoration/bootstrap.
+          # Any source/runtime/payload mismatch fails; no attestation is rewritten.
+          npm run build | tee "$OUT/gated-build.log"
+          sha256sum HONRO.html web/manifest.json > "$OUT/final-served-sha256.txt"
+          node tools/act2-dialogue-ci/source-parity.mjs "$OUT"
+      - name: Actual new arrival and normal first shot plus Stage17 entry/save
+        run: |
+          set -euo pipefail
+          python -m http.server 8870 --bind 127.0.0.1 > "$OUT/server.log" 2>&1 &
+          server=$!; trap 'kill "$server" 2>/dev/null || true' EXIT
+          sleep 2
+          HONRO_FIRST_SHOT_DIAGNOSTIC=1 HONRO_EXPECT_ARRIVAL_ROW=A4.S31.SEA.01 HONRO_RUN_DIR="$OUT/stage31-entry" python tools/act4-ci/stage31-fullplay.py > "$OUT/stage31-entry.log" 2>&1
+          python - <<'PY'
+          import json, os
+          r=json.load(open(os.environ['OUT']+'/stage31-entry/result.json'))
+          assert r['sourceCommit']==os.environ['GITHUB_SHA'] and r['diagnosticPassed'] and not r['complete'] and not r['errors'],r
+          assert r['arrivalReceipt']['row']=='A4.S31.SEA.01' and r['arrivalReceipt']['visible'] and r['damage']>0,r
+          print('PASS newly visible arrival, normal dismissal and one actual damaging first shot; not a new Stage31 fullplay claim')
+          PY
+          HONRO_STAGE=17 HONRO_QA_OUT="$OUT/stage17-entry-save" python tools/act2-vector-production/browser-candidate.py
+          python tools/act2-qa/assert-browser-receipts.py "$OUT/stage17-entry-save/result.json"
+      - name: Preserve exact checked generated candidate, never master
+        run: |
+          set -euo pipefail
+          git add web HONRO.html HONRO_WORKSHOP.html index.html tools/stage31/production-package.json
+          git -c user.name='honro release automation' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m "Build checked Act2 and published dialogue integration from $GITHUB_SHA"
+          git rev-parse HEAD > "$OUT/generated-commit.txt"
+          git push origin "HEAD:refs/heads/work/act2-dialogue-generated/$GITHUB_SHA"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: act2-dialogue-integration-${{ github.sha }}
+          path: _local/reports/act2-dialogue-integration/
+          retention-days: 7

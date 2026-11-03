@@ -23,6 +23,18 @@ def finish():
 atexit.register(finish)
 with sync_playwright() as w:
  b=w.chromium.launch(headless=True);p=b.new_page(viewport={'width':1440,'height':900});p.on('pageerror',lambda e:errors.append(str(e)));p.goto(os.environ.get('HONRO_QA_ORIGIN','http://127.0.0.1:8870')+'/HONRO.html',wait_until='domcontentloaded');p.wait_for_function('window.HonroApp');p.evaluate('(v)=>localStorage.setItem("honro-first-act-profile-1",JSON.stringify(v))',profile);p.reload(wait_until='domcontentloaded');p.wait_for_function('window.HonroApp');p.get_by_text('여정 이어가기',exact=True).click();p.wait_for_timeout(2500);p.get_by_text('스테이지 진입',exact=False).click();p.wait_for_function('HonroApp.engine?.b?.honroStage===31',timeout=60000);p.wait_for_timeout(3000)
+ # Optional focused integration assertion: the newly published row must be
+ # actually displayed, not merely present in a data file. Normal Enter handling
+ # below dismisses it; no dialogue/story/battle state is written.
+ expected_arrival=os.environ.get('HONRO_EXPECT_ARRIVAL_ROW')
+ if expected_arrival:
+  assert os.environ.get('HONRO_FIRST_SHOT_DIAGNOSTIC')=='1','Arrival check is a focused first-shot smoke'
+  expected=p.evaluate("id=>HONRO_ACT4_REVIEWED.scenes.find(s=>s.stage===31&&s.event==='arrival').lines.find(l=>l[0]===id)",expected_arrival)
+  assert expected and expected[2],expected_arrival
+  p.wait_for_function("id=>{const d=HonroApp.dialogue;return d?.lines[d.index]?.[2]?.act4PreviewRow===id}",arg=expected_arrival,timeout=15000)
+  p.wait_for_function("text=>document.body.innerText.includes(text)",arg=expected[2],timeout=15000)
+  result['arrivalReceipt']=p.evaluate("expected=>({row:expected[0],speaker:expected[1],text:expected[2],current:HonroApp.dialogue.lines[HonroApp.dialogue.index],visible:document.body.innerText.includes(expected[2]),stage:HonroApp.engine.b.honroStage})",expected)
+  p.screenshot(path=str(out/'new-arrival-visible.png'))
  captured=set()
  def capture(path):
   path=Path(path); name=path.name
@@ -194,6 +206,8 @@ with sync_playwright() as w:
    record('first-shot-resolved',{'damage':damage,'choice':choice,'actualLaunch':launch['last']})
    assert damage>0 and all(not h['dead'] for h in settled['health']),settled
    capture(path=out/'first-shot-resolved.png')
+   assert not errors,errors
+   if expected_arrival:assert result.get('arrivalReceipt',{}).get('visible') and not settled['dialogue']
    result.update(diagnosticPassed=True,complete=False,scope='first-shot normal-input reproducibility only; not release evidence',damage=damage,actualLaunch=launch['last'],browserVersion=b.version)
    b.close()
    raise SystemExit(0)
