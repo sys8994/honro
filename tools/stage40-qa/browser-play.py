@@ -109,11 +109,15 @@ with sync_playwright() as w:
    aim_result=aim_with_joystick(p,c['angle'],lambda:{**state(),'moveLeft':state()['move']})
    record('precision-aim',{'choice':c,'inputResult':aim_result})
    assert aim_result['passed'],'Bounded normal joystick aim did not converge without context change'
+   before_cast=state()
    p.keyboard.down('Space')
    try:p.wait_for_function('target=>HonroApp.charging&&HonroApp.chargePower(performance.now())>=target',arg=max(0,c['power']-.02),timeout=8000,polling=16)
    finally:p.keyboard.up('Space')
    p.wait_for_timeout(1200);ready();record('actual-ui-cast',{'choice':c,'actual':p.evaluate('(id)=>HonroApp.engine.b.lastShots?.[id]',actor)})
    if os.environ.get('HONRO40_FIRST_CAST_ONLY')=='1':
+    actual=p.evaluate('(id)=>HonroApp.engine.b.lastShots?.[id]',actor);after_cast=state()
+    assert actual and actual['skill']==c['id'],'Actual requested skill was not cast'
+    assert sum(v['hp'] for v in after_cast['foes'])<sum(v['hp'] for v in before_cast['foes']),'First cast caused no observed enemy damage'
     result['passed']=True;result['focused']='First normal-input cast only; no stage completion claim';p.screenshot(path=str(out/'first-cast.png'));raise SystemExit(0)
    if turn%8==0:p.screenshot(path=str(out/('turn-%03d.png'%turn)))
   final=record('combat-end');p.screenshot(path=str(out/'combat-end.png'));assert not final['foes'] and final['round']<=20,'Combat failed approved time target'
