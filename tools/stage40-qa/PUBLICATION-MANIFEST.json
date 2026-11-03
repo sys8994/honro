@@ -1,9 +1,9 @@
 {
-  "status": "DEV ONLY. Native functional R18 chain exists, but actual browser R22 and R25 failures remain. One frozen tolerant-controller full comparison is running. No common UI change; guide premise corrected. Final A2 integration, total-round safe return, mobile threat readability and gameplay/fun acceptance pending.",
+  "status": "DEV ONLY. Full browser R25/39 kills failure remains. Actual role split and retreat demonstrated; pending-warning queue starvation confirmed. Narrow Stage40 queue patch passed frozen A/B and typecheck. One actual warning comparison41642048069 running behind fresh normal Stage31 gate. Final A2 and total18–20 safe-return/fun acceptance pending.",
   "base": "7d2655bc3f88a7b20fb2d6ea1bc4c611583e9a15",
-  "source": "d215e3ea45e4ee43263dfd08d0193ae2dbd8917d",
+  "source": "e04ed9a66340cf101a39b21cc9ec4744f071cf38",
   "branch": "work/stage40-finale/20261103",
-  "productSharedTree": "3dcef07de2d6c75628db9d0b125527ea94a67684",
+  "productSharedTree": "206f79264ae9a1b91eae0db87871408e293ec2a5",
   "commits": [
     "f9c973d33194f1dff68abe0e8fa2a8a9d112cc1f",
     "c03cd92f38e0e375cdd2437094e9b660f59f1adf",
@@ -189,7 +189,7 @@
       "result.json": "1a55c199c556d6fda9fed49a66f438a846884ea5d6819fe90745458796c52c6d"
     }
   },
-  "remoteHead": "4b5e31931249f8fe194047fa22ef5f6def3ab8fd",
+  "remoteHead": "fbfee413d02901501c4104d57d51d45c274714e7",
   "canonicalNativeMap": [
     {
       "native": "f9c973d33194f1dff68abe0e8fa2a8a9d112cc1f",
@@ -400,6 +400,31 @@
       "native": "7699467b3332d00ffbc4fed4843b4247ded2c567",
       "canonical": "2a65b7b12b281c29126bed4b753784bc062bf447",
       "tree": "381175134ceaa054e2c166baca602f94854df2cd"
+    },
+    {
+      "native": "a807d5e1f84865b1ca443cc7b59301ca0778369d",
+      "canonical": "69996c1d7d71d72447a39b73b6af1a43865b59ca",
+      "tree": "625088d6ae3c654797560ebb771b60fa62b521d3"
+    },
+    {
+      "native": "fcc33e74951f0793045e69ecad236df33c9d71d9",
+      "canonical": "8ded15d639893bf706948015fd9026e0f08e5881",
+      "tree": "d895b20665348814f55eae999521866c9b929ea0"
+    },
+    {
+      "native": "161e9b0b00bba9ddb115ad9a28c7a37b79bb22fa",
+      "canonical": "b11e15c52af1f5d57a2ba8ee647b7c58fc908cd1",
+      "tree": "c9df2b3b47df3cb1cff08811a23a6c0c7a0eec26"
+    },
+    {
+      "native": "96f203cb8d205b07f6c48312cbd8a20401b5d283",
+      "canonical": "e44a2a27f7a2b71244f47bfcb74a9d5ab0c38520",
+      "tree": "da2c3681b14f1d76604eef947e6263cf36e86466"
+    },
+    {
+      "native": "e04ed9a66340cf101a39b21cc9ec4744f071cf38",
+      "canonical": "fbfee413d02901501c4104d57d51d45c274714e7",
+      "tree": "becfe823218130a297d1b52c64b4c6439d82c125"
     }
   ],
   "pendingPublication": null,
@@ -510,6 +535,22 @@
       "scope": "Three-role actual shots/support, one enemy response and R15 support rejoin;all alive;no new warning response occurred;not fullstage",
       "artifactId": 13230611223,
       "artifactSha256": "eaf6a6ee1e8ae07620d0ba04f8a8b949ababe9a0a8573b5de68cbc1032de8abf"
+    },
+    {
+      "runId": 41636497702,
+      "scope": "Actual new warning seen R19; four-point retreat search failed despite movement budget; failed and preserved"
+    },
+    {
+      "runId": 41638240125,
+      "scope": "Actual supported631-distance retreat passed; warning never fired throughR24 due enemy queue starvation; failed",
+      "artifactId": 13231614819,
+      "artifactSha256": "35a8e68d3553f0d695b3827df72cb80fca27d9c68685cb78cae530ec9437e6af"
+    },
+    {
+      "runId": 41642048069,
+      "scope": "One unchanged R15-save warning driver comparison on narrow queue patch; fresh genuineStage31 gate required;not whole stage",
+      "source": "fbfee413d02901501c4104d57d51d45c274714e7",
+      "status": "running"
     }
   ]
 }
