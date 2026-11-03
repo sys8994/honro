@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';
+import {dockCleanupGoal} from './dock-cleanup-route.mjs';
+const u={x:2400,cls:'archer'},dock={id:'observed',x:1801,s:'approved40-dock'},surface=v=>v.s;
+assert.equal(dockCleanupGoal(u,{support:'a4-return-deck',foes:[],surface}),null);
+assert.equal(dockCleanupGoal(u,{support:'a4-return-deck',foes:[dock,{s:'a4-return-deck'}],surface}),null);
+assert.equal(dockCleanupGoal(u,{support:'a4-return-deck',foes:[dock],surface}).deckJoin,true);
+assert.equal(dockCleanupGoal(u,{support:'approved40-departure-stair',foes:[dock],surface}).jumpLanding,'approved40-dock');
+const goals=['archer','mage','occultist'].map(cls=>dockCleanupGoal({x:1460,cls},{support:'approved40-dock',foes:[dock],surface}));
+assert.deepEqual(goals.map(g=>g.x),[1481,1421,1361]);assert(goals.every(g=>g.target===dock.id));
+console.log('Observed-only activation, no deck abandonment with a living deck foe, connected climb and distinct firing spacing pass. Static controller check, not three-role gameplay proof.');

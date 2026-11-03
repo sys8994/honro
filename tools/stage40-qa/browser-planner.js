@@ -73,7 +73,20 @@ function upperConnectionGoal(u,support){
 }
 
 function upperRecoveryGoal(u,{support,foes,surface}){if(!foes.length||!foes.every(v=>surface(v)==='approved40-coast-west'&&v.y<=2500))return null;return upperConnectionGoal(u,support);}
-function routeGoal(u){const support=surface(u),role=upperRecoveryGoal(u,{support,foes:foes(),surface})||finaleDeckGoal(u,{b,support,foes:foes(),surface})||(u.cls==='knight'?finaleRoleGoal(u,{support,foes:foes(),surface}):null);if(role)return role;const same=foes().filter(v=>surface(v)===support&&Math.abs(v.y-u.y)<700),spacing=u.cls==='knight'?145:310;
+/** Current observed living foes only: leave the boss deck once no enemy remains
+ * there. This is a controller route, not a new stage objective or terrain rule. */
+function dockCleanupGoal(u,{support,foes,surface}){
+ if(!foes.length||!foes.every(v=>['approved40-dock','approved40-dock-stair'].includes(surface(v))))return null;
+ if(support==='a4-return-deck')return{x:2350,deckJoin:true,kind:'dock-cleanup-deck-join'};
+ if(support==='approved40-departure-stair')return{x:1460,jumpLanding:'approved40-dock',kind:'dock-cleanup-land-on-dock'};
+ if(support==='approved40-dock'){
+  const target=[...foes].sort((a,z)=>Math.abs(a.x-u.x)-Math.abs(z.x-u.x))[0];
+  const spacing={archer:320,mage:380,occultist:440,knight:145}[u.cls]||320;
+  return{x:target.x+(target.x>=u.x?-spacing:spacing),target:target.id,kind:'dock-cleanup-same-level'};
+ }
+ return null;
+}
+function routeGoal(u){const support=surface(u),role=dockCleanupGoal(u,{support,foes:foes(),surface})||upperRecoveryGoal(u,{support,foes:foes(),surface})||finaleDeckGoal(u,{b,support,foes:foes(),surface})||(u.cls==='knight'?finaleRoleGoal(u,{support,foes:foes(),surface}):null);if(role)return role;const same=foes().filter(v=>surface(v)===support&&Math.abs(v.y-u.y)<700),spacing=u.cls==='knight'?145:310;
  if(same.length){const t=same.sort((a,z)=>Math.abs(a.x-u.x)-Math.abs(z.x-u.x))[0];return{x:t.x+(t.x>=u.x?-spacing:spacing),target:t.id,kind:'same-support-approach'};}
  if(support==='approved40-coast-west')return{x:2660,drop:true,kind:'coast-to-stair'};
  if(support==='approved40-dock-stair')return{x:1800,kind:'stair-to-dock'};
