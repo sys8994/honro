@@ -62,3 +62,10 @@ records and final saved state. The previous trace is not deleted. Reuse only
 byte-exact Stage31 evidence from41595651979, retaining its original provenance
 and requiring the unchanged current production gate. A successful first cast
 is never whole-stage acceptance; another full run requires its own registration.
+
+Focused calibration41605119986 at9a246a76 completed in15.3seconds. Normal
+joystick input converged to-25.03996 degrees for target-25.08947; actualS06
+caused1786 enemyHP loss and advanced to the next hero. No context/position
+write or JavaScript error. Actual first-cast screenshot was inspected. It is
+only first-cast proof. One full comparison41605817603 is registered on that
+same source/profile, with unchanged20-total-round return requirement.

@@ -53,3 +53,20 @@ Sources: failed ZIP SHA256
 9e9b68ff50e174b9c3e7d053b1cfc8418ce489905321019c01a99ae5a80de04e;
 passing artifact13215393920, extracted with verified original SHA by
 run41604196596 into inspection artifact13216067325. Original records remain.
+
+## Executed bounded pair41605698346
+
+Exact Stage6 source9b2ba731 was built twice. A is unchanged, actual runtime
+ff7e81c4cd8c0fb221ff0c1d7b10bcbafe244f2b8e14de7e75ce592a8e159718.
+B omits only stage6-pursuit.js and has runtime
+2915ae53cca3b58e1a188886b2d42431c8c1c1559576a25fba35ba325a0f7ec8.
+Other integration and campaign data remain identical. A source diff is empty.
+The fixed-clock pair executes32 identical input records/eight actual casts,
+with9 unrounded state checkpoints from seed19388 entry toR2 enemy phase.
+All recorded units/projectiles/RNG/queue/event state match exactly. No wrapper
+effect is observed for this bounded sequence. It does not test lateR19, the
+entire Stage6 integration, universal equivalence, or full-stage acceptance.
+Artifact13216573302 SHA256
+c6d06e884bc840b7d3b659a217049dd15929fed02bd32c83cd1b938ada0ea16a
+was verified before inspection. Its two complete state series and source diffs
+are preserved in records/stage31-wrapper-ab-41605698346.json.xz.
