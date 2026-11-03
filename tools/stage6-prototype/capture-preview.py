@@ -18,6 +18,9 @@ try:
   # Controlled cameras expose locations that are not all reachable in one turn.
   for label,x,y,scale in [('overview',3300,2350,.21),('west',1750,2100,.48),('center',3350,2550,.48),('east',5000,2550,.48),('domain-left-bottom',-320,4040,.21),('domain-right-bottom',6920,4040,.21)]:
    page.evaluate('''([x,y,scale])=>{const a=HonroApp;Object.assign(a.scene,{manual:true,storyTween:null,goalFocus:null,x,y,scale});a.scene.render(a.engine,0,a.selected,.3,false,0)}''',[x,y,scale]);page.wait_for_timeout(300);page.screenshot(path=str(out/(label+'.png')))
+  # Warm, synchronous scene draw cost in the hosted browser. This is not a
+  # physical-device FPS claim; keep the sample and environment explicit.
+  result['renderBenchmark']=page.evaluate('''()=>{const a=HonroApp;Object.assign(a.scene,{manual:true,x:3300,y:2350,scale:.21});for(let i=0;i<4;i++)a.scene.render(a.engine,0,a.selected,.3,false,0);let v=[];for(let i=0;i<20;i++){const t=performance.now();a.scene.render(a.engine,0,a.selected,.3,false,0);v.push(performance.now()-t)}v.sort((x,y)=>x-y);return {samples:v.length,medianMs:v[10],p95Ms:v[18],maxMs:v[19],environment:'GitHub Actions headless Chromium, synchronous scene.render only'};}''')
   page.wait_for_timeout(7000)
   for label,w,h,x,y in [('mobile-portrait',390,844,3150,2650),('mobile-landscape',844,390,4800,2500)]:
    page.set_viewport_size({'width':w,'height':h});page.evaluate('''([x,y])=>{let a=HonroApp;Object.assign(a.scene,{manual:true,x,y,scale:.48});a.scene.render(a.engine,0,a.selected,.3,false,0)}''',[x,y]);page.wait_for_timeout(500);page.screenshot(path=str(out/(label+'.png')))
