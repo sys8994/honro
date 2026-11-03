@@ -37,3 +37,6 @@ The previous rock-cliff preview (run 41650275584) failed visual review: a wide b
 
 ## Slope-matched traced candidate
 The prior layered preview (run 41651761883) failed visual review due to an artificial repeated zigzag band. This candidate uses a separately generated 1586×992 transparent source matched to the controlled west camera, Inkscape 1.4 object-trace 5,false,true,true,4,0.7,0.2, and native unsimplified imported paths. The source is registered with a uniform 1.89 world-units-per-pixel transform, clipped by the exact unchanged lower-road collision. Full-domain seams, source fidelity, persistence, runtime cost and independent review remain unverified.
+
+## Full-domain natural-rock study
+The slope-matched candidate (run 41653359581) improved west detail but revealed an unacceptable rectangular boundary at overview and camera-domain views. This follow-up uses a new edge-to-edge source based on that rock language, Inkscape 1.4 three-color trace, and a uniform scale covering the entire camera domain. No terrain collision changes. Browser appearance, source color fidelity and runtime costs are not yet approved.
