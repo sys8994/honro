@@ -2,9 +2,9 @@
  * observer with doubled canvas/DOM. No scene visibility or subjective art claim. */
 import assert from 'node:assert/strict';
 import {upperConnectionGoal} from './upper-recovery-route.mjs';
-export function completeNativeReturn({h,g,C,app,e,b,ops,returnView,record=()=>{}}){
+export function completeNativeReturn({h,g,C,app,e,b,ops,returnView,record=()=>{},functionalContinuation=false}){
  const living=()=>b.units.filter(u=>u.side===0&&!u.summoned&&!u.honroAct4Resident&&!u.dead&&u.hp>0),surface=u=>e.contactSurface(u.x,u.y-4,u.y+5)?.t?.id;
- let frames=0;function tick(n=1){for(let i=0;i<n;i++){assert(++frames<=90000,'Return frame bound');assert(b.round<=20,'Total round budget exceeded during return');assert(!b.units.some(u=>u.side===1&&!u.dead&&u.hp>0),'Combat resumed during return');assert(b.units.filter(u=>u.honroAct4Resident).every(u=>!u.dead&&u.hp>0),'Resident loss');ops.frame();}}
+ let frames=0;function tick(n=1){for(let i=0;i<n;i++){assert(++frames<=90000,'Return frame bound');assert(functionalContinuation||b.round<=20,'Total round budget exceeded during return');assert(!b.units.some(u=>u.side===1&&!u.dead&&u.hp>0),'Combat resumed during return');assert(b.units.filter(u=>u.honroAct4Resident).every(u=>!u.dead&&u.hp>0),'Resident loss');ops.frame();}}
  function ready(){for(let n=0;n<30000;n++){if(['won','lost'].includes(b.phase))return false;if(app.canInput()&&e.grounded(e.active))return true;tick();}throw Error('Return readiness bound');}
  function pan(point){ready();returnView.pan(point);tick(90);ready();}
  function go(u,x,air=false){for(let n=0;n<1400&&e.active===u&&!u.acted&&u.moveLeft>100&&Math.abs(u.x-x)>20;n++){if(app.canInput())ops.move(Math.sign(x-u.x),C.STEP);tick();}if(!air)for(let n=0;n<480&&!e.grounded(u)&&e.active===u;n++)tick();}
@@ -35,5 +35,5 @@ export function completeNativeReturn({h,g,C,app,e,b,ops,returnView,record=()=>{}
  // A normal rest-frame toast commits notified:false -> true. Wait for that
  // actual UI transition before comparing reload; do not normalize the value.
  for(let n=0;n<1200&&!app.profile.equipment.rewardLedger.eq_so_t3b?.notified;n++)ops.frame();assert(app.profile.equipment.rewardLedger.eq_so_t3b?.notified,'Normal rest reward notification did not settle');const before=project(app.profile);record({op:'normal-rest-notification',changed:immediate!==before});const reloaded=h.reload();g.HonroApp=reloaded;reloaded.continue();assert.equal(reloaded.screen,'rest');assert.equal(project(reloaded.profile),before,'Normal reload changed committed progression');
- return{fullReturn:true,totalRounds:finalRound,frames,roster:q.roster,rescued:q.rescued,settled:true,reloaded:true,scope:'Native normal-input functional diagnostic; canvas/DOM doubled, not browser visibility acceptance'};
+ return{fullReturn:true,totalRounds:finalRound,functionalContinuation,within20:finalRound<=20,frames,roster:q.roster,rescued:q.rescued,settled:true,reloaded:true,scope:'Native normal-input functional diagnostic; canvas/DOM doubled, not browser visibility acceptance'};
 }

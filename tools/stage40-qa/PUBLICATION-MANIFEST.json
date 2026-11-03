@@ -636,5 +636,13 @@
       "sha256": "39a6733e33eb2dbce8ad589335db5dba3d3f7fa355a609d3fb430fa904bfd286",
       "result": "Actual east-to-west mage recovery and two normal defensive positions observed. Damage transfer and weak occultist retained. Not whole-stage success."
     }
-  ]
+  ],
+  "pendingFunctionalContinuation": {
+    "status": "registered, not run",
+    "branch": "work/stage40-late-return/20261103",
+    "sourceRun": 41690685003,
+    "entryRound": 21,
+    "entrySha256": "a83ec3c644b23fa613ff81f7d13853c2b6dc3b5e1f2e44de0a40d2ad5935737e",
+    "scope": "Normal saved-state safe return, settlement and reload; prior total20R failure retained; not a whole-run or time-target pass"
+  }
 }

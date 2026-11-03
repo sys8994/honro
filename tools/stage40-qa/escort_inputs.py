@@ -4,7 +4,10 @@ The ferry carries residents; heroes need not take an unnecessary water crossing.
 import time,json,lzma,hashlib
 from pathlib import Path
 
-def finish_escort(p,out):
+def finish_escort(p,out,*,functional_continuation=False):
+ # A late, separately registered saved-state continuation diagnoses safety and
+ # settlement only. The normal whole-run 20-round acceptance stays unchanged.
+ def within_observation(round):return functional_continuation or round<=20
  events=[];start=time.monotonic();bridge=(Path(__file__).parent/'browser-planner.js').read_text()
  def state():return p.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b,q=b.honroAct4PreviewState,u=e.active;return{round:b.round,phase:b.phase,side:b.side,active:b.active,can:a.canInput(),dialogue:!!a.dialogue,x:u?.x,y:u?.y,move:u?.moveLeft,grounded:u&&e.grounded(u),support:u&&e.contactSurface(u.x,u.y-4,u.y+5)?.t.id,quiet:HonroAct4TerrainPreview.quietReady(b),foes:b.units.filter(v=>v.side===1&&!v.dead&&v.hp>0).map(v=>v.id),projectiles:b.projectiles.length,volley:!!b.volley,heroes:b.units.filter(v=>v.side===0&&!v.summoned&&!v.honroAct4Resident).map(v=>({id:v.id,x:v.x,y:v.y,hp:v.hp,dead:v.dead,acted:v.acted,grounded:e.grounded(v),support:e.contactSurface(v.x,v.y-4,v.y+5)?.t?.id})),residents:b.units.filter(v=>v.honroAct4Resident).map(v=>({id:v.id,x:v.x,y:v.y,hp:v.hp,dead:v.dead,grounded:e.grounded(v),support:e.contactSurface(v.x,v.y-4,v.y+5)?.t?.id,r:v.r,h:v.h,jumping:v.jumping})),escort:q.returnEscort||null,events:q.events,roster:q.roster,complete:q.complete,water:q.water?.recoveries||[],geometry:b.honroAct4Design.geometry40}}''')
  def record(label):
@@ -38,7 +41,7 @@ def finish_escort(p,out):
   assert s['active']!=id or s['support']=='approved40-departure-stair','Return stair join failed'
  def move_to(id,x):
   for _ in range(45):
-   ready();s=state();assert s['round']<=20 and all(h['hp']>0 and not h['dead'] for h in s['residents']),s
+   ready();s=state();assert within_observation(s['round']) and all(h['hp']>0 and not h['dead'] for h in s['residents']),s
    h=next(h for h in s['heroes'] if h['id']==id)
    if abs(h['x']-x)<45 and h['grounded'] and h['support'] in ['approved40-coast-west','approved40-coast-east','approved40-upper-east']:return
    if h['acted'] or not choose(id):p.keyboard.press('f');p.wait_for_timeout(1000);continue
@@ -62,7 +65,7 @@ def finish_escort(p,out):
  # other three movement budgets. Civilian survival remains mandatory.
  destinations={'mage':5030,'knight':5060,'archer':5000,'occultist':5090}
  for step in range(260):
-  ready();s=state();assert s['round']<=20 and all(h['hp']>0 and not h['dead'] for h in s['residents']),s
+  ready();s=state();assert within_observation(s['round']) and all(h['hp']>0 and not h['dead'] for h in s['residents']),s
   living=[h for h in s['heroes'] if h['hp']>0 and not h['dead']]
   assert living,'No surviving party'
   done=lambda h:abs(h['x']-destinations[h['id']])<45 and h['grounded'] and h['support'] in ['approved40-coast-west','approved40-coast-east','approved40-upper-east']
@@ -110,7 +113,7 @@ def finish_escort(p,out):
  presented=[r for e in s['events'].values() for r in e.get('presented',[])];retired=[r for e in s['events'].values() for r in e.get('retired',[])]
  assert all(r in presented and r not in retired for r in rows),(presented,retired)
  assert s['roster']=={'total':13,'living':11,'priorDeaths':2},s['roster']
- p.keyboard.press('e');p.wait_for_function("HonroApp.engine.b.phase==='won'",timeout=30000);final=record('won');assert final['complete'] and final['round']<=20
+ p.keyboard.press('e');p.wait_for_function("HonroApp.engine.b.phase==='won'",timeout=30000);final=record('won');assert final['complete'] and within_observation(final['round'])
  p.screenshot(path=str(out/'outcome.jpg'),type='jpeg',quality=90)
  p.locator('[data-action="result-continue"]').click();p.wait_for_function("HonroApp.screen==='rest'",timeout=60000)
  projection='''()=>Object.fromEntries(['cleared','heroes','equipment','honroAct4','recruited'].map(k=>[k,HonroApp.profile[k]]))'''
@@ -124,4 +127,4 @@ def finish_escort(p,out):
  raw=p.evaluate("localStorage.getItem('honro-first-act-profile-1')");(out/'completed-storage.json.xz').write_bytes(lzma.compress(raw.encode()))
  p.reload();p.wait_for_function('window.HonroApp');p.get_by_text('여정 이어가기',exact=True).click();p.wait_for_function("HonroApp.screen==='rest'",timeout=60000);after=p.evaluate(projection);(out/'postwin-reload.json').write_text(json.dumps({'before':before,'after':after},ensure_ascii=False,indent=2));assert before==after
  p.screenshot(path=str(out/'same-context-restored.jpg'),type='jpeg',quality=90)
- return {'passed':True,'round':final['round'],'heroes':final['heroes'],'residents':final['residents'],'roster':final['roster'],'presentedRequired':rows,'retiredRequired':[],'waterRecoveries':final['water'],'sameOriginalContextPostVictoryReload':True,'completedStorageSha256':hashlib.sha256(raw.encode()).hexdigest()}
+ return {'passed':True,'round':final['round'],'functionalContinuation':functional_continuation,'within20':final['round']<=20,'heroes':final['heroes'],'residents':final['residents'],'roster':final['roster'],'presentedRequired':rows,'retiredRequired':[],'waterRecoveries':final['water'],'sameOriginalContextPostVictoryReload':True,'completedStorageSha256':hashlib.sha256(raw.encode()).hexdigest()}
