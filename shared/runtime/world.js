@@ -15,11 +15,11 @@ const MONSTER_SKILLS={
  HLN01:{id:'HLN01',cls:'occultist',name:'혼불방울',tag:'등불귀 · 혼불',desc:'느린 혼불이 목표 부근에서 크게 번진다.',cost:0,damage:24,radius:84,mode:'honroSoulFlame',icon:'flame',color:'#c4c697',speed:.68,wind:.18,terrain:.10,gravity:.16},
  HLN02:{id:'HLN02',cls:'occultist',name:'혼무씨',tag:'등불귀 · 혼무',desc:'짙은 혼무 덩어리를 떨어뜨린다.',cost:0,damage:20,radius:112,mode:'honroMistSeed',icon:'rune',color:'#9fae92',speed:.62,wind:.26,terrain:.10,gravity:.35},
  HSH01:{id:'HSH01',cls:'occultist',name:'수의가시',tag:'수의귀 · 투과',desc:'얇은 수의 조각이 지형을 스치듯 지나간다.',cost:0,damage:32,radius:24,mode:'honroShroudNeedle',icon:'pierce',color:'#aea0ad',speed:.756,wind:.18,terrain:.12,gravity:.20,phase:'terrain'},
- HSH02:{id:'HSH02',cls:'occultist',name:'매듭실',tag:'수의귀 · 결박',desc:'긴 천조각처럼 날아가 넓게 터진다.',cost:0,damage:22,radius:74,mode:'honroShroudKnot',icon:'bind',color:'#8d7b89',speed:.86,wind:.30,terrain:.10,gravity:.40},
+ HSH02:{id:'HSH02',cls:'occultist',name:'매듭실',enemyEffectDesc:'고정 범위를 예고한다. 범위 밖으로 이동하거나 준비 중 수의귀를 직접 공격해 차단. 명중하면 다음 유효 행동의 이동 예산이 55%가 된다. 사격·도약은 가능하며 행동 후 또는 시전자 처치·정화약으로 해제.',tag:'수의귀 · 결박',desc:'긴 천조각처럼 날아가 넓게 터진다.',cost:0,damage:22,radius:74,mode:'honroShroudKnot',icon:'bind',color:'#8d7b89',speed:.86,wind:.30,terrain:.10,gravity:.40},
  HCW01:{id:'HCW01',cls:'archer',name:'썩은깃',tag:'산송장 까마귀 · 깃',desc:'썩은 깃을 뭉쳐 날리는 독자 공격.',cost:0,damage:23,radius:38,mode:'honroRotFeather',icon:'arrow',color:'#879184',speed:.826,wind:.38,terrain:.18,gravity:.60},
  HCW02:{id:'HCW02',cls:'archer',name:'검은깃비',tag:'산송장 까마귀 · 산개',desc:'검은 깃 덩어리를 크게 흩뿌린다.',cost:0,damage:18,radius:82,mode:'honroFeatherBurst',icon:'rain',color:'#66766f',speed:.92,wind:.55,terrain:.15,gravity:.75},
  HWD01:{id:'HWD01',cls:'knight',name:'장승못',tag:'장승 · 목편',desc:'묵직한 나무못을 날린다.',cost:0,damage:34,radius:34,mode:'honroWoodSpike',icon:'break',color:'#a08e67',speed:.82,wind:.42,terrain:.85,gravity:1.05},
- HWD02:{id:'HWD02',cls:'knight',name:'터줏바람',tag:'장승 · 밀침',desc:'나무틈에서 터지는 압력파.',cost:0,damage:24,radius:100,mode:'honroWardGust',icon:'push',color:'#8f997d',speed:.76,wind:.28,terrain:.25,gravity:.30},
+ HWD02:{id:'HWD02',cls:'knight',name:'터줏바람',enemyEffectDesc:'고정 범위와 밀림 방향을 예고한다. 범위 밖으로 이동하거나 준비 중 장승을 직접 공격해 차단. 명중 시 지형에 막히는 안전한 거리만 밀리며 이미 바뀐 위치는 정화약으로 되돌리지 않는다.',tag:'장승 · 밀침',desc:'나무틈에서 터지는 압력파.',cost:0,damage:24,radius:100,mode:'honroWardGust',icon:'push',color:'#8f997d',speed:.76,wind:.28,terrain:.25,gravity:.30},
  HMO01:{id:'HMO01',cls:'knight',name:'곡소리',tag:'상두꾼 · 충격파',desc:'목 없는 몸에서 검은 울림이 퍼진다.',cost:0,damage:30,radius:92,mode:'honroMournerWail',icon:'resonance',color:'#9f7978',speed:.80,wind:.20,terrain:.25,gravity:.24},
  HMO02:{id:'HMO02',cls:'knight',name:'상여추',tag:'상두꾼 · 중량',desc:'상여 장식의 무거운 파편을 던진다.',cost:0,damage:42,radius:52,mode:'honroBierWeight',icon:'slam',color:'#8e7762',speed:.70,wind:.48,terrain:1.15,gravity:1.30}
 };
@@ -138,6 +138,10 @@ function build(st,profile,training,cls,skill,legacy){
  const old=G.HonroSplitCampaign.legacy(profile,st.id),project=old?{...G.HONRO_PROJECT,library:[...(G.HONRO_SPLIT_V1.library||[]),...G.HONRO_PROJECT.library]}:G.HONRO_PROJECT,map=(old?G.HONRO_SPLIT_V1.stages:project.stages).find(s=>s.metadata.stageId===st.id);
  if(!map)throw Error('Missing canonical stage '+st.id);
  const b=G.HonroMaps.createBattle(map,project,profile,{origin:'campaign'});
+ // A1 pilot: only these existing actors in NEW campaign battles. Never retrofit Continue.
+ const pilot=st.id===5?['s5-cave-shade','HSH02']:st.id===8?['s8-15','HWD02']:null;
+ if(pilot){const owner=b.units.find(u=>u.id===pilot[0]&&u.side===1&&!u.dead&&u.loadout?.includes(pilot[1]));if(owner){b.honroMonsterEffectsRevision=1;owner.honroMonsterEffectSkill=pilot[1];}}
+
  if(b.honroStoryCanonRevision===1){
   if(profile.honroStoryEvents?.['act3-void-v1'])b.honroVoidWitness=true;
   if(profile.honroStoryEvents?.['act2-bell-anomaly-v1'])b.honroBellWitness=true;

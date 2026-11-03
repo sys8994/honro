@@ -373,8 +373,9 @@
                 } catch { }
             }
             if(!quietOutro&&!this.storyFrozen&&b.phase==='flight')G.HONRO_CORE.drawTurnGuide(c,e,this.scale,this.turnTarget);
+            if(!quietWalk&&!quietOutro&&!this.storyFrozen)G.HonroCombatStatus.drawTelegraphs(c,e,this,w,h,!paused);
             // Enemy aim telegraph: the decided shot's real path and its target, shown before release.
-            if(!quietOutro&&!this.storyFrozen&&b.phase==='enemy'&&u?.aiAim){
+            if(!quietOutro&&!this.storyFrozen&&b.phase==='enemy'&&u?.aiAim&&!(b.honroMonsterEffectsRevision===1&&u.honroMonsterEffectSkill===u.aiAim.skill)){
                 const q=u.aiAim,sk=G.HONRO_CORE.SKILLS[q.skill],tgt=e.unit(q.target),z=Math.max(.12,this.scale||1);
                 if(sk){if(q._key!==q.angle+':'+q.power){q._key=q.angle+':'+q.power;try{const pr=e.predict(u,sk,q.angle,q.power,undefined,true);q._points=[...pr.points,{x:pr.x,y:pr.y}];}catch{q._points=null;}}
                     const k=Math.min(1,q.age/.25),pulse=.5+.5*Math.sin(this.time*18);
