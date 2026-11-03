@@ -99,11 +99,11 @@ jobs:
       - name: Register immutable source and run one full Stage40 UI comparison
         run: |
           set -euo pipefail
-          node --input-type=module -e 'import fs from "node:fs";import {createHash} from "node:crypto";import {runtimeDigest} from "./tools/stage31/probes.mjs";const hash=p=>createHash("sha256").update(fs.readFileSync(p)).digest("hex");fs.writeFileSync(process.env.OUT+"/protocol.json",JSON.stringify({sourceCommit:process.env.GITHUB_SHA,runId:process.env.GITHUB_RUN_ID,runtimeSha256:await runtimeDigest(),htmlSha256:hash("HONRO.html"),manifestSha256:hash("web/manifest.json"),stage31PackageSha256:hash("tools/stage31/production-package.json"),driverSha256:hash("tools/stage40-qa/browser-play.py"),plannerSha256:hash("tools/stage40-qa/browser-planner.js"),limits:{combatDiagnosticRounds:24,totalCompletionRounds:20,combatWallSeconds:3600},scope:"One original prepared-endgame profile actual UI comparison, full combat plus safe return/settlement/reload. Not earned1-39, cohort or human fun approval. Production hold."},null,2))'
+          node --input-type=module -e 'import fs from "node:fs";import {createHash} from "node:crypto";import {runtimeDigest} from "./tools/stage31/probes.mjs";const hash=p=>createHash("sha256").update(fs.readFileSync(p)).digest("hex");fs.writeFileSync(process.env.OUT+"/protocol.json",JSON.stringify({sourceCommit:process.env.GITHUB_SHA,runId:process.env.GITHUB_RUN_ID,runtimeSha256:await runtimeDigest(),htmlSha256:hash("HONRO.html"),manifestSha256:hash("web/manifest.json"),stage31PackageSha256:hash("tools/stage31/production-package.json"),driverSha256:hash("tools/stage40-qa/browser-play.py"),plannerSha256:hash("tools/stage40-qa/browser-planner.js"),limits:{combatDiagnosticRounds:24,totalCompletionRounds:20,combatWallSeconds:3600},scope:"One exact R4 normal-import continuation of failed run41621782011, preserving resources and round, combat plus safe return/settlement/reload. Not uninterrupted. Not earned1-39, cohort or human fun approval. Production hold."},null,2))'
           python -m http.server 8870 --bind 127.0.0.1 > "$OUT/final-server.log" 2>&1 &
           server=$!; trap 'kill "$server" 2>/dev/null || true' EXIT
           sleep 2
-          HONRO_CAPTURE_URL="http://127.0.0.1:8870/HONRO.html" HONRO_CAPTURE_OUT="$OUT/browser" python tools/stage40-qa/browser-play.py > "$OUT/browser.log" 2>&1
+          HONRO40_RESUME_R4=1 HONRO_CAPTURE_URL="http://127.0.0.1:8870/HONRO.html" HONRO_CAPTURE_OUT="$OUT/browser" python tools/stage40-qa/browser-play.py > "$OUT/browser.log" 2>&1
       - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
         if: always()
         with:

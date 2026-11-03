@@ -9,9 +9,14 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'act4-ci'))
 from precise_aim import aim_with_joystick
 root=Path(os.environ.get('HONRO_REPO_ROOT','.')).resolve();out=Path(os.environ['HONRO_CAPTURE_OUT']);out.mkdir(parents=True,exist_ok=False)
 bridge=(Path(__file__).parent/'browser-planner.js').read_text()
-raw=lzma.decompress((root/'tools/act4-rc/fixtures/stage40-checkpoints/sailing-observation-local-storage.json.xz').read_bytes());assert hashlib.sha256(raw).hexdigest()=='2c8e5d95e1e956059da5ae0b74a02641beed0bccf0932568194b108fec3a8141'
+resume=os.environ.get('HONRO40_RESUME_R4')=='1'
+profile_file='tools/stage40-qa/records/41621782011-r4-profile.json.xz' if resume else 'tools/act4-rc/fixtures/stage40-checkpoints/sailing-observation-local-storage.json.xz'
+raw=lzma.decompress((root/profile_file).read_bytes());assert hashlib.sha256(raw).hexdigest()==('a5b4f3a9fab47b0350e2690ac9188b973bd7fa39ab000588eece4194f6671810' if resume else '2c8e5d95e1e956059da5ae0b74a02641beed0bccf0932568194b108fec3a8141')
+entry_round=4 if resume else 1
 (out/'source-profile.json').write_bytes(raw)
 result={'passed':False,'releaseApproved':False,'scope':'Prepared endgame profile, actual browser inputs; not earned1–39/cohort/fun approval','sourceCommit':os.environ.get('GITHUB_SHA'),'events':[],'errors':[]}
+result['continuationOf']=41621782011 if resume else None
+result['entryRound']=entry_round
 with sync_playwright() as w:
  browser=w.chromium.launch(headless=True);context=browser.new_context(viewport={'width':1440,'height':900});p=context.new_page();p.on('pageerror',lambda e:result['errors'].append(str(e)))
  def state():return p.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b,u=e.active;return {round:b.round,active:u?.id,phase:b.phase,side:b.side,can:a.canInput(),dialogue:!!a.dialogue,x:u?.x,y:u?.y,facing:u?.facing,angle:u?.angle,move:u?.moveLeft,grounded:u&&e.grounded(u),support:u&&e.contactSurface(u.x,u.y-4,u.y+5)?.t.id,canDrop:e.canDrop(),finale:b.honroFinalDefenseRevision,major:b.units.filter(v=>v.side===1&&v.boss).length,minis:b.units.filter(v=>v.side===1&&v.honroMidboss).length,shots:b.shots,proof:HonroAct4TerrainPreview.proofValid(b),health:b.units.filter(v=>v.side===0&&!v.summoned&&!v.honroAct4Resident).map(v=>({id:v.id,hp:v.hp,dead:v.dead,acted:v.acted,x:v.x,y:v.y})),residents:b.units.filter(v=>v.honroAct4Resident).map(v=>({id:v.id,hp:v.hp,dead:v.dead})),foes:b.units.filter(v=>v.side===1&&!v.dead&&v.hp>0).map(v=>({id:v.id,hp:v.hp,x:v.x,y:v.y})),boss:b.units.find(v=>v.honroAct4FinaleBoss)?.honroPilotCombat}}''')
@@ -57,13 +62,21 @@ with sync_playwright() as w:
  try:
   p.goto(os.environ['HONRO_CAPTURE_URL'],wait_until='domcontentloaded');p.wait_for_function('window.HonroApp')
   p.locator('[data-action="settings"]').first.click();p.get_by_text('기록·관리',exact=False).click();p.get_by_text('JSON 기록 가져오기',exact=True).click();p.get_by_text('파일 선택',exact=True).click();p.locator('#file-import').set_input_files(str((out/'source-profile.json').resolve()))
-  p.wait_for_function('HonroApp.profile?.lastStage===40',timeout=120000);p.reload();p.wait_for_function('window.HonroApp');p.locator('.title-actions [data-action="continue"]').first.click();p.wait_for_function('HonroApp.engine?.b.honroStage===40&&HonroApp.engine.b.round===1',timeout=120000)
-  ready();initial=record('entry');assert initial['proof'] and len(initial['foes'])==42 and initial['major']==1 and initial['minis']==2 and initial['finale']==2
+  p.wait_for_function('HonroApp.profile?.lastStage===40',timeout=120000);p.reload();p.wait_for_function('window.HonroApp');p.locator('.title-actions [data-action="continue"]').first.click();p.wait_for_function('expected=>HonroApp.engine?.b.honroStage===40&&HonroApp.engine.b.round===expected',arg=entry_round,timeout=120000)
+  ready();initial=record('entry');assert initial['proof'] and len(initial['foes'])==(37 if resume else 42) and initial['major']==1 and initial['minis']==2 and initial['finale']==2
   # A normal import must retain earned skill ranks/equipment, not add test gear.
   saved=json.loads(raw);budget=p.evaluate('()=>Object.fromEntries(Object.entries(HonroApp.profile.heroes).map(([k,v])=>[k,{xp:v.xp,ranks:v.ranks,equipmentIds:v.equipmentIds,earned:HONRO_CORE.pointsEarned(v),spent:HONRO_CORE.pointsSpent(v,k)}]))')
   for cls,v in budget.items():
    assert v['spent']<=v['earned']
    for k in ['xp','ranks','equipmentIds']:assert v[k]==saved['heroes'][cls][k]
+  if resume:
+   actual=p.evaluate('()=>{const b=HonroApp.engine.b;return {round:b.round,units:b.units.map(u=>({id:u.id,hp:u.hp,dead:!!u.dead,moveLeft:u.moveLeft}))}}')
+   prior=saved['honroBattle'];assert actual['round']==prior['round']==4
+   expected={u['id']:u for u in prior['units']}
+   for u in actual['units']:
+    old=expected[u['id']]
+    assert u['hp']==old['hp'] and u['dead']==bool(old.get('dead')) and u.get('moveLeft')==old.get('moveLeft'),('Resume changed resources',u['id'])
+   (out/'resume-resource-proof.json').write_text(json.dumps(actual,indent=2))
   (out/'entry-budget.json').write_text(json.dumps(budget,indent=2));view();p.screenshot(path=str(out/'entry.png'));started=time.monotonic();selected=set()
   for turn in range(140):
    if time.monotonic()-started>3600:raise TimeoutError('Registered60-minute combat observation bound')
@@ -105,7 +118,7 @@ with sync_playwright() as w:
    view();q=p.evaluate(bridge,'plan');record('plan',q);c=q['choice']
    if c:
     s=state();face=-1 if c['angle']>90 else 1
-    if s['facing']!=face:hold('ArrowLeft' if face<0 else 'ArrowRight',60);ready();q=p.evaluate(bridge,'plan');c=q['choice'];record('replan-facing',q)
+    if s['facing']!=face:hold('ArrowLeft' if face<0 else 'ArrowRight',60);ready();q=p.evaluate(bridge,'plan-faced');c=q['choice'];record('replan-facing',q)
    if not c:before=state();p.keyboard.press('f');p.wait_for_timeout(1100);ready();record('actual-ui-defend',{'actor':before['active'],'move':before['move']});continue
    p.keyboard.press('Digit'+str(c['idx']+1));p.wait_for_timeout(100)
    aim_result=aim_with_joystick(p,c['angle'],lambda:{**state(),'moveLeft':state()['move']})
