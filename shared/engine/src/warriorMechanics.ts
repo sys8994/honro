@@ -1,3 +1,4 @@
+import {monsterSectorContains} from './monsterMeleeGeometry';
 import {gearHas,gearState,gearCycle,gearMove,gearAlly,gearBody,gearPass} from './equipmentCombat';
 import {equipmentParam} from './equipment';
 import type {DamageOrigin} from './damageVariance';
@@ -18,6 +19,8 @@ export function meleeRange(u:Unit,s:Skill,power:number){return s.radius*(1+(['co
 export function meleeFactor(u:Unit,power:number){return .88+(.47+passiveTuning(passiveRank(u,'SP01')).swordCharge)*power;}
 export function meleeSpan(u:Unit,s:Skill,power=0){const base=s.mode==='meleeWide'?48:s.mode==='counterStance'?40:s.mode==='meleeCombo'?22:25;return rad(base+Math.max(0,(u.ranks[s.id]||1)-1)*1.5+clamp(power,0,1)*10+passiveRank(u,'SP01')*.5);}
 export function meleeContains(e:Engine,u:Unit,t:Unit,range:number,angle=-rad(u.angle),span=meleeSpan(u,SKILLS.S00)){
+ const core=e.monsterDamageShape(t);
+ if(core)return monsterSectorContains(core.polygons,at(u),range,angle,span,p=>!e.collision(at(u),p,1,u.id,[],false));
  const a=at(u),padding=6,bodyRadius=t.r+padding;
  // A tall sprite can visibly overlap the preview sector even when its centre is outside it.
  for(const offset of [-.22,0,.22]){

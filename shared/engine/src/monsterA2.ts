@@ -89,6 +89,11 @@ export function resolveMonsterA2Action(e:Engine,u:Unit){
  const sk=SKILLS.HED01;if(!sk||!e.fire(sk.id,w.direction!>0?0:180,.5,true)){e.finishAction();return true;}
  const ps=e.b.projectiles.filter(p=>p.owner===u.id&&p.shot===e.b.shot),p=ps[0];for(const q of ps)e.remove(q);
  u.monsterA2Animation={pose:'attack',left:.32};
+ // The authored hand is decorative: its shadow extends through the exact saved
+ // warning band. Eight inset strokes cover the band without rounded-cap spill.
+ const bands=8,stroke=area.h/bands;
+ for(let i=0;i<bands;i++)e.emit('fx',{name:'inkLine',x:area.x+stroke/2,y:area.y+(i+.5)*stroke,x2:area.x+area.w-stroke/2,y2:area.y+(i+.5)*stroke,color:i%2?'#35303d':'#514457',size:stroke});
+ for(const x of [area.x+.5,area.x+area.w-.5])e.emit('fx',{name:'inkLine',x,y:area.y+.5,x2:x,y2:area.y+area.h-.5,color:'#a394b0',size:1});
  if(p&&t){const at=center(t);if(at.x>=area.x-t.r&&at.x<=area.x+area.w+t.r&&at.y>=area.y&&at.y<=area.y+area.h)e.hurt(t,p.damage,u.id,true,p,at);}
  e.emit('change');return true;
 }
