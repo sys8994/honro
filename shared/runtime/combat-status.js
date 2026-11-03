@@ -1,6 +1,7 @@
 (function(G){'use strict';
 const symbols={
  stun:'M8 1 9.5 5 14 5.5 10.5 8.5 11.5 13 8 10.5 4.5 13 5.5 8.5 2 5.5 6.5 5Z',
+ push:'M1 8H14M9 3L14 8 9 13M1 3H5M1 13H5',
  bind:'M6 5 9 2Q12 0 14 3Q15 5 13 7L10 10M6 6 3 9Q1 12 4 14Q6 15 8 13L11 10M5 11 11 5',
  slow:'M8 1V15M2 4 14 12M2 12 14 4M5 2 8 5 11 2M5 14 8 11 11 14',
  curse:'M8 1 14 7 8 15 2 7ZM5 6 11 10M11 6 5 10',
@@ -17,13 +18,20 @@ const symbols={
  remnant:'M3 11Q1 5 5 4Q8 4 6 10M9 12Q7 6 11 3Q15 4 13 11',
  dead:'M3 3 13 13M3 13 13 3'
 };
-const colors={stun:'#f5d27f',bind:'#e2ba87',slow:'#9dddeb',curse:'#d7a2e4',betrayal:'#ee9cbc',shield:'#a8dbd3',guard:'#cadbd5',power:'#eed69a',follow:'#eed69a',retreat:'#b4d3c5',prepared:'#eed69a',manifest:'#d7d0ac',enthrall:'#c2b596',earthbind:'#b8ab8a',remnant:'#d1c6ab',dead:'#bfaaa2'};
+const colors={push:'#c4d1aa',stun:'#f5d27f',bind:'#e2ba87',slow:'#9dddeb',curse:'#d7a2e4',betrayal:'#ee9cbc',shield:'#a8dbd3',guard:'#cadbd5',power:'#eed69a',follow:'#eed69a',retreat:'#b4d3c5',prepared:'#eed69a',manifest:'#d7d0ac',enthrall:'#c2b596',earthbind:'#b8ab8a',remnant:'#d1c6ab',dead:'#bfaaa2'};
+// Pilot rules are frozen on battle entry; legacy saves keep their original status language.
+function casts(b){return b.honroMonsterEffectsRevision===1?(b.units||[]).filter(u=>!u.dead&&u.hp>0&&u.side===1&&!u.eaterCapturedBy&&u.enemyEffectCast?.version===1):[];}
+function softBind(b,u){return b.honroMonsterEffectsRevision===1&&u.enemySoftBind?.remainingActions>0?u.enemySoftBind:null;}
+function warningDetail(owner){const q=owner.enemyEffectCast;return `${q.skill==='HSH02'?'매듭실':'터줏바람'} 예고 · 고정 범위 밖으로 이동하거나 준비 중 ${owner.name} 직접 공격으로 끊기 · 대상의 행동 후 다음 적 행동에 발동`;}
 function entries(b,u){
  const list=[];if(!u)return list;
  const add=(key,name,detail,count)=>list.push({key,name,detail,count,color:colors[key]});
  if(u.dead||u.hp<=0){add('dead','전투 불능','전투 불능');return list;}
  if(u.stunnedRound===b.round&&u.acted)add('stun','기절','기절 · 이번 턴 행동 불가');
  else if(u.stun>0)add('stun','기절',`기절 · 다음 행동 ${u.stun}회 불가`,u.stun);
+ const bind=softBind(b,u);
+ if(bind){const source=(b.units||[]).find(v=>v.id===bind.sourceId);add('bind','매듭실',`매듭실 · 이동 예산 ${Math.round(bind.factor*100)}% · 사격·도약 가능 · 다음 유효 행동 후 해제 · ${source?.name||'수의귀'} 처치 또는 정화약으로 해제`,bind.remainingActions);}
+ for(const owner of casts(b)){const q=owner.enemyEffectCast;if(q.target===u.id||owner.id===u.id)add(q.skill==='HSH02'?'bind':'push',q.skill==='HSH02'?'매듭 예고':'바람 예고',warningDetail(owner));}
  if(u.bound>0)add('bind','결박',`결박 ${u.bound}회 · 이동력 감소·이동 소모 증가`,u.bound);
  if(u.slowed)add('slow','감속','감속 '+Math.round(u.slowed.factor*100)+'%');
  if(u.curseTurns>0){const parts=[`저주 ${u.curseTurns}턴`];if(u.curseDamage>0)parts.push(`매 턴 기본 피해 ${+(u.curseDamage*(u.curseDamageOrigin?.damageRoll??1)).toFixed(1)}`);if(u.curseAttack>0)parts.push(`공격력 ${Math.round(u.curseAttack*100)}% 감소`);if(u.curseArmor>0)parts.push(`방어력 ${Math.round(u.curseArmor*100)}%p 감소`);add('curse','저주',parts.join(' · '),u.curseTurns);}
@@ -47,6 +55,33 @@ function entries(b,u){
  return list;
 }
 function effects(b,u){return entries(b,u).map(s=>s.detail);}
+// Coordinates come only from the serialized cast, never the current target pose.
+// The offscreen sign sits inside the middle of the play area, clear of header/HUD.
+function drawTelegraphs(c,e,scene,w,h,observe=true){
+ const b=e.b,z=1/Math.max(.12,scene.scale||1),left=scene.x-w*z/2,right=scene.x+w*z/2,top=scene.y-h*z/2,bottom=scene.y+h*z/2;
+ for(const owner of casts(b)){
+  const q=owner.enemyEffectCast,p=q.impact,r=q.radius;if(!p||![p.x,p.y,r].every(Number.isFinite)||r<=0)continue;
+  const visible=p.x+r>left&&p.x-r<right&&p.y+r>top+80*z&&p.y-r<bottom-100*z;
+  const x=visible?p.x:Math.max(left+70*z,Math.min(right-70*z,p.x)),y=visible?p.y:Math.max(top+h*z*.32,Math.min(top+h*z*.60,p.y));
+  const knot=q.skill==='HSH02',color=knot?colors.bind:colors.push;
+  c.save();c.strokeStyle=color;c.fillStyle=color;c.lineWidth=2*z;c.globalAlpha=.9;
+  if(visible){
+   c.setLineDash([7*z,5*z]);c.beginPath();c.arc(x,y,r,0,Math.PI*2);c.stroke();c.setLineDash([]);
+   // Knot cross versus directional chevrons: meaningful even without color or sound.
+   if(knot){for(const dx of [-9,9]){c.beginPath();c.ellipse(x+dx*z,y,12*z,6*z,dx<0?-.5:.5,0,Math.PI*2);c.stroke();}}
+   else{const d=q.direction<0?-1:1;for(const offset of [-16,4,24]){const ax=x+offset*z*d;c.beginPath();c.moveTo(ax-8*z*d,y-8*z);c.lineTo(ax,y);c.lineTo(ax-8*z*d,y+8*z);c.stroke();}}
+  }else{
+   const dx=p.x-x,dy=p.y-y,angle=Math.atan2(dy,dx);c.save();c.translate(x,y);c.rotate(angle);c.beginPath();c.moveTo(-15*z,0);c.lineTo(15*z,0);c.lineTo(7*z,-6*z);c.moveTo(15*z,0);c.lineTo(7*z,6*z);c.stroke();c.restore();
+  }
+  const label=(knot?'매듭실':'터줏바람')+(visible?' 예고':' · 화면 밖'),note=knot?'범위 회피 / 준비 중 직접 공격':'범위 회피 / 준비 중 직접 공격';
+  c.font=`bold ${11*z}px sans-serif`;c.textAlign='center';c.textBaseline='middle';
+  const width=Math.max(c.measureText(label).width,c.measureText(note).width)+12*z,labelX=Math.max(left+width/2+8*z,Math.min(right-width/2-8*z,x)),labelY=Math.max(top+90*z,Math.min(bottom-120*z,y+(visible?r+12*z:21*z)));
+  c.fillStyle='#0c2028ed';c.fillRect(labelX-width/2,labelY-8*z,width,31*z);c.fillStyle=color;c.fillText(label,labelX,labelY);c.font=`${10*z}px sans-serif`;c.fillText(note,labelX,labelY+14*z);
+  c.restore();
+  if(observe)e.observeEnemyEffectWarning?.(owner.id,q.serial);
+ }
+}
+
 const paths={};
 function glyph(key){return `<svg viewBox="0 0 16 16" aria-hidden="true"><path d="${symbols[key]}"/></svg>`;}
 function draw(c,b,u,time,scale,active){
@@ -54,7 +89,7 @@ function draw(c,b,u,time,scale,active){
  const has=key=>states.some(s=>s.key===key),z=1/Math.max(.16,scale||1),visualHeight=G.HonroPartyPresentationHeight?.(u)??u.h;
  c.save();c.lineWidth=2*z;
  // Silhouettes stay recognizable: ropes at the ankles, ice underfoot, a curse seal and a shield arc.
- if(has('bind')){c.strokeStyle=colors.bind;c.beginPath();for(let i=0;i<2;i++)c.ellipse(u.x,u.y-7-i*13,u.r+8,7,0,0,Math.PI*2);c.moveTo(u.x-u.r,u.y-23);c.lineTo(u.x+u.r,u.y-2);c.stroke();}
+ if(has('bind')&&(u.bound>0||softBind(b,u))){c.strokeStyle=colors.bind;c.beginPath();for(let i=0;i<2;i++)c.ellipse(u.x,u.y-7-i*13,u.r+8,7,0,0,Math.PI*2);c.moveTo(u.x-u.r,u.y-23);c.lineTo(u.x+u.r,u.y-2);c.stroke();}
  if(has('slow')){c.strokeStyle=colors.slow;c.beginPath();for(let i=0;i<5;i++){const x=u.x+(i-2)*12;c.moveTo(x-6,u.y+1);c.lineTo(x,u.y-10-(i%2)*7);c.lineTo(x+6,u.y+1);}c.stroke();}
  if(has('curse')){c.strokeStyle=colors.curse;c.globalAlpha=.65+.15*Math.sin(time*3);c.beginPath();c.ellipse(u.x,u.y-visualHeight*.45,u.r+11,visualHeight*.35,0,0,Math.PI*2);c.stroke();c.globalAlpha=1;}
  if(has('manifest')){c.strokeStyle=colors.manifest;c.globalAlpha=.68;c.beginPath();c.ellipse(u.x,u.y-visualHeight*.5,u.r+14,visualHeight*.55,0,0,Math.PI*2);c.stroke();c.globalAlpha=1;}
@@ -111,11 +146,12 @@ function refresh(app,u){
    trigger.onkeydown=trigger.onkeyup=e=>{if(['Space','Enter'].includes(e.code))e.stopPropagation();};
    if(focused)trigger.focus({preventScroll:true});
   }
-  el.dataset.limited=why!=='이동·발사 가능'||u.bound>0||u.stun>0?'true':'false';
+  el.dataset.monsterSignal=softBind(b,u)||casts(b).some(v=>v.enemyEffectCast.target===u.id)?'true':'false';
+  el.dataset.limited=why!=='이동·발사 가능'||u.bound>0||u.stun>0||softBind(b,u)?'true':'false';
  }
  for(const chip of document.querySelectorAll('#hero-switches [data-id]')){
-  const v=app.engine.unit(chip.dataset.id);if(!v)continue;const state=effects(b,v),tag=v.dead?'전투불능':v.stunnedRound===b.round&&v.acted||v.stun>0?'기절':v.bound>0?'결박':v.curseTurns>0?'저주':v.acted?'완료':'';
-  const title=`${v.name} · ${state.join(' / ')|| (v.acted?'행동 완료':'행동 가능')}`;if(chip.dataset.tooltip!==title)chip.dataset.tooltip=title;chip.classList.toggle('status-impaired',['기절','결박','저주'].includes(tag));
+  const v=app.engine.unit(chip.dataset.id);if(!v)continue;const state=effects(b,v),tag=v.dead?'전투불능':v.stunnedRound===b.round&&v.acted||v.stun>0?'기절':softBind(b,v)?'매듭실':casts(b).some(o=>o.enemyEffectCast.target===v.id)?'예고':v.bound>0?'결박':v.curseTurns>0?'저주':v.acted?'완료':'';
+  const title=`${v.name} · ${state.join(' / ')|| (v.acted?'행동 완료':'행동 가능')}`;if(chip.dataset.tooltip!==title)chip.dataset.tooltip=title;chip.classList.toggle('status-impaired',['기절','결박','저주','매듭실','예고'].includes(tag));
   const small=chip.querySelector('small');const text=tag||`${Math.round(Math.max(0,v.hp)/v.maxHp*100)}%`;if(small&&small.textContent!==text)small.textContent=text;
  }
  // This HUD refresh owns the action hint; the per-frame charge label cannot overwrite a blocked-action reason.
@@ -138,5 +174,5 @@ function passives(app,u){
  host.hidden=!view;host.innerHTML=view?.html||'';
  if(trigger){if(view){trigger.dataset.passive=view.kind;trigger.dataset.passiveLabel=view.label;trigger.dataset.tooltip=view.description+' · 상태와 캐릭터 정보';}else{delete trigger.dataset.passive;delete trigger.dataset.passiveLabel;delete trigger.dataset.tooltip;}}
 }
-G.HonroCombatStatus={entries,effects,draw,reason,embedded,refresh,passives,passivePresentation};
+G.HonroCombatStatus={casts,softBind,warningDetail,drawTelegraphs,entries,effects,draw,reason,embedded,refresh,passives,passivePresentation};
 })(globalThis);
