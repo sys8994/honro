@@ -470,6 +470,11 @@
       "native": "4cc56297d635b6dda9e4bdcb768877bc34222e30",
       "canonical": "7873f0c3f7a57e989f026666ba8b73d3b9a02dc6",
       "tree": "606f7bc8e14cc1f8fdc8390e2403224322355849"
+    },
+    {
+      "native": "0573a4777db15eecf65318ae0b02f02ab8bf0511",
+      "canonical": "e234349d2504d7a6e4c1890593d34acf5dc8e99c",
+      "tree": "db311dc93899dbedfc7c12fc53881462fee976d6"
     }
   ],
   "pendingPublication": null,
@@ -645,17 +650,28 @@
       "artifact": 13256162305,
       "sha256": "39a6733e33eb2dbce8ad589335db5dba3d3f7fa355a609d3fb430fa904bfd286",
       "result": "Actual east-to-west mage recovery and two normal defensive positions observed. Damage transfer and weak occultist retained. Not whole-stage success."
+    },
+    {
+      "run": 41703469779,
+      "source": "7873f0c3f7a57e989f026666ba8b73d3b9a02dc6",
+      "native": "4cc56297d635b6dda9e4bdcb768877bc34222e30",
+      "artifact": 13264859864,
+      "sha256": "8607c2f6b7f7add887f35591f51d028fe9af55caa0337cc970fa195dece75c04",
+      "result": "Actual R21-save normal functional return completedR23. Resident safety, required story13, roster13/11/2, settlement and same-context reload passed; noJSerrors or waterrecoveries. Prior whole20R failure retained; not final release acceptance."
     }
   ],
   "pendingFunctionalContinuation": {
-    "status": "actual browser in progress; native functional return R23 passed",
+    "status": "passed functional continuation; within20 false",
     "branch": "work/stage40-late-return/20261103",
     "sourceRun": 41690685003,
     "entryRound": 21,
     "entrySha256": "a83ec3c644b23fa613ff81f7d13853c2b6dc3b5e1f2e44de0a40d2ad5935737e",
     "scope": "Normal saved-state safe return, settlement and reload; prior total20R failure retained; not a whole-run or time-target pass",
     "runId": 41703469779,
-    "source": "7873f0c3f7a57e989f026666ba8b73d3b9a02dc6"
+    "source": "7873f0c3f7a57e989f026666ba8b73d3b9a02dc6",
+    "completedRound": 23,
+    "artifactId": 13264859864,
+    "artifactSha256": "8607c2f6b7f7add887f35591f51d028fe9af55caa0337cc970fa195dece75c04"
   },
   "nativeLateReturn": {
     "sourceRun": 41690685003,
