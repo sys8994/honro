@@ -1,3 +1,4 @@
+import {splitDockRoleGoal} from './split-role-route.mjs';
 /** ONE preregistered diagnostic. Actual App inputs with native DOM/render/clock
  * doubles. No battle pose/HP/flags/RNG writes; no acceptance/fun claim. */
 import assert from 'node:assert/strict';
@@ -29,7 +30,7 @@ function tick(n=1){for(let i=0;i<n;i++){ops.frame();frame++;if(frame>450000)thro
 function ready(){for(let i=0;i<30000;i++){if(['won','lost'].includes(b.phase))return false;if(app.canInput()&&e.grounded(e.active))return true;tick();}throw Error('Input readiness exceeded diagnostic bound');}
 function hold(dir,count){for(let i=0;i<count&&app.canInput();i++){ops.move(dir,C.STEP);tick();}}
 function settle(){for(let i=0;i<120&&!e.grounded(e.active)&&!['won','lost'].includes(b.phase);i++)tick();ready();}
-function routeGoal(u){const support=surface(u),role=dockCleanupGoal(u,{support,foes:foes(),surface})||upperRecoveryGoal(u,{support,foes:foes(),surface})||finaleDeckGoal(u,{b,support,foes:foes(),surface})||(u.cls==='knight'?finaleRoleGoal(u,{support,foes:foes(),surface}):null);if(role)return role;const same=foes().filter(v=>surface(v)===support&&Math.abs(v.y-u.y)<700),spacing=u.cls==='knight'?145:310;
+function routeGoal(u){const support=surface(u),role=splitDockRoleGoal(u,{support,foes:foes(),heroes:heroes(),surface})||dockCleanupGoal(u,{support,foes:foes(),surface})||upperRecoveryGoal(u,{support,foes:foes(),surface})||finaleDeckGoal(u,{b,support,foes:foes(),surface})||(u.cls==='knight'?finaleRoleGoal(u,{support,foes:foes(),surface}):null);if(role)return role;const same=foes().filter(v=>surface(v)===support&&Math.abs(v.y-u.y)<700),spacing=u.cls==='knight'?145:310;
  if(same.length){const t=same.sort((a,z)=>Math.abs(a.x-u.x)-Math.abs(z.x-u.x))[0];return{x:t.x+(t.x>=u.x?-spacing:spacing),target:t.id,kind:'same-support-approach'};}
  if(support==='approved40-coast-west')return{x:2660,drop:true,kind:'coast-to-stair'};
  if(support==='approved40-dock-stair')return{x:1800,kind:'stair-to-dock'};

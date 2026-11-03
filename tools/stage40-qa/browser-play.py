@@ -101,7 +101,7 @@ with sync_playwright() as w:
     if abs(dx)<(20 if goal.get('jumpLanding') or goal.get('deckJoin') else 35):
      if goal.get('deckJoin'):join_stair(actor);goal=None;continue
      if goal.get('jumpLanding'):
-      p.keyboard.press('Control');ready();z=record('upper-connection-jump')
+      p.keyboard.press('Control');p.wait_for_timeout(1600);ready();z=record('upper-connection-jump')
       assert z['active']!=actor or z['support']==goal['jumpLanding'];goal=None;continue
      if goal.get('drop') and s['canDrop']:
       p.keyboard.press('Alt')

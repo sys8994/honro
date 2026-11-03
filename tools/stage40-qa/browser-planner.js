@@ -29,6 +29,24 @@ function finaleRoleGoal(u,{support,foes,surface}){
  if(support==='approved40-dock'&&dock.length&&role==='overwatch')return{x:2000,kind:'hold-lower-approach',hold:true};
  return null;
 }
+/** QA policy only: existing dock/stair positions independently demonstrated in
+ * actual saved-profile browser play. Uses living current actors, never rounds. */
+function splitDockRoleGoal(u,{support,foes,heroes,surface}){
+ const dock=foes.filter(v=>!v.dead&&v.hp>0&&['approved40-dock','approved40-dock-stair'].includes(surface(v)));
+ if(!dock.length)return null;
+ if(u.cls==='archer'){
+  if(support==='approved40-dock')return{x:1900,jumpLanding:'approved40-dock-stair',kind:'split-overwatch-connection'};
+  if(support==='approved40-dock-stair')return{x:2120,kind:'split-overwatch-fire',hold:true};
+ }
+ if(support!=='approved40-dock')return null;
+ if(u.cls==='mage')return{x:2152,kind:'split-front-fire',hold:true};
+ if(u.cls==='occultist'){
+  const frontNeedsSupport=heroes.some(v=>v.id!==u.id&&!v.dead&&v.hp>0&&v.hp<v.maxHp*.65&&v.x>1400&&Math.hypot(v.x-u.x,v.y-u.y)>600);
+  const rear=dock.some(v=>v.x<1400);
+  return{x:frontNeedsSupport||!rear?1630:1050,kind:frontNeedsSupport?'split-support-rejoin':rear?'split-rear-fire':'split-forward-support',hold:true};
+ }
+ return null;
+}
 /** Formation uses only current observed units/supports and visible tide state. */
 function tideRetreatRequired(b,u){const t=b.honroAct4PreviewState?.tide,cfg=b.honroAct4Design?.tide;return !!t&&!!cfg&&u.y>=cfg.high-50&&(t.phase==='high'||t.phase==='rising'&&b.round>=t.highRound-1);}
 function deckEntryUnsafe(b){const t=b.honroAct4PreviewState?.tide;return !!t&&(t.phase==='high'||t.phase==='rising'&&b.round>=t.highRound-1);}
@@ -98,7 +116,7 @@ function evaluateInputTolerance(C,b,actorId,id,angle,power,nominal){
  }
  return{safeUseful:true,minimumDamage:Math.min(...samples.map(s=>s.damage)),samples,scope:'bounded current-state samples; not a player-visible guide or universal guarantee'};
 }
-function routeGoal(u){const support=surface(u),role=dockCleanupGoal(u,{support,foes:foes(),surface})||upperRecoveryGoal(u,{support,foes:foes(),surface})||finaleDeckGoal(u,{b,support,foes:foes(),surface})||(u.cls==='knight'?finaleRoleGoal(u,{support,foes:foes(),surface}):null);if(role)return role;const same=foes().filter(v=>surface(v)===support&&Math.abs(v.y-u.y)<700),spacing=u.cls==='knight'?145:310;
+function routeGoal(u){const support=surface(u),role=splitDockRoleGoal(u,{support,foes:foes(),heroes:heroes(),surface})||dockCleanupGoal(u,{support,foes:foes(),surface})||upperRecoveryGoal(u,{support,foes:foes(),surface})||finaleDeckGoal(u,{b,support,foes:foes(),surface})||(u.cls==='knight'?finaleRoleGoal(u,{support,foes:foes(),surface}):null);if(role)return role;const same=foes().filter(v=>surface(v)===support&&Math.abs(v.y-u.y)<700),spacing=u.cls==='knight'?145:310;
  if(same.length){const t=same.sort((a,z)=>Math.abs(a.x-u.x)-Math.abs(z.x-u.x))[0];return{x:t.x+(t.x>=u.x?-spacing:spacing),target:t.id,kind:'same-support-approach'};}
  if(support==='approved40-coast-west')return{x:2660,drop:true,kind:'coast-to-stair'};
  if(support==='approved40-dock-stair')return{x:1800,kind:'stair-to-dock'};

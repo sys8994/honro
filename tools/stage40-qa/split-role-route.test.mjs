@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import {splitDockRoleGoal as goal} from './split-role-route.mjs';
+const surface=u=>u.support,foes=[{id:'rear',x:930,hp:929,support:'approved40-dock'},{id:'front',x:1920,hp:929,support:'approved40-dock'}],heroes=[{id:'mage',x:2152,y:2800,hp:1800,maxHp:1868}],args={support:'approved40-dock',foes,heroes,surface};
+assert.equal(goal({cls:'archer'},args).jumpLanding,'approved40-dock-stair');
+assert.equal(goal({cls:'archer'},{...args,support:'approved40-dock-stair'}).x,2120);
+assert.equal(goal({cls:'mage'},args).x,2152);
+const occultist={id:'occultist',cls:'occultist',x:1050,y:2800};
+assert.equal(goal(occultist,args).x,1050);
+assert.equal(goal(occultist,{...args,heroes:[{...heroes[0],hp:800}]}).x,1630);
+assert.equal(goal(occultist,{...args,foes:foes.slice(1)}).x,1630);
+assert.equal(goal(occultist,{...args,heroes:[{...heroes[0],hp:0,dead:true}]}).x,1050);
+for(const cls of ['archer','mage','occultist'])assert.equal(goal({cls},{...args,foes:foes.map(v=>({...v,dead:true,hp:0}))}),null);
+assert.equal(goal({cls:'mage'},{...args,support:'a4-return-deck'}),null);
+assert.equal(goal({cls:'knight'},args),null);
+console.log('Split dock roles, living-target gating and injured-ally support rejoin passed; geometry fixtures only.');
