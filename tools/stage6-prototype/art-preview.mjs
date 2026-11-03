@@ -23,12 +23,16 @@ export function applyStage6ArtPreview(input){
  const ext={x:-4000,y:1500,w:14600,h:5500};
  const body={...source,id:'stage06-prototype:continuous-body-v1',name:'Stage6 continuous traced BODY study',bounds:ext,reference:{...source.reference,bounds:ext,foot:{x:0,y:3800},heightM:86.6666666667},params:{...source.params,collisionSource:'lower-road',prototypeGeometrySha256:expected,previewOnly:true},vector:{version:1,viewBox:[ext.x,ext.y,ext.w,ext.h],clips:{road:[contour]},root:{tag:'g',clipPath:'road',children:[{tag:'path',d:contour,fill:'#364441'},{tag:'g',transform:[14600/source.vector.viewBox[2],0,0,5500/source.vector.viewBox[3],-4000,1500],children:[clone(source.vector.root)]}]}}};
  project.library.push(body);s.elements.push({id:'stage06-prototype-body',assetId:body.id,x:0,y:0,scale:1,rotation:0,layer:'prop',depthLayer:'L1',visualRole:'scenery'});
+ // Clip support art to the air above the same physical top edge. This trims
+ // broad stone footings to the slope without changing collisions or draw order.
+ const tops=road.points.filter(p=>p.x>=0&&p.x<=6600&&p.y<4000).sort((a,b)=>a.x-b.x);
+ const sky=`M-4000 -10000H10600V${tops.at(-1).y}`+tops.slice().reverse().map(p=>`L${p.x} ${p.y}`).join('')+`L-4000 ${tops[0].y}Z`;
  // One traced support per broken span. Foot and socket are explicitly registered
  // to the physical floor/deck; these are art only and do not add collision.
  for(const [id,x,deck,mirror] of [['west',2000,1875,false],['mid',3150,1830,false],['east',4520,1948,false]]){
   const art=id==='west'?westPier:id==='east'?eastPier:pier, width=id==='west'?887:1024,height=id==='west'?1774:1536,top=id==='west'?225:50,bottom=id==='west'?1705:1500;
   const ground=floor(x),scale=(ground-deck)/(bottom-top),sx=mirror?-scale:scale,tx=x-sx*width/2,ty=deck-top*scale,asset=clone(art);
-  asset.id='stage06-prototype:pier-'+id;asset.name='Stage6 '+id+' unshipped pier study';asset.bounds={x:mirror?tx-width*scale:tx,y:ty,w:width*scale,h:height*scale};asset.reference={...asset.reference,bounds:asset.bounds,foot:{x,y:ground}};asset.anchor={x:0,y:0};asset.vector.viewBox=[asset.bounds.x,asset.bounds.y,asset.bounds.w,asset.bounds.h];asset.vector.root={tag:'g',transform:[sx,0,0,scale,tx,ty],children:[clone(art.vector.root)]};asset.params={...asset.params,previewOnly:true,deckY:deck,groundY:ground};
+  asset.id='stage06-prototype:pier-'+id;asset.name='Stage6 '+id+' unshipped pier study';asset.bounds={x:mirror?tx-width*scale:tx,y:ty,w:width*scale,h:height*scale};asset.reference={...asset.reference,bounds:asset.bounds,foot:{x,y:ground}};asset.anchor={x:0,y:0};asset.vector.viewBox=[asset.bounds.x,asset.bounds.y,asset.bounds.w,asset.bounds.h];asset.vector.clips={...asset.vector.clips,aboveRoad:[sky]};asset.vector.root={tag:'g',clipPath:'aboveRoad',children:[{tag:'g',transform:[sx,0,0,scale,tx,ty],children:[clone(art.vector.root)]}]};asset.params={...asset.params,previewOnly:true,deckY:deck,groundY:ground};
   project.library.push(asset);s.elements.push({id:'stage06-prototype-pier-'+id,assetId:asset.id,x:0,y:0,scale:1,rotation:0,layer:'prop',depthLayer:'L1',visualRole:'scenery'});
  }
  return project;
