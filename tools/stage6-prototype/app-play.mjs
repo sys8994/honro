@@ -3,6 +3,7 @@ import {splitLegacyRocks} from './rock-split.mjs';
 import {braceEastRock} from './rock-braced.mjs';
 import {deckEastRock} from './rock-deck.mjs';
 import {deckEastRockMixed} from './rock-deck-mixed.mjs';
+import {smallDeckRock} from './rock-deck-small.mjs';
 import {enableExpeditionBaseline,isolateBaselinePlanning} from './baseline-condition.mjs';
 /** Diagnostic reuse of existing positioning controller. Production Engine/App;
  * DOM/render doubles. Old route policies are calibration, not accepted cohorts. */
@@ -16,7 +17,7 @@ import {execFileSync} from 'node:child_process';
 import {appHarness,plain} from '../../tests/app-regression-helpers.mjs';
 const stage=Number(process.argv[2]||1),seed=Number(process.argv[3]||1103),policy=process.argv[4]||'legacy',out=`_local/reports/${process.env.HONRO_QA_BASELINE==='story'?'act1-expedition-baseline-20261103':'act1-gameplay-20261103'}/stage${stage}-authored-prototype-${policy}-${seed}`;
 await mkdir(out,{recursive:true});const sourceAtStart=execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim();const sourceDirtyAtStart=execFileSync('git',['status','--short'],{encoding:'utf8'}).trim(),runnerSha256=createHash('sha256').update(await readFile(new URL(import.meta.url))).digest('hex');
-const h=await appHarness({productionStory:true,productionInputActions:policy.includes('appops')}),{g,C}=h;g.HONRO_PROJECT=authorStage6Prototype(g.HONRO_PROJECT);if(['HONRO_STAGE6_ROCK_SPLIT','HONRO_STAGE6_ROCK_BRACED','HONRO_STAGE6_ROCK_DECK','HONRO_STAGE6_ROCK_MIXED'].filter(k=>process.env[k]==='1').length>1)throw Error('Choose one rock candidate');if(process.env.HONRO_STAGE6_ROCK_SPLIT==='1')g.HONRO_PROJECT=splitLegacyRocks(g.HONRO_PROJECT);if(process.env.HONRO_STAGE6_ROCK_BRACED==='1')g.HONRO_PROJECT=braceEastRock(g.HONRO_PROJECT);if(process.env.HONRO_STAGE6_ROCK_DECK==='1')g.HONRO_PROJECT=deckEastRock(g.HONRO_PROJECT);if(process.env.HONRO_STAGE6_ROCK_MIXED==='1')g.HONRO_PROJECT=deckEastRockMixed(g.HONRO_PROJECT);
+const h=await appHarness({productionStory:true,productionInputActions:policy.includes('appops')}),{g,C}=h;g.HONRO_PROJECT=authorStage6Prototype(g.HONRO_PROJECT);if(['HONRO_STAGE6_ROCK_SPLIT','HONRO_STAGE6_ROCK_BRACED','HONRO_STAGE6_ROCK_DECK','HONRO_STAGE6_ROCK_MIXED','HONRO_STAGE6_ROCK_SMALL'].filter(k=>process.env[k]==='1').length>1)throw Error('Choose one rock candidate');if(process.env.HONRO_STAGE6_ROCK_SPLIT==='1')g.HONRO_PROJECT=splitLegacyRocks(g.HONRO_PROJECT);if(process.env.HONRO_STAGE6_ROCK_BRACED==='1')g.HONRO_PROJECT=braceEastRock(g.HONRO_PROJECT);if(process.env.HONRO_STAGE6_ROCK_DECK==='1')g.HONRO_PROJECT=deckEastRock(g.HONRO_PROJECT);if(process.env.HONRO_STAGE6_ROCK_MIXED==='1')g.HONRO_PROJECT=deckEastRockMixed(g.HONRO_PROJECT);if(process.env.HONRO_STAGE6_ROCK_SMALL==='1')g.HONRO_PROJECT=smallDeckRock(g.HONRO_PROJECT);
 vm.runInContext(`{let state=${seed}>>>0;Math.random=()=>{state+=0x6D2B79F5;let t=state;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return((t^t>>>14)>>>0)/4294967296;};}`,g);
 vm.runInContext(await readFile('shared/runtime/interactions.js','utf8'),g);
 const paths={2:'stage02-positioning',3:'stage03-positioning',4:'stage04-positioning',6:'stage06-bridge',7:'stage07-roots'};
