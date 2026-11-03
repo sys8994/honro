@@ -1,4 +1,4 @@
-name: Immutable A1 natural gameplay diagnostic
+name: Stage8 repaired crow natural gameplay diagnostic
 on:
   push:
     branches: ['work/monster-a1-natural-qa/**']
@@ -20,38 +20,46 @@ jobs:
       - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
         with:
           python-version: '3.12'
-      - name: Preflight adapters and frozen inputs without a game rebuild
+      - name: Verify exact intermediate source and preflight every injected expression
         run: |
-          python -m py_compile tests/monster-natural-build.py tests/monster-natural-browser.py tools/monster-a1-qa/verify-candidate.py tools/monster-a1-qa/reuse-natural-checkpoints.py
+          python -m py_compile tests/monster-natural-build.py tests/monster-natural-browser.py tools/stage8-crow-qa/verify.py tools/stage8-crow-qa/analyze.py
+          python tools/stage8-crow-qa/verify.py
           python tests/monster-natural-build.py
           node tests/monster-natural-preflight.mjs
-      - name: Verify immutable candidate and existing genuine gate artifact
+          npm ci
+          npm ci --prefix game
+          node tests/stage8-late-crows.mjs
+      - name: Genuine unchanged Stage31 gate and normal build; no evidence rewrite or replay
         env:
-          GH_TOKEN: ${{ github.token }}
-        run: python tools/monster-a1-qa/verify-candidate.py
-      - name: Verify genuine natural approach checkpoints from recorded run
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: python tools/monster-a1-qa/reuse-natural-checkpoints.py
-      - name: Install browser only, never rebuild or replay Stage31
+          HONRO_ACT4_RELEASE: '1'
+        run: |
+          set -euo pipefail
+          npm run build | tee _local/reports/stage8-crow-qa/normal-build.log
+          python tools/stage8-crow-qa/verify.py --built
+          git diff --exit-code -- shared tools/stage31/production-package.json
+      - name: Install supported Chromium
         run: |
           python -m pip install 'playwright==1.58.0'
           python -m playwright install --with-deps chromium
-      - name: Natural Stage5 and Stage8 checkpoint counterchoices after real-browser preflight
+      - name: Real-browser startup preflight then one full natural Stage8 route
         run: |
           set -euo pipefail
           python -m http.server 8871 --bind 127.0.0.1 > _local/reports/monster-natural/server.log 2>&1 &
           server=$!; trap 'kill "$server" 2>/dev/null || true' EXIT
           sleep 2
-          export HONRO_MONSTER_BASE_URL="$(cat _local/reports/monster-a1-visual-qa/base-url.txt)"
+          export HONRO_MONSTER_BASE_URL=http://127.0.0.1:8871
+          export HONRO_NATURAL_REQUEST=_local/reports/stage8-crow-qa/request.json
           timeout 180 env HONRO_NATURAL_PREFLIGHT=1 python tests/monster-natural-browser.py
-          timeout 600 env HONRO_NATURAL_BRANCH_ONLY=1 python tests/monster-natural-browser.py
-          git diff --exit-code -- HONRO.html HONRO_WORKSHOP.html index.html web tools/stage31/production-package.json
+          timeout 1500 env HONRO_NATURAL_STAGES=8 HONRO_NATURAL_SKIP_COUNTERS=1 python tests/monster-natural-browser.py
+          python tools/stage8-crow-qa/verify.py --built
+          python tools/stage8-crow-qa/analyze.py
+          git diff --exit-code -- shared tools/stage31/production-package.json
       - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
         if: always()
         with:
-          name: monster-a1-natural-${{ github.sha }}
+          name: stage8-crow-natural-${{ github.sha }}
           path: |
             _local/reports/monster-natural/
-            _local/reports/monster-a1-visual-qa/
+            _local/reports/stage8-crow-qa/
+            _local/reports/stage8-late-crows/
           retention-days: 7

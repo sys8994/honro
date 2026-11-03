@@ -6,9 +6,12 @@ function assert(value,message='Assertion failed'){if(!value)throw Error(message)
 assert.equal=(a,b,m)=>assert(a===b,m||`${a} !== ${b}`);assert.deepEqual=(a,b,m)=>assert(canonical(a)===canonical(b),m||'Deep equality failed');
 let qaClock={now:()=>0};Object.defineProperty(performance,'now',{configurable:true,value:()=>qaClock.now()});
 const g=new Proxy(window,{get:(o,k)=>k==='performance'?qaClock:o[k],set:(o,k,v)=>{if(k==='performance'){qaClock=v;return true;}o[k]=v;return true;}}),C=HONRO_CORE;
-window.qa={events:[],captures:[],checkpoints:[],seen:new Set(),pending:[],lastCast:null,frames:0};
+window.qa={events:[],captures:[],checkpoints:[],seen:new Set(),pending:[],waves:[],waveCaptures:new Set(),lastCast:null,frames:0};
 function qaObserve(){
  const a=HonroApp,e=a.engine,b=e?.b;if(!b)return;qa.frames++;const id=b.honroStage===5?'s5-cave-shade':'s8-15',k=e.unit(id),cast=k?.enemyEffectCast,signature=canonical({cast:cast||null,recovery:k?.enemyEffectRecovery||null,cooldown:k?.enemyEffectCooldown});
+ if(b.honroStage===8){const source='stage8-settled-crows',w=b.honroState?.stage8Bier?.warnings?.[source],entry=b.honroState?.stage8Bier?.entries?.[source],crows=b.units.filter(u=>u.honroSpawnSource===source),sig=canonical({status:w?.status,opportunity:w?.opportunity,ids:entry?.ids,actors:crows.map(u=>({id:u.id,hp:u.hp,lastAct:u.lastAct,dead:u.dead}))});
+  if(sig!==qa.lastWave){qa.lastWave=sig;qa.waves.push({frame:qa.frames,round:b.round,phase:b.phase,active:b.active,warning:plain(w||null),entry:plain(entry||null),crows:plain(crows),heroes:plain(e.heroesAlive())});const label=entry?'crows-admitted':w?.opportunity?'crows-response':w?'crows-warning':null;if(label&&!qa.waveCaptures.has(label)){qa.waveCaptures.add(label);qa.captures.push({label,canvas:a.scene.canvas.toDataURL('image/png'),frame:qa.frames,round:b.round,scope:'Canvas-only natural frame, no camera reposition'});}}
+ }
  if(signature!==qa.lastCast){qa.lastCast=signature;qa.events.push({frame:qa.frames,round:b.round,phase:b.phase,active:b.active,pilot:plain(k||null),heroes:plain(e.heroesAlive()),camera:{x:a.scene.x,y:a.scene.y,scale:a.scene.scale},paused:!!a.dialogue||!!HonroStory.turnPaused(a,performance.now())||a.modal.classList.contains('open'),cast:plain(cast||null)});}
  if(cast?.seen&&cast.offered&&cast.target===e.active?.id&&a.canInput()&&!qa.seen.has(cast.serial)&&!qa.checkpointRequested){
   qa.checkpointRequested=true;qa.seen.add(cast.serial);const label=`pilot-${id}-${cast.serial}`,before=canonical(b),canvas=a.scene.canvas.toDataURL('image/png');
@@ -30,7 +33,7 @@ window.qaInstall=async(entry,meta)=>{
 };
 async function qaSink(name,data){let timer;try{await Promise.race([window.qaEvidence(name,data),new Promise((_resolve,reject)=>{timer=setTimeout(()=>reject(Error('Evidence sink timeout '+name)),20000);})]);}finally{clearTimeout(timer);}}
 async function qaWrite(name,data){if(/round-[0-9]+\.json$/.test(name))await qaSink(name.replace('.json','.canvas.png'),HonroApp.scene.canvas.toDataURL('image/png'));await qaSink(name,data);}
-async function qaFinish(result){await Promise.all(qa.pending);if(qa.meta.preflight)await HonroApp.export();await qaWrite('natural-result.json',JSON.stringify({meta:qa.meta,result,preflightExport:qa.meta.preflight?qa.lastExport:null,frames:qa.frames,events:qa.events,checkpoints:qa.checkpoints,captures:qa.captures,final:plain(HonroApp.engine.b),scope:'Actual browser production App actions/renderer; deterministic clock and legal pre-entry reward fixture, not continuous prior campaign or manual pointer-only play.'}));}
+async function qaFinish(result){await Promise.all(qa.pending);if(qa.meta.preflight)await HonroApp.export();await qaWrite('natural-result.json',JSON.stringify({meta:qa.meta,result,preflightExport:qa.meta.preflight?qa.lastExport:null,frames:qa.frames,events:qa.events,waves:qa.waves,checkpoints:qa.checkpoints,captures:qa.captures,final:plain(HonroApp.engine.b),scope:'Actual browser production App actions/renderer; deterministic clock and legal pre-entry reward fixture, not continuous prior campaign or manual pointer-only play.'}));}
 window.qaCounter=async kind=>{
  const a=HonroApp,e=a.engine,b=e.b,ops=createPlayerOperations({app:a,g,C}),id=b.honroStage===5?'s5-cave-shade':'s8-15',caster=e.unit(id),u=e.active,cast=plain(caster.enemyEffectCast);
  assert(cast&&cast.seen&&cast.offered&&cast.target===u.id&&e.canAct(),'Branch must start from genuine offered target checkpoint');

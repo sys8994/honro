@@ -24,5 +24,5 @@ const writeFile=async(name,data)=>{await qaWrite(name,data);},h={exported:async(
 script=common+'\nwindow.qaRun5='+run5+';\nwindow.qaRun8=async()=>{'+helpers+det+pre+s+'};\n'
 (OUT/'controller.js').write_text(script)
 subprocess.run(['node','--check',str(OUT/'controller.js')],check=True)
-manifest={'candidate':'7d2655bc3f88a7b20fb2d6ea1bc4c611583e9a15','scope':'INTERMEDIATE natural-route diagnostic on immutable A1 candidate; not final-release gate','adapters':{str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [ROOT/'tests/monster-natural-runtime.js',ROOT/'tests/monster-natural-stage5.js',*F.iterdir()] if p.is_file()},'controllerSha256':hashlib.sha256(script.encode()).hexdigest()}
+manifest={'candidate':'6b00abe2308275410c2947412c1cd0c7d62b733d','scope':'INTERMEDIATE natural-route diagnostic on exact A1 plus Stage8 repair source; not final-release gate','adapters':{str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [ROOT/'tests/monster-natural-runtime.js',ROOT/'tests/monster-natural-stage5.js',*F.iterdir()] if p.is_file()},'controllerSha256':hashlib.sha256(script.encode()).hexdigest()}
 (OUT/'controller-manifest.json').write_text(json.dumps(manifest,indent=2));print('PASS generated browser policy syntax and frozen fixture provenance')

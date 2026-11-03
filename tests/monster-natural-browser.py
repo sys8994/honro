@@ -4,12 +4,12 @@ from playwright.sync_api import sync_playwright
 from browser_support import ROOT,launch
 ROOTOUT=ROOT/'_local/reports/monster-natural';PREFLIGHT=os.environ.get('HONRO_NATURAL_PREFLIGHT')=='1';BRANCH_ONLY=os.environ.get('HONRO_NATURAL_BRANCH_ONLY')=='1';OUT=ROOTOUT/'preflight' if PREFLIGHT else ROOTOUT;OUT.mkdir(parents=True,exist_ok=True);F=ROOT/'tests/fixtures/monster-natural'
 BASE=os.environ.get('HONRO_MONSTER_BASE_URL','http://127.0.0.1:8871')
-manifest=json.loads((ROOTOUT/'controller-manifest.json').read_text());request=json.loads((ROOT/'tools/monster-a1-qa/request.json').read_text())
+manifest=json.loads((ROOTOUT/'controller-manifest.json').read_text());request=json.loads((ROOT/os.environ.get('HONRO_NATURAL_REQUEST','tools/monster-a1-qa/request.json')).read_text())
 SCHEDULER=r'''(()=>{const request=window.requestAnimationFrame.bind(window),cancel=window.cancelAnimationFrame.bind(window),pending=new Set();let manual=false;window.requestAnimationFrame=fn=>{if(manual)return 0;let id;id=request(t=>{pending.delete(id);fn(t);});pending.add(id);return id;};window.cancelAnimationFrame=id=>{pending.delete(id);cancel(id);};window.qaStopScheduling=()=>{manual=true;for(const id of pending)cancel(id);pending.clear();};})()'''
 rows=[];branch_errors=[]
 with sync_playwright() as pw:
  browser=launch(pw)
- for stage in ([5] if PREFLIGHT else [5,8]):
+ for stage in ([5] if PREFLIGHT else [int(x) for x in os.environ.get('HONRO_NATURAL_STAGES','5,8').split(',')]):
   dest=OUT/f'stage{stage}';dest.mkdir(exist_ok=True);context=browser.new_context(viewport={'width':1440,'height':900},accept_downloads=True)
   # Deterministic manual App.frame replaces scheduling only, not frame/render logic.
   context.add_init_script(SCHEDULER)
@@ -49,7 +49,7 @@ with sync_playwright() as pw:
   context.close()
   # Reuse the genuine production export, with normal file import and pointer Continue.
   # No checkpoint means the pilot was not naturally offered: report that gap, never invent one.
-  if not PREFLIGHT and result_path.exists() and result['checkpoints']:
+  if not PREFLIGHT and os.environ.get('HONRO_NATURAL_SKIP_COUNTERS')!='1' and result_path.exists() and result['checkpoints']:
    checkpoint=result['checkpoints'][0];savepath=dest/(checkpoint['label']+'.json')
    for mobile,kind in [(False,'accept'),(False,'dodge'),(False,'interrupt'),(True,'dodge')]:
     branch=f"{'mobile' if mobile else 'desktop'}-{kind}"
