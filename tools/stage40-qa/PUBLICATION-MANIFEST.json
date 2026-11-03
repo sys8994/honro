@@ -152,7 +152,7 @@
       "result.json": "1a55c199c556d6fda9fed49a66f438a846884ea5d6819fe90745458796c52c6d"
     }
   },
-  "remoteHead": "135f7078aad0045b498f838a2afd759d532d672b",
+  "remoteHead": "6cfac0de319c1765cf85e6f42cbbaad0c871146e",
   "canonicalNativeMap": [
     {
       "native": "f9c973d33194f1dff68abe0e8fa2a8a9d112cc1f",
@@ -228,18 +228,29 @@
       "native": "e47d615a3409312e7fa0bb5e1dbcaca11a96a79b",
       "canonical": "135f7078aad0045b498f838a2afd759d532d672b",
       "tree": "46cc122909770424ace1bbec6935079f33cafaa7"
+    },
+    {
+      "native": "16f88a28b8c9f37c3ff5365c163047fb8b6bc8d4",
+      "canonical": "f3f130f19c19fb31530eefec2db97860216441ea",
+      "tree": "7f13a7730a5df13c5a2076ae267dccc3b1f82363"
+    },
+    {
+      "native": "3e84de7726215bbbda87d14d3a2f45b7d6fe7d90",
+      "canonical": "a91293a5ec74345b1f32ccc57bb21b5a2622be5b",
+      "tree": "012128f2c98ee9049026d5c5d28c8800a180a4b5"
+    },
+    {
+      "native": "37b8fba1408843ba05f4b5413b61ab57f02b2cee",
+      "canonical": "71a97a16ddc202b09d37d6db0efaa5d16ff4216d",
+      "tree": "be27b385442d7c25a8c97abb9b2d7bf66ac8f002"
+    },
+    {
+      "native": "443b674d684638f0a10a284235f9772c9c773907",
+      "canonical": "6cfac0de319c1765cf85e6f42cbbaad0c871146e",
+      "tree": "147f7971263fe7864022d9375a498cb58a3cae0a"
     }
   ],
-  "pendingPublication": {
-    "native": "16f88a28b8c9f37c3ff5365c163047fb8b6bc8d4",
-    "reason": "Awaiting authorization to publish the additional QA report.",
-    "orderedNatives": [
-      "16f88a28b8c9f37c3ff5365c163047fb8b6bc8d4",
-      "3e84de7726215bbbda87d14d3a2f45b7d6fe7d90",
-      "37b8fba1408843ba05f4b5413b61ab57f02b2cee"
-    ],
-    "deniedPath": "tools/stage40-qa/CONTROLLER-CORRECTION.md"
-  },
+  "pendingPublication": null,
   "currentComparison": {
     "protocol": "_local/reports/stage40-finishing-01/protocol.json",
     "source": "3e84de7726215bbbda87d14d3a2f45b7d6fe7d90",
@@ -265,7 +276,9 @@
     "path": ".github/workflows/stage40-qa.yml",
     "trigger": "work/stage40-qa/**",
     "permissions": "contents:read",
-    "status": "Not run",
-    "buildContract": "Exact SHA; genuine unchanged Stage31 gate; normal build; one actual UI run; artifacts only; no deployment."
+    "status": "Triggered; awaiting result",
+    "buildContract": "Exact SHA; genuine unchanged Stage31 gate; normal build; one actual UI run; artifacts only; no deployment.",
+    "branch": "work/stage40-qa/20261103-r18-01",
+    "source": "6cfac0de319c1765cf85e6f42cbbaad0c871146e"
   }
 }
