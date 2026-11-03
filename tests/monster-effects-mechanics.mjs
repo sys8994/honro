@@ -71,6 +71,20 @@ check('effects and provenance survive engine serialization without actor/turn du
  const q=arena(C);attack(E,q);const saved=plain(q.b),loaded=new C.Engine(plain(saved));assert.deepEqual(plain(loaded.b.units),saved.units);assert.equal(loaded.b.round,saved.round);assert.deepEqual(plain(loaded.b.teamEnds),saved.teamEnds);assert.equal(loaded.b.nextId,saved.nextId);
  const r=arena(C),c=warning(E,r);turn(r,r.hero);r.e.observeEnemyEffectWarning(r.caster.id,c.serial);const resume=new C.Engine(plain(r.b));assert.deepEqual(plain(resume.unit(r.caster.id).enemyEffectCast),plain(c));
 });
+check('fixed burst respects blast-to-victim walls and separate one-way floors',()=>{
+ for(const obstruction of ['none','thin-wall','one-way']){
+  const q=arena(C,'HWD02');q.caster.y=600;Object.assign(q.friend,{cls:'archer',loadout:['A01'],x:730,y:800});
+  if(obstruction==='thin-wall')q.b.terrain.push(solid('shielding-wall',690,750,1,50));
+  else if(obstruction==='one-way'){q.caster.y=700;q.friend.x=705;q.friend.y=885;q.b.terrain=[solid('separate-platform',628,800,137,10,{oneWay:true}),solid('lower-support',680,885,200,100)];}
+  const c=warning(E,q),source={x:q.caster.x,y:q.caster.y-q.caster.h*.45},victim={x:q.friend.x,y:q.friend.y-q.friend.h*.45};
+  assert(!q.b.terrain.some(t=>C.segmentTerrain(source,victim,t,0)),'caster-to-victim ray intentionally clear');
+  assert.equal(q.b.terrain.some(t=>!!C.segmentTerrain(c.impact,victim,t,0)),obstruction!=='none','blast-to-victim geometry isolates the regression');
+  for(const u of [q.hero,q.friend]){turn(q,u);q.e.observeEnemyEffectWarning(q.caster.id,c.serial);assert(q.e.fire('A01',85,.1),obstruction+'/'+u.id+' fire '+q.e.canAct()+' '+q.b.phase);q.e.finishAction(true);}
+  assert(c.respondedIds.includes(q.hero.id)&&c.respondedIds.includes(q.friend.id),'both victims consumed real actions');
+  const hp=q.friend.hp;q.b.teamEnds[0]=c.createdTeamEnd+1;turn(q,q.caster);E.resolveEnemyEffect(q.e,q.caster);assert(q.hero.hp<10000,'unobstructed primary still takes same burst');
+  if(obstruction==='none')assert(q.friend.hp<hp,'genuine unblocked secondary takes burst');else assert.equal(q.friend.hp,hp,obstruction+' shields secondary');
+ }
+});
 check('corrupt optional control repair preserves battle and respects save event limit',()=>{
  const q=arena(C);attack(E,q);q.hero.enemySoftBind.factor=.99;q.b.events=Array.from({length:30},(_,i)=>'existing-'+i);
  const before=plain(q.b),profile=C.defaults();profile.saved=plain(q.b);const loaded=C.validate(profile).saved;
