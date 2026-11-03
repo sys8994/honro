@@ -19,3 +19,5 @@ The first full-opacity placement failed visual review in QA artifact 13229089978
 Group opacity is intentionally unsupported by vector v1; the first subdued implementation failed the validator and was not previewed. This follow-on preblends source fills instead; visual acceptance remains pending.
 
 The dark contact-shadow trial did not visibly connect the small rock to its real deck contact. A separate generated timber wedge was traced in Inkscape; 0.0003 simplification is 0.084/255 RGB MAE at 1x, 0.068/255 at 2x, silhouette offset 1.414/2.236 px, normalized max path 19,398. It is placed only around the measured (4986.352,2460.12) contact and has no collision. This is diagnostic, pending screenshot/legibility and save budget review, not an added walking surface.
+
+The first wedge rendered too small/dark to clarify contact (artifact 13233688587). A second preview enlarges only the visual shim around the same measured point; no terrain/interaction change. A screen inspection is required to determine whether it reads as an actual contact rather than a false platform.
