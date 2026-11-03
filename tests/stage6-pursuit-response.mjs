@@ -21,7 +21,7 @@ b.honroState.rescued=true;
 for(let i=0;i<10;i++)ops.frame();
 assert(b.honroState.pendingEvents.includes('pursuit'),'rescue queues warning');assert.match(app.eventText,/아군 턴이 끝나면.*운반대 뒤쪽/,'warning states timing and relative entry');
 assert(!b.units.some(u=>u.honroSpawnSource==='pursuit'),'no entry before actual response');
-const pendingSave=structuredClone(b);assert(!g.HonroStage6Pursuit.shown(app),'unrendered notice cannot count');painted=false;screenReady=false;paintNotice();assert(!g.HonroStage6Pursuit.shown(app),'unready HUD cannot count');screenReady=true;warning.scrollWidth=400;paintNotice();assert(!g.HonroStage6Pursuit.shown(app),'clipped notice cannot count');warning.scrollWidth=320;paintNotice();assert(g.HonroStage6Pursuit.shown(app),'rendered notice earns live receipt');
+const pendingSave=structuredClone(b);assert(!g.HonroStage6Pursuit.shown(app),'unrendered notice cannot count');const cameraX=app.scene.x;app.scene.x=0;assert.match(g.HonroStage6Pursuit.noticeText(app),/→/,'warning points right toward estimated area');app.scene.x=6000;assert.match(g.HonroStage6Pursuit.noticeText(app),/←/,'warning points left toward estimated area');app.scene.x=cameraX;painted=false;screenReady=false;paintNotice();assert(!g.HonroStage6Pursuit.shown(app),'unready HUD cannot count');screenReady=true;warning.scrollWidth=400;paintNotice();assert(!g.HonroStage6Pursuit.shown(app),'clipped notice cannot count');warning.scrollWidth=320;paintNotice();assert(g.HonroStage6Pursuit.shown(app),'rendered notice earns live receipt');
 assert(ops.ready());const place=g.HonroTerrain.place;g.HonroTerrain.place=()=>null;
 assert(ops.defend(),'real App defend ends an action');
 for(let i=0;i<30000&&!ops.ready(1);i++)ops.frame();

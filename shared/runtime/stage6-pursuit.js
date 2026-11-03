@@ -31,7 +31,8 @@ W.execute=function(app,action){
 const displayed=new WeakSet(),scheduled=new WeakSet();
 const pending=b=>active(b)&&!['won','lost'].includes(b.phase)&&!b.honroState?.flags?.['event:pursuit']&&(b.honroState?.pendingEvents||[]).includes('pursuit');
 const shown=app=>pending(app.engine?.b)&&displayed.has(app.engine.b);
-const notice='추격 예고: 운반대 뒤 예상 구역 · 아군 행동 뒤 진입';
+const notice='추격 예고: 운반대 뒤 예상 구역';
+function noticeText(app){const car=app.engine.b.units.find(u=>u.id==='objective'&&!u.dead&&u.hp>0),camera=app.scene?.x,x=car&&Math.max(90,car.x-650),delta=x-camera,arrow=Number.isFinite(delta)&&Math.abs(delta)>80?(delta<0?' ←':' →'):'';return notice+arrow+' · 아군 행동 뒤 진입';}
 const state=G.HonroObjectives.state;
 G.HonroObjectives.state=function(b,st){const out=state(b,st);if(pending(b)){const car=b.units.find(u=>u.id==='objective'&&!u.dead&&u.hp>0);if(car){const x=Math.max(90,car.x-650),y=G.HonroWorld.top(b,x,car.y,'lower-road');out.targets=[...out.targets,{id:'stage6-pursuit-estimate',kind:'reinforcement-warning',x,y,label:'운반대 뒤 추격 예상 구역'}];}}return out;};
 const minimap=G.HonroObjectives.minimap;
@@ -41,10 +42,10 @@ G.HonroObjectives.refresh=function(app,...args){const out=refresh(app,...args),b
  if(!pending(b)||app.training||app.done){if(node)node.remove();return out;}
  if(app.scene)app.scene.missionTargets=G.HonroObjectives.state(b,app.stage).targets;
  if(!node){const screen=doc?.querySelector?.('.battle-screen');if(!screen||!doc.createElement)return out;node=doc.createElement('div');node.id='stage6-pursuit-warning';node.className='stage6-pursuit-warning';node.setAttribute('role','status');screen.appendChild(node);}
- node.textContent=notice;
+ node.textContent=noticeText(app);
  // The first animation frame makes layout measurable, the second follows a
  // paint. A hidden, clipped, modal-covered or not-yet-ready HUD is not proof.
  if(!displayed.has(b)&&!scheduled.has(b)&&G.requestAnimationFrame){scheduled.add(b);G.requestAnimationFrame(()=>G.requestAnimationFrame(()=>{scheduled.delete(b);if(app.engine?.b!==b||!pending(b)||app.done||app.dialogue||app.charging||app.modal?.classList.contains('open')||app.storyHistoryOpen||doc.hidden||G.HonroStory?.turnPaused?.(app))return;const r=node.getBoundingClientRect?.(),style=G.getComputedStyle?.(node);if(!r||r.width<=0||r.height<=0||r.left<0||r.top<0||r.right>G.innerWidth||r.bottom>G.innerHeight||node.scrollWidth>node.clientWidth+1||node.scrollHeight>node.clientHeight+1||style?.display==='none'||style?.visibility==='hidden'||Number(style?.opacity)===0)return;displayed.add(b);}));}
  return out;};
-G.HonroStage6Pursuit={active,pending,shown,notice};
+G.HonroStage6Pursuit={active,pending,shown,notice,noticeText};
 })(globalThis);
