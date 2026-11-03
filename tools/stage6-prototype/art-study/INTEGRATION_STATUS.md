@@ -1,0 +1,12 @@
+# Stage 6 art integration status
+
+Status: unshipped review candidate. Do not merge into production or deploy on this evidence alone.
+
+- Prototype `author.mjs` SHA-256: `1c3f1f1825e39cabf653688ed779dcc42d80ce448e4e582173a8eb53cbb80870`. The preview aborts if that source changes. The geometry owner must re-register and re-review if it changes.
+- Opt in with `HONRO_STAGE6_ART_PREVIEW=1`; `art-preview.mjs` derives visual-only assets. `tests/stage6-art-preview.mjs` checks the resulting terrain, materials, units, events, objectives and markers are unchanged relative to the prototype, and original collision-bearing elements are not moved.
+- `continuous-runtime.json` comes from the Inkscape source trace, bounded simplification and Skia partition documented in README. It is clipped to the exact road. Actions run 41620648084, head `36ddc37cf28dc45c7aa006d95ae8b9047a3e2898`, showed no rectangular edge, obvious mirroring or artificial seam in overview and both extreme legal camera views. Its rock facets are broad; final scene art review remains open.
+- `pier-west-five-runtime.json` and `pier-east-five-runtime.json` are separate directly imported Inkscape traces, not the rejected simplified trials. Mid uses the earlier unoptimized pier study. Actions 41621965499 at `5cfe19c1a4d25a325572e05931bd6a89d3b68029` showed both new supports visible, but also physical pier blue slabs behind their art and an east footing straddling the slope. The later preview clips all visual supports above the exact road; recheck that candidate in browser. The physical slab rendering remains unresolved; any renderer policy must retain the same collision and traversal.
+- `place6-ravine-water` is still conductive but depth zero in the prototype. The gameplay owner must reconcile intended water visuals and mechanics without assuming this art change supplies a water encounter.
+- Head `edbba151c22101ebe0dfdc67362de43141aaff21`, Actions 41622066276, produced warm synchronous scene-render samples in hosted headless Chromium: 20 samples, median 9.4 ms, p95 12.7 ms, max 17.2 ms. This is neither a device FPS result nor gameplay acceptance.
+
+Before final integration: verify bridge socket/foot contact and physical-pier skin, water, character and target readability, domain corners, mobile, performance on representative hardware, and a real input-driven gameplay clear with the final stage owner. The normal release gate and production Pages verification remain separate and mandatory. Previous rejected concepts, traces and metrics remain in this directory for audit.
