@@ -81,7 +81,7 @@ if(S){
  // Existing boat event renders in background(), before opaque native scenery.
  // Defer only that existing instance to the world-space live-water pass.
  const background=S.background;S.background=function(c,w,h,b,...args){const prior=this._nativeArtBackground;this._nativeArtDeferredBoat=null;this._nativeArtBackground=!!config(b);try{return background?.call(this,c,w,h,b,...args);}finally{this._nativeArtBackground=prior;}};
- const water=S.liveWater;S.liveWater=function(c,b,...args){const harbor=b.honroMap?.act4?.harborWater,tidal=tidalSea(b),sea=harbor?.continuousSea,rect=this.canvas?.getBoundingClientRect?.(),vw=rect?.width??this.canvas?.clientWidth,vh=rect?.height??this.canvas?.clientHeight;
+ const water=S.liveWater;S.liveWater=function(c,b,...args){const baseHarbor=b.honroMap?.act4?.harborWater,level=b.honroAct4PreviewState?.tide?.surface,harbor=b.honroStage===40&&b.honroFinalDefenseRevision===2&&Number.isFinite(level)?{...baseHarbor,surface:level}:baseHarbor,tidal=tidalSea(b),sea=harbor?.continuousSea,rect=this.canvas?.getBoundingClientRect?.(),vw=rect?.width??this.canvas?.clientWidth,vh=rect?.height??this.canvas?.clientHeight;
   // Existing tide pools share this same surface. Avoid painting them twice:
   // keep their ordinary bookkeeping but clip only their underwater paint.
   const tidalView=tidal&&[vw,vh,this.scale].every(v=>Number.isFinite(v)&&v>0)&&[this.x,this.y].every(Number.isFinite)&&G.HonroBounds?.viewport?G.HonroBounds.viewport(this,vw,vh):null;
@@ -91,6 +91,19 @@ if(S){
   if(continuous){const view=G.HonroBounds.viewport(this,vw,vh),left=view.left-8/this.scale,right=view.right+8/this.scale,bottom=Math.max(harbor.surface,view.bottom+8/this.scale),depthEnd=harbor.surface+sea.depth;c.save();const gradient=c.createLinearGradient(0,harbor.surface,0,depthEnd);gradient.addColorStop(0,'#456b85d9');gradient.addColorStop(.45,'#244963e8');gradient.addColorStop(1,'#16384fff');c.fillStyle=gradient;c.fillRect(left,harbor.surface,right-left,bottom-harbor.surface);c.strokeStyle='#a4c4d145';c.lineWidth=3;for(let j=0;j<6;j++){const yy=harbor.surface+12+j*j*17;c.beginPath();for(let x=Math.floor(left/24)*24;x<=right+24;x+=24){const y=yy+Math.sin(x*.008+(this.time||0)*.7+j)*3;if(x===Math.floor(left/24)*24)c.moveTo(x,y);else c.lineTo(x,y);}c.stroke();}c.restore();}
   else if(config(b)&&validHarbor(harbor)){c.save();c.beginPath();c.moveTo(harbor.shore[0][0],harbor.surface);c.lineTo(harbor.right,harbor.surface);c.lineTo(harbor.right,harbor.bottom);for(const p of [...harbor.shore].reverse())c.lineTo(p[0],p[1]);c.closePath();c.clip();const gradient=c.createLinearGradient(0,harbor.surface,0,harbor.bottom);gradient.addColorStop(0,'#456b85d9');gradient.addColorStop(.45,'#244963e8');gradient.addColorStop(1,'#16384fed');c.fillStyle=gradient;c.fillRect(harbor.left-400,harbor.surface,harbor.right-harbor.left+800,harbor.bottom-harbor.surface);c.strokeStyle='#a4c4d145';c.lineWidth=3;for(let j=0;j<6;j++){const yy=harbor.surface+12+j*j*17;c.beginPath();for(let x=harbor.left-300;x<harbor.right;x+=24){const y=yy+Math.sin(x*.008+(this.time||0)*.7+j)*3;if(x===harbor.left-300)c.moveTo(x,y);else c.lineTo(x,y);}c.stroke();}c.restore();}
   const boat=this._nativeArtDeferredBoat;this._nativeArtDeferredBoat=null;if(config(b)&&boat)this.landmark(c,boat);return out;};
+ // The finale remains a major boss mechanically, but uses the existing
+ // wooden-warden rig instead of the generic processional colossus.
+ const body=S.unitBody;S.unitBody=function(c,u,...args){
+  if(u?.honroAct4FinaleBoss!==true||u.boss!==40)return body.call(this,c,u,...args);
+  const v=G.HonroMonsterVisual,a=v?.assets?.warden;if(!a)throw Error('Missing retained warden art');
+  c.save();c.translate(u.x,u.y);const scale=u.h/a.baseHeight;c.scale(scale*(u.facing||1),scale);const m=c.getTransform(),ratio=c.canvas.clientWidth?c.canvas.width/c.canvas.clientWidth:1;
+  v.draw(c,'warden',{time:this.time||0,state:v.state(u),pixels:a.baseHeight*Math.hypot(m.c,m.d)/ratio});c.restore();
+ };
+ const actor=S.unit;S.unit=function(c,u,...args){const out=actor.call(this,c,u,...args),b=this.actorEngine?.b;
+  if(!b||b.honroAct4Preview!==40||u.dead||u.hp<=0||u.eaterCapturedBy||u.side!==1||!G.HonroAct4PilotCombat?.equipped(b,u)||u.h*this.scale<36)return out;
+  const major=G.HonroAct4PilotCombat.finale(b,u),scale=Math.max(.1,this.scale),label=(major?'보스 · ':'중간보스 · ')+u.name;
+  c.save();c.font=`bold ${12/scale}px sans-serif`;c.textAlign='center';c.textBaseline='bottom';c.lineWidth=3/scale;c.strokeStyle='#10202b';c.fillStyle=major?'#f1d68f':'#b5d8e3';c.strokeText(label,u.x,u.y-u.h-26/scale);c.fillText(label,u.x,u.y-u.h-26/scale);c.restore();return out;
+ };
  const tone=S.environmentTone;S.environmentTone=function(c,w,h,b,...args){if(config(b)?.preservePalette===true)return;return tone?.call(this,c,w,h,b,...args);};
  const cacheKey=S._worldCacheKey;S._worldCacheKey=function(b,...args){const q=config(b);return cacheKey.call(this,b,...args)+(q?':native-art-1:'+JSON.stringify(q):'');};
 }

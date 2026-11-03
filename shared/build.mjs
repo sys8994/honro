@@ -1,3 +1,4 @@
+import {applyAct4FinaleRevision} from './act4-finale-revision.mjs';
 import {applyReviewedAct2Art} from '../tools/act2-vector-production/apply-candidates.mjs';
 import {validateSkillIcons} from '../tools/skill-icons/manifest.mjs';
 import {applyCommonCartArt} from '../tools/environment/common-cart-art.mjs';
@@ -145,7 +146,7 @@ export async function runtimeEntries({vector=true,render=true,app=false,producti
   // Their terrain/routes remain canonical; this final pass changes art only.
   if(project.stages.some(s=>s.metadata?.stageId===13&&s.design?.stoneFinish?.revision===1))project=applyStage13VectorFinish(project);
   project=applyReviewedAct2Art(project);
-  if(act4Enabled){const act4=JSON.parse(await read('shared/data/act4/world.json'));project={...project,stages:[...project.stages,...act4.stages],library:[...project.library,...act4.library.filter(a=>!project.library.some(b=>b.id===a.id))]};}
+  if(act4Enabled){const act4=applyAct4FinaleRevision(JSON.parse(await read('shared/data/act4/world.json')));project={...project,stages:[...project.stages,...act4.stages],library:[...project.library,...act4.library.filter(a=>!project.library.some(b=>b.id===a.id))]};}
   parts.push({name:'campaign',project,code:'globalThis.HONRO_PROJECT='+authorProjectExpression(JSON.stringify(project))+';'});
   if(vector){
     await buildParty();
