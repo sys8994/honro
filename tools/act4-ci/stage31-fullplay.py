@@ -28,13 +28,39 @@ with sync_playwright() as w:
  # below dismisses it; no dialogue/story/battle state is written.
  expected_arrival=os.environ.get('HONRO_EXPECT_ARRIVAL_ROW')
  if expected_arrival:
-  assert os.environ.get('HONRO_FIRST_SHOT_DIAGNOSTIC')=='1','Arrival check is a focused first-shot smoke'
-  expected=p.evaluate("id=>HONRO_ACT4_REVIEWED.scenes.find(s=>s.stage===31&&s.event==='arrival').lines.find(l=>l[0]===id)",expected_arrival)
-  assert expected and expected[2],expected_arrival
-  p.wait_for_function("id=>{const d=HonroApp.dialogue;return d?.lines[d.index]?.[2]?.act4PreviewRow===id}",arg=expected_arrival,timeout=15000)
-  p.wait_for_function("text=>document.body.innerText.includes(text)",arg=expected[2],timeout=15000)
-  result['arrivalReceipt']=p.evaluate("expected=>({row:expected[0],speaker:expected[1],text:expected[2],current:HonroApp.dialogue.lines[HonroApp.dialogue.index],visible:document.body.innerText.includes(expected[2]),stage:HonroApp.engine.b.honroStage})",expected)
-  p.screenshot(path=str(out/'new-arrival-visible.png'))
+  def arrival_state():
+   return p.evaluate("""()=>{const a=HonroApp,b=a.engine?.b,d=a.dialogue;return{screen:a.screen,stage:b?.honroStage,dialogue:d?{index:d.index,current:d.lines[d.index],lines:d.lines}:null,arrivalTour:b?.honroAct4PreviewState?.arrivalTour,reader:b?.honroAct4PreviewState?.reader,events:b?.honroAct4PreviewState?.events,receipts:b?.honroAct4PreviewState?.receipts,profile:{lastStage:a.profile.lastStage,seen:a.profile.seen,storedBattleStage:a.profile.honroBattle?.honroStage},camera:{x:a.scene?.x,y:a.scene?.y,scale:a.scene?.scale},bodyText:document.body.innerText.slice(0,4000)}}""")
+  result['arrivalInputs']=[]
+  try:
+   assert os.environ.get('HONRO_FIRST_SHOT_DIAGNOSTIC')=='1','Arrival check is a focused first-shot smoke'
+   assert not profile.get('honroBattle') and not profile.get('cleared',{}).get('31'),'Declared fixture must be fresh Stage31 entry'
+   result['entryFixture']={'path':'tests/fixtures/act4-rc/support-entry-fixture.json','sha256':hashlib.sha256((root/'tests/fixtures/act4-rc/support-entry-fixture.json').read_bytes()).hexdigest(),'hasBattle':False,'clear31':False,'unchanged':True}
+   expected=p.evaluate("id=>HONRO_ACT4_REVIEWED.scenes.find(s=>s.stage===31&&s.event==='arrival').lines.find(l=>l[0]===id)",expected_arrival)
+   assert expected and expected[2],expected_arrival
+   # The ordinary mandatory entry guide precedes the camera tour and arrival.
+   # Advance only that known guide with actual UI; never skip/retire the tour,
+   # clear seen flags, fabricate presentation receipts or modify the fixture.
+   deadline=time.monotonic()+30
+   while time.monotonic()<deadline:
+    boundary=arrival_state();line=(boundary.get('dialogue') or {}).get('current') or []
+    meta=line[2] if len(line)>2 else {}
+    if meta.get('act4PreviewRow')==expected_arrival:break
+    if boundary.get('dialogue'):
+     assert meta.get('kind')=='guide' and meta.get('storyId')=='act1-v6:entry-31',boundary
+     result['arrivalInputs'].append({'action':'dialogue-next','before':boundary})
+     p.locator('[data-action="dialogue-next"]:visible').click()
+    p.wait_for_timeout(150)
+   else:raise AssertionError('Expected fresh arrival did not follow the normal guide/tour')
+   p.wait_for_function("text=>document.body.innerText.includes(text)",arg=expected[2],timeout=15000)
+   result['arrivalReceipt']=p.evaluate("expected=>({row:expected[0],speaker:expected[1],text:expected[2],current:HonroApp.dialogue.lines[HonroApp.dialogue.index],visible:document.body.innerText.includes(expected[2]),stage:HonroApp.engine.b.honroStage})",expected)
+   p.screenshot(path=str(out/'new-arrival-visible.png'))
+  except Exception as error:
+   result['arrivalException']=repr(error)
+   try:result['arrivalFailureState']=arrival_state()
+   except Exception as diagnostic_error:result['arrivalFailureState']={'diagnosticError':repr(diagnostic_error)}
+   try:p.screenshot(path=str(out/'arrival-failure.png'))
+   except Exception as screenshot_error:result['arrivalScreenshotError']=repr(screenshot_error)
+   raise
  captured=set()
  def capture(path):
   path=Path(path); name=path.name
