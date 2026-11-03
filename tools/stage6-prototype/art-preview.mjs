@@ -5,6 +5,9 @@ import {createHash} from 'node:crypto';
 import {authorStage6Prototype,floor} from './author.mjs';
 const read=name=>JSON.parse(readFileSync(new URL('./art-study/'+name,import.meta.url),'utf8'));
 const clone=x=>structuredClone(x);
+// Preblend individual opaque fills; vector v1 intentionally forbids group opacity.
+function subdued(root){const out=clone(root),base=[54,68,65];function visit(n){if(typeof n.fill==='string'&&/^#[0-9a-f]{6}$/i.test(n.fill)){const rgb=n.fill.slice(1).match(/../g).map(x=>parseInt(x,16));n.fill='#'+rgb.map((v,i)=>Math.round(base[i]+(v-base[i])*0.26).toString(16).padStart(2,'0')).join('')}for(const c of n.children||[])visit(c)}visit(out);return out}
+
 const expected='1c3f1f1825e39cabf653688ed779dcc42d80ce448e4e582173a8eb53cbb80870';
 const hash=createHash('sha256').update(readFileSync(new URL('./author.mjs',import.meta.url))).digest('hex');
 if(hash!==expected)throw Error('Stage6 prototype geometry changed: preview art requires new review');
@@ -21,7 +24,7 @@ export function applyStage6ArtPreview(input){
  // A single source-traced, full-bleed formation covers the complete tested
  // camera domain. The collision contour alone determines the visible edge.
  const ext={x:-4000,y:1500,w:14600,h:5500};
- const body={...source,id:'stage06-prototype:continuous-body-v1',name:'Stage6 continuous traced BODY study',bounds:ext,reference:{...source.reference,bounds:ext,foot:{x:0,y:3800},heightM:86.6666666667},params:{...source.params,collisionSource:'lower-road',prototypeGeometrySha256:expected,previewOnly:true},vector:{version:1,viewBox:[ext.x,ext.y,ext.w,ext.h],clips:{road:[contour]},root:{tag:'g',clipPath:'road',children:[{tag:'path',d:contour,fill:'#364441'},{tag:'g',transform:[14600/source.vector.viewBox[2],0,0,5500/source.vector.viewBox[3],-4000,1500],children:[clone(source.vector.root)]},{tag:'g',opacity:0.26,transform:[1.4,0,0,1.4,-100,2350],children:[clone(strata.vector.root)]}]}}};
+ const body={...source,id:'stage06-prototype:continuous-body-v1',name:'Stage6 continuous traced BODY study',bounds:ext,reference:{...source.reference,bounds:ext,foot:{x:0,y:3800},heightM:86.6666666667},params:{...source.params,collisionSource:'lower-road',prototypeGeometrySha256:expected,previewOnly:true},vector:{version:1,viewBox:[ext.x,ext.y,ext.w,ext.h],clips:{road:[contour]},root:{tag:'g',clipPath:'road',children:[{tag:'path',d:contour,fill:'#364441'},{tag:'g',transform:[14600/source.vector.viewBox[2],0,0,5500/source.vector.viewBox[3],-4000,1500],children:[clone(source.vector.root)]},{tag:'g',transform:[1.4,0,0,1.4,-100,2350],children:[subdued(strata.vector.root)]}]}}};
  project.library.push(body);s.elements.push({id:'stage06-prototype-body',assetId:body.id,x:0,y:0,scale:1,rotation:0,layer:'prop',depthLayer:'L1',visualRole:'scenery'});
  // Clip support art to the air above the same physical top edge. This trims
  // broad stone footings to the slope without changing collisions or draw order.
