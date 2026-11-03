@@ -118,3 +118,6 @@ The original west and east five-color speckle-4 SVG traces and their imported na
 
 ## Reduced region-source comparison
 The 35th preview (run 41692925211) retained repetitive lower strata. The earlier asymmetrical region source had failed at full strength due to a dark bowl; this comparison reuses that same trace at 50% opacity while preserving the independently traced surface rocks and protected continuation. This is a visual diagnostic only; it does not claim to solve the source-joining problem or the original trace protection failures.
+
+## Unified geology source comparison
+The reduced prior regional source (run 41696642011) still formed a conspicuous dark bowl. This candidate starts from separately authored west/east exposures and the actual stage overview to generate one connected geological source, then traces its half-resolution input under the existing budget; the west/east surface assets remain distinct. The source contour is only art, clipped to unchanged physical terrain. Actual runtime asymmetry, image fidelity, protected original details, joining and mobile review remain unresolved.
