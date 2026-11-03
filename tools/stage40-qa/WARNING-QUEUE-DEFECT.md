@@ -14,3 +14,11 @@ This is a confirmed product scheduling integration defect; not evidence that ret
 Only on authored Stage40 revision2 with official/custom pilot enabled, promote a living equipped pilot actor's telegraph action when target.seen and target.response exist and a later ally team boundary has passed. Keep the six-enemy action cap, existing pilot protected-resident checks, movement, damage, HP, target lock, response opportunity and all other stage behavior. No priority before player observation/response. A safe-area cancellation also needs its turn to resolve the stale warning normally.
 
 The shared-engine patch is a separate coherent unit, not yet approved for final integration or deployment. Required regressions: exact captured pending actor enters unchanged-size queue; removing it leaves ordinary order identical; no pending warning / unseen / unanswered / same boundary remains identical; other stages31/34/39 remain identical even with same-shaped metadata; invalid/dead/friendly actors are not promoted. Then test actual normal saved-state warning resolution and body/retreat outcome. Final integrated runtime and normal Stage31 gate must be regenerated/reverified.
+
+## Isolated correction verification (2026-11-03)
+
+The isolated patch adds `shared/engine/src/act4WarningQueue.ts` and one guarded priority hook in `shared/engine/src/enemyAI.ts`. The predicate mirrors existing authored-finale pilot eligibility and requires the actual seen/responded telegraph and a later team boundary. Tier3 places it ahead of ordinary attacks without expanding the six-actor cap. Existing pilot firing/cancellation rules remain untouched.
+
+`npm --prefix game run typecheck` passed. `node tools/stage40-qa/pending-warning-queue.test.mjs` passed14 frozen-state A/B cases plus controlled-actor guards against native96f203cb. The other-stage checks change metadata on the captured fixture; they are NOT natural Stage31/34/39 gameplay. The initial assertion failed solely because separate VM arrays have different prototypes; exact JSON values matched. That failed log is retained. The test now compares JSON-serialized queue records and still asserts the battle is unchanged by ranking.
+
+Actual browser warning firing, fresh normal Stage31 runtime evidence, combined A2 acceptance, and whole-stage18–20-round completion remain pending. No production approval is implied.

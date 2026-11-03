@@ -1,6 +1,7 @@
 /** Bounded tactical movement. Every candidate is tested with the same locomotion/contact code
  * as a real unit. Planning cannot damage, teleport, change RNG, or mutate the live roster. */
 import {beastKind,beastReach,beastContact} from './beastMelee';
+import {readyFinaleWarning} from './act4WarningQueue';
 import type {Engine} from './engine';
 import type {Unit,Skill,Vec,Terrain,AIMovePlan} from './types';
 import {SKILLS} from './data';
@@ -21,6 +22,9 @@ export function* rankEnemyQueueSteps(e:Engine,units:Unit[]):Generator<void,Enemy
  for(const unit of units){
   const nearby=targets.slice().sort((a,b)=>Math.hypot(a.x-unit.x,a.y-unit.y)-Math.hypot(b.x-unit.x,b.y-unit.y)).slice(0,2);
   const distance=Math.min(...nearby.map(t=>Math.hypot(t.x-unit.x,t.y-unit.y)));
+  // A displayed fixed-target pilot attack must resolve after the promised
+  // response, even when its target has moved outside the nearest distance band.
+  if(readyFinaleWarning(e.b,unit)){rows.push({unit,tier:3,distance,band:Math.floor(distance/240)});yield;continue;}
   let tier=0;
   for(const target of nearby){
    const ghost={...unit,facing:target.x>=unit.x?1:-1};
