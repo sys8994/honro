@@ -189,3 +189,30 @@ Only Git-tracked `assets/bgm` files supplement the verified web manifest;
 unknown assets/origins remain errors. No game, fixture, input, position or
 resource assertion changes. Lifecycle/cancellation, unknown-resource, and
 unavailable/mismatched-code mocks accompany this observer-only correction.
+
+### Derived parser-worker scope (run41558167479)
+
+The next public run again completed actual gate/cross/save/reload, with 577
+verified browser responses and 17 separately verified asset GETs. Its overall
+verdict still failed: two main-target body reads referred to short-lived
+`blob:` JSON parser workers, and one media header read raced browser closure.
+Artifact `13195329063` remains unchanged under
+`_local/reports/stage17-public41558167479/`.
+
+The HTTP served-byte contract remains mandatory for fetched HTML/JS/JSON/CSS.
+Derived workers are now recorded separately, never claimed as directly captured
+worker bytes. The checked candidate must have exactly one `new Worker` producer
+among its manifest JavaScript files: the exact parserSource literal from
+`shared/web-loader.js`, embedded in `web/runtime/load-data.4face18760dbf84d.js`.
+That loader must itself have an actual matching public HTTP body. Observed blob
+script URLs must be same-origin and independently observed as dedicated workers
+by Playwright. Unknown producers, unobserved blobs, foreign origins and missing
+loader body proof fail. Receipt wording is explicitly **producer lineage verified;
+worker body not directly captured**. Candidate parserSource SHA256 is
+`1a6da2573a35adcc217f7e6f879c8e8511243c106f5532157b1fa0b4ad0bf43e`.
+No runtime API wrapping, worker pause, injected engine state or frame freeze is
+used. Headers/status are copied at response arrival; reads remain in-flight until
+finally completed, and are drained before intentional reload/close. Focused mocks
+exercise in-flight retention, derived-lineage labeling, unknown worker rejection,
+missing loader proof and additional producer rejection. Public acceptance remains
+pending the corrected observer run, rather than relabeling either failure.

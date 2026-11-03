@@ -115,37 +115,72 @@ def verify_public_response(url,body,expected,content_range=None,root=None):
  assert digest==expected[name],'Actual public browser bytes differ from candidate: '+name
  return {'path':name,'sha256':digest,'bytes':len(body)}
 
+def parser_producer(root,expected):
+ # This exact reviewed loader creates and retires an immutable JSON parser Blob.
+ source=(root/'shared/web-loader.js').read_text()
+ match=re.search(r'const parserSource=`([^`]+)`;',source)
+ assert match and '${' not in match[1] and '\\' not in match[1],'Unknown parser source syntax'
+ text=match[1];candidates=[];worker_producers=[]
+ for name in expected:
+  if name.endswith('.js') and re.search(rb'new\s+Worker\s*\(', (root/name).read_bytes()):worker_producers.append(name)
+  if name.startswith('web/runtime/load-data.') and name.endswith('.js'):
+   raw=(root/name).read_bytes()
+   assert hashlib.sha256(raw).hexdigest()==expected[name],'Candidate loader digest mismatch'
+   # Build preserves this literal as a template string or JSON string.
+   compiled=raw.decode()
+   if ('`'+text+'`' in compiled or '`'+text.replace('\n','\\n')+'`' in compiled or json.dumps(text,ensure_ascii=False) in compiled) and 'new Worker(parseWorkerURL)' in compiled:candidates.append(name)
+ assert len(candidates)==1 and worker_producers==candidates,'Missing/ambiguous exact parser-producing served loader or unknown worker producer'
+ return {'path':candidates[0],'text':text,'sha256':hashlib.sha256(text.encode()).hexdigest()}
+
 class PublicObserver:
  """Browser-body proof for executable/data resources; separately labeled asset GETs."""
- def __init__(self,root,expected,fetch,receipt,errors):
+ def __init__(self,root,expected,fetch,receipt,errors,producer=None):
   self.root=root;self.expected=expected;self.fetch=fetch;self.receipt=receipt;self.errors=errors
-  self.pending={};self.assets={}
-  receipt.update(unavailableBodies=[],assetFetches=[])
+  self.pending={};self.assets={};self.inflight=set();self.blobs=set();self.observed_workers=set();self.producer=producer
+  receipt.update(unavailableBodies=[],assetFetches=[],derivedBlobWorkers=[])
  def asset(self,request):return request.resource_type in {'media','image','font'}
+ def derived(self,request):return request.url.startswith('blob:')
+ def worker(self,worker):self.observed_workers.add(worker.url)
  def started(self,request):self.pending[request]=None
  def drain(self,page):
   deadline=time.monotonic()+10
-  while any(not self.asset(request) for request in self.pending) and time.monotonic()<deadline:page.wait_for_timeout(50)
-  assert not any(not self.asset(request) for request in self.pending),'Executable/data requests did not complete before navigation/close'
+  while (self.inflight or any(not self.asset(request) for request in self.pending)) and time.monotonic()<deadline:page.wait_for_timeout(50)
+  assert not self.inflight and not any(not self.asset(request) for request in self.pending),'Executable/data requests did not complete before navigation/close'
+  if self.blobs:self.verify_blobs()
+ def verify_blobs(self):
+  assert self.producer,'Unknown blob executable producer'
+  assert any(item['path']==self.producer['path'] for item in self.receipt['browserResponses']),'Blob producer was not byte-verified from actual public HTTP response'
+  for url in self.blobs:
+   assert url.startswith('blob:https://sys8994.github.io/') and url in self.observed_workers,'Unclassified blob executable: no same-origin observed dedicated worker'
+   self.receipt['derivedBlobWorkers'].append({'url':url,'candidateParserSourceSha256':self.producer['sha256'],'producerPath':self.producer['path'],'evidence':'producer lineage verified; worker body not directly captured','classification':'observed dedicated worker; sole candidate new Worker producer is exact parserSource loader'})
+  self.blobs.clear()
  def response(self,response):
-  request=response.request;self.pending[request]=response
+  request=response.request
+  if self.derived(request):
+   self.pending.pop(request,None);self.blobs.add(request.url);return
+  # Header/status metadata is copied before any body read yields control.
+  self.pending[request]={'response':response,'status':response.status,'range':response.headers.get('content-range')}
   if response.status not in [200,206]:self.errors.append(f'Public HTTP {response.status}: {response.url}')
   if self.asset(request):self.assets[response.url]=request.resource_type
  def finished(self,request):
-  response=self.pending.pop(request,None)
-  if not response:return
-  # Read only completed responses, including available HTTP206 media slices.
-  # Cancelled/unavailable assets retain separately labeled full public GET proof.
+  if self.derived(request):
+   self.pending.pop(request,None);self.blobs.add(request.url);return
+  entry=self.pending.get(request)
+  if not entry:return
+  response=entry['response'];self.inflight.add(request)
   try:
-   body=response.body()
-  except Exception as error:
-   item={'url':response.url,'type':request.resource_type,'reason':str(error)}
-   self.receipt['unavailableBodies'].append(item)
-   if not self.asset(request):self.errors.append('Missing actual executable/data browser body: '+json.dumps(item))
-   return
-  try:self.receipt['browserResponses'].append(verify_public_response(response.url,body,self.expected,response.header_value('content-range') if response.status==206 else None,self.root))
-  except Exception as error:self.errors.append('Public response identity '+response.url+': '+str(error))
+   try:body=response.body()
+   except Exception as error:
+    item={'url':response.url,'type':request.resource_type,'reason':str(error)}
+    self.receipt['unavailableBodies'].append(item)
+    if not self.asset(request):self.errors.append('Missing actual executable/data browser body: '+json.dumps(item))
+    return
+   try:self.receipt['browserResponses'].append(verify_public_response(response.url,body,self.expected,entry['range'] if entry['status']==206 else None,self.root))
+   except Exception as error:self.errors.append('Public response identity '+response.url+': '+str(error))
+  finally:self.inflight.discard(request);self.pending.pop(request,None)
  def failed(self,request):
+  if self.derived(request):
+   self.pending.pop(request,None);self.blobs.add(request.url);return
   response=self.pending.pop(request,None)
   item={'url':request.url,'type':request.resource_type,'reason':request.failure}
   self.receipt['unavailableBodies'].append(item)
@@ -193,7 +228,8 @@ def run(args):
    browser=w.chromium.launch(headless=True);page=browser.new_page(viewport={'width':1440,'height':900});page.on('pageerror',lambda e:result['errors'].append(str(e)))
    observer=None
    if expected_public:
-    observer=PublicObserver(ROOT,expected_public,fetch_public,result['publicIdentity'],result['errors'])
+    observer=PublicObserver(ROOT,expected_public,fetch_public,result['publicIdentity'],result['errors'],parser_producer(ROOT,expected_public))
+    page.on('worker',observer.worker)
     page.on('request',observer.started);page.on('response',observer.response);page.on('requestfinished',observer.finished);page.on('requestfailed',observer.failed)
    def snapshot(label):
     s=page.evaluate(SNAPSHOT);result[label]=s;save();return s
@@ -271,7 +307,7 @@ def run(args):
     raise
    finally:
     if observer:
-     page.remove_listener('request',observer.started);page.remove_listener('response',observer.response);page.remove_listener('requestfinished',observer.finished);page.remove_listener('requestfailed',observer.failed)
+     page.remove_listener('worker',observer.worker);page.remove_listener('request',observer.started);page.remove_listener('response',observer.response);page.remove_listener('requestfinished',observer.finished);page.remove_listener('requestfailed',observer.failed)
     browser.close()
  except Exception:result['exception']=traceback.format_exc();result['passed']=False
  finally:save()
@@ -290,7 +326,7 @@ class HelperTests(unittest.TestCase):
    value=call.args[0]
    if isinstance(value,ast.Name):
     self.assertEqual(value.id,'SNAPSHOT','New dynamic browser expression needs explicit parse coverage')
-    expressions.append(SNAPSHOT)
+    expressions.append(globals()[value.id])
    else:
     self.assertIsInstance(value,ast.Constant)
     expressions.append(value.value)
@@ -349,10 +385,10 @@ class HelperTests(unittest.TestCase):
    def __init__(self,path,kind):self.url=PUBLIC_BASE+path;self.resource_type=kind;self.failure='net::ERR_ABORTED'
   code=b'code';audio=b'audio';expected={'web/game.js':hashlib.sha256(code).hexdigest(),'assets/bgm/battle-4.mp3':hashlib.sha256(audio).hexdigest()}
   receipt={'browserResponses':[]};errors=[];observer=PublicObserver(ROOT,expected,lambda url:audio,receipt,errors)
-  request=Request('web/game.js','script');response=SimpleNamespace(request=request,url=request.url,status=200,body=lambda:code)
+  request=Request('web/game.js','script');response=SimpleNamespace(request=request,url=request.url,status=200,headers={},body=lambda:code)
   observer.response(response);self.assertEqual(receipt['browserResponses'],[])
   observer.finished(request);self.assertEqual(len(receipt['browserResponses']),1)
-  request=Request('assets/bgm/battle-4.mp3','media');response=SimpleNamespace(request=request,url=request.url,status=206,body=lambda:self.fail('Streaming body must not be read'))
+  request=Request('assets/bgm/battle-4.mp3','media');response=SimpleNamespace(request=request,url=request.url,status=206,headers={'content-range':'bytes 0-4/5'},body=lambda:self.fail('Streaming body must not be read'))
   observer.response(response);observer.failed(request);observer.finish()
   self.assertEqual(errors,[]);self.assertEqual(len(receipt['assetFetches']),1)
   self.assertIn('not browser response body',receipt['assetFetches'][0]['evidence'])
@@ -362,19 +398,52 @@ class HelperTests(unittest.TestCase):
   from types import SimpleNamespace
   request=type('Request',(),{'url':PUBLIC_BASE+'web/game.js','resource_type':'script'})()
   receipt={'browserResponses':[]};errors=[];body=b'code';observer=PublicObserver(ROOT,{'web/game.js':hashlib.sha256(body).hexdigest()},lambda url:b'unknown',receipt,errors)
-  response=SimpleNamespace(request=request,url=request.url,status=200,body=lambda:body)
+  response=SimpleNamespace(request=request,url=request.url,status=200,headers={},body=lambda:body)
   observer.started(request);observer.response(response);calls=[]
   def tick(ms):calls.append(ms);observer.finished(request)
   observer.drain(SimpleNamespace(wait_for_timeout=tick))
   self.assertEqual(calls,[50]);self.assertEqual(len(receipt['browserResponses']),1)
   bad=type('Request',(),{'url':PUBLIC_BASE+'assets/unknown.mp3','resource_type':'media','failure':'net::ERR_ABORTED'})()
   observer.failed(bad);observer.finish();self.assertTrue(any('absent from verified candidate' in e for e in errors))
+ def test_derived_worker_lineage_is_narrow_and_body_not_claimed(self):
+  from types import SimpleNamespace
+  producer={'path':'web/runtime/load-data.known.js','text':'known parser','sha256':hashlib.sha256(b'known parser').hexdigest()}
+  receipt={'browserResponses':[{'path':producer['path']}]};errors=[];observer=PublicObserver(ROOT,{},None,receipt,errors,producer)
+  url='blob:https://sys8994.github.io/known';observer.worker(SimpleNamespace(url=url));observer.blobs.add(url);observer.verify_blobs()
+  self.assertIn('body not directly captured',receipt['derivedBlobWorkers'][0]['evidence'])
+  self.assertNotIn('sha256',receipt['derivedBlobWorkers'][0])
+  for bad in ['blob:https://unknown.example/id','blob:https://sys8994.github.io/unobserved']:
+   observer.blobs={bad}
+   with self.assertRaises(AssertionError):observer.verify_blobs()
+  observer.blobs={url};receipt['browserResponses']=[]
+  with self.assertRaises(AssertionError):observer.verify_blobs()
+ def test_parser_producer_rejects_unknown_additional_worker_code(self):
+  import tempfile
+  with tempfile.TemporaryDirectory() as directory:
+   root=Path(directory);(root/'shared').mkdir();(root/'web/runtime').mkdir(parents=True)
+   (root/'shared/web-loader.js').write_text('const parserSource=`known parser`;')
+   code=b'const parserSource=`known parser`;new Worker(parseWorkerURL);'
+   path='web/runtime/load-data.known.js';(root/path).write_bytes(code)
+   expected={path:hashlib.sha256(code).hexdigest()}
+   self.assertEqual(parser_producer(root,expected)['text'],'known parser')
+   extra='web/runtime/other.js';(root/extra).write_text('new Worker(other);');expected[extra]=hashlib.sha256((root/extra).read_bytes()).hexdigest()
+   with self.assertRaises(AssertionError):parser_producer(root,expected)
+ def test_body_and_headers_stay_inflight_until_completed(self):
+  from types import SimpleNamespace
+  request=type('Request',(),{'url':PUBLIC_BASE+'web/game.js','resource_type':'script'})()
+  receipt={'browserResponses':[]};errors=[];body=b'code';observer=PublicObserver(ROOT,{'web/game.js':hashlib.sha256(body).hexdigest()},None,receipt,errors)
+  def read_body():
+   self.assertIn(request,observer.pending);self.assertIn(request,observer.inflight)
+   return body
+  response=SimpleNamespace(request=request,url=request.url,status=200,headers={},body=read_body)
+  observer.response(response);observer.finished(request)
+  self.assertFalse(observer.pending);self.assertFalse(observer.inflight);self.assertFalse(errors)
  def test_public_observer_does_not_mask_mismatched_or_unavailable_code(self):
   from types import SimpleNamespace
   request=type('Request',(),{'url':PUBLIC_BASE+'web/game.js','resource_type':'script'})()
   for body in [lambda:b'wrong',lambda:(_ for _ in ()).throw(RuntimeError('unavailable'))]:
    receipt={'browserResponses':[]};errors=[];observer=PublicObserver(ROOT,{'web/game.js':hashlib.sha256(b'correct').hexdigest()},lambda url:b'correct',receipt,errors)
-   response=SimpleNamespace(request=request,url=request.url,status=200,body=body)
+   response=SimpleNamespace(request=request,url=request.url,status=200,headers={},body=body)
    observer.response(response);observer.finished(request);observer.finish()
    self.assertTrue(errors);self.assertEqual(receipt['assetFetches'],[])
  def test_open_requires_both_real_proofs_and_both_terrains(self):
