@@ -96,22 +96,26 @@ onlyFacing => {
   // At most four skills × four targets × two distinct arcs. Fine alternatives
   // follow only if every primary arc was rejected by exact validation.
   shortlist.splice(32);
+  // QA-only exception: the NPC value floor must not reject a safe final2HP hit.
+  const qaDirectFinisher = (shot,target,battle)=>{const remaining=target.hp+(target.shield||0);return remaining>0&&remaining<=2&&!target.dead&&battle.units.filter(v=>v.side===1&&!v.dead&&v.hp>0).length===1&&shot.hit?.unit===target.id&&!shot.hit?.terrain&&shot.enemyDamage>=remaining&&shot.net>0&&shot.friendlyDamage===0&&shot.risk===0;};
   let best = null;
   for (const [candidateIndex, q] of [...shortlist, ...variants.slice(0, 16)].entries()) {
     if (candidateIndex >= shortlist.length && best) break;
-    let robust = Infinity;
+    let robust = Infinity, finishingFallback = false;
     for (const delta of [0, -.2, .2]) {
       const angle = q.angle + delta;
       metrics.exact++;
       const safe = C.shotViable(e, u, q.skill, q.targetUnit, angle, 1), hit = safe.hit;
-      if (!safe.ok || safe.risk >= .5) { robust = 0; break; }
+      const finish = qaDirectFinisher(safe, q.targetUnit, b);
+      if ((!safe.ok && !finish) || safe.risk >= .5) { robust = 0; break; }
+      finishingFallback ||= !safe.ok && finish;
       metrics.trajectory++;
       const points = e.predict(u, q.skill, angle, 1, q.targetUnit, true).points || [];
       if (allies.some(v => points.slice(1).some((p, i) => intersects(points[i], p, v)))) { robust = 0; break; }
       const radius = e.effective(q.skill, u).radius || 0, distance = Math.hypot(hit.x - q.targetUnit.x, hit.y - (q.targetUnit.y - q.targetUnit.h * .52));
       robust = Math.min(robust, (hit.unit === q.target ? 300 : radius > 0 && distance < radius ? 200 : 0) + (safe.enemyDamage || 0));
     }
-    if (robust > 150 && (!best || robust > best.score)) best = { id: q.id, idx: q.idx, angle: q.angle, power: 1, target: q.target, score: robust, angleTolerance: .2 };
+    if (robust > 150 && (!best || robust > best.score)) best = { id: q.id, idx: q.idx, angle: q.angle, power: 1, target: q.target, score: robust, angleTolerance: .2, finishingFallback };
   }
   if (JSON.stringify(b) !== snapshot) throw Error('Planner mutated live battle');
   metrics.ms = performance.now() - started;
