@@ -1,0 +1,83 @@
+{
+  "west": {
+    "rawSha256": "a17e4ef88dcc97f560d3534c0e1f955bfdf670760c8ba784fb83b3cb94def08c",
+    "optimizedSha256": "214994ffde295dd047d9d6dc579ea8f9b2fc0ec3197cab03337823a46d2dbe08",
+    "rawCommands": 21356,
+    "optimizedCommands": 5850,
+    "bytes": 204255,
+    "qualityPass": true,
+    "budgetPass": true,
+    "errors": {
+      "1": {
+        "rgbMAE255": 0.2780998945236206,
+        "rgbP99_255": 7.000014781951904,
+        "alphaMAE255": 0.04580187797546387,
+        "changedPixelFraction": 0.005090792581987952,
+        "silhouetteMaxOffsetPx": 1.0,
+        "pass": true
+      },
+      "2": {
+        "rgbMAE255": 0.2745975852012634,
+        "rgbP99_255": 7.000014781951904,
+        "alphaMAE255": 0.030327342450618744,
+        "changedPixelFraction": 0.006361583587406773,
+        "silhouetteMaxOffsetPx": 1.4142135623730951,
+        "pass": true
+      }
+    }
+  },
+  "middle": {
+    "rawSha256": "aed336b5dde1d8725650a4ea53b4c8395e72781e91c32c1f3144208e51659cba",
+    "optimizedSha256": "601dc7c1b5670fe3b7a061753da92a891130467245b933c344bc1d2df09bc34b",
+    "rawCommands": 17622,
+    "optimizedCommands": 5144,
+    "bytes": 173364,
+    "qualityPass": true,
+    "budgetPass": true,
+    "errors": {
+      "1": {
+        "rgbMAE255": 0.22744573652744293,
+        "rgbP99_255": 5.999999523162842,
+        "alphaMAE255": 0.04473641887307167,
+        "changedPixelFraction": 0.0032879094947604504,
+        "silhouetteMaxOffsetPx": 1.0,
+        "pass": true
+      },
+      "2": {
+        "rgbMAE255": 0.22352761030197144,
+        "rgbP99_255": 5.999999523162842,
+        "alphaMAE255": 0.03557171672582626,
+        "changedPixelFraction": 0.004002723096404471,
+        "silhouetteMaxOffsetPx": 1.0,
+        "pass": true
+      }
+    }
+  },
+  "east2": {
+    "rawSha256": "fd626a4d0f02e4d81cf1f417b555d0117825736c5e855796077efe0c0bd32e56",
+    "optimizedSha256": "81ce43f409f596c8f411c8deb2f0f647385c55c2ea2000bca1c02703f0bcd51b",
+    "rawCommands": 30583,
+    "optimizedCommands": 7722,
+    "bytes": 259316,
+    "qualityPass": true,
+    "budgetPass": true,
+    "errors": {
+      "1": {
+        "rgbMAE255": 0.2935217320919037,
+        "rgbP99_255": 7.999999523162842,
+        "alphaMAE255": 0.050592612475156784,
+        "changedPixelFraction": 0.0035701662263292132,
+        "silhouetteMaxOffsetPx": 1.0,
+        "pass": true
+      },
+      "2": {
+        "rgbMAE255": 0.29216548800468445,
+        "rgbP99_255": 8.00000286102295,
+        "alphaMAE255": 0.027864588424563408,
+        "changedPixelFraction": 0.004323486557205302,
+        "silhouetteMaxOffsetPx": 1.0,
+        "pass": true
+      }
+    }
+  }
+}
