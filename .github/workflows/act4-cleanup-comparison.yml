@@ -1,0 +1,107 @@
+name: Compare two scoped Act4 archer cleanup corridors
+on:
+  push:
+    branches: ['work/act4-cleanup-qa/**']
+permissions:
+  contents: read
+jobs:
+  stage31:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    env:
+      OUT: _local/reports/act4-cleanup-stage31
+      HONRO_QA_ORIGIN: http://127.0.0.1:8870
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Compile exact source and prepare real Engine probes
+        env:
+          HONRO_ACT4_RELEASE: '1'
+        run: |
+          set -euo pipefail
+          mkdir -p "$OUT"
+          npm ci
+          npm ci --prefix game
+          npm --prefix game run typecheck
+          node tools/stage40-qa/cleanup-corridors.test.mjs | tee "$OUT/corridors.log"
+          node tools/act4-ci/refresh-stage31-probes.mjs prepare "$OUT"
+          node workshop/build.mjs | tee "$OUT/preview-build.log"
+          sha256sum HONRO.html web/manifest.json > "$OUT/preview-sha256.txt"
+          python -m pip install 'playwright==1.58.0'
+          python -m playwright install --with-deps chromium
+      - name: Fresh whole Stage31, original controller and20R bound
+        run: |
+          set -euo pipefail
+          python -m http.server 8870 --bind 127.0.0.1 > "$OUT/server.log" 2>&1 &
+          server=$!; trap 'kill "$server" 2>/dev/null || true' EXIT
+          sleep 2
+          HONRO_RUN_DIR="$OUT/stage31" python tools/act4-ci/stage31-fullplay.py > "$OUT/stage31.log" 2>&1
+      - name: Bind only genuine current success and enforce unchanged release gate
+        run: |
+          set -euo pipefail
+          node tools/act4-ci/refresh-stage31-probes.mjs attach "$OUT"
+          node tools/stage31/check-release.mjs | tee "$OUT/normal-gate.log"
+          cp tools/stage31/production-package.json "$OUT/stage31-production-package.json"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: act4-cleanup-stage31-${{ github.sha }}
+          path: _local/reports/act4-cleanup-stage31/
+          retention-days: 7
+  stage40:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 80
+    env:
+      OUT: _local/reports/act4-cleanup-stage40
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Build same product and focused shared mechanics
+        env:
+          HONRO_ACT4_RELEASE: '1'
+        run: |
+          set -euo pipefail
+          mkdir -p "$OUT"
+          npm ci
+          npm ci --prefix game
+          node tools/stage40-qa/cleanup-corridors.test.mjs | tee "$OUT/corridors.log"
+          node tests/monster-effects-mechanics.mjs | tee "$OUT/a1-mechanics.log"
+          node tests/monster-effects-app.mjs | tee "$OUT/a1-app.log"
+          node tests/monster-signals.mjs | tee "$OUT/a1-signals.log"
+          node workshop/build.mjs | tee "$OUT/preview-build.log"
+          sha256sum HONRO.html web/manifest.json > "$OUT/preview-sha256.txt"
+          python -m pip install 'playwright==1.58.0'
+          python -m playwright install --with-deps chromium
+      - name: A1 browser fixtures and fresh whole Stage40 with approved23R bound
+        run: |
+          set -euo pipefail
+          python -m http.server 8870 --bind 127.0.0.1 > "$OUT/server.log" 2>&1 &
+          server=$!; trap 'kill "$server" 2>/dev/null || true' EXIT
+          sleep 2
+          status=0
+          HONRO_MONSTER_BASE_URL=http://127.0.0.1:8870 python tests/monster-effects-browser.py || status=1
+          if [ -d _local/reports/monster-effects-browser ]; then cp -a _local/reports/monster-effects-browser "$OUT/a1-browser"; fi
+          HONRO40_PACING_REVIEW=1 HONRO_CAPTURE_URL=http://127.0.0.1:8870/HONRO.html HONRO_CAPTURE_OUT="$OUT/browser" python tools/stage40-qa/browser-play.py > "$OUT/browser.log" 2>&1 || status=1
+          exit "$status"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: act4-cleanup-stage40-${{ github.sha }}
+          path: _local/reports/act4-cleanup-stage40/
+          retention-days: 7

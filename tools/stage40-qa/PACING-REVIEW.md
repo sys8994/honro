@@ -105,3 +105,17 @@ passes. Real compiled movement, fresh Stage31 normal completion and fresh
 Stage40 combat/return remain pending. No stale threat-memory or other QA policy
 change is bundled with this product unit; the initial before/after comparison
 will retain the original controller to isolate product effects.
+
+Register one immutable parallel comparison: unchanged Stage31 prepared entry,
+original controller, genuine Engine probes and normal20R objective/gate; and
+unchanged Stage40 prepared entry constructing the new one-actor cell, original
+controller through normal return/settlement/reload under approved23R. The two
+jobs upload independently. A1 browser scenarios remain explicit isolated
+fixtures, not whole-stage or normal campaign play. Neither job publishes.
+
+The prior unchanged-product run41729470340 finished Stage40 combat inR19 and
+return inR22 from its exactR15 save. Fresh first cast and four PC/landscape-mobile
+locale/charge observations passed. Actual result, combat-end and mobile guide
+pixels were inspected. The guide uses deliberate normal minimap pan/zoom, so
+its cropped caster is not evidence of an automatic-camera tracking failure.
+It is not a new pacing-candidate result. Original archive is retained.
