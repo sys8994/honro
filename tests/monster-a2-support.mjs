@@ -19,3 +19,28 @@ for(const reason of ['legacy','a1','dead','captured','converted','enthralled','w
  }
 }
 console.log('PASS A2 support: grounded formation holds, paid mark, ten invalid/legacy fallbacks, legacy planner equality');
+{
+ const p=fixture(),before=JSON.stringify(p.b);
+ for(let i=0;i<20;i++)assert(A2.monsterSeerCanPrepare(p.e,p.caster,p.hero));
+ assert.equal(JSON.stringify(p.b),before,'readiness does not mutate RNG, IDs, or state');
+ const rows=AI.rankEnemyQueue(p.e,[p.caster,p.friend]);
+ assert.equal(rows.find(r=>r.unit===p.caster).tier,2,'valid support is ordinary ready-action tier');
+ assert.equal(rows.find(r=>r.unit===p.friend).tier,2,'ordinary shooter shares same tier');
+ assert.equal(rows[0].unit,p.friend,'support has no reserved first position');
+ assert.equal(rows.length,2,'ranking creates no extra actors/actions');
+ assert(A2.monsterLinkedFiringFormation(p.e,p.friend,p.hero));
+ assert.equal(AI.planEnemyMove(p.e,p.friend,p.hero),undefined,'viable grounded paired shooter retains stance');
+ const move=p.friend.moveLeft,x=p.friend.x;assert.equal(p.friend.moveLeft,move);assert.equal(p.friend.x,x);
+ p.caster.monsterA2Cooldown=1;assert(!A2.monsterSeerCanPrepare(p.e,p.caster,p.hero));assert(!A2.monsterLinkedFiringFormation(p.e,p.friend,p.hero));
+}
+for(const reason of ['danger','critical-hp','blocked','dead-source','legacy']){
+ const p=fixture();if(reason==='danger')p.b.zones.push({id:'danger',x:p.friend.x,y:p.friend.y,radius:100,kind:'fire'});
+ if(reason==='critical-hp')p.friend.hp=p.friend.maxHp*.2;
+ if(reason==='blocked')p.b.terrain.push(solid('target-wall',540,500,4,300));
+ if(reason==='dead-source')p.caster.dead=true;
+ if(reason==='legacy')delete p.b.honroMonsterCombatRevision;
+ const actual=AI.planEnemyMove(p.e,p.friend,p.hero);delete p.caster.honroMonsterA2Kind;
+ const legacy=AI.planEnemyMove(p.e,p.friend,p.hero);
+ assert.deepEqual(JSON.parse(JSON.stringify(actual??null)),JSON.parse(JSON.stringify(legacy??null)),reason+' retains ordinary movement decisions');
+}
+console.log('PASS A2 readiness: pure shared predicate, equal normal tier/order, viable firing hold, safety/legacy fallback equivalence');

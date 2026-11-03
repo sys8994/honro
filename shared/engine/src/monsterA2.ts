@@ -54,6 +54,24 @@ export function monsterA2ActionCompleted(e:Engine,u?:Unit){
 function clearLine(b:Battle,a:Vec,z:Vec){return !b.terrain.some(t=>!t.broken&&!!segmentTerrain(a,z,t));}
 const center=(u:Unit)=>({x:u.x,y:u.y-u.h*.5});
 function validTarget(e:Engine,u:Unit,t?:Unit){return hero(t)&&!t!.enemySoftBind&&!(t!.stun||0)&&t!.stunnedRound!==e.b.round&&Math.hypot(t!.x-u.x,t!.y-u.y)<=1000&&clearLine(e.b,center(u),center(t!));}
+function seerLinkAlly(e:Engine,u:Unit){
+ if(!monsterA2Eligible(e.b,u)||u.honroMonsterA2Kind!=='seer')return undefined;
+ const a=e.unit(u.honroMonsterMarkAlly||'');
+ return live(a)&&a!.side===1&&!a!.enthrall&&a!.loadout.length===1&&a!.loadout[0]==='LA01'&&Math.hypot(a!.x-u.x,a!.y-u.y)<=650&&clearLine(e.b,center(u),center(a!))?a:undefined;
+}
+/** Shared, read-only action eligibility for normal queue ranking and real prepare. */
+export function monsterSeerCanPrepare(e:Engine,u:Unit,target:Unit){
+ if(u.monsterA2Warning||u.monsterA2Cooldown||u.monsterA2Recovery||!validTarget(e,u,target))return false;
+ const ally=seerLinkAlly(e,u);return !!ally&&validTarget(e,ally,target);
+}
+export function monsterLinkedFiringFormation(e:Engine,ally:Unit,target:Unit){
+ if(!live(ally)||ally.side!==1||ally.enthrall||ally.loadout.length!==1||ally.loadout[0]!=='LA01')return false;
+ return e.b.units.some(s=>{
+  if(seerLinkAlly(e,s)!==ally)return false;
+  const w=s.monsterA2Warning;
+  return w?.kind==='mark'?w.target===target.id&&validTarget(e,s,target)&&validTarget(e,ally,target):monsterSeerCanPrepare(e,s,target);
+ });
+}
 function cancelWarning(e:Engine,u:Unit){if(!u.monsterA2Warning)return;delete u.monsterA2Warning;u.monsterA2Recovery=true;u.intent='예고 끊김 · 회복';}
 export function monsterA2Damage(e:Engine,t:Unit,ownerId:string,direct:boolean,p:Projectile|undefined,hpLoss:number,shieldLoss:number,normal:boolean){
  const source=e.unit(ownerId);
@@ -71,10 +89,10 @@ export function beginMonsterA2Action(e:Engine,u:Unit,target:Unit){
  if(u.monsterA2Warning){u.intent='연결 유지';e.finishAction();return true;}
  if(u.monsterA2Cooldown){if(u.honroMonsterA2Kind==='growth'){u.intent='그늘 회복';e.finishAction();return true;}return false;}
  if(!validTarget(e,u,target)){if(u.honroMonsterA2Kind==='growth'){u.intent='접근 · 경계';e.finishAction();return true;}return false;}
+ if(u.honroMonsterA2Kind==='seer'&&!monsterSeerCanPrepare(e,u,target))return false;
  const b=e.b,base={version:1 as const,serial:b.nextId++,target:target.id,origin:{x:u.x,y:u.y},createdTeamEnd:b.teamEnds[0],seen:false,offered:false,responded:false};
  if(u.honroMonsterA2Kind==='seer'){
-  const ally=e.unit(u.honroMonsterMarkAlly||'');
-  if(!live(ally)||ally!.side!==1||ally!.enthrall||ally!.loadout.length!==1||ally!.loadout[0]!=='LA01'||Math.hypot(ally!.x-u.x,ally!.y-u.y)>650||!clearLine(b,center(u),center(ally!))||!validTarget(e,ally!,target))return false;
+  const ally=seerLinkAlly(e,u)!;
   u.monsterA2Warning={...base,kind:'mark',allyId:ally!.id};u.monsterA2Cooldown=1;u.intent='점복 · 표적 연결';
  }else{
   const stage=u.monsterGrowth?.stage||1,reach=[0,95,135,175][stage],direction=target.x>=u.x?1:-1;
