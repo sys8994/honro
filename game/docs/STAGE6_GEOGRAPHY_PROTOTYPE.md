@@ -20,7 +20,7 @@
 
 ## 재현 범위
 
-`HONRO_QA_BASELINE=story node tools/stage6-prototype/app-play.mjs 6 2360 objective-focused-noitems-appops-calibrated-v2`는 복제 맵을 App 진입 전에 적용하고 실제 App 이동·기예·방어·대화 입력을 사용한다. 기존 1–5장 합법 보상 준비 프로필, 분리된 조준 계획, 렌더/DOM 더블이며 브라우저 또는 연속 캠페인 증거가 아니다. 결과는 `_local/reports/`에 저장되고 소스·입력·적 큐·피해·매 프레임 지지 범위를 기록한다. 하부 기본 정책 한 seed로 전체 플레이·인간 재미·최종 통합 소스를 승인하지 않는다.
+`HONRO_QA_BASELINE=story node tools/stage6-prototype/app-play.mjs 6 2360 objective-focused-noitems-appops-calibrated-v2`는 복제 맵을 App 진입 전에 적용하고 실제 App 이동·기예·방어·대화 입력을 사용한다. 기존 1–5장 합법 보상 준비 프로필, 분리된 조준 계획, 렌더/DOM 더블이며 브라우저 또는 연속 캠페인 증거가 아니다. 결과는 `_local/reports/`에 저장되고 소스·입력·적 큐·피해·매 프레임 지지 범위를 기록한다. 같은 명령 정책 끝에 `-upper`를 붙이면 설오가 서교판에서 사격을 시도한 뒤 안전한 서쪽 사면으로 돌아 구조 경로에 합류하는 대안 정책을 실행한다. 하부/상부 각 정책의 단일 seed로 전체 플레이·인간 재미·최종 통합 소스를 승인하지 않는다.
 
 ## 저장·미술·남은 조건
 
