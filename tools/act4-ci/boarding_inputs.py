@@ -3,7 +3,9 @@
 Use the real overlap between the upper path and boarding ledge. Respect acted
 flags by ending actions normally; do not reset them or suppress round increments.
 """
-def board_party(p, record, screenshot):
+def board_party(p, record, screenshot, *, functional_continuation=False):
+    # Explicit diagnostic-only continuation. Normal release callers retain20R.
+    round_limit=30 if functional_continuation else 20
     def state():
         return p.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b,q=b.honroAct4PreviewState;
           return {stage:b.honroStage,round:b.round,phase:b.phase,active:b.active,
@@ -28,7 +30,7 @@ def board_party(p, record, screenshot):
         raise TimeoutError('Landing did not settle')
     def observe(label):
         s=state();record(label,s)
-        assert s['round']<=20,s
+        assert s['round']<=round_limit,s
         assert all(h['hp']>0 and not h['dead'] for h in s['heroes']),s
         assert s['active']==hero,('Unexpected actor handoff',s)
     # Less than ten world units cannot cover the next path pulse. Normal F
