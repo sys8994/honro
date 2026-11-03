@@ -365,3 +365,6 @@ body:has(#modal.open .menu-fixed) #turn-banner{visibility:hidden}
 
 /* Tide status shares the fixed stage header; the minimap and reward control have separate reserved space. */
 .honro #app .battle-screen #act4-water-hud{flex:none;color:#d6e9e5;background:#17313b;white-space:nowrap;font:700 15px/16px system-ui,sans-serif;pointer-events:none}
+
+/* Stage 6 pursuit is a separate notice: the mission text remains intact. */
+.honro #app .battle-screen .stage6-pursuit-warning{position:absolute;z-index:12;top:calc(var(--battle-head-top) + var(--battle-head-height) + 52px);left:50%;transform:translateX(-50%);max-width:calc(100vw - 24px);box-sizing:border-box;padding:4px 8px;border:1px solid #e4b75c;border-radius:4px;background:#292116ed;color:#fff1c9;font-size:12px;line-height:1.25;text-align:center;white-space:normal;pointer-events:none}

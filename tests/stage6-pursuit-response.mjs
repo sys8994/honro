@@ -5,6 +5,12 @@ import {appHarness} from './app-regression-helpers.mjs';
 const h=await appHarness({productionStory:true,productionInputActions:true}),{g,C}=h;
 const profile=JSON.parse(await readFile('game/docs/stage-review/stage06-bridge/evidence/entry-profile.json','utf8')).profile;
 const app=h.load(profile);app.launch(6);const e=app.engine,b=e.b;
+// Explicit render double for this behavioral fixture; real visual acceptance
+// requires a browser screenshot and is not claimed by this test.
+let painted=false,frames=[];const originalGet=g.document.getElementById.bind(g.document),screen={appendChild(n){painted=n;}},warning={textContent:'',clientWidth:320,clientHeight:24,scrollWidth:320,scrollHeight:24,setAttribute(){},remove(){painted=false;},getBoundingClientRect(){return {left:10,top:10,right:330,bottom:34,width:320,height:24};}};
+g.innerHeight=900;g.requestAnimationFrame=fn=>{frames.push(fn);return frames.length;};g.getComputedStyle=()=>({display:'block',visibility:'visible',opacity:'1'});g.document.getElementById=id=>id==='stage6-pursuit-warning'?(painted||null):originalGet(id);g.document.querySelector=sel=>sel==='.battle-screen'?screen:null;g.document.createElement=()=>warning;
+function paintNotice(){g.HonroObjectives.refresh(app);for(let i=0;i<2;i++){const q=frames;frames=[];q.forEach(fn=>fn());}}
+
 let now=g.performance.now();g.performance={now:()=>now};
 const ops={frame(){now+=C.STEP*1000;if(app.dialogue)g.HonroStory.next(app);app.scene.render=()=>{};app.frame(now);if(app.lastError)throw Error(app.lastError);},ready(limit=30000){for(let i=0;i<limit&&!app.canInput()&&!['won','lost'].includes(b.phase);i++)this.frame();return app.canInput();},defend(){if(!app.canInput())return false;const u=e.active,before=[b.phase,b.side,b.round,u.id,u.acted];app.defend();return before.some((v,i)=>v!==[b.phase,b.side,b.round,e.active?.id,u.acted][i]);}};
 assert(ops.ready());const freshSnapshot=structuredClone(b);assert.equal(b.honroStage6PursuitRevision,1);assert.equal(b.honroEvents.find(x=>x.id==='pursuit').action.n,2);
@@ -15,6 +21,7 @@ b.honroState.rescued=true;
 for(let i=0;i<10;i++)ops.frame();
 assert(b.honroState.pendingEvents.includes('pursuit'),'rescue queues warning');assert.match(app.eventText,/아군 턴이 끝나면.*운반대 뒤쪽/,'warning states timing and relative entry');
 assert(!b.units.some(u=>u.honroSpawnSource==='pursuit'),'no entry before actual response');
+assert(!g.HonroStage6Pursuit.shown(app),'unrendered notice cannot count');paintNotice();assert(g.HonroStage6Pursuit.shown(app),'rendered notice earns live receipt');
 assert(ops.ready());const place=g.HonroTerrain.place;g.HonroTerrain.place=()=>null;
 assert(ops.defend(),'real App defend ends an action');
 for(let i=0;i<30000&&!ops.ready(1);i++)ops.frame();
