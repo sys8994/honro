@@ -10,7 +10,7 @@ def validate(archive):
   results={}
   for stage in [5,8]:
    data=z.read(f'monster-natural/stage{stage}/natural-result.json');d=json.loads(data);assert d['meta']['candidate']==v.CANDIDATE and d['result']['phase']=='won';assert d['checkpoints']
-   b=d['checkpoints'][0]['profile']['honroBattle'];assert b['honroStage']==stage and b['honroMonsterEffectsRevision']==1
+   b=d['checkpoints'][0]['profile']['honroBattle'];assert b['honroStage']==stage and b['honroMonsterEffectsRevision']==1 and isinstance(b['session'],str) and b['session']
    caster=next(u for u in b['units'] if u['id']==('s5-cave-shade' if stage==5 else 's8-15'));c=caster['enemyEffectCast'];assert c['seen'] and c['offered'] and not c['responded'] and c['target']==b['active']
    results[stage]=data
   return results,summary

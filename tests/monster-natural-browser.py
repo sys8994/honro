@@ -58,10 +58,10 @@ with sync_playwright() as pw:
     try:
      bp.goto(BASE+'/HONRO.html');bp.wait_for_function('!!window.HonroApp');bp.evaluate('()=>{qaStopScheduling();}');bp.add_script_tag(path=str(ROOTOUT/'controller.js'))
      bp.evaluate('q=>{qaAttach(q.entry,q.meta);}',{'entry':entry,'meta':meta})
-     bp.locator('#file-import').set_input_files(str(savepath));bp.wait_for_function('(id)=>HonroApp.screen==="title"&&HonroApp.profile.honroBattle?.id===id',arg=checkpoint['profile']['honroBattle']['id'],polling=50)
+     bp.locator('#file-import').set_input_files(str(savepath));bp.wait_for_function('(id)=>HonroApp.screen==="title"&&HonroApp.profile.honroBattle?.session===id',arg=checkpoint['profile']['honroBattle']['session'],polling=50)
      button=bp.locator('[data-action="continue"]').first
      button.tap() if mobile else button.click()
-     bp.wait_for_function('(id)=>HonroApp.engine?.b.id===id',arg=checkpoint['profile']['honroBattle']['id'],polling=50)
+     bp.wait_for_function('(id)=>HonroApp.engine?.b.session===id',arg=checkpoint['profile']['honroBattle']['session'],polling=50)
      exact=bp.evaluate('(expected)=>canonical(HonroApp.engine.b)===canonical(expected)',checkpoint['profile']['honroBattle']);assert exact,'Natural checkpoint import changed battle'
      bp.evaluate('()=>{const a=HonroApp;a.updateHUD(true);a.renderBattleFrame(a.engine,0,0,!!a.dialogue||!!HonroStory.turnPaused(a,performance.now())||a.modal.classList.contains("open")||!!a.done);}')
      bp.screenshot(path=str(dest/(branch+'-before.png')))
