@@ -90,7 +90,7 @@ export function tickEnemyEffects(e:Engine,dt:number){
    if(!enemyEffectEligible(b,u,c.skill)||!hero(e.unit(c.target)))delete u.enemyEffectCast;
    else if(b.teamEnds[0]>c.createdTeamEnd&&!c.responded){delete u.enemyEffectCast;u.enemyEffectRecovery={attackId:'response-window-expired',serial:c.serial};}
   }
-  const bind=u.enemySoftBind;if(bind){const source=e.unit(bind.sourceId);if(!hero(u)||!source||!enemyEffectEligible(b,source,'HSH02')||b.round>bind.appliedRound+3)releaseEnemySoftBind(u);}
+  const bind=u.enemySoftBind;if(bind){const source=e.unit(bind.sourceId);if(!hero(u)||!source||!enemyEffectEligible(b,source,'HSH02'))releaseEnemySoftBind(u);}
   const push=u.enemyPush;if(!push)continue;const source=e.unit(push.sourceId);
   if(!hero(u)||!source||!enemyEffectEligible(b,source,'HWD02')||u.fixed||u.airborne||u.jumping){delete u.enemyPush;continue;}
   // Ground-following swept translation, capped at actual wall/body/ledge contact.
