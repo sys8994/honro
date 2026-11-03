@@ -32,6 +32,7 @@ jobs:
           node tools/act4-ci/refresh-stage31-probes.mjs prepare _local/reports/stage6-preview
           node workshop/build.mjs > _local/reports/stage6-preview/build.log 2>&1
           python tests/stage6-initial-capture-local.py
+          python tests/stage6-warning-browser.py
           cp -a _local/reports/stage6-preflight/initial-browser _local/reports/stage6-preview/
           sha256sum HONRO.html web/manifest.json > _local/reports/stage6-preview/served-sha256.txt
           printf '%s\n' "$GITHUB_SHA" > _local/reports/stage6-preview/source-sha.txt
