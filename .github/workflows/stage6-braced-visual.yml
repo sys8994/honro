@@ -1,0 +1,48 @@
+name: Stage6 braced rock visual study
+on:
+  push:
+    branches: ['work/stage6-braced-visual-preview-20261103']
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Build explicitly nonproduction preview and check source contracts
+        run: |
+          set -euo pipefail
+          npm ci
+          npm ci --prefix game
+          node tests/stage6-art-preview.mjs
+          node tests/stage6-render-coverage-preview.mjs
+          # Direct builder is used solely for this labelled preview, not release evidence.
+          HONRO_STAGE6_ART_PREVIEW=1 HONRO_STAGE6_ROCK_BRACED=1 node workshop/build.mjs
+          python -m pip install 'playwright==1.58.0'
+          python -m playwright install --with-deps chromium
+      - name: Capture controlled runtime views and short movement
+        run: |
+          set -euo pipefail
+          mkdir -p _local/reports/stage6-art-preview
+          sha256sum HONRO.html > _local/reports/stage6-art-preview/served-sha256.txt
+          python -m http.server 8870 --bind 127.0.0.1 > _local/reports/stage6-art-preview/server.log 2>&1 &
+          trap 'kill $! 2>/dev/null || true' EXIT
+          sleep 2
+          python tools/stage6-prototype/capture-preview.py
+          python tools/stage6-prototype/input-camera-review.py
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage6-braced-visual-${{ github.sha }}
+          path: _local/reports/stage6-art-preview/
+          retention-days: 7
