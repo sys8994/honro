@@ -32,7 +32,7 @@ const displayed=new WeakSet(),scheduled=new WeakSet();
 const pending=b=>active(b)&&!['won','lost'].includes(b.phase)&&!b.honroState?.flags?.['event:pursuit']&&(b.honroState?.pendingEvents||[]).includes('pursuit');
 const shown=app=>pending(app.engine?.b)&&displayed.has(app.engine.b);
 const notice='추격 예고: 운반대 뒤 예상 구역';
-function noticeText(app){const car=app.engine.b.units.find(u=>u.id==='objective'&&!u.dead&&u.hp>0),camera=app.scene?.x,x=car&&Math.max(90,car.x-650),delta=x-camera,arrow=Number.isFinite(delta)&&Math.abs(delta)>80?(delta<0?' ←':' →'):'';return notice+arrow+' · 아군 행동 뒤 진입';}
+function noticeText(app){const car=app.engine.b.units.find(u=>u.id==='objective'&&!u.dead&&u.hp>0),camera=app.scene?.x,x=car&&Math.max(90,car.x-650),delta=x-camera,arrow=Number.isFinite(delta)&&Math.abs(delta)>80?(delta<0?' ←':' →'):'';return notice+arrow+' · 아군 턴 뒤 진입';}
 const state=G.HonroObjectives.state;
 G.HonroObjectives.state=function(b,st){const out=state(b,st);if(pending(b)){const car=b.units.find(u=>u.id==='objective'&&!u.dead&&u.hp>0);if(car){const x=Math.max(90,car.x-650),y=G.HonroWorld.top(b,x,car.y,'lower-road');out.targets=[...out.targets,{id:'stage6-pursuit-estimate',kind:'reinforcement-warning',x,y,label:'운반대 뒤 추격 예상 구역'}];}}return out;};
 const minimap=G.HonroObjectives.minimap;
