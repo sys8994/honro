@@ -151,7 +151,10 @@ function terrain(c,t,b){
 function routeSigns(c,b,scene){
  if(!active(b))return;const unit=1/Math.max(.05,scene.scale);
  c.save();c.font=`600 ${12*unit}px sans-serif`;c.textAlign='center';c.textBaseline='middle';
- const signs=[{x:4030,y:8892,text:'점프로 뿌리 진입 · 의식터 ↑'},{x:6750,y:8852,text:'← 서측 회귀 · 선택   |   주민 암대 →'}];
+ // Reviewed-v4 removed the resident rescue. Keep historical saves' place name,
+ // but do not direct the current party toward a resident who is no longer here.
+ const lowerName=G.HonroAct23V4?.active(b)?'아래 바위길':'주민 암대';
+ const signs=[{x:4030,y:8892,text:'점프로 뿌리 진입 · 의식터 ↑'},{x:6750,y:8852,text:`← 서측 회귀 · 선택   |   ${lowerName} →`}];
  if(b.honroStage11FallRecoveryRevision===1)signs.push({x:3490,y:9400,lift:110,labelDx:-180,text:'뿌리로 복귀 ↑'});
  for(const s of signs){
   const width=c.measureText(s.text).width+20*unit,y=s.y-(s.lift||0),x=s.x+(s.labelDx||0),w=scene.canvas.clientWidth,h=scene.canvas.clientHeight,sx=(x-scene.x)*scene.scale+w/2,sy=(y-scene.y)*scene.scale+h/2-24;
