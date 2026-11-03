@@ -36,7 +36,11 @@ export function applyStage6ArtPreview(input){
   asset.vector.clips={...asset.vector.clips,aboveRoad:[sky],sourceFoot:[`M0 ${baseStart}H${width}V${height}H0Z`]};
   // Overlay an additional copy of the source-traced stone base, sheared to the
   // local road slope. Its upper timber remains unwarped; exact road clips both.
-  asset.vector.root={tag:'g',clipPath:'aboveRoad',children:[{tag:'g',transform:[sx,0,0,scale,tx,ty],children:[clone(art.vector.root)]},{tag:'g',transform:[sx,slope*sx,0,scale,tx,ty-slope*sx*width/2],children:[{tag:'g',clipPath:'sourceFoot',children:[clone(art.vector.root)]}]}]};asset.params={...asset.params,previewOnly:true,deckY:deck,groundY:ground};
+  // Internal use references retain one exact source path tree while drawing
+  // it twice; validator budgets count the expanded form, not just storage.
+  if(Object.keys(art.vector.symbols||{}).length)throw Error('Unexpected nested support symbols');
+  asset.vector.symbols={sourceArt:clone(art.vector.root)};
+  asset.vector.root={tag:'g',clipPath:'aboveRoad',children:[{tag:'g',transform:[sx,0,0,scale,tx,ty],children:[{tag:'use',symbol:'sourceArt'}]},{tag:'g',transform:[sx,slope*sx,0,scale,tx,ty-slope*sx*width/2],children:[{tag:'g',clipPath:'sourceFoot',children:[{tag:'use',symbol:'sourceArt'}]}]}]};asset.params={...asset.params,previewOnly:true,deckY:deck,groundY:ground};
   project.library.push(asset);s.elements.push({id:'stage06-prototype-pier-'+id,assetId:asset.id,x:0,y:0,scale:1,rotation:0,layer:'prop',depthLayer:'L1',visualRole:'scenery'});
  }
  return project;
