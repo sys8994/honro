@@ -31,3 +31,13 @@ The browser planner is generated from the registered deck native functions;
 changes must regenerate it. Real keyboard timing is not bit-identical to the
 native idealized aim gesture. Any driver calibration and outcome must remain
 in the evidence, not be called product impossibility or silently rerun.
+
+## Infrastructure failure retained
+
+Run41594817059 at canonical6cfac0de stopped before gameplay: shallow checkout
+lacked the7d2655bc comparison base. Typecheck passed. The placement test also
+used the local-native f0406082 reference, whose exact canonical equivalent is
+f18ac4677261fc9dbebd9625363d53d8272c50fc. The workflow now fetches both exact
+comparison commits and supplies explicit reference variables. Assertions,
+product/driver source and the genuine Stage31 gate are unchanged. This is a
+provenance setup repair, not another failed combat trial or weakened gate.

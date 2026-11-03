@@ -9,6 +9,8 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 100
     env:
+      HONRO40_BASE_REF: 7d2655bc3f88a7b20fb2d6ea1bc4c611583e9a15
+      HONRO40_PRE_PLACEMENT_REF: f18ac4677261fc9dbebd9625363d53d8272c50fc
       OUT: _local/reports/stage40-gated-qa
       HONRO_QA_ORIGIN: http://127.0.0.1:8870
     steps:
@@ -26,6 +28,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p "$OUT"
+          git fetch --no-tags --depth=1 origin "$HONRO40_BASE_REF" "$HONRO40_PRE_PLACEMENT_REF"
           npm ci
           npm ci --prefix game
           python -m pip install 'playwright==1.58.0'
