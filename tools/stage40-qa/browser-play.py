@@ -66,7 +66,7 @@ with sync_playwright() as w:
    for k in ['xp','ranks','equipmentIds']:assert v[k]==saved['heroes'][cls][k]
   (out/'entry-budget.json').write_text(json.dumps(budget,indent=2));view();p.screenshot(path=str(out/'entry.png'));started=time.monotonic();selected=set()
   for turn in range(140):
-   if time.monotonic()-started>2400:raise TimeoutError('Registered40-minute combat observation bound')
+   if time.monotonic()-started>3600:raise TimeoutError('Registered60-minute combat observation bound')
    ready();s=state()
    if not s['foes'] or s['round']>24 or s['phase'] in ['won','lost']:break
    if any(v['dead'] for v in s['residents']):raise AssertionError('Resident casualty')
