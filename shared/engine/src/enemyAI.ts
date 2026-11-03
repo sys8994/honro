@@ -1,3 +1,4 @@
+import {markedMonsterTarget} from './monsterA2';
 /** Bounded tactical movement. Every candidate is tested with the same locomotion/contact code
  * as a real unit. Planning cannot damage, teleport, change RNG, or mutate the live roster. */
 import {beastKind,beastReach,beastContact} from './beastMelee';
@@ -241,6 +242,7 @@ export function shotImpactValue(e:Engine,u:Unit,skill:Skill,hit:{x:number;y:numb
 
 export function targetFor(e:Engine,u:Unit):Unit|undefined{
  const b=e.b;
+ const marked=markedMonsterTarget(e,u);if(marked)return marked;
  const scriptedId=(u as any).honroTargetId, scriptedUntil=(u as any).honroTargetUntil||0;
  if(scriptedId&&scriptedUntil>=b.round){const scripted=e.unit(scriptedId);if(scripted&&!scripted.dead&&scripted.hp>0)return scripted;}
  const cursed=e.actors(u.side).filter(v=>v.id!==u.id&&(v.betrayalUntil||0)>=b.round&&Math.hypot(v.x-u.x,v.y-u.y)<1450).sort((a,c)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(c.x-u.x,c.y-u.y))[0];
@@ -261,6 +263,7 @@ export function targetFor(e:Engine,u:Unit):Unit|undefined{
 }
 function preferredRange(u:Unit):[number,number]{
  const kind=(u as any).honroType;
+ if(u.honroMonsterA2Kind==='growth')return [45,90];
  if(beastKind(u))return [u.r+22,u.r+55];
  if(kind==='beast'||kind==='mourner')return [80,250];
  if(kind==='warden')return [150,390];

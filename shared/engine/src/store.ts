@@ -1,3 +1,4 @@
+import {validateMonsterA2} from './monsterA2';
 import {validateEnemyEffects} from './enemyEffects';
 import {validateEquipmentIds,equipmentActor,EQUIPMENT_MAP} from './equipment';
 import {validateKeeperRitual} from './keeperRitual';
@@ -130,6 +131,7 @@ function validBattle(raw: unknown,legacyXp=false,oldXp=false): Battle {
         if(u.earthbind&&(!ids.has(u.earthbind.owner)||!nums(u.earthbind,['until','damage'])))return fail();
         if(u.impactCooldown!==undefined&&(!finite(u.impactCooldown)||u.impactCooldown<0||u.impactCooldown>1))return fail();
     }
+    validateMonsterA2(b);
     validateEnemyEffects(b);
     if(!validateKeeperRitual(b))return fail();
     if((globalThis as any).HonroAct23V4?.validateBattle(b)===false)return fail();

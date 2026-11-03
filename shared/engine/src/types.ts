@@ -1,3 +1,4 @@
+import type {GrowthGeometry,MonsterGrowth,MonsterA2Warning,MonsterPose} from './monsterA2';
 import type {EnemyEffectSkill,EnemyEffectCast,EnemyEffectAttack,EnemySoftBind,EnemyPush} from './enemyEffects';
 import type {DamageOrigin,DamageSequence,EquipmentUnitState} from './damageVariance';
 import type {PhysicsEnvironment,PhysicsPatch,PhysicsCue} from './physics';
@@ -221,6 +222,16 @@ export interface Unit {
     combatBaseAttack?: number;
     aiMove?:AIMovePlan;
     /** Enemy aim telegraph: the chosen shot is shown for a moment, then fired unchanged. */
+    honroMonsterA2Kind?: 'growth'|'seer';
+    honroMonsterMarkAlly?: string;
+    honroMonsterGrowthGeometry?: GrowthGeometry;
+    monsterGrowth?: MonsterGrowth;
+    monsterA2Warning?: MonsterA2Warning;
+    monsterA2Cooldown?: number;
+    monsterA2Recovery?: boolean;
+    monsterA2Animation?: {pose:MonsterPose;left:number};
+    monsterHeroActionToken?: number;
+    monsterHeroActionShots?: number[];
     honroMonsterEffectSkill?: EnemyEffectSkill;
     enemyEffectCast?: EnemyEffectCast;
     enemyEffectCooldown?: number;
@@ -305,6 +316,7 @@ export interface Unit {
 /** Persisted cast provenance is independent of later capture/release allegiance. */
 export interface CombatReportSource {cls?:string|null;side?:Side;kind:string;skill:string;id?:string|null;parent?:string|null;}
 export interface Projectile extends DamageOrigin {
+    monsterHeroActionToken?: number;
     enemyEffectAttack?: EnemyEffectAttack;
     enemyEffectWind?: number;
     honroReportSource?: CombatReportSource;
@@ -444,6 +456,7 @@ export interface Stage {
     par: number;
 }
 export interface Battle {
+    honroMonsterCombatRevision?: 2;
     honroMonsterEffectsRevision?: 1;
     damageSequence?: DamageSequence;
     playerTurnOrder?: ClassId[];

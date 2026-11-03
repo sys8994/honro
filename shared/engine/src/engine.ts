@@ -1,3 +1,4 @@
+import {monsterPose,monsterA2Eligible,monsterDamageGeometry,monsterDamageCritical,beginMonsterHeroCast,observeMonsterA2Warning,offerMonsterA2Response,monsterA2ActionCompleted,monsterA2Damage,decayMonsterGrowth,beginMonsterA2Action,resolveMonsterA2Action,markedMonsterTarget,consumeMonsterMark,tickMonsterA2,clearMonsterA2,validateMonsterA2} from './monsterA2';
 import {enemyEffectEligible,interruptEnemyEffect,validateEnemyEffects,observeEnemyEffectWarning,offerEnemyEffectResponses,enemyEffectActionCompleted,prepareEnemyEffect,resolveEnemyEffect,enemyEffectDamage,enemyEffectMovementBudget,tickEnemyEffects,clearEnemyEffects,releaseEnemySoftBind} from './enemyEffects';
 import {wreckDamage,damageNearest,damageContact,damageAim,damageCritical} from './wreckDamage';
 import {gearCapture,gearHas,gearBody,gearCanPay,gearPay,gearTurn,gearRegen,gearGuard,gearImpulse,gearAlly,gearState,gearCycle,gearFrostSlow,gearStepMove,gearEarthMove,gearWallContact,gearPreservesWood,gearSpreadWeak,gearTravelSpent,gearReturn,gearLandingRetreat,gearPass} from './equipmentCombat';
@@ -107,10 +108,13 @@ export class Engine {
             if(next.done)return next;
         }
     }
-    constructor(b: Battle, onEvent: (e: Event) => void = () => { }, fresh = false) { b.fields ??= []; b.physics ??= makePhysics(STAGES[b.stageId-1]?.physics); b.reviewDamage ??= {}; b.reviewLeft ??= 0; b.occultRevision ??= 1; this.b = b; validateEnemyEffects(b); migrateCampaignActionBudget(b); if(b.mode==='campaign'&&(b as any).honroStage&&!(b as any).honroCustom&&(b as any).honroMapOrigin!=='workshop')for(const u of b.units)migrateCampaignEnemyDamage(u); initializeKeeperRitual(b); if(b.phase!=='won'&&b.phase!=='lost')initializeDamageSequence(b); (globalThis as any).HonroQuestTargets?.migrate(b); ensureWaterfallBody(b); for(const u of b.units){migrateEnemySkills(u);migrateAirborneBalance(u);} this.onEvent = onEvent; restoreWarriorFollow(b); migrateEaters(this); this.applyPhysicsCues(); if (fresh) {
+    constructor(b: Battle, onEvent: (e: Event) => void = () => { }, fresh = false) { b.fields ??= []; b.physics ??= makePhysics(STAGES[b.stageId-1]?.physics); b.reviewDamage ??= {}; b.reviewLeft ??= 0; b.occultRevision ??= 1; this.b = b; validateMonsterA2(b); validateEnemyEffects(b); migrateCampaignActionBudget(b); if(b.mode==='campaign'&&(b as any).honroStage&&!(b as any).honroCustom&&(b as any).honroMapOrigin!=='workshop')for(const u of b.units)migrateCampaignEnemyDamage(u); initializeKeeperRitual(b); if(b.phase!=='won'&&b.phase!=='lost')initializeDamageSequence(b); (globalThis as any).HonroQuestTargets?.migrate(b); ensureWaterfallBody(b); for(const u of b.units){migrateEnemySkills(u);migrateAirborneBalance(u);} this.onEvent = onEvent; restoreWarriorFollow(b); migrateEaters(this); this.applyPhysicsCues(); if (fresh) {
         this.refreshActivation();
         this.refreshIntents();
     } for(const u of b.units)this.clearDisabledActor(u); }
+    observeMonsterA2Warning(ownerId:string,serial:number){return observeMonsterA2Warning(this,ownerId,serial);}
+    monsterDamageShape(u:Unit){return monsterDamageGeometry(this.b,u);}
+    monsterPose(u:Unit){return monsterPose(u);}
     observeEnemyEffectWarning(ownerId:string,serial:number){return observeEnemyEffectWarning(this,ownerId,serial);}
     get active() { return this.b.units.find(u => u.id === this.b.active); }
     private unavailableActor(u?:Unit){return !u||u.dead||u.hp<=0||!!u.eaterCapturedBy;}
@@ -331,10 +335,10 @@ export class Engine {
                 found.add(t);
         return [...found].sort((a, b) => this.terrainOrder.get(a)! - this.terrainOrder.get(b)!);
     }
-    damageAim(u:Unit,fraction=.5){return damageAim(this.b,u,fraction);}
-    damageGeometry(u:Unit){return wreckDamage(this.b,u);}
-    damageSweep(u:Unit,a:Vec,z:Vec,r:number){const d=wreckDamage(this.b,u);return d?damageContact(d.polygons,a,z,r):segRect(a,z,u.x-u.r,u.y-u.h,u.r*2,u.h,r);}
-    damageDistance(u:Unit,p:Vec){const d=wreckDamage(this.b,u);return d?damageNearest(d.polygons,p).distance:Math.hypot(u.x-p.x,u.y-u.h*.45-p.y);}
+    damageAim(u:Unit,fraction=.5){return monsterDamageGeometry(this.b,u)?.aim||damageAim(this.b,u,fraction);}
+    damageGeometry(u:Unit){return monsterDamageGeometry(this.b,u)||wreckDamage(this.b,u);}
+    damageSweep(u:Unit,a:Vec,z:Vec,r:number){const d=this.damageGeometry(u);return d?damageContact(d.polygons,a,z,r):segRect(a,z,u.x-u.r,u.y-u.h,u.r*2,u.h,r);}
+    damageDistance(u:Unit,p:Vec){const d=this.damageGeometry(u);return d?damageNearest(d.polygons,p).distance:Math.hypot(u.x-p.x,u.y-u.h*.45-p.y);}
     collision(a: Vec, c: Vec, r: number, owner: string, hit: string[] = [], units = true, skip: string[] = [], terrain = true, projectile = false, attack?:Projectile): Collision | null {
         let best: Collision | null = null;
         const left=Math.min(a.x,c.x)-r,right=Math.max(a.x,c.x)+r,top=Math.min(a.y,c.y)-r,bottom=Math.max(a.y,c.y)+r;
@@ -353,9 +357,11 @@ export class Engine {
         if(projectile&&terrain){const ritual=keeperCollision(this,a,c,r,owner,attack);if(ritual&&(!best||ritual.t<best.t))best=ritual;}
         if (units) for (const u of this.b.units) {
             if(u.dead||!this.attackAllows(u,owner,attack)||u.id===owner||hit.includes(u.id))continue;
-            const shape=projectile&&u===damageOwner?authoredDamage:null;
+            const monsterShape=projectile?monsterDamageGeometry(this.b,u):null;
+            const shape=monsterShape||(projectile&&u===damageOwner?authoredDamage:null);
             if(shape){
-                if(skip.includes('approved39-wreck-hull'))continue;
+                if(monsterShape&&(monsterShape.bounds.left>right||monsterShape.bounds.right<left||monsterShape.bounds.top>bottom||monsterShape.bounds.bottom<top))continue;
+                if(!monsterShape&&skip.includes('approved39-wreck-hull'))continue;
                 const h=damageContact(shape.polygons,a,c,r);
                 // Only a tie with this exact hull can be replaced; residents/other barriers win ties.
                 if(h&&(!best||h.t<best.t-1e-9||(Math.abs(h.t-best.t)<=1e-9&&['approved39-wreck-hull','approved39-wreck-deck'].includes(best.terrain?.id||''))))
@@ -579,10 +585,11 @@ export class Engine {
         const b = this.b, u = this.active, s = SKILLS[skillId];
         if (!u || u.dead || u.retreat || !s || !warriorAllowed(u,s) || s.enemyOnly&&u.side===0&&!ai || s.passive || (!ai && (!this.canAct() || !this.grounded(u))) || (!u.loadout.includes(skillId)&&!(skillId==='S00'&&u.meleeFollow==='ready')) || (s.ultimate && u.side===0 && this.b.mode!=='practice' && !ultimateUnlocked(this.b.heroes[u.cls],u.cls)) || this.cooldownLeft(u,skillId)>0 || !this.canAfford(s,u,power))
             return false;
-        offerEnemyEffectResponses(this);
+        offerEnemyEffectResponses(this);offerMonsterA2Response(this);
         delete u.platformDrop;delete u.moveTarget;
         u.moving = 0;
         const e = this.effective(s, u);
+        beginMonsterHeroCast(this,u);
         const gear=gearCapture(u,s,e.damage,this.grounded(u),gearCycle(b));
         const actualKiSpent=this.manaCost(s,u,power);gearPay(u,actualKiSpent);
         u.cooldowns ??= {}; if(s.cooldown)u.cooldowns[skillId]=b.round+s.cooldown+1;
@@ -601,7 +608,7 @@ export class Engine {
         if(beastKind(u))return startBeastCast(this,u,s,e.damage,targetFor(this,u),damageRoll);
         const origin = this.projectileOrigin(u, s, u.angle);
         const attackSide=this.allegiance(u);
-        const make = (a: number, damage = e.damage, child = false) => { const origin=this.projectileOrigin(u,s,a),v = this.velocity(u, s, a, u.lastPower); const p: Projectile = { equipment:gear?structuredClone(gear):undefined, damageRoll, attackSide, id: b.nextId++, skill: skillId, owner: u.id, side: u.side, x: origin.x, y: origin.y, vx: v.vx, vy: v.vy, prevVy: v.vy, age: 0, radius: BODY.has(s.mode) ? u.r : ARROWS.has(s.mode) ? 3 : s.mode === 'shieldthrow' ? 9 : 6, damage, blast: e.radius, wind: s.wind, mode: s.mode, color: s.color, bounces: 0, pierces: 0, apex: false, hit: [], phase: 0, body: BODY.has(s.mode), returnX: u.x, returnY: u.y, trail: [origin], child, rolled: 0, shot: b.shot, emissions: 0, fieldHits: [], amplification: 1, launchX:origin.x,launchY:origin.y, repeatIndex:0,carry:[], skillRank:s.ultimate?1:(u.ranks[s.id]||1),drag:dragFor(s), gravityScale:s.gravity??1, phaseMode:s.phase, fuseAt:s.fuse? s.fuse*(s.mode==='phaseWraith'?(.55+u.lastPower*1.05):1):undefined }; initializePlayerRange(p,u,s);if(s.id==='O05')initializeReturningWraith(p);projectileCredit(b,p,u);b.projectiles.push(p); return p; };
+        const make = (a: number, damage = e.damage, child = false) => { const origin=this.projectileOrigin(u,s,a),v = this.velocity(u, s, a, u.lastPower); const p: Projectile = { monsterHeroActionToken:u.monsterHeroActionToken, equipment:gear?structuredClone(gear):undefined, damageRoll, attackSide, id: b.nextId++, skill: skillId, owner: u.id, side: u.side, x: origin.x, y: origin.y, vx: v.vx, vy: v.vy, prevVy: v.vy, age: 0, radius: BODY.has(s.mode) ? u.r : ARROWS.has(s.mode) ? 3 : s.mode === 'shieldthrow' ? 9 : 6, damage, blast: e.radius, wind: s.wind, mode: s.mode, color: s.color, bounces: 0, pierces: 0, apex: false, hit: [], phase: 0, body: BODY.has(s.mode), returnX: u.x, returnY: u.y, trail: [origin], child, rolled: 0, shot: b.shot, emissions: 0, fieldHits: [], amplification: 1, launchX:origin.x,launchY:origin.y, repeatIndex:0,carry:[], skillRank:s.ultimate?1:(u.ranks[s.id]||1),drag:dragFor(s), gravityScale:s.gravity??1, phaseMode:s.phase, fuseAt:s.fuse? s.fuse*(s.mode==='phaseWraith'?(.55+u.lastPower*1.05):1):undefined }; initializePlayerRange(p,u,s);if(s.id==='O05')initializeReturningWraith(p);projectileCredit(b,p,u);b.projectiles.push(p); return p; };
         if (s.mode === 'triple') {
             const plan=multishotProfile(s,u.ranks[s.id]||1)!;
             for(const angle of volleyAngles(s,plan.rank,u.angle))make(angle,e.damage*plan.damageScale);
@@ -920,7 +927,7 @@ export class Engine {
             u.mark = 0;
             this.fx('rune', u.x, u.y - u.h * .5, '#fff0b5', 55);
         }
-        if (direct && source && u.boss && damageCritical(this.b,u,source)) {
+        if (direct && source && u.boss && (monsterDamageCritical(this.b,u,source)??damageCritical(this.b,u,source))) {
             conditionBonuses.push(.22);
             this.fx('text', u.x, u.y - u.h - 20, '#f4d39c', 15, '핵심 적중');
         }
@@ -1025,6 +1032,7 @@ export class Engine {
         }
         if(damageSource==='normal')interruptEnemyEffect(this,u,owner,direct,p,Math.max(0,enemyEffectHpBefore-u.hp)+absorbed);
         enemyEffectDamage(this,u,p,Math.max(0,enemyEffectHpBefore-u.hp));
+        monsterA2Damage(this,u,owner,direct,p,Math.max(0,enemyEffectHpBefore-u.hp),absorbed,damageSource==='normal');
         tickEnemyEffects(this,0);
         if(u.summonKind==='eater'){
             if(rawSrc&&this.allegiance(rawSrc)===0&&dmg>0){const shared=Math.min(dmg,Math.max(0,u.maxHp-(u.eaterTransferred||0)));u.eaterTransferred=(u.eaterTransferred||0)+shared;for(const target of this.b.units.filter(v=>v.eaterCapturedBy===u.id&&!v.dead))this.hurt(target,shared,owner,false,undefined,source,'eaterTransfer',damageSkill||p?.skill);}
@@ -1106,7 +1114,7 @@ export class Engine {
                 const to={x:clamp(x,u.x-u.r,u.x+u.r),y:clamp(y,u.y-u.h,u.y)},sheet=waterfallSheet(this.b);
                 if(this.b.terrain.some(t=>!t.broken&&(segmentProjectileTerrain({x,y},to,t.id===sheet?.id?sheet:t,0)||terrainRectIntersects(t.id===sheet?.id?sheet:t,x-.1,y-.1,.2,.2,0))))continue;
             }
-            const shape=wreckDamage(this.b,u);
+            const shape=this.damageGeometry(u);
             if(shape){const near=damageNearest(shape.polygons,{x,y});if(near.distance<radius)yield{unit:u,distance:near.distance,head:near.point,equipmentScale:1};continue;}
             const d = Math.hypot(u.x - x, (u.y - u.h * .45) - y);
             if (d < radius + u.r) yield {unit:u,distance:d,head:{x:u.x,y:u.y-u.h},equipmentScale:1};
@@ -2182,7 +2190,7 @@ export class Engine {
     }
     actionReviewSeconds(){return this.active?.side!==0&&!Object.keys(this.b.reviewDamage||{}).length?.18:ACTION_REVIEW_SECONDS;}
     finishAction(reviewed=false) {
-        offerEnemyEffectResponses(this);
+        offerEnemyEffectResponses(this);offerMonsterA2Response(this);
         if(this.noncombatWalk())return;
         const b = this.b, u = this.active;
         if(['won','lost','transition'].includes(b.phase))return;
@@ -2194,6 +2202,7 @@ export class Engine {
             if(finishRedesign(this,reviewed))return;
         }
         if(b.mode!=='practice'&&!reviewed){b.phase='review';b.reviewLeft=this.actionReviewSeconds();b.reviewFocus??=u?{x:u.x,y:u.y-u.h}:undefined;this.emit('change');this.emit('save');return;}
+        monsterA2ActionCompleted(this,u);
         enemyEffectActionCompleted(this,u);
         keeperActionCompleted(this,u);
         if (u) {
@@ -2285,7 +2294,7 @@ export class Engine {
     }
     newRound() {
         const b = this.b;
-        b.round++; b.reviewDamage={};b.reviewFocus=undefined;this.applyPhysicsCues();for(const u of b.units)if(u.summonKind==='eater')this.expireSummon(u);this.tickCurses();
+        b.round++; decayMonsterGrowth(this);b.reviewDamage={};b.reviewFocus=undefined;this.applyPhysicsCues();for(const u of b.units)if(u.summonKind==='eater')this.expireSummon(u);this.tickCurses();
         b.side = 0;
         b.wind = b.mode === 'practice' ? b.practiceWind || 0 : b.mode === 'skirmish' && b.practiceWind !== undefined ? b.practiceWind : this.stage.wind[(b.round - 1) % this.stage.wind.length];
         for (const u of b.units) {
@@ -2369,13 +2378,17 @@ export class Engine {
             this.finishAction();
             return;
         }
+        if(u&&resolveMonsterA2Action(this,u))return;
         if(u?.enemyEffectRecovery){delete u.enemyEffectRecovery;u.intent='예고 회복';this.finishAction();return;}
         if(u?.enemyEffectCast&&resolveEnemyEffect(this,u))return;
         if(u?.aiMove||u?.moveTarget!==undefined||b.units.some(v=>!this.unavailableActor(v)&&v.aiMove?.lureStakeId!==undefined))return;
         if(u?.aiAim){
             if(u.aiAim.age<ENEMY_AIM_TELEGRAPH)return;
             const shot=u.aiAim;delete u.aiAim;
-            if(!SKILLS[shot.skill]||(u.stun||0)>0||!this.fire(shot.skill,shot.angle,shot.power,true))this.finishAction();
+            const marked=markedMonsterTarget(this,u);
+            const fired=!!SKILLS[shot.skill]&&!(u.stun||0)&&this.fire(shot.skill,shot.angle,shot.power,true);
+            if(fired&&marked?.id===shot.target)consumeMonsterMark(this,u,shot.target);
+            if(!fired)this.finishAction();
             return;
         }
         if(this.planningRemaining<=0)return;
@@ -2402,6 +2415,7 @@ export class Engine {
         }
         // All decisions below use the position reached by walking/jumping, not a planned position.
         target=targetFor(this,u)||target;
+        if(beginMonsterA2Action(this,u,target))return;
         const pilot=u.honroMonsterEffectSkill;
         if(pilot&&enemyEffectEligible(b,u,pilot)&&!(u.enemyEffectCooldown||0)&&prepareEnemyEffect(this,u,pilot,target,target.x>=u.x?35:145,.5))return;
         if(beginKeeperRitual(this,u,target))return;
@@ -2422,12 +2436,12 @@ export class Engine {
             for(const e of this.actors(1).filter(v=>!v.summoned&&!v.honroObjectiveTarget&&Math.hypot(v.x-u.x,v.y-u.y)<700)){e.shield=Math.max(e.shield,Math.round(e.maxHp*.16));e.shieldUntil=b.teamEnds[0]+1;}
             this.fx('ring',u.x,u.y-u.h*.5,'#beccea',75);this.message(`${u.name} · 방호 부여`);this.finishAction();return;
         }
-        const available=u.loadout.map(id=>SKILLS[id]).filter(sk=>sk&&!sk.passive&&this.manaCost(sk,u)<=u.focus&&!enemyEffectEligible(b,u,sk.id));
+        const available=u.loadout.map(id=>SKILLS[id]).filter(sk=>sk&&!sk.passive&&this.manaCost(sk,u)<=u.focus&&!enemyEffectEligible(b,u,sk.id)&&!(b.honroMonsterCombatRevision===2&&u.honroMonsterA2Kind==='growth'&&sk.id==='HED01'));
         if(!available.length){u.shield=Math.max(u.shield,18);u.shieldUntil=b.teamEnds[0]+1;this.finishAction();return;}
         const betrayal=target.side===u.side&&target.id!==u.id&&(target.betrayalUntil||0)>=b.round;
         const betrayalSkill=available.find(v=>v.radius<70)||available[0];
         let choice=betrayal?{skill:betrayalSkill,aim:yield* this.searchShot(u,betrayalSkill,target,true)}:yield* chooseEnemyShotSteps(this,u,target,available);
-        if(!betrayal&&smartAim(this)){
+        if(!betrayal&&smartAim(this)&&!markedMonsterTarget(this,u)){
             // Weigh the reachable targets by what a real shot would achieve (finish a hero, join the
             // round's focus target), instead of committing to the nearest-first target and holding.
             let bestWorth=-Infinity,bestTarget=target,bestChoice=choice;
@@ -2446,7 +2460,7 @@ export class Engine {
         // Accuracy noise may not turn a safe decision into a suicidal shot through allies or a solid wall.
         let viable=shotViable(this,u,sk,target,aim.angle,aim.power,betrayal?target.id:undefined);
         if(!viable.ok){aim.angle=safeAngle;aim.power=safePower;viable=shotViable(this,u,sk,target,aim.angle,aim.power,betrayal?target.id:undefined);}
-        if(!viable.ok&&!betrayal&&!smartAim(this)){
+        if(!viable.ok&&!betrayal&&!smartAim(this)&&!markedMonsterTarget(this,u)){
             const alternatives=this.b.units.filter(v=>!v.dead&&v.id!==target!.id&&(v.side===0||v.side===2&&((v as any).honroAlly||v.id==='objective')))
                 .sort((a,c)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(c.x-u.x,c.y-u.y)).slice(0,2);
             for(const candidate of alternatives){const shot=yield* chooseEnemyShotSteps(this,u,candidate,available),test=shotViable(this,u,shot.skill,candidate,shot.aim.angle,shot.aim.power);
@@ -2477,7 +2491,7 @@ export class Engine {
         const result=evaluateStageEnd(this.stage,b,this.heroesAlive(),this.alive(1),obj,boss);
         const {win,lose,reason}=result;
         if (win || lose) {
-            b.phase = win ? 'won' : 'lost';clearEnemyEffects(b);clearKeeperRitual(b);delete b.summonTurn;
+            b.phase = win ? 'won' : 'lost';clearMonsterA2(b);clearEnemyEffects(b);clearKeeperRitual(b);delete b.summonTurn;
             b.winnerReason = reason;
             for(const p of b.projectiles)this.releaseCarried(p);b.projectiles = [];b.volley=undefined;
             this.cancelMovement();
@@ -2502,6 +2516,7 @@ export class Engine {
     tick(dt = STEP) {
         const b = this.b;
         if(this.noncombatWalk()){if(!['won','lost'].includes(b.phase)){this.counter++;b.turnAge+=dt;this.stepUnits(dt);if(this.active?.side===0)this.active.moveLeft=this.active.maxMove;}return;}
+        tickMonsterA2(this,dt);
         tickEnemyEffects(this,dt);
         tickKeeperRitual(this,dt);
         if (b.phase === 'won' || b.phase === 'lost'){cleanupPassiveHistory(this);return;}
