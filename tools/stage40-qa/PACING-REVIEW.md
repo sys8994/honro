@@ -80,3 +80,28 @@ The unchanged-product current-master functional run41729470340 is pending and
 is not included in this diagnosis. Source: archived original results/events and
 normal saves from the three named runs, current author, activation and movement
 candidate code. Current product is still3a7b9b88-equivalent.
+
+## First product comparison unit
+
+The first candidate keeps both original starting positions, all34/42 enemies,
+HP/skills, terrain, boss/tide cycles, objectives, story and action caps. A pure
+engine destination predicate selects only the two exact official campaign
+archers, their existing pilot revisions and declared supports. Stage31 can use
+upper-east/east-return but cannot voluntarily retreat east of6170. Stage40 can
+use its dock stair but not voluntarily retreat east of2360. An actor already
+outside because of knockback or an old save may take paid inward stepping stones.
+No pose, HP, saved metadata or physical collision rule is rewritten.
+
+Only a fresh Stage40 construction assigns the stair archer its own density cell
+with the narrow dock approach above. The other six members retain the original
+cell. Existing continued Stage40 battles keep their saved activation data, so
+their results cannot stand in for the new roster's activation comparison.
+Stage31 source payload is unchanged; its new runtime needs fresh probes/UI.
+
+Pure captured-state policy/negative-scope and one-actor author fixtures passed.
+The historical two-dock-position fixture explicitly accounts for the new cell
+and still checks every unrelated field. These are not physics or gameplay
+passes. Real compiled movement, fresh Stage31 normal completion and fresh
+Stage40 combat/return remain pending. No stale threat-memory or other QA policy
+change is bundled with this product unit; the initial before/after comparison
+will retain the original controller to isolate product effects.

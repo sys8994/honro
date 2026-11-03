@@ -2,6 +2,7 @@
  * as a real unit. Planning cannot damage, teleport, change RNG, or mutate the live roster. */
 import {beastKind,beastReach,beastContact} from './beastMelee';
 import {readyFinaleWarning} from './act4WarningQueue';
+import {cleanupDestinationAllowed} from './act4CleanupRoutes';
 import type {Engine} from './engine';
 import type {Unit,Skill,Vec,Terrain,AIMovePlan} from './types';
 import {SKILLS} from './data';
@@ -345,6 +346,7 @@ function candidates(e:Engine,u:Unit,target:Unit):Vec[]{
   if(x<30||x>e.b.width-30||Math.abs(x-u.x)>u.moveLeft||y<u.y-420||y>u.y+260)return;
   if(Math.hypot(x-u.x,y-u.y)<22||found.some(p=>Math.abs(p.x-x)<23&&Math.abs(p.y-y)<18))return;
   const foot=e.surface(x,y-3,y+4);if(!foot)return;
+  if(!cleanupDestinationAllowed(e.b,u,{x,y},foot.t.id))return;
   // Authored ground pursuit stays on its actual route supports. This is only
   // waypoint selection; impulses, jumping and paid locomotion remain physical.
   const supports=(u as any).honroPursuitSupports as string[]|undefined;
