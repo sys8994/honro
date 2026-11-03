@@ -276,3 +276,29 @@ net floor while damage is capped by remainingHP. This is a controller decision
 defect, not evidence that the enemy is physically inaccessible. See the narrow
 STAGE31-FINISHING-CORRECTION.md. No product/gate relaxation; failed20R evidence
 stays failed. One original-product focused normal-input verification is running.
+
+
+## Completed corridor comparisons and actual final2HP shot
+
+Original-product functional diagnostic41735690946 performed a normal O01 cast
+inR21 against the2HP foe and normal boarding/settlement inR23. The narrow QA
+finishing correction resolved its false rejection. This does not pass the
+original whole20R run. Source6e1dbd71, original artifactSHA
+a933a4858e51a706e879a74f28518bca5447fcb461809873cefa395918025c15.
+
+First candidate41733657544 Stage31 completed combatR13/boardingR14, but its
+affected archer was killed at the original spawn inR8 before ever acting.
+Corrected-runtime41737049354 completed combat/boardingR13,38shots,34kills and
+all4alive; the unchanged official20R gate passed. Its archer likewise died at
+spawn inR6 before acting. Neither result proves the retreat restriction caused
+the faster completion. Runtime/package source provenance is retained exactly.
+
+The first candidate's fresh Stage40 failed: R25 still has the final boss383HP;
+archer died enteringR9, three other heroes and all4residents survive. All stair
+enemies are gone byR20. It did not reach normal return, settlement or reload.
+No JS errors. Source5834456f, artifact13279948427 SHA256
+db68478566f4629140e7195bca1e2b23851186d6884b4d7eba84673272244967.
+This is not evidence that corrected outside-support eligibility fixes pacing.
+Do not blindly repeat or claim a corridor improvement. Compare the actual
+pressure/activation and previously verified Stage40 behavior before deciding
+the final narrow integration. Original archives and complete outcomes retained.
