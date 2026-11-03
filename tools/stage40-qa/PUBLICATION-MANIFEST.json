@@ -1,5 +1,5 @@
 {
-  "status": "DEV ONLY. Full browser R25/39 kills failure remains. Actual role split and retreat demonstrated; pending-warning queue starvation confirmed. Narrow Stage40 queue patch passed frozen A/B and typecheck. One actual warning comparison41642048069 running behind fresh normal Stage31 gate. Final A2 and total18–20 safe-return/fun acceptance pending.",
+  "status": "DEV ONLY. Narrow pending-warning queue correction passed actual browser comparison41642048069 and fresh Stage31 R15 boarding/normal gate. Full-stage R25 failure remains;18–20 total safe return, finalA2 and gameplay/fun acceptance pending.",
   "base": "7d2655bc3f88a7b20fb2d6ea1bc4c611583e9a15",
   "source": "e04ed9a66340cf101a39b21cc9ec4744f071cf38",
   "branch": "work/stage40-finale/20261103",
@@ -550,7 +550,10 @@
       "runId": 41642048069,
       "scope": "One unchanged R15-save warning driver comparison on narrow queue patch; fresh genuineStage31 gate required;not whole stage",
       "source": "fbfee413d02901501c4104d57d51d45c274714e7",
-      "status": "running"
+      "status": "passed-focused-only",
+      "artifactId": 13235351277,
+      "artifactSha256": "158215ef51c5a469322ddfdcd886c8269dea1c1d323e5be32cf2e2505251107d",
+      "outcome": "ActualR19 enemy firing after normal visible response;observedR20;freshStage31R15boarding;allheroes/residentsalive"
     }
   ]
 }

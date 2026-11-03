@@ -22,3 +22,13 @@ The isolated patch adds `shared/engine/src/act4WarningQueue.ts` and one guarded 
 `npm --prefix game run typecheck` passed. `node tools/stage40-qa/pending-warning-queue.test.mjs` passed14 frozen-state A/B cases plus controlled-actor guards against native96f203cb. The other-stage checks change metadata on the captured fixture; they are NOT natural Stage31/34/39 gameplay. The initial assertion failed solely because separate VM arrays have different prototypes; exact JSON values matched. That failed log is retained. The test now compares JSON-serialized queue records and still asserts the battle is unchanged by ranking.
 
 Actual browser warning firing, fresh normal Stage31 runtime evidence, combined A2 acceptance, and whole-stage18–20-round completion remain pending. No production approval is implied.
+
+## Actual browser correction comparison41642048069
+
+Frozen sourcefbfee413 (nativee04ed9a6), unchanged R15 profile/driver and bounded36 defensive actions/R24. New actual Stage31 first-shot trials and whole objective passed, with boarding atR15, zero enemies and all four heroes alive; the normal evidence gate and normal build passed. Runtime digest7ae278319004dd73ce772abc042c2d6e33c22d9e4691feac740484254013f1ad. This is newly measured evidence, not a relabeled old hash.
+
+Stage40: warning originatedR18, observed before the R19 response. The occultist normally moved x1653.095→1028.662 on the same dock, spending627.467 of2830 movement. The queued attack actually fired during the R19 enemy phase and was observed resolved at the next R20 ally boundary. The old source stayed telegraph throughR24. Warning readiness now follows the existing observed/responded promise without reducing damage or expanding the action cap.
+
+All four heroes and residents remained alive; all residents stayed1450HP. Across the entire intervening enemy phase the occultist2039→1855 and mage1735→1713 lost HP, while defensive recovery increased archer/knight HP. The record does not isolate each damage source, so this is not a zero-damage dodge claim. Desktop1440×900 and mobile844×390 actual images show the target ring and Korean warning clearly above the HUD. Lower stairs are outside/behind the mobile HUD in this zoom, so comprehensive mobile threat readability and actual touch controls remain unaccepted. No new UI/art change.
+
+Artifact13235351277, ZIP SHA256158215ef51c5a469322ddfdcd886c8269dea1c1d323e5be32cf2e2505251107d. Result/protocol and the fresh Stage31 package are archived alongside this report. This focused pass does not override the failed R25 full-stage outcome or establish18–20 total-round safe return, final A2 integration, earned campaign growth, or human fun acceptance.
