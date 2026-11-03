@@ -51,3 +51,5 @@ Independent review of the previous blend found improved continuity but large ang
 
 ## Regional rock continuity study
 The dense underlay experiment (run 41658607765) failed visual review because trace simplification read as camouflage. This follow-up returns to the full-domain rock and places three feathered copies of the original slope-traced vector at west, midwest and mirrored east ground. They are visual-only and clipped to the same physical road; repeated motifs, budget, quota, physical grounding, desktop/mobile appearance and independent review remain unverified.
+
+The regional preview (run 41659791145) showed that east rock was separated from the actual road by a plain band. This follow-up raises the east-only visual by 200 world units, still clipped to the unchanged collision road; runtime contact, overlap and aesthetics remain to be checked.
