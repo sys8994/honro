@@ -1,6 +1,6 @@
 /** Emits read-only browser planner from the registered native policy. */
 import {readFile,writeFile} from 'node:fs/promises';
-const dir=new URL('./',import.meta.url),src=await readFile(new URL('diagnostic-upperfix.mjs',dir),'utf8');
+const dir=new URL('./',import.meta.url),src=await readFile(new URL('diagnostic-finishing.mjs',dir),'utf8');
 let out=`op=>{const app=HonroApp,e=app.engine,b=e.b,g=window,C=HONRO_CORE,actions=[],assert={equal(a,z,m){if(a!==z)throw Error(m)}};const foes=()=>b.units.filter(v=>v.side===1&&!v.dead&&v.hp>0),heroes=()=>b.units.filter(v=>v.side===0&&!v.summoned&&!v.honroAct4Resident),surface=u=>e.contactSurface(u.x,u.y-4,u.y+5)?.t?.id||u.honroEncounterSupport;\n`;
 for(const name of ['legal-cast.mjs','role-route.mjs','role-route-deck.mjs','warning-route.mjs','upper-recovery-route.mjs'])out+=(await readFile(new URL(name,dir),'utf8')).replaceAll('export function','function');
 for(const [first,next]of [['function routeGoal','function advance'],['function plan','let failure=']]){const a=src.indexOf(first),z=src.indexOf(next,a);if(a<0||z<a)throw Error('Policy boundary missing '+first);out+=src.slice(a,z);}

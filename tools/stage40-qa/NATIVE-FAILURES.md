@@ -120,3 +120,14 @@ remaining. Knight's broad nearest-target fallback steered downhill toward it,
 causing water recoveriesR18/20/22 and eventual death. These are demonstrated
 controller defects, not evidence that ordinary combat pressure is unavoidable.
 Do not delete enemies, nerf stats or mark the posed route tests as a full pass.
+
+## upperfix-01, native16f88a28, local frozen source
+
+R25 failure,41/42 removed, all42 engaged, boss removedR15, four heroes and four
+residents survive, zero water recoveries. The same upper9HP foe remains.
+Actual support-jump routes return occultist to upper coastR15, knightR16,
+archer/mageR17. The planner then refuses the finishing hit because its scoring
+and damage filters require>30. No return occurred and no20R pass is claimed.
+Full local protocol/actions/96turn rows/analysis/final-profile are retained.
+The positive-damage finishing regression is documented separately; it does
+not rewrite this outcome or nerf the enemy.
