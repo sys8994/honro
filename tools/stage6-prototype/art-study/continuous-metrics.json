@@ -1,0 +1,138 @@
+{
+  "raw": "tools/stage6-prototype/art-study/continuous-raw.svg",
+  "candidate": "/tmp/s6-continuous-partition.svg",
+  "rawStats": {
+    "sourceBytes": 1640869,
+    "paths": 8,
+    "commands": 41331,
+    "segments": 37152,
+    "endpointNodesUpperBound": 41331,
+    "explicitCommandLetters": 15464,
+    "subpaths": 4179,
+    "pathChars": 1639605,
+    "maxPathChars": 334792
+  },
+  "candidateStats": {
+    "sourceBytes": 717690,
+    "paths": 25,
+    "commands": 16241,
+    "segments": 12038,
+    "endpointNodesUpperBound": 16241,
+    "explicitCommandLetters": 19190,
+    "subpaths": 4203,
+    "pathChars": 715638,
+    "maxPathChars": 88331
+  },
+  "visualApproval": "NOT REVIEWED",
+  "config": {
+    "id": "stage06-prototype:continuous-body-v1",
+    "name": "Stage6 continuous BODY study",
+    "semanticLayer": "BODY",
+    "category": "rock",
+    "bounds": {
+      "x": 0,
+      "y": 0,
+      "w": 2172,
+      "h": 724
+    },
+    "anchor": {
+      "x": 0,
+      "y": 0
+    },
+    "foot": {
+      "x": 0,
+      "y": 724
+    },
+    "preserveCompounds": true,
+    "params": {
+      "previewOnly": true
+    },
+    "sourcePalette": [
+      [
+        46,
+        61,
+        60
+      ],
+      [
+        48,
+        64,
+        62
+      ],
+      [
+        55,
+        70,
+        68
+      ],
+      [
+        64,
+        78,
+        77
+      ],
+      [
+        74,
+        87,
+        86
+      ],
+      [
+        78,
+        91,
+        49
+      ],
+      [
+        81,
+        93,
+        92
+      ],
+      [
+        83,
+        96,
+        94
+      ]
+    ]
+  },
+  "errors": {
+    "1": {
+      "rgbMAE255": 0.28019624948501587,
+      "rgbP99_255": 5.000014781951904,
+      "alphaMAE255": 0.008855854161083698,
+      "changedPixelFraction": 0.0009129129129129129,
+      "silhouetteMaxOffsetPx": 0.0,
+      "pass": true
+    },
+    "2": {
+      "rgbMAE255": 0.28122714161872864,
+      "rgbP99_255": 5.999999523162842,
+      "alphaMAE255": 0.0028418286237865686,
+      "changedPixelFraction": 0.0015787106446776612,
+      "silhouetteMaxOffsetPx": 0.0,
+      "pass": true
+    }
+  },
+  "timings": {
+    "raw-1": {
+      "width": 1000,
+      "height": 333,
+      "decodeMs": 55.116264,
+      "drawMs": 0.4141750000000002
+    },
+    "candidate-1": {
+      "width": 1000,
+      "height": 333,
+      "decodeMs": 22.870224000000007,
+      "drawMs": 0.4752460000000269
+    },
+    "raw-2": {
+      "width": 2000,
+      "height": 667,
+      "decodeMs": 61.62016300000005,
+      "drawMs": 1.6535550000000399
+    },
+    "candidate-2": {
+      "width": 2000,
+      "height": 667,
+      "decodeMs": 35.901793999999995,
+      "drawMs": 1.5463959999999588
+    }
+  },
+  "qualityPass": true
+}

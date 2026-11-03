@@ -1,0 +1,24 @@
+{
+  "id": "stage06-prototype:continuous-body-v1",
+  "name": "Stage6 continuous BODY study",
+  "semanticLayer": "BODY",
+  "category": "rock",
+  "bounds": {
+    "x": 0,
+    "y": 0,
+    "w": 2172,
+    "h": 724
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 724
+  },
+  "preserveCompounds": true,
+  "params": {
+    "previewOnly": true
+  }
+}
