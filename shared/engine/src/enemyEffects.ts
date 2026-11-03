@@ -10,13 +10,13 @@ export interface EnemyEffectCast {
  createdTeamEnd:number;seen:boolean;offered:boolean;responded:boolean;wind:number;sceneVersion:number;offeredIds:string[];respondedIds:string[];
 }
 export interface EnemyEffectAttack {id:string;sourceId:string;target:string;skill:EnemyEffectSkill;direction:number;}
-export interface EnemySoftBind {sourceId:string;attackId:string;remainingActions:1;factor:number;appliedRound:number;started:boolean;}
+export interface EnemySoftBind {sourceId:string;attackId:string;remainingActions:1;factor:number;appliedRound:number;started:boolean;withheld:number;}
 export interface EnemyPush {sourceId:string;attackId:string;remaining:number;direction:number;}
 const skillOK=(s:unknown):s is EnemyEffectSkill=>s==='HSH02'||s==='HWD02';
 const live=(u?:Unit)=>!!u&&!u.dead&&u.hp>0&&!u.eaterCapturedBy;
 const hero=(u?:Unit)=>live(u)&&u!.side===0&&!u!.summoned&&!u!.enthrall;
 export function enemyEffectEligible(b:Battle,u:Unit,skill:string){return b.honroMonsterEffectsRevision===1&&u.side===1&&live(u)&&skillOK(skill)&&u.honroMonsterEffectSkill===skill;}
-export function releaseEnemySoftBind(u:Unit,grace=1){if(!u.enemySoftBind)return;delete u.enemySoftBind;u.enemyControlGrace=Math.max(u.enemyControlGrace||0,grace);}
+export function releaseEnemySoftBind(u:Unit,grace=1){const bind=u.enemySoftBind;if(!bind)return;if(!u.acted&&bind.started)u.moveLeft=Math.min(u.maxMove*(u.bound>0?.45:1),u.moveLeft+bind.withheld);delete u.enemySoftBind;u.enemyControlGrace=Math.max(u.enemyControlGrace||0,grace);}
 export function clearEnemyEffects(b:Battle){for(const u of b.units){delete u.enemyEffectCast;delete u.enemyEffectRecovery;delete u.enemySoftBind;delete u.enemyPush;delete u.enemyControlGrace;}}
 export function observeEnemyEffectWarning(e:Engine,ownerId:string,serial:number){const c=e.unit(ownerId)?.enemyEffectCast;if(!c||c.serial!==serial)return false;c.seen=true;offerEnemyEffectResponses(e);return true;}
 export function offerEnemyEffectResponses(e:Engine){if(!e.canAct())return;const u=e.active!;if(!hero(u)||u.stunnedRound===e.b.round||u.meleeFollow==='ready')return;for(const owner of e.b.units){const c=owner.enemyEffectCast;if(c?.seen){if(!c.offeredIds.includes(u.id))c.offeredIds.push(u.id);if(c.target===u.id)c.offered=true;}}}
@@ -75,18 +75,21 @@ export function enemyEffectDamage(e:Engine,u:Unit,p:Projectile|undefined,hpLoss:
  u.enemyEffectHits=[...(u.enemyEffectHits||[]),a.id].slice(-64);
  if(a.skill==='HSH02'){
   if(u.enemySoftBind||(u.enemyControlGrace||0)>0)return;
-  u.enemySoftBind={sourceId:source.id,attackId:a.id,remainingActions:1,factor:.55,appliedRound:e.b.round,started:false};
-  if(!u.acted){u.moveLeft=Math.min(u.moveLeft,u.maxMove*.55);u.enemySoftBind.started=true;}
+  u.enemySoftBind={sourceId:source.id,attackId:a.id,remainingActions:1,factor:.55,appliedRound:e.b.round,started:false,withheld:0};
+  if(!u.acted)enemyEffectMovementBudget(u);
   e.fx('text',u.x,u.y-u.h-15,'#d0b2d1',14,'매듭 · 다음 행동 이동 55%');
  }else if(!u.fixed&&!u.summonFloating&&!u.airborne&&!u.jumping){
   u.enemyPush={sourceId:source.id,attackId:a.id,remaining:80,direction:a.direction};u.vx=u.vy=0;delete u.moveTarget;
  }
 }
-export function enemyEffectMovementBudget(u:Unit){if(u.enemySoftBind&&!u.acted){u.moveLeft=Math.min(u.moveLeft,u.maxMove*u.enemySoftBind.factor);u.enemySoftBind.started=true;}}
+export function enemyEffectMovementBudget(u:Unit){const bind=u.enemySoftBind;if(bind&&!u.acted){const cap=Math.min(u.moveLeft,u.maxMove*bind.factor);bind.withheld=u.moveLeft-cap;u.moveLeft=cap;bind.started=true;}}
 export function tickEnemyEffects(e:Engine,dt:number){
  const b=e.b;if(b.honroMonsterEffectsRevision!==1||['won','lost'].includes(b.phase)){clearEnemyEffects(b);return;}
  for(const u of b.units){
-  const c=u.enemyEffectCast;if(c&&(!enemyEffectEligible(b,u,c.skill)||!hero(e.unit(c.target))))delete u.enemyEffectCast;
+  const c=u.enemyEffectCast;if(c){
+   if(!enemyEffectEligible(b,u,c.skill)||!hero(e.unit(c.target)))delete u.enemyEffectCast;
+   else if(b.teamEnds[0]>c.createdTeamEnd&&!c.responded){delete u.enemyEffectCast;u.enemyEffectRecovery={attackId:'response-window-expired',serial:c.serial};}
+  }
   const bind=u.enemySoftBind;if(bind){const source=e.unit(bind.sourceId);if(!hero(u)||!source||!enemyEffectEligible(b,source,'HSH02')||b.round>bind.appliedRound+3)releaseEnemySoftBind(u);}
   const push=u.enemyPush;if(!push)continue;const source=e.unit(push.sourceId);
   if(!hero(u)||!source||!enemyEffectEligible(b,source,'HWD02')||u.fixed||u.airborne||u.jumping){delete u.enemyPush;continue;}
@@ -117,7 +120,7 @@ export function validateEnemyEffects(b:Battle){
   const recovery=u.enemyEffectRecovery;if(recovery&&(!id(recovery.attackId)||!Number.isSafeInteger(recovery.serial)||!n(recovery.serial))){delete u.enemyEffectRecovery;repaired=true;}
   if(u.honroMonsterEffectSkill!==undefined&&!skillOK(u.honroMonsterEffectSkill)){delete u.honroMonsterEffectSkill;repaired=true;}
   const c=u.enemyEffectCast;if(c&&!(c.version===1&&Number.isSafeInteger(c.serial)&&n(c.serial)&&skillOK(c.skill)&&u.honroMonsterEffectSkill===c.skill&&id(c.target)&&vec(c.origin)&&vec(c.impact)&&n(c.angle,-180,360)&&n(c.power,0,1)&&n(c.radius,0,300)&&[-1,1].includes(c.direction)&&n(c.createdTeamEnd)&&n(c.wind,-1000,1000)&&n(c.sceneVersion)&&Array.isArray(c.offeredIds)&&c.offeredIds.length<=80&&c.offeredIds.every(id)&&Array.isArray(c.respondedIds)&&c.respondedIds.length<=80&&c.respondedIds.every(v=>id(v)&&c.offeredIds.includes(v))&&[c.seen,c.offered,c.responded].every(x=>typeof x==='boolean')&&(!c.responded||c.offered)&&(!c.offered||c.seen))){delete u.enemyEffectCast;repaired=true;}
-  const s=u.enemySoftBind;if(s&&!(id(s.sourceId)&&id(s.attackId)&&s.remainingActions===1&&s.factor===.55&&n(s.appliedRound)&&typeof s.started==='boolean')){delete u.enemySoftBind;repaired=true;}
+  const s=u.enemySoftBind;if(s&&!(id(s.sourceId)&&id(s.attackId)&&s.remainingActions===1&&s.factor===.55&&n(s.appliedRound)&&typeof s.started==='boolean'&&n(s.withheld,0,10000))){delete u.enemySoftBind;repaired=true;}
   const p=u.enemyPush;if(p&&!(id(p.sourceId)&&id(p.attackId)&&n(p.remaining,0,80)&&[-1,1].includes(p.direction))){delete u.enemyPush;repaired=true;}
   if(u.enemyControlGrace!==undefined&&(!Number.isInteger(u.enemyControlGrace)||!n(u.enemyControlGrace,0,2))){delete u.enemyControlGrace;repaired=true;}
   if(u.enemyEffectHits!==undefined&&(!Array.isArray(u.enemyEffectHits)||u.enemyEffectHits.length>64||!u.enemyEffectHits.every(id))){delete u.enemyEffectHits;repaired=true;}
