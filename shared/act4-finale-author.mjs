@@ -8,7 +8,7 @@ export function authorAct4Finale(stage,point){
  const groups=[
  ['west-front','coast-west','추격 전위와 경사 후방 사수',[['hound',1660],['hound',1760],['possessedGuard',1880],['possessedArcher',2040],['possessedGuard',2125],['possessedArcher',2240]]],
  ['west-anchor','coast-west','결박을 피해 선착장으로 내려가는 진입전',[['possessedGuard',2355],['shade',2440,'bind'],['hound',2550],['possessedArcher',2670],['possessedGuard',2790],['possessedArcher',2960],['hound',3120]]],
- ['dock-left','dock','하역장 측면 사수와 엄폐 전위',[['possessedArcher',290],['possessedArcher',420],['possessedGuard',560],['hound',700],['possessedGuard',840],['hound',1020],['possessedArcher',1190]]],
+ ['dock-left','dock','하역장 측면 사수와 엄폐 전위',[['possessedArcher',1290],['possessedArcher',930],['possessedGuard',560],['hound',700],['possessedGuard',840],['hound',1020],['possessedArcher',1190]]],
  ['dock-right','dock','곡사 봉쇄와 노출 창을 이용하는 선착장 교전',[['possessedGuard',1490],['hound',1580],['warden',1660,'arc'],['possessedArcher',1740],['hound',1870],['possessedGuard',1990],['possessedArcher',2150]]],
  ['dock-stair','dock-stair','상층에서 내려오는 병력과 아래쪽 방어선의 교차 사선',[['possessedGuard',1940],['possessedArcher',2030],['hound',2120],['possessedGuard',2210],['possessedArcher',2310],['hound',2400],['possessedArcher',2485]]],
  ['departure-upper','departure-stair','보스 접근 경사의 호위와 높은 사격점',[['possessedArcher',1620],['possessedGuard',1695],['hound',1775],['possessedArcher',1850],['possessedGuard',1930]]],
