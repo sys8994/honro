@@ -7,6 +7,7 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'act4-ci'))
 from precise_aim import aim_with_joystick
+from role_outcome import useful_role_effect
 root=Path(os.environ.get('HONRO_REPO_ROOT','.')).resolve();out=Path(os.environ['HONRO_CAPTURE_OUT']);out.mkdir(parents=True,exist_ok=False)
 bridge=(Path(__file__).parent/'browser-planner.js').read_text()
 raw=lzma.decompress((root/'tools/stage40-qa/records/41624405996-r14-start-profile.json.xz').read_bytes())
@@ -70,7 +71,8 @@ with sync_playwright() as w:
   finally:p.keyboard.up('Space')
   p.wait_for_timeout(1200);ready();after=state()
   damage=sum(u['hp'] for u in before['foes'])-sum(u['hp'] for u in after['foes']);friendly=sum(max(0,u['hp']-next(v['hp'] for v in after['health'] if v['id']==u['id'])) for u in before['health'])
-  record('role-shot',{'actor':actor,'choice':c,'actual':p.evaluate('(id)=>HonroApp.engine.b.lastShots[id]',actor),'enemyHpLoss':damage,'friendlyHpLoss':friendly});assert damage>0 and friendly==0
+  healing=sum(max(0,next(v['hp'] for v in after['health'] if v['id']==u['id'])-u['hp']) for u in before['health'])
+  record('role-shot',{'actor':actor,'choice':c,'actual':p.evaluate('(id)=>HonroApp.engine.b.lastShots[id]',actor),'enemyHpLoss':damage,'friendlyHpLoss':friendly,'friendlyHpGain':healing});assert useful_role_effect(c['id'],damage,friendly,healing),'Role produced no useful safe attack/support effect'
  try:
   p.goto(os.environ['HONRO_CAPTURE_URL'],wait_until='domcontentloaded');p.wait_for_function('window.HonroApp')
   p.locator('[data-action="settings"]').first.click();p.get_by_text('기록·관리',exact=False).click();p.get_by_text('JSON 기록 가져오기',exact=True).click();p.get_by_text('파일 선택',exact=True).click();p.locator('#file-import').set_input_files(str((out/'source-profile.json').resolve()))
@@ -98,6 +100,8 @@ with sync_playwright() as w:
   try:record('failure');p.screenshot(path=str(out/'failure.png'))
   except Exception:pass
  finally:
+  try:(out/'final-storage.json.xz').write_bytes(lzma.compress(p.evaluate("localStorage.getItem('honro-first-act-profile-1')").encode()))
+  except Exception:pass
   result['elapsedSeconds']=time.monotonic()-started if 'started' in locals() else None
   (out/'result.json').write_text(json.dumps(result,ensure_ascii=False,indent=2));browser.close()
 if not result['passed']:raise SystemExit(1)
