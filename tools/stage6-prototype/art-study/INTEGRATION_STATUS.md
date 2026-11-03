@@ -79,3 +79,6 @@ Independent review of the prior angular underlay (run 41670570986) rejected larg
 
 ## Asymmetric panorama revision
 The preceding panorama (run 41671931896) improved continuity but independent review rejected the central thick V-shaped fracture. This source revision removes it and uses smaller irregular faces; the original, half-size Lanczos trace input and 5-color speckle-80 path are preserved. The full-size trace exceeded native budget. All screenshot contour guidance remains illustrative; the physical road clip remains unchanged. Pixel fidelity, potential symmetry, camera edges, performance and mobile gameplay remain unapproved.
+
+## Panorama with distinct surface formations
+Independent overview and detailed review of the preceding panorama (run 41673852519) rejected weak repetitive/camouflage-like surface detail, despite removing the V-shaped fracture. This experiment retains its quiet continuous lower bed but restores the earlier independently traced west and east surface exposures. The overlap boundaries, duplication, terrain readability, source fidelity, mobile view and exact-candidate performance/save tests are still pending.
