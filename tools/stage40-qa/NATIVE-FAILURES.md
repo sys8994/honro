@@ -131,3 +131,33 @@ and damage filters require>30. No return occurred and no20R pass is claimed.
 Full local protocol/actions/96turn rows/analysis/final-profile are retained.
 The positive-damage finishing regression is documented separately; it does
 not rewrite this outcome or nerf the enemy.
+
+## Finishing comparison and exact settled-save continuation
+
+Native `3e84de7726215bbbda87d14d3a2f45b7d6fe7d90`, registered
+`stage40-finishing-01`, used the original normal-entry profile and only the
+previously demonstrated positive-damage planner correction. It removed all42
+atR16, then used the same App inputs and original quiet/escort/story gate to
+reach won and ordinary result continuation atR18. Four heroes and all four
+residents survived. All13 current Stage40 story rows were persisted, with the
+original roster13/living11/priorDeaths2. No product stat/count change.
+
+The original result is retained with `fullReturn:false`: after actual settlement,
+the native adapter attempted to set `app.scene.render` while rest intentionally
+has no scene. This is a harness lifecycle failure, not a changed victory rule.
+A null guard now allows ordinary App rest frames. The exact saved outcome
+SHA256 `14f310cfd694d74f7238bbf8e05acc786b8ebff80062c36741cc3faf3737204c`
+was then normally loaded and continued by `settled-reload.test.mjs`. Only the
+normal equipment reward notification changed false to true; growth, gear,
+clear, recruitment and Act4 receipts otherwise matched exactly. A second
+normal reload preserved the settled projection. No combat was replayed and no
+state was injected to claim an earlier victory. The first reload probe omitted
+the production Act4 build flag and remained at title; enabling the same flag as
+the original bootstrap reproduced the correct rest continuation.
+
+This establishes a native functional evidence chain R1→combatR16→safe
+return/settlementR18→exact-save reload. It does not establish browser rendering,
+actual pointer/keyboard fidelity, readability, human fun, cohort success rate,
+or final A2-integrated-source acceptance. The original result and follow-up
+`settled-reload.json` remain separate under the run directory. All older failed
+outcomes remain failures.

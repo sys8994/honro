@@ -12,7 +12,7 @@ export function createPlayerOperations({app,g,C,record=()=>{},render=()=>{}}){
  function frame(){
   assertSupportedPlayerOperation('frame');now+=C.STEP*1000;frames++;
   if(app.dialogue)g.HonroStory.next(app);
-  app.stick.x=pendingMove;pendingMove=0;app.scene.render=render;app.frame(now);app.stick.x=0;
+  app.stick.x=pendingMove;pendingMove=0;if(app.scene)app.scene.render=render;app.frame(now);app.stick.x=0;
   if(app.lastError)throw Error('Production App.frame failed: '+app.lastError);
  }
  function ready(limit=30000){for(let n=0;n<limit&&!allowed()&&!terminal();n++)frame();return allowed();}

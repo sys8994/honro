@@ -104,7 +104,9 @@ def finish_escort(p,out):
   pan(g['marks']['boat'] if current in ['boarding','sailing'] else g['marks']['safe']);p.wait_for_timeout(1000)
  assert state()['escort']['phase']=='safe'
  pan(g['marks']['safe']);ready();pan(g['marks']['ridge']);pan(g['marks']['dislocation']);ready();s=record('gathered')
- rows=[f'A4.S40.{prefix}.{i:02d}' for prefix,count in [('BOARD',2),('REUNION',2),('THIRTEEN',3),('NEXT',4)] for i in range(1,count+1)]
+ reviewed=json.loads((Path(__file__).resolve().parents[2]/'shared/data/act4/reviewed.json').read_text())
+ rows=[line[0] for scene in reviewed['scenes'] if scene['stage']==40 for line in scene['lines']]
+ assert rows,'Current Stage40 dialogue contract is empty'
  presented=[r for e in s['events'].values() for r in e.get('presented',[])];retired=[r for e in s['events'].values() for r in e.get('retired',[])]
  assert all(r in presented and r not in retired for r in rows),(presented,retired)
  assert s['roster']=={'total':13,'living':11,'priorDeaths':2},s['roster']
