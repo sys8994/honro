@@ -85,3 +85,40 @@ selected. A bounded 15-second interruption handler stays within the original
 20-second crossing deadline. A model test checks release → Next → resume order
 and rejects unknown dialogue/resource mutations. Eight helper/JS tests pass;
 actual final crossing/save/reload is still pending the focused corrected run.
+
+### Actual browser acceptance: run 41549658978
+
+On 2026-11-03, focused run `41549658978` succeeded on request
+`98d394979d2435bf8225f8cf9d40f087d291fe35`, harness `614c92e4`, and unchanged
+exact generated candidate `781cb3bc0441b58330105e812cef8b16c7473c4d`.
+Artifact `13191085652` (ZIP SHA256
+`f548cf3d9a2e701920e55b717c3992baa6cf074b81c0ff57a16de0b3d197ec85`)
+was downloaded and its result and all four actual screenshots inspected.
+
+- Normal Continue restored the repaired gate in both terrains within 591 ms;
+  initial party, objectives, proof, HP, focus, movement and positions matched the
+  exact old save. Imported profile SHA256:
+  `b2a8ea47372a7af7414460f2cd464889b07dca066cb31de4aa596cabf3e1db7a`.
+- Twenty-five ordinary movement observations crossed the former gate (x9300–9410).
+  Archer moved from (8879.629, 4580) to (9474.936, 4604.979), full body beyond
+  the gate. Movement decreased from 1609 to 1009.640; HP remained 577.9 and
+  round remained 34. Other party resources and all objective/proof fields stayed
+  unchanged. No attack, jump, turn completion or state mutation was used.
+- One recorded visible Next click completed the legitimate `A2.S17.MID.11`
+  dialogue. No choice, forced outcome or synthetic completion was used.
+- Normal autosave retained the crossed position and both open gates; the saved
+  projected receipt equals the subsequent reload/Continue live receipt exactly.
+- Result passed with no page errors, exception, profile lock or save warning.
+
+Inspected artifact screenshots under
+`candidate/_local/reports/stage17-gate-browser/`:
+`repaired-before-crossing.png`, `crossing-dialogue.png`,
+`crossed-repaired-gate.png`, `reloaded-crossed-gate.png`.
+Local preserved download: `_local/reports/stage17-pass41549658978/`.
+The first/reloaded images include the ordinary R34 turn banner; the crossed
+image shows the actor on the descending path beyond the repaired passage.
+
+This closes the repaired-gate Continue → actual movement → autosave → reload
+regression for this exact generated candidate and old interrupted native save.
+It is not a fresh Stage17 clear, continuous campaign, or new combat-rate sample.
+The two earlier controller failures remain archived and are not relabeled passes.
