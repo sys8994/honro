@@ -38,7 +38,9 @@ export const BIER_DENSITY_ACTIVATION={
 };
 export function bierEntrySpec(roster='density36e9'){const at=(id,x,spacing=130)=>({...bierPose(id,x),support:id,spacing,maxDistance:0}),dense=roster==='density36e9';return{
  'stage8-first-seal':dense?{side:'west',...at('s8-west-walk',3060,100),members:[{kind:'hound',...at('s8-west-walk',2960),role:'seal-return-front'},{kind:'hound',...at('s8-west-walk',3060),role:'seal-return-pair'},{kind:'crow',x:3030,y:3530,air:true,role:'seal-return-overwatch'}],alternates:[{...at('s8-ground',2720,100),members:[{kind:'hound',...at('s8-ground',2670),role:'seal-return-front'},{kind:'hound',...at('s8-ground',2770),role:'seal-return-pair'},{kind:'crow',x:2700,y:3510,air:true,role:'seal-return-overwatch'}]}]}:{side:'west',...at('s8-ground',1550),alternates:[at('s8-ground',1120)]},
- 'stage8-settled-crows':dense?{side:'upper-branch',x:6170,y:3830,spacing:105,maxDistance:0,air:true,alternates:[{x:6390,y:3630,spacing:105,maxDistance:0,air:true}]}:{side:'upper-branch',x:5220,y:2290,spacing:145,maxDistance:0,air:true,alternates:[{x:5670,y:2510,spacing:145,maxDistance:0,air:true}]},
+ // Three 184px crow flight envelopes need real separation; the west fallback
+ // remains in the settled courtyard air pocket when its east edge is occupied.
+ 'stage8-settled-crows':dense?{side:'upper-branch',x:6170,y:3930,spacing:220,maxDistance:0,air:true,alternates:[{x:5970,y:3930,spacing:220,maxDistance:0,air:true}]}:{side:'upper-branch',x:5220,y:2290,spacing:145,maxDistance:0,air:true,alternates:[{x:5670,y:2510,spacing:145,maxDistance:0,air:true}]},
  // The bier settles at C (5950/6150), not its original F hatch at8290.
  // Late hounds enter the same upper road on its east flank, not 3,000 away.
  'stage8-low-health':dense?{side:'east',...at('s8-court',6480,100),label:'중앙 마당 동쪽 오름길',region:'central-court',variants:[
