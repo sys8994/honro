@@ -39,6 +39,7 @@ jobs:
           trap 'kill $! 2>/dev/null || true' EXIT
           sleep 2
           python tools/stage6-prototype/capture-preview.py
+          python tools/stage6-prototype/input-camera-review.py
       - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
         if: always()
         with:
