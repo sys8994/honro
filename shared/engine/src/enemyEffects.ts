@@ -132,5 +132,5 @@ export function validateEnemyEffects(b:Battle){
   if(u.enemyEffectHits!==undefined&&(!Array.isArray(u.enemyEffectHits)||u.enemyEffectHits.length>64||!u.enemyEffectHits.every(id))){delete u.enemyEffectHits;repaired=true;}
  }
  for(const p of b.projectiles){const a=p.enemyEffectAttack;if(a&&!(id(a.id)&&id(a.sourceId)&&id(a.target)&&skillOK(a.skill)&&[-1,1].includes(a.direction))){delete p.enemyEffectAttack;delete p.enemyEffectWind;repaired=true;}}
- if(repaired)b.events.push('손상된 몬스터 특수 효과만 취소했다. 전투 기록은 유지된다.');
+ if(repaired)b.events=[...b.events,'손상된 몬스터 특수 효과만 취소했다. 전투 기록은 유지된다.'].slice(-30);
 }
