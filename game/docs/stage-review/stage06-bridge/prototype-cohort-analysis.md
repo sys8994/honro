@@ -1,0 +1,21 @@
+# Stage 6 prototype cohort: decisions still open
+
+This is analysis of the ten unshipped prototype traces listed in `prototype-cohort-results.json`, not final-source acceptance. All ten passed the programmed objective (exploratory lower R9/9/10, exploratory upper R8/8/8, holdout lower R8/10, holdout upper R9/9). They share engine seed 19388 and vary App aim input; no claim of human win rate or fun follows from these results. Source, raw trace hashes, and the known misleading `inputErrorDegrees` field are recorded in the results. Raw inputs contain the actual aim variation.
+
+## Route and combat observations
+
+* The policy named lower is not a strictly lower-only route: in all five cases the archer used `bridge-west`; in two of the five it also used `bridge-mid`. It is therefore not an isolated lower-route control.
+* In all five upper-rejoin cases, sampled support includes `bridge-east` and `lower-lookout`. The authoritative App input record includes actor coordinates before firing: all five fired A02 from the lookout in R5 at about x4790/y2475 and each produced subsequent damage to `foe-2-cluster`. One case also fired from east bridge in R4. Some higher-level result-log fire entries omit coordinates; they must not be used alone to conclude that the lookout was unused. This demonstrates one real covering opportunity, not a comparative human-fun verdict or proof that both alternatives are balanced.
+* In all five upper-rejoin traces, the archer suffered an unattributed 33 HP loss in R6 during the return. In seed 2362 the following sampled pose is on `lower-road` at approximately x4089/y3271; descent damage is plausible but not proven by the existing record. Compare a controlled vertical landing or east-end descent with actual App input and damage attribution before saying return is safe. Do not adjust terrain or disregard collision to conceal it.
+* The current route requests westward rejoin from the lookout around x4800 to x3500. The existing lookout extends x4620–5100, and the lower road rises eastward, so a right-end descent may reduce drop distance. The east rock and stag can interfere: measure walking, collision, sightline, and attack exposure. This is a hypothesis, not a tested solution.
+* Convoy gross damage across all ten was 165–211 HP, including 43–47 HP from identified pursuit units. This is not a no-pressure encounter. It also does not prove that warning placement, response, or escort threat are balanced for humans.
+* Raw observations record five completed enemy actions per enemy phase in these ten cases, but they do not reliably distinguish meaningful actions from idle/no-target actions. Do not substitute this number for the v3 effective-action metric. Normal noncritical damage percentages are likewise not identifiable from these traces and need explicit future instrumentation.
+* Sampled individual support extrema are not equivalent to the required continuous party route. Notably archer span in lower holdout 2461 was 1,378, while the other recorded archer spans were about 1,470–1,490. Mage spans around 1,347–1,357 do not require forced party detours. Measure the actual mandatory party route under the stated criterion.
+
+## Next gates
+
+1. Inspect whether the observed lookout firing opportunity and enemy cover, sightlines and timing create a meaningful choice. Compare a genuine lower route and an upper route without changing objectives or adding kill requirements.
+2. Attribute the 33 HP return loss and test legal, nonteleporting descent with actual App input; retain any failures. Check the placed stag, rock, and carrier collision.
+3. Finish art/geometry alignment and safe save revision/Continue, then rerun route, pursuit warning/opportunity and PC/mobile camera/aim/projectile checks on the exact integrated source.
+4. Preserve the Stage31 failed artifact; its full gate remains unresolved. Do not infer late-run equivalence from the first-eight-shot A/B.
+5. Storage is below the pre-registered heavy-test threshold. Existing evidence is retained and additionally archived in `prototype-cohort-evidence-20261103.tar.gz` (SHA-256 `1828543746b9017d9c0b4d545c36fb39ddda3474f8f12a373554447a9c86ca32`). Resume heavy tests only with sufficient durable space and no removal of protected material.
