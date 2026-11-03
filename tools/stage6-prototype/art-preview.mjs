@@ -22,9 +22,16 @@ export function applyStage6ArtPreview(input){
  // Each section is an independent source-traced formation, registered to the
  // geometry-guide's world-coordinate rectangle; seam clips are visual only.
  const sections=[{zone:'westZone',transform:[2500/west.vector.viewBox[2],0,0,3850/west.vector.viewBox[3],0,1650],art:west.vector.root},{zone:'middleZone',transform:[2400/middle.vector.viewBox[2],0,0,3850/middle.vector.viewBox[3],2100,1650],art:middle.vector.root},{zone:'eastZone',transform:[2600/east.vector.viewBox[2],0,0,3750/east.vector.viewBox[3],4000,1750],art:east.vector.root}];
- const zones={road:[contour],westZone:['M-4000 0H2300V10000H-4000Z'],middleZone:['M2300 0H4300V10000H2300Z'],eastZone:['M4300 0H10600V10000H4300Z']};
+ const zones={road:[contour],westZone:['M0 0H2300V2400L2220 2600L2350 2900L2180 3200L2320 3550L2170 3900L2340 4300L2200 4700L2300 5100V5500H0Z'],middleZone:['M2300 0H4300V2400L4220 2600L4350 2900L4180 3200L4320 3550L4170 3900L4340 4300L4200 4700L4300 5100V5500H2300V5100L2200 4700L2340 4300L2170 3900L2320 3550L2180 3200L2350 2900L2220 2600L2300 2400Z'],eastZone:['M4300 0H6600V5500H4300V5100L4200 4700L4340 4300L4170 3900L4320 3550L4180 3200L4350 2900L4220 2600L4300 2400Z']};
  const body={...west,id:'stage06-prototype:assembled-body-v1',name:'Stage6 unshipped traced BODY study',bounds:ext,reference:{...west.reference,bounds:ext,foot:{x:0,y:3800},heightM:86.6666666667},params:{...west.params,collisionSource:'lower-road',prototypeGeometrySha256:expected,previewOnly:true},vector:{version:1,viewBox:[ext.x,ext.y,ext.w,ext.h],clips:zones,root:{tag:'g',clipPath:'road',children:[{tag:'path',d:contour,fill:'#364441'},...sections.map(z=>({tag:'g',clipPath:z.zone,children:[{tag:'g',transform:z.transform,children:[clone(z.art)]}]}))]}}};
  project.library.push(body);s.elements.push({id:'stage06-prototype-body',assetId:body.id,x:0,y:0,scale:1,rotation:0,layer:'prop',depthLayer:'L1',visualRole:'scenery'});
+ // Extend visual formations by mirroring at their own edges, not by changing
+ // terrain. These continuations are clipped again to the physical road.
+ const original=body.vector.root.children.slice(1);
+ const formation={tag:'g',children:original};
+ const extra=[['left',[-1,0,0,1,0,0],formation],['right',[-1,0,0,1,13200,0],formation],['bottom',[1,0,0,-1,0,11000],formation],['bottom-left',[-1,0,0,-1,0,11000],formation],['bottom-right',[-1,0,0,-1,13200,11000],formation]];
+ for(const [name,transform,art] of extra){const asset=clone(body);asset.id=body.id+'-'+name;asset.name='Stage6 reflected domain study '+name;asset.vector.root={tag:'g',clipPath:'road',children:[{tag:'g',transform,children:[clone(art)]}]};project.library.push(asset);s.elements.push({id:'stage06-prototype-body-'+name,assetId:asset.id,x:0,y:0,scale:1,rotation:0,layer:'prop',depthLayer:'L1',visualRole:'scenery'});}
+
  // One traced support per broken span. Foot and socket are explicitly registered
  // to the physical floor/deck; these are art only and do not add collision.
  for(const [id,x,deck,mirror] of [['west',2000,1875,false],['mid',3150,1830,false],['east',4520,1948,true]]){

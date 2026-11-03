@@ -5,7 +5,7 @@ const input=JSON.parse(readFileSync('shared/data/campaign.json')),physical=autho
 for(const key of ['terrains','materials','units','events','objectives','markers'])assert.deepEqual(b[key],a[key],key+' must not change');
 assert.deepEqual(preview.stages.filter(s=>s.metadata?.stageId!==6),physical.stages.filter(s=>s.metadata?.stageId!==6));
 for(const e of a.elements){const asset=physical.library.find(x=>x.id===e.assetId);if(asset?.collision?.length){const moved=b.elements.find(x=>x.id===e.id);assert.deepEqual(moved,e,'Collision-bearing instance must not move: '+e.id)}}
-const assets=preview.library.filter(a=>a.id.startsWith('stage06-prototype:'));assert.equal(assets.length,4);assert(assets.every(a=>a.collision.length===0&&a.params.previewOnly));
+const assets=preview.library.filter(a=>a.id.startsWith('stage06-prototype:'));assert.equal(assets.length,9);assert(assets.every(a=>a.collision.length===0&&a.params.previewOnly));
 const road=b.terrains.find(t=>t.id==='lower-road'),body=assets.find(x=>x.id.includes('assembled-body'));
 const contour=road.points.map((p,i)=>(i?'L':'M')+p.x+' '+p.y).join('')+'Z';assert.deepEqual(body.vector.clips.road,[contour]);
 for(const id of ['west','mid','east']){const p=assets.find(x=>x.id.endsWith('pier-'+id));assert(Math.abs(p.reference.foot.y-floor(p.reference.foot.x))<1e-7);assert(p.params.groundY>p.params.deckY);}
