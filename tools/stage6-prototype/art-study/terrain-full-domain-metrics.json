@@ -1,0 +1,433 @@
+{
+  "source": "tools/stage6-prototype/art-study/terrain-full-domain-raw.svg",
+  "originalSha256": "1295e2e70e86cea3251908af4ee58937e4091ac97e05ab9f135fc974415da444",
+  "rawSha256": "a9bef4b0ab491e4f902ef99bc391169d2c8c54ccc6558ca838a43d8623ccf65b",
+  "removedReferenceImages": [],
+  "width": 1536,
+  "scales": [
+    1,
+    2
+  ],
+  "limits": {
+    "rgbMAE255": 2,
+    "silhouettePx": 1.5,
+    "protectedRgbMAE255": 1,
+    "protectedPx": 0.5,
+    "protectedChangedPixelFraction": 0.05
+  },
+  "protectedRects": [],
+  "protectedMask": null,
+  "provisional": true,
+  "visualApproval": "NOT REVIEWED \u2014 candidate only; human inspection mandatory",
+  "protectionMode": "feature",
+  "protectedPolylines": [],
+  "baseline": {
+    "sourceBytes": 682499,
+    "paths": 5,
+    "commands": 14944,
+    "segments": 14618,
+    "endpointNodesUpperBound": 14944,
+    "explicitCommandLetters": 2019,
+    "subpaths": 326,
+    "pathChars": 681386,
+    "maxPathChars": 225111,
+    "render": {
+      "1": {
+        "width": 1536,
+        "height": 1024,
+        "decodeMs": 30.602708000000007,
+        "drawMs": 3.0664350000000127
+      },
+      "2": {
+        "width": 3072,
+        "height": 2048,
+        "decodeMs": 50.53372300000001,
+        "drawMs": 13.140979000000016
+      }
+    }
+  },
+  "candidates": [
+    {
+      "candidate": "raw",
+      "sourceBytes": 682499,
+      "paths": 5,
+      "commands": 14944,
+      "segments": 14618,
+      "endpointNodesUpperBound": 14944,
+      "explicitCommandLetters": 2019,
+      "subpaths": 326,
+      "pathChars": 681386,
+      "maxPathChars": 225111,
+      "errors": {
+        "1": {
+          "rgbMAE255": 0.0,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.0,
+          "changedPixelFraction": 0.0,
+          "silhouetteMaxOffsetPx": 0.0,
+          "pass": true
+        },
+        "2": {
+          "rgbMAE255": 0.0,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.0,
+          "changedPixelFraction": 0.0,
+          "silhouetteMaxOffsetPx": 0.0,
+          "pass": true
+        }
+      },
+      "render": {
+        "1": {
+          "width": 1536,
+          "height": 1024,
+          "decodeMs": 33.83553600000005,
+          "drawMs": 4.491820000000018
+        },
+        "2": {
+          "width": 3072,
+          "height": 2048,
+          "decodeMs": 54.094209999999975,
+          "drawMs": 13.378757000000007
+        }
+      },
+      "budgetPass": false,
+      "diagnostic": "path5: inseparable contour/hole component is 143141 characters (68 contours), limit 60000. In Inkscape simplify this component with silhouette/hole protection or divide into separately authored non-overlapping objects; do not blindly break apart holes.",
+      "importSeconds": 0.0860198290029075,
+      "qualityPass": true,
+      "feasible": false
+    },
+    {
+      "candidate": "simplify-0.00045",
+      "sourceBytes": 184859,
+      "paths": 5,
+      "commands": 3992,
+      "segments": 3666,
+      "endpointNodesUpperBound": 3992,
+      "explicitCommandLetters": 1068,
+      "subpaths": 326,
+      "pathChars": 184141,
+      "maxPathChars": 52912,
+      "errors": {
+        "1": {
+          "rgbMAE255": 0.1623053103685379,
+          "rgbP99_255": 4.999999523162842,
+          "alphaMAE255": 0.040668487548828125,
+          "changedPixelFraction": 0.0007088979085286459,
+          "silhouetteMaxOffsetPx": 1.0,
+          "pass": true
+        },
+        "2": {
+          "rgbMAE255": 0.15304137766361237,
+          "rgbP99_255": 5.000014781951904,
+          "alphaMAE255": 0.028423786163330078,
+          "changedPixelFraction": 0.0011262893676757812,
+          "silhouetteMaxOffsetPx": 1.0,
+          "pass": true
+        }
+      },
+      "render": {
+        "1": {
+          "width": 1536,
+          "height": 1024,
+          "decodeMs": 21.62877599999996,
+          "drawMs": 3.242856999999958
+        },
+        "2": {
+          "width": 3072,
+          "height": 2048,
+          "decodeMs": 38.408750000000055,
+          "drawMs": 14.927607999999964
+        }
+      },
+      "budgetPass": true,
+      "nodes": 10,
+      "normalizedMaxPathChars": 59480,
+      "normalizedPaths": 6,
+      "importSeconds": 0.1517503570066765,
+      "qualityPass": true,
+      "feasible": true,
+      "simplifySeconds": 5.727010468021035
+    },
+    {
+      "candidate": "simplify-0.0005",
+      "sourceBytes": 172350,
+      "paths": 5,
+      "commands": 3734,
+      "segments": 3408,
+      "endpointNodesUpperBound": 3734,
+      "explicitCommandLetters": 1070,
+      "subpaths": 326,
+      "pathChars": 171632,
+      "maxPathChars": 49066,
+      "errors": {
+        "1": {
+          "rgbMAE255": 0.1763065904378891,
+          "rgbP99_255": 5.000014781951904,
+          "alphaMAE255": 0.043392181396484375,
+          "changedPixelFraction": 0.0007801055908203125,
+          "silhouetteMaxOffsetPx": 1.0,
+          "pass": true
+        },
+        "2": {
+          "rgbMAE255": 0.1703549474477768,
+          "rgbP99_255": 5.999999523162842,
+          "alphaMAE255": 0.033037979155778885,
+          "changedPixelFraction": 0.0013273557027180989,
+          "silhouetteMaxOffsetPx": 1.0,
+          "pass": true
+        }
+      },
+      "render": {
+        "1": {
+          "width": 1536,
+          "height": 1024,
+          "decodeMs": 21.562562999999955,
+          "drawMs": 3.505065000000002
+        },
+        "2": {
+          "width": 3072,
+          "height": 2048,
+          "decodeMs": 40.78161600000004,
+          "drawMs": 12.83623399999999
+        }
+      },
+      "budgetPass": true,
+      "nodes": 9,
+      "normalizedMaxPathChars": 56188,
+      "normalizedPaths": 5,
+      "importSeconds": 0.1418258009944111,
+      "qualityPass": true,
+      "feasible": true,
+      "simplifySeconds": 4.5630245030042715
+    },
+    {
+      "candidate": "simplify-0.0006",
+      "sourceBytes": 154406,
+      "paths": 5,
+      "commands": 3357,
+      "segments": 3031,
+      "endpointNodesUpperBound": 3357,
+      "explicitCommandLetters": 1059,
+      "subpaths": 326,
+      "pathChars": 153688,
+      "maxPathChars": 43732,
+      "errors": {
+        "1": {
+          "rgbMAE255": 0.20551979541778564,
+          "rgbP99_255": 5.999999523162842,
+          "alphaMAE255": 0.05102475360035896,
+          "changedPixelFraction": 0.0011361440022786458,
+          "silhouetteMaxOffsetPx": 1.0,
+          "pass": true
+        },
+        "2": {
+          "rgbMAE255": 0.19862954318523407,
+          "rgbP99_255": 7.000014781951904,
+          "alphaMAE255": 0.038226764649152756,
+          "changedPixelFraction": 0.0018545786539713542,
+          "silhouetteMaxOffsetPx": 1.4142135623730951,
+          "pass": true
+        }
+      },
+      "render": {
+        "1": {
+          "width": 1536,
+          "height": 1024,
+          "decodeMs": 19.139004999999997,
+          "drawMs": 2.8764320000000225
+        },
+        "2": {
+          "width": 3072,
+          "height": 2048,
+          "decodeMs": 40.001108999999985,
+          "drawMs": 12.138176999999985
+        }
+      },
+      "budgetPass": true,
+      "nodes": 9,
+      "normalizedMaxPathChars": 49283,
+      "normalizedPaths": 5,
+      "importSeconds": 0.12413098398246802,
+      "qualityPass": true,
+      "feasible": true,
+      "simplifySeconds": 4.541962099989178
+    },
+    {
+      "candidate": "precision-5",
+      "sourceBytes": 633473,
+      "paths": 5,
+      "commands": 14986,
+      "segments": 14660,
+      "endpointNodesUpperBound": 14986,
+      "explicitCommandLetters": 2019,
+      "subpaths": 326,
+      "pathChars": 632360,
+      "maxPathChars": 210349,
+      "errors": {
+        "1": {
+          "rgbMAE255": 0.005132704973220825,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.004241307731717825,
+          "changedPixelFraction": 5.8492024739583336e-05,
+          "silhouetteMaxOffsetPx": 1.0,
+          "pass": true
+        },
+        "2": {
+          "rgbMAE255": 0.004521893337368965,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.0030619304161518812,
+          "changedPixelFraction": 4.498163859049479e-05,
+          "silhouetteMaxOffsetPx": 1.0,
+          "pass": true
+        }
+      },
+      "render": {
+        "1": {
+          "width": 1536,
+          "height": 1024,
+          "decodeMs": 35.72666000000004,
+          "drawMs": 3.0374610000000075
+        },
+        "2": {
+          "width": 3072,
+          "height": 2048,
+          "decodeMs": 58.266526999999996,
+          "drawMs": 12.055773999999985
+        }
+      },
+      "budgetPass": false,
+      "diagnostic": "path5: inseparable contour/hole component is 145586 characters (68 contours), limit 60000. In Inkscape simplify this component with silhouette/hole protection or divide into separately authored non-overlapping objects; do not blindly break apart holes.",
+      "importSeconds": 0.10326549300225452,
+      "qualityPass": true,
+      "feasible": false
+    },
+    {
+      "candidate": "precision-4",
+      "sourceBytes": 563679,
+      "paths": 5,
+      "commands": 14988,
+      "segments": 14662,
+      "endpointNodesUpperBound": 14988,
+      "explicitCommandLetters": 2019,
+      "subpaths": 326,
+      "pathChars": 562566,
+      "maxPathChars": 187766,
+      "errors": {
+        "1": {
+          "rgbMAE255": 0.029128530994057655,
+          "rgbP99_255": 0.9999999403953552,
+          "alphaMAE255": 0.011915206909179688,
+          "changedPixelFraction": 0.00013669331868489584,
+          "silhouetteMaxOffsetPx": 1.0,
+          "pass": true
+        },
+        "2": {
+          "rgbMAE255": 0.02922878973186016,
+          "rgbP99_255": 0.9999999403953552,
+          "alphaMAE255": 0.011956850998103619,
+          "changedPixelFraction": 0.00015815099080403647,
+          "silhouetteMaxOffsetPx": 1.0,
+          "pass": true
+        }
+      },
+      "render": {
+        "1": {
+          "width": 1536,
+          "height": 1024,
+          "decodeMs": 25.215573000000006,
+          "drawMs": 2.854939999999999
+        },
+        "2": {
+          "width": 3072,
+          "height": 2048,
+          "decodeMs": 59.03217599999999,
+          "drawMs": 11.559128999999984
+        }
+      },
+      "budgetPass": false,
+      "diagnostic": "path5: inseparable contour/hole component is 131743 characters (68 contours), limit 60000. In Inkscape simplify this component with silhouette/hole protection or divide into separately authored non-overlapping objects; do not blindly break apart holes.",
+      "importSeconds": 0.07154518601601012,
+      "qualityPass": true,
+      "feasible": false
+    },
+    {
+      "candidate": "precision-3",
+      "sourceBytes": 487290,
+      "paths": 5,
+      "commands": 14989,
+      "segments": 14663,
+      "endpointNodesUpperBound": 14989,
+      "explicitCommandLetters": 2019,
+      "subpaths": 326,
+      "pathChars": 486177,
+      "maxPathChars": 162775,
+      "errors": {
+        "1": {
+          "rgbMAE255": 0.46061569452285767,
+          "rgbP99_255": 9.999999046325684,
+          "alphaMAE255": 0.17520587146282196,
+          "changedPixelFraction": 0.0067946116129557295,
+          "silhouetteMaxOffsetPx": 5.0,
+          "pass": false
+        },
+        "2": {
+          "rgbMAE255": 0.4599865674972534,
+          "rgbP99_255": 11.999999046325684,
+          "alphaMAE255": 0.1660068780183792,
+          "changedPixelFraction": 0.0071277618408203125,
+          "silhouetteMaxOffsetPx": 10.0,
+          "pass": false
+        }
+      },
+      "render": {
+        "1": {
+          "width": 1536,
+          "height": 1024,
+          "decodeMs": 28.197411999999986,
+          "drawMs": 2.4164900000000102
+        },
+        "2": {
+          "width": 3072,
+          "height": 2048,
+          "decodeMs": 42.39068400000002,
+          "drawMs": 10.053683000000035
+        }
+      },
+      "budgetPass": false,
+      "diagnostic": "path5: inseparable contour/hole component is 122020 characters (68 contours), limit 60000. In Inkscape simplify this component with silhouette/hole protection or divide into separately authored non-overlapping objects; do not blindly break apart holes.",
+      "importSeconds": 0.11871130199870095,
+      "qualityPass": false,
+      "feasible": false
+    }
+  ],
+  "sourcePalette": [
+    [
+      41,
+      62,
+      60
+    ],
+    [
+      43,
+      64,
+      62
+    ],
+    [
+      53,
+      73,
+      71
+    ],
+    [
+      69,
+      87,
+      85
+    ],
+    [
+      85,
+      102,
+      100
+    ]
+  ],
+  "chosen": "simplify-0.0006",
+  "reviewCandidate": "simplify-0.0006",
+  "rawUnchanged": true
+}

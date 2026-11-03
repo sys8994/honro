@@ -19,12 +19,12 @@ export function applyStage6ArtPreview(input){
  for(const e of s.elements)if(rootIds.includes(e.id))e.y+=floor(e.x)-oldFloor(oldRoad,e.x);
  // Remove old BODY and central pier illustration, whose placements describe the old floor.
  s.elements=s.elements.filter(e=>!['act1-stage06-traced-body','landmark-1','place6-west-buttress','place6-mid-buttress','place6-east-buttress','place6-bridge-rigging'].includes(e.id));
- const strata=read('terrain-extended-runtime.json'),source=read('continuous-runtime.json'),pier=read('pier-runtime-preview.json'),westPier=read('pier-west-five-runtime.json'),eastPier=read('pier-east-five-runtime.json');
+ const strata=read('terrain-full-domain-runtime.json'),source=read('continuous-runtime.json'),pier=read('pier-runtime-preview.json'),westPier=read('pier-west-five-runtime.json'),eastPier=read('pier-east-five-runtime.json');
  const contour=road.points.map((p,i)=>(i?'L':'M')+p.x+' '+p.y).join('')+'Z';
  // A single source-traced, full-bleed formation covers the complete tested
  // camera domain. The collision contour alone determines the visible edge.
  const ext={x:-4000,y:1500,w:14600,h:5500};
- const body={...source,id:'stage06-prototype:continuous-body-v1',name:'Stage6 continuous traced BODY study',bounds:ext,reference:{...source.reference,bounds:ext,foot:{x:0,y:3800},heightM:86.6666666667},params:{...source.params,collisionSource:'lower-road',prototypeGeometrySha256:expected,previewOnly:true},vector:{version:1,viewBox:[ext.x,ext.y,ext.w,ext.h],clips:{road:[contour]},root:{tag:'g',clipPath:'road',children:[{tag:'path',d:contour,fill:'#364441'},{tag:'g',transform:[14600/source.vector.viewBox[2],0,0,5500/source.vector.viewBox[3],-4000,1500],children:[clone(source.vector.root)]},{tag:'g',transform:[6.722,0,0,14,-4000,-3500],children:[clone(strata.vector.root)]}]}}};
+ const body={...source,id:'stage06-prototype:continuous-body-v1',name:'Stage6 continuous traced BODY study',bounds:ext,reference:{...source.reference,bounds:ext,foot:{x:0,y:3800},heightM:86.6666666667},params:{...source.params,collisionSource:'lower-road',prototypeGeometrySha256:expected,previewOnly:true},vector:{version:1,viewBox:[ext.x,ext.y,ext.w,ext.h],clips:{road:[contour]},root:{tag:'g',clipPath:'road',children:[{tag:'path',d:contour,fill:'#364441'},{tag:'g',transform:[14600/source.vector.viewBox[2],0,0,5500/source.vector.viewBox[3],-4000,1500],children:[clone(source.vector.root)]},{tag:'g',transform:[9.5052,0,0,9.5052,-4000,-3000],children:[clone(strata.vector.root)]}]}}};
  project.library.push(body);s.elements.push({id:'stage06-prototype-body',assetId:body.id,x:0,y:0,scale:1,rotation:0,layer:'prop',depthLayer:'L1',visualRole:'scenery'});
  // Clip support art to the air above the same physical top edge. This trims
  // broad stone footings to the slope without changing collisions or draw order.
