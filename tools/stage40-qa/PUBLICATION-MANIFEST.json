@@ -464,9 +464,9 @@
   ],
   "pendingPublication": null,
   "currentComparison": {
-    "run": 41675108632,
-    "status": "failed",
-    "source": "af6914494b4769adc172f9187b1537ce8455a951"
+    "status": "registered, not run",
+    "branch": "work/stage40-qa/coast-boundary-20261103",
+    "delta": "Only confirmed coast terrain-bound/contact check versus failed41675108632. Same originalR1 profile and total20-round safe-return gate."
   },
   "lastFailedComparison": {
     "source": "4b5e31931249f8fe194047fa22ef5f6def3ab8fd",
@@ -614,6 +614,14 @@
       "artifact": 13250161367,
       "sha256": "41404762058fa09e6e7fa343abe5ca41136a0064315a925ed358bd8f383542b7",
       "result": "Joint R4 coast continuation: two useful shots, third normal defense, zero friendly fire; R5 all alive. Not whole-stage acceptance."
+    },
+    {
+      "run": 41685781695,
+      "source": "d08630340b7f032218b1247f646e9603b34d8507",
+      "native": "30b49f00571f06b784f153f565cde53a1498191a",
+      "artifact": 13256162305,
+      "sha256": "39a6733e33eb2dbce8ad589335db5dba3d3f7fa355a609d3fb430fa904bfd286",
+      "result": "Actual east-to-west mage recovery and two normal defensive positions observed. Damage transfer and weak occultist retained. Not whole-stage success."
     }
   ]
 }
