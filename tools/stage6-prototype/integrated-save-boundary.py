@@ -21,10 +21,21 @@ try:
    page.wait_for_timeout(100)
   page.wait_for_function('HonroApp.engine?.b?.honroStage===6&&HonroApp.canInput()',timeout=3000);r['baselineStage']=6
   profile=page.evaluate('()=>structuredClone(HonroApp.profile)');before={k:profile.get(k) for k in ['equipment','cleared','loadouts']};before['ranks']=profile['heroes']['archer']['ranks'];before['statTraining']=profile['heroes']['archer'].get('statTraining');r['beforeNormalized']=before;profile['honroBattle']=b
-  page.evaluate('(p)=>localStorage.setItem("honro-first-act-profile-1",JSON.stringify(p))',profile);page.reload(wait_until='domcontentloaded');page.wait_for_function('window.HonroApp',timeout=60000);r['titleActions']=page.locator('.title-actions').inner_text();page.screenshot(path=str(out/'revision3-title.png'));page.locator('.title-actions button[data-action="continue"]:visible').first.click();page.wait_for_function('HonroApp.engine?.b?.honroStage===6',timeout=60000)
+  # Never inject over a live battle: unload autosave would overwrite the
+  # test fixture. Close it first and seed a fresh isolated browser context.
+  page.close();page=browser.new_page(viewport={'width':1440,'height':900})
+  page.add_init_script('localStorage.setItem("honro-first-act-profile-1",'+json.dumps(json.dumps(profile))+');')
+  page.goto('http://127.0.0.1:8870/HONRO.html',wait_until='domcontentloaded');page.wait_for_function('window.HonroApp',timeout=60000);r['titleActions']=page.locator('.title-actions').inner_text();assert '새 지형에서 다시 걷기' in r['titleActions'],r;page.screenshot(path=str(out/'revision3-title.png'));page.locator('.title-actions button[data-action="continue"]:visible').first.click();page.wait_for_function('HonroApp.engine?.b?.honroStage===6',timeout=60000)
   r['continue']=page.evaluate('''()=>{const a=HonroApp,p=a.profile,b=a.engine.b;return {stage:b.honroStage,revision:b.honroCampaignMapRevision,xp:p.heroes.archer.xp,equipment:p.equipment,cleared:p.cleared,loadouts:p.loadouts,ranks:p.heroes.archer.ranks,statTraining:p.heroes.archer.statTraining,round:b.round,x:a.engine.unit('p-archer').x};}''')
   assert r['continue']['revision']==4 and r['continue']['round']==1 and r['continue']['xp']==xp+17,r
-  for key,value in before.items():assert r['continue'].get(key)==value,key
+  def ownership(eq):
+   # A displayed toast may update its read receipt. Ownership, allocation,
+   # run identity, choices and reward commitments must remain exact.
+   return {**eq,'rewardLedger':{k:{a:b for a,b in v.items() if a!='notified'} for k,v in eq['rewardLedger'].items()}}
+  r['equipmentNotificationChanges']=[k for k,v in before['equipment']['rewardLedger'].items() if v.get('notified')!=r['continue']['equipment']['rewardLedger'][k].get('notified')]
+  for key,value in before.items():
+   if key=='equipment':assert ownership(r['continue'][key])==ownership(value),key
+   else:assert r['continue'].get(key)==value,key
   r['preservedGrowthAndLoadout']=True;page.screenshot(path=str(out/'revision3-to4-continue.png'));browser.close()
 except Exception:r['error']=traceback.format_exc()
 finally:(out/'integrated-save-boundary.json').write_text(json.dumps(r,ensure_ascii=False,indent=2));print(json.dumps(r,ensure_ascii=False))

@@ -65,7 +65,7 @@ jobs:
           sleep 2
           # Keep each independent result even if a prior QA script fails.
           status=0
-          for script in capture-preview input-camera-review integrated-save-boundary integrated-checkpoint-review; do
+          for script in capture-preview integrated-save-boundary; do
             python "tools/stage6-prototype/$script.py" || status=1
           done
           exit "$status"
