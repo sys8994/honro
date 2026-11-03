@@ -12,8 +12,12 @@ function digest(s){if(!G.crypto?.subtle||typeof G.TextEncoder!=='function')retur
 function validBase(b){return !!(b&&b.honroStage===6&&b.honroCustom!==true&&b.honroCanonical===true&&b.honroAuthoredId==='stage-6'&&b.honroMapOrigin==='campaign'&&b.honroMapRevision===20&&b.honroRevision===20&&b.honroCampaignMapRevision===3&&b.mode==='campaign');}
 function record(b,name){
  if(!validBase(b)||!Object.hasOwn(EXPECTED,name)||!G.HonroVectorArt?.draw||!G.HonroVectorArt?.validate||!G.HonroVectorArt?.prepare||!G.HonroTerrainDomain?.render)return null;
- let ts,ls;try{ts=G.HonroTerrainDomain.render(b).filter(t=>t.id==='pier-'+name);ls=(b.honroLandmarks||[]).filter(l=>l.id==='stage06-prototype-pier-'+name);}catch{return null;}
- if(ts.length!==1||ls.length!==1)return null;const t=ts[0],l=ls[0],a=l.asset;
+ let ts,live,world,ls;try{ts=G.HonroTerrainDomain.render(b).filter(t=>t.id==='pier-'+name);live=(b.terrain||[]).filter(t=>t.id==='pier-'+name);world=(b.honroWorldTerrain||[]).filter(t=>t.id==='pier-'+name);ls=(b.honroLandmarks||[]).filter(l=>l.id==='stage06-prototype-pier-'+name);}catch{return null;}
+ if(ts.length!==1||live.length!==1||world.length!==1||ls.length!==1)return null;const t=ts[0],l=ls[0],a=l.asset;
+ // A domain render cache can remain stale if live or authored geometry is
+ // mutated in place without sceneVersion. Never suppress on a stale copy.
+ const shape=t=>JSON.stringify({vertices:t.vertices,x:t.x,y:t.y,w:t.w,h:t.h});
+ try{if(JSON.stringify(geo(live[0]))!==JSON.stringify(geo(t))||shape(world[0])!==shape(t))return null;}catch{return null;}
  if(t.broken||t.honroElementCollision||l.kind!=='canonical-element'||l.layer!=='prop'||l.opacity!=null&&l.opacity!==1||l.honroTerrainMaterialClip||!a?.vector||!Array.isArray(a.collision)||a.collision.length||!Array.isArray(l.collisionIds)||l.collisionIds.length)return null;
  let geometry,skin;try{geometry=JSON.stringify(geo(t));skin=JSON.stringify(l);if(typeof geometry!=='string'||typeof skin!=='string')return null;}catch{return null;}
  let pair=states.get(b);if(!pair){pair=Object.create(null);states.set(b,pair);}let r=pair[name],draw=G.HonroVectorArt.draw,prepare=G.HonroVectorArt.prepare,validate=G.HonroVectorArt.validate;
