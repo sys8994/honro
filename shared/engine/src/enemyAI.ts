@@ -1,4 +1,4 @@
-import {markedMonsterTarget} from './monsterA2';
+import {monsterA2Eligible,markedMonsterTarget} from './monsterA2';
 /** Bounded tactical movement. Every candidate is tested with the same locomotion/contact code
  * as a real unit. Planning cannot damage, teleport, change RNG, or mutate the live roster. */
 import {beastKind,beastReach,beastContact} from './beastMelee';
@@ -174,7 +174,7 @@ function* planFlight(e:Engine,u:Unit,target:Unit,attackFailed=false):Generator<v
  for(const p of top)p.score+=yield* shotOpportunity(e,u,target,p);
  let best=top.sort((a,b)=>b.score-a.score)[0];
  if(best.score<stay+3){
-  const far=Math.hypot(u.x-target.x,u.y-target.y)>preferredRange(u)[1]+90;
+  const far=Math.hypot(u.x-target.x,u.y-target.y)>preferredRange(e,u)[1]+90;
   if(!attackFailed&&!far)return;
   // After a real failed shot, ordinary range preferences must not veto a
   // safe small approach. Keep hazard and territory rules, and the same budget.
@@ -195,7 +195,7 @@ export function planWaitingFlights(e:Engine){
   const target=eligible.has(u.id)?targetFor(e,u):undefined,budget=Math.min(u.moveLeft,96);if(budget<2)continue;
   if(!flightClear(e,u,u)){const escape=finishPlanning(planFlightEscape(e,u,target||u,Math.min(192,u.moveLeft)));if(escape)u.aiMove={...escape,waitingFlight:true};continue;}
   let goal:Vec|undefined;
-  if(target&&Math.hypot(u.x-target.x,u.y-target.y)>preferredRange(u)[1]+90){
+  if(target&&Math.hypot(u.x-target.x,u.y-target.y)>preferredRange(e,u)[1]+90){
    const dx=target.x-u.x,dy=target.y-target.h*.5-u.y,d=Math.hypot(dx,dy);
    for(const turn of [0,Math.PI/6,-Math.PI/6,Math.PI/3,-Math.PI/3]){const a=Math.atan2(dy,dx)+turn,p={x:u.x+Math.cos(a)*Math.min(budget,d),y:u.y+Math.sin(a)*Math.min(budget,d)};if(routeGuardAllows(e,u,p)&&flightLeg(e,u,p)){goal=p;break;}}
   }
@@ -261,9 +261,9 @@ export function targetFor(e:Engine,u:Unit):Unit|undefined{
   return priority(a)-priority(c);
  })[0];
 }
-function preferredRange(u:Unit):[number,number]{
+function preferredRange(e:Engine,u:Unit):[number,number]{
  const kind=(u as any).honroType;
- if(u.honroMonsterA2Kind==='growth')return [45,90];
+ if(monsterA2Eligible(e.b,u)&&u.honroMonsterA2Kind==='growth')return [45,90];
  if(beastKind(u))return [u.r+22,u.r+55];
  if(kind==='beast'||kind==='mourner')return [80,250];
  if(kind==='warden')return [150,390];
@@ -287,7 +287,7 @@ export function dangerAt(e:Engine,u:Unit,p:Vec){
  return danger;
 }
 function positionScore(e:Engine,u:Unit,target:Unit,p:Vec){
- const [lo0,hi]=preferredRange(u),lo=lo0+(u.hp/u.maxHp<.32&&!HEAVY.has(u.role)?140:0);
+ const [lo0,hi]=preferredRange(e,u),lo=lo0+(u.hp/u.maxHp<.32&&!HEAVY.has(u.role)&&!(monsterA2Eligible(e.b,u)&&u.honroMonsterA2Kind==='growth')?140:0);
  const distance=Math.hypot(p.x-target.x,(p.y-target.y)*.72);
  let score=-Math.max(0,lo-distance)*.29-Math.max(0,distance-hi)*.36-dangerAt(e,u,p);
  // Distinct firing positions reduce splash risk; clustering to get shields is handled below.
@@ -540,7 +540,7 @@ export function* planEnemyMoveSteps(e:Engine,u:Unit,target:Unit,attackFailed=fal
  const top=reachable.sort((a,c)=>c.score-a.score).slice(0,4);
  for(const r of top)r.score+=yield* shotOpportunity(e,u,target,r);
  let best=top.sort((a,c)=>c.score-a.score)[0];
- const currentDistance=Math.hypot(u.x-target.x,(u.y-target.y)*.72), forceAdvance=currentDistance>preferredRange(u)[1]+90;
+ const currentDistance=Math.hypot(u.x-target.x,(u.y-target.y)*.72), forceAdvance=currentDistance>preferredRange(e,u)[1]+90;
  if(!forceAdvance&&best.score<stayScore+4){
   if(!attackFailed)return;
   const distance=Math.hypot(u.x-target.x,u.y-target.y),danger=dangerAt(e,u,start);
