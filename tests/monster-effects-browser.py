@@ -2,7 +2,7 @@
 Actor placement/isolation and prior-stage profile are explicit fixtures, not fullplay.
 Run only against an integrated build containing enemyEffects + combat-status signals.
 """
-import json, os
+import json, os, math
 from contextlib import nullcontext
 from playwright.sync_api import sync_playwright
 from browser_support import ROOT, launch, serve_game
@@ -26,6 +26,13 @@ def activate(locator,mobile):
 READ_FRAME=r'''()=>{const a=HonroApp,u=a.engine.unit('p-archer'),r=a.scene.canvas.getBoundingClientRect(),s=a.scene;const actors=[u,a.engine.unit(monsterBrowser.id)].map(v=>({id:v.id,left:r.left+r.width/2+(v.x-v.r*(v.side===1?3:2)-s.x)*s.scale,right:r.left+r.width/2+(v.x+v.r*(v.side===1?3:2)-s.x)*s.scale,head:r.top+r.height/2+(v.y-v.h-s.y)*s.scale,feet:r.top+r.height/2+(v.y-s.y)*s.scale}));return {actors,viewportWidth:innerWidth,x:s.x,y:s.y,scale:s.scale,canvasLeft:r.left,canvasWidth:r.width,head:r.top+r.height/2+(u.y-u.h-s.y)*s.scale,feet:r.top+r.height/2+(u.y-s.y)*s.scale,hudTop:document.querySelector('.honro-compact-hud').getBoundingClientRect().top,headerBottom:document.querySelector('.battle-head').getBoundingClientRect().bottom};}'''
 def frame_target(p,mobile):
  before=p.evaluate('monsterCanonical(HonroApp.engine.b)');p.evaluate('()=>{HonroApp.updateHUD(true);monsterPaint();}')
+ # Fit the tallest actor before panning: landscape HUD leaves less vertical room.
+ # Use the production wheel handler, with room for the health bar/active marker.
+ frame=p.evaluate(READ_FRAME)
+ span=max(v['feet'] for v in frame['actors'])-min(v['head'] for v in frame['actors']);width=max(v['right'] for v in frame['actors'])-min(v['left'] for v in frame['actors'])
+ fit=min(1,(frame['hudTop']-frame['headerBottom']-84)/span,(frame['viewportWidth']-32)/width)
+ if fit<1:
+  p.mouse.move(frame['canvasLeft']+frame['canvasWidth']*.5,(frame['headerBottom']+frame['hudTop'])/2);p.mouse.wheel(0,-math.log(fit)/.0014);p.wait_for_timeout(100);p.evaluate('monsterPaint()')
  target=p.evaluate('''()=>{const a=HonroApp,b=a.engine.b,u=a.engine.unit('p-archer'),r=a.scene.canvas.getBoundingClientRect(),hud=document.querySelector('.honro-compact-hud').getBoundingClientRect(),mini=document.querySelector('#minimap').getBoundingClientRect(),feet=Math.min(hud.top-18,r.bottom-18),y=u.y-(feet-r.top-r.height/2)/a.scene.scale;return {x:Math.max(1,Math.min(mini.width-1,((u.x+a.engine.unit(monsterBrowser.id).x)/2)/b.width*mini.width)),y:Math.max(1,Math.min(mini.height-1,y/b.height*mini.height))};}''')
  if mobile:p.locator('#minimap').tap(position=target)
  else:p.locator('#minimap').click(position=target)
