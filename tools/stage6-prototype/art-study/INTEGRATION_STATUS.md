@@ -88,3 +88,6 @@ The geological guide composed from the exact physical road and proposed strata w
 
 ## Quiet bed comparison
 The region-designed source (run 41677330947) was rejected for a dark bowl-like patch; the earlier continuous fractured bed was rejected for repeated contrast. This small comparison restores the prior bed with half its source opacity while keeping the distinct surface rocks unchanged. It does not change gameplay; sparse-detail versus blankness, fidelity and visual acceptance remain open.
+
+## Protected contact fidelity correction
+The five-color speckle-80 west/east source traces used in earlier screenshots failed protected-road-band comparisons against the corresponding speckle-4 traces: maximum protected color-edge offsets 39.36/45.69 normal pixels, and east protected silhouette 1px. Global RGB averages were not sufficient evidence. The unsimplified speckle-4 traces now import within existing native limits without partition or geometry simplification; they replace the previous two exposure runtime files. Protected configs, rejected comparisons and both raw traces are preserved. Source PNG-to-raw accuracy, import raster equivalence, persistence, runtime and artwork acceptance still need verification.
