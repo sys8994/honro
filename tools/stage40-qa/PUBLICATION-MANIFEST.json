@@ -1,7 +1,7 @@
 {
-  "status": "DEV ONLY. Native R1 to safe return/settlement R18, exact saved outcome reload verified. Original post-settlement harness error retained. Browser, fun, cohort and integrated A2 acceptance pending.",
+  "status": "DEV ONLY. Native functional R18 chain exists, but actual browser R22 and R25 failures remain. One frozen tolerant-controller full comparison is running. No common UI change; guide premise corrected. Final A2 integration, total-round safe return, mobile threat readability and gameplay/fun acceptance pending.",
   "base": "7d2655bc3f88a7b20fb2d6ea1bc4c611583e9a15",
-  "source": "37b8fba1408843ba05f4b5413b61ab57f02b2cee",
+  "source": "d215e3ea45e4ee43263dfd08d0193ae2dbd8917d",
   "branch": "work/stage40-finale/20261103",
   "productSharedTree": "3dcef07de2d6c75628db9d0b125527ea94a67684",
   "commits": [
@@ -22,7 +22,24 @@
     "e47d615a3409312e7fa0bb5e1dbcaca11a96a79b",
     "16f88a28b8c9f37c3ff5365c163047fb8b6bc8d4",
     "3e84de7726215bbbda87d14d3a2f45b7d6fe7d90",
-    "37b8fba1408843ba05f4b5413b61ab57f02b2cee"
+    "37b8fba1408843ba05f4b5413b61ab57f02b2cee",
+    "443b674d684638f0a10a284235f9772c9c773907",
+    "608e5b558a3e24756377968599d01f79136fb3fa",
+    "461bc895581b03b5e323a0a862d0853cf6e97f94",
+    "81dfcd22f6c6b81cf2b0abbb664229b239fb7a50",
+    "e2099c1a0c1fefc42bb1322c12de1f64b01ab67b",
+    "72ec518d6614fee195061c8195de27cb7e1d7e45",
+    "ed3450dda4e27be81d8240eba1d7464196daac48",
+    "d005f07042498a11b6b9994e721e378c6f5b7ea3",
+    "703964120485f0e6a017e6df30102347ec703285",
+    "4401960108d77714d41be9f5eee175b5324d86e8",
+    "1d8c716fb3dd6a85248e272d067397d787bd36c9",
+    "55895d6973258a059863443ae476d411b9d75e75",
+    "ff19cb7725cc4bb27575e61ce0bd7f592bdb2f60",
+    "da455ab67986de2fa9e5e6bf2e464194e21008ae",
+    "259074def81132a7dc5356a58e8d61a43966ef08",
+    "11509ca24516923b412d37fab34463a0f0e7fef1",
+    "d215e3ea45e4ee43263dfd08d0193ae2dbd8917d"
   ],
   "files": [
     {
@@ -103,10 +120,30 @@
     },
     {
       "path": "tools/stage40-qa/scope-contract.mjs",
-      "sha256": "0ba7b691ba47e77fed1402f2d331e213910410517e41f2e90f1ad1bf62af98b0"
+      "sha256": "7d1d27404c8a28fd1e46d116cd0940039cb41089ce499a1a08ddcc2eaf138285"
+    },
+    {
+      "path": "tools/stage40-qa/input-tolerance.mjs",
+      "sha256": "c9bed1e92609f191614c1734557d2d9c3914e047f89c928dfb7bb1b5f378cc20"
+    },
+    {
+      "path": "tools/stage40-qa/dock-cleanup-route.mjs",
+      "sha256": "36ab8784210949f2f6d27384a4349a221b39b4bb66f2c0ed54474a4eb6e812ba"
+    },
+    {
+      "path": "tools/stage40-qa/diagnostic-finishing.mjs",
+      "sha256": "58d96fbb96ccc439982d42ce5f174df36e2345222c44f4b9b92d06234907c627"
+    },
+    {
+      "path": "tools/stage40-qa/browser-planner.js",
+      "sha256": "b3b164a92c5da499f2d512ff29494df3130615da5e645f9ef48d6236df133390"
+    },
+    {
+      "path": "tools/stage40-qa/browser-play.py",
+      "sha256": "7d51147edb849b092f841cb312fa1266c32d2686f877fbb1083b63b0baec4f31"
     }
   ],
-  "protected": "Preserve current dialogue and Stage31\u201339 data. Integrate coherent Stage40 diffs, never replace reviewed.json or whole engine.ts. Production remains on hold.",
+  "protected": "Preserve current dialogue and Stage31–39 data. Integrate coherent Stage40 diffs, never replace reviewed.json or whole engine.ts. Production remains on hold.",
   "qaWorkflowContract": {
     "basis": ".github/workflows/monster-a1-integration.yml",
     "checkout": "exact github.sha; QA-only work/stage40-qa/**",
@@ -120,7 +157,7 @@
       "Capture Stage40 browser normal-entry gameplay+safe return and save/viewport, all outcomes",
       "Always upload logs, traces, screenshots, source/runtime/html/manifest SHA256 and Stage31 package"
     ],
-    "status": "Driver and QA-only workflow prepared, not run. Final coherent integration, viewport and fun review remain pending."
+    "status": "Executed several frozen failed full runs and bounded diagnostics; current full comparison running. Final coherent integration/readability/fun pending."
   },
   "evidence": {
     "stage40-sweep-approach-02": {
@@ -152,7 +189,7 @@
       "result.json": "1a55c199c556d6fda9fed49a66f438a846884ea5d6819fe90745458796c52c6d"
     }
   },
-  "remoteHead": "6cfac0de319c1765cf85e6f42cbbaad0c871146e",
+  "remoteHead": "4b5e31931249f8fe194047fa22ef5f6def3ab8fd",
   "canonicalNativeMap": [
     {
       "native": "f9c973d33194f1dff68abe0e8fa2a8a9d112cc1f",
@@ -248,10 +285,114 @@
       "native": "443b674d684638f0a10a284235f9772c9c773907",
       "canonical": "6cfac0de319c1765cf85e6f42cbbaad0c871146e",
       "tree": "147f7971263fe7864022d9375a498cb58a3cae0a"
+    },
+    {
+      "native": "608e5b558a3e24756377968599d01f79136fb3fa",
+      "canonical": "2644d132ab6fde87bdcd168b603a9c90db66c238",
+      "tree": "7de93c207cf5bb788e75ee7b633135c2411a3509"
+    },
+    {
+      "native": "461bc895581b03b5e323a0a862d0853cf6e97f94",
+      "canonical": "74265f8722a7ba74ab6ebc16f0015c9ce9ce6c35",
+      "tree": "fc45166ccba0bd9f75b5dcdb4b0b7e24016b6fdd"
+    },
+    {
+      "native": "81dfcd22f6c6b81cf2b0abbb664229b239fb7a50",
+      "canonical": "bc8a965bedb2bd5a9a34cc750d6c9acac8224950",
+      "tree": "ec1d87177c8027ffc4e85b3ef04fea52931cb349"
+    },
+    {
+      "native": "e2099c1a0c1fefc42bb1322c12de1f64b01ab67b",
+      "canonical": "2937d3fec0b25adcbde0c845a7ad55bfaaaa2a80",
+      "tree": "6efce50ab77a17d2d77b499ff74c6c11c516b782"
+    },
+    {
+      "native": "72ec518d6614fee195061c8195de27cb7e1d7e45",
+      "canonical": "9a246a768876babec884e0df73b5777835e984af",
+      "tree": "28d8fdca709252672e6cb4b96b80ae100b6ddb98"
+    },
+    {
+      "native": "ed3450dda4e27be81d8240eba1d7464196daac48",
+      "canonical": "60075256f82c95bc15a709f5283e53e51b452d6e",
+      "tree": "2980e801574e74dcd13b2235f33c0410cf925011"
+    },
+    {
+      "native": "d005f07042498a11b6b9994e721e378c6f5b7ea3",
+      "canonical": "0c7c3b8da22ce86cd4c0412b00f88fb00f3bece7",
+      "tree": "95b0218049346a2e360eccee235ef856dd91e628"
+    },
+    {
+      "native": "703964120485f0e6a017e6df30102347ec703285",
+      "canonical": "4b50926d7bb08285a74a93548efab635c48f9bd5",
+      "tree": "fd5336582ed8f60f23bf5f14e25994cbb128f647"
+    },
+    {
+      "native": "4401960108d77714d41be9f5eee175b5324d86e8",
+      "canonical": "b5463add579017b58ebac97c003626157d43ab7d",
+      "tree": "10c1640590e849c23c75de069a029980836f1acd"
+    },
+    {
+      "native": "1d8c716fb3dd6a85248e272d067397d787bd36c9",
+      "canonical": "e0cb648f4a0d0aebdf8c7b2279f48d19dda9c4cb",
+      "tree": "4d049190a3c6e41c13cd0dd3e41076985c6963f4"
+    },
+    {
+      "native": "55895d6973258a059863443ae476d411b9d75e75",
+      "canonical": "e809ffc9d12296428aacb614a992497caafbd3e0",
+      "tree": "3697a79992a5eef607dd48d2a2ff33f739e75c0b"
+    },
+    {
+      "native": "ff19cb7725cc4bb27575e61ce0bd7f592bdb2f60",
+      "canonical": "c0ea7984bacf50cfcdff9647e4e02f3a39ad394a",
+      "tree": "7da746a63a4e1b227aceb5d18854de69e5113eb2"
+    },
+    {
+      "native": "da455ab67986de2fa9e5e6bf2e464194e21008ae",
+      "canonical": "ba1a8b03d979dc249a02cc294ae2e7725209f7d8",
+      "tree": "cc0794b456c0897a300e1e52c68dc32c86bce29a"
+    },
+    {
+      "native": "259074def81132a7dc5356a58e8d61a43966ef08",
+      "canonical": "bfbc2277f4004879043e240e0026c426ef886cbf",
+      "tree": "bc7c2000a12ec2f2b8e04a2939f8d28925a4f067"
+    },
+    {
+      "native": "11509ca24516923b412d37fab34463a0f0e7fef1",
+      "canonical": "6c3cac154caf00dfc29b04f5cac029fb2329d247",
+      "tree": "243b3e3e7f04da6d1da88f193246db9c424cf666"
+    },
+    {
+      "native": "d215e3ea45e4ee43263dfd08d0193ae2dbd8917d",
+      "canonical": "4b5e31931249f8fe194047fa22ef5f6def3ab8fd",
+      "tree": "27703b82500a85dd26dd1eb59c0431f03cc71aa0"
     }
   ],
   "pendingPublication": null,
   "currentComparison": {
+    "source": "4b5e31931249f8fe194047fa22ef5f6def3ab8fd",
+    "native": "d215e3ea45e4ee43263dfd08d0193ae2dbd8917d",
+    "runId": 41621782011,
+    "status": "running",
+    "scope": "One actual browser original-profile comparison; total20 rounds includes return;60-minute QA computation bound;no deployment"
+  },
+  "lastFailedComparison": {
+    "source": "b5463add579017b58ebac97c003626157d43ab7d",
+    "runId": 41610792763,
+    "artifactId": 13220691538,
+    "sha256": "c318c42c9d307646bee76613e7a2dc24efbde74833f91732283a32d753927a0d",
+    "outcome": "R25;41/42;boss2HP;archer dead;four residents alive;no return"
+  },
+  "qaWorkflow": {
+    "path": ".github/workflows/stage40-qa.yml",
+    "trigger": "work/stage40-qa/**",
+    "permissions": "contents:read",
+    "status": "Running",
+    "buildContract": "Exact SHA; genuine unchanged Stage31 gate; normal build; one actual UI run; artifacts only; no deployment.",
+    "branch": "work/stage40-qa/20261103-tolerant-01",
+    "source": "4b5e31931249f8fe194047fa22ef5f6def3ab8fd",
+    "runId": 41621782011
+  },
+  "nativeFunctionalComparison": {
     "protocol": "_local/reports/stage40-finishing-01/protocol.json",
     "source": "3e84de7726215bbbda87d14d3a2f45b7d6fe7d90",
     "combatRound": 16,
@@ -267,18 +408,48 @@
       "analysis.json": "70923ce522256940abcd4d063750fb4354a9d47ed350e87b07212dadbeac2085"
     }
   },
-  "lastFailedComparison": {
-    "native": "16f88a28b8c9f37c3ff5365c163047fb8b6bc8d4",
-    "path": "_local/reports/stage40-upperfix-01",
-    "outcome": "R25;41/42;four heroes/four residents alive;zero water recoveries;no return"
-  },
-  "qaWorkflow": {
-    "path": ".github/workflows/stage40-qa.yml",
-    "trigger": "work/stage40-qa/**",
-    "permissions": "contents:read",
-    "status": "Triggered; awaiting result",
-    "buildContract": "Exact SHA; genuine unchanged Stage31 gate; normal build; one actual UI run; artifacts only; no deployment.",
-    "branch": "work/stage40-qa/20261103-r18-01",
-    "source": "6cfac0de319c1765cf85e6f42cbbaad0c871146e"
-  }
+  "browserFailureHistory": [
+    {
+      "runId": 41594817059,
+      "result": "Setup failed; no gameplay"
+    },
+    {
+      "runId": 41595651979,
+      "result": "Stage31 gate passed;Stage40 R1 aim controller stalled; retained"
+    },
+    {
+      "runId": 41605817603,
+      "result": "R22 all42 cleared;outside total budget;no return"
+    },
+    {
+      "runId": 41610792763,
+      "result": "R25 boss2HP remains;no return"
+    }
+  ],
+  "focusedRuns": [
+    {
+      "runId": 41605119986,
+      "scope": "First cast only"
+    },
+    {
+      "runId": 41605698346,
+      "scope": "Fixed-clock Stage31 wrapper pair;9 early states identical;not full-stage equivalence"
+    },
+    {
+      "runId": 41615805406,
+      "scope": "Input sensitivity + exactR25 countercast;M02 actual friendly harm;late boss cleared onlyR25"
+    },
+    {
+      "runId": 41617840917,
+      "scope": "Charge preview capture interference;M06 failed safety outside tested envelope"
+    },
+    {
+      "runId": 41619327758,
+      "scope": "Actual basic M01;255 enemy/zero friendly HP"
+    },
+    {
+      "runId": 41620235189,
+      "scope": "Active guide visiblePC/mobile andko/en locales;no shots;withdraw checkbox premise"
+    }
+  ]
 }
