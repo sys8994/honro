@@ -100,6 +100,7 @@ jobs:
           sleep 2
           status=0
           HONRO_CAPTURE_URL=http://127.0.0.1:8870/HONRO.html HONRO_CAPTURE_OUT="$OUT/outside-save" python tools/stage40-qa/outside-save-play.py > "$OUT/outside-save.log" 2>&1 || status=1
+          HONRO_OLD_SAVE_STAGE=31 HONRO_CAPTURE_URL=http://127.0.0.1:8870/HONRO.html HONRO_CAPTURE_OUT="$OUT/outside-save31" python tools/stage40-qa/outside-save-play.py > "$OUT/outside-save31.log" 2>&1 || status=1
           HONRO_MONSTER_BASE_URL=http://127.0.0.1:8870 python tests/monster-effects-browser.py || status=1
           if [ -d _local/reports/monster-effects-browser ]; then cp -a _local/reports/monster-effects-browser "$OUT/a1-browser"; fi
           HONRO40_PACING_REVIEW=1 HONRO_CAPTURE_URL=http://127.0.0.1:8870/HONRO.html HONRO_CAPTURE_OUT="$OUT/browser" python tools/stage40-qa/browser-play.py > "$OUT/browser.log" 2>&1 || status=1
