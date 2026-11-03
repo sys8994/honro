@@ -1,0 +1,372 @@
+{
+  "source": "tools/stage6-prototype/art-study/west-fracture-raw.svg",
+  "originalSha256": "38223c11135b1c7d9cb49d904bedc690d4810caa7dd2e13fe3a4e9df989c7cd0",
+  "rawSha256": "5996b9a22e2ebedf7411b9f34624f4295f12cbadf2db53db3c509e55de218e8c",
+  "removedReferenceImages": [],
+  "width": 1774,
+  "scales": [
+    1,
+    2
+  ],
+  "limits": {
+    "rgbMAE255": 2,
+    "silhouettePx": 1.5,
+    "protectedRgbMAE255": 1,
+    "protectedPx": 0.5,
+    "protectedChangedPixelFraction": 0.05
+  },
+  "protectedRects": [],
+  "protectedMask": null,
+  "provisional": true,
+  "visualApproval": "NOT REVIEWED \u2014 candidate only; human inspection mandatory",
+  "protectionMode": "feature",
+  "protectedPolylines": [],
+  "baseline": {
+    "sourceBytes": 618746,
+    "paths": 4,
+    "commands": 13266,
+    "segments": 13060,
+    "endpointNodesUpperBound": 13266,
+    "explicitCommandLetters": 1591,
+    "subpaths": 206,
+    "pathChars": 617687,
+    "maxPathChars": 304781,
+    "render": {
+      "1": {
+        "width": 1774,
+        "height": 887,
+        "decodeMs": 21.220234000000005,
+        "drawMs": 3.3031870000000367
+      },
+      "2": {
+        "width": 3548,
+        "height": 1774,
+        "decodeMs": 31.731490000000008,
+        "drawMs": 14.200875999999994
+      }
+    }
+  },
+  "candidates": [
+    {
+      "candidate": "raw",
+      "sourceBytes": 618746,
+      "paths": 4,
+      "commands": 13266,
+      "segments": 13060,
+      "endpointNodesUpperBound": 13266,
+      "explicitCommandLetters": 1591,
+      "subpaths": 206,
+      "pathChars": 617687,
+      "maxPathChars": 304781,
+      "errors": {
+        "1": {
+          "rgbMAE255": 0.0,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.0,
+          "changedPixelFraction": 0.0,
+          "silhouetteMaxOffsetPx": 0.0,
+          "pass": true
+        },
+        "2": {
+          "rgbMAE255": 0.0,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.0,
+          "changedPixelFraction": 0.0,
+          "silhouetteMaxOffsetPx": 0.0,
+          "pass": true
+        }
+      },
+      "render": {
+        "1": {
+          "width": 1774,
+          "height": 887,
+          "decodeMs": 21.30083400000001,
+          "drawMs": 2.324497000000008
+        },
+        "2": {
+          "width": 3548,
+          "height": 1774,
+          "decodeMs": 34.591205,
+          "drawMs": 15.557707999999991
+        }
+      },
+      "budgetPass": false,
+      "diagnostic": "path6: inseparable contour/hole component is 86053 characters (20 contours), limit 60000. In Inkscape simplify this component with silhouette/hole protection or divide into separately authored non-overlapping objects; do not blindly break apart holes.",
+      "importSeconds": 0.18349196200142615,
+      "qualityPass": true,
+      "feasible": false
+    },
+    {
+      "candidate": "simplify-0.0001",
+      "sourceBytes": 317879,
+      "paths": 4,
+      "commands": 6591,
+      "segments": 6385,
+      "endpointNodesUpperBound": 6591,
+      "explicitCommandLetters": 657,
+      "subpaths": 206,
+      "pathChars": 317242,
+      "maxPathChars": 155314,
+      "errors": {
+        "1": {
+          "rgbMAE255": 0.21517503261566162,
+          "rgbP99_255": 7.882357597351074,
+          "alphaMAE255": 0.28145742416381836,
+          "changedPixelFraction": 0.005363073532383711,
+          "silhouetteMaxOffsetPx": 154.46682491719702,
+          "pass": false
+        },
+        "2": {
+          "rgbMAE255": 0.19870789349079132,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.2596611976623535,
+          "changedPixelFraction": 0.004901851750640913,
+          "silhouetteMaxOffsetPx": 331.85087012090236,
+          "pass": false
+        }
+      },
+      "render": {
+        "1": {
+          "width": 1774,
+          "height": 887,
+          "decodeMs": 19.769169999999974,
+          "drawMs": 3.3879740000000425
+        },
+        "2": {
+          "width": 3548,
+          "height": 1774,
+          "decodeMs": 34.046850000000006,
+          "drawMs": 15.646398000000033
+        }
+      },
+      "budgetPass": false,
+      "diagnostic": "path6: inseparable contour/hole component is 90507 characters (42 contours), limit 60000. In Inkscape simplify this component with silhouette/hole protection or divide into separately authored non-overlapping objects; do not blindly break apart holes.",
+      "importSeconds": 0.11264515502261929,
+      "qualityPass": false,
+      "feasible": false,
+      "simplifySeconds": 4.482008427992696
+    },
+    {
+      "candidate": "simplify-0.0003",
+      "sourceBytes": 167422,
+      "paths": 4,
+      "commands": 3559,
+      "segments": 3353,
+      "endpointNodesUpperBound": 3559,
+      "explicitCommandLetters": 668,
+      "subpaths": 206,
+      "pathChars": 166785,
+      "maxPathChars": 81282,
+      "errors": {
+        "1": {
+          "rgbMAE255": 0.47882166504859924,
+          "rgbP99_255": 18.258840560913086,
+          "alphaMAE255": 0.6256163120269775,
+          "changedPixelFraction": 0.011115079521435135,
+          "silhouetteMaxOffsetPx": 162.2374802565671,
+          "pass": false
+        },
+        "2": {
+          "rgbMAE255": 0.44182276725769043,
+          "rgbP99_255": 6.282370090484619,
+          "alphaMAE255": 0.576390266418457,
+          "changedPixelFraction": 0.00804778785132612,
+          "silhouetteMaxOffsetPx": 334.07334524023315,
+          "pass": false
+        }
+      },
+      "render": {
+        "1": {
+          "width": 1774,
+          "height": 887,
+          "decodeMs": 14.744822,
+          "drawMs": 2.9768339999999966
+        },
+        "2": {
+          "width": 3548,
+          "height": 1774,
+          "decodeMs": 23.593331999999975,
+          "drawMs": 17.87858799999998
+        }
+      },
+      "budgetPass": false,
+      "diagnostic": "path5: inseparable contour/hole component is 94146 characters (84 contours), limit 60000. In Inkscape simplify this component with silhouette/hole protection or divide into separately authored non-overlapping objects; do not blindly break apart holes.",
+      "importSeconds": 0.1448094320076052,
+      "qualityPass": false,
+      "feasible": false,
+      "simplifySeconds": 4.103110216994537
+    },
+    {
+      "candidate": "precision-5",
+      "sourceBytes": 577177,
+      "paths": 4,
+      "commands": 13285,
+      "segments": 13079,
+      "endpointNodesUpperBound": 13285,
+      "explicitCommandLetters": 1591,
+      "subpaths": 206,
+      "pathChars": 576118,
+      "maxPathChars": 284475,
+      "errors": {
+        "1": {
+          "rgbMAE255": 0.009300345554947853,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.011026107706129551,
+          "changedPixelFraction": 0.0001213825150711327,
+          "silhouetteMaxOffsetPx": 9.0,
+          "pass": false
+        },
+        "2": {
+          "rgbMAE255": 0.0060814423486590385,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.007302810437977314,
+          "changedPixelFraction": 7.816779766360902e-05,
+          "silhouetteMaxOffsetPx": 12.529964086141668,
+          "pass": false
+        }
+      },
+      "render": {
+        "1": {
+          "width": 1774,
+          "height": 887,
+          "decodeMs": 19.540391999999997,
+          "drawMs": 2.2230540000000474
+        },
+        "2": {
+          "width": 3548,
+          "height": 1774,
+          "decodeMs": 43.12824800000004,
+          "drawMs": 16.18405200000001
+        }
+      },
+      "budgetPass": false,
+      "diagnostic": "path6: inseparable contour/hole component is 88004 characters (20 contours), limit 60000. In Inkscape simplify this component with silhouette/hole protection or divide into separately authored non-overlapping objects; do not blindly break apart holes.",
+      "importSeconds": 0.28274305001832545,
+      "qualityPass": false,
+      "feasible": false
+    },
+    {
+      "candidate": "precision-4",
+      "sourceBytes": 510580,
+      "paths": 4,
+      "commands": 13285,
+      "segments": 13079,
+      "endpointNodesUpperBound": 13285,
+      "explicitCommandLetters": 1591,
+      "subpaths": 206,
+      "pathChars": 509521,
+      "maxPathChars": 251610,
+      "errors": {
+        "1": {
+          "rgbMAE255": 0.060348790138959885,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.07929328083992004,
+          "changedPixelFraction": 0.0009945740109231554,
+          "silhouetteMaxOffsetPx": 22.627416997969522,
+          "pass": false
+        },
+        "2": {
+          "rgbMAE255": 0.06346822530031204,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.0844150260090828,
+          "changedPixelFraction": 0.0010843398761262836,
+          "silhouetteMaxOffsetPx": 128.22636234409833,
+          "pass": false
+        }
+      },
+      "render": {
+        "1": {
+          "width": 1774,
+          "height": 887,
+          "decodeMs": 27.61683899999997,
+          "drawMs": 3.0865160000000174
+        },
+        "2": {
+          "width": 3548,
+          "height": 1774,
+          "decodeMs": 41.89946800000001,
+          "drawMs": 15.944101999999987
+        }
+      },
+      "budgetPass": false,
+      "diagnostic": "path6: inseparable contour/hole component is 78548 characters (20 contours), limit 60000. In Inkscape simplify this component with silhouette/hole protection or divide into separately authored non-overlapping objects; do not blindly break apart holes.",
+      "importSeconds": 0.2752693289949093,
+      "qualityPass": false,
+      "feasible": false
+    },
+    {
+      "candidate": "precision-3",
+      "sourceBytes": 441566,
+      "paths": 4,
+      "commands": 13286,
+      "segments": 13080,
+      "endpointNodesUpperBound": 13286,
+      "explicitCommandLetters": 1591,
+      "subpaths": 206,
+      "pathChars": 440507,
+      "maxPathChars": 217562,
+      "errors": {
+        "1": {
+          "rgbMAE255": 0.4648509621620178,
+          "rgbP99_255": 12.964706420898438,
+          "alphaMAE255": 0.6222468018531799,
+          "changedPixelFraction": 0.009261295246762391,
+          "silhouetteMaxOffsetPx": 174.61385970191483,
+          "pass": false
+        },
+        "2": {
+          "rgbMAE255": 0.4891078770160675,
+          "rgbP99_255": 2.352970600128174,
+          "alphaMAE255": 0.6544806957244873,
+          "changedPixelFraction": 0.007214792397768595,
+          "silhouetteMaxOffsetPx": 348.2714458579687,
+          "pass": false
+        }
+      },
+      "render": {
+        "1": {
+          "width": 1774,
+          "height": 887,
+          "decodeMs": 25.671729999999968,
+          "drawMs": 3.090096000000017
+        },
+        "2": {
+          "width": 3548,
+          "height": 1774,
+          "decodeMs": 32.16923600000001,
+          "drawMs": 14.550725999999997
+        }
+      },
+      "budgetPass": false,
+      "diagnostic": "path6: inseparable contour/hole component is 73378 characters (20 contours), limit 60000. In Inkscape simplify this component with silhouette/hole protection or divide into separately authored non-overlapping objects; do not blindly break apart holes.",
+      "importSeconds": 0.26320321299135685,
+      "qualityPass": false,
+      "feasible": false
+    }
+  ],
+  "sourcePalette": [
+    [
+      41,
+      49,
+      47
+    ],
+    [
+      54,
+      64,
+      61
+    ],
+    [
+      57,
+      67,
+      64
+    ],
+    [
+      68,
+      81,
+      74
+    ]
+  ],
+  "chosen": null,
+  "reviewCandidate": "raw",
+  "rawUnchanged": true
+}

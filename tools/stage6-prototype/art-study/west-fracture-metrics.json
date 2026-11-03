@@ -1,0 +1,374 @@
+{
+  "source": "tools/stage6-prototype/art-study/west-fracture-three-raw.svg",
+  "originalSha256": "7367d3192c552d23465682a9aeb4974307bef3aa2547c69d7c9556508db23395",
+  "rawSha256": "f01292b058e745d98fce3af45764b24b9eb3a404ef8cc543af347c19293cc5b9",
+  "removedReferenceImages": [],
+  "width": 1774,
+  "scales": [
+    1,
+    2
+  ],
+  "limits": {
+    "rgbMAE255": 2,
+    "silhouettePx": 1.5,
+    "protectedRgbMAE255": 1,
+    "protectedPx": 0.5,
+    "protectedChangedPixelFraction": 0.05
+  },
+  "protectedRects": [],
+  "protectedMask": null,
+  "provisional": true,
+  "visualApproval": "NOT REVIEWED \u2014 candidate only; human inspection mandatory",
+  "protectionMode": "feature",
+  "protectedPolylines": [],
+  "baseline": {
+    "sourceBytes": 12233,
+    "paths": 2,
+    "commands": 288,
+    "segments": 278,
+    "endpointNodesUpperBound": 288,
+    "explicitCommandLetters": 111,
+    "subpaths": 10,
+    "pathChars": 11272,
+    "maxPathChars": 7942,
+    "render": {
+      "1": {
+        "width": 1774,
+        "height": 887,
+        "decodeMs": 4.7804610000000025,
+        "drawMs": 2.957045999999991
+      },
+      "2": {
+        "width": 3548,
+        "height": 1774,
+        "decodeMs": 11.400779,
+        "drawMs": 15.071091999999965
+      }
+    }
+  },
+  "candidates": [
+    {
+      "candidate": "raw",
+      "sourceBytes": 12233,
+      "paths": 2,
+      "commands": 288,
+      "segments": 278,
+      "endpointNodesUpperBound": 288,
+      "explicitCommandLetters": 111,
+      "subpaths": 10,
+      "pathChars": 11272,
+      "maxPathChars": 7942,
+      "errors": {
+        "1": {
+          "rgbMAE255": 0.0,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.0,
+          "changedPixelFraction": 0.0,
+          "silhouetteMaxOffsetPx": 0.0,
+          "pass": true
+        },
+        "2": {
+          "rgbMAE255": 0.0,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.0,
+          "changedPixelFraction": 0.0,
+          "silhouetteMaxOffsetPx": 0.0,
+          "pass": true
+        }
+      },
+      "render": {
+        "1": {
+          "width": 1774,
+          "height": 887,
+          "decodeMs": 3.9971689999999853,
+          "drawMs": 2.002679999999998
+        },
+        "2": {
+          "width": 3548,
+          "height": 1774,
+          "decodeMs": 9.674808999999982,
+          "drawMs": 14.63815999999997
+        }
+      },
+      "budgetPass": true,
+      "nodes": 6,
+      "normalizedMaxPathChars": 8603,
+      "normalizedPaths": 2,
+      "importSeconds": 0.007464601018000394,
+      "qualityPass": true,
+      "feasible": true
+    },
+    {
+      "candidate": "simplify-0.0001",
+      "sourceBytes": 11241,
+      "paths": 2,
+      "commands": 217,
+      "segments": 207,
+      "endpointNodesUpperBound": 217,
+      "explicitCommandLetters": 35,
+      "subpaths": 10,
+      "pathChars": 10762,
+      "maxPathChars": 7699,
+      "errors": {
+        "1": {
+          "rgbMAE255": 0.05393168330192566,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.06907173246145248,
+          "changedPixelFraction": 0.0012036569819095567,
+          "silhouetteMaxOffsetPx": 1.0,
+          "pass": true
+        },
+        "2": {
+          "rgbMAE255": 0.033430106937885284,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.04264736548066139,
+          "changedPixelFraction": 0.0008198086096427287,
+          "silhouetteMaxOffsetPx": 75.4254598925323,
+          "pass": false
+        }
+      },
+      "render": {
+        "1": {
+          "width": 1774,
+          "height": 887,
+          "decodeMs": 4.600242999999978,
+          "drawMs": 2.6878770000000145
+        },
+        "2": {
+          "width": 3548,
+          "height": 1774,
+          "decodeMs": 11.66171700000001,
+          "drawMs": 15.931490999999994
+        }
+      },
+      "budgetPass": true,
+      "nodes": 6,
+      "normalizedMaxPathChars": 8580,
+      "normalizedPaths": 2,
+      "importSeconds": 0.008138250996125862,
+      "qualityPass": false,
+      "feasible": false,
+      "simplifySeconds": 3.9387419699924067
+    },
+    {
+      "candidate": "simplify-0.0003",
+      "sourceBytes": 7951,
+      "paths": 2,
+      "commands": 153,
+      "segments": 143,
+      "endpointNodesUpperBound": 153,
+      "explicitCommandLetters": 33,
+      "subpaths": 10,
+      "pathChars": 7472,
+      "maxPathChars": 5433,
+      "errors": {
+        "1": {
+          "rgbMAE255": 0.06940518319606781,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.08858254551887512,
+          "changedPixelFraction": 0.0017006262320960791,
+          "silhouetteMaxOffsetPx": 253.50542400508908,
+          "pass": false
+        },
+        "2": {
+          "rgbMAE255": 0.04840591922402382,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.06171935424208641,
+          "changedPixelFraction": 0.0010787791588128155,
+          "silhouetteMaxOffsetPx": 554.2463351254567,
+          "pass": false
+        }
+      },
+      "render": {
+        "1": {
+          "width": 1774,
+          "height": 887,
+          "decodeMs": 5.131692000000044,
+          "drawMs": 3.069392999999991
+        },
+        "2": {
+          "width": 3548,
+          "height": 1774,
+          "decodeMs": 11.563810999999987,
+          "drawMs": 15.769399000000021
+        }
+      },
+      "budgetPass": true,
+      "nodes": 6,
+      "normalizedMaxPathChars": 5888,
+      "normalizedPaths": 2,
+      "importSeconds": 0.007005721010500565,
+      "qualityPass": false,
+      "feasible": false,
+      "simplifySeconds": 3.5469058169983327
+    },
+    {
+      "candidate": "precision-5",
+      "sourceBytes": 10630,
+      "paths": 2,
+      "commands": 289,
+      "segments": 279,
+      "endpointNodesUpperBound": 289,
+      "explicitCommandLetters": 111,
+      "subpaths": 10,
+      "pathChars": 9669,
+      "maxPathChars": 6814,
+      "errors": {
+        "1": {
+          "rgbMAE255": 0.004947085399180651,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.006092004012316465,
+          "changedPixelFraction": 0.00010104617746759214,
+          "silhouetteMaxOffsetPx": 1.0,
+          "pass": true
+        },
+        "2": {
+          "rgbMAE255": 0.0030405065044760704,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.0038392781279981136,
+          "changedPixelFraction": 5.6878194234902495e-05,
+          "silhouetteMaxOffsetPx": 2.0,
+          "pass": true
+        }
+      },
+      "render": {
+        "1": {
+          "width": 1774,
+          "height": 887,
+          "decodeMs": 5.056940999999995,
+          "drawMs": 2.921243000000004
+        },
+        "2": {
+          "width": 3548,
+          "height": 1774,
+          "decodeMs": 10.01057800000001,
+          "drawMs": 15.191832999999974
+        }
+      },
+      "budgetPass": true,
+      "nodes": 6,
+      "normalizedMaxPathChars": 8005,
+      "normalizedPaths": 2,
+      "importSeconds": 0.006618787010665983,
+      "qualityPass": true,
+      "feasible": true
+    },
+    {
+      "candidate": "precision-4",
+      "sourceBytes": 9485,
+      "paths": 2,
+      "commands": 290,
+      "segments": 280,
+      "endpointNodesUpperBound": 290,
+      "explicitCommandLetters": 111,
+      "subpaths": 10,
+      "pathChars": 8524,
+      "maxPathChars": 6010,
+      "errors": {
+        "1": {
+          "rgbMAE255": 0.01735788583755493,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.022073188796639442,
+          "changedPixelFraction": 0.00035461488696173843,
+          "silhouetteMaxOffsetPx": 1.0,
+          "pass": true
+        },
+        "2": {
+          "rgbMAE255": 0.015780003741383553,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.02019747905433178,
+          "changedPixelFraction": 0.0003490541696482703,
+          "silhouetteMaxOffsetPx": 3.0,
+          "pass": true
+        }
+      },
+      "render": {
+        "1": {
+          "width": 1774,
+          "height": 887,
+          "decodeMs": 4.140591000000029,
+          "drawMs": 2.7572000000000116
+        },
+        "2": {
+          "width": 3548,
+          "height": 1774,
+          "decodeMs": 10.775733000000002,
+          "drawMs": 15.505057999999963
+        }
+      },
+      "budgetPass": true,
+      "nodes": 6,
+      "normalizedMaxPathChars": 7177,
+      "normalizedPaths": 2,
+      "importSeconds": 0.00892641901737079,
+      "qualityPass": true,
+      "feasible": true
+    },
+    {
+      "candidate": "precision-3",
+      "sourceBytes": 8129,
+      "paths": 2,
+      "commands": 290,
+      "segments": 280,
+      "endpointNodesUpperBound": 290,
+      "explicitCommandLetters": 111,
+      "subpaths": 10,
+      "pathChars": 7168,
+      "maxPathChars": 5061,
+      "errors": {
+        "1": {
+          "rgbMAE255": 0.1455514281988144,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.187861368060112,
+          "changedPixelFraction": 0.002958937121315151,
+          "silhouetteMaxOffsetPx": 271.5290039756342,
+          "pass": false
+        },
+        "2": {
+          "rgbMAE255": 0.1449512243270874,
+          "rgbP99_255": 0.0,
+          "alphaMAE255": 0.18693558871746063,
+          "changedPixelFraction": 0.002147707904098916,
+          "silhouetteMaxOffsetPx": 554.2788107081128,
+          "pass": false
+        }
+      },
+      "render": {
+        "1": {
+          "width": 1774,
+          "height": 887,
+          "decodeMs": 4.868771000000038,
+          "drawMs": 2.82496900000001
+        },
+        "2": {
+          "width": 3548,
+          "height": 1774,
+          "decodeMs": 12.58902999999998,
+          "drawMs": 17.033802999999978
+        }
+      },
+      "budgetPass": true,
+      "nodes": 6,
+      "normalizedMaxPathChars": 6280,
+      "normalizedPaths": 2,
+      "importSeconds": 0.009560430014971644,
+      "qualityPass": false,
+      "feasible": false
+    }
+  ],
+  "sourcePalette": [
+    [
+      41,
+      49,
+      47
+    ],
+    [
+      54,
+      64,
+      61
+    ]
+  ],
+  "chosen": "raw",
+  "reviewCandidate": "raw",
+  "rawUnchanged": true
+}
