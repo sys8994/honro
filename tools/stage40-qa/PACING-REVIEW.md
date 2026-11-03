@@ -94,7 +94,10 @@ No pose, HP, saved metadata or physical collision rule is rewritten.
 
 Only a fresh Stage40 construction assigns the stair archer its own density cell
 with the narrow dock approach above. The other six members retain the original
-cell. Existing continued Stage40 battles keep their saved activation data, so
+cell's spec, but not a claim of identical behavior: splitting membership removes
+this archer's hit/proximity contribution to that cell's shared wakeup. The fresh
+comparison must inspect all seven for useful response or dormant leftovers.
+Existing continued Stage40 battles keep their saved activation data, so
 their results cannot stand in for the new roster's activation comparison.
 Stage31 source payload is unchanged; its new runtime needs fresh probes/UI.
 
@@ -119,3 +122,20 @@ locale/charge observations passed. Actual result, combat-end and mobile guide
 pixels were inspected. The guide uses deliberate normal minimap pan/zoom, so
 its cropped caster is not evidence of an automatic-camera tracking failure.
 It is not a new pacing-candidate result. Original archive is retained.
+
+### Wrong-support save correction before final acceptance
+
+Targeted review found a concrete corner case in the first corridor predicate:
+the oldR18–21 stair archer is on coast-west around(2308.69,2155.65). The nearest
+allowed stair atx2360 is277.49 below, outside the existing candidate260 descent
+envelope. An unconditional support filter could therefore remove every return
+stepping stone. The corrected predicate receives actual current contact and
+retains the original planner while outside the supported corridor. It does not
+promise return, teleport an old save, or widen the physical descent envelope.
+On the intended support it still limits outward retreat; same-support outside
+saves can still use paid inward steps. Pure negative cases cover both paths.
+
+Run41733657544 is the first candidate comparison, not final corrected-source
+evidence. Its status/result must be retained, and no package from it may have
+its runtime hash rebound to the corrected source. No further product adjustment
+is bundled; HP, starting position, count, tide, story and objective remain fixed.

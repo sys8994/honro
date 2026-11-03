@@ -2,9 +2,10 @@
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {execFileSync} from 'node:child_process';
-import {cleanupDestinationAllowed as allowed} from '../../shared/engine/src/act4CleanupRoutes.ts';
+import {cleanupDestinationAllowed} from '../../shared/engine/src/act4CleanupRoutes.ts';
 import {authorAct4Finale} from '../../shared/act4-finale-author.mjs';
 const load=p=>JSON.parse(execFileSync('xz',['-dc',p],{maxBuffer:32e6}));
+const allowed=(b,u,p,s,current=u.honroEncounterSupport)=>cleanupDestinationAllowed(b,u,p,s,current);
 const cases=[
  [load('tools/stage40-qa/records/41721169502-stage31-last-storage.json.xz').honroBattle,'pilot31-ridge-court-3',6170,'approved31-upper-east'],
  [load('tools/stage40-qa/records/41690685003-r15-start-profile.json.xz').honroBattle,'final40-dock-stair-5',2360,'approved40-dock-stair']
@@ -17,6 +18,8 @@ for(const [b,id,limit,support]of cases){
  assert(allowed(b,u,{x:u.x-20,y:u.y},support),'Existing outside save can walk inward');
  assert(!allowed(b,u,{x:u.x+20,y:u.y},support));
  assert(!allowed(b,u,{x:u.x,y:u.y},support));
+ assert(allowed(b,u,{x:u.x+20,y:u.y},'legacy-stepping-stone','legacy-outside-layer'),'Wrong-support saves retain original destination eligibility');
+ assert(allowed(b,u,{x:u.x+20,y:u.y},'legacy-stepping-stone',null),'Unknown actual contact must not trap an old save');
  for(const change of [{honroCustom:true},{honroAct4Official:0},{honroStage:24},{honroAct4Preview:24}])assert(allowed({...b,...change},inside,{x:9000,y:0},'anything'));
  for(const change of [{id:'unrelated'},{side:0},{enthrall:'archer'},{honroPilotCombatBudget:false},{honroPilotRole:'guard'},{honroEncounterSupport:'unrelated'},{eaterCapturedBy:'x'},{carriedBy:1}])assert(allowed(b,{...inside,...change},{x:9000,y:0},'anything'));
  assert.equal(JSON.stringify(b),before,'Read-only policy must not rewrite saved state');
@@ -30,5 +33,5 @@ assert.deepEqual(s.initialState.honroEncounterDensityActivation['final40-stair-o
 assert.equal(s.initialState.honroActiveLimit,6);
 const originalRevision={...base,initialState:{honroFinalDefenseRevision:2}};assert.equal(authorAct4Finale(originalRevision,()=>{throw Error('Must not rewrite existing revision');}),originalRevision);
 // Imported code is reachable from the real planner, not an unused helper.
-const ai=await readFile('shared/engine/src/enemyAI.ts','utf8');assert(ai.includes('cleanupDestinationAllowed(e.b,u,{x,y},foot.t.id)'));
+const ai=await readFile('shared/engine/src/enemyAI.ts','utf8');assert(ai.includes('cleanupDestinationAllowed(e.b,u,{x,y},foot.t.id,e.contactSurface(u.x,u.y-4,u.y+5)?.t?.id)'));
 console.log('PASS two authored voluntary corridors, outside-save inward steps, negative scope and one-actor activation fixtures; NOT gameplay acceptance');
