@@ -2,7 +2,7 @@
 import type {Engine} from './engine';
 import type {Battle,Unit,Projectile,Vec} from './types';
 import {SKILLS} from './data';
-import {segmentTerrain} from './math';
+import {segmentTerrain,terrainRectIntersects} from './math';
 import {sweepBodyTerrain,terrainSurface} from './locomotion';
 export type EnemyEffectSkill='HSH02'|'HWD02';
 export interface EnemyEffectCast {
@@ -102,7 +102,8 @@ export function tickEnemyEffects(e:Engine,dt:number){
    if(nx<25||nx>b.width-25||!support||!left||!right||water){delete u.enemyPush;break;}
    const to={x:nx,y:support.y},blocked=sweepBodyTerrain(b.terrain,u,{x:u.x,y:u.y},to);
    const body=b.units.some(v=>v!==u&&live(v)&&!v.summonFloating&&Math.abs(v.x-nx)<u.r+v.r&&to.y>v.y-v.h+2&&to.y-u.h<v.y-2);
-   if(blocked||body){delete u.enemyPush;break;}
+   const fullBody=b.terrain.some(t=>!t.broken&&!t.oneWay&&terrainRectIntersects(t,nx-u.r,to.y-u.h,2*u.r,u.h-.1,0));
+   if(blocked||body||fullBody){delete u.enemyPush;break;}
    const distance=Math.hypot(dx,to.y-u.y);u.x=nx;u.y=to.y;u.vx=u.vy=0;budget-=distance;push.remaining=Math.max(0,push.remaining-distance);
   }
   if(push.remaining<=1e-6)delete u.enemyPush;
