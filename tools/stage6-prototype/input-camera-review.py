@@ -28,7 +28,7 @@ try:
    row['deer']=page.evaluate('''()=>{const e=HonroApp.engine,b=e.b;return b.units.filter(u=>u.id==='foe-6'||u.id==='foe-6-cluster').map(u=>{const c=e.contactSurface(u.x,u.y-4,u.y+5),s=e.surface(u.x,u.y-3,u.y+3);return {id:u.id,name:u.name,x:u.x,y:u.y,grounded:e.grounded(u),contact:c?.t?.id||null,surface:s?.t?.id||null,gravity:u.gravity,flight:u.flying,traits:u.traits};});}''')
    page.keyboard.down('ArrowRight');page.wait_for_timeout(350);page.keyboard.up('ArrowRight');page.wait_for_timeout(250);row['moved']=page.evaluate(state);assert row['moved']['active']['x']>row['entry']['active']['x']+1,row
    page.wait_for_function('HonroApp.canInput()',timeout=10000);page.keyboard.down('ArrowUp');page.wait_for_timeout(400);page.keyboard.up('ArrowUp');row['aimed']=page.evaluate(state);page.screenshot(path=str(out/(label+'-aim.png')))
-   page.keyboard.down('Space');page.wait_for_timeout(450);page.keyboard.up('Space');page.wait_for_function('HonroApp.engine.b.projectiles.length>0',timeout=5000);row['inFlight']=page.evaluate(state);page.screenshot(path=str(out/(label+'-projectile.png')));assert row['inFlight']['projectiles']>0,row
+   page.keyboard.down('Space');page.wait_for_timeout(450);page.keyboard.up('Space');page.wait_for_function('HonroApp.engine.b.projectiles.length>0',timeout=5000);row['inFlight']=page.evaluate(state);page.screenshot(path=str(out/(label+'-projectile.png')));assert row['inFlight']['projectiles']>0,row;page.wait_for_timeout(180);row['laterFlight']=page.evaluate(state);page.screenshot(path=str(out/(label+'-projectile-later.png')))
    row['documentWidth']=page.evaluate('document.documentElement.scrollWidth');r['views'].append(row);page.close()
   browser.close()
 except Exception:r['error']=traceback.format_exc()
