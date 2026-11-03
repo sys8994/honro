@@ -6,6 +6,7 @@ permissions:
   contents: read
 jobs:
   stage31:
+    if: ${{ !contains(github.ref_name, '/stage40-only-') }}
     runs-on: ubuntu-24.04
     timeout-minutes: 50
     env:
@@ -58,6 +59,7 @@ jobs:
           path: _local/reports/act4-cleanup-stage31/
           retention-days: 7
   stage40:
+    if: ${{ !contains(github.ref_name, '/stage31-only-') }}
     runs-on: ubuntu-24.04
     timeout-minutes: 80
     env:
