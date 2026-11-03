@@ -45,3 +45,6 @@ The slope-matched candidate (run 41653359581) improved west detail but revealed 
 The full-domain source alone (run 41654827536) passed continuity but failed visual review because rocks were too large and the walking slope lacked detail. This study overlays the earlier slope-matched traced paths, fading each color through native radial alpha gradients into the full-domain source. It changes neither collision nor save code. Pixel continuity, performance, path/gradient limits and independent visual acceptance require fresh testing.
 
 The first alpha blend (run 41656359641) retained a horizontal edge because opacity was still positive at the source bottom. This follow-up reduces the radius so alpha reaches zero before all source image boundaries; actual runtime pixels still require review.
+
+## Dense full-domain underlay study
+Independent review of the previous blend found improved continuity but large angular plain areas on both sides. This experiment traces a denser generated source after recording its original and a 397×248 Lanczos trace input, with Inkscape 1.4 three colors and despeckle 80. The unsimplified result passes importer limits, but source feature loss, visual scale/repetition, walking-surface legibility and actual runtime behavior need explicit review. This is an unapproved experiment.
