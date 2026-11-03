@@ -1,0 +1,66 @@
+{
+ "version": 1,
+ "processing": "Decode, mono 44.1 kHz, lead-silence trim (-45 dB), 40 Hz high-pass, trim, peak -3 dB, limiter, 60 ms tail fade, MP3 128 kbps.",
+ "assets": {
+  "enemy_hit": {
+   "file": "enemy_hit.mp3",
+   "duration": 0.47,
+   "role": "impact",
+   "source": "75 CC0 breaking / falling / hit sfx (rubberduck)",
+   "sourceFile": "bfh1_hit_07.ogg",
+   "url": "https://opengameart.org/content/75-cc0-breaking-falling-hit-sfx",
+   "license": "CC0 1.0",
+   "channels": 1,
+   "sampleRate": 44100,
+   "pitchSemitones": 0
+  },
+  "enemy_impact": {
+   "file": "enemy_impact.mp3",
+   "duration": 0.549,
+   "role": "impact-layer",
+   "source": "75 CC0 breaking / falling / hit sfx (rubberduck)",
+   "sourceFile": "bfh1_hit_02.ogg",
+   "url": "https://opengameart.org/content/75-cc0-breaking-falling-hit-sfx",
+   "license": "CC0 1.0",
+   "channels": 1,
+   "sampleRate": 44100,
+   "pitchSemitones": 0
+  },
+  "enemy_wing": {
+   "file": "enemy_wing.mp3",
+   "duration": 0.653,
+   "role": "attack",
+   "source": "Large Wings Flap (based on dave.des fast simple chop 5)",
+   "sourceFile": "wings_flap_large.ogg (first flap)",
+   "url": "https://opengameart.org/content/large-wings-flap",
+   "license": "CC0 1.0",
+   "channels": 1,
+   "sampleRate": 44100,
+   "pitchSemitones": 0
+  },
+  "enemy_clatter": {
+   "file": "enemy_clatter.mp3",
+   "duration": 0.392,
+   "role": "attack",
+   "source": "100 CC0 SFX #2 (rubberduck) + 75 CC0 breaking/falling/hit sfx (rubberduck)",
+   "sourceFile": "sfx100v2_wood_hit_01.ogg + bfh1_metal_hit_05.ogg (+55ms)",
+   "url": "https://opengameart.org/content/100-cc0-sfx-2",
+   "license": "CC0 1.0",
+   "channels": 1,
+   "sampleRate": 44100,
+   "pitchSemitones": 0
+  },
+  "step_jump": {
+   "file": "step_jump.mp3",
+   "duration": 0.34,
+   "role": "support",
+   "source": "100 CC0 SFX #2 (rubberduck)",
+   "sourceFile": "sfx100v2_footstep_wood_04.ogg",
+   "url": "https://opengameart.org/content/100-cc0-sfx-2",
+   "license": "CC0 1.0",
+   "channels": 1,
+   "sampleRate": 44100,
+   "pitchSemitones": 0
+  }
+ }
+}

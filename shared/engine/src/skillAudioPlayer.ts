@@ -1,4 +1,4 @@
-import {PLAYER_SKILL_AUDIO,skillAudioCue,skillAudioAssets,trimGain,CHARGE_AUDIO_TRIM_DB,type SkillAudioSignal} from './skillAudioMap';
+import {PLAYER_SKILL_AUDIO,skillAudioCue,skillAudioAssets,trimGain,CHARGE_AUDIO_TRIM_DB,RECORDED_SFX,type SkillAudioSignal} from './skillAudioMap';
 import type {Unit} from './types';
 type Host={enabled:boolean;volume:number;context:AudioContext|null;master:GainNode|null;voices:Set<AudioBufferSourceNode>};
 type Asset={src:string;loopStart?:number;loopEnd?:number};
@@ -13,7 +13,9 @@ export class SkillAudioPlayer{
  private get bank():Record<string,Asset>{return (globalThis as any).HONRO_SKILL_AUDIO?.assets||{};}
  private ready(){return !this.disposed&&!this.paused&&this.audio.enabled&&this.audio.volume>0&&this.audio.context?.state==='running'&&!!this.audio.master&&(typeof document==='undefined'||!document.hidden);}
  prepareSkill(skill:string){for(const name of skillAudioAssets(skill))this.wanted.add(name);void this.prepareWanted();}
- prepareParty(units:Unit[]){for(const u of units)if(u.side===0&&!u.summoned&&!u.enthrall)for(const id of u.loadout)for(const name of skillAudioAssets(id))this.wanted.add(name);void this.prepareWanted();}
+ prepareParty(units:Unit[]){for(const r of Object.values(RECORDED_SFX))this.wanted.add(r.asset);for(const u of units)if(u.side===0&&!u.summoned&&!u.enthrall)for(const id of u.loadout)for(const name of skillAudioAssets(id))this.wanted.add(name);void this.prepareWanted();}
+ /** Recorded stand-in for an engine synth cue; false means the caller keeps its synth fallback. */
+ playRecorded(asset:string,gain:number){if(!this.ready())return false;const e=this.entries.get(asset);if(e?.state!=='ready'||!e.buffer){this.wanted.add(asset);void this.prepareWanted();return false;}const i=this.variations.get(asset)||0;this.variations.set(asset,i+1);const rates=[1,.97,1.03,.985,1.015];return !!this.voice(asset,'recorded',gain,rates[i%rates.length]);}
  async prepareWanted(){if(this.disposed||this.paused||!this.audio.enabled||this.audio.volume<=0||!this.audio.context)return;await Promise.all([...this.wanted].map(name=>this.load(name)));}
  private load(name:string):Promise<boolean>{const asset=this.bank[name],context=this.audio.context;if(!asset||!context||this.disposed)return Promise.resolve(false);let entry=this.entries.get(name);if(entry?.state==='ready')return Promise.resolve(true);if(entry?.promise)return entry.promise;if(entry&&Date.now()<entry.retryAt)return Promise.resolve(false);if(!entry){entry={state:'loading',attempts:0,retryAt:0};this.entries.set(name,entry);}if(entry.attempts>=3)entry.attempts=0;
   const current=entry;current.state='loading';current.attempts++;const controller=current.controller=new AbortController(),timer=setTimeout(()=>controller.abort(),8000);this.counts.requests++;

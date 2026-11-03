@@ -53,7 +53,8 @@ export async function skillAudioData(){
     ['weapons-v3',weapons.assets.map(a=>[a.id,{...a,processing:weapons.processing}])],
     ['weapons-v3',arrows.assets.map(a=>[a.id,{...a,workTitle:'Fleshy Fight Sounds',processing:arrows.processing}])],
     ['weapons-v3',[[thunder.id,thunder]]],
-    ['bowstring-v4',[[bowstring.id,bowstring]]]
+    ['bowstring-v4',[[bowstring.id,bowstring]]],
+    ['enemy-v1',Object.entries(JSON.parse(await read('shared/assets/sfx/enemy-v1/manifest.json')).assets)]
   ],assets={};
   for(const [folder,entries]of banks)for(const [id,metadata]of entries){
     if(Object.hasOwn(assets,id))throw Error('Duplicate skill audio asset ID: '+id);

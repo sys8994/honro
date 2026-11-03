@@ -1,3 +1,4 @@
+import {RECORDED_SFX} from './skillAudioMap';
 import {SkillAudioPlayer} from './skillAudioPlayer';
 import {BgmPlayer, type MusicState} from './bgm';
 import type { Profile } from './types';
@@ -134,6 +135,7 @@ export class AudioEngine {
             if(this.resuming){this.pending=this.pending.filter(p=>now-p.at<80&&p.name!==name);this.pending.push({name,at:now});}return;
         }
         if(now-(this.lastPlayed[name]??-1e9)<(name==='arrowhit'||name==='dialogue'?0:name==='qiHit'?24:45))return;
+        const rec=RECORDED_SFX?.[name];if(rec&&this.skills.playRecorded?.(rec.asset,rec.gain)){this.lastPlayed[name]=now;this.startedAt[name]=performance.now();this.playCount++;return;}
         const buffer=this.buffer(name);if(!buffer)return;
         if(name==='dialogue')this.stop('dialogue');
         if(this.voices.size>=20){const oldest=this.voices.values().next().value;oldest?.stop();if(oldest)this.voices.delete(oldest);}
