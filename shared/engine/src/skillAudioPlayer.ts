@@ -1,4 +1,4 @@
-import {PLAYER_SKILL_AUDIO,skillAudioCue,skillAudioAssets,type SkillAudioSignal} from './skillAudioMap';
+import {PLAYER_SKILL_AUDIO,skillAudioCue,skillAudioAssets,trimGain,CHARGE_AUDIO_TRIM_DB,type SkillAudioSignal} from './skillAudioMap';
 import type {Unit} from './types';
 type Host={enabled:boolean;volume:number;context:AudioContext|null;master:GainNode|null;voices:Set<AudioBufferSourceNode>};
 type Asset={src:string;loopStart?:number;loopEnd?:number};
@@ -7,7 +7,7 @@ type Voice={source:AudioBufferSourceNode;gain:GainNode;family:string;asset:strin
 /** One finite bank per AudioEngine. No rendering, DOM, retrospective event queue or fallback synthesis. */
 export class SkillAudioPlayer{
  private entries=new Map<string,Entry>();private wanted=new Set<string>();private voices=new Map<AudioBufferSourceNode,Voice>();private seen=new Map<string,{count:number;at:number}>();private variations=new Map<string,number>();
- private charge:{actor:string;skill:string;gain:GainNode;voices:Voice[];target:number}|null=null;private paused=false;private disposed=false;
+ private charge:{actor:string;skill:string;gain:GainNode;voices:Voice[];target:number;trim:number}|null=null;private paused=false;private disposed=false;
  private counts={requests:0,decodes:0,starts:0,stops:0,chargeStarts:0,loopScheduled:0,dropped:0};
  constructor(private audio:Host){}
  private get bank():Record<string,Asset>{return (globalThis as any).HONRO_SKILL_AUDIO?.assets||{};}
@@ -29,10 +29,10 @@ export class SkillAudioPlayer{
   const index=this.variations.get(cue.asset)||0;this.variations.set(cue.asset,index+1);const rates=cue.family==='bow'||cue.family==='sword'||cue.family==='blade'?[1,.98,1.02,.99,1.01]:[1,.97,1.03,.985,1.015],rate=cue.asset==='sodan_release'?1:rates[index%rates.length];return !!this.voice(cue.asset,cue.family,cue.gain,rate);
  }
  startCharge(actor:Unit,skill:string){this.stopCharge();this.prepareSkill(skill);const profile=PLAYER_SKILL_AUDIO[skill];if(!profile?.charge||!this.ready()||actor.side!==0||actor.summoned||actor.dead)return false;const attack=profile.charge+'_charge',loop=profile.charge+'_charge_loop',buffer=this.entries.get(attack)?.buffer;if(!buffer||!this.entries.get(loop)?.buffer)return false;
-  const ctx=this.audio.context!,group=ctx.createGain();group.gain.value=.22;group.connect(this.audio.master!);const at=ctx.currentTime,join=at+Math.max(.02,buffer.duration-.04),first=this.voice(attack,'charge',1,1,group,at),held=this.voice(loop,'charge',0,1,group,join,true);if(!first||!held){if(first)this.stop(first);if(held)this.stop(held);group.disconnect();return false;}
-  first.gain.gain.setValueAtTime(1,join);first.gain.gain.linearRampToValueAtTime(0,join+.04);held.gain.gain.setValueAtTime(0,join);held.gain.gain.linearRampToValueAtTime(1,join+.04);let remaining=2;for(const v of[first,held]){const ended=v.source.onended;v.source.onended=ev=>{ended?.call(v.source,ev);if(--remaining===0)group.disconnect();};}this.charge={actor:actor.id,skill,gain:group,voices:[first,held],target:.22};this.counts.chargeStarts++;return true;
+  const ctx=this.audio.context!,group=ctx.createGain(),trim=trimGain(CHARGE_AUDIO_TRIM_DB[profile.charge]);group.gain.value=.22*trim;group.connect(this.audio.master!);const at=ctx.currentTime,join=at+Math.max(.02,buffer.duration-.04),first=this.voice(attack,'charge',1,1,group,at),held=this.voice(loop,'charge',0,1,group,join,true);if(!first||!held){if(first)this.stop(first);if(held)this.stop(held);group.disconnect();return false;}
+  first.gain.gain.setValueAtTime(1,join);first.gain.gain.linearRampToValueAtTime(0,join+.04);held.gain.gain.setValueAtTime(0,join);held.gain.gain.linearRampToValueAtTime(1,join+.04);let remaining=2;for(const v of[first,held]){const ended=v.source.onended;v.source.onended=ev=>{ended?.call(v.source,ev);if(--remaining===0)group.disconnect();};}this.charge={actor:actor.id,skill,gain:group,voices:[first,held],target:.22*trim,trim};this.counts.chargeStarts++;return true;
  }
- updateCharge(actor:Unit|undefined,skill:string,seconds:number,valid:boolean){const c=this.charge;if(!c)return;if(!valid||!actor||actor.id!==c.actor||skill!==c.skill||actor.dead||!this.ready()){this.stopCharge();return;}const target=.22+.18*Math.max(0,Math.min(1,seconds/2.4));if(Math.abs(target-c.target)>.012){c.gain.gain.setTargetAtTime(target,this.audio.context!.currentTime,.045);c.target=target;}}
+ updateCharge(actor:Unit|undefined,skill:string,seconds:number,valid:boolean){const c=this.charge;if(!c)return;if(!valid||!actor||actor.id!==c.actor||skill!==c.skill||actor.dead||!this.ready()){this.stopCharge();return;}const target=(.22+.05*Math.max(0,Math.min(1,seconds/2.4)))*c.trim;if(Math.abs(target-c.target)>.012*c.trim){c.gain.gain.setTargetAtTime(target,this.audio.context!.currentTime,.045);c.target=target;}}
  stopCharge(){const c=this.charge;if(!c)return;this.charge=null;for(const v of c.voices)this.stop(v);}
  stopAll(){this.stopCharge();for(const v of[...this.voices.values()])this.stop(v);}
  setPaused(value:boolean){this.paused=value;if(value)this.stopAll();}

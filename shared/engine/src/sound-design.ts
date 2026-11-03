@@ -20,8 +20,13 @@ function* prepareSound(name:string,sr=24000):Generator<void,Float32Array> {
         qiWave:[.64,76,1650,.32,.48,4.8], qiHit:[.39,103,1350,.52,.38,8],
         qiRebound:[.25,182,1150,.27,.29,11], ceramic:[.23,286,1800,.29,.32,13],
         down:[.57,58,680,.33,.25,5], win:[1.1,64,560,.32,.21,4],
-        lose:[.85,47,430,.29,.22,4], turn:[.32,82,600,.15,.13,9], jump:[.20,106,800,.11,.16,10]
+        lose:[.85,47,430,.29,.22,4], turn:[.32,82,600,.15,.13,9], jump:[.20,106,800,.11,.16,10],
+        // Heavy beast bite body layered under the generic hit.
+        impact:[.34,64,820,.5,.42,7]
     };
+    // Level trims (dB, max 100ms RMS): impacts -17, attacks -18.5, support -22, UI -27.
+    const trims:Record<string,number>={"hit":5.2,"arrowhit":5.5,"spiritImpact":4.5,"qiHit":2,"fire":0.7,"break":4.7,"down":2.5,"ceramic":10.5,"ricochet":14.7,"split":8.8,"qiRebound":9.9,"arrow":6.9,"sword":6.1,"spiritCast":4.0,"qiWave":-0.2,"boom":-2.4,"meteor":-2.2,"jump":15.3,"charge":18.9,"heal":3.9,"sodanBell":0.2,"spiritSummon":-1.5,"win":-2.6,"lose":-2.5,"dialogue":3.8,"turn":4.5,"impact":-0.3};
+    const level=Math.pow(10,(trims[name]||0)/20);
     const r=recipes[name];if(!r)return new Float32Array(0);
     const [duration,f,cutoff,body,texture,decay]=r,out=new Float32Array(Math.ceil(sr*duration));
     let seed=[...name].reduce((v,c)=>(Math.imul(v,33)+c.charCodeAt(0))>>>0,71237),low=0,brown=0,dc=0;
@@ -35,7 +40,7 @@ function* prepareSound(name:string,sr=24000):Generator<void,Float32Array> {
         const air=(low*.75+brown*.25)*Math.exp(-decay*.9*q)*breath;
         const attack=Math.min(1,t/(name==='dialogue'?.004:.008)),end=Math.min(1,(duration-t)/.035);
         const v=(modes*body+air*texture)*attack*end;
-        dc=.996*dc+.004*v;out[i]=Math.tanh((v-dc)*.85)*.8;
+        dc=.996*dc+.004*v;out[i]=Math.tanh((v-dc)*.85)*.8*level;
         if(i%256===255)yield;
     }
     return out;
