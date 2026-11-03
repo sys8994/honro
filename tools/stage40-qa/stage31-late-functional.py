@@ -41,7 +41,26 @@ with sync_playwright() as w:
    assert s['round']<=24 and time.monotonic()-started<600
    knight=next(h for h in s['heroes'] if h['id']=='knight')
    if n==0 and not knight['acted'] and not knight['dead']:p.locator('[data-action="select-hero"][data-id="knight"]').click();ready()
-   show_actor();q=p.evaluate(planner,False);choice=q['best'];record('current-visible-plan',q)
+   show_actor()
+   if n==0 and state()['active']=='knight':
+    # The retained failure has one visible enemy at6507 on this same upper path.
+    # Walk toward it before searching for a shot; no pose or resource writes.
+    visible=p.evaluate(planner,False)['visible'];assert len(visible)==1 and visible[0]['id']=='pilot31-ridge-court-3',visible
+    target=visible[0]['x']-200;before=state();stalled=0;last_x=before['x'];jumps=0
+    p.keyboard.down('ArrowRight')
+    try:
+     for tick in range(100):
+      p.wait_for_timeout(80);s=state()
+      assert s['active']=='knight' and s['round']==21 and s['can'],s
+      if s['x']>=target or s['moveLeft']<20:break
+      if tick and tick%8==0:
+       if abs(s['x']-last_x)<5 and s['grounded']:
+        if jumps>=2:break
+        p.keyboard.press('Control');jumps+=1
+       last_x=s['x']
+    finally:p.keyboard.up('ArrowRight')
+    ready();record('normal-last-enemy-approach',{'before':before,'targetX':target,'jumps':jumps});p.screenshot(path=str(out/'approach.png'));show_actor()
+   q=p.evaluate(planner,False);choice=q['best'];record('current-visible-plan',q)
    if not choice:
     p.keyboard.press('f');p.wait_for_timeout(900);continue
    face=-1 if choice['angle']>90 else 1

@@ -32,12 +32,13 @@ jobs:
           npm ci --prefix game
           npm --prefix game run typecheck
           node tools/stage40-qa/cleanup-corridors.test.mjs | tee "$OUT/corridors.log"
+          node tools/act4-ci/positive-finisher.test.mjs | tee "$OUT/positive-finisher.log"
           node tools/act4-ci/refresh-stage31-probes.mjs prepare "$OUT"
           node workshop/build.mjs | tee "$OUT/preview-build.log"
           sha256sum HONRO.html web/manifest.json > "$OUT/preview-sha256.txt"
           python -m pip install 'playwright==1.58.0'
           python -m playwright install --with-deps chromium
-      - name: Fresh whole Stage31, original controller and20R bound
+      - name: Fresh whole Stage31, declared finishing correction and20R bound
         run: |
           set -euo pipefail
           python -m http.server 8870 --bind 127.0.0.1 > "$OUT/server.log" 2>&1 &
@@ -81,6 +82,7 @@ jobs:
           npm ci
           npm ci --prefix game
           node tools/stage40-qa/cleanup-corridors.test.mjs | tee "$OUT/corridors.log"
+          node tools/act4-ci/positive-finisher.test.mjs | tee "$OUT/positive-finisher.log"
           node tests/monster-effects-mechanics.mjs | tee "$OUT/a1-mechanics.log"
           node tests/monster-effects-app.mjs | tee "$OUT/a1-app.log"
           node tests/monster-signals.mjs | tee "$OUT/a1-signals.log"
