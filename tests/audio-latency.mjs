@@ -78,6 +78,6 @@ function metrics(samples){const sr=24000;let peak=0,peakIndex=0,sum=0,early=0;fo
 const before=metrics(old.samples('dialogue')),after=metrics(current.samples('dialogue'));
 await check('Dialogue has earlier onset and stronger first 20 ms without a loud/clipped peak',()=>{assert(after.onsetMs<before.onsetMs);assert(after.first20msRms>before.first20msRms*2);assert(after.peak<.22);assert(after.peakMs<10);assert(after.rms<.05);});
 const preparation=[];while(current.idle.length){const t=performance.now();current.idle.shift()();preparation.push(performance.now()-t);}
-const story=await readFile('shared/runtime/story.js','utf8');assert(story.includes("if(!d){app.audio?.stop?.('dialogue');"));
+const story=await readFile('shared/runtime/story.js','utf8');assert(/if\(!d\)\{[^}]*app\.audio\?\.stop\?\.\('dialogue'\)/.test(story),'closing dialogue still stops the dialogue voice');
 await mkdir('_local/reports/audio-latency',{recursive:true});await writeFile('_local/reports/audio-latency/results.json',JSON.stringify({checks,before,after,preparation:{tasks:preparation.length,maxMs:Math.max(...preparation),p95Ms:[...preparation].sort((a,b)=>a-b)[Math.floor(preparation.length*.95)],totalMs:preparation.reduce((a,b)=>a+b,0)},limits:['WebAudio doubles and PCM analysis; no speaker, Bluetooth, OS output latency or listening claim.']},null,2));
 console.log(JSON.stringify({before,after,preparationMaxMs:Math.max(...preparation)},null,2));
