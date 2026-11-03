@@ -48,12 +48,30 @@ jobs:
           npm run build | tee "$OUT/gated-build.log"
           sha256sum HONRO.html web/manifest.json > "$OUT/final-served-sha256.txt"
           node tools/act2-dialogue-ci/source-parity.mjs "$OUT"
+          # The unchanged browser driver compares the live project to this source
+          # fixture. It is not probe evidence and does not modify the served game.
+          node --input-type=module -e 'import fs from "node:fs";import {stagePayload} from "./tools/stage31/package-manifest.mjs";const p=stagePayload(JSON.parse(fs.readFileSync("shared/data/act4/world.json")));fs.writeFileSync("candidate31.json",JSON.stringify({stages:[p.stage],library:p.assets}));'
+          sha256sum candidate31.json > "$OUT/stage31-comparison-fixture-sha256.txt"
       - name: Actual new arrival and normal first shot plus Stage17 entry/save
         run: |
           set -euo pipefail
           python -m http.server 8870 --bind 127.0.0.1 > "$OUT/server.log" 2>&1 &
           server=$!; trap 'kill "$server" 2>/dev/null || true' EXIT
           sleep 2
+          python - <<'PY'
+          import ast, hashlib, json, os, pathlib, urllib.request
+          required=['HONRO.html','tests/fixtures/act4-rc/support-entry-fixture.json','tests/fixtures/act2-art/declared-base-profile.json','tools/act4-ci/normal-shot-plan.js','tools/act4-ci/precise_aim.py','tools/act4-ci/boarding_inputs.py','candidate31.json']
+          hashes={p:hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest() for p in required}
+          for p in required:
+              if p.endswith('.py'): ast.parse(pathlib.Path(p).read_text(),filename=p)
+          with urllib.request.urlopen(os.environ['HONRO_QA_ORIGIN']+'/candidate31.json') as response:
+              assert response.status==200
+              comparison=json.load(response)
+          assert set(comparison)=={'stages','library'} and len(comparison['stages'])==1 and comparison['stages'][0]['metadata']['stageId']==31 and comparison['library']
+          assert comparison==json.loads(pathlib.Path('candidate31.json').read_text())
+          assert not pathlib.Path(os.environ['OUT']+'/stage31-entry/tactical-v8-events.jsonl').exists(),'Output path must be fresh'
+          pathlib.Path(os.environ['OUT']+'/browser-preflight.json').write_text(json.dumps({'passed':True,'sourceCommit':os.environ['GITHUB_SHA'],'origin':os.environ['HONRO_QA_ORIGIN'],'files':hashes},indent=2)+'\n')
+          PY
           HONRO_FIRST_SHOT_DIAGNOSTIC=1 HONRO_EXPECT_ARRIVAL_ROW=A4.S31.SEA.01 HONRO_RUN_DIR="$OUT/stage31-entry" python tools/act4-ci/stage31-fullplay.py > "$OUT/stage31-entry.log" 2>&1
           python - <<'PY'
           import json, os
