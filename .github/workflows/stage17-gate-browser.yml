@@ -6,6 +6,11 @@ on:
         description: 'Exact40-character generated commit from successful c5 run41543828006; not source c5 or a branch'
         required: true
         type: string
+      public:
+        description: 'Only after confirmed Pages deployment: verify the actual public site instead of localhost'
+        required: false
+        type: boolean
+        default: false
   push:
     branches: ['work/stage17-gate-browser/**']
     paths: ['.github/qa/stage17-gate-request.json']
@@ -29,19 +34,22 @@ jobs:
         id: request
         env:
           GENERATED_REF: ${{ inputs.generated_ref }}
+          PUBLIC: ${{ inputs.public }}
         run: |
           mkdir -p evidence
           python - <<'PY'
           import json,os,re
           from pathlib import Path
-          ref=os.environ.get('GENERATED_REF')
+          ref=os.environ.get('GENERATED_REF');public=os.environ.get('PUBLIC')=='true'
           if not ref:
               request=json.loads(Path('qa/.github/qa/stage17-gate-request.json').read_text())
-              assert set(request)=={'generatedRef'},'Request accepts only the immutable generatedRef'
+              assert set(request) in [{'generatedRef'},{'generatedRef','public'}],'Request accepts only generatedRef and optional public boolean'
+              assert isinstance(request.get('public',False),bool),'public must be a boolean'
+              public=request.get('public',False)
               ref=request['generatedRef']
           assert re.fullmatch('[0-9a-f]{40}',ref),'Supply the exact generated SHA after the prerequisite succeeds'
-          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('ref='+ref+'\n')
-          Path('evidence/request.json').write_text(json.dumps({'generatedRef':ref,'harnessSource':os.environ['GITHUB_SHA']},indent=2)+'\n')
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('ref='+ref+'\npublic='+str(public).lower()+'\n')
+          Path('evidence/request.json').write_text(json.dumps({'generatedRef':ref,'public':public,'harnessSource':os.environ['GITHUB_SHA']},indent=2)+'\n')
           PY
       - name: Require completed normal c5 production build and preservation
         env:
@@ -90,18 +98,24 @@ jobs:
         working-directory: candidate
         env:
           CANDIDATE: ${{ steps.request.outputs.ref }}
+          PUBLIC: ${{ steps.request.outputs.public }}
         run: |
           set -euo pipefail
           mkdir -p _local/reports/stage17-gate-browser
-          python -m http.server 8870 --bind 127.0.0.1 > ../evidence/server.log 2>&1 &
-          trap 'kill $! 2>/dev/null || true' EXIT
-          sleep 2
-          GITHUB_SHA="$CANDIDATE" python tests/stage17-gate-browser.py --url http://127.0.0.1:8870/HONRO.html --out _local/reports/stage17-gate-browser > ../evidence/browser.log 2>&1
+          URL=http://127.0.0.1:8870/HONRO.html
+          if [ "$PUBLIC" = true ]; then
+            URL=https://sys8994.github.io/honro/HONRO.html
+          else
+            python -m http.server 8870 --bind 127.0.0.1 > ../evidence/server.log 2>&1 &
+            trap 'kill $! 2>/dev/null || true' EXIT
+            sleep 2
+          fi
+          GITHUB_SHA="$CANDIDATE" python tests/stage17-gate-browser.py --url "$URL" --out _local/reports/stage17-gate-browser > ../evidence/browser.log 2>&1
           python -c 'import json; d=json.load(open("_local/reports/stage17-gate-browser/result.json")); assert d.get("passed") is True and not d.get("errors") and not d.get("exception")'
       - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
         if: always()
         with:
-          name: stage17-repaired-gate-${{ steps.request.outputs.ref }}
+          name: stage17-repaired-gate-${{ steps.request.outputs.ref }}-public-${{ steps.request.outputs.public }}
           path: |
             evidence/
             candidate/_local/reports/stage17-gate-browser/

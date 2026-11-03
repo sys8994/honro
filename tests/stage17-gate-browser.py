@@ -2,11 +2,13 @@
 A continued native-App checkpoint, not fresh playthrough or browser clear evidence.
 Only the initial entire-profile import writes storage; all later actions use UI.
 """
-import argparse,ast,copy,gzip,hashlib,json,os,subprocess,time,traceback,unittest
+import argparse,ast,copy,gzip,hashlib,json,os,re,subprocess,time,traceback,unittest,urllib.request
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 GZIP_SHA='0ae6a6c22718b821f65cadc2882bde026f43774d3c86263a9120e9cd263cdf5e'
 RAW_SHA='8eceb8323fbfb4965d6b7d3a751dfd9fcefd6de473bc2c801b83defc042434d2'
+PUBLIC_URL='https://sys8994.github.io/honro/HONRO.html'
+PUBLIC_BASE='https://sys8994.github.io/honro/'
 KEY='honro-first-act-profile-1'
 FIELDS=['id','cls','side','hp','maxHp','focus','maxFocus','moveLeft','dead','loadout','equipmentIds']
 GEOMETRY=['id','x','y','w','h','vertices','mat','oneWay']
@@ -87,6 +89,28 @@ def resume_walk_after_dialogue(page,interrupted,records):
   page.wait_for_timeout(50)
  raise AssertionError('Authored walking dialogue did not restore ordinary input within15s')
 
+def public_identity(root,fetch):
+ expected={f['path']:f['sha256'] for f in json.loads((root/'web/manifest.json').read_text())['files']}
+ for name in ['HONRO.html','web/manifest.json']:
+  expected[name]=hashlib.sha256((root/name).read_bytes()).hexdigest()
+  assert hashlib.sha256(fetch(PUBLIC_BASE+name)).hexdigest()==expected[name],'Public deployment does not match exact candidate: '+name
+ return expected
+
+def verify_public_response(url,body,expected,content_range=None,root=None):
+ assert url.startswith(PUBLIC_BASE),'Unexpected external browser resource: '+url
+ name=url[len(PUBLIC_BASE):].split('?',1)[0]
+ assert name in expected,'Public resource absent from verified candidate manifest: '+name
+ digest=hashlib.sha256(body).hexdigest()
+ if content_range:
+  match=re.fullmatch(r'bytes (\d+)-(\d+)/(\d+)',content_range)
+  assert match and root,'Invalid public range response'
+  start,end,total=map(int,match.groups());local=(root/name).read_bytes()
+  assert hashlib.sha256(local).hexdigest()==expected[name] and total==len(local),'Range candidate identity mismatch'
+  assert 0<=start<=end<total and body==local[start:end+1],'Actual public range bytes differ from candidate'
+  return {'path':name,'sha256':digest,'bytes':len(body),'contentRange':content_range,'fullCandidateSha256':expected[name]}
+ assert digest==expected[name],'Actual public browser bytes differ from candidate: '+name
+ return {'path':name,'sha256':digest,'bytes':len(body)}
+
 def run(args):
  from playwright.sync_api import sync_playwright
  out=Path(args.out);out.mkdir(parents=True,exist_ok=True)
@@ -105,9 +129,25 @@ def run(args):
   result.update(source=os.environ.get('GITHUB_SHA') or subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
    fixture=str(args.fixture),fixtureGzipSha256=GZIP_SHA,fixtureRawSha256=RAW_SHA,profileSha256=hashlib.sha256(serialized.encode()).hexdigest(),
    provenance=original['provenance'],baseline=baseline,servedSha256={f:hashlib.sha256((ROOT/f).read_bytes()).hexdigest() for f in ['HONRO.html','web/manifest.json']})
+  result['url']=args.url
+  expected_public=None
+  if args.url==PUBLIC_URL:
+   def fetch_public(url):
+    with urllib.request.urlopen(urllib.request.Request(url,headers={'Cache-Control':'no-cache'}),timeout=45) as response:
+     assert response.geturl()==url,'Unexpected public redirect'
+     return response.read()
+   expected_public=public_identity(ROOT,fetch_public)
+   result['publicIdentity']={'htmlAndManifestMatched':True,'browserResponses':[]}
   save()
   with sync_playwright() as w:
    browser=w.chromium.launch(headless=True);page=browser.new_page(viewport={'width':1440,'height':900});page.on('pageerror',lambda e:result['errors'].append(str(e)))
+   if expected_public:
+    def check_response(response):
+     try:
+      assert response.status in [200,206],'Public resource HTTP status '+str(response.status)+': '+response.url
+      result['publicIdentity']['browserResponses'].append(verify_public_response(response.url,response.body(),expected_public,response.header_value('content-range') if response.status==206 else None,ROOT))
+     except Exception as error:result['errors'].append('Public response identity: '+str(error))
+    page.on('response',check_response)
    def snapshot(label):
     s=page.evaluate(SNAPSHOT);result[label]=s;save();return s
    def ready():
@@ -166,6 +206,9 @@ def run(args):
     page.locator('.title-actions [data-action="continue"]:visible').first.click();ready()
     restored=snapshot('reloaded');check_gate(restored['live']);preserved(saved['stored'],restored['live']);assert crossed(restored['live'])
     page.screenshot(path=str(out/'reloaded-crossed-gate.png'))
+    if expected_public:
+     names={item['path'] for item in result['publicIdentity']['browserResponses']}
+     assert 'HONRO.html' in names and any(name.endswith('.js') for name in names) and any(name.endswith('.json') for name in names),'Missing actual public game/data response evidence'
     result['passed']=not result['errors'];save()
    except Exception:
     try:snapshot('failureState')
@@ -234,6 +277,16 @@ class HelperTests(unittest.TestCase):
    states=iter([bad]);events.clear()
    with self.assertRaises(AssertionError):resume_walk_after_dialogue(page,before,[])
    self.assertEqual(events,['up'])
+ def test_public_bytes_must_match_candidate_and_known_origin(self):
+  good=b'candidate game';expected={'web/game.js':hashlib.sha256(good).hexdigest()}
+  self.assertEqual(verify_public_response(PUBLIC_BASE+'web/game.js',good,expected)['path'],'web/game.js')
+  import tempfile
+  with tempfile.TemporaryDirectory() as directory:
+   root=Path(directory);(root/'web').mkdir();(root/'web/game.js').write_bytes(good)
+   self.assertEqual(verify_public_response(PUBLIC_BASE+'web/game.js',good[2:5],expected,'bytes 2-4/14',root)['bytes'],3)
+   with self.assertRaises(AssertionError):verify_public_response(PUBLIC_BASE+'web/game.js',b'bad',expected,'bytes 2-4/14',root)
+  for url,body in [(PUBLIC_BASE+'web/game.js',b'stale'),('https://other.example/web/game.js',good),(PUBLIC_BASE+'unknown.js',good)]:
+   with self.assertRaises(AssertionError):verify_public_response(url,body,expected)
  def test_open_requires_both_real_proofs_and_both_terrains(self):
   a=self.sample();check_gate(a)
   for mutate in [lambda s:s['gates'][1].update(broken=False),lambda s:s['proof']['17.lock'].update(pinSeated=False),lambda s:s['proof']['17.mesh']['parts'].clear()]:

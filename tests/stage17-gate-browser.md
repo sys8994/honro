@@ -122,3 +122,26 @@ This closes the repaired-gate Continue → actual movement → autosave → relo
 regression for this exact generated candidate and old interrupted native save.
 It is not a fresh Stage17 clear, continuous campaign, or new combat-rate sample.
 The two earlier controller failures remain archived and are not relabeled passes.
+
+### Public Pages verification mode (prepared; not yet executed)
+
+After the deployment owner confirms Pages publication, a request may add the
+boolean `"public":true`, or workflow dispatch may set `public` to true. The only
+public target is `https://sys8994.github.io/honro/HONRO.html`; callers cannot
+supply another public origin. No request file is added by this change.
+
+The same isolated-browser test imports the entire genuine fixture once and
+performs the same Continue/cross/Next/autosave/reload sequence. Public HONRO.html
+and manifest bytes must equal the checked-out generated candidate before any UI
+interaction. Each actual loaded browser response is checked against that exact
+manifest (HTTP206 media slices against the corresponding candidate byte range).
+Unknown origins/resources, mismatches, HTTP failures and missing game/data
+responses fail. The receipt records the public URL and matched browser bytes.
+Only resources used by this focused test are fetched; unrelated chapter assets
+are not bulk-downloaded or gameplay-retested.
+
+Public identity verification is candidate-relative. The workflow's existing
+normal-build provenance gate remains c5-specific until the deployment owner's
+new merged-source build/run contract is verified and explicitly bound. It must
+not be disabled to accept a changed master, and prepared public mode does not
+claim that candidate781cb3 is deployed or is the final merged release.
