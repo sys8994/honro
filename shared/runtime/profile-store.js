@@ -90,7 +90,11 @@ function verifyLegacy34Assets(items){
 // Acts 1–2 use a self-contained table inside each snapshot. It never looks up
 // current provider artwork: old saves and portable exports retain exact art.
 const localCampaignArt=b=>!!b&&!b.honroCustom&&b.honroMapOrigin!=='workshop'&&b.mode==='campaign'&&Number.isInteger(b.honroStage)&&b.honroStage>=1&&b.honroStage<=20;
-const localArtAsset=a=>!!a&&typeof a.id==='string'&&(a.id.startsWith('act1-traced:')||a.id.startsWith('act2-traced:'))&&a.vector&&Array.isArray(a.collision)&&a.collision.length===0&&!a.interactionType&&a.honroStaticAssetRef===undefined&&a.honroLocalArtRef===undefined;
+// These four visual-only Stage 6 studies retain their original IDs and exact
+// saved bytes. This is not a prefix-wide opt-in or a current-provider lookup.
+const STAGE6_LOCAL_ART_IDS=new Set(['stage06-prototype:continuous-body-v1','stage06-prototype:pier-west','stage06-prototype:pier-mid','stage06-prototype:pier-east']);
+const localArtAsset=(a,b)=>!!a&&typeof a.id==='string'&&(a.id.startsWith('act1-traced:')||a.id.startsWith('act2-traced:')||(b?.honroStage===6&&STAGE6_LOCAL_ART_IDS.has(a.id)&&a.vector?.version===1))&&a.vector&&Array.isArray(a.collision)&&a.collision.length===0&&!a.interactionType&&a.honroStaticAssetRef===undefined&&a.honroLocalArtRef===undefined;
+const localArtPlacement=item=>!STAGE6_LOCAL_ART_IDS.has(item?.asset?.id)||item.kind==='canonical-element';
 const LOCAL_ART_HASH_CACHE_LIMIT=3000000,localArtHashCache=new Map();let localArtHashChars=0;
 function localArtSignature(text){
  if(localArtHashCache.has(text))return localArtHashCache.get(text);
@@ -98,18 +102,18 @@ function localArtSignature(text){
  while(localArtHashChars+text.length>LOCAL_ART_HASH_CACHE_LIMIT){const oldest=localArtHashCache.keys().next().value;localArtHashChars-=oldest.length;localArtHashCache.delete(oldest);}
  localArtHashCache.set(text,signature);localArtHashChars+=text.length;return signature;
 }
-function localArtItems(b){return[b?.honroLandmarks,b?.honroElements,b?.honroEnvironment?.placements].filter(Array.isArray).flat();}
+function localArtItems(b){return[b?.honroLandmarks,b?.honroElements,b?.honroTerrainAttachments,b?.honroEnvironment?.placements].filter(Array.isArray).flat();}
 function resolveLocalArt(b){
  const items=localArtItems(b),table=b?.honroLocalArtTable,hasTable=!!b&&Object.prototype.hasOwnProperty.call(b,'honroLocalArtTable');
  const refs=items.filter(item=>item?.asset?.honroLocalArtRef!==undefined);
  if(!hasTable&&!refs.length)return{table:false,replacements:[]};
  if(!localCampaignArt(b)||!hasTable||!table||table.version!==1||!Array.isArray(table.assets)||!table.assets.length||table.assets.length>32||Object.keys(table).some(k=>!['version','assets'].includes(k)))return null;
- if(!table.assets.every(localArtAsset))return null;
+ if(!table.assets.every(a=>localArtAsset(a,b)))return null;
  // Provider references never belong in this self-contained local-table format.
  if(items.some(item=>item?.asset?.honroStaticAssetRef!==undefined))return null;
  const signatures=new Map(),used=new Set(),replacements=[];
  for(const item of refs){
-  const ref=item.asset,index=ref.index;
+  const ref=item.asset,index=ref.index;if(!localArtPlacement(item))return null;
   if(ref.honroLocalArtRef!==1||!Number.isInteger(index)||index<0||index>=table.assets.length||typeof ref.id!=='string'||typeof ref.signature!=='string'||Object.keys(ref).some(k=>!['honroLocalArtRef','index','id','signature'].includes(k)))return null;
   const source=table.assets[index];if(source.id!==ref.id)return null;
   if(!signatures.has(index))signatures.set(index,assetSignature(JSON.stringify(source)));
@@ -128,7 +132,7 @@ function restoreLocalArt(b){
 function compactLocalArt(b){
  const existing=resolveLocalArt(b);if(!existing)throw Error('Invalid local art table');if(existing.table)return b;
  const rows=new Map(),placements=new Map();
- for(const item of localArtItems(b))if(localArtAsset(item?.asset)){
+ for(const item of localArtItems(b))if(localArtAsset(item?.asset,b)&&localArtPlacement(item)){
   const text=JSON.stringify(item.asset);if(text.length<128)continue;
   let row=rows.get(text);if(row)row.count++;else{row={text,count:1};rows.set(text,row);}placements.set(item,row);
  }
@@ -137,7 +141,7 @@ function compactLocalArt(b){
  shared.forEach((row,index)=>{row.ref={honroLocalArtRef:1,index,id:table.assets[index].id,signature:localArtSignature(row.text)};});
  const compactItems=items=>items.map(item=>{const row=placements.get(item);return row?.ref?{...item,asset:{...row.ref}}:item;});
  const out={...b,honroLocalArtTable:table};
- for(const key of ['honroLandmarks','honroElements'])if(Array.isArray(b[key]))out[key]=compactItems(b[key]);
+ for(const key of ['honroLandmarks','honroElements','honroTerrainAttachments'])if(Array.isArray(b[key]))out[key]=compactItems(b[key]);
  if(Array.isArray(b.honroEnvironment?.placements))out.honroEnvironment={...b.honroEnvironment,placements:compactItems(b.honroEnvironment.placements)};
  return out;
 }
