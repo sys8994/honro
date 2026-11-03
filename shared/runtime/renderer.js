@@ -468,7 +468,7 @@
         occludedUnitSilhouettes(c,b,units,charge=0){
             const visible=u=>!G.HonroAct2||G.HonroAct2.visible(b,u),height=u=>G.HonroPartyPresentationHeight?.(u)??u.h;
             const targets=new Set([b.active,this.hoverUnitId,this.inspectUnitId]);
-            this._occludedUnitIds=[];
+            this._occludedUnitIds=[];const seenOcclusion=new Set();
             for(let i=0;i<units.length;i++){
                 const u=units[i];if(!targets.has(u.id)||!visible(u))continue;
                 const uh=height(u),half=Math.max(u.r*2,uh*.6);
@@ -477,8 +477,17 @@
                 // Only actor pixels covered by a later body are overlaid. Props, HP bars,
                 // open air and genuinely unrevealed spirits retain their normal appearance.
                 const extent=Math.max(uh*3,half*3,140),size=384,rs=Math.min(2,size/extent),left=u.x-size/(2*rs),top=u.y-size*.78/rs;
-                this._occlusionLayers??=Array.from({length:3},()=>this._makeLayerCanvas(size,size));
-                const [body,cover,edge]=this._occlusionLayers,[bc,cc,ec]=this._occlusionLayers.map(cv=>cv.getContext('2d'));
+                // Idle masks are refreshed once per second; any movement, attack pose, charge or zoom
+                // change refreshes immediately. Rebuilding every body each frame cost ~2x frame time.
+                const q=v=>[v.id,Math.round(v.x*4),Math.round(v.y*4),v.facing,v.anim>0?performance.now():0].join(':'),now=performance.now();
+                const sig=[q(u),u.id===b.active?Math.round(charge*40):0,Math.round(this.scale*200),Math.round(rs*100),...covers.map(q)].join('|');
+                this._occlusionCache??=new Map();const cache=this._occlusionCache;seenOcclusion.add(u.id);
+                let entry=cache.get(u.id);
+                if(entry&&entry.sig===sig&&now-entry.at<1000){if(!entry.skip){c.save();c.globalAlpha=.38;c.drawImage(entry.body,entry.left,entry.top,entry.w,entry.w);c.globalAlpha=.95;c.drawImage(entry.edge,entry.left,entry.top,entry.w,entry.w);c.restore();}this._occludedUnitIds.push(u.id);continue;}
+                if(!entry){entry={body:this._makeLayerCanvas(size,size),edge:this._makeLayerCanvas(size,size)};cache.set(u.id,entry);}
+                Object.assign(entry,{sig,at:now,skip:false,left,top,w:size/rs});
+                this._occlusionCover??=this._makeLayerCanvas(size,size);
+                const body=entry.body,cover=this._occlusionCover,edge=entry.edge,[bc,cc,ec]=[body,cover,edge].map(cv=>cv.getContext('2d'));
                 for(const ctx of [bc,cc,ec]){ctx.setTransform(1,0,0,1,0,0);ctx.globalCompositeOperation='source-over';ctx.clearRect(0,0,size,size);}
                 for(const ctx of [bc,cc])ctx.setTransform(rs,0,0,rs,-left*rs,-top*rs);
                 // Bounds come from the exact pose/path draw on this mask grid,
@@ -489,7 +498,7 @@
                 let coverBounds=null,knownCovers=true;
                 for(const v of covers){const box=redraw(cc,v);if(!box){knownCovers=false;continue;}coverBounds=coverBounds?[Math.min(coverBounds[0],box[0]),Math.min(coverBounds[1],box[1]),Math.max(coverBounds[2],box[2]),Math.max(coverBounds[3],box[3])]:box;}
                 const r=1.6*rs/this.scale,pad=r+2;
-                if(bodyBounds&&knownCovers&&coverBounds&&(bodyBounds[2]+pad<coverBounds[0]||coverBounds[2]+pad<bodyBounds[0]||bodyBounds[3]+pad<coverBounds[1]||coverBounds[3]+pad<bodyBounds[1])){this._occludedUnitIds.push(u.id);continue;}
+                if(bodyBounds&&knownCovers&&coverBounds&&(bodyBounds[2]+pad<coverBounds[0]||coverBounds[2]+pad<bodyBounds[0]||bodyBounds[3]+pad<coverBounds[1]||coverBounds[3]+pad<bodyBounds[1])){entry.skip=true;this._occludedUnitIds.push(u.id);continue;}
                 bc.setTransform(1,0,0,1,0,0);cc.setTransform(1,0,0,1,0,0);
                 bc.globalCompositeOperation='source-in';bc.fillStyle=u.id===b.active?'#f4d793':u.side===1?'#edb7a3':'#bee1cc';bc.fillRect(0,0,size,size);bc.globalCompositeOperation='source-over';
                 for(let j=0;j<8;j++)ec.drawImage(body,Math.cos(j*Math.PI/4)*r,Math.sin(j*Math.PI/4)*r);
@@ -499,6 +508,7 @@
                 c.save();c.globalAlpha=.38;c.drawImage(body,left,top,size/rs,size/rs);c.globalAlpha=.95;c.drawImage(edge,left,top,size/rs,size/rs);c.restore();
                 this._occludedUnitIds.push(u.id);
             }
+            if(this._occlusionCache)for(const id of this._occlusionCache.keys())if(!seenOcclusion.has(id))this._occlusionCache.delete(id);
         }
         tacticalUnitMarkers(c,b,units){
             if(this.scale>.42)return;

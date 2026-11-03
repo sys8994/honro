@@ -22,10 +22,12 @@ function* prepareSound(name:string,sr=24000):Generator<void,Float32Array> {
         down:[.57,58,680,.33,.25,5], win:[1.1,64,560,.32,.21,4],
         lose:[.85,47,430,.29,.22,4], turn:[.32,82,600,.15,.13,9], jump:[.20,106,800,.11,.16,10],
         // Heavy beast bite body layered under the generic hit.
-        impact:[.34,64,820,.5,.42,7]
+        impact:[.34,64,820,.5,.42,7],
+        // Creature wingbeat (air, low body) and possessed wood/iron rattle.
+        wing:[.32,92,2400,.08,.6,3.2], clatter:[.28,210,2200,.3,.42,5.5]
     };
     // Level trims (dB, max 100ms RMS): impacts -17, attacks -18.5, support -22, UI -27.
-    const trims:Record<string,number>={"hit":5.2,"arrowhit":5.5,"spiritImpact":4.5,"qiHit":2,"fire":0.7,"break":4.7,"down":2.5,"ceramic":10.5,"ricochet":14.7,"split":8.8,"qiRebound":9.9,"arrow":6.9,"sword":6.1,"spiritCast":4.0,"qiWave":-0.2,"boom":-2.4,"meteor":-2.2,"jump":15.3,"charge":18.9,"heal":3.9,"sodanBell":0.2,"spiritSummon":-1.5,"win":-2.6,"lose":-2.5,"dialogue":3.8,"turn":4.5,"impact":-0.3};
+    const trims:Record<string,number>={"hit":5.2,"arrowhit":5.5,"spiritImpact":4.5,"qiHit":2,"fire":0.7,"break":4.7,"down":2.5,"ceramic":10.5,"ricochet":14.7,"split":8.8,"qiRebound":9.9,"arrow":6.9,"sword":6.1,"spiritCast":4.0,"qiWave":-0.2,"boom":-2.4,"meteor":-2.2,"jump":15.3,"charge":18.9,"heal":3.9,"sodanBell":0.2,"spiritSummon":-1.5,"win":-2.6,"lose":-2.5,"dialogue":3.8,"turn":4.5,"impact":-0.3,"wing":6.2,"clatter":4.4};
     const level=Math.pow(10,(trims[name]||0)/20);
     const r=recipes[name];if(!r)return new Float32Array(0);
     const [duration,f,cutoff,body,texture,decay]=r,out=new Float32Array(Math.ceil(sr*duration));
@@ -36,7 +38,7 @@ function* prepareSound(name:string,sr=24000):Generator<void,Float32Array> {
         const noise=seed/2147483648-1,t=i/sr,q=t/duration;
         low+=a*(noise-low);brown=.985*brown+.15*noise;
         const modes=Math.sin(t*f*6.28318)*Math.exp(-decay*q)+.32*Math.sin(t*f*1.71*6.28318)*Math.exp(-decay*1.7*q)+.16*Math.sin(t*f*2.63*6.28318)*Math.exp(-decay*2.4*q);
-        const breath=name==='qiWave'?Math.sin(Math.PI*Math.min(1,t/.13))*.3+1:1;
+        const breath=name==='qiWave'?Math.sin(Math.PI*Math.min(1,t/.13))*.3+1:name==='wing'?.12+.88*Math.pow(Math.abs(Math.sin(Math.PI*9*t)),2):name==='clatter'?.15+.85*Math.pow(Math.abs(Math.sin(Math.PI*28*t)),3):1;
         const air=(low*.75+brown*.25)*Math.exp(-decay*.9*q)*breath;
         const attack=Math.min(1,t/(name==='dialogue'?.004:.008)),end=Math.min(1,(duration-t)/.035);
         const v=(modes*body+air*texture)*attack*end;

@@ -618,7 +618,8 @@ export class Engine {
         }
         b.lastShots[u.id] = { angle: u.angle, power: u.lastPower, wind: b.wind, skill: skillId, path: [] };
         this.fx(s.redesigned?'spark':'rune', origin.x, origin.y, s.color, s.redesigned?10:30);
-        this.emit('sound', { name: s.mode === 'marker' ? 'charge' : u.cls === 'archer' ? 'arrow' : u.cls === 'knight' ? 'sword' : u.cls === 'occultist' ? 'spiritCast' : 'fire' });
+        // Creatures and possessed objects should not sound like bows or blades.
+        this.emit('sound', { name: s.mode === 'marker' ? 'charge' : /^(HCW|HBT)/.test(skillId) ? 'wing' : /^(H2PICK|H2CART|H2HOIST|H2STONE|HWD)/.test(skillId) ? 'clatter' : u.cls === 'archer' ? 'arrow' : u.cls === 'knight' ? 'sword' : u.cls === 'occultist' ? 'spiritCast' : 'fire' });
         this.message(`${u.name} · ${s.name}`);
         this.emit('change');
         this.emit('save');
