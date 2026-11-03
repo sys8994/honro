@@ -120,7 +120,7 @@ function tick(a){
   if(existence.dataset.key!==key){existence.innerHTML=G.HONRO_CORE.existenceDefenseView(u);existence.dataset.key=key;}
  existence.hidden=!!boundBody;
  text('.unit-info-desc',boundBody?'소단의 몸을 공격하지 마세요. 사람과 떨어진 바깥 붉은 주박을 겨누세요.':description(u,a.engine.b));
- text('.unit-info-skills',!boundBody&&skills.length?'주요 기예 · '+skills.map(s=>s.name).join(' / '):'');
+ text('.unit-info-skills',!boundBody&&skills.length?'주요 기예 · '+skills.map(s=>s.name+(a.engine.b.honroMonsterEffectsRevision===1&&u.honroMonsterEffectSkill===s.id&&s.enemyEffectDesc?' · '+s.enemyEffectDesc:'')).join(' / '):'');
  const states=G.HonroCombatStatus.effects(a.engine.b,u);
  text('.unit-info-status',states.join(' · ')||(player(u)?'적용 중인 상태가 없습니다.':''));
  const actionReason=el.querySelector('.unit-info-reason');actionReason.hidden=!player(u);

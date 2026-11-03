@@ -1,3 +1,4 @@
+import type {EnemyEffectSkill,EnemyEffectCast,EnemyEffectAttack,EnemySoftBind,EnemyPush} from './enemyEffects';
 import type {DamageOrigin,DamageSequence,EquipmentUnitState} from './damageVariance';
 import type {PhysicsEnvironment,PhysicsPatch,PhysicsCue} from './physics';
 export type ClassId = 'mage' | 'archer' | 'knight' | 'occultist';
@@ -220,6 +221,14 @@ export interface Unit {
     combatBaseAttack?: number;
     aiMove?:AIMovePlan;
     /** Enemy aim telegraph: the chosen shot is shown for a moment, then fired unchanged. */
+    honroMonsterEffectSkill?: EnemyEffectSkill;
+    enemyEffectCast?: EnemyEffectCast;
+    enemyEffectCooldown?: number;
+    enemyEffectRecovery?: {attackId:string;serial:number};
+    enemySoftBind?: EnemySoftBind;
+    enemyPush?: EnemyPush;
+    enemyControlGrace?: number;
+    enemyEffectHits?: string[];
     aiAim?:{skill:string;angle:number;power:number;target:string;age:number};
     lureRound?:number;
     carriedBy?: number;
@@ -296,6 +305,8 @@ export interface Unit {
 /** Persisted cast provenance is independent of later capture/release allegiance. */
 export interface CombatReportSource {cls?:string|null;side?:Side;kind:string;skill:string;id?:string|null;parent?:string|null;}
 export interface Projectile extends DamageOrigin {
+    enemyEffectAttack?: EnemyEffectAttack;
+    enemyEffectWind?: number;
     honroReportSource?: CombatReportSource;
     /** Automatic continuation; inherited by child effects and serialized in flight. */
     autonomous?: boolean;
@@ -433,6 +444,7 @@ export interface Stage {
     par: number;
 }
 export interface Battle {
+    honroMonsterEffectsRevision?: 1;
     damageSequence?: DamageSequence;
     playerTurnOrder?: ClassId[];
     spBalanceRevision?: number;

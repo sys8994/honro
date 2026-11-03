@@ -1,3 +1,4 @@
+import {validateEnemyEffects} from './enemyEffects';
 import {validateEquipmentIds,equipmentActor,EQUIPMENT_MAP} from './equipment';
 import {validateKeeperRitual} from './keeperRitual';
 import {normalizePlayerTurnOrder} from './turnOrder';
@@ -129,6 +130,7 @@ function validBattle(raw: unknown,legacyXp=false,oldXp=false): Battle {
         if(u.earthbind&&(!ids.has(u.earthbind.owner)||!nums(u.earthbind,['until','damage'])))return fail();
         if(u.impactCooldown!==undefined&&(!finite(u.impactCooldown)||u.impactCooldown<0||u.impactCooldown>1))return fail();
     }
+    validateEnemyEffects(b);
     if(!validateKeeperRitual(b))return fail();
     if((globalThis as any).HonroAct23V4?.validateBattle(b)===false)return fail();
     const tids = new Set<string>();

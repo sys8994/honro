@@ -1,0 +1,126 @@
+name: Monster A1 integration and gated QA
+on:
+  push:
+    branches: ['work/monster-a1-integrate/**']
+permissions:
+  contents: write
+jobs:
+  monster-integration:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 70
+    env:
+      OUT: _local/reports/monster-a1-release
+      HONRO_QA_ORIGIN: http://127.0.0.1:8870
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Focused A1 native contracts and unchanged Stage31 driver checks
+        run: |
+          set -euo pipefail
+          mkdir -p "$OUT"
+          npm ci
+          npm ci --prefix game
+          python -m pip install 'playwright==1.58.0'
+          python -m playwright install --with-deps chromium
+          npm --prefix game run typecheck
+          node tests/monster-effects-mechanics.mjs | tee "$OUT/native-mechanics.log"
+          node tests/monster-effects-app.mjs | tee "$OUT/native-app.log"
+          node tests/monster-signals.mjs | tee "$OUT/native-signals.log"
+          python tools/act4-ci/test_precise_aim.py
+          python tools/act4-ci/test_stage31_survival.py
+      - name: Retain published graphs
+        env:
+          HONRO_ACT4_RELEASE: '1'
+        run: |
+          set -euo pipefail
+          mkdir -p "$OUT"
+          mapfile -t refs < <(node --input-type=module -e 'import fs from "node:fs";import {selectPublishedGenerations} from "./shared/web-retention.mjs";for(const g of selectPublishedGenerations(JSON.parse(fs.readFileSync("web/manifest.json")).publishedGenerations,{now:Date.now()})){if(!/^[a-f0-9]{40}$/.test(g.sourceSha))throw Error("Invalid ref");console.log(g.sourceSha)}')
+          git fetch --no-tags --depth=1 origin 152c9a01ef68002183d44702179afa357a286b98 c916eb7ba2962ae4a6b702843119949dbf484060 "${refs[@]}"
+          node tools/release/retain-published-web.mjs c916eb7ba2962ae4a6b702843119949dbf484060 --published-at 2026-11-02T23:52:25Z --evidence https://github.com/sys8994/honro/actions/runs/41548426731
+          node tools/release/retain-published-web.mjs 152c9a01ef68002183d44702179afa357a286b98 --published-at 2026-11-03T00:47:44Z --evidence https://github.com/sys8994/honro/actions/runs/41555131506
+      - name: Verify exact genuine Stage31 evidence against current source
+        id: stage31
+        run: |
+          set -euo pipefail
+          node tools/act4-ci/restore-measured-stage31.mjs | tee "$OUT/measured-evidence-source.json"
+          if node tools/stage31/check-release.mjs > "$OUT/reuse-gate.log" 2>&1; then
+            cat "$OUT/reuse-gate.log"
+            echo 'fresh=false' >> "$GITHUB_OUTPUT"
+          elif grep -Fxq 'Error: Runtime changed after actual Engine probes.' "$OUT/reuse-gate.log"; then
+            cat "$OUT/reuse-gate.log"
+            echo 'fresh=true' >> "$GITHUB_OUTPUT"
+          else
+            cat "$OUT/reuse-gate.log"
+            exit 1
+          fi
+      - name: Prepare fresh unpublished evidence only after genuine runtime mismatch
+        if: steps.stage31.outputs.fresh == 'true'
+        env:
+          HONRO_ACT4_RELEASE: '1'
+        run: |
+          set -euo pipefail
+          node tools/act4-ci/refresh-stage31-probes.mjs prepare "$OUT"
+          # Capture only. Never publish until fresh measured evidence and normal gate pass.
+          node workshop/build.mjs | tee "$OUT/preview-build.log"
+          sha256sum HONRO.html web/manifest.json > "$OUT/preview-served-sha256.txt"
+      - name: Focused A1 browser on unpublished preview before expensive gate trials
+        if: steps.stage31.outputs.fresh == 'true'
+        run: |
+          set -euo pipefail
+          python -m http.server 8870 --bind 127.0.0.1 > "$OUT/preview-server.log" 2>&1 &
+          server=$!; trap 'kill "$server" 2>/dev/null || true' EXIT
+          sleep 2
+          HONRO_MONSTER_BASE_URL="http://127.0.0.1:8870" python tests/monster-effects-browser.py
+          cp -a _local/reports/monster-effects-browser "$OUT/preview-monster-browser"
+      - name: Unchanged Stage31 fresh first-shot trials and normal-input objective
+        if: steps.stage31.outputs.fresh == 'true'
+        run: |
+          set -euo pipefail
+          python -m http.server 8870 --bind 127.0.0.1 > "$OUT/server.log" 2>&1 &
+          server=$!; trap 'kill "$server" 2>/dev/null || true' EXIT
+          sleep 2
+          for trial in 1 2 3; do
+            HONRO_FIRST_SHOT_DIAGNOSTIC=1 HONRO_RUN_DIR="$OUT/first-shot-$trial" python tools/act4-ci/stage31-fullplay.py > "$OUT/first-shot-$trial.log" 2>&1
+          done
+          HONRO_RUN_DIR="$OUT/stage31" python tools/act4-ci/stage31-fullplay.py > "$OUT/stage31.log" 2>&1
+      - name: Bind genuine measured evidence and enforce normal production gate
+        run: |
+          set -euo pipefail
+          if [ "${{ steps.stage31.outputs.fresh }}" = 'true' ]; then
+            node tools/act4-ci/refresh-stage31-probes.mjs attach "$OUT"
+          fi
+          cp tools/stage31/production-package.json "$OUT/stage31-production-package.json"
+          npm run build | tee "$OUT/gated-build.log"
+          sha256sum HONRO.html web/manifest.json > "$OUT/final-served-sha256.txt"
+      - name: Focused A1 browser on final gated production candidate
+        run: |
+          set -euo pipefail
+          python -m http.server 8870 --bind 127.0.0.1 > "$OUT/final-server.log" 2>&1 &
+          server=$!; trap 'kill "$server" 2>/dev/null || true' EXIT
+          sleep 2
+          HONRO_MONSTER_BASE_URL="http://127.0.0.1:8870" python tests/monster-effects-browser.py
+          cp -a _local/reports/monster-effects-browser "$OUT/final-monster-browser"
+          node --input-type=module -e 'import fs from "node:fs";import {createHash} from "node:crypto";import {runtimeDigest} from "./tools/stage31/probes.mjs";const hash=p=>createHash("sha256").update(fs.readFileSync(p)).digest("hex");fs.writeFileSync(process.env.OUT+"/receipt.json",JSON.stringify({sourceCommit:process.env.GITHUB_SHA,runId:process.env.GITHUB_RUN_ID,runtimeSha256:await runtimeDigest(),htmlSha256:hash("HONRO.html"),manifestSha256:hash("web/manifest.json"),stage31PackageSha256:hash("tools/stage31/production-package.json"),scope:"A1 prepared encounter/profile browser fixtures + unchanged genuine Stage31 gate; not full campaign or human play approval",browser:JSON.parse(fs.readFileSync(process.env.OUT+"/final-monster-browser/summary.json"))},null,2))'
+      - name: Preserve checked candidate; no master publication
+        run: |
+          set -euo pipefail
+          git add web HONRO.html HONRO_WORKSHOP.html index.html tools/stage31/production-package.json
+          git -c user.name='honro release automation' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m "Build checked monster A1 integration from $GITHUB_SHA"
+          git push origin "HEAD:refs/heads/work/monster-a1-generated/$GITHUB_SHA"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: monster-a1-${{ github.sha }}
+          path: |
+            _local/reports/monster-effects-app/
+            _local/reports/monster-effects-browser/
+            _local/reports/monster-a1-release/
+          retention-days: 7
