@@ -121,6 +121,7 @@ function draw(scene,e){
    if(mini.bottom-cv.top+40<bottom)py=mini.bottom-cv.top+40;
    else px=Math.max(width/2+8,mini.left-cv.left-width/2-10);
   }
+  if(G.HonroStage6DescentView){const q=G.HonroStage6DescentView.avoidObjective(scene,e,px,py,width);px=q.px;py=q.py;}
   if(scene.goalFocus&&visible){
    const pulse=22+3*Math.sin(performance.now()*.008);
    c.strokeStyle='#f2d58e';c.globalAlpha=.85;c.lineWidth=2;c.beginPath();c.arc(x,y,pulse,0,Math.PI*2);c.stroke();c.globalAlpha=1;

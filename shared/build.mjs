@@ -1,3 +1,5 @@
+import {applyStage6ArtPreview} from '../tools/stage6-prototype/art-preview.mjs';
+import {applyStage6IntegratedPreview} from '../tools/stage6-prototype/integrated-preview.mjs';
 import {applyAct4FinaleRevision} from './act4-finale-revision.mjs';
 import {applyReviewedAct2Art} from '../tools/act2-vector-production/apply-candidates.mjs';
 import {validateSkillIcons} from '../tools/skill-icons/manifest.mjs';
@@ -148,6 +150,7 @@ export async function runtimeEntries({vector=true,render=true,app=false,producti
   if(project.stages.some(s=>s.metadata?.stageId===13&&s.design?.stoneFinish?.revision===1))project=applyStage13VectorFinish(project);
   project=applyReviewedAct2Art(project);
   if(act4Enabled){const act4=applyAct4FinaleRevision(JSON.parse(await read('shared/data/act4/world.json')));project={...project,stages:[...project.stages,...act4.stages],library:[...project.library,...act4.library.filter(a=>!project.library.some(b=>b.id===a.id))]};}
+  project=applyStage6IntegratedPreview(applyStage6ArtPreview(project));
   parts.push({name:'campaign',project,code:'globalThis.HONRO_PROJECT='+authorProjectExpression(JSON.stringify(project))+';'});
   if(vector){
     await buildParty();
@@ -194,6 +197,8 @@ export async function runtimeEntries({vector=true,render=true,app=false,producti
       if(name==='training'||name==='skill-preview')parts.at(-1).optional=name;
     }
     if(act4Enabled){data('HONRO_ACT4_PILOT_COMBAT_REFERENCE',JSON.parse(await read('shared/data/act4/pilot-combat-reference.json')));data('HONRO_ACT4_PREVIEW_SEEDS',JSON.parse(await read('shared/data/act4/reviewed.json')));for(const name of ['act4-art','act4-maps','act4-coast-maps','act4-coast-art','act4-events','act4-coast-events','act4-pilot-combat','act4-campaign','act4-pilot-art'])await file(`shared/runtime/${name}.js`);}
+    await file('shared/runtime/stage6-render-coverage-preview.js');
+    await file('shared/runtime/stage6-descent-view-preview.js');
   }else await file('shared/runtime/stage-rules.js');
   return parts;
 }
