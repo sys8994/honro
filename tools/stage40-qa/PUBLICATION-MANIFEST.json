@@ -1,7 +1,7 @@
 {
-  "status": "DEV ONLY. Latest full browser41646946262 failed atR25 with39/42 defeated;allheroes/residentsalive,no return. Narrow warning correction/freshStage31 passed separately. No18–20 total-round or finalA2/fun acceptance.",
+  "status": "DEV ONLY. Latest whole browser41675108632 failed R25,34/42 defeated,archer/occultist dead,all residents alive,no return. No18–20 total-round or finalA2/fun acceptance.",
   "base": "7d2655bc3f88a7b20fb2d6ea1bc4c611583e9a15",
-  "source": "a29c69ec3bc6b29366a8d28daa8d10ef601e358f",
+  "source": "2ac7cc2a9f686413ee5028f67ee42ffcb10fade4",
   "branch": "work/stage40-finale/20261103",
   "productSharedTree": "206f79264ae9a1b91eae0db87871408e293ec2a5",
   "commits": [
@@ -189,7 +189,7 @@
       "result.json": "1a55c199c556d6fda9fed49a66f438a846884ea5d6819fe90745458796c52c6d"
     }
   },
-  "remoteHead": "0cc69478d92abbccac4a02d36fd666ffba5e4f5d",
+  "remoteHead": "af6914494b4769adc172f9187b1537ce8455a951",
   "canonicalNativeMap": [
     {
       "native": "f9c973d33194f1dff68abe0e8fa2a8a9d112cc1f",
@@ -464,14 +464,9 @@
   ],
   "pendingPublication": null,
   "currentComparison": {
-    "source": "322431bf0804e0b8cec5de1517d6655e1a58fa98",
-    "native": "d80ec84b4e98bd2f3e8fc48071e5ec12ab2f67b7",
-    "runId": 41646946262,
+    "run": 41675108632,
     "status": "failed",
-    "scope": "Original preparedR1 normal entry;splitroles and narrowwarningqueue;not role-only A/B",
-    "outcome": "R25 39/42;remainingHP540/509/4633;allheroes/residentsalive;noJSerrors;no return",
-    "artifactId": 13237244865,
-    "artifactSha256": "dc24c940e89cd75b2ef087cd04c0a1a62f8d00527215afca0a1b9ee622067254"
+    "source": "af6914494b4769adc172f9187b1537ce8455a951"
   },
   "lastFailedComparison": {
     "source": "4b5e31931249f8fe194047fa22ef5f6def3ab8fd",
@@ -530,6 +525,14 @@
     {
       "runId": 41624405996,
       "result": "Normal R4 continuation; R25 39/42 defeated; residualHP929/674/3311; archer dead;4 residents alive;no return;noJSerrors"
+    },
+    {
+      "run": 41675108632,
+      "source": "af6914494b4769adc172f9187b1537ce8455a951",
+      "native": "2ac7cc2a9f686413ee5028f67ee42ffcb10fade4",
+      "artifact": 13253961033,
+      "sha256": "27e9ef7d27713d51d7b774feb79206cbc5670b43f430f1d15c654a9d604c3bd1",
+      "result": "R25 34/42 defeated; archer and occultist dead,4 residents alive,no return. Confirmed QA topAt boundary misuse strands mage on east coast; upper archer still had useful shots, so no-choice Drop never triggered."
     }
   ],
   "focusedRuns": [
