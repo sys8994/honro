@@ -1,0 +1,229 @@
+{
+  "raw": "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage13/west-shelves-v1/world.svg",
+  "candidate": "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage13/west-shelves-v1/candidate-all64.svg",
+  "rawStats": {
+    "sourceBytes": 62964,
+    "paths": 4,
+    "commands": 1744,
+    "segments": 1614,
+    "endpointNodesUpperBound": 1744,
+    "explicitCommandLetters": 701,
+    "subpaths": 130,
+    "pathChars": 62566,
+    "maxPathChars": 18757
+  },
+  "candidateStats": {
+    "sourceBytes": 44846,
+    "paths": 4,
+    "commands": 1754,
+    "segments": 1624,
+    "endpointNodesUpperBound": 1754,
+    "explicitCommandLetters": 822,
+    "subpaths": 130,
+    "pathChars": 44448,
+    "maxPathChars": 13475
+  },
+  "visualApproval": "NOT REVIEWED",
+  "config": {
+    "width": 2048,
+    "scales": [
+      1,
+      2
+    ],
+    "limits": {
+      "rgbMAE255": 0.8,
+      "silhouettePx": 1.5,
+      "protectedRgbMAE255": 1,
+      "protectedPx": 0.5,
+      "protectedChangedPixelFraction": 0.05
+    },
+    "protectedPolylines": [
+      {
+        "points": [
+          [
+            419.77639751552795,
+            163.7274725274726
+          ],
+          [
+            597.8633540372671,
+            131.28205128205127
+          ]
+        ],
+        "width": 16
+      },
+      {
+        "points": [
+          [
+            597.8633540372671,
+            131.28205128205127
+          ],
+          [
+            1043.0807453416148,
+            131.28205128205127
+          ]
+        ],
+        "width": 16
+      },
+      {
+        "points": [
+          [
+            1043.0807453416148,
+            131.28205128205127
+          ],
+          [
+            1348.3726708074535,
+            236.3076923076923
+          ]
+        ],
+        "width": 16
+      },
+      {
+        "points": [
+          [
+            1348.3726708074535,
+            236.3076923076923
+          ],
+          [
+            1717.2670807453417,
+            528.4102564102565
+          ]
+        ],
+        "width": 16
+      },
+      {
+        "points": [
+          [
+            50.88198757763975,
+            64.89084249084267
+          ],
+          [
+            419.77639751552795,
+            163.7274725274726
+          ]
+        ],
+        "width": 16
+      },
+      {
+        "points": [
+          [
+            419.77639751552795,
+            163.7274725274726
+          ],
+          [
+            508.8198757763975,
+            147.50476190476226
+          ]
+        ],
+        "width": 16
+      },
+      {
+        "points": [
+          [
+            1653.6645962732919,
+            478.0477453580903
+          ],
+          [
+            1717.2670807453417,
+            528.4102564102565
+          ]
+        ],
+        "width": 16
+      },
+      {
+        "points": [
+          [
+            1717.2670807453417,
+            528.4102564102565
+          ],
+          [
+            1997.1180124223602,
+            597.3333333333334
+          ]
+        ],
+        "width": 16
+      }
+    ],
+    "sourcePalette": [
+      [
+        40,
+        62,
+        73
+      ],
+      [
+        62,
+        86,
+        98
+      ],
+      [
+        91,
+        112,
+        124
+      ],
+      [
+        134,
+        146,
+        143
+      ]
+    ]
+  },
+  "errors": {
+    "1": {
+      "rgbMAE255": 0.008330397307872772,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.007071141619235277,
+      "changedPixelFraction": 0.00010723599926793558,
+      "silhouetteMaxOffsetPx": 1.4142135623730951,
+      "protectedChangedPixelFraction": 0.0,
+      "protectedRgbMAE255": 0.004343673121184111,
+      "protectedSilhouetteMaxOffsetPx": 0.0,
+      "protectedColorEdgeRawMaxOffsetPx": 15.0,
+      "protectedColorEdgeMaxOffsetPx": 15.0,
+      "protectedRgbQuantizationTolerance255": 0,
+      "protectedQuantizationPixels": 0,
+      "pass": false
+    },
+    "2": {
+      "rgbMAE255": 0.006509586703032255,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.0050194598734378815,
+      "changedPixelFraction": 9.461567078754579e-05,
+      "silhouetteMaxOffsetPx": 1.0,
+      "protectedChangedPixelFraction": 0.0,
+      "protectedRgbMAE255": 0.0023909418378025293,
+      "protectedSilhouetteMaxOffsetPx": 1.0,
+      "protectedColorEdgeRawMaxOffsetPx": 1.0,
+      "protectedColorEdgeMaxOffsetPx": 1.0,
+      "protectedRgbQuantizationTolerance255": 0,
+      "protectedQuantizationPixels": 0,
+      "pass": true
+    }
+  },
+  "timings": {
+    "raw-1": {
+      "width": 2048,
+      "height": 683,
+      "decodeMs": 7.336371999999983,
+      "drawMs": 3.001062000000047
+    },
+    "candidate-1": {
+      "width": 2048,
+      "height": 683,
+      "decodeMs": 6.872935000000041,
+      "drawMs": 2.9075220000000286
+    },
+    "raw-2": {
+      "width": 4096,
+      "height": 1365,
+      "decodeMs": 13.41497800000002,
+      "drawMs": 13.316612000000077
+    },
+    "candidate-2": {
+      "width": 4096,
+      "height": 1365,
+      "decodeMs": 12.593811999999957,
+      "drawMs": 11.757840999999985
+    }
+  },
+  "qualityPass": false,
+  "acceptanceRole": "Historical supplemental unclipped-source comparison only; selected actual-composition comparison.json is authoritative."
+}

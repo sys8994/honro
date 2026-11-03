@@ -1,0 +1,233 @@
+{
+  "raw": "../honro-act2-vector-rollout/stage16-final/floor-under/composed-world.svg",
+  "candidate": "../honro-act2-vector-rollout/stage16-final/floor-under/composed-candidate-final.svg",
+  "rawStats": {
+    "sourceBytes": 20696,
+    "paths": 4,
+    "commands": 601,
+    "segments": 563,
+    "endpointNodesUpperBound": 601,
+    "explicitCommandLetters": 349,
+    "subpaths": 38,
+    "pathChars": 20231,
+    "maxPathChars": 10235
+  },
+  "candidateStats": {
+    "sourceBytes": 13968,
+    "paths": 4,
+    "commands": 603,
+    "segments": 565,
+    "endpointNodesUpperBound": 603,
+    "explicitCommandLetters": 326,
+    "subpaths": 38,
+    "pathChars": 13503,
+    "maxPathChars": 6690
+  },
+  "visualApproval": "NOT REVIEWED",
+  "config": {
+    "width": 2048,
+    "scales": [
+      1,
+      2
+    ],
+    "limits": {
+      "rgbMAE255": 0.8,
+      "silhouettePx": 1.5,
+      "protectedRgbMAE255": 1,
+      "protectedPx": 0.5,
+      "protectedChangedPixelFraction": 0.05
+    },
+    "protectedPolylines": [
+      {
+        "points": [
+          [
+            -157.53846153846155,
+            -23.744927536231884
+          ],
+          [
+            0.0,
+            71.23478260869565
+          ]
+        ],
+        "width": 16
+      },
+      {
+        "points": [
+          [
+            0.0,
+            71.23478260869565
+          ],
+          [
+            236.30769230769232,
+            237.44927536231884
+          ]
+        ],
+        "width": 16
+      },
+      {
+        "points": [
+          [
+            236.30769230769232,
+            237.44927536231884
+          ],
+          [
+            630.1538461538462,
+            302.74782608695654
+          ]
+        ],
+        "width": 16
+      },
+      {
+        "points": [
+          [
+            630.1538461538462,
+            302.74782608695654
+          ],
+          [
+            984.6153846153846,
+            326.49275362318843
+          ]
+        ],
+        "width": 16
+      },
+      {
+        "points": [
+          [
+            984.6153846153846,
+            326.49275362318843
+          ],
+          [
+            1299.6923076923076,
+            332.4289855072464
+          ]
+        ],
+        "width": 16
+      },
+      {
+        "points": [
+          [
+            1299.6923076923076,
+            332.4289855072464
+          ],
+          [
+            1654.1538461538462,
+            237.44927536231884
+          ]
+        ],
+        "width": 16
+      },
+      {
+        "points": [
+          [
+            1654.1538461538462,
+            237.44927536231884
+          ],
+          [
+            1890.4615384615386,
+            148.40579710144928
+          ]
+        ],
+        "width": 16
+      },
+      {
+        "points": [
+          [
+            1890.4615384615386,
+            148.40579710144928
+          ],
+          [
+            2205.5384615384614,
+            -332.4289855072464
+          ]
+        ],
+        "width": 16
+      },
+      {
+        "points": [
+          [
+            5435.076923076923,
+            15552.927536231886
+          ],
+          [
+            -3623.3846153846152,
+            15552.927536231886
+          ]
+        ],
+        "width": 16
+      }
+    ],
+    "protectedRgbQuantizationTolerance255": 1,
+    "composition": "Identical canonicalSolid/contactInset and underpaint as native renderer; original source SVG remains immutable. Quantization allowance only RGB <=1 and identical alpha per pixel.",
+    "sourcePalette": [
+      [
+        64,
+        89,
+        99
+      ],
+      [
+        93,
+        115,
+        123
+      ]
+    ]
+  },
+  "errors": {
+    "1": {
+      "rgbMAE255": 0.011851084418594837,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.014790450222790241,
+      "changedPixelFraction": 0.00026220524267399266,
+      "silhouetteMaxOffsetPx": 1.0,
+      "protectedChangedPixelFraction": 0.0,
+      "protectedRgbMAE255": 4.093785537406802e-05,
+      "protectedSilhouetteMaxOffsetPx": 0.0,
+      "protectedColorEdgeRawMaxOffsetPx": 0.0,
+      "protectedColorEdgeMaxOffsetPx": 0.0,
+      "protectedRgbQuantizationTolerance255": 1,
+      "protectedQuantizationPixels": 0,
+      "pass": true
+    },
+    "2": {
+      "rgbMAE255": 0.009699991904199123,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.011445555835962296,
+      "changedPixelFraction": 0.00018540741715488833,
+      "silhouetteMaxOffsetPx": 1.0,
+      "protectedChangedPixelFraction": 0.0,
+      "protectedRgbMAE255": 3.611792635638267e-05,
+      "protectedSilhouetteMaxOffsetPx": 0.0,
+      "protectedColorEdgeRawMaxOffsetPx": 0.0,
+      "protectedColorEdgeMaxOffsetPx": 0.0,
+      "protectedRgbQuantizationTolerance255": 1,
+      "protectedQuantizationPixels": 0,
+      "pass": true
+    }
+  },
+  "timings": {
+    "raw-1": {
+      "width": 2048,
+      "height": 1365,
+      "decodeMs": 8.956795000000056,
+      "drawMs": 7.536474999999996
+    },
+    "candidate-1": {
+      "width": 2048,
+      "height": 1365,
+      "decodeMs": 6.2158430000000635,
+      "drawMs": 8.707574999999906
+    },
+    "raw-2": {
+      "width": 4096,
+      "height": 2731,
+      "decodeMs": 14.230077999999992,
+      "drawMs": 32.36380500000001
+    },
+    "candidate-2": {
+      "width": 4096,
+      "height": 2731,
+      "decodeMs": 12.877329000000032,
+      "drawMs": 33.65472299999999
+    }
+  },
+  "qualityPass": true
+}

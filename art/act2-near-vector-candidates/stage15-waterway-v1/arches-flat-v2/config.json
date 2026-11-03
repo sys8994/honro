@@ -1,0 +1,35 @@
+{
+  "id": "act2-traced:stage15-arches-flat-v2",
+  "name": "Stage15 arches-flat-v2",
+  "bounds": {
+    "x": 2800,
+    "y": 2800,
+    "w": 5000,
+    "h": 2100
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 2800,
+    "y": 4900
+  },
+  "semanticLayer": "BODY",
+  "preserveCompounds": true,
+  "transform": [
+    2.5839793281653747,
+    0,
+    0,
+    2.586206896551724,
+    2800,
+    2800
+  ],
+  "params": {
+    "bodyTerrainIds": [
+      "fc15-west-arch",
+      "fc15-east-arch"
+    ],
+    "bodyBaseColor": "#283b46"
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "status": "NATIVE_VISUAL_BLOCKED_CEILING_SOURCE_SEAM",
+  "reviewedViews": [
+    "entry",
+    "farewell",
+    "mobile",
+    "bell",
+    "edge-left",
+    "edge-right",
+    "left-maxzoom",
+    "right-maxzoom",
+    "ceiling-edge",
+    "bottom-edge"
+  ],
+  "sourceDependency": "e4719c714a2239ecd1c67edcdef68016e7175674",
+  "pass": [
+    "farewell narrow rim and readable actors",
+    "native raised bell retained",
+    "left/right min/max edges covered",
+    "no v1 broad pale ribbon"
+  ],
+  "fail": [
+    "ceiling-edge at focus.top=-1800, minZoom=0.21176470588235294: visible horizontal source footprint boundary absent from original"
+  ],
+  "mobileNote": "Native portrait .94 scale crops party; original camera unchanged; browser framing must be checked separately.",
+  "artifacts": [
+    {
+      "path": "_local/reports/stage19-art-preview/entry-before.png",
+      "sha256": "1a953819a2ac063affefcc94d7cce9aaf16eff650556185dd1371e93eff32d67"
+    },
+    {
+      "path": "_local/reports/stage19-art-preview/entry-after.png",
+      "sha256": "55eaf057a941e29bf6d7863d0618b2c767d644a2172cff4d5a018538dbe39a00"
+    },
+    {
+      "path": "_local/reports/stage19-art-preview/farewell-before.png",
+      "sha256": "e33116beee33176e53cc9d7bc278373e4f8994a855b6d78fdd635d4f0f4e63db"
+    },
+    {
+      "path": "_local/reports/stage19-art-preview/farewell-after.png",
+      "sha256": "715790a8280fb850c73e1db56591d1ae48657c3fd4cc0bdc47b3df8b04ad0088"
+    },
+    {
+      "path": "_local/reports/stage19-art-preview/mobile-before.png",
+      "sha256": "6ce0e3e04edb1ca3fde00504d078be0187c9d82a1060fbc9cf94c694a5695c6f"
+    },
+    {
+      "path": "_local/reports/stage19-art-preview/mobile-after.png",
+      "sha256": "524d594b846e6c959691fb3c88e879996d625a0f4a94498780b65d8bbeaea918"
+    },
+    {
+      "path": "_local/reports/stage19-art-preview/bell-before.png",
+      "sha256": "e18c075602a4a5ed1b1ca1078ced6e39d00d492ddd4dac30d5b9d426a8f36d96"
+    },
+    {
+      "path": "_local/reports/stage19-art-preview/bell-after.png",
+      "sha256": "2bd7b18c51f48f6a3f90df3e27362876c2482af687719115ccd94c5f0c36b7e2"
+    },
+    {
+      "path": "_local/reports/stage19-art-preview/edge-left-before.png",
+      "sha256": "16c7526ddf5981ac0430315b3e0a1ba56a19896ea4467d771d8243c834aa5cee"
+    },
+    {
+      "path": "_local/reports/stage19-art-preview/edge-left-after.png",
+      "sha256": "929552516358d993cac6538c92b28d5106483b3c5d17d66ade7cc4cdfcabcfcf"
+    },
+    {
+      "path": "_local/reports/stage19-art-preview/edge-right-before.png",
+      "sha256": "31779ce321e25b2597d4728ae84cf206195681abaaafc56c154864974fb9eac7"
+    },
+    {
+      "path": "_local/reports/stage19-art-preview/edge-right-after.png",
+      "sha256": "929478a93341a1d94553b1ac08404bbcb2200669e2cec41e514835dab632ccaa"
+    },
+    {
+      "path": "_local/reports/stage19-art-preview/left-maxzoom-before.png",
+      "sha256": "b450ee8f2da4a4aac3e1500dd612ac8034c46e768eb27fcce81fe21c63ee03b9"
+    },
+    {
+      "path": "_local/reports/stage19-art-preview/left-maxzoom-after.png",
+      "sha256": "dd2783f0aebf527f1d1f4a8597bde06d183c573d92c6bc0d5b3f4ac2377b5762"
+    },
+    {
+      "path": "_local/reports/stage19-art-preview/right-maxzoom-before.png",
+      "sha256": "adc6394f97150df2f9792f3a61371e8b8d824c7308f4f3d4476acb803900ceae"
+    },
+    {
+      "path": "_local/reports/stage19-art-preview/right-maxzoom-after.png",
+      "sha256": "c933a6ac2da3ebc67147a5a945620b8622d11c0f055eb3ca8ba8963293f6cecb"
+    },
+    {
+      "path": "_local/reports/stage19-art-preview/ceiling-edge-before.png",
+      "sha256": "6dd26ab90a6c12fad5653953a1a287d083a70eb237e7e247124d50e9cefe07dc"
+    },
+    {
+      "path": "_local/reports/stage19-art-preview/ceiling-edge-after.png",
+      "sha256": "8e258ff5a1d962a1103f3f0d5b654aabc7034c3a3c5367b00024660e37acc262"
+    },
+    {
+      "path": "_local/reports/stage19-art-preview/bottom-edge-before.png",
+      "sha256": "8f88cbcf19f99277c183ed54bad7140045d6888aeb70c4189b6fc676d67820b4"
+    },
+    {
+      "path": "_local/reports/stage19-art-preview/bottom-edge-after.png",
+      "sha256": "7ae73ac1e84f12fbc4683c338c3d9f45fc8a4a5cc94f577dfcada5b1f68e8e3b"
+    }
+  ],
+  "browserAccepted": false,
+  "fullStoryAccepted": false
+}

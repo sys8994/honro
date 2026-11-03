@@ -1,0 +1,51 @@
+{
+  "scope": "Native visual-only artifact evidence. No browser/gameplay assertion",
+  "reviewed": [
+    "entry",
+    "west",
+    "convoy-start",
+    "rest-shelf",
+    "last-pass",
+    "exit",
+    "overview",
+    "mobile",
+    "edge-left",
+    "edge-right",
+    "edge-bottom",
+    "edge-top"
+  ],
+  "findings": [
+    "actor size/contact/route readable",
+    "continuous floor and overhang, no floating chunks",
+    "material-edge rectangle removed via16px whole-component clearance",
+    "small nonsemantic mineral clusters remain intentionally; no fine grain field",
+    "original far image/nativeprops retained"
+  ],
+  "beforeAfter": [
+    {
+      "view": "overview",
+      "beforeSha256": "c3e0a40c507b44326308265fe0564291dcfe8c73378ca39a1d1795762e4756cc",
+      "afterSha256": "c006caad710e570996628d3a1f60f5ead5b611f55aeef62831bb884b867deff4"
+    },
+    {
+      "view": "west",
+      "beforeSha256": "2ad85cfd7dd19da1730c71611e1824cfbd80b9e2da2dc5f1cf126647adb5bac3",
+      "afterSha256": "aa384b41435960c42453dee2adcdb14715e8472f83eb39691bad578564d9755c"
+    },
+    {
+      "view": "convoy-start",
+      "beforeSha256": "da37cae4c1ee66222a6136791d969c978a3f8464fcdaf91a09577ff87ecf8ccb",
+      "afterSha256": "885d445c5df6b1f6fe0c9a31bd898bd5d082950e62566f9908491ba048f32d98"
+    },
+    {
+      "view": "rest-shelf",
+      "beforeSha256": "c58fb4392afa0a9812f92c6d9c986172730ce54d13ca9353d0c8e031ae6f295c",
+      "afterSha256": "0ed76643cdf4c6353be7716b245e01e54b7a47b53096498a7965a8a9b310db16"
+    },
+    {
+      "view": "last-pass",
+      "beforeSha256": "be88ccbd244b4dd1b1bb2e80b10ba8591b98ea3320970e4123272bc88ff0f978",
+      "afterSha256": "4d9e320bc038bd94e48058fc832fd5f9466f0ea8bbbe5729c02d7f6e03400b69"
+    }
+  ]
+}

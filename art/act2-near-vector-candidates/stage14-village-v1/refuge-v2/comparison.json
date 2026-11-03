@@ -1,0 +1,330 @@
+{
+  "raw": "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage14/refuge-v2/composed-raw.svg",
+  "candidate": "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage14/refuge-v2/composed-candidate.svg",
+  "rawStats": {
+    "sourceBytes": 323796,
+    "paths": 12,
+    "commands": 10127,
+    "segments": 9334,
+    "endpointNodesUpperBound": 10127,
+    "explicitCommandLetters": 5141,
+    "subpaths": 793,
+    "pathChars": 322780,
+    "maxPathChars": 78708
+  },
+  "candidateStats": {
+    "sourceBytes": 252439,
+    "paths": 12,
+    "commands": 10191,
+    "segments": 9398,
+    "endpointNodesUpperBound": 10191,
+    "explicitCommandLetters": 5269,
+    "subpaths": 793,
+    "pathChars": 251543,
+    "maxPathChars": 54293
+  },
+  "visualApproval": "NOT REVIEWED",
+  "config": {
+    "width": 2122,
+    "scales": [
+      1,
+      2
+    ],
+    "limits": {
+      "rgbMAE255": 2,
+      "silhouettePx": 1.5,
+      "protectedRgbMAE255": 1,
+      "protectedPx": 0.5,
+      "protectedChangedPixelFraction": 0.05
+    },
+    "protectedPolylines": [
+      {
+        "points": [
+          [
+            123.37209302325581,
+            308.75
+          ],
+          [
+            333.1046511627907,
+            247.0
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            333.1046511627907,
+            247.0
+          ],
+          [
+            419.4651162790697,
+            197.6
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            419.4651162790697,
+            197.6
+          ],
+          [
+            505.8255813953489,
+            135.85
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            505.8255813953489,
+            135.85
+          ],
+          [
+            678.546511627907,
+            135.85
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            678.546511627907,
+            135.85
+          ],
+          [
+            715.5581395348837,
+            185.25
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            715.5581395348837,
+            185.25
+          ],
+          [
+            764.906976744186,
+            185.25
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            764.906976744186,
+            185.25
+          ],
+          [
+            801.9186046511628,
+            135.85
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            801.9186046511628,
+            135.85
+          ],
+          [
+            900.6162790697674,
+            135.85
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            900.6162790697674,
+            175.37
+          ],
+          [
+            1023.9883720930233,
+            175.37
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            1023.9883720930233,
+            135.85
+          ],
+          [
+            1381.7674418604652,
+            135.85
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            1381.7674418604652,
+            135.85
+          ],
+          [
+            1505.1395348837211,
+            79.04
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            1505.1395348837211,
+            79.04
+          ],
+          [
+            1702.53488372093,
+            138.32
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            1702.53488372093,
+            138.32
+          ],
+          [
+            1998.6279069767443,
+            291.46
+          ]
+        ],
+        "width": 12
+      }
+    ],
+    "protectedRgbQuantizationTolerance255": 1,
+    "preserveRawColors": [
+      "#293a3e",
+      "#77817b",
+      "#979789"
+    ],
+    "composition": "Exact native canonicalSolid/contactInset; actual underpaint and immutable domain context; two darkest complete local skin base colors omitted identically to native. Original free SVG remains immutable and separately reported.",
+    "sourcePalette": [
+      [
+        38,
+        57,
+        61
+      ],
+      [
+        41,
+        58,
+        62
+      ],
+      [
+        52,
+        74,
+        78
+      ],
+      [
+        65,
+        89,
+        93
+      ],
+      [
+        69,
+        88,
+        91
+      ],
+      [
+        78,
+        103,
+        106
+      ],
+      [
+        91,
+        106,
+        107
+      ],
+      [
+        104,
+        107,
+        89
+      ],
+      [
+        119,
+        129,
+        123
+      ],
+      [
+        151,
+        151,
+        137
+      ]
+    ]
+  },
+  "errors": {
+    "1": {
+      "rgbMAE255": 0.00543373916298151,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.0,
+      "changedPixelFraction": 1.7171181415439564e-05,
+      "silhouetteMaxOffsetPx": 0.0,
+      "protectedChangedPixelFraction": 0.0,
+      "protectedRgbMAE255": 0.00019851578690577298,
+      "protectedSilhouetteMaxOffsetPx": 0.0,
+      "protectedColorEdgeRawMaxOffsetPx": 0.0,
+      "protectedColorEdgeMaxOffsetPx": 0.0,
+      "protectedRgbQuantizationTolerance255": 1,
+      "protectedQuantizationPixels": 0,
+      "pass": true
+    },
+    "2": {
+      "rgbMAE255": 0.0040618316270411015,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.0,
+      "changedPixelFraction": 9.539545230799758e-07,
+      "silhouetteMaxOffsetPx": 0.0,
+      "protectedChangedPixelFraction": 0.0,
+      "protectedRgbMAE255": 0.0002862205437850207,
+      "protectedSilhouetteMaxOffsetPx": 0.0,
+      "protectedColorEdgeRawMaxOffsetPx": 29.0,
+      "protectedColorEdgeMaxOffsetPx": 0.0,
+      "protectedRgbQuantizationTolerance255": 1,
+      "protectedQuantizationPixels": 4,
+      "pass": true
+    }
+  },
+  "timings": {
+    "raw-1": {
+      "width": 2122,
+      "height": 741,
+      "decodeMs": 22.43280599999997,
+      "drawMs": 2.9107720000000086
+    },
+    "candidate-1": {
+      "width": 2122,
+      "height": 741,
+      "decodeMs": 22.859027999999967,
+      "drawMs": 3.0850300000000175
+    },
+    "raw-2": {
+      "width": 4244,
+      "height": 1482,
+      "decodeMs": 46.333686,
+      "drawMs": 12.067815999999993
+    },
+    "candidate-2": {
+      "width": 4244,
+      "height": 1482,
+      "decodeMs": 47.31563399999999,
+      "drawMs": 11.692128000000025
+    }
+  },
+  "qualityPass": true
+}

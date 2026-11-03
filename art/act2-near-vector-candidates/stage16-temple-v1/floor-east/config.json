@@ -1,0 +1,35 @@
+{
+  "id": "act2-traced:stage16-floor-east",
+  "name": "Stage16 floor-east",
+  "bounds": {
+    "x": 6600,
+    "y": 4000,
+    "w": 5200,
+    "h": 3000
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 0
+  },
+  "semanticLayer": "BODY",
+  "preserveCompounds": true,
+  "transform": [
+    3.3854166666666665,
+    0,
+    0,
+    2.9296875,
+    6600,
+    4000
+  ],
+  "params": {
+    "bodyTerrainIds": [
+      "act2-floor"
+    ],
+    "bodyBaseColor": "#283e49",
+    "localMaterial": true
+  }
+}

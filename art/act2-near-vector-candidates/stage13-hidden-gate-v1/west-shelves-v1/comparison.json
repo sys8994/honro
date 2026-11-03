@@ -1,0 +1,265 @@
+{
+  "raw": "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage13/west-shelves-v1/composed-world.svg",
+  "candidate": "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage13/west-shelves-v1/composed-candidate-all64.svg",
+  "rawStats": {
+    "sourceBytes": 65071,
+    "paths": 7,
+    "commands": 1822,
+    "segments": 1683,
+    "endpointNodesUpperBound": 1822,
+    "explicitCommandLetters": 779,
+    "subpaths": 139,
+    "pathChars": 64448,
+    "maxPathChars": 18757
+  },
+  "candidateStats": {
+    "sourceBytes": 46953,
+    "paths": 7,
+    "commands": 1832,
+    "segments": 1693,
+    "endpointNodesUpperBound": 1832,
+    "explicitCommandLetters": 900,
+    "subpaths": 139,
+    "pathChars": 46330,
+    "maxPathChars": 13475
+  },
+  "visualApproval": "NOT REVIEWED",
+  "config": {
+    "width": 2048,
+    "scales": [
+      1,
+      2
+    ],
+    "limits": {
+      "rgbMAE255": 0.8,
+      "silhouettePx": 1.5,
+      "protectedRgbMAE255": 1,
+      "protectedPx": 0.5,
+      "protectedChangedPixelFraction": 0.05
+    },
+    "protectedPolylines": [
+      {
+        "points": [
+          [
+            419.77639751552795,
+            163.7274725274726
+          ],
+          [
+            597.8633540372671,
+            131.28205128205127
+          ]
+        ],
+        "width": 16
+      },
+      {
+        "points": [
+          [
+            597.8633540372671,
+            131.28205128205127
+          ],
+          [
+            1043.0807453416148,
+            131.28205128205127
+          ]
+        ],
+        "width": 16
+      },
+      {
+        "points": [
+          [
+            1043.0807453416148,
+            131.28205128205127
+          ],
+          [
+            1348.3726708074535,
+            236.3076923076923
+          ]
+        ],
+        "width": 16
+      },
+      {
+        "points": [
+          [
+            1348.3726708074535,
+            236.3076923076923
+          ],
+          [
+            1717.2670807453417,
+            528.4102564102565
+          ]
+        ],
+        "width": 16
+      },
+      {
+        "points": [
+          [
+            50.88198757763975,
+            64.89084249084267
+          ],
+          [
+            419.77639751552795,
+            163.7274725274726
+          ]
+        ],
+        "width": 16
+      },
+      {
+        "points": [
+          [
+            419.77639751552795,
+            163.7274725274726
+          ],
+          [
+            508.8198757763975,
+            147.50476190476226
+          ]
+        ],
+        "width": 16
+      },
+      {
+        "points": [
+          [
+            1653.6645962732919,
+            478.0477453580903
+          ],
+          [
+            1717.2670807453417,
+            528.4102564102565
+          ]
+        ],
+        "width": 16
+      },
+      {
+        "points": [
+          [
+            1717.2670807453417,
+            528.4102564102565
+          ],
+          [
+            1997.1180124223602,
+            597.3333333333334
+          ]
+        ],
+        "width": 16
+      }
+    ],
+    "protectedRgbQuantizationTolerance255": 0,
+    "composition": "Identical canonicalSolid/contactInset and underpaint as native renderer; original source SVG remains immutable. Quantization allowance only RGB <=1 and identical alpha per pixel.",
+    "sourcePalette": [
+      [
+        40,
+        62,
+        73
+      ],
+      [
+        62,
+        86,
+        98
+      ],
+      [
+        91,
+        112,
+        124
+      ],
+      [
+        134,
+        146,
+        143
+      ]
+    ]
+  },
+  "errors": {
+    "1": {
+      "rgbMAE255": 0.00366803677752614,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.00013940679491497576,
+      "changedPixelFraction": 9.293786603221084e-06,
+      "silhouetteMaxOffsetPx": 1.0,
+      "protectedChangedPixelFraction": 0.0,
+      "protectedRgbMAE255": 0.00011131716019008309,
+      "protectedSilhouetteMaxOffsetPx": 0.0,
+      "protectedColorEdgeRawMaxOffsetPx": 0.0,
+      "protectedColorEdgeMaxOffsetPx": 0.0,
+      "protectedRgbQuantizationTolerance255": 0,
+      "protectedQuantizationPixels": 0,
+      "pass": true
+    },
+    "2": {
+      "rgbMAE255": 0.002965623280033469,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 6.24213062110357e-05,
+      "changedPixelFraction": 5.7234432234432234e-06,
+      "silhouetteMaxOffsetPx": 1.0,
+      "protectedChangedPixelFraction": 0.0,
+      "protectedRgbMAE255": 5.4702664783690125e-05,
+      "protectedSilhouetteMaxOffsetPx": 0.0,
+      "protectedColorEdgeRawMaxOffsetPx": 0.0,
+      "protectedColorEdgeMaxOffsetPx": 0.0,
+      "protectedRgbQuantizationTolerance255": 0,
+      "protectedQuantizationPixels": 0,
+      "pass": true
+    }
+  },
+  "timings": {
+    "raw-1": {
+      "width": 2048,
+      "height": 683,
+      "decodeMs": 10.46393599999999,
+      "drawMs": 3.1004029999999716
+    },
+    "candidate-1": {
+      "width": 2048,
+      "height": 683,
+      "decodeMs": 7.847321000000022,
+      "drawMs": 2.7938879999999813
+    },
+    "raw-2": {
+      "width": 4096,
+      "height": 1365,
+      "decodeMs": 20.379099999999994,
+      "drawMs": 11.849018000000001
+    },
+    "candidate-2": {
+      "width": 4096,
+      "height": 1365,
+      "decodeMs": 19.612002000000018,
+      "drawMs": 11.50657000000001
+    }
+  },
+  "qualityPass": true,
+  "equivalentFinal": {
+    "scope": "Original measured comparison retained unchanged; final is an exact-RGBA-equivalent lexical minification.",
+    "svgSha256": "0af6ae063aac8c8a41c9ad306f16e99f8cc304ff149f5f9c068e0369f02955cf",
+    "proof": "../lossless-proof.json",
+    "checks": [
+      {
+        "part": "west-shelves-v1",
+        "scope": "isolated",
+        "scale": 1,
+        "rgbaSha256": "ebfda8d9c35a0b371d2a08403ca26885c8e60fe56c6287e3fdb7ed9cce63f482",
+        "bitIdentical": true
+      },
+      {
+        "part": "west-shelves-v1",
+        "scope": "isolated",
+        "scale": 2,
+        "rgbaSha256": "e3f25bdc04fec5127f325dde54c1a7222ae2a5bd2d90113fae6c64d1fa03cd87",
+        "bitIdentical": true
+      },
+      {
+        "part": "west-shelves-v1",
+        "scope": "composed",
+        "scale": 1,
+        "rgbaSha256": "dbd7d946d0ac6e3d4cb7d4943061de6d6da31ba6021bf3c02a6f9641cce141f7",
+        "bitIdentical": true
+      },
+      {
+        "part": "west-shelves-v1",
+        "scope": "composed",
+        "scale": 2,
+        "rgbaSha256": "62f2fe6986fe3019278dae4ebaa06ad13cafcc4571e44a26226e995c32ea23a9",
+        "bitIdentical": true
+      }
+    ]
+  }
+}

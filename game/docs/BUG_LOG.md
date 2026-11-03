@@ -1,3 +1,28 @@
+# 17장 수리 완료 뒤 방어 구간 통로 복원 — 2026-11-02
+
+- 원인: 기존 `repair` 조작은 `gate-repair`를 연 뒤 `hold-hoist` 방어로 넘어갔다. V4가 이를 실제 부품/맞물림/잠금으로 나누고 옛 use 경로를 대체하면서 문 개방만 빠졌다. 동쪽 유한 수레는 그대로 필수여서 정상 이동/직접 사격이 막혔다. O02/M04 등 벽 너머의 합법 대응이 있어 전면 진행 불능이라는 뜻은 아니다.
+- 수정: 실제 석공의 맞물림·길찬 운반 증거와 완료된 고정핀 잠금이 모두 있을 때, 방어 시작 전에 기존 `open` 경로로 해당 문만 연다. 기존 진행 저장은 prepare/attach/update에서 같은 조건으로 한 번 복원한다. 장면 무효화는 기존 sceneVersion 증가만 사용한다. 사전 수리 상태·Workshop·다른 장은 제외하며 지형 좌표/적 예산/HP/스토리·작업 순서는 바꾸지 않았다.
+- 확인: `tests/stage17-repair-gate.mjs`는 정확한 과거 자연 진행 R34 내보내기 저장의 Continue, 미수리/불충분 증거 차단, 중복 처리, 실제 충돌 개방, 배우·자원·목표·다른 지형 보존을 검사한다. `tests/act23-v4-worksite.mjs`는 실제 운반/맞물림/잠금 뒤 방어 직전 개방과 그 문 외 전체 지형 동일성을 검사한다. 최초 검사는 종결 시 문이 닫혀 있어야 한다는 옛 전체 동등성에서만 실패했고, 복원된 전이를 명시하도록 그 기대값만 갱신했다.
+- 관련 검사 한계: 기존 worksite 파일의 뒤쪽 위험·피신 fixture는 수리 전 석공 body-block timeout으로 실패한다. HEAD 원본 테스트와 원본 act23-v4-act2.js를 별도 VM에 결합한 대조에서도 같은 위치·거리·상태로 재현되어 이 문 수정과 분리했다. 앞쪽 실제 운반→잠금→방어→철수 흐름과 새 문 전용 검사는 통과한다.
+- 한계: 새 소스의 fresh 실제 App 기준 입력 검수와 빌드는 별도 결과로 남긴다. 기존 R38/R34/R33 기록은 보존하며 기준 12–16R/상한20R은 변경하지 않는다. 공개 반영/배포는 외부 승인 대기 때문에 수행하지 않았다.
+
+# 예측 관찰 브라우저 검사의 쉼터 입력 대기 누락 — 2026-11-02
+
+- 통합 CI41508193400은 실제 Stage31 입력 근거와 정상 production build, 8/14/17/18 상호작용, 11–20 미술 저장/재개, 물건 UI4뷰포트를 통과했다. 19장 저장 수정도 실제 새로고침 재개에서 통과했다. 유일한 실패는 새 예측 smoke가16장 쉼터에서 입장하지 못한120초 대기였다(페이지/HTTP 오류 없음).
+- 원인: 쉼터 전환은400ms 동안 신뢰된 클릭을 의도적으로 차단한다. 새 드라이버는 대사 없는 경우120ms만 기다린 뒤 입장 버튼을 한 번 눌러 이 보호에 걸렸다. 기존 다른 여정 브라우저 검사처럼 `journeyInputAfter`가 실제 만료되기를 읽기 전용으로 기다리도록 고쳤다. 보호값·게임 상태 수정, synthetic click, assert 완화는 없다.
+- 확인: `tests/preview-entry-input-guard.mjs`는 실제 App 내비게이션과 DOM/시계 대역으로16/18장 모두120ms 클릭 거부와400ms 만료 뒤 같은 신뢰 클릭 입장 성공을 재현한다. Python 문법 검사 통과. 수정된 브라우저 smoke의 실제 실행은 발행 담당자의 focused CI 확인 전까지 미확인이며 새 정상 플레이/예측 관찰 합격을 주장하지 않는다. 실패 시 화면/가드/로딩 상태도 별도로 남긴다.
+
+# 19장 동행 역할 전환 뒤 장비 저장 재개 — 2026-11-02
+
+- 원인: 19장은 설오·휘겸(길 선택 뒤 담허)을 동행 원장과 장비를 유지한 채 side2 민간인 역할로 둔다. 저장 마이그레이션이 전투 장비 활성 조건만 적용해 `NPC 장비 오류`로 정상 저장을 잠갔다. 통합 CI41504096815의19장 새로고침에서 발견했고 실제 App 저장/읽기로 재현했다.
+- 변경: 19장 캠페인·정확한 동행 ID/역할·합류·원래 전투 영웅의 동일 장비·소유 원장 근거가 모두 맞는 스냅샷만 허용한다. 일반 NPC/소환/매혹/Workshop/다른 장/잘못된 원장/중복 장비 거부를 유지하며 `equipmentActor`와 전투 효과·스토리·지형은 바꾸지 않는다.
+- 확인: `tests/stage19-equipment-save.mjs`는 수정 전 migration 잠금 실패, 수정 후 입장 및 길 선택 이후 역할 fixture의 직렬화 저장→실제 profile 재읽기→Continue에서 전투/장비 보존,15개 비정상 스냅샷 거부를 확인한다. App/DOM 대역 검사이며 브라우저 완주 근거가 아니다. 실제19장 브라우저의 기존 이동·점프·저장·재개·화면비 기준을 그대로 유지한다. 런타임 변경으로 Stage31 실제 입력 측정과 정상 production gate를 다시 실행하도록 통합 workflow를 복원했다. 브라우저/최종 빌드·배포 결과는 해당 CI와 발행 담당자 확인 전까지 미확인이다.
+## 2026-11-02 · 20장 접지·심부 암반 재질 스케일 교정
+
+- 원인: 적은 수의 큰 분리 명암 조각을 넓은 바닥·천장에 확대해, 접지 디테일만 추가해도 몸체가 평평한 판처럼 남았다.
+- 변경: 실제 Inkscape 추적의 별도 접지/바닥/천장 원화를 연결된 재질로 등록하고 기존 큰 명암 섬을 교체했다. 접지는 세 구간에 한 번씩, 심부와 천장은 서로 다른 원화를 한 번씩 사용한다. 원래 canonical/contact clip·충돌·카메라·스토리·배치는 보존한다.
+- 확인 범위: 실제 Scene의 구조/접지/심부/천장/모바일 반복 검수와 별도 최종 프리뷰, 고정 허용치 raw/final 8뷰 비교 및 정확한 벡터 해시 결속, 기존 20장 후보 검사에 schema delta·compact/restore 동일성 확인을 추가했다. 추가 접지 양자화는 보호 색 경계 1px 차이로 폐기했고 허용치를 완화하지 않았다. 실제 브라우저 저장 용량·reload/Continue·게임플레이 및 Pages 발행 검수는 통합 담당자의 별도 필수 단계다.
+
 ## 2026-10-28 · 대화 초상 이전 표정 순간 노출과 담허 구도 정렬
 
 ## 미니맵 하단과 물건 버튼 겹침 — 2026-11-02
@@ -5247,3 +5272,17 @@ Title `여정 이어가기` could choose an older hub before honoring a saved di
 ## 2026-11-02 · Stage31 저장 회귀 재검증의 생존 조작 교정
 
 2장 저장·이동·점프·재접속 실제 Chromium 검사는 통과했으나 새 Stage31 증거 실행41425320822는 R14 설오 사망으로 반려됐다. R13 방어 직후371HP+201shield였고 이전 관측 피해734보다 적었다. 적이1400 거리 밖으로 나가면 안전하다고 간주하고 두 번의 짧은 이동 뒤 끝내는 검수 조작이 원인으로 확인됐다. 실제 저장에 이동력2229/2680이 남았고 가장 가까운 적은1449 거리에서 이동력550을 보유했다. 이 근거로 적 난이도나 저장 코드를 탓하지 않는다. 검수 컨트롤러만 화면에서 관측한 원거리 적도 계속 고려하고, 실제 남은 이동력·착지·이동 가능한 경로를 확인하며 후퇴하도록 수정한다. 방어는 정상 F 입력이다. 4인 생존·20라운드·승선 gate를 낮추지 않으며 새 실행이 통과할 때까지 배포하지 않는다.
+
+
+## 2026-11-03 — Reviewed 16/18 prediction observation provenance
+
+- Cause: both narrative `predict` wrappers wrote proof during `collect=false` hypothetical scoring. A render before HUD reconciliation could also record another class's previous selected skill as the new hero's observation.
+- Fix: gate only observation writes on collected prediction (`collect !== false`, preserving Engine's default `true`), living active player hero/player side, no dialogue, and `HonroStakeCrossing.skills(b,u)` membership. Do not infer ownership from a class prefix; the production availability API is authoritative. Prediction itself, collision output, damage, objective conditions, frame order and existing saved proofs are unchanged.
+- Regression: `node tests/act23-v4-preview-observation.mjs` failed on baseline c1a8cc243c7681b03f9e7b8c182164f62deaae2e with four cases: stages 16 and 18 each mutated the full battle for `collect=false` and overwrote valid proof with mage+A01. After the guard it passes: byte-identical probe and stale-skill states; valid collected and default-collect observations; identical physical results for rejected inactive/player-side/dialogue contexts.
+- Related unchanged contracts pass: `node tests/act23-v4-reviewed14.mjs`, `node tests/act23-v4-reviewed16.mjs`, `node tests/act23-v4-reviewed18.mjs`. These are controlled App/Engine/story fixtures with DOM doubles, not natural route, real-browser, difficulty, or whole-stage acceptance. Fresh actual-App/prod browser verification and deployment belong to the integration owner.
+- SOP: hypothetical candidate scoring uses `collect=false` (prefer a detached engine for bulk planning) and must assert live-state immutability. Collected-observation provenance additionally requires a currently available skill; fixing the controller alone does not protect the real render-before-HUD transient. Never restore contaminated flags after a probe to manufacture a clean test.
+
+- Built-browser integration smoke: `python tests/act23-v4-preview-observation-browser.py` after the genuine release build (or set `HONRO_BASE_URL`). Uses disclosed pre-entry unlock fixture, actual rest/stage-entry/dialogue UI, live unmodified frames, desktop/mobile viewports, screenshots and fail-closed exception/error receipts. Synchronous spawn probes assert exact full-battle JSON equality for `collect=false` and incompatible skills. They do not guarantee bell intersection and do not prove mission completion. Driver was syntax-checked locally; integration owner must run it against the newly built candidate and report its actual result.
+
+- Scope clarification after production call-site audit: `collect=true`/default is also used by `bell-anomaly.eligible` for protected-target cast planning and `beginOccultCast` for soul targets, not only HUD rendering. The guard intentionally does not require `app.selected` or aim phase; it prevents hypothetical `collect=false` and unavailable-skill contamination, not every possible collected probe. Existing cast/discovery semantics remain intact. AI/planning callers must use `collect=false` (or a detached Engine); point-requiring hypothetical planners should use a detached Engine. Native regression explicitly retains a collected, unselected, flight-phase call; this is a controlled call-contract fixture, not an actual cast/browser claim.
+- Revalidation: focused preview and reviewed14/16/18 native suites passed. Local genuine `npm run build` stopped at `check-release.mjs` with `Runtime changed after actual Engine probes.` Browser smoke is therefore not run on this source. Integration owner must regenerate measured Stage31 evidence for the combined source, pass the unchanged production build gate, then run `python tests/act23-v4-preview-observation-browser.py` against that final build. Existing af8c546a driver is syntax-checked only.

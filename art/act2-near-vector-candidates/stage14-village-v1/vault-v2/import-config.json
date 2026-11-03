@@ -1,0 +1,34 @@
+{
+  "id": "act2-traced:stage14-vault-v2",
+  "name": "Stage14 cavern geology vault-v2",
+  "bounds": {
+    "x": -500,
+    "y": -500,
+    "w": 8600,
+    "h": 3100
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 2600
+  },
+  "semanticLayer": "BODY",
+  "preserveCompounds": true,
+  "transform": [
+    4.1168022977501195,
+    0,
+    0,
+    4.116865869853918,
+    -500,
+    -500
+  ],
+  "params": {
+    "bodyTerrainIds": [
+      "v14-cavern-vault"
+    ],
+    "bodyBaseColor": "#293a3e"
+  }
+}

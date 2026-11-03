@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "preHookSha256": "1dce634a47b30c310eb0114ae4c2827f6bca400aac49fa95022abb3cefaca22f",
+  "effectiveOriginalSha256": "a0a993d77c76fb8edb9afa3a39cc04e9106bd624b7cd7b3090f3e71204863c63",
+  "effectiveRestoredSha256": "a0a993d77c76fb8edb9afa3a39cc04e9106bd624b7cd7b3090f3e71204863c63",
+  "checkedFields": [
+    "terrain",
+    "honroWorldTerrain",
+    "units",
+    "width",
+    "height",
+    "honroMarkers",
+    "honroEvents",
+    "honroAuthoredEvents",
+    "honroObjectives",
+    "honroAct2Steps",
+    "honroCamera",
+    "honroPlayBounds",
+    "honroTerrainBounds",
+    "honroState",
+    "honroQuarrySpec",
+    "honroQuarryActivation"
+  ],
+  "unchangedOtherStages": 29,
+  "assetIds": [
+    "act2-traced:stage12-ground",
+    "act2-traced:stage12-quarry",
+    "act2-traced:stage12-rear-foundation",
+    "act2-traced:stage12-rear-vertical"
+  ],
+  "scope": "Pre-runtime-author source guard plus separate production-story effective stage and compiled battle equivalence. Not browser/save/UI/combat completion."
+}

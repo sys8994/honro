@@ -1,0 +1,314 @@
+{
+  "raw": "../honro-act2-vector-rollout/stage11/entry-rock-v1/trace8/raw.svg",
+  "candidate": "../honro-act2-vector-rollout/stage11/entry-rock-v1/final.svg",
+  "rawStats": {
+    "sourceBytes": 136686,
+    "paths": 7,
+    "commands": 4232,
+    "segments": 3857,
+    "endpointNodesUpperBound": 4232,
+    "explicitCommandLetters": 2151,
+    "subpaths": 375,
+    "pathChars": 136088,
+    "maxPathChars": 79068
+  },
+  "candidateStats": {
+    "sourceBytes": 110973,
+    "paths": 7,
+    "commands": 4195,
+    "segments": 3820,
+    "endpointNodesUpperBound": 4195,
+    "explicitCommandLetters": 2195,
+    "subpaths": 375,
+    "pathChars": 110582,
+    "maxPathChars": 69148
+  },
+  "visualApproval": "NOT REVIEWED",
+  "config": {
+    "width": 1412,
+    "scales": [
+      1,
+      2
+    ],
+    "limits": {
+      "rgbMAE255": 0.8,
+      "silhouettePx": 1.5,
+      "protectedRgbMAE255": 1,
+      "protectedPx": 0.5,
+      "protectedChangedPixelFraction": 0.05
+    },
+    "protectedPolylines": [
+      {
+        "points": [
+          [
+            85.57575757575758,
+            985.4615384615385
+          ],
+          [
+            166.87272727272727,
+            852.6384615384616
+          ]
+        ],
+        "width": 6
+      },
+      {
+        "points": [
+          [
+            166.87272727272727,
+            852.6384615384616
+          ],
+          [
+            213.93939393939394,
+            771.2307692307693
+          ]
+        ],
+        "width": 6
+      },
+      {
+        "points": [
+          [
+            213.93939393939394,
+            771.2307692307693
+          ],
+          [
+            459.969696969697,
+            771.2307692307693
+          ]
+        ],
+        "width": 6
+      },
+      {
+        "points": [
+          [
+            459.969696969697,
+            771.2307692307693
+          ],
+          [
+            470.6666666666667,
+            604.1307692307693
+          ]
+        ],
+        "width": 6
+      },
+      {
+        "points": [
+          [
+            470.6666666666667,
+            604.1307692307693
+          ],
+          [
+            509.1757575757576,
+            557.0
+          ]
+        ],
+        "width": 6
+      },
+      {
+        "points": [
+          [
+            509.1757575757576,
+            557.0
+          ],
+          [
+            716.6969696969697,
+            557.0
+          ]
+        ],
+        "width": 6
+      },
+      {
+        "points": [
+          [
+            716.6969696969697,
+            557.0
+          ],
+          [
+            727.3939393939394,
+            394.18461538461537
+          ]
+        ],
+        "width": 6
+      },
+      {
+        "points": [
+          [
+            727.3939393939394,
+            394.18461538461537
+          ],
+          [
+            774.4606060606061,
+            342.7692307692308
+          ]
+        ],
+        "width": 6
+      },
+      {
+        "points": [
+          [
+            774.4606060606061,
+            342.7692307692308
+          ],
+          [
+            973.4242424242424,
+            342.7692307692308
+          ]
+        ],
+        "width": 6
+      },
+      {
+        "points": [
+          [
+            973.4242424242424,
+            342.7692307692308
+          ],
+          [
+            984.1212121212121,
+            192.80769230769232
+          ]
+        ],
+        "width": 6
+      },
+      {
+        "points": [
+          [
+            984.1212121212121,
+            192.80769230769232
+          ],
+          [
+            1037.6060606060605,
+            128.53846153846155
+          ]
+        ],
+        "width": 6
+      },
+      {
+        "points": [
+          [
+            1037.6060606060605,
+            128.53846153846155
+          ],
+          [
+            1230.1515151515152,
+            128.53846153846155
+          ]
+        ],
+        "width": 6
+      },
+      {
+        "points": [
+          [
+            1230.1515151515152,
+            128.53846153846155
+          ],
+          [
+            1283.6363636363637,
+            428.46153846153845
+          ]
+        ],
+        "width": 6
+      }
+    ],
+    "preserveRawColors": [
+      "#293a35",
+      "#566127",
+      "#727b33",
+      "#394942"
+    ],
+    "sourcePalette": [
+      [
+        41,
+        58,
+        53
+      ],
+      [
+        57,
+        73,
+        66
+      ],
+      [
+        75,
+        89,
+        80
+      ],
+      [
+        86,
+        97,
+        39
+      ],
+      [
+        103,
+        114,
+        100
+      ],
+      [
+        114,
+        123,
+        51
+      ],
+      [
+        125,
+        132,
+        119
+      ]
+    ]
+  },
+  "errors": {
+    "1": {
+      "rgbMAE255": 0.0009008339256979525,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.00025556780747137964,
+      "changedPixelFraction": 1.5893521037935926e-05,
+      "silhouetteMaxOffsetPx": 0.0,
+      "protectedChangedPixelFraction": 0.0,
+      "protectedRgbMAE255": 0.0005017677904106677,
+      "protectedSilhouetteMaxOffsetPx": 0.0,
+      "protectedColorEdgeRawMaxOffsetPx": 0.0,
+      "protectedColorEdgeMaxOffsetPx": 0.0,
+      "protectedRgbQuantizationTolerance255": 0,
+      "protectedQuantizationPixels": 0,
+      "pass": true
+    },
+    "2": {
+      "rgbMAE255": 0.0006197885377332568,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 6.293833575909957e-05,
+      "changedPixelFraction": 1.748287314172952e-06,
+      "silhouetteMaxOffsetPx": 0.0,
+      "protectedChangedPixelFraction": 0.0,
+      "protectedRgbMAE255": 0.0008345121168531477,
+      "protectedSilhouetteMaxOffsetPx": 0.0,
+      "protectedColorEdgeRawMaxOffsetPx": 0.0,
+      "protectedColorEdgeMaxOffsetPx": 0.0,
+      "protectedRgbQuantizationTolerance255": 0,
+      "protectedQuantizationPixels": 0,
+      "pass": true
+    }
+  },
+  "timings": {
+    "raw-1": {
+      "width": 1412,
+      "height": 1114,
+      "decodeMs": 8.921033999999963,
+      "drawMs": 4.536134000000004
+    },
+    "candidate-1": {
+      "width": 1412,
+      "height": 1114,
+      "decodeMs": 10.125212999999974,
+      "drawMs": 2.87356699999998
+    },
+    "raw-2": {
+      "width": 2824,
+      "height": 2228,
+      "decodeMs": 20.385141000000033,
+      "drawMs": 17.522122000000024
+    },
+    "candidate-2": {
+      "width": 2824,
+      "height": 2228,
+      "decodeMs": 20.20764700000001,
+      "drawMs": 15.75240500000001
+    }
+  },
+  "qualityPass": true
+}

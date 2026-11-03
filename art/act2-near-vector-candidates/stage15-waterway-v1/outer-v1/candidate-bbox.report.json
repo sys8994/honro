@@ -1,0 +1,17 @@
+{
+  "sourceSha256": "82f46d660a814ea19f7a03d9846eaba539a96e3dee3b42747deb90b4e113a82e",
+  "sourceBytes": 41310,
+  "outputBytes": 29794,
+  "reductionPercent": 27.87702735415154,
+  "epsilonLocalUnits": 0.15,
+  "curveReplacementBound": 0.14609444077378958,
+  "roundingBound": 0.0070710678118654745,
+  "bboxExtremaProtected": true,
+  "protectedRule": "Original operands retained within12 source px of canonical contact lines; transition operands rebased to exact original absolute control/endpoints. Native 1x/2x gate required.",
+  "counts": {
+    "protected": 441,
+    "line": 395,
+    "quadratic": 34,
+    "cubic": 158
+  }
+}

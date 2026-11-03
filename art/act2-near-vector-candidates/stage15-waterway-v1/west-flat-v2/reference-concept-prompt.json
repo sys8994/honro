@@ -1,0 +1,9 @@
+{
+  "prompt": "Create HONRO Stage 15 WEST cave terrain material art. First reference is the EXACT canonical side-view geometry mask: keep the white corridor fully empty, preserve the floor slope and roof silhouette exactly. Second and third references establish restrained flat-vector geological shading ONLY, not green vegetation or their geometry. This panel represents 5000 world units across; the actual hero is 92 world units tall (about 28 image pixels). Keep near-contact angular rock facets appropriately small in that scale, not giant cow-print rounded boulders. Korean subterranean old transport route near a blocked waterwheel: dark blue-slate and warm grey stratified rock, a few muted sandy exposed edges, no moss blanket. Strict orthographic 2D side view, no perspective top faces. Connected irregular mineral strata and planar 2–4 tone facets, 8–10 solid colors, no texture noise, no tiny pebbles, no gradients, no white halos. Main masses dark #283b46, #344953, #465c65; restrained lit faces #64757b and #8a8a7d. Fill ONLY the guide's grey solids with geological material. Do not add water, waterwheel, wood structures, people, lettering, lights, machinery or floating rocks; those are separate live engine layers. Rock patterns must organically end toward left/right edges, not create an inset rectangular panel frame. Preserve empty passage. Output same composition, use transparent background in the empty corridor.",
+  "referenced_image_paths": [
+    "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage15/west-v1/guide.png",
+    "/workspace/scratch/fff510b4df37/honro-act1-production/stage02/body-v2/source.png",
+    "/workspace/scratch/fff510b4df37/honro-act1-production/stage10/floor-v4/source.png"
+  ],
+  "transparent_background": true
+}

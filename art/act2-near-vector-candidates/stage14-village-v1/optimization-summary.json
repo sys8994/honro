@@ -1,0 +1,221 @@
+{
+  "stage": 14,
+  "packRawBytes": 2012122,
+  "packFinalBytes": 1400703,
+  "packReductionPercent": 30.386775752166116,
+  "nativePackBytes": 1268085,
+  "parts": [
+    {
+      "part": "domain-v3",
+      "submittedReferences": [
+        {
+          "submittedPath": "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage14/domain-v2/source.png",
+          "sha256": "1eec66f43b4daddf4fb347930e59cda084e5416d0cd64a3bf18e0beb6051d961",
+          "preservedPath": "submitted-references/1eec66f43b4daddf4fb347930e59cda084e5416d0cd64a3bf18e0beb6051d961.png"
+        }
+      ],
+      "sourceSha256": "44734fb493836b3fa747b6a9997970f202537bfcd7b322bd30e7db9ed20d21af",
+      "promptSha256": "3bb828ff04556b72b6110f021a1ea30ec29de1e3443c5f84dd58f2bd6e034ebd",
+      "rawSha256": "f1240f7b62b804a7ed85cfed31625f2e9e29ee9503d831f1836bc9eb148b68fb",
+      "finalSha256": "3c2176fc0b0c94d6dc216c3d06ed27a62a0a0687165c25e60bfc9f1ff7b253a7",
+      "nativeFileSha256": "e13a1b978d050d3a9be1cc4acd8cbde21163da2c2e71772d06d55b02f87f28a9",
+      "rawBytes": 68142,
+      "finalBytes": 52754,
+      "nativeBytes": 59309,
+      "rawGzipPath": "domain-v3/immutable-raw.svg.gz",
+      "finalPath": "domain-v3/final.svg",
+      "qualityComparison": "domain-v3/comparison.json",
+      "sourceToTrace": {
+        "visibleRgbMAE255": 2.892109015414284,
+        "binaryAlphaDisagreementFraction": 0.0005104155278192353,
+        "scope": "Palette reduction and binary Inkscape trace losses, not optimizer loss or artwork approval"
+      },
+      "sourceGeneration": "Exact submitted JSON prompt and referenced_image_paths saved before imagegen; original PNG immutable.",
+      "localSourcePath": "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage14/domain-v3/source.png"
+    },
+    {
+      "part": "upper-v2",
+      "submittedReferences": [
+        {
+          "submittedPath": "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage14/upper-v1/source.png",
+          "sha256": "ce353ada83d9cf8f5dda474b1713d741058e4f9063a2a9b12f4cf5c46ca0fc41",
+          "preservedPath": "submitted-references/ce353ada83d9cf8f5dda474b1713d741058e4f9063a2a9b12f4cf5c46ca0fc41.png"
+        }
+      ],
+      "sourceSha256": "0cfbd1738a15f301fcc8fc50708c01b3b5f9ca6164085a2bcabbe2143cca493f",
+      "promptSha256": "8a9c290ba3dcb65865026837a4bb6ca0e185d87719cc77f3ab9f0aeddfd79ba0",
+      "rawSha256": "46996017a3c033b7bab0f53b90778792b853349dc46bb76980165eda45b49b39",
+      "finalSha256": "226fc9657f6b3fa7909c07a74ee8787bf49902db4515a907fac0c1a9d19f1339",
+      "nativeFileSha256": "dfcc4cec7c99cc466cca5eedc660b6eb4c0e4c8c15e6a45b7aa92dba08e5ac06",
+      "rawBytes": 399289,
+      "finalBytes": 271245,
+      "nativeBytes": 176010,
+      "rawGzipPath": "upper-v2/immutable-raw.svg.gz",
+      "finalPath": "upper-v2/final.svg",
+      "qualityComparison": "upper-v2/comparison.json",
+      "sourceToTrace": {
+        "visibleRgbMAE255": 4.009863264746353,
+        "binaryAlphaDisagreementFraction": 0.0008797355708110857,
+        "scope": "Palette reduction and binary Inkscape trace losses, not optimizer loss or artwork approval"
+      },
+      "sourceGeneration": "Exact submitted JSON prompt and referenced_image_paths saved before imagegen; original PNG immutable.",
+      "localSourcePath": "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage14/upper-v2/source.png"
+    },
+    {
+      "part": "west-v1",
+      "submittedReferences": [
+        {
+          "submittedPath": "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage14/west-v1/guide.png",
+          "sha256": "866f40beba607031ccc97a42375ec33e1fbe1df441c08232d54c2530b7c02dca",
+          "preservedPath": "submitted-references/866f40beba607031ccc97a42375ec33e1fbe1df441c08232d54c2530b7c02dca.png"
+        },
+        {
+          "submittedPath": "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage14/upper-v1/source.png",
+          "sha256": "ce353ada83d9cf8f5dda474b1713d741058e4f9063a2a9b12f4cf5c46ca0fc41",
+          "preservedPath": "submitted-references/ce353ada83d9cf8f5dda474b1713d741058e4f9063a2a9b12f4cf5c46ca0fc41.png"
+        }
+      ],
+      "sourceSha256": "c2934a62dd7de9edc0442fd21fbfbced37298c8798ea400b0f4568f1fa3a9681",
+      "promptSha256": "8e03e46a9217d9ce55874735762db2f5ffbbc54b65caafcfd7e9fe98c3496682",
+      "rawSha256": "e059d74dd9a0e44528f2f199f33579d4275f6899e148652b1db3a71ba538a9e2",
+      "finalSha256": "2fbb36f36dcfd67f9b5cfa12cb08ebd9319aca709ade2c0f3438c328e9bfba37",
+      "nativeFileSha256": "68d65311235a16e6f69a43aba61f9995cb407ba31bdd3ce41ea900135493c63c",
+      "rawBytes": 324702,
+      "finalBytes": 227691,
+      "nativeBytes": 230887,
+      "rawGzipPath": "west-v1/immutable-raw.svg.gz",
+      "finalPath": "west-v1/final.svg",
+      "qualityComparison": "west-v1/comparison.json",
+      "sourceToTrace": {
+        "visibleRgbMAE255": 5.504407685557168,
+        "binaryAlphaDisagreementFraction": 0.001170699712345988,
+        "scope": "Palette reduction and binary Inkscape trace losses, not optimizer loss or artwork approval"
+      },
+      "sourceGeneration": "Exact submitted JSON prompt and referenced_image_paths saved before imagegen; original PNG immutable.",
+      "localSourcePath": "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage14/west-v1/source.png"
+    },
+    {
+      "part": "east-v1",
+      "submittedReferences": [
+        {
+          "submittedPath": "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage14/east-v1/guide.png",
+          "sha256": "2c70344f64288bae3714f60da74856230a46035adcddfd11c366c396a29f5b36",
+          "preservedPath": "submitted-references/2c70344f64288bae3714f60da74856230a46035adcddfd11c366c396a29f5b36.png"
+        },
+        {
+          "submittedPath": "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage14/upper-v1/source.png",
+          "sha256": "ce353ada83d9cf8f5dda474b1713d741058e4f9063a2a9b12f4cf5c46ca0fc41",
+          "preservedPath": "submitted-references/ce353ada83d9cf8f5dda474b1713d741058e4f9063a2a9b12f4cf5c46ca0fc41.png"
+        }
+      ],
+      "sourceSha256": "ceebf891ba689841b0a16f01ae63bb3b00efeaa882ae6d4811c302c41ffdf2ef",
+      "promptSha256": "b6aec3864e41506f4481987abe8ad2a51471a2286fb72e1d5b789b68568a8d4d",
+      "rawSha256": "2ba330bdd0291d207c7e5e81a75ff8746b104c50582466ab72f5758cd9afbd47",
+      "finalSha256": "1351f52ab414474293a00a36b96c1997466f1de008990d496085c9da72e74893",
+      "nativeFileSha256": "3ce30db84805c8e65278dfe0d8281c43c114e510e954c9ae29c2d8ebbb2a3e81",
+      "rawBytes": 551047,
+      "finalBytes": 358204,
+      "nativeBytes": 362540,
+      "rawGzipPath": "east-v1/immutable-raw.svg.gz",
+      "finalPath": "east-v1/final.svg",
+      "qualityComparison": "east-v1/comparison.json",
+      "sourceToTrace": {
+        "visibleRgbMAE255": 6.135243827329882,
+        "binaryAlphaDisagreementFraction": 0.0017322624339431863,
+        "scope": "Palette reduction and binary Inkscape trace losses, not optimizer loss or artwork approval"
+      },
+      "sourceGeneration": "Exact submitted JSON prompt and referenced_image_paths saved before imagegen; original PNG immutable.",
+      "localSourcePath": "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage14/east-v1/source.png"
+    },
+    {
+      "part": "family-v1",
+      "submittedReferences": [
+        {
+          "submittedPath": "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage14/family-v1/guide.png",
+          "sha256": "5108d192443496333eb34086e56d3496160592e41f4639edabbcc692ff24ea9f",
+          "preservedPath": "submitted-references/5108d192443496333eb34086e56d3496160592e41f4639edabbcc692ff24ea9f.png"
+        },
+        {
+          "submittedPath": "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage14/upper-v1/source.png",
+          "sha256": "ce353ada83d9cf8f5dda474b1713d741058e4f9063a2a9b12f4cf5c46ca0fc41",
+          "preservedPath": "submitted-references/ce353ada83d9cf8f5dda474b1713d741058e4f9063a2a9b12f4cf5c46ca0fc41.png"
+        }
+      ],
+      "sourceSha256": "c19b335d22e48d3f519d542a6fdeeeee1ce1d621aea582161a66425c86f1cde2",
+      "promptSha256": "768c7f4744682bdb30071fb7d02e3cbe4a38865dc37827fad34cb27b3b473b13",
+      "rawSha256": "5a7d55d0e0a0c77b030cbb8ef57ea338d2235408827637d359ebb31e4d71bc9e",
+      "finalSha256": "d1777e8f732ae19268cf4515e13bd2fd3c3bd3bfdc8e441d2acf164d854a4b9e",
+      "nativeFileSha256": "831fdf2b3a7d605402cf06afd1befb1bf28e6dedeac365acba1793c4ac382a44",
+      "rawBytes": 212852,
+      "finalBytes": 144803,
+      "nativeBytes": 147215,
+      "rawGzipPath": "family-v1/immutable-raw.svg.gz",
+      "finalPath": "family-v1/final.svg",
+      "qualityComparison": "family-v1/comparison.json",
+      "sourceToTrace": {
+        "visibleRgbMAE255": 4.813923729938736,
+        "binaryAlphaDisagreementFraction": 0.0007328302884542048,
+        "scope": "Palette reduction and binary Inkscape trace losses, not optimizer loss or artwork approval"
+      },
+      "sourceGeneration": "Exact submitted JSON prompt and referenced_image_paths saved before imagegen; original PNG immutable.",
+      "localSourcePath": "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage14/family-v1/source.png"
+    },
+    {
+      "part": "refuge-v2",
+      "submittedReferences": [
+        {
+          "submittedPath": "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage14/refuge-v1/source.png",
+          "sha256": "81ac5fd50c0d8f17960d8875eaf71b6d1d0f41253fb53da8f8a86068e15d2042",
+          "preservedPath": "submitted-references/81ac5fd50c0d8f17960d8875eaf71b6d1d0f41253fb53da8f8a86068e15d2042.png"
+        }
+      ],
+      "sourceSha256": "582d81550497bad27e4dae892b5d888926fac14f619251db21c184d9f20b1add",
+      "promptSha256": "e3ef372582f04e115908eded5e8dca61a40770d2158dc3dc96c594e3adc60bbe",
+      "rawSha256": "47a02b8009228c550a3e525f7fac091f8851e5536a2cab1003444be6855377a7",
+      "finalSha256": "3580cffb730d4b90360bf07244e6e428b91341c417f21ee7f58a9695ecfe573a",
+      "nativeFileSha256": "6a41626e4353a350e3be216166b08665d89cd7748bfc391d27e5215cff4b6e41",
+      "rawBytes": 302936,
+      "finalBytes": 218194,
+      "nativeBytes": 183422,
+      "rawGzipPath": "refuge-v2/immutable-raw.svg.gz",
+      "finalPath": "refuge-v2/final.svg",
+      "qualityComparison": "refuge-v2/comparison.json",
+      "sourceToTrace": {
+        "visibleRgbMAE255": 1.7952766095483728,
+        "binaryAlphaDisagreementFraction": 0.0006804875597970493,
+        "scope": "Palette reduction and binary Inkscape trace losses, not optimizer loss or artwork approval"
+      },
+      "sourceGeneration": "Exact submitted JSON prompt and referenced_image_paths saved before imagegen; original PNG immutable.",
+      "localSourcePath": "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage14/refuge-v2/source.png"
+    },
+    {
+      "part": "vault-v2",
+      "submittedReferences": [
+        {
+          "submittedPath": "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage14/vault-v1/guide.png",
+          "sha256": "3210c29c2f26eb9dde2d4a64f8e93acbb8535bdf097e20488d7fb86dc8ab0810",
+          "preservedPath": "submitted-references/3210c29c2f26eb9dde2d4a64f8e93acbb8535bdf097e20488d7fb86dc8ab0810.png"
+        }
+      ],
+      "sourceSha256": "b5abc0f6d5734728241362d00425ae5aa0b7453d0e2ff89d7c1a3bcb50c59ef1",
+      "promptSha256": "0a513c9bdb71da7dd2c4062afb510b2fe70de9a2a7a801347428c3c61b91e9b6",
+      "rawSha256": "e703b7364385f84f346c876a9568b52e4d3eb58f88a6b5c76a3cc3e7106fc244",
+      "finalSha256": "f9e0d233e542e6d61f4862aa32d537ba8f3d8309c3b9fc059475c10e40a02d81",
+      "nativeFileSha256": "853cec7efd84ebbf09418799f187e31464eeb859745d6dacbccd7f37463541ba",
+      "rawBytes": 153154,
+      "finalBytes": 127812,
+      "nativeBytes": 108702,
+      "rawGzipPath": "vault-v2/immutable-raw.svg.gz",
+      "finalPath": "vault-v2/final.svg",
+      "qualityComparison": "vault-v2/comparison.json",
+      "sourceToTrace": {
+        "visibleRgbMAE255": 1.564834164145207,
+        "binaryAlphaDisagreementFraction": 0.0007781225504873755,
+        "scope": "Palette reduction and binary Inkscape trace losses, not optimizer loss or artwork approval"
+      },
+      "sourceGeneration": "Exact submitted JSON prompt and referenced_image_paths saved before imagegen; original PNG immutable.",
+      "localSourcePath": "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage14/vault-v2/source.png"
+    }
+  ],
+  "scope": "Native candidate only. Browser/full-gameplay/public deployment remain parent-owned."
+}

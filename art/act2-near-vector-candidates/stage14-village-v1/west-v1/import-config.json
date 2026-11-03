@@ -1,0 +1,36 @@
+{
+  "id": "act2-traced:stage14-west-v1",
+  "name": "Stage14 cavern geology west-v1",
+  "bounds": {
+    "x": 1600,
+    "y": 3700,
+    "w": 3700,
+    "h": 3400
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 7100
+  },
+  "semanticLayer": "BODY",
+  "preserveCompounds": true,
+  "transform": [
+    2.826585179526356,
+    0,
+    0,
+    2.8286189683860234,
+    1600,
+    3700
+  ],
+  "params": {
+    "bodyTerrainIds": [
+      "v14-market",
+      "v14-mineral-way",
+      "v14-west-family-road"
+    ],
+    "bodyBaseColor": "#293a3e"
+  }
+}

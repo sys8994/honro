@@ -19,9 +19,17 @@ const clears={eq_se_ledger:3,eq_da_gate:4,eq_hw_bier:8,eq_co_01:1,eq_co_02:3,eq_
 // require this run's actual receipts, never the chapter clear flag alone.
 const mandatory={eq_so_resident:13,eq_se_t2_choice:12,eq_da_t2_choice:16,eq_hw_t2_choice:17,eq_so_t2_choice:18,eq_se_t3a:22,eq_da_t3a:29,eq_hw_t3a:24,eq_so_t3a:19,eq_co_t2_choice:20,eq_co_11:26};
 function recruitFacts(p){let changed=false;for(const [cls,id]of Object.entries({archer:'eq_se_start',mage:'eq_da_join',knight:'eq_hw_join',occultist:'eq_so_join'}))if(p.recruited.includes(cls))changed=grant(p,id)||changed;return changed;}
+// Stage19 temporarily parks campaign heroes as civilians. Their equipment stays
+// in the snapshot, but they remain ineligible for combat equipment effects.
+function farewellEquipmentSnapshot(p,b,u){
+ if(b.mode!=='campaign'||b.honroStage!==19||b.honroCustom||b.honroMapOrigin==='workshop'||u.side!==2||u.honroFarewellNPC!==true||u.honroCivilian!==true||u.summoned||u.enthrall||u.honroAlly)return false;
+ if(!['archer','knight',...(b.honroState?.act2?.done?.route?['mage']:[])].includes(u.cls)||u.id!=='p-'+u.cls||!p.recruited.includes(u.cls))return false;
+ const stored=b.heroes?.[u.cls]?.equipmentIds;
+ return Array.isArray(stored)&&stored.length===u.equipmentIds.length&&stored.every((id,i)=>id===u.equipmentIds[i]&&p.equipment.ownedItemIds.includes(id));
+}
 function migrate(p){
  const legacy=!p.equipment;if(legacy){p.equipment=empty();recruitFacts(p);for(const [id,stage]of Object.entries({...clears,...mandatory}))if(p.cleared[stage])grant(p,id);}else validate(p.equipment);
- for(const b of [p.saved,p.honroBattle].filter(Boolean)){const seen=new Set();for(const cls of classes)if(b.heroes?.[cls]?.equipmentIds)C.validateEquipmentIds(b.heroes[cls].equipmentIds,cls);for(const u of b.units||[])if(u.equipmentIds){C.validateEquipmentIds(u.equipmentIds,u.cls);if(u.equipmentIds.length&&!C.equipmentActor(u))throw Error('NPC 장비 오류');for(const id of u.equipmentIds){if(seen.has(id))throw Error('중복 장비 오류');seen.add(id);}}}
+ for(const b of [p.saved,p.honroBattle].filter(Boolean)){const seen=new Set();for(const cls of classes)if(b.heroes?.[cls]?.equipmentIds)C.validateEquipmentIds(b.heroes[cls].equipmentIds,cls);for(const u of b.units||[])if(u.equipmentIds){C.validateEquipmentIds(u.equipmentIds,u.cls);if(u.equipmentIds.length&&!C.equipmentActor(u)&&!farewellEquipmentSnapshot(p,b,u))throw Error('NPC 장비 오류');for(const id of u.equipmentIds){if(seen.has(id))throw Error('중복 장비 오류');seen.add(id);}}}
  if(p.equipment.debug)throw Error('디버그 장비는 정상 기록으로 불러올 수 없습니다.');sync(p);return p;
 }
 function fresh(p){p.equipment=empty();p.equipment.initialAutoEquip=true;p.equipment.basicPrepared=[];return p;}

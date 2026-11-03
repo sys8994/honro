@@ -1,0 +1,29 @@
+{
+  "scope": "Native candidate only; actual browser, quota, integration approval and publication pending.",
+  "assets": [
+    {
+      "id": "act2-traced:stage20-outer-v1",
+      "file": "stage20-outer-v1.json",
+      "sha256": "acc1e5bb331b5792788aacbbef9e561cb59f0044c152053f9beeb25e1fa0f803",
+      "vectorSha256": "8d60925d42868d0877cef7f7b7c5388e969a004679c3eb67526a4844aad7b959",
+      "bytes": 691809,
+      "nodes": 8
+    },
+    {
+      "id": "act2-traced:stage20-west-v2",
+      "file": "stage20-west-v2.json",
+      "sha256": "303ae9d90d5b0f576f33b0241cda2482789a026e39f137533f0d8090f6c5be96",
+      "vectorSha256": "3b31eb17aceb7369b30610d6ff3b19e958cf1154f1f9abb823f08e8be9a97d62",
+      "bytes": 277804,
+      "nodes": 7
+    },
+    {
+      "id": "act2-traced:stage20-east-v2",
+      "file": "stage20-east-v2.json",
+      "sha256": "1f614a11a60edbfe8b1b818fafc5042af21e4993b2dd80730e24d1f480f09440",
+      "vectorSha256": "1dc3e0e13f066bf8d48f73fabf01b2a004a8b62054c343574f0aaa80cb14a2e5",
+      "bytes": 235197,
+      "nodes": 9
+    }
+  ]
+}

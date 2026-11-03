@@ -1,0 +1,38 @@
+{
+  "id": "act2-traced:stage14-east-v1",
+  "name": "Stage14 cavern geology east-v1",
+  "bounds": {
+    "x": 4300,
+    "y": 3400,
+    "w": 3500,
+    "h": 3700
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 0,
+    "y": 7100
+  },
+  "semanticLayer": "BODY",
+  "preserveCompounds": true,
+  "transform": [
+    2.871205906480722,
+    0,
+    0,
+    2.868217054263566,
+    4300,
+    3400
+  ],
+  "params": {
+    "bodyTerrainIds": [
+      "v14-east-crown-road",
+      "v14-east-steps",
+      "v14-east-shoulder",
+      "v14-east-family-road",
+      "v14-family-shoulders"
+    ],
+    "bodyBaseColor": "#293a3e"
+  }
+}

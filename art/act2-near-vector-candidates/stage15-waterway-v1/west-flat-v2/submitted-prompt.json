@@ -1,0 +1,7 @@
+{
+  "prompt": "Clean this exact terrain image into a STRICT FOUR-COLOR flat vector tracing master. Preserve every major polygon face and exact terrain outline. No design additions. All rock faces must be perfectly uniform flat solid colors without mottling, speckles, noise, shading, antialias-like internal texture, clouds or gradients. Use only dark #243c44, middle #445c64, lighter #60747c, and warm highlight #88887e. Group adjacent similar shadow planes into connected clean flat shapes with angular edges. Keep small top-edge material scale but REMOVE every blotch or tiny detached island inside a face. A pixel inside a face must have the same color throughout. Retain transparent empty cave corridor. No water, people, structures or props. This is vector-style game terrain, not painted rocks. EXACT input composition and silhouette.",
+  "referenced_image_paths": [
+    "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage15/west-v1/source.png"
+  ],
+  "transparent_background": true
+}

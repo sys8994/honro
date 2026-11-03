@@ -1,0 +1,542 @@
+{
+  "part": "west-v2",
+  "candidateSvgSha256": "52bbb0f73841c41bdbc194b35405c52ab469af2cc5a997712a860f4e4ab7ee13",
+  "rawSvgSha256": "28be37be7dd4bdd58caf3b887db310e9c89d76dd450a850735e5ca5fee7a1dd0",
+  "nativeCandidateSha256": "57393f96f4ff126ad9122077cbbdb7e8e1f55fcbb2bee71433a1674948f2ac5f",
+  "qualityPass": true,
+  "errors": {
+    "1": {
+      "rgbMAE255": 0.015486415475606918,
+      "rgbP99_255": 0.9999999403953552,
+      "alphaMAE255": 0.0,
+      "changedPixelFraction": 0.0,
+      "silhouetteMaxOffsetPx": 0.0,
+      "protectedChangedPixelFraction": 0.0,
+      "protectedRgbMAE255": 0.0009441328002139926,
+      "protectedSilhouetteMaxOffsetPx": 0.0,
+      "protectedColorEdgeRawMaxOffsetPx": 5.0,
+      "protectedColorEdgeMaxOffsetPx": 0.0,
+      "protectedRgbQuantizationTolerance255": 1,
+      "protectedQuantizationPixels": 4,
+      "pass": true
+    },
+    "2": {
+      "rgbMAE255": 0.014468816109001637,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.0,
+      "changedPixelFraction": 1.5843561936919807e-07,
+      "silhouetteMaxOffsetPx": 0.0,
+      "protectedChangedPixelFraction": 0.0,
+      "protectedRgbMAE255": 0.0008361172513104975,
+      "protectedSilhouetteMaxOffsetPx": 0.0,
+      "protectedColorEdgeRawMaxOffsetPx": 8.246211251235321,
+      "protectedColorEdgeMaxOffsetPx": 1.0,
+      "protectedRgbQuantizationTolerance255": 1,
+      "protectedQuantizationPixels": 19,
+      "pass": true
+    }
+  },
+  "width1x": 1419,
+  "height1x": 1112,
+  "config": {
+    "width": 1419,
+    "scales": [
+      1,
+      2
+    ],
+    "limits": {
+      "rgbMAE255": 0.8,
+      "silhouettePx": 1.5,
+      "protectedRgbMAE255": 1,
+      "protectedPx": 0.5,
+      "protectedChangedPixelFraction": 0.05
+    },
+    "protectedPolylines": [
+      {
+        "points": [
+          [
+            118.25,
+            354.975
+          ],
+          [
+            402.05,
+            354.975
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            402.05,
+            354.975
+          ],
+          [
+            520.3,
+            373.895
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            520.3,
+            373.895
+          ],
+          [
+            591.25,
+            686.075
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            591.25,
+            686.075
+          ],
+          [
+            827.75,
+            761.7549999999999
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            827.75,
+            761.7549999999999
+          ],
+          [
+            1111.55,
+            778.31
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            1111.55,
+            778.31
+          ],
+          [
+            1229.8,
+            780.675
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            1229.8,
+            780.675
+          ],
+          [
+            1537.25,
+            780.675
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            520.3,
+            373.895
+          ],
+          [
+            638.55,
+            385.72
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            638.55,
+            385.72
+          ],
+          [
+            768.625,
+            343.15
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            768.625,
+            343.15
+          ],
+          [
+            875.05,
+            352.61
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            875.05,
+            352.61
+          ],
+          [
+            934.175,
+            399.90999999999997
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            934.175,
+            399.90999999999997
+          ],
+          [
+            1016.95,
+            449.575
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            1016.95,
+            449.575
+          ],
+          [
+            1123.375,
+            485.05
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            1123.375,
+            485.05
+          ],
+          [
+            1213.245,
+            444.845
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            1213.245,
+            444.845
+          ],
+          [
+            1253.45,
+            462.5825
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            1087.9,
+            130.3
+          ],
+          [
+            1182.5,
+            101.92000000000002
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            1182.5,
+            101.92000000000002
+          ],
+          [
+            1253.45,
+            118.47500000000002
+          ]
+        ],
+        "width": 12
+      }
+    ],
+    "protectedRgbQuantizationTolerance255": 1,
+    "originalProtectedPolylines": [
+      {
+        "points": [
+          [
+            118.25,
+            353.93617021276594
+          ],
+          [
+            402.05,
+            353.93617021276594
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            402.05,
+            353.93617021276594
+          ],
+          [
+            520.3,
+            372.8127659574468
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            520.3,
+            372.8127659574468
+          ],
+          [
+            591.25,
+            684.2765957446809
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            591.25,
+            684.2765957446809
+          ],
+          [
+            827.75,
+            759.7829787234042
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            827.75,
+            759.7829787234042
+          ],
+          [
+            1111.55,
+            776.3
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            1111.55,
+            776.3
+          ],
+          [
+            1229.8,
+            778.6595744680851
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            1229.8,
+            778.6595744680851
+          ],
+          [
+            1537.25,
+            778.6595744680851
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            520.3,
+            372.8127659574468
+          ],
+          [
+            638.55,
+            384.61063829787236
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            638.55,
+            384.61063829787236
+          ],
+          [
+            768.625,
+            342.13829787234044
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            768.625,
+            342.13829787234044
+          ],
+          [
+            875.05,
+            351.57659574468084
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            875.05,
+            351.57659574468084
+          ],
+          [
+            934.175,
+            398.76808510638296
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            934.175,
+            398.76808510638296
+          ],
+          [
+            1016.95,
+            448.3191489361702
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            1016.95,
+            448.3191489361702
+          ],
+          [
+            1123.375,
+            483.71276595744683
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            1123.375,
+            483.71276595744683
+          ],
+          [
+            1213.245,
+            443.6
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            1213.245,
+            443.6
+          ],
+          [
+            1253.45,
+            461.2968085106383
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            1087.9,
+            129.77659574468086
+          ],
+          [
+            1182.5,
+            101.46170212765958
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            1182.5,
+            101.46170212765958
+          ],
+          [
+            1253.45,
+            117.97872340425532
+          ]
+        ],
+        "width": 12
+      }
+    ],
+    "protectedRoiExpansionSourcePixels": 0,
+    "sourcePalette": [
+      [
+        32,
+        37,
+        43
+      ],
+      [
+        41,
+        47,
+        53
+      ],
+      [
+        52,
+        58,
+        64
+      ],
+      [
+        64,
+        71,
+        77
+      ],
+      [
+        76,
+        83,
+        89
+      ],
+      [
+        89,
+        97,
+        104
+      ],
+      [
+        104,
+        110,
+        115
+      ]
+    ],
+    "shippingComposition": "Actual production Scene, same original world geometry/base, canonicalSolid+contactInset, same original actors/water/far-image layers and source density. Standalone alpha failures remain failed supplementary diagnostics."
+  },
+  "standaloneDiagnostics": "No standalone acceptance claim; measured actual composed production render"
+}

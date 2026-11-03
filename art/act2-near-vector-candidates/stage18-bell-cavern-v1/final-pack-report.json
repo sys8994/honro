@@ -1,0 +1,51 @@
+{
+  "stage": 18,
+  "parts": [
+    {
+      "part": "domain-v1",
+      "file": "stage18-domain-v1.json",
+      "assetId": "act2-traced:stage18-domain-v1",
+      "sha256": "36bd2a52aacf280fe0d6a648bc6210b8f9a950d5d624021195b29cb24e248b15",
+      "rawBytes": 37803,
+      "finalBytes": 20692,
+      "nativeBytes": 26772,
+      "qualityPass": true
+    },
+    {
+      "part": "floor-local-v2",
+      "file": "stage18-floor-local-v2.json",
+      "assetId": "act2-traced:stage18-floor-local-v2",
+      "sha256": "26f0cec9b5367738e855507085aa521f9b4af3572af56278548e2553ac60aa2f",
+      "rawBytes": 58516,
+      "finalBytes": 41737,
+      "nativeBytes": 36526,
+      "qualityPass": true
+    },
+    {
+      "part": "west-v2",
+      "file": "stage18-west-v2.json",
+      "assetId": "act2-traced:stage18-west-v2",
+      "sha256": "bfff45eedb627ca5b1ddc71ecfd6b7650eb6bb76457e73d5abb2a1c23490e444",
+      "rawBytes": 300595,
+      "finalBytes": 198237,
+      "nativeBytes": 203265,
+      "qualityPass": true
+    },
+    {
+      "part": "east-v2",
+      "file": "stage18-east-v2.json",
+      "assetId": "act2-traced:stage18-east-v2",
+      "sha256": "01eeca2f98cd6b016e57be015a1412b07a791e38ac89384a560f2ea3052aabee",
+      "rawBytes": 136531,
+      "finalBytes": 104148,
+      "nativeBytes": 109055,
+      "qualityPass": true
+    }
+  ],
+  "rawPackBytes": 533445,
+  "finalSvgPackBytes": 364814,
+  "reductionPercent": 31.611693801610286,
+  "originalTracePackBytes": 533445,
+  "limitsUnchanged": true,
+  "scope": "Actual native canonical clip/contact raw/final1x2x; no browser/gameplay/full-stage acceptance"
+}

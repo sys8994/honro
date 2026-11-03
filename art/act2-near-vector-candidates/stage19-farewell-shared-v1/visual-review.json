@@ -1,0 +1,130 @@
+{
+  "status": "NATIVE_ART_REVIEW_PASS",
+  "reviewedViews": [
+    "entry",
+    "farewell",
+    "mobile",
+    "bell",
+    "edge-left",
+    "edge-right",
+    "left-maxzoom",
+    "right-maxzoom",
+    "ceiling-edge",
+    "bottom-edge",
+    "mobile-ceiling",
+    "mobile-bottom"
+  ],
+  "sourceDependency": "06255bf2b6f0f9010ba33bb75e3d5bfc00012cc0",
+  "pass": [
+    "farewell narrow rim and readable actors",
+    "native raised bell retained",
+    "left/right min/max edges covered",
+    "no v1 broad pale ribbon",
+    "legal ceiling source boundary removed by full canonical decorative bounds",
+    "portrait ceiling/bottom continuous; source transform and world scale unchanged"
+  ],
+  "fail": [],
+  "mobileNote": "Native portrait .94 scale crops party; original camera unchanged; browser framing must be checked separately.",
+  "artifacts": [
+    {
+      "path": "_local/reports/stage19-art-preview/entry-before.png",
+      "sha256": "efecb1825c10ed395ae38dcb8ee75a4e96cb98c201b7840f7e297048d0f3fc81"
+    },
+    {
+      "path": "_local/reports/stage19-art-preview/entry-after.png",
+      "sha256": "b406f297e7fb05150e8c09fa3e20d5fb03d6cf8f9c32b207afe7c917c12542bf"
+    },
+    {
+      "path": "_local/reports/stage19-art-preview/farewell-before.png",
+      "sha256": "eef3ed955a1db00f8178e5f689e613228670333f825bf760cca0386659091f41"
+    },
+    {
+      "path": "_local/reports/stage19-art-preview/farewell-after.png",
+      "sha256": "34b6c4d43fe5a6ec38de2009671430cca3ef90abf6a43dc24a164d120e4e8017"
+    },
+    {
+      "path": "_local/reports/stage19-art-preview/mobile-before.png",
+      "sha256": "6ce0e3e04edb1ca3fde00504d078be0187c9d82a1060fbc9cf94c694a5695c6f"
+    },
+    {
+      "path": "_local/reports/stage19-art-preview/mobile-after.png",
+      "sha256": "524d594b846e6c959691fb3c88e879996d625a0f4a94498780b65d8bbeaea918"
+    },
+    {
+      "path": "_local/reports/stage19-art-preview/bell-before.png",
+      "sha256": "6d08834b6da58c42ef84fe7bfa853c4db5403c50f5110b44a5f077b2c669766c"
+    },
+    {
+      "path": "_local/reports/stage19-art-preview/bell-after.png",
+      "sha256": "2ad2e313ae118ea52c2730aca54b11c023156be271a6d2d61881326e9ac45869"
+    },
+    {
+      "path": "_local/reports/stage19-art-preview/edge-left-before.png",
+      "sha256": "16c7526ddf5981ac0430315b3e0a1ba56a19896ea4467d771d8243c834aa5cee"
+    },
+    {
+      "path": "_local/reports/stage19-art-preview/edge-left-after.png",
+      "sha256": "929552516358d993cac6538c92b28d5106483b3c5d17d66ade7cc4cdfcabcfcf"
+    },
+    {
+      "path": "_local/reports/stage19-art-preview/edge-right-before.png",
+      "sha256": "31779ce321e25b2597d4728ae84cf206195681abaaafc56c154864974fb9eac7"
+    },
+    {
+      "path": "_local/reports/stage19-art-preview/edge-right-after.png",
+      "sha256": "929478a93341a1d94553b1ac08404bbcb2200669e2cec41e514835dab632ccaa"
+    },
+    {
+      "path": "_local/reports/stage19-art-preview/left-maxzoom-before.png",
+      "sha256": "b450ee8f2da4a4aac3e1500dd612ac8034c46e768eb27fcce81fe21c63ee03b9"
+    },
+    {
+      "path": "_local/reports/stage19-art-preview/left-maxzoom-after.png",
+      "sha256": "dd2783f0aebf527f1d1f4a8597bde06d183c573d92c6bc0d5b3f4ac2377b5762"
+    },
+    {
+      "path": "_local/reports/stage19-art-preview/right-maxzoom-before.png",
+      "sha256": "adc6394f97150df2f9792f3a61371e8b8d824c7308f4f3d4476acb803900ceae"
+    },
+    {
+      "path": "_local/reports/stage19-art-preview/right-maxzoom-after.png",
+      "sha256": "c933a6ac2da3ebc67147a5a945620b8622d11c0f055eb3ca8ba8963293f6cecb"
+    },
+    {
+      "path": "_local/reports/stage19-art-preview/ceiling-edge-before.png",
+      "sha256": "6dd26ab90a6c12fad5653953a1a287d083a70eb237e7e247124d50e9cefe07dc"
+    },
+    {
+      "path": "_local/reports/stage19-art-preview/ceiling-edge-after.png",
+      "sha256": "bcc47ff35bd470a008a4833c1695cecbcacb8d11a346b75951c9abfa432e6576"
+    },
+    {
+      "path": "_local/reports/stage19-art-preview/bottom-edge-before.png",
+      "sha256": "8f88cbcf19f99277c183ed54bad7140045d6888aeb70c4189b6fc676d67820b4"
+    },
+    {
+      "path": "_local/reports/stage19-art-preview/bottom-edge-after.png",
+      "sha256": "7ae73ac1e84f12fbc4683c338c3d9f45fc8a4a5cc94f577dfcada5b1f68e8e3b"
+    },
+    {
+      "path": "_local/reports/stage19-art-preview/mobile-ceiling-before.png",
+      "sha256": "fc0bd2cbaa660bcf8db6df143621e2ef5f944e3a1a607f734ee350b38dabb910"
+    },
+    {
+      "path": "_local/reports/stage19-art-preview/mobile-ceiling-after.png",
+      "sha256": "58f2400e8c998b8ecb2285dcfb9d1df765712474ab4ef17a76b6c83666f8f401"
+    },
+    {
+      "path": "_local/reports/stage19-art-preview/mobile-bottom-before.png",
+      "sha256": "00c1d18da50b333e251c6ed344cb7aec177c43f924e4f5341fce6affa764b978"
+    },
+    {
+      "path": "_local/reports/stage19-art-preview/mobile-bottom-after.png",
+      "sha256": "6f5264f7d8156979b064a8337a095bee96743545e8079b2100bcf11c08314c37"
+    }
+  ],
+  "browserAccepted": false,
+  "fullStoryAccepted": false,
+  "domainSha256": "36bd2a52aacf280fe0d6a648bc6210b8f9a950d5d624021195b29cb24e248b15",
+  "priorRejectedReview": "rejected-source-boundary-review.json"
+}

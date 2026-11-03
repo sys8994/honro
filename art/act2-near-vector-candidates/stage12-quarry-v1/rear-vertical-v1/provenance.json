@@ -1,0 +1,11 @@
+{
+  "generator": "image_gen.imagegen",
+  "promptRecord": "Reconstructed brief; exact tool-call text not retained as a file",
+  "sourceSha256": "332a976eec89f54b5db7972cb7e6d1ac967fbbbf79857444bc9ffe7d4db396a3",
+  "rawSha256": "f6bdc1e9ad4792fefa5e2f313bb47ccd91d698ee16171b1c9e65a305f2b4f341",
+  "finalSha256": "eded06925de613cb417764237fb952a6cf0ef3f3df5e1c820fdfef9cccf4b1b1",
+  "pipeline": "Generated raster → fixed palette actual Inkscape trace → bounded optimization → native vector JSON",
+  "sourceToTrace": "Lossy palette trace, not pixel-equivalent to source; raw-to-final optimization quality is separately measured.",
+  "provenanceStatus": "PARTIAL",
+  "missingEvidence": "Exact originally submitted imagegen prompt text is unavailable in retained accessible files/current context. Reconstructed prompt briefs are NOT original prompts. No full SOP provenance pass is claimed."
+}

@@ -1,0 +1,22 @@
+{
+  "method": "Built-in imagegen localized material concept, then actual Inkscape fixed-palette binary traces. No source silhouette becomes collision.",
+  "generatedImage": "exec-358342e8-2112-42e5-a7f4-b330a9a68fd1.png",
+  "sourceSha256": "cb3a37ebdf5295ed1434460257e2f66b22c7042e705272c21a549630acfe8b02",
+  "prompt": "prompt.txt",
+  "traceCommand": "python tools/act2-vector-production/trace-stage20-palette.py _local/stage20-contact-trace/palette _local/stage20-contact-trace/trace --image art/act2-near-vector-candidates/stage20-contact-v3/source.png --speckles 12",
+  "palette": [
+    "#243842",
+    "#304650",
+    "#425a62",
+    "#60777b",
+    "#8b9184"
+  ],
+  "traceSettings": {
+    "scans": 2,
+    "speckles": 12,
+    "smooth": 0.7,
+    "optimize": 0.2,
+    "materialMaskRadius": 0
+  },
+  "scope": "Source candidate only; source/raw vector visually inspected; final placement still under review."
+}

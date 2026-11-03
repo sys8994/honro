@@ -1,0 +1,213 @@
+{
+  "raw": "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage14/upper-v2/composed-raw.svg",
+  "candidate": "/workspace/scratch/fff510b4df37/honro-act2-vector-rollout/stage14/upper-v2/composed-candidate.svg",
+  "rawStats": {
+    "sourceBytes": 328372,
+    "paths": 12,
+    "commands": 9835,
+    "segments": 9077,
+    "endpointNodesUpperBound": 9835,
+    "explicitCommandLetters": 4951,
+    "subpaths": 758,
+    "pathChars": 327368,
+    "maxPathChars": 83049
+  },
+  "candidateStats": {
+    "sourceBytes": 243369,
+    "paths": 12,
+    "commands": 9896,
+    "segments": 9138,
+    "endpointNodesUpperBound": 9896,
+    "explicitCommandLetters": 5115,
+    "subpaths": 758,
+    "pathChars": 242485,
+    "maxPathChars": 58229
+  },
+  "visualApproval": "NOT REVIEWED",
+  "config": {
+    "width": 1380,
+    "scales": [
+      1,
+      2
+    ],
+    "limits": {
+      "rgbMAE255": 2,
+      "silhouettePx": 1.5,
+      "protectedRgbMAE255": 1,
+      "protectedPx": 0.5,
+      "protectedChangedPixelFraction": 0.05
+    },
+    "protectedPolylines": [
+      {
+        "points": [
+          [
+            90.0,
+            105.0
+          ],
+          [
+            509.99999999999994,
+            105.0
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            509.99999999999994,
+            105.0
+          ],
+          [
+            750.0,
+            360.0
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            750.0,
+            360.0
+          ],
+          [
+            990.0,
+            360.0
+          ]
+        ],
+        "width": 12
+      },
+      {
+        "points": [
+          [
+            990.0,
+            360.0
+          ],
+          [
+            1320.0,
+            793.5
+          ]
+        ],
+        "width": 12
+      }
+    ],
+    "protectedRgbQuantizationTolerance255": 1,
+    "preserveRawColors": [
+      "#293a3e",
+      "#77817b",
+      "#979789"
+    ],
+    "composition": "Exact native canonicalSolid/contactInset; actual underpaint and immutable domain context; two darkest complete local skin base colors omitted identically to native. Original free SVG remains immutable and separately reported.",
+    "sourcePalette": [
+      [
+        38,
+        57,
+        61
+      ],
+      [
+        41,
+        58,
+        62
+      ],
+      [
+        52,
+        74,
+        78
+      ],
+      [
+        65,
+        89,
+        93
+      ],
+      [
+        69,
+        88,
+        91
+      ],
+      [
+        78,
+        103,
+        106
+      ],
+      [
+        91,
+        106,
+        107
+      ],
+      [
+        104,
+        107,
+        89
+      ],
+      [
+        119,
+        129,
+        123
+      ],
+      [
+        151,
+        151,
+        137
+      ]
+    ]
+  },
+  "errors": {
+    "1": {
+      "rgbMAE255": 0.0056930892169475555,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.00020404272072482854,
+      "changedPixelFraction": 6.99211797609967e-06,
+      "silhouetteMaxOffsetPx": 0.0,
+      "protectedChangedPixelFraction": 0.0,
+      "protectedRgbMAE255": 0.00028396453126333654,
+      "protectedSilhouetteMaxOffsetPx": 0.0,
+      "protectedColorEdgeRawMaxOffsetPx": 13.892443989449804,
+      "protectedColorEdgeMaxOffsetPx": 0.0,
+      "protectedRgbQuantizationTolerance255": 1,
+      "protectedQuantizationPixels": 1,
+      "pass": true
+    },
+    "2": {
+      "rgbMAE255": 0.005504447966814041,
+      "rgbP99_255": 0.0,
+      "alphaMAE255": 0.00016749300993978977,
+      "changedPixelFraction": 7.786676837020087e-06,
+      "silhouetteMaxOffsetPx": 1.0,
+      "protectedChangedPixelFraction": 0.0,
+      "protectedRgbMAE255": 0.0003810994967352599,
+      "protectedSilhouetteMaxOffsetPx": 0.0,
+      "protectedColorEdgeRawMaxOffsetPx": 1.0,
+      "protectedColorEdgeMaxOffsetPx": 1.0,
+      "protectedRgbQuantizationTolerance255": 1,
+      "protectedQuantizationPixels": 1,
+      "pass": true
+    }
+  },
+  "timings": {
+    "raw-1": {
+      "width": 1380,
+      "height": 1140,
+      "decodeMs": 20.35068899999999,
+      "drawMs": 2.3736150000000293
+    },
+    "candidate-1": {
+      "width": 1380,
+      "height": 1140,
+      "decodeMs": 18.88139799999999,
+      "drawMs": 2.716703999999993
+    },
+    "raw-2": {
+      "width": 2760,
+      "height": 2280,
+      "decodeMs": 60.03373800000003,
+      "drawMs": 15.075386999999978
+    },
+    "candidate-2": {
+      "width": 2760,
+      "height": 2280,
+      "decodeMs": 57.72132099999999,
+      "drawMs": 15.581026000000008
+    }
+  },
+  "qualityPass": true
+}
