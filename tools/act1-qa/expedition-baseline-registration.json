@@ -1,0 +1,27 @@
+{
+  "schema": "honro-act1-expedition-baseline/v1",
+  "status": "PREPARED_WAITING_FOR_ROOT_EXACT_CI_PASSED_SOURCE",
+  "scope": "One initial native App run per remaining chapter. Baseline coverage correction only, not cohort acceptance, browser proof or continuous campaign.",
+  "sourcePolicy": "Root must identify exact CI-passed pre-monster merged source/generated descendant. No blocked archive or new monster effects build.",
+  "difficulty": {"key":"story","label":"원정","hp":1.05,"damage":0.92},
+  "entry": "Preserve existing per-case entry, equipment, talent allocation, policy, seed and terminal caps. Only pre-entry difficulty changes; no chained replacement entries.",
+  "environment": {"HONRO_QA_BASELINE":"story"},
+  "lock": {"path":"/tmp/honro-native-heavy-20261103.lock","scope":"Each individual run, not the whole batch"},
+  "cases": [
+    {"stage":1,"runner":"legacy-controller.mjs","seed":1242,"policy":"objective-aggressive-appops-damageaudit"},
+    {"stage":2,"runner":"legacy-controller.mjs","seed":2321,"policy":"objective-focused-follow-noitems-appops-convoy-v4-descent-v6"},
+    {"stage":3,"runner":"legacy-controller.mjs","seed":2332,"policy":"objective-focused-flow-noitems-appops-budgetrecovery-distance-calibrated-v2-airborne-v5-landing-v7"},
+    {"stage":4,"runner":"legacy-controller.mjs","seed":1340,"policy":"objective-focused-flow-noitems-appops"},
+    {"stage":5,"runner":"reactive-app.mjs","label":"detached-planner-v2","seed":null,"seedNote":"Preserve original authored Engine RNG and runner behavior; do not invent prior recorded JS seed."},
+    {"stage":6,"runner":"legacy-controller.mjs","seed":2360,"policy":"objective-focused-noitems-appops-calibrated-v2"},
+    {"stage":7,"runner":"legacy-controller.mjs","seed":2370,"policy":"objective-focused-flow-noitems-appops-splitrescue-v3"},
+    {"stage":8,"runner":"run-existing.mjs","seed":1228,"policy":"focused-modern-routefirst-flowall-meleeclose-noitems-appops"},
+    {"stage":10,"runner":"reactive-app.mjs","label":"detached-planner-v2","seed":null,"seedNote":"Preserve original authored Engine RNG and runner behavior; do not invent prior recorded JS seed."}
+  ],
+  "stage9": "Reuse original-source matched story R2 only after dependency parity with final source is demonstrated; never substitute candidate A.",
+  "outputs": "_local/reports/act1-expedition-baseline-20261103/ (separate from tactical and negative diagnostics)",
+  "stopping": "One initial attempt per chapter; preserve terminal loss, incomplete/cap, assertion and environment failure distinctly. No automatic rerun-until-pass, no changing original finite caps or clipping round20.",
+  "planning": "Opt-in detached player predict/shotSeeds/bestShot and exact live-battle/profile guards; existing detached policy selection stays unchanged. Enemy AI remains original.",
+  "measurement": "Entry/runtime/source hashes; requested/actual difficulty and ordinary enemy factors; original terminal trace plus HP/shield and enemy-action attribution. Existing geometry/support traces remain required for movement analysis. Counts alone are not quality acceptance.",
+  "budget": "30–90 minutes serial planning estimate, not measured promise. No full checkout or broad all-campaign framework."
+}
