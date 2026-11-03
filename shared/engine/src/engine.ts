@@ -1,3 +1,4 @@
+import {interruptEnemyEffect,validateEnemyEffects,observeEnemyEffectWarning,offerEnemyEffectResponses,enemyEffectActionCompleted,prepareEnemyEffect,resolveEnemyEffect,enemyEffectDamage,enemyEffectMovementBudget,tickEnemyEffects,clearEnemyEffects,releaseEnemySoftBind} from './enemyEffects';
 import {wreckDamage,damageNearest,damageContact,damageAim,damageCritical} from './wreckDamage';
 import {gearCapture,gearHas,gearBody,gearCanPay,gearPay,gearTurn,gearRegen,gearGuard,gearImpulse,gearAlly,gearState,gearCycle,gearFrostSlow,gearStepMove,gearEarthMove,gearWallContact,gearPreservesWood,gearSpreadWeak,gearTravelSpent,gearReturn,gearLandingRetreat,gearPass} from './equipmentCombat';
 import {equipmentActor,equipmentParam,equipmentCast,equipmentManaCost,equipmentPrimary,equipmentSoulVector} from './equipment';
@@ -106,10 +107,11 @@ export class Engine {
             if(next.done)return next;
         }
     }
-    constructor(b: Battle, onEvent: (e: Event) => void = () => { }, fresh = false) { b.fields ??= []; b.physics ??= makePhysics(STAGES[b.stageId-1]?.physics); b.reviewDamage ??= {}; b.reviewLeft ??= 0; b.occultRevision ??= 1; this.b = b; migrateCampaignActionBudget(b); if(b.mode==='campaign'&&(b as any).honroStage&&!(b as any).honroCustom&&(b as any).honroMapOrigin!=='workshop')for(const u of b.units)migrateCampaignEnemyDamage(u); initializeKeeperRitual(b); if(b.phase!=='won'&&b.phase!=='lost')initializeDamageSequence(b); (globalThis as any).HonroQuestTargets?.migrate(b); ensureWaterfallBody(b); for(const u of b.units){migrateEnemySkills(u);migrateAirborneBalance(u);} this.onEvent = onEvent; restoreWarriorFollow(b); migrateEaters(this); this.applyPhysicsCues(); if (fresh) {
+    constructor(b: Battle, onEvent: (e: Event) => void = () => { }, fresh = false) { b.fields ??= []; b.physics ??= makePhysics(STAGES[b.stageId-1]?.physics); b.reviewDamage ??= {}; b.reviewLeft ??= 0; b.occultRevision ??= 1; this.b = b; validateEnemyEffects(b); migrateCampaignActionBudget(b); if(b.mode==='campaign'&&(b as any).honroStage&&!(b as any).honroCustom&&(b as any).honroMapOrigin!=='workshop')for(const u of b.units)migrateCampaignEnemyDamage(u); initializeKeeperRitual(b); if(b.phase!=='won'&&b.phase!=='lost')initializeDamageSequence(b); (globalThis as any).HonroQuestTargets?.migrate(b); ensureWaterfallBody(b); for(const u of b.units){migrateEnemySkills(u);migrateAirborneBalance(u);} this.onEvent = onEvent; restoreWarriorFollow(b); migrateEaters(this); this.applyPhysicsCues(); if (fresh) {
         this.refreshActivation();
         this.refreshIntents();
     } for(const u of b.units)this.clearDisabledActor(u); }
+    observeEnemyEffectWarning(ownerId:string,serial:number){return observeEnemyEffectWarning(this,ownerId,serial);}
     get active() { return this.b.units.find(u => u.id === this.b.active); }
     private unavailableActor(u?:Unit){return !u||u.dead||u.hp<=0||!!u.eaterCapturedBy;}
     /** Death/capture can interrupt locomotion between AI planning and its next step.
@@ -577,6 +579,7 @@ export class Engine {
         const b = this.b, u = this.active, s = SKILLS[skillId];
         if (!u || u.dead || u.retreat || !s || !warriorAllowed(u,s) || s.enemyOnly&&u.side===0&&!ai || s.passive || (!ai && (!this.canAct() || !this.grounded(u))) || (!u.loadout.includes(skillId)&&!(skillId==='S00'&&u.meleeFollow==='ready')) || (s.ultimate && u.side===0 && this.b.mode!=='practice' && !ultimateUnlocked(this.b.heroes[u.cls],u.cls)) || this.cooldownLeft(u,skillId)>0 || !this.canAfford(s,u,power))
             return false;
+        offerEnemyEffectResponses(this);
         delete u.platformDrop;delete u.moveTarget;
         u.moving = 0;
         const e = this.effective(s, u);
@@ -848,7 +851,7 @@ export class Engine {
         if (kind === 'focus')
             u.focus = Math.min(u.maxFocus, u.focus + Math.round(u.maxFocus * .60));
         if (kind === 'cleanse') {
-            u.bound = u.breaks = u.mark = 0;
+            u.bound = u.breaks = u.mark = 0;releaseEnemySoftBind(u,2);
             u.hp = Math.min(u.maxHp, u.hp + 22);
         }
         if (kind === 'ward') {
@@ -950,6 +953,7 @@ export class Engine {
         Object.assign(contribution,{reportOrigin:p?.honroReportSource||provenance?.honroReportSource,reportOwner:owner,reportSkill:provenance?.skill||damageSkill||p?.skill,reportSource:damageSource});
         if(u.summonKind==='eater'){dmg=Math.min(dmg,u.hp);u.shield=0;}
         if(u.martialGuard?.counter&&u.martialGuard.round>=this.b.round&&rawSrc&&this.guidanceTarget(u,rawSrc))u.martialGuard.attacker=rawSrc.id;
+        const enemyEffectHpBefore=u.hp;
         const absorbed = damageSource==='eaterTransfer'?0:Math.min(u.shield, dmg);
         u.shield -= absorbed;
         dmg -= absorbed;
@@ -1019,6 +1023,9 @@ export class Engine {
                 this.message(`${u.name} 제압`);
             }
         }
+        if(damageSource==='normal')interruptEnemyEffect(this,u,owner,direct,p,Math.max(0,enemyEffectHpBefore-u.hp)+absorbed);
+        enemyEffectDamage(this,u,p,Math.max(0,enemyEffectHpBefore-u.hp));
+        tickEnemyEffects(this,0);
         if(u.summonKind==='eater'){
             if(rawSrc&&this.allegiance(rawSrc)===0&&dmg>0){const shared=Math.min(dmg,Math.max(0,u.maxHp-(u.eaterTransferred||0)));u.eaterTransferred=(u.eaterTransferred||0)+shared;for(const target of this.b.units.filter(v=>v.eaterCapturedBy===u.id&&!v.dead))this.hurt(target,shared,owner,false,undefined,source,'eaterTransfer',damageSkill||p?.skill);}
             this.b.reviewFocus={x:u.x,y:u.y-u.h*.5};
@@ -1117,7 +1124,7 @@ export class Engine {
         for (const {unit:u,distance:d,equipmentScale=1} of unitTargets??this.blastUnitTargets(x,y,r,owner,body,p,provenance)) {
             const factor = .42 + .58 * (1 - clamp(d / radius, 0, 1));
             this.hurt(u, damage * factor * equipmentScale, owner, p?.directId === u.id, p, { x, y },'normal',undefined,provenance);
-            if (!u.dead && damage > 15)
+            if (!u.dead && damage > 15 && !(p?.enemyEffectAttack?.target===u.id))
                 this.impulse(u, Math.sign(u.x - x || 1) * (1 - d / (radius + u.r)) * 95, -45,p||provenance);
         }
         for (const t of [...this.b.terrain]) {
@@ -2114,7 +2121,7 @@ export class Engine {
                 {if(silent)return false;this.recover(u);}
             return true;
     }
-    settleBusy() { return this.b.units.some(u => !u.dead && !u.eaterCapturedBy && !u.fixed && (u.equipmentState?.motion || u.airborne || u.jumping || u.platformDrop?.phase==='prepare' || Math.abs(u.vx) > 3 || Math.abs(u.vy) > 3)); }
+    settleBusy() { return this.b.units.some(u => !u.dead && !u.eaterCapturedBy && !u.fixed && (u.enemyPush || u.equipmentState?.motion || u.airborne || u.jumping || u.platformDrop?.phase==='prepare' || Math.abs(u.vx) > 3 || Math.abs(u.vy) > 3)); }
     applyZones(u: Unit) { for (const w of this.b.waters)
         if (w.kind === 'lava' && u.x > w.x && u.x < w.x + w.w && u.y >= w.y - 9 && u.y < w.y + w.depth + 20)
             this.hurt(u, Math.round(u.maxHp * .10), ''); for (const z of this.b.zones) {
@@ -2175,6 +2182,7 @@ export class Engine {
     }
     actionReviewSeconds(){return this.active?.side!==0&&!Object.keys(this.b.reviewDamage||{}).length?.18:ACTION_REVIEW_SECONDS;}
     finishAction(reviewed=false) {
+        offerEnemyEffectResponses(this);
         if(this.noncombatWalk())return;
         const b = this.b, u = this.active;
         if(['won','lost','transition'].includes(b.phase))return;
@@ -2186,6 +2194,7 @@ export class Engine {
             if(finishRedesign(this,reviewed))return;
         }
         if(b.mode!=='practice'&&!reviewed){b.phase='review';b.reviewLeft=this.actionReviewSeconds();b.reviewFocus??=u?{x:u.x,y:u.y-u.h}:undefined;this.emit('change');this.emit('save');return;}
+        enemyEffectActionCompleted(this,u);
         keeperActionCompleted(this,u);
         if (u) {
             delete u.moveTarget;
@@ -2293,7 +2302,7 @@ export class Engine {
                 this.fx('text', u.x, u.y - u.h - 18, '#eed59b', 15, '기절 · 행동 불가');
             }
             delete u.moveTarget;delete u.aiMove;
-            u.moveLeft = u.bound > 0 ? u.maxMove * .45 : u.maxMove;gearTurn(u);
+            u.moveLeft = u.bound > 0 ? u.maxMove * .45 : u.maxMove;gearTurn(u);enemyEffectMovementBudget(u);
             if (u.side !== 2)
                 u.focus = clamp(u.focus + gearRegen(u,u.regen), 0, u.maxFocus);
         }
@@ -2360,6 +2369,8 @@ export class Engine {
             this.finishAction();
             return;
         }
+        if(u?.enemyEffectRecovery){delete u.enemyEffectRecovery;u.intent='예고 회복';this.finishAction();return;}
+        if(u?.enemyEffectCast&&resolveEnemyEffect(this,u))return;
         if(u?.aiMove||u?.moveTarget!==undefined||b.units.some(v=>!this.unavailableActor(v)&&v.aiMove?.lureStakeId!==undefined))return;
         if(u?.aiAim){
             if(u.aiAim.age<ENEMY_AIM_TELEGRAPH)return;
@@ -2451,6 +2462,7 @@ export class Engine {
         u.angle=aim.angle;u.lastPower=aim.power;u.facing=target.x>=u.x?1:-1;
         if(tacticsLevel(this)>=2&&target.side!==u.side)(b as any).honroAiFocus={round:b.round,target:target.id};
         // Show the decided shot (target mark + path) before release; enemyAction fires it unchanged.
+        if(prepareEnemyEffect(this,u,sk.id,target,aim.angle,aim.power))return;
         u.aiAim={skill:sk.id,angle:aim.angle,power:aim.power,target:target.id,age:0};this.emit('change');
     }
     checkEnd() {
@@ -2463,7 +2475,7 @@ export class Engine {
         const result=evaluateStageEnd(this.stage,b,this.heroesAlive(),this.alive(1),obj,boss);
         const {win,lose,reason}=result;
         if (win || lose) {
-            b.phase = win ? 'won' : 'lost';clearKeeperRitual(b);delete b.summonTurn;
+            b.phase = win ? 'won' : 'lost';clearEnemyEffects(b);clearKeeperRitual(b);delete b.summonTurn;
             b.winnerReason = reason;
             for(const p of b.projectiles)this.releaseCarried(p);b.projectiles = [];b.volley=undefined;
             this.cancelMovement();
@@ -2488,6 +2500,7 @@ export class Engine {
     tick(dt = STEP) {
         const b = this.b;
         if(this.noncombatWalk()){if(!['won','lost'].includes(b.phase)){this.counter++;b.turnAge+=dt;this.stepUnits(dt);if(this.active?.side===0)this.active.moveLeft=this.active.maxMove;}return;}
+        tickEnemyEffects(this,dt);
         tickKeeperRitual(this,dt);
         if (b.phase === 'won' || b.phase === 'lost'){cleanupPassiveHistory(this);return;}
         if(b.phase==='review'){b.reviewLeft=Math.max(0,(b.reviewLeft||0)-dt);if(b.reviewLeft<=1e-8)this.finishAction(true);return;}
