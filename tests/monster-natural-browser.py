@@ -15,8 +15,10 @@ with sync_playwright() as pw:
   context.add_init_script(SCHEDULER)
   p=context.new_page();errors=[];p.on('pageerror',lambda e:errors.append(str(e)));p.set_default_timeout(60000)
   def evidence(_source,name,data):
-   path=dest/pathlib.Path(name).name;path.write_text(data)
-   if path.name.startswith('round-'):p.screenshot(path=str(path.with_suffix('.png')))
+   path=dest/pathlib.Path(name).name
+   if path.suffix=='.png':path.write_bytes(base64.b64decode(data.split(',',1)[1]))
+   else:path.write_text(data)
+   print(f'EVIDENCE stage={stage} file={path.name}',flush=True)
   p.expose_binding('qaEvidence',evidence)
   failure=None
   try:
@@ -28,10 +30,10 @@ with sync_playwright() as pw:
    if stage==8:p.evaluate('()=>{let state=1228>>>0;Math.random=()=>{state+=0x6D2B79F5;let t=state;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return((t^t>>>14)>>>0)/4294967296;};}')
    p.evaluate('async q=>{await qaInstall(q.entry,q.meta);}',{'entry':entry,'meta':meta})
    p.wait_for_function('(stage)=>HonroApp.engine?.b.honroStage===stage',arg=stage)
-   p.screenshot(path=str(dest/'entry.png'))
+   p.screenshot(path=str(dest/'entry.png'),timeout=15000)
    if p.locator('[data-action="dialogue-next"]').count():p.locator('[data-action="dialogue-next"]').click()
    p.evaluate('async stage=>{await window["qaRun"+stage]();}',stage)
-   p.screenshot(path=str(dest/'terminal.png'))
+   p.screenshot(path=str(dest/'terminal.png'),timeout=15000)
   except Exception as error:
    failure=str(error)
    try:

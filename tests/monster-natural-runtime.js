@@ -28,7 +28,7 @@ window.qaInstall=async(entry,meta)=>{
  a.close();a.stopBattle();const p=plain(entry.profile||entry);assert(!p.honroBattle,'Fresh entry must not import battle');p.settings.difficulty='story';a.profile=a.normalProfile=p;a.prev=0;
  await HonroCampaignLoader.ensureStage(meta.stage);a.launch(meta.stage);
 };
-async function qaWrite(name,data){await window.qaEvidence(name,data);}
+async function qaWrite(name,data){if(/round-[0-9]+\.json$/.test(name))await window.qaEvidence(name.replace('.json','.canvas.png'),HonroApp.scene.canvas.toDataURL('image/png'));await window.qaEvidence(name,data);}
 async function qaFinish(result){await Promise.all(qa.pending);await qaWrite('natural-result.json',JSON.stringify({meta:qa.meta,result,frames:qa.frames,events:qa.events,checkpoints:qa.checkpoints,captures:qa.captures,final:plain(HonroApp.engine.b),scope:'Actual browser production App actions/renderer; deterministic clock and legal pre-entry reward fixture, not continuous prior campaign or manual pointer-only play.'}));}
 window.qaCounter=async kind=>{
  const a=HonroApp,e=a.engine,b=e.b,ops=createPlayerOperations({app:a,g,C}),id=b.honroStage===5?'s5-cave-shade':'s8-15',caster=e.unit(id),u=e.active,cast=plain(caster.enemyEffectCast);
