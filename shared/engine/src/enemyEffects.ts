@@ -34,9 +34,15 @@ export function prepareEnemyEffect(e:Engine,u:Unit,skill:string,target:Unit,angl
  u.enemyEffectCooldown=2;
  u.intent=SKILLS[skill].name+' · 예고';e.message(`${u.name} · ${u.intent}`);e.finishAction();return true;
 }
+/** This ground burst is blocked by every intact terrain polygon, including
+ * one-way platforms: their projectile pass-through rule does not permit this
+ * effect to jump floors. Both endpoints are body centers, never feet. */
+function effectSegmentClear(b:Battle,from:Vec,to:Vec){
+ return !b.terrain.some(t=>!t.broken&&!!segmentTerrain(from,to,t,0));
+}
 function effectLineClear(e:Engine,u:Unit,to:Vec){
  const from={x:u.x,y:u.y-u.h*.45};
- return Math.hypot(to.x-from.x,to.y-from.y)<=1050&&Math.abs(to.y-from.y)<=450&&!e.b.terrain.some(t=>!t.broken&&!!segmentTerrain(from,to,t,0));
+ return Math.hypot(to.x-from.x,to.y-from.y)<=1050&&Math.abs(to.y-from.y)<=450&&effectSegmentClear(e.b,from,to);
 }
 /** Only an already-budgeted enemy action may release a prepared attack. */
 export function resolveEnemyEffect(e:Engine,u:Unit){
@@ -56,7 +62,7 @@ export function resolveEnemyEffect(e:Engine,u:Unit){
  e.emit('sound',{name:'hit'});
  for(const v of b.units){
   if(!enemyEffectEligible(b,u,c.skill))break;
-  if(!hero(v)||v.stunnedRound===b.round||!c.respondedIds.includes(v.id)||!effectLineClear(e,u,{x:v.x,y:v.y-v.h*.45}))continue;
+  if(!hero(v)||v.stunnedRound===b.round||!c.respondedIds.includes(v.id)||!effectLineClear(e,u,{x:v.x,y:v.y-v.h*.45})||!effectSegmentClear(b,c.impact,{x:v.x,y:v.y-v.h*.45}))continue;
   const d=Math.hypot(v.x-p.x,v.y-v.h*.45-p.y);if(d>=c.radius+v.r)continue;
   // All splash victims had a response; the named target alone receives control.
   p.enemyEffectAttack={id:`${b.session||'battle'}:${c.serial}`,sourceId:u.id,target:c.target,skill:c.skill,direction:c.direction};
