@@ -1,4 +1,4 @@
-/** Stage23 native diagnostic: independent prediction streams and one obstruction-triggered20px step. Legal entry fixture only.
+/** Stage23 native diagnostic: independent estimate streams; opt-in isolated policy switches. Legal entry fixture only.
  * No live positions, HP, enemies, objective states or RNG are rewritten. */
 import assert from 'node:assert/strict';
 import vm from 'node:vm';
@@ -28,20 +28,25 @@ const hurt=e.hurt.bind(e);e.hurt=function(u,...a){const before=u.hp,out=hurt(u,.
 const event=app.event.bind(app);app.event=(text,...a)=>{notices.push({round:b.round,frame:ops.frames,text});return event(text,...a);};
 const tick=()=>{if(app.dialogue){storyFrameCount++;const row=app.dialogue.lines?.[app.dialogue.index]?.[2]?.rowId;if(row&&row!==lastStory){events.push({row,round:b.round,frame:ops.frames});lastStory=row;}}audit.production(()=>ops.frame());audit.guard();movementCalls+=audit.log.movement.length;audit.log.movement.length=0;};
 async function save(label){app.export();await writeFile(out+'/'+label+'.json',JSON.stringify({provenance,profile:await h.exported(),actions,rounds,damage,notices,events,frames:ops.frames,audit:{externalWrites:audit.log.externalWrites,recoveries:audit.log.recoveries}}));}
-await writeFile(out+'/initial.json',JSON.stringify({provenance,profile:resume?.profile||p,battle:plain(b)},null,2));
 function playerFire(skill,angle,power){const normalized=((angle+85)%360+360)%360-85;if(normalized>265){record({op:'rejected-unreachable-aim',skill,angle,normalized});return false;}return audit.production(()=>ops.fire(skill,normalized,power));}
 // Production aim predictors may internally fire/step isolated clones and retain
 // independent estimation damageSequence/RNG. It remains a simulation, not pure geometry.
-// We only estimate nominal non-dived landing damage; never read a future roll.
+// S04 correction is opt-in; default is production scoring. Neither mode reads live future rolls directly.
+const s04ScoreMode=process.env.HONRO_QA_S04_SCORE||'production';
+assert(['production','ordinary'].includes(s04ScoreMode),'HONRO_QA_S04_SCORE must be production or ordinary');
+const muzzleSetting=process.env.HONRO_QA_MUZZLE_ADVANCE||'0';
+assert(['0','1'].includes(muzzleSetting),'HONRO_QA_MUZZLE_ADVANCE must be0 or1');
+const muzzleAdvanceEnabled=muzzleSetting==='1';
 const scoringAudit={candidates:0,oldViable:0,newViable:0,oldOnly:0,newOnly:0};
-provenance.s04Scoring={revision:1,radius:80,damageFactor:.75,falloff:.65,
+provenance.s04Scoring={revision:1,mode:s04ScoreMode,ordinaryCorrectionApplied:s04ScoreMode==='ordinary',
+ radius:s04ScoreMode==='ordinary'?80:null,damageFactor:s04ScoreMode==='ordinary'?.75:null,falloff:s04ScoreMode==='ordinary'?.65:null,
  baselineControllerSha256:'3c6bca2831652de4324da654c08b4eff4fa360442167d3834e82654905a4a1c3',
- scope:'Only S04 nominal untriggered-landing score changes. Existing aim predictor, friendly-risk estimate/cutoff, targets, skill order, movement and controls are retained. No mid-flight dive command is issued. Production predictor internally simulates isolated clones, after actual future RNG/sequence fields are replaced with predeclared independent estimation streams. This is not pure geometry or mean damage.'};
+ scope:'Default production scoring is unchanged. Only HONRO_QA_S04_SCORE=ordinary enables the unadopted nominal S04 correction. Existing aim predictor, friendly-risk estimate/cutoff, targets, skill order and controls are retained. No mid-flight dive command is issued. Production predictor internally simulates isolated clones, after actual future RNG/sequence fields are replaced with predeclared independent estimation streams. This is not pure geometry or mean damage.'};
 provenance.independentPlanning={random:ESTIMATE_RANDOM,policy:'Independent fixed estimate before Engine construction; current observed wind is retained; seeds not selected by results.'};
-provenance.muzzleAdvance={distance:20,maxPerHeroRound:1,trigger:'No equipped shot plan and nearby selected road threat with friendly muzzle/straight-line obstruction',scope:'Ordinary movement only; no blanket95px-range change, resource refill or friendly-damage relaxation.'};
+provenance.muzzleAdvance={enabled:muzzleAdvanceEnabled,environment:muzzleSetting,distance:20,maxPerHeroRound:1,trigger:'No equipped shot plan and nearby selected road threat with friendly muzzle/straight-line obstruction',scope:'Ordinary movement only; no blanket95px-range change, resource refill or friendly-damage relaxation.'};
 const muzzleAttempts=new Set();
 function obstructionAdvance(u,target){
- const key=b.round+':'+u.id;if(muzzleAttempts.has(key)||!target||!ready())return false;
+ const key=b.round+':'+u.id;if(!muzzleAdvanceEnabled||muzzleAttempts.has(key)||!target||!ready())return false;
  const probe=detachedPlanner(C,b);let obstruction;
  try{obstruction=friendlyMuzzleObstruction(C,probe.engine,probe.unit(u.id),probe.unit(target.id));probe.check();}finally{probe.check();}
  if(!obstruction)return false;
@@ -56,7 +61,7 @@ function obstructionAdvance(u,target){
 }
 function scoredShot(pe,pu,skill,pt,angle,power){
  const v=C.shotViable(pe,pu,skill,pt,angle,power);
- if(skill.id!=='S04'||skill.mode!=='warriorDive')return v;
+ if(s04ScoreMode!=='ordinary'||skill.id!=='S04'||skill.mode!=='warriorDive')return v;
  const eff=pe.effective(skill,pu),radius=80;let enemyDamage=0;
  for(const t of pe.b.units){
   if(t.dead||t.eaterCapturedBy||t.side===pu.side||t.side===2)continue;
@@ -89,6 +94,7 @@ function roadAdvance(u,x,range=35){const start={x:u.x,y:u.y},dir=Math.sign(x-u.x
  // An upper ramp is traversable; do not strand a hero solely because the lower road is 240px below.
  // Drop through ordinary pass-through platforms when the shipping action allows it.
 }record({op:'road-advance',hero:u.cls,from:start,to:{x:u.x,y:u.y},targetX:x,moveLeft:u.moveLeft});}
+await writeFile(out+'/initial.json',JSON.stringify({provenance,profile:resume?.profile||p,battle:plain(b)},null,2));
 const terminal=()=>['won','lost'].includes(b.phase),started=performance.now(),limit=Number(process.env.HONRO_QA_ROUND_LIMIT||80),actionLimit=Number(process.env.HONRO_QA_ACTION_LIMIT||500);
 for(let turn=0;turn<actionLimit&&!terminal();turn++){
  global.gc?.();
