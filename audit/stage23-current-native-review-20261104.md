@@ -1,6 +1,6 @@
 # Stage23 reviewed-v4 natural gameplay and pacing review
 
-Status: bounded native gameplay review, not browser acceptance or deployment approval.
+Status: bounded native gameplay comparison and original-public-browser checkpoint review. Candidate release acceptance remains open; the20-round pacing target is not met or waived.
 
 ## Scope and provenance
 
@@ -85,6 +85,38 @@ The final paired raw-result SHA256 values are `2f62fee34ab5db56e8628324d5aa96f77
 - The actual two-guardR29 checkpoint was continued through ordinary combat/escort, won atR29, then went through resultContinue→rest→export→reload. No24battle launched, visit count stayed1 and rewards did not duplicate.
 - Party XP budget31548 and combat pool12620 are unchanged. Individual hero gains differ with natural contribution;7887 is not a valid per-hero cap. Spent plus forfeited remains the party total.
 
+## Fresh CI cluster-skill sensitivity
+
+The same two-guard product and bounded closer-angle input policy completed a fresh exact-checkout native run at `54d7fa09dddd1930dd640cec38b96112cbae3a93`, [CI41796761244](https://github.com/sys8994/honro/actions/runs/41796761244):28 rounds,96 shots,11 defends,13 foes left, NPC1243/1450, all four heroes alive,17 story rows and one exact settlement. Saved genuineR13/R18/R26 poses fed detached full-projectile comparisons. AtR13, M04 hit three enemies for438 damage versus M11's297 to one target. AtR18 it was worse286 vs363; atR26 it was nearly equal358 vs355. This shows a situational cluster option, not a full-run improvement.
+
+A bounded visible-cluster controller then considered M04 only with at least two nearby enemies and an estimated15% advantage. It did not inspect future RNG or mutate the live game. Both product variants used exactly the same entry profile (`89a8778509042f6ba2afc4402bd9f9a9682a5505c31d1c8726b0feb72fd6d815`) and controller (`fc8554c514a0f1ed8f0f20f164fad06bda0a6e815a6c58d70b52ba724a5e37fc`) in [CI41798014774](https://github.com/sys8994/honro/actions/runs/41798014774), source `3789d2ef3d6b275a50d427a4aa18acf4c8a0c22a`.
+
+| Measure | Original40 | Remove two38 |
+| --- | ---: | ---: |
+| Winning round | 33 | 30 |
+| Shots | 104 | 96 |
+| Defends | 23 | 19 |
+| NPC HP damage | 181 | 145 |
+| Hero HP damage | 2678.2 | 2458 |
+| Remaining enemies | 12 | 12 |
+| Successful M04 shots | 7 | 4 |
+
+Both won, reached rest and reloaded with one settlement,17 equal story rows, and empty external-write/recovery audits. Candidate M04 shots actually dealt406,395,517 and468 HP damage to two or three enemies each without friendly damage. Nevertheless the overall30 rounds is slower than the separately tested closer-angle policy's28 rounds. Do not mix these policies when estimating the product effect: this matched pair is33→30. The cluster policy is not adopted as an improvement. Artifact13306133664 ZIP SHA256 is `6c6f8ceb22f7e3b472093301ea2e9cf344673c29517b8748a9519a4b11fb2dc0`.
+
+The28-round run's dialogue rows occur only atR1,4,5,28. R5–25 contain3–4 shots per round. R26 has2 shots;R27 has no shot and four defends while the escort travels;R28 completes. The long middle is combat rather than a required narrative reading duration. Seven shots at A-0/A-1 also include the knight pursuing rear enemies fromx1511 tox436 while the carrier's round-startx moves2264→2980. This is an input-policy inefficiency, not proof that those enemies should be removed.
+
+## Original public build browser observations
+
+After explicit approval of synthetic game screenshots/state in public Actions artifacts for14 days, [CI41793426811](https://github.com/sys8994/honro/actions/runs/41793426811) at `5d28c6388c0d2502bd7fd9346e07250bd185a1f6` passed Chromium UI checks against the original public Pages build. HTML SHA256 was `48508e7cbf43ad5985092a8fb62840fe9a9dabc7d5c7ac9ff49cf161809ee41a`. The source checkpoint came from the naturally earned originalR33 run, with earlier1–22 still a synthetic reward-ledger fixture.
+
+Real settings/file import, Continue, keyboard/touch aim, walking to the exit, victory, rest and exact reload settlement passed at1440×900,390×844 and844×390, with no JavaScript errors or horizontal document overflow. These are late-checkpoint UI checks, not fullR1 browser play, real-device FPS or human-fun approval. That run tested aiming and movement, not firing.
+
+Screenshot inspection found the landscape secondary “화면 밖” label overlapping the “물건 살피기” button. The candidate moves only Stage23's secondary world tag around this visible button, preserves the main objective and direction arrow, and omits the secondary tag only when no clear slot exists. Other stages/custom stages are unchanged. Focused tests pass the actual landscape geometry, adjacent/custom stages, hidden/zero controls, canvas offsets/DPR, left fallback and no-space arrow behavior.
+
+The same-product candidate browser script additionally checks actual firing, equipment open/close, viewport rotation and painted-label clearance. The test's label boxes are converted from canvas-local to viewport coordinates before comparing DOM controls. This is a test correction, not a runtime change.
+
 ## Limits before release acceptance
 
-No candidate browser run, public Pages acceptance, mobile/HUD/pointer acceptance or human fun approval is claimed. A whole repository build/aggregate suite was not run from this partial local source. The candidate needs final integration/build checks and a separate authorized browser review. The browser evidence/publication step remains separate from native code/test work.
+The product candidate `6abd6389da2b224432b52bdc314fcaa48d345ccb` has not passed its full build/browser workflow. [CI41795471305](https://github.com/sys8994/honro/actions/runs/41795471305) stopped during normal `npm run build`, before native/browser steps, because the Stage31 release guard detected runtime changes after its previous actual Engine probes. No guard was weakened or bypassed. The formal Stage31 refresh procedure is prepared but its separate public-data approval is pending.
+
+No candidate browser success, final Pages acceptance, full tactical natural clear, human fun approval or20-round completion is claimed. Master and Pages remain unchanged by this task. The original public-browser result cannot substitute for the candidate's build and UI acceptance.
