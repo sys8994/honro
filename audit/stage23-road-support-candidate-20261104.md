@@ -35,3 +35,11 @@ Twenty-five enemies remain. Some separated upper threats are effectively bypasse
 2. Build the same candidate normally and repeat exact fresh native/save checks.
 3. Play the entire same built product in an actual browser using only normal controls and the independently randomized read-only planner. Review dispatch, middle and exit pressure; repeated shots/waits; meaningful movement/skill choices; NPC friendly fire; all terrain/support transitions; desktop and landscape HUD readability.
 4. Report actual browser rounds and evidence separately from native19. No master integration or deployment until parent coordination and actual acceptance.
+
+## Formal Stage31 verification completed
+
+[Run41898261171](https://github.com/sys8994/honro/actions/runs/41898261171) completed successfully on exact source3f13e6daa5ba617e86fbe6731988cc2590dcbe7a. Genuine entry-route, entry-shot, west-enemy-action and boarding-objective evidence all passed. The synthetic full normal-UI Stage31 battle and boarding won at15 rounds, with no browser errors and all four heroes alive as required by the existing Stage31 contract. Runtime digest c21e05e95e34259ca4fc5d9a55cd27a58c7d6538e839f8ef5b0cdbffb9f4054e; unchanged normal build guard passed and preview/final HTML plus active-file lists were identical.
+
+Generated evidence commit5de16627962aba3a30710ae9be01c4e0e272c119 changes only tools/stage31/production-package.json from its source3f13e6da. Artifact13358685397 is10,310,793 bytes, retained14 days, ZIP SHA256 b6c8fc57e09dc5a0977bbf22716c6e247593301654cd42b20a3f961dd106117d. No historical visual reviews were relabeled as newly inspected.
+
+The subsequent same-product Stage23 workflow requires byte-identical generated evidence, the formal HTML hash, all fresh/legacy/narrative/HUD boundaries, exact native trace and dependency/profile/stage hashes, then a new complete browser battle. The browser uses independent estimate streams and ordinary UI for objective-first movement, the bounded jump and60px road return. Its timing and production-visible melee collateral differ from native and are explicitly recorded. Normal screenshots wait for turn banners to expire without hiding them, including desktop, landscape and one portrait inspection. This step is prepared, not yet completed; Stage23 actual-browser/fun/release acceptance remains open.

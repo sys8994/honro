@@ -88,6 +88,8 @@ jobs:
           assert r['phase']=='won' and r['round']==19 and r['settlement']==old['settlement']
           assert r['provenance']['controllerHash']==old['provenance']['controllerHash']
           assert r['provenance']['reviewedRuntimeHash']==old['provenance']['reviewedRuntimeHash']
+          for key in ['profileHash','stageHash','policyDependencyHashes']:
+              assert r['provenance'][key]==old['provenance'][key], 'Replay provenance differs: '+key
           (root/'exact-replay.json').write_text(json.dumps({'exactTrace':True,'referenceRun':41895405691,'round':r['round'],'scope':'Deterministic native repeat only, not independent difficulty or browser proof.'},indent=2))
           PYVERIFY
       - name: Play the same product from fresh R1 through settlement with real browser controls
