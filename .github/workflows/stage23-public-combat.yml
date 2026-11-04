@@ -1,0 +1,57 @@
+name: Observe published Stage23 combat and HUD
+on:
+  push:
+    branches: ['work/stage23-public-combat-20261104']
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: stage23-public-combat-observation
+  cancel-in-progress: false
+jobs:
+  public-combat:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - name: Install pinned existing test dependencies
+        run: npm ci && npm ci --prefix game && pip install playwright==1.51.0 && python -m playwright install --with-deps chromium
+      - name: Retrieve approved exact synthetic original40 entry
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 41799550364 --repo sys8994/honro --name stage23-front-native-analysis --dir _local/stage23-front-prior
+          echo '6840fa3f8c97ec5ea6e32d9edd8c2fac3d087aeb197339718026d5a30efe4100  _local/stage23-front-prior/stage23-front-base/initial.json' | sha256sum --check
+      - name: Earn original40 checkpoints through normal native inputs
+        env:
+          HONRO_QA_ENTRY_PATH: _local/stage23-front-prior/stage23-front-base/initial.json
+          HONRO_QA_OUT: _local/reports/stage23-public-combat-native
+          HONRO_QA_EXTRA_CHECKPOINT_ROUNDS: 8,13,19
+        run: |
+          set -o pipefail
+          mkdir -p "$HONRO_QA_OUT"
+          git show f85a108a29d27cc5488d69d42034d58ac7699c0d:shared/runtime/act23-v4-ch23-reviewed.js > shared/runtime/act23-v4-ch23-reviewed.js
+          echo '71e3b81904fe845b4cbc190e1e0be9be714421c75a146725075665e42b07773c  shared/runtime/act23-v4-ch23-reviewed.js' | sha256sum --check
+          echo '3c6bca2831652de4324da654c08b4eff4fa360442167d3834e82654905a4a1c3  tests/stage23-front-natural.mjs' | sha256sum --check
+          HONRO_QA_SOURCE="$GITHUB_SHA original40 checkpoint generation only" node --expose-gc --max-old-space-size=2048 tests/stage23-front-natural.mjs | tee "$HONRO_QA_OUT/run.log"
+      - name: Observe existing published HTML with real keyboard and touch
+        run: python tools/stage23-qa/public-combat-review.py
+      - name: Preserve approved synthetic Stage23 observations
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: stage23-public-combat-observation
+          path: |
+            _local/reports/stage23-public-combat-native
+            _local/reports/stage23-public-combat
+          if-no-files-found: warn
+          retention-days: 14
