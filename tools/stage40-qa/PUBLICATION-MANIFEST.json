@@ -1,5 +1,5 @@
 {
-  "status": "Unpublished final-source QA passed. Stage31 full officialR12 and preservedStage40 exactR15-to-R22 regression with first cast/save/mobile checks. Historical wholeStage40 R21/R23 evidence remains distinct. Normal gated build and public deployment verification pending.",
+  "status": "Published and actual public UI verified. Stage31 official wholeR12; Stage40 preserved behavior with historical wholeR21/R23, final-source R15-to-R22 regression, public first attack and exactR21-to-R23 return/settlement/reload. Scope and mobile framing limits remain explicit.",
   "base": "7d2655bc3f88a7b20fb2d6ea1bc4c611583e9a15",
   "source": "2ac7cc2a9f686413ee5028f67ee42ffcb10fade4",
   "branch": "work/stage40-finale/20261103",
@@ -845,7 +845,7 @@
       "A2 and pending Stage24",
       "pending Stage9/17"
     ],
-    "releaseApproved": false,
+    "releaseApproved": true,
     "retainedResults": {
       "tools/stage40-qa/records/41729470340-current-first-cast-result.json.xz": {
         "sha256": "0b0d033c23f2eb13dc2daf31c88b2b64d1ee24177c40c7699b2e6c33a0dbf88d",
@@ -910,6 +910,26 @@
       "tools/stage40-qa/records/41741783067-stage40-guide-results.json.xz": {
         "sha256": "b7a668e0bd99b39e1e7e84951a761f57a9cadfcb2b7cd025e0a980ba99d609f4",
         "decodedBytes": 40204
+      },
+      "tools/stage40-qa/records/41745688559-public-summary.json.xz": {
+        "sha256": "189a9b08baaac25e0febea55ac8991abc08d7ce83e506a7ac7cb489b193cdeed",
+        "decodedBytes": 537
+      },
+      "tools/stage40-qa/records/41745688559-public-hashes.json.xz": {
+        "sha256": "366350dce3b15cfe7b2f62a7df6515bf3e1b8387a9f863c521d48d6e56932087",
+        "decodedBytes": 494
+      },
+      "tools/stage40-qa/records/41745688559-public-return-result.json.xz": {
+        "sha256": "e1df3cb9dd91170d57f6e06ac822f4fab286b4c88ac3ce02a663d174b1e3dc6f",
+        "decodedBytes": 3317
+      },
+      "tools/stage40-qa/records/41745688559-public-first-cast-result.json.xz": {
+        "sha256": "c6e18e058f9b5f24ec62072b24c8de6f7d0c87b0ae76db7a6cd5987764b223d0",
+        "decodedBytes": 182170
+      },
+      "tools/stage40-qa/records/41745688559-public-mobile-default-results.json.xz": {
+        "sha256": "9f69f72b82ae48e9ea9a4024fafbcb3e267bf355d23a0b38420c349170d2ddc5",
+        "decodedBytes": 20273
       }
     },
     "correctedStage31": {
@@ -957,6 +977,27 @@
     "oldSaveObservation": "Both exact saved poses/HP/growth preserved, physical candidates retained and target actually acted; neither target moved, so no actual retreat movement claim.",
     "browserLocaleCaveat": "Four PC/mobile browser-locale cases retain imported Korean UI preference; not English localization acceptance.",
     "releaseBuildRun": 41744244745,
-    "releaseBuildStatus": "in_progress, non-public review output only"
+    "releaseBuildStatus": "success, generated357b4eba, measured HTML and package byte-identical",
+    "publicVerification": {
+      "releaseSha": "08c17f1f5e712f53c97253a70c44185030ad1437",
+      "url": "https://sys8994.github.io/honro/HONRO.html",
+      "pagesRun": 41745380688,
+      "pagesDeployJob": 126297548112,
+      "publishedAt": "2026-11-04T00:17:33Z",
+      "publicRun": 41745688559,
+      "status": "success",
+      "artifactId": 13283971308,
+      "artifactBytes": 5443899,
+      "artifactSha256": "ff175359425d1289253d3603f9fb4af03b35712ff2b68e8bb6367f85f5447e08",
+      "htmlSha256": "727e2cbab07143af7f39d0b93d1d10a4df861d63e0be1a72a1d6e69462b9bc1f",
+      "manifestSha256": "01633a5d1b1b878cb12cd836abf1db2d2b9f0dd283004aa4d6ae2bf1278532b0",
+      "manifestGitBlob": "1edc828a71fbc2536bc84a9ec78b5fbd0e762ed0",
+      "actualFirstAttack": true,
+      "exactNormalSaveReturnRound": 23,
+      "settlementReload": true,
+      "allNavigationBodiesHashVerified": true,
+      "defaultMobileFraming": "Landscape844x390 and portrait390x844 normal Continue/joystick charge: caster body/feet and controls visible; long trajectory endpoints may need normal camera movement. No universal endpoint visibility or English localization claim.",
+      "notClaimed": "New public R1 whole battle or unaided human difficulty/fun test"
+    }
   }
 }

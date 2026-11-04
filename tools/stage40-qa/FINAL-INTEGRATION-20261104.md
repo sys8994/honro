@@ -61,3 +61,38 @@ review branch. Master ancestry/current changes, exact generated diff, Pages
 success, actual public HTML/manifest and public UI remain required before
 claiming publication. Stage6 is the separate next unit; pending9/17/24 and A2
 were not integrated.
+
+
+## Actual publication verified
+
+Release08c17f1f5e712f53c97253a70c44185030ad1437 was published by Pages run
+41745380688. Deploy job126297548112 reported success at2026-11-04T00:17:33Z.
+Public UI run41745688559 passed with that exact release checked out and every
+actual page navigation/reload HTML body verified against measuredSHA727e2cba.
+The public manifestSHA is01633a5d1b1b878cb12cd836abf1db2d2b9f0dd283004aa4d6ae2bf1278532b0.
+
+Actual public first attack succeeded. The exact historical normalR21 save
+retained resources and completed ordinary return, all13 ending rows, settlement
+and same-context reloadR23. No JS errors or water recoveries. This is public
+compatibility/end-flow evidence, not another fresh whole combat playthrough.
+Actual public outcome pixels show42defeated,0incapacitated,23turns; restored
+progression and roster remain correct.
+
+Default mobile landscape844x390 and portrait390x844 views were captured after
+normal Continue and joystick aim with no wheel/minimap/camera assignment. The
+caster's body/feet and all controls are visible in the inspected charge images.
+This resolves the previous caster-cropping ambiguity; long downward projectile
+endpoints may still lie outside the current frame and need normal camera use.
+No claim of universal endpoint visibility or English localization is added.
+
+Public artifact13283971308,5443899bytes,SHA256
+ff175359425d1289253d3603f9fb4af03b35712ff2b68e8bb6367f85f5447e08, verified
+and original retained. Exact summary/results are under records/41745688559-*.
+URL: https://sys8994.github.io/honro/HONRO.html
+
+This final recording unit changes documentation/evidence only. Generated HTML,
+manifest, active assets, product source and genuine Stage31 package are unchanged.
+The existing seven-day retention policy preserved all762 previous active assets
+and1,220 unique assets across29 still-retained historical publications. Five
+expired publications were pruned by the unchanged build policy, not by workspace
+cleanup. Original QA archives and unrelated worker data were never deleted.
