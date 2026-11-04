@@ -70,6 +70,13 @@ for(let turn=0;turn<actionLimit&&!terminal();turn++){
  if(!ready())continue;if(interact())continue;
  foes=e.alive(1).filter(v=>!v.honroObjectiveTarget&&(g.HonroAct3.visible?.(b,v)??true)).sort((a,z)=>Number(priority(z))-Number(priority(a))||dist(a,u)-dist(z,u));
  for(const t of foes.filter(v=>dist(v,u)<1400&&(priority(v)||dist(v,u)<550)).slice(0,3))if(fireAt(u,t)){fired=true;break;}if(fired)continue;
+ // A fixed ranged stand-off can leave a blocked angle despite unused movement.
+ // After the ordinary aim attempts fail, take one closer legal approach only
+ // to this nearby same-height road threat; then retry its real equipped shots.
+ if(threat&&u.cls!=='knight'&&Math.abs(threat.x-u.x)>96&&Math.abs(threat.x-u.x)<=190&&Math.abs(threat.y-u.y)<220&&u.moveLeft>20){
+  record({op:'closer-angle-approach',hero:u.cls,target:threat.id,from:{x:u.x,y:u.y},targetPoint:{x:threat.x,y:threat.y}});roadAdvance(u,threat.x,95);
+  if(!ready())continue;if(fireAt(u,threat))continue;
+ }
  record({op:'defend',hero:u.cls,npcX:n.x,npcMove:n.moveLeft,heroMove:u.moveLeft,blocked:S.blocked(b)});audit.production(()=>ops.defend());
 }
 if(!terminal()&&!stopReason)stopReason='diagnostic action observation bound';await save('final');
