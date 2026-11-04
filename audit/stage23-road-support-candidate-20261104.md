@@ -1,6 +1,6 @@
 # Stage23 road-support gameplay and release review
 
-Status: exact normal-built product passed native, actual full-browser and visual review. Accepted for scoped release preparation after parent coordination on2026-11-04; master and Pages publication remain unverified until the release evidence below is added.
+Status: Stage23 scoped review and publication completed on2026-11-04. Normal-built native19, actual whole-browser19, terrain/readability review, Pages publication and bounded direct public UI verification passed. See audit/stage23-publication-20261104.md for exact source/deployment/verifier identities and remaining limits.
 
 ## Evidence
 
@@ -88,3 +88,8 @@ The automated planner uses detached clones with independent predeclared random/d
 ## Release preparation
 
 Parent coordination authorized scoped master/Pages integration only after this review and exact-source checks. Latest checked master isf85a108a29d27cc5488d69d42034d58ac7699c0d. Candidate is ahead with that exact merge base; net product changes are Stage23 escort runtime, Stage23-only objective label positioning and genuine refreshed Stage31 production evidence. Other changes are Stage23 tests/workflows/reports, preserving rejected comparisons. No pending Stage9/17/24 product work is included. Normal generated artifacts must be rebuilt and matched to the verified HTML before master moves. Successful Pages publication and direct public browser verification are still required and will be recorded separately.
+
+
+## Publication completed
+
+The verified static release53c74ef7648a313a1f4d2f95f83b7779460d2ea0 was fast-forwarded from latest masterf85a108a after exact scoped diff and retained-publication checks. [Pages41908962255](https://github.com/sys8994/honro/actions/runs/41908962255) succeeded. [Direct public UI41909747399](https://github.com/sys8994/honro/actions/runs/41909747399), verifier03a26db85284caaf6396a4b10a9802e33ae3a848, passed first combat, unchanged earned R19 return/settlement/reload, portrait touch and rotation with no errors. Public HTML/index/manifest matched the generated release; this bounded publication check is separate from the full19-round browser review. All12 public screenshots were inspected. A short-lived item-acquisition toast temporarily covers part of the top HUD on small viewports; the tested permanent objective/equipment-button collision is fixed. No claim of full portrait combat is added. Detailed evidence and the verifier metadata correction are in the publication report.

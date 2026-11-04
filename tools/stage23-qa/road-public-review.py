@@ -20,11 +20,11 @@ index=next(i for i,n in enumerate(module.body) if isinstance(n,ast.Try))
 helpers=ast.Module(body=module.body[:index],type_ignores=[])
 exec(compile(helpers,str(BASE),'exec'),globals())
 
-PUBLIC='https://sys8994.github.io/honro/HONRO.html?stage23='+required('HONRO23_DEPLOYED_SHA')
+PUBLIC='https://sys8994.github.io/honro/HONRO.html?stage23='+required('HONRO23_RELEASE_PRODUCT_SHA')
 FINAL=Path(required('HONRO23_FINAL_CHECKPOINT'))
 assert hashlib.sha256(SOURCE.read_bytes()).hexdigest()=='3e57dffbf845979a8e1720cfb40f34a3739110269923614a6f920ba501960594'
 assert hashlib.sha256(FINAL.read_bytes()).hexdigest()=='ea3df1e6e1b1c62b53164ceba0f7b7ae12b8aa61b313adf44ec8fc56c022f36c'
-R.update({'passed':False,'scope':'Actual published byte-identical product: fresh first normal-input shot, exact earned native R19 exit/settlement/reload, portrait touch/rotation and HUD. Complete same-product browser battle is separate run41901497974. Not a second full browser battle, full portrait play, tactical play or human timing.','deployedCommit':os.environ['HONRO23_DEPLOYED_SHA'],'publicUrl':PUBLIC,'views':[],'reusedHelperSha256':hashlib.sha256(BASE.read_bytes()).hexdigest()})
+R.update({'passed':False,'scope':'Actual published byte-identical product: fresh first normal-input shot, exact earned native R19 exit/settlement/reload, portrait touch/rotation and HUD. Complete same-product browser battle is separate run41901497974. Not a second full browser battle, full portrait play, tactical play or human timing.','releaseProductCommit':os.environ['HONRO23_RELEASE_PRODUCT_SHA'],'publicUrl':PUBLIC,'views':[],'reusedHelperSha256':hashlib.sha256(BASE.read_bytes()).hexdigest()})
 
 def open_saved(browser,path,label,width,height,is_mobile):
     global page,context,mobile,last_dialogue,last_enemy,last_enemy_observation
