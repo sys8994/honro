@@ -1,0 +1,115 @@
+name: Verify Stage23 road-support product and complete browser battle
+on:
+  push:
+    branches: ['work/stage23-road-support-final-20261104']
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: stage23-road-support-final-verification
+  cancel-in-progress: false
+jobs:
+  same-product:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    env:
+      PRODUCT_RUNTIME_SHA256: c92112f31e18bb386adbe130b7f485e6bf359cd0f69655152a265520a13c6861
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - name: Retrieve approved exact fixtures and formal source evidence
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh run download 41850399757 --repo sys8994/honro --name stage23-candidate-final --dir _local/stage23-final
+          gh run download 41895405691 --repo sys8994/honro --name stage23-support-clearance-pair --dir _local/stage23-support-reference
+          gh run download 41898261171 --repo sys8994/honro --name stage31-refresh-stage23-road-3f13e6da --dir _local/stage31-source-evidence
+          echo 'e70225a2920da90bbef0e7331921fe83cf063d6d71bda791b01ed1aee4faca8e  _local/stage23-final/stage23-candidate-native/initial.json' | sha256sum --check
+          echo 'c20e7ae036c0c757d41e31656d3a110fefd2b4c15b54156f5bb4875222e08688  _local/stage23-final/stage23-candidate-native/entry-checkpoint.json' | sha256sum --check
+          cmp tools/stage31/production-package.json _local/stage31-source-evidence/stage31-production-package.json
+          echo "$PRODUCT_RUNTIME_SHA256  shared/runtime/act23-v4-ch23-reviewed.js" | sha256sum --check
+      - name: Install pinned existing dependencies and pass normal build guard
+        run: |
+          set -euo pipefail
+          npm ci && npm ci --prefix game
+          npm run build
+          sha256sum -c _local/stage31-source-evidence/preview-html.sha256
+          mkdir -p _local/reports/stage23-road-support-final
+          cp _local/stage31-source-evidence/runtime-equivalence.json _local/reports/stage23-road-support-final/stage31-runtime-equivalence.json
+          sha256sum HONRO.html > _local/reports/stage23-road-support-final/built-html.sha256
+          pip install playwright==1.51.0
+          python -m playwright install --with-deps chromium
+      - name: Verify fresh, legacy, narrative, geometry and HUD contracts
+        env:
+          HONRO_QA_ENTRY_PATH: _local/stage23-final/stage23-candidate-native/initial.json
+          HONRO23_ENTRY: _local/stage23-final/stage23-candidate-native/initial.json
+          HONRO23_CHECKPOINT: _local/stage23-final/stage23-candidate-native/entry-checkpoint.json
+          HONRO_QA_PROBE_BASELINE: _local/stage23-support-reference/original/contract.json
+          HONRO_QA_PROBE_KIND: escort-road-130
+          HONRO_QA_PROBE_CONTRACT_OUT: _local/reports/stage23-road-support-final/contract.json
+        run: |
+          set -euo pipefail
+          node tests/stage23-objective-targets-contract.mjs
+          node tests/stage23-hop-approach-contract.mjs
+          node tests/stage23-road-support-planner-contract.mjs
+          node --max-old-space-size=2048 tests/stage23-pacing-probe-contract.mjs
+          node tests/stage23-original-roster-contract.mjs
+          node tests/stage23-objective-label-clearance.mjs
+          node tests/act23-v4-reviewed23.mjs
+          node tests/objective-clarity.mjs
+      - name: Repeat native fresh play on this exact normal-build product
+        env:
+          HONRO_QA_ENTRY_PATH: _local/stage23-final/stage23-candidate-native/initial.json
+          HONRO_QA_S04_SCORE: production
+          HONRO_QA_MUZZLE_ADVANCE: '0'
+          HONRO_QA_ESCORT_FIRST: '1'
+          HONRO_QA_OUT: _local/reports/stage23-road-support-final/native
+        run: |
+          set -euo pipefail
+          mkdir -p "$HONRO_QA_OUT"
+          node --expose-gc --max-old-space-size=2048 tests/stage23-road-follow-natural.mjs > "$HONRO_QA_OUT/run.log" 2>&1
+          tail -1 "$HONRO_QA_OUT/run.log"
+          python - <<'PYVERIFY'
+          import json
+          from pathlib import Path
+          root=Path('_local/reports/stage23-road-support-final/native')
+          ref=Path('_local/stage23-support-reference/escort-road-130/escort-first')
+          a=json.loads((root/'final.json').read_text()); b=json.loads((ref/'final.json').read_text())
+          for key in ['actions','rounds','damage','combatFires','events','frames']:
+              assert a[key]==b[key], 'Exact native replay differs: '+key
+          r=json.loads((root/'result.json').read_text()); old=json.loads((ref/'result.json').read_text())
+          assert r['phase']=='won' and r['round']==19 and r['settlement']==old['settlement']
+          assert r['provenance']['controllerHash']==old['provenance']['controllerHash']
+          assert r['provenance']['reviewedRuntimeHash']==old['provenance']['reviewedRuntimeHash']
+          (root/'exact-replay.json').write_text(json.dumps({'exactTrace':True,'referenceRun':41895405691,'round':r['round'],'scope':'Deterministic native repeat only, not independent difficulty or browser proof.'},indent=2))
+          PYVERIFY
+      - name: Play the same product from fresh R1 through settlement with real browser controls
+        run: |
+          set -euo pipefail
+          export HONRO23_ENTRY_CHECKPOINT=_local/reports/stage23-road-support-final/native/entry-checkpoint.json
+          export HONRO23_ENTRY_SHA256=$(sha256sum "$HONRO23_ENTRY_CHECKPOINT" | cut -d' ' -f1)
+          export HONRO23_PRODUCT_COMMIT="$GITHUB_SHA"
+          export HONRO23_HTML_SHA256=$(sha256sum HONRO.html | cut -d' ' -f1)
+          export HONRO23_RUNTIME_SHA256="$PRODUCT_RUNTIME_SHA256"
+          export HONRO23_SOURCE_RUN="$GITHUB_RUN_ID"
+          export HONRO23_BROWSER_OUT=_local/reports/stage23-road-support-final/browser
+          python -m http.server 8765 --bind 127.0.0.1 > /tmp/stage23-road-support-http.log 2>&1 &
+          server=$!
+          trap 'kill "$server"' EXIT
+          sleep 2
+          python tools/stage23-qa/road-support-browser.py
+      - name: Preserve approved synthetic game observations
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: stage23-road-support-final
+          path: _local/reports/stage23-road-support-final
+          if-no-files-found: warn
+          retention-days: 14
