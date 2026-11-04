@@ -38,10 +38,12 @@ function fireAt(u,target){record({op:'fire-at-budget',hero:u.cls,target:target.i
 function interact(){const m=g.HonroInteractions.nearest(app);if(m?.id!==goal()?.id)return false;return g.HonroInteractions.eligibility(app,m).ok&&audit.production(()=>ops.interact(m));}
 function point(x,label='escort-road'){return{id:label,x,y:mainY(x),surfaceId:mainSupport(x)};}
 function roadAdvance(u,x,range=35){const start={x:u.x,y:u.y},dir=Math.sign(x-u.x);let still=0;for(let k=0;k<2600&&ready()&&u.moveLeft>8&&Math.abs(x-u.x)>range;k++){
+ if(u.y<mainY(u.x)-160&&e.canDrop(u)&&audit.production(()=>ops.drop(u))){record({op:'road-normal-drop',hero:u.cls,x:u.x,y:u.y});for(let k=0;k<600&&ready()&&!e.grounded(u);k++)tick();}
  const old={x:u.x,y:u.y};ops.move(Math.sign(x-u.x),C.STEP);tick();
  if(Math.abs(u.x-old.x)<.02)still++;else still=0;
  if(still>18&&e.grounded(u)){if(e.alive(1).some(v=>dist(v,u)<u.r+v.r+100&&Math.abs(v.y-u.y)<160))break;if(audit.production(()=>ops.jump(u)))record({op:'road-cover-jump',hero:u.cls,x:u.x,y:u.y});still=0;}
- if(Math.abs(u.y-mainY(u.x))>240)break;
+ // An upper ramp is traversable; do not strand a hero solely because the lower road is 240px below.
+ // Drop through ordinary pass-through platforms when the shipping action allows it.
 }record({op:'road-advance',hero:u.cls,from:start,to:{x:u.x,y:u.y},targetX:x,moveLeft:u.moveLeft});}
 const terminal=()=>['won','lost'].includes(b.phase),started=performance.now(),limit=Number(process.env.HONRO_QA_ROUND_LIMIT||80),actionLimit=Number(process.env.HONRO_QA_ACTION_LIMIT||500);
 for(let turn=0;turn<actionLimit&&!terminal();turn++){
