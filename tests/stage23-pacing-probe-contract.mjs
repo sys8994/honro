@@ -109,6 +109,14 @@ if(kind==='escort-road-300'||kind==='escort-road-130'){
  for(const [key,value] of [['airborne',true],['jumping',true],['vx',4],['vy',3],['platformDrop',{phase:'fall'}]]){const old=foe[key];foe[key]=value;assert(blocked(b),'Uncertain/nonstable support keeps blocking: '+key);if(old===undefined)delete foe[key];else foe[key]=old;}
  n.y=4950;assert(blocked(b),'Carrier on the upper route does not receive a road exemption');n.y=5100;
  n.h=170;assert(blocked(b),'Vertically overlapping body is not exempt');n.h=110;
+ if(kind==='escort-road-130'){
+  foe.y=5100;foe.x=n.x+130;assert(blocked(b),'Support-aware rule keeps exact130px road occupation blocking');
+  foe.x=n.x+130.01;assert(!blocked(b),'Support-aware rule permits approach outside130px');
+  foe.x=n.x-130;assert(blocked(b),'Support-aware rule retains close rear occupation');
+  foe.x=n.x+230;b.honroMarkers[0].x=foe.x;assert(!blocked(b),'Future waypoint alone cannot block the opted-in road130 rule');
+  b.honroReviewed23PacingCandidate.version=99;assert(blocked(b),'Unknown version keeps original300px ground threat');
+  b.honroReviewed23PacingCandidate.version=1;foe.x=n.x;foe.y=4950;b.honroMarkers[0].x=n.x;
+ }
  b.honroReviewed23PacingCandidate.version=99;assert(blocked(b),'Unknown saved rule version retains original blocking');
 }
 const result={passed:true,kind,oldContinueExact:true,freshContinueExact:true,storyFresh:true,tacticalFresh:true,tacticalFullClear:false,initialEnemies:40,eliteEnemies:10,
