@@ -23,6 +23,7 @@ summary={'acceptedProductCommit':'b1b1ce63dfa08b111725f3b907088b70f280f17c','sco
 print(json.dumps({**summary,'runs':[{k:v for k,v in x.items() if k not in ['rounds','source','audit']} for x in rows]},ensure_ascii=False))
 assert len(rows)==4 and all(x.get('phase')=='won' for x in rows),'Inspect missing/lost results before drawing pacing conclusions'
 assert rows[0]['round']==26 and rows[0]['shots']==87,'Original shot-first baseline did not reproduce'
+assert rows[1]['round']==30 and rows[1]['shots']==105,'Original escort-first baseline did not reproduce'
 for policy in ['shot-first','escort-first']:
     a=next(x for x in rows if x['product']=='original' and x['policy']==policy)
     z=next(x for x in rows if x['product']=='command-post-clearance' and x['policy']==policy)

@@ -62,6 +62,9 @@ jobs:
               HONRO_QA_S04_SCORE=production HONRO_QA_MUZZLE_ADVANCE=0 HONRO_QA_ESCORT_FIRST="$flag" HONRO_QA_OUT="$root/$kind/$policy" node --expose-gc --max-old-space-size=2048 tests/stage23-command-natural.mjs > "$root/$kind/$policy/run.log" 2>&1
               tail -1 "$root/$kind/$policy/run.log"
             done
+            if test "$kind" = original; then
+              python -c 'import json,sys; from pathlib import Path; p=Path(sys.argv[1]); assert [json.loads((p/k/"result.json").read_text())["round"] for k in ["shot-first","escort-first"]]==[26,30], "Both observed original policies must reproduce before testing a product change"' "$root/original"
+            fi
           done
           python tools/stage23-qa/compare-command-post.py
       - name: Preserve approved synthetic Stage23 diagnostic observations
