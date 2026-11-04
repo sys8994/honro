@@ -5,8 +5,8 @@ import assert from 'node:assert/strict';
 import {readFile,writeFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 const [kind,output]=process.argv.slice(2);
-assert(['original','elite-hp-90','carrier-budget-1000','escort-lookahead-180','command-post-clearance'].includes(kind)&&output,
- 'Usage: node runtime-pacing-candidate.mjs original|elite-hp-90|carrier-budget-1000|escort-lookahead-180|command-post-clearance OUTPUT');
+assert(['original','elite-hp-90','carrier-budget-1000','escort-lookahead-180','command-post-clearance','late-front-merge'].includes(kind)&&output,
+ 'Usage: node runtime-pacing-candidate.mjs original|elite-hp-90|carrier-budget-1000|escort-lookahead-180|command-post-clearance|late-front-merge OUTPUT');
 const path='shared/runtime/act23-v4-ch23-reviewed.js';
 const original=await readFile(path,'utf8');
 assert.equal(createHash('sha256').update(original).digest('hex'),
@@ -41,6 +41,9 @@ if(kind==='elite-hp-90'){
  const prior="(nearFoes(b,u,300).length>0||p&&nearFoes(b,p,300).length>0)";
  assert.equal(result.split(prior).length,2);
  result=result.replace(prior,"(escortBlockingFoes(b,u,300).length>0||p&&escortBlockingFoes(b,p,300).length>0)");
+}else if(kind==='late-front-merge'){
+ const placements=[{id:'s23-F-0',x:7930},{id:'s23-F-1',x:8020},{id:'s23-F-2',x:8110},{id:'s23-F-5',x:8200}];
+ result=result.replace(author,author+`\n  // Fresh authored placement only: combine the late ground fronts without deleting pressure.\n  const moved=${JSON.stringify(placements)},road=map.terrains.find(t=>t.id==='sy-ground').points;\n  for(const at of moved){const a=road.find((p,i)=>road[i+1]&&p.x<=at.x&&road[i+1].x>=at.x),i=road.indexOf(a),z=road[i+1];if(!a||!z)throw Error('No ground contour for '+at.id);at.y=a.y+(z.y-a.y)*(at.x-a.x)/(z.x-a.x);at.support='sy-ground';const target=map.units.find(v=>v.id===at.id);if(!target)throw Error('Missing late-front actor '+at.id);target.x=at.x;target.y=at.y;}\n  const group=map.design.act3.encounterPlan.groups.find(g=>g.id==='F-front');\n  for(const member of group.members){const at=moved.find(v=>v.id===member.id);if(at)Object.assign(member,at);}\n  group.purpose='후반 지상전위를 출구 굽이의 전위와 한 교전권으로 묶고, 기존 창고 어깨 사격조는 호송 중간에 남긴다.';\n  map.initialState.honroReviewed23PacingCandidate={id:'late-front-merge',version:1,placements:moved};`);
 }
 await writeFile(output,result);
 console.log(JSON.stringify({kind,sourceRuntimeSha256:createHash('sha256').update(original).digest('hex'),candidateRuntimeSha256:createHash('sha256').update(result).digest('hex'),output,scope:'Generated source before fresh battle construction only; existing saved battles are not retuned. Unaccepted isolated candidate.'}));
