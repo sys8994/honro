@@ -1,0 +1,50 @@
+name: Verify Stage23 complete browser battle
+on:
+  push:
+    branches: ['work/stage23-full-browser-20261104']
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: stage23-full-browser-verification
+  cancel-in-progress: false
+jobs:
+  full-browser:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - name: Install pinned existing dependencies
+        run: npm ci && npm ci --prefix game && pip install playwright==1.51.0 && python -m playwright install --with-deps chromium
+      - name: Build unchanged product through normal release guard
+        run: |
+          npm run build
+          echo '199a47f9180ecc106c26fcb174e99f84154ddae2f35bded2f2b41e01bdcc974b  HONRO.html' | sha256sum --check
+      - name: Retrieve approved unchanged synthetic R1 entry
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 41850399757 --repo sys8994/honro --name stage23-candidate-final --dir _local/stage23-final
+          echo 'c20e7ae036c0c757d41e31656d3a110fefd2b4c15b54156f5bb4875222e08688  _local/stage23-final/stage23-candidate-native/entry-checkpoint.json' | sha256sum --check
+      - name: Play one complete browser battle using ordinary UI only
+        run: |
+          python -m http.server 8765 --bind 127.0.0.1 >/tmp/stage23-full-browser-http.log 2>&1 &
+          server=$!
+          trap 'kill "$server"' EXIT
+          sleep 2
+          python tools/stage23-qa/full-browser-review.py
+      - name: Preserve approved synthetic Stage23 observations
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: stage23-full-browser-observation
+          path: _local/reports/stage23-full-browser
+          if-no-files-found: warn
+          retention-days: 14
