@@ -1,0 +1,76 @@
+name: Verify published Stage6 integration
+on:
+  push:
+    branches: ['work/stage6-public/**']
+permissions:
+  contents: read
+  actions: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      OUT: _local/reports/stage6-public
+      HONRO_REVIEW_URL: https://sys8994.github.io/honro/HONRO.html
+      STAGE6_CHECKPOINT_OUT: _local/reports/stage6-public/checkpoint-review
+      STAGE6_CHECKPOINT_SOURCE: b034329c2713ee1b186b55171a149fd1e42b1f61
+      STAGE6_CHECKPOINT_ARTIFACT: '13284369832'
+      STAGE6_PURSUIT_REVIEW_OUT: _local/reports/stage6-public/pursuit-continue
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          ref: ${{ github.sha }}
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /HONRO.html
+            /web/manifest.json
+            /tools/stage6-prototype/integrated-checkpoint-review.py
+            /tools/stage6-prototype/pursuit-save-continue.py
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Verify published bytes and materialize exact natural checkpoints
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p "$OUT" _local/reports/stage6-art-preview/integrated-play
+          gh api /repos/${{ github.repository }}/actions/artifacts/13284369832/zip > /tmp/stage6-final-review.zip
+          python - <<'PY'
+          import os,json,time,hashlib,urllib.request,zipfile
+          from pathlib import Path
+          zipbytes=Path('/tmp/stage6-final-review.zip').read_bytes();assert hashlib.sha256(zipbytes).hexdigest()=='d21ea30d1b2595f440d5cdd6fb3df5cfaac637146e6d6f37a0666bcdad6fb85a'
+          z=zipfile.ZipFile('/tmp/stage6-final-review.zip')
+          natural=z.read('stage6-art-preview/integrated-play/natural-lookout-save.json.gz');assert hashlib.sha256(natural).hexdigest()=='0e47c913ef3ee20a60bea02cd964a1b8797422d03fcf2cfe8eff1b3aee23c211'
+          Path('_local/reports/stage6-art-preview/integrated-play/natural-lookout-save.json.gz').write_bytes(natural)
+          old=z.read('stage6-master-preview/input/r7-pursuit.json.gz');assert hashlib.sha256(old).hexdigest()=='19f9cbe6c839b02fcf50b1ad952835f8498efb343c054b51835be9aca2ed61ab'
+          Path(os.environ['OUT']+'/r7-pursuit.json.gz').write_bytes(old)
+          expected={p:hashlib.sha256(Path(p).read_bytes()).hexdigest() for p in ['HONRO.html','web/manifest.json']};observations=[]
+          for attempt in range(45):
+           actual={}
+           for p in expected:
+            try:actual[p]=hashlib.sha256(urllib.request.urlopen('https://sys8994.github.io/honro/'+p+'?stage6='+os.environ['GITHUB_SHA']+'-'+str(attempt),timeout=40).read()).hexdigest()
+            except Exception as e:actual[p]={'error':str(e)}
+           observations.append(actual)
+           if actual==expected:break
+           time.sleep(10)
+          Path(os.environ['OUT']+'/published-hashes.json').write_text(json.dumps({'source':os.environ['GITHUB_SHA'],'expected':expected,'observations':observations,'passed':actual==expected},indent=2))
+          assert actual==expected,'Public release differs from the reviewed generated candidate'
+          PY
+      - name: Install pinned real browser
+        run: |
+          python -m pip install 'playwright==1.58.0'
+          python -m playwright install --with-deps chromium
+      - name: Public PC portrait landscape inputs and original R7 resave
+        run: |
+          set -euo pipefail
+          status=0
+          python tools/stage6-prototype/integrated-checkpoint-review.py > "$OUT/checkpoint-review.log" 2>&1 || status=1
+          STAGE6_PURSUIT_SAVE="$OUT/r7-pursuit.json.gz" python tools/stage6-prototype/pursuit-save-continue.py > "$OUT/pursuit-continue.log" 2>&1 || status=1
+          exit "$status"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage6-public-${{ github.sha }}
+          path: _local/reports/stage6-public/
+          retention-days: 30

@@ -1,0 +1,101 @@
+name: Verify Stage6 on deployed Stage40 master
+on:
+  push:
+    branches: ['work/stage6-master-integration-20261104']
+permissions:
+  contents: write
+  actions: read
+jobs:
+  review:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 65
+    env:
+      HONRO_ACT4_RELEASE: '1'
+      HONRO_QA_ORIGIN: http://127.0.0.1:8870
+      OUT: _local/reports/stage6-master-review
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 2
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Verify original saved checkpoint and preserve publication
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p "$OUT/input"
+          git rev-parse HEAD HEAD^{tree} > "$OUT/source.txt"
+          gh api /repos/${{ github.repository }}/actions/artifacts/13279038512/zip > /tmp/stage6-r7-original.zip
+          python - <<'PY'
+          import hashlib,zipfile,pathlib,os
+          p=pathlib.Path('/tmp/stage6-r7-original.zip');assert hashlib.sha256(p.read_bytes()).hexdigest()=='d262e3dff2e305a9ec44e9e9c010169a4ace3b17816144810ef330332725cb6e'
+          b=zipfile.ZipFile(p).read('integrated-play/natural-pursuit-entry-save.json.gz');assert hashlib.sha256(b).hexdigest()=='19f9cbe6c839b02fcf50b1ad952835f8498efb343c054b51835be9aca2ed61ab'
+          (pathlib.Path(os.environ['OUT'])/'input/r7-pursuit.json.gz').write_bytes(b)
+          PY
+          curl -fLsS https://raw.githubusercontent.com/sys8994/honro/08c17f1f5e712f53c97253a70c44185030ad1437/web/manifest.json -o "$RUNNER_TEMP/published-source-manifest.json"
+          node --test tools/release/register-current-publication.test.mjs
+          node tools/release/register-current-publication.mjs --source-manifest "$RUNNER_TEMP/published-source-manifest.json" --expected-blob-sha 1edc828a71fbc2536bc84a9ec78b5fbd0e762ed0 --source-sha 08c17f1f5e712f53c97253a70c44185030ad1437 --published-at 2026-11-04T00:17:33Z --evidence https://github.com/sys8994/honro/actions/runs/41745380688 | tee "$OUT/retention.log"
+      - name: Current source contracts and actual Stage31 probes
+        run: |
+          set -euo pipefail
+          npm ci
+          npm ci --prefix game
+          npm --prefix game run typecheck
+          node tools/stage40-qa/cleanup-corridors.test.mjs | tee "$OUT/corridors.log"
+          node tools/act4-ci/positive-finisher.test.mjs | tee "$OUT/positive-finisher.log"
+          python tools/act4-ci/test_stage31_survival.py | tee "$OUT/survival-regression.log"
+          python tools/act4-ci/test_recent_damage.py | tee "$OUT/recent-damage-regression.log"
+          for test in stage6-art-preview stage6-integrated-preview stage6-render-coverage-preview stage6-descent-view-preview stage6-reviewed-pursuit stage6-pursuit-response stage6-integrated-entry; do
+            node "tests/$test.mjs" | tee "$OUT/$test.log"
+          done
+          node tools/act4-ci/refresh-stage31-probes.mjs prepare "$OUT"
+          node workshop/build.mjs | tee "$OUT/preview-build.log"
+          sha256sum HONRO.html > "$OUT/preview-html.sha256"
+          node --input-type=module -e 'import fs from "node:fs";fs.writeFileSync(process.env.OUT+"/preview-active-files.json",JSON.stringify(JSON.parse(fs.readFileSync("web/manifest.json")).files.map(({path,bytes,sha256})=>({path,bytes,sha256})).sort((a,b)=>a.path.localeCompare(b.path))))'
+          python -m pip install 'playwright==1.58.0'
+          python -m playwright install --with-deps chromium
+      - name: One fresh complete Stage31 on exact source
+        run: |
+          set -euo pipefail
+          python -m http.server 8870 --bind 127.0.0.1 > "$OUT/stage31-server.log" 2>&1 &
+          server=$!; trap 'kill "$server" 2>/dev/null || true' EXIT
+          sleep 2
+          HONRO_RUN_DIR="$OUT/stage31" python tools/act4-ci/stage31-fullplay.py > "$OUT/stage31.log" 2>&1
+      - name: Attach genuine evidence and build through official release gate
+        run: |
+          set -euo pipefail
+          node tools/act4-ci/refresh-stage31-probes.mjs attach "$OUT"
+          npm run build | tee "$OUT/normal-gated-build.log"
+          sha256sum -c "$OUT/preview-html.sha256"
+          node --input-type=module -e 'import fs from "node:fs";import assert from "node:assert/strict";import {runtimeDigest} from "./tools/stage31/probes.mjs";const files=JSON.parse(fs.readFileSync("web/manifest.json")).files.map(({path,bytes,sha256})=>({path,bytes,sha256})).sort((a,b)=>a.path.localeCompare(b.path));assert.deepEqual(files,JSON.parse(fs.readFileSync(process.env.OUT+"/preview-active-files.json")));const digest=await runtimeDigest();assert.equal(digest,JSON.parse(fs.readFileSync(process.env.OUT+"/focused-probes.json")).digest);fs.writeFileSync(process.env.OUT+"/runtime-equivalence.json",JSON.stringify({sourceCommit:process.env.GITHUB_SHA,runId:process.env.GITHUB_RUN_ID,runtimeSha256:digest,htmlIdentical:true,activeFilesIdentical:true,baseMaster:"08c17f1f5e712f53c97253a70c44185030ad1437"},null,2));'
+          cp tools/stage31/production-package.json "$OUT/stage31-production-package.json"
+          sha256sum HONRO.html web/manifest.json tools/stage31/production-package.json shared/runtime/profile-store.js > "$OUT/final-served-sha256.txt"
+      - name: Bind completed Stage6 play only after exact final byte equivalence
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh api /repos/${{ github.repository }}/actions/artifacts/13284369832/zip > /tmp/stage6-independent-proof.zip
+          python tools/stage6-prototype/verify-identical-preview.py | tee "$OUT/stage6-proof-binding.log"
+      - name: Preserve exact gated generated candidate without publishing master
+        run: |
+          set -euo pipefail
+          git add web HONRO.html HONRO_WORKSHOP.html index.html tools/stage31/production-package.json
+          git -c user.name='honro release automation' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m "Build checked Stage6 integration from $GITHUB_SHA"
+          git push origin "HEAD:refs/heads/work/stage6-master-generated/$GITHUB_SHA"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage6-master-review-${{ github.sha }}
+          path: |
+            _local/reports/stage6-master-review/
+            _local/reports/stage6-art-preview/
+            _local/reports/stage6-pursuit-continue/
+          retention-days: 30

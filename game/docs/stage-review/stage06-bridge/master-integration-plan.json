@@ -1,0 +1,48 @@
+{
+  "baseMaster": "08c17f1f5e712f53c97253a70c44185030ad1437",
+  "baseTree": "b8d3afe4cfc63d05ef7575bbcfd47734b1a051c6",
+  "validatedStage6Product": "6af62950ed67d19cc589962f75e5819d171c8474",
+  "sharedOverlapCheck": [
+    {
+      "path": "shared/build.mjs",
+      "baseByteIdentical": true,
+      "sha256": "7820037ed907671a8e6a74f495f981c556a353fd39da987e613b271f66c18cc7"
+    },
+    {
+      "path": "shared/runtime/renderer.js",
+      "baseByteIdentical": true,
+      "sha256": "b4745c5cc4a99ebfee4f22eba552cb77343f4bef612fd152ee8d35b3f2385b60"
+    },
+    {
+      "path": "shared/runtime/objectives.js",
+      "baseByteIdentical": true,
+      "sha256": "4b638aa96fbb04a231fd46a6746f4b00446e506eef65a4b1fedf088131c8d782"
+    },
+    {
+      "path": "shared/runtime/campaign-map-revision.js",
+      "baseByteIdentical": true,
+      "sha256": "baaf9f4263e110a8fcde2b5ba61d40f01dd7bb895f41e954e2811a4e57fdb93c"
+    },
+    {
+      "path": "shared/runtime/profile-store.js",
+      "baseByteIdentical": true,
+      "sha256": "7fe77964d94bd70905e2f6735b390c9b6b08c457b5463c96fb6dac8961ff8577"
+    },
+    {
+      "path": "shared/runtime/encounter-density.js",
+      "baseByteIdentical": true,
+      "sha256": "309a82ebf364ceb0a3a7c80a5d476db828edf13fa3db7bf33e00821351c86492"
+    },
+    {
+      "path": "game/src/controls.css",
+      "baseByteIdentical": true,
+      "sha256": "12f94682f662084b7403e288868ca599903180fd8e4f094d73a083e497ef65a6"
+    }
+  ],
+  "excluded": [
+    "Pending Stage9/17/24 work",
+    "Old Stage40 guard/cell variants",
+    "Any Stage31 release threshold or package evidence rewrite"
+  ],
+  "procedure": "Official fresh Stage31 probes/fullplay, genuine attach, normal npm build, HTML and active asset equality, same build Stage6 actual pursuit/escort/mobile/legacy saves, original R7 Continue, generated DEV only. No master/deployment action."
+}

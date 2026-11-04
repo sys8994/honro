@@ -1,0 +1,608 @@
+{
+  "status": "accepted for final integration, not deployed or Stage31 release-gate approval",
+  "sourceTree": "c6cadf0160108f84c12fbd8ccdc9fbaf4b9e8457",
+  "servedHashes": [
+    "c22cc7374f15364f663809ddef3227de6d6d3532b7ea6be4babe389a2d0046b7  HONRO.html",
+    "e662f9b8c1090cd80c1cc119bb5acb2c84e588eb3a3a23a8e74bc6145026f543  web/manifest.json",
+    "02bda0b6afb25a7d9a0e8ba9de078612063cff958e04ab80782f5bed55976573  shared/runtime/profile-store.js"
+  ],
+  "artifactZipSha256": "d262e3dff2e305a9ec44e9e9c010169a4ace3b17816144810ef330332725cb6e",
+  "before": {
+    "head": "6b1920de68640223f45613a71e6d746ddeb62382",
+    "run": 41732103934,
+    "artifact": 13277252826,
+    "initialEnemies": 21,
+    "realizedEnemiesTotal": 29,
+    "authoredMaximum": 31,
+    "cap": 22,
+    "enemyActionLimit": 5,
+    "waves": {
+      "bridge-crows": {
+        "entered": 4,
+        "everScheduled": 3,
+        "members": [
+          {
+            "id": "event-23",
+            "lastAct": 5,
+            "hp": 141
+          },
+          {
+            "id": "event-24",
+            "lastAct": 8,
+            "hp": 10
+          },
+          {
+            "id": "event-25",
+            "lastAct": 0,
+            "hp": 0
+          },
+          {
+            "id": "event-26",
+            "lastAct": 6,
+            "hp": 141
+          }
+        ]
+      },
+      "bridge-boars": {
+        "entered": 4,
+        "everScheduled": 1,
+        "members": [
+          {
+            "id": "event-39",
+            "lastAct": 7,
+            "hp": 28
+          },
+          {
+            "id": "event-40",
+            "lastAct": 0,
+            "hp": 227
+          },
+          {
+            "id": "event-41",
+            "lastAct": 0,
+            "hp": 227
+          },
+          {
+            "id": "event-42",
+            "lastAct": 0,
+            "hp": 211
+          }
+        ]
+      },
+      "pursuit": {
+        "entered": 0,
+        "everScheduled": 0,
+        "members": []
+      }
+    },
+    "status": "terminal-won",
+    "round": 9,
+    "convoyHP": 1633.8,
+    "warningRound": 6,
+    "response": {
+      "serial": 60,
+      "round": 6,
+      "offered": {
+        "p-archer": {
+          "round": 6,
+          "serial": 60
+        }
+      },
+      "opportunity": {
+        "id": "p-archer",
+        "round": 6,
+        "serial": 61
+      }
+    },
+    "limitations": [
+      "This comparison is descriptive, not a matched-timing deterministic A/B; actual browser input timing varied.",
+      "lastAct proves a unit was scheduled at least once, not that it hit or total attack frequency.",
+      "Previous run did not include source-tagged damage observer."
+    ]
+  },
+  "after": {
+    "head": "6af62950ed67d19cc589962f75e5819d171c8474",
+    "run": 41735897152,
+    "artifact": 13279038512,
+    "initialEnemies": 21,
+    "realizedEnemiesTotal": 29,
+    "authoredMaximum": 29,
+    "populationCap": 22,
+    "maxObservedAlive": 21,
+    "enemyActionLimit": 5,
+    "terminal": "terminal-won",
+    "round": 9,
+    "convoyHP": 1660,
+    "elapsedSeconds": 341.689271453,
+    "response": {
+      "serial": 60,
+      "round": 6,
+      "offered": {
+        "p-archer": {
+          "round": 6,
+          "serial": 60
+        }
+      },
+      "opportunity": {
+        "id": "p-archer",
+        "round": 6,
+        "serial": 61
+      }
+    },
+    "pursuitEntry": {
+      "round": 7,
+      "phase": "transition",
+      "side": 0,
+      "eventLog": {
+        "id": "pursuit",
+        "phase": "transition",
+        "round": 7,
+        "side": 0,
+        "teamEnds": [
+          7,
+          6,
+          0
+        ]
+      },
+      "members": [
+        {
+          "id": "event-93",
+          "x": 4193.5,
+          "y": 3241.95,
+          "hp": 227,
+          "lastAct": 0,
+          "born": 7,
+          "target": "objective",
+          "intent": "접근 후 깨물기",
+          "aiMove": null,
+          "acted": false,
+          "dead": false,
+          "damageBy": {}
+        },
+        {
+          "id": "event-94",
+          "x": 4402.5,
+          "y": 3179.25,
+          "hp": 227,
+          "lastAct": 0,
+          "born": 7,
+          "target": "objective",
+          "intent": "접근 후 깨물기",
+          "aiMove": null,
+          "acted": false,
+          "dead": false,
+          "damageBy": {}
+        }
+      ]
+    },
+    "pursuitDamage": [
+      {
+        "round": 7,
+        "phase": "flight",
+        "owner": "event-94",
+        "source": "pursuit",
+        "target": "objective",
+        "reportedDamage": 42,
+        "targetHp": 1736
+      }
+    ],
+    "waves": {
+      "bridge-crows": {
+        "entered": 4,
+        "everScheduled": 3,
+        "members": [
+          {
+            "id": "event-30",
+            "lastAct": 7,
+            "hp": 141
+          },
+          {
+            "id": "event-31",
+            "lastAct": 6,
+            "hp": 71
+          },
+          {
+            "id": "event-32",
+            "lastAct": 3,
+            "hp": 155
+          },
+          {
+            "id": "event-33",
+            "lastAct": 0,
+            "hp": 0
+          }
+        ]
+      },
+      "bridge-boars": {
+        "entered": 2,
+        "everScheduled": 0,
+        "members": [
+          {
+            "id": "event-44",
+            "lastAct": 0,
+            "hp": 227
+          },
+          {
+            "id": "event-45",
+            "lastAct": 0,
+            "hp": 227
+          }
+        ]
+      },
+      "pursuit": {
+        "entered": 2,
+        "everScheduled": 2,
+        "members": [
+          {
+            "id": "event-93",
+            "lastAct": 8,
+            "hp": 227
+          },
+          {
+            "id": "event-94",
+            "lastAct": 7,
+            "hp": 227
+          }
+        ]
+      }
+    }
+  },
+  "saveBoundary": {
+    "scope": "Synthetic older-revision battle based on the current fixture, not an imported real-user save",
+    "source": "6af62950ed67d19cc589962f75e5819d171c8474",
+    "baselineStage": 6,
+    "beforeNormalized": {
+      "equipment": {
+        "schema": 1,
+        "definitionRevision": 1,
+        "runId": "eq-mw1axfo2-89onjml2",
+        "ownedItemIds": [
+          "itm_se_01",
+          "itm_da_01",
+          "itm_se_02",
+          "itm_da_02",
+          "itm_co_01",
+          "itm_co_02",
+          "itm_hw_01"
+        ],
+        "eligibleEventIds": [],
+        "equippedByClass": {
+          "archer": {
+            "personal": null,
+            "common": null
+          },
+          "mage": {
+            "personal": null,
+            "common": null
+          },
+          "knight": {
+            "personal": null,
+            "common": null
+          },
+          "occultist": {
+            "personal": null,
+            "common": null
+          }
+        },
+        "rewardLedger": {
+          "eq_se_start": {
+            "state": "committed",
+            "choiceGroup": null,
+            "selectedItemId": "itm_se_01",
+            "notified": true
+          },
+          "eq_da_join": {
+            "state": "committed",
+            "choiceGroup": null,
+            "selectedItemId": "itm_da_01",
+            "notified": true
+          },
+          "eq_se_ledger": {
+            "state": "committed",
+            "choiceGroup": null,
+            "selectedItemId": "itm_se_02",
+            "notified": true
+          },
+          "eq_da_gate": {
+            "state": "committed",
+            "choiceGroup": null,
+            "selectedItemId": "itm_da_02",
+            "notified": true
+          },
+          "eq_co_01": {
+            "state": "committed",
+            "choiceGroup": null,
+            "selectedItemId": "itm_co_01",
+            "notified": true
+          },
+          "eq_co_02": {
+            "state": "committed",
+            "choiceGroup": null,
+            "selectedItemId": "itm_co_02",
+            "notified": true
+          },
+          "eq_hw_join": {
+            "state": "committed",
+            "choiceGroup": null,
+            "selectedItemId": "itm_hw_01",
+            "notified": true
+          }
+        }
+      },
+      "cleared": {
+        "1": {
+          "visits": 1,
+          "rounds": 0
+        },
+        "2": {
+          "visits": 1,
+          "rounds": 0
+        },
+        "3": {
+          "visits": 1,
+          "rounds": 0
+        },
+        "4": {
+          "visits": 1,
+          "rounds": 0
+        },
+        "5": {
+          "visits": 1,
+          "rounds": 0
+        }
+      },
+      "loadouts": {
+        "mage": [
+          "M01",
+          "M06",
+          "M04",
+          "M11"
+        ],
+        "archer": [
+          "A01",
+          "A14",
+          "A02",
+          "A11"
+        ],
+        "knight": [
+          "S00",
+          "S01",
+          "S03",
+          "S05"
+        ],
+        "occultist": [
+          "O01",
+          "O06"
+        ]
+      },
+      "ranks": {
+        "A01": 1,
+        "A14": 1,
+        "A02": 1,
+        "A11": 1,
+        "AP01": 4,
+        "AP04": 1
+      },
+      "statTraining": 3
+    },
+    "titleActions": "새 지형에서 다시 걷기",
+    "continue": {
+      "stage": 6,
+      "revision": 4,
+      "xp": 2951,
+      "equipment": {
+        "schema": 1,
+        "definitionRevision": 1,
+        "runId": "eq-mw1axfo2-89onjml2",
+        "ownedItemIds": [
+          "itm_se_01",
+          "itm_da_01",
+          "itm_se_02",
+          "itm_da_02",
+          "itm_co_01",
+          "itm_co_02",
+          "itm_hw_01"
+        ],
+        "eligibleEventIds": [],
+        "equippedByClass": {
+          "archer": {
+            "personal": null,
+            "common": null
+          },
+          "mage": {
+            "personal": null,
+            "common": null
+          },
+          "knight": {
+            "personal": null,
+            "common": null
+          },
+          "occultist": {
+            "personal": null,
+            "common": null
+          }
+        },
+        "rewardLedger": {
+          "eq_se_start": {
+            "state": "committed",
+            "choiceGroup": null,
+            "selectedItemId": "itm_se_01",
+            "notified": true
+          },
+          "eq_da_join": {
+            "state": "committed",
+            "choiceGroup": null,
+            "selectedItemId": "itm_da_01",
+            "notified": true
+          },
+          "eq_se_ledger": {
+            "state": "committed",
+            "choiceGroup": null,
+            "selectedItemId": "itm_se_02",
+            "notified": true
+          },
+          "eq_da_gate": {
+            "state": "committed",
+            "choiceGroup": null,
+            "selectedItemId": "itm_da_02",
+            "notified": true
+          },
+          "eq_co_01": {
+            "state": "committed",
+            "choiceGroup": null,
+            "selectedItemId": "itm_co_01",
+            "notified": true
+          },
+          "eq_co_02": {
+            "state": "committed",
+            "choiceGroup": null,
+            "selectedItemId": "itm_co_02",
+            "notified": true
+          },
+          "eq_hw_join": {
+            "state": "committed",
+            "choiceGroup": null,
+            "selectedItemId": "itm_hw_01",
+            "notified": true
+          }
+        }
+      },
+      "cleared": {
+        "1": {
+          "visits": 1,
+          "rounds": 0
+        },
+        "2": {
+          "visits": 1,
+          "rounds": 0
+        },
+        "3": {
+          "visits": 1,
+          "rounds": 0
+        },
+        "4": {
+          "visits": 1,
+          "rounds": 0
+        },
+        "5": {
+          "visits": 1,
+          "rounds": 0
+        }
+      },
+      "loadouts": {
+        "mage": [
+          "M01",
+          "M06",
+          "M04",
+          "M11"
+        ],
+        "archer": [
+          "A01",
+          "A14",
+          "A02",
+          "A11"
+        ],
+        "knight": [
+          "S00",
+          "S01",
+          "S03",
+          "S05"
+        ],
+        "occultist": [
+          "O01",
+          "O06"
+        ]
+      },
+      "ranks": {
+        "A01": 1,
+        "A14": 1,
+        "A02": 1,
+        "A11": 1,
+        "AP01": 4,
+        "AP04": 1
+      },
+      "statTraining": 3,
+      "round": 1,
+      "x": 330
+    },
+    "equipmentNotificationChanges": [],
+    "preservedGrowthAndLoadout": true
+  },
+  "viewportChecks": [
+    {
+      "label": "desktop",
+      "terrainSame": true,
+      "presentationNoMutation": true,
+      "objectiveClear": true,
+      "dropHpLoss": 0,
+      "actualShot": true,
+      "movedLeft": true,
+      "landingProtected": true,
+      "movementProtected": true
+    },
+    {
+      "label": "portrait",
+      "terrainSame": true,
+      "presentationNoMutation": true,
+      "objectiveClear": true,
+      "dropHpLoss": 0,
+      "actualShot": true,
+      "movedLeft": true,
+      "landingProtected": true,
+      "movementProtected": true
+    },
+    {
+      "label": "landscape",
+      "terrainSame": true,
+      "presentationNoMutation": true,
+      "objectiveClear": true,
+      "dropHpLoss": 0,
+      "actualShot": true,
+      "movedLeft": true,
+      "landingProtected": true,
+      "movementProtected": true
+    }
+  ],
+  "pursuitSaved": {
+    "eventFlag": true,
+    "members": 2,
+    "targetAndBornPreserved": true,
+    "browserContinueAfterEntryTested": false
+  },
+  "independentVisualReview": "Art owner directly inspected warning, rear entry, approach, final and PC/portrait/landscape lookout images. Notice and rear-location continuity are readable. Hounds share existing hound art, so screenshot alone does not identify individual IDs. Hero/convoy/ground/major HUD and mobile inset/objective remain readable. Narrow rock contact and lower-U are retained cosmetic observations. The42 damage attribution is from trace, not image.",
+  "limits": [
+    "One prepared earned-XP entry and its natural browser/touch-emulation checkpoint branches, not continuous campaign, population statistics or physical-device FPS.",
+    "Descriptive before/after comparison; timing differences prevent causal attribution of exact HP or seconds.",
+    "Prior failed runs and cohort corrections remain preserved. No whole-party survival or round count gate.",
+    "Full Stage31 release gate and latest-master integration/Pages checks remain deployment owner work.",
+    "Real R7 pursuit-entry save was persisted; actual browser Continue from that specific state remains for final integration, while same-runtime R6 Continue and prepared native no-duplicate tests passed."
+  ],
+  "saveContinue": {
+    "stage": 6,
+    "terrainUnchanged": true,
+    "persistedReload": true,
+    "coverageReverified": true
+  },
+  "saveFailurePreservation": {
+    "attemptedFill": 2500000,
+    "saveReturned": false,
+    "priorBytesUnchanged": true,
+    "liveIdentityUnchanged": true,
+    "liveContentsUnchanged": true
+  },
+  "coverageCases": {
+    "valid": true,
+    "unchanged": true,
+    "oldRevision": false,
+    "missingSkin": false,
+    "otherStage": false,
+    "changedTerrain": false,
+    "changedSkin": false
+  },
+  "codecFallback": {
+    "corruptRejected": true,
+    "corruptUnchanged": true,
+    "oldAccepted": true,
+    "oldUnchanged": true
+  }
+}

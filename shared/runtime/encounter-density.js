@@ -1,8 +1,8 @@
 (function(G){'use strict';
 // A fresh authored battle explicitly opts in. No Continue upgrades, global
 // activation/range/cap changes, new victory conditions or growth changes.
-const C=G.HONRO_CORE,E=G.HonroEncounters,W=G.HonroAllies,stages=new Set([8,9,11,12,16,17,18,21,23,24,30]);
-const active=b=>!!b&&!b.honroCustom&&stages.has(b.honroStage)&&b.honroEncounterDensityRevision===1;
+const C=G.HONRO_CORE,E=G.HonroEncounters,W=G.HonroAllies,stages=new Set([6,8,9,11,12,16,17,18,21,23,24,30]);
+const active=b=>!!b&&!b.honroCustom&&stages.has(b.honroStage)&&b.honroEncounterDensityRevision===1&&(b.honroStage!==6||b.honroStage6PursuitRevision===1);
 const alive=u=>u&&!u.dead&&u.hp>0,hero=u=>alive(u)&&u.side===0&&!u.summoned&&!u.enthrall;
 const memory=b=>(b.honroState.encounterDensity??={version:1,alert:{},warnings:{},entries:{}});
 const serial=b=>b.honroState.actorTurnSerial||0;
@@ -60,11 +60,11 @@ function warnings(b){const hs=b.honroState,m=memory(b),all={...m.warnings};
 }
 function observeWarnings(b){const m=memory(b),hs=b.honroState;m.existingWarnings??={};
  // Stage9 keeps its original Act1 spawn/tuning path and only borrows this gate.
- if(b.honroStage===9)for(const id of hs.pendingEvents||[]){const ev=b.honroEvents.find(ev=>ev.id===id);if(ev?.honroTacticalWarning===1&&!hs.flags['event:'+id])m.existingWarnings[id]??={serial:serial(b),round:b.round,offered:{}};}
+ if(b.honroStage===9||b.honroStage===6&&b.honroStage6PursuitRevision===1)for(const id of hs.pendingEvents||[]){const ev=b.honroEvents.find(ev=>ev.id===id);if(ev?.honroTacticalWarning===1&&(b.honroStage!==6||id==='pursuit')&&!hs.flags['event:'+id])m.existingWarnings[id]??={serial:serial(b),round:b.round,offered:{}};}
  if(b.honroStage===11){for(const id of hs.pendingEvents||[]){const ev=b.honroEvents.find(ev=>ev.id===id);if(ev?.honroStage11Response===1&&!hs.flags['event:'+id])m.existingWarnings[id]??={serial:serial(b),round:b.round,offered:{}};}
  for(const [index,w]of Object.entries(hs.ravineComposition?.echoWarnings||{}))m.existingWarnings['hold-knots-'+(Number(index)*3)]=w;}
 }
-function offer(app){if(ended(app)||paused(app))return;const e=app.engine,b=e.b,u=e.active;if(b.phase!=='aim'||b.side!==0||!hero(u)||u.acted)return;for(const w of Object.values(warnings(b)))if(!w.opportunity&&!w.cancelled)(w.offered??={})[u.id]={round:b.round,serial:serial(b)};}
+function offer(app){if(ended(app)||paused(app))return;const e=app.engine,b=e.b,u=e.active;if(b.phase!=='aim'||b.side!==0||!hero(u)||u.acted)return;for(const [id,w] of Object.entries(warnings(b)))if(!w.opportunity&&!w.cancelled&&(b.honroStage!==6||id!=='pursuit'||G.HonroStage6Pursuit?.shown(app)))(w.offered??={})[u.id]={round:b.round,serial:serial(b)};}
 function prepare(app){const e=app.engine,b=e.b,mem=memory(b),hs=b.honroState;if(ended(app)){for(const ev of b.honroEvents||[])if((own(ev)||b.honroStage===9&&ev.honroTacticalWarning===1)&&!hs.flags['event:'+ev.id]){hs.flags['event:'+ev.id]='cancelled:battle-ended';const w=warnings(b)[ev.id];if(w)w.cancelled=true;hs.pendingEvents=(hs.pendingEvents||[]).filter(id=>id!==ev.id);}return;}
  observeWarnings(b);const action=e.honroDensityAction,u=action&&e.unit(action.id);if(action&&app.actorBoundary===action.id&&hero(u)&&u.acted)for(const id of action.waves){const w=warnings(b)[id];if(w&&!w.opportunity&&serial(b)>w.serial)w.opportunity={id:u.id,round:b.round,serial:serial(b)};}
  if(paused(app))return;hs.pendingEvents??=[];for(const ev of b.honroEvents||[]){if(!own(ev)||hs.flags['event:'+ev.id]||!ready(b,ev))continue;if(!mem.warnings[ev.id]){mem.warnings[ev.id]={serial:serial(b),round:b.round,offered:{}};app.event(ev.warning);app.dirty=true;}if(!hs.pendingEvents.includes(ev.id))hs.pendingEvents.push(ev.id);}
@@ -83,17 +83,17 @@ function prepareOpportunity(app){const e=app.engine,b=e.b,a=e.honroDensityAction
 // consume every slot before an announced wave's first turn. Reserve at most
 // one of the existing slots, never an extra action; retain two local defenders.
 function reserveQueue(e){const b=e.b;if(!active(b)||b.honroDensityQueueReserve!==1||b.enemyLimit<3)return b.queue;
- const candidates=e.combatEnemies().filter(u=>u.stunnedRound!==b.round),waiting=u=>!!u&&Number.isInteger(u.honroDensityBornRound)&&u.lastAct<u.honroDensityBornRound;
+ const candidates=e.combatEnemies().filter(u=>u.stunnedRound!==b.round&&(b.honroStage!==6||u.honroSpawnSource==='pursuit')),waiting=u=>!!u&&(b.honroStage!==6||u.honroSpawnSource==='pursuit')&&Number.isInteger(u.honroDensityBornRound)&&u.lastAct<u.honroDensityBornRound;
  if(b.queue.some(id=>waiting(e.unit(id))))return b.queue;
  const heroes=e.heroesAlive(),distance=u=>Math.min(...heroes.map(h=>Math.hypot(h.x-u.x,h.y-u.y)));
- const displaced=e.enemyQueuePriority?.(e.unit(b.queue.at(-1))),relevant=u=>{const p=e.enemyQueuePriority?.(u);return !!p&&p.tier>0&&(!displaced||p.tier>displaced.tier||p.tier===displaced.tier&&p.band<=displaced.band+1);};
+ const displaced=e.enemyQueuePriority?.(e.unit(b.queue.at(-1))),relevant=u=>{const p=e.enemyQueuePriority?.(u);if(b.honroStage===6){const car=e.unit('objective');return !!p&&p.tier>0&&alive(car)&&Math.hypot(u.x-car.x,(u.y-car.y)*.8)<=1000;}return !!p&&p.tier>0&&(!displaced||p.tier>displaced.tier||p.tier===displaced.tier&&p.band<=displaced.band+1);};
  const next=candidates.filter(u=>waiting(u)&&relevant(u)).sort((a,z)=>a.honroDensityBornRound-z.honroDensityBornRound||distance(a)-distance(z)||String(a.id).localeCompare(String(z.id)))[0];if(!next)return b.queue;
  const queue=b.queue.slice(0,Math.max(0,b.enemyLimit-1));queue.push(next.id);return queue;
 }
 const attach=E.attach;E.attach=function(app,e){const out=attach(app,e);if(!active(e.b)||e.honroDensityAttached)return out;e.honroDensityAttached=true;memory(e.b);installActivation(e);
  const switchTeam=e.switchTeam.bind(e);e.switchTeam=function(...args){const from=e.b.side,out=switchTeam(...args);if(from===0&&e.b.side===1&&e.b.phase==='enemy'){const queue=reserveQueue(e);if(queue!==e.b.queue){e.b.queue=queue;for(const u of e.alive(1))u.acted=!queue.includes(u.id);e.b.active=queue[0];e.emit('change');}}return out;};
  const can=e.canAct.bind(e);e.canAct=function(){const ok=can();if(ok){observeWarnings(e.b);offer(app);}return ok;};
- const finish=e.finishAction.bind(e);e.finishAction=function(...args){const u=e.active,old=e.honroDensityAction;e.honroDensityAction=hero(u)&&!u.acted?{id:u.id,waves:Object.entries(warnings(e.b)).filter(([,w])=>w.offered?.[u.id]&&!w.cancelled).map(([id])=>id)}:null;try{return finish(...args);}finally{e.honroDensityAction=old;}};return out;
+ const finish=e.finishAction.bind(e);e.finishAction=function(...args){const u=e.active,old=e.honroDensityAction;e.honroDensityAction=hero(u)&&!u.acted?{id:u.id,waves:Object.entries(warnings(e.b)).filter(([id,w])=>w.offered?.[u.id]&&!w.cancelled&&(e.b.honroStage!==6||id!=='pursuit'||G.HonroStage6Pursuit?.shown(app))).map(([id])=>id)}:null;try{return finish(...args);}finally{e.honroDensityAction=old;}};return out;
 };
 const tick=G.HonroMission.tick;G.HonroMission.tick=function(app,dt){if(!active(app.engine?.b))return tick(app,dt);prepare(app);const out=tick(app,dt);prepare(app);return out;};
 G.HonroEncounterDensity={active,memory,safe,spawnMembers,installActivation,prepare,offer,ready,reserveQueue};

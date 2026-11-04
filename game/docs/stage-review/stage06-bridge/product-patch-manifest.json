@@ -1,0 +1,314 @@
+{
+  "stage6Source": "6af62950ed67d19cc589962f75e5819d171c8474",
+  "tree": "c6cadf0160108f84c12fbd8ccdc9fbaf4b9e8457",
+  "base": "3a7b9b88815eac3bb569c08d145ce8108907a6cc",
+  "instruction": "Apply only these Stage6 entries on the verified latest master. Reconcile overlapping shared files rather than overwriting newer unrelated changes. Do not change pending Stage9/17/24 or Stage31 release gates. QA workflow is DEV-only. No generated product graphs included.",
+  "entries": [
+    {
+      "path": ".github/workflows/stage6-product.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "74c47943e5789c6731a32effcadac8092b41d272"
+    },
+    {
+      "path": "game/docs/stage-review/stage06-bridge/evidence/entry-profile.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0871631f3a9ddb774259f0f62ffb312bde40ac40"
+    },
+    {
+      "path": "game/docs/stage-review/stage06-bridge/integrated-product-source-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c3fbdb11af39d9f050573be22d36e70acfab4e89"
+    },
+    {
+      "path": "game/docs/stage-review/stage06-bridge/integrated-review-plan.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "43e42c207963ef9c12e921ca13c86cc3375d0f25"
+    },
+    {
+      "path": "game/docs/stage-review/stage06-bridge/product-integration-review.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "951454d6767335f46a73c34eda89e67de2cc2d1a"
+    },
+    {
+      "path": "game/src/controls.css",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a15845de839902e9b284057d35fb9d739c80c34c"
+    },
+    {
+      "path": "shared/build.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9a440f9f5eae6d1e8e96b732e08def73f4cedb7e"
+    },
+    {
+      "path": "shared/runtime/campaign-map-revision.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9f9bf0f29b32ab77247704413400044137252551"
+    },
+    {
+      "path": "shared/runtime/encounter-density.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d39617f43f97235efab95f90110a446c9d5f646d"
+    },
+    {
+      "path": "shared/runtime/objectives.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8c86bfccde121a72255a692905a0783edb6b3ba1"
+    },
+    {
+      "path": "shared/runtime/profile-store.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d80d73591e9f0ec9b88479eb9b13d99b1c237d94"
+    },
+    {
+      "path": "shared/runtime/renderer.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fcd2b7a9a7595fde2495b8fed64977325529314e"
+    },
+    {
+      "path": "shared/runtime/stage6-descent-view-preview.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5fa5ea96412da08ffff878f6d96a706fb6b363cf"
+    },
+    {
+      "path": "shared/runtime/stage6-pursuit.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7fd423c9055c971b514039ff7a1deb3ac6f1aa6c"
+    },
+    {
+      "path": "shared/runtime/stage6-render-coverage-preview.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "571cbb5ce7394ec9ee8f79488840d0e3208e1424"
+    },
+    {
+      "path": "tests/stage6-art-preview.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "95b895a563a94d2028c5bcac2ddd2d60ed94316c"
+    },
+    {
+      "path": "tests/stage6-descent-view-preview.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "067eba46801163ff6da03b8195ec7c3e77f6929e"
+    },
+    {
+      "path": "tests/stage6-integrated-entry.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2b5001e62fdf9e37d01ba55a45c6461d81200028"
+    },
+    {
+      "path": "tests/stage6-integrated-preview.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9ad44b285381bee9763e914b15faeb86deff2192"
+    },
+    {
+      "path": "tests/stage6-pursuit-response.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "91a1a141d7531e1dae3f4e5bf85fc1af293e6004"
+    },
+    {
+      "path": "tests/stage6-render-coverage-preview.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8892d67c15f45d4caca22dc7885f0ba4a45fdee9"
+    },
+    {
+      "path": "tests/stage6-reviewed-pursuit.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "abf0ef95742a4a97a78181c36064f6da7c7ae6cf"
+    },
+    {
+      "path": "tools/stage6-prototype/art-preview.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6970754202a981266c9c0724ce43f081c6fd7e1c"
+    },
+    {
+      "path": "tools/stage6-prototype/art-study/contact-wedge-runtime.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "38c2b85e1fd104c6ee1bb794fe21bb281df8fe61"
+    },
+    {
+      "path": "tools/stage6-prototype/art-study/continuous-runtime.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "36b7a93b0f8d8b8f061fb199bcdd242a857b9061"
+    },
+    {
+      "path": "tools/stage6-prototype/art-study/pier-east-five-runtime.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9b90a8b130ce614424dd795d545013dd601c411b"
+    },
+    {
+      "path": "tools/stage6-prototype/art-study/pier-runtime-preview.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "05a3dc48411b4eecc83a4a641849acd2f6148b6e"
+    },
+    {
+      "path": "tools/stage6-prototype/art-study/pier-west-five-runtime.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ff93c98a39ab3bbd7d6da7103405b1abd19fa684"
+    },
+    {
+      "path": "tools/stage6-prototype/art-study/terrain-connected-runtime.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f9c8fd0009123abe8ffcf89b139e046bd2389c4d"
+    },
+    {
+      "path": "tools/stage6-prototype/art-study/terrain-east-exposure-runtime.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e5405a442a87ef94586308eaacae8c2ff375b632"
+    },
+    {
+      "path": "tools/stage6-prototype/art-study/terrain-east-runtime.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b20a347ca85d826b4835901185404d1200ffac14"
+    },
+    {
+      "path": "tools/stage6-prototype/art-study/terrain-exposure-runtime.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e1b47106feec5eacdeb4f7f6122d452023324b73"
+    },
+    {
+      "path": "tools/stage6-prototype/art-study/terrain-lower-exposure-runtime.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2fc643f74d35d0a2101ec46d5f5036c953c38302"
+    },
+    {
+      "path": "tools/stage6-prototype/art-study/terrain-panorama4-runtime.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2541b03f374d5833ccbf4c96bab6f075e132c9d2"
+    },
+    {
+      "path": "tools/stage6-prototype/art-study/terrain-slope-runtime.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "498437f99523284f1b26cff53aecd751dd711983"
+    },
+    {
+      "path": "tools/stage6-prototype/art-study/terrain-west-extended-runtime.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "722f739f1859ca64b10dabcbb006db30e728271f"
+    },
+    {
+      "path": "tools/stage6-prototype/author.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2e7395bbff73b09e5e64779bd42b4e9960c17f0e"
+    },
+    {
+      "path": "tools/stage6-prototype/broken-deck-edges.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "683fe67e14e06cdd98b9c456d9d0caa3a5e990d3"
+    },
+    {
+      "path": "tools/stage6-prototype/capture-preview.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1b5918b2a5592558a04c2dd561fa2f8ad92cf93d"
+    },
+    {
+      "path": "tools/stage6-prototype/connected-bridge.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ae05b2b639c92ef86a52db6e1b7e3116998a48de"
+    },
+    {
+      "path": "tools/stage6-prototype/contact-shadow-preview.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c0ed35ca468354b0fbfe9d5c5833a565ec29a51e"
+    },
+    {
+      "path": "tools/stage6-prototype/deck-fractures-preview.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7f06ba8a4516e7f43e06d6142f4f0293b90325f4"
+    },
+    {
+      "path": "tools/stage6-prototype/focused-profile.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3043379fcc2e6bac7d720648ab6827d486891639"
+    },
+    {
+      "path": "tools/stage6-prototype/integrated-browser-play.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "02546b7fc215e70fe995445c65626aec89010dfc"
+    },
+    {
+      "path": "tools/stage6-prototype/integrated-checkpoint-review.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "af5f37af0bef25df0b336c6648a8c4ee7508c15d"
+    },
+    {
+      "path": "tools/stage6-prototype/integrated-preview.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "67826f7cf94a46e567ee184f7f27d1b24bec6a1e"
+    },
+    {
+      "path": "tools/stage6-prototype/integrated-save-boundary.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "58125231b61affaf153e9bfa076f2f8286b9904e"
+    },
+    {
+      "path": "tools/stage6-prototype/reviewed-pursuit.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ff62126a4a032710659c061f2f76402e4b282020"
+    },
+    {
+      "path": "tools/stage6-prototype/rock-deck-mixed.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8076bc7f8b876c806f0561452c7edab03aaa92ab"
+    },
+    {
+      "path": "tools/stage6-prototype/rock-deck-small.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ba872649a995523f9f14eec8a42f58bd0ed4c5c2"
+    },
+    {
+      "path": "tools/stage6-prototype/rock-deck.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4040ef1d8f623fabe12fc5023df65af8c08fb351"
+    }
+  ]
+}
