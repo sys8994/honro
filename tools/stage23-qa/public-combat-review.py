@@ -24,6 +24,7 @@ PROFILE_HASH = 'd33ef246b3d5bd29819c91d88af109b49c9662e9a9c9b179561e44c6e4bca6c8
 R = {'passed': False, 'sourceCommit': os.environ.get('GITHUB_SHA'),
      'scope': 'Current published Stage23 only. Actual keyboard/touch combat for at most two rounds per earned native checkpoint. Synthetic reward ledger through22, not a user save, whole browser playthrough, human timing or subjective fun approval.',
      'nativeEntryRun': 41799550364, 'nativeEntryArtifact': 13308030054,
+     'earnedCheckpointRun': 41803426491, 'earnedCheckpointCommit': 'f7e734e4935c72ddf235045f3caf93e6ab29a4a8',
      'views': [], 'errors': []}
 
 STATE = '''()=>{const a=HonroApp,e=a.engine,b=e?.b,u=e?.active,n=b?.units.find(v=>v.id==='act3-carrier');
@@ -97,10 +98,11 @@ def ready(page, row, label):
 
 def load_checkpoint(browser, checkpoint_round, width, height, mobile, label):
     path = NATIVE / ('round-' + str(checkpoint_round) + '.json')
+    assert hashlib.sha256(path.read_bytes()).hexdigest() == {8: '64f7eb520228ef2d96c3b17b3c643d86d478450794dc5682b1fabeb83ac65e6c', 19: 'd4e2d551ebf01a6c610799bc52d0fbb75f57519ba814ffbf2ac43c2ac6855fb1'}[checkpoint_round]
     source = json.loads(path.read_text())
     provenance = source['provenance']
     assert provenance['resume'] is None
-    assert provenance['sourceTarget'] == os.environ['GITHUB_SHA'] + ' original40 checkpoint generation only'
+    assert provenance['sourceTarget'] == R['earnedCheckpointCommit'] + ' original40 checkpoint generation only'
     assert provenance['reviewedRuntimeHash'] == RUNTIME_HASH
     assert provenance['controllerHash'] == CONTROLLER_HASH
     assert provenance['profileHash'] == PROFILE_HASH
@@ -145,16 +147,26 @@ def load_checkpoint(browser, checkpoint_round, width, height, mobile, label):
 def aim(context, page, mobile, requested):
     # Facing is established by a normal rightward movement gesture, never writes.
     assert page.evaluate(STATE)['active']['facing'] > 0
-    for _ in range(30):
-        current = page.evaluate(STATE)['active']['angle']
+    history = []
+    for _ in range(40):
+        state = page.evaluate(STATE)
+        current = state['active']['angle']
+        history.append({'angle': current, 'can': state['can'], 'round': state['round'], 'phase': state['phase'], 'selected': state['selected']})
         delta = requested - current
         if abs(delta) <= 1.3:
             return current
         duration = min(220, max(18, abs(delta) / 62 * 1000))
         if mobile:
-            touch(context, page, '#joystick', 0, -35 if delta > 0 else 35, duration)
+            # A small thumb displacement provides real analog fine adjustment.
+            displacement = 12 if abs(delta) < 8 else 35
+            box = page.locator('#joystick').bounding_box()
+            axis = min(1, displacement / (min(box['width'], box['height']) * .41))
+            gain = max(0, (axis - .12) / .88) ** 1.35
+            duration = min(220, max(18, abs(delta) / (62 * gain) * 1000))
+            touch(context, page, '#joystick', 0, -displacement if delta > 0 else displacement, duration)
         else:
             hold(page, 'ArrowUp' if delta > 0 else 'ArrowDown', duration)
+    R.setdefault('aimFailures', []).append({'requested': requested, 'mobile': mobile, 'history': history, 'state': snapshot(page, 'aim-failure')})
     raise AssertionError('Ordinary aim gesture failed to reach planned angle')
 
 
@@ -211,6 +223,7 @@ try:
                         hold(page, 'ArrowRight', 60)
                 plan = page.evaluate(PLAN)
                 if plan:
+                    row['lastAttemptedPlan'] = plan
                     shot = fire(context, page, mobile, plan)
                     shot['op'] = 'fire'
                     shot['screen'] = snapshot(page, label + '-shot-' + str(turn + 1))
