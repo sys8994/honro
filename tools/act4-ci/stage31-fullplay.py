@@ -4,6 +4,7 @@ Planner reads runtime predictions, so results are tool-assisted, not human rates
 """
 import json,time,os,hashlib,atexit,lzma
 from pathlib import Path
+from recent_damage import RecentIncomingDamage
 from playwright.sync_api import sync_playwright
 root=Path(__file__).resolve().parents[2];out=Path(os.environ.get('HONRO_RUN_DIR',str(root/'_local/act4-rc/fullplay31')));out.mkdir(parents=True,exist_ok=True); events=out/'tactical-v8-events.jsonl';profile=json.loads((root/'tests/fixtures/act4-rc/support-entry-fixture.json').read_text())['profile'];f=events.open('x')
 def emergency_survival(assessment):
@@ -71,7 +72,7 @@ with sync_playwright() as w:
   if kind in captured:return
   captured.add(kind);p.screenshot(path=str(path))
  started=time.monotonic()
- def state():return p.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b,u=e.active;return{round:b.round,side:b.side,phase:b.phase,active:u?.id,cls:u?.cls,x:u?.x,y:u?.y,angle:u?.angle,facing:u?.facing,moveLeft:u?.moveLeft,drop:u&&e.canDrop(),support:u&&e.contactSurface(u.x,u.y-4,u.y+5)?.t?.id,enemyHpSum:b.units.filter(v=>v.side===1&&!v.dead).reduce((n,v)=>n+v.hp,0),enemyUnits:b.units.filter(v=>v.side===1).map(v=>({id:v.id,hp:v.hp,dead:v.dead})),camera:{x:a.scene.x,y:a.scene.y,scale:a.scene.scale,manual:a.scene.manual},grounded:u&&e.grounded(u),can:a.canInput(),dialogue:!!a.dialogue,shots:b.shots,enemies:b.units.filter(v=>v.side===1&&!v.dead).length,health:b.units.filter(v=>v.side===0&&!v.summoned).map(v=>({id:v.id,hp:v.hp,maxHp:v.maxHp,shield:v.shield,dead:v.dead,x:v.x,y:v.y})),boat:b.honroAct4PreviewState?.boat,seed:b.seed,rng:b.rng}}''')
+ def state():return p.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b,u=e.active;return{round:b.round,enemyTeamEnds:b.teamEnds[1],side:b.side,phase:b.phase,active:u?.id,cls:u?.cls,x:u?.x,y:u?.y,angle:u?.angle,facing:u?.facing,moveLeft:u?.moveLeft,drop:u&&e.canDrop(),support:u&&e.contactSurface(u.x,u.y-4,u.y+5)?.t?.id,enemyHpSum:b.units.filter(v=>v.side===1&&!v.dead).reduce((n,v)=>n+v.hp,0),enemyUnits:b.units.filter(v=>v.side===1).map(v=>({id:v.id,hp:v.hp,dead:v.dead})),camera:{x:a.scene.x,y:a.scene.y,scale:a.scene.scale,manual:a.scene.manual},grounded:u&&e.grounded(u),can:a.canInput(),dialogue:!!a.dialogue,shots:b.shots,enemies:b.units.filter(v=>v.side===1&&!v.dead).length,health:b.units.filter(v=>v.side===0&&!v.summoned).map(v=>({id:v.id,hp:v.hp,maxHp:v.maxHp,shield:v.shield,dead:v.dead,x:v.x,y:v.y})),boat:b.honroAct4PreviewState?.boat,seed:b.seed,rng:b.rng}}''')
  snapshot_dir=out/'storage-snapshots';snapshot_dir.mkdir(exist_ok=True);snapshot_seq=0
  def snapshot(step,live):
   global snapshot_seq
@@ -100,7 +101,7 @@ with sync_playwright() as w:
  memory={}
  history={}
  incomingDamage={}
- previousHp={}
+ damage_memory=RecentIncomingDamage()
  def observe(pl):
   for enemy in pl['observed']:
    if enemy['dead']:memory.pop(enemy['id'],None)
@@ -138,9 +139,10 @@ with sync_playwright() as w:
  for n in range(120):
   if time.monotonic()-started>1200:raise TimeoutError('Bounded normal-input play budget exceeded')
   if not waitready():record('stopped-wait');break
-  for hero in state()['health']:
-   old=previousHp.get(hero['id'],hero['hp']);loss=max(0,old-hero['hp'])
-   incomingDamage[hero['id']]=max(incomingDamage.get(hero['id'],0),loss);previousHp[hero['id']]=hero['hp']
+  observed=state()
+  previous_damage=incomingDamage
+  incomingDamage=damage_memory.observe(observed['enemyTeamEnds'],observed['health'])
+  if incomingDamage!=previous_damage:record('damage-memory-update',{'before':previous_damage,'after':incomingDamage,'enemyTeamEnds':observed['enemyTeamEnds']})
   if state()['round']>20:record('round-limit');break
   if any(h['dead'] for h in state()['health']):
    record('party-loss');capture(path=out/'party-loss.png');break

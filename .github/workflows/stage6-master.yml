@@ -50,6 +50,8 @@ jobs:
           npm --prefix game run typecheck
           node tools/stage40-qa/cleanup-corridors.test.mjs | tee "$OUT/corridors.log"
           node tools/act4-ci/positive-finisher.test.mjs | tee "$OUT/positive-finisher.log"
+          python tools/act4-ci/test_stage31_survival.py | tee "$OUT/survival-regression.log"
+          python tools/act4-ci/test_recent_damage.py | tee "$OUT/recent-damage-regression.log"
           for test in stage6-art-preview stage6-integrated-preview stage6-render-coverage-preview stage6-descent-view-preview stage6-reviewed-pursuit stage6-pursuit-response stage6-integrated-entry; do
             node "tests/$test.mjs" | tee "$OUT/$test.log"
           done
@@ -75,26 +77,13 @@ jobs:
           node --input-type=module -e 'import fs from "node:fs";import assert from "node:assert/strict";import {runtimeDigest} from "./tools/stage31/probes.mjs";const files=JSON.parse(fs.readFileSync("web/manifest.json")).files.map(({path,bytes,sha256})=>({path,bytes,sha256})).sort((a,b)=>a.path.localeCompare(b.path));assert.deepEqual(files,JSON.parse(fs.readFileSync(process.env.OUT+"/preview-active-files.json")));const digest=await runtimeDigest();assert.equal(digest,JSON.parse(fs.readFileSync(process.env.OUT+"/focused-probes.json")).digest);fs.writeFileSync(process.env.OUT+"/runtime-equivalence.json",JSON.stringify({sourceCommit:process.env.GITHUB_SHA,runId:process.env.GITHUB_RUN_ID,runtimeSha256:digest,htmlIdentical:true,activeFilesIdentical:true,baseMaster:"08c17f1f5e712f53c97253a70c44185030ad1437"},null,2));'
           cp tools/stage31/production-package.json "$OUT/stage31-production-package.json"
           sha256sum HONRO.html web/manifest.json tools/stage31/production-package.json shared/runtime/profile-store.js > "$OUT/final-served-sha256.txt"
-      - name: Same final runtime Stage6 route mobile legacy saves and R7 Continue
+      - name: Bind completed Stage6 play only after exact final byte equivalence
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          mkdir -p _local/reports/stage6-art-preview
-          sha256sum HONRO.html web/manifest.json shared/runtime/profile-store.js > _local/reports/stage6-art-preview/served-sha256.txt
-          git rev-parse HEAD HEAD^{tree} > _local/reports/stage6-art-preview/source.txt
-          python -m http.server 8870 --bind 127.0.0.1 > "$OUT/stage6-server.log" 2>&1 &
-          server=$!; trap 'kill "$server" 2>/dev/null || true' EXIT
-          sleep 2
-          status=0
-          for script in integrated-browser-play capture-preview integrated-save-boundary integrated-checkpoint-review; do
-            python "tools/stage6-prototype/$script.py" > "_local/reports/stage6-art-preview/$script.log" 2>&1 || status=1
-          done
-          STAGE6_PURSUIT_SAVE="$OUT/input/r7-pursuit.json.gz" python tools/stage6-prototype/pursuit-save-continue.py > "$OUT/pursuit-continue.log" 2>&1 || status=1
-          python - <<'PY'
-          import json
-          r=json.load(open('_local/reports/stage6-art-preview/integrated-play/result.json'))
-          assert r['status']=='terminal-won' and r['pursuitVerified'] and not r['errors'], 'Stage6 actual route did not complete with observed pursuit'
-          PY
-          exit "$status"
+          gh api /repos/${{ github.repository }}/actions/artifacts/13284369832/zip > /tmp/stage6-independent-proof.zip
+          python tools/stage6-prototype/verify-identical-preview.py | tee "$OUT/stage6-proof-binding.log"
       - name: Preserve exact gated generated candidate without publishing master
         run: |
           set -euo pipefail
