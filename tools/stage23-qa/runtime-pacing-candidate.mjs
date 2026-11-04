@@ -5,8 +5,8 @@ import assert from 'node:assert/strict';
 import {readFile,writeFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 const [kind,output]=process.argv.slice(2);
-assert(['original','elite-hp-90','carrier-budget-1000','escort-lookahead-180'].includes(kind)&&output,
- 'Usage: node runtime-pacing-candidate.mjs original|elite-hp-90|carrier-budget-1000|escort-lookahead-180 OUTPUT');
+assert(['original','elite-hp-90','carrier-budget-1000','escort-lookahead-180','command-post-clearance'].includes(kind)&&output,
+ 'Usage: node runtime-pacing-candidate.mjs original|elite-hp-90|carrier-budget-1000|escort-lookahead-180|command-post-clearance OUTPUT');
 const path='shared/runtime/act23-v4-ch23-reviewed.js';
 const original=await readFile(path,'utf8');
 assert.equal(createHash('sha256').update(original).digest('hex'),
@@ -27,6 +27,20 @@ if(kind==='elite-hp-90'){
  const prior="p&&nearFoes(b,p,300).length>0";
  assert.equal(result.split(prior).length,2);
  result=result.replace(prior,"p&&nearFoes(b,p,b.honroReviewed23PacingCandidate?.id==='escort-lookahead-180'?180:300).length>0");
+}else if(kind==='command-post-clearance'){
+ const posts=[
+  {leader:'s23-B-0',members:['s23-B-1','s23-B-5','s23-B-6']},
+  {leader:'s23-C-0',members:['s23-C-1','s23-C-2','s23-C-5']},
+  {leader:'s23-E-0',members:['s23-E-1','s23-E-2']},
+  {leader:'s23-F-0',members:['s23-F-1','s23-F-2','s23-F-5']},
+  {leader:'s23-G-0',members:['s23-G-1','s23-G-2']}
+ ];
+ result=result.replace(author,author+`\n  // Explicit new fresh-only tactical rule; not a claim about existing enemy morale.\n  map.initialState.honroReviewed23PacingCandidate={id:'command-post-clearance',version:1,closeRadius:130,posts:${JSON.stringify(posts)}};`);
+ const helper=`function escortBlockingFoes(b,p,r=300){\n const foes=nearFoes(b,p,r),candidate=b.honroReviewed23PacingCandidate;\n if(candidate?.id!=='command-post-clearance'||candidate.version!==1||!Array.isArray(candidate.posts))return foes;\n return foes.filter(foe=>{const post=candidate.posts.find(row=>row.members.includes(foe.id));if(!post)return true;\n  const leader=unit(b,post.leader);if(!leader||leader.side!==1||leader.dead!==true||leader.hp>0)return true;\n  // After the explicit post is defeated, remaining troops still attack and\n  // stop the porter within130px of his actual position, not a future point.\n  return V.near(foe,carrier(b),candidate.closeRadius);\n });\n}\n`;
+ result=result.replace('function blocked(b){',helper+'function blocked(b){');
+ const prior="(nearFoes(b,u,300).length>0||p&&nearFoes(b,p,300).length>0)";
+ assert.equal(result.split(prior).length,2);
+ result=result.replace(prior,"(escortBlockingFoes(b,u,300).length>0||p&&escortBlockingFoes(b,p,300).length>0)");
 }
 await writeFile(output,result);
 console.log(JSON.stringify({kind,sourceRuntimeSha256:createHash('sha256').update(original).digest('hex'),candidateRuntimeSha256:createHash('sha256').update(result).digest('hex'),output,scope:'Generated source before fresh battle construction only; existing saved battles are not retuned. Unaccepted isolated candidate.'}));
