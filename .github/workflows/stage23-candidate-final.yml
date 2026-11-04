@@ -1,0 +1,57 @@
+name: Verify Stage23 candidate gameplay and browser
+on:
+  push:
+    branches: ['work/stage23-final-ui-candidate-20261104']
+permissions:
+  contents: read
+  actions: read
+jobs:
+  candidate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - name: Install pinned dependencies
+        run: npm ci && npm ci --prefix game && pip install playwright==1.51.0 && python -m playwright install --with-deps chromium
+      - name: Build through the normal release guard
+        run: npm run build
+      - name: Retrieve synthetic old-save regression fixture
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh run download 41759542357 --repo sys8994/honro --name stage23-current-natural --dir _local/stage23-prior
+      - name: Run same-commit natural gameplay
+        env:
+          HONRO_QA_OUT: _local/reports/stage23-candidate-native
+        run: |
+          set -o pipefail
+          mkdir -p "$HONRO_QA_OUT"
+          node --expose-gc --max-old-space-size=2048 tests/stage23-current-natural.mjs | tee "$HONRO_QA_OUT/run.log"
+      - name: Verify scoped HUD and save contracts
+        env:
+          HONRO23_ENTRY: _local/reports/stage23-candidate-native/initial.json
+          HONRO23_CHECKPOINT: _local/stage23-prior/checkpoint.json
+        run: node tests/stage23-objective-label-clearance.mjs && node tests/stage23-current-pacing-contract.mjs && node tests/act23-v4-reviewed23.mjs && node tests/objective-clarity.mjs
+      - name: Verify this built product with actual browser controls
+        run: |
+          python -m http.server 8765 --bind 127.0.0.1 >/tmp/stage23-http.log 2>&1 &
+          server=$!
+          trap 'kill "$server"' EXIT
+          sleep 2
+          python tools/stage23-qa/candidate-browser-review.py
+      - name: Preserve approved synthetic game observations
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: stage23-candidate-final
+          path: |
+            _local/reports/stage23-candidate-native
+            _local/reports/stage23-candidate-browser
+          if-no-files-found: warn
+          retention-days: 14
