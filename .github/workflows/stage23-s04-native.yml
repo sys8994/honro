@@ -1,0 +1,58 @@
+name: Compare Stage23 ordinary S04 landing score
+on:
+  push:
+    branches: ['work/stage23-s04-native-20261104']
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: stage23-s04-native-verification
+  cancel-in-progress: false
+jobs:
+  paired-native:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Install pinned existing dependencies
+        run: npm ci && npm ci --prefix game
+      - name: Build unchanged product through normal release guard
+        run: |
+          npm run build
+          echo '199a47f9180ecc106c26fcb174e99f84154ddae2f35bded2f2b41e01bdcc974b  HONRO.html' | sha256sum --check
+          echo '71e3b81904fe845b4cbc190e1e0be9be714421c75a146725075665e42b07773c  shared/runtime/act23-v4-ch23-reviewed.js' | sha256sum --check
+      - name: Retrieve exact approved synthetic pre-entry fixture
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 41850399757 --repo sys8994/honro --name stage23-candidate-final --dir _local/stage23-final
+          echo 'e70225a2920da90bbef0e7331921fe83cf063d6d71bda791b01ed1aee4faca8e  _local/stage23-final/stage23-candidate-native/initial.json' | sha256sum --check
+      - name: Run baseline then corrected landing score on the same product and entry
+        env:
+          HONRO_QA_ENTRY_PATH: _local/stage23-final/stage23-candidate-native/initial.json
+        run: |
+          set +e
+          out=_local/reports/stage23-s04-pair
+          mkdir -p "$out/baseline" "$out/ordinary-s04"
+          HONRO_QA_OUT="$out/baseline" node --expose-gc --max-old-space-size=2048 tests/stage23-front-natural.mjs > "$out/baseline/run.log" 2>&1
+          base=$?
+          tail -1 "$out/baseline/run.log"
+          HONRO_QA_OUT="$out/ordinary-s04" node --expose-gc --max-old-space-size=2048 tests/stage23-s04-natural.mjs > "$out/ordinary-s04/run.log" 2>&1
+          candidate=$?
+          tail -1 "$out/ordinary-s04/run.log"
+          python tools/stage23-qa/compare-s04-native.py
+          compare=$?
+          echo "baseline=$base candidate=$candidate compare=$compare"
+          test "$base" = 0 -a "$candidate" = 0 -a "$compare" = 0
+      - name: Preserve approved synthetic Stage23 observations
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: stage23-s04-native-pair
+          path: _local/reports/stage23-s04-pair
+          if-no-files-found: warn
+          retention-days: 14

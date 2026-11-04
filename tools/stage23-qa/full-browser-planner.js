@@ -1,5 +1,7 @@
 // Evaluated as a function, never installed on the production App or Engine.
-// Geometry/first-impact estimates only: no fire, tick, future RNG or live writes.
+// Production aim/impact estimates on detached state, with no live writes.
+// Some production predictors internally fire/step additional clones and retain
+// damageSequence/RNG. This is not pure geometry or RNG-independent certification.
 async ({targetId = null, contextOnly = false} = {}) => {
   const C = HONRO_CORE, V = HonroAct23V4, original = HonroApp.engine.b;
   const before = JSON.stringify(original), b = JSON.parse(before);
