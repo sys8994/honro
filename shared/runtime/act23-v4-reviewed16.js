@@ -35,8 +35,8 @@ function allow(app,r){const b=app.engine.b,q=mem(b),a=physical(b),u=unit(b,'resi
  if(r.id===id('MID.04'))return recovered(b);
  if(r.id===id('MID.05'))return recovered(b)&&!!q.knock;
  if(witness.includes(r.id))return recovered(b)&&!!q.knock;
- if(r.id===id('MID.06'))return heard(b)&&!!q.trappedObserved;
- if(r.id===id('MID.07'))return heard(b)&&!!q.trappedObserved;
+ if(r.id===id('MID.06')){const observer=api.actor(b,'담허');return heard(b)&&!!q.trappedObserved&&!!observer&&(q.trappedObserved.observer===observer.id||V.near(observer,b.honroV4Reviewed16.bellSource,650));}
+ if(r.id===id('MID.07'))return heard(b)&&!!(q.trappedObserved||q.witnessApproach);
  if(r.id.startsWith(id('COMPLETE.')))return heard(b)&&spoken(b,'souls')&&!!q.exitObserved;
  if(r.id===id('JOURNAL.01'))return heard(b);
  if(r.id===id('POPUP.01'))return !!q.discipleAim&&!separated(b);
@@ -50,7 +50,11 @@ function observe(app){const e=app.engine,b=e.b,q=mem(b),u=unit(b,'resident-1'),e
  const archer=api.actor(b,'설오');if(V.alive(archer)&&!q.blocked)for(const t of foes(b,elder,1000)){const hit=e.projectileCollision({x:archer.x,y:archer.y-archer.h*.63},{x:t.x,y:t.y-t.h*.5},1,archer.id,[],false);if(hit?.terrain&&/lantern|lamp|stone.?light/i.test(hit.terrain.id)){q.blocked={actor:archer.id,target:t.id,terrain:hit.terrain.id,from:{x:archer.x,y:archer.y}};break;}}
  if(recovered(b)&&!q.knock){e.emit('sound',{name:'ricochet',source:'16.bell.knock',...s.bellSource});e.fx('ring',s.bellSource.x,s.bellSource.y-70,'#b8bda9',45);q.knock={source:clone(s.bellSource),emitted:true};}
  // Visible residual souls at the bellward opening are independent of sound.
- const soulObserver=api.actor(b,'담허')||api.actor(b,'소단');if(heard(b)&&V.near(soulObserver,s.bellSource,650))q.trappedObserved??={observer:soulObserver.id,source:clone(s.bellSource),souls:clone(s.souls),observed:true};
+ // Preserve the established preference only among living observers actually nearby.
+ const soulObserver=[api.actor(b,'담허'),api.actor(b,'소단')].find(u=>V.near(u,s.bellSource,650));if(heard(b)&&soulObserver)q.trappedObserved??={observer:soulObserver.id,source:clone(s.bellSource),souls:clone(s.souls),observed:true};
+ // After extraction, unavailable soul observers must not strand surviving companions.
+ // This records approach after the elder's actual testimony, never present-soul knowledge.
+ if(heard(b)&&!q.trappedObserved&&!api.actor(b,'담허')&&!api.actor(b,'소단')){const companion=V.heroes(b).find(u=>V.near(u,s.bellSource,650));if(companion)q.witnessApproach??={basis:'elder-testimony',observer:companion.id,position:{x:companion.x,y:companion.y},source:clone(s.bellSource),witnessRows:clone(q.events.witness.ids),approached:true};}
  if(heard(b)&&spoken(b,'souls')&&nearby(b,V.marker(b,'16.work-exit'),450))q.exitObserved??={point:clone(V.marker(b,'16.work-exit'))};
 }
 function scene(app,key,ids,proof,targets){const out=api.begin(app,key,ids,proof||{});if(out&&targets){for(const l of app.dialogue.lines)l[2].camera={id:l[2].rowId,intent:'situation',targets:clone(targets),padding:120,maxScale:.75};G.HonroStory.draw(app);}return out;}
@@ -70,7 +74,8 @@ function drive(app){const b=app.engine.b,q=mem(b);observe(app);if(!V.safe(app))r
  if(start('sound',[id('MID.05')],recovered(b)&&spoken(b,'recovery')&&!!q.knock,q.knock,[b.honroV4Reviewed16.bellSource]))return;
  if(start('witness',witness,recovered(b)&&api.done(b,'sound'),physical(b).proof['16.safe'],[{actor:'objective'},{actor:'resident-1'}]))return;
  if(heard(b)){b.honroState.flags.witness16_heard=true;V.ackSlot(b,'16.testimony.required',{reviewedRevision:1,rowIds:clone(q.events.witness.ids),safe:clone(physical(b).proof['16.safe'])});if(!q.journal)api.journal(app,id('JOURNAL.01'));}
- if(start('souls',[id('MID.06'),id('MID.07')],heard(b)&&!!q.trappedObserved,q.trappedObserved,b.honroV4Reviewed16.souls))return;
+ const soulProof=q.trappedObserved||q.witnessApproach;
+ if(start('souls',q.trappedObserved?[id('MID.06'),id('MID.07')]:[id('MID.07')],heard(b)&&!!soulProof,soulProof,q.trappedObserved?b.honroV4Reviewed16.souls:[b.honroV4Reviewed16.bellSource]))return;
  if(start('depart',[id('COMPLETE.01'),id('COMPLETE.02')],!!q.exitObserved&&heard(b)&&spoken(b,'souls'),q.exitObserved))return;
  start('protect',[id('POPUP.01')],!!q.discipleAim&&!separated(b),q.discipleAim);
 }
