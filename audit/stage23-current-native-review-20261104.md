@@ -349,3 +349,16 @@ The fresh construction contract compares all unit fields against the original ex
 
 The prepared late-front workflow will reuse the immediately preceding matrix's unchanged original26/87 and30/105 outputs instead of replaying them yet again. Before running a candidate, it verifies their winning results and exact current controller hash; the final comparator also verifies the common entry, original/candidate runtime hashes, identical policy flags, roster and narrative receipts. Only the two fresh candidate policies will be run. This saves duplicate computation without substituting a different policy or product baseline. The workflow is staged on a non-triggering preparation branch; it must wait until the preceding matrix is actually complete and its artifacts are available.
 The late-placement contract additionally compares activation cells/ranges, response-entry specification, roster identifier, population cap and density activation metadata directly with the exact original entry fixture. Retaining the same metadata is not proof that seven clustered actors actually attack; accepted live casts and damage still need the whole-play results.
+
+### Command-post clearance result: no turn reduction under either matched policy
+
+[CI41879192542](https://github.com/sys8994/honro/actions/runs/41879192542), source `c5efac3ee1ff865616a0a152af1eb0393d0d4bbe`, completed successfully. Artifact13349976115 is1,720,908 bytes, retained14 days, ZIP SHA256 `042f3604766ab3f43ae965fd6e8c08481fef099c92b353301c464cbce73feba9`. All four runs won with the same exact entry/controller,40 enemies/10 elites, mandatory receipts and exact settlement/reload; fresh story/normal and old/new Continue contracts passed.
+
+| Matched policy | Original rounds/shots/defends | Candidate rounds/shots/defends | NPC cumulative HP loss original→candidate |
+| --- | --- | --- | --- |
+| Shot-first | 26 /87 /13 | 26 /89 /12 | 124→105 |
+| Escort-first | 30 /105 /12 | 30 /103 /12 | 229.3→381 |
+
+Middle completion stayedR19 andR20 respectively. Candidate exit shots changed22→24 under shot-first and35→33 under escort-first, but neither saved a round. Accepted enemy casts changed85→88 and104→102; hero HP-loss events from identified enemies changed2536→2610 and2782→2707. Retained troops were not simply harmless actors, but the new rule still did not solve pacing and the second policy exposed the carrier to much more damage. The rule is not adopted. All results remain above20 and supply no new browser or release acceptance.
+
+The next isolated comparison is the prepared late-front placement. Its baseline reuse has been checked against controller SHA256 `3b5a84c217552994d7ce50bd5e4c83b918927aa878dffdaeabb85494c5f73766`, entry profile SHA256 `204438ad279430421596adf7e072144f3392bc1d45a146dbc0a389fafbccca52` and original runtime SHA256 `71e3b81904fe845b4cbc190e1e0be9be714421c75a146725075665e42b07773c`. Only the new placement's two matched policies require fresh play.
