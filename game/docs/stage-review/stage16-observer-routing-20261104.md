@@ -7,16 +7,17 @@ Branch: `work/stage16-observer-routing-20261104`. This is not a release or App/b
 
 The existing expression selected any living Damheo before testing distance. A distant Damheo therefore prevented nearby Sodan from recording the existing bellward soul observation.
 
-Select Damheo, then Sodan, only when the living actor meets the existing `V.near(..., 650)` condition. Both-near preference, the 150-pixel vertical limit in V.near, finished testimony, the existing observation receipt, dialogue rows, required NPCs, Sodan's unfinished extraction requirement, geometry, combat and victory steps are unchanged. No new fallback for two unavailable soul observers is implemented.
+Select Damheo, then Sodan, only when the living actor meets the existing `V.near(..., 650)` condition. If Sodan observes while Damheo remains far away, Damheo's MID.06 is eligible only if he previously made the recorded observation or is now close enough to see it himself. The living elder's existing MID.07 remains eligible. No dialogue wording is changed; dead or uninformed distant speakers are not fabricated. Both-near preference, the 150-pixel vertical limit in V.near, finished testimony, the existing observation receipt, dialogue rows, required NPCs, Sodan's unfinished extraction requirement, geometry, combat and victory steps are unchanged. No new fallback for two unavailable soul observers is implemented.
 
-Runtime commit: `cf680371ad6feb0e1dbadc706ad14713a954cb4c`.
-Focused test commit: `4c6b10e7be4fef49fd23cee4e606321ef2e6117a`.
+Initial selection commit: `cf680371ad6feb0e1dbadc706ad14713a954cb4c`.
+Speech-knowledge refinement commit: `6a30b1d7b243e7ae7b25be7ef7a7a6c6656db702`.
+Focused tests: `tests/stage16-observer-state.mjs` on this DEV branch.
 
 ## Focused verification
 
 `tests/stage16-observer-state.mjs` evaluates the production reviewed16 module in a VM and uses the production actor and near predicates. It uses explicit safe-frame, terrain-contact and scene-admission doubles. It does not run App, Engine physics, browser inputs or actual dialogue rendering.
 
-The unchanged master source fails the distant-mage/near-occultist check (exit 1). The DEV source passes eight focused checks (exit 0): nearby selection, both-near preference, either single observer unavailable, both distant, wrong vertical level, incomplete testimony, and preserving an existing saved receipt. No filesystem artifacts were created during these inline runs.
+The unchanged master source fails the distant-mage/near-occultist check (exit 1). The DEV source passes nine focused checks (exit 0): nearby selection, both-near preference, either single observer unavailable, both distant, wrong vertical level, incomplete testimony, preserving an existing saved receipt, and retaining a mage's prior observed knowledge after later movement. The observer cases also check MID.06 eligibility and the elder's existing followup eligibility. No filesystem artifacts were created during these inline runs.
 
 Known unresolved diagnosis: after extraction and testimony, losing both Damheo and Sodan before observation leaves no observer and no souls scene admission, while the prior focused failure-predicate diagnostic returned no mission failure. This is not asserted as acceptable behavior or as a naturally observed App failure.
 
@@ -30,7 +31,7 @@ Normal soul-observation order must remain unchanged. A fallback must not bypass 
 
 ## Existing saves and remaining checks
 
-The implemented selection correction changes no map revision, schema, event ID, row ID, or authored state. Existing `trappedObserved` receipts remain byte-for-byte preserved by the existing nullish assignment. An eligible old save without a receipt can now select nearby Sodan even when Damheo survives far away.
+The implemented selection and speech correction changes no map revision, schema, event ID, row ID, or authored state. Existing `trappedObserved` receipts remain byte-for-byte preserved by the existing nullish assignment. An eligible old save without a receipt can now select nearby Sodan even when Damheo survives far away.
 
 Actual Continue compatibility still needs App verification. If the distinct witness-followup route is approved, add a separate optional proof, preserve existing events/receipts, and do not fabricate a receipt on load or reset the battle. Verify old saves before observation, after observation, during testimony, during souls dialogue, and at departure. Check two casualties only after extraction; losing Sodan earlier must still fail under the existing required action.
 
