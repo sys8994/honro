@@ -11,7 +11,7 @@ concurrency:
 jobs:
   serial-probes:
     runs-on: ubuntu-24.04
-    timeout-minutes: 50
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
       - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
@@ -49,13 +49,23 @@ jobs:
           source=shared/runtime/act23-v4-ch23-reviewed.js
           cp "$source" "$root/original-runtime.js"
           trap 'cp "$root/original-runtime.js" "$source"' EXIT
-          for kind in original elite-hp-90 carrier-budget-1000; do
+          mkdir -p "$root/original" "$root/muzzle-20"
+          HONRO_QA_PROBE_KIND=original HONRO_QA_PROBE_CONTRACT_OUT="$root/original/contract.json" node --max-old-space-size=2048 tests/stage23-pacing-probe-contract.mjs > "$root/original/contract.log" 2>&1
+          for flag in 0 1; do
+            label=original
+            if test "$flag" = 1; then label=muzzle-20; fi
+            HONRO_QA_S04_SCORE=production HONRO_QA_MUZZLE_ADVANCE="$flag" HONRO_QA_OUT="$root/$label" node --expose-gc --max-old-space-size=2048 tests/stage23-independent-natural.mjs > "$root/$label/run.log" 2>&1 || echo "$?" > "$root/$label/exit-status.txt"
+            tail -1 "$root/$label/run.log"
+          done
+          python tools/stage23-qa/select-independent-policy.py
+          selected=$(cat "$root/selected-muzzle.txt")
+          for kind in elite-hp-90 carrier-budget-1000; do
             cp "$root/original-runtime.js" "$source"
             mkdir -p "$root/$kind"
             node tools/stage23-qa/runtime-pacing-candidate.mjs "$kind" "$root/$kind/runtime.js" > "$root/$kind/generator.json"
             cp "$root/$kind/runtime.js" "$source"
             HONRO_QA_PROBE_KIND="$kind" HONRO_QA_PROBE_CONTRACT_OUT="$root/$kind/contract.json" node --max-old-space-size=2048 tests/stage23-pacing-probe-contract.mjs > "$root/$kind/contract.log" 2>&1
-            HONRO_QA_OUT="$root/$kind" node --expose-gc --max-old-space-size=2048 tests/stage23-independent-natural.mjs > "$root/$kind/run.log" 2>&1
+            HONRO_QA_S04_SCORE=production HONRO_QA_MUZZLE_ADVANCE="$selected" HONRO_QA_OUT="$root/$kind" node --expose-gc --max-old-space-size=2048 tests/stage23-independent-natural.mjs > "$root/$kind/run.log" 2>&1
             tail -1 "$root/$kind/run.log"
           done
           python tools/stage23-qa/compare-independent-probes.py
