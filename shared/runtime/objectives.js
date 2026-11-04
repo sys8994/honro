@@ -122,6 +122,20 @@ function draw(scene,e){
    else px=Math.max(width/2+8,mini.left-cv.left-width/2-10);
   }
   if(G.HonroStage6DescentView){const q=G.HonroStage6DescentView.avoidObjective(scene,e,px,py,width);px=q.px;py=q.py;}
+  // Only chapter23's secondary world tag: the pending equipment button is
+  // independent of the minimap and can cover the label in short viewports.
+  let hideLabel=false;
+  if(e.b.honroStage===23&&!e.b.honroCustom){
+   const button=document.getElementById('equipment-pending-battle'),style=button&&G.getComputedStyle?.(button),r=button&&!button.hidden&&style?.visibility!=='hidden'&&style?.display!=='none'?button.getBoundingClientRect():null;
+   if(r?.width>0&&r.height>0){
+    const box={left:r.left-cv.left,right:r.right-cv.left,top:r.top-cv.top,bottom:r.bottom-cv.top},clampX=x=>Math.max(width/2+6,Math.min(w-width/2-6,x)),hits=(x,y,q)=>x+width/2>q.left-4&&x-width/2<q.right+4&&y-13>q.top-4&&y-33<q.bottom+4;
+    if(hits(clampX(px),py,box)){
+     const m=mini&&{left:mini.left-cv.left,right:mini.right-cv.left,top:mini.top-cv.top,bottom:mini.bottom-cv.top};
+     const q=[{x:px,y:box.bottom+41},{x:box.left-width/2-8,y:py},{x:box.right+width/2+8,y:py},{x:px,y:box.top+5}].map(q=>({x:clampX(q.x),y:q.y})).find(q=>q.y>=top&&q.y<=bottom&&!hits(q.x,q.y,box)&&(!m||!hits(q.x,q.y,m)));
+     if(q){px=q.x;py=q.y;}else hideLabel=true; // Keep the arrow and the primary HUD objective when no label fits.
+    }
+   }
+  }
   if(scene.goalFocus&&visible){
    const pulse=22+3*Math.sin(performance.now()*.008);
    c.strokeStyle='#f2d58e';c.globalAlpha=.85;c.lineWidth=2;c.beginPath();c.arc(x,y,pulse,0,Math.PI*2);c.stroke();c.globalAlpha=1;
@@ -139,8 +153,8 @@ function draw(scene,e){
   c.save();c.translate(px,py);c.rotate(direction);c.fillStyle='#e5c57e';
   c.beginPath();c.moveTo(-7,-8);c.lineTo(7,-8);c.lineTo(0,3);c.closePath();c.fill();c.restore();
   const lx=Math.max(width/2+6,Math.min(w-width/2-6,px));
-  c.fillStyle='#10242aee';c.fillRect(lx-width/2,py-33,width,20);
-  c.fillStyle='#ecd398';c.fillText(label,lx,py-23,width-8);
+  if(!hideLabel){c.fillStyle='#10242aee';c.fillRect(lx-width/2,py-33,width,20);
+   c.fillStyle='#ecd398';c.fillText(label,lx,py-23,width-8);if(e.b.honroStage===23&&!e.b.honroCustom)scene.missionDrawn.push({id:t.id,label,left:lx-width/2,right:lx+width/2,top:py-33,bottom:py-13});}
  }
  c.restore();
 }

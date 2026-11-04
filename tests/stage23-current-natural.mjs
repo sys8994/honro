@@ -49,7 +49,7 @@ const terminal=()=>['won','lost'].includes(b.phase),started=performance.now(),li
 for(let turn=0;turn<actionLimit&&!terminal();turn++){
  global.gc?.();
  for(let n=0;!ready()&&!terminal()&&n<30000;n++)tick();if(terminal())break;if(!ready()){stopReason='input unavailable after 250 simulated seconds';break;}
- if(b.round!==lastRound){lastRound=b.round;const row={round:b.round,goal:goal()?.id,npc:{x:npc().x,y:npc().y,hp:npc().hp,move:npc().moveLeft},enemies:e.alive(1).length,blockingFoes:e.alive(1).filter(v=>dist(v,npc())<320).map(v=>v.id),heroes:e.heroesAlive().map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,move:u.moveLeft}))};rounds.push(row);console.log('ROUND',JSON.stringify(row));await save('checkpoint');if(b.round>limit){stopReason='diagnostic round observation bound';break;}}
+ if(b.round!==lastRound){lastRound=b.round;const row={round:b.round,goal:goal()?.id,npc:{x:npc().x,y:npc().y,hp:npc().hp,move:npc().moveLeft},enemies:e.alive(1).length,blockingFoes:e.alive(1).filter(v=>dist(v,npc())<320).map(v=>v.id),heroes:e.heroesAlive().map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,move:u.moveLeft}))};rounds.push(row);console.log('ROUND',JSON.stringify(row));await save('checkpoint');if(b.round===27)await save('browser-checkpoint');if(b.round>limit){stopReason='diagnostic round observation bound';break;}}
  for(let n=0;n<60&&ready();n++)tick();if(!ready())continue;if(interact())continue;
  let u=e.active;const n=npc(),cur=goal();if(!u){stopReason='no active actor';break;}
  let foes=e.alive(1).filter(v=>!v.honroObjectiveTarget&&(g.HonroAct3.visible?.(b,v)??true));
