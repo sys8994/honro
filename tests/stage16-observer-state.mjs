@@ -51,17 +51,18 @@ function fixture({mage='far',occultist='near',heard=true,receipt=null}={}){
  spec.drive(app);return {b,app,observer:b.reviewed.trappedObserved?.observer||null};
 }
 const cases=[
- ['distant mage does not hide nearby occultist',{mage:'far',occultist:'near'},'p-occultist'],
- ['both nearby retain mage preference',{mage:'near',occultist:'near'},'p-mage'],
- ['fallen mage uses nearby occultist',{mage:'dead',occultist:'near'},'p-occultist'],
- ['fallen occultist after separation uses nearby mage',{mage:'near',occultist:'dead'},'p-mage'],
+ ['distant mage does not hide nearby occultist',{mage:'far',occultist:'near'},'p-occultist',false],
+ ['both nearby retain mage preference',{mage:'near',occultist:'near'},'p-mage',true],
+ ['fallen mage uses nearby occultist',{mage:'dead',occultist:'near'},'p-occultist',false],
+ ['fallen occultist after separation uses nearby mage',{mage:'near',occultist:'dead'},'p-mage',true],
  ['both distant require approach',{mage:'far',occultist:'far'},null],
  ['vertical separation is still required',{mage:'dead',occultist:'wrong-height'},null],
  ['testimony must actually finish',{mage:'near',occultist:'near',heard:false},null]
 ];
-for(const [label,args,expected] of cases){const r=fixture(args);assert.equal(r.observer,expected,label);assert.equal(r.app.admissions.some(x=>x.key==='souls'),!!expected,label);console.log('PASS '+label);}
+for(const [label,args,expected,mageLine=false] of cases){const r=fixture(args);assert.equal(r.observer,expected,label);assert.equal(r.app.admissions.some(x=>x.key==='souls'),!!expected,label);assert.equal(spec.allow(r.app,{id:'A2.S16.MID.06'}),mageLine,label+' / only evidenced mage speech');if(expected)assert(spec.allow(r.app,{id:'A2.S16.MID.07'}),'living elder followup remains eligible');console.log('PASS '+label);}
 const receipt={observer:'p-occultist',source:{x:500,y:0},souls:[{x:480,y:0}],observed:true};
 const saved=fixture({mage:'near',occultist:'dead',receipt:structuredClone(receipt)});assert.deepEqual(saved.b.reviewed.trappedObserved,receipt);console.log('PASS existing saved observation remains unchanged');
+const remembered=fixture({mage:'far',occultist:'dead',receipt:{...receipt,observer:'p-mage'}});assert(spec.allow(remembered.app,{id:'A2.S16.MID.06'}),'prior actual mage observation remains known');console.log('PASS prior mage knowledge survives later movement');
 const unavailable=fixture({mage:'dead',occultist:'dead'});
 console.log(JSON.stringify({knownUnresolved:'Both soul observers lost after separation but before observation',observer:unavailable.observer,sceneAdmissions:unavailable.app.admissions.map(x=>x.key),scope:'Diagnostic only. No alternate story path is implemented or accepted by this test.'}));
-console.log('PASS 8 focused state checks; no claim of normal App, physical movement, browser, or narrative completion.');
+console.log('PASS 9 focused state checks; no claim of normal App, physical movement, browser, or narrative completion.');
