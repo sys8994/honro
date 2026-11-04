@@ -157,6 +157,20 @@ Screenshot inspection found the landscape secondary “화면 밖” label overl
 
 The HUD-only candidate browser script checks equipment open/close, viewport rotation and painted-label clearance in addition to the original earnedR33 exit/settlement flow. Separate public-browser combat inspection is in progress; the exit script itself does not test firing. The test's label boxes are converted from canvas-local to viewport coordinates before comparing DOM controls. This is a test correction, not a runtime change.
 
+## Public browser combat samples and final focused contracts
+
+[CI41805141611](https://github.com/sys8994/honro/actions/runs/41805141611) at `89e63e48668f4b989afb0a6cb23fd989e064abe4` passed actual public Chromium combat controls. The published HTML hash still matches the original build above. Original40 native forward-escort play reproduced26 rounds before generating earnedR8/R19 checkpoints; the browser-only retry reused those checkpoints instead of rerunning the native playthrough. Artifact13310020643 retains approved synthetic observations for14 days.
+
+- Desktop R8→10: real keyboard movement/aim, six shots, two defends and enemy turns. Enemy net HP decrease1611; hero net HP decrease141. The NPC remained at1406HP and the same position. High warehouse archers and lower loading-yard enemies offered distinct firing angles/targets, while the convoy stayed blocked.
+- Mobile R19→21: portrait/landscape rotation, real touch movement/fine aiming, five shots, three defends and enemy turns. Two enemies died; enemy net HP decrease498, hero228, NPC64. The NPC advanced273.23px. Reducing enemies did not remove convoy pressure.
+- These net before/after HP differences are not cumulative damage totals. Aiming assistance operated on a detached engine copy with a live-state equality check; actual actions used UI input, without live battle edits.
+- Direct screenshots show distinguishable upper/lower threats, carrier, firing lines and bottom resources. The known secondary-objective/equipment-button overlap is visible. Overlapping allies and limited vertical space in landscape are visible limitations, not a proven new input failure. Round banners are transient transitions.
+- The first mobile run stopped on the test's too-tight aiming convergence requirement. Fine analog touch adjustments passed on the same product; no product code was changed for that retry.
+
+These are two-round samples, not a full browser clear, real-device performance measurement, optimal strategy or approval of the whole26-round experience.
+
+[CI41805064338](https://github.com/sys8994/honro/actions/runs/41805064338), source `7e4d673e52e86740b05560aaa89e4cf2791a70c3`, passed original40 fresh construction, exact old40 Continue, tactical initial scaling, Stage23 reviewed narrative/physical rescue, scoped HUD clearance, and39 objective-clarity state-fixture checks. The first aggregate attempts exposed stale tests rather than Stage23 rules: Stage5 now calls its migrated actor-backed target 주박목; Stage10 now requires safe withdrawal after six protection turns. The fixtures were updated to assert those current conditions, including failure before the target is broken and no completion merely at six turns. No runtime rule or release guard was weakened.
+
 ## Limits before release acceptance
 
 The earlier two-guard product candidate `6abd6389da2b224432b52bdc314fcaa48d345ccb` did not pass its full build/browser workflow and is no longer the selected product. The new HUD-only candidate restores the original40 runtime, uses the forward-escort native policy, and continues the original earnedR33 save for final UI/settlement checks. Its normal build and browser checks have not yet run. [CI41795471305](https://github.com/sys8994/honro/actions/runs/41795471305) stopped during normal `npm run build`, before native/browser steps, because the Stage31 release guard detected runtime changes after its previous actual Engine probes. No guard was weakened or bypassed. The formal Stage31 refresh procedure is prepared but its separate public-data approval is pending.
