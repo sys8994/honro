@@ -1,0 +1,35 @@
+name: Stage23 current natural gameplay review
+on:
+  push:
+    branches: ['work/stage23-current-natural-20261104']
+permissions:
+  contents: read
+jobs:
+  stage23-natural:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Install existing pinned dependencies
+        run: npm ci && npm ci --prefix game
+      - name: Observe natural Stage23 App actions
+        env:
+          HONRO_QA_OUT: _local/reports/stage23-current-natural
+          HONRO_QA_ROUND_LIMIT: '80'
+          HONRO_QA_ACTION_LIMIT: '500'
+        run: |
+          set -o pipefail
+          mkdir -p "$HONRO_QA_OUT"
+          node --expose-gc --max-old-space-size=2048 tests/stage23-current-natural.mjs | tee "$HONRO_QA_OUT/run.log"
+      - name: Preserve completed or interrupted observations
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: stage23-current-natural
+          path: _local/reports/stage23-current-natural
+          if-no-files-found: error
+          retention-days: 14
