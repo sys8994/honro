@@ -1,0 +1,94 @@
+name: Compare Stage23 close-range escort rule
+on:
+  push:
+    branches: ['work/stage23-close-escort-20261104']
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: stage23-close-escort-native-verification
+  cancel-in-progress: false
+jobs:
+  serial-probes:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Install pinned existing dependencies
+        run: npm ci && npm ci --prefix game
+      - name: Verify normal original product before isolated diagnostics
+        run: |
+          npm run build
+          echo '199a47f9180ecc106c26fcb174e99f84154ddae2f35bded2f2b41e01bdcc974b  HONRO.html' | sha256sum --check
+          echo '71e3b81904fe845b4cbc190e1e0be9be714421c75a146725075665e42b07773c  shared/runtime/act23-v4-ch23-reviewed.js' | sha256sum --check
+      - name: Retrieve approved exact synthetic fixtures
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 41850399757 --repo sys8994/honro --name stage23-candidate-final --dir _local/stage23-final
+          echo 'e70225a2920da90bbef0e7331921fe83cf063d6d71bda791b01ed1aee4faca8e  _local/stage23-final/stage23-candidate-native/initial.json' | sha256sum --check
+          echo 'c20e7ae036c0c757d41e31656d3a110fefd2b4c15b54156f5bb4875222e08688  _local/stage23-final/stage23-candidate-native/entry-checkpoint.json' | sha256sum --check
+      - name: Reuse exact unchanged-product controls from the preceding completed matrix
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 41879192542 --repo sys8994/honro --name stage23-command-post-pair --dir _local/command-reference
+          mkdir -p _local/reports/stage23-close-escort-pair
+          cp -R _local/command-reference/original _local/reports/stage23-close-escort-pair/original
+          python - <<'PYBASE'
+          import hashlib,json
+          from pathlib import Path
+          base=Path('_local/reports/stage23-close-escort-pair/original')
+          controller=hashlib.sha256(Path('tests/stage23-command-natural.mjs').read_bytes()).hexdigest()
+          for policy,rounds,shots in [('shot-first',26,87),('escort-first',30,105)]:
+              r=json.loads((base/policy/'result.json').read_text())
+              f=json.loads((base/policy/'final.json').read_text())
+              assert r['phase']=='won' and r['round']==rounds
+              assert len([a for a in f['actions'] if a['op']=='fire'])==shots
+              assert r['provenance']['controllerHash']==controller
+              assert r['provenance']['reviewedRuntimeHash']=='71e3b81904fe845b4cbc190e1e0be9be714421c75a146725075665e42b07773c'
+          PYBASE
+      - name: Prove detached estimates do not use actual future random state
+        env:
+          HONRO_QA_ENTRY_PATH: _local/stage23-final/stage23-candidate-native/initial.json
+        run: |
+          mkdir -p _local/reports/stage23-close-escort-pair
+          node --max-old-space-size=2048 tests/stage23-independent-planning.mjs > _local/reports/stage23-close-escort-pair/planning-contract.log
+      - name: Run isolated native probes serially with one exact policy and entry
+        env:
+          HONRO_QA_ENTRY_PATH: _local/stage23-final/stage23-candidate-native/initial.json
+          HONRO23_CHECKPOINT: _local/stage23-final/stage23-candidate-native/entry-checkpoint.json
+          HONRO_QA_PROBE_BASELINE: _local/reports/stage23-close-escort-pair/original/contract.json
+        run: |
+          set -e
+          root=_local/reports/stage23-close-escort-pair
+          source=shared/runtime/act23-v4-ch23-reviewed.js
+          cp "$source" "$root/original-runtime.js"
+          trap 'cp "$root/original-runtime.js" "$source"' EXIT
+          for kind in escort-close-130; do
+            cp "$root/original-runtime.js" "$source"
+            mkdir -p "$root/$kind"
+            node tools/stage23-qa/runtime-pacing-candidate.mjs "$kind" "$root/$kind/runtime.js" > "$root/$kind/generator.json"
+            cp "$root/$kind/runtime.js" "$source"
+            HONRO_QA_PROBE_KIND="$kind" HONRO_QA_PROBE_CONTRACT_OUT="$root/$kind/contract.json" node --max-old-space-size=2048 tests/stage23-pacing-probe-contract.mjs > "$root/$kind/contract.log" 2>&1
+            for flag in 0 1; do
+              policy=shot-first
+              if test "$flag" = 1; then policy=escort-first; fi
+              mkdir -p "$root/$kind/$policy"
+              HONRO_QA_S04_SCORE=production HONRO_QA_MUZZLE_ADVANCE=0 HONRO_QA_ESCORT_FIRST="$flag" HONRO_QA_OUT="$root/$kind/$policy" node --expose-gc --max-old-space-size=2048 tests/stage23-command-natural.mjs > "$root/$kind/$policy/run.log" 2>&1
+              tail -1 "$root/$kind/$policy/run.log"
+            done
+          done
+          python tools/stage23-qa/compare-close-escort.py
+      - name: Preserve approved synthetic Stage23 diagnostic observations
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: stage23-close-escort-pair
+          path: _local/reports/stage23-close-escort-pair
+          if-no-files-found: warn
+          retention-days: 14

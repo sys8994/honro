@@ -5,7 +5,7 @@ import {readFile,writeFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {appHarness,plain} from '../tools/act2-qa/stage17-gate-app-harness.mjs';
 const kind=process.env.HONRO_QA_PROBE_KIND||'original';
-assert(['original','elite-hp-90','carrier-budget-1000','escort-lookahead-180','command-post-clearance','late-front-merge'].includes(kind));
+assert(['original','elite-hp-90','carrier-budget-1000','escort-lookahead-180','command-post-clearance','late-front-merge','escort-close-130'].includes(kind));
 const h=await appHarness({productionStory:true}),{g}=h;
 const entry=JSON.parse(await readFile(process.env.HONRO_QA_ENTRY_PATH,'utf8'));
 const old=JSON.parse(await readFile(process.env.HONRO23_CHECKPOINT,'utf8'));
@@ -80,6 +80,19 @@ if(kind==='command-post-clearance'){
  b.units[1].id='s23-C-1';b.units[2].dead=false;assert(blocked(b),'HP0 without actual death never unlocks');
  b.units[2].dead=true;b.units[2].side=0;assert(blocked(b),'Allegiance change is not the specified post defeat');
  b.units.pop();assert(blocked(b),'Missing leader never unlocks the post');
+}
+if(kind==='escort-close-130'){
+ const sandbox={HonroAct3V4ReviewedCore:{register(){return {memory:b=>b.reviewed||{}};}},HonroAct23V4:{mem:b=>b.root,current:()=>({id:'dock-mid'}),near:g.HonroAct23V4.near,alive:g.HonroAct23V4.alive},HONRO_CORE:{}};
+ vm.runInNewContext(await readFile('shared/runtime/act23-v4-ch23-reviewed.js','utf8'),sandbox);
+ const b={units:[{id:'act3-carrier',x:0,y:1000,hp:1450,side:2},{id:'foe',x:450,y:1000,hp:1285,side:1,honroAct3Elite:true}],root:{carrierStarted:true},honroMarkers:[{id:'route:dock-mid:0',x:200,y:1000}]};
+ const blocked=sandbox.HonroAct23V4Chapter23Facts.blocked;
+ assert(blocked(b),'Original metadata-free waypoint guard remains');
+ b.honroReviewed23PacingCandidate={id:kind,version:1};assert(!blocked(b),'Future waypoint alone no longer stops a fresh opted-in carrier');
+ b.units[1].x=130;assert(blocked(b),'Exact current-carrier130px elite threat still stops');
+ b.units[1].x=130.01;assert(!blocked(b),'Beyond130px may approach under fire');
+ b.units[1].x=-130;assert(blocked(b),'Actual close rear threats remain blocking');
+ b.units[1].dead=true;assert(!blocked(b),'Dead actors never block');b.units[1].dead=false;
+ b.honroReviewed23PacingCandidate.version=99;b.units[1].x=450;assert(blocked(b),'Unknown saved version conservatively retains original rule');
 }
 const result={passed:true,kind,oldContinueExact:true,freshContinueExact:true,storyFresh:true,tacticalFresh:true,tacticalFullClear:false,initialEnemies:40,eliteEnemies:10,
  sourceRuntimeSha256:createHash('sha256').update(await readFile('shared/runtime/act23-v4-ch23-reviewed.js')).digest('hex'),
