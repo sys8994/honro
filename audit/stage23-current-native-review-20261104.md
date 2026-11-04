@@ -10,9 +10,9 @@ Status: bounded native gameplay comparison and original-public-browser checkpoin
 - Production story must be enabled in the runtime harness. The legacy escort tests alone do not cover the shipping reviewed narrative. Current reviewed23 has zero reinforcement events, despite legacy author metadata listing14.
 - Local source is a space-constrained materialization. Runtime/controller/profile hashes identify the compared inputs, but intended source commits are not an exact whole-tree checkout attestation. The earlier baseline CI does attest its full checkout.
 
-## Product change recommended
+## Product candidate under comparison
 
-Remove only `s23-C-5` and `s23-E-2` from fresh reviewed23 authoring. Initial population40→38; all10 elites, exit defenders and distinct flank/crossfire roles remain. The two guards repeat low-road obstruction roles in the long middle escort stretch.
+The initial candidate omits `s23-C-5` and `s23-E-2` from fresh reviewed23 authoring. It is not a final recommendation: a later matched forward-escort policy reverses its pacing advantage, as recorded below. Initial population40→38; all10 elites, exit defenders and distinct flank/crossfire roles remain. The two guards repeat low-road obstruction roles in the long middle escort stretch.
 
 No terrain, positions of retained units, HP, attack, NPC stats, escort speed/budget, activation limits, population caps, dialogue, physical rescue proof or victory conditions change. Old saved40-enemy battles retain their exact state when continued. The raw authoring project remains unchanged; the runtime author filters all four exact ID-reference locations (units, encounter membership, and design group IDs/members), so no dangling required-unit reference remains. The adjustment only affects fresh reviewed23 launches and records a pacing revision.
 
@@ -73,7 +73,7 @@ Both original and two-guard candidate were rerun with identical entry and contro
 
 Both runs pass actual victory→rest→export→reload and single settlement. All17 story row IDs still match, and external-write/recovery audits remain empty. The candidate retains real convoy pressure; its NPC damage is higher in this paired policy, illustrating why count reductions and action sequence should not be treated as linearly equivalent.
 
-The candidate makes6 closer approaches;5 find a shot and1 still defends. The original makes14 approaches;3 find shots. The fixed stand-off was a real limited input-policy issue, but correcting it does not turn this into a sub20-round chapter. The two-guard benefit persists under both tested policies (33→29 and33→28). This supports the small redundant-guard adjustment, not an optimal-strategy or human-fun claim.
+The candidate makes6 closer approaches;5 find a shot and1 still defends. The original makes14 approaches;3 find shots. The fixed stand-off was a real limited input-policy issue, but correcting it does not turn this into a sub20-round chapter. The two-guard benefit persisted under these first two policies (33→29 and33→28), but not under the later forward-escort policy below. These earlier results alone do not justify final adoption, an optimal-strategy claim or human-fun approval.
 
 The final paired raw-result SHA256 values are `2f62fee34ab5db56e8628324d5aa96f772b9a1ae52cd95e13384f232a6af940b` (original) and `d71314b242d216ea8608b8864b7e4188d9890780052fea7eb9a8ed0e6bef8d31` (two-guard candidate). Raw native profiles/results are retained separately and are not embedded in this public code/report change.
 
@@ -104,6 +104,31 @@ A bounded visible-cluster controller then considered M04 only with at least two 
 Both won, reached rest and reloaded with one settlement,17 equal story rows, and empty external-write/recovery audits. Candidate M04 shots actually dealt406,395,517 and468 HP damage to two or three enemies each without friendly damage. Nevertheless the overall30 rounds is slower than the separately tested closer-angle policy's28 rounds. Do not mix these policies when estimating the product effect: this matched pair is33→30. The cluster policy is not adopted as an improvement. Artifact13306133664 ZIP SHA256 is `6c6f8ceb22f7e3b472093301ea2e9cf344673c29517b8748a9519a4b11fb2dc0`.
 
 The28-round run's dialogue rows occur only atR1,4,5,28. R5–25 contain3–4 shots per round. R26 has2 shots;R27 has no shot and four defends while the escort travels;R28 completes. The long middle is combat rather than a required narrative reading duration. Seven shots at A-0/A-1 also include the knight pursuing rear enemies fromx1511 tox436 while the carrier's round-startx moves2264→2980. This is an input-policy inefficiency, not proof that those enemies should be removed.
+
+## Forward-escort policy reverses the two-guard result
+
+After escort activation, a bounded policy stops pursuing enemies already550px behind the carrier. It does not remove, freeze or stop those enemies from attacking. The original closer-angle policy otherwise remains intact; it does not include the rejected M04 preference.
+
+[CI41799550364](https://github.com/sys8994/honro/actions/runs/41799550364), commit `1198186dcb1594905ca0aeaa14e5b5ab6f4a05d0`, compared identical profile hash `d33ef246b3d5bd29819c91d88af109b49c9662e9a9c9b179561e44c6e4bca6c8` and controller hash `3c6bca2831652de4324da654c08b4eff4fa360442167d3834e82654905a4a1c3`.
+
+| Measure | Original40 | Remove two38 |
+| --- | ---: | ---: |
+| Winning round | 26 | 30 |
+| Shots | 87 | 95 |
+| Defends | 13 | 21 |
+| Post-start defends recording actual blocked=true | 5 | 17 |
+| NPC HP damage | 124 | 84 |
+| Hero HP damage, all sources | 2587 | 3048.9 |
+| Hero HP damage, enemy sources only | 2536 | 2868 |
+| Remaining enemies | 13 | 14 |
+
+Both won, reached rest and reloaded with one settlement and17 observed story rows, without external writes or recoveries. HP damage does not include shield depletion or healing. Friendly-source damage accounts for the difference between all-source and enemy-source hero totals.
+
+The38-enemy candidate is ahead atR10 (carrierx3662 vs3150), but recordsx4549 atR13–15 and later finishes four rounds slower. The extra defends and shots are observations, not proof of a unique causal enemy or RNG explanation. The simple `blockingFoes` diagnostic uses distance to the carrier and is not identical to the product's current-plus-next-waypoint blocking predicate. Do not call it a complete blocker trace.
+
+This result withdraws the general pacing recommendation for removing both guards. The current best observed original is26 rounds under this specific policy, still above20. The next isolated comparison tests C5-only and E2-only39-enemy variants with this exact entry and input policy before any additional HP or roster reduction. E5 needs3/4 shots in the new pair and is already dead by candidateR12, so the earlier6-shot observations do not justify claiming it causes the subsequentR13–15 delay.
+
+Artifact13308030054 ZIP SHA256: `d1c31af938315e74e8e3897ca8940a2d17747ac03b7d7bec628b65784530b0eb`.
 
 ## Original public build browser observations
 
