@@ -1,0 +1,44 @@
+name: Compare Stage23 forward escort input policy
+on:
+  push:
+    branches: ['work/stage23-front-pacing-20261104']
+permissions:
+  contents: read
+jobs:
+  paired-native-analysis:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Install pinned existing dependencies
+        run: npm ci && npm ci --prefix game
+      - name: Compare exact entry profile under one input policy
+        run: |
+          set +e
+          mkdir -p _local/reports/stage23-front-base _local/reports/stage23-front-two
+          git show f85a108a29d27cc5488d69d42034d58ac7699c0d:shared/runtime/act23-v4-ch23-reviewed.js > shared/runtime/act23-v4-ch23-reviewed.js
+          HONRO_QA_SOURCE="$GITHUB_SHA controller with original f85a108a reviewed runtime" HONRO_QA_OUT=_local/reports/stage23-front-base node --expose-gc --max-old-space-size=2048 tests/stage23-front-natural.mjs > _local/reports/stage23-front-base/run.log 2>&1
+          baseline=$?
+          tail -1 _local/reports/stage23-front-base/run.log
+          git checkout -- shared/runtime/act23-v4-ch23-reviewed.js
+          HONRO_QA_ENTRY_PATH=_local/reports/stage23-front-base/initial.json HONRO_QA_OUT=_local/reports/stage23-front-two node --expose-gc --max-old-space-size=2048 tests/stage23-front-natural.mjs > _local/reports/stage23-front-two/run.log 2>&1
+          candidate=$?
+          tail -1 _local/reports/stage23-front-two/run.log
+          echo "baseline=$baseline candidate=$candidate"
+          test "$baseline" = 0 -a "$candidate" = 0
+      - name: Preserve approved synthetic game observations for analysis
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: stage23-front-native-analysis
+          path: |
+            _local/reports/stage23-front-base
+            _local/reports/stage23-front-two
+          if-no-files-found: error
+          retention-days: 14
