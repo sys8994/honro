@@ -1,0 +1,41 @@
+{
+  "source": "3985352a09ec5ca30e0472696f7fd9de98b4cc12",
+  "publishedAt": "2026-11-04T01:40:54Z",
+  "pagesRun": 41755465486,
+  "publicRun": 41755534056,
+  "publicArtifact": 13288526321,
+  "artifactZipSha256": "e259e1b47c978b20ab56940d5091d3827ed1eb538fc157f1d63ff8d04c340a7a",
+  "sourceManifestGitBlob": "3bade2e2fb60c3596dfc29a1b0df09423797a052",
+  "htmlSha256": "48508e7cbf43ad5985092a8fb62840fe9a9dabc7d5c7ac9ff49cf161809ee41a",
+  "manifestSha256": "b3138a7072649613475fdb46e7b13094ceea1350893aae35a2c9e81442c450ba",
+  "archive": "41755534056-public-results.tar.xz",
+  "archiveSha256": "fe1a0a06113daf7602656742609d6905a6cedf8fe8767493978d07d5ef31b849",
+  "archiveGitBlob": "ff773c5ab762ec801f4dedb3f297f01494b86f6d",
+  "members": [
+    {
+      "path": "published-hashes.json",
+      "bytes": 2054,
+      "sha256": "1b4aff87943e110f16910112d014493a809f0eed6daa1e30bb84c2fdddb15eca"
+    },
+    {
+      "path": "checkpoint-review/result.json",
+      "bytes": 65087,
+      "sha256": "7b4fab7bc8b8c7c94996323c7d96901f031b21eb9a977705d8b349b4658bde1b"
+    },
+    {
+      "path": "pursuit-continue/result.json",
+      "bytes": 3553,
+      "sha256": "4291d1bb46adde6af29898225c06733ae92375b2f14907c5dea1f7388e6c6009"
+    }
+  ],
+  "independentPixelReview": {
+    "images": 10,
+    "source": "3985352a09ec5ca30e0472696f7fd9de98b4cc12",
+    "artifact": 13288526321,
+    "result": "PC/portrait/landscape lookout preview and objective guide readable; aiming hides preview; landing hero/enemy/ground above HUD; second Continue is normal battle; no new readability issue observed. Existing cosmetic narrow rock/deck contact and lower U remain. Checkpoint scope only, no proof of long-range convoy cover."
+  },
+  "publicUrl": "https://sys8994.github.io/honro/HONRO.html",
+  "pagesEvidence": "https://github.com/sys8994/honro/actions/runs/41755465486",
+  "publicUiEvidence": "https://github.com/sys8994/honro/actions/runs/41755534056",
+  "sourceManifestUrl": "https://raw.githubusercontent.com/sys8994/honro/3985352a09ec5ca30e0472696f7fd9de98b4cc12/web/manifest.json"
+}
