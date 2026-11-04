@@ -32,12 +32,12 @@ jobs:
         run: |
           set -o pipefail
           mkdir -p "$HONRO_QA_OUT"
-          node --expose-gc --max-old-space-size=2048 tests/stage23-current-natural.mjs | tee "$HONRO_QA_OUT/run.log"
+          node --expose-gc --max-old-space-size=2048 tests/stage23-front-natural.mjs | tee "$HONRO_QA_OUT/run.log"
       - name: Verify scoped HUD and save contracts
         env:
           HONRO23_ENTRY: _local/reports/stage23-candidate-native/initial.json
           HONRO23_CHECKPOINT: _local/stage23-prior/checkpoint.json
-        run: node tests/stage23-objective-label-clearance.mjs && node tests/stage23-current-pacing-contract.mjs && node tests/act23-v4-reviewed23.mjs && node tests/objective-clarity.mjs
+        run: node tests/stage23-objective-label-clearance.mjs && node tests/stage23-original-roster-contract.mjs && node tests/act23-v4-reviewed23.mjs && node tests/objective-clarity.mjs
       - name: Verify this built product with actual browser controls
         run: |
           python -m http.server 8765 --bind 127.0.0.1 >/tmp/stage23-http.log 2>&1 &

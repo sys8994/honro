@@ -15,20 +15,8 @@ function observe(app,dt){const b=app.engine.b,q=mem(b),u=carrier(b),s=spec(b);q.
  if(safe(b))q.proof.safe={actor:u.id,point:{x:u.x,y:u.y},distance:q.proof.walk.distance};if(returnSafe(app))q.proof.gateRouteSafe=true;
 }
 const dialogue=(key,ids,when)=>({key,ids,when}),ids=(part,n)=>Array.from({length:n},(_,i)=>'A3.S23.'+part+'.0'+(i+1));
-// Fresh reviewed Stage23 only: remove two repeated low-road blockers from the
-// long loading-yard/bridge stretch. Keep every commander, crossfire position,
-// initial approach, exit guard, terrain, clue and escort rule unchanged.
-const PACING_REMOVED=['s23-C-5','s23-E-2'];
-function paceFresh(map){
- const state=map.initialState;if(state.honroReviewed23PacingRevision===1||state.honroEscortYardRoster!=='density40e10')return;
- const removed=PACING_REMOVED.filter(id=>map.units.some(u=>u.id===id&&u.team==='enemy'));if(removed.length!==PACING_REMOVED.length)return;
- const keep=id=>!removed.includes(id);map.units=map.units.filter(u=>keep(u.id));
- for(const cell of map.encounters)cell.unitIds=cell.unitIds.filter(keep);
- const plan=map.design?.act3?.encounterPlan;if(plan){plan.initial-=removed.length;for(const cell of plan.groups||[]){cell.unitIds=cell.unitIds.filter(keep);cell.members=cell.members.filter(u=>keep(u.id));}plan.scope+=' Reviewed Stage23 pacing: two repeated lower-road guards omitted; all distinct pressure roles retained.';}
- state.honroReviewed23PacingRevision=1;state.honroReviewed23PacingRemoved=removed;
-}
 R=F.register({stage:23,
- author(map){paceFresh(map);const u=map.units.find(u=>u.id==='act3-carrier'),p=map.markers.find(p=>p.id==='dispatch-bundle'),goods={x:u.x-70,y:u.y};p.x=u.x;p.y=u.y;
+ author(map){const u=map.units.find(u=>u.id==='act3-carrier'),p=map.markers.find(p=>p.id==='dispatch-bundle'),goods={x:u.x-70,y:u.y};p.x=u.x;p.y=u.y;
   map.initialState.honroReviewed23Spec={start:{x:u.x,y:u.y},goods,banner:{x:5500,y:4350},familyCrest:'family-three-petals'};
   map.initialState.honroV4MaterialEvidence=[{id:'v4.23.body-wrap',x:goods.x-55,y:goods.y},{id:'v4.23.household-metal',x:goods.x+55,y:goods.y}];
   map.terrains.push({id:'v4.23.wagon-cover',type:'solid',points:[{x:u.x-190,y:u.y-94},{x:u.x-95,y:u.y-94},{x:u.x-95,y:u.y},{x:u.x-190,y:u.y}],baseMaterial:'wood',breakable:true,layer:'terrain',properties:{hp:420,maxHp:420}});

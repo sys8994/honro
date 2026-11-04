@@ -10,9 +10,9 @@ Status: bounded native gameplay comparison and original-public-browser checkpoin
 - Production story must be enabled in the runtime harness. The legacy escort tests alone do not cover the shipping reviewed narrative. Current reviewed23 has zero reinforcement events, despite legacy author metadata listing14.
 - Local source is a space-constrained materialization. Runtime/controller/profile hashes identify the compared inputs, but intended source commits are not an exact whole-tree checkout attestation. The earlier baseline CI does attest its full checkout.
 
-## Product candidate under comparison
+## Final product scope: original40 roster and HUD clearance
 
-The initial candidate omits `s23-C-5` and `s23-E-2` from fresh reviewed23 authoring. It is not a final recommendation: a later matched forward-escort policy reverses its pacing advantage, as recorded below. Initial population40→38; all10 elites, exit defenders and distinct flank/crossfire roles remain. The two guards repeat low-road obstruction roles in the long middle escort stretch.
+All enemy-removal variants are rejected after the matched comparisons below. Preserve the original40-enemy reviewed runtime byte for byte and apply only the Stage23 HUD clearance fix. The rest of this section records the rejected two-guard experiment, not the final product. Initial population40→38; all10 elites, exit defenders and distinct flank/crossfire roles remain. The two guards repeat low-road obstruction roles in the long middle escort stretch.
 
 No terrain, positions of retained units, HP, attack, NPC stats, escort speed/budget, activation limits, population caps, dialogue, physical rescue proof or victory conditions change. Old saved40-enemy battles retain their exact state when continued. The raw authoring project remains unchanged; the runtime author filters all four exact ID-reference locations (units, encounter membership, and design group IDs/members), so no dangling required-unit reference remains. The adjustment only affects fresh reviewed23 launches and records a pacing revision.
 
@@ -130,6 +130,23 @@ This result withdraws the general pacing recommendation for removing both guards
 
 Artifact13308030054 ZIP SHA256: `d1c31af938315e74e8e3897ca8940a2d17747ac03b7d7bec628b65784530b0eb`.
 
+## Isolated guard omissions are also rejected
+
+[CI41801380456](https://github.com/sys8994/honro/actions/runs/41801380456) at `03bf72d56aa7036d669bf7db09bb8b1e20338e45` reused the exact original26-run entry and unchanged forward-escort controller above. It generated each diagnostic source from the hash-checked two-guard runtime by changing only the removal list to one ID. Each generated runtime is preserved in its artifact; these were not release builds.
+
+| Measure | Original40 | C5-only39 | E2-only39 |
+| --- | ---: | ---: | ---: |
+| Winning round | 26 | 27 | 26 |
+| Shots | 87 | 92 | 91 |
+| Defends | 13 | 11 | 9 |
+| NPC HP damage | 124 | 62 | 65 |
+| Hero HP damage, all sources | 2587 | 2788 | 2331 |
+| Remaining enemies | 13 | 13 | 13 |
+
+Both one-guard variants won and retained17 story rows and exact single settlement, but neither reduced the winning round and both roughly halved observed NPC HP pressure. Neither is adopted. Original40 is retained; no HP, count, placement, speed or victory-rule change is selected. Original26 remains above the20-round target, without an accepted exception. This is not a claim that every different strategy must take26 rounds.
+
+C5-only runtime SHA256: `f0b32a7f79f1e02f7e1b22ceb50219ca08771da9e284ebf89b169cf730ef3099`. E2-only: `aa5ab1d51bed7398c2dba975ca03c55840dfab692dc420482448454e133618d1`. Artifact13308147124 ZIP SHA256: `3825d0d17d3dfd19c695515a1787767de77864e504c25558c69c1ce46c961779`.
+
 ## Original public build browser observations
 
 After explicit approval of synthetic game screenshots/state in public Actions artifacts for14 days, [CI41793426811](https://github.com/sys8994/honro/actions/runs/41793426811) at `5d28c6388c0d2502bd7fd9346e07250bd185a1f6` passed Chromium UI checks against the original public Pages build. HTML SHA256 was `48508e7cbf43ad5985092a8fb62840fe9a9dabc7d5c7ac9ff49cf161809ee41a`. The source checkpoint came from the naturally earned originalR33 run, with earlier1–22 still a synthetic reward-ledger fixture.
@@ -138,10 +155,10 @@ Real settings/file import, Continue, keyboard/touch aim, walking to the exit, vi
 
 Screenshot inspection found the landscape secondary “화면 밖” label overlapping the “물건 살피기” button. The candidate moves only Stage23's secondary world tag around this visible button, preserves the main objective and direction arrow, and omits the secondary tag only when no clear slot exists. Other stages/custom stages are unchanged. Focused tests pass the actual landscape geometry, adjacent/custom stages, hidden/zero controls, canvas offsets/DPR, left fallback and no-space arrow behavior.
 
-The same-product candidate browser script additionally checks actual firing, equipment open/close, viewport rotation and painted-label clearance. The test's label boxes are converted from canvas-local to viewport coordinates before comparing DOM controls. This is a test correction, not a runtime change.
+The HUD-only candidate browser script checks equipment open/close, viewport rotation and painted-label clearance in addition to the original earnedR33 exit/settlement flow. Separate public-browser combat inspection is in progress; the exit script itself does not test firing. The test's label boxes are converted from canvas-local to viewport coordinates before comparing DOM controls. This is a test correction, not a runtime change.
 
 ## Limits before release acceptance
 
-The product candidate `6abd6389da2b224432b52bdc314fcaa48d345ccb` has not passed its full build/browser workflow. [CI41795471305](https://github.com/sys8994/honro/actions/runs/41795471305) stopped during normal `npm run build`, before native/browser steps, because the Stage31 release guard detected runtime changes after its previous actual Engine probes. No guard was weakened or bypassed. The formal Stage31 refresh procedure is prepared but its separate public-data approval is pending.
+The earlier two-guard product candidate `6abd6389da2b224432b52bdc314fcaa48d345ccb` did not pass its full build/browser workflow and is no longer the selected product. The new HUD-only candidate restores the original40 runtime, uses the forward-escort native policy, and continues the original earnedR33 save for final UI/settlement checks. Its normal build and browser checks have not yet run. [CI41795471305](https://github.com/sys8994/honro/actions/runs/41795471305) stopped during normal `npm run build`, before native/browser steps, because the Stage31 release guard detected runtime changes after its previous actual Engine probes. No guard was weakened or bypassed. The formal Stage31 refresh procedure is prepared but its separate public-data approval is pending.
 
 No candidate browser success, final Pages acceptance, full tactical natural clear, human fun approval or20-round completion is claimed. Master and Pages remain unchanged by this task. The original public-browser result cannot substitute for the candidate's build and UI acceptance.
