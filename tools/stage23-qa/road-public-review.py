@@ -12,7 +12,7 @@ import traceback
 from pathlib import Path
 
 BASE=Path('tools/stage23-qa/road-support-browser.py')
-assert hashlib.sha256(BASE.read_bytes()).hexdigest()=='eac4e883ecaae03d8f62cee011adcf08ea0275d0f6ade57ea629ae4d81844fd8'
+assert hashlib.sha256(BASE.read_bytes()).hexdigest()=='4a476df156432000cc4794f4aa158dce1fc7329d319a3e0fbdf17de4e540c90b'
 module=ast.parse(BASE.read_text(),str(BASE))
 # Reuse the reviewed read-only observation/planner and normal-input functions.
 # The first top-level try is its complete-play entry point; do not execute it.
