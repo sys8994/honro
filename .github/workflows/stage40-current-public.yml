@@ -59,15 +59,18 @@ jobs:
           export HONRO_EXPECT_HTML_SHA256="$(sha256sum HONRO.html | cut -d' ' -f1)"
           HONRO40_FIRST_CAST_ONLY=1 HONRO_CAPTURE_OUT="$OUT/first-cast" python tools/stage40-qa/browser-play.py > "$OUT/first-cast.log" 2>&1
           HONRO_CAPTURE_OUT="$OUT/return" python tools/stage40-qa/late-return-play.py > "$OUT/return.log" 2>&1
+          HONRO_GUIDE_DEFAULT_FRAME=1 HONRO_CAPTURE_OUT="$OUT/mobile-default" python tools/stage40-qa/guide-readability.py > "$OUT/mobile-default.log" 2>&1
           python - <<'PY'
           import json,os
           from pathlib import Path
           out=Path(os.environ['OUT'])
           start=json.loads((out/'first-cast/result.json').read_text())
           end=json.loads((out/'return/result.json').read_text())
+          mobile=json.loads((out/'mobile-default/results.json').read_text())
+          assert len(mobile)==2 and all(r['passed'] and r['defaultFrame'] and not r['errors'] for r in mobile)
           assert start['passed'] and not start['errors']
           assert end['functionalPassed'] and not end['errors'] and end['escort']['round']<=23
-          (out/'summary.json').write_text(json.dumps({'passed':True,'deployedReleaseSha':os.environ['HONRO_DEPLOYED_RELEASE_SHA'],'verifierSourceSha':os.environ['GITHUB_SHA'],'url':os.environ['HONRO_CAPTURE_URL'],'entryAndFirstCast':True,'normalSavedReturnRound':end['escort']['round'],'settlementAndReload':end['escort']['sameOriginalContextPostVictoryReload'],'scope':'Actual public UI first attack and exact normal saved return. Not a fresh public whole-stage R1 run or subjective user fun approval.'},indent=2))
+          (out/'summary.json').write_text(json.dumps({'passed':True,'deployedReleaseSha':os.environ['HONRO_DEPLOYED_RELEASE_SHA'],'verifierSourceSha':os.environ['GITHUB_SHA'],'url':os.environ['HONRO_CAPTURE_URL'],'entryAndFirstCast':True,'defaultMobileFramingCaptured':True,'normalSavedReturnRound':end['escort']['round'],'settlementAndReload':end['escort']['sameOriginalContextPostVictoryReload'],'scope':'Actual public UI first attack and exact normal saved return. Not a fresh public whole-stage R1 run or subjective user fun approval.'},indent=2))
           PY
       - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
         if: always()

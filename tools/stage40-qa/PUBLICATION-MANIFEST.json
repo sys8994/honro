@@ -1,5 +1,5 @@
 {
-  "status": "Unpublished final integration review. Withdraw unproven Stage40 cell/corridor changes, preserve exact current-master Stage40 behavior. Stage31-only candidate retains unchanged20R gate; Stage40 historical wholeR21 plus exact returnR23 and final-source partial regression remain distinct.",
+  "status": "Unpublished final-source QA passed. Stage31 full officialR12 and preservedStage40 exactR15-to-R22 regression with first cast/save/mobile checks. Historical wholeStage40 R21/R23 evidence remains distinct. Normal gated build and public deployment verification pending.",
   "base": "7d2655bc3f88a7b20fb2d6ea1bc4c611583e9a15",
   "source": "2ac7cc2a9f686413ee5028f67ee42ffcb10fade4",
   "branch": "work/stage40-finale/20261103",
@@ -882,6 +882,34 @@
       "tools/stage40-qa/records/41735690946-stage31-late-result.json.xz": {
         "sha256": "0337c4111eb115d95ed3f15fe344f3945e3e4c74a504110a3e04249620cf62f5",
         "decodedBytes": 121525
+      },
+      "tools/stage40-qa/records/41741783067-stage31-result.json.xz": {
+        "sha256": "f04e5cd53b6783b0c523de49e4800b443d47434a5ea7f75db9efc223f30d52b1",
+        "decodedBytes": 6229
+      },
+      "tools/stage40-qa/records/41741783067-stage31-package.json.xz": {
+        "sha256": "ca823eeb908d8cf6a48076c632c0d4f4f6094e550c5d960183a9c647d409da1e",
+        "decodedBytes": 400098
+      },
+      "tools/stage40-qa/records/41741783067-stage40-r15-result.json.xz": {
+        "sha256": "bd3e54d522a9fdcc887fa3e3a67ff325f66fe79695c8d8585cec1ccf3e805743",
+        "decodedBytes": 1332271
+      },
+      "tools/stage40-qa/records/41741783067-stage40-first-cast-result.json.xz": {
+        "sha256": "8f7d4622ebbc8cc61ad1127365d5e8896ef8b6701fa9d2e32174997aaa19bd12",
+        "decodedBytes": 181234
+      },
+      "tools/stage40-qa/records/41741783067-stage40-old-save-result.json.xz": {
+        "sha256": "f68c2e78f1342e047cb99d42c0aa7fdc09cd368ab54007a5dd0e0458b7d61643",
+        "decodedBytes": 14714
+      },
+      "tools/stage40-qa/records/41741783067-stage31-old-save-result.json.xz": {
+        "sha256": "6ec492d32005ad030cf7ddd00ae63b52da70a9af5496e1f1bfdb411d428f8cc6",
+        "decodedBytes": 12814
+      },
+      "tools/stage40-qa/records/41741783067-stage40-guide-results.json.xz": {
+        "sha256": "b7a668e0bd99b39e1e7e84951a761f57a9cadfcb2b7cd025e0a980ba99d609f4",
+        "decodedBytes": 40204
       }
     },
     "correctedStage31": {
@@ -909,6 +937,26 @@
     },
     "finalReviewRun": 41741783067,
     "finalReviewSource": "4d1681ebbbcdac0e51e4e93e4715ca7c3b613def",
-    "finalReviewStatus": "in_progress, full official31 and preserved40 partial regression, not a new whole40 run"
+    "finalReviewStatus": "success: exact-runtime official31 whole battle/boardingR12; preserved40 fresh first cast and exactR15 combatR19/returnR22/settlement/reload; no fresh final-source whole40 claim",
+    "finalHtmlSha256": "727e2cbab07143af7f39d0b93d1d10a4df861d63e0be1a72a1d6e69462b9bc1f",
+    "finalStage31PackageSha256": "ca823eeb908d8cf6a48076c632c0d4f4f6094e550c5d960183a9c647d409da1e",
+    "finalArtifacts": [
+      {
+        "stage": 31,
+        "id": 13282177305,
+        "bytes": 9928576,
+        "sha256": "8dc79cb3113e67c147c23cb09b53e412d419ef70223c35c9b366c638ec36aa88"
+      },
+      {
+        "stage": 40,
+        "id": 13282688307,
+        "bytes": 24981907,
+        "sha256": "27abb378c0441c06022aa0c8d2a8b5e1be7debe15f21d8f876f65e02093a665c"
+      }
+    ],
+    "oldSaveObservation": "Both exact saved poses/HP/growth preserved, physical candidates retained and target actually acted; neither target moved, so no actual retreat movement claim.",
+    "browserLocaleCaveat": "Four PC/mobile browser-locale cases retain imported Korean UI preference; not English localization acceptance.",
+    "releaseBuildRun": 41744244745,
+    "releaseBuildStatus": "in_progress, non-public review output only"
   }
 }
