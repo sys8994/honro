@@ -5,7 +5,7 @@ import {readFile,writeFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {appHarness,plain} from '../tools/act2-qa/stage17-gate-app-harness.mjs';
 const kind=process.env.HONRO_QA_PROBE_KIND||'original';
-assert(['original','elite-hp-90','carrier-budget-1000','escort-lookahead-180','command-post-clearance','late-front-merge','escort-close-130'].includes(kind));
+assert(['original','elite-hp-90','carrier-budget-1000','escort-lookahead-180','command-post-clearance','late-front-merge','escort-close-130','escort-road-300','escort-road-130'].includes(kind));
 const h=await appHarness({productionStory:true}),{g}=h;
 const entry=JSON.parse(await readFile(process.env.HONRO_QA_ENTRY_PATH,'utf8'));
 const old=JSON.parse(await readFile(process.env.HONRO23_CHECKPOINT,'utf8'));
@@ -24,7 +24,8 @@ for(const difficulty of ['story','normal']){
  assert.equal(b.enemyLimit,4);assert.equal(b.honroEvents.length,0);
  const npc=app.engine.unit('act3-carrier');assert.equal(npc.hp,1450);assert.equal(npc.walkSpeed,260);
  assert.equal(npc.maxMove,kind==='carrier-budget-1000'?1000:900);assert.equal(npc.moveLeft,npc.maxMove);
- if(kind!=='original')assert.equal(b.honroReviewed23PacingCandidate?.id,kind);
+ if(kind!=='original')assert.equal(b.honroReviewed23PacingCandidate?.id,kind==='escort-road-130'?'escort-close-130':kind);
+ if(kind.startsWith('escort-road-')){assert.equal(b.honroReviewed23PacingCandidate.roadContact,true);assert.equal(b.honroReviewed23PacingCandidate.variant,kind);}
  if(kind==='elite-hp-90')assert.equal(b.honroReviewed23PacingApplied?.id,kind);
  if(kind==='command-post-clearance'){const q=b.honroReviewed23PacingCandidate;assert.equal(q.version,1);assert.equal(q.closeRadius,130);assert.equal(q.posts.length,5);const ids=[];for(const post of q.posts){const leader=app.engine.unit(post.leader);assert(leader.side===1&&leader.honroAct3Elite);for(const id of post.members){const member=app.engine.unit(id);assert(member.side===1&&!member.honroAct3Elite);ids.push(id);}}assert.equal(ids.length,13);assert.equal(new Set(ids).size,13);}
  for(const u of units.filter(u=>u.side===1))assert.equal(u.maxHp,Math.round(u.combatBaseHp*g.HONRO_CORE.DIFFICULTIES[difficulty].hp));
@@ -93,6 +94,22 @@ if(kind==='escort-close-130'){
  b.units[1].x=-130;assert(blocked(b),'Actual close rear threats remain blocking');
  b.units[1].dead=true;assert(!blocked(b),'Dead actors never block');b.units[1].dead=false;
  b.honroReviewed23PacingCandidate.version=99;b.units[1].x=450;assert(blocked(b),'Unknown saved version conservatively retains original rule');
+}
+if(kind==='escort-road-300'||kind==='escort-road-130'){
+ const sandbox={HonroAct3V4ReviewedCore:{register(){return {memory:b=>b.reviewed||{}};}},HonroAct23V4:{mem:b=>b.root,current:()=>({id:'dock-mid'}),near:g.HonroAct23V4.near,alive:g.HonroAct23V4.alive},HONRO_CORE:g.HONRO_CORE};
+ vm.runInNewContext(await readFile('shared/runtime/act23-v4-ch23-reviewed.js','utf8'),sandbox);
+ const n={id:'act3-carrier',side:2,x:3600,y:5100,h:110,r:24,hp:1450,vx:0,vy:0},foe={id:'foe',side:1,x:3600,y:4950,h:98,r:25,hp:829,vx:0,vy:0,honroEncounterSupport:'sy-ground'};
+ const b={terrain:plain(entry.battle.terrain),units:[n,foe],root:{carrierStarted:true},honroMarkers:[{id:'route:dock-mid:0',x:3600,y:5100}]};
+ const blocked=sandbox.HonroAct23V4Chapter23Facts.blocked;
+ assert(g.HONRO_CORE.validTerrainContactPose(b.terrain,n));assert(g.HONRO_CORE.validTerrainContactPose(b.terrain,foe));
+ assert(blocked(b),'Old save still stops for the actual upper-platform enemy');
+ b.honroReviewed23PacingCandidate={id:kind==='escort-road-130'?'escort-close-130':kind,version:1,roadContact:true,variant:kind};
+ assert(!blocked(b),'Actual separate upper support and nonoverlapping bodies allow walking under fire, despite authored ground tag');
+ foe.y=5100;assert(blocked(b),'Foe really back on the road blocks immediately');foe.y=4950;
+ for(const [key,value] of [['airborne',true],['jumping',true],['vx',4],['vy',3],['platformDrop',{phase:'fall'}]]){const old=foe[key];foe[key]=value;assert(blocked(b),'Uncertain/nonstable support keeps blocking: '+key);if(old===undefined)delete foe[key];else foe[key]=old;}
+ n.y=4950;assert(blocked(b),'Carrier on the upper route does not receive a road exemption');n.y=5100;
+ n.h=170;assert(blocked(b),'Vertically overlapping body is not exempt');n.h=110;
+ b.honroReviewed23PacingCandidate.version=99;assert(blocked(b),'Unknown saved rule version retains original blocking');
 }
 const result={passed:true,kind,oldContinueExact:true,freshContinueExact:true,storyFresh:true,tacticalFresh:true,tacticalFullClear:false,initialEnemies:40,eliteEnemies:10,
  sourceRuntimeSha256:createHash('sha256').update(await readFile('shared/runtime/act23-v4-ch23-reviewed.js')).digest('hex'),

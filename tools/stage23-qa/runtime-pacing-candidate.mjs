@@ -5,8 +5,8 @@ import assert from 'node:assert/strict';
 import {readFile,writeFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 const [kind,output]=process.argv.slice(2);
-assert(['original','elite-hp-90','carrier-budget-1000','escort-lookahead-180','command-post-clearance','late-front-merge','escort-close-130'].includes(kind)&&output,
- 'Usage: node runtime-pacing-candidate.mjs original|elite-hp-90|carrier-budget-1000|escort-lookahead-180|command-post-clearance|late-front-merge|escort-close-130 OUTPUT');
+assert(['original','elite-hp-90','carrier-budget-1000','escort-lookahead-180','command-post-clearance','late-front-merge','escort-close-130','escort-road-300','escort-road-130'].includes(kind)&&output,
+ 'Usage: node runtime-pacing-candidate.mjs original|elite-hp-90|carrier-budget-1000|escort-lookahead-180|command-post-clearance|late-front-merge|escort-close-130|escort-road-300|escort-road-130 OUTPUT');
 const path='shared/runtime/act23-v4-ch23-reviewed.js';
 const original=await readFile(path,'utf8');
 assert.equal(createHash('sha256').update(original).digest('hex'),
@@ -46,6 +46,14 @@ if(kind==='elite-hp-90'){
  const prior="(nearFoes(b,u,300).length>0||p&&nearFoes(b,p,300).length>0)";
  assert.equal(result.split(prior).length,2);
  result=result.replace(prior,"(b.honroReviewed23PacingCandidate?.id==='escort-close-130'&&b.honroReviewed23PacingCandidate.version===1?nearFoes(b,u,130).length>0:"+prior+")");
+}else if(kind==='escort-road-300'||kind==='escort-road-130'){
+ const id=kind==='escort-road-130'?'escort-close-130':kind;
+ result=result.replace(author,author+`\n  // Fresh-only actual-support rule; ranged pressure/old saves/start and exit safety remain.\n  map.initialState.honroReviewed23PacingCandidate={id:${JSON.stringify(id)},version:1,roadContact:true,variant:${JSON.stringify(kind)}};`);
+ const helper=`function stableEscortSupport(b,u){\n if(!u||u.airborne||u.jumping||Math.abs(u.vx||0)>=3||Math.abs(u.vy||0)>=2||u.platformDrop&&u.platformDrop.phase!=='land'||!C.validTerrainContactPose(b.terrain,u))return null;\n return C.terrainSurface(b.terrain,u.x,u.y-.15,u.y+.15,Infinity)?.t.id||null;\n}\nfunction roadBlockingFoes(b,p,r){\n const foes=nearFoes(b,p,r),q=b.honroReviewed23PacingCandidate,n=carrier(b);\n if(q?.version!==1||q.roadContact!==true||!['escort-road-300','escort-close-130'].includes(q.id))return foes;\n if(!['sy-ground','sy-stone-bridge'].includes(stableEscortSupport(b,n)))return foes;\n return foes.filter(foe=>!(['sy-central-flank','sy-west-upper','sy-east-upper'].includes(stableEscortSupport(b,foe))&&foe.y<=n.y-n.h));\n}\n`;
+ result=result.replace('function blocked(b){',helper+'function blocked(b){');
+ const prior="(nearFoes(b,u,300).length>0||p&&nearFoes(b,p,300).length>0)";
+ assert.equal(result.split(prior).length,2);
+ result=result.replace(prior,"(b.honroReviewed23PacingCandidate?.id==='escort-close-130'&&b.honroReviewed23PacingCandidate.version===1?roadBlockingFoes(b,u,130).length>0:(roadBlockingFoes(b,u,300).length>0||p&&roadBlockingFoes(b,p,300).length>0))");
 }else if(kind==='late-front-merge'){
  const placements=[{id:'s23-F-0',x:7930},{id:'s23-F-1',x:8020},{id:'s23-F-2',x:8110},{id:'s23-F-5',x:8200}];
  result=result.replace(author,author+`\n  // Fresh authored placement only: combine the late ground fronts without deleting pressure.\n  const moved=${JSON.stringify(placements)},road=map.terrains.find(t=>t.id==='sy-ground').points;\n  for(const at of moved){const a=road.find((p,i)=>road[i+1]&&p.x<=at.x&&road[i+1].x>=at.x),i=road.indexOf(a),z=road[i+1];if(!a||!z)throw Error('No ground contour for '+at.id);at.y=a.y+(z.y-a.y)*(at.x-a.x)/(z.x-a.x);at.support='sy-ground';const target=map.units.find(v=>v.id===at.id);if(!target)throw Error('Missing late-front actor '+at.id);target.x=at.x;target.y=at.y;}\n  const group=map.design.act3.encounterPlan.groups.find(g=>g.id==='F-front');\n  for(const member of group.members){const at=moved.find(v=>v.id===member.id);if(at)Object.assign(member,at);}\n  group.purpose='후반 지상전위를 출구 굽이의 전위와 한 교전권으로 묶고, 기존 창고 어깨 사격조는 호송 중간에 남긴다.';\n  map.initialState.honroReviewed23PacingCandidate={id:'late-front-merge',version:1,placements:moved};`);
