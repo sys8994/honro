@@ -5,8 +5,8 @@ import assert from 'node:assert/strict';
 import {readFile,writeFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 const [kind,output]=process.argv.slice(2);
-assert(['original','elite-hp-90','carrier-budget-1000'].includes(kind)&&output,
- 'Usage: node runtime-pacing-candidate.mjs original|elite-hp-90|carrier-budget-1000 OUTPUT');
+assert(['original','elite-hp-90','carrier-budget-1000','escort-lookahead-180'].includes(kind)&&output,
+ 'Usage: node runtime-pacing-candidate.mjs original|elite-hp-90|carrier-budget-1000|escort-lookahead-180 OUTPUT');
 const path='shared/runtime/act23-v4-ch23-reviewed.js';
 const original=await readFile(path,'utf8');
 assert.equal(createHash('sha256').update(original).digest('hex'),
@@ -22,6 +22,11 @@ if(kind==='elite-hp-90'){
  result=result.replace(prepare,prepare.slice(0,-2)+code+'},');
 }else if(kind==='carrier-budget-1000'){
  result=result.replace(author,author+"\n  // Diagnostic fresh-entry-only candidate: speed/HP/blocking/victory unchanged.\n  u.stageOverrides={...u.stageOverrides,maxMove:1000,moveLeft:1000};\n  map.initialState.honroReviewed23PacingCandidate={id:'carrier-budget-1000',version:1};");
+ }else if(kind==='escort-lookahead-180'){
+ result=result.replace(author,author+"\n  // Diagnostic fresh-entry-only candidate: same near-carrier safety radius; shorter waypoint preview.\n  map.initialState.honroReviewed23PacingCandidate={id:'escort-lookahead-180',version:1};");
+ const prior="p&&nearFoes(b,p,300).length>0";
+ assert.equal(result.split(prior).length,2);
+ result=result.replace(prior,"p&&nearFoes(b,p,b.honroReviewed23PacingCandidate?.id==='escort-lookahead-180'?180:300).length>0");
 }
 await writeFile(output,result);
 console.log(JSON.stringify({kind,sourceRuntimeSha256:createHash('sha256').update(original).digest('hex'),candidateRuntimeSha256:createHash('sha256').update(result).digest('hex'),output,scope:'Generated source before fresh battle construction only; existing saved battles are not retuned. Unaccepted isolated candidate.'}));

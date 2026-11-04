@@ -277,3 +277,26 @@ Original production S04 scoring is retained. Original-product policies with and 
 2. Carrier per-turn movement allowance900→1000, preserving actual speed260, HP1450, blocking, physical route, dialogue and victory rules.
 
 Fresh story/normal construction and exact pre-candidate/new-save Continue checks precede each native probe. Full tactical play remains unverified. Candidate sources are generated only in an isolated diagnostic workspace after the unchanged original normal build/hash guard, then restored. **Neither candidate is normally built, browser-accepted, selected for release, merged or deployed by this diagnostic.** A selected runtime change would still require the formal Stage31 evidence refresh, normal build and matched actual-browser verification. The20-round target remains open, with no exception approved.
+
+### Independent-policy and small-product probe results
+
+CI41867498858 completed successfully. [Artifact13344315396](https://github.com/sys8994/honro/actions/runs/41867498858/artifacts/13344315396) has ZIP SHA256 `f06fbe442f5c68c4e8a59743607da781785d41cdd8467cecb5b28e1b465cc7b0`, size1,527,767 bytes and expiry2026-11-18. The invariant test, exact fixtures, normal original build/hash and all fresh/save/settlement contracts passed.
+
+| Policy/product | Rounds | Shots | Defends | NPC cumulative HP loss |
+| --- | ---: | ---: | ---: | ---: |
+| Independent estimate, original scoring, no added move | 26 | 87 | 13 | 124 |
+| Same, conditional20px move | 28 | 95 | 12 | 193.7 |
+| Selected no-added-move policy, four elite HP−10% | 27 | 93 | 10 | 64 |
+| Selected no-added-move policy, carrier budget1000 | 26 | 87 | 13 | 124 |
+
+The predeclared rule selected the no-added-move policy before the product probes. Its actual App inputs, shot angles/power, rounds, all208 damage events, dialogue and total frames matched the previous26-round baseline; only added diagnostic `plannedNet` records differed. Thus separating estimation from actual future randomness did not alter that observed baseline. It is still one fixture and not unaided human play.
+
+The20px policy made five actual19.98–20px movements. Four were still followed by defend; only R23 O04→F5 immediately became a shot. The HP candidate killed C0 atR5 instead ofR6 and E5 atR12 instead ofR13, but C3 diedR9 instead ofR8, mid-escort shots increased54→63, and mid completion movedR19→R21. Immediate local gains did not improve total pacing, and NPC pressure was reduced. Neither change is adopted.
+
+Carrier budget1000 was genuinely present at fresh entry, final state and each round refill. Round-start positions throughR25 and all208 damage events remained identical; only R26 start advanced fromx8323.25 tox8414.10, about90.85px. The additional budget shortened part of the final walking tail but not a round or the middle combat bottleneck. This candidate is also not adopted. Every run remains above20; none supplies release acceptance.
+
+### Next-waypoint early stopping hypothesis
+
+The full-browser action states allow a further distinction. Of10 defends with the actual blocked predicate true,2 had a living enemy inside the exact current-carrier test (vertical distance≤150 and weighted distance≤300). In the other8, that current-carrier test was false, so source logic identifies the next-waypoint test as the cause of the blocked predicate. DuringR24–27 the closest live enemies were about483–495px from the NPC. This does not prove that all those defends were unavoidable or that changing the predicate will save rounds.
+
+A fresh-entry-only diagnostic now tests next-waypoint detection radius300→180 while retaining the current-carrier300 safety radius. Enemy count, HP, attacks, placements, terrain, physical walking proof, mandatory dialogue, final safe/victory conditions and metadata-free old saves are preserved. The same independent/original-scoring/no-added-move policy must be used for baseline and candidate. Explicit fake radius-boundary fixtures check only logic; they are not natural-play evidence. No result, normal candidate build, browser pass or adoption is claimed before that comparison runs.
