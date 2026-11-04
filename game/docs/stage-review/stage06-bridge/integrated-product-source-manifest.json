@@ -1,0 +1,159 @@
+{
+  "source": "1741e67e83a9386cd502e45013e193839e9a7c20",
+  "files": [
+    {
+      "path": "tools/stage6-prototype/art-preview.mjs",
+      "gitBlob": "6970754202a981266c9c0724ce43f081c6fd7e1c",
+      "sha256": "2e497eec8741bc4767e39e52ed94e8e12779f41478a1d08ede8dba82b02e97ef",
+      "bytes": 7990
+    },
+    {
+      "path": "tools/stage6-prototype/author.mjs",
+      "gitBlob": "2e7395bbff73b09e5e64779bd42b4e9960c17f0e",
+      "sha256": "1c3f1f1825e39cabf653688ed779dcc42d80ce448e4e582173a8eb53cbb80870",
+      "bytes": 1792
+    },
+    {
+      "path": "tools/stage6-prototype/integrated-preview.mjs",
+      "gitBlob": "67826f7cf94a46e567ee184f7f27d1b24bec6a1e",
+      "sha256": "4063907473868b472456c87ca2e91b65e9bb66ebc8a8026dfe319af8e8825725",
+      "bytes": 1365
+    },
+    {
+      "path": "tools/stage6-prototype/broken-deck-edges.mjs",
+      "gitBlob": "683fe67e14e06cdd98b9c456d9d0caa3a5e990d3",
+      "sha256": "1917c02d729ee55002e92c4d7c246a499fde56c6b0ed329f479931d4d21a5ca2",
+      "bytes": 769
+    },
+    {
+      "path": "tools/stage6-prototype/connected-bridge.mjs",
+      "gitBlob": "ae05b2b639c92ef86a52db6e1b7e3116998a48de",
+      "sha256": "b1f5326db54e75537f3bd7b8732a551bf8f6c58146c750a1726a17653902f0f2",
+      "bytes": 715
+    },
+    {
+      "path": "tools/stage6-prototype/rock-deck.mjs",
+      "gitBlob": "4040ef1d8f623fabe12fc5023df65af8c08fb351",
+      "sha256": "0599fa1c978594c70a468c7fac11dedc1c34e2c68667fe9a7bd17b4504a859d0",
+      "bytes": 948
+    },
+    {
+      "path": "tools/stage6-prototype/rock-deck-small.mjs",
+      "gitBlob": "ba872649a995523f9f14eec8a42f58bd0ed4c5c2",
+      "sha256": "5201eafb9c64eae2cdef231cc1c0006e35166554c567df5bf2c38ec5f004817b",
+      "bytes": 521
+    },
+    {
+      "path": "tools/stage6-prototype/rock-deck-mixed.mjs",
+      "gitBlob": "8076bc7f8b876c806f0561452c7edab03aaa92ab",
+      "sha256": "38ddf851ce29c2c61976572aa49d5b21bda2762c160dd3f95a416b5d14a6e50d",
+      "bytes": 437
+    },
+    {
+      "path": "tools/stage6-prototype/contact-shadow-preview.mjs",
+      "gitBlob": "c0ed35ca468354b0fbfe9d5c5833a565ec29a51e",
+      "sha256": "52377896d06c43404a3c9eb4fb69574d0fa67192ed45b041ee6279f4baba04fc",
+      "bytes": 1099
+    },
+    {
+      "path": "tools/stage6-prototype/deck-fractures-preview.mjs",
+      "gitBlob": "7f06ba8a4516e7f43e06d6142f4f0293b90325f4",
+      "sha256": "bf7ce888b0081281b4e58e220a245c0d8759f3b11ff5a3294ee50266fd257b88",
+      "bytes": 1489
+    },
+    {
+      "path": "tools/stage6-prototype/art-study/terrain-connected-runtime.json",
+      "gitBlob": "f9c8fd0009123abe8ffcf89b139e046bd2389c4d",
+      "sha256": "07310435dce1ff7978cafdceaf59fe679e8698ac5f2cc45db49ff80f7dcdf0e5",
+      "bytes": 220104
+    },
+    {
+      "path": "tools/stage6-prototype/art-study/terrain-panorama4-runtime.json",
+      "gitBlob": "2541b03f374d5833ccbf4c96bab6f075e132c9d2",
+      "sha256": "e2b899eb440a22b3ce5878b7474487b53334c627cf46997886db156eeafa3e2d",
+      "bytes": 204229
+    },
+    {
+      "path": "tools/stage6-prototype/art-study/terrain-slope-runtime.json",
+      "gitBlob": "498437f99523284f1b26cff53aecd751dd711983",
+      "sha256": "c9c70d24f3de942a95bef7f4346db5602a232e9aadf3ade0dabf761e6408638d",
+      "bytes": 170289
+    },
+    {
+      "path": "tools/stage6-prototype/art-study/terrain-exposure-runtime.json",
+      "gitBlob": "e1b47106feec5eacdeb4f7f6122d452023324b73",
+      "sha256": "3e0796341ffdf001bdc898af91861f8b403feb2127c4d28bbf2d1d0ee5279f2b",
+      "bytes": 192886
+    },
+    {
+      "path": "tools/stage6-prototype/art-study/terrain-west-extended-runtime.json",
+      "gitBlob": "722f739f1859ca64b10dabcbb006db30e728271f",
+      "sha256": "0a980a1440c341bf244d25f703432924e648cfb817d6cacc44a0054e5fa91c6d",
+      "bytes": 164846
+    },
+    {
+      "path": "tools/stage6-prototype/art-study/terrain-lower-exposure-runtime.json",
+      "gitBlob": "2fc643f74d35d0a2101ec46d5f5036c953c38302",
+      "sha256": "25d97a0d3eafcd87c0538d3bca8089573627e31f67a3cd602da11bd179b0c92a",
+      "bytes": 170458
+    },
+    {
+      "path": "tools/stage6-prototype/art-study/terrain-east-exposure-runtime.json",
+      "gitBlob": "e5405a442a87ef94586308eaacae8c2ff375b632",
+      "sha256": "d3c58b4a605005b2c371c8b0a9445ea0e4858f9d9d3d5c1824f90c27bca798f9",
+      "bytes": 314343
+    },
+    {
+      "path": "tools/stage6-prototype/art-study/terrain-east-runtime.json",
+      "gitBlob": "b20a347ca85d826b4835901185404d1200ffac14",
+      "sha256": "0623aeca68f4bbf06f0437ea09e1387db5f7480c24d26276cd02becbbfef52ea",
+      "bytes": 221166
+    },
+    {
+      "path": "tools/stage6-prototype/art-study/continuous-runtime.json",
+      "gitBlob": "36b7a93b0f8d8b8f061fb199bcdd242a857b9061",
+      "sha256": "1090fc2e8b78216c98cdbaa5961234eb3b2f1984b0ec1b4a300dce20751e3fd0",
+      "bytes": 719842
+    },
+    {
+      "path": "tools/stage6-prototype/art-study/pier-runtime-preview.json",
+      "gitBlob": "05a3dc48411b4eecc83a4a641849acd2f6148b6e",
+      "sha256": "b917f315e24b372c8a913eb84370058f6d1b311aff3460475da8ef53fe9e69cf",
+      "bytes": 533547
+    },
+    {
+      "path": "tools/stage6-prototype/art-study/pier-west-five-runtime.json",
+      "gitBlob": "ff93c98a39ab3bbd7d6da7103405b1abd19fa684",
+      "sha256": "50892286394a0e100b1caf7d9d846b061f59a21ef60b7d6b218e6fe905c34ed7",
+      "bytes": 138219
+    },
+    {
+      "path": "tools/stage6-prototype/art-study/pier-east-five-runtime.json",
+      "gitBlob": "9b90a8b130ce614424dd795d545013dd601c411b",
+      "sha256": "f3eee02b63cea9d0b9d99b36f86a2a7f4a305d8995a06b879263f6f1abaa8dbd",
+      "bytes": 284677
+    },
+    {
+      "path": "tools/stage6-prototype/art-study/contact-wedge-runtime.json",
+      "gitBlob": "38c2b85e1fd104c6ee1bb794fe21bb281df8fe61",
+      "sha256": "65a2f5c361148393abb728c492239e151b124efb5d71e7df1a2fed6eb1aaec1f",
+      "bytes": 33865
+    },
+    {
+      "path": "shared/runtime/stage6-render-coverage-preview.js",
+      "gitBlob": "cfc6094fb1af9c7ff6d3fb57df734aad71209295",
+      "sha256": "a1ecc8fd131c9d7d673f45e1a96b0e931ca581f53ba1ec97b22101384818ae9c",
+      "bytes": 4994
+    },
+    {
+      "path": "shared/runtime/stage6-descent-view-preview.js",
+      "gitBlob": "5fa5ea96412da08ffff878f6d96a706fb6b363cf",
+      "sha256": "4da221ac847564977fd8e86926de74711f2413eb7dd26b3935cf14725b8c4fb4",
+      "bytes": 6715
+    }
+  ],
+  "runtimeHtmlSha256": "265ccddf6cc8d9b4bff4583eacdb4db728ab15395e4fa50d2b9276cb4b24e70f",
+  "workflowRun": 41721003509,
+  "artifactId": 13272312938,
+  "artifactZipSha256": "507191c0aa1544c4589c833d62e57c2fdde0cc0a3c211c71aea81a0490efb406"
+}

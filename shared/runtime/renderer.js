@@ -245,6 +245,7 @@
                 const actorFollow=!this.editorView&&!this.skillPreview&&!this.storyTween&&!this.goalFocus&&!speaking&&!focus&&!reviewing&&!b.projectiles?.length;
                 if(resized&&actorFollow){const limits=G.HonroBounds.zoomLimits(w);this.scale=Math.max(limits.min,G.HonroCamera.fitFollowScale(u,h,this.scale));}
                 let tx=u.x+(b.phase==='aim'?(u.facing||1)*Math.min(170,w/this.scale*.19):0),ty=G.HonroCamera.followY(u,h,this.scale),speed=4.2;
+                const s6=actorFollow&&G.HonroStage6DescentView?.follow(this,e,w,h,dt);if(s6){this.scale=s6.scale;tx=s6.x;ty=s6.y;speed=8;}
                 if(actorFollow){const safeX=G.HonroCamera.avoidHeaderX(u,tx,ty,w,h,this.scale,this._cameraHeader);if(resized&&safeX!==tx)this.x=safeX;tx=safeX;}
                 if(speaking){tx=speaking.x;ty=speaking.y-speaking.h*.8;speed=6.4;}
                 else if(b.projectiles?.length){const q=b.projectiles.find(q=>!q.child)||b.projectiles[0];tx=q.x;ty=q.y;speed=7.0;}

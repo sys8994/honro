@@ -1,0 +1,42 @@
+"""Synthetic revision-3 saved battle through real Chromium Continue. No user save."""
+import json,traceback,os,time
+from pathlib import Path
+from playwright.sync_api import sync_playwright
+out=Path('_local/reports/stage6-art-preview');r={'scope':'Synthetic older-revision battle based on the current fixture, not an imported real-user save','source':os.environ.get('GITHUB_SHA')}
+try:
+ profile=json.loads((out/'integrated-entry.json').read_text())['profile'];b=json.loads((out/'fixture-battle.json').read_text());b['honroCampaignMapRevision']=3;profile['honroBattle']=b
+ xp=profile['heroes']['archer']['xp'];b['heroes']['archer']['xp']=xp+17
+ with sync_playwright() as p:
+  browser=p.chromium.launch(headless=True,args=['--no-sandbox']);page=browser.new_page(viewport={'width':1440,'height':900});page.goto('http://127.0.0.1:8870/HONRO.html',wait_until='domcontentloaded');page.wait_for_function('window.HonroApp',timeout=60000)
+  # Normalize through real Stage6 entry, including its ordinary knight join.
+  # Title normalization alone precedes that join and is not the right baseline.
+  entry={**profile,'honroBattle':None};page.evaluate('(p)=>localStorage.setItem("honro-first-act-profile-1",JSON.stringify(p))',entry);page.reload(wait_until='domcontentloaded');page.wait_for_function('window.HonroApp',timeout=60000);page.evaluate('async()=>{await HONRO_APP_READY}')
+  page.get_by_role('button',name='여정 이어가기',exact=True).click();deadline=time.monotonic()+120
+  while time.monotonic()<deadline:
+   if page.evaluate('HonroApp.engine?.b?.honroStage===6&&HonroApp.canInput()'):break
+   nxt=page.locator('[data-action="dialogue-next"]:visible');enter=page.locator('[data-action="journey-enter"]:visible')
+   if nxt.count() and nxt.first.is_enabled():nxt.first.click()
+   elif page.evaluate('!!HonroApp.dialogue'):page.keyboard.press('Enter')
+   elif enter.count():enter.first.click()
+   page.wait_for_timeout(100)
+  page.wait_for_function('HonroApp.engine?.b?.honroStage===6&&HonroApp.canInput()',timeout=3000);r['baselineStage']=6
+  profile=page.evaluate('()=>structuredClone(HonroApp.profile)');before={k:profile.get(k) for k in ['equipment','cleared','loadouts']};before['ranks']=profile['heroes']['archer']['ranks'];before['statTraining']=profile['heroes']['archer'].get('statTraining');r['beforeNormalized']=before;profile['honroBattle']=b
+  # Never inject over a live battle: unload autosave would overwrite the
+  # test fixture. Close it first and seed a fresh isolated browser context.
+  page.close();page=browser.new_page(viewport={'width':1440,'height':900})
+  page.add_init_script('localStorage.setItem("honro-first-act-profile-1",'+json.dumps(json.dumps(profile))+');')
+  page.goto('http://127.0.0.1:8870/HONRO.html',wait_until='domcontentloaded');page.wait_for_function('window.HonroApp',timeout=60000);r['titleActions']=page.locator('.title-actions').inner_text();assert '새 지형에서 다시 걷기' in r['titleActions'],r;page.screenshot(path=str(out/'revision3-title.png'));page.locator('.title-actions button[data-action="continue"]:visible').first.click();page.wait_for_function('HonroApp.engine?.b?.honroStage===6',timeout=60000)
+  r['continue']=page.evaluate('''()=>{const a=HonroApp,p=a.profile,b=a.engine.b;return {stage:b.honroStage,revision:b.honroCampaignMapRevision,xp:p.heroes.archer.xp,equipment:p.equipment,cleared:p.cleared,loadouts:p.loadouts,ranks:p.heroes.archer.ranks,statTraining:p.heroes.archer.statTraining,round:b.round,x:a.engine.unit('p-archer').x};}''')
+  assert r['continue']['revision']==4 and r['continue']['round']==1 and r['continue']['xp']==xp+17,r
+  def ownership(eq):
+   # A displayed toast may update its read receipt. Ownership, allocation,
+   # run identity, choices and reward commitments must remain exact.
+   return {**eq,'rewardLedger':{k:{a:b for a,b in v.items() if a!='notified'} for k,v in eq['rewardLedger'].items()}}
+  r['equipmentNotificationChanges']=[k for k,v in before['equipment']['rewardLedger'].items() if v.get('notified')!=r['continue']['equipment']['rewardLedger'][k].get('notified')]
+  for key,value in before.items():
+   if key=='equipment':assert ownership(r['continue'][key])==ownership(value),key
+   else:assert r['continue'].get(key)==value,key
+  r['preservedGrowthAndLoadout']=True;page.screenshot(path=str(out/'revision3-to4-continue.png'));browser.close()
+except Exception:r['error']=traceback.format_exc()
+finally:(out/'integrated-save-boundary.json').write_text(json.dumps(r,ensure_ascii=False,indent=2));print(json.dumps(r,ensure_ascii=False))
+if r.get('error'):raise SystemExit(1)
