@@ -108,10 +108,11 @@ function draw(scene,e){
  // Parallel family steps need no remote hint while the current interaction is in view.
  if(farewell&&!scene.goalFocus){const t=targets[0],x=w/2+(t.x-scene.x)*z,y=h/2+(t.y-scene.y)*z;if(x>=0&&x<=w&&y>=0&&y<=h)return;}
  c.save();c.setTransform(d,0,0,d,0,0);c.font='600 12px sans-serif';c.textAlign='center';c.textBaseline='middle';
- let outside=0;
+ let outside=0;const labels=[];
  for(const t of targets){
   const x=w/2+(t.x-scene.x)*z,y=h/2+(t.y-scene.y)*z,visible=farewell?x>=0&&x<=w&&y>=0&&y<=h:x>30&&x<w-30&&y>top&&y<bottom;
-  if(!visible&&outside++>0)continue;
+  const crowWarning=e.b.honroStage===8&&t.id==='stage8-settled-crows-warning';
+  if(!visible&&!crowWarning&&outside++>0)continue;
   // Keep existing panel clearance elsewhere. The fresh iron ring has no HP
   // panel, so the arrow tip sits nine screen pixels above its real top edge.
   const lift=markerLift(e.b,t);
@@ -122,6 +123,11 @@ function draw(scene,e){
    else px=Math.max(width/2+8,mini.left-cv.left-width/2-10);
   }
   if(G.HonroStage6DescentView){const q=G.HonroStage6DescentView.avoidObjective(scene,e,px,py,width);px=q.px;py=q.py;}
+  // Only Stage8's pending crow hint gets an additional edge slot. Existing
+  // boss/objective labels keep their position; fit the added label around them.
+  if(crowWarning){const miniBox=mini?{x:mini.left-cv.left,y:mini.top-cv.top,w:mini.width,h:mini.height}:null,blocked=box=>[...labels,...(miniBox?[miniBox]:[])].some(r=>box.x<r.x+r.w+6&&box.x+box.w+6>r.x&&box.y<r.y+r.h+6&&box.y+box.h+6>r.y);
+   const original=py;for(const dy of [0,-42,42,-84,84]){const y=Math.max(top,Math.min(bottom,original+dy)),x=Math.max(width/2+6,Math.min(w-width/2-6,px));if(!blocked({x:x-width/2,y:y-33,w:width,h:20})){py=y;break;}}
+  }
   if(scene.goalFocus&&visible){
    const pulse=22+3*Math.sin(performance.now()*.008);
    c.strokeStyle='#f2d58e';c.globalAlpha=.85;c.lineWidth=2;c.beginPath();c.arc(x,y,pulse,0,Math.PI*2);c.stroke();c.globalAlpha=1;
@@ -139,11 +145,12 @@ function draw(scene,e){
   c.save();c.translate(px,py);c.rotate(direction);c.fillStyle='#e5c57e';
   c.beginPath();c.moveTo(-7,-8);c.lineTo(7,-8);c.lineTo(0,3);c.closePath();c.fill();c.restore();
   const lx=Math.max(width/2+6,Math.min(w-width/2-6,px));
+  labels.push({x:lx-width/2,y:py-33,w:width,h:20});
   c.fillStyle='#10242aee';c.fillRect(lx-width/2,py-33,width,20);
   c.fillStyle='#ecd398';c.fillText(label,lx,py-23,width-8);
  }
  c.restore();
 }
-function minimap(app,c,sx,sy){if(app.training)return;const s=state(app.engine.b,app.stage);c.save();c.strokeStyle='#ffe0a0';for(const t of s.targets)c.strokeRect(t.x*sx-3,t.y*sy-3,6,6);if(app.scene?.storyFrame?.camera.intent==='objective'){c.lineWidth=2;for(const box of app.scene.storyFrameReport?.boxes||[]){c.beginPath();c.arc((box.x+box.w/2)*sx,(box.y+box.h)*sy,7,0,Math.PI*2);c.stroke();}}c.restore();}
+function minimap(app,c,sx,sy){if(app.training)return;const s=state(app.engine.b,app.stage),crow=G.HonroStage8Bier?.pendingCrowWarning(app.engine.b);if(crow&&!s.targets.some(t=>t.id===crow.id))s.targets.push(crow);c.save();c.strokeStyle='#ffe0a0';for(const t of s.targets)c.strokeRect(t.x*sx-3,t.y*sy-3,6,6);if(app.scene?.storyFrame?.camera.intent==='objective'){c.lineWidth=2;for(const box of app.scene.storyFrameReport?.boxes||[]){c.beginPath();c.arc((box.x+box.w/2)*sx,(box.y+box.h)*sy,7,0,Math.PI*2);c.stroke();}}c.restore();}
 G.HonroObjectives={interactionTarget,state,failure,lines,entry,help,focus,refresh,draw,minimap,briefings,markerLift,settlement,updateSettlement};
 })(globalThis);
