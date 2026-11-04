@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import {hopApproach} from '../tools/stage23-qa/hop-approach.mjs';
+const C={SKILLS:{M11:{id:'M11',damage:100}}};
+const u={id:'p-mage',cls:'mage',side:0,x:0,y:1000,h:96,r:24,hp:100,moveLeft:1000,focus:100,loadout:['M11']},t={id:'foe',side:1,x:95,y:1000,h:98,r:25,hp:100},ally={id:'ally',side:0,x:45,y:1000,h:96,r:24,hp:100};
+const e={b:{units:[u,t,ally]},grounded:()=>true,jumpCost:()=>75,skillAllowed:()=>true,cooldownLeft:()=>0,manaCost:()=>1,projectileOrigin:()=>({x:40,y:940})};
+const before=JSON.stringify(e.b),p=hopApproach(C,e,u,t);assert.equal(p.kind,'near-friendly-obstruction');assert.equal(p.targetX,184);assert.equal(JSON.stringify(e.b),before);
+e.b.units=[u,t];assert.equal(hopApproach(C,e,u,t),null);
+t.y=850;assert.equal(hopApproach(C,e,u,t).kind,'near-upper-platform');
+t.y=839;assert.equal(hopApproach(C,e,u,t),null);t.y=850;t.x=191;assert.equal(hopApproach(C,e,u,t),null);
+t.x=95;u.moveLeft=300;assert.equal(hopApproach(C,e,u,t),null);u.moveLeft=1000;u.jumping=true;assert.equal(hopApproach(C,e,u,t),null);
+console.log(JSON.stringify({passed:true,scope:'Read-only eligibility/budget/range fixtures only; no jump, landing, firing or gameplay success is certified.'}));
