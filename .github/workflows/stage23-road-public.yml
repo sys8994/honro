@@ -1,0 +1,100 @@
+name: Verify published Stage23 road-support release
+on:
+  push:
+    branches: ['work/stage23-road-public-20261104']
+permissions:
+  contents: read
+  actions: read
+jobs:
+  public-review:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      GH_TOKEN: ${{ github.token }}
+      OUT: _local/reports/stage23-road-public
+      HONRO23_BROWSER_OUT: _local/reports/stage23-road-public
+      HONRO23_ENTRY_CHECKPOINT: _local/stage23-final/native/entry-checkpoint.json
+      HONRO23_FINAL_CHECKPOINT: _local/stage23-final/native/checkpoint.json
+      HONRO23_ENTRY_SHA256: 3e57dffbf845979a8e1720cfb40f34a3739110269923614a6f920ba501960594
+      HONRO23_PRODUCT_COMMIT: 3a9e76e0b3ecd88f7a65df734de241c16bb37a29
+      HONRO23_HTML_SHA256: 6b9d629c6c196e1246c8b9fd97235c5c997be993e562874fc77b70db90e384d2
+      HONRO23_RUNTIME_SHA256: c92112f31e18bb386adbe130b7f485e6bf359cd0f69655152a265520a13c6861
+      HONRO23_SOURCE_RUN: '41901497974'
+      HONRO23_DEPLOYED_SHA: ${{ github.sha }}
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          ref: ${{ github.sha }}
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /HONRO.html
+            /index.html
+            /web/manifest.json
+            /shared/runtime/act23-v4-ch23-reviewed.js
+            /tools/stage23-qa/road-support-browser.py
+            /tools/stage23-qa/road-support-planner.js
+            /tools/stage23-qa/road-public-review.py
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - name: Verify retained current publication before any public check
+        run: |
+          mkdir -p "$OUT"
+          python - <<'PY'
+          import json,subprocess,hashlib,os
+          from pathlib import Path
+          api=lambda path:json.loads(subprocess.check_output(['gh','api','repos/sys8994/honro/'+path]))
+          base='f85a108a29d27cc5488d69d42034d58ac7699c0d'
+          raw=subprocess.check_output(['curl','-fLsS','https://raw.githubusercontent.com/sys8994/honro/'+base+'/web/manifest.json'])
+          assert hashlib.sha1(b'blob '+str(len(raw)).encode()+b'\x00'+raw).hexdigest()=='3bade2e2fb60c3596dfc29a1b0df09423797a052'
+          old=json.loads(raw);new=json.loads(Path('web/manifest.json').read_text());records=[g for g in new['publishedGenerations'] if g['sourceSha']==base]
+          assert len(records)==1 and records[0]['files']==old['files']
+          old_tree=api('git/trees/'+base+'?recursive=1');new_tree=api('git/trees/'+os.environ['GITHUB_SHA']+'?recursive=1');assert not old_tree['truncated'] and not new_tree['truncated']
+          before={x['path']:x for x in old_tree['tree'] if x['type']=='blob'};after={x['path']:x for x in new_tree['tree'] if x['type']=='blob'}
+          for f in old['files']:
+            a=before[f['path']];b=after[f['path']];assert a['sha']==b['sha'] and a['size']==b['size']==f['bytes'],f['path']
+          Path(os.environ['OUT']+'/retained-current-publication.json').write_text(json.dumps({'passed':True,'source':base,'files':len(old['files']),'bytes':sum(f['bytes'] for f in old['files']),'scope':'Every currently published immutable asset is retained with exact Git blob identity and size; archived generation entries are preserved.'},indent=2))
+          PY
+      - name: Verify published bytes and retrieve only exact synthetic saves
+        run: |
+          mkdir -p "$OUT"
+          python - <<'PY'
+          import os,json,time,hashlib,urllib.request,subprocess,zipfile
+          from pathlib import Path
+          expected={p:hashlib.sha256(Path(p).read_bytes()).hexdigest() for p in ['HONRO.html','index.html','web/manifest.json']}
+          assert expected['HONRO.html']==os.environ['HONRO23_HTML_SHA256']
+          observations=[]
+          for attempt in range(45):
+            actual={}
+            for p in expected:
+              try:actual[p]=hashlib.sha256(urllib.request.urlopen('https://sys8994.github.io/honro/'+p+'?stage23='+os.environ['GITHUB_SHA']+'-'+str(attempt),timeout=40).read()).hexdigest()
+              except Exception as e:actual[p]={'error':str(e)}
+            observations.append(actual)
+            if actual==expected:break
+            time.sleep(10)
+          Path(os.environ['OUT']+'/published-hashes.json').write_text(json.dumps({'source':os.environ['GITHUB_SHA'],'expected':expected,'observations':observations,'passed':actual==expected},indent=2))
+          assert actual==expected,'Published bytes do not match reviewed release'
+          archive=Path(os.environ['RUNNER_TEMP'])/'stage23-final.zip'
+          with archive.open('wb') as f:subprocess.run(['gh','api','repos/sys8994/honro/actions/artifacts/13359573680/zip'],stdout=f,check=True)
+          assert hashlib.sha256(archive.read_bytes()).hexdigest()=='268d3f9fe15ff505178296a759b43459a59262830388f17e770e0dcdd4e3cb0d'
+          root=Path('_local/stage23-final');(root/'native').mkdir(parents=True)
+          with zipfile.ZipFile(archive) as z:
+            for name in ['native/entry-checkpoint.json','native/checkpoint.json']:
+              (root/name).write_bytes(z.read(name))
+          PY
+      - name: Install pinned real browser
+        run: |
+          python -m pip install playwright==1.51.0
+          python -m playwright install --with-deps chromium
+      - name: Actual public first combat, saved return, touch and HUD verification
+        run: |
+          set -euo pipefail
+          python -m py_compile tools/stage23-qa/road-public-review.py
+          python tools/stage23-qa/road-public-review.py > "$OUT/public-browser.log" 2>&1
+          tail -1 "$OUT/public-browser.log"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage23-road-public-${{ github.sha }}
+          path: _local/reports/stage23-road-public/
+          retention-days: 14
