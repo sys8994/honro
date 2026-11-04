@@ -1,0 +1,39 @@
+name: Measure Stage23 native AoE sensitivity only
+on:
+  push:
+    branches: ['work/stage23-aoe-sensitivity-20261104']
+permissions:
+  contents: read
+jobs:
+  native-analysis:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Install pinned existing dependencies
+        run: npm ci && npm ci --prefix game
+      - name: Capture real current candidate battle poses
+        env:
+          HONRO_QA_OUT: _local/reports/stage23-aoe-native
+          HONRO_QA_EXTRA_CHECKPOINT_ROUNDS: '13,18,26'
+        run: |
+          mkdir -p "$HONRO_QA_OUT"
+          set -o pipefail
+          node --expose-gc --max-old-space-size=2048 tests/stage23-current-natural.mjs | tee "$HONRO_QA_OUT/run.log"
+      - name: Measure full M04 and M11 effects on detached poses
+        env:
+          HONRO23_SHADOW_CHECKPOINTS: _local/reports/stage23-aoe-native/round-13.json,_local/reports/stage23-aoe-native/round-18.json,_local/reports/stage23-aoe-native/round-26.json
+          HONRO_QA_OUT: _local/reports/stage23-aoe-native/aoe-shadow.json
+        run: node --expose-gc --max-old-space-size=2048 tests/stage23-mage-aoe-shadow.mjs
+      - name: Preserve approved synthetic game observations for analysis
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: stage23-aoe-native-analysis
+          path: _local/reports/stage23-aoe-native
+          if-no-files-found: error
+          retention-days: 14
