@@ -9,7 +9,7 @@ import os
 import time
 import traceback
 from pathlib import Path
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeout
 
 OUT=Path('_local/reports/stage23-full-browser'); OUT.mkdir(parents=True,exist_ok=True)
 SOURCE=Path('_local/stage23-final/stage23-candidate-native/entry-checkpoint.json')
@@ -105,10 +105,29 @@ def plan(target=None,context_only=False):
     R['planningChecks']+=1
     return result
 
+def click_battle(locator):
+    # A new story/guide can appear between detached planning and a UI click.
+    # Never force through it: yield to ready(), which reads and confirms it.
+    before=state()
+    if not before['can']:return False
+    try:locator.click(timeout=1000)
+    except PlaywrightTimeout:
+        s=state()
+        changed=any(s.get(k)!=before.get(k) for k in ['shots','round','goal','selected']) or (s.get('active') or {}).get('id')!=(before.get('active') or {}).get('id')
+        if changed:
+            record('input-transition',round=s['round'],reason='UI state changed before click timeout; do not repeat',before=before,after=s)
+            return True
+        if s['dialogue'] or not s['can']:
+            record('input-deferred',round=s['round'],reason='Story or turn changed before UI click',dialogue=s['dialogue'])
+            return False
+        raise
+    return True
+
 def interact():
     s=state();q=page.locator('[data-context-interact="'+str(s['goal'])+'"]')
     if q.count() and q.is_visible() and q.is_enabled():
-        q.click();record('interact',round=s['round'],actor=s['active']['id'],goal=s['goal']);return True
+        if click_battle(q):
+            record('interact',round=s['round'],actor=s['active']['id'],goal=s['goal']);return True
     return False
 
 def road_advance(target_x,range_px=35):
@@ -118,7 +137,8 @@ def road_advance(target_x,range_px=35):
         if not s['can'] or terminal(s) or u['id']!=actor or u['move']<=8 or abs(target_x-u['x'])<=range_px:break
         ctx=plan(context_only=True)
         if u['y']<ctx['roadY']-160 and ctx['canDrop'] and page.locator('#drop').is_enabled():
-            page.locator('#drop').click();drops+=1
+            if not click_battle(page.locator('#drop')):break
+            drops+=1
         direction=1 if target_x>u['x'] else -1
         remaining=max(0,abs(target_x-u['x'])-range_px)
         ms=min(220,max(25,remaining/max(1,u['walkSpeed'])*1000))
@@ -127,7 +147,9 @@ def road_advance(target_x,range_px=35):
         else:stuck=0
         if stuck>=2 and after['active']['ground']:
             if ctx['nearBodies']:break
-            if page.locator('#jump').is_enabled():page.locator('#jump').click();jumps+=1;stuck=0
+            if page.locator('#jump').is_enabled():
+                if not click_battle(page.locator('#jump')):break
+                jumps+=1;stuck=0
             else:break
     last=state();record('move',round=first['round'],actor=actor,targetX=target_x,range=range_px,fromPose=first['active'],toPose=last['active'],jumps=jumps,drops=drops,input='touch' if mobile else 'keyboard')
 
@@ -156,13 +178,15 @@ def fire(planning):
         planning=plan(p['target']);p=planning['plan']
         if not p:return False
     s=state()
+    if not s['can'] or s['active']['id']!=p['actor']:return False
     if s['active']['facing']!=(-1 if p['angle']>90 else 1):return False
     button=page.locator('[data-action="combat-skill"][data-skill="'+p['skill']+'"]')
     if not button.count() or not button.is_enabled():return False
-    button.click();observed_angle=aim(p['angle'])
+    if not click_battle(button):return False
+    observed_angle=aim(p['angle'])
     if observed_angle is None:return False
     before=state()
-    if not before['can'] or not before['active']['ground']:return False
+    if not before['can'] or not before['active']['ground'] or before['active']['id']!=p['actor']:return False
     ms=max(20,p['chargeDuration']*p['power']*1000)
     if mobile:touch('#fire',0,0,ms)
     else:hold('Space',ms)
@@ -242,7 +266,8 @@ try:
                     if not ready():break
                     if fire(plan(threat['id'])):continue
                 s=state();ctx=plan(context_only=True)
-                page.locator('[data-action="defend"]').click();row=record('defend',round=s['round'],actor=s['active']['id'],goal=s['goal'],before=s,context=ctx,input='touch-button' if mobile else 'button');ready();row['afterResolution']=state();persist()
+                if not click_battle(page.locator('[data-action="defend"]')):continue
+                row=record('defend',round=s['round'],actor=s['active']['id'],goal=s['goal'],before=s,context=ctx,input='touch-button' if mobile else 'button');ready();row['afterResolution']=state();persist()
             ready();R['outcome']=snap('outcome');assert R['outcome']['phase']=='won','Full browser battle did not win'
             assert R['outcome']['npc']['hp']>0 and all(R['outcome']['done'].get(k) for k in ['dispatch-bundle','dock-mid','dock-exit'])
             R['summary']=summarize();R['round']=R['outcome']['round'];R['twentyTurnTargetMet']=R['round']<=20
