@@ -67,9 +67,12 @@ if(kind==='command-post-clearance'){
  b.honroReviewed23PacingCandidate={id:kind,version:1,closeRadius:130,posts:[{leader:'s23-C-0',members:['s23-C-1']}]};
  assert(blocked(b),'Living post keeps original range');
  b.units[2].hp=0;b.units[2].dead=true;assert(!blocked(b),'Actual post defeat relaxes only named distant members');
- b.units[1].x=100;b.honroMarkers[0].x=700;assert(blocked(b),'Close troop at actual porter still blocks independently of future waypoint');
+ b.units[1].x=130;b.honroMarkers[0].x=700;assert(blocked(b),'Exact130px actual-porter boundary still blocks independently of future waypoint');
+ b.units[1].x=130.01;assert(!blocked(b),'Just beyond130px can advance after the actual post defeat');
  b.units[1].x=450;b.honroMarkers[0].x=200;b.units[1].id='unlisted-support';assert(blocked(b),'Support not in explicit post list retains original blocking');
- b.units[1].id='s23-C-1';b.units.pop();assert(blocked(b),'Missing leader never unlocks the post');
+ b.units[1].id='s23-C-1';b.units[2].dead=false;assert(blocked(b),'HP0 without actual death never unlocks');
+ b.units[2].dead=true;b.units[2].side=0;assert(blocked(b),'Allegiance change is not the specified post defeat');
+ b.units.pop();assert(blocked(b),'Missing leader never unlocks the post');
 }
 const result={passed:true,kind,oldContinueExact:true,freshContinueExact:true,storyFresh:true,tacticalFresh:true,tacticalFullClear:false,initialEnemies:40,eliteEnemies:10,
  sourceRuntimeSha256:createHash('sha256').update(await readFile('shared/runtime/act23-v4-ch23-reviewed.js')).digest('hex'),
