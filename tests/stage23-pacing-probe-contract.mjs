@@ -40,7 +40,12 @@ for(const difficulty of ['story','normal']){
   }
   assert.deepEqual(observed,expected,'Only explicitly declared fresh stats/placements may differ');
  }
- if(kind==='late-front-merge'){for(const at of b.honroReviewed23PacingCandidate.placements){const u=app.engine.unit(at.id);assert(g.HONRO_CORE.validTerrainContactPose(b.terrain,u),'Moved unit has a legal actual terrain-contact pose: '+at.id);assert.equal(u.honroEncounterSupport,'sy-ground');for(const other of units.filter(v=>v.side===1&&v.id!==u.id))assert(Math.hypot(other.x-u.x,other.y-u.y)>=u.r+other.r,'Moved unit body overlaps another enemy: '+at.id);}}
+ if(kind==='late-front-merge'){
+  for(const key of ['honroEscortYardSpec','honroEscortYardActivation','honroEscortYardRoster','honroEscortYardPopulationCap','honroEncounterDensityActivation','honroAct3EncounterRevision']){
+   assert(Object.hasOwn(entry.battle,key),'Reference fixture missing activation field: '+key);
+   assert.deepEqual(plain(b[key]),entry.battle[key],'Late placement must not alter activation/roster metadata: '+key);
+  }
+  for(const at of b.honroReviewed23PacingCandidate.placements){const u=app.engine.unit(at.id);assert(g.HONRO_CORE.validTerrainContactPose(b.terrain,u),'Moved unit has a legal actual terrain-contact pose: '+at.id);assert.equal(u.honroEncounterSupport,'sy-ground');for(const other of units.filter(v=>v.side===1&&v.id!==u.id))assert(Math.hypot(other.x-u.x,other.y-u.y)>=u.r+other.r,'Moved unit body overlaps another enemy: '+at.id);}}
  // App export/Continue of the newly opted-in candidate must not apply HP twice.
  app.export();const saved=await h.exported(),resume=h.load(saved);resume.continue();
  assert.deepEqual(plain(resume.engine.b),saved.honroBattle,'Candidate Continue must remain exact');
