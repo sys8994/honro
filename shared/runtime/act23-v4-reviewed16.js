@@ -35,7 +35,7 @@ function allow(app,r){const b=app.engine.b,q=mem(b),a=physical(b),u=unit(b,'resi
  if(r.id===id('MID.04'))return recovered(b);
  if(r.id===id('MID.05'))return recovered(b)&&!!q.knock;
  if(witness.includes(r.id))return recovered(b)&&!!q.knock;
- if(r.id===id('MID.06'))return heard(b)&&!!q.trappedObserved;
+ if(r.id===id('MID.06')){const observer=api.actor(b,'담허');return heard(b)&&!!q.trappedObserved&&!!observer&&(q.trappedObserved.observer===observer.id||V.near(observer,b.honroV4Reviewed16.bellSource,650));}
  if(r.id===id('MID.07'))return heard(b)&&!!q.trappedObserved;
  if(r.id.startsWith(id('COMPLETE.')))return heard(b)&&spoken(b,'souls')&&!!q.exitObserved;
  if(r.id===id('JOURNAL.01'))return heard(b);
