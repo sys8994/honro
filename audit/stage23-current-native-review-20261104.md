@@ -1,6 +1,6 @@
 # Stage23 reviewed-v4 natural gameplay and pacing review
 
-Status: bounded native gameplay comparison and original-public-browser checkpoint review. Candidate release acceptance remains open; the20-round pacing target is not met or waived.
+Status: normal build, complete native expedition gameplay, focused contracts and same-product late-checkpoint browser checks passed on b1b1ce63. Release acceptance remains open: 26 rounds exceeds the 20-round pacing target, and no exception has been approved. Master and Pages are unchanged.
 
 ## Scope and provenance
 
@@ -12,7 +12,11 @@ Status: bounded native gameplay comparison and original-public-browser checkpoin
 
 ## Final product scope: original40 roster and HUD clearance
 
-All enemy-removal variants are rejected after the matched comparisons below. Preserve the original40-enemy reviewed runtime byte for byte and apply only the Stage23 HUD clearance fix. The rest of this section records the rejected two-guard experiment, not the final product. Initial population40→38; all10 elites, exit defenders and distinct flank/crossfire roles remain. The two guards repeat low-road obstruction roles in the long middle escort stretch.
+All enemy-removal variants are rejected after the matched comparisons below. The final product preserves the original 40-enemy reviewed runtime byte for byte and applies only the Stage23 HUD clearance fix in `shared/runtime/objectives.js`. No count, placement, HP, escort speed/budget, terrain, dialogue, rescue proof or victory-condition change is retained.
+
+### Historical two-guard experiment, rejected
+
+The following paragraphs describe the rejected experiment, not the final product. Initial population was 40→38; all 10 elites, exit defenders and distinct flank/crossfire roles remained. The two guards repeated low-road obstruction roles in the long middle escort stretch.
 
 No terrain, positions of retained units, HP, attack, NPC stats, escort speed/budget, activation limits, population caps, dialogue, physical rescue proof or victory conditions change. Old saved40-enemy battles retain their exact state when continued. The raw authoring project remains unchanged; the runtime author filters all four exact ID-reference locations (units, encounter membership, and design group IDs/members), so no dangling required-unit reference remains. The adjustment only affects fresh reviewed23 launches and records a pacing revision.
 
@@ -155,7 +159,7 @@ Real settings/file import, Continue, keyboard/touch aim, walking to the exit, vi
 
 Screenshot inspection found the landscape secondary “화면 밖” label overlapping the “물건 살피기” button. The candidate moves only Stage23's secondary world tag around this visible button, preserves the main objective and direction arrow, and omits the secondary tag only when no clear slot exists. Other stages/custom stages are unchanged. Focused tests pass the actual landscape geometry, adjacent/custom stages, hidden/zero controls, canvas offsets/DPR, left fallback and no-space arrow behavior.
 
-The HUD-only candidate browser script checks equipment open/close, viewport rotation and painted-label clearance in addition to the original earnedR33 exit/settlement flow. Separate public-browser combat inspection is in progress; the exit script itself does not test firing. The test's label boxes are converted from canvas-local to viewport coordinates before comparing DOM controls. This is a test correction, not a runtime change.
+The HUD-only candidate browser script checks equipment open/close, viewport rotation and painted-label clearance in addition to the original earnedR33 exit/settlement flow. Separate public-browser combat samples are documented below; the exit script itself does not test firing. The test's label boxes are converted from canvas-local to viewport coordinates before comparing DOM controls. This is a test correction, not a runtime change.
 
 ## Public browser combat samples and final focused contracts
 
@@ -171,8 +175,40 @@ These are two-round samples, not a full browser clear, real-device performance m
 
 [CI41805064338](https://github.com/sys8994/honro/actions/runs/41805064338), source `7e4d673e52e86740b05560aaa89e4cf2791a70c3`, passed original40 fresh construction, exact old40 Continue, tactical initial scaling, Stage23 reviewed narrative/physical rescue, scoped HUD clearance, and39 objective-clarity state-fixture checks. The first aggregate attempts exposed stale tests rather than Stage23 rules: Stage5 now calls its migrated actor-backed target 주박목; Stage10 now requires safe withdrawal after six protection turns. The fixtures were updated to assert those current conditions, including failure before the target is broken and no completion merely at six turns. No runtime rule or release guard was weakened.
 
-## Limits before release acceptance
+## Approved Stage31 refresh and final same-product verification
 
-The earlier two-guard product candidate `6abd6389da2b224432b52bdc314fcaa48d345ccb` did not pass its full build/browser workflow and is no longer the selected product. The new HUD-only candidate restores the original40 runtime, uses the forward-escort native policy, and continues the original earnedR33 save for final UI/settlement checks. Its normal build and browser checks have not yet run. [CI41795471305](https://github.com/sys8994/honro/actions/runs/41795471305) stopped during normal `npm run build`, before native/browser steps, because the Stage31 release guard detected runtime changes after its previous actual Engine probes. No guard was weakened or bypassed. The formal Stage31 refresh procedure is prepared but its separate public-data approval is pending.
+After explicit authorization for the test-only public artifacts and permanent result-summary commit, [CI41846264307](https://github.com/sys8994/honro/actions/runs/41846264307) performed the unchanged official Stage31 Engine probes → fresh normal UI battle/boarding → evidence attachment → normal build procedure. Its actual source checkout was `e853f16bf007181402a90b17b1db49a88932bb92`, separately recorded from the workflow commit. It won in 15 rounds with four heroes alive, no JavaScript errors, all four probe groups passed, and identical preview/final HTML and active files. No guard or product rule was weakened. Generated commit `b1b1ce63dfa08b111725f3b907088b70f280f17c` is a direct child of e853 and changes only `tools/stage31/production-package.json`. Artifact13334256728 is 8,233,266 bytes, retained for 14 days; ZIP SHA256 `0c8d2727e3e3cd256c986566dba3c039fc19e406d3c0cebfff51619130fec1b4`.
 
-No candidate browser success, final Pages acceptance, full tactical natural clear, human fun approval or20-round completion is claimed. Master and Pages remain unchanged by this task. The original public-browser result cannot substitute for the candidate's build and UI acceptance.
+[CI41850399757](https://github.com/sys8994/honro/actions/runs/41850399757) then passed all steps on that exact b1b1ce63 checkout:
+
+- Normal `npm run build` with the unchanged release guard.
+- Fresh original-40 expedition play from entry to actual win: 26 rounds, 87 shots, 13 defends, 13 enemies left, NPC HP1326/1450, four surviving heroes, 17 story rows. External-write/recovery audits remained empty. Rest, export and reload preserved one settlement, party XP31548 and combat budget12620.
+- Scoped HUD fixtures, original-40/save contracts, reviewed23 story/rescue rules and objective-clarity checks.
+- Actual Chromium settings/file import, Continue, equipment open/cancel, aim, movement, victory, rest and exact reward reload at 1440×900, 390×844 and 844×390. Mobile rotation worked. No JavaScript errors or horizontal overflow occurred. The served bytes equalled the normal built HTML: SHA256 `199a47f9180ecc106c26fcb174e99f84154ddae2f35bded2f2b41e01bdcc974b`.
+
+The fresh native run uses the same controller SHA256 `3c6bca2831652de4324da654c08b4eff4fa360442167d3834e82654905a4a1c3` and original reviewed runtime SHA256 `71e3b81904fe845b4cbc190e1e0be9be714421c75a146725075665e42b07773c` as the earlier 26-round baseline. Its profile hash is `204438ad279430421596adf7e072144f3392bc1d45a146dbc0a389fafbccca52`: recursive comparison found only the newly generated `equipment.runId` differs from the earlier entry, with gameplay fields unchanged. It is a fresh repeat, not a claim of byte-identical entry profiles.
+
+The browser uses the previously earned original-40 R33 checkpoint, not the new R26 final state. Therefore the browser result screen says 33 rounds while the new complete native play says 26; these are separate runs, not a regression or a claim of a 33-round fresh candidate playthrough. The exit browser checks do not fire weapons. Actual firing observations remain the two public-build samples above.
+
+Direct image review confirmed the normal turn banner disappears, the main objective/resources stay readable, and the landscape secondary target label is below the equipment button with an 8px gap (label y170–190, button y118–162). Portrait and desktop labels are also separate from the button/minimap. Allies can still overlap, and the landscape viewport shows less vertical terrain; these remain visible limitations, not additional proven input failures.
+
+Artifact13336315640 is 5,140,862 bytes, retained through 2026-11-18. ZIP SHA256 `b3e872f7ad33def4ab17849bc7ee89a8c99dddd2c85893c31499516533044363`. It contains both native and browser result JSON, input/event evidence, synthetic checkpoints and 17 screenshots. Useful screenshots under `stage23-candidate-browser/`: `desktop-aim-adjusted.png`, `portrait-aim-adjusted.png`, `landscape-aim-adjusted.png` and `landscape-arrival.png`.
+
+## Full native combat coverage versus visible samples
+
+The complete native run covers all combat/movement, but it does not establish subjective enjoyment. Segment figures below are cumulative HP loss (not shield loss or net HP), with NPC positions sampled at each round's beginning.
+
+| Rounds | Shots | Defends | NPC HP loss | Hero HP loss | Observed progression |
+| --- | ---: | ---: | ---: | ---: | --- |
+| 1–7 | 23 | 4 | 44 | 777 | Bundle/escort activation, NPC x2280→2796; B0 received six targeted shots and C0 five. |
+| 8–13 | 23 | 1 | 24 | 537 | Middle escort x2989→4245; small progress at R8–11, then forward movement; C4 received five targeted shots. |
+| 14–20 | 26 | 2 | 37 | 872 | x4245→5698; E0 received five targeted shots, F0 four. The mid-dock objective completed before R20. |
+| 21–26 | 15 | 6 | 19 | 401 | Exit escort x5854→8323 at R26 start, then x9060 at victory; three defends explicitly recorded actual blocking. |
+
+Story rows occurred at R1, R4, R5 and R26. Thus the R6–25 span is not explained by a large volume of dialogue. Repeated combat targets and escort movement contribute to the length, even while actual incoming damage and changing positions show it is not simply empty waiting. The strongest bounded visual observations are the R8–10 upper/lower firing choices and R19–21 continued enemy/NPC pressure above. Neither those two-round samples nor native damage totals prove that the entire 26-round experience is enjoyable.
+
+## Release status and remaining limits
+
+The technical build, save compatibility, fresh expedition completion and scoped HUD browser checks are passed. The original roster is preserved and no additional product weakening is selected. **This is not release acceptance:** 26 exceeds 20, no pacing exception is approved, and master/Pages have not been changed.
+
+Not verified: a full R1-to-win browser playthrough on this candidate, human enjoyment across all combat, real-device performance, a natural full tactical clear, every alternative tactical policy, or a real player's uninterrupted Chapters1–23 save chain. The entry is a synthetic legal reward-ledger fixture and browser firing samples use the previous public product, whose combat runtime is unchanged in this HUD-only candidate. No whole-browser, tactical, human-fun, 20-round or deployed-product pass is claimed.
