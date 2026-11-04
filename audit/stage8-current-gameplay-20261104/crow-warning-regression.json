@@ -1,0 +1,20 @@
+{
+  "reconstructed": true,
+  "status": "passed",
+  "completedAt": "2026-11-04T03:52:26.394Z",
+  "source": {
+    "shared/runtime/main.js": "57346a219fe8de6dd4aed397ea6aa94db5f5e844dbe833309a9df2e5084ced03",
+    "shared/runtime/rest-journey.js": "8af33d0a079a81786975e1ca0b107cba588599f2407d8a8d8e9a88c4cc386f83",
+    "shared/runtime/progression.js": "d0a3da6460c6a6f9cbc9160bdd4d46b24ccc0e8021855e3ab3fe597dee9e5c74"
+  },
+  "checks": [
+    "pending marker/HUD derives from authored slot without writes",
+    "boss and parallel warning information retained",
+    "normal export/Continue restores pending notice",
+    "blocked variant and spawn/cancel/death/win/legacy cleanup"
+  ],
+  "limits": [
+    "DOM/storage/rendering are doubles.",
+    "Terminal battle states and XP are explicit fixtures, not normal campaign or browser proof."
+  ]
+}

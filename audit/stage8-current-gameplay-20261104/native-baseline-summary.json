@@ -1,0 +1,3360 @@
+{
+  "sourceCommit": "f85a108a29d27cc5488d69d42034d58ac7699c0d",
+  "phase": "won",
+  "round": 18,
+  "stopReason": null,
+  "wallSeconds": 616.306533407,
+  "simulationSeconds": 522.7583333333333,
+  "frames": 62731,
+  "storyFrames": 0,
+  "attackPlanningMs": 428053.7258660001,
+  "initialEnemies": 39,
+  "totalEnemies": 44,
+  "remainingEnemies": 36,
+  "damageTaken": 1343,
+  "continues": [
+    {
+      "label": "first-seal",
+      "round": 2,
+      "frame": 3768,
+      "exact": true
+    }
+  ],
+  "scope": "Native actual App controls with DOM, render, clock doubles; fixed lawful reward fixture through Stage7; story/원정; not browser or continuous campaign; one completed seed",
+  "policy": "focused-modern-routefirst-flowall-meleeclose-noitems-appops",
+  "seed": 1228,
+  "externalWrites": 0,
+  "recoveries": 0,
+  "battleEndHeroes": [
+    {
+      "id": "p-archer",
+      "cls": "archer",
+      "x": 5696.959843325757,
+      "y": 4250,
+      "hp": 601,
+      "maxHp": 601,
+      "focus": 145,
+      "moveLeft": 1403,
+      "acted": false,
+      "dead": false
+    },
+    {
+      "id": "p-mage",
+      "cls": "mage",
+      "x": 4928.331439198699,
+      "y": 4798.634884556166,
+      "hp": 646,
+      "maxHp": 646,
+      "focus": 221,
+      "moveLeft": 1423,
+      "acted": false,
+      "dead": false
+    },
+    {
+      "id": "p-knight",
+      "cls": "knight",
+      "x": 6905.793079042088,
+      "y": 3646.933706402443,
+      "hp": 1272,
+      "maxHp": 1272,
+      "focus": 161,
+      "moveLeft": 1561,
+      "acted": false,
+      "dead": false
+    }
+  ],
+  "seals": [
+    {
+      "id": "bier-knot-0",
+      "hp": 0,
+      "broken": true
+    },
+    {
+      "id": "bier-knot-1",
+      "hp": 0,
+      "broken": true
+    }
+  ],
+  "boss": {
+    "id": "boss",
+    "x": 6281.881843818932,
+    "y": 4176.306340562961,
+    "hp": 0,
+    "dead": true,
+    "maxHp": 2082
+  },
+  "effects": [
+    {
+      "round": 1,
+      "frame": 7,
+      "op": "enemy-effect-state",
+      "owner": "s8-15",
+      "state": {}
+    },
+    {
+      "round": 2,
+      "frame": 3768,
+      "turn": 10,
+      "op": "enemy-effect-state",
+      "owner": "s8-15",
+      "state": {}
+    },
+    {
+      "round": 4,
+      "frame": 14774,
+      "turn": 36,
+      "op": "enemy-effect-state",
+      "owner": "s8-15",
+      "state": {
+        "cast": {
+          "version": 1,
+          "serial": 29,
+          "skill": "HWD02",
+          "target": "p-knight",
+          "origin": {
+            "x": 5868.048854777665,
+            "y": 4250
+          },
+          "angle": 35,
+          "power": 0.5,
+          "impact": {
+            "x": 6014.896608449045,
+            "y": 4208.6
+          },
+          "radius": 100,
+          "direction": 1,
+          "createdTeamEnd": 4,
+          "seen": false,
+          "offered": false,
+          "responded": false,
+          "wind": 6,
+          "sceneVersion": 82,
+          "offeredIds": [],
+          "respondedIds": []
+        },
+        "cooldown": 2
+      }
+    },
+    {
+      "round": 4,
+      "frame": 14775,
+      "turn": 36,
+      "op": "enemy-effect-state",
+      "owner": "s8-15",
+      "state": {
+        "cast": {
+          "version": 1,
+          "serial": 29,
+          "skill": "HWD02",
+          "target": "p-knight",
+          "origin": {
+            "x": 5868.048854777665,
+            "y": 4250
+          },
+          "angle": 35,
+          "power": 0.5,
+          "impact": {
+            "x": 6014.896608449045,
+            "y": 4208.6
+          },
+          "radius": 100,
+          "direction": 1,
+          "createdTeamEnd": 4,
+          "seen": true,
+          "offered": false,
+          "responded": false,
+          "wind": 6,
+          "sceneVersion": 82,
+          "offeredIds": [],
+          "respondedIds": []
+        },
+        "cooldown": 2
+      }
+    },
+    {
+      "round": 5,
+      "frame": 15090,
+      "turn": 40,
+      "op": "enemy-effect-state",
+      "owner": "s8-15",
+      "state": {
+        "cast": {
+          "version": 1,
+          "serial": 29,
+          "skill": "HWD02",
+          "target": "p-knight",
+          "origin": {
+            "x": 5868.048854777665,
+            "y": 4250
+          },
+          "angle": 35,
+          "power": 0.5,
+          "impact": {
+            "x": 6014.896608449045,
+            "y": 4208.6
+          },
+          "radius": 100,
+          "direction": 1,
+          "createdTeamEnd": 4,
+          "seen": true,
+          "offered": false,
+          "responded": false,
+          "wind": 6,
+          "sceneVersion": 82,
+          "offeredIds": [
+            "p-archer"
+          ],
+          "respondedIds": []
+        },
+        "cooldown": 2
+      }
+    },
+    {
+      "round": 5,
+      "frame": 16904,
+      "turn": 41,
+      "op": "enemy-effect-state",
+      "owner": "s8-15",
+      "state": {
+        "cast": {
+          "version": 1,
+          "serial": 29,
+          "skill": "HWD02",
+          "target": "p-knight",
+          "origin": {
+            "x": 5868.048854777665,
+            "y": 4250
+          },
+          "angle": 35,
+          "power": 0.5,
+          "impact": {
+            "x": 6014.896608449045,
+            "y": 4208.6
+          },
+          "radius": 100,
+          "direction": 1,
+          "createdTeamEnd": 4,
+          "seen": true,
+          "offered": false,
+          "responded": false,
+          "wind": 6,
+          "sceneVersion": 82,
+          "offeredIds": [
+            "p-archer"
+          ],
+          "respondedIds": [
+            "p-archer"
+          ]
+        },
+        "cooldown": 2
+      }
+    },
+    {
+      "round": 5,
+      "frame": 16905,
+      "turn": 41,
+      "op": "enemy-effect-state",
+      "owner": "s8-15",
+      "state": {
+        "cast": {
+          "version": 1,
+          "serial": 29,
+          "skill": "HWD02",
+          "target": "p-knight",
+          "origin": {
+            "x": 5868.048854777665,
+            "y": 4250
+          },
+          "angle": 35,
+          "power": 0.5,
+          "impact": {
+            "x": 6014.896608449045,
+            "y": 4208.6
+          },
+          "radius": 100,
+          "direction": 1,
+          "createdTeamEnd": 4,
+          "seen": true,
+          "offered": false,
+          "responded": false,
+          "wind": 6,
+          "sceneVersion": 82,
+          "offeredIds": [
+            "p-archer",
+            "p-mage"
+          ],
+          "respondedIds": [
+            "p-archer"
+          ]
+        },
+        "cooldown": 2
+      }
+    },
+    {
+      "round": 5,
+      "frame": 18430,
+      "turn": 42,
+      "op": "enemy-effect-state",
+      "owner": "s8-15",
+      "state": {
+        "cast": {
+          "version": 1,
+          "serial": 29,
+          "skill": "HWD02",
+          "target": "p-knight",
+          "origin": {
+            "x": 5868.048854777665,
+            "y": 4250
+          },
+          "angle": 35,
+          "power": 0.5,
+          "impact": {
+            "x": 6014.896608449045,
+            "y": 4208.6
+          },
+          "radius": 100,
+          "direction": 1,
+          "createdTeamEnd": 4,
+          "seen": true,
+          "offered": false,
+          "responded": false,
+          "wind": 6,
+          "sceneVersion": 82,
+          "offeredIds": [
+            "p-archer",
+            "p-mage"
+          ],
+          "respondedIds": [
+            "p-archer",
+            "p-mage"
+          ]
+        },
+        "cooldown": 2
+      }
+    },
+    {
+      "round": 5,
+      "frame": 18431,
+      "turn": 42,
+      "op": "enemy-effect-state",
+      "owner": "s8-15",
+      "state": {
+        "cast": {
+          "version": 1,
+          "serial": 29,
+          "skill": "HWD02",
+          "target": "p-knight",
+          "origin": {
+            "x": 5868.048854777665,
+            "y": 4250
+          },
+          "angle": 35,
+          "power": 0.5,
+          "impact": {
+            "x": 6014.896608449045,
+            "y": 4208.6
+          },
+          "radius": 100,
+          "direction": 1,
+          "createdTeamEnd": 4,
+          "seen": true,
+          "offered": true,
+          "responded": false,
+          "wind": 6,
+          "sceneVersion": 82,
+          "offeredIds": [
+            "p-archer",
+            "p-mage",
+            "p-knight"
+          ],
+          "respondedIds": [
+            "p-archer",
+            "p-mage"
+          ]
+        },
+        "cooldown": 2
+      }
+    },
+    {
+      "round": 5,
+      "frame": 19477,
+      "turn": 43,
+      "op": "enemy-effect-state",
+      "owner": "s8-15",
+      "state": {
+        "cast": {
+          "version": 1,
+          "serial": 29,
+          "skill": "HWD02",
+          "target": "p-knight",
+          "origin": {
+            "x": 5868.048854777665,
+            "y": 4250
+          },
+          "angle": 35,
+          "power": 0.5,
+          "impact": {
+            "x": 6014.896608449045,
+            "y": 4208.6
+          },
+          "radius": 100,
+          "direction": 1,
+          "createdTeamEnd": 4,
+          "seen": true,
+          "offered": true,
+          "responded": true,
+          "wind": 6,
+          "sceneVersion": 82,
+          "offeredIds": [
+            "p-archer",
+            "p-mage",
+            "p-knight"
+          ],
+          "respondedIds": [
+            "p-archer",
+            "p-mage",
+            "p-knight"
+          ]
+        },
+        "cooldown": 2
+      }
+    },
+    {
+      "round": 5,
+      "frame": 19609,
+      "turn": 45,
+      "op": "enemy-effect-state",
+      "owner": "s8-15",
+      "state": {
+        "cooldown": 2
+      }
+    },
+    {
+      "round": 5,
+      "frame": 19628,
+      "turn": 46,
+      "op": "enemy-effect-state",
+      "owner": "s8-15",
+      "state": {
+        "cooldown": 1
+      }
+    },
+    {
+      "round": 6,
+      "frame": 23385,
+      "turn": 56,
+      "op": "enemy-effect-state",
+      "owner": "s8-15",
+      "state": {
+        "cooldown": 0
+      }
+    }
+  ],
+  "effectDamage": [],
+  "enemyEffectOwnerActions": [
+    {
+      "round": 4,
+      "frame": 14785,
+      "id": "s8-15",
+      "x": 5868.048854777665,
+      "y": 4250
+    },
+    {
+      "round": 5,
+      "frame": 19628,
+      "id": "s8-15",
+      "x": 5868.048854777665,
+      "y": 4250
+    },
+    {
+      "round": 6,
+      "frame": 23385,
+      "id": "s8-15",
+      "x": 5868.048854777665,
+      "y": 4250
+    }
+  ],
+  "rounds": [
+    {
+      "round": 1,
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "x": 770,
+          "y": 4166.1,
+          "hp": 570,
+          "maxHp": 570,
+          "focus": 139,
+          "moveLeft": 1365,
+          "acted": false,
+          "dead": false
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "x": 880,
+          "y": 4158.4,
+          "hp": 613,
+          "maxHp": 613,
+          "focus": 212,
+          "moveLeft": 1386,
+          "acted": false,
+          "dead": false
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "x": 990,
+          "y": 4150.7,
+          "hp": 1207,
+          "maxHp": 1207,
+          "focus": 154,
+          "moveLeft": 1522,
+          "acted": false,
+          "dead": false
+        }
+      ],
+      "boss": {
+        "hp": 2082,
+        "x": 8290,
+        "y": 3000,
+        "dead": false
+      },
+      "seals": [
+        {
+          "id": "bier-knot-0",
+          "hp": 480,
+          "broken": false
+        },
+        {
+          "id": "bier-knot-1",
+          "hp": 480,
+          "broken": false
+        }
+      ],
+      "enemies": 37,
+      "playerFires": 3,
+      "defends": 0,
+      "clearRoad": [],
+      "bossDamage": 0,
+      "heroDamage": 165
+    },
+    {
+      "round": 2,
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "x": 2065.741179153555,
+          "y": 3854.3789611801726,
+          "hp": 466,
+          "maxHp": 570,
+          "focus": 139,
+          "moveLeft": 1365,
+          "acted": false,
+          "dead": false
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "x": 2212.576590492546,
+          "y": 3812.9195509197516,
+          "hp": 613,
+          "maxHp": 613,
+          "focus": 196.3928,
+          "moveLeft": 1386,
+          "acted": false,
+          "dead": false
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "x": 2406.685990012862,
+          "y": 3759.465120798971,
+          "hp": 1146,
+          "maxHp": 1207,
+          "focus": 149,
+          "moveLeft": 1522,
+          "acted": false,
+          "dead": false
+        }
+      ],
+      "boss": {
+        "hp": 2082,
+        "x": 8290,
+        "y": 3000,
+        "dead": false
+      },
+      "seals": [
+        {
+          "id": "bier-knot-0",
+          "hp": 0,
+          "broken": true
+        },
+        {
+          "id": "bier-knot-1",
+          "hp": 480,
+          "broken": false
+        }
+      ],
+      "enemies": 37,
+      "playerFires": 2,
+      "defends": 1,
+      "clearRoad": [],
+      "bossDamage": 0,
+      "heroDamage": 76
+    },
+    {
+      "round": 3,
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "x": 3426.889692920748,
+          "y": 3922.7243608599415,
+          "hp": 440,
+          "maxHp": 570,
+          "focus": 139,
+          "moveLeft": 1365,
+          "acted": false,
+          "dead": false
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "x": 3423.3314082073557,
+          "y": 3920.2843941993297,
+          "hp": 613,
+          "maxHp": 613,
+          "focus": 212,
+          "moveLeft": 1386,
+          "acted": false,
+          "dead": false
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "x": 3801.4497289506485,
+          "y": 4150.57989158026,
+          "hp": 1096,
+          "maxHp": 1207,
+          "focus": 144,
+          "moveLeft": 1522,
+          "acted": false,
+          "dead": false
+        }
+      ],
+      "boss": {
+        "hp": 2082,
+        "x": 8290,
+        "y": 3000,
+        "dead": false
+      },
+      "seals": [
+        {
+          "id": "bier-knot-0",
+          "hp": 0,
+          "broken": true
+        },
+        {
+          "id": "bier-knot-1",
+          "hp": 480,
+          "broken": false
+        }
+      ],
+      "enemies": 40,
+      "playerFires": 0,
+      "defends": 3,
+      "clearRoad": [],
+      "bossDamage": 0,
+      "heroDamage": 0
+    },
+    {
+      "round": 4,
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "x": 4425.641029012124,
+          "y": 4789.05982912404,
+          "hp": 570,
+          "maxHp": 570,
+          "focus": 139,
+          "moveLeft": 1365,
+          "acted": false,
+          "dead": false
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "x": 4444.677581177782,
+          "y": 4789.422430117672,
+          "hp": 613,
+          "maxHp": 613,
+          "focus": 212,
+          "moveLeft": 1386,
+          "acted": false,
+          "dead": false
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "x": 5040.918015989583,
+          "y": 4795.396723201172,
+          "hp": 1207,
+          "maxHp": 1207,
+          "focus": 154,
+          "moveLeft": 1522,
+          "acted": false,
+          "dead": false
+        }
+      ],
+      "boss": {
+        "hp": 2082,
+        "x": 8290,
+        "y": 3000,
+        "dead": false
+      },
+      "seals": [
+        {
+          "id": "bier-knot-0",
+          "hp": 0,
+          "broken": true
+        },
+        {
+          "id": "bier-knot-1",
+          "hp": 480,
+          "broken": false
+        }
+      ],
+      "enemies": 40,
+      "playerFires": 3,
+      "defends": 0,
+      "clearRoad": [],
+      "bossDamage": 0,
+      "heroDamage": 54
+    },
+    {
+      "round": 5,
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "x": 5678.788725750351,
+          "y": 4624.679193610721,
+          "hp": 570,
+          "maxHp": 570,
+          "focus": 139,
+          "moveLeft": 1365,
+          "acted": false,
+          "dead": false
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "x": 5705.152731064558,
+          "y": 4595.385854372714,
+          "hp": 613,
+          "maxHp": 613,
+          "focus": 196.3928,
+          "moveLeft": 1386,
+          "acted": false,
+          "dead": false
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "x": 6016.303945801419,
+          "y": 4250,
+          "hp": 1153,
+          "maxHp": 1207,
+          "focus": 154,
+          "moveLeft": 1522,
+          "acted": false,
+          "dead": false
+        }
+      ],
+      "boss": {
+        "hp": 2082,
+        "x": 8290,
+        "y": 3000,
+        "dead": false
+      },
+      "seals": [
+        {
+          "id": "bier-knot-0",
+          "hp": 0,
+          "broken": true
+        },
+        {
+          "id": "bier-knot-1",
+          "hp": 480,
+          "broken": false
+        }
+      ],
+      "enemies": 40,
+      "playerFires": 3,
+      "defends": 0,
+      "clearRoad": [],
+      "bossDamage": 0,
+      "heroDamage": 46
+    },
+    {
+      "round": 6,
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "x": 6502.262244269613,
+          "y": 3977.9639801573485,
+          "hp": 542,
+          "maxHp": 570,
+          "focus": 124,
+          "moveLeft": 1365,
+          "acted": false,
+          "dead": false
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "x": 6547.719484211912,
+          "y": 3937.0524642092796,
+          "hp": 595,
+          "maxHp": 613,
+          "focus": 180.7856,
+          "moveLeft": 1386,
+          "acted": false,
+          "dead": false
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "x": 7188.926613388915,
+          "y": 3363.0312053967414,
+          "hp": 1153,
+          "maxHp": 1207,
+          "focus": 149,
+          "moveLeft": 1522,
+          "acted": false,
+          "dead": false
+        }
+      ],
+      "boss": {
+        "hp": 2082,
+        "x": 8290,
+        "y": 3000,
+        "dead": false
+      },
+      "seals": [
+        {
+          "id": "bier-knot-0",
+          "hp": 0,
+          "broken": true
+        },
+        {
+          "id": "bier-knot-1",
+          "hp": 23,
+          "broken": false
+        }
+      ],
+      "enemies": 40,
+      "playerFires": 3,
+      "defends": 0,
+      "clearRoad": [
+        {
+          "round": 6,
+          "frame": 22051,
+          "turn": 51,
+          "op": "clear-bier-road",
+          "hero": "mage",
+          "from": {
+            "x": 6547.719484211912,
+            "y": 3937.0524642092796,
+            "moveLeft": 1386
+          },
+          "to": {
+            "x": 6224.970785430104,
+            "y": 4561.260225099463
+          },
+          "movementCost": 1379.5600000000916
+        }
+      ],
+      "bossDamage": 91,
+      "heroDamage": 87
+    },
+    {
+      "round": 7,
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "x": 7491.659783160483,
+          "y": 3066.809800384369,
+          "hp": 523,
+          "maxHp": 570,
+          "focus": 139,
+          "moveLeft": 1365,
+          "acted": false,
+          "dead": false
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "x": 6224.970785430104,
+          "y": 4561.260225099463,
+          "hp": 552,
+          "maxHp": 613,
+          "focus": 167.27839999999998,
+          "moveLeft": 1386,
+          "acted": false,
+          "dead": false
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "x": 6017.543381720372,
+          "y": 4250,
+          "hp": 1128,
+          "maxHp": 1207,
+          "focus": 154,
+          "moveLeft": 1522,
+          "acted": false,
+          "dead": false
+        }
+      ],
+      "boss": {
+        "hp": 1991,
+        "x": 8290,
+        "y": 3000,
+        "dead": false
+      },
+      "seals": [
+        {
+          "id": "bier-knot-0",
+          "hp": 0,
+          "broken": true
+        },
+        {
+          "id": "bier-knot-1",
+          "hp": 0,
+          "broken": true
+        }
+      ],
+      "enemies": 40,
+      "playerFires": 2,
+      "defends": 1,
+      "clearRoad": [
+        {
+          "round": 7,
+          "frame": 27126,
+          "turn": 62,
+          "op": "clear-bier-road",
+          "hero": "knight",
+          "from": {
+            "x": 6017.543381720372,
+            "y": 4250,
+            "moveLeft": 1522
+          },
+          "to": {
+            "x": 4758.501905786483,
+            "y": 4795.400036300695
+          },
+          "movementCost": 1515.8000000000275
+        }
+      ],
+      "bossDamage": 0,
+      "heroDamage": 64
+    },
+    {
+      "round": 8,
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "x": 6504.83849573272,
+          "y": 3975.645353840552,
+          "hp": 486,
+          "maxHp": 570,
+          "focus": 139,
+          "moveLeft": 1365,
+          "acted": false,
+          "dead": false
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "x": 6207.695070852596,
+          "y": 4243.074436232664,
+          "hp": 525,
+          "maxHp": 613,
+          "focus": 151.67119999999997,
+          "moveLeft": 1386,
+          "acted": false,
+          "dead": false
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "x": 4758.501905786483,
+          "y": 4795.400036300695,
+          "hp": 1176,
+          "maxHp": 1207,
+          "focus": 154,
+          "moveLeft": 1522,
+          "acted": false,
+          "dead": false
+        }
+      ],
+      "boss": {
+        "hp": 1991,
+        "x": 8290,
+        "y": 3000,
+        "dead": false
+      },
+      "seals": [
+        {
+          "id": "bier-knot-0",
+          "hp": 0,
+          "broken": true
+        },
+        {
+          "id": "bier-knot-1",
+          "hp": 0,
+          "broken": true
+        }
+      ],
+      "enemies": 39,
+      "playerFires": 3,
+      "defends": 0,
+      "clearRoad": [],
+      "bossDamage": 0,
+      "heroDamage": 82
+    },
+    {
+      "round": 9,
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "x": 7234.576541365365,
+          "y": 3313.24093511545,
+          "hp": 442,
+          "maxHp": 570,
+          "focus": 120,
+          "moveLeft": 1365,
+          "acted": false,
+          "dead": false
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "x": 7228.273191542994,
+          "y": 3320.115984107758,
+          "hp": 525,
+          "maxHp": 613,
+          "focus": 138.16399999999996,
+          "moveLeft": 1386,
+          "acted": false,
+          "dead": false
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "x": 5692.6146557685925,
+          "y": 4250,
+          "hp": 1138,
+          "maxHp": 1207,
+          "focus": 149,
+          "moveLeft": 1522,
+          "acted": false,
+          "dead": false
+        }
+      ],
+      "boss": {
+        "hp": 1991,
+        "x": 8290,
+        "y": 3000,
+        "dead": false
+      },
+      "seals": [
+        {
+          "id": "bier-knot-0",
+          "hp": 0,
+          "broken": true
+        },
+        {
+          "id": "bier-knot-1",
+          "hp": 0,
+          "broken": true
+        }
+      ],
+      "enemies": 39,
+      "playerFires": 3,
+      "defends": 0,
+      "clearRoad": [],
+      "bossDamage": 0,
+      "heroDamage": 81
+    },
+    {
+      "round": 10,
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "x": 7234.576541365365,
+          "y": 3313.24093511545,
+          "hp": 401,
+          "maxHp": 570,
+          "focus": 137,
+          "moveLeft": 1365,
+          "acted": false,
+          "dead": false
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "x": 7089.991856383175,
+          "y": 3470.9391147820716,
+          "hp": 525,
+          "maxHp": 613,
+          "focus": 158.65679999999995,
+          "moveLeft": 1386,
+          "acted": false,
+          "dead": false
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "x": 6910.332709062579,
+          "y": 3643.3252825400014,
+          "hp": 1098,
+          "maxHp": 1207,
+          "focus": 144,
+          "moveLeft": 1522,
+          "acted": false,
+          "dead": false
+        }
+      ],
+      "boss": {
+        "hp": 1991,
+        "x": 7958.4999999999945,
+        "y": 3000,
+        "dead": false
+      },
+      "seals": [
+        {
+          "id": "bier-knot-0",
+          "hp": 0,
+          "broken": true
+        },
+        {
+          "id": "bier-knot-1",
+          "hp": 0,
+          "broken": true
+        }
+      ],
+      "enemies": 39,
+      "playerFires": 3,
+      "defends": 0,
+      "clearRoad": [],
+      "bossDamage": 254,
+      "heroDamage": 76
+    },
+    {
+      "round": 11,
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "x": 7234.576541365365,
+          "y": 3313.24093511545,
+          "hp": 401,
+          "maxHp": 570,
+          "focus": 139,
+          "moveLeft": 1365,
+          "acted": false,
+          "dead": false
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "x": 7089.991856383175,
+          "y": 3470.9391147820716,
+          "hp": 525,
+          "maxHp": 613,
+          "focus": 145.14959999999994,
+          "moveLeft": 1386,
+          "acted": false,
+          "dead": false
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "x": 8025.47893500088,
+          "y": 3000,
+          "hp": 1022,
+          "maxHp": 1207,
+          "focus": 153,
+          "moveLeft": 1522,
+          "acted": false,
+          "dead": false
+        }
+      ],
+      "boss": {
+        "hp": 1737,
+        "x": 7781.290236735902,
+        "y": 3000,
+        "dead": false
+      },
+      "seals": [
+        {
+          "id": "bier-knot-0",
+          "hp": 0,
+          "broken": true
+        },
+        {
+          "id": "bier-knot-1",
+          "hp": 0,
+          "broken": true
+        }
+      ],
+      "enemies": 37,
+      "playerFires": 1,
+      "defends": 2,
+      "clearRoad": [
+        {
+          "round": 11,
+          "frame": 38944,
+          "turn": 100,
+          "op": "clear-bier-road",
+          "hero": "archer",
+          "from": {
+            "x": 7234.576541365365,
+            "y": 3313.24093511545,
+            "moveLeft": 1365
+          },
+          "to": {
+            "x": 6229.187169238446,
+            "y": 4223.731547685399
+          },
+          "movementCost": 1358.983333333471
+        },
+        {
+          "round": 11,
+          "frame": 39637,
+          "turn": 101,
+          "op": "clear-bier-road",
+          "hero": "mage",
+          "from": {
+            "x": 7089.991856383175,
+            "y": 3470.9391147820716,
+            "moveLeft": 1386
+          },
+          "to": {
+            "x": 6005.003353937439,
+            "y": 4250
+          },
+          "movementCost": 1379.2999999999392
+        }
+      ],
+      "bossDamage": 185,
+      "heroDamage": 79
+    },
+    {
+      "round": 12,
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "x": 6201.971441075391,
+          "y": 4248.225703032148,
+          "hp": 424,
+          "maxHp": 570,
+          "focus": 139,
+          "moveLeft": 1365,
+          "acted": false,
+          "dead": false
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "x": 6005.003353937439,
+          "y": 4250,
+          "hp": 550,
+          "maxHp": 613,
+          "focus": 190.64239999999992,
+          "moveLeft": 1386,
+          "acted": false,
+          "dead": false
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "x": 8026.138049370649,
+          "y": 3000,
+          "hp": 943,
+          "maxHp": 1207,
+          "focus": 154,
+          "moveLeft": 1522,
+          "acted": false,
+          "dead": false
+        }
+      ],
+      "boss": {
+        "hp": 1552,
+        "x": 7781.290236735902,
+        "y": 3000,
+        "dead": false
+      },
+      "seals": [
+        {
+          "id": "bier-knot-0",
+          "hp": 0,
+          "broken": true
+        },
+        {
+          "id": "bier-knot-1",
+          "hp": 0,
+          "broken": true
+        }
+      ],
+      "enemies": 37,
+      "playerFires": 2,
+      "defends": 1,
+      "clearRoad": [
+        {
+          "round": 12,
+          "frame": 42869,
+          "turn": 111,
+          "op": "clear-bier-road",
+          "hero": "mage",
+          "from": {
+            "x": 6005.003353937439,
+            "y": 4250,
+            "moveLeft": 1386
+          },
+          "to": {
+            "x": 4905.178989214841,
+            "y": 4798.193885508854
+          },
+          "movementCost": 1380.0800000001886
+        }
+      ],
+      "bossDamage": 299,
+      "heroDamage": 101
+    },
+    {
+      "round": 13,
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "x": 7210.316397337653,
+          "y": 3339.7014177875362,
+          "hp": 424,
+          "maxHp": 570,
+          "focus": 139,
+          "moveLeft": 1365,
+          "acted": false,
+          "dead": false
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "x": 4905.178989214841,
+          "y": 4798.193885508854,
+          "hp": 575,
+          "maxHp": 613,
+          "focus": 212,
+          "moveLeft": 1386,
+          "acted": false,
+          "dead": false
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "x": 8022.3434473718735,
+          "y": 3000,
+          "hp": 842,
+          "maxHp": 1207,
+          "focus": 154,
+          "moveLeft": 1522,
+          "acted": false,
+          "dead": false
+        }
+      ],
+      "boss": {
+        "hp": 1253,
+        "x": 7781.290236735902,
+        "y": 3000,
+        "dead": false
+      },
+      "seals": [
+        {
+          "id": "bier-knot-0",
+          "hp": 0,
+          "broken": true
+        },
+        {
+          "id": "bier-knot-1",
+          "hp": 0,
+          "broken": true
+        }
+      ],
+      "enemies": 37,
+      "playerFires": 2,
+      "defends": 1,
+      "clearRoad": [
+        {
+          "round": 13,
+          "frame": 44644,
+          "turn": 120,
+          "op": "clear-bier-road",
+          "hero": "archer",
+          "from": {
+            "x": 7210.316397337653,
+            "y": 3339.7014177875362,
+            "moveLeft": 1365
+          },
+          "to": {
+            "x": 6216.510375779701,
+            "y": 4235.140661798269
+          },
+          "movementCost": 1357.7270833334746
+        }
+      ],
+      "bossDamage": 0,
+      "heroDamage": 44
+    },
+    {
+      "round": 14,
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "x": 6209.940416533054,
+          "y": 4241.053625120251,
+          "hp": 447,
+          "maxHp": 570,
+          "focus": 139,
+          "moveLeft": 1365,
+          "acted": false,
+          "dead": false
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "x": 5696.0451636349135,
+          "y": 4250,
+          "hp": 575,
+          "maxHp": 613,
+          "focus": 212,
+          "moveLeft": 1386,
+          "acted": false,
+          "dead": false
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "x": 6852.033701354091,
+          "y": 3689.6655194364916,
+          "hp": 798,
+          "maxHp": 1207,
+          "focus": 154,
+          "moveLeft": 1522,
+          "acted": false,
+          "dead": false
+        }
+      ],
+      "boss": {
+        "hp": 1253,
+        "x": 7450.0153825486,
+        "y": 3092.4905140950295,
+        "dead": false
+      },
+      "seals": [
+        {
+          "id": "bier-knot-0",
+          "hp": 0,
+          "broken": true
+        },
+        {
+          "id": "bier-knot-1",
+          "hp": 0,
+          "broken": true
+        }
+      ],
+      "enemies": 36,
+      "playerFires": 3,
+      "defends": 0,
+      "clearRoad": [],
+      "bossDamage": 561,
+      "heroDamage": 102
+    },
+    {
+      "round": 15,
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "x": 7062.068716709384,
+          "y": 3501.394818286742,
+          "hp": 447,
+          "maxHp": 570,
+          "focus": 139,
+          "moveLeft": 1365,
+          "acted": false,
+          "dead": false
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "x": 6809.497129086784,
+          "y": 3723.4766409822996,
+          "hp": 545,
+          "maxHp": 613,
+          "focus": 212,
+          "moveLeft": 1386,
+          "acted": false,
+          "dead": false
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "x": 7531.024768755999,
+          "y": 3042.534725933801,
+          "hp": 726,
+          "maxHp": 1207,
+          "focus": 154,
+          "moveLeft": 1522,
+          "acted": false,
+          "dead": false
+        }
+      ],
+      "boss": {
+        "hp": 692,
+        "x": 7786.477260342584,
+        "y": 3000,
+        "dead": false
+      },
+      "seals": [
+        {
+          "id": "bier-knot-0",
+          "hp": 0,
+          "broken": true
+        },
+        {
+          "id": "bier-knot-1",
+          "hp": 0,
+          "broken": true
+        }
+      ],
+      "enemies": 36,
+      "playerFires": 3,
+      "defends": 0,
+      "clearRoad": [
+        {
+          "round": 15,
+          "frame": 54423,
+          "turn": 142,
+          "op": "clear-bier-road",
+          "hero": "knight",
+          "from": {
+            "x": 7531.024768755999,
+            "y": 3042.534725933801,
+            "moveLeft": 1522
+          },
+          "to": {
+            "x": 7977.843574947108,
+            "y": 3211.252487255754
+          },
+          "movementCost": 1514.4249999999997
+        }
+      ],
+      "bossDamage": 382,
+      "heroDamage": 228
+    },
+    {
+      "round": 16,
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "x": 7134.757896990449,
+          "y": 3422.1128983987896,
+          "hp": 339,
+          "maxHp": 570,
+          "focus": 139,
+          "moveLeft": 1365,
+          "acted": false,
+          "dead": false
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "x": 7134.759707892913,
+          "y": 3422.1109232516833,
+          "hp": 436,
+          "maxHp": 613,
+          "focus": 212,
+          "moveLeft": 1386,
+          "acted": false,
+          "dead": false
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "x": 7977.799177653825,
+          "y": 3211.3033817139085,
+          "hp": 715,
+          "maxHp": 1207,
+          "focus": 149,
+          "moveLeft": 1522,
+          "acted": false,
+          "dead": false
+        }
+      ],
+      "boss": {
+        "hp": 310,
+        "x": 7713.66917130089,
+        "y": 3000,
+        "dead": false
+      },
+      "seals": [
+        {
+          "id": "bier-knot-0",
+          "hp": 0,
+          "broken": true
+        },
+        {
+          "id": "bier-knot-1",
+          "hp": 0,
+          "broken": true
+        }
+      ],
+      "enemies": 38,
+      "playerFires": 2,
+      "defends": 1,
+      "clearRoad": [
+        {
+          "round": 16,
+          "frame": 56455,
+          "turn": 150,
+          "op": "clear-bier-road",
+          "hero": "archer",
+          "from": {
+            "x": 7134.757896990449,
+            "y": 3422.1128983987896,
+            "moveLeft": 1365
+          },
+          "to": {
+            "x": 6097.145317962777,
+            "y": 4250
+          },
+          "movementCost": 1357.3083333334646
+        },
+        {
+          "round": 16,
+          "frame": 57153,
+          "turn": 151,
+          "op": "clear-bier-road",
+          "hero": "mage",
+          "from": {
+            "x": 7134.759707892913,
+            "y": 3422.1109232516833,
+            "moveLeft": 1386
+          },
+          "to": {
+            "x": 6075.537997622262,
+            "y": 4250
+          },
+          "movementCost": 1380.4699999999157
+        }
+      ],
+      "bossDamage": 210,
+      "heroDamage": 58
+    },
+    {
+      "round": 17,
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "x": 6088.531305595867,
+          "y": 4250,
+          "hp": 362,
+          "maxHp": 570,
+          "focus": 139,
+          "moveLeft": 1365,
+          "acted": false,
+          "dead": false
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "x": 6055.048545000862,
+          "y": 4250,
+          "hp": 389,
+          "maxHp": 613,
+          "focus": 196.3928,
+          "moveLeft": 1386,
+          "acted": false,
+          "dead": false
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "x": 7977.7321201817,
+          "y": 3211.380252474636,
+          "hp": 704,
+          "maxHp": 1207,
+          "focus": 144,
+          "moveLeft": 1522,
+          "acted": false,
+          "dead": false
+        }
+      ],
+      "boss": {
+        "hp": 100,
+        "x": 7549.215603311473,
+        "y": 3031.3170446245913,
+        "dead": false
+      },
+      "seals": [
+        {
+          "id": "bier-knot-0",
+          "hp": 0,
+          "broken": true
+        },
+        {
+          "id": "bier-knot-1",
+          "hp": 0,
+          "broken": true
+        }
+      ],
+      "enemies": 37,
+      "playerFires": 0,
+      "defends": 3,
+      "clearRoad": [
+        {
+          "round": 17,
+          "frame": 59268,
+          "turn": 160,
+          "op": "clear-bier-road",
+          "hero": "archer",
+          "from": {
+            "x": 6088.531305595867,
+            "y": 4250,
+            "moveLeft": 1365
+          },
+          "to": {
+            "x": 4996.511992594921,
+            "y": 4799.9335617637125
+          },
+          "movementCost": 1358.8437500000418
+        },
+        {
+          "round": 17,
+          "frame": 60209,
+          "turn": 161,
+          "op": "clear-bier-road",
+          "hero": "mage",
+          "from": {
+            "x": 6055.048545000862,
+            "y": 4250,
+            "moveLeft": 1386
+          },
+          "to": {
+            "x": 4928.331439198699,
+            "y": 4798.634884556166
+          },
+          "movementCost": 1378.5200000001912
+        }
+      ],
+      "bossDamage": 0,
+      "heroDamage": 0
+    },
+    {
+      "round": 18,
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "x": 4996.511992594921,
+          "y": 4799.9335617637125,
+          "hp": 385,
+          "maxHp": 570,
+          "focus": 139,
+          "moveLeft": 1365,
+          "acted": false,
+          "dead": false
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "x": 4928.331439198699,
+          "y": 4798.634884556166,
+          "hp": 414,
+          "maxHp": 613,
+          "focus": 212,
+          "moveLeft": 1386,
+          "acted": false,
+          "dead": false
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "x": 6905.793079042088,
+          "y": 3646.933706402443,
+          "hp": 752,
+          "maxHp": 1207,
+          "focus": 154,
+          "moveLeft": 1522,
+          "acted": false,
+          "dead": false
+        }
+      ],
+      "boss": {
+        "hp": 100,
+        "x": 6281.881843818932,
+        "y": 4176.306340562961,
+        "dead": false
+      },
+      "seals": [
+        {
+          "id": "bier-knot-0",
+          "hp": 0,
+          "broken": true
+        },
+        {
+          "id": "bier-knot-1",
+          "hp": 0,
+          "broken": true
+        }
+      ],
+      "enemies": 37,
+      "playerFires": 1,
+      "defends": 0,
+      "clearRoad": [],
+      "bossDamage": 100,
+      "heroDamage": 0
+    }
+  ],
+  "births": [
+    {
+      "round": 2,
+      "frame": 4779,
+      "id": "event-14",
+      "source": "stage8-first-seal",
+      "x": 2960,
+      "y": 3777.818181818182,
+      "elite": false
+    },
+    {
+      "round": 2,
+      "frame": 4779,
+      "id": "event-15",
+      "source": "stage8-first-seal",
+      "x": 3060,
+      "y": 3801.4545454545455,
+      "elite": false
+    },
+    {
+      "round": 2,
+      "frame": 4779,
+      "id": "event-16",
+      "source": "stage8-first-seal",
+      "x": 3030,
+      "y": 3530,
+      "elite": false
+    },
+    {
+      "round": 15,
+      "frame": 52867,
+      "id": "event-131",
+      "source": "stage8-low-health",
+      "x": 8080,
+      "y": 3000,
+      "elite": false
+    },
+    {
+      "round": 15,
+      "frame": 52867,
+      "id": "event-132",
+      "source": "stage8-low-health",
+      "x": 8240,
+      "y": 2250,
+      "elite": false
+    }
+  ],
+  "waves": [
+    {
+      "source": "stage8-first-seal",
+      "ids": [
+        "event-14",
+        "event-15",
+        "event-16"
+      ],
+      "actions": [
+        {
+          "round": 2,
+          "frame": 7199,
+          "id": "event-15",
+          "x": 3357.610273137881,
+          "y": 3875.2184730088325
+        },
+        {
+          "round": 3,
+          "frame": 10822,
+          "id": "event-15",
+          "x": 3588.9602372418353,
+          "y": 3970
+        },
+        {
+          "round": 7,
+          "frame": 27667,
+          "id": "event-15",
+          "x": 3675.96023724183,
+          "y": 4093.5155912515406
+        },
+        {
+          "round": 13,
+          "frame": 47718,
+          "id": "event-15",
+          "x": 4167.883732361876,
+          "y": 4250
+        },
+        {
+          "round": 17,
+          "frame": 61329,
+          "id": "event-15",
+          "x": 4085.7170656952017,
+          "y": 4250
+        }
+      ],
+      "damage": []
+    },
+    {
+      "source": "stage8-low-health",
+      "ids": [
+        "event-131",
+        "event-132"
+      ],
+      "actions": [
+        {
+          "round": 15,
+          "frame": 55841,
+          "id": "event-132",
+          "x": 8240,
+          "y": 2250
+        },
+        {
+          "round": 17,
+          "frame": 61443,
+          "id": "event-131",
+          "x": 7588.934778693538,
+          "y": 3006.823553138985
+        },
+        {
+          "round": 17,
+          "frame": 61687,
+          "id": "event-132",
+          "x": 7975.7514953461705,
+          "y": 2372.529437251523
+        }
+      ],
+      "damage": [
+        {
+          "round": 15,
+          "frame": 55753,
+          "target": "p-archer",
+          "side": 0,
+          "owner": "event-132",
+          "amount": 18,
+          "remaining": 339,
+          "dead": false,
+          "skill": "HLN02",
+          "x": 7149.407617404637,
+          "y": 3406.134482412152
+        },
+        {
+          "round": 15,
+          "frame": 55753,
+          "target": "p-mage",
+          "side": 0,
+          "owner": "event-132",
+          "amount": 18,
+          "remaining": 436,
+          "dead": false,
+          "skill": "HLN02",
+          "x": 7149.416342727921,
+          "y": 3406.1249657223375
+        }
+      ]
+    }
+  ],
+  "navigation": {
+    "move": 46,
+    "jump": 34,
+    "land": 51,
+    "drop": 17,
+    "clear-bier-road": 11
+  },
+  "unmatchedLandings": [],
+  "notices": [
+    {
+      "round": 1,
+      "frame": 2900,
+      "text": "서쪽 창고 산개 2 · 까마귀 1 · 다음 행동 끝에 안전 확인"
+    },
+    {
+      "round": 1,
+      "frame": 2900,
+      "text": "서쪽 봉인 너머 나무길로 산개 한 쌍이 돌아오고, 위에서 까마귀가 엄호한다."
+    },
+    {
+      "round": 1,
+      "frame": 2900,
+      "text": "서쪽 창고 산개 2 · 까마귀 1 · 다음 행동 끝에 안전 확인"
+    },
+    {
+      "round": 2,
+      "frame": 3800,
+      "text": "서쪽 창고 산개 2 · 까마귀 1 · 다음 행동 끝에 안전 확인"
+    },
+    {
+      "round": 2,
+      "frame": 4778,
+      "text": "서쪽 봉인 너머 나무길로 산개 한 쌍이 돌아오고, 위에서 까마귀가 엄호한다."
+    },
+    {
+      "round": 6,
+      "frame": 20776,
+      "text": "상여 → 중앙 아래뜰 · 다음 행동 끝에 안전 확인"
+    },
+    {
+      "round": 6,
+      "frame": 22241,
+      "text": "상여 이동 보류 (들린 장승) · 다음 행동 끝에 안전 확인"
+    },
+    {
+      "round": 6,
+      "frame": 23228,
+      "text": "상여 이동 보류 (휘겸·들린 장승) · 다음 행동 끝에 안전 확인"
+    },
+    {
+      "round": 7,
+      "frame": 26240,
+      "text": "상여 이동 보류 (휘겸) · 다음 행동 끝에 안전 확인"
+    },
+    {
+      "round": 7,
+      "frame": 27203,
+      "text": "상여 이동 보류 (들린 장승) · 다음 행동 끝에 안전 확인"
+    },
+    {
+      "round": 10,
+      "frame": 35966,
+      "text": "상여 이동 보류 (들린 산개) · 다음 행동 끝에 안전 확인"
+    },
+    {
+      "round": 10,
+      "frame": 36327,
+      "text": "상여 이동 보류 (설오) · 다음 행동 끝에 안전 확인"
+    },
+    {
+      "round": 10,
+      "frame": 37257,
+      "text": "상여 이동 보류 (휘겸) · 다음 행동 끝에 안전 확인"
+    },
+    {
+      "round": 10,
+      "frame": 38332,
+      "text": "상여 이동 보류 (설오) · 다음 행동 끝에 안전 확인"
+    },
+    {
+      "round": 11,
+      "frame": 39021,
+      "text": "상여 이동 보류 (담허) · 다음 행동 끝에 안전 확인"
+    },
+    {
+      "round": 12,
+      "frame": 42946,
+      "text": "상여 이동 보류 (설오) · 다음 행동 끝에 안전 확인"
+    },
+    {
+      "round": 13,
+      "frame": 44721,
+      "text": "상여 이동 보류 (들린 산개) · 다음 행동 끝에 안전 확인"
+    },
+    {
+      "round": 13,
+      "frame": 47031,
+      "text": "상여 이동 보류 (휘겸) · 다음 행동 끝에 안전 확인"
+    },
+    {
+      "round": 14,
+      "frame": 48839,
+      "text": "상여 이동 보류 (설오) · 다음 행동 끝에 안전 확인"
+    },
+    {
+      "round": 14,
+      "frame": 50931,
+      "text": "상여 이동 보류 (설오) · 동쪽 상여터 안쪽 입구 산개 1 · 혼불 1 · 다음 행동 끝에 안전 확인"
+    },
+    {
+      "round": 14,
+      "frame": 50931,
+      "text": "동쪽 상여터 안쪽 입구에서 산개 한 마리와 혼불이 다가온다. 다음 행동에 그 입구를 살피세요."
+    },
+    {
+      "round": 14,
+      "frame": 50931,
+      "text": "상여 이동 보류 (설오) · 동쪽 상여터 안쪽 입구 산개 1 · 혼불 1 · 다음 행동 끝에 안전 확인"
+    },
+    {
+      "round": 14,
+      "frame": 51044,
+      "text": "상여 이동 보류 (휘겸) · 동쪽 상여터 안쪽 입구 산개 1 · 혼불 1 · 다음 행동 끝에 안전 확인"
+    },
+    {
+      "round": 15,
+      "frame": 52866,
+      "text": "동쪽 상여터 안쪽 입구에서 산개 한 마리와 혼불이 다가온다. 다음 행동에 그 입구를 살피세요."
+    },
+    {
+      "round": 15,
+      "frame": 52866,
+      "text": "상여 이동 보류 (휘겸) · 다음 행동 끝에 안전 확인"
+    },
+    {
+      "round": 15,
+      "frame": 54698,
+      "text": "상여 이동 보류 (설오·담허) · 다음 행동 끝에 안전 확인"
+    },
+    {
+      "round": 16,
+      "frame": 56532,
+      "text": "상여 이동 보류 (담허) · 다음 행동 끝에 안전 확인"
+    },
+    {
+      "round": 16,
+      "frame": 57467,
+      "text": "상여 이동 보류 (설오) · 다음 행동 끝에 안전 확인"
+    },
+    {
+      "round": 17,
+      "frame": 59345,
+      "text": "상여 이동 보류 (담허) · 다음 행동 끝에 안전 확인"
+    },
+    {
+      "round": 17,
+      "frame": 60286,
+      "text": "상여가 중앙 아래뜰로 이동 중 · 다음 행동 끝에 안전 확인"
+    },
+    {
+      "round": 17,
+      "frame": 60289,
+      "text": "마당 위 까마귀 3 · 다음 행동 끝에 안전 확인"
+    },
+    {
+      "round": 17,
+      "frame": 60289,
+      "text": "상여가 내려앉은 마당 위로 까마귀 셋이 원을 좁힌다."
+    },
+    {
+      "round": 17,
+      "frame": 60289,
+      "text": "마당 위 까마귀 3 · 다음 행동 끝에 안전 확인"
+    },
+    {
+      "round": 17,
+      "frame": 61018,
+      "text": "마당 위 까마귀 3 진입 보류 · 다음 행동 끝에 안전 확인"
+    }
+  ],
+  "finalBierState": {
+    "version": 1,
+    "status": "cancelled",
+    "completedOnce": 1,
+    "sealIdsSeen": [
+      "bier-knot-0",
+      "bier-knot-1"
+    ],
+    "warnings": {
+      "stage8-first-seal": {
+        "status": "spawned",
+        "serial": 2,
+        "eligibleAfterSerial": 3,
+        "round": 1,
+        "side": "west",
+        "offered": {
+          "p-archer": {
+            "round": 2,
+            "serial": 10
+          }
+        },
+        "opportunity": {
+          "id": "p-archer",
+          "round": 2,
+          "serial": 11
+        }
+      },
+      "stage8-low-health": {
+        "status": "spawned",
+        "serial": 132,
+        "eligibleAfterSerial": 133,
+        "round": 14,
+        "side": "east-hatch",
+        "offered": {
+          "p-archer": {
+            "round": 15,
+            "serial": 140
+          }
+        },
+        "entry": {
+          "region": "east-hatch",
+          "label": "동쪽 상여터 안쪽 입구",
+          "side": "east-hatch",
+          "x": 8250,
+          "y": 3000,
+          "surfaceId": "s8-east-hatch",
+          "support": "s8-east-hatch",
+          "spacing": 100,
+          "maxDistance": 0,
+          "members": [
+            {
+              "kind": "hound",
+              "x": 8250,
+              "y": 3000,
+              "surfaceId": "s8-east-hatch",
+              "support": "s8-east-hatch",
+              "spacing": 130,
+              "maxDistance": 0,
+              "role": "bier-flank-rush"
+            },
+            {
+              "kind": "lantern",
+              "x": 8360,
+              "y": 2590,
+              "air": true,
+              "role": "bier-flank-fire"
+            }
+          ],
+          "alternates": [
+            {
+              "x": 8080,
+              "y": 3000,
+              "surfaceId": "s8-east-hatch",
+              "support": "s8-east-hatch",
+              "spacing": 100,
+              "maxDistance": 0,
+              "members": [
+                {
+                  "kind": "hound",
+                  "x": 8080,
+                  "y": 3000,
+                  "surfaceId": "s8-east-hatch",
+                  "support": "s8-east-hatch",
+                  "spacing": 130,
+                  "maxDistance": 0,
+                  "role": "bier-flank-rush"
+                },
+                {
+                  "kind": "lantern",
+                  "x": 8240,
+                  "y": 2250,
+                  "air": true,
+                  "role": "bier-flank-fire"
+                }
+              ]
+            }
+          ]
+        },
+        "entryRegion": "east-hatch",
+        "opportunity": {
+          "id": "p-archer",
+          "round": 15,
+          "serial": 141
+        }
+      },
+      "stage8-settled-crows": {
+        "status": "blocked",
+        "serial": 162,
+        "eligibleAfterSerial": 163,
+        "round": 17,
+        "side": "upper-branch",
+        "offered": {
+          "p-knight": {
+            "round": 17,
+            "serial": 162
+          }
+        },
+        "opportunity": {
+          "id": "p-knight",
+          "round": 17,
+          "serial": 163
+        },
+        "cancelled": "battle-ended"
+      }
+    },
+    "entries": {
+      "stage8-first-seal": {
+        "x": 3060,
+        "y": 3801.4545454545455,
+        "side": "west",
+        "ids": [
+          "event-14",
+          "event-15",
+          "event-16"
+        ],
+        "count": 3,
+        "round": 2,
+        "serial": 11
+      },
+      "stage8-low-health": {
+        "x": 8080,
+        "y": 3000,
+        "side": "east-hatch",
+        "ids": [
+          "event-131",
+          "event-132"
+        ],
+        "count": 2,
+        "round": 15,
+        "serial": 141
+      }
+    },
+    "offered": {
+      "p-mage": {
+        "round": 17,
+        "serial": 161
+      },
+      "p-knight": {
+        "round": 17,
+        "serial": 162
+      },
+      "p-archer": {
+        "round": 17,
+        "serial": 160
+      }
+    },
+    "blockers": [],
+    "bossEngaged": {
+      "round": 5,
+      "serial": 44,
+      "reason": "approach"
+    },
+    "triggerSerial": 50,
+    "announcedSerial": 50,
+    "eligibleAfterSerial": 51,
+    "announcedRound": 6,
+    "playerOpportunity": {
+      "id": "p-knight",
+      "round": 17,
+      "serial": 163
+    },
+    "reason": "",
+    "originActualPose": {
+      "x": 7549.215603311473,
+      "y": 3031.3170446245913
+    },
+    "lastValidPose": {
+      "x": 5950,
+      "y": 4250
+    },
+    "route": [
+      {
+        "id": "courtyard-primary",
+        "x": 5950,
+        "y": 4250,
+        "surfaceId": "s8-court",
+        "support": "s8-court"
+      }
+    ],
+    "routeVersion": 1,
+    "targetVariant": "courtyard-primary",
+    "completedSerial": 162,
+    "completedRound": 17,
+    "cancellationReason": "boss-dead"
+  },
+  "items": {
+    "heal": 3,
+    "focus": 3,
+    "cleanse": 2,
+    "ward": 2
+  },
+  "rewardLedger": {
+    "combat": {},
+    "cleared": true,
+    "limit": {
+      "start": 7287,
+      "end": 11455,
+      "total": 4168,
+      "combat": 1667
+    },
+    "contribution": {
+      "version": 4,
+      "rewardBalance": 1,
+      "sequence": 185,
+      "total": 12504,
+      "combatLimit": 5001,
+      "actors": [
+        "archer",
+        "knight",
+        "mage"
+      ],
+      "factors": {
+        "archer": 1,
+        "mage": 1,
+        "knight": 1
+      },
+      "owners": {
+        "p-archer": "archer",
+        "p-mage": "mage",
+        "p-knight": "knight"
+      },
+      "enemies": {
+        "s8-0": {
+          "id": "s8-0",
+          "hp": 330,
+          "weight": 1,
+          "progress": 0,
+          "damage": {},
+          "support": {},
+          "threats": {},
+          "wounds": {},
+          "controls": {},
+          "defeated": false,
+          "settled": false
+        },
+        "s8-1": {
+          "id": "s8-1",
+          "hp": 412,
+          "weight": 1.25,
+          "progress": 0,
+          "damage": {},
+          "support": {
+            "archer": 6.798245614035087
+          },
+          "threats": {
+            "p-archer:0": 51
+          },
+          "wounds": {
+            "p-archer": [
+              {
+                "hp": 0,
+                "unit": 0.21929824561403508
+              }
+            ]
+          },
+          "controls": {},
+          "defeated": false,
+          "settled": false
+        },
+        "s8-2": {
+          "id": "s8-2",
+          "hp": 330,
+          "weight": 1,
+          "progress": 0,
+          "damage": {},
+          "support": {
+            "archer": 1.2280701754385963
+          },
+          "threats": {
+            "p-archer:0": 49
+          },
+          "wounds": {
+            "p-archer": [
+              {
+                "hp": 0,
+                "unit": 0.17543859649122806
+              }
+            ]
+          },
+          "controls": {},
+          "defeated": false,
+          "settled": false
+        },
+        "s8-3": {
+          "id": "s8-3",
+          "hp": 205,
+          "weight": 0.78,
+          "progress": 0,
+          "damage": {},
+          "support": {
+            "archer": 0.41052631578947374
+          },
+          "threats": {
+            "p-archer:0": 22
+          },
+          "wounds": {
+            "p-archer": [
+              {
+                "hp": 0,
+                "unit": 0.1368421052631579
+              }
+            ]
+          },
+          "controls": {},
+          "defeated": false,
+          "settled": false
+        },
+        "s8-4": {
+          "id": "s8-4",
+          "hp": 330,
+          "weight": 1,
+          "progress": 121,
+          "damage": {
+            "archer": 7.575757575757576,
+            "mage": 29.090909090909093
+          },
+          "support": {
+            "knight": 1.6570008285004143
+          },
+          "threats": {
+            "p-knight:3": 51
+          },
+          "wounds": {
+            "p-knight": [
+              {
+                "hp": 0,
+                "unit": 0.08285004142502071
+              }
+            ]
+          },
+          "controls": {},
+          "defeated": false,
+          "settled": false
+        },
+        "s8-5": {
+          "id": "s8-5",
+          "hp": 412,
+          "weight": 1.25,
+          "progress": 57,
+          "damage": {
+            "mage": 17.29368932038835
+          },
+          "support": {
+            "knight": 1.9676884838442419
+          },
+          "threats": {
+            "p-knight:1": 49
+          },
+          "wounds": {
+            "p-knight": [
+              {
+                "hp": 0,
+                "unit": 0.1035625517812759
+              }
+            ]
+          },
+          "controls": {},
+          "defeated": false,
+          "settled": false
+        },
+        "s8-6": {
+          "id": "s8-6",
+          "hp": 330,
+          "weight": 1,
+          "progress": 0,
+          "damage": {},
+          "support": {},
+          "threats": {},
+          "wounds": {},
+          "controls": {},
+          "defeated": false,
+          "settled": false
+        },
+        "s8-7": {
+          "id": "s8-7",
+          "hp": 660,
+          "weight": 2,
+          "progress": 0,
+          "damage": {},
+          "support": {
+            "knight": 1.3256006628003314
+          },
+          "threats": {
+            "p-knight:0": 22
+          },
+          "wounds": {
+            "p-knight": [
+              {
+                "hp": 0,
+                "unit": 0.16570008285004142
+              }
+            ]
+          },
+          "controls": {},
+          "defeated": false,
+          "settled": false
+        },
+        "s8-8": {
+          "id": "s8-8",
+          "hp": 330,
+          "weight": 1,
+          "progress": 231,
+          "damage": {
+            "archer": 64.24242424242425,
+            "_system": 5.757575757575758
+          },
+          "support": {
+            "archer": 0.7017543859649122,
+            "mage": 2.936378466557912
+          },
+          "threats": {
+            "p-archer:6": 30,
+            "p-mage:6": 18
+          },
+          "wounds": {
+            "p-archer": [
+              {
+                "hp": 0,
+                "unit": 0.17543859649122806
+              }
+            ]
+          },
+          "controls": {},
+          "defeated": false,
+          "settled": false
+        },
+        "s8-9": {
+          "id": "s8-9",
+          "hp": 264,
+          "weight": 0.8,
+          "progress": 0,
+          "damage": {},
+          "support": {},
+          "threats": {},
+          "wounds": {},
+          "controls": {},
+          "defeated": false,
+          "settled": false
+        },
+        "s8-10": {
+          "id": "s8-10",
+          "hp": 330,
+          "weight": 1,
+          "progress": 95,
+          "damage": {
+            "knight": 28.78787878787879
+          },
+          "support": {},
+          "threats": {},
+          "wounds": {},
+          "controls": {},
+          "defeated": false,
+          "settled": false
+        },
+        "s8-11": {
+          "id": "s8-11",
+          "hp": 412,
+          "weight": 1.25,
+          "progress": 0,
+          "damage": {},
+          "support": {},
+          "threats": {},
+          "wounds": {},
+          "controls": {},
+          "defeated": false,
+          "settled": false
+        },
+        "s8-12": {
+          "id": "s8-12",
+          "hp": 330,
+          "weight": 1,
+          "progress": 0,
+          "damage": {},
+          "support": {},
+          "threats": {},
+          "wounds": {},
+          "controls": {},
+          "defeated": false,
+          "settled": false
+        },
+        "s8-13": {
+          "id": "s8-13",
+          "hp": 205,
+          "weight": 0.78,
+          "progress": 0,
+          "damage": {},
+          "support": {
+            "knight": 0.6462303231151616
+          },
+          "threats": {
+            "p-knight:0": 26
+          },
+          "wounds": {
+            "p-knight": [
+              {
+                "hp": 0,
+                "unit": 0.06462303231151616
+              }
+            ]
+          },
+          "controls": {},
+          "defeated": false,
+          "settled": false
+        },
+        "s8-14": {
+          "id": "s8-14",
+          "hp": 264,
+          "weight": 0.8,
+          "progress": 0,
+          "damage": {},
+          "support": {
+            "knight": 0.7953603976801988
+          },
+          "threats": {
+            "p-knight:0": 32
+          },
+          "wounds": {
+            "p-knight": [
+              {
+                "hp": 0,
+                "unit": 0.06628003314001657
+              }
+            ]
+          },
+          "controls": {},
+          "defeated": false,
+          "settled": false
+        },
+        "s8-15": {
+          "id": "s8-15",
+          "hp": 528,
+          "weight": 1.6,
+          "progress": 528,
+          "damage": {
+            "archer": 89.69696969696969,
+            "mage": 34.24242424242424,
+            "knight": 36.06060606060606
+          },
+          "support": {
+            "knight": 2.916321458160729
+          },
+          "threats": {
+            "p-knight:6": 22
+          },
+          "wounds": {
+            "p-knight": [
+              {
+                "hp": 0,
+                "unit": 0.13256006628003314
+              }
+            ]
+          },
+          "controls": {},
+          "defeated": true,
+          "settled": true
+        },
+        "s8-16": {
+          "id": "s8-16",
+          "hp": 330,
+          "weight": 1,
+          "progress": 330,
+          "damage": {
+            "mage": 42.72727272727272,
+            "knight": 53.03030303030303,
+            "_system": 4.242424242424243
+          },
+          "support": {
+            "knight": 3.8111019055509527,
+            "archer": 7.5438596491228065
+          },
+          "threats": {
+            "p-knight:6": 46,
+            "p-archer:6": 43
+          },
+          "wounds": {
+            "p-knight": [
+              {
+                "hp": 0,
+                "unit": 0.08285004142502071
+              }
+            ],
+            "p-archer": [
+              {
+                "hp": 0,
+                "unit": 0.17543859649122806
+              }
+            ]
+          },
+          "controls": {},
+          "defeated": true,
+          "settled": true
+        },
+        "s8-17": {
+          "id": "s8-17",
+          "hp": 330,
+          "weight": 1,
+          "progress": 118,
+          "damage": {
+            "knight": 35.75757575757576
+          },
+          "support": {
+            "knight": 4.971002485501243,
+            "archer": 10.175438596491226,
+            "mage": 9.787928221859707
+          },
+          "threats": {
+            "p-knight:0": 25,
+            "p-archer:0": 33,
+            "p-mage:0": 31,
+            "p-knight:3": 35,
+            "p-archer:3": 25,
+            "p-mage:3": 34
+          },
+          "wounds": {
+            "p-knight": [
+              {
+                "hp": 0,
+                "unit": 0.08285004142502071
+              }
+            ],
+            "p-archer": [
+              {
+                "hp": 0,
+                "unit": 0.17543859649122806
+              }
+            ],
+            "p-mage": [
+              {
+                "hp": 5,
+                "unit": 0.1631321370309951
+              }
+            ]
+          },
+          "controls": {},
+          "defeated": false,
+          "settled": false
+        },
+        "s8-18": {
+          "id": "s8-18",
+          "hp": 528,
+          "weight": 1.6,
+          "progress": 0,
+          "damage": {},
+          "support": {},
+          "threats": {},
+          "wounds": {},
+          "controls": {},
+          "defeated": false,
+          "settled": false
+        },
+        "s8-19": {
+          "id": "s8-19",
+          "hp": 330,
+          "weight": 1,
+          "progress": 0,
+          "damage": {},
+          "support": {},
+          "threats": {},
+          "wounds": {},
+          "controls": {},
+          "defeated": false,
+          "settled": false
+        },
+        "s8-20": {
+          "id": "s8-20",
+          "hp": 256,
+          "weight": 0.9750000000000001,
+          "progress": 0,
+          "damage": {},
+          "support": {},
+          "threats": {},
+          "wounds": {},
+          "controls": {},
+          "defeated": false,
+          "settled": false
+        },
+        "s8-21": {
+          "id": "s8-21",
+          "hp": 330,
+          "weight": 1,
+          "progress": 0,
+          "damage": {},
+          "support": {},
+          "threats": {},
+          "wounds": {},
+          "controls": {},
+          "defeated": false,
+          "settled": false
+        },
+        "s8-22": {
+          "id": "s8-22",
+          "hp": 528,
+          "weight": 1.6,
+          "progress": 0,
+          "damage": {},
+          "support": {},
+          "threats": {},
+          "wounds": {},
+          "controls": {},
+          "defeated": false,
+          "settled": false
+        },
+        "s8-23": {
+          "id": "s8-23",
+          "hp": 205,
+          "weight": 0.78,
+          "progress": 0,
+          "damage": {},
+          "support": {},
+          "threats": {},
+          "wounds": {},
+          "controls": {},
+          "defeated": false,
+          "settled": false
+        },
+        "s8-24": {
+          "id": "s8-24",
+          "hp": 330,
+          "weight": 1,
+          "progress": 145,
+          "damage": {
+            "mage": 43.93939393939394
+          },
+          "support": {},
+          "threats": {},
+          "wounds": {},
+          "controls": {},
+          "defeated": false,
+          "settled": false
+        },
+        "s8-25": {
+          "id": "s8-25",
+          "hp": 412,
+          "weight": 1.25,
+          "progress": 0,
+          "damage": {},
+          "support": {
+            "mage": 5.972741146134821
+          },
+          "threats": {
+            "p-mage:0": 49
+          },
+          "wounds": {
+            "p-mage": [
+              {
+                "hp": 19.70967741935484,
+                "unit": 0.2039151712887439
+              }
+            ]
+          },
+          "controls": {},
+          "defeated": false,
+          "settled": false
+        },
+        "s8-26": {
+          "id": "s8-26",
+          "hp": 330,
+          "weight": 1,
+          "progress": 0,
+          "damage": {},
+          "support": {},
+          "threats": {},
+          "wounds": {},
+          "controls": {},
+          "defeated": false,
+          "settled": false
+        },
+        "s8-27": {
+          "id": "s8-27",
+          "hp": 330,
+          "weight": 1,
+          "progress": 0,
+          "damage": {},
+          "support": {},
+          "threats": {},
+          "wounds": {},
+          "controls": {},
+          "defeated": false,
+          "settled": false
+        },
+        "s8-28": {
+          "id": "s8-28",
+          "hp": 264,
+          "weight": 0.8,
+          "progress": 74,
+          "damage": {
+            "mage": 22.424242424242422
+          },
+          "support": {
+            "knight": 2.0238928829141836,
+            "archer": 7.578947368421052,
+            "mage": 0.3915171288743882
+          },
+          "threats": {
+            "p-knight:0": 35,
+            "p-archer:0": 18,
+            "p-archer:2": 36,
+            "p-mage:2": 27
+          },
+          "wounds": {
+            "p-knight": [
+              {
+                "hp": 4.464516129032255,
+                "unit": 0.06628003314001657
+              }
+            ],
+            "p-mage": [
+              {
+                "hp": 24,
+                "unit": 0.13050570962479607
+              }
+            ]
+          },
+          "controls": {},
+          "defeated": false,
+          "settled": false
+        },
+        "s8-29": {
+          "id": "s8-29",
+          "hp": 205,
+          "weight": 0.78,
+          "progress": 205,
+          "damage": {
+            "mage": 78
+          },
+          "support": {
+            "knight": 0.45236122618061303,
+            "archer": 2.463157894736842
+          },
+          "threats": {
+            "p-knight:2": 18,
+            "p-archer:6": 18
+          },
+          "wounds": {
+            "p-knight": [
+              {
+                "hp": 11,
+                "unit": 0.06462303231151616
+              }
+            ]
+          },
+          "controls": {},
+          "defeated": true,
+          "settled": true
+        },
+        "s8-30": {
+          "id": "s8-30",
+          "hp": 660,
+          "weight": 2,
+          "progress": 660,
+          "damage": {
+            "mage": 56.66666666666666,
+            "knight": 49.39393939393939,
+            "archer": 93.93939393939394
+          },
+          "support": {
+            "archer": 7.719298245614034
+          },
+          "threats": {
+            "p-archer:2": 22
+          },
+          "wounds": {
+            "p-archer": [
+              {
+                "hp": 0,
+                "unit": 0.3508771929824561
+              }
+            ]
+          },
+          "controls": {},
+          "defeated": true,
+          "settled": true
+        },
+        "s8-31": {
+          "id": "s8-31",
+          "hp": 330,
+          "weight": 1,
+          "progress": 330,
+          "damage": {
+            "mage": 25.454545454545453,
+            "archer": 74.54545454545455
+          },
+          "support": {
+            "archer": 2.631578947368421
+          },
+          "threats": {
+            "p-archer:9": 51
+          },
+          "wounds": {
+            "p-archer": [
+              {
+                "hp": 36,
+                "unit": 0.17543859649122806
+              }
+            ]
+          },
+          "controls": {},
+          "defeated": true,
+          "settled": true
+        },
+        "s8-32": {
+          "id": "s8-32",
+          "hp": 330,
+          "weight": 1,
+          "progress": 0,
+          "damage": {},
+          "support": {
+            "knight": 0.8892571112952223
+          },
+          "threats": {
+            "p-knight:0": 30
+          },
+          "wounds": {
+            "p-knight": [
+              {
+                "hp": 19.266666666666666,
+                "unit": 0.08285004142502071
+              }
+            ]
+          },
+          "controls": {},
+          "defeated": false,
+          "settled": false
+        },
+        "s8-33": {
+          "id": "s8-33",
+          "hp": 205,
+          "weight": 0.78,
+          "progress": 0,
+          "damage": {},
+          "support": {
+            "knight": 0.7108533554266777
+          },
+          "threats": {
+            "p-knight:0": 28
+          },
+          "wounds": {
+            "p-knight": [
+              {
+                "hp": 17,
+                "unit": 0.06462303231151616
+              }
+            ]
+          },
+          "controls": {},
+          "defeated": false,
+          "settled": false
+        },
+        "s8-34": {
+          "id": "s8-34",
+          "hp": 256,
+          "weight": 0.9750000000000001,
+          "progress": 0,
+          "damage": {},
+          "support": {
+            "knight": 0.9414907293660544,
+            "archer": 0.6842105263157896,
+            "mage": 0.636215334420881
+          },
+          "threats": {
+            "p-knight:0": 29,
+            "p-archer:0": 32,
+            "p-mage:0": 32
+          },
+          "wounds": {
+            "p-knight": [
+              {
+                "hp": 17.344827586206897,
+                "unit": 0.0807787903893952
+              }
+            ],
+            "p-archer": [
+              {
+                "hp": 28,
+                "unit": 0.1710526315789474
+              }
+            ],
+            "p-mage": [
+              {
+                "hp": 28,
+                "unit": 0.15905383360522024
+              }
+            ]
+          },
+          "controls": {},
+          "defeated": false,
+          "settled": false
+        },
+        "s8-35": {
+          "id": "s8-35",
+          "hp": 264,
+          "weight": 0.8,
+          "progress": 0,
+          "damage": {},
+          "support": {
+            "knight": 0.8655392562990399,
+            "archer": 0.5614035087719298,
+            "mage": 0.5220228384991843
+          },
+          "threats": {
+            "p-knight:0": 34,
+            "p-archer:0": 28,
+            "p-mage:0": 28
+          },
+          "wounds": {
+            "p-knight": [
+              {
+                "hp": 20.941176470588236,
+                "unit": 0.06628003314001657
+              }
+            ],
+            "p-archer": [
+              {
+                "hp": 24,
+                "unit": 0.14035087719298245
+              }
+            ],
+            "p-mage": [
+              {
+                "hp": 24,
+                "unit": 0.13050570962479607
+              }
+            ]
+          },
+          "controls": {},
+          "defeated": false,
+          "settled": false
+        },
+        "boss": {
+          "id": "boss",
+          "hp": 2082,
+          "weight": 5,
+          "progress": 2082,
+          "damage": {
+            "archer": 195.72526416906817,
+            "knight": 257.20461095100865,
+            "_system": 18.491834774255523,
+            "mage": 28.578290105667627
+          },
+          "support": {
+            "knight": 56.33802816901408,
+            "archer": 6.140350877192982,
+            "mage": 4.893964110929853
+          },
+          "threats": {
+            "p-knight:0": 34,
+            "p-knight:1": 47,
+            "p-knight:2": 47,
+            "p-knight:3": 49,
+            "p-knight:6": 49,
+            "p-archer:8": 45,
+            "p-mage:8": 45,
+            "p-knight:9": 49
+          },
+          "wounds": {
+            "p-knight": [
+              {
+                "hp": 139,
+                "unit": 0.4142502071251036
+              }
+            ],
+            "p-archer": [
+              {
+                "hp": 38,
+                "unit": 0.8771929824561403
+              }
+            ],
+            "p-mage": [
+              {
+                "hp": 39,
+                "unit": 0.8156606851549756
+              }
+            ]
+          },
+          "controls": {},
+          "defeated": true,
+          "settled": false
+        },
+        "wave:stage8-low-health:1": {
+          "id": "wave:stage8-low-health:1",
+          "hp": 264,
+          "weight": 0.8,
+          "progress": 0,
+          "damage": {},
+          "support": {
+            "archer": 0.42105263157894735,
+            "mage": 0.3915171288743882,
+            "knight": 1.1930405965202984
+          },
+          "threats": {
+            "p-archer:0": 21,
+            "p-mage:0": 21,
+            "p-knight:0": 18
+          },
+          "wounds": {
+            "p-archer": [
+              {
+                "hp": 18,
+                "unit": 0.14035087719298245
+              }
+            ],
+            "p-mage": [
+              {
+                "hp": 18,
+                "unit": 0.13050570962479607
+              }
+            ]
+          },
+          "controls": {},
+          "defeated": false,
+          "settled": false
+        }
+      },
+      "objectives": {
+        "goal:terrain:bier-knot-0": {
+          "archer": 9.625,
+          "mage": 7.333333333333333,
+          "knight": 3.0416666666666665
+        },
+        "goal:terrain:bier-knot-1": {
+          "archer": 20
+        }
+      },
+      "objectiveEvidence": {
+        "terrain": {
+          "bier-knot-0": {
+            "maxDamage": 480,
+            "maxHp": 480,
+            "weights": {
+              "p-archer": 231,
+              "p-mage": 176,
+              "p-knight": 73
+            }
+          },
+          "bier-knot-1": {
+            "maxDamage": 480,
+            "maxHp": 480,
+            "weights": {
+              "p-archer": 480
+            }
+          }
+        },
+        "escorts": {},
+        "arrivals": {}
+      },
+      "paid": {
+        "archer": 4639,
+        "knight": 4234,
+        "mage": 3411
+      },
+      "spent": 12284,
+      "forfeited": 220,
+      "combatSpent": 621,
+      "completed": true,
+      "systemForfeited": 220,
+      "capDiscarded": {
+        "archer": 0,
+        "knight": 0,
+        "mage": 0
+      }
+    },
+    "policy": 4
+  }
+}

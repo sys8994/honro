@@ -1,0 +1,44 @@
+{
+  "reconstructed": true,
+  "status": "passed",
+  "completedAt": "2026-11-04T03:52:20.415Z",
+  "source": {
+    "shared/runtime/main.js": "57346a219fe8de6dd4aed397ea6aa94db5f5e844dbe833309a9df2e5084ced03",
+    "shared/runtime/rest-journey.js": "8af33d0a079a81786975e1ca0b107cba588599f2407d8a8d8e9a88c4cc386f83",
+    "shared/runtime/progression.js": "d0a3da6460c6a6f9cbc9160bdd4d46b24ccc0e8021855e3ab3fe597dee9e5c74"
+  },
+  "checks": [
+    "actual natural occupied field admits primary and Continue is idempotent",
+    "occupied primary uses clear alternate and Continue is idempotent",
+    "both body-occupied entries reject atomically without consuming IDs/RNG",
+    "warning without actual response remains gated",
+    "three-member admission retains population cap",
+    "existing Continue retains old authored slots and blocked warning unchanged"
+  ],
+  "limits": [
+    "No new natural-route completion or browser claim. Final integrated source still requires Stage8 gameplay recheck."
+  ],
+  "fixture": {
+    "run": 41576630241,
+    "candidate": "7d2655bc3f88a7b20fb2d6ea1bc4c611583e9a15",
+    "round18Sha256": "421ec31a19c588d351a20c64933a08fcaf56d84a71a504d8321eb8228d81b04f",
+    "scope": "Actual natural-route R18 bodies/state projected onto current fresh Stage8 terrain. Lifecycle fixture, not another normal-play run."
+  },
+  "entries": {
+    "side": "upper-branch",
+    "x": 6170,
+    "y": 3930,
+    "spacing": 220,
+    "maxDistance": 0,
+    "air": true,
+    "alternates": [
+      {
+        "x": 5970,
+        "y": 3930,
+        "spacing": 220,
+        "maxDistance": 0,
+        "air": true
+      }
+    ]
+  }
+}
