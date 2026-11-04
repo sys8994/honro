@@ -1,0 +1,104 @@
+name: Build verified Stage23 release without repeating gameplay
+on:
+  push:
+    branches: ['work/stage23-road-release-build-20261104']
+permissions:
+  contents: write
+  actions: read
+jobs:
+  release-candidate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      OUT: _local/reports/stage23-road-release-build
+      GH_TOKEN: ${{ github.token }}
+      PUBLIC_BASE: f85a108a29d27cc5488d69d42034d58ac7699c0d
+      HONRO_ACT4_RELEASE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 1
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Verify exact successful same-product review
+        run: |
+          set -euo pipefail
+          mkdir -p "$OUT"
+          python - <<'PY'
+          import json,os,subprocess,hashlib,zipfile
+          from pathlib import Path
+          repo='sys8994/honro';run=41901497974;source='3a9e76e0b3ecd88f7a65df734de241c16bb37a29'
+          api=lambda path:json.loads(subprocess.check_output(['gh','api','repos/'+repo+'/'+path]))
+          meta=api('actions/runs/'+str(run));assert meta['head_sha']==source and meta['status']=='completed' and meta['conclusion']=='success'
+          a=api('actions/artifacts/13359573680');assert not a['expired'] and a['workflow_run']['id']==run
+          archive=Path(os.environ['RUNNER_TEMP'])/'stage23-final.zip'
+          with archive.open('wb') as f:subprocess.run(['gh','api','repos/'+repo+'/actions/artifacts/13359573680/zip'],stdout=f,check=True)
+          sha=hashlib.sha256(archive.read_bytes()).hexdigest();assert sha=='268d3f9fe15ff505178296a759b43459a59262830388f17e770e0dcdd4e3cb0d' and archive.stat().st_size==8885130 and a['digest']=='sha256:'+sha
+          with zipfile.ZipFile(archive) as z:
+            b=json.loads(z.read('browser/result.json'));n=json.loads(z.read('native/result.json'));exact=json.loads(z.read('native/exact-replay.json'))
+          assert b['passed'] and b['productCommit']==source and b['round']==19 and not b['errors'] and b['settlement']['reloadExact'] and b['settlement']['restReached']
+          assert n['phase']=='won' and n['round']==19 and exact['exactTrace']
+          runtime=hashlib.sha256(Path('shared/runtime/act23-v4-ch23-reviewed.js').read_bytes()).hexdigest();assert runtime==b['reviewedRuntimeSha256']=='c92112f31e18bb386adbe130b7f485e6bf359cd0f69655152a265520a13c6861'
+          Path(os.environ['OUT']+'/measured-source.json').write_text(json.dumps({'run':run,'source':source,'artifact':a['id'],'artifactSha256':sha,'runtimeSha256':runtime,'htmlSha256':b['expectedHtmlSha256'],'nativeRounds':19,'browserRounds':19,'scope':'Bind completed exact-product review; no repeated gameplay or broadened difficulty claim.'},indent=2))
+          PY
+      - name: Preserve the verified currently published generation
+        run: |
+          set -euo pipefail
+          curl -fLsS "https://raw.githubusercontent.com/sys8994/honro/$PUBLIC_BASE/web/manifest.json" -o "$RUNNER_TEMP/published-source-manifest.json"
+          node --test tools/release/register-current-publication.test.mjs
+          node tools/release/register-current-publication.mjs \
+            --source-manifest "$RUNNER_TEMP/published-source-manifest.json" \
+            --expected-blob-sha 3bade2e2fb60c3596dfc29a1b0df09423797a052 \
+            --source-sha "$PUBLIC_BASE" \
+            --published-at 2026-11-04T01:50:18Z \
+            --evidence https://github.com/sys8994/honro/actions/runs/41756540591 | tee "$OUT/publication-registration.json"
+      - name: Normal release guard and exact measured build
+        run: |
+          set -euo pipefail
+          npm ci
+          npm ci --prefix game
+          npm --prefix game run typecheck
+          npm run build | tee "$OUT/gated-build.log"
+          python - <<'PY'
+          import json,hashlib,os
+          from pathlib import Path
+          source=json.loads(Path(os.environ['OUT']+'/measured-source.json').read_text())
+          sha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest()
+          assert sha('HONRO.html')==source['htmlSha256']=='6b9d629c6c196e1246c8b9fd97235c5c997be993e562874fc77b70db90e384d2'
+          manifest=json.loads(Path('web/manifest.json').read_text())
+          for f in manifest['files']:
+            assert Path(f['path']).stat().st_size==f['bytes'] and sha(f['path'])==f['sha256'],f['path']
+          Path(os.environ['OUT']+'/built-hashes.json').write_text(json.dumps({p:sha(p) for p in ['HONRO.html','index.html','HONRO_WORKSHOP.html','web/manifest.json','tools/stage31/production-package.json']},indent=2))
+          Path(os.environ['OUT']+'/active-files.json').write_text(json.dumps(manifest['files'],indent=2))
+          PY
+      - name: Commit only normal generated static files on a review branch
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import subprocess
+          allowed=lambda p:p in ['HONRO.html','HONRO_WORKSHOP.html','index.html','workshop/HONRO_MAP_WORKSHOP.html'] or p.startswith('web/')
+          names=set(subprocess.check_output(['git','diff','HEAD','--name-only','--no-renames','-z']).decode().split('\0'))|set(subprocess.check_output(['git','ls-files','--others','--exclude-standard','-z']).decode().split('\0'))
+          unexpected=sorted(p for p in names if p and not allowed(p));assert not unexpected,unexpected
+          PY
+          git add -- HONRO.html HONRO_WORKSHOP.html index.html workshop/HONRO_MAP_WORKSHOP.html web
+          git diff --cached --check
+          git config user.name 'HONRO release verification'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "Build reviewed Stage23 escort release from $GITHUB_SHA"
+          target="work/stage23-road-release-generated/$GITHUB_RUN_ID"
+          git push origin "HEAD:refs/heads/$target"
+          expected=$(git rev-parse HEAD)
+          actual=$(git ls-remote origin "refs/heads/$target" | cut -f1)
+          test "$actual" = "$expected"
+          printf '%s\n' "$expected" > "$OUT/generated-head.txt"
+          printf '%s\n' "$target" > "$OUT/generated-branch.txt"
+          git diff HEAD^ HEAD --stat > "$OUT/generated-diff.txt"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage23-road-release-build-${{ github.sha }}
+          path: _local/reports/stage23-road-release-build/
+          retention-days: 14
