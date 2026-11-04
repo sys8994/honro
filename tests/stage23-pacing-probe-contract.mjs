@@ -54,7 +54,7 @@ if(kind==='escort-lookahead-180'){
  fixture.honroReviewed23PacingCandidate={id:kind,version:1};
  assert(!blocked(fixture),'Fresh candidate allows approach when only the old waypoint preview blocks');
  fixture.units[1].x=350;assert(blocked(fixture),'Fresh180px waypoint preview still blocks a threat150px beyond the point');
- fixture.units[1].x=250;assert(blocked(fixture),'Unchanged300px near-carrier guard remains active');
+ fixture.units[1].x=250;fixture.honroMarkers[0].x=600;assert(blocked(fixture),'Unchanged300px near-carrier guard remains active independently of waypoint preview');
 }
 const result={passed:true,kind,oldContinueExact:true,freshContinueExact:true,storyFresh:true,tacticalFresh:true,tacticalFullClear:false,initialEnemies:40,eliteEnemies:10,
  sourceRuntimeSha256:createHash('sha256').update(await readFile('shared/runtime/act23-v4-ch23-reviewed.js')).digest('hex'),
