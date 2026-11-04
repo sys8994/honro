@@ -74,4 +74,11 @@ for(let turn=0;turn<actionLimit&&!terminal();turn++){
 }
 if(!terminal()&&!stopReason)stopReason='diagnostic action observation bound';await save('final');
 const result={provenance,phase:b.phase,round:b.round,stopReason,wallSeconds:(performance.now()-started)/1000,frames:ops.frames,storyFrameCount,actions:actions.length,remaining:e.alive(1).length,npc:plain(npc()),heroes:e.heroesAlive().map(u=>({id:u.id,hp:u.hp,maxHp:u.maxHp,x:u.x,y:u.y})),done:plain(V.mem(b).done),reviewed:plain(R.memory(b)),audit:{externalWrites:audit.log.externalWrites,recoveries:audit.log.recoveries,movementCalls},events,preview:preview.stats()};
+if(b.phase==='won'){
+ const rewards=p=>plain({clear:p.cleared[23],heroes:p.heroes,equipment:p.equipment,growth:p.honroGrowth}),earned=rewards(app.profile),budget=earned.growth.stages[23].contribution;
+ assert.equal(budget.total,31548);assert.equal(budget.combatLimit,12620);assert.equal(budget.spent+budget.forfeited,budget.total);
+ app.resultContinue();for(let k=0;k<3000&&app.dialogue;k++)ops.frame();assert.equal(app.screen,'rest');assert.equal(app.engine,null,'No Stage24 battle');assert.deepEqual(rewards(app.profile),earned);
+ app.export();const settled=await h.exported(),restored=h.load(settled);restored.continue();assert.equal(restored.screen,'rest');assert.equal(restored.engine,null);assert.deepEqual(rewards(restored.profile),earned);assert.equal(restored.profile.cleared[23].visits,1);
+ result.settlement={restReached:true,reloadExact:true,visits:1,partyXpBudget:budget.total,combatXpBudget:budget.combatLimit,stage24Battle:false};
+}
 await writeFile(out+'/result.json',JSON.stringify(result,null,2));console.log('RESULT',JSON.stringify({...result,npc:result.npc.x,reviewed:undefined,provenance:undefined,events:undefined}));if(b.phase!=='won')process.exitCode=1;
