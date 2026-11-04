@@ -1,0 +1,34 @@
+name: Verify Stage23 original roster and scoped HUD contracts
+on:
+  push:
+    branches: ['work/stage23-original-roster-hud-20261104']
+permissions:
+  contents: read
+  actions: read
+jobs:
+  contracts-only:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Install pinned existing dependencies
+        run: npm ci && npm ci --prefix game
+      - name: Retrieve approved synthetic entry and old Continue fixtures
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 41799550364 --repo sys8994/honro --name stage23-front-native-analysis --dir _local/stage23-front-prior
+          gh run download 41759542357 --repo sys8994/honro --name stage23-current-natural --dir _local/stage23-prior
+      - name: Check original roster, exact saves, narrative and scoped HUD
+        env:
+          HONRO23_ENTRY: _local/stage23-front-prior/stage23-front-base/initial.json
+          HONRO23_CHECKPOINT: _local/stage23-prior/checkpoint.json
+        run: |
+          node tests/stage23-objective-label-clearance.mjs
+          node tests/stage23-original-roster-contract.mjs
+          node tests/act23-v4-reviewed23.mjs
+          node tests/objective-clarity.mjs
