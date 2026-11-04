@@ -1,0 +1,48 @@
+name: Compare Stage23 single-guard candidates
+on:
+  push:
+    branches: ['work/stage23-single-guard-pacing-20261104']
+permissions:
+  contents: read
+  actions: read
+jobs:
+  native-analysis:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Install pinned existing dependencies
+        run: npm ci && npm ci --prefix game
+      - name: Reuse exact approved synthetic entry from matched original26 run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh run download 41799550364 --repo sys8994/honro --name stage23-front-native-analysis --dir _local/stage23-front-prior
+      - name: Compare one fresh guard omission at a time
+        run: |
+          set +e
+          status=0
+          for guard in C-5 E-2; do
+            git checkout -- shared/runtime/act23-v4-ch23-reviewed.js
+            mkdir -p "_local/reports/stage23-single-$guard"
+            node tools/stage23-qa/single-guard-variant.mjs "s23-$guard" > /tmp/stage23-single-runtime.js || exit 1
+            cp /tmp/stage23-single-runtime.js shared/runtime/act23-v4-ch23-reviewed.js
+            cp /tmp/stage23-single-runtime.js "_local/reports/stage23-single-$guard/reviewed-runtime.js"
+            HONRO_QA_ENTRY_PATH=_local/stage23-front-prior/stage23-front-base/initial.json HONRO_QA_SOURCE="$GITHUB_SHA diagnostic fresh runtime omitting only s23-$guard; see reviewedRuntimeHash" HONRO_QA_OUT="_local/reports/stage23-single-$guard" node --expose-gc --max-old-space-size=2048 tests/stage23-front-natural.mjs > "_local/reports/stage23-single-$guard/run.log" 2>&1
+            test $? = 0 || status=1
+            tail -1 "_local/reports/stage23-single-$guard/run.log"
+          done
+          exit "$status"
+      - name: Preserve approved synthetic game observations for analysis
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: stage23-single-guard-native-analysis
+          path: |
+            _local/reports/stage23-single-C-5
+            _local/reports/stage23-single-E-2
+          if-no-files-found: error
+          retention-days: 14
