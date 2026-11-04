@@ -3,7 +3,17 @@ const F=G.HonroAct3V4ReviewedCore,V=G.HonroAct23V4,C=G.HONRO_CORE,unit=(b,id)=>b
 const mem=b=>R.memory(b),root=b=>V.mem(b),carrier=b=>unit(b,'act3-carrier'),spec=b=>b.honroReviewed23Spec;
 const nearFoes=(b,p,r=340)=>b.units.filter(u=>u.side===1&&V.alive(u)&&!u.honroObjectiveTarget&&V.near(u,p,r));
 function nextPoint(b){const key=V.current(b)?.id,points=b.honroMarkers.filter(p=>p.id.startsWith('route:'+key+':')).sort((a,z)=>Number(a.id.split(':').at(-1))-Number(z.id.split(':').at(-1))),i=root(b).escortWaypoints?.[key+':act3-carrier']||0;return points[i]||V.marker(b,key);}
-function blocked(b){const u=carrier(b),p=nextPoint(b);return root(b).carrierStarted&&V.alive(u)&&!root(b).carrierGoals?.['dock-exit']&&(nearFoes(b,u,300).length>0||p&&nearFoes(b,p,300).length>0);}
+function stableEscortSupport(b,u){
+ if(!u||u.airborne||u.jumping||Math.abs(u.vx||0)>=3||Math.abs(u.vy||0)>=2||u.platformDrop&&u.platformDrop.phase!=='land'||!C.validTerrainContactPose(b.terrain,u))return null;
+ return C.terrainSurface(b.terrain,u.x,u.y-.15,u.y+.15,Infinity)?.t.id||null;
+}
+function roadBlockingFoes(b,p,r){
+ const foes=nearFoes(b,p,r),q=b.honroReviewed23PacingCandidate,n=carrier(b);
+ if(q?.version!==1||q.roadContact!==true||!['escort-road-300','escort-close-130'].includes(q.id))return foes;
+ if(!['sy-ground','sy-stone-bridge'].includes(stableEscortSupport(b,n)))return foes;
+ return foes.filter(foe=>!(['sy-central-flank','sy-west-upper','sy-east-upper'].includes(stableEscortSupport(b,foe))&&foe.y<=n.y-n.h));
+}
+function blocked(b){const u=carrier(b),p=nextPoint(b);return root(b).carrierStarted&&V.alive(u)&&!root(b).carrierGoals?.['dock-exit']&&(b.honroReviewed23PacingCandidate?.id==='escort-close-130'&&b.honroReviewed23PacingCandidate.version===1?roadBlockingFoes(b,u,130).length>0:(roadBlockingFoes(b,u,300).length>0||p&&roadBlockingFoes(b,p,300).length>0));}
 function safe(b){const u=carrier(b),goal=V.marker(b,'dock-exit');return ground(b,u)&&!!root(b).carrierGoals?.['dock-exit']&&V.near(u,goal,110)&&!nearFoes(b,goal,500).length&&(mem(b).proof.walk?.distance||0)>=Math.abs(goal.x-spec(b).start.x)-200;}
 function returnSafe(app){const b=app.engine.b,h=app.profile.honroAct23V4History?.stages?.[21];if(!safe(b)||h?.reviewedNarrative?.rescued!==true)return false;const points=[spec(b).start,...b.honroMarkers.filter(p=>/^route:dock-/.test(p.id))];return b.units.filter(u=>u.side===1&&V.alive(u)&&!u.honroObjectiveTarget).every(u=>!points.some(p=>V.near(u,p,340)));}
 function priorEmblem(p){return p.honroAct23V4History?.stages?.[21]?.reviewedNarrative?.proof?.emblem?.emblem==='old-sealed-diamond';}
@@ -17,6 +27,8 @@ function observe(app,dt){const b=app.engine.b,q=mem(b),u=carrier(b),s=spec(b);q.
 const dialogue=(key,ids,when)=>({key,ids,when}),ids=(part,n)=>Array.from({length:n},(_,i)=>'A3.S23.'+part+'.0'+(i+1));
 R=F.register({stage:23,
  author(map){const u=map.units.find(u=>u.id==='act3-carrier'),p=map.markers.find(p=>p.id==='dispatch-bundle'),goods={x:u.x-70,y:u.y};p.x=u.x;p.y=u.y;
+  // Fresh-only actual-support rule; ranged pressure/old saves/start and exit safety remain.
+  map.initialState.honroReviewed23PacingCandidate={id:"escort-close-130",version:1,roadContact:true,variant:"escort-road-130"};
   map.initialState.honroReviewed23Spec={start:{x:u.x,y:u.y},goods,banner:{x:5500,y:4350},familyCrest:'family-three-petals'};
   map.initialState.honroV4MaterialEvidence=[{id:'v4.23.body-wrap',x:goods.x-55,y:goods.y},{id:'v4.23.household-metal',x:goods.x+55,y:goods.y}];
   map.terrains.push({id:'v4.23.wagon-cover',type:'solid',points:[{x:u.x-190,y:u.y-94},{x:u.x-95,y:u.y-94},{x:u.x-95,y:u.y},{x:u.x-190,y:u.y}],baseMaterial:'wood',breakable:true,layer:'terrain',properties:{hp:420,maxHp:420}});
