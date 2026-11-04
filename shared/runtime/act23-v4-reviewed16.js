@@ -50,7 +50,8 @@ function observe(app){const e=app.engine,b=e.b,q=mem(b),u=unit(b,'resident-1'),e
  const archer=api.actor(b,'설오');if(V.alive(archer)&&!q.blocked)for(const t of foes(b,elder,1000)){const hit=e.projectileCollision({x:archer.x,y:archer.y-archer.h*.63},{x:t.x,y:t.y-t.h*.5},1,archer.id,[],false);if(hit?.terrain&&/lantern|lamp|stone.?light/i.test(hit.terrain.id)){q.blocked={actor:archer.id,target:t.id,terrain:hit.terrain.id,from:{x:archer.x,y:archer.y}};break;}}
  if(recovered(b)&&!q.knock){e.emit('sound',{name:'ricochet',source:'16.bell.knock',...s.bellSource});e.fx('ring',s.bellSource.x,s.bellSource.y-70,'#b8bda9',45);q.knock={source:clone(s.bellSource),emitted:true};}
  // Visible residual souls at the bellward opening are independent of sound.
- const soulObserver=api.actor(b,'담허')||api.actor(b,'소단');if(heard(b)&&V.near(soulObserver,s.bellSource,650))q.trappedObserved??={observer:soulObserver.id,source:clone(s.bellSource),souls:clone(s.souls),observed:true};
+ // Preserve the established preference only among living observers actually nearby.
+ const soulObserver=[api.actor(b,'담허'),api.actor(b,'소단')].find(u=>V.near(u,s.bellSource,650));if(heard(b)&&soulObserver)q.trappedObserved??={observer:soulObserver.id,source:clone(s.bellSource),souls:clone(s.souls),observed:true};
  if(heard(b)&&spoken(b,'souls')&&nearby(b,V.marker(b,'16.work-exit'),450))q.exitObserved??={point:clone(V.marker(b,'16.work-exit'))};
 }
 function scene(app,key,ids,proof,targets){const out=api.begin(app,key,ids,proof||{});if(out&&targets){for(const l of app.dialogue.lines)l[2].camera={id:l[2].rowId,intent:'situation',targets:clone(targets),padding:120,maxScale:.75};G.HonroStory.draw(app);}return out;}
