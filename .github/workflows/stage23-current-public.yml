@@ -15,7 +15,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Install browser test dependency
-        run: pip install playwright==1.51.1 && python -m playwright install --with-deps chromium
+        run: pip install playwright==1.51.0 && python -m playwright install --with-deps chromium
       - name: Retrieve exact natural native checkpoint
         env:
           GH_TOKEN: ${{ github.token }}
