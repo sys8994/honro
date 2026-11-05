@@ -1,4 +1,4 @@
-()=>{
+(policy='lower')=>{
  const a=HonroApp,e=a.engine,b=e.b,C=HONRO_CORE,u=e.heroesAlive()[0],log=[],images={},snapshots=[],airTurns=[];
  const knownAir=new Set(b.units.filter(C.flyingEnemy).map(v=>v.id)),newAir=new Map();const airClear=[];const initial=structuredClone(b),entryProfile=structuredClone(a.profile),start={hp:u.hp,maxHp:u.maxHp,focus:u.focus,level:u.level,items:structuredClone(b.items)};
  let ticks=0,index=0,firstShot=false,warned=false,lastAirRound=0,shots=0,waits=0;const points=[{x:1600,support:'left-tree-branch-upper'},{x:1100,support:'left-tree-branch-upper',drop:true},{x:1450,support:'left-tree-branch-middle'},{x:1050,support:'left-tree-branch-middle',drop:true},{x:1500,support:'left-tree-branch-lower'},{x:1350,support:'left-tree-branch-lower',drop:true},{x:1050,support:'left-descent-stone-low'},{x:1460,support:'canyon-ground'},{x:1830,support:'canyon-ground'}];
@@ -14,7 +14,7 @@
   if(e.canAct()&&e.active?.id===u.id&&!a.dialogue){
    if(u.hp<u.maxHp*.32&&b.items.heal>0){e.item('heal');log.push({op:'item-heal',...at()});}
    else if(!firstShot){firstShot=true;fireOrWait();}
-   else if(index<points.length){const p=points[index],surface=e.contactSurface(u.x,u.y-4,u.y+5)?.t.id;if(e.grounded(u)&&Math.abs(u.x-p.x)<7&&surface===p.support){log.push({op:'route',index,...at(),support:surface});capture('route-'+index);if([0,2].includes(index))fireOrWait();if(p.drop&&!e.drop(u))throw Error('Intended branch drop refused');index++;}else if(u.moveLeft>10){e.move(Math.sign(p.x-u.x),Math.min(C.STEP,Math.abs(p.x-u.x)/u.walkSpeed));}else fireOrWait();}
+   else if(policy!=='upper'&&index<points.length){const p=points[index],surface=e.contactSurface(u.x,u.y-4,u.y+5)?.t.id;if(e.grounded(u)&&Math.abs(u.x-p.x)<7&&surface===p.support){log.push({op:'route',index,...at(),support:surface});capture('route-'+index);if([0,2].includes(index))fireOrWait();if(p.drop&&!e.drop(u))throw Error('Intended branch drop refused');index++;}else if(u.moveLeft>10){e.move(Math.sign(p.x-u.x),Math.min(C.STEP,Math.abs(p.x-u.x)/u.walkSpeed));}else fireOrWait();}
    else fireOrWait();
   }
   step();if(ticks%20000===0)log.push({op:'checkpoint',index,phase:b.phase,...at(),foes:e.alive(1).map(v=>({id:v.id,x:v.x,y:v.y,hp:v.hp}))});

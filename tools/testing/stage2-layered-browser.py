@@ -1,7 +1,7 @@
 """Stage 2 production-browser combat using normal engine actions and finite resources.
 Serve the repository over HTTP before running; optional URL and label arguments.
 """
-import json,sys
+import json,sys,os
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[2]
@@ -13,8 +13,10 @@ with sync_playwright() as pw:
  p=b.new_page(viewport={'width':1440,'height':900});errors=[];p.on('pageerror',lambda e:errors.append(str(e)))
  p.goto(url);p.wait_for_function('window.HonroApp && window.HonroAuthoredFarArt',timeout=90000)
  rows=[]
- profile=json.loads(Path(sys.argv[4] if len(sys.argv)>4 else 'game/docs/stage-review/stage02-positioning/evidence/entry-profile.json').read_text())['profile']
- p.evaluate('(profile)=>{HonroApp.profile=profile}',profile)
+ profile=json.loads(Path(sys.argv[4] if len(sys.argv)>4 else 'tests/fixtures/act1-art/stage02-entry.json').read_text())['profile']
+ # Use the production loader: old fixtures need contribution/growth migration.
+ p.evaluate('(profile)=>localStorage.setItem("honro-first-act-profile-1",JSON.stringify(profile))',profile)
+ p.reload();p.wait_for_function('window.HonroApp')
  for sid in ([int(n) for n in sys.argv[3].split(",")] if len(sys.argv)>3 else [2]):
   p.evaluate('''async sid=>{await HonroCampaignLoader.ensureStage(sid);let a=HonroApp;a.frame=()=>{};a.profile.settings.music=false;a.profile.settings.sound=false;a.debugMode=false;for(let n=1;n<sid;n++)a.profile.cleared[n]=true;a.launch(sid);}''',sid)
   p.wait_for_function('(sid)=>HonroApp.engine?.b.honroStage===sid',arg=sid)
@@ -26,7 +28,7 @@ with sync_playwright() as pw:
   p.evaluate('''()=>{let a=HonroApp;HonroStory.tick(a,performance.now()+3000);a.dialogue=null;a.turnNotice=null;a.close();let s=a.scene,b=a.engine.b,u=b.units.find(u=>u.team==='player'||u.side===0);Object.assign(s,{manual:true,storyTween:null,goalFocus:null,x:u.x+600,y:u.y-230,scale:.65});s.render(a.engine,0,'',.6,false,0);}''')
   p.wait_for_function('(sid)=>HonroAuthoredFarArt.ready(sid)',arg=sid)
 
-  result=p.evaluate((ROOT/'tools/testing/stage2-layered-controller.js').read_text());result['runtimeSourceSha']=__import__('subprocess').check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip();print(json.dumps(result['end']));images=result.pop('images',{});[(out/(name+'.png')).write_bytes(__import__('base64').b64decode(data.split(',')[1])) for name,data in images.items()];(out/'combat.json').write_text(json.dumps(result,indent=2,ensure_ascii=False))
+  result=p.evaluate((ROOT/'tools/testing/stage2-layered-controller.js').read_text(),os.environ.get('HONRO_STAGE2_POLICY','lower'));result['policy']=os.environ.get('HONRO_STAGE2_POLICY','lower');result['runtimeSourceSha']=__import__('subprocess').check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip();print(json.dumps(result['end']));images=result.pop('images',{});[(out/(name+'.png')).write_bytes(__import__('base64').b64decode(data.split(',')[1])) for name,data in images.items()];(out/'combat.json').write_text(json.dumps(result,indent=2,ensure_ascii=False))
   p.evaluate("""()=>{let a=HonroApp,s=a.scene,u=a.engine.b.units.find(u=>u.side===0);Object.assign(s,{x:u.x,y:u.y-180,scale:.65,manual:true,storyTween:null,cinematic:null});s.render(a.engine,0,'',.6,false,0);}""")
   p.locator('#battlecanvas').screenshot(path=str(out/'stage02-exit.png'))
   p.set_viewport_size({'width':390,'height':844})
