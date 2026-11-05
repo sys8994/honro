@@ -1,0 +1,84 @@
+name: Verify Stage2 candidate exact-runtime Stage31 evidence
+on:
+  push:
+    branches: ['review/stage02-current-20261105']
+    paths: ['.github/workflows/stage02-current-probe.yml']
+permissions:
+  contents: write
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      HONRO_ACT4_RELEASE: '1'
+      HONRO_QA_ORIGIN: http://127.0.0.1:8870
+      OUT: _local/reports/stage02-current-stage31
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Install pinned tooling
+        run: |
+          set -euo pipefail
+          npm ci
+          npm ci --prefix game
+          python -m pip install 'playwright==1.58.0'
+          python -m playwright install --with-deps chromium
+      - name: Prepare current-runtime evidence preview
+        run: |
+          set -euo pipefail
+          mkdir -p "$OUT"
+          mapfile -t refs < <(node --input-type=module -e 'import fs from "node:fs";import {selectPublishedGenerations} from "./shared/web-retention.mjs";for(const g of selectPublishedGenerations(JSON.parse(fs.readFileSync("web/manifest.json")).publishedGenerations,{now:Date.now()})){if(!/^[a-f0-9]{40}$/.test(g.sourceSha))throw Error("Invalid ref");console.log(g.sourceSha)}')
+          git fetch --no-tags --depth=1 origin 2657fe659996e76bacc82b4c321690e07a43b82f "${refs[@]}"
+          node tools/release/retain-published-web.mjs 2657fe659996e76bacc82b4c321690e07a43b82f --published-at 2026-11-04T20:55:16Z --evidence https://github.com/sys8994/honro/actions/runs/41910753925
+          node tools/act4-ci/refresh-stage31-probes.mjs prepare "$OUT"
+          # Existing evidence-only bootstrap, not a publishable production build.
+          # Fresh exact-runtime UI evidence and the unchanged gate are required below.
+          node workshop/build.mjs > "$OUT/preview-build.log" 2>&1
+          sha256sum HONRO.html web/manifest.json > "$OUT/preview-sha256.txt"
+      - name: Fresh normal-input battle and boarding
+        run: |
+          set -euo pipefail
+          python -m http.server 8870 --bind 127.0.0.1 > "$OUT/server.log" 2>&1 &
+          server=$!; trap 'kill "$server" 2>/dev/null || true' EXIT
+          sleep 2
+          HONRO_RUN_DIR="$OUT/stage31" python tools/act4-ci/stage31-fullplay.py > "$OUT/stage31.log" 2>&1
+      - name: Attach genuine results and enforce normal production build
+        run: |
+          set -euo pipefail
+          node tools/act4-ci/refresh-stage31-probes.mjs attach "$OUT"
+          npm run build > "$OUT/gated-build.log" 2>&1
+          cp tools/stage31/production-package.json "$OUT/production-package.json"
+          sha256sum HONRO.html web/manifest.json > "$OUT/gated-sha256.txt"
+      - name: Preserve metadata and summary on a review branch only
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json,os
+          from pathlib import Path
+          out=Path(os.environ['OUT']);f=json.loads((out/'focused-probes.json').read_text());u=json.loads((out/'stage31/result.json').read_text())
+          summary={'sourceCommit':os.environ['GITHUB_SHA'],'sourceRunId':int(os.environ['GITHUB_RUN_ID']),'runtimeSha256':f['digest'],'fingerprint':f['fingerprint'],'focused':[{k:r[k] for k in ['id','kind','result']} for r in f['results']],'ui':{k:u.get(k) for k in ['passed','complete','scope','final','errors']},'normalBuild':'passed','deployment':'not requested or performed','scope':'Stage2 candidate exact-runtime Stage31 evidence only; Stage2 touch improvement remains to be verified separately.'}
+          Path('game/docs/STAGE02_CURRENT_STAGE31_PROBE.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n')
+          (out/'summary.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n')
+          PY
+          git add tools/stage31/production-package.json game/docs/STAGE02_CURRENT_STAGE31_PROBE.json
+          git diff --cached --check
+          git -c user.name='HONRO candidate verification' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m "Record exact-runtime Stage31 verification for Stage2 from $GITHUB_SHA"
+          target="review/stage02-current-probed/$GITHUB_RUN_ID"
+          git push origin "HEAD:refs/heads/$target"
+          test "$(git rev-parse HEAD)" = "$(git ls-remote origin "refs/heads/$target" | cut -f1)"
+          git rev-parse HEAD > "$OUT/evidence-head.txt"
+          printf '%s\n' "$target" > "$OUT/evidence-branch.txt"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage02-current-stage31-${{ github.sha }}
+          path: _local/reports/stage02-current-stage31/
+          retention-days: 14
