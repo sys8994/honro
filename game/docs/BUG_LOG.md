@@ -5319,3 +5319,11 @@ Title `여정 이어가기` could choose an older hub before honoring a saved di
 - 기준판 Chromium(`tests/stage21-current-browser.py`): 위 실행의 시작/호송중/출구 snapshot을 복원해 목표와 1280×800/390×844/844×390 화면, 세 상태의 exact battle save/Continue, pageerror0 확인. snapshot 주입·카메라는 fixture이며 정상 브라우저 입력 완주 증거가 아니다. 직접 본 미술 한계: 하부의 넓은 단순 면, 모바일 축소 표지 겹침/목표 줄임표. 정상 입력 정책은 R6→R24 호송 구간이 길었으며, 자동 사격 정책 한계가 섞여 재미 합격/난도 너프 근거로 쓰지 않는다.
 - 수정판 `tests/stage21-escort-target.mjs`: 실제 관측 snapshot의 수레/호송/출구 목표 및 exact 저장재개 3건 통과. 실제 주민 좌표 추적과 저작 marker 불변을 확인했다. 입력: 앞선 fullplay trace(JSON), 기본 `_local/reports/stage21-current/clear-route/trace.json` 또는 `HONRO_STAGE21_TRACE`.
 - 기준판 build 통과. 수정판 build는 기존 `tools/stage31/check-release.mjs`의 `Runtime changed after actual Engine probes.`로 차단됐다. 가드·production package·다른 승인대기는 변경하지 않았다. 수정판 새 HTML/브라우저 픽셀/Pages 검증은 미완료이며, 부모 통합 담당자의 실제 공통 런타임 probe 재검증 후 필요하다. master 병합/배포 없음. 상세 로그·이미지는 Git 제외 `_local/reports/stage21-current/`.
+
+### 21장 R25 병목 분리와 동일 진입 비교
+
+- R6–R16 곽진은 실제 주변 적의 위협 때문에 정지했다. 특히 수레 군집 `wagon-cordon-3`은 R16, 마지막 필수 성문 공중 적 `gate-watch-3`은 R19에 쓰러졌다. R6–R24 사격 입력56회 중 필수 국소/후발 적36회, 나머지20회는 다른 적을 겨냥했다. 이는 검수기의 고정 사격 위치/대상 선택 한계를 포함한다.
+- R17 이후에는 검수기가 입력 가능 즉시 발사·방어로 넘겨 NPC가 플레이어 조준 단계에서 걸을 시간을 거의 주지 않았다. R17–R24 실제 이동 한도는 라운드당600인데 여러 라운드에서 약160–310px만 사용했다. 대사10회 다음 입력은 별도 턴 비용이 아니며, 이 자동 실행의 빠른 넘기기는 인간 독서 시간 증거가 아니다.
+- `HONRO_STAGE21_POLICY=escort-pause`는 안전한 아군 입력 단계에서 실제 NPC가 멈출 때까지 유한 프레임 대기할 뿐, 턴/HP/좌표/이동력/적/장비를 수정하지 않는다. `HONRO_STAGE21_ENTRY=<기준 initial.json>`으로 같은 진입 battle 전체와 성장·장비·보상 profile을 deepEqual 확인한다. 장비 runId는 동일 진입 fixture의 식별자를 그대로 재사용한다.
+- 비교 결과: 원래 R25→대기입력 R20. 수레R6 동일, 호송·국소정리R24→R19, 출구R25→R20. 추가 NPC 대기16.23초, 전체 시뮬레이션480→447.73초, 아군 승인 사격73→68회. 같은 초기 상태/RNG/장비/성장/보상, 외부 actor-state 쓰기0. 전투 수치나 승리조건 너프 없이20턴 가능성을 확인했다. 검수기의 조준 도구 보조/DOM·clock doubles 한계는 유지된다.
+- 실제 Chromium keyboard/pointer 전투와 31장 정식 probe 갱신은 별도 검증 단계다. 위 native 결과를 브라우저 완주·재미 승인으로 확대하지 않는다.
