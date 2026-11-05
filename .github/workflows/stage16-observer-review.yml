@@ -1,0 +1,39 @@
+name: Verify Stage16 witness fallback with guarded build and actual App
+on:
+  push:
+    branches: ['work/stage16-app-review-20261104']
+permissions:
+  contents: read
+jobs:
+  stage16:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - name: Install pinned dependencies
+        run: npm ci && npm ci --prefix game && pip install playwright==1.51.0 && python -m playwright install --with-deps chromium
+      - name: Normal release guard and build without bypasses
+        run: npm --prefix game run typecheck && npm run build
+      - name: Existing focused observer and actual App checks
+        run: node tests/stage16-observer-state.mjs && node tests/act23-v4-reviewed16.mjs
+      - name: Actual Engine movement and App Continue with explicit synthetic states
+        run: node tests/stage16-observer-app-resume.mjs
+      - name: Actual Chromium inputs and reload on this built product
+        run: python tests/stage16-observer-browser.py
+      - name: Preserve only synthetic game observations
+        if: always()
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        with:
+          name: stage16-observer-review
+          path: |
+            _local/reports/stage16-observer-app/
+            _local/reports/stage16-observer-browser/
+          if-no-files-found: ignore
+          retention-days: 14
