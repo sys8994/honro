@@ -1,15 +1,15 @@
 """Same initial profile/seed, before/after map fixtures; actual keyboard movement.
 Prediction comparisons are read-only diagnostics, not damage/combat completion.
 """
-import json,time
+import json,time,os
 from playwright.sync_api import sync_playwright
 from browser_support import ROOT,launch,serve_game
 from stage21_source_preview import install_source_preview,source_preview_metadata
-out=ROOT/'_local/reports/stage21-approach/browser';out.mkdir(parents=True,exist_ok=True)
+out=ROOT/os.environ.get('HONRO_STAGE21_APPROACH_OUT','_local/reports/stage21-approach/browser');out.mkdir(parents=True,exist_ok=True)
 rows=[];errors=[]
 with serve_game() as base,sync_playwright() as pw:
  browser=launch(pw)
- for version in ['before','after']:
+ for version in os.environ.get('HONRO_STAGE21_APPROACH_VERSIONS','before,after').split(','):
   entry=json.loads((ROOT/f'_local/reports/stage21-approach/{version}-entry.json').read_text())
   for route in ['ground','roof']:
    page=browser.new_page(viewport={'width':1280,'height':800});install_source_preview(page);page.on('pageerror',lambda e:errors.append(str(e)))
