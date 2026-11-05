@@ -63,7 +63,7 @@ with serve_game() as base,sync_playwright() as pw:
    marker=observation['marker'];choice=plan()
    # A marker outside the viewport supplies direction only. Pan by a bounded
    # screen gesture, never set the camera or navigate to its hidden coordinates.
-   for scan in range(3):
+   for scan in range(6):
     if not marker or marker['visible']:break
     d=marker['direction'];page.mouse.move(640,350);page.mouse.down();page.mouse.move(640-d['x']*210,350-d['y']*140,steps=12);page.mouse.up();page.wait_for_timeout(250)
     observation=page.evaluate("""()=>{const a=HonroApp,scene=a.scene,{w,h}=scene.size(),m=HonroAct23V4.state(a.engine.b).targets[0],p=m&&HonroCamera.screen(scene,w,h,m),visible=p&&p.x>=20&&p.x<=w-20&&p.y>=80&&p.y<=h-100;return {marker:m?{label:m.label,kind:m.kind,visible:!!visible,x:visible?m.x:null,y:visible?m.y:null,direction:p?{x:Math.sign(p.x-w/2),y:Math.sign(p.y-h/2)}:null}:null,scale:scene.scale};}""")
@@ -89,8 +89,23 @@ with serve_game() as base,sync_playwright() as pw:
      elif marker['label']=='주민 호송':
       if abs(dx)>240:move(marker['x']-(1 if dx>0 else -1)*170)
      else:move(marker['x'])
-    elif not choice:
-     d=marker['direction']['x'];move(state()['x']+d*360)
+    elif not choice or marker['kind']=='exit':
+     # A displayed exit takes priority over optional targets. Follow its
+     # visible direction with the current turn's movement budget; no distance
+     # or unseen destination coordinates are supplied by the observer.
+     d=marker['direction']['x']
+     for travel in range(5):
+      before=state()
+      if before['moveLeft']<100:break
+      move(before['x']+d*min(360,before['moveLeft']-20))
+      if not ready():break
+      after=state()
+      if after['active']!=start['active'] or abs(after['x']-before['x'])<40:break
+      visible_goal=page.evaluate("""()=>{const a=HonroApp,scene=a.scene,{w,h}=scene.size(),m=HonroAct23V4.state(a.engine.b).targets[0];if(!m)return null;const p=HonroCamera.screen(scene,w,h,m);return p.x>=20&&p.x<=w-20&&p.y>=80&&p.y<=h-100?{x:m.x,kind:m.kind}:null;}""")
+      record('follow-displayed-direction',{'direction':d,'visibleGoal':visible_goal})
+      if visible_goal:
+       if visible_goal['kind']=='exit':move(visible_goal['x'])
+       break
    if not ready():break
    if state()['active']!=start['active']:continue
    # E is an ordinary attempted interaction at the currently displayed marker.
