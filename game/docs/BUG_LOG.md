@@ -5327,3 +5327,6 @@ Title `여정 이어가기` could choose an older hub before honoring a saved di
 - `HONRO_STAGE21_POLICY=escort-pause`는 안전한 아군 입력 단계에서 실제 NPC가 멈출 때까지 유한 프레임 대기할 뿐, 턴/HP/좌표/이동력/적/장비를 수정하지 않는다. `HONRO_STAGE21_ENTRY=<기준 initial.json>`으로 같은 진입 battle 전체와 성장·장비·보상 profile을 deepEqual 확인한다. 장비 runId는 동일 진입 fixture의 식별자를 그대로 재사용한다.
 - 비교 결과: 원래 R25→대기입력 R20. 수레R6 동일, 호송·국소정리R24→R19, 출구R25→R20. 추가 NPC 대기16.23초, 전체 시뮬레이션480→447.73초, 아군 승인 사격73→68회. 같은 초기 상태/RNG/장비/성장/보상, 외부 actor-state 쓰기0. 전투 수치나 승리조건 너프 없이20턴 가능성을 확인했다. 검수기의 조준 도구 보조/DOM·clock doubles 한계는 유지된다.
 - 실제 Chromium keyboard/pointer 전투와 31장 정식 probe 갱신은 별도 검증 단계다. 위 native 결과를 브라우저 완주·재미 승인으로 확대하지 않는다.
+
+- 21장 후보의 정식 31장 재검증: Actions `42003221632`, 입력 commit `2c2f4f57e8001cdcabf549cd91ddea1ea7b625fa`, runtime SHA256 `54958423e3da8cfeaac2a3840f3526dcef88511b94464e2588aa5013e7b057d0`. actual Engine 3 probes, 실제 Chromium 전투·승선(R15), 기존 release gate와 빌드 모두 성공. 증거 요약 원격 commit `addaf681`에서 production-package만 가져왔고 로컬 `npm run build`도 기존 가드 그대로 통과했다. 승인된 31장 합성 자료만 Actions 14일 보관하며 21장 자료는 공개하지 않는다. 이 증거는 해당 runtime 전용이며 다른 장의 변경이 합쳐진 runtime에 재사용할 수 없다. master/Pages 반영은 통합 담당 범위다.
+- 수정판 source preview에서 Chromium 시작/이동/출구 세 snapshot의 exact 저장재개와 데스크톱·모바일 3형태 표시를 재검수했다. 실제 부상자 위치를 따라가는 표지를 픽셀로 확인했다. 고정 카메라를 쓴 가로 snapshot은 화면 밖 표지가 나타나므로 자연 카메라/모바일 조작 증거로 확대하지 않는다. 실제 전투 검수는 별도 진행한다.
