@@ -46,6 +46,10 @@ with serve_game() as base,sync_playwright() as pw:
   for turn in range(200):
    if not ready():break
    start=state()
+   if os.environ.get('HONRO_STAGE21_STOP_AT_CLEARANCE')=='1' and page.locator('#objective-text').inner_text()=='남은 길목 적 정리하기':
+    record('normal-clearance-instruction');page.screenshot(path=str(out/'normal-clearance-header.png'))
+    page.locator('#objective-text').click();assert page.locator('.battle-help-current').inner_text()=='남은 길목 적 정리하기';page.screenshot(path=str(out/'normal-clearance-help.png'));page.locator('button.close[data-action="close"]').click()
+    result['instructionVerified']=True;result['scope']='Normal-input continuation of this audit run own R11 save to the cleanup instruction; not another full combat completion.';break
    if start['round']>30:record('round-limit');break
    if start['city'].get('started'):
     # Normal thinking time lets legal escort motion use its existing budget.
@@ -134,6 +138,10 @@ with serve_game() as base,sync_playwright() as pw:
   except Exception:pass
  finally:
   (out/'result.json').write_text(json.dumps(result,ensure_ascii=False,indent=2));browser.close()
-assert result['completed'] and result['final']['round']<=20 and not result['errors'],{k:v for k,v in result.items() if k!='profile'}
-assert result['resume'] and all(q['growthPreserved'] and q['objectivesPreserved'] and q['roundBefore']==q['roundAfter'] and q['residentDistanceAfter']>=q['residentDistanceBefore'] for q in result['resume']),result['resume']
-print('PASS browser real combat and exit',result['final']['round'])
+if os.environ.get('HONRO_STAGE21_STOP_AT_CLEARANCE')=='1':
+ assert result.get('instructionVerified') and not result['errors'],result.get('exception')
+ print('PASS normal-input cleanup instruction transition',result['final']['round'])
+else:
+ assert result['completed'] and result['final']['round']<=20 and not result['errors'],{k:v for k,v in result.items() if k!='profile'}
+ assert result['resume'] and all(q['growthPreserved'] and q['objectivesPreserved'] and q['roundBefore']==q['roundAfter'] and q['residentDistanceAfter']>=q['residentDistanceBefore'] for q in result['resume']),result['resume']
+ print('PASS browser real combat and exit',result['final']['round'])
