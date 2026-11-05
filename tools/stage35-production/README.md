@@ -49,3 +49,29 @@ Source recipes: `ground-continuous-recipe.json`, `bamboo-cover-recipe.json`, `ol
 ## Rejected work retained as diagnosis
 
 Separate west/center/east BODY pieces produced mismatched giant facets and rectangular joins. `west-assembly/35-whole.png` documents why they were replaced. Do not import the old diagnostic assembly or old three-piece assets.
+
+## Current 30-foe follow-up: entry conditions and tactical limits (2026-11-05)
+
+On source merge `981058fd` with master `3e56b342`, the unpublished source preview has runtime digest `dfad27db17afdd76c7e15383c16dec9083e12bf161ddcf24c664f9d93b2d78ad`. Its normal release gate still requires a new coordinated Stage31 probe. These results do not validate the current public Pages or generated master build.
+
+| Prepared entry and actual input route | Combat end | Exit win | Shots | Survivors |
+| --- | --- | --- | --- | --- |
+| Level22/45SP, early ascent | R28 | R28 | 76 | 4 |
+| Level22/45SP, knight assigned lower floor | R23 | R24 | 76 | 4 |
+| Level25/51SP, same assignment; preserves overlap stalls and Continue | R22 | R23 | 64 | 4 |
+| Same Level25 battle, alternative from its actual R18 autosave | R18 | R19 | 64 | 4 |
+
+The R19 row is a saved-checkpoint comparison, not a second fresh full run. At R18, c-3 had 367HP and stood almost on the knight at x4474; the automatic planner repeatedly found no shot while standing still. Ordinary left movement followed by a normal shot killed it. The complete stalled run and alternative both showed the exit-house line, saved continuation and actual victory. No enemy damage, resources, XP, victory conditions or running combat state were injected. Both entry profiles loaded the same 30 foes with total maxHP52765. No gully support was observed in these action logs; this is not a proof that all possible routes avoid falls. Runtime-predicted aiming is tool assistance, not a human usability/fun approval.
+
+Level25 preparation uses `tests/fixtures/act4-rc/support-entry-fixture.json` as the Level22 base. Actual `HonroProgression.budget`, contribution `rewardScores/reserve`, `grantXP` and `investStat` APIs calculate declared equal-contribution grants: 31=20781, 32=22418, 33=24103, 34=0 XP per hero (158091→225393). Synthetic completed-stage markers permit direct entry; no 1–34 continuous play or prior quest receipts are claimed. Each hero has 51 earned/spent SP, with the additional six invested in normal stat training. This is one legal balanced preparation, not the only campaign allocation.
+
+| Hero | Training at22→25 | Equipped skill ranks | Equipment IDs (unchanged) |
+| --- | --- | --- | --- |
+| Archer | 30→36 | A01:1, A14/A02/A05:5 | itm_se_05, itm_co_11 |
+| Mage | 30→36 | M01:1, M06/M02/M03:5 | itm_da_05, itm_co_08 |
+| Knight | 27→33 | S00:1, S01/S06/S08:5 | itm_hw_05, itm_co_01 |
+| Occultist | 27→33 | O01:1, O02/O13:5, O06:6 | itm_so_05, itm_co_02 |
+
+Knight also retains S03/S05/S07:1 and occultist O11/O12:1 outside those loadouts. All equipment is obtainable by Stage30 under the authored acquisition events; the fixture keeps its existing choices and grants no new optional equipment. Difficulty is normal, assist off, speed2/playerSpeed1; automated selection does not operate M02 manual detonation. The source preparation, exact profile/SP/gear provenance, original input logs/autosaves and screenshots remain private under `_local/reports/stage35-role-split/`. The abandoned charge-calibration run, bounded incomplete run and overlap-policy stall are preserved as limitations.
+
+Only the exit-house narrative repair remains a product change. The earlier c-3 relocation was rejected; no new enemy weakening, terrain change or relaxed gathering threshold follows from these runs. The R19 branch establishes a feasible normal-input route near the target, while a fresh uninterrupted R19 reproduction and human fun judgement remain unverified. Parent coordination owns exact-runtime probe, normal build, master integration and Pages checks.
