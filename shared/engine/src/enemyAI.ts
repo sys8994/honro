@@ -250,7 +250,10 @@ export function targetFor(e:Engine,u:Unit):Unit|undefined{
  if(scriptedId&&scriptedUntil>=b.round){const scripted=e.unit(scriptedId);if(scripted&&!scripted.dead&&scripted.hp>0)return scripted;}
  const cursed=e.actors(u.side).filter(v=>v.id!==u.id&&(v.betrayalUntil||0)>=b.round&&Math.hypot(v.x-u.x,v.y-u.y)<1450).sort((a,c)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(c.x-u.x,c.y-u.y))[0];
  if(cursed)return cursed;
- if(['escort','defend'].includes(e.stage.objective)&&b.mode==='campaign'&&b.round%2===0){
+ // Production App's legacy objective label is not "defend" for this
+ // authored gate mission. Keep its pressure without relabeling other chapters.
+ const gateDefense=(b as any).honroStage===4&&!(b as any).honroCustom;
+ if((['escort','defend'].includes(e.stage.objective)||gateDefense)&&b.mode==='campaign'&&b.round%2===0){
   const obj=e.unit('objective');if(obj&&!obj.dead&&Math.hypot(obj.x-u.x,obj.y-u.y)<1100)return obj;
  }
  const friendlyTargets=(b as any).honroStage?e.b.units.filter(v=>!v.dead&&v.hp>0&&(v.side===0||(v.side===2&&(v as any).honroAlly)||v.id==='objective')):e.actors(0);
