@@ -43,7 +43,23 @@ export function* rankEnemyQueueSteps(e:Engine,units:Unit[]):Generator<void,Enemy
   }}
   rows.push({unit,tier,distance,band:Math.floor(distance/240)});yield;
  }
- return rows.sort((a,b)=>b.tier-a.tier||a.band-b.band||a.unit.lastAct-b.unit.lastAct||a.distance-b.distance||a.unit.id.localeCompare(b.unit.id));
+ const ranked=rows.sort((a,b)=>b.tier-a.tier||a.band-b.band||a.unit.lastAct-b.unit.lastAct||a.distance-b.distance||a.unit.id.localeCompare(b.unit.id));
+ return stage10FinaleQueue(e,ranked);
+}
+/** The ritual's ground reinforcements need paid approach turns as well as the
+ * crows' immediately available shots. Keep the six-action cap: at most two
+ * slots go to reachable wave beasts that missed the preceding enemy turn.
+ * This changes selection only; movement, targeting and damage stay ordinary. */
+export function stage10FinaleQueue(e:Engine,ranked:EnemyQueuePriority[]){
+ const b=e.b as any,hs=b.honroState;
+ if(b.honroStage!==10||b.honroCustom||!hs?.sodanCoop||!hs.finaleWaves?.length)return ranked;
+ const waveIds=new Set<string>(hs.finaleWaves.flatMap((w:{units:string[]})=>w.units));
+ const limit=Math.max(0,b.enemyLimit||0),count=Math.min(2,limit);
+ const waiting=ranked.filter(p=>p.tier>0&&waveIds.has(p.unit.id)&&beastKind(p.unit)&&!(p.unit.stun||0)&&p.unit.lastAct<b.round-1)
+  .sort((a,b)=>a.unit.lastAct-b.unit.lastAct||a.distance-b.distance||a.unit.id.localeCompare(b.unit.id)).slice(0,count);
+ if(!waiting.length)return ranked;
+ const ids=new Set(waiting.map(p=>p.unit.id)),others=ranked.filter(p=>!ids.has(p.unit.id));
+ return [...others.slice(0,limit-waiting.length),...waiting,...others.slice(limit-waiting.length)];
 }
 function* queueShotReadySteps(e:Engine,u:Unit,target:Unit):Generator<void,boolean,unknown>{
  const skills=u.loadout.map(id=>SKILLS[id]).filter(s=>s&&!s.passive&&s.damage>0&&e.manaCost(s,u)<=u.focus&&!((u.cooldowns?.[s.id]||0)>e.b.round)&&e.npcShotInReach(u,s)).slice(0,3);
