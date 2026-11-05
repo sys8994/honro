@@ -17,7 +17,7 @@ planner=(ROOT/'tests/stage21-current-plan.js').read_text()
 result={'sourcePreview':source_preview_metadata(),'scope':__doc__,'entrySha256':hashlib.sha256(entry_path.read_bytes()).hexdigest(),'servedSource':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'servedManifestSha256':hashlib.sha256((ROOT/'web/manifest.json').read_bytes()).hexdigest(),'plannerSha256':hashlib.sha256(planner.encode()).hexdigest(),'completed':False,'errors':[],'resume':[]};events=[]
 with serve_game() as base,sync_playwright() as pw:
  browser=launch(pw);page=browser.new_page(viewport={'width':1280,'height':800});install_source_preview(page);page.on('pageerror',lambda e:result['errors'].append(str(e)))
- def state():return page.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b,u=e.active,V=HonroAct23V4;return {stage:b.honroStage,round:b.round,side:b.side,phase:b.phase,active:u?.id,cls:u?.cls,x:u?.x,y:u?.y,angle:u?.angle,facing:u?.facing,moveLeft:u?.moveLeft,can:a.canInput(),grounded:u&&e.grounded(u),dialogue:!!a.dialogue,shots:b.shots,enemyHpSum:b.units.filter(v=>v.side===1&&!v.dead).reduce((n,v)=>n+v.hp,0),enemyUnits:b.units.filter(v=>v.side===1).map(v=>({id:v.id,hp:v.hp,dead:v.dead})),health:b.units.filter(v=>v.side===0&&!v.summoned).map(v=>({id:v.id,hp:v.hp,dead:v.dead})),objective:V.current(b)?.id,city:HonroAct23V4City.memory(b),done:a.done,objectiveText:document.querySelector('#objective-text')?.textContent};}''')
+ def state():return page.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b,u=e.active,V=HonroAct23V4;return {stage:b.honroStage,round:b.round,side:b.side,phase:b.phase,active:u?.id,cls:u?.cls,x:u?.x,y:u?.y,angle:u?.angle,facing:u?.facing,moveLeft:u?.moveLeft,can:a.canInput(),grounded:u&&e.grounded(u),dialogue:!!a.dialogue,shots:b.shots,enemyHpSum:b.units.filter(v=>v.side===1&&!v.dead).reduce((n,v)=>n+v.hp,0),enemyUnits:b.units.filter(v=>v.side===1).map(v=>({id:v.id,hp:v.hp,dead:v.dead})),health:b.units.filter(v=>v.side===0&&!v.summoned).map(v=>({id:v.id,hp:v.hp,dead:v.dead})),objective:V.state(b).targets.find(t=>t.id==='21-wreck-review')?.id||V.current(b)?.id,city:HonroAct23V4City.memory(b),done:a.done,objectiveText:document.querySelector('#objective-text')?.textContent};}''')
  def record(kind,extra=None):
   row={'kind':kind,'time':time.monotonic(),'state':state(),**(extra or {})};events.append(row)
   with (out/'events.jsonl').open('a') as f:f.write(json.dumps(row,ensure_ascii=False)+'\n')
@@ -27,7 +27,7 @@ with serve_game() as base,sync_playwright() as pw:
    s=state()
    if s['phase'] in ['won','lost'] or s['done']:return False
    if s['dialogue']:page.wait_for_timeout(250);page.keyboard.press('Enter')
-   elif s['can'] and s['grounded']:return True
+   elif s['can'] and s['grounded'] and s['objective']:return True
    page.wait_for_timeout(150)
   raise RuntimeError('input boundary timeout')
  def move(goal):
@@ -58,7 +58,7 @@ with serve_game() as base,sync_playwright() as pw:
     (out/'moving-save.json').write_text(json.dumps(before,ensure_ascii=False))
     page.reload();page.wait_for_function('!!globalThis.HonroApp');page.locator('[data-action="continue"]').click();page.wait_for_function('HonroApp.engine?.b?.honroStage===21');page.keyboard.press('Escape');page.wait_for_timeout(100)
     after=page.evaluate('HonroApp.engine.b');result['resume'].append({'roundBefore':before['honroBattle']['round'],'roundAfter':after['round'],'growthPreserved':before['honroBattle']['heroes']==after['heroes'],'objectivesPreserved':before['honroBattle']['honroState']['act23v4']['done']==after['honroState']['act23v4']['done'],'residentDistanceBefore':before['honroBattle']['honroState']['act23v4']['city']['actors']['act3-resident']['distance'],'residentDistanceAfter':after['honroState']['act23v4']['city']['actors']['act3-resident']['distance']});page.keyboard.press('Escape');saved=True;ready();start=state();record('resume')
-   goal=page.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b,V=HonroAct23V4,s=V.current(b),u=e.active,city=HonroAct23V4City.memory(b);if(s.id==='city-exit')return V.marker(b,s.id).x;if(!city.started){const t=(s.target&&e.unit(s.target))||e.unit(s.id)||V.marker(b,s.id),foe=e.alive(1).filter(v=>Math.hypot(v.x-u.x,v.y-u.y)<1050).sort((a,z)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(z.x-u.x,z.y-u.y))[0];if(foe&&Math.abs(foe.x-t.x)<700)return foe.x+(u.x<foe.x?-1:1)*(u.cls==='knight'?100:430);return t.x;}const req=new Set([...b.honroV4CitySpec.localIds,...(city.pressure.ids||[])]),threat=e.alive(1).filter(t=>req.has(t.id)).sort((a,z)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(z.x-u.x,z.y-u.y))[0];if(threat)return threat.x+(u.x<threat.x?-1:1)*(u.cls==='knight'?110:260);return {archer:1400,mage:1500,knight:2850,occultist:3030}[u.cls];}''')
+   goal=page.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b,V=HonroAct23V4,s=V.current(b),u=e.active,city=HonroAct23V4City.memory(b),review=V.state(b).targets.find(t=>t.id==='21-wreck-review');if(review)return review.x;if(!s)return u.x;if(s.id==='city-exit')return V.marker(b,s.id).x;if(!city.started){const t=(s.target&&e.unit(s.target))||e.unit(s.id)||V.marker(b,s.id),foe=e.alive(1).filter(v=>Math.hypot(v.x-u.x,v.y-u.y)<1050).sort((a,z)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(z.x-u.x,z.y-u.y))[0];if(foe&&Math.abs(foe.x-t.x)<700)return foe.x+(u.x<foe.x?-1:1)*(u.cls==='knight'?100:430);return t.x;}const req=new Set([...b.honroV4CitySpec.localIds,...(city.pressure.ids||[])]),threat=e.alive(1).filter(t=>req.has(t.id)).sort((a,z)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(z.x-u.x,z.y-u.y))[0];if(threat)return threat.x+(u.x<threat.x?-1:1)*(u.cls==='knight'?110:260);return {archer:1400,mage:1500,knight:2850,occultist:3030}[u.cls];}''')
    # Before spending movement, get behind the NPC's actual direction of travel.
    retreat=page.evaluate("""()=>{const a=HonroApp,e=a.engine,b=e.b,u=e.active,c=HonroAct23V4City.memory(b),q=b.honroV4CitySpec;if(!c.started)return null;for(const [id,m]of Object.entries(c.actors||{})){const n=e.unit(id);if(!n||m.safe||!['body-or-terrain','terrain'].includes(m.blocked)||Math.abs(n.y-u.y)>110||Math.abs(n.x-u.x)>190)continue;const target=id===q.guard&&!c.proof.pickup?e.unit(q.resident).x+75:q.destination.x+(id===q.guard?90:0),dir=target<n.x?-1:1;if((u.x-n.x)*dir>-30)return n.x-dir*220;}return null;}""")
    move(retreat if retreat is not None else goal)
@@ -86,7 +86,7 @@ with serve_game() as base,sync_playwright() as pw:
   for name,w,h in [('portrait',390,844),('landscape',844,390)]:page.set_viewport_size({'width':w,'height':h});page.wait_for_timeout(300);page.screenshot(path=str(out/(name+'-result.png')))
  except BaseException as ex:
   result['exception']=repr(ex)
-  try:result['final']=state();page.screenshot(path=str(out/'failure.png'))
+  try:result['final']=state();result['profile']=page.evaluate('HonroApp.profile');page.screenshot(path=str(out/'failure.png'))
   except Exception:pass
  finally:
   (out/'result.json').write_text(json.dumps(result,ensure_ascii=False,indent=2));browser.close()
