@@ -9,10 +9,13 @@ from browser_support import launch
 OUT=Path(os.environ.get('HONRO_STAGE2_OUT','_local/reports/stage02-current/full-ui'));OUT.mkdir(parents=True,exist_ok=True)
 TOUCH=os.environ.get('HONRO_STAGE2_TOUCH')=='1'
 POLICY=os.environ.get('HONRO_STAGE2_UI_POLICY','advance')
+SHOT_POLICY=os.environ.get('HONRO_STAGE2_SHOT_POLICY','all')
+ENTRY=Path(os.environ.get('HONRO_STAGE2_ENTRY','tests/fixtures/act1-art/stage02-entry.json'))
+EXPORT_ROUND=int(os.environ.get('HONRO_STAGE2_EXPORT_ROUND','0'))
 URL=os.environ.get('HONRO_QA_URL','http://127.0.0.1:8842/HONRO.html')
-R={'method':'Real keyboard movement/aim/charge/drop and pointer dialogue/defend; ordinary production animation loop. Isolated copy used only for shot planning. Legal prior-stage fixture, not campaign continuity or human fun approval.','policy':POLICY,'source':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'actions':[],'turns':[],'dialogues':[],'escort':[],'errors':[],'passed':False}
+R={'method':'Real keyboard movement/aim/charge/drop and pointer dialogue/defend; ordinary production animation loop. Isolated copy used only for shot planning. Legal prior-stage fixture, not campaign continuity or human fun approval.','policy':POLICY,'shotPolicy':SHOT_POLICY,'source':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'actions':[],'turns':[],'dialogues':[],'escort':[],'errors':[],'passed':False}
 STATE='''()=>{const a=HonroApp,e=a.engine,b=e?.b,u=e?.active,c=e?.unit('objective');const unit=v=>({id:v.id,x:v.x,y:v.y,hp:v.hp,dead:!!v.dead,move:v.moveLeft,ground:e.grounded(v),vx:v.vx,vy:v.vy,drop:v.platformDrop?.phase,angle:v.angle,facing:v.facing,speed:v.walkSpeed,support:e.contactSurface(v.x,v.y-4,v.y+5)?.t.id});return {screen:a.screen,can:a.canInput(),done:a.done,dialogue:a.dialogue?{id:a.dialogue.id,index:a.dialogue.index,line:a.dialogue.lines[a.dialogue.index]}:null,round:b?.round,phase:b?.phase,side:b?.side,shot:b?.shot,u:u?unit(u):null,car:c?unit(c):null,allies:b?b.units.filter(v=>v.honroAlly&&!v.dead).map(v=>({...unit(v),role:v.allyRole,civilian:!!v.honroCivilian})):[],queue:b?.queue,allyQueue:b?.honroState.allyQueue,pause:b?.honroState.carriagePauseUntilRound,threats:c?e.alive(1).filter(v=>Math.abs(v.x-c.x)<1150&&Math.abs(v.y-c.y)<650).map(unit):[],foes:b?e.alive(1).map(unit):[],flags:b?.honroState.flags};}'''
-PLAN='''()=>{const a=HonroApp,C=HONRO_CORE,e=new C.Engine(structuredClone(a.engine.b),()=>{},true),u=e.active,s=C.SKILLS.A01;for(const t of e.alive(1).sort((v,w)=>Number(w.awake)-Number(v.awake)||Math.hypot(v.x-u.x,v.y-u.y)-Math.hypot(w.x-u.x,w.y-u.y)))for(const p of e.shotSeeds(u,s,t)){const pred=e.predict(u,s,p.angle,p.power,t,false);if(pred.unit===t.id){const v=C.shotViable(e,u,s,t,p.angle,p.power);if(v.risk<1&&v.friendlyDamage===0)return{target:t.id,...p,duration:e.chargeDuration(u,s)};}}return null;}'''
+PLAN='''(shotPolicy)=>{const a=HonroApp,C=HONRO_CORE,e=new C.Engine(structuredClone(a.engine.b),()=>{},true),u=e.active,s=C.SKILLS.A01;for(const t of e.alive(1).filter(t=>shotPolicy!=='defer-roost'||!HonroStage2Airborne.roost(t)).sort((v,w)=>Number(w.awake)-Number(v.awake)||Math.hypot(v.x-u.x,v.y-u.y)-Math.hypot(w.x-u.x,w.y-u.y)))for(const p of e.shotSeeds(u,s,t)){const pred=e.predict(u,s,p.angle,p.power,t,false);if(pred.unit===t.id){const v=C.shotViable(e,u,s,t,p.angle,p.power);if(v.risk<1&&v.friendlyDamage===0)return{target:t.id,...p,duration:e.chargeDuration(u,s)};}}return null;}'''
 route=[(1600,'left-tree-branch-upper',False),(1100,'left-tree-branch-upper',True),(1450,'left-tree-branch-middle',False),(1050,'left-tree-branch-middle',True),(1500,'left-tree-branch-lower',False),(1350,'left-tree-branch-lower',True),(1050,'left-descent-stone-low',False),(1460,'canyon-ground',False),(1830,'canyon-ground',False)]
 started=time.monotonic();last_dialogue=None;last_escort=None;page=None
 
@@ -37,6 +40,26 @@ def touch(selector,dx,dy,ms):
   if dx or dy:c.send('Input.dispatchTouchEvent',{'type':'touchMove','touchPoints':[{'x':x+dx,'y':y+dy}]})
   page.wait_for_timeout(ms)
  finally:c.send('Input.dispatchTouchEvent',{'type':'touchEnd','touchPoints':[]});c.detach()
+
+def capture_checkpoint(route_index):
+ before=state();press(page.locator('[data-action="pause"]'));press(page.locator('[data-action="settings"]:visible').last)
+ press(page.locator('[data-action="settings-page"][data-id="records"]'))
+ with page.expect_download() as pending:press(page.locator('[data-action="export"]:visible'))
+ download=pending.value;raw=Path(download.path()).read_bytes();profile=json.loads(raw)
+ assert profile['honroBattle']['round']==before['round']
+ for actor in ['u','car']:
+  saved=next(u for u in profile['honroBattle']['units'] if u['id']==before[actor]['id'])
+  for field in ['x','y','hp']:assert abs(saved[field]-before[actor][field])<1
+ payload={'scope':'Unmodified real touch UI export checkpoint; same-state comparison, not a fresh campaign start.','profile':profile,'routeIndex':route_index,'servedBundle':R['servedBundle'],'sourceRun':str(OUT)}
+ file=OUT/f'checkpoint-{before["round"]}.json';file.write_text(json.dumps(payload,ensure_ascii=False))
+ R.setdefault('checkpoints',[]).append({'path':str(file),'round':before['round'],'sha256':hashlib.sha256(file.read_bytes()).hexdigest()})
+ # Records -> settings root -> pause -> battle, all ordinary touch/click UI.
+ for _ in range(5):
+  if not page.locator('#modal.open').count():break
+  close=page.locator('#modal [data-action="close"]:visible')
+  if close.count():press(close.first)
+  else:press(page.locator('#modal .menu-close'))
+ assert ready();assert state()['round']==before['round'];save()
 
 def log(op,**kw):
  row={'op':op,'elapsed':round(time.monotonic()-started,2),**kw};R['actions'].append(row)
@@ -87,14 +110,14 @@ def move_to(x,tolerance=12):
    press(page.locator('#jump')) if TOUCH else page.keyboard.press('Control');jumps+=1;stuck=0;page.wait_for_timeout(180)
  log('move',round=first['round'],target=x,start=u,end=state()['u'],jumps=jumps)
 def fire():
- p=page.evaluate(PLAN)
+ p=page.evaluate(PLAN,SHOT_POLICY)
  if not p:return False
  for _ in range(3):
   s=state();face=-1 if p['angle']>90 else 1
   if s['u']['facing']==face:break
   hold('ArrowLeft' if face<0 else 'ArrowRight',35)
   if not ready():return False
-  p=page.evaluate(PLAN)
+  p=page.evaluate(PLAN,SHOT_POLICY)
   if not p:return False
  for _ in range(50):
   s=state();u=s['u'];delta=(p['angle']-u['angle'])*u['facing']
@@ -111,7 +134,7 @@ try:
   page.add_init_script("window.qaInputs={keys:[],pointers:[],touches:0};document.addEventListener('keydown',e=>qaInputs.keys.push(e.code),true);document.addEventListener('pointerdown',e=>qaInputs.pointers.push({type:e.pointerType,trusted:e.isTrusted,target:e.target.id||e.target.closest('[data-action]')?.dataset.action}),true);document.addEventListener('touchstart',()=>qaInputs.touches++,true);" )
   response=page.goto(URL);page.wait_for_function('window.HonroApp',timeout=60000)
   R['servedBundle']={'url':URL,'htmlSha256':hashlib.sha256(response.body()).hexdigest(),'resources':page.evaluate("performance.getEntriesByType('resource').filter(v=>v.name.includes('/web/')&&v.name.endsWith('.js')).map(v=>v.name)"),'checkoutIsNotBuildProof':True}
-  fixture=json.loads(Path('tests/fixtures/act1-art/stage02-entry.json').read_text());R['fixture']=fixture['scope']
+  fixture=json.loads(ENTRY.read_text());R['fixture']=fixture['scope'];R['entrySha256']=hashlib.sha256(ENTRY.read_bytes()).hexdigest()
   page.evaluate('(p)=>localStorage.setItem("honro-first-act-profile-1",JSON.stringify(p))',fixture['profile']);page.reload();page.wait_for_function('window.HonroApp');
   if TOUCH:
    R['method']='Touch-only gameplay: CDP touchStart/move/end joystick/fire and locator.tap buttons; no keyboard/mouse calls. Ordinary RAF. Browser reload is navigation, not a game-state import.'
@@ -119,7 +142,7 @@ try:
    for selector in ['#setting-sound','#setting-music']:
     if not page.locator(selector).is_checked():press(page.locator(selector))
    press(page.locator('#modal .menu-close'));R['soundSettings']=page.evaluate('HonroApp.profile.settings')
-  press(page.get_by_role('button',name='여정 이어가기',exact=True))
+  press(page.locator('[data-action="continue"]:visible').first) if fixture['profile'].get('honroBattle') else press(page.get_by_role('button',name='여정 이어가기',exact=True))
   for _ in range(300):
    s=state()
    if s.get('car'):break
@@ -133,7 +156,7 @@ try:
     if enter.count():press(enter.first)
    page.wait_for_timeout(150)
   assert ready();R['initial']=state();page.screenshot(path=str(OUT/'entry.png'))
-  idx=0;first=True;seen=set();resumed=False
+  idx=fixture.get('routeIndex',0);first=not bool(fixture['profile'].get('honroBattle'));seen=set();resumed=False;checkpoint=False
   for action in range(130):
    if not ready():break
    s=state()
@@ -146,6 +169,8 @@ try:
     for actor in ['u','car']:
      for field in ['x','y','hp','move']:assert abs(before[actor][field]-after[actor][field])<1,(actor,field,before[actor],after[actor])
     R['resume']={'before':before,'after':after,'method':'touch pause; browser reload navigation/pagehide autosave; touch Continue; no profile injection'};resumed=True;s=after;page.screenshot(path=str(OUT/'touch-after-reload.png'));save()
+   if EXPORT_ROUND and s['round']>=EXPORT_ROUND and not checkpoint:
+    capture_checkpoint(idx);checkpoint=True;s=state()
    if first:
     first=False
     if fire():continue
@@ -175,7 +200,7 @@ try:
      # Keep the archer in the convoy fight; choose a firing flank near the last aerial threat.
      target=min(s['foes'],key=lambda v:abs(v['x']-s['car']['x']))
      goal=min(4050,max(1500,min(s['car']['x']+500,target['x']+500)))
-    elif POLICY=='return' and s['round']>=17 and s['foes']:
+    elif (POLICY=='return' and s['round']>=17 or POLICY=='recover-aerial' and s['u']['x']>3400 and len(s['foes'])<=2) and s['foes']:
      target=min(s['foes'],key=lambda v:abs(v['x']-s['u']['x']))
      goal=max(1500,min(4050,target['x']+500))
     if s['u']['move']>40:move_to(goal)
