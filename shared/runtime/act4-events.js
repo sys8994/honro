@@ -10,7 +10,14 @@ const alive=u=>!!u&&!u.dead&&u.hp>0;
 const party=b=>b.units.filter(u=>u.side===0&&!u.summoned&&alive(u));
 const boarding=b=>({...{dockX:6470,deckX:6260,deckY:1860,deckW:450,boardX1:6285,boardX2:6685,approachX:5900,approachY:1735,boatY:1910},...(b.honroAct4Design?.boarding||{})});
 // Configured clearance receipt is transient: a restored battle must be drawn again.
-const blockedDrawn=new WeakMap();
+const blockedDrawn=new WeakMap(),exitHouseDrawn=new WeakMap();
+// Only the authored, actually drawn house can announce the new exit. Old saved
+// layouts without this opt-in keep their original event coordinates.
+function exitHouse(b){const cfg=b.honroAct4Design?.exitHouse,z=cfg?.visibleBounds;
+ if(!cfg||!z||!['x1','x2','y1','y2'].every(k=>Number.isFinite(z[k]))||z.x1>=z.x2||z.y1>=z.y2)return null;
+ const matches=(b.honroLandmarks||[]).filter(l=>l.id===cfg.elementId&&l.asset?.id===cfg.assetId);
+ return matches.length===1?{cfg,landmark:matches[0]}:null;
+}
 function blockedShotConfig(b){const v=b.honroAct4Design?.blockedShot,a=b.honroMap?.act4?.blockedShot;if(v===undefined&&a===undefined)return null;
  const ids=x=>Array.isArray(x)&&x.length>0&&x.length<=32&&x.every(id=>typeof id==='string'&&/^[-\w]{1,128}$/.test(id))&&new Set(x).size===x.length;
  const valid=x=>{const z=x?.clearingVisibleBounds;return !!(x&&typeof x==='object'&&!Array.isArray(x)&&Object.keys(x).length===5&&x.version===1&&x.sourceSide==='west'&&ids(x.obstacleTerrainIds)&&ids(x.sourceTerrainIds)&&!x.sourceTerrainIds.some(id=>x.obstacleTerrainIds.includes(id))&&z&&['x1','x2','y1','y2'].every(k=>Number.isFinite(z[k]))&&z.x1<z.x2&&z.y1<z.y2);};
@@ -73,7 +80,9 @@ function observe(app,dt){const b=app.engine?.b,node=G.document.getElementById('a
   const cfg=blockedShotConfig(b),pending=q.blockedShot35;
   if(cfg){if(pending&&q.clock-pending.impactAt>=0&&q.clock-pending.impactAt<2&&sameBlockedFrame(app,pending,blockedDrawn.get(app.engine))&&clearingVisible(app,cfg.clearingVisibleBounds))play(app,'blocked_shot',true);}
   else if(q.blockedAtBamboo&&q.clearShotFromSide&&q.clock-(q.blockedAt??-100)<2&&alive(app.engine.unit(q.clearShotTarget))&&app.engine.active?.x>3000&&app.engine.active?.x<3090)play(app,'blocked_shot',true);
-  if(party(b).some(u=>u.x>6500)&&inView(app,{x:6980,y:1800}))play(app,'edge');
+  const house=exitHouse(b);
+  if(house){if(party(b).some(u=>u.x>K(b,'edgeX',4140)&&u.y<K(b,'edgeYMax',1140)&&app.engine.grounded(u))&&sameBlockedFrame(app,house.landmark,exitHouseDrawn.get(app.engine))&&clearingVisible(app,house.cfg.visibleBounds))play(app,'edge');}
+  else if(!b.honroAct4Design?.exitHouse&&party(b).some(u=>u.x>6500)&&inView(app,{x:6980,y:1800}))play(app,'edge');
  }
  if(n===36){
   if(quiet(b)&&party(b).some(u=>u.cls==='knight'&&u.x>K(b,'arrivalX',1800))&&inView(app,{x:K(b,'arrivalViewX',3000),y:K(b,'arrivalViewY',2040)}))play(app,'arrival');
@@ -108,7 +117,7 @@ G.HonroScene.prototype.landmark=function(c,l){const b=this.battle,q=(b?.honroCus
 const liveWater=G.HonroScene.prototype.liveWater;
 G.HonroScene.prototype.liveWater=function(c,b,...args){const out=liveWater?.call(this,c,b,...args);if((b?.honroCustom||b?.honroAct4Official===1)&&b.honroAct4Preview===36)for(const l of b.honroAct4PreviewDynamic||[])if(l.asset?.id==='a4:door')this.landmark(c,l);return out;};
 const render=G.HonroScene.prototype.render;
-G.HonroScene.prototype.render=function(engine,...args){blockedDrawn.delete(engine);const out=render.call(this,engine,...args),b=engine.b;if(!(b.honroCustom||b.honroAct4Official===1)||!b.honroAct4PreviewDynamic)return out;const {w,h,d}=this.size(),c=this.ctx;c.save();c.setTransform(d,0,0,d,0,0);c.translate(w/2-this.x*this.scale,h/2-this.y*this.scale);c.scale(this.scale,this.scale);for(const l of b.honroAct4PreviewDynamic.filter(l=>l.asset?.id==='a4:door'&&b.honroAct4Preview!==36&&!(b.honroAct4Preview===32&&P.nativeShelterDoor?.(b))))this.landmark(c,l);c.restore();const app=G.HonroApp,q=memory(b),t=q.arrivalTour,v=t?.active&&(b.honroAct4Design?.boarding?.tourViews||tourViews)[t.index];if(app?.scene===this&&v&&!G.document.hidden&&!app.dialogue&&!app.modal.classList.contains('open')&&inView(app,v.point)){t.seen??={};t.seen[v.key]??=q.clock;}if(b.honroAct4Preview===35&&app?.scene===this){const cfg=blockedShotConfig(b),pending=q.blockedShot35;if(cfg&&pending&&q.clock-pending.impactAt>=0&&q.clock-pending.impactAt<2&&clearingVisible(app,cfg.clearingVisibleBounds))blockedDrawn.set(engine,blockedFrame(app,pending));}return out;};
+G.HonroScene.prototype.render=function(engine,...args){blockedDrawn.delete(engine);exitHouseDrawn.delete(engine);const out=render.call(this,engine,...args),b=engine.b;if(!(b.honroCustom||b.honroAct4Official===1)||!b.honroAct4PreviewDynamic)return out;const {w,h,d}=this.size(),c=this.ctx;c.save();c.setTransform(d,0,0,d,0,0);c.translate(w/2-this.x*this.scale,h/2-this.y*this.scale);c.scale(this.scale,this.scale);for(const l of b.honroAct4PreviewDynamic.filter(l=>l.asset?.id==='a4:door'&&b.honroAct4Preview!==36&&!(b.honroAct4Preview===32&&P.nativeShelterDoor?.(b))))this.landmark(c,l);c.restore();const app=G.HonroApp,q=memory(b),t=q.arrivalTour,v=t?.active&&(b.honroAct4Design?.boarding?.tourViews||tourViews)[t.index];if(app?.scene===this&&v&&!G.document.hidden&&!app.dialogue&&!app.modal.classList.contains('open')&&inView(app,v.point)){t.seen??={};t.seen[v.key]??=q.clock;}if(b.honroAct4Preview===35&&app?.scene===this){const house=exitHouse(b);if(house&&house.landmark.layer==='prop'&&(house.landmark.opacity??1)===1&&clearingVisible(app,house.cfg.visibleBounds))exitHouseDrawn.set(engine,blockedFrame(app,house.landmark));const cfg=blockedShotConfig(b),pending=q.blockedShot35;if(cfg&&pending&&q.clock-pending.impactAt>=0&&q.clock-pending.impactAt<2&&clearingVisible(app,cfg.clearingVisibleBounds))blockedDrawn.set(engine,blockedFrame(app,pending));}return out;};
 const background=G.HonroScene.prototype.background;G.HonroScene.prototype.background=function(c,w,h,b){const out=background.call(this,c,w,h,b);if((b?.honroCustom||b?.honroAct4Official===1)&&b.honroAct4Preview===31){c.save();c.translate(w/2-this.x*this.scale,h/2-this.y*this.scale);c.scale(this.scale,this.scale);for(const l of b.honroAct4PreviewDynamic||[])if(['a4:estuary-water','a4:boat'].includes(l.asset?.id))this.landmark(c,l);c.restore();}return out;};
 const attached=new WeakSet();P.attachEvents=function(app,{fresh=false}={}){const b=app.engine.b,n=b.honroAct4Preview;if(attached.has(app.engine))return;const blockedCfg=blockedShotConfig(b);attached.add(app.engine);memory(b);
  if(blockedCfg){const e=app.engine,fire=e.fire.bind(e);e.fire=function(skill,angle,power,ai=false){const u=e.active,before=new Set(b.projectiles);let provenance;
