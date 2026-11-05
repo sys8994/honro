@@ -8,9 +8,10 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[2]/'tests'))
 from browser_support import launch
 OUT=Path(os.environ.get('HONRO_STAGE2_OUT','_local/reports/stage02-current/full-ui'));OUT.mkdir(parents=True,exist_ok=True)
 TOUCH=os.environ.get('HONRO_STAGE2_TOUCH')=='1'
+POLICY=os.environ.get('HONRO_STAGE2_UI_POLICY','advance')
 URL=os.environ.get('HONRO_QA_URL','http://127.0.0.1:8842/HONRO.html')
-R={'method':'Real keyboard movement/aim/charge/drop and pointer dialogue/defend; ordinary production animation loop. Isolated copy used only for shot planning. Legal prior-stage fixture, not campaign continuity or human fun approval.','source':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'actions':[],'turns':[],'dialogues':[],'escort':[],'errors':[],'passed':False}
-STATE='''()=>{const a=HonroApp,e=a.engine,b=e?.b,u=e?.active,c=e?.unit('objective');const unit=v=>({id:v.id,x:v.x,y:v.y,hp:v.hp,dead:!!v.dead,move:v.moveLeft,ground:e.grounded(v),angle:v.angle,facing:v.facing,speed:v.walkSpeed,support:e.contactSurface(v.x,v.y-4,v.y+5)?.t.id});return {screen:a.screen,can:a.canInput(),done:a.done,dialogue:a.dialogue?{id:a.dialogue.id,index:a.dialogue.index,line:a.dialogue.lines[a.dialogue.index]}:null,round:b?.round,phase:b?.phase,side:b?.side,shot:b?.shot,u:u?unit(u):null,car:c?unit(c):null,queue:b?.queue,allyQueue:b?.honroState.allyQueue,pause:b?.honroState.carriagePauseUntilRound,threats:c?e.alive(1).filter(v=>Math.abs(v.x-c.x)<1150&&Math.abs(v.y-c.y)<650).map(unit):[],foes:b?e.alive(1).map(unit):[],flags:b?.honroState.flags};}'''
+R={'method':'Real keyboard movement/aim/charge/drop and pointer dialogue/defend; ordinary production animation loop. Isolated copy used only for shot planning. Legal prior-stage fixture, not campaign continuity or human fun approval.','policy':POLICY,'source':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'actions':[],'turns':[],'dialogues':[],'escort':[],'errors':[],'passed':False}
+STATE='''()=>{const a=HonroApp,e=a.engine,b=e?.b,u=e?.active,c=e?.unit('objective');const unit=v=>({id:v.id,x:v.x,y:v.y,hp:v.hp,dead:!!v.dead,move:v.moveLeft,ground:e.grounded(v),angle:v.angle,facing:v.facing,speed:v.walkSpeed,support:e.contactSurface(v.x,v.y-4,v.y+5)?.t.id});return {screen:a.screen,can:a.canInput(),done:a.done,dialogue:a.dialogue?{id:a.dialogue.id,index:a.dialogue.index,line:a.dialogue.lines[a.dialogue.index]}:null,round:b?.round,phase:b?.phase,side:b?.side,shot:b?.shot,u:u?unit(u):null,car:c?unit(c):null,allies:b?b.units.filter(v=>v.honroAlly&&!v.dead).map(v=>({...unit(v),role:v.allyRole,civilian:!!v.honroCivilian})):[],queue:b?.queue,allyQueue:b?.honroState.allyQueue,pause:b?.honroState.carriagePauseUntilRound,threats:c?e.alive(1).filter(v=>Math.abs(v.x-c.x)<1150&&Math.abs(v.y-c.y)<650).map(unit):[],foes:b?e.alive(1).map(unit):[],flags:b?.honroState.flags};}'''
 PLAN='''()=>{const a=HonroApp,C=HONRO_CORE,e=new C.Engine(structuredClone(a.engine.b),()=>{},true),u=e.active,s=C.SKILLS.A01;for(const t of e.alive(1).sort((v,w)=>Number(w.awake)-Number(v.awake)||Math.hypot(v.x-u.x,v.y-u.y)-Math.hypot(w.x-u.x,w.y-u.y)))for(const p of e.shotSeeds(u,s,t)){const pred=e.predict(u,s,p.angle,p.power,t,false);if(pred.unit===t.id){const v=C.shotViable(e,u,s,t,p.angle,p.power);if(v.risk<1&&v.friendlyDamage===0)return{target:t.id,...p,duration:e.chargeDuration(u,s)};}}return null;}'''
 route=[(1600,'left-tree-branch-upper',False),(1100,'left-tree-branch-upper',True),(1450,'left-tree-branch-middle',False),(1050,'left-tree-branch-middle',True),(1500,'left-tree-branch-lower',False),(1350,'left-tree-branch-lower',True),(1050,'left-descent-stone-low',False),(1460,'canyon-ground',False),(1830,'canyon-ground',False)]
 started=time.monotonic();last_dialogue=None;last_escort=None;page=None
@@ -55,7 +56,7 @@ def observe(s):
  if s.get('car'):
   q=s.get('allyQueue') or {};key=(s['round'],s['phase'],q.get('index'),q.get('carTarget'),round(s['car']['x']/40))
   if key!=last_escort:
-   last_escort=key;R['escort'].append({k:s[k] for k in ['round','phase','side','car','queue','allyQueue','pause','threats']})
+   last_escort=key;R['escort'].append({k:s[k] for k in ['round','phase','side','car','queue','allyQueue','pause','threats','allies']})
 def ready():
  global last_dialogue
  for _ in range(2400):
@@ -136,7 +137,7 @@ try:
    if not ready():break
    s=state()
    if s['round'] not in seen:
-    seen.add(s['round']);R['turns'].append(s);print('round',s['round'],'route',idx,'hero',round(s['u']['x']),round(s['u']['y']),'car',round(s['car']['x']),'foes',len(s['foes']),flush=True);save()
+    seen.add(s['round']);R['turns'].append(s);(OUT/f'round-{s["round"]}-battle.json').write_text(json.dumps(page.evaluate('HonroApp.engine.b'),ensure_ascii=False));print('round',s['round'],'route',idx,'hero',round(s['u']['x']),round(s['u']['y']),'car',round(s['car']['x']),'foes',len(s['foes']),flush=True);save()
    if TOUCH and s['round']>=6 and not resumed:
     press(page.locator('[data-action="pause"]'));before=state();R['inputBeforeReload']=page.evaluate('qaInputs');page.screenshot(path=str(OUT/'touch-before-reload.png'))
     page.reload();page.wait_for_function('window.HonroApp');press(page.locator('[data-action="continue"]:visible').first);assert ready();after=state()
@@ -159,6 +160,13 @@ try:
    else:
     # Continue the lower route towards threats/convoy instead of stopping at1830.
     goal=min(4050,max(s['car']['x']+400,s['u']['x']+350))
+    if POLICY=='rejoin' and s['foes']:
+     # Keep the archer in the convoy fight; choose a firing flank near the last aerial threat.
+     target=min(s['foes'],key=lambda v:abs(v['x']-s['car']['x']))
+     goal=min(4050,max(1500,min(s['car']['x']+500,target['x']+500)))
+    elif POLICY=='return' and s['round']>=17 and s['foes']:
+     target=min(s['foes'],key=lambda v:abs(v['x']-s['u']['x']))
+     goal=max(1500,min(4050,target['x']+500))
     if s['u']['move']>40:move_to(goal)
    if not ready():break
    if not fire():
