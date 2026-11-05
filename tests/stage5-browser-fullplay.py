@@ -57,10 +57,20 @@ with serve_game() as base,sync_playwright() as p:
    s=state();u=next(u for u in s['heroes'] if u['id']==actor)
    if time.monotonic()-start>.3 and u['ground']:break
    wanted=None if abs(u['x']-x)<5 else 'ArrowRight' if u['x']<x else 'ArrowLeft'
-   if key and key!=wanted:page.keyboard.up(key)
-   if wanted:hold(wanted,20)
-   key=None;page.wait_for_timeout(15)
-  if key:page.keyboard.up(key)
+   if wanted!=key:
+    if mobile:
+     if key:touch_end()
+     if wanted:
+      box=page.locator('#joystick').bounding_box();cx=box['x']+box['width']/2;cy=box['y']+box['height']/2
+      touch_start(cx,cy);cdp.send('Input.dispatchTouchEvent',{'type':'touchMove','touchPoints':[{'x':cx+(1 if wanted=='ArrowRight' else -1)*box['width']*.42,'y':cy}]})
+    else:
+     if key:page.keyboard.up(key)
+     if wanted:page.keyboard.down(wanted)
+    key=wanted
+   page.wait_for_timeout(15)
+  if key:
+   if mobile:touch_end()
+   else:page.keyboard.up(key)
  def shoot(target,skill,angle=None,power=None):
   s=settle();actor=s['active'];u=next(u for u in s['heroes'] if u['id']==actor);t=next(u for u in s['foes'] if u['id']==target)
   # Use UI facing input before reading the same production aim preview.
