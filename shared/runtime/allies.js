@@ -53,7 +53,7 @@ function tick(app,e,dt,transition){const b=e.b,hs=b.honroState,q=hs.allyQueue;if
   // carriage threat/pace rules are unchanged.
   const escortGuard=u.allyRole==='guard'&&car&&G.HonroStage2Airborne?.active(b);
   const guardRange=(v,x,y)=>Math.hypot(v.x-x,(v.y-y)*.8)<720;
-  const pursuit=escortGuard?foes.filter(v=>{const x=clamp(v.x-Math.sign(v.x-u.x||1)*150,45,b.width-100);return guardRange(v,u.x,u.y)||guardRange(v,x,W.top(b,x,u.y));}):foes;
+  const pursuit=escortGuard?foes.filter(v=>{const x=clamp(v.x-Math.sign(v.x-u.x||1)*150,45,b.width-100);return guardRange(v,u.x,u.y)||(v.x>=car.x-1150&&guardRange(v,x,W.top(b,x,u.y)));}):foes;
   const nearest=pursuit.slice().sort((a,c)=>Math.hypot(a.x-u.x,(a.y-u.y)*.8)-Math.hypot(c.x-u.x,(c.y-u.y)*.8))[0];q.targetId=nearest?.id;
   q.anchor=hero?.x||u.x;
   if(u.allyRole==='porter'){const threat=foes.filter(v=>car&&Math.abs(v.x-car.x)<1150&&Math.abs(v.y-car.y)<650).length;const block=b.terrain.find(t=>t.honroBlocker&&!t.broken&&car&&t.x>car.x-35&&t.x<car.x+900);q.blockerId=block?.id;const paused=(hs.carriagePauseUntilRound||-1)>=b.round;const escortFront=Math.max(car?.x||0,...own.filter(v=>v.honroAlly&&!v.honroCivilian&&v.allyRole!=='porter').map(v=>v.x));const pace=b.honroStage===2?escortFront+80:(hero?.x||escortFront)+120;q.carTarget=car?(paused||threat?car.x:Math.max(car.x,Math.min(car.x+560,pace+60,block?block.x-105:(b.honroEscortGoalX??b.width-180)))):u.x;q.dest=car?Math.max(45,Math.min(q.carTarget-95,car.x+420)):u.x;}

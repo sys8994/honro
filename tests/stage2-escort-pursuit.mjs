@@ -63,3 +63,10 @@ f=fixture({positions:{'ally-baeksan':{x:3456,y:g.HonroWorld.top(road,3456,2900)}
 assert.equal(f.q.targetId,undefined,'Do not reverse down the road into an out-of-range stance');assert.equal(f.q.dest,Math.min(f.car.x+310,f.b.width-100));
 f=fixture({vertical:600});assert.equal(f.q.targetId,f.bird.id);assert.equal(f.q.dest,f.guard.x,'An already valid sword-wave stance stays put instead of losing its firing position');assert(f.hurts.some(h=>h.id===f.bird.id&&h.owner===f.guard.id),'The in-range guard must actually attack');
 console.log('PASS exit-height chase reversal and already-in-range stance stability');
+
+// The rear carriage threat boundary is unchanged; the guard does not pursue
+// a passed enemy beyond it, while attacks from the current stance remain legal.
+f=fixture({positions:{objective:{x:3900,y:2650},'ally-baeksan':{x:3300,y:2800},'foe-1-cluster':{x:2300,y:2350}}});
+assert.equal(f.q.targetId,undefined,'Do not abandon convoy to chase a passed rear enemy outside its existing 1150 threat boundary');
+assert.equal(f.q.dest,4200);
+console.log('PASS passed rear threat does not pull escort away from convoy');
