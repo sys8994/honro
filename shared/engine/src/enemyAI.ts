@@ -62,10 +62,15 @@ export function stage10FinaleQueue(e:Engine,ranked:EnemyQueuePriority[]){
  const b=e.b as any,hs=b.honroState;
  if(b.honroStage!==10||b.honroCustom||!hs?.sodanCoop||!hs.finaleWaves?.length)return ranked;
  const waveIds=new Set<string>(hs.finaleWaves.flatMap((w:{units:string[]})=>w.units));
+ const arrival=new Map<string,number>();hs.finaleWaves.forEach((w:{units:string[]},index:number)=>w.units.forEach(id=>arrival.set(id,index)));
  const limit=Math.max(0,b.enemyLimit||0),count=Math.min(2,limit);
- const waiting=ranked.filter(p=>p.tier>0&&waveIds.has(p.unit.id)&&beastKind(p.unit)&&!(p.unit.stun||0)&&p.unit.lastAct<b.round-1)
-  .sort((a,b)=>a.unit.lastAct-b.unit.lastAct||a.distance-b.distance||a.unit.id.localeCompare(b.unit.id)).slice(0,count);
- if(!waiting.length)return ranked;
+ const pending=ranked.filter(p=>p.tier>0&&waveIds.has(p.unit.id)&&beastKind(p.unit)&&!(p.unit.stun||0)&&p.unit.lastAct<b.round-1)
+  .sort((a,b)=>a.unit.lastAct-b.unit.lastAct||a.distance-b.distance||a.unit.id.localeCompare(b.unit.id));
+ if(!pending.length||!count)return ranked;
+ // One existing approach slot remembers arrival order; the other preserves
+ // nearby contact pressure. New near waves must not erase every older turn.
+ const oldest=[...pending].sort((a,b)=>a.unit.lastAct-b.unit.lastAct||(arrival.get(a.unit.id)!-arrival.get(b.unit.id)!)||a.distance-b.distance||a.unit.id.localeCompare(b.unit.id))[0];
+ const waiting=[oldest,...pending.filter(p=>p!==oldest)].slice(0,count);
  const ids=new Set(waiting.map(p=>p.unit.id)),others=ranked.filter(p=>!ids.has(p.unit.id));
  return [...others.slice(0,limit-waiting.length),...waiting,...others.slice(limit-waiting.length)];
 }

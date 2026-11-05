@@ -2,11 +2,11 @@
 const FINALE_TURNS=6,FINALE_CAP=28;
 function finaleSites(b){const a=b.honroMapAnchors||{},site=(id,key,fraction,label)=>{const p=a[key]||{x:b.width*fraction};return{id,label,x:p.x,y:G.HonroWorld.top(b,p.x,p.y,p.support),support:p.support};};return[site('west','westHall',.33,'서쪽 전각'),site('east','eastHall',.71,'동쪽 전각')];}
 function finaleAirSite(b,site){
- // The lower west hall leaves a crow's full wing envelope across the only
- // uphill ground approach. Use the authored upper gallery for this air wave;
+ // Lower-hall crows can reserve the uphill ground approach with their wings.
+ // Use each side's authored upper gallery for its air wave;
  // ordinary flight-clear placement still validates each complete body.
- if(b.honroStage!==10||b.honroCustom||site.id!=='west')return site;
- const gallery=b.terrain.find(t=>t.id==='west-gallery'&&!t.broken);if(!gallery)return site;
+ if(b.honroStage!==10||b.honroCustom||!['west','east'].includes(site.id))return site;
+ const gallery=b.terrain.find(t=>t.id===`${site.id}-gallery`&&!t.broken);if(!gallery)return site;
  const x=gallery.x+gallery.w*.5;return {...site,x,y:G.HonroWorld.top(b,x,undefined,gallery.id),support:gallery.id,airLane:true};
 }
 function ritualPosition(b,sodan){const a=b.honroMapAnchors?.ritual||{x:b.width*.5,y:sodan.spawnY||sodan.y};return G.HonroTerrain.place(b,sodan,{x:a.x,y:G.HonroWorld.top(b,a.x,a.y,a.support),flying:false,maxDistance:160,clearance:12});}

@@ -23,6 +23,14 @@ assert.equal(oldOrder.slice(0,6).filter(p=>beasts.includes(p)).length,0,'Origina
 assert.equal(ranked.slice(0,6).filter(p=>beasts.includes(p)).length,2,'Two of the existing six slots allow approach');
 assert.equal(new Set(ranked.map(p=>p.unit.id)).size,ranked.length);
 assert.deepEqual(new Set(ranked.map(p=>p.unit.id)),new Set(oldOrder.map(p=>p.unit.id)));
+// A fresh near wave also has lastAct=0. It must not repeatedly overtake an
+// older unacted wave merely because it spawns closer to the defenders.
+const fresh={...beasts[0],unit:{...beasts[0].unit,id:'fixture-new-wave',lastAct:0},distance:1,band:0};
+const waves=b.honroState.finaleWaves;b.honroState.finaleWaves=[...waves,{index:1,round:b.round,units:[fresh.unit.id]}];
+const mixed=C.stage10FinaleQueue(e,[fresh,...oldOrder].sort((a,z)=>z.tier-a.tier||a.band-z.band||a.unit.lastAct-z.unit.lastAct||a.distance-z.distance)).slice(0,6);
+assert.equal(mixed.filter(p=>beasts.some(old=>old.unit.id===p.unit.id)).length,1,'One bounded approach slot retains the older wave');
+assert(mixed.some(p=>p.unit.id===fresh.unit.id),'The other approach slot retains nearby pressure');
+b.honroState.finaleWaves=waves;
 const picked=ranked.slice(0,6).filter(p=>beasts.includes(p)).map(p=>p.unit.id);
 for(const id of picked){
  const copy=plain(b),engine=new C.Engine(copy,()=>{},true),u=engine.unit(id),start={x:u.x,y:u.y,move:u.moveLeft,hp:u.hp};
