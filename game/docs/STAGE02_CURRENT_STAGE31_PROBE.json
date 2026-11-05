@@ -1,0 +1,92 @@
+{
+  "sourceCommit": "dddb40e835fc854482e1155a88b3a6b3f534c3fc",
+  "sourceRunId": 42013277207,
+  "runtimeSha256": "e727401d9c485c5fe7400c57b01a188b42a398a79ffa393046a06dcad1109548",
+  "fingerprint": "draft-v1-90b5493a-3537083",
+  "focused": [
+    {
+      "id": "entry-route",
+      "kind": "route",
+      "result": "pass"
+    },
+    {
+      "id": "entry-shot",
+      "kind": "shot",
+      "result": "pass"
+    },
+    {
+      "id": "west-enemy-action",
+      "kind": "enemy-action",
+      "result": "pass"
+    }
+  ],
+  "ui": {
+    "passed": true,
+    "complete": true,
+    "scope": "tool-assisted normal-input Stage31 battle and boarding from synthetic campaign entry",
+    "final": {
+      "stage": 31,
+      "round": 14,
+      "phase": "won",
+      "active": "mage",
+      "dialogue": false,
+      "can": false,
+      "boat": {
+        "phase": "boarded",
+        "x": 6547.5
+      },
+      "complete": true,
+      "enemies": 0,
+      "heroes": [
+        {
+          "id": "archer",
+          "x": 6525.786527962233,
+          "y": 3366,
+          "hp": 834,
+          "dead": false,
+          "acted": false,
+          "moveLeft": 1149.1823956475014,
+          "canDrop": false,
+          "grounded": true
+        },
+        {
+          "id": "mage",
+          "x": 6490.574697967412,
+          "y": 3366,
+          "hp": 1868,
+          "dead": false,
+          "acted": false,
+          "moveLeft": 2629,
+          "canDrop": false,
+          "grounded": true
+        },
+        {
+          "id": "knight",
+          "x": 6511.496014302548,
+          "y": 3366,
+          "hp": 1110,
+          "dead": false,
+          "acted": false,
+          "moveLeft": 3318,
+          "canDrop": false,
+          "grounded": true
+        },
+        {
+          "id": "occultist",
+          "x": 6510.5130663591035,
+          "y": 3366,
+          "hp": 1257,
+          "dead": false,
+          "acted": false,
+          "moveLeft": 2678,
+          "canDrop": false,
+          "grounded": true
+        }
+      ]
+    },
+    "errors": []
+  },
+  "normalBuild": "passed",
+  "deployment": "not requested or performed",
+  "scope": "Stage2 candidate exact-runtime Stage31 evidence only; Stage2 touch improvement remains to be verified separately."
+}
