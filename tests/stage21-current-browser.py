@@ -2,7 +2,7 @@
 Snapshot injection/camera poses are fixtures. This is render and exact save/resume
 coverage, never a browser combat completion claim. No public upload required.
 """
-import hashlib,json,os
+import hashlib,json,os,subprocess
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 from browser_support import ROOT,launch,serve_game
@@ -27,5 +27,5 @@ with serve_game() as base,sync_playwright() as pw:
   results.append({'label':label,'sourceSnapshot':row['label'],'exactSaveResume':True,'result':result});page.close()
  browser.close()
 assert not errors,errors
-(out/'result.json').write_text(json.dumps({'source':trace['source'],'scope':__doc__,'results':results,'errors':errors},ensure_ascii=False,indent=2))
+(out/'result.json').write_text(json.dumps({'traceSource':trace['source'],'servedSource':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'servedManifestSha256':hashlib.sha256((ROOT/'web/manifest.json').read_bytes()).hexdigest(),'scope':__doc__,'results':results,'errors':errors},ensure_ascii=False,indent=2))
 print('PASS current Stage21 observed HUD, desktop/mobile rendering and exact battle save/resume',len(results))
