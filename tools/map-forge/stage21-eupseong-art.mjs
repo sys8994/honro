@@ -80,13 +80,13 @@ export function alleyArt(ground){let a='';
  for(const [l,r]of [[3405,3773],[4040,4495],[5175,5580]]){const yl=ground(l),yr=ground(r);a+=P([[l-11,yl],[l,yl-30],[l+(r-l)*.35,yl-24],[r-8,yr-28],[r+13,yr],[r,yr+16],[l+12,yl+13]],'#697b65')+P([[l,yl-30],[l+(r-l)*.35,yl-24],[r-8,yr-28],[r,yr-17],[l+4,yl-17]],'#a0a38a');}
  return a;
 }
-export function foundationArt(contour,ground){let a='<defs><linearGradient id="deep-soil" x1="0" y1="2400" x2="0" y2="3650" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4b6250"/><stop offset="1" stop-color="#29463b"/></linearGradient></defs>'+P([...contour,[6400,3650],[0,3650]],'url(#deep-soil)');
+export function foundationArt(contour,ground,options={}){let a='<defs><linearGradient id="deep-soil" x1="0" y1="2400" x2="0" y2="3650" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4b6250"/><stop offset="1" stop-color="#29463b"/></linearGradient></defs>'+P([...contour,[6400,3650],[0,3650]],'url(#deep-soil)');
  const profile=(l,r,offset)=>[[l,ground(l)+offset],...contour.filter(([x])=>x>l&&x<r).map(([x,y])=>[x,y+offset]),[r,ground(r)+offset]];
  // Large geological lenses attach to the real contour, with unequal depth.
  const beds=[{l:0,r:1170,d:240,c:'#4f6350',b:[[1140,3020],[850,3080],[470,3025],[80,3115]]},{l:1080,r:3020,d:370,c:'#465f4e',b:[[2960,2880],[2570,3070],[2120,2980],[1650,3110],[1145,3030]]},{l:2940,r:4680,d:410,c:'#50644e',b:[[4610,3015],[4260,3100],[3870,3025],[3540,3185],[3000,2990]]},{l:4660,r:6400,d:530,c:'#465e4d',b:[[6400,2775],[6050,2720],[5650,2830],[5240,2915],[4710,2870]]}];
  for(const [i,b]of beds.entries()){const top=profile(b.l,b.r,8);a+=P([...top,...b.b],b.c);const inner=profile(b.l+35,b.r-40,65+i*7);a+=P([...inner,...b.b.slice(1).map(([x,y])=>[x,y-44])],'#3c5647');}
  // Distinct outcrops: broad light plane, folded dark side and buried foot.
- for(const [l,r,d]of [[650,1265,180],[1820,2370,245],[3100,3540,190],[3770,4120,265],[4630,5100,230],[5520,5880,350]]){const m=l+(r-l)*.47,yl=ground(l),ym=ground(m),yr=ground(r);a+=P([[l,yl+43],[m,ym+24],[r,yr+62],[r-33,yr+d*.7],[m+37,ym+d],[l+53,yl+d*.82]],'#405c4b')+P([[l,yl+43],[m,ym+24],[m+37,ym+d],[l+53,yl+d*.82]],'#60715a')+P([[m,ym+24],[r,yr+62],[r-33,yr+d*.7],[m+37,ym+d],[m-14,ym+d*.46]],'#4c6551');}
+ for(const [l,r,d]of [[650,1265,180],options.gateButtress?[1680,2740,420]:[1820,2370,245],[3100,3540,190],[3770,4120,265],[4630,5100,230],[5520,5880,350]]){const m=l+(r-l)*.47,yl=ground(l),ym=ground(m),yr=ground(r);a+=P([[l,yl+43],[m,ym+24],[r,yr+62],[r-33,yr+d*.7],[m+37,ym+d],[l+53,yl+d*.82]],'#405c4b')+P([[l,yl+43],[m,ym+24],[m+37,ym+d],[l+53,yl+d*.82]],'#60715a')+P([[m,ym+24],[r,yr+62],[r-33,yr+d*.7],[m+37,ym+d],[m-14,ym+d*.46]],'#4c6551');}
  // Connected roadside drain, stepped stone lip and a single deeper outlet.
  const drain=profile(3265,4615,17);a+=P([...drain,...profile(3265,4615,38).reverse()],'#293f37')+P([...profile(3270,4610,13),...profile(3270,4610,20).reverse()],'#8a9478');
  a+=path('M3855 2730 L3873 2724 L3873 2855 Q3898 2884 3968 2868 L3973 2885 Q3897 2910 3855 2871Z','#2c453a')+path('M3861 2736 L3861 2862 Q3895 2894 3966 2878','none','#75866a',7);

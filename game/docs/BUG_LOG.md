@@ -5316,3 +5316,10 @@ Title `여정 이어가기` could choose an older hub before honoring a saved di
 
 - Scope clarification after production call-site audit: `collect=true`/default is also used by `bell-anomaly.eligible` for protected-target cast planning and `beginOccultCast` for soul targets, not only HUD rendering. The guard intentionally does not require `app.selected` or aim phase; it prevents hypothetical `collect=false` and unavailable-skill contamination, not every possible collected probe. Existing cast/discovery semantics remain intact. AI/planning callers must use `collect=false` (or a detached Engine); point-requiring hypothetical planners should use a detached Engine. Native regression explicitly retains a collected, unselected, flight-phase call; this is a controlled call-contract fixture, not an actual cast/browser claim.
 - Revalidation: focused preview and reviewed14/16/18 native suites passed. Local genuine `npm run build` stopped at `check-release.mjs` with `Runtime changed after actual Engine probes.` Browser smoke is therefore not run on this source. Integration owner must regenerate measured Stage31 evidence for the combined source, pass the unchanged production build gate, then run `python tests/act23-v4-preview-observation-browser.py` against that final build. Existing af8c546a driver is syntax-checked only.
+
+
+### 2장·21장 통합 후보 준비
+
+- 기준 master `3e56b3427c33f50cdafb386a9854af46368d7a78`. 2장 `e2203dae9d3611d452fc0c945f9134bf9904b196`의 제품 `allies.js`만 통합하고 관련 검사 도구를 가져왔다. 21장 `076fc98fb664b19affdba6ce1076442737632f98`의 runtime/art/CSS와 author를 통합했다. campaign은 최신 master에 `authorStage21Approach`를 적용했고 다른 모든 장 JSON 동일을 확인했다. 기존 생성물과 Stage31 증거는 가져오지 않았다.
+- 기존2장 run42024466271/job127235078337 완료·success를 GitHub 연결 도구로 직접 확인했다. CLI Actions API 조회는 Forbidden이며 연결 도구 조회는 성공했다. 기존 성공은 순서 조율 정보이며 이 통합 runtime의 증거가 아니다.
+- 별도 브랜치에서 로컬 회귀/실제 입력을 진행한다. 로컬 source preview는 정확한 master 모듈을 대상으로 대체하도록 기준 SHA를 선택 가능하게 했고,2장 실제 터치 검수에도 동일 opt-in overlay를 연결했다. release 파일이나 가드를 우회하는 변경은 없다. 신규2/21장 공개 검수 artifact는 생성하지 않는다.

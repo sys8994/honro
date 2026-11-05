@@ -1,0 +1,72 @@
+/** Isolated targeting/convoy contracts; fixture poses are not normal-play evidence. */
+import assert from 'node:assert/strict';
+import vm from 'node:vm';
+import {runtimeParts} from '../shared/build.mjs';
+import {runtime,battlefield} from '../game/tests/helpers.mjs';
+const g=await runtime({legacyMaps:false});
+function fixture({stage=2,custom=false,role='guard',vertical=1100,ground=false,paused=false,positions=null,context=g}={}){
+ const g=context,f=battlefield(g,2),{b,e,app}=f;
+ b.honroStage=stage;b.honroCustom=custom;
+ const guard=b.units.find(u=>u.allyRole==='guard'),car=e.unit('objective'),bird=e.unit('foe-1-cluster'),low=e.unit('foe-0');
+ Object.assign(guard,{x:1900,y:g.HonroWorld.top(b,1900,2950),allyRole:role});Object.assign(car,{x:2400,y:g.HonroWorld.top(b,2400,2950)});Object.assign(bird,{x:2000,y:guard.y-vertical});Object.assign(low,{x:2100,y:g.HonroWorld.top(b,2100,2950)});
+ if(positions)for(const [id,pose] of Object.entries(positions))Object.assign(e.unit(id),pose);
+ b.units=b.units.filter(u=>u.side!==1||u===bird||ground&&u===low);
+ if(paused)b.honroState.carriagePauseUntilRound=b.round;
+ g.HonroAllies.attach(app,e);
+ const hurts=[],hurt=e.hurt.bind(e);e.hurt=(unit,...args)=>{hurts.push({id:unit.id,owner:args[1]});return hurt(unit,...args);};
+ const before=b.units.map(u=>({id:u.id,hp:u.hp,x:u.x,y:u.y}));
+ b.phase='ally';b.honroState.allyQueue={ids:[guard.id],index:0,returnActive:'p-archer',phase:'begin',elapsed:0,started:false};
+ e.tick(0);
+ assert.deepEqual(b.units.map(u=>({id:u.id,x:u.x,y:u.y})),before.map(({hp,...v})=>v),'Selecting/attacking cannot teleport or remove actors');
+ for(const old of before){const u=e.unit(old.id);if(hurts.some(h=>h.id===u.id&&h.owner===guard.id))assert(u.hp<old.hp,'Only the real guard attack can reduce HP');else assert.equal(u.hp,old.hp,'No automatic HP repair or unrecorded damage');}
+ return {...f,guard,car,bird,low,hurts,q:b.honroState.allyQueue};
+}
+let f=fixture();assert.equal(f.q.targetId,undefined);assert.equal(f.q.dest,f.car.x+310,'Guard advances along escort road instead of chasing inaccessible height');
+f=fixture({ground:true});assert.equal(f.q.targetId,f.low.id,'Available ground pressure remains a target');
+for(const vertical of [900,1100])for(const hp of [1,79]){f=fixture({vertical,positions:{'foe-1-cluster':{hp}}});assert.equal(f.q.targetId,undefined,'Reach policy does not special-case low HP');assert.equal(f.bird.hp,hp);}
+f=fixture({vertical:880});assert.equal(f.q.targetId,f.bird.id,'Aerial enemies within sword-wave vertical reach remain threats');
+for(const option of [{stage:3},{custom:true},{role:'daoist'}]){f=fixture(option);assert.equal(f.q.targetId,f.bird.id,'Other stages, custom maps and ranged companion targeting remain unchanged');}
+function carriage(options){const f=fixture(options),{b,e}=f,p=b.units.find(u=>u.allyRole==='porter');b.honroState.allyQueue={ids:[p.id],index:0,returnActive:'p-archer',phase:'begin',elapsed:0,started:false};e.tick(0);return {...f,q:b.honroState.allyQueue};}
+f=carriage({ground:true});assert.equal(f.q.carTarget,f.car.x,'Nearby threats still stop the carriage');
+f=carriage({paused:true});assert.equal(f.q.carTarget,f.car.x,'Authored pauses remain binding');
+f=carriage({});assert(f.q.carTarget>f.car.x&&f.q.carTarget<=f.car.x+560,'Safe road uses existing bounded pace');
+console.log('PASS Stage2 guard reach, reachable ground/air pressure, other-stage/custom/ranged exclusions, no automatic HP/pose mutation, carriage threat/pause/speed contracts');
+
+// Same diagnostic start, real walking and unchanged carriage rule in both runtimes.
+const old=vm.createContext({console,performance,structuredClone});let controls=0;
+// Reconstruct only the prior nearest-all-foes choice in memory; no git-history
+// dependency in shallow CI, no product mutation and no changes to walking/pace.
+for(let source of await runtimeParts({vector:false,render:false})){if(source.includes('const escortGuard=u.allyRole')){source=source.replace('const escortGuard=u.allyRole','const escortGuard=false&&u.allyRole');controls++;}vm.runInContext(source,old);}assert.equal(controls,1);
+function convoy(context){const f=fixture({context}),{e,b,guard,car,bird}=f,health=bird.hp,guardStart=guard.x,carStart=car.x;
+ for(let n=0;n<400&&b.honroState.allyQueue?.phase!=='after';n++)e.tick(context.HONRO_CORE.STEP);
+ const guardEnd=guard.x,p=b.units.find(u=>u.allyRole==='porter');b.honroState.allyQueue={ids:[p.id],index:0,returnActive:'p-archer',phase:'begin',elapsed:0,started:false};e.tick(0);const target=b.honroState.allyQueue.carTarget;
+ for(let n=0;n<400&&b.honroState.allyQueue?.phase!=='after';n++)e.tick(context.HONRO_CORE.STEP);
+ assert.equal(bird.hp,health);assert(!bird.dead);return{guardStart,guardEnd,carStart,carEnd:car.x,target,birdHP:bird.hp};}
+const before=convoy(old),after=convoy(g);assert(after.guardEnd>before.guardEnd+500);assert(after.carEnd>before.carEnd+250);assert.equal(before.birdHP,after.birdHP);
+console.log('PASS identical isolated convoy comparison',JSON.stringify({before,after}));
+
+// A high bird can still threaten the carriage on the rising exit road while
+// outside the guard's current vertical reach. Filtering pursuit must not erase
+// that carriage stop; movement/archer support must resolve the pressure normally.
+const road=battlefield(g,2).b,positions={
+ 'ally-baeksan':{x:2300,y:g.HonroWorld.top(road,2300,3005)},
+ 'objective':{x:3800,y:g.HonroWorld.top(road,3800,2800)},
+ 'foe-1-cluster':{x:2700,y:2100,hp:79}
+};
+f=carriage({positions});assert(Math.abs(f.bird.y-f.guard.y)*.8>=720);assert(Math.abs(f.bird.x-f.car.x)<1150&&Math.abs(f.bird.y-f.car.y)<650);assert.equal(f.q.carTarget,f.car.x,'High aerial threat near the carriage still stops it');
+for(const context of [old,g]){const q=fixture({context,positions});q.b.honroState.stage2Airborne={released:true};q.e.refreshActivation();assert(q.e.combatEnemies().some(u=>u.id===q.bird.id));assert(q.bird.awake,'Aerial alert/eligibility must survive guard pursuit filtering');assert.equal(q.b.enemyLimit,4);}
+console.log('PASS HP-independent reach boundary and elevated carriage pressure/airborne activation retained');
+
+// Exact road poses from the failed height-only candidate: being high at the
+// exit does not make the intended downhill stance reach the old roost.
+f=fixture({positions:{'ally-baeksan':{x:3456,y:g.HonroWorld.top(road,3456,2900)},'objective':{x:3920,y:g.HonroWorld.top(road,3920,2800)},'foe-1-cluster':{x:2385,y:2037}}});
+assert.equal(f.q.targetId,undefined,'Do not reverse down the road into an out-of-range stance');assert.equal(f.q.dest,Math.min(f.car.x+310,f.b.width-100));
+f=fixture({vertical:600});assert.equal(f.q.targetId,f.bird.id);assert.equal(f.q.dest,f.guard.x,'An already valid sword-wave stance stays put instead of losing its firing position');assert(f.hurts.some(h=>h.id===f.bird.id&&h.owner===f.guard.id),'The in-range guard must actually attack');
+console.log('PASS exit-height chase reversal and already-in-range stance stability');
+
+// The rear carriage threat boundary is unchanged; the guard does not pursue
+// a passed enemy beyond it, while attacks from the current stance remain legal.
+f=fixture({positions:{objective:{x:3900,y:2650},'ally-baeksan':{x:3300,y:2800},'foe-1-cluster':{x:2300,y:2350}}});
+assert.equal(f.q.targetId,undefined,'Do not abandon convoy to chase a passed rear enemy outside its existing 1150 threat boundary');
+assert.equal(f.q.dest,4200);
+console.log('PASS passed rear threat does not pull escort away from convoy');

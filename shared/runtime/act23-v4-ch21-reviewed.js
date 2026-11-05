@@ -44,7 +44,24 @@ function tick(app){const b=app.engine.b;if(!active(b)||!V.safe(app))return;const
  }
 }
 function complete(b){return !active(b)||closed(memory(b).events.exit);}
-function present(b,result){if(!active(b))return result;const id='A3.S21.OBJ.0'+(S.rescued(b)?3:S.cartStopped(b)?2:1),r=row(id);return{...result,summary:r.text,currentInstruction:r.text,completionText:row('A3.S21.OBJ.03').text,targets:result.targets.map(x=>({...x,label:r.text})),allTargets:result.allTargets.map(x=>({...x,label:r.text})),checklist:[1,2,3].map(i=>({id:'A3.S21.OBJ.0'+i,text:row('A3.S21.OBJ.0'+i).text,done:i<(S.rescued(b)?3:S.cartStopped(b)?2:1),current:id.endsWith('0'+i)})),visibleChecklist:[{id,text:r.text,current:true,done:result.complete}],failureText:''};}
+// Once pickup starts, the objective follows the actual injured resident.
+// The authored marker remains unchanged for interaction/save compatibility.
+function escortTarget(b,target){const city=G.HonroAct23V4City.memory(b),resident=b.units.find(u=>u.id===b.honroV4CitySpec.resident);
+ return target.id==='gate-resident'&&city.started&&V.alive(resident)&&!city.actors[resident.id]?.safe?{...target,x:resident.x,y:resident.y}:target;
+}
+// Identify the live stop reason, then required cleanup after arrival. These
+// spatial hints never add kill requirements or mutate distance/AI state.
+function escortHint(b){const city=G.HonroAct23V4City.memory(b),spec=b.honroV4CitySpec;if(!city.started||S.rescued(b))return null;
+ for(const id of [spec.guard,spec.resident]){const actor=b.units.find(u=>u.id===id);if(!V.alive(actor)||city.actors[id]?.blocked!=='threat')continue;
+  const foe=b.units.filter(u=>V.alive(u)&&u.side===1&&!u.honroObjectiveTarget&&V.near(u,actor,240)).sort((a,z)=>Math.hypot(a.x-actor.x,a.y-actor.y)-Math.hypot(z.x-actor.x,z.y-actor.y))[0];
+  if(foe)return{id:'21-escort-threat',kind:'enemy',x:foe.x,y:foe.y-foe.h,label:'호송길 위협',unitId:foe.id};
+ }
+ for(const id of [spec.guard,spec.resident]){const actor=b.units.find(u=>u.id===id),a=city.actors[id];if(V.alive(actor)&&!a?.safe&&a?.round===b.round&&a.spent<599.9&&['body-or-terrain','terrain'].includes(a.blocked))return{id:'21-escort-route',kind:'interact',x:actor.x,y:actor.y-actor.h,label:'호송길 막힘',unitId:actor.id};}
+ if(city.actors[spec.resident]?.safe){const pending=new Set([...spec.localIds,...(city.pressure.ids||[])]),resident=b.units.find(u=>u.id===spec.resident),foe=b.units.filter(u=>pending.has(u.id)&&V.alive(u)).sort((a,z)=>Math.abs(a.x-resident.x)-Math.abs(z.x-resident.x))[0];if(foe)return{id:'21-escort-clearance',kind:'enemy',x:foe.x,y:foe.y-foe.h,label:'남은 길목 적',unitId:foe.id};}
+ return null;
+}
+function markerLabel(b){const city=G.HonroAct23V4City.memory(b);return S.rescued(b)?'관아로 이동':city.actors[b.honroV4CitySpec.resident]?.safe?'길목 정리':S.cartStopped(b)?'주민 호송':'수레 파괴';}
+function present(b,result){if(!active(b))return result;const q=memory(b);if(S.rescued(b)&&q.wreck&&!q.proof.emblem){const id='21-wreck-review',text='수레 흔적으로 돌아가 갑옷의 표식 확인하기',target={...q.wreck,id,kind:'exit',label:'수레 흔적'};return{...result,summary:text,currentInstruction:text,currentObjectiveId:id,targets:[target],allTargets:[...(result.allTargets||[]),target],visibleChecklist:[{id,text,current:true,done:false}],failureText:''};}const id='A3.S21.OBJ.0'+(S.rescued(b)?3:S.cartStopped(b)?2:1),r=row(id),hint=escortHint(b);return{...result,summary:r.text,currentInstruction:r.text,completionText:row('A3.S21.OBJ.03').text,targets:[...(hint?[hint]:[]),...result.targets.map(x=>({...escortTarget(b,x),label:markerLabel(b)}))],allTargets:result.allTargets.map(x=>({...escortTarget(b,x),label:markerLabel(b)})),checklist:[1,2,3].map(i=>({id:'A3.S21.OBJ.0'+i,text:row('A3.S21.OBJ.0'+i).text,done:i<(S.rescued(b)?3:S.cartStopped(b)?2:1),current:id.endsWith('0'+i)})),visibleChecklist:[{id,text:r.text,current:true,done:result.complete}],failureText:''};}
 function content(b,st){return active(b)?{...st,goal:present(b,{targets:[],allTargets:[]}).summary,guide:'',story:[],outro:[],failure:[],narration:[],honroV4Unreviewed:false,honroReviewedNarrativeRevision:1}:st;}
 function optional(profile,id,c){if(!enabled()||Number(id)!==21)return null;if(!profile.recruited?.includes(c)||!profile.party?.includes(c))return[];return lines(data().rows.filter(r=>r.id.startsWith('EDGE.OPTIONAL_21_'+c.toUpperCase()+'_')).map(r=>r.id),'optional.'+c).filter(l=>restAllowed(profile,l[0]));}
 function journal(profile,id){if(!enabled()||Number(id)!==21)return null;const r=row('A3.S21.JOURNAL.01');return profile.record?.find(x=>x.rowId===r.id&&x.reviewedRevision===1&&x.sourceRun&&x.text===r.text)||null;}
@@ -54,6 +71,7 @@ function migrate(p){if(!enabled()||p.honroReviewed21PresentationRevision===1)ret
 // only an exact approved ID/speaker/text tuple before the common whitelist;
 // preserve cursor, actor state and physical proof, and never repair new tampering.
 function upgradePayload(b){if(!active(b))return;const apply=l=>{const m=l?.[2],r=row(m?.rowId);if(!m||m.reviewedPayloadRevision>=2||m.reviewedStage!==21||m.reviewedRevision!==1||!r||r.speaker!==l[0]||r.text!==l[1])return;for(const k of ['audience','delivery','once','group','order','progress','deadline','owner','party_shared','presentation','condition','speaker_channel'])if(r[k]===undefined)delete m[k];else m[k]=copy(r[k]);m.reviewedPayloadRevision=2;};for(const l of b.honroStory?.lines||[])apply(l);for(const l of b.honroState?.storyQueue||[])apply(l);for(const q of b.honroState?.deferredStory||[])for(const l of q.lines||[])apply(l);}
+const priorMapRevision=V.mapRevision;V.mapRevision=id=>Number(id)===21&&enabled()?521:priorMapRevision(id);
 const priorPlugin=V.plugins.get(21);V.register(21,{...priorPlugin,attach(app,e){upgradePayload(e.b);priorPlugin.attach?.(app,e);}});
 const prepare=V.prepare;V.prepare=function(b,p){upgradePayload(b);const out=prepare(b,p);if(active(b))b.honroNarrativeContent=content(b,b.honroNarrativeContent);return out;};
 const migratePresentation=V.migratePresentation;V.migratePresentation=function(p){migratePresentation(p);migrate(p);};
@@ -65,5 +83,5 @@ for(const key of ['interlude','required','optional']){const old=G.HonroJourneyCo
 const placeAt=G.HonroJourneyContent.at,placeNext=G.HonroJourneyContent.next;
 const placeAlias=p=>enabled()&&p?.stageId===21?{...p,restDescription:row('EDGE.ARRIVALS_21_0').text}:p;
 G.HonroJourneyContent.at=(...args)=>placeAlias(placeAt(...args));G.HonroJourneyContent.next=(...args)=>placeAlias(placeNext(...args));
-G.HonroAct23V4Chapter21Reviewed={enabled,active,row,rowsReviewed,lineAllowed,accepts,finished,present,content,failure,optional,journal,tick,memory,complete,restAllowed,lines,talkId:(id,c)=>enabled()&&Number(id)===21?'rest-talk-v1-21-'+c+'-reviewed1':null,place:id=>enabled()&&Number(id)===21?{restDescription:row('EDGE.ARRIVALS_21_0').text}:null};
+G.HonroAct23V4Chapter21Reviewed={enabled,active,row,rowsReviewed,lineAllowed,accepts,finished,present,content,failure,optional,journal,tick,memory,complete,restAllowed,lines,escortHint,talkId:(id,c)=>enabled()&&Number(id)===21?'rest-talk-v1-21-'+c+'-reviewed1':null,place:id=>enabled()&&Number(id)===21?{restDescription:row('EDGE.ARRIVALS_21_0').text}:null};
 })(globalThis);
