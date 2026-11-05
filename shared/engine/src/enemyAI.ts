@@ -43,7 +43,20 @@ export function* rankEnemyQueueSteps(e:Engine,units:Unit[]):Generator<void,Enemy
   }}
   rows.push({unit,tier,distance,band:Math.floor(distance/240)});yield;
  }
- return rows.sort((a,b)=>b.tier-a.tier||a.band-b.band||a.unit.lastAct-b.unit.lastAct||a.distance-b.distance||a.unit.id.localeCompare(b.unit.id));
+ rows.sort((a,b)=>b.tier-a.tier||a.band-b.band||a.unit.lastAct-b.unit.lastAct||a.distance-b.distance||a.unit.id.localeCompare(b.unit.id));
+ // The gate's finite reinforcements have few turns before evacuation.
+ // Permanent ranged crossfire otherwise consumes every slot while these
+ // reachable melee reinforcements never get to approach. Share the existing
+ // cap, rotating by saved lastAct; blocked/stunned units get no reservation.
+ const battle=e.b as any;
+ if(battle.honroStage===4&&!battle.honroCustom){
+  const relief=rows.filter(p=>/^siege-(0|mid|1)$/.test((p.unit as any).honroSpawnSource||'')&&p.tier>0&&(p.unit.stun||0)<=0&&p.unit.stunnedRound!==battle.round)
+   .sort((a,b)=>a.unit.lastAct-b.unit.lastAct||a.distance-b.distance||a.unit.id.localeCompare(b.unit.id))
+   .slice(0,Math.min(2,Math.max(0,battle.enemyLimit-1)));
+  const reserved=new Set(relief.map(p=>p.unit.id));
+  return [...relief,...rows.filter(p=>!reserved.has(p.unit.id))];
+ }
+ return rows;
 }
 function* queueShotReadySteps(e:Engine,u:Unit,target:Unit):Generator<void,boolean,unknown>{
  const skills=u.loadout.map(id=>SKILLS[id]).filter(s=>s&&!s.passive&&s.damage>0&&e.manaCost(s,u)<=u.focus&&!((u.cooldowns?.[s.id]||0)>e.b.round)&&e.npcShotInReach(u,s)).slice(0,3);
