@@ -1,10 +1,8 @@
 # 1막 2장 현재 소스 검수 — 2026-11-05
 
-**최신 후속 상태:** 도착1.144px 전에 호송 행동이 끝나 추가 턴을 요구하는 결함을 `011ce205`에서 최소 수정했다. 실제20턴 UI 내보내기 저장을 수정본으로 그대로 재개하여 기존24턴→수정23턴 승리를 확인했다. 아래 run42019947096은 이 후속 수정 전 runtime의 성공이며 재사용하지 않는다. 새 runtime `fb467db1bcfb60197a73820a0b182e57a110255cf0444ce385b4394de9e5e27a`의 로컬 관련 가드·비발행 터치 검수는 완료했고 정식 probe 순서 배정을 기다린다. 커밋된 HTML/package는 아직 이전 검증본이다.
+**최신 상태:** 최신 master `3e56b342`를 포함한 통합 브랜치에 호위 추적과 도착 오차 수정을 적용했다. 실제20턴 UI 내보내기 저장에서 기존24턴→수정23턴 승리로 불필요한 마지막 방어1회를 없앴다. 기존 정상 이동 속도를 유지하며 승리조건·위협·장애물·호위 AI의 추가 변경은 없다. 관련 가드와 저장/재개·터치 검수를 완료했다.
 
-**최신 상태:** `review/stage02-integrated-20261105`에서 최신 master `3e56b342`와2장 최종 후보를 통합했다. 통합본 실제 터치 결과는 새 진입 **18턴/16처치/동행불능0**, 같은14턴 저장 **24턴 승리**다. 이전 별도 후보의17턴/22턴 결과를 통합본에 재사용하지 않는다. 최초 후반 장기 정체는 해소됐지만 같은 저장 실행에는 방어9회와 한 차례 호위 역행이 남아 재미 승인이나 완전 무대기로 표시하지 않는다. 관련 로컬 가드와 장비 App8검사는 통과했다.
-
-전용 Stage31 [run42019947096](https://github.com/sys8994/honro/actions/runs/42019947096), 대상 `b0b2e8762fa9c0be9f14de7f40d74c7330ea0d7d`, runtime `b5a1da2eeb92438f02cda8bb1ff89b66f11bc4253435b1ca66dcb3bfbdd9b998`의 실제 UI 검수·정상 production 빌드·artifact 보존이 성공했다. 새 package/요약을 `efbac6b4`에 적용했고 로컬 정상 빌드도 통과했다. 기존 첫 후보 run42013277207을 재사용하지 않았다. 기술 검증 성공은 재미의 최종 승인이 아니다. master 병합/Pages 배포는 부모에게 남긴다. 아래 초기 문구는 시점별 역사 기록이며 이 문단과 마지막 통합 기록을 우선한다.
+최종 runtime `fb467db1bcfb60197a73820a0b182e57a110255cf0444ce385b4394de9e5e27a`의 전용 [run42024466271](https://github.com/sys8994/honro/actions/runs/42024466271)이 실제 Stage31 UI12턴 승리·4명 생존·승선·적0, 집중3probe, 정상 릴리스 빌드와14일 artifact 보존까지 성공했다. 대상 source는 `586de1566ade5ecff6487e9ad97c2c5f4aea47b2`, 새 증거 적용은 `80c7b6ba`다. 이전 후보의 성공을 재사용하지 않았다. master 병합과 Pages 배포는 부모에게 남긴다. 아래 초기 문구는 시점별 역사 기록이며 이 문단과 마지막 기록을 우선한다.
 
 ## 확인한 결과
 
@@ -314,3 +312,13 @@ run42019947096/job127219894835가2026-11-05 11:51UTC 성공 종료했다. exact 
 기존 정상 생성물에서14턴 저장을 터치로 이어24턴 승리를 다시 재현하고,20턴에 pause/settings/records/export UI로 저장을 내보냈다(`arrival-baseline-export/checkpoint-20.json`, SHA256 `db1d48e9b3f46fa62e19578f7c890c5f021662b19235cd0b8aaeec1e5156eefd`). 이 실제 저장을 수정 preview에 그대로 재개한 `arrival-fixed-checkpoint`는23턴 승리/15처치/아군불능0, 방어4회·이동 시도4회·touch30/키0·오류0·pause/reload/Continue 일치였다. 같은20턴부터 기존은방어5회, 수정은4회로 마지막 추가 입력1회를 없앴다. 고지적1 HP79·상여HP1700·동행 생존을 유지했고 화면도 직접 확인했다. 실제 제공 수정 모듈은 `ordered-common-5.6cf82dd03d1d2ff1.js`다. 저장/HP/승리 상태를 주입하지 않았으며 기존 실제 UI 저장을 사용했다.
 
 새 후보의 정식 probe/정상 release 빌드는 미실행이며 부모 순서 배정을 기다린다. 이전 run42019947096 증거는 새 runtime을 증명하지 않는다. master 병합·배포·새 공개 artifact 업로드·공개403 우회는 하지 않았다. 직접 청취·실기기·사람 손조준 미검증도 그대로다.
+
+## 도착 수정 최종 정식 검증 — run42024466271
+
+job127235078337이2026-11-05 12:21UTC 성공했다. 새 실측12턴 승리·4명 생존·boat boarded·적0·오류0, entry-route/entry-shot/west-enemy-action3probe 통과, 정상 release gate와 빌드 통과다. 공개 검수 브랜치 `review/stage02-current-probed/42024466271`의 `ee13f96a`를 통합 브랜치에 `80c7b6ba`로 적용했다. 요약 source/run/runtime이 현재 후보와 일치한다.
+
+승인된14일 artifact13413902258은10,559,708bytes, SHA256 `a717aade2cb798f7ba1fbc83329ee4e418db0863fe17449bd5fc875cd360552c`, 만료2026-11-19T12:21:45Z다. 업로드 로그의 최종 크기/해시와 API가 일치한다. ZIP을 독립 다운로드/재해시한 것으로 주장하지 않으며 기존403 제한을 우회하지 않았다. 새 공개 자료는 승인된 Stage31 합성 검수 범위이고, Stage2 상세 저장과 화면은 로컬에만 보존했다.
+
+종료 후 origin/master를 다시 fetch해3e56b342임을 확인했다. 제품 소스 diff는 `shared/runtime/allies.js` 하나이며 Stage31 package 변경은 `production.probeResults.stage-31`뿐이다. 지형·캐릭터 능력·적 수/HP·승리조건·Stage31설계는 변경하지 않았다. 나머지는 관련 검수 도구/가드/역사 fixture/문서, 승인된 probe workflow와 생성물·발행자산 보존 manifest다. 이전 후보의 해시 자산 일부는 보존돼 있으나 활성 manifest에 연결하지 않는다. 추가 probe·master 병합·Pages 배포는 실행하지 않았다. 직접 청취·실기기·손조준 부담과 고지적을 남긴 정책의 방어 반복은 별도 한계로 유지한다.
+
+로컬 `HONRO_ACT4_RELEASE=1 npm run build`도 현재 증거로 정상 통과했고, 최종 HTML을 Chromium에서 열어 `ordered-common-5.6cf82dd03d1d2ff1.js`와 최신 알림 모듈 로드·페이지 오류0을 확인했다. 빌드 정리 대상이 된 기존 배포 해시 자산4개는 원래 파일을 복원해 불필요한 삭제를 피했으며 활성 manifest/생성물 코드는 바꾸지 않았다. 작업 기록과 생성물을 같은 브랜치에 커밋·푸시한다.
