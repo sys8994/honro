@@ -1344,7 +1344,7 @@
             }
           ],
           "frames": 180,
-          "runtimeSha256": "e727401d9c485c5fe7400c57b01a188b42a398a79ffa393046a06dcad1109548"
+          "runtimeSha256": "1a81d4906634f4b37f77ea1fa1ee477b21ba5721fcc7a3051b12227be4ba0dfb"
         },
         {
           "id": "entry-shot",
@@ -2330,7 +2330,7 @@
             }
           ],
           "frames": 900,
-          "runtimeSha256": "e727401d9c485c5fe7400c57b01a188b42a398a79ffa393046a06dcad1109548"
+          "runtimeSha256": "1a81d4906634f4b37f77ea1fa1ee477b21ba5721fcc7a3051b12227be4ba0dfb"
         },
         {
           "id": "west-enemy-action",
@@ -4807,7 +4807,7 @@
             }
           ],
           "frames": 4450,
-          "runtimeSha256": "e727401d9c485c5fe7400c57b01a188b42a398a79ffa393046a06dcad1109548"
+          "runtimeSha256": "1a81d4906634f4b37f77ea1fa1ee477b21ba5721fcc7a3051b12227be4ba0dfb"
         },
         {
           "id": "boarding-objective",
@@ -4815,32 +4815,32 @@
           "runner": "honro-production-engine-v1",
           "fingerprint": "draft-v1-90b5493a-3537083",
           "result": "pass",
-          "runtimeSha256": "e727401d9c485c5fe7400c57b01a188b42a398a79ffa393046a06dcad1109548",
+          "runtimeSha256": "1a81d4906634f4b37f77ea1fa1ee477b21ba5721fcc7a3051b12227be4ba0dfb",
           "scope": "tool-assisted normal-input Stage31 battle and boarding from synthetic campaign entry",
-          "sourceRunId": 42013277207,
-          "sourceCommit": "dddb40e835fc854482e1155a88b3a6b3f534c3fc",
+          "sourceRunId": 42006893511,
+          "sourceCommit": "734f9c9667de9632808a03309d7bd3618eba3047",
           "observations": [
             {
               "freshUiResult": {
                 "passed": true,
                 "releaseApproved": false,
-                "sourceCommit": "dddb40e835fc854482e1155a88b3a6b3f534c3fc",
+                "sourceCommit": "734f9c9667de9632808a03309d7bd3618eba3047",
                 "scope": "tool-assisted normal-input Stage31 battle and boarding from synthetic campaign entry",
                 "errors": [],
                 "lastCombatState": {
-                  "round": 13,
-                  "enemyTeamEnds": 12,
+                  "round": 15,
+                  "enemyTeamEnds": 14,
                   "side": 0,
                   "phase": "aim",
                   "active": "knight",
                   "cls": "knight",
-                  "x": 6059.631543187642,
-                  "y": 1939.6196155994382,
-                  "angle": 89.47242086993577,
+                  "x": 5231.050714721445,
+                  "y": 2678.8442138064106,
+                  "angle": 3.982680099288075,
                   "facing": 1,
                   "moveLeft": 3318,
                   "drop": true,
-                  "support": "approved31-upper-east",
+                  "support": "approved31-east-return",
                   "enemyHpSum": 0,
                   "enemyUnits": [
                     {
@@ -5015,64 +5015,64 @@
                     }
                   ],
                   "camera": {
-                    "x": 6409.43697457198,
-                    "y": 1834.616763547298,
-                    "scale": 0.21176470588235297,
-                    "manual": false
+                    "x": 5231.050714721445,
+                    "y": 2616.9639632588214,
+                    "scale": 0.82,
+                    "manual": true
                   },
                   "grounded": true,
-                  "can": true,
-                  "dialogue": false,
-                  "shots": 44,
+                  "can": false,
+                  "dialogue": true,
+                  "shots": 42,
                   "enemies": 0,
                   "health": [
                     {
                       "id": "archer",
-                      "hp": 834,
+                      "hp": 852,
                       "maxHp": 1674,
-                      "shield": 0,
+                      "shield": 201,
                       "dead": false,
-                      "x": 5216.964980851624,
-                      "y": 2694.338521063213
+                      "x": 4754.164183911456,
+                      "y": 1103.9208135383387
                     },
                     {
                       "id": "mage",
-                      "hp": 1427,
+                      "hp": 997,
                       "maxHp": 1814,
                       "shield": 0,
                       "dead": false,
-                      "x": 5520.025589156097,
+                      "x": 5520.397997979264,
                       "y": 2587.5
                     },
                     {
                       "id": "knight",
-                      "hp": 1007,
+                      "hp": 1933,
                       "maxHp": 3045,
                       "shield": 0,
                       "dead": false,
-                      "x": 6059.631543187642,
-                      "y": 1939.6196155994382
+                      "x": 5231.050714721445,
+                      "y": 2678.8442138064106
                     },
                     {
                       "id": "occultist",
-                      "hp": 1182,
+                      "hp": 902,
                       "maxHp": 1873,
                       "shield": 0,
                       "dead": false,
-                      "x": 4955.349999999982,
-                      "y": 2865.4300000000035
+                      "x": 4962.033333333315,
+                      "y": 2864.093333333337
                     }
                   ],
                   "boat": {
                     "phase": "approach",
-                    "x": 654.7639999999664
+                    "x": 500
                   },
                   "seed": 19388,
-                  "rng": 344334392232
+                  "rng": 448733643573
                 },
                 "final": {
                   "stage": 31,
-                  "round": 14,
+                  "round": 16,
                   "phase": "won",
                   "active": "mage",
                   "dialogue": false,
@@ -5086,18 +5086,18 @@
                   "heroes": [
                     {
                       "id": "archer",
-                      "x": 6525.786527962233,
+                      "x": 6508.077949172238,
                       "y": 3366,
-                      "hp": 834,
+                      "hp": 852,
                       "dead": false,
                       "acted": false,
-                      "moveLeft": 1149.1823956475014,
+                      "moveLeft": 669.3614958086848,
                       "canDrop": false,
                       "grounded": true
                     },
                     {
                       "id": "mage",
-                      "x": 6490.574697967412,
+                      "x": 6497.3409178603915,
                       "y": 3366,
                       "hp": 1868,
                       "dead": false,
@@ -5108,9 +5108,9 @@
                     },
                     {
                       "id": "knight",
-                      "x": 6511.496014302548,
+                      "x": 6512.9890785364805,
                       "y": 3366,
-                      "hp": 1110,
+                      "hp": 2055,
                       "dead": false,
                       "acted": false,
                       "moveLeft": 3318,
@@ -5119,12 +5119,12 @@
                     },
                     {
                       "id": "occultist",
-                      "x": 6510.5130663591035,
+                      "x": 6495.858153633123,
                       "y": 3366,
-                      "hp": 1257,
+                      "hp": 1928,
                       "dead": false,
                       "acted": false,
-                      "moveLeft": 2678,
+                      "moveLeft": 2729,
                       "canDrop": false,
                       "grounded": true
                     }
@@ -5137,17 +5137,324 @@
             {
               "step": "drop-3366",
               "state": {
-                "round": 13,
-                "enemyTeamEnds": 12,
+                "round": 15,
+                "enemyTeamEnds": 14,
                 "side": 0,
                 "phase": "aim",
                 "active": "knight",
                 "cls": "knight",
-                "x": 6511.496014302548,
-                "y": 3366,
-                "angle": 89.47242086993577,
+                "x": 6512.9890785364805,
+                "y": 2802.5936480488795,
+                "angle": 3.982680099288075,
                 "facing": 1,
-                "moveLeft": 2865.7448270868913,
+                "moveLeft": 1818.7513558739631,
+                "drop": true,
+                "support": "approved31-harbor-stair",
+                "enemyHpSum": 0,
+                "enemyUnits": [
+                  {
+                    "id": "pilot31-west-entry-1",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-west-entry-2",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-west-entry-3",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-west-entry-4",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-west-entry-5",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-west-entry-6",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-west-entry-7",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-west-entry-8",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-west-crossfire-1",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-west-crossfire-2",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-west-crossfire-3",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-west-crossfire-4",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-west-crossfire-5",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-west-crossfire-6",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-west-crossfire-7",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-west-crossfire-8",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-west-crossfire-9",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-ridge-court-1",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-ridge-court-2",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-ridge-court-3",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-ridge-court-4",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-ridge-court-5",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-ridge-court-6",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-ridge-court-7",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-ridge-court-8",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-ridge-court-9",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-lookout-return-1",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-lookout-return-2",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-lookout-return-3",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-lookout-return-4",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-lookout-return-5",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-lookout-return-6",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-lookout-return-7",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-lookout-return-8",
+                    "hp": 0,
+                    "dead": true
+                  }
+                ],
+                "camera": {
+                  "x": 6682.9890785364805,
+                  "y": 2618.437909067084,
+                  "scale": 0.21176470588235297,
+                  "manual": false
+                },
+                "grounded": true,
+                "can": true,
+                "dialogue": false,
+                "shots": 42,
+                "enemies": 0,
+                "health": [
+                  {
+                    "id": "archer",
+                    "hp": 852,
+                    "maxHp": 1674,
+                    "shield": 201,
+                    "dead": false,
+                    "x": 4754.164183911456,
+                    "y": 1103.9208135383387
+                  },
+                  {
+                    "id": "mage",
+                    "hp": 997,
+                    "maxHp": 1814,
+                    "shield": 0,
+                    "dead": false,
+                    "x": 5520.397997979264,
+                    "y": 2587.5
+                  },
+                  {
+                    "id": "knight",
+                    "hp": 1933,
+                    "maxHp": 3045,
+                    "shield": 0,
+                    "dead": false,
+                    "x": 6512.9890785364805,
+                    "y": 2802.5936480488795
+                  },
+                  {
+                    "id": "occultist",
+                    "hp": 902,
+                    "maxHp": 1873,
+                    "shield": 0,
+                    "dead": false,
+                    "x": 4962.033333333315,
+                    "y": 2864.093333333337
+                  }
+                ],
+                "boat": {
+                  "phase": "docked",
+                  "x": 6547.5
+                },
+                "seed": 19388,
+                "rng": 448733643573
+              },
+              "time": 1793873727.9042678,
+              "boarding": {
+                "stage": 31,
+                "round": 15,
+                "phase": "aim",
+                "active": "knight",
+                "dialogue": false,
+                "can": true,
+                "boat": {
+                  "phase": "docked",
+                  "x": 6547.5
+                },
+                "complete": false,
+                "enemies": 0,
+                "heroes": [
+                  {
+                    "id": "archer",
+                    "x": 4754.164183911456,
+                    "y": 1103.9208135383387,
+                    "hp": 852,
+                    "dead": false,
+                    "acted": true,
+                    "moveLeft": 910.1054253756292,
+                    "canDrop": false,
+                    "grounded": true
+                  },
+                  {
+                    "id": "mage",
+                    "x": 5520.397997979264,
+                    "y": 2587.5,
+                    "hp": 997,
+                    "dead": false,
+                    "acted": true,
+                    "moveLeft": 1550.0116998192789,
+                    "canDrop": false,
+                    "grounded": true
+                  },
+                  {
+                    "id": "knight",
+                    "x": 6512.9890785364805,
+                    "y": 2802.5936480488795,
+                    "hp": 1933,
+                    "dead": false,
+                    "acted": false,
+                    "moveLeft": 1818.7513558739631,
+                    "canDrop": true,
+                    "grounded": true
+                  },
+                  {
+                    "id": "occultist",
+                    "x": 4962.033333333315,
+                    "y": 2864.093333333337,
+                    "hp": 902,
+                    "dead": false,
+                    "acted": false,
+                    "moveLeft": 2678,
+                    "canDrop": false,
+                    "grounded": true
+                  }
+                ]
+              }
+            },
+            {
+              "step": "drop-3366",
+              "state": {
+                "round": 15,
+                "enemyTeamEnds": 14,
+                "side": 0,
+                "phase": "aim",
+                "active": "knight",
+                "cls": "knight",
+                "x": 6512.9890785364805,
+                "y": 3366,
+                "angle": 3.982680099288075,
+                "facing": 1,
+                "moveLeft": 1818.7513558739631,
                 "drop": true,
                 "support": "a4-boat-deck",
                 "enemyHpSum": 0,
@@ -5324,52 +5631,52 @@
                   }
                 ],
                 "camera": {
-                  "x": 6681.496014302548,
-                  "y": 3163.202869998732,
+                  "x": 6682.9890785364805,
+                  "y": 3163.0594418218207,
                   "scale": 0.21176470588235297,
                   "manual": false
                 },
                 "grounded": true,
                 "can": true,
                 "dialogue": false,
-                "shots": 44,
+                "shots": 42,
                 "enemies": 0,
                 "health": [
                   {
                     "id": "archer",
-                    "hp": 834,
+                    "hp": 852,
                     "maxHp": 1674,
-                    "shield": 0,
+                    "shield": 201,
                     "dead": false,
-                    "x": 5216.964980851624,
-                    "y": 2694.338521063213
+                    "x": 4754.164183911456,
+                    "y": 1103.9208135383387
                   },
                   {
                     "id": "mage",
-                    "hp": 1427,
+                    "hp": 997,
                     "maxHp": 1814,
                     "shield": 0,
                     "dead": false,
-                    "x": 5520.025589156097,
+                    "x": 5520.397997979264,
                     "y": 2587.5
                   },
                   {
                     "id": "knight",
-                    "hp": 988,
+                    "hp": 1933,
                     "maxHp": 3045,
                     "shield": 0,
                     "dead": false,
-                    "x": 6511.496014302548,
+                    "x": 6512.9890785364805,
                     "y": 3366
                   },
                   {
                     "id": "occultist",
-                    "hp": 1182,
+                    "hp": 902,
                     "maxHp": 1873,
                     "shield": 0,
                     "dead": false,
-                    "x": 4955.349999999982,
-                    "y": 2865.4300000000035
+                    "x": 4962.033333333315,
+                    "y": 2864.093333333337
                   }
                 ],
                 "boat": {
@@ -5377,12 +5684,12 @@
                   "x": 6547.5
                 },
                 "seed": 19388,
-                "rng": 344334392232
+                "rng": 448733643573
               },
-              "time": 1793876393.095209,
+              "time": 1793873730.5386174,
               "boarding": {
                 "stage": 31,
-                "round": 13,
+                "round": 15,
                 "phase": "aim",
                 "active": "knight",
                 "dialogue": false,
@@ -5396,42 +5703,42 @@
                 "heroes": [
                   {
                     "id": "archer",
-                    "x": 5216.964980851624,
-                    "y": 2694.338521063213,
-                    "hp": 834,
+                    "x": 4754.164183911456,
+                    "y": 1103.9208135383387,
+                    "hp": 852,
                     "dead": false,
                     "acted": true,
-                    "moveLeft": 2127.870071264221,
+                    "moveLeft": 910.1054253756292,
                     "canDrop": false,
                     "grounded": true
                   },
                   {
                     "id": "mage",
-                    "x": 5520.025589156097,
+                    "x": 5520.397997979264,
                     "y": 2587.5,
-                    "hp": 1427,
+                    "hp": 997,
                     "dead": false,
                     "acted": true,
-                    "moveLeft": 1604.533647601834,
+                    "moveLeft": 1550.0116998192789,
                     "canDrop": false,
                     "grounded": true
                   },
                   {
                     "id": "knight",
-                    "x": 6511.496014302548,
+                    "x": 6512.9890785364805,
                     "y": 3366,
-                    "hp": 988,
+                    "hp": 1933,
                     "dead": false,
                     "acted": false,
-                    "moveLeft": 2865.7448270868913,
+                    "moveLeft": 1818.7513558739631,
                     "canDrop": true,
                     "grounded": true
                   },
                   {
                     "id": "occultist",
-                    "x": 4955.349999999982,
-                    "y": 2865.4300000000035,
-                    "hp": 1182,
+                    "x": 4962.033333333315,
+                    "y": 2864.093333333337,
+                    "hp": 902,
                     "dead": false,
                     "acted": false,
                     "moveLeft": 2678,
@@ -5444,17 +5751,17 @@
             {
               "step": "walk-4815",
               "state": {
-                "round": 13,
-                "enemyTeamEnds": 12,
+                "round": 15,
+                "enemyTeamEnds": 14,
                 "side": 0,
                 "phase": "aim",
                 "active": "occultist",
                 "cls": "occultist",
-                "x": 4806.0381466320905,
-                "y": 3065.694913782388,
-                "angle": 143.46491742355406,
+                "x": 4799.439545598403,
+                "y": 3066.5747272535464,
+                "angle": 126.11264438716216,
                 "facing": -1,
-                "moveLeft": 2490.8666666666886,
+                "moveLeft": 2477.5000000000227,
                 "drop": false,
                 "support": "approved31-low-flank",
                 "enemyHpSum": 0,
@@ -5631,52 +5938,52 @@
                   }
                 ],
                 "camera": {
-                  "x": 4640.648611942227,
-                  "y": 2847.1084736537377,
+                  "x": 4634.546794815438,
+                  "y": 2844.591135362792,
                   "scale": 0.21176470588235297,
                   "manual": false
                 },
                 "grounded": true,
                 "can": true,
                 "dialogue": false,
-                "shots": 44,
+                "shots": 42,
                 "enemies": 0,
                 "health": [
                   {
                     "id": "archer",
-                    "hp": 834,
+                    "hp": 852,
                     "maxHp": 1674,
-                    "shield": 0,
+                    "shield": 201,
                     "dead": false,
-                    "x": 5216.964980851624,
-                    "y": 2694.338521063213
+                    "x": 4754.164183911456,
+                    "y": 1103.9208135383387
                   },
                   {
                     "id": "mage",
-                    "hp": 1427,
+                    "hp": 997,
                     "maxHp": 1814,
                     "shield": 0,
                     "dead": false,
-                    "x": 5520.025589156097,
+                    "x": 5520.397997979264,
                     "y": 2587.5
                   },
                   {
                     "id": "knight",
-                    "hp": 988,
+                    "hp": 1933,
                     "maxHp": 3045,
                     "shield": 0,
                     "dead": false,
-                    "x": 6511.496014302548,
+                    "x": 6512.9890785364805,
                     "y": 3366
                   },
                   {
                     "id": "occultist",
-                    "hp": 1182,
+                    "hp": 902,
                     "maxHp": 1873,
                     "shield": 0,
                     "dead": false,
-                    "x": 4806.0381466320905,
-                    "y": 3065.694913782388
+                    "x": 4799.439545598403,
+                    "y": 3066.5747272535464
                   }
                 ],
                 "boat": {
@@ -5684,12 +5991,12 @@
                   "x": 6547.5
                 },
                 "seed": 19388,
-                "rng": 344334392232
+                "rng": 448733643573
               },
-              "time": 1793876397.9516585,
+              "time": 1793873735.467936,
               "boarding": {
                 "stage": 31,
-                "round": 13,
+                "round": 15,
                 "phase": "aim",
                 "active": "occultist",
                 "dialogue": false,
@@ -5703,45 +6010,45 @@
                 "heroes": [
                   {
                     "id": "archer",
-                    "x": 5216.964980851624,
-                    "y": 2694.338521063213,
-                    "hp": 834,
+                    "x": 4754.164183911456,
+                    "y": 1103.9208135383387,
+                    "hp": 852,
                     "dead": false,
                     "acted": true,
-                    "moveLeft": 2127.870071264221,
+                    "moveLeft": 910.1054253756292,
                     "canDrop": false,
                     "grounded": true
                   },
                   {
                     "id": "mage",
-                    "x": 5520.025589156097,
+                    "x": 5520.397997979264,
                     "y": 2587.5,
-                    "hp": 1427,
+                    "hp": 997,
                     "dead": false,
                     "acted": true,
-                    "moveLeft": 1604.533647601834,
+                    "moveLeft": 1550.0116998192789,
                     "canDrop": false,
                     "grounded": true
                   },
                   {
                     "id": "knight",
-                    "x": 6511.496014302548,
+                    "x": 6512.9890785364805,
                     "y": 3366,
-                    "hp": 988,
+                    "hp": 1933,
                     "dead": false,
                     "acted": false,
-                    "moveLeft": 2865.7448270868913,
+                    "moveLeft": 1818.7513558739631,
                     "canDrop": false,
                     "grounded": true
                   },
                   {
                     "id": "occultist",
-                    "x": 4806.0381466320905,
-                    "y": 3065.694913782388,
-                    "hp": 1182,
+                    "x": 4799.439545598403,
+                    "y": 3066.5747272535464,
+                    "hp": 902,
                     "dead": false,
                     "acted": false,
-                    "moveLeft": 2490.8666666666886,
+                    "moveLeft": 2477.5000000000227,
                     "canDrop": false,
                     "grounded": true
                   }
@@ -5751,17 +6058,17 @@
             {
               "step": "jump-4900",
               "state": {
-                "round": 13,
-                "enemyTeamEnds": 12,
+                "round": 15,
+                "enemyTeamEnds": 14,
                 "side": 0,
                 "phase": "aim",
                 "active": "occultist",
                 "cls": "occultist",
-                "x": 4916.3131466320765,
-                "y": 2906.9242240415083,
-                "angle": 36.535082576445944,
+                "x": 4923.081212265054,
+                "y": 2898.802545281935,
+                "angle": 53.88735561283784,
                 "facing": 1,
-                "moveLeft": 2305.5916666667026,
+                "moveLeft": 2278.858333333372,
                 "drop": false,
                 "support": "approved31-low-flank",
                 "enemyHpSum": 0,
@@ -5938,52 +6245,52 @@
                   }
                 ],
                 "camera": {
-                  "x": 5079.477650098705,
-                  "y": 2701.0696634567926,
+                  "x": 5087.177899241089,
+                  "y": 2702.9050450469867,
                   "scale": 0.21176470588235297,
                   "manual": false
                 },
                 "grounded": true,
                 "can": true,
                 "dialogue": false,
-                "shots": 44,
+                "shots": 42,
                 "enemies": 0,
                 "health": [
                   {
                     "id": "archer",
-                    "hp": 834,
+                    "hp": 852,
                     "maxHp": 1674,
-                    "shield": 0,
+                    "shield": 201,
                     "dead": false,
-                    "x": 5216.964980851624,
-                    "y": 2694.338521063213
+                    "x": 4754.164183911456,
+                    "y": 1103.9208135383387
                   },
                   {
                     "id": "mage",
-                    "hp": 1427,
+                    "hp": 997,
                     "maxHp": 1814,
                     "shield": 0,
                     "dead": false,
-                    "x": 5520.025589156097,
+                    "x": 5520.397997979264,
                     "y": 2587.5
                   },
                   {
                     "id": "knight",
-                    "hp": 988,
+                    "hp": 1933,
                     "maxHp": 3045,
                     "shield": 0,
                     "dead": false,
-                    "x": 6511.496014302548,
+                    "x": 6512.9890785364805,
                     "y": 3366
                   },
                   {
                     "id": "occultist",
-                    "hp": 1182,
+                    "hp": 902,
                     "maxHp": 1873,
                     "shield": 0,
                     "dead": false,
-                    "x": 4916.3131466320765,
-                    "y": 2906.9242240415083
+                    "x": 4923.081212265054,
+                    "y": 2898.802545281935
                   }
                 ],
                 "boat": {
@@ -5991,12 +6298,12 @@
                   "x": 6547.5
                 },
                 "seed": 19388,
-                "rng": 344334392232
+                "rng": 448733643573
               },
-              "time": 1793876399.8864384,
+              "time": 1793873737.475976,
               "boarding": {
                 "stage": 31,
-                "round": 13,
+                "round": 15,
                 "phase": "aim",
                 "active": "occultist",
                 "dialogue": false,
@@ -6010,45 +6317,45 @@
                 "heroes": [
                   {
                     "id": "archer",
-                    "x": 5216.964980851624,
-                    "y": 2694.338521063213,
-                    "hp": 834,
+                    "x": 4754.164183911456,
+                    "y": 1103.9208135383387,
+                    "hp": 852,
                     "dead": false,
                     "acted": true,
-                    "moveLeft": 2127.870071264221,
+                    "moveLeft": 910.1054253756292,
                     "canDrop": false,
                     "grounded": true
                   },
                   {
                     "id": "mage",
-                    "x": 5520.025589156097,
+                    "x": 5520.397997979264,
                     "y": 2587.5,
-                    "hp": 1427,
+                    "hp": 997,
                     "dead": false,
                     "acted": true,
-                    "moveLeft": 1604.533647601834,
+                    "moveLeft": 1550.0116998192789,
                     "canDrop": false,
                     "grounded": true
                   },
                   {
                     "id": "knight",
-                    "x": 6511.496014302548,
+                    "x": 6512.9890785364805,
                     "y": 3366,
-                    "hp": 988,
+                    "hp": 1933,
                     "dead": false,
                     "acted": false,
-                    "moveLeft": 2865.7448270868913,
+                    "moveLeft": 1818.7513558739631,
                     "canDrop": false,
                     "grounded": true
                   },
                   {
                     "id": "occultist",
-                    "x": 4916.3131466320765,
-                    "y": 2906.9242240415083,
-                    "hp": 1182,
+                    "x": 4923.081212265054,
+                    "y": 2898.802545281935,
+                    "hp": 902,
                     "dead": false,
                     "acted": false,
-                    "moveLeft": 2305.5916666667026,
+                    "moveLeft": 2278.858333333372,
                     "canDrop": false,
                     "grounded": true
                   }
@@ -6058,17 +6365,17 @@
             {
               "step": "walk-5080",
               "state": {
-                "round": 13,
-                "enemyTeamEnds": 12,
+                "round": 15,
+                "enemyTeamEnds": 14,
                 "side": 0,
                 "phase": "aim",
                 "active": "occultist",
                 "cls": "occultist",
-                "x": 5087.425260805525,
-                "y": 2836.8322131139225,
-                "angle": 36.535082576445944,
+                "x": 5103.696631594451,
+                "y": 2818.9337052461037,
+                "angle": 53.88735561283784,
                 "facing": 1,
-                "moveLeft": 2111.692183293359,
+                "moveLeft": 2071.3417747671956,
                 "drop": true,
                 "support": "approved31-east-return",
                 "enemyHpSum": 0,
@@ -6245,52 +6552,52 @@
                   }
                 ],
                 "camera": {
-                  "x": 5198.977319070359,
-                  "y": 2670.413418839845,
+                  "x": 5218.078985140353,
+                  "y": 2660.087384506532,
                   "scale": 0.21176470588235297,
                   "manual": false
                 },
                 "grounded": true,
                 "can": true,
                 "dialogue": false,
-                "shots": 44,
+                "shots": 42,
                 "enemies": 0,
                 "health": [
                   {
                     "id": "archer",
-                    "hp": 834,
+                    "hp": 852,
                     "maxHp": 1674,
-                    "shield": 0,
+                    "shield": 201,
                     "dead": false,
-                    "x": 5216.964980851624,
-                    "y": 2694.338521063213
+                    "x": 4754.164183911456,
+                    "y": 1103.9208135383387
                   },
                   {
                     "id": "mage",
-                    "hp": 1427,
+                    "hp": 997,
                     "maxHp": 1814,
                     "shield": 0,
                     "dead": false,
-                    "x": 5520.025589156097,
+                    "x": 5520.397997979264,
                     "y": 2587.5
                   },
                   {
                     "id": "knight",
-                    "hp": 988,
+                    "hp": 1933,
                     "maxHp": 3045,
                     "shield": 0,
                     "dead": false,
-                    "x": 6511.496014302548,
+                    "x": 6512.9890785364805,
                     "y": 3366
                   },
                   {
                     "id": "occultist",
-                    "hp": 1182,
+                    "hp": 902,
                     "maxHp": 1873,
                     "shield": 0,
                     "dead": false,
-                    "x": 5087.425260805525,
-                    "y": 2836.8322131139225
+                    "x": 5103.696631594451,
+                    "y": 2818.9337052461037
                   }
                 ],
                 "boat": {
@@ -6298,12 +6605,12 @@
                   "x": 6547.5
                 },
                 "seed": 19388,
-                "rng": 344334392232
+                "rng": 448733643573
               },
-              "time": 1793876401.353636,
+              "time": 1793873739.0051491,
               "boarding": {
                 "stage": 31,
-                "round": 13,
+                "round": 15,
                 "phase": "aim",
                 "active": "occultist",
                 "dialogue": false,
@@ -6317,45 +6624,45 @@
                 "heroes": [
                   {
                     "id": "archer",
-                    "x": 5216.964980851624,
-                    "y": 2694.338521063213,
-                    "hp": 834,
+                    "x": 4754.164183911456,
+                    "y": 1103.9208135383387,
+                    "hp": 852,
                     "dead": false,
                     "acted": true,
-                    "moveLeft": 2127.870071264221,
+                    "moveLeft": 910.1054253756292,
                     "canDrop": false,
                     "grounded": true
                   },
                   {
                     "id": "mage",
-                    "x": 5520.025589156097,
+                    "x": 5520.397997979264,
                     "y": 2587.5,
-                    "hp": 1427,
+                    "hp": 997,
                     "dead": false,
                     "acted": true,
-                    "moveLeft": 1604.533647601834,
+                    "moveLeft": 1550.0116998192789,
                     "canDrop": false,
                     "grounded": true
                   },
                   {
                     "id": "knight",
-                    "x": 6511.496014302548,
+                    "x": 6512.9890785364805,
                     "y": 3366,
-                    "hp": 988,
+                    "hp": 1933,
                     "dead": false,
                     "acted": false,
-                    "moveLeft": 2865.7448270868913,
+                    "moveLeft": 1818.7513558739631,
                     "canDrop": false,
                     "grounded": true
                   },
                   {
                     "id": "occultist",
-                    "x": 5087.425260805525,
-                    "y": 2836.8322131139225,
-                    "hp": 1182,
+                    "x": 5103.696631594451,
+                    "y": 2818.9337052461037,
+                    "hp": 902,
                     "dead": false,
                     "acted": false,
-                    "moveLeft": 2111.692183293359,
+                    "moveLeft": 2071.3417747671956,
                     "canDrop": true,
                     "grounded": true
                   }
@@ -6365,17 +6672,17 @@
             {
               "step": "walk-5500",
               "state": {
-                "round": 13,
-                "enemyTeamEnds": 12,
+                "round": 15,
+                "enemyTeamEnds": 14,
                 "side": 0,
                 "phase": "aim",
                 "active": "occultist",
                 "cls": "occultist",
-                "x": 5520.725704494151,
+                "x": 5511.498169503619,
                 "y": 2587.5,
-                "angle": 36.535082576445944,
+                "angle": 53.88735561283784,
                 "facing": 1,
-                "moveLeft": 1577.0255166267689,
+                "moveLeft": 1570.0917747672645,
                 "drop": true,
                 "support": "approved31-east-return",
                 "enemyHpSum": 0,
@@ -6552,51 +6859,51 @@
                   }
                 ],
                 "camera": {
-                  "x": 5616.636665893839,
-                  "y": 2410.7853574018845,
+                  "x": 5613.324715728376,
+                  "y": 2410.8791572510545,
                   "scale": 0.21176470588235297,
                   "manual": false
                 },
                 "grounded": true,
                 "can": true,
                 "dialogue": false,
-                "shots": 44,
+                "shots": 42,
                 "enemies": 0,
                 "health": [
                   {
                     "id": "archer",
-                    "hp": 834,
+                    "hp": 852,
                     "maxHp": 1674,
-                    "shield": 0,
+                    "shield": 201,
                     "dead": false,
-                    "x": 5216.964980851624,
-                    "y": 2694.338521063213
+                    "x": 4754.164183911456,
+                    "y": 1103.9208135383387
                   },
                   {
                     "id": "mage",
-                    "hp": 1427,
+                    "hp": 997,
                     "maxHp": 1814,
                     "shield": 0,
                     "dead": false,
-                    "x": 5520.025589156097,
+                    "x": 5520.397997979264,
                     "y": 2587.5
                   },
                   {
                     "id": "knight",
-                    "hp": 988,
+                    "hp": 1933,
                     "maxHp": 3045,
                     "shield": 0,
                     "dead": false,
-                    "x": 6511.496014302548,
+                    "x": 6512.9890785364805,
                     "y": 3366
                   },
                   {
                     "id": "occultist",
-                    "hp": 1182,
+                    "hp": 902,
                     "maxHp": 1873,
                     "shield": 0,
                     "dead": false,
-                    "x": 5520.725704494151,
+                    "x": 5511.498169503619,
                     "y": 2587.5
                   }
                 ],
@@ -6605,12 +6912,12 @@
                   "x": 6547.5
                 },
                 "seed": 19388,
-                "rng": 344334392232
+                "rng": 448733643573
               },
-              "time": 1793876403.6278288,
+              "time": 1793873741.2391694,
               "boarding": {
                 "stage": 31,
-                "round": 13,
+                "round": 15,
                 "phase": "aim",
                 "active": "occultist",
                 "dialogue": false,
@@ -6624,45 +6931,45 @@
                 "heroes": [
                   {
                     "id": "archer",
-                    "x": 5216.964980851624,
-                    "y": 2694.338521063213,
-                    "hp": 834,
+                    "x": 4754.164183911456,
+                    "y": 1103.9208135383387,
+                    "hp": 852,
                     "dead": false,
                     "acted": true,
-                    "moveLeft": 2127.870071264221,
+                    "moveLeft": 910.1054253756292,
                     "canDrop": false,
                     "grounded": true
                   },
                   {
                     "id": "mage",
-                    "x": 5520.025589156097,
+                    "x": 5520.397997979264,
                     "y": 2587.5,
-                    "hp": 1427,
+                    "hp": 997,
                     "dead": false,
                     "acted": true,
-                    "moveLeft": 1604.533647601834,
+                    "moveLeft": 1550.0116998192789,
                     "canDrop": false,
                     "grounded": true
                   },
                   {
                     "id": "knight",
-                    "x": 6511.496014302548,
+                    "x": 6512.9890785364805,
                     "y": 3366,
-                    "hp": 988,
+                    "hp": 1933,
                     "dead": false,
                     "acted": false,
-                    "moveLeft": 2865.7448270868913,
+                    "moveLeft": 1818.7513558739631,
                     "canDrop": false,
                     "grounded": true
                   },
                   {
                     "id": "occultist",
-                    "x": 5520.725704494151,
+                    "x": 5511.498169503619,
                     "y": 2587.5,
-                    "hp": 1182,
+                    "hp": 902,
                     "dead": false,
                     "acted": false,
-                    "moveLeft": 1577.0255166267689,
+                    "moveLeft": 1570.0917747672645,
                     "canDrop": true,
                     "grounded": true
                   }
@@ -6672,324 +6979,17 @@
             {
               "step": "walk-5955",
               "state": {
-                "round": 13,
-                "enemyTeamEnds": 12,
+                "round": 15,
+                "enemyTeamEnds": 14,
                 "side": 0,
                 "phase": "aim",
                 "active": "occultist",
                 "cls": "occultist",
-                "x": 5956.199657802101,
-                "y": 2186.190444857269,
-                "angle": 36.535082576445944,
+                "x": 5968.245800821205,
+                "y": 2727.564916016424,
+                "angle": 53.88735561283784,
                 "facing": 1,
-                "moveLeft": 960.1599216801956,
-                "drop": true,
-                "support": "approved31-east-return",
-                "enemyHpSum": 0,
-                "enemyUnits": [
-                  {
-                    "id": "pilot31-west-entry-1",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-west-entry-2",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-west-entry-3",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-west-entry-4",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-west-entry-5",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-west-entry-6",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-west-entry-7",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-west-entry-8",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-west-crossfire-1",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-west-crossfire-2",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-west-crossfire-3",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-west-crossfire-4",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-west-crossfire-5",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-west-crossfire-6",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-west-crossfire-7",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-west-crossfire-8",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-west-crossfire-9",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-ridge-court-1",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-ridge-court-2",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-ridge-court-3",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-ridge-court-4",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-ridge-court-5",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-ridge-court-6",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-ridge-court-7",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-ridge-court-8",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-ridge-court-9",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-lookout-return-1",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-lookout-return-2",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-lookout-return-3",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-lookout-return-4",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-lookout-return-5",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-lookout-return-6",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-lookout-return-7",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-lookout-return-8",
-                    "hp": 0,
-                    "dead": true
-                  }
-                ],
-                "camera": {
-                  "x": 6075.725518082953,
-                  "y": 2067.311853528289,
-                  "scale": 0.21176470588235297,
-                  "manual": false
-                },
-                "grounded": true,
-                "can": true,
-                "dialogue": false,
-                "shots": 44,
-                "enemies": 0,
-                "health": [
-                  {
-                    "id": "archer",
-                    "hp": 834,
-                    "maxHp": 1674,
-                    "shield": 0,
-                    "dead": false,
-                    "x": 5216.964980851624,
-                    "y": 2694.338521063213
-                  },
-                  {
-                    "id": "mage",
-                    "hp": 1427,
-                    "maxHp": 1814,
-                    "shield": 0,
-                    "dead": false,
-                    "x": 5520.025589156097,
-                    "y": 2587.5
-                  },
-                  {
-                    "id": "knight",
-                    "hp": 988,
-                    "maxHp": 3045,
-                    "shield": 0,
-                    "dead": false,
-                    "x": 6511.496014302548,
-                    "y": 3366
-                  },
-                  {
-                    "id": "occultist",
-                    "hp": 1182,
-                    "maxHp": 1873,
-                    "shield": 0,
-                    "dead": false,
-                    "x": 5956.199657802101,
-                    "y": 2186.190444857269
-                  }
-                ],
-                "boat": {
-                  "phase": "docked",
-                  "x": 6547.5
-                },
-                "seed": 19388,
-                "rng": 344334392232
-              },
-              "time": 1793876406.0817416,
-              "boarding": {
-                "stage": 31,
-                "round": 13,
-                "phase": "aim",
-                "active": "occultist",
-                "dialogue": false,
-                "can": true,
-                "boat": {
-                  "phase": "docked",
-                  "x": 6547.5
-                },
-                "complete": false,
-                "enemies": 0,
-                "heroes": [
-                  {
-                    "id": "archer",
-                    "x": 5216.964980851624,
-                    "y": 2694.338521063213,
-                    "hp": 834,
-                    "dead": false,
-                    "acted": true,
-                    "moveLeft": 2127.870071264221,
-                    "canDrop": false,
-                    "grounded": true
-                  },
-                  {
-                    "id": "mage",
-                    "x": 5520.025589156097,
-                    "y": 2587.5,
-                    "hp": 1427,
-                    "dead": false,
-                    "acted": true,
-                    "moveLeft": 1604.533647601834,
-                    "canDrop": false,
-                    "grounded": true
-                  },
-                  {
-                    "id": "knight",
-                    "x": 6511.496014302548,
-                    "y": 3366,
-                    "hp": 988,
-                    "dead": false,
-                    "acted": false,
-                    "moveLeft": 2865.7448270868913,
-                    "canDrop": false,
-                    "grounded": true
-                  },
-                  {
-                    "id": "occultist",
-                    "x": 5956.199657802101,
-                    "y": 2186.190444857269,
-                    "hp": 1182,
-                    "dead": false,
-                    "acted": false,
-                    "moveLeft": 960.1599216801956,
-                    "canDrop": true,
-                    "grounded": true
-                  }
-                ]
-              }
-            },
-            {
-              "step": "drop-2700",
-              "state": {
-                "round": 13,
-                "enemyTeamEnds": 12,
-                "side": 0,
-                "phase": "aim",
-                "active": "occultist",
-                "cls": "occultist",
-                "x": 5956.199657802101,
-                "y": 2727.323993156042,
-                "angle": 36.535082576445944,
-                "facing": 1,
-                "moveLeft": 960.1599216801956,
+                "moveLeft": 927.9195144985497,
                 "drop": true,
                 "support": "approved31-boarding",
                 "enemyHpSum": 0,
@@ -7166,52 +7166,52 @@
                   }
                 ],
                 "camera": {
-                  "x": 6126.199657802101,
-                  "y": 2526.49062893509,
+                  "x": 6138.245800821205,
+                  "y": 2455.7444328553256,
                   "scale": 0.21176470588235297,
                   "manual": false
                 },
                 "grounded": true,
                 "can": true,
                 "dialogue": false,
-                "shots": 44,
+                "shots": 42,
                 "enemies": 0,
                 "health": [
                   {
                     "id": "archer",
-                    "hp": 834,
+                    "hp": 852,
                     "maxHp": 1674,
-                    "shield": 0,
+                    "shield": 201,
                     "dead": false,
-                    "x": 5216.964980851624,
-                    "y": 2694.338521063213
+                    "x": 4754.164183911456,
+                    "y": 1103.9208135383387
                   },
                   {
                     "id": "mage",
-                    "hp": 1427,
+                    "hp": 997,
                     "maxHp": 1814,
                     "shield": 0,
                     "dead": false,
-                    "x": 5520.025589156097,
+                    "x": 5520.397997979264,
                     "y": 2587.5
                   },
                   {
                     "id": "knight",
-                    "hp": 988,
+                    "hp": 1933,
                     "maxHp": 3045,
                     "shield": 0,
                     "dead": false,
-                    "x": 6511.496014302548,
+                    "x": 6512.9890785364805,
                     "y": 3366
                   },
                   {
                     "id": "occultist",
-                    "hp": 1182,
+                    "hp": 902,
                     "maxHp": 1873,
                     "shield": 0,
                     "dead": false,
-                    "x": 5956.199657802101,
-                    "y": 2727.323993156042
+                    "x": 5968.245800821205,
+                    "y": 2727.564916016424
                   }
                 ],
                 "boat": {
@@ -7219,12 +7219,12 @@
                   "x": 6547.5
                 },
                 "seed": 19388,
-                "rng": 344334392232
+                "rng": 448733643573
               },
-              "time": 1793876408.7961335,
+              "time": 1793873745.693828,
               "boarding": {
                 "stage": 31,
-                "round": 13,
+                "round": 15,
                 "phase": "aim",
                 "active": "occultist",
                 "dialogue": false,
@@ -7238,45 +7238,45 @@
                 "heroes": [
                   {
                     "id": "archer",
-                    "x": 5216.964980851624,
-                    "y": 2694.338521063213,
-                    "hp": 834,
+                    "x": 4754.164183911456,
+                    "y": 1103.9208135383387,
+                    "hp": 852,
                     "dead": false,
                     "acted": true,
-                    "moveLeft": 2127.870071264221,
+                    "moveLeft": 910.1054253756292,
                     "canDrop": false,
                     "grounded": true
                   },
                   {
                     "id": "mage",
-                    "x": 5520.025589156097,
+                    "x": 5520.397997979264,
                     "y": 2587.5,
-                    "hp": 1427,
+                    "hp": 997,
                     "dead": false,
                     "acted": true,
-                    "moveLeft": 1604.533647601834,
+                    "moveLeft": 1550.0116998192789,
                     "canDrop": false,
                     "grounded": true
                   },
                   {
                     "id": "knight",
-                    "x": 6511.496014302548,
+                    "x": 6512.9890785364805,
                     "y": 3366,
-                    "hp": 988,
+                    "hp": 1933,
                     "dead": false,
                     "acted": false,
-                    "moveLeft": 2865.7448270868913,
+                    "moveLeft": 1818.7513558739631,
                     "canDrop": false,
                     "grounded": true
                   },
                   {
                     "id": "occultist",
-                    "x": 5956.199657802101,
-                    "y": 2727.323993156042,
-                    "hp": 1182,
+                    "x": 5968.245800821205,
+                    "y": 2727.564916016424,
+                    "hp": 902,
                     "dead": false,
                     "acted": false,
-                    "moveLeft": 960.1599216801956,
+                    "moveLeft": 927.9195144985497,
                     "canDrop": true,
                     "grounded": true
                   }
@@ -7286,17 +7286,17 @@
             {
               "step": "walk-6480",
               "state": {
-                "round": 13,
-                "enemyTeamEnds": 12,
+                "round": 15,
+                "enemyTeamEnds": 14,
                 "side": 0,
                 "phase": "aim",
                 "active": "occultist",
                 "cls": "occultist",
-                "x": 6510.5130663591035,
-                "y": 2745.53420442394,
-                "angle": 36.535082576445944,
+                "x": 6495.858153633123,
+                "y": 2744.5572102422084,
+                "angle": 53.88735561283784,
                 "facing": 1,
-                "moveLeft": 405.4373089232534,
+                "moveLeft": 399.9328968423643,
                 "drop": true,
                 "support": "approved31-boarding",
                 "enemyHpSum": 0,
@@ -7473,52 +7473,52 @@
                   }
                 ],
                 "camera": {
-                  "x": 6604.505105172055,
-                  "y": 2557.178665933314,
+                  "x": 6594.822548675326,
+                  "y": 2556.599869286091,
                   "scale": 0.21176470588235297,
                   "manual": false
                 },
                 "grounded": true,
                 "can": true,
                 "dialogue": false,
-                "shots": 44,
+                "shots": 42,
                 "enemies": 0,
                 "health": [
                   {
                     "id": "archer",
-                    "hp": 834,
+                    "hp": 852,
                     "maxHp": 1674,
-                    "shield": 0,
+                    "shield": 201,
                     "dead": false,
-                    "x": 5216.964980851624,
-                    "y": 2694.338521063213
+                    "x": 4754.164183911456,
+                    "y": 1103.9208135383387
                   },
                   {
                     "id": "mage",
-                    "hp": 1427,
+                    "hp": 997,
                     "maxHp": 1814,
                     "shield": 0,
                     "dead": false,
-                    "x": 5520.025589156097,
+                    "x": 5520.397997979264,
                     "y": 2587.5
                   },
                   {
                     "id": "knight",
-                    "hp": 988,
+                    "hp": 1933,
                     "maxHp": 3045,
                     "shield": 0,
                     "dead": false,
-                    "x": 6511.496014302548,
+                    "x": 6512.9890785364805,
                     "y": 3366
                   },
                   {
                     "id": "occultist",
-                    "hp": 1182,
+                    "hp": 902,
                     "maxHp": 1873,
                     "shield": 0,
                     "dead": false,
-                    "x": 6510.5130663591035,
-                    "y": 2745.53420442394
+                    "x": 6495.858153633123,
+                    "y": 2744.5572102422084
                   }
                 ],
                 "boat": {
@@ -7526,12 +7526,12 @@
                   "x": 6547.5
                 },
                 "seed": 19388,
-                "rng": 344334392232
+                "rng": 448733643573
               },
-              "time": 1793876411.998291,
+              "time": 1793873748.8361,
               "boarding": {
                 "stage": 31,
-                "round": 13,
+                "round": 15,
                 "phase": "aim",
                 "active": "occultist",
                 "dialogue": false,
@@ -7545,45 +7545,45 @@
                 "heroes": [
                   {
                     "id": "archer",
-                    "x": 5216.964980851624,
-                    "y": 2694.338521063213,
-                    "hp": 834,
+                    "x": 4754.164183911456,
+                    "y": 1103.9208135383387,
+                    "hp": 852,
                     "dead": false,
                     "acted": true,
-                    "moveLeft": 2127.870071264221,
+                    "moveLeft": 910.1054253756292,
                     "canDrop": false,
                     "grounded": true
                   },
                   {
                     "id": "mage",
-                    "x": 5520.025589156097,
+                    "x": 5520.397997979264,
                     "y": 2587.5,
-                    "hp": 1427,
+                    "hp": 997,
                     "dead": false,
                     "acted": true,
-                    "moveLeft": 1604.533647601834,
+                    "moveLeft": 1550.0116998192789,
                     "canDrop": false,
                     "grounded": true
                   },
                   {
                     "id": "knight",
-                    "x": 6511.496014302548,
+                    "x": 6512.9890785364805,
                     "y": 3366,
-                    "hp": 988,
+                    "hp": 1933,
                     "dead": false,
                     "acted": false,
-                    "moveLeft": 2865.7448270868913,
+                    "moveLeft": 1818.7513558739631,
                     "canDrop": false,
                     "grounded": true
                   },
                   {
                     "id": "occultist",
-                    "x": 6510.5130663591035,
-                    "y": 2745.53420442394,
-                    "hp": 1182,
+                    "x": 6495.858153633123,
+                    "y": 2744.5572102422084,
+                    "hp": 902,
                     "dead": false,
                     "acted": false,
-                    "moveLeft": 405.4373089232534,
+                    "moveLeft": 399.9328968423643,
                     "canDrop": true,
                     "grounded": true
                   }
@@ -7593,17 +7593,17 @@
             {
               "step": "drop-3366",
               "state": {
-                "round": 13,
-                "enemyTeamEnds": 12,
+                "round": 15,
+                "enemyTeamEnds": 14,
                 "side": 0,
                 "phase": "aim",
                 "active": "occultist",
                 "cls": "occultist",
-                "x": 6510.5130663591035,
-                "y": 2804.93210399418,
-                "angle": 36.535082576445944,
+                "x": 6495.858153633123,
+                "y": 2822.1306772319717,
+                "angle": 53.88735561283784,
                 "facing": 1,
-                "moveLeft": 405.4373089232534,
+                "moveLeft": 399.9328968423643,
                 "drop": true,
                 "support": "approved31-harbor-stair",
                 "enemyHpSum": 0,
@@ -7780,52 +7780,52 @@
                   }
                 ],
                 "camera": {
-                  "x": 6680.5130663591035,
-                  "y": 2620.7781050443373,
+                  "x": 6665.858153633123,
+                  "y": 2637.8787613289983,
                   "scale": 0.21176470588235297,
                   "manual": false
                 },
                 "grounded": true,
                 "can": true,
                 "dialogue": false,
-                "shots": 44,
+                "shots": 42,
                 "enemies": 0,
                 "health": [
                   {
                     "id": "archer",
-                    "hp": 834,
+                    "hp": 852,
                     "maxHp": 1674,
-                    "shield": 0,
+                    "shield": 201,
                     "dead": false,
-                    "x": 5216.964980851624,
-                    "y": 2694.338521063213
+                    "x": 4754.164183911456,
+                    "y": 1103.9208135383387
                   },
                   {
                     "id": "mage",
-                    "hp": 1427,
+                    "hp": 997,
                     "maxHp": 1814,
                     "shield": 0,
                     "dead": false,
-                    "x": 5520.025589156097,
+                    "x": 5520.397997979264,
                     "y": 2587.5
                   },
                   {
                     "id": "knight",
-                    "hp": 988,
+                    "hp": 1933,
                     "maxHp": 3045,
                     "shield": 0,
                     "dead": false,
-                    "x": 6511.496014302548,
+                    "x": 6512.9890785364805,
                     "y": 3366
                   },
                   {
                     "id": "occultist",
-                    "hp": 1182,
+                    "hp": 902,
                     "maxHp": 1873,
                     "shield": 0,
                     "dead": false,
-                    "x": 6510.5130663591035,
-                    "y": 2804.93210399418
+                    "x": 6495.858153633123,
+                    "y": 2822.1306772319717
                   }
                 ],
                 "boat": {
@@ -7833,12 +7833,12 @@
                   "x": 6547.5
                 },
                 "seed": 19388,
-                "rng": 344334392232
+                "rng": 448733643573
               },
-              "time": 1793876414.6770847,
+              "time": 1793873751.5045211,
               "boarding": {
                 "stage": 31,
-                "round": 13,
+                "round": 15,
                 "phase": "aim",
                 "active": "occultist",
                 "dialogue": false,
@@ -7852,45 +7852,45 @@
                 "heroes": [
                   {
                     "id": "archer",
-                    "x": 5216.964980851624,
-                    "y": 2694.338521063213,
-                    "hp": 834,
+                    "x": 4754.164183911456,
+                    "y": 1103.9208135383387,
+                    "hp": 852,
                     "dead": false,
                     "acted": true,
-                    "moveLeft": 2127.870071264221,
+                    "moveLeft": 910.1054253756292,
                     "canDrop": false,
                     "grounded": true
                   },
                   {
                     "id": "mage",
-                    "x": 5520.025589156097,
+                    "x": 5520.397997979264,
                     "y": 2587.5,
-                    "hp": 1427,
+                    "hp": 997,
                     "dead": false,
                     "acted": true,
-                    "moveLeft": 1604.533647601834,
+                    "moveLeft": 1550.0116998192789,
                     "canDrop": false,
                     "grounded": true
                   },
                   {
                     "id": "knight",
-                    "x": 6511.496014302548,
+                    "x": 6512.9890785364805,
                     "y": 3366,
-                    "hp": 988,
+                    "hp": 1933,
                     "dead": false,
                     "acted": false,
-                    "moveLeft": 2865.7448270868913,
+                    "moveLeft": 1818.7513558739631,
                     "canDrop": false,
                     "grounded": true
                   },
                   {
                     "id": "occultist",
-                    "x": 6510.5130663591035,
-                    "y": 2804.93210399418,
-                    "hp": 1182,
+                    "x": 6495.858153633123,
+                    "y": 2822.1306772319717,
+                    "hp": 902,
                     "dead": false,
                     "acted": false,
-                    "moveLeft": 405.4373089232534,
+                    "moveLeft": 399.9328968423643,
                     "canDrop": true,
                     "grounded": true
                   }
@@ -7900,17 +7900,17 @@
             {
               "step": "drop-3366",
               "state": {
-                "round": 13,
-                "enemyTeamEnds": 12,
+                "round": 15,
+                "enemyTeamEnds": 14,
                 "side": 0,
                 "phase": "aim",
                 "active": "occultist",
                 "cls": "occultist",
-                "x": 6510.5130663591035,
+                "x": 6495.858153633123,
                 "y": 3366,
-                "angle": 36.535082576445944,
+                "angle": 53.88735561283784,
                 "facing": 1,
-                "moveLeft": 405.4373089232534,
+                "moveLeft": 399.9328968423643,
                 "drop": true,
                 "support": "a4-boat-deck",
                 "enemyHpSum": 0,
@@ -8087,51 +8087,51 @@
                   }
                 ],
                 "camera": {
-                  "x": 6680.5130663591035,
-                  "y": 3162.0060999337525,
+                  "x": 6665.858153633123,
+                  "y": 3166.118462591015,
                   "scale": 0.21176470588235297,
                   "manual": false
                 },
                 "grounded": true,
                 "can": true,
                 "dialogue": false,
-                "shots": 44,
+                "shots": 42,
                 "enemies": 0,
                 "health": [
                   {
                     "id": "archer",
-                    "hp": 834,
+                    "hp": 852,
                     "maxHp": 1674,
-                    "shield": 0,
+                    "shield": 201,
                     "dead": false,
-                    "x": 5216.964980851624,
-                    "y": 2694.338521063213
+                    "x": 4754.164183911456,
+                    "y": 1103.9208135383387
                   },
                   {
                     "id": "mage",
-                    "hp": 1427,
+                    "hp": 997,
                     "maxHp": 1814,
                     "shield": 0,
                     "dead": false,
-                    "x": 5520.025589156097,
+                    "x": 5520.397997979264,
                     "y": 2587.5
                   },
                   {
                     "id": "knight",
-                    "hp": 988,
+                    "hp": 1933,
                     "maxHp": 3045,
                     "shield": 0,
                     "dead": false,
-                    "x": 6511.496014302548,
+                    "x": 6512.9890785364805,
                     "y": 3366
                   },
                   {
                     "id": "occultist",
-                    "hp": 1182,
+                    "hp": 902,
                     "maxHp": 1873,
                     "shield": 0,
                     "dead": false,
-                    "x": 6510.5130663591035,
+                    "x": 6495.858153633123,
                     "y": 3366
                   }
                 ],
@@ -8140,12 +8140,12 @@
                   "x": 6547.5
                 },
                 "seed": 19388,
-                "rng": 344334392232
+                "rng": 448733643573
               },
-              "time": 1793876417.297535,
+              "time": 1793873754.1368265,
               "boarding": {
                 "stage": 31,
-                "round": 13,
+                "round": 15,
                 "phase": "aim",
                 "active": "occultist",
                 "dialogue": false,
@@ -8159,45 +8159,45 @@
                 "heroes": [
                   {
                     "id": "archer",
-                    "x": 5216.964980851624,
-                    "y": 2694.338521063213,
-                    "hp": 834,
+                    "x": 4754.164183911456,
+                    "y": 1103.9208135383387,
+                    "hp": 852,
                     "dead": false,
                     "acted": true,
-                    "moveLeft": 2127.870071264221,
+                    "moveLeft": 910.1054253756292,
                     "canDrop": false,
                     "grounded": true
                   },
                   {
                     "id": "mage",
-                    "x": 5520.025589156097,
+                    "x": 5520.397997979264,
                     "y": 2587.5,
-                    "hp": 1427,
+                    "hp": 997,
                     "dead": false,
                     "acted": true,
-                    "moveLeft": 1604.533647601834,
+                    "moveLeft": 1550.0116998192789,
                     "canDrop": false,
                     "grounded": true
                   },
                   {
                     "id": "knight",
-                    "x": 6511.496014302548,
+                    "x": 6512.9890785364805,
                     "y": 3366,
-                    "hp": 988,
+                    "hp": 1933,
                     "dead": false,
                     "acted": false,
-                    "moveLeft": 2865.7448270868913,
+                    "moveLeft": 1818.7513558739631,
                     "canDrop": false,
                     "grounded": true
                   },
                   {
                     "id": "occultist",
-                    "x": 6510.5130663591035,
+                    "x": 6495.858153633123,
                     "y": 3366,
-                    "hp": 1182,
+                    "hp": 902,
                     "dead": false,
                     "acted": false,
-                    "moveLeft": 405.4373089232534,
+                    "moveLeft": 399.9328968423643,
                     "canDrop": true,
                     "grounded": true
                   }
@@ -8207,17 +8207,17 @@
             {
               "step": "normal-end-action-for-acted-party",
               "state": {
-                "round": 13,
-                "enemyTeamEnds": 12,
+                "round": 15,
+                "enemyTeamEnds": 14,
                 "side": 0,
                 "phase": "aim",
                 "active": "knight",
                 "cls": "knight",
-                "x": 6511.496014302548,
+                "x": 6512.9890785364805,
                 "y": 3366,
-                "angle": 89.47242086993577,
+                "angle": 3.982680099288075,
                 "facing": 1,
-                "moveLeft": 2865.7448270868913,
+                "moveLeft": 1818.7513558739631,
                 "drop": true,
                 "support": "a4-boat-deck",
                 "enemyHpSum": 0,
@@ -8394,51 +8394,51 @@
                   }
                 ],
                 "camera": {
-                  "x": 6678.581533349605,
-                  "y": 3183.5681119481587,
+                  "x": 6679.556503367834,
+                  "y": 3183.6863847790883,
                   "scale": 0.21176470588235297,
                   "manual": false
                 },
                 "grounded": true,
                 "can": true,
                 "dialogue": false,
-                "shots": 44,
+                "shots": 42,
                 "enemies": 0,
                 "health": [
                   {
                     "id": "archer",
-                    "hp": 834,
+                    "hp": 852,
                     "maxHp": 1674,
-                    "shield": 0,
+                    "shield": 201,
                     "dead": false,
-                    "x": 5216.964980851624,
-                    "y": 2694.338521063213
+                    "x": 4754.164183911456,
+                    "y": 1103.9208135383387
                   },
                   {
                     "id": "mage",
-                    "hp": 1427,
+                    "hp": 997,
                     "maxHp": 1814,
                     "shield": 0,
                     "dead": false,
-                    "x": 5520.025589156097,
+                    "x": 5520.397997979264,
                     "y": 2587.5
                   },
                   {
                     "id": "knight",
-                    "hp": 988,
+                    "hp": 1933,
                     "maxHp": 3045,
                     "shield": 0,
                     "dead": false,
-                    "x": 6511.496014302548,
+                    "x": 6512.9890785364805,
                     "y": 3366
                   },
                   {
                     "id": "occultist",
-                    "hp": 1257,
+                    "hp": 977,
                     "maxHp": 1873,
                     "shield": 225,
                     "dead": false,
-                    "x": 6510.5130663591035,
+                    "x": 6495.858153633123,
                     "y": 3366
                   }
                 ],
@@ -8447,12 +8447,12 @@
                   "x": 6547.5
                 },
                 "seed": 19388,
-                "rng": 344334392232
+                "rng": 448733643573
               },
-              "time": 1793876420.978713,
+              "time": 1793873757.871206,
               "boarding": {
                 "stage": 31,
-                "round": 13,
+                "round": 15,
                 "phase": "aim",
                 "active": "knight",
                 "dialogue": false,
@@ -8466,45 +8466,45 @@
                 "heroes": [
                   {
                     "id": "archer",
-                    "x": 5216.964980851624,
-                    "y": 2694.338521063213,
-                    "hp": 834,
+                    "x": 4754.164183911456,
+                    "y": 1103.9208135383387,
+                    "hp": 852,
                     "dead": false,
                     "acted": true,
-                    "moveLeft": 2127.870071264221,
+                    "moveLeft": 910.1054253756292,
                     "canDrop": false,
                     "grounded": true
                   },
                   {
                     "id": "mage",
-                    "x": 5520.025589156097,
+                    "x": 5520.397997979264,
                     "y": 2587.5,
-                    "hp": 1427,
+                    "hp": 997,
                     "dead": false,
                     "acted": true,
-                    "moveLeft": 1604.533647601834,
+                    "moveLeft": 1550.0116998192789,
                     "canDrop": false,
                     "grounded": true
                   },
                   {
                     "id": "knight",
-                    "x": 6511.496014302548,
+                    "x": 6512.9890785364805,
                     "y": 3366,
-                    "hp": 988,
+                    "hp": 1933,
                     "dead": false,
                     "acted": false,
-                    "moveLeft": 2865.7448270868913,
+                    "moveLeft": 1818.7513558739631,
                     "canDrop": true,
                     "grounded": true
                   },
                   {
                     "id": "occultist",
-                    "x": 6510.5130663591035,
+                    "x": 6495.858153633123,
                     "y": 3366,
-                    "hp": 1257,
+                    "hp": 977,
                     "dead": false,
                     "acted": true,
-                    "moveLeft": 405.4373089232534,
+                    "moveLeft": 399.9328968423643,
                     "canDrop": false,
                     "grounded": true
                   }
@@ -8514,19 +8514,19 @@
             {
               "step": "normal-end-action-for-acted-party",
               "state": {
-                "round": 14,
-                "enemyTeamEnds": 13,
+                "round": 16,
+                "enemyTeamEnds": 15,
                 "side": 0,
                 "phase": "aim",
                 "active": "archer",
                 "cls": "archer",
-                "x": 5216.964980851624,
-                "y": 2694.338521063213,
-                "angle": 47.67235348105754,
+                "x": 4754.164183911456,
+                "y": 1103.9208135383387,
+                "angle": 61.033493139456006,
                 "facing": 1,
                 "moveLeft": 2680,
-                "drop": true,
-                "support": "approved31-east-return",
+                "drop": false,
+                "support": "approved31-upper-east",
                 "enemyHpSum": 0,
                 "enemyUnits": [
                   {
@@ -8701,51 +8701,51 @@
                   }
                 ],
                 "camera": {
-                  "x": 5444.3773538984615,
-                  "y": 2546.1846757088892,
+                  "x": 5023.858823951651,
+                  "y": 1063.7497728174094,
                   "scale": 0.21176470588235297,
                   "manual": false
                 },
                 "grounded": true,
                 "can": true,
                 "dialogue": false,
-                "shots": 44,
+                "shots": 42,
                 "enemies": 0,
                 "health": [
                   {
                     "id": "archer",
-                    "hp": 834,
+                    "hp": 852,
                     "maxHp": 1674,
                     "shield": 0,
                     "dead": false,
-                    "x": 5216.964980851624,
-                    "y": 2694.338521063213
+                    "x": 4754.164183911456,
+                    "y": 1103.9208135383387
                   },
                   {
                     "id": "mage",
-                    "hp": 1427,
+                    "hp": 997,
                     "maxHp": 1814,
                     "shield": 0,
                     "dead": false,
-                    "x": 5520.025589156097,
+                    "x": 5520.397997979264,
                     "y": 2587.5
                   },
                   {
                     "id": "knight",
-                    "hp": 1110,
+                    "hp": 2055,
                     "maxHp": 3045,
                     "shield": 0,
                     "dead": false,
-                    "x": 6511.496014302548,
+                    "x": 6512.9890785364805,
                     "y": 3366
                   },
                   {
                     "id": "occultist",
-                    "hp": 1257,
+                    "hp": 977,
                     "maxHp": 1873,
                     "shield": 0,
                     "dead": false,
-                    "x": 6510.5130663591035,
+                    "x": 6495.858153633123,
                     "y": 3366
                   }
                 ],
@@ -8754,12 +8754,12 @@
                   "x": 6547.5
                 },
                 "seed": 19388,
-                "rng": 344334392232
+                "rng": 448733643573
               },
-              "time": 1793876423.4268672,
+              "time": 1793873760.2678008,
               "boarding": {
                 "stage": 31,
-                "round": 14,
+                "round": 16,
                 "phase": "aim",
                 "active": "archer",
                 "dialogue": false,
@@ -8773,20 +8773,20 @@
                 "heroes": [
                   {
                     "id": "archer",
-                    "x": 5216.964980851624,
-                    "y": 2694.338521063213,
-                    "hp": 834,
+                    "x": 4754.164183911456,
+                    "y": 1103.9208135383387,
+                    "hp": 852,
                     "dead": false,
                     "acted": false,
                     "moveLeft": 2680,
-                    "canDrop": true,
+                    "canDrop": false,
                     "grounded": true
                   },
                   {
                     "id": "mage",
-                    "x": 5520.025589156097,
+                    "x": 5520.397997979264,
                     "y": 2587.5,
-                    "hp": 1427,
+                    "hp": 997,
                     "dead": false,
                     "acted": false,
                     "moveLeft": 2580,
@@ -8795,9 +8795,9 @@
                   },
                   {
                     "id": "knight",
-                    "x": 6511.496014302548,
+                    "x": 6512.9890785364805,
                     "y": 3366,
-                    "hp": 1110,
+                    "hp": 2055,
                     "dead": false,
                     "acted": false,
                     "moveLeft": 3318,
@@ -8806,9 +8806,9 @@
                   },
                   {
                     "id": "occultist",
-                    "x": 6510.5130663591035,
+                    "x": 6495.858153633123,
                     "y": 3366,
-                    "hp": 1257,
+                    "hp": 977,
                     "dead": false,
                     "acted": false,
                     "moveLeft": 2678,
@@ -8821,19 +8821,19 @@
             {
               "step": "walk-5500",
               "state": {
-                "round": 14,
-                "enemyTeamEnds": 13,
+                "round": 16,
+                "enemyTeamEnds": 15,
                 "side": 0,
                 "phase": "aim",
                 "active": "archer",
                 "cls": "archer",
-                "x": 5527.133676198947,
-                "y": 2587.5,
-                "angle": 47.67235348105754,
+                "x": 5519.983540365671,
+                "y": 1517.487929601492,
+                "angle": 61.033493139456006,
                 "facing": 1,
-                "moveLeft": 2331.499999999992,
-                "drop": true,
-                "support": "approved31-east-return",
+                "moveLeft": 1790.6988009566337,
+                "drop": false,
+                "support": "approved31-upper-east",
                 "enemyHpSum": 0,
                 "enemyUnits": [
                   {
@@ -9008,51 +9008,51 @@
                   }
                 ],
                 "camera": {
-                  "x": 5635.052718625854,
-                  "y": 2408.46603089033,
+                  "x": 5624.594977271214,
+                  "y": 1280.6591061011918,
                   "scale": 0.21176470588235297,
                   "manual": false
                 },
                 "grounded": true,
                 "can": true,
                 "dialogue": false,
-                "shots": 44,
+                "shots": 42,
                 "enemies": 0,
                 "health": [
                   {
                     "id": "archer",
-                    "hp": 834,
+                    "hp": 852,
                     "maxHp": 1674,
                     "shield": 0,
                     "dead": false,
-                    "x": 5527.133676198947,
-                    "y": 2587.5
+                    "x": 5519.983540365671,
+                    "y": 1517.487929601492
                   },
                   {
                     "id": "mage",
-                    "hp": 1427,
+                    "hp": 997,
                     "maxHp": 1814,
                     "shield": 0,
                     "dead": false,
-                    "x": 5520.025589156097,
+                    "x": 5520.397997979264,
                     "y": 2587.5
                   },
                   {
                     "id": "knight",
-                    "hp": 1110,
+                    "hp": 2055,
                     "maxHp": 3045,
                     "shield": 0,
                     "dead": false,
-                    "x": 6511.496014302548,
+                    "x": 6512.9890785364805,
                     "y": 3366
                   },
                   {
                     "id": "occultist",
-                    "hp": 1257,
+                    "hp": 977,
                     "maxHp": 1873,
                     "shield": 0,
                     "dead": false,
-                    "x": 6510.5130663591035,
+                    "x": 6495.858153633123,
                     "y": 3366
                   }
                 ],
@@ -9061,12 +9061,12 @@
                   "x": 6547.5
                 },
                 "seed": 19388,
-                "rng": 344334392232
+                "rng": 448733643573
               },
-              "time": 1793876426.704452,
+              "time": 1793873764.7518833,
               "boarding": {
                 "stage": 31,
-                "round": 14,
+                "round": 16,
                 "phase": "aim",
                 "active": "archer",
                 "dialogue": false,
@@ -9080,20 +9080,20 @@
                 "heroes": [
                   {
                     "id": "archer",
-                    "x": 5527.133676198947,
-                    "y": 2587.5,
-                    "hp": 834,
+                    "x": 5519.983540365671,
+                    "y": 1517.487929601492,
+                    "hp": 852,
                     "dead": false,
                     "acted": false,
-                    "moveLeft": 2331.499999999992,
-                    "canDrop": true,
+                    "moveLeft": 1790.6988009566337,
+                    "canDrop": false,
                     "grounded": true
                   },
                   {
                     "id": "mage",
-                    "x": 5520.025589156097,
+                    "x": 5520.397997979264,
                     "y": 2587.5,
-                    "hp": 1427,
+                    "hp": 997,
                     "dead": false,
                     "acted": false,
                     "moveLeft": 2580,
@@ -9102,9 +9102,9 @@
                   },
                   {
                     "id": "knight",
-                    "x": 6511.496014302548,
+                    "x": 6512.9890785364805,
                     "y": 3366,
-                    "hp": 1110,
+                    "hp": 2055,
                     "dead": false,
                     "acted": false,
                     "moveLeft": 3318,
@@ -9113,9 +9113,9 @@
                   },
                   {
                     "id": "occultist",
-                    "x": 6510.5130663591035,
+                    "x": 6495.858153633123,
                     "y": 3366,
-                    "hp": 1257,
+                    "hp": 977,
                     "dead": false,
                     "acted": false,
                     "moveLeft": 2678,
@@ -9128,17 +9128,324 @@
             {
               "step": "walk-5955",
               "state": {
-                "round": 14,
-                "enemyTeamEnds": 13,
+                "round": 16,
+                "enemyTeamEnds": 15,
                 "side": 0,
                 "phase": "aim",
                 "active": "archer",
                 "cls": "archer",
-                "x": 5959.059386720343,
-                "y": 2182.4727972635537,
-                "angle": 47.67235348105754,
+                "x": 5982.308189144922,
+                "y": 1879.1719989247447,
+                "angle": 61.033493139456006,
                 "facing": 1,
-                "moveLeft": 1716.352072597837,
+                "moveLeft": 1195.5298334795139,
+                "drop": true,
+                "support": "approved31-upper-east",
+                "enemyHpSum": 0,
+                "enemyUnits": [
+                  {
+                    "id": "pilot31-west-entry-1",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-west-entry-2",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-west-entry-3",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-west-entry-4",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-west-entry-5",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-west-entry-6",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-west-entry-7",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-west-entry-8",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-west-crossfire-1",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-west-crossfire-2",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-west-crossfire-3",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-west-crossfire-4",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-west-crossfire-5",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-west-crossfire-6",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-west-crossfire-7",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-west-crossfire-8",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-west-crossfire-9",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-ridge-court-1",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-ridge-court-2",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-ridge-court-3",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-ridge-court-4",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-ridge-court-5",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-ridge-court-6",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-ridge-court-7",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-ridge-court-8",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-ridge-court-9",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-lookout-return-1",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-lookout-return-2",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-lookout-return-3",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-lookout-return-4",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-lookout-return-5",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-lookout-return-6",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-lookout-return-7",
+                    "hp": 0,
+                    "dead": true
+                  },
+                  {
+                    "id": "pilot31-lookout-return-8",
+                    "hp": 0,
+                    "dead": true
+                  }
+                ],
+                "camera": {
+                  "x": 6100.545275522279,
+                  "y": 1645.5347063654954,
+                  "scale": 0.21176470588235297,
+                  "manual": false
+                },
+                "grounded": true,
+                "can": true,
+                "dialogue": false,
+                "shots": 42,
+                "enemies": 0,
+                "health": [
+                  {
+                    "id": "archer",
+                    "hp": 852,
+                    "maxHp": 1674,
+                    "shield": 0,
+                    "dead": false,
+                    "x": 5982.308189144922,
+                    "y": 1879.1719989247447
+                  },
+                  {
+                    "id": "mage",
+                    "hp": 997,
+                    "maxHp": 1814,
+                    "shield": 0,
+                    "dead": false,
+                    "x": 5520.397997979264,
+                    "y": 2587.5
+                  },
+                  {
+                    "id": "knight",
+                    "hp": 2055,
+                    "maxHp": 3045,
+                    "shield": 0,
+                    "dead": false,
+                    "x": 6512.9890785364805,
+                    "y": 3366
+                  },
+                  {
+                    "id": "occultist",
+                    "hp": 977,
+                    "maxHp": 1873,
+                    "shield": 0,
+                    "dead": false,
+                    "x": 6495.858153633123,
+                    "y": 3366
+                  }
+                ],
+                "boat": {
+                  "phase": "docked",
+                  "x": 6547.5
+                },
+                "seed": 19388,
+                "rng": 448733643573
+              },
+              "time": 1793873767.1695786,
+              "boarding": {
+                "stage": 31,
+                "round": 16,
+                "phase": "aim",
+                "active": "archer",
+                "dialogue": false,
+                "can": true,
+                "boat": {
+                  "phase": "docked",
+                  "x": 6547.5
+                },
+                "complete": false,
+                "enemies": 0,
+                "heroes": [
+                  {
+                    "id": "archer",
+                    "x": 5982.308189144922,
+                    "y": 1879.1719989247447,
+                    "hp": 852,
+                    "dead": false,
+                    "acted": false,
+                    "moveLeft": 1195.5298334795139,
+                    "canDrop": true,
+                    "grounded": true
+                  },
+                  {
+                    "id": "mage",
+                    "x": 5520.397997979264,
+                    "y": 2587.5,
+                    "hp": 997,
+                    "dead": false,
+                    "acted": false,
+                    "moveLeft": 2580,
+                    "canDrop": false,
+                    "grounded": true
+                  },
+                  {
+                    "id": "knight",
+                    "x": 6512.9890785364805,
+                    "y": 3366,
+                    "hp": 2055,
+                    "dead": false,
+                    "acted": false,
+                    "moveLeft": 3318,
+                    "canDrop": false,
+                    "grounded": true
+                  },
+                  {
+                    "id": "occultist",
+                    "x": 6495.858153633123,
+                    "y": 3366,
+                    "hp": 977,
+                    "dead": false,
+                    "acted": false,
+                    "moveLeft": 2678,
+                    "canDrop": false,
+                    "grounded": true
+                  }
+                ]
+              }
+            },
+            {
+              "step": "drop-2700",
+              "state": {
+                "round": 16,
+                "enemyTeamEnds": 15,
+                "side": 0,
+                "phase": "aim",
+                "active": "archer",
+                "cls": "archer",
+                "x": 5982.308189144922,
+                "y": 2149.2781257398633,
+                "angle": 61.033493139456006,
+                "facing": 1,
+                "moveLeft": 1195.5298334795139,
                 "drop": true,
                 "support": "approved31-east-return",
                 "enemyHpSum": 0,
@@ -9315,51 +9622,51 @@
                   }
                 ],
                 "camera": {
-                  "x": 6081.084426458955,
-                  "y": 2060.370325070148,
+                  "x": 6152.308189144922,
+                  "y": 1962.4691759086122,
                   "scale": 0.21176470588235297,
                   "manual": false
                 },
                 "grounded": true,
                 "can": true,
                 "dialogue": false,
-                "shots": 44,
+                "shots": 42,
                 "enemies": 0,
                 "health": [
                   {
                     "id": "archer",
-                    "hp": 834,
+                    "hp": 852,
                     "maxHp": 1674,
                     "shield": 0,
                     "dead": false,
-                    "x": 5959.059386720343,
-                    "y": 2182.4727972635537
+                    "x": 5982.308189144922,
+                    "y": 2149.2781257398633
                   },
                   {
                     "id": "mage",
-                    "hp": 1427,
+                    "hp": 997,
                     "maxHp": 1814,
                     "shield": 0,
                     "dead": false,
-                    "x": 5520.025589156097,
+                    "x": 5520.397997979264,
                     "y": 2587.5
                   },
                   {
                     "id": "knight",
-                    "hp": 1110,
+                    "hp": 2055,
                     "maxHp": 3045,
                     "shield": 0,
                     "dead": false,
-                    "x": 6511.496014302548,
+                    "x": 6512.9890785364805,
                     "y": 3366
                   },
                   {
                     "id": "occultist",
-                    "hp": 1257,
+                    "hp": 977,
                     "maxHp": 1873,
                     "shield": 0,
                     "dead": false,
-                    "x": 6510.5130663591035,
+                    "x": 6495.858153633123,
                     "y": 3366
                   }
                 ],
@@ -9368,12 +9675,12 @@
                   "x": 6547.5
                 },
                 "seed": 19388,
-                "rng": 344334392232
+                "rng": 448733643573
               },
-              "time": 1793876429.194313,
+              "time": 1793873769.88274,
               "boarding": {
                 "stage": 31,
-                "round": 14,
+                "round": 16,
                 "phase": "aim",
                 "active": "archer",
                 "dialogue": false,
@@ -9387,20 +9694,20 @@
                 "heroes": [
                   {
                     "id": "archer",
-                    "x": 5959.059386720343,
-                    "y": 2182.4727972635537,
-                    "hp": 834,
+                    "x": 5982.308189144922,
+                    "y": 2149.2781257398633,
+                    "hp": 852,
                     "dead": false,
                     "acted": false,
-                    "moveLeft": 1716.352072597837,
+                    "moveLeft": 1195.5298334795139,
                     "canDrop": true,
                     "grounded": true
                   },
                   {
                     "id": "mage",
-                    "x": 5520.025589156097,
+                    "x": 5520.397997979264,
                     "y": 2587.5,
-                    "hp": 1427,
+                    "hp": 997,
                     "dead": false,
                     "acted": false,
                     "moveLeft": 2580,
@@ -9409,9 +9716,9 @@
                   },
                   {
                     "id": "knight",
-                    "x": 6511.496014302548,
+                    "x": 6512.9890785364805,
                     "y": 3366,
-                    "hp": 1110,
+                    "hp": 2055,
                     "dead": false,
                     "acted": false,
                     "moveLeft": 3318,
@@ -9420,9 +9727,9 @@
                   },
                   {
                     "id": "occultist",
-                    "x": 6510.5130663591035,
+                    "x": 6495.858153633123,
                     "y": 3366,
-                    "hp": 1257,
+                    "hp": 977,
                     "dead": false,
                     "acted": false,
                     "moveLeft": 2678,
@@ -9435,17 +9742,17 @@
             {
               "step": "drop-2700",
               "state": {
-                "round": 14,
-                "enemyTeamEnds": 13,
+                "round": 16,
+                "enemyTeamEnds": 15,
                 "side": 0,
                 "phase": "aim",
                 "active": "archer",
                 "cls": "archer",
-                "x": 5959.059386720343,
-                "y": 2727.381187734407,
-                "angle": 47.67235348105754,
+                "x": 5982.308189144922,
+                "y": 2727.8461637828987,
+                "angle": 61.033493139456006,
                 "facing": 1,
-                "moveLeft": 1716.352072597837,
+                "moveLeft": 1195.5298334795139,
                 "drop": true,
                 "support": "approved31-boarding",
                 "enemyHpSum": 0,
@@ -9622,51 +9929,51 @@
                   }
                 ],
                 "camera": {
-                  "x": 6129.059386720343,
-                  "y": 2526.208301410645,
+                  "x": 6152.308189144922,
+                  "y": 2524.7926204061478,
                   "scale": 0.21176470588235297,
                   "manual": false
                 },
                 "grounded": true,
                 "can": true,
                 "dialogue": false,
-                "shots": 44,
+                "shots": 42,
                 "enemies": 0,
                 "health": [
                   {
                     "id": "archer",
-                    "hp": 834,
+                    "hp": 852,
                     "maxHp": 1674,
                     "shield": 0,
                     "dead": false,
-                    "x": 5959.059386720343,
-                    "y": 2727.381187734407
+                    "x": 5982.308189144922,
+                    "y": 2727.8461637828987
                   },
                   {
                     "id": "mage",
-                    "hp": 1427,
+                    "hp": 997,
                     "maxHp": 1814,
                     "shield": 0,
                     "dead": false,
-                    "x": 5520.025589156097,
+                    "x": 5520.397997979264,
                     "y": 2587.5
                   },
                   {
                     "id": "knight",
-                    "hp": 1110,
+                    "hp": 2055,
                     "maxHp": 3045,
                     "shield": 0,
                     "dead": false,
-                    "x": 6511.496014302548,
+                    "x": 6512.9890785364805,
                     "y": 3366
                   },
                   {
                     "id": "occultist",
-                    "hp": 1257,
+                    "hp": 977,
                     "maxHp": 1873,
                     "shield": 0,
                     "dead": false,
-                    "x": 6510.5130663591035,
+                    "x": 6495.858153633123,
                     "y": 3366
                   }
                 ],
@@ -9675,12 +9982,12 @@
                   "x": 6547.5
                 },
                 "seed": 19388,
-                "rng": 344334392232
+                "rng": 448733643573
               },
-              "time": 1793876431.8633585,
+              "time": 1793873772.5260124,
               "boarding": {
                 "stage": 31,
-                "round": 14,
+                "round": 16,
                 "phase": "aim",
                 "active": "archer",
                 "dialogue": false,
@@ -9694,20 +10001,20 @@
                 "heroes": [
                   {
                     "id": "archer",
-                    "x": 5959.059386720343,
-                    "y": 2727.381187734407,
-                    "hp": 834,
+                    "x": 5982.308189144922,
+                    "y": 2727.8461637828987,
+                    "hp": 852,
                     "dead": false,
                     "acted": false,
-                    "moveLeft": 1716.352072597837,
+                    "moveLeft": 1195.5298334795139,
                     "canDrop": true,
                     "grounded": true
                   },
                   {
                     "id": "mage",
-                    "x": 5520.025589156097,
+                    "x": 5520.397997979264,
                     "y": 2587.5,
-                    "hp": 1427,
+                    "hp": 997,
                     "dead": false,
                     "acted": false,
                     "moveLeft": 2580,
@@ -9716,9 +10023,9 @@
                   },
                   {
                     "id": "knight",
-                    "x": 6511.496014302548,
+                    "x": 6512.9890785364805,
                     "y": 3366,
-                    "hp": 1110,
+                    "hp": 2055,
                     "dead": false,
                     "acted": false,
                     "moveLeft": 3318,
@@ -9727,9 +10034,9 @@
                   },
                   {
                     "id": "occultist",
-                    "x": 6510.5130663591035,
+                    "x": 6495.858153633123,
                     "y": 3366,
-                    "hp": 1257,
+                    "hp": 977,
                     "dead": false,
                     "acted": false,
                     "moveLeft": 2678,
@@ -9742,17 +10049,17 @@
             {
               "step": "walk-6480",
               "state": {
-                "round": 14,
-                "enemyTeamEnds": 13,
+                "round": 16,
+                "enemyTeamEnds": 15,
                 "side": 0,
                 "phase": "aim",
                 "active": "archer",
                 "cls": "archer",
-                "x": 6525.786527962233,
-                "y": 2746.5524351974823,
-                "angle": 47.67235348105754,
+                "x": 6508.077949172238,
+                "y": 2745.3718632781492,
+                "angle": 61.033493139456006,
                 "facing": 1,
-                "moveLeft": 1149.1823956475014,
+                "moveLeft": 669.3614958086848,
                 "drop": true,
                 "support": "approved31-boarding",
                 "enemyHpSum": 0,
@@ -9929,51 +10236,51 @@
                   }
                 ],
                 "camera": {
-                  "x": 6623.59034466935,
-                  "y": 2558.3329558116666,
+                  "x": 6611.884012329725,
+                  "y": 2557.6123714037717,
                   "scale": 0.21176470588235297,
                   "manual": false
                 },
                 "grounded": true,
                 "can": true,
                 "dialogue": false,
-                "shots": 44,
+                "shots": 42,
                 "enemies": 0,
                 "health": [
                   {
                     "id": "archer",
-                    "hp": 834,
+                    "hp": 852,
                     "maxHp": 1674,
                     "shield": 0,
                     "dead": false,
-                    "x": 6525.786527962233,
-                    "y": 2746.5524351974823
+                    "x": 6508.077949172238,
+                    "y": 2745.3718632781492
                   },
                   {
                     "id": "mage",
-                    "hp": 1427,
+                    "hp": 997,
                     "maxHp": 1814,
                     "shield": 0,
                     "dead": false,
-                    "x": 5520.025589156097,
+                    "x": 5520.397997979264,
                     "y": 2587.5
                   },
                   {
                     "id": "knight",
-                    "hp": 1110,
+                    "hp": 2055,
                     "maxHp": 3045,
                     "shield": 0,
                     "dead": false,
-                    "x": 6511.496014302548,
+                    "x": 6512.9890785364805,
                     "y": 3366
                   },
                   {
                     "id": "occultist",
-                    "hp": 1257,
+                    "hp": 977,
                     "maxHp": 1873,
                     "shield": 0,
                     "dead": false,
-                    "x": 6510.5130663591035,
+                    "x": 6495.858153633123,
                     "y": 3366
                   }
                 ],
@@ -9982,12 +10289,12 @@
                   "x": 6547.5
                 },
                 "seed": 19388,
-                "rng": 344334392232
+                "rng": 448733643573
               },
-              "time": 1793876435.078099,
+              "time": 1793873775.6535845,
               "boarding": {
                 "stage": 31,
-                "round": 14,
+                "round": 16,
                 "phase": "aim",
                 "active": "archer",
                 "dialogue": false,
@@ -10001,20 +10308,20 @@
                 "heroes": [
                   {
                     "id": "archer",
-                    "x": 6525.786527962233,
-                    "y": 2746.5524351974823,
-                    "hp": 834,
+                    "x": 6508.077949172238,
+                    "y": 2745.3718632781492,
+                    "hp": 852,
                     "dead": false,
                     "acted": false,
-                    "moveLeft": 1149.1823956475014,
+                    "moveLeft": 669.3614958086848,
                     "canDrop": true,
                     "grounded": true
                   },
                   {
                     "id": "mage",
-                    "x": 5520.025589156097,
+                    "x": 5520.397997979264,
                     "y": 2587.5,
-                    "hp": 1427,
+                    "hp": 997,
                     "dead": false,
                     "acted": false,
                     "moveLeft": 2580,
@@ -10023,9 +10330,9 @@
                   },
                   {
                     "id": "knight",
-                    "x": 6511.496014302548,
+                    "x": 6512.9890785364805,
                     "y": 3366,
-                    "hp": 1110,
+                    "hp": 2055,
                     "dead": false,
                     "acted": false,
                     "moveLeft": 3318,
@@ -10034,9 +10341,9 @@
                   },
                   {
                     "id": "occultist",
-                    "x": 6510.5130663591035,
+                    "x": 6495.858153633123,
                     "y": 3366,
-                    "hp": 1257,
+                    "hp": 977,
                     "dead": false,
                     "acted": false,
                     "moveLeft": 2678,
@@ -10049,17 +10356,17 @@
             {
               "step": "drop-3366",
               "state": {
-                "round": 14,
-                "enemyTeamEnds": 13,
+                "round": 16,
+                "enemyTeamEnds": 15,
                 "side": 0,
                 "phase": "aim",
                 "active": "archer",
                 "cls": "archer",
-                "x": 6525.786527962233,
-                "y": 2790.507168035669,
-                "angle": 47.67235348105754,
+                "x": 6508.077949172238,
+                "y": 2807.2319368928866,
+                "angle": 61.033493139456006,
                 "facing": 1,
-                "moveLeft": 1149.1823956475014,
+                "moveLeft": 669.3614958086848,
                 "drop": true,
                 "support": "approved31-harbor-stair",
                 "enemyHpSum": 0,
@@ -10236,51 +10543,51 @@
                   }
                 ],
                 "camera": {
-                  "x": 6695.786527962233,
-                  "y": 2606.401362934324,
+                  "x": 6678.077949172238,
+                  "y": 2623.054769174393,
                   "scale": 0.21176470588235297,
                   "manual": false
                 },
                 "grounded": true,
                 "can": true,
                 "dialogue": false,
-                "shots": 44,
+                "shots": 42,
                 "enemies": 0,
                 "health": [
                   {
                     "id": "archer",
-                    "hp": 834,
+                    "hp": 852,
                     "maxHp": 1674,
                     "shield": 0,
                     "dead": false,
-                    "x": 6525.786527962233,
-                    "y": 2790.507168035669
+                    "x": 6508.077949172238,
+                    "y": 2807.2319368928866
                   },
                   {
                     "id": "mage",
-                    "hp": 1427,
+                    "hp": 997,
                     "maxHp": 1814,
                     "shield": 0,
                     "dead": false,
-                    "x": 5520.025589156097,
+                    "x": 5520.397997979264,
                     "y": 2587.5
                   },
                   {
                     "id": "knight",
-                    "hp": 1110,
+                    "hp": 2055,
                     "maxHp": 3045,
                     "shield": 0,
                     "dead": false,
-                    "x": 6511.496014302548,
+                    "x": 6512.9890785364805,
                     "y": 3366
                   },
                   {
                     "id": "occultist",
-                    "hp": 1257,
+                    "hp": 977,
                     "maxHp": 1873,
                     "shield": 0,
                     "dead": false,
-                    "x": 6510.5130663591035,
+                    "x": 6495.858153633123,
                     "y": 3366
                   }
                 ],
@@ -10289,12 +10596,12 @@
                   "x": 6547.5
                 },
                 "seed": 19388,
-                "rng": 344334392232
+                "rng": 448733643573
               },
-              "time": 1793876437.7436182,
+              "time": 1793873778.3177214,
               "boarding": {
                 "stage": 31,
-                "round": 14,
+                "round": 16,
                 "phase": "aim",
                 "active": "archer",
                 "dialogue": false,
@@ -10308,20 +10615,20 @@
                 "heroes": [
                   {
                     "id": "archer",
-                    "x": 6525.786527962233,
-                    "y": 2790.507168035669,
-                    "hp": 834,
+                    "x": 6508.077949172238,
+                    "y": 2807.2319368928866,
+                    "hp": 852,
                     "dead": false,
                     "acted": false,
-                    "moveLeft": 1149.1823956475014,
+                    "moveLeft": 669.3614958086848,
                     "canDrop": true,
                     "grounded": true
                   },
                   {
                     "id": "mage",
-                    "x": 5520.025589156097,
+                    "x": 5520.397997979264,
                     "y": 2587.5,
-                    "hp": 1427,
+                    "hp": 997,
                     "dead": false,
                     "acted": false,
                     "moveLeft": 2580,
@@ -10330,9 +10637,9 @@
                   },
                   {
                     "id": "knight",
-                    "x": 6511.496014302548,
+                    "x": 6512.9890785364805,
                     "y": 3366,
-                    "hp": 1110,
+                    "hp": 2055,
                     "dead": false,
                     "acted": false,
                     "moveLeft": 3318,
@@ -10341,9 +10648,9 @@
                   },
                   {
                     "id": "occultist",
-                    "x": 6510.5130663591035,
+                    "x": 6495.858153633123,
                     "y": 3366,
-                    "hp": 1257,
+                    "hp": 977,
                     "dead": false,
                     "acted": false,
                     "moveLeft": 2678,
@@ -10356,17 +10663,17 @@
             {
               "step": "drop-3366",
               "state": {
-                "round": 14,
-                "enemyTeamEnds": 13,
+                "round": 16,
+                "enemyTeamEnds": 15,
                 "side": 0,
                 "phase": "aim",
                 "active": "archer",
                 "cls": "archer",
-                "x": 6525.786527962233,
+                "x": 6508.077949172238,
                 "y": 3366,
-                "angle": 47.67235348105754,
+                "angle": 61.033493139456006,
                 "facing": 1,
-                "moveLeft": 1149.1823956475014,
+                "moveLeft": 669.3614958086848,
                 "drop": true,
                 "support": "a4-boat-deck",
                 "enemyHpSum": 0,
@@ -10543,51 +10850,51 @@
                   }
                 ],
                 "camera": {
-                  "x": 6695.786527962233,
-                  "y": 3162.497052971817,
+                  "x": 6678.077949172238,
+                  "y": 3165.3742373984364,
                   "scale": 0.21176470588235297,
                   "manual": false
                 },
                 "grounded": true,
                 "can": true,
                 "dialogue": false,
-                "shots": 44,
+                "shots": 42,
                 "enemies": 0,
                 "health": [
                   {
                     "id": "archer",
-                    "hp": 834,
+                    "hp": 852,
                     "maxHp": 1674,
                     "shield": 0,
                     "dead": false,
-                    "x": 6525.786527962233,
+                    "x": 6508.077949172238,
                     "y": 3366
                   },
                   {
                     "id": "mage",
-                    "hp": 1427,
+                    "hp": 997,
                     "maxHp": 1814,
                     "shield": 0,
                     "dead": false,
-                    "x": 5520.025589156097,
+                    "x": 5520.397997979264,
                     "y": 2587.5
                   },
                   {
                     "id": "knight",
-                    "hp": 1110,
+                    "hp": 2055,
                     "maxHp": 3045,
                     "shield": 0,
                     "dead": false,
-                    "x": 6511.496014302548,
+                    "x": 6512.9890785364805,
                     "y": 3366
                   },
                   {
                     "id": "occultist",
-                    "hp": 1257,
+                    "hp": 977,
                     "maxHp": 1873,
                     "shield": 0,
                     "dead": false,
-                    "x": 6510.5130663591035,
+                    "x": 6495.858153633123,
                     "y": 3366
                   }
                 ],
@@ -10596,12 +10903,12 @@
                   "x": 6547.5
                 },
                 "seed": 19388,
-                "rng": 344334392232
+                "rng": 448733643573
               },
-              "time": 1793876440.3606062,
+              "time": 1793873780.9529703,
               "boarding": {
                 "stage": 31,
-                "round": 14,
+                "round": 16,
                 "phase": "aim",
                 "active": "archer",
                 "dialogue": false,
@@ -10615,20 +10922,20 @@
                 "heroes": [
                   {
                     "id": "archer",
-                    "x": 6525.786527962233,
+                    "x": 6508.077949172238,
                     "y": 3366,
-                    "hp": 834,
+                    "hp": 852,
                     "dead": false,
                     "acted": false,
-                    "moveLeft": 1149.1823956475014,
+                    "moveLeft": 669.3614958086848,
                     "canDrop": true,
                     "grounded": true
                   },
                   {
                     "id": "mage",
-                    "x": 5520.025589156097,
+                    "x": 5520.397997979264,
                     "y": 2587.5,
-                    "hp": 1427,
+                    "hp": 997,
                     "dead": false,
                     "acted": false,
                     "moveLeft": 2580,
@@ -10637,9 +10944,9 @@
                   },
                   {
                     "id": "knight",
-                    "x": 6511.496014302548,
+                    "x": 6512.9890785364805,
                     "y": 3366,
-                    "hp": 1110,
+                    "hp": 2055,
                     "dead": false,
                     "acted": false,
                     "moveLeft": 3318,
@@ -10648,9 +10955,9 @@
                   },
                   {
                     "id": "occultist",
-                    "x": 6510.5130663591035,
+                    "x": 6495.858153633123,
                     "y": 3366,
-                    "hp": 1257,
+                    "hp": 977,
                     "dead": false,
                     "acted": false,
                     "moveLeft": 2678,
@@ -10663,324 +10970,17 @@
             {
               "step": "walk-5955",
               "state": {
-                "round": 14,
-                "enemyTeamEnds": 13,
+                "round": 16,
+                "enemyTeamEnds": 15,
                 "side": 0,
                 "phase": "aim",
                 "active": "mage",
                 "cls": "mage",
-                "x": 5962.036897779749,
-                "y": 2178.6020328863265,
-                "angle": 50.02039086899745,
+                "x": 5968.816113791424,
+                "y": 2727.5763222758283,
+                "angle": 45.7019150502342,
                 "facing": 1,
-                "moveLeft": 1952.8605043199686,
-                "drop": true,
-                "support": "approved31-east-return",
-                "enemyHpSum": 0,
-                "enemyUnits": [
-                  {
-                    "id": "pilot31-west-entry-1",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-west-entry-2",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-west-entry-3",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-west-entry-4",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-west-entry-5",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-west-entry-6",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-west-entry-7",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-west-entry-8",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-west-crossfire-1",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-west-crossfire-2",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-west-crossfire-3",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-west-crossfire-4",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-west-crossfire-5",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-west-crossfire-6",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-west-crossfire-7",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-west-crossfire-8",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-west-crossfire-9",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-ridge-court-1",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-ridge-court-2",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-ridge-court-3",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-ridge-court-4",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-ridge-court-5",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-ridge-court-6",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-ridge-court-7",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-ridge-court-8",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-ridge-court-9",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-lookout-return-1",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-lookout-return-2",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-lookout-return-3",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-lookout-return-4",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-lookout-return-5",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-lookout-return-6",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-lookout-return-7",
-                    "hp": 0,
-                    "dead": true
-                  },
-                  {
-                    "id": "pilot31-lookout-return-8",
-                    "hp": 0,
-                    "dead": true
-                  }
-                ],
-                "camera": {
-                  "x": 6086.774175853565,
-                  "y": 2053.113193334289,
-                  "scale": 0.21176470588235297,
-                  "manual": false
-                },
-                "grounded": true,
-                "can": true,
-                "dialogue": false,
-                "shots": 44,
-                "enemies": 0,
-                "health": [
-                  {
-                    "id": "archer",
-                    "hp": 834,
-                    "maxHp": 1674,
-                    "shield": 0,
-                    "dead": false,
-                    "x": 6525.786527962233,
-                    "y": 3366
-                  },
-                  {
-                    "id": "mage",
-                    "hp": 1427,
-                    "maxHp": 1814,
-                    "shield": 0,
-                    "dead": false,
-                    "x": 5962.036897779749,
-                    "y": 2178.6020328863265
-                  },
-                  {
-                    "id": "knight",
-                    "hp": 1110,
-                    "maxHp": 3045,
-                    "shield": 0,
-                    "dead": false,
-                    "x": 6511.496014302548,
-                    "y": 3366
-                  },
-                  {
-                    "id": "occultist",
-                    "hp": 1257,
-                    "maxHp": 1873,
-                    "shield": 0,
-                    "dead": false,
-                    "x": 6510.5130663591035,
-                    "y": 3366
-                  }
-                ],
-                "boat": {
-                  "phase": "docked",
-                  "x": 6547.5
-                },
-                "seed": 19388,
-                "rng": 344334392232
-              },
-              "time": 1793876445.6631465,
-              "boarding": {
-                "stage": 31,
-                "round": 14,
-                "phase": "aim",
-                "active": "mage",
-                "dialogue": false,
-                "can": true,
-                "boat": {
-                  "phase": "docked",
-                  "x": 6547.5
-                },
-                "complete": false,
-                "enemies": 0,
-                "heroes": [
-                  {
-                    "id": "archer",
-                    "x": 6525.786527962233,
-                    "y": 3366,
-                    "hp": 834,
-                    "dead": false,
-                    "acted": false,
-                    "moveLeft": 1149.1823956475014,
-                    "canDrop": false,
-                    "grounded": true
-                  },
-                  {
-                    "id": "mage",
-                    "x": 5962.036897779749,
-                    "y": 2178.6020328863265,
-                    "hp": 1427,
-                    "dead": false,
-                    "acted": false,
-                    "moveLeft": 1952.8605043199686,
-                    "canDrop": true,
-                    "grounded": true
-                  },
-                  {
-                    "id": "knight",
-                    "x": 6511.496014302548,
-                    "y": 3366,
-                    "hp": 1110,
-                    "dead": false,
-                    "acted": false,
-                    "moveLeft": 3318,
-                    "canDrop": false,
-                    "grounded": true
-                  },
-                  {
-                    "id": "occultist",
-                    "x": 6510.5130663591035,
-                    "y": 3366,
-                    "hp": 1257,
-                    "dead": false,
-                    "acted": false,
-                    "moveLeft": 2678,
-                    "canDrop": false,
-                    "grounded": true
-                  }
-                ]
-              }
-            },
-            {
-              "step": "drop-2700",
-              "state": {
-                "round": 14,
-                "enemyTeamEnds": 13,
-                "side": 0,
-                "phase": "aim",
-                "active": "mage",
-                "cls": "mage",
-                "x": 5962.036897779749,
-                "y": 2727.440737955595,
-                "angle": 50.02039086899745,
-                "facing": 1,
-                "moveLeft": 1952.8605043199686,
+                "moveLeft": 1946.1572552367193,
                 "drop": true,
                 "support": "approved31-boarding",
                 "enemyHpSum": 0,
@@ -11157,51 +11157,51 @@
                   }
                 ],
                 "camera": {
-                  "x": 6132.036897779749,
-                  "y": 2525.9092809172917,
+                  "x": 6138.816113791424,
+                  "y": 2482.3937286408327,
                   "scale": 0.21176470588235297,
                   "manual": false
                 },
                 "grounded": true,
                 "can": true,
                 "dialogue": false,
-                "shots": 44,
+                "shots": 42,
                 "enemies": 0,
                 "health": [
                   {
                     "id": "archer",
-                    "hp": 834,
+                    "hp": 852,
                     "maxHp": 1674,
                     "shield": 0,
                     "dead": false,
-                    "x": 6525.786527962233,
+                    "x": 6508.077949172238,
                     "y": 3366
                   },
                   {
                     "id": "mage",
-                    "hp": 1427,
+                    "hp": 997,
                     "maxHp": 1814,
                     "shield": 0,
                     "dead": false,
-                    "x": 5962.036897779749,
-                    "y": 2727.440737955595
+                    "x": 5968.816113791424,
+                    "y": 2727.5763222758283
                   },
                   {
                     "id": "knight",
-                    "hp": 1110,
+                    "hp": 2055,
                     "maxHp": 3045,
                     "shield": 0,
                     "dead": false,
-                    "x": 6511.496014302548,
+                    "x": 6512.9890785364805,
                     "y": 3366
                   },
                   {
                     "id": "occultist",
-                    "hp": 1257,
+                    "hp": 977,
                     "maxHp": 1873,
                     "shield": 0,
                     "dead": false,
-                    "x": 6510.5130663591035,
+                    "x": 6495.858153633123,
                     "y": 3366
                   }
                 ],
@@ -11210,12 +11210,12 @@
                   "x": 6547.5
                 },
                 "seed": 19388,
-                "rng": 344334392232
+                "rng": 448733643573
               },
-              "time": 1793876448.3292637,
+              "time": 1793873788.335272,
               "boarding": {
                 "stage": 31,
-                "round": 14,
+                "round": 16,
                 "phase": "aim",
                 "active": "mage",
                 "dialogue": false,
@@ -11229,31 +11229,31 @@
                 "heroes": [
                   {
                     "id": "archer",
-                    "x": 6525.786527962233,
+                    "x": 6508.077949172238,
                     "y": 3366,
-                    "hp": 834,
+                    "hp": 852,
                     "dead": false,
                     "acted": false,
-                    "moveLeft": 1149.1823956475014,
+                    "moveLeft": 669.3614958086848,
                     "canDrop": false,
                     "grounded": true
                   },
                   {
                     "id": "mage",
-                    "x": 5962.036897779749,
-                    "y": 2727.440737955595,
-                    "hp": 1427,
+                    "x": 5968.816113791424,
+                    "y": 2727.5763222758283,
+                    "hp": 997,
                     "dead": false,
                     "acted": false,
-                    "moveLeft": 1952.8605043199686,
+                    "moveLeft": 1946.1572552367193,
                     "canDrop": true,
                     "grounded": true
                   },
                   {
                     "id": "knight",
-                    "x": 6511.496014302548,
+                    "x": 6512.9890785364805,
                     "y": 3366,
-                    "hp": 1110,
+                    "hp": 2055,
                     "dead": false,
                     "acted": false,
                     "moveLeft": 3318,
@@ -11262,9 +11262,9 @@
                   },
                   {
                     "id": "occultist",
-                    "x": 6510.5130663591035,
+                    "x": 6495.858153633123,
                     "y": 3366,
-                    "hp": 1257,
+                    "hp": 977,
                     "dead": false,
                     "acted": false,
                     "moveLeft": 2678,
@@ -11277,17 +11277,17 @@
             {
               "step": "walk-6480",
               "state": {
-                "round": 14,
-                "enemyTeamEnds": 13,
+                "round": 16,
+                "enemyTeamEnds": 15,
                 "side": 0,
                 "phase": "aim",
                 "active": "mage",
                 "cls": "mage",
-                "x": 6490.574697967412,
-                "y": 2744.2049798644944,
-                "angle": 50.02039086899745,
+                "x": 6497.3409178603915,
+                "y": 2744.656061190693,
+                "angle": 45.7019150502342,
                 "facing": 1,
-                "moveLeft": 1423.9589256275299,
+                "moveLeft": 1417.2550089961073,
                 "drop": true,
                 "support": "approved31-boarding",
                 "enemyHpSum": 0,
@@ -11464,51 +11464,51 @@
                   }
                 ],
                 "camera": {
-                  "x": 6592.411260876351,
-                  "y": 2556.41680425055,
+                  "x": 6594.061547921891,
+                  "y": 2556.52323678573,
                   "scale": 0.21176470588235297,
                   "manual": false
                 },
                 "grounded": true,
                 "can": true,
                 "dialogue": false,
-                "shots": 44,
+                "shots": 42,
                 "enemies": 0,
                 "health": [
                   {
                     "id": "archer",
-                    "hp": 834,
+                    "hp": 852,
                     "maxHp": 1674,
                     "shield": 0,
                     "dead": false,
-                    "x": 6525.786527962233,
+                    "x": 6508.077949172238,
                     "y": 3366
                   },
                   {
                     "id": "mage",
-                    "hp": 1427,
+                    "hp": 997,
                     "maxHp": 1814,
                     "shield": 0,
                     "dead": false,
-                    "x": 6490.574697967412,
-                    "y": 2744.2049798644944
+                    "x": 6497.3409178603915,
+                    "y": 2744.656061190693
                   },
                   {
                     "id": "knight",
-                    "hp": 1110,
+                    "hp": 2055,
                     "maxHp": 3045,
                     "shield": 0,
                     "dead": false,
-                    "x": 6511.496014302548,
+                    "x": 6512.9890785364805,
                     "y": 3366
                   },
                   {
                     "id": "occultist",
-                    "hp": 1257,
+                    "hp": 977,
                     "maxHp": 1873,
                     "shield": 0,
                     "dead": false,
-                    "x": 6510.5130663591035,
+                    "x": 6495.858153633123,
                     "y": 3366
                   }
                 ],
@@ -11517,12 +11517,12 @@
                   "x": 6547.5
                 },
                 "seed": 19388,
-                "rng": 344334392232
+                "rng": 448733643573
               },
-              "time": 1793876451.5372562,
+              "time": 1793873791.5533292,
               "boarding": {
                 "stage": 31,
-                "round": 14,
+                "round": 16,
                 "phase": "aim",
                 "active": "mage",
                 "dialogue": false,
@@ -11536,31 +11536,31 @@
                 "heroes": [
                   {
                     "id": "archer",
-                    "x": 6525.786527962233,
+                    "x": 6508.077949172238,
                     "y": 3366,
-                    "hp": 834,
+                    "hp": 852,
                     "dead": false,
                     "acted": false,
-                    "moveLeft": 1149.1823956475014,
+                    "moveLeft": 669.3614958086848,
                     "canDrop": false,
                     "grounded": true
                   },
                   {
                     "id": "mage",
-                    "x": 6490.574697967412,
-                    "y": 2744.2049798644944,
-                    "hp": 1427,
+                    "x": 6497.3409178603915,
+                    "y": 2744.656061190693,
+                    "hp": 997,
                     "dead": false,
                     "acted": false,
-                    "moveLeft": 1423.9589256275299,
+                    "moveLeft": 1417.2550089961073,
                     "canDrop": true,
                     "grounded": true
                   },
                   {
                     "id": "knight",
-                    "x": 6511.496014302548,
+                    "x": 6512.9890785364805,
                     "y": 3366,
-                    "hp": 1110,
+                    "hp": 2055,
                     "dead": false,
                     "acted": false,
                     "moveLeft": 3318,
@@ -11569,9 +11569,9 @@
                   },
                   {
                     "id": "occultist",
-                    "x": 6510.5130663591035,
+                    "x": 6495.858153633123,
                     "y": 3366,
-                    "hp": 1257,
+                    "hp": 977,
                     "dead": false,
                     "acted": false,
                     "moveLeft": 2678,
@@ -11584,17 +11584,17 @@
             {
               "step": "drop-3366",
               "state": {
-                "round": 14,
-                "enemyTeamEnds": 13,
+                "round": 16,
+                "enemyTeamEnds": 15,
                 "side": 0,
                 "phase": "aim",
                 "active": "mage",
                 "cls": "mage",
-                "x": 6490.574697967412,
-                "y": 2829.7916879472523,
-                "angle": 50.02039086899745,
+                "x": 6497.3409178603915,
+                "y": 2819.9806691024323,
+                "angle": 45.7019150502342,
                 "facing": 1,
-                "moveLeft": 1423.9589256275299,
+                "moveLeft": 1417.2550089961073,
                 "drop": true,
                 "support": "approved31-harbor-stair",
                 "enemyHpSum": 0,
@@ -11771,51 +11771,51 @@
                   }
                 ],
                 "camera": {
-                  "x": 6660.574697967412,
-                  "y": 2645.49362116235,
+                  "x": 6667.3409178603915,
+                  "y": 2635.7379859325965,
                   "scale": 0.21176470588235297,
                   "manual": false
                 },
                 "grounded": true,
                 "can": true,
                 "dialogue": false,
-                "shots": 44,
+                "shots": 42,
                 "enemies": 0,
                 "health": [
                   {
                     "id": "archer",
-                    "hp": 834,
+                    "hp": 852,
                     "maxHp": 1674,
                     "shield": 0,
                     "dead": false,
-                    "x": 6525.786527962233,
+                    "x": 6508.077949172238,
                     "y": 3366
                   },
                   {
                     "id": "mage",
-                    "hp": 1427,
+                    "hp": 997,
                     "maxHp": 1814,
                     "shield": 0,
                     "dead": false,
-                    "x": 6490.574697967412,
-                    "y": 2829.7916879472523
+                    "x": 6497.3409178603915,
+                    "y": 2819.9806691024323
                   },
                   {
                     "id": "knight",
-                    "hp": 1110,
+                    "hp": 2055,
                     "maxHp": 3045,
                     "shield": 0,
                     "dead": false,
-                    "x": 6511.496014302548,
+                    "x": 6512.9890785364805,
                     "y": 3366
                   },
                   {
                     "id": "occultist",
-                    "hp": 1257,
+                    "hp": 977,
                     "maxHp": 1873,
                     "shield": 0,
                     "dead": false,
-                    "x": 6510.5130663591035,
+                    "x": 6495.858153633123,
                     "y": 3366
                   }
                 ],
@@ -11824,12 +11824,12 @@
                   "x": 6547.5
                 },
                 "seed": 19388,
-                "rng": 344334392232
+                "rng": 448733643573
               },
-              "time": 1793876454.1970682,
+              "time": 1793873794.2535348,
               "boarding": {
                 "stage": 31,
-                "round": 14,
+                "round": 16,
                 "phase": "aim",
                 "active": "mage",
                 "dialogue": false,
@@ -11843,31 +11843,31 @@
                 "heroes": [
                   {
                     "id": "archer",
-                    "x": 6525.786527962233,
+                    "x": 6508.077949172238,
                     "y": 3366,
-                    "hp": 834,
+                    "hp": 852,
                     "dead": false,
                     "acted": false,
-                    "moveLeft": 1149.1823956475014,
+                    "moveLeft": 669.3614958086848,
                     "canDrop": false,
                     "grounded": true
                   },
                   {
                     "id": "mage",
-                    "x": 6490.574697967412,
-                    "y": 2829.7916879472523,
-                    "hp": 1427,
+                    "x": 6497.3409178603915,
+                    "y": 2819.9806691024323,
+                    "hp": 997,
                     "dead": false,
                     "acted": false,
-                    "moveLeft": 1423.9589256275299,
+                    "moveLeft": 1417.2550089961073,
                     "canDrop": true,
                     "grounded": true
                   },
                   {
                     "id": "knight",
-                    "x": 6511.496014302548,
+                    "x": 6512.9890785364805,
                     "y": 3366,
-                    "hp": 1110,
+                    "hp": 2055,
                     "dead": false,
                     "acted": false,
                     "moveLeft": 3318,
@@ -11876,9 +11876,9 @@
                   },
                   {
                     "id": "occultist",
-                    "x": 6510.5130663591035,
+                    "x": 6495.858153633123,
                     "y": 3366,
-                    "hp": 1257,
+                    "hp": 977,
                     "dead": false,
                     "acted": false,
                     "moveLeft": 2678,
@@ -11891,17 +11891,17 @@
             {
               "step": "drop-3366",
               "state": {
-                "round": 14,
-                "enemyTeamEnds": 13,
+                "round": 16,
+                "enemyTeamEnds": 15,
                 "side": 0,
                 "phase": "aim",
                 "active": "mage",
                 "cls": "mage",
-                "x": 6490.574697967412,
+                "x": 6497.3409178603915,
                 "y": 3366,
-                "angle": 50.02039086899745,
+                "angle": 45.7019150502342,
                 "facing": 1,
-                "moveLeft": 1423.9589256275299,
+                "moveLeft": 1417.2550089961073,
                 "drop": true,
                 "support": "a4-boat-deck",
                 "enemyHpSum": 0,
@@ -12078,51 +12078,51 @@
                   }
                 ],
                 "camera": {
-                  "x": 6660.574697967412,
-                  "y": 3167.0889023329364,
+                  "x": 6667.3409178603915,
+                  "y": 3166.2669052178458,
                   "scale": 0.21176470588235297,
                   "manual": false
                 },
                 "grounded": true,
                 "can": true,
                 "dialogue": false,
-                "shots": 44,
+                "shots": 42,
                 "enemies": 0,
                 "health": [
                   {
                     "id": "archer",
-                    "hp": 834,
+                    "hp": 852,
                     "maxHp": 1674,
                     "shield": 0,
                     "dead": false,
-                    "x": 6525.786527962233,
+                    "x": 6508.077949172238,
                     "y": 3366
                   },
                   {
                     "id": "mage",
-                    "hp": 1427,
+                    "hp": 997,
                     "maxHp": 1814,
                     "shield": 0,
                     "dead": false,
-                    "x": 6490.574697967412,
+                    "x": 6497.3409178603915,
                     "y": 3366
                   },
                   {
                     "id": "knight",
-                    "hp": 1110,
+                    "hp": 2055,
                     "maxHp": 3045,
                     "shield": 0,
                     "dead": false,
-                    "x": 6511.496014302548,
+                    "x": 6512.9890785364805,
                     "y": 3366
                   },
                   {
                     "id": "occultist",
-                    "hp": 1257,
+                    "hp": 977,
                     "maxHp": 1873,
                     "shield": 0,
                     "dead": false,
-                    "x": 6510.5130663591035,
+                    "x": 6495.858153633123,
                     "y": 3366
                   }
                 ],
@@ -12131,12 +12131,12 @@
                   "x": 6547.5
                 },
                 "seed": 19388,
-                "rng": 344334392232
+                "rng": 448733643573
               },
-              "time": 1793876456.827831,
+              "time": 1793873796.8830812,
               "boarding": {
                 "stage": 31,
-                "round": 14,
+                "round": 16,
                 "phase": "aim",
                 "active": "mage",
                 "dialogue": false,
@@ -12150,31 +12150,31 @@
                 "heroes": [
                   {
                     "id": "archer",
-                    "x": 6525.786527962233,
+                    "x": 6508.077949172238,
                     "y": 3366,
-                    "hp": 834,
+                    "hp": 852,
                     "dead": false,
                     "acted": false,
-                    "moveLeft": 1149.1823956475014,
+                    "moveLeft": 669.3614958086848,
                     "canDrop": false,
                     "grounded": true
                   },
                   {
                     "id": "mage",
-                    "x": 6490.574697967412,
+                    "x": 6497.3409178603915,
                     "y": 3366,
-                    "hp": 1427,
+                    "hp": 997,
                     "dead": false,
                     "acted": false,
-                    "moveLeft": 1423.9589256275299,
+                    "moveLeft": 1417.2550089961073,
                     "canDrop": true,
                     "grounded": true
                   },
                   {
                     "id": "knight",
-                    "x": 6511.496014302548,
+                    "x": 6512.9890785364805,
                     "y": 3366,
-                    "hp": 1110,
+                    "hp": 2055,
                     "dead": false,
                     "acted": false,
                     "moveLeft": 3318,
@@ -12183,9 +12183,9 @@
                   },
                   {
                     "id": "occultist",
-                    "x": 6510.5130663591035,
+                    "x": 6495.858153633123,
                     "y": 3366,
-                    "hp": 1257,
+                    "hp": 977,
                     "dead": false,
                     "acted": false,
                     "moveLeft": 2678,
@@ -12198,15 +12198,15 @@
             {
               "step": "objective-result",
               "state": {
-                "round": 14,
-                "enemyTeamEnds": 13,
+                "round": 16,
+                "enemyTeamEnds": 15,
                 "side": 0,
                 "phase": "won",
                 "active": "mage",
                 "cls": "mage",
-                "x": 6490.574697967412,
+                "x": 6497.3409178603915,
                 "y": 3366,
-                "angle": 50.02039086899745,
+                "angle": 45.7019150502342,
                 "facing": 1,
                 "moveLeft": 2629,
                 "drop": false,
@@ -12385,7 +12385,7 @@
                   }
                 ],
                 "camera": {
-                  "x": 6660.574697967412,
+                  "x": 6667.3409178603915,
                   "y": 3182,
                   "scale": 0.21176470588235297,
                   "manual": false
@@ -12393,16 +12393,16 @@
                 "grounded": true,
                 "can": false,
                 "dialogue": false,
-                "shots": 44,
+                "shots": 42,
                 "enemies": 0,
                 "health": [
                   {
                     "id": "archer",
-                    "hp": 834,
+                    "hp": 852,
                     "maxHp": 1674,
                     "shield": 0,
                     "dead": false,
-                    "x": 6525.786527962233,
+                    "x": 6508.077949172238,
                     "y": 3366
                   },
                   {
@@ -12411,25 +12411,25 @@
                     "maxHp": 1868,
                     "shield": 0,
                     "dead": false,
-                    "x": 6490.574697967412,
+                    "x": 6497.3409178603915,
                     "y": 3366
                   },
                   {
                     "id": "knight",
-                    "hp": 1110,
+                    "hp": 2055,
                     "maxHp": 3045,
                     "shield": 0,
                     "dead": false,
-                    "x": 6511.496014302548,
+                    "x": 6512.9890785364805,
                     "y": 3366
                   },
                   {
                     "id": "occultist",
-                    "hp": 1257,
-                    "maxHp": 1873,
+                    "hp": 1928,
+                    "maxHp": 1928,
                     "shield": 0,
                     "dead": false,
-                    "x": 6510.5130663591035,
+                    "x": 6495.858153633123,
                     "y": 3366
                   }
                 ],
@@ -12438,12 +12438,12 @@
                   "x": 6547.5
                 },
                 "seed": 19388,
-                "rng": 344334392232
+                "rng": 448733643573
               },
-              "time": 1793876461.2382026,
+              "time": 1793873801.3411748,
               "boarding": {
                 "stage": 31,
-                "round": 14,
+                "round": 16,
                 "phase": "won",
                 "active": "mage",
                 "dialogue": false,
@@ -12457,18 +12457,18 @@
                 "heroes": [
                   {
                     "id": "archer",
-                    "x": 6525.786527962233,
+                    "x": 6508.077949172238,
                     "y": 3366,
-                    "hp": 834,
+                    "hp": 852,
                     "dead": false,
                     "acted": false,
-                    "moveLeft": 1149.1823956475014,
+                    "moveLeft": 669.3614958086848,
                     "canDrop": false,
                     "grounded": true
                   },
                   {
                     "id": "mage",
-                    "x": 6490.574697967412,
+                    "x": 6497.3409178603915,
                     "y": 3366,
                     "hp": 1868,
                     "dead": false,
@@ -12479,9 +12479,9 @@
                   },
                   {
                     "id": "knight",
-                    "x": 6511.496014302548,
+                    "x": 6512.9890785364805,
                     "y": 3366,
-                    "hp": 1110,
+                    "hp": 2055,
                     "dead": false,
                     "acted": false,
                     "moveLeft": 3318,
@@ -12490,12 +12490,12 @@
                   },
                   {
                     "id": "occultist",
-                    "x": 6510.5130663591035,
+                    "x": 6495.858153633123,
                     "y": 3366,
-                    "hp": 1257,
+                    "hp": 1928,
                     "dead": false,
                     "acted": false,
-                    "moveLeft": 2678,
+                    "moveLeft": 2729,
                     "canDrop": false,
                     "grounded": true
                   }

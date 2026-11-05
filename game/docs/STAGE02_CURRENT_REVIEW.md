@@ -278,3 +278,7 @@
 기술적 음향 관찰2500표본에서 WebAudio running, RMS최대0.1647446, playCount최대160, battle-2 미디어 시간 진행/ready4/오류0을 확인했다. 직접 소리를 듣는 경로가 없어 음질·감정·믹스 청취 합격은 주장하지 않는다. 스크린샷과 상세 터치 기록은 로컬만 보존했다.
 
 부모 인계: 후보 소스 `93d7f7882a78b154b6e54ce1f1aed741d604a1ef`, runtime `be5b82c5baf931c3b97501fb90fb8706bb01f327da862547ebfd83731d702401`. 새 정식 Stage31 probe는 미실행이며21장 순서 이후 부모 조율을 기다린다. 기존 c7178682 package와 d96663d6 생성물은 첫 후보를 증명하므로 현재 후보의 최종 release 자료가 아니다. 최종 통합 runtime을 먼저 확정한 뒤 해당 소스의 전용 정식 probe→정상 빌드→부모 master 통합/기존 Pages 배포 확인 순서가 필요하다. 공개 HTML403 및 로컬 artifact ZIP403은 우회하지 않았다. 브랜치 검수 완료를 제품 발행 완료로 표시하지 않는다.
+
+## 최신 master 통합 준비
+
+별도 `review/stage02-integrated-20261105`에서 master `3e56b342`와 후보 `938689be`를 통합한다. 실제 소스의 충돌은 없었다. BUG_LOG는 양쪽 기록을 보존하고 생성 HTML/manifest 및 Stage31 package는 최신 master 버전으로 정리했다. 이 기존 package/HTML은 통합 runtime의 증거가 아니며 전용 정식 probe와 정상 빌드로 새로 생성해야 한다. 통합 runtime은 `b5a1da2eeb92438f02cda8bb1ff89b66f11bc4253435b1ca66dcb3bfbdd9b998`이다.
