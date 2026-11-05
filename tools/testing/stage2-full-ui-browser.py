@@ -1,7 +1,7 @@
 """Stage2 real Chromium keyboard/pointer run; read-only isolated shot planning.
 Declared prior-stage entry fixture; no engine move/fire/tick or battle writes.
 """
-import json,os,sys,time,traceback,subprocess
+import json,os,sys,time,traceback,subprocess,hashlib
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 sys.path.insert(0,str(Path(__file__).resolve().parents[2]/'tests'))
@@ -11,7 +11,7 @@ TOUCH=os.environ.get('HONRO_STAGE2_TOUCH')=='1'
 POLICY=os.environ.get('HONRO_STAGE2_UI_POLICY','advance')
 URL=os.environ.get('HONRO_QA_URL','http://127.0.0.1:8842/HONRO.html')
 R={'method':'Real keyboard movement/aim/charge/drop and pointer dialogue/defend; ordinary production animation loop. Isolated copy used only for shot planning. Legal prior-stage fixture, not campaign continuity or human fun approval.','policy':POLICY,'source':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'actions':[],'turns':[],'dialogues':[],'escort':[],'errors':[],'passed':False}
-STATE='''()=>{const a=HonroApp,e=a.engine,b=e?.b,u=e?.active,c=e?.unit('objective');const unit=v=>({id:v.id,x:v.x,y:v.y,hp:v.hp,dead:!!v.dead,move:v.moveLeft,ground:e.grounded(v),angle:v.angle,facing:v.facing,speed:v.walkSpeed,support:e.contactSurface(v.x,v.y-4,v.y+5)?.t.id});return {screen:a.screen,can:a.canInput(),done:a.done,dialogue:a.dialogue?{id:a.dialogue.id,index:a.dialogue.index,line:a.dialogue.lines[a.dialogue.index]}:null,round:b?.round,phase:b?.phase,side:b?.side,shot:b?.shot,u:u?unit(u):null,car:c?unit(c):null,allies:b?b.units.filter(v=>v.honroAlly&&!v.dead).map(v=>({...unit(v),role:v.allyRole,civilian:!!v.honroCivilian})):[],queue:b?.queue,allyQueue:b?.honroState.allyQueue,pause:b?.honroState.carriagePauseUntilRound,threats:c?e.alive(1).filter(v=>Math.abs(v.x-c.x)<1150&&Math.abs(v.y-c.y)<650).map(unit):[],foes:b?e.alive(1).map(unit):[],flags:b?.honroState.flags};}'''
+STATE='''()=>{const a=HonroApp,e=a.engine,b=e?.b,u=e?.active,c=e?.unit('objective');const unit=v=>({id:v.id,x:v.x,y:v.y,hp:v.hp,dead:!!v.dead,move:v.moveLeft,ground:e.grounded(v),vx:v.vx,vy:v.vy,drop:v.platformDrop?.phase,angle:v.angle,facing:v.facing,speed:v.walkSpeed,support:e.contactSurface(v.x,v.y-4,v.y+5)?.t.id});return {screen:a.screen,can:a.canInput(),done:a.done,dialogue:a.dialogue?{id:a.dialogue.id,index:a.dialogue.index,line:a.dialogue.lines[a.dialogue.index]}:null,round:b?.round,phase:b?.phase,side:b?.side,shot:b?.shot,u:u?unit(u):null,car:c?unit(c):null,allies:b?b.units.filter(v=>v.honroAlly&&!v.dead).map(v=>({...unit(v),role:v.allyRole,civilian:!!v.honroCivilian})):[],queue:b?.queue,allyQueue:b?.honroState.allyQueue,pause:b?.honroState.carriagePauseUntilRound,threats:c?e.alive(1).filter(v=>Math.abs(v.x-c.x)<1150&&Math.abs(v.y-c.y)<650).map(unit):[],foes:b?e.alive(1).map(unit):[],flags:b?.honroState.flags};}'''
 PLAN='''()=>{const a=HonroApp,C=HONRO_CORE,e=new C.Engine(structuredClone(a.engine.b),()=>{},true),u=e.active,s=C.SKILLS.A01;for(const t of e.alive(1).sort((v,w)=>Number(w.awake)-Number(v.awake)||Math.hypot(v.x-u.x,v.y-u.y)-Math.hypot(w.x-u.x,w.y-u.y)))for(const p of e.shotSeeds(u,s,t)){const pred=e.predict(u,s,p.angle,p.power,t,false);if(pred.unit===t.id){const v=C.shotViable(e,u,s,t,p.angle,p.power);if(v.risk<1&&v.friendlyDamage===0)return{target:t.id,...p,duration:e.chargeDuration(u,s)};}}return null;}'''
 route=[(1600,'left-tree-branch-upper',False),(1100,'left-tree-branch-upper',True),(1450,'left-tree-branch-middle',False),(1050,'left-tree-branch-middle',True),(1500,'left-tree-branch-lower',False),(1350,'left-tree-branch-lower',True),(1050,'left-descent-stone-low',False),(1460,'canyon-ground',False),(1830,'canyon-ground',False)]
 started=time.monotonic();last_dialogue=None;last_escort=None;page=None
@@ -109,7 +109,8 @@ try:
  with sync_playwright() as w:
   browser=launch(w);page=browser.new_page(viewport={'width':844,'height':390} if TOUCH else {'width':1440,'height':900},is_mobile=TOUCH,has_touch=TOUCH);page.on('pageerror',lambda e:R['errors'].append(str(e)))
   page.add_init_script("window.qaInputs={keys:[],pointers:[],touches:0};document.addEventListener('keydown',e=>qaInputs.keys.push(e.code),true);document.addEventListener('pointerdown',e=>qaInputs.pointers.push({type:e.pointerType,trusted:e.isTrusted,target:e.target.id||e.target.closest('[data-action]')?.dataset.action}),true);document.addEventListener('touchstart',()=>qaInputs.touches++,true);" )
-  page.goto(URL);page.wait_for_function('window.HonroApp',timeout=60000)
+  response=page.goto(URL);page.wait_for_function('window.HonroApp',timeout=60000)
+  R['servedBundle']={'url':URL,'htmlSha256':hashlib.sha256(response.body()).hexdigest(),'resources':page.evaluate("performance.getEntriesByType('resource').filter(v=>v.name.includes('/web/')&&v.name.endsWith('.js')).map(v=>v.name)"),'checkoutIsNotBuildProof':True}
   fixture=json.loads(Path('tests/fixtures/act1-art/stage02-entry.json').read_text());R['fixture']=fixture['scope']
   page.evaluate('(p)=>localStorage.setItem("honro-first-act-profile-1",JSON.stringify(p))',fixture['profile']);page.reload();page.wait_for_function('window.HonroApp');
   if TOUCH:
@@ -153,7 +154,17 @@ try:
     if s['dialogue']:continue
     if s['u']['ground'] and abs(s['u']['x']-x)<18 and s['u']['support']==support:
      log('route',index=idx,state=s)
-     if drop:press(page.locator('[data-action="drop"]'));log('drop',index=idx)
+     if drop:
+      # A moving foot cancels the real180ms anticipation. Wait for release inertia,
+      # and verify that the tap actually starts a drop before advancing the route.
+      for _ in range(60):
+       before=state()
+       if abs(before['u'].get('vx',0))<=3 and abs(before['u'].get('vy',0))<=3:break
+       page.wait_for_timeout(50)
+      press(page.locator('[data-action="drop"]'));page.wait_for_timeout(250);after=state()
+      accepted=bool(after['u'].get('drop')) or after['u']['y']>before['u']['y']+6
+      log('drop',index=idx,before=before['u'],after=after['u'],accepted=accepted)
+      if not accepted:continue
      idx+=1
      if not drop and idx in [1,3] and fire():continue
      if s['u']['move']>40:continue
