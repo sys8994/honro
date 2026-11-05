@@ -71,6 +71,7 @@ function migrate(p){if(!enabled()||p.honroReviewed21PresentationRevision===1)ret
 // only an exact approved ID/speaker/text tuple before the common whitelist;
 // preserve cursor, actor state and physical proof, and never repair new tampering.
 function upgradePayload(b){if(!active(b))return;const apply=l=>{const m=l?.[2],r=row(m?.rowId);if(!m||m.reviewedPayloadRevision>=2||m.reviewedStage!==21||m.reviewedRevision!==1||!r||r.speaker!==l[0]||r.text!==l[1])return;for(const k of ['audience','delivery','once','group','order','progress','deadline','owner','party_shared','presentation','condition','speaker_channel'])if(r[k]===undefined)delete m[k];else m[k]=copy(r[k]);m.reviewedPayloadRevision=2;};for(const l of b.honroStory?.lines||[])apply(l);for(const l of b.honroState?.storyQueue||[])apply(l);for(const q of b.honroState?.deferredStory||[])for(const l of q.lines||[])apply(l);}
+const priorMapRevision=V.mapRevision;V.mapRevision=id=>Number(id)===21&&enabled()?521:priorMapRevision(id);
 const priorPlugin=V.plugins.get(21);V.register(21,{...priorPlugin,attach(app,e){upgradePayload(e.b);priorPlugin.attach?.(app,e);}});
 const prepare=V.prepare;V.prepare=function(b,p){upgradePayload(b);const out=prepare(b,p);if(active(b))b.honroNarrativeContent=content(b,b.honroNarrativeContent);return out;};
 const migratePresentation=V.migratePresentation;V.migratePresentation=function(p){migratePresentation(p);migrate(p);};

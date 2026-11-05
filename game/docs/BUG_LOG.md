@@ -5394,3 +5394,11 @@ Title `여정 이어가기` could choose an older hub before honoring a saved di
 - 플레이 관찰: 사격이 가능한 자리만 유지하면 동료가 호송 동선을 막고 방어를 반복했다. 왕복 방향에 맞춰 뒤로 비키는 이동은 실제NPC진행을 바꿨고, 표식 안내는 전투 뒤 어디로 가야 하는지 명확하게 했다. 접근·사선·통로 확보·표식 확인을 선택할 근거가 생겼다. 적 수치 완화나 AI의 재미/미술 합격 선언으로 대신하지 않는다.
 - 최종 소스 후보 `06c394a2`, runtime SHA256 `397328908e0a93645fdbe5827e2c0d3adb9040350f5ca6e7bb3a6467b3dd8592`. 소스 대체 메타데이터가 실제 파일hash를 기록한다. 정식 build는 `/tmp/stage21-final-06c394a2-build.log`의 기존 `Runtime changed after actual Engine probes.`로 차단됐다. 신규31장 probe·공개artifact·master/Pages는 실행하지 않았다.
 - 최종 로컬 증거 `_local/reports/stage21-polish/first-entry-wreck-aware/`(result.json,events.jsonl,controller 사본,desktop/portrait/landscape 결과 화면), `/tmp/stage21-first-entry-wreck-aware.log`. CSS 공통 회귀6건·모바일 실제 저장 터치3건은 위help-banner/mobile-help-fixed에 별도 기록했다. 남은 작업은 부모의 최종 통합 runtime 정식31장 probe·빌드·배포 검증이다.
+
+### 21장 접근 지형 후보: 낮은 길과 차양·지붕 선택
+
+- 사용자 후속 범위는 반복 사격과 하부 큰 형태까지다. 수치 완화 대신 수레 서쪽x1200–1620에 얕은 오목한 길을 만들고, 기존 지지 차양 구조로 지붕 접근을 연결한다. 목표는 낮은 길에서 곡사/가까이 접근할지, 이동도와 점프를 써 높은 사선을 잡을지 선택하는 것이다. 지붕은 수레 아래를 직접 쏘기 어려운 구간도 있어 무조건 우월한 자리가 아니다.
+- 원본 단일foundation 윤곽을 수정하고 기존 흙·암면 템플릿을 그 윤곽에 맞춰 다시 생성한다. 성문 아래 기존 비대칭3면 암반은 폭/깊이를 키워 성벽을 받치는 큰 형태로 재구성했다. 새 노이즈·균열·장식 복제는 넣지 않는다. 기존 shelter와 장식 수레의 발을 바뀐 지면에 맞추고 기존one-way 지붕도 같은 높이로 이동한다. 신규 차양은 기존supportedAwningArt 구조를 재사용해 각 기둥 발을 실제 지면에 붙였다.
+- 주민x1620부터 곽진x2890까지 호송 지면, 적 배치/수치/보상, 목표 앵커는 유지한다. `stage21-approach-probe.mjs`는 같은 장비/보상 profile·seed19388, 다른 모든 장과 적/encounter/marker 불변을 확인한다. 원본 author 순서를 생략한 첫 진입 fixture에 수레가 빠진 도구 오류를 교정했고 그 실패는 플레이 증거로 사용하지 않는다.
+- 첫 실제키보드 비교: 기존 지형은 같은 두 번 점프로 지상에 돌아왔고 후보는 지붕(y약2430)에 착지했다. 낮은 길은y2760이다. 진입부터 같은1턴/이동도 예산을 사용했고 외부 unit좌표 쓰기는 없다. 지붕 중앙은 수레 사선을 가릴 수 있어 가장자리와 다른 적을 추가 대조한다. 큰 형태overview·자연 카메라·360px 화면을 로컬 `stage21-approach/browser/`에 보관한다. 후보 검수 중이며 재미/미술 합격 또는 최종 완주로 주장하지 않는다.
+- 지형 개편은21장 revision521로 구분한다. 기존421 전투는 공통 저장정책에 따라 성장/장착을 보존하고 해당 장 입구에서 다시 시작한다. 다른 장 revision과 가드는 바꾸지 않는다. 재생성은 `node tools/map-forge/stage21-approach.mjs`. 정식31장 probe/빌드/공개artifact/master/Pages는 부모 조율 전 실행하지 않는다.
