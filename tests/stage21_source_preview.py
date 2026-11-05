@@ -8,7 +8,7 @@ def install_source_preview(page):
  if not path:return
  data=json.loads((ROOT/path).read_text())
  for file,body in data['patches'].items():
-  page.route('**/'+file,lambda route,request,body=body:route.fulfill(status=200,content_type='text/javascript',body=body))
+  page.route('**/'+file,lambda route,request,body=body,kind=('text/css' if file.endswith('.css') else 'text/javascript'):route.fulfill(status=200,content_type=kind,body=body))
 
 def source_preview_metadata():
  path=os.environ.get('HONRO_STAGE21_SOURCE_PREVIEW')
