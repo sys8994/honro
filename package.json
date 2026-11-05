@@ -191,7 +191,7 @@
     "test:stage18-bell-refinement": "node tests/stage18-bell-refinement.mjs && node tests/stage18-bell-refinement-resume.mjs",
     "capture:stage18-bell-refinement": "node --expose-gc tests/stage18-bell-refinement-native.mjs before && node --expose-gc tests/stage18-bell-refinement-native.mjs final",
     "test:dialogue-presentation": "node tests/dialogue-speaker-presentation.mjs && node tests/dialogue-source-inventory.mjs && node tests/narrative-event-delivery.mjs",
-    "test:stage2-airborne": "node tests/stage2-airborne.mjs && node tests/stage2-wave-opportunity.mjs && node tests/stage2-airborne-guard-sensitivity.mjs && node tests/stage2-escort-pursuit.mjs",
+    "test:stage2-airborne": "node tests/stage2-airborne.mjs && node tests/stage2-wave-opportunity.mjs && node tests/stage2-airborne-guard-sensitivity.mjs && node tests/stage2-escort-pursuit.mjs && node tests/stage2-carriage-arrival.mjs",
     "test:stage2-airborne:fullplay": "HONRO_STAGE2_POLICY=convoy-first node tests/stage2-airborne-fullplay.mjs",
     "capture:stage2-airborne": "node --expose-gc tests/stage2-airborne-native-art.mjs",
     "test:stage5-waterfall:contracts": "node tests/stage5-waterfall-authoring.mjs && node tests/stage5-waterfall-routes.mjs && node tests/stage5-waterfall-body-gate.mjs && node tests/stage5-waterfall-story.mjs && node tests/stage5-waterfall-wave-boundaries.mjs && node tests/stage5-waterfall-continue.mjs && node tests/stage5-waterfall-drag.mjs && node tests/stage5-waterfall-drag-specials.mjs && node tests/stage5-waterfall-drag-app.mjs && node tests/stage5-waterfall-drag-preview.mjs && npm run test:stage5-waterfall:ai && npm run test:encounter-evidence",

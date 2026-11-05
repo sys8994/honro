@@ -73,7 +73,9 @@ function tick(app,e,dt,transition){const b=e.b,hs=b.honroState,q=hs.allyQueue;if
   const car=e.unit('objective');if(u.allyRole==='porter'&&car&&!car.dead&&q.carTarget>car.x){car.x=Math.min(q.carTarget,car.x+dt*480);car.y=W.top(b,car.x,car.y);}
   // Porter and carriage are one convoy action: reaching the porter waypoint must not end the action
   // while the carriage is still catching up. This prevents the escort from creeping a few pixels per round.
-  const carriageDone=u.allyRole!=='porter'||!car||q.carTarget<=car.x+2;
+  // Stage2 arrival requires the exact goal. Let the existing bounded movement
+  // finish the last fraction instead of ending a turn within two pixels.
+  const carriageDone=u.allyRole!=='porter'||!car||q.carTarget<=car.x+(b.honroStage===2&&!b.honroCustom?0:2);
   const moveDone=Math.abs(distance)<28&&carriageDone;
   if(moveDone||(u.allyRole!=='porter'&&u.moveLeft<5)||q.elapsed>1.7){q.phase='act';q.elapsed=0;u.vx=0;}
  }
