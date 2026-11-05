@@ -1,12 +1,12 @@
 /** Focused production App/Story/Engine binding. Controlled combat and hero
  * poses isolate reviewed scenes; this is not normal-play/browser acceptance. */
-import assert from 'node:assert/strict';import vm from 'node:vm';import {readFile} from 'node:fs/promises';import {appHarness,plain} from './app-regression-helpers.mjs'; import {current16Entry} from './stage16-current-entry-helper.mjs'; import {writeFile,mkdir} from 'node:fs/promises';
+import assert from 'node:assert/strict';import vm from 'node:vm';import {readFile} from 'node:fs/promises';import {appHarness,plain} from './app-regression-helpers.mjs'; import {writeFile,mkdir} from 'node:fs/promises';
 const h=await appHarness(),g=h.g,V=g.HonroAct23V4,C=g.HONRO_CORE,S=g.HonroAct23V4Act2Scenes;
 for(const [file,name]of [['chapters','Chapters'],['16','16']])if(!g['HonroAct23V4Reviewed'+name])vm.runInContext(await readFile('shared/runtime/act23-v4-reviewed'+(file==='chapters'?'-chapters':file)+'.js','utf8'),g);
 const P=g.HonroAct23V4ReviewedChapters,R=g.HonroAct23V4Reviewed16,api=P.apiFor(16),approved=JSON.parse(await readFile('shared/data/reviewed/act23-v4-ch16.json','utf8')),source=JSON.parse(await readFile('game/docs/story/v4-reviewed/HONRO-CH16-reviewed-final.json','utf8'));
 assert.deepEqual(approved.rows,source.rows);assert.equal(approved.rows.length,35);assert(!P.enabled(16));g.HONRO_ACT23_V4_PHASE_A=true;g.HONRO_ACT23_V4_PHASE_B_STAGES=[16];g.HONRO_ACT23_V4_REVIEWED_CHAPTERS={16:approved};g.HONRO_PROJECT=V.author(g.HONRO_PROJECT,{enabled:true});
 let app,b;const current=()=>app.dialogue?.lines[app.dialogue.index]?.[2]?.rowId;
-function launch(route){const p=current16Entry(g).profile;p.seen['act2:first-spirit-encounter']=true;if(route)p.honroRouteHandoff={revision:1,fromStage:15,toStage:16,choice:route,sourceRun:'test-route15'};app=h.load(p);app.launch(16);app.turnNotice=null;b=app.engine.b;Object.assign(b,{side:0,phase:'aim'});assert(P.active(b));assert.equal(b.honroCampaignMapRevision,516);}
+function launch(route){const p=h.profileThrough(15);p.seen['act2:first-spirit-encounter']=true;if(route)p.honroRouteHandoff={revision:1,fromStage:15,toStage:16,choice:route,sourceRun:'test-route15'};app=h.load(p);app.launch(16);app.turnNotice=null;b=app.engine.b;Object.assign(b,{side:0,phase:'aim'});assert(P.active(b));assert.equal(b.honroCampaignMapRevision,516);}
 const hero=c=>V.heroes(b).find(u=>u.cls===c),npc=k=>app.engine.unit(k);
 const pose=(u,x,y)=>Object.assign(u,{x,y,vx:0,vy:0,jumping:false,airborne:false,acted:false});
 function tick(n=1){for(let i=0;i<n&&!app.dialogue;i++){Object.assign(b,{side:0,phase:'aim'});V.tick(app,.025);if(!app.dialogue)app.engine.stepUnits(.025);}}
