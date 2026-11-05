@@ -1,0 +1,79 @@
+name: Stage35 candidate Stage31 release revalidation
+on:
+  push:
+    branches: ['review/stage35-20261105']
+    paths:
+      - '.github/workflows/stage35-runtime-gate.yml'
+permissions:
+  contents: write
+jobs:
+  stage31:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    env:
+      OUT: _local/reports/stage35-stage31-gate
+      HONRO_ACT4_RELEASE: '1'
+      HONRO_QA_ORIGIN: http://127.0.0.1:8870
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Install pinned tools
+        run: |
+          npm ci
+          npm ci --prefix game
+          python -m pip install 'playwright==1.58.0'
+          python -m playwright install --with-deps chromium
+      - name: Actual Engine probes and unpublished evidence preview
+        run: |
+          set -euo pipefail
+          mkdir -p "$OUT"
+          node tools/act4-ci/refresh-stage31-probes.mjs prepare "$OUT" | tee "$OUT/prepare.log"
+          # Established evidence-only bootstrap; this preview is never deployed.
+          node workshop/build.mjs | tee "$OUT/preview-build.log"
+          sha256sum HONRO.html web/manifest.json > "$OUT/preview-sha256.txt"
+      - name: Actual browser Stage31 combat and boarding
+        run: |
+          set -euo pipefail
+          python -m http.server 8870 --bind 127.0.0.1 > "$OUT/server.log" 2>&1 &
+          server=$!; trap 'kill "$server" 2>/dev/null || true' EXIT
+          HONRO_RUN_DIR="$OUT/stage31" python tools/act4-ci/stage31-fullplay.py > "$OUT/stage31.log" 2>&1
+      - name: Attach measured results and enforce unchanged production gate
+        run: |
+          set -euo pipefail
+          node tools/act4-ci/refresh-stage31-probes.mjs attach "$OUT" | tee "$OUT/attach.log"
+          npm run build | tee "$OUT/gated-build.log"
+          cp tools/stage31/production-package.json "$OUT/production-package.json"
+      - name: Preserve verified summary on an independent branch
+        run: |
+          git add tools/stage31/production-package.json
+          git -c user.name='honro release automation' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Record actual Stage31 revalidation for Stage35 exit and placement'
+          git push origin HEAD:refs/heads/review/stage35-verified/${GITHUB_SHA}
+      - name: Enforce approved synthetic evidence size
+        id: evidence_size
+        if: always()
+        run: |
+          python - <<'PY'
+          import os,pathlib,zipfile
+          root=pathlib.Path(os.environ['OUT'])
+          with zipfile.ZipFile('/tmp/stage31-approved-size.zip','w',zipfile.ZIP_DEFLATED,compresslevel=9) as z:
+              for p in root.rglob('*'):
+                  if p.is_file():z.write(p,p.relative_to(root))
+          size=pathlib.Path('/tmp/stage31-approved-size.zip').stat().st_size
+          assert size<=15*1024*1024, f'Approved Stage31 evidence cap exceeded: {size}'
+          print('Synthetic Stage31 evidence compressed bytes:',size)
+          PY
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always() && steps.evidence_size.outcome == 'success'
+        with:
+          name: stage31-revalidation-for-stage35-${{ github.sha }}
+          path: _local/reports/stage35-stage31-gate/
+          retention-days: 14
+          compression-level: 9
