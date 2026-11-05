@@ -9,4 +9,4 @@ assert(t,'actual R12 threat-stop must identify its blocker');const foe=b.units.f
 assert(foe.side===1&&!foe.dead&&V.near(foe,guard,240));assert.equal(t.x,foe.x);assert.equal(t.y,foe.y-foe.h);assert.equal(view.targets.find(t=>t.id==='gate-resident').label,'주민 호송');assert.deepEqual(plain(b),before);
 // Controlled disappearance fixture: a stale recorded stop must not point to a corpse.
 for(const u of b.units)if(u.side===1&&V.near(u,guard,240))u.dead=true;
-assert.equal(R.escortThreat(b),null);console.log('PASS live escort blocker, compact label and read-only battle presentation');
+assert.equal(R.escortHint(b),null);console.log('PASS live escort blocker, compact label and read-only battle presentation');
