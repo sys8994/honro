@@ -62,7 +62,14 @@ function walk(app,key,target,p,dt,{leader=true,arrive=45}={}){const e=app.engine
  if(dir&&d>0&&u.moveLeft>0){const nx=u.x+dir*(u.walkSpeed||230)*d,surface=e.surface(nx,u.y-28,u.y+28),next={x:nx,y:surface?.y??u.y};if(!base.bodyBlock(b,u,next)){e.walk(u,dir,d);if(Math.abs(u.x-before.x)<.01&&e.grounded(u))e.jump(u);}else if(e.grounded(u)&&!base.bodyBlock(b,u,{x:u.x,y:u.y-14}))e.jump(u);}
  q.distance+=Math.hypot(u.x-before.x,u.y-before.y);if(q.distance>80&&near(u,p,arrive)&&e.grounded(u)){q.arrived=true;u.fixed=true;u.honroV4Safe=true;q.end={x:u.x,y:u.y};}app.dirty=true;return q;
 }
-function recurrence(app,dt){const b=app.engine.b,a=memory(b),spec=b.honroV4Recurrence,q=a.loop??={phase:'first',distance:0},u=unit(b,q.actor)||heroes(b).find(h=>near(h,spec.landmark,100));if(!u)return;
+function recurrence(app,dt){const b=app.engine.b,a=memory(b),spec=b.honroV4Recurrence;let q=a.loop??={phase:'first',distance:0};
+ // A fallen scout is not a new party survival requirement. Another survivor
+ // must start their own complete walk at the landmark; no distance is gifted.
+ if(q.actor&&!alive(unit(b,q.actor))&&q.phase!=='done'){
+  if(q.cameraHold>0)app.scene?.storyRelease?.(q.camera,250);
+  q=a.loop={phase:'first',distance:0};
+ }
+ const u=unit(b,q.actor)||heroes(b).find(h=>near(h,spec.landmark,100));if(!u)return;
  if(q.phase==='first'&&near(u,spec.landmark,100)){q.actor=u.id;q.phase='out';q.first={x:u.x,y:u.y};if(app.scene?.storyFocusPoint){q.camera={x:app.scene.x,y:app.scene.y,scale:app.scene.scale,manual:app.scene.manual};app.scene.storyFocusPoint(spec.landmark.x,spec.landmark.y-80,240,.34);q.cameraHold=.6;}}
  if(q.phase==='out'&&near(u,spec.checkpoint,105)){q.phase='return';q.checkpoint={x:u.x,y:u.y};}
  if(q.phase==='return'&&q.distance>=spec.minimumDistance&&near(u,spec.landmark,100)){q.phase='done';q.second={x:u.x,y:u.y};a.proof['12.recurrence']={actor:u.id,first:clone(q.first),checkpoint:clone(q.checkpoint),second:clone(q.second),distance:q.distance,passes:2};if(app.scene?.storyFocusPoint){app.scene.storyFocusPoint(spec.landmark.x,spec.landmark.y-80,240,.34);q.cameraHold=.6;}}
