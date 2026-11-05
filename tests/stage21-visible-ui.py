@@ -64,6 +64,11 @@ with serve_game() as base,sync_playwright() as pw:
     after=page.evaluate('HonroApp.engine.b');result['resume'].append({'roundBefore':before['honroBattle']['round'],'roundAfter':after['round'],'growthPreserved':before['honroBattle']['heroes']==after['heroes'],'objectivesPreserved':before['honroBattle']['honroState']['act23v4']['done']==after['honroState']['act23v4']['done'],'residentDistanceBefore':before['honroBattle']['honroState']['act23v4']['city']['actors']['act3-resident']['distance'],'residentDistanceAfter':after['honroState']['act23v4']['city']['actors']['act3-resident']['distance']});page.keyboard.press('Escape');saved=True;ready();start=state();record('resume')
    observation=page.evaluate("""()=>{const a=HonroApp,e=a.engine,u=e.active,scene=a.scene,{w,h}=scene.size(),v=HonroAct23V4.state(e.b),m=v.targets[0],screen=p=>HonroCamera.screen(scene,w,h,p),p=m&&screen(m),visible=p&&p.x>=20&&p.x<=w-20&&p.y>=80&&p.y<=h-100;return {instruction:document.querySelector('#objective-text').textContent,marker:m?{label:m.label,kind:m.kind,visible:!!visible,x:visible?m.x:null,y:visible?m.y:null,direction:p?{x:Math.sign(p.x-w/2),y:Math.sign(p.y-h/2)}:null}:null,actor:{x:u.x,y:u.y,screen:screen({x:u.x,y:u.y-u.h/2}),facing:u.facing},scale:scene.scale,width:w,height:h};}""")
    record('visible-decision',{'observation':observation})
+   if observation['marker'] and observation['marker']['label']=='남은 길목 적':
+    assert observation['instruction']=='남은 길목 적 정리하기',observation
+    if not result.get('cleanupInstructionObserved'):
+     result['cleanupInstructionObserved']={'round':start['round'],'text':observation['instruction']}
+     page.screenshot(path=str(out/'normal-clearance-header.png'))
    marker=observation['marker'];choice=plan()
    # A marker outside the viewport supplies direction only. Pan by a bounded
    # screen gesture, never set the camera or navigate to its hidden coordinates.
