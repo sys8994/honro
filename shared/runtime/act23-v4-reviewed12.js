@@ -36,5 +36,19 @@ const bound=new WeakSet();function attach(app,e){if(bound.has(e))return;bound.ad
 function eligibility(app,m,s){if(s.id!=='sign')return;const b=app.engine.b,w=mem(b).wave,mage=app.engine.active;return{ok:!!S.memory(b).proof['12.recurrence']&&P.done(b,'repeat')&&P.done(b,'leak')&&w?.admitted&&w.ids.every(id=>!V.alive(unit(b,id)))&&mage.cls==='mage'&&V.near(mage,m,180),reason:s.id};}
 function use(app,m,s){if(s.id!=='sign')return;if(!eligibility(app,m,s).ok)return false;const b=app.engine.b,q=mem(b).adjust??={actor:app.engine.active.id,elapsed:0};q.requested=true;app.dirty=true;return true;}
 function draw(scene,c,b){const m=mem(b),p=b.honroV4Reviewed12.gap;c.save();if(m.wave?.warned&&!m.wave.admitted){c.globalAlpha=.55;c.strokeStyle='#c8b98d';c.lineWidth=3;c.beginPath();c.ellipse(p.x,p.y-70,60,22,0,0,Math.PI*2);c.stroke();}if(m.descent){const p=V.marker(b,b.honroRouteChoice.exitId);c.strokeStyle='#bbd0c6';c.lineWidth=2;for(let i=0;i<3;i++){c.beginPath();c.ellipse(p.x-90+i*45,p.y-150+m.descent.distance,12,25,-.25,0,Math.PI*2);c.stroke();}}c.restore();}
-P.register(12,{mapRevision:512,camera(app,key){const b=app.engine.b,p=['branch','exit'].includes(key)&&b.honroRouteChoice?.exitId?V.marker(b,b.honroRouteChoice.exitId):b.honroV4Recurrence.landmark;return{id:'reviewed12.'+key,intent:'situation',targets:[{x:p.x,y:p.y-100}],padding:180,maxScale:.55};},allow,author,drive,attach,eligibility,use,draw,routeReady:b=>P.done(b,'choices'),objective:b=>id(S.memory(b).proof.sign?'OBJECTIVE.03':S.memory(b).proof['12.recurrence']?'OBJECTIVE.02':'OBJECTIVE.01'),complete:b=>P.done(b,'exit')&&!!mem(b).journal&&mem(b).wave?.ids.every(id=>!V.alive(unit(b,id))),present(b,result,A){if(!S.memory(b).proof.sign)return result;return{...result,targets:b.honroRouteSpec.routes.map(r=>({...V.marker(b,r.markerId),kind:'exit',rowId:id(r.id==='A'?'UI_CHOICE.01':'UI_CHOICE.02'),label:A.row(id(r.id==='A'?'UI_CHOICE.01':'UI_CHOICE.02')).text}))};}});
+// Presentation only: use the route's existing defeat predicate, including subdued
+// and converted units. Do not reveal hidden positions or persist guidance state.
+function exitGuidance(b,result){
+ const R=G.HonroRouteBranches,r=b.honroRouteSpec.routes.find(r=>r.id==='A');
+ if(b.honroRouteChoice?.selectedRoute||!r||!R.heroes(b).some(u=>R.reaches(b,u,V.marker(b,r.markerId))))return result;
+ const remaining=(r.defeatIds||[]).filter(key=>!R.requirements(b,{defeatIds:[key]})).map(key=>unit(b,key));
+ if(!remaining.length)return result;
+ const names=[...new Set(remaining.map(u=>u?.name||'수비 적'))].join('·');
+ const hidden=remaining.some(u=>u?.honroSpirit&&u.spiritHidden&&!G.HonroAct2.visible(b,u));
+ const text=`높은 경로 · 남은 위협 ${remaining.length}: ${names}`+(hidden?' · 소단으로 혼 확인':'');
+ return{...result,summary:text,currentInstruction:text,blockReason:text,
+  checklist:result.checklist.map(q=>q.current?{...q,text}:q),
+  visibleChecklist:result.visibleChecklist.map(q=>q.current?{...q,text}:q)};
+}
+P.register(12,{mapRevision:512,camera(app,key){const b=app.engine.b,p=['branch','exit'].includes(key)&&b.honroRouteChoice?.exitId?V.marker(b,b.honroRouteChoice.exitId):b.honroV4Recurrence.landmark;return{id:'reviewed12.'+key,intent:'situation',targets:[{x:p.x,y:p.y-100}],padding:180,maxScale:.55};},allow,author,drive,attach,eligibility,use,draw,routeReady:b=>P.done(b,'choices'),objective:b=>id(S.memory(b).proof.sign?'OBJECTIVE.03':S.memory(b).proof['12.recurrence']?'OBJECTIVE.02':'OBJECTIVE.01'),complete:b=>P.done(b,'exit')&&!!mem(b).journal&&mem(b).wave?.ids.every(id=>!V.alive(unit(b,id))),present(b,result,A){if(!S.memory(b).proof.sign)return result;return{...exitGuidance(b,result),targets:b.honroRouteSpec.routes.map(r=>({...V.marker(b,r.markerId),kind:'exit',rowId:id(r.id==='A'?'UI_CHOICE.01':'UI_CHOICE.02'),label:A.row(id(r.id==='A'?'UI_CHOICE.01':'UI_CHOICE.02')).text}))};}});
 })(globalThis);
