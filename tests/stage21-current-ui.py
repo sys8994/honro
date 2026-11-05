@@ -71,6 +71,13 @@ with serve_game() as base,sync_playwright() as pw:
    interact=page.evaluate('''()=>{const a=HonroApp,V=HonroAct23V4,s=V.current(a.engine.b);return s?.kind==='v4-city-rescue'&&!HonroAct23V4City.memory(a.engine.b).started&&V.eligibility(a,V.marker(a.engine.b,s.id)).ok;}''')
    if interact:page.keyboard.press('e');record('rescue-interact');continue
    choice=plan()
+   if not choice and os.environ.get('HONRO_STAGE21_REPOSITION')=='1':
+    flank=page.evaluate("""()=>{const e=HonroApp.engine,b=e.b,u=e.active,c=HonroAct23V4City.memory(b);if(!c.actors?.['act3-resident']?.safe)return null;const ids=new Set([...b.honroV4CitySpec.localIds,...(c.pressure.ids||[])]),t=e.alive(1).filter(v=>ids.has(v.id)).sort((a,z)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(z.x-u.x,z.y-u.y))[0];return t?{id:t.id,x:t.x+(u.x<t.x?1:-1)*600}:null;}""")
+    if flank and state()['moveLeft']>100:
+     move(flank['x']);record('alternate-firing-side',{'flank':flank})
+     if not ready():break
+     if state()['active']!=start['active']:continue
+     choice=plan()
    if choice:
     face=-1 if choice['angle']>90 else 1
     if state()['facing']!=face:page.keyboard.down('ArrowLeft' if face<0 else 'ArrowRight');page.wait_for_timeout(60);page.keyboard.up('ArrowLeft' if face<0 else 'ArrowRight');choice=plan(True)
