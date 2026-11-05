@@ -11,7 +11,7 @@ onlyFacing=>{
   }return null;
  }
  let best=null;
- for(const t of e.alive(1).sort((a,z)=>priority(z)-priority(a)||Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(z.x-u.x,z.y-u.y)).slice(0,6)){
+ for(const t of b.units.filter(t=>t.side===1&&!t.dead&&t.hp>0).sort((a,z)=>priority(z)-priority(a)||Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(z.x-u.x,z.y-u.y)).slice(0,6)){
   if(Math.hypot(t.x-u.x,t.y-u.y)>1200)continue;
   for(const [idx,id]of u.loadout.entries()){const s=C.SKILLS[id];if(!s.damage||e.manaCost(s,u,.5)>u.focus||e.cooldownLeft(u,id)>0)continue;const q=aim(s,t);if(q&&(!best||q.v.net>best.net))best={idx,id,target:t.id,angle:q.angle,power:q.power,net:q.v.net};}
   if(best)break;

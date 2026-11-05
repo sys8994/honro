@@ -10,7 +10,7 @@ out=ROOT/os.environ.get('HONRO_STAGE21_MOBILE_OUT','_local/reports/stage21-curre
 profile=json.loads(source.read_text());results=[];errors=[]
 with serve_game() as base,sync_playwright() as pw:
  browser=launch(pw)
- for name,w,h in [('portrait',390,844),('landscape',844,390)]:
+ for name,w,h in [('narrow',360,800),('portrait',390,844),('landscape',844,390)]:
   context=browser.new_context(viewport={'width':w,'height':h},has_touch=True,is_mobile=True,device_scale_factor=1)
   page=context.new_page();install_source_preview(page);page.on('pageerror',lambda e:errors.append(str(e)))
   page.goto(base+'/HONRO.html');page.wait_for_function('!!globalThis.HonroApp');page.evaluate('p=>localStorage.setItem("honro-first-act-profile-1",JSON.stringify(p))',profile);page.reload();page.locator('[data-action="continue"]').tap();page.wait_for_function('HonroApp.engine?.b?.honroStage===21')
@@ -19,6 +19,7 @@ with serve_game() as base,sync_playwright() as pw:
    if page.evaluate('HonroApp.canInput()&&HonroApp.engine.grounded(HonroApp.engine.active)'):break
    page.wait_for_timeout(150)
   page.wait_for_function('HonroApp.canInput()')
+  page.locator('#objective-text').tap();goal=page.locator('.battle-help-current');assert goal.inner_text()=='주민이 성문 안 안전지대까지 이동하도록 지키기';page.screenshot(path=str(out/(name+'-full-goal.png')));page.locator('button.close[data-action="close"]').tap()
   before=page.evaluate('({x:HonroApp.engine.active.x,move:HonroApp.engine.active.moveLeft,round:HonroApp.engine.b.round})')
   boxes={s:page.locator(s).bounding_box() for s in ['#joystick','#fire','#jump','#combat-skills','[data-action="defend"]']}
   assert all(b and b['x']>=0 and b['y']>=0 and b['x']+b['width']<=w+1 and b['y']+b['height']<=h+1 for b in boxes.values()),boxes
