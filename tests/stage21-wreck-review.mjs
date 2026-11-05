@@ -2,7 +2,7 @@
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {appHarness,plain} from './app-regression-helpers.mjs';
-const trace=JSON.parse(await readFile('_local/reports/stage21-current/clear-route/trace.json','utf8'));
+const trace=JSON.parse(await readFile(process.env.HONRO_STAGE21_TRACE||'_local/reports/stage21-current/clear-route/trace.json','utf8'));
 const battle=trace.snapshots.find(r=>r.battle.honroState.act23v4.done['refuge-hold']).battle;
 const h=await appHarness({productionStory:true}),app=h.load({...trace.profile,honroBattle:battle});app.continue();
 const b=app.engine.b,V=h.g.HonroAct23V4,S=h.g.HonroAct23V4Chapter21,q=S.memory(b);

@@ -5323,3 +5323,8 @@ Title `여정 이어가기` could choose an older hub before honoring a saved di
 - 기준 master `3e56b3427c33f50cdafb386a9854af46368d7a78`. 2장 `e2203dae9d3611d452fc0c945f9134bf9904b196`의 제품 `allies.js`만 통합하고 관련 검사 도구를 가져왔다. 21장 `076fc98fb664b19affdba6ce1076442737632f98`의 runtime/art/CSS와 author를 통합했다. campaign은 최신 master에 `authorStage21Approach`를 적용했고 다른 모든 장 JSON 동일을 확인했다. 기존 생성물과 Stage31 증거는 가져오지 않았다.
 - 기존2장 run42024466271/job127235078337 완료·success를 GitHub 연결 도구로 직접 확인했다. CLI Actions API 조회는 Forbidden이며 연결 도구 조회는 성공했다. 기존 성공은 순서 조율 정보이며 이 통합 runtime의 증거가 아니다.
 - 별도 브랜치에서 로컬 회귀/실제 입력을 진행한다. 로컬 source preview는 정확한 master 모듈을 대상으로 대체하도록 기준 SHA를 선택 가능하게 했고,2장 실제 터치 검수에도 동일 opt-in overlay를 연결했다. release 파일이나 가드를 우회하는 변경은 없다. 신규2/21장 공개 검수 artifact는 생성하지 않는다.
+
+- 통합 native 회귀:2장 airborne/wave/변이감지/호위 추적/정확 도착 통과. layered-save는 원래 역사 입력 누락으로 첫 실행 실패했으며, 실제 과거 `ee73add57bc27357abdbe2d1c606c9017e393351` detached worktree에서 원본 도구로 revision6 baseline을 재생성한 뒤 `--stage2-only` 통과. 현재 데이터를 과거처럼 쓰지 않았다. 다른29장 역사 동일성 sweep은 실행하지 않았다.
+- 21장 과거421 저장 기반 표시 검사3개는 새521 정책의 정상 재시작 때문에 첫 실행 실패했다. 현재521 native-after-roof trace의 실제 기록을 입력해 목표/정확저장/표식 안내/방해 적 표시 검사 통과. 테스트 입력 경로만 선택 가능하게 했으며 게임 revision이나 가드를 약화하지 않았다. 호송 지면·다른 장 데이터 보존·521 저장 유지와421 성장 보존 재시작도 통과.
+- 공통 도움말 배너1/7/21장×360/1280 합성 UI6건 통과. 최종 미술hash의 실제 키보드 하단/상단 접근과 화면 검수 통과. 이 집중 검수와 진행 중인 첫 진입 전투 완주는 별개다.
+- 공개 접근 확인: 기존 Pages 루트는 네트워크 proxy의 `Tunnel connection failed:403 Forbidden`; GitHub Actions 웹 페이지는200. CLI Actions API는Forbidden이나 연결 도구의 job/step 조회는 성공했다. 제한을 우회하지 않았고 Pages 동작 확인으로 보고하지 않는다.
