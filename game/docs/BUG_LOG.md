@@ -5344,3 +5344,10 @@ Title `여정 이어가기` could choose an older hub before honoring a saved di
 ### 5장 모바일 점프 입력 관찰 도구 보완
 
 첫 모바일 입장 검수에서 도구가 20ms마다 조이스틱 터치를 끊고 다시 누르느라 도약 중 가로 이동이 부족했다. 게임 입력/물리는 변경하지 않고 `stage5-browser-fullplay.py`의 점프 명령이 방향이 바뀔 때까지 실제 터치를 유지하게 했다. 새 첫 입장에서는 300→510 도약 후 상부 x935/y2141에 정상 진입했고 Python 문법 검사도 통과했다. 첫 실패 관찰은 `_local/reports/stage5-mobile-entry-20261105/play/`, 연속 터치 경로는 `continuous/`에 따로 보존한다.
+
+### 5장 명사 교정의 승인 원문 재대조 및 31장 정상 빌드 가드
+
+- 정확한 원문은 `game/docs/story/user-script-20261023/approved-patch.json`의 `/scenes/5.lower-beasts.{intactHolding,intactNotHolding,broken}/0/1` 각 `after`다. 출처 manifest는 같은 폴더 `SOURCE_AND_EVIDENCE.json`, 입력 커밋은 `c03aec71491baf9aea27aaf053bf1917a8828efa`. 승인 파일 SHA256 `7b408cfb80601d324cac9f2defb8a0dbbc39fd8713dc5b1ca5b5f14b8eceb59d`가 manifest와 동일하고 기준 master 대비 해당 폴더 diff가 없다. 체크아웃에 보존된 정확 적용 원문을 확인했으며 별도 미제공 대화 원문을 확인했다고 주장하지 않는다.
+- 승인 원문은 실제로 모두 ‘사슴들’이다. `intactHolding`은 ‘물길진 쪽으로 사슴들이 뛰어옵니다! 아래는 제가 쏠 테니 물살만 붙들어 주십시오!’, `intactNotHolding`은 ‘바위길로 사슴들이 치고 올라옵니다! 진에 닿기 전에 먼저 끊겠습니다!’, `broken`은 ‘주박목은 끊었습니다! 물길 쪽으로 올라오는 사슴들만 마저 막겠습니다!’다. 71546467의 diff는 각 명사만 ‘짐승들’로 교정했다. 원문과 문자상 차이가 있으며 새 문구의 별도 사용자 승인으로 취급하지 않는다. 각각 주박목 미파괴/의식 활성, 미파괴/의식 비활성, 파괴 후 분기이며 화자·행동·행 수·메타데이터·분기 조건은 동일하다.
+- 현재 `tools/map-forge/stage5-encounters.mjs` 및 `shared/data/campaign.json`은 hound1+ghost1, `shared/runtime/encounters.js`의 기존 finite-wave doubling 후 실제 새 전투는 hound2+ghost2다. 기존 경고도 ‘짐승과 혼불’, 등장 안내도 ‘산개와 떠도는 혼’이다. 따라서 사냥개를 사슴으로 부르는 종 불일치를 고치는 근거는 있으며 혼까지 동물이라고 재분류하거나 증원 종류를 바꾼 것은 아니다. 승인 원문의 엄호·의식 유지·후속 방어 의미는 유지한다. 원문 자체나 가드를 바꿔 검사를 통과시키지 않았다.
+- 최종 게임 소스에서 `npm run build` exit 0. 실제 호출은 `node tools/stage31/check-release.mjs && node workshop/build.mjs`; 출력은 `Stage31: production evidence present and current. This is not automatic art/fun approval.` 및 `Built Game, Workshop and the direct Playtest document with shared external modules`. legacy 허용 분기가 아니라 현행 production package·runtime digest·evidence 검사를 통과했다. `tools/stage31/`, `tests/app-regression-helpers.mjs`, `game/tests/helpers.mjs`, 엔진/런타임은 기준 master 대비 diff 없음. 이 빌드는 새로운 31장 브라우저 완주나 미감 승인 증거는 아니다. 상세 대조와 build.log는 `_local/reports/stage5-mobile-entry-20261105/`에 보존한다.
