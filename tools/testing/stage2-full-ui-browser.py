@@ -7,6 +7,7 @@ from playwright.sync_api import sync_playwright
 sys.path.insert(0,str(Path(__file__).resolve().parents[2]/'tests'))
 from browser_support import launch
 OUT=Path(os.environ.get('HONRO_STAGE2_OUT','_local/reports/stage02-current/full-ui'));OUT.mkdir(parents=True,exist_ok=True)
+TOUCH=os.environ.get('HONRO_STAGE2_TOUCH')=='1'
 URL=os.environ.get('HONRO_QA_URL','http://127.0.0.1:8842/HONRO.html')
 R={'method':'Real keyboard movement/aim/charge/drop and pointer dialogue/defend; ordinary production animation loop. Isolated copy used only for shot planning. Legal prior-stage fixture, not campaign continuity or human fun approval.','source':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'actions':[],'turns':[],'dialogues':[],'escort':[],'errors':[],'passed':False}
 STATE='''()=>{const a=HonroApp,e=a.engine,b=e?.b,u=e?.active,c=e?.unit('objective');const unit=v=>({id:v.id,x:v.x,y:v.y,hp:v.hp,dead:!!v.dead,move:v.moveLeft,ground:e.grounded(v),angle:v.angle,facing:v.facing,speed:v.walkSpeed,support:e.contactSurface(v.x,v.y-4,v.y+5)?.t.id});return {screen:a.screen,can:a.canInput(),done:a.done,dialogue:a.dialogue?{id:a.dialogue.id,index:a.dialogue.index,line:a.dialogue.lines[a.dialogue.index]}:null,round:b?.round,phase:b?.phase,side:b?.side,shot:b?.shot,u:u?unit(u):null,car:c?unit(c):null,queue:b?.queue,allyQueue:b?.honroState.allyQueue,pause:b?.honroState.carriagePauseUntilRound,threats:c?e.alive(1).filter(v=>Math.abs(v.x-c.x)<1150&&Math.abs(v.y-c.y)<650).map(unit):[],foes:b?e.alive(1).map(unit):[],flags:b?.honroState.flags};}'''
@@ -15,11 +16,37 @@ route=[(1600,'left-tree-branch-upper',False),(1100,'left-tree-branch-upper',True
 started=time.monotonic();last_dialogue=None;last_escort=None;page=None
 
 def save(): (OUT/'result.json').write_text(json.dumps(R,ensure_ascii=False,indent=2))
-def state(): return page.evaluate(STATE)
+def state():
+ s=page.evaluate(STATE)
+ if TOUCH:
+  audio=page.evaluate("""()=>{const a=HonroApp.audio,c=a?.context,m=a?.music,v=m?.current;if(a?.master&&c&&!window.qaMeter){window.qaMeter=c.createAnalyser();qaMeter.fftSize=256;a.master.connect(qaMeter);}let rms=0;if(window.qaMeter){const data=new Float32Array(qaMeter.fftSize);qaMeter.getFloatTimeDomainData(data);rms=Math.sqrt(data.reduce((n,x)=>n+x*x,0)/data.length);}return {state:c?.state,time:c?.currentTime,playCount:a?.playCount,voices:a?.voices?.size,rms,bgm:v?{time:v.currentTime,paused:v.paused,src:v.currentSrc,ready:v.readyState,error:v.error?.message,volume:v.volume}:null,musicErrors:m?.errors};}""")
+  R.setdefault('audio',[]).append(audio)
+ return s
+
+def press(locator):
+ if TOUCH:locator.tap()
+ else:locator.click()
+
+def touch(selector,dx,dy,ms):
+ box=page.locator(selector).bounding_box();assert box,selector
+ x,y=box['x']+box['width']/2,box['y']+box['height']/2
+ c=page.context.new_cdp_session(page)
+ try:
+  c.send('Input.dispatchTouchEvent',{'type':'touchStart','touchPoints':[{'x':x,'y':y}]})
+  if dx or dy:c.send('Input.dispatchTouchEvent',{'type':'touchMove','touchPoints':[{'x':x+dx,'y':y+dy}]})
+  page.wait_for_timeout(ms)
+ finally:c.send('Input.dispatchTouchEvent',{'type':'touchEnd','touchPoints':[]});c.detach()
+
 def log(op,**kw):
  row={'op':op,'elapsed':round(time.monotonic()-started,2),**kw};R['actions'].append(row)
  with (OUT/'actions.jsonl').open('a') as f:f.write(json.dumps(row,ensure_ascii=False)+'\n')
 def hold(key,ms):
+ if TOUCH:
+  if key=='Space':touch('#fire',0,0,ms)
+  else:
+   axes={'ArrowLeft':(-40,0),'ArrowRight':(40,0),'ArrowUp':(0,-40),'ArrowDown':(0,40)}
+   dx,dy=axes[key];touch('#joystick',dx,dy,ms)
+  return
  page.keyboard.down(key)
  try:page.wait_for_timeout(ms)
  finally:page.keyboard.up(key)
@@ -38,8 +65,8 @@ def ready():
    d=s['dialogue'];key=(d['id'],d['index'],str(d['line']))
    if key!=last_dialogue:R['dialogues'].append({'round':s['round'],**d});last_dialogue=key
    nxt=page.locator('[data-action="dialogue-next"]:visible')
-   if nxt.count() and nxt.last.is_enabled():nxt.last.click()
-   else:page.keyboard.press('Enter')
+   if nxt.count() and nxt.last.is_enabled():press(nxt.last)
+   elif not TOUCH:page.keyboard.press('Enter')
    page.wait_for_timeout(160);continue
   if s.get('phase') in ['won','lost']:return False
   if s['can'] and s['u'] and s['u']['ground']:return True
@@ -56,7 +83,7 @@ def move_to(x,tolerance=12):
   after=state()['u'];stuck=stuck+1 if abs(after['x']-u['x'])<.5 else 0
   if stuck>=3 and after['ground']:
    if jumps>=3:break
-   page.keyboard.press('Control');jumps+=1;stuck=0;page.wait_for_timeout(180)
+   press(page.locator('#jump')) if TOUCH else page.keyboard.press('Control');jumps+=1;stuck=0;page.wait_for_timeout(180)
  log('move',round=first['round'],target=x,start=u,end=state()['u'],jumps=jumps)
 def fire():
  p=page.evaluate(PLAN)
@@ -79,25 +106,44 @@ def fire():
  page.wait_for_timeout(80);after=state();ok=after['shot']>before['shot'];log('fire',round=before['round'],plan=p,before=before,after=after,accepted=ok);return ok
 try:
  with sync_playwright() as w:
-  browser=launch(w);page=browser.new_page(viewport={'width':1440,'height':900});page.on('pageerror',lambda e:R['errors'].append(str(e)))
+  browser=launch(w);page=browser.new_page(viewport={'width':844,'height':390} if TOUCH else {'width':1440,'height':900},is_mobile=TOUCH,has_touch=TOUCH);page.on('pageerror',lambda e:R['errors'].append(str(e)))
+  page.add_init_script("window.qaInputs={keys:[],pointers:[],touches:0};document.addEventListener('keydown',e=>qaInputs.keys.push(e.code),true);document.addEventListener('pointerdown',e=>qaInputs.pointers.push({type:e.pointerType,trusted:e.isTrusted,target:e.target.id||e.target.closest('[data-action]')?.dataset.action}),true);document.addEventListener('touchstart',()=>qaInputs.touches++,true);" )
   page.goto(URL);page.wait_for_function('window.HonroApp',timeout=60000)
   fixture=json.loads(Path('tests/fixtures/act1-art/stage02-entry.json').read_text());R['fixture']=fixture['scope']
-  page.evaluate('(p)=>localStorage.setItem("honro-first-act-profile-1",JSON.stringify(p))',fixture['profile']);page.reload();page.wait_for_function('window.HonroApp');page.get_by_role('button',name='여정 이어가기',exact=True).click()
+  page.evaluate('(p)=>localStorage.setItem("honro-first-act-profile-1",JSON.stringify(p))',fixture['profile']);page.reload();page.wait_for_function('window.HonroApp');
+  if TOUCH:
+   R['method']='Touch-only gameplay: CDP touchStart/move/end joystick/fire and locator.tap buttons; no keyboard/mouse calls. Ordinary RAF. Browser reload is navigation, not a game-state import.'
+   press(page.get_by_role('button',name='설정',exact=True));press(page.locator('[data-action="settings-page"][data-id="sound"]'))
+   for selector in ['#setting-sound','#setting-music']:
+    if not page.locator(selector).is_checked():press(page.locator(selector))
+   press(page.locator('#modal .menu-close'));R['soundSettings']=page.evaluate('HonroApp.profile.settings')
+  press(page.get_by_role('button',name='여정 이어가기',exact=True))
   for _ in range(300):
    s=state()
    if s.get('car'):break
-   if s['dialogue']:page.keyboard.press('Enter')
+   if s['dialogue']:
+    nxt=page.locator('[data-action="dialogue-next"]:visible')
+    if TOUCH:
+     if nxt.count() and nxt.last.is_enabled():press(nxt.last)
+    else:page.keyboard.press('Enter')
    else:
     enter=page.locator('[data-action="journey-enter"]:visible')
-    if enter.count():enter.first.click()
+    if enter.count():press(enter.first)
    page.wait_for_timeout(150)
   assert ready();R['initial']=state();page.screenshot(path=str(OUT/'entry.png'))
-  idx=0;first=True;seen=set()
+  idx=0;first=True;seen=set();resumed=False
   for action in range(130):
    if not ready():break
    s=state()
    if s['round'] not in seen:
     seen.add(s['round']);R['turns'].append(s);print('round',s['round'],'route',idx,'hero',round(s['u']['x']),round(s['u']['y']),'car',round(s['car']['x']),'foes',len(s['foes']),flush=True);save()
+   if TOUCH and s['round']>=6 and not resumed:
+    press(page.locator('[data-action="pause"]'));before=state();R['inputBeforeReload']=page.evaluate('qaInputs');page.screenshot(path=str(OUT/'touch-before-reload.png'))
+    page.reload();page.wait_for_function('window.HonroApp');press(page.locator('[data-action="continue"]:visible').first);assert ready();after=state()
+    assert before['round']==after['round'] and before['flags']==after['flags']
+    for actor in ['u','car']:
+     for field in ['x','y','hp','move']:assert abs(before[actor][field]-after[actor][field])<1,(actor,field,before[actor],after[actor])
+    R['resume']={'before':before,'after':after,'method':'touch pause; browser reload navigation/pagehide autosave; touch Continue; no profile injection'};resumed=True;s=after;page.screenshot(path=str(OUT/'touch-after-reload.png'));save()
    if first:
     first=False
     if fire():continue
@@ -106,7 +152,7 @@ try:
     if s['dialogue']:continue
     if s['u']['ground'] and abs(s['u']['x']-x)<18 and s['u']['support']==support:
      log('route',index=idx,state=s)
-     if drop:page.locator('[data-action="drop"]').click();log('drop',index=idx)
+     if drop:press(page.locator('[data-action="drop"]'));log('drop',index=idx)
      idx+=1
      if not drop and idx in [1,3] and fire():continue
      if s['u']['move']>40:continue
@@ -116,10 +162,14 @@ try:
     if s['u']['move']>40:move_to(goal)
    if not ready():break
    if not fire():
-    s=state();page.locator('[data-action="defend"]').click();log('defend',state=s)
+    s=state();press(page.locator('[data-action="defend"]'));log('defend',state=s)
   R['final']=state();R['routeIndex']=idx;R['passed']=R['final']['phase']=='won' and not R['errors'];page.screenshot(path=str(OUT/'terminal.png'))
   # Save via ordinary pause menu when unfinished; victory persistence is automatic.
-  R['profile']=page.evaluate('HonroApp.profile');browser.close()
+  R['profile']=page.evaluate('HonroApp.profile');R['inputFinal']=page.evaluate('qaInputs')
+  if TOUCH:
+   assert resumed
+   for audit in [R['inputBeforeReload'],R['inputFinal']]:assert not audit['keys'] and all(e['type']=='touch' and e['trusted'] for e in audit['pointers']) and audit['touches']>0,audit
+  browser.close()
 except Exception:
  R['failure']=traceback.format_exc()
  if page:
