@@ -46,7 +46,7 @@ export function* rankEnemyQueueSteps(e:Engine,units:Unit[]):Generator<void,Enemy
     for(const p of poses){if(yield* traceTravelSteps(e,unit,unit,p,Math.min(610,unit.moveLeft))){tier=1;break;}}
     // A nearby hero above the west gallery needs the planner's two-leg climb;
     // four direct probes alone must not classify that paid route as immobile.
-    if(!tier&&ritualBeast){const plan=yield* planEnemyMoveSteps(e,unit,target),end=plan?.path.at(-1);if(end&&Math.hypot(end.x-target.x,end.y-target.y)<approachDistance-24)tier=1;}
+    if(!tier&&ritualBeast){const plan=yield* planEnemyMoveSteps(e,unit,target),end=plan?.path.at(-1);if(end&&(plan?.intent==='서쪽 계단 우회'||Math.hypot(end.x-target.x,end.y-target.y)<approachDistance-24))tier=1;}
    }
   }}
   rows.push({unit,tier,distance,band:Math.floor(distance/240)});yield;
@@ -547,6 +547,28 @@ export function* planEnemyLuresSteps(e:Engine):Generator<void,boolean,unknown>{
  return plans.some(v=>!!v.plan);
 }
 export function planEnemyMove(e:Engine,u:Unit,target:Unit){return finishPlanning(planEnemyMoveSteps(e,u,target));}
+/** This authored gallery needs a short downhill detour before its stairs.
+ * Only stranded ritual beasts use it; every leg spends ordinary locomotion. */
+function* stage10GalleryDetour(e:Engine,u:Unit,target:Unit):Generator<void,AIMovePlan|undefined,unknown>{
+ const b=e.b as any;
+ if(b.honroStage!==10||b.honroCustom||!b.honroState?.sodanCoop||!beastKind(u)||!b.honroState.finaleWaves?.some((w:{units:string[]})=>w.units.includes(u.id)))return;
+ if(e.contactSurface(target.x,target.y-4,target.y+5)?.t.id!=='west-gallery'||u.y<target.y+230)return;
+ const step=e.b.terrain.find(t=>t.id==='west-step'&&!t.broken),link=e.b.terrain.find(t=>t.id==='gallery-link-west'&&!t.broken),gallery=e.b.terrain.find(t=>t.id==='west-gallery'&&!t.broken);
+ if(!step||!link||!gallery)return;
+ const support=e.contactSurface(u.x,u.y-4,u.y+5)?.t.id;
+ if(!['outer-yard','west-step'].includes(support||'')||u.x>gallery.x+gallery.w+60)return;
+ const x=link.x+link.w+40,ground=e.surface(x,u.y-300,u.y+300);
+ if(!ground||ground.t.id!=='outer-yard')return;
+ const points=[{x,y:ground.y},{x:step.x+step.w-27,y:topAt(step,step.x+step.w-27)},{x:link.x+link.w-27,y:topAt(link,link.x+link.w-27)},{x:link.x+link.w-27,y:topAt(gallery,link.x+link.w-27)}];
+ let from={x:u.x,y:u.y},budget=Math.min(u.moveLeft,610);const path:AIMovePlan['path']=[];
+ // Try the highest reachable step first; then at most one more paid leg.
+ for(let i=points.length-1;i>=0;i--){if(support==='west-step'&&i<2)continue;const leg=yield* traceTravelSteps(e,u,from,points[i],budget);if(!leg)continue;
+  path.push({...points[i],jump:leg.jump,jumpX:leg.jumpX});budget-=leg.cost;from=points[i];
+  if(i+1<points.length){const next=yield* traceTravelSteps(e,u,from,points[i+1],budget);if(next)path.push({...points[i+1],jump:next.jump,jumpX:next.jumpX});}break;
+ }
+ if(!path.length)return;
+ return {round:b.round,targetId:target.id,path,index:0,elapsed:0,stalled:0,lastX:u.x,lastY:u.y,jumping:false,intent:'서쪽 계단 우회'};
+}
 export function* planEnemyMoveSteps(e:Engine,u:Unit,target:Unit,attackFailed=false):Generator<void,AIMovePlan|undefined,unknown>{
  const lure=lureStakeFor(e,u);if(lure)return yield* planLuredMove(e,u,target,lure);
  if(flyingEnemy(u))return yield* planFlight(e,u,target,attackFailed);
@@ -587,6 +609,7 @@ export function* planEnemyMoveSteps(e:Engine,u:Unit,target:Unit,attackFailed=fal
   best=approach.sort((a,b)=>Math.hypot(a.x-target.x,a.y-target.y)-Math.hypot(b.x-target.x,b.y-target.y)||a.cost-b.cost)[0];
  }
  const before=Math.hypot(u.x-target.x,u.y-target.y),after=Math.hypot(best.x-target.x,best.y-target.y);
+ if(after>=before-24){const detour=yield* stage10GalleryDetour(e,u,target);if(detour)return detour;}
  // A distant authored pursuer waits for a friendly body to clear the route
  // rather than alternating retreats. Hazard escape and wounded retreat remain.
  if((u as any).honroPursuitSupports?.length&&forceAdvance&&u.hp/u.maxHp>=.32&&after>=before-4&&dangerAt(e,u,best)>=dangerAt(e,u,start))return;
