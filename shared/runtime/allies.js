@@ -47,7 +47,11 @@ function tick(app,e,dt,transition){const b=e.b,hs=b.honroState,q=hs.allyQueue;if
   b.reviewDamage={};b.reviewFocus=undefined;
   q.phase='move';q.elapsed=0;q.started=false;const support=u.allyRole==='daoist'||u.allyRole==='medium';u.moveLeft=u.maxMove=u.allyRole==='guard'?1400:support?1250:1180;u.walkSpeed=u.allyRole==='guard'?700:support?630:560;u.focus=u.maxFocus=180;
   const own=coalition(e),hero=e.heroesAlive().sort((a,c)=>c.x-a.x)[0],car=e.unit('objective'),foes=e.actors(1);
-  const nearest=foes.slice().sort((a,c)=>Math.hypot(a.x-u.x,(a.y-u.y)*.8)-Math.hypot(c.x-u.x,(c.y-u.y)*.8))[0];q.targetId=nearest?.id;
+  // On the authored Stage2 escort, the sword guard must not chase a roost
+  // beyond even his sword-wave vertical reach. Keep ranged companions and the
+  // carriage threat/pace rules intact; the guard instead scouts ahead of it.
+  const pursuit=u.allyRole==='guard'&&car&&G.HonroStage2Airborne?.active(b)?foes.filter(v=>Math.abs(v.y-u.y)*.8<720):foes;
+  const nearest=pursuit.slice().sort((a,c)=>Math.hypot(a.x-u.x,(a.y-u.y)*.8)-Math.hypot(c.x-u.x,(c.y-u.y)*.8))[0];q.targetId=nearest?.id;
   q.anchor=hero?.x||u.x;
   if(u.allyRole==='porter'){const threat=foes.filter(v=>car&&Math.abs(v.x-car.x)<1150&&Math.abs(v.y-car.y)<650).length;const block=b.terrain.find(t=>t.honroBlocker&&!t.broken&&car&&t.x>car.x-35&&t.x<car.x+900);q.blockerId=block?.id;const paused=(hs.carriagePauseUntilRound||-1)>=b.round;const escortFront=Math.max(car?.x||0,...own.filter(v=>v.honroAlly&&!v.honroCivilian&&v.allyRole!=='porter').map(v=>v.x));const pace=b.honroStage===2?escortFront+80:(hero?.x||escortFront)+120;q.carTarget=car?(paused||threat?car.x:Math.max(car.x,Math.min(car.x+560,pace+60,block?block.x-105:(b.honroEscortGoalX??b.width-180)))):u.x;q.dest=car?Math.max(45,Math.min(q.carTarget-95,car.x+420)):u.x;}
   else if(u.allyRole==='healer'||u.allyRole==='ritualist'){const hurt=own.filter(v=>!v.honroCivilian||v.hp<v.maxHp*.7).sort((a,c)=>a.hp/a.maxHp-c.hp/c.maxHp)[0];q.targetId=hurt?.id;q.dest=(hurt?.x||hero?.x||u.x)-100;}else if(u.allyRole==='daoist'||u.allyRole==='medium'){q.targetId=nearest?.id;q.dest=nearest?nearest.x-Math.sign(nearest.x-u.x||1)*980:(car?.x||hero?.x||u.x)-180;}
