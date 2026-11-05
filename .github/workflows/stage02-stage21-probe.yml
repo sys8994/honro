@@ -1,4 +1,5 @@
 # Fresh evidence for the integrated Stage2/Stage21 runtime; prior evidence is not reused.
+# Revalidate the final Stage21 cleanup instruction (8219caa9) on the combined runtime.
 name: Verify integrated Stage2 Stage21 exact-runtime Stage31 evidence
 on:
   push:
