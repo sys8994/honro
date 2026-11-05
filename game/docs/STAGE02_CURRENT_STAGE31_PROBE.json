@@ -1,7 +1,7 @@
 {
-  "sourceCommit": "b0b2e8762fa9c0be9f14de7f40d74c7330ea0d7d",
-  "sourceRunId": 42019947096,
-  "runtimeSha256": "b5a1da2eeb92438f02cda8bb1ff89b66f11bc4253435b1ca66dcb3bfbdd9b998",
+  "sourceCommit": "586de1566ade5ecff6487e9ad97c2c5f4aea47b2",
+  "sourceRunId": 42024466271,
+  "runtimeSha256": "fb467db1bcfb60197a73820a0b182e57a110255cf0444ce385b4394de9e5e27a",
   "fingerprint": "draft-v1-90b5493a-3537083",
   "focused": [
     {
@@ -26,9 +26,9 @@
     "scope": "tool-assisted normal-input Stage31 battle and boarding from synthetic campaign entry",
     "final": {
       "stage": 31,
-      "round": 14,
+      "round": 12,
       "phase": "won",
-      "active": "knight",
+      "active": "occultist",
       "dialogue": false,
       "can": false,
       "boat": {
@@ -40,18 +40,18 @@
       "heroes": [
         {
           "id": "archer",
-          "x": 6499.734659347129,
+          "x": 6491.327575794687,
           "y": 3366,
-          "hp": 1724,
+          "hp": 1674,
           "dead": false,
           "acted": false,
-          "moveLeft": 2732,
+          "moveLeft": 372.18814605326145,
           "canDrop": false,
           "grounded": true
         },
         {
           "id": "mage",
-          "x": 6512.811789691556,
+          "x": 6494.017470024554,
           "y": 3366,
           "hp": 1868,
           "dead": false,
@@ -62,18 +62,18 @@
         },
         {
           "id": "knight",
-          "x": 6493.829911301165,
+          "x": 6499.179851897231,
           "y": 3366,
-          "hp": 1276,
+          "hp": 1988,
           "dead": false,
           "acted": false,
-          "moveLeft": 3122.2465839864453,
+          "moveLeft": 2460.4006479582335,
           "canDrop": false,
           "grounded": true
         },
         {
           "id": "occultist",
-          "x": 6490.653519335912,
+          "x": 6485.57596780166,
           "y": 3366,
           "hp": 1928,
           "dead": false,
