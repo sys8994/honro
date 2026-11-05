@@ -5324,3 +5324,7 @@ Title `여정 이어가기` could choose an older hub before honoring a saved di
 - 실제 UI: `tests/stage5-normal-input-browser.py <observed-save.json> [output-directory]`는 관측 저장을 Chromium에 읽혀 1440×900/390×844/844×390에서 키보드 또는 실제 touch 이동, 방어, 포인터 충전 발사, 공중 증원 안내 다음 버튼, 일시정지·내보내기·reload/Continue를 확인한다. 배우 위치/HP/기력/이동력/사망 및 임무 상태 동일, pageerror 0. 정상 승리 직후 export를 별도로 읽어 데스크톱/모바일에서 후속 대사 5행을 실제 다음 버튼으로 읽고 5장 완료 기록을 확인했다.
 - 검사: stage5-waterfall-continue 통과. stage5-waterfall-story의 `storySummary.includes('휘겸이 찾으러 간')`는 원본 master helper/test로도 같은 실패라 기존 기대 문자열 불일치로 구분했다. 타입/빌드/문법 검사와 실제 UI 결과는 별개다. 증거는 `_local/reports/stage5-review-20261105/` 및 첫 전술 `_local/reports/stage5-foundation-20261026/final-normal/`에 있다.
 - 한계: 보존 App R13 원본은 이 체크아웃에 없어 해당 저장을 그대로 재현하지 못했다. native 완주는 DOM/시계/렌더 대역이며 전체 브라우저 전투 완주와 구분한다. 실물 휴대폰·전체 장 회귀·미감/재미 최종 승인은 미확인. 상부 발판 2240 지점은 아래 착지 시 제자리 도약 후 다음 발판으로 가야 하며 기존 route metadata만 따르는 검사에는 추가 도약이 필요했다. '설오만 상부 물리 접근'을 확정 규칙으로 적용하지 않았다. 2·3·4·7·16·21·35장과 다른 작업 보존, 별도 브랜치만 push, master 병합/배포 없음.
+
+## 2026-11-05 — 5장 서사 검사와 승인 원문 대조
+
+`stage5-waterfall-story`가 10월23일 승인 편집 전의 `휘겸이 찾으러 간`, `진에 다가가기 전에`, `물살을 붙드는 동안`, `주박목은 부쉈지만`을 요구했다. 승인 원문 `game/docs/story/user-script-20261023/approved-patch.json`의 `/stages/5/storySummary`, `/stages/5/outro/3/1`, 세 `/scenes/5.lower-beasts.* /0/1` 필드와 현행 전달 문자열을 직접 대조한다. 요약은 부상자 운반대, 종료 대사는 휘겸의 행선지를 유지한다. 기존 저장/사용자 맵 보호, 의식 전/유지/파괴 후 조건 선택, 화자/금지 구용어 검사도 유지한다. `node tests/stage5-waterfall-story.mjs` 5개 계약 통과. 게임 원문·조건·가드는 이 수정에서 변경하지 않았다.
