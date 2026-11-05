@@ -1,5 +1,13 @@
 # Stage35 · 대숲의 옛길 — production candidate
 
+## Historical candidate, not the current campaign
+
+The recipes and six-foe input tape below describe the earlier production candidate. They are not the current Stage35 acceptance record. The current authored campaign source is `shared/data/act4/world.json` (materialized by `node tools/act4-source/world-source.mjs materialize`); select its stage with `metadata.stageId === 35`. At master `2657fe659996e76bacc82b4c321690e07a43b82f` it has 30 enemies, four heroes, `approved35-*` terrain, and a 4608×3072 play area. Do not replay the earlier six-foe tape against that map and label its result current campaign completion.
+
+The current exit uses authored `design.act4.coords.completeX` / `completeYMax`. `act4-events.js` requires quiet combat, all **living** party members beyond those bounds, and an actionable grounded actor to interact. `act4-campaign.js` does not require all four heroes, or the archer specifically, to survive. Keep controlled end-condition fixtures separate from normal-input completion.
+
+`tests/act4-stage35-blocked-shot.mjs` checks fire/impact provenance, visibility, configuration and restoration with DOM/Canvas doubles. It does not establish current browser traversal, enemy clearance, exit gathering, or art/fun acceptance. Compare the actual loaded stage and runtime before reusing any preserved evidence.
+
 ## Result and boundaries
 
 - Asymmetric official clearings/ditch; original central x2820–3900 geometry, unit IDs, encounters, event IDs, and physical bamboo/wall collision preserved.
