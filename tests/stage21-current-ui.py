@@ -46,7 +46,7 @@ with serve_game() as base,sync_playwright() as pw:
   for turn in range(200):
    if not ready():break
    start=state()
-   if start['round']>20:record('round-limit');break
+   if start['round']>30:record('round-limit');break
    if start['city'].get('started'):
     # Normal thinking time lets legal escort motion use its existing budget.
     before=start['city'];page.wait_for_timeout(2500)
@@ -60,6 +60,9 @@ with serve_game() as base,sync_playwright() as pw:
     after=page.evaluate('HonroApp.engine.b');result['resume'].append({'roundBefore':before['honroBattle']['round'],'roundAfter':after['round'],'growthPreserved':before['honroBattle']['heroes']==after['heroes'],'objectivesPreserved':before['honroBattle']['honroState']['act23v4']['done']==after['honroState']['act23v4']['done'],'residentDistanceBefore':before['honroBattle']['honroState']['act23v4']['city']['actors']['act3-resident']['distance'],'residentDistanceAfter':after['honroState']['act23v4']['city']['actors']['act3-resident']['distance']});page.keyboard.press('Escape');saved=True;ready();start=state();record('resume')
    goal=page.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b,V=HonroAct23V4,s=V.current(b),u=e.active,city=HonroAct23V4City.memory(b);if(s.id==='city-exit')return V.marker(b,s.id).x;if(!city.started){const t=(s.target&&e.unit(s.target))||e.unit(s.id)||V.marker(b,s.id),foe=e.alive(1).filter(v=>Math.hypot(v.x-u.x,v.y-u.y)<1050).sort((a,z)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(z.x-u.x,z.y-u.y))[0];if(foe&&Math.abs(foe.x-t.x)<700)return foe.x+(u.x<foe.x?-1:1)*(u.cls==='knight'?100:430);return t.x;}const req=new Set([...b.honroV4CitySpec.localIds,...(city.pressure.ids||[])]),threat=e.alive(1).filter(t=>req.has(t.id)).sort((a,z)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(z.x-u.x,z.y-u.y))[0];if(threat)return threat.x+(u.x<threat.x?-1:1)*(u.cls==='knight'?110:260);return {archer:1400,mage:1500,knight:2850,occultist:3030}[u.cls];}''')
    move(goal)
+   # Read the displayed escort blockage, then use normal movement to clear our body.
+   retreat=page.evaluate("""()=>{const a=HonroApp,e=a.engine,b=e.b,u=e.active,c=HonroAct23V4City.memory(b);if(!c.started)return null;for(const [id,m]of Object.entries(c.actors||{})){const n=e.unit(id);if(n&&!m.safe&&['body-or-terrain','terrain'].includes(m.blocked)&&Math.abs(n.y-u.y)<110&&u.x>=n.x-20&&u.x<n.x+180)return n.x-200;}return null;}""")
+   if retreat is not None:move(retreat);record('clear-escort-body')
    if not ready():break
    if state()['active']!=start['active']:continue
    interact=page.evaluate('''()=>{const a=HonroApp,V=HonroAct23V4,s=V.current(a.engine.b);return s?.kind==='v4-city-rescue'&&!HonroAct23V4City.memory(a.engine.b).started&&V.eligibility(a,V.marker(a.engine.b,s.id)).ok;}''')

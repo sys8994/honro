@@ -5378,3 +5378,5 @@ Title `여정 이어가기` could choose an older hub before honoring a saved di
 - 재개/턴 전환 직후 배너가 살아 있는 동안 목표 도움말을 열면 z-index105 배너가 도움말 본문을 덮었다. 기존 메뉴용 숨김 규칙에 `.battle-help-dialog`를 추가했다. 영향 파일은 `game/src/controls.css` 한 줄이며 배너 생성/만료/전투 타이머는 변경하지 않는다.
 - `tests/battle-help-turn-banner.py`:1·7·21장×360px/1280px 합성 stage/turn fixture에서 기존 겹침 재현, 도움말 열 때 숨김, 닫을 때 살아 있는 배너 복귀, 만료 후 숨김6건 통과. 전투 완주 증거가 아니다. 별도로 실제21장 저장의360×800/390×844/844×390 터치 이동·전체 목표 도움말·pause/save3건 통과, 오류0. 실제 좁은 세로 화면의 겹침 해소를 직접 확인했다.
 - 로컬 증거 `_local/reports/stage21-polish/{help-banner,mobile-help-fixed}/`. 기존 소스 대체 도구에 manifest.styles의 정확한 CSS 파일 대체를 추가했으며 정식 배포 파일·빌드 가드·31장 probe는 변경하지 않았다. 첫 진입 전투 실행은 CSS 대체 생성 전 시작되어 기존 CSS를 사용한다. 그 전투 증거와 이 CSS 집중 회귀 증거는 구분한다.
+
+- 첫 진입 후속 검수기는 현재 actor가 NPC 바로 앞을 막을 때 표시 원인을 읽고 정상 왼쪽 이동으로 통로를 비우도록 보완했다. 완주 기록을 얻기 위한 실행 상한은30턴으로 늘렸지만 최종20턴 assertion은 유지해 목표 초과를 통과로 바꾸지 않는다. 이는 검수기 전략 변경이며 게임 이동/HP/좌표 보정이 아니다. 실행 중 도구를 중복 시작하지 않는다.
