@@ -5333,7 +5333,7 @@ Title `여정 이어가기` could choose an older hub before honoring a saved di
 
 ### 21장 실제 브라우저 최종 검수
 
-- 정식 빌드 `2c056f10dfdb6ea7abe53be2d59986f1d026ac7d`에서 Chromium keyboard/pointer 정상 전투·출구 R19 완료, pageerror0. 수레R1, 구출 상호작용R2, 필수 적·후발2체 정리R16, 호송R18, 출구R19. 곽진2195.91px·주민988.82px 실제 이동. R17 저장·재접속은 성장/목표/라운드 및 주민235.166963px 보존. 4인 생존은 관측 결과이며 성공 조건으로 추가하지 않았다.
+- 정식 빌드 `2c056f10dfdb6ea7abe53be2d59986f1d026ac7d`에서 Chromium keyboard/pointer 정상 전투·출구 R19 완료, pageerror0. 수레R1, 구출 상호작용R2, 필수 적·후발2체 정리R17, 호송R18, 출구R19. 곽진2195.91px·주민988.82px 실제 이동. R17 저장·재접속은 성장/목표/라운드 및 주민235.166963px 보존. 4인 생존은 관측 결과이며 성공 조건으로 추가하지 않았다.
 - 이 기록은 동일한 원래 합성 진입 저장으로 시작한 실제 UI 플레이 R1–12(`ui-play-v3`)와 그 게임이 정상 자동 저장한 R12를 재개한 `ui-play-v6`의 연결 기록이다. 최초부터의 무중단 플레이나 사람의 숙련도·성공률 증거는 아니다. 최초 진입은1–20장 보상 ledger fixture이며, 전 캠페인 완주는 아니다. HP/좌표/이동력/보상 외부 보정 없이 실제 키보드 이동·점프·충전, 포인터 조준, E 상호작용, F 방어, Continue를 사용했다. live battle을 변경하지 않는 prediction 보조는 사용했다.
 - 검수기 한계 분리: R12에서 작은 조준 오차를 무한 재시도하던 방식은 bounded 진행으로 교정했다. 같은 R12 저장의 고정 배치 정책(`ui-play-v4`)은 R21에도 호송 미완료였다. `shotViable`의 전체 적 피해를 선택한 필수 적 명중으로 오해한 점과 먼 고정 사격 위치가 원인이다. 최종 정책은 실제 예측 충돌 대상/폭발 범위와 ±0.12° 오차를 확인하고 필수 적 쪽으로 정상 이동한 후, 적을 정리하면 호송 통로를 비운다. 고정 배치+필수 명중만 강제한 `ui-play-v5`는 방어 반복으로 폐기했다. 게임 수치·지형·승리조건 변경으로 이 문제를 숨기지 않았다.
 - `tests/stage21-current-ui.py`와 `stage21-current-plan.js`가 실제 조작 검수기다. 최종 연결 실행: `HONRO_STAGE21_ENTRY=_local/reports/stage21-current/ui-play-v3/continue-entry.json HONRO_STAGE21_UI_OUT=_local/reports/stage21-current/ui-play-v6 python tests/stage21-current-ui.py`. 원본 최초 진입 기본값은 `clear-route/initial.json`; R12 진입 파일은 이전 실제 UI 결과의 profile/honroBattle을 수정 없이 그대로 포장한 것이다. 이 경로들은 비공개 로컬 증거이며 CI 필수 입력이 아니다.
