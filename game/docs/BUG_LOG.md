@@ -5316,3 +5316,10 @@ Title `여정 이어가기` could choose an older hub before honoring a saved di
 
 - Scope clarification after production call-site audit: `collect=true`/default is also used by `bell-anomaly.eligible` for protected-target cast planning and `beginOccultCast` for soul targets, not only HUD rendering. The guard intentionally does not require `app.selected` or aim phase; it prevents hypothetical `collect=false` and unavailable-skill contamination, not every possible collected probe. Existing cast/discovery semantics remain intact. AI/planning callers must use `collect=false` (or a detached Engine); point-requiring hypothetical planners should use a detached Engine. Native regression explicitly retains a collected, unselected, flight-phase call; this is a controlled call-contract fixture, not an actual cast/browser claim.
 - Revalidation: focused preview and reviewed14/16/18 native suites passed. Local genuine `npm run build` stopped at `check-release.mjs` with `Runtime changed after actual Engine probes.` Browser smoke is therefore not run on this source. Integration owner must regenerate measured Stage31 evidence for the combined source, pass the unchanged production build gate, then run `python tests/act23-v4-preview-observation-browser.py` against that final build. Existing af8c546a driver is syntax-checked only.
+
+
+### 5장 저장 접지 회귀의 옛 시작 좌표 교정 — 2026-11-05
+
+- `ground-contact-save.mjs`의 옛 평지 `(1467,2851)`은 현행 바닥보다 약62px 아래라 점프 전에 실패했다. 생산 접지/점프 결함과 분리했다.
+- 테스트 시작 높이를 현재 `valley-floor`에서 얻고 통나무 앞 보행→점프→경사 착지를 검증한다. 보행 진척·상승 속도·착지 지지면 단언을 추가하고 기존 저장 왕복·반복 불러오기·복원 후 발사를 유지했다. 제품·다른 장·가드는 변경하지 않았다.
+- 전체82조건 통과. 생산 Engine의 5장 점프를 임시 거절시킨 결함 주입에서는 `Stage5 supported actor must jump` 실패를 확인하고 원래 바이트로 복원했다. 격리 App/DOM 대역 검사이며 정상 캠페인 완주 증거가 아니다. [준비·검수 한계](STAGE3_PLAY_REVIEW_20261105.md).

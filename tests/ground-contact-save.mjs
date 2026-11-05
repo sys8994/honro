@@ -32,13 +32,20 @@ for(const cls of classes)for(const x of [1271,1275,1287.894154123141,1300,1328,1
  assert(q.e.grounded(q.u));assert(C.validTerrainContactPose(q.b.terrain,q.u),`${cls}/${x}: valid steep contact rejected`);
  const a=await roundTrip(q,`stage5 ${cls} steep x${x}`);assert(a.engine.grounded(a.engine.active));
 }
-// Reach the slope using ordinary engine movement, then call actual App export,
+// Walk the current lower bank and jump onto its sloped log, then call App export,
 // file-import handler and Continue. No position correction after initialization.
 for(const cls of classes){
- const q=fixture(5,cls);position(q.u,1467,2851);
- for(let i=0;i<240;i++){const x=q.u.x;q.e.move(-1,1/120);q.e.tick(1/120);if(Math.abs(x-q.u.x)<.001)break;}
- assert(q.e.jump(q.u));for(let i=0;i<30;i++){q.e.move(-1,1/120);q.e.tick(1/120);}for(let i=0;i<360;i++)q.e.tick(1/120);
- assert(q.u.x>1270&&q.u.x<1330);assert(q.e.grounded(q.u));const a=await roundTrip(q,`${cls} normal jump landing`);assert(a.engine.fire(base[cls],35,.35),'fire must remain available after App resume');
+ const q=fixture(5,cls),floor=q.b.terrain.find(t=>t.id==='valley-floor');position(q.u,1467,C.topAt(floor,1467));
+ assert(q.e.grounded(q.u));assert(C.validTerrainContactPose(q.b.terrain,q.u),'Stage5 start must be a legal current surface');
+ // The old walk-until-wall route belonged to the retired steep bank. Keep this
+ // approach on the current bank; walking itself must make real progress.
+ for(let i=0;i<30;i++){q.e.move(-1,1/120);q.e.tick(1/120);}
+ assert(q.u.x>1350&&q.u.x<1400,'Stage5 approach must walk left before jumping');
+ assert(q.e.jump(q.u),'Stage5 supported actor must jump');assert(q.u.vy<0&&q.u.jumping,'Stage5 jump must launch the actor');
+ for(let i=0;i<30;i++){q.e.move(-1,1/120);q.e.tick(1/120);}for(let i=0;i<360;i++)q.e.tick(1/120);
+ assert(q.u.x>1270&&q.u.x<1330);assert(q.e.grounded(q.u));assert(C.validTerrainContactPose(q.b.terrain,q.u));
+ const log=q.b.terrain.find(t=>t.id==='stage5-fallen-log');assert(Math.abs(q.u.y-C.topAt(log,q.u.x))<1,'Stage5 jump must land on the sloped log');
+ const a=await roundTrip(q,`${cls} normal jump landing`);assert(a.engine.fire(base[cls],35,.35),'fire must remain available after App resume');
 }
 for(const cls of classes)for(const kind of ['flat','one-way','tiny-seam','overlap','steep-overlap','clear-cave','near-wall','deep-floor','buried-wall','low-cave','thin-roof','falling','jumping']){
  const q=fixture(1,cls),{u}=q;let recover=false;
