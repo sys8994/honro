@@ -4,14 +4,15 @@ This is a mobile interaction smoke, not a second full combat completion.
 import json,hashlib,subprocess,os
 from playwright.sync_api import sync_playwright
 from browser_support import ROOT,launch,serve_game
+from stage21_source_preview import install_source_preview,source_preview_metadata
 source=ROOT/os.environ.get('HONRO_STAGE21_MOBILE_SAVE','_local/reports/stage21-current/ui-play-v6/moving-save.json')
-out=ROOT/'_local/reports/stage21-current/mobile-touch';out.mkdir(parents=True,exist_ok=True)
+out=ROOT/os.environ.get('HONRO_STAGE21_MOBILE_OUT','_local/reports/stage21-current/mobile-touch');out.mkdir(parents=True,exist_ok=True)
 profile=json.loads(source.read_text());results=[];errors=[]
 with serve_game() as base,sync_playwright() as pw:
  browser=launch(pw)
  for name,w,h in [('portrait',390,844),('landscape',844,390)]:
   context=browser.new_context(viewport={'width':w,'height':h},has_touch=True,is_mobile=True,device_scale_factor=1)
-  page=context.new_page();page.on('pageerror',lambda e:errors.append(str(e)))
+  page=context.new_page();install_source_preview(page);page.on('pageerror',lambda e:errors.append(str(e)))
   page.goto(base+'/HONRO.html');page.wait_for_function('!!globalThis.HonroApp');page.evaluate('p=>localStorage.setItem("honro-first-act-profile-1",JSON.stringify(p))',profile);page.reload();page.locator('[data-action="continue"]').tap();page.wait_for_function('HonroApp.engine?.b?.honroStage===21')
   for _ in range(120):
    if page.evaluate('!!HonroApp.dialogue'):page.locator('[data-action="dialogue-next"]').tap()
@@ -37,5 +38,5 @@ with serve_game() as base,sync_playwright() as pw:
   context.close()
  browser.close()
 assert not errors,errors
-(out/'result.json').write_text(json.dumps({'scope':__doc__,'sourceSaveSha256':hashlib.sha256(source.read_bytes()).hexdigest(),'servedSource':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'results':results,'errors':errors},ensure_ascii=False,indent=2))
+(out/'result.json').write_text(json.dumps({'sourcePreview':source_preview_metadata(),'scope':__doc__,'sourceSaveSha256':hashlib.sha256(source.read_bytes()).hexdigest(),'servedSource':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'results':results,'errors':errors},ensure_ascii=False,indent=2))
 print('PASS mobile touch movement, controls and pause/save',len(results))

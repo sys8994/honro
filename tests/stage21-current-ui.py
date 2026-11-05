@@ -6,6 +6,7 @@ import sys,os,json,time,hashlib,subprocess
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 from browser_support import ROOT,launch,serve_game
+from stage21_source_preview import install_source_preview,source_preview_metadata
 sys.path.insert(0,str(ROOT/'tools/act4-ci'))
 from precise_aim import aim_with_joystick
 entry_path=ROOT/os.environ.get('HONRO_STAGE21_ENTRY','_local/reports/stage21-current/clear-route/initial.json')
@@ -13,9 +14,9 @@ entry=json.loads(entry_path.read_text());out=ROOT/os.environ.get('HONRO_STAGE21_
 planner=(ROOT/'tests/stage21-current-plan.js').read_text()
 (out/'controller-plan.js').write_text(planner)
 (out/'controller-ui.py').write_text(Path(__file__).read_text())
-result={'scope':__doc__,'entrySha256':hashlib.sha256(entry_path.read_bytes()).hexdigest(),'servedSource':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'servedManifestSha256':hashlib.sha256((ROOT/'web/manifest.json').read_bytes()).hexdigest(),'plannerSha256':hashlib.sha256(planner.encode()).hexdigest(),'completed':False,'errors':[],'resume':[]};events=[]
+result={'sourcePreview':source_preview_metadata(),'scope':__doc__,'entrySha256':hashlib.sha256(entry_path.read_bytes()).hexdigest(),'servedSource':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'servedManifestSha256':hashlib.sha256((ROOT/'web/manifest.json').read_bytes()).hexdigest(),'plannerSha256':hashlib.sha256(planner.encode()).hexdigest(),'completed':False,'errors':[],'resume':[]};events=[]
 with serve_game() as base,sync_playwright() as pw:
- browser=launch(pw);page=browser.new_page(viewport={'width':1280,'height':800});page.on('pageerror',lambda e:result['errors'].append(str(e)))
+ browser=launch(pw);page=browser.new_page(viewport={'width':1280,'height':800});install_source_preview(page);page.on('pageerror',lambda e:result['errors'].append(str(e)))
  def state():return page.evaluate('''()=>{const a=HonroApp,e=a.engine,b=e.b,u=e.active,V=HonroAct23V4;return {stage:b.honroStage,round:b.round,side:b.side,phase:b.phase,active:u?.id,cls:u?.cls,x:u?.x,y:u?.y,angle:u?.angle,facing:u?.facing,moveLeft:u?.moveLeft,can:a.canInput(),grounded:u&&e.grounded(u),dialogue:!!a.dialogue,shots:b.shots,enemyHpSum:b.units.filter(v=>v.side===1&&!v.dead).reduce((n,v)=>n+v.hp,0),enemyUnits:b.units.filter(v=>v.side===1).map(v=>({id:v.id,hp:v.hp,dead:v.dead})),health:b.units.filter(v=>v.side===0&&!v.summoned).map(v=>({id:v.id,hp:v.hp,dead:v.dead})),objective:V.current(b)?.id,city:HonroAct23V4City.memory(b),done:a.done,objectiveText:document.querySelector('#objective-text')?.textContent};}''')
  def record(kind,extra=None):
   row={'kind':kind,'time':time.monotonic(),'state':state(),**(extra or {})};events.append(row)

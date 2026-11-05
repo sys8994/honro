@@ -5340,3 +5340,9 @@ Title `여정 이어가기` could choose an older hub before honoring a saved di
 - `tests/stage21-current-mobile.py`: 위 실제 R17 저장으로390×844/844×390 터치 이동, 이동도 소모, 조작부 화면 경계, 일시정지 저장, pageerror0 통과. 자연 카메라 화면을 직접 확인했다. 모바일 전체 전투 완주로 확대하지 않는다. snapshot 기반 exact 저장재개3건 및 데스크톱/모바일 표시 검수도 별도로 통과했다. preview와 정식 빌드 manifest SHA256은 동일 `5d47748494810e633fba4da58d419963b2b7073b0c648e171af9d525b3b47c6c`.
 - 전술 관찰: 위협부터 정리할지, 누가 사선을 잡고 누가 호송 통로를 비울지 선택이 실제 진행에 영향을 준다. 안전 거리 고정 반복 사격은 단조롭고 시간을 크게 늘린다. 지형의 넓은 단순 하부 면과 모바일 긴 목표 표지/줄임표는 남은 미감·가독성 한계다. AI가 재미·미술 합격으로 판정하지 않는다. 실제 결과 화면14:03은 도구 조준/재시도를 포함하므로 사람의 예상 플레이 시간으로 쓰지 않는다.
 - 로컬 증거: `_local/reports/stage21-current/{comparison.json,clear-route,escort-pause,observed-browser,ui-play-v3,ui-play-v4,ui-play-v6,mobile-touch}`. 21장 새 공개 artifact는 만들지 않았다. 해당 후보의31장 gate·정식 build는 완료했고, 다른 장과 통합 후 runtime이 바뀌면 정식 probe를 다시 실행해야 한다. master/Pages는 부모 담당이다.
+
+### 21장 후속: 좁은 화면의 중복 목표 문장
+
+- 세로390px 실화면에서 전체 목표 문장을 월드 표지에도 반복해 인물·조준 영역을 가리는 문제를 확인했다. 글자를 축소하는 안보다 월드 표지를 `수레 파괴 / 주민 호송 / 관아로 이동`으로 줄이는 안을 선택했다. HUD·목표 안내의 전체 원문, 실제 목표 좌표와 판정은 유지한다.
+- target/save native3건 통과, 실제 R17 저장의390×844/844×390 터치 이동·pause/save 통과, pageerror0. 짧아진 표지의 실제 픽셀을 확인했다. `_local/reports/stage21-polish/mobile-short-label`은 로컬 소스 대체 검수다. `tests/stage21-source-preview.mjs`는 기존 가드 통과 baseline984798ec의 모듈 wrapper를 정확히1회 매칭하고 현재 원문을 같은 minifier로 컴파일해 Playwright 응답만 대체한다. 배포 파일·31장 자료·가드를 수정하지 않는다. 결과 sourcePreview의 원문 hash로 미배포 후보임을 구분한다.
+- 부모의 통합 probe 조율에 따라 이 브랜치용31장 workflow는 수동 실행으로 전환했다. 후속 commit/push가 중복 probe를 시작하지 않으며 실제 release gate는 그대로다. 이 후보는 통합 runtime 정식 재검증 전까지 배포 승인 증거가 없다.

@@ -6,17 +6,18 @@ import hashlib,json,os,subprocess
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 from browser_support import ROOT,launch,serve_game
+from stage21_source_preview import install_source_preview,source_preview_metadata
 trace_path=ROOT/os.environ.get('HONRO_STAGE21_TRACE','_local/reports/stage21-current/clear-route/trace.json')
 trace=json.loads(trace_path.read_text())
 assert hashlib.sha256((ROOT/'shared/data/campaign.json').read_bytes()).hexdigest()==trace['source']['campaign']
-out=ROOT/'_local/reports/stage21-current/observed-browser';out.mkdir(parents=True,exist_ok=True)
+out=ROOT/os.environ.get('HONRO_STAGE21_BROWSER_OUT','_local/reports/stage21-current/observed-browser');out.mkdir(parents=True,exist_ok=True)
 rows=trace['snapshots']
 selected={'cart':{'battle':trace['initial'],'label':'initial'},'moving':next(r for r in rows if 80<r['battle']['honroState']['act23v4']['city'].get('actors',{}).get('act3-resident',{}).get('distance',0)<900),'exit':next(r for r in rows if r['battle']['honroState']['act23v4']['done'].get('refuge-hold'))}
 results=[];errors=[]
 with serve_game() as base,sync_playwright() as pw:
  browser=launch(pw)
  for label,row in selected.items():
-  page=browser.new_page(viewport={'width':1280,'height':800});page.on('pageerror',lambda e:errors.append(str(e)));page.goto(base+'/HONRO.html');page.wait_for_function('!!globalThis.HonroApp')
+  page=browser.new_page(viewport={'width':1280,'height':800});install_source_preview(page);page.on('pageerror',lambda e:errors.append(str(e)));page.goto(base+'/HONRO.html');page.wait_for_function('!!globalThis.HonroApp')
   result=page.evaluate('''async p=>{await HonroCampaignLoader.ensureStage(21);const a=HonroApp;a.frame=()=>{};a.profile=p;a.continue();a.turnNotice=null;a.updateHUD(true);return{revision:a.engine.b.honroCampaignMapRevision,objective:document.querySelector('#objective-text').textContent,current:HonroAct23V4.current(a.engine.b)?.id,city:HonroAct23V4City.memory(a.engine.b)};}''',{**trace['profile'],'honroBattle':row['battle']})
   assert result['revision']==421
   before=page.evaluate('''()=>{HonroApp.stopBattle();return JSON.stringify(HonroApp.profile.honroBattle);}''')
@@ -27,5 +28,5 @@ with serve_game() as base,sync_playwright() as pw:
   results.append({'label':label,'sourceSnapshot':row['label'],'exactSaveResume':True,'result':result});page.close()
  browser.close()
 assert not errors,errors
-(out/'result.json').write_text(json.dumps({'traceSource':trace['source'],'servedSource':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'servedManifestSha256':hashlib.sha256((ROOT/'web/manifest.json').read_bytes()).hexdigest(),'scope':__doc__,'results':results,'errors':errors},ensure_ascii=False,indent=2))
+(out/'result.json').write_text(json.dumps({'traceSource':trace['source'],'servedSource':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'servedManifestSha256':hashlib.sha256((ROOT/'web/manifest.json').read_bytes()).hexdigest(),'sourcePreview':source_preview_metadata(),'scope':__doc__,'results':results,'errors':errors},ensure_ascii=False,indent=2))
 print('PASS current Stage21 observed HUD, desktop/mobile rendering and exact battle save/resume',len(results))

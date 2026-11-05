@@ -1,10 +1,6 @@
 name: Stage21 current source Stage31 release revalidation
 on:
-  push:
-    branches: ['review/stage21-current-20261105']
-    paths:
-      - '.github/workflows/stage21-current-gate.yml'
-      - 'shared/runtime/act23-v4-ch21-reviewed.js'
+  workflow_dispatch:
 permissions:
   contents: write
 jobs:
