@@ -32,13 +32,21 @@ export function* rankEnemyQueueSteps(e:Engine,units:Unit[]):Generator<void,Enemy
    if(beastKind(unit)?beastContact(e,ghost,target):yield* queueShotReadySteps(e,unit,target)){tier=2;break;}
    yield;
   }
-  if(!tier){const target=nearby[0];if(target){
+  if(!tier){
+   // Ritual beasts can be assigned to Sodan while closer heroes stand on a
+   // different gallery. Rank the approach they will actually be asked to take.
+   const b=e.b as any,ritualBeast=b.honroStage===10&&!b.honroCustom&&b.honroState?.sodanCoop&&beastKind(unit)&&b.honroState.finaleWaves?.some((w:{units:string[]})=>w.units.includes(unit.id));
+   const target=ritualBeast?(targetFor(e,unit)||nearby[0]):nearby[0];if(target){
+   const approachDistance=Math.hypot(target.x-unit.x,target.y-unit.y);
    if(flyingEnemy(unit)){
     const budget=Math.min(FLY_MOVE_BUDGET,unit.moveLeft),angle=Math.atan2(target.y-unit.y,target.x-unit.x);
-    for(const turn of [0,-Math.PI/4,Math.PI/4]){const p={x:unit.x+Math.cos(angle+turn)*budget,y:unit.y+Math.sin(angle+turn)*budget};if(budget>=24&&routeGuardAllows(e,unit,p)&&flightLeg(e,unit,p)&&Math.hypot(p.x-target.x,p.y-target.y)<distance-24){tier=1;break;}yield;}
+    for(const turn of [0,-Math.PI/4,Math.PI/4]){const p={x:unit.x+Math.cos(angle+turn)*budget,y:unit.y+Math.sin(angle+turn)*budget};if(budget>=24&&routeGuardAllows(e,unit,p)&&flightLeg(e,unit,p)&&Math.hypot(p.x-target.x,p.y-target.y)<approachDistance-24){tier=1;break;}yield;}
    }else if(!unit.fixed&&e.grounded(unit)){
-    const poses=candidates(e,unit,target).filter(p=>Math.hypot(p.x-target.x,p.y-target.y)<distance-24||p.y<unit.y-45&&Math.abs(p.x-target.x)<=Math.abs(unit.x-target.x)+40).slice(0,4);
+    const poses=candidates(e,unit,target).filter(p=>Math.hypot(p.x-target.x,p.y-target.y)<approachDistance-24||p.y<unit.y-45&&Math.abs(p.x-target.x)<=Math.abs(unit.x-target.x)+40).slice(0,4);
     for(const p of poses){if(yield* traceTravelSteps(e,unit,unit,p,Math.min(610,unit.moveLeft))){tier=1;break;}}
+    // A nearby hero above the west gallery needs the planner's two-leg climb;
+    // four direct probes alone must not classify that paid route as immobile.
+    if(!tier&&ritualBeast){const plan=yield* planEnemyMoveSteps(e,unit,target),end=plan?.path.at(-1);if(end&&Math.hypot(end.x-target.x,end.y-target.y)<approachDistance-24)tier=1;}
    }
   }}
   rows.push({unit,tier,distance,band:Math.floor(distance/240)});yield;

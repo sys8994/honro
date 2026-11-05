@@ -1,6 +1,14 @@
 (function(G){'use strict';
 const FINALE_TURNS=6,FINALE_CAP=28;
 function finaleSites(b){const a=b.honroMapAnchors||{},site=(id,key,fraction,label)=>{const p=a[key]||{x:b.width*fraction};return{id,label,x:p.x,y:G.HonroWorld.top(b,p.x,p.y,p.support),support:p.support};};return[site('west','westHall',.33,'서쪽 전각'),site('east','eastHall',.71,'동쪽 전각')];}
+function finaleAirSite(b,site){
+ // The lower west hall leaves a crow's full wing envelope across the only
+ // uphill ground approach. Use the authored upper gallery for this air wave;
+ // ordinary flight-clear placement still validates each complete body.
+ if(b.honroStage!==10||b.honroCustom||site.id!=='west')return site;
+ const gallery=b.terrain.find(t=>t.id==='west-gallery'&&!t.broken);if(!gallery)return site;
+ const x=gallery.x+gallery.w*.5;return {...site,x,y:G.HonroWorld.top(b,x,undefined,gallery.id),support:gallery.id,airLane:true};
+}
 function ritualPosition(b,sodan){const a=b.honroMapAnchors?.ritual||{x:b.width*.5,y:sodan.spawnY||sodan.y};return G.HonroTerrain.place(b,sodan,{x:a.x,y:G.HonroWorld.top(b,a.x,a.y,a.support),flying:false,maxDistance:160,clearance:12});}
 function channeler(b,sodan,position,fraction){const C=G.HONRO_CORE,h=structuredClone(b.heroes.occultist),level=Math.floor(G.HonroProgression.plan(10).entryLevel);h.xp=Math.max(h.xp,C.xpAtLevel(level));C.autoTrain(h,'occultist');sodan.loadout=C.knownSkills(h,'occultist').filter(id=>!C.SKILLS[id].passive).slice(0,4);C.applyHero(sodan,h,true);
  Object.assign(sodan,position,{name:'소단',side:2,spiritSight:true,honroAlly:true,honroCivilian:false,allyRole:'channeler',fixed:true,acted:true,vx:0,vy:0,shield:0,hp:Math.max(1,Math.round(sodan.maxHp*fraction))});delete sodan.moveTarget;delete sodan.aiMove;sodan.airborne=sodan.jumping=false;
@@ -8,7 +16,7 @@ function channeler(b,sodan,position,fraction){const C=G.HONRO_CORE,h=structuredC
 }
 function rush(app,index){const e=app.engine,b=e.b,hs=b.honroState,boss=e.unit('boss'),space=Math.max(0,FINALE_CAP-e.alive(1).length),n=Math.min(index===0?8:6,space);if(!n)return index>0;
  const before=new Set(b.units.map(u=>u.id)),sites=hs.finaleSites||finaleSites(b),front=sites[index%2===0?1:0],rear=sites[index%2===0?0:1];
- const actions=[{type:'spawn',n:Math.ceil(n*.5),kind:index%3===2?'boar':'hound',site:front},{type:'spawn',n:Math.floor(n*.5),kind:'crow',site:rear}].filter(a=>a.n).map(a=>({...a,x:a.site.x,y:a.site.y,support:a.site.support,spacing:140,maxDistance:288,requireFlightClearance:a.kind==='crow'&&!b.honroCustom&&b.honroMap?.stage10LocationPaint?.revision===1,source:a.site.id,contributionSource:`finale:${index}:${a.site.id}`}));
+ const actions=[{type:'spawn',n:Math.ceil(n*.5),kind:index%3===2?'boar':'hound',site:front},{type:'spawn',n:Math.floor(n*.5),kind:'crow',site:finaleAirSite(b,rear)}].filter(a=>a.n).map(a=>({...a,x:a.site.x,y:a.site.y,support:a.site.support,spacing:140,maxDistance:288,requireFlightClearance:a.kind==='crow'&&!b.honroCustom&&(a.site.airLane||b.honroMap?.stage10LocationPaint?.revision===1),source:a.site.id,contributionSource:`finale:${index}:${a.site.id}`}));
  if(G.HonroAllies.execute(app,{type:'multi',actions})===false)return false;
  const units=b.units.filter(u=>!before.has(u.id));for(let i=0;i<units.length;i++){const u=units[i];u.aggroUntil=b.round+10;if(i%2===0){u.honroTargetId=boss.id;u.honroTargetUntil=b.round+10;}}
  hs.finaleSites=sites;hs.finaleWaves??=[];hs.finaleWaves.push({index,round:b.round,units:units.map(u=>u.id),sources:actions.map(a=>a.source)});for(const site of sites)e.fx('ring',site.x,site.y-45,'#b85e5b',90);app.event(`${front.label}에서 짐승, ${rear.label}에서 까마귀가 몰려온다 · ${index+1}차 습격`);return true;}
