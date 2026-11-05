@@ -114,3 +114,17 @@ The comparison includes different realized shot outcomes and positions, so the s
 The normal stair-follow was subsequently encoded in the private input policy: retain cohort responsibility while following its observed floor through authored stairs. A focused test from the actual R13 checkpoint climbed and dealt621 S06 damage; this is **not** a second full fresh clear. No additional full replay or product change was performed after preserving the R17 result.
 
 Private evidence: `_local/reports/stage35-role-split/level25-entry-clear-fresh/` contains `provenance.json`, `summary.json`, complete original action/autosave records, `normal-follow-stairs.json`, `follow-stairs-before.png`, `follow-stairs-after.png`, `exit-after.png` and `result.json`. `_local/reports/stage35-role-split/entry-follow-focus/` contains the focused follow-up. All results remain scoped to preview runtime `dfad27db17afdd76c7e15383c16dec9083e12bf161ddcf24c664f9d93b2d78ad`; final combined-runtime probe/build/Pages validation remains separate and parent-coordinated.
+
+### Formal Stage35-only runtime verification and normal generated output
+
+The exact Stage35 candidate `d9d04ee443c46ac42bb1aa6185ad60e6a7fec340` completed [official run42046545026](https://github.com/sys8994/honro/actions/runs/42046545026), job127310917103: actual Engine probes, normal Chromium Stage31 combat/boarding (R13 victory), unchanged release gate, normal build, summary push and artifact upload all succeeded. Summary commit `b4711d15c3923f5d98b6d5377ff31de8ddceb857` is preserved on `review/stage35-verified/d9d04ee443c46ac42bb1aa6185ad60e6a7fec340` and fast-forwarded into the Stage35 follow-up branch. Its runtime is `dfad27db17afdd76c7e15383c16dec9083e12bf161ddcf24c664f9d93b2d78ad`. Synthetic artifact13426396284 is7,314,886bytes, expires2026-11-19; no private Stage35 raw captures or real user data were uploaded.
+
+A subsequent local **normal `npm run build`** passed the unchanged gate. Generated SHA256 values:
+
+- HONRO.html: `243804e8cca761a27b256b7d72ada5952807b5625253a6c9b5025d73acacfa7e`
+- HONRO_WORKSHOP.html: `6771fd85de46bbcbfe1aac36f880aaa9611b010bbd4acdfba90bafb3463d2c2c`
+- web/manifest.json: `fe58075eef03b57bdc88541614f71222f7417b2f300b18cfb316dc6b5d6a89be`
+
+These match the prior private preview bytes, but the new build now has current formal runtime evidence. Actual Chromium on this generated output passed desktop/mobile exit dialogue and dialogue-reader save/reload, the explicit dead-Sodan fixture's skipped dialogue and three-living-party victory, and Continue from the real R16/56-shot combat-end save through normal movement to R17/56-shot victory with four survivors. The latter is a save compatibility/exit check, not a second fresh full battle. Workshop imported the scoped35/11-asset project, played the original30 foes/c-3 position and exit house, stopped and restored the project after reload. All cases had zero page errors. Screenshots were inspected; raw results, saves, provenance and scripts remain private in `_local/reports/stage35-final-normal/`.
+
+No Stage2/21 candidate was integrated, master/Pages were not changed, and no additional independent probe is running. A later combined runtime needs its own formal evidence. This is not whole-release approval, a new human fun verdict or verification of the previously403-blocked public Pages.
