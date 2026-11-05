@@ -1,0 +1,92 @@
+{
+  "sourceCommit": "fa6f3e174a5f827c757ec84aa97da644361f8dac",
+  "sourceRunId": 42028032801,
+  "runtimeSha256": "d4cabe31c7b9984ee2d432f5aa319a9bb5d51ada3842c25776bf43e7889ab6f9",
+  "fingerprint": "draft-v1-90b5493a-3537083",
+  "focused": [
+    {
+      "id": "entry-route",
+      "kind": "route",
+      "result": "pass"
+    },
+    {
+      "id": "entry-shot",
+      "kind": "shot",
+      "result": "pass"
+    },
+    {
+      "id": "west-enemy-action",
+      "kind": "enemy-action",
+      "result": "pass"
+    }
+  ],
+  "ui": {
+    "passed": true,
+    "complete": true,
+    "scope": "tool-assisted normal-input Stage31 battle and boarding from synthetic campaign entry",
+    "final": {
+      "stage": 31,
+      "round": 14,
+      "phase": "won",
+      "active": "mage",
+      "dialogue": false,
+      "can": false,
+      "boat": {
+        "phase": "boarded",
+        "x": 6547.5
+      },
+      "complete": true,
+      "enemies": 0,
+      "heroes": [
+        {
+          "id": "archer",
+          "x": 6503.063088122464,
+          "y": 3366,
+          "hp": 1724,
+          "dead": false,
+          "acted": false,
+          "moveLeft": 2732,
+          "canDrop": false,
+          "grounded": true
+        },
+        {
+          "id": "mage",
+          "x": 6477.40955795751,
+          "y": 3366,
+          "hp": 1868,
+          "dead": false,
+          "acted": false,
+          "moveLeft": 2629,
+          "canDrop": false,
+          "grounded": true
+        },
+        {
+          "id": "knight",
+          "x": 6509.991941816172,
+          "y": 3366,
+          "hp": 1412,
+          "dead": false,
+          "acted": false,
+          "moveLeft": 3318,
+          "canDrop": false,
+          "grounded": true
+        },
+        {
+          "id": "occultist",
+          "x": 6509.342727005604,
+          "y": 3366,
+          "hp": 1256,
+          "dead": false,
+          "acted": false,
+          "moveLeft": 2678,
+          "canDrop": false,
+          "grounded": true
+        }
+      ]
+    },
+    "errors": []
+  },
+  "normalBuild": "passed",
+  "deployment": "not requested or performed",
+  "scope": "Integrated master plus Stage2 and Stage21 exact-runtime Stage31 evidence; Stage2/21 local gameplay records are not uploaded by this workflow."
+}
