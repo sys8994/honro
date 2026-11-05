@@ -45,10 +45,10 @@ function exitGuidance(b,result){
  if(!remaining.length)return result;
  const names=[...new Set(remaining.map(u=>u?.name||'수비 적'))].join('·');
  const hidden=remaining.some(u=>u?.honroSpirit&&u.spiritHidden&&!G.HonroAct2.visible(b,u));
- const text=`높은 경로 · 남은 위협 ${remaining.length}: ${names}`+(hidden?' · 소단으로 혼 확인':'');
- return{...result,summary:text,currentInstruction:text,blockReason:text,
-  checklist:result.checklist.map(q=>q.current?{...q,text}:q),
-  visibleChecklist:result.visibleChecklist.map(q=>q.current?{...q,text}:q)};
+ const text=`남은 위협 ${remaining.length} · ${names}`,hint=hidden?`소단으로 혼 확인 · 남은 위협 ${remaining.length}`:text;
+ return{...result,summary:text,currentInstruction:text,blockReason:hint,
+  checklist:result.checklist.map(q=>q.current?{...q,text:hidden?text+' · 소단으로 혼 확인':text}:q),
+  visibleChecklist:result.visibleChecklist.map(q=>q.current?{...q,text:hidden?text+' · 소단으로 혼 확인':text}:q)};
 }
-P.register(12,{mapRevision:512,camera(app,key){const b=app.engine.b,p=['branch','exit'].includes(key)&&b.honroRouteChoice?.exitId?V.marker(b,b.honroRouteChoice.exitId):b.honroV4Recurrence.landmark;return{id:'reviewed12.'+key,intent:'situation',targets:[{x:p.x,y:p.y-100}],padding:180,maxScale:.55};},allow,author,drive,attach,eligibility,use,draw,routeReady:b=>P.done(b,'choices'),objective:b=>id(S.memory(b).proof.sign?'OBJECTIVE.03':S.memory(b).proof['12.recurrence']?'OBJECTIVE.02':'OBJECTIVE.01'),complete:b=>P.done(b,'exit')&&!!mem(b).journal&&mem(b).wave?.ids.every(id=>!V.alive(unit(b,id))),present(b,result,A){if(!S.memory(b).proof.sign)return result;return{...exitGuidance(b,result),targets:b.honroRouteSpec.routes.map(r=>({...V.marker(b,r.markerId),kind:'exit',rowId:id(r.id==='A'?'UI_CHOICE.01':'UI_CHOICE.02'),label:A.row(id(r.id==='A'?'UI_CHOICE.01':'UI_CHOICE.02')).text}))};}});
+P.register(12,{mapRevision:512,camera(app,key){const b=app.engine.b,p=['branch','exit'].includes(key)&&b.honroRouteChoice?.exitId?V.marker(b,b.honroRouteChoice.exitId):b.honroV4Recurrence.landmark;return{id:'reviewed12.'+key,intent:'situation',targets:[{x:p.x,y:p.y-100}],padding:180,maxScale:.55};},allow,author,drive,attach,eligibility,use,draw,routeReady:b=>P.done(b,'choices'),objective:b=>id(S.memory(b).proof.sign?'OBJECTIVE.03':S.memory(b).proof['12.recurrence']?'OBJECTIVE.02':'OBJECTIVE.01'),complete:b=>P.done(b,'exit')&&!!mem(b).journal&&mem(b).wave?.ids.every(id=>!V.alive(unit(b,id))),present(b,result,A){if(!S.memory(b).proof.sign)return result;const guided=exitGuidance(b,result);return{...guided,targets:b.honroRouteSpec.routes.map(r=>({...V.marker(b,r.markerId),kind:'exit',rowId:id(r.id==='A'?'UI_CHOICE.01':'UI_CHOICE.02'),label:r.id==='A'&&guided!==result?guided.blockReason:A.row(id(r.id==='A'?'UI_CHOICE.01':'UI_CHOICE.02')).text}))};}});
 })(globalThis);
