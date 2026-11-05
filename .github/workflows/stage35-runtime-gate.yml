@@ -1,7 +1,7 @@
 name: Stage35 candidate Stage31 release revalidation
 on:
   push:
-    branches: ['review/stage35-20261105']
+    branches: ['review/stage35-followup-20261105']
     paths:
       - '.github/workflows/stage35-runtime-gate.yml'
 permissions:
@@ -54,7 +54,7 @@ jobs:
       - name: Preserve verified summary on an independent branch
         run: |
           git add tools/stage31/production-package.json
-          git -c user.name='honro release automation' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Record actual Stage31 revalidation for Stage35 exit and placement'
+          git -c user.name='honro release automation' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Record actual Stage31 revalidation for final Stage35 original-layout exit candidate'
           git push origin HEAD:refs/heads/review/stage35-verified/${GITHUB_SHA}
       - name: Enforce approved synthetic evidence size
         id: evidence_size
