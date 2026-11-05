@@ -1,4 +1,20 @@
-# Stage16 observer routing and witness fallback DEV
+# Stage16 observer routing and witness fallback verification
+
+## Current checkpoint: 2026-11-05 UTC
+
+Integrated the original three-file DEV candidate onto master `2657fe659996e76bacc82b4c321690e07a43b82f` as `f5da29db9a48c0c8ff0207b96a7c30ffdff0d414`. No Stage17 source, pending upload request or guard was changed.
+
+- First guarded run [41938136699](https://github.com/sys8994/honro/actions/runs/41938136699) failed at the unchanged Stage31 runtime-digest gate. App/browser steps did not run.
+- Genuine prerequisite refresh [41938742761](https://github.com/sys8994/honro/actions/runs/41938742761), source `51ce3b25511270f36d26b5e4c277b8b94276c031`, reran existing Engine probes and actual Stage31 browser combat/boarding. It won in 17 rounds with four survivors. Genuine evidence attachment, normal guarded build and preview/normal-build byte equality passed. The resulting evidence-only commit is `ecd6145c5c9faad2a96c4bac33206a69d877e49c`. Historical visual reviews remained historical. Overall run then failed in the new Stage16 fixture's obsolete level-13 assertion (current result 12), not in product behavior.
+- Reused the already passing actual App test's defaults-derived `profileThrough(15)` fixture instead of changing growth rules or the old helper. Browser assertions also explicitly check both casualty classes and allow normal scene-motion clicks.
+- Final focused run [41941498778](https://github.com/sys8994/honro/actions/runs/41941498778), exact source `192cc9300ce3b90c4b5613f3027a6f145c280003`, passed typecheck, unchanged release gate and build, 19 state cases, existing production App/Story/Engine cases, new physical-movement/Continue cases and real Chromium controls.
+- In Chromium, the imported synthetic checkpoint had both observers down, completed actual testimony and no soul/approach receipt. ArrowRight moved the living archer from x2765 to x2796.561679501051; the real runtime opened only MID.07 and recorded elder-testimony approach. Reload/Continue during the followup and again after completion preserved the same battle session and receipt. No fabricated trappedObserved, repeated followup or duplicate journal appeared; journal count remained one.
+- App fixtures also retain pre-extraction Sodan blocking, protected-NPC failure, existing soul observation, supported NPC recovery, testimony presentation/cursor persistence and living-speaker filtering.
+- Artifact [13375669119](https://github.com/sys8994/honro/actions/runs/41941498778/artifacts/13375669119) contains explicit synthetic profiles, result JSON and two original browser screenshots, retained 14 days. No player account, private save or unrelated file was read or uploaded.
+
+Scope: the additional App fixture deliberately prepares enemy casualties, companion starting poses and movement allowance, then uses actual NPC movement, Engine walking, Story and Continue. The browser imports that synthetic checkpoint using the actual UI and uses ordinary movement/dialogue inputs with normal frames. This is focused changed-path verification, not a naturally played whole Stage16 battle, full terrain/fun acceptance, mobile/device acceptance, or manual visual approval of the screenshots. No master merge or Pages deployment occurred in this checkpoint.
+
+## Original DEV checkpoint (historical)
 
 Date: 2026-11-04 UTC. Base: `f85a108a29d27cc5488d69d42034d58ac7699c0d`.
 Branch: `work/stage16-observer-routing-20261104`. This is a DEV candidate, not a release or actual App/browser acceptance.
