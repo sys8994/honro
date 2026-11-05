@@ -5335,3 +5335,10 @@ Title `여정 이어가기` could choose an older hub before honoring a saved di
 
 - 최종 미술/통합 runtime의21장 연결 검수 `stage21-flank-resume`는R16승리·4명생존·오류0. 이번 최초 진입R1–10의 실제 저장을 그대로 Continue한 연결 기록이며, 원래 전략의R19정체도 그대로유효하다. R10저장재개 성장/목표/라운드/주민315.916963px 정확보존. 곽진2193.756186px/주민988.822560px 실제호송, 주민안전·후발2체/필수적정리·표식확인·출구완료를 확인했다. 같은소스에서R12사격불가 시x2169부근→x2776부근으로 정상 이동하고R13성문위수비병을 공격했다. 사람의재미합격·무중단최초진입20턴보장·실기기검증은아니다.
 - 실제 제공 campaign SHA256 `d8ee4972e7ab446c487fa57708679019b5aa82e04069dd2d7ae96fadc1ebd313`로 최종 접지 그림까지 포함했다. 제품 소스는f33442a3부터동일하며 sourcePreview에5개파일hash를보존했다. source제출fa6f3e17 이후검수기만d1109214에서보완했다. `stage21-ui/`원본중단기록, `stage21-flank-resume/`완료기록, `stage21-art/`최종경로/그림, `stage21-mobile/`이번R10저장360/390/844px 터치3건을 로컬보존한다. 좁은목표도움말은스크롤로읽고 배너겹침없음을직접확인했다.
+
+### 2장·21장 통합 정식 검증 완료
+
+- 새 독립 run42028032801/job127247068026 전체success. 제출fa6f3e174a5f827c757ec84aa97da644361f8dac/runtime d4cabe31c7b9984ee2d432f5aa319a9bb5d51ada3842c25776bf43e7889ab6f9. 실제31장R14승리·4명생존·승선·적0·오류0, entry-route/entry-shot/west-enemy-action3probe와 기존production가드/정상build 통과. 원격증거 d9de7c56aaeb31b2d6c125f1a6d5273555c59854를4e6c4c49로반영했다. production-package 구조변경은 `/production/probeResults/stage-31`뿐이며 이전증거를재사용하지않았다. 요약은 `STAGE02_STAGE21_INTEGRATED_PROBE.json`.
+- 승인된artifact13415732235 크기9,145,993bytes, SHA256 `8286f204d755b386c2974c4d8d1842c28b5ac84e71a637d9f5978e46bdb51d79`, 만료2026-11-19T12:48:56Z. 업로드로그와API메타데이터가일치한다. 연결도구의다운로드파일참조는받았으나실행환경으로ZIP을받는요청은proxy403으로차단돼 독립재해시/ZIP내화면검수는미완료다. 제한우회없음. 신규2/21장공개artifact없음.
+- 실제master배포3e56b342 자산보존ledger를등록한뒤 로컬 `HONRO_ACT4_RELEASE=1 npm run build` 정상통과(`/tmp/integrated-final-build.log`). source overlay없이최종생성물의2장터치진입/pause/save·통합5/9번모듈로드,21장하단정상보행과상단두번점프경로·desktop/360px화면확인통과. 페이지오류0. 최종생성물의추가전체전투완주로확대하지않는다. 새해시파일은기존공통빌더산출물이며기존배포파일삭제없음.
+- 최종fetch의master는여전히3e56b342이며기존21장원격브랜치는076fc98f로보존했다.35장추가통합·master병합·Pages배포는하지않았다. Pages루트접근은proxy403으로직접운영판검증불가. 부모통합/발행조율대기. 남은품질한계는2장고지적을남기는전략의반복대기/실기기·직접청취미검증,21장고정사격위치전략의정체/초기넓은모바일카메라의작은인물/미술·재미사용자미판정이다. 정상입력가능성과취향합격을구분한다.
