@@ -9,7 +9,7 @@ import {runtime} from '../game/tests/helpers.mjs';
 export const plain=x=>JSON.parse(JSON.stringify(x)),KEY='honro-first-act-profile-1';
 export async function appHarness({productionStory=false}={}){
  const g=await runtime({legacyMaps:false,productionStory}),storage=new Map(),listeners=new Map(),nodes=new Map();let exported;
- function node(){const classes=new Set();return {innerHTML:'',dataset:{},children:[],hidden:false,isConnected:true,tagName:'BUTTON',style:{setProperty(){}},
+ function node(){const classes=new Set();return {innerHTML:'',dataset:{},children:[],hidden:false,isConnected:true,tagName:'BUTTON',style:{setProperty(){},removeProperty(){}},getBoundingClientRect(){return {left:0,top:0,right:0,bottom:0,width:0,height:0,x:0,y:0};},
  classList:{add:k=>classes.add(k),remove:k=>classes.delete(k),contains:k=>classes.has(k),toggle(k,v){v??=!classes.has(k);v?classes.add(k):classes.delete(k);}},
  querySelector(selector){if(selector==='.training-dialog'&&!this.innerHTML.includes('dialog training-dialog'))return null;return node();},querySelectorAll(){return[];},remove(){},append(){},appendChild(){},insertAdjacentHTML(){},getClientRects(){return[{}];},setAttribute(){},removeAttribute(){},matches(){return true;},focus(){g.document.activeElement=this;},click(){},getContext(){return {translate(){},scale(){},save(){},restore(){},clearRect(){}};},toDataURL(){return'';}};}
  g.document={body:node(),getElementById(id){if(!nodes.has(id))nodes.set(id,node());return nodes.get(id);},querySelector:()=>node(),querySelectorAll:()=>[],createElement:()=>node(),createTreeWalker:()=>({nextNode:()=>false}),addEventListener(type,fn){const set=listeners.get(type)||[];set.push(fn);listeners.set(type,set);}};

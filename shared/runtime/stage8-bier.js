@@ -59,12 +59,17 @@ function terrainBlockers(e,u,from=u,to=u){const b=e.b,left=Math.min(from.x,to.x)
  return G.HonroQuestTargets.records(b).filter(t=>!t.broken&&!t.oneWay&&overlaps(shape,t)&&polygonsOverlap(shape,t)).map(t=>({kind:'terrain',id:t.id,label:'막힌 지형'}));
 }
 function bodyBlockers(e,u,from=u,to=u){const box={x:Math.min(from.x,to.x)-u.r-2,y:Math.min(from.y,to.y)-u.h-2,w:Math.abs(to.x-from.x)+u.r*2+4,h:Math.abs(to.y-from.y)+u.h+4};return [...terrainBlockers(e,u,from,to),...hazards(e.b,u,box)];}
+// Engine ground walking also refuses to enter a living flier's reserved flight
+// envelope (enemyAI groundFlightClear). Name that flier instead of reporting a
+// terrain gap; the same engine envelope/overlap rule is reused, never relaxed.
+function flightBlockers(e,u,from,to){if(!C.flyingEnemy||!C.flightBounds)return[];const box=q=>({left:q.x-u.r-5,right:q.x+u.r+5,head:q.y-u.h-4,feet:q.y+4}),overlap=(a,z)=>Math.max(0,Math.min(a.right,z.right)-Math.max(a.left,z.left))*Math.max(0,Math.min(a.feet,z.feet)-Math.max(a.head,z.head));
+ return e.b.units.filter(v=>v.id!==u.id&&alive(v)&&!v.enthrall&&!v.eaterCapturedBy&&C.flyingEnemy(v)).filter(v=>{const r=C.flightBounds(v),before=overlap(box(from),r),after=overlap(box(to),r);return after>1e-6&&!(after<before-1e-6);}).map(v=>({kind:'enemy',id:v.id,label:v.name||'날짐승'}));}
 const temporary=['fixed','moveLeft','walkSpeed','bound','slowed'];
 function walkStep(e,u,target,distance=4,speed=900){const previous={x:u.x,y:u.y},probe={...u,r:u.r,h:u.h},saved=Object.fromEntries(temporary.map(k=>[k,{has:Object.hasOwn(probe,k),value:probe[k]}]));
  Object.assign(probe,{fixed:false,moveLeft:distance+1,walkSpeed:speed,bound:0,slowed:undefined});
  e.walk(probe,Math.sign(target.x-probe.x),Math.min(distance,Math.abs(target.x-probe.x))/speed,true);
  const blocked=bodyBlockers(e,probe,previous,probe);for(const [k,v]of Object.entries(saved)){if(v.has)probe[k]=v.value;else delete probe[k];}
- if(blocked.length)return{blocked};if(Math.hypot(probe.x-previous.x,probe.y-previous.y)<.001&&Math.abs(target.x-probe.x)>.15)return{blocked:[{kind:'route',id:'support',label:'이어지지 않는 지지면'}]};
+ if(blocked.length)return{blocked};if(Math.hypot(probe.x-previous.x,probe.y-previous.y)<.001&&Math.abs(target.x-probe.x)>.15){const ahead={x:previous.x+Math.sign(target.x-previous.x)*Math.min(distance,Math.abs(target.x-previous.x)),y:previous.y},fly=flightBlockers(e,u,previous,ahead);return{blocked:fly.length?fly:[{kind:'route',id:'support',label:'이어지지 않는 지지면'}]};}
  return{pose:probe,distance:Math.hypot(probe.x-previous.x,probe.y-previous.y)};
 }
 function probeRoute(app,points){const e=app.engine,u=boss(e.b);if(!alive(u)||u.fixed||u.airborne||u.jumping||Math.abs(u.vy||0)>3||!C.validTerrainContactPose(e.b.terrain,u))return{blocked:[{kind:'route',id:'origin',label:'상여의 현재 접지'}]};
@@ -75,6 +80,15 @@ function probeRoute(app,points){const e=app.engine,u=boss(e.b);if(!alive(u)||u.f
   const at=target.support&&e.contactSurface(probe.x,probe.y-.2,probe.y+.2);if(target.support&&at?.t.id!==target.support)return{blocked:[{kind:'route',id:target.support,label:'다른 높이의 지지면'}]};
  }return{points:clone(points),distance,end:{x:probe.x,y:probe.y}};
 }
+// Display only: every living companion whose body stands on the authored road
+// between the bier's actual pose and the courtyard landing, so the player can
+// clear all of them in one pass. Movement still uses chooseRoute's exact checks.
+function heroesOnRoad(app){const e=app.engine,b=e.b,u=boss(b),mv=spec(b).movement||{},to=(mv.destinations||[])[0];if(!alive(u)||!to)return[];
+ const lo=Math.min(u.x,to.x),hi=Math.max(u.x,to.x),pts=[{x:u.x,y:u.y},...((mv.routes||[])[0]?.points||[]).filter(p=>p.x>lo&&p.x<hi).sort((a,z)=>Math.abs(a.x-u.x)-Math.abs(z.x-u.x)),{x:to.x,y:to.y}],out=new Map();
+ for(let i=1;i<pts.length;i++){const a=pts[i-1],z=pts[i],n=Math.max(1,Math.ceil(Math.hypot(z.x-a.x,z.y-a.y)/40));for(let k=0;k<=n;k++){const x=a.x+(z.x-a.x)*k/n,y=a.y+(z.y-a.y)*k/n;for(const v of b.units)if(hero(v)&&!out.has(v.id)&&overlaps({x:x-u.r-3,y:y-u.h-3,w:u.r*2+6,h:u.h+6},{x:v.x-v.r,y:v.y-v.h,w:v.r*2,h:v.h}))out.set(v.id,{kind:'hero',id:v.id,label:v.name||'동행'});}}
+ return[...out.values()];
+}
+function withRoadHeroes(app,blocked){if(!blocked?.some(v=>v.kind==='hero'))return blocked;const ids=new Set(blocked.map(v=>v.kind+':'+v.id));return[...blocked,...heroesOnRoad(app).filter(v=>!ids.has('hero:'+v.id))];}
 function chooseRoute(app){const b=app.engine.b,u=boss(b),movement=spec(b).movement||{},destinations=movement.destinations||[],routes=movement.routes||[];let blockers=[];
  for(const to of destinations){
   // A blocked final body cannot be rescued by a longer approach. Test each
@@ -111,7 +125,7 @@ function cancelScene(app){const b=app.engine.b,m=memory(b),owned=ownedScene(app)
 }
 const waveLabels={'stage8-first-seal':'서쪽 창고 산개 3','stage8-settled-crows':'높은 가지 까마귀 3','stage8-low-health':'동쪽 후미 산개 2'};
 function noticeText(b){const m=memory(b),parts=[];if(['won','lost'].includes(b.phase))return'';
- if(m.status==='announced')parts.push('상여 → 중앙 아래뜰');else if(m.status==='blocked')parts.push('상여 이동 보류'+(m.blockers?.length?' ('+[...new Set(m.blockers.map(p=>p.label))].slice(0,2).join('·')+')':''));else if(m.status==='moving')parts.push('상여가 중앙 아래뜰로 이동 중');
+ if(m.status==='announced')parts.push('상여 → 중앙 아래뜰');else if(m.status==='blocked')parts.push('상여 이동 보류'+(m.blockers?.length?' ('+[...new Set(m.blockers.map(p=>p.label))].slice(0,3).join('·')+')':''));else if(m.status==='moving')parts.push('상여가 중앙 아래뜰로 이동 중');
  for(const source of sources){const w=m.warnings[source];if(w&&!w.cancelled&&!m.entries[source])parts.push((G.HonroEncounterDensity?.active(b)?({'stage8-first-seal':'서쪽 창고 산개 2 · 까마귀 1','stage8-settled-crows':'마당 위 까마귀 3','stage8-low-health':(w.entry?.label||'중앙 마당 동쪽 오름길')+' 산개 1 · 혼불 1'}[source]):waveLabels[source])+(w.status==='blocked'?' 진입 보류':''));}
  return parts.length?parts.join(' · ')+' · 다음 행동 끝에 안전 확인':'';
 }
@@ -143,8 +157,8 @@ function transition(app){const b=app.engine?.b;if(!active(b)||cleanup(app))retur
  acceptOpportunity(app);if(m.completedOnce||m.status==='moving'||m.status==='cancelled')return;
  if(m.status==='anchored'){if(paused(app)||seals.length!==2||seals.some(t=>!t.broken)||!alive(boss(b)))return;Object.assign(m,{status:'announced',triggerSerial:serial(b),announcedSerial:serial(b),eligibleAfterSerial:serial(b)+1,announcedRound:b.round,offered:{},playerOpportunity:null,reason:'두 결박이 풀렸다. 상여가 중앙 아래뜰을 향한다. 다음 행동에서 그 길을 비우세요.'});publishNotice(app);app.dirty=true;offer(app);return;}
  offer(app);if(!m.playerOpportunity){m.reason='동행의 새로운 행동이 끝난 뒤 상여의 길을 확인합니다.';return;}m.status='blocked';
- if(!safeBoundary(app))return;const route=chooseRoute(app);m.blockers=route.blocked||[];
- if(route.blocked){m.reason='상여 이동 보류 · '+[...new Set(route.blocked.map(p=>p.label))].slice(0,2).join('·')+' · 지금 자리에서도 제압할 수 있습니다.';app.dirty=true;return;}
+ if(!safeBoundary(app))return;const route=chooseRoute(app);route.blocked=withRoadHeroes(app,route.blocked);m.blockers=route.blocked||[];
+ if(route.blocked){m.reason='상여 이동 보류 · '+[...new Set(route.blocked.map(p=>p.label))].slice(0,3).join('·')+' · 지금 자리에서도 제압할 수 있습니다.';app.dirty=true;return;}
  Object.assign(m,{status:'moving',originActualPose:{x:boss(b).x,y:boss(b).y},lastValidPose:{x:boss(b).x,y:boss(b).y},route:route.points,routeVersion:route.routeVersion,targetVariant:route.targetVariant,reason:'빈 상여가 안전한 길을 따라 중앙 아래뜰로 움직인다.'});
  installScene();G.HonroStoryStaging.register({id:SCENE,stage:8,title:'줄을 놓친 빈 상여',steps:[...route.points.map(to=>({type:'move',actor:'boss',to,duration:Math.max(100,route.distance/900*1000/route.points.length),caption:m.reason})),{type:'dialogue',lines:[['서술','빈 상여가 아래뜰에 멎었다. 묶여 있던 천이 느슨해지고, 상여 안에서 낯선 혼의 울음이 샜다.']]}]});
  // Story.start prewrites its dialogue to the journal. Keep only this run's
@@ -153,7 +167,7 @@ function transition(app){const b=app.engine?.b;if(!active(b)||cleanup(app))retur
  if(!G.HonroStoryStaging.request(app,SCENE)){m.status='blocked';m.reason='다음 안전한 행동 끝에 상여의 길을 다시 확인합니다.';return;}app.dirty=true;app.engine.emit?.('save');
 }
 function settle(app){const b=app.engine.b,m=memory(b);if(!alive(boss(b))||m.completedOnce)return false;m.status='settled';m.completedOnce=1;delete m.sceneJournal;m.completedSerial=serial(b);m.completedRound=b.round;m.reason='빈 상여가 중앙 아래뜰에 멎었다.';m.blockers=[];delete boss(b).honroScenePose;app.dirty=true;return true;}
-function blockMotion(app,blocks){const b=app.engine.b,m=memory(b);m.status='blocked';m.blockers=blocks;m.reason='상여 이동 보류 · '+[...new Set(blocks.map(p=>p.label))].slice(0,2).join('·')+' · 안전한 다음 행동 끝에 다시 확인합니다.';delete boss(b)?.honroScenePose;cancelScene(app);publishNotice(app);app.dirty=true;app.engine.emit?.('save');}
+function blockMotion(app,blocks){const b=app.engine.b,m=memory(b);m.status='blocked';m.blockers=blocks;m.reason='상여 이동 보류 · '+[...new Set(blocks.map(p=>p.label))].slice(0,3).join('·')+' · 안전한 다음 행동 끝에 다시 확인합니다.';delete boss(b)?.honroScenePose;cancelScene(app);publishNotice(app);app.dirty=true;app.engine.emit?.('save');}
 function advanceScene(app,dt,skip=false){const e=app.engine,b=e.b,m=memory(b),s=app.dialogue?.staging?.bierMotion||app.dialogue?.staging;if(cleanup(app)||!ownedScene(app)||m.status!=='moving'||s.complete||scenePaused(app))return false;if(!safeMotion(app,true)){blockMotion(app,[{kind:'action',id:'busy',label:'진행 중인 행동'}]);return false;}
  let budget=skip?60000:Math.max(0,dt)*900,changed=false;
  // A subpixel budget tail can be smaller than walkStep's progress epsilon.
@@ -181,13 +195,14 @@ function entryFor(b,source){const base=spec(b).entries?.[source];if(!base||sourc
  const saved=b.honroState?.stage8Bier?.warnings?.[source]?.entry;if(saved)return saved;
  const u=boss(b),choice=(base.variants||[]).find(v=>u&&u.x>=(v.minBossX??-Infinity)&&u.x<(v.maxBossX??Infinity))||base,out=clone(choice);delete out.variants;delete out.minBossX;delete out.maxBossX;return out;
 }
+function entryBodyClear(b,u,flying,e={b}){const point=G.HonroTerrain.place(b,u,{flying,maxDistance:0,clearance:18});return !!point&&point.x===u.x&&Math.abs(point.y-u.y)<=.01&&!hazards(b,u,{x:u.x-u.r-18,y:u.y-u.h-3,w:u.r*2+36,h:u.h+6}).length&&!terrainBlockers(e,u).length;}
 function spawn(app,action){const e=app.engine,b=e.b,m=memory(b),source=action.source;cleanup(app);acceptOpportunity(app);if(ended(app)||source!==sources[0]&&!alive(boss(b)))return false;if(m.entries[source])return true;const w=m.warnings[source],entry=entryFor(b,source);
  if(!entry||!w||w.cancelled||!w.opportunity||serial(b)<=w.serial||m.status==='moving'||!safeBoundary(app))return false;const key=boundary(app),n=action.n||1;if(b.honroState.lastCombatEventBoundary===key||e.alive(1).length+n>E.populationCap(b))return false;
  const choices=[entry,...(entry.alternates||[]).filter(p=>!p.side||p.side===entry.side).map(p=>({...p,side:entry.side}))];
  for(const at of choices){if(G.HonroEncounterDensity?.active(b)&&at.members){if(!G.HonroEncounterDensity.spawnMembers(app,action,at))continue;const list=b.units.slice(-at.members.length);for(const u of list)u.honroStage8BierEntry=at.side;w.status='spawned';m.entries[source]={x:at.x,y:at.y,side:at.side,ids:list.map(u=>u.id),count:list.length,round:b.round,serial:serial(b)};b.honroState.lastCombatEventBoundary=key;app.dirty=true;return true;}const support=at.support||at.surfaceId,spacing=at.spacing??action.spacing??145,list=[],next=b.nextId,shadow={...b,units:[...b.units],nextId:b.nextId},flying=!!G.HonroWorld.archetypes[action.kind]?.flying;let valid=true;
   for(let i=0;i<n;i++){const x=at.x+(i-(n-1)/2)*spacing,contact=at.air&&flying?{y:at.y}:G.HonroMapEngine.surfaceY(b.terrain,x,at.y,support);if(!contact||(!at.air&&!support)||contact.t?.id&&contact.t.id!==support){valid=false;break;}const u=G.HonroWorld.createEnemy(shadow,app.stage,x,action.kind,next+i,contact.y,!!at.air);tuneOrdinary(shadow,u,app.stage,action.kind);
    Object.assign(u,{id:'event-'+(next+i),awake:true,aggroUntil:b.round+3,honroSpawnSource:source,honroStage8BierEntry:at.side,spawnX:u.x,spawnY:u.y});
-   shadow.units=[...b.units,...list];const point=G.HonroTerrain.place(shadow,u,{flying,maxDistance:0,clearance:18});if(!point||point.x!==u.x||Math.abs(point.y-u.y)>.01||hazards(shadow,u,{x:u.x-u.r-18,y:u.y-u.h-3,w:u.r*2+36,h:u.h+6}).length||terrainBlockers(e,u).length){valid=false;break;}list.push(u);
+   shadow.units=[...b.units,...list];if(!entryBodyClear(shadow,u,flying,e)){valid=false;break;}list.push(u);
   }
   if(!valid||list.length!==n)continue;b.nextId=next+n;b.units.push(...list);b.honroCounters.spawned+=n;w.status='spawned';m.entries[source]={x:at.x,y:at.y,support,side:at.side,ids:list.map(u=>u.id),count:n,round:b.round,serial:serial(b)};b.honroState.lastCombatEventBoundary=key;app.dirty=true;return true;
  }w.status='blocked';return false;
@@ -214,7 +229,20 @@ const attach=E.attach;E.attach=function(app,e){const out=attach(app,e);if(!activ
 const tick=G.HonroMission.tick;G.HonroMission.tick=function(app,dt){if(!active(app.engine?.b))return tick(app,dt);if(cleanup(app))return tick(app,dt);prepareWaves(app);offer(app);acceptOpportunity(app);const out=tick(app,dt);transition(app);publishNotice(app);return out;};
 // Fresh narrative HUD and help keep the same current goal. Reinforcement and
 // movement safety notices remain in their existing separate event channel.
-const state=G.HonroObjectives.state;G.HonroObjectives.state=function(b,st){const out=state(b,st);if(active(b)){if(memory(b).reason)out.summary+=' · '+memory(b).reason;const notice=noticeText(b);if(notice){if(b.honroNarrativeRevision!==1)out.currentInstruction=notice;out.summary+=' · '+notice;}}return out;};
-const refreshObjectives=G.HonroObjectives.refresh;G.HonroObjectives.refresh=function(app,...args){const out=refreshObjectives(app,...args);if(active(app.engine?.b)&&app.engine.b.honroNarrativeRevision!==1&&!app.training){const text=noticeText(app.engine.b),node=G.document?.getElementById?.('objective-text');if(text&&node){node.textContent=text;node.setAttribute?.('aria-label',text+' · 눌러서 목표 보기');}}return out;};
-G.HonroStage8Bier={active,memory,sources,SCENE,gate,entryFor,safeMotion,safeBoundary,bodyBlockers,terrainBlockers,hazards,walkStep,probeRoute,chooseRoute,offer,acceptOpportunity,prepareWaves,transition,cleanup,advanceScene,settle,spawn,installScene,tuneOrdinary,cancelScene,noticeText,publishNotice,bossGuardReady};
+// Presentation only: read the saved pending entry, never advance its gate or camera.
+// The ordinary objective renderer owns label/HUD/minimap clearance. A pending
+// threat gets one scoped additional offscreen hint; existing targets stay intact.
+function pendingCrowWarning(b){
+ if(!active(b)||!G.HonroEncounterDensity?.active(b)||['won','lost'].includes(b.phase)||!alive(boss(b)))return null;
+ const source='stage8-settled-crows',m=b.honroState?.stage8Bier,w=m?.warnings?.[source],at=b.honroStage8BierSpec?.entries?.[source];
+ if(!w||w.cancelled||m.entries?.[source]||!['announced','blocked'].includes(w.status)||!Number.isFinite(at?.x)||!Number.isFinite(at?.y))return null;
+ // Geometry-only bodies reuse the exact spawn clearance predicate. Do not call
+ // createEnemy here: its unit constructor advances a global actor sequence.
+ const def=G.HonroWorld.archetypes.crow,n=(b.honroEvents||[]).find(e=>e.id===source)?.action?.n||3,choices=[at,...(at.alternates||[]).filter(p=>!p.side||p.side===at.side)];let selected=null;
+ for(const choice of choices){if(!choice.air)continue;const shadow={...b,units:[...b.units]};let valid=true;for(let i=0;i<n;i++){const u={id:'warning-crow-'+i,side:1,hp:1,dead:false,fixed:true,honroType:def.look,r:def.r,h:def.h,x:choice.x+(i-(n-1)/2)*(choice.spacing??at.spacing??145),y:choice.y};if(!entryBodyClear(shadow,u,true)){valid=false;break;}shadow.units.push(u);}if(valid){selected=choice;break;}}
+ const point=selected||at;return{id:'stage8-settled-crows-warning',kind:'reinforcement-warning',x:point.x,y:point.y,label:!selected||w.status==='blocked'?'중앙 마당 까마귀 3 진입 대기':'중앙 마당 까마귀 3 예고'};
+}
+const state=G.HonroObjectives.state;G.HonroObjectives.state=function(b,st){const out=state(b,st);if(active(b)){if(memory(b).reason)out.summary+=' · '+memory(b).reason;const notice=noticeText(b);if(notice){if(b.honroNarrativeRevision!==1)out.currentInstruction=notice;out.summary+=' · '+notice;}const crow=pendingCrowWarning(b);if(crow){out.currentInstruction=notice.replace('마당 위 까마귀 3','마당 까마귀3').replace('다음 행동 끝에 안전 확인','행동 뒤 확인');out.targets=[...out.targets,crow];}}return out;};
+const refreshObjectives=G.HonroObjectives.refresh;G.HonroObjectives.refresh=function(app,...args){const out=refreshObjectives(app,...args);if(active(app.engine?.b)&&!app.training){const b=app.engine.b,crow=pendingCrowWarning(b),view=crow?G.HonroObjectives.state(b,app.stage):null,text=view?.currentInstruction||(b.honroNarrativeRevision!==1?noticeText(b):''),node=G.document?.getElementById?.('objective-text');if(view&&app.scene)app.scene.missionTargets=view.targets;if(text&&node){node.textContent=text;node.setAttribute?.('aria-label',text+' · 눌러서 목표 보기');}}return out;};
+G.HonroStage8Bier={active,heroesOnRoad,withRoadHeroes,memory,sources,SCENE,gate,entryFor,safeMotion,safeBoundary,bodyBlockers,terrainBlockers,hazards,walkStep,probeRoute,chooseRoute,offer,acceptOpportunity,pendingCrowWarning,prepareWaves,transition,cleanup,advanceScene,settle,spawn,installScene,tuneOrdinary,cancelScene,noticeText,publishNotice,bossGuardReady};
 })(globalThis);

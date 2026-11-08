@@ -12,14 +12,17 @@ const SEEDS=[
 ];
 // Each place has a tight front and a different-height support pocket. The
 // drainage return and the long climb are intentionally not a picket line.
+// The bier lands on s8-court x5950/6150 and walks the court road from the east
+// hatch. Its two jangseung guard the courtyard's west buttress foot and the store's
+// east foot instead of standing on the moving body's landing/road (2026-11-08).
 const DENSE_SEEDS=[
  ['A-front','hound',1820,'s8-ground'],['A-front','boar',1940,'s8-ground',true],['A-front','hound',2035,'s8-ground'],['A-air','crow',1990,3590],
  ['B-front','hound',2380,'s8-ground'],['B-front','boar',2655,'s8-ground',true],['B-front','hound',2750,'s8-ground'],['B-side','warden',3220,'s8-west-walk',true],['B-side','ghost',3320,'s8-west-walk'],['B-side','lantern',3430,3740],
  ['C-front','hound',4080,'s8-west-court'],['C-front','boar',4190,'s8-west-court',true],['C-front','hound',4300,'s8-west-court'],['C-support','crow',4120,4005],['C-support','lantern',4260,4060],
- ['C-court','warden',5950,'s8-court'],['C-court','hound',6060,'s8-court'],['C-court-air','lantern',5910,4010,true],
+ ['C-court','warden',5535,'s8-east-plinth'],['C-court','hound',6060,'s8-court'],['C-court-air','lantern',5910,4010,true],
  ['D-west','warden',4640,'s8-west-shoulder'],['D-west','ghost',4750,'s8-west-shoulder'],['D-west-air','crow',4690,2360,true],['D-east','hound',5550,'s8-east-shoulder'],['D-east','warden',5670,'s8-east-shoulder'],['D-east-air','crow',5610,2390],
  ['E-front','hound',6210,'s8-ground'],['E-front','boar',6315,'s8-ground',true],['E-front','hound',6425,'s8-ground'],['E-rear','ghost',6550,'s8-ground'],['E-air','lantern',6310,4375],['E-air','crow',6460,4330],
- ['F-front','warden',7660,'s8-court',true],['F-front','hound',7780,'s8-court'],['F-lower','ghost',8150,'s8-ground'],['F-air','crow',8020,2700],['F-air','crow',8130,2570,true],['F-air','lantern',8250,2760]
+ ['F-front','warden',8500,'s8-ground',true],['F-front','hound',7780,'s8-court'],['F-lower','ghost',8150,'s8-ground'],['F-air','crow',8020,2700],['F-air','crow',8130,2570,true],['F-air','lantern',8250,2760]
 ];
 export function bierEncounterSeeds(roster='density36e9'){
  if(!['density36e9','candidate28e5','oldBudget20e0'].includes(roster))throw Error('Unsupported Stage8 roster '+roster);
@@ -38,7 +41,9 @@ export const BIER_DENSITY_ACTIVATION={
 };
 export function bierEntrySpec(roster='density36e9'){const at=(id,x,spacing=130)=>({...bierPose(id,x),support:id,spacing,maxDistance:0}),dense=roster==='density36e9';return{
  'stage8-first-seal':dense?{side:'west',...at('s8-west-walk',3060,100),members:[{kind:'hound',...at('s8-west-walk',2960),role:'seal-return-front'},{kind:'hound',...at('s8-west-walk',3060),role:'seal-return-pair'},{kind:'crow',x:3030,y:3530,air:true,role:'seal-return-overwatch'}],alternates:[{...at('s8-ground',2720,100),members:[{kind:'hound',...at('s8-ground',2670),role:'seal-return-front'},{kind:'hound',...at('s8-ground',2770),role:'seal-return-pair'},{kind:'crow',x:2700,y:3510,air:true,role:'seal-return-overwatch'}]}]}:{side:'west',...at('s8-ground',1550),alternates:[at('s8-ground',1120)]},
- 'stage8-settled-crows':dense?{side:'upper-branch',x:6170,y:3830,spacing:105,maxDistance:0,air:true,alternates:[{x:6390,y:3630,spacing:105,maxDistance:0,air:true}]}:{side:'upper-branch',x:5220,y:2290,spacing:145,maxDistance:0,air:true,alternates:[{x:5670,y:2510,spacing:145,maxDistance:0,air:true}]},
+ // Three 184px crow flight envelopes need real separation; the west fallback
+ // remains in the settled courtyard air pocket when its east edge is occupied.
+ 'stage8-settled-crows':dense?{side:'upper-branch',x:6170,y:3930,spacing:220,maxDistance:0,air:true,alternates:[{x:5970,y:3930,spacing:220,maxDistance:0,air:true}]}:{side:'upper-branch',x:5220,y:2290,spacing:145,maxDistance:0,air:true,alternates:[{x:5670,y:2510,spacing:145,maxDistance:0,air:true}]},
  // The bier settles at C (5950/6150), not its original F hatch at8290.
  // Late hounds enter the same upper road on its east flank, not 3,000 away.
  'stage8-low-health':dense?{side:'east',...at('s8-court',6480,100),label:'중앙 마당 동쪽 오름길',region:'central-court',variants:[
