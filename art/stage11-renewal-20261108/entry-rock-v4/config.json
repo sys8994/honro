@@ -1,0 +1,39 @@
+{
+  "id": "stage11-renewal:entry-rock-v4",
+  "name": "Stage11 entry granite renewal candidate",
+  "bounds": {
+    "x": 660,
+    "y": 6040,
+    "w": 660,
+    "h": 520
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 700,
+    "y": 6500
+  },
+  "semanticLayer": "BODY",
+  "preserveCompounds": true,
+  "transform": [
+    0.46709129511677283,
+    0,
+    0,
+    0.46720575022461813,
+    660,
+    6040
+  ],
+  "params": {
+    "bodyTerrainIds": [
+      "v4.11.firing-rock"
+    ],
+    "bodyBaseColor": "#615e5d",
+    "previewOnly": true,
+    "silhouetteUnderpaint": false
+  },
+  "bodyClip": [
+    "M700,6500L738,6438L760,6400L875,6400L880,6322L898,6300L995,6300L1000,6224L1022,6200L1115,6200L1120,6130L1145,6100L1235,6100L1260,6240L1242,6500Z"
+  ]
+}

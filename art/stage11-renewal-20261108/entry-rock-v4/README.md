@@ -1,0 +1,11 @@
+# Entry granite v4: native interior cleanup and walking-scale preview
+
+This is a candidate, not a production release or whole-stage completion. V3 source and raw remain unchanged. Native Inkscape path-break-apart and explicit selected-path deletion removed 271 small interior/guide/matte shapes. A second native breakup was required for one remaining compound. Only the semantic granite interior was edited. The alpha clip was excluded from editing. White/near-white trace matte/guide colors were removed explicitly; the grey shelf highlights remain.
+
+This is intentional art editing, NOT an error-bounded optimization of unchanged raw. The 1200-source-square-pixel rule is specific to this featureless granite interior, never a rule for characters, text, thin supports or symbols. Some larger low-contrast tonal patches remain. The earlier eight-color and speckle80 experiments did not resolve the issue and were not selected.
+
+`native-clean/cleaned.svg` is the editable output. `tools/stage11-renewal/clean-entry-rock.py` reproduces native operations. `prepare-entry-native.py` maps the established 660,6040,660,520 production frame to world coordinates. It replaces the source alpha clip with the exact existing firing-rock polygon for the engine importer; no terrain coordinates, camera, story, actors, quest, map revision or save data are written.
+
+`preview-entry.mjs` uses the real shared renderer and compares before/after physical terrain, world terrain, actor placements, markers and revision. This comparison passed. Walking scale .94 desktop, .82 mobile and 2x diagnostic closeup were rendered and directly inspected. Four shelves remain aligned with actors and contact edges. The candidate is brighter/warmer than the old green-grey surrounding ground, which still needs the stage-wide material pass. The underlying regular staircase silhouette is the existing collision contract; this artwork does not claim to have redesigned that geometry.
+
+Screenshots and report: `_local/reports/stage11-entry-renewal/`. These are Native-renderer previews, not browser screenshots or normal player input. No full-play, save/restore, final stage art, master or Pages acceptance is claimed. The runtime continues to use the original asset unless this candidate is explicitly integrated later.
