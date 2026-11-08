@@ -12,14 +12,17 @@ const SEEDS=[
 ];
 // Each place has a tight front and a different-height support pocket. The
 // drainage return and the long climb are intentionally not a picket line.
+// The bier lands on s8-court x5950/6150 and walks the court road from the east
+// hatch. Its two jangseung guard the courtyard's west buttress foot and the store's
+// east foot instead of standing on the moving body's landing/road (2026-11-08).
 const DENSE_SEEDS=[
  ['A-front','hound',1820,'s8-ground'],['A-front','boar',1940,'s8-ground',true],['A-front','hound',2035,'s8-ground'],['A-air','crow',1990,3590],
  ['B-front','hound',2380,'s8-ground'],['B-front','boar',2655,'s8-ground',true],['B-front','hound',2750,'s8-ground'],['B-side','warden',3220,'s8-west-walk',true],['B-side','ghost',3320,'s8-west-walk'],['B-side','lantern',3430,3740],
  ['C-front','hound',4080,'s8-west-court'],['C-front','boar',4190,'s8-west-court',true],['C-front','hound',4300,'s8-west-court'],['C-support','crow',4120,4005],['C-support','lantern',4260,4060],
- ['C-court','warden',5950,'s8-court'],['C-court','hound',6060,'s8-court'],['C-court-air','lantern',5910,4010,true],
+ ['C-court','warden',5535,'s8-east-plinth'],['C-court','hound',6060,'s8-court'],['C-court-air','lantern',5910,4010,true],
  ['D-west','warden',4640,'s8-west-shoulder'],['D-west','ghost',4750,'s8-west-shoulder'],['D-west-air','crow',4690,2360,true],['D-east','hound',5550,'s8-east-shoulder'],['D-east','warden',5670,'s8-east-shoulder'],['D-east-air','crow',5610,2390],
  ['E-front','hound',6210,'s8-ground'],['E-front','boar',6315,'s8-ground',true],['E-front','hound',6425,'s8-ground'],['E-rear','ghost',6550,'s8-ground'],['E-air','lantern',6310,4375],['E-air','crow',6460,4330],
- ['F-front','warden',7660,'s8-court',true],['F-front','hound',7780,'s8-court'],['F-lower','ghost',8150,'s8-ground'],['F-air','crow',8020,2700],['F-air','crow',8130,2570,true],['F-air','lantern',8250,2760]
+ ['F-front','warden',8500,'s8-ground',true],['F-front','hound',7780,'s8-court'],['F-lower','ghost',8150,'s8-ground'],['F-air','crow',8020,2700],['F-air','crow',8130,2570,true],['F-air','lantern',8250,2760]
 ];
 export function bierEncounterSeeds(roster='density36e9'){
  if(!['density36e9','candidate28e5','oldBudget20e0'].includes(roster))throw Error('Unsupported Stage8 roster '+roster);

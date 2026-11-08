@@ -139,8 +139,9 @@ function draw(scene,e){
   }
   // Only Stage8's pending crow hint gets an additional edge slot. Existing
   // boss/objective labels keep their position; fit the added label around them.
-  if(crowWarning){const miniBox=mini?{x:mini.left-cv.left,y:mini.top-cv.top,w:mini.width,h:mini.height}:null,blocked=box=>[...labels,...(miniBox?[miniBox]:[])].some(r=>box.x<r.x+r.w+6&&box.x+box.w+6>r.x&&box.y<r.y+r.h+6&&box.y+box.h+6>r.y);
-   const original=py;for(const dy of [0,-42,42,-84,84]){const y=Math.max(top,Math.min(bottom,original+dy)),x=Math.max(width/2+6,Math.min(w-width/2-6,px));if(!blocked({x:x-width/2,y:y-33,w:width,h:20})){py=y;break;}}
+  // The pending-equipment button is a separate HUD element; keep the hint clear of it too.
+  if(crowWarning){const miniBox=mini?{x:mini.left-cv.left,y:mini.top-cv.top,w:mini.width,h:mini.height}:null,gear=document.getElementById?.('equipment-pending-battle'),gs=gear&&!gear.hidden&&G.getComputedStyle?.(gear),gr=gs&&gs.visibility!=='hidden'&&gs.display!=='none'?gear.getBoundingClientRect():null,gearBox=gr?.width>0&&gr.height>0?{x:gr.left-cv.left,y:gr.top-cv.top,w:gr.width,h:gr.height}:null,blocked=box=>[...labels,...(miniBox?[miniBox]:[]),...(gearBox?[gearBox]:[])].some(r=>box.x<r.x+r.w+6&&box.x+box.w+6>r.x&&box.y<r.y+r.h+6&&box.y+box.h+6>r.y);
+   const original=py;for(const dy of [0,-42,42,-84,84,126,168]){const y=Math.max(top,Math.min(bottom,original+dy)),x=Math.max(width/2+6,Math.min(w-width/2-6,px));if(!blocked({x:x-width/2,y:y-33,w:width,h:20})){py=y;break;}}
   }
   if(scene.goalFocus&&visible){
    const pulse=22+3*Math.sin(performance.now()*.008);

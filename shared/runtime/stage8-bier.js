@@ -59,12 +59,17 @@ function terrainBlockers(e,u,from=u,to=u){const b=e.b,left=Math.min(from.x,to.x)
  return G.HonroQuestTargets.records(b).filter(t=>!t.broken&&!t.oneWay&&overlaps(shape,t)&&polygonsOverlap(shape,t)).map(t=>({kind:'terrain',id:t.id,label:'막힌 지형'}));
 }
 function bodyBlockers(e,u,from=u,to=u){const box={x:Math.min(from.x,to.x)-u.r-2,y:Math.min(from.y,to.y)-u.h-2,w:Math.abs(to.x-from.x)+u.r*2+4,h:Math.abs(to.y-from.y)+u.h+4};return [...terrainBlockers(e,u,from,to),...hazards(e.b,u,box)];}
+// Engine ground walking also refuses to enter a living flier's reserved flight
+// envelope (enemyAI groundFlightClear). Name that flier instead of reporting a
+// terrain gap; the same engine envelope/overlap rule is reused, never relaxed.
+function flightBlockers(e,u,from,to){if(!C.flyingEnemy||!C.flightBounds)return[];const box=q=>({left:q.x-u.r-5,right:q.x+u.r+5,head:q.y-u.h-4,feet:q.y+4}),overlap=(a,z)=>Math.max(0,Math.min(a.right,z.right)-Math.max(a.left,z.left))*Math.max(0,Math.min(a.feet,z.feet)-Math.max(a.head,z.head));
+ return e.b.units.filter(v=>v.id!==u.id&&alive(v)&&!v.enthrall&&!v.eaterCapturedBy&&C.flyingEnemy(v)).filter(v=>{const r=C.flightBounds(v),before=overlap(box(from),r),after=overlap(box(to),r);return after>1e-6&&!(after<before-1e-6);}).map(v=>({kind:'enemy',id:v.id,label:v.name||'날짐승'}));}
 const temporary=['fixed','moveLeft','walkSpeed','bound','slowed'];
 function walkStep(e,u,target,distance=4,speed=900){const previous={x:u.x,y:u.y},probe={...u,r:u.r,h:u.h},saved=Object.fromEntries(temporary.map(k=>[k,{has:Object.hasOwn(probe,k),value:probe[k]}]));
  Object.assign(probe,{fixed:false,moveLeft:distance+1,walkSpeed:speed,bound:0,slowed:undefined});
  e.walk(probe,Math.sign(target.x-probe.x),Math.min(distance,Math.abs(target.x-probe.x))/speed,true);
  const blocked=bodyBlockers(e,probe,previous,probe);for(const [k,v]of Object.entries(saved)){if(v.has)probe[k]=v.value;else delete probe[k];}
- if(blocked.length)return{blocked};if(Math.hypot(probe.x-previous.x,probe.y-previous.y)<.001&&Math.abs(target.x-probe.x)>.15)return{blocked:[{kind:'route',id:'support',label:'이어지지 않는 지지면'}]};
+ if(blocked.length)return{blocked};if(Math.hypot(probe.x-previous.x,probe.y-previous.y)<.001&&Math.abs(target.x-probe.x)>.15){const ahead={x:previous.x+Math.sign(target.x-previous.x)*Math.min(distance,Math.abs(target.x-previous.x)),y:previous.y},fly=flightBlockers(e,u,previous,ahead);return{blocked:fly.length?fly:[{kind:'route',id:'support',label:'이어지지 않는 지지면'}]};}
  return{pose:probe,distance:Math.hypot(probe.x-previous.x,probe.y-previous.y)};
 }
 function probeRoute(app,points){const e=app.engine,u=boss(e.b);if(!alive(u)||u.fixed||u.airborne||u.jumping||Math.abs(u.vy||0)>3||!C.validTerrainContactPose(e.b.terrain,u))return{blocked:[{kind:'route',id:'origin',label:'상여의 현재 접지'}]};
