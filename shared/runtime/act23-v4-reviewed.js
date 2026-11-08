@@ -61,7 +61,10 @@ function presented(app){const d=app.dialogue,line=d?.lines[d.index],meta=line?.[
 // The opening is several world-gated events. One explicit skip closes the
 // rest of that opening; later MID/guide/COMPLETE events keep their own gates.
 const opening=Object.freeze(['arrival','thread','approach','advance']);
-function skipOpening(app,from){const b=app.engine.b,q=memory(b),at=opening.indexOf(from);if(at<0)return;for(const key of opening.slice(at+1)){if(q.events[key])continue;q.events[key]={status:'skipped',ids:[],proof:{},skippedBy:from};V.slot(app,'11.reviewed.'+key,{rowIds:[],proof:{}});V.ackSlot(b,'11.reviewed.'+key,{skipped:true,skippedBy:from});}}
+function skipOpening(app,from){const b=app.engine.b,q=memory(b),at=opening.indexOf(from);if(at<0)return;for(const key of opening.slice(at+1)){if(q.events[key])continue;q.events[key]={status:'skipped',ids:[],proof:{},skippedBy:from};V.slot(app,'11.reviewed.'+key,{rowIds:[],proof:{}});V.ackSlot(b,'11.reviewed.'+key,{skipped:true,skippedBy:from});}
+ // Lines whose world condition is already met at the skip moment are part of the
+ // same opening beat; later-qualifying lines and the guide keep their gates.
+ const physical=G.HonroAct23V4Chapter11;for(const [key,id]of [['low-beast','A2.S11.MID.01'],['high-sightline','A2.S11.MID.02']]){if(q.events[key]||!physical?.facts(b,id))break;q.events[key]={status:'skipped',ids:[],proof:{},skippedBy:from};V.slot(app,'11.reviewed.'+key,{rowIds:[],proof:{}});V.ackSlot(b,'11.reviewed.'+key,{skipped:true,skippedBy:from});}}
 function finished(app,d,natural=true){if(d?.reviewedStage!==11||!active(app.engine?.b))return false;const b=app.engine.b,q=memory(b),event=q.events[d.reviewedEvent];if(event){finishReceipt(event);event.status='done';V.ackSlot(b,'11.reviewed.'+d.reviewedEvent,{rowIds:event.presentedIds,retiredIds:event.retiredIds});if(natural===false)skipOpening(app,d.reviewedEvent);G.HonroStory.save(app);}
  if(d.reviewedEvent==='failure'){app.outcome(true);return true;}return false;
 }
