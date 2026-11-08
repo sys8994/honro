@@ -35,6 +35,26 @@
     if(b.objectiveX && b.honroStage === 2) b.objectiveX = Math.min(b.objectiveX, (b.width||3200)-120);
     return b;
   }
+  // The head probe (7px offset + 6px radius) is the top 13px of the body. Live
+  // jumps/landings under a sloped overhang can leave only that cap grazing a
+  // roof; that is not burial and must not send the actor to another tier.
+  const HEAD_CAP=13;
+  function bodyClear(terrain,u,h){
+    const C=G.HONRO_CORE,probes=[u.y-.2,u.y-5,u.y-h*.5,u.y-h*.52,u.y-h+7];
+    for(const t of terrain){
+      if(t.broken||t.oneWay)continue;
+      if(probes.some(y=>C.terrainContains(t,u.x,y)))return false;
+      const v=C.poly(t);for(let i=0;i<v.length;i++)if(C.segRect(v[i],v[(i+1)%v.length],u.x,u.y-h+7,0,h-12))return false;
+    }
+    return true;
+  }
+  // A supported pose may graze only with the head cap. An in-flight body (no
+  // foot contact) has no support exemption; its foot/torso spine must be clear.
+  function notBuried(b,u){
+    const C=G.HONRO_CORE,h=u.h-HEAD_CAP,pose={...u,h};
+    if(C.validTerrainContactPose(b.terrain,pose))return true;
+    return !C.terrainSurface(b.terrain,u.x,u.y-.15,u.y+.15,Infinity)&&bodyClear(b.terrain,u,h);
+  }
   // Repair actual solid penetration on load, including saves made after an older
   // repair. Valid supported, jumping and falling bodies keep exact state.
   function repairEmbeddedSave(b,handled=new Set()){
@@ -44,7 +64,7 @@
       // The rendering-width rectangle can overlap a legitimate uphill support.
       // Keep that pose only if exact foot contact and physical body clearance
       // agree; real burial and connected cave roofs still use the old recovery.
-      if(!inside||G.HONRO_CORE.validTerrainContactPose(b.terrain,u))continue;
+      if(!inside||G.HONRO_CORE.validTerrainContactPose(b.terrain,u)||notBuried(b,u))continue;
       const p=G.HonroTerrain.place(b,u,{flying:false,maxDistance:Math.max(b.width,b.height),accept:(x,y)=>G.HONRO_CORE.validTerrainContactPose(b.terrain,{...u,x,y})});
       if(!p||Math.hypot(p.x-u.x,p.y-u.y)<.5)continue;
       b.honroContactRecoveries??=[];b.honroContactRecoveries.push({id:u.id,from:{x:u.x,y:u.y},to:p});
