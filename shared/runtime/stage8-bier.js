@@ -80,6 +80,15 @@ function probeRoute(app,points){const e=app.engine,u=boss(e.b);if(!alive(u)||u.f
   const at=target.support&&e.contactSurface(probe.x,probe.y-.2,probe.y+.2);if(target.support&&at?.t.id!==target.support)return{blocked:[{kind:'route',id:target.support,label:'다른 높이의 지지면'}]};
  }return{points:clone(points),distance,end:{x:probe.x,y:probe.y}};
 }
+// Display only: every living companion whose body stands on the authored road
+// between the bier's actual pose and the courtyard landing, so the player can
+// clear all of them in one pass. Movement still uses chooseRoute's exact checks.
+function heroesOnRoad(app){const e=app.engine,b=e.b,u=boss(b),mv=spec(b).movement||{},to=(mv.destinations||[])[0];if(!alive(u)||!to)return[];
+ const lo=Math.min(u.x,to.x),hi=Math.max(u.x,to.x),pts=[{x:u.x,y:u.y},...((mv.routes||[])[0]?.points||[]).filter(p=>p.x>lo&&p.x<hi).sort((a,z)=>Math.abs(a.x-u.x)-Math.abs(z.x-u.x)),{x:to.x,y:to.y}],out=new Map();
+ for(let i=1;i<pts.length;i++){const a=pts[i-1],z=pts[i],n=Math.max(1,Math.ceil(Math.hypot(z.x-a.x,z.y-a.y)/40));for(let k=0;k<=n;k++){const x=a.x+(z.x-a.x)*k/n,y=a.y+(z.y-a.y)*k/n;for(const v of b.units)if(hero(v)&&!out.has(v.id)&&overlaps({x:x-u.r-3,y:y-u.h-3,w:u.r*2+6,h:u.h+6},{x:v.x-v.r,y:v.y-v.h,w:v.r*2,h:v.h}))out.set(v.id,{kind:'hero',id:v.id,label:v.name||'동행'});}}
+ return[...out.values()];
+}
+function withRoadHeroes(app,blocked){if(!blocked?.some(v=>v.kind==='hero'))return blocked;const ids=new Set(blocked.map(v=>v.kind+':'+v.id));return[...blocked,...heroesOnRoad(app).filter(v=>!ids.has('hero:'+v.id))];}
 function chooseRoute(app){const b=app.engine.b,u=boss(b),movement=spec(b).movement||{},destinations=movement.destinations||[],routes=movement.routes||[];let blockers=[];
  for(const to of destinations){
   // A blocked final body cannot be rescued by a longer approach. Test each
@@ -116,7 +125,7 @@ function cancelScene(app){const b=app.engine.b,m=memory(b),owned=ownedScene(app)
 }
 const waveLabels={'stage8-first-seal':'서쪽 창고 산개 3','stage8-settled-crows':'높은 가지 까마귀 3','stage8-low-health':'동쪽 후미 산개 2'};
 function noticeText(b){const m=memory(b),parts=[];if(['won','lost'].includes(b.phase))return'';
- if(m.status==='announced')parts.push('상여 → 중앙 아래뜰');else if(m.status==='blocked')parts.push('상여 이동 보류'+(m.blockers?.length?' ('+[...new Set(m.blockers.map(p=>p.label))].slice(0,2).join('·')+')':''));else if(m.status==='moving')parts.push('상여가 중앙 아래뜰로 이동 중');
+ if(m.status==='announced')parts.push('상여 → 중앙 아래뜰');else if(m.status==='blocked')parts.push('상여 이동 보류'+(m.blockers?.length?' ('+[...new Set(m.blockers.map(p=>p.label))].slice(0,3).join('·')+')':''));else if(m.status==='moving')parts.push('상여가 중앙 아래뜰로 이동 중');
  for(const source of sources){const w=m.warnings[source];if(w&&!w.cancelled&&!m.entries[source])parts.push((G.HonroEncounterDensity?.active(b)?({'stage8-first-seal':'서쪽 창고 산개 2 · 까마귀 1','stage8-settled-crows':'마당 위 까마귀 3','stage8-low-health':(w.entry?.label||'중앙 마당 동쪽 오름길')+' 산개 1 · 혼불 1'}[source]):waveLabels[source])+(w.status==='blocked'?' 진입 보류':''));}
  return parts.length?parts.join(' · ')+' · 다음 행동 끝에 안전 확인':'';
 }
@@ -148,8 +157,8 @@ function transition(app){const b=app.engine?.b;if(!active(b)||cleanup(app))retur
  acceptOpportunity(app);if(m.completedOnce||m.status==='moving'||m.status==='cancelled')return;
  if(m.status==='anchored'){if(paused(app)||seals.length!==2||seals.some(t=>!t.broken)||!alive(boss(b)))return;Object.assign(m,{status:'announced',triggerSerial:serial(b),announcedSerial:serial(b),eligibleAfterSerial:serial(b)+1,announcedRound:b.round,offered:{},playerOpportunity:null,reason:'두 결박이 풀렸다. 상여가 중앙 아래뜰을 향한다. 다음 행동에서 그 길을 비우세요.'});publishNotice(app);app.dirty=true;offer(app);return;}
  offer(app);if(!m.playerOpportunity){m.reason='동행의 새로운 행동이 끝난 뒤 상여의 길을 확인합니다.';return;}m.status='blocked';
- if(!safeBoundary(app))return;const route=chooseRoute(app);m.blockers=route.blocked||[];
- if(route.blocked){m.reason='상여 이동 보류 · '+[...new Set(route.blocked.map(p=>p.label))].slice(0,2).join('·')+' · 지금 자리에서도 제압할 수 있습니다.';app.dirty=true;return;}
+ if(!safeBoundary(app))return;const route=chooseRoute(app);route.blocked=withRoadHeroes(app,route.blocked);m.blockers=route.blocked||[];
+ if(route.blocked){m.reason='상여 이동 보류 · '+[...new Set(route.blocked.map(p=>p.label))].slice(0,3).join('·')+' · 지금 자리에서도 제압할 수 있습니다.';app.dirty=true;return;}
  Object.assign(m,{status:'moving',originActualPose:{x:boss(b).x,y:boss(b).y},lastValidPose:{x:boss(b).x,y:boss(b).y},route:route.points,routeVersion:route.routeVersion,targetVariant:route.targetVariant,reason:'빈 상여가 안전한 길을 따라 중앙 아래뜰로 움직인다.'});
  installScene();G.HonroStoryStaging.register({id:SCENE,stage:8,title:'줄을 놓친 빈 상여',steps:[...route.points.map(to=>({type:'move',actor:'boss',to,duration:Math.max(100,route.distance/900*1000/route.points.length),caption:m.reason})),{type:'dialogue',lines:[['서술','빈 상여가 아래뜰에 멎었다. 묶여 있던 천이 느슨해지고, 상여 안에서 낯선 혼의 울음이 샜다.']]}]});
  // Story.start prewrites its dialogue to the journal. Keep only this run's
@@ -158,7 +167,7 @@ function transition(app){const b=app.engine?.b;if(!active(b)||cleanup(app))retur
  if(!G.HonroStoryStaging.request(app,SCENE)){m.status='blocked';m.reason='다음 안전한 행동 끝에 상여의 길을 다시 확인합니다.';return;}app.dirty=true;app.engine.emit?.('save');
 }
 function settle(app){const b=app.engine.b,m=memory(b);if(!alive(boss(b))||m.completedOnce)return false;m.status='settled';m.completedOnce=1;delete m.sceneJournal;m.completedSerial=serial(b);m.completedRound=b.round;m.reason='빈 상여가 중앙 아래뜰에 멎었다.';m.blockers=[];delete boss(b).honroScenePose;app.dirty=true;return true;}
-function blockMotion(app,blocks){const b=app.engine.b,m=memory(b);m.status='blocked';m.blockers=blocks;m.reason='상여 이동 보류 · '+[...new Set(blocks.map(p=>p.label))].slice(0,2).join('·')+' · 안전한 다음 행동 끝에 다시 확인합니다.';delete boss(b)?.honroScenePose;cancelScene(app);publishNotice(app);app.dirty=true;app.engine.emit?.('save');}
+function blockMotion(app,blocks){const b=app.engine.b,m=memory(b);m.status='blocked';m.blockers=blocks;m.reason='상여 이동 보류 · '+[...new Set(blocks.map(p=>p.label))].slice(0,3).join('·')+' · 안전한 다음 행동 끝에 다시 확인합니다.';delete boss(b)?.honroScenePose;cancelScene(app);publishNotice(app);app.dirty=true;app.engine.emit?.('save');}
 function advanceScene(app,dt,skip=false){const e=app.engine,b=e.b,m=memory(b),s=app.dialogue?.staging?.bierMotion||app.dialogue?.staging;if(cleanup(app)||!ownedScene(app)||m.status!=='moving'||s.complete||scenePaused(app))return false;if(!safeMotion(app,true)){blockMotion(app,[{kind:'action',id:'busy',label:'진행 중인 행동'}]);return false;}
  let budget=skip?60000:Math.max(0,dt)*900,changed=false;
  // A subpixel budget tail can be smaller than walkStep's progress epsilon.
@@ -235,5 +244,5 @@ function pendingCrowWarning(b){
 }
 const state=G.HonroObjectives.state;G.HonroObjectives.state=function(b,st){const out=state(b,st);if(active(b)){if(memory(b).reason)out.summary+=' · '+memory(b).reason;const notice=noticeText(b);if(notice){if(b.honroNarrativeRevision!==1)out.currentInstruction=notice;out.summary+=' · '+notice;}const crow=pendingCrowWarning(b);if(crow){out.currentInstruction=notice.replace('마당 위 까마귀 3','마당 까마귀3').replace('다음 행동 끝에 안전 확인','행동 뒤 확인');out.targets=[...out.targets,crow];}}return out;};
 const refreshObjectives=G.HonroObjectives.refresh;G.HonroObjectives.refresh=function(app,...args){const out=refreshObjectives(app,...args);if(active(app.engine?.b)&&!app.training){const b=app.engine.b,crow=pendingCrowWarning(b),view=crow?G.HonroObjectives.state(b,app.stage):null,text=view?.currentInstruction||(b.honroNarrativeRevision!==1?noticeText(b):''),node=G.document?.getElementById?.('objective-text');if(view&&app.scene)app.scene.missionTargets=view.targets;if(text&&node){node.textContent=text;node.setAttribute?.('aria-label',text+' · 눌러서 목표 보기');}}return out;};
-G.HonroStage8Bier={active,memory,sources,SCENE,gate,entryFor,safeMotion,safeBoundary,bodyBlockers,terrainBlockers,hazards,walkStep,probeRoute,chooseRoute,offer,acceptOpportunity,pendingCrowWarning,prepareWaves,transition,cleanup,advanceScene,settle,spawn,installScene,tuneOrdinary,cancelScene,noticeText,publishNotice,bossGuardReady};
+G.HonroStage8Bier={active,heroesOnRoad,withRoadHeroes,memory,sources,SCENE,gate,entryFor,safeMotion,safeBoundary,bodyBlockers,terrainBlockers,hazards,walkStep,probeRoute,chooseRoute,offer,acceptOpportunity,pendingCrowWarning,prepareWaves,transition,cleanup,advanceScene,settle,spawn,installScene,tuneOrdinary,cancelScene,noticeText,publishNotice,bossGuardReady};
 })(globalThis);

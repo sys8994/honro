@@ -34,4 +34,9 @@ function fresh(){const app=h.load({...plain(g.AppRegression.fresh()),...plain(cu
  b.units=b.units.filter(u=>['boss','s8-17'].includes(u.id));const route=S.chooseRoute({engine:e});
  assert.deepEqual(Array.from(route.blocked||[],v=>v.kind+':'+v.id),['enemy:s8-17'],JSON.stringify(route.blocked));
  lantern.dead=true;lantern.hp=0;assert(!S.chooseRoute({engine:e}).blocked,'clear once that flier is gone');rows.push('flier envelope on the road is named as that enemy, not a terrain gap; clears when it is gone');}
+{const {app,e,b}=fresh(),boss=b.units.find(u=>u.id==='boss');
+ // Companions on the road are listed together; one behind the bier is not.
+ const put=(id,surface,x)=>Object.assign(b.units.find(u=>u.id===id),{x,y:bierY(surface,x)});put('p-archer','s8-court',7000);put('p-mage','s8-court',6400);put('p-knight','s8-ground',8650);
+ b.units=b.units.filter(u=>u.side===0||u.id==='boss');const route=S.chooseRoute(app),shown=Array.from(S.withRoadHeroes(app,route.blocked)||[],v=>v.kind+':'+v.id).sort();
+ assert.deepEqual(shown,['hero:p-archer','hero:p-mage'],JSON.stringify(shown));rows.push('all companions standing on the road are named together; one behind the bier is not');}
 await report('Stage8 bier road guards',rows);console.log('PASS Stage8 bier road guards',rows);

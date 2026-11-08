@@ -5349,6 +5349,7 @@ Title `여정 이어가기` could choose an older hub before honoring a saved di
   - 까마귀 진입 수정 `77ebc0c45`를 가져왔다.
   - `stage8-bier.js`가 비행 범위로 막은 적을 그 적의 이름으로 보고한다.
   - 까마귀 예고 표지가 장비 알림 버튼을 피한다.
+  - 동행이 길을 막으면 경로 위의 동행을 모두 함께 표시한다(브라우저에서 "설오·담허" 확인).
 - 확인:
   - 정책 1은 R10·R11, 정책 2는 R14·R16에 승리했다. 증원 8/8이 실제로 등장했다.
   - Chromium에서 키보드로 비키기, 정착, 이동 중 새로고침 후 이어하기를 확인했다.
@@ -5356,6 +5357,5 @@ Title `여정 이어가기` could choose an older hub before honoring a saved di
   - 세부 기록은 `STAGE8_BIER_ROAD_2026-11-08.md`.
 - 한계:
   - 정책 1에서 `s8-30`의 위협이 줄었다.
-  - 동행이 길을 막으면 한 번에 한 명만 표시된다.
   - 이미 진행 중인 저장은 예전 배치를 유지한다.
   - `stage8-bier-runtime`의 7장 그림 배율 실패는 기존 문제다.
