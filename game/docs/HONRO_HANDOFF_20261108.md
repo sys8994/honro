@@ -1,7 +1,7 @@
 # 혼로 1장부터 40장까지 개선 인수인계
 2026년 11월 8일 확인 자료 기준
 
-이 문서는 작업공간과 대화가 초기화된 뒤 새 담당자가 혼로 작업을 이어받기 위한 프로젝트 자료다. 2026년 11월 8일 사용자는 이 인수인계 문서를 GitHub에 게시하고 새 담당자에게 줄 짧은 프롬프트를 요청했다. 이번 게시 범위는 이 문서 한 파일이다. 기존 게임 개발과 30분 자동 점검은 보류 상태이며, 초기화·삭제·개발 재개나 기존 미발행 코드의 push를 실행하라는 지시가 아니다. 새 담당자는 사용자의 재개 지시를 확인한 뒤 아래 절차를 수행한다.
+이 문서는 작업공간과 대화가 초기화된 뒤 새 담당자가 혼로 작업을 이어받기 위한 프로젝트 자료다. 2026년 11월 8일 사용자는 이 인수인계 문서를 GitHub에 게시하고 새 담당자에게 줄 짧은 프롬프트를 요청했다. 이번 게시 범위는 이 문서 한 파일이다. 후속 요청에 따라 새 에이전트가 그림도 직접 제작하도록 역할을 명확히 했으며, 성공 사례의 확인 범위·실제 저장된 프롬프트·현재 제작용 프롬프트를 21절에 추가했다. 기존 게임 개발과 30분 자동 점검은 보류 상태이며, 초기화·삭제·개발 재개나 기존 미발행 코드의 push를 실행하라는 지시가 아니다. 새 담당자는 사용자의 재개 지시를 확인한 뒤 아래 절차를 수행한다.
 
 ## 1. 가장 먼저 지킬 사용자 방향
 
@@ -10,6 +10,7 @@
 - 1장은 기존 완성도가 높은 결과를 존중한다. 튜토리얼이므로 쉬워도 된다. 난도·턴 수·고도폭을 맞추려고 적이나 동선, 위험을 억지로 늘리거나 좋은 지형을 뜯어고치지 않는다.
 - 장 전체 구상과 플레이 스켈레톤, 전체 장면 및 대표 보행 시안을 먼저 정리한다. 그 구상 안에서 의미별 부품·레이어를 제작한다. 부품부터 만든 뒤 이어 붙이는 것으로 전체 장 설계를 대신하지 않는다.
 - 전체 구상 선행은 전체 이미지를 통째 자동 추적하라는 뜻이 아니다. 정식 벡터 저작 단위는 의미별 레이어·자산이다.
+- 새 에이전트가 코드뿐 아니라 필요한 그림의 전체 구상·시안 생성·이미지 편집·Inkscape 벡터 제작·게임 연결·시각 검수까지 직접 수행한다. 사용자가 그림을 따로 만들어 주거나 이전 담당자에게 그림을 요청해야 진행되는 분업으로 제한하지 않는다. 구체적인 참고 원화·승인 범위·프롬프트는 21절을 따른다.
 - 코덱스 사용·재개는 금지한다. 조정 담당자가 실제 원문·소스·원인과 결과를 직접 확인한다.
 - 기존 버전, 원본 기준, 승인된 미술, 저장 진행, 다른 담당자의 변경, 유효한 후보·실패 기록을 보존한다.
 - 실제 개발이 재개되면 사용자가 중단하기 전까지 계속하되, 장별 내부 검수와 배포 후 다음 장을 이어간다. 독립 준비는 파일·자산 단위로 병렬화할 수 있으나 공통 런타임과 발행은 한 담당자가 관리한다.
@@ -117,7 +118,7 @@ stage.terrains 전체 polygon과 shared/map/terrain-domain.js가 단일 지리 �
 
 플레이 지형·오브젝트·캐릭터·개별 벡터 에셋은 그라데이션 대신 면으로 명암을 나눈다. 원경 분위기와 기술 이펙트의 허용을 일반 벡터로 확대하지 않는다. 광원·재질 명도·세계 단위 크기를 일치시키고 배우·조준선·보행 경계 가독성을 우선한다. 막별 색감은 달라도 그림체는 통일한다. 4막은 낮의 밝기가 남은 우중충한 푸른 안개·쓸쓸함·공허함이다.
 
-캐릭터 그림 수정은 반복 실패로 중단된 범위다. 새 사용자 지시 없이 이번 스테이지 작업에 끼워 넣지 않는다.
+기존 캐릭터 그림 수정은 반복 실패로 중단된 이력이 있다. 새 에이전트가 그림도 직접 제작한다는 최신 지시는 분명히 따른다. 다만 이 역할 변경을 기존 캐릭터 디자인·리그의 무조건적인 전면 교체로 확대하지 않으며, 해당 작업의 범위와 승인된 인물 기준을 보존한다.
 
 ## 10. 실제 Inkscape와 최적화
 
@@ -226,3 +227,79 @@ G1 적/보스/기믹/동선/퀘스트/전술 설계. G2 구현·상태 전이·�
 - [ ] 사실/추정/목표/미확인·실패를 정직하게 보고했다.
 
 모르는 항목은 생략하거나 지어내지 말고 원문·현재 소스·실제 화면을 확인한다. 확인하지 못한 범위는 미확인으로 남긴다. 부품의 품질 향상을 전체 장의 완성으로 바꾸지 않고, 플레이어가 보는 하나의 장소와 경험으로 완성한다.
+
+
+## 21. 새 에이전트의 그림 제작 원칙과 프롬프트
+
+### 21.1 그림도 새 에이전트가 직접 제작
+
+2026년 11월 8일 최신 요청은 새 에이전트가 그림까지 직접 제작하고 성공적이었던 시안의 원칙·지침·프롬프트를 이어받으라는 것이다. 코드만 담당하거나 다른 사람이 그림을 공급할 때까지 기다리는 분업은 적용하지 않는다. 재개 후 전체 구상·원경/지형/소품 시안·이미지 편집·실제 Inkscape 벡터화·최적화·게임 연결·시각 검수를 직접 수행한다. 현재 개발 보류는 별도로 유지한다.
+
+그림을 생성·편집할 수 있는 도구를 실제로 사용하고 출력 이미지를 열어 비교한다. 해당 도구를 사용할 수 없다면 그 제한과 가능한 독립 작업을 보고한다. 이미지 생성 대신 레퍼런스 없는 즉흥 좌표 그림을 만들거나 SVG를 열기만 하고 실제 Inkscape 제작을 수행했다고 보고하지 않는다.
+
+### 21.2 성공 사례와 확인 범위
+
+아래 링크는 추가 작성 직전 master의 고정 커밋이다. 파일 존재·본문을 확인했고 1장 합성 원화와 2장 높은 절벽 원화는 실제 이미지도 열어 보았다. 사용자 승인, 문서의 승인 기록, 내부/자동 QA, 실험 후보를 구분한다.
+
+- **1장 절제 원화: 문서상 승인 계보.** [당시 적용 문서](https://github.com/sys8994/honro/blob/fcd25b7ef1f3d3191e79c2d4dca8b7ecf21182de/game/docs/STAGE1_IMAGE_FIRST.md)는 2026-10-19 최신 사용자 정정 이후의 승인 절제 원화로 기술한다. [합성 원화](https://github.com/sys8994/honro/blob/fcd25b7ef1f3d3191e79c2d4dca8b7ecf21182de/game/docs/art-references/quiet-layered-20261019/honro-layered-concept.webp), [독립 원경](https://github.com/sys8994/honro/blob/fcd25b7ef1f3d3191e79c2d4dca8b7ecf21182de/game/docs/art-references/quiet-layered-20261019/honro-independent-far.webp), [투명 근경](https://github.com/sys8994/honro/blob/fcd25b7ef1f3d3191e79c2d4dca8b7ecf21182de/game/docs/art-references/quiet-layered-20261019/honro-quiet-near-transparent.webp)이 존재한다. 차분한 회갈색·흙빛·소나무색, 비대칭 나무와 자연스러운 큰 바위, 큰 산세·여백·원근 층을 참고한다. 합성은 분위기 비교용이다. 과거 한 장 래스터 근경 구현을 현재 기본으로 되돌리는 근거가 아니다. 이 원화와 정확히 짝지어진 최초 생성 프롬프트는 이번 확인 범위에서 찾지 못했다.
+- **2장 시안 4번: 승인된 속성이 기록됨.** [취향 기록](https://github.com/sys8994/honro/blob/fcd25b7ef1f3d3191e79c2d4dca8b7ecf21182de/game/docs/taste/TASTE_LEDGER.md)의 10-21 항목은 평지길과 수직 절벽이 두 레이어로 읽히는 구조를 승인했다고 명시한다. [높은 절벽 원화](https://github.com/sys8994/honro/blob/fcd25b7ef1f3d3191e79c2d4dca8b7ecf21182de/game/docs/art-references/quiet-layered-20261019/honro-stage2-high-cliffs.webp)와 [당시 적용 기록](https://github.com/sys8994/honro/blob/fcd25b7ef1f3d3191e79c2d4dca8b7ecf21182de/game/docs/STAGE2_IMAGE_FIRST.md)도 존재한다. 높은 암벽과 아래 연속 길을 구분해 읽히게 하는 구성을 참고한다. 다만 해당 파일이 승인된 ‘4번’과 정확히 동일하다는 연결까지 이번 확인으로 증명하지 못했다. ‘4번’의 정확한 원본 및 생성 프롬프트는 미확인이다.
+- **자연스러운 지형: 승인 속성과 지적을 함께 계승.** 취향 기록의 10-29 항목은 자연스러운 그래픽을 승인하면서 바위가 크다는 지적도 남긴다. 자연스러운 외곽을 계승하되 과대한 재질 배율까지 승인됐다고 해석하지 않는다. 이 발언과 정확히 대응하는 원본 이미지/생성 프롬프트는 이번 확인 범위에서 특정하지 못했다.
+- **1장 시작 구간의 실제 프롬프트.** [start-prompt.txt](https://github.com/sys8994/honro/blob/fcd25b7ef1f3d3191e79c2d4dca8b7ecf21182de/game/docs/art-references/character-scale-20261019/start-prompt.txt)는 P1 화풍 → P2 지역 → P3 구간/인체 배율을 분리한 실사용 원문이다. 21.5에 보존했다. 이 프롬프트의 특정 출력이 사용자의 최종 승인을 받았다는 직접 근거는 찾지 못했다.
+- **6장 BODY의 실제 프롬프트와 기술 후보.** [프롬프트](https://github.com/sys8994/honro/blob/fcd25b7ef1f3d3191e79c2d4dca8b7ecf21182de/art/act1-near-vector-candidates/stage06-body-v2/concept-prompt.txt), [구조 가이드](https://github.com/sys8994/honro/blob/fcd25b7ef1f3d3191e79c2d4dca8b7ecf21182de/art/act1-near-vector-candidates/stage06-body-v2/guide.svg), [벡터 후보](https://github.com/sys8994/honro/blob/fcd25b7ef1f3d3191e79c2d4dca8b7ecf21182de/art/act1-near-vector-candidates/stage06-body-v2/body.svg), [검수 상태](https://github.com/sys8994/honro/blob/fcd25b7ef1f3d3191e79c2d4dca8b7ecf21182de/art/act1-near-vector-candidates/stage06-body-v2/review.json), [최적화 기록](https://github.com/sys8994/honro/blob/fcd25b7ef1f3d3191e79c2d4dca8b7ecf21182de/art/act1-near-vector-candidates/stage06-body-v2/optimization-review.json)이 존재한다. 상태는 NATIVE_REVIEWED_BROWSER_PENDING이며 browserAccepted/gameplayAccepted는 false다. 최적화 qualityPass=true와 별개로 visualApproval은 NOT REVIEWED다. 구조/스타일 이미지 역할과 배우 대비 크기를 분리한 실사용 예이지 사용자 미술 승인·실제 플레이 합격·장 완성의 성공 사례가 아니다.
+
+취향서의 “승인한 원본은 저장소에 없다”는 포괄적인 옛 문장만 보고 지금 존재하는 원화를 무시하지 않는다. 반대로 파일명에 approved가 있거나 수치가 통과했다고 사용자 승인을 만들지 않는다. 승인 속성·원화·프롬프트·출력·검수 기록을 연결하고 없는 연결은 미확인이라고 적는다.
+
+### 21.3 성공한 특징을 재사용하는 원칙
+
+1. 장 전체 이야기·경로·높이·전투 질문·랜드마크·빛·원경을 먼저 구상한다. 전체 overview와 대표 플레이 시안을 확인한 뒤 의미별 자산으로 제작한다. 부분 부품을 먼저 쌓아 장 전체 설계를 대신하지 않는다.
+2. 옆보기와 인체 배율을 고정한다. 화면 Y는 실제 높이다. 보행면 뒤쪽은 좁은 깊이만 허용하며 버드뷰 길로 흐리지 않는다. 배우의 실제 월드 높이·화면 배율로 바위·풀·문·목재 크기를 함께 확인한다.
+3. 풍부한 외곽과 절제된 내부를 함께 만든다. 자연스러운 비대칭 실루엣 → 연결된 큰 지질 → 중간 파단 → 소수 명암면 순서다. 사진형 미세 질감·격자·빗금·벌집·반복 삼각형·작은 점무늬·돌 도배를 피한다. 거대한 단색 면이나 장난감 같은 단순한 덩어리로 축약하지 않는다.
+4. 한 장소와 같은 광원을 유지한다. 흙·암반·뿌리·나무를 지지 구조로 연결한다. 원경은 분위기, 근경은 보행·사격·상호작용 가독성이 우선이다. 원경 매핑·시차·크롭을 이유 없이 바꾸지 않는다.
+5. 참조 이미지마다 역할을 명시한다. 이미지 1은 구조, 이미지 2는 화풍, 필요하면 이미지 3은 개체 외형이다. 스타일 이미지를 구조로 복사하지 않는다. 실제 전달하지 않은 그림을 보고 그렸다고 주장하지 않는다.
+6. 현재 SOP가 과거 프롬프트보다 우선한다. hand-painted, 고정 4색/10색/12색, 35명 높이, 특정 비율은 해당 실험의 조건이다. 모든 자산에 강제하지 않는다. 현재 플레이 지형·개별 벡터는 색면으로 명암을 표현하고 최종 비트맵 잔여를 없앤다. 색수는 필요한 형태·표정·재질을 보존하며 정한다.
+7. 형상 고정은 실제 결과로 확인한다. 스켈레톤 중첩으로 접지점·발판 끝·틈·통로·머리 여유·조준선·접합을 비교한다. 어긋나면 생성/편집 단계로 돌아가며 충돌·카메라·배우 크기를 바꿔 숨기지 않는다.
+
+### 21.4 현재 제작에 사용할 프롬프트 세 종류
+
+다음은 확인된 승인 속성, [현재 벡터 제작 SOP](https://github.com/sys8994/honro/blob/fcd25b7ef1f3d3191e79c2d4dca8b7ecf21182de/game/docs/VECTOR_AUTHORING_SOP.md)와 실사용 원문을 조합한 **새 템플릿**이다. 과거 성공 이미지를 만든 원문이라고 주장하지 않는다. 대괄호를 실제 장 데이터·첨부 이미지로 채운다.
+
+**A 전체 구상과 대표 플레이 시안**
+
+> 혼로 [막/장/장소]의 전체 미술 구상과 대표 플레이 장면을 만들어라. 이미지 1은 실제 게임 지형 스켈레톤으로 보행 경계·고저차·통로·필수 빈 공간을 고정한다. 이미지 2는 확인된 채택 미술의 화풍·색·광원 참고이며 그 지형 배치를 복사하지 않는다. 한국형 다크 판타지의 성숙하고 차갑고 쓸쓸한 장소다. 진경산수의 큰 산세·명암·여백을 원경에 반영하고 플레이 근경은 손으로 정돈한 벡터 일러스트의 선명한 색면과 자연스러운 실루엣으로 만든다. 옆보기 중심이며 화면 Y는 실제 높이다. [배우 높이/월드 크기/기본 화면 배율]로 돌·나무·문·길의 크기를 맞춘다. [핵심 동선/전투 질문/랜드마크]가 먼저 읽혀야 한다. 원경·뒤 지표·보행면·연결 지형 몸체·앞 가림·동적 물/안개의 역할을 구분하되 한 장소로 이어라. 큰 구조와 중간 형태를 먼저 맞추고 미세 질감·격자·반복 돌·거대한 단색 벽·과한 채도·중국/일본풍 건축·동화풍을 넣지 않는다. 전체 구도를 먼저 확인하고 대표 보행 배율 장면은 별도 이미지로 만든다. 이 시안은 장 전체를 한 장의 래스터로 게임에 붙이기 위한 산출물이 아니다.
+
+**B 전체 구상에 맞춘 의미별 부품과 레이어**
+
+> 첨부 전체 구상에서 [대상 자산/REAR·SURFACE·BODY·FORE 역할]만 제작하라. 이미지 1의 정확한 실루엣·접촉선·단차·틈·접합점을 보존하고 이미지 2의 화풍·광원·재질 크기를 따른다. 캔버스 [크기], 월드 범위 [값], 원점/밑동/소켓 [값], 인물 높이 [값], 이웃 접합 [목록], 비워 둘 영역 [목록]을 지킨다. [필수 형상]은 바꾸지 말고 [장식 자유 영역]만 변형한다. 외곽은 자연스럽고 비대칭이며 내부는 적은 큰 색면과 중간 형태로 정돈한다. 필요한 색을 임의로 없애지 말되 작은 균열·입자·반복 무늬·그라데이션·반사 띠·검은 테두리를 넣지 않는다. 실제 투명 배경으로 만들고 체크무늬를 그리지 않는다. 원경·배우·적·물·안개·글자·UI와 다른 레이어를 굽지 않는다. 필수 부위가 캔버스 안에 들어와야 하며 불필요한 crop/늘이기를 하지 않는다.
+
+**C 채택 시안의 벡터화 준비**
+
+> 첨부 채택 시안의 구도·실루엣·보행 경계·구멍·가는 구조물·접합·재질 크기·주요 색 관계를 유지하라. 새 사물이나 장식을 추가하지 않는다. 사진형 미세 노이즈와 내부 얼룩만 연결된 평면 색면으로 정리하고 큰 외곽과 중요한 중간 형태를 보존한다. 접촉선 [목록], 발판 끝 [목록], 출입구 [목록], 소켓/지지점 [목록]은 보호한다. 좁은 틈을 메우거나 기둥·난간·뿌리를 지우지 않는다. 배경은 실제 투명이며 미세 그라데이션·광택·밝은 외곽선·반복 점무늬를 만들지 않는다. 고정 색수와 용량만 맞추려고 형태를 단순 덩어리로 바꾸지 않는다. 이 결과는 Inkscape 색 추적·노드 편집의 입력이지 최종 벡터와 동일한 산출물이 아니다.
+
+A를 확인한 뒤 B를 만들고 필요할 때만 C로 정리한다. 실제 Inkscape의 색 추적·레이어·곡선/노드·합치기/빼기/clip으로 제작하고 raw를 보존한다. 원본→raw→최적화→게임 연결 각각에서 전체·보행 배율·확대를 직접 비교한다. 자동 수치 통과, 내부 시각 검수, 사용자 미술 판단은 별도로 기록한다.
+
+### 21.5 보존된 실사용 프롬프트 원문
+
+아래는 해당 파일의 본문 그대로다. 존재하는 실제 프롬프트를 보존하는 것이며 사용자 승인된 성공 프롬프트라고 부르는 것은 아니다. 현재 적용은 위 21.2의 확인 범위와 21.4의 템플릿을 따른다.
+
+**1장 시작 구간 원문**
+
+출처: [start-prompt.txt](https://github.com/sys8994/honro/blob/fcd25b7ef1f3d3191e79c2d4dca8b7ecf21182de/game/docs/art-references/character-scale-20261019/start-prompt.txt)
+
+```text
+HONRO production terrain, Act 1 Chapter 1 STARTING SECTION, not the whole map.
+P1 MASTER (highest priority): mature Korean dark-fantasy hand-painted game scenery. Match reference's restrained grey-brown stone, earthy brown and muted pine olive palette and meaningful medium-sized forms. NO repetitive microtexture: no grain, stippling, worm scratches, cellular rock patterns, repeated tiny leaves or all-over marks. Preserve structural roots, branching, eroded soil contours and convincing irregular large stone planes; not children's cartoon or simplified toy scenery. Almost perfectly SIDE-ON horizontal camera, only a narrow 5-degree hint of the path's top surface. Screen Y is elevation, never distance into picture. No bird view, receding trail, broad floor plane or geological cutaway. Real alpha transparency for everything beyond the near scene; distant scenery is independent and MUST NOT appear.
+P2 REGION: Korean wooded mountains, soil and red pine roots, small grey rounded rocks, scattered shrubs, generous clear air between forms. Quiet overcast daylight, subdued, somber, not bright golden fantasy. Reference is STYLE ONLY; do not copy its giant tree or composition. No buildings, carriage, decorative props, characters, letters or UI.
+P3 THIS SECTION / SCALE: landscape 2:1, depicting a roughly 35-person-heights-wide stretch of footpath. An adult would be about 1/35 of image WIDTH, so ordinary rocks must be knee to waist height, shrubs mostly knee to chest height, normal tree trunks human-width or less. Only a partial normal pine at left and a slender leaning pine around the right third; no colossal landmark tree in this section. Narrow walking lip enters at around 78% image height on the left, rises subtly to 69% on the right with two gentle irregular shoulders and a small dip. Continuous walkable ground, no artificial stairs. Distinct quieter open starting area in the left third; increasingly wooded approach toward the right. Embedded roots must meet ground. Foreground bank is a natural sloping exterior, includes one small irregular rock outcrop at lower right, not a flat cut face or repetitive texture field. Terrain extends through left/right/bottom edges, edges joinable using plain soil shoulders. Leave substantial transparent upper negative space. This is ONE local scene at human-relative scale, never stretch a short diorama into the entire 6000-unit level. Render polished irregular forms and restrained medium detail, quiet unmarked surfaces between them.
+```
+
+**6장 BODY 원문**
+
+출처: [concept-prompt.txt](https://github.com/sys8994/honro/blob/fcd25b7ef1f3d3191e79c2d4dca8b7ecf21182de/art/act1-near-vector-candidates/stage06-body-v2/concept-prompt.txt)
+
+```text
+Use case: sketch-to-render. Make the ground BODY for HONRO Act1 Stage6, 'The Broken Wooden Bridge': a wet lower rescue road and muddy ravine floor underneath a broken bridge. Image1 is the exact silhouette/geometry contract. Image2 is only the approved flat-vector material style and near-contact rock scale. Preserve Image1's full canvas, exact slopes, central low basin and all side elevations; gray becomes transparent and teal becomes connected ground down to all left/right/bottom edges. Strict orthographic SIDE VIEW, no bird's-eye or visible top plane. In the middle basin (roughly x44%-57% of full width), render damp dark brown earth and embedded low granite, transitioning naturally into slate-gray rock/scree shoulders on both sides. Four opaque flat color families maximum: deep slate #263c3d, gray #4c5b61, light-gray #66716b, damp-earth #554739. A roughly 92-world-unit person is only about 1.8% of this canvas height, DO NOT draw one. Keep near-surface rock faces modest: 60-80 connected irregular faces across the full width, varied fractured planes rather than giant repeated triangular stripes. Quiet larger geological masses deeper below. Sharp playable contact silhouette; preserve all guide bumps and slopes. No thick moss ribbon, no green decoration, no isolated pebble-dot pattern, no grain, noise, gradients, translucent stacked shading, blur, black outlines, tiny cracks. Do not render the broken bridge, timber debris, water, tree, prop, character, monster, distant scenery, sky or text; those remain independent existing gameplay layers. This is only continuous geology with no floating island or rectangular edge patches.
+```
+
+### 21.6 다음 제작에서 보존할 기록
+
+실제 프롬프트, 첨부 레퍼런스의 파일과 역할, 생성 원본, 채택/반려 이유, 실제 Inkscape 편집본·raw/final, 크기·원점·접지·접합·보호 형상, 일반/확대/게임 비교 화면을 연결해 남긴다. 사용자 승인 기록이 있으면 대상과 승인된 속성만 적는다. 생성 ID·파일명·자동 통과만으로 승인이나 재미를 주장하지 않는다. 잘된 부품과 남은 장 전체의 문제를 구분한다.
