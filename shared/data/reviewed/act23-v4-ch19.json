@@ -210,5 +210,410 @@
   "implementation_verified": false,
   "implementation_note": "실제 비전투/세만남자유순서/천도상태/세물증확보/선택대화가드는 코드검증대기.",
   "pass3_source": "HONRO-CH19-PASS3-20261027-response.md",
-  "revision": 1
+  "revision": 1,
+  "familyRestoration": {
+    "revision": 1,
+    "source": "shared/data/narrative-current.json#stages.19.beats",
+    "rows": [
+      {
+        "rowId": "19.beats.separate-1:f7e57a40c7",
+        "portraitExpression": "emotion.sorrow",
+        "id": "19.beats.separate-1:f7e57a40c7",
+        "speaker": "동생을 잃은 형",
+        "text": "네 망치 가져왔다. 헐거워진 자루 갈아 준다더니…… 형이 그걸 못 해 줬구나.",
+        "channel": "dialogue",
+        "familyEncounter": 1,
+        "familyPhase": "separate"
+      },
+      {
+        "rowId": "19.beats.separate-1:wrapped-handle",
+        "kind": "narration",
+        "id": "19.beats.separate-1:wrapped-handle",
+        "speaker": "서술",
+        "text": "형은 망치 자루에 감긴 낡은 천을 손톱으로 눌렀다.",
+        "channel": "arrival",
+        "familyEncounter": 1,
+        "familyPhase": "separate"
+      },
+      {
+        "rowId": "19.beats.separate-1:brother-habit",
+        "portraitExpression": "emotion.sorrow",
+        "id": "19.beats.separate-1:brother-habit",
+        "speaker": "동생을 잃은 형",
+        "text": "맨날 내 망치가 더 낫다고 가져가더니. 이건 또 버리지도 않았네.",
+        "channel": "dialogue",
+        "familyEncounter": 1,
+        "familyPhase": "separate"
+      },
+      {
+        "rowId": "19.beats.separate-1:d5aeb9c27b",
+        "portraitExpression": "action.listen",
+        "id": "19.beats.separate-1:d5aeb9c27b",
+        "speaker": "소단",
+        "text": "손이 보여요. 망치 쪽으로 오고 있어요. 계속 불러 주세요.",
+        "channel": "dialogue",
+        "familyEncounter": 1,
+        "familyPhase": "separate"
+      },
+      {
+        "rowId": "19.beats.separate-1:spirit-warning",
+        "portraitExpression": "base",
+        "id": "19.beats.separate-1:spirit-warning",
+        "speaker": "동생의 혼",
+        "text": "형…… 손 조심해. 거기 가시 있어.",
+        "channel": "dialogue",
+        "familyEncounter": 1,
+        "familyPhase": "separate"
+      },
+      {
+        "rowId": "19.beats.separate-1:recognition",
+        "portraitExpression": "emotion.sorrow",
+        "id": "19.beats.separate-1:recognition",
+        "speaker": "동생을 잃은 형",
+        "text": "알아. 내가 감아 준 거잖아.",
+        "channel": "dialogue",
+        "familyEncounter": 1,
+        "familyPhase": "separate"
+      },
+      {
+        "rowId": "19.beats.send-1:ead09315ca",
+        "kind": "narration",
+        "id": "19.beats.send-1:ead09315ca",
+        "speaker": "서술",
+        "text": "형은 망치를 내려놓았다. 그래도 자루 끝에서는 손을 떼지 못했다.",
+        "channel": "arrival",
+        "familyEncounter": 1,
+        "familyPhase": "send"
+      },
+      {
+        "rowId": "19.beats.send-1:unfinished-promise",
+        "portraitExpression": "emotion.sorrow",
+        "id": "19.beats.send-1:unfinished-promise",
+        "speaker": "동생을 잃은 형",
+        "text": "다 갈아 놓고 줄게. 조금만…… 손 좀 보자.",
+        "channel": "dialogue",
+        "familyEncounter": 1,
+        "familyPhase": "send"
+      },
+      {
+        "rowId": "19.beats.send-1:spirit-answer",
+        "portraitExpression": "base",
+        "id": "19.beats.send-1:spirit-answer",
+        "speaker": "동생의 혼",
+        "text": "됐어. 이만하면 돼.",
+        "channel": "dialogue",
+        "familyEncounter": 1,
+        "familyPhase": "send"
+      },
+      {
+        "rowId": "19.beats.send-1:eb04f1e1ab",
+        "portraitExpression": "emotion.sorrow",
+        "id": "19.beats.send-1:eb04f1e1ab",
+        "speaker": "소단",
+        "text": "망치 말고, 형님 손을 보고 있어요.",
+        "channel": "dialogue",
+        "familyEncounter": 1,
+        "familyPhase": "send"
+      },
+      {
+        "rowId": "19.beats.send-1:3a9cb34afd",
+        "portraitExpression": "emotion.sorrow",
+        "id": "19.beats.send-1:3a9cb34afd",
+        "speaker": "동생을 잃은 형",
+        "text": "그만 두드려. 형 왔다. 이제 그만해도 돼.",
+        "channel": "dialogue",
+        "familyEncounter": 1,
+        "familyPhase": "send"
+      },
+      {
+        "rowId": "19.beats.send-1:hand-opens",
+        "kind": "narration",
+        "id": "19.beats.send-1:hand-opens",
+        "speaker": "서술",
+        "text": "형이 손을 폈다. 망치 자루를 감싼 천 끝만 조금 들렸다가 내려앉았다.",
+        "channel": "arrival",
+        "familyEncounter": 1,
+        "familyPhase": "send"
+      },
+      {
+        "rowId": "19.beats.separate-2:037191cc14",
+        "portraitExpression": "emotion.sorrow",
+        "id": "19.beats.separate-2:037191cc14",
+        "speaker": "언니를 잃은 동생",
+        "text": "관청 장부에 적힌 이름 말고…… 집에서 우리끼리 부르던 말로 불러도 찾아와요?",
+        "channel": "dialogue",
+        "familyEncounter": 2,
+        "familyPhase": "separate"
+      },
+      {
+        "rowId": "19.beats.separate-2:781931b0df",
+        "portraitExpression": "base",
+        "id": "19.beats.separate-2:781931b0df",
+        "speaker": "소단",
+        "text": "네. 평소에 부르던 대로 불러 주세요.",
+        "channel": "dialogue",
+        "familyEncounter": 2,
+        "familyPhase": "separate"
+      },
+      {
+        "rowId": "19.beats.separate-2:home-name",
+        "portraitExpression": "emotion.sorrow",
+        "id": "19.beats.separate-2:home-name",
+        "speaker": "언니를 잃은 동생",
+        "text": "잠꾸러기. 이제 일어나.",
+        "channel": "dialogue",
+        "familyEncounter": 2,
+        "familyPhase": "separate"
+      },
+      {
+        "rowId": "19.beats.separate-2:stifled-breath",
+        "kind": "narration",
+        "id": "19.beats.separate-2:stifled-breath",
+        "speaker": "서술",
+        "text": "여인은 입가를 손으로 가렸다.",
+        "channel": "arrival",
+        "familyEncounter": 2,
+        "familyPhase": "separate"
+      },
+      {
+        "rowId": "19.beats.separate-2:ordinary-memory",
+        "portraitExpression": "emotion.sorrow",
+        "id": "19.beats.separate-2:ordinary-memory",
+        "speaker": "언니를 잃은 동생",
+        "text": "늘 내가 깨웠어요. 문 두드리면 한 번만 더 부르라고 하고…….",
+        "channel": "dialogue",
+        "familyEncounter": 2,
+        "familyPhase": "separate"
+      },
+      {
+        "rowId": "19.beats.separate-2:spirit-answer",
+        "portraitExpression": "base",
+        "id": "19.beats.separate-2:spirit-answer",
+        "speaker": "언니의 혼",
+        "text": "들었어. 다 들었어.",
+        "channel": "dialogue",
+        "familyEncounter": 2,
+        "familyPhase": "separate"
+      },
+      {
+        "rowId": "19.beats.send-2:first-call",
+        "portraitExpression": "emotion.sorrow",
+        "id": "19.beats.send-2:first-call",
+        "speaker": "언니를 잃은 동생",
+        "text": "잠꾸러기. 일어나.",
+        "channel": "dialogue",
+        "familyEncounter": 2,
+        "familyPhase": "send"
+      },
+      {
+        "rowId": "19.beats.send-2:second-call",
+        "portraitExpression": "emotion.sorrow",
+        "id": "19.beats.send-2:second-call",
+        "speaker": "언니를 잃은 동생",
+        "text": "잠꾸러기…….",
+        "channel": "dialogue",
+        "familyEncounter": 2,
+        "familyPhase": "send"
+      },
+      {
+        "rowId": "19.beats.send-2:f0b967a0fa",
+        "kind": "narration",
+        "id": "19.beats.send-2:f0b967a0fa",
+        "speaker": "서술",
+        "text": "세 번째에는 소리가 나오지 않았다. 소단은 그 곁에서 기다렸다.",
+        "channel": "arrival",
+        "familyEncounter": 2,
+        "familyPhase": "send"
+      },
+      {
+        "rowId": "19.beats.send-2:spirit-rises",
+        "portraitExpression": "base",
+        "id": "19.beats.send-2:spirit-rises",
+        "speaker": "언니의 혼",
+        "text": "응. 나 일어났어.",
+        "channel": "dialogue",
+        "familyEncounter": 2,
+        "familyPhase": "send"
+      },
+      {
+        "rowId": "19.beats.send-2:farewell",
+        "portraitExpression": "emotion.sorrow",
+        "id": "19.beats.send-2:farewell",
+        "speaker": "언니를 잃은 동생",
+        "text": "……잘 가, 언니.",
+        "channel": "dialogue",
+        "familyEncounter": 2,
+        "familyPhase": "send"
+      },
+      {
+        "rowId": "19.beats.send-2:f3af886f0b",
+        "portraitExpression": "base",
+        "id": "19.beats.send-2:f3af886f0b",
+        "speaker": "담허",
+        "text": "……갔네. 조금 더 서 있어도 되네.",
+        "channel": "dialogue",
+        "familyEncounter": 2,
+        "familyPhase": "send"
+      },
+      {
+        "rowId": "19.beats.separate-3:89b2f7818a",
+        "portraitExpression": "action.listen",
+        "id": "19.beats.separate-3:89b2f7818a",
+        "speaker": "소단",
+        "text": "한 분이 더 남았어요. 여기 계신 분들 중에…… 이분 이름 아시는 분 없어요?",
+        "channel": "dialogue",
+        "familyEncounter": 3,
+        "familyPhase": "separate"
+      },
+      {
+        "rowId": "19.beats.separate-3:no-answer",
+        "kind": "narration",
+        "id": "19.beats.separate-3:no-answer",
+        "speaker": "서술",
+        "text": "아무도 앞으로 나오지 않았다. 혼은 사람들이 선 쪽을 몇 번이나 돌아보았다.",
+        "channel": "arrival",
+        "familyEncounter": 3,
+        "familyPhase": "separate"
+      },
+      {
+        "rowId": "19.beats.separate-3:waiting",
+        "portraitExpression": "base",
+        "id": "19.beats.separate-3:waiting",
+        "speaker": "이름 없는 혼",
+        "text": "여기서 기다리라고…… 했는데.",
+        "channel": "dialogue",
+        "familyEncounter": 3,
+        "familyPhase": "separate"
+      },
+      {
+        "rowId": "19.beats.separate-3:asking",
+        "portraitExpression": "emotion.concern",
+        "id": "19.beats.separate-3:asking",
+        "speaker": "소단",
+        "text": "누가요?",
+        "channel": "dialogue",
+        "familyEncounter": 3,
+        "familyPhase": "separate"
+      },
+      {
+        "rowId": "19.beats.separate-3:cannot-remember",
+        "kind": "narration",
+        "id": "19.beats.separate-3:cannot-remember",
+        "speaker": "서술",
+        "text": "혼은 대답하지 못했다. 휘겸이 빈 그릇 곁으로 걸어왔다.",
+        "channel": "arrival",
+        "familyEncounter": 3,
+        "familyPhase": "separate"
+      },
+      {
+        "rowId": "19.beats.separate-3:19ba8f1e3d",
+        "portraitExpression": "base",
+        "id": "19.beats.separate-3:19ba8f1e3d",
+        "speaker": "휘겸",
+        "text": "내가 여기 있겠소. 소단을 따라가시오.",
+        "channel": "dialogue",
+        "familyEncounter": 3,
+        "familyPhase": "separate"
+      },
+      {
+        "rowId": "19.beats.send-3:permission",
+        "portraitExpression": "base",
+        "id": "19.beats.send-3:permission",
+        "speaker": "이름 없는 혼",
+        "text": "제가 먼저 가도 됩니까?",
+        "channel": "dialogue",
+        "familyEncounter": 3,
+        "familyPhase": "send"
+      },
+      {
+        "rowId": "19.beats.send-3:stay",
+        "portraitExpression": "base",
+        "id": "19.beats.send-3:stay",
+        "speaker": "휘겸",
+        "text": "가시오. 여기는 내가 보고 있겠소.",
+        "channel": "dialogue",
+        "familyEncounter": 3,
+        "familyPhase": "send"
+      },
+      {
+        "rowId": "19.beats.send-3:guide",
+        "portraitExpression": "base",
+        "id": "19.beats.send-3:guide",
+        "speaker": "소단",
+        "text": "이쪽이에요. 천천히 오세요.",
+        "channel": "dialogue",
+        "familyEncounter": 3,
+        "familyPhase": "send"
+      },
+      {
+        "rowId": "19.beats.send-3:keeps-place",
+        "kind": "narration",
+        "id": "19.beats.send-3:keeps-place",
+        "speaker": "서술",
+        "text": "혼이 그릇을 떠났다. 휘겸은 그 자리에 조금 더 서 있었다.",
+        "channel": "arrival",
+        "familyEncounter": 3,
+        "familyPhase": "send"
+      },
+      {
+        "rowId": "19.beats.send-3:2f2db46760",
+        "kind": "narration",
+        "id": "19.beats.send-3:2f2db46760",
+        "speaker": "서술",
+        "text": "소단이 손을 내렸다. 빈 그릇에서 나던 소리가 멎었다.",
+        "channel": "arrival",
+        "familyEncounter": 3,
+        "familyPhase": "send"
+      }
+    ],
+    "scenes": {
+      "separate-1": [
+        "19.beats.separate-1:f7e57a40c7",
+        "19.beats.separate-1:wrapped-handle",
+        "19.beats.separate-1:brother-habit",
+        "19.beats.separate-1:d5aeb9c27b",
+        "19.beats.separate-1:spirit-warning",
+        "19.beats.separate-1:recognition"
+      ],
+      "send-1": [
+        "19.beats.send-1:ead09315ca",
+        "19.beats.send-1:unfinished-promise",
+        "19.beats.send-1:spirit-answer",
+        "19.beats.send-1:eb04f1e1ab",
+        "19.beats.send-1:3a9cb34afd",
+        "19.beats.send-1:hand-opens"
+      ],
+      "separate-2": [
+        "19.beats.separate-2:037191cc14",
+        "19.beats.separate-2:781931b0df",
+        "19.beats.separate-2:home-name",
+        "19.beats.separate-2:stifled-breath",
+        "19.beats.separate-2:ordinary-memory",
+        "19.beats.separate-2:spirit-answer"
+      ],
+      "send-2": [
+        "19.beats.send-2:first-call",
+        "19.beats.send-2:second-call",
+        "19.beats.send-2:f0b967a0fa",
+        "19.beats.send-2:spirit-rises",
+        "19.beats.send-2:farewell",
+        "19.beats.send-2:f3af886f0b"
+      ],
+      "separate-3": [
+        "19.beats.separate-3:89b2f7818a",
+        "19.beats.separate-3:no-answer",
+        "19.beats.separate-3:waiting",
+        "19.beats.separate-3:asking",
+        "19.beats.separate-3:cannot-remember",
+        "19.beats.separate-3:19ba8f1e3d"
+      ],
+      "send-3": [
+        "19.beats.send-3:permission",
+        "19.beats.send-3:stay",
+        "19.beats.send-3:guide",
+        "19.beats.send-3:keeps-place",
+        "19.beats.send-3:2f2db46760"
+      ]
+    }
+  }
 }

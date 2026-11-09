@@ -40,10 +40,21 @@ function play(app,key,bark=false){const b=app.engine.b,q=memory(b),e=event(q,key
  q.reader={key,ids:lines.map(l=>l[0])};G.HonroStory.start(app,lines.map(([id,who,text])=>[who,text,{kind:'character',act4PreviewRow:id}]),{id:'act4-preview-'+b.honroAct4Preview+'-'+key,title:app.stage.name});
  return true;
 }
+// Preserve accepted readers/cursors and completed events. Retry only offers
+// which never started; never invent receipts to make a transition succeed.
+function offered(b,key){const q=memory(b),e=q.events[key];return !!(e?.started||e?.terminal||seed(b.honroAct4Preview,key)?.lines.every(([id])=>q.receipts.includes(id)));}
+function missingHand(b){const q=memory(b),e=q.events.hand;return b.honroAct4Preview===39&&!!q.hand&&q.observed?.hand!==undefined&&!e?.started&&!e?.terminal;}
+function narrativePending(b){const q=memory(b);return !!(q.reader||q.bark||missingHand(b));}
+function resumeHand(app){const b=app.engine.b,q=memory(b);if(!missingHand(b))return;
+ // An actual observed pose owns this offer after actors move, or when an old
+ // save already reached won. Existing pending readers/barks remain intact.
+ if(play(app,'hand',true))q.hand.completed=true;
+}
 function quiet(b){return !b.units.some(u=>u.side===1&&alive(u))&&!b.projectiles.length&&!b.volley&&b.phase==='aim'&&(!P.quietReady||P.quietReady(b));}
 const tourViews=[{key:'boat',x:550,y:1770,scale:.64,point:{x:500,y:1735}},{key:'dock',x:6150,y:1790,scale:.56,point:{x:6150,y:1890}},{key:'threat',x:1510,y:1780,scale:.55,point:{x:1390,y:1864}}];
 function arrivalTour(app,q,dt){const t=q.arrivalTour;if(!t?.active)return false;if(app.modal.classList.contains('open')||G.document.hidden)return true;const v=(app.engine.b.honroAct4Design?.boarding?.tourViews||tourViews)[t.index];if(!v){t.active=false;if(!P.startCamera?.(app))Object.assign(app.scene,{manual:false,x:boarding(app.engine.b).startX??450,y:boarding(app.engine.b).startY??1840,scale:G.innerWidth<600?.62:.94});play(app,'arrival');return false;}Object.assign(app.scene,{manual:true,x:v.x,y:v.y,scale:v.scale,storyTween:null,cinematic:null,goalFocus:null,storyFrame:null});if(t.seen?.[v.key]!==undefined){t.elapsed=(t.elapsed||0)+dt;if(t.elapsed>.8){t.index++;t.elapsed=0;}}return true;}
 function observe(app,dt){const b=app.engine?.b,node=G.document.getElementById('act4-banter');if(!(b?.honroCustom||b?.honroAct4Official===1)||!b.honroAct4Preview||G.document.hidden||app.modal?.classList.contains('open')){if(node)node.hidden=true;return;}const q=memory(b),n=b.honroAct4Preview;q.clock+=dt;
+ resumeHand(app);
  P.coastObserve?.(app,dt);
  if(q.reader){const e=event(q,q.reader.key),d=app.dialogue,line=d?.lines[d.index],node=G.document.getElementById('story-line');
   if(line?.[2]?.act4PreviewRow&&node?.textContent===line[1]&&shown(node)&&!app.modal.classList.contains('open')&&!G.document.hidden&&app.canSpeak(line[0])&&(!P.rowAllowed||P.rowAllowed(app,line[2].act4PreviewRow))){receipt(q,e,line[2].act4PreviewRow);const next=G.document.querySelector('#dialogue-root [data-action="dialogue-next"]');if(next)next.disabled=false;}
@@ -61,9 +72,13 @@ function observe(app,dt){const b=app.engine?.b,node=G.document.getElementById('a
   if(arrivalTour(app,q,dt))return;
   if(['docked','boarded'].includes(q.boat.phase)){const text=G.HONRO_ACT4_PREVIEW_SEEDS.ui.find(v=>v[0]==='A4.S31.BOARD_OBJECTIVE')[1],goal=G.document.getElementById('objective-text');app.stage.goal=text;if(goal&&goal.textContent!==text)goal.textContent=text;}
   if(!q.events.arrival?.started&&party(b).some(u=>app.engine.grounded(u))&&inView(app,{x:500,y:cfg.approachY})&&inView(app,{x:6150,y:cfg.deckY+30}))play(app,'arrival');
-  if(quiet(b)&&q.boat.phase==='waiting'&&!app.dialogue&&!q.reader){q.boat.phase='approach';play(app,'boat_approach');}
+  if(quiet(b)&&q.boat.phase==='waiting'&&!app.dialogue&&!q.reader&&(offered(b,'boat_approach')||play(app,'boat_approach')))q.boat.phase='approach';
+  // Old saves may have moved despite a rejected BOAT offer. Keep their current
+  // boat position until that missing reader can actually be accepted.
+  if(['approach','docked'].includes(q.boat.phase)&&!offered(b,'boat_approach')){if(!play(app,'boat_approach'))return;}
   if(q.boat.phase==='approach'&&!app.dialogue){q.boat.x=Math.min(cfg.dockX,q.boat.x+dt*360);if(q.boat.x===cfg.dockX){q.boat.phase='docked';app.stage.goal=G.HONRO_ACT4_PREVIEW_SEEDS.ui.find(v=>v[0]==='A4.S31.BOARD_OBJECTIVE')[1];const goal=G.document.getElementById('objective-text');if(goal)goal.textContent=app.stage.goal;if(!b.terrain.some(t=>t.id==='a4-boat-deck')){b.terrain.push({id:'a4-boat-deck',x:cfg.deckX,y:cfg.deckY,w:cfg.deckW,h:24,mat:'wood',indestructible:true,oneWay:true,hp:9999,maxHp:9999});b.sceneVersion++;}play(app,'board_ready');}}
   const boat=b.honroAct4PreviewDynamic?.find(l=>l.asset?.id==='a4:boat');if(boat){boat.x=q.boat.x;const approach=Math.max(0,Math.min(1,(q.boat.x-cfg.approachX)/(cfg.dockX-cfg.approachX)));boat.y=cfg.approachY+(cfg.boatY-cfg.approachY)*approach;boat.scale=.6+.4*approach;}
+  if(q.boat.phase==='docked'&&!offered(b,'board_ready'))play(app,'board_ready');
   // MID advice remains withheld until a real reviewed-bank arc was observed.
   if(q.arcObserved&&inView(app,{x:4140,y:cfg.arcY??1730})&&party(b).some(u=>u.x>3400&&u.x<4000))play(app,'second_bank',true);
  }
@@ -84,7 +99,7 @@ function observe(app,dt){const b=app.engine?.b,node=G.document.getElementById('a
  }
 }
 function interact(app=G.HonroApp,probe=false){const b=app.engine?.b;if(!(b?.honroCustom||b?.honroAct4Official===1)||!b.honroAct4Preview||app.dialogue)return false;const q=memory(b),n=b.honroAct4Preview,u=app.engine.active;if(b.side!==0||b.phase!=='aim'||u?.side!==0||u.acted||!alive(u)||!app.engine.grounded(u))return false;
- if(n===31&&q.boat.phase==='docked'&&quiet(b)&&party(b).every(u=>u.x>boarding(b).boardX1&&u.x<boarding(b).boardX2&&Math.abs(u.y-boarding(b).deckY)<5&&app.engine.grounded(u))){if(probe)return true;q.boat.phase='boarded';q.complete=true;return true;}
+ if(n===31&&q.boat.phase==='docked'&&!narrativePending(b)&&offered(b,'boat_approach')&&offered(b,'board_ready')&&quiet(b)&&party(b).every(u=>u.x>boarding(b).boardX1&&u.x<boarding(b).boardX2&&Math.abs(u.y-boarding(b).deckY)<5&&app.engine.grounded(u))){if(probe)return true;q.boat.phase='boarded';q.complete=true;return true;}
  if(n===36&&u.cls==='knight'&&quiet(b)&&atDoor(b,u)&&q.door.phase==='standing'){if(probe)return true;q.door.phase='falling';q.door.time=0;return true;}
  if(n===35&&quiet(b)&&party(b).every(u=>u.x>K(b,'completeX',6500)&&u.y<K(b,'completeYMax',1e9))){if(probe)return true;q.complete=true;return true;}
  if(n===36&&quiet(b)&&q.door.phase==='fallen'&&q.events.leave?.terminal&&['A4.S36.DOOR.01','A4.S36.DOOR.02'].every(id=>q.receipts.includes(id))&&party(b).every(u=>u.x>K(b,'completeX',6500)&&u.y<K(b,'completeYMax',1e9))){if(probe)return true;q.complete=true;return true;}
@@ -121,7 +136,7 @@ b.honroAct4PreviewDynamic??=b.honroLandmarks.filter(l=>['a4:boat','a4:door','a4:
 const launch=P.launch;P.launch=function(n){const r=launch(n);P.attachEvents(G.HonroApp,{fresh:true});return r;};
 function snapshot(app=G.HonroApp,{compactArt=false}={}){const b=app.engine?.b;if(!(b?.honroCustom||b?.honroAct4Official===1)||!b.honroAct4Preview)throw Error('No Act4 preview');const source=compactArt?G.HonroProfileStore.compactBattleArt(b):b;const result=JSON.parse(JSON.stringify(source));if(result.honroAct4PreviewState?.reader){const reader=result.honroAct4PreviewState.reader;if(!app.dialogue){const q=result.honroAct4PreviewState,e=event(q,reader.key);e.terminal=true;for(const [id]of seed(result.honroAct4Preview,reader.key).lines)if(!e.presented.includes(id)&&!e.retired.includes(id))e.retired.push(id);q.reader=null;return result;}reader.cursor=app.dialogue?.index??0;reader.cursorId=app.dialogue?.lines[reader.cursor]?.[2]?.act4PreviewRow;reader.ids=app.dialogue?.lines.map(l=>l[2]?.act4PreviewRow).filter(Boolean)||reader.ids;}return result;}
 function restore(saved){if(!saved?.honroCustom||!(saved.honroAct4Preview>=31&&saved.honroAct4Preview<=40)||saved.honroAct4PreviewState?.version!==1)throw Error('Invalid preview snapshot');const r=P.launch(saved.honroAct4Preview),app=G.HonroApp;Object.assign(r.b,JSON.parse(JSON.stringify(saved)));r.b.sceneVersion++;const reader=memory(r.b).reader;if(reader){const s=seed(r.b.honroAct4Preview,reader.key),lines=reader.ids?s.lines.filter(l=>reader.ids.includes(l[0])):s.lines,cursor=reader.cursorId?Math.max(0,lines.findIndex(l=>l[0]===reader.cursorId)):(reader.cursor??0);G.HonroStory.start(app,lines.map(([id,who,text])=>[who,text,{kind:'character',act4PreviewRow:id}]),{id:'act4-preview-'+r.b.honroAct4Preview+'-'+reader.key,title:app.stage.name,index:cursor});}return r;}
-Object.assign(P,{interact,observe,previewMemory:memory,snapshot,restore,eventAPI:{alive,party,memory,seed,event,inView,play,quiet}});
+Object.assign(P,{interact,observe,previewMemory:memory,snapshot,restore,narrativePending,eventAPI:{alive,party,memory,seed,event,inView,play,quiet}});
 function attachApp(){const appPrototype=Object.getPrototypeOf(G.HonroApp),canInput=appPrototype.canInput;appPrototype.canInput=function(...args){if((this.engine?.b?.honroCustom||this.engine?.b?.honroAct4Official===1)&&this.engine.b.honroAct4Preview===31&&memory(this.engine.b).arrivalTour?.active)return false;return canInput.apply(this,args);};}
 if(G.HonroApp)attachApp();else G.HONRO_APP_READY.then(attachApp);
 G.document.addEventListener('keydown',ev=>{const app=G.HonroApp,b=app?.engine?.b;if(ev.code!=='Escape'||!(b?.honroCustom||b?.honroAct4Official===1)||b.honroAct4Preview!==31)return;const q=memory(b);if(!q.arrivalTour?.active)return;q.arrivalTour.active=false;const e=event(q,'arrival');e.started=e.terminal=true;e.retired=seed(31,'arrival').lines.map(l=>l[0]);if(!P.startCamera?.(app))Object.assign(app.scene,{manual:false,x:boarding(app.engine.b).startX??450,y:boarding(app.engine.b).startY??1840,scale:G.innerWidth<600?.62:.94});});

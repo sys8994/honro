@@ -5,6 +5,7 @@ const wagonKnown=p=>p.honroAct23V4History?.stages?.[23]?.reviewedNarrative?.proo
 const porterSafe=p=>!!p.honroAct23V4History?.stages?.[23]?.reviewedNarrative?.proof?.safe;
 const talked=(p,c)=>!!p.honroJourney?.talked?.['rest-talk-v1-24-'+c+'-reviewed1'];
 const received=(b,id)=>Object.values(mem(b).events).some(e=>G.HonroAct23V4Reviewed.receiptIds(e).includes(id));
+const spoken=(b,id)=>Object.values(mem(b).events).some(e=>F.closed(e)&&G.HonroAct23V4Reviewed.receiptIds(e).includes(id));
 const heard=(p,c,b)=>talked(p,c)||!!b&&received(b,'EDGE.OPTIONAL_24_'+c.toUpperCase()+'_0');
 function crestVisible(app){const b=app.engine?.b,s=app.scene,p=b&&mark(b,'family-crest'),view=s?.honroReviewed24CrestDraw,size=s?.size?.();if(!R.active(b)||!p||s?.battle!==b||view?.run!==b.session||view.x!==p.x+38||view.y!==p.y-82||!size||s.scale<.4)return false;
  const x=(view.x-s.x)*s.scale+size.w/2,y=(view.y-s.y)*s.scale+size.h/2;return x>35&&x<size.w-35&&y>35&&y<size.h-120;
@@ -23,6 +24,9 @@ function routeSafe(b){return root(b).done['shrine-seal']&&['split-route-a','spli
 function gathered(b){return ['archer','mage','knight','occultist'].every(c=>ground(b,hero(b,c))&&V.near(hero(b,c),spec(b).gather,300));}
 function finalArrivals(b){const q=mem(b);return ['archer','mage','knight','occultist'].every(c=>{const p=mark(b,['archer','mage'].includes(c)?'split-route-a':'split-route-b'),u=hero(b,c);return ground(b,u)&&V.near(u,p,115)&&(q.departWalk?.[c]?.distance||0)>=30;});}
 function observe(app,dt){const b=app.engine.b,q=mem(b),s=spec(b),a=mark(b,'split-route-a'),z=mark(b,'split-route-b');
+ // Old partial entry scenes filtered the distant resident out permanently.
+ // Retry only the missing rows; preserve entry, combat and split state.
+ for(const [key,id]of [['entry-voice','A3.S24.ENTRY.03'],['heard','A3.S24.INTRO.03']])if(F.closed(q.events[key])&&!received(b,id)){delete q.events[key];app.dirty=true;}
  if(root(b).done['family-crest']&&nearCrest(b))q.proof.familyCrest={emblem:'family-three-petals',actor:hero(b,'knight').id,source:'family-crest'};
  if(V.heroes(b).some(u=>ground(b,u)&&distance(u,s.gather)<360))q.proof.routes={water:{id:a.id,x:a.x,y:a.y},ground:{id:z.id,x:z.x,y:z.y}};
  if(V.heroes(b).some(u=>distance(u,a)<650)){q.souls??={first:0,second:0};q.souls.first=Math.min(100,q.souls.first+Math.max(0,Math.min(dt,.05))*100);if(F.closed(q.events.entry)&&!F.closed(q.events.split))q.souls.second=Math.min(100,q.souls.second+Math.max(0,Math.min(dt,.05))*100);}
@@ -49,10 +53,11 @@ R=F.register({stage:24,
   {key:'arrival',ids:['EDGE.ARRIVALS_24_0'],when:app=>nearCrest(app.engine.b)&&wagonKnown(app.profile)},
   {key:'intro',ids:['A3.S24.INTRO.01','A3.S24.INTRO.02'],when:app=>nearCrest(app.engine.b)},
   {key:'crest',ids:ids('CREST',2),when:app=>!!root(app.engine.b).done['family-crest']},
-  {key:'entry',ids:ids('ENTRY',3),when:app=>routesVisible(app.engine.b)},
-  {key:'heard',ids:['A3.S24.INTRO.03'],when:app=>{const q=mem(app.engine.b);return F.closed(q.events.entry)&&q.events.entry.ids.includes('A3.S24.ENTRY.03')&&voiceHeard(app.engine.b)&&(q.souls?.first||0)>=30;}},
+  {key:'entry',ids:ids('ENTRY',3),when:app=>routesVisible(app.engine.b)||(F.closed(mem(app.engine.b).events.entry)&&voiceHeard(app.engine.b))},
+  {key:'entry-voice',ids:['A3.S24.ENTRY.03'],when:app=>{const b=app.engine.b;return F.closed(mem(b).events.entry)&&(!received(b,'A3.S24.ENTRY.03')||mem(b).events['entry-voice']?.status==='open')&&voiceHeard(b);}},
+  {key:'heard',ids:['A3.S24.INTRO.03'],when:app=>{const q=mem(app.engine.b);return F.closed(q.events.entry)&&spoken(app.engine.b,'A3.S24.ENTRY.03')&&voiceHeard(app.engine.b)&&(q.souls?.first||0)>=30;}},
   {key:'approach',ids:ids('APPROACH_DANGER',1),when:app=>(mem(app.engine.b).souls?.second||0)>=30&&!F.closed(mem(app.engine.b).events.split)},
-  {key:'split',ids:ids('SPLIT',5),when:app=>{const b=app.engine.b;return routeSafe(b)&&gathered(b)&&F.closed(mem(b).events.entry)&&F.closed(mem(b).events.heard);}},
+  {key:'split',ids:ids('SPLIT',5),when:app=>{const b=app.engine.b;return routeSafe(b)&&gathered(b)&&F.closed(mem(b).events.entry)&&spoken(b,'A3.S24.ENTRY.03')&&spoken(b,'A3.S24.INTRO.03');}},
   {key:'depart',ids:ids('DEPART',2),when:app=>['archer','mage','knight','occultist'].every(c=>(mem(app.engine.b).departWalk?.[c]?.distance||0)>=30)},
   {key:'guide',ids:['A3.S24.GUIDE.01'],when:app=>!!mem(app.engine.b).proof.departure}
  ],

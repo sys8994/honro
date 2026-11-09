@@ -67,6 +67,9 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
   for(const g of publishedGenerations)for(const file of g.files){const bytes=await readFile(path.join(root,file.path));if(bytes.length!==file.bytes||hash(bytes)!==file.sha256)throw Error('Retained immutable asset mismatch: '+file.path);}
   const files=new Map();
   async function emitUnique(folder,name,extension,body){
+    // SVG source line endings must not produce a platform-specific immutable
+    // name or collide with historical assets normalized by Git checkout.
+    if(extension==='svg')body=Buffer.from((Buffer.isBuffer(body)?body.toString('utf8'):body).replace(/\r\n?/g,'\n'));
     // Strip comments/whitespace only. Keep names, statements and patch order;
     // do not fold expressions, mangle properties or move execution boundaries.
     if(extension==='js'&&(folder==='runtime'||folder==='entries')){

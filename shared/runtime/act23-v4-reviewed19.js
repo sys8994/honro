@@ -3,6 +3,14 @@ const P=G.HonroAct23V4ReviewedChapters,V=P.V,C=P.C,api=P.apiFor(19),alive=V.aliv
 const unit=(b,id)=>b.units.find(u=>u.id===id),base=b=>V.mem(b),clone=x=>JSON.parse(JSON.stringify(x));
 const memory=b=>api.memory(b).physical??={drops:{},spirits:{},marks:{},retreat:{},voices:{}};
 const ids=[1,2,3],marks=['mumyeong-transfer','royal-seal','jeomungol-mark'];
+const restoration=()=>G.HONRO_ACT23_V4_REVIEWED_CHAPTERS?.[19]?.familyRestoration;
+const familyEnabled=()=>restoration()?.revision===1;
+const familyKey=(phase,i)=>'family.'+phase+'.'+i;
+const familyRows=(phase,i)=>restoration()?.scenes?.[phase+'-'+i]||[];
+// Adopt in-flight saves without undoing a completed separation or departure.
+// Missing old dialogue is not fabricated as a presentation receipt.
+function familyState(b){return memory(b).familyRepair??={revision:1,carried:ids.filter(i=>base(b).done['separate-'+i]),pending:null};}
+function familyReady(b){return !familyEnabled()||ids.every(i=>familyState(b).carried.includes(i)||api.done(b,familyKey('send',i)));}
 const allGone=b=>ids.every(i=>base(b).done['separate-'+i]&&base(b).farewell?.['send-'+i]?.status==='done'&&memory(b).spirits[i]?.departed);
 const allMarks=b=>marks.every(id=>memory(b).marks[id]?.confirmed);
 const present=(b,name)=>alive(unit(b,{'설오':'p-archer','담허':'p-mage','휘겸':'p-knight','소단':'p-occultist'}[name]));
@@ -11,7 +19,7 @@ function author(map){const init=map.initialState,at=id=>map.markers.find(p=>p.id
  for(const [i,id]of init.honroV4Reviewed19.visitors.entries()){const site=at('separate-'+(i+1)),old=map.units.find(u=>u.id===id);if(!old)throw Error('19.missing visitor '+id);old.x=site.x-60;old.y=G.HonroMapEngine.surfaceY(map.terrains.map(t=>G.HonroGeometry.terrain(t,map.height)),old.x,undefined,'act2-floor').y;old.stageOverrides={...old.stageOverrides,fixed:false,honroCivilian:true,honroProtected:true,honroV4Actor:true,maxMove:600,moveLeft:600,walkSpeed:180};}
  map.events=[];map.units=map.units.filter(u=>u.team!=='enemy');
 }
-function prepare(b){const m=memory(b);for(const i of ids)m.spirits[i]??={count:i===2?2:1,status:'entangled',x:V.marker(b,'separate-'+i).x+38,y:V.marker(b,'separate-'+i).y};}
+function prepare(b){const m=memory(b);for(const i of ids)m.spirits[i]??={count:i===2?2:1,status:'entangled',x:V.marker(b,'separate-'+i).x+38,y:V.marker(b,'separate-'+i).y};if(familyEnabled())familyState(b);}
 function grounded(b,u){return alive(u)&&!u.airborne&&!u.jumping&&C.validTerrainContactPose(b.terrain,u);}
 function familyCalls(b){return memory(b).familyCalls??={};}
 function familyWitness(b){return ids.every(i=>{const q=familyCalls(b)[i];return q?.sourceRun===b.session&&q.encounter===i&&q.caller===b.honroV4Reviewed19.visitors[i-1]&&q.observer&&q.elapsed>=.7&&q.response?.elapsed>=.35&&q.response.spirit==='farewell-spirit-'+i&&q.aliveCaller&&q.groundedCaller&&q.visible;});}
@@ -40,6 +48,7 @@ function optional(profile,r){const b=profile.honroBattle;if(!api.active(b)||!pre
  return !!base(b).done.route&&remaining.some(i=>m.voices[i]&&m.drops[i]&&alive(unit(b,b.honroV4Reviewed19.visitors[i-1])));
 }
 function allow(app,r){const b=app.engine.b,m=memory(b),id=r.id;
+ if(r.familyEncounter){const i=r.familyEncounter;return familyEnabled()&&familyState(b).pending===i&&!m.spirits[i]?.departed&&!!base(b).done.route;}
  if(r.channel==='optional')return optional({...app.profile,honroBattle:b},r);
  if(id==='EDGE.ARRIVALS_19_0'||id.startsWith('A2.S19.INTRO.'))return m.drops[1]?.status==='placed'&&m.drops[2]?.status==='placed';
  if(id==='A2.S19.MID.01')return ids.some(i=>m.spirits[i]?.reaction);
@@ -56,6 +65,16 @@ function allow(app,r){const b=app.engine.b,m=memory(b),id=r.id;
 }
 function scene(app,key,rows,proof={}){if(rows.every(id=>allow(app,api.row(id))))return api.begin(app,key,rows,proof);return false;}
 function drive(app){const b=app.engine.b,m=memory(b),q=api.memory(b),event=(key,rows,proof)=>{if(q.events[key])return false;return scene(app,key,rows,proof);};
+ if(familyEnabled()){
+  const f=familyState(b),i=f.pending;
+  if(i){
+   if(!api.done(b,familyKey('separate',i)))return;
+   if(!base(b).done['separate-'+i])V.completeStep(app,V.steps(b).find(s=>s.id==='separate-'+i),app.engine.active);
+   if(!q.events[familyKey('send',i)]){api.begin(app,familyKey('send',i),familyRows('send',i),{encounter:i,restoredOriginal:true});return;}
+   if(!api.done(b,familyKey('send',i)))return;
+   f.pending=null;app.dirty=true;
+  }
+ }
  if(event('arrival',['EDGE.ARRIVALS_19_0','A2.S19.INTRO.01','A2.S19.INTRO.02','A2.S19.INTRO.03'],m.drops))return;
  if(api.done(b,'arrival')&&event('response',['A2.S19.MID.01'],m.spirits))return;
  if(event('opened',['A2.S19.MID.02'],{route:base(b).done.route}))return;
@@ -70,17 +89,19 @@ function drive(app){const b=app.engine.b,m=memory(b),q=api.memory(b),event=(key,
  if(event('return',['A2.S19.COMPLETE.02'],m.retreat))return;
  event('escort-back',['A2.S19.COMPLETE.03'],m.retreat);
 }
-function before(app,a,dt){if(!a.safe(app))return false;observe(app,dt);drive(app);return !app.dialogue&&!ids.some(i=>base(app.engine.b).done['separate-'+i]&&!memory(app.engine.b).spirits[i]?.departed&&(familyCalls(app.engine.b)[i]?.elapsed||0)<.7);}
+function before(app,a,dt){if(!a.safe(app))return false;observe(app,dt);drive(app);return !app.dialogue&&(!familyEnabled()||!familyState(app.engine.b).pending)&&!ids.some(i=>base(app.engine.b).done['separate-'+i]&&!memory(app.engine.b).spirits[i]?.departed&&(familyCalls(app.engine.b)[i]?.elapsed||0)<.7);}
+function use(app,m,s){if(!familyEnabled()||!s.id.startsWith('separate-'))return;const b=app.engine.b,f=familyState(b),i=Number(s.id.slice(-1));if(f.pending||!api.done(b,'opened'))return false;f.pending=i;if(!api.begin(app,familyKey('separate',i),familyRows('separate',i),{encounter:i,restoredOriginal:true})){f.pending=null;return false;}app.dirty=true;return true;}
 function eligibility(app,p,s){const b=app.engine.b;if(s.id==='route'&&!api.done(b,'response')||s.id.startsWith('separate-')&&!api.done(b,'opened')||s.id==='old-soul'&&!api.done(b,'quiet'))return{ok:false,reason:s.id};return undefined;}
-function complete(b){return allGone(b)&&allMarks(b)&&api.done(b,'escort-back')&&b.honroV4Reviewed19.visitors.every(id=>memory(b).retreat[id]?.arrived);}
+function complete(b){return familyReady(b)&&allGone(b)&&allMarks(b)&&api.done(b,'escort-back')&&b.honroV4Reviewed19.visitors.every(id=>memory(b).retreat[id]?.arrived);}
 function draw(scene,c,b){const m=memory(b);c.save();for(const [key,q]of Object.entries(familyCalls(b))){if(q.elapsed>=.7||q.elapsed<=0)continue;const u=unit(b,q.caller),spirit=m.spirits[key];if(!alive(u)||spirit?.departed)continue;c.strokeStyle='#d7cba5';c.lineWidth=3;c.beginPath();c.moveTo(u.x+8,u.y-u.h*.5);c.lineTo(u.x+22,u.y-u.h*.68);c.lineTo(u.x+12,u.y-u.h*.78);c.stroke();for(const r of [18,28]){c.beginPath();c.arc(u.x+16,u.y-u.h*.79,r,-.65,.65);c.stroke();}if(q.response){c.strokeStyle='#d5e5d7';c.beginPath();c.ellipse(spirit.x,spirit.y-58,33,63,0,0,Math.PI*2);c.stroke();}}for(const drop of Object.values(m.drops)){const q={...drop,y:drop.y-42*(1-Math.min(1,(drop.elapsed||0)/.45))};c.fillStyle='#a89b76';if(q.id==='bowl'){c.beginPath();c.ellipse(q.x,q.y-6,17,7,0,0,Math.PI);c.fill();}else{c.fillRect(q.x-3,q.y-32,6,30);c.fillRect(q.x-17,q.y-34,29,11);}}
  for(const i of ids){const q=m.spirits[i];if(q.departed||q.count!==2||base(b).done['separate-'+i])continue;c.globalAlpha=.25;c.fillStyle='#cbd9cf';for(const dx of [14]){c.beginPath();c.ellipse(q.x+dx,q.y-60,24,58,dx/60,0,Math.PI*2);c.fill();}}c.globalAlpha=1;c.font='12px serif';c.fillStyle='#b9ae85';for(const p of b.honroV4Reviewed19.marks)c.fillText(p.label,p.x-14,p.y-10);c.restore();}
 function camera(app,key){const b=app.engine.b;let targets;
- if(key==='arrival')targets=[{actor:'mourner-brother'},{actor:'mourner-sister'},V.marker(b,'separate-1'),V.marker(b,'separate-2')];
+ if(key.startsWith('family.')){const i=Number(key.slice(-1));targets=[V.marker(b,'separate-'+i),{actor:b.honroV4Reviewed19.visitors[i-1]},{actor:'p-occultist'}];}
+ else if(key==='arrival')targets=[{actor:'mourner-brother'},{actor:'mourner-sister'},V.marker(b,'separate-1'),V.marker(b,'separate-2')];
  else if(key==='entangled')targets=[V.marker(b,'separate-2')];else if(key==='opened')targets=[V.marker(b,'route'),{actor:'p-mage'}];
  else if(['marks','exit-ready'].includes(key))targets=[V.marker(b,'old-soul')];else if(['return','escort-back'].includes(key))targets=[{actor:'mourner-brother'},b.honroV4Reviewed19.rear];
  else targets=ids.map(i=>V.marker(b,'separate-'+i));return{intent:'situation',targets,padding:110,maxScale:.8};}
-P.register(19,{mapRevision:519,camera,actors:{'설오':'p-archer','담허':'p-mage','휘겸':'p-knight','소단':'p-occultist','주민 1':'mourner-brother','주민 2':'mourner-sister','생존자':'objective'},author,prepare,before,drive,allow,eligibility,optional,draw,complete,objective:b=>!base(b).done.route?'A2.S19.OBJECTIVE.01':!allGone(b)?'A2.S19.OBJECTIVE.02':'A2.S19.OBJECTIVE.03'});
+P.register(19,{mapRevision:519,camera,actors:{'설오':'p-archer','담허':'p-mage','휘겸':'p-knight','소단':'p-occultist','주민 1':'mourner-brother','주민 2':'mourner-sister','생존자':'objective','동생을 잃은 형':'mourner-brother','언니를 잃은 동생':'mourner-sister'},author,prepare,before,drive,allow,eligibility,use,optional,draw,complete,objective:b=>!base(b).done.route?'A2.S19.OBJECTIVE.01':!allGone(b)?'A2.S19.OBJECTIVE.02':'A2.S19.OBJECTIVE.03'});
 const outcome=V.recordOutcome;V.recordOutcome=function(app,won){outcome(app,won);const b=app.engine?.b;if(won&&api.active(b)&&complete(b)){const h=app.profile.honroAct23V4History?.stages?.[19];if(h)h.reviewed19={revision:1,run:b.session,departures:clone(memory(b).spirits),marks:clone(memory(b).marks),familyWitness:familyWitness(b),familyCalls:clone(familyCalls(b)),speakers:b.units.filter(alive).map(u=>u.id)};}};
 
 // This reviewed scene owns the physical lowering props and automatic moving

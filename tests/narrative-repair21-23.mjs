@@ -1,0 +1,30 @@
+/** Actual production App/Story/Engine with DOM/storage/scene doubles.
+ * Supported hero poses and explicit camera bounds are observation fixtures,
+ * not ordinary combat, actual browser pixels or normal-play evidence. */
+import assert from 'node:assert/strict';
+import vm from 'node:vm';
+import {readFile} from 'node:fs/promises';
+import {appHarness,plain} from './app-regression-helpers.mjs';
+const h=await appHarness({productionStory:true}),g=h.g,V=g.HonroAct23V4,C=g.HONRO_CORE;
+vm.runInContext(await readFile('shared/runtime/act23-v4-field-talk.js','utf8'),g);const F=g.HonroAct23V4FieldTalk;
+let app,b,R;
+function consume(){let n=0;while(app.dialogue&&n++<40)g.HonroStory.next(app);assert(!app.dialogue);}
+function view(x,y){Object.assign(app.scene,{battle:b,x,y,scale:.72,size:()=>({w:1440,h:900})});}
+function pose(u,x){const floor=b.terrain.find(t=>t.id===([21,23].includes(b.honroStage)?'a3-foundation':'compact-floor'))||b.terrain.find(t=>t.id==='sy-ground');let y=floor&&C.topAt(floor,x);if(!Number.isFinite(y))y=C.terrainSurface(b.terrain,x,-10000,20000,Infinity)?.y;Object.assign(u,{x,y,vx:0,vy:0,airborne:false,jumping:false,acted:false});assert(C.validTerrainContactPose(b.terrain,u),JSON.stringify({x,y,stage:b.honroStage}));}
+function launch(n){app=h.load(h.profileThrough(n-1));app.launch(n);app.turnNotice=null;b=app.engine.b;Object.assign(b,{side:0,phase:'aim'});R=g.HonroAct23V4Reviewed.provider(n);assert(R.active(b));consume();for(let i=0;i<12;i++){if(app.dialogue)consume();else V.tick(app,.025);}consume();}
+function state(){return plain({units:b.units,terrain:b.terrain,round:b.round,side:b.side,phase:b.phase,active:b.active,rng:b.rng,done:V.mem(b).done,revision:b.honroCampaignMapRevision});}
+function choices(){return plain(F.available(app));}
+function resume(){app.stopBattle();const profile=plain(app.profile),before=plain(profile.honroBattle);app=h.load(profile);app.continue();app.turnNotice=null;b=app.engine.b;R=g.HonroAct23V4Reviewed.provider(b.honroStage);return before;}
+
+launch(21);assert.equal(R.optional(app.profile,21,'archer').length,0);assert.equal(choices().length,0,'No unrendered field observation');
+const cart=b.units.find(u=>u.id==='v4.gate-cart');for(const [i,u]of V.heroes(b).entries())pose(u,cart.x-260+i*45);view(cart.x,cart.y-80);
+let cs=choices();assert.equal(cs.flatMap(c=>c.ids).length,6,JSON.stringify({cs,cart,heroes:V.heroes(b).map(u=>({cls:u.cls,x:u.x,y:u.y}))}));
+const initial=state(),profileObservation=plain(app.profile.honroReviewed21RestObservation??null);
+app.battleHelp();assert(app.modal.innerHTML.includes('현장 대화'));assert(F.use(app,'archer'));assert.equal(app.dialogue.lines.length,3);const first=app.dialogue.lines[0][2].rowId;g.HonroStory.next(app);assert.equal(app.dialogue.index,1);resume();assert.equal(app.dialogue.index,1,'Continue restores real displayed cursor before first scene render');consume();view(cart.x,cart.y-80);assert(!choices().some(c=>c.cls==='archer'),'All three displayed rows consumed once');
+for(const c of ['mage','knight','occultist']){assert(F.use(app,c),c);consume();view(cart.x,cart.y-80);}
+assert.equal(choices().length,0);assert.equal(R.memory(b).events[Object.keys(R.memory(b).events).find(k=>k.startsWith('field-talk.archer.'))].presentedIds[0],first);assert.deepEqual(state(),initial,'Talk/save adds no action, unit, terrain, RNG or objective mutation');assert.deepEqual(plain(app.profile.honroReviewed21RestObservation??null),profileObservation,'No fake camp observation produced');
+launch(21);const ca=b.units.find(u=>u.id==='v4.gate-cart');for(const u of V.heroes(b))pose(u,ca.x-240);view(ca.x,ca.y-80);assert(choices().length);app.scene.x=-10000;assert.equal(choices().length,0,'Offscreen cart/armour denied');view(ca.x,ca.y-80);b.side=1;assert.equal(choices().length,0);b.side=0;b.phase='flight';assert.equal(choices().length,0);b.phase='aim';const mage=V.heroes(b).find(u=>u.cls==='mage');app.battleHelp();app.engine.hurt(mage,999999);assert(!F.use(app,'mage'),'Click revalidates a deceased speaker');assert(!app.dialogue);app.engine.hurt(ca,999999);assert(g.HonroAct23V4Chapter21.cartStopped(b));assert.equal(choices().length,0,'Destroyed cart closes pre-rescue choices');
+
+launch(23);const goods=b.honroReviewed23Spec.goods,occ=V.heroes(b).find(u=>u.cls==='occultist');assert.equal(R.optional(app.profile,23,'occultist').length,0,'No invented completed-history receipt');pose(occ,goods.x+220);view(goods.x,goods.y-40);R.config.observe(app,.025);cs=choices();assert.deepEqual(cs.map(c=>c.cls),['occultist'],JSON.stringify({cs,goods,occ:{x:occ.x,y:occ.y},proof:R.memory(b).proof}));assert.equal(cs[0].ids[0],'EDGE.OPTIONAL_23_OCCULTIST_0');const before23=state();app.battleHelp();assert(F.use(app,'occultist'));resume();assert.equal(app.dialogue.lines[app.dialogue.index][2].rowId,'EDGE.OPTIONAL_23_OCCULTIST_0');consume();view(goods.x,goods.y-40);assert.equal(choices().length,0);assert.deepEqual(state(),before23);assert(!app.profile.honroAct23V4History?.stages?.[23]?.reviewedNarrative,'No same-stage completion history synthesized');
+launch(23);const item=b.honroReviewed23Spec.goods,o=V.heroes(b).find(u=>u.cls==='occultist');pose(o,item.x+220);view(item.x,item.y-40);assert.equal(choices().length,0,'No actual goods observation yet');R.config.observe(app,.025);assert(choices().length);pose(o,item.x-220);assert.equal(choices().length,0,'Existing wagon cover blocks the actual goods sightline');pose(o,item.x+220);assert(choices().length);app.scene.x=-10000;assert.equal(choices().length,0);view(item.x,item.y-40);pose(o,item.x+800);assert.equal(choices().length,0,'Retained proof is insufficient when current speaker is far away');pose(o,item.x+220);o.airborne=true;o.y-=100;assert.equal(choices().length,0,'Airborne/noncontact observer denied');
+console.log('PASS21 six exact field rows and23 current goods row: live/visible/current-ground guards, real help/use, read-once, mid-row Continue, no action/quest/RNG/map-revision/camp-proof/history mutation. Explicit production-App/scene fixtures; not browser/full combat.');

@@ -9,3 +9,6 @@ tests/fixtures/actor-*-baseline.js -text
 # Literal chunks must concatenate byte-for-byte on Windows and Linux.
 shared/data/act4/world.parts/*.jsonpart -text
 shared/data/act4/world.parts/manifest.json text eol=lf
+
+# Content-hashed generated assets must keep the manifest's exact bytes in Git.
+/web/** -text

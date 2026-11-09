@@ -9,7 +9,7 @@ const enabled=n=>V.preview()&&G.HONRO_ACT23_V4_PHASE_B_STAGES?.includes(Number(n
 const active=b=>V.active(b)&&enabled(b.honroStage)&&b.honroReviewedNarrativeRevision===1;
 const memory=b=>V.mem(b).reviewedChapter??={revision:1,events:{}};
 function channel(r){return r.channel||(/RESTENDINGS/.test(r.id)?'rest_ending':/ACTENDINGS/.test(r.id)?'act_ending':/OBJECTIVE/.test(r.id)?'objective':/UI_CHOICE/.test(r.id)?'choice':/POPUP/.test(r.id)?'guide':/JOURNAL/.test(r.id)?'journal':/FAIL\./.test(r.id)?'failure':/OPTIONAL/.test(r.id)?'optional':/ARRIVALS/.test(r.id)?'arrival':'dialogue');}
-function row(id,n){n??=Number(/(?:S|ARRIVALS_|OPTIONAL_)(\d+)/.exec(id)?.[1]);const r=data(n)?.rows.find(r=>r.id===id);return r?{...r,speaker:r.speaker??r.speaker_channel?.split(' · ')[0],channel:channel(r)}:null;}
+function row(id,n){n??=Number(/(?:S|ARRIVALS_|OPTIONAL_)(\d+)/.exec(id)?.[1]);const d=data(n),r=d?.rows.find(r=>r.id===id)||(n===19&&d?.familyRestoration?.revision===1?d.familyRestoration.rows.find(r=>r.id===id):null);return r?{...r,speaker:r.speaker??r.speaker_channel?.split(' · ')[0],channel:channel(r)}:null;}
 function actor(b,who){const cls=classes[who],id=specs.get(b?.honroStage)?.actors?.[who];return b?.units?.find(u=>V.alive(u)&&(id?u.id===id:cls&&u.side===0&&!u.summoned&&!u.enthrall&&u.cls===cls));}
 const done=(b,key)=>['done','skipped'].includes(memory(b).events[key]?.status);
 function text(r,vars){return r.text.replace(/\{(survived_count|lost_count)\}/g,(_,key)=>Number.isInteger(vars?.[key])&&vars[key]>=0&&vars[key]<=100?String(vars[key]):'{'+key+'}');}

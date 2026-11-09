@@ -40,9 +40,13 @@ function author(map){
 }
 function prepare(b){const u=mason(b);if(u)u.name=base(b).proof['13.extract']&&supported(b,u)?'석공':'???';}
 function before(app){const b=app.engine.b,q=m(b);if(!done(b,'attached'))return false;if(base(b).proof['13.extract']&&!done(b,'separated'))return false;if(scenes(b).proof['13.escort']&&!done(b,'latch'))return false;if(q.gateInspection&&!done(b,'lower-arrivals'))return false;return true;}
+// Retire an observation that combat has made untrue. This is not a spoken
+// receipt or movement proof; ordinary rescue/gate objectives still apply.
+function retire(app,key,ids,reason,actors){const b=app.engine.b,q=m(b);if(q.events[key])return;q.events[key]={status:'skipped',ids:[],presentationReceiptRevision:1,presentedIds:[],retiredIds:ids,reason,actors};V.slot(app,b.honroStage+'.reviewed.'+key,{rowIds:ids});V.ackSlot(b,b.honroStage+'.reviewed.'+key,{skipped:true,reason,retiredIds:ids});app.dirty=true;}
 function drive(app,api,dt){const e=app.engine,b=e.b,q=m(b),u=mason(b),delta=Math.max(0,Math.min(dt,.05));if(!alive(u))return;
  const begin=(key,ids,proof)=>api.begin(app,key,ids,proof);
  if(!base(b).proof['13.extract']&&!q.lowerApproach){const foe=unit(b,'a2-enemy-3');if(alive(foe)&&foe.x>u.x+150&&foe.y>u.y+35){const a=q.approach??={id:foe.id,start:{x:foe.x,y:foe.y},distance:0};foe.fixed=false;const from={x:foe.x,y:foe.y};e.walk(foe,-1,delta);a.distance+=Math.hypot(foe.x-from.x,foe.y-from.y);if(a.distance>=35&&near(foe,u,700))q.lowerApproach={id:foe.id,distance:a.distance,from:a.start,to:{x:foe.x,y:foe.y}};}}
+ if(!q.events.arrival&&unit(b,'a2-enemy-3')&&!alive(unit(b,'a2-enemy-3')))retire(app,'arrival',['EDGE.ARRIVALS_13_0'],'13.approach-enemy-defeated',['a2-enemy-3']);
  if(!q.events.arrival){if(allow(app,api.row('EDGE.ARRIVALS_13_0')))begin('arrival',['EDGE.ARRIVALS_13_0'],q.lowerApproach);return;}
  if(done(b,'arrival')&&!q.events.branch){if(allow(app,api.row(branch(b))))begin('branch',[branch(b)],{entry:b.honroEntryVariant?.choice||null});return;}
  if(done(b,'branch')&&!q.events.discovery&&V.heroes(b).some(h=>near(h,u,850))){begin('discovery',['A2.S13.INTRO.01']);return;}
@@ -59,6 +63,7 @@ function drive(app,api,dt){const e=app.engine,b=e.b,q=m(b),u=mason(b),delta=Math
  if(done(b,'locked-door')&&!q.events['inside-bolt']){const a=q.boltPoint??={elapsed:0,done:false};a.elapsed=Math.min(.5,a.elapsed+delta);u.facing=1;u.honroScenePose={kind:'point',time:a.elapsed};if(a.elapsed>=.5){a.done=true;begin('inside-bolt',['A2.S13.MID.11'],{actor:u.id,point:b.honroV4Reviewed13.bolt,elapsed:a.elapsed});}return;}
  if(done(b,'inside-bolt')&&u.honroScenePose?.kind==='point')delete u.honroScenePose;
  if(done(b,'inside-bolt')&&!q.events['lower-arrivals']){if(!q.arrivals){const p=b.honroV4Reviewed13.lowerEntry;if(V.heroes(b).some(h=>Math.hypot(h.x-p.x,h.y-p.y)<400)||b.units.filter(v=>v.side===1&&alive(v)).length+2>G.HonroEncounters.populationCap(b))return;const before=new Set(b.units.map(v=>v.id));if(G.HonroAllies.execute(app,{type:'spawn',kind:'ghost',n:2,...p,spacing:145,maxDistance:180,source:'reviewed.13.lower-pair'})===false)return;const ids=b.units.filter(v=>!before.has(v.id)).map(v=>v.id);if(ids.length!==2)throw Error('reviewed13 non-atomic lower pair');q.arrivals={ids,starts:Object.fromEntries(ids.map(id=>{const v=unit(b,id);return[id,{x:v.x,y:v.y}];})),moved:{}};e.emit('save');}
+  if(q.arrivals.ids.some(id=>unit(b,id)&&!alive(unit(b,id)))){retire(app,'lower-arrivals',['A2.S13.MID.12'],'13.lower-pair-defeated-before-observation',q.arrivals.ids.filter(id=>!alive(unit(b,id))));return;}
   for(const id of q.arrivals.ids){const v=unit(b,id),a=q.arrivals.moved[id]??={distance:0,rise:0};if(!alive(v))continue;if(a.distance<95||a.rise<20){v.fixed=false;const from={x:v.x,y:v.y};e.walk(v,-1,delta);a.distance+=Math.hypot(v.x-from.x,v.y-from.y);a.rise=Math.max(a.rise,q.arrivals.starts[id].y-v.y);}}
   if(allow(app,api.row('A2.S13.MID.12')))begin('lower-arrivals',['A2.S13.MID.12'],q.arrivals);return;}
  if(scenes(b).proof['13.party-pass']&&!q.events.departure&&safeMason(b)){begin('departure',['A2.S13.COMPLETE.01','A2.S13.COMPLETE.02'],{gate:scenes(b).proof.gate,party:scenes(b).proof['13.party-pass'],mason:{x:u.x,y:u.y}});return;}

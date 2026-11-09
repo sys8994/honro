@@ -7,6 +7,9 @@ const closed=q=>['done','skipped','cancelled'].includes(q?.status);
 // Menu artwork is not an observation of live evidence. Ignore the retired
 // canvas-preview flags; only actual stage proof can supply a witness.
 const witnessed=(p,stage,key)=>!!p.honroAct23V4History?.stages?.[stage]?.run&&!!p.honroAct23V4History.stages[stage].reviewedNarrative?.proof?.[key];
+// Current battlefield evidence only: no camp-preview receipt is manufactured.
+function fieldVisible(app,point,u,range=650,witnessedOpen=false){const b=app.engine?.b,s=app.scene,C=G.HONRO_CORE;if(app.screen!=='battle'||!b||!point||!V.alive(u)||!C.validTerrainContactPose(b.terrain,u)||Math.hypot(u.x-point.x,(u.y-point.y)*.75)>range)return false;if(b.terrain.some(t=>!t.broken&&!t.oneWay&&t.id!==point.terrainId&&C.segmentTerrain({x:u.x,y:u.y-u.h*.7},point,t,0)?.t<.97))return false;if(witnessedOpen)return true;const size=s?.size?.();if(s?.battle!==b||!size||!(s.scale>0)||!Number.isFinite(s.x)||!Number.isFinite(s.y))return false;const x=(point.x-s.x)*s.scale+size.w/2,y=(point.y-s.y)*s.scale+size.h/2;return x>=0&&x<=size.w&&y>=0&&y<=size.h;}
+
 function register(config){const n=config.stage,base=V.plugins.get(n),prefix='A3.S'+n+'.',data=()=>G['HONRO_ACT23_V4_REVIEWED_CH'+n];
  const enabled=()=>V.preview()&&G['HONRO_ACT23_V4_PHASE_B_CH'+n]===true&&data()?.stage===n&&data().revision===1&&data().status==='gemini_pass1_parent_review_gemini_pass3_complete';
  const active=b=>enabled()&&V.active(b)&&b.honroStage===n&&b.honroReviewedNarrativeRevision===1;
@@ -15,9 +18,9 @@ function register(config){const n=config.stage,base=V.plugins.get(n),prefix='A3.
  const eventFor=id=>config.events.find(e=>e.ids.includes(id));
  function liveSpeaker(app,r){const b=app.engine?.b,c=classes[r.speaker];if(c)return !!V.heroes(b).find(u=>u.cls===c);if(['arrival','guide','document','act_ending','runtime_dynamic'].includes(r.channel))return true;return config.speaker?.(app,r)===true;}
  function restAllowed(p,r){const c=classes[r.speaker];return !!c&&p.recruited?.includes(c)&&p.party?.includes(c)&&!p.honroBattle&&(!p.cleared?.[n]||config.allowCompletedRest===true)&&G.HonroJourneyContent.next(p)?.stageId===n&&config.optional?.(p,r)!==false;}
- // Only the explicitly authored chapter24 field choices use this path.
- function fieldAllowed(app,r,meta){const c=classes[r.speaker];return n===24&&r.channel==='optional'&&active(app.engine?.b)&&!!c&&app.profile.recruited?.includes(c)&&app.profile.party?.includes(c)&&liveSpeaker(app,r)&&config.fieldOptional?.(app,r,meta)===true;}
- function fieldOptional(app,c){if(n!==24||!enabled()||!V.safe(app)||config.fieldChoice?.(app,c)===false)return[];const read=new Set(Object.values(memory(app.engine.b).events).flatMap(e=>G.HonroAct23V4Reviewed.receiptIds(e)));return lines(data().rows.filter(r=>r.id.startsWith('EDGE.OPTIONAL_'+n+'_'+c.toUpperCase()+'_')).map(r=>r.id),'optional.'+c).filter(l=>!read.has(l[2].rowId)&&fieldAllowed(app,row(l[2].rowId)));}
+ // Chapter23 goods and chapter24's authored pre-intro field choices opt in.
+ function fieldAllowed(app,r,meta){const c=classes[r.speaker];return [23,24].includes(n)&&r.channel==='optional'&&active(app.engine?.b)&&!!c&&app.profile.recruited?.includes(c)&&app.profile.party?.includes(c)&&liveSpeaker(app,r)&&config.fieldOptional?.(app,r,meta)===true;}
+ function fieldOptional(app,c){if(![23,24].includes(n)||!enabled()||!V.safe(app)||config.fieldChoice?.(app,c)===false)return[];const read=new Set(Object.values(memory(app.engine.b).events).flatMap(e=>G.HonroAct23V4Reviewed.receiptIds(e)));return lines(data().rows.filter(r=>r.id.startsWith('EDGE.OPTIONAL_'+n+'_'+c.toUpperCase()+'_')).map(r=>r.id),'optional.'+c).filter(l=>!read.has(l[2].rowId)&&fieldAllowed(app,row(l[2].rowId)));}
  function lineAllowed(app,who,meta){const r=row(meta?.rowId);if(!enabled()||!r||meta.reviewedStage!==n||meta.reviewedRevision!==1||r.speaker!==who)return false;
   if(app.screen==='rest')return r.channel==='rest_ending'?config.restLineAllowed?.(app.profile,r)===true:r.channel==='optional'&&restAllowed(app.profile,r);
   const b=app.engine?.b;if(!active(b))return false;
@@ -28,7 +31,7 @@ function register(config){const n=config.stage,base=V.plugins.get(n),prefix='A3.
  function lines(ids,event){return ids.map(id=>{const r=row(id);if(!r)throw Error('reviewed row missing '+n+':'+id);return[r.speaker,r.text,{...copy(r),rowId:id,reviewedStage:n,reviewedRevision:1,reviewedPayloadRevision:2,reviewedEvent:event,storyId:'v4.reviewed.'+n+'.'+event,storyTitle:G.HONRO_CONTENT.stages[n-1].name,...(r.channel==='arrival'||r.channel==='act_ending'?{kind:'narration'}:r.channel==='guide'?{kind:'guide'}:r.channel==='document'?{kind:'document'}:{})}];});}
  function rowsReviewed(ls){return enabled()&&Array.isArray(ls)&&ls.length>0&&ls.every(l=>{const r=row(l?.[2]?.rowId);return r&&r.speaker===l[0]&&r.text===l[1]&&l[2].reviewedStage===n&&l[2].reviewedRevision===1&&fields.every(k=>JSON.stringify(l[2][k])===JSON.stringify(r[k]));});}
  const accepts=(app,ls)=>rowsReviewed(ls)&&ls.some(l=>lineAllowed(app,l[0],l[2]));
- function begin(app,key,ids){const b=app.engine.b,q=memory(b);if(q.events[key])return false;const ls=lines(ids,key).filter(l=>lineAllowed(app,l[0],l[2]));if(n===24&&key.startsWith('field-talk.')&&ls.length&&config.fieldStart?.(app,key,ls)!==true)return false;q.events[key]={status:ls.length?'open':'skipped',ids:ls.map(l=>l[2].rowId)};V.slot(app,n+'.reviewed.'+key,{rowIds:ids});if(!ls.length){Object.assign(V.mem(b).slots[n+'.reviewed.'+key],{status:'cancelled',proof:{skipped:true}});return false;}
+ function begin(app,key,ids){const b=app.engine.b,q=memory(b);if(q.events[key])return false;const ls=lines(ids,key).filter(l=>lineAllowed(app,l[0],l[2]));if([23,24].includes(n)&&key.startsWith('field-talk.')&&ls.length&&config.fieldStart?.(app,key,ls)!==true)return false;q.events[key]={status:ls.length?'open':'skipped',ids:ls.map(l=>l[2].rowId)};V.slot(app,n+'.reviewed.'+key,{rowIds:ids});if(!ls.length){Object.assign(V.mem(b).slots[n+'.reviewed.'+key],{status:'cancelled',proof:{skipped:true}});return false;}
   for(const l of ls){const camera=config.camera?.(app,key,l[2].rowId);if(camera)l[2].camera=copy(camera);}
   if(!G.HonroStory.start(app,ls,{title:app.stage.name,reviewedStage:n,reviewedEvent:key})){delete q.events[key];return false;}return true;
  }
@@ -54,5 +57,5 @@ function register(config){const n=config.stage,base=V.plugins.get(n),prefix='A3.
  const api={enabled,active,memory,begin,fieldOptional,row,rowsReviewed,lineAllowed,accepts,finished,present,content,failure,optional,journal,complete,lines,record,tick,config,closed,talkId:(id,c)=>enabled()&&Number(id)===n?'rest-talk-v1-'+n+'-'+c+'-reviewed1':null};providers.set(n,api);return api;
 }
 function interactionReason(app,reason){const b=app.engine?.b,R=G.HonroAct23V4Reviewed?.provider?.(b?.honroStage);if(!R?.active(b)||!((b.honroMarkers||[]).some(p=>p.id===reason)||V.steps(b).some(s=>s.id===reason)||/^v4\./.test(reason||'')))return null;return R.present(b,{targets:[],allTargets:[]}).summary;}
-G.HonroAct3V4ReviewedCore={witnessed,register,providers,closed,copy,classes,interactionReason};
+G.HonroAct3V4ReviewedCore={witnessed,fieldVisible,register,providers,closed,copy,classes,interactionReason};
 })(globalThis);
