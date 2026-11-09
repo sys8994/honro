@@ -5365,3 +5365,10 @@ Title `여정 이어가기` could choose an older hub before honoring a saved di
 - 현재: A/B/C 크기 비교, B-open 낮은 앞길/후면 사격암대 후보·순수 프로젝트 저작기와 격리 실제 Engine 검사를 추가했다. 활성campaign/HTML/원경·기존 후보/사용자 저장은 교체하지 않았다. 구412의 원형과 현재 App export/import/Continue 모델 동일성 baseline을 보존했다.
 - 연결 작업: 새 compact battle의 저장된 spec으로 경고 진입x·끌린 자국/혼의 등장좌표·도입 카메라를 읽도록 준비하고, compact 출구만 네 직업180이내 실제접지 및 생존 조건을 적용한다. 구전투에는 기존 좌표·조건을 유지한다. 새 맵은 아직 공통 빌드에 활성화하지 않았다.
 - 검증/한계: 개별이동72조건·4인 고립 집결·격리 실탄, 후보40장/라이브러리 불변·접지/겹침, 실제 이탈혼 이동/재부착 및 별도 북쪽 행동경계 fixture를 확인했다. 정상 전투·미술·저장 호환 변경 후 재검증·양HTML/브라우저·master/Pages/공개 검수는 미완료다. 시안 구조 불일치와 불필요한400높이는 기록하고 수정 중이다. 후보/자동 검사 성공을 완성·사람 플레이·배포로 표시하지 않는다.
+## 11장 축소 후보의 장별 로딩·미술 중복 표시 — 2026-11-09 (작업 중)
+
+- 원인: 새 compact author는 전체 프로젝트만 가정해 다른 장 하나만 전달하는 web lazy loader에서도 Stage11 source 검사를 실행했다. loader는 author가 추가한 라이브러리를 버리고 입력 library만 취했다. 또 뒤쪽 발판/줄기 그림 앞에 일반 충돌 proxy 면이 남았다.
+- 변경: Stage11이 없는 author 입력은 그대로 반환하고 실제 Stage11 source drift는 계속 거부한다. lazy loader는 `local.library`를 보존한다. 공통 Scene의 opt-in hook은 compact 저장에 실제로 해결된 충돌 없는 뒤쪽 벡터 에셋이 있을 때만 그 지형의 proxy paint를 생략한다. geometry/physics와 구 저장에는 적용하지 않는다.
+- 확인: `tests/stage11-compact-lazy-author.mjs`에서 다른 장, 실제 Stage11 부분 프로젝트, source drift 거부와 미술 누락 시 fallback을 확인했다. common compiler/Engine/Scene의 native Canvas 화면에서 발판과 줄기 원본 벡터가 표시됨을 직접 확인했다. 이 화면의 동행 위치는 진단 fixture이며 실제 이동 증거가 아니다.
+- 현재 상태/한계: 후보 6200×3200은 production flag가 꺼져 있다. 첫 정상입력 App-harness 실행은 Lv12·4인 생존·혼3기 실제 생성, 20R 미완주였다. 이것을 성공/브라우저 플레이/배포로 세지 않는다. 후속 역할별 입력 정책, 표면/상여/돌목 미술, 전체 전투·저장·브라우저·배포 검수가 진행 중이다. 기존 저장 보호 근거와 원문 대조는 `ACT2_CH1_COMPACT_DESIGN.md`를 따른다.
+

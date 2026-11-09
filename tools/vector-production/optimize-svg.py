@@ -120,7 +120,7 @@ def main():
             row['budgetPass']=True;row['nodes']=asset['params']['nodeCount']
             ds=[]
             def walk(n):
-                if n['tag']=='path': ds.append(n['d'])
+                if n['tag']=='path': ds.append(n.get('d',''.join(n.get('dParts',[]))))
                 for c in n.get('children',[]):walk(c)
             walk(asset['vector']['root']);row['normalizedMaxPathChars']=max(map(len,ds),default=0);row['normalizedPaths']=len(ds)
             path.with_suffix('.json').write_text(json.dumps(asset,separators=(',',':')))

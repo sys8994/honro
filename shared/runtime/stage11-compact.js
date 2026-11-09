@@ -6,6 +6,9 @@ const active=b=>b?.honroStage===11&&b.honroStage11CompactRevision===1;
 function author(project){
  if(!enabled())return project;
  const d=data(),old=project.stages.find(s=>s.metadata?.stageId===11);
+ // The web loader authors one real chapter at a time. Other chapters do not
+ // contain Stage11 and must pass through without validating/replacing it.
+ if(!old)return project;
  if(JSON.stringify(old)!==JSON.stringify(d.source))throw Error('Stage11 compact source changed; regenerate and review the candidate.');
  if(d.stage.width!==6200||d.stage.height!==3200||d.stage.initialState?.honroStage11CompactRevision!==1)throw Error('Invalid compact Stage11 package');
  const ids=new Set(project.library.map(a=>a.id)),assets=clone(d.assets||[]);

@@ -121,7 +121,9 @@ export async function loadCampaign(file,authors,{full=false}={}){
    // the real chapter and its complete dependency closure, in native order.
    const library=[...parts[0],...parts[1]];let local={...base,library,stages:[structuredClone(parts[2])]};
    for(const author of authors){local=author.author(local);await yieldIfNeeded();}
-   for(const asset of library)assets.set(asset.id,asset);
+   // Authors may append collision-free chapter artwork. Preserve the authored
+   // dependency closure just as the native/full-project path does.
+   for(const asset of local.library)assets.set(asset.id,asset);
    project.library=[...assets.values()];project.stages[index]=local.stages[0];loaded.add(id);return local.stages[0];
   })();loading.set(id,pending);try{return await pending;}finally{loading.delete(id);}
  }
