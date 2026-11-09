@@ -8,8 +8,9 @@ const stats=()=>({damage:0,received:0,kills:0,healing:0,shield:0,shieldReceived:
 let serial=0;
 function begin(b,{fresh=false,scope}={}){
  if(!b)return null;
- if(!fresh&&b.honroReport?.version===VERSION){if(scope&&!b.honroReport.final)b.honroReport.scope=scope;if(b.honroReport.final)deepFreeze(b.honroReport.final);return b.honroReport;}
+ if(!fresh&&b.honroReport?.version===VERSION){if(scope&&!b.honroReport.final)b.honroReport.scope=scope;if(!b.honroReport.final&&b.honroReport.npcDamageRevision!==1){b.honroReport.npcDamageRevision=1;b.honroReport.npcDamagePartial=true;}if(b.honroReport.final)deepFreeze(b.honroReport.final);return b.honroReport;}
  const s=b.honroReport={version:VERSION,gameVersion:'honro-report-20261022-v1',attempt:`${b.session||b.honroStage}-${Date.now()}-${++serial}`,stage:b.honroStage||b.stageId,scope:scope||(b.honroCustom?'custom':b.mode==='practice'?'practice':'campaign'),partial:!fresh,startedRound:b.round,seconds:0,retries:num(b.honroStakeCrossing?.retries),order:[],heroes:{},owners:{},xp:{},deaths:{},counts:{kills:0,knockouts:0},other:{},missing:{}};
+ s.npcDamageRevision=1;s.npcDamagePartial=!fresh;
  for(const cls of ALL)if(b.heroes?.[cls])s.xp[cls]={before:num(b.heroes[cls].xp),last:num(b.heroes[cls].xp),combat:0,settlement:0,reunion:0};
  for(const cls of b.activeRoster||ALL)for(const u of b.units.filter(u=>hero(u)&&u.cls===cls))register(b,u);
  for(const u of b.units)register(b,u);
@@ -46,6 +47,7 @@ function hit(b,u,owner,actual,absorbed=0,skill,kind='normal',origin){
  const s=live(b);if(!s)return;actual=num(actual);absorbed=num(absorbed);if(!actual&&!absorbed)return;
  register(b,u);const src=kind==='environment'?source(b,'',skill):origin||source(b,owner,skill),target=s.owners[u.id],cls=src.cls;
  if(hero(u)){s.heroes[u.cls].received+=actual;s.heroes[u.cls].shieldReceived+=absorbed;}
+ if(target?.kind==='npc'){const r=other(s,'npc');r.received+=actual;r.shieldReceived+=absorbed;}
  if(src.kind==='unresolved'&&src.id)s.missing[src.id]=true;
  if(object(u)){other(s,'objects').damage+=actual;return;}
  if(u.summoned){other(s,'summons').damage+=actual;return;}
@@ -98,7 +100,7 @@ function deepFreeze(v){if(v&&typeof v==='object'&&!Object.isFrozen(v)){for(const
 function freeze(b){
  const s=b?.honroReport;if(!s)return null;if(s.final)return s.final;
  const totals=stats();for(const h of Object.values(s.heroes))for(const k of Object.keys(totals))totals[k]+=h[k];
- s.final=deepFreeze(clone({version:VERSION,gameVersion:s.gameVersion,attempt:s.attempt,stage:s.stage,scope:s.scope,partial:s.partial,startedRound:s.startedRound,rounds:b.round,seconds:s.seconds,retries:s.retries,order:s.order,heroes:s.heroes,xp:s.xp,counts:s.counts,other:s.other,missing:Object.keys(s.missing),totals,deferred:!!s.deferred,reunionStages:s.reunionStages||null,completedAt:new Date().toISOString(),difficulty:b.difficulty}));
+ s.final=deepFreeze(clone({version:VERSION,gameVersion:s.gameVersion,attempt:s.attempt,stage:s.stage,scope:s.scope,partial:s.partial,npcDamageRevision:s.npcDamageRevision,npcDamagePartial:!!s.npcDamagePartial,startedRound:s.startedRound,rounds:b.round,seconds:s.seconds,retries:s.retries,order:s.order,heroes:s.heroes,xp:s.xp,counts:s.counts,other:s.other,missing:Object.keys(s.missing),totals,deferred:!!s.deferred,reunionStages:s.reunionStages||null,completedAt:new Date().toISOString(),difficulty:b.difficulty}));
  return s.final;
 }
 function finish(app){const b=app.engine?.b;if(!b||b.phase!=='won')return null;begin(b,{scope:scopeOf(app)});settle(b,app.engine);const report=freeze(b),scope=scopeOf(app);

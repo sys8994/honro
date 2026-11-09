@@ -59,6 +59,15 @@ check('hostile direct shield hit interrupts once, DoT does not, and recovery cos
  q.e.hurt(q.caster,10,q.hero.id,true,p);assert.deepEqual(plain(q.caster.enemyEffectRecovery),recovery,'multi-hit cannot enqueue extra recovery');
  q.b.projectiles=[];turn(q,q.caster);const hp=q.hero.hp;q.e.enemyAction();assert(!q.caster.enemyEffectRecovery);assert(!q.caster.enemyEffectCast);assert.equal(q.hero.hp,hp);assert.equal(q.b.phase,'review','recovery is a spent scheduled action');
 });
+check('primary M03 projectile contact interrupts its caster without changing area direct-damage rules',()=>{
+ const q=arena(C);q.b.units=q.b.units.filter(u=>u.id!=='friend');
+ Object.assign(q.hero,{x:150,cls:'mage',loadout:['M03'],ranks:{M03:1},attack:1,focus:999});q.caster.x=450;
+ const c=warning(E,q);turn(q,q.hero);q.e.observeEnemyEffectWarning(q.caster.id,c.serial);
+ const hp=q.caster.hp;assert(q.e.fire('M03',0,1));
+ for(let i=0;i<300&&q.b.projectiles.length;i++)q.e.tick(C.STEP);
+ assert(q.caster.hp<hp,'actual travelling arc must hit the preparing actor');
+ assert(!q.caster.enemyEffectCast);assert.equal(q.caster.enemyEffectRecovery.serial,c.serial);
+});
 check('free bind release restores only withheld budget, not movement already spent',()=>{
  const q=arena(C);attack(E,q);turn(q,q.hero);q.hero.moveLeft=q.hero.maxMove;E.enemyEffectMovementBudget(q.hero);const limited=q.hero.moveLeft;
  q.e.move(1,.1);const spent=limited-q.hero.moveLeft;assert(spent>0);E.releaseEnemySoftBind(q.hero);assert(Math.abs(q.hero.moveLeft-(q.hero.maxMove-spent))<1e-6);

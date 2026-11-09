@@ -60,7 +60,7 @@ function tuneMidboss(b,st,u){
   const p=plan(st.id),r=referenceStats(st),d=C.DIFFICULTIES[b.difficulty]||C.DIFFICULTIES.normal,n=C.DIFFICULTIES.normal,hits=p.midBossHits||5.5;
   const mean=u.loadout.reduce((sum,id)=>{const sk=C.SKILLS[id];return sum+sk.damage*C.skillBalanceFactor(sk);},0)/Math.max(1,u.loadout.length);
   u.combatBaseHp=r.shot*hits/Math.max(.45,1-(u.armor||0))/n.hp;
-  u.combatBaseAttack=r.hp*(p.targetIncomingHpFraction*1.55)/Math.max(1,mean*(1-r.armor)*n.damage);
+  u.combatBaseAttack=r.hp*(p.midBossIncomingHpFraction??p.targetIncomingHpFraction*1.55)/Math.max(1,mean*(1-r.armor)*n.damage);
   u.hp=u.maxHp=Math.round(u.combatBaseHp*d.hp);u.attack=u.combatBaseAttack*d.damage;u.honroXpWeight=3.2;u.elite=true;u.honroMidboss=true;delete u.honroAirborneBalanceRevision;
 }
 function tuneBoss(b,st,u){

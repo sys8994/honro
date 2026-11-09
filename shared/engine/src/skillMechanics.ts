@@ -3,6 +3,7 @@ import {equipmentParam,equipmentPrimary} from './equipment';
 import {keeperEchoVelocity} from './keeperRitual';
 import {cheonroeVisualSeed} from './lightningGeometry';
 import {gateSource} from './gateTravel';
+import {interruptEnemyEffect} from './enemyEffects';
 import {migrateBeastSkills} from './beastMelee';
 import {validTerrainContactPose} from './locomotion';
 import {waveReflectionPlan,WAVE_REFLECTION_DECAY,waveReflectionVelocities} from './waveReflection';
@@ -206,7 +207,14 @@ function strikeGeometry(e:Engine,p:Projectile,g:SkillGeometry,directTarget?:Unit
   if(g.kind==='triangle'&&!h.count&&h.interior)amount=p.damage*16/38;
   if(g.kind==='ring')amount*=Math.max(.28,220/Math.max(220,g.radius));
   if(g.kind==='bagua'&&h.center)amount+=p.damage*62/34;
-  if(amount)e.hurt(u,amount,p.owner,false,p,at(u));
+  if(amount){
+   const hp=u.hp,shield=u.shield||0;
+   e.hurt(u,amount,p.owner,false,p,at(u));
+   // The primary body physically struck by the arc can break a preparation.
+   // Keep area damage's crit/mark rules and secondary contacts unchanged.
+   if(p.mode==='waveArc'&&u.id===directTarget?.id&&!p.secondary&&!p.autonomous)
+    interruptEnemyEffect(e,u,p.owner,true,p,Math.max(0,hp-u.hp)+Math.max(0,shield-(u.shield||0)));
+  }
  }
 }
 function reflect(p:Projectile,h:Collision,restitution=.84){const dot=p.vx*h.n.x+p.vy*h.n.y;p.vx=(p.vx-2*dot*h.n.x)*restitution;p.vy=(p.vy-2*dot*h.n.y)*restitution;p.x=h.x+h.n.x*(p.radius+1);p.y=h.y+h.n.y*(p.radius+1);p.bounces++;}

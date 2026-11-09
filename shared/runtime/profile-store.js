@@ -92,7 +92,7 @@ function verifyLegacy34Assets(items){
 const localCampaignArt=b=>!!b&&!b.honroCustom&&b.honroMapOrigin!=='workshop'&&b.mode==='campaign'&&Number.isInteger(b.honroStage)&&b.honroStage>=1&&b.honroStage<=20;
 // Only the four reviewed Stage6 visual assets use its self-contained local table.
 const STAGE6_LOCAL_ART_IDS=new Set(['stage06-prototype:continuous-body-v1','stage06-prototype:pier-west','stage06-prototype:pier-mid','stage06-prototype:pier-east']);
-const localArtAsset=(a,b)=>!!a&&typeof a.id==='string'&&(a.id.startsWith('act1-traced:')||a.id.startsWith('act2-traced:')||a.id.startsWith('act2-compact:')||(b?.honroStage===6&&STAGE6_LOCAL_ART_IDS.has(a.id)&&a.vector?.version===1))&&a.vector&&Array.isArray(a.collision)&&a.collision.length===0&&!a.interactionType&&a.honroStaticAssetRef===undefined&&a.honroLocalArtRef===undefined;
+const localArtAsset=(a,b)=>!!a&&typeof a.id==='string'&&(a.id.startsWith('act1-traced:')||a.id.startsWith('act2-traced:')||a.id.startsWith('act2-compact:')||(b?.honroStage===11&&(a.id.startsWith('compact11:')||a.id.startsWith('act2-ch1:')))||(b?.honroStage===6&&STAGE6_LOCAL_ART_IDS.has(a.id)&&a.vector?.version===1))&&a.vector&&Array.isArray(a.collision)&&a.collision.length===0&&!a.interactionType&&a.honroStaticAssetRef===undefined&&a.honroLocalArtRef===undefined;
 const localArtPlacement=item=>!STAGE6_LOCAL_ART_IDS.has(item?.asset?.id)||item.kind==='canonical-element';
 const LOCAL_ART_HASH_CACHE_LIMIT=3000000,localArtHashCache=new Map();let localArtHashChars=0;
 function localArtSignature(text){
