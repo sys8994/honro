@@ -5494,3 +5494,8 @@ Title `여정 이어가기` could choose an older hub before honoring a saved di
 - 9장 두진 설치 자체는 현행승리계약. v3제안의점프22~30/고정턴을강제하지 않고 새진입의 터115/동층120·적압박220 해소만 요구. 이동/밀치기/제압도 가능,전멸·대기·직업제한없음. 브라우저 설치차단 및 별도 적없는fixture 두목표완료; 정상전체전투/목표시간은미검증.
 - 11장 재사용 compact11/act2-ch1벡터 누락으로packed585만자/브라우저저장한도실패. 동일검증조건의self-contained table에포함해약257만자로축소,실제Chromium자동저장258.8만자/Continue성장·몸체동일/경고없음. 사용자저장에는접근하지않음.
 - 현재 표적검사act1-review-regressions/monster-effects-mechanics15그룹/stage-clear-report-data/act2-local-art-save13거부사례 통과. 과거story-framing문구검사 실패와외부fixture없는stage2-layered-save는통과로기록하지않음. 정확히같은사용자저장·117피해·경고문구는미재현. 지형/장승/9장보정은새진입·재시도,진행중2/3/5/9전투의원래지형·배우·자원·진행Continue보존. 상세계약/검수한계: ACT1_REVIEW_FIXES.md.
+
+
+### 2026-11-10 — 추가한2장 하단 턱의 도로 통행 회귀
+- 첫발행52ff의 새 하단 암반이 하강 뒤 아랫길 전진을x820에서막는 것을 추가검수로확인. 하강만검사하고도로 통행을빠뜨린제작결함이다. 기존승인 소나무가지 one-way형상/지지벡터로교체해뒷절벽과전면도로분리.
+- 하강9구간/아래점프3회에이어790→1500보행과운반꾼몸체700→1490무도약/피해0통과.52ff에서저장한정확한추가암반만same-shape one-waycap보정,위치/HP/자원/진행/성장보존/멱등성검사.원래2장저장과무관한지형은변경하지않음.세부ACT1_REVIEW_FIXES.md.

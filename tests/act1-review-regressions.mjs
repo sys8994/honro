@@ -32,11 +32,14 @@ for(const id of [4,6,7]){
  assert(u.x>2640&&e.grounded(u),'default jump reaches the middle rock/step');a.engine=null;
 }
 {
- const{a,b,e}=start(2),u=b.units.find(u=>u.id==='p-archer');b.units=[u];b.active=u.id;e.checkEnd=()=>false;const hp=u.hp;
+ const{a,b,e}=start(2),u=b.units.find(u=>u.id==='p-archer'),porter=plain(b.units.find(u=>u.allyRole==='porter'));b.units=[u];b.active=u.id;e.checkEnd=()=>false;const hp=u.hp;
  const support=()=>e.surface(u.x,u.y-5,u.y+5)?.t?.id;
  function walk(x,id){for(let i=0;i<500;i++){u.moveLeft=u.maxMove;if(Math.abs(u.x-x)>4)e.walk(u,Math.sign(x-u.x)*.7,1/60);e.stepUnits(1/60);if(Math.abs(u.x-x)<8&&e.grounded(u)&&support()===id)return;}assert.fail('descent walk '+id);}
  function drop(id){for(let i=0;i<35;i++)e.stepUnits(1/60);assert(e.drop(u));for(let i=0;i<300;i++){e.stepUnits(1/60);if(i>25&&e.grounded(u)&&support()===id)return;}assert.fail('descent drop '+id);}
- walk(1100,'left-tree-branch-upper');drop('left-tree-branch-middle');drop('left-descent-rest-upper');walk(1220,'left-descent-stone-high');walk(1300,'left-tree-branch-lower');drop('left-descent-stone-mid');walk(1075,'left-descent-stone-low');walk(900,'left-descent-rest-lower');walk(790,'canyon-ground');assert.equal(u.hp,hp);a.engine=null;
+ walk(1100,'left-tree-branch-upper');drop('left-tree-branch-middle');drop('left-descent-rest-upper');walk(1220,'left-descent-stone-high');walk(1300,'left-tree-branch-lower');drop('left-descent-stone-mid');walk(1075,'left-descent-stone-low');walk(900,'left-descent-rest-lower');walk(790,'canyon-ground');walk(1500,'canyon-ground');assert.equal(u.hp,hp);
+ b.units=[porter];b.active=porter.id;Object.assign(porter,{x:700,y:C.topAt(b.terrain.find(t=>t.id==='canyon-ground'),700),vx:0,vy:0});const porterHp=porter.hp;
+ for(let i=0;i<400&&porter.x<1490;i++){porter.moveLeft=porter.maxMove;e.walk(porter,1,1/60);e.stepUnits(1/60);}
+ assert(porter.x>1490,'porter body must walk the foreground road without a forced jump');assert.equal(porter.hp,porterHp);a.engine=null;
 }
 {
  const{a,b,e}=start(9),m=b.honroMarkers.find(m=>m.id==='receiver-west'),u=e.active;
@@ -62,6 +65,15 @@ for(const id of [4,6,7]){
  for(const state of ['holding','notHolding','broken']){b.honroState.ritual={active:state==='holding'};target.broken=state==='broken';const text=g.HonroStoryContent.eventLines(a,{id:'lower-beasts'}).map(r=>r[1]).join(' ');assert(text.includes('산개')&&!text.includes('사슴'),state+' current event identity');}a.engine=null;
 }
 const original=JSON.parse(await readFile('shared/data/campaign.json','utf8'));
+{
+ const{a,b}=start(2),base=original.stages[1].terrains.find(t=>t.id==='left-descent-stone-high');
+ const old=g.HonroMapEngine.solid('left-descent-rest-lower',base.points.map(p=>[p.x-90,p.y+1270]),{mat:'rock',indestructible:true});
+ b.terrain=b.terrain.map(t=>t.id===old.id?old:t);delete b.honroStage2DescentPassageRevision;
+ const before=plain({units:b.units,state:b.honroState,heroes:a.profile.heroes});a.profile.honroBattle=plain(b);
+ const resumed=h.load(plain(a.profile));resumed.continue();const fixed=resumed.engine.b;
+ assert(fixed.terrain.find(t=>t.id===old.id).oneWay);assert.deepEqual(plain({units:fixed.units,state:fixed.honroState,heroes:resumed.profile.heroes}),before);
+ resumed.flushBattleSave();assert(resumed.profile.honroBattle.terrain.find(t=>t.id===old.id).oneWay);assert.equal(g.HonroAct1ReviewRepairs.restorePassage(fixed),false,'passage repair is idempotent');resumed.engine=null;a.engine=null;
+}
 for(const id of [2,3,5,9]){
  const p=h.profileThrough(id-1),st=original.stages.find(s=>s.metadata.stageId===id);
  const old=g.HonroMaps.createBattle(st,original,p,{origin:'campaign'});g.HonroStageRules.sanitizeStageBattle(old);if(id===5)g.HonroStage5Positioning.memory(old);if(id===9)g.HonroEncounterDensity.memory(old);
