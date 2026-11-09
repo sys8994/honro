@@ -1,0 +1,12 @@
+{
+  "status": "Source authoring candidate, not optimization",
+  "worldSplitY": 2580,
+  "maximumMainWalkingFloorY": 2530,
+  "marginWorld": 50,
+  "upperOriginalVectorUnchanged": true,
+  "upperSourceVectorSha256": "4b073dff4f529eab416691e9d9d633ef629f10b8b2d082427fee0ae3d7ff75e9",
+  "nativeBooleanLimitedToLowerJoin": true,
+  "schemaMapping": "Existing gradient table with original source-space coordinates; existing clip paths; existing pixelSnapClip true only on complementary canonical axis-aligned rectangles. Group opacity is not used. SVG counterparts preserve the mathematical clips, while pixel-snapped raster boundary is an existing engine semantic.",
+  "originalAssetSha256": "7a2370c0dd382649395f50db212edb4b595a0adc66b6f3e4d13dd913e1a44eaa",
+  "scope": "No collision, camera, movement, save or runtime-source changes; no threshold changes."
+}

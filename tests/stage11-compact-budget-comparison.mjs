@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';import{runtime}from'../game/tests/helpers.mjs';import{createCompactProject}from'../tools/map-forge/stage11-compact-project.mjs';
+process.env.HONRO_STAGE11_COMPACT='0';process.env.HONRO_ACT4_RELEASE='1';
+const g=await runtime({legacyMaps:false,productionStory:true}),a=createCompactProject(g,g.HONRO_PROJECT,'B-open'),z=createCompactProject(g,g.HONRO_PROJECT,'B-open',{roster:'20'}),s=a.stages.find(s=>s.metadata.stageId===11),t=z.stages.find(s=>s.metadata.stageId===11),plain=x=>JSON.parse(JSON.stringify(x));
+assert.deepEqual(plain(s.terrains),plain(t.terrains));assert.deepEqual(plain(s.markers),plain(t.markers));assert.deepEqual(plain(s.initialState.honroV4Chapter11),plain(t.initialState.honroV4Chapter11));
+const removed=['compact11-entry-front','compact11-entry-crow','compact11-exit-bat','compact11-exit-rear'];
+assert.deepEqual(plain(s.units.filter(u=>!removed.includes(u.id))),plain(t.units));assert.equal(t.units.filter(u=>u.team==='enemy').length,17);assert.equal(t.units.filter(u=>u.team==='enemy'&&u.stageOverrides.elite).length,3);
+assert.equal(t.initialState.honroStage11PopulationCap,20);assert.equal(t.design.compact11.budget.requiredTotal,14);assert.equal(t.design.compact11.budget.total,20);
+assert.equal(t.encounters.find(e=>e.id==='compact11-entry').unitIds.length,5);assert.equal(t.encounters.find(e=>e.id==='compact11-central').unitIds.length,6);assert.equal(t.encounters.find(e=>e.id==='compact11-exit').unitIds.length,6);
+assert.deepEqual(plain(a.stages.filter(s=>s.metadata.stageId!==11)),plain(z.stages.filter(s=>s.metadata.stageId!==11)));assert.deepEqual(plain(a.library),plain(z.library));
+const b=g.HonroMaps.createBattle(t,z,undefined,{origin:'campaign'});assert.equal(b.units.filter(u=>u.side===1).length,17);assert.equal(g.HonroEncounters.populationCap(b),20);
+console.log(JSON.stringify({geometry:'identical',remainingUnitRecords:'identical',other39:'identical',library:'identical',initial17:true,finiteReserve:3,required14:true,elites3:true,scope:'Static and compiler comparison only; no difficulty acceptance'}));

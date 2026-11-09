@@ -1,0 +1,63 @@
+{
+  "scope": "Two intentional source authoring prototypes, not optimization/gameplay/art approval",
+  "sourceFiles": {
+    "ground-body\\composition-color.svg": "683a81e58115979affeea44996c650eff020e1b389dbf2d88dd23dc9becb86b1",
+    "ground-body\\native-alpha.svg": "ad520181946a3fcfc00170cbf7f7a862e2c73a7af02b61a963f1e92fe8b45c93",
+    "ground-body\\composition-alpha.svg": "5dbdda9e85889dc91bcfb03f5da64b3fd5d554711f99c9912dfa8611f20b70c0",
+    "foundation\\final.asset.json": "8314258599aa805d643b722b1bcf09255555633d7f7f3cec2a5e85a23b551c4a"
+  },
+  "A": {
+    "asset": "candidate-A.asset.json",
+    "alpha": "mineral-clip-native.svg",
+    "method": "Actual native source-visible mineral union intersection"
+  },
+  "B": {
+    "asset": "candidate-B-v2.asset.json",
+    "svg": "candidate-B-v2-authored.svg",
+    "worldFadeRangesByOriginalColor": {
+      "#545050": [
+        2580,
+        2940
+      ],
+      "#969598": [
+        2680,
+        2980
+      ],
+      "#918375": [
+        2660,
+        2920
+      ],
+      "#807e81": [
+        2640,
+        2960
+      ],
+      "#7e7e80": [
+        2660,
+        2980
+      ],
+      "#737274": [
+        2680,
+        2980
+      ],
+      "#84715e": [
+        2640,
+        2900
+      ]
+    },
+    "method": "Actual native nonoverlap areas and existing schema gradients; no renderer/schema change"
+  },
+  "commands": [
+    [
+      "C:\\Users\\user\\Google Drive\\Career\\1. About my work\\2025 ProjectSoboro\\Code\\honro\\_local\\tools\\inkscape-1.4.4\\portable-complete\\inkscape\\bin\\inkscape.com",
+      "C:\\Users\\user\\Google Drive\\Career\\1. About my work\\2025 ProjectSoboro\\Code\\honro\\art\\act2-ch1-compact-20261109\\ground-body\\join-candidates\\mineral-clip-input.svg",
+      "--batch-process",
+      "--actions=select-by-id:mineral-7,mineral-6,mineral-5,mineral-4,mineral-3,mineral-2;path-union;select-all;path-intersection;export-plain-svg;export-filename:C:\\Users\\user\\Google Drive\\Career\\1. About my work\\2025 ProjectSoboro\\Code\\honro\\art\\act2-ch1-compact-20261109\\ground-body\\join-candidates\\mineral-clip-native.svg;export-do"
+    ]
+  ],
+  "risks": [
+    "Native Boolean decomposition may introduce seam AA compared with stacked original.",
+    "Candidate A may keep hard mineral edges; source handoff is not natural-art approval.",
+    "Candidate B may reveal unchanged foundation plane scale/contrast and source side edges.",
+    "No collision/camera/domain edits. Source-to-author loss must be evaluated separately from any future raw-to-final optimization."
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "worldViewBox": [
+    850,
+    2280,
+    320,
+    320
+  ],
+  "actualSourcePixels": [
+    1254,
+    1254
+  ],
+  "guidePixels": [
+    1024,
+    1024
+  ],
+  "pixelsPerWorld": 3.91875,
+  "sourceToWorldScale": 0.2551834130781499,
+  "roofPixels": [
+    [
+      235.125,
+      293.47083333333256
+    ],
+    [
+      1018.875,
+      293.47083333333256
+    ]
+  ],
+  "sourceSha256": "7367957c16607dbfc5cbc09a74f660a94d515798c5761d8d846ac8ab632b2556",
+  "measurements": [
+    {
+      "x": 240,
+      "expectedRoofY": 293.47083333333256,
+      "sourceTopAlpha128": 296
+    },
+    {
+      "x": 320,
+      "expectedRoofY": 293.47083333333256,
+      "sourceTopAlpha128": 304
+    },
+    {
+      "x": 500,
+      "expectedRoofY": 293.47083333333256,
+      "sourceTopAlpha128": 306
+    },
+    {
+      "x": 630,
+      "expectedRoofY": 293.47083333333256,
+      "sourceTopAlpha128": 302
+    },
+    {
+      "x": 710,
+      "expectedRoofY": 293.47083333333256,
+      "sourceTopAlpha128": 321
+    },
+    {
+      "x": 800,
+      "expectedRoofY": 293.47083333333256,
+      "sourceTopAlpha128": 303
+    },
+    {
+      "x": 1000,
+      "expectedRoofY": 293.47083333333256,
+      "sourceTopAlpha128": 297
+    },
+    {
+      "x": 1040,
+      "expectedRoofY": 293.47083333333256,
+      "sourceTopAlpha128": 331
+    }
+  ],
+  "semanticProtectedRoisSourcePixels": {
+    "centerMedallion": [
+      490,
+      370,
+      280,
+      95
+    ],
+    "westFlagFlower": [
+      290,
+      520,
+      100,
+      130
+    ],
+    "eastFlagFlower": [
+      900,
+      520,
+      100,
+      130
+    ],
+    "tornClothMain": [
+      300,
+      540,
+      650,
+      370
+    ],
+    "handles": [
+      70,
+      470,
+      1110,
+      110
+    ]
+  },
+  "contactPolicy": "Only the approved horizontal roof collider is registered. Handles and hanging cloth are art only; no new colliders. Feet/cloth burial requires canonical floor scene review.",
+  "identity": "Abandoned unoccupied Korean funeral bier, not a building or dais. No human remains.",
+  "status": "Production input, not art or play approval",
+  "maximumMissingRoofPixels": [
+    38.529166666667436,
+    728,
+    332
+  ],
+  "suggestedMinimalFillBandSourceHeight": 41,
+  "sourceDimensionCorrection": "Parent first instruction said1280; actual IHDR is1254. No source resize/crop; actual3.91875px/world used unless parent supplies a different original."
+}

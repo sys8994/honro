@@ -1,0 +1,84 @@
+{
+  "status": "Integration candidate chosen by parent; final game scene/browser/art acceptance remains separate",
+  "selectedAsset": "final.asset.json",
+  "selectedSvg": "final.svg",
+  "authoredRaw": "optimization-v2/authored-raw.svg",
+  "authoredRawAsset": "optimization-v2/authored-raw.asset.json",
+  "optimization": "Authored RAW fallback. Two independent actual native Simplify candidates fail unchanged global faded-alpha silhouette gate; lower precision6 is pixel-identical but engine asset bytes do not decrease. No geometric reduction success claimed.",
+  "originalInputsPreserved": {
+    "nearBodySource": "../vector-ready-v2.png",
+    "nearBodyNativeColor": "../native-color.svg",
+    "nearBodyFinalColor": "../final-color.svg",
+    "nearBodyOriginalAsset": "../final-world.asset.json",
+    "nearBodyOriginalAlpha": "../composition-alpha.svg",
+    "foundation": "../../foundation/final.asset.json"
+  },
+  "artSourceEdit": [
+    "Actual native path-union/path-difference derives nonoverlapping visible areas of the eight original stacked color paths. No new geological contour painted in code.",
+    "Original upper paint stack and exact canonical collision clip are retained. Only worldy>=2580 joins use original source-color linear alpha gradients endingworld2900..2980.",
+    "Existing complementary pixelSnapClip rectangular compositing windows avoid a raster split seam; no camera/domain/collider change.",
+    "Duplicate editor id in own intermediate SVG normalized without changing shapes/styles/transforms; actual native trace originals untouched."
+  ],
+  "sourceAuthorContact": "PASS unchanged existing walk-contact limits at1774/3548px:protected silhouette0px/changed fraction0; RGB MAE max0.000174. Global source-image equality is intentionally NOT PASSED because lower joining alpha is authored. Literal upper-image identity is not claimed due clip/AA round-trip.",
+  "rawToFinal": "PASS all errors0 at1774/3548px; final vector exactly authored RAW; runtime/environment validationErrors0.",
+  "svgReferenceToEngine": "NOT PASSED fixed protection gate at1774px:1px protected clip-AA; protectedRGB3.2483, globalRGB0.03273. Separate from same-engine RAW/final. No limits relaxed.",
+  "explicitSchemaMapping": "Asset-scoped import-join.py imports all solid paths via unchanged generic importer/budgets, then restores only existing clips, explicit userSpaceOnUse linear gradient coordinates/stops, and existing pixelSnapClip on two matching rectangles. Exact native href aliases and clip-name aliases resolve only to unchanged authored definitions. No runtime/shared importer changes, filters/masks/group opacity.",
+  "visualInspection": "Offline common HonroScene overview, normal.94,200%1.88,east normal and portrait-down viewed. LargeU/rectangle lower edge no longer reads as a plate. Faint lower Boolean AA contours remain in enlarged east view; not claimed eliminated. Foundation large-form scale/coverage is separately owned by parent.",
+  "rejected": [
+    "A mineral-clip candidate loses large mineral/crack meaning.",
+    "B original-native-alpha variant reintroduces rectangular side edges.",
+    "B-v2 all-area Boolean decomposition changes protected walk-edge AA; upper original stack restored.",
+    "Initial native SVG duplicate-id candidate clip broken on native export; rejected, source definitions normalized."
+  ],
+  "stats": {
+    "nodes": 26,
+    "paintNodes": 16,
+    "clipPaths": 4,
+    "gradientDefinitions": 7,
+    "maxPaintCompoundChars": 55007,
+    "maxClipPathChars": 2100,
+    "segments": 5261,
+    "subpaths": 465,
+    "embeddedImages": 0
+  },
+  "reportsRoot": "_local/reports/act2-redesign-20261109/ground-body-join",
+  "archiveRoot": "_local/archive/act2-redesign-20261109/ground-body-join",
+  "sourceAndOptimizationReports": [
+    "source-author-comparison.json",
+    "v3-source-contact.json",
+    "optimization-v2/optimization.json",
+    "verification/comparison.json",
+    "final/svg-to-engine.json",
+    "final/manifest.json"
+  ],
+  "notVerified": [
+    "Browser/user input actual play",
+    "Normal complete combat and save compatibility",
+    "Mobile GPU/performance benchmark",
+    "Final foundation1.1 placement latest combined scene",
+    "Remote/push/Pages deployment"
+  ],
+  "userApproval": "NONE",
+  "files": {
+    "final.svg": {
+      "bytes": 325542,
+      "sha256": "0bc931c538bfa54ddbb51d4e912e896472059f42273564b8d5712512f8b88307"
+    },
+    "final.asset.json": {
+      "bytes": 327637,
+      "sha256": "30bbaa5c7755aa24c9de2ab3feb34b3f621d0a05dcda99b812c980d5c176c8ee"
+    },
+    "optimization-v2/authored-raw.svg": {
+      "bytes": 325542,
+      "sha256": "0bc931c538bfa54ddbb51d4e912e896472059f42273564b8d5712512f8b88307"
+    },
+    "optimization-v2/authored-raw.asset.json": {
+      "bytes": 327637,
+      "sha256": "30bbaa5c7755aa24c9de2ab3feb34b3f621d0a05dcda99b812c980d5c176c8ee"
+    },
+    "candidate-B-v3-authored.svg": {
+      "bytes": 325542,
+      "sha256": "0bc931c538bfa54ddbb51d4e912e896472059f42273564b8d5712512f8b88307"
+    }
+  }
+}

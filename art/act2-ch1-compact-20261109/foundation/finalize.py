@@ -19,7 +19,8 @@ asset = adapter.compile_native_clip(color, alpha, config)
 (base / 'final.asset.json').write_text(json.dumps(asset, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf8')
 ns = 'http://www.w3.org/2000/svg'
 E.register_namespace('', ns)
-svg = E.Element('{'+ns+'}svg', {'width':'1536','height':'1024','viewBox':'-4200 1200 15000 10000'})
+box=config['bounds']
+svg = E.Element('{'+ns+'}svg', {'width':'1536','height':'1024','viewBox':f"{box['x']} {box['y']} {box['w']} {box['h']}"})
 defs = E.SubElement(svg, '{'+ns+'}defs')
 clip = E.SubElement(defs, '{'+ns+'}clipPath', {'id':'canonical-floor','clipPathUnits':'userSpaceOnUse'})
 for d in config['bodyClip']:

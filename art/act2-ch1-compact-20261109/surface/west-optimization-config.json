@@ -1,0 +1,102 @@
+{
+  "width": 1774,
+  "scales": [
+    1,
+    2
+  ],
+  "protectionMode": "silhouette",
+  "protectedPolylines": [
+    {
+      "points": [
+        [
+          0.0,
+          362.19166666666666
+        ],
+        [
+          480.4583333333333,
+          362.19166666666666
+        ],
+        [
+          813.0833333333334,
+          465.675
+        ],
+        [
+          1145.7083333333333,
+          413.93333333333334
+        ],
+        [
+          1441.375,
+          251.31666666666666
+        ],
+        [
+          1737.0416666666667,
+          251.31666666666666
+        ],
+        [
+          1774.0,
+          280.4353535353536
+        ]
+      ],
+      "width": 12
+    }
+  ],
+  "limits": {
+    "rgbMAE255": 2,
+    "silhouettePx": 1.5,
+    "protectedRgbMAE255": 1,
+    "protectedPx": 0.5,
+    "protectedChangedPixelFraction": 0.05
+  },
+  "asset": {
+    "id": "surface-color-west",
+    "name": "Surface color west",
+    "semanticLayer": "SURFACE",
+    "bounds": {
+      "x": 0,
+      "y": 0,
+      "w": 1774,
+      "h": 887
+    },
+    "anchor": {
+      "x": 0,
+      "y": 0
+    },
+    "foot": {
+      "x": 0,
+      "y": 0
+    },
+    "preserveCompounds": true
+  },
+  "protectedRects": [
+    [
+      1490,
+      256,
+      223,
+      87
+    ],
+    [
+      1114,
+      339,
+      185,
+      116
+    ],
+    [
+      84,
+      365,
+      185,
+      44
+    ],
+    [
+      538,
+      399,
+      152,
+      85
+    ],
+    [
+      686,
+      445,
+      79,
+      47
+    ]
+  ]
+}

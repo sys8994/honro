@@ -1,0 +1,71 @@
+{
+  "worldViewBox": [
+    2200,
+    1900,
+    1600,
+    800
+  ],
+  "actualSourcePixels": [
+    1774,
+    887
+  ],
+  "guidePixels": [
+    2048,
+    1024
+  ],
+  "pixelsPerWorld": 1.10875,
+  "sourceToWorldScale": 0.9019165727170237,
+  "contactSourcePixels": [
+    [
+      166.31249999999997,
+      376.97499999999997
+    ],
+    [
+      554.375,
+      354.79999999999995
+    ],
+    [
+      1086.5749999999998,
+      354.79999999999995
+    ],
+    [
+      1441.3749999999998,
+      388.06249999999994
+    ]
+  ],
+  "sourceSha256": "63402a749f165c1f1abc79eca894920881d3c22df71f1ed5babe9566a75d4bc3",
+  "measurements": [
+    {
+      "expected": [
+        166.31249999999997,
+        376.97499999999997
+      ],
+      "actualTopAlpha128": 384
+    },
+    {
+      "expected": [
+        554.375,
+        354.79999999999995
+      ],
+      "actualTopAlpha128": 347
+    },
+    {
+      "expected": [
+        1086.5749999999998,
+        354.79999999999995
+      ],
+      "actualTopAlpha128": 350
+    },
+    {
+      "expected": [
+        1441.3749999999998,
+        388.06249999999994
+      ],
+      "actualTopAlpha128": 385
+    }
+  ],
+  "lowerPassagePolicy": "Preserve natural alpha underside; keep central lower-route actor clearance visible. Contact registration clips/extends only top registration band.",
+  "visualPlane": "L1-back",
+  "colliderPolicy": "oneWay top; art underside is rear mass and not a new physical ceiling",
+  "status": "Unadopted asset authoring, not scene approval"
+}

@@ -1,0 +1,92 @@
+{
+  "width": 1774,
+  "scales": [
+    1,
+    2
+  ],
+  "protectionMode": "silhouette",
+  "protectedPolylines": [
+    {
+      "points": [
+        [
+          0.0,
+          266.1
+        ],
+        [
+          166.3125,
+          266.1
+        ],
+        [
+          532.2,
+          554.375
+        ],
+        [
+          1086.575,
+          576.55
+        ],
+        [
+          1441.375,
+          277.1875
+        ],
+        [
+          1774.0,
+          52.665625
+        ]
+      ],
+      "width": 12
+    }
+  ],
+  "limits": {
+    "rgbMAE255": 2,
+    "silhouettePx": 1.5,
+    "protectedRgbMAE255": 1,
+    "protectedPx": 0.5,
+    "protectedChangedPixelFraction": 0.05
+  },
+  "asset": {
+    "id": "surface-color-central",
+    "name": "Surface color central",
+    "semanticLayer": "SURFACE",
+    "bounds": {
+      "x": 0,
+      "y": 0,
+      "w": 1774,
+      "h": 887
+    },
+    "anchor": {
+      "x": 0,
+      "y": 0
+    },
+    "foot": {
+      "x": 0,
+      "y": 0
+    },
+    "preserveCompounds": true
+  },
+  "protectedRects": [
+    [
+      1328,
+      255,
+      203,
+      151
+    ],
+    [
+      128,
+      290,
+      164,
+      112
+    ],
+    [
+      643,
+      549,
+      209,
+      67
+    ],
+    [
+      830,
+      575,
+      67,
+      36
+    ]
+  ]
+}

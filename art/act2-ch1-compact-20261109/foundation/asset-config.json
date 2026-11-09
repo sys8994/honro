@@ -4,10 +4,10 @@
   "semanticLayer": "BODY",
   "preserveCompounds": true,
   "bounds": {
-    "x": -4200,
-    "y": 1200,
-    "w": 15000,
-    "h": 10000
+    "x": -4500,
+    "y": 1000,
+    "w": 16500,
+    "h": 11000
   },
   "anchor": {
     "x": 0,
@@ -18,12 +18,12 @@
     "y": 2390
   },
   "transform": [
-    9.765625,
+    10.7421875,
     0,
     0,
-    9.765625,
-    -4200,
-    1200
+    10.7421875,
+    -4500,
+    1000
   ],
   "bodyClip": [
     "M0,2390L650,2390L1100,2530L1550,2460L1950,2240L2350,2240L2680,2500L3180,2520L3500,2250L3900,1980L4450,1740L5050,1680L5700,1680L6200,1750L6700,1852.4265996808224L7200,1873.0083589460821L7700,1729.6903395593718L8200,1569.3865493803437L8700,1538.1627439881631L9200,1592.4919203634438L9700,1665.332973185891L10200,1710.3949937053299L10700,1677.7092742201883L11200,1573.831168297941L11700,1463.3923307852858L12200,1411.9999999134316L12200,27200L-6000,27200L-6000,2070L-5500,2131.6707974923456L-5000,2264.1974048695147L-4500,2388.8511444817027L-4000,2431.783264746228L-3500,2481.8518518518517L-3000,2562.7846364883403L-2500,2623.141289437586L-2000,2596.7200000000003L-1500,2454.0237037037036L-1000,2325.5496296296296L-500,2335.3125Z"
@@ -32,13 +32,15 @@
     "terrainId": "compact-floor",
     "sameCanonicalClipAsNearBody": true,
     "sourceWorldViewBox": [
-      -4200,
-      1200,
-      15000,
-      10000
+      -4500,
+      1000,
+      16500,
+      11000
     ],
     "candidateStatus": "foundation art candidate; scene joints and extremal camera pending",
-    "silhouetteUnderpaint": false
+    "silhouetteUnderpaint": false,
+    "foundationPlacementRevision": 2,
+    "placementChange": "Explicit uniform1.1x world placement to cover five actual viewport policy exposures; source art/native paths/colors/alpha/canonical floor unchanged. Not color optimization."
   },
   "scaleRange": [
     0.25,

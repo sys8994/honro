@@ -1,0 +1,100 @@
+{
+  "width": 1774,
+  "scales": [
+    1,
+    2
+  ],
+  "protectionMode": "silhouette",
+  "protectedPolylines": [
+    {
+      "points": [
+        [
+          0.0,
+          611.6604166666667
+        ],
+        [
+          59.13333333333333,
+          561.7666666666667
+        ],
+        [
+          295.6666666666667,
+          402.1066666666667
+        ],
+        [
+          620.9,
+          260.18666666666667
+        ],
+        [
+          975.7,
+          224.70666666666668
+        ],
+        [
+          1360.0666666666666,
+          224.70666666666668
+        ],
+        [
+          1655.7333333333333,
+          266.1
+        ],
+        [
+          1774.0,
+          290.3273050445039
+        ]
+      ],
+      "width": 12
+    }
+  ],
+  "limits": {
+    "rgbMAE255": 2,
+    "silhouettePx": 1.5,
+    "protectedRgbMAE255": 1,
+    "protectedPx": 0.5,
+    "protectedChangedPixelFraction": 0.05
+  },
+  "asset": {
+    "id": "surface-color-north",
+    "name": "Surface color north",
+    "semanticLayer": "SURFACE",
+    "bounds": {
+      "x": 0,
+      "y": 0,
+      "w": 1774,
+      "h": 887
+    },
+    "anchor": {
+      "x": 0,
+      "y": 0
+    },
+    "foot": {
+      "x": 0,
+      "y": 0
+    },
+    "preserveCompounds": true
+  },
+  "protectedRects": [
+    [
+      987,
+      217,
+      162,
+      65
+    ],
+    [
+      1378,
+      237,
+      189,
+      49
+    ],
+    [
+      481,
+      255,
+      207,
+      78
+    ],
+    [
+      67,
+      458,
+      175,
+      118
+    ]
+  ]
+}

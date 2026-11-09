@@ -1,5 +1,5 @@
 {
-  "status": "partial integration preview; foundation/ground/pine/rock; neck/bier/composition pending",
+  "status": "Selected existing nine assets; visible seam/halo corrections integrated. No further micro-detail pass.",
   "assets": [
     {
       "id": "act2-traced:stage11-compact-foundation-v1",
@@ -18,7 +18,7 @@
     },
     {
       "id": "act2-traced:stage11-compact-ground-v1",
-      "file": "art/act2-ch1-compact-20261109/ground-body/final-world.asset.json",
+      "file": "art/act2-ch1-compact-20261109/ground-body/join-candidates/final.asset.json",
       "placement": {
         "id": "compact11-art-0",
         "assetId": "act2-traced:stage11-compact-ground-v1",
@@ -61,6 +61,83 @@
         "depthLayer": "L1",
         "layer": "back",
         "nativeTerrainId": "compact-firing-rock"
+      }
+    },
+    {
+      "id": "act2-ch1:stone-neck-rear",
+      "file": "art/act2-ch1-compact-20261109/stone-neck/runtime/final.json",
+      "placement": {
+        "id": "compact11-art-stone-neck-rear",
+        "assetId": "act2-ch1:stone-neck-rear",
+        "x": 2200,
+        "y": 1900,
+        "scale": 1,
+        "rotation": 0,
+        "snap": false,
+        "depthLayer": "L1",
+        "layer": "back",
+        "nativeTerrainId": "compact-stone-neck"
+      }
+    },
+    {
+      "id": "act2-traced:stage11-surface-west",
+      "file": "art/act2-ch1-compact-20261109/surface/west-final.asset.json",
+      "placement": {
+        "id": "compact11-art-stage11-surface-west",
+        "assetId": "act2-traced:stage11-surface-west",
+        "x": 0,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0,
+        "snap": false,
+        "depthLayer": "L1",
+        "layer": "prop"
+      }
+    },
+    {
+      "id": "act2-traced:stage11-surface-central",
+      "file": "art/act2-ch1-compact-20261109/surface/central-final.asset.json",
+      "placement": {
+        "id": "compact11-art-stage11-surface-central",
+        "assetId": "act2-traced:stage11-surface-central",
+        "x": 0,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0,
+        "snap": false,
+        "depthLayer": "L1",
+        "layer": "prop"
+      }
+    },
+    {
+      "id": "act2-traced:stage11-surface-north",
+      "file": "art/act2-ch1-compact-20261109/surface/north-final.asset.json",
+      "placement": {
+        "id": "compact11-art-stage11-surface-north",
+        "assetId": "act2-traced:stage11-surface-north",
+        "x": 0,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0,
+        "snap": false,
+        "depthLayer": "L1",
+        "layer": "prop"
+      }
+    },
+    {
+      "id": "act2-ch1:abandoned-bier",
+      "file": "art/act2-ch1-compact-20261109/bier/runtime-v5/final.json",
+      "placement": {
+        "id": "compact11-art-bier",
+        "assetId": "act2-ch1:abandoned-bier",
+        "x": 850,
+        "y": 2280,
+        "scale": 1,
+        "rotation": 0,
+        "snap": false,
+        "depthLayer": "L1",
+        "layer": "back",
+        "nativeTerrainId": "compact-bier-cover"
       }
     }
   ]

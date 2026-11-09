@@ -1,0 +1,58 @@
+{
+  "status": "Asset production candidate; not scene/play approval",
+  "source": "source-v1.png",
+  "actualSourceSize": [
+    1774,
+    887
+  ],
+  "sourceToWorldUniformScale": 0.9019165727170236,
+  "worldPlacement": [
+    2200,
+    1900
+  ],
+  "worldViewBox": [
+    2200,
+    1900,
+    1600,
+    800
+  ],
+  "selectedSvg": "optimized-v1/final.svg",
+  "selectedEngineAsset": "runtime/final.json",
+  "nativeRaw": "native-v2-8smooth16/raw.svg",
+  "authoredRaw": "optimized-v1/raw-authored.svg",
+  "optimization": "Independent native simplify1e-5/5e-5 and precision6 candidates measured; precision6 selected by valid pixel gates, segment count unchanged.",
+  "engineRawToFinal": "PASS at1600/2640/3200px; all RGB/alpha/protected/contact/lower-opening pixel errors0",
+  "existingValidators": 0,
+  "sourceSvgToEngineRaw": "NOT PASSED contact pixel silhouette gate:1px raster/AA differences, separately retained. No gate relaxation.",
+  "lowerOpening": "Native alpha y440..887 unchanged after contact authoring; central floorx2680..3180 conservative44x89 actor rectangles do not overlap arch pixels, minimum head gap71.25world. Endpoint/rear-depth merging is parent scene review.",
+  "visualInspection": "Source/native/palette/contact full views and actual engine1600/3200px;200%left contact/central underside/right junction viewed. No automatic or user art approval.",
+  "userApproval": "NONE",
+  "files": {
+    "optimized-v1/final.svg": {
+      "bytes": 86725,
+      "sha256": "9082e0bcac3274330c5accd1071570c06e610a4de0180413252ee95c1263f2c3"
+    },
+    "runtime/final.json": {
+      "bytes": 88604,
+      "sha256": "07409414b2b39f6d56ee58542d255cdc6f6c0165a3f1505b04da947562a70fd8"
+    },
+    "registration-contract.json": {
+      "bytes": 1543,
+      "sha256": "a72c8a245f76934a7eb9067879a0c8d66b33f6a41591151bedd1f61bff799d7e"
+    },
+    "optimization-config.json": {
+      "bytes": 1841,
+      "sha256": "99e4df8782a09c40de18ff548ea5f090055d1eab94b879fa41380e32372276d9"
+    }
+  },
+  "reportsRoot": "_local\\reports\\act2-redesign-20261109\\stone-neck",
+  "archiveRoot": "_local\\archive\\act2-redesign-20261109\\stone-neck",
+  "reports": {
+    "runtime": "_local/reports/act2-redesign-20261109/stone-neck/runtime/comparison.json",
+    "sourceNative": "_local/reports/act2-redesign-20261109/stone-neck/source-to-native.json",
+    "contactLoss": "_local/reports/act2-redesign-20261109/stone-neck/authoring-loss.json",
+    "centralClearance": "_local/reports/act2-redesign-20261109/stone-neck/central-clearance.json",
+    "optimization": "_local/reports/act2-redesign-20261109/stone-neck/optimized-v1/optimization.json"
+  },
+  "pathsNote": "Selected art paths are asset-relative; _local paths are repository-relative. RELOCATION.json resolves historical intermediate paths."
+}

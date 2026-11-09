@@ -1,7 +1,7 @@
 {
-  "scope": "Actual policy exposure and planning guide. No art acceptance.",
+  "scope": "Foundation placement revision2: exact common-policy exposure coverage only; scene joints/browser/play remain separate.",
   "source": "shared/data/act2/stage11-compact-package.json",
-  "sourceSha256": "997740048690410afddd261fbfc850bc75b43c3f7e561d63a40b4389681bca61",
+  "sourceSha256": "2d996d800c0380f8952bf82c86f510c30261817d17979372fb6cc8a623855fe1",
   "stageId": 11,
   "canonicalFloorPoints": [
     {
@@ -182,77 +182,177 @@
     {
       "w": 1440,
       "h": 900,
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6520,
+        "bottom": 3440
+      },
       "minimumZoom": 0.21176470588235294,
+      "zoomLimits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
       "overscanned": {
         "left": -3960,
         "right": 10160,
         "top": -4165,
         "bottom": 5805
-      }
-    },
-    {
-      "w": 390,
-      "h": 844,
-      "minimumZoom": 0.057352941176470586,
-      "overscanned": {
-        "left": -3960,
-        "right": 10160,
-        "top": -9397.948717948719,
-        "bottom": 11037.948717948719
-      }
-    },
-    {
-      "w": 1920,
-      "h": 1080,
-      "minimumZoom": 0.2823529411764706,
-      "overscanned": {
-        "left": -3960,
-        "right": 10160,
-        "top": -3952.5,
-        "bottom": 5592.5
-      }
+      },
+      "minCanonicalGroundY": 1538.1627439881631,
+      "marginWorld": {
+        "left": 540,
+        "right": 1840,
+        "bottom": 6195,
+        "aboveFirstVisibleGround": 538.1627439881631
+      },
+      "groundCoveragePass": true
     },
     {
       "w": 844,
       "h": 390,
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6520,
+        "bottom": 3440
+      },
       "minimumZoom": 0.12411764705882353,
+      "zoomLimits": {
+        "min": 0.12411764705882353,
+        "max": 1.65,
+        "tactical": 0.12411764705882353,
+        "readability": 0.056818181818181816
+      },
       "overscanned": {
         "left": -3960,
         "right": 10160,
         "top": -3611.0900473933652,
         "bottom": 5251.090047393365
-      }
+      },
+      "minCanonicalGroundY": 1538.1627439881631,
+      "marginWorld": {
+        "left": 540,
+        "right": 1840,
+        "bottom": 6748.909952606635,
+        "aboveFirstVisibleGround": 538.1627439881631
+      },
+      "groundCoveragePass": true
+    },
+    {
+      "w": 390,
+      "h": 844,
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6520,
+        "bottom": 3440
+      },
+      "minimumZoom": 0.057352941176470586,
+      "zoomLimits": {
+        "min": 0.057352941176470586,
+        "max": 1.65,
+        "tactical": 0.057352941176470586,
+        "readability": 0.056818181818181816
+      },
+      "overscanned": {
+        "left": -3960,
+        "right": 10160,
+        "top": -9397.948717948719,
+        "bottom": 11037.948717948719
+      },
+      "minCanonicalGroundY": 1538.1627439881631,
+      "marginWorld": {
+        "left": 540,
+        "right": 1840,
+        "bottom": 962.0512820512813,
+        "aboveFirstVisibleGround": 538.1627439881631
+      },
+      "groundCoveragePass": true
     },
     {
       "w": 768,
       "h": 1024,
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6520,
+        "bottom": 3440
+      },
       "minimumZoom": 0.11294117647058824,
+      "zoomLimits": {
+        "min": 0.11294117647058824,
+        "max": 1.65,
+        "tactical": 0.11294117647058824,
+        "readability": 0.056818181818181816
+      },
       "overscanned": {
         "left": -3960,
         "right": 10160,
         "top": -6573.333333333333,
         "bottom": 8213.333333333332
-      }
+      },
+      "minCanonicalGroundY": 1538.1627439881631,
+      "marginWorld": {
+        "left": 540,
+        "right": 1840,
+        "bottom": 3786.666666666668,
+        "aboveFirstVisibleGround": 538.1627439881631
+      },
+      "groundCoveragePass": true
+    },
+    {
+      "w": 320,
+      "h": 920,
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6520,
+        "bottom": 3440
+      },
+      "minimumZoom": 0.056818181818181816,
+      "zoomLimits": {
+        "min": 0.056818181818181816,
+        "max": 1.65,
+        "tactical": 0.047058823529411764,
+        "readability": 0.056818181818181816
+      },
+      "overscanned": {
+        "left": -3376,
+        "right": 9576,
+        "top": -10136,
+        "bottom": 11776
+      },
+      "minCanonicalGroundY": 1538.1627439881631,
+      "marginWorld": {
+        "left": 1124,
+        "right": 2424,
+        "bottom": 224,
+        "aboveFirstVisibleGround": 538.1627439881631
+      },
+      "groundCoveragePass": true
     }
   ],
   "proposedWorldViewBox": [
-    -4200,
-    1200,
-    15000,
-    10000
+    -4500,
+    1000,
+    16500,
+    11000
   ],
   "guideSize": [
     1536,
     1024
   ],
-  "uniformScale": 0.1024,
+  "uniformScale": 0.09309090909090909,
   "overlapNearBodyWorldBox": [
     -200,
     3000,
     6600,
     800
   ],
-  "limits": "These five aspect ratios only. Extreme tall aspect can expose below11200; canonical bottom27200 remains unpainted beyond this candidate source crop. Camera/focus/domain not changed.",
+  "limits": "Only the five explicitly measured viewport sizes and current common focus/minimum-zoom/overscan policy. No claim for more extreme tall aspect/editor zoom or the entire canonical bottom27200. Root will review the changed geology alignment and joins in commonScene.",
   "palette": [
     "#969598",
     "#918375",
@@ -262,5 +362,50 @@
     "#84715e",
     "#545050"
   ],
-  "style": "Near BODY has connected large gray rock planes, muted brown soil, sparse dark fractures. Continue quietly into larger deeper geological layers; no invented slab/skirt."
+  "style": "Near BODY has connected large gray rock planes, muted brown soil, sparse dark fractures. Continue quietly into larger deeper geological layers; no invented slab/skirt.",
+  "boundsSource": "shared/map/bounds.js",
+  "boundsSourceSha256": "4fd40ba08405bf7e4b66e26d54878a416f3de6c0066d382520f2f941a8ae7173",
+  "policy": {
+    "desiredTacticalWorldWidth": 6800,
+    "minActorScreenHeight": 3.75,
+    "smallestActorWorldHeight": 66,
+    "maxZoom": 1.65,
+    "focusSide": 320,
+    "focusAbove": 1800,
+    "focusBelow": 240,
+    "overscanMargin": 240
+  },
+  "canonicalFloorClip": "M0,2390L650,2390L1100,2530L1550,2460L1950,2240L2350,2240L2680,2500L3180,2520L3500,2250L3900,1980L4450,1740L5050,1680L5700,1680L6200,1750L6700,1852.4265996808224L7200,1873.0083589460821L7700,1729.6903395593718L8200,1569.3865493803437L8700,1538.1627439881631L9200,1592.4919203634438L9700,1665.332973185891L10200,1710.3949937053299L10700,1677.7092742201883L11200,1573.831168297941L11700,1463.3923307852858L12200,1411.9999999134316L12200,27200L-6000,27200L-6000,2070L-5500,2131.6707974923456L-5000,2264.1974048695147L-4500,2388.8511444817027L-4000,2431.783264746228L-3500,2481.8518518518517L-3000,2562.7846364883403L-2500,2623.141289437586L-2000,2596.7200000000003L-1500,2454.0237037037036L-1000,2325.5496296296296L-500,2335.3125Z",
+  "canonicalClipSha256": "4ad9751369860f576e1d6d219a523f4889b14b1818d81f7d9d37acb61102d1c3",
+  "previousWorldViewBox": [
+    -4200,
+    1200,
+    15000,
+    10000
+  ],
+  "previousPlacementPreserved": "placement-v1/",
+  "currentWorldViewBox": [
+    -4500,
+    1000,
+    16500,
+    11000
+  ],
+  "sourceSize": [
+    1536,
+    1024
+  ],
+  "sourceToWorld": [
+    10.7421875,
+    0,
+    0,
+    10.7421875,
+    -4500,
+    1000
+  ],
+  "uniformWorldUnitsPerSourcePixel": 10.7421875,
+  "scaleRelativeToPrevious": 1.1,
+  "placementRevision": 2,
+  "coveragePass": true,
+  "minimumBottomMarginWorld": 224,
+  "changeType": "Uniform world placement adjustment, no color/path optimization, no dummy/tile/camera/terrain change"
 }

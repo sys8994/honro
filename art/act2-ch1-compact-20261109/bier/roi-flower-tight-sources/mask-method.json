@@ -1,0 +1,24 @@
+{
+  "method": "Source RGB gold-material selection inside protected flower ROIs: r>90,1.13<r/g<1.45,g/b>1.25. 3x3binary closing, largest connected gold component, then fill_holes include original internal petal lines while excluding separate ornamental border fragments. Original RGB unchanged. Native alpha traced from this mask.",
+  "purpose": "Confine native petal detail to floral motif; avoid rectangular ROI background seams. No hand-drawn flower.",
+  "rois": {
+    "center": [
+      601,
+      386,
+      62,
+      52
+    ],
+    "west": [
+      300,
+      535,
+      62,
+      70
+    ],
+    "east": [
+      890,
+      532,
+      70,
+      75
+    ]
+  }
+}

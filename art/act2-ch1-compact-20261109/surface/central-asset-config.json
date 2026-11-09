@@ -1,0 +1,59 @@
+{
+  "id": "act2-traced:stage11-surface-central",
+  "name": "작은 협곡의 지표 재료군집 central",
+  "semanticLayer": "SURFACE",
+  "category": "terrain",
+  "preserveCompounds": true,
+  "bounds": {
+    "x": 2200,
+    "y": 2000,
+    "w": 1600,
+    "h": 800
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 2200,
+    "y": 2240
+  },
+  "transform": [
+    0.9019165727170236,
+    0,
+    0,
+    0.9019165727170236,
+    2200,
+    2000
+  ],
+  "params": {
+    "surfaceId": "compact-floor",
+    "worldViewBox": [
+      2200,
+      2000,
+      1600,
+      800
+    ],
+    "surfaceDepthWorld": [
+      0,
+      160
+    ],
+    "materialChunkWorld": [
+      30,
+      120
+    ],
+    "collisionAdded": false,
+    "sourceAlphaRegistration": "Native intersection with exact source-coordinate floor-top+160world band; no new collider",
+    "nonplayEnvironment": true,
+    "silhouetteUnderpaint": false,
+    "edgePassCorrection": "Proven source-out-of-gamut white-mix edge passes only replaced by native union of existing rootsoil color; core stone/moss/root paths and source alpha preserved. See central-edge-authored/authorship.json"
+  },
+  "scaleRange": [
+    0.25,
+    4
+  ],
+  "backgroundRange": [
+    0.25,
+    4
+  ]
+}

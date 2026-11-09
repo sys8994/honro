@@ -11,3 +11,11 @@ B-open 실제 upper 접촉선과 뿌리 소켓을 기준으로 생성·편집·�
 `final-world.asset.json`은 좌표 변환이 내장되어 world(0,0),scale1 배치다. `final.asset.json`은 source좌표이므로 world(1650,1650),scale1700/1774 배치다. 동시에 변환하지 않는다. 최종메타데이터와 hash는delivery.json. 실제플레이·브라우저·배포는 이 자산 작업에서 수행하지 않았다.
 
 자동 trace/render/optimizer 출력 보고서와 PNG는 `_local/reports/act2-redesign-20261109/upper-pine-production/`에, 반려 Boolean·simplify 후보는 `_local/archive/act2-redesign-20261109/upper-pine-production/`에 보존했다. 원본 source·native RAW·접촉 등록 RAW·최종 SVG/JSON·설정·재현 script는 art에 남긴다.
+
+## pine 잔여halo source 교정
+
+후속공통Scene center에서가지아래·구멍·뿌리에밝은점선이보여재조사했다. 원본가시/opaqueRGB최대[115,96,83],opaque중앙값[90,72,62]인데유일한색역외pass는fullcanvas#fefefe underpaint였다. 이path8만기존midwood#57453b로실제Inkscape object-set-property 편집했다. RAW및precision6양쪽에서모든path d·나머지7core색·접촉등록밴드d가문자열완전동일함을assert했다. 원본이미지/nativeRAW/등록alpha는불변이다. 새source저작은edge-authored/로분리했으며손실없는최적화로계산하지않는다.
+
+compiledworldvector전후차이도fill1개뿐이고clip/transform/bounds/reference/foot/anchor/collision은동일했다. 실제L1before/after의nearwhite(alpha>=128,RGB>150)는1233→0px,alpha전후변경0px였다. 원본alpha경계안쪽거리90%가1px이하,최대4px의가장자리흰혼합이었다. 실제뿌리·구멍·왼끝200%를직접열어밝은점선제거와구멍/얇은뿌리보존을확인했다.
+
+새source저작RAW/FINAL을기존L1및gameplaycontext1x2x로비교해보호silhouette0px,보호RGBmax0.000759/255로모두기존한도통과했다. 전체silhouette최대1px은기존1.5px한도안이며보호부0이다. 최종worldasset599,339B. 실제공통Scene재캡처검수는별도항목으로기록한다. 브라우저·실제플레이·배포통과는이수치가증명하지않는다.

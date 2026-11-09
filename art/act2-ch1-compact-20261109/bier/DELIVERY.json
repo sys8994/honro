@@ -1,0 +1,99 @@
+{
+  "status": "Production asset candidate; game composition/depth/floor burial still pending parent review",
+  "selectedSvg": "optimized-v5/final.svg",
+  "selectedEngineAsset": "runtime-v5/final.json",
+  "source": "source-v1.png",
+  "sourceActualPixels": [
+    1254,
+    1254
+  ],
+  "nativeTrace": "native-v1-16smooth4/raw.svg",
+  "floralRoiNativeTraces": [
+    "roi-flower-center-native16-tight/raw.svg",
+    "roi-flower-west-native16/raw.svg",
+    "roi-flower-east-native16/raw.svg"
+  ],
+  "authoredRaw": "optimized-v5/raw-authored.svg",
+  "transform": {
+    "worldViewBox": [
+      850,
+      2280,
+      320,
+      320
+    ],
+    "uniformSourceToWorld": 0.2551834130781499,
+    "roofWorld": [
+      [
+        910,
+        2354.8888888888887
+      ],
+      [
+        1110,
+        2354.8888888888887
+      ]
+    ]
+  },
+  "rawToFinal": "Precision6 XML normalization; no geometry segment reduction claimed. Native simplify alternatives on earlier authoring baselines failed quality or enlarged the file. Final baseline independently pixel-compared at320/528/640px.",
+  "engineValidationErrors": 0,
+  "engineRawToFinal": "PASS all3 scales; protected alpha/silhouette0px; RGB MAE max0.00000359",
+  "sourceSvgToEngineRaw": "NOT PASSED existing protected edge gates:1px AA/clip edge differences remain (global2x max2.236px). Separate comparison recorded; no threshold relaxed.",
+  "sourceEdits": [
+    "Exact main white trace-background rectangle underpaint changed to wood, preserving real cloth highlights.",
+    "Flower source crops preserve original RGB; source gold-mask+3x3closing/largest connected motif/fillholes, separately actual native color and alpha traces restore petal lines. Central crop tightened to62x52sourcepx to exclude gold panel border.",
+    "Native ROI white background rectangles changed to gold underpaint to avoid fringe.",
+    "41sourcepx wood strip behind unchanged original alpha group; NEW outer native roof clip for collider registration. Lower original alpha y>=335 unchanged."
+  ],
+  "rejected": [
+    "Global native16 loses petal internal lines.",
+    "Wide rectangular native24 ROI produces visible palette seam.",
+    "Initial small-flower ROI mask includes separate30px gold frame fragment; component choice excludes it.",
+    "White ROI trace-background fringe; exactbackground native recolor fixes it.",
+    "Largest-component mask still connects to original gold frame line; tight center source crop height52 removes frame while retaining petals."
+  ],
+  "visualInspection": "Source/global/restored200% ROI boards and actual existing engine320px/640px viewed. Handles, broken top boards, muted red/gold funeral ornaments and torn offwhite cloth retained. Final scene depth, floor burial, browser, combat, saves, mobile/performance pending parent.",
+  "userApproval": "NONE",
+  "stats": {
+    "paintNodes": 65,
+    "clipPaths": 5,
+    "pathChars": 1175496,
+    "maxPaintCompoundChars": 116915,
+    "maxClipPathChars": 6507,
+    "segments": 12290,
+    "subpaths": 2723,
+    "embeddedImages": 0
+  },
+  "reportsRoot": "_local/reports/act2-redesign-20261109/bier",
+  "archiveRoot": "_local/archive/act2-redesign-20261109/bier",
+  "reportFiles": [
+    "runtime-v5/comparison.json",
+    "optimized-v5/optimization.json",
+    "production-loss.json"
+  ],
+  "files": {
+    "source-v1.png": {
+      "bytes": 908807,
+      "sha256": "7367957c16607dbfc5cbc09a74f660a94d515798c5761d8d846ac8ab632b2556"
+    },
+    "optimized-v5/raw-authored.svg": {
+      "bytes": 1195968,
+      "sha256": "c074c38be444708676a0c1cd4d16bb624a8919f4cca7141294a6ebf28a588c6e"
+    },
+    "optimized-v5/final.svg": {
+      "bytes": 1190901,
+      "sha256": "da4dba149f1c4eb96e7f93d24bcf492ec898885f3f1bb7250e3f6a650e77e0cf"
+    },
+    "runtime-v5/final.json": {
+      "bytes": 1197234,
+      "sha256": "405d6896b39e0418f06dc05c5cf9185efab505ca590ef501ee4aaac4f0dca98f"
+    },
+    "registration-contract.json": {
+      "bytes": 2475,
+      "sha256": "d2969da30b866368f0c6cf3e40efad1fe006756134615d86c41abb66820f1d07"
+    }
+  },
+  "inkscape": {
+    "version": "Inkscape1.4.4 (dcaf3e7,2026-05-05)",
+    "exeSha256": "4057b55e6bd892512fab3488bded271adfb8fa987cb7378b045055f051907f48"
+  },
+  "pathsNote": "Art paths relative to this dir. _local paths repository-relative. RELOCATION.json resolves archived/intermediate outputs."
+}

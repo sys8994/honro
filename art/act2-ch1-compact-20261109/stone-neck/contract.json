@@ -1,0 +1,94 @@
+{
+  "worldViewBox": [
+    2200,
+    1900,
+    1600,
+    800
+  ],
+  "sourceSize": [
+    2048,
+    1024
+  ],
+  "contactWorld": [
+    {
+      "x": 2350,
+      "y": 2240
+    },
+    {
+      "x": 2700,
+      "y": 2220
+    },
+    {
+      "x": 3180,
+      "y": 2220
+    },
+    {
+      "x": 3500,
+      "y": 2250
+    }
+  ],
+  "collider": {
+    "id": "compact-stone-neck",
+    "name": "compact-stone-neck",
+    "type": "solid",
+    "points": [
+      {
+        "x": 2350,
+        "y": 2240
+      },
+      {
+        "x": 2700,
+        "y": 2220
+      },
+      {
+        "x": 3180,
+        "y": 2220
+      },
+      {
+        "x": 3500,
+        "y": 2250
+      },
+      {
+        "x": 3500,
+        "y": 2288
+      },
+      {
+        "x": 3180,
+        "y": 2258
+      },
+      {
+        "x": 2700,
+        "y": 2258
+      },
+      {
+        "x": 2350,
+        "y": 2278
+      }
+    ],
+    "baseMaterial": "rock",
+    "breakable": false,
+    "oneWay": true,
+    "layer": "terrain",
+    "properties": {
+      "honroSpaceSurfaceId": "compact-stone-neck",
+      "honroWalkEdges": [
+        0,
+        1,
+        2
+      ],
+      "honroSurfaceRole": "shelf"
+    },
+    "detail": {
+      "spacing": 18,
+      "roughness": 0,
+      "seed": 11,
+      "optimizeEpsilon": 0
+    }
+  },
+  "scope": "guide only, not approved art",
+  "rules": [
+    "Only stone neck rear arch; lower path remains visibly open",
+    "No upper pine, ground body, actor, UI or sky in final alpha asset",
+    "Exact top; stone medium forms at actor height92, no beam or repeated polygon"
+  ]
+}

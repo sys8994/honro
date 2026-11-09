@@ -1,0 +1,24 @@
+{
+  "method": "Source RGB-only gold-material selection inside original flower ROIs; r>90,1.13<r/g<1.45,g/b>1.25;3x3binary closing then fill_holes restores internal petal-line pixels. Original RGB unchanged. Native alpha traced from this mask.",
+  "purpose": "Confine source-native petal detail to actual floral motif instead of rectangular ROI background; no hand-drawn flower geometry.",
+  "rois": {
+    "center": [
+      601,
+      386,
+      62,
+      66
+    ],
+    "west": [
+      300,
+      535,
+      62,
+      70
+    ],
+    "east": [
+      890,
+      532,
+      70,
+      75
+    ]
+  }
+}

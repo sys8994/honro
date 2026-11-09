@@ -4,7 +4,8 @@ import {createCompactCandidate,heightOn} from './stage11-compact-candidates.mjs'
 import {createOpenTwoStepB} from './stage11-compact-alternatives.mjs';
 const clone=x=>JSON.parse(JSON.stringify(x));
 const PARTY=['archer','mage','knight','occultist'];
-export function createCompactProject(g,project,candidateId='B'){
+export function createCompactProject(g,project,candidateId='B',{roster='24'}={}){
+ if(!['24','20'].includes(roster))throw Error('Unknown compact encounter comparison');
  if(!['B','B-open'].includes(candidateId))throw Error('Only B/B-open have an authored encounter plan');
  const original=project.stages.find(s=>s.metadata?.stageId===11);
  if(!original?.initialState?.honroReviewedNarrativeRevision||!g.HonroAct23V4Reviewed?.enabled())throw Error('Reviewed production Stage11 source required');
@@ -45,6 +46,14 @@ export function createCompactProject(g,project,candidateId='B'){
  enemy('compact11-exit-crow','crow',5055,{air:390,role:'north-flank',cluster:'exit'});
  enemy('compact11-exit-rear','human',5580,{role:'exit-rear-shot',cluster:'exit'});
  const ids={entry,central,exit};
+ if(roster==='20'){
+  // A separate measured-budget candidate. Remove duplicated pressure angles,
+  // retaining the manuscript hosts, one aerial axis per required encounter,
+  // ranged support, the gathering guard and all six optional middle actors.
+  const removed=new Set(['compact11-entry-front','compact11-entry-crow','compact11-exit-bat','compact11-exit-rear']);
+  s.units=s.units.filter(u=>!removed.has(u.id));
+  for(const list of [entry,exit])for(let i=list.length-1;i>=0;i--)if(removed.has(list[i]))list.splice(i,1);
+ }
  s.encounters=['entry','central','exit'].map(key=>({id:'compact11-'+key,key:'compact11-'+key,behavior:'patrol',unitIds:clone(ids[key]),role:key==='central'?'optional alternate-height pocket':'required local threat'}));
  const marker=(id,q,extra={})=>({id,label:id,type:'act2',action:'act2',x:q.x,y:q.y,radius:180,...extra});
  s.markers=[marker('11.thread',at(330)),marker('11.entry-threat',c.sites.host),marker('11.exit-threat',at(5100)),marker('11.exit',c.sites.exit),marker('11.north',c.sites.exit)];
@@ -61,6 +70,12 @@ export function createCompactProject(g,project,candidateId='B'){
  s.environment=g.HonroEnvironment.makeEnvironment(s);
  s.metadata.compactCandidate=candidateId;s.design.compact11.candidate=candidateId;s.initialState.honroStage11CompactCandidate=candidateId;
  s.initialState.honroEncounterDensityRevision=1;
+ s.initialState.honroStage11CompactRosterRevision=roster==='20'?2:1;
+ if(roster==='20'){
+  Object.assign(s.design.compact11.budget,{initial:17,total:20,requiredInitial:11,requiredTotal:14});
+  s.design.compact11.budget.comparison='20 total is below unconfirmed v3 proposal24..30; compact size/observed shot and reunion budget reevaluation, not a v3 numeric pass';
+  s.initialState.honroStage11PopulationCap=20;s.initialState.honroEncounterDensityPopulationCap=20;
+ }
  s.design.compact11.firingRockPolicy=clone(c.proxies.firingRock);
  if(c.alternative)s.design.compact11.alternative=clone(c.alternative);
  // The common author extends canonical polygons; no dummy/skirt is authored.

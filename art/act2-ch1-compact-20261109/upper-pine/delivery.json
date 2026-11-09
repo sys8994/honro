@@ -57,13 +57,15 @@
     "layer": "L1-back; no new trunk collider; same existing upper contact source"
   },
   "checks": {
-    "sameEngineRawFinal1x2x": "PASS with precision6 and unchanged limits; _local/reports/act2-redesign-20261109/upper-pine-final-precision-6/comparison.json",
+    "sameEngineRawFinal1x2x": "PASS after native edge-source authoring in both existing L1 and gameplay contexts; protected silhouette0px; protectedRGBmax0.000759/255; unchanged limits.",
     "nativeSourceToEngine": "NOT PASS: native SVG versus renderer protected silhouette1px difference; preserve separately from optimization. Integrated joint/foot camera review needed.",
-    "visualDirectInspection": "Registered raw/final full overview and contact/root/fork200% opened directly; shapes/holes retained. Right tip has small geometric cap from intentional contact registration. Needle clumps lost much green in8-color trace. Not aesthetic approval.",
+    "visualDirectInspection": "Opened actual L1 before/after root/holes/left-tip200%; nearwhite1233→0pixels, alpha pixeldata0change. Existing branch contact/holes/root shapes preserved. CommonScene re-capture check pending.",
     "sourceContactRegistration": "Intentional adjacent same-color band3..14.4069sourcepx and native union/intersection; not lossless optimization. Original source and raw unchanged.",
     "actualPlay": "NOT RUN by asset agent",
     "browser": "NOT RUN by asset agent",
-    "deployment": "NOT RUN by asset agent"
+    "deployment": "NOT RUN by asset agent",
+    "L1EdgeQualityReport": "_local/reports/act2-redesign-20261109/upper-pine-final-precision-6-L1-edge/comparison.json",
+    "gameplayEdgeQualityReport": "_local/reports/act2-redesign-20261109/upper-pine-final-precision-6-gameplay-edge/comparison.json"
   },
   "files": {
     "source-v2.png": {
@@ -87,20 +89,101 @@
       "sha256": "e23a3be1a02cf8a05e9752cc2f54fa65e8e9eb53b6e51481ad27f7c78663ba30"
     },
     "final.svg": {
-      "bytes": 597112,
-      "sha256": "548e628fedeec8ebfbda7e7f1ba7d2bde010a374001d17cd48f626c27fa9896d"
+      "bytes": 597116,
+      "sha256": "a36a873518bf918a7e35e095b6e79f8eb3faae909817c94fb12613503a923300"
     },
     "final.asset.json": {
-      "bytes": 599092,
-      "sha256": "874cbb824a9b778cf2f6c0dee05b75c41fe48e11259b94be0504c9339fe9cd10"
+      "bytes": 599243,
+      "sha256": "0b4557344dc6fa1f06df5b327633070316469cdffa77873328e540298b9aa951"
     },
     "final-world.asset.json": {
-      "bytes": 599143,
-      "sha256": "d13e19842e4c0fd55cd6ca043d0ddae54c2b4b2692b0786ef091c645d65135dd"
+      "bytes": 599339,
+      "sha256": "1278b6fc2b193785d0da59cbec6233f999d8b2002be9d9c2902602e980ae9387"
+    },
+    "edge-authored/native-color.svg": {
+      "bytes": 585025,
+      "sha256": "1ff9f2535a71668e672b0e0f608f9917a37120475cf53baf2248bf94d9c7e227"
+    },
+    "edge-authored/final-color.svg": {
+      "bytes": 576458,
+      "sha256": "b7fe2e623357502b353a10c319081121811df321f081354f245ae03a307db1de"
     }
   },
   "automaticReportsRoot": "_local/reports/act2-redesign-20261109/upper-pine-production",
   "failedCandidatesRoot": "_local/archive/act2-redesign-20261109/upper-pine-production",
   "optimizerReport": "_local/reports/act2-redesign-20261109/upper-pine-production/opt-color8-fixed/report.json",
-  "registrationReport": "_local/reports/act2-redesign-20261109/upper-pine-production/registered8/registration.json"
+  "registrationReport": "_local/reports/act2-redesign-20261109/upper-pine-production/registered8/registration.json",
+  "edgeUnderpaintAuthorship": {
+    "scope": "Intentional source edge-underpaint color authoring, not lossless optimization",
+    "nativeVersion": "Inkscape 1.4.4 (dcaf3e7, 2026-05-05)",
+    "sourceVisibleRgbMaximum": [
+      115,
+      96,
+      83
+    ],
+    "sourceVisibleOpaqueRgbMedian": [
+      90.0,
+      72.0,
+      62.0
+    ],
+    "replacementColorFromExistingCore": "#57453b",
+    "onlyOutOfGamutSourceColor": "#fefefe",
+    "registeredAlphaUnchanged": "registered8/native-alpha.svg",
+    "originalSourceAndNativeRawPreserved": true,
+    "footContactTransformHoles": "unchanged; no geometry edit",
+    "rows": [
+      {
+        "label": "native-color",
+        "source": "C:\\Users\\user\\Google Drive\\Career\\1. About my work\\2025 ProjectSoboro\\Code\\honro\\art\\act2-ch1-compact-20261109\\upper-pine\\registered8\\native-color.svg",
+        "sha256Before": "475e05aae5f5b72cd2eb0c78014b9a53b3dca4bfe077c57c7bdda8a47b41082c",
+        "sha256After": "1ff9f2535a71668e672b0e0f608f9917a37120475cf53baf2248bf94d9c7e227",
+        "allPathDataIdentical": true,
+        "allOtherStylesIdentical": true,
+        "changedOnly": "path8 full-canvas white underpaint fill:#fefefe -> #57453b"
+      },
+      {
+        "label": "final-color",
+        "source": "C:\\Users\\user\\Google Drive\\Career\\1. About my work\\2025 ProjectSoboro\\Code\\honro\\art\\act2-ch1-compact-20261109\\upper-pine\\opt-color8-fixed\\precision-6.svg",
+        "sha256Before": "e23a3be1a02cf8a05e9752cc2f54fa65e8e9eb53b6e51481ad27f7c78663ba30",
+        "sha256After": "b7fe2e623357502b353a10c319081121811df321f081354f245ae03a307db1de",
+        "allPathDataIdentical": true,
+        "allOtherStylesIdentical": true,
+        "changedOnly": "path8 full-canvas white underpaint fill:#fefefe -> #57453b"
+      }
+    ]
+  },
+  "edgeBeforeAfterActualL1": {
+    "scope": "Intentional source underpaint recolor before/after, not optimization error",
+    "beforeNearwhitePixels": 1233,
+    "afterNearwhitePixels": 0,
+    "sourceVisibleMaximum": [
+      115,
+      96,
+      83
+    ],
+    "beforeNearwhiteDistanceInsideOriginalAlphaPx": [
+      0.0,
+      1.0,
+      1.0,
+      3.0,
+      3.4637037185694224,
+      4.0
+    ],
+    "alphaChangedPixels": 0,
+    "alphaMaxDelta": 0,
+    "newColor": "#57453b from original trace core",
+    "pathDataIdentical": true,
+    "registeredAlphaFileUnchanged": true
+  },
+  "compiledVectorInvariance": {
+    "vectorDifferences": [
+      {
+        "path": "vector.root.children[0].children[0].children[0].children[0].children[0].fill",
+        "before": "#fefefe",
+        "after": "#57453b"
+      }
+    ],
+    "geometryBoundsFootAnchorUnchanged": true,
+    "scope": "Compiled world vector before/after source palette edit"
+  }
 }

@@ -1,0 +1,506 @@
+{
+  "scope": "Three native-vector SURFACE production candidates, no existing BODY/foundation/pine/geometry edit; not final scene/art/play/browser/deployment approval",
+  "motivation": "Directly inspected common Scene entry/center captures; 92world actors were dwarfed by1000world rock planes and broad uniform earth. Adds localized30..120world material accents and long quiet gaps.",
+  "referenceScreens": [
+    "_local/reports/act2-redesign-20261109/native-preview/entry.png",
+    "_local/reports/act2-redesign-20261109/native-preview/center.png"
+  ],
+  "design": "West4/central3/north4 asymmetrical clusters: worn earth, downslope scree/exposed roots, uphill moss/stone, quiet upper pockets. Individual material target30..120world, source exactactor92 scale shown in guide. Whole clusters contain several materials and can be wider. No topsoil slab or repeated polygon field.",
+  "placement": {
+    "x": 0,
+    "y": 0,
+    "scale": 1,
+    "anchor": {
+      "x": 0,
+      "y": 0
+    },
+    "semanticLayer": "SURFACE",
+    "depthLayer": "L1",
+    "layer": "prop",
+    "order": "after nearBODY, before actors/foreground; materials remain under actual floor contact"
+  },
+  "nativeTrace": {
+    "version": "Inkscape1.4.4",
+    "scans": 16,
+    "smooth": true,
+    "speckles": 2,
+    "alphaSpeckles": 0,
+    "images": 0
+  },
+  "sourceEdits": {
+    "registration": "Actual native path-intersection of original native source alpha with authored source-coordinate floor-top..+160world band. The band is wholly inside same canonicalfloor; no new collider or BODY-only bodyClip option.",
+    "knownTraceBackground": "Only the single full-canvas #fdfdfd native background rectangle was removed from registered RAW and each candidate identically, to remove white edge fringe. XML path removal explicitly, not a new native Boolean or delete of real highlights. Original native RAW immutable.",
+    "sourceMaskRetentionFractions": {
+      "west": 0.96,
+      "central": 0.97,
+      "north": 0.802
+    },
+    "northFirstClusterRetention": 0.619,
+    "registrationLoss": "Intentional source packaging loss, separate from optimization. North uphill first rock group is visibly trimmed to fit the real floor; remaining stone/moss/root form inspected.",
+    "alpha": "Source semi-transparent edges become nativebinaryalpha; source→trace visiblepremultipliedRGB10..12/255 remains a recorded loss, not a fidelity pass.",
+    "edgePassCorrection": {
+      "west": {
+        "scope": "Intentional source edge-color correction, not lossless optimization",
+        "sourceVisibleRgbMaximum": [
+          162,
+          161,
+          163
+        ],
+        "sourceNoWhiteMaterial": true,
+        "correctedEdgeStyles": [
+          "fill:#e4e1dd",
+          "fill:#d3ceca",
+          "fill:#cbc5bc",
+          "fill:#c3bbb2",
+          "fill:#b2aea9",
+          "fill:#ada495",
+          "fill:#a79a8d"
+        ],
+        "rootsoilColor": "#816d58",
+        "nativeUnion": true,
+        "coreStylesPreserved": [
+          "fill:#8c8a89",
+          "fill:#8e8575",
+          "fill:#807f80",
+          "fill:#86796b",
+          "fill:#7c7874",
+          "fill:#816d58",
+          "fill:#7c6854",
+          "fill:#76734a"
+        ],
+        "sameUnionRawFinal": true,
+        "alphaUnchanged": "../west-registered-trace16/native-alpha.svg",
+        "originalNativeRawPreserved": "../west-trace16/raw.svg"
+      },
+      "central": {
+        "scope": "Intentional source edge-color correction, not lossless optimization",
+        "sourceVisibleRgbMaximum": [
+          155,
+          157,
+          157
+        ],
+        "sourceNoWhiteMaterial": true,
+        "correctedEdgeStyles": [
+          "fill:#e3e1dd",
+          "fill:#d2d0cc",
+          "fill:#c7c4ba",
+          "fill:#c2bbb6",
+          "fill:#b3b0ad",
+          "fill:#aba694",
+          "fill:#a39990"
+        ],
+        "rootsoilColor": "#756354",
+        "nativeUnion": true,
+        "coreStylesPreserved": [
+          "fill:#939292",
+          "fill:#8a8989",
+          "fill:#8a876f",
+          "fill:#85786c",
+          "fill:#7d7267",
+          "fill:#75744b",
+          "fill:#756354",
+          "fill:#705d4f"
+        ],
+        "sameUnionRawFinal": true,
+        "alphaUnchanged": "../central-registered-trace16/native-alpha.svg",
+        "originalNativeRawPreserved": "../central-trace16/raw.svg"
+      },
+      "north": {
+        "scope": "Intentional source edge-color correction, not lossless optimization",
+        "sourceVisibleRgbMaximum": [
+          156,
+          155,
+          155
+        ],
+        "sourceNoWhiteMaterial": true,
+        "correctedEdgeStyles": [
+          "fill:#d2d0cd",
+          "fill:#c9c6bc",
+          "fill:#c3bcb6",
+          "fill:#b3b0ab",
+          "fill:#a9a593",
+          "fill:#a2988d"
+        ],
+        "rootsoilColor": "#705c49",
+        "nativeUnion": true,
+        "coreStylesPreserved": [
+          "fill:#929292",
+          "fill:#8b8a8a",
+          "fill:#8b8773",
+          "fill:#84796e",
+          "fill:#7b7876",
+          "fill:#716d48",
+          "fill:#705c49",
+          "fill:#6a6b3e",
+          "fill:#6d5a47"
+        ],
+        "sameUnionRawFinal": true,
+        "alphaUnchanged": "../north-registered-trace16/native-alpha.svg",
+        "originalNativeRawPreserved": "../north-trace16/raw.svg"
+      }
+    },
+    "roleFlags": {
+      "nonplayEnvironment": true,
+      "silhouetteUnderpaint": false,
+      "note": "Existing allowed decorative rendering semantics only. L1 role before/after0pixel difference proves flags alone did not solve halo. Actual source edge correction solved it."
+    }
+  },
+  "canonicalFloorClipSha256": "4ad9751369860f576e1d6d219a523f4889b14b1818d81f7d9d37acb61102d1c3",
+  "optimization": "Actual bounded optimizer executed on color native RAW. Same-engine tests apply same background removal and registered alpha to both. Precision6 chosen for conservative byte reduction; parsed segment counts slightly increase, so no segment-simplification success claimed. Failed0.0001 1px protection results preserved.",
+  "qualityReport": "_local/reports/act2-redesign-20261109/surface-production/engine-edge-corrected-L1/comparison.json",
+  "failedQualityReport": "_local/reports/act2-redesign-20261109/surface-production/engine-simplified/comparison.json",
+  "visualReview": "Post-correction commonScene entry/center/entry-phone/overview bundle7620f6f97d9b56e5604c1df69a585a19a703cca57a5fd3fe513e91a9fcd2f1e5 opened directly. Previous SURFACE bright sticker edges no longer visible; material/root/olive roles remain. This is initial diagnostic pose commonScene, not browser/play. Persistent pine underside halo and BODY foundation joining are separately reported.",
+  "rows": [
+    {
+      "id": "west",
+      "sourceToNative16VisiblePremultipliedRgbMAE255": 12.046436023752584,
+      "sourceToNative16AlphaMAE255": 0.1963187415874291,
+      "sourceOpacityNote": "Native binary-alpha trace does not preserve semitransparent edge pixels; source→trace loss is separate from RAW→FINAL",
+      "nativeColorPaths": 16,
+      "finalColorPaths": 15,
+      "finalMaxPathChars": 9684,
+      "finalSvgBytes": 75904,
+      "finalAssetBytes": 78173,
+      "originalNativeRawSha256": "b12ae77a2cfca146a625aa45e0e8cf1cceba3ae03d838b98b3ed7f4dcd97f8b0",
+      "registeredNativeRawSha256": "288daf05dac6173a7819b40d5bb7a280bd2c43356692c1eab378fd6f8a0bc2e1",
+      "finalAssetSha256": "d70b7489945edabe54078e73ab769ca8e182a141de5297582a4faf2935066ee9",
+      "finalSvgSha256": "1791a4599d7832572c2fd0e8ddc3c01e60d991c32ba8b68138401af8cb7d2bea",
+      "assetId": "act2-traced:stage11-surface-west",
+      "assetFile": "art/act2-ch1-compact-20261109/surface/west-final.asset.json",
+      "worldViewBox": [
+        0,
+        1900,
+        2400,
+        1200
+      ],
+      "sourceSize": [
+        1774,
+        887
+      ],
+      "sourceToWorld": [
+        1.3528748590755355,
+        0,
+        0,
+        1.3528748590755355,
+        0,
+        1900
+      ],
+      "actor92SourceHeight": 68.00333333333333,
+      "clustersWorldX": [
+        [
+          120,
+          360
+        ],
+        [
+          760,
+          1030
+        ],
+        [
+          1530,
+          1750
+        ],
+        [
+          2090,
+          2330
+        ]
+      ],
+      "chosen": "precision-6",
+      "optimizerProposed": "simplify-0.0001",
+      "selectionReason": "Simplify color-only pass was rejected by actual engine1x protected silhouette1px. Precision6 actual-engine1x2x both pass unchanged limits.",
+      "baselineColorStats": {
+        "sourceBytes": 105323,
+        "paths": 16,
+        "commands": 2381,
+        "segments": 2272,
+        "subpaths": 109,
+        "maxPathChars": 9767
+      },
+      "chosenColorStats": {
+        "sourceBytes": 103600,
+        "paths": 16,
+        "commands": 2396,
+        "segments": 2287,
+        "subpaths": 109,
+        "maxPathChars": 9684
+      },
+      "actualEngineQuality": {
+        "errors": {
+          "1": {
+            "rgbMAE255": 4.733132664114237e-05,
+            "rgbP99_255": 0.0,
+            "alphaMAE255": 2.542042011555168e-06,
+            "changedPixelFraction": 0.0,
+            "silhouetteMaxOffsetPx": 0.0,
+            "protectedChangedPixelFraction": 0.0,
+            "protectedRgbMAE255": 0.0009060540469363332,
+            "protectedSilhouetteMaxOffsetPx": 0.0,
+            "pass": true
+          },
+          "2": {
+            "rgbMAE255": 5.988366319797933e-05,
+            "rgbP99_255": 0.0,
+            "alphaMAE255": 6.35510502888792e-07,
+            "changedPixelFraction": 0.0,
+            "silhouetteMaxOffsetPx": 0.0,
+            "protectedChangedPixelFraction": 0.0,
+            "protectedRgbMAE255": 0.0011392758460715413,
+            "protectedSilhouetteMaxOffsetPx": 0.0,
+            "pass": true
+          }
+        },
+        "pass": true
+      },
+      "sampledDepth": {
+        "id": "west",
+        "sample": "Final actual-engine source1x alpha>=128 pixel centers; AA sample not geometric proof",
+        "depthWorldRange": [
+          -0.20011273957197773,
+          117.94813979706896
+        ],
+        "intendedDepthWorld": [
+          0,
+          160
+        ],
+        "sourcePixelWorldSize": 1.3528748590755355,
+        "rootMoss200pct": "_local/reports/act2-redesign-20261109/surface-production/west-root-moss-200pct.png"
+      },
+      "edgeAuthoredRaw": "art/act2-ch1-compact-20261109/surface/west-edge-authored/native-color.svg",
+      "edgeAuthoredFinal": "art/act2-ch1-compact-20261109/surface/west-edge-authored/final-color.svg"
+    },
+    {
+      "id": "central",
+      "sourceToNative16VisiblePremultipliedRgbMAE255": 10.391007795678645,
+      "sourceToNative16AlphaMAE255": 0.12099104057226451,
+      "sourceOpacityNote": "Native binary-alpha trace does not preserve semitransparent edge pixels; source→trace loss is separate from RAW→FINAL",
+      "nativeColorPaths": 16,
+      "finalColorPaths": 15,
+      "finalMaxPathChars": 7344,
+      "finalSvgBytes": 53183,
+      "finalAssetBytes": 55484,
+      "originalNativeRawSha256": "abb6a01e87f3528942db3403dcfc313e0139c72380798f4381b99e299e0a2701",
+      "registeredNativeRawSha256": "106d988a5e6640f3d3d9d6f0296c9f13bd65c799ea7af7e72f4396fc1cdb9472",
+      "finalAssetSha256": "a8043b75631c3368268cde1dd011b98fb0a7a77832008530cf97176ce6b2fad1",
+      "finalSvgSha256": "5cb56a8766399c73a6f67a4204cdf529a69f20939e1bf293166c889ccdcf41ad",
+      "assetId": "act2-traced:stage11-surface-central",
+      "assetFile": "art/act2-ch1-compact-20261109/surface/central-final.asset.json",
+      "worldViewBox": [
+        2200,
+        2000,
+        1600,
+        800
+      ],
+      "sourceSize": [
+        1774,
+        887
+      ],
+      "sourceToWorld": [
+        0.9019165727170236,
+        0,
+        0,
+        0.9019165727170236,
+        2200,
+        2000
+      ],
+      "actor92SourceHeight": 102.005,
+      "clustersWorldX": [
+        [
+          2300,
+          2450
+        ],
+        [
+          2780,
+          3000
+        ],
+        [
+          3430,
+          3600
+        ]
+      ],
+      "chosen": "precision-6",
+      "optimizerProposed": "simplify-0.0001",
+      "selectionReason": "Simplify color-only pass was rejected by actual engine1x protected silhouette1px. Precision6 actual-engine1x2x both pass unchanged limits.",
+      "baselineColorStats": {
+        "sourceBytes": 78516,
+        "paths": 16,
+        "commands": 1744,
+        "segments": 1678,
+        "subpaths": 66,
+        "maxPathChars": 7502
+      },
+      "chosenColorStats": {
+        "sourceBytes": 76602,
+        "paths": 16,
+        "commands": 1752,
+        "segments": 1686,
+        "subpaths": 66,
+        "maxPathChars": 7344
+      },
+      "actualEngineQuality": {
+        "errors": {
+          "1": {
+            "rgbMAE255": 9.046554623637348e-05,
+            "rgbP99_255": 0.0,
+            "alphaMAE255": 1.7158783521153964e-05,
+            "changedPixelFraction": 0.0,
+            "silhouetteMaxOffsetPx": 0.0,
+            "protectedChangedPixelFraction": 0.0,
+            "protectedRgbMAE255": 0.0017266173381358385,
+            "protectedSilhouetteMaxOffsetPx": 0.0,
+            "pass": true
+          },
+          "2": {
+            "rgbMAE255": 6.020836008246988e-05,
+            "rgbP99_255": 0.0,
+            "alphaMAE255": 3.1775523439137032e-06,
+            "changedPixelFraction": 0.0,
+            "silhouetteMaxOffsetPx": 0.0,
+            "protectedChangedPixelFraction": 0.0,
+            "protectedRgbMAE255": 0.001147582894191146,
+            "protectedSilhouetteMaxOffsetPx": 0.0,
+            "pass": true
+          }
+        },
+        "pass": true
+      },
+      "sampledDepth": {
+        "id": "central",
+        "sample": "Final actual-engine source1x alpha>=128 pixel centers; AA sample not geometric proof",
+        "depthWorldRange": [
+          -0.18672491544521108,
+          73.66540261692444
+        ],
+        "intendedDepthWorld": [
+          0,
+          160
+        ],
+        "sourcePixelWorldSize": 0.9019165727170236,
+        "rootMoss200pct": "_local/reports/act2-redesign-20261109/surface-production/central-root-moss-200pct.png"
+      },
+      "edgeAuthoredRaw": "art/act2-ch1-compact-20261109/surface/central-edge-authored/native-color.svg",
+      "edgeAuthoredFinal": "art/act2-ch1-compact-20261109/surface/central-edge-authored/final-color.svg"
+    },
+    {
+      "id": "north",
+      "sourceToNative16VisiblePremultipliedRgbMAE255": 10.043535753236988,
+      "sourceToNative16AlphaMAE255": 0.15340716271230817,
+      "sourceOpacityNote": "Native binary-alpha trace does not preserve semitransparent edge pixels; source→trace loss is separate from RAW→FINAL",
+      "nativeColorPaths": 16,
+      "finalColorPaths": 15,
+      "finalMaxPathChars": 10998,
+      "finalSvgBytes": 86221,
+      "finalAssetBytes": 88596,
+      "originalNativeRawSha256": "0c0f0f53acf0f6526a8f2b33280c493982e15b87070fda81ffb4c856c2413cb9",
+      "registeredNativeRawSha256": "84f764af3274091e0cfa4335391b38250016b5bae1c84c7b576600b134eb716b",
+      "finalAssetSha256": "68085593fa6da2cd7a7f9d4911a4784f9fb5157c92caaf54aa81400a3a10e0f1",
+      "finalSvgSha256": "07f4b1abf02f3059c6b8f05caee6986a5a31df16156fb16f885bb1913e4008f9",
+      "assetId": "act2-traced:stage11-surface-north",
+      "assetFile": "art/act2-ch1-compact-20261109/surface/north-final.asset.json",
+      "worldViewBox": [
+        3400,
+        1300,
+        3000,
+        1500
+      ],
+      "sourceSize": [
+        1774,
+        887
+      ],
+      "sourceToWorld": [
+        1.6910935738444195,
+        0,
+        0,
+        1.6910935738444195,
+        3400,
+        1300
+      ],
+      "actor92SourceHeight": 54.40266666666667,
+      "clustersWorldX": [
+        [
+          3570,
+          3770
+        ],
+        [
+          4240,
+          4500
+        ],
+        [
+          5120,
+          5320
+        ],
+        [
+          5780,
+          6000
+        ]
+      ],
+      "chosen": "precision-6",
+      "optimizerProposed": "simplify-0.0001",
+      "selectionReason": "Simplify color-only pass was rejected by actual engine1x protected silhouette1px. Precision6 actual-engine1x2x both pass unchanged limits.",
+      "baselineColorStats": {
+        "sourceBytes": 107586,
+        "paths": 16,
+        "commands": 2463,
+        "segments": 2321,
+        "subpaths": 142,
+        "maxPathChars": 11094
+      },
+      "chosenColorStats": {
+        "sourceBytes": 105438,
+        "paths": 16,
+        "commands": 2473,
+        "segments": 2331,
+        "subpaths": 142,
+        "maxPathChars": 10998
+      },
+      "actualEngineQuality": {
+        "errors": {
+          "1": {
+            "rgbMAE255": 6.949942326173186e-05,
+            "rgbP99_255": 0.0,
+            "alphaMAE255": 8.261636139650363e-06,
+            "changedPixelFraction": 0.0,
+            "silhouetteMaxOffsetPx": 0.0,
+            "protectedChangedPixelFraction": 0.0,
+            "protectedRgbMAE255": 0.0015542036853730679,
+            "protectedSilhouetteMaxOffsetPx": 0.0,
+            "pass": true
+          },
+          "2": {
+            "rgbMAE255": 4.130668821744621e-05,
+            "rgbP99_255": 0.0,
+            "alphaMAE255": 9.532657259114785e-07,
+            "changedPixelFraction": 0.0,
+            "silhouetteMaxOffsetPx": 0.0,
+            "protectedChangedPixelFraction": 0.0,
+            "protectedRgbMAE255": 0.0009173364378511906,
+            "protectedSilhouetteMaxOffsetPx": 0.0,
+            "pass": true
+          }
+        },
+        "pass": true
+      },
+      "sampledDepth": {
+        "id": "north",
+        "sample": "Final actual-engine source1x alpha>=128 pixel centers; AA sample not geometric proof",
+        "depthWorldRange": [
+          -0.2491544532131229,
+          111.53940760479645
+        ],
+        "intendedDepthWorld": [
+          0,
+          160
+        ],
+        "sourcePixelWorldSize": 1.6910935738444195,
+        "rootMoss200pct": "_local/reports/act2-redesign-20261109/surface-production/north-root-moss-200pct.png"
+      },
+      "edgeAuthoredRaw": "art/act2-ch1-compact-20261109/surface/north-edge-authored/native-color.svg",
+      "edgeAuthoredFinal": "art/act2-ch1-compact-20261109/surface/north-edge-authored/final-color.svg"
+    }
+  ],
+  "actualPlay": "NOT RUN by surfaceagent",
+  "browser": "NOT RUN by surfaceagent",
+  "deployment": "NOT RUN by surfaceagent",
+  "reportsRoot": "_local/reports/act2-redesign-20261109/surface-production",
+  "failedArchiveRoot": "_local/archive/act2-redesign-20261109/surface-production",
+  "gameplayContextQualityReport": "_local/reports/act2-redesign-20261109/surface-production/engine-edge-corrected-gameplay/comparison.json",
+  "classificationDiagnosis": "_local/reports/act2-redesign-20261109/surface-production/context-diagnosis/before-after.json"
+}

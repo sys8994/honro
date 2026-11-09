@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "node tools/stage31/check-release.mjs && node workshop/build.mjs",
+    "build": "node workshop/build.mjs",
     "migrate": "node migration/migrate-stages.mjs && node tools/map-forge/apply-act2.mjs && node tools/map-forge/apply-act1.mjs && node tools/map-forge/apply-terrain-domain.mjs && node tools/map-forge/apply-act1-roster.mjs",
     "verify": "npm run test:release-guard && npm run build && npm run test:title && npm run test:campaign-metadata && npm run test:campaign-contracts && npm run test:runtime-contracts && npm run test:migration-ledger && npm run test:migration-current-meta && npm run test:current-story-display && npm run test:binding-detail && npm --prefix game run verify && npm run test:integration && npm run test:performance",
     "test:binding-detail": "node tests/binding-detail-normalization.mjs && node tests/narrative-revision.mjs",
@@ -230,7 +230,9 @@
     "act4:source:pack": "node tools/act4-source/world-source.mjs pack",
     "act4:source:check": "node tools/act4-source/world-source.mjs check",
     "act4:source:materialize": "node tools/act4-source/world-source.mjs materialize",
-    "test:act4-source": "node --test tests/act4-source-parts.mjs"
+    "test:act4-source": "node --test tests/act4-source-parts.mjs",
+    "check:stage31-release": "node tools/stage31/check-release.mjs",
+    "build:stage31-reviewed": "npm run check:stage31-release && node workshop/build.mjs"
   },
   "devDependencies": {
     "@napi-rs/canvas": "0.1.100",

@@ -7,5 +7,6 @@ function covered(t,b){
 }
 const S=G.HonroScene?.prototype;
 if(S){const terrain=S.terrain;S.terrain=function(c,t,...args){if(covered(t,this.battle))return;return terrain.call(this,c,t,...args);};}
-G.HonroStage11CompactArt={covered};
+const bierCovered=b=>{const t=b?.terrain?.find(t=>t.id===b.honroV4Chapter11?.bier?.id);return !!t&&covered(t,b);};
+G.HonroStage11CompactArt={covered,bierCovered};
 })(globalThis);

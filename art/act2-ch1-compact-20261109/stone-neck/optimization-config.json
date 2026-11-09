@@ -1,0 +1,124 @@
+{
+  "width": 1600,
+  "scales": [
+    1,
+    1.65,
+    2
+  ],
+  "limits": {
+    "rgbMAE255": 0.8,
+    "silhouettePx": 1.3528748590755357,
+    "protectedRgbMAE255": 0.8,
+    "protectedPx": 0.4509582863585119,
+    "protectedChangedPixelFraction": 0.01
+  },
+  "protectionMode": "contact",
+  "protectedPolylines": [
+    {
+      "points": [
+        [
+          150,
+          340
+        ],
+        [
+          500,
+          320
+        ],
+        [
+          980,
+          320
+        ],
+        [
+          1300,
+          350
+        ]
+      ],
+      "width": 6
+    }
+  ],
+  "protectedRects": [
+    [
+      400,
+      400,
+      700,
+      100
+    ]
+  ],
+  "reviewRects": [
+    [
+      140,
+      320,
+      130,
+      130
+    ],
+    [
+      470,
+      305,
+      150,
+      70
+    ],
+    [
+      940,
+      305,
+      150,
+      70
+    ],
+    [
+      1200,
+      330,
+      200,
+      200
+    ],
+    [
+      400,
+      400,
+      700,
+      100
+    ]
+  ],
+  "asset": {
+    "id": "act2-ch1:stone-neck-rear",
+    "name": "Natural rear stone neck",
+    "semanticLayer": "REAR",
+    "category": "rock",
+    "bounds": {
+      "x": 0,
+      "y": 0,
+      "w": 1600,
+      "h": 800
+    },
+    "anchor": {
+      "x": 0,
+      "y": 0
+    },
+    "foot": {
+      "x": 150,
+      "y": 340
+    },
+    "transform": [
+      0.9019165727170237,
+      0,
+      0,
+      0.9019165727170237,
+      0,
+      0
+    ],
+    "scaleRange": [
+      1,
+      1
+    ],
+    "backgroundRange": [
+      1,
+      1
+    ],
+    "params": {
+      "worldPlacement": [
+        2200,
+        1900
+      ],
+      "visualPlane": "L1-back",
+      "colliderPolicy": "compact-stone-neck oneWay top only",
+      "artStatus": "candidate; not approved"
+    }
+  }
+}

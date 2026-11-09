@@ -66,7 +66,7 @@ checks.push('Only compact exit waits for all four alive grounded classes; three-
 const compactEnabled=g.HonroStage11Compact?.enabled()===true,revisionBoundary={enabled:compactEnabled};
 if(compactEnabled){
  app=h.load(saved);app.continue();assert.deepEqual(plain(app.engine.b),oldBattle,'old412 exact under current413 policy');assert.equal(app.engine.b.honroCampaignMapRevision,412,'do not rewrite old revision stamp');
- app.retry();h.finish(app);assert.equal(app.engine.b.honroCampaignMapRevision,413);assert.equal(app.engine.b.width,6200);assert.equal(app.engine.b.height,3200);assert.equal(app.engine.b.units.length,25);
+ app.retry();h.finish(app);assert.equal(app.engine.b.honroCampaignMapRevision,413);assert.equal(app.engine.b.width,6200);assert.equal(app.engine.b.height,3200);assert.equal(app.engine.b.units.length,g.HONRO_STAGE11_COMPACT_DATA.stage.initialState.honroStage11CompactRosterRevision===2?21:25,'Exact declared fresh roster, never an old-save refill');
  const retry={width:app.engine.b.width,height:app.engine.b.height,revision:app.engine.b.honroCampaignMapRevision,units:app.engine.b.units.length};
  app=h.load(h.profileThrough(10));app.launch(11);h.finish(app);assert.equal(app.engine.b.honroCampaignMapRevision,413);assert.equal(app.engine.b.honroStage11CompactRevision,1);
  const cases=[];

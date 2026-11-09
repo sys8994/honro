@@ -1,0 +1,67 @@
+{
+  "status": "Authored asset candidate; not scene approval",
+  "sourcePixels": [
+    1774,
+    887
+  ],
+  "sourceToWorld": 0.9019165727170237,
+  "paletteChanges": [
+    {
+      "id": "path8",
+      "from": "#fdfdfd",
+      "to": "#7e7d80",
+      "role": "exact full-canvas trace background underpaint, not a highlight"
+    },
+    {
+      "id": "path6",
+      "from": "#8c8272",
+      "to": "#8a8070",
+      "role": "same topsoil/mineral brown"
+    },
+    {
+      "id": "path4",
+      "from": "#887d6d",
+      "to": "#8a8070",
+      "role": "same topsoil/mineral brown"
+    }
+  ],
+  "contactPixels": [
+    [
+      166.31249999999997,
+      376.97499999999997
+    ],
+    [
+      554.375,
+      354.79999999999995
+    ],
+    [
+      1086.5749999999998,
+      354.79999999999995
+    ],
+    [
+      1441.3749999999998,
+      388.06249999999994
+    ]
+  ],
+  "contactBandSourceHeight": 14,
+  "contactPolicy": "Exact contact ceiling authored on NEW outer group;14px band below source-alpha color group fills only missing top registration. Existing native alpha remains untouched on inner group. Lower hollow is not reconstructed or filled.",
+  "nativeRawSha256": "0b9cafa1b9cae2c3f14b1ace9ca6d9c1ac4b0c836179e83c2e54003a3157d371",
+  "nativeAlphaSha256": "4911cca36d141c5dfafcf5d310705709a2f6e83233446ceb3ce3e55593af6f97",
+  "contactSha256": "74f037e7bb76343686bc5d5bec70f414eb0614aeca6537d9b6019c79a4fa02b9",
+  "commands": [
+    [
+      "C:\\Users\\user\\Google Drive\\Career\\1. About my work\\2025 ProjectSoboro\\Code\\honro\\_local\\tools\\inkscape-1.4.4\\portable-complete\\inkscape\\bin\\inkscape.com",
+      "C:\\Users\\user\\Google Drive\\Career\\1. About my work\\2025 ProjectSoboro\\Code\\honro\\art\\act2-ch1-compact-20261109\\stone-neck\\authored-v1\\palette-input.svg",
+      "--batch-process",
+      "--actions=select-by-id:path6,path4;path-union;select-by-id:path8;object-set-property:fill,#7e7d80;export-plain-svg;export-filename:C:\\Users\\user\\Google Drive\\Career\\1. About my work\\2025 ProjectSoboro\\Code\\honro\\art\\act2-ch1-compact-20261109\\stone-neck\\authored-v1\\palette-color.svg;export-do"
+    ],
+    [
+      "C:\\Users\\user\\Google Drive\\Career\\1. About my work\\2025 ProjectSoboro\\Code\\honro\\_local\\tools\\inkscape-1.4.4\\portable-complete\\inkscape\\bin\\inkscape.com",
+      "C:\\Users\\user\\Google Drive\\Career\\1. About my work\\2025 ProjectSoboro\\Code\\honro\\art\\act2-ch1-compact-20261109\\stone-neck\\authored-v1\\contact-input.svg",
+      "--batch-process",
+      "--actions=select-by-id:art,contact-ceiling;object-set-clip;export-plain-svg;export-filename:C:\\Users\\user\\Google Drive\\Career\\1. About my work\\2025 ProjectSoboro\\Code\\honro\\art\\act2-ch1-compact-20261109\\stone-neck\\authored-v1\\contact-authored.svg;export-do"
+    ]
+  ],
+  "lossMeasurements": "PENDING",
+  "visualReview": "PENDING"
+}

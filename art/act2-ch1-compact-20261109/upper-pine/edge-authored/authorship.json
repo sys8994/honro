@@ -1,0 +1,39 @@
+{
+  "scope": "Intentional source edge-underpaint color authoring, not lossless optimization",
+  "nativeVersion": "Inkscape 1.4.4 (dcaf3e7, 2026-05-05)",
+  "sourceVisibleRgbMaximum": [
+    115,
+    96,
+    83
+  ],
+  "sourceVisibleOpaqueRgbMedian": [
+    90.0,
+    72.0,
+    62.0
+  ],
+  "replacementColorFromExistingCore": "#57453b",
+  "onlyOutOfGamutSourceColor": "#fefefe",
+  "registeredAlphaUnchanged": "registered8/native-alpha.svg",
+  "originalSourceAndNativeRawPreserved": true,
+  "footContactTransformHoles": "unchanged; no geometry edit",
+  "rows": [
+    {
+      "label": "native-color",
+      "source": "C:\\Users\\user\\Google Drive\\Career\\1. About my work\\2025 ProjectSoboro\\Code\\honro\\art\\act2-ch1-compact-20261109\\upper-pine\\registered8\\native-color.svg",
+      "sha256Before": "475e05aae5f5b72cd2eb0c78014b9a53b3dca4bfe077c57c7bdda8a47b41082c",
+      "sha256After": "1ff9f2535a71668e672b0e0f608f9917a37120475cf53baf2248bf94d9c7e227",
+      "allPathDataIdentical": true,
+      "allOtherStylesIdentical": true,
+      "changedOnly": "path8 full-canvas white underpaint fill:#fefefe -> #57453b"
+    },
+    {
+      "label": "final-color",
+      "source": "C:\\Users\\user\\Google Drive\\Career\\1. About my work\\2025 ProjectSoboro\\Code\\honro\\art\\act2-ch1-compact-20261109\\upper-pine\\opt-color8-fixed\\precision-6.svg",
+      "sha256Before": "e23a3be1a02cf8a05e9752cc2f54fa65e8e9eb53b6e51481ad27f7c78663ba30",
+      "sha256After": "b7fe2e623357502b353a10c319081121811df321f081354f245ae03a307db1de",
+      "allPathDataIdentical": true,
+      "allOtherStylesIdentical": true,
+      "changedOnly": "path8 full-canvas white underpaint fill:#fefefe -> #57453b"
+    }
+  ]
+}

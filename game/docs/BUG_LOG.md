@@ -5372,3 +5372,10 @@ Title `여정 이어가기` could choose an older hub before honoring a saved di
 - 확인: `tests/stage11-compact-lazy-author.mjs`에서 다른 장, 실제 Stage11 부분 프로젝트, source drift 거부와 미술 누락 시 fallback을 확인했다. common compiler/Engine/Scene의 native Canvas 화면에서 발판과 줄기 원본 벡터가 표시됨을 직접 확인했다. 이 화면의 동행 위치는 진단 fixture이며 실제 이동 증거가 아니다.
 - 현재 상태/한계: 후보 6200×3200은 production flag가 꺼져 있다. 첫 정상입력 App-harness 실행은 Lv12·4인 생존·혼3기 실제 생성, 20R 미완주였다. 이것을 성공/브라우저 플레이/배포로 세지 않는다. 후속 역할별 입력 정책, 표면/상여/돌목 미술, 전체 전투·저장·브라우저·배포 검수가 진행 중이다. 기존 저장 보호 근거와 원문 대조는 `ACT2_CH1_COMPACT_DESIGN.md`를 따른다.
 
+## 2막1장 선택 에셋/기본 활성화 누락과 제작 반복 — 2026-11-09 빠른 수정
+
+- 원인: 소형 맵·미술 후보를 만들었으나 기본 release flag가 꺼져 있고 BODY 선택본 연결이 뒤처졌다. 기본 build가 무관한31장 전체 runtime digest gate를 항상 요구했다.
+- 변경:6200×3200·초기17+유한3과 선택된9native 에셋을 기본 연결. 기존 저장은 유지. 기본 build와 명시적 Stage31 검토 build를 분리하고 검사 도구/코어 한도는 보존. 제작 SOP에 정상 화면 우선·재시도 중단·적합 raw 채택·영향범위 검수를 반영.
+- 확인: 두 HTML/Playtest build, compact lazy-author·기존412 저장 경계 검사 통과. 최종 native 전체/일반/모바일 합성 직접 확인. 실제 Chromium 부팅/rev413/4인/오류0 확인.
+- 한계: 이번 UI 이동 입력은 재개된 도입 대화에 막혀 점프/사격/Continue 새 검증은 미완료. 전체 브라우저 완주·사람의 미감/난도 승인으로 표시하지 않는다.
+
