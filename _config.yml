@@ -22,7 +22,8 @@ exclude:
   - tools/act4-source
   - tools/act4-vector-production
   - tools/actor-forge
-  - tools/character-catalog
+  # Jekyll 3 also compares prefixes: the bare directory name matches .html.
+  - tools/character-catalog/**
   - tools/environment
   - tools/fonts
   - tools/intent-pipeline
