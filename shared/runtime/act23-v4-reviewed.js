@@ -95,7 +95,17 @@ function tick(app,dt){const b=app.engine.b;if(!active(b)||!V.safe(app))return;co
   if(s.proof['11.north']&&closed(q.events.reaction)&&!q.events.depart){begin(app,'depart',['A2.S11.COMPLETE.05']);return;}}
 }
 function complete(b){return !active(b)||closed(memory(b).events.depart)&&!!memory(b).journal;}
-function present(b,result){if(!active(b))return result;const r=row('A2.S11.OBJECTIVE.01');return{...result,summary:r.text,currentInstruction:r.text,completionText:r.text,targets:result.targets.map(x=>({...x,label:r.text})),allTargets:result.allTargets.map(x=>({...x,label:r.text})),checklist:[{id:r.id,text:r.text,done:result.complete,current:!result.complete}],visibleChecklist:[{id:r.id,text:r.text,done:result.complete,current:!result.complete}],failureText:''};}
+// Chapter 11 markers describe automatic world conditions, not usable objects.
+// Check saved step kinds at read time so existing battles need no migration.
+function automaticMarker(b,m){return active(b)&&['v4-entry','clear','reach','v4-world'].includes(V.steps(b).find(s=>s.id===m?.id)?.kind);}
+function instruction(b){
+ const s=V.current(b),p=s&&V.marker(b,s.id);
+ if(s?.kind==='clear'){const foes=b.units.filter(u=>u.side===1&&!u.honroObjectiveTarget&&V.alive(u)&&(s.defeatIds?s.defeatIds.includes(u.id):V.near(u,p,s.radius||650)));return `산길의 위협 제압 · 남은 적 ${foes.length}명`;}
+ if(s?.id==='11.exit'&&b.honroStage11CompactRevision===1){const n=Object.values(cls).filter(c=>V.heroes(b).some(u=>u.cls===c&&V.near(u,p,180)&&C.validTerrainContactPose(b.terrain,u))).length;return `고개에 네 동행 집결 · ${n}/4명 도착`;}
+ if(s?.id==='11.north'){const foes=b.units.filter(u=>u.side===1&&!u.honroObjectiveTarget&&V.alive(u)&&V.near(u,p,700));return foes.length?`고개 주변 위협 제압 · 남은 적 ${foes.length}명`:'고개에서 기다리기 · 주변을 살피면 자동 진행';}
+ return row('A2.S11.OBJECTIVE.01').text;
+}
+function present(b,result){if(!active(b))return result;const r=row('A2.S11.OBJECTIVE.01'),hint=instruction(b);return{...result,summary:hint,currentInstruction:hint,completionText:r.text,targets:result.targets.map(x=>({...x,label:hint})),allTargets:result.allTargets.map(x=>({...x,label:r.text})),checklist:[{id:r.id,text:r.text,done:result.complete,current:!result.complete}],visibleChecklist:[{id:r.id,text:r.text,done:result.complete,current:!result.complete}],failureText:''};}
 function content(b,st){if(!active(b))return st;return{...st,goal:row('A2.S11.OBJECTIVE.01').text,guide:'',story:[],outro:[],failure:[],narration:[],storySummary:memory(b).journal?row('A2.S11.JOURNAL.01').text:'',honroV4Unreviewed:false,honroReviewedNarrativeRevision:1};}
 function draw(scene,c,b){if(!active(b)||!scenes(b).bell?.struck)return;const a=memory(b).ambient,spec=b.honroV4Ambient;c.save();c.lineWidth=2;for(let i=0;i<a.count;i++){const start=spec.from.x+(i%4)*44,progress=Math.min(1,a.elapsed/1.1),x=start+a.distance,y=spec.from.y-95-Math.floor(i/4)*55-70*progress;c.globalAlpha=.22+.045*i;c.strokeStyle='#bacdc4';c.beginPath();c.ellipse(x,y,13,27,-.3,0,Math.PI*2);c.stroke();}c.restore();}
 function failure(app){if(!active(app.engine?.b)||app.dialogue||app.engine.b.phase!=='lost')return false;return begin(app,'failure',['EDGE.FAILURE_GUARD.S11'],{actualFailure:true});}
@@ -110,7 +120,7 @@ const oldResolve=G.HonroNarrativeCatalogue.resolve;G.HonroNarrativeCatalogue.res
 const oldSummary=G.HonroNarrativeCatalogue.summary;G.HonroNarrativeCatalogue.summary=(b,st)=>active(b)?(memory(b).journal?row('A2.S11.JOURNAL.01').text:''):oldSummary(b,st);
 const oldPlugin=V.plugins.get(11);V.register(11,{...oldPlugin,tick(app,dt){if(active(app.engine.b)&&V.mem(app.engine.b).done['11.exit']&&!memory(app.engine.b).events.gather){tick(app,0);if(app.dialogue)return;}oldPlugin.tick(app,dt);tick(app,dt);},complete(b){return oldPlugin.complete(b)&&complete(b);},draw(scene,c,b,e){if(active(b)){G.HonroAct23V4Chapter11?.draw(scene,c,b);draw(scene,c,b);}else oldPlugin.draw(scene,c,b,e);}});
 for(const key of ['interlude','required','optional']){const old=G.HonroJourneyContent[key];G.HonroJourneyContent[key]=function(...args){const id=key==='interlude'?args[0]:args[1];if(enabled()&&Number(id)===11)return key==='optional'?optional(...args):[];return old.apply(this,args);};}
-G.HonroAct23V4Reviewed={enabled,active,begin,presented,receiptIds,finishReceipt,row,rowsReviewed,lineAllowed,accepts,finished,present,content,failure,optional,blocked,requiredScenes,memory,complete,gathered,journal,talkId:(id,c)=>enabled()&&Number(id)===11?'rest-talk-v1-11-'+c+'-reviewed1':null};
+G.HonroAct23V4Reviewed={automaticMarker,instruction,enabled,active,begin,presented,receiptIds,finishReceipt,row,rowsReviewed,lineAllowed,accepts,finished,present,content,failure,optional,blocked,requiredScenes,memory,complete,gathered,journal,talkId:(id,c)=>enabled()&&Number(id)===11?'rest-talk-v1-11-'+c+'-reviewed1':null};
 // Resolve Act3-only providers after their own modules have loaded.
 const chapterProvider=id=>({21:G.HonroAct23V4Chapter21Reviewed,22:G.HonroAct23V4Chapter22Reviewed})[id]||G.HonroAct3V4ReviewedCore?.providers.get(id);
 G.HonroAct23V4Reviewed.provider=chapterProvider;

@@ -6,6 +6,7 @@ export const ECHO_TURNS=[4,5,5,6,6,7,7,8];
 export const ECHO_POWER=[.60,.65,.70,.70,.75,.80,.80,.85];
 export const ECHO_LIMIT=[1,1,1,2,2,2,3,3];
 export const SPIRIT_TURNS=[4,4,5,5,6,6,7,8];
+export const MANIFEST_FORM_BONUS=Array.from({length:8},(_,i)=>.5+i/7);
 export const MANIFEST_TURNS=[3,3,4,4,5,5,6,7];
 export const WEAK_TURNS=[3,3,4,4,5,5,6,7];
 export const BETRAY_TURNS=[2,2,3,3,4,4,5,6];
@@ -17,7 +18,7 @@ export function installOccultRedesign(skills:Record<string,Skill>){
  update('O01',{name:'혼령탄',tag:'기본 · 혼행',desc:'혼의 기운을 응축해 날린다. 지형에 닿거나 유한 비행이 끝난 공중에서 폭발한다.',damage:31,radius:50,speed:.95,wind:.08,gravity:.18,basic:true,color:'#b7c5bd'});
  update('O06',{tag:'주박 · 쇠약',desc:'부적에 맞은 적의 기세와 방어를 약하게 한다. 경지에 따라 3~7턴 유지된다.',color:'#bdab8d'});
  update('O07',{tag:'주박 · 증오',desc:'부적에 맞은 적이 같은 편에게도 적의 대상으로 보인다. 경지에 따라 2~6턴 유지된다.',color:'#bb9b94'});
- update('O08',{name:'현형부',tag:'주박 · 현형',desc:'부적이 닿은 자리의 혼령형 적을 드러낸다. 주변 적도 함께 현형되어 동료의 눈에 보인다.',cost:30,damage:9,radius:88,mode:'curseManifest',icon:'target',color:'#c6b39a',wind:.48});
+ update('O08',{name:'현형부',tag:'주박 · 현형',desc:'부적이 닿은 자리의 혼령형 적을 드러낸다. 주변 적도 함께 현형되어 동료의 눈에 보이며, 형 피해 반응이 크게 증가한다.',cost:30,damage:9,radius:88,mode:'curseManifest',icon:'target',color:'#c6b39a',wind:.48});
  update('O09',{name:'섭혼부',tag:'주박 · 섭혼',desc:'보스가 아닌 적의 혼을 잠시 붙잡아 같은 편으로 싸우게 한다. 적이 행동한 횟수만큼 효력이 소모된다.',cost:44,damage:0,radius:0,mode:'curseEnthrall',icon:'bind',color:'#c1a98e',wind:.48});
  update('O10',{name:'지박부',tag:'주박 비기 · 지박',desc:'넓은 곳에 지박주를 남긴다. 저주받은 적이 쓰러지면 그 자리에 지박령이 머문다.',cost:68,damage:22,radius:150,mode:'curseEarth',icon:'rune',color:'#b6a788',wind:.42,capstone:true});
  update('O11',{name:'배회령',tag:'초혼 · 추적',desc:'혼매듭이 지형에 닿으면 배회령을 부른다. 적은 통과하며, 소단의 행동이 끝나면 가까운 적을 쫓아 공격한다.',damage:0,radius:0,fuse:undefined,color:'#a9bab4'});
