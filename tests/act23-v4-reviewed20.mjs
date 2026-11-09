@@ -2,18 +2,20 @@
  * poses are explicit fixtures. This is not actual Canvas or normal-play proof. */
 import assert from 'node:assert/strict';
 import vm from 'node:vm';
-import {readFile} from 'node:fs/promises';
+import {readFile,writeFile} from 'node:fs/promises';
+import {stage20CompactX} from '../tools/map-forge/stage20-compact.mjs';
 import {appHarness,plain} from './app-regression-helpers.mjs';
-const h=await appHarness(),g=h.g,V=g.HonroAct23V4,C=g.HONRO_CORE,A=g.HonroAct23V4Act3;
+const compact=process.env.HONRO_TEST_COMPACT20==='1',X=x=>compact?stage20CompactX(x):x,seen=new Set(),report={scope:'Current production App/Story/Engine with DOM/audio doubles',limits:['Prior clears, combat deaths, arrival poses and terminal guards are explicit fixtures, not normal play or browser input.','Support onset and positive supported walking are real; supportedDistance100/reachedRest in terminal guards are prepared states.','The finite admission probe prepares prior holds/deaths, then uses actual finishAction warning receipts.']};
+const h=await appHarness({productionStory:compact}),g=h.g,V=g.HonroAct23V4,C=g.HONRO_CORE,A=g.HonroAct23V4Act3;
 if(!g.HonroAct23V4ReviewedChapters)vm.runInContext(await readFile('shared/runtime/act23-v4-reviewed-chapters.js','utf8'),g);
 if(!g.HonroAct23V4Reviewed20)vm.runInContext(await readFile('shared/runtime/act23-v4-reviewed20.js','utf8'),g);
 const P=g.HonroAct23V4ReviewedChapters,R=g.HonroAct23V4Reviewed20,api=P.apiFor(20),data=JSON.parse(await readFile('shared/data/reviewed/act23-v4-ch20.json','utf8')),source=JSON.parse(await readFile('game/docs/story/v4-reviewed/HONRO-CH20-reviewed-final.json','utf8'));
 assert.deepEqual(data.rows,source.rows);assert.equal(data.revision,1);assert.equal(new Set(data.rows.map(r=>r.id)).size,52);
-g.HONRO_ACT23_V4_PHASE_A=true;g.HONRO_ACT23_V4_PHASE_B_STAGES=[20];g.HONRO_ACT23_V4_REVIEWED_CHAPTERS={20:data};g.HONRO_PROJECT=V.author(g.HONRO_PROJECT,{enabled:true});
+if(!compact){g.HONRO_ACT23_V4_PHASE_A=true;g.HONRO_ACT23_V4_PHASE_B_STAGES=[20];g.HONRO_ACT23_V4_REVIEWED_CHAPTERS={20:data};g.HONRO_PROJECT=V.author(g.HONRO_PROJECT,{enabled:true});}
 let app,b;const rowId=()=>app.dialogue?.lines[app.dialogue.index]?.[2]?.rowId;
-function launch(){const p=h.profileThrough(19);p.seen['act2:first-spirit-encounter']=true;app=h.load(p);app.launch(20);app.turnNotice=null;b=app.engine.b;Object.assign(b,{side:0,phase:'aim'});assert(P.active(b));assert.equal(b.honroCampaignMapRevision,520);return b;}
+function launch(){const p=h.profileThrough(19);p.seen['act2:first-spirit-encounter']=true;app=h.load(p);app.launch(20);app.turnNotice=null;b=app.engine.b;Object.assign(b,{side:0,phase:'aim'});assert(P.active(b));assert.equal(b.honroCampaignMapRevision,compact?620:520);return b;}
 function tick(n=1){for(let i=0;i<n&&!app.dialogue;i++){Object.assign(b,{side:0,phase:'aim'});V.tick(app,.025);if(!app.dialogue)app.engine.stepUnits(.025);}}
-function at(id,n=600){for(let i=0;i<n&&!app.dialogue;i++)tick();assert.equal(rowId(),id,JSON.stringify({want:id,actual:rowId(),current:V.current(b),safe:V.safe(app),done:app.done,phase:b.phase,settle:app.engine.settleBusy(),news:R.newsReady(b),reporter:app.engine.unit('20.town-refugee'),heroes:V.heroes(b).map(u=>({id:u.id,x:u.x,y:u.y,vy:u.vy,air:u.airborne}))}));assert(P.rowsReviewed(app.dialogue.lines));}
+function at(id,n=600){for(let i=0;i<n&&!app.dialogue;i++)tick();assert.equal(rowId(),id,JSON.stringify({want:id,actual:rowId(),current:V.current(b),safe:V.safe(app),done:app.done,phase:b.phase,settle:app.engine.settleBusy(),news:R.newsReady(b),reporter:app.engine.unit('20.town-refugee'),heroes:V.heroes(b).map(u=>({id:u.id,x:u.x,y:u.y,vy:u.vy,air:u.airborne}))}));assert(P.rowsReviewed(app.dialogue.lines));for(const l of app.dialogue.lines){const id=l[2].rowId;seen.add(id);if(!l[2].templateVars)assert.equal(l[1],api.row(id).text);}}
 function finish(){h.finish(app);}
 function resume(){app.stopBattle();app=h.load(plain(app.profile));app.continue();app.turnNotice=null;b=app.engine.b;}
 function ground(x,y){return g.HonroMapEngine.surfaceY(b.terrain,x,undefined,'act2-floor').y;}
@@ -22,16 +24,16 @@ const allow=id=>R.allow(app,api.row(id));
 launch();at('EDGE.ARRIVALS_20_0');finish();assert(!allow('A2.S20.TIME.04'));assert(!R.complete(b));assert.equal(R.optional({...app.profile,honroBattle:b},api.row('EDGE.OPTIONAL_20_KNIGHT_0')),false,'historical clears are not physical marks');
 pose(app.engine.unit('p-mage'),V.marker(b,'20.ring'));b.active='p-mage';assert(V.use(app,V.marker(b,'20.ring')));at('A2.S20.INTRO.01');resume();at('A2.S20.INTRO.01');finish();
 // Actual damage and support state, with controlled unrelated combat.
-for(const u of b.units)if(u.side===1){u.hp=0;u.dead=true;}let root=V.mem(b);for(const s of V.steps(b)){if(s.id==='escort-mid')break;root.done[s.id]=true;}root.convoyStarted=true;for(const hero of V.heroes(b))pose(hero,{x:7000-V.heroes(b).indexOf(hero)*100,y:ground(7000-V.heroes(b).indexOf(hero)*100)});const injured=app.engine.unit('objective');pose(injured,{x:4000,y:ground(4000,injured.y)});app.engine.hurt(injured,20,'fixture');at('A2.S20.MID.01');finish();at('A2.S20.MID.06');assert(A.convoyCare(b).injured.stopped);assert(!R.outside(b));finish();
+for(const u of b.units)if(u.side===1){u.hp=0;u.dead=true;}let root=V.mem(b);for(const s of V.steps(b)){if(s.id==='escort-mid')break;root.done[s.id]=true;}root.convoyStarted=true;for(const hero of V.heroes(b))pose(hero,{x:X(7000-V.heroes(b).indexOf(hero)*100),y:ground(X(7000-V.heroes(b).indexOf(hero)*100))});const injured=app.engine.unit('objective');pose(injured,{x:X(4000),y:ground(X(4000),injured.y)});app.engine.hurt(injured,20,'fixture');at('A2.S20.MID.01');finish();at('A2.S20.MID.06');assert(A.convoyCare(b).injured.stopped);assert(!R.outside(b));finish();
 const support=app.engine.unit('p-knight');pose(support,{x:injured.x+110,y:ground(injured.x+110)});tick(5);assert.equal(A.convoyCare(b).injured.supportId,support.id,JSON.stringify({care:A.convoyCare(b),events:P.memory(b).events,safe:V.safe(app),dialogue:app.dialogue,pose:support,injured:app.engine.unit('objective')}));assert(A.convoyCare(b).injured.supportedDistance>0);resume();assert.equal(A.convoyCare(b).injured.supportId,support.id);
 console.log('PASS20 exact 52 rows, saved ring scene, actual hurt/support and no early time-gap disclosure');
 // The existing handoff owner executes the transfer and cancels an interrupted
 // gesture; the reviewed observer must not substitute a second bag or transfer.
-const rest=V.marker(b,'hold-convoy'),father=app.engine.unit('convoy-mason'),son=app.engine.unit('convoy-gilchan');pose(father,{x:5105,y:ground(5105,rest.y)});pose(son,{x:5200,y:ground(5200,rest.y)});at('A2.S20.MID.02');assert.equal(A.convoyCare(b).baggage.transfers,0);finish();const bagId=A.convoyCare(b).baggage.id;app.engine.impulse(son,350,-160);app.engine.stepUnits(.025);tick();assert.equal(A.convoyCare(b).baggage.owner,'convoy-mason');assert.equal(A.convoyCare(b).baggage.transfers,0);assert(!R.baggage(b));
+const rest=V.marker(b,'hold-convoy'),father=app.engine.unit('convoy-mason'),son=app.engine.unit('convoy-gilchan');pose(father,{x:X(5105),y:ground(X(5105),rest.y)});pose(son,{x:X(5200),y:ground(X(5200),rest.y)});at('A2.S20.MID.02');assert.equal(A.convoyCare(b).baggage.transfers,0);finish();const bagId=A.convoyCare(b).baggage.id;app.engine.impulse(son,350,-160);app.engine.stepUnits(.025);tick();assert.equal(A.convoyCare(b).baggage.owner,'convoy-mason');assert.equal(A.convoyCare(b).baggage.transfers,0);assert(!R.baggage(b));
 // Static terminal fixtures test the guards independently of dialogue cursor.
 if(app.dialogue)finish();root=V.mem(b);for(const step of V.steps(b))if(step.id!=='20.outside')root.done[step.id]=true;const s=b.honroV4Reviewed20,roster=R.memory(b).roster;for(const [i,id]of roster.entries()){const u=app.engine.unit(id),x=s.outside.x-65*i;pose(u,{x,y:ground(x,s.outside.y)});u.honroV4Distance=400;}
 const care=A.convoyCare(b);Object.assign(care.baggage,{id:bagId,status:'carried',owner:'convoy-gilchan',transfers:1,proof:{from:'convoy-mason',to:'convoy-gilchan'}});Object.assign(care.injured,{status:'supported',stopped:true,supportedDistance:100,reachedRest:true});root.convoyGoals={escape:true};root.convoyAmbush={admitted:true,ids:['fixture-a','fixture-b','fixture-c','fixture-d']};for(const id of root.convoyAmbush.ids)b.units.push({...plain(son),id,side:1,hp:0,dead:true,honroProtected:false,honroCivilian:false});for(const id of V.steps(b).find(s=>s.id==='clear-pass').defeatIds){const u=app.engine.unit(id);u.hp=0;u.dead=true;}
-assert(R.outside(b));assert.deepEqual(plain(R.counts(b)),{survived_count:3,lost_count:0});pose(app.engine.unit('objective'),{x:5000,y:ground(5000,rest.y)});assert(!R.outside(b),'father/son arrival cannot omit the living injured roster member');assert(!allow('A2.S20.TIME.01'));const x=s.outside.x;pose(app.engine.unit('objective'),{x,y:ground(x,s.outside.y)});P.memory(b).events.clear={status:'done'};
+assert(R.outside(b));assert.deepEqual(plain(R.counts(b)),{survived_count:3,lost_count:0});pose(app.engine.unit('objective'),{x:X(5000),y:ground(X(5000),rest.y)});assert(!R.outside(b),'father/son arrival cannot omit the living injured roster member');assert(!allow('A2.S20.TIME.01'));const x=s.outside.x;pose(app.engine.unit('objective'),{x,y:ground(x,s.outside.y)});P.memory(b).events.clear={status:'done'};
 at('A2.S20.BRANCH.01');assert(!allow('A2.S20.BRANCH.02'));finish();for(let i=1;i<=6;i++){at('A2.S20.TIME.0'+i);if(i===4){resume();at('A2.S20.TIME.04');}finish();}assert(!app.profile.record.some(r=>r.rowId==='A2.S20.JOURNAL.01'));// At the former boundary, a bearer 221 units away must physically follow
 // rather than remain forever just outside the seat walk's 220-unit guard.
 pose(app.engine.unit('convoy-mason'),{x:s.seat.x-240,y:ground(s.seat.x-240)});pose(app.engine.unit('convoy-gilchan'),{x:s.seat.x-19,y:ground(s.seat.x-19)});for(const [i,hero]of V.heroes(b).entries())pose(hero,{x:s.outside.x-500-i*100,y:ground(s.outside.x-500-i*100)});tick(8);assert(R.memory(b).seatFollower.distance>0);assert(R.memory(b).seatWalk.distance>0);assert(!R.memory(b).seated);const walked=R.memory(b).seatWalk.distance;resume();assert.equal(R.memory(b).seatWalk.distance,walked);assert.equal(A.convoyCare(b).baggage.id,bagId);at('A2.S20.TIME.07');assert(R.memory(b).seated.distance>=12);assert.equal(A.convoyCare(b).baggage.transfers,1);finish();at('A2.S20.TIME.08');finish();pose(app.engine.unit('p-archer'),{x:s.outside.x-400,y:ground(s.outside.x-400)});
@@ -49,8 +51,8 @@ for(const interrupted of ['distance','airborne']){
  launch();at('EDGE.ARRIVALS_20_0');finish();pose(app.engine.unit('p-mage'),V.marker(b,'20.ring'));b.active='p-mage';assert(V.use(app,V.marker(b,'20.ring')));at('A2.S20.INTRO.01');finish();
  for(const u of b.units)if(u.side===1){u.hp=0;u.dead=true;}
  root=V.mem(b);for(const s of V.steps(b)){if(s.id==='escort-mid')break;root.done[s.id]=true;}root.convoyStarted=true;
- for(const [i,u]of V.heroes(b).entries())pose(u,{x:7000-i*100,y:ground(7000-i*100)});
- const patient=app.engine.unit('objective'),f=app.engine.unit('convoy-mason'),kid=app.engine.unit('convoy-gilchan');pose(patient,{x:4000,y:ground(4000)});pose(f,{x:5105,y:ground(5105)});pose(kid,{x:5200,y:ground(5200)});app.engine.hurt(patient,20);
+ for(const [i,u]of V.heroes(b).entries())pose(u,{x:X(7000-i*100),y:ground(X(7000-i*100))});
+ const patient=app.engine.unit('objective'),f=app.engine.unit('convoy-mason'),kid=app.engine.unit('convoy-gilchan');pose(patient,{x:X(4000),y:ground(X(4000))});pose(f,{x:X(5105),y:ground(X(5105))});pose(kid,{x:X(5200),y:ground(X(5200))});app.engine.hurt(patient,20);
  at('A2.S20.MID.01');finish();at('A2.S20.MID.06');assert.equal(A.convoyCare(b).baggage.status,'handoff');assert(!P.memory(b).events.baggage);finish();
  const item=A.convoyCare(b).baggage.id;app.engine.impulse(kid,350,-160);
  if(interrupted==='distance'){for(let i=0;i<200;i++)app.engine.stepUnits(.025);assert(Math.abs(kid.x-f.x)>180);assert(C.validTerrainContactPose(b.terrain,kid));}
@@ -61,4 +63,21 @@ for(const interrupted of ['distance','airborne']){
  for(let i=0;i<200&&A.convoyCare(b).baggage.status!=='carried';i++){tick();if(app.dialogue)finish();}
  assert.equal(A.convoyCare(b).baggage.status,'carried');assert.equal(A.convoyCare(b).baggage.id,item);assert.equal(A.convoyCare(b).baggage.transfers,1);resume();tick(20);assert.equal(A.convoyCare(b).baggage.transfers,1);
  console.log('PASS audit20 pre-ack '+interrupted+' cancellation, Continue and same bag exactly one transfer (controlled return pose)');
+}
+
+if(compact){
+// Isolate actual finite admission from the terminal fixtures above. This
+// prepares the earlier holds/deaths, then records real finishAction receipts;
+// no warning/ended/admitted field or spawned unit is injected.
+launch();at('EDGE.ARRIVALS_20_0');finish();pose(app.engine.unit('p-mage'),V.marker(b,'20.ring'));b.active='p-mage';assert(V.use(app,V.marker(b,'20.ring')));at('A2.S20.INTRO.01');finish();
+for(const u of b.units)if(u.side===1){u.hp=0;u.dead=true;}
+root=V.mem(b);root.convoyStarted=true;for(const step of V.steps(b)){if(step.id==='clear-pass')break;root.done[step.id]=true;}
+A.tick(app,.025);assert(root.convoyAmbush&&!root.convoyAmbush.admitted);assert.equal(root.convoyAmbush.ids.length,0);const beforeAdmission=b.units.length;
+for(const u of V.heroes(b)){Object.assign(b,{side:0,phase:'aim',active:u.id});u.acted=false;A.tick(app,.025);assert(root.convoyAmbush.offered[u.id]);app.engine.finishAction(true);assert(root.convoyAmbush.ended[u.id]);}
+for(let i=0;app.dialogue&&i<10;i++){assert(P.rowsReviewed(app.dialogue.lines));finish();}Object.assign(b,{side:0,phase:'aim'});for(let i=0;i<200&&!root.convoyAmbush.admitted;i++)A.tick(app,.025);
+assert(root.convoyAmbush.admitted,JSON.stringify({q:root.convoyAmbush,safe:V.safe(app),done:app.done,phase:b.phase,dialogue:rowId(),settle:app.engine.settleBusy(),air:b.units.filter(u=>u.side===0).map(u=>({id:u.id,air:u.airborne,vy:u.vy,action:u.meleeAction,follow:u.meleeFollow})),cap:g.HonroEncounters.populationCap(b)}));const actualFinite=[...root.convoyAmbush.ids];assert.equal(actualFinite.length,4);assert.equal(new Set(actualFinite).size,4);assert.equal(b.units.length,beforeAdmission+4);assert.equal(actualFinite.filter(id=>app.engine.unit(id).honroSpawnSource==='v4.20.ambush:overlook').length,2);assert.equal(actualFinite.filter(id=>app.engine.unit(id).honroSpawnSource==='v4.20.ambush:slope').length,2);
+resume();root=V.mem(b);assert.deepEqual([...root.convoyAmbush.ids],actualFinite);for(let i=0;i<40;i++)A.tick(app,.025);assert.equal(b.units.length,beforeAdmission+4);assert(root.convoyAmbush.admitted);report.realFiniteAdmission={ids:actualFinite,warningReceipts:true,allLivingHeroActionsEnded:true,duplicatesAfterContinue:0};
+console.log('PASS20 real finite2ghost+2hound after warning/all-hero finishAction receipts, exact count and Continue once');
+const stage=g.HONRO_PROJECT.stages.find(s=>s.metadata?.stageId===20);report.passed=true;report.originalRows=52;report.seenRows=[...seen];report.baggageId=bagId;report.compactBounds=[stage.width,stage.height];report.mapRevision=b.honroCampaignMapRevision;report.initial=stage.units.filter(u=>u.team==='enemy').length;report.finiteAmbush=stage.initialState.honroV4ConvoyAmbush.count;
+await writeFile('_local/reports/act2-compact-rollout-20261109/reviewed20-result.json',JSON.stringify(report,null,2));
 }

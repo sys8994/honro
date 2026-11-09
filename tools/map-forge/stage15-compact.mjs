@@ -86,7 +86,7 @@ export function createStage15Compact(project){
  const pairs=(points,closed=false)=>{const result=[];for(let i=0;i<points.length-(closed?0:1);i++){const a=points[i],b=points[(i+1)%points.length],cuts=[0,...STAGE15_X_KNOTS.map(k=>(k[0]-a[0])/(b[0]-a[0])).filter(f=>f>1e-8&&f<1-1e-8)].sort((a,b)=>a-b);for(const f of cuts)result.push([stage15CompactX(a[0]+(b[0]-a[0])*f),mapY(a[1]+(b[1]-a[1])*f)]);}if(!closed&&points.length)result.push([stage15CompactX(points.at(-1)[0]),mapY(points.at(-1)[1])]);return result;};
  stage.materials=source.materials.map(material=>{const m=spatial(material);for(const key of ['surface','bottom','points'])if(Array.isArray(material[key]))m[key]=key==='surface'?material[key].map(([x,y])=>[stage15CompactX(x),mapY(y)]):pairs(material[key],key==='points');return m;});
  for(const plane of stage.design.space.terrainPlanes||[]){const old=source.design.space.terrainPlanes.find(p=>p.id===plane.id);if(old?.points)plane.points=pairs(old.points,true);}
- for(const surface of stage.design.space.surfaces||[]){const t=stage.terrains.find(t=>t.id===surface.terrainId);if(t?.properties?.honroWalkEdges)surface.edgeIndices=clone(t.properties.honroWalkEdges);}
+ for(const surface of stage.design.space.surfaces||[]){const t=stage.terrains.find(t=>t.id===surface.terrainId);if(t?.properties?.honroWalkEdges?.length)surface.edgeIndices=clone(t.properties.honroWalkEdges);}
  // Preserve native prop/actor sizes. Their contact remains the original
  // terrain transformed through the same piecewise map, never a global scale.
  const init=stage.initialState;init.honroAct2CompactRevision=1;

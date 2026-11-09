@@ -3,12 +3,13 @@
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {appHarness,plain} from './app-regression-helpers.mjs';
+const expectedRevision=process.env.HONRO_TEST_COMPACT19==='1'?619:519;
 const h=await appHarness({productionStory:true}),g=h.g,V=g.HonroAct23V4,P=g.HonroAct23V4ReviewedChapters,R=g.HonroAct23V4Reviewed19,C=g.HONRO_CORE;
 const original=JSON.parse(await readFile('shared/data/narrative-current.json','utf8')).stages[19],data=JSON.parse(await readFile('shared/data/reviewed/act23-v4-ch19.json','utf8'));
 const expected=[1,2,3].flatMap(i=>['separate','send'].flatMap(phase=>original.beats[phase+'-'+i]));
 assert.equal(expected.length,35);assert.deepEqual(data.familyRestoration.rows.map(r=>[r.speaker,r.text]),expected.map(r=>r.slice(0,2)));
 let app,b;const seen=new Set(),projection=()=>plain(b.units.map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,focus:u.focus,side:u.side,dead:u.dead,acted:u.acted}))),growth=p=>plain({heroes:p.heroes,loadouts:p.loadouts,equipment:p.equipment,cleared:p.cleared,recruited:p.recruited});
-function launch(){const p=h.profileThrough(18);p.seen['act2:first-spirit-encounter']=true;app=h.load(p);app.launch(19);app.turnNotice=null;b=app.engine.b;assert(P.active(b));assert.equal(b.honroCampaignMapRevision,519);}
+function launch(){const p=h.profileThrough(18);p.seen['act2:first-spirit-encounter']=true;app=h.load(p);app.launch(19);app.turnNotice=null;b=app.engine.b;assert(P.active(b));assert.equal(b.honroCampaignMapRevision,expectedRevision);}
 function line(){return app.dialogue?.lines[app.dialogue.index];}
 function step(){if(app.dialogue){const l=line();if(l){seen.add(l[2]?.rowId);assert.equal(l[1],P.row(l[2].rowId,19).text);}g.HonroStory.next(app);}else{Object.assign(b,{side:0,phase:'aim'});V.tick(app,.025);app.engine.stepUnits(.025);}}
 function until(test,max=1200){for(let i=0;i<max&&!test();i++)step();assert(test(),JSON.stringify({row:line(),physical:R.memory(b),events:P.memory(b).events,current:V.current(b),phase:b.phase}));}
@@ -33,7 +34,7 @@ app.stopBattle();const full=plain(app.profile);
 for(const legacy of [partial,full]){const lb=legacy.honroBattle;delete R.memory(lb).familyRepair;for(const key of Object.keys(P.memory(lb).events))if(key.startsWith('family.'))delete P.memory(lb).events[key];
 const oldUnits=plain(lb.units),oldGrowth=growth(legacy),oldDone=plain(V.mem(lb).done),oldFarewell=plain(V.mem(lb).farewell);
 app=h.load(legacy);app.continue();app.turnNotice=null;b=app.engine.b;
-assert.deepEqual(plain(b.units),oldUnits);assert.deepEqual(growth(app.profile),oldGrowth);assert.deepEqual(plain(V.mem(b).done),oldDone);assert.deepEqual(plain(V.mem(b).farewell),oldFarewell);assert.equal(b.honroCampaignMapRevision,519);
+assert.deepEqual(plain(b.units),oldUnits);assert.deepEqual(growth(app.profile),oldGrowth);assert.deepEqual(plain(V.mem(b).done),oldDone);assert.deepEqual(plain(V.mem(b).farewell),oldFarewell);assert.equal(b.honroCampaignMapRevision,expectedRevision);
 until(()=>!app.dialogue&&V.safe(app));V.tick(app,.025);assert.deepEqual([...R.memory(b).familyRepair.carried],[1,2,3].filter(i=>oldDone['separate-'+i]));
 if(legacy===partial){use('separate-1','occultist');assert.equal(line()[2].rowId,data.familyRestoration.scenes['separate-1'][0]);}
 }

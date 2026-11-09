@@ -106,7 +106,7 @@ function drive(app){const b=app.engine.b,q=mem(b),m=physical(b),events=api.memor
   if(offer(key,'A2.S18.'+id)){if(key==='question')q.confronted=true;return;}
  }
  if(q.translated&&!m.settled&&!m.bell.segment&&api.done(b,'clear-below')){S.begin(app,'settle',b.honroV4Stage18.restOffset,32);return;}
- if(stable(b)&&!q.knocks.length){const source={x:7200+32,y:6610+m.bell.offset+100};app.engine.emit('sound',{name:'ricochet',...source,source:'18.remaining-knock'});app.engine.fx('ring',source.x,source.y,'#b5b2a0',55);q.knocks.push({id:'18.remaining-knock',source});}
+ if(stable(b)&&!q.knocks.length){const origin=b.honroAct2CompactVisuals?.bellOrigin||{x:7200,y:6610},source={x:origin.x+32,y:origin.y+m.bell.offset+100};app.engine.emit('sound',{name:'ricochet',...source,source:'18.remaining-knock'});app.engine.fx('ring',source.x,source.y,'#b5b2a0',55);q.knocks.push({id:'18.remaining-knock',source});}
  for(const[key,id]of [['stable','COMPLETE.01'],['knock','COMPLETE.02'],['depart','COMPLETE.03']])if(offer(key,'A2.S18.'+id))return;
  if(api.done(b,'depart')&&allow(app,api.row('A2.S18.JOURNAL.01')))api.journal(app,'A2.S18.JOURNAL.01');
 }
@@ -145,24 +145,24 @@ function attach(app,e){discardEndedBoundary(e.b);if(e.honroReviewed18Bound)retur
 }
 // Keep the observed bodies and physical change in the actual story frame.
 // A speaker-only default centered the huge bell and omitted the east gallery.
-function camera(app,key){const b=app.engine.b,m=physical(b),u=boss(b),targets=[];
- if(['arrival','warning','aware','lowering','hands-off','rescue-answer','repeat'].includes(key))targets.push({actor:'act2-keeper'},{actor:'18.survivor'},{x:7200,y:5940+m.bell.offset});
+function camera(app,key){const b=app.engine.b,m=physical(b),u=boss(b),targets=[],visual=b.honroAct2CompactVisuals,rope=visual?.ropeOrigin||{x:7200,y:5940},gap=visual?.gapOrigin||{x:6980,y:6675};
+ if(['arrival','warning','aware','lowering','hands-off','rescue-answer','repeat'].includes(key))targets.push({actor:'act2-keeper'},{actor:'18.survivor'},{x:rope.x,y:rope.y+m.bell.offset});
  else if(['walking','brake-sight','resident-approach','braked','moving-resident','safe-resident'].includes(key))targets.push({actor:'18.survivor'},{marker:'18.brake'});
  else if(['question','answer','accusation','hostile','ritual','open-shot'].includes(key))targets.push({actor:'act2-keeper'},{actor:api.actor(b,'휘겸')?.id});
  else if(key==='death-confirm')targets.push({x:u.x-u.h*1.1,y:u.y-65,w:u.h*1.4,h:70},{actor:api.actor(b,'담허')?.id});
- else if(['inspect','support-visible','gap','clear-below','reseated','stable','knock','depart'].includes(key))targets.push({x:5700,y:6530,w:450,h:220},{x:8340,y:6530,w:440,h:220},{x:6980+m.bell.offsetX,y:6675+m.bell.offset,w:400,h:80});
+ else if(['inspect','support-visible','gap','clear-below','reseated','stable','knock','depart'].includes(key))targets.push(...(visual?.supportViews||[{x:5700,y:6530,w:450,h:220},{x:8340,y:6530,w:440,h:220}]).map(p=>({...p})),{x:gap.x+m.bell.offsetX,y:gap.y+m.bell.offset,w:400,h:80});
  else return;
  return{id:'18.reviewed.'+key,intent:'situation',targets,padding:90,maxScale:.82,speakerPolicy:'none'};
 }
-function draw(scene,c,b){const m=physical(b),q=mem(b),u=boss(b);c.save();
+function draw(scene,c,b){const m=physical(b),q=mem(b),u=boss(b),visual=b.honroAct2CompactVisuals,rope=visual?.ropeOrigin||{x:7200,y:5940},gap=visual?.gapOrigin||{x:6980,y:6675};c.save();
  // Render the recorded dead body with its existing rig, frozen and lying on
  // the supported floor. This visual clone never enters units or actor lookup.
  if(u?.dead&&u.hp<=0&&q.death&&Math.hypot(u.x-q.death.point.x,u.y-q.death.point.y)<1&&C.validTerrainContactPose(b.terrain,u)){
   const still=Object.create(scene);still.time=0;c.save();c.translate(u.x,u.y-u.h*27/110);c.rotate(-Math.PI/2);still.unitBody(c,{...u,x:0,y:0,hurt:0,anim:0,moving:0,honroScenePose:undefined},0);c.restore();
  }
 
- if(alive(u)&&q.rope.elapsed>0&&!m.brakeLocked){const hand={x:u.x+32,y:u.y-70+q.rope.pull};c.strokeStyle='#c3b28b';c.lineWidth=4;c.beginPath();c.moveTo(7200,5940+m.bell.offset);c.lineTo(hand.x,hand.y);c.lineTo(hand.x,hand.y+110);c.stroke();c.strokeStyle='#ad967a';c.lineWidth=7;c.beginPath();c.moveTo(u.x+8,u.y-82);c.lineTo(hand.x,hand.y);c.stroke();}
- if(q.gapSouls){c.strokeStyle='#afc8c1';c.globalAlpha=.55;c.lineWidth=3;for(const x of[6980,7180,7380]){c.beginPath();c.ellipse(x+m.bell.offsetX,6675+m.bell.offset,14,24,0,0,Math.PI*2);c.stroke();}}
+ if(alive(u)&&q.rope.elapsed>0&&!m.brakeLocked){const hand={x:u.x+32,y:u.y-70+q.rope.pull};c.strokeStyle='#c3b28b';c.lineWidth=4;c.beginPath();c.moveTo(rope.x,rope.y+m.bell.offset);c.lineTo(hand.x,hand.y);c.lineTo(hand.x,hand.y+110);c.stroke();c.strokeStyle='#ad967a';c.lineWidth=7;c.beginPath();c.moveTo(u.x+8,u.y-82);c.lineTo(hand.x,hand.y);c.stroke();}
+ if(q.gapSouls){c.strokeStyle='#afc8c1';c.globalAlpha=.55;c.lineWidth=3;for(const x of visual?.gapXs||[6980,7180,7380]){c.beginPath();c.ellipse(x+m.bell.offsetX,gap.y+m.bell.offset,14,24,0,0,Math.PI*2);c.stroke();}}
  c.restore();}
 P.register(18,{mapRevision:518,actors:{'유헌':'act2-keeper','생존자':'18.survivor'},author(map){
  const keeper=map.units.find(u=>u.id==='act2-keeper'),point={x:9580,y:6370};

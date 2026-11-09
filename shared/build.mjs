@@ -118,7 +118,9 @@ export async function runtimeEntries({vector=true,render=true,app=false,producti
   const compactAct2Policy=JSON.parse(await read('game/config/act2-compact.json'));
   if(compactAct2Policy.revision!==1||!Array.isArray(compactAct2Policy.stages))throw Error('Invalid compact Act2 policy');
   const compactAct2Packages={};
-  if(phaseA&&process.env.HONRO_ACT2_COMPACT!=='0')for(const id of compactAct2Policy.stages)compactAct2Packages[id]=JSON.parse(await read(`shared/data/act2/stage${id}-compact-package.json`));
+  const compactAct2Stages=process.env.HONRO_ACT2_COMPACT_STAGES===undefined?compactAct2Policy.stages:process.env.HONRO_ACT2_COMPACT_STAGES.split(',').map(Number);
+  if(compactAct2Stages.some(id=>!Number.isInteger(id)||id<12||id>20))throw Error('Invalid compact Act2 preview chapters');
+  if(phaseA&&process.env.HONRO_ACT2_COMPACT!=='0')for(const id of compactAct2Stages)compactAct2Packages[id]=JSON.parse(await read(`shared/data/act2/stage${id}-compact-package.json`));
   data('HONRO_ACT2_COMPACT_PACKAGES',compactAct2Packages);
   const reviewedStages=phaseA?(process.env.HONRO_ACT23_V4_PHASE_B_STAGES===undefined?(release?[12,13,14,15,16,17,18,19,20]:[]):process.env.HONRO_ACT23_V4_PHASE_B_STAGES.split(',').map(Number).filter(n=>[12,13,14,15,16,17,18,19,20].includes(n))):[];
   data('HONRO_ACT23_V4_PHASE_B_STAGES',reviewedStages);
