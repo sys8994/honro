@@ -3,15 +3,17 @@
 import assert from 'node:assert/strict';
 import vm from 'node:vm';
 import {readFile} from 'node:fs/promises';
+import {stage14CompactX} from '../tools/map-forge/stage14-compact.mjs';
 import {appHarness,plain} from './app-regression-helpers.mjs';
-const h=await appHarness(),g=h.g,V=g.HonroAct23V4,C=g.HONRO_CORE,S=g.HonroAct23V4Act2Scenes;
+const compact=process.env.HONRO_TEST_COMPACT14==='1',X=x=>compact?stage14CompactX(x):x;
+const h=await appHarness({productionStory:compact}),g=h.g,V=g.HonroAct23V4,C=g.HONRO_CORE,S=g.HonroAct23V4Act2Scenes;
 if(!g.HonroAct23V4ReviewedChapters)vm.runInContext(await readFile('shared/runtime/act23-v4-reviewed-chapters.js','utf8'),g);
 if(!g.HonroAct23V4Reviewed14)vm.runInContext(await readFile('shared/runtime/act23-v4-reviewed14.js','utf8'),g);
 const P=g.HonroAct23V4ReviewedChapters,api=P.apiFor(14),approved=JSON.parse(await readFile('shared/data/reviewed/act23-v4-ch14.json','utf8')),source=JSON.parse(await readFile('game/docs/story/v4-review/HONRO-CH14-parent-final.json','utf8'));
-assert.deepEqual(approved.rows,source.rows);assert.equal(new Set(approved.rows.map(r=>r.id)).size,29);assert(!P.enabled(14));
-g.HONRO_ACT23_V4_PHASE_A=true;g.HONRO_ACT23_V4_PHASE_B_STAGES=[14];g.HONRO_ACT23_V4_REVIEWED_CHAPTERS={14:approved};g.HONRO_PROJECT=V.author(g.HONRO_PROJECT,{enabled:true});
+if(!compact)assert.deepEqual(approved.rows,source.rows);else assert.deepEqual(approved.rows.map(r=>r.id),source.rows.map(r=>r.id));assert.equal(new Set(approved.rows.map(r=>r.id)).size,29);if(!compact)assert(!P.enabled(14));
+if(!compact){g.HONRO_ACT23_V4_PHASE_A=true;g.HONRO_ACT23_V4_PHASE_B_STAGES=[14];g.HONRO_ACT23_V4_REVIEWED_CHAPTERS={14:approved};g.HONRO_PROJECT=V.author(g.HONRO_PROJECT,{enabled:true});}
 let app,b;const rowId=()=>app.dialogue?.lines[app.dialogue.index]?.[2]?.rowId;
-function launch(){const p=h.profileThrough(13);p.seen['act2:first-spirit-encounter']=true;app=h.load(p);app.launch(14);app.turnNotice=null;b=app.engine.b;Object.assign(b,{side:0,phase:'aim'});assert(P.active(b));assert.equal(b.honroCampaignMapRevision,514);return b;}
+function launch(){const p=h.profileThrough(13);p.seen['act2:first-spirit-encounter']=true;app=h.load(p);app.launch(14);app.turnNotice=null;b=app.engine.b;Object.assign(b,{side:0,phase:'aim'});assert(P.active(b));assert.equal(b.honroCampaignMapRevision,compact?614:514);return b;}
 function tick(n=1){for(let i=0;i<n&&!app.dialogue;i++){Object.assign(b,{side:0,phase:'aim'});V.tick(app,.025);if(!app.dialogue)app.engine.stepUnits(.025);}}
 function at(id,n=400){for(let i=0;i<n&&!app.dialogue;i++)tick();assert.equal(rowId(),id,JSON.stringify({want:id,actual:app.dialogue?.lines,reviewed:P.memory(b),scenes:S.memory(b),current:V.current(b),safe:V.safe(app)}));assert(P.rowsReviewed(app.dialogue.lines));}
 function pose(u,x,y){Object.assign(u,{x,y,vx:0,vy:0,airborne:false,jumping:false,acted:false});}
@@ -33,11 +35,11 @@ at('A2.S14.MID.03');assert(!S.base.memory(b).houseOpen);finish();assert(!g.Honro
 // Clear unrelated nearby combat fixtures so this test measures only scene flow.
 for(const u of b.units)if(u.side===1&&u.id!=='resident-spirit-1'){u.dead=true;u.hp=0;}
 pose(hero('occultist'),home.x-100,home.y);Object.assign(b,{active:hero('occultist').id,side:0,phase:'aim'});assert(V.use(app,V.marker(b,'14.house')));app.turnNotice=null;at('A2.S14.MID.04');assert(!S.memory(b).hypnosis);g.HonroStory.next(app);at('A2.S14.MID.05');b=resume();at('A2.S14.MID.05');assert(!S.memory(b).hypnosis);finish();
-for(const u of V.heroes(b))pose(u,2100-V.heroes(b).indexOf(u)*100,2300);
+for(const u of V.heroes(b))pose(u,X(2100-V.heroes(b).indexOf(u)*100),2300);
 at('A2.S14.MID.06');assert(S.memory(b).walks['14.hypnosis'].distance>=90);assert(!allow('A2.S14.COMPLETE.01'));g.HonroStory.next(app);at('A2.S14.POPUP.01');finish();at('A2.S14.MID.07');const stopped=gil().x;finish();tick(60);assert.equal(gil().x,stopped,'warning waits for a real response');
 pose(hero('mage'),gil().x-180,gil().y);at('A2.S14.MID.08');finish();pose(hero('occultist'),gil().x-85,gil().y);Object.assign(b,{active:hero('occultist').id,side:0,phase:'aim'});assert(V.use(app,V.marker(b,'14.extract')));at('A2.S14.MID.09');assert(!V.alive(app.engine.unit('resident-spirit-1')));assert(gil().honroResolved&&!gil().honroHypnotized);assert(!allow('A2.S14.COMPLETE.01'));g.HonroStory.next(app);at('A2.S14.MID.10');b=resume();at('A2.S14.MID.10');finish();
 console.log('PASS actual threat approach, clear-before-door, pre-bell saved cursor, real hypnosis/warning and Sodan separation');
-for(const [i,u]of V.heroes(b).entries())pose(u,2100-i*110,2300);
+for(const [i,u]of V.heroes(b).entries())pose(u,X(2100-i*110),2300);
 // The escort requires a nearby leader at its current elevation. Keep the
 // controlled hero pose alongside the actual NPC climb, replenishing movement
 // only at a declared round boundary; never assign Gilchan a destination pose.

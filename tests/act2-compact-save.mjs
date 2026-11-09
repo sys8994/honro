@@ -1,7 +1,7 @@
 /** Real App save lifecycle with DOM/storage doubles; no browser/play claim. */
 import assert from 'node:assert/strict';
 import {appHarness,plain} from './app-regression-helpers.mjs';
-const id=Number(process.argv[2]||12),spec={12:[6400,5000,24],13:[5200,4600,23]}[id];assert(spec);
+const id=Number(process.argv[2]||12),spec={12:[6400,5000,24],13:[5200,4600,23],14:[4800,5400,24]}[id];assert(spec);
 process.env.HONRO_ACT2_COMPACT='0';
 const old=await appHarness({productionStory:true}),a=old.load(old.profileThrough(id-1));a.launch(id);a.flushBattleSave();const profile=plain(a.profile);assert.equal(profile.honroBattle.honroCampaignMapRevision,500+id);
 delete process.env.HONRO_ACT2_COMPACT;
