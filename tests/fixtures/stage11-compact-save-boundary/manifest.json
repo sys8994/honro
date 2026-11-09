@@ -1,0 +1,38 @@
+{
+  "schema": "honro.stage11.compact-save-baseline.v1",
+  "capturedAt": "2026-11-08T23:36:31.576Z",
+  "sourceCheckout": "4c69d299694537aa15534a76a8d88e84310a9647",
+  "scope": "Synthetic profileThrough(10), production App.launch11 and portable export, before compact runtime changes. DOM/storage/canvas are doubles. Not a user browser save or a normal campaign playthrough. Original bytes preserved.",
+  "hashCorrection": "Earlier local capture helper JSON-stringified Node Buffers. 85ee03797e8a57b70fa983df4dcb7422b2776c6fabd5e0116a18e16796296aa8 is its Buffer-representation digest, not raw bytes. This manifest records correct raw bytes and gzip hashes.",
+  "battleContentSha256": "db18c24b223a7bf9569c466af98ac55b6a41ecc7e8ba8983fd8a69250e4dd399",
+  "files": {
+    "old412-entry-profile.json.gz": {
+      "sha256": "15bd8043b7ff1c98bb7cfcf8c25471315b9f7febb021cccdb3b6b1a7c8429bc1",
+      "bytes": 651508,
+      "uncompressedSha256": "5311a3d818bd27db8ec5a45afad5fef4175743cb4f8a2421f7d59685618dd370",
+      "uncompressedBytes": 2674788,
+      "source": "_local\\reports\\act2-redesign-20261109\\save-baselines\\current412-entry-profile.json"
+    },
+    "act23-v4.js.txt": {
+      "sha256": "17f5f3e0997d2f61146d26176acac361d0e0f56ac5f4f7d87f1ff1eab921acfa",
+      "bytes": 17581,
+      "source": "shared/runtime/act23-v4.js",
+      "sourceCommit": "4c69d299694537aa15534a76a8d88e84310a9647",
+      "scope": "Frozen comparison source only, never active runtime"
+    },
+    "act23-v4-ch11-scenes.js.txt": {
+      "sha256": "8eb81fb3f12901776a7e6ac2b5d75b2dca7596611165d256487d1774984d9920",
+      "bytes": 8826,
+      "source": "shared/runtime/act23-v4-ch11-scenes.js",
+      "sourceCommit": "4c69d299694537aa15534a76a8d88e84310a9647",
+      "scope": "Frozen comparison source only, never active runtime"
+    },
+    "act23-v4-reviewed.js.txt": {
+      "sha256": "4f069b6f8318759b10e99f78f4b8f03e81df8c50011114e62c49f5c9426de4d7",
+      "bytes": 17342,
+      "source": "shared/runtime/act23-v4-reviewed.js",
+      "sourceCommit": "4c69d299694537aa15534a76a8d88e84310a9647",
+      "scope": "Frozen comparison source only, never active runtime"
+    }
+  }
+}

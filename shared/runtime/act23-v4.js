@@ -61,13 +61,14 @@ function tick(app,dt){const b=app.engine?.b;if(!active(b)||!safe(app))return;mem
  for(const q of steps(b)){if(mem(b).done[q.id])continue;if(q.optional&&!satisfied(b,q))continue;if(!satisfied(b,q))break;completeStep(app,q);}
  for(const s of readySteps(b)){plugin(b)?.stepTick?.(app,s,dt);const p=marker(b,s.id);if(s.kind==='hold')hold(app,s);else if(s.kind==='route')route(app,s);else if(s.kind==='reach'&&p){const group=heroes(b),cross=G.HonroStakeCrossing?.crossings(b).some(c=>c.markerId===s.id),isPair=['waterworks-exit','deep-depot-exit','workshop-exit'].includes(s.id),everyone=s.allHeroes||isPair||cross;
    if(s.id==='party-reunion'&&!app.actorBoundary)continue;if(cross&&!G.HonroStakeCrossing.allowsStep(b,s.id))continue;if((isPair||s.id==='party-reunion')&&!G.HonroSplitCampaign.allPresent(b))continue;
+   if(b.honroStage11CompactRevision===1&&s.id==='11.exit'&&!G.HonroAct23V4Reviewed?.gathered(b))continue;
    if(group.length&&(everyone?group.every(u=>near(u,p,s.radius||210)):group.some(u=>near(u,p,s.radius||180))))completeStep(app,s);
   }else if(s.kind==='clear'){const foes=b.units.filter(u=>u.side===1&&!u.honroObjectiveTarget&&alive(u)&&(s.defeatIds?s.defeatIds.includes(u.id):p&&near(u,p,s.radius||650)));if(!foes.length)completeStep(app,s);}
  }
  for(const q of steps(b)){if(mem(b).done[q.id])continue;if(q.optional&&!satisfied(b,q))continue;if(!satisfied(b,q))break;completeStep(app,q);}
  app.checkMission?.(app.engine);
 }
-function failure(b){const own=plugin(b)?.failure?.(b);if(own)return own;const required=steps(b).filter(s=>!satisfied(b,s)&&s.requiredClass);if(required.some(s=>!heroes(b).some(u=>u.cls===s.requiredClass)))return 'v4.required-actor';return b.units.some(u=>u.honroProtected&&!alive(u))?'v4.protected-actor':null;}
+function failure(b){const own=plugin(b)?.failure?.(b);if(own)return own;if(b.honroStage11CompactRevision===1&&!['archer','mage','knight','occultist'].every(cls=>heroes(b).some(u=>u.cls===cls)))return 'v4.required-actor';const required=steps(b).filter(s=>!satisfied(b,s)&&s.requiredClass);if(required.some(s=>!heroes(b).some(u=>u.cls===s.requiredClass)))return 'v4.required-actor';return b.units.some(u=>u.honroProtected&&!alive(u))?'v4.protected-actor':null;}
 function state(b){const list=steps(b),s=current(b),m=mem(b),p=s&&marker(b,s.id),custom=plugin(b)?.state?.(b)||{},all=list.map(q=>({...marker(b,q.id),id:q.id,label:q.id,done:satisfied(b,q)})),complete=!s&&!failure(b)&&(plugin(b)?.complete?plugin(b).complete(b):true);
  const result={...custom,complete,objectiveReady:complete,minimumRound:1,settleRounds:0,summary:s?.id||'v4.complete',currentInstruction:s?.id||'v4.complete',currentObjectiveId:s?.id,targets:custom.targets|| (p?[{...p,kind:['reach','route'].includes(s.kind)?'exit':'interact',label:s.id}]:[]),allTargets:all,checklist:all.map(q=>({id:q.id,text:q.id,done:q.done})),visibleChecklist:all.filter(q=>q.done||q.id===s?.id).map(q=>({id:q.id,text:q.id,done:q.done,current:q.id===s?.id})),completionText:'v4.complete',failureText:failure(b)||''};return G.HonroAct23V4Reviewed?.present(b,result)||result;
 }

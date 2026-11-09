@@ -45,6 +45,7 @@ export const modelFiles=['action-prompts','narrative-catalogue','content','story
 
 modelFiles.push('player-turn-order','stage11-quest-simplification','stage14-rescue-gates','stage15-drain-contact','stage18-short-quest','keeper-ritual','stage19-farewell');
 modelFiles.push('act23-v4','act23-v4-act2','act23-v4-act2-scenes','act23-v4-stage18','act23-v4-act3','act23-v4-city','act23-v4-stage29','act23-v4-stage30','act23-v4-ch11-scenes','act23-v4-reviewed','act23-v4-reviewed-chapters','act23-v4-reviewed12','act23-v4-reviewed13','act23-v4-reviewed14','act23-v4-reviewed15','act23-v4-reviewed16','act23-v4-reviewed17','act23-v4-reviewed18','act23-v4-reviewed19','act23-v4-reviewed20','act23-v4-reviewed-common','act23-v4-ch21-scenes','act23-v4-ch21-reviewed','act23-v4-ch22-reviewed','act3-v4-reviewed-core','act23-v4-ch23-reviewed','act23-v4-ch24-reviewed','act3-v4-reviewed-waterworks','act23-v4-ch25-reviewed','act23-v4-ch27-reviewed','act23-v4-ch26-reviewed','act23-v4-ch28-reviewed','act23-v4-ch29-reviewed-spear','act23-v4-ch29-reviewed','act23-v4-ch30-reviewed');
+modelFiles.push('stage11-compact');
 // Every ID has one owner; a duplicate bank entry is a build error.
 export async function skillAudioData(){
   const base=JSON.parse(await read('shared/assets/sfx/skills-v2/manifest.json'));
@@ -110,6 +111,10 @@ export async function runtimeEntries({vector=true,render=true,app=false,producti
   const reviewed11=phaseA&&storyFlag('HONRO_ACT23_V4_PHASE_B_CH11');
   data('HONRO_ACT23_V4_PHASE_B_CH11',reviewed11);
   data('HONRO_ACT23_V4_REVIEWED',reviewed11?JSON.parse(await read('shared/data/reviewed/act23-v4-ch11.json')):null);
+  const compactPolicy=JSON.parse(await read('game/config/stage11-compact.json'));
+  if(compactPolicy.revision!==1||typeof compactPolicy.enabled!=='boolean')throw Error('Invalid compact Stage11 release policy');
+  const compactEnabled=reviewed11&&(process.env.HONRO_STAGE11_COMPACT===undefined?compactPolicy.enabled:process.env.HONRO_STAGE11_COMPACT==='1');
+  data('HONRO_STAGE11_COMPACT_DATA',compactEnabled?JSON.parse(await read('shared/data/act2/stage11-compact-package.json')):null);
   const reviewedStages=phaseA?(process.env.HONRO_ACT23_V4_PHASE_B_STAGES===undefined?(release?[12,13,14,15,16,17,18,19,20]:[]):process.env.HONRO_ACT23_V4_PHASE_B_STAGES.split(',').map(Number).filter(n=>[12,13,14,15,16,17,18,19,20].includes(n))):[];
   data('HONRO_ACT23_V4_PHASE_B_STAGES',reviewedStages);
   const reviewedChapters={};for(const n of reviewedStages)reviewedChapters[n]=JSON.parse(await read('shared/data/reviewed/act23-v4-ch'+n+'.json'));
@@ -205,7 +210,7 @@ export async function runtimeEntries({vector=true,render=true,app=false,producti
 }
 
 // Keep the same authoring order for native consumers and the external web loader.
-export const projectAuthors=['HonroAct1Roster','HonroObjectiveRevision','HonroNarrativeRevision','HonroStage2Airborne','HonroBellAnomaly','HonroStoryCanonV1','HonroEvidenceQuests','HonroAct2Pacing','HonroNarrativeCatalogue','HonroStage11Quest','HonroStage14Rescue','HonroStage16Temple','HonroAct23V4'];
+export const projectAuthors=['HonroAct1Roster','HonroObjectiveRevision','HonroNarrativeRevision','HonroStage2Airborne','HonroBellAnomaly','HonroStoryCanonV1','HonroEvidenceQuests','HonroAct2Pacing','HonroNarrativeCatalogue','HonroStage11Quest','HonroStage14Rescue','HonroStage16Temple','HonroAct23V4','HonroStage11Compact'];
 export const authorProjectExpression=value=>projectAuthors.reduce((value,name)=>`${name}.author(${value})`,value);
 export async function runtimeParts(options={}) {
   return (await runtimeEntries(options)).map(entry=>entry.code);
