@@ -23,7 +23,7 @@ query => {
   const state={stage:b.honroStage,width:b.width,height:b.height,revision:b.honroCampaignMapRevision,
     compactRevision:b.honroStage11CompactRevision,round:b.round,side:b.side,phase:b.phase,
     active:u?.id,cls:u?.cls,x:u?.x,y:u?.y,angle:u?.angle,facing:u?.facing,moveLeft:u?.moveLeft,
-    can,grounded:!!u&&e.grounded(u),drop:!!document.getElementById('drop')&&!document.getElementById('drop').disabled,retreat:!!u?.retreat,
+    can,grounded:!!u&&e.grounded(u),drop:!!document.getElementById('drop')&&!document.getElementById('drop').disabled,retreat:!!u?.retreat,meleeFollow:u?.meleeFollow,meleeAction:!!u?.meleeAction,
     support:u&&e.contactSurface(u.x,u.y-4,u.y+5)?.t?.id,shots:b.shots,
     dialogue:!!app.dialogue,dialogueRow:app.dialogue?.lines?.[app.dialogue.index],
     modal:app.modal.classList.contains('open'),goal:current?.id,marker,done:allDone,
@@ -55,11 +55,11 @@ query => {
     const idx=u.loadout.indexOf(id),s=C.SKILLS[id],at=id==='M10'?hurt:target;
     if(!id||idx<0||!e.skillAllowed(s,u)||e.cooldownLeft(u,id)>0||!e.canAfford(s,u,1))return null;
     let best=null;
-    const angles=query.angle===undefined?Array.from({length:70},(_,i)=>-84+i*5):[query.angle];
-    for(const angle of angles){const hit=e.predict(u,s,angle,1,null,true),d=dist(hit,at);
+    const angles=query.angle===undefined?[90,...Array.from({length:70},(_,i)=>-84+i*5)]:[query.angle];
+    for(const angle of angles){if(query.onlyFacing&&(u.facing<0?angle<90||angle>270:angle< -90||angle>90))continue;const hit=e.predict(u,s,angle,1,null,true),d=dist(hit,at);
       if(!hit.terrain||Math.abs(hit.y-at.y)>(id==='M10'?70:120)||d>(id==='M10'?85:400))continue;
       if(id==='M10'&&(b.stakes||[]).some(v=>v.skill==='M10'&&v.expires>b.round+1&&dist(v,at)<180))continue;
-      if(!best||d<best.distance)best={id,idx,angle,power:1,target:at.id,utility:true,distance:d};}
+      if(!best||d<best.distance)best={id,idx,angle,power:1,target:at.id,utility:true,distance:d};if(id==='M10'&&angle===90&&best)return best;}
     return best;
   }
   if(query.mode!=='navigation')throw Error('Unknown observation mode');

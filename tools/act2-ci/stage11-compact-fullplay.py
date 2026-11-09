@@ -56,6 +56,7 @@ def main():
     ap.add_argument('--headed', action='store_true')
     ap.add_argument('--allow-visible-items', action='store_true', help='Opt-in only when an actual Game item UI exists; no direct Engine.item')
     ap.add_argument('--entry-only', action='store_true', help='Entry diagnostic only; cannot pass full play')
+    ap.add_argument('--resume-profile', help='Existing isolated normal-input profile JSON or .xz; Continue without battle edits')
     args = ap.parse_args()
     out = Path(args.run_dir)
     out.mkdir(parents=True, exist_ok=False)
@@ -68,7 +69,8 @@ def main():
     old = 'const visible = b.units.filter(v => v.side === 1 && !v.dead && inView(v));'
     new = 'const visible = b.units.filter(v => v.side === 1 && !v.dead && inView(v) && query.ids.includes(v.id));'
     assert base_planner.count(old) == 1
-    planner = 'query => {const search=(' + base_planner.replace(old, new).replace('!skill || skill.passive', '!skill || !(skill.damage > 0) || skill.passive') + ');return search(query.onlyFacing);}'
+    reveal = "u.cls==='occultist'&&target.spiritHidden&&!target.manifested&&u.loadout.includes('O08')&&e.cooldownLeft(C.SKILLS.O08,u)<=0&&e.canAfford(C.SKILLS.O08,u,1)&&id!=='O08'"
+    planner = 'query => {const search=(' + base_planner.replace(old, new).replace('!skill || skill.passive', '!skill || !(skill.damage > 0) || ('+reveal+') || skill.passive') + ');return search(query.onlyFacing);}'
     result = {'passed': False, 'complete': False, 'releaseApproved': False,
               'scope': 'agent-driven real Chromium normal UI inputs from declared synthetic level12 entry; not human play',
               'previewId': args.preview_id, 'url': args.url, 'strategy': args.strategy,
@@ -104,7 +106,20 @@ def main():
             p.goto(args.url, wait_until='domcontentloaded')
             p.wait_for_function('window.HonroApp && window.HonroCampaignLoader', timeout=60000)
             # The only permitted live state-writing evaluate, before battle.
-            setup = p.evaluate(SETUP, args.seed)
+            if args.resume_profile:
+                source = Path(args.resume_profile)
+                raw = (lzma.decompress(source.read_bytes()) if source.suffix == '.xz' else source.read_bytes()).decode('utf-8')
+                saved = json.loads(raw)
+                assert saved['honroBattle']['honroStage'] == 11
+                p.evaluate('raw=>localStorage.setItem("honro-first-act-profile-1",raw)', raw)
+                p.reload(wait_until='domcontentloaded')
+                p.wait_for_function('window.HonroApp && window.HonroCampaignLoader', timeout=60000)
+                p.locator('[data-action="continue"]').first.click()
+                setup = {'source': str(source), 'sha256': hashlib.sha256(raw.encode()).hexdigest(), 'round': saved['honroBattle']['round'], 'phase': saved['honroBattle']['phase']}
+                result['scope'] = 'continuation of preserved earlier normal-UI checkpoint; not a new uninterrupted entry run or human play'
+                result['inputContract']['prelaunch'] = 'isolated storage receives exact prior profile; normal Continue click; no battle field edits'
+            else:
+                setup = p.evaluate(SETUP, args.seed)
             (out / 'entry-setup.json').write_text(json.dumps(setup, ensure_ascii=False, indent=2), encoding='utf-8')
             p.wait_for_function('HonroApp.engine?.b?.honroStage===11', timeout=60000)
 
@@ -134,6 +149,7 @@ def main():
                 return row
 
             def ready():
+                stable = None
                 for _ in range(160):
                     s = state()
                     if s['phase'] in ['won', 'lost']:
@@ -145,7 +161,12 @@ def main():
                     elif s['modal']:
                         raise RuntimeError('Unexpected modal blocks normal UI; not dismissed by state write')
                     elif s['can'] and s['side'] == 0 and s['phase'] == 'aim' and s['grounded']:
-                        return True
+                        if stable == s['active']:
+                            return True
+                        stable = s['active']
+                        p.wait_for_timeout(180)
+                        continue
+                    stable = None
                     p.wait_for_timeout(300)
                 raise TimeoutError('Normal App did not reach actionable ground state')
 
@@ -294,7 +315,7 @@ def main():
                     pulse(desired, 45)
                     p.wait_for_timeout(150)
                     # Facing input changes position. Replan at the new location.
-                    choice = query('utility', allowSummon=args.strategy == 'cohesive') if choice.get('utility') else plan(True)['best']
+                    choice = query('utility', allowSummon=args.strategy == 'cohesive', onlyFacing=True) if choice.get('utility') else plan(True)['best']
                     if not choice:
                         return False
                 p.keyboard.press('Digit' + str(choice['idx'] + 1))
@@ -324,8 +345,9 @@ def main():
 
             entry = state()
             assert entry['width'] == 6200 and entry['height'] == 3200 and entry['compactRevision'] == 1
-            assert entry['enemies'] == 17 and len(entry['health']) == 4, 'Expected current compact17+3 candidate'
-            assert entry['round'] == 1 and not entry['done'] and all(h['level'] == 12 for h in entry['health'])
+            assert len(entry['health']) == 4 and (args.resume_profile or entry['enemies'] == 17), 'Expected compact party and fresh-entry enemy count'
+            if not args.resume_profile:
+                assert entry['round'] == 1 and not entry['done'] and all(h['level'] == 12 for h in entry['health'])
             source = query('source')
             data = json.dumps(source, ensure_ascii=False, separators=(',', ':')).encode('utf-8')
             (out / 'entry-source.json.xz').write_bytes(lzma.compress(data))
@@ -381,6 +403,19 @@ def main():
                         p.keyboard.press('f')
                         p.wait_for_timeout(600)
                         continue
+                    if s.get('meleeFollow') == 'ready':
+                        record('normal-melee-follow-end-input')
+                        p.keyboard.press('f')
+                        p.wait_for_timeout(400)
+                        continue
+                    if not s['gather'] and not s['targetIds'] and s['cls'] != 'occultist' and any(h['cls']=='occultist' and not h['acted'] and not h['dead'] for h in s['health']):
+                        for _ in range(4):
+                            p.keyboard.press('Tab')
+                            p.wait_for_timeout(160)
+                            if state()['cls']=='occultist':
+                                record('normal-spirit-sight-selection')
+                                break
+                        continue
                     hero = next(h for h in s['health'] if h['id'] == s['active'])
                     if args.allow_visible_items and args.strategy == 'cohesive' and hero['hp'] < hero['maxHp'] * .33 and s['items'].get('heal', 0) > 0:
                         button = p.locator('[data-action="items"]')
@@ -423,7 +458,7 @@ def main():
                         if after.get('goal') != arrived.get('goal') or after['dialogue']:
                             continue
                     if not state()['gather']:
-                        utility = query('utility', allowSummon=args.strategy == 'cohesive')
+                        utility = query('utility', allowSummon=True) if args.strategy == 'cohesive' else None
                         if utility and fire(utility):
                             continue
                         assessment = plan()
