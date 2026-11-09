@@ -12,7 +12,7 @@ import { SKILLS, CLASSES } from './data';
 import { clamp } from './math';
 import { MANA_COST_MULTIPLIER,PLAYER_MAGE_DAMAGE_MULTIPLIER,PLAYER_MAGE_OFFENSE_BOOST } from './balance';
 import { skillBalanceFactor } from './balanceModel';
-import {ENTHRALL_ACTIONS,ENTHRALL_POWER,ECHO_TURNS,ECHO_POWER,ECHO_LIMIT,SPIRIT_TURNS,MANIFEST_TURNS,WEAK_TURNS,BETRAY_TURNS} from './occultData';
+import {ENTHRALL_ACTIONS,ENTHRALL_POWER,ECHO_TURNS,ECHO_POWER,ECHO_LIMIT,SPIRIT_TURNS,MANIFEST_FORM_BONUS,MANIFEST_TURNS,WEAK_TURNS,BETRAY_TURNS} from './occultData';
 export const CLASS_IDS: ClassId[] = ['mage', 'archer', 'knight', 'occultist'];
 export const MAX_LEVEL = 30;
 export const ULTIMATES:Record<ClassId,string>={mage:'M99',archer:'A99',knight:'S99',occultist:'O16'};
@@ -113,7 +113,7 @@ function skillBaseEffectRows(id:string,rank:number):EffectRow[]{
    M99:[row('봉쇄 유지',`${stakeDuration(id,rr)}턴`),row('경계 피해',num(dmg*22/35)+' · 턴당 1회'),row('내부 감속','45%'),row('내부 이동력 감소','35%')],
    O05:[row('나가는 피해','28%'),row('귀환 폭발','95% · 첫 유효 적 1회'),row('흔적 보너스','폭발 피해 +30%'),row('회귀','실제 발사 궤적 역순'),row('지형 미접촉','최대 3.4초 뒤 소멸')],
    O06:[row('쇠약 유지',`${WEAK_TURNS[rr-1]}턴`)],O07:[row('증오 유지',`${BETRAY_TURNS[rr-1]}턴`)],
-   O08:[row('현형 유지',`${MANIFEST_TURNS[rr-1]}턴`)],O09:[row('섭혼 행동',`${ENTHRALL_ACTIONS[rr-1]}회`),row('섭혼 전투력',pct(ENTHRALL_POWER[rr-1]))],
+   O08:[row('현형 유지',`${MANIFEST_TURNS[rr-1]}턴`),row('형 피해 반응',`+${pct(MANIFEST_FORM_BONUS[rr-1])}p`)],O09:[row('섭혼 행동',`${ENTHRALL_ACTIONS[rr-1]}회`),row('섭혼 전투력',pct(ENTHRALL_POWER[rr-1]))],
    O10:[row('지박 유지',`${3+Math.floor((rr-1)*4/7)}턴`),row('지박령 동시 수','최대 4')],
    O11:[row('배회령 유지',`${SPIRIT_TURNS[rr-1]}턴`)],O12:[row('등불귀 유지',`${SPIRIT_TURNS[rr-1]}턴`),row('대상 수',rr<4?'1명':'최대 2명')],
    O13:[row('호혼령 유지',`${SPIRIT_TURNS[rr-1]}턴`),row('체력 회복',pct(.025+.005*(rr-1))),row('기력 회복',pct(.035+.005*(rr-1))),row('회복 상한','동행마다 턴당 1회 · 중첩 불가')],O14:[row('포획 유지',`${[2,2,2,3,3,3,4,4][rr-1]}턴`),row('포획 반경',`${200+rr*15}`),row('기초 HP',`${Math.round(205*(1+.07*(rr-1)))} × 경지 보정`),row('피해 전달','포획 적 각각 · 남은 먹귀 HP까지')],

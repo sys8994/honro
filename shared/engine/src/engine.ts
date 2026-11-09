@@ -22,7 +22,7 @@ import {newSkill,redesignImpact,redesignStep,redesignPrediction,splitSeven,initR
 import {terrainSurface,exposedSurface,walkTerrain,sweepBodyTerrain,SEAM_GAP} from './locomotion';
 import {SUMMON_TUNING} from './summons';
 import {beginOccultCast,convergeAt,stepConvergingSpirit,SOUL_SKILLS,SUMMON_SKILLS} from './occultMechanics';
-import {ENTHRALL_ACTIONS,ENTHRALL_POWER,ECHO_TURNS,ECHO_LIMIT,SPIRIT_TURNS,MANIFEST_TURNS,WEAK_TURNS,BETRAY_TURNS} from './occultData';
+import {ENTHRALL_ACTIONS,ENTHRALL_POWER,ECHO_TURNS,ECHO_LIMIT,SPIRIT_TURNS,MANIFEST_FORM_BONUS,MANIFEST_TURNS,WEAK_TURNS,BETRAY_TURNS} from './occultData';
 import {makePhysics,environmentAt,changePhysics,duePhysics,advanceLinear,dragFor,collisionDamage,fallDamage,validPhysicsPatch} from './physics';
 import type {PhysicsPatch} from './physics';
 import {multishotProfile,volleyAngles,waveCount} from './projectileGrowth';
@@ -1227,7 +1227,7 @@ export class Engine {
     private manifest(target:Unit,owner:Unit,rank:number,bonus=0){
         if(target.dead||target.eaterCapturedBy||target.side!==1)return;
         target.manifestedUntil=Math.max(target.manifestedUntil||0,this.b.round+Math.max(1,MANIFEST_TURNS[clamp(rank,1,8)-1]+bonus)-1);
-        (target as any).honroManifestOwner=owner.id;target.manifested=true;target.revealSpiritToParty=true;target.formDamageTakenBonus=.08+.015*rank;target.curseOwner=owner.id;
+        (target as any).honroManifestOwner=owner.id;target.manifested=true;target.revealSpiritToParty=true;target.formDamageTakenBonus=MANIFEST_FORM_BONUS[clamp(rank,1,8)-1];target.curseOwner=owner.id;
         this.skillSound('status',owner.id,this.audioContext?.skill,undefined,target.id);this.fx('spark',target.x,target.y-target.h*.55,'#d9d0b1',32);
     }
     private captureEnemy(target:Unit,owner:Unit,rank:number,empowered=false,reportSkill?:string,origin?:DamageOrigin){
