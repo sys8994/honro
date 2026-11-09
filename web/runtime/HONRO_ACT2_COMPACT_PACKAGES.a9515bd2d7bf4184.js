@@ -1,0 +1,1 @@
+import{loadData,loadProject}from"./load-data.0c6bd3130c18e807.js";globalThis.HONRO_ACT2_COMPACT_PACKAGES=await loadData("web/data/HONRO_ACT2_COMPACT_PACKAGES-parts.3a7603d09d67c735.json",[],{svgSources:false});
