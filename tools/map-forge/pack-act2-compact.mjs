@@ -1,4 +1,4 @@
-import {writeFile} from 'node:fs/promises';
+import {writeFile,readFile} from 'node:fs/promises';
 import {runtime} from '../../game/tests/helpers.mjs';
 import {createStage12Compact} from './stage12-compact.mjs';
 import {createStage13Compact} from './stage13-compact.mjs';
@@ -9,10 +9,12 @@ import {createStage17Compact} from './stage17-compact.mjs';
 import {createStage18Compact,createStage19Compact} from './stage18-19-compact.mjs';
 import {createStage20Compact} from './stage20-compact.mjs';
 process.env.HONRO_ACT2_COMPACT='0';
+const selected=new Set(JSON.parse(await readFile('game/config/act2-compact.json','utf8')).stages);
 // Keep the compact card's references aligned with the actual retained actors
 // and split polygon edges. Archived source metadata remains untouched.
 function finish(d){
  const s=d.stage,space=s.design?.space,ids=new Set(s.units.map(u=>u.id));
+ if(selected.has(s.metadata.stageId)){s.metadata.compactStatus='selected-layout';for(const[k,v]of Object.entries(s.design||{}))if(k.startsWith('compact')&&v&&typeof v==='object')v.status='selected-layout';}
  if(space){
   space.encounterSites=(space.encounterSites||[]).filter(e=>!e.unitId||ids.has(e.unitId));
   for(const surf of space.surfaces||[]){
