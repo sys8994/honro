@@ -21,6 +21,7 @@ export function createStage12Compact(project){
  const source=project.stages.find(s=>s.metadata?.stageId===12);if(!source||source.width!==11200||source.height!==8000||source.initialState.honroReviewedSceneRevision!==512)throw Error('Unexpected Stage12 source');
  const stage=spatial(clone(source));stage.width=6400;stage.height=5000;stage.playBounds={left:0,top:0,right:6400,bottom:5000};
  stage.terrains=source.terrains.map(warpTerrain);
+ for(const z of stage.environment?.zones||[]){if(Number.isFinite(z.from))z.from+=Y_OFFSET;if(Number.isFinite(z.to))z.to+=Y_OFFSET;}
  // The old western circuit is shortened more than the event hub and eastern
  // escape, retaining the existing topological/terrain IDs and real cave gate.
  stage.design.compact12={revision:1,status:'selected-layout',sourceBounds:[11200,8000],bounds:[6400,5000],xKnots:X_KNOTS,yOffset:Y_OFFSET,recurrence:'actual 1000-distance loop; checkpoint reauthored on lower ground',roster:{initial:24,finite:2},art:'reused traced vector BODY/REAR, spatially recomposed; no new illustration'};
