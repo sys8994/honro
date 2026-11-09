@@ -1,0 +1,367 @@
+{
+  "scope": "Automatic renders/comparison reports/logs/profiles moved out of tracked art; failed source candidates archived without deletion. Paths are repository-relative.",
+  "reportsRoot": "_local\\reports\\act2-redesign-20261109\\firing-rock",
+  "archiveRoot": "_local\\archive\\act2-redesign-20261109\\firing-rock",
+  "relocations": [
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\authored-v1\\inkscape-profile",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\authored-v1\\inkscape-profile"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\authored-v2\\inkscape-profile",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\authored-v2\\inkscape-profile"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\authored-v3\\inkscape-profile",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\authored-v3\\inkscape-profile"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\authored-v4\\inkscape-profile",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\authored-v4\\inkscape-profile"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\native-v3\\inkscape-profile",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\native-v3\\inkscape-profile"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\native-v4-6smooth32\\inkscape-profile",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\native-v4-6smooth32\\inkscape-profile"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\optimized-v1\\compare-lossless",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\optimized-v1\\compare-lossless"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\optimized-v1\\compare-precision-3",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\optimized-v1\\compare-precision-3"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\optimized-v1\\compare-simplify-1e-05",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\optimized-v1\\compare-simplify-1e-05"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\optimized-v1\\compare-simplify-5e-05",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\optimized-v1\\compare-simplify-5e-05"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\optimized-v1\\profile-simplify-1e-05",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\optimized-v1\\profile-simplify-1e-05"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\optimized-v1\\profile-simplify-5e-05",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\optimized-v1\\profile-simplify-5e-05"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\optimized-v2\\compare-lossless",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\optimized-v2\\compare-lossless"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\complexity.json",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\complexity.json"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\low-tread-200pct.png",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\low-tread-200pct.png"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\source-authoring-loss-rejected-v2.json",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\source-authoring-loss-rejected-v2.json"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\source-authoring-loss.json",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\source-authoring-loss.json"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\source-native-authoring-board.png",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\source-native-authoring-board.png"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\source-observations.json",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\source-observations.json"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\upper-end-200pct.png",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\upper-end-200pct.png"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\upper-joint-200pct.png",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\upper-joint-200pct.png"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\authored-v1\\alpha-contact-union.log",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\authored-v1\\alpha-contact-union.log"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\authored-v1\\contact-authored-render.log",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\authored-v1\\contact-authored-render.log"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\authored-v1\\contact-authored.png",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\authored-v1\\contact-authored.png"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\authored-v1\\native-contact-clip.log",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\authored-v1\\native-contact-clip.log"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\authored-v1\\palette-authored-render.log",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\authored-v1\\palette-authored-render.log"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\authored-v1\\palette-authored.png",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\authored-v1\\palette-authored.png"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\authored-v1\\palette-union.log",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\authored-v1\\palette-union.log"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\authored-v2\\alpha-contact-union.log",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\authored-v2\\alpha-contact-union.log"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\authored-v2\\contact-authored-render.log",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\authored-v2\\contact-authored-render.log"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\authored-v2\\contact-authored.png",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\authored-v2\\contact-authored.png"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\authored-v2\\native-contact-clip.log",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\authored-v2\\native-contact-clip.log"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\authored-v2\\palette-authored-render.log",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\authored-v2\\palette-authored-render.log"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\authored-v2\\palette-authored.png",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\authored-v2\\palette-authored.png"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\authored-v2\\palette-union.log",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\authored-v2\\palette-union.log"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\authored-v3\\contact-authored.png",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\authored-v3\\contact-authored.png"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\authored-v3\\native-contact-clip.log",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\authored-v3\\native-contact-clip.log"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\authored-v3\\palette-authored.png",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\authored-v3\\palette-authored.png"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\authored-v4\\native-underpaint.log",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\authored-v4\\native-underpaint.log"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\authored-v4\\underpaint-authored.png",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\authored-v4\\underpaint-authored.png"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\authored-v4\\underpaint-loss.json",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\authored-v4\\underpaint-loss.json"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\native-v3\\alpha-mask.png",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\native-v3\\alpha-mask.png"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\native-v3\\color-input.png",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\native-v3\\color-input.png"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\native-v3\\native-alpha.log",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\native-v3\\native-alpha.log"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\native-v3\\native-color.log",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\native-v3\\native-color.log"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\native-v3\\raw-render.log",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\native-v3\\raw-render.log"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\native-v3\\raw.png",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\native-v3\\raw.png"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\native-v4-6smooth32\\alpha-mask.png",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\native-v4-6smooth32\\alpha-mask.png"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\native-v4-6smooth32\\color-input.png",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\native-v4-6smooth32\\color-input.png"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\native-v4-6smooth32\\native-alpha.log",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\native-v4-6smooth32\\native-alpha.log"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\native-v4-6smooth32\\native-color.log",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\native-v4-6smooth32\\native-color.log"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\native-v4-6smooth32\\raw-render.log",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\native-v4-6smooth32\\raw-render.log"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\native-v4-6smooth32\\raw.png",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\native-v4-6smooth32\\raw.png"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\optimized-v1\\optimization.json",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\optimized-v1\\optimization.json"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\optimized-v1\\precision-3-comparison.log",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\optimized-v1\\precision-3-comparison.log"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\optimized-v1\\simplify-1e-05-comparison.log",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\optimized-v1\\simplify-1e-05-comparison.log"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\optimized-v1\\simplify-1e-05.log",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\optimized-v1\\simplify-1e-05.log"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\optimized-v1\\simplify-5e-05-comparison.log",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\optimized-v1\\simplify-5e-05-comparison.log"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\optimized-v1\\simplify-5e-05.log",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\optimized-v1\\simplify-5e-05.log"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\optimized-v2\\optimization.json",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\optimized-v2\\optimization.json"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\runtime\\comparison-1.65x.png",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\runtime\\comparison-1.65x.png"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\runtime\\comparison-1x.png",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\runtime\\comparison-1x.png"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\runtime\\comparison-2x.png",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\runtime\\comparison-2x.png"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\runtime\\comparison.json",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\runtime\\comparison.json"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\runtime\\final-1.65x.png",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\runtime\\final-1.65x.png"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\runtime\\final-1x.png",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\runtime\\final-1x.png"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\runtime\\final-2x.png",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\runtime\\final-2x.png"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\runtime\\raw-1.65x.png",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\runtime\\raw-1.65x.png"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\runtime\\raw-1x.png",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\runtime\\raw-1x.png"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\runtime\\raw-2x.png",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\runtime\\raw-2x.png"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\runtime\\svg-reference-1.65x.png",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\runtime\\svg-reference-1.65x.png"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\runtime\\svg-reference-1x.png",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\runtime\\svg-reference-1x.png"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\runtime\\svg-reference-2x.png",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\runtime\\svg-reference-2x.png"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\runtime-v2\\comparison.json",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\runtime-v2\\comparison.json"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\runtime-v2\\final-1.65x.png",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\runtime-v2\\final-1.65x.png"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\runtime-v2\\final-1x.png",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\runtime-v2\\final-1x.png"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\runtime-v2\\final-2x.png",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\runtime-v2\\final-2x.png"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\runtime-v2\\raw-1.65x.png",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\runtime-v2\\raw-1.65x.png"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\runtime-v2\\raw-1x.png",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\runtime-v2\\raw-1x.png"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\runtime-v2\\raw-2x.png",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\runtime-v2\\raw-2x.png"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\runtime-v2\\svg-reference-1.65x.png",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\runtime-v2\\svg-reference-1.65x.png"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\runtime-v2\\svg-reference-1x.png",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\runtime-v2\\svg-reference-1x.png"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\runtime-v2\\svg-reference-2x.png",
+      "to": "_local\\reports\\act2-redesign-20261109\\firing-rock\\runtime-v2\\svg-reference-2x.png"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\native-v3",
+      "to": "_local\\archive\\act2-redesign-20261109\\firing-rock\\native-v3"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\authored-v1",
+      "to": "_local\\archive\\act2-redesign-20261109\\firing-rock\\authored-v1"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\authored-v2",
+      "to": "_local\\archive\\act2-redesign-20261109\\firing-rock\\authored-v2"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\optimized-v1",
+      "to": "_local\\archive\\act2-redesign-20261109\\firing-rock\\optimized-v1"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\runtime",
+      "to": "_local\\archive\\act2-redesign-20261109\\firing-rock\\runtime"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\native-v4-6smooth32\\native-alpha-input.svg",
+      "to": "_local\\archive\\act2-redesign-20261109\\firing-rock\\trace-inputs\\native-v4-6smooth32\\native-alpha-input.svg"
+    },
+    {
+      "from": "art\\act2-ch1-compact-20261109\\firing-rock\\native-v4-6smooth32\\native-color-input.svg",
+      "to": "_local\\archive\\act2-redesign-20261109\\firing-rock\\trace-inputs\\native-v4-6smooth32\\native-color-input.svg"
+    }
+  ]
+}

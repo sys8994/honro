@@ -1,0 +1,78 @@
+{
+  "status": "Contact authoring corrected; native composition review pending",
+  "nativeRawSha256": "3411f13482bdff5a1147149207dd71a910908ebffef6299989a02889259809e0",
+  "nativeRawUnchanged": true,
+  "paletteChanges": [
+    {
+      "id": "path5",
+      "from": "#a0958f",
+      "to": "#9e948e"
+    },
+    {
+      "id": "path4",
+      "from": "#9d938c",
+      "to": "#9e948e"
+    },
+    {
+      "id": "path3",
+      "from": "#817974",
+      "to": "#7e7772"
+    },
+    {
+      "id": "path2",
+      "from": "#7c7571",
+      "to": "#7e7772"
+    }
+  ],
+  "paletteScope": "Two near-identical grays per same light/main role merged; light/main/deep roles remain distinct. Native six-color trace already lost the small moss color role; not claimed preserved.",
+  "contactSourceEdit": "22-source-pixel low-tread paint band; native alpha union; exact guide ceiling through native object-set-clip. This intentional contact authoring is not an optimization error result.",
+  "contactGuide": [
+    [
+      180,
+      480
+    ],
+    [
+      450,
+      480
+    ],
+    [
+      450,
+      180
+    ],
+    [
+      1350,
+      180
+    ]
+  ],
+  "outputs": {
+    "palette-authored.svg": "497d583fdd694c5c4c53e36158197f018c44115feac363cd0cc45ef0c3253845",
+    "contact-authored.svg": "17c4163732c2e1716a54b40499473900e6763e31dfa7a51463d95d614d2673b2"
+  },
+  "commands": [
+    [
+      "C:\\Users\\user\\Google Drive\\Career\\1. About my work\\2025 ProjectSoboro\\Code\\honro\\_local\\tools\\inkscape-1.4.4\\portable-complete\\inkscape\\bin\\inkscape.com",
+      "C:\\Users\\user\\Google Drive\\Career\\1. About my work\\2025 ProjectSoboro\\Code\\honro\\art\\act2-ch1-compact-20261109\\firing-rock\\authored-v2\\palette-input.svg",
+      "--batch-process",
+      "--actions=select-by-id:path5,path4;path-union;select-clear;select-by-id:path3,path2;path-union;select-clear;export-plain-svg;export-filename:C:\\Users\\user\\Google Drive\\Career\\1. About my work\\2025 ProjectSoboro\\Code\\honro\\art\\act2-ch1-compact-20261109\\firing-rock\\authored-v2\\palette-native-color.svg;export-do"
+    ],
+    [
+      "C:\\Users\\user\\Google Drive\\Career\\1. About my work\\2025 ProjectSoboro\\Code\\honro\\_local\\tools\\inkscape-1.4.4\\portable-complete\\inkscape\\bin\\inkscape.com",
+      "C:\\Users\\user\\Google Drive\\Career\\1. About my work\\2025 ProjectSoboro\\Code\\honro\\art\\act2-ch1-compact-20261109\\firing-rock\\authored-v2\\alpha-union-input.svg",
+      "--batch-process",
+      "--actions=select-by-id:alpha,contact-fill;path-union;export-plain-svg;export-filename:C:\\Users\\user\\Google Drive\\Career\\1. About my work\\2025 ProjectSoboro\\Code\\honro\\art\\act2-ch1-compact-20261109\\firing-rock\\authored-v2\\alpha-contact-union.svg;export-do"
+    ],
+    [
+      "C:\\Users\\user\\Google Drive\\Career\\1. About my work\\2025 ProjectSoboro\\Code\\honro\\_local\\tools\\inkscape-1.4.4\\portable-complete\\inkscape\\bin\\inkscape.com",
+      "C:\\Users\\user\\Google Drive\\Career\\1. About my work\\2025 ProjectSoboro\\Code\\honro\\art\\act2-ch1-compact-20261109\\firing-rock\\authored-v2\\contact-input.svg",
+      "--batch-process",
+      "--actions=select-by-id:art,contact-ceiling;object-set-clip;export-plain-svg;export-filename:C:\\Users\\user\\Google Drive\\Career\\1. About my work\\2025 ProjectSoboro\\Code\\honro\\art\\act2-ch1-compact-20261109\\firing-rock\\authored-v2\\contact-authored.svg;export-do"
+    ]
+  ],
+  "version": "Inkscape 1.4.4 (dcaf3e7, 2026-05-05)",
+  "pixelComparisons": "source-authoring-loss.json; optimization has separate optimized-v1/optimization.json",
+  "actualGameReview": "PENDING",
+  "alphaClipCorrection": "Preserve source-alpha-art inner group; apply contact clip to NEW outer art group.",
+  "reusedPaletteFrom": "authored-v2/palette-native-color.svg",
+  "nativeCorrectionAction": "select-by-id:art,contact-ceiling;object-set-clip;export-plain-svg;export-filename:authored-v3/contact-authored.svg;export-do",
+  "contactSvgSha256": "aa0e84e9ce9fc956ef55d8209e4be458071aaf61efc4fc8dc8c4290170eca909"
+}

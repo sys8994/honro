@@ -1,0 +1,105 @@
+{
+  "width": 512,
+  "scales": [
+    1,
+    1.65,
+    2
+  ],
+  "limits": {
+    "rgbMAE255": 0.8,
+    "silhouettePx": 0.5,
+    "protectedRgbMAE255": 0.8,
+    "protectedPx": 0.16666666666666666,
+    "protectedChangedPixelFraction": 0.01
+  },
+  "protectionMode": "contact",
+  "protectedPolylines": [
+    {
+      "points": [
+        [
+          60,
+          160
+        ],
+        [
+          150,
+          160
+        ],
+        [
+          150,
+          60
+        ],
+        [
+          450,
+          60
+        ]
+      ],
+      "width": 3
+    }
+  ],
+  "reviewRects": [
+    [
+      52,
+      150,
+      110,
+      28
+    ],
+    [
+      140,
+      50,
+      25,
+      125
+    ],
+    [
+      400,
+      48,
+      64,
+      25
+    ]
+  ],
+  "asset": {
+    "id": "act2-ch1:firing-rock-rear",
+    "name": "Two-step rear firing rock",
+    "semanticLayer": "REAR",
+    "category": "rock",
+    "bounds": {
+      "x": 0,
+      "y": 0,
+      "w": 512,
+      "h": 341.3333333333333
+    },
+    "anchor": {
+      "x": 0,
+      "y": 0
+    },
+    "foot": {
+      "x": 60,
+      "y": 260
+    },
+    "transform": [
+      0.3333333333333333,
+      0,
+      0,
+      0.3333333333333333,
+      0,
+      0
+    ],
+    "scaleRange": [
+      1,
+      1
+    ],
+    "backgroundRange": [
+      1,
+      1
+    ],
+    "params": {
+      "candidate": "B-two-step-open-200",
+      "collisionSource": "compact-firing-rock oneWay top only",
+      "frontBodySolid": false,
+      "worldPlacement": [
+        350,
+        2130
+      ],
+      "artStatus": "candidate, not approved"
+    }
+  }
+}

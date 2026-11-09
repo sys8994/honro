@@ -1,0 +1,106 @@
+{
+  "scope": "B-open upper pine production candidate, not final art/gameplay approval",
+  "chosenColor": "precision-6",
+  "rejectedOptimization": "simplify-0.0001 fails 1x protected silhouette by1px in actual engine despite passing color-only comparison",
+  "nativeInkscapeVersion": "1.4.4",
+  "worldViewBox": [
+    1650,
+    1650,
+    1700,
+    850
+  ],
+  "sourceSize": [
+    1774,
+    887
+  ],
+  "worldContact": [
+    [
+      1800,
+      2230
+    ],
+    [
+      2050,
+      2070
+    ],
+    [
+      2500,
+      2050
+    ],
+    [
+      2920,
+      2120
+    ],
+    [
+      3240,
+      2225.625
+    ]
+  ],
+  "worldFoot": [
+    2500,
+    2358.181818181818
+  ],
+  "sourceFoot": [
+    887,
+    739.0085561497324
+  ],
+  "sourceToWorld": [
+    0.9582863585118376,
+    0,
+    0,
+    0.9582863585118376,
+    1650,
+    1650
+  ],
+  "placement": {
+    "sourceAsset": "final.asset.json: place at world1650,1650; uniform scale1700/1774; anchor0,0",
+    "worldAsset": "final-world.asset.json: contains transform already; place at0,0 scale1; anchor0,0",
+    "layer": "L1-back; no new trunk collider; same existing upper contact source"
+  },
+  "checks": {
+    "sameEngineRawFinal1x2x": "PASS with precision6 and unchanged limits; _local/reports/act2-redesign-20261109/upper-pine-final-precision-6/comparison.json",
+    "nativeSourceToEngine": "NOT PASS: native SVG versus renderer protected silhouette1px difference; preserve separately from optimization. Integrated joint/foot camera review needed.",
+    "visualDirectInspection": "Registered raw/final full overview and contact/root/fork200% opened directly; shapes/holes retained. Right tip has small geometric cap from intentional contact registration. Needle clumps lost much green in8-color trace. Not aesthetic approval.",
+    "sourceContactRegistration": "Intentional adjacent same-color band3..14.4069sourcepx and native union/intersection; not lossless optimization. Original source and raw unchanged.",
+    "actualPlay": "NOT RUN by asset agent",
+    "browser": "NOT RUN by asset agent",
+    "deployment": "NOT RUN by asset agent"
+  },
+  "files": {
+    "source-v2.png": {
+      "bytes": 353087,
+      "sha256": "9e25af8ad501ee0933d4c1c086c591b6d8522bd718170cbd3c3a063ba0ebe820"
+    },
+    "trace8/raw.svg": {
+      "bytes": 592271,
+      "sha256": "19e8e3896fae30ec8b20d30a4938e15404ff20d25d9566ce2a637a0b342df509"
+    },
+    "registered8/registered-raw.svg": {
+      "bytes": 605680,
+      "sha256": "5ab83014fe1bc095c1b73d0c5f96a6b9f250c2cb6547234dcb387d0c709468ac"
+    },
+    "registered8/native-alpha.svg": {
+      "bytes": 20907,
+      "sha256": "fb3fe3f4dabb1cfe5f93b413bd52e5bc6635e59872772099481959d8a8fdb904"
+    },
+    "opt-color8-fixed/precision-6.svg": {
+      "bytes": 576198,
+      "sha256": "e23a3be1a02cf8a05e9752cc2f54fa65e8e9eb53b6e51481ad27f7c78663ba30"
+    },
+    "final.svg": {
+      "bytes": 597112,
+      "sha256": "548e628fedeec8ebfbda7e7f1ba7d2bde010a374001d17cd48f626c27fa9896d"
+    },
+    "final.asset.json": {
+      "bytes": 599092,
+      "sha256": "874cbb824a9b778cf2f6c0dee05b75c41fe48e11259b94be0504c9339fe9cd10"
+    },
+    "final-world.asset.json": {
+      "bytes": 599143,
+      "sha256": "d13e19842e4c0fd55cd6ca043d0ddae54c2b4b2692b0786ef091c645d65135dd"
+    }
+  },
+  "automaticReportsRoot": "_local/reports/act2-redesign-20261109/upper-pine-production",
+  "failedCandidatesRoot": "_local/archive/act2-redesign-20261109/upper-pine-production",
+  "optimizerReport": "_local/reports/act2-redesign-20261109/upper-pine-production/opt-color8-fixed/report.json",
+  "registrationReport": "_local/reports/act2-redesign-20261109/upper-pine-production/registered8/registration.json"
+}

@@ -1,0 +1,53 @@
+{
+  "status": "Production asset candidate; parent gameplay composition review pending",
+  "selectedSvg": "optimized-v2/final.svg",
+  "selectedEngineAsset": "runtime-v2/final.json",
+  "source": "vector-ready-v3.png",
+  "nativeTrace": "native-v4-6smooth32/raw.svg",
+  "authoredRaw": "optimized-v2/raw-authored.svg",
+  "rawToFinal": "Lossless XML/whitespace cleanup only; pixel errors zero at1x/max1.65x/2x. Geometric simplify/precision attempts rejected at existing silhouette gate.",
+  "engineValidationErrors": 0,
+  "engineRawToFinal": "PASS all three scales, RGB/alpha/protected edge difference0",
+  "sourceSvgToEngineRaw": "NOT PASSED existing pixel limits;1px clip/AA/frame edge differences remain, protected RGB differs. Recorded separately, not hidden in optimization result.",
+  "sourceEdits": [
+    "Native near-gray same-role palette union",
+    "Native guide-contact clip/22px low-tread band",
+    "Exact background-only white underpaint rect changed to main-gray; alpha unchanged"
+  ],
+  "rejected": [
+    "8scan raw over path budget",
+    "authored-v1/v2 source-alpha clip replaced by contact clip",
+    "simplify and precision3 candidates had1px normal-view alpha edge drift"
+  ],
+  "visualInspection": "Standalone source/native/palette/contact boards, low-tread/joint/end at200%, actual engine512px and1024px viewed. Foreground walking/rear-rock depth, full game integration/browser/mobile/performance remain parent verification.",
+  "userApproval": "NONE",
+  "files": {
+    "optimized-v2/final.svg": {
+      "bytes": 24198,
+      "sha256": "cc040413ba55b8b178b155a7d2cb69c9bf4d9c96975650600acbd366df470796"
+    },
+    "runtime-v2/final.json": {
+      "bytes": 25818,
+      "sha256": "afda6f0f8ea264ab535ba393fe5e7df3e9546e9f9d8bf710fd8b80be5bfd921f"
+    },
+    "_local\\reports\\act2-redesign-20261109\\firing-rock\\runtime-v2\\comparison.json": {
+      "bytes": 10082,
+      "sha256": "a40046105e7933e317e513d87ff35126162492d86379b039b085e2a14f9e578a"
+    },
+    "placement-contract.json": {
+      "bytes": 1182,
+      "sha256": "eccd48379404b554b59acd026eaaf01c9f6eb2be840f14c73e3b6dc102590d9d"
+    },
+    "_local\\reports\\act2-redesign-20261109\\firing-rock\\source-authoring-loss.json": {
+      "bytes": 2254,
+      "sha256": "fbbe7fecb573d41e5bd0c8cae3b8f3d8d5d1ca2bfa4472b031386a9f336ff199"
+    },
+    "_local\\reports\\act2-redesign-20261109\\firing-rock\\authored-v4\\underpaint-loss.json": {
+      "bytes": 646,
+      "sha256": "ff8ed245ecedd6d7bff27d45b5130eab6f768eb801fd969b30fdcc3de15958c8"
+    }
+  },
+  "reportsRoot": "_local\\reports\\act2-redesign-20261109\\firing-rock",
+  "archiveRoot": "_local\\archive\\act2-redesign-20261109\\firing-rock",
+  "pathsNote": "Selected source/vector asset paths are relative to this asset folder. _local paths are repository-relative. RELOCATION.json resolves historical intermediate paths."
+}

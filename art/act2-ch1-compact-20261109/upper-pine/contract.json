@@ -1,0 +1,157 @@
+{
+  "status": "asset structure contract; art not generated/approved",
+  "candidate": "B-two-step-open-200",
+  "semanticLayer": "REAR+upper open walking branch",
+  "enginePlane": "L1-back",
+  "collisionSourceTerrainId": "compact-upper-flank",
+  "sourceCandidateModule": "tools/map-forge/stage11-compact-alternatives.mjs",
+  "candidateSha256": "4c9718891bf22bf32209a16933410c9ee217648d2c8a9fb678ebbd405820bb94",
+  "viewBoxWorld": [
+    1650,
+    1650,
+    1700,
+    850
+  ],
+  "imageSize": [
+    2048,
+    1024
+  ],
+  "worldToSourceScale": 1.204705882352941,
+  "sourceToWorld": [
+    0.8300781250000001,
+    0,
+    0,
+    0.8300781250000001,
+    1650,
+    1650
+  ],
+  "footWorld": {
+    "x": 2500,
+    "y": 2358.181818181818,
+    "surfaceId": "compact-floor"
+  },
+  "footSource": {
+    "x": 1023.9999999999999,
+    "y": 853.1508021390372
+  },
+  "upperContactWorld": [
+    {
+      "x": 1800,
+      "y": 2230
+    },
+    {
+      "x": 2050,
+      "y": 2070
+    },
+    {
+      "x": 2500,
+      "y": 2050
+    },
+    {
+      "x": 2920,
+      "y": 2120
+    },
+    {
+      "x": 3240,
+      "y": 2225.625
+    }
+  ],
+  "upperContactSource": [
+    {
+      "x": 180.70588235294116,
+      "y": 698.7294117647058
+    },
+    {
+      "x": 481.8823529411764,
+      "y": 505.97647058823526
+    },
+    {
+      "x": 1023.9999999999999,
+      "y": 481.8823529411764
+    },
+    {
+      "x": 1529.976470588235,
+      "y": 566.2117647058823
+    },
+    {
+      "x": 1915.4823529411763,
+      "y": 693.4588235294117
+    }
+  ],
+  "bearingWorld": [
+    {
+      "x": 1800,
+      "y": 2230,
+      "surfaceId": "compact-upper-flank"
+    },
+    {
+      "x": 2500,
+      "y": 2050,
+      "surfaceId": "compact-upper-flank"
+    },
+    {
+      "x": 3240,
+      "y": 2225.625,
+      "surfaceId": "compact-upper-flank"
+    }
+  ],
+  "bearingSource": [
+    {
+      "x": 180.70588235294116,
+      "y": 698.7294117647058
+    },
+    {
+      "x": 1023.9999999999999,
+      "y": 481.8823529411764
+    },
+    {
+      "x": 1915.4823529411763,
+      "y": 693.4588235294117
+    }
+  ],
+  "actorHeightWorld": 92,
+  "actorHeightSource": 110.83294117647058,
+  "rootToHighestContactWorld": 308.181818181818,
+  "protectedRegions": {
+    "walkContact": {
+      "polyline": [
+        {
+          "x": 180.70588235294116,
+          "y": 698.7294117647058
+        },
+        {
+          "x": 481.8823529411764,
+          "y": 505.97647058823526
+        },
+        {
+          "x": 1023.9999999999999,
+          "y": 481.8823529411764
+        },
+        {
+          "x": 1529.976470588235,
+          "y": 566.2117647058823
+        },
+        {
+          "x": 1915.4823529411763,
+          "y": 693.4588235294117
+        }
+      ],
+      "width": 12
+    },
+    "foot": {
+      "x": 963.9999999999999,
+      "y": 793.1508021390372,
+      "width": 120,
+      "height": 120
+    }
+  },
+  "imageRules": [
+    "actual alpha background",
+    "no ground/stone neck/far background/actor/UI in asset",
+    "do not invent a solid foreground trunk collider",
+    "trunk and root are rear L1-back; lower path remains visible in front",
+    "leave actual narrow branch clearance unchanged",
+    "guide colors/markers are not artwork"
+  ],
+  "sourceGuideSha256": "7a79be8e064cf258abd01937c6659e542f42d6d7ecf9424078edc8073ae5593c"
+}

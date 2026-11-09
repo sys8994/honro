@@ -1,0 +1,87 @@
+{
+  "status": "Integration candidate; no final scene/browser/art acceptance",
+  "id": "act2-traced:stage11-compact-ground-v1",
+  "placement": {
+    "x": 0,
+    "y": 0,
+    "scale": 1,
+    "layer": "prop",
+    "depthLayer": "L1"
+  },
+  "worldViewBox": [
+    -200,
+    500,
+    6600,
+    3300
+  ],
+  "sourceSize": [
+    1774,
+    887
+  ],
+  "nativeInkscape": "1.4.4 / color8 / smoothtrue / speckles16 / separate alpha speckles0",
+  "optimization": "Two native Simplify and precision6 candidates executed; strict protection limits reject their changes. RAW chosen, XML serialization only. No geometric reduction success claimed.",
+  "rawFinalEngine": [
+    {
+      "scale": 1,
+      "maxRGBAError": 0,
+      "changedPixels": 0,
+      "pass": true
+    },
+    {
+      "scale": 2,
+      "maxRGBAError": 0,
+      "changedPixels": 0,
+      "pass": true
+    }
+  ],
+  "validationErrors": 0,
+  "sourceContact": "max positive source alpha gap0.626px, max overhang4.340px; canonical world clip removes overhang. Contact at actual zoom remains scene review item.",
+  "sourceToNative": "8-color trace intentionally quantizes smooth source shading; evaluated separately from optimizer.",
+  "limits": [
+    "Main BODY is a near crop, not full domain exterior; foundation is required.",
+    "Large planes need a separate actor-scale SURFACE layer.",
+    "Actual walking/browser/deployment not covered."
+  ],
+  "files": {
+    "source-v1.png": {
+      "bytes": 870715,
+      "sha256": "a426377794287edf89424556880bd52e0fb056a3cbd654cdc6fc1d1729e91a6b"
+    },
+    "vector-ready-v2.png": {
+      "bytes": 676910,
+      "sha256": "b7050cf7c3d14e55f011db2f20cfc471e3edfab7c5b2361362e128adc35a41ab"
+    },
+    "native-color.svg": {
+      "bytes": 86405,
+      "sha256": "856001040f88b7ad78ba9759707adf8dcf8a9d5db8abfac4a4437c21f04f4692"
+    },
+    "native-alpha.svg": {
+      "bytes": 1522,
+      "sha256": "ad520181946a3fcfc00170cbf7f7a862e2c73a7af02b61a963f1e92fe8b45c93"
+    },
+    "final.svg": {
+      "bytes": 87508,
+      "sha256": "7944e870335ed3d6732cc75db684bf7808b0e812eeed28ebdfe9db5b93a90ad6"
+    },
+    "final-color.svg": {
+      "bytes": 86163,
+      "sha256": "867bb8334c7f036346f6b52e0ca694c7b1545720a87cff7a3862c3ba9405ca52"
+    },
+    "final-alpha.svg": {
+      "bytes": 1522,
+      "sha256": "ad520181946a3fcfc00170cbf7f7a862e2c73a7af02b61a963f1e92fe8b45c93"
+    },
+    "final-world.asset.json": {
+      "bytes": 89937,
+      "sha256": "ef05e829b2fe4e6ee32bc4758c13f4a85ddc2a806b14b27e335351dc5be2d026"
+    },
+    "asset-config.json": {
+      "bytes": 1509,
+      "sha256": "0f8eb3320bb49676da6683d023b692a714c2b37b14a568f8f2b74baa1f4c761e"
+    },
+    "optimization-config.json": {
+      "bytes": 3128,
+      "sha256": "1324ee8864b17df9053afd92a11efe3016590f8ed4688311f83a3329c0fdb076"
+    }
+  }
+}

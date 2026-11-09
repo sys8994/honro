@@ -1,0 +1,80 @@
+{
+  "status": "candidate B-open production input, not art approval",
+  "worldRect": {
+    "left": 350,
+    "top": 2130,
+    "width": 512,
+    "height": 341.3333333333333
+  },
+  "sourcePixels": [
+    1536,
+    1024
+  ],
+  "pixelsPerWorld": 3,
+  "terrainId": "compact-firing-rock",
+  "treadsWorld": [
+    [
+      410,
+      2290
+    ],
+    [
+      500,
+      2290
+    ],
+    [
+      500,
+      2190
+    ],
+    [
+      800,
+      2190
+    ]
+  ],
+  "treadsSourcePixels": [
+    [
+      180,
+      480
+    ],
+    [
+      450,
+      480
+    ],
+    [
+      450,
+      180
+    ],
+    [
+      1350,
+      180
+    ]
+  ],
+  "footWorld": [
+    410,
+    2390
+  ],
+  "colliderPolicy": "oneWay-top",
+  "visualPlane": "L1-back",
+  "rearSupportRole": "rear-shelf",
+  "frontBodySolid": false,
+  "protectedRoisSourcePixels": {
+    "lowTread": [
+      174,
+      472,
+      282,
+      16
+    ],
+    "upperTread": [
+      444,
+      172,
+      912,
+      16
+    ],
+    "stepJoint": [
+      440,
+      170,
+      20,
+      320
+    ]
+  },
+  "review": "Keep open foreground path. No claim that a front solid wall is passable."
+}

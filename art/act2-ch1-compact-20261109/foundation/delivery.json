@@ -1,0 +1,98 @@
+{
+  "scope": "Actual imagegen + native Inkscape foundation production candidate, not integrated scene/browser/art/play approval",
+  "worldViewBox": [
+    -4200,
+    1200,
+    15000,
+    10000
+  ],
+  "sourceSize": [
+    1536,
+    1024
+  ],
+  "sourceToWorld": [
+    9.765625,
+    0,
+    0,
+    9.765625,
+    -4200,
+    1200
+  ],
+  "placement": {
+    "x": 0,
+    "y": 0,
+    "scale": 1,
+    "anchor": {
+      "x": 0,
+      "y": 0
+    },
+    "layer": "BODY",
+    "order": "before near BODY"
+  },
+  "sameCanonicalFloorClipAsNearBody": true,
+  "canonicalClipSha256": "4ad9751369860f576e1d6d219a523f4889b14b1818d81f7d9d37acb61102d1c3",
+  "canonicalClipSource": "same authored compact-floor domain used by near BODY, not a second near-body crop clip",
+  "sourceAlpha": "All255 opaque. native-alpha.svg is the exact full source-canvas mask M0,0H1536V1024H0Z, derived from source alpha; no tracing or terrain invention claimed for that rectangle. Authoritative geography is canonical floor clip.",
+  "trace": {
+    "version": "Inkscape1.4.4",
+    "scans": 6,
+    "smooth": true,
+    "speckles": 32,
+    "paths": 6,
+    "segments": 675,
+    "subpaths": 13,
+    "maxPathChars": 7766,
+    "images": 0
+  },
+  "optimization": {
+    "performed": true,
+    "chosen": "raw",
+    "successfullyReducedSegments": false,
+    "reason": "Simplify candidates increased segment counts; precision candidates changed675→676. Preserve RAW fallback under unchanged selection. Precision4 byte reduction23KB not called successful segment optimization.",
+    "report": "_local/reports/act2-redesign-20261109/foundation-production/opt-color6-v2/report.json"
+  },
+  "validation": {
+    "existingAssetRenderer": "PASS1x1536×1024; validationErrors0, `_local/reports/act2-redesign-20261109/foundation-final-1x.png`",
+    "rawToFinal": "RAW selected unchanged color data and source alpha; no simplification loss. World clipping is intentional source packaging, not lossless source silhouette preservation.",
+    "sourceToTraceRgbMAE255": 3.154833263821072,
+    "sourceToTraceAlphaMAE255": 0,
+    "visual": "Source V1, V2, native RAW, actual-engine world-clip1x and upper-overlap/lower-strata/left-fault200% opened directly. Large planes and sparse faults retained. V1 trace noise rejected. V2 6color quantization flattens subtle tones; tiny upper-middle accidental islands remain.",
+    "sceneJoint": "PENDING root full-scene review",
+    "browser": "NOT RUN",
+    "actualPlay": "NOT RUN",
+    "deployment": "NOT RUN"
+  },
+  "cameraCoverage": "Bounds math covers1440x900,390x844,1920x1080,844x390,768x1024 overscanned exposures. Source bottom11200 exceeds390x844 bottom11037.95 by162.05world. Other/extreme tall aspect not proven; deeper canonical bottom27200 remains outside this art crop.",
+  "reportsRoot": "_local/reports/act2-redesign-20261109/foundation-production",
+  "failedRoot": "_local/archive/act2-redesign-20261109/foundation-production",
+  "files": {
+    "source-v1.png": {
+      "bytes": 1262933,
+      "sha256": "81d0ce8160a697a72ff612738bd0e803e023fd74f40d24e352784ccc50840096"
+    },
+    "vector-ready-v2.png": {
+      "bytes": 1261001,
+      "sha256": "49366883d8ebdcdf8f651d21d9c010d3e96582f463802d21683a2fd59abc7f6f"
+    },
+    "trace6-v2/raw.svg": {
+      "bytes": 32454,
+      "sha256": "ccc3ec388d6773d1ef181228a17c73378df303ee8aec500084b36457b19f7260"
+    },
+    "trace6-v2/native-color.svg": {
+      "bytes": 32656,
+      "sha256": "8a769acb8ad06f3ec5cde12c249ee9c35b768e1e0fca5378215b50b27f776e6a"
+    },
+    "trace6-v2/native-alpha.svg": {
+      "bytes": 139,
+      "sha256": "2681222556d3300b6506fd1e2ee029cdc8f9848e207ac64eb65745b962d06906"
+    },
+    "final.svg": {
+      "bytes": 33337,
+      "sha256": "cfc35775db21a68160005973293202773e79a7f78ed2c3db3bdc2389ab32957b"
+    },
+    "final.asset.json": {
+      "bytes": 34978,
+      "sha256": "a0c013618445a9ab99060fd2d833a772de4ba5a819ee539899b36f9ab0b8a18b"
+    }
+  }
+}

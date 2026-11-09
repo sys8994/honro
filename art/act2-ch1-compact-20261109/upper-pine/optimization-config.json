@@ -1,0 +1,77 @@
+{
+  "width": 1774,
+  "scales": [
+    1,
+    2
+  ],
+  "protectionMode": "silhouette",
+  "protectedPolylines": [
+    {
+      "points": [
+        [
+          156.53,
+          605.25
+        ],
+        [
+          417.41,
+          438.28
+        ],
+        [
+          887,
+          417.41
+        ],
+        [
+          1325.28,
+          490.46
+        ],
+        [
+          1659.21,
+          600.68
+        ]
+      ],
+      "width": 28
+    }
+  ],
+  "protectedRects": [
+    [
+      550,
+      490,
+      80,
+      105
+    ],
+    [
+      860,
+      660,
+      120,
+      110
+    ]
+  ],
+  "limits": {
+    "rgbMAE255": 2,
+    "silhouettePx": 1.5,
+    "protectedRgbMAE255": 1,
+    "protectedPx": 0.5,
+    "protectedChangedPixelFraction": 0.05
+  },
+  "asset": {
+    "id": "compact11:upper-pine-trial",
+    "name": "upper-pine comparison",
+    "semanticLayer": "REAR",
+    "category": "tree",
+    "bounds": {
+      "x": 0,
+      "y": 0,
+      "w": 1774,
+      "h": 887
+    },
+    "anchor": {
+      "x": 0,
+      "y": 0
+    },
+    "foot": {
+      "x": 887,
+      "y": 739.42
+    },
+    "preserveCompounds": true
+  }
+}

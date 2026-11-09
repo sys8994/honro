@@ -1,0 +1,43 @@
+{
+  "width": 1536,
+  "scales": [
+    1,
+    2
+  ],
+  "protectionMode": "silhouette",
+  "protectedRects": [
+    [
+      410,
+      184,
+      676,
+      82
+    ]
+  ],
+  "limits": {
+    "rgbMAE255": 2,
+    "silhouettePx": 1.5,
+    "protectedRgbMAE255": 1,
+    "protectedPx": 0.5,
+    "protectedChangedPixelFraction": 0.05
+  },
+  "asset": {
+    "id": "foundation-color",
+    "name": "foundation color tracing",
+    "semanticLayer": "BODY",
+    "bounds": {
+      "x": 0,
+      "y": 0,
+      "w": 1536,
+      "h": 1024
+    },
+    "anchor": {
+      "x": 0,
+      "y": 0
+    },
+    "preserveCompounds": true,
+    "foot": {
+      "x": 0,
+      "y": 0
+    }
+  }
+}

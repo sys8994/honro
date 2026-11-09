@@ -1,0 +1,67 @@
+{
+  "status": "partial integration preview; foundation/ground/pine/rock; neck/bier/composition pending",
+  "assets": [
+    {
+      "id": "act2-traced:stage11-compact-foundation-v1",
+      "file": "art/act2-ch1-compact-20261109/foundation/final.asset.json",
+      "placement": {
+        "id": "compact11-art-foundation",
+        "assetId": "act2-traced:stage11-compact-foundation-v1",
+        "x": 0,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0,
+        "snap": false,
+        "depthLayer": "L1",
+        "layer": "prop"
+      }
+    },
+    {
+      "id": "act2-traced:stage11-compact-ground-v1",
+      "file": "art/act2-ch1-compact-20261109/ground-body/final-world.asset.json",
+      "placement": {
+        "id": "compact11-art-0",
+        "assetId": "act2-traced:stage11-compact-ground-v1",
+        "x": 0,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0,
+        "snap": false,
+        "depthLayer": "L1",
+        "layer": "prop"
+      }
+    },
+    {
+      "id": "compact11:upper-pine",
+      "file": "art/act2-ch1-compact-20261109/upper-pine/final-world.asset.json",
+      "placement": {
+        "id": "compact11-art-1",
+        "assetId": "compact11:upper-pine",
+        "x": 0,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0,
+        "snap": false,
+        "depthLayer": "L1",
+        "layer": "back",
+        "nativeTerrainId": "compact-upper-flank"
+      }
+    },
+    {
+      "id": "act2-ch1:firing-rock-rear",
+      "file": "art/act2-ch1-compact-20261109/firing-rock/runtime-v2/final.json",
+      "placement": {
+        "id": "compact11-art-2",
+        "assetId": "act2-ch1:firing-rock-rear",
+        "x": 350,
+        "y": 2130,
+        "scale": 1,
+        "rotation": 0,
+        "snap": false,
+        "depthLayer": "L1",
+        "layer": "back",
+        "nativeTerrainId": "compact-firing-rock"
+      }
+    }
+  ]
+}

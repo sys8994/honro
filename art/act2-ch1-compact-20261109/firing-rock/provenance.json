@@ -1,0 +1,10 @@
+{
+  "tool": "actual native Inkscape color/alpha trace; no bitmap embedded in delivered vector",
+  "executable": "_local\\tools\\inkscape-1.4.4\\portable-complete\\inkscape\\bin\\inkscape.com",
+  "sha256": "4057b55e6bd892512fab3488bded271adfb8fa987cb7378b045055f051907f48",
+  "version": "Inkscape 1.4.4 (dcaf3e7, 2026-05-05)",
+  "profilePerAsset": true,
+  "originalNativeRaw": "native-v3/raw.svg",
+  "originalRawSha256": "351e41563bb9924905315b338529e4c03642beed4d912f79bb4d47af771b3d80",
+  "knownFailure": "8-scan raw exceeds current importer per-path budget and has source-induced near-grey speckle boundaries. Never an approved/final asset."
+}

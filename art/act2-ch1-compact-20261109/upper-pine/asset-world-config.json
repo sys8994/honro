@@ -1,0 +1,54 @@
+{
+  "id": "compact11:upper-pine",
+  "name": "낮게 벌어진 소나무 줄기와 상부 가지",
+  "semanticLayer": "REAR",
+  "category": "tree",
+  "bounds": {
+    "x": 1650,
+    "y": 1650,
+    "w": 1700,
+    "h": 850
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0
+  },
+  "foot": {
+    "x": 2500,
+    "y": 2358.181818181818
+  },
+  "preserveCompounds": true,
+  "params": {
+    "artRevision": 1,
+    "candidateStatus": "internal candidate; final scene review pending",
+    "collisionSource": "compact-upper-flank",
+    "engineLayer": "L1-back",
+    "worldViewBox": [
+      1650,
+      1650,
+      1700,
+      850
+    ],
+    "sourceToWorld": [
+      0.9582863585118376,
+      0,
+      0,
+      0.9582863585118376,
+      1650,
+      1650
+    ],
+    "worldFoot": {
+      "x": 2500,
+      "y": 2358.181818181818,
+      "surfaceId": "compact-floor"
+    }
+  },
+  "transform": [
+    0.9582863585118376,
+    0,
+    0,
+    0.9582863585118376,
+    1650,
+    1650
+  ]
+}

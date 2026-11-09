@@ -1,0 +1,8 @@
+{
+  "from": "authored-v3/contact-authored.svg",
+  "target": "underpaint-authored.svg",
+  "reason": "The exact full-canvas white native color-trace background rectangle is not a meaningful highlight. It leaks a white rim through alpha antialias at rock edges.",
+  "nativeAction": "select-by-id:path6;object-set-property:fill,#7e7772;export-plain-svg;export-filename:underpaint-authored.svg;export-do",
+  "alphaPolicy": "Preserve both existing source-alpha and contact-ceiling clips and all natural contours.",
+  "optimizationPolicy": "Intentional source authoring, not part of RAW-to-final optimization error."
+}
