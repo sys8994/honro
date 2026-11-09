@@ -13,4 +13,13 @@ assert.deepEqual(plain(projection(app.engine.b)),projection(profile.honroBattle)
 app.stopBattle();app.profile.honroBattle=null;app.launch(id);const b=app.engine.b;
 assert.deepEqual([b.width,b.height,b.honroCampaignMapRevision],[spec[0],spec[1],600+id]);assert.equal(b.units.filter(u=>u.side===1&&!u.honroObjectiveTarget).length,spec[2]);
 assert.equal(b.honroReviewedSceneRevision,500+id);
+if(id===20){
+ const S=current.g.HonroProfileStore,before=JSON.stringify(b),packed=S.compactBattleArt(b);
+ assert.equal(JSON.stringify(b),before,'save packing preserves live state');
+ assert(packed.honroLocalArtTable?.assets.some(a=>a.id.startsWith('act2-compact:')));
+ assert(JSON.stringify(packed).length<before.length*.75,'duplicated compact art must use the self-contained table');
+ const restored=plain(packed),library=current.g.HONRO_PROJECT.library;current.g.HONRO_PROJECT.library=[];
+ try{assert(S.restoreBattleArt(restored));assert.deepEqual(restored,plain(b));}finally{current.g.HONRO_PROJECT.library=library;}
+ console.log(JSON.stringify({inlineChars:before.length,packedChars:JSON.stringify(packed).length,providerIndependent:true}));
+}
 console.log('PASS chapter'+id+' existing geography/actors/resources/progress/dialogue/growth retained; fresh compact entry');
