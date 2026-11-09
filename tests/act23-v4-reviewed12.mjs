@@ -2,9 +2,9 @@
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {appHarness,plain} from './app-regression-helpers.mjs';
-const h=await appHarness(),g=h.g,V=g.HonroAct23V4,P=g.HonroAct23V4ReviewedChapters,S=g.HonroAct23V4Act2Scenes,C=g.HONRO_CORE;
-const data=JSON.parse(await readFile('shared/data/reviewed/act23-v4-ch12.json','utf8'));assert.equal(data.rows.length,28);assert(!P.enabled(12));g.HONRO_ACT23_V4_PHASE_A=true;g.HONRO_ACT23_V4_PHASE_B_STAGES=[12];g.HONRO_ACT23_V4_REVIEWED_CHAPTERS={12:data};g.HONRO_PROJECT=V.author(g.HONRO_PROJECT,{enabled:true});let app;
-function launch(){const p=h.profileThrough(11);p.seen['act2:first-spirit-encounter']=true;p.seen['map-story-v'+g.HonroStoryContent.version+'-11']=true;app=h.load(p);app.launch(12);app.turnNotice=null;Object.assign(app.engine.b,{side:0,phase:'aim'});assert.equal(app.engine.b.honroCampaignMapRevision,512);return app.engine.b;}
+const compact=process.env.HONRO_TEST_COMPACT12==='1',h=await appHarness({productionStory:compact}),g=h.g,V=g.HonroAct23V4,P=g.HonroAct23V4ReviewedChapters,S=g.HonroAct23V4Act2Scenes,C=g.HONRO_CORE;
+const data=JSON.parse(await readFile('shared/data/reviewed/act23-v4-ch12.json','utf8'));assert.equal(data.rows.length,28);if(compact)assert(P.enabled(12));else{assert(!P.enabled(12));g.HONRO_ACT23_V4_PHASE_A=true;g.HONRO_ACT23_V4_PHASE_B_STAGES=[12];g.HONRO_ACT23_V4_REVIEWED_CHAPTERS={12:data};g.HONRO_PROJECT=V.author(g.HONRO_PROJECT,{enabled:true});}let app;
+function launch(){const p=h.profileThrough(11);p.seen['act2:first-spirit-encounter']=true;p.seen['map-story-v'+g.HonroStoryContent.version+'-11']=true;app=h.load(p);app.launch(12);app.turnNotice=null;Object.assign(app.engine.b,{side:0,phase:'aim'});assert.equal(app.engine.b.honroCampaignMapRevision,compact?612:512);return app.engine.b;}
 function tick(n=1){for(let i=0;i<n&&!app.dialogue;i++){Object.assign(app.engine.b,{side:0,phase:'aim'});V.tick(app,.025);if(!app.dialogue)app.engine.stepUnits(.025);}}
 function at(id){tick();assert.equal(app.dialogue?.lines[app.dialogue.index]?.[2]?.rowId,id,JSON.stringify({want:id,actual:app.dialogue?.lines,mem:P.memory(app.engine.b),scene:S.memory(app.engine.b)}));assert(P.rowsReviewed(app.dialogue.lines));}
 function finish(){h.finish(app);}function resume(){app.stopBattle();app=h.load(plain(app.profile));app.continue();app.turnNotice=null;return app.engine.b;}
