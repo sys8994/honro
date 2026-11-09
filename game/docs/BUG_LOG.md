@@ -5379,3 +5379,9 @@ Title `여정 이어가기` could choose an older hub before honoring a saved di
 - 확인: 두 HTML/Playtest build, compact lazy-author·기존412 저장 경계 검사 통과. 최종 native 전체/일반/모바일 합성 직접 확인. 실제 Chromium 부팅/rev413/4인/오류0 확인.
 - 한계: 이번 UI 이동 입력은 재개된 도입 대화에 막혀 점프/사격/Continue 새 검증은 미완료. 전체 브라우저 완주·사람의 미감/난도 승인으로 표시하지 않는다.
 
+## Pages 파일 동기화 시간 초과와 소스 중복 발행 — 2026-11-09
+
+- 관측: `12f58a45a`의 Jekyll build/upload는 성공했으나 Pages deploy가 `syncing_files`에서 10분 뒤 취소됐고, 같은 빌드 재시도도 시간 초과했다. 실제 artifact는 7,156파일·655,001,600B tar로, `game/`·`shared/`·제작 도구 원본 등 실행에 필요 없는 중복이 포함됐다. 플랫폼 내부 정체의 세부 원인은 로그에 없으며 크기만으로 확정하지 않는다.
+- 변경: `_config.yml`에서 중복 소스·제작 디렉터리를 제외. Git 원본, 현재/과거 보존 `web/` 전체, BGM, 공개 도감은 유지한다. 게임 코드·HTML·저장 형식은 변경하지 않았다.
+- 확인: 제외 경로를404로 막은 실제 Chromium에서6200×3200/rev413/4인/초기17기와 Workshop 부팅, 페이지 오류0. 기존 artifact 기준 남는 파일은1,692개·241,124,188B로 예상. 실제 새 artifact 크기·원격 배포와 공개 화면은 후속 결과를 별도 확인한다.
+

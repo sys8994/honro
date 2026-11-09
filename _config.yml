@@ -1,11 +1,49 @@
-# Keep source and review evidence in Git; omit authoring originals and diagnostic trees from Pages.
+# Omit authoring trees; keep built web/ (including retained releases), BGM and public HTML.
+# Sources remain in Git. They are already bundled into web/ and must not be
+# synchronized a second time by Pages. Keep tools/character-catalog.html and
+# tools/bgm-title-review.html public; neither directory's authoring code is needed.
 exclude:
-  - art/**
-  - tests/**
-  - game/tests/**
-  - game/docs/stage-review/**
-  - game/docs/art-review/**
-  - review/**
+  - art
+  - tests
+  - game
+  - shared
+  - workshop
+  - review
+  - migration
+  - audit
+  - tools/act1-vector-production
+  - tools/act2-ci
+  - tools/act2-dialogue-ci
+  - tools/act2-qa
+  - tools/act2-vector-production
+  - tools/act4
+  - tools/act4-ci
+  - tools/act4-rc
+  - tools/act4-source
+  - tools/act4-vector-production
+  - tools/actor-forge
+  - tools/character-catalog
+  - tools/environment
+  - tools/fonts
+  - tools/intent-pipeline
+  - tools/map-forge
+  - tools/monster-forge
+  - tools/party-forge
+  - tools/physics
+  - tools/qa-stage39
+  - tools/release
+  - tools/skill-icons
+  - tools/stage23-qa
+  - tools/stage31
+  - tools/stage31-production
+  - tools/stage32-production
+  - tools/stage33-production
+  - tools/stage35-production
+  - tools/stage40-qa
+  - tools/stage6-prototype
+  - tools/story
+  - tools/testing
+  - tools/vector-production
 
 # This is an already-built static site, not a Markdown/theme conversion.
 url: https://sys8994.github.io
