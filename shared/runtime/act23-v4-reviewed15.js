@@ -105,7 +105,7 @@ function drive(app){const b=app.engine.b,m=memory(b),s=b.honroV4Reviewed15,q=api
  if((b.honroState.storyQueue||[]).length)return;
  if(!q.events.arrival){scene(app,'arrival',['EDGE.ARRIVALS_15_0'],{},[{actor:s.wheel},s.pulleys[0]]);return;}
  if(!q.events.wheel&&(allow(app,api.row('A2.S15.INTRO.01'))||!alive(unit(b,s.wheel))&&m.lowObserved)){scene(app,'wheel',['A2.S15.INTRO.01','A2.S15.INTRO.02'],m.wheel,[{actor:s.wheel},s.pulleys[0]]);return;}
- if(!q.events.paths&&m.lowObserved&&api.done(b,'wheel')){scene(app,'paths',['A2.S15.INTRO.03','A2.S15.CHOICE.01'],{low:m.lowObserved,high:m.highObserved},[V.marker(b,'sluice'),{x:2820,y:3748}]);return;}
+ if(!q.events.paths&&m.lowObserved&&api.done(b,'wheel')){scene(app,'paths',['A2.S15.INTRO.03','A2.S15.CHOICE.01'],{low:m.lowObserved,high:m.highObserved},[V.marker(b,'sluice'),b.honroV4Reviewed15.pathsCamera||{x:2820,y:3748}]);return;}
  if(!q.events['high-branch']&&allow(app,api.row('A2.S15.BRANCH.02'))){scene(app,'high-branch',['A2.S15.BRANCH.02'],m.blockedSight,[m.blockedSight.from,m.blockedSight.to]);return;}
  if(!q.events['first-drops']&&m.drops.passes>=1){scene(app,'first-drops',['A2.S15.MID.01'],m.drops,[s.merge]);return;}
  if(api.done(b,'first-drops')&&!q.events['repeat-drops']&&m.drops.passes>=2){scene(app,'repeat-drops',['A2.S15.MID.02'],m.drops,[s.merge]);return;}
