@@ -1,6 +1,7 @@
 node_modules
 # Local archives, generated reports, screenshots and verification logs.
 /_local/
+/.codex-attachments/
 __pycache__/
 *.pyc
 *.log
