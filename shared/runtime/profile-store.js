@@ -214,7 +214,7 @@ function preserveOriginal(text){
  }catch(e){throw failure(e.profileReason||'archive-storage');}
 }
 function create(){
- let raw=null,locked=false,reason=null,kind=G.HONRO_EMBEDDED?'embedded':'absent',retryCandidate=null;
+ let raw=null,locked=false,reason=null,kind=G.HONRO_EMBEDDED?'embedded':'absent',retryCandidate=null,lastWriteError=null;
  const fail=code=>{locked=true;reason=code;kind='failed';};
  function read(){
   let text;try{text=G.localStorage.getItem(KEY);}catch{throw failure('read');}
@@ -226,8 +226,12 @@ function create(){
  if(!G.HONRO_EMBEDDED){try{initial=read();if(initial)kind='ready';}catch(e){fail(e.profileReason);}}
  initial??=fresh();
  function write(profile){
-  let text;try{preserveOriginal(G.localStorage.getItem(KEY));text=JSON.stringify({...profile,honroBattle:compactBattleArt(profile.honroBattle)});G.localStorage.setItem(KEY,text);}catch(e){if(e.profileReason?.startsWith('archive-')){fail(e.profileReason);throw e;}throw failure('write');}
-  raw=text;locked=false;reason=null;kind='ready';retryCandidate=null;return profile;
+  let text,step='read';try{const previous=G.localStorage.getItem(KEY);step='archive';preserveOriginal(previous);step='serialize';text=JSON.stringify({...profile,honroBattle:compactBattleArt(profile.honroBattle)});step='write';G.localStorage.setItem(KEY,text);}catch(e){
+   const code=e.profileReason?.startsWith('archive-')?e.profileReason:step==='serialize'?'serialization':e.name==='QuotaExceededError'||e.name==='NS_ERROR_DOM_QUOTA_REACHED'?'quota':e.name==='SecurityError'||e.name==='NotAllowedError'?'permission':'storage';
+   lastWriteError={code,step,name:typeof e.name==='string'?e.name:'Error',chars:typeof text==='string'?text.length:null};
+   if(e.profileReason?.startsWith('archive-')){fail(e.profileReason);throw e;}throw failure('write');
+  }
+  raw=text;locked=false;reason=null;kind='ready';retryCandidate=null;lastWriteError=null;return profile;
  }
  function replace(make){
   if(G.HONRO_EMBEDDED)return{ok:false,reason:'embedded'};
@@ -236,7 +240,8 @@ function create(){
  return{
   initial,
   get locked(){return locked;},
-  get state(){return{kind,reason,hasOriginal:typeof raw==='string'};},
+  get state(){return{kind,reason,hasOriginal:typeof raw==='string',lastWriteError:lastWriteError?{...lastWriteError}:null};},
+  saveFailureMessage(){const code=lastWriteError?.code;return code==='quota'?'브라우저의 혼로 저장 공간이 부족해 기록하지 못했습니다. 디스크 여유 공간과는 별개입니다. 설정에서 현재 기록을 내보낸 뒤 다시 저장해 주세요.':code==='permission'?'브라우저가 기록 저장을 허용하지 않았습니다. 사이트 저장 권한을 확인하고 설정에서 현재 기록을 내보내 주세요.':code==='serialization'?'현재 기록을 저장 형식으로 변환하지 못했습니다. 기존 저장은 보존되어 있습니다.': '기록을 저장하지 못했습니다. 기존 저장은 보존되어 있습니다. 설정에서 현재 기록을 내보낸 뒤 다시 시도해 주세요.';},
   save(profile){if(G.HONRO_EMBEDDED||locked)return false;try{write(profile);return true;}catch{return false;}},
   importText(text){return replace(()=>{const p=migrate(text);preserveOriginal(text);return p;});},
   newJourney(){return replace(fresh);},

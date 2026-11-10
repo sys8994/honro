@@ -5499,3 +5499,10 @@ Title `여정 이어가기` could choose an older hub before honoring a saved di
 ### 2026-11-10 — 추가한2장 하단 턱의 도로 통행 회귀
 - 첫발행52ff의 새 하단 암반이 하강 뒤 아랫길 전진을x820에서막는 것을 추가검수로확인. 하강만검사하고도로 통행을빠뜨린제작결함이다. 기존승인 소나무가지 one-way형상/지지벡터로교체해뒷절벽과전면도로분리.
 - 하강9구간/아래점프3회에이어790→1500보행과운반꾼몸체700→1490무도약/피해0통과.52ff에서저장한정확한추가암반만same-shape one-waycap보정,위치/HP/자원/진행/성장보존/멱등성검사.원래2장저장과무관한지형은변경하지않음.세부ACT1_REVIEW_FIXES.md.
+
+### 2026-11-11 — 치명적 버그 집중 수정: 조준 복제·저장 실패 진단
+- 기준 master `12fd1e2fa`, 시작 clean/fetch 동일, BGM stash 보존. 사용자 실제 충돌 저장/브라우저 crash dump는 없으며 오류9·35장 renderer 종료 원인은 미확인이다. 정상 신규 모델 / 실제 Continue / 세션 전용 debug를 구분한다.
+- 31·35·40장 관통시/급소시 미리보기가 그림까지 full clone함을 확인. 기존38/40 A01 전용의 엄격한 art-only replay를 해당 공식 장/스킬에 확대했다. 31 A02 7,087,540→100,920자,35 A14 4,402,469→77,087자,40 A02 30,805,644→130,554자. live vector/물리/충돌/저장은 불변. custom/Workshop/alias 등은 full clone 유지,18은 미확인 상태로 그대로 둔다. 메모리 낭비 수정이며 네 충돌의 공통 원인 확정이 아니다.
+- 기존52ff 저장 그림 중복 제거 유지. profile writer의 quota/permission/serialization/storage/archive 실패 원인·단계·입력길이만 메모리 진단으로 노출하고 자동/보상/결과 경고를 구분한다. 실패 시 기존 바이트/미확정 보상 보존, 재시도 후 1회 확정. 디스크 여유와 origin quota는 별개다.
+- `critical-arrow-prediction.mjs` full-clone 궤적/충돌 결과12개 exact 비교·fallback·원본불변 통과. `critical-save-failure.mjs` 11장 autosave/restore·4종 오류·원본 바이트·장비 rollback/retry 통과. Chromium 기존 공개 빌드18/31/35/40 정상 Continue 첫발사 모두 crash/pageerror 없이 통과(관찰된 R2/3 debug 경로 재현 아님); 통합 빌드 동일4건 통과. 11장 장비창의 native quota fault injection→원본 exact 보존→재시도→Continue 자원/소유 exact 통과. 전투/정산을 강제 승리로 대체하지 않았다. 원래17R 정산/결과 누락 인과는 미확인.
+- 상세 재현·JSON·PNG는 `_local/reports/critical-20261111/`. 도구 대기 포함 시간은 실제 사람 플레이타임이 아니다. commit/push/Pages는 별도 발행 기록으로 확인한다.
