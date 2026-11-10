@@ -71,6 +71,9 @@ P.register(14,{mapRevision:514,actors:{'길찬':'14.gilchan'},allow,drive,before
  failure:b=>b.phase==='lost'||S.failure(b)?'A2.S14.FAIL.01':null,
  complete:b=>sheltered(b)&&done(b,'refuge')&&!!mem(b).journal,
  prepare(b){const u=gil(b);if(u&&!physical(b).hypnosis&&!base(b).proof['14.extract'])u.honroHypnotized=false;},
+ // Offer an interaction only after the same scene prerequisites used by use().
+ // Returning undefined once ready keeps the underlying class/range/physical checks.
+ eligibility(app,m,s){const b=app.engine.b;if(s.id==='14.house'&&!done(b,'invite')||s.id==='14.extract'&&(!done(b,'hypnosis')||!done(b,'warning')||!done(b,'separate')))return{ok:false,reason:s.id};return undefined;},
  use(app,m,s){const b=app.engine.b;if(s.id==='14.house'&&!done(b,'invite'))return false;if(s.id==='14.extract'&&(!done(b,'hypnosis')||!done(b,'warning')||!done(b,'separate')))return false;return undefined;}
 });
 G.HonroAct23V4Reviewed14={sheltered,separated};

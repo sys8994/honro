@@ -5506,3 +5506,11 @@ Title `여정 이어가기` could choose an older hub before honoring a saved di
 - 기존52ff 저장 그림 중복 제거 유지. profile writer의 quota/permission/serialization/storage/archive 실패 원인·단계·입력길이만 메모리 진단으로 노출하고 자동/보상/결과 경고를 구분한다. 실패 시 기존 바이트/미확정 보상 보존, 재시도 후 1회 확정. 디스크 여유와 origin quota는 별개다.
 - `critical-arrow-prediction.mjs` full-clone 궤적/충돌 결과12개 exact 비교·fallback·원본불변 통과. `critical-save-failure.mjs` 11장 autosave/restore·4종 오류·원본 바이트·장비 rollback/retry 통과. Chromium 기존 공개 빌드18/31/35/40 정상 Continue 첫발사 모두 crash/pageerror 없이 통과(관찰된 R2/3 debug 경로 재현 아님); 통합 빌드 동일4건 통과. 11장 장비창의 native quota fault injection→원본 exact 보존→재시도→Continue 자원/소유 exact 통과. 전투/정산을 강제 승리로 대체하지 않았다. 원래17R 정산/결과 누락 인과는 미확인.
 - 상세 재현·JSON·PNG는 `_local/reports/critical-20261111/`. 도구 대기 포함 시간은 실제 사람 플레이타임이 아니다. commit/push/Pages는 별도 발행 기록으로 확인한다.
+
+### 2026-11-11 — 12·14·17·29·30·36장 진행 안내와 집결 회귀
+- 12: 최초 진목 접촉 동행만 왕복 증거를 쌓는 기존 조건은 유지하고, 동행 이름/동일 동행/현재 길표 또는 진목 목표점을 HUD에 표시. 14: 실행과 동일한 hypnosis/warning/separate 대사 guard를 eligibility에 추가해 미준비 버튼 거짓 활성 제거. 실제 Chromium MID08 cursor Continue→대사 완료→정상키로 같은 층 접근→분리 버튼 성공.
+- 17: 실제 철수점을 막는 적(초기 a2-enemy-18이 길찬 목적지191거리) 또는 몸막힘의 이름·방향·위치를 안내. 안전 gate/충돌/필수 전투/철수 조건 그대로. 적제거·선행기계 조건 fixture 이후 Chromium 실제 두 NPC 철수/접지→승리 정산 확인. 관찰된 저장의 원인이 이 적이었다고 단정하지 않음.
+- 29: 보스 사망만으로 수문 단계 OBJ04를 표시하던 안내를 관문 안전전이 OBJ02/군진 정리 OBJ01 우선으로 교정. 30: 주민4/4 이후에도 남은 증원·곽진/주민 안전도달·배 접안 필수 조건을 표시. 모두 조건 삭제 없이 실제 선행조건 통과 모델 및 Chromium 수문/E·증언/E·지도 대조 확인. 모든 선행조건 후 영구교착은 미재현, 전체 브라우저 최종출구/정산은 미검증.
+- 36: 법정 지지면 끝3300에 completeX3212라 88폭뿐. 기존 leaveX3014까지 최종 집결선 확장. 높이/문낙하/실제대사 DOOR01·02/leave terminal/quiet 조건 보존. Chromium 정상4인 키보행→저장 Continue 좌표/HP/기력/성장 exact→E 승리/완료기록/저장경고 없음. 선행전투·문/대사는 fixture이며 정상 전체완주를 뜻하지 않음.
+- 37~39 XP0: 신규/완료/실제 App debug/재시도12조건 모두 budget start=end225393. balance.futureActs Act4 exit=[23,24,25,25,25,25,25,25]의 현행25→25 plateau이며 지급 유실로 수정하지 않음. 중복 지급 guard 유지.
+- 새 `critical-act2-progress.mjs`, `critical-later-progress.mjs` 및 기존 reviewed12/14/17/29-spear/30-farewell/36-door 집중 검사 통과. 일반 신규는 모델, 브라우저는 명시한 합성 체크포인트 이후 실제 입력이며 사용자 저장은 접근/변경하지 않음. 원고·revision·기존 진행 보존. 상세 한계/PNG는 `_local/reports/critical-20261111/`.

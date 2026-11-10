@@ -102,7 +102,10 @@ function interact(app=G.HonroApp,probe=false){const b=app.engine?.b;if(!(b?.honr
  if(n===31&&q.boat.phase==='docked'&&!narrativePending(b)&&offered(b,'boat_approach')&&offered(b,'board_ready')&&quiet(b)&&party(b).every(u=>u.x>boarding(b).boardX1&&u.x<boarding(b).boardX2&&Math.abs(u.y-boarding(b).deckY)<5&&app.engine.grounded(u))){if(probe)return true;q.boat.phase='boarded';q.complete=true;return true;}
  if(n===36&&u.cls==='knight'&&quiet(b)&&atDoor(b,u)&&q.door.phase==='standing'){if(probe)return true;q.door.phase='falling';q.door.time=0;return true;}
  if(n===35&&quiet(b)&&party(b).every(u=>u.x>K(b,'completeX',6500)&&u.y<K(b,'completeYMax',1e9))){if(probe)return true;q.complete=true;return true;}
- if(n===36&&quiet(b)&&q.door.phase==='fallen'&&q.events.leave?.terminal&&['A4.S36.DOOR.01','A4.S36.DOOR.02'].every(id=>q.receipts.includes(id))&&party(b).every(u=>u.x>K(b,'completeX',6500)&&u.y<K(b,'completeYMax',1e9))){if(probe)return true;q.complete=true;return true;}
+ // The compact court leaves only 88 world units beyond completeX. Use the
+ // already-authored leave approach for the living party's final assembly;
+ // the fallen door, observed dialogue and quiet-state gates still apply.
+ if(n===36&&quiet(b)&&q.door.phase==='fallen'&&q.events.leave?.terminal&&['A4.S36.DOOR.01','A4.S36.DOOR.02'].every(id=>q.receipts.includes(id))&&party(b).every(u=>u.x>Math.min(K(b,'completeX',6500),K(b,'leaveX',K(b,'completeX',6500)))&&u.y<K(b,'completeYMax',1e9))){if(probe)return true;q.complete=true;return true;}
  if(n===36&&u.cls==='knight'&&quiet(b)&&atDoor(b,u)&&q.door.phase==='fallen'&&q.events.door_falls?.terminal&&!['A4.S36.DOOR.01','A4.S36.DOOR.02'].every(id=>q.receipts.includes(id))){if(probe)return true;const d=event(q,'door_falls');d.started=d.terminal=false;return play(app,'door_falls');}
  return false;
 }
