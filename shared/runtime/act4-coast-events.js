@@ -38,6 +38,10 @@ function onRoad(e,u,p){return supportId(e,u)===p.support&&Math.abs(u.x-p.x)<280;
 function threatStopped(e,id){const u=e.unit(id);return !!u&&(!alive(u)||u.bound>0||!!u.eaterCapturedBy||!!u.enthrall);}
 function checkpoint(b){const routes=memory(b).routeObjectives;return routes&&climbSectors.find(p=>!routes.crossed[p.key]);}
 P.beginRouteObjectives=function(b){const q=memory(b);if([37,38].includes(b.honroAct4Preview))q.routeObjectives??={crossed:{},cover:{},transit:{}};if(b.honroAct4Preview===39)q.escortedRescue=true;};
+P.recordRoadDefense=function(app,u){const e=app.engine,b=e.b;if(b.honroAct4Preview!==37||u.side!==0||u.shield<=0)return;
+ const p=checkpoint(b);if(!p||!onRoad(e,u,p))return;
+ memory(b).routeObjectives.cover[p.key]={actor:u.id,enemyEnd:b.teamEnds?.[1]||0};app.dirty=true;
+};
 function routeGoal(app,text){if(app.stage.goal===text)return;app.stage.goal=text;const node=G.document.getElementById('objective-text');if(node)node.textContent=text;app.dirty=true;}
 function climbObjectives(app){const e=app.engine,b=e.b,q=memory(b),routes=q.routeObjectives,p=checkpoint(b);
  if(!p){routeGoal(app,closed(q,'signal')?'신호 확인 완료 · 상단 출구에 동행 집결':'상단에서 구조 신호 확인');return;}
@@ -350,8 +354,6 @@ function wreckLaunch(e,u,target,legacyOrigin){
  return candidates.sort((a,b)=>b.outward-a.outward)[0]||null;
 }
 const attached=new WeakSet();P.attachCoast=function(app){const e=app.engine,b=e.b,n=b.honroAct4Preview;if(!active(b)||attached.has(e))return;const rewardTarget=eliteRewardTarget(b);attached.add(e);
- if(n===37){const wait=e.wait.bind(e);e.wait=function(...args){const u=e.active,p=checkpoint(b),eligible=p&&u?.side===0&&e.canAct()&&!u.retreat&&onRoad(e,u,p);const before=b.teamEnds?.[1]||0,out=wait(...args);
-   if(eligible&&u.shield>0&&(u.acted||b.phase!=='aim')){memory(b).routeObjectives.cover[p.key]={actor:u.id,enemyEnd:before};app.dirty=true;}return out;};}
  if(n===40&&b.honroAct4EncounterRevision===1){if(!G.HonroEncounterDensity?.installActivation)throw Error('Missing Act4 encounter activation');G.HonroEncounterDensity.installActivation(e);if(!b.honroAct4EncounterActivationReady){e.refreshActivation();b.honroAct4EncounterActivationReady=true;}}
  // Every observer is scoped to the captured battle; changing chapter ends its
  // loop. Core Engine remains the sole physics, hit and locomotion provider.

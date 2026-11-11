@@ -42,7 +42,9 @@ function fixture(n){
 {
  const {app,e,b,q,heroes,place}=fixture(37);P.attachCoast(app);P.beginRouteObjectives(b);
  place(heroes[0],'approved37-lower-diagonal',1450);place(heroes[1],'approved37-lower-diagonal',1520);P.coastObserve(app,.025);
- const before={can:e.canAct(),side:b.side,phase:b.phase,active:e.active?.id};e.wait();P.coastObserve(app,.025);
+ g.performance={now:()=>2000+(app.turnNotice?.pauseUntil||0)};
+ assert(app.canInput(),'input resumes after the turn notice');
+ const before={can:e.canAct(),side:b.side,phase:b.phase,active:e.active?.id};app.defend();P.coastObserve(app,.025);
  assert(!q.routeObjectives.crossed.road,'defending by itself does not count as a crossing');
  place(heroes[1],'approved37-lower-diagonal',1350);P.coastObserve(app,.025);
  assert.equal(q.routeObjectives.crossed.road?.cover,'archer',JSON.stringify({before,active:e.active?.id,route:q.routeObjectives,points:heroes.map(u=>[u.id,u.x,u.y,u.shield,u.acted,e.contactSurface(u.x,u.y-4,u.y+5)?.t.id])}));
