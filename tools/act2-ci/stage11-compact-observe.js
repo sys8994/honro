@@ -12,17 +12,18 @@ query => {
   const foes=b.units.filter(v=>v.side===1&&alive(v)&&HonroAct2.visible(b,v));
   const spirits=new Set([...(physical.release?.ids||[]),...(physical.north?.ids||[])]);
   const afterClear=['11.exit','11.north'].includes(current?.id),remainingSpirits=foes.filter(v=>spirits.has(v.id));
-  let targets=current?.id==='11.thread'?[]:afterClear?remainingSpirits:current?.kind==='clear'?foes.filter(v=>current.defeatIds?.includes(v.id)||spirits.has(v.id)):foes;
+  const localThreats=current?.id==='11.north'?foes.filter(v=>HonroAct23V4.near(v,marker,700)):[];
+  let targets=current?.id==='11.thread'?[]:afterClear?[...new Set([...remainingSpirits,...localThreats])]:current?.kind==='clear'?foes.filter(v=>current.defeatIds?.includes(v.id)||spirits.has(v.id)):foes;
   targets.sort((a,z)=>Number(spirits.has(z.id))-Number(spirits.has(a.id))||dist(a,u)-dist(z,u));
   const allDone=memory.done||{},compact=HONRO_PROJECT.stages.find(s=>s.metadata?.stageId===11)?.design?.compact11;
   // Engine.canAct is wrapped by encounter-density and offers warning receipts;
   // even that apparent query must not be called by QA observation. Read the
   // base eligibility fields plus visible modal/turn notice instead. Actual UI
   // handlers remain authoritative when a real key is sent.
-  const can=b.phase==='aim'&&b.side===0&&!!u&&!u.dead&&!u.summoned&&!u.enthrall&&!u.acted&&!u.equipmentState?.motion&&!u.airborne&&(!u.platformDrop||u.platformDrop.phase==='land')&&!app.dialogue&&!app.modal.classList.contains('open')&&!app.done&&!(app.turnNotice&&performance.now()<app.turnNotice.pauseUntil);
+  const can=b.phase==='aim'&&b.side===0&&!!u&&!u.dead&&!u.summoned&&!u.enthrall&&!u.acted&&!u.equipmentState?.motion&&(!u.platformDrop||u.platformDrop.phase==='land')&&!app.dialogue&&!app.modal.classList.contains('open')&&!app.done&&!(app.turnNotice&&performance.now()<app.turnNotice.pauseUntil);
   const state={stage:b.honroStage,width:b.width,height:b.height,revision:b.honroCampaignMapRevision,
     compactRevision:b.honroStage11CompactRevision,round:b.round,side:b.side,phase:b.phase,
-    active:u?.id,cls:u?.cls,x:u?.x,y:u?.y,angle:u?.angle,facing:u?.facing,moveLeft:u?.moveLeft,
+    active:u?.id,cls:u?.cls,x:u?.x,y:u?.y,angle:u?.angle,facing:u?.facing,moveLeft:u?.moveLeft,walkSpeed:u?.walkSpeed,
     can,grounded:!!u&&e.grounded(u),drop:!!document.getElementById('drop')&&!document.getElementById('drop').disabled,retreat:!!u?.retreat,meleeFollow:u?.meleeFollow,meleeAction:!!u?.meleeAction,
     support:u&&e.contactSurface(u.x,u.y-4,u.y+5)?.t?.id,shots:b.shots,
     dialogue:!!app.dialogue,dialogueRow:app.dialogue?.lines?.[app.dialogue.index],
@@ -36,7 +37,7 @@ query => {
     summons:b.units.filter(v=>v.side===0&&(v.summoned||v.summonOwner)).map(v=>({id:v.id,owner:v.summonOwner,kind:v.summonKind,hp:v.hp,dead:v.dead})),
     camera:{x:sc.x,y:sc.y,scale:sc.scale,manual:sc.manual},
     targetIds:targets.map(v=>v.id),visibleTargets:targets.filter(inView).map(v=>({id:v.id,x:v.x,y:v.y,hp:v.hp})),
-    gather:afterClear&&!remainingSpirits.length,initialEnemies:compact?.budget?.initial,
+    gather:afterClear&&!targets.length,initialEnemies:compact?.budget?.initial,
     stored:localStorage.getItem('honro-first-act-profile-1')!==null};
   if(query.mode==='state')return state;
   if(query.mode==='source')return{stage:HONRO_PROJECT.stages.find(s=>s.metadata?.stageId===11),battle:b,profile:app.profile};
@@ -66,6 +67,13 @@ query => {
   if(!compact?.routes||!compact?.sites)throw Error('Compact routes/sites missing');
   let goal,enemy=false;
   if(query.strategy==='flank'&&current?.id==='11.entry-threat'&&u.cls==='archer'&&e.unit(b.honroV4Chapter11.host)&&alive(e.unit(b.honroV4Chapter11.host)))goal={...compact.sites.firingRock,id:'firing-rock'};
+  else if(current?.id==='11.entry-threat'&&u.x<1120){
+    // Cross the bier or take the authored firing rock before choosing a shot.
+    // Stopping at nominal range on its west side can hide every legal target.
+    const x={archer:1200,mage:1260,knight:1410,occultist:1320}[u.cls];
+    const floor=b.terrain.find(t=>t.id==='compact-floor');
+    goal={id:'east-of-bier',x,y:C.topAt(floor,x),surfaceId:floor.id};
+  }
   else if(state.gather){const x=marker.x+({archer:-125,mage:-45,knight:45,occultist:125}[u.cls]),floor=b.terrain.find(t=>t.id==='compact-floor');goal={...marker,x,y:C.topAt(floor,x),surfaceId:floor.id};}
   else if(targets[0]){goal=targets[0];enemy=true;}
   else goal=marker;

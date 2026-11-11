@@ -93,6 +93,7 @@ function tuneEncounter(u,stage=0){
  // depend on out-of-combat healing that the engine does not provide.
  scaleEncounter(u,.78,.75);
  if(u.honroAct2Elite&&!u.honroAct2Boss&&u.honroType!=='hoist'){u.elite=true;u.hp=u.maxHp=Math.round(u.maxHp*1.55);u.combatBaseHp*=1.55;u.attack*=1.15;u.combatBaseAttack*=1.15;u.honroXpWeight=(u.honroXpWeight||1)*1.6;u.name='정예 '+u.name;}
+ if(stage===11&&u.id==='compact11-exit-guard'&&u.honroStage11GuardHpScale===.70)scaleEncounter(u,.70,1);
  if(late){scaleEncounter(u,.85,.65);u.honroAct2LateTuned=true;}
 }
 function state(b){const list=steps(b),index=list.findIndex(s=>!s.optional&&!satisfied(b,s)),s=index<0?null:list[index],m=s&&marker(b,s.id),t=s&&G.HonroQuestTargets.records(b).find(t=>t.id===s.id),u=s&&b.units.find(u=>u.id===s.target),done=list.filter(q=>!q.optional&&satisfied(b,q)).length;

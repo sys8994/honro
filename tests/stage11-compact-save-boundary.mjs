@@ -15,11 +15,14 @@ for(const [file,row]of Object.entries(manifest.files))assert.equal(hash(await re
 const h=await appHarness({productionStory:true}),g=h.g,V=g.HonroAct23V4,profileText=gunzipSync(await readFile(base+'/old412-entry-profile.json.gz')).toString('utf8'),saved=JSON.parse(profileText),oldBattle=plain(saved.honroBattle),checks=[];
 assert.equal(hash(profileText),'5311a3d818bd27db8ec5a45afad5fef4175743cb4f8a2421f7d59685618dd370');
 assert.equal(hash(oldBattle),'db18c24b223a7bf9569c466af98ac55b6a41ecc7e8ba8983fd8a69250e4dd399');
+const continued412=plain(oldBattle);
+// Current clear-report initialization migrates these two fields on first mount.
+Object.assign(continued412.honroReport,{npcDamagePartial:true,npcDamageRevision:1});
 let app=h.load(h.profileThrough(10));
 for(let cycle=0;cycle<2;cycle++){
- await h.import(saved);assert.deepEqual(plain(app.profile.honroBattle),oldBattle,'old412 imported exact');app.continue();assert.deepEqual(plain(app.engine.b),oldBattle,'old412 Continue exact');await app.export();const x=await h.exported();assert.deepEqual(x.honroBattle,oldBattle,'old412 exported exact');app=h.load(x);assert.deepEqual(plain(app.profile.honroBattle),oldBattle,'old412 reload exact');
+ await h.import(saved);assert.deepEqual(plain(app.profile.honroBattle),oldBattle,'old412 imported exact');app.continue();assert.deepEqual(plain(app.engine.b),continued412,'old412 Continue exact');await app.export();const x=await h.exported();assert.deepEqual(x.honroBattle,continued412,'old412 exported exact');app=h.load(x);assert.deepEqual(plain(app.profile.honroBattle),continued412,'old412 reload exact');
 }
-checks.push('Exact old412 import/Continue/export/reload twice preserves whole battle');
+checks.push('Exact old412 import; Continue/export/reload preserve the battle with current NPC report metadata');
 // The old producer did not store new compact framing fields. Exercise their
 // actual renderer fallback calls with a drawing recorder, not pixel approval.
 const legacy=plain(oldBattle),m=g.HonroAct23V4Chapter11.memory(legacy);m.incoming={count:3,elapsed:1,distance:80};
@@ -65,10 +68,33 @@ for(const name of ['three-at-exit','one-airborne','one-dead','all-four-grounded'
 checks.push('Only compact exit waits for all four alive grounded classes; three-near/one-air/one-dead rejected');
 const compactEnabled=g.HonroStage11Compact?.enabled()===true,revisionBoundary={enabled:compactEnabled};
 if(compactEnabled){
- app=h.load(saved);app.continue();assert.deepEqual(plain(app.engine.b),oldBattle,'old412 exact under current413 policy');assert.equal(app.engine.b.honroCampaignMapRevision,412,'do not rewrite old revision stamp');
+ app=h.load(saved);app.continue();assert.deepEqual(plain(app.engine.b),continued412,'old412 exact under current413 policy');assert.equal(app.engine.b.honroCampaignMapRevision,412,'do not rewrite old revision stamp');
  app.retry();h.finish(app);assert.equal(app.engine.b.honroCampaignMapRevision,413);assert.equal(app.engine.b.width,6200);assert.equal(app.engine.b.height,3200);assert.equal(app.engine.b.units.length,g.HONRO_STAGE11_COMPACT_DATA.stage.initialState.honroStage11CompactRosterRevision===2?21:25,'Exact declared fresh roster, never an old-save refill');
  const retry={width:app.engine.b.width,height:app.engine.b.height,revision:app.engine.b.honroCampaignMapRevision,units:app.engine.b.units.length};
  app=h.load(h.profileThrough(10));app.launch(11);h.finish(app);assert.equal(app.engine.b.honroCampaignMapRevision,413);assert.equal(app.engine.b.honroStage11CompactRevision,1);
+ const live=app.engine.b,approach=b=>V.steps(b).find(q=>q.id==='11.exit-threat'),flyers=['compact11-exit-lantern','compact11-exit-crow'];
+ assert(approach(live).defeatIds.includes('compact11-exit-guard'));
+ assert(flyers.every(id=>live.units.some(u=>u.id===id&&!u.dead)&&!approach(live).defeatIds.includes(id)));
+ const stage413=plain(live),point=V.marker(stage413,'11.exit'),floor=stage413.terrain.find(t=>t.id==='compact-floor');
+ const offsets=[-285,-95,45,125];
+ for(const [i,u]of V.heroes(stage413).entries()){
+  u.x=point.x+offsets[i];u.y=g.HONRO_CORE.topAt(floor,u.x);u.vx=u.vy=0;u.airborne=u.jumping=false;
+ }
+ assert(g.HonroAct23V4Reviewed.gathered(stage413),'all four feet on the wider new rally shoulder');
+ const old413=plain(stage413);old413.honroV4Chapter11.gatherRadius=180;
+ const oldSteps=old413.honroV4Steps;
+ oldSteps.find(q=>q.id==='11.exit-threat').defeatIds.push(...flyers);
+ delete oldSteps.find(q=>q.id==='11.exit').radius;
+ old413.honroAct2Steps=plain(oldSteps);
+ assert(!g.HonroAct23V4Reviewed.gathered(old413),'earlier compact save keeps its original rally width');
+ const old413Profile=plain(app.profile);old413Profile.honroBattle=old413;
+ const old413App=h.load(old413Profile);old413App.continue();const restored413=old413App.engine.b;
+ assert.equal(restored413.honroCampaignMapRevision,413);
+ assert.equal(restored413.honroV4Chapter11.gatherRadius,180);
+ assert.deepEqual(plain(approach(restored413).defeatIds),plain(approach(old413).defeatIds));
+ assert.deepEqual(plain(restored413.units),old413.units);
+ assert.deepEqual(plain(restored413.terrain),old413.terrain);
+ checks.push('Earlier compact 413 Continue retains its original target IDs, rally width, combatants and terrain');
  const cases=[];
  for(const [name,edit,wantPreserve,wantObsolete]of [
   ['old412',()=>{},true,false],['old211',b=>b.honroCampaignMapRevision=211,true,false],['old0',b=>b.honroCampaignMapRevision=0,true,false],['oldUndefined',b=>delete b.honroCampaignMapRevision,true,false],['future999',b=>b.honroCampaignMapRevision=999,false,true],['emptyTerrain',b=>b.terrain=[],false,true],['emptyUnits',b=>b.units=[],false,true],['nullTerrain',b=>b.terrain=[null],false,true],['nullUnits',b=>b.units=[null],false,true],['unknownSize',b=>b.width=15999,false,true],['oldEngine19',b=>b.honroRevision=19,false,true],['Workshop',b=>{b.honroMapOrigin='workshop';b.honroCustom=true;},false,false]]){

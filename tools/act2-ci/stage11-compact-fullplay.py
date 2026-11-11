@@ -26,7 +26,7 @@ SETUP = r"""async seed => {
  await HonroCampaignLoader.ensureStage(11);
  const p=HonroProfileStore.fresh();p.cleared??={};
  for(let i=1;i<=10;i++)p.cleared[i]={visits:1,rounds:5};
- p.recruited=HonroStageRules.stageParty(11);p.party=[...p.recruited];p.lastStage=11;p.settings.debugMode=false;
+ p.recruited=HonroStageRules.stageParty(11);p.party=[...p.recruited];p.lastStage=11;p.settings.debugMode=false;p.settings.difficulty='story';
  const allocations={archer:{AP04:1,AP02:2,AP01:2,AP03:1,A14:1,A02:4,A11:1,A09:4,A05:4},mage:{M07:1,M10:4,M03:3,M11:3,MP01:3,MP02:2,MP04:2,MP03:1},knight:{S03:4,S05:3,S01:1,S09:3,SP01:3,SP02:3,SP04:2},occultist:{O07:1,O08:3,O02:4,O11:3,OP01:3,OP02:2,OP03:2,OP04:1}};
  const training=[];
  for(const cls of p.recruited){const h=p.heroes[cls];h.xp=HonroProgression.xpAt(HonroProgression.plan(11).entryLevel);
@@ -141,7 +141,7 @@ def main():
                     if raw is not None:
                         data = raw.encode('utf-8')
                         path = snapshots / f'{count:04d}.json.xz'
-                        path.write_bytes(lzma.compress(data))
+                        path.write_bytes(lzma.compress(data, preset=0))
                         row['storageSnapshot'] = {'file': str(path), 'sha256': hashlib.sha256(data).hexdigest(), 'bytes': len(data)}
                 events.write(json.dumps(row, ensure_ascii=False) + '\n')
                 events.flush()
@@ -178,7 +178,10 @@ def main():
                 finally:
                     p.keyboard.up(key)
 
-            def fine_walk(dx):
+            def fine_walk(dx, walk_speed=None):
+                if walk_speed and abs(dx)>45:
+                    pulse(1 if dx>0 else -1, min(680, max(35, round(abs(dx)/walk_speed*1000))))
+                    return
                 # Same normal joystick gesture as aiming, horizontally latched
                 # into moveAim. Lower axis magnitude avoids keyboard latency
                 # overshooting the closely spaced authored graph samples.
@@ -229,14 +232,28 @@ def main():
                     # A jump edge is completed only on its real destination
                     # support. Ordinary edges keep the model's foot tolerance.
                     point = link['point']
-                    reached = s['grounded'] and abs(s['x'] - point['x']) < 13 and abs(s['y'] - point['y']) < 35
+                    reached = s['grounded'] and abs(s['x'] - point['x']) < 18 and abs(s['y'] - point['y']) < 38
                     if link.get('jump'):
                         reached = reached and s['support'] == link['jump']['support']
+                    elif s['grounded'] and s['support'] == point.get('surfaceId') == link['from'].get('surfaceId'):
+                        direction = point['x'] - link['from']['x']
+                        reached = reached or direction != 0 and (s['x'] - point['x']) * direction >= 0
                     if not reached:
                         break
                     cached['index'] += 1
-                info.update(next=links[cached['index']] if cached['index'] < len(links) else None,
-                            atGoal=cached['index'] >= len(links), routeIndex=cached['index'], routeLinks=len(links))
+                index = cached['index']
+                next_link = links[index] if index < len(links) else None
+                if next_link and not next_link.get('jump'):
+                    direction = next_link['point']['x'] - s['x']
+                    for link in links[index + 1:]:
+                        point = link['point']
+                        delta = point['x'] - s['x']
+                        if (link.get('jump') or point.get('surfaceId') != s['support']
+                                or link['from'].get('surfaceId') != s['support']
+                                or delta * direction <= 0 or abs(delta) > 260):
+                            break
+                        next_link = {'from': next_link['from'], 'point': point, 'jump': None}
+                info.update(next=next_link, atGoal=next_link is None, routeIndex=index, routeLinks=len(links))
                 return info
 
             def move_once():
@@ -249,7 +266,25 @@ def main():
                     return False
                 link = nav['next']
                 point = link['from'] if link.get('jump') else link['point']
-                if link.get('jump') and abs(s['x'] - point['x']) < 16 and abs(s['y'] - point['y']) < 40:
+                if (s['support'] == 'compact-floor' and 842 <= s['x'] <= 910
+                        and nav['goal']['x'] >= 1120 and s['moveLeft'] > 270):
+                    # A real player holds the direction through takeoff. The
+                    # sightline graph can see the floor through the solid bier.
+                    p.keyboard.down('ArrowRight')
+                    try:
+                        p.keyboard.press('Control')
+                        p.wait_for_timeout(410)
+                    finally:
+                        p.keyboard.up('ArrowRight')
+                    for _ in range(12):
+                        if state()['grounded']:
+                            break
+                        p.wait_for_timeout(65)
+                    after = state()
+                    record('bier-directional-jump-input', before=s, landing=after['support'])
+                    navigation_cache.pop(s['active'], None)
+                    return after['x'] > s['x'] + 20
+                if link.get('jump') and abs(s['x'] - point['x']) < 28 and abs(s['y'] - point['y']) < 40:
                     landing = link['jump']
                     p.keyboard.press('Control')
                     launch_state = state()
@@ -266,7 +301,7 @@ def main():
                         else:
                             p.wait_for_timeout(60)
                         q = state()
-                        if q['grounded'] and abs(q['x'] - landing['x']) < 35 and q['support'] == landing['support']:
+                        if q['grounded'] and q['support'] == landing['support']:
                             break
                     record('jump-input', navigation=nav)
                     return True
@@ -274,8 +309,8 @@ def main():
                 if abs(dx) <= 6:
                     record('navigation-stall', navigation=nav)
                     return False
-                fine_walk(dx)
-                p.wait_for_timeout(80)
+                fine_walk(dx, s.get('walkSpeed'))
+                p.wait_for_timeout(55)
                 after = state()
                 record('move-input', navigation=nav)
                 if abs(after['x'] - s['x']) < 2:
@@ -458,7 +493,7 @@ def main():
                         if after.get('goal') != arrived.get('goal') or after['dialogue']:
                             continue
                     if not state()['gather']:
-                        utility = query('utility', allowSummon=True) if args.strategy == 'cohesive' else None
+                        utility = query('utility', allowSummon=args.strategy == 'cohesive')
                         if utility and fire(utility):
                             continue
                         assessment = plan()
@@ -485,8 +520,16 @@ def main():
                 original_spawns = [v for v in final['enemyUnits'] if v.get('source') in ['reviewed.11.beast-spirit','reviewed.11.north-pair']]
                 result['requiredSpawnCounts'] = {k: sum(v.get('source') == k for v in original_spawns) for k in ['reviewed.11.beast-spirit','reviewed.11.north-pair']}
                 result['passed'] = bool(result['complete'] and final['round'] <= args.round_limit and final['gathered'] and len(final['health']) == 4 and all(not h['dead'] and h['hp'] > 0 and h['grounded'] for h in final['health']) and all(final['done'].get(k) for k in ['11.thread','11.entry-threat','11.exit-threat','11.exit','11.north']) and physical.get('release',{}).get('distance',0) >= 40 and physical.get('release',{}).get('attached') and any(physical.get('north',{}).get('ended',{}).values()) and result['requiredSpawnCounts'] == {'reviewed.11.beast-spirit':1,'reviewed.11.north-pair':2} and not result['errors'])
+            if result['complete']:
+                p.wait_for_function('window.HonroApp?.done && HonroApp.profile?.cleared?.[11]?.visits===1', timeout=25000)
             record('final')
             p.screenshot(path=str(out / 'final.png'))
+            if result['complete']:
+                p.reload(wait_until='domcontentloaded')
+                p.wait_for_function('window.HonroApp?.profile?.cleared?.[11]?.visits===1', timeout=25000)
+                result['verifiedReload'] = p.evaluate('()=>({clear:HonroApp.profile.cleared[11],battle:!!HonroApp.profile.honroBattle})')
+                if result['verifiedReload']['battle'] or result['verifiedReload']['clear']['rounds'] != result['final']['round']:
+                    raise RuntimeError('Stage11 completion record did not settle correctly')
             result['servedResources'] = p.evaluate('()=>performance.getEntriesByType("resource").map(v=>v.name)')
             context.close()
             browser.close()
