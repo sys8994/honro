@@ -33,11 +33,15 @@ function act4BarkHost(){let node=G.document.getElementById('act4-banter');if(nod
 const event=(q,key)=>q.events[key]??={started:false,terminal:false,presented:[],retired:[]};
 function inView(app,p,pad=0){const s=app.scene,cv=s.canvas,w=cv.clientWidth,h=cv.clientHeight;return Math.abs(p.x-s.x)<w/(2*s.scale)-pad&&Math.abs(p.y-s.y)<h/(2*s.scale)-pad;}
 function receipt(q,e,id){e.retired=e.retired.filter(v=>v!==id);if(!e.presented.includes(id))e.presented.push(id);if(!q.receipts.includes(id))q.receipts.push(id);}
+function closeReader(b,skipped=false){const q=memory(b),key=q.reader.key,e=event(q,key);e.terminal=true;if(skipped)e.skipped=true;for(const [id] of seed(b.honroAct4Preview,key)?.lines||[])if(!e.presented.includes(id)&&!e.retired.includes(id))e.retired.push(id);q.reader=null;}
+function finishReader(app,d,natural){const b=app.engine?.b,key=b?.honroAct4PreviewState?.reader?.key;if(key&&d.id===`act4-preview-${b.honroAct4Preview}-${key}`)closeReader(b,!natural);}
 function play(app,key,bark=false){const b=app.engine.b,q=memory(b),e=event(q,key),s=seed(b.honroAct4Preview,key);if(e.started||!s||app.dialogue||q.reader||q.bark)return false;
  e.started=true;const lines=s.lines.filter(([id,who])=>{if(app.canSpeak(who)&&(!P.rowAllowed||P.rowAllowed(app,id)))return true;e.retired.push(id);return false;});
  if(!lines.length){e.terminal=true;return true;}
  if(bark){q.bark={key,index:0,elapsed:0,lines};return true;}
- q.reader={key,ids:lines.map(l=>l[0])};G.HonroStory.start(app,lines.map(([id,who,text])=>[who,text,{kind:'character',act4PreviewRow:id}]),{id:'act4-preview-'+b.honroAct4Preview+'-'+key,title:app.stage.name});
+ const d={id:'act4-preview-'+b.honroAct4Preview+'-'+key,title:app.stage.name};q.reader={key,ids:lines.map(l=>l[0])};
+ if(G.HonroStory.skipsClosing?.(app,d)){finishReader(app,d,false);G.HonroStory.save(app);return true;}
+ G.HonroStory.start(app,lines.map(([id,who,text])=>[who,text,{kind:'character',act4PreviewRow:id}]),d);
  return true;
 }
 // Preserve accepted readers/cursors and completed events. Retry only offers
@@ -58,7 +62,7 @@ function observe(app,dt){const b=app.engine?.b,node=G.document.getElementById('a
  P.coastObserve?.(app,dt);
  if(q.reader){const e=event(q,q.reader.key),d=app.dialogue,line=d?.lines[d.index],node=G.document.getElementById('story-line');
   if(line?.[2]?.act4PreviewRow&&node?.textContent===line[1]&&shown(node)&&!app.modal.classList.contains('open')&&!G.document.hidden&&app.canSpeak(line[0])&&(!P.rowAllowed||P.rowAllowed(app,line[2].act4PreviewRow))){receipt(q,e,line[2].act4PreviewRow);const next=G.document.querySelector('#dialogue-root [data-action="dialogue-next"]');if(next)next.disabled=false;}
-  if(!d){e.terminal=true;for(const [id]of seed(n,q.reader.key).lines)if(!e.presented.includes(id)&&!e.retired.includes(id))e.retired.push(id);q.reader=null;}
+  if(!d)closeReader(b);
  }
  // Reviewed generic subtitles keep priority; their queued time must not overlap Act 4 speech.
  const generic=G.document.getElementById('banter'),genericBusy=!!b.honroState?.reviewedBarks?.queue?.length||!!(generic&&!generic.hidden);
@@ -95,7 +99,7 @@ function observe(app,dt){const b=app.engine?.b,node=G.document.getElementById('a
   if(q.door.phase==='falling'&&!app.dialogue){q.door.time=Math.min(1,q.door.time+dt);if(q.door.time===1){q.door.phase='fallen';app.audio?.play('break');q.door.soundAt=q.clock;}}
   if(q.door.renderedAt!==undefined&&q.door.soundAt!==undefined&&q.clock-Math.max(q.door.renderedAt,q.door.soundAt)>2&&quiet(b))play(app,'door_falls');
   const door=event(q,'door_falls'),all=seed(36,'door_falls').lines.map(l=>l[0]);
-  if(door.terminal&&all.every(id=>door.presented.includes(id))&&q.clock-(q.door.renderedAt??q.clock)>5&&party(b).some(u=>u.x>K(b,'leaveX',6100))&&quiet(b))play(app,'leave');
+  if(door.terminal&&(door.skipped||all.every(id=>door.presented.includes(id)))&&q.clock-(q.door.renderedAt??q.clock)>5&&party(b).some(u=>u.x>K(b,'leaveX',6100))&&quiet(b))play(app,'leave');
  }
 }
 function interact(app=G.HonroApp,probe=false){const b=app.engine?.b;if(!(b?.honroCustom||b?.honroAct4Official===1)||!b.honroAct4Preview||app.dialogue)return false;const q=memory(b),n=b.honroAct4Preview,u=app.engine.active;if(b.side!==0||b.phase!=='aim'||u?.side!==0||u.acted||!alive(u)||!app.engine.grounded(u))return false;
@@ -105,8 +109,9 @@ function interact(app=G.HonroApp,probe=false){const b=app.engine?.b;if(!(b?.honr
  // The compact court leaves only 88 world units beyond completeX. Use the
  // already-authored leave approach for the living party's final assembly;
  // the fallen door, observed dialogue and quiet-state gates still apply.
- if(n===36&&quiet(b)&&q.door.phase==='fallen'&&q.events.leave?.terminal&&['A4.S36.DOOR.01','A4.S36.DOOR.02'].every(id=>q.receipts.includes(id))&&party(b).every(u=>u.x>Math.min(K(b,'completeX',6500),K(b,'leaveX',K(b,'completeX',6500)))&&u.y<K(b,'completeYMax',1e9))){if(probe)return true;q.complete=true;return true;}
- if(n===36&&u.cls==='knight'&&quiet(b)&&atDoor(b,u)&&q.door.phase==='fallen'&&q.events.door_falls?.terminal&&!['A4.S36.DOOR.01','A4.S36.DOOR.02'].every(id=>q.receipts.includes(id))){if(probe)return true;const d=event(q,'door_falls');d.started=d.terminal=false;return play(app,'door_falls');}
+ const doorRead=n===36&&(q.events.door_falls?.skipped||['A4.S36.DOOR.01','A4.S36.DOOR.02'].every(id=>q.receipts.includes(id)));
+ if(n===36&&quiet(b)&&q.door.phase==='fallen'&&q.events.leave?.terminal&&doorRead&&party(b).every(u=>u.x>Math.min(K(b,'completeX',6500),K(b,'leaveX',K(b,'completeX',6500)))&&u.y<K(b,'completeYMax',1e9))){if(probe)return true;q.complete=true;return true;}
+ if(n===36&&u.cls==='knight'&&quiet(b)&&atDoor(b,u)&&q.door.phase==='fallen'&&q.events.door_falls?.terminal&&!doorRead){if(probe)return true;const d=event(q,'door_falls');d.started=d.terminal=false;return play(app,'door_falls');}
  return false;
 }
 const draw=G.HonroScene.prototype.landmark;
@@ -137,9 +142,9 @@ b.honroAct4PreviewDynamic??=b.honroLandmarks.filter(l=>['a4:boat','a4:door','a4:
  if(b.honroAct4Official===1)return;let previous=G.performance.now();function frame(now){if(app.engine?.b!==b)return;const dt=Math.min(.1,Math.max(0,(now-previous)/1000));previous=now;if(!P.freezeReviewClock)observe(app,dt);G.requestAnimationFrame(frame);}G.requestAnimationFrame(frame);
 };
 const launch=P.launch;P.launch=function(n){const r=launch(n);P.attachEvents(G.HonroApp,{fresh:true});return r;};
-function snapshot(app=G.HonroApp,{compactArt=false}={}){const b=app.engine?.b;if(!(b?.honroCustom||b?.honroAct4Official===1)||!b.honroAct4Preview)throw Error('No Act4 preview');const source=compactArt?G.HonroProfileStore.compactBattleArt(b):b;const result=JSON.parse(JSON.stringify(source));if(result.honroAct4PreviewState?.reader){const reader=result.honroAct4PreviewState.reader;if(!app.dialogue){const q=result.honroAct4PreviewState,e=event(q,reader.key);e.terminal=true;for(const [id]of seed(result.honroAct4Preview,reader.key).lines)if(!e.presented.includes(id)&&!e.retired.includes(id))e.retired.push(id);q.reader=null;return result;}reader.cursor=app.dialogue?.index??0;reader.cursorId=app.dialogue?.lines[reader.cursor]?.[2]?.act4PreviewRow;reader.ids=app.dialogue?.lines.map(l=>l[2]?.act4PreviewRow).filter(Boolean)||reader.ids;}return result;}
+function snapshot(app=G.HonroApp,{compactArt=false}={}){const b=app.engine?.b;if(!(b?.honroCustom||b?.honroAct4Official===1)||!b.honroAct4Preview)throw Error('No Act4 preview');const source=compactArt?G.HonroProfileStore.compactBattleArt(b):b;const result=JSON.parse(JSON.stringify(source));if(result.honroAct4PreviewState?.reader){const reader=result.honroAct4PreviewState.reader;if(!app.dialogue){closeReader(result);return result;}reader.cursor=app.dialogue?.index??0;reader.cursorId=app.dialogue?.lines[reader.cursor]?.[2]?.act4PreviewRow;reader.ids=app.dialogue?.lines.map(l=>l[2]?.act4PreviewRow).filter(Boolean)||reader.ids;}return result;}
 function restore(saved){if(!saved?.honroCustom||!(saved.honroAct4Preview>=31&&saved.honroAct4Preview<=40)||saved.honroAct4PreviewState?.version!==1)throw Error('Invalid preview snapshot');const r=P.launch(saved.honroAct4Preview),app=G.HonroApp;Object.assign(r.b,JSON.parse(JSON.stringify(saved)));r.b.sceneVersion++;const reader=memory(r.b).reader;if(reader){const s=seed(r.b.honroAct4Preview,reader.key),lines=reader.ids?s.lines.filter(l=>reader.ids.includes(l[0])):s.lines,cursor=reader.cursorId?Math.max(0,lines.findIndex(l=>l[0]===reader.cursorId)):(reader.cursor??0);G.HonroStory.start(app,lines.map(([id,who,text])=>[who,text,{kind:'character',act4PreviewRow:id}]),{id:'act4-preview-'+r.b.honroAct4Preview+'-'+reader.key,title:app.stage.name,index:cursor});}return r;}
-Object.assign(P,{interact,observe,previewMemory:memory,snapshot,restore,narrativePending,eventAPI:{alive,party,memory,seed,event,inView,play,quiet}});
+Object.assign(P,{interact,observe,previewMemory:memory,snapshot,restore,narrativePending,finishReader,eventAPI:{alive,party,memory,seed,event,inView,play,quiet}});
 function attachApp(){const appPrototype=Object.getPrototypeOf(G.HonroApp),canInput=appPrototype.canInput;appPrototype.canInput=function(...args){if((this.engine?.b?.honroCustom||this.engine?.b?.honroAct4Official===1)&&this.engine.b.honroAct4Preview===31&&memory(this.engine.b).arrivalTour?.active)return false;return canInput.apply(this,args);};}
 if(G.HonroApp)attachApp();else G.HONRO_APP_READY.then(attachApp);
 G.document.addEventListener('keydown',ev=>{const app=G.HonroApp,b=app?.engine?.b;if(ev.code!=='Escape'||!(b?.honroCustom||b?.honroAct4Official===1)||b.honroAct4Preview!==31)return;const q=memory(b);if(!q.arrivalTour?.active)return;q.arrivalTour.active=false;const e=event(q,'arrival');e.started=e.terminal=true;e.retired=seed(31,'arrival').lines.map(l=>l[0]);if(!P.startCamera?.(app))Object.assign(app.scene,{manual:false,x:boarding(app.engine.b).startX??450,y:boarding(app.engine.b).startY??1840,scale:G.innerWidth<600?.62:.94});});

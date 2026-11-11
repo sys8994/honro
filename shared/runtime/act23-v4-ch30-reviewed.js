@@ -10,9 +10,13 @@ const farewellAssembly=b=>comparison(b)&&V.heroes(b).length>0&&V.heroes(b).every
 const firstBoard=b=>m(b).boat.leg===0&&m(b).boat.status==='boarding'&&m(b).actors[I.residents[0]].status==='boarding'&&m(b).actors[I.residents[0]].distance>0;
 const lastThreat=b=>m(b).secondBoardingStarted&&!safe(b)&&!P.boardingCorridorSafe(b);
 function prior(p,n,key){return p.honroAct23V4History?.stages?.[n]?.reviewedNarrative?.proof?.[key];}
+function acceptTestimony(b,event){const id='A3.S30.THIRTEEN.03';if(!testimony(b)||event?.status!=='done'||!event.ids.includes(id)||event.guardLostIds?.includes(id)||q(b).proof.testimony)return;
+ const heard=G.HonroAct23V4Reviewed.receiptIds(event).includes(id);
+ q(b).proof.testimony={source:I.seaman,disembarked:m(b).actors[I.seaman].disembarked,pastDestination:'west-estuary',count:13,children:2,presentStatus:'unknown',...(heard?{}:{dialogueAcknowledgedWithoutReceipt:true,dialogueSkipped:event.skipped===true})};
+}
 function observe(app){const b=app.engine.b,state=q(b),boat=m(b).boat;if(boat.status==='outbound'&&boat.leg===1&&boat.distance>0)state.proof.firstDeparture={leg:boat.leg,distance:boat.distance,manifest:F.copy(boat.manifest)};
  if(['west-rejoin','west','boarding'].includes(boat.status)&&boat.leg===1&&I.residents.slice(0,2).every(id=>m(b).actors[id].status==='safe'))state.proof.return={leg:1,distance:boat.distance};
- if(m(b).comparison&&state.proof.testimony)state.proof.comparison={source:I.comparison,existingMap:true,presentWaterway:true};
+ acceptTestimony(b,state.events.testimony);if(m(b).comparison&&state.proof.testimony)state.proof.comparison={source:I.comparison,existingMap:true,presentWaterway:true};
  if(farewellAssembly(b)&&!state.proof.farewellAssembly)state.proof.farewellAssembly={site:'existing-east-shore-old-road-approach',actors:V.heroes(b).map(u=>({id:u.id,cls:u.cls,x:u.x,y:u.y})),guard:{id:I.crew[1],x:crew(b,1).x,y:crew(b,1).y},leg:boat.leg,boatStatus:boat.status};
  if(safe(b))state.proof.rescue={source:'actual-two-trip-transport',rescued:F.copy(m(b).rescued),boatDistance:boat.distance,leg:boat.leg,disembarked:I.residents.every(id=>m(b).actors[id].disembarked),secondGroupRejoined:!!m(b).secondGroupRejoined};
 }
@@ -36,7 +40,7 @@ R=F.register({stage:30,
  {key:'testimony',ids:ids('THIRTEEN',4),when:app=>testimony(app.engine.b)},
  {key:'comparison',ids:ids('ROUTE',2),when:app=>comparison(app.engine.b)},
  {key:'ending',ids:ids('ENDING',3),when:app=>comparison(app.engine.b)&&(farewellAssembly(app.engine.b)||gathered(app.engine.b))}],
- finished(app,key,event){const b=app.engine.b;if(key==='testimony'&&event.ids.includes('A3.S30.THIRTEEN.03')&&!event.retiredIds.includes('A3.S30.THIRTEEN.03'))q(b).proof.testimony={source:I.seaman,disembarked:m(b).actors[I.seaman].disembarked,pastDestination:'west-estuary',count:13,children:2,presentStatus:'unknown'};},
+ finished(app,key,event){if(key==='testimony')acceptTestimony(app.engine.b,event);},
  journals:[{id:'A3.S30.JOURNAL.01',when:app=>{const b=app.engine.b;return !!q(b).proof.rescue&&!!q(b).proof.testimony&&!!q(b).proof.comparison&&gathered(b)&&F.closed(q(b).events.ending);}},{id:'EDGE.RUNTIME.JOURNAL.EVIDENCE30.ROUTE',when:app=>{const b=app.engine.b,h=app.profile.honroAct23V4History?.stages?.[19];return comparison(b)&&!!prior(app.profile,28,'packet')&&h?.transportTraces?.ids?.includes('mumyeong-transfer')&&h?.transportTraces?.ids?.includes('jeomungol-mark');}}],
  complete:b=>P.complete(b)&&!!q(b).proof.testimony&&!!q(b).proof.comparison&&gathered(b)&&F.closed(q(b).events.ending),
  objective:b=>'A3.S30.OBJ.0'+(q(b).proof.comparison?4:safe(b)?3:m(b).ready?2:1),

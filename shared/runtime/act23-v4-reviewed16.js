@@ -7,9 +7,10 @@ const foes=(b,p,r=460)=>b.units.filter(u=>V.alive(u)&&u.side===1&&!u.honroObject
 const nearby=(b,p,r)=>V.heroes(b).some(u=>V.near(u,p,r));
 function separated(b){const u=unit(b,'resident-1');return !!base(b).proof['16.disciple']&&V.alive(u)&&u.honroResolved&&!V.alive(unit(b,'resident-spirit-1'));}
 function recovered(b){const s=b.honroV4Recovery,a=physical(b);return separated(b)&&!!a.proof['16.safe']&&['16.disciple-safe','16.elder-safe'].every(k=>a.walks[k]?.arrived&&a.walks[k].distance>80)&&V.alive(unit(b,'objective'))&&V.near(unit(b,'resident-1'),s.disciple,70)&&V.near(unit(b,'objective'),s.elder,70)&&['resident-1','objective'].every(k=>C.validTerrainContactPose(b.terrain,unit(b,k)))&&!foes(b,s.elder).length;}
-function heard(b){const e=mem(b).events.witness;return recovered(b)&&e?.status==='done'&&coreWitness.every(k=>e.ids.includes(k));}
+function heard(b){const q=mem(b),e=q.events.witness;return recovered(b)&&e?.status==='done'&&coreWitness.every(k=>e.ids.includes(k)&&(!e.dialogueSkipped||q.witnessPresented?.includes(k)));}
+function testimonyResolved(b){return heard(b)||recovered(b)&&mem(b).events.witness?.status==='done'&&mem(b).events.witness.dialogueSkipped===true;}
 function author(map){const elder=map.units.find(u=>u.id==='objective'),disciple=map.units.find(u=>u.id==='resident-1');if(elder&&disciple){elder.x=disciple.x+50;elder.y=disciple.y-50*4/49;elder.stageOverrides={...elder.stageOverrides,honroScenePose:{kind:'kneel',time:0}};}const p=map.initialState.honroV4Recovery.elder;map.initialState.honroV4Reviewed16={transport:{x:p.x+230,y:p.y-15},bellSource:{x:p.x+530,y:p.y-30},souls:[{x:p.x+510,y:p.y-65},{x:p.x+550,y:p.y-60}],revision:1};}
-function prepare(b){mem(b);b.honroState.flags??={};b.honroState.flags.witness16_heard=heard(b);if(!heard(b)){delete V.mem(b).sceneDone['16.testimony.required'];const s=V.mem(b).slots['16.testimony.required'];if(s?.status==='done')s.status='pending';}}
+function prepare(b){mem(b);b.honroState.flags??={};b.honroState.flags.witness16_heard=heard(b);if(!testimonyResolved(b)){delete V.mem(b).sceneDone['16.testimony.required'];const s=V.mem(b).slots['16.testimony.required'];if(s?.status==='done')s.status='pending';}}
 function observed15(profile,key){const h=profile.honroAct23V4History?.stages?.[15],f=h?.reviewedPhysical;return !!h?.run&&f?.revision===1&&f.sourceRun===h.run&&f[key]===true;}
 function optional(profile,r){if(r.id==='EDGE.OPTIONAL_16_ARCHER_0')return observed15(profile,'brokenPulleysObserved');if(r.id==='EDGE.OPTIONAL_16_OCCULTIST_0')return observed15(profile,'upwardHandsObserved');const b=profile.honroBattle;if(!b||!api.active(b))return false;const q=mem(b),pre=!recovered(b)&&!q.events.witness;
  if(r.id==='EDGE.OPTIONAL_16_MAGE_0')return pre&&!!q.transportObserved;
@@ -35,10 +36,10 @@ function allow(app,r){const b=app.engine.b,q=mem(b),a=physical(b),u=unit(b,'resi
  if(r.id===id('MID.04'))return recovered(b);
  if(r.id===id('MID.05'))return recovered(b)&&!!q.knock;
  if(witness.includes(r.id))return recovered(b)&&!!q.knock;
- if(r.id===id('MID.06'))return heard(b)&&!!q.trappedObserved;
- if(r.id===id('MID.07'))return heard(b)&&!!q.trappedObserved;
- if(r.id.startsWith(id('COMPLETE.')))return heard(b)&&spoken(b,'souls')&&!!q.exitObserved;
- if(r.id===id('JOURNAL.01'))return heard(b);
+ if(r.id===id('MID.06'))return testimonyResolved(b)&&!!q.trappedObserved;
+ if(r.id===id('MID.07'))return testimonyResolved(b)&&!!q.trappedObserved;
+ if(r.id.startsWith(id('COMPLETE.')))return testimonyResolved(b)&&spoken(b,'souls')&&!!q.exitObserved;
+ if(r.id===id('JOURNAL.01'))return testimonyResolved(b);
  if(r.id===id('POPUP.01'))return !!q.discipleAim&&!separated(b);
  return r.id.startsWith(id('OBJECTIVE.'));
 }
@@ -50,8 +51,8 @@ function observe(app){const e=app.engine,b=e.b,q=mem(b),u=unit(b,'resident-1'),e
  const archer=api.actor(b,'설오');if(V.alive(archer)&&!q.blocked)for(const t of foes(b,elder,1000)){const hit=e.projectileCollision({x:archer.x,y:archer.y-archer.h*.63},{x:t.x,y:t.y-t.h*.5},1,archer.id,[],false);if(hit?.terrain&&/lantern|lamp|stone.?light/i.test(hit.terrain.id)){q.blocked={actor:archer.id,target:t.id,terrain:hit.terrain.id,from:{x:archer.x,y:archer.y}};break;}}
  if(recovered(b)&&!q.knock){e.emit('sound',{name:'ricochet',source:'16.bell.knock',...s.bellSource});e.fx('ring',s.bellSource.x,s.bellSource.y-70,'#b8bda9',45);q.knock={source:clone(s.bellSource),emitted:true};}
  // Visible residual souls at the bellward opening are independent of sound.
- const soulObserver=api.actor(b,'담허')||api.actor(b,'소단');if(heard(b)&&V.near(soulObserver,s.bellSource,650))q.trappedObserved??={observer:soulObserver.id,source:clone(s.bellSource),souls:clone(s.souls),observed:true};
- if(heard(b)&&spoken(b,'souls')&&nearby(b,V.marker(b,'16.work-exit'),450))q.exitObserved??={point:clone(V.marker(b,'16.work-exit'))};
+ const soulObserver=api.actor(b,'담허')||api.actor(b,'소단');if(testimonyResolved(b)&&V.near(soulObserver,s.bellSource,650))q.trappedObserved??={observer:soulObserver.id,source:clone(s.bellSource),souls:clone(s.souls),observed:true};
+ if(testimonyResolved(b)&&spoken(b,'souls')&&nearby(b,V.marker(b,'16.work-exit'),450))q.exitObserved??={point:clone(V.marker(b,'16.work-exit'))};
 }
 function scene(app,key,ids,proof,targets){const out=api.begin(app,key,ids,proof||{});if(out&&targets){for(const l of app.dialogue.lines)l[2].camera={id:l[2].rowId,intent:'situation',targets:clone(targets),padding:120,maxScale:.75};G.HonroStory.draw(app);}return out;}
 function drive(app){const b=app.engine.b,q=mem(b);observe(app);if(!V.safe(app))return;
@@ -69,9 +70,9 @@ function drive(app){const b=app.engine.b,q=mem(b);observe(app);if(!V.safe(app))r
  if(start('recovery',[id('MID.04')],recovered(b),physical(b).proof['16.safe']))return;
  if(start('sound',[id('MID.05')],recovered(b)&&spoken(b,'recovery')&&!!q.knock,q.knock,[b.honroV4Reviewed16.bellSource]))return;
  if(start('witness',witness,recovered(b)&&api.done(b,'sound'),physical(b).proof['16.safe'],[{actor:'objective'},{actor:'resident-1'}]))return;
- if(heard(b)){b.honroState.flags.witness16_heard=true;V.ackSlot(b,'16.testimony.required',{reviewedRevision:1,rowIds:clone(q.events.witness.ids),safe:clone(physical(b).proof['16.safe'])});if(!q.journal)api.journal(app,id('JOURNAL.01'));}
- if(start('souls',[id('MID.06'),id('MID.07')],heard(b)&&!!q.trappedObserved,q.trappedObserved,b.honroV4Reviewed16.souls))return;
- if(start('depart',[id('COMPLETE.01'),id('COMPLETE.02')],!!q.exitObserved&&heard(b)&&spoken(b,'souls'),q.exitObserved))return;
+ if(testimonyResolved(b)){b.honroState.flags.witness16_heard=heard(b);V.ackSlot(b,'16.testimony.required',{reviewedRevision:1,rowIds:clone(q.witnessPresented||[]),dialogueSkipped:q.events.witness.dialogueSkipped===true,safe:clone(physical(b).proof['16.safe'])});if(!q.journal)api.journal(app,id('JOURNAL.01'));}
+ if(start('souls',[id('MID.06'),id('MID.07')],testimonyResolved(b)&&!!q.trappedObserved,q.trappedObserved,b.honroV4Reviewed16.souls))return;
+ if(start('depart',[id('COMPLETE.01'),id('COMPLETE.02')],!!q.exitObserved&&testimonyResolved(b)&&spoken(b,'souls'),q.exitObserved))return;
  start('protect',[id('POPUP.01')],!!q.discipleAim&&!separated(b),q.discipleAim);
 }
 function before(app){const b=app.engine.b;if(!V.safe(app))return false;observe(app);if(!spoken(b,'attached'))return false;if(separated(b)&&!spoken(b,'separate'))return false;if(V.current(b)?.id==='16.work-exit'&&!spoken(b,'depart'))return false;return true;}
@@ -86,9 +87,19 @@ function draw(scene,c,b){const s=b.honroV4Reviewed16,q=mem(b);c.save();const eld
 // Manuscript prefiltering and mere event admission cannot create this receipt.
 const lineAllowed=G.HonroAct23V4Reviewed.lineAllowed;G.HonroAct23V4Reviewed.lineAllowed=function(app,who,meta){const ok=lineAllowed.apply(this,arguments),d=app.dialogue,b=app.engine?.b;if(ok&&api.active(b)&&meta?.reviewedStage===16&&d?.reviewedEvent==='witness'&&d.lines[d.index]?.[2]?.rowId===meta.rowId){const q=mem(b);q.witnessPresented??=[];if(!q.witnessPresented.includes(meta.rowId))q.witnessPresented.push(meta.rowId);}return ok;};
 // A skipped UI scene never serves as the mandatory historical testimony.
-const finished=G.HonroAct23V4Reviewed.finished;G.HonroAct23V4Reviewed.finished=function(app,d){if(api.active(app.engine?.b)&&d?.reviewedStage===16&&d.reviewedEvent==='witness'){const b=app.engine.b,q=mem(b);if(d.index<d.lines.length||!recovered(b)||!coreWitness.every(k=>q.witnessPresented?.includes(k))){delete q.events.witness;G.HonroStory.save(app);return false;}q.events.witness.ids=witness.filter(k=>q.witnessPresented.includes(k));}return finished.apply(this,arguments);};
+const finished=G.HonroAct23V4Reviewed.finished;
+G.HonroAct23V4Reviewed.finished=function(app,d,natural=true){
+ if(api.active(app.engine?.b)&&d?.reviewedStage===16&&d.reviewedEvent==='witness'){
+  const b=app.engine.b,q=mem(b),e=q.events.witness;
+  if(!e)return false;
+  if(!natural&&recovered(b)&&q.knock&&coreWitness.every(k=>e.ids.includes(k)))e.dialogueSkipped=true;
+  else if(!recovered(b)||!coreWitness.every(k=>q.witnessPresented?.includes(k))){delete q.events.witness;G.HonroStory.save(app);return false;}
+  else e.ids=witness.filter(k=>q.witnessPresented.includes(k));
+ }
+ return finished.apply(this,arguments);
+};
 const outcome=V.recordOutcome;V.recordOutcome=function(app,won){outcome(app,won);const b=app.engine?.b,h=app.profile.honroAct23V4History?.stages?.[16];if(won&&api.active(b)&&h)h.reviewedPhysical={revision:1,sourceRun:b.session,witness16_heard:heard(b),witnessRows:heard(b)?clone(mem(b).events.witness.ids):[],elderDiscipleObserved:!!mem(b).elderDiscipleObserved};};
-const complete=b=>heard(b)&&spoken(b,'souls')&&spoken(b,'depart')&&!!mem(b).journal;
-P.register(16,{mapRevision:516,actors:{'노승':'objective','제자':'resident-1'},author,prepare,allow,drive,before,eligibility,use,attach,draw,optional,objective:b=>heard(b)?id('OBJECTIVE.03'):recovered(b)?id('OBJECTIVE.02'):id('OBJECTIVE.01'),failure:b=>b.phase==='lost'||B.failure(b)?id('FAIL.01'):null,complete});
-G.HonroAct23V4Reviewed16={memory:mem,allow,recovered,separated,heard,witness,coreWitness,optional,complete};
+const complete=b=>testimonyResolved(b)&&spoken(b,'souls')&&spoken(b,'depart')&&!!mem(b).journal;
+P.register(16,{mapRevision:516,actors:{'노승':'objective','제자':'resident-1'},author,prepare,allow,drive,before,eligibility,use,attach,draw,optional,objective:b=>testimonyResolved(b)?id('OBJECTIVE.03'):recovered(b)?id('OBJECTIVE.02'):id('OBJECTIVE.01'),failure:b=>b.phase==='lost'||B.failure(b)?id('FAIL.01'):null,complete});
+G.HonroAct23V4Reviewed16={memory:mem,allow,recovered,separated,heard,testimonyResolved,witness,coreWitness,optional,complete};
 })(globalThis);

@@ -37,20 +37,22 @@ function lineAllowed(app,who,meta){const id=meta?.rowId;if(!enabled()||!row(id)|
  if(id==='A2.S11.INTRO.01')return !!s.proof['11.thread'];
  if(['A2.S11.INTRO.02','A2.S11.INTRO.03'].includes(id))return !!q.approach&&(q.approach.ambient||q.approach.ids.some(id=>V.alive(b.units.find(u=>u.id===id))))&&!V.mem(b).done['11.exit'];
  if(id==='A2.S11.INTRO.04')return q.events.approach?.status==='done'&&!V.mem(b).done['11.exit'];
- if(id==='A2.S11.COMPLETE.01')return gathered(b);
+ if(id==='A2.S11.COMPLETE.01')return V.mem(b).done['11.exit']&&(b.honroStage11CompactRevision===1||gathered(b));
  if(id==='A2.S11.COMPLETE.02')return !!s.bell?.struck;
- if(['A2.S11.COMPLETE.03','A2.S11.COMPLETE.04'].includes(id))return !!s.bell?.struck&&q.ambient.distance>=80&&q.ambient.count>=6&&V.near(actor(b,who),V.marker(b,'11.north'),650);
+ if(['A2.S11.COMPLETE.03','A2.S11.COMPLETE.04'].includes(id))return !!s.bell?.struck&&q.ambient.distance>=80&&q.ambient.count>=6;
  if(id==='A2.S11.COMPLETE.05')return !!s.proof['11.north']&&closed(q.events.reaction);
  return false;
 }
 function lines(ids,event){return ids.map(id=>{const r=row(id);return[r.speaker,r.text,{...clone(r),rowId:id,reviewedStage:11,reviewedRevision:1,reviewedEvent:event,storyId:'v4.reviewed.11.'+event,storyTitle:G.HONRO_CONTENT.stages[10].name,...(r.channel==='guide'?{kind:'guide'}:r.channel==='arrival'?{kind:'narration'}:{})}];});}
 function accepts(app,ls){return rowsReviewed(ls)&&ls.every(l=>!blocked[l[2].rowId])&&ls.some(l=>lineAllowed(app,l[0],l[2]));}
-function begin(app,key,ids,proof={}){const b=app.engine.b,q=memory(b);if(q.events[key])return false;const valid=lines(ids,key).filter(l=>lineAllowed(app,l[0],l[2]));q.events[key]={status:valid.length?'open':'skipped',ids:valid.map(l=>l[2].rowId),proof:clone(proof)};
+function begin(app,key,ids,proof={},resume=false){const b=app.engine.b,q=memory(b),saved=q.events[key];if(saved&&!resume)return false;const valid=lines(ids,key).filter(l=>lineAllowed(app,l[0],l[2]));q.events[key]=saved??{status:valid.length?'open':'skipped',ids:valid.map(l=>l[2].rowId),proof:clone(proof)};
  const framing=b.honroV4Chapter11||{};
  for(const l of valid){const target=key==='approach'?(proof.ambient?(framing.ambientIncoming?.from??{x:1000,y:6280}):{actor:proof.ids[0]}):['arrival','low-beast','high-sightline','blocked-shot','cover-guide'].includes(key)?(framing.entryCamera??{x:1500,y:6330}):['bell','reaction','gather','depart'].includes(key)?{marker:'11.north'}:null;if(target)l[2].camera={id:l[2].rowId,intent:'situation',targets:[clone(target)],padding:110,maxScale:.8};}
  for(const l of valid){const physical=b.honroV4Chapter11,targets=key==='north-warning'?[physical.entries[0]]:key==='north-pair'?proof.ids.map(actor=>({actor})):key==='spirit-release'?[...proof.ids.map(actor=>({actor})),{actor:proof.attached}]:key==='high-sightline'?[physical.high,physical.bier]:null;if(targets)l[2].camera={id:l[2].rowId,intent:'situation',targets:clone(targets),padding:110,maxScale:.8};}
- V.slot(app,'11.reviewed.'+key,{rowIds:ids,proof});if(!valid.length){V.ackSlot(b,'11.reviewed.'+key,{skipped:true});return false;}
- if(!G.HonroStory?.start(app,valid,{title:app.stage.name,reviewedEvent:key,reviewedStage:11})){delete q.events[key];return false;}return true;
+ const d={title:app.stage.name,reviewedEvent:key,reviewedStage:11};
+ V.slot(app,'11.reviewed.'+key,{rowIds:ids,proof});if(!valid.length){q.events[key].status='skipped';V.ackSlot(b,'11.reviewed.'+key,{skipped:true});return false;}
+ if(G.HonroStory?.skipsClosing(app,d)){finished(app,d);return false;}
+ if(!G.HonroStory?.start(app,valid,d)){if(!saved)delete q.events[key];return false;}return true;
 }
 // Event completion is a presentation terminal, never a receipt for every
 // admitted line. Only the current rendered page or live subtitle adds an ID.
@@ -73,8 +75,10 @@ function observeApproach(b){const q=memory(b);if(q.approach)return;const incomin
  if(found.length)q.approach={ids:found,round:b.round};
 }
 function tick(app,dt){const b=app.engine.b;if(!active(b)||!V.safe(app))return;const q=memory(b),s=scenes(b);observeApproach(b);
- for(const [key,event]of Object.entries(q.events))if(event.status==='open'&&!app.dialogue&&!event.ids.some(id=>lineAllowed(app,row(id).speaker,{rowId:id,reviewedStage:11,reviewedRevision:1}))){event.status='skipped';V.ackSlot(b,'11.reviewed.'+key,{skipped:true});if(b.honroStory?.reviewedEvent===key)b.honroStory=null;}
- if((b.honroState.storyQueue||[]).length)return;
+ // Older saves can contain an open event without a dialogue cursor. Reoffer
+ // the event using its saved proof and keep the existing presentation receipt.
+ for(const [key,event]of Object.entries(q.events))if(event.status==='open'){begin(app,key,event.ids,event.proof,true);return;}
+ if(!V.mem(b).done['11.exit']&&(b.honroState.storyQueue||[]).length)return;
  if(!q.events.arrival){begin(app,'arrival',['EDGE.ARRIVALS_11_0']);return;}
  if(!q.events.thread&&s.proof['11.thread']){begin(app,'thread',['A2.S11.INTRO.01'],s.proof['11.thread']);return;}
  if(q.approach&&!q.events.approach&&!V.mem(b).done['11.exit']){begin(app,'approach',['A2.S11.INTRO.02','A2.S11.INTRO.03'],q.approach);return;}
@@ -102,7 +106,8 @@ function instruction(b){
  const s=V.current(b),p=s&&V.marker(b,s.id);
  if(s?.kind==='clear'){const foes=b.units.filter(u=>u.side===1&&!u.honroObjectiveTarget&&V.alive(u)&&(s.defeatIds?s.defeatIds.includes(u.id):V.near(u,p,s.radius||650)));return `산길의 위협 제압 · 남은 적 ${foes.length}명`;}
  if(s?.id==='11.exit'&&b.honroStage11CompactRevision===1){const n=Object.values(cls).filter(c=>V.heroes(b).some(u=>u.cls===c&&V.near(u,p,180)&&C.validTerrainContactPose(b.terrain,u))).length;return `고개에 네 동행 집결 · ${n}/4명 도착`;}
- if(s?.id==='11.north'){const foes=b.units.filter(u=>u.side===1&&!u.honroObjectiveTarget&&V.alive(u)&&V.near(u,p,700));return foes.length?`고개 주변 위협 제압 · 남은 적 ${foes.length}명`:'고개에서 기다리기 · 주변을 살피면 자동 진행';}
+ if(s?.id==='11.north'){const foes=b.units.filter(u=>u.side===1&&!u.honroObjectiveTarget&&V.alive(u)&&V.near(u,p,700));if(foes.length)return `고개 주변 위협 제압 · 남은 적 ${foes.length}명`;return scenes(b).bell?.struck?'종소리 확인 중':'동행 한 명을 고개 표식 가까이 이동';}
+ if(!s){const physical=G.HonroAct23V4Chapter11,m=physical?.memory(b),ids=[...(m?.north.ids||[]),...(m?.release.ids||[])],left=ids.filter(id=>V.alive(b.units.find(u=>u.id===id))).length;if(left)return `남은 혼령 제압 · ${left}명`;if(m&&!m.north.admitted)return '북쪽 혼령 대응 · 동행의 행동을 마치면 증원 진입';if(!complete(b)||physical?.complete(b)===false)return '마무리 장면 진행 중';}
  return row('A2.S11.OBJECTIVE.01').text;
 }
 function present(b,result){if(!active(b))return result;const r=row('A2.S11.OBJECTIVE.01'),hint=instruction(b);return{...result,summary:hint,currentInstruction:hint,completionText:r.text,targets:result.targets.map(x=>({...x,label:hint})),allTargets:result.allTargets.map(x=>({...x,label:r.text})),checklist:[{id:r.id,text:r.text,done:result.complete,current:!result.complete}],visibleChecklist:[{id:r.id,text:r.text,done:result.complete,current:!result.complete}],failureText:''};}
