@@ -23,6 +23,7 @@ if(compact){
  const prior={dead:blocker.dead,hp:blocker.hp,x:blocker.x,y:blocker.y};
  Object.assign(blocker,{dead:false,hp:1,x:sign.x,y:sign.y});
  assert.equal(checkSign().reason,'진목 가까이 남은 위협 1기 제압');
+ assert(!g.HonroInteractions.candidates(app).some(c=>c.marker.id==='12.recurrence'),'The recurrence marker cannot cover the sign blocker');
  assert(!g.HonroInteractions.use(app,sign),'Local threat blocks starting adjustment');
  Object.assign(blocker,prior);
  assert(checkSign().ok,'The same button becomes usable after the local threat leaves');
@@ -37,6 +38,11 @@ if(compact){
  assert(!g.HonroInteractions.eligibility(app,exit).ok,'Automatic route never enables E');
  assert(!g.HonroInteractions.candidates(app).some(c=>c.marker.id===exit.id),'Automatic route is not a button');
  assert(!g.HonroInteractions.use(app,exit),'E cannot complete an automatic route');
+ for(const route of b.honroRouteSpec.routes){
+  const destination=V.marker(b,route.markerId);
+  pose(mage,destination);
+  assert(!g.HonroInteractions.candidates(app).some(c=>c.marker.id===destination.id),'The actual automatic exit also has no E');
+ }
 }
 const r=b.honroRouteSpec.routes.find(r=>r.id==='A');for(const id of r.defeatIds||[]){const u=app.engine.unit(id);u.dead=true;u.hp=0;}pose(mage,V.marker(b,r.markerId));Object.assign(b,{active:mage.id,side:0,phase:'aim'});for(let i=0;i<8&&!app.dialogue;i++)tick();at('A2.S12.BRANCH.01');assert.equal(b.honroRouteChoice.selectedRoute,'A');finish();for(let i=0;i<50&&!app.dialogue;i++)tick();at('A2.S12.COMPLETE.01');g.HonroStory.next(app);at('A2.S12.COMPLETE.02');g.HonroStory.next(app);at('A2.S12.COMPLETE.03');b=resume();at('A2.S12.COMPLETE.03');finish();tick();assert(P.memory(b).journal);assert(V.state(b).complete);assert.equal(app.profile.record.filter(r=>r.rowId==='A2.S12.JOURNAL.01').length,1);
 console.log('PASS 12 real loop/first and second frames, midwalk reload, mage work duration/save, exactly2 finite spirits, upper branch/UI/journal cursors');

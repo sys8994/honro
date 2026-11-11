@@ -100,11 +100,13 @@ function tick(app,dt){const b=app.engine.b;if(!active(b)||!V.safe(app))return;co
   if(s.proof['11.north']&&closed(q.events.reaction)&&!q.events.depart){begin(app,'depart',['A2.S11.COMPLETE.05']);return;}}
 }
 function complete(b){return !active(b)||closed(memory(b).events.depart)&&!!memory(b).journal;}
-// Chapter 11 markers describe automatic world conditions, not usable objects.
-// Check saved step kinds at read time so existing battles need no migration.
+// Read automatic steps and route destinations from the current battle.
+// Saved markers remain intact.
 function automaticMarker(b,m){
  if(active(b))return ['v4-entry','clear','reach','v4-world'].includes(V.steps(b).find(s=>s.id===m?.id)?.kind);
- return b?.honroStage===12&&m?.id==='route-exit'&&G.HonroAct23V4ReviewedChapters?.active(b)&&V.steps(b).some(s=>s.id===m.id&&s.kind==='route');
+ if(b?.honroStage!==12||!m||!G.HonroAct23V4ReviewedChapters?.active(b))return false;
+ return V.steps(b).some(s=>s.id===m.id&&['v4-recurrence','route'].includes(s.kind))
+  ||(b.honroRouteSpec?.routes||[]).some(route=>route.markerId===m.id);
 }
 function instruction(b){
  const s=V.current(b),p=s&&V.marker(b,s.id);
