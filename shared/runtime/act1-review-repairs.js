@@ -31,6 +31,10 @@ function author(project){
    const t=s.terrains.find(t=>t.id==='stage5-timber-low');
    if(!t)throw Error('Missing Stage5 first timber');delete t.playProjection;
    t.points=t.points.map(p=>({...p,x:p.x-150}));
+   // The upper ledge's ordinary arrows should resolve the held water window in 2–4 rounds.
+   const cleat=s.terrains.find(t=>t.id==='cliff-cleat');
+   if(!cleat)throw Error('Missing Stage5 binding timber');
+   Object.assign(cleat.properties,{hp:320,maxHp:320});
   }
   if(n===9){
    s.initialState.honroStage9InstallationRevision=1;

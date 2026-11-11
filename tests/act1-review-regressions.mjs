@@ -62,9 +62,20 @@ for(const id of [4,6,7]){
 // its battle/HP/resources/progress instead of replacing it on Continue.
 {
  const{a,b}=start(5),target=g.HonroQuestTargets.records(b).find(t=>t.id==='cliff-cleat');
+ assert.equal(target.maxHp,320,'new Stage5 entry uses the shorter binding timber damage budget');
  for(const state of ['holding','notHolding','broken']){b.honroState.ritual={active:state==='holding'};target.broken=state==='broken';const text=g.HonroStoryContent.eventLines(a,{id:'lower-beasts'}).map(r=>r[1]).join(' ');assert(text.includes('산개')&&!text.includes('사슴'),state+' current event identity');}a.engine=null;
 }
 const original=JSON.parse(await readFile('shared/data/campaign.json','utf8'));
+{
+ const{a,b}=start(5),target=g.HonroQuestTargets.records(b).find(t=>t.id==='cliff-cleat');
+ // Simulate an already damaged pre-pacing save on the same map revision.
+ target.hp=407;target.maxHp=520;g.HonroQuestTargets.sync(b,target);
+ a.profile.honroBattle=plain(b);const resumed=h.load(plain(a.profile));resumed.continue();
+ const savedActor=resumed.engine.unit(target.id);
+ const savedTimber=g.HonroQuestTargets.records(resumed.engine.b).find(t=>t.id===target.id);
+ for(const saved of [savedActor,savedTimber])assert.deepEqual([saved.hp,saved.maxHp],[407,520]);
+ a.engine=null;resumed.engine=null;
+}
 {
  const{a,b}=start(2),base=original.stages[1].terrains.find(t=>t.id==='left-descent-stone-high');
  const old=g.HonroMapEngine.solid('left-descent-rest-lower',base.points.map(p=>[p.x-90,p.y+1270]),{mat:'rock',indestructible:true});
