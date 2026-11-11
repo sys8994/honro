@@ -1951,6 +1951,11 @@ export class Engine {
     stepUnits(dt: number) {
         for (const u of this.b.units) {
             if(this.clearDisabledActor(u))continue;
+            // Body projectiles own airborne motion. An interrupted/old snapshot
+            // can retain the flag after its last body projectile disappeared;
+            // resume ordinary integration rather than waiting forever to land.
+            // Do not touch a live body attack, carried actor or equipment move.
+            if(u.airborne&&u.carriedBy===undefined&&!u.equipmentState?.motion&&!this.b.projectiles.some(p=>p.body&&p.owner===u.id))u.airborne=false;
             const gearBefore={x:u.x,y:u.y};if(gearStepMove(this,u,dt))continue;
             // A lost lure or carried actor cannot retain its old pull plan.
             if(u.aiMove?.lureStakeId!==undefined&&(u.carriedBy!==undefined||!lureStakeFor(this,u))){delete u.aiMove;delete u.moveTarget;u.moving=0;}

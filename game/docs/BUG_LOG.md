@@ -5514,3 +5514,11 @@ Title `여정 이어가기` could choose an older hub before honoring a saved di
 - 36: 법정 지지면 끝3300에 completeX3212라 88폭뿐. 기존 leaveX3014까지 최종 집결선 확장. 높이/문낙하/실제대사 DOOR01·02/leave terminal/quiet 조건 보존. Chromium 정상4인 키보행→저장 Continue 좌표/HP/기력/성장 exact→E 승리/완료기록/저장경고 없음. 선행전투·문/대사는 fixture이며 정상 전체완주를 뜻하지 않음.
 - 37~39 XP0: 신규/완료/실제 App debug/재시도12조건 모두 budget start=end225393. balance.futureActs Act4 exit=[23,24,25,25,25,25,25,25]의 현행25→25 plateau이며 지급 유실로 수정하지 않음. 중복 지급 guard 유지.
 - 새 `critical-act2-progress.mjs`, `critical-later-progress.mjs` 및 기존 reviewed12/14/17/29-spear/30-farewell/36-door 집중 검사 통과. 일반 신규는 모델, 브라우저는 명시한 합성 체크포인트 이후 실제 입력이며 사용자 저장은 접근/변경하지 않음. 원고·revision·기존 진행 보존. 상세 한계/PNG는 `_local/reports/critical-20261111/`.
+
+### 2026-11-11 — 착지 대기 교착과 수중 자동 턴 반복
+- 34장 실제 지형의 interrupted airborne fixture에서 소유 body projectile 없이 airborne만 남으면 물리 적분을 건너뛰고 settleBusy가 영원히 true임을 재현. projectile/carrier/장비 motion의 정상 소유권은 유지하고 소유자가 사라진 airborne만 일반 적분으로 복구한다. 사용자 원래34장 snapshot과 동일 원인인지는 미확인이다.
+- 40장 occupied-bank fixture에서 HP138 그대로 자동 라운드 반복 재현. 물 복귀 중 행동 종료를 매 라운드 재소비하던 round token을 1회 종료 계약으로 수정하고 pending body의 고아 jump/drop 플래그를 정리한다. 다른 동행이 있으면 둑을 비우며 계속 조작 가능; 안전한 원래편 둑 복귀와 기존25% 피해1회 유지.
+- 마지막/전원 생존자가 pending이며 실제 반복 탐색에도 마른 둑이 없으면 정지된 아군 조작시간2초 뒤 명확한 환경 패배. 일시적 차단해제/진행 중 투사체·착지·다른동행은 기다린다. HP를 임의로0으로 만들거나 적/필수 목표를 지우지 않는다. 결과 원인 문구도 winnerReason에 전달한다. 성장/SP/장착/완료/재시도 계약 및 map revision은 변경하지 않음.
+- `critical-turn-recovery.mjs`: baseline과 변경 후 비교, live body/carrier 예외, legacy token, actual App canInput/defend+item, 일시 점유, 단1회 피해, 직렬화/성장 보존, 마지막/전원 pending 검증. `critical-turn-recovery-browser.py`: 사전 합성 Continue34→정상 입력과 비busy,40→HP138 유지·명확 패배/UI. 실제 사용자 save 재현/정상 전장 완주로 간주하지 않는다. 재시도와 최종 HTML 결과는 실행 출력에 구분한다.
+- 추가 기존 Act1 집중회귀/monster-effects/airborne-recovery/active-player-fall-turn/equipment-state 통과. 오래된 cap3 assertion은 새 airborne guard 제거한 baseline에서도 동일 실패, combo-landing DOM harness 장비UI 누락, body-sweep stage3 옛 slope개수, debug-campaign raw-vs-compacted art 비교의 실패는 별도로 남기고 무관수리하지 않음.
+- 원시 모델/브라우저 JSON·PNG·한계는 `_local/reports/critical-20261111/turn-*`. 브라우저 오류9 공통원인·원래34 내부상태·원래17R 결과누락은 여전히 미확정이다.

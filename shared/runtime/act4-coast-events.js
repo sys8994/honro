@@ -144,7 +144,13 @@ function authoredReturn(app,q,dt,geo){const e=app.engine,b=e.b,cfg=b.honroAct4De
  if(closed(q,'thirteen')&&seen(q,'return-ridge')&&seen(q,'small-dislocation'))play(app,'next');
 }
 
-function closeRecoveryAction(e,u,r){const b=e.b,token=b.round+':'+b.side;if(b.active!==u.id||b.side!==0||b.phase!=='aim'||b.projectiles.length||b.volley||r.closedToken===token)return;r.closedToken=token;e.finishAction(true);if(b.active===u.id&&u.acted&&b.phase==='aim')e.advanceAfterAction();}
+function closeRecoveryAction(e,u,r){const b=e.b,token=b.round+':'+b.side;if(b.active!==u.id||b.side!==0||b.phase!=='aim'||b.projectiles.length||b.volley)return;
+ // Falling into the water spends one action, not every later player round.
+ // Legacy closedToken already proves that action was spent. A pending last
+ // survivor must regain item/defend/pause input instead of auto-skipping forever.
+ if(r.actionClosed||r.closedToken!==undefined){r.actionClosed=true;if(r.closedToken===token&&u.acted)e.advanceAfterAction();return;}
+ r.actionClosed=true;r.closedToken=token;e.finishAction(true);if(b.active===u.id&&u.acted&&b.phase==='aim')e.advanceAfterAction();}
+function holdRecoveryBody(b,u){u.vx=u.vy=0;if(!b.projectiles.some(p=>p.body&&p.owner===u.id)){u.airborne=false;u.jumping=false;u.moving=0;delete u.platformDrop;delete u.fallApexY;}}
 // A thin authored ledge can be the actual dry bank (notably the Stage 34
 // shore link). Only reuse static supports of the recorded dry contact, never
 // an arbitrary one-way platform or a dynamically inserted boat deck. Several
@@ -172,10 +178,22 @@ function water(e,dt=0){const b=e.b;if(!active(b))return;const q=memory(b),polici
   // candidates are accepted, even if they are geometrically nearer.
   const entryLedges=dryEntryLedges(b,last);
   const landing=space(b,u,{x:Math.max(span[0]+u.r,Math.min(span[1]-u.r,last.x)),y:last.y},Math.max(220,span[1]-span[0]+100),(x,y)=>x>=span[0]+u.r&&x<=span[1]-u.r&&y>=last.y-60&&y<r.surface-10&&b.terrain.some(t=>!t.broken&&(!t.oneWay||entryLedges.has(t.id))&&!t.honroAct4MovingDeck&&!t.honroElementCollision&&C.terrainSurfaces(t,x).some(f=>Math.abs(f.y-y)<2)),2);
-  if(!landing){u.vx=u.vy=0;u.honroAct4RecoverPending=true;r.probeWait=.1;closeRecoveryAction(e,u,r);continue;}
+  if(!landing){holdRecoveryBody(b,u);u.honroAct4RecoverPending=true;r.probeWait=.1;if(!r.blockedNotice){r.blockedNotice=true;e.message('물에서 돌아올 자리가 막혀 있다. 다른 동행으로 길을 비우거나 방어·소모품을 선택할 수 있다.');}closeRecoveryAction(e,u,r);continue;}
   if(!r.damaged){const shield=u.shield;u.shield=0;const hp=u.hp;e.hurt(u,r.damage,'',false,undefined,undefined,'environment');u.shield=shield;r.damaged=true;r.hpLoss=hp-u.hp;}
   if(alive(u))feet(e,u,landing);q.water.recoveries.push({unit:u.id,zone:z.id,side,entry:last,landing,hpLoss:r.hpLoss,round:b.round,shot:b.shot});delete u.honroAct4Recovering;delete u.honroAct4RecoverPending;closeRecoveryAction(e,u,r);
  }
+ // Recovery always searches the recorded dry bank above entry water, even at
+ // low tide. A later tide cannot expose an admissible higher/opposite bank.
+ // Let repeated probes and any live resolution clear temporary occupancy;
+ // fail only when every surviving companion is stranded and cannot clear it.
+ const stranded=party(b),allStranded=stranded.length&&stranded.every(u=>u.honroAct4RecoverPending);
+ if(allStranded&&b.phase==='aim'&&b.side===0&&!b.projectiles.length&&!b.volley&&!e.settleBusy()){
+  q.water.strandedWait=(q.water.strandedWait||0)+Math.min(Math.max(dt,0),.05);
+  if(q.water.strandedWait>=2&&!q.failure&&!q.complete){
+   const reason='모든 동행이 물에 빠졌고 돌아올 마른 둑이 막혀 더는 빠져나올 수 없다.';
+   b.winnerReason=reason;fail(b,reason);e.message(reason);
+  }
+ }else q.water.strandedWait=0;
 }
 function rescueSafe(e,u){const z=e.b.honroAct4Design.rescue.safeZone;return alive(u)&&u.x>=z.x1&&u.x<=z.x2&&u.y>=z.y1&&u.y<=z.y2&&e.grounded(u);}
 function probeRoute(b){const npc=residents(b).filter(alive).sort((a,c)=>c.x-a.x)[0];if(!npc)return false;const world=copy(b);world.units=world.units.filter(u=>!u.honroAct4Resident||u.id===npc.id);const e=new C.Engine(world,()=>{});e.checkEnd=()=>false;const u=e.unit(npc.id);u.fixed=false;u.moveLeft=10000;const target=b.honroAct4Design.rescue.safeX.at(-1);for(let i=0;i<600&&u.x<target-15;i++){const x=u.x;e.walk(u,1,.05,true);if(u.x-x<.01||!G.HonroTerrain.separated(world,u,u.x,u.y,12))return false;}return u.x>=target-15;}
