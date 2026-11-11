@@ -131,10 +131,15 @@ function present(b,result){
  }else if(id==='13.party-pass'){
   const count=['archer','mage','knight','occultist'].filter(cls=>party.some(h=>h.cls===cls&&h.x-h.r>b.honroV4InsideLatch.x&&near(h,s,430))).length;
   text=`열린 석문 너머로 동행 이동 · ${count}/4명 도착`;kind='move';
+ }else if(!id&&!result.complete&&scenes(b).proof['13.party-pass']&&alive(u)&&!safeMason(b)){
+  const safety=V.marker(b,'13.escort'),foes=threats(b,safety,240);
+  const remaining=foes.length;
+  text=remaining?`출발 전 석공 주변 위협 ${remaining}기 제압`:'출발 전 석공이 안전자리에 있는지 확인';
+  target=foes[0]||safety;kind=remaining?'defeat':'move';
  }
  if(!text||!target)return result;
  const checklist=result.checklist.map(row=>({...row,text}));
- return {...result,summary:text,currentInstruction:text,checklist,visibleChecklist:checklist,targets:[{id,x:target.x,y:target.y,kind,label:text}]};
+ return {...result,summary:text,currentInstruction:text,checklist,visibleChecklist:checklist,targets:[{id:id??'13.departure-safety',x:target.x,y:target.y,kind,label:text}]};
 }
 const attached=new WeakSet();function attach(app,e){if(attached.has(e))return;attached.add(e);const predict=e.predict;e.predict=function(u,skill,angle,power,target,collect=true,...args){const out=predict.call(e,u,skill,angle,power,target,collect,...args);if(P.active(e.b)&&e.b.honroStage===13&&collect&&u.side===0&&out.unit==='resident-1'&&!base(e.b).proof['13.extract'])m(e.b).aimedAtMason={actor:u.id,skill:skill.id,angle,power,target:out.unit};return out;};}
 function draw(scene,c,b){const q=m(b),u=mason(b),spec=b.honroV4Reviewed13;if(!spec)return;c.save();c.lineCap='round';c.strokeStyle='#77664d';c.lineWidth=5;const held=!base(b).proof['13.extract'],x=held?u.x+17:spec.latch.x,y=held?u.y-64:spec.latch.y;c.beginPath();c.moveTo(spec.rope.anchor.x,spec.rope.anchor.y);c.lineTo(x,y);c.lineTo(x+12,y+105);c.stroke();if(held&&alive(u)){c.strokeStyle='#9b4e43';c.lineWidth=7;c.beginPath();c.moveTo(x-7,y-9);c.lineTo(x+6,y+8);c.stroke();if(alive(spirit(b))){c.globalAlpha=.6;c.strokeStyle='#b7cbbf';c.lineWidth=2;c.beginPath();c.moveTo(spirit(b).x,spirit(b).y-spirit(b).h*.5);c.quadraticCurveTo(u.x+80,u.y-115,x,y);c.stroke();}}
