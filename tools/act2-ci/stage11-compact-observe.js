@@ -41,11 +41,40 @@ query => {
     stored:localStorage.getItem('honro-first-act-profile-1')!==null};
   if(query.mode==='state')return state;
   if(query.mode==='source')return{stage:HONRO_PROJECT.stages.find(s=>s.metadata?.stageId===11),battle:b,profile:app.profile};
+  if(query.mode==='tactical-shot'){
+    let best=null;
+    for(const target of targets.filter(inView).slice(0,3))for(const [idx,id] of u.loadout.entries()){
+      const skill=C.SKILLS[id];
+      if(!skill?.damage||skill.passive||!e.skillAllowed(skill,u)||e.cooldownLeft(u,id)>0)continue;
+      if(skill.martial&&skill.branch==='sword'){
+        let angle=Math.atan2(u.y-u.h*.58-(target.y-target.h*.5),target.x-u.x)*180/Math.PI;
+        if(angle< -90)angle+=360;
+        if(query.onlyFacing&&(angle>90?-1:1)!==u.facing)continue;
+        for(const power of [1,.72,.45])if(e.canAfford(skill,u,power)&&C.meleeContains(e,u,target,C.meleeRange(u,skill,power),-angle*Math.PI/180,C.meleeSpan(u,skill,power))){
+          const score=e.effective(skill,u).damage*power;
+          if(!best||score>best.score)best={id,idx,angle,power,target:target.id,score,melee:true};
+          break;
+        }
+        continue;
+      }
+      if(skill.mode==='charge'||skill.mode==='melee')continue;
+      for(const {angle,power} of e.shotSeeds(u,skill,target)){
+        if(angle< -84||angle>264||Math.abs(angle-90)<.3||power<.18||!e.canAfford(skill,u,power)||query.onlyFacing&&(angle>90?-1:1)!==u.facing)continue;
+        const powers=[Math.max(.13,power-.04),power,Math.min(1,power+.04)];
+        const outcomes=powers.map(p=>C.shotViable(e,u,skill,target,angle,p));
+        if(outcomes.some(o=>!o.ok||o.friendlyDamage||o.risk>=.5||o.enemyDamage<=0))continue;
+        const score=Math.min(...outcomes.map(o=>o.enemyDamage))+Number(outcomes.every(o=>o.hit?.unit===target.id))*50;
+        if(!best||score>best.score)best={id,idx,angle,power,target:target.id,score,melee:false};
+      }
+    }
+    return best;
+  }
   if(query.mode==='safe-shot'){
-    const q=query.choice,s=C.SKILLS[q.id],t=e.unit(q.target);
-    if(!t||!alive(t)||!e.canAfford(s,u,1))return false;
+    const q=query.choice,s=C.SKILLS[q.id],t=e.unit(q.target),power=q.power??1;
+    if(!t||!alive(t)||!e.canAfford(s,u,power))return false;
+    if(q.melee)return C.meleeContains(e,u,t,C.meleeRange(u,s,power),-u.angle*Math.PI/180,C.meleeSpan(u,s,power));
     const intersects=(a,z,v)=>{let low=0,high=1;for(const [x,d,l,h]of [[a.x,z.x-a.x,v.x-v.r-18,v.x+v.r+18],[a.y,z.y-a.y,v.y-v.h-18,v.y+18]]){if(Math.abs(d)<1e-9){if(x<l||x>h)return false;continue;}let x0=(l-x)/d,x1=(h-x)/d;if(x0>x1)[x0,x1]=[x1,x0];low=Math.max(low,x0);high=Math.min(high,x1);if(low>high)return false;}return true;};
-    return [-.1,0,.1].every(d=>{const shot=C.shotViable(e,u,s,t,u.angle+d,1),points=e.predict(u,s,u.angle+d,1,t,true).points||[];
+    return [-.1,0,.1].every(d=>{const shot=C.shotViable(e,u,s,t,u.angle+d,power),points=e.predict(u,s,u.angle+d,power,t,true).points||[];
       return shot.ok&&shot.risk<.5&&shot.friendlyDamage===0&&shot.enemyDamage>0&&!b.units.filter(v=>v.side===0&&alive(v)&&v.id!==u.id).some(v=>points.slice(1).some((p,i)=>intersects(points[i],p,v)));});
   }
   if(query.mode==='utility'){

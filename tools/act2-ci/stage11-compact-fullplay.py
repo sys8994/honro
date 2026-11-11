@@ -341,6 +341,9 @@ def main():
 
             def plan(only_facing=False):
                 s = state()
+                fast = query('tactical-shot', onlyFacing=only_facing)
+                if fast:
+                    return {'best': fast, 'visible': s['visibleTargets']}
                 return read(planner, {'onlyFacing': only_facing, 'ids': s['targetIds']})
 
             def fire(choice):
@@ -367,14 +370,14 @@ def main():
                 before = state()
                 p.keyboard.down('Space')
                 try:
-                    p.wait_for_function('HonroApp.charging && HonroApp.chargePower(performance.now())>=1', timeout=8000, polling=16)
+                    p.wait_for_function('power=>HonroApp.charging && HonroApp.chargePower(performance.now())>=power', arg=choice.get('power', 1), timeout=8000, polling=16)
                 finally:
                     p.keyboard.up('Space')
                 p.wait_for_timeout(120)
                 launch = read('id=>({shots:HonroApp.engine.b.shots,last:HonroApp.engine.b.lastShots?.[id]})', before['active'])
                 record('shot-input', choice=choice, actual=launch)
-                if launch['shots'] != before['shots'] + 1 or not launch['last'] or launch['last']['skill'] != choice['id'] or abs(launch['last']['power'] - 1) > 1e-9 or abs(launch['last']['angle'] - aligned['angle']) > .1:
-                    raise RuntimeError('Actual normal-input launch did not match selected skill/angle/full charge')
+                if launch['shots'] != before['shots'] + 1 or not launch['last'] or launch['last']['skill'] != choice['id'] or abs(launch['last']['power'] - choice.get('power', 1)) > .12 or abs(launch['last']['angle'] - aligned['angle']) > .1:
+                    raise RuntimeError('Actual normal-input launch did not match selected skill, angle or charge')
                 p.wait_for_timeout(500)
                 return True
 
