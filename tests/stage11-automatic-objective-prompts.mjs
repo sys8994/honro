@@ -12,6 +12,7 @@ const row=()=>({text:'북쪽 산길의 위협을 막고 고개로 이동'});
 const scenes=b=>b.scenes??{};
 const C={validTerrainContactPose:(_t,u)=>!u.airborne};
 const V={steps:b=>b.steps,current:b=>b.steps.find(s=>!b.done[s.id]),marker:(b,id)=>b.honroMarkers.find(m=>m.id===id),heroes:b=>b.units.filter(u=>u.side===0&&u.hp>0&&!u.dead),alive:u=>!!u&&u.hp>0&&!u.dead,near:(u,p,r)=>!!p&&Math.abs(u.y-p.y)<=150&&Math.hypot(u.x-p.x,(u.y-p.y)*.75)<=r};
+${reviewed.slice(reviewed.indexOf('function gatherCount'),reviewed.indexOf('function gathered'))}
 ${reviewed.slice(reviewed.indexOf('function automaticMarker'),reviewed.indexOf('function present('))}
 globalThis.HonroAct23V4Reviewed={automaticMarker,instruction};`,g);
 g.HonroObjectives={interactionTarget:(_b,m)=>m};
