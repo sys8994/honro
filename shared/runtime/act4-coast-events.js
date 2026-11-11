@@ -24,6 +24,7 @@ const quiet=b=>!foes(b).length&&stable(b)&&P.quietReady(b);
 const shelterTravel=b=>b.honroStage===32&&b.honroAct4Official===1&&!b.honroCustom&&b.mode==='campaign'&&b.side===0&&quiet(b);
 const seen=(q,k)=>q.observed?.[k]!==undefined;
 const closed=(q,k)=>!!q.events[k]?.terminal;
+const atThreshold=(b,npc)=>npc.x<=K(b,'doorX',4780)||!!b.honroAct4PreviewState?.thresholdHeld;
 const cast=app=>app.engine.active;
 const working=(e,u,point,r)=>alive(u)&&u.side===0&&e.b.side===0&&e.b.phase==='aim'&&e.active===u&&!u.acted&&e.grounded(u)&&near(u,point,r);
 function cancelWork(q,key,u,observation){if(u)delete u.honroScenePose;q[key]=null;if(q.observed)delete q.observed[observation];}
@@ -230,8 +231,11 @@ P.coastObserve=function(app,dt){const b=app.engine.b,n=b.honroAct4Preview;if(!ac
   }
   if(npc.honroAct4Sheltered&&party(b).some(u=>Math.abs(u.x-K(b,'shelterX',4890))<650)){q.shelterDoor??={phase:'opening',time:0};goal(app,'A4.S32.REUNION_OBJECTIVE');}
   if(q.shelterDoor?.phase==='opening'){q.shelterDoor.time=Math.min(1,q.shelterDoor.time+dt);if(q.shelterDoor.time===1&&seen(q,'door-open')){q.shelterDoor.phase='open';npc.honroAct4Sheltered=false;npc.fixed=false;}}
-  if(q.shelterDoor?.phase==='open'&&npc.x>K(b,'doorX',4780))moveNpc(e,npc,K(b,'doorX',4780)-10,dt,180);
-  if(npc.x<=K(b,'doorX',4780)){npc.fixed=true;npc.facing=-1;npc.honroScenePose={kind:'point',time:1};q.thresholdAt??=q.clock;}
+  // A companion standing in the doorway kept the witness from ever reaching
+  // the threshold mark, so the reunion never began. Body separation is kept:
+  // after a short real attempt the witness greets from where they had to stop.
+  if(q.shelterDoor?.phase==='open'&&!atThreshold(b,npc)){const moved=moveNpc(e,npc,K(b,'doorX',4780)-10,dt,180);if(moved>0)delete q.doorwayHeldAt;else if(party(b).some(u=>u.x<npc.x&&npc.x-u.x<140&&Math.abs(u.y-npc.y)<90)){q.doorwayHeldAt??=q.clock;if(q.clock-q.doorwayHeldAt>.6)q.thresholdHeld={x:npc.x,at:q.clock};}}
+  if(atThreshold(b,npc)){npc.fixed=true;npc.facing=-1;npc.honroScenePose={kind:'point',time:1};q.thresholdAt??=q.clock;}
   if(q.thresholdAt!==undefined&&q.clock-q.thresholdAt>.8&&seen(q,'threshold')&&party(b).some(u=>u.cls==='archer'&&Math.abs(u.x-npc.x)<340)){const hero=party(b).find(u=>u.cls==='archer');if(!q.reunionObserved&&q.clock-(q.reunionCameraAt??-10)>2){q.reunionCameraAt=q.clock;app.scene.storyFocusPoint((hero.x+npc.x)/2,npc.y-100,400,G.innerWidth<600?.65:.8);}if(q.reunionObserved)play(app,'reunion');}
   if(closed(q,'reunion')&&cfg.shelter?.manifest.length===7&&seen(q,'threshold')){play(app,'missing_four');if(closed(q,'missing_four')&&(q.events.missing_four.skipped||q.events.missing_four.presented.includes('A4.S32.MISSING.01'))&&q.reunionObserved)q.safeSeven={ids:copy(cfg.shelter.manifest),sourceRun:b.session,reportIds:copy(q.events.missing_four.presented),reportSkipped:q.events.missing_four.skipped===true,reunionIds:copy(q.events.reunion.presented),reunionObserved:copy(q.reunionObserved),campaignRunId:b.honroAct4ReviewRunId};}
  }
@@ -334,7 +338,7 @@ const launch=P.launch;P.launch=function(n){const r=launch(n);P.attachCoast(G.Hon
 // Visibility receipts are written only by the actual Scene pass. Their points
 // refer to finite authored actors/geometry rather than an off-screen timer.
 const render=G.HonroScene.prototype.render;G.HonroScene.prototype.render=function(e,...args){const out=render.call(this,e,...args),b=e.b;if(!active(b))return out;const app=G.HonroApp;if(app.scene!==this||G.document.hidden||app.modal.classList.contains('open'))return out;const q=memory(b),n=b.honroAct4Preview,cfg=b.honroAct4Design;if(!cfg)return out;q.observed??={};const mark=(key,p,guard=true)=>{if(guard&&inView(app,p))q.observed[key]??=q.clock;};
- if(n===32){mark('door-open',{x:K(b,'doorMarkX',4890),y:K(b,'doorMarkY',1850)},q.shelterDoor?.time===1);const npc=e.unit('a4-shelter-speaker');mark('threshold',{x:npc.x,y:npc.y-65},!npc.honroAct4Sheltered&&npc.x<=K(b,'doorX',4780));const hero=party(b).find(u=>u.cls==='archer');if(alive(hero)&&!app.dialogue&&npc.x<=K(b,'doorX',4780)&&!npc.honroAct4Sheltered&&Math.abs(hero.x-npc.x)<340&&unobscured(app,npc)&&unobscured(app,hero))q.reunionObserved??={sourceRun:b.session,npc:npc.id,hero:hero.id,seenAt:q.clock,positions:[{id:hero.id,x:hero.x,y:hero.y},{id:npc.id,x:npc.x,y:npc.y}]};}
+ if(n===32){mark('door-open',{x:K(b,'doorMarkX',4890),y:K(b,'doorMarkY',1850)},q.shelterDoor?.time===1);const npc=e.unit('a4-shelter-speaker');mark('threshold',{x:npc.x,y:npc.y-65},!npc.honroAct4Sheltered&&atThreshold(b,npc));const hero=party(b).find(u=>u.cls==='archer');if(alive(hero)&&!app.dialogue&&atThreshold(b,npc)&&!npc.honroAct4Sheltered&&Math.abs(hero.x-npc.x)<340&&unobscured(app,npc)&&unobscured(app,hero))q.reunionObserved??={sourceRun:b.session,npc:npc.id,hero:hero.id,seenAt:q.clock,positions:[{id:hero.id,x:hero.x,y:hero.y},{id:npc.id,x:npc.x,y:npc.y}]};}
  if(n===33||n===39){mark('water-rising',{x:K(b,'waterMarkX',n===33?1800:3200),y:q.tide?.surface??2500},q.tide?.phase==='rising');mark('upper-route',{x:K(b,'upperMarkX',n===33?2200:3300),y:K(b,'upperMarkY',n===33?1940:1820)});}
  if(n===34){const u=e.unit(cfg.wrongExit.actor);mark('wrong-entry',{x:u.x,y:u.y-40},alive(u)&&q.dislocation?.phase==='inside');mark('wrong-exit',{x:u.x,y:u.y-40},alive(u)&&q.dislocation?.phase==='emerged');}
  if(n===37){const visible=!app.dialogue&&unobscured(app,cfg.signal)&&party(b).some(v=>v.x>K(b,'signalViewX',5900))&&q.visualDrawn?.gesture===q.clock;q.signalExposure=visible?(q.signalExposure||0)+Math.min(.1,args[0]||0):0;if(q.signalExposure>=.6){q.observed.signal??=q.clock;q.observed.gesture??=q.clock;}}
