@@ -1,0 +1,9 @@
+const {chromium}=require('playwright');const fs=require('fs');const SAVE=process.argv[2],OUT=process.argv[3];fs.mkdirSync(OUT,{recursive:true});
+(async()=>{const br=await chromium.launch(),errors=[];const p=await (await br.newContext({viewport:{width:1280,height:720}})).newPage();p.on('pageerror',e=>errors.push(e.message));
+await p.goto('http://127.0.0.1:8772/HONRO.html');await p.waitForFunction('window.HonroApp');await p.waitForTimeout(800);await p.locator('#file-import').setInputFiles(SAVE);await p.waitForTimeout(2500);if(await p.evaluate(()=>HonroApp.modal.classList.contains('open')))await p.keyboard.press('Escape');
+await p.locator('[data-action="continue"]').first().click();await p.waitForTimeout(2500);
+const st=()=>p.evaluate(()=>{const b=HonroApp.engine.b,l=b.units.find(u=>u.id==='a4-32-d-3');return{round:b.round,phase:b.phase,can:HonroApp.canInput(),dialogue:!!HonroApp.dialogue,region:b.honroMap.flightRegion?.top,lantern:l&&{x:Math.round(l.x),y:Math.round(l.y),hp:Math.round(l.hp),dead:!!l.dead},foes:b.units.filter(u=>u.side===1&&!u.dead).length,active:b.active};});
+const rows=[];let s=await st();rows.push(s);console.log(JSON.stringify(s));
+for(let i=0;i<60&&s.round<(rows[0].round+3)&&s.foes>0;i++){if(s.dialogue){await p.keyboard.press('Space');await p.waitForTimeout(250);}else if(s.can){await p.keyboard.press('KeyF');await p.waitForTimeout(700);}else await p.waitForTimeout(500);const n=await st();if(n.round!==s.round||n.lantern?.y!==s.lantern?.y){rows.push(n);console.log(JSON.stringify(n));}s=n;}
+await p.evaluate(()=>{const l=HonroApp.engine.b.units.find(u=>u.id==='a4-32-d-3');if(l){HonroApp.scene.x=l.x-150;HonroApp.scene.y=l.y+60;HonroApp.dirty=true;}});await p.waitForTimeout(500);await p.screenshot({path:OUT+'/lantern.png'});
+fs.writeFileSync(OUT+'/lantern.json',JSON.stringify({rows,errors},null,1));console.log('minY',Math.min(...rows.map(r=>r.lantern?.y??9999)),'ERRORS',JSON.stringify(errors));await br.close();})();

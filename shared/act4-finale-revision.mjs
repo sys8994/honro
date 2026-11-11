@@ -1,4 +1,5 @@
 import {authorAct4Finale} from './act4-finale-author.mjs';
+import {authorAct4Stage32} from './act4-stage32-author.mjs';
 import {authorAct4Stage37} from './act4-stage37-author.mjs';
 import {authorAct4Stage38} from './act4-stage38-author.mjs';
 import {authorAct4Stage39} from './act4-stage39-author.mjs';
@@ -11,6 +12,7 @@ export function supportPoint(stage,id,x){
 }
 export function applyAct4FinaleRevision(project) {
  const authors = {
+  32: authorAct4Stage32,
   37: authorAct4Stage37,
   38: authorAct4Stage38,
   39: authorAct4Stage39,
