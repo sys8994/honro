@@ -23,20 +23,9 @@ R=F.register({stage:25,
  progress(b){
   if(all(b))return '두 동행이 출구에 함께 도착';
   if(!V.mem(b).done['depot-entry-seal'])return '담허로 입구 봉인 살피기';
-  return '조사 '+W.total(b,5)+'/5 · 남은 석대에 두 동행이 함께 도착';
+  return '조사 '+W.total(b,5)+'/5 · 두 동행이 같은 석대에 도착';
  },
  camera(app,key){const b=app.engine.b;return{id:'v4.25.'+key,intent:'situation',targets:[key==='water'?b.honroStoryAnomalyEnvironment.drip:key==='households'?mark(b,'household-tally'):W.team(b)[0]],padding:130,maxScale:.8};},
  draw(scene,c,b){W.draw(scene,c,b,R);const p=b.honroReviewed25Goods;c.save();c.translate(p.x,p.y);for(let i=0;i<2;i++){c.fillStyle=i?'#625e47':'#77765c';c.fillRect(i*140-110,-50,110,40);c.strokeStyle='#c2b890';c.lineWidth=3;c.strokeRect(i*140-106,-47,20,23);for(let j=0;j<(i?4:3);j++){c.beginPath();c.moveTo(i*140-102+j*4,-43);c.lineTo(i*140-102+j*4,-30);c.stroke();}c.beginPath();c.ellipse(i*140-45,-54,24,10,0,0,Math.PI);c.stroke();c.beginPath();c.moveTo(i*140-30,-65);c.lineTo(i*140+2,-65);c.lineTo(i*140+2,-40);c.stroke();}c.restore();}
-});
-// The arrivals are parallel, so every remaining site is a current target.
-// Showing the first authored site alone implies a required travel order.
-const plugin=V.plugins.get(25),originalState=plugin.state;
-plugin.state=function(b){
- const state=originalState?.call(this,b)||{};
- if(!R.active(b))return state;
- const targets=V.readySteps(b).filter(s=>s.kind==='v4-city-arrival')
-  .map(s=>mark(b,s.id)).filter(Boolean).map(p=>({...p,kind:'interact'}));
- return targets.length?{...state,targets}:state;
-};
-G.HonroAct23V4Chapter25Reviewed=R;
+});G.HonroAct23V4Chapter25Reviewed=R;
 })(globalThis);
