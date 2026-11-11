@@ -105,7 +105,7 @@ function complete(b){return !active(b)||closed(memory(b).events.depart)&&!!memor
 function automaticMarker(b,m){return active(b)&&['v4-entry','clear','reach','v4-world'].includes(V.steps(b).find(s=>s.id===m?.id)?.kind);}
 function instruction(b){
  const s=V.current(b),p=s&&V.marker(b,s.id);
- if(s?.kind==='clear'){const foes=b.units.filter(u=>u.side===1&&!u.honroObjectiveTarget&&V.alive(u)&&(s.defeatIds?s.defeatIds.includes(u.id):V.near(u,p,s.radius||650)));return `산길의 위협 제압 · 남은 적 ${foes.length}명`;}
+ if(s?.kind==='clear'){const foes=b.units.filter(u=>u.side===1&&!u.honroObjectiveTarget&&V.alive(u)&&(s.defeatIds?s.defeatIds.includes(u.id):V.near(u,p,s.radius||650)));const guide=s.id==='11.entry-threat'&&b.honroV4Chapter11?.entryLaneGuide?' · 상여를 넘어 오르막에 올라 사선 확보':'';return `산길의 위협 제압 · 남은 적 ${foes.length}명${guide}`;}
  if(s?.id==='11.exit'&&b.honroStage11CompactRevision===1){const n=gatherCount(b);return `고개에 네 동행 집결 · ${n}/4명 도착`;}
  if(s?.id==='11.north'){const foes=b.units.filter(u=>u.side===1&&!u.honroObjectiveTarget&&V.alive(u)&&V.near(u,p,700));if(foes.length)return `고개 주변 위협 제압 · 남은 적 ${foes.length}명`;return scenes(b).bell?.struck?'종소리 확인 중':'동행 한 명을 고개 표식 가까이 이동';}
  if(!s){const physical=G.HonroAct23V4Chapter11,m=physical?.memory(b),ids=[...(m?.north.ids||[]),...(m?.release.ids||[])],left=ids.filter(id=>V.alive(b.units.find(u=>u.id===id))).length;if(left)return `남은 혼령 제압 · ${left}명`;if(m&&!m.north.admitted)return '북쪽 혼령 대응 · 동행의 행동을 마치면 증원 진입';if(!complete(b)||physical?.complete(b)===false)return '마무리 장면 진행 중';}

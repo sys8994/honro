@@ -72,7 +72,10 @@ if(compactEnabled){
  app.retry();h.finish(app);assert.equal(app.engine.b.honroCampaignMapRevision,413);assert.equal(app.engine.b.width,6200);assert.equal(app.engine.b.height,3200);assert.equal(app.engine.b.units.length,g.HONRO_STAGE11_COMPACT_DATA.stage.initialState.honroStage11CompactRosterRevision===2?21:25,'Exact declared fresh roster, never an old-save refill');
  const retry={width:app.engine.b.width,height:app.engine.b.height,revision:app.engine.b.honroCampaignMapRevision,units:app.engine.b.units.length};
  app=h.load(h.profileThrough(10));app.launch(11);h.finish(app);assert.equal(app.engine.b.honroCampaignMapRevision,413);assert.equal(app.engine.b.honroStage11CompactRevision,1);
- const live=app.engine.b,approach=b=>V.steps(b).find(q=>q.id==='11.exit-threat'),flyers=['compact11-exit-lantern','compact11-exit-crow'];
+ const live=app.engine.b,entrance=b=>V.steps(b).find(q=>q.id==='11.entry-threat'),approach=b=>V.steps(b).find(q=>q.id==='11.exit-threat'),flyers=['compact11-exit-lantern','compact11-exit-crow'];
+ const entryLantern='compact11-entry-lantern';
+ assert(live.units.some(u=>u.id===entryLantern&&!u.dead)&&!entrance(live).defeatIds.includes(entryLantern),'Rear lantern keeps its combat role without gating the next leg');
+ assert(live.honroV4Chapter11.entryLaneGuide);
  assert(approach(live).defeatIds.includes('compact11-exit-guard'));
  assert(flyers.every(id=>live.units.some(u=>u.id===id&&!u.dead)&&!approach(live).defeatIds.includes(id)));
  const stage413=plain(live),point=V.marker(stage413,'11.exit'),floor=stage413.terrain.find(t=>t.id==='compact-floor');
@@ -82,7 +85,9 @@ if(compactEnabled){
  }
  assert(g.HonroAct23V4Reviewed.gathered(stage413),'all four feet on the wider new rally shoulder');
  const old413=plain(stage413);old413.honroV4Chapter11.gatherRadius=180;
+ delete old413.honroV4Chapter11.entryLaneGuide;
  const oldSteps=old413.honroV4Steps;
+ oldSteps.find(q=>q.id==='11.entry-threat').defeatIds.push(entryLantern);
  oldSteps.find(q=>q.id==='11.exit-threat').defeatIds.push(...flyers);
  delete oldSteps.find(q=>q.id==='11.exit').radius;
  old413.honroAct2Steps=plain(oldSteps);
@@ -91,6 +96,8 @@ if(compactEnabled){
  const old413App=h.load(old413Profile);old413App.continue();const restored413=old413App.engine.b;
  assert.equal(restored413.honroCampaignMapRevision,413);
  assert.equal(restored413.honroV4Chapter11.gatherRadius,180);
+ assert(!restored413.honroV4Chapter11.entryLaneGuide);
+ assert.deepEqual(plain(entrance(restored413).defeatIds),plain(entrance(old413).defeatIds));
  assert.deepEqual(plain(approach(restored413).defeatIds),plain(approach(old413).defeatIds));
  assert.deepEqual(plain(restored413.units),old413.units);
  assert.deepEqual(plain(restored413.terrain),old413.terrain);

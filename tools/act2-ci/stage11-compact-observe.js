@@ -103,6 +103,10 @@ query => {
     const floor=b.terrain.find(t=>t.id==='compact-floor');
     goal={id:'east-of-bier',x,y:C.topAt(floor,x),surfaceId:floor.id};
   }
+  else if(current?.id==='11.entry-threat'&&u.cls!=='knight'&&u.x<1500){
+    const x={archer:1580,mage:1660,occultist:1710}[u.cls],floor=b.terrain.find(t=>t.id==='compact-floor');
+    goal={id:'entry-ranged-lane',x,y:C.topAt(floor,x),surfaceId:floor.id};
+  }
   else if(state.gather){const x=marker.x+({archer:-125,mage:-45,knight:45,occultist:125}[u.cls]),floor=b.terrain.find(t=>t.id==='compact-floor');goal={...marker,x,y:C.topAt(floor,x),surfaceId:floor.id};}
   else if(targets[0]){goal=targets[0];enemy=true;}
   else goal=marker;

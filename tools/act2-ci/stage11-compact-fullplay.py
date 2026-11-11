@@ -136,7 +136,7 @@ def main():
                 nonlocal count
                 count += 1
                 row = {'step': step, 'seq': count, 'time': time.time(), 'state': state(), **extra}
-                if step in ['entry', 'final'] or step.startswith(('shot-', 'item-', 'interaction-')):
+                if step in ['entry', 'final', 'shot-input', 'item-input', 'settlement']:
                     raw = read('()=>localStorage.getItem("honro-first-act-profile-1")')
                     if raw is not None:
                         data = raw.encode('utf-8')
@@ -339,6 +339,22 @@ def main():
                     return False
                 return True
 
+            def advance_on_floor(start, distance=250):
+                # Take a new firing position on the actual walkable floor
+                # instead of ending the turn at nominal range behind an ally.
+                if start['support'] != 'compact-floor' or start['moveLeft'] < 60:
+                    return False
+                cap = 2250 if start['goal'] == '11.entry-threat' else 5730
+                dx = min(distance, cap - start['x'], start['moveLeft'] - 30)
+                if dx < 55:
+                    return False
+                pulse(1, min(680, round(dx / start['walkSpeed'] * 1000)))
+                p.wait_for_timeout(100)
+                after = state()
+                record('advance-for-sightline', fromX=start['x'], toX=after['x'])
+                navigation_cache.pop(start['active'], None)
+                return after['can'] and after['grounded'] and after['x'] - start['x'] > 35
+
             def plan(only_facing=False):
                 s = state()
                 fast = query('tactical-shot', onlyFacing=only_facing)
@@ -513,6 +529,17 @@ def main():
                         choice = assessment['best']
                         if choice and fire(choice):
                             continue
+                        fired = False
+                        for _ in range(3):
+                            firing = state()
+                            if not firing['can'] or not firing['targetIds'] or not advance_on_floor(firing):
+                                break
+                            choice = plan()['best']
+                            if choice and fire(choice):
+                                fired = True
+                                break
+                        if fired:
+                            continue
                     record('normal-end-action', turn=turn)
                     p.keyboard.press('f')
                     p.wait_for_timeout(600)
@@ -523,9 +550,28 @@ def main():
                 original_spawns = [v for v in final['enemyUnits'] if v.get('source') in ['reviewed.11.beast-spirit','reviewed.11.north-pair']]
                 result['requiredSpawnCounts'] = {k: sum(v.get('source') == k for v in original_spawns) for k in ['reviewed.11.beast-spirit','reviewed.11.north-pair']}
                 result['passed'] = bool(result['complete'] and final['round'] <= args.round_limit and final['gathered'] and len(final['health']) == 4 and all(not h['dead'] and h['hp'] > 0 and h['grounded'] for h in final['health']) and all(final['done'].get(k) for k in ['11.thread','11.entry-threat','11.exit-threat','11.exit','11.north']) and physical.get('release',{}).get('distance',0) >= 40 and physical.get('release',{}).get('attached') and any(physical.get('north',{}).get('ended',{}).values()) and result['requiredSpawnCounts'] == {'reviewed.11.beast-spirit':1,'reviewed.11.north-pair':2} and not result['errors'])
+            record('final')
             if result['complete']:
                 p.wait_for_function('window.HonroApp?.done && HonroApp.profile?.cleared?.[11]?.visits===1', timeout=25000)
-            record('final')
+                title = p.locator('.result-title')
+                title.wait_for(state='visible', timeout=10000)
+                result['resultTitle'] = title.inner_text()
+                result['passed'] = result['passed'] and result['resultTitle'] == '길이 열렸다'
+                p.screenshot(path=str(out / 'victory.png'))
+                p.locator('[data-action="result-continue"]').click()
+                p.wait_for_function("HonroApp.screen==='rest' || HonroApp.screen==='camp'", timeout=15000)
+                reward = p.locator('[data-action="equipment-pending"]').first
+                if reward.is_visible():
+                    reward.click()
+                    choice = p.locator('[data-action="equipment-inspect"]').first
+                    choice.wait_for(state='visible', timeout=10000)
+                    result['claimedReward'] = choice.get_attribute('data-id')
+                    choice.click()
+                    p.locator('[data-action="equipment-choice-confirm"]').click()
+                    p.locator('.equipment-choice-dialog').wait_for(state='hidden', timeout=10000)
+                    if p.locator('[data-equipment-error]').is_visible():
+                        raise RuntimeError('Equipment choice save failed')
+                result['settledThroughUI'] = True
             p.screenshot(path=str(out / 'final.png'))
             if result['complete']:
                 p.reload(wait_until='domcontentloaded')
