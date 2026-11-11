@@ -510,7 +510,7 @@
             if (won) {
                 const first = !this.profile.cleared[st.id];
                 G.HonroActEndings?.prepare(this,b,first);
-                this.profile.cleared[st.id] = { visits: (this.profile.cleared[st.id]?.visits || 0) + 1, rounds: b.round, ...(G.HonroRouteBranches?.handoff(b)?{route:G.HonroRouteBranches.handoff(b)}:{}) };
+                this.profile.cleared[st.id] = { visits: (this.profile.cleared[st.id]?.visits || 0) + 1, rounds: b.honroReport?.final?.rounds ?? b.round, ...(G.HonroRouteBranches?.handoff(b)?{route:G.HonroRouteBranches.handoff(b)}:{}) };
                 if (first) {
                     this.profile.record.push({ place: st.name, text: st.outro.filter(x=>G.HonroStory.allowed(this,x[0])).map(x => x.slice(0,2).join(' · ')).join('\n') });
                 }

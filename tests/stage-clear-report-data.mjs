@@ -5,6 +5,20 @@ const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,R=g.HonroClearReport,co
 const check=(name,fn)=>{fn();console.log('PASS',name);};
 function fixture(id=16){const q=battlefield(g,id),heroes=q.b.units.filter(u=>u.side===0&&!u.summoned&&!u.enthrall),enemy=q.b.units.find(u=>u.side===1);q.b.units=[...heroes,enemy];q.b.terrain=[];q.b.honroGrowth.weight=1;Object.assign(enemy,{hp:100,maxHp:100,armor:0,shield:0,boss:undefined,role:'fixture',existenceDefense:{form:1,qi:1,soul:1},honroXpWeight:1,dead:false,damageBy:{},awake:true,combatBaseAttack:1,x:500,y:500});delete enemy.honroNonlethal;for(const u of heroes)Object.assign(u,{hp:1000,maxHp:1000,armor:0,shield:0,ranks:{},x:450,y:500});q.e.random=()=>1;q.e.checkEnd=()=>false;R.begin(q.b,{fresh:true});return {...q,heroes,enemy};}
 const hero=(q,cls='archer')=>q.heroes.find(u=>u.cls===cls),row=(q,cls='archer')=>q.b.honroReport.heroes[cls];
+check('noncombat completion records zero rounds and retains later campaign reports',()=>{
+ const q=battlefield(g,19);
+ assert(q.e.noncombatWalk());
+ q.p.honroClearReports={31:{version:R.VERSION,stage:31,rounds:14},40:{version:R.VERSION,stage:40,rounds:9},41:{version:R.VERSION,stage:41,rounds:7}};
+ q.b.phase='won';
+ const initialRound=q.b.round,report=R.finish(q.app);
+ assert.equal(initialRound,1);
+ assert.equal(q.b.round,initialRound);
+ assert.equal(report.rounds,0);
+ assert.equal(R.get(q.app,19),report);
+ assert.equal(R.get(q.app,31).rounds,14);
+ assert.equal(R.get(q.app,40).rounds,9);
+ assert.equal(R.get(q.app,41),null);
+});
 check('actual HP and shield are distinct, overkill excluded, final death once',()=>{const q=fixture();q.enemy.shield=20;q.e.hurt(q.enemy,1000,hero(q).id,false,undefined,undefined,'salheun','A01');q.e.hurt(q.enemy,1000,hero(q).id);assert.equal(row(q).damage,100);assert.equal(row(q).shield,20);assert.equal(row(q).kills,1);});
 check('valid multi-hits are separate HP intervals',()=>{const q=fixture();q.e.hurt(q.enemy,25,hero(q).id,false,undefined,undefined,'salheun','A01');q.e.hurt(q.enemy,25,hero(q).id,false,undefined,undefined,'salheun','A01');assert.equal(row(q).damage,50);assert.equal(row(q).skills.A01.damage,50);});
 check('effective heal excludes overheal and level normalization',()=>{const q=fixture(),u=hero(q);u.hp=990;const before=u.hp;u.hp=Math.min(u.maxHp,u.hp+100);R.heal(q.b,u,u.id,u.hp-before,'test-heal');assert.equal(row(q).healing,10);C.grantXP(q.b.heroes.archer,10000);C.applyHero(u,q.b.heroes.archer,true);assert.equal(row(q).healing,10);});

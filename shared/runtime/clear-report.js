@@ -97,16 +97,22 @@ function settle(b,e){
  if(kind==='reunion')s.reunionStages=[25,end];
 }
 function deepFreeze(v){if(v&&typeof v==='object'&&!Object.isFrozen(v)){for(const x of Object.values(v))deepFreeze(x);Object.freeze(v);}return v;}
-function freeze(b){
+function freeze(b,rounds=b?.round){
  const s=b?.honroReport;if(!s)return null;if(s.final)return s.final;
  const totals=stats();for(const h of Object.values(s.heroes))for(const k of Object.keys(totals))totals[k]+=h[k];
- s.final=deepFreeze(clone({version:VERSION,gameVersion:s.gameVersion,attempt:s.attempt,stage:s.stage,scope:s.scope,partial:s.partial,npcDamageRevision:s.npcDamageRevision,npcDamagePartial:!!s.npcDamagePartial,startedRound:s.startedRound,rounds:b.round,seconds:s.seconds,retries:s.retries,order:s.order,heroes:s.heroes,xp:s.xp,counts:s.counts,other:s.other,missing:Object.keys(s.missing),totals,deferred:!!s.deferred,reunionStages:s.reunionStages||null,completedAt:new Date().toISOString(),difficulty:b.difficulty}));
+ s.final=deepFreeze(clone({version:VERSION,gameVersion:s.gameVersion,attempt:s.attempt,stage:s.stage,scope:s.scope,partial:s.partial,npcDamageRevision:s.npcDamageRevision,npcDamagePartial:!!s.npcDamagePartial,startedRound:s.startedRound,rounds,seconds:s.seconds,retries:s.retries,order:s.order,heroes:s.heroes,xp:s.xp,counts:s.counts,other:s.other,missing:Object.keys(s.missing),totals,deferred:!!s.deferred,reunionStages:s.reunionStages||null,completedAt:new Date().toISOString(),difficulty:b.difficulty}));
  return s.final;
 }
-function finish(app){const b=app.engine?.b;if(!b||b.phase!=='won')return null;begin(b,{scope:scopeOf(app)});settle(b,app.engine);const report=freeze(b),scope=scopeOf(app);
+function finish(app){
+ const engine=app.engine,b=engine?.b;
+ if(!b||b.phase!=='won')return null;
+ const scope=scopeOf(app);
+ begin(b,{scope});
+ settle(b,engine);
+ const report=freeze(b,engine.noncombatWalk?.()?0:b.round);
  if(scope==='campaign'){
   const records=app.profile.honroClearReports??={};records[report.stage]=report;
-  for(const id of Object.keys(records))if(!/^([1-9]|[12][0-9]|30)$/.test(id)||records[id]?.version!==VERSION)delete records[id];
+  for(const id of Object.keys(records))if(!/^(?:[1-9]|[1-3][0-9]|40)$/.test(id)||records[id]?.version!==VERSION)delete records[id];
   app.profile.honroReportNotice={stage:report.stage,attempt:report.attempt};
  }else{const records=app.profile.honroIsolatedReports??={};records[scope+':'+report.stage]=report;for(const id of Object.keys(records).slice(0,-6))delete records[id];}
  return report;
