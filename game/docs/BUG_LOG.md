@@ -5522,3 +5522,11 @@ Title `여정 이어가기` could choose an older hub before honoring a saved di
 - `critical-turn-recovery.mjs`: baseline과 변경 후 비교, live body/carrier 예외, legacy token, actual App canInput/defend+item, 일시 점유, 단1회 피해, 직렬화/성장 보존, 마지막/전원 pending 검증. `critical-turn-recovery-browser.py`: 사전 합성 Continue34→정상 입력과 비busy,40→HP138 유지·명확 패배/UI. 실제 사용자 save 재현/정상 전장 완주로 간주하지 않는다. 재시도와 최종 HTML 결과는 실행 출력에 구분한다.
 - 추가 기존 Act1 집중회귀/monster-effects/airborne-recovery/active-player-fall-turn/equipment-state 통과. 오래된 cap3 assertion은 새 airborne guard 제거한 baseline에서도 동일 실패, combo-landing DOM harness 장비UI 누락, body-sweep stage3 옛 slope개수, debug-campaign raw-vs-compacted art 비교의 실패는 별도로 남기고 무관수리하지 않음.
 - 원시 모델/브라우저 JSON·PNG·한계는 `_local/reports/critical-20261111/turn-*`. 브라우저 오류9 공통원인·원래34 내부상태·원래17R 결과누락은 여전히 미확정이다.
+
+### 2026-11-11 — 치명적 수정 통합 빌드와 검증 범위
+- 소스 단위 ac53c1e6b(조준/저장),6016c05c1(목표/집결),ed590e6de(착지/수중) 통합. 최종 build 성공. HONRO.html SHA256 `543e035e73d2264079b3a1d9fa365210ba922524afe4e6b73593e892db5c12d7`. 기존 성공발행12fd 웹 그래프를 보존 도구로 등록한 뒤 표준 빌드의 retention 정리만 수행했다.
+- 추가 실제 Chromium: 12 같은동행 키보행 왕복/proof와 Continue,14 실제 선행대사 cursor Continue→동일층 접근→분리 버튼,17 두NPC 철수/승리/보상,29 수문/E,30 증언/지도대조/E,36 네명 집결/Continue/정산 확인. 모두 명시적 사전 checkpoint 이후 정상 UI 입력이며 이전 전투·일부 선행조건은 fixture. 17 승리 후 없는 Continue를 찾은 자동화 오류는 정상 재개 실패로 분류하지 않는다.
+- 18/31/35/40 실제 세션 debug=true 첫발사도 각1회 통과하고 normal 저장 바이트 불변. 오류9/응답없음 미재현. 최종11 정상 Continue 발사/자동저장2588202자 경고 없음. 40 합성 영구복귀불가→HP138 유지/패배원인 결과창/실제 다시걷기 통과. 브라우저 pageerror 없음.
+- 남은 위험: 관찰된12fd 디버그 R2/3 연속 입력/장시간 자원압박, 원래34 실제 스냅샷, 원래11 R17 목표완료→보상→결과 전체 연속 재현,29·30 전체 전투/최종출구/정산,정상 캠페인 연속 완주 및 사람 플레이는 미검증이다. 필수 조건 충족 후 29/30 영구교착은 미재현이다. 안정적인 메모리 상한/오류9 해결을 주장하지 않는다.
+- P0/P1 후속: 1막 현재1025→652 장승/하강·도로/5장 매듭/대사/NPC피해/9장 기존조건은 새 act1-review-regressions와 monster-effects에서 회귀없음(모델). 21장 후일담 안내·축지진목 간략 안내·비전투 턴 표시·40장 정량 기획차이는 이번 집중수정에서 변경/실플레이 검증하지 않아 후속으로 남긴다. 무관한 전체검사는 실행하지 않았다.
+- 이 기록 시점 원격/Pages 결과는 아직 미확인이다. 실제 push·배포·공개 UI 확인은 최종 응답 및 `_local/reports/critical-20261111/` 발행 증거와 구분한다.
