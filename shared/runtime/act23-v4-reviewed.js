@@ -104,8 +104,10 @@ function complete(b){return !active(b)||closed(memory(b).events.depart)&&!!memor
 // Saved markers remain intact.
 function automaticMarker(b,m){
  if(active(b))return ['v4-entry','clear','reach','v4-world'].includes(V.steps(b).find(s=>s.id===m?.id)?.kind);
- if(b?.honroStage!==12||!m||!G.HonroAct23V4ReviewedChapters?.active(b))return false;
- return V.steps(b).some(s=>s.id===m.id&&['v4-recurrence','route'].includes(s.kind))
+ if(!m||![12,13].includes(b?.honroStage)||!G.HonroAct23V4ReviewedChapters?.active(b))return false;
+ const kind=V.steps(b).find(s=>s.id===m.id)?.kind;
+ if(b.honroStage===13)return ['v4-escort','v4-party-pass'].includes(kind);
+ return ['v4-recurrence','route'].includes(kind)
   ||(b.honroRouteSpec?.routes||[]).some(route=>route.markerId===m.id);
 }
 function instruction(b){
