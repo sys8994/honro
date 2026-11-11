@@ -51,7 +51,13 @@ function braceOccupants(b){const z=b.honroV4Worksite?.braceHazard;if(!z)return[]
 function worksiteReady(b){const spec=b.honroV4Worksite,w=worksite(b),mason=unit(b,'17.mason');return !!spec&&!!w.actors['17.mason:join']?.arrived&&alive(mason)&&near(mason,spec.jobs.mason,45)&&C.validTerrainContactPose(b.terrain,mason);}
 function deliveryReady(b){const spec=b.honroV4Worksite,w=worksite(b),part=mem(b).proof['17.parts'],gilchan=unit(b,'17.gilchan');return !!spec&&worksiteReady(b)&&part?.workerCarrier==='17.gilchan'&&w.delivery?.partId===part.partId&&w.delivery.delivered&&w.delivery.distance>=spec.minCarry&&alive(gilchan)&&near(gilchan,spec.load,35)&&C.validTerrainContactPose(b.terrain,gilchan);}
 function eligibility(app,m,s){const b=app.engine.b;if(b.honroStage!==17||!b.honroV4Worksite)return null;const a=mem(b),ok=()=>({ok:true,reason:s.id}),no=()=>({ok:false,reason:s.id});
- if(s.id==='17.brace')return braceOccupants(b).length?no():ok();
+ if(s.id==='17.brace'){
+  const n=threats(b,m,280).length;
+  if(n)return {ok:false,reason:`버팀목 주변 위협 ${n}기 제압`};
+  if(braceOccupants(b).length)return {ok:false,reason:'버팀목 설치 자리 비우기'};
+  if(a.work[s.id]?.working)return {ok:false,reason:'버팀목 설치 중'};
+  return ok();
+ }
  if(s.id==='17.mesh')return deliveryReady(b)&&!threats(b,m,280).length?ok():no();
  if(['17.lock','17.wheel','17.load-test'].includes(s.id)){if(!worksiteReady(b)||!deliveryReady(b)||threats(b,m,280).length)return no();if(s.id==='17.lock'&&!a.proof['17.mesh']||s.id==='17.wheel'&&!a.proof['17.lock']||s.id==='17.load-test'&&(!a.proof['17.lock']||!a.proof['17.wheel']))return no();return ok();}
  return null;

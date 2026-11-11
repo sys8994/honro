@@ -115,6 +115,7 @@ function prepareSupport(app){const b=app.engine.b,m=memory(b);if(!m.supportReque
 }
 function stepSatisfied(b,s){if(!active(b))return null;const m=memory(b);switch(s.id){case'18.descent':return m.threat.lowered||m.brakeLocked;case'18.brake':return m.brakeLocked;case'18.rescue':return m.rescued;case'18.rescue-safe':return m.rescueSafe;case'18.inspect':return m.connectionsChecked;case'18.hoist':return m.hoistProtected;case'18.lift':return m.liftDone;case'18.keeper':return m.bossDeath;case'18.support':return m.supportReady;case'18.settle':return m.settled;case'18.lock-west':return m.locks.west;case'18.lock-east':return m.locks.east;case'18.souls':return m.souls;default:return null;}}
 function completeInteraction(app,id){const s=V.steps(app.engine.b).find(s=>s.id===id);if(s)V.completeStep(app,s,app.engine.active);}
+function lockThreats(b,site){return b.units.filter(v=>alive(v)&&v.side===1&&!v.honroObjectiveTarget&&Math.hypot(v.x-site.x,v.y-site.y)<400);}
 function use(app,site){const e=app.engine,b=e.b,m=memory(b),u=e.active,current=V.current(b);if(!site?.id?.startsWith('18.'))return undefined;
  const ready=V.readySteps(b).some(s=>s.id===site.id),at=site.id==='18.rescue'?unit(b,RESIDENT):site;
  if(!hero(u)||!e.canAct()||paused(app)||m.bell.status==='moving'||!ready||Math.hypot(u.x-at.x,u.y-at.y)>220)return false;
@@ -126,7 +127,7 @@ function use(app,site){const e=app.engine,b=e.b,m=memory(b),u=e.active,current=V
  else if(site.id==='18.lift'&&m.bossDeath&&m.rescueSafe&&m.brakeLocked&&m.connectionsChecked&&m.hoistProtected&&!m.liftDone)ok=begin(app,'lift',b.honroV4Stage18.liftOffset);
  else if(site.id==='18.support'&&m.liftDone&&!m.supportReady&&!m.supportRequested){m.supportRequested=true;ok=true;}
  else if(site.id==='18.settle'&&m.liftDone&&m.supportReady&&m.bossDeath&&!m.settled)ok=begin(app,'settle',b.honroV4Stage18.restOffset,b.honroV4Stage18.restOffsetX);
- else if(site.id.startsWith('18.lock-')&&m.settled){const side=site.id.slice(8);if(!['west','east'].includes(side)||b.units.some(v=>alive(v)&&v.side===1&&!v.honroObjectiveTarget&&Math.hypot(v.x-site.x,v.y-site.y)<400))return false;m.locks[side]={actorId:u.id,serial:serial(b),round:b.round};m.stable=!!m.locks.west&&!!m.locks.east;slot(app,site.id+'.confirmed');completeInteraction(app,site.id);ok=true;}
+ else if(site.id.startsWith('18.lock-')&&m.settled){const side=site.id.slice(8);if(!['west','east'].includes(side)||lockThreats(b,site).length)return false;m.locks[side]={actorId:u.id,serial:serial(b),round:b.round};m.stable=!!m.locks.west&&!!m.locks.east;slot(app,site.id+'.confirmed');completeInteraction(app,site.id);ok=true;}
  else if(site.id==='18.souls'&&m.rescueSafe&&m.liftDone&&m.bossDeath&&m.settled&&m.stable){m.souls=true;slot(app,'18.souls.ready');completeInteraction(app,site.id);ok=true;}
  if(ok){e.finishAction();app.dirty=true;}return ok;
 }
@@ -150,6 +151,6 @@ function draw(scene,c,b){if(!active(b))return;const m=memory(b),q=m.bell.segment
 // snapshots retain their original behavior.
 function guardPitch(){for(const key of['heard','ritual','tick']){const old=G.HonroMukjongPitchDialogue?.[key];if(!old||old.honroV4Stage18Guard)continue;const wrapped=function(app,...args){if(active(app.engine?.b))return;return old(app,...args);};wrapped.honroV4Stage18Guard=true;G.HonroMukjongPitchDialogue[key]=wrapped;}}
 guardPitch();
-const plugin={author,prepare,attach,tick,use,stepSatisfied,failure,complete,state,draw,memory,segmentSweep,occupants,begin,transition,animate,cleanupDeath,steps:STEPS,finalSupports,restOffset:REST_OFFSET,restOffsetX:REST_OFFSET_X};
+const plugin={author,prepare,attach,tick,use,stepSatisfied,failure,complete,state,draw,memory,lockThreats,segmentSweep,occupants,begin,transition,animate,cleanupDeath,steps:STEPS,finalSupports,restOffset:REST_OFFSET,restOffsetX:REST_OFFSET_X};
 G.HonroAct23V4Stage18=plugin;V.register(18,plugin);
 })(globalThis);

@@ -102,6 +102,14 @@ function drive(app){const b=app.engine.b,q=mem(b),m=physical(b),events=api.memor
  if(offer('aware','A2.S18.INTRO.03',q.rope))return;
  if(offer('lowering','A2.S18.INTRO.04',{offset:m.bell.offset,actor:q.rope.actor}))return;
  if(offer('bell-guide','A2.S18.POPUP.03',q.bellAimProof))return;
+ const actor=app.engine.active;
+ for(const step of V.readySteps(b)){
+  const site=V.marker(b,step.id),guide=site&&approachGuide(b,site);
+  if(!guide||events[guide.key]||!alive(actor)||actor.side!==0||!V.near(actor,site,220))continue;
+  q.invalid=guide.kind;
+  if(scene(app,guide.key,guide.row))return;
+ }
+
  for(const[key,id]of [['hands-off','PHASE1.01'],['rescue-answer','PHASE1.02'],['repeat','PHASE1.03'],['brake-sight','MID.01'],['resident-approach','MID.02'],['braked','MID.03'],['moving-resident','MID.04'],['safe-resident','MID.05'],['question','PHASE2.01'],['answer','PHASE2.02'],['accusation','PHASE2.03'],['hostile','PHASE2.04'],['ritual','PHASE2.05'],['open-shot','PHASE2.06'],['death-confirm','DEATH.02'],['early-death','BRANCH.01'],['fall-confirm','BRANCH.02'],['environment-guide','POPUP.04'],['inspect','STABILIZE.01'],['support-visible','STABILIZE.02'],['gap','STABILIZE.03'],['clear-below','STABILIZE.04'],['reseated','STABILIZE.05']]){
   if(offer(key,'A2.S18.'+id)){if(key==='question')q.confronted=true;return;}
  }
@@ -128,10 +136,20 @@ function use(app,site){const e=app.engine,b=e.b,m=physical(b),q=mem(b);
  if(site.id==='18.settle'&&m.liftDone&&m.supportReady&&m.bossDeath&&!m.settled&&!q.translated){if(!S.begin(app,'translate',m.bell.offset,32))return false;e.finishAction();return true;}
  return undefined;
 }
-function eligibility(app,site){const b=app.engine.b,m=physical(b),q=mem(b);
- if(['18.hoist','18.lift'].includes(site.id)&&!m.brakeLocked){q.invalid='brake';scene(app,'brake-guide','A2.S18.POPUP.01');return{ok:false,reason:api.row('A2.S18.POPUP.01').text};}
- if(site.id==='18.lift'&&!safeResident(b)){q.invalid='rescue';scene(app,'rescue-guide','A2.S18.POPUP.02');return{ok:false,reason:api.row('A2.S18.POPUP.02').text};}
+function approachGuide(b,site){
+ const m=physical(b);
+ if(['18.hoist','18.lift'].includes(site.id)&&!m.brakeLocked)return{kind:'brake',key:'brake-guide',row:'A2.S18.POPUP.01'};
+ if(site.id==='18.lift'&&!safeResident(b))return{kind:'rescue',key:'rescue-guide',row:'A2.S18.POPUP.02'};
+}
+function eligibility(app,site){
+ const b=app.engine.b,m=physical(b),guide=approachGuide(b,site);
+ if(guide)return{ok:false,reason:api.row(guide.row).text};
  if(site.id==='18.settle'&&(!m.supportReady||!api.done(b,'gap')))return{ok:false,reason:api.row('A2.S18.OBJECTIVE.04').text};
+ if(site.id==='18.support'&&m.supportRequested&&!m.supportReady)return{ok:false,reason:'받침 설치 중'};
+ if(site.id.startsWith('18.lock-')){
+  const enemies=S.lockThreats(b,site).length;
+  if(enemies)return{ok:false,reason:`고정구 주변 위협 ${enemies}기 제압`};
+ }
  return undefined;
 }
 function attach(app,e){discardEndedBoundary(e.b);if(e.honroReviewed18Bound)return;e.honroReviewed18Bound=true;
