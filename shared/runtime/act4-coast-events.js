@@ -21,6 +21,7 @@ const foes=b=>b.units.filter(u=>u.side===1&&alive(u));
 // The engine returns to aim only after resolving its action and volley.
 const stable=b=>!b.projectiles.length&&!b.volley&&b.phase==='aim';
 const quiet=b=>!foes(b).length&&stable(b)&&P.quietReady(b);
+const shelterTravel=b=>b.honroStage===32&&b.honroAct4Official===1&&!b.honroCustom&&b.mode==='campaign'&&b.side===0&&quiet(b);
 const seen=(q,k)=>q.observed?.[k]!==undefined;
 const closed=(q,k)=>!!q.events[k]?.terminal;
 const cast=app=>app.engine.active;
@@ -220,6 +221,13 @@ P.coastObserve=function(app,dt){const b=app.engine.b,n=b.honroAct4Preview;if(!ac
  if(n===40&&!returnDeck(b)&&!b.terrain.some(t=>t.id==='a4-return-boarding'))b.terrain.push({id:'a4-return-boarding',x:2820,y:1950,w:180,h:18,mat:'wood',oneWay:true,hp:9999,maxHp:9999,indestructible:true});
  if(n===40&&!geometry40(b)&&!b.terrain.some(t=>t.id==='a4-return-deck'))b.terrain.push({id:'a4-return-deck',x:2920,y:1950,w:360,h:20,mat:'wood',oneWay:true,hp:9999,maxHp:9999,indestructible:true,honroAct4MovingDeck:true});
  if(n===32){const npc=e.unit('a4-shelter-speaker');if(!alive(npc)){fail(b,'shelter-witness-defeated');return;}if(!quiet(b))return;
+  // Once the last exchange and the quiet scene have settled, let companions
+  // regroup on foot without spending additional empty battle rounds.
+  if(shelterTravel(b)&&!q.shelterTravel&&!e.settleBusy()){
+   q.shelterTravel=true;
+   for(const u of party(b)){u.acted=false;u.moveLeft=u.maxMove;}
+   app.dirty=true;
+  }
   if(npc.honroAct4Sheltered&&party(b).some(u=>Math.abs(u.x-K(b,'shelterX',4890))<650)){q.shelterDoor??={phase:'opening',time:0};goal(app,'A4.S32.REUNION_OBJECTIVE');}
   if(q.shelterDoor?.phase==='opening'){q.shelterDoor.time=Math.min(1,q.shelterDoor.time+dt);if(q.shelterDoor.time===1&&seen(q,'door-open')){q.shelterDoor.phase='open';npc.honroAct4Sheltered=false;npc.fixed=false;}}
   if(q.shelterDoor?.phase==='open'&&npc.x>K(b,'doorX',4780))moveNpc(e,npc,K(b,'doorX',4780)-10,dt,180);
@@ -306,9 +314,11 @@ const attached=new WeakSet();P.attachCoast=function(app){const e=app.engine,b=e.
  // Every observer is scoped to the captured battle; changing chapter ends its
  // loop. Core Engine remains the sole physics, hit and locomotion provider.
  for(const name of ['move','jump','fire']){const original=e[name].bind(e);e[name]=function(...args){if((name==='jump'?args[0]:e.active)?.honroAct4Recovering)return false;return original(...args);};}
+ const canRegroup=u=>n===32&&alive(u)&&u.side===0&&!u.summoned&&!u.enthrall&&memory(b).shelterTravel&&shelterTravel(b);
+ if(n===32){const jump=e.jump.bind(e);e.jump=function(u=e.active){if(canRegroup(u))u.moveLeft=u.maxMove;return jump(u);};}
  const reserved=u=>u.side===1&&!airborne(u)&&!u.honroAct4Aquatic;
  const forbidden=(u,x,y)=>(b.honroAct4Design.enemyExclusion||[]).some(z=>x+u.r>z.x1&&x-u.r<z.x2&&y>z.y1&&y-u.h<z.y2);
- const walk=e.walk.bind(e);e.walk=function(u,d,dt,...args){if(reserved(u)&&forbidden(u,u.x+Math.sign(d)*u.walkSpeed*dt,u.y))return false;return walk(u,d,dt,...args);};
+ const walk=e.walk.bind(e);e.walk=function(u,d,dt,...args){if(reserved(u)&&forbidden(u,u.x+Math.sign(d)*u.walkSpeed*dt,u.y))return false;if(canRegroup(u))u.moveLeft=u.maxMove;return walk(u,d,dt,...args);};
  const integrate=e.integrateBody.bind(e);e.integrateBody=function(u,dt,...args){if(u.honroAct4RecoverPending){u.vx=u.vy=0;return;}const before={x:u.x,y:u.y};const out=integrate(u,dt,...args);if(reserved(u)&&forbidden(u,u.x,u.y)&&!forbidden(u,before.x,before.y)){u.x=before.x;u.y=before.y;u.vx=u.vy=0;delete u.aiMove;delete u.moveTarget;}return out;};
  const tick=e.tick.bind(e);e.tick=function(dt){if(memory(b).vista?.active)return;const out=tick(dt);if(!app.dialogue){tide(b);water(e,dt);}return out;};
  const hurt=e.hurt.bind(e);e.hurt=function(u,...args){const was=alive(u),out=hurt(u,...args);if(was&&!alive(u)&&u.honroAct4WreckBoss&&memory(b).artillery)memory(b).artillery.next=null;if(was&&!alive(u)&&n===32&&u.cls==='archer'&&u.side===0)fail(b,'required-reunion-speaker-defeated');if(was&&!alive(u)&&(rewardTarget?u===rewardTarget&&u.side===1&&u.elite===true:u.honroAct4RewardTag==='eq-hw-36'))fact(b,'eq_hw_t3b',{target:u.id,elite:!!u.elite});if([38,39,40].includes(n)&&u.honroAct4Resident&&!alive(u))fail(b,'rescue-casualty');return out;};
