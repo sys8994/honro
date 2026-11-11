@@ -25,7 +25,7 @@ console.log('PASS actual house crest linked to wagon rather than parcel tags; no
 const goals={archer:5735,mage:5825,knight:6505,occultist:6595};let saved=false,depart=false;
 for(let i=0;i<2000&&!R.memory(b).proof.departure;i++){
  for(const c of ['archer','mage','occultist','knight']){const u=hero(c),goal=goals[c];if(Math.abs(u.x-goal)>2){const dt=Math.min(.025,Math.abs(goal-u.x)/u.walkSpeed);app.engine.walk(u,Math.sign(goal-u.x),dt,true);app.engine.integrateBody(u,dt,true);}}
- tick();if(app.dialogue?.lines[0][2].rowId==='A3.S24.GUIDE.01')break;if(app.dialogue){assert.equal(app.dialogue.lines[0][2].rowId,'A3.S24.DEPART.01');depart=true;b=resume();at('A3.S24.DEPART.01');h.finish(app);}
+ tick();if(app.dialogue?.lines[0][2].rowId==='A3.S24.GUIDE.01')break;if(app.dialogue){assert.equal(app.dialogue.lines[0][2].rowId,'A3.S24.DEPART.01');depart=true;b=resume();at('A3.S24.DEPART.01');while(app.dialogue)g.HonroStory.next(app);}
  if(!saved&&(R.memory(b).departWalk?.archer?.distance||0)>80){const before=plain({heroes:V.heroes(b),memory:R.memory(b),split:b.honroSplit});b=resume();assert.deepEqual(plain({heroes:V.heroes(b),memory:R.memory(b),split:b.honroSplit}),before);saved=true;}
 }
 assert(saved&&depart);assert(R.memory(b).proof.departure,JSON.stringify(R.memory(b)));at('A3.S24.GUIDE.01');assert(R.memory(b).proof.departure.teams.water.length===2&&R.memory(b).proof.departure.teams.ground.length===2);h.finish(app);tick();assert(R.journal(app.profile,24));assert(R.complete(b));for(const u of V.heroes(b)){assert.equal(u.hp,initial[u.cls].hp);assert.equal(u.focus,initial[u.cls].focus);assert(u.moveLeft<initial[u.cls].move);}
