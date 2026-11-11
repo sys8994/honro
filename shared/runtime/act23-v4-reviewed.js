@@ -104,7 +104,12 @@ function complete(b){return !active(b)||closed(memory(b).events.depart)&&!!memor
 // Saved markers remain intact.
 function automaticMarker(b,m){
  if(active(b))return ['v4-entry','clear','reach','v4-world'].includes(V.steps(b).find(s=>s.id===m?.id)?.kind);
- if(!m||![12,13,17,18].includes(b?.honroStage)||!G.HonroAct23V4ReviewedChapters?.active(b))return false;
+ if(!m)return false;
+ if([21,29].includes(b?.honroStage)&&V.active(b)){
+  const kind=V.steps(b).find(s=>s.id===m.id)?.kind;
+  return b.honroStage===21?m.id==='v4.gate-cart'&&kind==='destroy':kind==='stage29';
+ }
+ if(![12,13,17,18].includes(b?.honroStage)||!G.HonroAct23V4ReviewedChapters?.active(b))return false;
  const kind=V.steps(b).find(s=>s.id===m.id)?.kind;
  if(b.honroStage===13)return ['v4-escort','v4-party-pass'].includes(kind);
  if(b.honroStage===17)return ['clear','v4-defense','v4-withdraw'].includes(kind);
