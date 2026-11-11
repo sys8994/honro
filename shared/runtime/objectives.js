@@ -1,6 +1,14 @@
 (function(G){'use strict';
 const durability=t=>Number.isFinite(t?.hp)?Math.max(0,Math.ceil(t.hp))+(Number.isFinite(t.maxHp)&&t.maxHp>0?'/'+Math.ceil(t.maxHp):''):'';
 const oldSettlement=(b,st)=>({ledger:1,seals:1,rescue3:2,bierboss:b.honroNarrativeRevision===1?0:1,prepare:b.honroNarrativeRevision===1?0:2})[st.objective]||0;
+function waterfallHoldCredit(b,st){
+ const hs=b.honroState,ritual=hs?.ritual;
+ if(st.id!==5||!Number.isInteger(ritual?.enemyEndAtStart))return 0;
+ if(Number.isInteger(ritual.creditAtBreak))return ritual.creditAtBreak;
+ const marker=b.honroMarkers?.find(m=>m.id==='receiver-5'),holder=b.units.find(u=>u.id===ritual.holderId);
+ if(!ritual.active||!marker||!holder||holder.dead||holder.hp<=0||Math.abs(holder.x-marker.x)>125||Math.abs(holder.y-marker.y)>80)return 0;
+ return Math.max(0,Math.min(2,(b.teamEnds?.[1]||0)-ritual.enemyEndAtStart));
+}
 function settlement(b,st){
  const hs=b.honroState||{},old=oldSettlement(b,st),rounds=old===1?2:old,h=hs.objectiveSettlement;
  if(h?.version===1)return{rounds,progress:Math.min(rounds,h.progress+Math.max(0,(b.teamEnds?.[1]||0)-h.enemyEnd)),preserved:!!h.preserved};
@@ -15,7 +23,7 @@ function updateSettlement(b,st,ready){
  const h=hs.objectiveSettlement;
  // A phase already in progress at completion is not a complete defence interval.
  const enemyEnd=(b.teamEnds?.[1]||0)+(b.side===1&&b.phase!=='transition'?1:0);
- if(h?.version!==1)hs.objectiveSettlement={version:1,progress:s.progress,preserved:s.preserved,enemyEnd};
+ if(h?.version!==1)hs.objectiveSettlement={version:1,progress:Math.max(s.progress,waterfallHoldCredit(b,st)),preserved:s.preserved,enemyEnd};
  else {h.progress=s.progress;h.enemyEnd=Math.max(h.enemyEnd,b.teamEnds?.[1]||0);}
 }
 // Rescue follows its referenced person in this battle, never its old authoring
@@ -176,5 +184,5 @@ function draw(scene,e){
  c.restore();
 }
 function minimap(app,c,sx,sy){if(app.training)return;const s=state(app.engine.b,app.stage),crow=G.HonroStage8Bier?.pendingCrowWarning(app.engine.b);if(crow&&!s.targets.some(t=>t.id===crow.id))s.targets.push(crow);c.save();c.strokeStyle='#ffe0a0';for(const t of s.targets)c.strokeRect(t.x*sx-3,t.y*sy-3,6,6);if(app.scene?.storyFrame?.camera.intent==='objective'){c.lineWidth=2;for(const box of app.scene.storyFrameReport?.boxes||[]){c.beginPath();c.arc((box.x+box.w/2)*sx,(box.y+box.h)*sy,7,0,Math.PI*2);c.stroke();}}c.restore();}
-G.HonroObjectives={interactionTarget,state,failure,lines,entry,help,focus,refresh,draw,minimap,briefings,markerLift,settlement,updateSettlement};
+G.HonroObjectives={interactionTarget,state,failure,lines,entry,help,focus,refresh,draw,minimap,briefings,markerLift,settlement,updateSettlement,waterfallHoldCredit};
 })(globalThis);

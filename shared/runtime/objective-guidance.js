@@ -58,7 +58,7 @@ function legacySteps(b,st,r){const h=b.honroState||{},out=[],add=(id,text,done=f
  case 2:add('escort','상여가 도착할 때까지 지켜 주세요',r.complete);break;
  case 3:add('ledger','움막의 장부를 확인하세요',!!h.ledger);hold('적 행동을 두 번 버티며 일행을 보호하세요');break;
  case 4:add('protect','피난문을 지키세요 · '+Math.max(0,8-(b.round-1))+'턴 남음',r.complete);break;
- case 5:add('ritual','담허로 받이진 앞에서 의식을 시작하세요',!!h.ritual?.active||!seals.some(t=>!t.broken));add('cleat','설오로 표시된 고리쇠를 쏘세요',!seals.some(t=>!t.broken));hold('적 행동을 두 번 버티며 물길을 지키세요');break;
+ case 5:{const broken=!seals.some(t=>!t.broken),progress=broken?G.HonroObjectives.settlement(b,st).progress:G.HonroObjectives.waterfallHoldCredit(b,st);add('ritual','담허로 받이진 앞에서 의식을 시작하세요',!!h.ritual?.active||broken);add('cleat','설오로 표시된 고리쇠를 쏘세요',broken);add('settle',`물길진 보호 · 적 행동 ${progress}/2회`,progress>=2);break;}
  case 6:add('midboss','교각귀를 쓰러뜨리세요',!b.units.some(u=>u.honroMidboss&&!u.dead));add('rescue','운반대 가까이 이동하세요',!!h.rescued);add('escort','운반대 앞에서 길을 열어 주세요',r.complete);break;
  case 7:marks.filter(m=>m.action==='rescue').forEach((m,i)=>add(m.id,'주민 '+(i+1)+' 곁에서 구조하세요',!!m.collected));hold('구조한 주민들을 2턴 보호하세요');break;
  case 8:seals.forEach((t,i)=>add(t.id,'상여 결박 '+(i+1)+'을 공격하세요',!!t.broken));add('boss','빈 상여를 쓰러뜨리세요',!!boss?.dead);if(b.honroNarrativeRevision!==1)hold('적 행동을 두 번 버티며 주변을 지키세요');break;

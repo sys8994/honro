@@ -13,7 +13,13 @@ function author(project){
  if(d.stage.width!==6200||d.stage.height!==3200||d.stage.initialState?.honroStage11CompactRevision!==1)throw Error('Invalid compact Stage11 package');
  const ids=new Set(project.library.map(a=>a.id)),assets=clone(d.assets||[]);
  for(const a of assets){if(ids.has(a.id)||a.collision?.length)throw Error('Compact art must use new collision-free asset IDs');ids.add(a.id);}
- return {...project,stages:project.stages.map(s=>s===old?clone(d.stage):s),library:[...project.library,...assets]};
+ const stage=clone(d.stage),exitThreat=stage.initialState.honroV4Steps.find(s=>s.id==='11.exit-threat');
+ // The high flanker can escape the assembly lane. The existing nearby-threat
+ // check at the bell still applies if it returns to the party's route.
+ exitThreat.defeatIds=exitThreat.defeatIds.filter(id=>id!=='compact11-exit-crow');
+ const lantern=stage.units.find(u=>u.id==='compact11-exit-lantern');
+ Object.assign(lantern,{x:4750,y:1510});
+ return {...project,stages:project.stages.map(s=>s===old?stage:s),library:[...project.library,...assets]};
 }
 function preserveBattle(b){
  if(!enabled()||b?.honroStage!==11||b.honroCustom||b.honroMapOrigin!=='campaign'||b.mode!=='campaign'||b.honroRevision!==20)return false;

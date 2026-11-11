@@ -29,5 +29,11 @@ export function applyStage6Positioning(project){
  const crows=s.events.find(e=>e.id==='bridge-crows');Object.assign(crows.action,{x:3150,y:1600,requireFlightClearance:true,maxDistance:550,spacing:145});
  const boars=s.events.find(e=>e.id==='bridge-boars');Object.assign(boars.action,{x:5100,y:top('lower-road',5100),support:'lower-road',spacing:145,maxDistance:550});
  const pursuit=s.events.find(e=>e.id==='pursuit');Object.assign(pursuit.action,{x:3540,y:top('lower-road',3540),support:'lower-road',spacing:145,maxDistance:500});
- return applyStage6ArtCandidate(project);
+ const result=applyStage6ArtCandidate(project),stage=result.stages.find(v=>v.metadata?.stageId===6);
+ // Campaign factories read this authored base HP for new battles. Existing
+ // battle snapshots keep their own stats and the escort still requires the boss.
+ stage.units=stage.units.map(u=>u.id==='midboss-stage6'?{
+  ...u,combatBaseHp:u.combatBaseHp*.75,maxHp:Math.round(u.maxHp*.75),hp:Math.round(u.hp*.75)
+ }:u);
+ return result;
 }

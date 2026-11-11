@@ -28,6 +28,31 @@ const cast=app=>app.engine.active;
 const working=(e,u,point,r)=>alive(u)&&u.side===0&&e.b.side===0&&e.b.phase==='aim'&&e.active===u&&!u.acted&&e.grounded(u)&&near(u,point,r);
 function cancelWork(q,key,u,observation){if(u)delete u.honroScenePose;q[key]=null;if(q.observed)delete q.observed[observation];}
 const residents=b=>b.units.filter(u=>u.honroAct4Resident);
+const climbSectors=[
+ {key:'road',label:'중턱 짐길',x:1390,direction:-1,support:'approved37-lower-diagonal',guards:['a4-37-a-1','a4-37-a-3','a4-37-a-2','a4-37-b-1']},
+ {key:'ridge',label:'상단 사격로',x:1440,direction:1,support:'approved37-upper-road',guards:['a4-37-e-1','a4-37-h-1','a4-37-h-2','a4-37-h-3']},
+];
+const caveGuards={upper:['a4-38-d-1','a4-38-e-1'],lower:['a4-38-pursuer-0','a4-38-pursuer-1']};
+const supportId=(e,u)=>e.grounded(u)?e.contactSurface(u.x,u.y-4,u.y+5)?.t.id:null;
+function onRoad(e,u,p){return supportId(e,u)===p.support&&Math.abs(u.x-p.x)<280;}
+function threatStopped(e,id){const u=e.unit(id);return !!u&&(!alive(u)||u.bound>0||!!u.eaterCapturedBy||!!u.enthrall);}
+function checkpoint(b){const routes=memory(b).routeObjectives;return routes&&climbSectors.find(p=>!routes.crossed[p.key]);}
+P.beginRouteObjectives=function(b){const q=memory(b);if([37,38].includes(b.honroAct4Preview))q.routeObjectives??={crossed:{},cover:{},transit:{}};if(b.honroAct4Preview===39)q.escortedRescue=true;};
+function routeGoal(app,text){if(app.stage.goal===text)return;app.stage.goal=text;const node=G.document.getElementById('objective-text');if(node)node.textContent=text;app.dirty=true;}
+function climbObjectives(app){const e=app.engine,b=e.b,q=memory(b),routes=q.routeObjectives,p=checkpoint(b);
+ if(!p){routeGoal(app,closed(q,'signal')?'신호 확인 완료 · 상단 출구에 동행 집결':'상단에서 구조 신호 확인');return;}
+ const cover=routes.cover[p.key],watch=cover&&e.unit(cover.actor),held=alive(watch)&&onRoad(e,watch,p)&&watch.shield>0&&cover.enemyEnd===(b.teamEnds?.[1]||0);
+ const positions=(routes.roadPositions??={})[p.key]??={},onLane=party(b).filter(u=>onRoad(e,u,p)),clear=p.guards.every(id=>threatStopped(e,id));
+ const crossed=onLane.find(u=>(u.x-p.x)*p.direction>=0&&(clear||held&&u.id!==watch.id&&(positions[u.id]-p.x)*p.direction<0));
+ for(const u of onLane)positions[u.id]=u.x;
+ if(crossed){routes.crossed[p.key]={actor:crossed.id,round:b.round,support:p.support,cover:held?watch.id:null};app.dirty=true;return;}
+ routeGoal(app,`${p.label} 확보 · 경비 제압 또는 한 명이 길에서 방어하며 동행 통과`);
+}
+function caveLookout(e,u){const support=supportId(e,u);if(support==='approved38-upper'&&u.x>=4230&&u.x<=4900)return 'upper';if(support==='approved38-rescue-ledge'&&residents(e.b).some(v=>near(u,v,440)))return 'lower';return null;}
+function caveObjectives(app){const b=app.engine.b,r=memory(b).routeObjectives;
+ if(r.recon&&!r.response&&caveGuards[r.recon.route].every(id=>threatStopped(app.engine,id))){r.response={route:r.recon.route,round:b.round};app.dirty=true;}
+ routeGoal(app,r.response?'주민과 추격로 확인 완료 · 상단 출구에 동행 집결':r.recon?(r.recon.route==='upper'?'상층 전망대 경비를 제압해 주민 쪽으로 내려가는 추격로 차단':'주민 쪽으로 다가오는 추격군 제압'):'상층 전망대 또는 하층 주민 곁에서 주민 위치 확인 · 상호작용');
+}
 function unobscured(app,p){const s=app.scene,cv=s.canvas,r=cv.getBoundingClientRect(),x=r.left+cv.clientWidth/2+(p.x-s.x)*s.scale,y=r.top+cv.clientHeight/2+(p.y-s.y)*s.scale,box={left:x-22*s.scale,right:x+22*s.scale,top:y-90*s.scale,bottom:y+4*s.scale};if(box.left<r.left+3||box.right>r.right-3||box.top<r.top+5||box.bottom>r.bottom-5)return false;return ['.battle-info','.battle-head>button','#minimap-dock'].every(selector=>{const n=app.root.querySelector(selector),a=n?.getBoundingClientRect();return !a||!a.width||!a.height||box.right<a.left||box.left>a.right||box.bottom<a.top||box.top>a.bottom;});}
 function goal(app,id){const text=G.HONRO_ACT4_PREVIEW_SEEDS.ui.find(v=>v[0]===id)?.[1];if(!text)return;app.stage.goal=text;const n=G.document.getElementById('objective-text');if(n)n.textContent=text;}
 function hasFact(b,id){return b.honroAct4FactEvents?.some(v=>v.eventId===id)||P.campaignProof?.runId===b.honroAct4ReviewRunId&&!!P.campaignProof.factEvents?.[id];}
@@ -199,9 +224,11 @@ function water(e,dt=0){const b=e.b;if(!active(b))return;const q=memory(b),polici
 function rescueSafe(e,u){const z=e.b.honroAct4Design.rescue.safeZone;return alive(u)&&u.x>=z.x1&&u.x<=z.x2&&u.y>=z.y1&&u.y<=z.y2&&e.grounded(u);}
 function probeRoute(b){const npc=residents(b).filter(alive).sort((a,c)=>c.x-a.x)[0];if(!npc)return false;const world=copy(b);world.units=world.units.filter(u=>!u.honroAct4Resident||u.id===npc.id);const e=new C.Engine(world,()=>{});e.checkEnd=()=>false;const u=e.unit(npc.id);u.fixed=false;u.moveLeft=10000;const target=b.honroAct4Design.rescue.safeX.at(-1);for(let i=0;i<600&&u.x<target-15;i++){const x=u.x;e.walk(u,1,.05,true);if(u.x-x<.01||!G.HonroTerrain.separated(world,u,u.x,u.y,12))return false;}return u.x>=target-15;}
 function escort(e,q,dt){const b=e.b,cfg=b.honroAct4Design.rescue;if(!cfg||!q.exitStable||!q.netOpen)return;
- const token=b.round+':'+b.shot+':'+b.side;for(const [i,id]of cfg.ids.entries()){const u=e.unit(id);if(!alive(u))continue;const m=q.escort??={};const rec=m[id]??={};if(rec.token!==token){rec.token=token;rec.remaining=170;}
+ const token=b.round+':'+b.shot+':'+b.side,escorts=q.escortedRescue?party(b).filter(u=>e.grounded(u)):[];for(const [i,id]of cfg.ids.entries()){const u=e.unit(id);if(!alive(u))continue;const m=q.escort??={};const rec=m[id]??={};if(!q.escortedRescue&&rec.token!==token){rec.token=token;rec.remaining=170;}
   if(u.x>=cfg.safeX[i]-14&&u.x<=cfg.safeX[i]+40&&rescueSafe(e,u)){rec.safe=true;u.fixed=true;continue;}
-  if(rec.remaining<=0||b.side!==0||b.phase!=='aim')continue;const moved=moveNpc(e,u,cfg.safeX[i],dt,rec.remaining)||0;rec.remaining-=moved;
+  if(b.side!==0||b.phase!=='aim')continue;
+  if(q.escortedRescue){const leader=escorts.find(v=>Math.abs(v.y-u.y)<=170&&v.x>u.x+45&&v.x<u.x+430);if(leader)moveNpc(e,u,cfg.safeX[i],dt,leader.x-u.x-45);continue;}
+  if(rec.remaining<=0)continue;const moved=moveNpc(e,u,cfg.safeX[i],dt,rec.remaining)||0;rec.remaining-=moved;
  }
 }
 const routeCache=new WeakMap();function routeClear(b){const signature=JSON.stringify([b.sceneVersion,b.units.map(u=>[u.id,u.dead,u.hp>0,u.x,u.y,u.h,u.r,!!u.jumping,!!u.airborne,u.vy])]),old=routeCache.get(b);if(old?.signature===signature)return old.clear;const clear=probeRoute(b);routeCache.set(b,{signature,clear});return clear;}
@@ -244,8 +271,9 @@ P.coastObserve=function(app,dt){const b=app.engine.b,n=b.honroAct4Preview;if(!ac
  }
  if(n===35){const d=q.flaskDelivery;if(d&&d.phase!=='complete'){const mage=e.unit(d.receiver),giver=e.unit(d.giver);if(!working(e,mage,giver,150)||!alive(giver)||!e.grounded(giver)||!quiet(b)){delete mage?.honroScenePose;delete giver?.honroScenePose;q.flaskDelivery=null;}else{mage.facing=giver.x>mage.x?1:-1;giver.facing=-mage.facing;mage.honroScenePose=giver.honroScenePose={kind:'point',time:1};d.elapsed+=dt;if(d.elapsed>=1.4&&d.received){d.phase='complete';fact(b,'eq_da_t3b',{itemId:'itm_da_06',giver:giver.id,receiver:mage.id,receivedAt:d.received.at,positions:d.received.positions,kind:'companion-handoff'});delete mage.honroScenePose;delete giver.honroScenePose;P.save?.();}}}
   if(party(b).some(u=>u.x>K(b,'clearingX1',5520)&&u.x<K(b,'clearingX2',5720)&&u.y<K(b,'clearingYMax',1e9)&&e.grounded(u))&&!foes(b).some(u=>u.x>K(b,'clearingFoeX',5000)&&u.y<K(b,'clearingFoeYMax',1e9)))fact(b,'eq_co_t3_choice',{tag:'rooted-third-clearing',reached:true});}
- if(n===37){if(seen(q,'signal')&&seen(q,'gesture'))play(app,'signal');}
+ if(n===37){if(q.routeObjectives)climbObjectives(app);if(!checkpoint(b)&&seen(q,'signal')&&seen(q,'gesture'))play(app,'signal');}
  if(n===38){const geo=geometry38(b),c=cfg.connection,pursuers=foes(b).filter(u=>u.honroAct4Pursuer),tour=rescueVista(app,q,dt);
+  if(q.routeObjectives)caveObjectives(app);
   if(seen(q,'rescue-voices')&&!q.connected){for(const [i,u]of pursuers.entries()){const slot=geo===legacy38?i:b.units.filter(v=>v.honroAct4Pursuer).indexOf(u),target=geo.pursuerDestinations?.[slot]??5610+i*170;if(geo!==legacy38&&geo.pursuerDestinations[slot]===undefined)throw Error('Missing Act4 pursuit destination');if(u.x>target)moveNpc(e,u,target,dt,180);}if(!tour&&(!pursuers.length||q.pursuitSeen))play(app,'voice');}
 
   if(q.connectionProbe?.phase==='entry'&&seen(q,'probe-entry')&&q.clock-q.connectionProbe.at>.6){q.connectionProbe={phase:'wrong-exit',at:q.clock};}
@@ -260,6 +288,7 @@ P.coastObserve=function(app,dt){const b=app.engine.b,n=b.honroAct4Preview;if(!ac
   escort(e,q,dt);if(q.releasePending&&residents(b).some(u=>u.x>cfg.rescue.net.x+60&&e.grounded(u))&&q.clock-(q.pathProbeAt??-10)>.5){q.pathProbeAt=q.clock;q.livePathClear=routeClear(b);if(q.livePathClear){q.npcRouteObserved=true;play(app,'souls_freed');}}const dosik=e.unit('a4-rescue-3'),seolo=party(b).find(u=>u.cls==='archer');
   if(q.exitStable&&q.netOpen&&dosik.x>K(b,'handX1',6570)&&dosik.x<K(b,'handX2',6740)&&near(seolo,{x:dosik.x+70,y:dosik.y},160)){q.hand??={at:q.clock,actor:seolo.id};seolo.honroScenePose={kind:'point',time:1};if(seen(q,'hand')&&play(app,'hand',true))q.hand.completed=true;}
   if(r.ids.every(id=>q.escort?.[id]?.safe&&rescueSafe(e,e.unit(id)))){q.rescued={ids:copy(r.ids),sourceRun:b.session,campaignRunId:b.honroAct4ReviewRunId};goal(app,'A4.S39.ESCAPE_OBJECTIVE');}
+  else if(q.escortedRescue&&q.exitStable&&q.netOpen)routeGoal(app,`주민 곁에서 안전지대까지 호위 · ${r.ids.filter(id=>q.escort?.[id]?.safe&&rescueSafe(e,e.unit(id))).length}/4명`);
  }
  if(n===40){const cfg=b.honroAct4Design.escort;if(!quiet(b))return;const geo=geometry40(b);if(geo){authoredReturn(app,q,dt,geo);return;}
   if(!q.returnEscort&&party(b).some(u=>u.x>2600)&&seen(q,'return-boat')&&seen(q,'return-high')){q.returnEscort={phase:'boarding',clock:0,boatX:cfg.boat.x};play(app,'boarding');}
@@ -275,16 +304,27 @@ P.coastObserve=function(app,dt){const b=app.engine.b,n=b.honroAct4Preview;if(!ac
 const interact=P.interact;P.interact=function(app=G.HonroApp,probe=false){if(interact(app,probe))return true;const e=app.engine,b=e?.b;if(!active(b)||app.dialogue||b.phase!=='aim')return false;const q=memory(b),n=b.honroAct4Preview,u=e.active,cfg=b.honroAct4Design;if(!alive(u)||!e.grounded(u))return false;
  if(n===32&&quiet(b)&&closed(q,'missing_four')&&!q.safeSeven&&near(u,{x:e.unit('a4-shelter-speaker').x,y:K(b,'speakerY',2010)},340)){if(probe)return true;const report=event(q,'missing_four');report.started=false;report.terminal=false;return play(app,'missing_four');}
  if(n===35&&!q.flaskDelivery){const pair=flaskPair(e);if(pair&&u===pair.mage){if(probe)return true;q.flaskDelivery={phase:'passing',giver:pair.giver.id,receiver:pair.mage.id,elapsed:0};return true;}}
+ if(n===38&&q.routeObjectives&&!q.routeObjectives.recon){const route=caveLookout(e,u),group=residents(b);if(route&&group.length===4&&group.every(alive)){
+   if(probe)return true;q.routeObjectives.recon={route,actor:u.id,round:b.round,residents:group.map(v=>v.id)};
+   for(const id of caveGuards[route]){const foe=e.unit(id);if(alive(foe)){foe.awake=true;foe.aggroUntil=Math.max(foe.aggroUntil||0,b.round+2);}}
+   caveObjectives(app);return true;
+  }}
  if(n===38&&near(u,cfg.connection.entry,250)){
   if(!q.connectionProbe){if(probe)return true;q.connectionProbe={phase:'entry',at:q.clock};return true;}
   if(!q.connected&&q.connectionProbe.phase==='observed'&&u.cls==='mage'){if(probe)return true;q.anchorAction={actor:u.id,elapsed:0};play(app,'anchor');return true;}
-  if(q.connected){const p=space(b,u,q.connected.destination,240);if(!p)return false;if(probe)return true;feet(e,u,p);return true;}
+  if(q.connected){const p=space(b,u,q.connected.destination,240);if(!p)return false;if(probe)return true;if(feet(e,u,p)&&q.routeObjectives)q.routeObjectives.transit[u.id]={round:b.round,x:u.x,y:u.y};return true;}
  }
  if(n===39){if(near(u,cfg.rescue.anchor,u.cls==='mage'?360:180)&&!q.exitStable&&!q.stabilizing){if(probe)return true;q.stabilizing={actor:u.id,elapsed:0};return true;}if(near(u,cfg.rescue.net,u.cls==='occultist'?340:180)&&!q.netOpen&&!q.releasing){if(probe)return true;q.releasing={actor:u.id,elapsed:0};return true;}
   if(q.exitStable&&q.rescued?.ids.length===4&&cfg.rescue.ids.every(id=>rescueSafe(e,e.unit(id)))&&party(b).every(v=>v.x>cfg.rescue.exit-260&&e.grounded(v))&&!P.narrativePending(b)){if(probe)return true;complete(app,{exitStable:q.exitStable,rescued:q.rescued,bossAlive:alive(e.unit('a4-wreck'))});return true;}
  }
  if(n===32&&quiet(b)&&closed(q,'missing_four')&&q.safeSeven&&party(b).every(v=>v.x>cfg.exit.x-300)){if(probe)return true;complete(app,{safeSeven:q.safeSeven});return true;}
- if([33,34,37,38].includes(n)&&party(b).every(v=>v.x>cfg.exit.x-300&&Math.abs(v.y-cfg.exit.y)<=240&&e.grounded(v))&&(![37].includes(n)||closed(q,'signal'))){if(probe)return true;complete(app,{exit:cfg.exit,connection:q.connected||{physicalRoute:true},signal:q.events.signal?.presented,exitContributionVersion:1});return true;}
+ const route=q.routeObjectives;
+ const routeReady=!route||(n===37?!checkpoint(b):!!route.response);
+ if([33,34,37,38].includes(n)&&routeReady&&party(b).length&&party(b).every(v=>v.x>cfg.exit.x-300&&Math.abs(v.y-cfg.exit.y)<=240&&e.grounded(v)&&(!route||supportId(e,v)===(n===37?'approved37-upper-road':'approved38-upper')))&&(![37].includes(n)||closed(q,'signal'))){
+  if(probe)return true;
+  const connection=route&&n===38?(Object.keys(route.transit).length?{...q.connected,transit:route.transit}:{physicalRoute:true,scouted:route.recon.route}):q.connected||{physicalRoute:true};
+  complete(app,{exit:cfg.exit,connection,route,signal:q.events.signal?.presented,exitContributionVersion:1});return true;
+ }
  if(n===40&&q.returnEscort?.phase==='safe'&&closed(q,'next')&&party(b).every(v=>geometry40(b)?insideEventBounds(v,geometry40(b).finishBounds)&&e.grounded(v):v.x>5300)){if(probe)return true;complete(app,{roster:q.roster,rescued:q.rescued});return true;}
  return false;};
 function eliteRewardTarget(b){const v=b.honroAct4Design?.eliteReward36,authored=b.honroMap?.act4?.eliteReward36;if(v===undefined&&authored===undefined)return null;
@@ -310,6 +350,8 @@ function wreckLaunch(e,u,target,legacyOrigin){
  return candidates.sort((a,b)=>b.outward-a.outward)[0]||null;
 }
 const attached=new WeakSet();P.attachCoast=function(app){const e=app.engine,b=e.b,n=b.honroAct4Preview;if(!active(b)||attached.has(e))return;const rewardTarget=eliteRewardTarget(b);attached.add(e);
+ if(n===37){const wait=e.wait.bind(e);e.wait=function(...args){const u=e.active,p=checkpoint(b),eligible=p&&u?.side===0&&e.canAct()&&!u.retreat&&onRoad(e,u,p);const before=b.teamEnds?.[1]||0,out=wait(...args);
+   if(eligible&&u.shield>0&&(u.acted||b.phase!=='aim')){memory(b).routeObjectives.cover[p.key]={actor:u.id,enemyEnd:before};app.dirty=true;}return out;};}
  if(n===40&&b.honroAct4EncounterRevision===1){if(!G.HonroEncounterDensity?.installActivation)throw Error('Missing Act4 encounter activation');G.HonroEncounterDensity.installActivation(e);if(!b.honroAct4EncounterActivationReady){e.refreshActivation();b.honroAct4EncounterActivationReady=true;}}
  // Every observer is scoped to the captured battle; changing chapter ends its
  // loop. Core Engine remains the sole physics, hit and locomotion provider.
