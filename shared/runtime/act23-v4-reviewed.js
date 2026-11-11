@@ -102,7 +102,10 @@ function tick(app,dt){const b=app.engine.b;if(!active(b)||!V.safe(app))return;co
 function complete(b){return !active(b)||closed(memory(b).events.depart)&&!!memory(b).journal;}
 // Chapter 11 markers describe automatic world conditions, not usable objects.
 // Check saved step kinds at read time so existing battles need no migration.
-function automaticMarker(b,m){return active(b)&&['v4-entry','clear','reach','v4-world'].includes(V.steps(b).find(s=>s.id===m?.id)?.kind);}
+function automaticMarker(b,m){
+ if(active(b))return ['v4-entry','clear','reach','v4-world'].includes(V.steps(b).find(s=>s.id===m?.id)?.kind);
+ return b?.honroStage===12&&m?.id==='route-exit'&&G.HonroAct23V4ReviewedChapters?.active(b)&&V.steps(b).some(s=>s.id===m.id&&s.kind==='route');
+}
 function instruction(b){
  const s=V.current(b),p=s&&V.marker(b,s.id);
  if(s?.kind==='clear'){const foes=b.units.filter(u=>u.side===1&&!u.honroObjectiveTarget&&V.alive(u)&&(s.defeatIds?s.defeatIds.includes(u.id):V.near(u,p,s.radius||650)));const guide=s.id==='11.entry-threat'&&b.honroV4Chapter11?.entryLaneGuide?' · 상여를 넘어 오르막에 올라 사선 확보':'';return `산길의 위협 제압 · 남은 적 ${foes.length}명${guide}`;}

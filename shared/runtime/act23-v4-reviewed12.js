@@ -33,7 +33,24 @@ function drive(app,A,dt){const e=app.engine,b=e.b,m=mem(b),s=S.memory(b);if(!m.e
  if(route&&P.done(b,'branch')){m.descent??={distance:0,elapsed:0};m.descent.elapsed+=Math.min(.05,Math.max(dt,0));m.descent.distance=m.descent.elapsed*150;if(m.descent.distance>=40&&!m.events.exit){A.begin(app,'exit',['COMPLETE.01','COMPLETE.02','COMPLETE.03'].map(id),{route,descent:clone(m.descent)});return;}if(P.done(b,'exit')&&!m.journal)A.journal(app,id('JOURNAL.01'));}
 }
 const bound=new WeakSet();function attach(app,e){if(bound.has(e))return;bound.add(e);const old=e.finishAction;e.finishAction=function(...args){const b=e.b,w=mem(b).wave,u=e.active,before=u?.acted,serial=b.honroState.actorTurnSerial||0,out=old.apply(e,args);if(w?.warned&&!w.admitted&&w.offered[u?.id]&&!before&&(u.acted||(b.honroState.actorTurnSerial||0)>serial)){w.ended[u.id]=true;e.emit('save');}return out;};}
-function eligibility(app,m,s){if(s.id!=='sign')return;const b=app.engine.b,w=mem(b).wave,mage=app.engine.active;return{ok:!!S.memory(b).proof['12.recurrence']&&P.done(b,'repeat')&&P.done(b,'leak')&&w?.admitted&&w.ids.every(id=>!V.alive(unit(b,id)))&&mage.cls==='mage'&&V.near(mage,m,180),reason:s.id};}
+function eligibility(app,m,s){
+ if(s.id!=='sign')return;
+ const b=app.engine.b,w=mem(b).wave,mage=app.engine.active;
+ if(!S.memory(b).proof['12.recurrence'])return{ok:false,reason:'같은 동행으로 지나온 길표까지 갔다가 진목으로 돌아오기'};
+ if(!P.done(b,'repeat'))return{ok:false,reason:'진목을 다시 발견한 대화 마치기'};
+ if(!w?.admitted)return{ok:false,reason:'진목 주변에서 동행의 행동을 마치면 혼령이 나타납니다'};
+ if(!P.done(b,'leak'))return{ok:false,reason:'진목에서 나타난 혼령 확인하기'};
+ const remaining=w.ids.filter(id=>V.alive(unit(b,id))).length;
+ if(remaining)return{ok:false,reason:`진목에서 나온 혼령 ${remaining}기 제압`};
+ if(mage.cls!=='mage')return{ok:false,reason:'담허를 선택해 돌림진 조정'};
+ if(!V.near(mage,m,180))return{ok:false,reason:'담허를 진목 바로 곁으로 이동'};
+ if(!C.validTerrainContactPose(b.terrain,mage))return{ok:false,reason:'담허를 진목과 같은 층의 땅에 세우기'};
+ const threats=local(b).length;
+ if(threats)return{ok:false,reason:`진목 가까이 남은 위협 ${threats}기 제압`};
+ const adjustment=mem(b).adjust;
+ if(adjustment&&!adjustment.done)return{ok:false,reason:'돌림진 조정 중 · 담허를 진목 곁에 잠시 유지'};
+ return{ok:true,reason:'돌림진 조정'};
+}
 function use(app,m,s){if(s.id!=='sign')return;if(!eligibility(app,m,s).ok)return false;const b=app.engine.b,q=mem(b).adjust??={actor:app.engine.active.id,elapsed:0};q.requested=true;app.dirty=true;return true;}
 function draw(scene,c,b){const m=mem(b),p=b.honroV4Reviewed12.gap;c.save();if(m.wave?.warned&&!m.wave.admitted){c.globalAlpha=.55;c.strokeStyle='#c8b98d';c.lineWidth=3;c.beginPath();c.ellipse(p.x,p.y-70,60,22,0,0,Math.PI*2);c.stroke();}if(m.descent){const p=V.marker(b,b.honroRouteChoice.exitId);c.strokeStyle='#bbd0c6';c.lineWidth=2;for(let i=0;i<3;i++){c.beginPath();c.ellipse(p.x-90+i*45,p.y-150+m.descent.distance,12,25,-.25,0,Math.PI*2);c.stroke();}}c.restore();}
 // This is action guidance, separate from the reviewed spoken manuscript.

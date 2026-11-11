@@ -1,8 +1,10 @@
 /** Original App/Engine; combat isolation and initial approach are declared fixtures. */
 import assert from 'node:assert/strict';
+import vm from 'node:vm';
 import {readFile} from 'node:fs/promises';
 import {appHarness,plain} from './app-regression-helpers.mjs';
 const compact=process.env.HONRO_TEST_COMPACT12==='1',h=await appHarness({productionStory:compact}),g=h.g,V=g.HonroAct23V4,P=g.HonroAct23V4ReviewedChapters,S=g.HonroAct23V4Act2Scenes,C=g.HONRO_CORE;
+vm.runInContext(await readFile('shared/runtime/interactions.js','utf8'),g);
 const data=JSON.parse(await readFile('shared/data/reviewed/act23-v4-ch12.json','utf8'));assert.equal(data.rows.length,28);if(compact)assert(P.enabled(12));else{assert(!P.enabled(12));g.HONRO_ACT23_V4_PHASE_A=true;g.HONRO_ACT23_V4_PHASE_B_STAGES=[12];g.HONRO_ACT23_V4_REVIEWED_CHAPTERS={12:data};g.HONRO_PROJECT=V.author(g.HONRO_PROJECT,{enabled:true});}let app;
 function launch(){const p=h.profileThrough(11);p.seen['act2:first-spirit-encounter']=true;p.seen['map-story-v'+g.HonroStoryContent.version+'-11']=true;app=h.load(p);app.launch(12);app.turnNotice=null;Object.assign(app.engine.b,{side:0,phase:'aim'});assert.equal(app.engine.b.honroCampaignMapRevision,compact?612:512);return app.engine.b;}
 function tick(n=1){for(let i=0;i<n&&!app.dialogue;i++){Object.assign(app.engine.b,{side:0,phase:'aim'});V.tick(app,.025);if(!app.dialogue)app.engine.stepUnits(.025);}}
@@ -14,7 +16,28 @@ let b=launch();at('EDGE.ARRIVALS_12_0');finish();assert.equal(V.state(b).current
 // No battle opponents/other heroes on this path; actual walk integration still owns distance.
 for(const u of b.units)if(u.side===1){u.dead=true;u.hp=0;}let mage=V.heroes(b).find(u=>u.cls==='mage');for(const [i,u]of V.heroes(b).entries())pose(u,{x:1200+i*100,y:3000});const spec=b.honroV4Recurrence;pose(mage,spec.landmark);b.active=mage.id;at('A2.S12.INTRO.01');finish();tick(60);assert(!S.memory(b).proof['12.recurrence']);assert(!V.use(app,V.marker(b,'sign')));let calls=travel(mage,spec.checkpoint);assert.equal(S.memory(b).loop.phase,'return');b=resume();mage=V.heroes(b).find(u=>u.cls==='mage');calls+=travel(mage,b.honroV4Recurrence.landmark);at('A2.S12.MID.01');assert(S.memory(b).proof['12.recurrence'].distance>=1000);assert(calls>50);g.HonroStory.next(app);at('A2.S12.MID.02');b=resume();at('A2.S12.MID.02');finish();assert.equal(V.state(b).currentInstruction,'진목 주변을 확보하고 돌림진 조정');tick();assert(P.memory(b).wave.warned);assert(!P.memory(b).wave.admitted);app.engine.finishAction(true);
 for(let i=0;i<400&&!app.dialogue;i++)tick();at('A2.S12.MID.04');assert.equal(P.memory(b).wave.ids.length,2);assert(P.memory(b).wave.distance>=40);finish();at('A2.S12.MID.06');finish();tick();if(app.dialogue){at('A2.S12.MID.07');finish();}const before=b.units.length;tick(20);assert.equal(b.units.length,before);for(const id of P.memory(b).wave.ids){const u=app.engine.unit(id);u.hp=0;u.dead=true;}
-mage=V.heroes(b).find(u=>u.cls==='mage');pose(mage,V.marker(b,'sign'));Object.assign(b,{active:mage.id,side:0,phase:'aim'});assert(V.use(app,V.marker(b,'sign')));tick(10);assert(!S.memory(b).proof.sign);b=resume();mage=V.heroes(b).find(u=>u.cls==='mage');Object.assign(b,{active:mage.id,side:0,phase:'aim'});for(let i=0;i<100&&!app.dialogue;i++)tick();at('A2.S12.MID.08');finish();at('A2.S12.CHOICE.01');g.HonroStory.next(app);at('A2.S12.CHOICE.02');finish();assert.equal(V.state(b).currentInstruction,'열린 내리막으로 진입');assert(V.state(b).targets.every(t=>['높은 경로로 이동','낮은 경로로 이동'].includes(t.label)));
+mage=V.heroes(b).find(u=>u.cls==='mage');pose(mage,V.marker(b,'sign'));Object.assign(b,{active:mage.id,side:0,phase:'aim'});
+const sign=V.marker(b,'sign'),checkSign=()=>g.HonroInteractions.eligibility(app,sign);
+if(compact){
+ const blocker=b.units.find(u=>u.side===1&&!u.honroObjectiveTarget&&!P.memory(b).wave.ids.includes(u.id));
+ const prior={dead:blocker.dead,hp:blocker.hp,x:blocker.x,y:blocker.y};
+ Object.assign(blocker,{dead:false,hp:1,x:sign.x,y:sign.y});
+ assert.equal(checkSign().reason,'진목 가까이 남은 위협 1기 제압');
+ assert(!g.HonroInteractions.use(app,sign),'Local threat blocks starting adjustment');
+ Object.assign(blocker,prior);
+ assert(checkSign().ok,'The same button becomes usable after the local threat leaves');
+}
+assert(V.use(app,sign));
+if(compact)assert.equal(checkSign().reason,'돌림진 조정 중 · 담허를 진목 곁에 잠시 유지');
+tick(10);assert(!S.memory(b).proof.sign);b=resume();mage=V.heroes(b).find(u=>u.cls==='mage');Object.assign(b,{active:mage.id,side:0,phase:'aim'});for(let i=0;i<100&&!app.dialogue;i++)tick();at('A2.S12.MID.08');finish();at('A2.S12.CHOICE.01');g.HonroStory.next(app);at('A2.S12.CHOICE.02');finish();assert.equal(V.state(b).currentInstruction,'열린 내리막으로 진입');assert(V.state(b).targets.every(t=>['높은 경로로 이동','낮은 경로로 이동'].includes(t.label)));
+if(compact){
+ const exit=V.marker(b,'route-exit');
+ assert.equal(V.current(b).id,'route-exit');
+ pose(mage,exit);
+ assert(!g.HonroInteractions.eligibility(app,exit).ok,'Automatic route never enables E');
+ assert(!g.HonroInteractions.candidates(app).some(c=>c.marker.id===exit.id),'Automatic route is not a button');
+ assert(!g.HonroInteractions.use(app,exit),'E cannot complete an automatic route');
+}
 const r=b.honroRouteSpec.routes.find(r=>r.id==='A');for(const id of r.defeatIds||[]){const u=app.engine.unit(id);u.dead=true;u.hp=0;}pose(mage,V.marker(b,r.markerId));Object.assign(b,{active:mage.id,side:0,phase:'aim'});for(let i=0;i<8&&!app.dialogue;i++)tick();at('A2.S12.BRANCH.01');assert.equal(b.honroRouteChoice.selectedRoute,'A');finish();for(let i=0;i<50&&!app.dialogue;i++)tick();at('A2.S12.COMPLETE.01');g.HonroStory.next(app);at('A2.S12.COMPLETE.02');g.HonroStory.next(app);at('A2.S12.COMPLETE.03');b=resume();at('A2.S12.COMPLETE.03');finish();tick();assert(P.memory(b).journal);assert(V.state(b).complete);assert.equal(app.profile.record.filter(r=>r.rowId==='A2.S12.JOURNAL.01').length,1);
 console.log('PASS 12 real loop/first and second frames, midwalk reload, mage work duration/save, exactly2 finite spirits, upper branch/UI/journal cursors');
 const p=h.profileThrough(11);p.seen['map-story-v'+g.HonroStoryContent.version+'-11']=true;app=h.load(p);g.HonroRestJourney.showRest(app);h.finish(app);for(const cls of ['archer','mage','knight','occultist']){const ls=g.HonroJourneyContent.optional(app.profile,12,cls);assert.equal(ls.length,1);assert(!/돌아온|같은 길/.test(ls[0][1]));}assert(!g.HonroJourneyContent.optional(app.profile,13,'archer').length);console.log('PASS 12 optional knowledge guards, exact strings, and undelivered chapter suppression');
