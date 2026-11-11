@@ -52,7 +52,18 @@ console.log('PASS actual Engine normal/environment/fall/spirit early kills, inde
 
 // Late prerequisite fixture; all three sweeps and two locks still run through
 // production Engine actions, collision/art translation and serialized segments.
-function lateStabilize(expectJournal){let m=qualified();if(!m.bossDeath)kill();permit('18.lift');assert(use('18.lift'));opportunities();e.tick(1);assert(m.liftDone);assert.equal(m.bell.lifts,1);pump(8);assert(R.memory(b).gapSouls);permit('18.support');
+function lateStabilize(expectJournal){let m=qualified();if(!m.bossDeath)kill();permit('18.lift');
+const lift=V.marker(b,'18.lift');
+pose(actor(),lift.x,'act2-floor',true);
+m.brakeLocked=false;
+const beforeGuide=JSON.stringify(api.memory(b));
+const unavailable=V.eligibility(app,lift);
+assert.equal(unavailable.ok,false);
+assert.equal(unavailable.reason,api.row('A2.S18.POPUP.01').text);
+assert.equal(JSON.stringify(api.memory(b)),beforeGuide,'A button probe cannot start or record a guide scene');
+assert(!app.dialogue);
+m.brakeLocked=true;
+assert(use('18.lift'));opportunities();e.tick(1);assert(m.liftDone);assert.equal(m.bell.lifts,1);pump(8);assert(R.memory(b).gapSouls);permit('18.support');
 const supports=b.terrain.filter(t=>b.honroV4Stage18.supportIds.includes(t.id));for(const hit of S.occupants(b,supports.map(t=>({...t,broken:false})))){const u=e.unit(hit.id);assert(u?.side===1);e.hurt(u,999999,actor().id);}assert(use('18.support'));pump(4);assert(m.supportReady);permit('18.settle');assert(use('18.settle'));assert.equal(m.bell.segment.kind,'translate');opportunities();const y=m.bell.offset;e.tick(.45);assert(m.bell.offsetX>0&&m.bell.offsetX<32);assert.equal(m.bell.offset,y);resume();m=S.memory(b);e.tick(.45);assert(R.memory(b).translated);assert.equal(m.bell.offsetX,32);assert.equal(m.bell.offset,y);assert(!m.settled);pump(5);assert(api.done(b,'clear-below'));assert.equal(m.bell.segment.kind,'settle');opportunities();e.tick(1);assert(m.settled);assert.equal(m.bell.reseats,1);assert.equal(m.bell.offset,-80);assert.equal(m.bell.offsetX,32);pump(4);
 for(const id of['18.lock-west','18.lock-east']){const site=V.marker(b,id);for(const u of b.units)if(V.alive(u)&&u.side===1&&!u.honroObjectiveTarget&&V.near(u,site,450))e.hurt(u,999999,actor().id);assert(use(id));if(id==='18.lock-west')assert(!m.stable);}
 assert(m.stable);assert(!V.state(b).complete,'souls interaction stays independent');assert(use('18.souls'));pump(12);assert(R.stable(b));assert(api.done(b,'depart'));assert(V.state(b).complete);assert.equal(!!api.memory(b).journal,expectJournal,'journal requires witnessed intent in the same run');assert.equal(R.memory(b).knocks.length,1);const snap=plain(b.terrain);resume();assert.deepEqual(plain(b.terrain),snap);assert(R.stable(b));assert.equal(S.memory(b).bell.reseats,1);}
