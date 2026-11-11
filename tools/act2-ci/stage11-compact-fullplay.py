@@ -549,7 +549,20 @@ def main():
                 physical = final['physical']
                 original_spawns = [v for v in final['enemyUnits'] if v.get('source') in ['reviewed.11.beast-spirit','reviewed.11.north-pair']]
                 result['requiredSpawnCounts'] = {k: sum(v.get('source') == k for v in original_spawns) for k in ['reviewed.11.beast-spirit','reviewed.11.north-pair']}
-                result['passed'] = bool(result['complete'] and final['round'] <= args.round_limit and final['gathered'] and len(final['health']) == 4 and all(not h['dead'] and h['hp'] > 0 and h['grounded'] for h in final['health']) and all(final['done'].get(k) for k in ['11.thread','11.entry-threat','11.exit-threat','11.exit','11.north']) and physical.get('release',{}).get('distance',0) >= 40 and physical.get('release',{}).get('attached') and any(physical.get('north',{}).get('ended',{}).values()) and result['requiredSpawnCounts'] == {'reviewed.11.beast-spirit':1,'reviewed.11.north-pair':2} and not result['errors'])
+                release = physical.get('release', {})
+                release_units = [v for v in original_spawns if v['id'] in release.get('ids', [])]
+                defeated_release = len(release_units) == 1 and all(v['dead'] or v['hp'] <= 0 for v in release_units)
+                result['releasePath'] = ('reattached-then-defeated' if release.get('attached')
+                                         else 'defeated-before-reattachment') if defeated_release else None
+                goals = ['11.thread', '11.entry-threat', '11.exit-threat', '11.exit', '11.north']
+                result['passed'] = bool(
+                    result['complete'] and final['round'] <= args.round_limit and final['gathered']
+                    and len(final['health']) == 4 and all(not h['dead'] and h['hp'] > 0 and h['grounded'] for h in final['health'])
+                    and all(final['done'].get(k) for k in goals)
+                    and release.get('admitted') and defeated_release
+                    and any(physical.get('north', {}).get('ended', {}).values())
+                    and result['requiredSpawnCounts'] == {'reviewed.11.beast-spirit': 1, 'reviewed.11.north-pair': 2}
+                    and not result['errors'])
             record('final')
             if result['complete']:
                 p.wait_for_function('window.HonroApp?.done && HonroApp.profile?.cleared?.[11]?.visits===1', timeout=25000)
