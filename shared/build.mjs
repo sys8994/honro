@@ -2,6 +2,7 @@ import {applyStage6ReviewedPursuit} from '../tools/stage6-prototype/reviewed-pur
 import {applyStage6ArtPreview} from '../tools/stage6-prototype/art-preview.mjs';
 import {applyStage6IntegratedPreview} from '../tools/stage6-prototype/integrated-preview.mjs';
 import {applyAct4FinaleRevision} from './act4-finale-revision.mjs';
+import {applyAct4HandoffArt} from './act4-handoff-art.mjs';
 import {applyReviewedAct2Art} from '../tools/act2-vector-production/apply-candidates.mjs';
 import {validateSkillIcons} from '../tools/skill-icons/manifest.mjs';
 import {applyCommonCartArt} from '../tools/environment/common-cart-art.mjs';
@@ -162,7 +163,7 @@ export async function runtimeEntries({vector=true,render=true,app=false,producti
   // Their terrain/routes remain canonical; this final pass changes art only.
   if(project.stages.some(s=>s.metadata?.stageId===13&&s.design?.stoneFinish?.revision===1))project=applyStage13VectorFinish(project);
   project=applyReviewedAct2Art(project);
-  if(act4Enabled){const act4=applyAct4FinaleRevision(JSON.parse(await read('shared/data/act4/world.json')));project={...project,stages:[...project.stages,...act4.stages],library:[...project.library,...act4.library.filter(a=>!project.library.some(b=>b.id===a.id))]};}
+  if(act4Enabled){const act4=await applyAct4HandoffArt(applyAct4FinaleRevision(JSON.parse(await read('shared/data/act4/world.json'))));project={...project,stages:[...project.stages,...act4.stages],library:[...project.library,...act4.library.filter(a=>!project.library.some(b=>b.id===a.id))]};}
   project=applyStage6ReviewedPursuit(applyStage6IntegratedPreview(applyStage6ArtPreview(project)));
   parts.push({name:'campaign',project,code:'globalThis.HONRO_PROJECT='+authorProjectExpression(JSON.stringify(project))+';'});
   if(vector){

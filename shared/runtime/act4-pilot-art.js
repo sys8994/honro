@@ -2,7 +2,7 @@
 if(G.HonroAct4PilotArt)return;
 // Art-only opt-in. Ordinary Scene layers and their world/domain caches remain
 // authoritative. No collision, actor, event, or authored instance is rewritten.
-const layers=Object.freeze({background:'back',structure:'structural-back',body:'mid',rear:'prop',front:'front'});
+const layers=Object.freeze({background:'back',structure:'structural-back',body:'mid',surface:'mid',rear:'prop',front:'front'});
 function config(b){const q=b?.honroMap?.nativeArt;return b?.honroStage>=31&&b.honroStage<=40&&q?.version===1&&Array.isArray(q.coveredTerrainIds)?q:null;}
 function validHarbor(h){const finite=v=>Number.isFinite(v)&&Math.abs(v)<=1000000;return !!(h&&['surface','left','right','bottom'].every(k=>finite(h[k]))&&h.right>h.left&&h.right-h.left<=100000&&h.bottom>h.surface&&Array.isArray(h.shore)&&h.shore.length>=2&&h.shore.length<=64&&h.shore.every(p=>Array.isArray(p)&&p.length===2&&p.every(finite)));}
 // Rendering only: use the already computed live tide state (including rising),
