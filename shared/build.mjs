@@ -163,7 +163,15 @@ export async function runtimeEntries({vector=true,render=true,app=false,producti
   // Their terrain/routes remain canonical; this final pass changes art only.
   if(project.stages.some(s=>s.metadata?.stageId===13&&s.design?.stoneFinish?.revision===1))project=applyStage13VectorFinish(project);
   project=applyReviewedAct2Art(project);
-  if(act4Enabled){const act4=await applyAct4HandoffArt(applyAct4FinaleRevision(JSON.parse(await read('shared/data/act4/world.json'))));project={...project,stages:[...project.stages,...act4.stages],library:[...project.library,...act4.library.filter(a=>!project.library.some(b=>b.id===a.id))]};}
+  if(act4Enabled){
+    const authored=applyAct4FinaleRevision(JSON.parse(await read('shared/data/act4/world.json')));
+    const released=storyRelease.act4HandoffStages??[];
+    if(!Array.isArray(released)||new Set(released).size!==released.length||released.some(id=>!Number.isInteger(id)||id<31||id>40))
+      throw Error('Invalid Act 4 terrain release stages');
+    const options=process.env.HONRO_ACT4_HANDOFF_PREVIEW==='1'?{}:{stages:released};
+    const act4=await applyAct4HandoffArt(authored,options);
+    project={...project,stages:[...project.stages,...act4.stages],library:[...project.library,...act4.library.filter(a=>!project.library.some(b=>b.id===a.id))]};
+  }
   project=applyStage6ReviewedPursuit(applyStage6IntegratedPreview(applyStage6ArtPreview(project)));
   parts.push({name:'campaign',project,code:'globalThis.HONRO_PROJECT='+authorProjectExpression(JSON.stringify(project))+';'});
   if(vector){

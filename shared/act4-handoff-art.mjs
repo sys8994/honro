@@ -40,11 +40,38 @@ function stage35Bedrock(stage,source){
  return {...asset,id,name:'Stage 35 rear bedrock',params:{semanticLayer:'REAR',silhouetteUnderpaint:false}};
 }
 
-export async function applyAct4HandoffArt(project) {
+// Trim the imported sheet edge through the existing rock apron. The mask is
+// paint-only and stays below the lane, its cave opening and the walk surfaces.
+function joinPortGround(asset){
+ const vector=structuredClone(asset.vector);
+ vector.clips={...vector.clips,portApron:[
+  'M-96-96H3480V1740L3312 1780 3176 1905 3035 1966 2880 1988 2720 2095 2584 2128 2395 2112 2180 2230 2004 2245 1844 2184 1636 2154 1460 2200 1296 2180 1100 2112 946 2156 728 2090 541 2026 368 1990 190 1900 -96 1850Z',
+ ]};
+ vector.root={tag:'g',clipPath:'portApron',children:[vector.root]};
+ return {...asset,id:assetId(32,'body-joined'),vector};
+}
+
+function villageFoundation(source){
+ const asset=structuredClone(source),vector=asset.vector;
+ const warm=(hex)=>{
+  const value=parseInt(hex.slice(1),16),r=value>>16,g=(value>>8)&255,b=value&255;
+  return '#'+[Math.round(r*.78+g*.22+13),Math.round(g*.92+5),Math.round(b*.66+g*.23)].map(v=>v.toString(16).padStart(2,'0')).join('');
+ };
+ for(const gradient of Object.values(vector.gradients??{}))
+  for(const stop of gradient.stops)stop.color=warm(stop.color);
+ const tint=node=>{
+  if(/^#[\da-f]{6}$/i.test(node.fill??''))node.fill=warm(node.fill);
+  for(const child of node.children??[])tint(child);
+ };
+ tint(vector.root);
+ return {...asset,id:source.id+'-inland'};
+}
+
+export async function applyAct4HandoffArt(project,{stages:enabled=Object.keys(additions).map(Number)}={}) {
  const library=[...project.library];
  const entries=await Promise.all(project.stages.map(async stage=>{
   const n=stage.metadata?.stageId;
-  if(!Object.hasOwn(additions,n))return {stage,assets:[]};
+  if(!enabled.includes(n)||!Object.hasOwn(additions,n))return {stage,assets:[]};
   const pack=JSON.parse(await readFile(new URL('./data/act4/handoff-art/'+n+'.json',import.meta.url),'utf8'));
   if(pack.worldSize.some((value,index)=>Math.abs(value-[stage.width,stage.height][index])>1e-6))
    throw Error('Act 4 handoff artwork has stale registration: '+n);
@@ -52,22 +79,30 @@ export async function applyAct4HandoffArt(project) {
   const terrainIds=new Set(stage.terrains.map(t=>t.id));
   const nativeArt={...stage.design.nativeArt,compatibilityAssetIds};
   const design={...stage.design,nativeArt};
+  const bodyId=assetId(n,n===32?"body-joined":"body");
   const elements=stage.elements.flatMap(element=>{
+   if(n===36&&['approved36-near-slope-join','approved36-mountain-foundation'].includes(element.id)){
+    const tinted=villageFoundation(project.library.find(a=>a.id===element.assetId));
+    compatibilityAssetIds.push(element.assetId);
+    pack.assets.push(tinted);
+    return [{...element,assetId:tinted.id}];
+   }
    if(n===40&&retiredPiles.has(element.id)){
     compatibilityAssetIds.push(element.assetId);
     return [];
    }
    if(replaceBody.has(n)&&element.id==='approved'+n+'-body'){
     compatibilityAssetIds.push(element.assetId);
-    return [{...element,assetId:assetId(n,'body'),
+    return [{...element,assetId:bodyId,
      nativeTerrainIds:element.nativeTerrainIds.filter(id=>terrainIds.has(id))}];
    }
    return [element];
   });
   if(n===32){
    const door=design.vectorShelterDoor;
-   compatibilityAssetIds.push(door.assetId);
-   design.vectorShelterDoor={...door,assetId:assetId(n,'door'),bodyAssetId:assetId(n,'body'),standalone:true};
+   compatibilityAssetIds.push(door.assetId,assetId(n,'body'));
+   pack.assets.push(joinPortGround(pack.assets.find(a=>a.id===assetId(n,'body'))));
+   design.vectorShelterDoor={...door,assetId:assetId(n,'door'),bodyAssetId:bodyId,standalone:true};
    nativeArt.coveredTerrainIds=nativeArt.coveredTerrainIds.filter(id=>terrainIds.has(id));
   }
   if(n===35){
@@ -87,7 +122,7 @@ export async function applyAct4HandoffArt(project) {
   // Draw the new braces on the structural pass before the opaque BODY.
   if(!compatibilityAssetIds.length)delete nativeArt.compatibilityAssetIds;
   for(const asset of pack.assets){
-   if(!asset.id.startsWith('act4-handoff:'+n+':')||asset.collision.length||asset.interactionType)
+   if(!(asset.id.startsWith('act4-handoff:'+n+':')||n===36&&asset.id.startsWith('approved36:')&&asset.id.endsWith('-inland'))||asset.collision.length||asset.interactionType)
     throw Error('Invalid Act 4 handoff art: '+asset.id);
   }
   return {stage:{...stage,design,elements},assets:pack.assets};
