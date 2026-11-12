@@ -24,8 +24,7 @@ LAYERS = {
     33: {"tidal-contact": ("SURFACE", ["SURFACE"])},
     34: {"cliff-contact": ("SURFACE", ["SURFACE"])},
     35: {"body": ("BODY", ["BODY-rooted-earth", "SURFACE-source-contacts", "SURFACE-fallen-bamboo"]),
-         "bamboo-west": ("REAR", ["REAR-noncolliding-bamboo-and-wall:0:6"]),
-         "bamboo-east": ("REAR", ["REAR-noncolliding-bamboo-and-wall:6:12"]),
+         "bamboo": ("REAR", ["REAR-noncolliding-bamboo-and-wall:0:12"]),
          "walls": ("REAR", ["REAR-noncolliding-bamboo-and-wall:12:15"])},
     36: {"body": ("BODY", ["BODY", "SURFACE"]),
          "village": ("REAR", ["REAR:0:4", "REAR:5:10"])},
@@ -84,7 +83,10 @@ def compile_layer(name, layer, scene, nodes, registration, bounds):
                     "children": [shape(child) for child in node]}
         svg = ET.Element("svg", {"viewBox": vb})
         svg.append(clean(node))
-        return importer.compile_svg(ET.tostring(svg), config)["vector"]["root"]
+        root = importer.compile_svg(ET.tostring(svg), config)["vector"]["root"]
+        while name == "act4-handoff:35:bamboo" and root.keys() == {"tag", "children"} and len(root["children"]) == 1 and root["children"][0]["tag"] == "g":
+            root = root["children"][0]
+        return root
 
     # Use the importer for every solid geometry subtree, preserving compound
     # fill and source registration. Symbols keep repeated props as references.
