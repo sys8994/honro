@@ -16,3 +16,17 @@ for(const n of [33,34,37,38]){let {b,q}=fixture(n);assert.equal(P.interact(app,t
 }
 let {q}=fixture(37);q.events.signal.terminal=false;assert.equal(P.interact(app,false),false);assert.equal(q.completionProof,undefined);
 console.log('PASS Act4 exit interaction proof, probe, incomplete and failure atomicity');
+
+for(const n of [33,34]){
+ const {b,q}=fixture(n),watch=b.units.find(u=>u.side===1&&!u.dead);
+ Object.assign(watch,{x:4810,y:1000,hp:1});
+ b.honroAct4Design.exitWatch={ids:[watch.id],x1:4500,x2:5500,y1:800,y2:1200};
+ assert.match(P.exitWatchHint(b),/적 1기/);
+ assert.equal(P.interact(app,true),false);
+ assert.equal(P.interact(app,false),false);
+ assert.equal(q.complete,false);
+ watch.y=1300;
+ assert.equal(P.interact(app,true),true,'an enemy outside the upper exit route must not block departure');
+ assert.equal(P.interact(app,false),true);
+ assert.equal(b.phase,'won');
+}

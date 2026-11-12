@@ -21,7 +21,8 @@ const foes=b=>b.units.filter(u=>u.side===1&&alive(u));
 // The engine returns to aim only after resolving its action and volley.
 const stable=b=>!b.projectiles.length&&!b.volley&&b.phase==='aim';
 const quiet=b=>!foes(b).length&&stable(b)&&P.quietReady(b);
-const shelterTravel=b=>b.honroStage===32&&b.honroAct4Official===1&&!b.honroCustom&&b.mode==='campaign'&&b.side===0&&quiet(b);
+const villageRegroup=b=>b.honroStage===32||b.honroStage===36&&b.honroAct4Design?.quietVillageTravel===true;
+const shelterTravel=b=>villageRegroup(b)&&b.honroAct4Official===1&&!b.honroCustom&&b.mode==='campaign'&&b.side===0&&quiet(b);
 const seen=(q,k)=>q.observed?.[k]!==undefined;
 const closed=(q,k)=>!!q.events[k]?.terminal;
 const atThreshold=(b,npc)=>npc.x<=K(b,'doorX',4780)||!!b.honroAct4PreviewState?.thresholdHeld;
@@ -221,14 +222,16 @@ P.coastObserve=function(app,dt){const b=app.engine.b,n=b.honroAct4Preview;if(!ac
  if(b.honroAct4Design.tide&&!G.document.getElementById('act4-water-hud')){const node=G.document.createElement('span');node.id='act4-water-hud';node.setAttribute('role','timer');node.setAttribute('aria-label','조수');(app.root?.querySelector?.('.battle-title-row')||app.scene.canvas.parentElement).append(node);}else if(!b.honroAct4Design.tide)G.document.getElementById('act4-water-hud')?.remove();
  if(n===40&&!returnDeck(b)&&!b.terrain.some(t=>t.id==='a4-return-boarding'))b.terrain.push({id:'a4-return-boarding',x:2820,y:1950,w:180,h:18,mat:'wood',oneWay:true,hp:9999,maxHp:9999,indestructible:true});
  if(n===40&&!geometry40(b)&&!b.terrain.some(t=>t.id==='a4-return-deck'))b.terrain.push({id:'a4-return-deck',x:2920,y:1950,w:360,h:20,mat:'wood',oneWay:true,hp:9999,maxHp:9999,indestructible:true,honroAct4MovingDeck:true});
- if(n===32){const npc=e.unit('a4-shelter-speaker');if(!alive(npc)){fail(b,'shelter-witness-defeated');return;}if(!quiet(b))return;
-  // Once the last exchange and the quiet scene have settled, let companions
-  // regroup on foot without spending additional empty battle rounds.
-  if(shelterTravel(b)&&!q.shelterTravel&&!e.settleBusy()){
-   q.shelterTravel=true;
-   for(const u of party(b)){u.acted=false;u.moveLeft=u.maxMove;}
-   app.dirty=true;
-  }
+ const npc=n===32?e.unit('a4-shelter-speaker'):null;
+ if(n===32&&!alive(npc)){fail(b,'shelter-witness-defeated');return;}
+ // Once the last exchange and the quiet scene have settled, let companions
+ // regroup on foot without spending additional empty battle rounds.
+ if(!q.shelterTravel&&shelterTravel(b)&&!e.settleBusy()){
+  q.shelterTravel=true;
+  for(const u of party(b)){u.acted=false;u.moveLeft=u.maxMove;}
+  app.dirty=true;
+ }
+ if(n===32){if(!quiet(b))return;
   if(npc.honroAct4Sheltered&&party(b).some(u=>Math.abs(u.x-K(b,'shelterX',4890))<650)){q.shelterDoor??={phase:'opening',time:0};goal(app,'A4.S32.REUNION_OBJECTIVE');}
   if(q.shelterDoor?.phase==='opening'){q.shelterDoor.time=Math.min(1,q.shelterDoor.time+dt);if(q.shelterDoor.time===1&&seen(q,'door-open')){q.shelterDoor.phase='open';npc.honroAct4Sheltered=false;npc.fixed=false;}}
   // A companion standing in the doorway kept the witness from ever reaching
@@ -276,6 +279,17 @@ P.coastObserve=function(app,dt){const b=app.engine.b,n=b.honroAct4Preview;if(!ac
   }
  }
 };
+function exitWatchCount(b){
+ const watch=b.honroAct4Design?.exitWatch;
+ if(!watch)return 0;
+ return foes(b).filter(u=>watch.ids.includes(u.id)&&insideEventBounds(u,watch)).length;
+}
+P.exitWatchHint=function(b){
+ const watch=b.honroAct4Design?.exitWatch;
+ if(!watch||!party(b).some(u=>insideEventBounds(u,watch)))return '';
+ const count=exitWatchCount(b);
+ return count?'출구를 지키는 적 '+count+'기 · 길목의 위협을 걷어내기':'동행이 출구에 모인 뒤 상호작용';
+};
 const interact=P.interact;P.interact=function(app=G.HonroApp,probe=false){if(interact(app,probe))return true;const e=app.engine,b=e?.b;if(!active(b)||app.dialogue||b.phase!=='aim')return false;const q=memory(b),n=b.honroAct4Preview,u=e.active,cfg=b.honroAct4Design;if(!alive(u)||!e.grounded(u))return false;
  if(n===32&&quiet(b)&&closed(q,'missing_four')&&!q.safeSeven&&near(u,{x:e.unit('a4-shelter-speaker').x,y:K(b,'speakerY',2010)},340)){if(probe)return true;const report=event(q,'missing_four');report.started=false;report.terminal=false;return play(app,'missing_four');}
  if(n===35&&!q.flaskDelivery){const pair=flaskPair(e);if(pair&&u===pair.mage){if(probe)return true;q.flaskDelivery={phase:'passing',giver:pair.giver.id,receiver:pair.mage.id,elapsed:0};return true;}}
@@ -288,7 +302,7 @@ const interact=P.interact;P.interact=function(app=G.HonroApp,probe=false){if(int
   if(q.exitStable&&q.rescued?.ids.length===4&&cfg.rescue.ids.every(id=>rescueSafe(e,e.unit(id)))&&party(b).every(v=>v.x>cfg.rescue.exit-260&&e.grounded(v))&&!P.narrativePending(b)){if(probe)return true;complete(app,{exitStable:q.exitStable,rescued:q.rescued,bossAlive:alive(e.unit('a4-wreck'))});return true;}
  }
  if(n===32&&quiet(b)&&closed(q,'missing_four')&&q.safeSeven&&party(b).every(v=>v.x>cfg.exit.x-300)){if(probe)return true;complete(app,{safeSeven:q.safeSeven});return true;}
- if([33,34,37,38].includes(n)&&party(b).every(v=>v.x>cfg.exit.x-300&&Math.abs(v.y-cfg.exit.y)<=240&&e.grounded(v))&&(![37].includes(n)||closed(q,'signal'))){if(probe)return true;complete(app,{exit:cfg.exit,connection:q.connected||{physicalRoute:true},signal:q.events.signal?.presented,exitContributionVersion:1});return true;}
+ if([33,34,37,38].includes(n)&&party(b).every(v=>v.x>cfg.exit.x-300&&Math.abs(v.y-cfg.exit.y)<=240&&e.grounded(v))&&(![37].includes(n)||closed(q,'signal'))&&!exitWatchCount(b)){if(probe)return true;complete(app,{exit:cfg.exit,connection:q.connected||{physicalRoute:true},signal:q.events.signal?.presented,exitContributionVersion:1});return true;}
  if(n===40&&q.returnEscort?.phase==='safe'&&closed(q,'next')&&party(b).every(v=>geometry40(b)?insideEventBounds(v,geometry40(b).finishBounds)&&e.grounded(v):v.x>5300)){if(probe)return true;complete(app,{roster:q.roster,rescued:q.rescued});return true;}
  return false;};
 function eliteRewardTarget(b){const v=b.honroAct4Design?.eliteReward36,authored=b.honroMap?.act4?.eliteReward36;if(v===undefined&&authored===undefined)return null;
@@ -318,8 +332,8 @@ const attached=new WeakSet();P.attachCoast=function(app){const e=app.engine,b=e.
  // Every observer is scoped to the captured battle; changing chapter ends its
  // loop. Core Engine remains the sole physics, hit and locomotion provider.
  for(const name of ['move','jump','fire']){const original=e[name].bind(e);e[name]=function(...args){if((name==='jump'?args[0]:e.active)?.honroAct4Recovering)return false;return original(...args);};}
- const canRegroup=u=>n===32&&alive(u)&&u.side===0&&!u.summoned&&!u.enthrall&&memory(b).shelterTravel&&shelterTravel(b);
- if(n===32){const jump=e.jump.bind(e);e.jump=function(u=e.active){if(canRegroup(u))u.moveLeft=u.maxMove;return jump(u);};}
+ const canRegroup=u=>villageRegroup(b)&&alive(u)&&u.side===0&&!u.summoned&&!u.enthrall&&memory(b).shelterTravel&&shelterTravel(b);
+ if(villageRegroup(b)){const jump=e.jump.bind(e);e.jump=function(u=e.active){if(canRegroup(u))u.moveLeft=u.maxMove;return jump(u);};}
  const reserved=u=>u.side===1&&!airborne(u)&&!u.honroAct4Aquatic;
  const forbidden=(u,x,y)=>(b.honroAct4Design.enemyExclusion||[]).some(z=>x+u.r>z.x1&&x-u.r<z.x2&&y>z.y1&&y-u.h<z.y2);
  const walk=e.walk.bind(e);e.walk=function(u,d,dt,...args){if(reserved(u)&&forbidden(u,u.x+Math.sign(d)*u.walkSpeed*dt,u.y))return false;if(canRegroup(u))u.moveLeft=u.maxMove;return walk(u,d,dt,...args);};

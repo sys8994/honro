@@ -55,7 +55,7 @@ function villageFoundation(source){
  const asset=structuredClone(source),vector=asset.vector;
  const warm=(hex)=>{
   const value=parseInt(hex.slice(1),16),r=value>>16,g=(value>>8)&255,b=value&255;
-  return '#'+[Math.round(r*.78+g*.22+13),Math.round(g*.92+5),Math.round(b*.66+g*.23)].map(v=>v.toString(16).padStart(2,'0')).join('');
+  return '#'+[Math.round(r*.78+g*.22+13),Math.round(g*.92+5),Math.round(b*.55+g*.23)].map(v=>v.toString(16).padStart(2,'0')).join('');
  };
  for(const gradient of Object.values(vector.gradients??{}))
   for(const stop of gradient.stops)stop.color=warm(stop.color);
@@ -85,7 +85,7 @@ export async function applyAct4HandoffArt(project,{stages:enabled=Object.keys(ad
     const tinted=villageFoundation(project.library.find(a=>a.id===element.assetId));
     compatibilityAssetIds.push(element.assetId);
     pack.assets.push(tinted);
-    return [{...element,assetId:tinted.id}];
+    return [{...element,y:element.y-(element.id==='approved36-near-slope-join'?165:0),assetId:tinted.id}];
    }
    if(n===40&&retiredPiles.has(element.id)){
     compatibilityAssetIds.push(element.assetId);
@@ -109,10 +109,16 @@ export async function applyAct4HandoffArt(project,{stages:enabled=Object.keys(ad
    nativeArt.far='act4FarBambooHandoff';
    pack.assets.push(stage35Bedrock(stage,project.library.find(a=>a.id==='approved35:body')));
   }
+  if(n===33||n===34){
+   const ids=n===33?['h-1','h-2','h-3','h-4','h-5']:['s-4','r-1','r-2'];
+   const {x,y}=design.act4.exit;
+   design.act4={...design.act4,exitWatch:{ids:ids.map(id=>'a4-'+n+'-'+id),x1:x-(n===33?1250:850),x2:stage.width+1,y1:y-270,y2:y+340}};
+  }
   if(n===36){
    compatibilityAssetIds.push(design.vectorDoorAssetId);
    design.vectorDoorAssetId=assetId(n,'door');
    nativeArt.far='act4FarInlandHandoff';
+   design.act4={...design.act4,quietVillageTravel:true};
   }
   for(const [part,layer] of additions[n]){
    elements.push({id:assetId(n,part),assetId:assetId(n,part),x:0,y:0,scale:1,rotation:0,
@@ -125,7 +131,14 @@ export async function applyAct4HandoffArt(project,{stages:enabled=Object.keys(ad
    if(!(asset.id.startsWith('act4-handoff:'+n+':')||n===36&&asset.id.startsWith('approved36:')&&asset.id.endsWith('-inland'))||asset.collision.length||asset.interactionType)
     throw Error('Invalid Act 4 handoff art: '+asset.id);
   }
-  return {stage:{...stage,design,elements},assets:pack.assets};
+  let initialState=stage.initialState;
+  if(design.act4!==stage.design.act4&&initialState.honroAct4Design){
+   const authored=initialState.honroAct4Design;
+   initialState={...initialState,honroAct4Design:n===36?
+    {...authored,quietVillageTravel:design.act4.quietVillageTravel}:
+    {...authored,exitWatch:design.act4.exitWatch}};
+  }
+  return {stage:{...stage,initialState,design,elements},assets:pack.assets};
  }));
  for(const {assets} of entries)library.push(...assets);
  return {...project,stages:entries.map(({stage})=>stage),library};
