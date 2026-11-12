@@ -17,6 +17,9 @@ assert(C.flightClear(e,lantern,{x:lantern.x-40,y:lowest+2}),'just inside the lim
 assert(!C.flightClear(e,lantern,{x:lantern.x-40,y:lowest-6}),'above the limit is refused');
 assert(!C.flightClear(e,lantern,{x:lantern.x-40,y:357}),'previously observed altitude is refused');
 rows.push('paid flight above feet y'+Math.round(lowest)+' is refused (observed before: y118-530)');
+// The invisible foundation proxy is gone and the lower lane walks east past x849.
+assert(!b.terrain.some(t=>t.id==='approved32-upper-west-foundation'));assert.equal(b.terrain.filter(t=>t.id.startsWith('approved32-')).length,12);
+{const w=plain(b);w.units=w.units.filter(u=>u.side===0);const we=new C.Engine(w,()=>{});we.checkEnd=()=>false;const u=we.unit('archer'),lane=w.terrain.find(t=>t.id==='approved32-lower-lane');w.active='archer';w.phase='aim';w.side=0;u.x=780;u.y=C.topAt(lane,780);u.moveLeft=2000;for(let i=0;i<20;i++)we.tick(C.STEP);for(let i=0;i<90;i++){we.move(1,C.STEP);we.tick(C.STEP);}assert(u.x>950,'lane walk east passes the old x849 stop: '+u.x);rows.push('lower lane walks east past x849 (reached x'+Math.round(u.x)+')');}
 // Roster, HP and the all-enemies requirement are untouched.
 assert.equal(b.units.filter(u=>u.side===1).length,12);assert.equal(g.HONRO_PROJECT.stages.find(s=>s.metadata?.stageId===32).units.find(u=>u.id==='a4-32-d-3').x,3234.0000000000005);
 // A saved battle without the region keeps its own map on Continue.
