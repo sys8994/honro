@@ -181,7 +181,11 @@ S.environmentTone=function(c,w,h,b){tone?.call(this,c,w,h,b);if(b.honroStage<11|
   const q=c.createRadialGradient(m.x,m.y-50,5,m.x,m.y-50,radius);q.addColorStop(0,m.color+'45');q.addColorStop(1,m.color+'00');c.fillStyle=q;c.fillRect(m.x-radius,m.y-50-radius,radius*2,radius*2);
  }
  const target=G.HonroAct2.active(b)?G.HonroAct2.current(b):null;
- if(target){const m=b.honroMarkers.find(m=>m.id===target.id);if(m){c.strokeStyle='#d6c69c';c.lineWidth=2;c.beginPath();c.ellipse(m.x,m.y-3,32,9,0,0,Math.PI*2);c.stroke();}}
+ // Reviewed objectives may replace the authored site with a live enemy or actor.
+ // The old site ring must disappear when it is no longer the target.
+ if(target){const m=b.honroMarkers.find(m=>m.id===target.id&&
+  (!this.missionTargets||this.missionTargets.some(p=>p.id===m.id&&p.kind!=='hostile'&&p.x===m.x&&p.y===m.y)));
+ if(m){c.strokeStyle='#d6c69c';c.lineWidth=2;c.beginPath();c.ellipse(m.x,m.y-3,32,9,0,0,Math.PI*2);c.stroke();}}
  objectiveGuide(c,this,b);
  const a=b.honroState?.act2,pulse=a?.pulseRound;if(pulse&&pulse!==this._act2Pulse){this._act2Pulse=pulse;this._act2PulseStart=this.time;}
  if(this._act2PulseStart!==undefined&&this.time-this._act2PulseStart<1.6){c.globalAlpha=Math.max(0,.12*(1-(this.time-this._act2PulseStart)/1.6));c.fillStyle='#b0c9d5';c.fillRect(this.x-w/this.scale/2,this.y-h/this.scale/2,w/this.scale,h/this.scale);}

@@ -18,7 +18,7 @@ import {HERO_ARMOR_CAP,passiveTuning} from './passiveBalance';
 import {environmentalLoss,ownerRegistered,healed,shielded,settled,controlled,projectileCredit,beginHit,endHit,intercepted} from './contribution';
 import {jucheonBoost,passiveCost,beginPlayerCast,arrowTurn,recordSalheun,cleanupPassiveHistory} from './combatPassives';
 import {meleeSkill,warriorAllowed,startWarriorCast,tickWarrior,manualDive,stepWarrior,finishWarrior,clearWarriorFollow,restoreWarriorFollow,bladeScreenPass,warriorPrediction} from './warriorMechanics';
-import {newSkill,redesignImpact,redesignStep,redesignPrediction,splitSeven,initRedesignCast,redrawDamage,redesignConditionBonuses,recordRedesignDamage,finishRedesign,tickRedesign,migrateEnemySkills,turnArrow,useGate,gateCandidate,specialty,critProfile,iceGourdReady,detonateIceGourd} from './skillMechanics';
+import {newSkill,redesignImpact,redesignStep,redesignPrediction,splitSeven,initRedesignCast,redrawDamage,redesignConditionBonuses,recordRedesignDamage,finishRedesign,tickRedesign,migrateEnemySkills,turnArrow,steerableArrow,applyQueuedArrowTurn,useGate,gateCandidate,specialty,critProfile,iceGourdReady,detonateIceGourd} from './skillMechanics';
 import {terrainSurface,exposedSurface,walkTerrain,sweepBodyTerrain,SEAM_GAP} from './locomotion';
 import {SUMMON_TUNING} from './summons';
 import {beginOccultCast,convergeAt,stepConvergingSpirit,SOUL_SKILLS,SUMMON_SKILLS} from './occultMechanics';
@@ -526,10 +526,14 @@ export class Engine {
         if(u.side!==0&&!this.npcShotInReach(u,s,allowAllyTarget?target:undefined,maxPower))return best;
         // Full-precision confirmations of screened candidates are capped (an arrow confirmation
         // replays a cloned battle); a lane the screen keeps over-estimating is not chased forever.
-        const npcScreen=u.side!==0&&smartAim(this);let confirms=0;
+        const npc=u.side!==0,sharp=npc&&smartAim(this);
+        const limited=npc&&!allowAllyTarget&&!u.boss;
+        const screen=sharp||limited&&(s.mode.startsWith('honro')||s.mode==='arrow'||s.mode==='pierce');
+        const easy=limited&&(this.b.difficulty==='explorer'||this.b.difficulty==='story');
+        let confirms=0;
         const score = (a: number, p: number) => {
-            let hit = npcScreen ? this.aiPredict(u, s, a, p, target) : this.predict(u, s, a, p, target, false);
-            if(npcScreen){const quick=shotImpactValue(this,u,s,hit,allowAllyTarget?target.id:undefined);if(quick.enemyDamage>0&&quick.net>2){if(confirms>=4)return -1e8;confirms++;hit=this.predict(u,s,a,p,target,false);}}
+            let hit = screen ? this.aiPredict(u, s, a, p, target) : this.predict(u, s, a, p, target, false);
+            if(screen){const quick=shotImpactValue(this,u,s,hit,allowAllyTarget?target.id:undefined);if(quick.enemyDamage>0&&quick.net>2){if(confirms>=(easy?2:4)){useful=false;return -1e8;}confirms++;hit=this.predict(u,s,a,p,target,false);}}
             const d = Math.hypot(hit.x - this.damageAim(target).x, hit.y - (this.damageAim(target,.52).y));
             let sc = -(Math.min(d, hit.closest + 140));
             if (hit.unit === target.id)
@@ -545,16 +549,15 @@ export class Engine {
                 sc -= 500;
             return sc;
         };
-        if(u.side!==0||wreckDamage(this.b,target))for(const seed of this.shotSeeds(u,s,target,maxPower,smartAim(this))){
+        if(u.side!==0||wreckDamage(this.b,target))for(const seed of this.shotSeeds(u,s,target,maxPower,sharp)){
             const sc=score(seed.angle,seed.power);if(sc>best.score)best={...seed,score:sc};
             yield;if(useful)return {...seed,score:sc};
         }
         // A blocked NPC lane used to exhaust hundreds of samples per skill/target.
         // Cover low/high arcs at coarse powers, then refine the best neighbourhood.
         // Player-facing analysis retains the full precision grid.
-        const npc=u.side!==0;
         const elevations=npc?(this.damageAim(target,0).y>u.y+90?[-65,-35,-5,25,50,70,86]:[10,25,40,55,70,86]):Array.from({length:Math.floor((86-(this.damageAim(target,0).y>u.y+90?-65:10))/8)+1},(_,i)=>(this.damageAim(target,0).y>u.y+90?-65:10)+i*8);
-        const powers=npc?[.25,.5,.75,1].map(p=>p*maxPower):Array.from({length:Math.floor((maxPower+.001-.20)/.085)+1},(_,i)=>.20+i*.085);
+        const powers=npc?(easy?[.55,1]:limited&&!sharp?[.35,.68,1]:[.25,.5,.75,1]).map(p=>p*maxPower):Array.from({length:Math.floor((maxPower+.001-.20)/.085)+1},(_,i)=>.20+i*.085);
         for (const elev of elevations)
             for (const p of powers) {
                 const a = right ? elev : 180 - elev, sc = score(a, p);
@@ -563,6 +566,7 @@ export class Engine {
                 yield;
                 if(u.side!==0&&useful)return {angle:a,power:p,score:sc};
             }
+        if(easy)return best;
         const initial = { ...best };
         for (let da = -6; da <= 6; da += npc?6:3)
             for (let dp = -.07; dp <= .07; dp += npc?.07:.035) {
@@ -679,7 +683,8 @@ export class Engine {
     jump(u = this.active) { if(this.noncombatWalk()&&u?.side===0)u.moveLeft=u.maxMove; if (!u || u.dead || u.eaterCapturedBy || u.summonKind==='eater' || u.meleeFollow==='ready' || u.equipmentState?.motion || u.fixed || u.airborne || u.moveLeft < this.jumpCost(u) || !this.grounded(u))
         return false; delete u.platformDrop;delete u.moveTarget;if(equipmentActor(u))gearState(u).jumpCycle=gearCycle(this.b); u.jumping = true; u.vy = -660*(1+passiveRank(u,'SP03')*.02)*((u.equipmentIds?.includes('itm_co_11')&&equipmentActor(u)?1.3:1)>1?Math.sqrt(.9):1); u.moveLeft = Math.max(0, u.moveLeft - this.jumpCost(u)); u.landing = 0; this.fx('spark', u.x, u.y, '#d7d0b8', 20); this.emit('sound', { name: 'jump' }); return true; }
     walk(u:Unit,direction:number,dt:number,requireSupport=false){if(u.eaterCapturedBy||u.summonKind==='eater')return false;if(u.meleeFollow==='ready'||u.platformDrop&&u.platformDrop.phase!=='land')return;if(this.noncombatWalk()&&u.side===0)u.moveLeft=u.maxMove;const result=walkTerrain(this,u,direction,dt*(1-Math.max(u.slowed?.factor||0,gearFrostSlow(this,u)))*(u.jumping&&(u.equipmentIds?.includes('itm_co_11')&&equipmentActor(u)?1.3:1)>1?1.3/Math.sqrt(.9):1),requireSupport);if(this.noncombatWalk()&&u.side===0)u.moveLeft=u.maxMove;return result;}
-    turnArrow(point?:Vec){return turnArrow(this,point);}
+    canTurnArrow(){return !!steerableArrow(this.b);}
+    turnArrow(point?:Vec){if(!turnArrow(this,point))return false;this.emit('save');return true;}
     useGate(){return useGate(this);}
     gateCandidate(){return gateCandidate(this);}
     /** Turn without spending movement or changing velocity; mirror elevation just
@@ -1749,6 +1754,7 @@ export class Engine {
         }
         if((p.echoDelay||0)>0){p.echoDelay=Math.max(0,p.echoDelay!-dt);if(!p.echoDelay){this.fx('spark',p.x,p.y,'#c5c9b8',20);if(!this.skillSound('launch',p.owner,p.skill,p.shot,undefined,true))this.emit('sound',{name:'spiritCast'});}return;}
         if(gearTravelSpent(p)){this.remove(p);return;}
+        if(p.turnOrder)applyQueuedArrowTurn(this,p);
         p.age += dt;if(p.flightAge!==undefined)p.flightAge+=dt;
         if(p.wraithVersion!==1&&flightRangeSpent(p)&&endPlayerFlight(this,p))return;
         if(p.mode==='convergeSpirit'){stepConvergingSpirit(this,p,dt);return;}
@@ -2456,12 +2462,18 @@ export class Engine {
         const safeAngle=aim.angle,safePower=aim.power;
         aim.angle=clamp(aim.angle+(this.random()-.5)*error*2,AIM_MIN,AIM_MAX);
         aim.power=clamp(aim.power+(this.random()-.5)*error*.012,.08,1);
-        // Accuracy noise may not turn a safe decision into a suicidal shot through allies or a solid wall.
+        const mayMiss=!betrayal&&!u.boss&&!u.honroMonsterEffectSkill&&
+            (b.difficulty==='explorer'||b.difficulty==='story')&&(sk.mode.startsWith('honro')||sk.mode==='arrow'||sk.mode==='pierce');
         let viable=shotViable(this,u,sk,target,aim.angle,aim.power,betrayal?target.id:undefined);
-        if(!viable.ok){aim.angle=safeAngle;aim.power=safePower;viable=shotViable(this,u,sk,target,aim.angle,aim.power,betrayal?target.id:undefined);}
+        if(!viable.ok){
+            // Require a genuinely useful intended shot. At low difficulty only,
+            // an ordinary shooter can release it with the sampled aim error.
+            viable=shotViable(this,u,sk,target,safeAngle,safePower,betrayal?target.id:undefined);
+            if(!mayMiss||!viable.ok){aim.angle=safeAngle;aim.power=safePower;}
+        }
         if(!viable.ok&&!betrayal&&!smartAim(this)){
             const alternatives=this.b.units.filter(v=>!v.dead&&v.id!==target!.id&&(v.side===0||v.side===2&&((v as any).honroAlly||v.id==='objective')))
-                .sort((a,c)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(c.x-u.x,c.y-u.y)).slice(0,2);
+                .sort((a,c)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(c.x-u.x,c.y-u.y)).slice(0,b.difficulty==='explorer'?0:b.difficulty==='story'?1:2);
             for(const candidate of alternatives){const shot=yield* chooseEnemyShotSteps(this,u,candidate,available),test=shotViable(this,u,shot.skill,candidate,shot.aim.angle,shot.aim.power);
                 if(test.ok){target=candidate;sk=shot.skill;aim=shot.aim;viable=test;break;}}
         }

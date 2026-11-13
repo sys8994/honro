@@ -36,6 +36,25 @@ test('회기시 actual enemy damage only and per-cast recovery caps',()=>{
 test('전로시 permits one manual turn at capped angle and 92% speed',()=>{
  const a=arena('A09',1),p=a.fire(0,.6),speed=Math.hypot(p.vx,p.vy);assert(a.e.turnArrow({x:p.x,y:p.y-500}));assert(Math.abs(Math.atan2(-p.vy,p.vx)-Math.PI/4)<1e-6);assert(Math.abs(Math.hypot(p.vx,p.vy)-speed*.92)<1e-6);assert(!a.e.turnArrow());
 });
+test('전로시 redirects a whole 연속사격 volley and restores queued turns',()=>{
+ const a=arena('A09',8);a.u.ranks.AP01=8;a.foe(4500);a.fire(38,.70);
+ for(let i=0;i<76;i++){a.e.stepVolley(C.STEP);for(const p of a.b.projectiles)a.e.stepProjectile(p,C.STEP);}
+ assert.equal(a.b.projectiles.length,2);
+ const before=a.b.projectiles.map(p=>Math.atan2(p.vy,p.vx)),point={x:1400,y:1950};
+ assert(a.e.turnArrow(point));assert(!a.e.turnArrow(point));
+ const order=a.b.volley.template.turnOrder;
+ for(const [i,p] of a.b.projectiles.entries()){
+  assert(p.turned);
+  assert(Math.abs(Math.atan2(p.vy,p.vx)-before[i]-order.delta)<1e-8);
+ }
+ const profile=C.defaults();profile.saved=a.b;
+ const restored=C.validate(plain(profile)).saved;
+ assert(restored?.volley);assert.deepEqual(plain(restored.volley.template.turnOrder),plain(order));
+ const e=new C.Engine(restored),id=restored.nextId;
+ for(let i=0;i<170;i++){e.stepVolley(C.STEP);for(const p of [...restored.projectiles])e.stepProjectile(p,C.STEP);}
+ assert(restored.projectiles.some(p=>p.id>=id&&p.followup&&p.turned));
+ assert(!e.turnArrow(point));
+});
 test('homing obeys LOS and terrain collisions',()=>{
  const a=arena('A13'),p=a.fire(0,.5),t=a.foe(700,1800);a.b.terrain.push({id:'wall',x:600,y:1400,w:30,h:400,mat:'rock',hp:99999,maxHp:99999});a.b.sceneVersion++;const before=a.e.steer(550,1750,300,0,a.u,.1);assert.equal(before.vy,0);a.run();assert.equal(t.hp,t.maxHp);
 });

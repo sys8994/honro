@@ -143,15 +143,34 @@ export function finishRedesign(e:Engine,reviewed:boolean){
  }
  return false;
 }
+const inTurnVolley=(b:Battle,p:Projectile)=>p.skill==='A09'&&p.owner===b.active&&p.shot===b.shot&&!p.child;
+export function steerableArrow(b:Battle){
+ if(b.phase!=='flight'||b.volley?.template.turnOrder||b.projectiles.some(p=>inTurnVolley(b,p)&&(p.turned||p.turnOrder)))return;
+ return b.projectiles.find(p=>inTurnVolley(b,p));
+}
+function applyArrowTurn(e:Engine,p:Projectile,delta:number){
+ const next=Math.atan2(p.vy,p.vx)+delta,speed=Math.hypot(p.vx,p.vy)*.92;
+ p.vx=Math.cos(next)*speed;p.vy=Math.sin(next)*speed;p.turned=true;
+ e.fx('ring',p.x,p.y,'#d0d5cc',22);
+}
+export function applyQueuedArrowTurn(e:Engine,p:Projectile){
+ if(p.turnOrder&&!p.turned&&p.age+1e-8>=p.turnOrder.age)applyArrowTurn(e,p,p.turnOrder.delta);
+}
 export function turnArrow(e:Engine,point?:Vec){
- const p=e.b.projectiles.find(q=>q.skill==='A09'&&q.owner===e.b.active&&!q.turned&&!q.followup);if(!p||e.b.phase!=='flight')return false;
- const u=e.unit(p.owner)!,a=Math.atan2(p.vy,p.vx),desired=point?Math.atan2(point.y-p.y,point.x-p.x):-rad(u.angle),d=Math.atan2(Math.sin(desired-a),Math.cos(desired-a)),max=rad(lerpRank(45,80,rank(p))),next=a+clamp(d,-max,max),speed=Math.hypot(p.vx,p.vy)*.92;
- p.vx=Math.cos(next)*speed;p.vy=Math.sin(next)*speed;p.turned=true;e.fx('ring',p.x,p.y,'#d0d5cc',22);return true;
+ const b=e.b,p=steerableArrow(b);if(!p)return false;
+ const u=e.unit(p.owner)!,a=Math.atan2(p.vy,p.vx),desired=point?Math.atan2(point.y-p.y,point.x-p.x):-rad(u.angle);
+ const max=rad(lerpRank(45,80,rank(p))),delta=clamp(Math.atan2(Math.sin(desired-a),Math.cos(desired-a)),-max,max);
+ // Released arrows turn together. Queued arrows repeat the bend at the same
+ // flight age, keeping the original launch spread and one input per cast.
+ const order={age:p.age,delta};
+ if(b.volley&&inTurnVolley(b,b.volley.template))b.volley.template.turnOrder=order;
+ for(const arrow of b.projectiles)if(inTurnVolley(b,arrow)){arrow.turnOrder=order;applyArrowTurn(e,arrow,delta);}
+ return true;
 }
 /** Read-only continuation from the arrow's current state, with the same one-time steering. */
 export function turnPrediction(e:Engine,point?:Vec){
- const live=e.b.projectiles.find(p=>p.skill==='A09'&&p.owner===e.b.active&&!p.turned&&!p.followup);
- if(!live||e.b.phase!=='flight')return null;
+ const live=steerableArrow(e.b);
+ if(!live)return null;
  const b=structuredClone(e.b),Sim=e.constructor as new(b:Battle)=>Engine,sim=new Sim(b);
  const p=b.projectiles.find(p=>p.id===live.id)!;b.projectiles=[p];b.volley=undefined;
  if(!turnArrow(sim,point))return null;

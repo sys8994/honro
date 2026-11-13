@@ -434,13 +434,13 @@ function* legacyShotOpportunity(e:Engine,u:Unit,target:Unit,p:Vec):Generator<voi
  for(const s of skills){const right=target.x>=p.x,blast=e.effective(s,ghost).radius;
   if(!e.npcShotInReach(ghost,s))continue;
   for(const aim of e.shotSeeds(ghost,s,target)){
-   const hit=e.predict(ghost,s,aim.angle,aim.power,target,false),value=shotImpactValue(e,ghost,s,hit);
+   const hit=e.aiPredict(ghost,s,aim.angle,aim.power,target),value=shotImpactValue(e,ghost,s,hit);
    yield;if(value.enemyDamage>0&&value.net>2)return 35+clamp(value.net,-120,60);
   }
   // This is a position heuristic, not the final aim search. Sample three arcs;
   // the selected position is aimed precisely only once, after movement.
   for(const elev of (target.y>p.y+80?[-35,35,78]:[18,50,82]))for(const power of [1]){
-   const angle=right?elev:180-elev,hit=e.predict(ghost,s,angle,power,target,false);
+   const angle=right?elev:180-elev,hit=e.aiPredict(ghost,s,angle,power,target);
    const d=Math.hypot(hit.x-target.x,hit.y-(target.y-target.h*.5));
    let score=-Math.min(90,Math.min(d,hit.closest+100)*.18);
    if(hit.unit===target.id)score=35;
@@ -613,7 +613,8 @@ export function* chooseEnemyShotSteps(e:Engine,u:Unit,target:Unit,skills:Skill[]
  if(u.boss===6||u.boss===5){const id=u.boss===6?(e.b.round%3===0?'M06':'M07'):(e.b.round%2===0?'S06':'S01'),skill=skills.find(s=>s.id===id)||skills[0];return {skill,aim:yield* e.searchShot(u,skill,target)};}
  let best:{skill:Skill;aim:{angle:number;power:number;score:number};value:number}|undefined;
  const crowd=e.actors(target.side).filter(v=>Math.hypot(v.x-target.x,v.y-target.y)<180).length;
- const ordered=skills.slice(0,3).sort((a,b)=>crowd>1?Number(b.radius>30)-Number(a.radius>30):0);
+ const limit=u.boss||u.honroMonsterEffectSkill?3:e.b.difficulty==='explorer'?1:e.b.difficulty==='story'?2:3;
+ const ordered=skills.slice(0,3).sort((a,b)=>crowd>1?Number(b.radius>30)-Number(a.radius>30):0).slice(0,limit);
  for(const skill of ordered){
   const aim=yield* e.searchShot(u,skill,target);
   const outcome=shotViable(e,u,skill,target,aim.angle,aim.power);

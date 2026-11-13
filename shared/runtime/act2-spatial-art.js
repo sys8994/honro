@@ -156,7 +156,7 @@ function prepareRooms(b){const space=b.honroMap.space;let q=roomCache.get(b);if(
  }
  q={source:space,version:b.sceneVersion,rooms};roomCache.set(b,q);return q;
 }
-const openSky=b=>[11,12,13,20].includes(b?.honroStage);
+const openSky=b=>[11,12,20].includes(b?.honroStage);
 const imageFor=b=>images[b.honroStage===11&&b.honroStage11LandscapeRevision===1?'stage11-ravine-readable':b.honroStage===11&&b.honroMap?.ravine?.version>=1?'stage11-ravine':b.honroStage===20?'dawn':'clouded'];
 function background(c,b,scene,w,h,overPainting=false){if(!active(b))return false;const n=b.honroStage,open=openSky(b),img=open&&!overPainting?imageFor(b):null;
  if(!overPainting){if(open){const sky=c.createLinearGradient(0,0,0,h);sky.addColorStop(0,n===20?'#3b4d5a':'#2f3d4e');sky.addColorStop(1,n===20?'#88908a':'#617079');c.fillStyle=sky;c.fillRect(0,0,w,h);if(img?.complete&&img.naturalWidth){const q=E.act1BackdropFrame(scene,w,h,b,img.naturalWidth,img.naturalHeight);c.drawImage(G.HonroVisualStyle?.image(img,'SKY')||img,q.x,q.y,q.w,q.h);}}

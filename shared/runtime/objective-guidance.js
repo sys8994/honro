@@ -13,6 +13,10 @@ function hostileHint(b,units,action='노란 표식의 적 제압'){
  const rows=[...names.entries()],shown=rows.slice(0,3).map(([name,n])=>`${name} ${n}명`).join(', ');
  return{text:targets.length?`${action} · ${targets.length}명 남음: ${shown}${rows.length>3?' 외 '+rows.slice(3).reduce((sum,[,n])=>sum+n,0)+'명':''}`:'대상 적 제압 완료 · 다음 목표 확인',targets};
 }
+function combatPresentation(b,result,units,action){
+ const hint=hostileHint(b,units,action),update=rows=>rows?.map(row=>row.current?{...row,text:hint.text}:row);
+ return {...result,summary:hint.text,currentInstruction:hint.text,targets:hint.targets,visibleChecklist:update(result.visibleChecklist)};
+}
 const heroName=cls=>G.HONRO_CONTENT.hero[cls]?.name||'동행';
 const heroes=b=>b.units.filter(u=>u.side===0&&!u.summoned&&!u.enthrall&&alive(u));
 const action=s=>s.id==='temple-escort'?'호송 대상 도착':s.id==='party-reunion'?'네 사람 집결 후 행동 종료':s.kind==='destroy'?'공격으로 파괴':s.kind==='rescue'?'구조':s.kind==='interact'?'상호작용':s.kind==='hold'?`${s.rounds}회 유지`:s.kind==='clear'?'대상 적을 모두 제압':s.kind==='route'?'동행 1명 출구 도착':s.kind==='escort'?'호송 대상 도착':s.kind==='reach'?s.allHeroes?'생존 동행 전원 도착':'동행 1명 도착':'대상 제압';
@@ -41,7 +45,7 @@ function failure(b,st,list,result){const parts=['동행 전원 전투불능'];co
  return parts.join(' / ');
 }
 function interactReason(b,st,s,m){const u=b.units.find(u=>u.id===b.active),point=s.target?b.units.find(v=>v.id===s.target):m;if(!point||!alive(u)||u.side!==0)return'';
- if(s.requiredClass&&u.cls!==s.requiredClass)return heroName(s.requiredClass)+'로 전환';
+ if(s.requiredClass&&u.cls!==s.requiredClass)return G.HonroActionPrompts.towards(heroName(s.requiredClass))+' 전환';
  if(Math.abs(u.y-point.y)>150)return'같은 층으로 이동';
  if(Math.hypot(u.x-point.x,(u.y-point.y)*.75)>260)return'표시 지점 가까이 이동';
  if(st.act===2&&s.kind==='rescue'){const spirit=b.units.find(v=>v.id===m?.spiritId);if(alive(spirit)&&u.cls!=='occultist')return'소단으로 전환하거나 붙은 혼을 제압';}
@@ -89,7 +93,7 @@ function holdInstruction(b,st,s,h){const area=st.act===3?'범위':'원',comparis
  if(!h?.contested&&comparison?.required&&!comparison.ready){const names=comparison.carriers.map(u=>u.name||heroName(u.cls)).join('·');return comparison.reason==='records'?'기록함을 회수하세요':comparison.reason==='pair'?names+'를 모으세요':names+'를 중앙으로';}
  if(h?.contested)return comparison?.required?'범위 안 적 처치':'표시된 '+area+' 안의 적을 처치하세요';
  if(st.act===3&&h?.progress>=s.rounds&&(h.spawned||0)<(s.wave?.count||0))return comparison?.required?'행동 마쳐 증원 확인':'유지 횟수 완료 · 범위를 지키며 행동을 마쳐 증원 경고를 확인하세요';
- const left=Math.max(0,s.rounds-(h?.progress||0));if(comparison?.required&&h?.guarded)return'수비 '+Math.min(s.rounds,h.progress||0)+'/'+s.rounds;const count=st.act===3?'적 턴 '+left+'회':left+'턴';return h?.guarded?'그 자리에서 '+count+' 더 버티세요':(s.requiredClass?heroName(s.requiredClass)+'로 ':'')+'표시된 '+area+' 안에서 '+(st.act===3?'적 턴 '+s.rounds+'회':s.rounds+'턴')+' 버티세요';
+ const left=Math.max(0,s.rounds-(h?.progress||0));if(comparison?.required&&h?.guarded)return'수비 '+Math.min(s.rounds,h.progress||0)+'/'+s.rounds;const count=st.act===3?'적 턴 '+left+'회':left+'턴';return h?.guarded?'그 자리에서 '+count+' 더 버티세요':(s.requiredClass?G.HonroActionPrompts.towards(heroName(s.requiredClass))+' ':'')+'표시된 '+area+' 안에서 '+(st.act===3?'적 턴 '+s.rounds+'회':s.rounds+'턴')+' 버티세요';
 }
 function progressive(b,st,result,list,current){
  let chosen=current,rows,instruction;
@@ -118,5 +122,5 @@ function progressive(b,st,result,list,current){
  const act4Instruction=q&&!q.complete?(q.returnEscort?.phase==='safe'?'귀환 이야기를 확인하고 일행을 안전 지점에 모으세요':'주민 네 사람을 안전한 곳까지 호송하세요'):null;
  return{currentInstruction:act4Instruction||(result.complete?'목표 완료':instruction||result.summary),currentObjectiveId:chosen?.id,visibleChecklist};
 }
-G.HonroObjectiveGuide={enhance,stepText,ending,progressive,hostileTargets,hostileHint};
+G.HonroObjectiveGuide={enhance,stepText,ending,progressive,hostileTargets,hostileHint,combatPresentation};
 })(globalThis);

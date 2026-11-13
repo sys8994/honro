@@ -113,7 +113,11 @@ function withdrawalGuidance(b,out){if(!base(b).proof['17.load-test']||base(b).pr
  }
  return{...out,currentInstruction:text,checklist:out.checklist.map(x=>({...x,text})),visibleChecklist:out.visibleChecklist.map(x=>({...x,text})),targets:[{id:'17.withdraw',x:point.x,y:point.y,kind:'move',label:text}]};
 }
-P.register(17,{mapRevision:517,actors:{'석공':'17.mason','길찬':'17.gilchan'},author,prepare,allow,drive,before,eligibility,use,optional,draw,attach,objective:b=>base(b).proof['17.mesh']?id('OBJECTIVE.04'):separated(b)?id('OBJECTIVE.03'):base(b).proof['17.brace']?id('OBJECTIVE.02'):id('OBJECTIVE.01'),failure:b=>b.phase==='lost'||B.failure(b)?id('FAIL.01'):null,complete,present(b,out){if(!complete(b))return withdrawalGuidance(b,out);const r=api.row('EDGE.RUNTIME.STAGE17.PROTECT_LABEL');return{...out,completionText:r.text,checklist:[{id:r.id,text:r.text,done:true}],visibleChecklist:[{id:r.id,text:r.text,done:true}]};},state:b=>({reviewedWitness16Missing:!mem(b).witness16_heard})});
+P.register(17,{mapRevision:517,actors:{'석공':'17.mason','길찬':'17.gilchan'},author,prepare,allow,drive,before,eligibility,use,optional,draw,attach,objective:b=>base(b).proof['17.mesh']?id('OBJECTIVE.04'):separated(b)?id('OBJECTIVE.03'):base(b).proof['17.brace']?id('OBJECTIVE.02'):id('OBJECTIVE.01'),failure:b=>b.phase==='lost'||B.failure(b)?id('FAIL.01'):null,complete,present(b,out){if(!complete(b)){
+ const foesAtHoist=V.current(b)?.id==='17.hoist'&&api.done(b,'hoist')?foes(b,b.honroV4Reviewed17.hoist,280).filter(u=>u.id!=='act2-hoist'):[];
+ if(foesAtHoist.length)return G.HonroObjectiveGuide.combatPresentation(b,out,foesAtHoist,'인양축을 막는 적 제압');
+ return withdrawalGuidance(b,out);
+}const r=api.row('EDGE.RUNTIME.STAGE17.PROTECT_LABEL');return{...out,completionText:r.text,checklist:[{id:r.id,text:r.text,done:true}],visibleChecklist:[{id:r.id,text:r.text,done:true}]};},state:b=>({reviewedWitness16Missing:!mem(b).witness16_heard})});
 // A destroyed hoist retains its authored frame and attached spirit until
 // separation. Ordinary dead residents remain non-interactable.
 const previousInteractionTarget=G.HonroObjectives.interactionTarget;

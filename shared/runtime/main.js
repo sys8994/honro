@@ -731,7 +731,7 @@
             const turnLabel=e.noncombatWalk()?'이동 · 대화':G.HonroStory.turnLabel(b);setText($('turn-text'),e.noncombatWalk()?turnLabel:b.round+'턴'+(turnLabel?' · '+turnLabel:''));{const side=e.noncombatWalk()?'walk':b.side===0?'ally':'enemy',el=$('turn-text');if(el&&el.dataset.side!==side)el.dataset.side=side;}
             const wind=Math.max(-30,Math.min(30,b.wind)),fraction=Math.abs(wind)/30*50;
             setStyle($('wind-left'),'width',(wind<0?fraction:0)+'%');setStyle($('wind-right'),'width',(wind>0?fraction:0)+'%');setText($('wind-value'),`바람 ${Math.abs(Math.round(b.wind))}`);$('joystick').querySelector('.wind-gauge').setAttribute('aria-valuenow',String(b.wind));
-            const steering=e.iceGourdReady()||b.phase==='flight'&&b.projectiles.some(p=>p.skill==='A09'&&!p.turned&&!p.followup||p.owner===u.id&&p.mode==='warriorDive'&&!p.dived);
+            const steering=e.iceGourdReady()||e.canTurnArrow()||b.phase==='flight'&&b.projectiles.some(p=>p.owner===u.id&&p.mode==='warriorDive'&&!p.dived);
             $('fire').disabled=!steering&&(u.retreat||!e.skillAllowed(sk,u)||!this.canInput()||!e.grounded(e.active)||!e.canAfford(sk,u,0)||cd>0);setStyle($('fire'),'--power',Math.round(this.power*100)+'%');$('fire').classList.toggle('charging',this.charging);
             this.updateChargeDisplay();
             $('jump').disabled=u.meleeFollow==='ready'||!this.canInput()||!e.grounded(e.active)||e.active.moveLeft<e.jumpCost(e.active);$('joystick').style.opacity=this.canInput()?1:.4;const defend=document.querySelector('[data-action=defend]');if(defend)defend.disabled=!this.canInput()||!!u.platformDrop&&u.platformDrop.phase!=='land';const drop=$('drop');if(drop)drop.disabled=!this.canInput()||!e.canDrop(u);

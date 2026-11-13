@@ -359,6 +359,7 @@ export interface Projectile extends DamageOrigin {
     launchX?: number;
     launchY?: number;
     repeatIndex?: number;
+    turnOrder?: {age:number;delta:number};
     chain?: number;
     emissions?: number;
     fieldHits?: string[];

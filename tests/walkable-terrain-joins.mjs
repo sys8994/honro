@@ -37,6 +37,13 @@ for(const cls of classes)for(const [x,target] of [[3702,3725],[3830,3800],[3830,
  assert.equal(q.u.hp,hp);
  const resumed=new C.Engine(JSON.parse(JSON.stringify(q.b)));assert(resumed.grounded(resumed.active));
 }
+for(const angle of [59,60,61])for(const dir of [-1,1]){
+ const q=fixture(1,'archer',4188,864.8),slope=Math.tan(angle*Math.PI/180)*dir;
+ const ramp={id:'angle-probe',x:4100,y:850,w:200,h:600,mat:'rock',hp:99999,maxHp:99999,slope:slope*200};
+ q.b.terrain=[ramp];q.b.sceneVersion++;q.u.y=C.topAt(ramp,q.u.x);
+ const target=q.u.x-25*dir,distance=walk(q,target,1/120,true);
+ assert(angle<=60?distance>=25:distance===0,`expected ${angle}° support in direction ${-dir}, moved ${distance}`);
+}
 const steep=fixture(15,'archer',5280,2035.32);
 assert.equal(walk(steep,5310,1/120),0,'a steep face still requires a jump');
 assert(steep.e.jump(steep.u));

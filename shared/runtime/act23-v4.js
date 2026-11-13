@@ -42,7 +42,7 @@ function eligibility(app,m){const b=app.engine?.b,u=app.engine?.active;if(!activ
  const p=interactionPoint(b,m);
  if(!p)return{ok:false,reason:'대상에게 접근할 수 없음'};
  if(!near(u,p,s.radius||m.radius||260))return{ok:false,reason:'표식이 있는 같은 발판으로 더 가까이 이동'};
- if(s.requiredClass&&u.cls!==s.requiredClass)return{ok:false,reason:(G.HONRO_CONTENT.hero[s.requiredClass]?.name||'지정 동행')+'로 전환'};
+ if(s.requiredClass&&u.cls!==s.requiredClass)return{ok:false,reason:G.HonroActionPrompts.towards(G.HONRO_CONTENT.hero[s.requiredClass]?.name||'지정 동행')+' 전환'};
  const custom=plugin(b)?.eligibility?.(app,m,s);
  if(custom)return custom;
  if(s.kind==='v4-slot'&&mem(b).slots[s.slot]?.status!=='pending')return{ok:false,reason:'선행 사건을 마친 뒤 진행'};
@@ -89,9 +89,7 @@ function state(b){const list=steps(b),s=current(b),m=mem(b),p=s&&marker(b,s.id),
  const result={...custom,complete,objectiveReady:complete,minimumRound:1,settleRounds:0,summary:s?.id||'v4.complete',currentInstruction:s?.id||'v4.complete',currentObjectiveId:s?.id,targets:custom.targets|| (p?[{...p,kind,label:s.id}]:[]),allTargets:all,checklist:all.map(q=>({id:q.id,text:q.id,done:q.done})),visibleChecklist:all.filter(q=>q.done||q.id===s?.id).map(q=>({id:q.id,text:q.id,done:q.done,current:q.id===s?.id})),completionText:'v4.complete',failureText:failure(b)||''};const presented=G.HonroAct23V4Reviewed?.present(b,result)||result;
  if(s?.kind==='clear'||s?.kind==='defeat'){
   const units=s.kind==='clear'?clearTargets(b,s):b.units.filter(u=>(s.defeatIds||[s.target]).includes(u.id)&&alive(u));
-  const hint=G.HonroObjectiveGuide.hostileHint(b,units);
-  return{...presented,summary:hint.text,currentInstruction:hint.text,targets:hint.targets,
-   visibleChecklist:(presented.visibleChecklist||[]).map(q=>q.current?{...q,text:hint.text}:q)};
+  return G.HonroObjectiveGuide.combatPresentation(b,presented,units);
  }
  return presented;
 }

@@ -23,7 +23,7 @@ function request(key,mood=""){
   if(cache.get(cacheKey)!==item)return;
   const image=item.image,cv=document.createElement('canvas'),c=cv.getContext('2d');
   cv.width=Math.min(2048,image.naturalWidth);cv.height=Math.round(cv.width*image.naturalHeight/image.naturalWidth);
-  const dark=['bellRear','depotRear'].includes(key),interior=key.endsWith('-interior'),overcast=['townSky','town-river','town-wall','workshop-yard'].includes(key);
+  const dark=mood==='deep-cave'||['bellRear','depotRear'].includes(key),interior=key.endsWith('-interior'),overcast=['townSky','town-river','town-wall','workshop-yard'].includes(key);
   c.filter=key==='act4Estuary'||/^act4Far/.test(key)?'none':['act4Dawn','act4Sea'].includes(key)?'saturate(.15) contrast(1.0) brightness(1.0)':overcast?'none':dark?'saturate(.55) contrast(.65) brightness(.66)':interior?'saturate(.42) contrast(.58) brightness(.68)':'saturate(.50) contrast(.76) brightness(.80)';
   c.drawImage(image,0,0,cv.width,cv.height);c.filter='none';
   if(['act4Dawn','act4Sea'].includes(key)){

@@ -6,8 +6,7 @@ function state(profile){const old=profile.honroJourney;if(!old||old.version!==1)
 function location(profile){return data().next(profile)||data().ending;}
 function active(profile){return profile.honroBattle||null;}
 function currentId(profile){return active(profile)?.honroStage||profile.honroJourney?.restStageId||data().next(profile)?.stageId||H.stages.at(-1).id;}
-function finalConsonant(text){const last=String(text).charCodeAt(String(text).length-1)-0xac00;return last>=0&&last<=11171?last%28:0;}
-function towards(place){const jong=finalConsonant(place);return place+(jong&&jong!==8?'으로':'로');}
+const {finalConsonant,towards}=G.HonroActionPrompts;
 function together(name){return name+(finalConsonant(name)?'과':'와');}
 function speakerId(cls){return H.hero[cls]?.name;}
 const endStoryKey=()=>H.stages.at(-1).id>20?'end-'+H.stages.at(-1).id:'end';

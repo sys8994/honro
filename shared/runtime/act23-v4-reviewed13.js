@@ -7,7 +7,7 @@ if(G.HonroAct23V4Reviewed13)return;
 const unit=(b,id)=>b.units.find(u=>u.id===id),m=b=>P.memory(b),done=(b,key)=>P.done(b,key),alive=V.alive;
 const mason=b=>unit(b,'resident-1'),spirit=b=>unit(b,'resident-spirit-1'),scenes=b=>A.memory(b),base=b=>A.base.memory(b);
 const near=V.near,supported=(b,u)=>alive(u)&&C.validTerrainContactPose(b.terrain,u);
-const threats=(b,p,r)=>b.units.filter(u=>u.side===1&&alive(u)&&!u.honroObjectiveTarget&&near(u,p,r));
+const threats=V.threats;
 const branch=b=>b.honroEntryVariant?.choice==='A'?'A2.S13.BRANCH.01':b.honroEntryVariant?.choice==='B'?'A2.S13.BRANCH.02':'A2.S13.BRANCH.03';
 function routeClear(app){const b=app.engine.b,u=mason(b),p=V.marker(b,'13.escort');if(!supported(b,u)||!p)return false;for(let x=u.x;x<=p.x;x+=20){const t=app.engine.surface(x,u.y-40,p.y+50);if(!t||Math.abs(t.y-(u.y+(p.y-u.y)*(x-u.x)/(p.x-u.x||1)))>35)return false;}return true;}
 function safeMason(b){const u=mason(b),p=V.marker(b,'13.escort');return supported(b,u)&&!!scenes(b).proof['13.escort']&&near(u,p,55)&&!threats(b,p,240).length;}
@@ -83,8 +83,8 @@ function gateBlocker(b,actor,p){
  if(!done(b,'inside-bolt'))return '석공이 빗장을 가리키는 장면 확인';
  if(!done(b,'lower-arrivals'))return '아래 길의 혼령과 동행 대사 확인';
  if(!actor||actor.x-actor.r<=b.honroV4InsideLatch.x||!near(actor,p,85))return '발판을 올라 문 안쪽 빗장에 접근';
- const enemies=threats(b,p,300).length;
- return enemies?`빗장 주변 위협 ${enemies}기 제압`:'';
+ const foes=threats(b,p,300);
+ return foes.length?G.HonroObjectiveGuide.hostileHint(b,foes,'빗장을 막는 적 제압').text:'';
 }
 function eligibility(app,mark,s){
  const b=app.engine.b,actor=app.engine.active;
@@ -107,39 +107,42 @@ function use(app,mark,s){
 }
 function present(b,result){
  const id=result.currentObjectiveId,u=mason(b),party=V.heroes(b),s=V.marker(b,id);
- let text,target=s,kind='interact';
+ let text,target=s,kind='interact',combat;
  if(id==='13.extract'){
   const so=P.actor(b,'소단');
   text=extractionBlocker(b,so)||(done(b,'separating')?'소단으로 E · 붙은 혼 분리':'소단으로 E · 분리 준비 대화');
   if(!done(b,'separating')&&done(b,'attached')&&!near(P.actor(b,'담허'),u,650))kind='move';
   target=u;
  }else if(id==='13.escort'){
-  const enemies=threats(b,s,240).length,walk=scenes(b).walks[id];
+  const foes=threats(b,s,240),walk=scenes(b).walks[id];
   kind='move';
   if(!done(b,'separated')){text='소단을 석공 곁에 두고 분리 뒤 대화 확인';target=u;}
   else if(!walk?.arrived&&!party.some(h=>near(h,u,650))){text='동행 한 명을 석공 가까이 이동하면 호송 시작';target=u;}
-  else if(enemies)text=`석공의 안전자리 주변 위협 ${enemies}기 제압`;
+  else if(foes.length)combat=G.HonroObjectiveGuide.hostileHint(b,foes,'석공의 길을 막는 적 제압');
   else text='석공 자동 호송 중 · 안전자리까지 통로 비우기';
  }else if(id==='13.release'){
-  text=done(b,'latch')?'안전자리에서 E · 석공 인계':'석공이 안전자리의 고리를 확인할 때까지 대기';
+  const foes=threats(b,V.marker(b,'13.escort'),240);
+  if(foes.length)combat=G.HonroObjectiveGuide.hostileHint(b,foes,'석공의 길을 막는 적 제압');
+  else text=done(b,'latch')?'안전자리에서 E · 석공 인계':'석공이 안전자리의 고리를 확인할 때까지 대기';
  }else if(id==='gate'){
   const archer=P.actor(b,'설오');
   if(!done(b,'locked-door')&&!near(archer,s,430)){text='설오를 석문 가까이 데려가 문 확인';kind='move';}
   else if(!done(b,'inside-bolt'))text='석공이 빗장을 가리키는 장면 확인';
   else if(!done(b,'lower-arrivals'))text='아래 길의 혼령과 동행 대사 확인';
-  else{const enemies=threats(b,s,300).length;text=enemies?`빗장 주변 위협 ${enemies}기 제압`:'발판을 올라 문 안쪽 빗장에서 E';}
+  else{const foes=threats(b,s,300);if(foes.length)combat=G.HonroObjectiveGuide.hostileHint(b,foes,'빗장을 막는 적 제압');else text='발판을 올라 문 안쪽 빗장에서 E';}
  }else if(id==='13.party-pass'){
   const count=['archer','mage','knight','occultist'].filter(cls=>party.some(h=>h.cls===cls&&h.x-h.r>b.honroV4InsideLatch.x&&near(h,s,430))).length;
   text=`열린 석문 너머로 동행 이동 · ${count}/4명 도착`;kind='move';
  }else if(!id&&!result.complete&&scenes(b).proof['13.party-pass']&&alive(u)&&!safeMason(b)){
   const safety=V.marker(b,'13.escort'),foes=threats(b,safety,240);
-  const remaining=foes.length;
-  text=remaining?`출발 전 석공 주변 위협 ${remaining}기 제압`:'출발 전 석공이 안전자리에 있는지 확인';
-  target=foes[0]||safety;kind=remaining?'defeat':'move';
+  if(foes.length)combat=G.HonroObjectiveGuide.hostileHint(b,foes,'석공의 길을 막는 적 제압');
+  else {text='출발 전 석공이 안전자리에 있는지 확인';target=safety;kind='move';}
  }
- if(!text||!target)return result;
+ if(combat)text=combat.text;
+ if(!text||!combat&&!target)return result;
  const checklist=result.checklist.map(row=>({...row,text}));
- return {...result,summary:text,currentInstruction:text,checklist,visibleChecklist:checklist,targets:[{id:id??'13.departure-safety',x:target.x,y:target.y,kind,label:text}]};
+ const targets=combat?.targets??[{id:id??'13.departure-safety',x:target.x,y:target.y,kind,label:text}];
+ return {...result,summary:text,currentInstruction:text,checklist,visibleChecklist:checklist,targets};
 }
 const attached=new WeakSet();function attach(app,e){if(attached.has(e))return;attached.add(e);const predict=e.predict;e.predict=function(u,skill,angle,power,target,collect=true,...args){const out=predict.call(e,u,skill,angle,power,target,collect,...args);if(P.active(e.b)&&e.b.honroStage===13&&collect&&u.side===0&&out.unit==='resident-1'&&!base(e.b).proof['13.extract'])m(e.b).aimedAtMason={actor:u.id,skill:skill.id,angle,power,target:out.unit};return out;};}
 function draw(scene,c,b){const q=m(b),u=mason(b),spec=b.honroV4Reviewed13;if(!spec)return;c.save();c.lineCap='round';c.strokeStyle='#77664d';c.lineWidth=5;const held=!base(b).proof['13.extract'],x=held?u.x+17:spec.latch.x,y=held?u.y-64:spec.latch.y;c.beginPath();c.moveTo(spec.rope.anchor.x,spec.rope.anchor.y);c.lineTo(x,y);c.lineTo(x+12,y+105);c.stroke();if(held&&alive(u)){c.strokeStyle='#9b4e43';c.lineWidth=7;c.beginPath();c.moveTo(x-7,y-9);c.lineTo(x+6,y+8);c.stroke();if(alive(spirit(b))){c.globalAlpha=.6;c.strokeStyle='#b7cbbf';c.lineWidth=2;c.beginPath();c.moveTo(spirit(b).x,spirit(b).y-spirit(b).h*.5);c.quadraticCurveTo(u.x+80,u.y-115,x,y);c.stroke();}}

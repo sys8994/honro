@@ -280,18 +280,23 @@
             c.scale(this.scale, this.scale);
             c.translate(-this.x, -this.y);
             this.terrainSkirt(c,b,w,h);
-            // Static scenery is by far the dominant cost on detailed maps. At normal/zoomed-out
-            // views rasterize it once per sceneVersion.
-            if(this.scale<=1.05){this._drawStaticWorldCached(c,b,w,h);}else{
-                const view=G.HonroBounds.viewport(this,w,h),visibleLandmarks=(G.HonroTerrainDomain?.materialLandmarks(b)||b.honroLandmarks||[]).filter(l=>this._landmarkVisible(l,view));
-                this._landmarkLayer(c,visibleLandmarks,'back');
-                this._landmarkLayer(c,visibleLandmarks,'structural-back');
-                for(const t of (G.HonroTerrainDomain?.render(b)||b.terrain||[])){if(t.broken||t.x+t.w<this.x-w/this.scale||t.x>this.x+w/this.scale)continue;this.terrain(c,t);}
-                this.surfaceZones?.(c,b);
-                this._landmarkLayer(c,visibleLandmarks,'mid');
-                this._landmarkLayer(c,visibleLandmarks,'prop');
-                this._landmarkLayer(c,visibleLandmarks,'front');
-                this.terrainReadability?.(c,b,view);
+            if(this.scale<=1.05)this._drawStaticWorldCached(c,b,w,h);
+            else {
+                // Keep native-resolution vector paint while moving the camera.
+                // A settled view can reuse that exact viewport at canvas pixel density.
+                const paint=cc=>{
+                    const view=G.HonroBounds.viewport(this,w,h),visibleLandmarks=(G.HonroTerrainDomain?.materialLandmarks(b)||b.honroLandmarks||[]).filter(l=>this._landmarkVisible(l,view));
+                    this._landmarkLayer(cc,visibleLandmarks,'back');
+                    this._landmarkLayer(cc,visibleLandmarks,'structural-back');
+                    for(const t of (G.HonroTerrainDomain?.render(b)||b.terrain||[])){if(t.broken||t.x+t.w<this.x-w/this.scale||t.x>this.x+w/this.scale)continue;this.terrain(cc,t);}
+                    this.surfaceZones?.(cc,b);
+                    this._landmarkLayer(cc,visibleLandmarks,'mid');
+                    this._landmarkLayer(cc,visibleLandmarks,'prop');
+                    this._landmarkLayer(cc,visibleLandmarks,'front');
+                    this.terrainReadability?.(cc,b,view);
+                };
+                const key=this._worldCacheKey(b,w)+':native-zoom';
+                if(!this._screenRaster(c,key,w,h,paint,'_screenWorldCache'))paint(c);
             }
             if(!quietOutro)this.objectDamage?.(c,b,w,h);
             // Animated water lives outside the world raster cache; its collision and

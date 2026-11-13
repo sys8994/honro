@@ -156,5 +156,7 @@ const phrases=[
   ]
 ];
 function text(value){if(typeof value!=='string')return value;for(const [before,after] of phrases)value=value.split(before).join(after);return value.replace(/주민 (\d+) 곁에서 E를 누르세요/g,'주민 $1 곁에서 구조하세요').replace(/받이진 (\d+) 앞에서 E를 누르세요/g,'받이진 $1을 활성화하세요').replace(/ · E$/,'');}
-G.HonroActionPrompts={text};
+function finalConsonant(value){const word=String(value).normalize('NFC').trimEnd(),code=word.charCodeAt(word.length-1)-0xac00;return code>=0&&code<=11171?code%28:0;}
+function towards(name){const jong=finalConsonant(name);return name+(jong&&jong!==8?'으로':'로');}
+G.HonroActionPrompts={text,finalConsonant,towards};
 })(globalThis);

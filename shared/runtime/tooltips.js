@@ -39,7 +39,7 @@ function describe(el){
  if(!text)text=el.getAttribute('aria-label')||el.textContent?.trim().replace(/\s+/g,' ');
  if(!text)return null;
  const disabled=el.disabled||el.getAttribute('aria-disabled')==='true';
- if(disabled){const why=el.dataset.disabledReason||(el.id==='drop'?'지금은 내려갈 수 있는 발판 위가 아닙니다.':el.id==='jump'?'착지와 남은 이동도가 필요합니다.':el.id==='fire'?D.getElementById('combat-action-reason')?.textContent:'');text+=' '+(why||'현재 상태에서는 사용할 수 없습니다.');}
+ if(disabled&&!el.dataset.contextInteract){const why=el.dataset.disabledReason||(el.id==='drop'?'지금은 내려갈 수 있는 발판 위가 아닙니다.':el.id==='jump'?'착지와 남은 이동도가 필요합니다.':el.id==='fire'?D.getElementById('combat-action-reason')?.textContent:'');text+=' '+(why||'현재 상태에서는 사용할 수 없습니다.');}
  let shortcut=el.dataset.shortcut||base?.[1]||'';
  if(el.classList.contains('skill-button')){const buttons=[...el.parentElement.querySelectorAll('.skill-button')],i=buttons.indexOf(el);if(i>=0&&i<4)shortcut=String(i+1);}
  if(a==='hero'&&G.HonroApp?.screen==='battle')shortcut='Tab';

@@ -233,6 +233,7 @@ function validBattle(raw: unknown,legacyXp=false,oldXp=false): Battle {
     for(const u of b.units)if((u as any).keeperBinding!==undefined&&(u as any).keeperBinding!=='act2-keeper')return fail();
     const modes = new Set([...Object.values(SKILLS).map(s => s.mode), 'meteor', 'grappletravel', 'iceShard', 'stormBolt', 'seekChild', 'arcBolt', 'hunterBolt', 'nightBolt', 'spiritRain','summonBolt','convergeSpirit','ironChip','fireChip','frostChip','ironEmitter','microEmitter','microWait','skyWait']);
     for (const q of [...b.projectiles, ...(b.volley ? [b.volley.template] : [])]) {
+        if(q.turnOrder!==undefined&&(!nums(q.turnOrder,['age','delta'])||q.skill!=='A09'||q.turnOrder.age<0||q.turnOrder.age>120||Math.abs(q.turnOrder.delta)>Math.PI/2))return fail();
         if(q.rangeRevision!==undefined&&q.rangeRevision!==1)return fail();
         if(!optionalNumber(q.flightAge,0,120)||!optionalNumber(q.trajectorySpeedScale,.01,100)||!optionalNumber(q.trajectoryDropScale,.0001,10000)||q.wraithAirBurst!==undefined&&typeof q.wraithAirBurst!=='boolean')return fail();
         if(q.flightRange){const r=q.flightRange;if(q.rangeRevision!==1||!nums(r,['x','y'])||!optionalNumber(r.distance,1,20000)||!optionalNumber(r.seconds,.01,120)||!optionalNumber(r.rush,1,1500))return fail();}

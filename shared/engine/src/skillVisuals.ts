@@ -7,7 +7,7 @@ import type {Projectile,Unit,Skill} from './types';
 import type {Engine} from './engine';
 import {SKILLS,CLASSES} from './data';
 import {echoAim,SOUL_SKILLS} from './occultMechanics';
-import {geometryPaths,redesignPrediction,turnPrediction,type SkillGeometry} from './skillMechanics';
+import {geometryPaths,redesignPrediction,turnPrediction,steerableArrow,type SkillGeometry} from './skillMechanics';
 type C=CanvasRenderingContext2D;
 type GuideEntry={aimKey:string;worldKey:string;at:number;ux:number;uy:number;prediction:ReturnType<Engine['predict']>};
 const guideCache=new WeakMap<Engine,Map<boolean,GuideEntry>>();
@@ -304,7 +304,7 @@ export function guideStroke(c:C,path:{x:number;y:number}[],zoom:number,color='#d
 }
 const turnGuideCache=new WeakMap<Engine,{key:string;prediction:ReturnType<typeof turnPrediction>}>();
 export function drawTurnGuide(c:C,e:Engine,zoom=1,point?:{x:number;y:number}){
- const p=e.b.projectiles.find(p=>p.skill==='A09'&&p.owner===e.b.active&&!p.turned&&!p.followup);if(e.b.phase!=='flight'||!p)return false;
+ const p=steerableArrow(e.b);if(!p)return false;
  zoom=Math.max(.12,zoom);const key=[p.id,Math.floor(p.age*30),e.active?.angle,point?.x.toFixed(0),point?.y.toFixed(0),e.b.sceneVersion].join(':');let cached=turnGuideCache.get(e);
  if(cached?.key!==key){cached={key,prediction:turnPrediction(e,point)};turnGuideCache.set(e,cached);}const pr=cached.prediction;if(!pr)return false;
  guideStroke(c,[{x:p.x,y:p.y},...pr.points.slice(1)],zoom,'#f2d39c',.82);

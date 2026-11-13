@@ -155,6 +155,8 @@ function eligibility(app,site){
 function present(b,result){
  const step=V.current(b),m=physical(b),p=step&&V.marker(b,step.id);
  if(!step||m.bossDeath&&!m.rescueSafe)return result;
+ const foes=step.id.startsWith('18.lock-')&&p?S.lockThreats(b,p):[];
+ if(foes.length)return G.HonroObjectiveGuide.combatPresentation(b,result,foes,'종 고정구를 막는 적 제압');
  const actions=P.actionText(b,step.id),text={
   '18.descent':'제동구 쪽으로 이동해 종을 내리는 모습 확인',
   '18.rescue-safe':'생존자 곁에서 통로를 비워 안전한 발판까지 호송',
