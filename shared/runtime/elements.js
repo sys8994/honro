@@ -25,6 +25,22 @@ function draw(c,asset,inst,scene){
 Scene.prototype.landmark=function(c,l){
  if(l.kind==='canonical-element'){
   if(l.collisionIds?.length&&l.collisionIds.every(id=>this.battle?.terrain.find(t=>t.id===id)?.broken))return;
+  const b=this.battle,source=l.asset?.params?.collisionSource;
+  if((b?.honroStage===22&&l.id==='v22-art-main-document-archive'&&source==='koreanTownBuilding sampled tiled roof')||
+     (b?.honroStage===24&&l.asset?.id?.startsWith('family24:')&&source==='sampled-drawn-roof')){
+   // Curled tile ends can be thinner than the usable contact. Underpaint
+   // the existing roof profile so its last usable part is visible as tile.
+   for(const id of l.collisionIds||[]){
+    const t=b.terrain.find(t=>t.id===id&&!t.broken);if(!t?.oneWay)continue;
+    const ps=G.HONRO_CORE.poly(t);
+    c.save();c.fillStyle='#36494a';c.beginPath();
+    for(let i=0;i<ps.length;i++){
+     const a=ps[i],z=ps[(i+1)%ps.length];if(z.x<=a.x)continue;
+     c.moveTo(a.x,a.y);c.lineTo(z.x,z.y);c.lineTo(z.x,z.y+8);c.lineTo(a.x,a.y+8);c.closePath();
+    }
+    c.fill();c.restore();
+   }
+  }
   draw(c,l.asset,l,this);return;
  }
  if(l.rotation){c.save();c.translate(l.x,l.y);c.rotate(l.rotation);nativeLandmark.call(this,c,{...l,x:0,y:0,rotation:0});c.restore();}

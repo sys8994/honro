@@ -96,7 +96,33 @@ function buriedVault(l,b){
  asset.bounds={x:left,y:top,w:right-left,h:1900-top};vector.viewBox=[left,top,right-left,1900-top];
  return{...l,asset,honroTerrainMaterialClip:new Path2D(pathString(full))};
 }
+function stage5PineMaterial(l,terrain){
+ if(l.asset?.id!=='stage5-dynamic:old-pine'||!l.asset.vector)return l;
+ const timber=terrain.find(t=>t.id==='stage5-timber-low'&&!t.broken);
+ const body=l.asset.vector.root.children?.[0],deck=body?.children?.find(n=>n.tag==='g'&&n.children?.[0]?.d?.startsWith('M2170,880L2450,874'));
+ if(!timber||!deck)return l;
+ const dx=timber.x-2170;
+ if(!dx)return l;
+ const asset=clone(l.asset),children=asset.vector.root.children[0].children;
+ const low=children[body.children.indexOf(deck)];
+ low.transform=[1,0,0,1,dx,0];
+ low.children[0].d=pathString(timber.vertices.map(p=>({x:p.x-dx,y:p.y-1000})));
+ // Both ends of the braces follow the deck. Their shared foot and the
+ // branch's inner end remain attached to the original pine trunk.
+ const ribbon=(points,width,fill)=>({tag:'path',fill,d:points.slice(1).map((z,i)=>{
+  const a=points[i],length=Math.hypot(z.x-a.x,z.y-a.y),nx=(a.y-z.y)*width/2/length,ny=(z.x-a.x)*width/2/length;
+  return pathString([{x:a.x+nx,y:a.y+ny},{x:a.x-nx,y:a.y-ny},{x:z.x-nx,y:z.y-ny},{x:z.x+nx,y:z.y+ny}]);
+ }).join(' ')});
+ low.children[7]=ribbon([{x:2192,y:908},{x:2550-dx,y:1010},{x:2430,y:905}],13,'#6a654a');
+ children[2]=ribbon([{x:2560,y:800},{x:2380+dx*.5,y:830},{x:2210+dx,y:890}],38,'#5a5746');
+ children[18].transform=[1,0,0,1,dx,0];
+ children[19].d=`M${2150+dx},790 L${2390+dx*.5},760 L2580,620 L2780,630`;
+ const bounds=asset.bounds||asset.reference.bounds,left=Math.min(bounds.x,timber.x-26);
+ asset.bounds={...bounds,x:left,w:bounds.x+bounds.w-left};
+ return {...l,asset};
+}
 function stage5FoundationMaterial(l,b,terrain){
+ if(l.asset?.id==='stage5-dynamic:old-pine')return stage5PineMaterial(l,terrain);
  if(l.x||l.y||(l.scale??1)!==1||l.rotation)return l;
  const bank=l.asset?.id==='stage5-dynamic:lower-bank',cliff=l.asset?.id==='stage5-dynamic:east-cliff';if(!bank&&!cliff)return l;
  const mass=terrain.find(t=>t.id===(bank?'valley-floor':'waterfall-cliff')&&!t.broken);if(!mass)return l;

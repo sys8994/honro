@@ -45,6 +45,27 @@ function native(l,b){return !!(config(b)&&Object.hasOwn(layers,l?.nativeArtLayer
 function terrainIds(l){return Array.isArray(l?.nativeTerrainIds)?l.nativeTerrainIds:(l?.nativeTerrainId?[l.nativeTerrainId]:[]);}
 function bodyLive(l,b){const ids=terrainIds(l);return ids.length>0&&new Set(ids).size===ids.length&&ids.every(id=>typeof id==='string'&&b.terrain?.some(t=>t.id===id&&!t.broken));}
 function covered(t,b){const q=config(b);return !!(q&&q.coveredTerrainIds.includes(t.id)&&!t.honroElementCollision&&(b.honroLandmarks||[]).some(l=>native(l,b)&&l.nativeArtLayer==='body'&&bodyLive(l,b)&&terrainIds(l).includes(t.id)&&(l.opacity??1)===1));}
+const contactUnderpaint={
+ 'act4-handoff:32:body-joined':{'approved32-east-face':['#626b70','#879193']},
+ 'act4-handoff:35:body':{'approved35-bridge-pier':['#55594c','#797965']},
+};
+function paintContactUnderlay(c,l,b){
+ const styles=contactUnderpaint[l.asset.id];if(!styles)return;
+ for(const [id,[fill,cap]] of Object.entries(styles)){
+  const t=b.terrain.find(t=>t.id===id&&!t.broken);
+  if(!t||!terrainIds(l).includes(id))continue;
+  const ps=G.HONRO_CORE.poly(t),path=new Path2D();
+  ps.forEach(({x,y},i)=>i?path.lineTo(x,y):path.moveTo(x,y));path.closePath();
+  c.save();c.fillStyle=fill;c.fill(path);c.clip(path);
+  c.beginPath();
+  for(let i=0;i<ps.length;i++){
+   const a=ps[i],z=ps[(i+1)%ps.length];
+   if(z.x<=a.x||Math.abs(z.y-a.y)>(z.x-a.x)*1.35)continue;
+   c.moveTo(a.x,a.y);c.lineTo(z.x,z.y);
+  }
+  c.strokeStyle=cap;c.lineWidth=10;c.stroke();c.restore();
+ }
+}
 // Only a resolved moving return ferry replaces its collision deck's paint.
 function movingDeckCovered(t,b){const id=b?.honroMap?.vectorReturnBoatAssetId;return !!(config(b)&&b.honroAct4Preview===40&&b.honroAct4Design?.geometry40&&t?.id==='a4-return-deck'&&t.honroAct4MovingDeck===true&&(b.honroAct4PreviewDynamic||[]).some(l=>l.asset?.id==='a4:boat'&&(l.opacity??1)===1)&&typeof id==='string'&&G.HONRO_PROJECT?.library?.some(a=>a.id===id&&a.vector&&!a.collision?.length));}
 // Composer-side fail-fast contract; runtime still retains fallback if a BODY
@@ -68,7 +89,9 @@ if(S){
   if(config(b)&&this._nativeArtBackground&&l.id==='a4-31-boat-10'&&l.asset?.id==='a4:boat'){this._nativeArtDeferredBoat={...l};return;}
   if(native(l,b)){
    if(l.nativeArtLayer==='body'&&!bodyLive(l,b))return;
-   if(G.HonroVectorArt?.draw(G.HonroVisualStyle?.raw(c)||c,l.asset,l))return;
+   const raw=G.HonroVisualStyle?.raw(c)||c;
+   if(l.nativeArtLayer==='body')paintContactUnderlay(raw,l,b);
+   if(G.HonroVectorArt?.draw(raw,l.asset,l))return;
   }
   // Paint the existing event-controlled boat pose exactly once, without making
   // a second static boat or changing its identity/collision/event lifecycle.
