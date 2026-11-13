@@ -15,9 +15,13 @@ function author(map,project){base.author(map,project);const n=map.metadata.stage
   // The old wagon-cordon roster contains no cart. This zero-XP work target
   // adds the missing cart without replacing any of the 26 combatants.
   const id='v4.gate-cart',p={x:1740,y:2640};marker(map,id,p);
-  map.terrains.push({id,type:'solid',name:id,points:[{x:1710,y:2520},{x:1770,y:2520},{x:1770,y:2640},{x:1710,y:2640}],baseMaterial:'wood',breakable:true,layer:'terrain',properties:{hp:680,maxHp:680,honroV4Cart:true}});
+  map.terrains.push({id,type:'solid',name:id,points:[{x:1656,y:2562},{x:1824,y:2562},{x:1824,y:2640},{x:1656,y:2640}],baseMaterial:'wood',breakable:true,layer:'terrain',properties:{hp:510,maxHp:510,honroV4Cart:true}});
   steps(map,[step(id,'destroy'),step('gate-resident','v4-city-rescue',{target:'act3-resident'}),step('refuge-hold','v4-city-safe'),step('city-exit','reach')]);
-  init.honroV4CitySpec={resident:'act3-resident',guard:'v4.gwakjin',destination:{x:2600,y:2560},cart:id,localIds:map.units.filter(u=>u.team==='enemy'&&/^a3-21-(wagon-cordon|gate-watch)-/.test(u.id)).map(u=>u.id)};
+  // The armored patrol covers the wreck and the gate. Gwakjin approaches
+  // the resident on the lower road, with fire from the parapet still active.
+  for(const u of map.units.filter(v=>/^a3-21-(wagon-cordon-0|wagon-cordon-1|gate-watch-0)$/.test(v.id)))
+   u.stageOverrides={...u.stageOverrides,honroAct3Vitality:.72};
+  init.honroV4CitySpec={pacing:1,resident:'act3-resident',guard:'v4.gwakjin',destination:{x:2600,y:2560},cart:id,localIds:map.units.filter(u=>u.team==='enemy'&&/^a3-21-(wagon-cordon|gate-watch)-/.test(u.id)).map(u=>u.id)};
  }
  if(n===22)init.honroV4CitySpec={cache:'v4.record-bundle',approachRadius:300};
  if(n===25||n===27){const list=init.honroV4Steps.filter(s=>n!==27||!['depot-route-ledger','family-manifest'].includes(s.id));for(const s of list)if(/^stake-arrival-/.test(s.id))Object.assign(s,{kind:'v4-city-arrival',allHeroes:true,radius:150,parallelGroup:'city-arrivals'});steps(map,list);if(n===27)init.honroV4MaterialEvidence=[];}
@@ -53,6 +57,11 @@ function prepare(b,profile){base.prepare(b,profile);memory(b);const spec=b.honro
 }
 function supported(b,u){return !!C.validTerrainContactPose(b.terrain,u);}
 function threats(b,p,r=300){return b.units.filter(u=>alive(u)&&u.side===1&&!u.honroObjectiveTarget&&V.near(u,p,r));}
+function escortThreats(b,p){
+ const foes=threats(b,p,240);
+ if(b.honroStage!==21||b.honroV4CitySpec?.pacing!==1)return foes;
+ return foes.filter(u=>Math.abs(u.y-p.y)<=95&&Math.abs(u.x-p.x)<175);
+}
 function overlap(u,p,v){return Math.max(0,Math.min(p.x+u.r,v.x+v.r)-Math.max(p.x-u.r,v.x-v.r))*Math.max(0,Math.min(p.y,v.y)-Math.max(p.y-u.h,v.y-v.h));}
 function bodyBlocked(b,u,p){return b.units.some(v=>v!==u&&alive(v)&&!v.honroObjectiveTarget&&!v.honroVisualOnly&&overlap(u,p,v)>Math.max(.000001,overlap(u,u,v)));}
 // A probe uses the production swept walk and gravity, then commits the legal
@@ -62,8 +71,8 @@ function walk(app,u,goal,dt){const e=app.engine,b=e.b;if(!alive(u)||!goal||!V.sa
  const a=memory(b).actors[u.id]??={distance:0,spent:0,round:b.round,start:{x:u.x,y:u.y}};
  if(a.round!==b.round){a.round=b.round;a.spent=0;}
  if(V.near(u,goal,5)&&supported(b,u))return true;
- if(threats(b,u,240).length){a.blocked='threat';return false;}
- const pace=b.honroStage===28&&b.honroV4CitySpec?.pacing===1?{move:1000,speed:245}:{move:600,speed:170};
+ if(escortThreats(b,u).length){a.blocked='threat';return false;}
+ const pace=[21,28].includes(b.honroStage)&&b.honroV4CitySpec?.pacing===1?{move:1000,speed:245}:{move:600,speed:170};
  const dx=goal.x-u.x,budget=Math.max(0,pace.move-a.spent);if(Math.abs(dx)<.01||budget<=.001)return false;
  const probe={...u,fixed:false,vx:0,vy:0,maxMove:pace.move,moveLeft:budget,walkSpeed:pace.speed},slice=Math.min(dt,.025,Math.abs(dx)/pace.speed);
  e.walk(probe,Math.sign(dx),slice,true);e.integrateBody(probe,slice,true);
@@ -73,8 +82,15 @@ function walk(app,u,goal,dt){const e=app.engine,b=e.b;if(!alive(u)||!goal||!V.sa
  Object.assign(u,{x:probe.x,y:probe.y,vx:0,vy:0,fixed:true,moveLeft:probe.moveLeft,facing:probe.facing,moving:.12,walkPhase:probe.walkPhase});
  a.distance+=d;a.spent+=d;delete a.blocked;app.dirty=true;return V.near(u,goal,5)&&supported(b,u);
 }
-function safeResident(b,id,goal){const a=memory(b).actors[id],u=unit(b,id);return alive(u)&&!!a?.safe&&a.distance>80&&V.near(u,goal,100)&&supported(b,u)&&!threats(b,u,240).length;}
-function localClear(b){return (b.honroV4CitySpec?.localIds||[]).every(id=>!!unit(b,id)&&!alive(unit(b,id)));}
+function safeResident(b,id,goal){const a=memory(b).actors[id],u=unit(b,id);return alive(u)&&!!a?.safe&&a.distance>80&&V.near(u,goal,100)&&supported(b,u)&&!escortThreats(b,u).length;}
+function refugeThreats(b){
+ const spec=b.honroV4CitySpec,pressure=memory(b).pressure;
+ const ids=[...spec.localIds,...(pressure.ids||[])];
+ if(spec.pacing!==1)return ids.map(id=>unit(b,id)).filter(u=>!u||alive(u));
+ const goal=spec.destination,armor=b.honroV4Chapter21?.old;
+ return b.units.filter(u=>ids.includes(u.id)&&alive(u)&&
+  (u.id===armor||Math.abs(u.x-goal.x)<650&&Math.abs(u.y-goal.y)<=160));
+}
 function workshopThreats(b){
  const spec=b.honroV4CitySpec,resident=unit(b,spec.resident),local=threats(b,resident,spec.pacing===1?275:400);
  if(!spec.workshopGuardIds)return local;
@@ -122,7 +138,7 @@ function escort(app,dt){const b=app.engine.b,a=memory(b),q=b.honroV4CitySpec,roo
  const ids=q.residents||[q.resident],resident=unit(b,ids[0]),guard=q.guard&&unit(b,q.guard);if(!alive(resident)||q.guard&&!alive(guard))return;
  if(guard&&!a.proof.pickup){
   const p={x:resident.x+75,y:resident.y};walk(app,guard,p,dt);
-  if(V.near(guard,p,10)&&supported(b,guard)&&!threats(b,resident,240).length)a.proof.pickup={guard:guard.id,resident:resident.id,serial:serial(b),at:{x:guard.x,y:guard.y}};
+  if(V.near(guard,p,10)&&supported(b,guard)&&!escortThreats(b,resident).length)a.proof.pickup={guard:guard.id,resident:resident.id,serial:serial(b),at:{x:guard.x,y:guard.y}};
   return;
  }
  const lead=guard||V.heroes(b).find(h=>V.near(h,resident,700));if(!lead)return;
@@ -174,7 +190,7 @@ function stepSatisfied(b,s){const n=b.honroStage,a=memory(b),q=b.honroV4CitySpec
  if(s.kind==='v4-city-arrival')return !!a.arrivals[s.id];
  if(n===25&&s.id==='household-tally')return V.steps(b).filter(q=>q.kind==='v4-city-arrival').every(q=>!!a.arrivals[q.id]);
  if(s.kind==='v4-city-rescue')return safeResident(b,q.resident,q.destination)&&(!q.spirit||!!a.proof.separation&&!workshopThreats(b).length);
- if(n===21&&s.id==='refuge-hold')return safeResident(b,q.resident,q.destination)&&!!a.pressure.admitted&&(a.pressure.ids||[]).every(id=>!!unit(b,id)&&!alive(unit(b,id)))&&localClear(b);
+ if(n===21&&s.id==='refuge-hold')return safeResident(b,q.resident,q.destination)&&!!a.pressure.admitted&&!refugeThreats(b).length;
  if(n===26&&s.id==='v4.ancestor-testimony')return !!a.proof.testimony;
  return base.stepSatisfied(b,s);
 }
@@ -182,5 +198,5 @@ function failure(b){const q=b.honroV4CitySpec;if(q&&[q.resident,...(q.residents|
 function complete(b){if(b.honroStage===21)return stepSatisfied(b,{id:'refuge-hold'});if(b.honroStage===26)return !!memory(b).proof.testimony&&safeResident(b,b.honroV4CitySpec.resident,b.honroV4CitySpec.destination);if(b.honroStage===28)return evacuationSafe(b);return base.complete(b);}
 function state(b){if(V.current(b)?.kind==='v4-city-arrival')return{targets:V.steps(b).filter(s=>s.kind==='v4-city-arrival'&&!V.mem(b).done[s.id]).map(s=>({...mark(b,s.id),kind:'exit',label:s.id}))};return base.state?.(b)||{};}
 const plugin={...base,author,prepare,eligibility,use,tick,stepSatisfied,failure,complete,state};for(const id of IDS)V.register(id,plugin);
-G.HonroAct23V4City={...plugin,base,memory,walk,escort,arrivals,cacheThreats,cacheSafe,evacuationSafe,workshopThreats,courtEvacuationThreats,ids:IDS};
+G.HonroAct23V4City={...plugin,base,memory,walk,escort,arrivals,cacheThreats,cacheSafe,evacuationSafe,workshopThreats,courtEvacuationThreats,refugeThreats,escortThreats,ids:IDS};
 })(globalThis);

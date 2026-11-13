@@ -55,7 +55,22 @@ function tick(app){const b=app.engine.b;if(!active(b)||!V.safe(app))return;const
  }
 }
 function complete(b){return !active(b)||closed(memory(b).events.exit);}
-function present(b,result){if(!active(b))return result;const id='A3.S21.OBJ.0'+(S.rescued(b)?3:S.cartStopped(b)?2:1),r=row(id);return{...result,summary:r.text,currentInstruction:r.text,completionText:row('A3.S21.OBJ.03').text,targets:result.targets.map(x=>({...x,label:r.text})),allTargets:result.allTargets.map(x=>({...x,label:r.text})),checklist:[1,2,3].map(i=>({id:'A3.S21.OBJ.0'+i,text:row('A3.S21.OBJ.0'+i).text,done:i<(S.rescued(b)?3:S.cartStopped(b)?2:1),current:id.endsWith('0'+i)})),visibleChecklist:[{id,text:r.text,current:true,done:result.complete}],failureText:''};}
+function present(b,result){if(!active(b))return result;
+ if(b.honroV4CitySpec?.pacing===1){
+  const current=V.current(b)?.id,q=S.memory(b);
+  const city=G.HonroAct23V4City,escort=city.memory(b);
+  const guards=b.units.filter(u=>[b.honroV4CitySpec.resident,'v4.gwakjin'].includes(u.id));
+  const threats=current==='refuge-hold'?city.refugeThreats(b):current==='gate-resident'&&escort.started?[...new Set(guards.flatMap(u=>city.escortThreats(b,u)))]:[];
+  if(S.rescued(b)&&q.wreck&&!q.proof.emblem){
+   const text='빈 갑주가 쓰러진 곳에 다가가 문양 확인';
+   return {...result,summary:text,currentInstruction:text,targets:[{...q.wreck,id:'v4.gate-armor-emblem',kind:'move',label:text}]};
+  }
+  if(threats.length){
+   const {text,targets}=G.HonroObjectiveGuide.hostileHint(b,threats,current==='refuge-hold'?'성문 피란처를 공격하는 적 제압':'곽진과 주민의 길을 막는 적 제압');
+   return {...result,summary:text,currentInstruction:text,targets};
+  }
+ }
+ const id='A3.S21.OBJ.0'+(S.rescued(b)?3:S.cartStopped(b)?2:1),r=row(id);return{...result,summary:r.text,currentInstruction:r.text,completionText:row('A3.S21.OBJ.03').text,targets:result.targets.map(x=>({...x,label:r.text})),allTargets:result.allTargets.map(x=>({...x,label:r.text})),checklist:[1,2,3].map(i=>({id:'A3.S21.OBJ.0'+i,text:row('A3.S21.OBJ.0'+i).text,done:i<(S.rescued(b)?3:S.cartStopped(b)?2:1),current:id.endsWith('0'+i)})),visibleChecklist:[{id,text:r.text,current:true,done:result.complete}],failureText:''};}
 function content(b,st){return active(b)?{...st,goal:present(b,{targets:[],allTargets:[]}).summary,guide:'',story:[],outro:[],failure:[],narration:[],honroV4Unreviewed:false,honroReviewedNarrativeRevision:1}:st;}
 function optional(profile,id,c){if(!enabled()||Number(id)!==21)return null;if(!profile.recruited?.includes(c)||!profile.party?.includes(c))return[];return lines(data().rows.filter(r=>r.id.startsWith('EDGE.OPTIONAL_21_'+c.toUpperCase()+'_')).map(r=>r.id),'optional.'+c).filter(l=>restAllowed(profile,l[0]));}
 function journal(profile,id){if(!enabled()||Number(id)!==21)return null;const r=row('A3.S21.JOURNAL.01');return profile.record?.find(x=>x.rowId===r.id&&x.reviewedRevision===1&&x.sourceRun&&x.text===r.text)||null;}

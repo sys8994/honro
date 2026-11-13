@@ -134,6 +134,10 @@ function installActivation(e){const b=e.b;if(!b.honroEscortYardActivation||e.hon
 // authored contour and actual foot supports; high warehouse routes do not lead
 // the carrier. Locomotion/collisions still own every step, including blockers.
 const ROAD_SUPPORTS=new Set(['sy-ground','sy-stone-bridge']);
+function onCarrierRoad(b,u,npc){
+ return [u,npc].every(v=>!v.airborne&&!v.jumping&&
+  ROAD_SUPPORTS.has(G.HONRO_CORE.terrainSurface(b.terrain,v.x,v.y-.15,v.y+.15,Infinity)?.t.id));
+}
 function canLead(e,u,npc){const b=e.b;if(!active(b))return null;
  if(A.sameFloor(u,npc,950))return true;
  if(!e.grounded(u)||!e.grounded(npc))return false;
@@ -150,5 +154,5 @@ const attach=A.attach;A.attach=function(app,e){const out=attach(app,e);if(!activ
 };
 const tick=A.tick;A.tick=function(app,dt){if(!active(app.engine?.b))return tick(app,dt);if(cleanup(app))return tick(app,dt);installScene();prepareWaves(app);offer(app);acceptOpportunity(app);const out=tick(app,dt);transition(app);return out;};
 const state=A.state;A.state=function(b){const out=state(b);if(!active(b))return out;const m=b.honroState?.escortYard;if(m?.reason&&!['stored','cancelled'].includes(m.status))out.summary+=' · '+m.reason;return out;};
-G.HonroStage23Escort={active,memory,sources,entryFor,safeBoundary,safeMotion,swept,occupants,transition,prepareWaves,commit,skip,cleanup,installScene,syncScene,carrierInTrigger,cellApproached,installActivation,canLead,SCENE};
+G.HonroStage23Escort={active,memory,sources,entryFor,safeBoundary,safeMotion,swept,occupants,transition,prepareWaves,commit,skip,cleanup,installScene,syncScene,carrierInTrigger,cellApproached,installActivation,canLead,onCarrierRoad,SCENE};
 })(globalThis);

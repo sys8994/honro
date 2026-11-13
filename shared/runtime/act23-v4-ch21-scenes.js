@@ -45,7 +45,7 @@ function observe(app,dt){const b=app.engine.b,q=memory(b),spec=b.honroV4Chapter2
  }
  if(old&&!alive(old)&&!q.wreck){const y=C.topAt(b.terrain.find(t=>t.id==='a3-foundation'),old.x);if(Number.isFinite(y))q.wreck={x:old.x,y,id:old.id,h:old.h,r:old.r,identity:'old-empty',emblem:spec.emblem};}
  if(a&&alive(resident)&&!a.safe&&a.distance>80&&V.near(resident,spec.gate,160)&&grounded(b,resident)&&resident.moving>0)q.proof.lastMoving={resident:resident.id,point:{x:resident.x,y:resident.y},distance:a.distance};
- if(rescued(b)&&q.wreck&&!q.proof.emblem){const viewer=V.heroes(b).find(u=>grounded(b,u)&&V.near(u,q.wreck,650));if(viewer)q.proof.emblem={viewer:viewer.id,oldArmor:spec.old,currentArmor:spec.current,emblem:spec.emblem,point:copy(q.wreck)};}
+ if((b.honroV4CitySpec?.pacing===1?cartStopped(b):rescued(b))&&q.wreck&&!q.proof.emblem){const viewer=V.heroes(b).find(u=>grounded(b,u)&&V.near(u,q.wreck,650));if(viewer)q.proof.emblem={viewer:viewer.id,oldArmor:spec.old,currentArmor:spec.current,emblem:spec.emblem,point:copy(q.wreck)};}
 }
 function introReady(b){const s=b.honroV4Chapter21;return !cartStopped(b)&&alive(unit(b,'v4.gwakjin'))&&alive(unit(b,b.honroV4CitySpec.resident))&&alive(unit(b,s.old));}
 function facts(b,id){if(!active(b))return false;const q=memory(b),resident=unit(b,b.honroV4CitySpec.resident);

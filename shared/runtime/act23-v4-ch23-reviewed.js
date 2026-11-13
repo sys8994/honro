@@ -19,6 +19,16 @@ function boardingThreats(b){
 function escortThreats(b){
  const u=carrier(b);
  if(!root(b).carrierStarted||!V.alive(u)||root(b).carrierGoals?.['dock-exit'])return [];
+ if(spec(b)?.pacing===1){
+  // Leave a firing gap before the guard on the far side of the bridge.
+  // On the rest of the road the porter still waits for a guard on his support.
+  const road=stableEscortSupport(b,u);
+  return b.units.filter(foe=>{
+   if(foe.side!==1||!V.alive(foe)||!spec(b).blockingGuards.includes(foe.id)||foe.x<u.x-45)return false;
+   if(foe.id==='s23-E-2')return foe.x-u.x<=335&&G.HonroStage23Escort?.onCarrierRoad(b,foe,u);
+   return V.near(foe,u,220)&&road&&stableEscortSupport(b,foe)===road;
+  });
+ }
  if(b.honroReviewed23PacingCandidate?.id==='escort-close-130'&&b.honroReviewed23PacingCandidate.version===1)return roadBlockingFoes(b,u,130);
  const p=nextPoint(b);
  return [...new Set([...roadBlockingFoes(b,u,300),...(p?roadBlockingFoes(b,p,300):[])])];
@@ -43,7 +53,13 @@ function guidance(b){
  const text=lead?'앞에서 짐꾼을 호송':'같은 길에서 동행 한 명이 짐꾼보다 앞서 이동';
  return {text,targets:[{...p,kind:'move',label:text}]};
 }
-const exitThreats=b=>nearFoes(b,V.marker(b,'dock-exit'),500);
+function exitThreats(b){
+ const goal=V.marker(b,'dock-exit'),route=spec(b);
+ if(route?.pacing!==1)return nearFoes(b,goal,500);
+ return nearFoes(b,goal,560).filter(foe=>
+  route.exitGuards.includes(foe.id)&&G.HonroStage23Escort?.onCarrierRoad(b,foe,carrier(b))||
+  V.near(foe,goal,275));
+}
 function safe(b){const u=carrier(b),goal=V.marker(b,'dock-exit');return ground(b,u)&&!!root(b).carrierGoals?.['dock-exit']&&V.near(u,goal,110)&&!exitThreats(b).length&&(mem(b).proof.walk?.distance||0)>=Math.abs(goal.x-spec(b).start.x)-200;}
 function returnSafe(app){const b=app.engine.b,h=app.profile.honroAct23V4History?.stages?.[21];if(!safe(b)||h?.reviewedNarrative?.rescued!==true)return false;const points=[spec(b).start,...b.honroMarkers.filter(p=>/^route:dock-/.test(p.id))];return b.units.filter(u=>u.side===1&&V.alive(u)&&!u.honroObjectiveTarget).every(u=>!points.some(p=>V.near(u,p,340)));}
 function priorEmblem(p){return p.honroAct23V4History?.stages?.[21]?.reviewedNarrative?.proof?.emblem?.emblem==='old-sealed-diamond';}
@@ -59,7 +75,19 @@ R=F.register({stage:23,
  author(map){const u=map.units.find(u=>u.id==='act3-carrier'),p=map.markers.find(p=>p.id==='dispatch-bundle'),goods={x:u.x-70,y:u.y};p.x=u.x;p.y=u.y;
   // Fresh-only actual-support rule; ranged pressure/old saves/start and exit safety remain.
   map.initialState.honroReviewed23PacingCandidate={id:"escort-close-130",version:1,roadContact:true,variant:"escort-road-130"};
-  map.initialState.honroReviewed23Spec={start:{x:u.x,y:u.y},goods,banner:{x:5500,y:4350},familyCrest:'family-three-petals'};
+  u.stageOverrides={...u.stageOverrides,maxMove:1600,moveLeft:1600,walkSpeed:300};
+  const blockingGuards=['s23-B-0','s23-C-0','s23-E-2','s23-F-0'];
+  for(const foe of map.units.filter(v=>blockingGuards.includes(v.id))){
+   foe.stageOverrides={...foe.stageOverrides,honroAct3Vitality:.44};
+   if(foe.id==='s23-E-2'){Object.assign(foe,{x:5540,y:4350});foe.stageOverrides.fixed=true;}
+  }
+  const exitGuards=['s23-G-0','s23-G-2'];
+  for(const [i,id] of exitGuards.entries()){
+   const u=map.units.find(v=>v.id===id);if(!u)continue;
+   Object.assign(u,{x:8740+i*115,y:4170});
+   u.stageOverrides={...u.stageOverrides,honroAct3Vitality:i===0?.65:.48};
+  }
+  map.initialState.honroReviewed23Spec={pacing:1,blockingGuards,exitGuards,start:{x:u.x,y:u.y},goods,banner:{x:5500,y:4350},familyCrest:'family-three-petals'};
   map.initialState.honroV4MaterialEvidence=[{id:'v4.23.body-wrap',x:goods.x-55,y:goods.y},{id:'v4.23.household-metal',x:goods.x+55,y:goods.y}];
   map.terrains.push({id:'v4.23.wagon-cover',type:'solid',points:[{x:u.x-190,y:u.y-94},{x:u.x-95,y:u.y-94},{x:u.x-95,y:u.y},{x:u.x-190,y:u.y}],baseMaterial:'wood',breakable:true,layer:'terrain',properties:{hp:420,maxHp:420}});
  },
@@ -92,5 +120,5 @@ R=F.register({stage:23,
  }
 });
 G.HonroAct23V4Chapter23Reviewed=R;
-G.HonroAct23V4Chapter23Facts={blocked,safe,returnSafe,goodsVisible,priorEmblem,spec,escortThreats};
+G.HonroAct23V4Chapter23Facts={blocked,safe,returnSafe,goodsVisible,priorEmblem,spec,escortThreats,exitThreats};
 })(globalThis);

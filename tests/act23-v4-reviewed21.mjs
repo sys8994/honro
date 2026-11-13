@@ -21,10 +21,19 @@ function kill(id){const u=unit(id);if(V.alive(u))app.engine.hurt(u,999999,app.en
 function clearLocal(){for(const id of app.engine.b.honroV4CitySpec.localIds)kill(id);}
 let b=launch();const source=raw.stages.find(s=>s.metadata.stageId===21),authored=g.HONRO_PROJECT.stages.find(s=>s.metadata.stageId===21);
 for(const t of source.terrains)assert.deepEqual(plain(authored.terrains.find(x=>x.id===t.id)),plain(t));assert.equal(authored.units.filter(u=>u.team==='enemy').length,source.units.filter(u=>u.team==='enemy').length);
-for(const u of source.units.filter(u=>u.team==='enemy')){const actual=plain(authored.units.find(v=>v.id===u.id));delete actual.stageOverrides?.honroVariant;delete actual.stageOverrides?.honroV4ArmorIdentity;const old=plain(u);delete old.stageOverrides?.honroVariant;assert.deepEqual(actual,old);}
+const tunedGatePatrol=new Set(['a3-21-wagon-cordon-0','a3-21-wagon-cordon-1','a3-21-gate-watch-0']);
+for(const u of source.units.filter(u=>u.team==='enemy')){
+ const actual=plain(authored.units.find(v=>v.id===u.id)),old=plain(u);
+ assert.equal(actual.stageOverrides?.honroAct3Vitality,tunedGatePatrol.has(u.id)?.72:undefined);
+ delete actual.stageOverrides?.honroAct3Vitality;
+ delete actual.stageOverrides?.honroVariant;
+ delete actual.stageOverrides?.honroV4ArmorIdentity;
+ delete old.stageOverrides?.honroVariant;
+ assert.deepEqual(actual,old);
+}
 at('EDGE.ARRIVALS_21_0');b=resume();at('EDGE.ARRIVALS_21_0');assert.equal(app.dialogue.lines.length,5);g.HonroStory.next(app);at('A3.S21.INTRO.01');g.HonroStory.next(app);at('A3.S21.INTRO.02');app.stopBattle();const oldPayload=plain(app.profile);for(const l of oldPayload.honroBattle.honroStory.lines){for(const k of ['audience','delivery','once','group','order','condition','speaker_channel','reviewedPayloadRevision'])delete l[2][k];}app=h.load(oldPayload);app.continue();app.turnNotice=null;b=app.engine.b;at('A3.S21.INTRO.02');assert.equal(app.dialogue.lines[app.dialogue.index][2].reviewedPayloadRevision,2);finish();assert.equal(R.present(b,V.state(b)).summary,R.row('A3.S21.OBJ.01').text);assert(!R.journal(app.profile,21));
 assert(!R.rowsReviewed([['설오','invented',{rowId:'A3.S21.INTRO.04',reviewedStage:21,reviewedRevision:1}]]));
-console.log('PASS exact 30 reviewed IDs, gated 421, same combat roster/stats, intro/arrival stable saved cursors and no early journal');
+console.log('PASS exact 30 reviewed IDs, gated 421, same combat roster and explicit gate patrol durability, intro/arrival stable saved cursors and no early journal');
 // Actual quest-target damage changes the existing descriptor and opens route.
 const p=V.marker(b,'gate-resident'),hero=V.heroes(b)[0];pose(hero,p.x-190);assert(!V.use(app,p));kill('v4.gate-cart');tick();at('A3.S21.CART_STOP.01');assert(S.cartStopped(b));assert(S.memory(b).proof.turn?.distance>0);g.HonroStory.next(app);at('A3.S21.CART_STOP.02');b=resume();at('A3.S21.CART_STOP.02');
 // Killing the actual threatened armour invalidates pending line02 immediately.
@@ -33,7 +42,7 @@ kill(b.honroV4Chapter21.old);g.HonroStory.tick(app,performance.now());assert(!ap
 pose(unit('a3-21-wagon-cordon-2'),1850);tick();at('A3.S21.CIVILIAN_DANGER.01');clearLocal();g.HonroStory.tick(app,performance.now());assert(!app.dialogue);assert(!R.lineAllowed(app,'설오',R.lines(['A3.S21.CIVILIAN_DANGER.02'],'danger')[0][2]));
 console.log('PASS real cart damage/route, production swept armour turn, pending danger/turn cancellation after real threat death and saved line02');
 // Keep the normal finite wave machinery; no unlimited NPC relocation or timer.
-Object.assign(b,{side:0,phase:'aim'});const active=V.heroes(b)[0];pose(active,p.x-190);b.active=active.id;active.acted=false;assert(V.use(app,p));Object.assign(b,{side:0,phase:'aim'});for(const[i,u]of V.heroes(b).entries())pose(u,210+i*80);
+Object.assign(b,{side:0,phase:'aim'});const active=V.heroes(b)[0];pose(active,p.x-190);b.active=active.id;active.acted=false;assert(V.use(app,p));delete S.memory(b).proof.emblem;Object.assign(b,{side:0,phase:'aim'});for(const[i,u]of V.heroes(b).entries())pose(u,210+i*80);
 const residentStart=unit('act3-resident').x,guardStart=unit('v4.gwakjin').x;
 let savedMove=false,lastSeen=false;
 for(let i=0;i<12000&&!S.rescued(b);i++){

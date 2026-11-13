@@ -9,7 +9,9 @@ function setSteps(map,list){map.initialState.honroV4Steps=list;const keep=new Se
 function surface(map,x){return G.HonroMapEngine.surfaceY(map.terrains.map(t=>G.HonroGeometry.terrain(t,map.height)),x,undefined,'act2-floor')?.y;}
 function hasEscortLeader(b,u,goal){
  const dir=Math.sign(goal.x-u.x);
- return V.heroes(b).some(h=>Math.abs(h.y-u.y)<220&&Math.abs(h.x-u.x)<950&&(h.x-u.x)*dir>60);
+ const paced=b.honroReviewed23Spec?.pacing===1;
+ return V.heroes(b).some(h=>Math.abs(h.x-u.x)<(paced?1300:950)&&(h.x-u.x)*dir>60&&
+  (Math.abs(h.y-u.y)<220||paced&&G.HonroStage23Escort?.onCarrierRoad(b,h,u)));
 }
 function walk(app,u,goal,{radius=90,lead=true,moveBudget}={}){const b=app.engine.b;if(!alive(u)||!goal)return false;if(V.near(u,goal,radius))return true;if(!V.safe(app)||b.side!==0||b.phase!=='aim')return false;
  const dir=Math.sign(goal.x-u.x);if(lead&&!hasEscortLeader(b,u,goal))return false;
