@@ -15,7 +15,7 @@ R=F.register({stage:27,
  {key:'recovered',ids:['A3.S27.GUIDE.01'],when:app=>q(app.engine.b).voidRecovered===true},
  {key:'exit',ids:ids('EXIT',2),when:app=>exit(app.engine.b)}],
  journals:[{id:'EDGE.RUNTIME.JOURNAL.EVIDENCE27.MANIFEST',when:app=>!!q(app.engine.b).proof.tags},{id:'A3.S27.JOURNAL.01',when:app=>exit(app.engine.b)&&F.closed(q(app.engine.b).events.exit)},{id:'A3.S27.JOURNAL.PRIVATE',when:app=>{const b=app.engine.b;return b.honroAct3Void?.state==='RESOLVED'&&b.honroVoidWitness===true&&!!q(b).proof.void?.returned;}}],
- complete:b=>exit(b)&&F.closed(q(b).events.exit),objective:b=>'A3.S27.OBJ.0'+(all(b)?2:1),progress:b=>all(b)?'':'안전 도착 '+W.total(b,4)+'/4',
+ complete:b=>exit(b)&&F.closed(q(b).events.exit),objective:b=>'A3.S27.OBJ.0'+(all(b)?2:1),guidance:b=>W.crossingGuidance(b,'deep-depot-exit','관아 뒤뜰 출구'),
  camera(app,key){return{id:'v4.27.'+key,intent:'situation',targets:W.team(app.engine.b).map(u=>({actor:u.id})),padding:140,maxScale:.8};},
  draw(scene,c,b){W.draw(scene,c,b,R);const p=V.marker(b,'family-manifest');if(!p)return;c.save();c.translate(p.x,p.y);c.fillStyle='#66654b';c.fillRect(-90,-42,180,35);c.strokeStyle='#c6b995';c.lineWidth=3;for(let i=0;i<4;i++){c.strokeRect(-76+i*44,-46,18,22);c.beginPath();c.moveTo(-71+i*44,-42);c.lineTo(-71+i*44,-27);c.moveTo(-64+i*44,-42);c.lineTo(-64+i*44,-27);c.stroke();}c.restore();}
 });

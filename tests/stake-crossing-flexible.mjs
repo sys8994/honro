@@ -11,12 +11,15 @@ check('v3 permits ordinary M09 away from the prescribed start and keeps failed s
 check('v3 normal E works with a safe off-route gate pair, without a landing veto',()=>{const f=fixture();place(f.m,800);f.b.stakes=[{id:900,skill:'M09',owner:f.m.id,side:0,x:800,y:1000,rank:1,expires:f.b.round+6},{id:901,skill:'M09',owner:f.m.id,side:0,x:2700,y:1000,rank:1,expires:f.b.round+6}];assert(f.e.useGate());assert(Math.abs(f.m.x-2700)<100);assert.equal(f.b.honroStakeCrossing.index,0);assert.equal(f.b.honroStakeCrossing.retries,0);});
 check('A second v3 crossing links the caster’s new position to the landing',()=>{
  const {e,b,a,m}=fixture();place(m,1800);place(a,1900);
+ b.terrain.unshift({id:'raised-floor',x:1750,y:1000,w:280,h:14,oneWay:true,mat:'rock',hp:99999,maxHp:99999});
+ b.terrain[1].y=1021;
  b.stakes=[{id:900,skill:'M09',owner:m.id,side:0,x:400,y:1000,rank:1,expires:b.round+6},{id:901,skill:'M09',owner:m.id,side:0,x:1780,y:1000,rank:1,expires:b.round+6}];
  assert(e.fire('M09',45,.7));
  for(let i=0;i<900&&b.projectiles.length;i++)e.tick(C.STEP);
  assert.equal(b.projectiles.length,0);
  assert.equal(b.stakes.length,2);
  assert.equal(b.stakes[0].x,m.x);
+ assert.equal(b.stakes[0].y,1000);
  assert(b.stakes[1].x>m.x+350);
  assert(b.stakes.every(z=>z.id!==900&&z.id!==901));
 });

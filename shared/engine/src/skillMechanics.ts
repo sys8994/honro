@@ -283,7 +283,7 @@ function placeStake(e:Engine,p:Projectile,h:Collision){
   const renewPair=p.side===0&&crossing?.renewsPair(b);
   if(!gates.length||renewPair){
    const owner=e.unit(p.owner)!;
-   const home=e.surface(owner.x,owner.y-8,owner.y+80);
+   const home=renewPair?e.contactSurface(owner.x,owner.y-4,owner.y+5):e.surface(owner.x,owner.y-8,owner.y+80);
    if(renewPair&&!home){e.remove(p);return;}
    if(renewPair)b.stakes=b.stakes.filter(s=>!gates.includes(s));
    if(home)b.stakes.push({attackSide:p.attackSide,damageRoll:p.damageRoll,id:b.nextId++,skill:p.skill,owner:p.owner,side:p.side,x:owner.x,y:home.y,rank:rank(p),damage:0,shot:p.shot,effectBoost:p.effectBoost,expires:b.round+stakeDuration(p.skill,rank(p))});

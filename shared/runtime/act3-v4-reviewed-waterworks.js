@@ -6,6 +6,21 @@ function pair(app){const b=app.engine.b,z=(b.stakes||[]).filter(s=>s.skill==='M0
 function returnLink(app){const z=pair(app);return !!z&&team(app.engine.b).some(u=>z.some(s=>V.near(u,s,160)))&&app.engine.gateResolution?.().ok===true;}
 const arrived=(b,i)=>!!G.HonroAct23V4City.memory(b).arrivals['stake-arrival-'+i];
 const total=(b,n)=>Array.from({length:n},(_,i)=>arrived(b,i+1)).filter(Boolean).length;
+function crossingGuidance(b,exitId,exitLabel){
+ const crossings=G.HonroStakeCrossing.crossings(b),receipts=G.HonroAct23V4City.memory(b).arrivals;
+ const pending=crossings.filter(c=>!receipts[c.markerId]);
+ if(!pending.length){
+  const p=V.marker(b,exitId),text='설오와 담허를 '+exitLabel+'로 이동';
+  return {text,targets:[{...p,kind:'exit',label:exitLabel}]};
+ }
+ const next=pending[0],p=V.marker(b,next.markerId),party=team(b);
+ const present=party.filter(u=>ground(b,u)&&V.near(u,p,150));
+ const names=party.filter(u=>!present.includes(u)).map(u=>G.HONRO_CONTENT.hero[u.cls].name).join('·');
+ const count=crossings.length;
+ const nextStep=present.length&&names?names+'도 같은 석대로 이동':'끊긴 길은 담허의 축지진목으로 건너기';
+ const text='석대 '+(count-pending.length)+'/'+count+' · '+next.label+' '+present.length+'/2 · '+nextStep;
+ return {text,targets:pending.map(c=>({...V.marker(b,c.markerId),kind:'move',label:c.label}))};
+}
 function observe(app,R){const b=app.engine.b,q=R.memory(b),env=b.honroStoryAnomalyEnvironment,s=app.scene,t=G.HonroStoryAnomalyArt?.time?.(s)??s?.time??0;
  if(env?.recess&&visible(app,env.recess))q.proof.recess={source:'authored-recess',x:env.recess.x,y:env.recess.y};
  const p=env?.drip;if(p&&visible(app,{x:p.x,y:p.y+150})){const phase=(t%5.8)/5.8,progress=Math.min(1,phase*2.7),side=p.turn*Math.max(0,Math.min(1,(progress-.58)/.42));if(phase<=.49&&side>0){q.waterStart??={x:p.x+side,time:t};if(Math.abs(p.x+side-q.waterStart.x)>=8)q.proof.water={source:'authored-drip',from:q.waterStart.x,to:p.x+side,time:t};}}
@@ -19,5 +34,5 @@ function draw(scene,c,b,R){const w=R.memory(b).linkWork;if(w?.remaining>0){c.sav
 // Arrival receipts, resources, enemies and terrain remain checkpoint-owned.
 function captureRetry(b){const R=F.providers.get(b.honroStage);if(!R?.active(b)||![25,27].includes(b.honroStage))return null;const q=R.memory(b);return{stage:b.honroStage,events:F.copy(Object.fromEntries(Object.entries(q.events).filter(([,v])=>F.closed(v)))),journals:F.copy(q.journals),proof:F.copy(q.proof)};}
 function restoreRetry(b,s){const R=s&&F.providers.get(s.stage);if(!R?.active(b))return;const q=R.memory(b);Object.assign(q.events,s.events);Object.assign(q.journals,s.journals);Object.assign(q.proof,s.proof);}
-G.HonroAct3V4ReviewedWaterworks={ground,team,visible,pair,returnLink,arrived,total,observe,attach,workDanger,unsafe,draw,captureRetry,restoreRetry};
+G.HonroAct3V4ReviewedWaterworks={ground,team,visible,pair,returnLink,arrived,total,crossingGuidance,observe,attach,workDanger,unsafe,draw,captureRetry,restoreRetry};
 })(globalThis);

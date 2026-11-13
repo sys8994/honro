@@ -7,20 +7,7 @@ function guidance(b){
   const p=mark(b,'depot-entry-seal'),text='담허로 입구 봉인 살피기';
   return {text,targets:[{...p,kind:'interact',label:text}]};
  }
- const team=W.team(b);
- const pending=G.HonroStakeCrossing.crossings(b).filter(c=>!G.HonroAct23V4City.memory(b).arrivals[c.markerId]);
- if(!pending.length){
-  const p=mark(b,'waterworks-exit'),text='설오와 담허를 상층 서쪽 출구로 이동';
-  return {text,targets:[{...p,kind:'exit',label:'상층 서쪽 출구'}]};
- }
- const next=pending[0],p=mark(b,next.markerId);
- const present=team.filter(u=>W.ground(b,u)&&V.near(u,p,150));
- const names=team.filter(u=>!present.includes(u)).map(u=>G.HONRO_CONTENT.hero[u.cls].name).join('·');
- const count=5-pending.length;
- const nextStep=present.length?`${names}도 같은 석대로 이동`:'끊긴 길은 담허의 축지진목으로 건너기';
- const text=`석대 ${count}/5 · ${next.label} ${present.length}/2 · ${nextStep}`;
- const targets=pending.map(c=>({...mark(b,c.markerId),kind:'move',label:c.label}));
- return {text,targets};
+ return W.crossingGuidance(b,'waterworks-exit','상층 서쪽 출구');
 }
 R=F.register({stage:25,
  author(map){map.initialState.honroReviewed25Goods={...map.markers.find(m=>m.id==='household-tally'),tags:['household-3','household-8'],items:['bowl','door-handle','hoe']};},
