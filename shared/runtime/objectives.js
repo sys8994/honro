@@ -72,7 +72,7 @@ function state(b,st){
  const result=rawState(b,st);
  const guided=G.HonroObjectiveGuide?.enhance(b,st,result)||result;
  const crossing=G.HonroStakeCrossing?.current(b);
- const jointInvestigation=G.HonroAct23V4Chapter25Reviewed?.active(b);
+ const jointInvestigation=G.HonroAct23V4Chapter25Reviewed?.active(b)||G.HonroAct23V4Chapter27Reviewed?.active(b);
  if(crossing&&guided.currentObjectiveId===crossing.markerId&&!jointInvestigation){
   guided.currentInstruction=G.HonroStakeCrossing.instruction(b)||guided.currentInstruction;
  }

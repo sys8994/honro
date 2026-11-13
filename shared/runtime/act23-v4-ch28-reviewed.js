@@ -3,6 +3,43 @@ const F=G.HonroAct3V4ReviewedCore,V=G.HonroAct23V4,City=G.HonroAct23V4City,C=G.H
 const actualFour=b=>stopped(b)&&['archer','mage','knight','occultist'].every(c=>{const u=V.heroes(b).find(u=>u.cls===c);return W.ground(b,u)&&V.near(u,mark(b,'party-reunion'),440);});
 const packet=b=>City.evacuationSafe(b)&&!!root(b).cargo?.['v4:28:petition-record']&&!!root(b).slots['28.orders-bundle'];
 const warning=b=>!stopped(b)&&(b.teamEnds?.[1]||0)-root(b).fireStartEnd>=9&&(b.teamEnds?.[1]||0)-root(b).fireStartEnd<12;
+function guidance(b){
+ if(!stopped(b)){
+  const targets=[['fire-screen','휘겸으로 서쪽 방화문 열기'],['water-release','설오로 동쪽 수문 열기']]
+   .filter(([id])=>!root(b).done[id]).map(([id,label])=>({...mark(b,id),kind:'interact',label}));
+  return {text:targets.map(t=>t.label).join(' · '),targets};
+ }
+ if(!q(b).proof.reunion){
+  const p=mark(b,'party-reunion');
+  const present=V.heroes(b).filter(u=>W.ground(b,u)&&V.near(u,p,440));
+  const text='네 동행이 관아 뒤뜰에 모이기 · '+present.length+'/4';
+  return {text,targets:[{...p,kind:'move',label:text}]};
+ }
+ const guard=unit(b,'v4.gwakjin');
+ if(!City.evacuationSafe(b)){
+  const enemies=City.courtEvacuationThreats(b);
+  if(enemies.length)return G.HonroObjectiveGuide.hostileHint(b,enemies,'곽진과 주민의 퇴로를 막는 적 제압');
+  const evacuees=[guard,unit(b,'v4.fire-resident-1'),unit(b,'v4.fire-resident-2')];
+  const blocked=evacuees.find(u=>City.memory(b).actors[u.id]?.blocked==='body-or-terrain'&&V.heroes(b).some(h=>h.x>u.x&&V.near(h,u,120)));
+  if(blocked){
+   const text='곽진과 주민 앞의 동행을 옆으로 이동';
+   return {text,targets:[{id:blocked.id,x:blocked.x,y:blocked.y,kind:'move',label:'퇴로 비우기'}]};
+  }
+  const text='곽진과 주민이 동쪽 안전지대로 이동 중';
+  return {text,targets:[{id:guard.id,x:guard.x,y:guard.y,kind:'move',label:'곽진과 주민'}]};
+ }
+ if(!root(b).cargo?.['v4:28:petition-record']){
+  const enemies=City.cacheThreats(b);
+  if(enemies.length)return G.HonroObjectiveGuide.hostileHint(b,enemies,'기록함 곁의 적 제압');
+  const p=mark(b,'petition-record'),text='관아 기록함을 찾아 회수하기';
+  return {text,targets:[{...p,kind:'interact',label:text}]};
+ }
+ if(!q(b).proof.packet){
+  const text='기록함을 갖고 안전지대의 곽진에게 이동';
+  return {text,targets:[{id:guard.id,x:guard.x,y:guard.y,kind:'move',label:'곽진'}]};
+ }
+ return null;
+}
 function observe(app,dt){const b=app.engine.b,m=q(b);if(actualFour(b)&&!m.proof.reunion)m.proof.reunion={actors:V.heroes(b).map(u=>({id:u.id,cls:u.cls,x:u.x,y:u.y})),devices:['fire-screen','water-release']};
  if(stopped(b)&&!m.proof.fireControl)m.proof.fireControl={fireDoor:b.terrain.find(t=>t.id==='fire-door')?.broken===true,waterGate:b.terrain.find(t=>t.id==='water-gate')?.broken===true};
  if(warning(b))m.flameWarning=true;const flag={x:7230,y:2480};if(W.visible(app,flag,1100)&&V.alive(unit(b,'v4.gwakjin'))&&Math.hypot(unit(b,'v4.gwakjin').x-flag.x,(unit(b,'v4.gwakjin').y-flag.y)*.75)<650)m.proof.banner={source:'visible-old-military-banner',x:flag.x,y:flag.y};
@@ -35,7 +72,7 @@ R=F.register({stage:28,
  journals:[{id:'EDGE.RUNTIME.JOURNAL.EVIDENCE28.APPROVAL',when:app=>!!q(app.engine.b).proof.packet},{id:'EDGE.RUNTIME.JOURNAL.EVIDENCE28.COVERUP',when:app=>!!q(app.engine.b).proof.packet},{id:'A3.S28.JOURNAL.01',when:app=>!!q(app.engine.b).proof.packet&&!!q(app.engine.b).proof.departure}],
  complete:b=>!!q(b).proof.reunion&&!!q(b).proof.packet&&!!q(b).proof.departure&&F.closed(q(b).events.exit),
  failure:b=>!V.alive(unit(b,'v4.gwakjin'))?'v4.28.guard-lost':!q(b).proof.reunion&&['archer','mage','knight','occultist'].some(c=>!V.heroes(b).some(u=>u.cls===c))?'v4.28.required-reunion-party':null,
- objective:b=>'A3.S28.OBJ.0'+(q(b).proof.packet?4:q(b).proof.reunion?3:stopped(b)?2:1),
+ objective:b=>'A3.S28.OBJ.0'+(q(b).proof.packet?4:q(b).proof.reunion?3:stopped(b)?2:1),guidance,
  camera(app,key){const b=app.engine.b;return{id:'v4.28.'+key,intent:'situation',targets:key==='ground'?[{marker:'fire-screen'}]:key==='underground'?[{marker:'water-release'}]:['packet','present','exit'].includes(key)?[{actor:V.heroes(b).find(u=>V.near(u,unit(b,'v4.gwakjin'),650))?.id||'v4.gwakjin'},{actor:'v4.gwakjin'}]:[{marker:'party-reunion'}],padding:140,maxScale:.65};},
  draw(scene,c,b){const reader=V.heroes(b).find(u=>V.near(u,unit(b,'v4.gwakjin'),420));if(reader&&packet(b)){c.save();c.translate(reader.x+22,reader.y-55);for(let i=0;i<4;i++){c.fillStyle=i%2?'#bfb28d':'#d0c09a';c.fillRect(-14+i*3,-16+i*3,28,25);}c.restore();}c.save();c.translate(7230,2590);c.strokeStyle='#82785e';c.lineWidth=5;c.beginPath();c.moveTo(0,0);c.lineTo(0,-180);c.stroke();c.fillStyle='#6f6550';c.fillRect(0,-175,70,60);c.strokeStyle='#b5ad8c';c.lineWidth=3;c.beginPath();c.moveTo(25,-147);c.lineTo(36,-159);c.lineTo(47,-147);c.lineTo(36,-135);c.closePath();c.stroke();c.restore();if(warning(b)){const p=mark(b,'party-reunion');c.save();c.fillStyle='#d3814266';for(let i=0;i<7;i++){c.beginPath();c.moveTo(p.x-140+i*40,p.y);c.quadraticCurveTo(p.x-160+i*40,p.y-80,p.x-125+i*40,p.y-115);c.quadraticCurveTo(p.x-92+i*40,p.y-65,p.x-105+i*40,p.y);c.fill();}c.restore();}}
 });G.HonroAct23V4Chapter28Reviewed=R;

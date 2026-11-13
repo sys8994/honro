@@ -70,13 +70,19 @@ function localClear(b){return (b.honroV4CitySpec?.localIds||[]).every(id=>!!unit
 function workshopThreats(b){return threats(b,unit(b,b.honroV4CitySpec.resident),400);}
 function cacheThreats(b){const q=b.honroV4CitySpec,p=mark(b,q?.cache);return p?threats(b,p,q.approachRadius||390):[];}
 function cacheSafe(b){return !!mark(b,b.honroV4CitySpec?.cache)&&!cacheThreats(b).length;}
+function courtEvacuationThreats(b){const q=b.honroV4CitySpec,actors=[q.guard,...q.residents].map(id=>unit(b,id)).filter(alive);return [...new Set(actors.flatMap(u=>threats(b,u,240)))];}
 function eligibility(app,p,s){const b=app.engine.b,a=memory(b),q=b.honroV4CitySpec;
  if(b.honroStage===22&&s.id==='v4.record-bundle'){
   const enemies=cacheThreats(b);
   if(enemies.length)return{ok:false,reason:G.HonroObjectiveGuide.hostileHint(b,enemies,'장부 곁의 적 제압').text};
   if(cacheSafe(b))return{ok:true,reason:'장부 대조하기',actionLabel:'장부 대조하기'};
  }
- if(b.honroStage===28&&s.id==='petition-record'&&(!evacuationSafe(b)||!cacheSafe(b)))return{ok:false,reason:'v4.city.cache-approach'};
+ if(b.honroStage===28&&s.id==='petition-record'){
+  if(!evacuationSafe(b))return{ok:false,reason:'곽진과 주민이 안전지대에 도착해야 합니다'};
+  const enemies=cacheThreats(b);
+  if(enemies.length)return{ok:false,reason:G.HonroObjectiveGuide.hostileHint(b,enemies,'기록함 곁의 적 제압').text};
+  if(cacheSafe(b))return{ok:true,reason:'기록함 회수하기',actionLabel:'기록함 회수하기'};
+ }
  if(s.kind==='v4-city-rescue'&&(!alive(unit(b,q.resident))||a.started))return{ok:false,reason:s.id};
  return base.eligibility?.(app,p,s);
 }
@@ -157,5 +163,5 @@ function failure(b){const q=b.honroV4CitySpec;if(q&&[q.resident,...(q.residents|
 function complete(b){if(b.honroStage===21)return stepSatisfied(b,{id:'refuge-hold'});if(b.honroStage===26)return !!memory(b).proof.testimony&&safeResident(b,b.honroV4CitySpec.resident,b.honroV4CitySpec.destination);if(b.honroStage===28)return evacuationSafe(b);return base.complete(b);}
 function state(b){if(V.current(b)?.kind==='v4-city-arrival')return{targets:V.steps(b).filter(s=>s.kind==='v4-city-arrival'&&!V.mem(b).done[s.id]).map(s=>({...mark(b,s.id),kind:'exit',label:s.id}))};return base.state?.(b)||{};}
 const plugin={...base,author,prepare,eligibility,use,tick,stepSatisfied,failure,complete,state};for(const id of IDS)V.register(id,plugin);
-G.HonroAct23V4City={...plugin,base,memory,walk,escort,arrivals,cacheThreats,cacheSafe,evacuationSafe,workshopThreats,ids:IDS};
+G.HonroAct23V4City={...plugin,base,memory,walk,escort,arrivals,cacheThreats,cacheSafe,evacuationSafe,workshopThreats,courtEvacuationThreats,ids:IDS};
 })(globalThis);
