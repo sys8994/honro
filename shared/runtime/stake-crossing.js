@@ -3,6 +3,7 @@ const clone=x=>structuredClone(x),C=G.HONRO_CORE;
 const crossings=b=>b?.honroMap?.act3?.crossings||[];
 const flexible=b=>(b?.honroMap?.act3?.waterworksRevision||0)>=3;
 const active=b=>!!b&&[25,27].includes(b.honroStage)&&crossings(b).length>0;
+const renewsPair=b=>active(b)&&flexible(b)&&!b.honroCustom;
 const heroes=b=>b.units.filter(u=>u.side===0&&!u.summoned&&!u.enthrall&&['archer','mage'].includes(u.cls));
 const inside=(u,z)=>!!u&&!!z&&u.x>=z.left&&u.x<=z.right&&Math.abs(u.y-z.y)<130;
 const current=b=>crossings(b)[b.honroStakeCrossing?.index||0];
@@ -113,5 +114,5 @@ function tick(app){const b=app.engine?.b;if(!active(b)||app.dialogue||app.done)r
  // The authored gap physically excludes jumps. Crossing provenance is an
  // objective contract, never an invisible wall or forced spatial correction.
 }
-G.HonroStakeCrossing={active,flexible,crossings,current,available,skills,prepare,preparationLines,instruction,initialize,takeCheckpoint,attach,tick,retry,recoverFailure,failure,fallBoundary,allowsStep};
+G.HonroStakeCrossing={active,flexible,renewsPair,crossings,current,available,skills,prepare,preparationLines,instruction,initialize,takeCheckpoint,attach,tick,retry,recoverFailure,failure,fallBoundary,allowsStep};
 })(globalThis);

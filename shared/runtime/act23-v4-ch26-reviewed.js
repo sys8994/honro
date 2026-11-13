@@ -1,6 +1,6 @@
 (function(G){'use strict';
 const F=G.HonroAct3V4ReviewedCore,V=G.HonroAct23V4,W=G.HonroAct3V4ReviewedWaterworks,City=G.HonroAct23V4City,C=G.HONRO_CORE;let R;const q=b=>R.memory(b),root=V.mem,mark=V.marker,unit=(b,id)=>b.units.find(u=>u.id===id),hero=(b,c)=>V.heroes(b).find(u=>u.cls===c),resident=b=>unit(b,b.honroV4CitySpec.resident),ids=(s,n)=>Array.from({length:n},(_,i)=>'A3.S26.'+s+'.0'+(i+1));
-const near=(b,p,r=500)=>V.heroes(b).some(u=>W.ground(b,u)&&V.near(u,p,r)),safePath=b=>!b.units.some(u=>V.alive(u)&&u.side===1&&V.near(u,resident(b),400)),separated=b=>!!City.memory(b).proof.separation&&V.alive(resident(b))&&!resident(b).honroHypnotized;
+const near=(b,p,r=500)=>V.heroes(b).some(u=>W.ground(b,u)&&V.near(u,p,r)),safePath=b=>!City.workshopThreats(b).length,separated=b=>!!City.memory(b).proof.separation&&V.alive(resident(b))&&!resident(b).honroHypnotized;
 function testimony(b){return !!q(b).proof.testimony&&!!City.memory(b).proof.testimony&&V.alive(resident(b))&&safePath(b);}
 function tableSafe(b){const t=b.terrain.find(t=>t.id==='v4.26.table');if(!t||t.broken)return false;const u=resident(b),p={...u,x:4660,y:2150,h:70};return C.validTerrainContactPose(b.terrain,p)&&!b.units.some(v=>v!==u&&V.alive(v)&&Math.abs(v.x-p.x)<(v.r||20)+u.r&&Math.abs(v.y-p.y)<110);}
 function danger(b){return q(b).roofShake>0&&!separated(b)&&V.alive(resident(b));}
@@ -11,6 +11,25 @@ function observe(app,dt){const b=app.engine.b,m=q(b),r=resident(b);m.roofShake=M
  const smoke=b.honroV4Smoke;if(smoke&&W.visible(app,smoke,1000))m.proof.smoke={source:'existing-office-smoke',...F.copy(smoke)};
 }
 const exit=b=>testimony(b)&&V.heroes(b).length===2&&V.heroes(b).every(u=>W.ground(b,u)&&V.near(u,mark(b,'workshop-exit'),200));
+function guidance(b){
+ const current=V.current(b)?.id,city=City.memory(b),actor=resident(b);
+ if(current==='artisan-resident'&&city.started){
+  const enemies=City.workshopThreats(b);
+  if(enemies.length)return G.HonroObjectiveGuide.hostileHint(b,enemies,'공방 호송을 막는 적 제압');
+  const text='주민 곁에서 안전지대까지 호송';
+  return {text,targets:[{id:actor.id,x:actor.x,y:actor.y,kind:'move',label:'호송 중인 주민'}]};
+ }
+ if(current==='v4.ancestor-testimony'){
+  const p=city.proof.testimony?b.honroReviewed26Letter:actor;
+  const text=city.proof.testimony?'휘겸을 가문 편지가 있는 작업대로 이동':'휘겸을 안전지대의 주민 곁으로 이동';
+  return {text,targets:[{id:p.id,x:p.x,y:p.y,kind:'move',label:text}]};
+ }
+ if(current==='workshop-exit'){
+  const p=mark(b,'workshop-exit'),text='휘겸과 소단을 동쪽 공방 출구로 이동';
+  return {text,targets:[{...p,kind:'exit',label:'동쪽 공방 출구'}]};
+ }
+ return null;
+}
 R=F.register({stage:26,
  author(map){map.initialState.honroReviewed26Letter={id:'v4.26.ancestor-letter',x:5050,y:2150,emblem:'family-three-petals'};map.terrains.push({id:'v4.26.table',type:'solid',name:'v4.26.table',points:[{x:4550,y:2052},{x:4700,y:2052},{x:4700,y:2068},{x:4550,y:2068}],baseMaterial:'wood',oneWay:true,breakable:true,layer:'terrain',properties:{hp:700,maxHp:700,honroWalkEdges:[0]}});},
  prepare(b){resident(b).name='주민';unit(b,b.honroV4CitySpec.spirit).name='';},
@@ -27,7 +46,7 @@ R=F.register({stage:26,
  {key:'exit',ids:ids('EXIT',2),when:app=>exit(app.engine.b)}],
  documents:{'A3.S26.TESTIMONY.02':'A3.S26.DOC.TESTIMONY'},
  journals:[{id:'EDGE.RUNTIME.JOURNAL.EVIDENCE26.CASTING',when:app=>!!q(app.engine.b).proof.casting},{id:'EDGE.RUNTIME.JOURNAL.EVIDENCE26.TESTIMONY',when:app=>testimony(app.engine.b)&&F.closed(q(app.engine.b).events.testimony)},{id:'A3.S26.JOURNAL.01',when:app=>testimony(app.engine.b)&&!!q(app.engine.b).proof.smoke&&F.closed(q(app.engine.b).events.testimony)}],
- complete:b=>testimony(b)&&F.closed(q(b).events.testimony)&&exit(b)&&F.closed(q(b).events.exit),objective:b=>'A3.S26.OBJ.0'+(testimony(b)?3:root(b).done['hidden-latch']?2:1),
+ complete:b=>testimony(b)&&F.closed(q(b).events.testimony)&&exit(b)&&F.closed(q(b).events.exit),objective:b=>'A3.S26.OBJ.0'+(testimony(b)?3:root(b).done['hidden-latch']?2:1),guidance,
  camera(app,key){const b=app.engine.b;return{id:'v4.26.'+key,intent:'situation',targets:[key==='fire'?b.honroV4Smoke:key==='testimony'?b.honroReviewed26Letter:{actor:resident(b).id}],padding:140,maxScale:.8};},
  draw(scene,c,b){const m=q(b),p=b.honroReviewed26Letter,k=hero(b,'knight');c.save();if(m.proof.testimony&&k)c.translate(k.x+22,k.y-50);else c.translate(p.x,p.y-20);c.fillStyle='#c9bd97';c.fillRect(-18,-20,36,24);c.strokeStyle='#66654a';c.lineWidth=2;for(let i=0;i<3;i++){c.beginPath();c.ellipse(Math.cos(i*2.094)*4,Math.sin(i*2.094)*4-10,3,5,i*2.094,0,Math.PI*2);c.stroke();}c.restore();
  const t=b.terrain.find(t=>t.id==='v4.26.table');if(t&&!t.broken){c.save();c.fillStyle='#675e48';c.fillRect(4550,2052,150,16);c.fillRect(4557,2068,10,82);c.fillRect(4683,2068,10,82);c.restore();}

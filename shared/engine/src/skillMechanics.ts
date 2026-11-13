@@ -280,7 +280,7 @@ function placeStake(e:Engine,p:Projectile,h:Collision){
  if(p.skill==='M09'){
   const gates=b.stakes.filter(s=>s.skill==='M09'&&s.side===p.side);
   const crossing=(globalThis as any).HonroStakeCrossing;
-  const renewPair=p.side===0&&!b.honroCustom&&crossing?.active(b)&&crossing.flexible(b);
+  const renewPair=p.side===0&&crossing?.renewsPair(b);
   if(!gates.length||renewPair){
    const owner=e.unit(p.owner)!;
    const home=e.surface(owner.x,owner.y-8,owner.y+80);

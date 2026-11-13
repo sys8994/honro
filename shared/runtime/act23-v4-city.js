@@ -67,6 +67,7 @@ function walk(app,u,goal,dt){const e=app.engine,b=e.b;if(!alive(u)||!goal||!V.sa
 }
 function safeResident(b,id,goal){const a=memory(b).actors[id],u=unit(b,id);return alive(u)&&!!a?.safe&&a.distance>80&&V.near(u,goal,100)&&supported(b,u)&&!threats(b,u,240).length;}
 function localClear(b){return (b.honroV4CitySpec?.localIds||[]).every(id=>!!unit(b,id)&&!alive(unit(b,id)));}
+function workshopThreats(b){return threats(b,unit(b,b.honroV4CitySpec.resident),400);}
 function cacheThreats(b){const q=b.honroV4CitySpec,p=mark(b,q?.cache);return p?threats(b,p,q.approachRadius||390):[];}
 function cacheSafe(b){return !!mark(b,b.honroV4CitySpec?.cache)&&!cacheThreats(b).length;}
 function eligibility(app,p,s){const b=app.engine.b,a=memory(b),q=b.honroV4CitySpec;
@@ -109,7 +110,7 @@ function escort(app,dt){const b=app.engine.b,a=memory(b),q=b.honroV4CitySpec,roo
   if(walk(app,u,goal,dt)){const actor=a.actors[id];actor.safe=true;u.honroResolved=true;}
  }
  if(n===28){root.evacuationSafe=evacuationSafe(b);return;}
- if(safeResident(b,q.resident,q.destination)&&(n!==26||localClear(b))){
+ if(safeResident(b,q.resident,q.destination)&&(n!==26||!workshopThreats(b).length)){
   V.completeStep(app,V.steps(b).find(s=>s.id===(n===21?'gate-resident':'artisan-resident')));
   const reader=n===26&&V.heroes(b).find(u=>u.cls==='knight'&&V.near(u,resident,360));
   if(reader&&!a.proof.testimony){a.proof.testimony={actorId:reader.id,source:'v4.ancestor-testimony',resident:q.resident,separation:copy(a.proof.separation),safe:{x:resident.x,y:resident.y},distance:a.actors[resident.id].distance};V.slot(app,'26.ancestor-testimony',copy(a.proof.testimony));}
@@ -147,7 +148,7 @@ function tick(app,dt){const b=app.engine.b,n=b.honroStage;
 function stepSatisfied(b,s){const n=b.honroStage,a=memory(b),q=b.honroV4CitySpec;
  if(s.kind==='v4-city-arrival')return !!a.arrivals[s.id];
  if(n===25&&s.id==='household-tally')return V.steps(b).filter(q=>q.kind==='v4-city-arrival').every(q=>!!a.arrivals[q.id]);
- if(s.kind==='v4-city-rescue')return safeResident(b,q.resident,q.destination)&&(!q.spirit||!!a.proof.separation&&localClear(b));
+ if(s.kind==='v4-city-rescue')return safeResident(b,q.resident,q.destination)&&(!q.spirit||!!a.proof.separation&&!workshopThreats(b).length);
  if(n===21&&s.id==='refuge-hold')return safeResident(b,q.resident,q.destination)&&!!a.pressure.admitted&&(a.pressure.ids||[]).every(id=>!!unit(b,id)&&!alive(unit(b,id)))&&localClear(b);
  if(n===26&&s.id==='v4.ancestor-testimony')return !!a.proof.testimony;
  return base.stepSatisfied(b,s);
@@ -156,5 +157,5 @@ function failure(b){const q=b.honroV4CitySpec;if(q&&[q.resident,...(q.residents|
 function complete(b){if(b.honroStage===21)return stepSatisfied(b,{id:'refuge-hold'});if(b.honroStage===26)return !!memory(b).proof.testimony&&safeResident(b,b.honroV4CitySpec.resident,b.honroV4CitySpec.destination);if(b.honroStage===28)return evacuationSafe(b);return base.complete(b);}
 function state(b){if(V.current(b)?.kind==='v4-city-arrival')return{targets:V.steps(b).filter(s=>s.kind==='v4-city-arrival'&&!V.mem(b).done[s.id]).map(s=>({...mark(b,s.id),kind:'exit',label:s.id}))};return base.state?.(b)||{};}
 const plugin={...base,author,prepare,eligibility,use,tick,stepSatisfied,failure,complete,state};for(const id of IDS)V.register(id,plugin);
-G.HonroAct23V4City={...plugin,base,memory,walk,escort,arrivals,cacheThreats,cacheSafe,evacuationSafe,ids:IDS};
+G.HonroAct23V4City={...plugin,base,memory,walk,escort,arrivals,cacheThreats,cacheSafe,evacuationSafe,workshopThreats,ids:IDS};
 })(globalThis);
