@@ -13,8 +13,38 @@ function roadBlockingFoes(b,p,r){
  if(!['sy-ground','sy-stone-bridge'].includes(stableEscortSupport(b,n)))return foes;
  return foes.filter(foe=>!(['sy-central-flank','sy-west-upper','sy-east-upper'].includes(stableEscortSupport(b,foe))&&foe.y<=n.y-n.h));
 }
-function blocked(b){const u=carrier(b),p=nextPoint(b);return root(b).carrierStarted&&V.alive(u)&&!root(b).carrierGoals?.['dock-exit']&&(b.honroReviewed23PacingCandidate?.id==='escort-close-130'&&b.honroReviewed23PacingCandidate.version===1?roadBlockingFoes(b,u,130).length>0:(roadBlockingFoes(b,u,300).length>0||p&&roadBlockingFoes(b,p,300).length>0));}
-function safe(b){const u=carrier(b),goal=V.marker(b,'dock-exit');return ground(b,u)&&!!root(b).carrierGoals?.['dock-exit']&&V.near(u,goal,110)&&!nearFoes(b,goal,500).length&&(mem(b).proof.walk?.distance||0)>=Math.abs(goal.x-spec(b).start.x)-200;}
+function boardingThreats(b){
+ return [...new Set([...nearFoes(b,carrier(b),420),...nearFoes(b,V.marker(b,'route:dock-mid:0'),300)])];
+}
+function escortThreats(b){
+ const u=carrier(b);
+ if(!root(b).carrierStarted||!V.alive(u)||root(b).carrierGoals?.['dock-exit'])return [];
+ if(b.honroReviewed23PacingCandidate?.id==='escort-close-130'&&b.honroReviewed23PacingCandidate.version===1)return roadBlockingFoes(b,u,130);
+ const p=nextPoint(b);
+ return [...new Set([...roadBlockingFoes(b,u,300),...(p?roadBlockingFoes(b,p,300):[])])];
+}
+const blocked=b=>escortThreats(b).length>0;
+function guidance(b){
+ const u=carrier(b),step=V.current(b)?.id;
+ if(!V.alive(u))return null;
+ if(step==='dispatch-bundle'&&V.heroes(b).some(h=>V.near(h,u,650))){
+  const enemies=boardingThreats(b);
+  return enemies.length?G.HonroObjectiveGuide.hostileHint(b,enemies,'짐꾼에게 다가가기 전 노란 표식의 적 제압'):null;
+ }
+ if(root(b).carrierGoals?.['dock-exit']){
+  const enemies=exitThreats(b);
+  return enemies.length?G.HonroObjectiveGuide.hostileHint(b,enemies,'하역장 안전지대의 적 제압'):null;
+ }
+ if(!['dock-mid','dock-exit'].includes(step))return null;
+ const enemies=escortThreats(b),p=nextPoint(b);
+ if(enemies.length)return G.HonroObjectiveGuide.hostileHint(b,enemies,'짐꾼의 길을 막는 적 제압');
+ if(!p)return null;
+ const lead=G.HonroAct23V4Act3.hasEscortLeader(b,u,p);
+ const text=lead?'앞에서 짐꾼을 호송':'같은 길에서 동행 한 명이 짐꾼보다 앞서 이동';
+ return {text,targets:[{...p,kind:'move',label:text}]};
+}
+const exitThreats=b=>nearFoes(b,V.marker(b,'dock-exit'),500);
+function safe(b){const u=carrier(b),goal=V.marker(b,'dock-exit');return ground(b,u)&&!!root(b).carrierGoals?.['dock-exit']&&V.near(u,goal,110)&&!exitThreats(b).length&&(mem(b).proof.walk?.distance||0)>=Math.abs(goal.x-spec(b).start.x)-200;}
 function returnSafe(app){const b=app.engine.b,h=app.profile.honroAct23V4History?.stages?.[21];if(!safe(b)||h?.reviewedNarrative?.rescued!==true)return false;const points=[spec(b).start,...b.honroMarkers.filter(p=>/^route:dock-/.test(p.id))];return b.units.filter(u=>u.side===1&&V.alive(u)&&!u.honroObjectiveTarget).every(u=>!points.some(p=>V.near(u,p,340)));}
 function priorEmblem(p){return p.honroAct23V4History?.stages?.[21]?.reviewedNarrative?.proof?.emblem?.emblem==='old-sealed-diamond';}
 function goodsVisible(b){return !!mem(b).proof.goods;}
@@ -35,7 +65,13 @@ R=F.register({stage:23,
  },
  prepare(b,p){delete p.honroReviewed23RestObservation;carrier(b).name='짐꾼';mem(b).last??={x:carrier(b).x,y:carrier(b).y};},
  before(app){return !blocked(app.engine.b);},observe,
- eligibility(app,m){if(m.id==='dispatch-bundle'&&(nearFoes(app.engine.b,carrier(app.engine.b),420).length||nearFoes(app.engine.b,V.marker(app.engine.b,'route:dock-mid:0'),300).length))return{ok:false,reason:m.id};},
+ eligibility(app,m){
+  if(m.id!=='dispatch-bundle')return;
+  const b=app.engine.b,enemies=boardingThreats(b);
+  if(enemies.length)return{ok:false,reason:G.HonroObjectiveGuide.hostileHint(b,enemies,'짐꾼 곁의 적 제압').text};
+  return{ok:true,reason:'짐꾼 호송 시작',actionLabel:'짐꾼 호송 시작'};
+ },
+ guidance,
  speaker(app,r){return r.speaker==='짐꾼'&&V.alive(carrier(app.engine.b));},
  facts(app,r){const b=app.engine.b;if(r.id==='A3.S23.GOODS.04')return mem(b).spirits?.distance>=120;if(r.id==='A3.S23.CLEAR.02')return returnSafe(app);return true;},
  optional(p,r){if(['EDGE.OPTIONAL_23_ARCHER_0','EDGE.OPTIONAL_23_MAGE_0','EDGE.OPTIONAL_23_KNIGHT_0'].includes(r.id))return p.honroAct23V4History?.stages?.[22]?.reviewedNarrative?.compared?.map===true;if(r.id==='EDGE.OPTIONAL_23_OCCULTIST_0')return F.witnessed(p,23,'goods');return true;},
@@ -56,5 +92,5 @@ R=F.register({stage:23,
  }
 });
 G.HonroAct23V4Chapter23Reviewed=R;
-G.HonroAct23V4Chapter23Facts={blocked,safe,returnSafe,goodsVisible,priorEmblem,spec};
+G.HonroAct23V4Chapter23Facts={blocked,safe,returnSafe,goodsVisible,priorEmblem,spec,escortThreats};
 })(globalThis);

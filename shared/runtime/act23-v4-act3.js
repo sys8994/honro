@@ -7,8 +7,12 @@ function marker(map,id,point,extra={}){const old=map.markers.find(p=>p.id===id),
 function npc(map,id,point,{guard=false,...extra}={}){if(map.units.some(u=>u.id===id))return;map.units.push({id,kind:guard?'ally:guard':'object:civilian',team:guard?'ally':'npc',label:id,...point,stageOverrides:{fixed:true,honroProtected:true,honroV4Actor:true,h:92,r:22,hp:guard?1000:620,maxHp:guard?1000:620,maxMove:600,moveLeft:600,walkSpeed:200,...extra}});}
 function setSteps(map,list){map.initialState.honroV4Steps=list;const keep=new Set(list.map(s=>s.id));for(const p of map.markers){if(['act2','act3'].includes(p.action)&&!keep.has(p.id))delete p.action;}}
 function surface(map,x){return G.HonroMapEngine.surfaceY(map.terrains.map(t=>G.HonroGeometry.terrain(t,map.height)),x,undefined,'act2-floor')?.y;}
+function hasEscortLeader(b,u,goal){
+ const dir=Math.sign(goal.x-u.x);
+ return V.heroes(b).some(h=>Math.abs(h.y-u.y)<220&&Math.abs(h.x-u.x)<950&&(h.x-u.x)*dir>60);
+}
 function walk(app,u,goal,{radius=90,lead=true,moveBudget}={}){const b=app.engine.b;if(!alive(u)||!goal)return false;if(V.near(u,goal,radius))return true;if(!V.safe(app)||b.side!==0||b.phase!=='aim')return false;
- const dir=Math.sign(goal.x-u.x),leaders=V.heroes(b).filter(h=>Math.abs(h.y-u.y)<220&&Math.abs(h.x-u.x)<950&&(h.x-u.x)*dir>60);if(lead&&!leaders.length)return false;
+ const dir=Math.sign(goal.x-u.x);if(lead&&!hasEscortLeader(b,u,goal))return false;
  const stamp=b.round;if(u.honroV4MoveRound!==stamp){u.honroV4MoveRound=stamp;u.moveLeft=moveBudget??u.maxMove;}
  const before={x:u.x,y:u.y};u.fixed=false;app.engine.walk(u,dir,Math.min(app.honroV4Dt||.016,.05),true);u.honroV4Distance=(u.honroV4Distance||0)+Math.hypot(u.x-before.x,u.y-before.y);app.dirty=true;return V.near(u,goal,radius);
 }
@@ -157,6 +161,6 @@ function draw(scene,c,b){const n=b.honroStage,root=m(b),time=scene.time||0;
  if(n===22&&b.honroV4RecordBundle){const q=b.honroV4RecordBundle;c.fillStyle='#c1b493';for(let i=0;i<3;i++)c.fillRect(q.x-36+i*26,q.y-44+i*5,22,33);}
  if(n===26||n===28){const p=n===26?b.honroV4Smoke:{x:5270,y:2080};if(p){c.save();c.fillStyle='#20292755';for(let i=0;i<4;i++){c.beginPath();c.ellipse(p.x+Math.sin(time*.35+i)*25,p.y-i*45-(time*10%35),32+i*8,55,0,0,Math.PI*2);c.fill();}c.restore();}}
 }
-const plugin={author,prepare,attach,use,stepSatisfied,tick,failure,complete,state,draw,convoyCare,careReady,reconcileHandoff};for(const id of [19,20,21,22,23,24,25,26,27,28])V.register(id,plugin);
+const plugin={hasEscortLeader,author,prepare,attach,use,stepSatisfied,tick,failure,complete,state,draw,convoyCare,careReady,reconcileHandoff};for(const id of [19,20,21,22,23,24,25,26,27,28])V.register(id,plugin);
 G.HonroAct23V4Act3=plugin;
 })(globalThis);
