@@ -20,7 +20,41 @@ function fieldOptional(app,r,meta){const b=app.engine.b,c=cls[r.speaker],u=hero(
 function nearCrest(b){return ground(b,hero(b,'knight'))&&V.near(hero(b,'knight'),mark(b,'family-crest'),180);}
 function routesVisible(b){const p=spec(b).gather;return V.heroes(b).some(u=>ground(b,u)&&distance(u,p)<360)&&!!mem(b).proof.routes;}
 function voiceHeard(b){const u=b.honroReviewed24Voice;return ground(b,u)&&V.heroes(b).some(h=>distance(h,u)<=650);}
-function routeSafe(b){return root(b).done['shrine-seal']&&['split-route-a','split-route-b'].every(id=>!b.units.some(u=>V.alive(u)&&u.side===1&&!u.honroObjectiveTarget&&V.near(u,mark(b,id),500)));}
+function routeThreats(b){
+ const paths=['split-route-a','split-route-b'].map(id=>mark(b,id));
+ return b.units.filter(u=>V.alive(u)&&u.side===1&&!u.honroObjectiveTarget&&paths.some(p=>V.near(u,p,500)));
+}
+function routeSafe(b){return root(b).done['shrine-seal']&&!routeThreats(b).length;}
+function guidance(b){
+ const current=V.current(b)?.id;
+ if(current!=='land-register'&&current!=='garden-exit'&&(!root(b).done['land-register']||mem(b).proof.departure))return null;
+ const q=mem(b),split=F.closed(q.events.split),paths=b.honroV4Entrances;
+ if(q.proof.departure&&current==='garden-exit'){
+  const exit=mark(b,'garden-exit'),text='동행 한 명을 동쪽 정원 출구로 이동';
+  return {text,targets:[{...exit,kind:'exit',label:text}]};
+ }
+ if(!split){
+  const enemies=routeThreats(b);
+  if(enemies.length&&V.heroes(b).some(u=>distance(u,spec(b).gather)<1000))
+   return G.HonroObjectiveGuide.hostileHint(b,enemies,'두 출입로의 적 제압');
+  if(!q.departStart){
+   const group=spec(b).gather,voice=b.honroReviewed24Voice;
+   const needsVoice=!spoken(b,'A3.S24.ENTRY.03')||!spoken(b,'A3.S24.INTRO.03');
+   if(needsVoice&&!voiceHeard(b))return {text:'오른쪽 공방에 다가가 주민의 말을 듣기',targets:[{id:voice.id,x:voice.x,y:voice.y,kind:'move',label:'공방 주민'}]};
+   return {text:'두 출입로 사이에 네 동행 모이기',targets:[{id:'stage24-gather',...group,kind:'move',label:'네 동행 집결'}]};
+  }
+ }
+ const targets=paths.flatMap(path=>{
+  const p=mark(b,path.marker),missing=path.classes.filter(c=>{
+   const u=hero(b,c);
+   return !ground(b,u)||!V.near(u,p,115)||(split&&(q.departWalk?.[c]?.distance||0)<30);
+  });
+  if(!missing.length)return [];
+  const names=missing.map(c=>G.HONRO_CONTENT.hero[c].name).join('·');
+  return [{...p,kind:'move',label:names+' · '+(path.id==='water'?'물길 입구':'지상 입구')}];
+ });
+ return targets.length?{text:targets.map(t=>t.label).join(' / '),targets}:null;
+}
 function gathered(b){return ['archer','mage','knight','occultist'].every(c=>ground(b,hero(b,c))&&V.near(hero(b,c),spec(b).gather,300));}
 function finalArrivals(b){const q=mem(b);return ['archer','mage','knight','occultist'].every(c=>{const p=mark(b,['archer','mage'].includes(c)?'split-route-a':'split-route-b'),u=hero(b,c);return ground(b,u)&&V.near(u,p,115)&&(q.departWalk?.[c]?.distance||0)>=30;});}
 function observe(app,dt){const b=app.engine.b,q=mem(b),s=spec(b),a=mark(b,'split-route-a'),z=mark(b,'split-route-b');
@@ -44,7 +78,7 @@ R=F.register({stage:24,
   map.initialState.honroReviewed24Voice={id:'v4.workshop-voice',name:'주민',cls:'knight',honroType:'civilian',honroCivilian:true,side:2,x:6720,y:2440,r:22,h:92,hp:620,maxHp:620,fixed:true,vx:0,vy:0};
  },
  prepare(b,p){delete p.honroReviewed24RestObservation;},
- observe,
+ observe,guidance,
  speaker(app,r){return r.speaker==='주민'&&voiceHeard(app.engine.b);},
  facts(app,r){const b=app.engine.b,q=mem(b);if(r.id==='A3.S24.INTRO.01')return wagonKnown(app.profile)&&!heard(app.profile,'mage',b);if(r.id==='A3.S24.INTRO.02')return !heard(app.profile,'knight',b);if(r.id==='A3.S24.ENTRY.03')return voiceHeard(b);return true;},
  optional(p,r){return r.id==='EDGE.OPTIONAL_24_OCCULTIST_0'&&!talked(p,'occultist')&&porterSafe(p);},
