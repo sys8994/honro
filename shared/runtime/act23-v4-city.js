@@ -112,7 +112,9 @@ function escort(app,dt){const b=app.engine.b,a=memory(b),q=b.honroV4CitySpec,roo
  if(guard)walk(app,guard,{x:q.destination.x+90,y:q.destination.y},dt);
  for(const [i,id]of ids.entries()){
   const u=unit(b,id),goal={x:q.destination.x-i*75,y:q.destination.y},ahead=i?unit(b,ids[i-1]):guard;
-  if(ahead&&(ahead.x-u.x<65||Math.abs(ahead.y-u.y)>220))continue;
+  // The court route descends more than 220 units. Maintain spacing while the
+  // followers reach the same lower path through normal grounded movement.
+  if(ahead&&ahead.x-u.x<65)continue;
   if(walk(app,u,goal,dt)){const actor=a.actors[id];actor.safe=true;u.honroResolved=true;}
  }
  if(n===28){root.evacuationSafe=evacuationSafe(b);return;}
