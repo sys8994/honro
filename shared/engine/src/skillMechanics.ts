@@ -277,7 +277,18 @@ export function detonateIceGourd(e:Engine){
 function placeStake(e:Engine,p:Projectile,h:Collision){
  const b=e.b;b.stakes??=[];const support=h.terrain?.oneWay&&h.n.y<0?h.terrain:undefined,x=support?clamp(p.x,support.x,support.x+support.w):p.x;
  const floor=support?topAt(support,x,h.y):h.n.y<-.3?h.y:e.surface(p.x,p.y-3,b.height)?.y;if(floor===undefined){e.remove(p);return;}
- const all=b.stakes;if(p.skill==='M09'){const gates=all.filter(s=>s.skill==='M09'&&s.side===p.side);if(!gates.length){const u=e.unit(p.owner)!;const home=e.surface(u.x,u.y-8,u.y+80);if(home)b.stakes.push({attackSide:p.attackSide,damageRoll:p.damageRoll,id:b.nextId++,skill:p.skill,owner:p.owner,side:p.side,x:u.x,y:home.y,rank:rank(p),damage:0,shot:p.shot,effectBoost:p.effectBoost,expires:b.round+stakeDuration(p.skill,rank(p))});}else if(gates.length>=2)b.stakes=all.filter(s=>s.id!==gates[0].id);}
+ if(p.skill==='M09'){
+  const gates=b.stakes.filter(s=>s.skill==='M09'&&s.side===p.side);
+  const crossing=(globalThis as any).HonroStakeCrossing;
+  const renewPair=p.side===0&&!b.honroCustom&&crossing?.active(b)&&crossing.flexible(b);
+  if(!gates.length||renewPair){
+   const owner=e.unit(p.owner)!;
+   const home=e.surface(owner.x,owner.y-8,owner.y+80);
+   if(renewPair&&!home){e.remove(p);return;}
+   if(renewPair)b.stakes=b.stakes.filter(s=>!gates.includes(s));
+   if(home)b.stakes.push({attackSide:p.attackSide,damageRoll:p.damageRoll,id:b.nextId++,skill:p.skill,owner:p.owner,side:p.side,x:owner.x,y:home.y,rank:rank(p),damage:0,shot:p.shot,effectBoost:p.effectBoost,expires:b.round+stakeDuration(p.skill,rank(p))});
+  }else if(gates.length>=2)b.stakes=b.stakes.filter(s=>s.id!==gates[0].id);
+ }
  b.stakes.push({attackSide:p.attackSide,damageRoll:p.damageRoll,id:b.nextId++,skill:p.skill,owner:p.owner,side:p.side,x,y:floor,rank:rank(p),damage:p.damage,shot:p.shot,effectBoost:p.effectBoost,expires:b.round+stakeDuration(p.skill,rank(p))});
  e.fx('spark',x,floor,'#a89b7f',15);e.remove(p);
  if(!e.skillSound('plant',p.owner,p.skill,p.shot))e.emit('sound',{name:'ceramic'});

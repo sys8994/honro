@@ -9,6 +9,17 @@ function fixture(){const app=h.load(h.profileThrough(24));app.launch(25);h.finis
 function place(u,x,y=1000){Object.assign(u,{x,y,airborne:false,jumping:false,vx:0,vy:0});}
 check('v3 permits ordinary M09 away from the prescribed start and keeps failed shots or expired gates as player decisions',()=>{const f=fixture();place(f.m,800);place(f.a,350);assert(f.e.fire('M09',45,.6));f.b.projectiles=[];f.b.phase='aim';P.tick(f.app);assert.equal(f.b.honroStakeCrossing.retries,0);f.b.honroStakeCrossing.pairSeen=true;P.tick(f.app);assert.equal(f.b.honroStakeCrossing.retries,0);});
 check('v3 normal E works with a safe off-route gate pair, without a landing veto',()=>{const f=fixture();place(f.m,800);f.b.stakes=[{id:900,skill:'M09',owner:f.m.id,side:0,x:800,y:1000,rank:1,expires:f.b.round+6},{id:901,skill:'M09',owner:f.m.id,side:0,x:2700,y:1000,rank:1,expires:f.b.round+6}];assert(f.e.useGate());assert(Math.abs(f.m.x-2700)<100);assert.equal(f.b.honroStakeCrossing.index,0);assert.equal(f.b.honroStakeCrossing.retries,0);});
+check('A second v3 crossing links the caster’s new position to the landing',()=>{
+ const {e,b,a,m}=fixture();place(m,1800);place(a,1900);
+ b.stakes=[{id:900,skill:'M09',owner:m.id,side:0,x:400,y:1000,rank:1,expires:b.round+6},{id:901,skill:'M09',owner:m.id,side:0,x:1780,y:1000,rank:1,expires:b.round+6}];
+ assert(e.fire('M09',45,.7));
+ for(let i=0;i<900&&b.projectiles.length;i++)e.tick(C.STEP);
+ assert.equal(b.projectiles.length,0);
+ assert.equal(b.stakes.length,2);
+ assert.equal(b.stakes[0].x,m.x);
+ assert(b.stakes[1].x>m.x+350);
+ assert(b.stakes.every(z=>z.id!==900&&z.id!==901));
+});
 check('Both grounded companions may skip traversal places; separate story documents remain mandatory',()=>{const f=fixture();place(f.a,3500);place(f.m,3600);P.tick(f.app);assert.equal(f.b.honroStakeCrossing.index,2);assert(P.allowsStep(f.b,'stake-arrival-1'));assert(P.allowsStep(f.b,'stake-arrival-2'));assert.equal(f.b.honroStakeCrossing.checkpointProgress.index,2);assert(f.b.honroStakeCrossing.checkpoint.units.every(u=>u.x>=3300));assert.equal(g.HonroAct3.memory(f.b).done['household-tally'],undefined);assert.equal(g.HonroAct3.memory(f.b).done['depot-entry-seal'],undefined);});
 check('Separated arrivals advance only their shared reached place and never capture an isolated checkpoint',()=>{const f=fixture(),initial=plain(f.b.honroStakeCrossing.checkpoint);place(f.a,1800);place(f.m,3500);P.tick(f.app);assert.equal(f.b.honroStakeCrossing.index,1);assert.equal(f.b.honroStakeCrossing.checkpointProgress.index,0);assert.deepEqual(plain(f.b.honroStakeCrossing.checkpoint),initial);place(f.m,1850);f.app.dirty=false;P.tick(f.app);assert(f.app.dirty,'late shared checkpoint must be persisted');assert.equal(f.b.honroStakeCrossing.checkpointProgress.index,1);assert(f.b.honroStakeCrossing.checkpoint.units.every(u=>u.x>=1500&&u.x<=2200));});
 check('Airborne passage never advances traversal or captures a checkpoint',()=>{const f=fixture();for(const u of[f.a,f.m]){place(u,3500,940);u.airborne=true;u.vy=50;}P.tick(f.app);assert.equal(f.b.honroStakeCrossing.index,0);assert.equal(f.b.honroStakeCrossing.checkpointProgress.index,0);});
