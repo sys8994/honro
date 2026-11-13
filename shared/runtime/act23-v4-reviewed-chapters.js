@@ -4,6 +4,15 @@
 const V=G.HonroAct23V4,C=G.HONRO_CORE,R=G.HonroAct23V4Reviewed,clone=x=>JSON.parse(JSON.stringify(x)),specs=new Map();
 const classes={'설오':'archer','담허':'mage','휘겸':'knight','소단':'occultist'};
 const expected={12:28,13:35,14:29,15:25,16:35,17:34,18:47,19:33,20:52};
+const actionLabels={
+ 12:{sign:'돌림진 조정'},13:{'13.extract':'석공에게서 혼 분리','13.release':'석공 안전 확인',gate:'석문 빗장 열기'},
+ 14:{'14.house':'집 문 열기','14.extract':'길찬에게서 혼 분리'},16:{'16.elder':'노승 돕기','16.disciple':'제자에게서 혼 분리'},
+ 17:{'17.brace':'버팀목 설치','17.hoist':'인양축에서 혼 분리','17.parts':'인양축 부품 줍기','17.mesh':'부품 맞추기','17.lock':'고정핀 잠그기','17.wheel':'바퀴 돌리기','17.load-test':'하중 시험'},
+ 18:{'18.brake':'제동구 잠그기','18.rescue':'생존자에게서 혼 분리','18.hoist':'인양기 작동','18.inspect':'종의 연결부 조사','18.lift':'종 들어 올리기','18.support':'받침 설치','18.settle':'종 내려놓기','18.lock-west':'왼쪽 고정구 잠그기','18.lock-east':'오른쪽 고정구 잠그기','18.souls':'종 아래의 혼 확인'},
+ 19:{route:'담허로 길 열기','separate-1':'첫 번째 가족의 혼 분리','separate-2':'두 번째 가족의 혼 분리','separate-3':'세 번째 가족의 혼 분리','old-soul':'운송 흔적 조사'},
+ 20:{'20.ring':'고리 치우기',escort:'호송 시작','20.outside':'동굴 밖 주민 확인'},
+};
+const actionText=(b,id)=>b&&active(b)?(specs.get(b.honroStage).actionLabels||actionLabels[b.honroStage])?.[id]:undefined;
 const data=n=>G.HONRO_ACT23_V4_REVIEWED_CHAPTERS?.[n];
 const enabled=n=>V.preview()&&G.HONRO_ACT23_V4_PHASE_B_STAGES?.includes(Number(n))&&specs.has(Number(n))&&data(n)?.stage===Number(n)&&data(n)?.revision===1&&data(n)?.rows?.length===expected[n];
 const active=b=>V.active(b)&&enabled(b.honroStage)&&b.honroReviewedNarrativeRevision===1;
@@ -17,7 +26,7 @@ function rowsReviewed(lines){return Array.isArray(lines)&&lines.length>0&&lines.
 function optionalAllowed(profile,r,n){const cls=classes[r.speaker];if(cls&&!profile.recruited?.includes(cls))return false;const b=profile.honroBattle;if(b?.honroStage===n&&classes[r.speaker]&&!actor(b,r.speaker))return false;return specs.get(n)?.optional?.(profile,r)!==false;}
 function lineAllowed(app,who,meta){const n=meta?.reviewedStage,r=row(meta?.rowId,n);if(!enabled(n)||!r||meta.reviewedRevision!==1||r.speaker!==who)return false;
  if(app.screen==='rest'){if(r.channel==='rest_ending')return restAvailable(app.profile,n)&&specs.get(n).restEndingAllowed?.(app.profile,r)===true;return r.channel==='optional'&&(app.profile.honroJourney?.restStageId===n||app.debugRestStage===n||G.HonroJourneyContent.next(app.profile)?.stageId===n)&&optionalAllowed(app.profile,r,n);}
- const b=app.engine?.b;if(!active(b)||b.honroStage!==n)return false;const spec=specs.get(n);if((classes[who]||spec.actors?.[who])&&!actor(b,who)&&!dyingAllowed(app,who,meta))return false;if(['won','lost'].includes(b.phase))return false;return spec.allow?.(app,r)===true;
+ const b=app.engine?.b;if(!active(b)||b.honroStage!==n)return false;const spec=specs.get(n);if((classes[who]||spec.actors?.[who])&&!actor(b,who)&&!dyingAllowed(app,who,meta))return false;if(['won','lost'].includes(b.phase))return false;return spec.allow?.(app,r,meta)===true;
 }
 // Only a chapter's transient fatal-damage callback may admit dying speech.
 // Saved flags and ordinary actor lookup cannot open this boundary.
@@ -26,7 +35,31 @@ function lines(n,ids,event,app){return ids.map(id=>{const r=row(id,n);if(!r)thro
 function begin(app,key,ids,proof={}){const b=app.engine?.b;if(!active(b)||!V.safe(app)&&specs.get(b.honroStage)?.dyingBoundary?.(app,key,ids)!==true)return false;const m=memory(b);if(m.events[key])return false;const ls=lines(b.honroStage,ids,key,app).filter(l=>lineAllowed(app,l[0],l[2]));const camera=specs.get(b.honroStage).camera?.(app,key,ids,proof);if(camera)for(const l of ls)l[2].camera=clone(camera);m.events[key]={status:ls.length?'open':'skipped',ids:ls.map(l=>l[2].rowId),proof:clone(proof)};const slot=b.honroStage+'.reviewed.'+key;V.slot(app,slot,{rowIds:ids,proof});
  if(!ls.length){V.ackSlot(b,slot,{skipped:true});return false;}const d={title:app.stage.name,reviewedEvent:key,reviewedStage:b.honroStage};if(G.HonroStory.skipsClosing?.(app,d)){finished(app,d);return false;}if(!G.HonroStory.start(app,ls,d)){delete m.events[key];return false;}return true;
 }
-function finished(app,d){if(!enabled(d?.reviewedStage)||!active(app.engine?.b)||d.reviewedStage!==app.engine.b.honroStage)return false;const b=app.engine.b,e=memory(b).events[d.reviewedEvent];if(e){R.finishReceipt(e);e.status='done';V.ackSlot(b,b.honroStage+'.reviewed.'+d.reviewedEvent,{rowIds:e.presentedIds,retiredIds:e.retiredIds});G.HonroStory.save(app);}return false;}
+function beginSequence(app,entries,proof={}){
+ const b=app.engine.b;if(!active(b)||!V.safe(app))return false;
+ const events=memory(b).events,pending=entries.filter(([key])=>!events[key]);
+ if(!pending.length)return false;
+ const keys=pending.map(([key])=>key),all=[];
+ for(const [key,id] of pending){
+  const [line]=lines(b.honroStage,[id],key,app);
+  line[2].reviewedSequence=keys;
+  const camera=specs.get(b.honroStage).camera?.(app,key,[id],proof);if(camera)line[2].camera=clone(camera);
+  const allowed=lineAllowed(app,line[0],line[2]);if(allowed)all.push(line);
+  events[key]={status:allowed?'open':'skipped',ids:allowed?[id]:[],proof:clone(proof)};
+  V.slot(app,b.honroStage+'.reviewed.'+key,{rowIds:[id],proof});
+ }
+ const d={title:app.stage.name,reviewedEvent:keys[0],reviewedStage:b.honroStage,reviewedSequence:keys};
+ if(!all.length||G.HonroStory.skipsClosing?.(app,d)){finished(app,d);return false;}
+ if(G.HonroStory.start(app,all,d))return true;
+ for(const key of keys){delete events[key];delete V.mem(b).slots[b.honroStage+'.reviewed.'+key];}
+ return false;
+}
+function finished(app,d){
+ if(!enabled(d?.reviewedStage)||!active(app.engine?.b)||d.reviewedStage!==app.engine.b.honroStage)return false;
+ const b=app.engine.b,events=memory(b).events;
+ for(const key of d.reviewedSequence||[d.reviewedEvent]){const e=events[key];if(!e)continue;R.finishReceipt(e);if(e.status!=='skipped')e.status='done';V.ackSlot(b,b.honroStage+'.reviewed.'+key,{rowIds:e.presentedIds,retiredIds:e.retiredIds});}
+ G.HonroStory.save(app);return false;
+}
 function journal(app,id){const b=app.engine.b,r=row(id,b.honroStage);if(!active(b)||r?.channel!=='journal')return false;app.profile.record??=[];if(!app.profile.record.some(x=>x.rowId===id&&x.reviewedRevision===1))app.profile.record.push({place:app.stage.name,text:r.text,rowId:id,reviewedRevision:1,sourceRun:b.session});memory(b).journal={rowId:id};app.dirty=true;return true;}
 function savedJournal(profile,n){if(!enabled(n))return null;return profile.record?.find(x=>x.reviewedRevision===1&&x.sourceRun&&x.text===row(x.rowId,n)?.text&&row(x.rowId,n)?.channel==='journal')||null;}
 function journals(profile,n){return enabled(n)?(profile.record||[]).filter(x=>x.reviewedRevision===1&&x.sourceRun&&x.text===row(x.rowId,n)?.text&&row(x.rowId,n)?.channel==='journal'):[];}
@@ -37,10 +70,10 @@ function restTalkId(profile,c){return restAvailable(profile)?'rest-reviewed-endi
 function rest(app){if(!restAvailable(app.profile)||app.screen!=='rest'||app.dialogue)return false;const id='rest-reviewed-ending-v1-20-required',s=app.profile.honroJourney?.story;if(app.profile.seen?.[id])return false;const ls=restRows(app.profile,20,specs.get(20).restRequired||[]);if(!ls.length)return false;return G.HonroStory.start(app,ls,{id,index:s?.id===id?s.index||0:0,title:G.HONRO_CONTENT.stages[19].name,after:'rest',restKind:'reviewed-end',reviewedStage:20});}
 function restoreRest(app){const s=app.profile.honroJourney?.story;if(!s?.id?.startsWith('rest-reviewed-ending-v1-20-'))return false;if(!restAvailable(app.profile)){app.profile.honroJourney.story=null;return false;}const c=s.cls,ls=c?restOptional(app.profile,c):restRows(app.profile,20,specs.get(20).restRequired||[]);if(!ls?.length){app.profile.honroJourney.story=null;return false;}return G.HonroStory.start(app,ls,{id:s.id,index:s.index||0,title:G.HONRO_CONTENT.stages[19].name,after:'rest',restKind:c?'optional':'reviewed-end',restClass:c,reviewedStage:20});}
 function endingContent(profile,n,prospective=false){if(!enabled(n)||!specs.get(n).endingRows)return undefined;if(!profile)return null;const p=prospective?{...profile,cleared:{...profile.cleared,[n]:profile.cleared?.[n]||{visits:0}}}:profile;const selected=specs.get(n).endingRows.map(id=>row(id,n)).filter(r=>specs.get(n).endingAllowed?.(p,r)===true);if(!selected.length)return null;return{...clone(G.HonroNarrativeCatalogue.data.actEndings[n]),lines:selected.map(r=>r.text),rowIds:selected.map(r=>r.id),reviewedRevision:1};}
-function present(b,result){if(!active(b))return result;const spec=specs.get(b.honroStage),r=row(spec.objective?.(b),b.honroStage);if(!r||r.channel!=='objective')throw Error('missing reviewed objective '+b.honroStage);const failure=(b.phase==='lost'||V.failure(b))&&spec.failure?.(b),f=failure&&row(failure,b.honroStage);const out={...result,summary:r.text,currentInstruction:r.text,completionText:r.text,targets:result.targets.map(x=>({...x,label:r.text})),allTargets:result.allTargets.map(x=>({...x,label:r.text})),checklist:[{id:r.id,text:r.text,done:result.complete,current:!result.complete}],visibleChecklist:[{id:r.id,text:r.text,done:result.complete,current:!result.complete}],failureText:f?.text||''};return spec.present?.(b,out,apiFor(b.honroStage))||out;}
+function present(b,result){if(!active(b))return result;const spec=specs.get(b.honroStage),r=row(spec.objective?.(b),b.honroStage);if(!r||r.channel!=='objective')throw Error('missing reviewed objective '+b.honroStage);const failure=(b.phase==='lost'||V.failure(b))&&spec.failure?.(b),f=failure&&row(failure,b.honroStage);const out={...result,summary:r.text,currentInstruction:r.text,completionText:r.text,targets:result.targets.map(x=>({...x,label:actionText(b,x.id)||r.text})),allTargets:result.allTargets.map(x=>({...x,label:actionText(b,x.id)||r.text})),checklist:[{id:r.id,text:r.text,done:result.complete,current:!result.complete}],visibleChecklist:[{id:r.id,text:r.text,done:result.complete,current:!result.complete}],failureText:f?.text||''};return spec.present?.(b,out,apiFor(b.honroStage))||out;}
 function content(b,st){if(!active(b))return st;const spec=specs.get(b.honroStage),r=row(spec.objective?.(b),b.honroStage),j=memory(b).journal;return{...st,goal:r?.text||'',guide:'',story:[],outro:[],failure:[],narration:[],storySummary:j?row(j.rowId,b.honroStage).text:'',honroV4Unreviewed:false,honroReviewedNarrativeRevision:1};}
 function optional(profile,n,c){if(!enabled(n))return null;const st=G.HONRO_CONTENT.stages[n-1];if(!st.requires.every(id=>profile.cleared?.[id])||!profile.recruited?.includes(c))return[];const ids=data(n).rows.filter(r=>r.id.startsWith('EDGE.OPTIONAL_'+n+'_'+c.toUpperCase()+'_')).map(r=>r.id);return lines(n,ids,'optional.'+c).filter(l=>optionalAllowed(profile,row(l[2].rowId,n),n));}
-const apiFor=n=>({V,C,memory,begin,done,row:id=>row(id,n),actor,safe:V.safe,journal,enabled:()=>enabled(n),active:b=>active(b)&&b.honroStage===n});
+const apiFor=n=>({V,C,memory,begin,beginSequence,done,row:id=>row(id,n),actor,safe:V.safe,journal,enabled:()=>enabled(n),active:b=>active(b)&&b.honroStage===n});
 function register(n,spec){specs.set(n,spec);const old=V.plugins.get(n),api=apiFor(n);V.register(n,{...old,tick(app,dt){if(!active(app.engine.b))return old.tick?.(app,dt);if(spec.before?.(app,api,dt)!==false)old.tick?.(app,dt);if(V.safe(app))spec.drive(app,api,dt);},complete(b){return old.complete(b)&&(!active(b)||spec.complete(b));},use(app,m,s){if(active(app.engine.b)){const out=spec.use?.(app,m,s);if(out!==undefined)return out;}return old.use?.(app,m,s);},eligibility(app,m,s){if(active(app.engine.b)){const out=spec.eligibility?.(app,m,s);if(out!==undefined)return out;}return old.eligibility?.(app,m,s);},attach(app,e){old.attach?.(app,e);if(active(e.b))spec.attach?.(app,e);},state(b){const out=old.state?.(b)||{};return active(b)?{...out,...spec.state?.(b)}:out;},draw(scene,c,b,e){old.draw?.(scene,c,b,e);if(active(b))spec.draw?.(scene,c,b,e);}});}
 const author=V.author;V.author=function(...args){const p=author(...args);for(const s of p.stages||[]){const n=s.metadata?.stageId;if(enabled(n)&&s.initialState?.honroAct23V4Revision===1){s.initialState.honroReviewedNarrativeRevision=1;if(s.initialState.honroReviewedSceneRevision!==specs.get(n).mapRevision){specs.get(n).author?.(s,p);s.initialState.honroReviewedSceneRevision=specs.get(n).mapRevision;}}}return p;};
 const prepare=V.prepare;V.prepare=function(b,p){const out=prepare(b,p);if(active(b)){memory(b);specs.get(b.honroStage).prepare?.(b,p);b.honroNarrativeContent=content(b,b.honroNarrativeContent);}return out;};
@@ -53,4 +86,5 @@ const resolve=G.HonroNarrativeCatalogue.resolve,summary=G.HonroNarrativeCatalogu
 for(const key of ['interlude','required','optional']){const old=G.HonroJourneyContent[key];G.HonroJourneyContent[key]=function(...args){const n=Number(key==='interlude'?args[0]:args[1]);if(key==='optional'&&restAvailable(args[0])&&(n===21||!n))return restOptional(args[0],args[2]);if(enabled(n))return key==='optional'?optional(...args):[];return old.apply(this,args);};}
 const outcome=V.recordOutcome;V.recordOutcome=function(app,won){outcome(app,won);if(won&&active(app.engine?.b)){const b=app.engine.b,h=app.profile.honroAct23V4History?.stages?.[b.honroStage];if(h)h.reviewedNarrative={revision:1,status:data(b.honroStage).status,rows:Object.values(memory(b).events).flatMap(e=>R.receiptIds(e,b.honroStage===16&&e===memory(b).events.witness?memory(b).witnessPresented:undefined))};}};
 G.HonroAct23V4ReviewedChapters={journals,restAvailable,restOptional,restTalkId,rest,restoreRest,endingContent,interactionText(b,value){if(!active(b)&&!R.active?.(b))return value;const machine=V.steps(b).some(s=>s.id===value)||b.honroMarkers?.some(m=>m.id===value);if(!machine)return value;return active(b)?row(specs.get(b.honroStage).objective(b),b.honroStage)?.text||value:R.row('A2.S11.OBJECTIVE.01').text;},register,apiFor,routeReady:b=>specs.get(b.honroStage)?.routeReady?.(b)!==false,V,C,enabled,active,memory,begin,done,row,actor,journal,rowsReviewed,lineAllowed,dyingAllowed};
+G.HonroAct23V4ReviewedChapters.actionText=actionText;
 })(globalThis);

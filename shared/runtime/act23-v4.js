@@ -37,7 +37,15 @@ function completeStep(app,s,actor){const b=app.engine.b,m=mem(b);if(m.done[s.id]
  G.HonroObjectiveContributions?.interact(b,s.id,actor,{rescue:s.kind==='rescue'});slot(app,'objective:'+s.id,{actorId:actor?.id});b.sceneVersion++;app.dirty=true;return true;
 }
 function eligibility(app,m){const b=app.engine?.b,u=app.engine?.active;if(!active(b)||!alive(u)||u.side!==0||m.collected||!safe(app))return{ok:false,reason:m.id};const s=readySteps(b).find(s=>s.id===m.id);if(!s)return{ok:false,reason:current(b)?.id||m.id};
- const p=m.target?b.units.find(u=>u.id===m.target):m;if(!near(u,p,s.radius||260)||s.requiredClass&&u.cls!==s.requiredClass)return{ok:false,reason:s.id};const custom=plugin(b)?.eligibility?.(app,m,s);return custom??{ok:true,reason:s.id};
+ const p=interactionPoint(b,m);
+ if(!p)return{ok:false,reason:'대상에게 접근할 수 없음'};
+ if(!near(u,p,s.radius||m.radius||260))return{ok:false,reason:'표식이 있는 같은 발판으로 더 가까이 이동'};
+ if(s.requiredClass&&u.cls!==s.requiredClass)return{ok:false,reason:(G.HONRO_CONTENT.hero[s.requiredClass]?.name||'지정 동행')+'로 전환'};
+ const custom=plugin(b)?.eligibility?.(app,m,s);
+ if(custom)return custom;
+ if(s.kind==='v4-slot'&&mem(b).slots[s.slot]?.status!=='pending')return{ok:false,reason:'선행 사건을 마친 뒤 진행'};
+ if(s.kind==='rescue'&&alive(b.units.find(u=>u.id===m.spiritId))&&u.cls!=='occultist')return{ok:false,reason:'소단으로 분리하거나 곁의 혼을 먼저 제압'};
+ return{ok:true,reason:s.id};
 }
 function use(app,m){const b=app.engine.b;if(!eligibility(app,m).ok)return false;const s=readySteps(b).find(s=>s.id===m.id),custom=plugin(b)?.use?.(app,m,s);if(typeof custom==='boolean')return custom;
  if(s.id==='family-manifest'&&G.HonroAct3Void?.beforeManifest?.(app,m))return false;
@@ -46,8 +54,11 @@ function use(app,m){const b=app.engine.b;if(!eligibility(app,m).ok)return false;
  if(s.kind==='rescue'){const u=b.units.find(u=>u.id===s.target||u.id===m.target),spirit=b.units.find(u=>u.id===m.spiritId);if(!alive(u))return false;if(alive(spirit)){if(app.engine.active.cls!=='occultist')return false;G.HonroProgression.defeat(app.engine,spirit,app.engine.active);spirit.hp=0;spirit.dead=true;spirit.honroReleased=true;}u.honroResolved=true;}
  completeStep(app,s,app.engine.active);if(!app.checkMission?.(app.engine))app.engine.finishAction();return true;
 }
-function route(app,s){const b=app.engine.b,spec=b.honroRouteSpec;if(G.HonroAct23V4ReviewedChapters?.active(b)&&!G.HonroAct23V4ReviewedChapters.routeReady(b))return;if(!spec||!(spec.common||[]).every(id=>mem(b).done[id]))return;
- for(const r of spec.routes||[]){if(!(r.requiresDone||[]).every(id=>mem(b).done[id])||!(r.defeatIds||[]).every(id=>{const u=b.units.find(u=>u.id===id);return u&&(!alive(u)||u.side!==1);})||!(r.requiresTerrainOpen||[]).every(id=>G.HonroQuestTargets.records(b).some(t=>t.id===id&&t.broken))||!(r.requiresTerrainActive||[]).every(id=>G.HonroQuestTargets.records(b).some(t=>t.id===id&&!t.broken)))continue;
+function openRoutes(b){const spec=b.honroRouteSpec;if(!spec||!(spec.common||[]).every(id=>mem(b).done[id]))return [];
+ return (spec.routes||[]).filter(r=>(r.requiresDone||[]).every(id=>mem(b).done[id])&&(r.defeatIds||[]).every(id=>{const u=b.units.find(u=>u.id===id);return u&&(!alive(u)||u.side!==1);})&&(r.requiresTerrainOpen||[]).every(id=>G.HonroQuestTargets.records(b).some(t=>t.id===id&&t.broken))&&(r.requiresTerrainActive||[]).every(id=>G.HonroQuestTargets.records(b).some(t=>t.id===id&&!t.broken)));
+}
+function route(app,s){const b=app.engine.b,spec=b.honroRouteSpec;if(G.HonroAct23V4ReviewedChapters?.active(b)&&!G.HonroAct23V4ReviewedChapters.routeReady(b))return;
+ for(const r of openRoutes(b)){
   if(!heroes(b).some(u=>near(u,marker(b,r.markerId),180)))continue;b.honroRouteChoice={revision:1,selectedRoute:r.id,sourceRun:b.session,fromStage:b.honroStage,toStage:spec.toStage,exitId:r.markerId,round:b.round};completeStep(app,s);return;
  }
 }
@@ -70,7 +81,8 @@ function tick(app,dt){const b=app.engine?.b;if(!active(b)||!safe(app))return;mem
 }
 function failure(b){const own=plugin(b)?.failure?.(b);if(own)return own;if(b.honroStage11CompactRevision===1&&!['archer','mage','knight','occultist'].every(cls=>heroes(b).some(u=>u.cls===cls)))return 'v4.required-actor';const required=steps(b).filter(s=>!satisfied(b,s)&&s.requiredClass);if(required.some(s=>!heroes(b).some(u=>u.cls===s.requiredClass)))return 'v4.required-actor';return b.units.some(u=>u.honroProtected&&!alive(u))?'v4.protected-actor':null;}
 function state(b){const list=steps(b),s=current(b),m=mem(b),p=s&&marker(b,s.id),custom=plugin(b)?.state?.(b)||{},all=list.map(q=>({...marker(b,q.id),id:q.id,label:q.id,done:satisfied(b,q)})),complete=!s&&!failure(b)&&(plugin(b)?.complete?plugin(b).complete(b):true);
- const result={...custom,complete,objectiveReady:complete,minimumRound:1,settleRounds:0,summary:s?.id||'v4.complete',currentInstruction:s?.id||'v4.complete',currentObjectiveId:s?.id,targets:custom.targets|| (p?[{...p,kind:['reach','route'].includes(s.kind)?'exit':'interact',label:s.id}]:[]),allTargets:all,checklist:all.map(q=>({id:q.id,text:q.id,done:q.done})),visibleChecklist:all.filter(q=>q.done||q.id===s?.id).map(q=>({id:q.id,text:q.id,done:q.done,current:q.id===s?.id})),completionText:'v4.complete',failureText:failure(b)||''};return G.HonroAct23V4Reviewed?.present(b,result)||result;
+ const kind=s&&(['reach','route'].includes(s.kind)?'exit':['clear','defeat','destroy','v4-18-death','stage29'].includes(s.kind)?'objective':G.HonroAct23V4Reviewed?.automaticMarker(b,p)?'move':'interact');
+ const result={...custom,complete,objectiveReady:complete,minimumRound:1,settleRounds:0,summary:s?.id||'v4.complete',currentInstruction:s?.id||'v4.complete',currentObjectiveId:s?.id,targets:custom.targets|| (p?[{...p,kind,label:s.id}]:[]),allTargets:all,checklist:all.map(q=>({id:q.id,text:q.id,done:q.done})),visibleChecklist:all.filter(q=>q.done||q.id===s?.id).map(q=>({id:q.id,text:q.id,done:q.done,current:q.id===s?.id})),completionText:'v4.complete',failureText:failure(b)||''};return G.HonroAct23V4Reviewed?.present(b,result)||result;
 }
 function content(b,st){return{...st,steps:clone(steps(b)),story:[],outro:[],beats:{},failure:[],storyFollowups:[],narration:[],storySummary:'',summary:'',goal:'v4.'+b.honroStage,guide:'',honroV4Unreviewed:true};}
 function author(project,options={}){if(!(options.enabled??preview()))return project;const p={...project};p.stages=project.stages.map(original=>{const id=original.metadata?.stageId;if(!original.metadata?.campaign||id<11||id>30)return original;if(original.initialState?.honroAct23V4Revision===1)return original;const map=clone(original);map.initialState??={};map.initialState.honroAct23V4Revision=1;map.initialState.honroV4Phase='A';plugins.get(id)?.author?.(map,p);
@@ -101,11 +113,16 @@ function recordOutcome(app,won){const b=app.engine?.b;if(!won||!active(b))return
  history.stages[b.honroStage]={revision:1,phase:'A',run:b.session,round:b.round,steps:Object.keys(root.done).filter(id=>root.done[id]),slots:Object.keys(root.sceneDone).filter(id=>root.sceneDone[id]),...(b.honroStage===18?{keeperDeath:root.stage18?.bossDeath===true,bellStable:root.stage18?.stable===true}:{}),...(b.honroStage===19?{transportTraces:clone(root.transportTraceProof||null)}:{}),...(b.honroStage===20?{ringRemoved:root.ringRemoved===true,convoy:clone(root.convoyGoals||{}),care:clone(root.convoyCare||null),outside:clone(root.outsideProof||null)}:{}),...(b.honroStage===27?{voidWitness:b.honroAct3Void?.state==='RESOLVED'&&b.honroVoidWitness===true}:{}),...(b.honroStage===29?{bossDeath:!!root.stage29?.death,echo:!!root.stage29?.echo?.done,sluiceReclaimed:!!root.stage29?.sluiceReclaimed}:{}),...(b.honroStage===30?{transport:clone(root.stage30?.boat||null),rescued:clone(root.stage30?.rescued||[]),proof:clone(root.stage30?.proof||null)}:{})};
 }
 G.HonroAct23V4={register:(id,p)=>plugins.set(id,p),plugins,preview,active,mem,steps,current,marker,heroes,alive,near,slot,ackSlot,safe,satisfied,readySteps,completeStep,eligibility,use,route,hold,tick,failure,state,content,author,prepare,bindApp,projectileForce,draw,migratePresentation,validateBattle,approvedCommon,recordOutcome,mapRevision:id=>preview()&&id>=11&&id<=30?(id>=21&&G.HonroAct23V4Reviewed?.provider?.(id)?.enabled()?400+id:id===11&&G.HonroAct23V4Reviewed?.enabled()?412:id===20?320:200+id):undefined};
+G.HonroAct23V4.openRoutes=openRoutes;
 for(const A of [G.HonroAct2,G.HonroAct3])for(const [key,next]of Object.entries({steps,current,readySteps,satisfied,state,failure,eligibility,use,tick,entry:()=>[],memory:mem,attach:bindApp})){const old=A[key];A[key]=function(first,...args){const b=['eligibility','use','tick','entry','attach'].includes(key)?first?.engine?.b:first;return active(b)?next(first,...args):old?.call(A,first,...args);};}
 const resolve=G.HonroNarrativeCatalogue.resolve;G.HonroNarrativeCatalogue.resolve=(b,st)=>active(b)?content(b,st):resolve(b,st);
 const build=G.HonroWorld.build;G.HonroWorld.build=function(...args){const b=build(...args);if(active(b))delete b.honroBellWitness;return b;};
 const objectives=G.HonroObjectives.state;G.HonroObjectives.state=(b,st)=>active(b)?state(b):objectives(b,st);
 const entry=G.HonroObjectives.entry;G.HonroObjectives.entry=(app,...args)=>active(app.engine?.b)?[]:entry(app,...args);
-const target=G.HonroObjectives.interactionTarget;G.HonroObjectives.interactionTarget=(b,m)=>active(b)?(m.target?b.units.find(u=>u.id===m.target&&alive(u)):m):target(b,m);
+function interactionPoint(b,m){
+ if(!m.target)return m;
+ return b.units.find(u=>u.id===m.target&&(alive(u)||b.honroStage===17&&m.id==='17.hoist'&&u.honroHoistSpiritAttached));
+}
+const target=G.HonroObjectives.interactionTarget;G.HonroObjectives.interactionTarget=(b,m)=>active(b)?interactionPoint(b,m):target(b,m);
 for(const key of ['interlude','required','optional']){const old=G.HonroJourneyContent[key];G.HonroJourneyContent[key]=function(...args){const id=key==='interlude'?args[0]:args[1];if(preview()&&(id==null||Number(id)>=11))return[];return old.apply(this,args);};}
 })(globalThis);

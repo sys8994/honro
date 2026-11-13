@@ -116,9 +116,28 @@ function prepareSupport(app){const b=app.engine.b,m=memory(b);if(!m.supportReque
 function stepSatisfied(b,s){if(!active(b))return null;const m=memory(b);switch(s.id){case'18.descent':return m.threat.lowered||m.brakeLocked;case'18.brake':return m.brakeLocked;case'18.rescue':return m.rescued;case'18.rescue-safe':return m.rescueSafe;case'18.inspect':return m.connectionsChecked;case'18.hoist':return m.hoistProtected;case'18.lift':return m.liftDone;case'18.keeper':return m.bossDeath;case'18.support':return m.supportReady;case'18.settle':return m.settled;case'18.lock-west':return m.locks.west;case'18.lock-east':return m.locks.east;case'18.souls':return m.souls;default:return null;}}
 function completeInteraction(app,id){const s=V.steps(app.engine.b).find(s=>s.id===id);if(s)V.completeStep(app,s,app.engine.active);}
 function lockThreats(b,site){return b.units.filter(v=>alive(v)&&v.side===1&&!v.honroObjectiveTarget&&Math.hypot(v.x-site.x,v.y-site.y)<400);}
+function eligibility(app,site){
+ const e=app.engine,b=e.b,m=memory(b),u=e.active;
+ if(!site?.id?.startsWith('18.'))return undefined;
+ const at=site.id==='18.rescue'?unit(b,RESIDENT):site;
+ const result=(ok,reason)=>({ok:!!ok,reason});
+ if(!hero(u)||!e.canAct()||paused(app)||m.bell.status==='moving')return result(false,'종과 현재 행동이 멈춘 뒤 진행');
+ if(!at||Math.hypot(u.x-at.x,u.y-at.y)>220)return result(false,'장치가 있는 발판으로 더 가까이 이동');
+ switch(site.id){
+ case '18.brake':return result(!m.brakeLocked,'제동구 잠그기');
+ case '18.rescue':return result(u.cls==='occultist'&&m.brakeLocked&&!m.rescued&&alive(at)&&unit(b,SPIRIT),'제동구를 잠근 뒤 소단으로 생존자에게 접근');
+ case '18.hoist':return result(!m.hoistStarted&&m.rescueSafe&&alive(unit(b,HOIST)),m.hoistStarted?'인양기 곁에서 방어':'생존자를 안전한 곳까지 호송');
+ case '18.inspect':return result(m.bossDeath&&m.rescueSafe&&m.brakeLocked,'유헌을 제압하고 생존자의 안전 확인');
+ case '18.lift':return result(m.bossDeath&&m.rescueSafe&&m.brakeLocked&&m.connectionsChecked&&m.hoistProtected&&!m.liftDone&&!m.bell.segment,'연결부를 조사하고 인양기를 보호');
+ case '18.support':return result(m.liftDone&&!m.supportReady&&!m.supportRequested,m.supportRequested?'받침 설치 중':'먼저 종 들어 올리기');
+ case '18.settle':return result(m.liftDone&&m.supportReady&&m.bossDeath&&!m.settled&&!m.bell.segment,'종 아래의 받침과 통로 확인');
+ case '18.lock-west':case '18.lock-east':{const n=lockThreats(b,site).length;return result(m.settled&&!n,n?`고정구 주변 위협 ${n}기 제압`:'받침에 종을 내려놓기');}
+ case '18.souls':return result(m.rescueSafe&&m.liftDone&&m.bossDeath&&m.settled&&m.stable,'좌우 고정구를 모두 잠그기');
+ }
+}
 function use(app,site){const e=app.engine,b=e.b,m=memory(b),u=e.active,current=V.current(b);if(!site?.id?.startsWith('18.'))return undefined;
  const ready=V.readySteps(b).some(s=>s.id===site.id),at=site.id==='18.rescue'?unit(b,RESIDENT):site;
- if(!hero(u)||!e.canAct()||paused(app)||m.bell.status==='moving'||!ready||Math.hypot(u.x-at.x,u.y-at.y)>220)return false;
+ if(!ready||!eligibility(app,site)?.ok)return false;
  let ok=false;
  if(site.id==='18.brake'&&!m.brakeLocked){m.brakeLocked=true;m.brakeSerial=serial(b);if(m.bell.segment?.kind==='threat'){delete m.bell.segment;m.threat.prevented=true;}m.bell.status='braked';B.memory(b).status='braked';unit(b,RESIDENT).fixed=true;slot(app,'18.brake.locked');completeInteraction(app,site.id);ok=true;}
  else if(site.id==='18.rescue'&&u.cls==='occultist'&&m.brakeLocked&&!m.rescued&&alive(unit(b,RESIDENT))){const npc=unit(b,RESIDENT),spirit=unit(b,SPIRIT);if(!spirit)return false;if(alive(spirit)){spirit.hp=0;spirit.dead=true;spirit.honroReleased=true;}m.extraction={actorId:u.id,spiritId:SPIRIT,serial:serial(b),residentHp:npc.hp};m.rescued=true;m.rescueOrigin={x:npc.x,y:npc.y};npc.honroHypnotized=false;npc.honroResolved=true;npc.fixed=false;slot(app,'18.rescue.released',{unitId:RESIDENT,actorId:u.id});completeInteraction(app,site.id);ok=true;}
@@ -151,6 +170,6 @@ function draw(scene,c,b){if(!active(b))return;const m=memory(b),q=m.bell.segment
 // snapshots retain their original behavior.
 function guardPitch(){for(const key of['heard','ritual','tick']){const old=G.HonroMukjongPitchDialogue?.[key];if(!old||old.honroV4Stage18Guard)continue;const wrapped=function(app,...args){if(active(app.engine?.b))return;return old(app,...args);};wrapped.honroV4Stage18Guard=true;G.HonroMukjongPitchDialogue[key]=wrapped;}}
 guardPitch();
-const plugin={author,prepare,attach,tick,use,stepSatisfied,failure,complete,state,draw,memory,lockThreats,segmentSweep,occupants,begin,transition,animate,cleanupDeath,steps:STEPS,finalSupports,restOffset:REST_OFFSET,restOffsetX:REST_OFFSET_X};
+const plugin={author,prepare,attach,tick,eligibility,use,stepSatisfied,failure,complete,state,draw,memory,lockThreats,segmentSweep,occupants,begin,transition,animate,cleanupDeath,steps:STEPS,finalSupports,restOffset:REST_OFFSET,restOffsetX:REST_OFFSET_X};
 G.HonroAct23V4Stage18=plugin;V.register(18,plugin);
 })(globalThis);

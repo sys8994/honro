@@ -40,7 +40,7 @@ function optional(profile,r){const b=profile.honroBattle;if(!api.active(b))retur
  return false;
 }
 function ambushClear(b){const r=base(b),q=r.convoyAmbush,s=V.steps(b).find(s=>s.id==='clear-pass');return !!q?.admitted&&q.ids.length===b.honroV4ConvoyAmbush.count&&[...q.ids,...(s?.defeatIds||[])].every(id=>{const u=unit(b,id);return !!u&&(!alive(u)||u.side!==1||u.honroSubdued);});}
-function allow(app,row){const b=app.engine.b,m=memory(b),r=base(b),id=row.id,care=A.convoyCare(b);
+function allow(app,row,meta){const b=app.engine.b,m=memory(b),r=base(b),id=row.id,care=A.convoyCare(b);
  if(row.channel==='optional')return optional({...app.profile,honroBattle:b},row);
  if(id==='EDGE.ARRIVALS_20_0')return m.roster.every(id=>alive(unit(b,id)));
  if(id==='A2.S20.INTRO.01')return r.ringRemoved===true;
@@ -54,7 +54,7 @@ function allow(app,row){const b=app.engine.b,m=memory(b),r=base(b),id=row.id,car
  if(id==='A2.S20.MID.07')return ambushClear(b);
  if(id==='A2.S20.BRANCH.01')return outside(b)&&counts(b).lost_count===0;
  if(['A2.S20.BRANCH.02','A2.S20.POPUP.02'].includes(id))return outside(b)&&counts(b).lost_count>0;
- if(id.startsWith('A2.S20.TIME.')){const i=+id.split('.').at(-1);return outside(b)&&baggage(b)&&api.done(b,'outside-count')&&(i===1||api.done(b,'time-'+(i-1)))&&(i!==7||!!m.seated);}
+ if(id.startsWith('A2.S20.TIME.')){const i=+id.split('.').at(-1),prev='time-'+(i-1);return outside(b)&&baggage(b)&&api.done(b,'outside-count')&&(i===1||api.done(b,prev)||meta?.reviewedSequence?.includes(prev))&&(i<7||!!m.seated);}
  if(id.startsWith('A2.S20.NEWS.'))return newsReady(b)&&api.done(b,'time-8');
  if(id==='A2.S20.COMPLETE.01')return api.done(b,'news')&&outside(b)&&grounded(b,unit(b,care.injured.id))&&!!m.seatAvailable&&!!m.seated;
  if(id==='A2.S20.JOURNAL.01')return outside(b)&&api.done(b,'time-8');
@@ -73,7 +73,11 @@ function drive(app){const b=app.engine.b,m=memory(b),q=api.memory(b),r=base(b),c
  if(event('high-sight',['A2.S20.MID.05'],m.highSight))return;
  if(event('clear',['A2.S20.MID.07'],r.convoyAmbush))return;
  if(api.done(b,'clear')&&event('outside-count',[counts(b).lost_count?'A2.S20.BRANCH.02':'A2.S20.BRANCH.01',...(counts(b).lost_count?['A2.S20.POPUP.02']:[])],{...counts(b),arrivals:m.arrivals}))return;
- for(let i=1;i<=8;i++)if(event('time-'+i,['A2.S20.TIME.'+String(i).padStart(2,'0')],{arrivals:m.arrivals,baggage:care.baggage}))return;
+ for(const [first,last] of [[1,6],[7,8]]){
+  const rows=Array.from({length:last-first+1},(_,i)=>['time-'+(first+i),'A2.S20.TIME.'+String(first+i).padStart(2,'0')]);
+  const next=rows.find(([key])=>!q.events[key]);
+  if(next&&allow(app,api.row(next[1]))&&api.beginSequence(app,rows,{arrivals:m.arrivals,baggage:care.baggage}))return;
+ }
  if(api.done(b,'time-8')&&!app.profile.record?.some(r=>r.rowId==='A2.S20.JOURNAL.01'))api.journal(app,'A2.S20.JOURNAL.01');
  if(event('news',[1,2,3,4,5,6].map(i=>'A2.S20.NEWS.0'+i),m.reporter))return;
  if(api.done(b,'news')&&!app.profile.record?.some(r=>r.rowId==='A2.S20.JOURNAL.02'))api.journal(app,'A2.S20.JOURNAL.02');

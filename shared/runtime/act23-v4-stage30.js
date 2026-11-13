@@ -203,8 +203,18 @@ function postRescue(app){const b=app.engine.b;if(!rescueComplete(b))return;const
  V.slot(app,TESTIMONY,{actorId:SEAMAN,source:'s30-rescue-complete',factIds:['past-west-estuary-thirteen','two-children','present-status-unknown']});
  if(m.testimony&&V.mem(b).sceneDone[TESTIMONY])V.slot(app,COMPARISON,{actorId:SEAMAN,source:TESTIMONY,evidenceIds:['existing-transport-map','existing-hongman-ledger','present-waterway']});
 }
+function eligibility(app,marker){
+ if(![TESTIMONY,COMPARISON].includes(marker.id))return undefined;
+ const b=app.engine.b,m=memory(b),u=app.engine.active,sailor=unit(b,SEAMAN);
+ if(!rescueComplete(b))return{ok:false,reason:'주민과 곽진의 안전 도달, 남은 증원 처리와 나룻배 접안 확인'};
+ if(!alive(sailor)||sailor.honroV4RescueRole!=='seaman'||!V.near(u,sailor,260))return{ok:false,reason:'안전 지대의 사공 곁으로 이동'};
+ if(V.mem(b).slots[marker.id]?.status!=='pending'||marker.id===COMPARISON&&!m.testimony)return{ok:false,reason:'사공의 선행 증언을 마친 뒤 진행'};
+ const label=marker.id===TESTIMONY?'사공의 증언 듣기':'사공과 운송로 대조';
+ return{ok:safe(app)&&alive(u)&&u.side===0,reason:label,actionLabel:label};
+}
 function use(app,marker){const b=app.engine.b;if(![TESTIMONY,COMPARISON].includes(marker.id))return marker.id==='s30-route-ready'?false:undefined;
- const m=memory(b),u=app.engine.active,sailor=unit(b,SEAMAN),root=V.mem(b);if(!safe(app)||!rescueComplete(b)||!alive(u)||u.side!==0||!alive(sailor)||sailor.honroV4RescueRole!=='seaman'||!V.near(u,sailor,260)||root.slots[marker.id]?.status!=='pending'||(marker.id===COMPARISON&&!m.testimony))return false;
+ if(!eligibility(app,marker).ok)return false;
+ const m=memory(b),u=app.engine.active,sailor=unit(b,SEAMAN);
  if(!V.ackSlot(b,marker.id,{phaseA:true,actorId:sailor.id,leg:m.actors[SEAMAN].crossedLeg,disembarked:m.actors[SEAMAN].disembarked,allWavesResolved:true}))return false;
  m[marker.id===TESTIMONY?'testimony':'comparison']=true;const step=(b.honroV4Steps||[]).find(s=>s.id===marker.id);if(step)V.completeStep(app,step,u);app.engine.finishAction?.();return true;
 }
@@ -226,6 +236,6 @@ function tick(app,dt){const b=app.engine.b;if(!active(b)||paused(app))return;pre
 function draw(scene,c,b){if(!active(b))return;const m=b.honroState?.act23v4?.stage30;if(!m)return;scene.landmark(c,{id:ID,kind:'ferry',x:m.boat.x,y:m.boat.y+22.5,size:1.25});
  for(const[id,w]of Object.entries(m.waves)){if(w.admitted)continue;const at=b.honroV4Stage30.entries[id];if(!at)continue;c.save();c.strokeStyle='#c9b18a';c.lineWidth=3;c.globalAlpha=.55+Math.sin((scene.time||0)*4)*.2;c.beginPath();c.ellipse(at.x,at.y-32,52,25,0,0,Math.PI*2);c.stroke();c.restore();}
 }
-const plugin={author,prepare,attach,tick,state,failure,complete,use,stepSatisfied,stepTick(){},draw,active,memory,evacuation,defenseReady,convoySafe,rescueComplete,boardingCorridorSafe,allWavesResolved,waveResolved,ids:{boat:ID,residents:RESIDENTS,crew:CREW,soldiers:SOLDIERS,injured:INJURED,seaman:SEAMAN,sources:SOURCES,testimony:TESTIMONY,comparison:COMPARISON}};
+const plugin={author,prepare,attach,tick,state,failure,complete,eligibility,use,stepSatisfied,stepTick(){},draw,active,memory,evacuation,defenseReady,convoySafe,rescueComplete,boardingCorridorSafe,allWavesResolved,waveResolved,ids:{boat:ID,residents:RESIDENTS,crew:CREW,soldiers:SOLDIERS,injured:INJURED,seaman:SEAMAN,sources:SOURCES,testimony:TESTIMONY,comparison:COMPARISON}};
 G.HonroAct23V4Stage30=plugin;V.register(30,plugin);
 })(globalThis);

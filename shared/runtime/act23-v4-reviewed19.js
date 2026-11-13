@@ -91,7 +91,17 @@ function drive(app){const b=app.engine.b,m=memory(b),q=api.memory(b),event=(key,
 }
 function before(app,a,dt){if(!a.safe(app))return false;observe(app,dt);drive(app);return !app.dialogue&&(!familyEnabled()||!familyState(app.engine.b).pending)&&!ids.some(i=>base(app.engine.b).done['separate-'+i]&&!memory(app.engine.b).spirits[i]?.departed&&(familyCalls(app.engine.b)[i]?.elapsed||0)<.7);}
 function use(app,m,s){if(!familyEnabled()||!s.id.startsWith('separate-'))return;const b=app.engine.b,f=familyState(b),i=Number(s.id.slice(-1));if(f.pending||!api.done(b,'opened'))return false;f.pending=i;if(!api.begin(app,familyKey('separate',i),familyRows('separate',i),{encounter:i,restoredOriginal:true})){f.pending=null;return false;}app.dirty=true;return true;}
-function eligibility(app,p,s){const b=app.engine.b;if(s.id==='route'&&!api.done(b,'response')||s.id.startsWith('separate-')&&!api.done(b,'opened')||s.id==='old-soul'&&!api.done(b,'quiet'))return{ok:false,reason:s.id};return undefined;}
+function eligibility(app,p,s){const b=app.engine.b;
+ if(s.id==='route'&&!api.done(b,'response'))return{ok:false,reason:'가족이 물건을 내려놓고 혼이 반응할 때까지 기다리기'};
+ if(s.id.startsWith('separate-')){
+  if(!api.done(b,'opened'))return{ok:false,reason:'담허가 길을 연 뒤 혼 분리'};
+  if(familyEnabled()&&memory(b).familyRepair?.pending)return{ok:false,reason:'진행 중인 가족의 작별을 마친 뒤 계속'};
+ }
+ if(s.id==='old-soul'){
+  if(!api.done(b,'quiet')||!allGone(b))return{ok:false,reason:'세 가족의 혼이 떠날 때까지 기다리기'};
+  if(base(b).transportMarks)return{ok:false,reason:'운송 흔적 조사 중 · 표식 곁에서 기다리기'};
+ }
+}
 function complete(b){return familyReady(b)&&allGone(b)&&allMarks(b)&&api.done(b,'escort-back')&&b.honroV4Reviewed19.visitors.every(id=>memory(b).retreat[id]?.arrived);}
 function draw(scene,c,b){const m=memory(b);c.save();for(const [key,q]of Object.entries(familyCalls(b))){if(q.elapsed>=.7||q.elapsed<=0)continue;const u=unit(b,q.caller),spirit=m.spirits[key];if(!alive(u)||spirit?.departed)continue;c.strokeStyle='#d7cba5';c.lineWidth=3;c.beginPath();c.moveTo(u.x+8,u.y-u.h*.5);c.lineTo(u.x+22,u.y-u.h*.68);c.lineTo(u.x+12,u.y-u.h*.78);c.stroke();for(const r of [18,28]){c.beginPath();c.arc(u.x+16,u.y-u.h*.79,r,-.65,.65);c.stroke();}if(q.response){c.strokeStyle='#d5e5d7';c.beginPath();c.ellipse(spirit.x,spirit.y-58,33,63,0,0,Math.PI*2);c.stroke();}}for(const drop of Object.values(m.drops)){const q={...drop,y:drop.y-42*(1-Math.min(1,(drop.elapsed||0)/.45))};c.fillStyle='#a89b76';if(q.id==='bowl'){c.beginPath();c.ellipse(q.x,q.y-6,17,7,0,0,Math.PI);c.fill();}else{c.fillRect(q.x-3,q.y-32,6,30);c.fillRect(q.x-17,q.y-34,29,11);}}
  for(const i of ids){const q=m.spirits[i];if(q.departed||q.count!==2||base(b).done['separate-'+i])continue;c.globalAlpha=.25;c.fillStyle='#cbd9cf';for(const dx of [14]){c.beginPath();c.ellipse(q.x+dx,q.y-60,24,58,dx/60,0,Math.PI*2);c.fill();}}c.globalAlpha=1;c.font='12px serif';c.fillStyle='#b9ae85';for(const p of b.honroV4Reviewed19.marks)c.fillText(p.label,p.x-14,p.y-10);c.restore();}

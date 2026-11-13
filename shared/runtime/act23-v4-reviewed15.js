@@ -84,8 +84,8 @@ function observe(app,dt){const e=app.engine,b=e.b,m=memory(b),s=b.honroV4Reviewe
   m.drops.elapsed+=delta;m.drops.passes=Math.floor(m.drops.elapsed/.55);
  }
  if(B.memory(b).drained)m.drained=true;
- const selected=b.honroRouteChoice?.selectedRoute;
- const route=(b.honroRouteSpec?.routes||[]).find(r=>r.id===(selected||m.route));
+ const exits=V.openRoutes(b);
+ const route=exits.find(r=>r.id===b.honroRouteChoice?.selectedRoute)||exits.find(r=>near(b,V.marker(b,r.markerId),180));
  const exit=route&&V.marker(b,route.markerId);
  if(exit&&near(b,exit,180))m.departure={route:route.id,point:clone(exit)};
 }
@@ -135,7 +135,14 @@ function use(app,m,s){const b=app.engine.b,q=memory(b);if(s?.id==='sluice'&&!api
  }return undefined;}
 // An optional aiming observation never becomes an extra skill/class requirement.
 // The original drift/groove route remains usable without a shot or an archer.
-function eligibility(){return undefined;}
+function eligibility(app,m,s){
+ if(s.id!=='sluice')return undefined;
+ const b=app.engine.b,wheel=unit(b,b.honroV4LowWheel);
+ if(!wheel||alive(wheel))return{ok:false,reason:'물레를 먼저 멈추기'};
+ const count=threats(b,m,260).length;
+ if(count)return{ok:false,reason:`수문 주변 적 ${count}기 제압`};
+ return{ok:true,reason:'수문 열기',actionLabel:api.done(b,'low-branch')?'수문 열기':'수문 앞에서 담허와 대화'};
+}
 const bodyModes=new Set(['leap','slam','spin','dash','quake','guard','lift','recall','charge','vault','cataclysmCharge']);
 function attach(app,e){if(e.honroReviewed15Bound)return;e.honroReviewed15Bound=true;
  const predict=e.predict;e.predict=function(u,skill,...args){const out=predict.call(e,u,skill,...args),b=e.b,z=field(b)?.zone;
@@ -150,7 +157,23 @@ function attach(app,e){if(e.honroReviewed15Bound)return;e.honroReviewed15Bound=t
   return step.call(e,p,...args);
  };
 }
-function present(b,result){const m=memory(b);if(!m.lowObserved||V.mem(b).done.groove)return result;
+const actionLabels={sluice:'수문 열기',groove:'물골의 홈 조사'};
+function present(b,result){const m=memory(b),step=V.current(b)?.id;
+ if(['15.knocks','route-exit'].includes(step)||!step&&api.done(b,'temple')){
+  const exits=V.openRoutes(b).map(r=>({...V.marker(b,r.markerId),kind:'exit',label:r.id==='A'?'아래 물길 출구':'오른쪽 위 바위길 출구'}));
+  if(step==='route-exit'&&api.done(b,'temple')||!step&&api.done(b,'temple')){
+   const text=exits.length>1?'아래 물길 또는 오른쪽 위 바위길 출구로 동행 한 명 이동':'오른쪽 위 바위길의 출구 표식으로 동행 한 명 이동';
+   return {...result,summary:text,currentInstruction:text,targets:exits};
+  }
+  const ids=m.merge.ids.filter(id=>alive(unit(b,id))),p=V.marker(b,'groove');
+  const text=ids.length?`물골에 나타난 혼령 ${ids.length}기 제압`:m.merge.cleared?'물골의 홈 가까이에서 두드리는 소리 확인':'물골의 홈에서 나타나는 혼령에 대비';
+  return {...result,summary:text,currentInstruction:text,targets:p?[{...p,kind:ids.length?'objective':'move',label:'물골의 홈'}]:[]};
+ }
+ if(step==='groove'||step==='15.drift'){
+  const p=V.marker(b,'groove'),text=step==='groove'?'물골의 홈에 접근해 조사':'오른쪽 물골의 홈으로 이동해 물방울의 흐름 확인';
+  result={...result,summary:text,currentInstruction:text,targets:p?[{...p,kind:step==='groove'?'interact':'move',label:'물골의 홈'}]:[]};
+ }
+ if(!m.lowObserved||V.mem(b).done.groove)return result;
  const choices=[['A2.S15.UI_CHOICE.01','sluice'],['A2.S15.UI_CHOICE.02','route-upper-exit']].map(([id,marker])=>({...V.marker(b,marker),id:marker,rowId:id,label:api.row(id).text,kind:'exit',reviewedStage:15,reviewedRevision:1}));
  return{...result,targets:[...result.targets,...choices],allTargets:[...result.allTargets,...choices]};
 }
@@ -163,7 +186,7 @@ function draw(scene,c,b,e){const m=memory(b),s=b.honroV4Reviewed15,w=unit(b,s.wh
  if(alive(w)){c.save();c.translate(w.x,w.y-w.h*.55);c.rotate(m.wheel.angle);c.strokeStyle='#bdd0c1';c.globalAlpha=.55;c.lineWidth=3;c.beginPath();c.ellipse(0,0,54,69,0,0,Math.PI*2);c.moveTo(-54,0);c.lineTo(54,0);c.stroke();c.restore();}
  c.restore();}
 function complete(b){const m=memory(b);return api.done(b,'depart')&&m.merge.cleared===true&&!!A.memory(b).proof['15.knocks'];}
-P.register(15,{mapRevision:515,author,prepare,allow,before,drive,use,eligibility,attach,present,draw,optional,objective:()=> 'A2.S15.OBJECTIVE.01',complete});
+P.register(15,{mapRevision:515,author,prepare,allow,before,drive,use,eligibility,attach,present,draw,optional,actionLabels,routeReady:b=>api.done(b,'temple'),objective:()=> 'A2.S15.OBJECTIVE.01',complete});
 const outcome=V.recordOutcome;V.recordOutcome=function(app,won){outcome(app,won);const b=app.engine?.b;if(won&&api.active(b)){const h=app.profile.honroAct23V4History?.stages?.[15];if(h?.reviewedNarrative&&memory(b).journalWithheld)h.reviewedNarrative.journalWithheld=clone(memory(b).journalWithheld);
  if(h?.run===b.session){const q=memory(b).continuity,proof=q?.revision===1&&q.sourceRun===b.session&&q.brokenPulley?.sourceRun===b.session?q.brokenPulley:null;
   // The actual merge spirits are not below the sluice. Never infer this claim

@@ -59,8 +59,8 @@ function begin(app,key,ids,proof={},resume=false){const b=app.engine.b,q=memory(
 // admitted line. Only the current rendered page or live subtitle adds an ID.
 function receiptIds(event,legacyPresented){const ids=event?.presentationReceiptRevision===1?event.presentedIds:legacyPresented;return Array.isArray(ids)?[...new Set(ids)].filter(id=>event.ids.includes(id)):[];}
 function finishReceipt(event,shown){const ids=shown===undefined?receiptIds(event):[...new Set([...receiptIds(event),...shown])].filter(id=>event.ids.includes(id));event.presentationReceiptRevision=1;event.presentedIds=ids;event.retiredIds=event.ids.filter(id=>!ids.includes(id));return ids;}
-function presented(app){const d=app.dialogue,line=d?.lines[d.index],meta=line?.[2],b=app.engine?.b,n=meta?.reviewedStage;if(!line||!meta||d.reviewedStage!==n||d.reviewedEvent!==meta.reviewedEvent||!G.HonroAct23V4Reviewed.rowsReviewed([line])||!G.HonroStory.allowed(app,line[0],meta))return;
- const provider=n===11?{active,memory}:n>=12&&n<=20?G.HonroAct23V4ReviewedChapters:G.HonroAct23V4Reviewed.provider?.(n);if(!provider?.active(b))return;const event=provider.memory(b).events[d.reviewedEvent];if(!event?.ids.includes(meta.rowId))return;if(event.presentationReceiptRevision!==1){event.presentationReceiptRevision=1;event.presentedIds=[];}if(!event.presentedIds.includes(meta.rowId))event.presentedIds.push(meta.rowId);
+function presented(app){const d=app.dialogue,line=d?.lines[d.index],meta=line?.[2],b=app.engine?.b,n=meta?.reviewedStage;if(!line||!meta||d.reviewedStage!==n||d.reviewedEvent!==meta.reviewedEvent&&!d.reviewedSequence?.includes(meta.reviewedEvent)||!G.HonroAct23V4Reviewed.rowsReviewed([line])||!G.HonroStory.allowed(app,line[0],meta))return;
+ const provider=n===11?{active,memory}:n>=12&&n<=20?G.HonroAct23V4ReviewedChapters:G.HonroAct23V4Reviewed.provider?.(n);if(!provider?.active(b))return;const event=provider.memory(b).events[meta.reviewedEvent];if(!event?.ids.includes(meta.rowId))return;if(event.presentationReceiptRevision!==1){event.presentationReceiptRevision=1;event.presentedIds=[];}if(!event.presentedIds.includes(meta.rowId))event.presentedIds.push(meta.rowId);
 }
 // The opening is several world-gated events. One explicit skip closes the
 // rest of that opening; later MID/guide/COMPLETE events keep their own gates.
@@ -103,19 +103,14 @@ function complete(b){return !active(b)||closed(memory(b).events.depart)&&!!memor
 // Read automatic steps and route destinations from the current battle.
 // Saved markers remain intact.
 function automaticMarker(b,m){
- if(active(b))return ['v4-entry','clear','reach','v4-world'].includes(V.steps(b).find(s=>s.id===m?.id)?.kind);
- if(!m)return false;
- if([21,29].includes(b?.honroStage)&&V.active(b)){
-  const kind=V.steps(b).find(s=>s.id===m.id)?.kind;
-  return b.honroStage===21?m.id==='v4.gate-cart'&&kind==='destroy':kind==='stage29';
- }
- if(![12,13,17,18].includes(b?.honroStage)||!G.HonroAct23V4ReviewedChapters?.active(b))return false;
- const kind=V.steps(b).find(s=>s.id===m.id)?.kind;
- if(b.honroStage===13)return ['v4-escort','v4-party-pass'].includes(kind);
- if(b.honroStage===17)return ['clear','v4-defense','v4-withdraw'].includes(kind);
- if(b.honroStage===18)return ['v4-18-descent','v4-18-rescue-safe','v4-18-death'].includes(kind);
- return ['v4-recurrence','route'].includes(kind)
-  ||(b.honroRouteSpec?.routes||[]).some(route=>route.markerId===m.id);
+ if(!m||!V.active(b)||!['act2','act3'].includes(m.action))return false;
+ if((b.honroRouteSpec?.routes||[]).some(route=>route.markerId===m.id))return true;
+ const step=V.steps(b).find(s=>s.id===m.id);
+ if(!step)return !/^(spirit-lamp|rebuild-brace)/.test(m.id);
+ if(step.kind==='v4-slot')return b.honroStage===16&&G.HonroAct23V4ReviewedChapters?.active(b);
+ if(step.kind==='v4-defeat')return b.honroStage!==17||!G.HonroAct23V4ReviewedChapters?.active(b);
+ return !['interact','rescue','v4-extract','v4-rescue','v4-work','v4-lock','v4-wheel','v4-load','v4-city-rescue','v4-outside',
+  'v4-18-brake','v4-18-rescue','v4-18-hoist','v4-18-inspect','v4-18-lift','v4-18-support','v4-18-settle','v4-18-lock','v4-18-souls'].includes(step.kind);
 }
 function instruction(b){
  const s=V.current(b),p=s&&V.marker(b,s.id);

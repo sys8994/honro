@@ -20,7 +20,7 @@ function clearShot(app,proof){if(!proof)return false;const e=app.engine,b=e.b,u=
  const from={x:u.x,y:u.y-u.h*.63},to={x:t.x,y:t.y-t.h*.5},dx=to.x-from.x,dy=to.y-from.y,den=dx*dx+dy*dy,axle={x:s.repair.x+45,y:s.repair.y-100},f=den?Math.max(0,Math.min(1,((axle.x-from.x)*dx+(axle.y-from.y)*dy)/den)):0;
  if(Math.hypot(from.x+f*dx-axle.x,from.y+f*dy-axle.y)<85)return false;const h=e.projectileCollision(from,to,1,u.id,[],true);return !h?.terrain&&h?.unit?.id===t.id;
 }
-function allow(app,r){const b=app.engine.b,q=mem(b),a=base(b),w=B.worksite(b);if(r.id.startsWith('EDGE.OPTIONAL_'))return optional({...app.profile,honroBattle:b},r);
+function allow(app,r,meta){const b=app.engine.b,q=mem(b),a=base(b),w=B.worksite(b);if(r.id.startsWith('EDGE.OPTIONAL_'))return optional({...app.profile,honroBattle:b},r);
  if(r.id===id('FAIL.01'))return b.phase==='lost'||!aliveWorkers(b);if(!aliveWorkers(b))return false;
  if(r.id==='EDGE.ARRIVALS_17_0')return !!b.honroV4Reviewed17.socket;
  if(r.id.startsWith(id('INTRO.')))return !a.proof['17.mesh'];
@@ -38,7 +38,7 @@ function allow(app,r){const b=app.engine.b,q=mem(b),a=base(b),w=B.worksite(b);if
  if(r.id===id('MID.13'))return (a.wheelAngle||0)>.1;
  if(r.id===id('MID.14'))return Object.keys(w.knocks||{}).length>0;
  if(r.id===id('COMPLETE.01'))return !!a.proof['17.load-test']?.locksClosed&&!!a.proof['17.load-test']?.ropeTaut&&a.wheelAngle===Math.PI*2;
- if(r.id===id('COMPLETE.02'))return allow(app,api.row(id('COMPLETE.01')))&&spoken(b,'load');
+ if(r.id===id('COMPLETE.02'))return allow(app,api.row(id('COMPLETE.01')))&&(spoken(b,'load')||meta?.reviewedSequence?.includes('load'));
  if(r.id===id('POPUP.01'))return !!q.retreat;
  if(r.id===id('POPUP.02'))return !!a.proof['17.mesh']&&!a.proof['17.wheel']&&(q.idle||0)>=1;
  if(r.id===id('JOURNAL.01')||r.id==='EDGE.RUNTIME.STAGE17.PROTECT_LABEL')return B.complete(b)&&separated(b)&&api.done(b,'depart');
@@ -74,8 +74,7 @@ function drive(app,a,dt){const b=app.engine.b,q=mem(b),p=base(b);observe(app,dt)
  if(start('rotation',[id('MID.13')],(p.wheelAngle||0)>.1,{angle:p.wheelAngle}))return;
  if(start('knock',[id('MID.14')],spoken(b,'rotation')&&Object.keys(B.worksite(b).knocks||{}).length>0,B.worksite(b).knocks))return;
  if(start('idle',[id('POPUP.02')],allow(app,api.row(id('POPUP.02')))))return;
- if(start('load',[id('COMPLETE.01')],allow(app,api.row(id('COMPLETE.01'))),p.proof['17.load-test']))return;
- if(start('depart',[id('COMPLETE.02')],spoken(b,'load'),p.proof['17.load-test']))return;
+ if(allow(app,api.row(id('COMPLETE.01')))&&api.beginSequence(app,[['load',id('COMPLETE.01')],['depart',id('COMPLETE.02')]],p.proof['17.load-test']))return;
  if(allow(app,api.row(id('JOURNAL.01')))&&!q.journal)api.journal(app,id('JOURNAL.01'));
 }
 function before(app,a,dt){const b=app.engine.b,q=mem(b),p=base(b);if(!V.safe(app))return false;advanceHoist(app,dt);observe(app,dt);
@@ -89,8 +88,15 @@ function before(app,a,dt){const b=app.engine.b,q=mem(b),p=base(b);if(!V.safe(app
  if(p.proof['17.load-test']&&!api.done(b,'depart'))return false;
  return true;
 }
-function eligibility(app,m,s){const b=app.engine.b;if(s.id==='17.hoist')return{ok:!!mem(b).events.hoist&&['mage','occultist'].includes(app.engine.active?.cls)&&!foes(b,b.honroV4Reviewed17.hoist,280).some(u=>u.id!=='act2-hoist'),reason:s.id};
- if(s.id==='17.brace'&&!api.done(b,'crack')||s.id==='17.mesh'&&!spoken(b,'delivery')||s.id==='17.lock'&&!spoken(b,'delivery')||s.id==='17.parts'&&!api.done(b,'separation'))return{ok:false,reason:s.id};return undefined;}
+function eligibility(app,m,s){const b=app.engine.b;
+ if(s.id==='17.hoist'){
+  const ready=api.done(b,'hoist'),cls=['mage','occultist'].includes(app.engine.active?.cls),count=foes(b,b.honroV4Reviewed17.hoist,280).filter(u=>u.id!=='act2-hoist').length;
+  return{ok:ready&&cls&&!count,reason:!ready?'인양축에 붙은 혼 확인':!cls?'담허 또는 소단으로 전환':count?`인양축 주변 위협 ${count}기 제압`:s.id};
+ }
+ if(s.id==='17.brace'&&!api.done(b,'crack'))return{ok:false,reason:'버팀목을 세울 벽의 갈라진 곳 확인'};
+ if((s.id==='17.mesh'||s.id==='17.lock')&&!spoken(b,'delivery'))return{ok:false,reason:'길찬이 가져온 부품을 석공에게 건넬 때까지 대기'};
+ if(s.id==='17.parts'&&!api.done(b,'separation'))return{ok:false,reason:'인양축에서 혼을 분리한 뒤 부품 줍기'};
+}
 function use(app,m,s){if(s.id!=='17.hoist')return undefined;if(!eligibility(app,m,s).ok)return false;const e=app.engine,b=e.b,h=unit(b,'act2-hoist');if(!h)return false;h.honroHoistSpiritAttached=false;h.honroReleased=true;h.hp=0;h.dead=true;b.queue=b.queue.filter(k=>k!==h.id);mem(b).hoistSeparation={actor:e.active.id,cls:e.active.cls,released:true,machine:h.id,framePreserved:true,point:{x:h.x,y:h.y},serial:b.honroState.actorTurnSerial||0};e.fx('ring',h.x,h.y-h.h*.5,'#bccbc1',75);V.completeStep(app,s,e.active);app.dirty=true;if(!app.checkMission(e))e.finishAction();return true;}
 // The father's request precedes Gilchan's loaded walk; the ordinary worker
 // integrator still owns every position and may retreat immediately from danger.

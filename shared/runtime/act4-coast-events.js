@@ -290,20 +290,80 @@ P.exitWatchHint=function(b){
  const count=exitWatchCount(b);
  return count?'출구를 지키는 적 '+count+'기 · 길목의 위협을 걷어내기':'동행이 출구에 모인 뒤 상호작용';
 };
-const interact=P.interact;P.interact=function(app=G.HonroApp,probe=false){if(interact(app,probe))return true;const e=app.engine,b=e?.b;if(!active(b)||app.dialogue||b.phase!=='aim')return false;const q=memory(b),n=b.honroAct4Preview,u=e.active,cfg=b.honroAct4Design;if(!alive(u)||!e.grounded(u))return false;
- if(n===32&&quiet(b)&&closed(q,'missing_four')&&!q.safeSeven&&near(u,{x:e.unit('a4-shelter-speaker').x,y:K(b,'speakerY',2010)},340)){if(probe)return true;const report=event(q,'missing_four');report.started=false;report.terminal=false;return play(app,'missing_four');}
- if(n===35&&!q.flaskDelivery){const pair=flaskPair(e);if(pair&&u===pair.mage){if(probe)return true;q.flaskDelivery={phase:'passing',giver:pair.giver.id,receiver:pair.mage.id,elapsed:0};return true;}}
+P.questGuidance=function(app){
+ const e=app.engine,b=e.b,n=b.honroStage,cfg=b.honroAct4Design,q=b.honroAct4PreviewState,heroes=party(b);
+ const hint=(text,point,label=text,kind='move')=>({text,targets:Number.isFinite(point?.x)&&Number.isFinite(point?.y)?[{id:'act4-current-goal',x:point.x,y:point.y,label,kind}]:[]});
+ const gather=(point,label,at)=>hint(`${label} · 동행 ${heroes.filter(at).length}/${heroes.length}명 도착`,point,label,'exit');
+ if(!q)return hint(app.stage.goal);
+ const count=foes(b).length,exit=cfg.exit;
+ if(n===31){
+  if(count)return hint(`나루의 적 제압 · 남은 적 ${count}기`);
+  const p=cfg.boarding,deck=p&&{x:(p.boardX1+p.boardX2)/2,y:p.deckY};
+  return q.boat.phase==='docked'&&p?gather(deck,'배의 갑판으로 이동',u=>u.x>p.boardX1&&u.x<p.boardX2&&Math.abs(u.y-p.deckY)<5&&e.grounded(u)):hint('나룻배가 접안할 때까지 나루에서 기다리기',deck,'나루');
+ }
+ if(n===32){
+  if(count)return hint(`포구의 적 제압 · 남은 적 ${count}기`);
+  const npc=e.unit('a4-shelter-speaker'),point={x:K(b,'shelterX',4890),y:K(b,'speakerY',2010)};
+  if(!closed(q,'reunion'))return hint('포구 오른쪽 피신처의 문으로 이동해 주민과 재회',point,'피신처 문');
+  if(!q.safeSeven)return hint('재회한 주민과 문턱을 화면에 담아 일행의 행방 확인',npc,'재회한 주민');
+  return gather(exit,'포구 출구에 모여 떠나기',u=>u.x>exit.x-300);
+ }
+ if([33,34,37,38].includes(n)&&exit){
+  if(n===37&&!closed(q,'signal'))return hint('오른쪽 끝 곶으로 이동해 건너편 구조 신호를 화면에 담기',cfg.signal,'건너편 구조 신호');
+  const watch=P.exitWatchHint(b);if(watch&&exitWatchCount(b))return hint(watch,exit,'출구 길목의 경비');
+  if(n===38&&cfg.connection&&near(e.active,cfg.connection.entry,330)&&!q.connected){
+   if(q.anchorAction)return hint('담허가 굴 연결을 고정하는 동안 입구에서 대기',cfg.connection.entry,'굴 입구');
+   if(q.connectionProbe?.phase==='observed')return hint('담허로 전환해 굴 입구에서 연결 고정',cfg.connection.entry,'굴 입구','interact');
+   if(q.connectionProbe)return hint('굴 입구와 어긋난 출구를 화면에 담아 탐침 확인',cfg.connection.entry,'굴 입구');
+   return hint('굴 입구에서 탐침을 보내거나 위쪽 길로 우회',cfg.connection.entry,'굴 입구','interact');
+  }
+  return gather(exit,'출구 표식에 모여 떠나기',u=>u.x>exit.x-300&&Math.abs(u.y-exit.y)<=240&&e.grounded(u));
+ }
+ if(n===35||n===36){
+  if(count)return hint(`${n===35?'대숲':'폐촌'}의 적 제압 · 남은 적 ${count}기`);
+  const door={x:K(b,'doorPushX',2370),y:K(b,'doorPushY',2010)};
+  if(n===36&&q.door.phase!=='fallen')return hint(q.door.phase==='standing'?'휘겸을 나무문 앞으로 보내 문 밀기':'문이 넘어질 때까지 기다리기',door,'폐촌의 문');
+  if(n===36&&!closed(q,'door_falls'))return hint('넘어진 문을 화면에 담아 확인',door,'넘어진 문');
+  if(n===36&&!q.events.door_falls?.skipped&&!['A4.S36.DOOR.01','A4.S36.DOOR.02'].every(id=>q.receipts.includes(id)))return hint('휘겸으로 돌아가 넘어진 문 조사',door,'넘어진 문','interact');
+  const x=n===35?K(b,'completeX',6500):Math.min(K(b,'completeX',6500),K(b,'leaveX',6100)),y=K(b,'completeYMax',1e9);
+  const edge=n===36?K(b,'leaveX',x):x;
+  const level=y===1e9?e.active?.y:y;
+  const point=exit||{x:edge,y:e.contactSurface(edge,level-500,level+250)?.y??level};
+  return gather(point,'오른쪽 출구에 모여 떠나기',u=>u.x>x&&u.y<y);
+ }
+ if(n===39){
+  const r=cfg.rescue;
+  if(!q.exitStable)return hint(q.stabilizing?'닻 고정 중 · 이동하지 않고 기다리기':'출구 닻 옆에서 고정하기',r.anchor,'출구 닻','interact');
+  if(!q.netOpen)return hint(q.releasing?'그물 푸는 중 · 이동하지 않고 기다리기':'그물 옆에서 주민 풀어 주기',r.net,'주민을 가둔 그물','interact');
+  const safe=r.ids.filter(id=>rescueSafe(e,e.unit(id))).length;
+  if(safe<r.ids.length){const guard=foes(b).find(u=>u.id==='a4-39-n-1'&&u.x>r.net.x-170&&u.x<r.safeZone.x2+170);return hint(`주민 안전 도달 ${safe}/${r.ids.length}명 · ${guard?'그물 앞 경비 제압':'호송 통로를 비우고 주민 엄호'}`,guard||r.net,guard?'그물 앞 경비':'주민 호송로');}
+  return gather(exit,'주민과 합류해 출구로 떠나기',u=>u.x>r.exit-260&&e.grounded(u));
+ }
+ if(n===40){
+  if(count)return hint(`귀환로의 적 제압 · 남은 적 ${count}기`);
+  const geo=cfg.geometry40,escort=q.returnEscort;
+  if(!escort)return hint('나룻배와 위쪽 귀환로가 보이는 곳으로 이동',geo?.marks.boat,'귀환 나룻배');
+  if(escort.phase!=='safe')return hint('주민들이 배와 위쪽 길로 이동 중 · 귀환로를 비우고 안전한 쪽으로 이동',geo?.marks.safe,'동쪽 안전 지대');
+  if(!closed(q,'next'))return hint('동쪽 안전 지대에서 재회와 인원 확인',geo?.marks.safe,'동쪽 안전 지대');
+  return gather(geo?.marks.safe||exit,'안전 지대에 모여 귀환 마무리',u=>geo?insideEventBounds(u,geo.finishBounds)&&e.grounded(u):u.x>5300);
+ }
+ return hint(app.stage.goal);
+};
+const interact=P.interact;P.interact=function(app=G.HonroApp,probe=false){const previous=interact(app,probe);if(previous)return previous;const e=app.engine,b=e?.b;if(!active(b)||app.dialogue||b.phase!=='aim')return false;const q=memory(b),n=b.honroAct4Preview,u=e.active,cfg=b.honroAct4Design;if(!alive(u)||!e.grounded(u))return false;
+ const speaker=n===32?e.unit('a4-shelter-speaker'):null;
+ if(n===32&&alive(speaker)&&quiet(b)&&closed(q,'missing_four')&&!q.safeSeven&&!q.reader&&!q.bark&&near(u,{x:speaker.x,y:K(b,'speakerY',2010)},340)){if(probe)return probe==='label'?'주민에게 나머지 일행의 행방 묻기':true;const report=event(q,'missing_four');report.started=false;report.terminal=false;return play(app,'missing_four');}
+ if(n===35&&!q.flaskDelivery){const pair=flaskPair(e);if(pair&&u===pair.mage){if(probe)return probe==='label'?'담허에게 약병 건네기':true;q.flaskDelivery={phase:'passing',giver:pair.giver.id,receiver:pair.mage.id,elapsed:0};return true;}}
  if(n===38&&near(u,cfg.connection.entry,250)){
-  if(!q.connectionProbe){if(probe)return true;q.connectionProbe={phase:'entry',at:q.clock};return true;}
-  if(!q.connected&&q.connectionProbe.phase==='observed'&&u.cls==='mage'){if(probe)return true;q.anchorAction={actor:u.id,elapsed:0};play(app,'anchor');return true;}
-  if(q.connected){const p=space(b,u,q.connected.destination,240);if(!p)return false;if(probe)return true;feet(e,u,p);return true;}
+  if(!q.connectionProbe){if(probe)return probe==='label'?'굴 입구 탐침':true;q.connectionProbe={phase:'entry',at:q.clock};return true;}
+  if(!q.connected&&!q.anchorAction&&q.connectionProbe.phase==='observed'&&u.cls==='mage'){if(probe)return probe==='label'?'담허로 굴 연결 고정':true;q.anchorAction={actor:u.id,elapsed:0};play(app,'anchor');return true;}
+  if(q.connected){const p=space(b,u,q.connected.destination,240);if(!p)return false;if(probe)return probe==='label'?'연결된 굴 건너기':true;feet(e,u,p);return true;}
  }
- if(n===39){if(near(u,cfg.rescue.anchor,u.cls==='mage'?360:180)&&!q.exitStable&&!q.stabilizing){if(probe)return true;q.stabilizing={actor:u.id,elapsed:0};return true;}if(near(u,cfg.rescue.net,u.cls==='occultist'?340:180)&&!q.netOpen&&!q.releasing){if(probe)return true;q.releasing={actor:u.id,elapsed:0};return true;}
-  if(q.exitStable&&q.rescued?.ids.length===4&&cfg.rescue.ids.every(id=>rescueSafe(e,e.unit(id)))&&party(b).every(v=>v.x>cfg.rescue.exit-260&&e.grounded(v))&&!P.narrativePending(b)){if(probe)return true;complete(app,{exitStable:q.exitStable,rescued:q.rescued,bossAlive:alive(e.unit('a4-wreck'))});return true;}
+ if(n===39){if(near(u,cfg.rescue.anchor,u.cls==='mage'?360:180)&&!q.exitStable&&!q.stabilizing){if(probe)return probe==='label'?'출구 닻 고정':true;q.stabilizing={actor:u.id,elapsed:0};return true;}if(near(u,cfg.rescue.net,u.cls==='occultist'?340:180)&&!q.netOpen&&!q.releasing){if(probe)return probe==='label'?'그물 풀기':true;q.releasing={actor:u.id,elapsed:0};return true;}
+  if(q.exitStable&&q.rescued?.ids.length===4&&cfg.rescue.ids.every(id=>rescueSafe(e,e.unit(id)))&&party(b).every(v=>v.x>cfg.rescue.exit-260&&e.grounded(v))&&!P.narrativePending(b)){if(probe)return probe==='label'?'주민과 함께 물길을 떠나기':true;complete(app,{exitStable:q.exitStable,rescued:q.rescued,bossAlive:alive(e.unit('a4-wreck'))});return true;}
  }
- if(n===32&&quiet(b)&&closed(q,'missing_four')&&q.safeSeven&&party(b).every(v=>v.x>cfg.exit.x-300)){if(probe)return true;complete(app,{safeSeven:q.safeSeven});return true;}
- if([33,34,37,38].includes(n)&&party(b).every(v=>v.x>cfg.exit.x-300&&Math.abs(v.y-cfg.exit.y)<=240&&e.grounded(v))&&(![37].includes(n)||closed(q,'signal'))&&!exitWatchCount(b)){if(probe)return true;complete(app,{exit:cfg.exit,connection:q.connected||{physicalRoute:true},signal:q.events.signal?.presented,exitContributionVersion:1});return true;}
- if(n===40&&q.returnEscort?.phase==='safe'&&closed(q,'next')&&party(b).every(v=>geometry40(b)?insideEventBounds(v,geometry40(b).finishBounds)&&e.grounded(v):v.x>5300)){if(probe)return true;complete(app,{roster:q.roster,rescued:q.rescued});return true;}
+ if(n===32&&quiet(b)&&closed(q,'missing_four')&&q.safeSeven&&party(b).every(v=>v.x>cfg.exit.x-300)){if(probe)return probe==='label'?'주민 일곱 명과 포구 떠나기':true;complete(app,{safeSeven:q.safeSeven});return true;}
+ if([33,34,37,38].includes(n)&&party(b).every(v=>v.x>cfg.exit.x-300&&Math.abs(v.y-cfg.exit.y)<=240&&e.grounded(v))&&(![37].includes(n)||closed(q,'signal'))&&!exitWatchCount(b)){if(probe)return probe==='label'?'출구에서 출발':true;complete(app,{exit:cfg.exit,connection:q.connected||{physicalRoute:true},signal:q.events.signal?.presented,exitContributionVersion:1});return true;}
+ if(n===40&&q.returnEscort?.phase==='safe'&&closed(q,'next')&&party(b).every(v=>geometry40(b)?insideEventBounds(v,geometry40(b).finishBounds)&&e.grounded(v):v.x>5300)){if(probe)return probe==='label'?'귀환 마무리':true;complete(app,{roster:q.roster,rescued:q.rescued});return true;}
  return false;};
 function eliteRewardTarget(b){const v=b.honroAct4Design?.eliteReward36,authored=b.honroMap?.act4?.eliteReward36;if(v===undefined&&authored===undefined)return null;
  const valid=x=>x&&typeof x==='object'&&!Array.isArray(x)&&x.version===1&&typeof x.targetId==='string'&&/^[-\w]{1,128}$/.test(x.targetId)&&Object.keys(x).length===2;

@@ -50,7 +50,7 @@ const worksite=b=>mem(b).worksite??={version:1,actors:{}};
 function braceOccupants(b){const z=b.honroV4Worksite?.braceHazard;if(!z)return[];return b.units.filter(u=>alive(u)&&u.x+u.r>z.x&&u.x-u.r<z.x+z.w&&u.y>z.y&&u.y-u.h<z.y+z.h);}
 function worksiteReady(b){const spec=b.honroV4Worksite,w=worksite(b),mason=unit(b,'17.mason');return !!spec&&!!w.actors['17.mason:join']?.arrived&&alive(mason)&&near(mason,spec.jobs.mason,45)&&C.validTerrainContactPose(b.terrain,mason);}
 function deliveryReady(b){const spec=b.honroV4Worksite,w=worksite(b),part=mem(b).proof['17.parts'],gilchan=unit(b,'17.gilchan');return !!spec&&worksiteReady(b)&&part?.workerCarrier==='17.gilchan'&&w.delivery?.partId===part.partId&&w.delivery.delivered&&w.delivery.distance>=spec.minCarry&&alive(gilchan)&&near(gilchan,spec.load,35)&&C.validTerrainContactPose(b.terrain,gilchan);}
-function eligibility(app,m,s){const b=app.engine.b;if(b.honroStage!==17||!b.honroV4Worksite)return null;const a=mem(b),ok=()=>({ok:true,reason:s.id}),no=()=>({ok:false,reason:s.id});
+function eligibility(app,m,s){const b=app.engine.b;if(b.honroStage!==17||!b.honroV4Worksite)return null;const a=mem(b),ok=()=>({ok:true,reason:s.id});
  if(s.id==='17.brace'){
   const n=threats(b,m,280).length;
   if(n)return {ok:false,reason:`버팀목 주변 위협 ${n}기 제압`};
@@ -58,8 +58,17 @@ function eligibility(app,m,s){const b=app.engine.b;if(b.honroStage!==17||!b.honr
   if(a.work[s.id]?.working)return {ok:false,reason:'버팀목 설치 중'};
   return ok();
  }
- if(s.id==='17.mesh')return deliveryReady(b)&&!threats(b,m,280).length?ok():no();
- if(['17.lock','17.wheel','17.load-test'].includes(s.id)){if(!worksiteReady(b)||!deliveryReady(b)||threats(b,m,280).length)return no();if(s.id==='17.lock'&&!a.proof['17.mesh']||s.id==='17.wheel'&&!a.proof['17.lock']||s.id==='17.load-test'&&(!a.proof['17.lock']||!a.proof['17.wheel']))return no();return ok();}
+ if(['17.mesh','17.lock','17.wheel','17.load-test'].includes(s.id)){
+  const n=threats(b,m,280).length,w=worksite(b);
+  if(n)return {ok:false,reason:`인양축 주변 위협 ${n}기 제압`};
+  if(!deliveryReady(b))return {ok:false,reason:'길찬이 부품을 옮기고 석공이 작업 자리에 도착할 때까지 통로 비우기'};
+  if(s.id==='17.mesh'&&a.work[s.id]?.working)return {ok:false,reason:'석공이 부품을 맞추는 중'};
+  if(s.id==='17.wheel'&&w.wheelRequested)return {ok:false,reason:'바퀴가 돌고 있음 · 인양축 옆에서 대기'};
+  if(s.id==='17.lock'&&!a.proof['17.mesh'])return {ok:false,reason:'먼저 인양축 부품 맞추기'};
+  if(s.id==='17.wheel'&&!a.proof['17.lock'])return {ok:false,reason:'먼저 고정핀 잠그기'};
+  if(s.id==='17.load-test'&&(!a.proof['17.lock']||!a.proof['17.wheel']))return {ok:false,reason:'고정핀과 바퀴가 제자리에 놓일 때까지 대기'};
+  return ok();
+ }
  return null;
 }
 // Only Engine.walk/jump and the ordinary body integrator change worker poses.

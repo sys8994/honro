@@ -135,11 +135,21 @@ function echoTick(app,dt){const b=app.engine.b,m=mem(b),s=m.echo;if(!s||s.done)r
  if(s.elapsed>=.9){delete u.honroScenePose;s.done=true;V.ackSlot(b,ECHO,{kind:'world-gesture',actor:u.id,elapsed:s.elapsed});checkpoint(b,'stage29-echo-gesture');commitGoals(app);if(!app.checkMission?.(app.engine))app.engine.finishAction();app.dirty=true;}
 }
 function use(app,marker){const b=app.engine.b;if(!active(b))return;const id=marker?.id,u=app.engine.active;
+ const ready=eligibility(app,marker);if(ready&&!ready.ok)return false;
  if(id===SLUICE){if(!cleared(b)||mem(b).sluiceReclaimed||paused(app)||!V.safe(app)||!alive(u)||u.side!==0||u.summoned||u.enthrall||!near(u,mark(b,SLUICE),260)||app.canInput&&!app.canInput())return false;
   mem(b).sluiceReclaimed=true;checkpoint(b,'stage29-sluice-reclaimed',{actor:u.id});V.slot(app,'stage29-sluice-reclaimed',{actorId:u.id});app.engine.fx?.('ring',2780,2170,'#9bb798',55);commitGoals(app);if(!app.checkMission?.(app.engine))app.engine.finishAction();app.dirty=true;return true;}
  if(id===ECHO){if(!reclaimed(b)||mem(b).echo?.done||paused(app)||!alive(u)||u.side!==0||u.summoned||u.enthrall||!near(u,mark(b,ECHO),260)||app.canInput&&!app.canInput())return false;V.slot(app,ECHO,{actor:u.id});mem(b).echo??={actor:u.id,elapsed:0};app.engine.fx?.('ring',2830,2170,'#a6bdca',52);app.dirty=true;return true;}
  if(['route-exit','route-upper-exit','route-lower-exit'].includes(id))return route(app);
  return false;
+}
+function eligibility(app,m){
+ const b=app.engine.b,u=app.engine.active;
+ if(![SLUICE,ECHO].includes(m?.id))return undefined;
+ if(!alive(u)||u.side!==0||u.summoned||u.enthrall||paused(app)||!near(u,mark(b,m.id),260))return{ok:false,reason:'표식이 있는 같은 발판으로 이동'};
+ if(m.id===SLUICE)return cleared(b)&&!mem(b).sluiceReclaimed&&V.safe(app)?{ok:true,reason:'수문 다시 열기',actionLabel:'수문 다시 열기'}:{ok:false,reason:'수문 주변의 남은 위협 정리'};
+ if(!reclaimed(b))return{ok:false,reason:'먼저 수문 다시 열기'};
+ if(mem(b).echo)return{ok:false,reason:'잔영 조사 중 · 표식 곁에서 대기'};
+ return{ok:true,reason:'수문 옆 잔영 조사',actionLabel:'수문 옆 잔영 조사'};
 }
 function tick(app,dt=0){const b=app.engine.b;if(!active(b)||paused(app))return;prepare(b);const m=mem(b),u=boss(b);if(!u)return;
  offer(app);
@@ -176,6 +186,6 @@ function draw(scene,c,b){if(!active(b))return;const p=mark(b,ECHO);if(!p)return;
  const q=mem(b).echo,u=heroes(b).find(u=>u.cls==='mage');if(q&&!q.done&&u){c.save();c.globalAlpha=Math.sin(Math.PI*Math.min(1,q.elapsed/.9))*.42;scene.unitBody(c,{...u,x:p.x+72,y:p.y,hurt:0,anim:0,honroScenePose:{kind:'point',time:q.elapsed}},0);c.restore();}
  const lock=mark(b,SLUICE);if(lock){c.save();c.strokeStyle=mem(b).sluiceReclaimed?'#9bb798':'#847657';c.lineWidth=4;c.beginPath();c.moveTo(lock.x-15,lock.y-34);c.lineTo(lock.x+15,lock.y-34);c.moveTo(lock.x,lock.y-49);c.lineTo(lock.x,lock.y-19);c.stroke();c.restore();}
 }
-const plugin={author,prepare,attach,tick,state,failure,complete,use,stepSatisfied,stepTick,coverBlockers,draw,ids:IDS,bossId:BOSS,active,memory:mem};
+const plugin={author,prepare,attach,tick,state,failure,complete,eligibility,use,stepSatisfied,stepTick,coverBlockers,draw,ids:IDS,bossId:BOSS,active,memory:mem};
 G.HonroAct23V4Stage29=plugin;V.register(29,plugin);
 })(globalThis);

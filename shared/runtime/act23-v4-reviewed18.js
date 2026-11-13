@@ -25,8 +25,8 @@ function optional(profile,r){const b=profile.honroBattle,q=b?.honroStage===18&&a
  if(r.id==='EDGE.OPTIONAL_18_MAGE_0')return !m?.stable;
  return false;
 }
-function allow(app,r){const b=app.engine?.b;if(r.channel==='optional')return optional({...app.profile,honroBattle:b||app.profile.honroBattle},r);if(!b)return false;
- const m=physical(b),q=mem(b),live=alive(boss(b)),id=r.id,events=api.memory(b).events,said=key=>events[key]?.status==='done'&&events[key].ids.length>0;
+function allow(app,r,meta){const b=app.engine?.b;if(r.channel==='optional')return optional({...app.profile,honroBattle:b||app.profile.honroBattle},r);if(!b)return false;
+ const m=physical(b),q=mem(b),live=alive(boss(b)),id=r.id,events=api.memory(b).events,said=key=>events[key]?.status==='done'&&events[key].ids.length>0||meta?.reviewedSequence?.includes(key);
  if(id==='EDGE.ARRIVALS_18_0')return live&&alive(resident(b))&&q.rope.elapsed>0&&!m.rescued;
  if(id==='A2.S18.INTRO.01')return !m.rescued&&m.threat.walked>1;
  if(id==='A2.S18.INTRO.02')return live&&q.rope.elapsed>0&&!m.brakeLocked&&near(b,resident(b),1600);
@@ -102,20 +102,21 @@ function drive(app){const b=app.engine.b,q=mem(b),m=physical(b),events=api.memor
  if(offer('aware','A2.S18.INTRO.03',q.rope))return;
  if(offer('lowering','A2.S18.INTRO.04',{offset:m.bell.offset,actor:q.rope.actor}))return;
  if(offer('bell-guide','A2.S18.POPUP.03',q.bellAimProof))return;
- const actor=app.engine.active;
- for(const step of V.readySteps(b)){
-  const site=V.marker(b,step.id),guide=site&&approachGuide(b,site);
-  if(!guide||events[guide.key]||!alive(actor)||actor.side!==0||!V.near(actor,site,220))continue;
-  q.invalid=guide.kind;
-  if(scene(app,guide.key,guide.row))return;
+ if(allow(app,api.row('A2.S18.PHASE1.01'))||events['hands-off']?.status==='done'&&!m.brakeLocked){
+  const rows=[['hands-off','A2.S18.PHASE1.01'],['rescue-answer','A2.S18.PHASE1.02']];
+  if(m.threat.lowered)rows.push(['repeat','A2.S18.PHASE1.03']);
+  if(api.beginSequence(app,rows))return;
  }
-
- for(const[key,id]of [['hands-off','PHASE1.01'],['rescue-answer','PHASE1.02'],['repeat','PHASE1.03'],['brake-sight','MID.01'],['resident-approach','MID.02'],['braked','MID.03'],['moving-resident','MID.04'],['safe-resident','MID.05'],['question','PHASE2.01'],['answer','PHASE2.02'],['accusation','PHASE2.03'],['hostile','PHASE2.04'],['ritual','PHASE2.05'],['open-shot','PHASE2.06'],['death-confirm','DEATH.02'],['early-death','BRANCH.01'],['fall-confirm','BRANCH.02'],['environment-guide','POPUP.04'],['inspect','STABILIZE.01'],['support-visible','STABILIZE.02'],['gap','STABILIZE.03'],['clear-below','STABILIZE.04'],['reseated','STABILIZE.05']]){
-  if(offer(key,'A2.S18.'+id)){if(key==='question')q.confronted=true;return;}
+ for(const[key,id]of [['brake-sight','MID.01'],['resident-approach','MID.02'],['braked','MID.03'],['moving-resident','MID.04'],['safe-resident','MID.05']])if(offer(key,'A2.S18.'+id))return;
+ if(allow(app,api.row('A2.S18.PHASE2.01'))||events.question?.status==='done'&&alive(boss(b))){
+  const rows=[['question','A2.S18.PHASE2.01'],['answer','A2.S18.PHASE2.02'],['accusation','A2.S18.PHASE2.03'],['hostile','A2.S18.PHASE2.04']];
+  if(api.beginSequence(app,rows)){q.confronted=true;return;}
  }
+ for(const[key,id]of [['ritual','PHASE2.05'],['open-shot','PHASE2.06'],['death-confirm','DEATH.02'],['early-death','BRANCH.01'],['fall-confirm','BRANCH.02'],['environment-guide','POPUP.04'],['inspect','STABILIZE.01'],['support-visible','STABILIZE.02'],['gap','STABILIZE.03'],['clear-below','STABILIZE.04'],['reseated','STABILIZE.05']])if(offer(key,'A2.S18.'+id))return;
  if(q.translated&&!m.settled&&!m.bell.segment&&api.done(b,'clear-below')){S.begin(app,'settle',b.honroV4Stage18.restOffset,32);return;}
  if(stable(b)&&!q.knocks.length){const origin=b.honroAct2CompactVisuals?.bellOrigin||{x:7200,y:6610},source={x:origin.x+32,y:origin.y+m.bell.offset+100};app.engine.emit('sound',{name:'ricochet',...source,source:'18.remaining-knock'});app.engine.fx('ring',source.x,source.y,'#b5b2a0',55);q.knocks.push({id:'18.remaining-knock',source});}
- for(const[key,id]of [['stable','COMPLETE.01'],['knock','COMPLETE.02'],['depart','COMPLETE.03']])if(offer(key,'A2.S18.'+id))return;
+ const closing=[['stable','A2.S18.COMPLETE.01'],['knock','A2.S18.COMPLETE.02'],['depart','A2.S18.COMPLETE.03']].filter(([,id])=>allow(app,api.row(id)));
+ if(api.beginSequence(app,closing))return;
  if(api.done(b,'depart')&&allow(app,api.row('A2.S18.JOURNAL.01')))api.journal(app,'A2.S18.JOURNAL.01');
 }
 function before(app,a,dt){if(!a.safe(app))return false;observe(app,dt);drive(app);if(app.dialogue)return false;
@@ -144,13 +145,32 @@ function approachGuide(b,site){
 function eligibility(app,site){
  const b=app.engine.b,m=physical(b),guide=approachGuide(b,site);
  if(guide)return{ok:false,reason:api.row(guide.row).text};
- if(site.id==='18.settle'&&(!m.supportReady||!api.done(b,'gap')))return{ok:false,reason:api.row('A2.S18.OBJECTIVE.04').text};
+ if(site.id==='18.settle'&&(!m.supportReady||!api.done(b,'gap')))return{ok:false,reason:'받침을 설치하고 들어 올린 종 아래 틈을 확인'};
+ if(site.id==='18.settle'&&q.translated&&!m.settled)return{ok:false,reason:'종 아래 통로를 비우고 종이 내려올 때까지 대기'};
  if(site.id==='18.support'&&m.supportRequested&&!m.supportReady)return{ok:false,reason:'받침 설치 중'};
  if(site.id.startsWith('18.lock-')){
   const enemies=S.lockThreats(b,site).length;
   if(enemies)return{ok:false,reason:`고정구 주변 위협 ${enemies}기 제압`};
  }
  return undefined;
+}
+function present(b,result){
+ const step=V.current(b),m=physical(b),p=step&&V.marker(b,step.id);
+ if(!step||m.bossDeath&&!m.rescueSafe)return result;
+ const actions=P.actionText(b,step.id),text={
+  '18.descent':'제동구 쪽으로 이동해 종을 내리는 모습 확인',
+  '18.rescue-safe':'생존자 곁에서 통로를 비워 안전한 발판까지 호송',
+  '18.keeper':'유헌 제압 · 생존자를 엄호하고 유헌을 공격',
+  '18.hoist':m.hoistStarted?'인양기 곁에서 방어해 보호':'인양기 곁에서 작동 시작',
+  '18.support':m.supportRequested?'받침 설치 중 · 종 아래 통로 비우기':'종을 들어 올린 뒤 받침 설치',
+  '18.settle':!api.done(b,'gap')?'들어 올린 종 아래 틈을 확인':'종을 받침에 내려놓기',
+ }[step.id]||actions;
+ if(!text)return result;
+ const point=step.id==='18.keeper'?boss(b):p;
+ const kind=step.id==='18.keeper'?'boss':['18.descent','18.rescue-safe'].includes(step.id)?'move':'interact';
+ const targets=point?[{...point,id:step.id,label:actions||text,kind}]:[];
+ if(step.id==='18.descent'){const brake=V.marker(b,'18.brake');if(brake)targets.push({...brake,kind:'interact',label:'제동구'});}
+ return {...result,summary:text,currentInstruction:text,targets};
 }
 function attach(app,e){discardEndedBoundary(e.b);if(e.honroReviewed18Bound)return;e.honroReviewed18Bound=true;
  // Keep collected active-hero observations (including cast-time planning).
@@ -188,7 +208,7 @@ P.register(18,{mapRevision:518,actors:{'유헌':'act2-keeper','생존자':'18.su
  // Use the existing supported gallery, outside all three bell sweeps.
  Object.assign(keeper,point);keeper.stageOverrides={...keeper.stageOverrides,honroEncounterSupport:'sb-east-gallery-sill'};
  map.initialState.honroV4Reviewed18={revision:1,keeperPoint:point,keeperSupport:'sb-east-gallery-sill'};
- },prepare(b){mem(b);discardEndedBoundary(b);if(boss(b))boss(b).name='유헌';if(resident(b))resident(b).name='생존자';},attach,allow,dyingBoundary,before,drive,use,eligibility,draw,camera,optional,
+ },prepare(b){mem(b);discardEndedBoundary(b);if(boss(b))boss(b).name='유헌';if(resident(b))resident(b).name='생존자';},attach,allow,dyingBoundary,before,drive,use,eligibility,present,draw,camera,optional,
  objective(b){const m=physical(b);return 'A2.S18.OBJECTIVE.'+(m.bossDeath?(m.rescueSafe?'04':'03'):(m.rescueSafe?'02':'01'));},
  failure:b=>!alive(resident(b))?'A2.S18.FAIL.01':null,
  complete:b=>stable(b)&&api.done(b,'depart')&&(!mem(b).burialWitness||!!api.memory(b).journal),
