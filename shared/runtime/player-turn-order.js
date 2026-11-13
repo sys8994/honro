@@ -47,8 +47,8 @@ function camp(app){
  function end(cancel=false){
   const s=gesture;if(!s)return;gesture=null;clearTimeout(s.timer);
   if(s.armed||cancel)suppressUntil=performance.now()+700;
-  const r=nav.getBoundingClientRect(),inside=s.x>=r.left&&s.x<=r.right&&s.y>=r.top&&s.y<=r.bottom;
-  const valid=!cancel&&s.armed&&inside&&app.screen==='camp'&&nav.isConnected&&app.profile===s.profile&&JSON.stringify(known(app.profile))===JSON.stringify(s.visible)&&!app.modal?.classList.contains('open');
+  const r=nav.getBoundingClientRect(),withinRow=s.x>=r.left-16&&s.x<=r.right+16,inside=withinRow&&s.y>=r.top&&s.y<=r.bottom;
+  const valid=!cancel&&s.armed&&withinRow&&app.screen==='camp'&&nav.isConnected&&app.profile===s.profile&&JSON.stringify(known(app.profile))===JSON.stringify(s.visible)&&!app.modal?.classList.contains('open');
   const tapped=!cancel&&!s.armed&&inside&&s.pointerType==='touch'&&performance.now()-s.started<holdMs&&Math.hypot(s.x-s.x0,s.y-s.y0)<10&&app.screen==='camp'&&nav.isConnected;
   const saved=valid&&commit(app,[...s.preview,...order(app.profile).filter(c=>!s.preview.includes(c))]);
   clearVisual();if(s.armed)display();if(nav.hasPointerCapture?.(s.id))nav.releasePointerCapture(s.id);
@@ -62,7 +62,7 @@ function camp(app){
   clearTimeout(s.timer);s.armed=true;suppressUntil=performance.now()+700;
   s.preview=[...s.visible];s.slots=s.visible.map(cls=>cards.find(c=>c.dataset.class===cls).getBoundingClientRect());s.left=s.card.getBoundingClientRect().left;
   nav.setPointerCapture(s.id);nav.classList.add('order-active');s.card.classList.add('order-dragging');
-  if(status)status.textContent=`${name(s.cls)} 이동 중 · 놓으면 저장, 밖으로 옮기거나 Escape로 취소`;
+  if(status)status.textContent=`${name(s.cls)} 이동 중 · 놓으면 저장, Escape로 취소`;
  }
  function down(e){
   if(e.button!==0||e.pointerType==='touch'&&!e.isPrimary||contacts.size!==1||app.screen!=='camp'||app.modal?.classList.contains('open'))return;
@@ -75,10 +75,9 @@ function camp(app){
  function move(e){
   const s=gesture;if(!s||s.id!==e.pointerId)return;
   s.x=e.clientX;s.y=e.clientY;const dx=s.x-s.x0,dy=s.y-s.y0,r=nav.getBoundingClientRect();
-  if(s.x<r.left-16||s.x>r.right+16||s.y<r.top-16||s.y>r.bottom+16){suppressUntil=performance.now()+700;end(true);return;}
   if(!s.armed){
-   if(s.pointerType==='mouse'&&Math.abs(dx)>6&&Math.abs(dx)>Math.abs(dy))arm(s);
-   else if(Math.abs(dx)>10||Math.abs(dy)>8){suppressUntil=performance.now()+700;end(true);return;}
+   if(s.pointerType==='mouse'&&Math.abs(dx)>6&&s.x>=r.left-16&&s.x<=r.right+16)arm(s);
+   else if(s.pointerType!=='mouse'&&(Math.abs(dx)>10||Math.abs(dy)>8)){suppressUntil=performance.now()+700;end(true);return;}
   }
   if(!s.armed)return;
   e.preventDefault();

@@ -2,6 +2,8 @@ import type {Skill} from './types';
 import {MANA_COST_MULTIPLIER} from './balance';
 import {SKILL_LORE} from './skillLore';
 
+export function preparedShot(rank:number){const f=(rank-1)/7;return {focus:.25+.15*f,damage:.45+.25*f,critical:.16+.12*f,pierce:.18+.14*f};}
+
 /** Install after the historical definitions: NPC copies retain their exact tuning and modes. */
 export function installSkillRedesign(skills:Record<string,Skill>){
  for(const s of Object.values(skills))if(/^[AM](\d\d)$/.test(s.id))skills['L'+s.id]={...s,id:'L'+s.id,legacyId:s.id,enemyOnly:true};
@@ -24,7 +26,7 @@ export function installSkillRedesign(skills:Record<string,Skill>){
  const descriptions:Record<string,string>={
  A01:'빠르고 곧게 살을 날린다. SP를 쓰지 않는 기본 공격.',A14:'수평거리만큼 강해지는 정밀 사격. 캐릭터 치명 능력에 확률 +18~39%p, 배율 +0.20~0.55.',
  A02:'1~5명의 적을 더 관통한다. 다음 적마다 88% 피해. 얇은 목재를 관통하고 암반에 멈춘다.',A06:'실제 적 피해의 5~12%를 체력, 3~7%를 기력으로 회수. 한 사격의 회복은 최대 체력 15%, 기력 18%.',
- A10:'이번 행동을 써서 호흡을 고른다. 2턴 안에 다음 절명 사격 한 번의 거리·치명·방어 무시를 강화한다.',A99:'1200 이상 거리에서 치명타로 약해진 적을 처형한다. 보스는 잃은 체력에 따른 추가 피해. 2R 재사용.',
+ A10:'이번 행동을 써서 기력을 되찾고, 두 턴 안에 쏘는 다음 절명 사격 한 번의 피해·치명타·방어 관통을 높인다.',A99:'1200 이상 거리에서 치명타로 약해진 적을 처형한다. 보스는 잃은 체력에 따른 추가 피해. 2R 재사용.',
  A11:'최고점 이후 중력이 2.8~4.1배가 된다. 최고점에서 명중점까지의 낙차로 피해 증가.',A09:'비행 중 전장을 한 번 클릭·터치하거나 E로 조준 방향에 선회. 최대 45~80도, 속력 92% 유지.',
  A13:'시야가 열린 적을 완만하게 추적한다. 벽을 통과하지 않으며 낙차에 따라 피해 증가.',A12:'큰 곡선을 그리며 귀환한다. 왕복 각 1회 관통, 귀환 피해 70%, 같은 적 재적중은 추가 20%.',
  A15:'정점에서 일곱 추적 화살로 분열한다. 적을 분산 지정하며 같은 적 최대 4발, 100/70/50/35% 피해. 2R 재사용.',

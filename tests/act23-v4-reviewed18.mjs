@@ -16,7 +16,7 @@ let app,b,e;const logs=[];
 function knowledge(p){const ids=['01','02','04','06','08'].map(n=>'A2.S16.WITNESS.'+n);p.honroAct23V4History={revision:1,stages:{16:{run:'16.explicit-witness-fixture',reviewedNarrative:{rows:ids},reviewedPhysical:{revision:1,sourceRun:'16.explicit-witness-fixture',witness16_heard:true,witnessRows:ids}},17:{run:'17.explicit-lift-observation-fixture',reviewedPhysical:{revision:1,sourceRun:'17.explicit-lift-observation-fixture',axisTurned:true,wheel:{angle:Math.PI*2,rotationCount:1}}}}};return p;}
 function launch(){const p=h.profileThrough(17);p.seen['act2:first-spirit-encounter']=true;p.seen['map-story-v'+g.HonroStoryContent.version+'-17']=true;knowledge(p);app=h.load(p);app.launch(18);app.turnNotice=null;b=app.engine.b;e=app.engine;Object.assign(b,{side:0,phase:'aim'});e.settleBusy=()=>false;assert.equal(b.honroCampaignMapRevision,compact?618:518);if(compact)assert.deepEqual([b.width,b.height],[8200,7000]);return R.memory(b);}
 const rowId=()=>app.dialogue?.lines[app.dialogue.index]?.[2]?.rowId;
-function finish(){if(app.dialogue){logs.push(rowId());assert(P.rowsReviewed(app.dialogue.lines));h.finish(app);}}
+function finish(){if(app.dialogue){assert(P.rowsReviewed(app.dialogue.lines));for(let i=0;i<35&&app.dialogue;i++){logs.push(rowId());g.HonroStory.next(app);}assert(!app.dialogue);}}
 function tick(dt=.05){Object.assign(b,{side:0,phase:'aim'});V.tick(app,dt);}
 function pump(n=30){for(let i=0;i<n;i++){if(app.dialogue)finish();tick();}}
 function actor(cls='archer'){const u=V.heroes(b).find(u=>u.cls===cls);Object.assign(b,{active:u.id,side:0,phase:'aim'});u.acted=false;return u;}

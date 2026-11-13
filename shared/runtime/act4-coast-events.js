@@ -279,11 +279,8 @@ P.coastObserve=function(app,dt){const b=app.engine.b,n=b.honroAct4Preview;if(!ac
   }
  }
 };
-function exitWatchCount(b){
- const watch=b.honroAct4Design?.exitWatch;
- if(!watch)return 0;
- return foes(b).filter(u=>watch.ids.includes(u.id)&&insideEventBounds(u,watch)).length;
-}
+function exitWatchFoes(b){const watch=b.honroAct4Design?.exitWatch;return watch?foes(b).filter(u=>watch.ids.includes(u.id)&&insideEventBounds(u,watch)):[];}
+const exitWatchCount=b=>exitWatchFoes(b).length;
 P.exitWatchHint=function(b){
  const watch=b.honroAct4Design?.exitWatch;
  if(!watch||!party(b).some(u=>insideEventBounds(u,watch)))return '';
@@ -295,14 +292,14 @@ P.questGuidance=function(app){
  const hint=(text,point,label=text,kind='move')=>({text,targets:Number.isFinite(point?.x)&&Number.isFinite(point?.y)?[{id:'act4-current-goal',x:point.x,y:point.y,label,kind}]:[]});
  const gather=(point,label,at)=>hint(`${label} · 동행 ${heroes.filter(at).length}/${heroes.length}명 도착`,point,label,'exit');
  if(!q)return hint(app.stage.goal);
- const count=foes(b).length,exit=cfg.exit;
+ const enemies=foes(b),count=enemies.length,exit=cfg.exit,combat=(text,units=enemies)=>G.HonroObjectiveGuide.hostileHint(b,units,text);
  if(n===31){
-  if(count)return hint(`나루의 적 제압 · 남은 적 ${count}기`);
+  if(count)return combat('나루의 적 제압');
   const p=cfg.boarding,deck=p&&{x:(p.boardX1+p.boardX2)/2,y:p.deckY};
   return q.boat.phase==='docked'&&p?gather(deck,'배의 갑판으로 이동',u=>u.x>p.boardX1&&u.x<p.boardX2&&Math.abs(u.y-p.deckY)<5&&e.grounded(u)):hint('나룻배가 접안할 때까지 나루에서 기다리기',deck,'나루');
  }
  if(n===32){
-  if(count)return hint(`포구의 적 제압 · 남은 적 ${count}기`);
+  if(count)return combat('포구의 적 제압');
   const npc=e.unit('a4-shelter-speaker'),point={x:K(b,'shelterX',4890),y:K(b,'speakerY',2010)};
   if(!closed(q,'reunion'))return hint('포구 오른쪽 피신처의 문으로 이동해 주민과 재회',point,'피신처 문');
   if(!q.safeSeven)return hint('재회한 주민과 문턱을 화면에 담아 일행의 행방 확인',npc,'재회한 주민');
@@ -310,7 +307,7 @@ P.questGuidance=function(app){
  }
  if([33,34,37,38].includes(n)&&exit){
   if(n===37&&!closed(q,'signal'))return hint('오른쪽 끝 곶으로 이동해 건너편 구조 신호를 화면에 담기',cfg.signal,'건너편 구조 신호');
-  const watch=P.exitWatchHint(b);if(watch&&exitWatchCount(b))return hint(watch,exit,'출구 길목의 경비');
+  const watch=P.exitWatchHint(b);if(watch&&exitWatchCount(b))return combat('출구를 막는 경비 제압',exitWatchFoes(b));
   if(n===38&&cfg.connection&&near(e.active,cfg.connection.entry,330)&&!q.connected){
    if(q.anchorAction)return hint('담허가 굴 연결을 고정하는 동안 입구에서 대기',cfg.connection.entry,'굴 입구');
    if(q.connectionProbe?.phase==='observed')return hint('담허로 전환해 굴 입구에서 연결 고정',cfg.connection.entry,'굴 입구','interact');
@@ -320,7 +317,7 @@ P.questGuidance=function(app){
   return gather(exit,'출구 표식에 모여 떠나기',u=>u.x>exit.x-300&&Math.abs(u.y-exit.y)<=240&&e.grounded(u));
  }
  if(n===35||n===36){
-  if(count)return hint(`${n===35?'대숲':'폐촌'}의 적 제압 · 남은 적 ${count}기`);
+  if(count)return combat(n===35?'대숲의 적 제압':'폐촌의 적 제압');
   const door={x:K(b,'doorPushX',2370),y:K(b,'doorPushY',2010)};
   if(n===36&&q.door.phase!=='fallen')return hint(q.door.phase==='standing'?'휘겸을 나무문 앞으로 보내 문 밀기':'문이 넘어질 때까지 기다리기',door,'폐촌의 문');
   if(n===36&&!closed(q,'door_falls'))return hint('넘어진 문을 화면에 담아 확인',door,'넘어진 문');
@@ -336,11 +333,11 @@ P.questGuidance=function(app){
   if(!q.exitStable)return hint(q.stabilizing?'닻 고정 중 · 이동하지 않고 기다리기':'출구 닻 옆에서 고정하기',r.anchor,'출구 닻','interact');
   if(!q.netOpen)return hint(q.releasing?'그물 푸는 중 · 이동하지 않고 기다리기':'그물 옆에서 주민 풀어 주기',r.net,'주민을 가둔 그물','interact');
   const safe=r.ids.filter(id=>rescueSafe(e,e.unit(id))).length;
-  if(safe<r.ids.length){const guard=foes(b).find(u=>u.id==='a4-39-n-1'&&u.x>r.net.x-170&&u.x<r.safeZone.x2+170);return hint(`주민 안전 도달 ${safe}/${r.ids.length}명 · ${guard?'그물 앞 경비 제압':'호송 통로를 비우고 주민 엄호'}`,guard||r.net,guard?'그물 앞 경비':'주민 호송로');}
+  if(safe<r.ids.length){const guard=foes(b).find(u=>u.id==='a4-39-n-1'&&u.x>r.net.x-170&&u.x<r.safeZone.x2+170);if(guard)return combat(`주민 안전 도달 ${safe}/${r.ids.length} · 그물 앞 경비 제압`,[guard]);return hint(`주민 안전 도달 ${safe}/${r.ids.length}명 · 호송 통로를 비우고 주민 엄호`,r.net,'주민 호송로');}
   return gather(exit,'주민과 합류해 출구로 떠나기',u=>u.x>r.exit-260&&e.grounded(u));
  }
  if(n===40){
-  if(count)return hint(`귀환로의 적 제압 · 남은 적 ${count}기`);
+  if(count)return combat('귀환로의 적 제압');
   const geo=cfg.geometry40,escort=q.returnEscort;
   if(!escort)return hint('나룻배와 위쪽 귀환로가 보이는 곳으로 이동',geo?.marks.boat,'귀환 나룻배');
   if(escort.phase!=='safe')return hint('주민들이 배와 위쪽 길로 이동 중 · 귀환로를 비우고 안전한 쪽으로 이동',geo?.marks.safe,'동쪽 안전 지대');

@@ -142,7 +142,8 @@
         exportOriginal(){const original=this.profileStore.original();if(!original.ok){this.notify('원본을 읽지 못해 내보낼 수 없습니다. 다시 읽기를 시도해 주세요.');return false;}this.downloadProfile(original.text,'혼로_원본_');return true;}
         downloadProfile(text,prefix='혼로_기록_'){const blob=new Blob([text],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=prefix+new Date().toISOString().slice(0,10)+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
         notify(text) { let n = $('notice'); n.textContent = text; n.hidden = false; clearTimeout(this.noti); this.noti = setTimeout(() => n.hidden = true, 3200); }
-        top(title, back = 'title') { return `<header class="top"><button class="icon ghost" data-action="${back}" aria-label="뒤로">${fa('chevronUp',17,'back-icon')}</button><h2>${esc(title)}</h2>${this.debugMode?'<span class="debug-badge">디버그 · 기록 분리</span>':''}<span class="grow"></span><button class="icon ghost" data-action="settings" aria-label="설정">${fa('gear',18)}</button></header>`; }
+        top(title, back = 'title') { return `<header class="top">${this.screenControls(title,back)}</header>`; }
+        screenControls(title,back='title') {return `<button class="icon ghost" data-action="${back}" aria-label="뒤로">${fa('chevronUp',17,'back-icon')}</button>${title!==null?`<h2>${esc(title)}</h2>`:''}${this.debugMode?'<span class="debug-badge">디버그 · 기록 분리</span>':''}<span class="grow"></span><button class="icon ghost" data-action="settings" aria-label="설정">${fa('gear',18)}</button>`; }
         portrait(cls, size = 1) { return G.HonroPortraits.markup(cls,'icon'); }
         drawPortraits() { for(const host of document.querySelectorAll('[data-portrait-host]')){const cls=host.dataset.portraitHost;G.HonroPortraits.mount(host,null,cls,{identity:H.hero[cls]?.name,surface:'hud',framing:host.dataset.portraitFraming||'icon',slot:host.dataset.portraitSlot});}for(const cv of document.querySelectorAll('canvas[data-portrait]'))G.HonroPortraits.draw(cv,null,cv.dataset.portrait,{identity:H.hero[cv.dataset.portrait]?.name,surface:'hud',framing:'icon'}); }
         showTitle() { this.stopBattle(); this.close(); this.screen = 'title'; G.HonroTitleMarkup.mount(this.root,{scene:G.HONRO_TITLE_SCENE,logo:G.HONRO_TITLE_LOGO,hanja:G.HONRO_TITLE_HANJA,profile:this.profile,debugMode:this.debugMode,splitLocked:G.HonroSplitCampaign.locked(this.profile),profileLocked:this.profileStore.locked,settingsIcon:fa('gear',19)}); if(this.profileStore.locked&&!this.profileRecoveryShown){this.profileRecoveryShown=true;this.recoverProfile();} }
@@ -441,7 +442,7 @@
             const heroes = G.HonroAct3.active(b)?G.HonroAct3.heroes(b):b.units.filter(u => u.side === 0 && !u.summoned && !u.dead && u.hp > 0), objective = b.units.find(u => u.id === 'objective');
             const rescuedResidentLost=this.stage?.objective==='rescue3'&&(b.honroMarkers||[]).some(m=>m.action==='rescue'&&b.units.some(u=>u.id===m.target&&(u.dead||u.hp<=0)));
             const channelerLost=b.honroStage===10&&b.honroState?.sodanCoop&&b.units.some(u=>u.id==='boss'&&(u.dead||u.hp<=0));
-            const act2Failure=G.HonroStakeCrossing.failure(b)||G.HonroSplitCampaign.failure(b)||G.HonroAct2.failure(b)||G.HonroAct3.failure(b)||G.HonroObjectives.failure(b,this.stage);
+            const act2Failure=G.HonroSodanWithdrawal.failure(b)||G.HonroStakeCrossing.failure(b)||G.HonroSplitCampaign.failure(b)||G.HonroAct2.failure(b)||G.HonroAct3.failure(b)||G.HonroObjectives.failure(b,this.stage);
             if (!heroes.length || objective?.dead || rescuedResidentLost || channelerLost || act2Failure) {
                 b.phase = 'lost';
                 C.cleanupPassiveHistory(e);

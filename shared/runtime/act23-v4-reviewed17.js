@@ -57,8 +57,8 @@ function observe(app,dt){const b=app.engine.b,q=mem(b),a=base(b),s=b.honroV4Work
 }
 function scene(app,key,rows,proof,targets){const out=api.begin(app,key,rows,proof||{});if(out&&targets){for(const l of app.dialogue.lines)l[2].camera={id:l[2].rowId,intent:'situation',targets:clone(targets),padding:120,maxScale:.7};G.HonroStory.draw(app);}return out;}
 function drive(app,a,dt){const b=app.engine.b,q=mem(b),p=base(b);observe(app,dt);if(!V.safe(app))return;const start=(key,rows,condition,proof,targets)=>{if(!q.events[key]&&condition){scene(app,key,rows,proof,targets);return true;}return false;};
- if(start('arrival',['EDGE.ARRIVALS_17_0'],true,{},[{actor:'17.mason'},{actor:'17.gilchan'},b.honroV4Reviewed17.socket]))return;
- if(start('intro',[id('INTRO.01'),id('INTRO.02'),id('INTRO.03'),id('INTRO.04')],true,{},[{actor:'17.mason'},{actor:'17.gilchan'},b.honroV4Reviewed17.socket]))return;
+ const opening=[{actor:'17.mason'},{actor:'17.gilchan'},b.honroV4Reviewed17.socket];
+ if(api.beginSequence(app,[['arrival','EDGE.ARRIVALS_17_0',{},opening],['intro',[1,2,3,4].map(i=>id('INTRO.0'+i)),{},opening]]))return;
  if(!spoken(b,'intro'))return;
  if(start('crack',[id('MID.01')],!!q.crackObserved&&!p.proof['17.brace'],q.crackObserved,[b.honroV4Reviewed17.crack]))return;
  if(start('hoist',[id('MID.03')],allow(app,api.row(id('MID.03')))||!V.alive(unit(b,'act2-hoist'))&&near(b,b.honroV4Reviewed17.hoist,650),{},[{actor:'act2-hoist'}]))return;

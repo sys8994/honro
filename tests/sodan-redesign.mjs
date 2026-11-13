@@ -90,7 +90,7 @@ for(const [rank,actions,power] of [[1,2,.7],[2,3,.7],[3,3,.85],[4,4,.85],[5,4,1]
 {
  const a=arena('O01');a.u.ranks.OP05=1;
  for(let i=0;i<3;i++){const foe=C.makeUnit('knight',1,550+i*35,1400,{id:'remnant-'+i,hp:5,maxHp:5,h:100,r:20,armor:0,loadout:['LS09']});a.b.units.push(foe);a.e.hurt(foe,20,a.u.id);}
- assert.equal(a.u.soulRemnants,3);const p=castAt(a,'O01')[0];assert(p.soulBoost&&p.damage>C.SKILLS.O01.damage);assert.equal(a.u.soulRemnants,0);
+ assert.equal(a.u.soulRemnants,3);const unboosted=a.e.effective(C.SKILLS.O01,a.u).damage,p=castAt(a,'O01')[0];assert(p.soulBoost&&p.damage>unboosted);assert.equal(a.u.soulRemnants,0);
 }
 for(const rank of [1,2,3,4,5,6,7,8]){
  const a=arena('O15',rank),dur=[4,5,5,6,6,7,7,8][rank-1],cap=[1,1,1,2,2,2,3,3][rank-1];

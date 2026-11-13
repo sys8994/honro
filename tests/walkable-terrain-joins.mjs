@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import {battlefield,runtime} from '../game/tests/helpers.mjs';
 
 const g=await runtime({legacyMaps:false,productionStory:true}),C=g.HONRO_CORE;
-const stages=new Map([1,15,22].map(n=>[n,battlefield(g,n).b]));
+const stages=new Map([1,12,15,22].map(n=>[n,battlefield(g,n).b]));
 const classes=['archer','mage','knight','occultist'],steps=[1/240,1/120,1/60,1/30];
 function fixture(stage,cls,x,y){
  const b=structuredClone(stages.get(stage)),e=new C.Engine(b);
@@ -31,6 +31,12 @@ for(const cls of classes)for(const dt of steps){
   assert.equal(resumed.active.x,q.u.x);assert(resumed.grounded(resumed.active));
  }
 }
+for(const cls of classes)for(const [x,target] of [[3702,3725],[3830,3800],[3830,3860],[3941,3970],[3970,3941],[4180,4210],[4210,4180]]){
+ const b=stages.get(12),ramp=b.terrain.find(t=>t.id==='sq-lower-ground'),q=fixture(12,cls,x,C.topAt(ramp,x)),hp=q.u.hp;
+ assert(walk(q,target,1/120,true)>=Math.abs(target-x),`Stage 12 sign ramp: ${cls} ${x}→${target}`);
+ assert.equal(q.u.hp,hp);
+ const resumed=new C.Engine(JSON.parse(JSON.stringify(q.b)));assert(resumed.grounded(resumed.active));
+}
 const steep=fixture(15,'archer',5280,2035.32);
 assert.equal(walk(steep,5310,1/120),0,'a steep face still requires a jump');
 assert(steep.e.jump(steep.u));
@@ -47,4 +53,4 @@ gap.b.terrain=[slab('left',4000,200),slab('right',4210,100)];
 gap.b.sceneVersion++;gap.u.y=1000;
 walk(gap,4230,1/120,true);
 assert(gap.u.x<=4200,'a real open span must still break ground support');
-console.log('PASS 50 actual terrain joins, four body sizes, four time steps, save contacts, steep face, sealed door, and open span');
+console.log('PASS 50 terrain joins + 28 Stage 12 slope cases, four body sizes, four time steps, save contacts, steep face, sealed door, and open span');

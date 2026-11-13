@@ -20,20 +20,27 @@ function lineAllowed(app,who,meta){const r=row(meta?.rowId);if(!enabled()||!r||m
 }
 function lines(ids,event){return ids.map(id=>{const r=row(id);return[r.speaker,r.text,{...copy(r),rowId:id,reviewedStage:21,reviewedRevision:1,reviewedPayloadRevision:2,reviewedEvent:event,storyId:'v4.reviewed.21.'+event,storyTitle:G.HONRO_CONTENT.stages[20].name,...(r.channel==='arrival'?{kind:'narration'}:r.channel==='guide'?{kind:'guide'}:{})}];});}
 function accepts(app,ls){return rowsReviewed(ls)&&ls.some(l=>lineAllowed(app,l[0],l[2]));}
-function begin(app,key,ids){const b=app.engine.b,q=memory(b);if(q.events[key])return false;const ls=lines(ids,key).filter(l=>lineAllowed(app,l[0],l[2]));q.events[key]={status:ls.length?'open':'skipped',ids:ls.map(l=>l[2].rowId)};
+function begin(app,key,ids,collect=null){const b=app.engine.b,q=memory(b);if(q.events[key])return false;const ls=lines(ids,key).filter(l=>lineAllowed(app,l[0],l[2]));q.events[key]={status:ls.length?'open':'skipped',ids:ls.map(l=>l[2].rowId)};
  if(key.startsWith('field-talk.')&&ls.length){q.fieldViews??={};q.fieldViews[key]=Object.fromEntries(ls.map(l=>{const r=row(l[2].rowId),target=r.id==='EDGE.OPTIONAL_21_KNIGHT_0'?b.units.find(u=>u.id===b.honroV4Chapter21.old):b.units.find(u=>u.id==='v4.gate-cart');return[r.id,{run:b.session,actor:actor(b,r.speaker).id,target:target.id,source:'actual-stage-view'}];}));}
  const targets=['clear','exit'].includes(key)?[q.wreck,{actor:'v4.gwakjin'}]:[{actor:b.honroV4CitySpec.resident},{actor:'v4.gwakjin'},key==='intro'?{actor:b.honroV4Chapter21.old}:{x:1740,y:2640}];
  for(const l of ls)l[2].camera={id:l[2].rowId,intent:'situation',targets:copy(targets),padding:125,maxScale:.75};
  V.slot(app,'21.reviewed.'+key,{rowIds:ids});if(!ls.length){Object.assign(V.mem(b).slots['21.reviewed.'+key],{status:'cancelled',proof:{skipped:true}});return false;}
+ if(collect){collect.push(...ls);return true;}
  if(!G.HonroStory?.start(app,ls,{title:app.stage.name,reviewedStage:21,reviewedEvent:key})){delete q.events[key];return false;}return true;
 }
-function finished(app,d){if(d?.reviewedStage!==21||!active(app.engine?.b))return false;const b=app.engine.b,q=memory(b),event=q.events[d.reviewedEvent];if(event){G.HonroAct23V4Reviewed.finishReceipt(event,d.liveBarkPresented);event.guardLostIds=event.ids.filter(id=>!lineAllowed(app,row(id).speaker,{...row(id),rowId:id,reviewedStage:21,reviewedRevision:1}));event.status=event.guardLostIds.length===event.ids.length?'cancelled':'done';if(event.status==='done')V.ackSlot(b,'21.reviewed.'+d.reviewedEvent,{rowIds:event.presentedIds,retiredIds:event.retiredIds});else Object.assign(V.mem(b).slots['21.reviewed.'+d.reviewedEvent],{status:'cancelled',proof:{guardLost:true,rowIds:event.presentedIds,unpresentedIds:event.retiredIds}});G.HonroStory.save(app);}
+function finished(app,d){if(d?.reviewedStage!==21||!active(app.engine?.b))return false;const b=app.engine.b,events=memory(b).events;for(const key of d.reviewedSequence||[d.reviewedEvent]){const event=events[key];if(event?.status==='open'){G.HonroAct23V4Reviewed.finishReceipt(event,d.liveBarkPresented);event.guardLostIds=event.ids.filter(id=>!lineAllowed(app,row(id).speaker,{...row(id),rowId:id,reviewedStage:21,reviewedRevision:1}));event.status=event.guardLostIds.length===event.ids.length?'cancelled':'done';if(event.status==='done')V.ackSlot(b,'21.reviewed.'+key,{rowIds:event.presentedIds,retiredIds:event.retiredIds});else Object.assign(V.mem(b).slots['21.reviewed.'+key],{status:'cancelled',proof:{guardLost:true,rowIds:event.presentedIds,unpresentedIds:event.retiredIds}});}}G.HonroStory.save(app);
  if(d.reviewedEvent==='failure'){app.outcome(true);return true;}return false;}
 function tick(app){const b=app.engine.b;if(!active(b)||!V.safe(app))return;const q=memory(b);
  for(const [key,event]of Object.entries(q.events))if(event.status==='open'&&!app.dialogue&&!G.HonroStoryBarks?.pending(app,21,key)){event.status='cancelled';Object.assign(V.mem(b).slots['21.reviewed.'+key],{status:'cancelled',proof:{guardLost:true,rowIds:event.presentedIds,unpresentedIds:event.retiredIds}});}
  if((b.honroState.storyQueue||[]).length)return;
- if(!q.events.arrival){begin(app,'arrival',['EDGE.ARRIVALS_21_0']);return;}
- if(!q.events.intro){begin(app,'intro',[1,2,3,4].map(i=>'A3.S21.INTRO.0'+i));return;}
+
+ if(!q.events.arrival&&!q.events.intro&&V.alive(b.units.find(u=>u.id===b.honroV4Chapter21.old))&&q.armor.distance<15&&!S.cartStopped(b))return;
+ if(!q.events.arrival||!q.events.intro){
+  const all=[],keys=[];
+  for(const [key,ids] of [['arrival',['EDGE.ARRIVALS_21_0']],['intro',[1,2,3,4].map(i=>'A3.S21.INTRO.0'+i)]])if(!q.events[key]){keys.push(key);begin(app,key,ids,all);}
+  if(all.length&&!G.HonroStory.start(app,all,{title:app.stage.name,reviewedStage:21,reviewedEvent:keys[0],reviewedSequence:keys}))for(const key of keys)if(q.events[key]?.status==='open'){delete q.events[key];delete V.mem(b).slots['21.reviewed.'+key];}
+  return;
+ }
  if(S.cartStopped(b)&&!q.events.cart){begin(app,'cart',['A3.S21.CART_STOP.01','A3.S21.CART_STOP.02']);return;}
  if(S.cartStopped(b)&&S.threatened(b)&&!q.events.danger){begin(app,'danger',['A3.S21.CIVILIAN_DANGER.01','A3.S21.CIVILIAN_DANGER.02']);return;}
  if(S.facts(b,'A3.S21.LAST_ESCORT.01')&&!q.events.last){begin(app,'last',['A3.S21.LAST_ESCORT.01']);return;}
@@ -53,7 +60,7 @@ function content(b,st){return active(b)?{...st,goal:present(b,{targets:[],allTar
 function optional(profile,id,c){if(!enabled()||Number(id)!==21)return null;if(!profile.recruited?.includes(c)||!profile.party?.includes(c))return[];return lines(data().rows.filter(r=>r.id.startsWith('EDGE.OPTIONAL_21_'+c.toUpperCase()+'_')).map(r=>r.id),'optional.'+c).filter(l=>restAllowed(profile,l[0]));}
 function journal(profile,id){if(!enabled()||Number(id)!==21)return null;const r=row('A3.S21.JOURNAL.01');return profile.record?.find(x=>x.rowId===r.id&&x.reviewedRevision===1&&x.sourceRun&&x.text===r.text)||null;}
 function failure(app){return active(app.engine?.b)&&!app.dialogue&&app.engine.b.phase==='lost'?begin(app,'failure',['EDGE.FAILURE_GUARD.S21']):false;}
-function migrate(p){if(!enabled()||p.honroReviewed21PresentationRevision===1)return;if(p.honroJourney?.story?.stageId===21)p.honroJourney.story=null;p.honroReviewed21PresentationRevision=1;}
+function migrate(p){if(!enabled()||p.honroReviewed21PresentationRevision===1)return;if(p.honroJourney?.story?.stageId===21&&p.honroJourney.story.kind!=='arrival-talk')p.honroJourney.story=null;p.honroReviewed21PresentationRevision=1;}
 // Same-revision internal saves predate the final delivery metadata. Upgrade
 // only an exact approved ID/speaker/text tuple before the common whitelist;
 // preserve cursor, actor state and physical proof, and never repair new tampering.

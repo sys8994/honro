@@ -96,11 +96,9 @@ function observe(app,dt){const e=app.engine,b=e.b,m=physical(b),q=mem(b),u=boss(
 }
 function drive(app){const b=app.engine.b,q=mem(b),m=physical(b),events=api.memory(b).events;if(!api.safe(app)||(b.honroState.storyQueue||[]).length)return;
  const offer=(key,id,proof={})=>!events[key]&&allow(app,api.row(id))&&scene(app,key,id,proof);
- if(offer('arrival','EDGE.ARRIVALS_18_0'))return;
- if(offer('walking','A2.S18.INTRO.01',{distance:m.threat.walked}))return;
- if(offer('warning','A2.S18.INTRO.02',q.rope))return;
- if(offer('aware','A2.S18.INTRO.03',q.rope))return;
- if(offer('lowering','A2.S18.INTRO.04',{offset:m.bell.offset,actor:q.rope.actor}))return;
+ const entry=[['arrival','EDGE.ARRIVALS_18_0',q.rope],['walking','A2.S18.INTRO.01',{distance:m.threat.walked}],['warning','A2.S18.INTRO.02',q.rope],['aware','A2.S18.INTRO.03',q.rope],['lowering','A2.S18.INTRO.04',{offset:m.bell.offset,actor:q.rope.actor}]];
+ const ready=entry.filter(([key,id])=>!events[key]&&(allow(app,api.row(id))||key==='aware'&&q.rope.seesResident&&entry.some(([k,row])=>k==='warning'&&!events[k]&&allow(app,api.row(row)))));
+ if(ready.length&&api.beginSequence(app,ready))return;
  if(offer('bell-guide','A2.S18.POPUP.03',q.bellAimProof))return;
  if(allow(app,api.row('A2.S18.PHASE1.01'))||events['hands-off']?.status==='done'&&!m.brakeLocked){
   const rows=[['hands-off','A2.S18.PHASE1.01'],['rescue-answer','A2.S18.PHASE1.02']];
@@ -143,7 +141,7 @@ function approachGuide(b,site){
  if(site.id==='18.lift'&&!safeResident(b))return{kind:'rescue',key:'rescue-guide',row:'A2.S18.POPUP.02'};
 }
 function eligibility(app,site){
- const b=app.engine.b,m=physical(b),guide=approachGuide(b,site);
+ const b=app.engine.b,m=physical(b),q=mem(b),guide=approachGuide(b,site);
  if(guide)return{ok:false,reason:api.row(guide.row).text};
  if(site.id==='18.settle'&&(!m.supportReady||!api.done(b,'gap')))return{ok:false,reason:'받침을 설치하고 들어 올린 종 아래 틈을 확인'};
  if(site.id==='18.settle'&&q.translated&&!m.settled)return{ok:false,reason:'종 아래 통로를 비우고 종이 내려올 때까지 대기'};

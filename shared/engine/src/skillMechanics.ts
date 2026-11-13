@@ -5,6 +5,7 @@ import {cheonroeVisualSeed} from './lightningGeometry';
 import {gateSource} from './gateTravel';
 import {interruptEnemyEffect} from './enemyEffects';
 import {migrateBeastSkills} from './beastMelee';
+import {preparedShot} from './skillRedesignData';
 import {validTerrainContactPose} from './locomotion';
 import {waveReflectionPlan,WAVE_REFLECTION_DECAY,waveReflectionVelocities} from './waveReflection';
 export {waveReflectionPlan,WAVE_REFLECTION_DECAY,waveReflectionVelocities} from './waveReflection';
@@ -37,7 +38,7 @@ export function specialty(u:Unit,s:Skill){return 0;}
 export function trajectoryMultiplier(p:Projectile,u:Unit,hit:Vec){
  const s=SKILLS[p.skill];if(!s?.redesigned||s.cls!=='archer'||p.secondary)return 1;
  const extra=passiveTuning(passiveRank(u,'AP04')).trajectory;
- if(s.branch==='distance')return 1+((s.id==='A99'?.60:.40)+extra+(p.preparedRank?lerpRank(.08,.22,p.preparedRank):0))*clamp(Math.abs(hit.x-(p.launchX??p.x))/1800,0,1);
+ if(s.branch==='distance')return 1+(p.preparedRank?preparedShot(p.preparedRank).damage:0)+((s.id==='A99'?.60:.40)+extra)*clamp(Math.abs(hit.x-(p.launchX??p.x))/1800,0,1);
  if(p.equipment?.dropBonus!==undefined&&s.id==='A11')return p.equipment.dropBonus;
  if(s.branch==='drop')return 1+((s.id==='A15'?.55:s.id==='A13'?.35:.45)+extra)*clamp(Math.max(0,hit.y-(p.apexY??p.launchY??p.y))*(p.trajectoryDropScale||1)/900,0,1);
  if(s.branch==='speed')return 1+((s.id==='A08'?.35:.45)+extra)*clamp((Math.hypot(p.vx,p.vy)*(p.trajectorySpeedScale||1)-500)/650,0,1);
@@ -49,13 +50,12 @@ export function redesignConditionBonuses(p:Projectile,u:Unit,hit:Vec,direct:bool
 }
 export function critProfile(p:Projectile,u:Unit,actor:Unit|undefined=u){
  const r=rank(p),id=p.skill,base=criticalStats(u.cls,u.level,u.ranks);
- return {chance:Math.min(.80,(u.critChance??base.critChance)+(id==='A14'?lerpRank(.18,.39,r):id==='A99'?lerpRank(.25,.39,r):0)+(p.preparedRank?lerpRank(.06,.20,p.preparedRank):0)),
+ return {chance:Math.min(.80,(u.critChance??base.critChance)+(id==='A14'?lerpRank(.18,.39,r):id==='A99'?lerpRank(.25,.39,r):0)+(p.preparedRank?preparedShot(p.preparedRank).critical:0)),
   multiplier:Math.max(1,Math.min(3.5,(u.critMultiplier??base.critMultiplier)+(id==='A14'?lerpRank(.20,.55,r):id==='A99'?lerpRank(.50,.85,r):0)))};
 }
 export function redrawDamage(e:Engine,p:Projectile,u:Unit,target:Unit,amount:number,point:Vec,direct:boolean,critical=false){
  if(!newSkill(p))return amount;
  if(u.cls==='archer'&&direct){
-  if(p.preparedRank)amount/=Math.max(.3,1-clamp(target.armor,0,.7))*Math.max(.3,1-clamp(target.armor-lerpRank(.04,.15,p.preparedRank),0,.7));
   if(p.skill==='A99'&&critical&&Math.abs(point.x-(p.launchX??point.x))>=1200){
    if(target.boss)amount*=1+.25*(1-target.hp/target.maxHp);
    else if(target.hp-amount*(1-target.armor)<=target.maxHp*lerpRank(.12,.22,rank(p)))amount=Math.max(amount,(target.hp+target.shield+1)/Math.max(.3,1-target.armor));
@@ -124,7 +124,7 @@ export function initRedesignCast(e:Engine,s:Skill,u:Unit,actualKiSpent=e.manaCos
  const roots=e.b.projectiles.filter(p=>p.owner===u.id&&p.shot===e.b.shot);
  for(const p of roots){if(s.mode==='waveBounce')p.reflectionVersion=1;if(s.id==='M02')p.fuseAt=iceGourdFuse(u.lastPower);p.apexY=p.y;p.rootDamage=p.damage;if(s.branch==='distance'&&s.id!=='A10'&&u.prepared)p.preparedRank=u.prepared.rank;}
  if(s.branch==='distance'&&s.id!=='A10')delete u.prepared;
- if(s.mode==='prepare'){e.b.projectiles=e.b.projectiles.filter(p=>!roots.includes(p));u.prepared={rank:u.ranks[s.id]||1,expires:e.b.round+2};e.fx('ring',u.x,u.y-u.h*.6,'#c8cebf',22);}
+ if(s.mode==='prepare'){e.b.projectiles=e.b.projectiles.filter(p=>!roots.includes(p));const rank=u.ranks[s.id]||1;u.prepared={rank,expires:e.b.round+2};u.focus=Math.min(u.maxFocus,u.focus+u.maxFocus*preparedShot(rank).focus);e.fx('ring',u.x,u.y-u.h*.6,'#c8cebf',22);}
  if(['waveRing','waveBagua'].includes(s.mode))for(const p of roots){
   const plan=redesignPrediction(e,u,s,u.angle,u.lastPower)!;p.targetPoint={x:plan.x,y:plan.y};p.plannedTime=plan.time;p.phaseMode='all';
   if(s.mode==='waveRing'){p.x=u.x;p.y=u.y-u.h*.5;p.targetPoint={x:p.x,y:p.y};p.blast=180+720*u.lastPower;p.vx=p.vy=0;}

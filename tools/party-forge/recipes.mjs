@@ -20,6 +20,15 @@ export function createParty(original,rig,{hwigyeomScale=true}={}){
   refinePhysicalMotion(a,rig);
   refineAnatomy(a,rig);
   if(hwigyeomScale)refineHwigyeomScale(a,rig);
+  if(a.character_id==='sodan'){
+   Object.assign(a.palette,{spiritLinen:'#BEC0A6',spiritInk:'#384547',spiritSeal:'#994A3B'});
+   const shroud=[
+    ['spirit_smoke','M388 183 L403 201 410 227 Q419 248 443 266 L416 258 401 264 395 275 Q378 260 357 279Z','spiritLinen'],
+    ['spirit_trace','M389 196 L401 217 396 237 384 219Z','spiritInk'],
+    ['spirit_ribbon','M404 221 L407 237 419 250 405 243 398 231Z','spiritSeal']
+   ];
+   for(const [id,d,fill] of shroud){const p=a.paths.find(v=>v.id===id);Object.assign(p,{d,fill});}
+  }
  }
  return assets;
 }

@@ -8,6 +8,7 @@ import type {Unit,Skill,Projectile,Vec,Battle,Terrain} from './types';
 import {SKILLS} from './data';
 import {passiveRank} from './progression';
 import {clamp,rad,STEP,segRect,terrainRectIntersects,poly} from './math';
+import {validTerrainContactPose} from './locomotion';
 import {COMBO_HITS,ORBIT_BLADES} from './warriorData';
 
 const at=(u:Unit)=>({x:u.x,y:u.y-u.h*.5});
@@ -145,25 +146,29 @@ export function manualDive(e:Engine){
 export function orbitPoint(p:Projectile,blade:NonNullable<Projectile['orbit']>['blades'][number],time=p.age):Vec{
  const angle=blade.phase+blade.omega*time,r=blade.radius*(1+blade.mod*Math.sin(time*2.7+blade.phase));return{x:p.x+Math.cos(angle)*r,y:p.y+Math.sin(angle)*r*.72};
 }
-/** Native support/solid tests; pull never crosses a wall or leaves an actor over a pit. */
+/** Snap a struck target into the caster's reach; intermediate ground is irrelevant. */
 export function pullToFront(e:Engine,u:Unit,t:Unit){
- if(t.dead||t.fixed)return false;
- const desired=clamp(u.x+u.facing*(u.r+t.r+40),25,e.b.width-25),start={x:t.x,y:t.y},steps=Math.max(1,Math.ceil(Math.abs(desired-t.x)/8));let last={...start};
- for(let i=1;i<=steps;i++){
-  const x=start.x+(desired-start.x)*i/steps,floor=e.surface(x,last.y-65,last.y+85);
-  if(!floor||floor.y>e.b.height||e.b.terrain.some(v=>!v.broken&&!v.oneWay&&terrainRectIntersects(v,x-t.r,floor.y-t.h,t.r*2,t.h-2,.1)))break;
-  if(e.b.units.some(v=>!v.dead&&!v.eaterCapturedBy&&v.id!==t.id&&Math.abs(v.x-x)<v.r+t.r&&Math.abs(v.y-floor.y)<Math.min(v.h,t.h)))break;
-  last={x,y:floor.y};
+ if(t.dead||t.fixed||t.eaterCapturedBy)return false;
+ const start={x:t.x,y:t.y},near=u.r+t.r,facing=u.facing||1;
+ for(const gap of [24,12,4,36,48,60,72]){
+  const x=u.x+facing*(near+gap);
+  if(x<25||x>e.b.width-25)continue;
+  const floor=e.contactSurface(x,u.y-60,u.y+62);
+  if(!floor||floor.y>e.b.height||e.b.waters.some(w=>x>w.x&&x<w.x+w.w&&floor.y>=w.y))continue;
+  const pose={...t,x,y:floor.y};
+  if(!validTerrainContactPose(e.b.terrain,pose)||!meleeContains(e,u,pose,SKILLS.S00.radius,facing===1?0:Math.PI))continue;
+  if(e.b.units.some(v=>!v.dead&&!v.eaterCapturedBy&&v.id!==t.id&&Math.abs(v.x-x)<v.r+t.r&&v.y-v.h<floor.y&&floor.y-t.h<v.y))continue;
+  Object.assign(t,{x,y:floor.y,vx:0,vy:0,airborne:false,jumping:false,landing:0});delete t.moveTarget;delete t.platformDrop;delete t.fallApexY;
+  e.emit('fx',{name:'inkLine',x:start.x,y:start.y-t.h*.5,x2:t.x,y2:t.y-t.h*.5,color:'#b8cbc9',size:1.2});return true;
  }
- t.x=last.x;t.y=last.y;t.vx=t.vy=0;t.airborne=t.jumping=false;delete t.moveTarget;
- e.emit('fx',{name:'inkLine',x:start.x,y:start.y-t.h*.5,x2:t.x,y2:t.y-t.h*.5,color:'#b8cbc9',size:1.2});return Math.hypot(t.x-start.x,t.y-start.y)>1;
+ return false;
 }
 function bladeHit(e:Engine,p:Projectile,t:Unit){
  const u=e.unit(p.owner)!;
  if(p.mode==='bladePull'){
   e.hurt(t,p.damage,p.owner,true,p,p);
   pullToFront(e,u,t);
-  if(foe(u,t)&&e.attackAllows(t,u.id,{autonomous:true})&&meleeContains(e,u,t,SKILLS.S00.radius)){strike(e,u,t,52*u.attack*.85,SKILLS.S00,p.shot,true,p);stroke(e,u,SKILLS.S00.radius);}
+  if(foe(u,t)&&e.attackAllows(t,u.id,{autonomous:true})&&meleeContains(e,u,t,SKILLS.S00.radius,u.facing===1?0:Math.PI)){strike(e,u,t,52*u.attack*.85,SKILLS.S00,p.shot,true,p);stroke(e,u,SKILLS.S00.radius);}
  }else e.hurt(t,p.damage,p.owner,true,p,p);
 }
 function land(e:Engine,p:Projectile,h?:Collision){

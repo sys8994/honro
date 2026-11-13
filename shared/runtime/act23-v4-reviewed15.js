@@ -166,8 +166,9 @@ function present(b,result){const m=memory(b),step=V.current(b)?.id;
    return {...result,summary:text,currentInstruction:text,targets:exits};
   }
   const ids=m.merge.ids.filter(id=>alive(unit(b,id))),p=V.marker(b,'groove');
-  const text=ids.length?`물골에 나타난 혼령 ${ids.length}기 제압`:m.merge.cleared?'물골의 홈 가까이에서 두드리는 소리 확인':'물골의 홈에서 나타나는 혼령에 대비';
-  return {...result,summary:text,currentInstruction:text,targets:p?[{...p,kind:ids.length?'objective':'move',label:'물골의 홈'}]:[]};
+  if(ids.length){const hint=G.HonroObjectiveGuide.hostileHint(b,ids.map(id=>unit(b,id)),'물골에 나타난 혼령 제압');return {...result,summary:hint.text,currentInstruction:hint.text,targets:hint.targets};}
+  const text=m.merge.cleared?'물골의 홈 가까이에서 두드리는 소리 확인':'물골의 홈에서 나타나는 혼령에 대비';
+  return {...result,summary:text,currentInstruction:text,targets:p?[{...p,kind:'move',label:'물골의 홈'}]:[]};
  }
  if(step==='groove'||step==='15.drift'){
   const p=V.marker(b,'groove'),text=step==='groove'?'물골의 홈에 접근해 조사':'오른쪽 물골의 홈으로 이동해 물방울의 흐름 확인';

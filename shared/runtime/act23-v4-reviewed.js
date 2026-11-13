@@ -37,21 +37,22 @@ function lineAllowed(app,who,meta){const id=meta?.rowId;if(!enabled()||!row(id)|
  if(requiredScenes[id])return G.HonroAct23V4Chapter11?.facts(b,id)===true;
  if(id==='A2.S11.INTRO.01')return !!s.proof['11.thread'];
  if(['A2.S11.INTRO.02','A2.S11.INTRO.03'].includes(id))return !!q.approach&&(q.approach.ambient||q.approach.ids.some(id=>V.alive(b.units.find(u=>u.id===id))))&&!V.mem(b).done['11.exit'];
- if(id==='A2.S11.INTRO.04')return q.events.approach?.status==='done'&&!V.mem(b).done['11.exit'];
+ if(id==='A2.S11.INTRO.04')return (meta.reviewedSequence?.includes('approach')&&!!q.approach||closed(q.events.approach))&&!V.mem(b).done['11.exit'];
  if(id==='A2.S11.COMPLETE.01')return V.mem(b).done['11.exit']&&(b.honroStage11CompactRevision===1||gathered(b));
  if(id==='A2.S11.COMPLETE.02')return !!s.bell?.struck;
  if(['A2.S11.COMPLETE.03','A2.S11.COMPLETE.04'].includes(id))return !!s.bell?.struck&&q.ambient.distance>=80&&q.ambient.count>=6;
- if(id==='A2.S11.COMPLETE.05')return !!s.proof['11.north']&&closed(q.events.reaction);
+ if(id==='A2.S11.COMPLETE.05')return !!s.proof['11.north']&&(closed(q.events.reaction)||meta.reviewedSequence?.includes('reaction'));
  return false;
 }
 function lines(ids,event){return ids.map(id=>{const r=row(id);return[r.speaker,r.text,{...clone(r),rowId:id,reviewedStage:11,reviewedRevision:1,reviewedEvent:event,storyId:'v4.reviewed.11.'+event,storyTitle:G.HONRO_CONTENT.stages[10].name,...(r.channel==='guide'?{kind:'guide'}:r.channel==='arrival'?{kind:'narration'}:{})}];});}
 function accepts(app,ls){return rowsReviewed(ls)&&ls.every(l=>!blocked[l[2].rowId])&&ls.some(l=>lineAllowed(app,l[0],l[2]));}
-function begin(app,key,ids,proof={},resume=false){const b=app.engine.b,q=memory(b),saved=q.events[key];if(saved&&!resume)return false;const valid=lines(ids,key).filter(l=>lineAllowed(app,l[0],l[2]));q.events[key]=saved??{status:valid.length?'open':'skipped',ids:valid.map(l=>l[2].rowId),proof:clone(proof)};
+function begin(app,key,ids,proof={},resume=false,collect=null){const b=app.engine.b,q=memory(b),saved=q.events[key];if(saved&&!resume)return false;const valid=lines(ids,key).filter(l=>{if(collect)l[2].reviewedSequence=collect.keys;return lineAllowed(app,l[0],l[2]);});q.events[key]=saved??{status:valid.length?'open':'skipped',ids:valid.map(l=>l[2].rowId),proof:clone(proof)};
  const framing=b.honroV4Chapter11||{};
  for(const l of valid){const target=key==='approach'?(proof.ambient?(framing.ambientIncoming?.from??{x:1000,y:6280}):{actor:proof.ids[0]}):['arrival','low-beast','high-sightline','blocked-shot','cover-guide'].includes(key)?(framing.entryCamera??{x:1500,y:6330}):['bell','reaction','gather','depart'].includes(key)?{marker:'11.north'}:null;if(target)l[2].camera={id:l[2].rowId,intent:'situation',targets:[clone(target)],padding:110,maxScale:.8};}
  for(const l of valid){const physical=b.honroV4Chapter11,targets=key==='north-warning'?[physical.entries[0]]:key==='north-pair'?proof.ids.map(actor=>({actor})):key==='spirit-release'?[...proof.ids.map(actor=>({actor})),{actor:proof.attached}]:key==='high-sightline'?[physical.high,physical.bier]:null;if(targets)l[2].camera={id:l[2].rowId,intent:'situation',targets:clone(targets),padding:110,maxScale:.8};}
  const d={title:app.stage.name,reviewedEvent:key,reviewedStage:11};
  V.slot(app,'11.reviewed.'+key,{rowIds:ids,proof});if(!valid.length){q.events[key].status='skipped';V.ackSlot(b,'11.reviewed.'+key,{skipped:true});return false;}
+ if(collect){collect.lines.push(...valid);return true;}
  if(G.HonroStory?.skipsClosing(app,d)){finished(app,d);return false;}
  if(!G.HonroStory?.start(app,valid,d)){if(!saved)delete q.events[key];return false;}return true;
 }
@@ -69,7 +70,20 @@ function skipOpening(app,from){const b=app.engine.b,q=memory(b),at=opening.index
  // Lines whose world condition is already met at the skip moment are part of the
  // same opening beat; later-qualifying lines and the guide keep their gates.
  const physical=G.HonroAct23V4Chapter11;for(const [key,id]of [['low-beast','A2.S11.MID.01'],['high-sightline','A2.S11.MID.02']]){if(q.events[key]||!physical?.facts(b,id))break;q.events[key]={status:'skipped',ids:[],proof:{},skippedBy:from};V.slot(app,'11.reviewed.'+key,{rowIds:[],proof:{}});V.ackSlot(b,'11.reviewed.'+key,{skipped:true,skippedBy:from});}}
-function finished(app,d,natural=true){if(d?.reviewedStage!==11||!active(app.engine?.b))return false;const b=app.engine.b,q=memory(b),event=q.events[d.reviewedEvent];if(event){finishReceipt(event);event.status='done';V.ackSlot(b,'11.reviewed.'+d.reviewedEvent,{rowIds:event.presentedIds,retiredIds:event.retiredIds});if(natural===false)skipOpening(app,d.reviewedEvent);G.HonroStory.save(app);}
+function sequence(app,entries){
+ const keys=entries.map(([key])=>key),collect={keys,lines:[]};
+ for(const [key,ids,proof] of entries)begin(app,key,ids,proof,false,collect);
+ if(!collect.lines.length)return false;
+ const d={title:app.stage.name,reviewedStage:11,reviewedEvent:keys[0],reviewedSequence:keys};
+ if(G.HonroStory.skipsClosing?.(app,d)){finished(app,d,false);return false;}
+ if(G.HonroStory.start(app,collect.lines,d))return true;
+ const b=app.engine.b;for(const key of keys){delete memory(b).events[key];delete V.mem(b).slots['11.reviewed.'+key];}
+ return false;
+}
+function finished(app,d,natural=true){if(d?.reviewedStage!==11||!active(app.engine?.b))return false;const b=app.engine.b,q=memory(b);
+ for(const key of d.reviewedSequence||[d.reviewedEvent]){const event=q.events[key];if(!event||event.status!=='open')continue;finishReceipt(event);event.status='done';if(!natural)event.skipped=true;V.ackSlot(b,'11.reviewed.'+key,{rowIds:event.presentedIds,retiredIds:event.retiredIds});}
+ if(natural===false)skipOpening(app,d.reviewedEvent);
+ G.HonroStory.save(app);
  if(d.reviewedEvent==='failure'){app.outcome(true);return true;}return false;
 }
 function observeApproach(b){const q=memory(b);if(q.approach)return;const incoming=G.HonroAct23V4Chapter11?.memory(b).incoming;if(incoming?.distance>=40){q.approach={ids:[],ambient:true,count:incoming.count,distance:incoming.distance,round:b.round};return;}const found=[];for(const u of b.units){if(!V.alive(u)||u.side!==1||!['ghost','shade','echo','resonance'].includes(u.honroType||u.cls))continue;const d=Math.min(...V.heroes(b).map(h=>Math.hypot(h.x-u.x,(h.y-u.y)*.75))),old=q.positions[u.id];q.positions[u.id]={x:u.x,y:u.y,d};if(old&&d<850&&d<old.d-2&&Math.hypot(u.x-old.x,u.y-old.y)>2&&u.x>Math.min(...V.heroes(b).map(h=>h.x)))found.push(u.id);}
@@ -80,24 +94,36 @@ function tick(app,dt){const b=app.engine.b;if(!active(b)||!V.safe(app))return;co
  // the event using its saved proof and keep the existing presentation receipt.
  for(const [key,event]of Object.entries(q.events))if(event.status==='open'){begin(app,key,event.ids,event.proof,true);return;}
  if(!V.mem(b).done['11.exit']&&(b.honroState.storyQueue||[]).length)return;
- if(!q.events.arrival){begin(app,'arrival',['EDGE.ARRIVALS_11_0']);return;}
- if(!q.events.thread&&s.proof['11.thread']){begin(app,'thread',['A2.S11.INTRO.01'],s.proof['11.thread']);return;}
- if(q.approach&&!q.events.approach&&!V.mem(b).done['11.exit']){begin(app,'approach',['A2.S11.INTRO.02','A2.S11.INTRO.03'],q.approach);return;}
- if(closed(q.events.approach)&&!q.events.advance){begin(app,'advance',['A2.S11.INTRO.04']);return;}
  const physical=G.HonroAct23V4Chapter11,m=physical?.memory(b);
- if(closed(q.events.advance)&&!q.events['low-beast']&&physical?.facts(b,'A2.S11.MID.01')){begin(app,'low-beast',['A2.S11.MID.01']);return;}
- if(closed(q.events['low-beast'])&&!q.events['high-sightline']&&physical?.facts(b,'A2.S11.MID.02')){begin(app,'high-sightline',['A2.S11.MID.02']);return;}
- if(closed(q.events['high-sightline'])&&!q.events['cover-guide']&&physical?.facts(b,'A2.S11.POPUP.01')){begin(app,'cover-guide',['A2.S11.POPUP.01']);return;}
+ const started=opening.some(key=>q.events[key]);
+ if(!q.events.arrival&&!q.events.thread&&(!started&&m&&!q.approach))return;
+ const entry=[
+  ['arrival',['EDGE.ARRIVALS_11_0'],{},!m||!!q.approach||started],
+  ['thread',['A2.S11.INTRO.01'],s.proof['11.thread'],!!s.proof['11.thread']],
+  ['approach',['A2.S11.INTRO.02','A2.S11.INTRO.03'],q.approach,!!q.approach&&!V.mem(b).done['11.exit']],
+  ['advance',['A2.S11.INTRO.04'],{},(closed(q.events.approach)||!!q.approach)&&!V.mem(b).done['11.exit']]
+ ].filter(([key,,,ready])=>ready&&!q.events[key]);
+ if(entry.length&&sequence(app,entry))return;
+ if(closed(q.events.advance)){
+  const beast=[
+   ['low-beast','A2.S11.MID.01',true],
+   ['high-sightline','A2.S11.MID.02',closed(q.events['low-beast'])||physical?.facts(b,'A2.S11.MID.01')],
+   ['cover-guide','A2.S11.POPUP.01',closed(q.events['high-sightline'])||physical?.facts(b,'A2.S11.MID.02')]
+  ].filter(([key,id,ready])=>ready&&!q.events[key]&&physical?.facts(b,id)).map(([key,id])=>[key,[id],{}]);
+  if(beast.length&&sequence(app,beast))return;
+ }
  if(!q.events['blocked-shot']&&physical?.facts(b,'A2.S11.WARN.01')){begin(app,'blocked-shot',['A2.S11.WARN.01']);return;}
  if(!q.events['spirit-release']&&physical?.facts(b,'A2.S11.MID.03')){begin(app,'spirit-release',['A2.S11.MID.03'],m.release);return;}
  if(!q.events['north-warning']&&physical?.facts(b,'A2.S11.MID.04')){begin(app,'north-warning',['A2.S11.MID.04']);return;}
  if(!q.events['north-pair']&&physical?.facts(b,'A2.S11.MID.05')){begin(app,'north-pair',['A2.S11.MID.05'],m.north);return;}
  if(V.mem(b).done['11.exit']&&!q.events.gather){begin(app,'gather',['A2.S11.COMPLETE.01'],{allFour:gathered(b)});return;}
- if(s.bell?.struck){if(!q.events.bell){begin(app,'bell',['A2.S11.COMPLETE.02'],s.bell);return;}
+ if(s.bell?.struck){
   q.ambient.elapsed=Math.min(1.1,q.ambient.elapsed+Math.max(0,Math.min(dt,.05)));q.ambient.distance=q.ambient.elapsed*220;
-  if(q.ambient.distance>=80&&!q.events.reaction){begin(app,'reaction',['A2.S11.COMPLETE.03','A2.S11.COMPLETE.04'],q.ambient);return;}
-  if(q.ambient.distance>=80&&!q.journal){const r=row('A2.S11.JOURNAL.01');app.profile.record??=[];if(!app.profile.record.some(x=>x.rowId===r.id))app.profile.record.push({place:app.stage.name,text:r.text,rowId:r.id,reviewedRevision:1,sourceRun:b.session});q.journal={rowId:r.id,bell:true};app.dirty=true;}
-  if(s.proof['11.north']&&closed(q.events.reaction)&&!q.events.depart){begin(app,'depart',['A2.S11.COMPLETE.05']);return;}}
+  if(q.ambient.distance<80||!s.proof['11.north']&&!q.events.bell)return;
+  if(!q.journal){const r=row('A2.S11.JOURNAL.01');app.profile.record??=[];if(!app.profile.record.some(x=>x.rowId===r.id))app.profile.record.push({place:app.stage.name,text:r.text,rowId:r.id,reviewedRevision:1,sourceRun:b.session});q.journal={rowId:r.id,bell:true};app.dirty=true;}
+  const ending=[['bell',['A2.S11.COMPLETE.02'],s.bell],['reaction',['A2.S11.COMPLETE.03','A2.S11.COMPLETE.04'],q.ambient],...(s.proof['11.north']?[['depart',['A2.S11.COMPLETE.05']]]:[])].filter(([key])=>!q.events[key]);
+  if(ending.length)sequence(app,ending);
+ }
 }
 function complete(b){return !active(b)||closed(memory(b).events.depart)&&!!memory(b).journal;}
 // Read automatic steps and route destinations from the current battle.
@@ -114,18 +140,19 @@ function automaticMarker(b,m){
 }
 function instruction(b){
  const s=V.current(b),p=s&&V.marker(b,s.id);
- if(s?.kind==='clear'){const foes=b.units.filter(u=>u.side===1&&!u.honroObjectiveTarget&&V.alive(u)&&(s.defeatIds?s.defeatIds.includes(u.id):V.near(u,p,s.radius||650)));const guide=s.id==='11.entry-threat'&&b.honroV4Chapter11?.entryLaneGuide?' · 상여를 넘어 오르막에 올라 사선 확보':'';return `산길의 위협 제압 · 남은 적 ${foes.length}명${guide}`;}
+ if(s?.kind==='clear'){return G.HonroObjectiveGuide.hostileHint(b,V.clearTargets(b,s)).text;}
  if(s?.id==='11.exit'&&b.honroStage11CompactRevision===1){const n=gatherCount(b);return `고개에 네 동행 집결 · ${n}/4명 도착`;}
- if(s?.id==='11.north'){const foes=b.units.filter(u=>u.side===1&&!u.honroObjectiveTarget&&V.alive(u)&&V.near(u,p,700));if(foes.length)return `고개 주변 위협 제압 · 남은 적 ${foes.length}명`;return scenes(b).bell?.struck?'종소리 확인 중':'동행 한 명을 고개 표식 가까이 이동';}
- if(!s){const physical=G.HonroAct23V4Chapter11,m=physical?.memory(b),ids=[...(m?.north.ids||[]),...(m?.release.ids||[])],left=ids.filter(id=>V.alive(b.units.find(u=>u.id===id))).length;if(left)return `남은 혼령 제압 · ${left}명`;if(m&&!m.north.admitted)return '북쪽 혼령 대응 · 동행의 행동을 마치면 증원 진입';if(!complete(b)||physical?.complete(b)===false)return '마무리 장면 진행 중';}
+ if(s?.id==='11.north'){const foes=V.threats(b,p,700);if(foes.length)return G.HonroObjectiveGuide.hostileHint(b,foes,'고개를 막는 적 제압').text;return scenes(b).bell?.struck?'종소리 확인 중':'동행 한 명을 고개 표식 가까이 이동';}
+ if(!s){const physical=G.HonroAct23V4Chapter11,m=physical?.memory(b),ids=[...(m?.north.ids||[]),...(m?.release.ids||[])],left=b.units.filter(u=>ids.includes(u.id)&&V.alive(u));if(left.length)return G.HonroObjectiveGuide.hostileHint(b,left,'표시된 혼령 제압').text;if(m&&!m.north.admitted)return '북쪽 혼령 대응 · 동행의 행동을 마치면 증원 진입';if(!complete(b)||physical?.complete(b)===false)return '마무리 장면 진행 중';}
  return row('A2.S11.OBJECTIVE.01').text;
 }
-function present(b,result){if(!active(b))return result;const r=row('A2.S11.OBJECTIVE.01'),hint=instruction(b);return{...result,summary:hint,currentInstruction:hint,completionText:r.text,targets:result.targets.map(x=>({...x,label:hint})),allTargets:result.allTargets.map(x=>({...x,label:r.text})),checklist:[{id:r.id,text:r.text,done:result.complete,current:!result.complete}],visibleChecklist:[{id:r.id,text:r.text,done:result.complete,current:!result.complete}],failureText:''};}
+function present(b,result){if(!active(b))return result;const r=row('A2.S11.OBJECTIVE.01'),hint=instruction(b),s=V.current(b),m=G.HonroAct23V4Chapter11?.memory(b);
+ const hostiles=s?.id==='11.north'?V.threats(b,V.marker(b,s.id),700):!s&&m?b.units.filter(u=>[...m.north.ids,...m.release.ids].includes(u.id)&&V.alive(u)):[];
+ return{...result,summary:hint,currentInstruction:hint,completionText:r.text,targets:hostiles.length?G.HonroObjectiveGuide.hostileTargets(b,hostiles):result.targets.map(x=>({...x,label:hint})),allTargets:result.allTargets.map(x=>({...x,label:r.text})),checklist:[{id:r.id,text:r.text,done:result.complete,current:!result.complete}],visibleChecklist:[{id:r.id,text:r.text,done:result.complete,current:!result.complete}],failureText:''};}
 function content(b,st){if(!active(b))return st;return{...st,goal:row('A2.S11.OBJECTIVE.01').text,guide:'',story:[],outro:[],failure:[],narration:[],storySummary:memory(b).journal?row('A2.S11.JOURNAL.01').text:'',honroV4Unreviewed:false,honroReviewedNarrativeRevision:1};}
-function draw(scene,c,b){if(!active(b)||!scenes(b).bell?.struck)return;const a=memory(b).ambient,spec=b.honroV4Ambient;c.save();c.lineWidth=2;for(let i=0;i<a.count;i++){const start=spec.from.x+(i%4)*44,progress=Math.min(1,a.elapsed/1.1),x=start+a.distance,y=spec.from.y-95-Math.floor(i/4)*55-70*progress;c.globalAlpha=.22+.045*i;c.strokeStyle='#bacdc4';c.beginPath();c.ellipse(x,y,13,27,-.3,0,Math.PI*2);c.stroke();}c.restore();}
 function failure(app){if(!active(app.engine?.b)||app.dialogue||app.engine.b.phase!=='lost')return false;return begin(app,'failure',['EDGE.FAILURE_GUARD.S11'],{actualFailure:true});}
 function optional(profile,id,c){if(!enabled()||Number(id)!==11)return null;const before=G.HONRO_CONTENT.stages[10].requires.every(id=>profile.cleared?.[id]);if(!before||!profile.recruited?.includes(c))return[];const ids=(data()?.rows||[]).filter(r=>r.id.startsWith('EDGE.OPTIONAL_11_'+c.toUpperCase()+'_')).map(r=>r.id);return lines(ids,'optional.'+c).filter(l=>restAllowed(profile,l[0]));}
-function migrate(profile){if(!enabled()||profile.honroReviewed11PresentationRevision===1)return;const s=profile.honroJourney?.story;if(s?.stageId===11)profile.honroJourney.story=null;profile.honroReviewed11PresentationRevision=1;}
+function migrate(profile){if(!enabled()||profile.honroReviewed11PresentationRevision===1)return;const s=profile.honroJourney?.story;if(s?.stageId===11&&s.kind!=='arrival-talk')profile.honroJourney.story=null;profile.honroReviewed11PresentationRevision=1;}
 function journal(profile,id){if(!enabled()||Number(id)!==11)return null;const r=row('A2.S11.JOURNAL.01');return profile.record?.find(x=>x.rowId===r.id&&x.reviewedRevision===1&&x.sourceRun&&x.text===r.text)||null;}
 const oldAuthor=V.author;V.author=function(...args){const p=oldAuthor(...args);if(!enabled())return p;return{...p,stages:p.stages.map(s=>s.metadata?.stageId===11&&s.initialState?.honroAct23V4Revision===1?{...s,initialState:{...s.initialState,honroReviewedNarrativeRevision:1}}:s)};};
 const oldPrepare=V.prepare;V.prepare=function(b,p){const out=oldPrepare(b,p);if(active(b)){memory(b);b.honroNarrativeContent=content(b,b.honroNarrativeContent);}return out;};
@@ -133,7 +160,7 @@ const oldMigrate=V.migratePresentation;V.migratePresentation=function(p){oldMigr
 const oldOutcome=V.recordOutcome;V.recordOutcome=function(app,won){oldOutcome(app,won);if(won&&active(app.engine?.b)){const h=app.profile.honroAct23V4History?.stages?.[11];if(h)h.reviewedNarrative={revision:1,status:data().status,rows:Object.values(memory(app.engine.b).events).flatMap(e=>receiptIds(e)),withheld:Object.keys(blocked)};}};
 const oldResolve=G.HonroNarrativeCatalogue.resolve;G.HonroNarrativeCatalogue.resolve=(b,st)=>content(b,oldResolve(b,st));
 const oldSummary=G.HonroNarrativeCatalogue.summary;G.HonroNarrativeCatalogue.summary=(b,st)=>active(b)?(memory(b).journal?row('A2.S11.JOURNAL.01').text:''):oldSummary(b,st);
-const oldPlugin=V.plugins.get(11);V.register(11,{...oldPlugin,tick(app,dt){if(active(app.engine.b)&&V.mem(app.engine.b).done['11.exit']&&!memory(app.engine.b).events.gather){tick(app,0);if(app.dialogue)return;}oldPlugin.tick(app,dt);tick(app,dt);},complete(b){return oldPlugin.complete(b)&&complete(b);},draw(scene,c,b,e){if(active(b)){G.HonroAct23V4Chapter11?.draw(scene,c,b);draw(scene,c,b);}else oldPlugin.draw(scene,c,b,e);}});
+const oldPlugin=V.plugins.get(11);V.register(11,{...oldPlugin,tick(app,dt){if(active(app.engine.b)&&V.mem(app.engine.b).done['11.exit']&&!memory(app.engine.b).events.gather){tick(app,0);if(app.dialogue)return;}oldPlugin.tick(app,dt);tick(app,dt);},complete(b){return oldPlugin.complete(b)&&complete(b);},draw(scene,c,b,e){if(active(b)){G.HonroAct23V4Chapter11?.draw(scene,c,b);}else oldPlugin.draw(scene,c,b,e);}});
 for(const key of ['interlude','required','optional']){const old=G.HonroJourneyContent[key];G.HonroJourneyContent[key]=function(...args){const id=key==='interlude'?args[0]:args[1];if(enabled()&&Number(id)===11)return key==='optional'?optional(...args):[];return old.apply(this,args);};}
 G.HonroAct23V4Reviewed={automaticMarker,instruction,enabled,active,begin,presented,receiptIds,finishReceipt,row,rowsReviewed,lineAllowed,accepts,finished,present,content,failure,optional,blocked,requiredScenes,memory,complete,gathered,journal,talkId:(id,c)=>enabled()&&Number(id)===11?'rest-talk-v1-11-'+c+'-reviewed1':null};
 // Resolve Act3-only providers after their own modules have loaded.

@@ -62,7 +62,7 @@ function facts(b,id){if(!active(b))return false;const q=memory(b),resident=unit(
 }
 function tick(app,dt){if(!active(app.engine.b)){base.tick(app,dt);return;}if(!V.safe(app))return;const b=app.engine.b;
  // Intro/arrival must precede the rescue's physical simulation.
- const q=memory(b);if(['done','skipped'].includes(q.events.arrival?.status)&&!q.events.intro&&!cartStopped(b)&&alive(unit(b,b.honroV4Chapter21.old))&&q.armor.distance<15){moveArmor(app,dt,1);return;}
+ const q=memory(b);if(!q.events.intro&&!cartStopped(b)&&alive(unit(b,b.honroV4Chapter21.old))&&q.armor.distance<15){moveArmor(app,dt,1);return;}
  if(!memory(b).events.intro){G.HonroAct23V4Chapter21Reviewed.tick(app,0);if(app.dialogue)return;}
  base.tick(app,dt);observe(app,dt);G.HonroAct23V4Chapter21Reviewed.tick(app,dt);
 }

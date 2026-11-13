@@ -40,13 +40,12 @@ function beginSequence(app,entries,proof={}){
  const events=memory(b).events,pending=entries.filter(([key])=>!events[key]);
  if(!pending.length)return false;
  const keys=pending.map(([key])=>key),all=[];
- for(const [key,id] of pending){
-  const [line]=lines(b.honroStage,[id],key,app);
-  line[2].reviewedSequence=keys;
-  const camera=specs.get(b.honroStage).camera?.(app,key,[id],proof);if(camera)line[2].camera=clone(camera);
-  const allowed=lineAllowed(app,line[0],line[2]);if(allowed)all.push(line);
-  events[key]={status:allowed?'open':'skipped',ids:allowed?[id]:[],proof:clone(proof)};
-  V.slot(app,b.honroStage+'.reviewed.'+key,{rowIds:[id],proof});
+ for(const [key,input,ownProof=proof,targets] of pending){
+  const ids=Array.isArray(input)?input:[input],admitted=[];
+  const camera=targets?{id:key,intent:'situation',targets,padding:120,maxScale:.75}:specs.get(b.honroStage).camera?.(app,key,ids,ownProof);
+  for(const line of lines(b.honroStage,ids,key,app)){line[2].reviewedSequence=keys;if(camera)line[2].camera=clone(camera);if(lineAllowed(app,line[0],line[2])){all.push(line);admitted.push(line[2].rowId);}}
+  events[key]={status:admitted.length?'open':'skipped',ids:admitted,proof:clone(ownProof)};
+  V.slot(app,b.honroStage+'.reviewed.'+key,{rowIds:ids,proof:ownProof});
  }
  const d={title:app.stage.name,reviewedEvent:keys[0],reviewedStage:b.honroStage,reviewedSequence:keys};
  if(!all.length||G.HonroStory.skipsClosing?.(app,d)){finished(app,d);return false;}
@@ -77,7 +76,7 @@ const apiFor=n=>({V,C,memory,begin,beginSequence,done,row:id=>row(id,n),actor,sa
 function register(n,spec){specs.set(n,spec);const old=V.plugins.get(n),api=apiFor(n);V.register(n,{...old,tick(app,dt){if(!active(app.engine.b))return old.tick?.(app,dt);if(spec.before?.(app,api,dt)!==false)old.tick?.(app,dt);if(V.safe(app))spec.drive(app,api,dt);},complete(b){return old.complete(b)&&(!active(b)||spec.complete(b));},use(app,m,s){if(active(app.engine.b)){const out=spec.use?.(app,m,s);if(out!==undefined)return out;}return old.use?.(app,m,s);},eligibility(app,m,s){if(active(app.engine.b)){const out=spec.eligibility?.(app,m,s);if(out!==undefined)return out;}return old.eligibility?.(app,m,s);},attach(app,e){old.attach?.(app,e);if(active(e.b))spec.attach?.(app,e);},state(b){const out=old.state?.(b)||{};return active(b)?{...out,...spec.state?.(b)}:out;},draw(scene,c,b,e){old.draw?.(scene,c,b,e);if(active(b))spec.draw?.(scene,c,b,e);}});}
 const author=V.author;V.author=function(...args){const p=author(...args);for(const s of p.stages||[]){const n=s.metadata?.stageId;if(enabled(n)&&s.initialState?.honroAct23V4Revision===1){s.initialState.honroReviewedNarrativeRevision=1;if(s.initialState.honroReviewedSceneRevision!==specs.get(n).mapRevision){specs.get(n).author?.(s,p);s.initialState.honroReviewedSceneRevision=specs.get(n).mapRevision;}}}return p;};
 const prepare=V.prepare;V.prepare=function(b,p){const out=prepare(b,p);if(active(b)){memory(b);specs.get(b.honroStage).prepare?.(b,p);b.honroNarrativeContent=content(b,b.honroNarrativeContent);}return out;};
-const migrate=V.migratePresentation;V.migratePresentation=function(p){migrate(p);p.honroReviewedPresentationRevisions??={};for(const[n,s]of specs)if(enabled(n)&&p.honroReviewedPresentationRevisions[n]!==s.mapRevision){if(p.honroJourney?.story?.stageId===n)p.honroJourney.story=null;if(n===20&&p.honroActEnding?.stage===20&&p.honroActEnding.reviewedRevision!==1){p.honroAct23V4LegacyEnding=clone(p.honroActEnding);p.honroActEnding=null;}p.honroReviewedPresentationRevisions[n]=s.mapRevision;}};
+const migrate=V.migratePresentation;V.migratePresentation=function(p){migrate(p);p.honroReviewedPresentationRevisions??={};for(const[n,s]of specs)if(enabled(n)&&p.honroReviewedPresentationRevisions[n]!==s.mapRevision){if(p.honroJourney?.story?.stageId===n&&p.honroJourney.story.kind!=='arrival-talk')p.honroJourney.story=null;if(n===20&&p.honroActEnding?.stage===20&&p.honroActEnding.reviewedRevision!==1){p.honroAct23V4LegacyEnding=clone(p.honroActEnding);p.honroActEnding=null;}p.honroReviewedPresentationRevisions[n]=s.mapRevision;}};
 const revision=V.mapRevision;V.mapRevision=n=>enabled(n)?specs.get(n).mapRevision:revision(n);
 R.journals=(profile,n)=>enabled(n)?journals(profile,n):(R.journal(profile,n)?[R.journal(profile,n)]:[]);
 for(const name of ['rowsReviewed','lineAllowed','accepts','finished','present','content','optional','journal','talkId']){const old=R[name];R[name]=function(...args){if(name==='rowsReviewed'&&rowsReviewed(args[0]))return true;if(name==='lineAllowed'&&enabled(args[2]?.reviewedStage))return lineAllowed(...args);if(name==='accepts'&&rowsReviewed(args[1]))return args[1].some(l=>lineAllowed(args[0],l[0],l[2]));if(name==='finished'&&enabled(args[1]?.reviewedStage))return finished(...args);if(['present','content'].includes(name)&&active(args[0]))return(name==='present'?present:content)(...args);if(name==='optional'&&enabled(args[1]))return optional(...args);if(name==='journal'&&enabled(args[1]))return savedJournal(...args);if(name==='talkId'&&enabled(args[0]))return'rest-talk-v1-'+args[0]+'-'+args[1]+'-reviewed1';return old.apply(this,args);};}

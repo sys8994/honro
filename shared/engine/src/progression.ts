@@ -1,6 +1,7 @@
 import {equipmentStats,validateEquipmentIds,equipmentActor} from './equipment';
 import {damageSpread} from './damageVariance';
 import {GATE_SEARCH_RADIUS} from './gateTravel';
+import {preparedShot} from './skillRedesignData';
 import {waveArcDimensions,shatterStakeDimensions,MAGE_AREA_SCALE} from './mageGeometry';
 import {waveReflectionPlan,WAVE_REFLECTION_DECAY} from './waveReflection';
 import {HERO_ARMOR_CAP,passiveTuning,durabilityPower} from './passiveBalance';
@@ -12,7 +13,7 @@ import { SKILLS, CLASSES } from './data';
 import { clamp } from './math';
 import { MANA_COST_MULTIPLIER,PLAYER_MAGE_DAMAGE_MULTIPLIER,PLAYER_MAGE_OFFENSE_BOOST } from './balance';
 import { skillBalanceFactor } from './balanceModel';
-import {ENTHRALL_ACTIONS,ENTHRALL_POWER,ECHO_TURNS,ECHO_POWER,ECHO_LIMIT,SPIRIT_TURNS,MANIFEST_FORM_BONUS,MANIFEST_TURNS,WEAK_TURNS,BETRAY_TURNS} from './occultData';
+import {EARTHBIND,EATER_BASE_HP,ENTHRALL_ACTIONS,ENTHRALL_POWER,ECHO_TURNS,ECHO_POWER,ECHO_LIMIT,SPIRIT_TURNS,MANIFEST_FORM_BONUS,MANIFEST_TURNS,WEAK_TURNS,BETRAY_TURNS} from './occultData';
 export const CLASS_IDS: ClassId[] = ['mage', 'archer', 'knight', 'occultist'];
 export const MAX_LEVEL = 30;
 export const ULTIMATES:Record<ClassId,string>={mage:'M99',archer:'A99',knight:'S99',occultist:'O16'};
@@ -27,7 +28,7 @@ const layouts:Record<ClassId,string[][]>={
  mage:[['M06','M02','M04','M13','M05'],['M03','M11','M12','M14','M15'],['M07','M10','M08','M09','M99'],['MP01','MP02','MP04','MP03','MP05']],
  archer:[['A14','A02','A06','A10','A99'],['A11','A09','A13','A12','A15'],['A05','A04','A07','A03','A08'],['AP04','AP02','AP01','AP03','AP05']],
  knight:[['S03','S05','S07','S08','S02'],['S01','S06','S04','S15','S13'],['S09','S10','S11','S14','S12'],['SP01','SP02','SP03','SP04','SP05']],
- occultist:[['O02','O03','O04','O05','O16'],['O06','O07','O08','O09','O10'],['O11','O12','O13','O14','O15'],['OP01','OP02','OP03','OP04','OP05']]
+ occultist:[['O02','O03','O04','O05','O16'],['O06','O07','O08','O09','O10'],['O11','O12','O13','O15','O14'],['OP01','OP02','OP03','OP04','OP05']]
 };
 // Each branch opens at a different pace, while every old rank remains legal in existing saves.
 const unlockLevels=[[1,3,5,8,10],[1,2,6,8,12],[1,3,5,7,11],[1,2,4,9,12]];
@@ -85,7 +86,7 @@ function skillBaseEffectRows(id:string,rank:number):EffectRow[]{
    A14:[row('추가 치명 확률',pct(mix(.18,.39))+'p'),row('추가 치명 배율','+'+(+mix(.20,.55).toFixed(2))),row('치명 기준','캐릭터의 치명 능력에 합산')],
    A02:[row('추가 관통',`${[1,1,2,2,3,3,4,5][rr-1]}회`),row('관통 후 피해','이전의 88%'),row('지형 관통','얇은 목재')],
    A06:[row('피해에 따른 체력 회수',pct(mix(.05,.12))),row('피해에 따른 기력 회수',pct(mix(.03,.07))),row('한 사격 회복 상한','최대 체력 15% · 기력 18%')],
-   A10:[row('집중 유지','2턴 · 다음 절명 사격 1회'),row('거리 위력 가산',pct(mix(.08,.22))),row('치명 확률 가산',pct(mix(.06,.20))),row('방어 무시',pct(mix(.04,.15)))],
+   A10:[row('즉시 기력 회복',pct(preparedShot(rr).focus)),row('집중 유지','2턴 · 다음 절명 사격 1회'),row('사격 피해 가산',pct(preparedShot(rr).damage)),row('치명 확률 가산',pct(preparedShot(rr).critical)),row('방어 무시',pct(preparedShot(rr).pierce))],
    A99:[row('처형 발동 거리','1,200 이상 · 치명타'),row('처형 잔여 체력',pct(mix(.12,.22))),row('추가 치명 확률',pct(mix(.25,.39))+'p'),row('추가 치명 배율','+'+(+mix(.50,.85).toFixed(2))),row('보스 추가 피해','잃은 체력에 따라 최대 25%')],
    A11:[row('낙하 가속',num(mix(2.8,4.1))+'배')],
    A09:[row('방향 변경','비행 중 발사 · 클릭 · E · 1회'),row('선회 명중 추가 피해',pct(mix(.30,.65))),row('최대 선회각',num(mix(45,80))+'°'),row('선회 후 속력','92%')],
@@ -114,9 +115,9 @@ function skillBaseEffectRows(id:string,rank:number):EffectRow[]{
    O05:[row('나가는 피해','28%'),row('귀환 폭발','95% · 첫 유효 적 1회'),row('흔적 보너스','폭발 피해 +30%'),row('회귀','실제 발사 궤적 역순'),row('지형 미접촉','최대 3.4초 뒤 소멸')],
    O06:[row('쇠약 유지',`${WEAK_TURNS[rr-1]}턴`)],O07:[row('증오 유지',`${BETRAY_TURNS[rr-1]}턴`)],
    O08:[row('현형 유지',`${MANIFEST_TURNS[rr-1]}턴`),row('형 피해 반응',`+${pct(MANIFEST_FORM_BONUS[rr-1])}p`)],O09:[row('섭혼 행동',`${ENTHRALL_ACTIONS[rr-1]}회`),row('섭혼 전투력',pct(ENTHRALL_POWER[rr-1]))],
-   O10:[row('지박 유지',`${3+Math.floor((rr-1)*4/7)}턴`),row('지박령 동시 수','최대 4')],
+   O10:[row('적 이동 둔화',pct(EARTHBIND.slow)),row('라운드당 저주 피해',pct(EARTHBIND.roundDamage)),row('지박 유지',`${3+Math.floor((rr-1)*4/7)}턴`),row('지박령 동시 수','최대 4')],
    O11:[row('배회령 유지',`${SPIRIT_TURNS[rr-1]}턴`)],O12:[row('등불귀 유지',`${SPIRIT_TURNS[rr-1]}턴`),row('대상 수',rr<4?'1명':'최대 2명')],
-   O13:[row('호혼령 유지',`${SPIRIT_TURNS[rr-1]}턴`),row('체력 회복',pct(.025+.005*(rr-1))),row('기력 회복',pct(.035+.005*(rr-1))),row('회복 상한','동행마다 턴당 1회 · 중첩 불가')],O14:[row('포획 유지',`${[2,2,2,3,3,3,4,4][rr-1]}턴`),row('포획 반경',`${200+rr*15}`),row('기초 HP',`${Math.round(205*(1+.07*(rr-1)))} × 경지 보정`),row('피해 전달','포획 적 각각 · 남은 먹귀 HP까지')],
+   O13:[row('호혼령 유지',`${SPIRIT_TURNS[rr-1]}턴`),row('체력 회복',pct(.025+.005*(rr-1))),row('기력 회복',pct(.035+.005*(rr-1))),row('회복 상한','동행마다 턴당 1회 · 중첩 불가')],O14:[row('포획 유지',`${[2,2,2,3,3,3,4,4][rr-1]}턴`),row('포획 반경',`${200+rr*15}`),row('기초 HP',`${Math.round(EATER_BASE_HP*(1+.07*(rr-1)))} × 경지 보정`),row('피해 전달','포획 적 각각 · 남은 먹귀 HP까지')],
    O15:[row('반향령 유지',`${ECHO_TURNS[rr-1]}턴`),row('반향 피해',pct(ECHO_POWER[rr-1])),row('동시 설치',`${ECHO_LIMIT[rr-1]}개`)],
    O16:[row('귀결 혼령',`${10+Math.floor(rr/2)}기`)],
   };

@@ -16,13 +16,13 @@ function optional(profile,row){const b=profile.honroBattle;if(b?.honroStage!==14
  if(row.id==='EDGE.OPTIONAL_14_OCCULTIST_0')return !clearDoor(b);
  return true;
 }
-function allow(app,row){const b=app.engine?.b,id=row.id;if(row.channel==='optional'||id.startsWith('EDGE.OPTIONAL_'))return optional({...app.profile,honroBattle:b},row);
+function allow(app,row,meta){const b=app.engine?.b,id=row.id;if(row.channel==='optional'||id.startsWith('EDGE.OPTIONAL_'))return optional({...app.profile,honroBattle:b},row);
  if(!b)return false;const q=mem(b),s=physical(b),a=base(b),u=gil(b);
  if(id==='EDGE.ARRIVALS_14_0')return !a.houseOpen;
  if(id==='A2.S14.FAIL.01')return b.phase==='lost';
  if(!V.alive(u)||['won','lost'].includes(b.phase))return false;
  if(id==='A2.S14.INTRO.01')return nearHome(b)&&!a.houseOpen;
- if(/^A2\.S14\.INTRO\.0[234]$/.test(id))return done(b,'voice')&&nearHome(b)&&father(app.profile)&&!a.houseOpen;
+ if(/^A2\.S14\.INTRO\.0[234]$/.test(id))return (done(b,'voice')||meta?.reviewedSequence?.includes('voice'))&&nearHome(b)&&father(app.profile)&&!a.houseOpen;
  if(id==='A2.S14.MID.01')return done(b,'news')&&!!q.approach&&!a.houseOpen;
  if(id==='A2.S14.MID.02')return done(b,'news')&&nearHome(b)&&!a.houseOpen;
  if(id==='A2.S14.MID.03')return done(b,'news')&&clearDoor(b)&&!a.houseOpen;
@@ -37,9 +37,9 @@ function allow(app,row){const b=app.engine?.b,id=row.id;if(row.channel==='option
 function observe(b){const q=mem(b),p=home(b);q.positions??={};for(const u of foes(b,p,1000)){const d=Math.hypot(u.x-p.x,u.y-p.y),old=q.positions[u.id];q.positions[u.id]={x:u.x,y:u.y,d};if(!q.approach&&old&&d<old.d-1&&Math.hypot(u.x-old.x,u.y-old.y)>1)q.approach={actor:u.id,from:old,to:{x:u.x,y:u.y},distance:old.d-d};}}
 function drive(app,api){const b=app.engine.b,q=api.memory(b),s=physical(b),a=base(b);observe(b);if(!api.safe(app))return;
  const begin=(key,ids,proof={})=>api.begin(app,key,ids,proof);
- if(!q.events.arrival){begin('arrival',['EDGE.ARRIVALS_14_0']);return;}
- if(nearHome(b)&&!q.events.voice){begin('voice',['A2.S14.INTRO.01'],{insideHouse:true});return;}
- if(done(b,'voice')&&!q.events.news&&father(app.profile)){begin('news',['A2.S14.INTRO.02','A2.S14.INTRO.03','A2.S14.INTRO.04'],{masonRescued:true});return;}
+ const opening=[['arrival','EDGE.ARRIVALS_14_0']];
+ if(nearHome(b)&&!a.houseOpen&&V.alive(gil(b))){opening.push(['voice','A2.S14.INTRO.01',{insideHouse:true}]);if(father(app.profile))opening.push(['news',[2,3,4].map(i=>'A2.S14.INTRO.0'+i),{masonRescued:true}]);}
+ if(api.beginSequence(app,opening))return;
  if(done(b,'news')&&!q.events.approach&&(q.approach||clearDoor(b))){begin('approach',['A2.S14.MID.01','A2.S14.MID.02'],q.approach||{alreadyCleared:true});return;}
  if(done(b,'news')&&clearDoor(b)&&done(b,'approach')&&!q.events.invite){begin('invite',['A2.S14.MID.03'],{doorClear:true});return;}
  if(a.houseOpen&&!q.events.door){begin('door',['A2.S14.MID.04','A2.S14.MID.05'],a.proof['14.house']);return;}

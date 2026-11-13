@@ -64,8 +64,9 @@ function allow(app,row,meta){const b=app.engine.b,m=memory(b),r=base(b),id=row.i
 function scene(app,key,rows,proof={}){if(rows.every(id=>allow(app,api.row(id))))return api.begin(app,key,rows,proof);return false;}
 function drive(app){const b=app.engine.b,m=memory(b),q=api.memory(b),r=base(b),care=A.convoyCare(b),event=(key,rows,proof)=>!q.events[key]&&scene(app,key,rows,proof);
  if(event('arrival',['EDGE.ARRIVALS_20_0'],{roster:m.roster}))return;
- if(event('ring',['A2.S20.INTRO.01','A2.S20.INTRO.02'],{ring:r.ringRemoved,roster:m.roster}))return;
- if(event('entrance-warning',['A2.S20.INTRO.03']))return;
+ const ring=['A2.S20.INTRO.01','A2.S20.INTRO.02'],warning='A2.S20.INTRO.03';
+ const ready=[['ring',ring,{ring:r.ringRemoved,roster:m.roster}],['entrance-warning',[warning]]].filter(([key,ids])=>!q.events[key]&&ids.every(id=>allow(app,api.row(id))));
+ if(ready.length&&api.beginSequence(app,ready))return;
  if(event('start',['A2.S20.MID.01'],{roster:m.roster}))return;
  if(event('injured',['A2.S20.MID.06','A2.S20.POPUP.01'],care.injured))return;
  if(event('baggage',['A2.S20.MID.02','A2.S20.MID.03'],care.baggage))return;

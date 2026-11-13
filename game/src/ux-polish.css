@@ -27,7 +27,8 @@
 .honro #app .battle-screen .honro-compact-hud .ally-chip small{font-size:9px!important}
 
 /* ---------- story dialogue over a battle: hide the inert HUD peeking above it ---------- */
-.story-lock .honro #app .battle-screen .battle-bottom,body.story-lock #app .battle-screen .battle-bottom{opacity:0!important;pointer-events:none!important;transition:opacity .2s}
+.story-lock #app .battle-screen .battle-bottom{pointer-events:none!important;transition:opacity .2s}
+.story-lock #app .battle-screen:not(:has(.guide-overlay)) .battle-bottom{opacity:0!important}
 
 /* ---------- mobile portrait battle ---------- */
 @media (max-width:620px) and (orientation:portrait){

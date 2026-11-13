@@ -2,6 +2,17 @@
 // Read-only presentation derived from the exact battle snapshot, including old
 // ordered objectives. It never changes progress, gates, rewards or turn counters.
 const alive=u=>!!u&&!u.dead&&u.hp>0;
+function hostileTargets(b,units){
+ const actor=b.units.find(u=>u.id===b.active);
+ const ordered=[...new Map(units.filter(alive).map(u=>[u.id,u])).values()].sort((a,c)=>actor?Math.hypot(a.x-actor.x,a.y-actor.y)-Math.hypot(c.x-actor.x,c.y-actor.y):a.x-c.x);
+ return ordered.map(u=>({id:u.id,unitId:u.id,kind:'hostile',x:u.x,y:u.y-(G.HonroPartyPresentationHeight?.(u)??u.h),label:`목표 적: ${u.name||'적'}`}));
+}
+function hostileHint(b,units,action='노란 표식의 적 제압'){
+ const targets=hostileTargets(b,units),names=new Map();
+ for(const t of targets){const name=t.label.slice('목표 적: '.length);names.set(name,(names.get(name)||0)+1);}
+ const rows=[...names.entries()],shown=rows.slice(0,3).map(([name,n])=>`${name} ${n}명`).join(', ');
+ return{text:targets.length?`${action} · ${targets.length}명 남음: ${shown}${rows.length>3?' 외 '+rows.slice(3).reduce((sum,[,n])=>sum+n,0)+'명':''}`:'대상 적 제압 완료 · 다음 목표 확인',targets};
+}
 const heroName=cls=>G.HONRO_CONTENT.hero[cls]?.name||'동행';
 const heroes=b=>b.units.filter(u=>u.side===0&&!u.summoned&&!u.enthrall&&alive(u));
 const action=s=>s.id==='temple-escort'?'호송 대상 도착':s.id==='party-reunion'?'네 사람 집결 후 행동 종료':s.kind==='destroy'?'공격으로 파괴':s.kind==='rescue'?'구조':s.kind==='interact'?'상호작용':s.kind==='hold'?`${s.rounds}회 유지`:s.kind==='clear'?'대상 적을 모두 제압':s.kind==='route'?'동행 1명 출구 도착':s.kind==='escort'?'호송 대상 도착':s.kind==='reach'?s.allHeroes?'생존 동행 전원 도착':'동행 1명 도착':'대상 제압';
@@ -16,7 +27,7 @@ const endings={
  7:'주민 셋 구조 뒤 적 행동을 두 번 버티며 모두 보호하면 완료',
  8:'결박 둘과 빈 상여를 제압한 뒤 적 행동을 두 번 버티면 완료',
  9:'받이진 둘 설치 뒤 적 행동을 두 번 버티면 완료',
- 10:'소단을 적 턴 6회 보호한 뒤 한 명이 동쪽 안전 출구에 도착하면 일행과 함께 철수'
+ 10:'적 턴 6회 동안 소단을 보호한 뒤 네 사람이 모두 동쪽 외문을 통과하면 완료'
 };
 function ending(b,st,list){if(b.honroNarrativeRevision===1&&st.id===8)return '결박 둘과 빈 상여를 제압하면 완료';if(b.honroNarrativeRevision===1&&st.id===9)return '받이진 둘이 연결되면 완료';if(endings[st.id])return endings[st.id];const s=list.at(-1);return s?stepText(s,st.id)+'하면 완료':st.goal;}
 function failure(b,st,list,result){const parts=['동행 전원 전투불능'];const protectedUnits=b.units.filter(u=>u.honroProtected||u.id==='objective'||st.id===7&&(b.honroMarkers||[]).some(m=>m.action==='rescue'&&m.target===u.id));
@@ -48,6 +59,13 @@ function enhance(b,st,result){if(b.honroCustom||G.HonroAct23V4?.active(b))return
    if(s.kind==='reach'&&s.allHeroes){const group=heroes(b),inside=group.filter(u=>G.HonroAct3.sameFloor(u,m,s.radius||440)).length;summary+=' · 집결 '+inside+'/'+group.length;if(s.id==='party-reunion')summary+=' · 집결 후 행동 종료';}
   }}
  const presentation=progressive(b,st,result,list,s);
+ if(st.id===10&&G.HonroSodanWithdrawal.ready(b)&&!result.complete)presentation.currentInstruction=result.summary;
+ if(A===G.HonroAct2&&s&&['clear','defeat'].includes(s.kind)){
+  const units=s.kind==='clear'?A.enemiesFor(b,s):b.units.filter(u=>u.id===s.target&&!u.honroSubdued&&alive(u));
+  const hint=hostileHint(b,units);
+  presentation.currentInstruction=units.length?hint.text:s.kind==='clear'?'아직 들어오지 않은 증원 대기 · 동행의 행동을 마치세요':hint.text;
+  result={...result,targets:hint.targets};
+ }
  if(G.HonroStage16Temple?.pilot(b)&&s?.id==='temple-escort'){summary=s.label;presentation.currentInstruction=s.label;}
  return{...result,summary,blockReason,completionText:ending(b,st,list),failureText:failure(b,st,list,result),checklist,...presentation};
 }
@@ -63,7 +81,7 @@ function legacySteps(b,st,r){const h=b.honroState||{},out=[],add=(id,text,done=f
  case 7:marks.filter(m=>m.action==='rescue').forEach((m,i)=>add(m.id,'주민 '+(i+1)+' 곁에서 구조하세요',!!m.collected));hold('구조한 주민들을 2턴 보호하세요');break;
  case 8:seals.forEach((t,i)=>add(t.id,'상여 결박 '+(i+1)+'을 공격하세요',!!t.broken));add('boss','빈 상여를 쓰러뜨리세요',!!boss?.dead);if(b.honroNarrativeRevision!==1)hold('적 행동을 두 번 버티며 주변을 지키세요');break;
  case 9:marks.filter(m=>m.action==='receiver').forEach((m,i)=>add(m.id,'받이진 '+(i+1)+'을 활성화하세요',!!m.collected));if(b.honroNarrativeRevision!==1)hold('일행을 2턴 보호하세요');break;
- case 10:if(b.honroNarrativeRevision===1){add('binding','바깥 붉은 주박을 공격하세요',!!G.HonroQuestTargets.records(b).find(t=>t.id==='sodan-binding')?.broken);add('accept','소단이 힘을 맡기도록 곁을 지키세요',!!h.sodanCoop);add('protect','소단을 지켜 주세요 · '+Math.max(0,6-(h.coopHold||0))+'턴 남음',!!h.sodanCoop&&(h.coopHold||0)>=6);add('sodan-safe-exit','소단을 지키며 한 명으로 동쪽 안전 출구 확보',G.HonroSodanWithdrawal.complete(b));break;}add('weaken','소단의 주박을 약화하세요',!!h.sodanCoop||!!boss&&boss.hp<=boss.maxHp*.42);marks.filter(m=>m.action==='receiver').forEach((m,i)=>add(m.id,'받이진 '+(i+1)+'을 활성화하세요',!!m.collected));add('protect','소단을 지켜 주세요 · '+Math.max(0,6-(h.coopHold||0))+'턴 남음',!!h.sodanCoop&&(h.coopHold||0)>=6);add('sodan-safe-exit','소단을 지키며 한 명으로 동쪽 안전 출구 확보',G.HonroSodanWithdrawal.complete(b));break;
+ case 10:if(b.honroNarrativeRevision===1){add('binding','바깥 붉은 주박을 공격하세요',!!G.HonroQuestTargets.records(b).find(t=>t.id==='sodan-binding')?.broken);add('accept','소단이 힘을 맡기도록 곁을 지키세요',!!h.sodanCoop);add('protect','소단을 지켜 주세요 · '+Math.max(0,6-(h.coopHold||0))+'턴 남음',!!h.sodanCoop&&(h.coopHold||0)>=6);add('sodan-safe-exit','동행 셋을 동쪽 외문 너머로 이동 · 소단은 스스로 따라옵니다',G.HonroSodanWithdrawal.complete(b));break;}add('weaken','소단의 주박을 약화하세요',!!h.sodanCoop||!!boss&&boss.hp<=boss.maxHp*.42);marks.filter(m=>m.action==='receiver').forEach((m,i)=>add(m.id,'받이진 '+(i+1)+'을 활성화하세요',!!m.collected));add('protect','소단을 지켜 주세요 · '+Math.max(0,6-(h.coopHold||0))+'턴 남음',!!h.sodanCoop&&(h.coopHold||0)>=6);add('sodan-safe-exit','동행 셋을 동쪽 외문 너머로 이동 · 소단은 스스로 따라옵니다',G.HonroSodanWithdrawal.complete(b));break;
  default:add('current',r.summary,r.complete);
  }return out;
 }
@@ -100,5 +118,5 @@ function progressive(b,st,result,list,current){
  const act4Instruction=q&&!q.complete?(q.returnEscort?.phase==='safe'?'귀환 이야기를 확인하고 일행을 안전 지점에 모으세요':'주민 네 사람을 안전한 곳까지 호송하세요'):null;
  return{currentInstruction:act4Instruction||(result.complete?'목표 완료':instruction||result.summary),currentObjectiveId:chosen?.id,visibleChecklist};
 }
-G.HonroObjectiveGuide={enhance,stepText,ending,progressive};
+G.HonroObjectiveGuide={enhance,stepText,ending,progressive,hostileTargets,hostileHint};
 })(globalThis);

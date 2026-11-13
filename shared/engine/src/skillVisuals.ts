@@ -133,10 +133,23 @@ function drawIronFlower(c:C,p:Projectile){
  c.restore();
 }
 export function drawRedesignProjectile(c:C,p:Projectile){
- if(p.wraithVersion===1){
-  c.save();c.strokeStyle=p.color;c.fillStyle=p.color;c.lineWidth=1.5;
-  if(p.trail.length>1){c.globalAlpha=.32;c.beginPath();p.trail.forEach((v,i)=>i?c.lineTo(v.x,v.y):c.moveTo(v.x,v.y));c.lineTo(p.x,p.y);c.stroke();}
-  c.translate(p.x,p.y);const raised=p.wraithState==='manifest',size=raised?30:17;c.globalAlpha=raised?.85:.65;c.beginPath();c.moveTo(-size*.5,size*.6);c.bezierCurveTo(-size,-size*.6,-size*.4,-size,0,-size);c.bezierCurveTo(size*.7,-size,size*.9,0,size*.45,size*.65);c.lineTo(0,size*.35);c.closePath();c.fill();c.stroke();c.fillStyle='#eef0dd';for(const x of [-5,5]){c.beginPath();c.arc(x,-size*.4,2,0,Math.PI*2);c.fill();}c.restore();return true;
+ if(p.skill==='O05'||p.mode==='spiritBolt'){
+  const wraith=p.skill==='O05',raised=p.wraithState==='manifest',flutter=Math.sin(p.age*19)*4;
+  c.save();
+  if(p.trail.length>1){
+   const trail=p.trail.slice(-12);
+   c.strokeStyle='#778782';c.lineCap='round';
+   for(let i=1;i<trail.length;i++){c.globalAlpha=i/trail.length*.33;c.lineWidth=1+i/trail.length*3;c.beginPath();c.moveTo(trail[i-1].x,trail[i-1].y);c.lineTo(trail[i].x,trail[i].y);c.stroke();}
+  }
+  c.translate(p.x,p.y);c.rotate(raised?0:Math.atan2(p.vy,p.vx)+Math.PI/2);
+  const size=raised?1.32:wraith?.88:.64;c.scale(size,size);c.globalAlpha=.88;
+  const linen=c.createLinearGradient(-18,-18,16,29);linen.addColorStop(0,'#c8c8ac');linen.addColorStop(.48,'#818b7d');linen.addColorStop(1,'#303e42');
+  c.fillStyle=linen;c.strokeStyle='#253438';c.lineWidth=2;c.lineJoin='round';
+  c.beginPath();c.moveTo(-3,-30);c.lineTo(7,-21);c.quadraticCurveTo(13,-15,15,1);c.lineTo(24,26+flutter);c.lineTo(10,19);c.lineTo(5,37-flutter);c.lineTo(-4,21);c.lineTo(-20,32+flutter);c.lineTo(-11,10);c.lineTo(-16,-5);c.quadraticCurveTo(-14,-18,-3,-30);c.closePath();c.fill();c.stroke();
+  c.fillStyle='#303f41';c.beginPath();c.moveTo(-5,-21);c.lineTo(8,-9);c.lineTo(5,2);c.lineTo(-8,-11);c.closePath();c.fill();
+  c.strokeStyle='#a65b47';c.lineWidth=wraith?3:2;c.beginPath();c.moveTo(4,-11);c.lineTo(2,5);c.lineTo(10,15);c.stroke();
+  for(let i=0;i<3;i++){const drift=Math.sin(p.age*11+i)*6;c.globalAlpha=.28-i*.05;c.strokeStyle=i===0?'#a2ab94':'#536764';c.lineWidth=3-i*.7;c.beginPath();c.moveTo(-11+i*8,14);c.quadraticCurveTo(-12+i*11+drift,37,(-18+i*15)-drift,48+i*9);c.stroke();}
+  c.restore();return true;
  }
  if(drawWarriorProjectile(c,p))return true;
  const s=SKILLS[p.skill];if(!s?.redesigned)return false;

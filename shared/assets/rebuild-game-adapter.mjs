@@ -14,7 +14,8 @@ export function resolveRebuildCharacter(u){
 // Presentation bounds only. Summons/NPC renderers take precedence over class
 // aliases, and collision dimensions remain owned by the engine.
 export function partyPresentationHeight(u){
-  if(!u||u.summoned)return u?.h||0;
+  if(!u)return 0;
+  if(u.summoned)return u.h*(u.summonKind==='eater'?1:1.4);
   const a=globalThis.HONRO_PARTY?.[resolveRebuildCharacter(u)];
   return a?u.h*(a.canvas.presentationHeight||a.canvas.visualHeight)/a.canvas.visualHeight:u.h;
 }
@@ -281,7 +282,7 @@ export class HonroPartyVisual{
     const asset=this.visuals[id].asset;
     this.flightPaths??={};this.flightPaths[part]??=asset.paths.filter(p=>p.part===part).map(p=>({path:new Path2D(p.d),color:asset.palette[p.fill]}));
     ctx.save();ctx.translate(q.x,q.y);ctx.rotate(Math.atan2(q.vy,q.vx)+(part==='spirit'?Math.PI/2:0));
-    ctx.scale(.4,.4);ctx.translate(...(part==='spirit'?[-394,-205]:[-439,-193]));
+    ctx.scale(.4,.4);ctx.translate(-394,-223);
     for(const p of this.flightPaths[part]){ctx.fillStyle=p.color;ctx.fill(p.path);}
     ctx.restore();return true;
   }

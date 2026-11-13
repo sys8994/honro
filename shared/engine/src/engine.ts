@@ -22,7 +22,8 @@ import {newSkill,redesignImpact,redesignStep,redesignPrediction,splitSeven,initR
 import {terrainSurface,exposedSurface,walkTerrain,sweepBodyTerrain,SEAM_GAP} from './locomotion';
 import {SUMMON_TUNING} from './summons';
 import {beginOccultCast,convergeAt,stepConvergingSpirit,SOUL_SKILLS,SUMMON_SKILLS} from './occultMechanics';
-import {ENTHRALL_ACTIONS,ENTHRALL_POWER,ECHO_TURNS,ECHO_LIMIT,SPIRIT_TURNS,MANIFEST_FORM_BONUS,MANIFEST_TURNS,WEAK_TURNS,BETRAY_TURNS} from './occultData';
+import {preparedShot} from './skillRedesignData';
+import {EARTHBIND,EATER_BASE_HP,ENTHRALL_ACTIONS,ENTHRALL_POWER,ECHO_TURNS,ECHO_LIMIT,SPIRIT_TURNS,MANIFEST_FORM_BONUS,MANIFEST_TURNS,WEAK_TURNS,BETRAY_TURNS} from './occultData';
 import {makePhysics,environmentAt,changePhysics,duePhysics,advanceLinear,dragFor,collisionDamage,fallDamage,validPhysicsPatch} from './physics';
 import type {PhysicsPatch} from './physics';
 import {multishotProfile,volleyAngles,waveCount} from './projectileGrowth';
@@ -925,7 +926,8 @@ export class Engine {
             conditionBonuses.push(.22);
             this.fx('text', u.x, u.y - u.h - 20, '#f4d39c', 15, '핵심 적중');
         }
-        const defenseMultiplier=(damageSource==='normal'?1-clamp(armor*(p?.skill==='S02'?.65:1),0,HERO_ARMOR_CAP):1)
+        const pierce=direct&&p?.preparedRank?preparedShot(p.preparedRank).pierce:0;
+        const defenseMultiplier=(damageSource==='normal'?1-Math.max(0,clamp(armor*(p?.skill==='S02'?.65:1),0,HERO_ARMOR_CAP)-pierce):1)
             *(u.arrivalGuard!==undefined?.90:1)
             *(u.martialGuard&&u.martialGuard.round>=this.b.round?1-u.martialGuard.reduction:1);
         let attack=damageSource==='normal'?(damageSkill&&SKILLS[damageSkill]?attackForSkill(SKILLS[damageSkill]):attackForHit(p,rawSrc,src,SKILLS)):undefined;
@@ -1250,6 +1252,11 @@ export class Engine {
         const ghost=this.spawnSummon(owner,'earthbound',x,y,1,1,false,undefined,reportSkill,origin);ghost.summonExpires=this.b.round+2;ghost.fixed=true;ghost.summonFloating=true;
         this.fx('spark',x,y-40,'#bcb7a1',45);
     }
+    private applyEarthSlow(u:Unit,factor:number){
+        const current=u.slowed&&u.slowed.expires>=this.b.round?u.slowed.factor:0;
+        if(factor<=current)return;
+        u.moveLeft*=((1-factor)/(1-current));u.slowed={factor,expires:this.b.round};
+    }
     private tickOccult(){
         const b=this.b;b.occultTraps??=[];
         for(const trap of [...b.occultTraps]){
@@ -1263,8 +1270,8 @@ export class Engine {
         }
         for(const anchor of b.units){if(anchor.dead||anchor.summonKind!=='earthbound')continue;
             const token=String(b.round),cx=anchor.x,cy=anchor.y-anchor.h*.5;anchor.auraHits??={};
-            for(const target of this.actors(1))if(this.attackAllows(target,anchor.id)&&anchor.auraHits[target.id]!==token&&Math.hypot(target.x-cx,target.y-target.h*.5-cy)<180+target.r){
-                anchor.auraHits[target.id]=token;target.moveLeft*=.82;target.slowed={factor:.18,expires:b.round};this.hurt(target,Math.max(8,anchor.maxHp*.07),anchor.id,false,undefined,undefined,'normal',undefined,anchor.summonDamageOrigin);
+            for(const target of this.actors(1))if(this.attackAllows(target,anchor.id)&&anchor.auraHits[target.id]!==token&&Math.hypot(target.x-cx,target.y-target.h*.5-cy)<EARTHBIND.auraRadius+target.r){
+                anchor.auraHits[target.id]=token;this.applyEarthSlow(target,EARTHBIND.auraSlow);this.hurt(target,anchor.maxHp*EARTHBIND.auraDamage,anchor.id,false,undefined,undefined,'normal',undefined,anchor.summonDamageOrigin);
             }
         }
     }
@@ -1286,7 +1293,7 @@ export class Engine {
         if(support)x=clamp(x,support.x,support.x+support.w);
         const ground=support?{t:support,y:topAt(support,x,y)}:this.surface(clamp(x,30,this.b.width-30),y-80,this.b.height+120);
         const floating=['lantern','echo','earthbound'].includes(kind);const sy=floating?clamp(y,90,this.b.height-170):(ground?.y??groundY(this.b.terrain,x));
-        const base={stalker:{hp:175,atk:.84,h:58,r:17,dur:4},lantern:{hp:138,atk:.78,h:54,r:16,dur:4},charger:{hp:205,atk:1.00,h:66,r:19,dur:4},warden:{hp:255,atk:.46,h:72,r:21,dur:5},host:{hp:230,atk:1.06,h:70,r:21,dur:4},eater:{hp:205,atk:0,h:EATER_SIZE.h,r:EATER_SIZE.r,dur:4},echo:{hp:170,atk:0,h:64,r:20,dur:4},earthbound:{hp:145,atk:0,h:68,r:21,dur:3}}[kind];
+        const base={stalker:{hp:175,atk:.84,h:58,r:17,dur:4},lantern:{hp:138,atk:.78,h:54,r:16,dur:4},charger:{hp:205,atk:1.00,h:66,r:19,dur:4},warden:{hp:255,atk:.46,h:72,r:21,dur:5},host:{hp:230,atk:1.06,h:70,r:21,dur:4},eater:{hp:EATER_BASE_HP,atk:0,h:EATER_SIZE.h,r:EATER_SIZE.r,dur:4},echo:{hp:170,atk:0,h:64,r:20,dur:4},earthbound:{hp:145,atk:0,h:68,r:21,dur:3}}[kind];
         const hp=Math.round(base.hp*hpScale*(.78+owner.level*.027));
         const dur=kind==='eater'?eaterTuning(rank).turns:['charger','host','earthbound'].includes(kind)?base.dur:SPIRIT_TURNS[clamp(rank,1,8)-1]+(empowered?1:0);
         const grounded=kind==='stalker'||kind==='warden'||kind==='eater';
@@ -1402,7 +1409,7 @@ export class Engine {
             if(u.soulBonusUntil!==undefined&&u.soulBonusUntil<this.b.round){u.soulAffinityBonus=0;u.soulDefenseBonus=0;delete u.soulBonusUntil;}
             if(u.earthbind&&u.earthbind.until<this.b.round)delete u.earthbind;
             if(u.dead||u.eaterCapturedBy)continue;
-            if(u.earthbind){const caster=this.unit(u.earthbind.owner);if(caster&&this.attackAllows(u,caster.id,u.earthbind)){u.slowed={factor:.24,expires:this.b.round};this.hurt(u,u.earthbind.damage,caster.id,false,undefined,undefined,'normal','O10',{attackSide:u.earthbind.attackSide,damageRoll:u.earthbind.damageRoll,skill:(u as any).honroEarthSkill,honroReportSource:(u as any).honroEarthReport});}}
+            if(u.earthbind){const caster=this.unit(u.earthbind.owner);if(caster&&this.attackAllows(u,caster.id,u.earthbind)){this.applyEarthSlow(u,EARTHBIND.slow);this.hurt(u,u.earthbind.damage,caster.id,false,undefined,undefined,'normal','O10',{attackSide:u.earthbind.attackSide,damageRoll:u.earthbind.damageRoll,skill:(u as any).honroEarthSkill,honroReportSource:(u as any).honroEarthReport});}}
             if(!(u.curseTurns||0))continue;const owner=u.curseOwner?this.unit(u.curseOwner):undefined;if((u.curseDamage||0)>0&&owner&&this.attackAllows(u,(u as any).honroDotOwner||owner.id,{autonomous:u.curseAutonomous})){this.hurt(u,u.curseDamage!,(u as any).honroDotOwner||owner.id,false,undefined,undefined,'normal',undefined,{...u.curseDamageOrigin,skill:(u as any).honroDotSkill,honroReportSource:(u as any).honroDotReport});this.fx('text',u.x,u.y-u.h-24,'#c388d2',13,'저주');}
             u.curseTurns!--;if((u.curseTurns||0)<=0){u.curseTurns=0;u.curseDamage=0;u.curseAttack=0;u.curseArmor=0;u.betrayalUntil=0;u.curseOwner=undefined;}
         }
@@ -1423,7 +1430,7 @@ export class Engine {
         }
         if(p.mode==='curseEnthrall'){if(h?.unit)this.captureEnemy(h.unit,owner,p.skillRank||1,!!p.soulBoost,p.skill,p);this.remove(p);return true;}
         if(p.mode==='curseEarth'){
-            for(const t of this.b.units)if(!t.dead&&this.attackAllows(t,p.owner,p)&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<p.blast+t.r){if(t.side===1){(t as any).honroEarthSkill=p.skill;(t as any).honroEarthReport=p.honroReportSource;t.earthbind={equipmentPull:gearHas(p,'so_converge')&&gearBody(p)?{x:t.x,y:t.y,used:false}:undefined,attackSide:p.attackSide,damageRoll:p.damageRoll,owner:owner.id,until:this.b.round+2+Math.floor(((p.skillRank||1)-1)*4/7)+(p.soulBoost?1:0),damage:p.damage*.32,autonomous:this.autonomousAttack(p.owner,p)};t.curseOwner=owner.id;}this.hurt(t,p.damage,p.owner,false,p,p);}
+            for(const t of this.b.units)if(!t.dead&&this.attackAllows(t,p.owner,p)&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<p.blast+t.r){if(t.side===1){(t as any).honroEarthSkill=p.skill;(t as any).honroEarthReport=p.honroReportSource;t.earthbind={equipmentPull:gearHas(p,'so_converge')&&gearBody(p)?{x:t.x,y:t.y,used:false}:undefined,attackSide:p.attackSide,damageRoll:p.damageRoll,owner:owner.id,until:this.b.round+2+Math.floor(((p.skillRank||1)-1)*4/7)+(p.soulBoost?1:0),damage:p.damage*EARTHBIND.roundDamage,autonomous:this.autonomousAttack(p.owner,p)};t.curseOwner=owner.id;this.applyEarthSlow(t,EARTHBIND.slow);}this.hurt(t,p.damage,p.owner,false,p,p);}
             this.fx('ring',p.x,p.y,'#b9ae91',p.blast);this.remove(p);return true;
         }
         if(p.mode==='curseDot'||p.mode==='curseChain'){

@@ -52,7 +52,7 @@ function bind(app,lines,options){if(!app.engine||app.screen!=='battle')return li
  const b=app.engine.b,key=sceneKey(app,lines,options),stage=b.honroStage,names=[...new Set(lines.filter(l=>G.HonroStory.speakerPresentation(l[0],l[2]).kind==='character').map(l=>l[0]))];
  const subjects=names.map(n=>speakerId(app,n)?{actor:speakerId(app,n)}:{speaker:n});
  return lines.map(([who,text,meta={}],index)=>{
-  if(stage===10&&options.after==='outcome'&&G.HonroSodanWithdrawal?.complete(b))return[who,text,{...meta,camera:speakerPolicy(who,meta,{id:'10:safe-exit',intent:'conversation',targets:[{nearbyAllies:'boss'}],padding:40,maxScale:.78})}];
+  if(stage===10&&options.after==='outcome'&&G.HonroSodanWithdrawal?.complete(b))return[who,text,{...meta,camera:speakerPolicy(who,meta,{id:'10:safe-exit',intent:'conversation',targets:[{nearbyAllies:'boss'},...(b.honroState.sodanWithdrawal?.version===2?[G.HonroSodanWithdrawal.gate(b)]:[])],padding:40,maxScale:.78})}];
   const eventId=meta.eventSource?.startsWith('encounter:')?meta.eventSource.slice(10):null;
   const reinforcementIds=meta.reinforcementIds||(eventId?(b.honroState?.reinforcementEvents?.[eventId]??((b.honroEvents||[]).some(ev=>ev.id===eventId&&G.HonroEncounters.combat(ev.action))?[]:null)):null);
   if(reinforcementIds)return[who,text,{...meta,camera:speakerPolicy(who,meta,{id:`reinforcement:${stage}:${key}:${index}`,intent:'situation',targets:reinforcementIds.map(actor=>({actor})),padding:100,maxScale:Math.min(app.scene?.scale||.72,.72),reinforcement:true})}];

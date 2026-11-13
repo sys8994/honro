@@ -50,7 +50,7 @@ function entries(b,u){
  if(u.meleeFollow==='ready')add('follow','파진연격','파진연격 · 검술 한 번');
  if(u.harmony)add('power','합세','합세 · 다음 기예 강화');
  if(u.jucheonReady)add('power','주천완성','주천완성');
- if(u.prepared)add('prepared','정심','정심 · 다음 절명 사격 강화');
+ if(u.prepared)add('prepared','정심','정심 · 다음 절명 사격의 피해·치명타·방어 관통 강화');
  if(u.retreat)add('retreat','이탈보','이탈보 · 후퇴 단계');
  return list;
 }

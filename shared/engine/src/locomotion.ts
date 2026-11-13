@@ -43,7 +43,8 @@ export function sweepBodyTerrain(terrain:Terrain[],u:Unit,a:Vec,b:Vec,skipFace?:
 /** Only sub-pixel/editor seams may be bridged. This never bridges real ledges. */
 export const SEAM_GAP=2.5;
 const SEAM_STEP=3;
-export const WALKABLE_SLOPE=1.35;
+// Gameplay ramps up to ~54.8° remain walkable; steep faces still require a jump.
+export const WALKABLE_SLOPE=1.42;
 /** Ground is the exposed boundary of the solid union. Testing BELOW a top
  * incorrectly rejects both pieces at a coplanar overlap and creates a hole. */
 export function exposedSurface(terrain:Terrain[],t:Terrain,x:number,y:number){

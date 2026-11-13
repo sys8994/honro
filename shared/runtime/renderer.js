@@ -348,7 +348,8 @@
             G.HonroNarrativeArt?.draw(this,e);
             if(!G.HonroAct23V4?.active(b))G.HonroStage19FarewellArt?.draw(this,e);
             G.HonroAct23V4?.draw(this,c,b,e);
-            if(!quietOutro&&b.honroStage===10&&b.honroState?.sodanCoop)this.finaleRitual(c,b);
+            G.HonroSodanWithdrawal?.drawGate(c,b);
+            if(!quietOutro&&b.honroStage===10&&b.honroState?.sodanCoop&&!G.HonroSodanWithdrawal.ready(b))this.finaleRitual(c,b);
             // Persisted residual charms are real battle objects, not impact FX.
             for (const trap of quietOutro?[]:b.occultTraps || []) {
                 if(trap.expires<b.round)continue;

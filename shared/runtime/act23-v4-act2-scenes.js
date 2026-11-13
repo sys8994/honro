@@ -5,7 +5,7 @@ const V=G.HonroAct23V4,base=G.HonroAct23V4Act2,C=G.HONRO_CORE,clone=x=>JSON.pars
 const alive=V.alive,heroes=V.heroes,near=V.near,unit=(b,id)=>b.units.find(u=>u.id===id),mark=V.marker;
 const active=b=>base.active(b)&&b.honroStage<=16;
 const memory=b=>V.mem(b).act2Scenes??={revision:1,proof:{},walks:{}};
-const threats=(b,p,r=420)=>b.units.filter(u=>alive(u)&&u.side===1&&!u.honroObjectiveTarget&&near(u,p,r));
+const threats=(b,p,r=420)=>V.threats(b,p,r);
 function author(map,p){const n=map.metadata.stageId,original=clone(map);base.author(map,p);if(n<11||n>16)return;const init=map.initialState,old=original.markers;
  const at=id=>{const m=old.find(m=>m.id===id);if(!m)throw Error('v4.scene.marker:'+id);return{x:m.x,y:m.y};};
  const point=(x,y)=>({x,y}),steps=[],positions={};

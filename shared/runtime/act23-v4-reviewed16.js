@@ -57,11 +57,12 @@ function observe(app){const e=app.engine,b=e.b,q=mem(b),u=unit(b,'resident-1'),e
 function scene(app,key,ids,proof,targets){const out=api.begin(app,key,ids,proof||{});if(out&&targets){for(const l of app.dialogue.lines)l[2].camera={id:l[2].rowId,intent:'situation',targets:clone(targets),padding:120,maxScale:.75};G.HonroStory.draw(app);}return out;}
 function drive(app){const b=app.engine.b,q=mem(b);observe(app);if(!V.safe(app))return;
  const begin=(k,rows,p,t)=>scene(app,k,rows,p,t),start=(k,rows,condition,p,t)=>{if(!q.events[k]&&condition){begin(k,rows,p,t);return true;}return false;};
- if(start('arrival',['EDGE.ARRIVALS_16_0'],true,{},[{actor:'objective'},{actor:'resident-1'}]))return;
- if(start('branch',[id(b.honroEntryVariant?.choice==='B'?'BRANCH.02':'BRANCH.01')],!!b.honroEntryVariant&&!!q.elderDiscipleObserved,b.honroEntryVariant))return;
- if(start('elder',[id('INTRO.01')],!!q.elderDiscipleObserved))return;
- if(start('attached',[id('INTRO.02')],!!q.attachedObserved,q.attachedObserved))return;
- if(start('approach',[id('INTRO.03')],!!q.approach,q.approach))return;
+ const opening=[['arrival','EDGE.ARRIVALS_16_0',{},[{actor:'objective'},{actor:'resident-1'}]],
+  ...(b.honroEntryVariant&&q.elderDiscipleObserved?[['branch',id(b.honroEntryVariant.choice==='B'?'BRANCH.02':'BRANCH.01'),b.honroEntryVariant]]:[]),
+  ...(q.elderDiscipleObserved?[['elder',id('INTRO.01')]]:[]),
+  ...(q.attachedObserved?[['attached',id('INTRO.02'),q.attachedObserved]]:[]),
+  ...(q.approach?[['approach',id('INTRO.03'),q.approach]]:[])];
+ if(api.beginSequence(app,opening))return;
  if(start('blocked',[id('MID.01')],blocked(app),q.blocked))return;
  // An absent questioner cannot withhold Sodan's physical separation. The
  // attached spirit and a nearby living separator are still observed first.
