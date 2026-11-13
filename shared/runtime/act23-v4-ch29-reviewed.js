@@ -10,6 +10,14 @@ function objective(b){const a=m(b);let step;
 }
 function guidance(b){
  const enemies=P.commandThreats(b),u=boss(b),current=V.current(b)?.id;
+ if(warning(b)){
+  const p=V.marker(b,'stage29-cover'),ids=P.coverBlockers(b);
+  const party=V.heroes(b).filter(h=>ids.includes(h.id));
+  if(party.length){
+   const text='낙하 구역 밖으로 이동 · '+party.map(h=>h.name).join('·');
+   return {text,targets:[{...p,kind:'move',label:'낙하 구역 비우기'}]};
+  }
+ }
  if(current==='stage29-boss'){
   if(enemies.length)return G.HonroObjectiveGuide.hostileHint(b,[...enemies,u],'한태록과 지휘군 제압');
   if(live(b))return G.HonroObjectiveGuide.hostileHint(b,[u],'한태록 제압');

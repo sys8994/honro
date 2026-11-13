@@ -13,8 +13,13 @@ function guidance(b){
  const run=m(b),current=V.current(b)?.id;
  if(!safe(b)){
   const threats=[...P.boardingThreats(b),...P.waveThreats(b)];
-  if(threats.length)return G.HonroObjectiveGuide.hostileHint(b,threats,'나루를 막는 적과 증원 제압');
   const status='주민 안전 도달 '+run.rescued.length+'/'+I.residents.length;
+  if(threats.length){
+   const guide=G.HonroObjectiveGuide.hostileHint(b,threats,'나루를 막는 적과 증원 제압');
+   return {...guide,text:run.ready?status+' · '+guide.text:guide.text};
+  }
+  const pending=P.pendingWaveEntrances(b);
+  if(pending.length)return {text:status+' · 증원 진입로를 비우고 아군 행동 종료',targets:pending};
   if(!run.ready){
    const p=V.marker(b,'s30-route-ready'),text='동행을 나루 입구로 이동해 승선 통로 확보';
    return {text,targets:[{...p,kind:'move',label:'나루 입구'}]};

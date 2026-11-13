@@ -165,6 +165,13 @@ function boardingCorridorSafe(b){return !boardingThreats(b).length;}
 function waveResolved(b,id){const m=memory(b),w=m.waves[id],expected=b.honroV4Stage30?.entries?.[id]?.members?.length;return !!w?.admitted&&expected>0&&w.ids?.length===expected&&w.ids.every(id=>{const u=unit(b,id);return !!u&&(!alive(u)||u.side!==1||u.honroSubdued===true);});}
 function allWavesResolved(b){return SOURCES.every(id=>waveResolved(b,id));}
 function waveThreats(b){return SOURCES.flatMap(id=>memory(b).waves[id]?.ids||[]).map(id=>unit(b,id)).filter(u=>alive(u)&&u.side===1&&!u.honroSubdued);}
+function pendingWaveEntrances(b){
+ const spec=b.honroV4Stage30;
+ return Object.entries(memory(b).waves).flatMap(([id,w])=>{
+  const at=spec?.entries?.[id];
+  return !w.admitted&&at?[{id,x:at.x,y:at.y,kind:'move',label:'증원 진입로'}]:[];
+ });
+}
 function hold(app){const b=app.engine.b,m=memory(b);m.hold.resolved=SOURCES.filter(id=>waveResolved(b,id));m.hold.progress=m.hold.resolved.length;m.hold.contested=!boardingCorridorSafe(b);if(waveResolved(b,SOURCES[0])&&!m.hold.contested)m.ready=true;}
 function offer(app){const e=app.engine,b=e.b,u=e.active;if(!safe(app)||!alive(u)||u.side!==0||u.summoned||u.enthrall||u.acted)return;
  for(const w of Object.values(memory(b).waves))if(!w.admitted){w.offered??={};w.offered[u.id]=serial(b);}
@@ -239,6 +246,6 @@ function tick(app,dt){const b=app.engine.b;if(!active(b)||paused(app))return;pre
 function draw(scene,c,b){if(!active(b))return;const m=b.honroState?.act23v4?.stage30;if(!m)return;scene.landmark(c,{id:ID,kind:'ferry',x:m.boat.x,y:m.boat.y+22.5,size:1.25});
  for(const[id,w]of Object.entries(m.waves)){if(w.admitted)continue;const at=b.honroV4Stage30.entries[id];if(!at)continue;c.save();c.strokeStyle='#c9b18a';c.lineWidth=3;c.globalAlpha=.55+Math.sin((scene.time||0)*4)*.2;c.beginPath();c.ellipse(at.x,at.y-32,52,25,0,0,Math.PI*2);c.stroke();c.restore();}
 }
-const plugin={author,prepare,attach,tick,state,failure,complete,eligibility,use,stepSatisfied,stepTick(){},draw,active,memory,evacuation,defenseReady,convoySafe,rescueComplete,boardingCorridorSafe,boardingThreats,allWavesResolved,waveResolved,waveThreats,ids:{boat:ID,residents:RESIDENTS,crew:CREW,soldiers:SOLDIERS,injured:INJURED,seaman:SEAMAN,sources:SOURCES,testimony:TESTIMONY,comparison:COMPARISON}};
+const plugin={author,prepare,attach,tick,state,failure,complete,eligibility,use,stepSatisfied,stepTick(){},draw,active,memory,evacuation,defenseReady,convoySafe,rescueComplete,boardingCorridorSafe,boardingThreats,allWavesResolved,waveResolved,waveThreats,pendingWaveEntrances,ids:{boat:ID,residents:RESIDENTS,crew:CREW,soldiers:SOLDIERS,injured:INJURED,seaman:SEAMAN,sources:SOURCES,testimony:TESTIMONY,comparison:COMPARISON}};
 G.HonroAct23V4Stage30=plugin;V.register(30,plugin);
 })(globalThis);
