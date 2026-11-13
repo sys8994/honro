@@ -154,7 +154,12 @@ function applyArrowTurn(e:Engine,p:Projectile,delta:number){
  e.fx('ring',p.x,p.y,'#d0d5cc',22);
 }
 export function applyQueuedArrowTurn(e:Engine,p:Projectile){
- if(p.turnOrder&&!p.turned&&p.age+1e-8>=p.turnOrder.age)applyArrowTurn(e,p,p.turnOrder.delta);
+ const order=p.turnOrder;
+ if(!order||p.turned||p.age+1e-8<order.age)return;
+ if(order.heading===undefined){applyArrowTurn(e,p,order.delta);return;}
+ const angle=Math.atan2(p.vy,p.vx),delta=order.heading-angle,max=rad(120);
+ applyArrowTurn(e,p,clamp(Math.atan2(Math.sin(delta),Math.cos(delta)),-max,max));
+ p.turnStraight=500;
 }
 export function turnArrow(e:Engine,point?:Vec){
  const b=e.b,p=steerableArrow(b);if(!p)return false;
@@ -329,7 +334,7 @@ export function redesignImpact(e:Engine,p:Projectile,h:Collision){
  }
  if(s.cls!=='archer')return false;
  if(h.unit){
-  const target=h.unit,prior=p.outboundHits?.includes(target.id),factor=p.returning?.7*(prior?1.2:1):1;
+  const target=h.unit,prior=p.outboundHits?.includes(target.id),factor=p.returning?(p.terrainReturn?(prior?.84:1):.7*(prior?1.2:1)):1;
   const before=target.hp;e.hurt(target,p.damage*factor,p.owner,true,p,h);p.hit.push(target.id);
   if(p.mode==='push'){if(gearHas(p,'se_push')&&gearBody(p)&&!p.equipment!.pushMarked&&enemy(p,target)){p.equipment!.pushMarked=true;gearState(target).wallSlow={owner:p.owner,until:e.b.round+1};}e.impulse(target,Math.sign(p.vx)*280,-130,p);target.shove={attackSide:e.attackSide(p.owner,p),friendlyFireApplied:e.friendlyFireMultiplier(target,p.owner,p)<1,autonomous:e.autonomousAttack(p.owner,p),owner:p.owner,damage:(before-target.hp)*.18,remaining:Math.round(lerpRank(2,5,r)),hit:[target.id],life:1.5};}
   if(p.mode==='pierce'&&p.pierces<[1,1,2,2,3,3,4,5][r-1]){p.pierces++;p.damage*=.88;return true;}
@@ -338,6 +343,18 @@ export function redesignImpact(e:Engine,p:Projectile,h:Collision){
   if(p.mode==='chainArrow'&&chainArrowHop(e,p,r))return true;
  }
  if(h.terrain){
+  if(p.terrainReturn&&!p.returning){
+   const from={x:h.x+h.n.x*(p.radius+1),y:h.y+h.n.y*(p.radius+1)};
+   const dx=u.x-from.x,dy=u.y-u.h*.5-from.y,length=Math.hypot(dx,dy);
+   // Start clear of the struck face. A return aimed through the same face
+   // or another wall is stopped by the next ordinary collision sweep.
+   if(length>25){
+    const speed=Math.max(400,Math.hypot(p.vx,p.vy));p.x=from.x;p.y=from.y;
+    p.vx=dx/length*speed;p.vy=dy/length*speed;p.prevVy=p.vy;p.returning=true;p.bounces++;
+    p.outboundHits=[...p.hit];p.hit=[];p.contacts=[{x:h.x,y:h.y}];e.fx('ring',h.x,h.y,p.color,22);
+    return true;
+   }
+  }
   if(p.skill==='A11'&&gearHas(p,'se_drop')&&gearBody(p)&&!p.equipment!.bounced&&h.n.y<-.35&&p.vy>0){const a=p.equipment!;a.dropBonus=trajectoryMultiplier(p,u,h);a.bounced=true;a.travelX=h.x;a.travelY=h.y+h.n.y*(p.radius+1);a.travelMax=600;p.x=a.travelX;p.y=a.travelY;p.vx=Math.sign(p.vx||u.facing)*Math.max(400,Math.abs(p.vx));p.vy=0;p.prevVy=0;p.gravityScale=0;p.damage*=.65;p.bounces++;e.fx('spark',p.x,p.y,p.color,24);return true;}
   e.damageTerrain(h.terrain,p.damage*s.terrain,0,p.owner,p);
   e.emit('sound',{name:'arrowhit'});
@@ -403,7 +420,8 @@ export function redesignStep(e:Engine,p:Projectile,dt:number){
    strikeGeometry(e,p,g);e.remove(p);return true;
   }
  }
- if(p.mode==='return'&&p.returning&&!e.inWaterfall(p)){
+ if(p.terrainReturn&&p.returning&&((p.x-u.x)*p.vx+(p.y-u.y+u.h*.5)*p.vy>=0)){e.remove(p);return true;}
+ if(p.mode==='return'&&p.returning&&!p.terrainReturn&&!e.inWaterfall(p)){
   p.returnAge=(p.returnAge||0)+dt;
   const a=Math.atan2(p.vy,p.vx),dest=Math.atan2((u.y-u.h*.5)-p.y,u.x-p.x),delta=Math.atan2(Math.sin(dest-a),Math.cos(dest-a)),next=a+clamp(delta,-2.5*dt,2.5*dt),speed=Math.max(400,Math.hypot(p.vx,p.vy));
   p.vx=Math.cos(next)*speed;p.vy=Math.sin(next)*speed;p.gravityScale=.12;
@@ -541,7 +559,7 @@ function arrowReplaySnapshot(b:Battle,s:Skill):Battle {
 }
 /** Replay the actual arrow step on an isolated battle: apex, curved return, LOS,
  * piercing, chains and split children cannot diverge into a second physics loop. */
-function arrowPrediction(e:Engine,u:Unit,s:Skill,angle:number,power:number,representative=false,ignoreUnits=false):SkillPrediction{
+function arrowPrediction(e:Engine,u:Unit,s:Skill,angle:number,power:number,representative=false,ignoreUnits=false,order?:Projectile['turnOrder']):SkillPrediction{
  const b=arrowReplaySnapshot(e.b,s),Sim=e.constructor as new(b:Battle)=>Engine,sim=new Sim(b),actor=sim.unit(u.id)!;
  const wave=s.mode==='waveBounce',waveContacts:Vec[]=[],impact=sim.impact.bind(sim);
  if(wave)sim.impact=(p,h)=>{if(p.bounces>=1&&!gearHas(p,'da_stake')){p.x=h.x;p.y=h.y;sim.remove(p);}else{if(h.terrain)waveContacts.push({x:h.x,y:h.y});impact(p,h);}};
@@ -551,15 +569,19 @@ function arrowPrediction(e:Engine,u:Unit,s:Skill,angle:number,power:number,repre
  actor.loadout=[s.id];actor.focus=actor.maxFocus=10000;actor.cooldowns={};actor.acted=false;actor.dead=false;actor.retreat=false;
  // The guide represents this volley; later repeated volleys have the same launch path.
  actor.ranks.AP01=0;
- sim.grounded=()=>true;sim.canAct=()=>true;sim.fire(s.id,angle,power);
+ sim.grounded=()=>true;sim.canAct=()=>true;sim.fire(s.id,angle,power,s.id==='A09'&&!order,order);
  let roots=[...b.projectiles];const primary=roots[Math.floor(roots.length/2)];
  if(representative&&primary){roots=[primary];b.projectiles=roots;if(s.id==='A04'){Object.assign(primary,e.projectileOrigin(u,s,angle),e.velocity(u,s,angle,power));primary.prevVy=primary.vy;}}
  const paths=new Map<number,Vec[]>();
  let tracked=primary;
- let time=0,apex:Vec|undefined;const origin=e.projectileOrigin(u,s,angle);
+ let time=0,apex:Vec|undefined,turnIndex:number|undefined;const origin=e.projectileOrigin(u,s,angle),turnSamples:NonNullable<SkillPrediction['turnSamples']>=[];
  for(const p of roots)paths.set(p.id,[{x:p.x,y:p.y}]);
  for(let i=0;i<1440&&b.projectiles.length;i++){
-  for(const p of [...b.projectiles]){if(!b.projectiles.includes(p))continue;const wasApex=p.apex,wasSplit=representative&&p===tracked&&p.mode==='seekRain',nextId=b.nextId;capture=!representative||p===tracked;stepContact=null;sim.stepProjectile(p,STEP);
+  for(const p of [...b.projectiles]){if(!b.projectiles.includes(p))continue;const wasApex=p.apex,wasSplit=representative&&p===tracked&&p.mode==='seekRain',nextId=b.nextId;capture=!representative||p===tracked;stepContact=null;
+   if(p===primary&&s.id==='A09'&&!order&&i%3===0&&p.age>.06)turnSamples.push({x:p.x,y:p.y,age:p.age});
+   const turning=p===primary&&((p.turnOrder&&!p.turned&&p.age+1e-8>=p.turnOrder.age)||p.terrainReturn&&!p.returning);
+   const before={x:p.x,y:p.y};sim.stepProjectile(p,STEP);
+   if(turning&&(p.turned||p.returning)){const list=paths.get(p.id);if(list){turnIndex=list.length;list.push(p.contacts?.[0]??before);}}
    if(p===tracked&&!b.projectiles.includes(p))terminalContact=stepContact;
    if(p===primary&&!wasApex&&p.apex)apex={x:p.x,y:p.apexY??p.y};
    if(!p.secondary&&(!representative||p===tracked)){const key=representative?primary.id:p.id,list=paths.get(key)||[...(p.trail.slice(0,1))];if(i%3===0||!b.projectiles.includes(p))list.push({x:p.x,y:p.y});paths.set(key,list);}
@@ -571,9 +593,12 @@ function arrowPrediction(e:Engine,u:Unit,s:Skill,angle:number,power:number,repre
   if(representative&&tracked&&!b.projectiles.includes(tracked))break;
  }
  const points=primary?paths.get(primary.id)||[origin]:[origin],last=points.at(-1)||origin;
- return {...last,unit:(contact as Collision|null)?.unit?.id,terrain:(terminalContact as Collision|null)?.terrain?.id,points,paths:[...paths.values()],time,contacts:waveContacts,apex,closest:99999};
+ return {...last,unit:(contact as Collision|null)?.unit?.id,terrain:(terminalContact as Collision|null)?.terrain?.id,points,paths:[...paths.values()],time,contacts:waveContacts,apex,turnSamples,turnIndex,terrainTurn:primary?.contacts?.[0],closest:99999};
 }
 /** Preview uses the same integrator, collision routine, restitution and geometry as the live shot. */
+export function plannedArrowPrediction(e:Engine,u:Unit,angle:number,power:number,order:NonNullable<Projectile['turnOrder']>){
+ return arrowPrediction(e,u,SKILLS.A09,angle,power,true,false,order);
+}
 export function redesignPrediction(e:Engine,u:Unit,s:Skill,angle:number,power:number,representative=false,ignoreUnits=false):SkillPrediction|null{
  if(!s.redesigned)return null;
  if(s.mode==='waveBounce')return arrowPrediction(e,u,s,angle,power,false,ignoreUnits);

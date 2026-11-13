@@ -71,6 +71,9 @@ export interface Prediction {
     terrainAtEnd?: boolean;
     closest: number;
     apex?: Vec;
+    turnSamples?: (Vec & {age:number})[];
+    terrainTurn?: Vec;
+    turnIndex?: number;
 }
 /** Seconds an enemy shows its decided shot before releasing it. */
 export const ENEMY_AIM_TELEGRAPH=.45;
@@ -578,12 +581,13 @@ export class Engine {
             }
         return best;
     }
-    fire(skillId:string,angle:number,power:number,ai=false):boolean {if(this.noncombatWalk())return false;const u=this.active;if(!u)return false;return this.audioScope(u.id,skillId,this.b.shot+1,()=>{const ok=this.fireAction(skillId,angle,power,ai);if(ok)this.skillSound(skillId==='A10'?'status':'launch',u.id,skillId,this.b.shot);return ok;});}
-    private fireAction(skillId: string, angle: number, power: number, ai = false): boolean {
+    fire(skillId:string,angle:number,power:number,ai=false,turnOrder?:Projectile['turnOrder']):boolean {if(this.noncombatWalk())return false;const u=this.active;if(!u)return false;return this.audioScope(u.id,skillId,this.b.shot+1,()=>{const ok=this.fireAction(skillId,angle,power,ai,turnOrder);if(ok)this.skillSound(skillId==='A10'?'status':'launch',u.id,skillId,this.b.shot);return ok;});}
+    private fireAction(skillId: string, angle: number, power: number, ai = false,turnOrder?:Projectile['turnOrder']): boolean {
         if(this.noncombatWalk())return false;
         const b = this.b, u = this.active, s = SKILLS[skillId];
         if (!u || u.dead || u.retreat || !s || !warriorAllowed(u,s) || s.enemyOnly&&u.side===0&&!ai || s.passive || (!ai && (!this.canAct() || !this.grounded(u))) || (!u.loadout.includes(skillId)&&!(skillId==='S00'&&u.meleeFollow==='ready')) || (s.ultimate && u.side===0 && this.b.mode!=='practice' && !ultimateUnlocked(this.b.heroes[u.cls],u.cls)) || this.cooldownLeft(u,skillId)>0 || !this.canAfford(s,u,power))
             return false;
+        if(skillId==='A09'&&turnOrder&&(!Number.isFinite(turnOrder.heading)||!Number.isFinite(turnOrder.age)||turnOrder.age<STEP||turnOrder.age>12))return false;
         offerEnemyEffectResponses(this);
         delete u.platformDrop;delete u.moveTarget;
         u.moving = 0;
@@ -614,6 +618,10 @@ export class Engine {
         else if(s.mode==='twinCrescent'){const a=make(u.angle-4,e.damage,true),c=make(u.angle+4,e.damage,true);a.mode=c.mode='crescent';a.autonomous=c.autonomous=false;}
         else
             make(u.angle);
+        for(const p of b.projectiles)if(p.owner===u.id&&p.shot===b.shot){
+            if(skillId==='A09'&&turnOrder)p.turnOrder={...turnOrder};
+            if(skillId==='A12')p.terrainReturn=true;
+        }
         beginOccultCast(this,u,s,b.projectiles.filter(p=>p.owner===u.id&&p.shot===b.shot),actualKiSpent);
         const castBonus=beginPlayerCast(this,u,s,actualKiSpent);
         for(const p of b.projectiles.filter(p=>p.owner===u.id&&p.shot===b.shot)){p.effectBoost=castBonus.effectBoost;p.sizeBoost=s.martial&&s.branch==='blade'?1+passiveTuning(passiveRank(u,'SP01')).bladeGeometry:1;}
@@ -912,7 +920,7 @@ export class Engine {
         if(p&&src&&newSkill(p))dmg=redrawDamage(this,p,src,u,dmg,source||p,direct,!!critical);
         let armorWithoutSupport=Math.max(0,u.armor),armor = Math.max(0,u.armor-(u.curseArmor||0));
         if (u.role === 'guard' && source)
-            armorWithoutSupport=armor = (source.x - u.x) * u.facing > 0 ? .40 : .05;
+            armorWithoutSupport=armor = (p?.terrainReturn&&p.returning?-p.vx:source.x-u.x) * u.facing > 0 ? .40 : .05;
         if (u.boss && u.boss !== 5 && !((u as any).honroAct4FinaleBoss===true && (this.b as any).honroAct4Preview===40 && (this.b as any).honroFinalDefenseRevision===2))
             armorWithoutSupport=armor = (this.b.round % 2 === 0 ? .06 : .29);
         if(primary&&u.side===1&&!u.boss&&!(u as any).honroMidboss&&!(u as any).honroAct2Boss&&!(u as any).honroFinalBoss&&!u.honroObjectiveTarget){const keep=1-(gearHas(p||provenance,'co_armor')?.30:0);armor*=keep;armorWithoutSupport*=keep;}
@@ -1741,6 +1749,7 @@ export class Engine {
         const track=p.equipment?.travelMax!==undefined&&(paced||!p.mode.startsWith('honro')),start={x:p.x,y:p.y};
         const result=this.audioScope(p.owner,p.skill,p.shot,()=>this.stepSkillProjectile(p,dt,paced),!!p.autonomous);
         if(track&&p.equipment)p.equipment.travelled=(p.equipment.travelled||0)+Math.hypot(p.x-start.x,p.y-start.y);
+        if(p.turnStraight!==undefined)p.turnStraight=Math.max(0,p.turnStraight-Math.hypot(p.x-start.x,p.y-start.y));
         return result;
     }
     private stepSkillProjectile(p: Projectile, dt: number, paced=false) {
@@ -1828,12 +1837,15 @@ export class Engine {
             return;
         }
         if((p.mode==='homing'||p.mode==='seekChild')&&p.age>.12&&!this.inWaterfall(p)){const v=this.steer(p.x,p.y,p.vx,p.vy,u,dt,p.targetId?this.b.units.filter(t=>t.id!==p.targetId).map(t=>t.id):p.hit,p.mode==='seekChild');p.vx=v.vx;p.vy=v.vy;}
-        const motion = this.advanceProjectile(p,dt);this.waterEntry(p,motion);
+        const motion = (p.turnStraight||0)>0||p.terrainReturn&&p.returning
+            ? {x:p.x+p.vx*dt,y:p.y+p.vy*dt,vx:p.vx,vy:p.vy,waterEntered:false}
+            : this.advanceProjectile(p,dt);
+        this.waterEntry(p,motion);
         p.prevVy = p.vy;
         p.vx=motion.vx;p.vy=motion.vy;
         if (!p.apex && p.prevVy < 0 && p.vy >= 0) {
             p.apex = true;
-            if(newSkill(p)){p.apexY=Math.min(p.apexY??p.y,p.y);if(p.mode==='dropArrow')p.gravityScale=2.8+(p.skillRank!-1)*1.3/7;if(p.mode==='return'){p.returning=true;p.outboundHits=[...p.hit];p.hit=[];}}
+            if(newSkill(p)){p.apexY=Math.min(p.apexY??p.y,p.y);if(p.mode==='dropArrow')p.gravityScale=2.8+(p.skillRank!-1)*1.3/7;if(p.mode==='return'&&!p.terrainReturn){p.returning=true;p.outboundHits=[...p.hit];p.hit=[];}}
             if((p.mode==='arcaneJudgment'||p.mode==='starHunt'||p.mode==='nightParade')&&this.launchUltimateChildren(p))return;
             if(['cluster','rain','seekRain'].includes(p.mode)){this.splitRain(p);return;}
             if (p.mode === 'return' && !newSkill(p)) {

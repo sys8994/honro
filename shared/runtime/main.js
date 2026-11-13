@@ -541,8 +541,31 @@
         else
             u.angle = 180 - clamp(this.displayAngle(u) + v, C.AIM_MIN || -85, 90); }
         canInput() { return !G.HonroAct3Void?.blocked(this) && !G.HonroBellAnomaly?.blocked(this) && this.engine && this.engine.canAct() && !this.modal.classList.contains('open') && !this.dialogue && !G.HonroStory.turnPaused(this) && !this.done; }
+        plannedTurn(){
+            const q=this.scene?.plannedTurn,e=this.engine,u=e?.active;
+            if(!q||!u||this.selected!=='A09'||e.b.phase!=='aim'||q.actor!==u.id||q.x!==u.x||q.y!==u.y||q.angle!==u.angle||q.shot!==e.b.shot||q.version!==e.b.sceneVersion||q.wind!==e.b.wind){
+                if(this.scene)this.scene.plannedTurn=null;
+                return null;
+            }
+            return q;
+        }
+        pickArrowTurn(point){
+            const q=this.plannedTurn();if(!q||!this.canInput())return false;
+            if(!q.anchor||q.order){
+                const candidate=q.path.reduce((best,p)=>!best||Math.hypot(p.x-point.x,p.y-point.y)<Math.hypot(best.x-point.x,best.y-point.y)?p:best,null);
+                if(!candidate||Math.hypot(candidate.x-point.x,candidate.y-point.y)*this.scene.scale>28)return false;
+                q.anchor=candidate;q.order=null;q.preview=null;
+            }else if(Math.hypot(point.x-q.anchor.x,point.y-q.anchor.y)*this.scene.scale>=8){
+                q.order={age:q.anchor.age,delta:0,heading:Math.atan2(point.y-q.anchor.y,point.x-q.anchor.x)};
+                q.preview=C.plannedArrowPrediction(this.engine,this.engine.active,q.angle,q.power,q.order);
+            }
+            this.updateHUD(true);return true;
+        }
         beginCharge() { if(this.engine?.noncombatWalk())return false; if(this.charging||this.engine?.active?.retreat)return false; if(!this.modal.classList.contains('open')&&!this.dialogue&&(this.engine?.detonateIceGourd()||this.engine?.manualDive()||this.engine?.turnArrow(this.scene?.turnTarget))){this.updateHUD(true);return false;} if (!this.canInput() || !this.engine.grounded(this.engine.active))
-            return false; let u = this.engine.active, sk = S[this.selected]; if (!sk || sk.passive || !this.engine.skillAllowed(sk,u) || !this.engine.canAfford(sk,u,0) || this.engine.cooldownLeft(u, sk.id) > 0)
+            return false; let u = this.engine.active, sk = S[this.selected];
+            const turn=this.plannedTurn();
+            if(turn){if(turn.order&&this.engine.fire('A09',turn.angle,turn.power,false,turn.order)){this.scene.plannedTurn=null;this.updateHUD(true);}return false;}
+            if (!sk || sk.passive || !this.engine.skillAllowed(sk,u) || !this.engine.canAfford(sk,u,0) || this.engine.cooldownLeft(u, sk.id) > 0)
             return false; this.charging = true; this.chargeAt = performance.now(); this.power = 0;this.audio?.skills?.startCharge(u,this.selected); return true; }
         chargePower(now=performance.now()) { return this.engine.chargePower(this.engine.active,S[this.selected],Math.max(0,now-this.chargeAt)/1000); }
         playbackSpeed() { return clamp(Number(this.engine.b.side===1?this.profile.settings.speed:this.profile.settings.playerSpeed)||1,1,4); }
@@ -551,13 +574,20 @@
             let u = this.engine.active;
             this.power = this.chargePower();
             u.lastPower = this.power;
-            this.scene.turnTarget=undefined;this.engine.fire(this.selected, u.angle, this.power);
+            this.scene.turnTarget=undefined;
+            if(this.selected==='A09'){
+                const path=this.engine.predict(u,S.A09,u.angle,this.power).turnSamples;
+                if(path?.length){
+                    this.scene.plannedTurn={actor:u.id,x:u.x,y:u.y,shot:this.engine.b.shot,version:this.engine.b.sceneVersion,wind:this.engine.b.wind,angle:u.angle,power:this.power,path};
+                    this.updateHUD(true);
+                }else this.notify('선회할 수 있게 첫 궤적을 더 길게 조준하세요.');
+            }else this.engine.fire(this.selected, u.angle, this.power);
         } }
         jump() { if (this.canInput()) {
             if(this.engine.jump())G.HonroAttackCamera?.resume(this.scene);
         } }
         drop() { if(this.canInput()&&this.engine.canDrop()){this.cancelInput();if(this.engine.drop()){G.HonroAttackCamera?.resume(this.scene);this.updateHUD(true);}} }
-        cancelInput() { this.altDropKey=null; this.audio?.skills?.stopCharge();this.restMotion?.scene?._restCamera?.cancel(); this.keys.clear(); this.charging = false; this.releaseStick(); this.contacts.clear(); this.firePointer = null; const k = $('stick-knob'); if (k)
+        cancelInput() { if(this.scene)this.scene.plannedTurn=null;this.altDropKey=null; this.audio?.skills?.stopCharge();this.restMotion?.scene?._restCamera?.cancel(); this.keys.clear(); this.charging = false; this.releaseStick(); this.contacts.clear(); this.firePointer = null; const k = $('stick-knob'); if (k)
             k.style.transform = 'translate(0,0)'; }
         inputs() {
             const stick = $('joystick'), fire = $('fire'), jump = $('jump'), cv = $('battlecanvas');
@@ -623,7 +653,8 @@
                 }
             } };
             cv.onpointerup = e => { if (!moved && this.contacts.size === 1 && this.engine) {
-                if(G.HonroUnitInfo.tap(this,pos(e),e.pointerType==='touch')){this.contacts.delete(e.pointerId);lastPair=null;return;}
+                const tap=pos(e);if(this.pickArrowTurn(this.scene.world(tap.x,tap.y))){this.contacts.delete(e.pointerId);lastPair=null;return;}
+                if(G.HonroUnitInfo.tap(this,tap,e.pointerType==='touch')){this.contacts.delete(e.pointerId);lastPair=null;return;}
                 let p = pos(e), v = this.scene.world(p.x, p.y), u = this.engine.b.units.find(u => u.side === 0 && !u.summoned && !u.dead && Math.hypot(u.x - v.x, u.y - u.h * .5 - v.y) < u.h);
                 if (u) { this.selectHero(u.id); G.HonroUnitInfo.show(this,u); }
             } this.contacts.delete(e.pointerId); if(!this.contacts.size)G.HonroAttackCamera?.endGesture(this.scene); lastPair = null; };
@@ -665,7 +696,8 @@
             const previous=this.engine.b.lastShots?.[u.id]?.power||0,power=this.charging?this.power:0;
             setStyle(button,'--charge',power*100);setStyle(button,'--previous',previous*100);setStyle(button,'--charge-color',H.hero[u.cls]?.color||'#c8b17c');
             if(button.dataset.character!==u.id)button.dataset.character=u.id;if(button.dataset.previous!==String(previous))button.dataset.previous=previous;button.classList.toggle('charging',this.charging);
-            const label=button.querySelector('.fire-label');if(label)setText(label,this.engine.iceGourdReady()?'폭발':this.charging?Math.round(power*100)+'%':'발사');
+            const label=button.querySelector('.fire-label'),turn=this.plannedTurn();
+            if(label)setText(label,this.engine.iceGourdReady()?'폭발':turn?turn.order?'발사':turn.anchor?'방향 지정':'선회점 지정':this.charging?Math.round(power*100)+'%':'발사');
         }
         renderBattleFrame(e,dt,effectDt,paused){
             const scene=this.scene,canvas=scene.canvas,now=performance.now();
@@ -732,7 +764,8 @@
             const wind=Math.max(-30,Math.min(30,b.wind)),fraction=Math.abs(wind)/30*50;
             setStyle($('wind-left'),'width',(wind<0?fraction:0)+'%');setStyle($('wind-right'),'width',(wind>0?fraction:0)+'%');setText($('wind-value'),`바람 ${Math.abs(Math.round(b.wind))}`);$('joystick').querySelector('.wind-gauge').setAttribute('aria-valuenow',String(b.wind));
             const steering=e.iceGourdReady()||e.canTurnArrow()||b.phase==='flight'&&b.projectiles.some(p=>p.owner===u.id&&p.mode==='warriorDive'&&!p.dived);
-            $('fire').disabled=!steering&&(u.retreat||!e.skillAllowed(sk,u)||!this.canInput()||!e.grounded(e.active)||!e.canAfford(sk,u,0)||cd>0);setStyle($('fire'),'--power',Math.round(this.power*100)+'%');$('fire').classList.toggle('charging',this.charging);
+            const planned=this.plannedTurn();
+            $('fire').disabled=!!(planned&&!planned.order)||!steering&&(u.retreat||!e.skillAllowed(sk,u)||!this.canInput()||!e.grounded(e.active)||!e.canAfford(sk,u,0)||cd>0);setStyle($('fire'),'--power',Math.round(this.power*100)+'%');$('fire').classList.toggle('charging',this.charging);
             this.updateChargeDisplay();
             $('jump').disabled=u.meleeFollow==='ready'||!this.canInput()||!e.grounded(e.active)||e.active.moveLeft<e.jumpCost(e.active);$('joystick').style.opacity=this.canInput()?1:.4;const defend=document.querySelector('[data-action=defend]');if(defend)defend.disabled=!this.canInput()||!!u.platformDrop&&u.platformDrop.phase!=='land';const drop=$('drop');if(drop)drop.disabled=!this.canInput()||!e.canDrop(u);
             if(e.noncombatWalk()){setText($('move-left'),'이동');const mode=$('joystick').querySelector('.stick-mode');if(mode)setText(mode,'이동');$('joystick').setAttribute('aria-label','이동');}
@@ -816,6 +849,7 @@
             document.addEventListener('keydown', e => { if(G.HonroEquipmentUI.key(this,e))return;if(this.altDropKey&&e.code!==this.altDropKey)this.altDropKey=null; const records=this.screen==='journey'&&this.root.querySelector('.journey-records[open]');if(e.code==='Escape'&&records&&!this.modal.classList.contains('open')){e.preventDefault();records.open=false;records.querySelector('summary')?.focus();return;} if(this.modal.querySelector('.training-dialog'))return; if(G.HonroAct3Void?.key(this,e))return; void this.audio?.wake?.(true); if(this.dialogue){G.HonroStory.key(this,e);return;} if(this.screen==='title'&&!this.modal.classList.contains('open')&&(e.code==='ArrowDown'||e.code==='ArrowUp')){const buttons=[...this.root.querySelectorAll('.title-actions button:not([disabled])')],index=buttons.indexOf(document.activeElement);if(buttons.length){e.preventDefault();const next=index<0?(e.code==='ArrowDown'?0:buttons.length-1):(index+(e.code==='ArrowDown'?1:-1)+buttons.length)%buttons.length;buttons[next].focus({preventScroll:true});}return;} if (this.screen !== 'battle'&&!this.modal.classList.contains('open'))
                 return; if (e.code === 'Escape') {
                 e.preventDefault();
+                if(this.plannedTurn()){this.scene.plannedTurn=null;this.updateHUD(true);return;}
                 if(this.scene?.inspectUnitId){G.HonroUnitInfo.close(this);return;}
                 this.modal.classList.contains('open') ? this.dismissModal() : this.pause();
                 return;

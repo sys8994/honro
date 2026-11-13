@@ -310,6 +310,15 @@ export function drawTurnGuide(c:C,e:Engine,zoom=1,point?:{x:number;y:number}){
  guideStroke(c,[{x:p.x,y:p.y},...pr.points.slice(1)],zoom,'#f2d39c',.82);
  c.save();c.strokeStyle='#f0d5a7';c.globalAlpha=.8;c.lineWidth=1.3/zoom;c.beginPath();c.arc(pr.x,pr.y,5/zoom,0,Math.PI*2);c.stroke();c.font=`${12/zoom}px sans-serif`;c.fillStyle='#f0d5a7';c.fillText('선회 예상',p.x+14/zoom,p.y-14/zoom);c.restore();return true;
 }
+export function drawPlannedArrow(c:C,q:{path:{x:number;y:number}[];anchor?:{x:number;y:number};preview?:ReturnType<Engine['predict']>},zoom:number){
+ const points=q.preview?.points??q.path,index=q.preview?.turnIndex;
+ guideStroke(c,index===undefined?points:points.slice(0,index+1),zoom,'#d9e1d2',.78);
+ if(index!==undefined)guideStroke(c,points.slice(index),zoom,'#f2d39c',.93);
+ if(q.anchor)markArrowTurn(c,q.anchor,zoom);
+}
+function markArrowTurn(c:C,p:{x:number;y:number},zoom:number){
+ c.save();c.beginPath();c.arc(p.x,p.y,6/zoom,0,Math.PI*2);c.strokeStyle='#f2d39c';c.lineWidth=1.7/zoom;c.stroke();c.restore();
+}
 export function drawRedesignGuide(c:C,e:Engine,u:Unit,s:Skill,power:number,zoom=1){
  if(drawMeleeGuide(c,e,u,s,power,zoom))return true;
  if(!s.redesigned)return false;
@@ -317,7 +326,11 @@ export function drawRedesignGuide(c:C,e:Engine,u:Unit,s:Skill,power:number,zoom=
  zoom=Math.max(.12,zoom);const pr=guidePrediction(e,u,s,power);
   c.save();c.strokeStyle=CLASSES[u.cls].color;c.fillStyle=CLASSES[u.cls].color;c.lineWidth=1.2/zoom;c.globalAlpha=.4;c.setLineDash([4/zoom,7/zoom]);
  let path=pr.points;
-  guideStroke(c,path,zoom,CLASSES[u.cls].color);
+  if(s.id==='A12'&&pr.turnIndex!==undefined){
+   guideStroke(c,path.slice(0,pr.turnIndex+1),zoom,CLASSES[u.cls].color);
+   guideStroke(c,path.slice(pr.turnIndex),zoom,'#f2d39c',.87);
+   if(pr.terrainTurn)markArrowTurn(c,pr.terrainTurn,zoom);
+  }else guideStroke(c,path,zoom,CLASSES[u.cls].color);
   if(!['A04','A15'].includes(s.id)&&'paths' in pr&&Array.isArray(pr.paths))for(const other of pr.paths as {x:number;y:number}[][]){if(other!==path)guideStroke(c,other,zoom,CLASSES[u.cls].color,.36);}
  const geo='geometry' in pr?pr.geometry as SkillGeometry:undefined;
  if(geo){c.setLineDash([4/zoom,8/zoom]);c.globalAlpha=.025;drawSkillGeometry(c,geo,true,zoom);c.globalAlpha=.4;drawSkillGeometry(c,geo,false,zoom);}

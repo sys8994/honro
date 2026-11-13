@@ -55,11 +55,40 @@ test('전로시 redirects a whole 연속사격 volley and restores queued turns'
  assert(restored.projectiles.some(p=>p.id>=id&&p.followup&&p.turned));
  assert(!e.turnArrow(point));
 });
+test('전로시 planned corner agrees with the real shot and is shared by the queued volley',()=>{
+ const a=arena('A09',8);a.u.ranks.AP01=8;a.foe(4500);
+ const sample=a.e.predict(a.u,C.SKILLS.A09,48,.72).turnSamples.find(p=>p.age>.64);
+ const order={age:sample.age,heading:.5,delta:0};
+ const guide=C.plannedArrowPrediction(a.e,a.u,48,.72,order);
+ assert(guide.turnIndex>0);
+ assert(Math.hypot(guide.points[guide.turnIndex].x-sample.x,guide.points[guide.turnIndex].y-sample.y)<1e-6);
+ assert(a.e.fire('A09',48,.72,false,order));
+ assert(!a.e.turnArrow({x:1000,y:1800}));
+ const save=C.defaults();save.saved=a.b;
+ const restored=C.validate(plain(save)).saved;assert(restored?.volley);
+ const e=new C.Engine(restored),turned=new Set();
+ for(let i=0;i<600;i++){
+  e.stepVolley(C.STEP);
+  for(const p of [...restored.projectiles]){
+   const before={x:p.x,y:p.y};e.stepProjectile(p,C.STEP);
+   if(p.turned){turned.add(p.id);if(p.turnStraight>100&&Math.abs(p.x-before.x)>1e-6)assert(Math.abs((p.y-before.y)/(p.x-before.x)-Math.tan(.5))<1e-8);}
+  }
+ }
+ assert.equal(turned.size,6);
+});
 test('homing obeys LOS and terrain collisions',()=>{
  const a=arena('A13'),p=a.fire(0,.5),t=a.foe(700,1800);a.b.terrain.push({id:'wall',x:600,y:1400,w:30,h:400,mat:'rock',hp:99999,maxHp:99999});a.b.sceneVersion++;const before=a.e.steer(550,1750,300,0,a.u,.1);assert.equal(before.vy,0);a.run();assert.equal(t.hp,t.maxHp);
 });
 test('return keeps outbound and inbound hits separate',()=>{
  const a=arena('A12'),p=a.fire(),t=a.foe();a.e.impact(p,{...Cpoint(t),t:0,n:{x:-1,y:0},unit:t});assert(a.b.projectiles.includes(p));p.returning=true;p.outboundHits=[...p.hit];p.hit=[];const before=t.hp;a.e.impact(p,{...Cpoint(t),t:0,n:{x:1,y:0},unit:t});assert(t.hp<before);assert.equal(p.hit[0],t.id);
+});
+test('귀환시 reaches terrain before turning and can hit a guard from behind',()=>{
+ const a=arena('A12',8),preview=a.e.predict(a.u,C.SKILLS.A12,32,.62);
+ assert(preview.terrainTurn.x>a.u.x+450);assert(preview.turnIndex>0);
+ const t=a.foe(a.u.x+(preview.terrainTurn.x-a.u.x)*.63,1800,{role:'guard',facing:-1});
+ const p=a.fire(32,.62),hp=t.hp;a.run();
+ assert(p.terrainReturn&&p.returning);assert.equal(p.contacts[0].x,preview.terrainTurn.x);
+ assert(p.apex);assert(t.hp<hp);assert.equal(a.b.projectiles.length,0);
 });
 function Cpoint(t){return {x:t.x,y:t.y-t.h*.5};}
 test('칠성추혼 always splits seven and caps each target at four hits',()=>{

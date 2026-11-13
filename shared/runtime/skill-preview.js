@@ -132,7 +132,13 @@ function tick(app,p,dt){
  p.age+=dt;const e=p.e,b=p.b,s=C.SKILLS[p.castId],u=p.hero;
  if(p.control)tick(app,p.control,dt);
  if(p.passive?.metric==='jump'&&!p.jumped&&p.age>.2){p.jumped=e.jump(u);p.jumpCost=p.initial.hero.move-u.moveLeft;}
- if(!p.fired&&p.age>=.65){p.fired=e.fire(p.passive?.incoming?'LA01':p.castId,p.aim.angle,p.aim.power,!!p.passive?.incoming);p.started=p.age;}
+ if(!p.fired&&p.age>=.65){
+  let order;if(p.castId==='A09'){
+   const pr=e.predict(u,s,p.aim.angle,p.aim.power),anchor=pr.turnSamples?.find(v=>v.age>=.48)??pr.turnSamples?.at(-1),t=b.units[1];
+   if(anchor&&t)order={age:anchor.age,delta:0,heading:Math.atan2(t.y-t.h*.5-anchor.y,t.x-anchor.x)};
+  }
+  p.fired=e.fire(p.passive?.incoming?'LA01':p.castId,p.aim.angle,p.aim.power,!!p.passive?.incoming,order);p.started=p.age;
+ }
  if(p.passive?.turns&&p.fired&&(p.hold||p.finishedAt===null)&&b.phase==='aim'&&b.side===0&&!b.projectiles.length&&p.age>(p.nextAction||1.8)){
   const casts=p.metrics.casts.filter(v=>v.side===0),sequence=p.passive.sequence||[],next=sequence[casts.length];
   if(p.passive.metric==='retreat'&&u.retreat){e.move(-1,dt);p.metrics.retreat=Math.max(p.metrics.retreat,p.initial.hero.x-u.x);}
@@ -141,7 +147,7 @@ function tick(app,p,dt){
  }
 
  if((p.fired||p.jumped)&&!u.dead){
-  if(p.id==='A09'){const q=b.projectiles.find(q=>q.skill==='A09');if(q){p.trace[q.turned?'after':'before'].push({x:q.x,y:q.y});if(!p.follow&&q.age>.48){p.turnVelocity={before:{vx:q.vx,vy:q.vy}};p.follow=e.turnArrow({x:b.units[1].x,y:b.units[1].y-b.units[1].h*.5-(p.scenario.turnLift??150)});if(p.follow){p.turns++;p.turnVelocity.after={vx:q.vx,vy:q.vy};}}}}
+  if(p.id==='A09'){const q=b.projectiles.find(q=>q.skill==='A09');if(q){p.trace[q.turned?'after':'before'].push({x:q.x,y:q.y});if(!q.turned)p.turnVelocity={before:{vx:q.vx,vy:q.vy}};else if(!p.follow){p.follow=true;p.turns++;p.turnVelocity??={};p.turnVelocity.after={vx:q.vx,vy:q.vy};}}}
   if(p.id==='M02'&&!p.follow&&b.projectiles.some(q=>!q.secondary&&q.bounces>0&&Math.hypot(q.x-b.units[1].x,q.y-b.units[1].y+55)<q.blast*.8)){p.follow=e.detonateIceGourd();}
   if(p.id==='S04'&&!p.follow&&b.projectiles.some(q=>q.body&&q.x>b.units[1].x-65)){p.follow=C.manualDive(e);}
   if(p.id==='S13'&&u.meleeFollow==='ready'&&!p.follow){p.follow=true;e.fire('S00',0,.55);}

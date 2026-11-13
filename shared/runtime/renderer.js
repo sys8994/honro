@@ -377,7 +377,8 @@
             if (!quietWalk && !quietOutro && !this.storyFrozen && u && b.phase === 'aim' && !u.summoned && selected && e.canAct?.()) {
                 try {
                     const repeat=u.cls==='archer'&&((u.ranks?.AP01||0)>0);
-                    if(this.arcFx){this.arcFx.time=this.time;this.arcFx.scale=this.scale;this.arcFx.predictionGuide(c,e,u,selected,power,charging,repeat);}
+                    if(selected==='A09'&&this.plannedTurn)G.HONRO_CORE.drawPlannedArrow(c,this.plannedTurn,this.scale);
+                    else if(this.arcFx){this.arcFx.time=this.time;this.arcFx.scale=this.scale;this.arcFx.predictionGuide(c,e,u,selected,power,charging,repeat);}
                 } catch { }
             }
             if(!quietOutro&&!this.storyFrozen&&b.phase==='flight')G.HONRO_CORE.drawTurnGuide(c,e,this.scale,this.turnTarget);

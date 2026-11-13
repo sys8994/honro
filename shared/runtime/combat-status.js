@@ -116,7 +116,7 @@ function reason(e,u,skill){
  if(b.side===1)return '적군 턴 · 행동을 기다리는 중';
  if(b.phase==='transition')return '턴 전환 중 · 착지와 이벤트 처리 대기';
  if(b.phase==='review')return '공격 결과 확인 중';
- if(b.phase==='flight'&&b.projectiles.some(p=>p.skill==='A09'&&!p.turned&&!p.followup))return '전로시 · 전장을 눌러 1회 선회';
+ if(e.canTurnArrow())return '전로시 · 전장을 눌러 1회 선회';
  if(b.phase==='flight'&&b.projectiles.some(p=>p.mode==='warriorDive'&&!p.dived))return '파산격 · 발사 버튼을 눌러 급강하';
  if(u.meleeFollow==='ready')return '파진연격 · 이동 없이 평참 또는 검술 한 번';
  if(u.retreat)return '후퇴 · 이동/점프만 가능 · 대기로 종료';
@@ -133,7 +133,7 @@ function reason(e,u,skill){
  return '이동·발사 가능';
 }
 function refresh(app,u){
- const b=app.engine.b,states=entries(b,u),why=reason(app.engine,u,G.HONRO_CORE.SKILLS[app.selected]),el=document.getElementById('combat-status'),esc=G.HONRO_CORE.escapeHTML;
+ const b=app.engine.b,states=entries(b,u),turn=app.plannedTurn(),why=turn?(turn.order?'전로시 · 발사해 지정한 경로로 사격':turn.anchor?'전로시 · 화살을 보낼 방향 선택':'전로시 · 첫 궤적 위에서 선회점 선택'):reason(app.engine,u,G.HONRO_CORE.SKILLS[app.selected]),el=document.getElementById('combat-status'),esc=G.HONRO_CORE.escapeHTML;
  if(el){
   const sig=JSON.stringify([u.id,states,why]);
   if(el.dataset.sig!==sig){
