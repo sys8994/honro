@@ -32,7 +32,7 @@ function guidance(b){
   return {text,targets:[{id:p.id,x:p.x,y:p.y,kind:'interact',label:text}]};
  }
  if(current==='old-road'){
-  const p=V.marker(b,current),text='생존 동행 전원이 동쪽 위 옛길 출구로 이동';
+  const p=V.marker(b,current),text=b.honroV4Stage30?.pacing===1?'생존 동행을 동쪽 옛길로 이동 · 막다른 비탈의 겹친 발판은 제자리 도약':'생존 동행 전원이 동쪽 위 옛길 출구로 이동';
   return {text,targets:[{...p,kind:'exit',label:'동쪽 위 옛길 출구'}]};
  }
  return null;

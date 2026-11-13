@@ -17,16 +17,29 @@ function ramp(id,points){return{id,type:'solid',name:id,points:points.map(([x,y]
 function authoredY(map,support,x){const t=map.terrains.find(t=>t.id===support);for(const edge of t?.properties?.honroWalkEdges||[]){const a=t.points[edge],z=t.points[(edge+1)%t.points.length];if(z.x>a.x&&x>=a.x&&x<=z.x)return a.y+(z.y-a.y)*(x-a.x)/(z.x-a.x);}throw Error('s30-support:'+support+':'+x);}
 function author(map){
  const initial=map.initialState??={};
- initial.honroV4Stage30={version:2,waterId:'sf-main-river',sourceDock:'s30-west-dock',targetDock:'s30-east-dock',deck:ID,source:{x:6630,y:6560},target:{x:7040,y:6560},capacity:2,residents:RESIDENTS,crew:CREW,soldiers:SOLDIERS,injured:INJURED,seaman:SEAMAN,
+ initial.honroV4Stage30={version:2,pacing:1,waterId:'sf-main-river',sourceDock:'s30-west-dock',targetDock:'s30-east-dock',deck:ID,source:{x:6630,y:6560},target:{x:7040,y:6560},capacity:2,residents:RESIDENTS,crew:CREW,soldiers:SOLDIERS,injured:INJURED,seaman:SEAMAN,
   responses:(map.events||[]).filter(e=>/^act3-response-30-[012]$/.test(e.id)).map(e=>({id:e.id,action:copy(e.action)})),entries:copy(initial.honroFerrySpec?.entries||{})};
- // Keep the existing finite source budgets, kinds and elite roles. The entry
- // supports now guard the actual boarding corridor; unrelated map enemies
- // remain outside the convoy's required threat set.
- const waveXs=[[5530,5650,5780,5910],[5500,5610,5720,5830,5960],[5320,5430,5550],[5520,5650,5790,5940]];
+ const spec=initial.honroV4Stage30,ford='sf-west-ford';
+ // The waves contest the ferry approach as it is used: a mixed opening
+ // screen, followed by smaller detachments during the two crossings.
+ const waves=[{xs:[5530,5700,5890],indices:[0,2,3]},{xs:[5450,5660],indices:[0,2]},{xs:[5410,5590],indices:[0,2]},{xs:[5510,5720],indices:[0,2]}];
  for(const [i,id]of SOURCES.entries()){
-  const old=initial.honroV4Stage30.entries[id],support='sf-west-ford';if(!old)continue;
-  const make=shift=>{const members=(old.members||[]).map((u,j)=>({...u,x:waveXs[i][j]+shift,y:authoredY(map,support,waveXs[i][j]+shift),support}));return{...old,x:members[0]?.x,y:members[0]?.y,support,members,alternates:[]};};
-  initial.honroV4Stage30.entries[id]={...make(0),alternates:[make(-190)]};
+  const old=spec.entries[id],wave=waves[i];if(!old)continue;
+  const make=shift=>{const members=wave.indices.map((k,j)=>{const x=wave.xs[j]+shift;return{...old.members[k],x,y:authoredY(map,ford,x),support:ford};});return{...old,x:members[0].x,y:members[0].y,support:ford,members,alternates:[]};};
+  spec.entries[id]={...make(0),alternates:[make(-260),make(-520),make(-790)]};
+  const response=spec.responses.find(r=>r.id===id);if(response)response.action.n=wave.indices.length;
+ }
+ // Stage 29 has already brought the company to the ferry. Keep both
+ // approaches, but start each on its last supported approach to the quay.
+ const fordStart=[4310,4430,4550,4680],capeStart=[4550,4685,4815,4950];
+ for(const [i,u]of map.units.filter(u=>u.team==='player').entries()){
+  u.x=fordStart[i];u.y=authoredY(map,ford,u.x);
+ }
+ if(initial.honroEntryVariants){
+  for(const [choice,variant]of Object.entries(initial.honroEntryVariants.variants)){
+   const xs=choice==='A'?capeStart:fordStart,support=choice==='A'?'sf-granite-cape':ford;
+   variant.heroes=variant.heroes.map((u,i)=>({...u,x:xs[i],y:authoredY(map,support,xs[i])}));
+  }
  }
  const west=ramp('s30-west-dock',[[6400,6426.666666666667],[6460,6440],[6550,6560],[6550,6580],[6460,6460],[6400,6446.666666666667]]);west.properties.honroWalkEdges=[0,1];
  const east=ramp('s30-east-dock',[[7120,6560],[7210,6440],[7250,6440],[7250,6460],[7210,6460],[7120,6580]]);east.properties.honroWalkEdges=[0,1];
@@ -162,9 +175,20 @@ function evacuation(app,dt){const e=app.engine,b=e.b,m=memory(b),boat=m.boat;if(
 const boardingPoints=[{x:6020,y:6110},{x:6180,y:6287.83},{x:6400,y:6426.67},{x:6550,y:6560}];
 function boardingThreats(b){return b.units.filter(u=>alive(u)&&u.side===1&&!u.honroObjectiveTarget&&boardingPoints.some(p=>Math.hypot(u.x-p.x,(u.y-p.y)*.75)<280));}
 function boardingCorridorSafe(b){return !boardingThreats(b).length;}
-function waveResolved(b,id){const m=memory(b),w=m.waves[id],expected=b.honroV4Stage30?.entries?.[id]?.members?.length;return !!w?.admitted&&expected>0&&w.ids?.length===expected&&w.ids.every(id=>{const u=unit(b,id);return !!u&&(!alive(u)||u.side!==1||u.honroSubdued===true);});}
+function unresolvedWaveMember(b,source,u){
+ if(!alive(u)||u.side!==1||u.honroSubdued)return false;
+ if(b.honroV4Stage30?.pacing!==1||source===SOURCES[0])return true;
+ // The final landing closes the defense once all scheduled parties arrived,
+ // the boarding lane is clear, and no foe can contest the eastern refuge.
+ if(memory(b).boat.status==='east'&&convoySafe(b))return false;
+ return u.x>=5000&&u.x<=6800&&u.y>=5700;
+}
+function waveResolved(b,id){
+ const w=memory(b).waves[id],expected=b.honroV4Stage30?.entries?.[id]?.members?.length;
+ return !!w?.admitted&&expected>0&&w.ids?.length===expected&&w.ids.every(unitId=>{const u=unit(b,unitId);return !!u&&!unresolvedWaveMember(b,id,u);});
+}
 function allWavesResolved(b){return SOURCES.every(id=>waveResolved(b,id));}
-function waveThreats(b){return SOURCES.flatMap(id=>memory(b).waves[id]?.ids||[]).map(id=>unit(b,id)).filter(u=>alive(u)&&u.side===1&&!u.honroSubdued);}
+function waveThreats(b){return SOURCES.flatMap(id=>(memory(b).waves[id]?.ids||[]).map(unitId=>unit(b,unitId)).filter(u=>unresolvedWaveMember(b,id,u)));}
 function pendingWaveEntrances(b){
  const spec=b.honroV4Stage30;
  return Object.entries(memory(b).waves).flatMap(([id,w])=>{
@@ -173,7 +197,7 @@ function pendingWaveEntrances(b){
  });
 }
 function rearWaveEntrances(b,id,entry){
- if(![SOURCES[1],SOURCES[3]].includes(id)||!Array.isArray(entry.members))return [];
+ if(!Array.isArray(entry.members)||b.honroV4Stage30?.pacing!==1&&![SOURCES[1],SOURCES[3]].includes(id))return [];
  // A friendly or enemy can occupy both near entrances for the whole rescue.
  // Keep the same formation and exact placement checks on the west ford.
  return [-1550,-1700,-1850].flatMap(shift=>{
@@ -211,7 +235,12 @@ function pressure(app){const e=app.engine,b=e.b,m=memory(b),spec=b.honroV4Stage3
   if(e.alive(1).length+(action.n||3)>G.HonroEncounters.populationCap(b))continue;
   for(const spot of choices){const before=b.units.length;
    const ok=spot.members&&G.HonroEncounterDensity?.active(b)?G.HonroEncounterDensity.spawnMembers(app,{...action,n:spot.members.length},spot):G.HonroAllies.execute(app,{...action,source:'v4:'+row.id,x:spot.x,y:spot.y,support:spot.support,maxDistance:0});
-   if(ok===false)continue;w.admitted=true;w.ids=b.units.slice(before).map(u=>u.id);w.serial=serial(b);w.actionToken=opportunity.token;m.consumedActions[opportunity.token]=row.id;app.dirty=true;e.emit?.('save');break;
+   if(ok===false)continue;
+   const admitted=b.units.slice(before);
+   if(spec.pacing===1)for(const u of admitted){
+    const vitality=u.elite?.57:.48;u.combatBaseHp*=vitality;u.hp=u.maxHp=Math.round(u.maxHp*vitality);
+   }
+   w.admitted=true;w.ids=admitted.map(u=>u.id);w.serial=serial(b);w.actionToken=opportunity.token;m.consumedActions[opportunity.token]=row.id;app.dirty=true;e.emit?.('save');break;
   }
   // Preserve the shared one-event-per-actor-boundary response cadence.
   if(w.admitted)return;

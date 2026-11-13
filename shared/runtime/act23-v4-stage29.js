@@ -18,7 +18,7 @@ const end=b=>b.teamEnds?.[1]||0;
 function checkpoint(b,id,data={}){const m=mem(b);if(m.checkpoints.some(c=>c.id===id))return;m.checkpoints.push({id,round:b.round,serial:serial(b),...data});}
 function author(map){
  map.initialState??={};if(map.initialState.honroStage29BossRevision===1)return;
- const state=map.initialState;state.honroStage29BossRevision=1;
+ const state=map.initialState;state.honroStage29BossRevision=1;state.honroStage29Pacing=1;
  state.honroV4Steps=IDS.map(id=>({id,kind:[SLUICE,ECHO].includes(id)?'interact':id==='route-exit'?'route':'stage29'}));
  state.honroRouteSpec={revision:1,toStage:30,common:IDS.slice(0,-1),routes:[{id:'A',markerId:'route-upper-exit',requiresDone:[]},{id:'B',markerId:'route-lower-exit',requiresDone:[]}]};
  // The old ghost defence budget and response budgets are explicitly owned here,
@@ -36,8 +36,8 @@ function author(map){
  for(const m of map.markers)if(['route-upper-exit','route-lower-exit'].includes(m.id))delete m.label;
  const records=[
   {id:BOSS,kind:'possessedGuard',x:3520,y:2220,boss:true,stageOverrides:{honroMidboss:true,honroStage29Boss:true,name:BOSS,armor:.2,fixed:true}},
-  {id:'stage29-shield-0',kind:'possessedGuard',x:3260,y:2220,stageOverrides:{role:'guard',armor:.26,loadout:['LS11','LS09'],ranks:{LS11:4,LS09:4}}},
-  {id:'stage29-shield-1',kind:'possessedGuard',x:3350,y:2220,stageOverrides:{role:'guard',armor:.26,loadout:['LS11','LS09'],ranks:{LS11:4,LS09:4}}},
+  {id:'stage29-shield-0',kind:'possessedGuard',x:3260,y:2220,stageOverrides:{role:'guard',armor:.18,loadout:['LS11','LS09'],ranks:{LS11:4,LS09:4}}},
+  {id:'stage29-shield-1',kind:'possessedGuard',x:3350,y:2220,stageOverrides:{role:'guard',armor:.18,loadout:['LS11','LS09'],ranks:{LS11:4,LS09:4}}},
   {id:'stage29-upper-0',kind:'possessedArcher',x:2880,y:2020},
   {id:'stage29-upper-1',kind:'possessedArcher',x:3130,y:2020}
  ];
@@ -48,9 +48,12 @@ function author(map){
  map.terrains.push({id:COVER,name:COVER,type:'solid',points:[{x:3030,y:2188},{x:3182,y:2188},{x:3182,y:2220},{x:3030,y:2220}],baseMaterial:'wood',oneWay:false,breakable:false,layer:'terrain',properties:{broken:true,honroStage29Cover:true,honroWalkEdges:[0],surfaceKind:'wood'}});
  map.terrains.push({id:RUBBLE,name:RUBBLE,type:'solid',points:[{x:3200,y:2220},{x:3235,y:2184},{x:3295,y:2188},{x:3310,y:2220}],baseMaterial:'rock',oneWay:false,breakable:false,layer:'terrain',properties:{broken:true,honroStage29Cover:true,honroWalkEdges:[0,1,2],surfaceKind:'stone'}});
 }
+function reduceVitality(u,scale){
+ u.combatBaseHp*=scale;u.hp=u.maxHp=Math.round(u.maxHp*scale);
+}
 function prepare(b){if(!active(b))return;const m=mem(b);m.sources??={};m.checkpoints??=[];
- if(!m.prepared){const u=boss(b);if(u){u.armor=Math.max(.2,u.armor||0);G.HonroProgression?.tuneMidboss(b,G.HONRO_CONTENT.stages[28],u);u.name=BOSS;}
-  for(const id of ['stage29-shield-0','stage29-shield-1']){const u=b.units.find(u=>u.id===id);if(u)u.armor=Math.max(.26,u.armor||0);}m.prepared=true;}
+ if(!m.prepared){const u=boss(b);if(u){u.armor=Math.max(.2,u.armor||0);G.HonroProgression?.tuneMidboss(b,G.HONRO_CONTENT.stages[28],u);if(b.honroStage29Pacing===1)reduceVitality(u,.72);u.name=BOSS;}
+  for(const id of ['stage29-shield-0','stage29-shield-1']){const u=b.units.find(u=>u.id===id);if(u)u.armor=Math.max(b.honroStage29Pacing===1?.18:.26,u.armor||0);}if(b.honroStage29Pacing===1)for(const id of SCREEN){const u=b.units.find(u=>u.id===id);if(u)reduceVitality(u,.68);}m.prepared=true;}
 }
 const paused=app=>app.dialogue||app.modal?.classList.contains('open')||app.done||['won','lost'].includes(app.engine.b.phase);
 const safe=app=>!!app.actorBoundary&&!paused(app)&&!(app.engine.b.projectiles||[]).length&&(!V.safe||V.safe(app));
@@ -62,7 +65,9 @@ function warning(app,id){const b=app.engine.b,m=mem(b);if(m[id])return m[id];con
 function opportunity(app,w){const b=app.engine.b;if(!safe(app))return false;
  // Only an actually offered main hero action, ended by Engine.finishAction,
  // supplies proof. Enemy counters, summons and pre-warning turns supply none.
- return w.heroes.filter(id=>heroes(b).some(u=>u.id===id)).every(id=>w.offered[id]&&w.ended?.[id]&&w.ended[id].serial>w.serial);
+ const offered=w.heroes.filter(id=>heroes(b).some(u=>u.id===id));
+ const responded=id=>w.offered[id]&&w.ended?.[id]&&w.ended[id].serial>w.serial;
+ return b.honroStage29Pacing===1?offered.some(responded):offered.every(responded);
 }
 function overlaps(rect,x,y,r=0,h=0){return x+r>rect.x&&x-r<rect.x+rect.w&&y>rect.y&&y-h<rect.y+rect.h;}
 function coverBlockers(b){const r={x:3022,y:2012,w:296,h:216},out=[];
@@ -78,10 +83,12 @@ function commitCover(app){const b=app.engine.b,m=mem(b);if(m.coverCommitted)retu
  for(const list of lists){const door=list.find(t=>t.id==='old-door');door.broken=true;door.hp=0;for(const id of [COVER,RUBBLE])list.find(t=>t.id===id).broken=false;}
  m.coverCommitted=true;m.gateGeometry='fallen';if(alive(boss(b))){m.phase=2;m.phase2End=end(b);V.slot(app,'stage29-phase-2',{boss:BOSS});}b.sceneVersion=(b.sceneVersion||0)+1;checkpoint(b,'stage29-cover-commit');app.engine.fx?.('spark',3106,2200,'#c0ae86',75);app.engine.emit?.('save');app.dirty=true;return true;
 }
-function stableOpen(app){const b=app.engine.b,m=mem(b);if(m.gateGeometry==='stable_open')return true;if(!safe(app)||m['stage29-cover-warning'])return false;
+function stableOpen(app){const b=app.engine.b,m=mem(b);if(m.gateGeometry==='stable_open')return true;if(!safe(app)||m['stage29-cover-warning']&&b.honroStage29Pacing!==1)return false;
  const lists=[b.terrain,...(b.honroWorldTerrain?[b.honroWorldTerrain]:[])];if(lists.some(list=>!['old-door',COVER,RUBBLE].every(id=>list.some(t=>t.id===id))))return false;
  for(const list of lists){const door=list.find(t=>t.id==='old-door');door.broken=true;door.hp=0;for(const id of [COVER,RUBBLE])list.find(t=>t.id===id).broken=true;}
- m.gateGeometry='stable_open';checkpoint(b,'stage29-gate-stable-open');b.sceneVersion=(b.sceneVersion||0)+1;app.dirty=true;app.engine.emit?.('save');return true;
+ m.gateGeometry='stable_open';
+ if(m['stage29-cover-warning'])m.coverCommitted=true;
+ checkpoint(b,'stage29-gate-stable-open');b.sceneVersion=(b.sceneVersion||0)+1;app.dirty=true;app.engine.emit?.('save');return true;
 }
 function geometryResolved(b){const m=mem(b),mode=m.gateGeometry;if(!['stable_open','fallen'].includes(mode))return false;
  return [b.terrain,...(b.honroWorldTerrain?[b.honroWorldTerrain]:[])].every(list=>list.find(t=>t.id==='old-door')?.broken===true&&[COVER,RUBBLE].every(id=>list.find(t=>t.id===id)?.broken===(mode==='stable_open')));
@@ -98,7 +105,7 @@ function admit(app,spec){const b=app.engine.b,m=mem(b);if(m.sources[spec.id]?.ad
  const before=new Set(b.units.map(u=>u.id));
  if(G.HonroAllies.execute(app,{...spec,type:'spawn',source:spec.id,act3Authored:true})===false)return false;
  const added=b.units.filter(u=>!before.has(u.id));m.sources[spec.id]={admitted:true,required:!!spec.required,ids:added.map(u=>u.id),round:b.round,serial:serial(b)};
- for(const u of added){u.honroCohort=spec.id;u.honroStage29Source=spec.id;u.honroStage29Required=!!spec.required;}
+ for(const u of added){if(spec.required&&b.honroStage29Pacing===1)reduceVitality(u,.68);u.honroCohort=spec.id;u.honroStage29Source=spec.id;u.honroStage29Required=!!spec.required;}
  b.honroState.flags['event:'+spec.id]=true;checkpoint(b,'stage29-source:'+spec.id);app.dirty=true;return true;
 }
 const defeated=u=>!!u&&(!alive(u)||u.honroSubdued||u.side!==1);
@@ -164,7 +171,7 @@ function tick(app,dt=0){const b=app.engine.b;if(!active(b)||paused(app))return;p
  observeDeath(app);
  if(!m.engaged&&(m.death||u.hp<u.maxHp||heroes(b).some(h=>h.x>=2350))){m.engaged=true;m.engageEnd=end(b);checkpoint(b,'stage29-engaged');if(alive(u))V.slot(app,'stage29-phase-1',{boss:BOSS});}
  if(!m.engaged)return;
- if(m.death){if(!geometryResolved(b)){if(m['stage29-cover-warning'])commitCover(app);else stableOpen(app);}}
+ if(m.death){if(!geometryResolved(b)){if(m['stage29-cover-warning']&&b.honroStage29Pacing!==1)commitCover(app);else stableOpen(app);}}
  else{
   if(m.phase===1&&screenCleared(b)&&heroes(b).some(h=>near(h,mark(b,'stage29-cover'),540)))commitCover(app);
   if(m.phase===2&&commandCleared(b)&&geometryResolved(b)){m.phase=3;checkpoint(b,'stage29-phase-3');u.fixed=false;u.awake=true;u.aggroUntil=999;V.slot(app,'stage29-phase-3',{boss:BOSS});}

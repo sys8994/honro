@@ -17,6 +17,8 @@ function guidance(b){
    const text='낙하 구역 밖으로 이동 · '+party.map(h=>h.name).join('·');
    return {text,targets:[{...p,kind:'move',label:'낙하 구역 비우기'}]};
   }
+  const blockingFoes=b.units.filter(foe=>foe.side===1&&ids.includes(foe.id));
+  if(blockingFoes.length)return G.HonroObjectiveGuide.hostileHint(b,blockingFoes,'낙하 구역을 막는 적 제압');
  }
  if(current==='stage29-boss'){
   if(enemies.length)return G.HonroObjectiveGuide.hostileHint(b,[...enemies,u],'한태록과 지휘군 제압');

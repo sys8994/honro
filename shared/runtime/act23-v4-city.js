@@ -19,7 +19,7 @@ function author(map,project){base.author(map,project);const n=map.metadata.stage
   steps(map,[step(id,'destroy'),step('gate-resident','v4-city-rescue',{target:'act3-resident'}),step('refuge-hold','v4-city-safe'),step('city-exit','reach')]);
   init.honroV4CitySpec={resident:'act3-resident',guard:'v4.gwakjin',destination:{x:2600,y:2560},cart:id,localIds:map.units.filter(u=>u.team==='enemy'&&/^a3-21-(wagon-cordon|gate-watch)-/.test(u.id)).map(u=>u.id)};
  }
- if(n===22)init.honroV4CitySpec={cache:'v4.record-bundle',approachRadius:390};
+ if(n===22)init.honroV4CitySpec={cache:'v4.record-bundle',approachRadius:300};
  if(n===25||n===27){const list=init.honroV4Steps.filter(s=>n!==27||!['depot-route-ledger','family-manifest'].includes(s.id));for(const s of list)if(/^stake-arrival-/.test(s.id))Object.assign(s,{kind:'v4-city-arrival',allHeroes:true,radius:150,parallelGroup:'city-arrivals'});steps(map,list);if(n===27)init.honroV4MaterialEvidence=[];}
  if(n===26){const safe={x:5110,y:2150},resident=map.units.find(u=>u.id==='act3-resident');
   resident.stageOverrides={...resident.stageOverrides,fixed:true,honroProtected:true,honroHypnotized:true,maxMove:600,moveLeft:600,walkSpeed:170};
@@ -29,7 +29,14 @@ function author(map,project){base.author(map,project);const n=map.metadata.stage
   marker(map,'v4.workshop-safe',safe);marker(map,'artisan-resident',point(map,'artisan-resident'),{target:resident.id,spiritId:'v4.workshop-spirit'});
   steps(map,[step('hidden-latch','interact',{requiredClass:'knight',opens:'hidden-door'}),step('artisan-resident','v4-city-rescue',{target:resident.id,requiredClass:'occultist'}),step('v4.ancestor-testimony','evidence'),step('workshop-exit','reach',{allHeroes:true})]);
   delete map.markers.find(p=>p.id==='v4.ancestor-testimony').action;
-  init.honroV4CitySpec={resident:resident.id,spirit:'v4.workshop-spirit',destination:safe,approachRadius:300,localIds:map.units.filter(u=>u.team==='enemy'&&/^a3-26-tally-store-remnants-/.test(u.id)).map(u=>u.id)};
+  const workshopGuardIds=['a3-26-tally-store-remnants-0','a3-26-tally-store-remnants-2','a3-26-surface-exit-remnants-0'];
+  const positions=[[4380,2217.857142857143],[4975,2150],[5250,2150]];
+  for(const [i,id] of workshopGuardIds.entries()){
+   const u=map.units.find(u=>u.id===id);if(!u)continue;
+   Object.assign(u,{x:positions[i][0],y:positions[i][1]});
+   u.stageOverrides={...u.stageOverrides,honroAct3Vitality:.85};
+  }
+  init.honroV4CitySpec={resident:resident.id,spirit:'v4.workshop-spirit',destination:safe,approachRadius:300,pacing:1,workshopGuardIds,localIds:map.units.filter(u=>u.team==='enemy'&&/^a3-26-tally-store-remnants-/.test(u.id)).map(u=>u.id)};
  }
  if(n===28){const list=init.honroV4Steps;Object.assign(list.find(s=>s.id==='petition-record'),{requiredClass:'knight'});steps(map,list);
   // Put the injured resident behind Gwakjin's approach, so the escort never
@@ -37,7 +44,7 @@ function author(map,project){base.author(map,project);const n=map.metadata.stage
   const guard=map.units.find(u=>u.id==='v4.gwakjin');Object.assign(guard,{x:4350,y:2431.9444444444443});
   Object.assign(map.units.find(u=>u.id==='v4.fire-resident-2'),{x:3940,y:2380});
   npc(map,'v4.court-soldier-1',{x:6820,y:2590},{honroProtected:false});npc(map,'v4.court-soldier-2',{x:6900,y:2590},{honroProtected:false});
-  init.honroV4CitySpec={residents:['v4.fire-resident-1','v4.fire-resident-2'],guard:'v4.gwakjin',destination:{x:6650,y:2590},cache:'petition-record',approachRadius:390};
+  init.honroV4CitySpec={residents:['v4.fire-resident-1','v4.fire-resident-2'],guard:'v4.gwakjin',destination:{x:6650,y:2590},cache:'petition-record',approachRadius:300,pacing:1};
  }
 }
 function prepare(b,profile){base.prepare(b,profile);memory(b);const spec=b.honroV4CitySpec;
@@ -56,8 +63,9 @@ function walk(app,u,goal,dt){const e=app.engine,b=e.b;if(!alive(u)||!goal||!V.sa
  if(a.round!==b.round){a.round=b.round;a.spent=0;}
  if(V.near(u,goal,5)&&supported(b,u))return true;
  if(threats(b,u,240).length){a.blocked='threat';return false;}
- const dx=goal.x-u.x,budget=Math.max(0,600-a.spent);if(Math.abs(dx)<.01||budget<=.001)return false;
- const probe={...u,fixed:false,vx:0,vy:0,maxMove:600,moveLeft:budget,walkSpeed:170},slice=Math.min(dt,.025,Math.abs(dx)/170);
+ const pace=b.honroStage===28&&b.honroV4CitySpec?.pacing===1?{move:1000,speed:245}:{move:600,speed:170};
+ const dx=goal.x-u.x,budget=Math.max(0,pace.move-a.spent);if(Math.abs(dx)<.01||budget<=.001)return false;
+ const probe={...u,fixed:false,vx:0,vy:0,maxMove:pace.move,moveLeft:budget,walkSpeed:pace.speed},slice=Math.min(dt,.025,Math.abs(dx)/pace.speed);
  e.walk(probe,Math.sign(dx),slice,true);e.integrateBody(probe,slice,true);
  const d=Math.hypot(probe.x-u.x,probe.y-u.y);
  if(!Number.isFinite(d)||d>budget+.001||!supported(b,probe)||bodyBlocked(b,u,probe)){a.blocked='body-or-terrain';return false;}
@@ -67,7 +75,12 @@ function walk(app,u,goal,dt){const e=app.engine,b=e.b;if(!alive(u)||!goal||!V.sa
 }
 function safeResident(b,id,goal){const a=memory(b).actors[id],u=unit(b,id);return alive(u)&&!!a?.safe&&a.distance>80&&V.near(u,goal,100)&&supported(b,u)&&!threats(b,u,240).length;}
 function localClear(b){return (b.honroV4CitySpec?.localIds||[]).every(id=>!!unit(b,id)&&!alive(unit(b,id)));}
-function workshopThreats(b){return threats(b,unit(b,b.honroV4CitySpec.resident),400);}
+function workshopThreats(b){
+ const spec=b.honroV4CitySpec,resident=unit(b,spec.resident),local=threats(b,resident,spec.pacing===1?275:400);
+ if(!spec.workshopGuardIds)return local;
+ const guard=b.units.filter(u=>u.side===1&&alive(u)&&spec.workshopGuardIds.includes(u.id)&&V.near(u,resident,950));
+ return [...new Set([...local,...guard])];
+}
 function cacheThreats(b){const q=b.honroV4CitySpec,p=mark(b,q?.cache);return p?threats(b,p,q.approachRadius||390):[];}
 function cacheSafe(b){return !!mark(b,b.honroV4CitySpec?.cache)&&!cacheThreats(b).length;}
 function courtEvacuationThreats(b){const q=b.honroV4CitySpec,actors=[q.guard,...q.residents].map(id=>unit(b,id)).filter(alive);return [...new Set(actors.flatMap(u=>threats(b,u,240)))];}
@@ -84,6 +97,10 @@ function eligibility(app,p,s){const b=app.engine.b,a=memory(b),q=b.honroV4CitySp
   if(cacheSafe(b))return{ok:true,reason:'기록함 회수하기',actionLabel:'기록함 회수하기'};
  }
  if(s.kind==='v4-city-rescue'&&(!alive(unit(b,q.resident))||a.started))return{ok:false,reason:s.id};
+ if(b.honroStage===26&&s.kind==='v4-city-rescue'&&q.workshopGuardIds){
+  const enemies=workshopThreats(b);
+  if(enemies.length)return {ok:false,reason:G.HonroObjectiveGuide.hostileHint(b,enemies,'공방에서 주민을 붙잡은 적 제압').text};
+ }
  return base.eligibility?.(app,p,s);
 }
 function use(app,p,s){const b=app.engine.b,a=memory(b),q=b.honroV4CitySpec;

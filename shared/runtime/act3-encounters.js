@@ -7,6 +7,11 @@ function initialize(b){
  const st=G.HONRO_CONTENT.stages[b.honroStage-1];
  for(const u of b.units)tune(b,u,st);
  preserveInitialBudget(b,st);
+ for(const u of b.units){
+  const vitality=u.honroAct3Vitality;
+  if(u.side!==1||!Number.isFinite(vitality)||vitality<=0||vitality===1)continue;
+  u.combatBaseHp*=vitality;u.hp=u.maxHp=Math.round(u.maxHp*vitality);
+ }
 }
 function preserveInitialBudget(b,st){
  const spec=b.honroAct3EncounterBudget;

@@ -13,9 +13,10 @@ function observe(app,dt){const b=app.engine.b,m=q(b),r=resident(b);m.roofShake=M
 const exit=b=>testimony(b)&&V.heroes(b).length===2&&V.heroes(b).every(u=>W.ground(b,u)&&V.near(u,mark(b,'workshop-exit'),200));
 function guidance(b){
  const current=V.current(b)?.id,city=City.memory(b),actor=resident(b);
- if(current==='artisan-resident'&&city.started){
+ if(current==='artisan-resident'&&(city.started||b.honroV4CitySpec.workshopGuardIds&&near(b,actor,850))){
   const enemies=City.workshopThreats(b);
-  if(enemies.length)return G.HonroObjectiveGuide.hostileHint(b,enemies,'공방 호송을 막는 적 제압');
+  if(enemies.length)return G.HonroObjectiveGuide.hostileHint(b,enemies,city.started?'공방 호송을 막는 적 제압':'공방에서 주민을 붙잡은 적 제압');
+  if(!city.started)return null;
   const text='주민 곁에서 안전지대까지 호송';
   return {text,targets:[{id:actor.id,x:actor.x,y:actor.y,kind:'move',label:'호송 중인 주민'}]};
  }
