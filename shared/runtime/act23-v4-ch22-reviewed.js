@@ -55,7 +55,15 @@ function tick(app,dt){const b=app.engine.b;if(!active(b)||!V.safe(app))return;co
  if(closed(q.events.records)&&V.heroes(b).some(u=>V.near(u,V.marker(b,'archive-exit'),220))){q.ambient.distance=Math.min(120,q.ambient.distance+Math.max(0,Math.min(dt,.05))*140);if(q.ambient.distance>=60&&!q.events.exit)begin(app,'exit',['A3.S22.EXIT.01','A3.S22.EXIT.02']);}
 }
 function complete(b){return !active(b)||closed(memory(b).events.exit)&&!!memory(b).proof.compared&&!!memory(b).journal;}
-function present(b,r){if(!active(b))return r;const q=memory(b),i=closed(q.events.records)?3:V.mem(b).done['archive-seal']?2:1,id='A3.S22.OBJ.0'+i,text=row(id).text;return{...r,summary:text,currentInstruction:text,completionText:row('A3.S22.OBJ.03').text,targets:r.targets.map(x=>({...x,label:text})),allTargets:r.allTargets.map(x=>({...x,label:text})),checklist:[1,2,3].map(j=>({id:'A3.S22.OBJ.0'+j,text:row('A3.S22.OBJ.0'+j).text,done:j<i,current:j===i})),visibleChecklist:[{id,text,current:true,done:r.complete}],failureText:''};}
+function present(b,r){
+ if(!active(b))return r;
+ const q=memory(b),i=closed(q.events.records)?3:V.mem(b).done['archive-seal']?2:1,id='A3.S22.OBJ.0'+i;
+ const cache=V.marker(b,'v4.record-bundle'),enemies=i===2?City.cacheThreats(b):[];
+ const onCacheFloor=cache&&V.heroes(b).some(u=>Math.abs(u.y-cache.y)<=150&&Math.hypot(u.x-cache.x,(u.y-cache.y)*.75)<=650);
+ const hint=enemies.length&&onCacheFloor?G.HonroObjectiveGuide.hostileHint(b,enemies,'장부 곁의 적 제압'):null;
+ const text=hint?.text||row(id).text;
+ return {...r,summary:text,currentInstruction:text,completionText:row('A3.S22.OBJ.03').text,targets:hint?.targets||r.targets.map(x=>({...x,label:text})),allTargets:r.allTargets.map(x=>({...x,label:text})),checklist:[1,2,3].map(j=>({id:'A3.S22.OBJ.0'+j,text:j===i?text:row('A3.S22.OBJ.0'+j).text,done:j<i,current:j===i})),visibleChecklist:[{id,text,current:true,done:r.complete}],failureText:''};
+}
 function content(b,s){return active(b)?{...s,goal:present(b,{targets:[],allTargets:[]}).summary,guide:'',story:[],outro:[],failure:[],narration:[],honroV4Unreviewed:false,honroReviewedNarrativeRevision:1}:s;}
 function optional(p,id,c){if(!enabled()||Number(id)!==22)return null;if(!p.recruited?.includes(c)||!p.party?.includes(c))return[];return lines(data().rows.filter(r=>r.id.startsWith('EDGE.OPTIONAL_22_'+c.toUpperCase()+'_')).map(r=>r.id),'optional.'+c).filter(l=>restAllowed(p,l[0],l[2].rowId));}
 function journal(p,id){if(!enabled()||Number(id)!==22)return null;const r=row('A3.S22.JOURNAL.01');return p.record?.find(x=>x.rowId===r.id&&x.reviewedRevision===1&&x.sourceRun&&x.text===r.text)||null;}
