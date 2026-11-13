@@ -32,7 +32,7 @@ function author(map){
  ];
  map.events=[];
  map.markers=map.markers.filter(m=>!['old-seal','wave-old-seal','hyeonmuk-letter','wave-flight-hold','route-exit'].includes(m.id));
- for(const [id,x,y]of [['stage29-boss',3520,2220],['stage29-cover',3105,2220],['stage29-cohort',3500,2220],[SLUICE,2780,2220],[ECHO,2830,2220],['route-exit',3690,2263.2]])map.markers.push({id,type:'act3',action:'act3',x,y});
+ for(const [id,x,y]of [['stage29-boss',3520,2220],['stage29-cover',3105,2220],['stage29-cohort',3500,2220],[SLUICE,2780,2220],[ECHO,2830,2220],['route-exit',3690,2263.2]])map.markers.push({id,type:'act3',...([SLUICE,ECHO].includes(id)?{action:'act3'}:{}),x,y});
  for(const m of map.markers)if(['route-upper-exit','route-lower-exit'].includes(m.id))delete m.label;
  const records=[
   {id:BOSS,kind:'possessedGuard',x:3520,y:2220,boss:true,stageOverrides:{honroMidboss:true,honroStage29Boss:true,name:BOSS,armor:.2,fixed:true}},
@@ -113,6 +113,10 @@ function commandCleared(b){
  });
 }
 function screenCleared(b){return SCREEN.every(id=>{const u=b.units.find(u=>u.id===id);return u?.honroStage29Required===true&&u.honroStage29Source==='stage29-command-screen'&&defeated(u);});}
+function commandThreats(b){
+ const ids=[...SCREEN,...Object.keys(COMMAND_WAVES).flatMap(id=>mem(b).sources[id]?.ids||[])];
+ return ids.map(id=>b.units.find(u=>u.id===id)).filter(u=>alive(u)&&!defeated(u));
+}
 function cleared(b){return !!mem(b).death&&defeated(boss(b))&&geometryResolved(b)&&commandCleared(b);}
 const reclaimed=b=>cleared(b)&&mem(b).sluiceReclaimed===true;
 function stepSatisfied(b,s){if(!active(b))return null;const m=mem(b);
@@ -146,7 +150,11 @@ function eligibility(app,m){
  const b=app.engine.b,u=app.engine.active;
  if(![SLUICE,ECHO].includes(m?.id))return undefined;
  if(!alive(u)||u.side!==0||u.summoned||u.enthrall||paused(app)||!near(u,mark(b,m.id),260))return{ok:false,reason:'표식이 있는 같은 발판으로 이동'};
- if(m.id===SLUICE)return cleared(b)&&!mem(b).sluiceReclaimed&&V.safe(app)?{ok:true,reason:'수문 다시 열기',actionLabel:'수문 다시 열기'}:{ok:false,reason:'수문 주변의 남은 위협 정리'};
+ if(m.id===SLUICE){
+  if(cleared(b)&&!mem(b).sluiceReclaimed&&V.safe(app))return{ok:true,reason:'수문 다시 열기',actionLabel:'수문 다시 열기'};
+  const enemies=commandThreats(b);
+  return{ok:false,reason:enemies.length?G.HonroObjectiveGuide.hostileHint(b,enemies,'수문을 지키는 지휘군 제압').text:'수문 통로가 열린 뒤 다시 조사'};
+ }
  if(!reclaimed(b))return{ok:false,reason:'먼저 수문 다시 열기'};
  if(mem(b).echo)return{ok:false,reason:'잔영 조사 중 · 표식 곁에서 대기'};
  return{ok:true,reason:'수문 옆 잔영 조사',actionLabel:'수문 옆 잔영 조사'};
@@ -186,6 +194,6 @@ function draw(scene,c,b){if(!active(b))return;const p=mark(b,ECHO);if(!p)return;
  const q=mem(b).echo,u=heroes(b).find(u=>u.cls==='mage');if(q&&!q.done&&u){c.save();c.globalAlpha=Math.sin(Math.PI*Math.min(1,q.elapsed/.9))*.42;scene.unitBody(c,{...u,x:p.x+72,y:p.y,hurt:0,anim:0,honroScenePose:{kind:'point',time:q.elapsed}},0);c.restore();}
  const lock=mark(b,SLUICE);if(lock){c.save();c.strokeStyle=mem(b).sluiceReclaimed?'#9bb798':'#847657';c.lineWidth=4;c.beginPath();c.moveTo(lock.x-15,lock.y-34);c.lineTo(lock.x+15,lock.y-34);c.moveTo(lock.x,lock.y-49);c.lineTo(lock.x,lock.y-19);c.stroke();c.restore();}
 }
-const plugin={author,prepare,attach,tick,state,failure,complete,eligibility,use,stepSatisfied,stepTick,coverBlockers,draw,ids:IDS,bossId:BOSS,active,memory:mem};
+const plugin={author,prepare,attach,tick,state,failure,complete,eligibility,use,stepSatisfied,stepTick,coverBlockers,commandThreats,draw,ids:IDS,bossId:BOSS,active,memory:mem};
 G.HonroAct23V4Stage29=plugin;V.register(29,plugin);
 })(globalThis);

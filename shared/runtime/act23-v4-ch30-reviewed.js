@@ -9,6 +9,29 @@ const gathered=b=>V.heroes(b).length>0&&V.heroes(b).every(u=>W.ground(b,u)&&V.ne
 const farewellAssembly=b=>comparison(b)&&V.heroes(b).length>0&&V.heroes(b).every(u=>W.ground(b,u)&&Math.hypot(u.x-crew(b,1).x,(u.y-crew(b,1).y)*.75)<=360);
 const firstBoard=b=>m(b).boat.leg===0&&m(b).boat.status==='boarding'&&m(b).actors[I.residents[0]].status==='boarding'&&m(b).actors[I.residents[0]].distance>0;
 const lastThreat=b=>m(b).secondBoardingStarted&&!safe(b)&&!P.boardingCorridorSafe(b);
+function guidance(b){
+ const run=m(b),current=V.current(b)?.id;
+ if(!safe(b)){
+  const threats=[...P.boardingThreats(b),...P.waveThreats(b)];
+  if(threats.length)return G.HonroObjectiveGuide.hostileHint(b,threats,'나루를 막는 적과 증원 제압');
+  const status='주민 안전 도달 '+run.rescued.length+'/'+I.residents.length;
+  if(!run.ready){
+   const p=V.marker(b,'s30-route-ready'),text='동행을 나루 입구로 이동해 승선 통로 확보';
+   return {text,targets:[{...p,kind:'move',label:'나루 입구'}]};
+  }
+  const text=status+(run.rescued.length<I.residents.length?' · 주민의 승선과 하선 엄호':!P.convoySafe(b)?' · 곽진과 주민의 안전 도달 확인':' · 나룻배 접안 대기');
+  return {text,targets:[{id:I.boat,x:run.boat.x,y:run.boat.y,kind:'move',label:'나룻배'}]};
+ }
+ if([I.testimony,I.comparison].includes(current)){
+  const p=sailor(b),text=current===I.testimony?'동쪽 안전지대에서 사공의 증언 듣기':'사공 곁에서 운송로 대조하기';
+  return {text,targets:[{id:p.id,x:p.x,y:p.y,kind:'interact',label:text}]};
+ }
+ if(current==='old-road'){
+  const p=V.marker(b,current),text='생존 동행 전원이 동쪽 위 옛길 출구로 이동';
+  return {text,targets:[{...p,kind:'exit',label:'동쪽 위 옛길 출구'}]};
+ }
+ return null;
+}
 function prior(p,n,key){return p.honroAct23V4History?.stages?.[n]?.reviewedNarrative?.proof?.[key];}
 function acceptTestimony(b,event){const id='A3.S30.THIRTEEN.03';if(!testimony(b)||event?.status!=='done'||!event.ids.includes(id)||event.guardLostIds?.includes(id)||q(b).proof.testimony)return;
  const heard=G.HonroAct23V4Reviewed.receiptIds(event).includes(id);
@@ -43,8 +66,7 @@ R=F.register({stage:30,
  finished(app,key,event){if(key==='testimony')acceptTestimony(app.engine.b,event);},
  journals:[{id:'A3.S30.JOURNAL.01',when:app=>{const b=app.engine.b;return !!q(b).proof.rescue&&!!q(b).proof.testimony&&!!q(b).proof.comparison&&gathered(b)&&F.closed(q(b).events.ending);}},{id:'EDGE.RUNTIME.JOURNAL.EVIDENCE30.ROUTE',when:app=>{const b=app.engine.b,h=app.profile.honroAct23V4History?.stages?.[19];return comparison(b)&&!!prior(app.profile,28,'packet')&&h?.transportTraces?.ids?.includes('mumyeong-transfer')&&h?.transportTraces?.ids?.includes('jeomungol-mark');}}],
  complete:b=>P.complete(b)&&!!q(b).proof.testimony&&!!q(b).proof.comparison&&gathered(b)&&F.closed(q(b).events.ending),
- objective:b=>'A3.S30.OBJ.0'+(q(b).proof.comparison?4:safe(b)?3:m(b).ready?2:1),
- progress:b=>{if(!m(b).ready||safe(b))return '';const count=m(b).rescued.length,detail=count<I.residents.length?'':!P.allWavesResolved(b)?' · 남은 증원 정리':!P.convoySafe(b)?' · 곽진과 주민들의 안전 도달 대기':' · 나룻배 접안 대기';return '안전 도달 '+count+'/'+I.residents.length+detail;},
+ objective:b=>'A3.S30.OBJ.0'+(q(b).proof.comparison?4:safe(b)?3:m(b).ready?2:1),guidance,
  camera(app,key){const b=app.engine.b;return{id:'v4.30.'+key,intent:'situation',targets:key==='ending'?(farewellAssembly(b)?[{actor:I.crew[1]},...V.heroes(b).map(u=>({actor:u.id}))]:[{marker:'old-road'}]):['testimony','comparison','safe'].includes(key)?[{actor:I.seaman},{actor:I.crew[1]}]:[{actor:I.crew[1]},{x:m(b).boat.x,y:m(b).boat.y}],padding:140,maxScale:.65};},
  outcome(app){const b=app.engine.b;app.profile.honroReviewed30Survivors=V.heroes(b).map(u=>u.cls);},
  draw(scene,c,b){if(!m(b).comparison)return;const p=sailor(b);c.save();c.translate(p.x-65,p.y-110);c.fillStyle='#c8bd98';c.fillRect(-100,-55,200,105);c.strokeStyle='#647f7b';c.lineWidth=7;c.beginPath();c.moveTo(85,-30);c.bezierCurveTo(40,-15,30,10,-80,20);c.stroke();c.strokeStyle='#6a6246';c.lineWidth=3;c.setLineDash([7,5]);c.beginPath();c.moveTo(85,-15);c.lineTo(12,4);c.lineTo(-80,31);c.stroke();c.setLineDash([]);c.beginPath();c.moveTo(-55,10);c.lineTo(-80,20);c.lineTo(-58,29);c.stroke();c.restore();}

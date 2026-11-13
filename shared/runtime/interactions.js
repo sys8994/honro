@@ -3,6 +3,8 @@ const $=id=>document.getElementById(id),RANGE=260;
 const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const automaticKinds=new Set(['evidence','clear','hold','defeat','destroy','reach','escort','route','pacing-event','pacing-secure']);
 function automaticMarker(b,m){
+ if(G.HonroAct23V4Stage29?.active(b)&&['stage29-boss','stage29-cover','stage29-cohort','route-exit','route-upper-exit','route-lower-exit'].includes(m?.id))return true;
+ if(G.HonroAct23V4Stage30?.active(b)&&['s30-route-ready','ferry-hold','s30-evacuate','old-road'].includes(m?.id))return true;
  if(!b||!m||!['act2','act3'].includes(m.action))return false;
  if(G.HonroAct23V4Reviewed?.automaticMarker(b,m))return true;
  if(G.HonroAct23V4?.active(b))return false;

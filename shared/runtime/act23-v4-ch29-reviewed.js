@@ -8,6 +8,22 @@ function objective(b){const a=m(b);let step;
  else step=a.phase===3?3:warning(b)||a.phase===2?2:1;
  return 'A3.S29.OBJ.0'+step;
 }
+function guidance(b){
+ const enemies=P.commandThreats(b),u=boss(b),current=V.current(b)?.id;
+ if(current==='stage29-boss'){
+  if(enemies.length)return G.HonroObjectiveGuide.hostileHint(b,[...enemies,u],'한태록과 지휘군 제압');
+  if(live(b))return G.HonroObjectiveGuide.hostileHint(b,[u],'한태록 제압');
+ }
+ if(current==='stage29-cohort'&&enemies.length)return G.HonroObjectiveGuide.hostileHint(b,enemies,'수문을 지키는 지휘군 제압');
+ const labels={'stage29-sluice':'수문 다시 열기','stage29-echo':'수문 옆 잔영 조사'};
+ if(labels[current])return {text:labels[current],targets:[{...V.marker(b,current),kind:'interact',label:labels[current]}]};
+ if(current==='route-exit'){
+  const text='동행 한 명을 위쪽 또는 아래쪽 출구로 이동';
+  const targets=[['route-upper-exit','위쪽 출구'],['route-lower-exit','아래쪽 출구']].map(([id,label])=>({...V.marker(b,id),kind:'exit',label}));
+  return {text,targets};
+ }
+ return null;
+}
 function observe(app,dt){G.HonroAct23V4Chapter29Spear.observe(app);const b=app.engine.b,a=m(b),u=boss(b),state=q(b);
  if(a.echo&&!a.echo.done&&V.heroes(b).some(h=>V.near(h,V.marker(b,'stage29-echo'),400))){state.echoSeen??={elapsed:0,actorIds:[]};state.echoSeen.elapsed+=Math.max(0,Math.min(dt,.05));state.echoSeen.actorIds=[...new Set([...state.echoSeen.actorIds,...V.heroes(b).filter(h=>V.near(h,V.marker(b,'stage29-echo'),400)).map(h=>h.id)])];}
  if(a.echo?.done&&state.echoSeen?.elapsed>=.25)state.proof.trace={source:'stage29-echo',gesture:true,marker:'existing-hyeonmuk-stake',actors:state.echoSeen.actorIds,mage:state.echoSeen.actorIds.some(id=>b.units.find(u=>u.id===id)?.cls==='mage')};
@@ -37,7 +53,7 @@ R=F.register({stage:29,
  {key:'trace',ids:ids('TRACE',3),when:app=>trace(app.engine.b)},
  {key:'exit',ids:ids('EXIT',1),when:app=>!!app.engine.b.honroRouteChoice?.selectedRoute&&m(app.engine.b).sluiceReclaimed&&m(app.engine.b).echo?.done}],
  journals:[{id:'A3.S29.JOURNAL.01',when:app=>{const b=app.engine.b;return trace(b)&&q(b).proof.trace.mage&&P.stepSatisfied(b,{id:'stage29-cohort'});}}],
- complete:b=>P.complete(b)&&F.closed(q(b).events.exit),objective,
+ complete:b=>P.complete(b)&&F.closed(q(b).events.exit),objective,guidance,
  camera(app,key){return{id:'v4.29.'+key,intent:'situation',targets:[['gate','trace','exit'].includes(key)?{marker:'stage29-echo'}:{actor:P.bossId},{marker:warning(app.engine.b)?'stage29-cover':'stage29-sluice'}],padding:130,maxScale:.8};},
  draw(scene,c,b){G.HonroAct23V4Chapter29Spear.draw(scene,c,b);const u=boss(b),d=q(b).deathMoment,x=d?.x??u.x,y=d?.y??u.y;c.save();c.translate(x+70,y);if(!live(b))c.rotate(.9);c.strokeStyle='#82785e';c.lineWidth=5;c.beginPath();c.moveTo(0,0);c.lineTo(0,-175);c.stroke();c.fillStyle='#6f6550';c.fillRect(0,-170,70,60);c.strokeStyle='#b5ad8c';c.lineWidth=3;c.beginPath();c.moveTo(25,-142);c.lineTo(36,-154);c.lineTo(47,-142);c.lineTo(36,-130);c.closePath();c.stroke();c.restore();if(d?.observed&&!live(b)){c.save();c.translate(d.x,d.y);c.rotate(-1.25);c.translate(-d.x,-d.y);scene.unitBody(c,{...u,x:d.x,y:d.y,dead:true,hp:0},0);c.restore();}}
 });R.retry=app=>{const b=app.engine?.b,start=b?.honroReviewed29Start;if(!R.active(b)||!start||b.phase!=='lost')return false;const seen=F.copy(Object.fromEntries(Object.entries(q(b).events).filter(([,v])=>F.closed(v)))),awarded=new Map(b.units.map(u=>[u.id,u.xpGranted||0])),restored=F.copy(start),report=b.honroReport?F.copy(b.honroReport):null;Object.assign(R.memory(restored).events,seen);restored.heroes=F.copy(b.heroes);restored.honroGrowth=F.copy(b.honroGrowth);for(const u of restored.units){u.xpGranted=Math.max(u.xpGranted||0,awarded.get(u.id)||0);if(u.side===0&&!u.summoned&&restored.heroes[u.cls])G.HONRO_CORE.applyHero(u,restored.heroes[u.cls]);}G.HonroProgression?.reconcileWounds(restored);G.HonroClearReport?.retry(restored,report);restored.sceneVersion=Math.max(b.sceneVersion||0,restored.sceneVersion||0)+1;app.close?.();app.mount(restored);app.profile.honroBattle=F.copy(restored);app.persist?.();return true;};
