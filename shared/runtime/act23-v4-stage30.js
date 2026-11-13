@@ -172,6 +172,19 @@ function pendingWaveEntrances(b){
   return !w.admitted&&at?[{id,x:at.x,y:at.y,kind:'move',label:'증원 진입로'}]:[];
  });
 }
+function rearWaveEntrances(b,id,entry){
+ if(![SOURCES[1],SOURCES[3]].includes(id)||!Array.isArray(entry.members))return [];
+ // A friendly or enemy can occupy both near entrances for the whole rescue.
+ // Keep the same formation and exact placement checks on the west ford.
+ return [-1550,-1700,-1850].flatMap(shift=>{
+  const members=entry.members.map(member=>{
+   const x=member.x+shift,floor=G.HonroMapEngine.surfaceY(b.terrain,x,member.y,member.support);
+   return floor&&{...member,x,y:floor.y};
+  });
+  if(members.some(member=>!member))return [];
+  return [{...entry,x:members[0].x,y:members[0].y,members}];
+ });
+}
 function hold(app){const b=app.engine.b,m=memory(b);m.hold.resolved=SOURCES.filter(id=>waveResolved(b,id));m.hold.progress=m.hold.resolved.length;m.hold.contested=!boardingCorridorSafe(b);if(waveResolved(b,SOURCES[0])&&!m.hold.contested)m.ready=true;}
 function offer(app){const e=app.engine,b=e.b,u=e.active;if(!safe(app)||!alive(u)||u.side!==0||u.summoned||u.enthrall||u.acted)return;
  for(const w of Object.values(memory(b).waves))if(!w.admitted){w.offered??={};w.offered[u.id]=serial(b);}
@@ -194,7 +207,7 @@ function pressure(app){const e=app.engine,b=e.b,m=memory(b),spec=b.honroV4Stage3
   // on actorBoundary still being on the stack (including one surviving hero).
   if(!opportunity||m.consumedActions[opportunity.token]||!safe(app))continue;
   const at=spec.entries[row.id];if(!at)continue;
-  const choices=[at,...(at.alternates||[])],action={...row.action,source:row.id};
+  const choices=[at,...(at.alternates||[]),...rearWaveEntrances(b,row.id,at)],action={...row.action,source:row.id};
   if(e.alive(1).length+(action.n||3)>G.HonroEncounters.populationCap(b))continue;
   for(const spot of choices){const before=b.units.length;
    const ok=spot.members&&G.HonroEncounterDensity?.active(b)?G.HonroEncounterDensity.spawnMembers(app,{...action,n:spot.members.length},spot):G.HonroAllies.execute(app,{...action,source:'v4:'+row.id,x:spot.x,y:spot.y,support:spot.support,maxDistance:0});
