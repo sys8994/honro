@@ -164,7 +164,10 @@ export async function runtimeEntries({vector=true,render=true,app=false,producti
   // Their terrain/routes remain canonical; this final pass changes art only.
   if(project.stages.some(s=>s.metadata?.stageId===13&&s.design?.stoneFinish?.revision===1))project=applyStage13VectorFinish(project);
   project=applyReviewedAct2Art(project);
-  project=await applyAct3HandoffArt(project,process.env.HONRO_ACT3_HANDOFF_PREVIEW==='1');
+  const act3TerrainPreview=process.env.HONRO_ACT3_HANDOFF_PREVIEW==='1';
+  const act3TerrainStages=storyRelease.act3HandoffStages??[];
+  if(!Array.isArray(act3TerrainStages)||new Set(act3TerrainStages).size!==act3TerrainStages.length)throw Error('Invalid Act 3 terrain release stages');
+  project=await applyAct3HandoffArt(project,act3TerrainPreview?undefined:act3TerrainStages);
   if(act4Enabled){
     const authored=applyAct4FinaleRevision(JSON.parse(await read('shared/data/act4/world.json')));
     const released=storyRelease.act4HandoffStages??[];
@@ -204,7 +207,7 @@ export async function runtimeEntries({vector=true,render=true,app=false,producti
     await file('shared/assets/monsters/monsters.runtime.js');
     await file('shared/assets/actors/actors.runtime.js');
     for(const name of ['renderer','art-dark','terrain-skirt','environment-art','map-art-polish','monster-vector','actor-vector','act23-v4-ch21-art','elements','environment-renderer','time-of-day','cave-enclosure','act2-spatial-art','stage11-landscape-art','keeper-ritual-art','act2-art','act3-art','act1-spatial-art','terrain-readability','geology-art','geology-rear-support','stage2-layered-road-art','stage18-bell-art','stage30-ferry-art','stage12-quarry-art','stage23-escort-art','stage8-bier-art','object-damage','combat-feedback','story-act1-art','stage5-waterfall-art','stage5-positioning-art','story-act23-art','narrative-art','stage19-farewell-art','quest-target-art','act3-v4-reviewed-actors','story-anomaly-art','visual-hierarchy','stage11-compact-art'])await file(`shared/runtime/${name}.js`);
-    if(process.env.HONRO_ACT3_HANDOFF_PREVIEW==='1')await file('shared/runtime/act3-handoff-art.js');
+    if(act3TerrainPreview||act3TerrainStages.length)await file('shared/runtime/act3-handoff-art.js');
   }
   if(render)data('HONRO_TIMELINE',JSON.parse(await read('shared/data/timeline.json')));
   if(render)await file('shared/runtime/authored-far-art.js');
