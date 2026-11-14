@@ -135,7 +135,7 @@ function current(b,m){
 }
 function interaction(e,m){
  const link=design(e.b).links.find(l=>l.id===m.id);
- const to=link&&[0,42,-42,84,-84,126,-126].map(dx=>{
+ const to=link&&[0,42,-42,84,-84,126,-126,168,-168,210,-210].map(dx=>{
   const x=link.to.x+dx,hit=G.HonroMapEngine.surfaceY(e.b.terrain,x,link.to.y);
   return hit&&Math.abs(hit.y-link.to.y)<48?{x,y:hit.y}:null;
  }).find(p=>p&&!e.b.units.some(u=>alive(u)&&!u.summoned&&u!==e.active&&Math.abs(u.y-p.y)<65&&Math.abs(u.x-p.x)<u.r+e.active.r));
@@ -146,6 +146,7 @@ function eligibility(app,m){
  if(!current(b,m))return {ok:false,reason:'앞선 목표를 먼저 진행하세요'};
  const {link,to}=interaction(e,m),required=row?.[3];
  if(!near(u,m,link?145:215)||!e.grounded(u)||link&&Math.abs(u.y-link.y)>52)return {ok:false,reason:'표식과 같은 발판에 서세요'};
+ if(link&&b.honroStage===46&&link.id==='a5-cross-2'&&memory(b).step<3)return {ok:false,reason:'서쪽 진목을 설치해 중앙 석단으로 건너세요'};
  if(link&&b.honroStage===46&&link.id==='a5-cross-6'&&row)return {ok:false,reason:'두 진목을 설치해 하강 밧줄을 여세요'};
  if(link&&b.honroStage===49&&link.id==='a5-cross-6'&&row)return {ok:false,reason:'역행귀를 제압한 뒤 상층 진목길을 쓰세요'};
  if(link&&u.moveLeft<150)return {ok:false,reason:'이동도 150 필요 · 다음 아군 턴에 건너세요'};

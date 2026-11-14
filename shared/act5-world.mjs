@@ -21,7 +21,7 @@ export const clock = Object.fromEntries(chapters.map((chapter,i)=>[41+i,{
 const crossings = {
  42:[['성책 사다리 오르기',[615,327],[635,213]]],
  43:[['성벽 돌계단 오르기',[264,322],[304,256]],['지휘소 돌계단 오르기',[757,218],[790,169]]],
- 46:[['서쪽 절벽의 밧줄 내려가기',[253,387],[280,483]],['떠 있는 상층 석단 건너기',[333,483],[570,497]],['동쪽 절벽의 밧줄 건너기',[715,497],[824,487]],['비상 밧줄로 아래 절벽에 내려가기',[927,782],[885,911]],['동쪽 붕괴턱의 밧줄 오르기',[845,1286],[891,911]],['바닥 돌턱에서 비상 밧줄 오르기',[790,1425],[840,1286]]],
+ 46:[['서쪽 절벽의 밧줄 내려가기',[253,387],[280,483]],['떠 있는 상층 석단 건너기',[333,483],[570,497]],['동쪽 절벽의 밧줄 건너기',[715,497],[824,487]],['비상 밧줄로 아래 절벽에 내려가기',[927,782],[885,911]],['동쪽 붕괴턱의 밧줄 오르기',[845,1286],[891,911]],['바닥 돌턱에서 비상 밧줄 오르기',[790,1425],[840,1286]],['중앙 고리에서 되돌아가는 밧줄',[523,940],[499,553]],['중앙 석단으로 되돌아가는 밧줄',[503,553],[561,497]],['아래 제단에서 중앙 고리로 돌아가기',[538,1080],[550,940]]],
  47:[['절벽의 이어진 돌계단 오르기',[781,585],[804,463]]],
  49:[['아래쪽 징검길로 내려가기',[148,1028],[169,1240]],['협곡 진목길 올라가기',[899,1220],[924,960]],['중층 돌계단 올라가기',[947,960],[961,685]],['상층 돌계단 올라가기',[972,685],[980,380]]],
  50:[['산문 아래 돌계단 오르기',[913,304],[930,212]],['산문 앞 돌계단 오르기',[963,206],[962,144]]]
@@ -41,6 +41,14 @@ function vectorPaths(node){
  if(sourcePath)return {...rest,...preserveCompound(sourcePath)};
  return children?{...rest,children:children.map(vectorPaths)}:rest;
 }
+// Side walls and the lower catchment stop arrows and bodies. Interior shelves
+// retain their authored one-way drops so the visible shaft stays open.
+const solids={
+ 46:[
+  ['left-cliff',[[0,0],[42,96],[48,245],[45,387],[35,611],[34,1008],[43,1214],[36,1370],[47,1536],[0,1536]]],
+  ['right-cliff',[[1024,312],[968,374],[958,486],[966,775],[916,909],[930,1090],[888,1212],[803,1410],[849,1536],[1024,1536]]]
+ ]
+};
 const groundIds=new Set(['lower-road','supply-road','gate-road','root-floor','pass-road']);
 const layerIds=['far','mid','back','structural-back','terrain','interactive','prop','units','events','front','L2','L3','L4','L5'];
 export async function makeAct5(){
@@ -63,10 +71,12 @@ export async function makeAct5(){
    control:path(points),thickness:38,floor:height-358,baseMaterial:'rock',breakable:false,
    detail:{interpolation:'linear',spacing:30,roughness:0},properties:{honroAct5Painted:true},layer:'terrain'
   }));
+  for(const [key,points] of solids[id]||[])surfaces.push({id:'a5-'+key,name:key,type:'solid',points:path(points),
+   oneWay:false,baseMaterial:'rock',breakable:false,layer:'terrain',properties:{honroAct5Painted:true}});
   const links=(crossings[id]||[]).flatMap(([label,from,to],j)=>[
    {id:'a5-cross-'+(2*j),label,...contact(...from),to:contact(...to)},
    {id:'a5-cross-'+(2*j+1),label:'이전 발판으로 돌아가기',...contact(...to),to:contact(...from)}]);
-  for(const link of links)if(length([link.x,link.y],[link.to.x,link.to.y])>1550)throw Error('Act 5 crossing too long: '+id);
+  for(const link of links)if(length([link.x,link.y],[link.to.x,link.to.y])>1560)throw Error('Act 5 crossing too long: '+id);
   const objectives=[];
   const units=cast.map((kind,j)=>({id:'p-'+kind,kind,team:'player',...contact(g.start[0]+j*11,g.start[1])}));
   const groups={};
