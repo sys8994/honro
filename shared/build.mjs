@@ -3,6 +3,7 @@ import {applyStage6ArtPreview} from '../tools/stage6-prototype/art-preview.mjs';
 import {applyStage6IntegratedPreview} from '../tools/stage6-prototype/integrated-preview.mjs';
 import {applyAct4FinaleRevision} from './act4-finale-revision.mjs';
 import {applyAct4HandoffArt} from './act4-handoff-art.mjs';
+import {makeAct5,far as act5Far,farStages as act5FarStages,clock as act5Clock,journey as act5Journey} from './act5-world.mjs';
 import {applyAct3HandoffArt} from './act3-handoff-art.mjs';
 import {terrainPathOptimization} from './terrain-path-optimization.mjs';
 import {applyReviewedAct2Art} from '../tools/act2-vector-production/apply-candidates.mjs';
@@ -107,6 +108,10 @@ export async function runtimeEntries({vector=true,render=true,app=false,producti
   const storyFlag=(key,fallback=release)=>process.env[key]===undefined?fallback:process.env[key]==='1';
   const phaseA=storyFlag('HONRO_ACT23_V4_PHASE_A');
   const act4Enabled=process.env.HONRO_ACT4_RELEASE==='1'||app&&storyRelease.act4===true&&process.env.HONRO_ACT4_RELEASE!=='0';
+  const act5Enabled=!!act4Enabled&&(process.env.HONRO_ACT5_RELEASE==='1'||app&&storyRelease.act5===true&&process.env.HONRO_ACT5_RELEASE!=='0');
+  const act5=act5Enabled?await makeAct5():null;
+  data('HONRO_ACT5_RELEASE',act5Enabled);
+  data('HONRO_ACT5_CONTENT',act5?.content||[]);
   data('HONRO_ACT4_RELEASE',!!act4Enabled);
   data('HONRO_ACT4_CONTENT',act4Enabled?JSON.parse(await read('shared/data/act4/content.json')):[]);
   data('HONRO_ACT4_REVIEWED',act4Enabled?JSON.parse(await read('shared/data/act4/reviewed.json')):null);
@@ -142,6 +147,7 @@ export async function runtimeEntries({vector=true,render=true,app=false,producti
   data('HONRO_PORTRAIT_VARIANTS',JSON.parse(await read('game/config/portrait-variants.json')));
   for(const name of modelFiles)await file(`shared/runtime/${name}.js`);
   await file('shared/runtime/act4-content.js');
+  if(act5){await file('shared/runtime/act5-content.js');await file('shared/runtime/act5.js');}
   await file('shared/runtime/camera.js');
   await file('shared/runtime/attack-camera.js');
   await file('shared/runtime/reinforcement-camera.js');
@@ -184,6 +190,7 @@ export async function runtimeEntries({vector=true,render=true,app=false,producti
   }
   project=applyStage6ReviewedPursuit(applyStage6IntegratedPreview(applyStage6ArtPreview(project)));
   terrainOptimization.apply(project.library);
+  if(act5)project={...project,stages:[...project.stages,...act5.stages],library:[...project.library,...act5.library]};
   if(act4Enabled)code('terrain-previous-provider-signatures','globalThis.HONRO_PREVIOUS_TERRAIN_ART='+JSON.stringify(terrainOptimization.previousAct4Signatures)+';');
   parts.push({name:'campaign',project,code:'globalThis.HONRO_PROJECT='+authorProjectExpression(JSON.stringify(project))+';'});
   if(vector){
@@ -209,6 +216,7 @@ export async function runtimeEntries({vector=true,render=true,app=false,producti
     data('HONRO_ACT2_FAR_DATA',act2Backdrops);
     data('HONRO_REST_BACKDROPS',await restBackdropData());
     const far=JSON.parse(await read('shared/assets/environment/campaign-far/manifest.json'));
+    if(act5){Object.assign(far.images,Object.fromEntries(act5Far));Object.assign(far.stages,act5FarStages);}
     for(const [key,file] of Object.entries(far.images))far.images[key]='data:image/webp;base64,'+(await readFile(path.join(root,'shared/assets/environment/campaign-far',file))).toString('base64');
     data('HONRO_AUTHORED_FAR',far);
     await file('shared/assets/monsters/monsters.runtime.js');
@@ -216,12 +224,19 @@ export async function runtimeEntries({vector=true,render=true,app=false,producti
     for(const name of ['renderer','art-dark','terrain-skirt','environment-art','map-art-polish','monster-vector','actor-vector','act23-v4-ch21-art','elements','environment-renderer','time-of-day','cave-enclosure','act2-spatial-art','stage11-landscape-art','keeper-ritual-art','act2-art','act3-art','act1-spatial-art','terrain-readability','geology-art','geology-rear-support','stage2-layered-road-art','stage18-bell-art','stage30-ferry-art','stage12-quarry-art','stage23-escort-art','stage8-bier-art','object-damage','combat-feedback','story-act1-art','stage5-waterfall-art','stage5-positioning-art','story-act23-art','narrative-art','stage19-farewell-art','quest-target-art','act3-v4-reviewed-actors','story-anomaly-art','visual-hierarchy','stage11-compact-art'])await file(`shared/runtime/${name}.js`);
     if(act3TerrainPreview||act3TerrainStages.length)await file('shared/runtime/act3-handoff-art.js');
   }
-  if(render)data('HONRO_TIMELINE',JSON.parse(await read('shared/data/timeline.json')));
+  if(render){
+    const timeline=JSON.parse(await read('shared/data/timeline.json'));
+    if(act5){Object.assign(timeline.stages,act5Clock);timeline.profiles['act5-night']=timeline.profiles.cave;timeline.moons.act5={rise:'18:35',set:'07:00',phase:.84};}
+    data('HONRO_TIMELINE',timeline);
+  }
   if(render)await file('shared/runtime/authored-far-art.js');
+  if(render&&act5)await file('shared/runtime/act5-art.js');
   if(app){
     data('HONRO_SKILL_AUDIO',await skillAudioData());
     data('HONRO_MUKJONG_AUDIO',{src:'data:audio/mpeg;base64,'+(await readFile(path.join(root,'shared/assets/sfx/mukjong-b.mp3'))).toString('base64')});
-    data('HONRO_JOURNEY_MAPS',JSON.parse(await read('shared/assets/journey-maps/v1/manifest.json')));
+    const journey=JSON.parse(await read('shared/assets/journey-maps/v1/manifest.json'));
+    if(act5)journey.acts.push(act5Journey);
+    data('HONRO_JOURNEY_MAPS',journey);
     await file('shared/runtime/tooltips.js');
     await file('game/vendor/ui/fa.js');
     await file('shared/runtime/skill-images.js');

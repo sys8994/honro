@@ -64,6 +64,7 @@ function reinforceHold(app,boundary){
 }
 function tick(app,dt){
  const e=app.engine;if(!e||app.training)return;
+ if(G.HonroAct5?.active(e.b)){G.HonroAct5.tick(app,dt);return;}
  if(e.b.honroCustom){G.HonroAuthored.tick(app,dt);return;}
  if(G.HonroAct2?.active(e.b)){G.HonroAct2.tick(app,dt);return;}
  if(G.HonroAct3?.active(e.b)){G.HonroAct3.tick(app,dt);return;}

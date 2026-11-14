@@ -29,6 +29,7 @@ function interactionTarget(b,m){
 }
 function rawState(b,st){
  if(b.honroCustom)return G.HonroAuthored.objectiveState(b);
+ if(G.HonroAct5?.active(b))return G.HonroAct5.state(b);
  if(G.HonroAct2?.active(b))return G.HonroAct2.state(b);
  if(G.HonroAct3?.active(b))return G.HonroAct3.state(b);
  const hs=b.honroState||{},markers=b.honroMarkers||[],heroes=b.units.filter(u=>u.side===0&&!u.summoned&&!u.dead&&u.hp>0),obj=b.units.find(u=>u.id==='objective'),boss=b.units.find(u=>u.id==='boss'),seals=G.HonroQuestTargets.records(b).filter(t=>t.honroSeal),left=seals.filter(t=>!t.broken),foes=b.units.filter(u=>u.side===1&&!u.honroObjectiveTarget&&u.summonKind!=='eater'&&!u.dead&&u.hp>0),pending=G.HonroEncounters.pending(b);const all=[];const add=(kind,id,x,y,label,extra={})=>{const t={kind,id,x,y,label,...extra};all.push(t);return t;};
@@ -63,6 +64,7 @@ function rawState(b,st){
  return{complete,objectiveReady,minimumRound,settleRounds,summary,targets:[...targets,...(authored?.targets||[])],allTargets:[...all,...(authored?.allTargets||[])]};
 }
 function failure(b,st){
+ if(G.HonroAct5?.active(b))return G.HonroAct5.failure(b);
  if(!b||b.honroCustom||st?.id!==5)return null;
  const needsRitual=G.HonroQuestTargets.records(b).some(t=>t.id==='cliff-cleat'&&!t.broken)&&b.honroMarkers?.some(m=>m.action==='ritual');
  if(needsRitual&&!b.units.some(u=>u.side===0&&u.cls==='mage'&&!u.summoned&&!u.enthrall&&!u.dead&&u.hp>0))return G.HonroStage5Waterfall?.active(b)?'담허가 쓰러져 낙수를 비틀 수 없다. 이 장을 다시 시작하자.':'담허가 쓰러져 받이진을 이어갈 수 없다. 이 장을 다시 시작하자.';
@@ -70,6 +72,7 @@ function failure(b,st){
 }
 function state(b,st){
  const result=rawState(b,st);
+ if(G.HonroAct5?.active(b))return result;
  const guided=G.HonroObjectiveGuide?.enhance(b,st,result)||result;
  const crossing=G.HonroStakeCrossing?.current(b);
  const jointInvestigation=G.HonroAct23V4Chapter25Reviewed?.active(b)||G.HonroAct23V4Chapter27Reviewed?.active(b);
@@ -95,7 +98,7 @@ const guides={1:'고개 끝의 도착 지점으로 이동하세요. 적을 모�
 // Saved historical/custom maps may intentionally lack the new recovery root.
 function guideFor(app){const b=app.engine?.b;if(G.HonroStage5Waterfall?.active(b))return G.HonroStage5Waterfall.guide;let text=guides[app.stage.id];if(b?.honroNarrativeRevision===1&&app.stage.id===8)return '상여채를 붙든 결박을 끊고 빈 상여를 제압하세요. 주변 적은 남아도 됩니다.';if(b?.honroNarrativeRevision===1&&app.stage.id===9)return '두 받이진을 설치해 소단이 붙든 힘을 나눠 받으세요.';if(b?.honroNarrativeRevision===1&&app.stage.id===10)return '사람과 떨어진 바깥 주박을 공격하세요. 소단이 맡긴 뒤에는 양쪽 전각에서 오는 적을 막아 여섯 턴 동안 의식을 지키세요. 그 뒤 동행 셋을 동쪽 외문 너머로 이동시키세요. 소단은 스스로 따라옵니다. 네 사람이 모두 문을 통과해야 완료됩니다.';if(app.stage.id===7&&b&&!G.HonroQuestTargets.records(b).some(t=>t.id==='root-reentry'&&!t.broken))text=text.replace('바닥으로 떨어졌다면 맨 왼쪽의 낮고 넓은 뿌리로 도약해 올라간 뒤 아랫가지로 한 번 더 도약하세요. ','');return text;}
 const guideFocus=['exit','objective','interact','objective','interact','objective','interact','seal','interact','interact'];
-function entry(app,options={}){G.HonroStoryFraming?.authorEntry(app.stage);const short=state(app.engine.b,app.stage).currentInstruction;
+function entry(app,options={}){if(G.HonroAct5?.active(app.engine.b))return G.HonroAct5.entry(app);G.HonroStoryFraming?.authorEntry(app.stage);const short=state(app.engine.b,app.stage).currentInstruction;
  if(app.stage.act>=2){const rows=(app.stage.act===2?G.HonroAct2:G.HonroAct3).entry(app,options),preparation=G.HonroStakeCrossing?.preparationLines(app.engine.b)||[];rows.splice(Math.max(0,rows.length-1),0,...preparation);return rows.map(row=>row[2]?.kind==='guide'?[row[0],short||row[1],row[2]]:row);}
  const n=(options.interlude===false?[]:(app.stage.narration||[])).slice(0,3).map((text,i)=>['서술',text,{kind:'narration',art:app.stage.narrationArt,paragraph:i+1,paragraphs:app.stage.narration.length}]);const all=[...n,...(app.stage.story||[]),...lines(app)],guide=['안내',short||guideFor(app),{kind:'guide',focus:guideFocus[app.stage.id-1],storyId:'guide-'+app.stage.id,storyTitle:app.stage.name+' · 길잡이'}],hs=app.engine?.b.honroState;
  if(hs&&!hs.entryScheduled){hs.entryScheduled=true;hs.deferredStory??=[];const beats=(app.stage.storyFollowups||[]).map(x=>x.slice());beats.forEach((lines,i)=>hs.deferredStory.push({round:2+i*2,lines:G.HonroStoryContent.scene('entry-follow-'+app.stage.id+'-'+i*5,app.stage.name+' · 길 위에서',lines)}));}

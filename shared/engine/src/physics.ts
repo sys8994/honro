@@ -2,7 +2,7 @@ import type {Vec,Skill,ForceField} from './types';
 import {G,clamp} from './math';
 
 /** World units: position in game units, time in seconds, linear drag in s^-1. */
-export interface PhysicsRegion {id:string;x:number;y:number;w:number;h:number;gravity?:Vec;gravityScale?:number;dragScale?:number;flow?:Vec;}
+export interface PhysicsRegion {id:string;x:number;y:number;w:number;h:number;gravity?:Vec;gravityScale?:number;dragScale?:number;flow?:Vec;projectileOnly?:boolean;}
 export interface PhysicsPatch {gravity?:Vec;dragScale?:number;flow?:Vec;regions?:PhysicsRegion[];}
 export interface PhysicsCue {id:string;round?:number;event?:string;patch:PhysicsPatch;}
 export interface PhysicsEnvironment {gravity:Vec;dragScale:number;flow:Vec;regions:PhysicsRegion[];timeline:PhysicsCue[];applied:string[];revision:number;}
@@ -11,9 +11,9 @@ export function makePhysics(p?:PhysicsPatch & {timeline?:PhysicsCue[]}):PhysicsE
  return {gravity:{...(p?.gravity??DEFAULT_PHYSICS.gravity)},dragScale:p?.dragScale??1,flow:{...(p?.flow??DEFAULT_PHYSICS.flow)},regions:JSON.parse(JSON.stringify(p?.regions??[])),timeline:JSON.parse(JSON.stringify(p?.timeline??[])),applied:[],revision:0};
 }
 /** Explicit spatial composition: a zone may override g or scale it; drag scales multiply. */
-export function environmentAt(env:PhysicsEnvironment,x:number,y:number){
+export function environmentAt(env:PhysicsEnvironment,x:number,y:number,body=false){
  let gravity={...env.gravity},dragScale=env.dragScale,flow={...env.flow};
- for(const r of env.regions){if(x<r.x||x>r.x+r.w||y<r.y||y>r.y+r.h)continue;if(r.gravity)gravity={...r.gravity};if(r.gravityScale!==undefined){gravity.x*=r.gravityScale;gravity.y*=r.gravityScale;}if(r.dragScale!==undefined)dragScale*=r.dragScale;if(r.flow){flow.x+=r.flow.x;flow.y+=r.flow.y;}}
+ for(const r of env.regions){if(body&&r.projectileOnly||x<r.x||x>r.x+r.w||y<r.y||y>r.y+r.h)continue;if(r.gravity)gravity={...r.gravity};if(r.gravityScale!==undefined){gravity.x*=r.gravityScale;gravity.y*=r.gravityScale;}if(r.dragScale!==undefined)dragScale*=r.dragScale;if(r.flow){flow.x+=r.flow.x;flow.y+=r.flow.y;}}
  return {gravity,dragScale:clamp(dragScale,0,10),flow};
 }
 export function changePhysics(env:PhysicsEnvironment,patch:PhysicsPatch){
@@ -52,7 +52,7 @@ const vector=(v:any)=>v&&num(v.x)&&num(v.y)&&Math.abs(v.x)<=5000&&Math.abs(v.y)<
 export function validPhysicsPatch(p:any):boolean{
  if(!p||typeof p!=='object'||Array.isArray(p))return false;
  if(p.gravity!==undefined&&!vector(p.gravity)||p.flow!==undefined&&!vector(p.flow)||p.dragScale!==undefined&&(!num(p.dragScale)||p.dragScale<0||p.dragScale>10))return false;
- if(p.regions!==undefined&&(!Array.isArray(p.regions)||p.regions.length>32||p.regions.some((r:any)=>!r||typeof r.id!=='string'||r.id.length>100||!['x','y','w','h'].every(k=>num(r[k]))||r.w<=0||r.h<=0||r.w>30000||r.h>30000||r.gravity!==undefined&&!vector(r.gravity)||r.flow!==undefined&&!vector(r.flow)||r.gravityScale!==undefined&&(!num(r.gravityScale)||Math.abs(r.gravityScale)>10)||r.dragScale!==undefined&&(!num(r.dragScale)||r.dragScale<0||r.dragScale>10))))return false;
+ if(p.regions!==undefined&&(!Array.isArray(p.regions)||p.regions.length>32||p.regions.some((r:any)=>!r||typeof r.id!=='string'||r.id.length>100||r.projectileOnly!==undefined&&typeof r.projectileOnly!=='boolean'||!['x','y','w','h'].every(k=>num(r[k]))||r.w<=0||r.h<=0||r.w>30000||r.h>30000||r.gravity!==undefined&&!vector(r.gravity)||r.flow!==undefined&&!vector(r.flow)||r.gravityScale!==undefined&&(!num(r.gravityScale)||Math.abs(r.gravityScale)>10)||r.dragScale!==undefined&&(!num(r.dragScale)||r.dragScale<0||r.dragScale>10))))return false;
  return true;
 }
 export function validPhysics(p:any):boolean{

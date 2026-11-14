@@ -111,7 +111,7 @@ const arrivalTalk={
  31:[['설오','강 건너 옛길이 끊겼으니 배를 댈 자리부터 찾아야겠군요.'],['휘겸','갈대 사이로 물길이 하나 보이오. 일행을 옮기기 전에 선착장 쪽이 안전한지 봅시다.']]
 };
 function arrivalConversation(profile,id){
- const terminal=id==null&&profile.cleared[40]?[['휘겸','배는 묶어 두었소. 다친 분들이 내리는 것까지 보고 오리다.'],['설오','저도 부축하겠습니다. 도식 씨가 쉴 자리는 이쪽에 봐 뒀습니다.']]:[];
+ const terminal=id==null&&profile.cleared[50]?[['담허','날이 밝기 전에는 산문 안에서 쉬세.'],['소단','밖에서 올라오는 소리가 들려요. 종소리는 아니에요.']]:id==null&&profile.cleared[40]?[['휘겸','배는 묶어 두었소. 다친 분들이 내리는 것까지 보고 오리다.'],['설오','저도 부축하겠습니다. 도식 씨가 쉴 자리는 이쪽에 봐 뒀습니다.']]:[];
  const rows=id==null?terminal:arrivalTalk[id]||[],present=new Set((profile.recruited||[]).map(speakerId));
  if(!rows.length||rows.some(([who])=>!present.has(who)))return[];
  const storyId=`rest-arrival-talk-${id??'end-40'}`;
