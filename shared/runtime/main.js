@@ -310,7 +310,7 @@
             const project=G.HonroMaps.normalize(input),map=project.stages.find(s=>s.id===(stageId||project.activeStageId));
             if(!map)throw Error('Stage not found '+stageId);
             const errors=G.HonroMaps.validate(project).filter(x=>x.level==='err');if(errors.length)throw Error(errors.map(x=>x.text).join('\n'));
-            if(!map.units.some(u=>u.team==='player'))throw Error('플레이어 유닛을 먼저 배치하세요.');
+            if(!map.units.some(u=>u.team==='player'))throw Error('플레이할 캐릭터를 먼저 배치하세요.');
             // Retry/results may already have released the engine. End the old
             // custom context first so its protected owner cannot become a QA copy.
             this.stopBattle();this.close();

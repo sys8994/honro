@@ -46,15 +46,15 @@ function stage5Restriction(b:Battle,p:GateSpot){
   : p.x>2380||p.y>3000;
 }
 export function resolveGate(e:Engine,u=e.active):GateResolution{
- const from=gateSource(e,u);if(!from||!u)return {ok:false,reason:'가까운 축지진목 한 쌍이 필요합니다.'};
+ const from=gateSource(e,u);if(!from||!u)return {ok:false,reason:'서로 연결된 축지진목에 다가가세요.'};
  const to=(e.b.stakes||[]).find(z=>z.skill==='M09'&&z.side===u.side&&z.id!==from.id&&(z.expires===undefined||z.expires>e.b.round))!;
  const fail=(reason:string):GateResolution=>({ok:false,reason,from,to});
- if(u!==e.active||!e.canAct()||!e.grounded(u))return fail('현재 행동이 끝난 뒤 · 지면에서 사용');
- if(u.gateTurn===`${e.b.round}:${e.b.teamEnds[0]}`)return fail('이번 턴 축지 사용 완료');
+ if(u!==e.active||!e.canAct()||!e.grounded(u))return fail('움직일 수 있을 때 땅에 서서 사용하세요.');
+ if(u.gateTurn===`${e.b.round}:${e.b.teamEnds[0]}`)return fail('이번 턴에는 이미 축지진목을 사용했습니다.');
  const radius=GATE_SEARCH_RADIUS;
  const terrain=e.b.terrain.filter(t=>!t.broken&&(t.expires===undefined||t.expires>e.b.round)&&t.x<=to.x+radius+u.r&&t.x+t.w>=to.x-radius-u.r&&t.y<=to.y+radius&&t.y+t.h>=to.y-radius-u.h);
- // Grid samples plus exact anchor, support projections, edge clearances and
- // actor boundaries: narrow ledges and nearest unoccupied positions survive.
+ // Sample the anchor and nearby terrain edges to find the nearest safe footing.
+ // Characters at the destination share that spot with the arriving character.
  const xs=new Set<number>([to.x]);
  const add=(x:number)=>{if(Math.abs(x-to.x)<=radius+.001)xs.add(+x.toFixed(5));};
  for(let k=12;k<radius;k+=12){add(to.x-k);add(to.x+k);}add(to.x-radius);add(to.x+radius);
@@ -63,26 +63,24 @@ export function resolveGate(e:Engine,u=e.active):GateResolution{
   for(const x of [a.x,a.x-u.r-.1,a.x+u.r+.1])add(x);
   if(dx>0){const q=clamp(((to.x-a.x)*dx+(to.y-a.y)*dy)/(dx*dx+dy*dy),0,1);add(a.x+q*dx);}
  }}
- for(const t of e.b.units)if(!t.dead&&!t.eaterCapturedBy&&t.id!==u.id)for(const x of [t.x-t.r-u.r-.1,t.x+t.r+u.r+.1])add(x);
  const candidates:GateSpot[]=[];
  for(const x of xs)for(const support of terrain)if(x>=support.x&&x<=support.x+support.w)for(const f of terrainSurfaces(support,x)){
   const distance=Math.hypot(x-to.x,f.y-to.y);
   if(distance<=radius+.001&&Math.abs(f.slope)<=WALKABLE_SLOPE&&exposedSurface(terrain,support,x,f.y))candidates.push({x,y:f.y,support,slope:f.slope,distance});
  }
  candidates.sort((a,b)=>a.distance-b.distance||Math.abs(a.x-to.x)-Math.abs(b.x-to.x)||a.y-b.y||a.x-b.x||(String(a.support.id)<String(b.support.id)?-1:String(a.support.id)>String(b.support.id)?1:0));
- let firstReason='가까운 지지면 없음';
+ let firstReason='가까이에 발을 디딜 곳이 없습니다.';
  for(const [index,p] of candidates.entries()){
   let reason='';
-  if(!clearance(terrain,u,p))reason='머리·몸체 여유 부족';
-  else if(e.b.units.some(t=>!t.dead&&!t.eaterCapturedBy&&t.id!==u.id&&Math.abs(t.x-p.x)<t.r+u.r&&p.y>t.y-t.h+.1&&p.y-u.h<t.y-.1))reason='다른 배우가 점유 중';
-  else if(dangerous(e,u,p))reason='위험한 물·낙사 구역';
+  if(!clearance(terrain,u,p))reason='캐릭터가 설 공간이 부족합니다.';
+  else if(dangerous(e,u,p))reason='물이나 낭떠러지가 위험합니다.';
   // The fallback is local to the destination gate's room. A low foot-level
   // sight line may leave a cramped head space, but cannot cross a solid wall.
-  else if(terrain.some(t=>!t.oneWay&&segmentTerrain({x:to.x,y:to.y-12},{x:p.x,y:p.y-12},t,0)))reason='도착 진목과 벽으로 분리됨';
+  else if(terrain.some(t=>!t.oneWay&&segmentTerrain({x:to.x,y:to.y-12},{x:p.x,y:p.y-12},t,0)))reason='벽이 도착할 곳을 가로막고 있습니다.';
   else if(stage5Restriction(e.b,p))reason='깊은 소와 젖은 절벽에는 축지진목의 발디딤을 이을 수 없습니다.';
   else reason=(e as any).gateDestinationReason?.(p,from,to)||'';
   if(!reason)return {ok:true,reason:'축지진목 사용',from,to,spot:p};
   if(index===0)firstReason=reason;
  }
- return fail(`도착지 없음 · ${firstReason}`);
+ return fail(`건너갈 수 없음 · ${firstReason}`);
 }

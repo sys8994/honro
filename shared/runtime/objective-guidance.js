@@ -5,11 +5,11 @@ const alive=u=>!!u&&!u.dead&&u.hp>0;
 function hostileTargets(b,units){
  const actor=b.units.find(u=>u.id===b.active);
  const ordered=[...new Map(units.filter(alive).map(u=>[u.id,u])).values()].sort((a,c)=>actor?Math.hypot(a.x-actor.x,a.y-actor.y)-Math.hypot(c.x-actor.x,c.y-actor.y):a.x-c.x);
- return ordered.map(u=>({id:u.id,unitId:u.id,kind:'hostile',x:u.x,y:u.y-(G.HonroPartyPresentationHeight?.(u)??u.h),label:`목표 적: ${u.name||'적'}`}));
+ return ordered.map(u=>({id:u.id,unitId:u.id,kind:'hostile',x:u.x,y:u.y-(G.HonroPartyPresentationHeight?.(u)??u.h),label:u.name||'적'}));
 }
-function hostileHint(b,units,action='노란 표식의 적 제압'){
+function hostileHint(b,units,action='금색 표식의 적 제압'){
  const targets=hostileTargets(b,units),names=new Map();
- for(const t of targets){const name=t.label.slice('목표 적: '.length);names.set(name,(names.get(name)||0)+1);}
+ for(const t of targets){const name=t.label;names.set(name,(names.get(name)||0)+1);}
  const rows=[...names.entries()],shown=rows.slice(0,3).map(([name,n])=>`${name} ${n}명`).join(', ');
  return{text:targets.length?`${action} · ${targets.length}명 남음: ${shown}${rows.length>3?' 외 '+rows.slice(3).reduce((sum,[,n])=>sum+n,0)+'명':''}`:'대상 적 제압 완료 · 다음 목표 확인',targets};
 }

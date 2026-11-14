@@ -47,7 +47,7 @@ for(const [support,x] of [['stage5-west-shoulder',2590],['stage5-timber-low',231
  const p=e.gateResolution();assert(p.ok,p.reason);assert(e.useGate());assert(e.grounded(archer));
  rows.push({kind:'real unmodified projectile integration',frames,stakes:plain(b.stakes),spot:{x:p.spot.x,y:p.spot.y}});
 }
-for(const [support,x,y,reason] of [['waterfall-cliff',5350,1332,'깊은 소'],['waterfall-cliff',5700,740,'깊은 소'],['valley-floor',4400,undefined,'위험한 물']]){
+for(const [support,x,y,reason] of [['waterfall-cliff',5350,1332,'깊은 소'],['waterfall-cliff',5700,740,'깊은 소'],['valley-floor',4400,undefined,'물이나 낭떠러지']]){
  const q=arena(),u=install(q,support,x,y),before=plain(q.b),p=q.e.gateResolution();assert(!p.ok);assert(p.reason.includes(reason),p.reason);
  assert.deepEqual(plain(q.b),before);assert(!q.e.useGate());before.events=[...before.events,p.reason].slice(-30);assert.deepEqual(plain(q.b),before,'denial changes only the visible event');
  rows.push({kind:'legitimate unsafe destination',support,x,reason:p.reason});

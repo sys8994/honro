@@ -105,8 +105,16 @@ function help(app){const s=app.training?{}:state(app.engine.b,app.stage);return{
 function focus(app,kind){const s=state(app.engine.b,app.stage);return s.targets.find(t=>t.id===kind)||s.allTargets.find(t=>t.id===kind)||s.targets.find(t=>t.kind===kind)||s.allTargets.find(t=>t.kind===kind&&!t.done)||s.allTargets.find(t=>t.kind===kind);}
 function refresh(app){if(!app.engine||app.training)return;const s=state(app.engine.b,app.stage);app.scene.missionTargets=s.targets;const el=document.getElementById('objective-text');if(el){const text=s.currentInstruction||s.summary,label=text+' · 눌러서 지나온 목표 보기';if(el.textContent!==text)el.textContent=text;if(el.getAttribute('aria-label')!==label)el.setAttribute('aria-label',label);}const end=document.getElementById('objective-end-text');if(end){if(end.textContent)end.textContent='';if(!end.hidden)end.hidden=true;}}
 function markerLift(b,t){return b?.honroNarrativeRevision===1&&!b.honroCustom&&b.honroStage===5&&t.id==='cliff-cleat'&&t.box&&!t.box.broken?12:t.box&&!t.box.broken?88:26;}
+function objectiveEnemy(e,t){
+ const u=e.unit(t.unitId||t.id);
+ return u&&!u.dead&&u.hp>0&&!u.eaterCapturedBy?u:null;
+}
+function hostileBadge(c,x,y){
+ c.beginPath();c.moveTo(x,y-4);c.lineTo(x+4,y);c.lineTo(x,y+4);c.lineTo(x-4,y);c.closePath();
+ c.fillStyle='#142329';c.fill();c.strokeStyle='#f0cf85';c.lineWidth=1.5;c.stroke();
+}
 function draw(scene,e){
- const targets=scene.goalFocus?[scene.goalFocus]:scene.missionTargets;
+ let targets=scene.goalFocus?[scene.goalFocus]:scene.missionTargets;
  scene.missionDrawn=[];
  if(!targets?.length)return;
  const farewell=G.HonroStage19Farewell?.active(e.b),app=scene.storyFrame?.app||G.HonroApp;
@@ -117,6 +125,27 @@ function draw(scene,e){
  // Parallel family steps need no remote hint while the current interaction is in view.
  if(farewell&&!scene.goalFocus){const t=targets[0],x=w/2+(t.x-scene.x)*z,y=h/2+(t.y-scene.y)*z;if(x>=0&&x<=w&&y>=0&&y<=h)return;}
  c.save();c.setTransform(d,0,0,d,0,0);c.font='600 12px sans-serif';c.textAlign='center';c.textBaseline='middle';
+ if(!scene.goalFocus&&targets.some(t=>t.kind==='hostile')){
+  let inView=false,remote=null;
+  for(const t of targets){
+   if(t.kind!=='hostile')continue;
+   const u=objectiveEnemy(e,t);
+   if(!u)continue;
+   const height=G.HonroPartyPresentationHeight?.(u)??u.h;
+   const tactical=z<=.42,bw=tactical?19:(u.honroFinalBoss?120:u.honroMidboss?96:u.boss?116:u.honroType==='bier'?85:u.honroAlly?49:52)*z;
+   const x=w/2+(u.x-scene.x)*z;
+   const y=h/2+(u.y-height*(!tactical&&u.elite&&u.side===1?1.12:1)-12-scene.y)*z+1;
+   const badgeX=x-bw/2-7;
+   const inMinimap=mini&&badgeX>=mini.left-cv.left-5&&badgeX<=mini.right-cv.left+5&&y>=mini.top-cv.top-5&&y<=mini.bottom-cv.top+5;
+   const header=scene._cameraHeader;
+   const underHeader=header&&badgeX>=header.left-5&&badgeX<=header.right+5&&y>=header.top-5&&y<=header.bottom+5;
+   if(badgeX>5&&badgeX<w-5&&y>8&&y<bottom&&!inMinimap&&!underHeader){
+    hostileBadge(c,badgeX,y);inView=true;
+   }else if(!remote)remote={...t,x:u.x,y:u.y-height,label:'목표 적'};
+  }
+  targets=targets.filter(t=>t.kind!=='hostile');
+  if(!inView&&remote)targets.push(remote);
+ }
  let outside=0;const labels=[];
  for(const t of targets){
   const x=w/2+(t.x-scene.x)*z,y=h/2+(t.y-scene.y)*z,visible=farewell?x>=0&&x<=w&&y>=0&&y<=h:x>30&&x<w-30&&y>top&&y<bottom;
@@ -175,6 +204,13 @@ function draw(scene,e){
  }
  c.restore();
 }
-function minimap(app,c,sx,sy){if(app.training)return;const b=app.engine.b,guide=G.HonroAct4Content?.active(b)&&b.honroAct4Design?G.HonroAct4TerrainPreview?.questGuidance(app):null,s=guide||state(b,app.stage),crow=G.HonroStage8Bier?.pendingCrowWarning(app.engine.b);if(crow&&!s.targets.some(t=>t.id===crow.id))s.targets.push(crow);c.save();c.strokeStyle='#ffe0a0';for(const t of s.targets)c.strokeRect(t.x*sx-3,t.y*sy-3,6,6);if(app.scene?.storyFrame?.camera.intent==='objective'){c.lineWidth=2;for(const box of app.scene.storyFrameReport?.boxes||[]){c.beginPath();c.arc((box.x+box.w/2)*sx,(box.y+box.h)*sy,7,0,Math.PI*2);c.stroke();}}c.restore();}
+function minimap(app,c,sx,sy){if(app.training)return;const b=app.engine.b,guide=G.HonroAct4Content?.active(b)&&b.honroAct4Design?G.HonroAct4TerrainPreview?.questGuidance(app):null,s=guide||state(b,app.stage),crow=G.HonroStage8Bier?.pendingCrowWarning(app.engine.b);if(crow&&!s.targets.some(t=>t.id===crow.id))s.targets.push(crow);c.save();c.strokeStyle='#ffe0a0';const marked=new Set();
+ for(const t of s.targets){
+  if(t.kind!=='hostile'){c.strokeRect(t.x*sx-3,t.y*sy-3,6,6);continue;}
+  const u=objectiveEnemy(app.engine,t);if(!u)continue;
+  const x=u.x*sx,y=(u.y-u.h*.45)*sy,key=Math.round(x/4)+':'+Math.round(y/4);
+  if(marked.has(key))continue;
+  marked.add(key);c.beginPath();c.arc(x,y,u.elite||u.boss?4:3,0,Math.PI*2);c.stroke();
+ }if(app.scene?.storyFrame?.camera.intent==='objective'){c.lineWidth=2;for(const box of app.scene.storyFrameReport?.boxes||[]){c.beginPath();c.arc((box.x+box.w/2)*sx,(box.y+box.h)*sy,7,0,Math.PI*2);c.stroke();}}c.restore();}
 G.HonroObjectives={interactionTarget,state,failure,lines,entry,help,focus,refresh,draw,minimap,briefings,markerLift,settlement,updateSettlement};
 })(globalThis);

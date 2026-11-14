@@ -18,8 +18,24 @@ test('exact support, no planning mutation, real arrival, lock, save and reversed
  assert(a.e.useGate());assert.equal(a.u.x,p.spot.x);assert(a.e.grounded(a.u));denied(a);
  const profile=C.validate({...a.profile,saved:structuredClone(a.b)}),saved=profile.saved;assert.deepEqual(structuredClone(C.validate(structuredClone(profile)).saved),structuredClone(saved),'validated export/import stays exactly stable');const e=new C.Engine(saved);assert(!e.useGate());saved.round++;assert(e.useGate());assert.equal(e.active.x,400);assert(e.grounded(e.active));
 });
-test('occupied anchor finds the nearest body-width clearance deterministically',()=>{
- const a=arena(),foe=C.makeUnit('archer',1,1000,1000,{id:'occupied',hp:1000,maxHp:1000});a.b.units.push(foe);const p=a.e.gateResolution(),q=a.e.gateResolution();assert(p.ok);assert.deepEqual(p,q);assert(Math.abs(p.spot.x-1000)>=foe.r+a.u.r);assert(p.spot.distance<55);assert(a.e.useGate());assert.equal(a.u.x,p.spot.x);
+test('occupied narrow ledge accepts arrivals beside allies and enemies at the exact anchor',()=>{
+ const a=arena();
+ a.b.terrain=[rect('source',0,1000,600,600),rect('ledge',970,1000,60,600)];
+ const occupants=[
+  C.makeUnit('knight',0,1000,1000,{id:'ally'}),
+  C.makeUnit('archer',1,1000,1000,{id:'enemy'})
+ ];
+ a.b.units.push(...occupants);
+ const before=structuredClone(occupants),plan=a.e.gateResolution();
+ assert(plan.ok,JSON.stringify(plan));
+ assert.equal(plan.spot.distance,0);
+ assert(a.e.useGate());
+ assert.deepEqual([a.u.x,a.u.y],[1000,1000]);
+ assert(a.e.grounded(a.u));
+ assert.deepEqual(structuredClone(occupants),before);
+ const resumed=new C.Engine(structuredClone(a.b));
+ assert.deepEqual(resumed.b.units.map(u=>[u.x,u.y]),[[1000,1000],[1000,1000],[1000,1000]]);
+ assert(!resumed.gateResolution().ok,'Overlap and reload do not grant another use in the same turn');
 });
 test('long low ceiling escapes beyond old 96 range without landing on its roof',()=>{
  const a=arena();a.b.terrain.push(rect('low-roof',870,1000-a.u.h-35,260,55));const p=a.e.gateResolution();assert(p.ok,JSON.stringify(p));assert(p.spot.distance>96&&p.spot.distance<=220);assert.equal(p.spot.support.id,'floor');assert(a.e.useGate());assert(a.e.grounded(a.u));

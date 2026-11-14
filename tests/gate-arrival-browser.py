@@ -1,5 +1,6 @@
 """Focused real UI: shared readiness, pointer/E, fallback, save lock and stage5 slope."""
 import json,os
+from contextlib import nullcontext
 from playwright.sync_api import sync_playwright
 from browser_support import ROOT,launch,serve_game
 OUT=ROOT/'_local/reports/mage-volley-gate/gate';OUT.mkdir(parents=True,exist_ok=True)
@@ -13,23 +14,43 @@ window.gateUI=()=>{const a=HonroApp;a.selected='M09';a.selectedByUnit[a.engine.b
 window.makeArena=(kind)=>{const a=HonroApp,C=HONRO_CORE,e=a.engine,b=e.b,u=e.heroesAlive().find(v=>v.cls==='mage');Object.assign(b,{width:3000,height:1600,honroStage:1,honroCustom:true,honroBackdrop:'forest',terrain:[{id:'gate-floor',x:0,y:1000,w:3000,h:600,mat:'rock',hp:99999,maxHp:99999}],waters:[],drafts:[],fields:[],zones:[],projectiles:[],honroMarkers:[],honroLandmarks:[],round:1,phase:'aim',side:0});b.units=[u];b.active=u.id;Object.assign(u,{x:400,y:1000,vx:0,vy:0,airborne:false,jumping:false,acted:false,dead:false,focus:50,maxFocus:100,hp:500,maxHp:1000,moveLeft:100,maxMove:1000});delete u.gateTurn;delete u.retreat;
 b.stakes=[{id:2001,skill:'M09',owner:u.id,side:0,x:400,y:1000,rank:8,damage:0,shot:0,expires:12},{id:2002,skill:'M09',owner:u.id,side:0,x:1000,y:1000,rank:8,damage:0,shot:0,expires:12}];
 if(kind==='ceiling'||kind==='blocked')b.terrain.push({id:'gate-roof',x:kind==='blocked'?650:870,y:1000-u.h-35,w:kind==='blocked'?700:260,h:55,mat:'rock',hp:99999,maxHp:99999});
-if(kind==='occupied')b.units.push(C.makeUnit('archer',1,1000,1000,{id:'gate-occupied',hp:1000,maxHp:1000}));
+if(kind==='occupied'){b.terrain=[{...b.terrain[0],w:600},{...b.terrain[0],id:'gate-ledge',x:970,w:60}];b.units.push(C.makeUnit('knight',0,1000,1000,{id:'gate-occupied',hp:1000,maxHp:1000}));}
 e.checkEnd=()=>false;b.sceneVersion++;dismiss();gateUI();const plan=e.gateResolution();return{ok:plan.ok,reason:plan.reason,spot:plan.spot&&{x:plan.spot.x,y:plan.spot.y,distance:plan.spot.distance},disabled:document.querySelector('#context-interact button')?.disabled};};}'''
-with sync_playwright() as pw,serve_game() as url:
+public=os.environ.get('HONRO_PUBLIC_QA')
+with sync_playwright() as pw,(nullcontext(public) if public else serve_game()) as url:
  browser=launch(pw)
  for width in [int(w) for w in os.environ.get('HONRO_GATE_WIDTHS','1280,390,360').split(',')]:
   page=browser.new_page(viewport={'width':width,'height':900 if width==1280 else 844},is_mobile=width<600,has_touch=width<600);page.on('pageerror',lambda e:errors.append(str(e)))
-  page.goto(url+'/HONRO.html');page.wait_for_function('window.HonroApp');page.evaluate(SETUP)
+  page.goto(url+'/HONRO.html?qa=gate-overlap');page.wait_for_function('window.HonroApp');page.evaluate(SETUP)
   # The unchanged authored stage5 restriction and real one-way/slope contact.
   stage=page.evaluate(r'''()=>{const a=HonroApp,e=a.engine,b=e.b,u=e.heroesAlive().find(u=>u.cls==='mage'),m=b.honroMarkers.find(m=>m.action==='ritual'),home=e.surface(2100,2000,b.height);Object.assign(u,{x:2100,y:home.y,vx:0,vy:0,airborne:false,jumping:false,acted:false,ranks:{...u.ranks,M09:1},loadout:['M09'],focus:1000,maxFocus:1000});b.active=u.id;b.phase='aim';b.side=0;const fired=e.fire('M09',130,.5),p=b.projectiles[0],floor=e.surface(m.x,m.y-100,m.y+5);e.impact(p,{x:m.x,y:floor.y,n:{x:0,y:-1},terrain:floor.t,t:0});b.phase='aim';u.acted=false;dismiss();a.updateHUD(true);const plan=e.gateResolution(),used=e.useGate();return{fired,ok:plan.ok,used,reason:plan.reason,delta:Math.hypot(u.x-m.x,u.y-floor.y),grounded:e.grounded(u)};}''')
   check(f'{width}: real stage5 slope arrival',stage['fired'] and stage['ok'] and stage['used'] and stage['grounded'] and stage['delta']<1)
   page.evaluate("()=>{const a=HonroApp,u=a.engine.heroesAlive().find(v=>v.cls==='mage');dismiss();a.scene.manual=true;a.scene.storyTween=null;a.scene.x=u.x;a.scene.y=u.y-100;a.scene.scale=.55;a.scene.render(a.engine,0,'M09',.5,false,0);}");page.screenshot(path=str(OUT/f'stage5-slope-{width}.png'))
+  if width==390:
+   occupied=page.evaluate(r'''async()=>{const a=HonroApp;await HonroCampaignLoader.ensureStage(16);
+   a.stopBattle();for(let id=1;id<16;id++)a.profile.cleared[id]={visits:1};
+   a.profile.recruited=a.profile.party=['archer','mage','knight','occultist'];a.launch(16);dismiss();
+   const e=a.engine,b=e.b,u=e.heroesAlive().find(v=>v.cls==='archer'),mage=e.heroesAlive().find(v=>v.cls==='mage');
+   const feet=(x,y)=>e.contactSurface(x,y-10,y+10)?.y;
+   const elder=b.honroMarkers.find(v=>v.id==='16.elder');
+   const x1=u.x,x2=elder.x,y1=feet(x1,u.y),y2=feet(x2,elder.y);
+   if(y1===undefined||y2===undefined)return {error:[y1,y2]};
+   const place=(v,x,y)=>Object.assign(v,{x,y,vx:0,vy:0,airborne:false,jumping:false,acted:false});
+   place(u,x1,y1);place(mage,x2,y2);Object.assign(b,{active:u.id,phase:'aim',side:0});
+   b.stakes=[{id:2001,skill:'M09',owner:mage.id,side:0,x:x1,y:y1,rank:1,damage:0,shot:0,expires:b.round+6},
+             {id:2002,skill:'M09',owner:mage.id,side:0,x:x2,y:y2,rank:1,damage:0,shot:0,expires:b.round+6}];
+   a.updateHUD(true);const plan=e.gateResolution();return {ok:plan.ok,x:x2,y:y2,distance:plan.spot?.distance,reason:plan.reason};}''')
+   check(f'390: the occupied authored Jamunsa terrace enables the actual skill button {occupied}',occupied.get('ok') and occupied['distance']==0)
+   page.locator('[data-context-interact^="skillGate-"]').tap()
+   overlap=page.evaluate("()=>{const e=HonroApp.engine,u=e.unit('p-archer'),v=e.unit('p-mage');return [u.x,u.y,v.x,v.y,e.grounded(u)];}")
+   check('390: Jamunsa tap lands on Damheo without displacing him',overlap==[occupied['x'],occupied['y'],occupied['x'],occupied['y'],True])
+   page.evaluate(SETUP)
   if os.environ.get('HONRO_GATE_STAGE_ONLY'):
    page.close();continue
   for kind in ['occupied','ceiling','blocked']:
    plan=page.evaluate('kind=>makeArena(kind)',kind);page.screenshot(path=str(OUT/f'{kind}-{width}-before.png'))
    if kind=='blocked':
-    check(f'{width}: blocked plan disables the actual context button',not plan['ok'] and plan['disabled'] and '도착지 없음' in plan['reason'])
+    check(f'{width}: blocked plan disables the actual context button',not plan['ok'] and plan['disabled'] and '건너갈 수 없음' in plan['reason'])
     state=page.evaluate("()=>{const a=HonroApp,u=a.engine.active,old=JSON.stringify(u);document.querySelector('#context-interact button').click();return{same:old===JSON.stringify(u),reason:document.querySelector('#context-interact button').textContent};}")
     check(f'{width}: disabled pointer does not consume state',state['same']);continue
    check(f'{width}: {kind} button matches the ready plan',plan['ok'] and plan['disabled'] is False)
@@ -37,6 +58,7 @@ with sync_playwright() as pw,serve_game() as url:
    arrived=page.evaluate('''()=>{const a=HonroApp,e=a.engine,u=e.active;return{x:u.x,y:u.y,grounded:e.grounded(u),used:!!u.gateTurn,heroes:JSON.stringify(a.profile.heroes)===growthBefore,loadouts:JSON.stringify(a.profile.loadouts)===loadoutBefore};}''')
    check(f'{width}: {kind} pointer lands on the planned valid pose and preserves growth',arrived['x']==plan['spot']['x'] and arrived['y']==plan['spot']['y'] and arrived['grounded'] and arrived['used'] and arrived['heroes'] and arrived['loadouts'])
    if kind=='occupied':
+    check(f'{width}: occupied ledge uses the exact destination and keeps the other character in place',plan['spot']['distance']==0 and page.evaluate("()=>{const u=HonroApp.engine.unit('gate-occupied');return u.x===1000&&u.y===1000&&u.hp===1000;}"))
     saved=page.evaluate('''()=>{const a=HonroApp,b=structuredClone(a.engine.b);a.mount(b);dismiss();gateUI();return{locked:!a.engine.gateResolution().ok,disabled:document.querySelector('#context-interact button')?.disabled};}''')
     check(f'{width}: saved reentry preserves same-turn lock',saved['locked'] and saved['disabled'])
     page.evaluate("()=>{HonroApp.engine.b.round++;gateUI();}");page.locator('#battlecanvas').focus();page.locator('#battlecanvas').press('e')

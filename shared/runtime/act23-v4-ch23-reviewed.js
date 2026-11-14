@@ -39,7 +39,7 @@ function guidance(b){
  if(!V.alive(u))return null;
  if(step==='dispatch-bundle'&&V.heroes(b).some(h=>V.near(h,u,650))){
   const enemies=boardingThreats(b);
-  return enemies.length?G.HonroObjectiveGuide.hostileHint(b,enemies,'짐꾼에게 다가가기 전 노란 표식의 적 제압'):null;
+  return enemies.length?G.HonroObjectiveGuide.hostileHint(b,enemies,'짐꾼에게 다가가기 전 주변의 적 제압'):null;
  }
  if(root(b).carrierGoals?.['dock-exit']){
   const enemies=exitThreats(b);

@@ -94,7 +94,7 @@ const tick=A.tick;A.tick=function(app,dt){const b=app.engine?.b;if(!active(b))re
 };
 const state=A.state;A.state=function(b){const out=state(b);if(!active(b))return out;const a=A.memory(b),m=memory(b),hold=A.steps(b).find(s=>s.id==='hold-silence'),anchor=G.HonroQuestTargets.records(b).find(t=>t.id==='upper-chain');
  if(done(b,'silence')&&(!A.satisfied(b,hold)||!anchor?.broken)){
-  const h=a.holds?.['hold-silence'],site=b.honroMarkers.find(s=>s.id==='hold-silence');out.summary=`${A.steps(b).filter(s=>A.satisfied(b,s)).length}/8 · 병렬 안정화 · 억제 ${h?.progress||0}/4라운드${h?.contested?' (적 점유)':''} · 고정구 ${anchor?.broken?'해제':'남음'}`;
+  const h=a.holds?.['hold-silence'],site=b.honroMarkers.find(s=>s.id==='hold-silence');out.summary=`${A.steps(b).filter(s=>A.satisfied(b,s)).length}/8 · 병렬 안정화 · 억제 ${h?.progress||0}/4라운드${h?.contested?' (범위 안에 적이 있음)':''} · 고정구 ${anchor?.broken?'해제':'남음'}`;
   out.targets=[...(!A.satisfied(b,hold)&&site?[{id:'hold-silence',kind:'interact',x:site.x,y:site.y,label:'담허 · 억제진 4라운드'}]:[]),...(!anchor?.broken&&anchor?[{id:'upper-chain',kind:'seal',x:anchor.x+anchor.w/2,y:anchor.y,label:'장력 고정구 · 기본 공격',box:anchor}]:[])];
  }
  if(['warning','waiting','lowering'].includes(m.status)){out.summary='4/8 · '+m.reason;out.targets=[{id:'bell-descent',kind:'interact',x:b.honroBellDescent.resting?.x||7200,y:b.honroBellDescent.resting?.y||7100,label:m.reason}];}
