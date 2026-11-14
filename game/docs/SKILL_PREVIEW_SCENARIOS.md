@@ -74,7 +74,7 @@
 | S15 쇄진돌격 | 지상의 적을 함께 밀며 전진합니다. 공중의 적은 베고 지나갑니다. | ground-air · 선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례 | 지상 운반/실제 bat 통과 피해<br>shared/engine/src/warriorMechanics.ts/warriorData.ts |
 | S13 파진연격 | 돌파하고 착지한 뒤 평참이나 검술을 한 번 더 씁니다. 후속 검술 전에는 이동할 수 없습니다. | rush · 착지 meleeFollow ready 후 S00 1회 | 착지 후 허용된 S00 후속 입력<br>shared/engine/src/warriorMechanics.ts/warriorData.ts |
 | S09 월영참 | 전방으로 반달 모양의 검기를 날립니다. | single · 선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례 | 검기 비행과 피해<br>shared/engine/src/warriorMechanics.ts/warriorData.ts |
-| S10 견인참 | 맞은 자를 앞으로 끌어옵니다. 적은 가까이 오면 다시 베고, 아군은 피해 없이 옮깁니다. 벽과 절벽 앞에서는 멈춥니다. | pull · 선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례 | 피격 적의 당김 좌표와 후속 베기<br>shared/engine/src/warriorMechanics.ts/warriorData.ts |
+| S10 견인참 | 맞은 자를 앞으로 끌어옵니다. 공중·고정·정예도 대상이며 주요 서사 보스만 제외합니다. 앞에 발판이 없으면 벽에 끼지 않는 전방 공중으로 옮깁니다. 후속 베기는 기존 사거리·차폐 조건을 따릅니다. | pull · 선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례 | 피격 적의 당김 좌표와 후속 베기<br>shared/engine/src/warriorMechanics.ts/warriorData.ts |
 | S11 관통참 | 지나가는 모든 적을 한 번씩 관통합니다. | line · 선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례 | 일렬 다중 관통<br>shared/engine/src/warriorMechanics.ts/warriorData.ts |
 | S14 파열참 | 첫 적이나 지형에 닿으면 진행 방향과 수직인 짧은 검압이 펼쳐집니다. 가까운 군집을 한 번 베며 벽에 가로막힙니다. | burst-blade · 선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례 | 실제 inkLine 검압·군집 타격<br>shared/engine/src/warriorMechanics.ts/warriorData.ts |
 | S12 회륜검기 | 공전하는 여러 검기를 함께 날립니다. 각 검기는 같은 적을 최대 두 번 맞힙니다. | orbit · 선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례 | 실제 orbit.blades 5~9개와 반복 명중<br>shared/engine/src/warriorMechanics.ts/warriorData.ts |

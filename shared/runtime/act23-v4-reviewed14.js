@@ -29,7 +29,7 @@ function allow(app,row,meta){const b=app.engine?.b,id=row.id;if(row.channel==='o
  if(['A2.S14.MID.04','A2.S14.MID.05'].includes(id))return !!a.houseOpen&&!s.hypnosis?.struck;
  if(['A2.S14.MID.06','A2.S14.POPUP.01'].includes(id))return !!s.hypnosis?.struck&&(s.walks['14.hypnosis']?.distance||0)>=b.honroV4Hypnosis.minimumDistance&&!separated(b);
  if(id==='A2.S14.MID.07')return !!s.hypnosisWarning&&!separated(b);
- if(id==='A2.S14.MID.08')return done(b,'warning')&&!separated(b)&&V.heroes(b).some(h=>h.cls==='mage'&&V.near(h,u,650));
+ if(id==='A2.S14.MID.08')return done(b,'warning')&&!separated(b)&&V.heroes(b).some(h=>['mage','occultist'].includes(h.cls)&&V.near(h,u,650));
  if(['A2.S14.MID.09','A2.S14.MID.10','A2.S14.MID.11'].includes(id))return separated(b);
  if(/^A2\.S14\.COMPLETE\./.test(id)||id==='A2.S14.JOURNAL.01')return sheltered(b);
  return id==='A2.S14.OBJECTIVE.01'||id==='A2.S14.OBJECTIVE.02';

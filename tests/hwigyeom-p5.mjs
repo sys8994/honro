@@ -31,7 +31,7 @@ test('Manual dive requires a second input and changes landing and impact',()=>{c
 test('Drive pushes grounded enemies and leaves airborne enemies velocity unchanged',()=>{const a=arena('S15'),ground=a.foe(980,1700,{fixed:false,h:240}),air=a.foe(1000,1660,{fixed:false,h:240,airborne:true,vx:11,vy:12});a.fire(.6,12);a.run();assert(ground.hp<10000&&ground.vx>0);assert(air.hp<10000);assert.equal(air.vx,11);assert.equal(air.vy,12);});
 test('Follow-up landing accepts only melee, forbids walking/jumping/switching and ends after one cast',()=>{const a=arena('S13',8);a.fire(.6,45);a.run();assert.equal(a.u.meleeFollow,'landing');a.e.finishAction();assert.equal(a.u.meleeFollow,'ready');assert(a.e.canAct());const x=a.u.x;a.e.move(1,1);assert.equal(a.u.x,x);assert(!a.e.jump());a.u.loadout=['S01','S09','S02','S00'];assert(!a.e.fire('S09',30,.5));assert(!a.e.fire('S01',30,.5));assert(a.e.fire('S02',30,.5));a.run();a.e.finishAction();assert(!a.u.meleeFollow&&a.u.acted);});
 test('Moon slash remains ballistic, and piercing blade independently hits every crossed target once',()=>{const a=arena('S11'),one=a.foe(1000,1650,{h:260}),two=a.foe(1200,1650,{h:260}),p=a.fire(.7,10),vy=p.vy;a.e.stepProjectile(p,.01);assert(p.vy>vy);a.run();assert(one.hp<10000&&two.hp<10000);assert.equal(a.b.hits,2);});
-test('Pull lands near the caster across gaps, preserves blocked targets and only follows up on enemies',()=>{
+test('Pull lands near the caster across gaps, uses clear airborne fallback and only follows up on enemies',()=>{
  const rows=[];
  for(const direction of [-1,1])for(const side of [0,1,2]){
   const a=arena('S10'),t=a.foe(a.u.x+direction*500,1700,{side,fixed:false,...(side===2?{honroAlly:true}:{})});
@@ -50,9 +50,9 @@ test('Pull lands near the caster across gaps, preserves blocked targets and only
  assert(C.pullToFront(a.e,a.u,t));assert.equal(t.y,1700);assert(a.e.grounded(t));
  Object.assign(t,{x:1300,y:1500,vx:11,vy:12,airborne:true});
  a.b.terrain[0].w=820;
- assert(!C.pullToFront(a.e,a.u,t));assert.deepEqual([t.x,t.y,t.vx,t.vy,t.airborne],[1300,1500,11,12,true]);
+ assert(C.pullToFront(a.e,a.u,t));assert(t.x>a.u.x&&t.x<1100);assert.equal(t.vx,0);assert.equal(t.vy,0);
  a.b.terrain[0].w=920;a.b.terrain.push({...floor,id:'wall',x:830,y:1400,w:120,h:300});
- assert(!C.pullToFront(a.e,a.u,t));assert.equal(t.x,1300);
+ assert(C.pullToFront(a.e,a.u,t));assert(t.x>a.u.x&&t.y<=1400);
 });
 test('Sword screen reduces front shots once, ignores rear/body, caps absorption and powers the next blade',()=>{const a=arena('S14',8);a.fire();const enemy=a.foe(1400);const p={id:99,skill:'LA01',owner:enemy.id,side:1,body:false,damage:100,radius:3,fieldHits:[]};a.b.projectiles.push(p);C.bladeScreenPass(a.e,p,{x:1100,y:1650},{x:900,y:1650});assert(Math.abs(p.damage-30)<.01);C.bladeScreenPass(a.e,p,{x:1100,y:1650},{x:900,y:1650});assert(Math.abs(p.damage-30)<.01);const rear={...p,id:100,damage:100,fieldHits:[]};C.bladeScreenPass(a.e,rear,{x:500,y:1650},{x:700,y:1650});assert.equal(rear.damage,100);for(let i=0;i<12;i++)C.bladeScreenPass(a.e,{...p,id:101+i,damage:200,fieldHits:[]},{x:1100,y:1650},{x:900,y:1650});assert.equal(a.u.bladeScreen.hits,7);assert(a.u.bladeStored<=.45);const stored=a.u.bladeStored;a.ready('S09');const base=a.e.effective(C.SKILLS.S09,a.u).damage,q=a.fire();assert(q.damage>=base*(1+stored)-.01);assert.equal(a.u.bladeStored,0);});
 test('Orbit count, cast seed, deterministic paths, per-blade per-target two-hit cap and one preview path',()=>{for(let r=1;r<=8;r++){const a=arena('S12',r),t=a.foe(1250,1700,{r:260,h:500});a.e.random=()=>.318;const p=a.fire(.55,10);assert.equal(p.orbit.blades.length,C.ORBIT_BLADES[r-1]);const copy=plain(p),before=plain(p.orbit);assert.deepEqual(plain(C.orbitPoint(p,p.orbit.blades[0],.4)),plain(C.orbitPoint(copy,copy.orbit.blades[0],.4)));a.run();assert(t.hp<10000);for(const blade of p.orbit.blades)assert((blade.hits[t.id]||0)<=2);assert.equal(p.orbit.seed,before.seed);const pr=a.e.predict(a.u,C.SKILLS.S12,45,.5);assert(pr.points.length>10&&!pr.paths);}});

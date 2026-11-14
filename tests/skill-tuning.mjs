@@ -42,9 +42,9 @@ test('Every sword range is reduced 20 percent and its actual hit boundary agrees
   const arcs=[],ctx={save(){},restore(){},translate(){},setLineDash(){},beginPath(){},moveTo(){},closePath(){},stroke(){},arc(...v){arcs.push(v);}};C.drawMeleeGuide(ctx,a.e,a.u,C.SKILLS[id],power,.4);assert.equal(arcs[0][2],reach);rows.push({id,power,passive,reach});
  }details.melee=rows;
 });
-test('The pull follow-up slash uses the shorter melee reach even if a fixed target cannot be pulled',()=>{
+test('The pull follow-up slash uses the shorter melee reach even if a story boss cannot be pulled',()=>{
  for(const distance of [150,190]){
-  const a=arena('S10'),t=a.foe(a.u.x+distance);a.e.random=()=>.99;a.e.fire('S10',0,.2);const p=a.b.projectiles[0];Object.assign(p,{x:t.x-3,y:t.y-t.h*.5,vx:400,vy:0});const base=p.damage;a.e.stepProjectile(p,.01);assert(distance===150?10000-t.hp>base+20:Math.abs(10000-t.hp-base)<1);
+  const a=arena('S10'),t=a.foe(a.u.x+distance,1900,{boss:1}),calls=[],hurt=a.e.hurt.bind(a.e);a.e.hurt=(...args)=>{calls.push(args);return hurt(...args);};a.e.random=()=>.99;a.e.fire('S10',0,.2);const p=a.b.projectiles[0];Object.assign(p,{x:t.x-3,y:t.y-t.h*.5,vx:400,vy:0});a.e.stepProjectile(p,.01);assert.equal(calls.length,distance===150?2:1);assert.equal(t.x,a.u.x+distance);
  }
 });
 test('All 21 martial skill icons have distinct primary silhouettes; rush has no sword fallback',()=>{

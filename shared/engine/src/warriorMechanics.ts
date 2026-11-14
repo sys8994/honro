@@ -146,20 +146,38 @@ export function manualDive(e:Engine){
 export function orbitPoint(p:Projectile,blade:NonNullable<Projectile['orbit']>['blades'][number],time=p.age):Vec{
  const angle=blade.phase+blade.omega*time,r=blade.radius*(1+blade.mod*Math.sin(time*2.7+blade.phase));return{x:p.x+Math.cos(angle)*r,y:p.y+Math.sin(angle)*r*.72};
 }
-/** Snap a struck target into the caster's reach; intermediate ground is irrelevant. */
+/** Story-anchored bosses only: fixed/flying and elite/midboss are not immunity. */
+export function pullImmune(t:Unit){
+ const story=t as Unit & {honroAct2Boss?:boolean;honroStage29Boss?:boolean;honroFinalBoss?:boolean;honroAct4WreckBoss?:boolean;honroAct4FinaleBoss?:boolean};
+ return !!(t.boss||story.honroAct2Boss||story.honroStage29Boss||story.honroFinalBoss||story.honroAct4WreckBoss||story.honroAct4FinaleBoss);
+}
+/** Relocate on hit, independently of the optional follow-up slash's range/cover. */
 export function pullToFront(e:Engine,u:Unit,t:Unit){
- if(t.dead||t.fixed||t.eaterCapturedBy)return false;
+ if(t.dead||t.eaterCapturedBy||pullImmune(t))return false;
  const start={x:t.x,y:t.y},near=u.r+t.r,facing=u.facing||1;
- for(const gap of [24,12,4,36,48,60,72]){
-  const x=u.x+facing*(near+gap);
-  if(x<25||x>e.b.width-25)continue;
-  const floor=e.contactSurface(x,u.y-60,u.y+62);
-  if(!floor||floor.y>e.b.height||e.b.waters.some(w=>x>w.x&&x<w.x+w.w&&floor.y>=w.y))continue;
-  const pose={...t,x,y:floor.y};
-  if(!validTerrainContactPose(e.b.terrain,pose)||!meleeContains(e,u,pose,SKILLS.S00.radius,facing===1?0:Math.PI))continue;
-  if(e.b.units.some(v=>!v.dead&&!v.eaterCapturedBy&&v.id!==t.id&&Math.abs(v.x-x)<v.r+t.r&&v.y-v.h<floor.y&&floor.y-t.h<v.y))continue;
-  Object.assign(t,{x,y:floor.y,vx:0,vy:0,airborne:false,jumping:false,landing:0});delete t.moveTarget;delete t.platformDrop;delete t.fallApexY;
+ const xs=[24,12,4,36,48,60,72].map(gap=>u.x+facing*(near+gap));
+ // A caster against a map edge can still pull immediately in front, overlapping
+ // bodies if necessary. Other actors are not solid terrain and cannot cancel it.
+ xs.push(clamp(u.x+facing*(near+24),t.r+1,e.b.width-t.r-1));
+ const place=(x:number,y:number)=>{
+  Object.assign(t,{x,y,vx:0,vy:0,airborne:false,jumping:false,landing:0,moving:0});
+  delete t.moveTarget;delete t.aiMove;delete t.enemyPush;delete t.platformDrop;delete t.fallApexY;
   e.emit('fx',{name:'inkLine',x:start.x,y:start.y-t.h*.5,x2:t.x,y2:t.y-t.h*.5,color:'#b8cbc9',size:1.2});return true;
+ };
+ for(const x of xs){
+  if(x<t.r+1||x>e.b.width-t.r-1||(x-u.x)*facing<0)continue;
+  const floor=e.contactSurface(x,u.y-60,u.y+62);
+  if(floor&&floor.y<=e.b.height&&!e.b.waters.some(w=>x>w.x&&x<w.x+w.w&&floor.y>=w.y)&&validTerrainContactPose(e.b.terrain,{...t,x,y:floor.y}))return place(x,floor.y);
+ }
+ // No supporting ledge is required. Search upward in front of the caster for
+ // a clear body pose; ordinary enemies fall normally, fixed flyers stay afloat.
+ // Never embed a body in a wall merely to satisfy the relocation.
+ const base=u.y-u.h*.5+t.h*.5;
+ for(let rise=0;rise<=Math.max(e.b.height,base+t.h);rise+=8)for(const x of xs){
+  const y=base-rise;
+  if(x<t.r+1||x>e.b.width-t.r-1||(x-u.x)*facing<0||y>e.b.height||y-t.h<0)continue;
+  if(e.b.terrain.some(w=>!w.broken&&!w.oneWay&&terrainRectIntersects(w,x-t.r,y-t.h,t.r*2,t.h,.15)))continue;
+  return place(x,y);
  }
  return false;
 }

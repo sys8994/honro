@@ -446,7 +446,7 @@
             if (!heroes.length || objective?.dead || rescuedResidentLost || channelerLost || act2Failure) {
                 b.phase = 'lost';
                 C.cleanupPassiveHistory(e);
-                b.winnerReason = act2Failure || (objective?.dead || rescuedResidentLost || channelerLost ? '지켜야 할 이를 잃었다.' : '동행이 모두 쓰러졌다.');
+                b.winnerReason = (act2Failure==='act23v4.14.danger-boundary'?'길찬이 종에 이끌려 위험 경계를 넘었습니다. 소단으로 길찬에게 다가가 혼을 분리해야 합니다.':act2Failure) || (objective?.dead || rescuedResidentLost || channelerLost ? '지켜야 할 이를 잃었다.' : '동행이 모두 쓰러졌다.');
                 this.dirty = true;
                 return true;
             }
