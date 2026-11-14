@@ -37,6 +37,8 @@ function state(b){
    targets=hint.targets;
    if(kind==='subdue'&&enemies.length)text+=' · 남은 체력 '+Math.ceil(enemies[0].hp)+'/'+enemies[0].maxHp;
    else if(enemies.length)text=enemies.every(u=>u.honroObjectiveTarget)?text+' · '+enemies.map(u=>u.name+' '+Math.ceil(u.hp)+'/'+u.maxHp).join(', '):hint.text;
+   if(revised(b)&&key==='drum'&&enemies.length&&!m.waves?.[d.waves[0].id])
+    text+=' · 다음 적 턴이 끝나기 전에 막으면 증원 없음';
   }else if(kind==='pass'){
    const upper=fightTargets(b,'rootsUpper'),lower=fightTargets(b,'rootsLower');
    text='위 뿌리 능선 '+upper.length+'기 또는 아래 골 '+lower.length+'기 · 한쪽 길만 확보';
@@ -136,7 +138,7 @@ function waveReady(b,wave){
  }
  if(wave.when==='reverse'||wave.when==='stable')return m.field===wave.when;
  if(row?.[1]!==wave.key)return false;
- if(wave.when==='drum')return fightTargets(b,'drum').length>0;
+ if(wave.when==='drum')return fightTargets(b,'drum').length>0&&(b.teamEnds?.[1]||0)>m.drumStart;
  if(wave.when==='reach')return heroes(b).some(u=>near(u,design(b).sites[wave.key],260));
  if(wave.when==='summit')return row[0]==='fight';
  return true;
@@ -144,6 +146,9 @@ function waveReady(b,wave){
 function updateWaves(app){
  const e=app.engine,b=e.b,m=memory(b);
  m.waves??={};
+ if(b.honroStage===42&&phase(b)?.[1]==='drum'&&m.drumStart===undefined){
+  m.drumStart=(b.teamEnds?.[1]||0)+(b.side===1&&b.phase!=='transition'?1:0);app.dirty=true;
+ }
  for(const wave of design(b).waves){
   if(m.waves[wave.id]==='arrived')continue;
   if(wave.when==='drum'&&!fightTargets(b,'drum').length&&m.waves[wave.id]){m.waves[wave.id]='arrived';app.dirty=true;continue;}
@@ -187,7 +192,7 @@ function tick(app,dt){
  const row=phase(b);
  if(row){
   const [kind,key]=row,point=design(b).sites[key],m=memory(b),inside=heroes(b).some(u=>near(u,point,260));
-  if(!revised(b)&&b.honroStage===41&&kind==='fight'&&key==='watch')escort(app,design(b).sites.guide,dt);
+  if(b.honroStage===41&&kind==='fight'&&(key==='watch'||revised(b)&&key==='campGuard'))escort(app,design(b).sites.guide,dt);
   if(b.honroStage===45&&['tether','turnback'].includes(key))escort(app,design(b).sites.turnback,dt);
   if(kind==='reach'&&inside||kind==='fight'&&!fightTargets(b,key).length&&(!revised(b)||!waitingWave(b,key))||
       kind==='pass'&&['rootsUpper','rootsLower'].some(lane=>!fightTargets(b,lane).length)||

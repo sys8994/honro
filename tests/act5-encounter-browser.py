@@ -61,7 +61,7 @@ def finish_step(page, old):
     page.wait_for_function("step=>HonroApp.engine.b.honroState.act5.step>step", arg=old, timeout=8000)
     skip(page)
 
-def complete(page, chapter):
+def complete(page, chapter, alternative=False):
     page.evaluate(SETUP, chapter)
     skip(page)
     page.wait_for_function("HonroApp.canInput()")
@@ -84,8 +84,18 @@ def complete(page, chapter):
         if kind=="reach":
             assert act(page,"occupy",key)
         elif kind=="pass":
-            assert act(page,"clear","rootsLower")
+            assert act(page,"clear","rootsUpper" if alternative else "rootsLower")
         elif kind in ("fight","subdue"):
+            if chapter==41 and key=="campGuard":
+                page.wait_for_function("""()=>{const b=HonroApp.engine.b;
+                  return b.units.find(u=>u.id==='a5-guide').x>840;
+                }""")
+            if chapter==42 and key=="drum":
+                assert state["counts"]["spawned"]==0
+                page.wait_for_function("Number.isInteger(HonroApp.engine.b.honroState.act5.drumStart)")
+                if not alternative:
+                    act(page,"hold")
+                    page.wait_for_function("HonroApp.engine.b.honroCounters.spawned===3")
             if kind=="fight":
                 page.wait_for_function("""key=>{const b=HonroApp.engine.b,d=b.honroMap.act5;
                   return !b.units.some(u=>u.honroAct5Reserve&&d.groups[key].includes(u.id));
@@ -123,8 +133,9 @@ def complete(page, chapter):
     assert page.locator(".result-title").inner_text()=="길이 열렸다"
     assert page.evaluate("(id)=>!!HonroApp.profile.cleared[id]",chapter)
     end=act(page,"state")
-    assert end["counts"]["spawned"]==sum(w[-1] for w in start["waves"]),(chapter,end)
-    return {"stage":chapter,"initial":start["counts"]["initialEnemies"],"spawned":end["counts"]["spawned"],"steps":steps}
+    expected=0 if chapter==42 and alternative else sum(w[-1] for w in start["waves"])
+    assert end["counts"]["spawned"]==expected,(chapter,end)
+    return {"stage":chapter,"alternative":alternative,"initial":start["counts"]["initialEnemies"],"spawned":end["counts"]["spawned"],"steps":steps}
 
 if __name__=="__main__":
     with serve_game() as url, sync_playwright() as pw:
@@ -140,6 +151,10 @@ if __name__=="__main__":
             result=complete(page,chapter)
             results.append(result)
             print(json.dumps(result,ensure_ascii=False),flush=True)
+            if chapter in (42,44):
+                result=complete(page,chapter,alternative=True)
+                results.append(result)
+                print(json.dumps(result,ensure_ascii=False),flush=True)
         assert not errors,errors
         Path("_local/reports/act5").mkdir(parents=True,exist_ok=True)
         Path("_local/reports/act5/combat-checkpoints.json").write_text(json.dumps(results,ensure_ascii=False,indent=2),encoding="utf-8")
