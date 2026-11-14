@@ -9,6 +9,7 @@ from pathlib import Path
 import xml.etree.ElementTree as ET
 import numpy as np
 from optimize_svg import simplify,count,render,image_diff
+from growth_guard import guarded_output, non_growth, package_metrics
 
 def svg(vector):
     root=ET.Element('svg',xmlns='http://www.w3.org/2000/svg',viewBox=' '.join(map(str,vector['viewBox'])))
@@ -122,7 +123,8 @@ def main():
                     changed.append(d);r['skips'][str(e)]=r['skips'].get(str(e),0)+1
             if key=='dParts':n[key]=changed
             else:n[key]=changed[0]
-        r['render_checks']=[];ok=True
+        r['growth_guard']=non_growth(json.dumps({'assets':[{'vector':original}]},separators=(',',':')).encode(),json.dumps({'assets':[{'vector':v}]},separators=(',',':')).encode(),package_metrics)
+        r['render_checks']=[];ok=r['growth_guard']['accepted']
         with tempfile.TemporaryDirectory() as t:
             t=Path(t);o=t/'o.svg';c=t/'c.svg';o.write_bytes(svg(original));c.write_bytes(svg(v))
             for width in map(int,a.widths.split(',')):
@@ -139,7 +141,12 @@ def main():
         return y
     report['non_vector_data_unchanged']=stripped(x)==stripped(json.loads(raw))
     assert report['non_vector_data_unchanged']
-    a.output.parent.mkdir(parents=True,exist_ok=True);a.output.write_text(json.dumps(x,separators=(',',':'),ensure_ascii=False))
+    candidate=json.dumps(x,separators=(',',':'),ensure_ascii=False).encode()
+    output,report['growth_guard']=guarded_output(raw,candidate,package_metrics)
+    report['accepted']=report['growth_guard']['accepted']
+    if not report['accepted']:
+        for r in report['assets']:r['accepted']=False;r['final_reverted']=True
+    a.output.parent.mkdir(parents=True,exist_ok=True);a.output.write_bytes(output)
     report['original_bytes']=len(raw);report['output_bytes']=a.output.stat().st_size
     report['original_minified_bytes']=len(json.dumps(json.loads(raw),separators=(',',':'),ensure_ascii=False).encode())
     report['input_unchanged']=hashlib.sha256(a.input.read_bytes()).hexdigest()==report['input_sha256']

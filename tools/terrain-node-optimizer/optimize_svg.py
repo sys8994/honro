@@ -8,6 +8,7 @@ import xml.etree.ElementTree as ET
 from svgpathtools import parse_path, Line, CubicBezier, QuadraticBezier
 import numpy as np
 from PIL import Image
+from growth_guard import non_growth, svg_metrics
 
 NUMBER = r'[-+]?(?:\d*\.\d+|\d+\.?)(?:[eE][-+]?\d+)?'
 PROTECT = r'(?i)(collision|contact|surface|walk|socket|support|interact|protected)'
@@ -170,12 +171,16 @@ def main():
             diff=image_diff(a,b);diff['width']=width
             diff['accepted']=diff['mean_channel_error']<=args.max_mean_error and diff['changed_pixel_fraction']<=args.max_changed_fraction
             accepted &= diff['accepted'];report['render_checks'].append(diff)
+        report['growth_guard']=non_growth(original,candidate.read_bytes(),svg_metrics)
+        accepted = accepted and report['growth_guard']['accepted']
         report['accepted']=bool(accepted)
         report['candidate_bytes']=candidate.stat().st_size;report['original_bytes']=len(original)
         if accepted and report['candidate_bytes']<len(original):args.output.write_bytes(candidate.read_bytes())
         else:
-            report['accepted']=False;report['reason']='raster gate or byte size failed; output is unchanged original'
+            report['accepted']=False;report['reason']='raster/non-growth gate failed; output is unchanged original'
             args.output.write_bytes(original)
+    report['output_bytes']=args.output.stat().st_size
+    report['output_metrics']=report['growth_guard'].get('candidate' if report['accepted'] else 'before')
     report['output_sha256']=hashlib.sha256(args.output.read_bytes()).hexdigest()
     report['input_unchanged']=hashlib.sha256(args.input.read_bytes()).hexdigest()==report['input_sha256']
     args.output.with_suffix(args.output.suffix+'.report.json').write_text(json.dumps(report,indent=2)+'\n')

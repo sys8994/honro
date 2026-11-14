@@ -69,3 +69,8 @@ The SVG CLI does **not** expose `--max-area-error`; it uses the conservative .02
 4. Use isolated saves and the real game/Workshop renderer to check movement, jumping, collisions, aiming, water, interaction and completion in changed regions. Do not alter monsters, skills, goals, events, progression or user saves to make a test pass.
 5. Measure original vs candidate with identical viewport/device/zoom/camera motion and workload. Inspect current `tests/performance.py` and `package.json` for available performance commands. Record render time, frame p50/p95, loading, heap and limits; node reduction is not an FPS result.
 6. Build using the current repository workflow; change source files, not generated HTML manually. Commit verified batches, preserve concurrent work, and follow release guards. Do not claim master/Pages deployment until verified separately.
+
+## 증가 방지 강제 검사
+최종 출력은 입력 원본과 **실제 파일 바이트, parsed 경로 세그먼트 수, subpath 수, path 요소 수**를 각각 비교합니다. SVG의 기본 도형 요소 수도 비교합니다. 하나라도 늘거나 계수에 실패하면 후보를 거부하고 **원본 바이트 그대로** 출력합니다. JSON은 선택 자산별로도 같은 검사를 수행합니다. 오차 허용치를 완화해도 이 증가 방지 검사는 해제되지 않습니다. 보고서 `growth_guard`는 후보와 최종 출력 지표·거부 이유를 구분합니다.
+
+subpath는 면 수의 보수적인 대리지표일 뿐입니다. SVG 중첩·구멍·자기교차의 실제 채움 영역이나 렌더러의 삼각분할 면 수와 같지 않습니다. 이 도구는 새 path/subpath를 생성하거나 면을 병합하지 않습니다. 실제 메쉬 면 수를 읽을 수 없는 자산에서 “면 수 보장”이라고 주장하지 마십시오. 형태·접지의 시각 검수는 여전히 필요합니다.
