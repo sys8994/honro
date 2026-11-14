@@ -8,7 +8,8 @@ H.nextAct={id:6,available:false,requires:[50]};
 for(const [i,s] of stages.entries()){
  const previous=balance.stages.at(-1);
  balance.stages.push({...previous,id:s.id,act:5,entryLevel:previous.exitLevel,exitLevel:levels[Math.min(i,levels.length-1)],
-   initialEnemies:s.enemies,maxAlive:s.enemies,activeEnemies:s.active,targetRounds:s.rounds});
+   ...s.combat,initialEnemies:s.enemies,maxAlive:s.enemyBudget,activeEnemies:s.active,targetRounds:s.rounds,
+   midBossIncomingHpFraction:s.combat.targetIncomingHpFraction*1.27,bossIncomingHpFraction:s.combat.targetIncomingHpFraction*1.4});
  const exterior=s.id<46||s.id===50;
  J.places.push({stageId:s.id,region:'저승이 닿은 산',place:s.place,event:s.name,
    layer:exterior?'mountain':'city',variant:exterior?'forest':'river',restName:s.name,restDescription:''});
