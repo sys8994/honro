@@ -53,9 +53,12 @@ const groundIds=new Set(['lower-road','supply-road','gate-road','root-floor','pa
 const layerIds=['far','mid','back','structural-back','terrain','interactive','prop','units','events','front','L2','L3','L4','L5'];
 export async function makeAct5(){
  const imports=JSON.parse(await readFile(new URL('./assets/environment/act5/near-import.json',import.meta.url),'utf8'));
+ if(imports.length!==chapters.length)throw Error('Act 5 terrain count does not match the chapter list');
  const library=[],stages=[],content=[];
  for(const [i,chapter] of chapters.entries()){
-  const id=41+i,{vector,sha256}=imports[i],g=terrain[i],scale=g.scale,height=Math.ceil(vector.viewBox[3]*g.width/vector.viewBox[2])+360;
+  const id=41+i,source=imports[i],g=terrain[i];
+  if(source.id!==id||!(/^[0-9a-f]{64}$/).test(source.sha256))throw Error('Invalid Act 5 terrain provenance '+id);
+  const {vector,sha256}=source,scale=g.width/1024,height=Math.ceil(vector.viewBox[3]*g.width/vector.viewBox[2])+360;
   const toWorld=([x,y])=>({x:Math.round(x*scale*100)/100,y:Math.round(y*scale*100)/100});
   const contact=(x,y)=>toWorld([x,snap(g.lines,x,y)]);
   const start=contact(...g.start),exit=contact(...g.exit);
