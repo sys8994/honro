@@ -17,6 +17,21 @@ src.vector.root.d='M1 2L3 4';assert.equal(compact().honroStaticAssetRef,undefine
 b.honroLandmarks[0].asset=structuredClone(src);const changed=compact();assert.equal(changed.signature,expected());
 const restored={honroLandmarks:[{asset:{...changed}}]};assert(S.restoreBattleArt(restored));assert.deepEqual(JSON.parse(JSON.stringify(restored.honroLandmarks[0].asset)),src);
 src.vector.root.d='M5 6L7 8';const forged={honroLandmarks:[{asset:{...changed}}]};const before=JSON.stringify(forged);assert.equal(S.restoreBattleArt(forged),false);assert.equal(JSON.stringify(forged),before);
+// An exact pre-optimization signature resolves only for that official stage
+// and only when the replacement matches the expected shipped provider.
+const previous=changed.signature,current=expected();
+g.HONRO_PREVIOUS_TERRAIN_ART={[src.id]:{stage:40,previous,current}};
+const prior=()=>({...b,honroLandmarks:[{asset:{...changed}}],terrain:[{id:'solid'}],round:7});
+const continued=prior();
+assert(S.restoreBattleArt(continued));
+assert.equal(continued.honroLandmarks[0].asset.vector.root.d,src.vector.root.d);
+assert.deepEqual(continued.terrain,[{id:'solid'}]);
+assert.equal(continued.round,7);
+assert.equal(S.restoreBattleArt({...prior(),honroStage:39}),false);
+assert.equal(S.restoreBattleArt({...prior(),honroCustom:true}),false);
+assert.equal(S.restoreBattleArt({...prior(),honroMapOrigin:'workshop'}),false);
+g.HONRO_PREVIOUS_TERRAIN_ART[src.id].current='invalid';
+assert.equal(S.restoreBattleArt(prior()),false);
 // Mutating a live asset after warming must stay inline; custom is never compacted.
 b.honroLandmarks[0].asset.vector.root.d='M9 9';assert.equal(compact().honroStaticAssetRef,undefined);
 b.honroCustom=true;b.honroLandmarks[0].asset=structuredClone(src);assert.equal(S.compactBattleArt(b),b);delete b.honroCustom;

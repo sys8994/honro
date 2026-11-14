@@ -4,6 +4,7 @@ import {applyStage6IntegratedPreview} from '../tools/stage6-prototype/integrated
 import {applyAct4FinaleRevision} from './act4-finale-revision.mjs';
 import {applyAct4HandoffArt} from './act4-handoff-art.mjs';
 import {applyAct3HandoffArt} from './act3-handoff-art.mjs';
+import {terrainPathOptimization} from './terrain-path-optimization.mjs';
 import {applyReviewedAct2Art} from '../tools/act2-vector-production/apply-candidates.mjs';
 import {validateSkillIcons} from '../tools/skill-icons/manifest.mjs';
 import {applyCommonCartArt} from '../tools/environment/common-cart-art.mjs';
@@ -116,13 +117,17 @@ export async function runtimeEntries({vector=true,render=true,app=false,producti
   const compactPolicy=JSON.parse(await read('game/config/stage11-compact.json'));
   if(compactPolicy.revision!==1||typeof compactPolicy.enabled!=='boolean')throw Error('Invalid compact Stage11 release policy');
   const compactEnabled=reviewed11&&(process.env.HONRO_STAGE11_COMPACT===undefined?compactPolicy.enabled:process.env.HONRO_STAGE11_COMPACT==='1');
-  data('HONRO_STAGE11_COMPACT_DATA',compactEnabled?JSON.parse(await read('shared/data/act2/stage11-compact-package.json')):null);
+  const terrainOptimization=await terrainPathOptimization();
+  const compact11=compactEnabled?JSON.parse(await read('shared/data/act2/stage11-compact-package.json')):null;
+  if(compact11)terrainOptimization.apply(compact11.assets);
+  data('HONRO_STAGE11_COMPACT_DATA',compact11);
   const compactAct2Policy=JSON.parse(await read('game/config/act2-compact.json'));
   if(compactAct2Policy.revision!==1||!Array.isArray(compactAct2Policy.stages))throw Error('Invalid compact Act2 policy');
   const compactAct2Packages={};
   const compactAct2Stages=process.env.HONRO_ACT2_COMPACT_STAGES===undefined?compactAct2Policy.stages:process.env.HONRO_ACT2_COMPACT_STAGES.split(',').map(Number);
   if(compactAct2Stages.some(id=>!Number.isInteger(id)||id<12||id>20))throw Error('Invalid compact Act2 preview chapters');
   if(phaseA&&process.env.HONRO_ACT2_COMPACT!=='0')for(const id of compactAct2Stages)compactAct2Packages[id]=JSON.parse(await read(`shared/data/act2/stage${id}-compact-package.json`));
+  for(const pkg of Object.values(compactAct2Packages))terrainOptimization.apply(pkg.assets);
   data('HONRO_ACT2_COMPACT_PACKAGES',compactAct2Packages);
   const reviewedStages=phaseA?(process.env.HONRO_ACT23_V4_PHASE_B_STAGES===undefined?(release?[12,13,14,15,16,17,18,19,20]:[]):process.env.HONRO_ACT23_V4_PHASE_B_STAGES.split(',').map(Number).filter(n=>[12,13,14,15,16,17,18,19,20].includes(n))):[];
   data('HONRO_ACT23_V4_PHASE_B_STAGES',reviewedStages);
@@ -178,6 +183,8 @@ export async function runtimeEntries({vector=true,render=true,app=false,producti
     project={...project,stages:[...project.stages,...act4.stages],library:[...project.library,...act4.library.filter(a=>!project.library.some(b=>b.id===a.id))]};
   }
   project=applyStage6ReviewedPursuit(applyStage6IntegratedPreview(applyStage6ArtPreview(project)));
+  terrainOptimization.apply(project.library);
+  if(act4Enabled)code('terrain-previous-provider-signatures','globalThis.HONRO_PREVIOUS_TERRAIN_ART='+JSON.stringify(terrainOptimization.previousAct4Signatures)+';');
   parts.push({name:'campaign',project,code:'globalThis.HONRO_PROJECT='+authorProjectExpression(JSON.stringify(project))+';'});
   if(vector){
     await buildParty();

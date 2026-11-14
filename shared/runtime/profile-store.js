@@ -166,7 +166,16 @@ function restoreBattleArt(b){
   if(ref.honroStaticAssetRef!==1||typeof ref.id!=='string'||typeof ref.signature!=='string')return false;
   let source=library.get(ref.id);if(!source)return false;
   if(!signatures.has(ref.id))signatures.set(ref.id,assetSignature(JSON.stringify(source)));
-  if(signatures.get(ref.id)!==ref.signature){const legacy=legacy33Art(b,ref.id,ref.signature,library)||legacy34Art(b,ref.id,ref.signature,library);if(!legacy)return false;source=legacy.asset;}
+  if(signatures.get(ref.id)!==ref.signature){
+   const legacy=legacy33Art(b,ref.id,ref.signature,library)||legacy34Art(b,ref.id,ref.signature,library);
+   const optimized=G.HONRO_PREVIOUS_TERRAIN_ART?.[ref.id];
+   // The previous official vector differs only in path coordinates. Its
+   // exact archived signature can use the verified current visual provider.
+   const sameTerrain=b?.mode==='campaign'&&!b.honroCustom&&b.honroMapOrigin!=='workshop'&&b.honroAct4Official===1&&
+    optimized?.stage===b.honroStage&&optimized.previous===ref.signature&&optimized.current===signatures.get(ref.id);
+   if(legacy)source=legacy.asset;
+   else if(!sameTerrain)return false;
+  }
   replacements.push([item,source]);
  }
  // Resolve only after campaign lazy loading and revision checks, atomically.
