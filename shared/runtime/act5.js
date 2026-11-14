@@ -73,7 +73,7 @@ function entry(app){
 function advance(app){
  const b=app.engine.b,m=memory(b),[kind,key]=phase(b);
  m.step++;delete m.holdStart;app.dirty=true;
-  if(b.honroStage===46&&kind==='fight')return;
+ if(b.honroStage===46&&kind==='fight')return;
  storyline(app,b.honroStage===47&&kind==='hold'?'reverse':b.honroStage===47&&key==='center'?'shutdown':b.honroStage===48&&key==='center'?'stabilize':key);
 }
 function escort(app,point,dt){
@@ -152,7 +152,7 @@ function eligibility(app,m){
  if(link&&u.moveLeft<150)return {ok:false,reason:'이동도 150 필요 · 다음 아군 턴에 건너세요'};
  if(link&&!to)return {ok:false,reason:'건너편 발판을 비워 주세요'};
  if(!link&&required&&u.cls!==required){const name=G.HONRO_CONTENT.hero[required].name;return {ok:false,reason:name+(required==='mage'?'로':'으로')+' 전환'};}
- return {ok:true,reason:m.label};
+ return {ok:true,reason:m.label,routePriority:link&&Number(link.id.split('-').at(-1))%2===0?1:0};
 }
 function use(app,m){
  const e=app.engine,b=e.b,u=e.active,{link,to}=interaction(e,m);

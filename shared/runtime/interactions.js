@@ -16,8 +16,9 @@ function eligibility(app,m){let result=rawEligibility(app,m);if(result.ok)result
 function rawEligibility(app,m){if(automaticMarker(app.engine?.b,m))return{ok:false,reason:app.engine.b.honroStage===11?G.HonroAct23V4Reviewed.instruction(app.engine.b):'이 목표는 자동 진행됩니다'};const e=app.engine,b=e?.b,u=e?.active;if(u?.retreat)return{ok:false,reason:'이탈보 · 이동/점프만 가능'};if(m?.action==='skillGate'){const plan=e?.gateResolution();return app.canInput()?plan||{ok:false,reason:'축지진목을 찾을 수 없음'}:{ok:false,reason:'현재 행동이 끝난 뒤'};}if(!e||!u||!m||m.collected||u.side!==0||u.dead)return{ok:false,reason:'상호작용할 수 없음'};const point=G.HonroObjectives.interactionTarget(b,m);if(!point)return{ok:false,reason:'구조할 주민이 없음'};const d=Math.hypot(u.x-point.x,(u.y-point.y)*.75);if(d>RANGE)return{ok:false,reason:'더 가까이 이동'};if(Math.abs(u.y-point.y)>150)return{ok:false,reason:'같은 층으로 이동'};if(m.action==='ritual'&&b.honroState.ritual?.active)return{ok:false,reason:'의식 유지 중 · 이탈 시 해제'};if(m.action==='ritual'&&(Math.abs(u.x-m.x)>125||Math.abs(u.y-m.y)>80||!e.grounded(u)))return{ok:false,reason:'받이진 안에 서세요'};if(m.requiredClass&&u.cls!==m.requiredClass)return{ok:false,reason:`${G.HONRO_CONTENT.hero[m.requiredClass]?.name||'지정 인물'} 필요`};if(!app.canInput())return{ok:false,reason:'현재 행동이 끝난 뒤'};if(m.action==='act2')return G.HonroAct2.eligibility(app,m);if(m.action==='act3')return G.HonroAct3.eligibility(app,m);if(m.action==='act5')return G.HonroAct5.eligibility(app,m);return{ok:true,reason:m.action==='ritual'?'의식 시작':'상호작용'};}
 function choicePriority(v){
  if(!v.ok)return 0;
- if(v.marker.action==='skillGate')return 2;
- return v.marker.action==='act5'&&v.marker.id.startsWith('a5-step-')?1:0;
+ if(v.marker.action==='skillGate')return 3;
+ if(v.marker.action!=='act5')return 0;
+ return v.marker.id.startsWith('a5-step-')?2:(v.routePriority||0);
 }
 function candidates(app){if(!app.engine||app.done)return[];const e=app.engine,u=e.active;if(!u||u.side!==0||u.dead)return[];const v4=G.HonroAct23V4,chapter13=e.b.honroStage===13&&v4?.active(e.b);
  const ready=chapter13?new Set(v4.readySteps(e.b).map(s=>s.id)):null;
