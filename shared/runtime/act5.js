@@ -148,6 +148,7 @@ function eligibility(app,m){
  if(!near(u,m,link?145:215)||!e.grounded(u)||link&&Math.abs(u.y-link.y)>52)return {ok:false,reason:'표식과 같은 발판에 서세요'};
  if(link&&b.honroStage===46&&link.id==='a5-cross-2'&&memory(b).step<3)return {ok:false,reason:'서쪽 진목을 설치해 중앙 석단으로 건너세요'};
  if(link&&b.honroStage===46&&link.id==='a5-cross-6'&&row)return {ok:false,reason:'두 진목을 설치해 하강 밧줄을 여세요'};
+ if(link&&b.honroStage===47&&link.id==='a5-cross-0'&&memory(b).field!=='shutdown')return {ok:false,reason:'담허로 진을 거둔 뒤 상층 비상 통로를 이용하세요'};
  if(link&&b.honroStage===49&&link.id==='a5-cross-6'&&row)return {ok:false,reason:'역행귀를 제압한 뒤 상층 진목길을 쓰세요'};
  if(link&&u.moveLeft<150)return {ok:false,reason:'이동도 150 필요 · 다음 아군 턴에 건너세요'};
  if(link&&!to)return {ok:false,reason:'건너편 발판을 비워 주세요'};
