@@ -87,11 +87,12 @@ export async function loadProject(file){const manifest=await request(file),refs=
 // The hint is read-only. App.load remains the sole migration/save authority.
 function savedHint(){try{const p=JSON.parse(localStorage.getItem('honro-first-act-profile-1'));return p?.game==='honro'&&[1,2,3,4,5].includes(p.schema)&&p.heroes&&Array.isArray(p.recruited)&&p.recruited.includes('archer')?p:null;}catch{return null;}}
 export function destination(profile){
- const valid=id=>Number.isInteger(id)&&id>=1&&id<=(globalThis.HONRO_ACT4_RELEASE===true?40:30);
+ const content=globalThis.HONRO_CONTENT?.stages;
+ const last=content?.at(-1)?.id??(globalThis.HONRO_ACT5_RELEASE===true?50:globalThis.HONRO_ACT4_RELEASE===true?40:30);
+ const valid=id=>Number.isInteger(id)&&id>=1&&id<=last;
  if(valid(profile?.honroMapRestart))return profile.honroMapRestart;
  const battle=profile?.honroBattle;if(battle?.mode==='campaign'&&!battle.honroCustom&&Array.isArray(battle.units)&&valid(battle.honroStage))return battle.honroStage;
- const content=globalThis.HONRO_CONTENT?.stages;
- return content?.find(stage=>!profile?.cleared?.[stage.id]&&(stage.requires||[]).every(id=>profile?.cleared?.[id]))?.id||Array.from({length:globalThis.HONRO_ACT4_RELEASE===true?40:30},(_,i)=>i+1).find(id=>!profile?.cleared?.[id])||(content?.at(-1)?.id||30);
+ return content?.find(stage=>!profile?.cleared?.[stage.id]&&(stage.requires||[]).every(id=>profile?.cleared?.[id]))?.id||Array.from({length:last},(_,i)=>i+1).find(id=>!profile?.cleared?.[id])||last;
 }
 let hint;
 function prefetchDestination(profile,manifest){

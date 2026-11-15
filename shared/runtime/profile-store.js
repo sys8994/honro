@@ -20,7 +20,7 @@ const C=G.HONRO_CORE,ROSTER=['archer','mage','knight','occultist'],KEY='honro-fi
         p.revision=13;
     }
 
-// Only official Act4 snapshots reference immutable, already-shipped artwork.
+// Official late-act snapshots reference immutable, shipped artwork.
 // Physics, mutable actor/event state and modified/custom assets remain inline.
 function assetSignature(text){let h=2166136261;for(let i=0;i<text.length;i++){h^=text.charCodeAt(i);h=Math.imul(h,16777619);}return text.length+':'+(h>>>0).toString(16);}
 // Cache only the deterministic hash, never asset validation: every save still
@@ -146,7 +146,10 @@ function compactLocalArt(b){
 }
 function compactBattleArt(b){
  if(localCampaignArt(b))return compactLocalArt(b);
- if(!b||b.honroCustom||b.mode!=='campaign'||b.honroAct4Official!==1||b.honroStage<31||b.honroStage>40)return b;
+ if(!b||b.honroCustom||b.mode!=='campaign')return b;
+ const act4=b.honroAct4Official===1&&b.honroStage>=31&&b.honroStage<=40;
+ const act5=b.honroAct5===1&&b.honroMapOrigin==='campaign'&&b.honroStage>=41&&b.honroStage<=50;
+ if(!act4&&!act5)return b;
  const library=new Map((G.HONRO_PROJECT?.library||[]).map(a=>[a.id,a])),texts=new Map();let changed=false;const out={...b};
  const compactItems=items=>items.map(item=>{
   const asset=item.asset,source=asset?.vector&&library.get(asset.id);if(!source)return item;

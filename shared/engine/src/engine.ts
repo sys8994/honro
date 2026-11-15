@@ -992,7 +992,7 @@ export class Engine {
             if(u.honroObjectiveTarget){
                 dmg=(globalThis as any).HonroQuestTargets.damage(this,u,dmg,owner,p||provenance);
                 if(!dmg){endHit(this.b,u,contribution);return;}
-            }else u.hp = Math.max((this.b.mode==='practice'&&this.b.practiceCombat&&u.side!==1)||(u as any).honroNonlethal?1:0, u.hp - dmg);
+            }else u.hp = Math.max((this.b.mode==='practice'&&this.b.practiceCombat&&u.side!==1)||(u as any).honroNonlethal?1:((globalThis as any).HonroAct5?.damageFloor(this.b,u)||0), u.hp - dmg);
             if(u.hp===0&&!u.lastStandUsed&&equippedRank(u,'SP05')){u.lastStandUsed=true;u.hp=Math.max(1,Math.round(u.maxHp*passiveTuning(passiveRank(u,'SP05')).lastStandHp));u.martialGuard={round:this.b.round,reduction:passiveTuning(passiveRank(u,'SP05')).lastStandGuard};this.fx('spark',u.x,u.y-u.h*.5,'#ccd3c4',24);this.fx('text',u.x,u.y-u.h-25,'#f4d6a3',18,'불굴');}
             const actual=Math.max(0,hpBefore-u.hp);keeperPressure(this,u,owner,actual);
             // Commit this HP interval before on-hit effects can recursively hurt again.
@@ -2078,7 +2078,7 @@ export class Engine {
                 });
             }
             if(!silent)u.impactCooldown=Math.max(0,(u.impactCooldown||0)-dt);
-            const env=environmentAt(this.b.physics??(this.b.physics=makePhysics()),u.x,u.y-u.h*.5);
+            const env=environmentAt(this.b.physics??(this.b.physics=makePhysics()),u.x,u.y-u.h*.5,true);
             // A nearby surface supports a resting body, not one still arriving at impact speed.
             // Otherwise the 4-unit contact tolerance can erase a fall before contactDamage runs.
             // Center resting support on the actual feet. A downward-biased

@@ -41,7 +41,14 @@ function narration(node,d,meta,line,app){focusLine(app,null,meta);node.innerHTML
 function inscription(node,d,meta,line,app){focusLine(app,null,meta);node.innerHTML=`<div class="story-overlay"><section class="story-scene text-only-scene bell-inscription-scene" data-speaker-kind="document" role="dialog" aria-modal="true" aria-labelledby="story-speaker" aria-describedby="story-line">${storyCopy(d,meta.documentTitle,line,{inscription:true})}</section></div>`;}
 
 function focusLine(app,actor,meta){
- const scene=app.scene;if(!scene)return;G.HonroStoryStaging?.focusLine(app,actor,meta);if(G.HonroStoryFraming?.focus(app,meta))return;
+ const scene=app.scene;if(!scene)return;G.HonroStoryStaging?.focusLine(app,actor,meta);
+ if(meta.act5Vista&&G.HonroAct5?.active(app.engine?.b)){
+  const b=app.engine.b,well=b.honroStage===46;
+  scene.goalFocus=null;scene.cinematic=null;
+  scene.storyFocusPoint(b.width*(well?.50:.72),b.height*(well?.39:.42),510,well?.31:.38);
+  return;
+ }
+ if(G.HonroStoryFraming?.focus(app,meta))return;
  const target=meta.focus?G.HonroObjectives.focus(app,meta.focus):null;
  scene.goalFocus=target||null;scene.cinematic=target?null:actor?.id||null;
  if(target)scene.storyFocusPoint?.(target.x,target.y,500);

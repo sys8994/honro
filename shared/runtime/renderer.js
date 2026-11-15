@@ -308,7 +308,7 @@
             // nights retain the same readable combat colors in every entry point.
             if(this.environmentTone){c.save();c.setTransform(d,0,0,d,0,0);this.environmentTone(c,w,h,b);c.restore();}
             for (const a of quietOutro?[]:b.honroMarkers || []) {
-                if (a.collected||a.type==='sector'||a.type?.startsWith('act2')||G.HonroAct3?.active(b)&&(a.type?.startsWith('act3')||a.action==='act3'||a.type==='exit'))
+                if (a.collected||a.action==='act5'||a.type==='sector'||a.type?.startsWith('act2')||G.HonroAct3?.active(b)&&(a.type?.startsWith('act3')||a.action==='act3'||a.type==='exit'))
                     continue;
                 if(G.HonroAct1StoryArt?.marker(this,a))continue;
                 const pulse = Math.sin(this.time * 3) * 3;
