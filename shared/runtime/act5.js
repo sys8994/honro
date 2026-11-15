@@ -3,10 +3,11 @@ const active=b=>b?.honroAct5===1&&!b.honroCustom;
 const design=b=>b.honroMap.act5;
 const memory=b=>b.honroState.act5??={step:0,beats:{}};
 const alive=u=>u&&!u.dead&&u.hp>0;
-const heroes=b=>b.units.filter(u=>u.side===0&&!u.summoned&&alive(u));
+const heroes=b=>b.units.filter(u=>u.side===0&&!u.summoned&&alive(u)&&
+ !(design(b).encounterVersion>=6&&u.enthrall));
 const escorts=b=>b.units.filter(u=>u.honroAct5Escort);
 const group=(b,key)=>b.units.filter(u=>design(b).groups[key]?.includes(u.id));
-const near=(u,{x,y},radius=185)=>Math.abs(u.x-x)<=radius&&Math.abs(u.y-y)<=115&&!u.airborne;
+const near=(u,{x,y},radius=185,height=115)=>Math.abs(u.x-x)<=radius&&Math.abs(u.y-y)<=height&&!u.airborne;
 const revised=b=>active(b)&&design(b)?.encounterVersion>=2;
 const focused=b=>active(b)&&design(b)?.encounterVersion>=3;
 const engaged=b=>active(b)&&design(b)?.encounterVersion>=5;
@@ -18,7 +19,27 @@ const restrained=(b,u)=>u.bound>0||u.stun>0||u.stunnedRound===b.round||u.airborn
 function contesting(b,key){
  const contest=design(b).contest?.[key];
  if(!contest)return [];
- return group(b,contest.group).filter(u=>u.side===1&&alive(u)&&!restrained(b,u)&&near(u,design(b).sites[key],contest.radius));
+ return group(b,contest.group).filter(u=>u.side===1&&alive(u)&&!restrained(b,u)&&
+  near(u,design(b).sites[key],contest.radius,contest.height));
+}
+function guardedGround(b,key){
+ return heroes(b).some(u=>near(u,design(b).sites[key],215))&&!contesting(b,key).length;
+}
+function passageSite(b,route){
+ return route.sites[memory(b).laneSteps?.[route.id]||0];
+}
+function passageOpen(app,b,key){
+ const m=memory(b),routes=design(b).passages?.[key];
+ if(!routes)return ['rootsUpper','rootsLower'].some(lane=>!fightTargets(b,lane).length);
+ for(const route of routes){
+  const site=passageSite(b,route);
+  if(!site)return true;
+  if(!guardedGround(b,site))continue;
+  const steps=m.laneSteps??={};
+  steps[route.id]=(steps[route.id]||0)+1;app.dirty=true;
+  if(steps[route.id]===route.sites.length)return true;
+ }
+ return false;
 }
 function blockingEscort(b,foe,guest){
  return foe.side===1&&alive(foe)&&!foe.honroObjectiveTarget&&!restrained(b,foe)&&
@@ -77,9 +98,20 @@ function state(b){
    if(revised(b)&&key==='drum'&&enemies.length&&!m.waves?.[d.waves[0].id])
     text+=' · 다음 적 턴이 끝나기 전에 막으면 증원 없음';
   }else if(kind==='pass'){
-   const upper=fightTargets(b,'rootsUpper'),lower=fightTargets(b,'rootsLower');
-   text='위 뿌리 능선 '+upper.length+'기 또는 아래 골 '+lower.length+'기 · 한쪽 길만 확보';
-   targets=G.HonroObjectiveGuide.hostileTargets(b,[...upper,...lower]);
+   const routes=d.passages?.[key];
+   if(routes){
+    text='한쪽 길만 확보 · 아래 골 돌진과 위 뿌리의 수목귀 예고에 주의';
+    targets=routes.flatMap(route=>{
+     const site=passageSite(b,route);
+     if(!site)return [];
+     const guards=contesting(b,site),label=d.contest[site].label||route.label;
+     return [target('a5-passage-'+route.id,'route',d.sites[site],label+(guards.length?' · 전위 '+guards.length+'기':' · 통과'))];
+    });
+   }else{
+    const upper=fightTargets(b,'rootsUpper'),lower=fightTargets(b,'rootsLower');
+    text='위 뿌리 능선 '+upper.length+'기 또는 아래 골 '+lower.length+'기 · 한쪽 길만 확보';
+    targets=G.HonroObjectiveGuide.hostileTargets(b,[...upper,...lower]);
+   }
   }else if(kind==='escort'){
    const residents=escorts(b).filter(alive),arrived=residents.filter(u=>near(u,point));
    text+=' · '+arrived.length+'/'+escorts(b).length+' · 같은 층에서 앞서 이동';
@@ -107,9 +139,10 @@ function state(b){
     text='위 뿌리 능선 또는 아래 골의 거목에 접근';
     targets=[target('a5-reach-upper','route',upper,'위 뿌리 능선'),target('a5-reach-lower','route',lower,'아래 골')];
    }
-   const guards=kind==='use'&&contesting(b,key);
+   const guards=(kind==='use'||kind==='secure')&&contesting(b,key);
    if(guards?.length){
-    const hint=G.HonroObjectiveGuide.hostileHint(b,guards,'진목 곁의 적을 밀어내거나 제압');
+    const instruction=d.contest[key].text||'진목 곁의 적을 밀어내거나 제압';
+    const hint=G.HonroObjectiveGuide.hostileHint(b,guards,instruction);
     text=hint.text;targets.push(...hint.targets);
    }
   }
@@ -333,7 +366,7 @@ function tick(app,dt){
   }
   if(b.honroStage===45&&(focused(b)||['tether','turnback'].includes(key)))escort(app,design(b).sites.turnback,dt);
   if(kind==='reach'&&reachSites(b,key).some(p=>heroes(b).some(u=>near(u,p,260)))||kind==='fight'&&!fightTargets(b,key).length&&(!revised(b)||!waitingWave(b,key))||
-      kind==='pass'&&['rootsUpper','rootsLower'].some(lane=>!fightTargets(b,lane).length)||
+      kind==='pass'&&passageOpen(app,b,key)||kind==='secure'&&guardedGround(b,key)||
       kind==='subdue'&&group(b,key).some(u=>alive(u)&&u.hp<=floorHP(u))&&
        (!row[3]||!fightTargets(b,row[3]).length&&!waitingWave(b,row[3])))advance(app);
   else if(kind==='escort'){
@@ -410,11 +443,11 @@ function eligibility(app,m){
  if(link&&engaged(b)&&b.honroStage===49&&link.id==='a5-cross-2'&&!passed(b,'lowerGuard'))return {ok:false,reason:'아래 징검길의 위협을 제압한 뒤 올라가세요'};
  if(link&&engaged(b)&&b.honroStage===49&&link.id==='a5-cross-4'&&!passed(b,'midGuard'))return {ok:false,reason:'중층 돌계단의 사격조를 제압한 뒤 올라가세요'};
  if(link&&engaged(b)&&b.honroStage===50&&link.id==='a5-cross-0'&&!passed(b,'saddle'))return {ok:false,reason:'낮은 석교를 건넌 뒤 이 돌계단을 이용하세요'};
- if(link&&engaged(b)&&b.honroStage===50&&link.id==='a5-cross-2'&&!passed(b,'path'))return {ok:false,reason:'석교 끝의 문턱귀를 제압한 뒤 산문으로 올라가세요'};
+ if(link&&engaged(b)&&b.honroStage===50&&link.id==='a5-cross-2'&&!passed(b,design(b).contest?.stair?'stair':'path'))return {ok:false,reason:design(b).contest?.stair?'중간 돌계단의 사선을 끊고 회랑에 접근하세요':'석교 끝의 문턱귀를 제압한 뒤 산문으로 올라가세요'};
  if(link&&u.moveLeft<150)return {ok:false,reason:'이동도 150 필요 · 다음 아군 턴에 건너세요'};
  if(link&&!interaction(e,m).to)return {ok:false,reason:'건너편 발판을 비워 주세요'};
  if(!link&&required&&u.cls!==required){const name=G.HONRO_CONTENT.hero[required].name;return {ok:false,reason:name+(required==='mage'?'로':'으로')+' 전환'};}
- if(!link&&contesting(b,row?.[1]).length)return {ok:false,reason:'진목 곁의 적을 밀어내거나 제압하세요'};
+ if(!link&&contesting(b,row?.[1]).length)return {ok:false,reason:design(b).contest[row[1]].text||'진목 곁의 적을 밀어내거나 제압하세요'};
  return {ok:true,reason:m.label,routePriority:link&&(engaged(b)||Number(link.id.split('-').at(-1))%2===0)?1:0};
 }
 function use(app,m){

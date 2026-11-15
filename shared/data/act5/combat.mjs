@@ -182,5 +182,5 @@ const previousCombat=[
 const encounters={...earlyEncounters,...lateEncounters};
 export const combat=previousCombat.map((spec,index)=>{
  const next=encounters[41+index];
- return next?{...spec,...next,encounterVersion:5}:spec;
+ return next?{...spec,...next,encounterVersion:next.encounterVersion??5}:spec;
 });

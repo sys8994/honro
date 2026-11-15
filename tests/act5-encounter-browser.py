@@ -23,6 +23,7 @@ ACT = """({mode,key,actor})=>{
  };
  const strike=u=>e.hurt(u,1e5,e.active.id,false,undefined,undefined,'environment');
  if(mode==='state')return {step:m.step,row,field:m.field,counts:b.honroCounters,
+  passages:d.passages?.[row?.[1]],
   waves:d.waves.map(w=>[w.id,w.key,w.when,m.waves?.[w.id],w.units.length]),
   requiredWaveUnits:d.waves.filter(w=>w.units.some(id=>d.required.reflection?.includes(id))).reduce((n,w)=>n+w.units.length,0),
   active:b.enemyLimit,kills:b.kills,n:b.units.filter(u=>u.side===1&&!u.honroObjectiveTarget).length,
@@ -36,7 +37,7 @@ ACT = """({mode,key,actor})=>{
   if(!contest)return;
   const p=d.sites[key];
   b.units.filter(u=>d.groups[contest.group].includes(u.id)&&!u.dead&&u.hp>0&&
-   Math.abs(u.x-p.x)<=contest.radius&&Math.abs(u.y-p.y)<=115).forEach(strike);
+   Math.abs(u.x-p.x)<=contest.radius&&Math.abs(u.y-p.y)<=(contest.height??115)).forEach(strike);
  }
  if(mode==='occupy'){
   const u=actor?e.heroesAlive().find(v=>v.cls===actor):e.active;
@@ -96,15 +97,32 @@ def complete(page, chapter, alternative=False):
         step=state["step"]
         kind,key,*details=row
         page.wait_for_function("HonroApp.canInput()")
+        if chapter==44 and not alternative and key=="pass":
+            assert act(page,"occupy","a5-cross-0")
+            before=page.evaluate("HonroApp.engine.active.y")
+            page.locator('[data-context-interact="a5-cross-0"]').click()
+            assert page.evaluate("HonroApp.engine.active.y") < before - 350
         if kind=="reach":
-            if chapter==44 and not alternative and key=="pass":
-                assert act(page,"occupy","a5-cross-0")
-                before=page.evaluate("HonroApp.engine.active.y")
-                page.locator('[data-context-interact="a5-cross-0"]').click()
-                assert page.evaluate("HonroApp.engine.active.y") < before - 350
             assert act(page,"occupy",key)
         elif kind=="pass":
-            assert act(page,"clear","rootsUpper" if alternative else "rootsLower")
+            route_id="rootsUpper" if alternative else "rootsLower"
+            if state.get("passages"):
+                route=next(path for path in state["passages"] if path["id"]==route_id)
+                for index,site in enumerate(route["sites"],1):
+                    assert act(page,"occupy",site)
+                    act(page,"clearContest",site)
+                    page.wait_for_function(
+                        "([id,n])=>HonroApp.engine.b.honroState.act5.laneSteps?.[id]===n",
+                        arg=[route_id,index],timeout=6000)
+                opposite="rootsLower" if alternative else "rootsUpper"
+                assert page.evaluate("""id=>{const b=HonroApp.engine.b;return b.honroMap.act5.groups[id]
+                  .some(key=>b.units.some(u=>u.id===key&&!u.dead));}""",arg=opposite)
+            else:
+                assert act(page,"clear",route_id)
+        elif kind=="secure":
+            assert act(page,"occupy",key)
+            assert act(page,"state")["step"]==step
+            act(page,"clearContest",key)
         elif kind in ("fight","subdue"):
             if chapter==41 and key=="watch":
                 page.wait_for_function("""()=>{const b=HonroApp.engine.b;
@@ -169,6 +187,8 @@ def complete(page, chapter, alternative=False):
     if chapter==48:
         # This staged sequence can finish before an optional entrance clears.
         assert 0<start["requiredWaveUnits"]<=end["counts"]["spawned"]<=expected,(chapter,end)
+    elif chapter==50:
+        assert 0<end["counts"]["spawned"]<=expected,(chapter,end)
     else:
         assert end["counts"]["spawned"]==expected,(chapter,end)
     assert end["live"]>0,(chapter,end)

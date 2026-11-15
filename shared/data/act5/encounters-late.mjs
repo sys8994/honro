@@ -192,14 +192,21 @@ export const lateEncounters = {
     ],
   },
   50: {
+    encounterVersion:6,
     rounds:[18,20], active:7, hits:2.22, incoming:.111, eliteHits:5.1,
-    required:{firstGuard:[203,259,310,366],path:[699,861,909],gateGuard:[854,888,907]},
-    sites:{firstGuard:[337,330],saddle:[593,410],gateGuard:[891,144]},
+    required:{firstGuard:[203,276,310,366],path:[847,912],gateGuard:[845,894,940]},
+    sites:{firstGuard:[337,330],saddle:[593,410],bridge:[715,367],path:[875,304],gateGuard:[901,144]},
+    contest:{
+      bridge:{group:'bridgeWatch',radius:76,height:23,text:'석교 건너편 사수의 사선을 끊고 건너세요'},
+      stair:{group:'templeSteps',radius:82,height:27,text:'중간 돌계단의 사수를 밀어내거나 제압하세요'},
+    },
     flow:[
       fight('firstGuard','첫 조망터로 오르는 능선의 악귀 제압'),
       reach('view','첫 능선에서 무명사 조망'),
-      reach('saddle','낮은 석교를 지나 산문 쪽 능선으로 이동'),
-      fight('path','석교 끝 사격조와 산문 아래 문턱귀 제압'),
+      reach('saddle','낮은 석교 아래 굽이에 접근'),
+      ['secure','bridge','사선을 끊고 낮은 석교 건너기'],
+      fight('path','문턱귀의 돌진을 피한 뒤 빈틈을 노리기'),
+      ['secure','stair','돌계단 위 회랑 입구 확보'],
       fight('gateGuard','산문 앞 회랑의 수비조 제압'),
     ],
     packs:[
@@ -208,39 +215,40 @@ export const lateEncounters = {
         flyer('lantern',191,340,50),
       ]),
       pack('firstGuard',['firstGuard','view'],190,141,[
-        foe('shade',203,335,{label:'능선의 악귀'}), flyer('lantern',259,335,39),
+        foe('shade',203,335,{label:'능선의 악귀'}), flyer('lantern',254,335,52),
+        foe('ghost',276,335,{label:'조망 아래 매복혼'}),
         foe('mourner',310,335,{label:'조망턱 수호혼'}), foe('human',366,301,{label:'조망 바위 위 사수'}),
       ]),
       pack('upperShoulder',['view','saddle'],145,142,[
-        foe('ghost',406,298), flyer('crow',434,298,66),
+        flyer('crow',416,298,71),
       ]),
-      pack('saddleWatch',['saddle','path'],176,145,[
+      pack('saddleWatch',['saddle','bridge'],176,130,[
         foe('hound',461,410), foe('shade',514,410,{label:'석교 길목 악귀'}),
         flyer('lantern',548,410,44), foe('ghost',575,410),
       ],undefined,'view'),
-      pack('path',['saddle','path'],192,150,[
-        foe('human',659,367,{label:'석교 건너 벽감 사수'}),
-        foe('human',699,367,{label:'석교 끝 경계 사수'}),
-        foe('mourner',742,367,{label:'종터의 들린 갑주'}), flyer('lantern',756,367,72),
-      ]),
-      pack('path',['path'],171,137,[
-        boss(861,304,'사찰 문턱귀','vanguard'), foe('shade',887,304,{label:'산문 아래 악귀'}),
-        foe('mourner',909,304,{label:'산문 아래 들린 갑주'}), flyer('lantern',944,304,47),
-      ]),
-      pack('templeSteps',['path','gateGuard'],146,124,[
-        flyer('lantern',816,222,69), foe('human',864,222,{label:'산문 아래 계단 사수'}),
-        foe('ghost',959,206),
+      pack('bridgeWatch',['bridge'],183,98,[
+        foe('human',651,367,{label:'석교 건너 벽감 사수'}),
+        foe('human',727,367,{label:'석교 끝 경계 사수'}),
+        foe('mourner',764,367,{label:'종터의 들린 갑주'}), flyer('lantern',688,367,76),
+      ],undefined,'saddle'),
+      pack('path',['path'],124,61,[
+        boss(847,304,'사찰 문턱귀','vanguard'), foe('shade',892,304,{label:'산문 아래 악귀'}),
+        foe('mourner',912,304,{label:'산문 아래 들린 갑주'}), flyer('lantern',954,304,54),
+      ],undefined,'bridge'),
+      pack('templeSteps',['stair'],122,54,[
+        flyer('lantern',809,222,65), foe('human',895,222,{label:'산문 아래 계단 사수'}),
+        foe('ghost',969,206,{label:'돌계단 옆 맴도는 혼'}),
       ],undefined,'path'),
-      pack('gateGuard',['gateGuard'],158,133,[
-        foe('human',854,144,{label:'산문 왼쪽 사수'}), foe('shade',888,144,{label:'산문 제기귀'}),
-        flyer('lantern',929,144,44), foe('ghost',907,144,{label:'산문 회랑 수비혼'}),
-      ]),
-      pack('saddleFlow',['saddle','path'],166,135,[
+      pack('gateGuard',['gateGuard'],141,48,[
+        foe('human',845,144,{label:'산문 왼쪽 사수'}), foe('shade',894,144,{label:'산문 제기귀'}),
+        flyer('lantern',977,144,57), foe('ghost',940,144,{label:'산문 회랑 수비혼'}),
+      ],undefined,'stair'),
+      pack('saddleFlow',['saddle','bridge'],166,105,[
         foe('shade',625,385,{label:'역류한 악귀'}), flyer('lantern',683,367,66),
       ],wave('saddle','reach','낮은 석교 오른편으로 악귀가 밀려옵니다.',[654,367],[688,367])),
-      pack('saddleFlow',['saddle','path'],158,143,[
+      pack('saddleFlow',['bridge','path'],158,105,[
         foe('ghost',774,363), foe('shade',803,329,{label:'무너진 턱에서 돌아온 악귀'}),
-      ],wave('saddle','reach','동쪽 무너진 턱을 따라 혼 둘이 석교 쪽으로 내려옵니다.',[787,349],[763,367])),
+      ],wave('bridge','pressure','동쪽 무너진 턱을 따라 혼 둘이 석교 쪽으로 내려옵니다.',[787,349],[763,367])),
     ],
   },
 };

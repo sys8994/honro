@@ -161,11 +161,24 @@ export async function makeAct5(){
    if(required[key]?.length!==positions.length)throw Error('Act 5 priority targets do not match '+id+' '+key);
   }
   for(const wave of waves)if(!spec.flow.some(([,key])=>key===wave.key))throw Error('Unused Act 5 wave '+wave.id);
+  const passages=spec.passages||{},checkpoints=new Set();
+  for(const [key,routes] of Object.entries(passages)){
+   if(!spec.flow.some(([type,site])=>type==='pass'&&site===key)||routes.length<2||
+      new Set(routes.map(route=>route.id)).size!==routes.length)
+    throw Error('Invalid Act 5 alternative passages: '+id+' '+key);
+   for(const route of routes){
+    if(!route.label||!route.id||!route.sites.length||route.sites.some(site=>!sites[site]||!spec.contest?.[site]))
+     throw Error('Invalid Act 5 passage checkpoint: '+id+' '+route.id);
+    for(const site of route.sites)checkpoints.add(site);
+   }
+  }
   const contest={};
   for(const [key,row] of Object.entries(spec.contest||{})){
-   if(!groups[row.group]?.length||!spec.flow.some(([type,site])=>type==='use'&&site===key)||!Number.isFinite(row.radius)||row.radius<=0)
-    throw Error('Invalid Act 5 contested interaction: '+id+' '+key);
-   contest[key]={...row,radius:row.radius*scale};
+   const guarded=checkpoints.has(key)||spec.flow.some(([type,site])=>['use','secure'].includes(type)&&site===key);
+   if(!groups[row.group]?.length||!guarded||!Number.isFinite(row.radius)||row.radius<=0||
+      row.height!==undefined&&(!Number.isFinite(row.height)||row.height<=0))
+    throw Error('Invalid Act 5 contested location: '+id+' '+key);
+   contest[key]={...row,radius:row.radius*scale,...(row.height===undefined?{}:{height:row.height*scale})};
   }
   for(const [key,alternates] of Object.entries(spec.reachAlternates||{}))
    if(!spec.flow.some(([type,site])=>type==='reach'&&site===key)||alternates.some(site=>!sites[site]))throw Error('Invalid Act 5 alternate reach: '+id+' '+key);
@@ -184,7 +197,7 @@ export async function makeAct5(){
    units,events:[],encounters:[],objectives,markers:marks,anchors:{spawn:start,exit},
    environment:{version:4,preset:enclosed?'enclosed':'forest',atmosphere:{preset:enclosed?'enclosed':chapter.theme==='gate'?'burned':'forest'},groups:[],surfaces:[],zones:[{id:'a5-depth',from:0,to:height,blend:300}],placements:[],skyVisible:clock[id].sky},
    meta:{notes:name,seed:5100+i},design:{act5:{encounterVersion:spec.encounterVersion??4,sites,links,groups,required,waves,
-    ...(spec.encounterVersion?{wakeGroups,contest,reachAlternates:spec.reachAlternates||{}}:{}),exitParty:spec.exitParty??2,flow:spec.flow,beats:chapter.beats}},
+    ...(spec.encounterVersion?{wakeGroups,contest,reachAlternates:spec.reachAlternates||{},...(spec.passages?{passages}:{})}:{}),exitParty:spec.exitParty??2,flow:spec.flow,beats:chapter.beats}},
    initialState:{honroAct5:1,honroActionBudgetRevision:1,honroActiveLimit:spec.active,...(spec.encounterVersion?{honroMonsterReworkRevision:1}:{})}});
   content.push({id,act:5,actStage:i+1,name:chapter.name,place:chapter.name,theme:chapter.theme,level:25,w:g.width,h:height,active:spec.active,enemies:initial,enemyBudget:counted.length,
    combat:{targetHits:spec.hits,targetIncomingHpFraction:spec.incoming,midBossHits:spec.eliteHits,bossHits:spec.bossHits??12},

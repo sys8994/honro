@@ -129,19 +129,31 @@ export const earlyEncounters = {
     ],
   },
   44:{
+    encounterVersion:6,
     rounds:[14,17], active:6, hits:1.49, incoming:.104, eliteHits:4.5,
-    sites:{rootFloor:[415,304], pass:[808,228]},
+    sites:{rootFloor:[415,304], boughShelf:[679,214], gullyBend:[717,302], pass:[808,228]},
+    passages:{roots:[
+      {id:'rootsUpper',label:'위 뿌리 능선',sites:['root','boughShelf']},
+      {id:'rootsLower',label:'아래 골',sites:['rootFloor','gullyBend']},
+    ]},
+    contest:{
+      root:{group:'rootsUpper',radius:101,height:34,label:'수목귀 앞 · 옆 발판에서 예고를 피하기'},
+      boughShelf:{group:'nearCrest',radius:93,height:33,label:'뿌리 능선 끝 · 높은 턱의 사선 끊기'},
+      rootFloor:{group:'rootsLower',radius:97,height:25,label:'아래 골 어귀 · 멧돼지 돌진을 피하기'},
+      gullyBend:{group:'gullyMerge',radius:105,height:26,label:'아래 골 굽이 · 측면 사격 끊기'},
+      pass:{group:'mergeGuard',radius:92,height:44,text:'합류턱의 수비를 밀어내거나 제압하세요'},
+    },
     reachAlternates:{root:['rootFloor']},
-    required:{rootsUpper:[368,426,473], rootsLower:[384,422,464], summit:[883,913,936]},
+    required:{rootsUpper:[368,426,473], rootsLower:[384,422,464], summit:[869,908,952]},
     flow:[
       ['reach','root','거목의 위 뿌리 능선 또는 아래 골에 접근'],
       ['pass','roots','위 뿌리 능선 또는 아래 골에서 한쪽 길 확보'],
-      ['reach','pass','오른쪽 위쪽의 두 길 합류 바위턱에 도달'],
+      ['secure','pass','두 길이 만나는 위쪽 바위턱 확보'],
       ['fight','summit','합류 고갯길을 차단한 산짐승 제압'],
     ],
     packs:[
       pack('approach',301,[['hound',155],['boar',181],['stag',227],['shade',252]]),
-      pack('firstBough',249,[['shade',238],['crow',284,-3,undefined,undefined,undefined,54]]),
+      pack('firstBough',249,[['crow',284,-3,undefined,undefined,undefined,54]]),
       pack('rootsUpper',223,[
         ['warden',368,0,'elite','거목 수목귀','naruWarden'],
         ['shade',396], ['lantern',426,0,undefined,undefined,undefined,47],
@@ -151,14 +163,21 @@ export const earlyEncounters = {
         ['hound',350], ['boar',384], ['stag',422], ['shade',464], ['hound',513],
       ],{wake:{distance:205,height:52}}),
       pack('nearCrest',212,[
-        ['shade',628,-7],['crow',674,0,undefined,undefined,undefined,48], ['hound',710,14], ['ghost',743,14],
-      ]),
-      pack('gullyMerge',302,[['stag',686],['shade',749],['hound',778]]),
+        ['shade',602,-7,undefined,'뿌리턱 수의귀'], ['crow',654,0,undefined,undefined,undefined,52],
+        ['hound',697,8], ['human',756,14,undefined,'뿌리턱 끝 사수'],
+      ],{wake:{keys:['roots'],distance:142,height:38,after:'root'}}),
+      pack('gullyMerge',302,[
+        ['stag',659,0,undefined,'굽이 아래 숫사슴'], ['hound',707], ['human',767,0,undefined,'굽이 측면 사수'],
+      ],{wake:{keys:['roots'],distance:170,height:32,after:'root'}}),
+      pack('mergeGuard',226,[
+        ['shade',792,0,undefined,'합류턱 아래의 수의귀'],
+      ],{wake:{keys:['pass'],distance:134,height:57,after:'roots'}}),
       pack('summit',164,[
-        ['boar',883,3], ['hound',913], ['stag',936], ['crow',979,0,undefined,undefined,undefined,44],
-      ]),
+        ['boar',869,15,undefined,'합류턱의 멧돼지'], ['hound',908], ['stag',952,0,undefined,'고개 위 숫사슴'],
+        ['crow',979,0,undefined,undefined,undefined,44],
+      ],{wake:{keys:['pass','summit'],distance:164,height:55,after:'roots'}}),
       pack('crestPursuit',228,[['hound',802],['boar',828,-20],['shade',854,-42]],{
-        wave:cue('summit','summit','고갯마루 쪽 돌턱에서 달려오는 산짐승 소리가 들립니다.',[828,207],[860,182]),
+        wave:cue('summit','summit','고갯마루 쪽 돌턱에서 달려오는 산짐승 소리가 들립니다.',[828,207],[870,169]),
       }),
     ],
   },
