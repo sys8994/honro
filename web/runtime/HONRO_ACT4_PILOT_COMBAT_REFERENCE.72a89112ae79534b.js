@@ -1,0 +1,1 @@
+import{loadData,loadProject}from"./load-data.248fb3aada6f16bb.js";globalThis.HONRO_ACT4_PILOT_COMBAT_REFERENCE=await loadData("web/data/HONRO_ACT4_PILOT_COMBAT_REFERENCE.299176a314692c2a.json",[],{svgSources:false});
