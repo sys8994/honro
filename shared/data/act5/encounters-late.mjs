@@ -9,7 +9,7 @@ const reach=(key,text)=>['reach',key,text];
 const foe=(kind,x,y,extra={})=>({kind,x,y,label:names[kind],...extra});
 const flyer=(kind,x,y,lift)=>foe(kind,x,y,{lift});
 const boss=(x,y,label,pattern)=>foe('warden',x,y,{label,pattern,special:'elite'});
-const pack=(key,keys,distance,height,members,wave)=>({key,members,wake:{keys,distance,height},wave});
+const pack=(key,keys,distance,height,members,wave,after)=>({key,members,wake:{keys,distance,height,after},wave});
 const wave=(key,when,text,entry,fallback)=>({key,when,text,entry,fallback});
 
 // Coordinates refer to the 1024-wide terrain drawing. Y chooses a particular
@@ -192,7 +192,7 @@ export const lateEncounters = {
     ],
   },
   50: {
-    rounds:[18,20], active:7, hits:2.22, incoming:.12, eliteHits:5.1,
+    rounds:[18,20], active:7, hits:2.22, incoming:.111, eliteHits:5.1,
     required:{firstGuard:[203,259,310,366],path:[699,861,909],gateGuard:[854,888,907]},
     sites:{firstGuard:[337,330],saddle:[593,410],gateGuard:[891,144]},
     flow:[
@@ -217,7 +217,7 @@ export const lateEncounters = {
       pack('saddleWatch',['saddle','path'],176,145,[
         foe('hound',461,410), foe('shade',514,410,{label:'석교 길목 악귀'}),
         flyer('lantern',548,410,44), foe('ghost',575,410),
-      ]),
+      ],undefined,'view'),
       pack('path',['saddle','path'],192,150,[
         foe('human',659,367,{label:'석교 건너 벽감 사수'}),
         foe('human',699,367,{label:'석교 끝 경계 사수'}),
@@ -230,7 +230,7 @@ export const lateEncounters = {
       pack('templeSteps',['path','gateGuard'],146,124,[
         flyer('lantern',816,222,69), foe('human',864,222,{label:'산문 아래 계단 사수'}),
         foe('ghost',959,206),
-      ]),
+      ],undefined,'path'),
       pack('gateGuard',['gateGuard'],158,133,[
         foe('human',854,144,{label:'산문 왼쪽 사수'}), foe('shade',888,144,{label:'산문 제기귀'}),
         flyer('lantern',929,144,44), foe('ghost',907,144,{label:'산문 회랑 수비혼'}),
