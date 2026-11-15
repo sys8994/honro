@@ -7,7 +7,9 @@ const heroes=b=>b.units.filter(u=>u.side===0&&!u.summoned&&alive(u));
 const escorts=b=>b.units.filter(u=>u.honroAct5Escort);
 const group=(b,key)=>b.units.filter(u=>design(b).groups[key]?.includes(u.id));
 const near=(u,{x,y},radius=185)=>Math.abs(u.x-x)<=radius&&Math.abs(u.y-y)<=115&&!u.airborne;
-const revised=b=>active(b)&&design(b)?.encounterVersion===2;
+const revised=b=>active(b)&&design(b)?.encounterVersion>=2;
+const focused=b=>active(b)&&design(b)?.encounterVersion===3;
+const combatIds=(b,key)=>design(b).required?.[key]||design(b).groups[key]||[];
 const floorHP=u=>Math.ceil(u.maxHp*.29);
 function damageFloor(b,u){
  if(!active(b)||u.side!==1)return 0;
@@ -25,8 +27,9 @@ function state(b){
  let text=row?.[2],targets=[],complete=false;
  if(!row){
   const n=party.filter(u=>near(u,d.sites.exit,315)).length;
-  complete=party.length>0&&n===party.length;
-  text=complete?'출구 집결 완료':(b.honroStage===46?'동쪽 절벽 아래 석단에 집결':b.honroStage===47?'오른쪽 상층 비상 통로에 집결':'생존 동행을 출구에 모으기')+' · '+n+'/'+party.length;
+  const needed=Math.min(party.length,d.exitParty??party.length);
+  complete=needed>0&&n>=needed;
+  text=complete?'출구 도달':(b.honroStage===46?'동쪽 절벽 아래 석단으로 이동':b.honroStage===47?'오른쪽 상층 비상 통로로 이동':'생존 동행을 출구로 이동')+' · '+n+'/'+needed;
   targets=[target('a5-exit','exit',d.sites.exit,text)];
  }else{
   const [kind,key]=row,point=d.sites[key];
@@ -37,6 +40,11 @@ function state(b){
    targets=hint.targets;
    if(kind==='subdue'&&enemies.length)text+=' · 남은 체력 '+Math.ceil(enemies[0].hp)+'/'+enemies[0].maxHp;
    else if(enemies.length)text=enemies.every(u=>u.honroObjectiveTarget)?text+' · '+enemies.map(u=>u.name+' '+Math.ceil(u.hp)+'/'+u.maxHp).join(', '):hint.text;
+   if(kind==='subdue'&&row[3]&&fightTargets(b,row[3]).length){
+    const guards=G.HonroObjectiveGuide.hostileHint(b,fightTargets(b,row[3]),'곁에서 깨어난 군령 갑주 제압');
+    text+=' · '+guards.text;targets.push(...guards.targets);
+   }
+   if(focused(b)&&b.honroStage===41&&key==='watch')text+=' · 도식은 천막 뒤에서 대기';
    if(revised(b)&&key==='drum'&&enemies.length&&!m.waves?.[d.waves[0].id])
     text+=' · 다음 적 턴이 끝나기 전에 막으면 증원 없음';
   }else if(kind==='pass'){
@@ -46,7 +54,14 @@ function state(b){
   }else if(kind==='escort'){
    const residents=escorts(b).filter(alive),arrived=residents.filter(u=>near(u,point));
    text+=' · '+arrived.length+'/'+escorts(b).length+' · 같은 층에서 앞서 이동';
-   targets=[target('a5-escort-destination','route',point,'호송 도착지')];
+   const blockers=row[3]?fightTargets(b,row[3]):[];
+   if(blockers.length){
+    const hint=G.HonroObjectiveGuide.hostileHint(b,blockers,'아래 후송로의 차단병 제압');
+    text+=' · '+hint.text;targets.push(...hint.targets);
+   }
+   if(focused(b)&&b.honroStage===42&&fightTargets(b,'drum').length&&!m.waves?.[d.waves[0].id])
+    text+=' · 성책 위 군북을 부수면 증원 차단';
+   targets.push(target('a5-escort-destination','route',point,'호송 도착지'));
    const next=residents.find(u=>!near(u,point));
    if(next)targets.unshift({...target(next.id,'escort',{x:next.x,y:next.y-next.h},next.name+' · 엄호'),unitId:next.id});
   }else if(kind==='hold'){
@@ -57,13 +72,14 @@ function state(b){
   if(b.honroStage===46&&key==='stakeOne'&&party.some(u=>u.y<d.sites.memory.y+90))
    text+=' · 시작 절벽 끝의 하강 밧줄 사용';
  }
- const exits=complete?[]:targets,checklist=[...all.map((v,i)=>({id:v.id,text:v.label,done:v.done,current:i===m.step})),{id:'a5-exit',text:'생존 동행 출구 집결',current:!row&&!complete,done:complete}];
+ const exits=complete?[]:targets,checklist=[...all.map((v,i)=>({id:v.id,text:v.label,done:v.done,current:i===m.step})),{id:'a5-exit',text:'출구 도달',current:!row&&!complete,done:complete}];
  return {complete,objectiveReady:complete,summary:text,currentInstruction:text,targets:exits,allTargets:[...all,...exits],checklist,visibleChecklist:checklist};
 }
 function fightTargets(b,key){
  if(b.honroStage===42&&key==='drum'&&group(b,'captain').filter(u=>!revised(b)||u.honroAct5Role==='elite').every(u=>!alive(u)))return [];
  if(!revised(b)&&b.honroStage===45&&key==='tether'&&!group(b,key).some(alive))return group(b,'bier').filter(alive);
- return group(b,key).filter(alive);
+ const ids=combatIds(b,key);
+ return b.units.filter(u=>ids.includes(u.id)&&alive(u));
 }
 function failure(b){
  const stage=b.honroStage;
@@ -88,6 +104,9 @@ function entry(app){
 }
 function advance(app){
  const b=app.engine.b,m=memory(b),[kind,key]=phase(b);
+ if(b.honroStage===41&&key==='watch'&&m.shelteredGuide){
+  b.units.push(m.shelteredGuide);delete m.shelteredGuide;b.sceneVersion++;
+ }
  m.step++;delete m.holdStart;app.dirty=true;
  if(b.honroStage===46&&kind==='fight'||revised(b)&&b.honroStage===43&&kind==='subdue')return;
  storyline(app,b.honroStage===47&&kind==='hold'?'reverse':b.honroStage===47&&key==='center'?'shutdown':b.honroStage===48&&key==='center'?'stabilize':key);
@@ -101,6 +120,23 @@ function escort(app,point,dt){
   if(!hit||Math.abs(hit.y-u.y)>19)continue;
   u.x=x;u.y=hit.y;u.facing=1;app.dirty=true;
  }
+}
+function evacuate(app,b,m){
+ const party=escorts(b);
+ m.evacuated=party.map(({id,hp})=>({id,hp}));
+ b.units=b.units.filter(u=>!u.honroAct5Escort);
+ b.sceneVersion++;
+ app.notify('호송 대상이 엄폐지로 대피했습니다.');
+}
+function guideToCover(app,dt){
+ const b=app.engine.b,m=memory(b),point=design(b).sites.shelter;
+ const guide=escorts(b)[0];
+ if(!alive(guide))return;
+ escort(app,point,dt);
+ if(!near(guide,point))return;
+ m.shelteredGuide=guide;
+ b.units=b.units.filter(u=>u!==guide);
+ b.sceneVersion++;app.dirty=true;
 }
 function placeFoe(b,u,range){
  const flying=G.HONRO_CORE.flyingEnemy(u),y=u.spawnY;
@@ -127,7 +163,7 @@ function prepare(b,stage){
  }
 }
 function waitingWave(b,key){
- const guards=design(b).groups[key]||[];
+ const guards=combatIds(b,key);
  return b.units.some(u=>guards.includes(u.id)&&u.honroAct5Reserve);
 }
 function waveReady(b,wave){
@@ -137,8 +173,8 @@ function waveReady(b,wave){
   return alive(u)&&u.side===1&&u.hp<=u.maxHp*.65;
  }
  if(wave.when==='reverse'||wave.when==='stable')return m.field===wave.when;
- if(row?.[1]!==wave.key)return false;
  if(wave.when==='drum')return fightTargets(b,'drum').length>0&&(b.teamEnds?.[1]||0)>m.drumStart;
+ if(row?.[1]!==wave.key)return false;
  if(wave.when==='reach')return heroes(b).some(u=>near(u,design(b).sites[wave.key],260));
  if(wave.when==='summit')return row[0]==='fight';
  return true;
@@ -146,7 +182,7 @@ function waveReady(b,wave){
 function updateWaves(app){
  const e=app.engine,b=e.b,m=memory(b);
  m.waves??={};
- if(b.honroStage===42&&phase(b)?.[1]==='drum'&&m.drumStart===undefined){
+ if(b.honroStage===42&&phase(b)?.[1]===(focused(b)?'refuge':'drum')&&m.drumStart===undefined){
   m.drumStart=(b.teamEnds?.[1]||0)+(b.side===1&&b.phase!=='transition'?1:0);app.dirty=true;
  }
  for(const wave of design(b).waves){
@@ -189,17 +225,30 @@ function tick(app,dt){
  if(app.done||['won','lost'].includes(b.phase))return;
  if(revised(b))updateWaves(app);
  else legacyReaction(app);
+ if(focused(b)&&b.honroStage===42&&memory(b).step>0&&!fightTargets(b,'drum').length)storyline(app,'drum');
+ if(focused(b)&&b.honroStage===45){
+  const {sites}=design(b);
+  if(heroes(b).some(u=>near(u,sites.procession,260)))storyline(app,'procession');
+  if(heroes(b).some(u=>near(u,sites.turnback,260)))storyline(app,'turnback');
+ }
  const row=phase(b);
  if(row){
   const [kind,key]=row,point=design(b).sites[key],m=memory(b),inside=heroes(b).some(u=>near(u,point,260));
-  if(b.honroStage===41&&kind==='fight'&&(key==='watch'||revised(b)&&key==='campGuard'))escort(app,design(b).sites.guide,dt);
-  if(b.honroStage===45&&['tether','turnback'].includes(key))escort(app,design(b).sites.turnback,dt);
+  if(b.honroStage===41&&key!=='guide'){
+   if(focused(b))guideToCover(app,dt);
+   else if(kind==='fight'&&(key==='watch'||revised(b)&&key==='campGuard'))escort(app,design(b).sites.guide,dt);
+  }
+  if(b.honroStage===45&&(focused(b)||['tether','turnback'].includes(key)))escort(app,design(b).sites.turnback,dt);
   if(kind==='reach'&&inside||kind==='fight'&&!fightTargets(b,key).length&&(!revised(b)||!waitingWave(b,key))||
       kind==='pass'&&['rootsUpper','rootsLower'].some(lane=>!fightTargets(b,lane).length)||
-      kind==='subdue'&&group(b,key).some(u=>alive(u)&&u.hp<=floorHP(u)))advance(app);
+      kind==='subdue'&&group(b,key).some(u=>alive(u)&&u.hp<=floorHP(u))&&
+       (!row[3]||!fightTargets(b,row[3]).length&&!waitingWave(b,row[3])))advance(app);
   else if(kind==='escort'){
    escort(app,point,dt);
-   if(escorts(b).every(u=>alive(u)&&near(u,point)))advance(app);
+   if(escorts(b).every(u=>alive(u)&&near(u,point))&&(!row[3]||!fightTargets(b,row[3]).length)){
+    if(focused(b))evacuate(app,b,m);
+    advance(app);
+   }
   }else if(kind==='hold'){
    if(!inside)delete m.holdStart;
    else{

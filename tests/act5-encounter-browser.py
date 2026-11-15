@@ -16,7 +16,7 @@ SETUP = """async id=>{
 }"""
 ACT = """({mode,key,actor})=>{
  const a=HonroApp,e=a.engine,b=e.b,d=b.honroMap.act5,m=b.honroState.act5;
- const row=d.flow[m.step],group=(key)=>b.units.filter(u=>d.groups[key]?.includes(u.id));
+ const row=d.flow[m.step],group=(key)=>b.units.filter(u=>(d.required?.[key]||d.groups[key])?.includes(u.id));
  const pose=(u,p)=>{
   Object.assign(u,p,{vx:0,vy:0,jumping:false,airborne:false});
   delete u.platformDrop;delete u.groundContact;delete u.moveTarget;
@@ -24,14 +24,16 @@ ACT = """({mode,key,actor})=>{
  const strike=u=>e.hurt(u,1e5,e.active.id,false,undefined,undefined,'environment');
  if(mode==='state')return {step:m.step,row,field:m.field,counts:b.honroCounters,
   waves:d.waves.map(w=>[w.id,w.key,w.when,m.waves?.[w.id],w.units.length]),
-  active:b.enemyLimit,kills:b.kills,n:b.units.filter(u=>u.side===1&&!u.honroObjectiveTarget).length};
+  active:b.enemyLimit,kills:b.kills,n:b.units.filter(u=>u.side===1&&!u.honroObjectiveTarget).length,
+  live:b.units.filter(u=>u.side===1&&!u.dead&&!u.honroObjectiveTarget).length};
  if(mode==='clear'){
   const targets=group(key||row[1]).filter(u=>!u.dead&&u.hp>0);
   targets.forEach(strike);return targets.map(u=>[u.id,u.hp,!!u.dead]);
  }
  if(mode==='occupy'){
   const u=actor?e.heroesAlive().find(v=>v.cls===actor):e.active;
-  e.select(u.id);pose(u,d.sites[key||row[1]]);a.updateHUD(true);return e.grounded(u);
+  const point=d.sites[key||row[1]]||d.links.find(link=>link.id===key);
+  e.select(u.id);pose(u,{x:point.x,y:point.y});a.updateHUD(true);return e.grounded(u);
  }
  if(mode==='escort'){
   const p=d.sites[row[1]];
@@ -44,7 +46,7 @@ ACT = """({mode,key,actor})=>{
  if(mode==='hold')b.teamEnds[1]++;
  if(mode==='exit'){
   const p=d.sites.exit;
-  e.heroesAlive().forEach((u,i)=>{
+  e.heroesAlive().slice(0,d.exitParty).forEach((u,i)=>{
    const x=p.x-72+48*i;
    pose(u,{x,y:HonroMapEngine.surfaceY(b.terrain,x,p.y).y});
   });
@@ -86,27 +88,41 @@ def complete(page, chapter, alternative=False):
         elif kind=="pass":
             assert act(page,"clear","rootsUpper" if alternative else "rootsLower")
         elif kind in ("fight","subdue"):
-            if chapter==41 and key=="campGuard":
+            if chapter==41 and key=="watch":
                 page.wait_for_function("""()=>{const b=HonroApp.engine.b;
-                  return b.units.find(u=>u.id==='a5-guide').x>840;
+                  return b.honroState.act5.shelteredGuide||b.units.find(u=>u.id==='a5-guide')?.x>840;
                 }""")
-            if chapter==42 and key=="drum":
-                assert state["counts"]["spawned"]==0
-                page.wait_for_function("Number.isInteger(HonroApp.engine.b.honroState.act5.drumStart)")
-                if not alternative:
-                    act(page,"hold")
-                    page.wait_for_function("HonroApp.engine.b.honroCounters.spawned===3")
+            if chapter==44 and not alternative and key=="summit":
+                assert act(page,"occupy","a5-cross-0")
+                before=page.evaluate("HonroApp.engine.active.y")
+                page.locator('[data-context-interact="a5-cross-0"]').click()
+                assert page.evaluate("HonroApp.engine.active.y") < before - 350
             if kind=="fight":
                 page.wait_for_function("""key=>{const b=HonroApp.engine.b,d=b.honroMap.act5;
-                  return !b.units.some(u=>u.honroAct5Reserve&&d.groups[key].includes(u.id));
+                  return !b.units.some(u=>u.honroAct5Reserve&&(d.required[key]||d.groups[key]).includes(u.id));
                 }""",arg=key,timeout=5500)
             affected=act(page,"clear")
             if kind=="subdue":
                 assert affected and all(hp>0 and not dead for _,hp,dead in affected)
+                page.wait_for_function("HonroApp.engine.b.honroCounters.spawned===5")
+                assert act(page,"state")["step"]==step
+                assert act(page,"clear","armorWave")
         elif kind=="use":
             assert act(page,"occupy",key,details[1] if len(details)>1 else None)
             page.locator(f'[data-context-interact="a5-step-{step}"]').click()
         elif kind=="escort":
+            if len(details)>1:
+                assert act(page,"clear",details[1])
+            if chapter==42:
+                assert state["counts"]["spawned"]==0
+                page.wait_for_function("Number.isInteger(HonroApp.engine.b.honroState.act5.drumStart)")
+                if alternative:
+                    assert act(page,"clear","drum")
+                    page.wait_for_function("HonroApp.engine.b.honroState.act5.beats.drum")
+                    skip(page)
+                act(page,"hold")
+                if not alternative:
+                    page.wait_for_function("HonroApp.engine.b.honroCounters.spawned===3")
             act(page,"escort")
         elif kind=="hold":
             assert act(page,"occupy",key)
@@ -115,6 +131,8 @@ def complete(page, chapter, alternative=False):
         else:
             raise AssertionError(row)
         finish_step(page, step)
+        if kind=="escort":
+            assert page.evaluate("HonroApp.engine.b.honroState.act5.evacuated.length")==(1 if chapter==41 else 3)
         if chapter==45 and key=="bierApproach":
             page.wait_for_function("HonroApp.engine.b.honroCounters.spawned===5")
             page.evaluate("HonroApp.dirty=true;HonroApp.flushBattleSave()")
@@ -135,7 +153,8 @@ def complete(page, chapter, alternative=False):
     end=act(page,"state")
     expected=0 if chapter==42 and alternative else sum(w[-1] for w in start["waves"])
     assert end["counts"]["spawned"]==expected,(chapter,end)
-    return {"stage":chapter,"alternative":alternative,"initial":start["counts"]["initialEnemies"],"spawned":end["counts"]["spawned"],"steps":steps}
+    assert end["live"]>0,(chapter,end)
+    return {"stage":chapter,"alternative":alternative,"initial":start["counts"]["initialEnemies"],"spawned":end["counts"]["spawned"],"aliveAtExit":end["live"],"steps":steps}
 
 if __name__=="__main__":
     with serve_game() as url, sync_playwright() as pw:
