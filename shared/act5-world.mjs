@@ -37,7 +37,23 @@ const crossings = {
  42:[['성책 사다리 오르기',[615,327],[635,213]]],
  43:[['성벽 돌계단 오르기',[264,322],[304,256]],['지휘소 돌계단 오르기',[757,218],[790,169]]],
  44:[['아래 골에서 뿌리 능선으로 오르기',[787,303],[805,226]]],
- 46:[['서쪽 절벽의 밧줄 내려가기',[253,387],[280,483]],['떠 있는 상층 석단 건너기',[333,483],[570,497]],['동쪽 절벽의 밧줄 건너기',[715,497],[824,487]],['비상 밧줄로 아래 절벽에 내려가기',[927,782],[885,911]],['동쪽 붕괴턱의 밧줄 오르기',[845,1286],[891,911]],['바닥 돌턱에서 비상 밧줄 오르기',[790,1425],[840,1286]],['중앙 고리에서 되돌아가는 밧줄',[523,940],[499,553]],['중앙 석단으로 되돌아가는 밧줄',[503,553],[561,497]],['아래 제단에서 중앙 고리로 돌아가기',[538,1080],[550,940]],['고리 왼쪽 비상 밧줄 오르기',[298,940],[318,660]],['부유 석단으로 돌아가는 밧줄',[322,660],[285,483]],['왼쪽 절벽 비상 밧줄 오르기',[107,1214],[99,1017]],['왼쪽 중층 비상 밧줄 오르기',[99,1017],[79,812]],['왼쪽 상층 비상 밧줄 오르기',[79,812],[71,613]],['기억진목 절벽으로 돌아가는 밧줄',[71,613],[89,387]]],
+ 46:[
+  ['서쪽 밧줄로 첫 석단에 내려가기',[253,387],[280,483],'기억진목 쪽으로 올라가기'],
+  ['밧줄로 중앙 큰 석단 건너기',[333,483],[588,497],'서쪽 첫 석단으로 건너가기'],
+  ['동쪽 절벽으로 밧줄 건너기',[715,497],[824,487],'중앙 큰 석단으로 건너가기'],
+  ['동쪽 밧줄로 출구 턱에 내려가기',[927,782],[865,912],'동쪽 상부 턱으로 올라가기'],
+  ['동쪽 붕괴턱에서 출구 턱 오르기',[850,1286],[901,911],'출구에서 동쪽 붕괴턱으로 내려가기'],
+  ['우물 바닥에서 동쪽 붕괴턱 오르기',[790,1425],[827,1286],'동쪽 붕괴턱에서 우물 바닥으로 내려가기'],
+  ['중앙 고리에서 중간 석단 오르기',[513,940],[474,553],'중간 석단에서 중앙 고리로 내려가기'],
+  ['중간 석단에서 중앙 큰 석단 오르기',[514,553],[560,497],'중앙 큰 석단에서 중간 석단으로 내려가기'],
+  ['아래 제단에서 중앙 고리 오르기',[538,1080],[560,940],'중앙 고리에서 아래 제단으로 내려가기'],
+  ['고리 왼쪽 밧줄로 서쪽 낮은 석단 오르기',[298,940],[319,660],'서쪽 낮은 석단에서 고리로 내려가기'],
+  ['서쪽 낮은 석단에서 첫 석단 오르기',[350,660],[307,483],'첫 석단에서 서쪽 낮은 석단으로 내려가기'],
+  ['왼쪽 절벽 네 번째 턱에서 오르기',[107,1214],[65,1017],'왼쪽 절벽 네 번째 턱으로 내려가기'],
+  ['왼쪽 절벽 세 번째 턱에서 오르기',[103,1017],[61,812],'왼쪽 절벽 세 번째 턱으로 내려가기'],
+  ['왼쪽 절벽 두 번째 턱에서 오르기',[100,812],[67,613],'왼쪽 절벽 두 번째 턱으로 내려가기'],
+  ['왼쪽 절벽 첫 턱에서 기억진목으로 오르기',[97,613],[89,387],'기억진목에서 왼쪽 절벽 첫 턱으로 내려가기']
+ ],
  47:[['절벽의 이어진 돌계단 오르기',[781,585],[804,463]]],
  49:[['아래쪽 징검길로 내려가기',[148,1028],[169,1240]],['협곡 진목길 올라가기',[899,1220],[924,960]],['중층 돌계단 올라가기',[947,960],[961,685]],['상층 돌계단 올라가기',[972,685],[980,380]]],
  50:[['산문 아래 돌계단 오르기',[913,304],[930,212]],['산문 앞 돌계단 오르기',[963,206],[962,144]]]
@@ -94,9 +110,9 @@ export async function makeAct5(){
   }));
   for(const [key,points] of solids[id]||[])surfaces.push({id:'a5-'+key,name:key,type:'solid',points:path(points),
    oneWay:false,baseMaterial:'rock',breakable:false,layer:'terrain',properties:{honroAct5Painted:true}});
-  const links=(crossings[id]||[]).flatMap(([label,from,to],j)=>[
+  const links=(crossings[id]||[]).flatMap(([label,from,to,back],j)=>[
    {id:'a5-cross-'+(2*j),label,...contact(...from),to:contact(...to)},
-   {id:'a5-cross-'+(2*j+1),label:'이전 발판으로 돌아가기',...contact(...to),to:contact(...from)}]);
+   {id:'a5-cross-'+(2*j+1),label:back||'이전 발판으로 돌아가기',...contact(...to),to:contact(...from)}]);
   for(const link of links)if(length([link.x,link.y],[link.to.x,link.to.y])>1560)throw Error('Act 5 crossing too long: '+id);
   const objectives=[];
   const units=cast.map((kind,j)=>({id:'p-'+kind,kind,team:'player',...contact(g.start[0]+j*11,g.start[1])}));
@@ -108,21 +124,33 @@ export async function makeAct5(){
     points:[{x:p.x-27,y:p.y-87},{x:p.x+27,y:p.y-87},{x:p.x+27,y:p.y},{x:p.x-27,y:p.y}],properties:{hp,maxHp:hp}});
    objectives.push({id:'a5-destroy-'+j,type:'destroy',targetId:unitId,label});
   }
+  const wakeGroups={};
   let serial=0;
   for(const [index,pack] of spec.packs.entries()){
    const staged=[];
-   for(const {kind,label,x,y,special} of pack.members){
+   if(pack.wake){
+    const {keys=[],distance=255,height,after}=pack.wake;
+    if(!Number.isFinite(distance)||distance<=0||after&&!spec.flow.some(([,key])=>key===after))
+     throw Error('Invalid Act 5 engagement range: '+id+' '+pack.key);
+    wakeGroups[index]={keys,distance:distance*scale,...(height===undefined?{}:{height:height*scale}),...(after?{after}:{})};
+   }
+   for(const {kind,label,x,y,special,lift,pattern} of pack.members){
     const id='a5-foe-'+serial++,pose=contact(x,y),flying=['bat','crow','lantern'].includes(kind);
-    if(flying)pose.y-=155+(serial%3)*47;
+    if(flying)pose.y-=lift===undefined?155+(serial%3)*47:lift*scale;
     (groups[pack.key]??=[]).push(id);
     if(spec.required?.[pack.key]?.includes(x))(required[pack.key]??=[]).push(id);
     staged.push(id);
     units.push({id,kind,label,team:'enemy',facing:-1,...pose,spawnIndex:serial,encounterGroup:pack.key,
      stageOverrides:{group:index,elite:special==='elite',honroAct5Role:special||'regular',
       ...(special==='commander'?{honroMidboss:true,fixed:true,loadout:['A02','A03','A07']}:{}),
-      ...(special==='elite'?{honroMidboss:true}:{}),...(pack.wave?{dead:true,honroAct5Reserve:true}:{})}});
+      ...(special==='elite'?{honroMidboss:true}:{}),...(pattern?{honroMonsterPattern:pattern}:{}),
+      ...(pack.wave?{dead:true,honroAct5Reserve:true}:{})}});
    }
-   if(pack.wave)waves.push({...pack.wave,id:pack.key+'-'+index,units:staged});
+   if(pack.wave){
+    const {entry,fallback,...conditions}=pack.wave;
+    waves.push({...conditions,id:pack.key+'-'+index,units:staged,
+     ...(entry?{entry:contact(...entry)}:{}),...(fallback?{fallback:contact(...fallback)}:{})});
+   }
   }
   const counted=units.filter(u=>u.team==='enemy'),initial=counted.filter(u=>!u.stageOverrides.dead).length;
   for(const [type,key,,blockers] of spec.flow){
@@ -133,8 +161,18 @@ export async function makeAct5(){
    if(required[key]?.length!==positions.length)throw Error('Act 5 priority targets do not match '+id+' '+key);
   }
   for(const wave of waves)if(!spec.flow.some(([,key])=>key===wave.key))throw Error('Unused Act 5 wave '+wave.id);
+  const contest={};
+  for(const [key,row] of Object.entries(spec.contest||{})){
+   if(!groups[row.group]?.length||!spec.flow.some(([type,site])=>type==='use'&&site===key)||!Number.isFinite(row.radius)||row.radius<=0)
+    throw Error('Invalid Act 5 contested interaction: '+id+' '+key);
+   contest[key]={...row,radius:row.radius*scale};
+  }
+  for(const [key,alternates] of Object.entries(spec.reachAlternates||{}))
+   if(!spec.flow.some(([type,site])=>type==='reach'&&site===key)||alternates.some(site=>!sites[site]))throw Error('Invalid Act 5 alternate reach: '+id+' '+key);
   for(const [key,label,x,y] of chapter.allies||[]){
-   units.push({id:'a5-'+key,kind:'ally:scout',label,team:'ally',...contact(x,y),stageOverrides:{fixed:true,loadout:[],honroAct5Escort:true}});
+   const localGuide=spec.encounterVersion&&key==='guide'&&(id===44||id===45);
+   units.push({id:'a5-'+key,kind:'ally:scout',label,team:'ally',...contact(x,y),
+    stageOverrides:{fixed:true,loadout:[],honroAct5Escort:true,...(localGuide?{honroAlly:false,honroCivilian:true}:{})}});
   }
   const marks=[...spec.flow.flatMap(([type,key,label],j)=>type==='use'?[{id:'a5-step-'+j,action:'act5',label,...sites[key]}]:[]),
    ...links.map(({to,...link})=>({...link,action:'act5'}))];
@@ -145,8 +183,9 @@ export async function makeAct5(){
    terrains:surfaces,materials:[],elements:[{id:'a5-near',assetId,x:0,y:0,scale:artworkScale,rotation:0,layer:'structural-back',depthLayer:'L1',visualRole:'scenery'}],
    units,events:[],encounters:[],objectives,markers:marks,anchors:{spawn:start,exit},
    environment:{version:4,preset:enclosed?'enclosed':'forest',atmosphere:{preset:enclosed?'enclosed':chapter.theme==='gate'?'burned':'forest'},groups:[],surfaces:[],zones:[{id:'a5-depth',from:0,to:height,blend:300}],placements:[],skyVisible:clock[id].sky},
-   meta:{notes:name,seed:5100+i},design:{act5:{encounterVersion:4,sites,links,groups,required,waves,exitParty:spec.exitParty??2,flow:spec.flow,beats:chapter.beats}},
-   initialState:{honroAct5:1,honroActionBudgetRevision:1,honroActiveLimit:spec.active}});
+   meta:{notes:name,seed:5100+i},design:{act5:{encounterVersion:spec.encounterVersion??4,sites,links,groups,required,waves,
+    ...(spec.encounterVersion?{wakeGroups,contest,reachAlternates:spec.reachAlternates||{}}:{}),exitParty:spec.exitParty??2,flow:spec.flow,beats:chapter.beats}},
+   initialState:{honroAct5:1,honroActionBudgetRevision:1,honroActiveLimit:spec.active,...(spec.encounterVersion?{honroMonsterReworkRevision:1}:{})}});
   content.push({id,act:5,actStage:i+1,name:chapter.name,place:chapter.name,theme:chapter.theme,level:25,w:g.width,h:height,active:spec.active,enemies:initial,enemyBudget:counted.length,
    combat:{targetHits:spec.hits,targetIncomingHpFraction:spec.incoming,midBossHits:spec.eliteHits,bossHits:spec.bossHits??12},
    requires:[id-1],playableRoster:cast,objective:'act5',goal:spec.flow[0][2],story:chapter.entry,outro:chapter.outro,

@@ -1,3 +1,6 @@
+import {earlyEncounters} from './encounters-early.mjs';
+import {lateEncounters} from './encounters-late.mjs';
+
 const reach=(key,text)=>['reach',key,text];
 const fight=(key,text)=>['fight',key,text];
 const use=(key,text,cls)=>['use',key,text,cls];
@@ -18,7 +21,7 @@ function pack(key,lane,members,wave){
 const cue=(key,text,when='objective')=>({key,text,when});
 const device=(key,x,y,label,hp)=>({key,x,y,label,hp});
 
-export const combat=[
+const previousCombat=[
  {rounds:[10,16],active:5,hits:2.55,incoming:.112,eliteHits:4.5,
   required:{campGuard:[252,303,331],watch:[850,877]},
   sites:{campGuard:[291,276],shelter:[305,276],approach:[889,233]},
@@ -175,3 +178,9 @@ export const combat=[
     cue('saddle','석교 건너에서 산 아래로 밀려온 악귀 넷이 합류합니다.','reach'))
   ]}
 ];
+
+const encounters={...earlyEncounters,...lateEncounters};
+export const combat=previousCombat.map((spec,index)=>{
+ const next=encounters[41+index];
+ return next?{...spec,...next,encounterVersion:5}:spec;
+});

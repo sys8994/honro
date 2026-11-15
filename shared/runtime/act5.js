@@ -9,8 +9,37 @@ const group=(b,key)=>b.units.filter(u=>design(b).groups[key]?.includes(u.id));
 const near=(u,{x,y},radius=185)=>Math.abs(u.x-x)<=radius&&Math.abs(u.y-y)<=115&&!u.airborne;
 const revised=b=>active(b)&&design(b)?.encounterVersion>=2;
 const focused=b=>active(b)&&design(b)?.encounterVersion>=3;
+const engaged=b=>active(b)&&design(b)?.encounterVersion>=5;
+const reachSites=(b,key)=>[key,...(design(b).reachAlternates?.[key]||[])].map(site=>design(b).sites[site]);
 const combatIds=(b,key)=>design(b).required?.[key]||design(b).groups[key]||[];
 const floorHP=u=>Math.ceil(u.maxHp*.29);
+const restrained=(b,u)=>u.bound>0||u.stun>0||u.stunnedRound===b.round||u.airborne||u.carriedBy!==undefined;
+
+function contesting(b,key){
+ const contest=design(b).contest?.[key];
+ if(!contest)return [];
+ return group(b,contest.group).filter(u=>u.side===1&&alive(u)&&!restrained(b,u)&&near(u,design(b).sites[key],contest.radius));
+}
+function blockingEscort(b,foe,guest){
+ return foe.side===1&&alive(foe)&&!foe.honroObjectiveTarget&&!restrained(b,foe)&&
+  foe.x>guest.x&&foe.x-guest.x<115&&Math.abs(foe.y-guest.y)<80;
+}
+function escortThreats(b){
+ if(!engaged(b))return [];
+ const moving=escorts(b).filter(alive);
+ return b.units.filter(u=>moving.some(guest=>blockingEscort(b,u,guest)));
+}
+function wakeEligible(b,u,allies,activeRange){
+ const wake=engaged(b)&&design(b).wakeGroups?.[u.group];
+ if(!wake)return undefined;
+ if(wake.after&&!passed(b,wake.after))return false;
+ const radius=wake.distance+(activeRange===1600?0:320);
+ return allies.some(p=>{
+  const dy=Math.abs(p.y-u.y),d=Math.hypot(p.x-u.x,dy*.72);
+  return d<radius&&dy<=(wake.height??Infinity)||
+   wake.keys.includes(phase(b)?.[1])&&d<radius+260&&dy<=(wake.height??Infinity)+120;
+ });
+}
 function damageFloor(b,u){
  if(!active(b)||u.side!==1)return 0;
  if(b.honroStage===43&&design(b).groups.commander.includes(u.id)){
@@ -54,9 +83,13 @@ function state(b){
   }else if(kind==='escort'){
    const residents=escorts(b).filter(alive),arrived=residents.filter(u=>near(u,point));
    text+=' · '+arrived.length+'/'+escorts(b).length+' · 같은 층에서 앞서 이동';
-   const blockers=row[3]?fightTargets(b,row[3]):[];
+   const blockers=row[3]?fightTargets(b,row[3]):[],nearby=escortThreats(b).filter(u=>!blockers.includes(u));
    if(blockers.length){
     const hint=G.HonroObjectiveGuide.hostileHint(b,blockers,'아래 후송로의 차단병 제압');
+    text+=' · '+hint.text;targets.push(...hint.targets);
+   }
+   if(nearby.length){
+    const hint=G.HonroObjectiveGuide.hostileHint(b,nearby,'호송 바로 앞의 적을 밀어내거나 제압');
     text+=' · '+hint.text;targets.push(...hint.targets);
    }
    if(focused(b)&&b.honroStage===42&&fightTargets(b,'drum').length&&!m.waves?.[d.waves[0].id])
@@ -67,9 +100,26 @@ function state(b){
   }else if(kind==='hold'){
    text+=heroes(b).some(u=>near(u,point,260))?' · 적 턴 1회 동안 자리 지키기':' · 동행을 중앙 석단에 배치';
    targets=[target('a5-hold','route',point,text)];
-  }else targets=[target('a5-step-'+m.step,kind==='use'?'interact':'route',point,text)];
+  }else {
+   targets=[target('a5-step-'+m.step,kind==='use'?'interact':'route',point,text)];
+   if(kind==='reach'&&reachSites(b,key).length>1){
+    const [upper,lower]=reachSites(b,key);
+    text='위 뿌리 능선 또는 아래 골의 거목에 접근';
+    targets=[target('a5-reach-upper','route',upper,'위 뿌리 능선'),target('a5-reach-lower','route',lower,'아래 골')];
+   }
+   const guards=kind==='use'&&contesting(b,key);
+   if(guards?.length){
+    const hint=G.HonroObjectiveGuide.hostileHint(b,guards,'진목 곁의 적을 밀어내거나 제압');
+    text=hint.text;targets.push(...hint.targets);
+   }
+  }
   if(revised(b)&&kind==='fight'&&waitingWave(b,key))text+=' · 이 길로 접근하는 적이 있습니다';
-  if(b.honroStage===46&&key==='stakeOne'&&party.some(u=>u.y<d.sites.memory.y+90))
+  const blocked=engaged(b)&&d.waves.find(w=>m.waveBlocked?.[w.id]&&m.waves?.[w.id]==='pending');
+  if(blocked?.entry){
+   text+=' · 예고된 증원 진입로를 비우거나 엄호';
+   targets.push(target('a5-wave-entry','route',blocked.entry,'증원 진입로'));
+  }
+  if(b.honroStage===46&&key==='stakeOne'&&party.some(u=>u.cls==='mage'&&u.y<d.sites.memory.y+90))
    text+=' · 시작 절벽 끝의 하강 밧줄 사용';
  }
  const exits=complete?[]:targets,checklist=[...all.map((v,i)=>({id:v.id,text:v.label,done:v.done,current:i===m.step})),{id:'a5-exit',text:'출구 도달',current:!row&&!complete,done:complete}];
@@ -115,6 +165,7 @@ function escort(app,point,dt){
  const b=app.engine.b,party=heroes(b);
  for(const u of escorts(b).filter(alive)){
   if(near(u,point)||!party.some(h=>h.x>=u.x-55&&Math.abs(h.x-u.x)<570&&Math.abs(h.y-u.y)<125&&!h.airborne))continue;
+  if(engaged(b)&&b.units.some(v=>blockingEscort(b,v,u)))continue;
   const x=Math.min(point.x,u.x+dt*230);
   const hit=G.HonroMapEngine.surfaceY(b.terrain,x,u.y);
   if(!hit||Math.abs(hit.y-u.y)>19)continue;
@@ -138,10 +189,11 @@ function guideToCover(app,dt){
  b.units=b.units.filter(u=>u!==guide);
  b.sceneVersion++;app.dirty=true;
 }
-function placeFoe(b,u,range){
- const flying=G.HONRO_CORE.flyingEnemy(u),y=u.spawnY;
- return G.HonroTerrain.place(b,u,{x:u.spawnX,y,flying,maxDistance:range,
-  accept:(_x,py)=>Math.abs(py-y)<(flying?260:104)});
+function placeFoe(b,u,range,pose={x:u.spawnX,y:u.spawnY},entrance=false){
+ const flying=G.HONRO_CORE.flyingEnemy(u);
+ return G.HonroTerrain.place(b,u,{...pose,flying,maxDistance:range,clearance:entrance?26:18,
+  accept:(x,y)=>Math.abs(y-pose.y)<(entrance?(flying?108:49):(flying?260:104))&&
+   (!entrance||b.units.every(v=>v.side===1||!alive(v)||Math.hypot(v.x-x,(v.y-y)*.9)>=165))});
 }
 function prepare(b,stage){
  if(!revised(b))return;
@@ -161,6 +213,9 @@ function prepare(b,stage){
   Object.assign(u,spot,{spawnX:spot.x,spawnY:spot.y});
   placed.push(u);
  }
+ // Classify the units together after all authored bands and contact positions
+ // are available, so the generic strong-effect spacing rule sees their peers.
+ if(engaged(b))for(const u of placed)if(u.side===1)G.HonroMonsterRoster?.prepareSpawn(b,u);
 }
 function waitingWave(b,key){
  const guards=combatIds(b,key);
@@ -175,11 +230,26 @@ function waveReady(b,wave){
  if(wave.when==='reverse'||wave.when==='stable')return m.field===wave.when;
  if(wave.when==='drum')return fightTargets(b,'drum').length>0&&(b.teamEnds?.[1]||0)>m.drumStart;
  if(row?.[1]!==wave.key)return false;
- if(wave.when==='reach')return heroes(b).some(u=>near(u,design(b).sites[wave.key],260));
+ if(wave.when==='reach'||wave.when==='pressure')return heroes(b).some(u=>reachSites(b,wave.key).some(p=>near(u,p,wave.when==='pressure'?480:260)));
  if(wave.when==='summit')return row[0]==='fight';
  return true;
 }
-function updateWaves(app){
+function admitWave(b,wave,pending){
+ const attempts=[{x:0,y:0}];
+ if(wave.entry&&wave.fallback)attempts.push({x:wave.fallback.x-wave.entry.x,y:wave.fallback.y-wave.entry.y});
+ for(const offset of attempts){
+  const staged={...b,units:[...b.units]},placements=[];
+  for(const u of pending){
+   const flying=G.HONRO_CORE.flyingEnemy(u),pose={x:u.spawnX+offset.x,y:u.spawnY+offset.y};
+   const spot=placeFoe(staged,u,flying?192:144,pose,true);
+   if(!spot)break;
+   placements.push([u,spot]);staged.units.push({...u,...spot,dead:false});
+  }
+  if(placements.length===pending.length)return placements;
+ }
+ return null;
+}
+function updateWaves(app,dt){
  const e=app.engine,b=e.b,m=memory(b);
  m.waves??={};
  if(b.honroStage===42&&phase(b)?.[1]===(focused(b)?'refuge':'drum')&&m.drumStart===undefined){
@@ -191,18 +261,40 @@ function updateWaves(app){
   if(!m.waves[wave.id]){
    if(!waveReady(b,wave))continue;
    m.waves[wave.id]='pending';app.notify(wave.text);app.dirty=true;
+   if(engaged(b)){
+    (m.waveNotice??={})[wave.id]=.82;
+    if(wave.entry)e.fx('ring',wave.entry.x,wave.entry.y-30,'#d6bd9b',65);
+    continue;
+   }
   }
   const pending=b.units.filter(u=>wave.units.includes(u.id)&&u.honroAct5Reserve);
+  if(engaged(b)&&m.waveNotice?.[wave.id]>0){
+   m.waveNotice[wave.id]=Math.max(0,m.waveNotice[wave.id]-dt);
+   if(m.waveNotice[wave.id]>0)continue;
+  }
   if(b.projectiles.length||e.settleBusy())continue;
-  for(const u of pending){
-   const spot=placeFoe(b,u,480);
+  const positions=engaged(b)?admitWave(b,wave,pending):pending.map(u=>[u,null]);
+  if(!positions){
+   (m.waveNotice??={})[wave.id]=.25;
+   if(!m.waveBlocked?.[wave.id]){(m.waveBlocked??={})[wave.id]=true;app.dirty=true;}
+   continue;
+  }
+  for(const [u,point] of positions){
+   const spot=point||placeFoe(b,u,480);
    if(!spot)continue;
    Object.assign(u,spot,{spawnX:spot.x,spawnY:spot.y,dead:false,awake:true,aggroUntil:b.round+2});
    delete u.honroAct5Reserve;
+   if(engaged(b))G.HonroMonsterRoster?.prepareSpawn(b,u);
    b.honroCounters.spawned++;app.dirty=true;
    e.fx('ring',u.x,u.y-25,'#baa9c6',49);
   }
-  if(pending.every(u=>!u.honroAct5Reserve))m.waves[wave.id]='arrived';
+  if(pending.every(u=>!u.honroAct5Reserve)){
+   m.waves[wave.id]='arrived';
+   if(m.waveNotice)delete m.waveNotice[wave.id];
+   if(m.waveBlocked)delete m.waveBlocked[wave.id];
+   if(engaged(b))b.sceneVersion++;
+   app.dirty=true;
+  }
  }
 }
 function legacyReaction(app){
@@ -223,7 +315,8 @@ function legacyReaction(app){
 function tick(app,dt){
  const e=app.engine,b=e.b;
  if(app.done||['won','lost'].includes(b.phase))return;
- if(revised(b))updateWaves(app);
+ if(localRecovery(b))for(const u of heroes(b))rememberSupport(e,u);
+ if(revised(b))updateWaves(app,dt);
  else legacyReaction(app);
  if(focused(b)&&b.honroStage===42&&memory(b).step>0&&!fightTargets(b,'drum').length)storyline(app,'drum');
  if(focused(b)&&b.honroStage===45){
@@ -239,7 +332,7 @@ function tick(app,dt){
    else if(kind==='fight'&&(key==='watch'||revised(b)&&key==='campGuard'))escort(app,design(b).sites.guide,dt);
   }
   if(b.honroStage===45&&(focused(b)||['tether','turnback'].includes(key)))escort(app,design(b).sites.turnback,dt);
-  if(kind==='reach'&&inside||kind==='fight'&&!fightTargets(b,key).length&&(!revised(b)||!waitingWave(b,key))||
+  if(kind==='reach'&&reachSites(b,key).some(p=>heroes(b).some(u=>near(u,p,260)))||kind==='fight'&&!fightTargets(b,key).length&&(!revised(b)||!waitingWave(b,key))||
       kind==='pass'&&['rootsUpper','rootsLower'].some(lane=>!fightTargets(b,lane).length)||
       kind==='subdue'&&group(b,key).some(u=>alive(u)&&u.hp<=floorHP(u))&&
        (!row[3]||!fightTargets(b,row[3]).length&&!waitingWave(b,row[3])))advance(app);
@@ -264,12 +357,41 @@ function tick(app,dt){
  if(!app.dialogue)app.checkMission(e);
 }
 function finishedUse(b,key){return design(b).flow.slice(0,memory(b).step).some(row=>row[0]==='use'&&row[1]===key);}
+function passed(b,key){return design(b).flow.slice(0,memory(b).step).some(row=>row[1]===key);}
+function localRecovery(b){return engaged(b)&&[46,49,50].includes(b.honroStage);}
+function rememberSupport(e,u){
+ if(u.jumping||u.airborne||u.platformDrop||Math.abs(u.vy)>3)return;
+ const state=memory(e.b),previous=state.safeSupports?.[u.id];
+ if(previous?.x===u.x&&Math.abs(previous.y-u.y)<.5)return;
+ const floor=e.contactSurface(u.x,u.y-3,u.y+3);
+ if(!floor||Math.abs(G.HONRO_CORE.terrainSlopeAt(floor.t,u.x,floor.y))>1.35||floor.t.honroBlocker||floor.t.honroSeal)return;
+ const supports=state.safeSupports??={};
+ supports[u.id]={x:u.x,y:floor.y,support:floor.t.id};
+}
+function placeOnSupport(e,u,point,range,allowParty=false){
+ if(!point?.support||!Number.isFinite(point.x)||!Number.isFinite(point.y))return null;
+ const b=allowParty?{...e.b,units:e.b.units.filter(v=>v.side!==0||v===u)}:e.b;
+ return G.HonroTerrain.place(b,u,{x:point.x,y:point.y,maxDistance:range,clearance:5,step:16,flying:false,
+  accept:(x,y)=>Math.abs(y-point.y)<range*.6+6&&e.contactSurface(x,y-1,y+1)?.t.id===point.support});
+}
+function fallReturn(e,u){
+ if(!localRecovery(e.b)||u.side!==0||u.summoned)return undefined;
+ const last=memory(e.b).safeSupports?.[u.id];
+ const spawn=e.contactSurface(u.spawnX,u.spawnY-5,u.spawnY+5);
+ const start=spawn&&{x:u.spawnX,y:spawn.y,support:spawn.t.id};
+ return placeOnSupport(e,u,last,160)||placeOnSupport(e,u,last,160,true)||
+  placeOnSupport(e,u,start,160)||placeOnSupport(e,u,start,160,true);
+}
 function current(b,m){
  if(!active(b))return false;
  return design(b).links.some(l=>l.id===m.id)||phase(b)?.[0]==='use'&&m.id==='a5-step-'+memory(b).step;
 }
 function interaction(e,m){
  const link=design(e.b).links.find(l=>l.id===m.id);
+ if(link&&engaged(e.b)){
+  const support=e.contactSurface(link.to.x,link.to.y-4,link.to.y+4)?.t.id;
+  return {link,to:placeOnSupport(e,e.active,{...link.to,support},115)};
+ }
  const to=link&&[0,42,-42,84,-84,126,-126,168,-168,210,-210].map(dx=>{
   const x=link.to.x+dx,hit=G.HonroMapEngine.surfaceY(e.b.terrain,x,link.to.y);
   return hit&&Math.abs(hit.y-link.to.y)<48?{x,y:hit.y}:null;
@@ -279,16 +401,21 @@ function interaction(e,m){
 function eligibility(app,m){
  const e=app.engine,b=e.b,u=e.active,row=phase(b);
  if(!current(b,m))return {ok:false,reason:'앞선 목표를 먼저 진행하세요'};
- const {link,to}=interaction(e,m),required=row?.[3];
+ const link=design(b).links.find(l=>l.id===m.id),required=row?.[3];
  if(!near(u,m,link?145:215)||!e.grounded(u)||link&&Math.abs(u.y-link.y)>52)return {ok:false,reason:'표식과 같은 발판에 서세요'};
  if(link&&b.honroStage===46&&link.id==='a5-cross-2'&&!finishedUse(b,'stakeOne'))return {ok:false,reason:'서쪽 진목을 설치해 중앙 석단으로 건너세요'};
  if(link&&b.honroStage===46&&link.id==='a5-cross-6'&&row)return {ok:false,reason:'두 진목을 설치해 하강 밧줄을 여세요'};
  if(link&&b.honroStage===47&&link.id==='a5-cross-0'&&memory(b).field!=='shutdown')return {ok:false,reason:'담허로 진을 거둔 뒤 상층 비상 통로를 이용하세요'};
  if(link&&b.honroStage===49&&link.id==='a5-cross-6'&&row)return {ok:false,reason:'역행귀를 제압한 뒤 상층 진목길을 쓰세요'};
+ if(link&&engaged(b)&&b.honroStage===49&&link.id==='a5-cross-2'&&!passed(b,'lowerGuard'))return {ok:false,reason:'아래 징검길의 위협을 제압한 뒤 올라가세요'};
+ if(link&&engaged(b)&&b.honroStage===49&&link.id==='a5-cross-4'&&!passed(b,'midGuard'))return {ok:false,reason:'중층 돌계단의 사격조를 제압한 뒤 올라가세요'};
+ if(link&&engaged(b)&&b.honroStage===50&&link.id==='a5-cross-0'&&!passed(b,'saddle'))return {ok:false,reason:'낮은 석교를 건넌 뒤 이 돌계단을 이용하세요'};
+ if(link&&engaged(b)&&b.honroStage===50&&link.id==='a5-cross-2'&&!passed(b,'path'))return {ok:false,reason:'석교 끝의 문턱귀를 제압한 뒤 산문으로 올라가세요'};
  if(link&&u.moveLeft<150)return {ok:false,reason:'이동도 150 필요 · 다음 아군 턴에 건너세요'};
- if(link&&!to)return {ok:false,reason:'건너편 발판을 비워 주세요'};
+ if(link&&!interaction(e,m).to)return {ok:false,reason:'건너편 발판을 비워 주세요'};
  if(!link&&required&&u.cls!==required){const name=G.HONRO_CONTENT.hero[required].name;return {ok:false,reason:name+(required==='mage'?'로':'으로')+' 전환'};}
- return {ok:true,reason:m.label,routePriority:link&&Number(link.id.split('-').at(-1))%2===0?1:0};
+ if(!link&&contesting(b,row?.[1]).length)return {ok:false,reason:'진목 곁의 적을 밀어내거나 제압하세요'};
+ return {ok:true,reason:m.label,routePriority:link&&(engaged(b)||Number(link.id.split('-').at(-1))%2===0)?1:0};
 }
 function use(app,m){
  const e=app.engine,b=e.b,u=e.active,{link,to}=interaction(e,m);
@@ -297,6 +424,7 @@ function use(app,m){
   e.fx('ring',m.x,m.y-18,'#beb291',36);
   G.HonroObjectiveContributions?.interact(b,m.id,u);
   Object.assign(u,to,{vx:0,vy:0,airborne:false,jumping:false});delete u.platformDrop;delete u.moveTarget;delete u.groundContact;
+  if(localRecovery(b))rememberSupport(e,u);
   u.moveLeft-=150;
   app.scene.manual=false;app.scene.x=u.x;app.scene.y=u.y-120;
   e.fx('ring',u.x,u.y-18,'#beb291',42);
@@ -333,6 +461,7 @@ function setFlow(e,mode){
 function attach(e){
  if(!active(e.b))return;
  const b=e.b,m=memory(b);
+ if(localRecovery(b))for(const u of heroes(b))rememberSupport(e,u);
  if(!m.field&&b.honroStage===49)setFlow(e,'crossed');
  if(!m.field&&b.honroStage===48)setFlow(e,'unstable');
 }
@@ -345,5 +474,5 @@ function recordOutcome(app,won){
  if(!won||!active(b)||b.honroJourneyReplay)return;
  for(const flag of chapterFlags[b.honroStage-41])app.profile.honroFlags['act5.'+flag]=true;
 }
-G.HonroAct5={active,recordOutcome,state,failure,entry,tick,current,eligibility,use,attach,prepare,damageFloor};
+G.HonroAct5={active,recordOutcome,state,failure,entry,tick,current,eligibility,use,attach,prepare,damageFloor,wakeEligible,fallReturn,escortThreats};
 })(globalThis);

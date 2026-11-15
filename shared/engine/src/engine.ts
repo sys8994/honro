@@ -227,16 +227,23 @@ export class Engine {
     }
     refreshActivation() {
         const allies = (this.b as any).honroStage?this.b.units.filter(v=>!v.dead&&(v.side===0||(v as any).honroAlly)):this.actors(0);
+        const act5=(globalThis as any).HonroAct5;
         const wake = new Set<number>();
         for (const e of this.actors(1))
-            if (allies.some(p => Math.hypot(p.x - e.x, (p.y - e.y) * .72) < 1600) || e.aggroUntil >= this.b.round)
+            if ((act5?.wakeEligible(this.b,e,allies,1600)??allies.some(p => Math.hypot(p.x - e.x, (p.y - e.y) * .72) < 1600)) || e.aggroUntil >= this.b.round)
                 wake.add(e.group);
         for (const e of this.actors(1))
             if (wake.has(e.group)) {
                 e.awake = true;
             }
     }
-    combatEnemies() { const allies = (this.b as any).honroStage?this.b.units.filter(v=>!v.dead&&(v.side===0||(v as any).honroAlly)):this.actors(0); return this.actors(1).filter(e => !e.summoned && !e.honroObjectiveTarget && !e.honroMonsterState?.mergedInto && !e.honroMonsterState?.attachedTo && e.awake && (allies.some(p => Math.hypot(p.x - e.x, (p.y - e.y) * .7) < 2300) || e.aggroUntil >= this.b.round)); }
+    combatEnemies() {
+        const allies = (this.b as any).honroStage?this.b.units.filter(v=>!v.dead&&(v.side===0||(v as any).honroAlly)):this.actors(0);
+        const act5=(globalThis as any).HonroAct5;
+        return this.actors(1).filter(e => !e.summoned && !e.honroObjectiveTarget && !e.honroMonsterState?.mergedInto &&
+            !e.honroMonsterState?.attachedTo && e.awake && ((act5?.wakeEligible(this.b,e,allies,2300)??
+                allies.some(p => Math.hypot(p.x - e.x, (p.y - e.y) * .7) < 2300)) || e.aggroUntil >= this.b.round));
+    }
     setMoveTarget(x: number) { if (!this.canAct()||this.active?.meleeFollow==='ready')
         return false; const u = this.active!; u.moveTarget = clamp(x, 30, this.b.width - 30); return true; }
     cancelMovement() { for (const u of this.b.units)
@@ -1937,6 +1944,22 @@ export class Engine {
                 const contributor = Object.entries(u.damageBy).sort((a, b) => b[1] - a[1])[0];
                 this.rewardKill(u, contributor ? this.unit(contributor[0]) : undefined);
             }
+            return;
+        }
+        const act5Landing:Vec|null|undefined=(globalThis as any).HonroAct5?.fallReturn(this,u);
+        if(act5Landing!==undefined){
+            if(!act5Landing){
+                const hpBefore=u.hp;
+                u.hp=0;u.dead=true;
+                environmentalLoss(this.b,u,hpBefore);
+                this.clearDisabledActor(u);
+                this.message(`${u.name} · 안전하게 돌아올 발판을 찾지 못했다.`);
+                return;
+            }
+            Object.assign(u,act5Landing,{vx:0,vy:0,airborne:false,jumping:false,moving:0});
+            delete u.moveTarget;delete u.fallApexY;
+            this.fx('rune',u.x,u.y,'#c8bfac',65);
+            this.message(`${u.name} · 추락 피해 후 마지막 발판으로 복귀`);
             return;
         }
         let best: {

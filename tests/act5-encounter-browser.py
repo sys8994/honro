@@ -30,6 +30,13 @@ ACT = """({mode,key,actor})=>{
   const targets=group(key||row[1]).filter(u=>!u.dead&&u.hp>0);
   targets.forEach(strike);return targets.map(u=>[u.id,u.hp,!!u.dead]);
  }
+ if(mode==='clearContest'){
+  const contest=d.contest?.[key];
+  if(!contest)return;
+  const p=d.sites[key];
+  b.units.filter(u=>d.groups[contest.group].includes(u.id)&&!u.dead&&u.hp>0&&
+   Math.abs(u.x-p.x)<=contest.radius&&Math.abs(u.y-p.y)<=115).forEach(strike);
+ }
  if(mode==='occupy'){
   const u=actor?e.heroesAlive().find(v=>v.cls===actor):e.active;
   const point=d.sites[key||row[1]]||d.links.find(link=>link.id===key);
@@ -63,6 +70,11 @@ def finish_step(page, old):
     page.wait_for_function("step=>HonroApp.engine.b.honroState.act5.step>step", arg=old, timeout=8000)
     skip(page)
 
+def wait_for_wave(page, start, when):
+    expected=sum(w[-1] for w in start["waves"] if w[2]==when)
+    assert expected>0, (when,start["waves"])
+    page.wait_for_function("n=>HonroApp.engine.b.honroCounters.spawned===n",arg=expected,timeout=8000)
+
 def complete(page, chapter, alternative=False):
     page.evaluate(SETUP, chapter)
     skip(page)
@@ -84,6 +96,11 @@ def complete(page, chapter, alternative=False):
         kind,key,*details=row
         page.wait_for_function("HonroApp.canInput()")
         if kind=="reach":
+            if chapter==44 and not alternative and key=="pass":
+                assert act(page,"occupy","a5-cross-0")
+                before=page.evaluate("HonroApp.engine.active.y")
+                page.locator('[data-context-interact="a5-cross-0"]').click()
+                assert page.evaluate("HonroApp.engine.active.y") < before - 350
             assert act(page,"occupy",key)
         elif kind=="pass":
             assert act(page,"clear","rootsUpper" if alternative else "rootsLower")
@@ -92,11 +109,6 @@ def complete(page, chapter, alternative=False):
                 page.wait_for_function("""()=>{const b=HonroApp.engine.b;
                   return b.honroState.act5.shelteredGuide||b.units.find(u=>u.id==='a5-guide')?.x>840;
                 }""")
-            if chapter==44 and not alternative and key=="summit":
-                assert act(page,"occupy","a5-cross-0")
-                before=page.evaluate("HonroApp.engine.active.y")
-                page.locator('[data-context-interact="a5-cross-0"]').click()
-                assert page.evaluate("HonroApp.engine.active.y") < before - 350
             if kind=="fight":
                 page.wait_for_function("""key=>{const b=HonroApp.engine.b,d=b.honroMap.act5;
                   return !b.units.some(u=>u.honroAct5Reserve&&(d.required[key]||d.groups[key]).includes(u.id));
@@ -104,10 +116,11 @@ def complete(page, chapter, alternative=False):
             affected=act(page,"clear")
             if kind=="subdue":
                 assert affected and all(hp>0 and not dead for _,hp,dead in affected)
-                page.wait_for_function("HonroApp.engine.b.honroCounters.spawned===5")
+                wait_for_wave(page,start,"commander")
                 assert act(page,"state")["step"]==step
                 assert act(page,"clear","armorWave")
         elif kind=="use":
+            act(page,"clearContest",key)
             assert act(page,"occupy",key,details[1] if len(details)>1 else None)
             page.locator(f'[data-context-interact="a5-step-{step}"]').click()
         elif kind=="escort":
@@ -122,7 +135,7 @@ def complete(page, chapter, alternative=False):
                     skip(page)
                 act(page,"hold")
                 if not alternative:
-                    page.wait_for_function("HonroApp.engine.b.honroCounters.spawned===3")
+                    wait_for_wave(page,start,"drum")
             act(page,"escort")
         elif kind=="hold":
             assert act(page,"occupy",key)
@@ -134,7 +147,7 @@ def complete(page, chapter, alternative=False):
         if kind=="escort":
             assert page.evaluate("HonroApp.engine.b.honroState.act5.evacuated.length")==(1 if chapter==41 else 3)
         if chapter==45 and key=="bierApproach":
-            page.wait_for_function("HonroApp.engine.b.honroCounters.spawned===5")
+            wait_for_wave(page,start,"reach")
             page.evaluate("HonroApp.dirty=true;HonroApp.flushBattleSave()")
             saved=act(page,"state")
             page.reload(wait_until="domcontentloaded")

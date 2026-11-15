@@ -72,6 +72,7 @@ function rule(b,u,peers){
  if(!enemy(u)||bespoke(u)||u.boss||u.honroMidboss||u.honroFinalBoss||currentPattern(u))return;
  const base=kind(u),pattern=base==='possessedArcher'&&u.elite?'sniper':kinds[base];
  if(!pattern||u.id.startsWith('resident-spirit')||base==='warden'&&!onSafeGround(b,u))return;
+ if(b.honroAct5===1&&b.honroStage>=46&&strong.has(pattern)&&!onSafeGround(b,u))return;
  if(strong.has(pattern)&&peers.some(v=>v!==u&&enemy(v)&&near(u,v)&&strong.has(currentPattern(v))))return;
  if(pattern==='HSH02'||pattern==='HWD02'){
   if(!u.loadout?.includes(pattern))return;
