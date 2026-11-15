@@ -15,6 +15,9 @@ export async function terrainPathOptimization() {
         if (!entry) continue;
         const raw = JSON.stringify(asset.vector);
         if (sha(raw) !== entry.original) throw Error('Terrain art changed before optimization: '+asset.id);
+        // Geometry hidden by the Act 3 strip mapping may become visible after a route edit.
+        if (entry.contactMapping && sha(JSON.stringify(asset.params?.contactMapping ?? null)) !== entry.contactMapping)
+          throw Error('Terrain contact mapping changed before optimization: '+asset.id);
         const vector = structuredClone(asset.vector);
         for (const [path, key, value] of entry.paths) {
           const node = path.reduce((value, part) => value?.[part], vector);
