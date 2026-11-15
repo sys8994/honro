@@ -35,7 +35,7 @@ function finale(app){const e=app.engine,b=e.b,hs=b.honroState,sodan=e.unit('boss
 }
 function reinforceHold(app,boundary){
  const e=app.engine,b=e.b,hs=b.honroState,st=app.stage;
- if(!app.actorBoundary||b.side!==0||st.id===10||hs.lastHabitatRound===b.round)return;
+ if(!app.actorBoundary||b.side!==0||st.id===10||b.honroAct1SiteRevision===1||hs.lastHabitatRound===b.round)return;
  const objective=G.HonroObjectives.state(b,st);
  const holding=st.objective==='defend'||objective.objectiveReady&&!objective.complete&&objective.settleRounds>0;
  if(!holding||objective.complete)return;

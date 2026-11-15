@@ -47,7 +47,7 @@ Scene.prototype.landmark=function(c,l){
  else nativeLandmark.call(this,c,l);
 };
 const terrain=Scene.prototype.terrain;
-Scene.prototype.terrain=function(c,t){if(!t.honroElementCollision)terrain.call(this,c,t);};
+Scene.prototype.terrain=function(c,t){if(!t.honroElementCollision&&!t.honroAct1SitePainted)terrain.call(this,c,t);};
 // Terrain-face assets share the ordinary asset painter, with two canonical
 // clips: the live solid and an inset of its actual walking rim.
 const faceClips=new WeakMap();

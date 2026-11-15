@@ -27,6 +27,14 @@ function interactionTarget(b,m){
  const u=b.units?.find(u=>u.id===m.target);
  return u&&!u.dead&&u.hp>0&&!u.honroResolved&&Number.isFinite(u.x)&&Number.isFinite(u.y)?u:null;
 }
+function rescueGuards(b,m){
+ if(b?.honroAct1SiteRevision!==1||b.honroStage!==7||!m?.rescueGuards?.length)return [];
+ const target=interactionTarget(b,m);
+ if(!target)return [];
+ return b.units.filter(u=>m.rescueGuards.includes(u.id)&&u.side===1&&!u.dead&&u.hp>0&&!u.eaterCapturedBy&&
+  !u.honroSubdued&&!u.stun&&u.stunnedRound!==b.round&&(u.stunUntil||0)<=b.round&&
+  Math.abs(u.y-target.y)<=190&&Math.abs(u.x-target.x)<=680);
+}
 function rawState(b,st){
  if(b.honroCustom)return G.HonroAuthored.objectiveState(b);
  if(G.HonroAct2?.active(b))return G.HonroAct2.state(b);
@@ -36,7 +44,10 @@ function rawState(b,st){
  if(obj&&!obj.dead)add('objective',obj.id,obj.x,obj.y-obj.h,st.objective==='rescue'&&!hs.rescued?'부상자 운반대 · 가까이 이동':`${obj.name} · 보호`,{unitId:obj.id});
  const binding=b.honroNarrativeRevision===1&&st.id===10&&G.HonroQuestTargets.records(b).find(t=>t.id==='sodan-binding');if(binding&&!hs.sodanCoop)add('binding',binding.id,binding.x+binding.w/2,binding.y,'바깥 주박 · '+durability(binding),{done:!!binding.broken,box:binding});
  if(boss&&!boss.dead&&(!binding||hs.sodanCoop))add('boss',boss.id,boss.x,boss.y-boss.h,st.id===10?(hs.sodanCoop?'소단 · 혼매듭 의식 보호':'소단의 주박 · 비살상 제압'):'빈 상여 · 제압',{unitId:boss.id});for(const u of b.units.filter(u=>u.honroMidboss&&!u.dead&&u.id!=='boss'))add('midboss',u.id,u.x,u.y-u.h,`${u.name} · 중간 우두머리`,{unitId:u.id});
- for(const m of markers){if(m.collected)continue;if(m.type==='ledger')add('interact',m.id,m.x,m.y,'홍만의 장부 · 상호작용');if(m.type==='receiver')add('interact',m.id,m.x,m.y,`${m.label} · ${m.action==='ritual'?(hs.ritual?.active?'의식 유지 중 · 이탈 시 해제':'담허로 의식 시작'):'받이진 설치'}`);if(m.type==='resident'){const target=interactionTarget(b,m);if(target)add('interact',m.id,target.x,target.y-(target===m?0:target.h||0),`${m.label} · 구조`,target===m?{}:{unitId:target.id});}}
+ for(const m of markers){if(m.collected)continue;if(m.type==='ledger')add('interact',m.id,m.x,m.y,'홍만의 장부 · 상호작용');if(m.type==='receiver')add('interact',m.id,m.x,m.y,`${m.label} · ${m.action==='ritual'?(hs.ritual?.active?'의식 유지 중 · 이탈 시 해제':'담허로 의식 시작'):'받이진 설치'}`);if(m.type==='resident'){
+  const target=interactionTarget(b,m),guards=rescueGuards(b,m);
+  if(target)add('interact',m.id,target.x,target.y-(target===m?0:target.h||0),`${m.label} · ${guards.length?'곁의 차단병 '+guards.length+'기 제압':'구조'}`,target===m?{}:{unitId:target.id});
+ }}
  // The saved/live map owns the exit. Content dimensions can belong to an older map.
  const exit=markers.find(m=>m.type==='exit'),exitX=(st.objective==='overwatch'?b.honroEscortGoalX:undefined)??exit?.x??b.honroMapAnchors?.exit?.x??b.width-(st.objective==='overwatch'?290:st.objective==='rescue'?130:180);
  if(['arrival','rescue','overwatch'].includes(st.objective))add('exit',exit?.id||'mission-exit',exitX,exit?.y??G.HonroWorld.top(b,exitX,obj?.y),st.objective==='overwatch'?'상여 도착 지점':'도착 지점');
@@ -44,7 +55,7 @@ function rawState(b,st){
  switch(st.objective){
   case'arrival':complete=heroes.some(u=>u.x>=exitX-120);summary='연목 나루 방향 · 고개 끝까지 이동';kinds=['exit'];break;
   case'overwatch':complete=!!obj&&obj.x>=exitX;summary=`상여 엄호 · 적 ${foes.length}명${pending?' / 뒤따르는 기척 있음':''}`;kinds=['objective','exit'];break;
-  case'ledger':complete=!!hs.ledger;summary=hs.ledger?'홍만의 장부 확보 · 철수 준비':b.units.some(u=>u.honroMidboss&&!u.dead)?'나루장승을 경계하며 움막의 장부 찾기':'나루 움막의 장부를 찾기';kinds=hs.ledger?[]:['interact','midboss'];break;
+  case'ledger':complete=!!hs.ledger;summary=hs.ledger?'홍만의 장부 확보 · 철수 준비':b.units.some(u=>u.honroMidboss&&!u.dead)?'나루장승을 경계하며 움막의 장부 찾기':'나루 움막의 장부를 찾기';kinds=hs.ledger?[]:b.honroAct1SiteRevision===1?['interact']:['interact','midboss'];break;
   case'defend':{const rounds=Math.max(1,(st.holdRounds||6)-1);complete=b.round>=rounds+1;summary=`피란민 통로 보호 · ${Math.min(rounds,b.round-1)}/${rounds}턴`;kinds=['objective'];break;}
   case'seals':complete=!left.length;summary=left.length?(st.id===5?(hs.ritual?.active?'물틈이 열렸다 · 고리쇠 내구도 '+durability(left[0])+' · 설오로 사격':'담허로 받이진에 접근 · 의식 한 번 시작'):'받이진을 지키며 절벽 틈 고리쇠 파괴'):'고리쇠 파괴 완료 · 물길 안정화';kinds=left.length?(st.id===5&&!hs.ritual?.active?['interact']:['seal']):[];break;
   case'rescue':{const mid=b.units.find(u=>u.honroMidboss&&!u.dead);complete=!!hs.rescued&&!!obj&&obj.x>exitX-140&&!mid;summary=mid?'부러진 교각귀를 제압해 호송로 확보':hs.rescued?'부상자 운반대를 쉼터까지 호송':'부상자 운반대에 접근';kinds=mid?['midboss']:hs.rescued?['objective','exit']:['objective'];break;}
@@ -93,7 +104,10 @@ const briefings={
 function lines(app){const fallback=app.engine.heroesAlive()[0]?.name||'설오';return(briefings[app.stage.id]||[]).map(([who,text,meta])=>[app.canSpeak(who)?who:fallback,text,meta]);}
 const guides={1:'고개 끝의 도착 지점으로 이동하세요. 적을 모두 처치할 필요는 없습니다.',2:'상여가 도착 지점에 닿도록 앞길을 엄호하세요. 길에서 떨어진 적은 남아도 됩니다.',3:'장부 곁에서 장부를 확인하세요. 확보 후 한 턴 동안 일행을 지키며 철수합니다.',4:'피란민이 빠져나가는 여덟 턴 동안 문을 지키세요. 남은 적 수와 관계없이 대피가 끝나면 완료됩니다.',5:'담허로 받이진 안에서 의식을 한 번 시작하세요. 다음 턴부터는 그 자리에서 공격할 수 있습니다. 이동·도약으로 진을 벗어나면 물틈이 닫힙니다. 설오는 받이진 오른쪽의 돌선반으로 도약해 올라가 고리쇠를 겨누세요. 조준선의 첫 충돌점이 적이면 먼저 제압하고, 바위면 선반 위 위치나 각도를 조정하세요. 고리쇠는 여러 번 맞혀 내구도를 모두 깎아야 합니다. 부순 뒤 한 턴 동안 진을 안정시킵니다.',6:'운반대에 접근하고 교각귀를 제압한 뒤 도착 지점까지 호송하세요.',7:'주민 곁에서 구조하세요. 바닥으로 떨어졌다면 맨 왼쪽의 낮고 넓은 뿌리로 도약해 올라간 뒤 아랫가지로 한 번 더 도약하세요. 속빈 줄기에서는 왼쪽 끝을 벗어나지 말고 조금 안쪽에서 방향키를 놓고 제자리 도약하세요. 머리 위 비스듬한 뿌리에 내려앉은 뒤 오른쪽 위로 걸으면 윗사당에 닿습니다. 세 사람을 구출한 뒤 두 턴 동안 주민들을 지키며 대피를 돕습니다.',8:'결박을 끊고 빈 상여 본체를 제압하세요. 한 턴 동안 원혼을 수습하면 주변 적이 남아도 완료됩니다.',9:'두 받이진을 설치한 뒤 두 턴 동안 유지하세요. 진을 준비하고 생존하는 것이 목표입니다.',10:'두 받이진을 활성화하고 ‘소단의 주박’으로 표시된 대상을 공격하세요. 협력 전의 공격은 소단을 쓰러뜨리지 않고 주박을 약화시킵니다. 협력이 시작되면 소단을 향한 공격을 멈추세요. 소단은 혼매듭을 붙들어 이동·공격할 수 없습니다. 밀려드는 적을 막으며 최소 여섯 차례의 적 턴이 끝날 때까지 소단을 보호하세요. 여섯 턴 뒤 동행 셋을 동쪽 외문 너머로 이동시키세요. 소단은 스스로 따라옵니다. 네 사람이 모두 문을 통과해야 완료됩니다.'};
 // Saved historical/custom maps may intentionally lack the new recovery root.
-function guideFor(app){const b=app.engine?.b;if(G.HonroStage5Waterfall?.active(b))return G.HonroStage5Waterfall.guide;let text=guides[app.stage.id];if(b?.honroNarrativeRevision===1&&app.stage.id===8)return '상여채를 붙든 결박을 끊고 빈 상여를 제압하세요. 주변 적은 남아도 됩니다.';if(b?.honroNarrativeRevision===1&&app.stage.id===9)return '두 받이진을 설치해 소단이 붙든 힘을 나눠 받으세요.';if(b?.honroNarrativeRevision===1&&app.stage.id===10)return '사람과 떨어진 바깥 주박을 공격하세요. 소단이 맡긴 뒤에는 양쪽 전각에서 오는 적을 막아 여섯 턴 동안 의식을 지키세요. 그 뒤 동행 셋을 동쪽 외문 너머로 이동시키세요. 소단은 스스로 따라옵니다. 네 사람이 모두 문을 통과해야 완료됩니다.';if(app.stage.id===7&&b&&!G.HonroQuestTargets.records(b).some(t=>t.id==='root-reentry'&&!t.broken))text=text.replace('바닥으로 떨어졌다면 맨 왼쪽의 낮고 넓은 뿌리로 도약해 올라간 뒤 아랫가지로 한 번 더 도약하세요. ','');return text;}
+function guideFor(app){const b=app.engine?.b;if(G.HonroStage5Waterfall?.active(b))return G.HonroStage5Waterfall.guide;let text=guides[app.stage.id];
+ if(b?.honroAct1SiteRevision===1&&app.stage.id===3)return '두 잔교를 건너 오른쪽 홍만의 움막에서 장부를 확인하세요. 확보한 뒤 적 행동이 두 번 끝날 때까지 일행을 지키세요.';
+ if(b?.honroAct1SiteRevision===1&&app.stage.id===7)return '아랫골목, 중간 마당과 위쪽 당집에서 주민을 한 명씩 구조하세요. 가까운 적을 제압한 뒤 주민에게 다가가세요. 표시된 돌계단을 이용할 수 있습니다. 모두 구한 뒤 적 행동이 두 번 끝날 때까지 지키세요.';
+if(b?.honroNarrativeRevision===1&&app.stage.id===8)return '상여채를 붙든 결박을 끊고 빈 상여를 제압하세요. 주변 적은 남아도 됩니다.';if(b?.honroNarrativeRevision===1&&app.stage.id===9)return '두 받이진을 설치해 소단이 붙든 힘을 나눠 받으세요.';if(b?.honroNarrativeRevision===1&&app.stage.id===10)return '사람과 떨어진 바깥 주박을 공격하세요. 소단이 맡긴 뒤에는 양쪽 전각에서 오는 적을 막아 여섯 턴 동안 의식을 지키세요. 그 뒤 동행 셋을 동쪽 외문 너머로 이동시키세요. 소단은 스스로 따라옵니다. 네 사람이 모두 문을 통과해야 완료됩니다.';if(app.stage.id===7&&b&&!G.HonroQuestTargets.records(b).some(t=>t.id==='root-reentry'&&!t.broken))text=text.replace('바닥으로 떨어졌다면 맨 왼쪽의 낮고 넓은 뿌리로 도약해 올라간 뒤 아랫가지로 한 번 더 도약하세요. ','');return text;}
 const guideFocus=['exit','objective','interact','objective','interact','objective','interact','seal','interact','interact'];
 function entry(app,options={}){G.HonroStoryFraming?.authorEntry(app.stage);const short=state(app.engine.b,app.stage).currentInstruction;
  if(app.stage.act>=2){const rows=(app.stage.act===2?G.HonroAct2:G.HonroAct3).entry(app,options),preparation=G.HonroStakeCrossing?.preparationLines(app.engine.b)||[];rows.splice(Math.max(0,rows.length-1),0,...preparation);return rows.map(row=>row[2]?.kind==='guide'?[row[0],short||row[1],row[2]]:row);}
@@ -212,5 +226,5 @@ function minimap(app,c,sx,sy){if(app.training)return;const b=app.engine.b,guide=
   if(marked.has(key))continue;
   marked.add(key);c.beginPath();c.arc(x,y,u.elite||u.boss?4:3,0,Math.PI*2);c.stroke();
  }if(app.scene?.storyFrame?.camera.intent==='objective'){c.lineWidth=2;for(const box of app.scene.storyFrameReport?.boxes||[]){c.beginPath();c.arc((box.x+box.w/2)*sx,(box.y+box.h)*sy,7,0,Math.PI*2);c.stroke();}}c.restore();}
-G.HonroObjectives={interactionTarget,state,failure,lines,entry,help,focus,refresh,draw,minimap,briefings,markerLift,settlement,updateSettlement};
+G.HonroObjectives={interactionTarget,rescueGuards,state,failure,lines,entry,help,focus,refresh,draw,minimap,briefings,markerLift,settlement,updateSettlement};
 })(globalThis);

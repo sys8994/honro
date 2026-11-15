@@ -4,13 +4,14 @@ const spawnCount=a=>!a?0:a.type==='multi'?(a.actions||[]).reduce((n,a)=>n+spawnC
 // Applied only to newly compiled campaign battles. Saved battles keep their population and HP.
 function balance(b){
  if(b.honroCustom||b.honroEncounterRevision||b.honroStage>10)return;
+ const site=b.honroAct1SiteRevision===1;
  const originals=b.units.filter(u=>u.side===1&&!u.honroObjectiveTarget&&!u.boss&&!u.honroMidboss&&!u.honroFinalBoss),added=[];
  for(const u of originals){
   u.combatBaseHp=(u.combatBaseHp??u.maxHp/(G.HONRO_CORE.DIFFICULTIES[b.difficulty]?.hp||1))*.6;
   u.hp=u.maxHp=Math.max(1,Math.round(u.maxHp*.6));
   // Stage5's explicit candidate owns its final twelve positions. Keep the
   // shared HP/difficulty rounding and finite-wave doubling, without clones.
-  if(b.honroStage===5&&b.honroStage5PositioningRevision===1)continue;
+  if(site||b.honroStage===5&&b.honroStage5PositioningRevision===1)continue;
   const v=structuredClone(u);v.id=u.id+'-cluster';v.x+=u.r*2+24;
   const authored=[1,2,3,4,6,7,10].includes(b.honroStage)&&b.honroMap?.positioning?.clusterPositions?.[v.id];if(authored)Object.assign(v,authored);
   v.spawnX=v.x;v.damageBy={};v.xpGranted=0;
@@ -21,7 +22,7 @@ function balance(b){
  }
  b.units.push(...added);
  const double=a=>{if(!a)return;if(a.type==='multi')a.actions.forEach(double);else if(combat(a))a.n=(a.n||1)*2;};
- for(const ev of b.honroEvents||[])double(ev.action);
+ if(!site)for(const ev of b.honroEvents||[])double(ev.action);
  b.honroEncounterRevision=1;
 }
 function configure(b){
@@ -46,6 +47,7 @@ function configure(b){
   if(b.honroStage>=4)for(const ev of b.honroEvents){const trim=a=>{if(!a)return;if(a.type==='spawn')a.n=Math.min(a.n,4);if(a.type==='multi')a.actions.forEach(trim);};trim(ev.action);}
 }
 function matches(w,s){
+  if(w.ledger&&!s.ledger||w.rescues&&(s.rescuedCount||0)<w.rescues)return false;
   if(w.objectiveDone&&!s.objectives?.[w.objectiveDone])return false;
   if(w.region&&!(s.heroes||[]).some(u=>G.HonroAuthored.inside(u,w.region)))return false;
   if(w.after&&!s.flags['event:'+w.after])return false;
@@ -76,7 +78,7 @@ function update(app,dt,state){
     const key='event:'+ev.id;if(hs.flags[key])continue;
     if(ev.actor&&!b.units.some(u=>u.id===ev.actor&&!u.dead&&u.hp>0)){hs.flags[key]='cancelled:actor-unavailable';continue;}
     const enemies=e.alive(1).length;
-    if(!matches(ev.when,{...state,objectives:hs.act3?.done,heroes:e.heroesAlive(),enemies,round:b.round,flags:hs.flags,terrain:G.HonroQuestTargets.records(b),hold:hs.hold,rescued:hs.rescued}))continue;
+    if(!matches(ev.when,{...state,objectives:hs.act3?.done,heroes:e.heroesAlive(),enemies,round:b.round,flags:hs.flags,terrain:G.HonroQuestTargets.records(b),hold:hs.hold,rescued:hs.rescued,ledger:hs.ledger,rescuedCount:hs.rescuedCount}))continue;
     if(!hs.pendingEvents.includes(ev.id)){hs.pendingEvents.push(ev.id);hs.eventActors??={};hs.eventActors[ev.id]={id:app.actorBoundary||b.active,round:b.round};if(ev.warning)app.event(ev.warning);app.dirty=true;}
   }
   flush(app);
