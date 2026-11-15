@@ -17,7 +17,7 @@ const wave=(key,when,text,entry,fallback)=>({key,when,text,entry,fallback});
 export const lateEncounters = {
   46: {
     encounterVersion:6, rounds:[15,18], active:6, hits:2.08, incoming:.105, eliteHits:4.5,
-    required:{rimGuard:[169,218,241],stakeTwo:[581,708],eastGuard:[841,876,940,951]},
+    required:{rimGuard:[169,218,241],stakeTwo:[581,708],eastGuard:[841,876,921,940]},
     sites:{rimGuard:[219,387],eastGuard:[896,487]},
     contest:{stakeOne:{group:'stakeOne',radius:37},stakeTwo:{group:'stakeTwo',radius:37}},
     flow:[
