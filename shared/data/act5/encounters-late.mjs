@@ -198,11 +198,12 @@ export const lateEncounters = {
   50: {
     encounterVersion:6,
     rounds:[18,20], active:7, hits:2.22, incoming:.111, eliteHits:5.1,
-    required:{firstGuard:[203,276,310,366],path:[847,912],gateGuard:[845,894,940]},
-    sites:{firstGuard:[337,330],saddle:[593,410],bridge:[715,367],path:[875,304],gateGuard:[901,144]},
+    required:{firstGuard:[203,276,310,366],path:[847,912]},
+    sites:{firstGuard:[337,330],saddle:[593,410],bridge:[715,367],path:[875,304],gateGuard:[918,144]},
     contest:{
       bridge:{group:'bridgeWatch',radius:76,height:23,text:'석교 건너편 사수의 사선을 끊고 건너세요'},
       stair:{group:'templeSteps',radius:82,height:27,text:'중간 돌계단의 사수를 밀어내거나 제압하세요'},
+      gateGuard:{group:'gateGuard',radius:54,height:23,text:'문턱을 막는 수비혼을 밀어내고 산문 앞에 서세요'},
     },
     flow:[
       fight('firstGuard','첫 조망터로 오르는 능선의 악귀 제압'),
@@ -211,7 +212,7 @@ export const lateEncounters = {
       ['secure','bridge','사선을 끊고 낮은 석교 건너기'],
       fight('path','문턱귀의 돌진을 피한 뒤 빈틈을 노리기'),
       ['secure','stair','돌계단 위 회랑 입구 확보'],
-      fight('gateGuard','산문 앞 회랑의 수비조 제압'),
+      ['secure','gateGuard','산문 회랑의 수비를 뚫고 문턱에 도달'],
     ],
     packs:[
       pack('westRise',['firstGuard'],190,147,[

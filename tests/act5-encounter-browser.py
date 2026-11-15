@@ -165,6 +165,10 @@ def complete(page, chapter, alternative=False):
         else:
             raise AssertionError(row)
         finish_step(page, step)
+        if chapter==50 and key in ("saddle","bridge"):
+            wave_id=next(w[0] for w in start["waves"] if w[1]==key)
+            page.wait_for_function("id=>HonroApp.engine.b.honroState.act5.waves?.[id]==='arrived'",
+                                   arg=wave_id,timeout=8000)
         if kind=="escort":
             assert page.evaluate("HonroApp.engine.b.honroState.act5.evacuated.length")==(1 if chapter==41 else 3)
         if chapter==45 and key=="bierApproach":
@@ -189,8 +193,6 @@ def complete(page, chapter, alternative=False):
     if chapter==48:
         # This staged sequence can finish before an optional entrance clears.
         assert 0<start["requiredWaveUnits"]<=end["counts"]["spawned"]<=expected,(chapter,end)
-    elif chapter==50:
-        assert 0<end["counts"]["spawned"]<=expected,(chapter,end)
     else:
         assert end["counts"]["spawned"]==expected,(chapter,end)
     assert end["live"]>0,(chapter,end)
