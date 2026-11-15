@@ -71,8 +71,14 @@ S.unit=function(c,u,active,charge=0){
  }
  return drawUnit.call(this,c,u,active,charge);
 };
-S.unitBody=function(c,u,charge){if(!u.honroAct2&&!u.honroSpirit)return body.call(this,c,u,charge);
+S.unitBody=function(c,u,charge){
  const kind=u.honroType;
+ // A clockwork lantern silhouette would misidentify the quarry pick cluster and waterwheel.
+ const device=u.honroMonsterSpecies==='device'&&['picks','waterwheel'].includes(kind);
+ if(!device&&u.honroMonsterSpecies&&G.HonroMonsterVisual.handoffBody(this,c,u))return;
+ if(!u.honroAct2&&!u.honroSpirit)return body.call(this,c,u,charge);
+ const braced=device&&u.honroMonsterWindup;
+ const recovering=device&&u.honroMonsterState?.recovery;
  c.save();c.translate(u.x,u.y);c.scale((u.facing||1)*u.h/110,u.h/110);const t=this.time||0;
  const attack=Math.max(0,Math.min(1,u.anim||0)),step=u.moving?Math.sin(t*10)*3:0;
  if(kind==='keeper'){
@@ -96,9 +102,9 @@ S.unitBody=function(c,u,charge){if(!u.honroAct2&&!u.honroSpirit)return body.call
   paint(c,paths.cart,'#766950','#b2a384',1.8);paint(c,paths.cartSide,'#3e4942',null);paint(c,paths.cartBrace,'#343e39','#9b9d83',1.2);paint(c,paths.cartRim,'#8a7a59');paint(c,paths.cartPlanks,null,'#342d28',1.4);paint(c,paths.cartIron,'#536267','#9a9b8b',.8);paint(c,paths.cartOre,'#82857b','#3b4848',.8);
   paint(c,paths.wheel,'#3e4a43','#a2a58d',2);paint(c,paths.cartSpokes,null,'#a39777',1.8);paint(c,paths.wheelHub,'#9d9571');
  }else if(kind==='picks'){
-  for(const [x,y,a] of [[-27,-3,-.5],[23,-6,.6],[0,-14,.1]]){c.save();c.translate(x,y);c.rotate(a+Math.sin(t*2+x)*.05);paint(c,paths.pick,'#7d6b50','#b8ac8b',1.4);paint(c,paths.pickHead,'#536760','#aeb5a1',1.7);paint(c,paths.pickBlade,'#a2ad98',null);c.restore();}
+  for(const [x,y,a] of [[-27,-3,-.5],[23,-6,.6],[0,-14,.1]]){c.save();c.translate(x,y);c.rotate(a+Math.sin(t*2+x)*.05+(braced?-.28:recovering?.21:device?attack*.22:0));paint(c,paths.pick,'#7d6b50','#b8ac8b',1.4);paint(c,paths.pickHead,'#536760','#aeb5a1',1.7);paint(c,paths.pickBlade,'#a2ad98',null);c.restore();}
  }else if(kind==='waterwheel'){
-  c.save();c.translate(0,-55);c.rotate(t*.24);
+  c.save();c.translate(0,-55);c.rotate(braced?.56:recovering?.96:t*.24+(device?attack*.58:0));
   for(let j=0;j<8;j++){c.save();c.rotate(j*Math.PI/4);paint(c,paths.wheelSpoke,j%2?'#6b634d':'#847657','#192e30',1.8);paint(c,paths.wheelPaddle,j%2?'#576254':'#7b7d62','#a2a489',1.7);c.restore();}
   c.strokeStyle='#172d30';c.lineWidth=12;c.beginPath();c.arc(0,0,38,0,Math.PI*2);c.stroke();c.strokeStyle='#9d9470';c.lineWidth=7;c.stroke();
   paint(c,paths.wheelCenter,'#556359','#b4ac85',2);c.restore();

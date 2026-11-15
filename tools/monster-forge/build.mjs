@@ -10,11 +10,14 @@ const xml=s=>s.replaceAll('&','&amp;').replaceAll('"','&quot;').replaceAll('<','
 async function writeChanged(file,data){try{if(await readFile(file,'utf8')===data)return;}catch(error){if(error.code!=='ENOENT')throw error;}await writeFile(file,data);}
 export async function buildMonsters(){
  await mkdir(dir,{recursive:true});await mkdir(out,{recursive:true});
- const sourceFiles=['tools/monster-forge/recipes.mjs','tools/monster-forge/species.mjs','tools/monster-forge/act3-species.mjs','tools/monster-forge/redesign.mjs','tools/monster-forge/recommended-redesign.mjs','tools/monster-forge/animal-restoration.mjs','tools/monster-forge/material-depth.mjs'];
- const inputs=await Promise.all(sourceFiles.map(async name=>[name,await readFile(path.join(root,name),'utf8')]));
+ const sourceFiles=['tools/monster-forge/recipes.mjs','tools/monster-forge/species.mjs','tools/monster-forge/act3-species.mjs','tools/monster-forge/redesign.mjs','tools/monster-forge/recommended-redesign.mjs','tools/monster-forge/animal-restoration.mjs','tools/monster-forge/material-depth.mjs','tools/monster-forge/monster-rework-art.json'];
+ const inputs=await Promise.all(sourceFiles.map(async name=>[name,(await readFile(path.join(root,name),'utf8')).replaceAll('\r\n','\n')]));
  const sourceSha256=sha(inputs.map(([name,text])=>name+'\n'+text).join('\n')),rows=[];
+ const handoff=JSON.parse(inputs.at(-1)[1]);
+ const catalog=[...monsters,...handoff.assets];
+ if(new Set(catalog.map(a=>a.id)).size!==catalog.length)throw Error('Duplicate monster asset ID');
  const baseline=JSON.parse(await readFile(path.join(root,'tests/fixtures/monster-baseline.json'),'utf8'));
- for(const a of monsters){
+ for(const a of catalog){
   const ids=new Set();for(const p of a.parts){if(ids.has(p.id)||p.parent&&!ids.has(p.parent))throw Error(`${a.id}: parts must be unique and parent-first: ${p.id}`);ids.add(p.id);}
   for(const clip of Object.values(a.clips))for(const t of clip.tracks){if(!ids.has(t.part)||!['x','y','rotate','scaleX','scaleY'].includes(t.channel)||t.keys[0][0]!==0||t.keys.at(-1)[0]!==1)throw Error(`${a.id}: invalid track`);for(let i=1;i<t.keys.length;i++)if(t.keys[i][0]<=t.keys[i-1][0])throw Error('Unordered keys');}
   const paths=a.parts.flatMap(p=>p.paths);for(const v of paths){if(/NaN|Infinity|[^MLCQZmlcqz\d.,\s+-]/.test(v.d)||v.fill&&!a.palette[v.fill]||v.stroke&&!a.palette[v.stroke])throw Error(`${a.id}: invalid path or palette`);}
@@ -23,16 +26,21 @@ export async function buildMonsters(){
   const counts=paths.map(p=>count(p.d)),colors=[...new Set(paths.flatMap(p=>[p.fill,p.stroke]).filter(Boolean))];
   const anchors=counts.reduce((s,c)=>s+c.anchors,0),original=baseline.assets[a.id]?.anchors,ratio=anchors/original;
   if(a.budget==='catalog-redesign'){if(anchors>350||paths.length>90||colors.length>16)throw Error(`${a.id}: redesign exceeds 350-anchor/90-path/16-color ceiling`);}
+  else if(a.budget==='monster-handoff'){
+   // Permit retained parts for the two reference traces after documented visual inspection.
+   const limit={geuseundae:420,muyeo:1100}[a.id]??350;
+   if(anchors>limit||paths.length>90||colors.length>16)throw Error(a.id+': handoff drawing exceeds its measured budget');
+  }
   else if(original){if(ratio<2.85||ratio>3.15)throw Error(`${a.id}: ${anchors}/${original} = ${ratio.toFixed(3)}; allowed original-anchor ratio is 2.85–3.15`);}
   else if(a.budget!=='act3-authored'||anchors>350||paths.length>90||colors.length>16)throw Error(`${a.id}: new Act 3 artwork exceeds its explicit 350-anchor/90-path/16-color budget`);
   const raw=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="${a.viewBox.join(' ')}" role="img"><title>${a.name}</title>\n${a.parts.map(p=>`<g id="${p.id}" stroke-linejoin="round" stroke-linecap="round">\n${p.paths.map(v=>`<path d="${xml(v.d)}" fill="${v.fill?a.palette[v.fill]:'none'}" stroke="${v.stroke?a.palette[v.stroke]:'none'}" stroke-width="${v.width}" data-lod="${v.lod}"/>`).join('\n')}\n</g>`).join('\n')}\n</svg>\n`;
   const svg=raw.replaceAll(/\n\s*/g,''),rig=JSON.stringify({version:1,baseHeight:a.baseHeight,viewBox:a.viewBox,parts:a.parts.map(({paths,...p})=>p)},null,2)+'\n',anim=JSON.stringify(a.clips,null,2)+'\n';
   await writeChanged(path.join(dir,a.id+'.svg'),svg);await writeChanged(path.join(dir,a.id+'.rig.json'),rig);await writeChanged(path.join(dir,a.id+'.animation.json'),anim);
-  rows.push({id:a.id,name:a.name,budget:a.budget,parts:a.parts.length,paths:paths.length,anchors,originalAnchors:original,anchorRatio:ratio,controls:counts.reduce((s,c)=>s+c.controls,0),colors:colors.length,lodPaths:[0,1,2].map(l=>paths.filter(v=>v.lod<=l).length),rawSvgBytes:bytes(raw),optimizedSvgBytes:bytes(svg),rigBytes:bytes(rig),animationBytes:bytes(anim),sha256:sha(svg)});
+  rows.push({id:a.id,name:a.name,budget:a.budget,sourceAnchors:a.sourceAnchors,parts:a.parts.length,paths:paths.length,anchors,originalAnchors:original,anchorRatio:ratio,controls:counts.reduce((s,c)=>s+c.controls,0),colors:colors.length,lodPaths:[0,1,2].map(l=>paths.filter(v=>v.lod<=l).length),rawSvgBytes:bytes(raw),optimizedSvgBytes:bytes(svg),rigBytes:bytes(rig),animationBytes:bytes(anim),sha256:sha(svg)});
  }
- const bundle='// Generated by tools/monster-forge/build.mjs. Edit recipes.mjs and species.mjs.\nglobalThis.HONRO_MONSTERS='+JSON.stringify({version:1,sourceSha256,assets:Object.fromEntries(monsters.map(a=>[a.id,a]))})+';\n';
+ const bundle='// Generated by tools/monster-forge/build.mjs. Edit recipes.mjs and species.mjs.\nglobalThis.HONRO_MONSTERS='+JSON.stringify({version:1,sourceSha256,assets:Object.fromEntries(catalog.map(a=>[a.id,a]))})+';\n';
  await writeChanged(path.join(dir,'monsters.runtime.js'),bundle);
- const report={sourceSha256,sourceFiles,anchorBudget:{redesign:{maxAnchors:350,maxPaths:90,maxColors:16,noMinimum:true},minRatio:2.85,maxRatio:3.15,baseline:'tests/fixtures/monster-baseline.json'},runtimeBytes:bytes(bundle),counting:'Path anchors include implicit lineto pairs; Q has 1 and C has 2 additional control points. No subdivisions added for quotas.',assets:rows};
+ const report={sourceSha256,sourceFiles,anchorBudget:{redesign:{maxAnchors:350,maxPaths:90,maxColors:16,noMinimum:true},minRatio:2.85,maxRatio:3.15,baseline:'tests/fixtures/monster-baseline.json'},handoffSources:handoff.sourceFiles,runtimeBytes:bytes(bundle),handoffBytes:bytes(JSON.stringify(handoff.assets)),counting:'Path anchors include implicit lineto pairs; Q has 1 and C has 2 additional control points. No subdivisions added for quotas.',assets:rows};
  await writeFile(path.join(out,'metrics.json'),JSON.stringify(report,null,2)+'\n');return report;
 }
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url))console.log(JSON.stringify(await buildMonsters(),null,2));

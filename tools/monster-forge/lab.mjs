@@ -6,5 +6,5 @@ const runtime=(await runtimeParts()).join('\n'),template=await readFile(new URL(
 const baseline=await readFile(path.join(root,'tests/fixtures/monster-art-baseline.js'),'utf8');
 const historical='\n{const HistoricalScene=function(){};HistoricalScene.prototype=Object.create(globalThis.HonroScene.prototype);const scope={...globalThis,HonroScene:HistoricalScene};new Function(\"globalThis\",'+JSON.stringify(baseline)+')(scope);globalThis.HonroHistoricalMonsterScene=HistoricalScene;}\n';
 const report=await readFile(path.join(dir,'metrics.json'),'utf8');
-await writeFile(path.join(dir,'index.html'),template.replace('/* RUNTIME */',runtime+historical).replace('/* METRICS */',`const metrics=${report};`));
+await writeFile(path.join(dir,'index.html'),template.replace('/* RUNTIME */',()=>runtime+historical).replace('/* METRICS */',()=>`const metrics=${report};`));
 console.log('_local/reports/monster-forge/index.html');

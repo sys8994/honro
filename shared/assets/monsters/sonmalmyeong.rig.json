@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "baseHeight": 160,
+  "viewBox": [
+    -180,
+    -255,
+    360,
+    280
+  ],
+  "parts": [
+    {
+      "id": "root",
+      "parent": null,
+      "pivot": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "cloth",
+      "parent": "root",
+      "pivot": [
+        -1.1,
+        -72.28
+      ]
+    },
+    {
+      "id": "head",
+      "parent": "cloth",
+      "pivot": [
+        15.45,
+        -121.93
+      ]
+    },
+    {
+      "id": "far-arm",
+      "parent": "cloth",
+      "pivot": [
+        18.21,
+        -81.66
+      ]
+    },
+    {
+      "id": "knot",
+      "parent": "cloth",
+      "pivot": [
+        28.69,
+        -67.86
+      ]
+    },
+    {
+      "id": "near-arm",
+      "parent": "cloth",
+      "pivot": [
+        -18.76,
+        -99.86
+      ]
+    }
+  ]
+}

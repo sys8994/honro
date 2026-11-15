@@ -3,6 +3,8 @@
 import assert from 'node:assert/strict';
 import {appHarness,plain,report} from './app-regression-helpers.mjs';
 const h=await appHarness(),{g,C}=h,rows=[];
+// Keep this replay on the original two pilots. The expanded roster has its own A/B and resume checks.
+g.HONRO_MONSTER_REWORK_DISABLED=true;
 for(const [stage,id,skill,offset] of [[5,'s5-cave-shade','HSH02',-160],[8,'s8-15','HWD02',150],[8,'s8-15','HWD02',-100]]){
  let a=h.load(h.profileThrough(stage-1));a.launch(stage);h.finish(a);let e=a.engine,b=e.b;
  assert.equal(b.honroMonsterEffectsRevision,1);assert.deepEqual(plain(b.units.filter(u=>u.honroMonsterEffectSkill).map(u=>[u.id,u.honroMonsterEffectSkill])),[[id,skill]]);

@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "baseHeight": 160,
+  "viewBox": [
+    -180,
+    -255,
+    360,
+    280
+  ],
+  "parts": [
+    {
+      "id": "root",
+      "parent": null,
+      "pivot": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "tail",
+      "parent": "root",
+      "pivot": [
+        -10.11,
+        -74.48
+      ]
+    },
+    {
+      "id": "fararm",
+      "parent": "root",
+      "pivot": [
+        10.11,
+        -102.07
+      ]
+    },
+    {
+      "id": "torso",
+      "parent": "root",
+      "pivot": [
+        -11.03,
+        -74.48
+      ]
+    },
+    {
+      "id": "head",
+      "parent": "root",
+      "pivot": [
+        17.47,
+        -104.83
+      ]
+    },
+    {
+      "id": "neararm",
+      "parent": "root",
+      "pivot": [
+        -18.39,
+        -67.13
+      ]
+    }
+  ]
+}

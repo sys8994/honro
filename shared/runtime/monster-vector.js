@@ -9,7 +9,7 @@ function pose(a,time,state={}){
  function apply(name,t,weight=1){const clip=a.clips[name];if(!clip||weight<=0)return;for(const tr of clip.tracks){const value=sample(tr.keys,t),p=result[tr.part];if(tr.channel.startsWith('scale'))p[tr.channel]*=1+(value-1)*weight;else p[tr.channel]+=value*weight;}}
  apply('idle',((time%a.clips.idle.duration)+a.clips.idle.duration)%a.clips.idle.duration/a.clips.idle.duration);
  if(state.move)apply('move',((time%a.clips.move.duration)+a.clips.move.duration)%a.clips.move.duration/a.clips.move.duration);
- if(state.attack!==undefined)apply('attack',clamp(state.attack,0,1));
+ if(state.attack!==undefined)apply(state.special&&a.clips[state.special]?state.special:'attack',clamp(state.attack,0,1));
  if(state.beast&&result.body){const t=clamp(state.attack,0,1),coil=t<.27?-t/.27:t<.65?-1+(t-.27)/.38*2:(1-t)/.35;
   result.body.rotate+=coil*(state.beast==='boar'?7:4);result.body.x+=Math.max(0,coil)*(state.beast==='boar'?9:5);
   if(result.head)result.head.rotate+=coil*(state.beast==='boar'?9:5);
@@ -21,10 +21,15 @@ function pose(a,time,state={}){
  if(a.aimPart&&Number.isFinite(state.aim))result[a.aimPart].rotate-=(state.aim<90?state.aim:180-state.aim)*(a.aimScale||.45);
  return result;
 }
-function state(u){if(u.beastAction){const t=u.beastAction.elapsed;
+const specialClips={dokkaebibul:'fusion',sonmalmyeong:'transfer',muyeo:'designate'};
+function state(u){
+ const hit=u.hurt>.4?clamp((.7-u.hurt)/.3,0,1):undefined;
+ if(u.honroMonsterWindup)return{move:false,attack:.40,special:specialClips[u.honroMonsterSpecies],hit,aim:u.angle};
+ if(u.honroMonsterState?.recovery&&!(u.anim>.44))return{move:false,attack:.82,hit,aim:u.angle};
+ if(u.beastAction){const t=u.beastAction.elapsed;
  // Map preparation, the brief snap and recovery onto the existing full-body attack rig.
  const attack=t<.42?t/.42*.27:t<.64?.27+(t-.42)/.22*.38:.65+Math.min(1,(t-.64)/.42)*.35;
- return{move:false,attack,beast:u.honroVariant,aim:u.angle};}return{move:(u.moving||0)>.01&&!u.airborne&&!u.jumping,attack:u.anim>.44?clamp((1-u.anim)/.56,0,1):undefined,hit:u.hurt>.4?clamp((.7-u.hurt)/.3,0,1):undefined,aim:u.angle};}
+ return{move:false,attack,hit,beast:u.honroVariant,aim:u.angle};}return{move:(u.moving||0)>.01&&!u.airborne&&!u.jumping,attack:u.anim>.44?clamp((1-u.anim)/.56,0,1):undefined,hit,aim:u.angle};}
 function drawVector(c,id,{time=0,state:st={},pixels=128,mode='paint',detail}={}){
  const q=compile(id),a=q.asset,poses=pose(a,time,st),lod=detail??(pixels>=120?2:pixels>=48?1:0);
  for(const p of q.parts){c.save();for(const joint of p.chain){const v=poses[joint.id],[x,y]=joint.pivot;c.translate(x+v.x,y+v.y);c.rotate(v.rotate*Math.PI/180);c.scale(v.scaleX,v.scaleY);c.translate(-x,-y);}
@@ -38,7 +43,7 @@ function drawVector(c,id,{time=0,state:st={},pixels=128,mode='paint',detail}={})
 }
 function draw(c,id,options={}){
  const {time=0,state:st={},pixels=128,mode='paint',detail}=options,a=assets[id];
- if(a.budget!=='act3-authored'||pixels>=32||mode!=='paint'||detail!==undefined||st.move||st.attack!==undefined||st.hit!==undefined||st.jump!==undefined||typeof document==='undefined')return drawVector(c,id,options);
+ if(!['act3-authored','monster-handoff'].includes(a.budget)||pixels>=32||mode!=='paint'||detail!==undefined||st.move||st.attack!==undefined||st.hit!==undefined||st.jump!==undefined||typeof document==='undefined')return drawVector(c,id,options);
  // Reuse the exact current idle pose across a distant formation. One generously
  // oversampled image per species/aim is refreshed every frame, so neither the
  // vector source nor animation rate is reduced. Motion and close views stay vector.
@@ -50,12 +55,70 @@ function draw(c,id,options={}){
 return{draw,pose,state,assets,cacheSize:()=>cache.size};}
 G.HonroVectorParts={create};
 const api=create(G.HONRO_MONSTERS?.assets||{}),{assets,draw,state}=api;
-function species(u){const variant=u.honroVariant;
+function species(u){
+ const id=u.honroMonsterSpecies;
+ if(id==='eoduksini'&&u.honroMonsterGrowth>=2)return u.honroMonsterGrowth>=3?'eoduksini3':'eoduksini2';
+ if(assets[id])return id;
+ const variant=u.honroVariant;
  if(assets[variant])return u.elite&&variant==='possessedGuard'?'gateMaster':u.elite&&variant==='possessedArcher'?'archerMaster':variant;
- const id=u.honroType==='beast'?(variant||'stag'):u.honroType;return assets[id]?id:null;}
+ const original=u.honroType==='beast'?(variant||'stag'):u.honroType;return assets[original]?original:null;}
 function kind(u){if(u.side!==1&&!u.enthrall||u.boss||u.honroFinalBoss||u.id==='boss'||u.summoned)return null;return species(u);}
 const previous=G.HonroScene.prototype.unitBody;
-G.HonroScene.prototype.unitBody=function(c,u,charge=0){const id=kind(u);if(!id)return previous.call(this,c,u,charge);const a=assets[id],scale=u.h/a.baseHeight;c.save();c.translate(u.x,u.y);c.scale(scale*(u.facing||1),scale);const m=c.getTransform(),ratio=c.canvas.clientWidth?c.canvas.width/c.canvas.clientWidth:1,pixels=a.baseHeight*Math.hypot(m.c,m.d)/ratio;draw(c,id,{time:this.time||0,state:state(u),pixels});c.restore();};
+const previousEvent=G.HonroScene.prototype.event;
+const motionEvents=new WeakMap();
+const eventClips={grow:'growth',shrink:'growth',merge:'fusion',lure:'special',release:'attack',recover:'attack'};
+G.HonroScene.prototype.event=function(ev){
+ if(ev.type==='monsterPattern'&&eventClips[ev.phase]){
+  if(!motionEvents.has(this))motionEvents.set(this,new Map());
+  motionEvents.get(this).set(ev.id,{phase:ev.phase,time:this.time||0});
+ }
+ return previousEvent?.call(this,ev);
+};
+function motionState(scene,u,a){
+ const current=state(u),events=motionEvents.get(scene),event=events?.get(u.id);
+ if(!event)return current;
+ const special=eventClips[event.phase];
+ const strike=event.phase==='release'||event.phase==='recover';
+ const duration=Math.min(strike?.38:.8,a.clips[special]?.duration||0);
+ const elapsed=(scene.time||0)-event.time;
+ if(elapsed<0||elapsed>=duration){events.delete(u.id);return current;}
+ const progress=elapsed/duration;
+ const attack=strike?.53+progress*.47:event.phase==='shrink'?1-progress:progress;
+ return {...current,move:false,attack,special};
+}
+function drawBody(scene,c,u,id){
+ const a=assets[id],merged=u.honroMonsterSpecies==='dokkaebibul'&&u.honroMonsterState?.merge?.length;
+ const scale=u.h/a.baseHeight*(merged?1.4:1);
+ c.save();c.translate(u.x,u.y);c.scale(scale*(u.facing||1),scale);
+ const m=c.getTransform(),ratio=c.canvas.clientWidth?c.canvas.width/c.canvas.clientWidth:1;
+ const pixels=a.baseHeight*Math.hypot(m.c,m.d)/ratio;
+ draw(c,id,{time:scene.time||0,state:motionState(scene,u,a),pixels});c.restore();
+}
+function handoffBody(scene,c,u){
+ if(u.honroMonsterState?.mergedInto)return true;
+ const id=kind(u);
+ if(!id||assets[id].budget!=='monster-handoff')return false;
+ const target=scene.battle?.units.find(v=>v.id===u.honroMonsterState?.attachedTo&&!v.dead);
+ if(target){
+  const width=target.r||22, height=target.h||100;
+  drawBody(scene,c,{...u,x:target.x-(target.facing||1)*width*.6,y:target.y-height*.60,h:height*.44},id);
+ }else drawBody(scene,c,u,id);
+ return true;
+}
+G.HonroScene.prototype.unitBody=function(c,u,charge=0){
+ if(handoffBody(this,c,u))return;
+ const id=kind(u);
+ if(id)drawBody(this,c,u,id);
+ else return previous.call(this,c,u,charge);
+};
+const previousUnit=G.HonroScene.prototype.unit;
+G.HonroScene.prototype.unit=function(c,u,...args){
+ // These units share the host's location or leader's body while their rule is active.
+ if(u.honroMonsterState?.attachedTo||u.honroMonsterState?.mergedInto){
+  if(handoffBody(this,c,u))return;
+ }
+ return previousUnit.call(this,c,u,...args);
+};
 // A world-space head joint shared by target effects. Resolve from the same
 // species, facing, scale and articulated state as unitBody, before damage moves it.
 function headPoint(u,time=0){const id=kind(u);if(!id)return null;const a=assets[id],head=a.parts.find(p=>p.id==='head');if(!head)return null;
@@ -65,5 +128,5 @@ function headPoint(u,time=0){const id=kind(u);if(!id)return null;const a=assets[
  }
  const scale=u.h/a.baseHeight;return{x:u.x+point.x*scale*(u.facing||1),y:u.y+point.y*scale};
 }
-G.HonroMonsterVisual={...api,kind,species,headPoint,legacyBody:previous};
+G.HonroMonsterVisual={...api,kind,species,headPoint,handoffBody,legacyBody:previous};
 })(globalThis);

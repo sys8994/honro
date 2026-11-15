@@ -1,3 +1,4 @@
+import type {MonsterCondition,MonsterPatternKind,MonsterPhase,MonsterState,MonsterVariant,MonsterWindup} from './monsterPatterns';
 import type {EnemyEffectSkill,EnemyEffectCast,EnemyEffectAttack,EnemySoftBind,EnemyPush} from './enemyEffects';
 import type {DamageOrigin,DamageSequence,EquipmentUnitState} from './damageVariance';
 import type {PhysicsEnvironment,PhysicsPatch,PhysicsCue} from './physics';
@@ -138,6 +139,16 @@ export interface AIMovePlan {
     intent:string;
 }
 export interface Unit {
+    honroMonsterSpecies?:string;
+    honroMonsterGroup?:string;
+    honroMonsterPattern?:MonsterPatternKind;
+    honroMonsterVariant?:MonsterVariant;
+    honroMonsterWindup?:MonsterWindup;
+    honroMonsterState?:MonsterState;
+    honroMonsterGrowth?:number;
+    honroMonsterCondition?:MonsterCondition;
+    honroLastCombatSkill?:string;
+    honroMonsterPushAt?:number;
     equipmentState?:EquipmentUnitState;
     equipmentIds?: string[];
     summonDamageOrigin?: DamageOrigin;
@@ -448,6 +459,8 @@ export interface Stage {
 }
 export interface Battle {
     honroMonsterEffectsRevision?: 1;
+    honroMonsterReworkRevision?: 1;
+    honroMonsterMist?:{point:Vec;radius:number;until:number};
     damageSequence?: DamageSequence;
     playerTurnOrder?: ClassId[];
     spBalanceRevision?: number;
@@ -572,6 +585,9 @@ export interface Profile {
     migrated?: boolean;
 }
 export interface Event {
+    id?:string;
+    kind?:MonsterPatternKind;
+    phase?:MonsterPhase;
     previousLevel?: number;
     lightningSeed?: number;
     damage?: number;
@@ -579,7 +595,7 @@ export interface Event {
     attackId?: string;
     critical?: boolean;
     skillAudio?: import('./skillAudioMap').SkillAudioSignal;
-    type: 'fx' | 'sound' | 'change' | 'save' | 'result' | 'message' | 'xp' | 'level';
+    type: 'fx' | 'sound' | 'change' | 'save' | 'result' | 'message' | 'xp' | 'level' | 'monsterPattern';
     name?: string;
     text?: string;
     x?: number;

@@ -1,0 +1,76 @@
+{
+  "version": 1,
+  "baseHeight": 160,
+  "viewBox": [
+    -180,
+    -255,
+    360,
+    280
+  ],
+  "parts": [
+    {
+      "id": "root",
+      "parent": null,
+      "pivot": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "joint_coverage",
+      "parent": "root",
+      "pivot": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "body",
+      "parent": "root",
+      "pivot": [
+        -0.77,
+        -12.98
+      ]
+    },
+    {
+      "id": "left_foot",
+      "parent": "root",
+      "pivot": [
+        -50.89,
+        -7.84
+      ]
+    },
+    {
+      "id": "right_foot",
+      "parent": "root",
+      "pivot": [
+        17.22,
+        -7.84
+      ]
+    },
+    {
+      "id": "fan_arm",
+      "parent": "root",
+      "pivot": [
+        -23.9,
+        -100.37
+      ]
+    },
+    {
+      "id": "pointing_arm",
+      "parent": "root",
+      "pivot": [
+        22.36,
+        -81.09
+      ]
+    },
+    {
+      "id": "head",
+      "parent": "root",
+      "pivot": [
+        9.51,
+        -102.94
+      ]
+    }
+  ]
+}

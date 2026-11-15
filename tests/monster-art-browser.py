@@ -50,13 +50,13 @@ CONTRACT=r'''()=>{
 
 ARENA=r'''()=>{const p=HonroMaps.normalize(HONRO_PROJECT),width=800+Object.keys(HonroMonsterVisual.assets).length*280,s=HonroMaps.emptyStage('monster-review','Monster art review',width,1050);
  s.terrains=[{id:'floor',type:'solid',points:[{x:0,y:800},{x:width,y:800},{x:width,y:1050},{x:0,y:1050}],baseMaterial:'rock',breakable:false}];
- s.units=[HonroUnits.record('archer','p-archer',220,800),...Object.keys(HonroMonsterVisual.assets).map((id,i)=>HonroUnits.record(id,'art-'+id,500+i*280,800))];
+ s.units=[HonroUnits.record('archer','p-archer',220,800),...Object.keys(HonroMonsterVisual.assets).filter(id=>HonroMonsterVisual.assets[id].budget!=='monster-handoff').map((id,i)=>HonroUnits.record(id,'art-'+id,500+i*280,800))];
  s.events=[];p.stages=[s];p.activeStageId=s.id;return p;}'''
 
-SPRITES=r'''(scene,e)=>{const cv=document.createElement('canvas');cv.width=1400;cv.height=Math.ceil(Object.keys(HonroMonsterVisual.assets).length/4)*300;const c=cv.getContext('2d');scene.time=0;scene.walkTime=0;scene.scale=.85;Object.keys(HonroMonsterVisual.assets).forEach((id,i)=>scene.unitBody(c,{...e.unit('art-'+id),x:175+i%4*350,y:278+Math.floor(i/4)*300,h:160,angle:0}));return cv.toDataURL();}'''
+SPRITES=r'''(scene,e)=>{const cv=document.createElement('canvas');cv.width=1400;cv.height=Math.ceil(Object.keys(HonroMonsterVisual.assets).length/4)*300;const c=cv.getContext('2d');scene.time=0;scene.walkTime=0;scene.scale=.85;Object.keys(HonroMonsterVisual.assets).filter(id=>HonroMonsterVisual.assets[id].budget!=='monster-handoff').forEach((id,i)=>scene.unitBody(c,{...e.unit('art-'+id),x:175+i%4*350,y:278+Math.floor(i/4)*300,h:160,angle:0}));return cv.toDataURL();}'''
 RUNTIME=r'''()=>{const a=HonroApp;a.frame=()=>{};a.dialogue=null;a.turnNotice=null;a.done=false;const banner=document.getElementById('turn-banner');if(banner)banner.hidden=true;
  const e=a.engine,b=e.b,V=HonroMonsterVisual;Object.assign(a.scene,{manual:true,storyTween:null,goalFocus:null,scale:.85,x:850,y:580,time:0});
- const before=JSON.stringify(b),image=(SPRITES)(a.scene,e),signatures=Object.keys(V.assets).map(id=>{const u=e.unit('art-'+id);return[id,V.kind(u),u.h,u.r];});
+ const before=JSON.stringify(b),image=(SPRITES)(a.scene,e),signatures=Object.keys(V.assets).filter(id=>V.assets[id].budget!=='monster-handoff').map(id=>{const u=e.unit('art-'+id);return[id,V.kind(u),u.h,u.r];});
  const pure=before===JSON.stringify(b);a.scene.render(e,0,'',0,false,0);a.updateHUD(true);
  return{source:HONRO_MONSTERS.sourceSha256,signatures,pure,image,error:a.lastError||null};}'''.replace('SPRITES',SPRITES)
 
@@ -74,7 +74,7 @@ with sync_playwright() as p:
         budget=(meta['anchors']<=350 and meta['paths']<=90 and meta['colors']<=16) if revised else 2.85<=meta['anchors']/row['legacy']['anchors']<=3.15
         check(row['id']+': authored complexity budget and unchanged historical baseline',budget and row['legacy']['anchors']==BASELINE['assets'][row['id']]['anchors'],row)
         check(row['id']+': deterministic, visible, bounded and animated without state writes',all(row[k] for k in ['planted','bounded','visible','animated','deterministic','pure']),row)
-    check('All 11 species covered; special bosses, allies and summons preserved',result['fallback'] and result['cache']==len(metrics['assets']) and len(metrics['assets'])==len(IDS)+6 and set(r['id'] for r in result['rows'])==set(IDS) and set(r['id'] for r in result['coverage'])==set(IDS) and all(r['kind']==r['id']==r['midboss'] for r in result['coverage']) and result['defaultBeast']=='stag',result['coverage'])
+    check('All 11 species covered; special bosses, allies and summons preserved',result['fallback'] and result['cache']==len(metrics['assets']) and len(metrics['assets'])==len(IDS)+6+16 and set(r['id'] for r in result['rows'])==set(IDS) and set(r['id'] for r in result['coverage'])==set(IDS) and all(r['kind']==r['id']==r['midboss'] for r in result['coverage']) and result['defaultBeast']=='stag',result['coverage'])
     check('Source modules and baseline match generated metadata',metrics['sourceSha256']==hashlib.sha256('\n'.join(name+'\n'+(ROOT/name).read_text(encoding='utf-8') for name in metrics['sourceFiles']).encode()).hexdigest() and BASELINE['sha256']==hashlib.sha256((ROOT/BASELINE['source']).read_bytes()).hexdigest())
     check('Enemy archer keeps its existing aim response on the hand/bow joint',all(abs(actual-expected)<1e-8 for actual,expected in zip(result['aim'],[-21.6,-43.2,-21.6])),result['aim'])
     # Exact SVG bind-pose and retained Canvas path output must agree, within antialiasing tolerance.
@@ -90,7 +90,7 @@ with sync_playwright() as p:
     lab.select_option('#mode','paint');lab.select_option('#background','#b7baa6');lab.locator('#roster').screenshot(path=str(OUT/'light-background.png'))
     # 1:1 pixel evidence; render directly at both sizes rather than resizing larger captures.
     for name,mode,bg in [('dark','paint','#182b2c'),('light','paint','#b7baa6'),('silhouette','silhouette','#182b2c')]:
-        sheet=lab.evaluate(r'''([mode,bg])=>{const cv=document.createElement('canvas');cv.width=1400;cv.height=Math.ceil(Object.keys(HonroMonsterVisual.assets).length/4)*240;const c=cv.getContext('2d');c.fillStyle=bg;c.fillRect(0,0,1400,720);Object.keys(HonroMonsterVisual.assets).forEach((id,i)=>{const a=HonroMonsterVisual.assets[id],x=i%4*350,y=Math.floor(i/4)*240;c.fillStyle=bg==='#182b2c'?'#d7dbc7':'#273832';c.font='16px sans-serif';c.fillText(a.name,x+18,y+28);[96,64].forEach((size,j)=>{const xx=x+[105,275][j];c.fillText(size+'px',xx-20,y+230);c.save();c.translate(xx,y+206);c.scale(size/a.baseHeight,size/a.baseHeight);HonroMonsterVisual.draw(c,id,{time:0,pixels:size,mode});c.restore();});});return cv.toDataURL();}''',[mode,bg])
+        sheet=lab.evaluate(r'''([mode,bg])=>{const cv=document.createElement('canvas');cv.width=1400;cv.height=Math.ceil(Object.keys(HonroMonsterVisual.assets).length/4)*240;const c=cv.getContext('2d');c.fillStyle=bg;c.fillRect(0,0,cv.width,cv.height);Object.keys(HonroMonsterVisual.assets).forEach((id,i)=>{const a=HonroMonsterVisual.assets[id],x=i%4*350,y=Math.floor(i/4)*240;c.fillStyle=bg==='#182b2c'?'#d7dbc7':'#273832';c.font='16px sans-serif';c.fillText(a.name,x+18,y+28);[96,64].forEach((size,j)=>{const xx=x+[105,275][j];c.fillText(size+'px',xx-20,y+230);c.save();c.translate(xx,y+206);c.scale(size/a.baseHeight,size/a.baseHeight);HonroMonsterVisual.draw(c,id,{time:0,pixels:size,mode});c.restore();});});return cv.toDataURL();}''',[mode,bg])
         (OUT/('readability-'+name+'.png')).write_bytes(base64.b64decode(sheet.split(',')[1]))
     # Each species gets a readable, fixed-phase attack sheet from the shipped renderer.
     for id in IDS:
@@ -99,6 +99,31 @@ with sync_playwright() as p:
     # The galleries above create hundreds of full-canvas data URLs. Close that
     # page before timing the production renderer so their garbage collection is
     # not charged to an otherwise identical 36-monster combat workload.
+    new_models=lab.evaluate(r'''()=>{
+      const v=HonroMonsterVisual,cv=document.createElement('canvas');
+      cv.width=280;cv.height=240;
+      const c=cv.getContext('2d'),scene=Object.assign(Object.create(HonroScene.prototype),{time:0});
+      const rows=[];
+      for(const [id,asset] of Object.entries(v.assets)){
+        if(asset.budget!=='monster-handoff')continue;
+        const growth=id.startsWith('eoduksini')?Number(id.slice(-1))||1:1;
+        const u={side:1,x:140,y:180,h:96,r:45,honroMonsterSpecies:growth>1?'eoduksini':id,honroMonsterGrowth:growth};
+        const frame=(updates={})=>{
+          c.clearRect(0,0,cv.width,cv.height);
+          scene.unitBody(c,{...u,facing:1,...updates});
+          return cv.toDataURL();
+        };
+        const idle=frame();
+        const distinct=new Set([idle,frame({facing:-1}),frame({honroMonsterWindup:{kind:'test'}}),
+          frame({anim:.66}),frame({hurt:.60}),frame({honroMonsterState:{recovery:true}})]);
+        const isAct2=['sonmalmyeong','eoduksini','eoduksini2','eoduksini3','device','pursuer'].includes(id);
+        rows.push({id,selected:v.kind(u)===id,frames:distinct.size,
+          act2:!isAct2||idle===frame({honroAct2:1,honroSpirit:true})});
+      }
+      return rows;
+    }''')
+    check('Handoff models select real vectors, display facing and read live poses',
+          len(new_models)==16 and all(r['selected'] and r['frames']>=5 and r['act2'] for r in new_models),new_models)
     lab.close()
     bench=browser.new_page(viewport={'width':1480,'height':1100});listen(bench)
     bench.goto(BASE_URL+'/_local/reports/monster-forge/index.html');bench.wait_for_function('window.MonsterLab')
@@ -112,7 +137,7 @@ with sync_playwright() as p:
     for i,x in enumerate([1800,2850],2):
         game.evaluate('x=>{HonroApp.scene.x=x;HonroApp.scene.render(HonroApp.engine,0,\'\',0,false,0);}',x);game.screenshot(path=str(OUT/f'game-{i}.png'))
     (OUT/'game-sprites.png').write_bytes(base64.b64decode(game_result['image'].split(',')[1]))
-    combat=game.evaluate(r'''()=>{const a=HonroApp,e=a.engine,b=e.b,rows=[];for(const id of Object.keys(HonroMonsterVisual.assets)){b.projectiles=[];b.phase='enemy';b.active='art-'+id;const u=e.active;u.acted=false;u.focus=999;u.cooldowns={};const ok=e.fire(u.loadout[0],150,.45,true),atFire=HonroMonsterVisual.state(u);e.stepUnits(.18);const later=HonroMonsterVisual.state(u);e.hurt(u,5,'p-archer');const hit=HonroMonsterVisual.state(u);rows.push({id,ok,atFire:atFire.attack,later:later.attack,hit:hit.hit,damage:u.hp<u.maxHp});}return rows;}''')
+    combat=game.evaluate(r'''()=>{const a=HonroApp,e=a.engine,b=e.b,rows=[];for(const [id,asset] of Object.entries(HonroMonsterVisual.assets)){if(asset.budget==='monster-handoff')continue;b.projectiles=[];b.phase='enemy';b.active='art-'+id;const u=e.active;u.acted=false;u.focus=999;u.cooldowns={};const ok=e.fire(u.loadout[0],150,.45,true),atFire=HonroMonsterVisual.state(u);if(u.beastAction)e.tick(.18);else e.stepUnits(.18);const later=HonroMonsterVisual.state(u);e.hurt(u,5,'p-archer');const hit=HonroMonsterVisual.state(u);rows.push({id,ok,atFire:atFire.attack,later:later.attack,hit:hit.hit,damage:u.hp<u.maxHp});}return rows;}''')
     check('Actual enemy fire and damage drive attack/hit poses',all(r['ok'] and r['atFire']==0 and 0<r['later']<1 and r['hit']==0 and r['damage'] for r in combat),combat)
     game.close()
     editor=browser.new_page(viewport={'width':1440,'height':900});listen(editor);editor.goto(BASE_URL+'/HONRO_WORKSHOP.html');editor.wait_for_function('window.HonroWorkshopAPI');editor.evaluate('p=>HonroWorkshopAPI.importProject(p)',arena)

@@ -1,6 +1,7 @@
 /** Bounded tactical movement. Every candidate is tested with the same locomotion/contact code
  * as a real unit. Planning cannot damage, teleport, change RNG, or mutate the live roster. */
 import {beastKind,beastReach,beastContact} from './beastMelee';
+import {readyMonsterWarning} from './monsterPatterns';
 import {readyFinaleWarning} from './act4WarningQueue';
 import {cleanupDestinationAllowed} from './act4CleanupRoutes';
 import type {Engine} from './engine';
@@ -25,7 +26,7 @@ export function* rankEnemyQueueSteps(e:Engine,units:Unit[]):Generator<void,Enemy
   const distance=Math.min(...nearby.map(t=>Math.hypot(t.x-unit.x,t.y-unit.y)));
   // A displayed fixed-target pilot attack must resolve after the promised
   // response, even when its target has moved outside the nearest distance band.
-  if(readyFinaleWarning(e.b,unit)){rows.push({unit,tier:3,distance,band:Math.floor(distance/240)});yield;continue;}
+  if(readyFinaleWarning(e.b,unit)||readyMonsterWarning(e.b,unit)){rows.push({unit,tier:3,distance,band:Math.floor(distance/240)});yield;continue;}
   let tier=0;
   for(const target of nearby){
    const ghost={...unit,facing:target.x>=unit.x?1:-1};
@@ -195,6 +196,7 @@ function* planFlight(e:Engine,u:Unit,target:Unit,attackFailed=false):Generator<v
 export function planWaitingFlights(e:Engine){
  const b=e.b,eligible=new Set(e.combatEnemies().map(u=>u.id));
  for(const u of b.units){
+  if(u.honroMonsterWindup||u.honroMonsterState?.mergedInto||u.honroMonsterState?.attachedTo)continue;
   if(!flyingEnemy(u)||u.boss||u.dead||u.hp<=0||u.summonFloating||u.summoned||u.enthrall||u.eaterCapturedBy||u.carriedBy!==undefined||u.aiMove||b.queue.includes(u.id)||(u.stun||0)>0||u.stunnedRound===b.round)continue;
   const target=eligible.has(u.id)?targetFor(e,u):undefined,budget=Math.min(u.moveLeft,96);if(budget<2)continue;
   if(!flightClear(e,u,u)){const escape=finishPlanning(planFlightEscape(e,u,target||u,Math.min(192,u.moveLeft)));if(escape)u.aiMove={...escape,waitingFlight:true};continue;}

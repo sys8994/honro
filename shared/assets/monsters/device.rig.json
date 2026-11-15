@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "baseHeight": 160,
+  "viewBox": [
+    -180,
+    -255,
+    360,
+    280
+  ],
+  "parts": [
+    {
+      "id": "root",
+      "parent": null,
+      "pivot": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "base",
+      "parent": "root",
+      "pivot": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "housing",
+      "parent": "root",
+      "pivot": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "cap",
+      "parent": "root",
+      "pivot": [
+        -4.38,
+        -140.27
+      ]
+    },
+    {
+      "id": "wheel",
+      "parent": "root",
+      "pivot": [
+        45.3,
+        -54.06
+      ]
+    },
+    {
+      "id": "spindle",
+      "parent": "root",
+      "pivot": [
+        5.84,
+        -77.44
+      ]
+    }
+  ]
+}

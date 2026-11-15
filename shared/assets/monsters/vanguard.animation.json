@@ -1,0 +1,202 @@
+{
+  "idle": {
+    "duration": 2.4,
+    "loop": true,
+    "tracks": [
+      {
+        "part": "back-binding",
+        "channel": "rotate",
+        "keys": [
+          [
+            0,
+            0
+          ],
+          [
+            0.23,
+            2.2
+          ],
+          [
+            0.75,
+            -1.6
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      }
+    ]
+  },
+  "hit": {
+    "duration": 0.4,
+    "loop": false,
+    "tracks": [
+      {
+        "part": "shield",
+        "channel": "rotate",
+        "keys": [
+          [
+            0,
+            0
+          ],
+          [
+            0.24,
+            -11
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "part": "back-binding",
+        "channel": "rotate",
+        "keys": [
+          [
+            0,
+            0
+          ],
+          [
+            0.33,
+            8
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      }
+    ]
+  },
+  "move": {
+    "duration": 0.97,
+    "loop": true,
+    "tracks": [
+      {
+        "part": "shield",
+        "channel": "rotate",
+        "keys": [
+          [
+            0,
+            0
+          ],
+          [
+            0.24,
+            -5
+          ],
+          [
+            0.76,
+            5
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "part": "back-binding",
+        "channel": "rotate",
+        "keys": [
+          [
+            0,
+            0
+          ],
+          [
+            0.24,
+            4
+          ],
+          [
+            0.76,
+            -6
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      }
+    ]
+  },
+  "attack": {
+    "duration": 1.15,
+    "loop": false,
+    "tracks": [
+      {
+        "part": "shield",
+        "channel": "rotate",
+        "keys": [
+          [
+            0,
+            0
+          ],
+          [
+            0.37,
+            -15
+          ],
+          [
+            0.56,
+            -17
+          ],
+          [
+            0.83,
+            24
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "part": "front-arm",
+        "channel": "rotate",
+        "keys": [
+          [
+            0,
+            0
+          ],
+          [
+            0.37,
+            -9
+          ],
+          [
+            0.57,
+            -8
+          ],
+          [
+            0.83,
+            21
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "part": "back-binding",
+        "channel": "rotate",
+        "keys": [
+          [
+            0,
+            0
+          ],
+          [
+            0.33,
+            9
+          ],
+          [
+            0.8,
+            -9
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      }
+    ]
+  }
+}

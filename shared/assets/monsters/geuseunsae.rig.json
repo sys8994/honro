@@ -1,0 +1,76 @@
+{
+  "version": 1,
+  "baseHeight": 160,
+  "viewBox": [
+    -180,
+    -255,
+    360,
+    280
+  ],
+  "parts": [
+    {
+      "id": "root",
+      "parent": null,
+      "pivot": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "legs",
+      "parent": "root",
+      "pivot": [
+        14.04,
+        -21.89
+      ]
+    },
+    {
+      "id": "robe",
+      "parent": "root",
+      "pivot": [
+        14.04,
+        -83.65
+      ]
+    },
+    {
+      "id": "backwing",
+      "parent": "root",
+      "pivot": [
+        -8.98,
+        -105.54
+      ]
+    },
+    {
+      "id": "head",
+      "parent": "root",
+      "pivot": [
+        24.7,
+        -124.07
+      ]
+    },
+    {
+      "id": "frontwing",
+      "parent": "root",
+      "pivot": [
+        37.61,
+        -101.05
+      ]
+    },
+    {
+      "id": "seal",
+      "parent": "root",
+      "pivot": [
+        19.65,
+        -78.04
+      ]
+    },
+    {
+      "id": "hands",
+      "parent": "root",
+      "pivot": [
+        19.65,
+        -78.04
+      ]
+    }
+  ]
+}

@@ -50,7 +50,7 @@ export const modelFiles=['action-prompts','narrative-catalogue','content','story
 
 modelFiles.push('player-turn-order','stage11-quest-simplification','stage14-rescue-gates','stage15-drain-contact','stage18-short-quest','keeper-ritual','stage19-farewell');
 modelFiles.push('act23-v4','act23-v4-act2','act23-v4-act2-scenes','act23-v4-stage18','act23-v4-act3','act23-v4-city','act23-v4-stage29','act23-v4-stage30','act23-v4-ch11-scenes','act23-v4-reviewed','act23-v4-reviewed-chapters','act23-v4-reviewed12','act23-v4-reviewed13','act23-v4-reviewed14','act23-v4-reviewed15','act23-v4-reviewed16','act23-v4-reviewed17','act23-v4-reviewed18','act23-v4-reviewed19','act23-v4-reviewed20','act23-v4-reviewed-common','act23-v4-ch21-scenes','act23-v4-ch21-reviewed','act23-v4-ch22-reviewed','act3-v4-reviewed-core','act23-v4-ch23-reviewed','act23-v4-ch24-reviewed','act3-v4-reviewed-waterworks','act23-v4-ch25-reviewed','act23-v4-ch27-reviewed','act23-v4-ch26-reviewed','act23-v4-ch28-reviewed','act23-v4-ch29-reviewed-spear','act23-v4-ch29-reviewed','act23-v4-ch30-reviewed');
-modelFiles.push('stage11-compact','act2-compact','act1-review-repairs');
+modelFiles.push('stage11-compact','act2-compact','act1-review-repairs','monster-rework-roster');
 // Every ID has one owner; a duplicate bank entry is a build error.
 export async function skillAudioData(){
   const base=JSON.parse(await read('shared/assets/sfx/skills-v2/manifest.json'));
@@ -243,7 +243,7 @@ export async function runtimeEntries({vector=true,render=true,app=false,producti
     await file('game/vendor/ui/fa.js');
     await file('shared/runtime/skill-images.js');
     await file('shared/runtime/camp-renderer.js');
-    for(const name of ['campaign-entry','portraits','npc-portraits','ui-bridge','stage-rules','music-titles','audio','mukjong-audio','story','story-barks','act23-v4-field-talk','act3-v4-reviewed-documents','mukjong-pitch-dialogue','act-endings-content','act-endings','interactions','unit-info','training','skill-preview','journey-art','journey-images','rest-journey','hit-haptics','menu-ui','clear-report-ui','equipment-ui','main']){
+    for(const name of ['campaign-entry','portraits','npc-portraits','ui-bridge','stage-rules','music-titles','audio','mukjong-audio','story','monster-rework-story','story-barks','act23-v4-field-talk','act3-v4-reviewed-documents','mukjong-pitch-dialogue','act-endings-content','act-endings','interactions','unit-info','training','skill-preview','journey-art','journey-images','rest-journey','hit-haptics','menu-ui','clear-report-ui','equipment-ui','main']){
       await file(`shared/runtime/${name}.js`);
       // Metadata only: native/full consumers retain the same scripts and order.
       if(name==='training'||name==='skill-preview')parts.at(-1).optional=name;

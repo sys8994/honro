@@ -1,0 +1,76 @@
+{
+  "version": 1,
+  "baseHeight": 160,
+  "viewBox": [
+    -180,
+    -255,
+    360,
+    280
+  ],
+  "parts": [
+    {
+      "id": "root",
+      "parent": null,
+      "pivot": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "farleg",
+      "parent": "root",
+      "pivot": [
+        23.06,
+        -52.61
+      ]
+    },
+    {
+      "id": "nearleg",
+      "parent": "root",
+      "pivot": [
+        -31.71,
+        -51.17
+      ]
+    },
+    {
+      "id": "fararm",
+      "parent": "root",
+      "pivot": [
+        30.27,
+        -99.46
+      ]
+    },
+    {
+      "id": "body",
+      "parent": "root",
+      "pivot": [
+        -4.32,
+        -80.72
+      ]
+    },
+    {
+      "id": "cloth",
+      "parent": "root",
+      "pivot": [
+        -8.65,
+        -67.75
+      ]
+    },
+    {
+      "id": "head",
+      "parent": "root",
+      "pivot": [
+        7.93,
+        -100.18
+      ]
+    },
+    {
+      "id": "neararm",
+      "parent": "root",
+      "pivot": [
+        -54.05,
+        -100.18
+      ]
+    }
+  ]
+}

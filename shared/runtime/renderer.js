@@ -401,12 +401,15 @@
             for (const v of b.units || []) {
                 if (v.dead || v.eaterCapturedBy || v.x < this.x - w / (2*this.scale) - Math.max(180,v.h*2) || v.x > this.x + w / (2*this.scale) + Math.max(180,v.h*2) || v.y < this.y-h/(2*this.scale)-Math.max(180,v.h*2) || v.y-v.h*2 > this.y+h/(2*this.scale)+180)
                     continue;
-                visibleUnits.push(v);
+                const mist=b.honroMonsterMist,blurred=mist&&v.side===1&&Math.hypot(v.x-mist.point.x,v.y-v.h*.45-mist.point.y)<=mist.radius+v.r;
+                if(!blurred)visibleUnits.push(v);
+                else{c.save();c.globalAlpha*=.63;}
                 // Keep the same world bodies, without combat bars/arrows, hit
                 // flashes or the bound character's quest label over their faces.
                 if(quietOutro||quietWalk)this.unitBody(c,G.HonroNarrativeRevision?.bodyBound(b,v)?{...v,side:2}:v,0);
                 else this.unit(c, v, !this.skillPreview && v.id === b.active, charging && v.id === b.active ? power : 0);
                 if(!quietWalk&&!quietOutro&&(!G.HonroAct2||G.HonroAct2.visible(b,v)))G.HonroCombatStatus.draw(c,b,v,this.time,this.scale,!this.skillPreview&&v.id===b.active);
+                if(blurred)c.restore();
             }
             if(foreground.length){this._drawForeground(c,b,w,h,foreground);targetingGuides();}
             G.HonroAct1StoryArt?.cartFront(this,e);

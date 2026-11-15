@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "baseHeight": 160,
+  "viewBox": [
+    -180,
+    -255,
+    360,
+    280
+  ],
+  "parts": [
+    {
+      "id": "torso",
+      "parent": null,
+      "pivot": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "leg-back",
+      "parent": "torso",
+      "pivot": [
+        -42.89,
+        -28.04
+      ]
+    },
+    {
+      "id": "leg-front",
+      "parent": "torso",
+      "pivot": [
+        -4.95,
+        -23.92
+      ]
+    },
+    {
+      "id": "arm-far",
+      "parent": "torso",
+      "pivot": [
+        34.64,
+        -68.62
+      ]
+    },
+    {
+      "id": "head",
+      "parent": "torso",
+      "pivot": [
+        37.94,
+        -98.14
+      ]
+    },
+    {
+      "id": "arm-near",
+      "parent": "torso",
+      "pivot": [
+        -10.23,
+        -77.53
+      ]
+    },
+    {
+      "id": "hat",
+      "parent": "torso",
+      "pivot": [
+        37.94,
+        -122.06
+      ]
+    }
+  ]
+}

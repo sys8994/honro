@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "baseHeight": 160,
+  "viewBox": [
+    -180,
+    -255,
+    360,
+    280
+  ],
+  "parts": [
+    {
+      "id": "root",
+      "parent": null,
+      "pivot": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "hind-leg",
+      "parent": "root",
+      "pivot": [
+        -24.05,
+        -61.7
+      ]
+    },
+    {
+      "id": "cloak",
+      "parent": "root",
+      "pivot": [
+        7.32,
+        -41.83
+      ]
+    },
+    {
+      "id": "far-arm",
+      "parent": "root",
+      "pivot": [
+        23.01,
+        -101.44
+      ]
+    },
+    {
+      "id": "head",
+      "parent": "root",
+      "pivot": [
+        12.55,
+        -142.22
+      ]
+    },
+    {
+      "id": "near-arm",
+      "parent": "root",
+      "pivot": [
+        11.5,
+        -106.67
+      ]
+    },
+    {
+      "id": "seal",
+      "parent": "root",
+      "pivot": [
+        8.37,
+        -113.99
+      ]
+    }
+  ]
+}

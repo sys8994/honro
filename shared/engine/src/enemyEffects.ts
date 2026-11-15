@@ -29,6 +29,8 @@ export function enemyEffectActionCompleted(e:Engine,u?:Unit){
 export function prepareEnemyEffect(e:Engine,u:Unit,skill:string,target:Unit,angle:number,power:number){
  if(!enemyEffectEligible(e.b,u,skill)||!hero(target))return false;
  const b=e.b,hit={x:target.x,y:target.y-target.h*.45};
+ if(b.honroMonsterReworkRevision===1&&b.units.some(v=>v.enemyEffectCast?.target===target.id||v.honroMonsterWindup?.target===target.id))return false;
+ if(b.honroMonsterReworkRevision===1&&b.units.filter(v=>v.enemyEffectCast||v.honroMonsterWindup).length>=2)return false;
  if(!effectLineClear(e,u,hit))return false;
  u.enemyEffectCast={version:1,serial:b.nextId++,skill:skill as EnemyEffectSkill,target:target.id,origin:{x:u.x,y:u.y},angle,power,impact:{x:hit.x,y:hit.y},radius:e.effective(SKILLS[skill],u).radius,direction:target.x>=u.x?1:-1,createdTeamEnd:b.teamEnds[0],seen:false,offered:false,responded:false,wind:b.wind,sceneVersion:b.sceneVersion,offeredIds:[],respondedIds:[]};
  u.enemyEffectCooldown=2;
@@ -83,11 +85,11 @@ export function enemyEffectDamage(e:Engine,u:Unit,p:Projectile|undefined,hpLoss:
  if(u.enemyEffectHits?.includes(a.id))return;
  u.enemyEffectHits=[...(u.enemyEffectHits||[]),a.id].slice(-64);
  if(a.skill==='HSH02'){
-  if(u.enemySoftBind||(u.enemyControlGrace||0)>0)return;
+  if(u.enemySoftBind||(u.enemyControlGrace||0)>0||u.honroMonsterCondition||u.honroMonsterPushAt===e.b.teamEnds[1])return;
   u.enemySoftBind={sourceId:source.id,attackId:a.id,remainingActions:1,factor:.55,appliedRound:e.b.round,started:false,withheld:0};
   if(!u.acted)enemyEffectMovementBudget(u);
   e.fx('text',u.x,u.y-u.h-15,'#d0b2d1',14,'매듭 · 다음 행동 이동 55%');
- }else if(!u.fixed&&!u.summonFloating&&!u.airborne&&!u.jumping){
+ }else if(!u.honroMonsterCondition&&u.honroMonsterPushAt!==e.b.teamEnds[1]&&!u.fixed&&!u.summonFloating&&!u.airborne&&!u.jumping){
   u.enemyPush={sourceId:source.id,attackId:a.id,remaining:80,direction:a.direction};u.vx=u.vy=0;delete u.moveTarget;
  }
 }

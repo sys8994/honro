@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "baseHeight": 160,
+  "viewBox": [
+    -180,
+    -255,
+    360,
+    280
+  ],
+  "parts": [
+    {
+      "id": "root",
+      "parent": null,
+      "pivot": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "legs",
+      "parent": "root",
+      "pivot": [
+        1.42,
+        -52.62
+      ]
+    },
+    {
+      "id": "quiver",
+      "parent": "root",
+      "pivot": [
+        -4.27,
+        -58.31
+      ]
+    },
+    {
+      "id": "body",
+      "parent": "root",
+      "pivot": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "head",
+      "parent": "root",
+      "pivot": [
+        0.71,
+        -125.16
+      ]
+    },
+    {
+      "id": "bow-arm",
+      "parent": "root",
+      "pivot": [
+        7.11,
+        -104.53
+      ]
+    },
+    {
+      "id": "bow",
+      "parent": "bow-arm",
+      "pivot": [
+        51.91,
+        -73.96
+      ]
+    },
+    {
+      "id": "draw-arm",
+      "parent": "root",
+      "pivot": [
+        -7.11,
+        -105.96
+      ]
+    },
+    {
+      "id": "cord",
+      "parent": "root",
+      "pivot": [
+        3.56,
+        -74.67
+      ]
+    }
+  ]
+}

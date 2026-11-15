@@ -1,0 +1,76 @@
+{
+  "version": 1,
+  "baseHeight": 160,
+  "viewBox": [
+    -180,
+    -255,
+    360,
+    280
+  ],
+  "parts": [
+    {
+      "id": "root",
+      "parent": null,
+      "pivot": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "water",
+      "parent": "root",
+      "pivot": [
+        -2.89,
+        -5.78
+      ]
+    },
+    {
+      "id": "cloth",
+      "parent": "root",
+      "pivot": [
+        -8.66,
+        -98.19
+      ]
+    },
+    {
+      "id": "backarm",
+      "parent": "root",
+      "pivot": [
+        8.09,
+        -98.19
+      ]
+    },
+    {
+      "id": "torso",
+      "parent": "root",
+      "pivot": [
+        -8.66,
+        -109.75
+      ]
+    },
+    {
+      "id": "head",
+      "parent": "root",
+      "pivot": [
+        11.55,
+        -129.96
+      ]
+    },
+    {
+      "id": "belt",
+      "parent": "root",
+      "pivot": [
+        -19.06,
+        -97.62
+      ]
+    },
+    {
+      "id": "frontarm",
+      "parent": "root",
+      "pivot": [
+        -6.93,
+        -99.35
+      ]
+    }
+  ]
+}

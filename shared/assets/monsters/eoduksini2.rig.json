@@ -1,0 +1,76 @@
+{
+  "version": 1,
+  "baseHeight": 160,
+  "viewBox": [
+    -180,
+    -255,
+    360,
+    280
+  ],
+  "parts": [
+    {
+      "id": "root",
+      "parent": null,
+      "pivot": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "rear_leg",
+      "parent": "root",
+      "pivot": [
+        -5.14,
+        -46.81
+      ]
+    },
+    {
+      "id": "front_leg",
+      "parent": "root",
+      "pivot": [
+        2.57,
+        -46.81
+      ]
+    },
+    {
+      "id": "torso",
+      "parent": "root",
+      "pivot": [
+        2.57,
+        -47.89
+      ]
+    },
+    {
+      "id": "head",
+      "parent": "root",
+      "pivot": [
+        38.01,
+        -93.2
+      ]
+    },
+    {
+      "id": "back_arm",
+      "parent": "root",
+      "pivot": [
+        -25.43,
+        -90.61
+      ]
+    },
+    {
+      "id": "front_arm",
+      "parent": "root",
+      "pivot": [
+        12.84,
+        -96.43
+      ]
+    },
+    {
+      "id": "ribbon",
+      "parent": "root",
+      "pivot": [
+        -5.14,
+        -50.05
+      ]
+    }
+  ]
+}

@@ -389,7 +389,7 @@
     if(G.HonroRestJourney)G.HonroRestJourney.startEntry(this,st.name);else G.HonroStory.start(this,G.HonroObjectives.entry(this),{title:st.name,after:'entry'});
             }
         }
-        mount(b,{freshReport=false,reportScope}={}) { C.initializePlayerTurnOrder(b,this.profile,false); G.HonroAct3Void?.recover(b); this.stage=G.HonroObjectiveRevision?.contentFor(b,this.stage)||this.stage; if(G.HonroAct1ReviewRepairs?.restorePassage(b))this.dirty=true; G.HonroStageRules.sanitizeStageBattle(b); G.HonroEncounters.configure(b);G.HonroProgression.initialize(b,this.profile);C.applySpBalanceMigration(b);G.HonroClearReport.begin(b,{fresh:freshReport,scope:reportScope||G.HonroClearReport.scopeOf(this)});b.honroActiveLimit??=H.stages[(b.honroStage||1)-1].active;b.enemyLimit=b.honroActiveLimit;G.HonroStage19Farewell?.prepare(b);this.screen = 'battle'; this.contacts.clear(); this.acc = 0; this.engine = new C.Engine(b, ev => { if(this.engine?.b===b&&(ev.type==='change'||ev.type==='save'))G.HonroMukjongAudio?.observe(this);if(this.scene?._pausedBattleFrame)this.scene._pausedBattleFrame=null;this.scene?.event(ev); if (ev.type === 'sound')
+        mount(b,{freshReport=false,reportScope}={}) { C.initializePlayerTurnOrder(b,this.profile,false); G.HonroAct3Void?.recover(b); this.stage=G.HonroObjectiveRevision?.contentFor(b,this.stage)||this.stage; if(G.HonroAct1ReviewRepairs?.restorePassage(b))this.dirty=true; G.HonroStageRules.sanitizeStageBattle(b); G.HonroEncounters.configure(b);G.HonroProgression.initialize(b,this.profile);C.applySpBalanceMigration(b);G.HonroClearReport.begin(b,{fresh:freshReport,scope:reportScope||G.HonroClearReport.scopeOf(this)});b.honroActiveLimit??=H.stages[(b.honroStage||1)-1].active;b.enemyLimit=b.honroActiveLimit;G.HonroStage19Farewell?.prepare(b);this.screen = 'battle'; this.contacts.clear(); this.acc = 0; this.engine = new C.Engine(b, ev => { if(this.engine?.b===b&&(ev.type==='change'||ev.type==='save'))G.HonroMukjongAudio?.observe(this);if(this.scene?._pausedBattleFrame)this.scene._pausedBattleFrame=null;this.scene?.event(ev); if(ev.type==='monsterPattern')G.HonroMonsterReworkStory?.observe(this,b,ev); if (ev.type === 'sound')
             {if(ev.skillAudio)this.audio?.skills?.event(ev.skillAudio);else if(ev.name==='mukjongKeeper')G.HonroMukjongAudio?.keeper(this);else this.audio?.play(ev.name);} if (ev.type === 'save')
             this.dirty = true; }, false); const e = this.engine; G.HonroMukjongAudio?.attach(this,b,{fresh:freshReport}); G.HonroAllies.attach(this,e); G.HonroEncounters.attach(this,e); G.HonroAct2.attach(this,e); G.HonroAct3.attach(this,e); G.HonroSplitCampaign.attach(this,e); G.HonroStakeCrossing.attach(this,e); if (!this.training) {
             e.checkEnd = () => this.checkMission(e);
@@ -444,7 +444,7 @@
             const channelerLost=b.honroStage===10&&b.honroState?.sodanCoop&&b.units.some(u=>u.id==='boss'&&(u.dead||u.hp<=0));
             const act2Failure=G.HonroSodanWithdrawal.failure(b)||G.HonroStakeCrossing.failure(b)||G.HonroSplitCampaign.failure(b)||G.HonroAct2.failure(b)||G.HonroAct3.failure(b)||G.HonroObjectives.failure(b,this.stage);
             if (!heroes.length || objective?.dead || rescuedResidentLost || channelerLost || act2Failure) {
-                b.phase = 'lost';
+                b.phase = 'lost';e.finishMonsterPatterns();
                 C.cleanupPassiveHistory(e);
                 b.winnerReason = (act2Failure==='act23v4.14.danger-boundary'?'길찬이 종에 이끌려 위험 경계를 넘었습니다. 소단으로 길찬에게 다가가 혼을 분리해야 합니다.':act2Failure) || (objective?.dead || rescuedResidentLost || channelerLost ? '지켜야 할 이를 잃었다.' : '동행이 모두 쓰러졌다.');
                 this.dirty = true;
@@ -454,7 +454,7 @@
             G.HonroObjectives.updateSettlement(b,st,state.objectiveReady);
             const win=G.HonroObjectives.state(b,st).complete;
             if (win) {
-                b.phase = 'won';this.cancelInput();b.projectiles=[];b.volley=undefined;for(const u of b.units)delete u.meleeAction;
+                b.phase = 'won';e.finishMonsterPatterns();this.cancelInput();b.projectiles=[];b.volley=undefined;for(const u of b.units)delete u.meleeAction;
                 C.cleanupPassiveHistory(e);
                 b.winnerReason = G.HonroNarrativeCatalogue.summary(b,st) || '길을 확보했다.';
                 this.dirty = true;
@@ -733,7 +733,7 @@
                 button.classList.toggle('selected',selected);button.classList.toggle('unaffordable',!!(!e.canAfford(s,u)||r));
                 const attr=(name,value)=>{if(button.getAttribute(name)!==value)button.setAttribute(name,value);};
                 attr('data-action','combat-skill');attr('data-skill',id);attr('aria-label',s.name);attr('aria-pressed',String(selected));
-                if(button.disabled===allowed)button.disabled=!allowed;if(!allowed)attr('title','파진연격 · 검술만 가능');else if(button.hasAttribute('title'))button.removeAttribute('title');
+                if(button.disabled===allowed)button.disabled=!allowed;if(!allowed)attr('title',e.monsterSkillReason(s,u)||'파진연격 · 검술만 가능');else if(button.hasAttribute('title'))button.removeAttribute('title');
                 if(button.style.getPropertyValue('--skill')!==s.color)button.style.setProperty('--skill',s.color);
                 for(const [selector,value] of [['.key',String(i+1)],['.mana-cost',String(r?r+'회':Number(e.manaCost(s,u).toFixed(1))||'')],['.skill-name',s.name]]){const node=button.querySelector(selector);if(node.textContent!==value)node.textContent=value;}
             });for(const button of unused)button.remove();

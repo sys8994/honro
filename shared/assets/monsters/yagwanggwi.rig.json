@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "baseHeight": 160,
+  "viewBox": [
+    -180,
+    -255,
+    360,
+    280
+  ],
+  "parts": [
+    {
+      "id": "root",
+      "parent": null,
+      "pivot": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "farleg",
+      "parent": "root",
+      "pivot": [
+        20.39,
+        -60.39
+      ]
+    },
+    {
+      "id": "nearleg",
+      "parent": "root",
+      "pivot": [
+        -3.14,
+        -61.96
+      ]
+    },
+    {
+      "id": "torso",
+      "parent": "root",
+      "pivot": [
+        6.27,
+        -90.98
+      ]
+    },
+    {
+      "id": "head",
+      "parent": "root",
+      "pivot": [
+        27.45,
+        -115.29
+      ]
+    },
+    {
+      "id": "fararm",
+      "parent": "root",
+      "pivot": [
+        24.31,
+        -94.12
+      ]
+    },
+    {
+      "id": "neararm",
+      "parent": "root",
+      "pivot": [
+        0.78,
+        -100.39
+      ]
+    },
+    {
+      "id": "vial",
+      "parent": "root",
+      "pivot": [
+        24.31,
+        -94.12
+      ]
+    },
+    {
+      "id": "grip",
+      "parent": "root",
+      "pivot": [
+        24.31,
+        -94.12
+      ]
+    }
+  ]
+}

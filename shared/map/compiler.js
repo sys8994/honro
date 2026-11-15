@@ -87,6 +87,7 @@ function createBattle(st,project,profile=profileFor(st),options={}){
  G.HonroQuestTargets?.migrate(b);
  G.HonroAct23V4?.prepare(b,profile);
  G.HonroAct4Content?.prepare(b,profile);
+ G.HonroMonsterRoster?.prepareFresh(b);
  G.HonroCampaignMapRevision?.stamp(b);
  C.initializePlayerTurnOrder(b,profile);
  return b;

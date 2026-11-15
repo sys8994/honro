@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "baseHeight": 160,
+  "viewBox": [
+    -180,
+    -255,
+    360,
+    280
+  ],
+  "parts": [
+    {
+      "id": "root",
+      "parent": null,
+      "pivot": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "body",
+      "parent": "root",
+      "pivot": [
+        0,
+        -5.38
+      ]
+    },
+    {
+      "id": "back-binding",
+      "parent": "root",
+      "pivot": [
+        -1.54,
+        -90
+      ]
+    },
+    {
+      "id": "shield",
+      "parent": "root",
+      "pivot": [
+        13.85,
+        -60
+      ]
+    },
+    {
+      "id": "front-arm",
+      "parent": "root",
+      "pivot": [
+        13.85,
+        -60
+      ]
+    }
+  ]
+}

@@ -23,6 +23,53 @@ const colors={push:'#c4d1aa',stun:'#f5d27f',bind:'#e2ba87',slow:'#9dddeb',curse:
 function casts(b){return b.honroMonsterEffectsRevision===1?(b.units||[]).filter(u=>!u.dead&&u.hp>0&&u.side===1&&!u.eaterCapturedBy&&u.enemyEffectCast?.version===1):[];}
 function softBind(b,u){return b.honroMonsterEffectsRevision===1&&u.enemySoftBind?.remainingActions>0?u.enemySoftBind:null;}
 function warningDetail(owner){const q=owner.enemyEffectCast;return `${q.skill==='HSH02'?'매듭실':'터줏바람'} 예고 · 고정 범위 밖으로 이동하거나 준비 중 ${owner.name} 직접 공격으로 끊기 · 대상의 행동 후 다음 적 행동에 발동`;}
+const patternSources=b=>b.honroMonsterReworkRevision===1?b.units.filter(u=>!u.dead&&u.hp>0&&u.side===1&&u.honroMonsterWindup):[];
+const patternColor=w=>w.shape==='lane'?colors.push:w.shape==='knot'||w.shape==='seal'?colors.curse:colors.power;
+const patternHint=w=>w.shape==='seal'?((G.HONRO_CORE.SKILLS[w.skill]?.name||'기예')+' 봉인 예고 · 이동 또는 시전자 차단'):
+ w.shape==='repair'?'수리 시종을 공격하면 끊깁니다':w.shape==='merge'?'준비 중 직접 맞혀 불씨가 합쳐지기 전에 끊기':
+ w.shape==='omen'?'지목된 동행을 옮기거나 연결된 적을 공격하세요':
+ w.kind==='sodanOmen'?'고정 범위 밖으로 이동하세요':'고정 범위 밖으로 이동하거나 시전자를 직접 공격하세요';
+const variantNames={giant:'거대한',burning:'불붙은',cursed:'저주받은',hungry:'굶주린',captain:'대장'};
+function drawNewPatterns(c,e,w,h,scene,z,left,right,top,bottom,observe){
+ for(const owner of patternSources(e.b)){
+  const q=owner.honroMonsterWindup,p=q.impact,o=q.origin,r=q.radius,color=patternColor(q);
+  const visible=p.x+r>left&&p.x-r<right&&p.y+r>top+80*z&&p.y-r<bottom-100*z;
+  const x=visible?p.x:Math.max(left+75*z,Math.min(right-75*z,p.x));
+  const y=visible?p.y:Math.max(top+h*z*.35,Math.min(top+h*z*.6,p.y));
+  c.save();c.strokeStyle=color;c.lineWidth=2*z;
+  if(visible){
+   c.setLineDash([8*z,5*z]);c.beginPath();
+   if(q.shape==='lane'){
+    const a=Math.atan2(p.y-o.y,p.x-o.x),nx=-Math.sin(a)*r,ny=Math.cos(a)*r;
+    c.moveTo(o.x+nx,o.y+ny);c.lineTo(p.x+nx,p.y+ny);c.arc(p.x,p.y,r,a+Math.PI/2,a-Math.PI/2,true);
+    c.lineTo(o.x-nx,o.y-ny);c.closePath();
+   }else c.arc(p.x,p.y,r,0,2*Math.PI);
+   c.stroke();c.setLineDash([]);
+   const link=e.unit(q.linked);
+   if(link){c.beginPath();c.moveTo(o.x,o.y);c.lineTo(link.x,link.y-link.h*.6);c.stroke();}
+  }else{
+   c.save();c.translate(x,y);c.rotate(Math.atan2(p.y-y,p.x-x));c.beginPath();c.moveTo(-14*z,0);c.lineTo(14*z,0);c.lineTo(7*z,-5*z);c.moveTo(14*z,0);c.lineTo(7*z,5*z);c.stroke();c.restore();
+  }
+  const label=q.label+(visible?' · 예고':' · 화면 밖');
+  c.font='bold '+11*z+'px sans-serif';c.textAlign='center';c.textBaseline='middle';
+  const width=c.measureText(label).width+12*z,cx=Math.max(left+width/2+8*z,Math.min(right-width/2-8*z,x));
+  const cy=Math.max(top+90*z,Math.min(bottom-120*z,y+(visible?r+9*z:16*z)));
+  c.fillStyle='#0c2028ed';c.fillRect(cx-width/2,cy-8*z,width,16*z);c.fillStyle=color;c.fillText(label,cx,cy);
+  c.restore();
+  if(observe)e.observeMonsterPattern(owner.id,q.serial);
+ }
+ for(const u of e.b.units){
+  const theft=u.honroMonsterState?.lifted;
+  if(!theft)continue;
+  const {x,y}=theft.sieve;
+  if(x<left||x>right||y<top||y>bottom)continue;
+  c.save();c.strokeStyle=colors.power;c.fillStyle='#10242c';c.lineWidth=1.8*z;
+  c.beginPath();c.ellipse(x,y-9*z,13*z,8*z,0,0,Math.PI*2);c.fill();c.stroke();
+  for(const dy of [-12,-7])for(const dx of [-6,0,6]){c.beginPath();c.arc(x+dx*z,y+dy*z,1*z,0,Math.PI*2);c.stroke();}
+  c.font='bold '+10*z+'px sans-serif';c.fillStyle=colors.power;c.textAlign='center';c.fillText('체 · 가까이 가서 유인',x,y-21*z);
+  c.restore();
+ }
+}
 function entries(b,u){
  const list=[];if(!u)return list;
  const add=(key,name,detail,count)=>list.push({key,name,detail,count,color:colors[key]});
@@ -32,6 +79,19 @@ function entries(b,u){
  const bind=softBind(b,u);
  if(bind){const source=(b.units||[]).find(v=>v.id===bind.sourceId);add('bind','매듭실',`매듭실 · 이동 예산 ${Math.round(bind.factor*100)}% · 사격·도약 가능 · 다음 유효 행동 후 해제 · ${source?.name||'수의귀'} 처치 또는 정화약으로 해제`,bind.remainingActions);}
  for(const owner of casts(b)){const q=owner.enemyEffectCast;if(q.target===u.id||owner.id===u.id)add(q.skill==='HSH02'?'bind':'push',q.skill==='HSH02'?'매듭 예고':'바람 예고',warningDetail(owner));}
+ for(const owner of patternSources(b)){
+  const w=owner.honroMonsterWindup;
+  if(w.target===u.id||owner===u||w.linked===u.id)add(w.shape==='lane'?'push':'prepared',w.label,patternHint(w));
+ }
+ const condition=u.honroMonsterCondition;
+ if(condition?.kind==='weak')add('curse','약화','이 행동의 기본 피해 12% 저하 · 행동 후 또는 정화약으로 해제');
+ if(condition?.kind==='seal')add('curse','기예 봉인',(G.HONRO_CORE.SKILLS[condition.skill]?.name||'기예')+' · 이번 행동 뒤 또는 정화약으로 해제');
+ if(condition?.kind==='attachment')add('bind','객귀 부착','이동 예산 68% · 객귀를 직접 공격하거나 이번 행동 뒤 해제');
+ if(condition?.kind==='knot')add('curse','옮는 매듭','다음 적 턴이 끝날 때 근처 같은 층 동행 한 명에게 전이 · 거리를 벌리거나 원인을 끊기');
+ if(u.honroMonsterGrowth>1)add('power','그림자 성장','그림자 '+u.honroMonsterGrowth+'단계 · 무피격 한 라운드 뒤 축소',u.honroMonsterGrowth);
+ if(u.honroMonsterState?.guardFace)add('shield','정면 방호','정면에서 들어오는 피해 감소 · 높은 곡사와 측면으로 공략');
+ if(u.honroMonsterState?.exposedUntil>(b.teamEnds?.[0]??0))add('guard','빈틈','자세 회복 중 · 피해 14% 더 받음');
+ if(u.honroMonsterVariant)add('power',variantNames[u.honroMonsterVariant],variantNames[u.honroMonsterVariant]+' 정예');
  if(u.bound>0)add('bind','결박',`결박 ${u.bound}회 · 이동력 감소·이동 소모 증가`,u.bound);
  if(u.slowed)add('slow','감속','감속 '+Math.round(u.slowed.factor*100)+'%');
  if(u.curseTurns>0){const parts=[`저주 ${u.curseTurns}턴`];if(u.curseDamage>0)parts.push(`매 턴 기본 피해 ${+(u.curseDamage*(u.curseDamageOrigin?.damageRoll??1)).toFixed(1)}`);if(u.curseAttack>0)parts.push(`공격력 ${Math.round(u.curseAttack*100)}% 감소`);if(u.curseArmor>0)parts.push(`방어력 ${Math.round(u.curseArmor*100)}%p 감소`);add('curse','저주',parts.join(' · '),u.curseTurns);}
@@ -80,6 +140,7 @@ function drawTelegraphs(c,e,scene,w,h,observe=true){
   c.restore();
   if(observe)e.observeEnemyEffectWarning?.(owner.id,q.serial);
  }
+ if(b.honroMonsterReworkRevision===1)drawNewPatterns(c,e,w,h,scene,z,left,right,top,bottom,observe);
 }
 
 const paths={};
@@ -146,11 +207,11 @@ function refresh(app,u){
    trigger.onkeydown=trigger.onkeyup=e=>{if(['Space','Enter'].includes(e.code))e.stopPropagation();};
    if(focused)trigger.focus({preventScroll:true});
   }
-  el.dataset.monsterSignal=softBind(b,u)||casts(b).some(v=>v.enemyEffectCast.target===u.id)?'true':'false';
+  el.dataset.monsterSignal=softBind(b,u)||u.honroMonsterCondition||casts(b).some(v=>v.enemyEffectCast.target===u.id)||patternSources(b).some(v=>v.honroMonsterWindup.target===u.id)?'true':'false';
   el.dataset.limited=why!=='이동·발사 가능'||u.bound>0||u.stun>0||softBind(b,u)?'true':'false';
  }
  for(const chip of document.querySelectorAll('#hero-switches [data-id]')){
-  const v=app.engine.unit(chip.dataset.id);if(!v)continue;const state=effects(b,v),tag=v.dead?'전투불능':v.stunnedRound===b.round&&v.acted||v.stun>0?'기절':softBind(b,v)?'매듭실':casts(b).some(o=>o.enemyEffectCast.target===v.id)?'예고':v.bound>0?'결박':v.curseTurns>0?'저주':v.acted?'완료':'';
+  const v=app.engine.unit(chip.dataset.id);if(!v)continue;const state=effects(b,v),tag=v.dead?'전투불능':v.stunnedRound===b.round&&v.acted||v.stun>0?'기절':softBind(b,v)?'매듭실':v.honroMonsterCondition?.kind==='seal'?'봉인':v.honroMonsterCondition?.kind==='attachment'?'객귀':v.honroMonsterCondition?.kind==='knot'?'매듭':casts(b).some(o=>o.enemyEffectCast.target===v.id)||patternSources(b).some(o=>o.honroMonsterWindup.target===v.id)?'예고':v.bound>0?'결박':v.curseTurns>0?'저주':v.acted?'완료':'';
   const title=`${v.name} · ${state.join(' / ')|| (v.acted?'행동 완료':'행동 가능')}`;if(chip.dataset.tooltip!==title)chip.dataset.tooltip=title;chip.classList.toggle('status-impaired',['기절','결박','저주','매듭실','예고'].includes(tag));
   const small=chip.querySelector('small');const text=tag||`${Math.round(Math.max(0,v.hp)/v.maxHp*100)}%`;if(small&&small.textContent!==text)small.textContent=text;
  }
