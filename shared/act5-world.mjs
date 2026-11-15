@@ -10,10 +10,24 @@ export const far = [
  ['act5Skywell','../act5/skywell.webp'], ['act5BrokenRidge','../act5/broken-ridge.webp']
 ];
 export const farStages = Object.fromEntries(panorama.map((key,i)=>[41+i,{key,portrait:key==='act5Skywell',kind:i===3||i>=5&&i<=8?'interior':'outdoor'}]));
-const mapPins=[[160,820],[290,775],[440,684],[554,596],[682,560],[793,465],[910,485],[1040,405],[1190,355],[1370,308]];
-export const journey={act:5,title:name,width:1536,height:1024,asset:'shared/assets/environment/act5/broken-ridge.webp',
- stages:chapters.map((c,i)=>({stageNumber:41+i,stageId:'stage-'+(41+i),title:c.name,mapLabel:c.name,x:mapPins[i][0],y:mapPins[i][1],labelOffsetX:i%2?30:-30,labelOffsetY:i%2?35:-35})),
- progressRoutes:mapPins.slice(1).map(([x,y],i)=>'M'+mapPins[i].join(' ')+'L'+x+' '+y)};
+// Dedicated illustrated atlas. Coordinates refer to the 1024 × 1536 painting,
+// not battle terrain: changing this definition never moves gameplay entities.
+const mapPins=[[135,221],[513,184],[862,173],[111,433],[313,495],[589,470],[751,658],[620,1220],[147,999],[792,1196]];
+const mapLabels=['군영 들머리','산중 성책','버려진 성채','귀림','서낭고개','하늘우물 입구','부유 석단','우물 아래 길','역류 계곡','산이 끊긴 곳'];
+const mapOffsets=[[-42,35],[0,38],[-70,38],[58,-30],[-20,38],[-30,-42],[45,-40],[40,35],[45,35],[0,40]];
+export const journey={act:5,title:name,width:1024,height:1536,asset:'shared/assets/journey-maps/v1/act5.webp',
+ stages:chapters.map((c,i)=>({stageNumber:41+i,stageId:'stage-'+(41+i),title:c.name,mapLabel:mapLabels[i],x:mapPins[i][0],y:mapPins[i][1],labelOffsetX:mapOffsets[i][0],labelOffsetY:mapOffsets[i][1]})),
+ progressRoutes:[
+  'M135 221 C260 265 338 229 410 210 Q463 198 513 184',
+  'M513 184 C650 213 720 258 769 224 Q806 196 862 173',
+  'M862 173 C800 270 640 286 480 270 S180 280 111 433',
+  'M111 433 Q150 534 224 525 Q264 515 313 495',
+  'M313 495 Q407 548 484 516 Q527 470 589 470',
+  'M589 470 Q727 469 822 497 C925 535 867 603 751 658',
+  'M751 658 Q850 681 880 717 C925 840 842 932 853 1011 Q871 1135 620 1220',
+  'M620 1220 Q475 1200 267 1227 Q130 1212 150 1148 Q183 1060 147 999',
+  'M147 999 Q183 1060 150 1148 Q130 1212 267 1227 Q461 1202 620 1220 Q701 1232 792 1196'
+ ]};
 export const clock = Object.fromEntries(chapters.map((chapter,i)=>[41+i,{
  day:5,start:chapter.clock,end:chapters[i+1]?.clock||'03:25',endRound:chapter.rounds[1],
  profile:i>=3?'act5-night':'default',moon:'act5',sky:![3,5,6,7,8].includes(i),clouds:.18
