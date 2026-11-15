@@ -20,6 +20,11 @@ INIT = """async ([id,kind])=>{
 }"""
 WARN = """kind=>{
  const a=HonroApp,e=a.engine,b=e.b,u=b.units.find(v=>v.honroMonsterSpecies===kind),h=e.heroesAlive()[0];
+ if(kind==='mulgwishin'){
+  const cfg=b.honroAct4Design.tide;
+  Object.assign(b.honroAct4PreviewState.tide,{phase:'high',surface:cfg.high,warned:true,highRound:cfg.highRound,lowRound:cfg.lowRound,opportunities:{}});
+  b.round=cfg.highRound;
+ }
  const origin={x:u.x,y:u.y-u.h*.44};
  let placed=false;
  for(const dx of [-210,210,-252,252,-294,294,-336,336]){
@@ -51,12 +56,24 @@ def stage(page, origin, out, chapter, kind, resume=False):
     page.wait_for_function('!!globalThis.HonroApp',timeout=90000)
     result=page.evaluate(INIT,[chapter,kind])
     assert result['revision']==1 and result['id'],result
-    page.wait_for_function('!HonroApp.dialogue && HonroApp.canInput()',timeout=90000)
+    page.wait_for_function('''()=>{const a=HonroApp;
+        for(let i=0;i<20&&a.dialogue;i++)HonroStory.finish(a);
+        return !a.dialogue&&a.canInput();
+    }''',timeout=12000)
     warning=page.evaluate(WARN,kind)
     assert 'error' not in warning, warning
     page.wait_for_function("id=>HonroApp.engine.unit(id).honroMonsterWindup?.seen",arg=warning['id'])
+    page.wait_for_timeout(850)
     page.screenshot(path=out/f'stage-{chapter}-{kind}.png')
     if resume:
+        before=page.evaluate('HonroApp.engine.active.x')
+        for key in ('a','d'):
+            page.keyboard.down(key)
+            page.wait_for_timeout(170)
+            page.keyboard.up(key)
+            if abs(page.evaluate('HonroApp.engine.active.x')-before)>4: break
+        assert abs(page.evaluate('HonroApp.engine.active.x')-before)>4
+        assert page.evaluate("id=>HonroApp.engine.unit(id).honroMonsterWindup.impact.x",warning['id'])==warning['x']
         page.evaluate('HonroApp.dirty=true;HonroApp.flushBattleSave()')
         page.reload(wait_until='domcontentloaded')
         page.wait_for_function('!!globalThis.HonroApp',timeout=90000)
