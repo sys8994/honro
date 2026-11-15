@@ -1,5 +1,5 @@
 (function(G){'use strict';
-const clone=x=>structuredClone(x),REVISIONS=Object.freeze({1:7,2:8,3:4,4:4,5:6,6:4,7:3,8:2,9:2,10:3,11:1,12:1,14:1,...Object.fromEntries(Array.from({length:10},(_,i)=>[21+i,1])),29:2});
+const clone=x=>structuredClone(x),REVISIONS=Object.freeze({1:7,2:8,3:5,4:4,5:6,6:4,7:4,8:2,9:2,10:3,11:1,12:1,14:1,...Object.fromEntries(Array.from({length:10},(_,i)=>[21+i,1])),29:2});
 // Increment only the chapters whose authored geography/encounters are replaced.
 // Workshop projects and their protected campaign owner are outside this contract.
 // Map geometry/encounters evolve independently of the story/equipment proof revision.
@@ -8,7 +8,11 @@ const ACT4_ENCOUNTER_REVISIONS=Object.freeze({40:6});
 const current=id=>id>=31&&id<=40&&G.HonroAct4Content?.enabled?(ACT4_ENCOUNTER_REVISIONS[id]??ACT4_MAP_REVISION):G.HonroAct23V4?.mapRevision(id)??REVISIONS[id]??0;
 const campaign=b=>!!b&&!b.honroCustom&&b.honroMapOrigin!=='workshop'&&b.mode==='campaign';
 function stamp(b){if(campaign(b))b.honroCampaignMapRevision=current(b.honroStage);}
-function obsolete(b){return campaign(b)&&!G.HonroStage11Compact?.preserveBattle(b)&&!G.HonroAct2Compact?.preserveBattle(b)&&(b.honroRevision!==20||(current(b.honroStage)>0&&b.honroCampaignMapRevision!==current(b.honroStage)));}
+function preserveAct1SiteBattle(b){
+ const before={3:4,7:3}[b.honroStage];
+ return b.honroCanonical&&b.honroRevision===20&&b.honroCampaignMapRevision===before&&[3,7].includes(b.honroStage)&&!b.honroAct1SiteRevision;
+}
+function obsolete(b){return campaign(b)&&!preserveAct1SiteBattle(b)&&!G.HonroStage11Compact?.preserveBattle(b)&&!G.HonroAct2Compact?.preserveBattle(b)&&(b.honroRevision!==20||(current(b.honroStage)>0&&b.honroCampaignMapRevision!==current(b.honroStage)));}
 function preserveGrowth(p,b){
  for(const cls of G.HONRO_CORE.CLASS_IDS){const h=p.heroes?.[cls],saved=b.heroes?.[cls];if(!h||!saved)continue;
   G.HONRO_CORE.grantXP(h,Math.max(0,(saved.xp||0)-(h.xp||0)));

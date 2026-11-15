@@ -15,6 +15,7 @@ import {applyStage7Positioning} from '../tools/map-forge/stage7-positioning.mjs'
 import {applyStage6Positioning} from '../tools/map-forge/stage6-positioning.mjs';
 import {applyStage4Positioning} from '../tools/map-forge/stage4-positioning.mjs';
 import {applyStage3Positioning} from '../tools/map-forge/stage3-positioning.mjs';
+import {applyAct1Sites} from '../tools/map-forge/act1-naru-doldang.mjs';
 import {applyStage2Positioning} from '../tools/map-forge/stage2-positioning.mjs';
 import {applyStage1Positioning} from '../tools/map-forge/stage1-positioning.mjs';
 import {restBackdropData} from '../tools/environment/rest-backdrop-assets.mjs';
@@ -183,6 +184,7 @@ export async function runtimeEntries({vector=true,render=true,app=false,producti
     project={...project,stages:[...project.stages,...act4.stages],library:[...project.library,...act4.library.filter(a=>!project.library.some(b=>b.id===a.id))]};
   }
   project=applyStage6ReviewedPursuit(applyStage6IntegratedPreview(applyStage6ArtPreview(project)));
+  project=await applyAct1Sites(project);
   terrainOptimization.apply(project.library);
   if(act4Enabled)code('terrain-previous-provider-signatures','globalThis.HONRO_PREVIOUS_TERRAIN_ART='+JSON.stringify(terrainOptimization.previousAct4Signatures)+';');
   parts.push({name:'campaign',project,code:'globalThis.HONRO_PROJECT='+authorProjectExpression(JSON.stringify(project))+';'});

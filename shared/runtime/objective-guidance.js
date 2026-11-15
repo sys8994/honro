@@ -82,7 +82,13 @@ function legacySteps(b,st,r){const h=b.honroState||{},out=[],add=(id,text,done=f
  case 4:add('protect','피난문을 지키세요 · '+Math.max(0,8-(b.round-1))+'턴 남음',r.complete);break;
  case 5:add('ritual','담허로 받이진 앞에서 의식을 시작하세요',!!h.ritual?.active||!seals.some(t=>!t.broken));add('cleat','설오로 표시된 고리쇠를 쏘세요',!seals.some(t=>!t.broken));hold('적 행동을 두 번 버티며 물길을 지키세요');break;
  case 6:add('midboss','교각귀를 쓰러뜨리세요',!b.units.some(u=>u.honroMidboss&&!u.dead));add('rescue','운반대 가까이 이동하세요',!!h.rescued);add('escort','운반대 앞에서 길을 열어 주세요',r.complete);break;
- case 7:marks.filter(m=>m.action==='rescue').forEach((m,i)=>add(m.id,'주민 '+(i+1)+' 곁에서 구조하세요',!!m.collected));hold('구조한 주민들을 2턴 보호하세요');break;
+ case 7:
+  for(const [i,m] of marks.filter(m=>m.action==='rescue').entries()){
+   const guards=m.collected?[]:G.HonroObjectives.rescueGuards(b,m);
+   const site=b.honroAct1SiteRevision===1?['아랫골목','중간 마당','당집'][i]:'주민 '+(i+1);
+   add(m.id,site+(guards.length?' 주변 적 '+guards.length+'기 제압':b.honroAct1SiteRevision===1?'의 주민 구조':' 곁에서 구조하세요'),!!m.collected);
+  }
+  hold('적 행동이 두 번 끝날 때까지 주민들을 지키세요');break;
  case 8:seals.forEach((t,i)=>add(t.id,'상여 결박 '+(i+1)+'을 공격하세요',!!t.broken));add('boss','빈 상여를 쓰러뜨리세요',!!boss?.dead);if(b.honroNarrativeRevision!==1)hold('적 행동을 두 번 버티며 주변을 지키세요');break;
  case 9:marks.filter(m=>m.action==='receiver').forEach((m,i)=>add(m.id,'받이진 '+(i+1)+'을 활성화하세요',!!m.collected));if(b.honroNarrativeRevision!==1)hold('일행을 2턴 보호하세요');break;
  case 10:if(b.honroNarrativeRevision===1){add('binding','바깥 붉은 주박을 공격하세요',!!G.HonroQuestTargets.records(b).find(t=>t.id==='sodan-binding')?.broken);add('accept','소단이 힘을 맡기도록 곁을 지키세요',!!h.sodanCoop);add('protect','소단을 지켜 주세요 · '+Math.max(0,6-(h.coopHold||0))+'턴 남음',!!h.sodanCoop&&(h.coopHold||0)>=6);add('sodan-safe-exit','동행 셋을 동쪽 외문 너머로 이동 · 소단은 스스로 따라옵니다',G.HonroSodanWithdrawal.complete(b));break;}add('weaken','소단의 주박을 약화하세요',!!h.sodanCoop||!!boss&&boss.hp<=boss.maxHp*.42);marks.filter(m=>m.action==='receiver').forEach((m,i)=>add(m.id,'받이진 '+(i+1)+'을 활성화하세요',!!m.collected));add('protect','소단을 지켜 주세요 · '+Math.max(0,6-(h.coopHold||0))+'턴 남음',!!h.sodanCoop&&(h.coopHold||0)>=6);add('sodan-safe-exit','동행 셋을 동쪽 외문 너머로 이동 · 소단은 스스로 따라옵니다',G.HonroSodanWithdrawal.complete(b));break;

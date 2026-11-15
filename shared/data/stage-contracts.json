@@ -39,13 +39,13 @@
   },
   {
     "id": 3,
-    "name": "나루의 남은 장부",
+    "name": "서낭나루",
     "level": 3,
     "theme": "river",
     "template": 4,
     "objective": "ledger",
-    "w": 9400,
-    "h": 2500,
+    "w": 5730,
+    "h": 3035,
     "map": [
       1080,
       760
@@ -53,7 +53,7 @@
     "requires": [
       2
     ],
-    "enemies": 6,
+    "enemies": 13,
     "active": 3
   },
   {
@@ -118,13 +118,13 @@
   },
   {
     "id": 7,
-    "name": "살아 있는 사람을 꺼내는 법",
+    "name": "돌당골",
     "level": 7,
     "theme": "tree",
     "template": 7,
     "objective": "rescue3",
-    "w": 6000,
-    "h": 5600,
+    "w": 4532,
+    "h": 3569,
     "map": [
       2350,
       760
@@ -132,7 +132,7 @@
     "requires": [
       6
     ],
-    "enemies": 11,
+    "enemies": 20,
     "active": 4
   },
   {
