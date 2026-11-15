@@ -19,7 +19,7 @@ const cue=(key,text,when='objective')=>({key,text,when});
 const device=(key,x,y,label,hp)=>({key,x,y,label,hp});
 
 export const combat=[
- {rounds:[13,17],active:5,hits:2.55,incoming:.112,eliteHits:4.5,
+ {rounds:[10,16],active:5,hits:2.55,incoming:.112,eliteHits:4.5,
   required:{campGuard:[252,303,331],watch:[850,877]},
   sites:{campGuard:[291,276],shelter:[305,276],approach:[889,233]},
   flow:[reach('camp','군영 초입에 접근'),fight('campGuard','천막 길목의 창보초·궁수·수의귀 제압'),
@@ -33,7 +33,7 @@ export const combat=[
    pack('campGuard',276,[['human',435],['mourner',453],['shade',478]],cue('camp','천막 뒤에서 죽은 보초 셋이 일어납니다.','reach')),
    pack('approach',232,[['mourner',901],['human',930],['shade',953]],cue('guide','산성 쪽 북이 울리고 진입로에 수비대가 나타납니다.','reach'))
   ]},
- {rounds:[13,17],active:5,hits:2.6,incoming:.115,eliteHits:4.5,
+ {rounds:[10,16],active:5,hits:2.6,incoming:.115,eliteHits:4.5,
   required:{approach:[179,223,247],corridor:[510,534],captain:[888,921,940]},
   sites:{approach:[223,327],palisade:[685,206],corridor:[568,327]},
   devices:[device('drum',733,192,'들린 군북',455)],
@@ -48,11 +48,11 @@ export const combat=[
    pack('captain',151,[['warden',888,0,'elite','군령받이'],['human',921],['mourner',940],['shade',964],['human',981]]),
    pack('drumSupport',200,[['human',756],['mourner',784],['shade',807]],cue('refuge','군북에 응해 성책 안쪽에서 수졸 셋이 올라옵니다.','drum'))
   ]},
- {rounds:[16,21],active:6,hits:2.65,incoming:.118,eliteHits:5.1,bossHits:10,
-  required:{armorWave:[821,891]},
+ {rounds:[15,21],active:6,hits:2.65,incoming:.118,eliteHits:5.1,bossHits:13,
+  required:{gateGuard:[199,273,356,404],armorWave:[821,852,891,919]},
   exit:[973,169],sites:{banner:[666,218],gateGuard:[375,218],armorWave:[847,218],sealGuard:[694,218]},
   devices:[device('banner',666,218,'혼이 깃든 군패',395)],
-  flow:[fight('banner','성벽의 군패 파괴'),['subdue','commander','장무율을 비살상으로 제압','armorWave'],
+  flow:[fight('gateGuard','암문으로 오르는 길의 선봉조 제압'),fight('banner','성벽의 군패 파괴'),['subdue','commander','장무율을 비살상으로 제압','armorWave'],
    use('commander','소단으로 붙은 혼 분리','occultist')],
   packs:[
    pack('gateGuard',321,[['mourner',199],['human',228],['shade',273],['mourner',391]]),
@@ -62,10 +62,10 @@ export const combat=[
    pack('sealGuard',218,[['warden',642,0,'elite','군패 수문귀'],['human',663],['shade',683],['human',713],['mourner',728]]),
    pack('court',169,[['human',821],['lantern',901],['human',940],['shade',974],['mourner',991]]),
    pack('commander',169,[['human',873,0,'commander','장무율']]),
-   pack('armorWave',218,[['mourner',821,-49,0,'군령 갑주'],['human',852],['mourner',891,-49,0,'군령 갑주'],['human',919],['shade',950]],
+   pack('armorWave',218,[['mourner',821,-49,0,'군령 갑주'],['human',852,-49,0,'갑주 사수'],['mourner',891,-49,0,'군령 갑주'],['human',919,-49,0,'갑주 사수'],['shade',950]],
     cue('commander','장무율의 군령에 암문 아래 갑주 다섯이 일어납니다.','commander'))
   ]},
- {rounds:[13,17],active:5,hits:2.55,incoming:.114,eliteHits:4.5,
+ {rounds:[10,16],active:5,hits:2.55,incoming:.114,eliteHits:4.5,
   required:{rootsUpper:[368,448],rootsLower:[399,433],summit:[902,921]},
   sites:{pass:[808,228]},
   flow:[reach('root','거목 아래로 이동'),['pass','roots','위쪽 수목귀·등불 또는 아래 골의 멧돼지·사슴 제압'],
@@ -78,7 +78,7 @@ export const combat=[
    pack('summit',164,[['boar',902],['hound',921],['stag',946],['shade',970],['crow',986]]),
    pack('summit',226,[['hound',784],['boar',810],['shade',830]],cue('summit','바위턱 아래에서 짐승 셋이 고갯길로 달려옵니다.','summit'))
   ]},
- {rounds:[13,17],active:5,hits:2.6,incoming:.12,eliteHits:4.5,
+ {rounds:[10,16],active:5,hits:2.6,incoming:.12,eliteHits:4.5,
   required:{screen:[314,331,378],bier:[624],farGuard:[829,850]},
   sites:{screen:[339,287],bierApproach:[464,280],farGuard:[859,324]},
   devices:[device('tether',494,279,'왼쪽 상여 결박',365),device('tether',561,280,'오른쪽 상여 결박',365)],
@@ -95,12 +95,14 @@ export const combat=[
    pack('farGuard',324,[['warden',829,0,'elite','석축 돌장승'],['shade',850],['shade',879],['human',902],['ghost',927]]),
    pack('slope',344,[['shade',955],['hound',971]])
   ]},
- {rounds:[12,16],active:5,hits:2.55,incoming:.111,eliteHits:4.5,
-  required:{rimGuard:[243,253],stakeTwo:[601,629]},
+ {rounds:[10,16],active:5,hits:2.55,incoming:.111,eliteHits:4.5,
+  required:{rimGuard:[188,243,253],stakeTwo:[601,629],eastGuard:[827,854,891,922]},
   sites:{rimGuard:[232,387],eastGuard:[867,487]},
   flow:[fight('rimGuard','기억진목을 막는 상두꾼과 등불 제압'),use('memory','담허로 기억진목 작동','mage'),
-   use('stakeOne','담허로 서쪽 석단에 첫 진목 설치','mage'),fight('stakeTwo','중앙 석단의 상두꾼과 등불 제압'),
-   use('stakeTwo','담허로 중앙 석단에 둘째 진목을 설치해 동작 재현','mage')],
+   use('stakeOne','담허로 서쪽 석단에 첫 진목 설치','mage'),
+   fight('stakeTwo','중앙 진목에 접근하는 수의귀·등불·상두꾼 제압'),
+   use('stakeTwo','담허로 중앙 석단에 둘째 진목을 설치해 동작 재현','mage'),
+   fight('eastGuard','하강 밧줄을 지키는 동쪽 절벽 수비조 제압')],
   packs:[
    pack('rimGuard',387,[['shade',188],['ghost',227],['lantern',253],['mourner',243]]),
    pack('stakeOne',483,[['shade',297],['ghost',318],['lantern',342]]),
@@ -109,7 +111,7 @@ export const combat=[
    pack('eastGuard',487,[['lantern',827],['ghost',854],['shade',891],['ghost',922],['lantern',961]]),
    pack('basin',1083,[['shade',443],['bat',575,-35]])
   ]},
- {rounds:[13,17],active:5,hits:2.6,incoming:.116,eliteHits:4.5,
+ {rounds:[10,16],active:5,hits:2.6,incoming:.116,eliteHits:4.5,
   required:{reverseGuard:[779,809,838],exitGuard:[898,948]},
   sites:{westGuard:[258,721],eastGuard:[563,718],reverseGuard:[754,585]},
   flow:[use('stakeOne','담허로 서쪽 시험 진목 설치','mage'),use('stakeTwo','담허로 동쪽 시험 진목 설치','mage'),
@@ -124,7 +126,7 @@ export const combat=[
    pack('reverseGuard',587,[['lantern',755],['mourner',779],['shade',809],['ghost',838],['lantern',864]],
     cue('center','역류가 오른쪽 계단으로 혼 다섯을 밀어 올립니다.','reverse'))
   ]},
- {rounds:[13,17],active:5,hits:2.65,incoming:.118,eliteHits:4.5,
+ {rounds:[10,16],active:5,hits:2.65,incoming:.118,eliteHits:4.5,
   required:{eastGuard:[519,547],reflection:[780,759]},
   sites:{westGuard:[306,407],eastGuard:[539,410]},
   flow:[use('stakeOne','담허로 서쪽 진목 설치','mage'),fight('eastGuard','동쪽 진목을 막는 상두꾼과 혼 제압'),
@@ -140,12 +142,13 @@ export const combat=[
    pack('reflection',313,[['warden',780,0,'elite','수면흉'],['ghost',740],['lantern',759],['shade',817],['ghost',836]],
     cue('center','수면 아래 비치던 망령 다섯이 오른쪽 회수로에 모습을 드러냅니다.','stable'))
   ]},
- {rounds:[13,17],exitParty:1,active:5,hits:2.7,incoming:.123,eliteHits:4.5,
-  required:{lowerGuard:[565,592,644],high:[865,897]},
+ {rounds:[15,21],active:6,hits:2.7,incoming:.123,eliteHits:6,
+  required:{lowerGuard:[524,565,592,644],midGuard:[825,855,886],high:[813,865,897,932]},
   sites:{lowerGuard:[592,1304],midGuard:[879,1000]},
-  flow:[reach('down','왼쪽 폭포의 낮은 석단으로 하강'),fight('lowerGuard','징검길 가까이의 혼·등불·궁수 제압'),
+  flow:[reach('down','왼쪽 폭포의 낮은 석단으로 하강'),fight('lowerGuard','징검길의 혼과 양쪽 사격조 제압'),
    reach('up','협곡 아래를 건너 오른쪽 중층으로 이동'),
-   fight('high','상층 길목의 역행귀와 등불 제압')],
+   fight('midGuard','역류를 건너 중층 돌계단의 사격조 제압'),
+   fight('high','상층 길목의 역행귀와 엄호조 제압')],
   packs:[
    pack('left',1028,[['lantern',98],['shade',119],['ghost',145],['bat',157]]),
    pack('lowerGuard',1304,[['stag',464],['shade',484],['human',524],['ghost',565],['lantern',592],['human',644],['shade',662]]),
@@ -155,11 +158,13 @@ export const combat=[
     cue('up','오른쪽 중층에 닿자 상층의 역행귀와 수비조가 모습을 드러냅니다.','reach')),
    pack('rim',380,[['lantern',926],['ghost',953]])
   ]},
- {rounds:[13,18],active:6,hits:2.7,incoming:.125,eliteHits:4.8,
-  required:{path:[855,874]},
+ {rounds:[15,21],active:6,hits:2.7,incoming:.125,eliteHits:6,
+  required:{firstGuard:[243,257,284,319],path:[855,874,902],gateGuard:[854,879,910]},
   sites:{firstGuard:[337,330],saddle:[593,410],gateGuard:[891,144]},
-  flow:[reach('view','첫 능선에서 무명사 조망'),reach('saddle','낮은 석교를 지나 산문 쪽 능선으로 이동'),
-   fight('path','산문 아래의 문턱귀와 곁의 호위 제압')],
+  flow:[fight('firstGuard','첫 조망터의 능선을 막는 악귀 제압'),reach('view','첫 능선에서 무명사 조망'),
+   reach('saddle','낮은 석교를 지나 산문 쪽 능선으로 이동'),
+   fight('path','역류가 밀려오는 석교 끝과 산문 아래의 문턱귀 제압'),
+   fight('gateGuard','산문 바로 앞의 사격조 제압')],
   packs:[
    pack('firstGuard',335,[['hound',181],['stag',216],['shade',243],['lantern',257],['mourner',284],['ghost',319],['shade',358]]),
    pack('slope',410,[['hound',464],['shade',493],['mourner',513],['ghost',561],['lantern',577],['shade',596]]),

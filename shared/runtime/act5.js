@@ -8,7 +8,7 @@ const escorts=b=>b.units.filter(u=>u.honroAct5Escort);
 const group=(b,key)=>b.units.filter(u=>design(b).groups[key]?.includes(u.id));
 const near=(u,{x,y},radius=185)=>Math.abs(u.x-x)<=radius&&Math.abs(u.y-y)<=115&&!u.airborne;
 const revised=b=>active(b)&&design(b)?.encounterVersion>=2;
-const focused=b=>active(b)&&design(b)?.encounterVersion===3;
+const focused=b=>active(b)&&design(b)?.encounterVersion>=3;
 const combatIds=(b,key)=>design(b).required?.[key]||design(b).groups[key]||[];
 const floorHP=u=>Math.ceil(u.maxHp*.29);
 function damageFloor(b,u){

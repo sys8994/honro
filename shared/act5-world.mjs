@@ -131,7 +131,7 @@ export async function makeAct5(){
    terrains:surfaces,materials:[],elements:[{id:'a5-near',assetId,x:0,y:0,scale:artworkScale,rotation:0,layer:'structural-back',depthLayer:'L1',visualRole:'scenery'}],
    units,events:[],encounters:[],objectives,markers:marks,anchors:{spawn:start,exit},
    environment:{version:4,preset:enclosed?'enclosed':'forest',atmosphere:{preset:enclosed?'enclosed':chapter.theme==='gate'?'burned':'forest'},groups:[],surfaces:[],zones:[{id:'a5-depth',from:0,to:height,blend:300}],placements:[],skyVisible:clock[id].sky},
-   meta:{notes:name,seed:5100+i},design:{act5:{encounterVersion:3,sites,links,groups,required,waves,exitParty:spec.exitParty??2,flow:spec.flow,beats:chapter.beats}},
+   meta:{notes:name,seed:5100+i},design:{act5:{encounterVersion:4,sites,links,groups,required,waves,exitParty:spec.exitParty??2,flow:spec.flow,beats:chapter.beats}},
    initialState:{honroAct5:1,honroActionBudgetRevision:1,honroActiveLimit:spec.active}});
   content.push({id,act:5,actStage:i+1,name:chapter.name,place:chapter.name,theme:chapter.theme,level:25,w:g.width,h:height,active:spec.active,enemies:initial,enemyBudget:counted.length,
    combat:{targetHits:spec.hits,targetIncomingHpFraction:spec.incoming,midBossHits:spec.eliteHits,bossHits:spec.bossHits??12},
