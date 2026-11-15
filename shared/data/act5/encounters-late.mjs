@@ -16,8 +16,8 @@ const wave=(key,when,text,entry,fallback)=>({key,when,text,entry,fallback});
 // support surface, and lift is the distance above it for a flying enemy.
 export const lateEncounters = {
   46: {
-    rounds:[15,18], active:6, hits:2.08, incoming:.105, eliteHits:4.5,
-    required:{rimGuard:[169,218,241],stakeTwo:[581,669],eastGuard:[841,876,921,909]},
+    encounterVersion:6, rounds:[15,18], active:6, hits:2.08, incoming:.105, eliteHits:4.5,
+    required:{rimGuard:[169,218,241],stakeTwo:[581,708],eastGuard:[841,876,940,951]},
     sites:{rimGuard:[219,387],eastGuard:[896,487]},
     contest:{stakeOne:{group:'stakeOne',radius:37},stakeTwo:{group:'stakeTwo',radius:37}},
     flow:[
@@ -38,14 +38,14 @@ export const lateEncounters = {
       ]),
       pack('stakeOne',['stakeOne'],116,98,[
         foe('ghost',305,483), flyer('lantern',329,483,48),
-      ]),
+      ],undefined,'memory'),
       pack('crownCrossfire',['stakeOne','stakeTwo'],162,165,[
         flyer('lantern',477,553,76), foe('ghost',515,553), flyer('bat',552,497,92),
-      ]),
+      ],undefined,'stakeOne'),
       pack('stakeTwo',['stakeTwo'],163,125,[
-        foe('shade',581,497,{label:'부유 석단 제기귀'}), foe('ghost',614,497),
-        flyer('lantern',669,497,63), foe('mourner',694,497,{label:'중앙 석단 수비혼'}),
-      ]),
+        foe('shade',581,497,{label:'부유 석단 제기귀'}), foe('ghost',632,497),
+        flyer('lantern',708,497,63), foe('mourner',674,497,{label:'중앙 석단 수비혼'}),
+      ],undefined,'stakeOne'),
       pack('eastApproach',['eastGuard'],129,133,[
         flyer('lantern',722,497,42), flyer('bat',817,487,97),
       ]),
@@ -54,7 +54,7 @@ export const lateEncounters = {
         foe('ghost',921,487),
       ]),
       pack('eastGuard',['eastGuard'],120,138,[
-        flyer('lantern',909,782,65), foe('ghost',954,782),
+        flyer('lantern',951,782,42), foe('ghost',940,782,{label:'동쪽 아래턱 수비혼'}),
       ]),
     ],
   },
@@ -101,10 +101,14 @@ export const lateEncounters = {
     ],
   },
   48: {
-    rounds:[16,19], active:6, hits:2.18, incoming:.113, eliteHits:4.7,
+    encounterVersion:6, rounds:[16,19], active:6, hits:2.18, incoming:.113, eliteHits:4.7,
     required:{eastGuard:[505,565],reflection:[778,811]},
     sites:{westGuard:[306,407],eastGuard:[539,410],reflection:[778,312]},
-    contest:{stakeOne:{group:'westGuard',radius:42},stakeTwo:{group:'eastGuard',radius:45}},
+    contest:{
+      stakeOne:{group:'westGuard',radius:34},
+      stakeTwo:{group:'eastGuard',radius:45},
+      tools:{group:'recoveryAscent',radius:29,text:'도구 곁의 제기귀를 밀어내거나 제압'},
+    },
     flow:[
       use('stakeOne','담허로 서쪽 진목 설치','mage'), fight('eastGuard','동쪽 진목을 막는 주박귀와 수비혼 제압'),
       use('stakeTwo','담허로 동쪽 진목 설치','mage'),
@@ -126,25 +130,25 @@ export const lateEncounters = {
       pack('eastGuard',['eastGuard','stakeTwo','center'],178,166,[
         flyer('lantern',476,415,78), foe('mourner',505,413,{label:'동쪽 진목 주박귀'}),
         foe('ghost',565,408,{label:'진목 수비혼'}), foe('shade',584,395,{label:'갈라진 석단 제기귀'}),
-      ]),
+      ],undefined,'stakeOne'),
       pack('recoveryAscent',['stakeTwo','reflection','tools'],155,155,[
-        flyer('lantern',598,382,39), foe('ghost',630,356), foe('shade',670,354,{label:'회수로 제기귀'}),
-      ]),
+        flyer('lantern',598,382,39), foe('ghost',630,356), foe('shade',716,318,{label:'회수로 제기귀'}),
+      ],undefined,'stakeTwo'),
       pack('upper',['reflection','tools'],181,135,[
-        flyer('lantern',845,232,43), foe('ghost',885,196), foe('shade',931,182,{label:'상층 석물귀'}),
+        flyer('lantern',845,232,43), foe('ghost',856,274), foe('shade',931,182,{label:'상층 석물귀'}),
       ]),
       pack('reflection',['reflection'],178,138,[
         boss(778,312,'수면흉','resonance'), flyer('lantern',811,310,45), foe('ghost',827,301),
       ],wave('center','stable','오른쪽 석단 끝 물그림자에서 수면흉이 올라옵니다.',[800,311],[834,294])),
       pack('reflection',['reflection','tools'],154,135,[
-        flyer('lantern',849,279,85), foe('shade',875,202,{label:'반사에 붙은 제기귀'}),
-      ],wave('center','stable','암반 여울 위에 맺힌 반사에서 제등과 석물이 나타납니다.',[860,260],[886,241])),
+        flyer('lantern',849,279,85), foe('shade',873,259,{label:'반사에 붙은 제기귀'}),
+      ],wave('center','stable','암반 여울 위에 맺힌 반사에서 제등과 석물이 나타납니다.',[860,270],[889,248])),
     ],
   },
   49: {
-    rounds:[18,20], active:7, hits:2.2, incoming:.119, eliteHits:5.1,
-    required:{lowerGuard:[373,427,515,613],midGuard:[820,871,927],high:[808,853,902,961]},
-    sites:{lowerGuard:[515,1304],midGuard:[873,1000]},
+    encounterVersion:6, rounds:[18,20], active:7, hits:2.2, incoming:.119, eliteHits:5.1,
+    required:{lowerGuard:[373,427,515,871],midGuard:[747,871,986],high:[808,853,902,1005]},
+    sites:{lowerGuard:[515,1304],midGuard:[873,1000],high:[961,685]},
     flow:[
       reach('down','왼쪽 폭포의 낮은 석단으로 하강'),
       fight('lowerGuard','하층 징검길의 돌짐승과 폭포 아래쪽 사격조 제압'),
@@ -170,22 +174,22 @@ export const lateEncounters = {
         flyer('lantern',530,1066,48), foe('human',591,1066,{label:'중층 서단 곡사수'}),
         flyer('bat',664,1066,93),
       ]),
-      pack('rightBank',['up','midGuard'],169,146,[
+      pack('lowerGuard',['lowerGuard','up','midGuard'],169,146,[
         foe('ghost',674,1304), foe('shade',752,1249,{label:'역류 둔덕 돌짐승'}),
         flyer('lantern',819,1220,67), foe('human',871,1220,{label:'하층 끝 아래 사수'}),
       ]),
       pack('midGuard',['up','midGuard','high'],156,155,[
-        foe('human',820,1026,{label:'중층 서쪽 사수'}), flyer('lantern',845,1026,53),
-        foe('shade',871,1010,{label:'돌계단 수호혼'}), foe('human',927,960,{label:'중층 높은 턱 사수'}),
-        foe('ghost',983,960),
-      ]),
+        foe('human',747,1056,{label:'중층 서쪽 사수'}), flyer('lantern',845,1026,53),
+        foe('shade',871,1010,{label:'돌계단 수호혼'}), foe('human',986,960,{label:'중층 높은 턱 사수'}),
+        foe('ghost',950,960),
+      ],undefined,'up'),
       pack('high',['midGuard','high'],179,179,[
         foe('shade',808,749,{label:'상층 벽감 돌짐승'}), boss(853,742,'역행귀','marksman'),
         flyer('lantern',902,733,56),
       ],wave('up','reach','상층 암벽의 안쪽에서 역행귀가 사선을 겨눕니다.',[855,742],[819,750])),
       pack('high',['high'],145,122,[
-        foe('human',961,685,{label:'상층 벼랑길 사수'}), flyer('lantern',992,685,82),
-      ],wave('up','reach','위쪽 석단 끝에서 역류를 타고 사수와 혼불이 들어옵니다.',[973,685],[949,691])),
+        foe('human',1005,685,{label:'상층 벼랑길 사수'}), flyer('lantern',989,685,58),
+      ],wave('high','pressure','위쪽 석단 끝에서 역류를 타고 사수와 혼불이 들어옵니다.',[999,685],[899,736])),
       pack('rim',[],144,121,[
         flyer('lantern',897,438,62), foe('ghost',944,395),
       ]),
