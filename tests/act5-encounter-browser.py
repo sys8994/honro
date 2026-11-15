@@ -128,6 +128,8 @@ def complete(page, chapter, alternative=False):
                 page.wait_for_function("""()=>{const b=HonroApp.engine.b;
                   return b.honroState.act5.shelteredGuide||b.units.find(u=>u.id==='a5-guide')?.x>840;
                 }""")
+            if chapter==44 and key=="summit":
+                wait_for_wave(page,start,"summit")
             if kind=="fight":
                 page.wait_for_function("""key=>{const b=HonroApp.engine.b,d=b.honroMap.act5;
                   return !b.units.some(u=>u.honroAct5Reserve&&(d.required[key]||d.groups[key]).includes(u.id));
