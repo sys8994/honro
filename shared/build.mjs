@@ -232,7 +232,10 @@ export async function runtimeEntries({vector=true,render=true,app=false,producti
     data('HONRO_TIMELINE',timeline);
   }
   if(render)await file('shared/runtime/authored-far-art.js');
-  if(render&&act5)await file('shared/runtime/act5-art.js');
+  if(render&&act5){
+    await file('shared/runtime/act5-art.js');
+    await file('shared/runtime/act5-edge-art.js');
+  }
   if(app){
     data('HONRO_SKILL_AUDIO',await skillAudioData());
     data('HONRO_MUKJONG_AUDIO',{src:'data:audio/mpeg;base64,'+(await readFile(path.join(root,'shared/assets/sfx/mukjong-b.mp3'))).toString('base64')});
