@@ -240,7 +240,7 @@ export const lateEncounters = {
         foe('mourner',912,304,{label:'산문 아래 들린 갑주'}), flyer('lantern',954,304,54),
       ],undefined,'bridge'),
       pack('templeSteps',['stair'],122,54,[
-        flyer('lantern',809,222,65), foe('human',895,222,{label:'산문 아래 계단 사수'}),
+        flyer('lantern',809,222,65), foe('human',881,222,{label:'산문 아래 계단 사수'}),
         foe('ghost',969,206,{label:'돌계단 옆 맴도는 혼'}),
       ],undefined,'path'),
       pack('gateGuard',['gateGuard'],141,48,[

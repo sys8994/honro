@@ -78,7 +78,7 @@ def drop_and_rope(page):
     stage(page, 46)
     assert page.evaluate("""()=>{
       const links=HonroApp.engine.b.honroMap.act5.links;
-      return links.length===30&&new Set(links.map(v=>v.label)).size===30&&links.every((a,i)=>links.slice(i+1)
+      return links.length===32&&new Set(links.map(v=>v.label)).size===32&&links.every((a,i)=>links.slice(i+1)
        .every(b=>Math.hypot(a.x-b.x,a.y-b.y)>65));
     }""")
     before = pose(page, "mage", 1315, 1932)
@@ -102,7 +102,15 @@ def drop_and_rope(page):
     page.wait_for_function("HonroApp.engine.active.y<2000&&HonroApp.engine.grounded(HonroApp.engine.active)")
     after = page.evaluate(STATE, "mage")
     assert after["y"] == before["y"] and after["move"] <= before_move(page) - 150
-    return {"drop": lower, "return": after}
+    eastern = pose(page,"mage",953*4,782*4)
+    east_rope=page.locator('[data-context-interact="a5-cross-30"]')
+    east_rope.wait_for(timeout=4000)
+    assert east_rope.is_enabled()
+    page.keyboard.press("KeyE")
+    page.wait_for_function("HonroApp.engine.active.y===1948&&HonroApp.engine.grounded(HonroApp.engine.active)")
+    east_return=page.evaluate(STATE,"mage")
+    assert east_return["support"]=="a5-far-rim" and east_return["hp"]==eastern["hp"]
+    return {"drop": lower, "return": after, "eastReturn": east_return}
 
 
 def before_move(page):

@@ -145,20 +145,21 @@ export const earlyEncounters = {
   44:{
     encounterVersion:6,
     rounds:[14,17], active:6, hits:1.49, incoming:.104, eliteHits:4.5,
-    sites:{rootFloor:[415,304], boughShelf:[679,214], gullyBend:[717,302], pass:[808,228]},
+    sites:{rootFloor:[415,304], boughShelf:[679,214], gullyTurn:[550,303], gullyBend:[717,302], pass:[808,228]},
     passages:{roots:[
       {id:'rootsUpper',label:'위 뿌리 능선',sites:['root','boughShelf']},
-      {id:'rootsLower',label:'아래 골',sites:['rootFloor','gullyBend']},
+      {id:'rootsLower',label:'아래 골',sites:['rootFloor','gullyTurn','gullyBend']},
     ]},
     contest:{
       root:{group:'rootsUpper',radius:101,height:34,label:'수목귀 앞 · 옆 발판에서 예고를 피하기'},
       boughShelf:{group:'nearCrest',radius:93,height:33,label:'뿌리 능선 끝 · 높은 턱의 사선 끊기'},
       rootFloor:{group:'rootsLower',radius:97,height:25,label:'아래 골 어귀 · 멧돼지 돌진을 피하기'},
+      gullyTurn:{group:'gullyTurn',radius:65,height:25,label:'골 안턱 · 돌진을 유도하거나 끊기'},
       gullyBend:{group:'gullyMerge',radius:105,height:26,label:'아래 골 굽이 · 측면 사격 끊기'},
       pass:{group:'mergeGuard',radius:92,height:44,text:'합류턱의 수비를 밀어내거나 제압하세요'},
     },
     reachAlternates:{root:['rootFloor']},
-    required:{rootsUpper:[368,426,473], rootsLower:[384,422,464], summit:[869,908,952]},
+    required:{rootsUpper:[368,426,473], rootsLower:[384,422], summit:[869,908,952]},
     flow:[
       ['reach','root','거목의 위 뿌리 능선 또는 아래 골에 접근'],
       ['pass','roots','위 뿌리 능선 또는 아래 골에서 한쪽 길 확보'],
@@ -174,12 +175,15 @@ export const earlyEncounters = {
         ['ghost',473,-20], ['shade',513,-29],
       ],{wake:{distance:205,height:60}}),
       pack('rootsLower',304,[
-        ['hound',350], ['boar',384], ['stag',422], ['shade',464], ['hound',513],
+        ['hound',350], ['boar',384], ['stag',422],
       ],{wake:{distance:205,height:52}}),
       pack('nearCrest',212,[
         ['shade',602,-7,undefined,'뿌리턱 수의귀'], ['crow',654,0,undefined,undefined,undefined,52],
         ['hound',697,8], ['human',756,14,undefined,'뿌리턱 끝 사수'],
       ],{wake:{keys:['roots'],distance:142,height:38,after:'root'}}),
+      pack('gullyTurn',303,[
+        ['boar',530,0,undefined,'골 안턱의 멧돼지'], ['shade',583,0,undefined,'굽이 뒤 수의귀'],
+      ],{wake:{keys:['roots'],distance:112,height:29,after:'root'}}),
       pack('gullyMerge',302,[
         ['stag',659,0,undefined,'굽이 아래 숫사슴'], ['hound',707], ['human',767,0,undefined,'굽이 측면 사수'],
       ],{wake:{keys:['roots'],distance:170,height:32,after:'root'}}),
@@ -190,8 +194,8 @@ export const earlyEncounters = {
         ['boar',869,15,undefined,'합류턱의 멧돼지'], ['hound',908], ['stag',952,0,undefined,'고개 위 숫사슴'],
         ['crow',979,0,undefined,undefined,undefined,44],
       ],{wake:{keys:['pass','summit'],distance:164,height:55,after:'roots'}}),
-      pack('crestPursuit',228,[['hound',802],['boar',828,-20],['shade',854,-42]],{
-        wave:cue('summit','summit','고갯마루 쪽 돌턱에서 달려오는 산짐승 소리가 들립니다.',[828,207],[870,169]),
+      pack('crestPursuit',164,[['hound',902],['boar',938],['shade',979]],{
+        wave:cue('summit','summit','고갯마루 쪽 돌턱에서 달려오는 산짐승 소리가 들립니다.',[936,164],[912,164]),
       }),
     ],
   },
