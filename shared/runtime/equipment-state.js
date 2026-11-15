@@ -1,19 +1,36 @@
 (function(G){'use strict';
 const C=G.HONRO_CORE,classes=['archer','mage','knight','occultist'],clone=x=>structuredClone(x),events=new Map(C.EQUIPMENT_EVENTS.map(e=>[e.eventId,e]));
-const publicEvent=e=>!!e&&(e.normalEnabled&&e.releaseGate==='publicAct1to3'||G.HONRO_ACT4_RELEASE===true&&e.act===4&&e.releaseGate==='officialAct4');
+function publicEvent(e){
+ if(!e)return false;
+ if(e.releaseGate==='publicAct1to3')return e.normalEnabled;
+ if(e.releaseGate==='officialAct4')return e.act===4&&G.HONRO_ACT4_RELEASE===true;
+ return act5Event(e)&&G.HONRO_ACT5_RELEASE===true;
+}
+const act5Event=e=>!!e&&e.normalEnabled&&e.act===5&&e.releaseGate==='officialAct5';
+// A feature switch governs new acquisition. Valid Act 5 receipts survive a disabled build.
+const ledgerEvent=e=>publicEvent(e)||act5Event(e);
+const act5ClearRewards={eq_co_16:43,eq_da_t4_choice:48};
+function collectAct5Clears(p){
+ let changed=false;
+ for(const [id,stage] of Object.entries(act5ClearRewards)){
+  const record=p.cleared?.[stage];
+  if(Number.isSafeInteger(record?.visits)&&record.visits>0)changed=grant(p,id)||changed;
+ }
+ return changed;
+}
 const empty=()=>({schema:1,definitionRevision:1,runId:'eq-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,10),ownedItemIds:[],eligibleEventIds:[],equippedByClass:Object.fromEntries(classes.map(c=>[c,{personal:null,common:null}])),rewardLedger:{}});
 function validate(eq){
  if(!eq||eq.schema!==1||eq.definitionRevision!==1||typeof eq.runId!=='string'||eq.runId.length>100||!Array.isArray(eq.ownedItemIds)||eq.ownedItemIds.length>52||new Set(eq.ownedItemIds).size!==eq.ownedItemIds.length||eq.ownedItemIds.some(id=>!C.EQUIPMENT_MAP[id])||!eq.equippedByClass||!eq.rewardLedger||Array.isArray(eq.rewardLedger))throw Error('장비 기록 버전을 읽을 수 없습니다.');
  if(eq.initialAutoEquip!==undefined&&typeof eq.initialAutoEquip!=='boolean'||eq.basicPrepared!==undefined&&(!Array.isArray(eq.basicPrepared)||eq.basicPrepared.some(c=>!classes.includes(c))))throw Error('초기 장비 기록 오류');
- if(eq.eligibleEventIds!==undefined&&(!Array.isArray(eq.eligibleEventIds)||eq.eligibleEventIds.length>36||new Set(eq.eligibleEventIds).size!==eq.eligibleEventIds.length||eq.eligibleEventIds.some(id=>!publicEvent(events.get(id)))))throw Error('장비 사건 근거 오류');
+ if(eq.eligibleEventIds!==undefined&&(!Array.isArray(eq.eligibleEventIds)||eq.eligibleEventIds.length>36||new Set(eq.eligibleEventIds).size!==eq.eligibleEventIds.length||eq.eligibleEventIds.some(id=>!ledgerEvent(events.get(id)))))throw Error('장비 사건 근거 오류');
  const worn=new Set();for(const cls of classes){const slots=eq.equippedByClass[cls];if(!slots||Object.keys(slots).some(k=>!['personal','common'].includes(k)))throw Error('장비 칸 오류');for(const slot of ['personal','common']){const id=slots[slot];if(id===null)continue;const item=C.EQUIPMENT_MAP[id];if(!item||item.slot!==slot||item.characterClass&&item.characterClass!==cls||!eq.ownedItemIds.includes(id)||worn.has(id))throw Error('장비 착용 오류');worn.add(id);}}
- const justified=new Set();for(const [id,row]of Object.entries(eq.rewardLedger)){const e=events.get(id);if(!e||!eq.debug&&!publicEvent(e)||!['eligible','pending','committed'].includes(row?.state)||row.choiceGroup!==(e.choiceGroup||null)||row.selectedItemId!==null&&!e.itemIds.includes(row.selectedItemId)||row.state==='committed'&&!e.itemIds.includes(row.selectedItemId)||row.state!=='committed'&&row.selectedItemId!==null||typeof row.notified!=='boolean')throw Error('장비 선택 기록 오류');if(row.state==='committed'){if(!eq.ownedItemIds.includes(row.selectedItemId))throw Error('장비 소유 누락');justified.add(row.selectedItemId);}}
+ const justified=new Set();for(const [id,row]of Object.entries(eq.rewardLedger)){const e=events.get(id);if(!e||!eq.debug&&!ledgerEvent(e)||!['eligible','pending','committed'].includes(row?.state)||row.choiceGroup!==(e.choiceGroup||null)||row.selectedItemId!==null&&!e.itemIds.includes(row.selectedItemId)||row.state==='committed'&&!e.itemIds.includes(row.selectedItemId)||row.state!=='committed'&&row.selectedItemId!==null||typeof row.notified!=='boolean')throw Error('장비 선택 기록 오류');if(row.state==='committed'){if(!eq.ownedItemIds.includes(row.selectedItemId))throw Error('장비 소유 누락');justified.add(row.selectedItemId);}}
  if(!eq.debug&&eq.ownedItemIds.some(id=>!justified.has(id)))throw Error('장비 소유 기록 오류');
  if(!eq.debug&&eq.ownedItemIds.length>36)throw Error('회차 소유 한도 오류');return eq;
 }
 function ids(p,cls){const s=p.equipment.equippedByClass[cls];return [s.personal,s.common].filter(Boolean);}
 function sync(p){for(const cls of classes){const list=ids(p,cls);if(list.length)p.heroes[cls].equipmentIds=list;else delete p.heroes[cls].equipmentIds;}}
-function grant(p,eventId){const e=events.get(eventId),eq=p.equipment;if(!publicEvent(e)||eq.rewardLedger[eventId])return false;const choice=!!e.choiceGroup;eq.rewardLedger[eventId]={state:choice?'pending':'committed',choiceGroup:e.choiceGroup||null,selectedItemId:choice?null:e.itemIds[0],notified:false};if(!choice)eq.ownedItemIds.push(e.itemIds[0]);return true;}
+function grant(p,eventId){const e=events.get(eventId),eq=p.equipment;if(!publicEvent(e)||eq.rewardLedger[eventId]&&eq.rewardLedger[eventId].state!=='eligible')return false;const choice=!!e.choiceGroup;eq.rewardLedger[eventId]={state:choice?'pending':'committed',choiceGroup:e.choiceGroup||null,selectedItemId:choice?null:e.itemIds[0],notified:false};if(!choice&&!eq.ownedItemIds.includes(e.itemIds[0]))eq.ownedItemIds.push(e.itemIds[0]);return true;}
 const clears={eq_se_ledger:3,eq_da_gate:4,eq_hw_bier:8,eq_co_01:1,eq_co_02:3,eq_co_t1_choice:7};
 // Only mandatory chapter facts are retroactive. Optional elite/sluice/reach facts
 // require this run's actual receipts, never the chapter clear flag alone.
@@ -30,7 +47,7 @@ function farewellEquipmentSnapshot(p,b,u){
 function migrate(p){
  const legacy=!p.equipment;if(legacy){p.equipment=empty();recruitFacts(p);for(const [id,stage]of Object.entries({...clears,...mandatory}))if(p.cleared[stage])grant(p,id);}else validate(p.equipment);
  for(const b of [p.saved,p.honroBattle].filter(Boolean)){const seen=new Set();for(const cls of classes)if(b.heroes?.[cls]?.equipmentIds)C.validateEquipmentIds(b.heroes[cls].equipmentIds,cls);for(const u of b.units||[])if(u.equipmentIds){C.validateEquipmentIds(u.equipmentIds,u.cls);if(u.equipmentIds.length&&!C.equipmentActor(u)&&!farewellEquipmentSnapshot(p,b,u))throw Error('NPC 장비 오류');for(const id of u.equipmentIds){if(seen.has(id))throw Error('중복 장비 오류');seen.add(id);}}}
- if(p.equipment.debug)throw Error('디버그 장비는 정상 기록으로 불러올 수 없습니다.');sync(p);return p;
+ if(p.equipment.debug)throw Error('디버그 장비는 정상 기록으로 불러올 수 없습니다.');collectAct5Clears(p);validate(p.equipment);sync(p);return p;
 }
 function fresh(p){p.equipment=empty();p.equipment.initialAutoEquip=true;p.equipment.basicPrepared=[];return p;}
 function debug(p){const equipped=clone(p.equipment.equippedByClass);p.equipment=empty();p.equipment.equippedByClass=equipped;p.equipment.debug=true;p.equipment.ownedItemIds=C.EQUIPMENT_ITEMS.map(i=>i.itemId);sync(p);return p;}
@@ -48,6 +65,7 @@ function collect(p,b,{won=false,initial=false}={}){let changed=recruitFacts(p);c
  if(G.HONRO_ACT4_RELEASE===true&&p.honroAct4?.runId===p.equipment.runId)for(const [id,f]of Object.entries(p.honroAct4.factEvents||{})){const e=events.get(id),source=p.honroAct4.completed?.[e?.stage]?.sourceRun,live=b?.honroAct4Official===1&&b.honroStage===e?.stage&&b.session===f.sourceRun;const proof=f.proof;const verified=id==='eq_se_t3b'?proof?.boarded&&Array.isArray(proof.party)&&proof.party.length>0:id==='eq_co_12'?proof?.tag==='eq-co-31'&&!!proof.reachedBy:id==='eq_da_t3b'?proof?.itemId==='itm_da_06'&&proof.receiver==='mage'&&proof.giver!==proof.receiver&&Number.isFinite(proof.receivedAt)&&proof.positions?.length===2:id==='eq_co_t3_choice'?proof?.tag==='rooted-third-clearing'&&proof.reached===true:id==='eq_hw_t3b'?proof?.elite===true&&typeof proof.target==='string':id==='eq_so_t3b'?proof?.roster?.total===13&&proof.roster.living===11&&proof.roster.priorDeaths===2&&proof.rescued?.ids?.length===4:false;if(e?.act===4&&f.officialAct4===true&&f.stage===e.stage&&f.campaignRunId===p.equipment.runId&&(live||source===f.sourceRun)&&verified)changed=grant(p,id)||changed;}
  for(const id of p.equipment.eligibleEventIds||[])changed=grant(p,id)||changed;
  for(const [id,n]of Object.entries({...clears,...mandatory}))if(p.cleared[n])changed=grant(p,id)||changed;
+ changed=collectAct5Clears(p)||changed;
  if(won)for(const [id,n]of Object.entries(clears))if(stage===n)changed=grant(p,id)||changed;
  const pair=stepRewards[stage];if(pair&&(stepDone(b,pair[0])||stepDone(b,({13:'resident',16:'witness',17:'hoist',18:'keeper',22:'upper-register',29:'hyeonmuk-letter'})[stage])))changed=grant(p,pair[1])||changed;
  // V4 replaced the old finite quarry carts with this recorded two-spirit wave.
@@ -66,7 +84,7 @@ function collect(p,b,{won=false,initial=false}={}){let changed=recruitFacts(p);c
 function capture(app,options={}){
  const b=app.engine?.b;if(app.debugMode||app.training||app.customMap||G.HONRO_EMBEDDED||!b||b.mode!=='campaign'||b.honroCustom)return false;
  const p=app.profile,probe={...p,equipment:clone(p.equipment)};collect(probe,b,options);let changed=false;
- for(const id of Object.keys(probe.equipment.rewardLedger))if(!p.equipment.rewardLedger[id]){p.equipment.eligibleEventIds??=[];if(!p.equipment.eligibleEventIds.includes(id)){p.equipment.eligibleEventIds.push(id);changed=true;}}
+ for(const id of Object.keys(probe.equipment.rewardLedger))if(!p.equipment.rewardLedger[id]||p.equipment.rewardLedger[id].state==='eligible'){p.equipment.eligibleEventIds??=[];if(!p.equipment.eligibleEventIds.includes(id)){p.equipment.eligibleEventIds.push(id);changed=true;}}
  return changed;
 }
 function observe(app,options={}){if(app.debugMode||app.customMap||app.training||G.HONRO_EMBEDDED)return false;const b=app.engine?.b||options.battle;if(b?.honroCustom||b&&b.mode!=='campaign')return false;return transaction(app,p=>collect(p,b,options));}

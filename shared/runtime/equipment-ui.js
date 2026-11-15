@@ -1,6 +1,6 @@
 (function(G){'use strict';
 const C=G.HONRO_CORE,E=G.HonroEquipment,H=G.HONRO_CONTENT,esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const pending=p=>Object.entries(p.equipment.rewardLedger).filter(([,r])=>r.state==='pending').map(([id])=>id);
+const pending=p=>Object.entries(p.equipment.rewardLedger).filter(([id,r])=>r.state==='pending'&&E.publicEvent(C.EQUIPMENT_EVENTS.find(e=>e.eventId===id))).map(([id])=>id);
 // Event stage is recorded; the prior owner and discovery scene are not.
 // Keep older pending ledgers neutral rather than inventing a giver or a corpse.
 function sourceLabel(ev){const stage=H.stages.find(s=>s.id===ev.stage)||H.stages[ev.stage-1];return Number.isInteger(ev.stage)?`${ev.stage}장${stage?.name?' · '+stage.name:''}`:'';}

@@ -17,7 +17,8 @@ for(const [i,s] of stages.entries()){
 const required=J.required,optional=J.optional,transition=J.transitionAfter;
 J.required=(p,id)=>id>=41||id==null&&p.cleared[50]?[]:required(p,id);
 J.optional=(p,id,...args)=>id>=41||id==null&&p.cleared[50]?[]:optional(p,id,...args);
-J.transitionAfter=id=>id>=40&&id<50?'direct':transition(id);
+// These two already-authored settlements give the party a safe opportunity to use earned equipment.
+J.transitionAfter=id=>id===43||id===48?'rest':id>=40&&id<50?'direct':transition(id);
 Object.defineProperty(J,'ending',{configurable:true,value:{stageId:50,region:'저승이 닿은 산',place:'무명사 산문',event:'무명사에 닿다',layer:'mountain',variant:'forest',
  restName:'무명사 산문',restDescription:'',endingTitle:'산이 끊긴 곳',nextText:'다음 여정은 준비 중입니다.'}});
 })(globalThis);

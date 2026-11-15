@@ -29,9 +29,9 @@ export function equipmentStats<T extends {hp:number;mp:number;attack:number;move
  return {...base,hp:Math.round(base.hp*(1+(b.hp||0)/100)),mp:Math.round(base.mp*(1+(b.mp||0)/100)),attack:base.attack*(1+(b.attack||0)/100),move:Math.round(base.move*(1+(b.move||0)/100)),armor:Math.min(.7,base.armor+(b.armor||0)/100),critChance:Math.min(.75,base.critChance+(b.crit||0)/100),critMultiplier:Math.min(3.5,base.critMultiplier+(b.critMult||0)),regen:base.regen+(b.regen||0)};
 }
 export function equipmentSkillModifier(u:Unit,id:string){let damage=0,cost=0;if(equipmentActor(u))for(const key of u.equipmentIds||[]){const m=EQUIPMENT_SKILL_OPTIONS[key];if(m?.skills.includes(id)){damage+=m.damage;cost+=m.cost;}}return{damage,cost};}
-export function equipmentManaCost(u:Unit,s:Pick<Skill,'id'>,native:number){
+export function equipmentManaCost(u:Unit,s:Pick<Skill,'id'>,native:number,temporaryDiscount=0){
  if(!native||!equipmentActor(u))return native;
- const discount=(equipmentOptions(u.equipmentIds,u.cls).cost||0)/100+equipmentSkillModifier(u,s.id).cost;
+ const discount=(equipmentOptions(u.equipmentIds,u.cls).cost||0)/100+equipmentSkillModifier(u,s.id).cost+temporaryDiscount;
  return native*(1-Math.min(.30,Math.max(0,discount)));
 }
 export function equipmentCast(u:Unit,id:string){return{damage:1+equipmentSkillModifier(u,id).damage,radius:1};}

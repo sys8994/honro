@@ -207,8 +207,8 @@ function validBattle(raw: unknown,legacyXp=false,oldXp=false): Battle {
         if(u.prepared&&(!nums(u.prepared,['rank','expires'])||!Number.isInteger(u.prepared.rank)||u.prepared.rank<1||u.prepared.rank>8))return fail();
         if(u.equipmentState!==undefined){
             const st=u.equipmentState;if(!object(st)||st.version!==1)return fail();
-            for(const k of ['jumpCycle','healCycle','guardCycle','anchorCycle','counterCycle'] as const)if(st[k]!==undefined&&(!Number.isSafeInteger(st[k])||st[k]!<0))return fail();
-            for(const k of ['loanUsed','regenHalf','movePenalty','echoUsed'] as const)if(st[k]!==undefined&&typeof st[k]!=='boolean')return fail();
+            for(const k of ['jumpCycle','healCycle','guardCycle','anchorCycle','counterCycle','braceCycle','braceSpent','landingShieldCycle','highGroundCycle'] as const)if(st[k]!==undefined&&(!Number.isSafeInteger(st[k])||st[k]!<0))return fail();
+            for(const k of ['loanUsed','regenHalf','movePenalty','echoUsed','reserveReady'] as const)if(st[k]!==undefined&&typeof st[k]!=='boolean')return fail();
             if(st.landingRetreat!==undefined&&(!finite(st.landingRetreat)||Math.abs(st.landingRetreat)>180))return fail();
             if(st.guardImpact&&(!ids.has(st.guardImpact.owner)||!Number.isSafeInteger(st.guardImpact.shot)||st.guardImpact.shot<0||![0,.25].includes(st.guardImpact.scale)))return fail();
             if(st.wallSlow&&(!ids.has(st.wallSlow.owner)||!finite(st.wallSlow.until)))return fail();

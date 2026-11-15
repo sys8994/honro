@@ -1,0 +1,17 @@
+{
+  "earlyEffects": {
+    "itm_da_03": "da_reserve",
+    "itm_da_04": "da_cover",
+    "itm_hw_03": "hw_brace",
+    "itm_hw_04": "hw_takeoff",
+    "itm_so_03": "so_ground",
+    "itm_so_04": "so_land"
+  },
+  "additionalTrigger": {
+    "itm_se_05": "PRIMARY_ARROW"
+  },
+  "act5Rewards": {
+    "eq_co_16": 43,
+    "eq_da_t4_choice": 48
+  }
+}

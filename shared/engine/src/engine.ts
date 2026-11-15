@@ -1,7 +1,7 @@
 import {finishMonsterPatterns,validateMonsterPatterns,observeMonsterPattern,monsterPatternResponse,monsterTurn,prepareMonsterPattern,monsterActionCompleted,monsterMovementBudget,monsterSkillBlocked,recordMonsterSkill,clearMonsterCondition,monsterRedirect,monsterDefense,monsterHit,monsterPriorityTarget,monsterRound,tickMonsterPatterns} from './monsterPatterns';
 import {enemyEffectEligible,interruptEnemyEffect,validateEnemyEffects,observeEnemyEffectWarning,offerEnemyEffectResponses,enemyEffectActionCompleted,prepareEnemyEffect,resolveEnemyEffect,enemyEffectDamage,enemyEffectMovementBudget,tickEnemyEffects,clearEnemyEffects,releaseEnemySoftBind} from './enemyEffects';
 import {wreckDamage,damageNearest,damageContact,damageAim,damageCritical} from './wreckDamage';
-import {gearCapture,gearHas,gearBody,gearCanPay,gearPay,gearTurn,gearRegen,gearGuard,gearImpulse,gearAlly,gearState,gearCycle,gearFrostSlow,gearStepMove,gearEarthMove,gearWallContact,gearPreservesWood,gearSpreadWeak,gearTravelSpent,gearReturn,gearLandingRetreat,gearPass} from './equipmentCombat';
+import {gearCapture,gearHas,gearBody,gearCanPay,gearPay,gearTurn,gearRegen,gearGuard,gearImpulse,gearAlly,gearState,gearCycle,gearFrostSlow,gearStepMove,gearEarthMove,gearWallContact,gearPreservesWood,gearSpreadWeak,gearTravelSpent,gearReturn,gearLandingRetreat,gearPass,gearTactical,gearDefend,gearJumpCost,gearJumpLanding,gearHighGround,gearReserveDiscount} from './equipmentCombat';
 import {equipmentActor,equipmentParam,equipmentCast,equipmentManaCost,equipmentPrimary,equipmentSoulVector} from './equipment';
 import {playerRangeSpeed,initializePlayerRange,flightRangeSpent,boundRushMotion,playerRangeApplies,PLAYER_LANTERN_RANGE} from './playerRange';
 import {endPlayerFlight} from './playerRangeMechanics';
@@ -148,7 +148,7 @@ export class Engine {
     select(id: string) { const u = this.unit(id); if (this.b.phase !== 'aim' || (this.active?.retreat || this.active?.meleeFollow==='ready' || this.active?.platformDrop && this.active.platformDrop.phase!=='land') || !u || u.side !== 0 || u.summoned || u.enthrall || u.dead || u.acted)
         return false; this.b.active = id; this.emit('change'); return true; }
     canAfford(s:Skill,u:Unit,power=u.lastPower){return gearCanPay(u,this.manaCost(s,u,power));}
-    manaCost(s: Skill, u: Unit, power=u.lastPower) { const rank=s.ultimate||s.basic?1:(u.ranks[s.id] || 1),scale=u.side===0?MANA_COST_MULTIPLIER:1,charge=meleeSkill(s)&&!['counterStance','lifeSlash'].includes(s.mode)?.75+.25*clamp(power,0,1):1; return equipmentManaCost(u,s,passiveCost(u,s,s.cost*skillManaFactor(rank)*scale*charge)*(SUMMON_SKILLS.has(s.id)?1-(u.nextSummonDiscount||0):1)); }
+    manaCost(s: Skill, u: Unit, power=u.lastPower) { const rank=s.ultimate||s.basic?1:(u.ranks[s.id] || 1),scale=u.side===0?MANA_COST_MULTIPLIER:1,charge=meleeSkill(s)&&!['counterStance','lifeSlash'].includes(s.mode)?.75+.25*clamp(power,0,1):1; return equipmentManaCost(u,s,passiveCost(u,s,s.cost*skillManaFactor(rank)*scale*charge)*(SUMMON_SKILLS.has(s.id)?1-(u.nextSummonDiscount||0):1),gearReserveDiscount(this.b,u)); }
     noncombatWalk(){const b=this.b as Battle&{honroStage?:number;honroCustom?:boolean};return b.honroStage===19&&!b.honroCustom&&b.mode==='campaign';}
     skillAllowed(s:Skill,u=this.active){return !this.noncombatWalk()&&!!u&&warriorAllowed(u,s)&&!monsterSkillBlocked(this.b,u,s);}
     monsterSkillReason(s:Skill,u=this.active){return u&&monsterSkillBlocked(this.b,u,s)?'그슨새의 봉인 · 이번 행동이 끝나면 해제':'';}
@@ -597,8 +597,8 @@ export class Engine {
         delete u.platformDrop;delete u.moveTarget;
         u.moving = 0;
         const e = this.effective(s, u);
-        const gear=gearCapture(u,s,e.damage,this.grounded(u),gearCycle(b));
-        const actualKiSpent=this.manaCost(s,u,power);gearPay(u,actualKiSpent);
+        const gear=gearCapture(u,s,e.damage,this.grounded(u),gearCycle(b),gearTactical(b));
+        const actualKiSpent=this.manaCost(s,u,power);gearPay(u,actualKiSpent,gearTactical(b));
         u.cooldowns ??= {}; if(s.cooldown)u.cooldowns[skillId]=b.round+s.cooldown+1;
         u.angle = clamp(angle, AIM_MIN, AIM_MAX);
         u.lastPower = clamp(power, u.side===0&&!u.summoned?0:.08, 1);
@@ -693,9 +693,9 @@ export class Engine {
         if(u.platformDrop?.phase!=='fall'||!u.platformDrop.contacts.length)return this.contactSurface(x,min,max);
         return terrainSurface(this.collisionTerrain({x,y:0},{x,y:0},3),x,min,max,Infinity,(t,edge)=>!!this.dropEdges(u,t)?.includes(edge));
     }
-    jumpCost(u:Unit){return Math.max(25,75-passiveRank(u,'SP03')*5);}
+    jumpCost(u:Unit){return gearJumpCost(this.b,u,Math.max(25,75-passiveRank(u,'SP03')*5));}
     jump(u = this.active) { if(this.noncombatWalk()&&u?.side===0)u.moveLeft=u.maxMove; if (!u || u.dead || u.eaterCapturedBy || u.summonKind==='eater' || u.meleeFollow==='ready' || u.equipmentState?.motion || u.fixed || u.airborne || u.moveLeft < this.jumpCost(u) || !this.grounded(u))
-        return false; delete u.platformDrop;delete u.moveTarget;if(equipmentActor(u))gearState(u).jumpCycle=gearCycle(this.b); u.jumping = true; u.vy = -660*(1+passiveRank(u,'SP03')*.02)*((u.equipmentIds?.includes('itm_co_11')&&equipmentActor(u)?1.3:1)>1?Math.sqrt(.9):1); u.moveLeft = Math.max(0, u.moveLeft - this.jumpCost(u)); u.landing = 0; this.fx('spark', u.x, u.y, '#d7d0b8', 20); this.emit('sound', { name: 'jump' }); return true; }
+        return false; const cost=this.jumpCost(u);delete u.platformDrop;delete u.moveTarget;if(equipmentActor(u))gearState(u).jumpCycle=gearCycle(this.b); u.jumping = true; u.vy = -660*(1+passiveRank(u,'SP03')*.02)*((u.equipmentIds?.includes('itm_co_11')&&equipmentActor(u)?1.3:1)>1?Math.sqrt(.9):1); u.moveLeft = Math.max(0, u.moveLeft - cost); u.landing = 0; this.fx('spark', u.x, u.y, '#d7d0b8', 20); this.emit('sound', { name: 'jump' }); return true; }
     walk(u:Unit,direction:number,dt:number,requireSupport=false){if(u.eaterCapturedBy||u.summonKind==='eater')return false;if(u.meleeFollow==='ready'||u.platformDrop&&u.platformDrop.phase!=='land')return;if(this.noncombatWalk()&&u.side===0)u.moveLeft=u.maxMove;const result=walkTerrain(this,u,direction,dt*(1-Math.max(u.slowed?.factor||0,gearFrostSlow(this,u)))*(u.jumping&&(u.equipmentIds?.includes('itm_co_11')&&equipmentActor(u)?1.3:1)>1?1.3/Math.sqrt(.9):1),requireSupport);if(this.noncombatWalk()&&u.side===0)u.moveLeft=u.maxMove;return result;}
     canTurnArrow(){return !!steerableArrow(this.b);}
     turnArrow(point?:Vec){if(!turnArrow(this,point))return false;this.emit('save');return true;}
@@ -886,8 +886,9 @@ export class Engine {
         this.finishAction();
         return true;
     }
+    defendEquipment(u:Unit){gearDefend(this,u);}
     wait() { if (this.noncombatWalk() || !this.canAct() || this.active?.platformDrop && this.active.platformDrop.phase!=='land')
-        return; const u = this.active!; if(u.retreat){this.finishAction(true);return;}const healBefore=u.hp,shieldBefore=u.shield; u.shield = Math.max(u.shield, Math.round(u.maxHp * .12)); u.shieldUntil = this.b.teamEnds[1] + 1; u.focus = Math.min(u.maxFocus, u.focus + u.regen); if (!this.combatEnemies().length)
+        return; const u = this.active!; if(u.retreat){this.finishAction(true);return;}const healBefore=u.hp,shieldBefore=u.shield; u.shield = Math.max(u.shield, Math.round(u.maxHp * .12)); u.shieldUntil = this.b.teamEnds[1] + 1; this.defendEquipment(u); u.focus = Math.min(u.maxFocus, u.focus + u.regen); if (!this.combatEnemies().length)
         u.hp = Math.min(u.maxHp, u.hp + Math.round(u.maxHp * .12)); healed(this.b,u,u.id,healBefore,'action:defend');shielded(this.b,u,u.id,shieldBefore);this.message(`${u.name} · 방어하며 대기`); this.finishAction(); }
     iceGourdReady(){return iceGourdReady(this);}
     detonateIceGourd(){return detonateIceGourd(this);}
@@ -1048,6 +1049,7 @@ export class Engine {
         if(damageSource==='normal')interruptEnemyEffect(this,u,owner,direct,p,Math.max(0,enemyEffectHpBefore-u.hp)+absorbed);
         if(damageSource==='normal'||u.dead)monsterHit(this,u,owner,direct,p,Math.max(0,enemyEffectHpBefore-u.hp));
         enemyEffectDamage(this,u,p,Math.max(0,enemyEffectHpBefore-u.hp));
+        if(damageSource==='normal'&&direct&&enemyEffectHpBefore>u.hp)gearHighGround(this,u,owner,p);
         tickEnemyEffects(this,0);
         if(u.summonKind==='eater'){
             if(rawSrc&&this.allegiance(rawSrc)===0&&dmg>0){const shared=Math.min(dmg,Math.max(0,u.maxHp-(u.eaterTransferred||0)));u.eaterTransferred=(u.eaterTransferred||0)+shared;for(const target of this.b.units.filter(v=>v.eaterCapturedBy===u.id&&!v.dead))this.hurt(target,shared,owner,false,undefined,source,'eaterTransfer',damageSkill||p?.skill);}
@@ -1976,10 +1978,10 @@ export class Engine {
         if(damage<=0)return;u.impactCooldown=.30;
         this.hurt(u,damage,'',false);this.fx('text',u.x,u.y-u.h-25,'#edb699',13,kind==='fall'?'낙하 충격':'충돌 충격');
     }
-    landUnit(u: Unit,silent=false) { if (u.jumping || u.vy > 95) {
+    landUnit(u: Unit,silent=false) { const voluntary=u.jumping;if (u.jumping || u.vy > 95) {
         u.landing = .26;
         if(!silent)this.fx('spark', u.x, u.y, '#c9c3b1', 18);
-    } if(u.platformDrop?.phase==='fall'){u.platformDrop.phase='land';u.platformDrop.elapsed=0;u.platformDrop.contacts=[];} u.jumping = false; u.vy = 0; }
+    } if(u.platformDrop?.phase==='fall'){u.platformDrop.phase='land';u.platformDrop.elapsed=0;u.platformDrop.contacts=[];} u.jumping = false; u.vy = 0;if(voluntary&&!silent)gearJumpLanding(this,u); }
     stepUnits(dt: number) {
         for (const u of this.b.units) {
             if(this.clearDisabledActor(u))continue;

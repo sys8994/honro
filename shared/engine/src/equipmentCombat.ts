@@ -1,22 +1,72 @@
 import type {Battle,Unit,Skill,Projectile,Terrain,Vec} from './types';
 import type {EquipmentAttack,EquipmentUnitState,DamageOrigin} from './damageVariance';
 import type {Engine,Collision,Prediction} from './engine';
-import {equipmentActor,equipmentEffect,equipmentSkillModifier,EQUIPMENT_MAP} from './equipment';
+import {equipmentActor,equipmentEffect,equipmentParam,equipmentSkillModifier,EQUIPMENT_MAP} from './equipment';
 import {attackForSkill} from './existence';
+import {SKILLS} from './data';
 import {terrainRectIntersects,clamp,STEP} from './math';
 import {validTerrainContactPose} from './locomotion';
 export const gearState=(u:Unit):EquipmentUnitState=>u.equipmentState??=( {version:1} );
 export const gearCycle=(b:Battle)=>b.round;
 export function gearHas(p:DamageOrigin|undefined,id:string){return !!p?.equipment?.items.some(key=>EQUIPMENT_MAP[key]?.effectId===id);}
-export function gearCapture(u:Unit,s:Skill,damage:number,grounded:boolean,cycle:number):EquipmentAttack|undefined{
+export function gearCapture(u:Unit,s:Skill,damage:number,grounded:boolean,cycle:number,tactical=false):EquipmentAttack|undefined{
  if(!equipmentActor(u))return;
- const air=!grounded||u.jumping||u.airborne,jumped=u.equipmentState?.jumpCycle===cycle,a=attackForSkill(s),vector=equipmentEffect(u,'co_soul')?(jumped?{form:a.form*.5,qi:a.qi*.5,soul:a.soul+(a.form+a.qi)*.5}:{form:a.form*.7,qi:a.qi+a.form*.3,soul:a.soul}):undefined;
+ const air=!grounded||u.jumping||u.airborne,jumped=u.equipmentState?.jumpCycle===cycle,a=attackForSkill(s);
+ const soulGround=tactical&&!air&&!jumped?equipmentParam(u,'so_ground','nonSoulToSoul',0):0;
+ const vector=equipmentEffect(u,'co_soul')?
+  (jumped?{form:a.form*.5,qi:a.qi*.5,soul:a.soul+(a.form+a.qi)*.5}:{form:a.form*.7,qi:a.qi+a.form*.3,soul:a.soul}):
+  soulGround?{form:a.form*(1-soulGround),qi:a.qi*(1-soulGround),soul:a.soul+(a.form+a.qi)*soulGround}:undefined;
  return{version:1,items:[...(u.equipmentIds||[])],airborne:air,jumped,lowFocus:u.maxFocus>0&&u.focus/u.maxFocus<=.4,rootDamage:damage,skillDamage:1+equipmentSkillModifier(u,s.id).damage,vector};
 }
 export function gearBody(p:Partial<Projectile>|undefined){return !!p&&!!p.skill&&typeof p.vx==='number'&&typeof p.vy==='number'&&!p.secondary&&!p.autonomous&&!p.followup&&!p.echoSource&&!(p.child&&p.mode!=='crescent')&&p.mode!=='stake'&&p.mode!=='keeperBinding'&&!(p as any).keeperReturned;}
 export function gearLoan(u:Unit,cost:number){const missing=Math.max(0,cost-u.focus);return equipmentEffect(u,'co_costly')&&!u.equipmentState?.loanUsed&&cost>0&&missing>0&&missing<=u.maxFocus*.2+1e-8?missing:0;}
 export function gearCanPay(u:Unit,cost:number){return u.focus>=cost||gearLoan(u,cost)>0;}
-export function gearPay(u:Unit,cost:number){const loan=gearLoan(u,cost);if(loan){u.focus+=loan;const st=gearState(u);st.loanUsed=true;st.regenHalf=true;}u.focus=Math.max(0,u.focus-cost);}
+export function gearPay(u:Unit,cost:number,tactical=false){if(tactical&&cost>0&&u.equipmentState?.reserveReady)delete u.equipmentState.reserveReady;const loan=gearLoan(u,cost);if(loan){u.focus+=loan;const st=gearState(u);st.loanUsed=true;st.regenHalf=true;}u.focus=Math.max(0,u.focus-cost);}
+export const gearTactical=(b:Battle)=>b.honroEquipmentRewardRevision===2;
+export function gearReserveDiscount(b:Battle,u:Unit){
+ return gearTactical(b)&&u.equipmentState?.reserveReady?equipmentParam(u,'da_reserve','discount',0):0;
+}
+export function gearJumpCost(b:Battle,u:Unit,native:number){
+ const scale=gearTactical(b)&&u.equipmentState?.jumpCycle!==gearCycle(b)?equipmentParam(u,'hw_takeoff','costScale',1):1;
+ return native*scale;
+}
+function gearShield(e:Engine,u:Unit,fraction:number){
+ const shield=Math.ceil(u.maxHp*fraction);
+ if(u.shield>=shield)return false;
+ u.shield=shield;u.shieldUntil=Math.max(u.shieldUntil??0,e.b.teamEnds[1]+1);
+ e.fx('ring',u.x,u.y-u.h*.5,'#b6d1c1',30);
+ return true;
+}
+export function gearDefend(e:Engine,u:Unit){
+ if(!gearTactical(e.b)||!equipmentActor(u))return;
+ if(equipmentEffect(u,'da_reserve'))gearState(u).reserveReady=true;
+ if(equipmentEffect(u,'hw_brace')&&e.grounded(u)&&u.equipmentState?.braceSpent!==gearCycle(e.b))gearState(u).braceCycle=gearCycle(e.b);
+ if(!equipmentEffect(u,'da_cover'))return;
+ const range=equipmentParam(u,'da_cover','range',310),head={x:u.x,y:u.y-u.h*.5};
+ const allies=e.b.units.filter(v=>v!==u&&equipmentActor(v)&&!v.dead&&v.hp>0&&v.hp<v.maxHp&&Math.abs(v.y-u.y)<=75&&Math.hypot(v.x-u.x,v.y-u.y)<=range)
+  .sort((a,b)=>Math.abs(a.x-u.x)-Math.abs(b.x-u.x)||a.hp/a.maxHp-b.hp/b.maxHp||a.id.localeCompare(b.id));
+ const ally=allies.find(v=>!e.projectileCollision(head,{x:v.x,y:v.y-v.h*.5},1,u.id,[],false));
+ if(ally&&gearShield(e,ally,equipmentParam(u,'da_cover','fraction',.05))){
+  (globalThis as any).HonroProgression?.shieldAdded(e.b,ally,u.id,0);
+ }
+}
+export function gearJumpLanding(e:Engine,u:Unit){
+ if(!gearTactical(e.b)||u.dead||u.hp<=0||!equipmentEffect(u,'so_land')||!validTerrainContactPose(e.b.terrain,u))return;
+ const st=u.equipmentState,cycle=gearCycle(e.b);
+ if(st?.jumpCycle!==cycle||st.landingShieldCycle===cycle)return;
+ st.landingShieldCycle=cycle;gearShield(e,u,equipmentParam(u,'so_land','fraction',.04));
+}
+export function gearHighGround(e:Engine,target:Unit,owner:string,p?:Projectile){
+ if(!gearTactical(e.b)||!p||target.dead||target.hp<=0||target.side!==1||target.boss||target.honroMidboss||target.fixed||target.honroObjectiveTarget)return;
+ const caster=e.unit(owner);
+ if(!caster||caster.cls!=='archer'||!equipmentActor(caster)||!gearBody(p)||!gearHas(p,'se_drop')||
+  SKILLS[p.skill]?.cls!=='archer'||!p.mode.toLowerCase().includes('arrow'))return;
+ const y=p.launchY??p.returnY,gap=equipmentParam(caster,'se_drop','highGroundGap',140);
+ if(!Number.isFinite(y)||target.y-target.h*.5-y<gap||caster.equipmentState?.highGroundCycle===gearCycle(e.b))return;
+ gearState(caster).highGroundCycle=gearCycle(e.b);
+ target.slowed={factor:Math.max(target.slowed?.factor||0,equipmentParam(caster,'se_drop','highGroundSlow',.18)),expires:Math.max(target.slowed?.expires||0,e.b.round+1)};
+ e.fx('text',target.x,target.y-target.h-15,'#cedbc2',12,'고지 사격 · 감속');
+}
 export function gearTurn(u:Unit){const st=u.equipmentState;if(!st)return;delete st.jumpCycle; if(st.movePenalty){u.moveLeft*=.9;delete st.movePenalty;} }
 export function gearRegen(u:Unit,regen:number){if(!u.equipmentState?.regenHalf)return regen;delete u.equipmentState.regenHalf;return regen*.5;}
 export function gearEnemyBody(e:Engine,u:Unit,owner:string,p?:Partial<Projectile>){const src=e.unit(owner);return equipmentActor(u)&&!!src&&e.allegiance(src)===1&&!src.summoned&&!src.enthrall&&gearBody(p);}
@@ -33,8 +83,12 @@ export function gearImpulse(e:Engine,u:Unit,vx:number,vy:number,p?:Partial<Proje
  if(!gearEnemyBody(e,u,p?.owner||'',p))return{vx,vy};
  const st=gearState(u),cycle=gearCycle(e.b);
  if(equipmentEffect(u,'co_noncrit')&&st.anchorCycle!==cycle&&e.grounded(u)&&!u.jumping&&!u.airborne&&(Math.abs(vx)+Math.abs(vy)>0)){st.anchorCycle=cycle;st.movePenalty=true;st.guardImpact={owner:p!.owner!,shot:p?.shot??e.b.shot,scale:0};e.fx('spark',u.x,u.y-4,'#c6b898',24);return{vx:0,vy:0};}
- const receipt=st.guardImpact;if(receipt&&receipt.owner===p?.owner&&receipt.shot===(p?.shot??e.b.shot))return{vx:vx*receipt.scale,vy:vy*receipt.scale};
- return{vx,vy};
+ const receipt=st.guardImpact;
+ const previous=receipt&&receipt.owner===p?.owner&&receipt.shot===(p?.shot??e.b.shot)?receipt.scale:1;
+ const braces=gearTactical(e.b)&&st.braceCycle===cycle&&st.braceSpent!==cycle&&Math.abs(vx)+Math.abs(vy)>0;
+ if(braces)st.braceSpent=cycle;
+ const scale=braces?Math.min(previous,equipmentParam(u,'hw_brace','knockbackScale',.60)):previous;
+ return{vx:vx*scale,vy:vy*scale};
 }
 export function gearAlly(e:Engine,u:Unit,owner:Unit,p:Partial<Projectile>){
  if(u.dead||owner.dead||!gearBody(p)||!equipmentActor(owner)||!equipmentActor(u)||u.id===owner.id||e.allegiance(u)!==e.allegiance(owner))return false;

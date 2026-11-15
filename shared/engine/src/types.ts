@@ -458,6 +458,7 @@ export interface Stage {
     par: number;
 }
 export interface Battle {
+    honroEquipmentRewardRevision?:2;
     honroMonsterEffectsRevision?: 1;
     honroMonsterReworkRevision?: 1;
     honroMonsterMist?:{point:Vec;radius:number;until:number};
