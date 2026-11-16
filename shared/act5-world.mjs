@@ -94,8 +94,8 @@ export async function makeAct5(){
  const stage44Canopy=JSON.parse(await readFile(new URL('./assets/environment/act5/stage44-upper-canopy.json',import.meta.url),'utf8'));
  const stage45DepthClips=JSON.parse(await readFile(new URL('./assets/environment/act5/stage45-depth-clips.json',import.meta.url),'utf8'));
  const stage45Clips=JSON.parse(await readFile(new URL('./assets/environment/act5/stage45-preserved-clips.json',import.meta.url),'utf8'));
- const stage48Seam=JSON.parse(await readFile(new URL('../art/stage48-continuity/source-seam.json',import.meta.url),'utf8'));
- const stage48Support=JSON.parse(await readFile(new URL('../art/stage48-continuity/support-mask.json',import.meta.url),'utf8'));
+ const stage48Seam=JSON.parse(await readFile(new URL('../art/stage48-continuity/source-seam-v8.json',import.meta.url),'utf8'));
+ const stage48Support=JSON.parse(await readFile(new URL('../art/stage48-continuity/support-mask-v8.json',import.meta.url),'utf8'));
  const stage48Body=JSON.parse(await readFile(new URL('./assets/environment/act5/stage48-continuous-body.json',import.meta.url),'utf8'));
  const stage45Body=JSON.parse(await readFile(new URL('./assets/environment/act5/stage45-root-body.json',import.meta.url),'utf8'));
  const stage44Roots=JSON.parse(await readFile(new URL('./assets/environment/act5/stage44-root-exterior.json',import.meta.url),'utf8'));

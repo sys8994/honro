@@ -41,3 +41,18 @@ v7b 확대에서 수직 톱니는 줄었으나 원본 양끝 바깥에 신규 �
 `derive-support-clip.py`가 기존 두 원본 Native 실루엣과 원본 foot→신규 alpha y740 정확 교점을 잇는 하부 support gate를 실제 Inkscape Boolean UNION한다. 결과 `support-mask-native.svg`/`support-mask.json`을 신규 alpha와 교차해 사용한다. 기존 사각 보호영역과 y544 컷은 제거했다. 따라서 생성된 상부 복제가 밖으로 나오는 어깨와 원본 캔버스 x0/1536의 톱니는 추가하지 않는다. 원본 자갈/암괴의 불규칙 외곽은 그대로 남는다. sourceSeam, 원본 vector, 보행선은 불변이다.
 
 최종 로컬 후보 캡처는 `_local/reports/stage48-v7c-*`이며, 앞선 v7/v7b 실패 상태와 혼동하지 않는다. 전체/동서확대/하단/390×844/320×1200 극단 팬으로 구분한다. 극단 동쪽 세로 팬의 타일 경계 선은 사라졌고 하부 암반은 화면 바닥까지 이어진다. 아직 실제 브라우저/라운드 플레이 미검증이며 질감 차이에 대한 미술 종합 판단 전이다.
+
+## 순차 진행 전환으로 v8에서 중지 (2026-11-16)
+
+사용자 지시로 47장 완료 후 한 장씩 진행하기 위해 추가 수정/배포를 중지했다. 마지막 진행 중이던 v8 전체 Native 캡처는 정상 종료됐으나 화면을 아직 검수하지 않았고 승인되지 않았다. 현재 WIP 코드가 참조하는 후보는 v8이다. v7c 미술 불합격은 그대로 기록한다.
+
+v8 재개 위치:
+- `concept-joint-v8.png`: 원본+신규 하부를 큰 배율로 놓고 끊긴 암맥을 연결하도록 재설계한 접합 시안.
+- `concept-v8.png`: 접합 시안을 전체 연속 BODY에 다시 적용한 시안. Native8색 원본/최적화/분할/alpha는 `native-v8/`.
+- `compile-v8.py`, `partition-v8.py`를 통해 현재 stage48-continuous-body.json 생성.
+- `source-seam-v8.json`: 실제 최하위 보행선 아래15 source units까지 원본을 남기고 잘린 비보행 암괴 끝은 새 그림으로 교체하려는 후보. 이전 source-seam.json은 변경하지 않았다.
+- `support-mask-v8.json`: 원본 실루엣+접촉선 envelope Native UNION 후 원본 tunnel hole을 정확히 Native DIFFERENCE. 현재 shared/act5-world.mjs가 이 v8 파일을 참조한다.
+- 전체 캡처 `_local/reports/stage48-v8-overview/stage-48-overview.png`, report는 `native-qa-v8-pending.json`. 상태-pure render 검사만 통과하며 미술 검수는 아직 하지 않았다.
+- 재개 후 우선 전체 화면과 실제 충돌 overlay, 동서 확대를 보고 접촉선·터널·외곽 접합을 검증할 것. 기존 tests/stage48-continuity.mjs의 source-seam 읽기 경로는 아직 v7 기준이므로 v8 검증으로 오해하지 말 것. v8 전용 보존/터널 회귀를 확인해야 한다.
+- v8은 별도 접합 시안이므로 v7c의 팬/줌 QA를 그대로 승계하지 않는다. 세로/극단팬 및 공개 브라우저/라운드 검증은 모두 미완료.
+- master/Pages 미변경. 통합 전 최신 master와 47장 등 병렬 변경을 반드시 보존할 것.
