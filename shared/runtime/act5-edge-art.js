@@ -77,10 +77,14 @@ S.landmark=function(c,l){
  const a=l.asset.continuousBody,z=l.scale??1,V=G.HonroVisualStyle,cc=V?V.context(c,V.classify(l,this.battle,l.asset)==='gameplay'?'gameplay':V.depth(l,l.asset)):c;
  cc.save();try{cc.translate(l.x,l.y);cc.scale(z,z);
  // Preserve original upper silhouette/tunnel. The new BODY only adds outside support.
- const sourceClip=new Path2D('M-1400 -100H3000V5000H-1400Z M0 0V650H1536V0Z '+Object.values(l.asset.vector.clips).flat().map(d=>d.replace(/^\s*m/,'M')).join(' '));
- cc.save();cc.clip(sourceClip);G.HonroVectorArt.draw(cc,a,{x:0,y:0,scale:1});cc.restore();
+ const sourceClip=new Path2D('M-1400 -100H3000V5000H-1400Z M0 0V544H220V650H1400V544H1536V0Z '+l.asset.sourceNativeClips.join(' '));
+ cc.save();cc.clip(sourceClip);cc.beginPath();cc.rect(-1400,544,4400,4456);cc.clip();G.HonroVectorArt.draw(cc,a,{x:0,y:0,scale:1});cc.restore();
  }finally{cc.restore();}
- c.save();c.translate(l.x,l.y);c.scale(z,z);c.beginPath();c.rect(-10,-10,1556,660);c.clip();c.scale(1/z,1/z);c.translate(-l.x,-l.y);draw.call(this,c,l);c.restore();return;
+ cc.save();cc.translate(l.x,l.y);cc.scale(z,z);cc.save();cc.clip(new Path2D(l.asset.sourceSeam));G.HonroVectorArt.draw(cc,l.asset,{x:0,y:0,scale:1});cc.restore();
+ // Never discard original rock where the independently traced extension has no alpha.
+ const originalTransform=cc.getTransform();cc.transform(...a.vector.root.transform);
+ cc.clip(new Path2D('M-5000 -5000H5000V5000H-5000Z '+a.vector.clips['native-source-alpha'].join(' ')),'evenodd');cc.setTransform(originalTransform);
+ G.HonroVectorArt.draw(cc,l.asset,{x:0,y:0,scale:1});cc.restore();return;
  }
 
  if(l.asset?.id==='act5:near:45'&&l.asset.continuousBody&&!l.rotation){
@@ -132,7 +136,9 @@ S._drawTerrainDomainTiles=function(c,b,w,h){
  const v=G.HonroBounds.viewport(this,w,h),d=b.honroTerrainBounds,size=512/this._worldRasterScale(b,w);
  const left=Math.floor(d.left/size)*size,top=Math.floor(d.top/size)*size,right=(Math.floor(d.right/size)+1)*size,bottom=(Math.floor(d.bottom/size)+1)*size;
  if(v.left>=left&&v.right<=right&&v.top>=top&&v.bottom<=bottom)return;
- c.save();c.beginPath();c.rect(v.left-1,v.top-1,v.right-v.left+2,v.bottom-v.top+2);c.rect(left,top,right-left,bottom-top);c.clip('evenodd');
+ c.save();c.beginPath();c.rect(v.left-1,v.top-1,v.right-v.left+2,v.bottom-v.top+2);// Match the tile renderer's device-pixel clip boundary; fractional clips
+ // otherwise accumulate antialiasing across the native color stack.
+ if(b.honroStage===48){const m=c.getTransform(),L=(Math.round(left*m.a+m.e)-m.e)/m.a,R=(Math.round(right*m.a+m.e)-m.e)/m.a,T=(Math.round(top*m.d+m.f)-m.f)/m.d,B=(Math.round(bottom*m.d+m.f)-m.f)/m.d;c.rect(L,T,R-L,B-T);}else c.rect(left,top,right-left,bottom-top);c.clip('evenodd');
  for(const l of G.HonroTerrainDomain.materialLandmarks(b))if(l.asset?.id==='act5:near:'+b.honroStage)this.landmark(c,l);
  c.restore();
 };
