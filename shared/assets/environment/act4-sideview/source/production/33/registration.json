@@ -1,0 +1,29 @@
+{
+  "stage": 33,
+  "operation": "shared native color/alpha vertical registration, bottom fixed; no gameplay mutation",
+  "selectedTerrainIds": [
+    "approved33-left-bank",
+    "approved33-low"
+  ],
+  "maximumContactShiftWorld": 40.6160592830058,
+  "samplingChordToleranceSourcePx": 0.025,
+  "sourceToWorld": {
+    "scale": 11,
+    "offsetX": -4600
+  },
+  "nonplayLeftCompression": null,
+  "counts": {
+    "color": {
+      "segmentsBefore": 16157,
+      "segmentsAfterEdit": 155003,
+      "bytes": 2851237,
+      "sha256": "bee4114fd165fa5eb4817c4639d20ea274bae29524fbad01b57ae9b89ca1a9ae"
+    },
+    "alpha": {
+      "segmentsBefore": 118,
+      "segmentsAfterEdit": 154,
+      "bytes": 3109,
+      "sha256": "7cfcbddc0097843007b31c2db40fc328047e71e7a9cec0013b0567c2c8f9d8c6"
+    }
+  }
+}

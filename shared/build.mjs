@@ -3,6 +3,7 @@ import {applyStage6ArtPreview} from '../tools/stage6-prototype/art-preview.mjs';
 import {applyStage6IntegratedPreview} from '../tools/stage6-prototype/integrated-preview.mjs';
 import {applyAct4FinaleRevision} from './act4-finale-revision.mjs';
 import {applyAct4HandoffArt} from './act4-handoff-art.mjs';
+import {applyAct4SideviewArt} from './act4-sideview-art.mjs';
 import {makeAct5,far as act5Far,farStages as act5FarStages,clock as act5Clock,journey as act5Journey} from './act5-world.mjs';
 import {applyAct3HandoffArt} from './act3-handoff-art.mjs';
 import {terrainPathOptimization} from './terrain-path-optimization.mjs';
@@ -186,7 +187,7 @@ export async function runtimeEntries({vector=true,render=true,app=false,producti
     if(!Array.isArray(released)||new Set(released).size!==released.length||released.some(id=>!Number.isInteger(id)||id<31||id>40))
       throw Error('Invalid Act 4 terrain release stages');
     const options=process.env.HONRO_ACT4_HANDOFF_PREVIEW==='1'?{}:{stages:released};
-    const act4=await applyAct4HandoffArt(authored,options);
+    const act4=await applyAct4SideviewArt(await applyAct4HandoffArt(authored,options));
     project={...project,stages:[...project.stages,...act4.stages],library:[...project.library,...act4.library.filter(a=>!project.library.some(b=>b.id===a.id))]};
   }
   project=applyStage6ReviewedPursuit(applyStage6IntegratedPreview(applyStage6ArtPreview(project)));

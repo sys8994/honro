@@ -1,0 +1,55 @@
+{
+  "input": "_local\\reports\\act4-sideview-p1-20261116\\registered33-v2\\color-registered.svg",
+  "input_sha256": "bee4114fd165fa5eb4817c4639d20ea274bae29524fbad01b57ae9b89ca1a9ae",
+  "epsilon_viewbox_units": 0.05,
+  "changed_paths": 16,
+  "segments_before": 155012,
+  "segments_after": 95317,
+  "skips": {},
+  "render_checks": [
+    {
+      "mean_channel_error": 9.573794523021206e-05,
+      "changed_pixel_fraction": 6.357828776041667e-06,
+      "max_channel_error": 0.06745097041130066,
+      "width": 1536,
+      "accepted": true
+    },
+    {
+      "mean_channel_error": 5.919258182984777e-05,
+      "changed_pixel_fraction": 6.039937337239583e-06,
+      "max_channel_error": 0.08049213886260986,
+      "width": 3072,
+      "accepted": true
+    }
+  ],
+  "growth_guard": {
+    "original_bytes": 2851237,
+    "candidate_bytes": 1728798,
+    "reasons": [],
+    "before": {
+      "segments": 155012,
+      "subpaths": 939,
+      "paths": 16,
+      "shape_elements": 16
+    },
+    "candidate": {
+      "segments": 95317,
+      "subpaths": 939,
+      "paths": 16,
+      "shape_elements": 16
+    },
+    "accepted": true
+  },
+  "accepted": true,
+  "candidate_bytes": 1728798,
+  "original_bytes": 2851237,
+  "output_bytes": 1728798,
+  "output_metrics": {
+    "segments": 95317,
+    "subpaths": 939,
+    "paths": 16,
+    "shape_elements": 16
+  },
+  "output_sha256": "dad988c7b0821e490dc3a76a8b246fbb26778131c0007093efe1a5a3122c9849",
+  "input_unchanged": true
+}

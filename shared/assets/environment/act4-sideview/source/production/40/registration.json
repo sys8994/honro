@@ -1,0 +1,28 @@
+{
+  "stage": 40,
+  "operation": "shared native color/alpha vertical registration, bottom fixed; no gameplay mutation",
+  "selectedTerrainIds": [
+    "approved40-coast-east"
+  ],
+  "maximumContactShiftWorld": 111.69008666567088,
+  "samplingChordToleranceSourcePx": 0.025,
+  "sourceToWorld": {
+    "scale": 4.333333333333333,
+    "offsetX": 0
+  },
+  "nonplayLeftCompression": 0.15,
+  "counts": {
+    "color": {
+      "segmentsBefore": 8027,
+      "segmentsAfterEdit": 54553,
+      "bytes": 1026626,
+      "sha256": "d1558e081a449850b47d5f347b1c5e79159a35a4bebc46cfd347233de4915751"
+    },
+    "alpha": {
+      "segmentsBefore": 282,
+      "segmentsAfterEdit": 233,
+      "bytes": 4634,
+      "sha256": "2cd42b739db81d70246e2221205789a06dd947a30aea9a679a01918af560c0c4"
+    }
+  }
+}
