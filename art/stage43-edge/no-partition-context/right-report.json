@@ -1,0 +1,136 @@
+{
+  "inputBytes": 1312995,
+  "outputBytes": 743334,
+  "paths": [
+    {
+      "inputChars": 41,
+      "outputChars": 52,
+      "maxSubpathChars": 52,
+      "inputSubpaths": 1,
+      "outputSubpaths": 1,
+      "inputSegments": 8,
+      "outputSegments": 8,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 1338,
+      "outputChars": 781,
+      "maxSubpathChars": 781,
+      "inputSubpaths": 1,
+      "outputSubpaths": 1,
+      "inputSegments": 95,
+      "outputSegments": 95,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 91709,
+      "outputChars": 51111,
+      "maxSubpathChars": 4042,
+      "inputSubpaths": 321,
+      "outputSubpaths": 321,
+      "inputSegments": 5992,
+      "outputSegments": 5992,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 262963,
+      "outputChars": 147864,
+      "maxSubpathChars": 12203,
+      "inputSubpaths": 665,
+      "outputSubpaths": 665,
+      "inputSegments": 17570,
+      "outputSegments": 17570,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 231674,
+      "outputChars": 131338,
+      "maxSubpathChars": 13837,
+      "inputSubpaths": 582,
+      "outputSubpaths": 582,
+      "inputSegments": 15548,
+      "outputSegments": 15548,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 269404,
+      "outputChars": 153242,
+      "maxSubpathChars": 22407,
+      "inputSubpaths": 546,
+      "outputSubpaths": 546,
+      "inputSegments": 18198,
+      "outputSegments": 18198,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 344694,
+      "outputChars": 195649,
+      "maxSubpathChars": 43103,
+      "inputSubpaths": 551,
+      "outputSubpaths": 551,
+      "inputSegments": 23472,
+      "outputSegments": 23472,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 110560,
+      "outputChars": 62685,
+      "maxSubpathChars": 1150,
+      "inputSubpaths": 196,
+      "outputSubpaths": 196,
+      "inputSegments": 7501,
+      "outputSegments": 7501,
+      "sameSegmentTypeSequence": true
+    }
+  ],
+  "maxCompoundChars": 195649,
+  "maxSubpathChars": 43103,
+  "precision": "Absolute endpoints and control points rounded once to0.1raw grid; deltas from quantized integer coordinates, no accumulation. Per-axis<=.05raw, Euclidean<=.070711raw (~.12248world). No simplification/partition.",
+  "inputSHA256": "912e2b0bc57848666009c072273081471171ecdfbdeb41a346709f47e817143f",
+  "renders": [
+    {
+      "width": 1254,
+      "RGBA_MAE": 0.09326534674368973,
+      "RGBA_RMSE": 0.3490507687773866,
+      "pixelsAnyDeltaOver16": 0,
+      "alphaMaxDelta": 0.0
+    },
+    {
+      "width": 2508,
+      "RGBA_MAE": 0.07968714626751015,
+      "RGBA_RMSE": 0.36391480646334634,
+      "pixelsAnyDeltaOver16": 18,
+      "alphaMaxDelta": 0.0
+    }
+  ],
+  "geometryVerification": {
+    "windingSignChanges": [],
+    "maxEndpointOrControlEuclideanDisplacementRaw": 0.07071067811939433,
+    "maxAxisDisplacementRaw": 0.05000000000404725,
+    "maxWorldEuclideanDisplacement": 0.12247495444603228,
+    "note": "Sign/sequence preservation does not mathematically certify all self-intersection/topology; actual rendered comparison retained."
+  },
+  "independentFinalCounts": [
+    {
+      "bytes": 1312995,
+      "parsedSegments": 88384,
+      "subpaths": 2863,
+      "pathElements": 8,
+      "basicShapes": 0,
+      "closedSubpaths": 2863,
+      "sha256": "912e2b0bc57848666009c072273081471171ecdfbdeb41a346709f47e817143f"
+    },
+    {
+      "bytes": 743334,
+      "parsedSegments": 88384,
+      "subpaths": 2863,
+      "pathElements": 8,
+      "basicShapes": 0,
+      "closedSubpaths": 2863,
+      "sha256": "89b1c637366d044ae66d60fc3e75c681299520d748c548161b2826cb04ccbc1c"
+    }
+  ],
+  "nonIncrease": true,
+  "importAccepted": true,
+  "visualReview": "Normal and enlarged Inkscape comparison metrics retained; normal images inspected. No obvious hole fill/alpha artifacts found. Colors remain exact original field colors, no subsurface palette modification."
+}

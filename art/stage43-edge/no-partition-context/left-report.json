@@ -1,0 +1,146 @@
+{
+  "inputBytes": 1199353,
+  "outputBytes": 552447,
+  "paths": [
+    {
+      "inputChars": 41,
+      "outputChars": 32,
+      "maxSubpathChars": 32,
+      "inputSubpaths": 1,
+      "outputSubpaths": 1,
+      "inputSegments": 8,
+      "outputSegments": 8,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 1684,
+      "outputChars": 853,
+      "maxSubpathChars": 853,
+      "inputSubpaths": 1,
+      "outputSubpaths": 1,
+      "inputSegments": 116,
+      "outputSegments": 116,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 7154,
+      "outputChars": 3241,
+      "maxSubpathChars": 854,
+      "inputSubpaths": 17,
+      "outputSubpaths": 17,
+      "inputSegments": 477,
+      "outputSegments": 477,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 70094,
+      "outputChars": 32690,
+      "maxSubpathChars": 2054,
+      "inputSubpaths": 265,
+      "outputSubpaths": 265,
+      "inputSegments": 4590,
+      "outputSegments": 4590,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 156266,
+      "outputChars": 72250,
+      "maxSubpathChars": 3923,
+      "inputSubpaths": 489,
+      "outputSubpaths": 489,
+      "inputSegments": 10339,
+      "outputSegments": 10339,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 230499,
+      "outputChars": 106497,
+      "maxSubpathChars": 6476,
+      "inputSubpaths": 665,
+      "outputSubpaths": 665,
+      "inputSegments": 15363,
+      "outputSegments": 15363,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 321093,
+      "outputChars": 147823,
+      "maxSubpathChars": 13341,
+      "inputSubpaths": 722,
+      "outputSubpaths": 722,
+      "inputSegments": 21726,
+      "outputSegments": 21726,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 411910,
+      "outputChars": 188449,
+      "maxSubpathChars": 57707,
+      "inputSubpaths": 332,
+      "outputSubpaths": 332,
+      "inputSegments": 28417,
+      "outputSegments": 28417,
+      "sameSegmentTypeSequence": true
+    }
+  ],
+  "maxCompoundChars": 188449,
+  "maxSubpathChars": 57707,
+  "precision": "Absolute endpoints and control points rounded once to0.2raw grid; deltas from quantized integer coordinates, no accumulation. Per-axis<=.1raw, Euclidean<=.141422raw (~.24495world). No simplification/partition.",
+  "inputSHA256": "ecf5035b76437977d2d1f7e7fb551e5b853f0fc803ae11f238e0ccd0d4196170",
+  "renders": [
+    {
+      "width": 1254,
+      "RGBA_MAE": 0.17071575106390013,
+      "RGBA_RMSE": 0.589718849617497,
+      "pixelsAnyDeltaOver16": 23,
+      "alphaMaxDelta": 0.0
+    },
+    {
+      "width": 2508,
+      "RGBA_MAE": 0.17672908415558253,
+      "RGBA_RMSE": 0.7633964617306097,
+      "pixelsAnyDeltaOver16": 536,
+      "alphaMaxDelta": 0.0
+    }
+  ],
+  "geometryVerification": {
+    "windingSignChanges": [],
+    "maxEndpointOrControlEuclideanDisplacementRaw": 0.14142135624103955,
+    "maxAxisDisplacementRaw": 0.10000000000445652,
+    "maxWorldEuclideanDisplacement": 0.24494990889596324,
+    "note": "Sign/sequence preservation does not mathematically certify all self-intersection/topology; actual rendered comparison retained."
+  },
+  "clippedComparison": {
+    "alphaMaxDifference": 0.0,
+    "pixelsAnyDeltaOver16": 34,
+    "note": "Original alpha unchanged for both. Native diagnostic shows a thin pale exterior fringe; retained raw/compact clipped comparison distinguishes existing alpha/color trace mismatch from quantization."
+  },
+  "independentCounts": [
+    {
+      "bytes": 1199353,
+      "parsedSegments": 81036,
+      "subpaths": 2492,
+      "pathElements": 8,
+      "basicShapes": 0,
+      "closedSubpaths": 2492
+    },
+    {
+      "bytes": 552447,
+      "parsedSegments": 81036,
+      "subpaths": 2492,
+      "pathElements": 8,
+      "basicShapes": 0,
+      "closedSubpaths": 2492
+    }
+  ],
+  "nonIncrease": true,
+  "nativeDiagnostic": {
+    "width": 1086,
+    "height": 1086,
+    "firstDrawMs": 177.61674900000003,
+    "warmDrawMs": 1.216303000000039,
+    "validationErrors": 0
+  },
+  "assetBytes": 556411,
+  "visualReview": "Normal and enlarged Inkscape renders and correctly world-framed native diagnostic inspected. No obvious new facet deformation or filled holes; winding signs unchanged. Thin pale alpha/color fringe present in raw clipped reference too, not eliminated by this normalization trial; art approval not claimed."
+}

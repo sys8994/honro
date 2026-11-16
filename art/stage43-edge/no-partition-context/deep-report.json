@@ -1,0 +1,214 @@
+{
+  "inputBytes": 1053820,
+  "outputBytes": 500983,
+  "paths": [
+    {
+      "inputChars": 68,
+      "outputChars": 36,
+      "maxSubpathChars": 36,
+      "inputSubpaths": 1,
+      "outputSubpaths": 1,
+      "inputSegments": 5,
+      "outputSegments": 5,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 155,
+      "outputChars": 66,
+      "maxSubpathChars": 66,
+      "inputSubpaths": 1,
+      "outputSubpaths": 1,
+      "inputSegments": 6,
+      "outputSegments": 6,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 9472,
+      "outputChars": 4557,
+      "maxSubpathChars": 505,
+      "inputSubpaths": 25,
+      "outputSubpaths": 25,
+      "inputSegments": 166,
+      "outputSegments": 166,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 9462,
+      "outputChars": 4553,
+      "maxSubpathChars": 505,
+      "inputSubpaths": 25,
+      "outputSubpaths": 25,
+      "inputSegments": 166,
+      "outputSegments": 166,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 27865,
+      "outputChars": 13365,
+      "maxSubpathChars": 1556,
+      "inputSubpaths": 56,
+      "outputSubpaths": 56,
+      "inputSegments": 495,
+      "outputSegments": 495,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 34394,
+      "outputChars": 16597,
+      "maxSubpathChars": 1533,
+      "inputSubpaths": 78,
+      "outputSubpaths": 78,
+      "inputSegments": 605,
+      "outputSegments": 605,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 61300,
+      "outputChars": 29506,
+      "maxSubpathChars": 6344,
+      "inputSubpaths": 112,
+      "outputSubpaths": 112,
+      "inputSegments": 1091,
+      "outputSegments": 1091,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 78402,
+      "outputChars": 37286,
+      "maxSubpathChars": 8872,
+      "inputSubpaths": 107,
+      "outputSubpaths": 107,
+      "inputSegments": 1392,
+      "outputSegments": 1392,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 81925,
+      "outputChars": 38492,
+      "maxSubpathChars": 9383,
+      "inputSubpaths": 86,
+      "outputSubpaths": 86,
+      "inputSegments": 1462,
+      "outputSegments": 1462,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 88527,
+      "outputChars": 41811,
+      "maxSubpathChars": 17210,
+      "inputSubpaths": 80,
+      "outputSubpaths": 80,
+      "inputSegments": 1605,
+      "outputSegments": 1605,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 100347,
+      "outputChars": 47097,
+      "maxSubpathChars": 24922,
+      "inputSubpaths": 85,
+      "outputSubpaths": 85,
+      "inputSegments": 1799,
+      "outputSegments": 1799,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 96049,
+      "outputChars": 45251,
+      "maxSubpathChars": 26029,
+      "inputSubpaths": 82,
+      "outputSubpaths": 82,
+      "inputSegments": 1727,
+      "outputSegments": 1727,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 107697,
+      "outputChars": 50622,
+      "maxSubpathChars": 11894,
+      "inputSubpaths": 94,
+      "outputSubpaths": 94,
+      "inputSegments": 1934,
+      "outputSegments": 1934,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 127051,
+      "outputChars": 59916,
+      "maxSubpathChars": 6225,
+      "inputSubpaths": 146,
+      "outputSubpaths": 146,
+      "inputSegments": 2265,
+      "outputSegments": 2265,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 120060,
+      "outputChars": 57521,
+      "maxSubpathChars": 4429,
+      "inputSubpaths": 160,
+      "outputSubpaths": 160,
+      "inputSegments": 2166,
+      "outputSegments": 2166,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 109319,
+      "outputChars": 52666,
+      "maxSubpathChars": 2536,
+      "inputSubpaths": 189,
+      "outputSubpaths": 189,
+      "inputSegments": 1931,
+      "outputSegments": 1931,
+      "sameSegmentTypeSequence": true
+    }
+  ],
+  "maxCompoundChars": 59916,
+  "maxSubpathChars": 26029,
+  "precision": "Input raw coords transformed by s=5900/1254,x=-2000,y=1800-300*s once into source coords. Absolute source endpoints/controls rounded to0.1source; maxaxis.05source. No simplification/partition.",
+  "inputSHA256": "2f4aa739db7bedf46e44557cc941a7816e680e4cbb25400657df1655a5bb85cb",
+  "renders": [
+    {
+      "width": 1180,
+      "RGBA_MAE": 0.030519926706367384,
+      "RGBA_RMSE": 0.18743146556300694,
+      "pixelsAnyDeltaOver16": 0,
+      "alphaMaxDelta": 0.0
+    },
+    {
+      "width": 2360,
+      "RGBA_MAE": 0.020095052679798442,
+      "RGBA_RMSE": 0.15327020084259935,
+      "pixelsAnyDeltaOver16": 0,
+      "alphaMaxDelta": 0.0
+    }
+  ],
+  "geometryVerification": {
+    "maxSourceAxisDisplacement": 0.04999999999949978,
+    "maxSourceEuclideanDisplacement": 0.07063624691522466,
+    "windingSignChanges": [],
+    "pathCount": 16,
+    "segmentsBefore": 18815,
+    "segmentsAfter": 18815,
+    "subpathsBefore": 1327,
+    "subpathsAfter": 1327
+  },
+  "engineVerification": {
+    "importNodes": 19,
+    "paths": 16,
+    "dParts": 0,
+    "roundtripRenders": [
+      {
+        "width": 1180,
+        "max_delta": 0
+      },
+      {
+        "width": 2360,
+        "max_delta": 0
+      }
+    ],
+    "coordinateFrame": "source x-2000..3900,y1800..3650; flattened input raw transform; no further transform applied",
+    "JSONBytes": 502235
+  },
+  "inputPreserved": true
+}
