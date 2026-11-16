@@ -9,6 +9,9 @@ assert.equal(sha(asset.vector),baseline.source48,'authored source vector remains
 assert.deepEqual(asset.continuousBody.collision,[],'extension cannot create false collision');
 assert.equal(asset.continuousBody.params.silhouetteUnderpaint,false);
 assert.equal(asset.sourceNativeClips.length,2);
+assert(asset.supportClip.length>0 && asset.supportClip.every(d=>d.startsWith('M')),'native support union has absolute paths');
+const seam=JSON.parse(await readFile(new URL('../art/stage48-continuity/source-seam.json',import.meta.url)));
+assert(seam.contactMinMargin>=15,'source partition preserves authored contact clearance');
 assert(asset.sourceNativeClips.every(d=>d.startsWith('M')),'source clips use true absolute serialization');
 if(process.argv.includes('--baseline-all')){
  assert.equal(sha(a.stages),baseline.stages,'all original stage gameplay preserved');

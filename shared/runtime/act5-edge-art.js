@@ -77,8 +77,8 @@ S.landmark=function(c,l){
  const a=l.asset.continuousBody,z=l.scale??1,V=G.HonroVisualStyle,cc=V?V.context(c,V.classify(l,this.battle,l.asset)==='gameplay'?'gameplay':V.depth(l,l.asset)):c;
  cc.save();try{cc.translate(l.x,l.y);cc.scale(z,z);
  // Preserve original upper silhouette/tunnel. The new BODY only adds outside support.
- const sourceClip=new Path2D('M-1400 -100H3000V5000H-1400Z M0 0V544H220V650H1400V544H1536V0Z '+l.asset.sourceNativeClips.join(' '));
- cc.save();cc.clip(sourceClip);cc.beginPath();cc.rect(-1400,544,4400,4456);cc.clip();G.HonroVectorArt.draw(cc,a,{x:0,y:0,scale:1});cc.restore();
+ const sourceClip=new Path2D(l.asset.supportClip.join(' '));
+ cc.save();cc.clip(sourceClip);G.HonroVectorArt.draw(cc,a,{x:0,y:0,scale:1});cc.restore();
  }finally{cc.restore();}
  cc.save();cc.translate(l.x,l.y);cc.scale(z,z);cc.save();cc.clip(new Path2D(l.asset.sourceSeam));G.HonroVectorArt.draw(cc,l.asset,{x:0,y:0,scale:1});cc.restore();
  // Never discard original rock where the independently traced extension has no alpha.

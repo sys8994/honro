@@ -1,0 +1,201 @@
+{
+  "status": "visual review failed: joint texture/direction seam and smooth east shoulder; do not deploy",
+  "scope": "Native production Scene fixture, not browser or actual round play",
+  "reports": [
+    {
+      "report": "_local/reports/stage48-v7c-bottom/report.json",
+      "runtimeSha256": "ed31da662600e40e4496eb4cd44a094223a1d7156d3e050b86e74645ccbef03b",
+      "projectSha256": "a06672d0d621fb128c05d703719ffa63eb909fcbcdab513565140747d0544d64",
+      "rows": [
+        {
+          "file": "stage-48-bottom.png",
+          "view": {
+            "id": "bottom",
+            "x": 6050,
+            "y": 4444,
+            "scale": 0.45,
+            "stage": 48,
+            "z": 0.45,
+            "w": 1440,
+            "h": 900
+          },
+          "pngSha256": "e2c42df010792e175b4824e504121f0876a483a4191b69f9f4e08ed55c5daa8b",
+          "stageSha256": "8fe3844b165c5508a1040b8f636ad9b58850a520252f072cbc25324f06644370",
+          "actors": 28,
+          "gameplaySha256": "6a71cc249d5ff76b56f5fb506b2ad2909e49716302f94849eab4df8b6df1a014",
+          "edgeClosureQA": {
+            "walkableRemoved": 0,
+            "keptWalkableCount": 28,
+            "removedCount": 0
+          },
+          "scope": "Production Scene composition in native Canvas. Original collision and actors, fixed diagnostic camera. Not browser or campaign play."
+        }
+      ]
+    },
+    {
+      "report": "_local/reports/stage48-v7c-east/report.json",
+      "runtimeSha256": "ed31da662600e40e4496eb4cd44a094223a1d7156d3e050b86e74645ccbef03b",
+      "projectSha256": "a06672d0d621fb128c05d703719ffa63eb909fcbcdab513565140747d0544d64",
+      "rows": [
+        {
+          "file": "stage-48-east.png",
+          "view": {
+            "id": "east",
+            "x": 6050,
+            "y": 2247,
+            "scale": 0.45,
+            "stage": 48,
+            "z": 0.45,
+            "w": 1440,
+            "h": 900
+          },
+          "pngSha256": "6369c04d438ff8cb19fcc18c5ba780ab3b118adb9feb077c19cd634674f70578",
+          "stageSha256": "8fe3844b165c5508a1040b8f636ad9b58850a520252f072cbc25324f06644370",
+          "actors": 28,
+          "gameplaySha256": "6a71cc249d5ff76b56f5fb506b2ad2909e49716302f94849eab4df8b6df1a014",
+          "scope": "Production Scene composition in native Canvas. Original collision and actors, fixed diagnostic camera. Not browser or campaign play."
+        }
+      ]
+    },
+    {
+      "report": "_local/reports/stage48-v7c-extreme/report.json",
+      "runtimeSha256": "ed31da662600e40e4496eb4cd44a094223a1d7156d3e050b86e74645ccbef03b",
+      "projectSha256": "a06672d0d621fb128c05d703719ffa63eb909fcbcdab513565140747d0544d64",
+      "rows": [
+        {
+          "file": "stage-48-extreme.png",
+          "view": {
+            "id": "extreme",
+            "x": 6520,
+            "y": 4734,
+            "scale": 0.056818181818181816,
+            "w": 320,
+            "h": 1200,
+            "stage": 48,
+            "z": 0.056818181818181816
+          },
+          "pngSha256": "e9100a35a9f458281486ff9635ede3e0dc141a181246af2db096ddfdd574eafa",
+          "stageSha256": "8fe3844b165c5508a1040b8f636ad9b58850a520252f072cbc25324f06644370",
+          "actors": 28,
+          "gameplaySha256": "6a71cc249d5ff76b56f5fb506b2ad2909e49716302f94849eab4df8b6df1a014",
+          "edgeClosureQA": {
+            "walkableRemoved": 0,
+            "keptWalkableCount": 28,
+            "removedCount": 0
+          },
+          "scope": "Production Scene composition in native Canvas. Original collision and actors, fixed diagnostic camera. Not browser or campaign play."
+        }
+      ]
+    },
+    {
+      "report": "_local/reports/stage48-v7c-extreme-west/report.json",
+      "runtimeSha256": "ed31da662600e40e4496eb4cd44a094223a1d7156d3e050b86e74645ccbef03b",
+      "projectSha256": "a06672d0d621fb128c05d703719ffa63eb909fcbcdab513565140747d0544d64",
+      "rows": [
+        {
+          "file": "stage-48-extreme-west.png",
+          "view": {
+            "stage": 48,
+            "id": "extreme-west",
+            "x": -320,
+            "y": 4734,
+            "scale": 0.056818181818181816,
+            "w": 320,
+            "h": 1200,
+            "z": 0.056818181818181816
+          },
+          "pngSha256": "00b0e13fd3d85cbd0b1a85a4be52ab29b03c67481603caa866efa6c5673a3712",
+          "stageSha256": "8fe3844b165c5508a1040b8f636ad9b58850a520252f072cbc25324f06644370",
+          "actors": 28,
+          "gameplaySha256": "6a71cc249d5ff76b56f5fb506b2ad2909e49716302f94849eab4df8b6df1a014",
+          "edgeClosureQA": {
+            "walkableRemoved": 0,
+            "keptWalkableCount": 28,
+            "removedCount": 0
+          },
+          "scope": "Production Scene composition in native Canvas. Original collision and actors, fixed diagnostic camera. Not browser or campaign play."
+        }
+      ]
+    },
+    {
+      "report": "_local/reports/stage48-v7c-overview/report.json",
+      "runtimeSha256": "ed31da662600e40e4496eb4cd44a094223a1d7156d3e050b86e74645ccbef03b",
+      "projectSha256": "a06672d0d621fb128c05d703719ffa63eb909fcbcdab513565140747d0544d64",
+      "rows": [
+        {
+          "file": "stage-48-overview.png",
+          "view": {
+            "id": "overview",
+            "x": 3100,
+            "y": 2247,
+            "scale": 0.14299332697807435,
+            "stage": 48,
+            "z": 0.14299332697807435,
+            "w": 1440,
+            "h": 900
+          },
+          "pngSha256": "0dae0bde32b24908ff5a3274d240c22d83b749e711c1300e5893e9996ffa7a82",
+          "stageSha256": "8fe3844b165c5508a1040b8f636ad9b58850a520252f072cbc25324f06644370",
+          "actors": 28,
+          "gameplaySha256": "6a71cc249d5ff76b56f5fb506b2ad2909e49716302f94849eab4df8b6df1a014",
+          "scope": "Production Scene composition in native Canvas. Original collision and actors, fixed diagnostic camera. Not browser or campaign play."
+        }
+      ]
+    },
+    {
+      "report": "_local/reports/stage48-v7c-portrait/report.json",
+      "runtimeSha256": "ed31da662600e40e4496eb4cd44a094223a1d7156d3e050b86e74645ccbef03b",
+      "projectSha256": "a06672d0d621fb128c05d703719ffa63eb909fcbcdab513565140747d0544d64",
+      "rows": [
+        {
+          "file": "stage-48-portrait.png",
+          "view": {
+            "id": "portrait",
+            "x": 6050,
+            "y": 2300,
+            "scale": 0.7,
+            "w": 390,
+            "h": 844,
+            "stage": 48,
+            "z": 0.7
+          },
+          "pngSha256": "a85d9a3897187eef232de0b4916f0af4086db3de24a125aa8a256262ffd34b61",
+          "stageSha256": "8fe3844b165c5508a1040b8f636ad9b58850a520252f072cbc25324f06644370",
+          "actors": 28,
+          "gameplaySha256": "6a71cc249d5ff76b56f5fb506b2ad2909e49716302f94849eab4df8b6df1a014",
+          "edgeClosureQA": {
+            "walkableRemoved": 0,
+            "keptWalkableCount": 28,
+            "removedCount": 0
+          },
+          "scope": "Production Scene composition in native Canvas. Original collision and actors, fixed diagnostic camera. Not browser or campaign play."
+        }
+      ]
+    },
+    {
+      "report": "_local/reports/stage48-v7c-west/report.json",
+      "runtimeSha256": "ed31da662600e40e4496eb4cd44a094223a1d7156d3e050b86e74645ccbef03b",
+      "projectSha256": "a06672d0d621fb128c05d703719ffa63eb909fcbcdab513565140747d0544d64",
+      "rows": [
+        {
+          "file": "stage-48-west.png",
+          "view": {
+            "id": "west",
+            "x": 150,
+            "y": 2247,
+            "scale": 0.45,
+            "stage": 48,
+            "z": 0.45,
+            "w": 1440,
+            "h": 900
+          },
+          "pngSha256": "a87af56d71b4b4a426593ba40f1053c4af5dcd9e7bf91f1d17d1bc17aeff8347",
+          "stageSha256": "8fe3844b165c5508a1040b8f636ad9b58850a520252f072cbc25324f06644370",
+          "actors": 28,
+          "gameplaySha256": "6a71cc249d5ff76b56f5fb506b2ad2909e49716302f94849eab4df8b6df1a014",
+          "scope": "Production Scene composition in native Canvas. Original collision and actors, fixed diagnostic camera. Not browser or campaign play."
+        }
+      ]
+    }
+  ]
+}
