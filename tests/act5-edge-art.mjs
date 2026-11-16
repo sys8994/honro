@@ -3,4 +3,12 @@ const g=vm.createContext({Path2D,DOMMatrix,console});vm.runInContext(fs.readFile
 class Scene{landmark(c,l){g.HonroVectorArt.draw(c,l.asset,l)}_makeLayerCanvas(w,h){return createCanvas(Math.ceil(w),Math.ceil(h))}_releaseRasterCanvas(c){c.width=1;c.height=1}_landmarkPaintBounds(l){return{left:0,right:l.asset.bounds.w,top:0,bottom:l.asset.bounds.h}}}
 g.HonroScene=Scene;vm.runInContext(fs.readFileSync('shared/runtime/act5-edge-art.js','utf8'),g);
 const {library}=await makeAct5(),scene=new Scene;fs.mkdirSync('_local/reports/act5-edges',{recursive:true});
-for(const a of library){const before=JSON.stringify(a),[,,w,h]=a.vector.viewBox,p=Math.min(w*.28,420),cv=createCanvas(1000,Math.ceil((h+p)/(w+p*2)*1000)),c=cv.getContext('2d'),z=1000/(w+p*2);c.fillStyle='#182731';c.fillRect(0,0,cv.width,cv.height);c.scale(z,z);c.translate(p,0);scene.landmark(c,{asset:a,x:0,y:0,scale:1});assert.equal(JSON.stringify(a),before);const cache=scene._act5Edge;scene.landmark(c,{asset:a,x:0,y:0,scale:1});assert.equal(scene._act5Edge,cache);assert(cache.canvas.width*cache.canvas.height<2200000);fs.writeFileSync('_local/reports/act5-edges/'+a.id.split(':').at(-1)+'.png',cv.toBuffer('image/png'));console.log(a.id,cache.canvas.width,cache.canvas.height);}
+for(const a of library){
+ if(a.id==='act5:near:41'){
+  assert.deepEqual(Object.keys(a.campExterior).sort(),['deep','east','west']);
+  for(const art of Object.values(a.campExterior)){assert.equal(art.collision.length,0);assert(art.vector.root);assert(art.vector.viewBox[2]>0);}
+  const l={asset:a,x:0,y:0,scale:1};assert(scene._landmarkPaintBounds(l).left<0);assert(scene._landmarkPaintBounds(l).bottom>3000);
+  console.log(a.id,'authored vector exterior; Native Scene tile/camera render checked separately');continue;
+ }
+ const before=JSON.stringify(a),[,,w,h]=a.vector.viewBox,p=Math.min(w*.28,420),cv=createCanvas(1000,Math.ceil((h+p)/(w+p*2)*1000)),c=cv.getContext('2d'),z=1000/(w+p*2);c.fillStyle='#182731';c.fillRect(0,0,cv.width,cv.height);c.scale(z,z);c.translate(p,0);scene.landmark(c,{asset:a,x:0,y:0,scale:1});assert.equal(JSON.stringify(a),before);const cache=scene._act5Edge;scene.landmark(c,{asset:a,x:0,y:0,scale:1});assert.equal(scene._act5Edge,cache);assert(cache.canvas.width*cache.canvas.height<2200000);fs.writeFileSync('_local/reports/act5-edges/'+a.id.split(':').at(-1)+'.png',cv.toBuffer('image/png'));console.log(a.id,cache.canvas.width,cache.canvas.height);
+}
