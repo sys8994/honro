@@ -15,6 +15,10 @@ for(const a of library){
   const before=JSON.stringify(a),cv=createCanvas(1350,600),c=cv.getContext('2d');c.scale(.5,.5);c.translate(400,0);scene.landmark(c,{asset:a,x:0,y:0,scale:1});assert.equal(JSON.stringify(a),before);assert.equal(scene._act5Edge,undefined,'Native BODY/SURFACE must not use stretched raster edges');
   fs.writeFileSync('_local/reports/act5-edges/42.png',cv.toBuffer('image/png'));console.log(a.id,'native BODY/SURFACE, validated and source-pure');continue;
  }
+ if(a.id==='act5:near:45'){
+  for(const art of[a.continuousBody]){assert.equal(art.collision.length,0);assert.deepEqual(Array.from(g.HonroVectorArt.validate(art.vector)),[]);}for(const clips of Object.values(a.depthClips)){assert(clips.length<=32);assert(clips.every(d=>d.length<=60000));}
+  const own=new Scene,before=JSON.stringify(a),cv=createCanvas(1400,900),c=cv.getContext('2d');c.scale(.5,.5);c.translate(300,300);own.landmark(c,{asset:a,x:0,y:0,scale:1});assert.equal(JSON.stringify(a),before);assert.equal(own._act5Edge,undefined,'45 must not stretch raster edges');fs.writeFileSync('_local/reports/act5-edges/45.png',cv.toBuffer('image/png'));console.log(a.id,'continuous native BODY and preserved original PROPS');continue;
+ }
  if(a.id==='act5:near:44'){
   assert.equal(a.upperCanopy.collision.length,0);assert.deepEqual(Array.from(g.HonroVectorArt.validate(a.upperCanopy.vector)),[]);assert(scene._landmarkPaintBounds({asset:a,x:0,y:0,scale:1}).top<=-710);
   assert.equal(a.rootExterior.collision.length,0);assert.deepEqual(Array.from(g.HonroVectorArt.validate(a.rootExterior.vector)),[]);
