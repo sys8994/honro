@@ -1,0 +1,48 @@
+{
+  "input": "art/stage46-continuity/v3/alpha-composed-raw.svg",
+  "input_sha256": "768bd8bc25ee62e1564af44940165f7c8e6262c52a98573fd1da04a10ff2352c",
+  "epsilon_viewbox_units": 0.15,
+  "changed_paths": 1,
+  "segments_before": 1436,
+  "segments_after": 786,
+  "skips": {},
+  "render_checks": [
+    {
+      "mean_channel_error": 2.4551234218961326e-06,
+      "changed_pixel_fraction": 1.1421783625730994e-06,
+      "max_channel_error": 0.06666666269302368,
+      "width": 1280,
+      "accepted": true
+    }
+  ],
+  "growth_guard": {
+    "original_bytes": 27992,
+    "candidate_bytes": 10667,
+    "reasons": [],
+    "before": {
+      "segments": 1436,
+      "subpaths": 5,
+      "paths": 1,
+      "shape_elements": 1
+    },
+    "candidate": {
+      "segments": 786,
+      "subpaths": 5,
+      "paths": 1,
+      "shape_elements": 1
+    },
+    "accepted": true
+  },
+  "accepted": true,
+  "candidate_bytes": 10667,
+  "original_bytes": 27992,
+  "output_bytes": 10667,
+  "output_metrics": {
+    "segments": 786,
+    "subpaths": 5,
+    "paths": 1,
+    "shape_elements": 1
+  },
+  "output_sha256": "903c44e9071ea5ac5681e41c1cf4c987eed253b2f573d230f145fdc1eb034653",
+  "input_unchanged": true
+}

@@ -1,0 +1,50 @@
+{
+  "input": "_local/stage46/collar-fixed/b-protected.svg",
+  "input_sha256": "96ce93424845e49a122c838ba89a176c271b9d32e8ea8e08762ee576d6e8021d",
+  "epsilon_viewbox_units": 0.1,
+  "changed_paths": 0,
+  "segments_before": 845,
+  "segments_after": 845,
+  "skips": {
+    "not smaller/guarded": 1
+  },
+  "render_checks": [
+    {
+      "mean_channel_error": 0.0,
+      "changed_pixel_fraction": 0.0,
+      "max_channel_error": 0.0,
+      "width": 1024,
+      "accepted": true
+    }
+  ],
+  "growth_guard": {
+    "original_bytes": 18805,
+    "candidate_bytes": 18739,
+    "reasons": [],
+    "before": {
+      "segments": 845,
+      "subpaths": 8,
+      "paths": 1,
+      "shape_elements": 1
+    },
+    "candidate": {
+      "segments": 845,
+      "subpaths": 8,
+      "paths": 1,
+      "shape_elements": 1
+    },
+    "accepted": true
+  },
+  "accepted": true,
+  "candidate_bytes": 18739,
+  "original_bytes": 18805,
+  "output_bytes": 18739,
+  "output_metrics": {
+    "segments": 845,
+    "subpaths": 8,
+    "paths": 1,
+    "shape_elements": 1
+  },
+  "output_sha256": "dd3aa66bd2d59ee71480a72ee187458a0981aa566c0dcb48758b3879f5e0a83a",
+  "input_unchanged": true
+}
