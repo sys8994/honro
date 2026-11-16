@@ -1,0 +1,48 @@
+{
+  "input": "art/stage45-continuity/alpha-raw.svg",
+  "input_sha256": "619aecd5fc887bfe2f8fb6a8e6b9da5721ebacb049b7dace8113dc3814589ab9",
+  "epsilon_viewbox_units": 0.4,
+  "changed_paths": 1,
+  "segments_before": 3878,
+  "segments_after": 1926,
+  "skips": {},
+  "render_checks": [
+    {
+      "mean_channel_error": 1.636037450225558e-05,
+      "changed_pixel_fraction": 0.0002681751943005181,
+      "max_channel_error": 0.26274511218070984,
+      "width": 1280,
+      "accepted": true
+    }
+  ],
+  "growth_guard": {
+    "original_bytes": 59415,
+    "candidate_bytes": 29199,
+    "reasons": [],
+    "before": {
+      "segments": 3878,
+      "subpaths": 33,
+      "paths": 1,
+      "shape_elements": 1
+    },
+    "candidate": {
+      "segments": 1926,
+      "subpaths": 33,
+      "paths": 1,
+      "shape_elements": 1
+    },
+    "accepted": true
+  },
+  "accepted": true,
+  "candidate_bytes": 29199,
+  "original_bytes": 59415,
+  "output_bytes": 29199,
+  "output_metrics": {
+    "segments": 1926,
+    "subpaths": 33,
+    "paths": 1,
+    "shape_elements": 1
+  },
+  "output_sha256": "835839fd4e73597ffca6a7758039494bdd8be932bb2a8cbc82978babade8f2d0",
+  "input_unchanged": true
+}
