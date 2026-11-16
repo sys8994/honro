@@ -1,0 +1,9 @@
+from pathlib import Path
+from lxml import etree as E
+import subprocess,os,json,numpy as np
+from PIL import Image
+p=Path(__file__).resolve().parent;b=p.parents[2];n='{http://www.w3.org/2000/svg}';env={**os.environ,'LD_PRELOAD':'/tmp/honro-inkscape-headless-init.so'}
+r=E.parse(str(p/'bridge.svg'));ids=[q.get('id') for q in r.findall('.//'+n+'path')];subprocess.run(['inkscape',str(p/'bridge.svg'),'--actions=select-by-id:'+','.join(ids)+';path-union;select-clear;export-plain-svg;export-filename:'+str(p/'alpha.svg')+';export-do'],env=env,capture_output=True,check=True)
+subprocess.run(['python',str(b/'stage43-recovery/tools/vector-production/import-native-clip.py'),str(p/'bridge.svg'),str(p/'alpha.svg'),'--config',str(p/'config.json'),'--output',str(p/'asset.json')],check=True);x=json.load(open(p/'asset.json'));x['params']['silhouetteUnderpaint']=False;(p/'asset.json').write_text(json.dumps(x,separators=(',',':')))
+r=E.parse(str(p/'composite.svg')).getroot();r.set('viewBox','1700 480 472 550');r.set('width','944');r.set('height','1100');f=p/'east.svg';E.ElementTree(r).write(str(f));subprocess.run(['inkscape',str(f),'--export-filename='+str(p/'east.png')],env=env,capture_output=True,check=True)
+a=np.array(Image.open(p/'east-before.png').convert('RGBA'));z=np.array(Image.open(p/'east.png').convert('RGBA'));ys,xs=np.where(np.any(a!=z,axis=2));r=json.load(open(p/'report.json'));r.update({'changedPixelsAt2x':len(xs),'changedSourceAreaApprox':len(xs)/4,'changedBBox':[1700+int(xs.min())/2,480+int(ys.min())/2,1700+int(xs.max()+1)/2,480+int(ys.max()+1)/2],'maxExtensionSource':69,'actualNativeEdit':'20 Inkscape intersections and one alpha union; original paint compound ordering maintained.','oldOutpaintUsed':False,'deepGeometryChanged':False,'approval':False});(p/'report.json').write_text(json.dumps(r,indent=2))

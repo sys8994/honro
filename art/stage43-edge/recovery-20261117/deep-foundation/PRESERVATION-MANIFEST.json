@@ -1,0 +1,111 @@
+{
+  "fixedSceneCandidate": "asset-local-grid01.json",
+  "preserve": [
+    {
+      "file": "generation-prompt.txt",
+      "bytes": 1770,
+      "sha256": "823b4d2c81749ecbb7556fc40e61f6f476b15033e6d0643854f96bbbaee9fb9c"
+    },
+    {
+      "file": "concept-foundation-v1.png",
+      "bytes": 1998406,
+      "sha256": "9021bbc44408a3e2826e04f36f81b8b129bdcc85a9b3eeb91e8e134748e41d63"
+    },
+    {
+      "file": "trace-v1/color-raw.svg",
+      "bytes": 4754076,
+      "sha256": "c94343ec6edb82551b6eabd355a3dace0f763cd185cbceff371ab5434b1a187a"
+    },
+    {
+      "file": "trace-v1/alpha-raw.svg",
+      "bytes": 20276,
+      "sha256": "fd87c9c6d7eb6748269916dc0d51cfffd8c9779fe6a781d8a396a1a238eb1ce2"
+    },
+    {
+      "file": "trace-v1/trace.json",
+      "bytes": 917,
+      "sha256": "3d37ae08ffe17faee66e85ddb5d638f941456e25c9b32b055a824089c24635b4"
+    },
+    {
+      "file": "body-alpha.svg",
+      "bytes": 8595,
+      "sha256": "b6f8ef4e2a7e258f1586bf895f599fcd3c15e477e1ca79fafed9a650a2636695"
+    },
+    {
+      "file": "foundation-native.svg",
+      "bytes": 3575149,
+      "sha256": "3f641ee56276e7d7faba9181234005228114232e1ed632725cd3f123b28a0487"
+    },
+    {
+      "file": "foundation-local-grid01.svg",
+      "bytes": 1343386,
+      "sha256": "ff8118bef0baa256e7ec7335920172e0cd2dbce2f62faca0061a8cf72f38f74f"
+    },
+    {
+      "file": "asset-local-grid01.json",
+      "bytes": 1344909,
+      "sha256": "313dd1be0d2feaad061c021e92ba01b4b27e447fd765563bff76b59936d22e94"
+    },
+    {
+      "file": "config-union.json",
+      "bytes": 406,
+      "sha256": "24163dcaf9e566970d99ebf402484d2084d392c05e7cefc81e510b72752813af"
+    },
+    {
+      "file": "build.py",
+      "bytes": 4174,
+      "sha256": "44388e26b31af742958183c5180fc195fd8649ca1cfbc581b998802cd1b8c10d"
+    },
+    {
+      "file": "compact-local-grid01.py",
+      "bytes": 3544,
+      "sha256": "7ab6acd888135305c1c6075756659b78fe6014fd19ff253ca455fc55ff6b227f"
+    },
+    {
+      "file": "verify_grid.py",
+      "bytes": 2543,
+      "sha256": "ec6f374147020189745e417138b7574d77855bc698ffc5697545d73a64e85ed1"
+    },
+    {
+      "file": "report.json",
+      "bytes": 1437,
+      "sha256": "23ab849a54332302e3423751ecb51582bc0bdf1e0e51a23a6b9a0a78d3848919"
+    },
+    {
+      "file": "local-grid01-report.json",
+      "bytes": 4094,
+      "sha256": "fe0308a0c751ab040c7262b5152a101af1cd7a64b32c03699cd5260c4ec42630"
+    },
+    {
+      "file": "REVIEW.md",
+      "bytes": 5191,
+      "sha256": "e756bd3ca4cfccc1a3784770bfedf9b29df79103c00f35f07e1618438d234a81"
+    }
+  ],
+  "externalReadOnlyDependencies": [
+    {
+      "file": "stage43-recovery/art/stage43-edge/source.svg",
+      "sha256": "d024022a56991bc56e6d507698a6683c11d47915984dfcf2ca02b936c1d927b4"
+    },
+    {
+      "file": "stage43-recovery/tools/stage43-edge/trace-continuous.py",
+      "sha256": "7fd4c30a4b9ec1517458721e60ea08029cca48dbdf7e8c0bacc0aa28ca8c82d0"
+    },
+    {
+      "file": "stage43-recovery/tools/vector-production/import-svg.py",
+      "sha256": "bb44b0801db6ee55adf444bc812531d0ca0b53ee1a8bf8b7eed34bdb7dc4501c"
+    },
+    {
+      "file": "stage43-recovery/tools/terrain-node-optimizer/optimize_svg.py",
+      "sha256": "a550dcb6ac94902e72e75b26504eb6ea80e06c29617a2ed4bac87edb47c09bc9"
+    }
+  ],
+  "regenerableOmissions": [
+    "composed-grid01.png",
+    "composed-grid01.svg",
+    "contact-review.png",
+    "foundation-local-raw.svg",
+    "original-contact.png"
+  ],
+  "review": "Normal central Scene reveals a strong source y710 material seam. Technically valid deep field only; do not integrate or deploy until contact is resolved."
+}

@@ -1,0 +1,40 @@
+{
+  "status": "partial-native-file-preservation",
+  "source_local_commit": "0562d70",
+  "complete_native_tree": false,
+  "production_changes": false,
+  "included_file_count": 32,
+  "note": "Ordinary original small text/SVG/JSON/code files only. No large-file retry, split upload, archive or alternate packaging. Previously pending large study files remain pending; this manifest adds the deep-foundation pending files. All source study files remain preserved in local Git history. Art studies are not approved for deployment.",
+  "pending": [
+    {
+      "path": "art/stage43-edge/recovery-20261117/deep-foundation/asset-local-grid01.json",
+      "bytes": 1344909,
+      "git_blob_sha": "0a5f24a0d8cf8eae54bf8335e63936da2c6fc1b6",
+      "reason": "exceeds 500000-byte preservation scope; retained locally"
+    },
+    {
+      "path": "art/stage43-edge/recovery-20261117/deep-foundation/concept-foundation-v1.png",
+      "bytes": 1998406,
+      "git_blob_sha": "53ffb1810380b43dac9d3bf90b8efd5c59737fad",
+      "reason": "exceeds 500000-byte preservation scope; retained locally"
+    },
+    {
+      "path": "art/stage43-edge/recovery-20261117/deep-foundation/foundation-local-grid01.svg",
+      "bytes": 1343386,
+      "git_blob_sha": "77d0365d54b935609516196ef9af50d0e054cd8a",
+      "reason": "exceeds 500000-byte preservation scope; retained locally"
+    },
+    {
+      "path": "art/stage43-edge/recovery-20261117/deep-foundation/foundation-native.svg",
+      "bytes": 3575149,
+      "git_blob_sha": "231d59ffc8fa545d5cd4938f2ac3f2448a662d5f",
+      "reason": "exceeds 500000-byte preservation scope; retained locally"
+    },
+    {
+      "path": "art/stage43-edge/recovery-20261117/deep-foundation/trace-v1/color-raw.svg",
+      "bytes": 4754076,
+      "git_blob_sha": "47fa9456d8210f0e7bce4675ad633ec6ad7a31d7",
+      "reason": "exceeds 500000-byte preservation scope; retained locally"
+    }
+  ]
+}

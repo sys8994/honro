@@ -1,0 +1,92 @@
+{
+  "originalFileChanged": false,
+  "protected": "x<=1905.6 or y<=650; masonry, moss and all walking surfaces",
+  "anchorY": 680,
+  "fullOffsetY": 706,
+  "profile": [
+    [
+      1905.6,
+      0.0
+    ],
+    [
+      1920.0,
+      9.0
+    ],
+    [
+      1943.0,
+      16.0
+    ],
+    [
+      1964.0,
+      18.0
+    ],
+    [
+      1982.0,
+      12.0
+    ],
+    [
+      1995.0,
+      8.0
+    ],
+    [
+      2010.0,
+      35.0
+    ],
+    [
+      2034.0,
+      69.0
+    ],
+    [
+      2054.0,
+      64.0
+    ],
+    [
+      2076.0,
+      17.0
+    ],
+    [
+      2092.0,
+      24.0
+    ],
+    [
+      2117.0,
+      39.0
+    ],
+    [
+      2140.0,
+      33.0
+    ],
+    [
+      2160.0,
+      12.0
+    ],
+    [
+      2171.0,
+      0.0
+    ]
+  ],
+  "scope": "isolated native bridge on source-referenced lower rock, not release",
+  "changedPixelsAt2x": 27317,
+  "changedSourceAreaApprox": 6829.25,
+  "changedBBox": [
+    1905.5,
+    680.0,
+    2166.5,
+    779.0
+  ],
+  "maxExtensionSource": 69,
+  "actualNativeEdit": "20 Inkscape intersections and one alpha union; original paint compound ordering maintained.",
+  "oldOutpaintUsed": false,
+  "deepGeometryChanged": false,
+  "approval": false,
+  "terminationDepths": {
+    "left": 18,
+    "middle": 69,
+    "right": 39
+  },
+  "sourceOriginalUnchanged": true,
+  "deepAsset": "stage43-recovery-deep-study/asset-local-grid01.json",
+  "nativeScene": "native-scene/stage-43-east.png",
+  "nativeSceneScope": "REAR_ONLY diagnostic: new deep behind, original unchanged, separate rounded foreground join in front. Not production runtime change.",
+  "visualReview": "Equal-height scallop cadence reduced and local horizontal bottom cut hidden by foreground rock ends. Middle long tip may still read as hanging claw/elongated rock; not approved. No further wave tuning."
+}

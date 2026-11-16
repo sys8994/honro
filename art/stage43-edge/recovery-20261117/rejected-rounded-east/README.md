@@ -1,0 +1,5 @@
+# Rejected east foreground endings
+
+Both variants are preserved as rejected experiments, never production. v3 keeps the original color compounds and varies left/middle/right lower ends by 18/69/39 source units. It hides the straight cut but reads as a hanging claw. v3-interior keeps the same geometry and natively intersects the copied stack with the mapped original y680..706.2 region. This removes the original y707..710 dark bottom outline from the extension; the outline was a real source of the visible rim, but the stretched claw shape remains. Do not continue waveform/depth tweaking from these variants or claim that removing the line is an art pass.
+
+The original source and deep field were not changed. Helpers in each folder retain original study paths in their defaults; use the saved SVG/JSON or supply the matching original source and deep study when reproducing. Exact Scene camera/state hashes are retained in native-scene/report.json. Full screenshots and intermediate renders remain in the independent study workspace.

@@ -1,0 +1,12 @@
+from pathlib import Path
+from lxml import etree as E
+import subprocess,os,json,copy
+from PIL import Image
+import numpy as np
+p=Path(__file__).resolve().parent;env={**os.environ,'LD_PRELOAD':'/tmp/honro-inkscape-headless-init.so','INKSCAPE_PROFILE_DIR':str(p/'verify-profile')};r=json.load(open(p/'local-grid01-report.json'));r['precision']='0.1 raw grid; raw→source2.3815789474; source→world3.0644567219; maxcamera1.65; theoreticalEuclideanMaxScreen0.8516px';r['renders']=[]
+for w in [912,1824]:
+ subprocess.run(['inkscape',str(p/'foundation-local-grid01.svg'),'--export-width='+str(w),'--export-filename='+str(p/f'grid01-{w}.png')],env=env,capture_output=True,check=True)
+ a=np.array(Image.open(p/f'before-{w}.png').convert('RGBA')).astype(float);b=np.array(Image.open(p/f'grid01-{w}.png').convert('RGBA')).astype(float);d=abs(a-b);ap=a[:,:,:3]*a[:,:,3:]/255;bp=b[:,:,:3]*b[:,:,3:]/255;pm=np.maximum(abs(ap-bp),abs((ap+255-a[:,:,3:])-(bp+255-b[:,:,3:])));r['renders'].append({'width':w,'RGBA_MAE255':float(d.mean()),'RGBA_Max255':float(d.max()),'premultipliedMAE255':float(pm.mean()),'premultipliedMax255':float(pm.max()),'pixelsOver16':int((pm.max(2)>16).sum()),'alphaMax':int(d[:,:,3].max()),'binaryAlphaMismatch':int(((a[:,:,3]>=128)!=(b[:,:,3]>=128)).sum())})
+asset=json.load(open(p/'asset-local-grid01.json'));r['JSONBytes']=(p/'asset-local-grid01.json').stat().st_size;r['engineNodes']=asset['params']['nodeCount'];r['silhouetteUnderpaint']=asset['params'].get('silhouetteUnderpaint');r['countsNonIncreasing']=all(x['outputSegments']<=x['inputSegments']and x['inputSubpaths']==x['outputSubpaths']for x in r['paths']);(p/'local-grid01-report.json').write_text(json.dumps(r,indent=2));print({k:r[k]for k in ['renders','JSONBytes','engineNodes','silhouetteUnderpaint','countsNonIncreasing']})
+# Source-coordinate composite with this serialized native candidate, original appended unchanged.
+n='{http://www.w3.org/2000/svg}';t=E.Element(n+'svg',nsmap={None:n[1:-1]},viewBox='0 0 2172 3700',width='2172',height='3700');s=2172/912;g=E.SubElement(t,n+'g',transform=f'matrix({s} 0 0 {s} {-18*s} {710.02-302*s})');g.extend(copy.deepcopy(e)for e in E.parse(str(p/'foundation-local-grid01.svg')).getroot());t.extend(copy.deepcopy(e)for e in E.parse(str(p.parent/'stage43-recovery/art/stage43-edge/source.svg')).getroot());E.ElementTree(t).write(str(p/'composed-grid01.svg'));subprocess.run(['inkscape',str(p/'composed-grid01.svg'),'--export-width=700','--export-filename='+str(p/'composed-grid01.png')],env=env,capture_output=True,check=True)

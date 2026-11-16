@@ -1,0 +1,18 @@
+{
+  "scope": "Diagnostic only; production unchanged; native Canvas, not browser.",
+  "reason": "At z=0.0568181818, raster scale is0.0625 and the cached domain tile bottom is world y8192. Tile clips round to screen pixels but exterior continuation used a fractional clip edge, leaving a visible 1px light seam.",
+  "change": "Match exterior clip rectangle to the exact pixel-rounded tile rectangle for stage43 only. No geometry, camera or collision change.",
+  "visualResult": "The y771 hairline disappears. Exactly115pixels on row771 differ, x0..114; maximum channel difference44. All other pixels identical.",
+  "viewport": [
+    320,
+    932
+  ],
+  "beforePNG": "597c6071952b8e5f15978eac4c66de107a6b2dcefd8d6216c630bf2a1f351359",
+  "afterPNG": "7058a51ab2c953efd6b05b32489863c064d43b483f3aa1408af7b2bd004d9781",
+  "stageSha256": "edaa868800a3836bfc9b6c6becb80e9a008c9334dc8bc7a3740688617f52884a",
+  "gameplaySha256": "5010609ff55f6623fa522911bf5e37970b9ef10ff1d683f56507eef784dba538",
+  "sourceRuntimeSha256": "aba9ab0bc2271959a72c272368c90cc366afb27bd23fa34529f9aae8df6d98d9",
+  "diagnosticRuntimeSha256": "0c161990463c6ce496a88b52ba5edcc70b4be3e47a925dbb93a7d4245d8b34a6",
+  "coverage": "Body extends below visible source y3596; no flat lower terminus visible. y3700 is a tested viewport target, not all aspect ratios.",
+  "remaining": "Art contact at sourcey710 remains unresolved; this technical seam fix is not art approval."
+}

@@ -1,0 +1,156 @@
+{
+  "inputBytes": 3575048,
+  "outputBytes": 1343386,
+  "paths": [
+    {
+      "inputChars": 8264,
+      "outputChars": 2834,
+      "maxSubpathChars": 2519,
+      "inputSubpaths": 11,
+      "outputSubpaths": 11,
+      "inputSegments": 441,
+      "outputSegments": 441,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 15793,
+      "outputChars": 5334,
+      "maxSubpathChars": 5305,
+      "inputSubpaths": 2,
+      "outputSubpaths": 2,
+      "inputSegments": 415,
+      "outputSegments": 415,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 108990,
+      "outputChars": 41722,
+      "maxSubpathChars": 4688,
+      "inputSubpaths": 224,
+      "outputSubpaths": 224,
+      "inputSegments": 1981,
+      "outputSegments": 1981,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 108995,
+      "outputChars": 41722,
+      "maxSubpathChars": 4688,
+      "inputSubpaths": 224,
+      "outputSubpaths": 224,
+      "inputSegments": 1981,
+      "outputSegments": 1981,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 232341,
+      "outputChars": 88135,
+      "maxSubpathChars": 5567,
+      "inputSubpaths": 374,
+      "outputSubpaths": 374,
+      "inputSegments": 4142,
+      "outputSegments": 4142,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 311222,
+      "outputChars": 118446,
+      "maxSubpathChars": 7090,
+      "inputSubpaths": 452,
+      "outputSubpaths": 452,
+      "inputSegments": 5557,
+      "outputSegments": 5557,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 408754,
+      "outputChars": 153921,
+      "maxSubpathChars": 11752,
+      "inputSubpaths": 486,
+      "outputSubpaths": 486,
+      "inputSegments": 7335,
+      "outputSegments": 7335,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 413337,
+      "outputChars": 156330,
+      "maxSubpathChars": 16612,
+      "inputSubpaths": 434,
+      "outputSubpaths": 434,
+      "inputSegments": 7406,
+      "outputSegments": 7406,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 514076,
+      "outputChars": 192139,
+      "maxSubpathChars": 28670,
+      "inputSubpaths": 493,
+      "outputSubpaths": 493,
+      "inputSegments": 9211,
+      "outputSegments": 9211,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 534240,
+      "outputChars": 197969,
+      "maxSubpathChars": 51296,
+      "inputSubpaths": 453,
+      "outputSubpaths": 453,
+      "inputSegments": 9563,
+      "outputSegments": 9563,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 479691,
+      "outputChars": 179412,
+      "maxSubpathChars": 54034,
+      "inputSubpaths": 430,
+      "outputSubpaths": 430,
+      "inputSegments": 8588,
+      "outputSegments": 8588,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 438283,
+      "outputChars": 164360,
+      "maxSubpathChars": 8761,
+      "inputSubpaths": 532,
+      "outputSubpaths": 532,
+      "inputSegments": 7794,
+      "outputSegments": 7794,
+      "sameSegmentTypeSequence": true
+    }
+  ],
+  "maxCompoundChars": 197969,
+  "maxSubpathChars": 54034,
+  "precision": "0.1 raw grid; raw\u2192source2.3815789474; source\u2192world3.0644567219; maxcamera1.65; theoreticalEuclideanMaxScreen0.8516px",
+  "inputSHA256": "ee246669903de53809954ab8873b2e017aa2ad8e42f4dd5d45045f7e0f95aac5",
+  "renders": [
+    {
+      "width": 912,
+      "RGBA_MAE255": 0.07965593765289718,
+      "RGBA_Max255": 255.0,
+      "premultipliedMAE255": 0.09122872345042488,
+      "premultipliedMax255": 25.09411764705885,
+      "pixelsOver16": 7,
+      "alphaMax": 40,
+      "binaryAlphaMismatch": 29
+    },
+    {
+      "width": 1824,
+      "RGBA_MAE255": 0.0619865792268405,
+      "RGBA_Max255": 255.0,
+      "premultipliedMAE255": 0.07103107038810225,
+      "premultipliedMax255": 49.00392156862745,
+      "pixelsOver16": 120,
+      "alphaMax": 76,
+      "binaryAlphaMismatch": 156
+    }
+  ],
+  "JSONBytes": 1344909,
+  "engineNodes": 14,
+  "silhouetteUnderpaint": false,
+  "countsNonIncreasing": true
+}
