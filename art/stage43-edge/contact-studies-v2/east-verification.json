@@ -1,0 +1,149 @@
+{
+  "source_sha256": "d024022a56991bc56e6d507698a6683c11d47915984dfcf2ca02b936c1d927b4",
+  "source_original_exact_in_v2": true,
+  "v1_after_unchanged_sha256": "9e433eabd776f0561293afcc068325c4c0cd3a8fd5092d44161996757abacd92",
+  "operations": {
+    "inkscape_path_union": 3,
+    "inkscape_path_intersection": 3
+  },
+  "patches": [
+    {
+      "id": "upper-contact-bridge",
+      "color": "#25364a",
+      "actual_vector_bounds": [
+        2154.0,
+        610.0,
+        2185.0,
+        625.0
+      ]
+    },
+    {
+      "id": "middle-contact-bridge",
+      "color": "#25364a",
+      "actual_vector_bounds": [
+        2154.0,
+        636.0,
+        2188.0,
+        650.20127
+      ]
+    },
+    {
+      "id": "lower-contact-bridge",
+      "color": "#37475c",
+      "actual_vector_bounds": [
+        2152.0,
+        670.0,
+        2187.0,
+        684.54603
+      ]
+    }
+  ],
+  "render_changes": [
+    {
+      "scale": 1,
+      "total_changed_pixels_vs_v1": 303,
+      "changed_original_opaque_pixels": 113,
+      "changed_pixels_outside_target_y610_700": 0,
+      "components": [
+        {
+          "bbox_source": [
+            2155.0,
+            613.0,
+            2183.0,
+            625.0
+          ],
+          "changed_pixels": 148
+        },
+        {
+          "bbox_source": [
+            2157.0,
+            636.0,
+            2162.0,
+            645.0
+          ],
+          "changed_pixels": 32
+        },
+        {
+          "bbox_source": [
+            2176.0,
+            644.0,
+            2188.0,
+            651.0
+          ],
+          "changed_pixels": 45
+        },
+        {
+          "bbox_source": [
+            2152.0,
+            670.0,
+            2163.0,
+            681.0
+          ],
+          "changed_pixels": 61
+        },
+        {
+          "bbox_source": [
+            2175.0,
+            680.0,
+            2187.0,
+            685.0
+          ],
+          "changed_pixels": 17
+        }
+      ]
+    },
+    {
+      "scale": 3,
+      "total_changed_pixels_vs_v1": 2158,
+      "changed_original_opaque_pixels": 881,
+      "changed_pixels_outside_target_y610_700": 0,
+      "components": [
+        {
+          "bbox_source": [
+            2155.3333333333335,
+            612.6666666666666,
+            2183.0,
+            625.0
+          ],
+          "changed_pixels": 1143
+        },
+        {
+          "bbox_source": [
+            2157.0,
+            636.3333333333334,
+            2162.0,
+            644.3333333333334
+          ],
+          "changed_pixels": 209
+        },
+        {
+          "bbox_source": [
+            2176.6666666666665,
+            644.3333333333334,
+            2188.0,
+            650.3333333333334
+          ],
+          "changed_pixels": 300
+        },
+        {
+          "bbox_source": [
+            2152.3333333333335,
+            670.0,
+            2162.6666666666665,
+            680.3333333333334
+          ],
+          "changed_pixels": 421
+        },
+        {
+          "bbox_source": [
+            2176.3333333333335,
+            680.6666666666666,
+            2187.0,
+            684.6666666666666
+          ],
+          "changed_pixels": 78
+        }
+      ]
+    }
+  ]
+}
