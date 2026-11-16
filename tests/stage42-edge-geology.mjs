@@ -1,0 +1,22 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import vm from 'node:vm';
+const source=JSON.parse(fs.readFileSync('shared/assets/environment/act5/near-import.json')).find(x=>x.id===42);
+assert.equal(source.vector.root.children.length,2,'Geology and props must remain separately authored');
+const rock=source.vector.root.children[0],props=source.vector.root.children[1];
+assert.equal(rock.children.length,16);assert.equal(props.children.length,12);
+const calls=[],ops=[];
+class Scene {landmark(c,l){calls.push({type:'original',asset:l.asset});} _landmarkPaintBounds(){return {left:0,right:2022,top:0,bottom:778};} _drawTerrainDomainTiles(){} terrainReadability(){} }
+const g={HonroScene:Scene,Path2D:class{constructor(d){this.d=d;}},HonroVectorArt:{draw(c,a,p){calls.push({type:'rock',asset:a,placement:p});}},HonroVisualStyle:{context:c=>c,classify:()=> 'gameplay'}};
+g.globalThis=g;vm.runInNewContext(fs.readFileSync('shared/runtime/act5-edge-art.js','utf8'),g);
+const ctx=Object.fromEntries(['save','restore','translate','scale','clip','beginPath','rect','transform'].map(k=>[k,(...args)=>ops.push([k,...args])]));
+const wall=JSON.parse(fs.readFileSync('shared/assets/environment/act5/stage42-registered-body.json'));
+const a={id:'act5:near:42',vector:source.vector,edgeWall:wall,edgeSurface:JSON.parse(fs.readFileSync('shared/assets/environment/act5/stage42-surface.json'))};const old=JSON.stringify(a);const scene=new Scene();scene.landmark(ctx,{asset:a,x:0,y:0,scale:1});
+assert.deepEqual(calls.map(x=>x.type),['original','rock','rock','rock','rock']);
+assert.equal(calls[1].asset,wall);assert.equal(calls[2].asset,a.edgeSurface);
+assert.equal(JSON.stringify(a),old,'Source artwork is never mutated');
+assert.equal(calls[0].asset,a,'Authored original remains first');
+assert.equal(ops.filter(x=>x[0]==='clip').length,3);
+assert(!ops.some(x=>x[0]==='transform'),'No mirror or shear of source paths');
+assert.deepEqual(JSON.parse(JSON.stringify(scene._landmarkPaintBounds({asset:a,scale:1}))),{left:-900,right:2922,top:0,bottom:1246});
+console.log('PASS: stage42 registered exterior BODY candidate, no source mirroring, source unchanged, bounded coverage');

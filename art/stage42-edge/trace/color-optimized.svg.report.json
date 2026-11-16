@@ -1,0 +1,50 @@
+{
+  "input": "_local/reports/stage42-edge-trace8/color-raw.svg",
+  "input_sha256": "457574a60ec229e0d054bcf73a809551f5a58aa7f27ef01612659737c4e36433",
+  "epsilon_viewbox_units": 1.5,
+  "changed_paths": 7,
+  "segments_before": 9265,
+  "segments_after": 7944,
+  "skips": {
+    "not smaller/guarded": 1
+  },
+  "render_checks": [
+    {
+      "mean_channel_error": 0.0005394650506787002,
+      "changed_pixel_fraction": 0.0023309426229508197,
+      "max_channel_error": 0.3843137323856354,
+      "width": 1280,
+      "accepted": true
+    }
+  ],
+  "growth_guard": {
+    "original_bytes": 416447,
+    "candidate_bytes": 341821,
+    "reasons": [],
+    "before": {
+      "segments": 9265,
+      "subpaths": 770,
+      "paths": 8,
+      "shape_elements": 8
+    },
+    "candidate": {
+      "segments": 7944,
+      "subpaths": 770,
+      "paths": 8,
+      "shape_elements": 8
+    },
+    "accepted": true
+  },
+  "accepted": true,
+  "candidate_bytes": 341821,
+  "original_bytes": 416447,
+  "output_bytes": 341821,
+  "output_metrics": {
+    "segments": 7944,
+    "subpaths": 770,
+    "paths": 8,
+    "shape_elements": 8
+  },
+  "output_sha256": "69cc7ad63fbcd17fc50e2ee96c436f2b15885650cda554535af949bfad889261",
+  "input_unchanged": true
+}

@@ -1,0 +1,22 @@
+diff --git a/shared/runtime/act5-edge-art.js b/shared/runtime/act5-edge-art.js
+index c620033..2e62c68 100644
+--- a/shared/runtime/act5-edge-art.js
++++ b/shared/runtime/act5-edge-art.js
+@@ -53,10 +53,14 @@ S.landmark=function(c,l){
+   const V=G.HonroVisualStyle,cc=V?V.context(c,V.classify(l,this.battle,a)==='gameplay'?'gameplay':V.depth(l,a)):c;
+   draw.call(this,c,l);
+   cc.save();cc.translate(l.x,l.y);cc.scale(z,z);
+-  cc.save();cc.clip(new Path2D('M-900 414H0L45 455L155 485L190 565L165 635H0V662H190L150 730L190 850V1700H-900Z M2022 294H2950V1700H1830V850L1880 740L1830 650L1890 550L1870 430L1960 350L2022 310Z'));
++  // Preserve the authored walking skin; redraw one continuous BODY beneath it.
++  // The mask follows the source's own geology silhouette, not a diagonal join.
++  const body=new Path2D();
++  for(const d of a.vector.clips.a)body.addPath(new Path2D(d),new DOMMatrix().translate(0,64));
++  body.rect(-1000,414,1000,1800);body.rect(2022,294,1100,1900);body.rect(0,760,2022,1500);
++  cc.save();cc.clip(body);
+   G.HonroVectorArt.draw(cc,a.edgeWall,{x:-480,y:-20,scale:1.316});cc.restore();
+-  const props={...a,vector:{...a.vector,root:{tag:'g',children:[a.vector.root.children[1]]}}};
+-  G.HonroVectorArt.draw(cc,props,{x:0,y:0,scale:1});cc.restore();return;
++  cc.restore();return;
+  }
+  if(l.asset?.id==='act5:near:41'&&l.asset.campExterior&&!l.rotation){
+  const s=l.scale??1;c.save();c.translate(l.x,l.y);c.scale(s,s);c.beginPath();c.rect(-10000,-10000,20000,20000);c.moveTo(0,0);c.lineTo(300,0);c.lineTo(300,560);c.lineTo(190,650);c.quadraticCurveTo(200,720,300,750);c.lineTo(300,827);c.lineTo(0,827);c.closePath();c.clip('evenodd');c.clip(new Path2D('M0 0H1902V350H1796V428H1838V438Q1841 456 1820 466Q1790 476 1790 488Q1794 505 1820 514V530H1902V827H0Z'));c.scale(1/s,1/s);c.translate(-l.x,-l.y);draw.call(this,c,l);c.restore();camp(this,c,l);

@@ -1,7 +1,7 @@
 (function(G){'use strict';
 // Continue the *painted* boundary, not collision boxes. Empty shaft gaps stay
 // transparent. This cache is bounded to one stage and contains no game state.
-const S=G.HonroScene.prototype,draw=S.landmark,bounds=S._landmarkPaintBounds;
+const S=G.HonroScene.prototype,draw=S.landmark,bounds=S._landmarkPaintBounds,stage42Parts=new WeakMap();
 function camp(scene,c,l){
  const V=G.HonroVisualStyle;if(V)c=V.context(c,V.classify(l,scene.battle,l.asset)==='gameplay'?'gameplay':V.depth(l,l.asset));
  const scale=l.scale??1,w=l.asset.vector.viewBox[2],h=l.asset.vector.viewBox[3];
@@ -48,6 +48,23 @@ function prepare(scene,l){
  return scene._act5Edge={asset:a,canvas:cv,pad:pad/r,w:cv.width/r,h:cv.height/r};
 }
 S.landmark=function(c,l){
+ if(l.asset?.id==='act5:near:42'&&l.asset.edgeWall&&!l.rotation){
+  const a=l.asset,z=l.scale??1;
+  const V=G.HonroVisualStyle,cc=V?V.context(c,V.classify(l,this.battle,a)==='gameplay'?'gameplay':V.depth(l,a)):c;
+  draw.call(this,c,l);
+  cc.save();cc.translate(l.x,l.y);cc.scale(z,z);
+  // BODY already owns its source-contact and exterior-alpha clips.
+  // A redundant concave outer clip produced a flat fill outside the cliff.
+  cc.save();
+  G.HonroVectorArt.draw(cc,a.edgeWall,{x:0,y:0,scale:1});cc.restore();
+  cc.save();cc.clip(new Path2D('M0 0H2022V700H0Z'));G.HonroVectorArt.draw(cc,a.edgeSurface,{x:0,y:0,scale:1});cc.restore();
+  let parts=stage42Parts.get(a);
+  if(!parts){const props={...a,vector:{...a.vector,root:{tag:'g',children:[a.vector.root.children[1]]}}};
+   parts={props,withoutCutShrub:new Path2D('M-10000 -10000H10000V10000H-10000Z '+a.edgeSurface.params.croppedEdgeShrub),wholeShrub:new Path2D(a.edgeSurface.params.wholeShrub)};stage42Parts.set(a,parts);}
+  cc.save();cc.clip(parts.withoutCutShrub,'evenodd');G.HonroVectorArt.draw(cc,parts.props,{x:0,y:0,scale:1});cc.restore();
+  cc.save();cc.translate(-533,6.7);cc.clip(parts.wholeShrub);G.HonroVectorArt.draw(cc,parts.props,{x:0,y:0,scale:1});cc.restore();
+  cc.restore();return;
+ }
  if(l.asset?.id==='act5:near:41'&&l.asset.campExterior&&!l.rotation){
  const s=l.scale??1;c.save();c.translate(l.x,l.y);c.scale(s,s);c.beginPath();c.rect(-10000,-10000,20000,20000);c.moveTo(0,0);c.lineTo(300,0);c.lineTo(300,560);c.lineTo(190,650);c.quadraticCurveTo(200,720,300,750);c.lineTo(300,827);c.lineTo(0,827);c.closePath();c.clip('evenodd');c.clip(new Path2D('M0 0H1902V350H1796V428H1838V438Q1841 456 1820 466Q1790 476 1790 488Q1794 505 1820 514V530H1902V827H0Z'));c.scale(1/s,1/s);c.translate(-l.x,-l.y);draw.call(this,c,l);c.restore();camp(this,c,l);
  c.save();c.translate(l.x,l.y);c.scale(s,s);c.clip(new Path2D('M300 428H1838V438H300ZM300 514H1902V529H300ZM0 545Q35 546 70 548L130 555L220 562L280 566L300 557V565L280 574L220 570L130 563L70 556Q35 550 0 545Z'));c.scale(1/s,1/s);c.translate(-l.x,-l.y);draw.call(this,c,l);c.restore();return;}
@@ -57,21 +74,21 @@ S.landmark=function(c,l){
  draw.call(this,c,l);
  c.save();c.translate(l.x,l.y);c.scale(scale,scale);c.drawImage(q.canvas,-q.pad,0,q.w,q.h);c.restore();
 };
-S._landmarkPaintBounds=function(l){const q=bounds.call(this,l);if(!q||!active(l)||l.rotation)return q;if(l.asset?.id==='act5:near:41'&&l.asset.campExterior){const s=l.scale??1;return{left:l.x-2500*s,right:l.x+(l.asset.vector.viewBox[2]+2500)*s,top:q.top,bottom:l.y+3500*s};}const p=Math.min(l.asset.vector.viewBox[2]*.28,420)*(l.scale??1);return{left:q.left-p,right:q.right+p,top:q.top,bottom:q.bottom+p};};
+S._landmarkPaintBounds=function(l){const q=bounds.call(this,l);if(!q||!active(l)||l.rotation)return q;if(l.asset?.id==='act5:near:42'){const s=l.scale??1;return{left:q.left-900*s,right:q.right+900*s,top:q.top,bottom:q.bottom+468*s};}if(l.asset?.id==='act5:near:41'&&l.asset.campExterior){const s=l.scale??1;return{left:l.x-2500*s,right:l.x+(l.asset.vector.viewBox[2]+2500)*s,top:q.top,bottom:l.y+3500*s};}const p=Math.min(l.asset.vector.viewBox[2]*.28,420)*(l.scale??1);return{left:q.left-p,right:q.right+p,top:q.top,bottom:q.bottom+p};};
 // Artwork-only continuation beyond the tile-domain paint rectangle. Physics bounds unchanged.
 const domainPaint=S._drawTerrainDomainTiles;
 S._drawTerrainDomainTiles=function(c,b,w,h){
- domainPaint.call(this,c,b,w,h);if(b.honroStage!==41)return;
+ domainPaint.call(this,c,b,w,h);if(![41,42].includes(b.honroStage))return;
  const v=G.HonroBounds.viewport(this,w,h),d=b.honroTerrainBounds,size=512/this._worldRasterScale(b,w);
  const left=Math.floor(d.left/size)*size,top=Math.floor(d.top/size)*size,right=(Math.floor(d.right/size)+1)*size,bottom=(Math.floor(d.bottom/size)+1)*size;
  if(v.left>=left&&v.right<=right&&v.top>=top&&v.bottom<=bottom)return;
  c.save();c.beginPath();c.rect(v.left-1,v.top-1,v.right-v.left+2,v.bottom-v.top+2);c.rect(left,top,right-left,bottom-top);c.clip('evenodd');
- for(const l of G.HonroTerrainDomain.materialLandmarks(b))if(l.asset?.id==='act5:near:41')this.landmark(c,l);
+ for(const l of G.HonroTerrainDomain.materialLandmarks(b))if(l.asset?.id==='act5:near:'+b.honroStage)this.landmark(c,l);
  c.restore();
 };
 const readability=S.terrainReadability;
 S.terrainReadability=function(c,b,view){
- if(b.honroStage!==41)return readability.call(this,c,b,view);
+ if(![41,42].includes(b.honroStage))return readability.call(this,c,b,view);
  const q=G.HonroTerrainReadability.prepare(b),saved=[],removed=[],keptWalkable=[];
  for(const group of q.groups){const edge=new Path2D();saved.push([group,group.edge]);for(const v of group.segments){const p=v.a,z=v.z,close=!v.walkable&&((Math.abs(p.x-z.x)<.01&&(Math.abs(p.x)<.01||Math.abs(p.x-b.width)<.01))||(Math.abs(p.y-z.y)<.01&&p.y>=b.height-360));if(close)removed.push({id:group.id,...v});if(v.walkable)keptWalkable.push(v);if(!close){edge.moveTo(p.x,p.y);edge.lineTo(z.x,z.y);}}group.edge=edge;}
  G.HonroEdgeClosureQA={removed,keptWalkableCount:keptWalkable.length,walkableRemoved:removed.filter(v=>v.walkable).length};try{return readability.call(this,c,b,view);}finally{for(const [g,e]of saved)g.edge=e;}

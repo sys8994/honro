@@ -1,0 +1,53 @@
+{
+  "input": "_local/reports/stage42-surface/surface-raw.svg",
+  "input_sha256": "b321ee6fc10aa367d5cdfabd3c729ea9d423778053c4a8c0a0e7ba20bc39b8b9",
+  "epsilon_viewbox_units": 0.8,
+  "changed_paths": 0,
+  "segments_before": 10688,
+  "segments_after": 10688,
+  "skips": {
+    "protected/transform/effect/css": 6
+  },
+  "render_checks": [
+    {
+      "mean_channel_error": 0.0,
+      "changed_pixel_fraction": 0.0,
+      "max_channel_error": 0.0,
+      "width": 1280,
+      "accepted": true
+    }
+  ],
+  "growth_guard": {
+    "original_bytes": 596779,
+    "candidate_bytes": 596821,
+    "reasons": [
+      "bytes increased"
+    ],
+    "before": {
+      "segments": 10688,
+      "subpaths": 2869,
+      "paths": 6,
+      "shape_elements": 6
+    },
+    "candidate": {
+      "segments": 10688,
+      "subpaths": 2869,
+      "paths": 6,
+      "shape_elements": 6
+    },
+    "accepted": false
+  },
+  "accepted": false,
+  "candidate_bytes": 596821,
+  "original_bytes": 596779,
+  "reason": "raster/non-growth gate failed; output is unchanged original",
+  "output_bytes": 596779,
+  "output_metrics": {
+    "segments": 10688,
+    "subpaths": 2869,
+    "paths": 6,
+    "shape_elements": 6
+  },
+  "output_sha256": "b321ee6fc10aa367d5cdfabd3c729ea9d423778053c4a8c0a0e7ba20bc39b8b9",
+  "input_unchanged": true
+}

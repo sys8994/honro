@@ -1,0 +1,48 @@
+{
+  "input": "_local/reports/stage42-registered-trace12/body-split-raw.svg",
+  "input_sha256": "c6e033bb06c17d0182cc623b20aef3578c0ce599d3a5b7d16c263d34bec0cf93",
+  "epsilon_viewbox_units": 1.5,
+  "changed_paths": 24,
+  "segments_before": 21238,
+  "segments_after": 16753,
+  "skips": {},
+  "render_checks": [
+    {
+      "mean_channel_error": 0.0006424278253689408,
+      "changed_pixel_fraction": 0.003388689407540395,
+      "max_channel_error": 0.9176470637321472,
+      "width": 1280,
+      "accepted": true
+    }
+  ],
+  "growth_guard": {
+    "original_bytes": 1103880,
+    "candidate_bytes": 613737,
+    "reasons": [],
+    "before": {
+      "segments": 21238,
+      "subpaths": 1372,
+      "paths": 24,
+      "shape_elements": 24
+    },
+    "candidate": {
+      "segments": 16753,
+      "subpaths": 1372,
+      "paths": 24,
+      "shape_elements": 24
+    },
+    "accepted": true
+  },
+  "accepted": true,
+  "candidate_bytes": 613737,
+  "original_bytes": 1103880,
+  "output_bytes": 613737,
+  "output_metrics": {
+    "segments": 16753,
+    "subpaths": 1372,
+    "paths": 24,
+    "shape_elements": 24
+  },
+  "output_sha256": "e0dd52906cc6e8e01676834e48534cd700e26d9003f4b0c9ace5f9d91297ce60",
+  "input_unchanged": true
+}
