@@ -8,4 +8,5 @@ f=g['color_trace_action']
 assert f({})=='16,false,true,false,4,0,0'
 assert f({'HONRO_TRACE_COLORS':'8'})=='8,false,true,false,4,0,0'
 assert f({'HONRO_TRACE_SMOOTH':'true','HONRO_TRACE_STACK':'false','HONRO_TRACE_CORNERS':'0.2','HONRO_TRACE_OPTIMIZE':'0.1'})=='16,true,false,false,4,0.2,0.1'
+assert f({'HONRO_TRACE_COLORS':'8','HONRO_TRACE_SPECKLES':'16'})=='8,false,true,false,16,0,0'
 print('PASS: smoothing is argument 2; stacking is argument 3; explicit angular defaults')

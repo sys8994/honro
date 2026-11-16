@@ -9,7 +9,7 @@ from svgpathtools import parse_path
 def color_trace_action(settings):
  # Inkscape 1.4: scans,smooth,stack,remove_background,speckles,smooth_corners,optimize.
  # optimize=0 is minimum tolerance; the action still enables curve optimization.
- return ','.join([settings.get('HONRO_TRACE_COLORS','16'),settings.get('HONRO_TRACE_SMOOTH','false'),settings.get('HONRO_TRACE_STACK','true'),'false','4',settings.get('HONRO_TRACE_CORNERS','0'),settings.get('HONRO_TRACE_OPTIMIZE','0')])
+ return ','.join([settings.get('HONRO_TRACE_COLORS','16'),settings.get('HONRO_TRACE_SMOOTH','false'),settings.get('HONRO_TRACE_STACK','true'),'false',settings.get('HONRO_TRACE_SPECKLES','4'),settings.get('HONRO_TRACE_CORNERS','0'),settings.get('HONRO_TRACE_OPTIMIZE','0')])
 
 ROOT=Path(__file__).resolve().parents[2]
 INK=Path('/usr/bin/inkscape')

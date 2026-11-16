@@ -1,0 +1,53 @@
+{
+  "runtimeSha256": "7f8264a73819e50bbf92e29609572979951077c2d0b432d686659634373dd3a6",
+  "projectSha256": "a8daeed90181774da0d8358faca08077d7c92940f3bbbadbbf94f344bf03340f",
+  "rows": [
+    {
+      "file": "stage-43-east.png",
+      "performance": {
+        "firstRenderMs": 929.1423269999996,
+        "cachedRenderMs": 27.529201999999714,
+        "rssBytes": 1784848384
+      },
+      "farStats": {
+        "entries": 1,
+        "maxEntries": 3,
+        "keys": [
+          "stillNight:"
+        ],
+        "errors": [],
+        "canvasBytes": 5595136
+      },
+      "environmentStats": {
+        "groups": 0,
+        "visibleAssets": 1,
+        "cachedPaths": 0,
+        "backgroundAnimatedPrimitives": 0,
+        "animatedPrimitives": 0,
+        "paths": 1,
+        "fogCards": 2,
+        "fogBytes": 524288,
+        "pools": 0,
+        "waterfalls": 0,
+        "authoredFar": [
+          "stillNight"
+        ]
+      },
+      "view": {
+        "stage": 43,
+        "id": "east",
+        "x": 6506,
+        "y": 1547.3999999999999,
+        "scale": 0.45,
+        "z": 0.45,
+        "w": 1440,
+        "h": 900
+      },
+      "pngSha256": "eef55a8066253fb3043d8ccbb235b77a5bf1bafa955e8c876f39412a2ab66bf2",
+      "stageSha256": "edaa868800a3836bfc9b6c6becb80e9a008c9334dc8bc7a3740688617f52884a",
+      "actors": 39,
+      "gameplaySha256": "5010609ff55f6623fa522911bf5e37970b9ef10ff1d683f56507eef784dba538",
+      "scope": "Production Scene composition in native Canvas. Original collision and actors, fixed diagnostic camera. Not browser or campaign play."
+    }
+  ]
+}
