@@ -1,6 +1,6 @@
 # Stage33 continuous natural-rock stairs, review checkpoint
 
-Status: local native review only; NOT public-browser verified, NOT deployed.
+Published and publicly checked in master806f555. See game/docs/STAGE33_COASTAL_SIDEVIEW_STATUS.md for exact validation scope; this is not a whole-stage clear.
 
 The source concept contains geology only: no background sky, water, character, decoration or collision. Its initial whole-terrain trace is a fidelity prototype. Native Inkscape path-intersection edits partition it into upper supporting rock (REAR) and foreground lowland (BODY) at the original lowland contact geometry. Stairs are painted as part of their continuous rock support, not individual strips. Existing five provider IDs remain; three obsolete art slots are empty. Original collision, gameplay, stage data and save coverage providers remain unchanged.
 
