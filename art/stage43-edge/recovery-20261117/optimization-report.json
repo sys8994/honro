@@ -1,0 +1,48 @@
+{
+  "input": "/workspace/scratch/0b8c8f8d81c7/stage43-recovery-east-contact-registered-v2/color-raw.svg",
+  "input_sha256": "74b2ac2c436d0881a652494b4d5063f564026e4b8dc23d4e0f598983f9f63466",
+  "epsilon_viewbox_units": 0.6,
+  "changed_paths": 12,
+  "segments_before": 2759,
+  "segments_after": 2005,
+  "skips": {},
+  "render_checks": [
+    {
+      "mean_channel_error": 0.00019610927847679704,
+      "changed_pixel_fraction": 0.0009663461538461539,
+      "max_channel_error": 0.4784314036369324,
+      "width": 960,
+      "accepted": true
+    }
+  ],
+  "growth_guard": {
+    "original_bytes": 166389,
+    "candidate_bytes": 78517,
+    "reasons": [],
+    "before": {
+      "segments": 2759,
+      "subpaths": 169,
+      "paths": 12,
+      "shape_elements": 12
+    },
+    "candidate": {
+      "segments": 2005,
+      "subpaths": 169,
+      "paths": 12,
+      "shape_elements": 12
+    },
+    "accepted": true
+  },
+  "accepted": true,
+  "candidate_bytes": 78517,
+  "original_bytes": 166389,
+  "output_bytes": 78517,
+  "output_metrics": {
+    "segments": 2005,
+    "subpaths": 169,
+    "paths": 12,
+    "shape_elements": 12
+  },
+  "output_sha256": "37bce55f5e9c06f8613a7a7cb386d50dac0ebfd6092ec67bd534ec6cb21ff0fa",
+  "input_unchanged": true
+}

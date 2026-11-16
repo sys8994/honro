@@ -1,0 +1,55 @@
+{
+  "input": "/workspace/scratch/0b8c8f8d81c7/stage43-recovery-west-study/exterior-native.svg",
+  "input_sha256": "3bdd5a1895a9eaa33cb7613fe3c743386d67e1729d5129e73c3c3d1f06e0043f",
+  "epsilon_viewbox_units": 0.5,
+  "changed_paths": 12,
+  "segments_before": 2519,
+  "segments_after": 1157,
+  "skips": {},
+  "render_checks": [
+    {
+      "mean_channel_error": 3.3596337743801996e-05,
+      "changed_pixel_fraction": 0.00018016194331983807,
+      "max_channel_error": 0.7803921699523926,
+      "width": 650,
+      "accepted": true
+    },
+    {
+      "mean_channel_error": 3.12669544655364e-05,
+      "changed_pixel_fraction": 0.00014878542510121458,
+      "max_channel_error": 1.0,
+      "width": 1300,
+      "accepted": true
+    }
+  ],
+  "growth_guard": {
+    "original_bytes": 55855,
+    "candidate_bytes": 18146,
+    "reasons": [],
+    "before": {
+      "segments": 2519,
+      "subpaths": 49,
+      "paths": 12,
+      "shape_elements": 12
+    },
+    "candidate": {
+      "segments": 1157,
+      "subpaths": 49,
+      "paths": 12,
+      "shape_elements": 12
+    },
+    "accepted": true
+  },
+  "accepted": true,
+  "candidate_bytes": 18146,
+  "original_bytes": 55855,
+  "output_bytes": 18146,
+  "output_metrics": {
+    "segments": 1157,
+    "subpaths": 49,
+    "paths": 12,
+    "shape_elements": 12
+  },
+  "output_sha256": "cc88da103b25cf3f281f94a1edf122c53f355390916da045fd2011c80b174e47",
+  "input_unchanged": true
+}

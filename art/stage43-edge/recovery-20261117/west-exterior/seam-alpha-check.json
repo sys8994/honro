@@ -1,0 +1,954 @@
+{
+  "method": "Native Inkscape composed vs original RGBA at1024px width. For each y250..710 source row with new strip >=3px, test full horizontal connector from first composed opaque exterior to original opaque boundary, excluding outermost antialiased silhouette pixel.",
+  "testedRows": 723,
+  "fullyTransparentConnectorRows": [
+    {
+      "yRender": 1117,
+      "zeroPixels": 1
+    }
+  ],
+  "partiallyTransparentConnectorRows": [
+    {
+      "yRender": 394,
+      "minimumAlpha": 247
+    },
+    {
+      "yRender": 395,
+      "minimumAlpha": 252
+    },
+    {
+      "yRender": 397,
+      "minimumAlpha": 247
+    },
+    {
+      "yRender": 399,
+      "minimumAlpha": 244
+    },
+    {
+      "yRender": 401,
+      "minimumAlpha": 248
+    },
+    {
+      "yRender": 402,
+      "minimumAlpha": 251
+    },
+    {
+      "yRender": 405,
+      "minimumAlpha": 248
+    },
+    {
+      "yRender": 406,
+      "minimumAlpha": 253
+    },
+    {
+      "yRender": 410,
+      "minimumAlpha": 247
+    },
+    {
+      "yRender": 414,
+      "minimumAlpha": 252
+    },
+    {
+      "yRender": 415,
+      "minimumAlpha": 247
+    },
+    {
+      "yRender": 419,
+      "minimumAlpha": 251
+    },
+    {
+      "yRender": 420,
+      "minimumAlpha": 250
+    },
+    {
+      "yRender": 424,
+      "minimumAlpha": 251
+    },
+    {
+      "yRender": 425,
+      "minimumAlpha": 249
+    },
+    {
+      "yRender": 429,
+      "minimumAlpha": 251
+    },
+    {
+      "yRender": 430,
+      "minimumAlpha": 249
+    },
+    {
+      "yRender": 446,
+      "minimumAlpha": 253
+    },
+    {
+      "yRender": 447,
+      "minimumAlpha": 249
+    },
+    {
+      "yRender": 448,
+      "minimumAlpha": 247
+    },
+    {
+      "yRender": 449,
+      "minimumAlpha": 247
+    },
+    {
+      "yRender": 450,
+      "minimumAlpha": 248
+    },
+    {
+      "yRender": 451,
+      "minimumAlpha": 248
+    },
+    {
+      "yRender": 452,
+      "minimumAlpha": 249
+    },
+    {
+      "yRender": 453,
+      "minimumAlpha": 250
+    },
+    {
+      "yRender": 454,
+      "minimumAlpha": 251
+    },
+    {
+      "yRender": 455,
+      "minimumAlpha": 252
+    },
+    {
+      "yRender": 456,
+      "minimumAlpha": 252
+    },
+    {
+      "yRender": 457,
+      "minimumAlpha": 252
+    },
+    {
+      "yRender": 458,
+      "minimumAlpha": 253
+    },
+    {
+      "yRender": 459,
+      "minimumAlpha": 253
+    },
+    {
+      "yRender": 472,
+      "minimumAlpha": 248
+    },
+    {
+      "yRender": 476,
+      "minimumAlpha": 249
+    },
+    {
+      "yRender": 480,
+      "minimumAlpha": 251
+    },
+    {
+      "yRender": 483,
+      "minimumAlpha": 252
+    },
+    {
+      "yRender": 484,
+      "minimumAlpha": 252
+    },
+    {
+      "yRender": 487,
+      "minimumAlpha": 250
+    },
+    {
+      "yRender": 488,
+      "minimumAlpha": 253
+    },
+    {
+      "yRender": 491,
+      "minimumAlpha": 249
+    },
+    {
+      "yRender": 492,
+      "minimumAlpha": 253
+    },
+    {
+      "yRender": 495,
+      "minimumAlpha": 249
+    },
+    {
+      "yRender": 496,
+      "minimumAlpha": 253
+    },
+    {
+      "yRender": 499,
+      "minimumAlpha": 249
+    },
+    {
+      "yRender": 500,
+      "minimumAlpha": 253
+    },
+    {
+      "yRender": 503,
+      "minimumAlpha": 249
+    },
+    {
+      "yRender": 504,
+      "minimumAlpha": 253
+    },
+    {
+      "yRender": 507,
+      "minimumAlpha": 249
+    },
+    {
+      "yRender": 508,
+      "minimumAlpha": 253
+    },
+    {
+      "yRender": 511,
+      "minimumAlpha": 249
+    },
+    {
+      "yRender": 512,
+      "minimumAlpha": 253
+    },
+    {
+      "yRender": 566,
+      "minimumAlpha": 248
+    },
+    {
+      "yRender": 568,
+      "minimumAlpha": 249
+    },
+    {
+      "yRender": 570,
+      "minimumAlpha": 251
+    },
+    {
+      "yRender": 572,
+      "minimumAlpha": 252
+    },
+    {
+      "yRender": 574,
+      "minimumAlpha": 253
+    },
+    {
+      "yRender": 577,
+      "minimumAlpha": 253
+    },
+    {
+      "yRender": 579,
+      "minimumAlpha": 253
+    },
+    {
+      "yRender": 581,
+      "minimumAlpha": 252
+    },
+    {
+      "yRender": 583,
+      "minimumAlpha": 251
+    },
+    {
+      "yRender": 585,
+      "minimumAlpha": 250
+    },
+    {
+      "yRender": 587,
+      "minimumAlpha": 249
+    },
+    {
+      "yRender": 589,
+      "minimumAlpha": 249
+    },
+    {
+      "yRender": 591,
+      "minimumAlpha": 247
+    },
+    {
+      "yRender": 593,
+      "minimumAlpha": 247
+    },
+    {
+      "yRender": 595,
+      "minimumAlpha": 249
+    },
+    {
+      "yRender": 597,
+      "minimumAlpha": 252
+    },
+    {
+      "yRender": 599,
+      "minimumAlpha": 253
+    },
+    {
+      "yRender": 600,
+      "minimumAlpha": 253
+    },
+    {
+      "yRender": 602,
+      "minimumAlpha": 252
+    },
+    {
+      "yRender": 604,
+      "minimumAlpha": 251
+    },
+    {
+      "yRender": 606,
+      "minimumAlpha": 249
+    },
+    {
+      "yRender": 608,
+      "minimumAlpha": 247
+    },
+    {
+      "yRender": 610,
+      "minimumAlpha": 246
+    },
+    {
+      "yRender": 630,
+      "minimumAlpha": 247
+    },
+    {
+      "yRender": 631,
+      "minimumAlpha": 249
+    },
+    {
+      "yRender": 632,
+      "minimumAlpha": 253
+    },
+    {
+      "yRender": 636,
+      "minimumAlpha": 247
+    },
+    {
+      "yRender": 637,
+      "minimumAlpha": 250
+    },
+    {
+      "yRender": 642,
+      "minimumAlpha": 247
+    },
+    {
+      "yRender": 643,
+      "minimumAlpha": 250
+    },
+    {
+      "yRender": 648,
+      "minimumAlpha": 248
+    },
+    {
+      "yRender": 649,
+      "minimumAlpha": 251
+    },
+    {
+      "yRender": 654,
+      "minimumAlpha": 248
+    },
+    {
+      "yRender": 655,
+      "minimumAlpha": 251
+    },
+    {
+      "yRender": 661,
+      "minimumAlpha": 250
+    },
+    {
+      "yRender": 662,
+      "minimumAlpha": 248
+    },
+    {
+      "yRender": 663,
+      "minimumAlpha": 252
+    },
+    {
+      "yRender": 670,
+      "minimumAlpha": 247
+    },
+    {
+      "yRender": 671,
+      "minimumAlpha": 250
+    },
+    {
+      "yRender": 678,
+      "minimumAlpha": 250
+    },
+    {
+      "yRender": 679,
+      "minimumAlpha": 248
+    },
+    {
+      "yRender": 680,
+      "minimumAlpha": 252
+    },
+    {
+      "yRender": 687,
+      "minimumAlpha": 249
+    },
+    {
+      "yRender": 688,
+      "minimumAlpha": 248
+    },
+    {
+      "yRender": 689,
+      "minimumAlpha": 252
+    },
+    {
+      "yRender": 697,
+      "minimumAlpha": 247
+    },
+    {
+      "yRender": 698,
+      "minimumAlpha": 250
+    },
+    {
+      "yRender": 699,
+      "minimumAlpha": 253
+    },
+    {
+      "yRender": 706,
+      "minimumAlpha": 252
+    },
+    {
+      "yRender": 707,
+      "minimumAlpha": 247
+    },
+    {
+      "yRender": 708,
+      "minimumAlpha": 251
+    },
+    {
+      "yRender": 715,
+      "minimumAlpha": 252
+    },
+    {
+      "yRender": 716,
+      "minimumAlpha": 247
+    },
+    {
+      "yRender": 717,
+      "minimumAlpha": 251
+    },
+    {
+      "yRender": 724,
+      "minimumAlpha": 253
+    },
+    {
+      "yRender": 725,
+      "minimumAlpha": 247
+    },
+    {
+      "yRender": 726,
+      "minimumAlpha": 250
+    },
+    {
+      "yRender": 727,
+      "minimumAlpha": 253
+    },
+    {
+      "yRender": 732,
+      "minimumAlpha": 248
+    },
+    {
+      "yRender": 733,
+      "minimumAlpha": 251
+    },
+    {
+      "yRender": 738,
+      "minimumAlpha": 247
+    },
+    {
+      "yRender": 739,
+      "minimumAlpha": 253
+    },
+    {
+      "yRender": 743,
+      "minimumAlpha": 248
+    },
+    {
+      "yRender": 744,
+      "minimumAlpha": 251
+    },
+    {
+      "yRender": 748,
+      "minimumAlpha": 251
+    },
+    {
+      "yRender": 749,
+      "minimumAlpha": 251
+    },
+    {
+      "yRender": 753,
+      "minimumAlpha": 253
+    },
+    {
+      "yRender": 754,
+      "minimumAlpha": 251
+    },
+    {
+      "yRender": 756,
+      "minimumAlpha": 252
+    },
+    {
+      "yRender": 759,
+      "minimumAlpha": 253
+    },
+    {
+      "yRender": 760,
+      "minimumAlpha": 253
+    },
+    {
+      "yRender": 762,
+      "minimumAlpha": 252
+    },
+    {
+      "yRender": 764,
+      "minimumAlpha": 251
+    },
+    {
+      "yRender": 766,
+      "minimumAlpha": 251
+    },
+    {
+      "yRender": 768,
+      "minimumAlpha": 250
+    },
+    {
+      "yRender": 770,
+      "minimumAlpha": 251
+    },
+    {
+      "yRender": 772,
+      "minimumAlpha": 251
+    },
+    {
+      "yRender": 773,
+      "minimumAlpha": 253
+    },
+    {
+      "yRender": 776,
+      "minimumAlpha": 248
+    },
+    {
+      "yRender": 780,
+      "minimumAlpha": 247
+    },
+    {
+      "yRender": 784,
+      "minimumAlpha": 247
+    },
+    {
+      "yRender": 787,
+      "minimumAlpha": 253
+    },
+    {
+      "yRender": 788,
+      "minimumAlpha": 249
+    },
+    {
+      "yRender": 791,
+      "minimumAlpha": 250
+    },
+    {
+      "yRender": 795,
+      "minimumAlpha": 246
+    },
+    {
+      "yRender": 802,
+      "minimumAlpha": 251
+    },
+    {
+      "yRender": 803,
+      "minimumAlpha": 247
+    },
+    {
+      "yRender": 804,
+      "minimumAlpha": 252
+    },
+    {
+      "yRender": 810,
+      "minimumAlpha": 246
+    },
+    {
+      "yRender": 811,
+      "minimumAlpha": 251
+    },
+    {
+      "yRender": 817,
+      "minimumAlpha": 246
+    },
+    {
+      "yRender": 818,
+      "minimumAlpha": 250
+    },
+    {
+      "yRender": 824,
+      "minimumAlpha": 246
+    },
+    {
+      "yRender": 825,
+      "minimumAlpha": 251
+    },
+    {
+      "yRender": 831,
+      "minimumAlpha": 246
+    },
+    {
+      "yRender": 832,
+      "minimumAlpha": 251
+    },
+    {
+      "yRender": 833,
+      "minimumAlpha": 253
+    },
+    {
+      "yRender": 845,
+      "minimumAlpha": 250
+    },
+    {
+      "yRender": 846,
+      "minimumAlpha": 247
+    },
+    {
+      "yRender": 847,
+      "minimumAlpha": 248
+    },
+    {
+      "yRender": 848,
+      "minimumAlpha": 250
+    },
+    {
+      "yRender": 849,
+      "minimumAlpha": 252
+    },
+    {
+      "yRender": 862,
+      "minimumAlpha": 252
+    },
+    {
+      "yRender": 863,
+      "minimumAlpha": 244
+    },
+    {
+      "yRender": 864,
+      "minimumAlpha": 242
+    },
+    {
+      "yRender": 865,
+      "minimumAlpha": 244
+    },
+    {
+      "yRender": 866,
+      "minimumAlpha": 247
+    },
+    {
+      "yRender": 867,
+      "minimumAlpha": 250
+    },
+    {
+      "yRender": 868,
+      "minimumAlpha": 252
+    },
+    {
+      "yRender": 869,
+      "minimumAlpha": 253
+    },
+    {
+      "yRender": 878,
+      "minimumAlpha": 250
+    },
+    {
+      "yRender": 879,
+      "minimumAlpha": 244
+    },
+    {
+      "yRender": 880,
+      "minimumAlpha": 243
+    },
+    {
+      "yRender": 881,
+      "minimumAlpha": 245
+    },
+    {
+      "yRender": 882,
+      "minimumAlpha": 247
+    },
+    {
+      "yRender": 883,
+      "minimumAlpha": 250
+    },
+    {
+      "yRender": 884,
+      "minimumAlpha": 252
+    },
+    {
+      "yRender": 897,
+      "minimumAlpha": 251
+    },
+    {
+      "yRender": 898,
+      "minimumAlpha": 245
+    },
+    {
+      "yRender": 899,
+      "minimumAlpha": 250
+    },
+    {
+      "yRender": 905,
+      "minimumAlpha": 251
+    },
+    {
+      "yRender": 906,
+      "minimumAlpha": 246
+    },
+    {
+      "yRender": 907,
+      "minimumAlpha": 253
+    },
+    {
+      "yRender": 912,
+      "minimumAlpha": 253
+    },
+    {
+      "yRender": 913,
+      "minimumAlpha": 249
+    },
+    {
+      "yRender": 914,
+      "minimumAlpha": 246
+    },
+    {
+      "yRender": 920,
+      "minimumAlpha": 253
+    },
+    {
+      "yRender": 921,
+      "minimumAlpha": 248
+    },
+    {
+      "yRender": 922,
+      "minimumAlpha": 248
+    },
+    {
+      "yRender": 928,
+      "minimumAlpha": 252
+    },
+    {
+      "yRender": 929,
+      "minimumAlpha": 247
+    },
+    {
+      "yRender": 930,
+      "minimumAlpha": 251
+    },
+    {
+      "yRender": 939,
+      "minimumAlpha": 253
+    },
+    {
+      "yRender": 940,
+      "minimumAlpha": 251
+    },
+    {
+      "yRender": 941,
+      "minimumAlpha": 249
+    },
+    {
+      "yRender": 942,
+      "minimumAlpha": 246
+    },
+    {
+      "yRender": 943,
+      "minimumAlpha": 247
+    },
+    {
+      "yRender": 955,
+      "minimumAlpha": 253
+    },
+    {
+      "yRender": 956,
+      "minimumAlpha": 252
+    },
+    {
+      "yRender": 957,
+      "minimumAlpha": 250
+    },
+    {
+      "yRender": 958,
+      "minimumAlpha": 247
+    },
+    {
+      "yRender": 959,
+      "minimumAlpha": 246
+    },
+    {
+      "yRender": 960,
+      "minimumAlpha": 250
+    },
+    {
+      "yRender": 965,
+      "minimumAlpha": 251
+    },
+    {
+      "yRender": 968,
+      "minimumAlpha": 250
+    },
+    {
+      "yRender": 970,
+      "minimumAlpha": 247
+    },
+    {
+      "yRender": 972,
+      "minimumAlpha": 245
+    },
+    {
+      "yRender": 974,
+      "minimumAlpha": 248
+    },
+    {
+      "yRender": 1037,
+      "minimumAlpha": 253
+    },
+    {
+      "yRender": 1038,
+      "minimumAlpha": 251
+    },
+    {
+      "yRender": 1039,
+      "minimumAlpha": 249
+    },
+    {
+      "yRender": 1040,
+      "minimumAlpha": 247
+    },
+    {
+      "yRender": 1041,
+      "minimumAlpha": 252
+    },
+    {
+      "yRender": 1050,
+      "minimumAlpha": 252
+    },
+    {
+      "yRender": 1051,
+      "minimumAlpha": 249
+    },
+    {
+      "yRender": 1052,
+      "minimumAlpha": 246
+    },
+    {
+      "yRender": 1053,
+      "minimumAlpha": 250
+    },
+    {
+      "yRender": 1062,
+      "minimumAlpha": 253
+    },
+    {
+      "yRender": 1063,
+      "minimumAlpha": 250
+    },
+    {
+      "yRender": 1064,
+      "minimumAlpha": 246
+    },
+    {
+      "yRender": 1065,
+      "minimumAlpha": 248
+    },
+    {
+      "yRender": 1074,
+      "minimumAlpha": 253
+    },
+    {
+      "yRender": 1075,
+      "minimumAlpha": 251
+    },
+    {
+      "yRender": 1076,
+      "minimumAlpha": 248
+    },
+    {
+      "yRender": 1077,
+      "minimumAlpha": 246
+    },
+    {
+      "yRender": 1078,
+      "minimumAlpha": 253
+    },
+    {
+      "yRender": 1081,
+      "minimumAlpha": 246
+    },
+    {
+      "yRender": 1082,
+      "minimumAlpha": 252
+    },
+    {
+      "yRender": 1086,
+      "minimumAlpha": 246
+    },
+    {
+      "yRender": 1087,
+      "minimumAlpha": 253
+    },
+    {
+      "yRender": 1091,
+      "minimumAlpha": 247
+    },
+    {
+      "yRender": 1092,
+      "minimumAlpha": 253
+    },
+    {
+      "yRender": 1095,
+      "minimumAlpha": 253
+    },
+    {
+      "yRender": 1096,
+      "minimumAlpha": 248
+    },
+    {
+      "yRender": 1100,
+      "minimumAlpha": 252
+    },
+    {
+      "yRender": 1101,
+      "minimumAlpha": 249
+    },
+    {
+      "yRender": 1105,
+      "minimumAlpha": 250
+    },
+    {
+      "yRender": 1106,
+      "minimumAlpha": 250
+    },
+    {
+      "yRender": 1108,
+      "minimumAlpha": 253
+    },
+    {
+      "yRender": 1110,
+      "minimumAlpha": 247
+    },
+    {
+      "yRender": 1112,
+      "minimumAlpha": 251
+    },
+    {
+      "yRender": 1113,
+      "minimumAlpha": 251
+    },
+    {
+      "yRender": 1115,
+      "minimumAlpha": 253
+    },
+    {
+      "yRender": 1116,
+      "minimumAlpha": 243
+    },
+    {
+      "yRender": 1117,
+      "minimumAlpha": 0
+    }
+  ],
+  "interpretation": "Most seam samples remain nonzero but235 rows have partial alpha after Boolean subtraction and separate compositing; therefore the visible line is not proven to be only painted shading. One fully transparent1px gap occurs at render y1117/source y709.03 in the lower end connection, x\u224816 source. Retain as unresolved subpixel/seam issue until deep-body composition; do not certify fully opaque connection.",
+  "minimumAlphaExcludingBottomEndRow": 242
+}

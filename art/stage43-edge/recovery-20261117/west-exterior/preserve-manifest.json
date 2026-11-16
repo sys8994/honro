@@ -1,0 +1,111 @@
+{
+  "status": "unapproved independent study, original remains protected",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 5427,
+      "sha256": "3ae01dcde787c3ef2edbc10f8967c73bfe1d40270745c48421902e21683ea7f2"
+    },
+    {
+      "path": "concept-narrow-v1.png",
+      "bytes": 1019536,
+      "sha256": "9cdb7f7078a7b81f6e50bd62c48dfc454803be89c980428837a689530f404cb8"
+    },
+    {
+      "path": "registration.py",
+      "bytes": 1201,
+      "sha256": "da3439801505826067e79c474599bdb4f272b33b94d6cda1fb4f6beb6e86fea2"
+    },
+    {
+      "path": "registration.json",
+      "bytes": 726,
+      "sha256": "876afd2ae06ac678752a5b604bfc838e0bd914b84baa2f93fc6713ec63a4041b"
+    },
+    {
+      "path": "extract-native.py",
+      "bytes": 3517,
+      "sha256": "cdfa91c75261d63dfee16367ab98593d8ee4648adffbd595c077ea7e0550dfe0"
+    },
+    {
+      "path": "extraction.json",
+      "bytes": 950,
+      "sha256": "0306e84d2c4bb60053de758c85cf1e246b96017248ccbee588eaea15453966a5"
+    },
+    {
+      "path": "config.json",
+      "bytes": 259,
+      "sha256": "3e054dec0eb12fe22764bd3d23a9087c4133b763f229f49efab8de29f9623b03"
+    },
+    {
+      "path": "asset.json",
+      "bytes": 22914,
+      "sha256": "6eb5a775c8061a48356ddb15290518a434698ed73b223521931ebdfc069354f1"
+    },
+    {
+      "path": "exterior-mask.svg",
+      "bytes": 3202,
+      "sha256": "b2374d011c97ae5bbb59cfa38ee526e0774c2b41cfe56a4fba3d694c22c21622"
+    },
+    {
+      "path": "exterior-native.svg",
+      "bytes": 55855,
+      "sha256": "3bdd5a1895a9eaa33cb7613fe3c743386d67e1729d5129e73c3c3d1f06e0043f"
+    },
+    {
+      "path": "exterior-optimized.svg",
+      "bytes": 18146,
+      "sha256": "cc88da103b25cf3f281f94a1edf122c53f355390916da045fd2011c80b174e47"
+    },
+    {
+      "path": "exterior-optimized.svg.report.json",
+      "bytes": 1419,
+      "sha256": "d691fab32f05d37c140250bd13b244146b1098d04ebd7938d859c874cd2e1250"
+    },
+    {
+      "path": "pixel-preservation.json",
+      "bytes": 186,
+      "sha256": "2f09a9a580f7f63dc13e61d8dc53131b789689cd8b4ed899a1a38582e5a8b28d"
+    },
+    {
+      "path": "seam-alpha-check.json",
+      "bytes": 15284,
+      "sha256": "4d4af68ec9d54933f6dd591d70922fa08b7dfc5b48b9cfeddf35fe0e54a997af"
+    },
+    {
+      "path": "capture-west.mjs",
+      "bytes": 5891,
+      "sha256": "15eb86dd251d1a9c450b879503755e87cff95c4edc88e1b81f26ee729e62d81f"
+    },
+    {
+      "path": "native-scene/report.json",
+      "bytes": 1574,
+      "sha256": "5e01402573a273bb8ad2b107cc281e07cd20eb35e23332dabd4008d6e99a4cf4"
+    },
+    {
+      "path": "trace-v1/color-raw.svg",
+      "bytes": 1000822,
+      "sha256": "74a084048a1acd2e1ac2a0e94f5173bac15653f4c11b05f2c4318410d9e74921"
+    },
+    {
+      "path": "trace-v1/alpha-raw.svg",
+      "bytes": 17424,
+      "sha256": "4278ff67cf2eed268935323b0af7346976c672dc04838cf4e15e806d4162468e"
+    },
+    {
+      "path": "trace-v1/trace.json",
+      "bytes": 911,
+      "sha256": "c31d3f6d7b8ff983eba213d42890b13eaf5a2929cd2e163d7894e5c37200366f"
+    }
+  ],
+  "regenerableOmissions": [
+    "composed-native.png",
+    "composed-native.svg",
+    "native-scene/stage-43-west.png",
+    "original-native.png",
+    "original-native.svg",
+    "trace-v1/alpha-trace.log",
+    "trace-v1/color-trace.log",
+    "west-reference.png"
+  ],
+  "note": "Complete independent study preserved in original workspace; committed subset keeps source concept, raw/native/optimized geometry, import, reproduction scripts and validation. Original source SVG is already in parent folder."
+}

@@ -1,0 +1,46 @@
+{
+  "kind": "partial-recovery-checkpoint",
+  "source_local_commit": "1e0a585b685f967c7a9ae19843626b362f77783c",
+  "base_commit": "66643f02b72ecbcfaefa3deec999c0cb4acbe66a",
+  "complete_snapshot": false,
+  "production_changes": false,
+  "note": "Partial checkpoint only. All 14 original recovery files remain preserved in local commit 11b76069149cdf1c6805b64895c2ecc7a177f3ae; the entire research history and study files remain preserved locally. This remote tree is not equivalent to the complete local tree. PNG files and other files exceeding 500000 bytes are pending remote preservation.",
+  "excluded": [
+    {
+      "path": "art/stage43-edge/recovery-20261117/east-contact-outpaint-v1.png",
+      "bytes": 1609059,
+      "git_blob_sha": "9825764b93182e40a781ecd46980be6e528a0859"
+    },
+    {
+      "path": "art/stage43-edge/recovery-20261117/east-contact-reference.png",
+      "bytes": 197037,
+      "git_blob_sha": "52f9ab649781d118e8aceac20777af65ae7b429f"
+    },
+    {
+      "path": "art/stage43-edge/recovery-20261117/east-contact-reference.svg",
+      "bytes": 503080,
+      "git_blob_sha": "59e6d3f369222476dd7da9b621a4d6c85f046073"
+    },
+    {
+      "path": "art/stage43-edge/recovery-20261117/foundation-material-study-v1.png",
+      "bytes": 1412757,
+      "git_blob_sha": "ccbe56e7cf7638e960c2348ccf4d35536e32a349"
+    },
+    {
+      "path": "art/stage43-edge/recovery-20261117/native-contact-review.png",
+      "bytes": 268232,
+      "git_blob_sha": "fcf94b50cfaaab838bd0fe6941a015129925e522"
+    },
+    {
+      "path": "art/stage43-edge/recovery-20261117/west-exterior/concept-narrow-v1.png",
+      "bytes": 1019536,
+      "git_blob_sha": "7d16cd73967579a9455b15a35fbc80d05d4f148f"
+    },
+    {
+      "path": "art/stage43-edge/recovery-20261117/west-exterior/trace-v1/color-raw.svg",
+      "bytes": 1000822,
+      "git_blob_sha": "04b9fbfec291478ea8b0f4e35a32c0b4a4c8b32b"
+    }
+  ],
+  "included_count": 31
+}

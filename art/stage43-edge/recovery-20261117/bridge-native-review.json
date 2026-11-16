@@ -1,0 +1,59 @@
+{
+  "runtimeSha256": "aba9ab0bc2271959a72c272368c90cc366afb27bd23fa34529f9aae8df6d98d9",
+  "projectSha256": "4136fb14a265b1f21542a236c879be0df382ab3f6384a471dc6b8b75518ed93a",
+  "rows": [
+    {
+      "file": "stage-43-east.png",
+      "performance": {
+        "firstRenderMs": 193.47028200000022,
+        "cachedRenderMs": 25.475443000001178,
+        "rssBytes": 1780117504
+      },
+      "farStats": {
+        "entries": 1,
+        "maxEntries": 3,
+        "keys": [
+          "stillNight:"
+        ],
+        "errors": [],
+        "canvasBytes": 5595136
+      },
+      "environmentStats": {
+        "groups": 0,
+        "visibleAssets": 1,
+        "cachedPaths": 0,
+        "backgroundAnimatedPrimitives": 0,
+        "animatedPrimitives": 0,
+        "paths": 1,
+        "fogCards": 2,
+        "fogBytes": 524288,
+        "pools": 0,
+        "waterfalls": 0,
+        "authoredFar": [
+          "stillNight"
+        ]
+      },
+      "view": {
+        "stage": 43,
+        "id": "east",
+        "x": 6506,
+        "y": 2063.2000000000003,
+        "scale": 0.45,
+        "z": 0.45,
+        "w": 1440,
+        "h": 900
+      },
+      "pngSha256": "65ab453d4d96d3cb7e0b042e47e012b317f5ae55cf594b43eaac5926f6f67255",
+      "stageSha256": "edaa868800a3836bfc9b6c6becb80e9a008c9334dc8bc7a3740688617f52884a",
+      "actors": 39,
+      "gameplaySha256": "5010609ff55f6623fa522911bf5e37970b9ef10ff1d683f56507eef784dba538",
+      "scope": "Production Scene composition in native Canvas. Original collision and actors, fixed diagnostic camera. Not browser or campaign play."
+    }
+  ],
+  "visualReview": {
+    "approved": false,
+    "reason": "Native Scene still shows color/shape discontinuity at the source contact and oversized lower faces. No runtime integration or deployment.",
+    "sourcePreserved": true,
+    "scope": "isolated east pure-rock study; rectangular left/lower study boundary is not a terrain silhouette"
+  }
+}
