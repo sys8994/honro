@@ -43,3 +43,13 @@ Existing saved left, right and deep concepts are retraced with corrected Inkscap
 Parent review of the v2 Scene captures: face scale improved, but western lower vertical seam and eastern original-wall join remain unacceptable. NOT integrated or deployed. Original architecture, collision and save data remain protected. Subsequent work must preserve the newest master, including parallel stage33/44/45/47 changes.
 
 Native capture correction: waiting only 15 ms after first render could capture the fallback sky before the authored far image decoded, showing both fallback moon and time-of-day moon. The diagnostic now waits for HonroAuthoredFarArt.ready and records farStats. The east recheck loaded stillNight without errors and removed the duplicate upper moon. No game artwork was removed for this diagnostic artifact. These captures still do not constitute browser/playthrough verification.
+
+### Local join correction and rejected registration studies
+
+The v4 local closure uses the existing adjacent native facet (raw ring5920), plus measured endpoints of the 21.8-unit residual gap. It changes only the source-field clipping mask, not the existing painted rock or original game illustration. The initial v4 incorrectly retained the old global alpha: that union had a tiny internal slit at x0,y781.86..802.29. Re-union of actual center/left/right alpha removes the bright vertical line in the west production Scene diagnostic. `close-local-field-gap.py` records both initial study and corrected reunion; use the latter, not the stale global alpha. This local defect correction is not full art approval.
+
+Minimum-zoom deepest-camera inspection revealed excessive vertical stretching below the near rock field. `restore-field-proportions.py` prepares an exact inverse of the quadratic depth warp as a separate incomplete upper field. It must NOT be shipped alone because lower coverage is incomplete. A distinct existing tall concept is being studied at isotropic scale for deep coverage; none is approved yet.
+
+`register-contact-heights.py` also preserves a rejected whole-field translation study (west -130/east -90 source units). It preserves shape but does not solve the original-wall/material seam and makes the western mass too dominant. East capture was written, then its process exited137, so this is not a successful stability check. Do not integrate the height study.
+
+The portable `capture-candidate.mjs` uses the production Scene with a diagnostic BODY override, waits for authored-far readiness, and records source hashes, far loading, state purity and timings. It is not browser input or gameplay verification.
