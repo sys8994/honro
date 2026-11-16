@@ -1,0 +1,27 @@
+{
+  "method": "Subtract existing west end below source y710 by actual native intersection; no new paint paths, stretching or deep/source changes. This removes the closed tip in front of deep, not merely its external silhouette.",
+  "scope": "west final14 source-units only; source, contact asset and deep unchanged",
+  "edited": {
+    "bytes": 25959,
+    "paths": 12,
+    "parsedSegments": 1134
+  },
+  "original": {
+    "bytes": 18146,
+    "paths": 12,
+    "parsedSegments": 1157
+  },
+  "note": "Boolean edit, not optimizer: parsed segments decrease1157\u21921134 but bytes increase18146\u219225959 from native serialization. Minor AA changes can occur outside trimmed tip.",
+  "sceneChangedPixels": 293,
+  "sceneChangedBBox": [
+    632,
+    102,
+    685,
+    744
+  ],
+  "visual": "Rounded hanging knot removed. Small short horizontal termination remains at original base, so no claim of smooth redesigned geology. Deep exterior and source protected elements unchanged.",
+  "nativeScope": "REAR_ONLY+SNAP_DOMAIN_EDGE diagnostic; same BODY and contact as provided baseline.",
+  "changedPixelsAboveScreenY700": 42,
+  "maxDeltaAboveScreenY700": 1,
+  "changedPixelsBelowScreenY700": 251
+}
