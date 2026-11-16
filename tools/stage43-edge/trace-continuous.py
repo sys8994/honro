@@ -35,7 +35,7 @@ def trace(kind,action):
  tree=E.parse(str(dest));paths=tree.findall('.//{*}path')
  assert paths and not tree.findall('.//{*}image')
  return {'action':action,'sha256':hashlib.sha256(dest.read_bytes()).hexdigest(),'bytes':dest.stat().st_size,'paths':len(paths),'segments':sum(len(parse_path(p.get('d',''))) for p in paths)}
-color=trace('color',os.environ.get('HONRO_TRACE_COLORS','16')+',true,true,false,4,1,0.2')
+color=trace('color',os.environ.get('HONRO_TRACE_COLORS','16')+',true,'+os.environ.get('HONRO_TRACE_SMOOTH','true')+',false,4,'+os.environ.get('HONRO_TRACE_CORNERS','1')+',0.2')
 alpha=trace('alpha','2,false,false,true,0,0,0.1')
 run([out/'color-raw.svg','--export-type=png',f'--export-filename={out/"color-raw.png"}'],'color-render.log')
 record={'stage':n,'inkscape':subprocess.check_output([str(INK),'--version'],text=True).strip(),'source':str(src),'sourceSHA256':hashlib.sha256(src.read_bytes()).hexdigest(),'sourceSize':[w,h],'color':color,'alpha':alpha,'alphaPolicy':'source alpha >= 128 and min(RGB) < 240 to exclude white sky; hidden RGB forced white; color and alpha are native Inkscape traces','status':'raw trace only, not art or gameplay approval'}

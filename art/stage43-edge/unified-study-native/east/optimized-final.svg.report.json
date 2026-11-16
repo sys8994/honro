@@ -1,0 +1,57 @@
+{
+  "input": "../stage43-trace-east-join-v1/clipped.svg",
+  "input_sha256": "6ba38195b5d18b9f8f878e69f6603f1548d3180c7f04c41f5bb568f259204e24",
+  "epsilon_viewbox_units": 0.7,
+  "changed_paths": 6,
+  "segments_before": 924,
+  "segments_after": 847,
+  "skips": {
+    "not smaller/guarded": 2
+  },
+  "render_checks": [
+    {
+      "mean_channel_error": 0.00022755270765628666,
+      "changed_pixel_fraction": 0.0027741257641136284,
+      "max_channel_error": 0.6901960372924805,
+      "width": 768,
+      "accepted": true
+    },
+    {
+      "mean_channel_error": 0.00024243741063401103,
+      "changed_pixel_fraction": 0.0021625264211189064,
+      "max_channel_error": 1.0,
+      "width": 1536,
+      "accepted": true
+    }
+  ],
+  "growth_guard": {
+    "original_bytes": 54675,
+    "candidate_bytes": 41175,
+    "reasons": [],
+    "before": {
+      "segments": 924,
+      "subpaths": 107,
+      "paths": 8,
+      "shape_elements": 8
+    },
+    "candidate": {
+      "segments": 847,
+      "subpaths": 107,
+      "paths": 8,
+      "shape_elements": 8
+    },
+    "accepted": true
+  },
+  "accepted": true,
+  "candidate_bytes": 41175,
+  "original_bytes": 54675,
+  "output_bytes": 41175,
+  "output_metrics": {
+    "segments": 847,
+    "subpaths": 107,
+    "paths": 8,
+    "shape_elements": 8
+  },
+  "output_sha256": "8c0fde33d4077c0aced2cee740d4199c4e286145fb048f852bc08c69da86a3e9",
+  "input_unchanged": true
+}

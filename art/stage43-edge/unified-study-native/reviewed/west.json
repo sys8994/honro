@@ -1,0 +1,29 @@
+{
+  "runtimeSha256": "1f5c55e76e55817f6f65b72e584d843c7f60d35431ba359449fbacf3dbe8cf2f",
+  "projectSha256": "573807281ec53b09e861a66ef4027318f49a93cc60f20a9c1ddc32737aa2007f",
+  "rows": [
+    {
+      "file": "stage-43-west.png",
+      "performance": {
+        "firstRenderMs": 697.4167550000002,
+        "cachedRenderMs": 37.08316200000081,
+        "rssBytes": 1800548352
+      },
+      "view": {
+        "stage": 43,
+        "id": "west",
+        "x": 150,
+        "y": 1547.3999999999999,
+        "scale": 0.45,
+        "z": 0.45,
+        "w": 1440,
+        "h": 900
+      },
+      "pngSha256": "47592b16ffa7876620c990d96845efa7747b91965737f440b0b7adcb35837401",
+      "stageSha256": "edaa868800a3836bfc9b6c6becb80e9a008c9334dc8bc7a3740688617f52884a",
+      "actors": 39,
+      "gameplaySha256": "5010609ff55f6623fa522911bf5e37970b9ef10ff1d683f56507eef784dba538",
+      "scope": "Production Scene composition in native Canvas. Original collision and actors, fixed diagnostic camera. Not browser or campaign play."
+    }
+  ]
+}
