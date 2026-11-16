@@ -54,3 +54,11 @@ new art approval. Native performance is not browser FPS; public play is untested
 Original contact-rock patches were rejected as visibly pasted/flat. Whole new
 native face occluders were also rejected when they covered a walkway or too much
 masonry. A bounded native-fracture occlusion study remains separate and unadopted.
+
+## Superseding review direction
+
+Whole-support replacement was rejected again at v8: hanging/cut-looking masonry,
+separated west starting-platform support and broad false-platform rock tops.
+Do not adopt this checkpoint. Current investigation restores the entire original
+support rock and narrows changes to exterior continuity only. This folder remains
+an editable record of a rejected study, not a release candidate.
