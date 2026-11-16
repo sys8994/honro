@@ -1,4 +1,5 @@
 import {readFile} from 'node:fs/promises';
+import {applyStage33CoastalArt} from './act4-stage33-coastal-art.mjs';
 
 // Paint-only correction. The existing BODY remains the one coverage owner;
 // these additions use the native surface pass without adding collision.
@@ -29,5 +30,5 @@ export async function applyAct4SideviewArt(project) {
   return {stage:{...stage,elements},assets:pack.assets};
  }));
  for(const entry of entries)library.push(...entry.assets);
- return {...project,library,stages:entries.map(e=>e.stage)};
+ return applyStage33CoastalArt({...project,library,stages:entries.map(e=>e.stage)});
 }

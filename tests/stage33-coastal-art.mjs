@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';import{readFile}from'node:fs/promises';
+import{applyStage33CoastalPack}from'../shared/act4-stage33-coastal-art.mjs';
+import{readWorldSource}from'../tools/act4-source/world-source.mjs';
+import{applyAct4HandoffArt}from'../shared/act4-handoff-art.mjs';
+const raw=JSON.parse((await readWorldSource()).bytes),p=await applyAct4HandoffArt(raw),snapshot=structuredClone(p),pack=JSON.parse(await readFile(new URL('../shared/data/act4/sideview-art/33-coastal-v2.json',import.meta.url),'utf8'));
+const q=applyStage33CoastalPack(p,pack);assert.deepEqual(p,snapshot,'Input mutation');
+for(const stage of p.stages){const n=q.stages.find(s=>s.id===stage.id);assert.deepEqual({...n,elements:stage.elements},stage);if(stage.metadata.stageId!==33)assert.deepEqual(n,stage);}
+for(const old of p.library)assert.deepEqual(q.library.find(a=>a.id===old.id),old,'Old save provider changed');
+assert.equal(applyStage33CoastalPack(q,pack),q,'Not idempotent');
+const oldIds=new Set(p.library.map(a=>a.id));for(const a of q.library.filter(a=>!oldIds.has(a.id)))assert.equal(a.collision.length,0);
+const st=q.stages.find(s=>s.metadata.stageId===33);assert.equal(st.elements.filter(e=>e.id.startsWith('act4-sideview:33:coastal-v2:')).length,4);
+console.log('PASS stage33 gameplay, other chapters, input, previous-save providers, zero added collision, idempotence');
