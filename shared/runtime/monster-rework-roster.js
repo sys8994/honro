@@ -59,11 +59,11 @@ function near(a,c){
  if(a.honroCluster&&a.honroCluster===c.honroCluster)return true;
  return Math.abs(a.x-c.x)<660&&Math.abs(a.y-c.y)<280;
 }
-function onSafeGround(b,u){
+function onSafeGround(b,u,tideMargin=260){
  const span=[u.x-150,u.x,u.x+150];
  if(span[0]<0||span[2]>b.width)return false;
  const tide=b.honroAct4Design?.tide;
- if(tide&&u.y>tide.high-260)return false;
+ if(tide&&u.y>tide.high-tideMargin)return false;
  const supports=span.map(x=>G.HonroMapEngine.surfaceY(b.terrain,x,u.y));
  return supports.every(hit=>hit&&Math.abs(hit.y-u.y)<=70);
 }
@@ -83,6 +83,9 @@ function rule(b,u,peers){
 function install(b,u,row){
  const [id,base,pattern,label,cluster]=row;
  if(!u||u.id!==id||!enemy(u)||kind(u)!==base||bespoke(u))return;
+ applyIdentity(u,pattern,label,cluster);
+}
+function applyIdentity(u,pattern,label,cluster){
  const identity=species[pattern]||archetypes[pattern];
  u.honroMonsterPattern=pattern;
  if(identity){
@@ -139,5 +142,17 @@ function prepareFresh(b){
 function prepareSpawn(b,u){
  if(b?.honroMonsterReworkRevision===REVISION)rule(b,u,b.units);
 }
-G.HonroMonsterRoster={prepareFresh,prepareSpawn};
+function canDiversify(b,u,pattern,fresh){
+ if(!species[pattern]&&!archetypes[pattern])return false;
+ if(!strong.has(pattern))return true;
+ if(pattern==='mulgwishin'&&!onSafeGround(b,u,120))return false;
+ if((pattern==='vanguard'||pattern==='pursuer'||b.honroAct5===1&&b.honroStage>=46)&&!onSafeGround(b,u))return false;
+ const peers=b.units.filter(v=>v!==u&&enemy(v)&&near(u,v)&&strong.has(currentPattern(v)));
+ if(peers.some(v=>!fresh||v.honroMonsterSpecies||v.honroMonsterDiversityKind||bespoke(v)))return false;
+ // This group's authored special is the only strong control. Old ordinary
+ // group members retain their normal attacks.
+ for(const v of peers){delete v.honroMonsterPattern;delete v.honroMonsterEffectSkill;}
+ return true;
+}
+G.HonroMonsterRoster={prepareFresh,prepareSpawn,applyIdentity,canDiversify};
 })(globalThis);

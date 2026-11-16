@@ -45,6 +45,7 @@ function spawnMembers(app,action,at){const e=app.engine,b=e.b;if(!active(b)||!Ar
   // Existing exact-body test includes low ceilings, actors, fields, projectiles
   // and stakes. It does not move occupants or silently select another surface.
   if(G.HonroStage8Bier.terrainBlockers(e,u).length||G.HonroStage8Bier.hazards(shadow,u,{x:x-u.r-18,y:y-u.h-3,w:u.r*2+36,h:u.h+6}).length)return false;
+  G.HonroMonsterDiversity?.spawn(shadow,u,action.source,i);
   list.push(u);
  }
  b.nextId=next+list.length;b.units.push(...list);b.honroCounters.spawned+=list.length;return true;

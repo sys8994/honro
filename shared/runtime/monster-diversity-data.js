@@ -1,0 +1,573 @@
+// Stage recipes use existing spawn IDs and event slots. See ENCOUNTER_PLACEMENT.md.
+globalThis.HONRO_MONSTER_DIVERSITY={
+ 1:{
+  slots:[
+   ["foe-0-cluster","hound","boar"],
+   ["foe-1-cluster","crow","bat"],
+  ],
+ },
+ 2:{
+  slots:[
+   ["foe-0-cluster","hound","boar"],
+   ["foe-3-cluster","hound","ghost"],
+   ["foe-5-cluster","hound","stag"],
+  ],
+ },
+ 3:{
+  slots:[
+   ["site-3-patrol-0-1","hound","ghost"],
+   ["site-3-patrol-3-2","hound","mourner"],
+  ],
+  waves:{
+   "dock-beasts":[null,"boar",null],
+  },
+ },
+ 4:{
+  slots:[
+   ["foe-1","hound","ghost"],
+   ["foe-6","hound","mourner"],
+   ["foe-1-cluster","hound","human"],
+   ["foe-6-cluster","hound","mourner"],
+  ],
+  waves:{
+   "siege-0":[null,"boar",null,"ghost"],
+   "siege-mid":[null,"mourner",null,"stag"],
+  },
+ },
+ 5:{
+  slots:[
+   ["s5-entry-ghost","ghost","mourner"],
+  ],
+  waves:{
+   "lower-beasts":[null,"boar",null,null],
+  },
+ },
+ 6:{
+  slots:[
+   ["foe-1-cluster","hound","mourner"],
+   ["foe-5-cluster","hound","ghost"],
+   ["foe-3-cluster","crow","bat"],
+   ["foe-8-cluster","crow","lantern"],
+  ],
+  waves:{
+   "pursuit":[null,"ghost"],
+  },
+ },
+ 7:{
+  slots:[
+   ["site-7-patrol-0-0","hound","geuseundae"],
+   ["site-7-patrol-0-4","crow","lantern"],
+   ["site-7-patrol-1-0","hound","ghost"],
+   ["site-7-patrol-1-1","hound","mourner"],
+   ["site-7-patrol-2-0","hound","ghost"],
+  ],
+  waves:{
+   "upper-crows":["mourner",null,null],
+  },
+ },
+ 8:{
+  slots:[
+   ["s8-2","hound","ghost"],
+   ["s8-4","hound","mourner"],
+   ["s8-12","hound","human"],
+   ["s8-13","crow","bat"],
+   ["s8-16","hound","ghost"],
+   ["s8-21","hound","human"],
+   ["s8-26","hound","mourner"],
+   ["s8-31","hound","mourner"],
+   ["s8-33","crow","bat"],
+  ],
+ },
+ 9:{
+  slots:[
+   ["foe-4","hound","ghost"],
+   ["foe-1-cluster","hound","mourner"],
+   ["foe-2-cluster","crow","lantern"],
+   ["foe-3-cluster","hound","boar"],
+   ["foe-9-cluster","hound","ghost"],
+  ],
+  waves:{
+   "evac-beasts":[null,"boar",null,null,"stag",null],
+  },
+ },
+ 10:{
+  slots:[
+   ["foe-1","ghost","dokkaebibul","봉인 앞 도깨비불","sodan-bier-fires"],
+   ["foe-4","hound","dokkaebibul","봉인길 도깨비불","sodan-bier-fires"],
+   ["foe-5","hound","boar"],
+   ["foe-6","hound","mourner"],
+   ["foe-0-cluster","hound","muyeo"],
+   ["foe-2-cluster","hound","human"],
+   ["foe-5-cluster","hound","ghost"],
+   ["foe-6-cluster","hound","ghost"],
+   ["foe-7-cluster","hound","mourner"],
+  ],
+  waves:{
+   "sodan-hounds":[null,"boar",null,null],
+  },
+ },
+ 11:{
+  slots:[
+   ["compact11-central-lower-front","hound","geuseundae"],
+   ["compact11-exit-high","human","muyeo"],
+  ],
+ },
+ 12:{
+  slots:[
+   ["sq-c3","bat","lantern"],
+   ["sq-c4","picks","boar"],
+   ["sq-e2","picks","human"],
+   ["sq-f3","picks","hound"],
+   ["sq-g3","bat","crow"],
+   ["sq-g5","picks","human"],
+  ],
+ },
+ 13:{
+  slots:[
+   ["a2-enemy-1","picks","hound"],
+   ["a2-enemy-3","picks","vanguard","석문길 봉쇄 전위"],
+   ["a2-enemy-4","picks","human"],
+   ["a2-enemy-5","bat","lantern"],
+   ["a2-enemy-7","bat","crow"],
+   ["a2-enemy-11","minecart","mourner"],
+   ["a2-enemy-15","bat","crow"],
+   ["a2-enemy-16","bat","lantern"],
+   ["a2-enemy-18","picks","eoduksini"],
+  ],
+ },
+ 14:{
+  slots:[
+   ["v14-b5","picks","eoduksini"],
+   ["v14-b7","bat","lantern"],
+   ["v14-b10","bat","lantern"],
+   ["v14-c6","bat","crow"],
+   ["v14-d1","picks","dokkaebibul",null,"village-lower-fires"],
+   ["v14-d2","picks","dokkaebibul",null,"village-lower-fires"],
+   ["v14-e1","picks","warden"],
+   ["v14-e3","bat","lantern"],
+  ],
+ },
+ 15:{
+  slots:[
+   ["a2-enemy-5","picks","human"],
+   ["a2-enemy-7","picks","eoduksini"],
+   ["a2-enemy-8","picks","mourner"],
+   ["a2-enemy-9","bat","crow"],
+   ["a2-enemy-11","bat","lantern"],
+   ["a2-enemy-13","bat","crow"],
+   ["a2-enemy-18","bat","lantern"],
+  ],
+ },
+ 16:{
+  slots:[
+   ["a2-enemy-12","picks","shade"],
+   ["a2-enemy-15","bat","crow"],
+   ["tm-lower-point","picks","eoduksini"],
+   ["tm-lower-bat","bat","lantern"],
+   ["tm-archive-point","picks","mourner"],
+   ["a2-enemy-17","bat","lantern"],
+  ],
+  waves:{
+   "v4.16.temple-cloister-answer":["mourner",null,"lantern"],
+   "v4.16.temple-record-answer":["human",null,null],
+  },
+ },
+ 17:{
+  slots:[
+   ["ws-core-brace","picks","human"],
+   ["ws-core-screen","picks","mourner"],
+   ["ws-core-foreman","picks","eoduksini"],
+   ["ws-core-bat","bat","lantern"],
+   ["ws-upper-toolguard","picks","human"],
+   ["ws-axle-point","picks","warden"],
+   ["a2-enemy-18","monkVessel","sonmalmyeong"],
+   ["ws-service-front","picks","mourner"],
+   ["ws-notes-front","picks","shade"],
+  ],
+  waves:{
+   "v4.17.worksite-brace-answer":["human",null,"lantern"],
+   "v4.17.worksite-axle-answer":["mourner",null,"sonmalmyeong"],
+  },
+ },
+ 18:{
+  slots:[
+   ["sb-e-front","picks","mourner"],
+   ["sb-f-tool-west","picks","eoduksini"],
+   ["sb-g-bat-high","bat","lantern"],
+  ],
+  waves:{
+   "18.rescue-response":["mourner",null,"lantern"],
+  },
+ },
+ 19:{
+ },
+ 20:{
+  slots:[
+   ["a2-enemy-1","bat","crow"],
+   ["a2-enemy-2","bat","lantern"],
+   ["a2-enemy-5","minecart","hound"],
+   ["a2-enemy-7","minecart","vanguard","갱구 봉쇄 전위"],
+   ["a2-enemy-8","picks","human"],
+   ["a2-enemy-10","picks","boar"],
+   ["a2-enemy-13","resonance","sonmalmyeong"],
+   ["a2-enemy-16","minecart","mourner"],
+  ],
+ },
+ 21:{
+  slots:[
+   ["a3-21-market-pack-1","hound","boar","장터 들린 멧돼지"],
+   ["a3-21-market-pack-2","lantern","crow","지붕의 들린 까마귀"],
+   ["a3-21-stable-tools-1","hound","stag","마구간 샛길의 들린 숫사슴"],
+   ["a3-21-office-rearguard-3","lantern","crow","동쪽 담장의 들린 까마귀"],
+   ["a3-21-office-rearguard-5","hound","ghost","관아 뒤뜰의 혼"],
+  ],
+ },
+ 22:{
+  slots:[
+   ["v22-b1","possessedGuard","hound","계단 밑 들린 산개"],
+   ["v22-b4","possessedGuard","vanguard","장부 계단 봉쇄장"],
+   ["v22-c1","possessedGuard","eoduksini","보고고 앞 어둑시니"],
+   ["v22-d3","possessedGuard","ghost","가까운 회랑의 혼"],
+   ["v22-e3","possessedGuard","hound","호적각 비탈의 들린 산개"],
+   ["v22-f4","possessedGuard","ghost","호적각 뒤뜰의 혼"],
+   ["v22-g5","possessedGuard","human","대조마당의 악귀 사수"],
+  ],
+ },
+ 23:{
+  slots:[
+   ["s23-B-2","possessedGuard","ghost","건너편 짐칸에 붙은 혼"],
+   ["s23-B-5","possessedGuard","human","낮은 하역로의 악귀 사수"],
+   ["s23-C-2","possessedGuard","ghost","석교에 남은 혼"],
+   ["s23-D-2","possessedGuard","boar","서쪽 고지의 들린 멧돼지"],
+   ["s23-D-4","possessedGuard","hound","높은 창고 입구의 들린 산개"],
+   ["s23-E-0","possessedGuard","dueoksini","세관 앞 두억시니"],
+   ["s23-E-4","possessedArcher","marksman","세관 고지 지휘 사수"],
+   ["s23-F-2","possessedGuard","mourner","동쪽 상자 더미의 들린 상두꾼"],
+   ["s23-F-5","possessedArcher","ghost","하역장 뒤의 혼"],
+  ],
+ },
+ 24:{
+  slots:[
+   ["a3-24-empty-court-watch-1","archiveFiend","hound","빈 뜰의 들린 산개"],
+   ["a3-24-empty-court-watch-3","archiveFiend","human","빈 뜰의 악귀 사수"],
+   ["a3-24-crest-room-watch-3","archiveFiend","geuseundae","문장고 바깥 그슨대"],
+   ["a3-24-shrine-approach-1","archiveFiend","mourner","사당 층계의 들린 상두꾼"],
+   ["a3-24-shrine-approach-4","archiveFiend","ghost","사당 뒤 회랑의 혼"],
+   ["a3-24-land-register-watch-1","archiveFiend","human","토지 장부 곁의 악귀 사수"],
+  ],
+ },
+ 25:{
+  slots:[
+   ["a3-25-seal-approach-2","picks","ghost","봉인 회랑의 혼"],
+   ["a3-25-numbered-goods-1","lantern","bat","표찰 창고의 들린 산박쥐"],
+   ["a3-25-maintenance-window-pressure-3","picks","eoduksini","아래 수로 어둑시니"],
+  ],
+ },
+ 26:{
+  slots:[
+   ["a3-26-record-room-remnants-2","possessedGuard","ghost","기록실에 남은 혼"],
+   ["a3-26-casting-yard-tools-3","picks","eoduksini","가마 마당 어둑시니"],
+   ["a3-26-surface-exit-remnants-2","picks","human","묘역 뒤의 악귀 사수"],
+  ],
+ },
+ 27:{
+  slots:[
+   ["a3-27-lower-loading-store-1","picks","hound","아래 적재장의 들린 산개"],
+   ["a3-27-sealed-manifest-store-2","picks","ghost","봉인 창고의 혼"],
+   ["a3-27-high-numbered-store-1","lantern","bat","위쪽 표찰 창고의 들린 산박쥐"],
+  ],
+ },
+ 28:{
+  slots:[
+   ["a3-28-west-fire-1","possessedArcher","ghost","서쪽 연기 속의 혼"],
+   ["a3-28-court-petition-3","possessedGuard","ghost","청원 마당에 남은 혼"],
+   ["a3-28-decision-suppression-0","possessedGuard","dueoksini","관아 마당 두억시니"],
+   ["a3-28-decision-suppression-3","possessedArcher","human","동쪽 나룻길 매복 사수"],
+   ["a3-28-decision-suppression-4","possessedGuard","ghost","동쪽 복도의 혼"],
+   ["a3-28-decision-suppression-6","possessedGuard","hound","동쪽 물길의 들린 산개"],
+   ["a3-28-west-record-veranda-1","possessedGuard","eoduksini","기록실 바깥 어둑시니"],
+  ],
+ },
+ 29:{
+  slots:[
+   ["a3-29-sealed-store-response-1","possessedGuard","ghost","봉인 창고에 남은 혼"],
+   ["a3-29-sealed-store-response-3","possessedGuard","yagwanggwi","창고 바깥 야광귀"],
+   ["a3-29-letter-store-guard-4","possessedArcher","ghost","편지 창고 뒤에 남은 혼"],
+   ["a3-29-underwater-bridge-watch-0","possessedGuard","hound","물 밑 다리의 들린 산개"],
+   ["a3-29-underwater-bridge-watch-3","possessedGuard","ghost","다리 아래를 떠도는 혼"],
+   ["a3-29-dark-lock-approach-1","possessedGuard","gaekgwi","어둠문 안쪽 객귀"],
+   ["a3-29-dark-lock-approach-4","possessedArcher","marksman","어둠문 동편 지휘 사수"],
+   ["a3-29-moonlit-exit-watch-0","possessedGuard","dueoksini","동쪽 달길 두억시니"],
+  ],
+  waves:{
+   "act3-response-29-1":[null,"ghost",null],
+   "act3-response-29-2":[null,"human"],
+  },
+ },
+ 30:{
+  slots:[
+   ["sf-c2","possessedGuard","ghost","높은 곶의 밤 초소에 남은 혼"],
+   ["sf-dw6","possessedGuard","dueoksini","나루 서편 석단 두억시니"],
+   ["sf-de2","possessedGuard","ghost","반사벽 앞의 혼"],
+   ["sf-de5","possessedArcher","yagwanggwi","동쪽 적재마루 야광귀"],
+   ["sf-de7","possessedGuard","human","나루 건너편 매복 사수"],
+   ["sf-e5","possessedArcher","ghost","높은 둔덕 위의 혼"],
+   ["sf-fg4","possessedGuard","mourner","옛길 층계의 들린 상두꾼"],
+  ],
+ },
+ 31:{
+  slots:[
+   ["pilot31-west-entry-6","possessedArcher","marksman","갈대 언덕의 지휘 사수"],
+   ["pilot31-west-entry-8","possessedArcher","ghost","갈대밭에 남은 혼"],
+   ["pilot31-west-crossfire-1","possessedArcher","lantern"],
+   ["pilot31-west-crossfire-4","mourner","boar"],
+   ["pilot31-west-crossfire-6","possessedArcher","stag"],
+   ["pilot31-ridge-court-3","possessedArcher","crow"],
+   ["pilot31-ridge-court-6","possessedArcher","geuseunsae","마른 갈대 그슨새"],
+   ["pilot31-ridge-court-7","shade","muyeo","산마루 점복무녀"],
+   ["pilot31-lookout-return-1","possessedArcher","vanguard","돌아가는 길 봉쇄 전위"],
+   ["pilot31-lookout-return-7","possessedArcher","ghost"],
+  ],
+ },
+ 32:{
+  slots:[
+   ["a4-32-a-3","possessedArcher","marksman","빈 포구의 망루 사수"],
+   ["a4-32-b-1","hound","boar"],
+   ["a4-32-b-4","shade","yagwanggwi","빈 가판의 야광귀"],
+   ["a4-32-c-2","possessedArcher","lantern"],
+   ["a4-32-d-2","possessedArcher","geuseunsae","물안개 그슨새"],
+  ],
+ },
+ 33:{
+  slots:[
+   ["a4-33-a-2","possessedArcher","lantern"],
+   ["a4-33-b-1","hound","boar"],
+   ["a4-33-b-4","possessedGuard","mulgwishin","모래톱 물귀신"],
+   ["a4-33-c-2","possessedArcher","ghost"],
+   ["a4-33-e-2","possessedArcher","lantern"],
+   ["a4-33-f-2","possessedArcher","marksman","갯길 망루 지휘 사수"],
+   ["a4-33-g-1","possessedArcher","geuseunsae","해무 그슨새"],
+   ["a4-33-h-5","possessedArcher","crow"],
+  ],
+ },
+ 34:{
+  slots:[
+   ["a4-34-g0-2","possessedArcher","lantern"],
+   ["a4-34-g0-4","possessedArcher","ghost"],
+   ["a4-34-g0-7","possessedArcher","marksman","해풍 절벽 지휘 사수"],
+   ["a4-34-w-4","possessedArcher","crow"],
+   ["a4-34-w-5","possessedArcher","boar"],
+   ["a4-34-w-8","warden","dueoksini","파도벽 두억시니"],
+   ["a4-34-w-9","possessedArcher","lantern"],
+   ["a4-34-s-1","possessedArcher","geuseunsae","벼랑 그슨새"],
+   ["a4-34-r-10","possessedArcher","ghost"],
+   ["a4-34-r-11","possessedArcher","lantern"],
+  ],
+ },
+ 35:{
+  slots:[
+   ["a4-35-a-1","hound","boar"],
+   ["a4-35-b-2","possessedArcher","ghost"],
+   ["a4-35-b-3","possessedArcher","crow"],
+   ["a4-35-b-4","possessedArcher","geuseundae","대숲 그슨대"],
+   ["a4-35-d-4","possessedArcher","marksman","폐루 지휘 사수"],
+   ["a4-35-d-5","possessedArcher","lantern"],
+   ["a4-35-e-2","hound","yagwanggwi","대숲 야광귀"],
+   ["a4-35-e-6","possessedArcher","crow"],
+   ["a4-35-e-7","possessedArcher","ghost"],
+  ],
+ },
+ 36:{
+  slots:[
+   ["a4-36-a-3","shade","dokkaebibul","쇠 없는 마을 도깨비불","36-village"],
+   ["a4-36-a-2","mourner","dokkaebibul","도깨비불","36-village"],
+   ["a4-36-g-2","possessedArcher","lantern"],
+   ["a4-36-b-2","possessedArcher","geuseunsae","빈 가마 그슨새"],
+  ],
+ },
+ 37:{
+  slots:[
+   ["a4-37-b-1","possessedArcher","bat"],
+   ["a4-37-b-5","possessedArcher","ghost"],
+   ["a4-37-c-5","possessedArcher","mourner"],
+   ["a4-37-c-6","possessedArcher","eoduksini","곶 그늘의 어둑시니"],
+   ["a4-37-d-1","possessedArcher","marksman","곶 망루 지휘 사수"],
+   ["a4-37-e-4","possessedArcher","crow"],
+   ["a4-37-f-1","possessedArcher","ghost"],
+   ["a4-37-h-5","possessedArcher","ghost"],
+  ],
+ },
+ 38:{
+  slots:[
+   ["a4-38-a-3","possessedArcher","bat"],
+   ["a4-38-a-4","possessedArcher","geuseunsae","해식굴 그슨새"],
+   ["a4-38-b-1","possessedArcher","bat"],
+   ["a4-38-b-7","possessedArcher","lantern"],
+   ["a4-38-c-2","possessedArcher","crow"],
+   ["a4-38-c-4","possessedArcher","ghost"],
+   ["a4-38-d-2","possessedArcher","marksman","상층 틈의 지휘 사수"],
+   ["a4-38-e-2","possessedArcher","dueoksini","해식굴 두억시니"],
+   ["a4-38-e-5","possessedArcher","lantern"],
+   ["a4-38-f-1","possessedArcher","ghost"],
+  ],
+ },
+ 39:{
+  slots:[
+   ["a4-39-a-1","possessedArcher","lantern"],
+   ["a4-39-m-3","possessedArcher","geuseunsae","밀물 그슨새"],
+   ["a4-39-m-5","possessedArcher","marksman","둑 위 지휘 사수"],
+   ["a4-39-n-1","possessedGuard","mulgwishin","돌아오는 물의 물귀신"],
+   ["a4-39-g-2","possessedArcher","crow"],
+   ["a4-39-x-2","possessedArcher","ghost"],
+   ["a4-39-x-4","possessedArcher","lantern"],
+  ],
+ },
+ 40:{
+  slots:[
+   ["final40-west-front-1","hound","boar"],
+   ["final40-west-front-4","possessedArcher","marksman","서쪽 등대길 지휘 사수"],
+   ["final40-west-anchor-4","possessedArcher","ghost"],
+   ["final40-west-anchor-6","possessedArcher","geuseunsae","해협 그슨새"],
+   ["final40-west-anchor-7","hound","boar"],
+   ["final40-dock-left-2","possessedArcher","crow"],
+   ["final40-dock-left-5","possessedGuard","ghost"],
+   ["final40-dock-right-4","possessedArcher","ghost"],
+   ["final40-dock-stair-5","possessedArcher","ghost"],
+   ["final40-dock-stair-7","possessedArcher","mourner"],
+   ["final40-departure-upper-1","possessedArcher","ghost"],
+  ],
+ },
+ 41:{
+  slots:[
+   ["a5-foe-0","hound","boar"],
+   ["a5-foe-2","human","marksman","천막 외곽의 지휘 사수"],
+   ["a5-foe-6","human","ghost"],
+   ["a5-foe-9","shade","dueoksini","군영 두억시니"],
+   ["a5-foe-11","human","ghost"],
+   ["a5-foe-14","human","device","군막 북틀귀"],
+   ["a5-foe-15","shade","gaekgwi","가죽 천막 객귀"],
+   ["a5-foe-21","human","ghost"],
+   ["a5-foe-25","shade","muyeo","군막 점복무녀"],
+   ["a5-foe-27","hound","boar"],
+  ],
+ },
+ 42:{
+  slots:[
+   ["a5-foe-1","hound","boar"],
+   ["a5-foe-6","human","ghost"],
+   ["a5-foe-7","human","marksman","성책 순찰 지휘 사수"],
+   ["a5-foe-9","human","ghost"],
+   ["a5-foe-16","human","ghost"],
+   ["a5-foe-22","human","ghost"],
+   ["a5-foe-23","human","yagwanggwi","성벽 야광귀"],
+  ],
+ },
+ 43:{
+  slots:[
+   ["a5-foe-4","human","ghost"],
+   ["a5-foe-6","human","marksman","외곽 군기 지휘 사수"],
+   ["a5-foe-12","shade","eoduksini","군영 지하의 어둑시니"],
+   ["a5-foe-13","mourner","ghost"],
+   ["a5-foe-15","human","device","군패 거치대 사물귀"],
+   ["a5-foe-18","human","gaekgwi","군패 객귀"],
+   ["a5-foe-20","hound","boar"],
+   ["a5-foe-24","human","ghost"],
+  ],
+ },
+ 44:{
+  slots:[
+   ["a5-foe-0","hound","geuseundae","귀림 그슨대"],
+   ["a5-foe-3","shade","eoduksini","뿌리의 어둑시니"],
+   ["a5-foe-4","crow","bat"],
+   ["a5-foe-10","hound","boar"],
+   ["a5-foe-13","shade","muyeo","고목 점복무녀"],
+   ["a5-foe-15","hound","boar"],
+   ["a5-foe-21","human","ghost"],
+   ["a5-foe-26","crow","bat"],
+   ["a5-foe-29","shade","geuseunsae","합류턱 그슨새"],
+  ],
+ },
+ 45:{
+  slots:[
+   ["a5-foe-0","hound","boar"],
+   ["a5-foe-1","shade","muyeo","서낭길 점복무녀"],
+   ["a5-foe-3","crow","bat"],
+   ["a5-foe-11","human","dokkaebibul","행렬 도깨비불","bier-fires"],
+   ["a5-foe-12","ghost","dokkaebibul","행렬 바깥 도깨비불","bier-fires"],
+   ["a5-foe-10","shade","geuseunsae","갈림길 그슨새"],
+   ["a5-foe-15","lantern","bat"],
+   ["a5-foe-16","ghost","eoduksini","행렬 그늘의 어둑시니"],
+   ["a5-foe-24","shade","dueoksini","고개 두억시니"],
+  ],
+ },
+ 46:{
+  slots:[
+   ["a5-foe-1","lantern","bat"],
+   ["a5-foe-5","lantern","bat"],
+   ["a5-foe-7","lantern","crow"],
+   ["a5-foe-10","bat","crow"],
+   ["a5-foe-12","ghost","dokkaebibul","진목 도깨비불","rim-fires"],
+   ["a5-foe-14","mourner","dokkaebibul","받침턱 도깨비불","rim-fires"],
+   ["a5-foe-20","lantern","bat"],
+  ],
+ },
+ 47:{
+  slots:[
+   ["a5-foe-1","lantern","bat"],
+   ["a5-foe-4","shade","eoduksini","봉인실 어둑시니"],
+   ["a5-foe-7","lantern","crow"],
+   ["a5-foe-10","lantern","bat"],
+   ["a5-foe-11","ghost","device","역행 실패작"],
+   ["a5-foe-14","lantern","crow"],
+   ["a5-foe-18","lantern","crow"],
+   ["a5-foe-23","lantern","bat"],
+  ],
+ },
+ 48:{
+  slots:[
+   ["a5-foe-0","lantern","crow"],
+   ["a5-foe-3","lantern","bat"],
+   ["a5-foe-4","mourner","eoduksini","우물턱 어둑시니"],
+   ["a5-foe-7","lantern","bat"],
+   ["a5-foe-9","lantern","crow"],
+   ["a5-foe-13","lantern","bat"],
+   ["a5-foe-14","ghost","muyeo","반사 점복무녀"],
+   ["a5-foe-16","lantern","crow"],
+   ["a5-foe-17","ghost","yagwanggwi","반사 야광귀"],
+   ["a5-foe-22","lantern","bat"],
+  ],
+ },
+ 49:{
+  slots:[
+   ["a5-foe-0","lantern","bat"],
+   ["a5-foe-1","shade","eoduksini","골짜기 어둑시니"],
+   ["a5-foe-4","lantern","bat"],
+   ["a5-foe-5","shade","dueoksini","첫 받침의 두억시니"],
+   ["a5-foe-8","lantern","crow"],
+   ["a5-foe-11","lantern","bat"],
+   ["a5-foe-12","human","marksman","중력 턱 지휘 사수"],
+   ["a5-foe-14","ghost","yagwanggwi","가로 계단의 야광귀"],
+   ["a5-foe-16","lantern","crow"],
+   ["a5-foe-19","lantern","bat"],
+   ["a5-foe-27","lantern","bat"],
+  ],
+ },
+ 50:{
+  slots:[
+   ["a5-foe-0","hound","geuseundae","산문 그슨대"],
+   ["a5-foe-2","lantern","bat"],
+   ["a5-foe-4","lantern","crow"],
+   ["a5-foe-9","hound","boar"],
+   ["a5-foe-11","lantern","bat"],
+   ["a5-foe-15","mourner","dueoksini","돌계단의 두억시니"],
+   ["a5-foe-16","lantern","bat"],
+   ["a5-foe-20","lantern","crow"],
+   ["a5-foe-21","lantern","bat"],
+   ["a5-foe-22","human","marksman","산문 난간 지휘 사수"],
+   ["a5-foe-25","shade","muyeo","문밖의 점복무녀"],
+   ["a5-foe-26","lantern","bat"],
+   ["a5-foe-27","ghost","yagwanggwi","산문 야광귀"],
+   ["a5-foe-29","lantern","bat"],
+  ],
+ },
+};
