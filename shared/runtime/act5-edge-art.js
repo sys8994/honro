@@ -50,7 +50,7 @@ function prepare(scene,l){
 S.landmark=function(c,l){
  if(l.asset?.id==='act5:near:43'&&l.asset.foundation&&!l.rotation){
   const V=G.HonroVisualStyle,cc=V?V.context(c,V.classify(l,this.battle,l.asset)==='gameplay'?'gameplay':V.depth(l,l.asset)):c,z=l.scale??1;
-  cc.save();cc.translate(l.x,l.y);cc.scale(z,z);G.HonroVectorArt.draw(cc,l.asset.foundation,{x:0,y:0,scale:1});cc.restore();draw.call(this,c,l);if(l.asset.seam){cc.save();cc.translate(l.x,l.y);cc.scale(z,z);G.HonroVectorArt.draw(cc,l.asset.seam,{x:0,y:0,scale:1});cc.restore();}return;
+  cc.save();cc.translate(l.x,l.y);cc.scale(z,z);if(l.asset.sidePanels){cc.save();cc.beginPath();cc.rect(-1600,1820,5372,4180);cc.clip();G.HonroVectorArt.draw(cc,l.asset.foundation,{x:0,y:0,scale:1});cc.restore();for(const panel of l.asset.sidePanels)G.HonroVectorArt.draw(cc,panel,{x:0,y:0,scale:1});}else G.HonroVectorArt.draw(cc,l.asset.foundation,{x:0,y:0,scale:1});cc.restore();draw.call(this,c,l);if(l.asset.seam){cc.save();cc.translate(l.x,l.y);cc.scale(z,z);G.HonroVectorArt.draw(cc,l.asset.seam,{x:0,y:0,scale:1});cc.restore();}return;
  }
 
  if(l.asset?.id==='act5:near:44'&&l.asset.rootExterior&&!l.rotation){
