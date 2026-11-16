@@ -1,0 +1,373 @@
+{
+  "counts": [
+    {
+      "file": "stage43-trace-deep-corrected/color-raw.svg",
+      "bytes": 5369252,
+      "sha256": "1b71b76bb7c2efa830477d3879181fbf242c45716a381591a1ad24a952854f02",
+      "label": "center raw",
+      "pathElements": 8,
+      "basicShapeElements": 0,
+      "basicShapesByType": {},
+      "subpaths": 17878,
+      "parsedSegments": 374618,
+      "segmentTypes": {
+        "Line": 374618
+      },
+      "pathChars": 5368393,
+      "countSucceeded": true,
+      "svgViewport": {
+        "width": "1254",
+        "height": "1254",
+        "viewBox": "0 0 1254 1254"
+      }
+    },
+    {
+      "file": "stage43-trace-deep-corrected/color-field-preopt.svg",
+      "bytes": 3019689,
+      "sha256": "80ccc514ff1994892f1522c6eda27eae4dc7105fd60a727408dc1c839a13182e",
+      "label": "center optimized final",
+      "pathElements": 8,
+      "basicShapeElements": 0,
+      "basicShapesByType": {},
+      "subpaths": 17878,
+      "parsedSegments": 196405,
+      "segmentTypes": {
+        "Line": 196405
+      },
+      "pathChars": 3019029,
+      "countSucceeded": true,
+      "svgViewport": {
+        "width": "1254",
+        "height": "1254",
+        "viewBox": "0 0 1254 1254"
+      }
+    },
+    {
+      "file": "stage43-whole-registration-study/detail-reduced-120/color-field-filtered.svg",
+      "bytes": 1439224,
+      "sha256": "f2976c8090beaac91df3c903e8d25a927c7a152623bee1696918ddd914de61a1",
+      "label": "center artistic120filter",
+      "pathElements": 8,
+      "basicShapeElements": 0,
+      "basicShapesByType": {},
+      "subpaths": 3811,
+      "parsedSegments": 97185,
+      "segmentTypes": {
+        "Line": 97185
+      },
+      "pathChars": 1438612,
+      "countSucceeded": true,
+      "svgViewport": {
+        "width": "1254",
+        "height": "1254",
+        "viewBox": "0 0 1254 1254"
+      }
+    },
+    {
+      "file": "stage43-trace-side-left-corrected/color-raw.svg",
+      "bytes": 3644603,
+      "sha256": "94a826ff1d4371291c124601d803d876dcd2a0b7122ca89d99df19c88d170aa5",
+      "label": "left raw",
+      "pathElements": 8,
+      "basicShapeElements": 0,
+      "basicShapesByType": {},
+      "subpaths": 7718,
+      "parsedSegments": 250814,
+      "segmentTypes": {
+        "Line": 250814
+      },
+      "pathChars": 3643744,
+      "countSucceeded": true,
+      "svgViewport": {
+        "width": "1254",
+        "height": "1254",
+        "viewBox": "0 0 1254 1254"
+      }
+    },
+    {
+      "file": "stage43-trace-side-left-corrected/color-field-preopt.svg",
+      "bytes": 1894385,
+      "sha256": "237c9a68f4bda8aa4691c0c6eb179462d0c8c542045d98885afef0966e8108a1",
+      "label": "left optimized final",
+      "pathElements": 8,
+      "basicShapeElements": 0,
+      "basicShapesByType": {},
+      "subpaths": 7718,
+      "parsedSegments": 124612,
+      "segmentTypes": {
+        "Line": 124612
+      },
+      "pathChars": 1893725,
+      "countSucceeded": true,
+      "svgViewport": {
+        "width": "1254",
+        "height": "1254",
+        "viewBox": "0 0 1254 1254"
+      }
+    },
+    {
+      "file": "stage43-whole-geology-context-study/left-filtered.svg",
+      "bytes": 1199353,
+      "sha256": "ecf5035b76437977d2d1f7e7fb551e5b853f0fc803ae11f238e0ccd0d4196170",
+      "label": "left artistic120filter",
+      "pathElements": 8,
+      "basicShapeElements": 0,
+      "basicShapesByType": {},
+      "subpaths": 2492,
+      "parsedSegments": 81036,
+      "segmentTypes": {
+        "Line": 81036
+      },
+      "pathChars": 1198741,
+      "countSucceeded": true,
+      "svgViewport": {
+        "width": "1254",
+        "height": "1254",
+        "viewBox": "0 0 1254 1254"
+      }
+    },
+    {
+      "file": "stage43-trace-side-right-corrected/color-raw.svg",
+      "bytes": 3740771,
+      "sha256": "f3e934aedef812b534656f6fa31768556325f5de22c16f499923bffc2fd6cca1",
+      "label": "right raw",
+      "pathElements": 8,
+      "basicShapeElements": 0,
+      "basicShapesByType": {},
+      "subpaths": 6685,
+      "parsedSegments": 255996,
+      "segmentTypes": {
+        "Line": 255996
+      },
+      "pathChars": 3739912,
+      "countSucceeded": true,
+      "svgViewport": {
+        "width": "1254",
+        "height": "1254",
+        "viewBox": "0 0 1254 1254"
+      }
+    },
+    {
+      "file": "stage43-trace-side-right-corrected/color-field-preopt.svg",
+      "bytes": 1881093,
+      "sha256": "af92e07e0cbc7a4d3eeac74381dfd18e584240a18dc073849446282edc2c692b",
+      "label": "right optimized final",
+      "pathElements": 8,
+      "basicShapeElements": 0,
+      "basicShapesByType": {},
+      "subpaths": 6685,
+      "parsedSegments": 124168,
+      "segmentTypes": {
+        "Line": 124168
+      },
+      "pathChars": 1880433,
+      "countSucceeded": true,
+      "svgViewport": {
+        "width": "1254",
+        "height": "1254",
+        "viewBox": "0 0 1254 1254"
+      }
+    },
+    {
+      "file": "stage43-whole-geology-context-study/right-filtered.svg",
+      "bytes": 1312995,
+      "sha256": "912e2b0bc57848666009c072273081471171ecdfbdeb41a346709f47e817143f",
+      "label": "right artistic120filter",
+      "pathElements": 8,
+      "basicShapeElements": 0,
+      "basicShapesByType": {},
+      "subpaths": 2863,
+      "parsedSegments": 88384,
+      "segmentTypes": {
+        "Line": 88384
+      },
+      "pathChars": 1312383,
+      "countSucceeded": true,
+      "svgViewport": {
+        "width": "1254",
+        "height": "1254",
+        "viewBox": "0 0 1254 1254"
+      }
+    },
+    {
+      "file": "stage43-whole-registration-study/detail-reduced-120/compiled-dx0dy0/color-raw.svg",
+      "bytes": 1439362,
+      "sha256": "6d5b16ff7ae029db002fcbda4df9b0c1b43c9e45d8400299d6a79ddfdcbc4b4d",
+      "label": "center registered prepartition",
+      "pathElements": 8,
+      "basicShapeElements": 0,
+      "basicShapesByType": {},
+      "subpaths": 3811,
+      "parsedSegments": 97185,
+      "segmentTypes": {
+        "Line": 97185
+      },
+      "pathChars": 1438612,
+      "countSucceeded": true,
+      "svgViewport": {
+        "width": "2172",
+        "height": "2200",
+        "viewBox": "0 0 2172 2200"
+      }
+    },
+    {
+      "file": "stage43-whole-registration-study/detail-reduced-120/compiled-dx0dy0/color-partitioned.svg",
+      "bytes": 1418949,
+      "sha256": "4a53312baf07283f1287101df2d627e4ab8e8efe87eabcaa7602bf127f72658d",
+      "label": "center standard partition final",
+      "pathElements": 50,
+      "basicShapeElements": 0,
+      "basicShapesByType": {},
+      "subpaths": 3767,
+      "parsedSegments": 97964,
+      "segmentTypes": {
+        "Line": 97964
+      },
+      "pathChars": 1413711,
+      "countSucceeded": true,
+      "svgViewport": {
+        "width": "2172",
+        "height": "2200",
+        "viewBox": "0 0 2172 2200"
+      }
+    },
+    {
+      "file": "stage43-whole-registration-study/detail-reduced-120/compiled-dx0dy0/asset.json",
+      "bytes": 1422003,
+      "sha256": "1403dfe7d6b5e67d49b1bb63f21f9387b0bc7f0dfc27d53e77e904f9a367fdae",
+      "label": "center imported JSON final, source absent",
+      "runtimeTreeNodes": 54,
+      "runtimePathNodes": 50,
+      "pathStrings": 50,
+      "subpaths": 3767,
+      "parsedSegments": 97964,
+      "pathChars": 1413711,
+      "maxPathChars": 39900,
+      "clipSeparate": {
+        "pathStrings": 1,
+        "parsedSegments": 4,
+        "subpaths": 1
+      }
+    }
+  ],
+  "comparisons": [
+    {
+      "family": "center",
+      "stage": "optimizer only, same generated original",
+      "input": "stage43-trace-deep-corrected/color-raw.svg",
+      "output": "stage43-trace-deep-corrected/color-field-preopt.svg",
+      "delta": {
+        "bytes": -2349563,
+        "parsedSegments": -178213,
+        "subpaths": 0,
+        "pathElements": 0,
+        "basicShapeElements": 0
+      },
+      "nonIncreaseAllMetrics": true
+    },
+    {
+      "family": "center",
+      "stage": "separate artistic detail filter, NOT optimizer",
+      "input": "stage43-trace-deep-corrected/color-field-preopt.svg",
+      "output": "stage43-whole-registration-study/detail-reduced-120/color-field-filtered.svg",
+      "delta": {
+        "bytes": -1580465,
+        "parsedSegments": -99220,
+        "subpaths": -14067,
+        "pathElements": 0,
+        "basicShapeElements": 0
+      }
+    },
+    {
+      "family": "left",
+      "stage": "optimizer only, same generated original",
+      "input": "stage43-trace-side-left-corrected/color-raw.svg",
+      "output": "stage43-trace-side-left-corrected/color-field-preopt.svg",
+      "delta": {
+        "bytes": -1750218,
+        "parsedSegments": -126202,
+        "subpaths": 0,
+        "pathElements": 0,
+        "basicShapeElements": 0
+      },
+      "nonIncreaseAllMetrics": true
+    },
+    {
+      "family": "left",
+      "stage": "separate artistic detail filter, NOT optimizer",
+      "input": "stage43-trace-side-left-corrected/color-field-preopt.svg",
+      "output": "stage43-whole-geology-context-study/left-filtered.svg",
+      "delta": {
+        "bytes": -695032,
+        "parsedSegments": -43576,
+        "subpaths": -5226,
+        "pathElements": 0,
+        "basicShapeElements": 0
+      }
+    },
+    {
+      "family": "right",
+      "stage": "optimizer only, same generated original",
+      "input": "stage43-trace-side-right-corrected/color-raw.svg",
+      "output": "stage43-trace-side-right-corrected/color-field-preopt.svg",
+      "delta": {
+        "bytes": -1859678,
+        "parsedSegments": -131828,
+        "subpaths": 0,
+        "pathElements": 0,
+        "basicShapeElements": 0
+      },
+      "nonIncreaseAllMetrics": true
+    },
+    {
+      "family": "right",
+      "stage": "separate artistic detail filter, NOT optimizer",
+      "input": "stage43-trace-side-right-corrected/color-field-preopt.svg",
+      "output": "stage43-whole-geology-context-study/right-filtered.svg",
+      "delta": {
+        "bytes": -568098,
+        "parsedSegments": -35784,
+        "subpaths": -3822,
+        "pathElements": 0,
+        "basicShapeElements": 0
+      }
+    },
+    {
+      "family": "center",
+      "stage": "separate standard partition, NOT optimizer",
+      "delta": {
+        "bytes": -20413,
+        "parsedSegments": 779,
+        "subpaths": -44,
+        "pathElements": 42,
+        "basicShapeElements": 0
+      },
+      "nonIncreaseAllMetrics": false
+    },
+    {
+      "family": "center",
+      "stage": "original raw to final imported JSON, all intermediate stages; not optimizer-only",
+      "delta": {
+        "bytes": -3947249,
+        "parsedSegments": -276654,
+        "subpaths": -14111
+      },
+      "rawSVGPathElements": 8,
+      "finalRuntimePathNodes": 50,
+      "note": "SVG path elements and runtime path nodes separate schema metrics, not Inkscape editor nodes/mesh faces; final color geometry excludes separately reported alpha clip."
+    }
+  ],
+  "unmeasured": [
+    "actual Inkscape editor nodes",
+    "mesh or tessellation faces",
+    "visual quality or gameplay acceptance in this count-only audit"
+  ],
+  "definitions": {
+    "parsedSegments": "svgpathtools parsed geometry segments; includes Z closing line where parser emits one, excludes M as a segment",
+    "subpaths": "lexical M/m count, not filled faces",
+    "pathElements": "all SVG path elements including defs if present, not runtime/editor nodes",
+    "basicShapeElements": "rect circle ellipse line polyline polygon XML elements",
+    "fileBytes": "actual final file length, no transfer compression"
+  },
+  "sourceInputsUnchanged": true
+}

@@ -1,0 +1,158 @@
+{
+  "inputBytes": 1439224,
+  "outputBytes": 809065,
+  "paths": [
+    {
+      "inputChars": 41,
+      "outputChars": 52,
+      "maxSubpathChars": 52,
+      "inputSubpaths": 1,
+      "outputSubpaths": 1,
+      "inputSegments": 8,
+      "outputSegments": 8,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 6208,
+      "outputChars": 3749,
+      "maxSubpathChars": 2955,
+      "inputSubpaths": 9,
+      "outputSubpaths": 9,
+      "inputSegments": 468,
+      "outputSegments": 468,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 82908,
+      "outputChars": 46551,
+      "maxSubpathChars": 4273,
+      "inputSubpaths": 250,
+      "outputSubpaths": 250,
+      "inputSegments": 5647,
+      "outputSegments": 5647,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 104466,
+      "outputChars": 58725,
+      "maxSubpathChars": 5027,
+      "inputSubpaths": 312,
+      "outputSubpaths": 312,
+      "inputSegments": 7113,
+      "outputSegments": 7113,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 199715,
+      "outputChars": 111152,
+      "maxSubpathChars": 6494,
+      "inputSubpaths": 758,
+      "outputSubpaths": 758,
+      "inputSegments": 13226,
+      "outputSegments": 13226,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 277920,
+      "outputChars": 156197,
+      "maxSubpathChars": 10006,
+      "inputSubpaths": 866,
+      "outputSubpaths": 866,
+      "inputSegments": 18611,
+      "outputSegments": 18611,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 347422,
+      "outputChars": 195349,
+      "maxSubpathChars": 14103,
+      "inputSubpaths": 968,
+      "outputSubpaths": 968,
+      "inputSegments": 23383,
+      "outputSegments": 23383,
+      "sameSegmentTypeSequence": true
+    },
+    {
+      "inputChars": 419932,
+      "outputChars": 236678,
+      "maxSubpathChars": 32736,
+      "inputSubpaths": 647,
+      "outputSubpaths": 647,
+      "inputSegments": 28729,
+      "outputSegments": 28729,
+      "sameSegmentTypeSequence": true
+    }
+  ],
+  "maxCompoundChars": 236678,
+  "maxSubpathChars": 32736,
+  "precision": "Absolute endpoints and control points rounded once to0.1raw grid; deltas from quantized integer coordinates, no accumulation. Per-axis<=.05raw, Euclidean<=.070711raw (~.12248world). No simplification/partition.",
+  "inputSHA256": "f2976c8090beaac91df3c903e8d25a927c7a152623bee1696918ddd914de61a1",
+  "renders": [
+    {
+      "width": 1254,
+      "RGBA_MAE": 0.11142207774038547,
+      "RGBA_RMSE": 0.4074858689674011,
+      "pixelsAnyDeltaOver16": 21,
+      "alphaMaxDelta": 0.0
+    },
+    {
+      "width": 2508,
+      "RGBA_MAE": 0.09997306863650354,
+      "RGBA_RMSE": 0.4484128752814208,
+      "pixelsAnyDeltaOver16": 143,
+      "alphaMaxDelta": 0.0
+    }
+  ],
+  "independentFinalRecount": [
+    {
+      "bytes": 1439224,
+      "paths": 8,
+      "subpaths": 3811,
+      "segments": 97185,
+      "basicShapes": 0,
+      "Zcount": 3811
+    },
+    {
+      "bytes": 809065,
+      "paths": 8,
+      "subpaths": 3811,
+      "segments": 97185,
+      "basicShapes": 0,
+      "Zcount": 3811
+    }
+  ],
+  "nonIncreaseAllRequestedCounters": true,
+  "import": {
+    "assetBytes": 810866,
+    "runtimePathNodes": 8,
+    "runtimeTreeNodes": 13,
+    "dPartsPerPath": [
+      1,
+      1,
+      1,
+      1,
+      2,
+      3,
+      4,
+      4
+    ],
+    "dCharsTotal": 808453,
+    "note": "8 fill operations maintained. dParts are existing string batching, not new path elements or geometry partitions. Color unchanged from filtered technical input, not subsurface palette. ViewBox still1254; world transform in vector root."
+  },
+  "firstAttemptRejected": "Explicit closing line followed byZ produced tiny floating closure segments on parse; fixed by emitting final straight close asZ. Initial failed metrics retained separately.",
+  "geometryVerification": {
+    "windingSignChanges": [],
+    "maxEndpointOrControlEuclideanDisplacementRaw": 0.07071067811903257,
+    "maxAxisDisplacementRaw": 0.05000000000154614,
+    "maxWorldEuclideanDisplacement": 0.1224749544454057,
+    "note": "Sign/sequence preservation does not mathematically certify all self-intersection/topology; actual rendered comparison retained."
+  },
+  "nativeValidation": {
+    "width": 627,
+    "height": 635,
+    "firstDrawMs": 282.69483000000014,
+    "warmDrawMs": 2.3031519999999546,
+    "validationErrors": 0
+  },
+  "visualReview": "Actual Inkscape normal1254 and enlarged2508 renders inspected; no obvious new holes, disconnected faces or silhouettes seen. Alpha image max difference0. This remains a technical normalization trial, not art/Scene approval. Native diagnostic uses raw viewBox with world root transform and is not a complete-world camera capture."
+}
