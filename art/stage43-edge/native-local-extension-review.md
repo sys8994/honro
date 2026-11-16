@@ -11,3 +11,9 @@ Verification: original SHA256 `d024022a56991bc56e6d507698a6683c11d47915984dfcf2c
 Visual limits: material is still simpler than the original. This is only a small bounded patch; its straight left/right test boundaries are not proposed final terrain edges. Whole-stage side/bottom coverage, runtime asset budget, Scene/browser checks and public deployment remain undone. Earlier single-rock and two-rock stretched trials are rejected, not substitutes for this design.
 
 The production working tree contains earlier rejected generated builds and must not be staged wholesale. Preserve all unrelated changes and rebase any eventually accepted narrow integration on latest master.
+
+## v6 local follow-up
+
+v5 was not approved: repeated diagonal planes and diamond-like cracks. v6 uses 51 individually authored paths with short/blocky and longer/vertical faces and branching cracks. It remains NOT APPROVED; the new shapes still look simpler and more polygonal than the original.
+
+`capture-native-local-design.mjs` is a diagnostic-only Scene harness: it places the patch in the existing eastGeologyJoin layer to cover only the terminal nonwalking strip rather than leaving the older y710 foundation clip as a false horizontal seam. Its east camera is lower at H*.8 and zoom .45. This is not a runtime production change. Native Scene gameplay hash remains `5010609ff55f6623fa522911bf5e37970b9ef10ff1d683f56507eef784dba538`. Browser play and full camera/exterior coverage are not claimed.
