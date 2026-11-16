@@ -1,0 +1,62 @@
+{
+  "input": "native-roles-guarded/lowland/color-raw.svg",
+  "input_sha256": "be614f88226ed2c0aca6fb126ea64f5243add3d61415f9aa4d692424f9cd1043",
+  "epsilon_viewbox_units": 0.8,
+  "changed_paths": 12,
+  "segments_before": 55387,
+  "segments_after": 44119,
+  "skips": {},
+  "render_checks": [
+    {
+      "mean_channel_error": 8.414014155277982e-05,
+      "changed_pixel_fraction": 8.482627578718784e-06,
+      "max_channel_error": 0.08627450466156006,
+      "width": 768,
+      "accepted": true
+    },
+    {
+      "mean_channel_error": 5.843043982167728e-05,
+      "changed_pixel_fraction": 1.8025583604777417e-05,
+      "max_channel_error": 0.1411764770746231,
+      "width": 1536,
+      "accepted": true
+    },
+    {
+      "mean_channel_error": 4.659414480556734e-05,
+      "changed_pixel_fraction": 2.2248779495524817e-05,
+      "max_channel_error": 0.3607843220233917,
+      "width": 3072,
+      "accepted": true
+    }
+  ],
+  "growth_guard": {
+    "original_bytes": 1237306,
+    "candidate_bytes": 725173,
+    "reasons": [],
+    "before": {
+      "segments": 55387,
+      "subpaths": 797,
+      "paths": 12,
+      "shape_elements": 12
+    },
+    "candidate": {
+      "segments": 44119,
+      "subpaths": 797,
+      "paths": 12,
+      "shape_elements": 12
+    },
+    "accepted": true
+  },
+  "accepted": true,
+  "candidate_bytes": 725173,
+  "original_bytes": 1237306,
+  "output_bytes": 725173,
+  "output_metrics": {
+    "segments": 44119,
+    "subpaths": 797,
+    "paths": 12,
+    "shape_elements": 12
+  },
+  "output_sha256": "b7c68b26b5f39fc1b40e012f23ac7112fcf22c3bbbe12230a0aec7a3afafd116",
+  "input_unchanged": true
+}
