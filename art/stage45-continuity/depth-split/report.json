@@ -1,0 +1,211 @@
+{
+  "scope": "Artwork alpha only; unchanged pass-road, source alpha and colour paths",
+  "sourceHashes": {
+    "shared/data/act5/terrain.mjs": "de08e7f9a61713b19ad4a6ffad9eb9f5a2a0255d4f59a712811aa580673d3bd3",
+    "art/stage45-continuity/alpha-registered-v2.svg": "68326cb2918c1ce32518816a0c757a6a10734db33faa0234f1630b105ea7bf77",
+    "art/stage45-continuity/deep-alpha-optimized.svg": "d922b5c2aa119122e7bae690e6476244ec5f6ac4a42f135bc310e52f14c7f43c"
+  },
+  "sourceBoundary": [
+    [
+      -2000,
+      839.6340553977273
+    ],
+    [
+      0.0,
+      612.361328125
+    ],
+    [
+      257.42578125,
+      583.1083984375
+    ],
+    [
+      477.7978515625,
+      546.0546875
+    ],
+    [
+      633.8134765625,
+      542.154296875
+    ],
+    [
+      700.1201171875,
+      588.958984375
+    ],
+    [
+      772.27734375,
+      588.958984375
+    ],
+    [
+      854.185546875,
+      546.0546875
+    ],
+    [
+      1265.6767578125,
+      546.0546875
+    ],
+    [
+      1351.4853515625,
+      588.958984375
+    ],
+    [
+      1550.4052734375,
+      588.958984375
+    ],
+    [
+      1630.36328125,
+      633.8134765625
+    ],
+    [
+      1727.873046875,
+      633.8134765625
+    ],
+    [
+      1835.1337890625,
+      678.66796875
+    ],
+    [
+      1997.0,
+      698.169921875
+    ],
+    [
+      4000,
+      939.4952230798192
+    ]
+  ],
+  "sourceBelowPolygon": [
+    [
+      -2000,
+      839.6340553977273
+    ],
+    [
+      0.0,
+      612.361328125
+    ],
+    [
+      257.42578125,
+      583.1083984375
+    ],
+    [
+      477.7978515625,
+      546.0546875
+    ],
+    [
+      633.8134765625,
+      542.154296875
+    ],
+    [
+      700.1201171875,
+      588.958984375
+    ],
+    [
+      772.27734375,
+      588.958984375
+    ],
+    [
+      854.185546875,
+      546.0546875
+    ],
+    [
+      1265.6767578125,
+      546.0546875
+    ],
+    [
+      1351.4853515625,
+      588.958984375
+    ],
+    [
+      1550.4052734375,
+      588.958984375
+    ],
+    [
+      1630.36328125,
+      633.8134765625
+    ],
+    [
+      1727.873046875,
+      633.8134765625
+    ],
+    [
+      1835.1337890625,
+      678.66796875
+    ],
+    [
+      1997.0,
+      698.169921875
+    ],
+    [
+      4000,
+      939.4952230798192
+    ],
+    [
+      4000,
+      6000
+    ],
+    [
+      -2000,
+      6000
+    ]
+  ],
+  "outputs": {
+    "front": {
+      "operation": "path-intersection",
+      "nativeTransform": [
+        0.6852078117175763,
+        0,
+        0,
+        0.6852078117175763,
+        125,
+        155
+      ],
+      "rawSha256": "1de3a0604d9aebc2440a0f04a09370af38804d650920bb7d4c0b4385378a378f",
+      "selected": "art/stage45-continuity/depth-split/front-raw.svg",
+      "selectedSha256": "1de3a0604d9aebc2440a0f04a09370af38804d650920bb7d4c0b4385378a378f",
+      "clipCount": 1,
+      "maxClipChars": 10850,
+      "totalClipChars": 10850
+    },
+    "back": {
+      "operation": "path-difference",
+      "nativeTransform": [
+        0.6852078117175763,
+        0,
+        0,
+        0.6852078117175763,
+        125,
+        155
+      ],
+      "rawSha256": "419612121074da1909f9c0edb69117209060ee22fd16b936e52d33ff940b04f6",
+      "selected": "art/stage45-continuity/depth-split/back-raw.svg",
+      "selectedSha256": "419612121074da1909f9c0edb69117209060ee22fd16b936e52d33ff940b04f6",
+      "clipCount": 1,
+      "maxClipChars": 28407,
+      "totalClipChars": 28407
+    },
+    "deep": {
+      "operation": "path-intersection",
+      "nativeTransform": [
+        0.33172759138708063,
+        0,
+        0,
+        0.33172759138708063,
+        322,
+        60
+      ],
+      "rawSha256": "54977e811ee6b95dcda0dab3aef694f7eb6ba79f21853823f9b1d67fe4fabd79",
+      "selected": "art/stage45-continuity/depth-split/deep-raw.svg",
+      "selectedSha256": "54977e811ee6b95dcda0dab3aef694f7eb6ba79f21853823f9b1d67fe4fabd79",
+      "clipCount": 1,
+      "maxClipChars": 425,
+      "totalClipChars": 425
+    }
+  },
+  "sourceUnchanged": true,
+  "output": "shared/assets/environment/act5/stage45-depth-clips.json",
+  "outputSha256": "b3b989309fcc4d3822498cb118c071a16a5d5d60047360016f6cca5b00b00a21",
+  "rasterValidation": {
+    "renderWidth": 640,
+    "frontBackReconstructionAlphaMeanError": 1.6477445900640055e-05,
+    "reconstructionPixelsErrorOver32Fraction": 0.0,
+    "opaqueFrontBackOverlapPixels": 0,
+    "scope": "Native alpha partition verification only, not production Scene visual approval"
+  }
+}

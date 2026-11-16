@@ -32,3 +32,5 @@ for name in ['native-color','native-alpha']:
 s=.305*2172/1997;dx=322;dy=60
 cfg={'id':'act5:stage45:root-body','name':'서낭고개 연속 거목 심부암반','semanticLayer':'BODY','category':'rock','anchor':{'x':0,'y':0},'foot':{'x':0,'y':788},'bounds':{'x':(-120-dx)/s,'y':-dy/s,'w':1554/s,'h':1510.2/s},'scaleRange':[1,8],'backgroundRange':[1,8],'transform':[1/s,0,0,1/s,-dx/s,-dy/s],'preserveCompounds':True}
 (R/'art/stage45-continuity/deep-config.json').write_text(json.dumps(cfg))
+
+shutil.copy(o/'native-color.svg',R/'art/stage45-continuity/deep-registered-color.svg')

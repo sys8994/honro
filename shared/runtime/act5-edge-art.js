@@ -2,6 +2,31 @@
 // Continue the *painted* boundary, not collision boxes. Empty shaft gaps stay
 // transparent. This cache is bounded to one stage and contains no game state.
 const S=G.HonroScene.prototype,draw=S.landmark,bounds=S._landmarkPaintBounds,stage42Parts=new WeakMap(),stage44Parts=new WeakMap(),stage45Parts=new WeakMap();
+// Stage45's stacked opaque faces must meet the depth mask as one image.
+// Per-face antialiased clipping repeatedly accumulates coverage into a pale rim.
+// Temporary surfaces are capped at1024² and released, never retained per world.
+function stage45Body(scene,c,asset,mask){
+ const w=c.canvas.width,h=c.canvas.height;if(!w||!h)return;
+ const m=c.getTransform(),cv=scene._makeLayerCanvas(Math.min(1024,w),Math.min(1024,h)),raw=cv.getContext('2d'),V=G.HonroVisualStyle,paint=V?.contextLike(c,raw)||raw;
+ let maskCanvas;
+ try{
+  maskCanvas=scene._makeLayerCanvas(cv.width,cv.height);const mc=maskCanvas.getContext('2d');
+  for(let y=0;y<h;y+=1024)for(let x=0;x<w;x+=1024){
+   const tw=Math.min(1024,w-x),th=Math.min(1024,h-y);
+   raw.setTransform(1,0,0,1,0,0);raw.globalAlpha=1;raw.globalCompositeOperation='source-over';raw.clearRect(0,0,cv.width,cv.height);
+   raw.setTransform(m.a,m.b,m.c,m.d,m.e-x,m.f-y);
+   G.HonroVectorArt.draw(paint,asset,{x:0,y:0,scale:1});
+   // Rasterize coverage in source-over first. Native Canvas may incorrectly
+   // clear a whole tile for destination-in fill of a large transformed Path2D.
+   mc.setTransform(1,0,0,1,0,0);mc.clearRect(0,0,maskCanvas.width,maskCanvas.height);
+   mc.setTransform(m.a,m.b,m.c,m.d,m.e-x,m.f-y);mc.translate(-(asset.anchor?.x||0),-(asset.anchor?.y||0));
+   mc.transform(...asset.vector.root.transform);mc.fillStyle='#ffffff';mc.fill(mask);
+   raw.save();raw.setTransform(1,0,0,1,0,0);raw.globalAlpha=1;raw.globalCompositeOperation='destination-in';raw.drawImage(maskCanvas,0,0);raw.restore();
+   // The caller's clip, opacity, blend mode and filter apply once at composition.
+   c.save();try{c.setTransform(1,0,0,1,0,0);c.drawImage(cv,0,0,tw,th,x,y,tw,th);}finally{c.restore();}
+  }
+ }finally{if(maskCanvas)scene._releaseRasterCanvas(maskCanvas);scene._releaseRasterCanvas(cv);}
+}
 function camp(scene,c,l){
  const V=G.HonroVisualStyle;if(V)c=V.context(c,V.classify(l,scene.battle,l.asset)==='gameplay'?'gameplay':V.depth(l,l.asset));
  const scale=l.scale??1,w=l.asset.vector.viewBox[2],h=l.asset.vector.viewBox[3];
@@ -50,8 +75,11 @@ function prepare(scene,l){
 S.landmark=function(c,l){
  if(l.asset?.id==='act5:near:45'&&l.asset.continuousBody&&!l.rotation){
   const a=l.asset,z=l.scale??1,V=G.HonroVisualStyle,cc=V?V.context(c,V.classify(l,this.battle,a)==='gameplay'?'gameplay':V.depth(l,a)):c;
-  let props=stage45Parts.get(a);if(!props){const part=(index,clip,key)=>({...a,vector:{...a.vector,clips:{...a.vector.clips,[key]:clip},root:{tag:'g',children:[a.vector.root.children[index]]}}});props={main:part(1,a.preservedClips.props,'props-a'),wall:part(0,a.preservedClips.wall,'body-a'),shrub:part(1,a.preservedClips.shrub,'props-a')};stage45Parts.set(a,props);}
-  cc.save();cc.translate(l.x,l.y);cc.scale(z,z);G.HonroVectorArt.draw(cc,a.continuousBody,{x:0,y:0,scale:1});G.HonroVectorArt.draw(cc,props.wall,{x:0,y:0,scale:1});G.HonroVectorArt.draw(cc,props.main,{x:0,y:0,scale:1});G.HonroVectorArt.draw(cc,props.shrub,{x:-64.36,y:-112.2,scale:1});cc.restore();return;
+  let props=stage45Parts.get(a);if(!props){const part=(index,clip,key)=>({...a,vector:{...a.vector,clips:{...a.vector.clips,[key]:clip},root:{tag:'g',children:[a.vector.root.children[index]]}}});const native=(asset,clip)=>({...asset,vector:{...asset.vector,clips:{...asset.vector.clips,'native-source-alpha':clip}}});
+   const dark=n=>({...n,...(/^#[0-9a-f]{6}$/i.test(n.fill||'')?{fill:'#'+[1,3,5].map(i=>Math.round(parseInt(n.fill.slice(i,i+2),16)*.64).toString(16).padStart(2,'0')).join('')}:{}),...(n.children?{children:n.children.map(dark)}:{})});
+   const back=native(a.continuousBody,a.continuousBody.vector.clips['native-source-alpha']);back.params={...back.params,semanticLayer:'BACK',nonplayEnvironment:true,silhouetteUnderpaint:false};back.vector={...back.vector,root:dark(back.vector.root)};
+   props={main:part(1,a.preservedClips.props,'props-a'),wall:part(0,a.preservedClips.wall,'body-a'),shrub:part(1,a.preservedClips.shrub,'props-a'),back,deepMask:new Path2D(a.depthClips.deep.join(' '))};stage45Parts.set(a,props);}
+  cc.save();try{cc.translate(l.x,l.y);cc.scale(z,z);G.HonroVectorArt.draw(V?V.context(cc,'L3'):cc,props.back,{x:0,y:0,scale:1});stage45Body(this,cc,a.continuousBody,props.deepMask);G.HonroVectorArt.draw(cc,props.wall,{x:0,y:0,scale:1});G.HonroVectorArt.draw(cc,props.main,{x:0,y:0,scale:1});G.HonroVectorArt.draw(cc,props.shrub,{x:-64.36,y:-112.2,scale:1});}finally{cc.restore();}return;
  }
 
  if(l.asset?.id==='act5:near:44'&&l.asset.rootExterior&&!l.rotation){
@@ -86,7 +114,7 @@ S.landmark=function(c,l){
  draw.call(this,c,l);
  c.save();c.translate(l.x,l.y);c.scale(scale,scale);c.drawImage(q.canvas,-q.pad,0,q.w,q.h);c.restore();
 };
-S._landmarkPaintBounds=function(l){const q=bounds.call(this,l);if(!q||!active(l)||l.rotation)return q;if(l.asset?.id==='act5:near:45'&&l.asset.continuousBody){const s=l.scale??1,a=l.asset.continuousBody.bounds;return{left:Math.min(q.left,l.x+a.x*s),right:Math.max(q.right,l.x+(a.x+a.w)*s),top:Math.min(q.top,l.y+a.y*s),bottom:Math.max(q.bottom,l.y+(a.y+a.h)*s)};}if(l.asset?.id==='act5:near:44'&&l.asset.rootExterior){const s=l.scale??1;return{left:q.left-400*s,right:q.right+400*s,top:q.top,bottom:q.bottom+300*s};}if(l.asset?.id==='act5:near:42'){const s=l.scale??1;return{left:q.left-900*s,right:q.right+900*s,top:q.top,bottom:q.bottom+468*s};}if(l.asset?.id==='act5:near:41'&&l.asset.campExterior){const s=l.scale??1;return{left:l.x-2500*s,right:l.x+(l.asset.vector.viewBox[2]+2500)*s,top:q.top,bottom:l.y+3500*s};}const p=Math.min(l.asset.vector.viewBox[2]*.28,420)*(l.scale??1);return{left:q.left-p,right:q.right+p,top:q.top,bottom:q.bottom+p};};
+S._landmarkPaintBounds=function(l){const q=bounds.call(this,l);if(!q||!active(l)||l.rotation)return q;if(l.asset?.id==='act5:near:45'&&l.asset.continuousBody){const s=l.scale??1,all=[l.asset.continuousBody.bounds];return{left:Math.min(q.left,...all.map(a=>l.x+a.x*s)),right:Math.max(q.right,...all.map(a=>l.x+(a.x+a.w)*s)),top:Math.min(q.top,...all.map(a=>l.y+a.y*s)),bottom:Math.max(q.bottom,...all.map(a=>l.y+(a.y+a.h)*s))};}if(l.asset?.id==='act5:near:44'&&l.asset.rootExterior){const s=l.scale??1;return{left:q.left-400*s,right:q.right+400*s,top:q.top,bottom:q.bottom+300*s};}if(l.asset?.id==='act5:near:42'){const s=l.scale??1;return{left:q.left-900*s,right:q.right+900*s,top:q.top,bottom:q.bottom+468*s};}if(l.asset?.id==='act5:near:41'&&l.asset.campExterior){const s=l.scale??1;return{left:l.x-2500*s,right:l.x+(l.asset.vector.viewBox[2]+2500)*s,top:q.top,bottom:l.y+3500*s};}const p=Math.min(l.asset.vector.viewBox[2]*.28,420)*(l.scale??1);return{left:q.left-p,right:q.right+p,top:q.top,bottom:q.bottom+p};};
 // Artwork-only continuation beyond the tile-domain paint rectangle. Physics bounds unchanged.
 const domainPaint=S._drawTerrainDomainTiles;
 S._drawTerrainDomainTiles=function(c,b,w,h){

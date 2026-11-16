@@ -90,6 +90,7 @@ export async function makeAct5(){
  const campExterior=Object.fromEntries(await Promise.all([['west','camp-west-geology'],['east','camp-east-geology'],['deep','camp-deep-geology']].map(async([key,file])=>[key,JSON.parse(await readFile(new URL('./assets/environment/act5/'+file+'.json',import.meta.url),'utf8'))])));
  const stage42Wall=JSON.parse(await readFile(new URL('./assets/environment/act5/stage42-registered-body.json',import.meta.url),'utf8'));
  const stage42Surface=JSON.parse(await readFile(new URL('./assets/environment/act5/stage42-surface.json',import.meta.url),'utf8'));
+ const stage45DepthClips=JSON.parse(await readFile(new URL('./assets/environment/act5/stage45-depth-clips.json',import.meta.url),'utf8'));
  const stage45Clips=JSON.parse(await readFile(new URL('./assets/environment/act5/stage45-preserved-clips.json',import.meta.url),'utf8'));
  const stage45Body=JSON.parse(await readFile(new URL('./assets/environment/act5/stage45-root-body.json',import.meta.url),'utf8'));
  const stage44Roots=JSON.parse(await readFile(new URL('./assets/environment/act5/stage44-root-exterior.json',import.meta.url),'utf8'));
@@ -109,7 +110,7 @@ const stage44Clip=JSON.parse(await readFile(new URL('./assets/environment/act5/s
   const assetId='act5:near:'+id,view=vector.viewBox,bounds={x:0,y:0,w:view[2],h:view[3]};
   const artworkScale=g.width/view[2],enclosed=chapter.theme==='cave',backdrop=enclosed?'temple':chapter.theme;
   library.push({id:assetId,name:chapter.name+' · 근경',category:'rock',visual:[],collision:[],sockets:[],tags:['terrain','act5'],anchor:{x:0,y:0},params:{sourceSha256:sha256},
-   ...(id===45?{continuousBody:stage45Body,preservedClips:stage45Clips}:{}),...(id===44?{rootExterior:stage44Roots,rootUpperClip:stage44Clip}:{}),...(id===41?{campExterior}:{}),...(id===42?{edgeWall:stage42Wall,edgeSurface:stage42Surface}:{}),bounds,reference:{heightM:view[3]*artworkScale/60,bounds,foot:{x:0,y:view[3]},scaleRange:[1,8],backgroundRange:[1,8]},vector:{...vector,root:vectorPaths(vector.root),...(Object.keys(vector.symbols).length?{symbols:Object.fromEntries(Object.entries(vector.symbols).map(([key,node])=>[key,vectorPaths(node)]))}:{})}});
+   ...(id===45?{continuousBody:stage45Body,depthClips:stage45DepthClips,preservedClips:stage45Clips}:{}),...(id===44?{rootExterior:stage44Roots,rootUpperClip:stage44Clip}:{}),...(id===41?{campExterior}:{}),...(id===42?{edgeWall:stage42Wall,edgeSurface:stage42Surface}:{}),bounds,reference:{heightM:view[3]*artworkScale/60,bounds,foot:{x:0,y:view[3]},scaleRange:[1,8],backgroundRange:[1,8]},vector:{...vector,root:vectorPaths(vector.root),...(Object.keys(vector.symbols).length?{symbols:Object.fromEntries(Object.entries(vector.symbols).map(([key,node])=>[key,vectorPaths(node)]))}:{})}});
   const path=(points)=>points.map(toWorld);
   const surfaces=g.lines.map(([key,points])=>({
    id:'a5-'+key,name:key,type:groundIds.has(key)?'ground':'platform',oneWay:!groundIds.has(key),

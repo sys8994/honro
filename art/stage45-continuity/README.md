@@ -19,3 +19,19 @@
 정본 재현: continuous-deep-crown.png → 실제 Inkscape14색/alpha trace → register-deep.py(색/alpha 동일 좌표등록) → split-deep.py(실제 Inkscape 공간별 Boolean) → deep-optimized.svg epsilon1.2 및 deep-alpha-optimized.svg epsilon0.4 → import-native-clip.py, deep-config.json → finish.py. 원본 raw, 등록/분할 raw, optimizer reports 별도 보존. 첫 원본 등록은 PNG scale0.305 x+322 y+60. 비플레이 좌우 넓은 지층만 완만하게 벌리고 y400 아래 깊은 암반을1.3배 배치하여6개 화면의 focus/minZoom envelope를 포함. 1픽셀 늘림·반사·반복·gradient는 사용하지 않는다. 좁은 작은구멍 접촉만5 생성좌표 압축하고 같은변환을alpha에도 적용.
 
 tests/stage45-continuity.mjs는1440×900,1920×1080,390×844,360×800,412×915,320×1200에서 현행 HonroBounds의 최소줌+최대focus+overscan 범위 좌우/하단을 모두 포함함을 검사. coverage.json은 이 수학적 검사의 결과이며 실제폰 플레이 또는 모든 가능한 화면비 검증은 아니다. Native Scene deep-overview에서 열린 지층·상부 실루엣 확인. 확대/극단팬/세로 및 공개브라우저는 진행 중.
+
+## 전경/비보행 거목 분리 (최신 미배포 후보)
+
+연속 BODY만 사용한 후보는 보행면의 양 끝이 얇은 판처럼 보이고 큰 뿌리 상단이 발판처럼 읽혀 반려됐다. 전체 연속 자산을 기존 L3 시각 문맥의 어두운 BACK으로 유지하고, 같은 색면의 보행면 아래 부분만 BODY로 합성한다. 원본 pass-road 충돌·배우·목표를 바꾸지 않는다. 원본 돌담/상여/밧줄/보행면은 별도 PROPS로 보존한다. 잘린 원본 서쪽 덤불의 완성본 교체 외에 접합을 숨기는 덤불은 추가하지 않는다.
+
+외곽 분리는 임의의 긴 직선 대신 deep-registered-color.svg의 기존 native Bézier 색면 경계를 사용한다. split-depth.py → natural-depth-edge.py는 실제 Inkscape Boolean 결과를 보존하며, 최종 내부 구간의 동일 사각 alpha 교집합 비교는 다른 픽셀0이다. 전체 compound 문맥의 AA 변화는 별도 보고서에 분리한다. 자연 경계의 접속 부동소수 오차로 별도 M이 삽입돼 사선으로 닫혔던 중간 실패는 단일 연속 subpath 직렬화로 수정했다. depth-natural2 Native Scene가 수정 후 검수본이며 depth-natural은 실패 이력이다.
+
+현재 실제 열어 본 최신 Native Scene: 전체 구조, 서쪽/동쪽0.45, 390×844 서쪽/동쪽0.7. 거목은 뒤쪽 비보행 구조로 낮은 대비, 전경 BODY는 밝은 지질면, 보행면은 원본 황토색으로 식별된다. 동쪽 마지막 발판 바깥의 작은 계단형 경계와 얇은 AA 윤곽은 추가 진단 중이다. 자동 테스트 통과를 최종 미술/실제 브라우저/배포 완료로 표시하지 않는다. 생성부와 원본 소품의 재질 크기·색면 차이는 남아 있다.
+
+동쪽 두 색면 사이의 짧은 수직 alpha 연결은 정상 세로 배율에서도 계단처럼 보여 보정했다. 게임 범위 밖14 native단위에서 원래 보행선 접선을 기존 p6 색면 곡선으로 연결하는 짧은 곡선 마스크로 바꿨다. 원본 color/alpha/terrain은 불변이며 내부 alpha 재검사0픽셀 차이를 유지한다. 이는 원화 색면 수정이 아닌 전경/배경의 국소 alpha 접속 편집이다.
+
+### Alpha 합성 원인 분리
+
+동일 deep clip을 쌓인 각 색면에 적용하면 AA 경계가 반복 누적되어 점선 같은 밝은 윤곽이 생겼다. 원본 색면을 먼저 현재 타일/뷰포트의 제한된 임시 surface에 합성하고 alpha를1회 적용하는 방식으로 수정한다. 전체맵 bitmap 자산으로 바꾸거나 거대한 고정 cache를 추가하지 않는다. 이 과정에서 Native @napi Canvas가 큰 transformed Path2D의 destination-in fill을 일부 타일에서 전부 투명하게 만드는 오류를 별도로 재현했다. 동일 크기의 임시 mask surface에 source-over로 먼저 그린 뒤 identity destination-in drawImage를 사용하는 표준 합성 방식으로 검사한다. 중간 final-east/final-overview는 이 Native 오류가 남은 실패 캡처이며 최종 검수 증거가 아니다.
+
+2surface 합성 후 동쪽390×844/0.7 Native를 직접 확인했다. BODY 명도가 정상으로 복원되고 인공 점선과 짧은2계단 경계가 사라졌다. 원본 보행면 외곽의 매우 가는 선과 원본/생성 재질 차이는 남지만, 검수한 배율에서 발판과 비보행 거목의 구분·접지가 유지된다. tests/act5-depth-composite는 두 surface의최대1024²제한·해제, V.context palette, transform/opacity/destination clip, 예외 복원 및 실제516²타일좌표에서 foreground 보존을 검사한다. 단일합성 reference와2채널값 이내 raster AA 차이이며 기존 중첩clip은404441채널이달랐다. 브라우저입력/성능/Pages검수는후속이다.

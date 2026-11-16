@@ -6,4 +6,4 @@ m={'#fdfcfc':'#332a3c','#fdfcfd':'#332a3c','#c3bbc2':'#a78aa3','#a997a4':'#a78aa
 def w(n):
  if n.get('fill')in m:n['fill']=m[n['fill']]
  for c in n.get('children',[]):w(c)
-w(a['vector']['root']);p.write_text(json.dumps(a,separators=(',',':'))+'\n')
+w(a['vector']['root']);a['params']['silhouetteUnderpaint']=False;p.write_text(json.dumps(a,separators=(',',':'))+'\n')

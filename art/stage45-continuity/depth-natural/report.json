@@ -1,0 +1,178 @@
+{
+  "sourceHashes": {
+    "art/stage45-continuity/deep-registered-color.svg": "e6e3e4f68217e30d5f9247d0d7fe6e32aca72117d8e303b65f067e72f5277106",
+    "art/stage45-continuity/deep-alpha-optimized.svg": "d922b5c2aa119122e7bae690e6476244ec5f6ac4a42f135bc310e52f14c7f43c",
+    "shared/data/act5/terrain.mjs": "de08e7f9a61713b19ad4a6ffad9eb9f5a2a0255d4f59a712811aa580673d3bd3"
+  },
+  "sourceUnchanged": true,
+  "scope": "Outside-world depth alpha only; unchanged native colour curves and inside collision profile",
+  "sourceContourReferences": {
+    "west": [
+      "path5",
+      68,
+      "segments20..38"
+    ],
+    "east": [
+      [
+        "contact tangent bridge",
+        "14 native units outside world"
+      ],
+      [
+        "path6",
+        106,
+        "segments0..9"
+      ],
+      [
+        "path4",
+        102,
+        "segments146..148"
+      ],
+      [
+        "path3",
+        99,
+        "segments59..75"
+      ]
+    ]
+  },
+  "insideNativeRoad": [
+    [
+      322.0,
+      263.1371484375
+    ],
+    [
+      407.395234375,
+      253.43314453125
+    ],
+    [
+      480.49873046875,
+      241.14140625000002
+    ],
+    [
+      532.25341796875,
+      239.8475390625
+    ],
+    [
+      554.24916015625,
+      255.3739453125
+    ],
+    [
+      578.185703125,
+      255.3739453125
+    ],
+    [
+      605.3569140625,
+      241.14140625000002
+    ],
+    [
+      741.85990234375,
+      241.14140625000002
+    ],
+    [
+      770.32498046875,
+      255.3739453125
+    ],
+    [
+      836.3122070312501,
+      255.3739453125
+    ],
+    [
+      862.836484375,
+      270.25341796875
+    ],
+    [
+      895.1831640625,
+      270.25341796875
+    ],
+    [
+      930.76451171875,
+      285.132890625
+    ],
+    [
+      984.46,
+      291.60222656250005
+    ]
+  ],
+  "junctions": [
+    {
+      "name": "west-contact",
+      "from": [
+        322.0000000000001,
+        265.1497360842277
+      ],
+      "to": [
+        322.0,
+        263.1371484375
+      ],
+      "lengthNative": 2.0125876467276953,
+      "allowedNative": 3
+    },
+    {
+      "name": "east-rounded-depth-contact",
+      "from": [
+        984.46,
+        291.60222656250005
+      ],
+      "to": [
+        998.46,
+        294.7365761030282
+      ],
+      "lengthNative": 14.346572658381131,
+      "scope": "Outside-world alpha only, authored road tangent to native p6 contour"
+    },
+    {
+      "name": "east-band-6-4",
+      "from": [
+        1327.079,
+        269.433
+      ],
+      "to": [
+        1327.2742759634903,
+        271.8606458725141
+      ],
+      "lengthNative": 2.4354870527785417,
+      "allowedNative": 3
+    },
+    {
+      "name": "east-band-4-3",
+      "from": [
+        1304.621,
+        264.079
+      ],
+      "to": [
+        1302.049,
+        263.001
+      ],
+      "lengthNative": 2.7887753584684205,
+      "allowedNative": 3
+    }
+  ],
+  "maxFloatingJoinErrorBeforeSerialization": 9.112693272687351e-13,
+  "serializedSubpaths": 1,
+  "insideAlphaRasterValidation": {
+    "differentPixels": 0,
+    "maxChannelDelta": 0.0,
+    "meanChannelDelta": 0.0,
+    "method": "Same native world rectangle intersection on baseline and final compound alpha"
+  },
+  "contextRasterAntialiasDiagnostic": {
+    "cropNative": [
+      322,
+      0,
+      662.46,
+      1510.2
+    ],
+    "size": [
+      1325,
+      3020
+    ],
+    "differentPixels": 249,
+    "maxChannelDelta": 33.0,
+    "meanChannelDelta": 0.00040859677620892163
+  },
+  "clipCount": 1,
+  "maxClipChars": 3575,
+  "frontBackUnchanged": true,
+  "outputSha256": "910e3770de738e98d33238d4a2f5023800011d5d4c08e35429940dd8eb387d73",
+  "rawSha256": "9c1c6ab5ba12f88b265f64603cf019244e54be195e433462ea8465581aaae44c",
+  "visualApproval": "PENDING SCENE REVIEW"
+}
