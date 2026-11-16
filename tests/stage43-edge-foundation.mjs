@@ -11,3 +11,9 @@ for(const [w,h] of [[1440,900],[390,844]]){
  assert((bounds.y+bounds.h)*s > 2579+240+halfH+240);
 }
 console.log('PASS desktop/portrait minimum-zoom extreme-pan BODY coverage');
+const seamFile='shared/assets/environment/act5/stage43-seam.json';
+if(fs.existsSync(seamFile)){
+ const seam=JSON.parse(fs.readFileSync(seamFile));assert.equal(seam.params.semanticLayer,'BODY');assert(!seam.collision?.length);
+ calls=[];new Scene().landmark(ctx,{asset:{...a,seam},x:0,y:0,scale:1});assert.deepEqual(calls,['act5:stage43:foundation','act5:near:43','act5:stage43:seam']);
+ console.log('PASS source-scale geological join is art-only and retains original fortress draw');
+}
