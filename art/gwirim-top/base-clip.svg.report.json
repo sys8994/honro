@@ -1,0 +1,48 @@
+{
+  "input": "art/gwirim-top/base-clip-raw.svg",
+  "input_sha256": "3d846885be68ccd3fd5e9f79a752862afc8ebf9401084e80043cffc8473ef17a",
+  "epsilon_viewbox_units": 0.4,
+  "changed_paths": 1,
+  "segments_before": 3765,
+  "segments_after": 3481,
+  "skips": {},
+  "render_checks": [
+    {
+      "mean_channel_error": 2.1381501937867142e-06,
+      "changed_pixel_fraction": 3.11036299765808e-05,
+      "max_channel_error": 0.1607843041419983,
+      "width": 1280,
+      "accepted": true
+    }
+  ],
+  "growth_guard": {
+    "original_bytes": 64445,
+    "candidate_bytes": 51204,
+    "reasons": [],
+    "before": {
+      "segments": 3765,
+      "subpaths": 115,
+      "paths": 1,
+      "shape_elements": 1
+    },
+    "candidate": {
+      "segments": 3481,
+      "subpaths": 115,
+      "paths": 1,
+      "shape_elements": 1
+    },
+    "accepted": true
+  },
+  "accepted": true,
+  "candidate_bytes": 51204,
+  "original_bytes": 64445,
+  "output_bytes": 51204,
+  "output_metrics": {
+    "segments": 3481,
+    "subpaths": 115,
+    "paths": 1,
+    "shape_elements": 1
+  },
+  "output_sha256": "6d6c7cf3c46c7db1bf62af3131c5b377032a0d533e1f58f64dad8fd08db91a72",
+  "input_unchanged": true
+}

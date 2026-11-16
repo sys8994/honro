@@ -1,0 +1,49 @@
+{
+  "input": "art/gwirim-top/canopy-raw.svg",
+  "input_sha256": "611f285b45d2294e2c664e4b7e76ee3f88e9ce128dca45eb841c085115f1d55e",
+  "epsilon_viewbox_units": 1.2,
+  "changed_paths": 16,
+  "segments_before": 30801,
+  "segments_after": 27190,
+  "skips": {},
+  "render_checks": [
+    {
+      "mean_channel_error": 0.0015981120523065329,
+      "changed_pixel_fraction": 0.01198785756853397,
+      "max_channel_error": 0.41960784792900085,
+      "width": 1280,
+      "accepted": false
+    }
+  ],
+  "growth_guard": {
+    "original_bytes": 1741599,
+    "candidate_bytes": 623415,
+    "reasons": [],
+    "before": {
+      "segments": 30801,
+      "subpaths": 727,
+      "paths": 16,
+      "shape_elements": 16
+    },
+    "candidate": {
+      "segments": 27190,
+      "subpaths": 727,
+      "paths": 16,
+      "shape_elements": 16
+    },
+    "accepted": true
+  },
+  "accepted": false,
+  "candidate_bytes": 623415,
+  "original_bytes": 1741599,
+  "reason": "raster/non-growth gate failed; output is unchanged original",
+  "output_bytes": 1741599,
+  "output_metrics": {
+    "segments": 30801,
+    "subpaths": 727,
+    "paths": 16,
+    "shape_elements": 16
+  },
+  "output_sha256": "611f285b45d2294e2c664e4b7e76ee3f88e9ce128dca45eb841c085115f1d55e",
+  "input_unchanged": true
+}

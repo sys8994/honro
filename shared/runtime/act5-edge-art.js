@@ -51,7 +51,7 @@ S.landmark=function(c,l){
  if(l.asset?.id==='act5:near:44'&&l.asset.rootExterior&&!l.rotation){
   const V=G.HonroVisualStyle,cc=V?V.context(c,V.classify(l,this.battle,l.asset)==='gameplay'?'gameplay':V.depth(l,l.asset)):c,z=l.scale??1;
   cc.save();cc.translate(l.x,l.y);cc.scale(z,z);G.HonroVectorArt.draw(cc,l.asset.rootExterior,{x:0,y:0,scale:1});cc.restore();
-  cc.save();cc.translate(l.x,l.y);cc.scale(z,z);let upper=stage44Parts.get(l.asset);if(!upper){upper={...l.asset,vector:{...l.asset.vector,clips:{...l.asset.vector.clips,a:l.asset.rootUpperClip}}};stage44Parts.set(l.asset,upper);}G.HonroVectorArt.draw(cc,upper,{x:0,y:0,scale:1});cc.restore();return;
+  cc.save();cc.translate(l.x,l.y);cc.scale(z,z);let upper=stage44Parts.get(l.asset);if(!upper){upper={...l.asset,vector:{...l.asset.vector,clips:{...l.asset.vector.clips,a:l.asset.rootUpperClip}}};stage44Parts.set(l.asset,upper);}G.HonroVectorArt.draw(cc,upper,{x:0,y:0,scale:1});if(l.asset.upperCanopy)G.HonroVectorArt.draw(cc,l.asset.upperCanopy,{x:0,y:0,scale:1});cc.restore();return;
  }
 
  if(l.asset?.id==='act5:near:42'&&l.asset.edgeWall&&!l.rotation){
@@ -80,7 +80,7 @@ S.landmark=function(c,l){
  draw.call(this,c,l);
  c.save();c.translate(l.x,l.y);c.scale(scale,scale);c.drawImage(q.canvas,-q.pad,0,q.w,q.h);c.restore();
 };
-S._landmarkPaintBounds=function(l){const q=bounds.call(this,l);if(!q||!active(l)||l.rotation)return q;if(l.asset?.id==='act5:near:44'&&l.asset.rootExterior){const s=l.scale??1;return{left:q.left-400*s,right:q.right+400*s,top:q.top,bottom:q.bottom+300*s};}if(l.asset?.id==='act5:near:42'){const s=l.scale??1;return{left:q.left-900*s,right:q.right+900*s,top:q.top,bottom:q.bottom+468*s};}if(l.asset?.id==='act5:near:41'&&l.asset.campExterior){const s=l.scale??1;return{left:l.x-2500*s,right:l.x+(l.asset.vector.viewBox[2]+2500)*s,top:q.top,bottom:l.y+3500*s};}const p=Math.min(l.asset.vector.viewBox[2]*.28,420)*(l.scale??1);return{left:q.left-p,right:q.right+p,top:q.top,bottom:q.bottom+p};};
+S._landmarkPaintBounds=function(l){const q=bounds.call(this,l);if(!q||!active(l)||l.rotation)return q;if(l.asset?.id==='act5:near:44'&&l.asset.rootExterior){const s=l.scale??1;return{left:q.left-400*s,right:q.right+400*s,top:q.top-(l.asset.upperCanopy?710*s:0),bottom:q.bottom+300*s};}if(l.asset?.id==='act5:near:42'){const s=l.scale??1;return{left:q.left-900*s,right:q.right+900*s,top:q.top,bottom:q.bottom+468*s};}if(l.asset?.id==='act5:near:41'&&l.asset.campExterior){const s=l.scale??1;return{left:l.x-2500*s,right:l.x+(l.asset.vector.viewBox[2]+2500)*s,top:q.top,bottom:l.y+3500*s};}const p=Math.min(l.asset.vector.viewBox[2]*.28,420)*(l.scale??1);return{left:q.left-p,right:q.right+p,top:q.top,bottom:q.bottom+p};};
 // Artwork-only continuation beyond the tile-domain paint rectangle. Physics bounds unchanged.
 const domainPaint=S._drawTerrainDomainTiles;
 S._drawTerrainDomainTiles=function(c,b,w,h){

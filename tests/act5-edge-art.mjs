@@ -16,6 +16,7 @@ for(const a of library){
   fs.writeFileSync('_local/reports/act5-edges/42.png',cv.toBuffer('image/png'));console.log(a.id,'native BODY/SURFACE, validated and source-pure');continue;
  }
  if(a.id==='act5:near:44'){
+  assert.equal(a.upperCanopy.collision.length,0);assert.deepEqual(Array.from(g.HonroVectorArt.validate(a.upperCanopy.vector)),[]);assert(scene._landmarkPaintBounds({asset:a,x:0,y:0,scale:1}).top<=-710);
   assert.equal(a.rootExterior.collision.length,0);assert.deepEqual(Array.from(g.HonroVectorArt.validate(a.rootExterior.vector)),[]);
   assert(a.rootUpperClip.every(d=>d.length<=60000));const own=new Scene,before=JSON.stringify(a),cv=createCanvas(1400,700),c=cv.getContext('2d');c.scale(.5,.5);c.translate(400,0);own.landmark(c,{asset:a,x:0,y:0,scale:1});assert.equal(JSON.stringify(a),before);assert.equal(own._act5Edge,undefined,'44 must not stretch raster edges');fs.writeFileSync('_local/reports/act5-edges/44.png',cv.toBuffer('image/png'));console.log(a.id,'native continuation/upper alpha; validated source-pure');continue;
  }

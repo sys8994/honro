@@ -1,0 +1,48 @@
+{
+  "input": "art/gwirim-top/cap-clip-raw.svg",
+  "input_sha256": "c6bcc6b0840a9465fb31f798a0563ec27d5ed4510a5db79b744d40a19a4c60ea",
+  "epsilon_viewbox_units": 0.4,
+  "changed_paths": 1,
+  "segments_before": 2495,
+  "segments_after": 2167,
+  "skips": {},
+  "render_checks": [
+    {
+      "mean_channel_error": 3.555783905540011e-06,
+      "changed_pixel_fraction": 6.704410011918951e-05,
+      "max_channel_error": 0.23137255012989044,
+      "width": 1280,
+      "accepted": true
+    }
+  ],
+  "growth_guard": {
+    "original_bytes": 50047,
+    "candidate_bytes": 32391,
+    "reasons": [],
+    "before": {
+      "segments": 2495,
+      "subpaths": 28,
+      "paths": 1,
+      "shape_elements": 1
+    },
+    "candidate": {
+      "segments": 2167,
+      "subpaths": 28,
+      "paths": 1,
+      "shape_elements": 1
+    },
+    "accepted": true
+  },
+  "accepted": true,
+  "candidate_bytes": 32391,
+  "original_bytes": 50047,
+  "output_bytes": 32391,
+  "output_metrics": {
+    "segments": 2167,
+    "subpaths": 28,
+    "paths": 1,
+    "shape_elements": 1
+  },
+  "output_sha256": "6c55bab76c431c645defe33ac601ef204163160ae3e4561d5a99deb006cc5b46",
+  "input_unchanged": true
+}

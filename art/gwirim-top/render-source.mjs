@@ -1,0 +1,2 @@
+import fs from'node:fs';import vm from'node:vm';import{createCanvas,Path2D,DOMMatrix}from'@napi-rs/canvas';import{makeAct5}from'../../shared/act5-world.mjs';
+const g=vm.createContext({Path2D,DOMMatrix});vm.runInContext(fs.readFileSync('shared/map/vector-art.js','utf8'),g);const {library}=await makeAct5();const a=library.find(a=>a.id==='act5:near:44'),cv=createCanvas(2172,724);g.HonroVectorArt.draw(cv.getContext('2d'),a,{x:0,y:0,scale:1});fs.writeFileSync('art/gwirim-top/source.png',cv.toBuffer('image/png'));

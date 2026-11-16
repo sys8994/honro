@@ -1,0 +1,48 @@
+{
+  "input": "art/gwirim-top/trace-v2/native-alpha.svg",
+  "input_sha256": "783f9e1ae8fffab3ca5fe96389aefde3ac985f70a1b794f63fb44dc69aa0015d",
+  "epsilon_viewbox_units": 0.5,
+  "changed_paths": 1,
+  "segments_before": 7274,
+  "segments_after": 3547,
+  "skips": {},
+  "render_checks": [
+    {
+      "mean_channel_error": 4.883519795839675e-05,
+      "changed_pixel_fraction": 0.0010103173420738976,
+      "max_channel_error": 0.32549020648002625,
+      "width": 1280,
+      "accepted": true
+    }
+  ],
+  "growth_guard": {
+    "original_bytes": 107344,
+    "candidate_bytes": 52403,
+    "reasons": [],
+    "before": {
+      "segments": 7274,
+      "subpaths": 80,
+      "paths": 1,
+      "shape_elements": 1
+    },
+    "candidate": {
+      "segments": 3547,
+      "subpaths": 80,
+      "paths": 1,
+      "shape_elements": 1
+    },
+    "accepted": true
+  },
+  "accepted": true,
+  "candidate_bytes": 52403,
+  "original_bytes": 107344,
+  "output_bytes": 52403,
+  "output_metrics": {
+    "segments": 3547,
+    "subpaths": 80,
+    "paths": 1,
+    "shape_elements": 1
+  },
+  "output_sha256": "5d24c512015a4e3689c816e32882a6075d8f8691772f2c6c807da7e70fe37df5",
+  "input_unchanged": true
+}

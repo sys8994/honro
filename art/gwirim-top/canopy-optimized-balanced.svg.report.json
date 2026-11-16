@@ -1,0 +1,50 @@
+{
+  "input": "art/gwirim-top/canopy-raw.svg",
+  "input_sha256": "611f285b45d2294e2c664e4b7e76ee3f88e9ce128dca45eb841c085115f1d55e",
+  "epsilon_viewbox_units": 0.5,
+  "changed_paths": 1,
+  "segments_before": 30801,
+  "segments_after": 30798,
+  "skips": {
+    "not smaller/guarded": 15
+  },
+  "render_checks": [
+    {
+      "mean_channel_error": 0.0,
+      "changed_pixel_fraction": 0.0,
+      "max_channel_error": 0.0,
+      "width": 1280,
+      "accepted": true
+    }
+  ],
+  "growth_guard": {
+    "original_bytes": 1741599,
+    "candidate_bytes": 1741220,
+    "reasons": [],
+    "before": {
+      "segments": 30801,
+      "subpaths": 727,
+      "paths": 16,
+      "shape_elements": 16
+    },
+    "candidate": {
+      "segments": 30798,
+      "subpaths": 727,
+      "paths": 16,
+      "shape_elements": 16
+    },
+    "accepted": true
+  },
+  "accepted": true,
+  "candidate_bytes": 1741220,
+  "original_bytes": 1741599,
+  "output_bytes": 1741220,
+  "output_metrics": {
+    "segments": 30798,
+    "subpaths": 727,
+    "paths": 16,
+    "shape_elements": 16
+  },
+  "output_sha256": "41d2f1a36e830bef9eb0bcf62b1d97658874a5484b31a547f4567f64d6c9ed66",
+  "input_unchanged": true
+}
