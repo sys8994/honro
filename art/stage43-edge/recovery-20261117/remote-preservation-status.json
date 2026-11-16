@@ -1,0 +1,32 @@
+{
+  "remoteBranch": "art/stage43-recovery-20261117",
+  "verifiedRemoteCommit": "591aba3a170b09f2d76be8a4a42a779a408439a0",
+  "nativeTreeComplete": false,
+  "largeDirectUpload": "1,609,059-byte PNG create_blob had no success or approval response after roughly 888 seconds; interrupted. No retry.",
+  "splitBackup": "Canceled on coordinator instruction; do not resume. No tree, commit or ref operation was made for this method.",
+  "confirmedLooseBlobs": [
+    {
+      "file": "part-000.bin",
+      "sha": "278b6074d093cf89a207464cfbee894739b55059"
+    },
+    {
+      "file": "README.md",
+      "sha": "10896f643643ba10106400eb282b50fe26c2280f"
+    },
+    {
+      "file": "manifest.json",
+      "sha": "6cb464b5d821d0bf5d669e282b67500cc6d8d909"
+    },
+    {
+      "file": "part-001.bin",
+      "sha": "367c89ee9aff92452a9777154e39c06b5e79a845"
+    }
+  ],
+  "unconfirmedInFlightBlob": {
+    "file": "part-002.bin",
+    "expectedSha": "f611fa12b46eda2a66ab08ce0202e3beae9ed623",
+    "status": "No success response before interruption; existence not verified."
+  },
+  "localSafety": "Active branch art/stage43-supported-recovery-20261117 excludes the split-backup commit entirely. Prior local branch preserves history only and must not be pushed. Source and all prior art studies remain intact.",
+  "nextPolicy": "Only ordinary supported preservation methods; no split uploads. Do not claim full remote preservation or deployment."
+}
