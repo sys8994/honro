@@ -39,3 +39,9 @@ west13의 넓은 최소색차 경계는 주요 원본 가지 silhouette를 훼�
 부모가 west14/east13 검수 후 전체 회귀 및 공개 통합 검증 진행을 허용했다. 19 release-guard tests, production build, act5-edge-art(44 native budgets/source purity/stretch cache 미사용), act5-terrain-contact, stage42-edge-geology, stage33-coastal-art 통과. 과거와 현재 Native gameplay SHA-256은 5ac732c2711ae9a2f6a24288106da696972aad8ded4edcce11bb066eb26ac955로 동일. build가 제거한 이전 tracked cache6개 복원, 이전 manifest의 모든 참조 파일(중복 포함42736개) SHA 보존 확인.
 
 로컬 실제 Chromium 연결은 localhost ERR_CONNECTION_REFUSED로 실패. 기존 공개 탭·저장은 보존했으며, Native를 실플레이라고 주장하지 않음. 최신 master66f10605cd1769ebea518f415f1a50d2d5b2b7f9를 공식 connector와 git fetch로 확인한 뒤 좁은 통합/공개 실제표시 검수를 진행한다. a6894e2 체크포인트는 별도 art 브랜치541ab3d에 전체 tree 일치로 원격 보존했다.
+
+## 공개 최종 검수
+
+master02ec392ea6f6739064aafaea2d470e169ad750a6 공개, Pages43833223425 build/report/deploy 모두 성공. HONRO.html, manifest, chapter44 payload, ordered-common18 runtime의 공개 바이트가 검증한 로컬 빌드와 모두 일치.
+
+새 공개 Chromium 탭에서 UI로 격리 검수 여정(디버그·기록 분리)에 진입하여5막4장 대화·배우·지형 표시 확인. D 실제 이동으로 이동도1100→554, 도약 후 공중 상태/479, 다시 이동하고 원본 경사 발판 착지 후 이동·발사 가능/280을 확인했다. 미니맵은 캐릭터 도착이 아니라 카메라 검사로 사용해 양끝과 중앙을 확인, 휠 확대/축소도 정상. 최근200 console 항목에서 게임 origin warn/error 없음(확장프로그램 metadata 오류는 별개). 전체 장 클리어, Android, 실측FPS, 좁은 화면 검수는 주장하지 않는다. 원본/생성부 재질 차이는 위에 기록한 남은 미술 한계. 기존 일반 저장 및 기존 공개 탭 보존, 별도 검수 탭을 결과로 유지했다.

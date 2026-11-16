@@ -1,5 +1,5 @@
 {
-  "status": "parent-reviewed integration candidate; actual browser/public verification pending",
+  "status": "published and desktop Chromium smoke-tested",
   "limitations": [
     "Original and generated root material/color planes still differ slightly",
     "Local browser preview failed ERR_CONNECTION_REFUSED; not a browser-play pass",
@@ -92,5 +92,35 @@
     "uniquePaths": 1471,
     "changed": 0,
     "restoredTrackedFiles": 0
+  },
+  "publicVerification": {
+    "masterCommit": "02ec392ea6f6739064aafaea2d470e169ad750a6",
+    "pagesRun": 43833223425,
+    "pagesJobs": "build/report/deploy all success",
+    "url": "https://sys8994.github.io/honro/HONRO.html?verify=02ec392",
+    "byteMatched": [
+      "HONRO.html",
+      "web/manifest.json",
+      "web/data/chapter-44-assets.893c99b9b809b1ac.json",
+      "web/runtime/ordered-common-18.a6bbd07674edcf39.js"
+    ],
+    "browser": "Chromium, existing ordinary save preserved; new tab shows debug record isolation",
+    "checks": [
+      "UI-selected Act5 Chapter4, intro dialogue rendered",
+      "Actual D movement: movement meter1100→554",
+      "Actual jump: airborne status and movement479",
+      "Further D movement and landing on source ramp: movable/fire status and movement280",
+      "Minimap camera inspection at both edges and center; wheel zoom-out overview",
+      "No game-origin warn/error in most recent200 captured console entries; browser-extension metadata errors are separate"
+    ],
+    "notClaimed": [
+      "Full chapter/battle completion",
+      "Android or narrow viewport test",
+      "Measured FPS/performance benchmark"
+    ],
+    "evidence": {
+      "browserTabId": "11",
+      "screenshots": "West, east and overview captured in CUA tool output; native browser-host files are not accessible from this repository workspace."
+    }
   }
 }
