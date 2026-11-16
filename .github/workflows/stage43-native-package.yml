@@ -1,0 +1,54 @@
+name: Build reviewed Stage43 native continuity candidate
+on:
+  push:
+    branches: ['art/stage43-final-continuity']
+permissions:
+  contents: write
+concurrency:
+  group: stage43-native-package-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  package:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      HONRO_ACT4_RELEASE: '1'
+      HONRO_ACT5_RELEASE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 1
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Install locked dependencies and materialize existing source
+        run: |
+          set -euo pipefail
+          npm ci
+          npm ci --prefix game
+          node tools/act4-source/world-source.mjs materialize
+      - name: Focused Stage43 rendering checks
+        run: |
+          set -euo pipefail
+          node tests/stage43-native-continuity.mjs
+          node tests/stage43-contact-postclip.mjs
+      - name: Build without changing retained publication history
+        run: |
+          set -euo pipefail
+          mapfile -t refs < <(node --input-type=module -e 'import fs from "node:fs";import {selectPublishedGenerations} from "./shared/web-retention.mjs";const m=JSON.parse(fs.readFileSync("web/manifest.json"));for(const g of selectPublishedGenerations(m.publishedGenerations||[],{now:Date.now()})){if(!/^[a-f0-9]{40}$/.test(g.sourceSha))throw Error("Invalid publication ref");console.log(g.sourceSha)}')
+          if ((${#refs[@]})); then git fetch --no-tags --depth=1 origin "${refs[@]}"; fi
+          node game/build.mjs
+          sha256sum HONRO.html HONRO_WORKSHOP.html web/manifest.json
+      - name: Preserve generated candidate only
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          git add web HONRO.html HONRO_WORKSHOP.html index.html
+          git diff --cached --stat
+          if ! git diff --cached --quiet; then
+            git -c user.name='honro release automation' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m "Build checked Stage43 native candidate from $GITHUB_SHA"
+          fi
+          git push origin "HEAD:refs/heads/art/stage43-generated/$GITHUB_SHA"
+          # No master write, force push, authentication change or Pages action.

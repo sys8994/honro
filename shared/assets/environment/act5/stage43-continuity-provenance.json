@@ -1,0 +1,30 @@
+{
+  "stage": 43,
+  "status": "local integration candidate; final full-Scene review pending; NOT approved for deployment",
+  "assets": [
+    {
+      "role": "deep",
+      "source": "stage43-deep-serialization-study/asset-integer.json",
+      "file": "shared/assets/environment/act5/stage43-continuity-deep.json",
+      "sha256": "5a01aebe38cc9ea310073629e0d31e04bb25f2a14aa9dfe12b8c10de2b094571",
+      "status": "candidate pending final visual approval",
+      "preservedOriginal": "stage43-recovery-deep-study/asset-local-grid01.json",
+      "preservedOriginalSha256": "313dd1be0d2feaad061c021e92ba01b4b27e447fd765563bff76b59936d22e94",
+      "serialization": "Exact tenth-grid integer normalization with per-path 0.1 transform; same 12 paths, 64414 segments and existing dParts. No precision reduction or geometry removal."
+    },
+    {
+      "role": "west",
+      "source": "stage43-west-final-study/v2/asset.json",
+      "file": "shared/assets/environment/act5/stage43-continuity-west.json",
+      "sha256": "880b2bae088e3c09c4d8e4ddddce7dbe03e3daacdb8d45115abc3aa4acf8b095",
+      "status": "candidate; parent reports normal Scene checked; full integration review pending"
+    },
+    {
+      "role": "contact",
+      "source": "stage43-contact-alpha-repair/asset.json",
+      "file": "shared/assets/environment/act5/stage43-continuity-contact.json",
+      "sha256": "44e1d68eff608b31b93893fdd6be62029e25e345890d244af389e7ec9835ccc9",
+      "status": "final contour repair candidate; parent center Scene diagnostic matched; final integrated review pending"
+    }
+  ]
+}

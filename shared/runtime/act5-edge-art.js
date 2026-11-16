@@ -27,6 +27,54 @@ function stage45Body(scene,c,asset,mask){
   }
  }finally{if(maskCanvas)scene._releaseRasterCanvas(maskCanvas);scene._releaseRasterCanvas(cv);}
 }
+// Only Stage43 contact: its opaque color stack is composed before coverage clips.
+// Cache geometry/Path2D, not viewport-sized bitmaps. Existing domain tile caches
+// retain the result; direct exterior draws use/release one bounded scratch tile.
+const stage43ContactParts=new WeakMap();
+function contact43Parts(asset){
+ if(stage43ContactParts.has(asset))return stage43ContactParts.get(asset);
+ const clips=[],identity=[1,0,0,1,0,0],multiply=(a,b)=>[a[0]*b[0]+a[2]*b[1],a[1]*b[0]+a[3]*b[1],a[0]*b[2]+a[2]*b[3],a[1]*b[2]+a[3]*b[3],a[0]*b[4]+a[2]*b[5]+a[4],a[1]*b[4]+a[3]*b[5]+a[5]];
+ let safe=true;
+ const copy=(node,matrix,shared)=>{
+  const matrixHere=node.transform?multiply(matrix,node.transform):matrix,q={...node};
+  if(node.clipPath){
+   // A clip on one branch cannot become an intersection over every sibling.
+   if(!shared||node.pixelSnapClip){safe=false;return node;}
+   const ds=asset.vector.clips?.[node.clipPath];if(!ds){safe=false;return node;}
+   clips.push({path:new Path2D(ds.join(' ')),matrix:matrixHere});delete q.clipPath;
+  }
+  if(node.children)q.children=node.children.map(child=>copy(child,matrixHere,shared&&node.children.length===1));
+  if(node.tag==='use')safe=false;
+  return q;
+ };
+ const root=copy(asset.vector.root,identity,true),result=safe?{asset:{...asset,vector:{...asset.vector,root}},clips}:null;
+ stage43ContactParts.set(asset,result);return result;
+}
+function contact43(scene,c,asset){
+ const prepared=contact43Parts(asset);if(!prepared){G.HonroVectorArt.draw(c,asset,{x:0,y:0,scale:1});return;}
+ const m=c.getTransform(),a=asset.anchor||{},b=asset.bounds,ax=a.x||0,ay=a.y||0;
+ const points=[[b.x-ax,b.y-ay],[b.x+b.w-ax,b.y-ay],[b.x-ax,b.y+b.h-ay],[b.x+b.w-ax,b.y+b.h-ay]].map(([x,y])=>[m.a*x+m.c*y+m.e,m.b*x+m.d*y+m.f]);
+ const left=Math.max(0,Math.floor(Math.min(...points.map(p=>p[0])))-1),top=Math.max(0,Math.floor(Math.min(...points.map(p=>p[1])))-1),
+  right=Math.min(c.canvas.width,Math.ceil(Math.max(...points.map(p=>p[0])))+1),bottom=Math.min(c.canvas.height,Math.ceil(Math.max(...points.map(p=>p[1])))+1);
+ if(right<=left||bottom<=top)return;
+ // Keep device-tile origins stable; ordinary desktop/mobile surfaces fit once.
+ const cap=2048,x0=Math.floor(left/cap)*cap,y0=Math.floor(top/cap)*cap,x1=Math.min(c.canvas.width,Math.ceil(right/cap)*cap),y1=Math.min(c.canvas.height,Math.ceil(bottom/cap)*cap);
+ const cv=scene._makeLayerCanvas(Math.min(cap,x1-x0),Math.min(cap,y1-y0)),raw=cv.getContext('2d'),paint=G.HonroVisualStyle?.contextLike(c,raw)||raw;
+ try{
+  for(let y=y0;y<y1;y+=cap)for(let x=x0;x<x1;x+=cap){
+   const w=Math.min(cap,x1-x),h=Math.min(cap,y1-y);
+   raw.setTransform(1,0,0,1,0,0);raw.globalAlpha=1;raw.globalCompositeOperation='source-over';raw.clearRect(0,0,cv.width,cv.height);
+   // Exact current device scale/phase, including domain-raster scale and viewport.
+   raw.setTransform(m.a,m.b,m.c,m.d,m.e-x,m.f-y);G.HonroVectorArt.draw(paint,prepared.asset,{x:0,y:0,scale:1});
+   c.save();try{
+    c.translate(-ax,-ay);const base=c.getTransform();
+    for(const clip of prepared.clips){c.transform(...clip.matrix);c.clip(clip.path);c.setTransform(base.a,base.b,base.c,base.d,base.e,base.f);}
+    // Existing caller clip/style/alpha still apply once to this finished image.
+    c.setTransform(1,0,0,1,0,0);c.drawImage(cv,0,0,w,h,x,y,w,h);
+   }finally{c.restore();}
+  }
+ }finally{scene._releaseRasterCanvas(cv);}
+}
 function camp(scene,c,l){
  const V=G.HonroVisualStyle;if(V)c=V.context(c,V.classify(l,scene.battle,l.asset)==='gameplay'?'gameplay':V.depth(l,l.asset));
  const scale=l.scale??1,w=l.asset.vector.viewBox[2],h=l.asset.vector.viewBox[3];
@@ -73,6 +121,15 @@ function prepare(scene,l){
  return scene._act5Edge={asset:a,canvas:cv,pad:pad/r,w:cv.width/r,h:cv.height/r};
 }
 S.landmark=function(c,l){
+ if(l.asset?.id==='act5:near:43'&&l.asset.nativeContinuity&&!l.rotation){
+  // Stage43 candidate: native BODY behind the untouched source, then local joins.
+  // No rectangular foreground band, source clipping rewrite, or sampled edge cache.
+  const a=l.asset,parts=a.nativeContinuity,z=l.scale??1,V=G.HonroVisualStyle,
+   cc=V?V.context(c,V.classify(l,this.battle,a)==='gameplay'?'gameplay':V.depth(l,a)):c;
+  const paint=art=>{if(!art)return;cc.save();try{cc.translate(l.x,l.y);cc.scale(z,z);G.HonroVectorArt.draw(cc,art,{x:0,y:0,scale:1});}finally{cc.restore();}};
+  paint(parts.deep);draw.call(this,c,l);paint(parts.west);if(parts.contact){cc.save();try{cc.translate(l.x,l.y);cc.scale(z,z);contact43(this,cc,parts.contact);}finally{cc.restore();}}return;
+ }
+
  if(l.asset?.id==='act5:near:47'&&l.asset.shaftExterior&&!l.rotation){
   const a=l.asset,z=l.scale??1,V=G.HonroVisualStyle,cc=V?V.context(c,V.classify(l,this.battle,a)==='gameplay'?'gameplay':V.depth(l,a)):c;
   cc.save();cc.translate(l.x,l.y);cc.scale(z,z);
@@ -121,21 +178,22 @@ S.landmark=function(c,l){
  draw.call(this,c,l);
  c.save();c.translate(l.x,l.y);c.scale(scale,scale);c.drawImage(q.canvas,-q.pad,0,q.w,q.h);c.restore();
 };
-S._landmarkPaintBounds=function(l){const q=bounds.call(this,l);if(!q||!active(l)||l.rotation)return q;if(l.asset?.id==='act5:near:47'&&l.asset.shaftExterior){const s=l.scale??1,a=l.asset.shaftExterior.bounds;return{left:Math.min(q.left,l.x+a.x*s),right:Math.max(q.right,l.x+(a.x+a.w)*s),top:Math.min(q.top,l.y+a.y*s),bottom:Math.max(q.bottom,l.y+(a.y+a.h)*s)};}if(l.asset?.id==='act5:near:45'&&l.asset.continuousBody){const s=l.scale??1,all=[l.asset.continuousBody.bounds];return{left:Math.min(q.left,...all.map(a=>l.x+a.x*s)),right:Math.max(q.right,...all.map(a=>l.x+(a.x+a.w)*s)),top:Math.min(q.top,...all.map(a=>l.y+a.y*s)),bottom:Math.max(q.bottom,...all.map(a=>l.y+(a.y+a.h)*s))};}if(l.asset?.id==='act5:near:44'&&l.asset.rootExterior){const s=l.scale??1;return{left:q.left-400*s,right:q.right+400*s,top:q.top-(l.asset.upperCanopy?710*s:0),bottom:q.bottom+300*s};}if(l.asset?.id==='act5:near:42'){const s=l.scale??1;return{left:q.left-900*s,right:q.right+900*s,top:q.top,bottom:q.bottom+468*s};}if(l.asset?.id==='act5:near:41'&&l.asset.campExterior){const s=l.scale??1;return{left:l.x-2500*s,right:l.x+(l.asset.vector.viewBox[2]+2500)*s,top:q.top,bottom:l.y+3500*s};}const p=Math.min(l.asset.vector.viewBox[2]*.28,420)*(l.scale??1);return{left:q.left-p,right:q.right+p,top:q.top,bottom:q.bottom+p};};
+S._landmarkPaintBounds=function(l){const q=bounds.call(this,l);if(!q||!active(l)||l.rotation)return q;if(l.asset?.id==='act5:near:43'&&l.asset.nativeContinuity){const z=l.scale??1,all=Object.values(l.asset.nativeContinuity).filter(a=>a?.bounds);return{left:Math.min(q.left,...all.map(a=>l.x+(a.bounds.x-(a.anchor?.x||0))*z)),right:Math.max(q.right,...all.map(a=>l.x+(a.bounds.x+a.bounds.w-(a.anchor?.x||0))*z)),top:Math.min(q.top,...all.map(a=>l.y+(a.bounds.y-(a.anchor?.y||0))*z)),bottom:Math.max(q.bottom,...all.map(a=>l.y+(a.bounds.y+a.bounds.h-(a.anchor?.y||0))*z))};}if(l.asset?.id==='act5:near:47'&&l.asset.shaftExterior){const s=l.scale??1,a=l.asset.shaftExterior.bounds;return{left:Math.min(q.left,l.x+a.x*s),right:Math.max(q.right,l.x+(a.x+a.w)*s),top:Math.min(q.top,l.y+a.y*s),bottom:Math.max(q.bottom,l.y+(a.y+a.h)*s)};}if(l.asset?.id==='act5:near:45'&&l.asset.continuousBody){const s=l.scale??1,all=[l.asset.continuousBody.bounds];return{left:Math.min(q.left,...all.map(a=>l.x+a.x*s)),right:Math.max(q.right,...all.map(a=>l.x+(a.x+a.w)*s)),top:Math.min(q.top,...all.map(a=>l.y+a.y*s)),bottom:Math.max(q.bottom,...all.map(a=>l.y+(a.y+a.h)*s))};}if(l.asset?.id==='act5:near:44'&&l.asset.rootExterior){const s=l.scale??1;return{left:q.left-400*s,right:q.right+400*s,top:q.top-(l.asset.upperCanopy?710*s:0),bottom:q.bottom+300*s};}if(l.asset?.id==='act5:near:42'){const s=l.scale??1;return{left:q.left-900*s,right:q.right+900*s,top:q.top,bottom:q.bottom+468*s};}if(l.asset?.id==='act5:near:41'&&l.asset.campExterior){const s=l.scale??1;return{left:l.x-2500*s,right:l.x+(l.asset.vector.viewBox[2]+2500)*s,top:q.top,bottom:l.y+3500*s};}const p=Math.min(l.asset.vector.viewBox[2]*.28,420)*(l.scale??1);return{left:q.left-p,right:q.right+p,top:q.top,bottom:q.bottom+p};};
 // Artwork-only continuation beyond the tile-domain paint rectangle. Physics bounds unchanged.
 const domainPaint=S._drawTerrainDomainTiles;
 S._drawTerrainDomainTiles=function(c,b,w,h){
- domainPaint.call(this,c,b,w,h);if(![41,42,44,45,47].includes(b.honroStage))return;
+ domainPaint.call(this,c,b,w,h);if(![41,42,43,44,45,47].includes(b.honroStage))return;
  const v=G.HonroBounds.viewport(this,w,h),d=b.honroTerrainBounds,size=512/this._worldRasterScale(b,w);
  const left=Math.floor(d.left/size)*size,top=Math.floor(d.top/size)*size,right=(Math.floor(d.right/size)+1)*size,bottom=(Math.floor(d.bottom/size)+1)*size;
  if(v.left>=left&&v.right<=right&&v.top>=top&&v.bottom<=bottom)return;
- c.save();c.beginPath();c.rect(v.left-1,v.top-1,v.right-v.left+2,v.bottom-v.top+2);c.rect(left,top,right-left,bottom-top);c.clip('evenodd');
+ c.save();c.beginPath();c.rect(v.left-1,v.top-1,v.right-v.left+2,v.bottom-v.top+2);// Stage43 exterior coverage must share the domain tiles' rounded device edge.
+ if(b.honroStage===43){const m=c.getTransform();if(m.b===0&&m.c===0&&m.a!==0&&m.d!==0){const sx=Math.round(left*m.a+m.e),sy=Math.round(top*m.d+m.f),ex=Math.round(right*m.a+m.e),ey=Math.round(bottom*m.d+m.f);c.rect((sx-m.e)/m.a,(sy-m.f)/m.d,(ex-sx)/m.a,(ey-sy)/m.d);}else c.rect(left,top,right-left,bottom-top);}else c.rect(left,top,right-left,bottom-top);c.clip('evenodd');
  for(const l of G.HonroTerrainDomain.materialLandmarks(b))if(l.asset?.id==='act5:near:'+b.honroStage)this.landmark(c,l);
  c.restore();
 };
 const readability=S.terrainReadability;
 S.terrainReadability=function(c,b,view){
- if(![41,42,44,45,47].includes(b.honroStage))return readability.call(this,c,b,view);
+ if(![41,42,43,44,45,47].includes(b.honroStage))return readability.call(this,c,b,view);
  const q=G.HonroTerrainReadability.prepare(b),saved=[],removed=[],keptWalkable=[];
  for(const group of q.groups){const edge=new Path2D();saved.push([group,group.edge]);for(const v of group.segments){const p=v.a,z=v.z,close=!v.walkable&&((Math.abs(p.x-z.x)<.01&&(Math.abs(p.x)<.01||Math.abs(p.x-b.width)<.01))||(Math.abs(p.y-z.y)<.01&&p.y>=b.height-360));if(close)removed.push({id:group.id,...v});if(v.walkable)keptWalkable.push(v);if(!close){edge.moveTo(p.x,p.y);edge.lineTo(z.x,z.y);}}group.edge=edge;}
  G.HonroEdgeClosureQA={removed,keptWalkableCount:keptWalkable.length,walkableRemoved:removed.filter(v=>v.walkable).length};try{return readability.call(this,c,b,view);}finally{for(const [g,e]of saved)g.edge=e;}
