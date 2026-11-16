@@ -1,0 +1,81 @@
+{
+  "status": "partial",
+  "local_source_commit": "293acd7",
+  "complete_native_tree": false,
+  "production_changes": false,
+  "note": "Only ten ordinary small original text files preserved. Four large original files remain in local Git history and are pending supported remote preservation. No large file transmission attempted, splitting, repackaging or alternative encoding used. Earlier pending files remain pending.",
+  "included": [
+    {
+      "path": "art/stage43-edge/recovery-20261117/contact-band/MANIFEST.json",
+      "sha": "1909e4d120aca4a3f13a0d36d4b377c4b8f82cec",
+      "size": 1954
+    },
+    {
+      "path": "art/stage43-edge/recovery-20261117/contact-band/README.md",
+      "sha": "cdaacc77f6eed905526132c50574ac27d8966db8",
+      "size": 746
+    },
+    {
+      "path": "art/stage43-edge/recovery-20261117/contact-band/registration.json",
+      "sha": "f6779ee5178552464d55bd02e146019f04c5d9fd",
+      "size": 1365
+    },
+    {
+      "path": "art/stage43-edge/recovery-20261117/contact-band/seam-study/derive-domain.py",
+      "sha": "a68aca3dc119b5ba96c94bc665d9a8794550865e",
+      "size": 3054
+    },
+    {
+      "path": "art/stage43-edge/recovery-20261117/contact-band/seam-study/prepare.py",
+      "sha": "42b228c9bd462ca142e11655007d6c4892bb6bb5",
+      "size": 1035
+    },
+    {
+      "path": "art/stage43-edge/recovery-20261117/contact-band/seam-study/report.json",
+      "sha": "603e86b0739a21ab72445fd48c7b69ad2a1aaaff",
+      "size": 404
+    },
+    {
+      "path": "art/stage43-edge/recovery-20261117/contact-band/v5-optimized/cull-protection.py",
+      "sha": "120b9324dbab28dd40157175d70a755698c2d645",
+      "size": 762
+    },
+    {
+      "path": "art/stage43-edge/recovery-20261117/contact-band/v5-optimized/cull-report.json",
+      "sha": "3278c02ed27bf0bce4fdfe61ba0955f4c91db3bf",
+      "size": 283
+    },
+    {
+      "path": "art/stage43-edge/recovery-20261117/contact-band/v5-optimized/export-asset.py",
+      "sha": "3c84c7d6685a49f8e123e71bec8e7cfc74c8ec4f",
+      "size": 4121
+    },
+    {
+      "path": "art/stage43-edge/recovery-20261117/contact-band/v5-optimized/final-verification.json",
+      "sha": "ecef17af2693b466a347253337c218349e33d377",
+      "size": 470
+    }
+  ],
+  "pending": [
+    {
+      "path": "art/stage43-edge/recovery-20261117/contact-band/concept-contact-v1.png",
+      "sha": "d79766a2e7f2d7eac3a9ad1edb69ef6cbb655b36",
+      "size": 1834088
+    },
+    {
+      "path": "art/stage43-edge/recovery-20261117/contact-band/seam-study/asset.json",
+      "sha": "ccb0c4c1b4ccc9ca3f366ab14025ffdca4173700",
+      "size": 1003999
+    },
+    {
+      "path": "art/stage43-edge/recovery-20261117/contact-band/trace-v1/color-raw.svg",
+      "sha": "279e10aac9db3fda1664e2f1b28db77ef4b180dd",
+      "size": 2528719
+    },
+    {
+      "path": "art/stage43-edge/recovery-20261117/contact-band/v5-optimized/asset-contact-v5.json",
+      "sha": "4dbaa4e58b597e720e58e2ada25729f7492d23f9",
+      "size": 1013268
+    }
+  ]
+}
