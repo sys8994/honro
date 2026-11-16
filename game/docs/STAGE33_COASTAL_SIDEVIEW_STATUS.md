@@ -46,3 +46,13 @@ Release gate: do not label browser traversal verified. Keep this source branch s
 HONRO_NATIVE_OUT=_local/reports/stage33-tides/high HONRO_REFERENCE_VIEWS='[{"stage":33,"id":"high","x":3500,"y":3100,"scale":0.28,"round":5}]' node --expose-gc tools/act5-edge-fix/capture-stage33-tides.mjs
 ```
 round를 1/2/5/7로 바꾸며 출력 경로도 분리한다. 코드·에셋·충돌·조수 설정 변경은 없다.
+
+### 같은 날 후속 공개 실제 입력 검수
+
+위의 탭14 오류 후 새 격리 탭15(`HONRO.html?verify=02153a8`)를 열어 정상 로드와 ‘디버그 · 기록 분리’를 확인했다. 기존 일반 저장이나 기존 탭을 초기화하지 않았다. 길을 열다→여정첩→4막→33장 진입 후 정상 UI의 ‘방어하며 기력 회복 후 턴 종료’를 사용해 적 행동을 거쳐 1→7턴을 진행했다. 내부 round/state 변경이나 적 삭제는 사용하지 않았다.
+
+- 2턴 `≈ ↑ 3`, 3턴 `↑ 2`, 4턴 `↑ 1`, 5·6턴 `≈ ━`, 7턴 `≈ ↓`를 실제 HUD에서 확인했다.
+- 5턴과 7턴에 동일 미니맵 위치로 이동해 저지대 경사면을 비교했다. 만조에는 연속 물 레이어가 새 암반과 길을 덮고, 물 빠짐에는 같은 길·암면이 다시 드러났다. 관찰 범위에서 물 경계 절단이나 암반 앞뒤 역전은 없었다.
+- 공개 증거 파일: `_local/reports/stage33-tides/public-round2.png`, `public-round5-high.png`. 7턴 물 빠짐은 실제 화면으로 확인했지만 별도 PNG 파일은 확보하지 않았다. Native 4상태 PNG와 공개 캡처를 혼동하지 않는다.
+- 시작 지점에서 방어 대기한 검수라 소단은 적 공격 후 전투불능이 되었다. 나머지 3명으로 7턴까지 진행했다. 이는 정상 전략·완주·승리 검수가 아니며 **아군 침수 후 복귀 이동은 아직 미검증**이다. 실제 수면 전환·화면 검수만 이번 후속 기록으로 확인 범위를 확장한다.
+- 02153a8 기록/도구 커밋의 Pages run43860590519는 success. 런타임 게임 변경은 없다. 새 탭에서는 이 검수 중 오류9가 발생하지 않았다. 기존 오류9의 원인은 판정하지 않았다.
