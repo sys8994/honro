@@ -28,3 +28,11 @@ The same-renderer original-vs-final BODY silhouette crop has alpha MAE0.0051/255
 The coverage test includes1440×900,1920×1080,390×844,360×800,412×915 and320×1200 using the actual camera policy plus overscan. Full art covers world x[-4400,8800], y[-13200,18414.8]. The diagnostic overview at zoom0.108 is below the game's minimum desktop zoom and can show the far art sheet edge; permitted game views remain inside it.
 
 **Native visual review accepted for integration on2026-11-16.** The exterior retains somewhat larger color faces than the original inner wall; this limitation is recorded, not claimed eliminated. Do not claim browser movement, completed gameplay, master integration, or Pages deployment from these Native results. Integrate only after visual review and preserve later master changes.
+
+## Published verification — 2026-11-16
+
+Integrated onto `c26abb7` without dropping the stage33 tide audit. Source checkpoint `9092030` and generated Game/Workshop build `cd72282` are on master. Tracked previous content-hashed assets were retained. GitHub Pages run `43873082290` completed build, deploy and status reporting successfully.
+
+The public `https://sys8994.github.io/honro/HONRO.html` was reloaded after deployment and stage47 entered through the Journey UI in **debug / separate records** mode. The 1180×757 browser viewport showed the new rock BODY, original stairs and door openings. Actual wheel zoom to the minimum and drag pans across west/east and both lower walls showed continuous rock, not the previous stretched blur or a sheet cut. Selecting Seolo and holding Right consumed movement from1100 to981 with the actor remaining on the authored starting bridge. Normal saves were not used. This is a focused public artwork/input regression, not stage completion or an end-to-end campaign playthrough; portrait coverage remains Native Scene plus camera-bound tests, not a mobile-browser run.
+
+The remaining visual limitation is unchanged: exterior color faces are somewhat larger than the original inner wall. No claim of complete texture equivalence is made.
