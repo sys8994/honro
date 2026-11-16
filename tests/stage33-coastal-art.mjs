@@ -8,5 +8,10 @@ for(const stage of p.stages){const n=q.stages.find(s=>s.id===stage.id);assert.de
 for(const old of p.library)assert.deepEqual(q.library.find(a=>a.id===old.id),old,'Old save provider changed');
 assert.equal(applyStage33CoastalPack(q,pack),q,'Not idempotent');
 const oldIds=new Set(p.library.map(a=>a.id));for(const a of q.library.filter(a=>!oldIds.has(a.id)))assert.equal(a.collision.length,0);
-const st=q.stages.find(s=>s.metadata.stageId===33);assert.equal(st.elements.filter(e=>e.id.startsWith('act4-sideview:33:coastal-v2:')).length,4);
+const st=q.stages.find(s=>s.metadata.stageId===33);assert.equal(st.elements.filter(e=>e.id.startsWith('act4-sideview:33:coastal-v2:')).length,5);
 console.log('PASS stage33 gameplay, other chapters, input, previous-save providers, zero added collision, idempotence');
+const west=pack.assets.find(a=>a.id.endsWith(':west-continuous-geology'));
+assert(west && west.bounds.x<0,'Missing left offscreen geology');
+const stair=pack.assets.find(a=>a.id.endsWith(':exact-stair-sidewall'));
+assert.deepEqual(stair.bounds,{x:0,y:0,w:6912,h:4608},'Stair artwork culling bounds diverge from registered world');
+console.log('PASS western continuity provider and staircase world bounds');
