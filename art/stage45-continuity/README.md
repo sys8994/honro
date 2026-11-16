@@ -35,3 +35,9 @@ tests/stage45-continuity.mjs는1440×900,1920×1080,390×844,360×800,412×915,3
 동일 deep clip을 쌓인 각 색면에 적용하면 AA 경계가 반복 누적되어 점선 같은 밝은 윤곽이 생겼다. 원본 색면을 먼저 현재 타일/뷰포트의 제한된 임시 surface에 합성하고 alpha를1회 적용하는 방식으로 수정한다. 전체맵 bitmap 자산으로 바꾸거나 거대한 고정 cache를 추가하지 않는다. 이 과정에서 Native @napi Canvas가 큰 transformed Path2D의 destination-in fill을 일부 타일에서 전부 투명하게 만드는 오류를 별도로 재현했다. 동일 크기의 임시 mask surface에 source-over로 먼저 그린 뒤 identity destination-in drawImage를 사용하는 표준 합성 방식으로 검사한다. 중간 final-east/final-overview는 이 Native 오류가 남은 실패 캡처이며 최종 검수 증거가 아니다.
 
 2surface 합성 후 동쪽390×844/0.7 Native를 직접 확인했다. BODY 명도가 정상으로 복원되고 인공 점선과 짧은2계단 경계가 사라졌다. 원본 보행면 외곽의 매우 가는 선과 원본/생성 재질 차이는 남지만, 검수한 배율에서 발판과 비보행 거목의 구분·접지가 유지된다. tests/act5-depth-composite는 두 surface의최대1024²제한·해제, V.context palette, transform/opacity/destination clip, 예외 복원 및 실제516²타일좌표에서 foreground 보존을 검사한다. 단일합성 reference와2채널값 이내 raster AA 차이이며 기존 중첩clip은404441채널이달랐다. 브라우저입력/성능/Pages검수는후속이다.
+
+## 마지막 돌판 하부 매립 검수
+
+루트 검수에서 마지막 원본 발판의 둥근 검은 받침이 독립된 섬처럼 보인다고 지적했다. contact-underside의 원본 #503327 곡선 상단 envelope를 이용해 그 아래만 실제 Inkscape 차집합했다. 색면 자체나 보행선은 변경하지 않았다. 접촉선+1px 위는 alpha 픽셀 차이0, 외부 불투명면 손실0. 외부24개 AA픽셀 변화(max14/255)는 전체 compound 재직렬화의 미세 raster 차이로 분리했다. baseline/원곡선/native입출력/report가 재현 근거다.
+
+최종 동쪽390×844/0.7 Native에서 U자 검은 받침이 사라지고 금빛 접촉면이 암반에 얕게 붙는다. 루트의 '기존 둥근 독립 받침보다 자연스럽게 연결' 검수 후 세로전체·서쪽·중앙 및 최신master 통합검수로 진행한다. 원본/생성 재질 차이와 이 좁은 하단의 가는 AA경계는 한계로 남긴다. 기능·접촉선을 건드리는 추가미세정제는 하지 않는다.
