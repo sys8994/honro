@@ -1,0 +1,50 @@
+{
+  "input": "_local/stage44/trace/exterior-raw.svg",
+  "input_sha256": "8b87e12a35c93e7ec1c3e18940743dfb798f55501fd7788e9747dc58bd047487",
+  "epsilon_viewbox_units": 1.2,
+  "changed_paths": 12,
+  "segments_before": 9374,
+  "segments_after": 9153,
+  "skips": {
+    "not smaller/guarded": 4
+  },
+  "render_checks": [
+    {
+      "mean_channel_error": 0.00020622325246222317,
+      "changed_pixel_fraction": 0.00027810304449648715,
+      "max_channel_error": 0.14901959896087646,
+      "width": 1280,
+      "accepted": true
+    }
+  ],
+  "growth_guard": {
+    "original_bytes": 534731,
+    "candidate_bytes": 403348,
+    "reasons": [],
+    "before": {
+      "segments": 9374,
+      "subpaths": 426,
+      "paths": 16,
+      "shape_elements": 16
+    },
+    "candidate": {
+      "segments": 9153,
+      "subpaths": 426,
+      "paths": 16,
+      "shape_elements": 16
+    },
+    "accepted": true
+  },
+  "accepted": true,
+  "candidate_bytes": 403348,
+  "original_bytes": 534731,
+  "output_bytes": 403348,
+  "output_metrics": {
+    "segments": 9153,
+    "subpaths": 426,
+    "paths": 16,
+    "shape_elements": 16
+  },
+  "output_sha256": "dd0c666a8c96a680768e8446ce1aadea0cd0d0b5db8d4f282fe0c81d2c1a18c3",
+  "input_unchanged": true
+}

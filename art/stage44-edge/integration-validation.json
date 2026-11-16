@@ -1,0 +1,96 @@
+{
+  "status": "parent-reviewed integration candidate; actual browser/public verification pending",
+  "limitations": [
+    "Original and generated root material/color planes still differ slightly",
+    "Local browser preview failed ERR_CONNECTION_REFUSED; not a browser-play pass",
+    "Original source top foliage crop is unchanged"
+  ],
+  "baseMaster": "66f10605cd1769ebea518f415f1a50d2d5b2b7f9",
+  "nativeEvidence": [
+    {
+      "file": "stage-44-west.png",
+      "view": {
+        "stage": 44,
+        "id": "west",
+        "x": 0,
+        "y": 1300,
+        "scale": 0.53,
+        "z": 0.53,
+        "w": 1440,
+        "h": 900
+      },
+      "pngSha256": "942600cf460a2399e8bd94fcae574faf99fb481e7c9ce365dc6cb66abd917bb1",
+      "stageSha256": "087676b3131a7fbecfcd68d81f9dcf5da4dbd5e89a2e5d8fdcc3b304033f0121",
+      "actors": 35,
+      "gameplaySha256": "5ac732c2711ae9a2f6a24288106da696972aad8ded4edcce11bb066eb26ac955",
+      "scope": "Production Scene composition in native Canvas. Original collision and actors, fixed diagnostic camera. Not browser or campaign play."
+    },
+    {
+      "file": "stage-44-east.png",
+      "view": {
+        "stage": 44,
+        "id": "east",
+        "x": 6600,
+        "y": 950,
+        "scale": 0.53,
+        "z": 0.53,
+        "w": 1440,
+        "h": 900
+      },
+      "pngSha256": "1fdbb1f136ed8197883488d3652ce8e0505cf18af3346079c3cc886ee3a6207f",
+      "stageSha256": "087676b3131a7fbecfcd68d81f9dcf5da4dbd5e89a2e5d8fdcc3b304033f0121",
+      "actors": 35,
+      "gameplaySha256": "5ac732c2711ae9a2f6a24288106da696972aad8ded4edcce11bb066eb26ac955",
+      "scope": "Production Scene composition in native Canvas. Original collision and actors, fixed diagnostic camera. Not browser or campaign play."
+    },
+    {
+      "file": "stage-44-center.png",
+      "view": {
+        "stage": 44,
+        "id": "center",
+        "x": 3400,
+        "y": 1150,
+        "scale": 0.53,
+        "z": 0.53,
+        "w": 1440,
+        "h": 900
+      },
+      "pngSha256": "f39cb8f5e0d9d600d0ead17a539f3e2c2fddd355772d7096747bc9cacdb88139",
+      "stageSha256": "087676b3131a7fbecfcd68d81f9dcf5da4dbd5e89a2e5d8fdcc3b304033f0121",
+      "actors": 35,
+      "gameplaySha256": "5ac732c2711ae9a2f6a24288106da696972aad8ded4edcce11bb066eb26ac955",
+      "scope": "Production Scene composition in native Canvas. Original collision and actors, fixed diagnostic camera. Not browser or campaign play."
+    },
+    {
+      "file": "stage-44-overview.png",
+      "view": {
+        "stage": 44,
+        "id": "overview",
+        "x": 3400,
+        "y": 1000,
+        "scale": 0.18,
+        "z": 0.18,
+        "w": 1440,
+        "h": 900
+      },
+      "pngSha256": "c895f64e1baa7e120cf16fe6e9aaff530eefb57e976a6bbfbc9a55f61f4b7743",
+      "stageSha256": "087676b3131a7fbecfcd68d81f9dcf5da4dbd5e89a2e5d8fdcc3b304033f0121",
+      "actors": 35,
+      "gameplaySha256": "5ac732c2711ae9a2f6a24288106da696972aad8ded4edcce11bb066eb26ac955",
+      "scope": "Production Scene composition in native Canvas. Original collision and actors, fixed diagnostic camera. Not browser or campaign play."
+    }
+  ],
+  "passed": [
+    "release-guard 19 tests",
+    "production build",
+    "act5-edge-art",
+    "act5-terrain-contact",
+    "stage42-edge-geology",
+    "stage33-coastal-art"
+  ],
+  "priorAssetPreservation": {
+    "uniquePaths": 1471,
+    "changed": 0,
+    "restoredTrackedFiles": 0
+  }
+}
