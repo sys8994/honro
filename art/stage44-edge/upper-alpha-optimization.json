@@ -1,0 +1,48 @@
+{
+  "input": "_local/stage44/upper-alpha-v2.svg",
+  "input_sha256": "2c6b575d7c4d40d250cf51e1b66e40b5b75f2018ad9935c4c4883ec695095950",
+  "epsilon_viewbox_units": 0.4,
+  "changed_paths": 1,
+  "segments_before": 6278,
+  "segments_after": 3459,
+  "skips": {},
+  "render_checks": [
+    {
+      "mean_channel_error": 6.703424151055515e-05,
+      "changed_pixel_fraction": 0.0010886270491803278,
+      "max_channel_error": 0.19215688109397888,
+      "width": 1280,
+      "accepted": true
+    }
+  ],
+  "growth_guard": {
+    "original_bytes": 117643,
+    "candidate_bytes": 44144,
+    "reasons": [],
+    "before": {
+      "segments": 6278,
+      "subpaths": 113,
+      "paths": 1,
+      "shape_elements": 1
+    },
+    "candidate": {
+      "segments": 3459,
+      "subpaths": 113,
+      "paths": 1,
+      "shape_elements": 1
+    },
+    "accepted": true
+  },
+  "accepted": true,
+  "candidate_bytes": 44144,
+  "original_bytes": 117643,
+  "output_bytes": 44144,
+  "output_metrics": {
+    "segments": 3459,
+    "subpaths": 113,
+    "paths": 1,
+    "shape_elements": 1
+  },
+  "output_sha256": "56b433b1142b8100c519569fc2c652e499223f909e88cb9cc1465efd94f9ff49",
+  "input_unchanged": true
+}

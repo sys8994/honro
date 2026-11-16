@@ -1,0 +1,50 @@
+{
+  "input": "_local/stage44/trace/body-raw.svg",
+  "input_sha256": "f692b1660dd3cda7252b0573eb7b3012f87f5fb1ac5651efdc1aa041aa9311c7",
+  "epsilon_viewbox_units": 1.2,
+  "changed_paths": 8,
+  "segments_before": 10057,
+  "segments_after": 9852,
+  "skips": {
+    "not smaller/guarded": 6
+  },
+  "render_checks": [
+    {
+      "mean_channel_error": 0.0002083619183395058,
+      "changed_pixel_fraction": 0.0002543179156908665,
+      "max_channel_error": 0.14117646217346191,
+      "width": 1280,
+      "accepted": true
+    }
+  ],
+  "growth_guard": {
+    "original_bytes": 572531,
+    "candidate_bytes": 448039,
+    "reasons": [],
+    "before": {
+      "segments": 10057,
+      "subpaths": 539,
+      "paths": 14,
+      "shape_elements": 14
+    },
+    "candidate": {
+      "segments": 9852,
+      "subpaths": 539,
+      "paths": 14,
+      "shape_elements": 14
+    },
+    "accepted": true
+  },
+  "accepted": true,
+  "candidate_bytes": 448039,
+  "original_bytes": 572531,
+  "output_bytes": 448039,
+  "output_metrics": {
+    "segments": 9852,
+    "subpaths": 539,
+    "paths": 14,
+    "shape_elements": 14
+  },
+  "output_sha256": "90b719f8046279dbe62e9b82a4c85430773c54fb8a6e70fc01c59c28c64ab3e1",
+  "input_unchanged": true
+}
