@@ -15,3 +15,8 @@ assert(west && west.bounds.x<0,'Missing left offscreen geology');
 const stair=pack.assets.find(a=>a.id.endsWith(':exact-stair-sidewall'));
 assert.deepEqual(stair.bounds,{x:0,y:0,w:6912,h:4608},'Stair artwork culling bounds diverge from registered world');
 console.log('PASS western continuity provider and staircase world bounds');
+const lowland=pack.assets.find(a=>a.id.endsWith(':lowland'));
+assert(lowland.bounds.x<=-3000,'Foreground must extend beyond the play boundary');
+assert(!pack.assets.some(a=>a.id.endsWith(':lowland-west-extension')),'Use one continuous foreground, not a seam patch');
+assert.equal(lowland.params.silhouetteUnderpaint,false);
+console.log('PASS single continuous western foreground');
