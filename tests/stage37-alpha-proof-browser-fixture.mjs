@@ -53,7 +53,7 @@ async function capture(id,runtimeSha256,variant){
   const clips=nodes.filter(n=>n.clipPath==='sourceAlpha');
   assert(bases.length===1&&clips.length===1,'Unexpected base fill / source clip count');
   if(variant==='single-clip'){
-   const originalDraw=HonroVectorArt.draw,prepared=new WeakMap(),seen=new Set();let buffer=null,maskCanvas=null;globalThis.S37_ALPHA_MASKS=[];
+   const originalDraw=HonroVectorArt.draw,prepared=new WeakMap(),seen=new Set();let buffer=null,maskCanvas=null,replacement=null;globalThis.S37_ALPHA_MASKS=[];
    HonroVectorArt.draw=function(c,a,l){
     if(a.id!==source.id)return originalDraw.apply(this,arguments);
     assert((l.scale??1)===1&&(l.rotation??0)===0&&c.globalAlpha===1&&c.globalCompositeOperation==='source-over','Unsupported isolation state');
@@ -62,12 +62,20 @@ async function capture(id,runtimeSha256,variant){
     if(!buffer)buffer=document.createElement('canvas');if(buffer.width!==w)buffer.width=w;if(buffer.height!==h)buffer.height=h;
     const cc=buffer.getContext('2d'),m=c.getTransform();cc.setTransform(1,0,0,1,0,0);cc.globalAlpha=1;cc.globalCompositeOperation='source-over';cc.filter='none';cc.clearRect(0,0,w,h);cc.setTransform(m.a,m.b,m.c,m.d,m.e,m.f);cc.honroVisualLayer=c.honroVisualLayer;
     const key=[w,h,m.a,m.b,m.c,m.d,m.e,m.f,l.x,l.y].join('|');
-    if(!seen.has(key)){seen.add(key);assert(seen.size<=32,'Too many diagnostic masks');assert(m.a>0&&m.d>0&&m.b===0&&m.c===0,'Axis-aligned mask mapping required');
+    {const newMask=!seen.has(key);seen.add(key);assert(seen.size<=32,'Too many diagnostic masks');assert(m.a>0&&m.d>0&&m.b===0&&m.c===0,'Axis-aligned mask mapping required');
      if(!maskCanvas)maskCanvas=document.createElement('canvas');maskCanvas.width=w;maskCanvas.height=h;const mc=maskCanvas.getContext('2d');mc.setTransform(m.a,m.b,m.c,m.d,m.e,m.f);mc.translate(l.x||0,l.y||0);mc.translate(-(a.anchor?.x||0),-(a.anchor?.y||0));mc.transform(...a.vector.root.transform);mc.clip(q.clip);mc.setTransform(1,0,0,1,0,0);mc.fillStyle='#ffffff';mc.fillRect(0,0,w,h);
-     S37_ALPHA_MASKS.push({width:w,height:h,m:[m.a,m.b,m.c,m.d,m.e,m.f],png:maskCanvas.toDataURL('image/png')});
+     if(newMask)S37_ALPHA_MASKS.push({width:w,height:h,m:[m.a,m.b,m.c,m.d,m.e,m.f],png:maskCanvas.toDataURL('image/png')});
     }
     originalDraw(cc,q.copy,l);
-    c.save();try{c.translate(l.x||0,l.y||0);c.translate(-(a.anchor?.x||0),-(a.anchor?.y||0));c.transform(...a.vector.root.transform);c.clip(q.clip);c.setTransform(1,0,0,1,0,0);c.drawImage(buffer,0,0);}finally{c.restore();}return true;
+    // Diagnostic: preserve the exact original result everywhere except partially covered source-alpha pixels.
+    // This is a coverage correction, not a threshold/erosion: alpha=0 and alpha=255 pixels are untouched.
+    if(!replacement)replacement=document.createElement('canvas');replacement.width=w;replacement.height=h;
+    const rc=replacement.getContext('2d');rc.drawImage(c.canvas,0,0);rc.setTransform(m.a,m.b,m.c,m.d,m.e,m.f);
+    rc.save();try{rc.translate(l.x||0,l.y||0);rc.translate(-(a.anchor?.x||0),-(a.anchor?.y||0));rc.transform(...a.vector.root.transform);rc.clip(q.clip);rc.setTransform(1,0,0,1,0,0);rc.drawImage(buffer,0,0);}finally{rc.restore();}
+    originalDraw(c,a,l);
+    const originalPixels=c.getImageData(0,0,w,h),newPixels=rc.getImageData(0,0,w,h),maskPixels=maskCanvas.getContext('2d').getImageData(0,0,w,h);
+    for(let i=0;i<originalPixels.data.length;i+=4){const alpha=maskPixels.data[i+3];if(alpha>0&&alpha<255)for(let k=0;k<4;k++)originalPixels.data[i+k]=newPixels.data[i+k];}
+    c.putImageData(originalPixels,0,0);return true;
    };
   }
   assert(!HonroVectorArt.validate(asset.vector).length,'Invalid diagnostic vector');
