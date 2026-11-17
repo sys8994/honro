@@ -1,0 +1,60 @@
+name: Diagnose remaining residuals with candidate repeats and same-job baseline
+on:
+  push:
+    branches: ['audit/remaining-terrain-bb-20261117']
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm ci && npm ci --prefix game
+      - name: Verify immutable fixture and both exact source trees
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/evidence"
+          node -e "const fs=require('fs'),crypto=require('crypto'),r=require('./tests/fixtures/remaining-terrain-bb-reference.json');if(crypto.createHash('sha256').update(fs.readFileSync('tests/remaining-terrain-browser-fixture.mjs')).digest('hex')!==r.fixtureSha256)throw Error('Fixture changed')"
+          for pair in baseline:7d238d20663c3ceffe430eb0304e01516ae625cf candidate:e8d8aa8865c832e831d6d221223356b440652e5f; do
+            variant=${pair%%:*};sha=${pair#*:}
+            git fetch --depth=1 origin "$sha"
+            git worktree add --detach "$RUNNER_TEMP/source-$variant" "$sha"
+            cmp package-lock.json "$RUNNER_TEMP/source-$variant/package-lock.json"
+            cmp game/package-lock.json "$RUNNER_TEMP/source-$variant/game/package-lock.json"
+            ln -s "$GITHUB_WORKSPACE/node_modules" "$RUNNER_TEMP/source-$variant/node_modules"
+            ln -s "$GITHUB_WORKSPACE/game/node_modules" "$RUNNER_TEMP/source-$variant/game/node_modules"
+            cp tests/remaining-terrain-browser-fixture.mjs "$RUNNER_TEMP/source-$variant/tests/remaining-terrain-browser-fixture.mjs"
+            (cd "$RUNNER_TEMP/source-$variant" && git rev-parse HEAD && git diff --exit-code && git rev-parse HEAD^{tree}) > "$RUNNER_TEMP/evidence/source-$variant.txt"
+          done
+      - name: Generate identical-original fixture for each source
+        run: |
+          for variant in baseline candidate; do
+            (cd "$RUNNER_TEMP/source-$variant" && node tests/remaining-terrain-browser-fixture.mjs "$RUNNER_TEMP/$variant-fixtures" 4,9,10 "$variant")
+          done
+          node -e "const r=require('./tests/fixtures/remaining-terrain-bb-reference.json');for(const q of r.rows)console.log(q.stage+':'+q.view)" > "$RUNNER_TEMP/selected.txt"
+      - name: One baseline and two candidate captures in the same job
+        shell: bash
+        run: |
+          browser=$(command -v google-chrome || command -v chromium)
+          "$browser" --version > "$RUNNER_TEMP/evidence/browser-version.txt"
+          for mode in baseline candidate1 candidate2; do
+            variant=candidate; if [ "$mode" = baseline ]; then variant=baseline; fi
+            while IFS=: read -r stage view; do
+              name="stage$stage-$variant-$view"
+              timeout 300s "$browser" --headless --no-first-run --no-default-browser-check --force-device-scale-factor=1 --virtual-time-budget=60000 --user-data-dir="$RUNNER_TEMP/profile-$mode-$name" --dump-dom "file://$RUNNER_TEMP/$variant-fixtures/$name.html" > "$RUNNER_TEMP/$mode-$name.html"
+              node tests/remaining-terrain-browser-result.mjs "$RUNNER_TEMP/$mode-$name.html" "$RUNNER_TEMP/evidence/$mode" "$stage" "$variant" "$view"
+            done < "$RUNNER_TEMP/selected.txt"
+          done
+      - name: Strict identity and coordinate analysis without tolerance changes
+        run: node tests/remaining-terrain-bb-compare.mjs "$RUNNER_TEMP/evidence" tests/fixtures/remaining-terrain-bb-reference.json
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: remaining-terrain-bb
+          path: ${{ runner.temp }}/evidence
+          if-no-files-found: error

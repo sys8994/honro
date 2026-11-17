@@ -1,0 +1,3068 @@
+{
+  "source": "7d238d20663c3ceffe430eb0304e01516ae625cf",
+  "fixtureRef": "fcf63304e53705cbdc50a7a7a9c4923803e5c3fa",
+  "previousRun": 44165802225,
+  "fixtureSha256": "38e08d9ce3d1f584a4fc29c7d0d616dfd9888d4bc51bb902059cf942480793b5",
+  "rows": [
+    {
+      "stage": 10,
+      "view": "desktop-br",
+      "baselineMetadata": {
+        "ok": true,
+        "scope": "Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.",
+        "stage": 10,
+        "variant": "baseline",
+        "view": "desktop-br",
+        "width": 1331,
+        "height": 763,
+        "dpr": 1,
+        "camera": {
+          "x": 5000,
+          "y": 3900,
+          "scale": 0.19573529411764706
+        },
+        "time": 2,
+        "seed": 3910,
+        "runtimeSha256": "cffb6906fdf5e6aefbf5e9de58d908141b03ce58a75c24da612df95f25971ef8",
+        "physicsSha256": "cb9f6608e6363bc1cd5f5504545a2f3d968a6615c261ce7d5ba1a58766c13ab6",
+        "renderPure": true,
+        "fontStatus": "loaded",
+        "fontNote": "System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+        "imageCount": 2,
+        "pendingImages": 0,
+        "imageErrors": 0,
+        "storage": [],
+        "errors": [],
+        "violations": [],
+        "pngSha256": "638f3bc4388d34eb3b75af2f443f52b11531550a7c1298529c636df482335571"
+      },
+      "candidateMetadata": {
+        "ok": true,
+        "scope": "Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.",
+        "stage": 10,
+        "variant": "candidate",
+        "view": "desktop-br",
+        "width": 1331,
+        "height": 763,
+        "dpr": 1,
+        "camera": {
+          "x": 5000,
+          "y": 3900,
+          "scale": 0.19573529411764706
+        },
+        "time": 2,
+        "seed": 3910,
+        "runtimeSha256": "690de5e9ee8390aa6a6094021337cbf908eab53f9d61d1c3d8b2e9d7d6802cfc",
+        "physicsSha256": "cb9f6608e6363bc1cd5f5504545a2f3d968a6615c261ce7d5ba1a58766c13ab6",
+        "renderPure": true,
+        "fontStatus": "loaded",
+        "fontNote": "System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+        "imageCount": 2,
+        "pendingImages": 0,
+        "imageErrors": 0,
+        "storage": [],
+        "errors": [],
+        "violations": [],
+        "pngSha256": "afced9e545082e0e03f2659c5f2fef038a2624b9d66f795b15bdb5fa71dbdfc0"
+      },
+      "pixels": [
+        {
+          "x": 636,
+          "y": 51,
+          "baseline": [
+            18,
+            20,
+            23,
+            255
+          ],
+          "candidate": [
+            18,
+            19,
+            22,
+            255
+          ]
+        },
+        {
+          "x": 636,
+          "y": 59,
+          "baseline": [
+            19,
+            21,
+            24,
+            255
+          ],
+          "candidate": [
+            19,
+            20,
+            23,
+            255
+          ]
+        },
+        {
+          "x": 636,
+          "y": 65,
+          "baseline": [
+            19,
+            21,
+            25,
+            255
+          ],
+          "candidate": [
+            19,
+            21,
+            24,
+            255
+          ]
+        },
+        {
+          "x": 1072,
+          "y": 146,
+          "baseline": [
+            29,
+            31,
+            36,
+            255
+          ],
+          "candidate": [
+            29,
+            32,
+            36,
+            255
+          ]
+        }
+      ],
+      "priorAA": {
+        "stage": 10,
+        "view": "desktop-br",
+        "originalBaselinePngSha256": "638f3bc4388d34eb3b75af2f443f52b11531550a7c1298529c636df482335571",
+        "originalCandidatePngSha256": "afced9e545082e0e03f2659c5f2fef038a2624b9d66f795b15bdb5fa71dbdfc0",
+        "newBaselinePngSha256": [
+          "638f3bc4388d34eb3b75af2f443f52b11531550a7c1298529c636df482335571",
+          "638f3bc4388d34eb3b75af2f443f52b11531550a7c1298529c636df482335571"
+        ],
+        "runtimeSha256": "cffb6906fdf5e6aefbf5e9de58d908141b03ce58a75c24da612df95f25971ef8",
+        "physicsSha256": "cb9f6608e6363bc1cd5f5504545a2f3d968a6615c261ce7d5ba1a58766c13ab6",
+        "camera": {
+          "x": 5000,
+          "y": 3900,
+          "scale": 0.19573529411764706
+        },
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+        "source": "7d238d20663c3ceffe430eb0304e01516ae625cf",
+        "fixtureRef": "fcf63304e53705cbdc50a7a7a9c4923803e5c3fa",
+        "aaWholeImageChanged": 0,
+        "aaWholeImageMaxDelta": 0,
+        "residualCoordinates": 4,
+        "baselineVariationObserved": 0,
+        "candidateExactInBaselineRepeats": 0,
+        "unresolvedNoBaselineVariation": 4,
+        "pixels": [
+          {
+            "x": 636,
+            "y": 51,
+            "baseline": [
+              18,
+              20,
+              23,
+              255
+            ],
+            "candidate": [
+              18,
+              19,
+              22,
+              255
+            ],
+            "repeat1": [
+              18,
+              20,
+              23,
+              255
+            ],
+            "repeat2": [
+              18,
+              20,
+              23,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 636,
+            "y": 59,
+            "baseline": [
+              19,
+              21,
+              24,
+              255
+            ],
+            "candidate": [
+              19,
+              20,
+              23,
+              255
+            ],
+            "repeat1": [
+              19,
+              21,
+              24,
+              255
+            ],
+            "repeat2": [
+              19,
+              21,
+              24,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 636,
+            "y": 65,
+            "baseline": [
+              19,
+              21,
+              25,
+              255
+            ],
+            "candidate": [
+              19,
+              21,
+              24,
+              255
+            ],
+            "repeat1": [
+              19,
+              21,
+              25,
+              255
+            ],
+            "repeat2": [
+              19,
+              21,
+              25,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 1072,
+            "y": 146,
+            "baseline": [
+              29,
+              31,
+              36,
+              255
+            ],
+            "candidate": [
+              29,
+              32,
+              36,
+              255
+            ],
+            "repeat1": [
+              29,
+              31,
+              36,
+              255
+            ],
+            "repeat2": [
+              29,
+              31,
+              36,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          }
+        ],
+        "scope": "Coordinate diagnostic only. No tolerance changes. Baseline variation elsewhere does not explain unreproduced residuals or accept candidate art."
+      }
+    },
+    {
+      "stage": 4,
+      "view": "portrait-br",
+      "baselineMetadata": {
+        "ok": true,
+        "scope": "Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.",
+        "stage": 4,
+        "variant": "baseline",
+        "view": "portrait-br",
+        "width": 390,
+        "height": 696,
+        "dpr": 1,
+        "camera": {
+          "x": 4600,
+          "y": 3500,
+          "scale": 0.057352941176470586
+        },
+        "time": 2,
+        "seed": 3910,
+        "runtimeSha256": "cffb6906fdf5e6aefbf5e9de58d908141b03ce58a75c24da612df95f25971ef8",
+        "physicsSha256": "c648dce51f9c9030f5d964a6b6fb845eda404dd24bf4dce37c5c8b691b3f643a",
+        "renderPure": true,
+        "fontStatus": "loaded",
+        "fontNote": "System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+        "imageCount": 2,
+        "pendingImages": 0,
+        "imageErrors": 0,
+        "storage": [],
+        "errors": [],
+        "violations": [],
+        "pngSha256": "82eddce862709d3ccf7a55ffb54295406539a30aeec69bbf17b8579d48194aee"
+      },
+      "candidateMetadata": {
+        "ok": true,
+        "scope": "Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.",
+        "stage": 4,
+        "variant": "candidate",
+        "view": "portrait-br",
+        "width": 390,
+        "height": 696,
+        "dpr": 1,
+        "camera": {
+          "x": 4600,
+          "y": 3500,
+          "scale": 0.057352941176470586
+        },
+        "time": 2,
+        "seed": 3910,
+        "runtimeSha256": "690de5e9ee8390aa6a6094021337cbf908eab53f9d61d1c3d8b2e9d7d6802cfc",
+        "physicsSha256": "c648dce51f9c9030f5d964a6b6fb845eda404dd24bf4dce37c5c8b691b3f643a",
+        "renderPure": true,
+        "fontStatus": "loaded",
+        "fontNote": "System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+        "imageCount": 2,
+        "pendingImages": 0,
+        "imageErrors": 0,
+        "storage": [],
+        "errors": [],
+        "violations": [],
+        "pngSha256": "07dd63ab595d25e7e8a8d124d107a36cccf0d16f5bf038bf6fad257d03f8a7a4"
+      },
+      "pixels": [
+        {
+          "x": 268,
+          "y": 61,
+          "baseline": [
+            41,
+            44,
+            48,
+            255
+          ],
+          "candidate": [
+            40,
+            44,
+            47,
+            255
+          ]
+        },
+        {
+          "x": 132,
+          "y": 71,
+          "baseline": [
+            42,
+            46,
+            50,
+            255
+          ],
+          "candidate": [
+            43,
+            46,
+            50,
+            255
+          ]
+        },
+        {
+          "x": 358,
+          "y": 129,
+          "baseline": [
+            54,
+            58,
+            64,
+            255
+          ],
+          "candidate": [
+            55,
+            59,
+            64,
+            255
+          ]
+        },
+        {
+          "x": 85,
+          "y": 130,
+          "baseline": [
+            67,
+            71,
+            77,
+            255
+          ],
+          "candidate": [
+            67,
+            72,
+            78,
+            255
+          ]
+        },
+        {
+          "x": 358,
+          "y": 132,
+          "baseline": [
+            53,
+            56,
+            63,
+            255
+          ],
+          "candidate": [
+            53,
+            57,
+            63,
+            255
+          ]
+        },
+        {
+          "x": 163,
+          "y": 137,
+          "baseline": [
+            56,
+            60,
+            66,
+            255
+          ],
+          "candidate": [
+            56,
+            61,
+            67,
+            255
+          ]
+        },
+        {
+          "x": 85,
+          "y": 138,
+          "baseline": [
+            74,
+            79,
+            87,
+            247
+          ],
+          "candidate": [
+            74,
+            81,
+            88,
+            247
+          ]
+        },
+        {
+          "x": 241,
+          "y": 139,
+          "baseline": [
+            49,
+            53,
+            60,
+            255
+          ],
+          "candidate": [
+            49,
+            54,
+            60,
+            255
+          ]
+        },
+        {
+          "x": 280,
+          "y": 139,
+          "baseline": [
+            56,
+            59,
+            65,
+            255
+          ],
+          "candidate": [
+            55,
+            59,
+            65,
+            255
+          ]
+        },
+        {
+          "x": 241,
+          "y": 140,
+          "baseline": [
+            51,
+            57,
+            62,
+            255
+          ],
+          "candidate": [
+            51,
+            56,
+            62,
+            255
+          ]
+        },
+        {
+          "x": 241,
+          "y": 146,
+          "baseline": [
+            57,
+            61,
+            67,
+            255
+          ],
+          "candidate": [
+            57,
+            61,
+            68,
+            255
+          ]
+        },
+        {
+          "x": 85,
+          "y": 148,
+          "baseline": [
+            95,
+            100,
+            110,
+            232
+          ],
+          "candidate": [
+            95,
+            101,
+            110,
+            232
+          ]
+        },
+        {
+          "x": 241,
+          "y": 148,
+          "baseline": [
+            56,
+            60,
+            67,
+            255
+          ],
+          "candidate": [
+            57,
+            60,
+            67,
+            255
+          ]
+        },
+        {
+          "x": 280,
+          "y": 150,
+          "baseline": [
+            63,
+            68,
+            74,
+            255
+          ],
+          "candidate": [
+            64,
+            69,
+            75,
+            255
+          ]
+        },
+        {
+          "x": 241,
+          "y": 160,
+          "baseline": [
+            45,
+            49,
+            55,
+            255
+          ],
+          "candidate": [
+            45,
+            50,
+            55,
+            255
+          ]
+        },
+        {
+          "x": 241,
+          "y": 162,
+          "baseline": [
+            44,
+            48,
+            53,
+            255
+          ],
+          "candidate": [
+            44,
+            49,
+            54,
+            255
+          ]
+        }
+      ],
+      "priorAA": {
+        "stage": 4,
+        "view": "portrait-br",
+        "originalBaselinePngSha256": "82eddce862709d3ccf7a55ffb54295406539a30aeec69bbf17b8579d48194aee",
+        "originalCandidatePngSha256": "07dd63ab595d25e7e8a8d124d107a36cccf0d16f5bf038bf6fad257d03f8a7a4",
+        "newBaselinePngSha256": [
+          "82eddce862709d3ccf7a55ffb54295406539a30aeec69bbf17b8579d48194aee",
+          "82eddce862709d3ccf7a55ffb54295406539a30aeec69bbf17b8579d48194aee"
+        ],
+        "runtimeSha256": "cffb6906fdf5e6aefbf5e9de58d908141b03ce58a75c24da612df95f25971ef8",
+        "physicsSha256": "c648dce51f9c9030f5d964a6b6fb845eda404dd24bf4dce37c5c8b691b3f643a",
+        "camera": {
+          "x": 4600,
+          "y": 3500,
+          "scale": 0.057352941176470586
+        },
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+        "source": "7d238d20663c3ceffe430eb0304e01516ae625cf",
+        "fixtureRef": "fcf63304e53705cbdc50a7a7a9c4923803e5c3fa",
+        "aaWholeImageChanged": 0,
+        "aaWholeImageMaxDelta": 0,
+        "residualCoordinates": 16,
+        "baselineVariationObserved": 0,
+        "candidateExactInBaselineRepeats": 0,
+        "unresolvedNoBaselineVariation": 16,
+        "pixels": [
+          {
+            "x": 268,
+            "y": 61,
+            "baseline": [
+              41,
+              44,
+              48,
+              255
+            ],
+            "candidate": [
+              40,
+              44,
+              47,
+              255
+            ],
+            "repeat1": [
+              41,
+              44,
+              48,
+              255
+            ],
+            "repeat2": [
+              41,
+              44,
+              48,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 132,
+            "y": 71,
+            "baseline": [
+              42,
+              46,
+              50,
+              255
+            ],
+            "candidate": [
+              43,
+              46,
+              50,
+              255
+            ],
+            "repeat1": [
+              42,
+              46,
+              50,
+              255
+            ],
+            "repeat2": [
+              42,
+              46,
+              50,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 358,
+            "y": 129,
+            "baseline": [
+              54,
+              58,
+              64,
+              255
+            ],
+            "candidate": [
+              55,
+              59,
+              64,
+              255
+            ],
+            "repeat1": [
+              54,
+              58,
+              64,
+              255
+            ],
+            "repeat2": [
+              54,
+              58,
+              64,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 85,
+            "y": 130,
+            "baseline": [
+              67,
+              71,
+              77,
+              255
+            ],
+            "candidate": [
+              67,
+              72,
+              78,
+              255
+            ],
+            "repeat1": [
+              67,
+              71,
+              77,
+              255
+            ],
+            "repeat2": [
+              67,
+              71,
+              77,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 358,
+            "y": 132,
+            "baseline": [
+              53,
+              56,
+              63,
+              255
+            ],
+            "candidate": [
+              53,
+              57,
+              63,
+              255
+            ],
+            "repeat1": [
+              53,
+              56,
+              63,
+              255
+            ],
+            "repeat2": [
+              53,
+              56,
+              63,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 163,
+            "y": 137,
+            "baseline": [
+              56,
+              60,
+              66,
+              255
+            ],
+            "candidate": [
+              56,
+              61,
+              67,
+              255
+            ],
+            "repeat1": [
+              56,
+              60,
+              66,
+              255
+            ],
+            "repeat2": [
+              56,
+              60,
+              66,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 85,
+            "y": 138,
+            "baseline": [
+              74,
+              79,
+              87,
+              247
+            ],
+            "candidate": [
+              74,
+              81,
+              88,
+              247
+            ],
+            "repeat1": [
+              74,
+              79,
+              87,
+              247
+            ],
+            "repeat2": [
+              74,
+              79,
+              87,
+              247
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 241,
+            "y": 139,
+            "baseline": [
+              49,
+              53,
+              60,
+              255
+            ],
+            "candidate": [
+              49,
+              54,
+              60,
+              255
+            ],
+            "repeat1": [
+              49,
+              53,
+              60,
+              255
+            ],
+            "repeat2": [
+              49,
+              53,
+              60,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 280,
+            "y": 139,
+            "baseline": [
+              56,
+              59,
+              65,
+              255
+            ],
+            "candidate": [
+              55,
+              59,
+              65,
+              255
+            ],
+            "repeat1": [
+              56,
+              59,
+              65,
+              255
+            ],
+            "repeat2": [
+              56,
+              59,
+              65,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 241,
+            "y": 140,
+            "baseline": [
+              51,
+              57,
+              62,
+              255
+            ],
+            "candidate": [
+              51,
+              56,
+              62,
+              255
+            ],
+            "repeat1": [
+              51,
+              57,
+              62,
+              255
+            ],
+            "repeat2": [
+              51,
+              57,
+              62,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 241,
+            "y": 146,
+            "baseline": [
+              57,
+              61,
+              67,
+              255
+            ],
+            "candidate": [
+              57,
+              61,
+              68,
+              255
+            ],
+            "repeat1": [
+              57,
+              61,
+              67,
+              255
+            ],
+            "repeat2": [
+              57,
+              61,
+              67,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 85,
+            "y": 148,
+            "baseline": [
+              95,
+              100,
+              110,
+              232
+            ],
+            "candidate": [
+              95,
+              101,
+              110,
+              232
+            ],
+            "repeat1": [
+              95,
+              100,
+              110,
+              232
+            ],
+            "repeat2": [
+              95,
+              100,
+              110,
+              232
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 241,
+            "y": 148,
+            "baseline": [
+              56,
+              60,
+              67,
+              255
+            ],
+            "candidate": [
+              57,
+              60,
+              67,
+              255
+            ],
+            "repeat1": [
+              56,
+              60,
+              67,
+              255
+            ],
+            "repeat2": [
+              56,
+              60,
+              67,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 280,
+            "y": 150,
+            "baseline": [
+              63,
+              68,
+              74,
+              255
+            ],
+            "candidate": [
+              64,
+              69,
+              75,
+              255
+            ],
+            "repeat1": [
+              63,
+              68,
+              74,
+              255
+            ],
+            "repeat2": [
+              63,
+              68,
+              74,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 241,
+            "y": 160,
+            "baseline": [
+              45,
+              49,
+              55,
+              255
+            ],
+            "candidate": [
+              45,
+              50,
+              55,
+              255
+            ],
+            "repeat1": [
+              45,
+              49,
+              55,
+              255
+            ],
+            "repeat2": [
+              45,
+              49,
+              55,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 241,
+            "y": 162,
+            "baseline": [
+              44,
+              48,
+              53,
+              255
+            ],
+            "candidate": [
+              44,
+              49,
+              54,
+              255
+            ],
+            "repeat1": [
+              44,
+              48,
+              53,
+              255
+            ],
+            "repeat2": [
+              44,
+              48,
+              53,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          }
+        ],
+        "scope": "Coordinate diagnostic only. No tolerance changes. Baseline variation elsewhere does not explain unreproduced residuals or accept candidate art."
+      }
+    },
+    {
+      "stage": 4,
+      "view": "portrait-tl",
+      "baselineMetadata": {
+        "ok": true,
+        "scope": "Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.",
+        "stage": 4,
+        "variant": "baseline",
+        "view": "portrait-tl",
+        "width": 390,
+        "height": 696,
+        "dpr": 1,
+        "camera": {
+          "x": 0,
+          "y": 0,
+          "scale": 0.057352941176470586
+        },
+        "time": 2,
+        "seed": 3910,
+        "runtimeSha256": "cffb6906fdf5e6aefbf5e9de58d908141b03ce58a75c24da612df95f25971ef8",
+        "physicsSha256": "c648dce51f9c9030f5d964a6b6fb845eda404dd24bf4dce37c5c8b691b3f643a",
+        "renderPure": true,
+        "fontStatus": "loaded",
+        "fontNote": "System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+        "imageCount": 2,
+        "pendingImages": 0,
+        "imageErrors": 0,
+        "storage": [],
+        "errors": [],
+        "violations": [],
+        "pngSha256": "731fb3cc4c841161dc065c9d87a1b3ae788c5a9a5664e447ed5d6bc0e095da46"
+      },
+      "candidateMetadata": {
+        "ok": true,
+        "scope": "Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.",
+        "stage": 4,
+        "variant": "candidate",
+        "view": "portrait-tl",
+        "width": 390,
+        "height": 696,
+        "dpr": 1,
+        "camera": {
+          "x": 0,
+          "y": 0,
+          "scale": 0.057352941176470586
+        },
+        "time": 2,
+        "seed": 3910,
+        "runtimeSha256": "690de5e9ee8390aa6a6094021337cbf908eab53f9d61d1c3d8b2e9d7d6802cfc",
+        "physicsSha256": "c648dce51f9c9030f5d964a6b6fb845eda404dd24bf4dce37c5c8b691b3f643a",
+        "renderPure": true,
+        "fontStatus": "loaded",
+        "fontNote": "System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+        "imageCount": 2,
+        "pendingImages": 0,
+        "imageErrors": 0,
+        "storage": [],
+        "errors": [],
+        "violations": [],
+        "pngSha256": "38fc1a514905dd2953df8578cc94a1c273191bb2d46d4364ac74bc67c25a851d"
+      },
+      "pixels": [
+        {
+          "x": 268,
+          "y": 61,
+          "baseline": [
+            41,
+            44,
+            48,
+            255
+          ],
+          "candidate": [
+            40,
+            44,
+            47,
+            255
+          ]
+        },
+        {
+          "x": 132,
+          "y": 71,
+          "baseline": [
+            43,
+            46,
+            50,
+            255
+          ],
+          "candidate": [
+            43,
+            47,
+            50,
+            255
+          ]
+        },
+        {
+          "x": 358,
+          "y": 129,
+          "baseline": [
+            53,
+            58,
+            64,
+            255
+          ],
+          "candidate": [
+            54,
+            58,
+            64,
+            255
+          ]
+        },
+        {
+          "x": 85,
+          "y": 130,
+          "baseline": [
+            66,
+            71,
+            77,
+            255
+          ],
+          "candidate": [
+            67,
+            72,
+            77,
+            255
+          ]
+        },
+        {
+          "x": 241,
+          "y": 133,
+          "baseline": [
+            46,
+            49,
+            54,
+            255
+          ],
+          "candidate": [
+            45,
+            49,
+            54,
+            255
+          ]
+        },
+        {
+          "x": 85,
+          "y": 138,
+          "baseline": [
+            74,
+            81,
+            88,
+            247
+          ],
+          "candidate": [
+            75,
+            82,
+            89,
+            247
+          ]
+        },
+        {
+          "x": 241,
+          "y": 139,
+          "baseline": [
+            49,
+            53,
+            59,
+            255
+          ],
+          "candidate": [
+            49,
+            52,
+            59,
+            255
+          ]
+        },
+        {
+          "x": 241,
+          "y": 140,
+          "baseline": [
+            51,
+            57,
+            62,
+            255
+          ],
+          "candidate": [
+            51,
+            56,
+            62,
+            255
+          ]
+        },
+        {
+          "x": 241,
+          "y": 144,
+          "baseline": [
+            54,
+            60,
+            65,
+            255
+          ],
+          "candidate": [
+            55,
+            60,
+            65,
+            255
+          ]
+        },
+        {
+          "x": 85,
+          "y": 145,
+          "baseline": [
+            93,
+            100,
+            110,
+            232
+          ],
+          "candidate": [
+            93,
+            101,
+            111,
+            232
+          ]
+        },
+        {
+          "x": 241,
+          "y": 146,
+          "baseline": [
+            57,
+            61,
+            67,
+            255
+          ],
+          "candidate": [
+            57,
+            61,
+            68,
+            255
+          ]
+        },
+        {
+          "x": 85,
+          "y": 148,
+          "baseline": [
+            95,
+            100,
+            110,
+            232
+          ],
+          "candidate": [
+            95,
+            101,
+            110,
+            232
+          ]
+        },
+        {
+          "x": 241,
+          "y": 148,
+          "baseline": [
+            56,
+            60,
+            67,
+            255
+          ],
+          "candidate": [
+            57,
+            60,
+            67,
+            255
+          ]
+        },
+        {
+          "x": 280,
+          "y": 150,
+          "baseline": [
+            62,
+            67,
+            73,
+            255
+          ],
+          "candidate": [
+            62,
+            68,
+            74,
+            255
+          ]
+        }
+      ],
+      "priorAA": {
+        "stage": 4,
+        "view": "portrait-tl",
+        "originalBaselinePngSha256": "731fb3cc4c841161dc065c9d87a1b3ae788c5a9a5664e447ed5d6bc0e095da46",
+        "originalCandidatePngSha256": "38fc1a514905dd2953df8578cc94a1c273191bb2d46d4364ac74bc67c25a851d",
+        "newBaselinePngSha256": [
+          "731fb3cc4c841161dc065c9d87a1b3ae788c5a9a5664e447ed5d6bc0e095da46",
+          "731fb3cc4c841161dc065c9d87a1b3ae788c5a9a5664e447ed5d6bc0e095da46"
+        ],
+        "runtimeSha256": "cffb6906fdf5e6aefbf5e9de58d908141b03ce58a75c24da612df95f25971ef8",
+        "physicsSha256": "c648dce51f9c9030f5d964a6b6fb845eda404dd24bf4dce37c5c8b691b3f643a",
+        "camera": {
+          "x": 0,
+          "y": 0,
+          "scale": 0.057352941176470586
+        },
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+        "source": "7d238d20663c3ceffe430eb0304e01516ae625cf",
+        "fixtureRef": "fcf63304e53705cbdc50a7a7a9c4923803e5c3fa",
+        "aaWholeImageChanged": 0,
+        "aaWholeImageMaxDelta": 0,
+        "residualCoordinates": 14,
+        "baselineVariationObserved": 0,
+        "candidateExactInBaselineRepeats": 0,
+        "unresolvedNoBaselineVariation": 14,
+        "pixels": [
+          {
+            "x": 268,
+            "y": 61,
+            "baseline": [
+              41,
+              44,
+              48,
+              255
+            ],
+            "candidate": [
+              40,
+              44,
+              47,
+              255
+            ],
+            "repeat1": [
+              41,
+              44,
+              48,
+              255
+            ],
+            "repeat2": [
+              41,
+              44,
+              48,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 132,
+            "y": 71,
+            "baseline": [
+              43,
+              46,
+              50,
+              255
+            ],
+            "candidate": [
+              43,
+              47,
+              50,
+              255
+            ],
+            "repeat1": [
+              43,
+              46,
+              50,
+              255
+            ],
+            "repeat2": [
+              43,
+              46,
+              50,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 358,
+            "y": 129,
+            "baseline": [
+              53,
+              58,
+              64,
+              255
+            ],
+            "candidate": [
+              54,
+              58,
+              64,
+              255
+            ],
+            "repeat1": [
+              53,
+              58,
+              64,
+              255
+            ],
+            "repeat2": [
+              53,
+              58,
+              64,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 85,
+            "y": 130,
+            "baseline": [
+              66,
+              71,
+              77,
+              255
+            ],
+            "candidate": [
+              67,
+              72,
+              77,
+              255
+            ],
+            "repeat1": [
+              66,
+              71,
+              77,
+              255
+            ],
+            "repeat2": [
+              66,
+              71,
+              77,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 241,
+            "y": 133,
+            "baseline": [
+              46,
+              49,
+              54,
+              255
+            ],
+            "candidate": [
+              45,
+              49,
+              54,
+              255
+            ],
+            "repeat1": [
+              46,
+              49,
+              54,
+              255
+            ],
+            "repeat2": [
+              46,
+              49,
+              54,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 85,
+            "y": 138,
+            "baseline": [
+              74,
+              81,
+              88,
+              247
+            ],
+            "candidate": [
+              75,
+              82,
+              89,
+              247
+            ],
+            "repeat1": [
+              74,
+              81,
+              88,
+              247
+            ],
+            "repeat2": [
+              74,
+              81,
+              88,
+              247
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 241,
+            "y": 139,
+            "baseline": [
+              49,
+              53,
+              59,
+              255
+            ],
+            "candidate": [
+              49,
+              52,
+              59,
+              255
+            ],
+            "repeat1": [
+              49,
+              53,
+              59,
+              255
+            ],
+            "repeat2": [
+              49,
+              53,
+              59,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 241,
+            "y": 140,
+            "baseline": [
+              51,
+              57,
+              62,
+              255
+            ],
+            "candidate": [
+              51,
+              56,
+              62,
+              255
+            ],
+            "repeat1": [
+              51,
+              57,
+              62,
+              255
+            ],
+            "repeat2": [
+              51,
+              57,
+              62,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 241,
+            "y": 144,
+            "baseline": [
+              54,
+              60,
+              65,
+              255
+            ],
+            "candidate": [
+              55,
+              60,
+              65,
+              255
+            ],
+            "repeat1": [
+              54,
+              60,
+              65,
+              255
+            ],
+            "repeat2": [
+              54,
+              60,
+              65,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 85,
+            "y": 145,
+            "baseline": [
+              93,
+              100,
+              110,
+              232
+            ],
+            "candidate": [
+              93,
+              101,
+              111,
+              232
+            ],
+            "repeat1": [
+              93,
+              100,
+              110,
+              232
+            ],
+            "repeat2": [
+              93,
+              100,
+              110,
+              232
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 241,
+            "y": 146,
+            "baseline": [
+              57,
+              61,
+              67,
+              255
+            ],
+            "candidate": [
+              57,
+              61,
+              68,
+              255
+            ],
+            "repeat1": [
+              57,
+              61,
+              67,
+              255
+            ],
+            "repeat2": [
+              57,
+              61,
+              67,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 85,
+            "y": 148,
+            "baseline": [
+              95,
+              100,
+              110,
+              232
+            ],
+            "candidate": [
+              95,
+              101,
+              110,
+              232
+            ],
+            "repeat1": [
+              95,
+              100,
+              110,
+              232
+            ],
+            "repeat2": [
+              95,
+              100,
+              110,
+              232
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 241,
+            "y": 148,
+            "baseline": [
+              56,
+              60,
+              67,
+              255
+            ],
+            "candidate": [
+              57,
+              60,
+              67,
+              255
+            ],
+            "repeat1": [
+              56,
+              60,
+              67,
+              255
+            ],
+            "repeat2": [
+              56,
+              60,
+              67,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 280,
+            "y": 150,
+            "baseline": [
+              62,
+              67,
+              73,
+              255
+            ],
+            "candidate": [
+              62,
+              68,
+              74,
+              255
+            ],
+            "repeat1": [
+              62,
+              67,
+              73,
+              255
+            ],
+            "repeat2": [
+              62,
+              67,
+              73,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          }
+        ],
+        "scope": "Coordinate diagnostic only. No tolerance changes. Baseline variation elsewhere does not explain unreproduced residuals or accept candidate art."
+      }
+    },
+    {
+      "stage": 9,
+      "view": "desktop-tl",
+      "baselineMetadata": {
+        "ok": true,
+        "scope": "Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.",
+        "stage": 9,
+        "variant": "baseline",
+        "view": "desktop-tl",
+        "width": 1331,
+        "height": 763,
+        "dpr": 1,
+        "camera": {
+          "x": 0,
+          "y": 0,
+          "scale": 0.19573529411764706
+        },
+        "time": 2,
+        "seed": 3910,
+        "runtimeSha256": "cffb6906fdf5e6aefbf5e9de58d908141b03ce58a75c24da612df95f25971ef8",
+        "physicsSha256": "2a54863573ccc3ff29b0a3ebc477f3b931ae4ce770092a3bb7299ce720ae1c72",
+        "renderPure": true,
+        "fontStatus": "loaded",
+        "fontNote": "System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+        "imageCount": 2,
+        "pendingImages": 0,
+        "imageErrors": 0,
+        "storage": [],
+        "errors": [],
+        "violations": [],
+        "pngSha256": "1dbdd3092f779cba8972b9d3907c3b48dd403495c03bc86e48ded1fdbb8f1b2b"
+      },
+      "candidateMetadata": {
+        "ok": true,
+        "scope": "Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.",
+        "stage": 9,
+        "variant": "candidate",
+        "view": "desktop-tl",
+        "width": 1331,
+        "height": 763,
+        "dpr": 1,
+        "camera": {
+          "x": 0,
+          "y": 0,
+          "scale": 0.19573529411764706
+        },
+        "time": 2,
+        "seed": 3910,
+        "runtimeSha256": "690de5e9ee8390aa6a6094021337cbf908eab53f9d61d1c3d8b2e9d7d6802cfc",
+        "physicsSha256": "2a54863573ccc3ff29b0a3ebc477f3b931ae4ce770092a3bb7299ce720ae1c72",
+        "renderPure": true,
+        "fontStatus": "loaded",
+        "fontNote": "System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+        "imageCount": 2,
+        "pendingImages": 0,
+        "imageErrors": 0,
+        "storage": [],
+        "errors": [],
+        "violations": [],
+        "pngSha256": "ff9d799c8a86260b2c6da177b58b44f22cd54706141787b9983a11d9c2c78b35"
+      },
+      "pixels": [
+        {
+          "x": 963,
+          "y": 56,
+          "baseline": [
+            21,
+            23,
+            27,
+            255
+          ],
+          "candidate": [
+            21,
+            23,
+            26,
+            255
+          ]
+        },
+        {
+          "x": 963,
+          "y": 57,
+          "baseline": [
+            22,
+            24,
+            27,
+            255
+          ],
+          "candidate": [
+            21,
+            23,
+            27,
+            255
+          ]
+        },
+        {
+          "x": 963,
+          "y": 70,
+          "baseline": [
+            25,
+            27,
+            31,
+            255
+          ],
+          "candidate": [
+            25,
+            26,
+            30,
+            255
+          ]
+        },
+        {
+          "x": 290,
+          "y": 142,
+          "baseline": [
+            37,
+            40,
+            46,
+            255
+          ],
+          "candidate": [
+            37,
+            40,
+            45,
+            255
+          ]
+        },
+        {
+          "x": 839,
+          "y": 143,
+          "baseline": [
+            35,
+            38,
+            43,
+            255
+          ],
+          "candidate": [
+            35,
+            39,
+            43,
+            255
+          ]
+        },
+        {
+          "x": 625,
+          "y": 203,
+          "baseline": [
+            34,
+            36,
+            42,
+            255
+          ],
+          "candidate": [
+            34,
+            36,
+            41,
+            255
+          ]
+        },
+        {
+          "x": 625,
+          "y": 233,
+          "baseline": [
+            44,
+            48,
+            54,
+            255
+          ],
+          "candidate": [
+            44,
+            47,
+            54,
+            255
+          ]
+        },
+        {
+          "x": 1130,
+          "y": 236,
+          "baseline": [
+            45,
+            48,
+            54,
+            255
+          ],
+          "candidate": [
+            45,
+            48,
+            55,
+            255
+          ]
+        },
+        {
+          "x": 1130,
+          "y": 242,
+          "baseline": [
+            45,
+            49,
+            55,
+            255
+          ],
+          "candidate": [
+            45,
+            49,
+            56,
+            255
+          ]
+        },
+        {
+          "x": 1130,
+          "y": 244,
+          "baseline": [
+            45,
+            49,
+            55,
+            255
+          ],
+          "candidate": [
+            45,
+            50,
+            56,
+            255
+          ]
+        },
+        {
+          "x": 1130,
+          "y": 245,
+          "baseline": [
+            45,
+            49,
+            56,
+            255
+          ],
+          "candidate": [
+            45,
+            49,
+            55,
+            255
+          ]
+        },
+        {
+          "x": 1130,
+          "y": 246,
+          "baseline": [
+            45,
+            48,
+            55,
+            255
+          ],
+          "candidate": [
+            45,
+            49,
+            56,
+            255
+          ]
+        },
+        {
+          "x": 732,
+          "y": 248,
+          "baseline": [
+            40,
+            43,
+            49,
+            255
+          ],
+          "candidate": [
+            40,
+            43,
+            50,
+            255
+          ]
+        },
+        {
+          "x": 1130,
+          "y": 248,
+          "baseline": [
+            45,
+            48,
+            54,
+            255
+          ],
+          "candidate": [
+            45,
+            48,
+            55,
+            255
+          ]
+        },
+        {
+          "x": 732,
+          "y": 249,
+          "baseline": [
+            40,
+            43,
+            50,
+            255
+          ],
+          "candidate": [
+            40,
+            43,
+            49,
+            255
+          ]
+        },
+        {
+          "x": 839,
+          "y": 269,
+          "baseline": [
+            31,
+            34,
+            39,
+            255
+          ],
+          "candidate": [
+            32,
+            35,
+            39,
+            255
+          ]
+        },
+        {
+          "x": 946,
+          "y": 270,
+          "baseline": [
+            35,
+            39,
+            43,
+            255
+          ],
+          "candidate": [
+            35,
+            38,
+            43,
+            255
+          ]
+        },
+        {
+          "x": 13,
+          "y": 277,
+          "baseline": [
+            30,
+            32,
+            37,
+            255
+          ],
+          "candidate": [
+            30,
+            32,
+            36,
+            255
+          ]
+        },
+        {
+          "x": 334,
+          "y": 291,
+          "baseline": [
+            33,
+            35,
+            40,
+            255
+          ],
+          "candidate": [
+            32,
+            35,
+            40,
+            255
+          ]
+        },
+        {
+          "x": 839,
+          "y": 293,
+          "baseline": [
+            25,
+            28,
+            32,
+            255
+          ],
+          "candidate": [
+            26,
+            28,
+            32,
+            255
+          ]
+        },
+        {
+          "x": 839,
+          "y": 298,
+          "baseline": [
+            25,
+            27,
+            31,
+            255
+          ],
+          "candidate": [
+            24,
+            27,
+            31,
+            255
+          ]
+        },
+        {
+          "x": 13,
+          "y": 299,
+          "baseline": [
+            25,
+            28,
+            32,
+            255
+          ],
+          "candidate": [
+            26,
+            29,
+            32,
+            255
+          ]
+        },
+        {
+          "x": 334,
+          "y": 301,
+          "baseline": [
+            29,
+            32,
+            37,
+            255
+          ],
+          "candidate": [
+            29,
+            32,
+            36,
+            255
+          ]
+        }
+      ],
+      "priorAA": {
+        "stage": 9,
+        "view": "desktop-tl",
+        "originalBaselinePngSha256": "1dbdd3092f779cba8972b9d3907c3b48dd403495c03bc86e48ded1fdbb8f1b2b",
+        "originalCandidatePngSha256": "ff9d799c8a86260b2c6da177b58b44f22cd54706141787b9983a11d9c2c78b35",
+        "newBaselinePngSha256": [
+          "1dbdd3092f779cba8972b9d3907c3b48dd403495c03bc86e48ded1fdbb8f1b2b",
+          "1dbdd3092f779cba8972b9d3907c3b48dd403495c03bc86e48ded1fdbb8f1b2b"
+        ],
+        "runtimeSha256": "cffb6906fdf5e6aefbf5e9de58d908141b03ce58a75c24da612df95f25971ef8",
+        "physicsSha256": "2a54863573ccc3ff29b0a3ebc477f3b931ae4ce770092a3bb7299ce720ae1c72",
+        "camera": {
+          "x": 0,
+          "y": 0,
+          "scale": 0.19573529411764706
+        },
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+        "source": "7d238d20663c3ceffe430eb0304e01516ae625cf",
+        "fixtureRef": "fcf63304e53705cbdc50a7a7a9c4923803e5c3fa",
+        "aaWholeImageChanged": 0,
+        "aaWholeImageMaxDelta": 0,
+        "residualCoordinates": 23,
+        "baselineVariationObserved": 0,
+        "candidateExactInBaselineRepeats": 0,
+        "unresolvedNoBaselineVariation": 23,
+        "pixels": [
+          {
+            "x": 963,
+            "y": 56,
+            "baseline": [
+              21,
+              23,
+              27,
+              255
+            ],
+            "candidate": [
+              21,
+              23,
+              26,
+              255
+            ],
+            "repeat1": [
+              21,
+              23,
+              27,
+              255
+            ],
+            "repeat2": [
+              21,
+              23,
+              27,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 963,
+            "y": 57,
+            "baseline": [
+              22,
+              24,
+              27,
+              255
+            ],
+            "candidate": [
+              21,
+              23,
+              27,
+              255
+            ],
+            "repeat1": [
+              22,
+              24,
+              27,
+              255
+            ],
+            "repeat2": [
+              22,
+              24,
+              27,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 963,
+            "y": 70,
+            "baseline": [
+              25,
+              27,
+              31,
+              255
+            ],
+            "candidate": [
+              25,
+              26,
+              30,
+              255
+            ],
+            "repeat1": [
+              25,
+              27,
+              31,
+              255
+            ],
+            "repeat2": [
+              25,
+              27,
+              31,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 290,
+            "y": 142,
+            "baseline": [
+              37,
+              40,
+              46,
+              255
+            ],
+            "candidate": [
+              37,
+              40,
+              45,
+              255
+            ],
+            "repeat1": [
+              37,
+              40,
+              46,
+              255
+            ],
+            "repeat2": [
+              37,
+              40,
+              46,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 839,
+            "y": 143,
+            "baseline": [
+              35,
+              38,
+              43,
+              255
+            ],
+            "candidate": [
+              35,
+              39,
+              43,
+              255
+            ],
+            "repeat1": [
+              35,
+              38,
+              43,
+              255
+            ],
+            "repeat2": [
+              35,
+              38,
+              43,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 625,
+            "y": 203,
+            "baseline": [
+              34,
+              36,
+              42,
+              255
+            ],
+            "candidate": [
+              34,
+              36,
+              41,
+              255
+            ],
+            "repeat1": [
+              34,
+              36,
+              42,
+              255
+            ],
+            "repeat2": [
+              34,
+              36,
+              42,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 625,
+            "y": 233,
+            "baseline": [
+              44,
+              48,
+              54,
+              255
+            ],
+            "candidate": [
+              44,
+              47,
+              54,
+              255
+            ],
+            "repeat1": [
+              44,
+              48,
+              54,
+              255
+            ],
+            "repeat2": [
+              44,
+              48,
+              54,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 1130,
+            "y": 236,
+            "baseline": [
+              45,
+              48,
+              54,
+              255
+            ],
+            "candidate": [
+              45,
+              48,
+              55,
+              255
+            ],
+            "repeat1": [
+              45,
+              48,
+              54,
+              255
+            ],
+            "repeat2": [
+              45,
+              48,
+              54,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 1130,
+            "y": 242,
+            "baseline": [
+              45,
+              49,
+              55,
+              255
+            ],
+            "candidate": [
+              45,
+              49,
+              56,
+              255
+            ],
+            "repeat1": [
+              45,
+              49,
+              55,
+              255
+            ],
+            "repeat2": [
+              45,
+              49,
+              55,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 1130,
+            "y": 244,
+            "baseline": [
+              45,
+              49,
+              55,
+              255
+            ],
+            "candidate": [
+              45,
+              50,
+              56,
+              255
+            ],
+            "repeat1": [
+              45,
+              49,
+              55,
+              255
+            ],
+            "repeat2": [
+              45,
+              49,
+              55,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 1130,
+            "y": 245,
+            "baseline": [
+              45,
+              49,
+              56,
+              255
+            ],
+            "candidate": [
+              45,
+              49,
+              55,
+              255
+            ],
+            "repeat1": [
+              45,
+              49,
+              56,
+              255
+            ],
+            "repeat2": [
+              45,
+              49,
+              56,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 1130,
+            "y": 246,
+            "baseline": [
+              45,
+              48,
+              55,
+              255
+            ],
+            "candidate": [
+              45,
+              49,
+              56,
+              255
+            ],
+            "repeat1": [
+              45,
+              48,
+              55,
+              255
+            ],
+            "repeat2": [
+              45,
+              48,
+              55,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 732,
+            "y": 248,
+            "baseline": [
+              40,
+              43,
+              49,
+              255
+            ],
+            "candidate": [
+              40,
+              43,
+              50,
+              255
+            ],
+            "repeat1": [
+              40,
+              43,
+              49,
+              255
+            ],
+            "repeat2": [
+              40,
+              43,
+              49,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 1130,
+            "y": 248,
+            "baseline": [
+              45,
+              48,
+              54,
+              255
+            ],
+            "candidate": [
+              45,
+              48,
+              55,
+              255
+            ],
+            "repeat1": [
+              45,
+              48,
+              54,
+              255
+            ],
+            "repeat2": [
+              45,
+              48,
+              54,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 732,
+            "y": 249,
+            "baseline": [
+              40,
+              43,
+              50,
+              255
+            ],
+            "candidate": [
+              40,
+              43,
+              49,
+              255
+            ],
+            "repeat1": [
+              40,
+              43,
+              50,
+              255
+            ],
+            "repeat2": [
+              40,
+              43,
+              50,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 839,
+            "y": 269,
+            "baseline": [
+              31,
+              34,
+              39,
+              255
+            ],
+            "candidate": [
+              32,
+              35,
+              39,
+              255
+            ],
+            "repeat1": [
+              31,
+              34,
+              39,
+              255
+            ],
+            "repeat2": [
+              31,
+              34,
+              39,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 946,
+            "y": 270,
+            "baseline": [
+              35,
+              39,
+              43,
+              255
+            ],
+            "candidate": [
+              35,
+              38,
+              43,
+              255
+            ],
+            "repeat1": [
+              35,
+              39,
+              43,
+              255
+            ],
+            "repeat2": [
+              35,
+              39,
+              43,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 13,
+            "y": 277,
+            "baseline": [
+              30,
+              32,
+              37,
+              255
+            ],
+            "candidate": [
+              30,
+              32,
+              36,
+              255
+            ],
+            "repeat1": [
+              30,
+              32,
+              37,
+              255
+            ],
+            "repeat2": [
+              30,
+              32,
+              37,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 334,
+            "y": 291,
+            "baseline": [
+              33,
+              35,
+              40,
+              255
+            ],
+            "candidate": [
+              32,
+              35,
+              40,
+              255
+            ],
+            "repeat1": [
+              33,
+              35,
+              40,
+              255
+            ],
+            "repeat2": [
+              33,
+              35,
+              40,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 839,
+            "y": 293,
+            "baseline": [
+              25,
+              28,
+              32,
+              255
+            ],
+            "candidate": [
+              26,
+              28,
+              32,
+              255
+            ],
+            "repeat1": [
+              25,
+              28,
+              32,
+              255
+            ],
+            "repeat2": [
+              25,
+              28,
+              32,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 839,
+            "y": 298,
+            "baseline": [
+              25,
+              27,
+              31,
+              255
+            ],
+            "candidate": [
+              24,
+              27,
+              31,
+              255
+            ],
+            "repeat1": [
+              25,
+              27,
+              31,
+              255
+            ],
+            "repeat2": [
+              25,
+              27,
+              31,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 13,
+            "y": 299,
+            "baseline": [
+              25,
+              28,
+              32,
+              255
+            ],
+            "candidate": [
+              26,
+              29,
+              32,
+              255
+            ],
+            "repeat1": [
+              25,
+              28,
+              32,
+              255
+            ],
+            "repeat2": [
+              25,
+              28,
+              32,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          },
+          {
+            "x": 334,
+            "y": 301,
+            "baseline": [
+              29,
+              32,
+              37,
+              255
+            ],
+            "candidate": [
+              29,
+              32,
+              36,
+              255
+            ],
+            "repeat1": [
+              29,
+              32,
+              37,
+              255
+            ],
+            "repeat2": [
+              29,
+              32,
+              37,
+              255
+            ],
+            "baselineVariationObserved": false,
+            "twoNewRepeatsDiffer": false,
+            "candidateExactInBaselineRepeats": false
+          }
+        ],
+        "scope": "Coordinate diagnostic only. No tolerance changes. Baseline variation elsewhere does not explain unreproduced residuals or accept candidate art."
+      }
+    }
+  ],
+  "candidateSource": "e8d8aa8865c832e831d6d221223356b440652e5f"
+}
