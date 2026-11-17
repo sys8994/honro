@@ -17,3 +17,12 @@ jobs:
           "$browser" --version
           timeout 60s "$browser" --headless --no-first-run --no-default-browser-check --user-data-dir="$RUNNER_TEMP/honro-gradient-probe" --dump-dom "file://$PWD/tests/fixtures/canvas/transformed-gradient.html" > "$RUNNER_TEMP/honro-gradient-result.html"
           node tests/canvas-gradient-browser-result.mjs "$RUNNER_TEMP/honro-gradient-result.html"
+      - name: Install locked Native canvas dependencies
+        run: npm ci
+      - name: Compare actual production handoff tiles
+        shell: bash
+        run: |
+          node tests/handoff-tile-browser-fixture.mjs "$RUNNER_TEMP/honro-handoff-tile.html"
+          browser=$(command -v google-chrome || command -v chromium)
+          timeout 120s "$browser" --headless --no-first-run --no-default-browser-check --user-data-dir="$RUNNER_TEMP/honro-handoff-tile-profile" --dump-dom "file://$RUNNER_TEMP/honro-handoff-tile.html" > "$RUNNER_TEMP/honro-handoff-tile-result.html"
+          node tests/handoff-tile-browser-result.mjs "$RUNNER_TEMP/honro-handoff-tile-result.html" "$RUNNER_TEMP/honro-handoff-tile.html.native.json" "$RUNNER_TEMP/honro-handoff-comparison.json"
