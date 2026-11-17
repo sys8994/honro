@@ -23,8 +23,10 @@ jobs:
           git fetch origin e89242eedb5c040d38a9077c7289fbdc97786bdf --depth=1
           BASELINE_REF=e89242eedb5c040d38a9077c7289fbdc97786bdf node tests/stage32-foundation-contract.mjs
       - name: Generate ten isolated CSS viewport scenes
+        if: ${{ !cancelled() }}
         run: HONRO_ACT4_RELEASE=1 node tests/stage32-coverage-matrix-fixture.mjs "$RUNNER_TEMP/transition-fixtures"
       - name: Actual Chrome, isolated profiles and no saved game
+        if: ${{ !cancelled() }}
         shell: bash
         run: |
           browser=$(command -v google-chrome || command -v chromium)
