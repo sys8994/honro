@@ -7,7 +7,7 @@ Not natural campaign chapters1-39 or human difficulty acceptance.
 import json,lzma,os,time,traceback,hashlib
 from pathlib import Path
 from playwright.sync_api import sync_playwright
-root=Path(__file__).resolve().parents[3]
+root=Path(__file__).resolve().parents[2]
 out=Path(os.environ['HONRO_CAPTURE_OUT']);out.mkdir(parents=True,exist_ok=True)
 assert os.environ.get('HONRO40_QA_ENTRY_APPROVED')=='1','Preserved QA profile entry must be explicitly scoped'
 raw=lzma.decompress((root/'tools/act4-rc/fixtures/stage40-checkpoints/sailing-observation-local-storage.json.xz').read_bytes())
