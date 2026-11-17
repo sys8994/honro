@@ -1,5 +1,5 @@
 """Independent actual App flow from preserved QA profile, normal inputs only.
-No current user storage; one declared UI restart before test, never retry failure.
+No current user storage; official terrain-migration entry before test, never retry failure.
 Native attack API is used with unchanged equipped skill/aim bounds; all physics,
 turns, dialogue, missions and persistence run in the production App frame loop.
 Not natural campaign chapters1-39 or human difficulty acceptance.
@@ -49,9 +49,15 @@ with sync_playwright() as w:
   p.goto(os.environ['HONRO_CAPTURE_URL'],wait_until='domcontentloaded');p.wait_for_function('window.HonroApp',timeout=120000)
   result['emptyContextStorage']=p.evaluate("Object.keys(localStorage)")
   p.locator('[data-action="settings"]').first.click();p.get_by_text('기록·관리',exact=False).click();p.get_by_text('JSON 기록 가져오기',exact=True).click();p.get_by_text('파일 선택',exact=True).click();p.locator('#file-import').set_input_files(str(source.resolve()))
-  p.wait_for_function('HonroApp.profile?.honroBattle?.honroStage===40',timeout=120000);p.get_by_text('이어서 걷기',exact=True).click();p.wait_for_function('HonroApp.engine?.b?.honroStage===40',timeout=120000);ready()
-  # Exactly one declared normal UI restart, before combat measurement.
-  p.locator('[data-action="pause"]').first.click();p.get_by_text('다시 걷기',exact=True).click();p.get_by_text('전투 처음부터',exact=True).click();p.get_by_role('button',name='계속',exact=True).click();p.wait_for_function('HonroApp.engine?.b?.honroStage===40&&HonroApp.engine.b.round===1',timeout=90000);ready()
+  p.wait_for_function('HonroApp.profile?.honroMapRestart===40',timeout=120000)
+  live=p.evaluate('''()=>({heroes:HonroApp.profile.heroes,proof:HonroApp.profile.honroAct4,runId:HonroApp.profile.equipment.runId,lastStage:HonroApp.profile.lastStage,restart:HonroApp.profile.honroMapRestart,battle:HonroApp.profile.honroBattle})''')
+  original=json.loads(raw);assert live['heroes']==original['heroes']
+  for key in ['safeSeven','rescued']:assert live['proof'][key]==original['honroAct4'][key]
+  assert live['runId']==original['equipment']['runId'] and live['restart']==40 and live['battle'] is None
+  result['migration']={'lastStage':live['lastStage'],'restart':live['restart'],'battleClearedByProduct':live['battle'] is None,'growthUnchanged':True,'priorProofUnchanged':True,'runIdUnchanged':True}
+  result['entryRoute']='Observed official terrain migration: new-terrain entry button, no battle reset'
+  p.get_by_text('새 지형에서 다시 걷기',exact=True).click()
+  p.wait_for_function('HonroApp.engine?.b?.honroStage===40&&HonroApp.engine.b.round===1',timeout=120000);ready()
   initial=record('fresh-entry');assert initial['proof'] and len(initial['foes'])==42 and initial['sceneIsActual'],initial
   result['initial']=initial;initial_by_id={u['id']:u for u in initial['foes']};route={u['id']:0 for u in initial['heroes']};snapshot('initial');started=time.monotonic();last_round=0
   for n in range(1200):
@@ -65,6 +71,8 @@ with sync_playwright() as w:
    if usable:
     choice=min(usable,key=lambda u:(route[u['id']],u['x']))
     if choice['id']!=s['active']:p.locator('[data-action="select-hero"][data-id="'+choice['id']+'"]').click();p.wait_for_timeout(120);ready();s=state()
+   current=next(u for u in s['heroes'] if u['id']==s['active'])
+   if current['hp']/current['maxHp']<.5:p.keyboard.press('f');record('normal-defend-wounded');p.wait_for_timeout(300);continue
    plan=p.evaluate(PLAN)
    if plan:
     fired=p.evaluate('''z=>{const a=HonroApp,e=a.engine,u=e.active;if(!a.canInput()||u.id!==z.actor||e.b.round!==z.round||!u.loadout.includes(z.id)||z.angle< -90||z.angle>270||z.power<.13||z.power>1)return false;return e.fire(z.id,z.angle,z.power);}''',plan)
