@@ -78,7 +78,13 @@ function compileScanline(nodes,cfg){
  events.sort((a,b)=>a.x-b.x);const winding=new Int32Array(nodes.length),gray=new Int32Array(nodes.length),bounds=[],labels=[];
  for(const e of events){for(const o of e.owners){winding[o.owner]+=e.delta;if(o.gray)gray[o.owner]+=e.delta;}let top=-1;for(let i=nodes.length-1;i>=0;i--)if(winding[i]){top=i;break;}const label=labelTable[top+1+(top>=0&&gray[top]!==0?26:0)];if(bounds.length&&e.x===bounds.at(-1))labels[labels.length-1]=label;else{bounds.push(e.x);labels.push(label);}}
  const rowX=Float64Array.from(bounds),rowLabels=Uint8Array.from(labels,v=>v.top+1+(v.gray?26:0));
- const result={events:events.length,logicalBytes:rowX.byteLength+rowLabels.byteLength+128,at(x,fallback){let lo=0,hi=rowX.length;while(lo<hi){const mid=(lo+hi)>>1;if(rowX[mid]<=x)lo=mid+1;else hi=mid;}const estimate=lo?labelTable[rowLabels[lo-1]]:{top:-1,gray:false},distance=Math.min(Math.abs(x-(rowX[lo]??Infinity)),Math.abs(x-(rowX[lo-1]??-Infinity)));if(distance<.002)return fallback(x,y,distance,estimate);return estimate;}};
+ const result={events:events.length,logicalBytes:rowX.byteLength+rowLabels.byteLength+128,
+ span(x0,x1){let lo=0,hi=rowX.length;while(lo<hi){const mid=(lo+hi)>>1;if(rowX[mid]<=x0)lo=mid+1;else hi=mid;}
+  // Group only original sixteen samples whose full interval is farther than
+  // the unchanged oracle guard from every source boundary. No sampling loss.
+  if(x0-(rowX[lo-1]??-Infinity)<=.002||(rowX[lo]??Infinity)-x1<=.002)return null;
+  return lo?labelTable[rowLabels[lo-1]]:{top:-1,gray:false};
+ },at(x,fallback){let lo=0,hi=rowX.length;while(lo<hi){const mid=(lo+hi)>>1;if(rowX[mid]<=x)lo=mid+1;else hi=mid;}const estimate=lo?labelTable[rowLabels[lo-1]]:{top:-1,gray:false},distance=Math.min(Math.abs(x-(rowX[lo]??Infinity)),Math.abs(x-(rowX[lo-1]??-Infinity)));if(distance<.002)return fallback(x,y,distance,estimate);return estimate;}};
  if(result.logicalBytes<=MAX_ROW_BYTES){while(rowBytes+result.logicalBytes>MAX_ROW_BYTES&&rowCache.size){const first=rowCache.keys().next().value;rowBytes-=rowCache.get(first).logicalBytes;rowCache.delete(first);}rowCache.set(y,result);rowBytes+=result.logicalBytes;}return result;
  }
  return {row,uniqueSegments:segments.length,clearRows:()=>{rowCache.clear();rowBytes=0;},stats:()=>({rowBytes,rowHits,rowMisses,rows:rowCache.size,uniqueSegments:segments.length,scope:"Logical numeric/reference payload estimate, not JS heap/GPU bytes; bounded LRU4MiB"})};
@@ -154,13 +160,22 @@ function coherentColor(c,cv,q){
   if(road[k]){coverageStats.roadSkipped++;continue;}
   if(body[k+3]!==255||data[k+3]!==255||field[k+3]!==255)continue;
   coverageStats.eligible++;scanRows??=Array.from({length:sampleN},(_,sy)=>q.scanline.row((y+y0+(sy+.5)/sampleN-m.f)/m.d));const sum=[0,0,0];let actualGrass=0;
-  for(let sy=0;sy<sampleN;sy++)for(let sx=0;sx<sampleN;sx++){
+  for(let sy=0;sy<sampleN;sy++){
+   const uniform=scanRows[sy].span((x+.5/sampleN-m.e)/m.a,(x+(sampleN-.5)/sampleN-m.e)/m.a);
+   if(uniform){
+    const j=uniform.top;if(j<0){sum[0]=NaN;continue;}
+    if(j>=12&&j<=17)actualGrass+=sampleN;
+    const p=q.paths[j],color=p.protected||uniform.gray?colors[j]:field.subarray(k,k+3);
+    for(let ch=0;ch<3;ch++)sum[ch]+=sampleN*color[ch];continue;
+   }
+   for(let sx=0;sx<sampleN;sx++){
    const dx=x+(sx+.5)/sampleN,dy=y+y0+(sy+.5)/sampleN;let color=null;
    const label=scanRows[sy].at((dx-m.e)/m.a,(_x,_y,distance,estimate)=>{coverageStats.boundaryFallbacks++;let actual={top:-1,gray:false};for(let j=q.paths.length-1;j>=0;j--){const p=q.paths[j];if(c.isPointInPath(p.path,dx,dy,p.rule)){actual={top:j,gray:!!p.gray&&c.isPointInPath(p.gray,dx,dy,p.rule)};break;}}if(actual.top!==estimate.top||actual.gray!==estimate.gray){coverageStats.labelOverrides++;coverageStats.maxOverrideDistance=Math.max(coverageStats.maxOverrideDistance,distance);}return actual;});
    if(label.top>=0){const j=label.top,p=q.paths[j];if(j>=12&&j<=17)actualGrass++;color=p.protected||label.gray?colors[j]:field.subarray(k,k+3);}
    // A fully opaque raster BODY can still contain unresolved subpixel holes.
    // Such a pixel is not safe to recolor: leave the complete original pixel.
    if(!color){sum[0]=NaN;break;}for(let ch=0;ch<3;ch++)sum[ch]+=color[ch];
+  }
   }
   coverageStats.samples+=256;coverageStats.actualGrassSamples+=actualGrass;
   if(!Number.isFinite(sum[0]))continue;
