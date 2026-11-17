@@ -1,0 +1,43 @@
+name: Early Scene census
+on:
+  push:
+    branches: ['audit/early-scene-census-20261118']
+permissions:
+  contents: read
+jobs:
+  census:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix:
+        stages: ['1 2 3 4 5', '6 7 8 10 11', '12 14 15 16 18', '19 20 21 22 23', '24 25 26 27 28']
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm ci && npm ci --prefix game
+      - run: node tests/early-scene-census-fixture.mjs "$RUNNER_TEMP/census"
+      - name: Read-only isolated Chrome Scene
+        shell: bash
+        run: |
+          browser=$(command -v google-chrome || command -v chromium)
+          failed=0
+          for stage in ${{ matrix.stages }}; do
+            views='center nw ne sw se'; if [[ "$stage" == 21 ]]; then views="$views gate"; fi
+            for view in $views; do
+              name="stage$stage-$view"
+              timeout 180s "$browser" --headless --no-first-run --no-default-browser-check --force-device-scale-factor=1 --virtual-time-budget=60000 --user-data-dir="$RUNNER_TEMP/profile-$name" --dump-dom "file://$RUNNER_TEMP/census/stage$stage.html#$view" > "$RUNNER_TEMP/$name.html"
+              node tests/early-encounter-browser-result.mjs "$RUNNER_TEMP/$name.html" "$RUNNER_TEMP/census-results" || failed=1
+              rm -rf "$RUNNER_TEMP/profile-$name" "$RUNNER_TEMP/$name.html"
+            done
+          done
+          exit "$failed"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: early-census-${{ strategy.job-index }}
+          path: ${{ runner.temp }}/census-results
+          if-no-files-found: warn
