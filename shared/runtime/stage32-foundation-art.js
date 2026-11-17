@@ -57,7 +57,24 @@ function compileScanline(nodes,cfg){
  const segments=[...pool.values()],buckets=new Map();
  for(const segment of segments)for(const piece of segment.pieces){if(piece.min===piece.max)continue;const first=Math.floor(piece.min/8),last=Math.floor(piece.max/8);if(last-first>4096)throw Error('Unexpected source coordinate range');for(let key=first;key<=last;key++){if(!buckets.has(key))buckets.set(key,[]);buckets.get(key).push({s:segment,p:piece});}}
 
- function row(y){if(rowCache.has(y)){const hit=rowCache.get(y);rowCache.delete(y);rowCache.set(y,hit);rowHits++;return hit;}rowMisses++;const events=[];for(const {s,p} of buckets.get(Math.floor(y/8))||[]){if(!(y>=p.min&&y<p.max)||p.min===p.max)continue;let lo=p.lo,hi=p.hi;for(let k=0;k<44;k++){const mid=(lo+hi)/2,v=evalC(s.ys,mid);if((v<y)===(p.delta>0))lo=mid;else hi=mid;}events.push({x:evalC(s.xs,(lo+hi)/2),delta:p.delta,owners:s.owners});}
+ // Research candidate only: safeguarded Newton inversion. Near horizontal
+ // tangencies use the untouched 44-step baseline to avoid cancellation error.
+ function crossingX(s,p,y){
+  const reference=()=>{let lo=p.lo,hi=p.hi;for(let k=0;k<44;k++){const mid=(lo+hi)/2,v=evalC(s.ys,mid);if((v<y)===(p.delta>0))lo=mid;else hi=mid;}return evalC(s.xs,(lo+hi)/2);};
+  const derivative=t=>{const u=1-t,v=s.ys;return 3*(u*u*(v[1]-v[0])+2*u*t*(v[2]-v[1])+t*t*(v[3]-v[2]));};
+  let lo=p.lo,hi=p.hi,t=lo+(hi-lo)*(y-p.ylo)/(p.yhi-p.ylo);
+  for(let k=0;k<12;k++){
+   const v=evalC(s.ys,t),der=derivative(t);if(Math.abs(der)<1)return reference();
+   if(v===y)return evalC(s.xs,t);
+   if((v<y)===(p.delta>0))lo=t;else hi=t;
+   const next=t-(v-y)/der;
+   if(Math.abs(next-t)<1e-13&&Number.isFinite(next)&&next>=lo&&next<=hi)return evalC(s.xs,next);
+   t=Number.isFinite(next)&&next>lo&&next<hi?next:(lo+hi)/2;
+  }
+  return reference();
+ }
+
+ function row(y){if(rowCache.has(y)){const hit=rowCache.get(y);rowCache.delete(y);rowCache.set(y,hit);rowHits++;return hit;}rowMisses++;const events=[];for(const {s,p} of buckets.get(Math.floor(y/8))||[]){if(!(y>=p.min&&y<p.max)||p.min===p.max)continue;events.push({x:crossingX(s,p,y),delta:p.delta,owners:s.owners});}
  events.sort((a,b)=>a.x-b.x);const winding=new Int32Array(nodes.length),gray=new Int32Array(nodes.length),bounds=[],labels=[];
  for(const e of events){for(const o of e.owners){winding[o.owner]+=e.delta;if(o.gray)gray[o.owner]+=e.delta;}let top=-1;for(let i=nodes.length-1;i>=0;i--)if(winding[i]){top=i;break;}const label=labelTable[top+1+(top>=0&&gray[top]!==0?26:0)];if(bounds.length&&e.x===bounds.at(-1))labels[labels.length-1]=label;else{bounds.push(e.x);labels.push(label);}}
  const rowX=Float64Array.from(bounds),rowLabels=Uint8Array.from(labels,v=>v.top+1+(v.gray?26:0));
