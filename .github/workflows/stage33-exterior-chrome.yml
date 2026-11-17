@@ -18,8 +18,10 @@ jobs:
       - name: Stage33 preservation and bounded compositor contracts
         run: node tests/stage33-exterior-test.mjs
       - name: Generate isolated official Scene A/B fixtures
+        if: ${{ !cancelled() }}
         run: HONRO_ACT4_RELEASE=1 node tests/stage33-exterior-browser-fixture.mjs "$RUNNER_TEMP/s33-fixtures"
       - name: Render both variants in fresh temporary Chrome profiles
+        if: ${{ !cancelled() }}
         shell: bash
         run: |
           browser=$(command -v google-chrome || command -v chromium)
@@ -31,8 +33,10 @@ jobs:
             done
           done
       - name: Compare identical physics and forbid candidate fallback
+        if: ${{ !cancelled() }}
         run: node tests/stage33-exterior-browser-compare.mjs "$RUNNER_TEMP/s33-evidence"
       - name: Official Act4 build
+        if: ${{ !cancelled() }}
         run: HONRO_ACT4_RELEASE=1 npm run build
       - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
         if: always()

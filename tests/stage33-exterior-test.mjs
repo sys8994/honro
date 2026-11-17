@@ -34,6 +34,19 @@ assert.equal(api.stats().rasterizations,coreStats.rasterizations,'Full-core draw
 const mixA=createCanvas(240,160),mixB=createCanvas(240,160),ma=mixA.getContext('2d'),mb=mixB.getContext('2d');
 for(const cc of [ma,mb]){cc.fillStyle='#5681b7';cc.fillRect(0,0,240,160);cc.setTransform(.1,0,0,.1,400,-400);}
 for(const id of SOURCES)g.HonroVectorArt.draw(ma,project.library.find(a=>a.id===id),{x:0,y:0,scale:1,rotation:0});assert(api.draw(mb,l,b));
+const pixelDiff=(a,z,w)=>{let changedPixels=0,maxDifference=0,minX=Infinity,minY=Infinity,maxX=-1,maxY=-1;for(let i=0;i<a.length;i+=4){let d=0;for(let k=0;k<4;k++)d=Math.max(d,Math.abs(a[i+k]-z[i+k]));if(d){changedPixels++;maxDifference=Math.max(maxDifference,d);const x=(i/4)%w,y=Math.floor(i/4/w);minX=Math.min(minX,x);minY=Math.min(minY,y);maxX=Math.max(maxX,x);maxY=Math.max(maxY,y);}}return{changedPixels,maxDifference,bbox:changedPixels?[minX,minY,maxX,maxY]:null};};
+const mixedExpected=ma.getImageData(100,0,140,110).data,mixedActual=mb.getImageData(100,0,140,110).data;
+console.log('MIXED_CORE_DIAGNOSTIC',JSON.stringify(pixelDiff(mixedExpected,mixedActual,140)));
+// Diagnostic only: compare unchanged same-context source draws with just an
+// added clip. Keep the acceptance assertion below unchanged.
+for(const clipMode of ['roundtrip-only','device-rect','inverse-world-rect']){
+ const v=createCanvas(240,160),cc=v.getContext('2d');cc.fillStyle='#5681b7';cc.fillRect(0,0,240,160);cc.setTransform(.1,0,0,.1,400,-400);const mm=cc.getTransform();
+ if(clipMode==='roundtrip-only')cc.setTransform(mm.a,mm.b,mm.c,mm.d,mm.e,mm.f);
+ else if(clipMode==='device-rect'){cc.setTransform(1,0,0,1,0,0);cc.beginPath();cc.rect(100,0,140,110);cc.clip();cc.setTransform(mm.a,mm.b,mm.c,mm.d,mm.e,mm.f);}
+ else{cc.beginPath();cc.rect((100-mm.e)/mm.a,-mm.f/mm.d,140/mm.a,110/mm.d);cc.clip();}
+ for(const id of SOURCES)g.HonroVectorArt.draw(cc,project.library.find(a=>a.id===id),{x:0,y:0,scale:1,rotation:0});
+ console.log('SOURCE_CLIP_DIAGNOSTIC',clipMode,JSON.stringify(pixelDiff(mixedExpected,cc.getImageData(100,0,140,110).data,140)));
+}
 assert.deepEqual(mb.getImageData(100,0,140,110).data,ma.getImageData(100,0,140,110).data,'Mixed-tile protected core pixels changed');
 assert.equal(JSON.stringify(b),battleBefore);assert.equal(allocations,1);
 api.clear();const actual=createCanvas(900,420),ctx=actual.getContext('2d');ctx.setTransform(900/15700,0,0,900/15700,4400*900/15700,800*900/15700);assert(api.draw(ctx,l,b));await writeFile(new URL('native-reference.png',dir),actual.toBuffer('image/png'));
