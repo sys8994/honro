@@ -17,6 +17,8 @@ for v in cfg['views']:
  footprintGap=(xx[None,:]<=gx1)&(xx[None,:]+1/scale>=gx0)&(yy[:,None]<=gy1)&(yy[:,None]+1/scale>=gy0)
  changed=np.any(a!=b,axis=2);bad=changed&protected&~footprintGap;opaque=changed&protected&(b[:,:,3]==255)
  rows,cols=np.where(bad);check={'protectedSamples':int(protected.sum()),'protectedChanged':int((changed&protected).sum()),'outsideExplicitGapFootprint':int(bad.sum()),'opaqueOriginalProtectedChanged':int(opaque.sum()),'firstFailures':[{'pixel':[int(cx),int(cy)],'sourceOrigin':[float(xx[cx]),float(yy[cy])],'original':b[cy,cx].tolist(),'candidate':a[cy,cx].tolist()} for cy,cx in zip(rows[:20],cols[:20])]}
+ oyy,oxx=np.where(opaque)
+ check['firstOpaqueFailures']=[{'pixel':[int(cx),int(cy)],'sourceOrigin':[float(xx[cx]),float(yy[cy])],'original':b[cy,cx].tolist(),'candidate':a[cy,cx].tolist()} for cy,cx in zip(oyy[:20],oxx[:20])]
  r['checks'][n]=check
  if bad.any() or opaque.any():fail.append(n+' original protection failed')
  if n=='source-contact':
