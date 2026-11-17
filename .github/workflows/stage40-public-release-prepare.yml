@@ -1,0 +1,20 @@
+name: Prepare public release identity and QA UI input contract only
+on:
+  push:
+    branches: ['test/public-release-prepare-20261118']
+permissions:
+  contents: read
+jobs:
+  prepare-only:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - run: python -m py_compile tools/stage40-public-release/identity.py tools/stage40-public-release/play.py tools/stage40-public-release/check-contract.py
+      - run: python tools/stage40-public-release/check-contract.py
+      - name: Confirm public execution remains disabled
+        run: |
+          test -z "${HONRO_PUBLIC_REPLAY_ENABLED:-}"
+          echo 'Preparation only. No browser installation, public request, save import, master or Pages mutation.'
