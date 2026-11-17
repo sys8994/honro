@@ -55,7 +55,7 @@ async function capture(id,runtimeSha256,variant,requestedCamera){
   HonroMaps.compile(stage,project); // Match Native setup order.
   const b=HonroMaps.createBattle(stage,project,HonroProfileStore.fresh());HonroStageRules.sanitizeStageBattle(b);
   assert(b.honroStage===id&&b.honroAct4Official===1,'Not official Act4 stage');
-  b.honroAct4PreviewState.visualDrawn={}; // official liveWater allocates this receipt object even without an App scene
+  HonroAct4TerrainPreview.eventAPI.memory(b).visualDrawn={}; // official liveWater allocates this receipt object even without an App scene
   const engine=new HONRO_CORE.Engine(b,()=>{},true);
   globalThis.HonroApp={engine};
   const physics=JSON.stringify({terrain:b.terrain,units:b.units});
