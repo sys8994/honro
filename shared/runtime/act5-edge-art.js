@@ -203,7 +203,7 @@ const readability=S.terrainReadability;
 S.terrainReadability=function(c,b,view){
  if(![41,42,43,44,45,46,47].includes(b.honroStage))return readability.call(this,c,b,view);
  const q=G.HonroTerrainReadability.prepare(b),saved=[],removed=[],keptWalkable=[];
- for(const group of q.groups){const edge=new Path2D();saved.push([group,group.edge]);for(const v of group.segments){const p=v.a,z=v.z,close=!v.walkable&&((Math.abs(p.x-z.x)<.01&&(Math.abs(p.x)<.01||Math.abs(p.x-b.width)<.01))||(Math.abs(p.y-z.y)<.01&&p.y>=b.height-360));if(close)removed.push({id:group.id,...v});if(v.walkable)keptWalkable.push(v);if(!close){edge.moveTo(p.x,p.y);edge.lineTo(z.x,z.y);}}group.edge=edge;}
+ for(const group of q.groups){const edge=new Path2D();saved.push([group,group.edge]);for(const v of group.segments){const p=v.a,z=v.z,close=!v.walkable&&((b.honroStage===46&&['a5-left-cliff','a5-right-cliff'].includes(group.id))||(Math.abs(p.x-z.x)<.01&&(Math.abs(p.x)<.01||Math.abs(p.x-b.width)<.01))||(Math.abs(p.y-z.y)<.01&&p.y>=b.height-360));if(close)removed.push({id:group.id,...v});if(v.walkable)keptWalkable.push(v);if(!close){edge.moveTo(p.x,p.y);edge.lineTo(z.x,z.y);}}group.edge=edge;}
  G.HonroEdgeClosureQA={removed,keptWalkableCount:keptWalkable.length,walkableRemoved:removed.filter(v=>v.walkable).length};try{return readability.call(this,c,b,view);}finally{for(const [g,e]of saved)g.edge=e;}
 };
 G.HonroAct5EdgeArt={version:3};

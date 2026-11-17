@@ -26,6 +26,7 @@ jobs:
         run: |
           node tests/stage46-continuity.mjs
           node tests/stage46-composite-parts.mjs
+          node tests/stage46-readability.mjs
           node tests/stage45-continuity.mjs
           node tests/stage43-native-continuity.mjs
           node tests/stage43-contact-postclip.mjs
