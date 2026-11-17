@@ -9,6 +9,18 @@ assert(input&&out&&['baseline','candidate'].includes(variant)&&cameras[view],'Us
 const html=await readFile(input,'utf8'),match=html.match(/<pre id="result">([A-Za-z0-9+/=]+)<\/pre>/);
 assert(match&&match[1]!=='pending','No completed result');
 const r=JSON.parse(Buffer.from(match[1],'base64').toString('utf8'));
+if(r.ok!==true){
+ await mkdir(out,{recursive:true});const failedBase=`stage32-${variant}-${view}.failed`,diagnostic={...r};delete diagnostic.png;
+ if(typeof r.png==='string'&&/^data:image\/png;base64,/.test(r.png)){
+  const failedPng=Buffer.from(r.png.split(',')[1],'base64');
+  if(failedPng.subarray(0,8).toString('hex')==='89504e470d0a1a0a'){
+   await writeFile(path.join(out,failedBase+'.png'),failedPng,{flag:'wx'});
+   diagnostic.failurePngSha256=createHash('sha256').update(failedPng).digest('hex');
+  }
+ }
+ await writeFile(path.join(out,failedBase+'.json'),JSON.stringify(diagnostic,null,2)+'\n',{flag:'wx'});
+ assert.equal(r.ok,true,JSON.stringify(diagnostic)); // Preserve failure exit status after evidence capture.
+}
 assert.equal(r.ok,true,JSON.stringify(r));assert.equal(r.stage,32);assert.equal(r.variant,variant);assert.equal(r.view,view);
 assert.deepEqual(r.requestedCamera,{name:view,...cameras[view]});
 for(const k of ['x','y','scale'])assert(Number.isFinite(r.camera[k]),'Invalid constrained camera');

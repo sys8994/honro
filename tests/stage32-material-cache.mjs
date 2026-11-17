@@ -9,8 +9,11 @@ const field=project.library.find(a=>a.id==='act4-handoff:32:foundation'),body=pr
 let allocations=0,style='fixture-a';
 const g=vm.createContext({Path2D,HONRO_PROJECT:project,HonroVisualStyle:{key:()=>style},document:{createElement:()=>{allocations++;return createCanvas(1,1);}}});
 vm.runInContext(await readFile(new URL('../shared/runtime/stage32-foundation-art.js',import.meta.url),'utf8'),g);
-const api=g.HonroStage32FoundationArt,cv=createCanvas(320,240),c=cv.getContext('2d'),b={honroStage:32},bBefore=JSON.stringify(b);
-const fl={asset:field,x:-5500,y:-1950,scale:1,rotation:0,opacity:1},bl={asset:body,x:0,y:0,scale:1,rotation:0,opacity:1};
+const api=g.HonroStage32FoundationArt,cv=createCanvas(320,240),c=cv.getContext('2d'),b={honroStage:32};
+// Match compiler.js: canonical landmarks hold cloned providers, not library identities.
+const fl={asset:structuredClone(field),x:-5500,y:-1950,scale:1,rotation:0,opacity:1},bl={asset:structuredClone(body),x:0,y:0,scale:1,rotation:0,opacity:1};
+assert.notEqual(fl.asset,field);assert.deepEqual(fl.asset,field);
+b.honroLandmarks=[fl,bl];const bBefore=JSON.stringify(b);
 c.setTransform(.06,0,0,.06,60,30);c.fillStyle='#123456';c.globalAlpha=.85;
 const transform=()=>{const m=c.getTransform();return [m.a,m.b,m.c,m.d,m.e,m.f];},m=transform();
 assert.equal(api.draw(c,fl,b),true);assert.equal(api.draw(c,bl,b),true);

@@ -54,7 +54,9 @@ function draw(c,l,b){
  const id=l?.asset?.id;
  if(b?.honroStage!==32||b?.honroCustom||![FOUNDATION,BODY].includes(id))return false;
  if((l.scale??1)!==1||(l.rotation??0)!==0||l.x!==(id===FOUNDATION?-5500:0)||l.y!==(id===FOUNDATION?-1950:0))return fallback('unexpected-placement');
- const field=id===FOUNDATION?l.asset:G.HONRO_PROJECT?.library?.find(a=>a.id===FOUNDATION);
+ // The compiler clones providers into battle landmarks. Share that exact
+ // resolved field object across foundation/BODY passes, not the library copy.
+ const field=id===FOUNDATION?l.asset:(b.honroLandmarks?.find(v=>v.asset?.id===FOUNDATION)?.asset||G.HONRO_PROJECT?.library?.find(a=>a.id===FOUNDATION));
  if(!field)return fallback('missing-field');
  let q,cv;try{q=geometry(l.asset);cv=q&&material(c,field);}catch{return fallback('invalid-source');}
  if(!q||!cv)return fallback('invalid-source-or-device-pixel-cap');

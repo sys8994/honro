@@ -22,3 +22,6 @@ Unverified: public UI, actual camera input, real saved-battle migration, mobile/
 
 ## Historical separation
 This branch inherits earlier preserved candidate work, including the rejected foundation-only implementation which this unit replaces. Do not merge intermediate research commits as an approved release. Earlier valid candidates through 80e5f5b remain separately preserved.
+
+## Actual compiler clone regression
+First remote run 44084959966 passed source/codec/cache checks and baseline four views, but failed candidate cache reuse. The compiler clones provider objects; foundation used the battle clone while BODY used the library original, producing two rasterizations and zero hits. This was reproduced locally before changing the implementation. BODY now resolves the same battle foundation provider first. The unit fixture uses compiler-equivalent cloned providers and preserves the strict one-rasterization/one-hit requirement. No acceptance assertion was relaxed. Failure diagnostics now preserve bounded draw metadata and failed images without treating failures as accepted results. Follow-up Chrome/build validation remains required.

@@ -40,9 +40,17 @@ function bootstrap(id){
 }
 async function capture(id,runtimeSha256,variant,requestedCamera){
  const p=globalThis.PROBE,assert=(v,m)=>{if(!v)throw Error(m);};
+ let diagnosticScene=null;const drawDiagnostic={calls:0,rows:[]};
  try{
   assert(devicePixelRatio===1,'DPR must be 1');
   assert(globalThis.HonroStage32FoundationArt,'Stage32 material renderer missing');
+  const originalDraw=HonroStage32FoundationArt.draw;
+  HonroStage32FoundationArt.draw=function(c,l,b){
+   drawDiagnostic.calls++;
+   const row={assetId:l?.asset?.id??null,stage:b?.honroStage??null,custom:b?.honroCustom??null,x:l?.x??null,y:l?.y??null,scale:l?.scale??null,rotation:l?.rotation??null};
+   if(drawDiagnostic.rows.length<10)drawDiagnostic.rows.push(row);
+   const result=originalDraw.apply(this,arguments);row.returned=result;return result;
+  };
   const originalStage=HONRO_PROJECT.stages.find(s=>s.metadata?.stageId===32);
   assert(originalStage,'Missing official Stage32');
   const originalStageText=JSON.stringify(originalStage),stage=structuredClone(originalStage);
@@ -79,7 +87,7 @@ async function capture(id,runtimeSha256,variant,requestedCamera){
   globalThis.HonroStage32FoundationArt?.clear?.();
   const view=requestedCamera.name,width=1331,height=763;
   const cv=document.getElementById('scene');cv.width=width;cv.height=height;cv.style.width=width+'px';cv.style.height=height+'px';
-  const scene=new HonroScene(cv);
+  const scene=new HonroScene(cv);diagnosticScene=scene;
   Object.assign(scene,{x:requestedCamera.x,y:requestedCamera.y,scale:requestedCamera.scale,manual:true,time:2,editorView:false,skillPreview:false});
   HonroBounds.constrain(scene,b);
   const camera={x:scene.x,y:scene.y,scale:scene.scale},before=JSON.stringify(b);
@@ -96,8 +104,11 @@ async function capture(id,runtimeSha256,variant,requestedCamera){
   assert(materialStats.fallbacks===0,'Material renderer fallback');
   if(variant==='candidate')assert(materialStats.rasterizations>0&&materialStats.hits>0,'Candidate did not exercise shared material cache');
   const hash=async s=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s))),v=>v.toString(16).padStart(2,'0')).join('');
-  publishProbe({ok:true,scope:'Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.',stage:id,variant,requestedCamera,cacheStats:globalThis.HonroStage32FoundationArt?.stats?.()??null,sceneCacheStats:scene._cacheStats??null,...((id===32)?{tideSnapshot,appReadyUnresolved:true,initialization:'Official coast.tide; fresh in-memory profile; no App launch or event progression'}:{}),view,width,height,dpr:devicePixelRatio,camera,time:2,seed:3910,runtimeSha256,physicsSha256:await hash(physics),renderPure:true,fontStatus:document.fonts.status,fontNote:'System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.',userAgent:navigator.userAgent,imageCount:p.images.length,pendingImages:p.images.filter(v=>v.pending).length,imageErrors:p.images.filter(v=>v.error).length,storage:p.storage,errors:p.errors,violations:p.violations,png:cv.toDataURL('image/png')});
- }catch(e){publishProbe({ok:false,stage:id,error:String(e.stack||e),...p});}
+  publishProbe({ok:true,scope:'Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.',stage:id,variant,requestedCamera,drawDiagnostic,cacheStats:globalThis.HonroStage32FoundationArt?.stats?.()??null,sceneCacheStats:scene._cacheStats??null,...((id===32)?{tideSnapshot,appReadyUnresolved:true,initialization:'Official coast.tide; fresh in-memory profile; no App launch or event progression'}:{}),view,width,height,dpr:devicePixelRatio,camera,time:2,seed:3910,runtimeSha256,physicsSha256:await hash(physics),renderPure:true,fontStatus:document.fonts.status,fontNote:'System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.',userAgent:navigator.userAgent,imageCount:p.images.length,pendingImages:p.images.filter(v=>v.pending).length,imageErrors:p.images.filter(v=>v.error).length,storage:p.storage,errors:p.errors,violations:p.violations,png:cv.toDataURL('image/png')});
+ }catch(e){
+  let png=null,pngError=null;try{png=document.getElementById('scene')?.toDataURL('image/png')??null;}catch(error){pngError=String(error);}
+  publishProbe({ok:false,stage:id,variant,view:requestedCamera.name,requestedCamera,error:String(e.stack||e),...p,drawDiagnostic,cacheStats:globalThis.HonroStage32FoundationArt?.stats?.()??null,sceneCacheStats:diagnosticScene?._cacheStats??null,png,pngError});
+ }
 }
 const script=s=>'<script>'+s.replace(/<\/script/gi,'<\\/script')+'</script>';
 const views=[{name:'overview',x:0,y:2252.8,scale:1331/6800},{name:'lower',x:1689.6,y:1900,scale:.6},{name:'left',x:320,y:1650,scale:.6},{name:'right',x:3200,y:1650,scale:.6}];
