@@ -20,4 +20,4 @@ try{
  delete r.png;r.pngSha256=createHash('sha256').update(png).digest('hex');
  await writeFile(path.join(out,`stage32-${variant}-${view}.png`),png,{flag:'wx'});
  await writeFile(path.join(out,`stage32-${variant}-${view}.json`),JSON.stringify(r,null,2)+'\n',{flag:'wx'});console.log(JSON.stringify(r));
-}catch(e){await writeFile(path.join(out,`stage32-${variant}-${view}-failure.json`),JSON.stringify({error:String(e.stack||e),result:r??null},null,2)+'\n',{flag:'wx'});throw e;}
+}catch(e){await writeFile(path.join(out,`stage32-${variant}-${view}-failure.json`),JSON.stringify({error:String(e.stack||e),result:r?{...r,png:undefined}:null},null,2)+'\n',{flag:'wx'});throw e;}

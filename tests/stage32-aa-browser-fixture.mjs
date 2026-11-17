@@ -42,7 +42,7 @@ function bootstrap(id){
 }
 async function capture(id,runtimeSha256,variant,requestedCamera){
  const p=globalThis.PROBE,assert=(v,m)=>{if(!v)throw Error(m);};
- let diagnosticScene=null;const drawDiagnostic={calls:0,rows:[]};
+ let diagnosticScene=null,canonicalDiagnostic=null;const drawDiagnostic={calls:0,rows:[]};
  try{
   assert(devicePixelRatio===1,'DPR must be 1');
   assert(globalThis.HonroStage32FoundationArt,'Stage32 material renderer missing');
@@ -57,6 +57,15 @@ async function capture(id,runtimeSha256,variant,requestedCamera){
   assert(originalStage,'Missing official Stage32');
   const originalStageText=JSON.stringify(originalStage),stage=structuredClone(originalStage);
   const oldFoundation='approved32:coastal-foundation',newFoundation='act4-handoff:32:foundation',oldBody='act4-handoff:32:body-joined',newBody='act4-handoff:32:body-shared-material';
+  const oldVector=HONRO_PROJECT.library.find(a=>a.id===oldBody).vector,newVector=HONRO_PROJECT.library.find(a=>a.id===newBody).vector;
+  const digest=async s=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s))),v=>v.toString(16).padStart(2,'0')).join('');
+  const describe=async v=>({type:Array.isArray(v)?'array':typeof v,bytes:new TextEncoder().encode(JSON.stringify(v)??'undefined').length,sha256:await digest(JSON.stringify(v)??'undefined'),...(typeof v==='string'?{length:v.length}: {})});
+  const differences=[];
+  async function diff(a,z,p){if(JSON.stringify(a)===JSON.stringify(z))return;if(differences.length>=100)return;if(a&&z&&typeof a==='object'&&typeof z==='object'&&Array.isArray(a)===Array.isArray(z)){for(const k of new Set([...Object.keys(a),...Object.keys(z)]))await diff(a[k],z[k],p+'.'+k);}else differences.push({path:p,old:await describe(a),candidate:await describe(z)});}
+  await diff(oldVector,newVector,'vector');
+  const paths=async v=>{const rows=[];function walk(n,p){if(n.tag==='path'){const d=typeof n.d==='string'?n.d:(n.dParts||[]).join('');rows.push({path:p,d,fill:n.fill,rule:n.fillRule||'nonzero',commands:(d.match(/[a-z]/ig)||[]).length,subpaths:(d.match(/[Mm]/g)||[]).length});}for(const [i,nc] of (n.children||[]).entries())walk(nc,p+'.children.'+i);}walk(v.root,'root');return Promise.all(rows.map(async({d,...row})=>({...row,length:d.length,sha256:await digest(d)})));};
+  const oldPaths=await paths(oldVector),newPaths=await paths(newVector),expected=HONRO_PROJECT.library.find(a=>a.id===newBody).params.stage32SharedMaterial.sourcePathSHA256;
+  canonicalDiagnostic={scope:'Pre-render source difference; no equality assertion removed',old:await describe(oldVector),candidate:await describe(newVector),differences,differenceLimit:100,oldPaths,newPaths,expectedSourcePathSHA256:expected,oldMatchesAuthor:oldPaths.map((p,i)=>p.sha256===expected[i]),candidateMatchesAuthor:newPaths.map((p,i)=>p.sha256===expected[i]),pathCountEqual:oldPaths.length===newPaths.length,subpathCountsEqual:JSON.stringify(oldPaths.map(p=>p.subpaths))===JSON.stringify(newPaths.map(p=>p.subpaths)),pathOrderNamesEqual:JSON.stringify(oldPaths.map(p=>p.path))===JSON.stringify(newPaths.map(p=>p.path))};
   assert(JSON.stringify(HONRO_PROJECT.library.find(a=>a.id===oldBody).vector)===JSON.stringify(HONRO_PROJECT.library.find(a=>a.id===newBody).vector),'Old/new BODY canonical vectors differ');
   const sourceCanonical=JSON.stringify(HONRO_PROJECT.library.filter(a=>[oldFoundation,newFoundation,oldBody,newBody].includes(a.id)));
   const foundation=stage.elements.find(e=>e.id==='approved32-coastal-foundation'),body=stage.elements.find(e=>e.id==='approved32-body');
@@ -110,7 +119,7 @@ async function capture(id,runtimeSha256,variant,requestedCamera){
   publishProbe({ok:true,scope:'Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.',stage:id,variant,requestedCamera,drawDiagnostic,cacheStats:globalThis.HonroStage32FoundationArt?.stats?.()??null,sceneCacheStats:scene._cacheStats??null,...((id===32)?{tideSnapshot,appReadyUnresolved:true,initialization:'Official coast.tide; fresh in-memory profile; no App launch or event progression'}:{}),view,width,height,dpr:devicePixelRatio,camera,time:2,seed:3910,runtimeSha256,physicsSha256:await hash(physics),renderPure:true,firstFramePure:true,sourceCanonicalSha256:await hash(sourceCanonical),diagnosticMode:'Foundation fixed V4; original-colors means per-path opaque original fill bitmap, NOT a full BODY image resampled through each clip',fontStatus:document.fonts.status,fontNote:'System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.',userAgent:navigator.userAgent,imageCount:p.images.length,pendingImages:p.images.filter(v=>v.pending).length,imageErrors:p.images.filter(v=>v.error).length,storage:p.storage,errors:p.errors,violations:p.violations,png:cv.toDataURL('image/png')});
  }catch(e){
   let png=null,pngError=null;try{png=document.getElementById('scene')?.toDataURL('image/png')??null;}catch(error){pngError=String(error);}
-  publishProbe({ok:false,stage:id,variant,view:requestedCamera.name,requestedCamera,error:String(e.stack||e),...p,drawDiagnostic,cacheStats:globalThis.HonroStage32FoundationArt?.stats?.()??null,sceneCacheStats:diagnosticScene?._cacheStats??null,png,pngError});
+  publishProbe({ok:false,stage:id,variant,view:requestedCamera.name,requestedCamera,error:String(e.stack||e),canonicalDiagnostic,...p,drawDiagnostic,cacheStats:globalThis.HonroStage32FoundationArt?.stats?.()??null,sceneCacheStats:diagnosticScene?._cacheStats??null,png,pngError});
  }
 }
 

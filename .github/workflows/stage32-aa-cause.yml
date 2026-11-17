@@ -26,7 +26,7 @@ jobs:
           failed=0
           for variant in baseline candidate original-colors; do
             for view in lower left; do
-              dump="$RUNNER_TEMP/aa-evidence/stage32-$variant-$view.html"
+              dump="$RUNNER_TEMP/stage32-$variant-$view.html"
               if timeout 300s "$browser" --headless --no-first-run --no-default-browser-check --force-device-scale-factor=1 --virtual-time-budget=60000 --user-data-dir="$RUNNER_TEMP/aa-profile-$variant-$view" --dump-dom "file://$RUNNER_TEMP/aa-fixtures/stage32-$variant-$view.html" > "$dump"; then
                 node tests/stage32-aa-browser-result.mjs "$dump" "$RUNNER_TEMP/aa-evidence" "$variant" "$view" || failed=1
               else
