@@ -1,0 +1,16 @@
+{
+  "scope": "Native SVG composition source-resolution diagnostic only",
+  "protectedPixels": 1464101,
+  "protectedChanged": 0,
+  "semanticWarmPixels": 124297,
+  "semanticWarmChanged": 0,
+  "allowedChanged": 95157,
+  "changedOutsideEditableMask": 0,
+  "removedWarmPerimeterPixels": [
+    [
+      24,
+      1072
+    ]
+  ],
+  "notes": "4source alpha-perimeter region only outside rootFloor+24 excludes artificial closing paint, not grass or routes. Original source paths untouched."
+}

@@ -1,0 +1,241 @@
+{
+  "scope": "Read-only pixel/source analysis. Semantic candidate region only; no edited art generated.",
+  "paletteLowerVisible": [
+    {
+      "index": 0,
+      "fill": "#fdfdfd",
+      "lowerVisiblePixels": 0,
+      "bboxSourcePixels": null
+    },
+    {
+      "index": 1,
+      "fill": "#aca8a8",
+      "lowerVisiblePixels": 63,
+      "bboxSourcePixels": [
+        13,
+        981,
+        1420,
+        1073
+      ]
+    },
+    {
+      "index": 2,
+      "fill": "#c59b5c",
+      "lowerVisiblePixels": 1943,
+      "bboxSourcePixels": [
+        340,
+        987,
+        1112,
+        1028
+      ]
+    },
+    {
+      "index": 3,
+      "fill": "#ae9056",
+      "lowerVisiblePixels": 2527,
+      "bboxSourcePixels": [
+        24,
+        981,
+        1158,
+        1072
+      ]
+    },
+    {
+      "index": 4,
+      "fill": "#9c842f",
+      "lowerVisiblePixels": 3986,
+      "bboxSourcePixels": [
+        170,
+        984,
+        1213,
+        1035
+      ]
+    },
+    {
+      "index": 5,
+      "fill": "#8b772b",
+      "lowerVisiblePixels": 9782,
+      "bboxSourcePixels": [
+        132,
+        981,
+        1240,
+        1047
+      ]
+    },
+    {
+      "index": 6,
+      "fill": "#614b56",
+      "lowerVisiblePixels": 5979,
+      "bboxSourcePixels": [
+        11,
+        981,
+        1438,
+        1073
+      ]
+    },
+    {
+      "index": 7,
+      "fill": "#665823",
+      "lowerVisiblePixels": 5983,
+      "bboxSourcePixels": [
+        109,
+        981,
+        1265,
+        1066
+      ]
+    },
+    {
+      "index": 8,
+      "fill": "#4b3844",
+      "lowerVisiblePixels": 9842,
+      "bboxSourcePixels": [
+        113,
+        981,
+        1423,
+        1071
+      ]
+    },
+    {
+      "index": 9,
+      "fill": "#43333a",
+      "lowerVisiblePixels": 23884,
+      "bboxSourcePixels": [
+        13,
+        981,
+        1436,
+        1071
+      ]
+    },
+    {
+      "index": 10,
+      "fill": "#342832",
+      "lowerVisiblePixels": 29056,
+      "bboxSourcePixels": [
+        14,
+        981,
+        1437,
+        1070
+      ]
+    },
+    {
+      "index": 11,
+      "fill": "#251d25",
+      "lowerVisiblePixels": 21953,
+      "bboxSourcePixels": [
+        15,
+        981,
+        1435,
+        1070
+      ]
+    }
+  ],
+  "rootFloorSource": [
+    [
+      8,
+      991
+    ],
+    [
+      124,
+      1003
+    ],
+    [
+      258,
+      1020
+    ],
+    [
+      520,
+      1021
+    ],
+    [
+      566,
+      1004
+    ],
+    [
+      630,
+      985
+    ],
+    [
+      1065,
+      981
+    ],
+    [
+      1168,
+      977
+    ],
+    [
+      1201,
+      950
+    ],
+    [
+      1283,
+      912
+    ],
+    [
+      1376,
+      899
+    ],
+    [
+      1447,
+      884
+    ]
+  ],
+  "worldScale": 3.13,
+  "sourceRasterSize": [
+    1448,
+    1086
+  ],
+  "eligibleNonwalkingPaintPixels": 85966,
+  "grassBelow1021Components": [
+    {
+      "pixels": 6028,
+      "bbox": [
+        185,
+        1021,
+        615,
+        1066
+      ]
+    },
+    {
+      "pixels": 136,
+      "bbox": [
+        755,
+        1021,
+        770,
+        1036
+      ]
+    },
+    {
+      "pixels": 18,
+      "bbox": [
+        904,
+        1021,
+        910,
+        1024
+      ]
+    },
+    {
+      "pixels": 258,
+      "bbox": [
+        946,
+        1021,
+        974,
+        1036
+      ]
+    },
+    {
+      "pixels": 20,
+      "bbox": [
+        1193,
+        1021,
+        1198,
+        1025
+      ]
+    }
+  ],
+  "eligibleBbox": [
+    13,
+    910,
+    1442,
+    1074
+  ]
+}
