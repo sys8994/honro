@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {readFile} from 'node:fs/promises';
+import {readFile,writeFile,rm} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import vm from 'node:vm';
 import {createCanvas,Path2D} from '@napi-rs/canvas';
@@ -22,10 +22,10 @@ async function runV1Contract(source,label){
 const historical=await readFile(new URL('./fixtures/stage32-coverage-baseline13d.js',import.meta.url),'utf8');
 assert.equal(createHash('sha256').update(historical).digest('hex'),'aab056752d65b36fcb620f5e3896ee4404926170de4c67d9fc33aa83fea22953');
 let historicalContract=await readFile(new URL('./stage32-lower-transition-contract.mjs',import.meta.url),'utf8');
-const oldURL=new URL('./stage32-lower-transition-contract.mjs',import.meta.url).href;
-historicalContract=historicalContract.replace("await readFile(new URL('../shared/runtime/stage32-foundation-art.js',import.meta.url),'utf8')",JSON.stringify(historical)).replaceAll('import.meta.url',JSON.stringify(oldURL));
-historicalContract=historicalContract.replace(/from '([^']+)'/g,(all,p)=>p.startsWith('.')?'from '+JSON.stringify(new URL(p,oldURL).href):p==='@napi-rs/canvas'?'from '+JSON.stringify(import.meta.resolve(p)):all);
-await import('data:text/javascript;base64,'+Buffer.from(historicalContract+'\n// preserved13d').toString('base64'));
+historicalContract=historicalContract.replace("await readFile(new URL('../shared/runtime/stage32-foundation-art.js',import.meta.url),'utf8')",JSON.stringify(historical));
+const historicalRunURL=new URL('./.stage32-baseline-contract-'+process.pid+'.mjs',import.meta.url);
+await writeFile(historicalRunURL,historicalContract,{flag:'wx'});
+try{await import(historicalRunURL.href);}finally{await rm(historicalRunURL);}
 await runV1Contract(v1,'historical-v1');
 let intentionalFailure=null;try{await runV1Contract(current,'current-v2');}catch(e){intentionalFailure=e;}
 assert(intentionalFailure,'V1 one-buffer assertion unexpectedly passed');
