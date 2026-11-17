@@ -1,0 +1,30 @@
+name: Inspect stage33 production Chrome baseline
+on:
+  push:
+    branches: ['audit/stage33-chrome-baseline-20261117']
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm ci && npm ci --prefix game
+      - name: Generate official Stage33 initial Scene without app launch
+        run: HONRO_ACT4_RELEASE=1 node tests/actual-scene-browser-fixture.mjs "$RUNNER_TEMP/honro-stage33-fixtures" 33
+      - name: Render baseline with official normal low tide or stored profile
+        shell: bash
+        run: |
+          browser=$(command -v google-chrome || command -v chromium)
+          timeout 300s "$browser" --headless --no-first-run --no-default-browser-check --force-device-scale-factor=1 --virtual-time-budget=60000 --user-data-dir="$RUNNER_TEMP/honro-stage33-profile" --dump-dom "file://$RUNNER_TEMP/honro-stage33-fixtures/stage33.html" > "$RUNNER_TEMP/honro-stage33-dump.html"
+          node tests/actual-scene-browser-result.mjs "$RUNNER_TEMP/honro-stage33-dump.html" "$RUNNER_TEMP/honro-stage33-evidence" 33
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        with:
+          name: stage33-chrome-baseline
+          path: ${{ runner.temp }}/honro-stage33-evidence
+          if-no-files-found: error
