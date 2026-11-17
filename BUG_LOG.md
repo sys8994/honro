@@ -30,3 +30,10 @@ Re-designed stairs with their supporting rock instead of detached per-step skins
 - 확인: 전체 stage/content/다른 장 asset 불변, 터널 내부1,982점과 원본 접촉 보호330점, single-alpha 및 예외시 canvas 해제 회귀 통과. 정식 CI44006099211 성공, 코드78035c8a8ddada7241d9a7fe74245ab5562a7623 master 반영, Pages44006345050 성공. 공개 HTML2개·manifest·entry·campaign·변경 renderer·48장 assets 총7파일이 로컬 빌드와 byte/hash 일치.
 - 공개 게임: 정상 타이틀→여정첩→5막→48장→진입에서 ‘디버그 · 기록 분리’를 확인. 서쪽·동쪽 터널·하단·전체 화면을 검수했고 첫 계단 하강과 착지 후 이동/발사 가능 복귀, HP365/365 유지(이동도1100→799)를 확인했다. 일반 저장이나 기존 탭을 덮어쓰지 않았다.
 - 한계: 전체 미션/전투 완주는 수행하지 않았다. 모바일·극단 세로 팬은 Native Scene 검수이며 실제 모바일 기기 검증이 아니다. Boolean 경계2표본의 1 source pixel 이내 판정 차이는 남으며 내부 침범은 검출되지 않았다. 로컬 브라우저 연결/파일 URL 제한은 우회하지 않고 공개 Pages에서 검수했다.
+
+## 2026-11-17 — 49장 좌우·하단 연속 암벽 후보
+
+- 원인: 원본 경계 1px 늘림과 하단 그라데이션이 큰 카메라 영역에서 블러/절단으로 보였다.
+- 변경: 실제 Inkscape 추적·형상 보존 최적화·Boolean 분할 암벽, 원본 접촉 보호와 single-alpha 합성. source 전체 데이터·다른 장·충돌·저장·카메라는 보존했다.
+- 확인: 보호 접촉2,022점, 아치 내부1,661점, 6개 화면비 coverage, 원본 stage/content/다른 asset 불변 및 합성 예외/opacity/clip 회귀. 후보7 Native 전체·좌우·하단·세로 화면 확인.
+- 아직 CI/master/Pages/실제 공개 입력은 미완료. 세부 근거와 미술 한계는 `game/docs/STAGE49_CONTINUITY_STATUS.md`.

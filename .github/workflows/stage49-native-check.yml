@@ -1,0 +1,36 @@
+name: Verify Stage49 native continuity candidate
+on:
+  push:
+    branches: ['fix/stage49-continuity-20261117']
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      HONRO_ACT4_RELEASE: '1'
+      HONRO_ACT5_RELEASE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Install locked dependencies
+        run: |
+          npm ci
+          npm ci --prefix game
+          node tools/act4-source/world-source.mjs materialize
+      - name: Original gameplay, contacts, arches and single-alpha composition
+        run: |
+          mkdir -p _local/stage49
+          node tools/stage49-continuity/check.mjs
+          node tests/stage49-composite.mjs
+          node tests/act5-depth-composite.mjs
+          node tests/act5-terrain-contact.mjs
+          node tests/web-build-retention.mjs
+      - name: Production build verification
+        run: |
+          npm run build
+          sha256sum HONRO.html HONRO_WORKSHOP.html web/manifest.json
