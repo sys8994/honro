@@ -17,11 +17,24 @@ assert(api.draw(c,l,b));assert.equal(api.stats().rasterizations,1);assert.equal(
 c.setTransform(.1,.02,.03,.12,260,-500);c.clearRect(-100000,-100000,200000,200000);api.draw(c,l,b);
 const m=c.getTransform(),det=m.a*m.d-m.b*m.c,bytes=c.getImageData(0,0,200,120).data;let checks=0,maxError=0;
 for(let y=1;y<119;y+=4)for(let x=1;x<199;x+=4){let X=(m.d*(x+.5-m.e)-m.c*(y+.5-m.f))/det,Y=(-m.b*(x+.5-m.e)+m.a*(y+.5-m.f))/det;const clamp=v=>Math.min(1,Math.max(0,v)),alpha=clamp((X+3300)/300)*clamp((5300-Y)/200)*255;maxError=Math.max(maxError,Math.abs(bytes[(y*200+x)*4+3]-alpha));checks++;}assert(maxError<3,`mask affine max error ${maxError}`);
-style='two';api.draw(c,l,b);assert.equal(api.stats().rasterizations,3);cv.width=240;api.draw(c,l,b);assert.equal(api.stats().rasterizations,4);assert.equal(allocations,1);
+style='two';api.draw(c,l,b);assert.equal(api.stats().rasterizations,3);cv.width=240;c.setTransform(m.a,m.b,m.c,m.d,m.e,m.f);api.draw(c,l,b);assert.equal(api.stats().rasterizations,4);assert.equal(allocations,1);
 const savedTransform=c.getTransform(),savedAlpha=c.globalAlpha;api.draw(c,l,b);assert.deepEqual(c.getTransform(),savedTransform);assert.equal(c.globalAlpha,savedAlpha);
 const count=api.stats().rasterizations;assert.equal(api.draw(c,l,{honroStage:32}),false);assert.equal(api.draw(c,l,{honroStage:33,honroCustom:true}),false);assert.equal(api.draw(c,{...l,asset:pack.assets[0]},b),false);assert.equal(api.stats().rasterizations,count);
 const huge=createCanvas(1,1).getContext('2d');const cap={canvas:{width:10000,height:10000},getTransform:()=>huge.getTransform(),save:()=>huge.save(),restore:()=>huge.restore(),fillRect:(...v)=>huge.fillRect(...v),globalAlpha:1};assert(api.draw(cap,l,b));assert.equal(api.stats().reasons['device-pixel-cap'],1);assert.equal(allocations,1);assert.equal(JSON.stringify(b),battleBefore);
 // Actual source vectors and field pass standard API; render one small native reference.
 vm.runInContext(await readFile(root+'/shared/map/vector-art.js','utf8'),g);for(const a of [...pack.assets,field,marker])assert.equal(g.HonroVectorArt.validate(a.vector).length,0,a.id);
+// Direct protected-core pass must match the former same-context draw exactly,
+// including antialiased silhouettes against an already painted backdrop.
+const coreA=createCanvas(320,180),coreB=createCanvas(320,180),ca=coreA.getContext('2d'),cb=coreB.getContext('2d');
+for(const cc of [ca,cb]){cc.fillStyle='#5681b7';cc.fillRect(0,0,320,180);cc.setTransform(.1,0,0,.1,150,10);cc.beginPath();cc.rect(-1500,-100,3000,1600);cc.clip();}
+const coreStats=api.stats();for(const id of SOURCES)g.HonroVectorArt.draw(ca,project.library.find(a=>a.id===id),{x:0,y:0,scale:1,rotation:0});assert(api.draw(cb,l,b));
+assert.deepEqual(cb.getImageData(0,0,320,180).data,ca.getImageData(0,0,320,180).data,'Protected core original pixels changed');
+assert.equal(api.stats().rasterizations,coreStats.rasterizations,'Full-core draw unnecessarily rasterized');assert.equal(api.stats().fullCoreDraws,coreStats.fullCoreDraws+1);assert.equal(allocations,1);
+// Mixed tile: integer partition must also leave protected interior exact.
+const mixA=createCanvas(240,160),mixB=createCanvas(240,160),ma=mixA.getContext('2d'),mb=mixB.getContext('2d');
+for(const cc of [ma,mb]){cc.fillStyle='#5681b7';cc.fillRect(0,0,240,160);cc.setTransform(.1,0,0,.1,400,-400);}
+for(const id of SOURCES)g.HonroVectorArt.draw(ma,project.library.find(a=>a.id===id),{x:0,y:0,scale:1,rotation:0});assert(api.draw(mb,l,b));
+assert.deepEqual(mb.getImageData(100,0,140,110).data,ma.getImageData(100,0,140,110).data,'Mixed-tile protected core pixels changed');
+assert.equal(JSON.stringify(b),battleBefore);assert.equal(allocations,1);
 api.clear();const actual=createCanvas(900,420),ctx=actual.getContext('2d');ctx.setTransform(900/15700,0,0,900/15700,4400*900/15700,800*900/15700);assert(api.draw(ctx,l,b));await writeFile(new URL('native-reference.png',dir),actual.toBuffer('image/png'));
-const result={pass:true,sourceAndOtherStageUnchanged:true,restoreExact:true,originalProvidersReferencedNotCopied:true,maskAffinePixelChecks:checks,maskAffineMaxAlphaError:maxError,stats:api.stats(),actualNativeReference:'native-reference.png',scope:'Unit and small Native only; actual Chrome pending'};await writeFile(new URL('unit-results.json',dir),JSON.stringify(result,null,2));console.log(JSON.stringify(result,null,2));
+const result={pass:true,sourceAndOtherStageUnchanged:true,restoreExact:true,protectedCorePixelsExact:true,originalProvidersReferencedNotCopied:true,maskAffinePixelChecks:checks,maskAffineMaxAlphaError:maxError,stats:api.stats(),actualNativeReference:'native-reference.png',scope:'Unit and small Native only; actual Chrome pending'};await writeFile(new URL('unit-results.json',dir),JSON.stringify(result,null,2));console.log(JSON.stringify(result,null,2));

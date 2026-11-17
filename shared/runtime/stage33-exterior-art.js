@@ -3,7 +3,7 @@ if(G.HonroStage33ExteriorArt)return;
 const MARKER='act4-sideview:33:exterior-v3:composite',FIELD='act4-sideview:33:exterior-v3:field',IDS=['act4-sideview:33:coastal-v2:west-continuous-geology','act4-sideview:33:coastal-v2:lowland'];
 const MAX_PIXELS=8*1024*1024,BX=14000/1983,BY=5600/793,A=43/67.52,B=200-200*A,SPLIT=-300+200*BY;
 let buffer=null,last=null;
-const counters={allocations:0,rasterizations:0,hits:0,bytes:0,peakBytes:0,fallbacks:0,reasons:{}};
+const counters={allocations:0,rasterizations:0,hits:0,bytes:0,peakBytes:0,fallbacks:0,directCoreDraws:0,fullCoreDraws:0,reasons:{}};
 const instance={x:0,y:0,scale:1,rotation:0};
 function find(b,id){return b?.honroLandmarks?.find(l=>l.asset?.id===id)?.asset||G.HONRO_PROJECT?.library?.find(a=>a.id===id);}
 function fallback(c,sources,reason){counters.fallbacks++;counters.reasons[reason]=(counters.reasons[reason]||0)+1;for(const a of sources)if(a?.vector)G.HonroVectorArt.draw(c,a,instance);return true;}
@@ -46,6 +46,23 @@ function exterior(c,field){
   }finally{c.restore();}
  }
 }
+// Partition only axis-aligned positive device transforms. Every partition
+// edge is an integer device coordinate, avoiding a fractional clip AA seam.
+function coreRect(c){
+ const m=c.getTransform(),w=c.canvas?.width,h=c.canvas?.height;
+ if(m.b!==0||m.c!==0||!(m.a>0&&m.d>0)||![m.a,m.d,m.e,m.f,w,h].every(Number.isFinite))return null;
+ const left=Math.max(0,Math.min(w,Math.ceil(m.a*-3000+m.e))),bottom=Math.max(0,Math.min(h,Math.floor(m.d*5100+m.f)));
+ return left<w&&bottom>0?{left,bottom,w,h,m}:null;
+}
+function coreClip(c,r,outside){
+ c.setTransform(1,0,0,1,0,0);c.beginPath();
+ if(outside)c.rect(0,0,r.w,r.h);
+ c.rect(r.left,0,r.w-r.left,r.bottom);c.clip(outside?'evenodd':'nonzero');
+ c.setTransform(r.m.a,0,0,r.m.d,r.m.e,r.m.f);
+}
+function originalCore(c,r,sources){
+ c.save();try{coreClip(c,r,false);for(const a of sources)G.HonroVectorArt.draw(c,a,instance);counters.directCoreDraws++;}finally{c.restore();}
+}
 function draw(c,l,b){
  if(b?.honroStage!==33||b?.honroCustom||l?.asset?.id!==MARKER)return false;
  const sources=IDS.map(id=>find(b,id)),field=find(b,FIELD),cfg=l.asset.params?.stage33ExteriorComposite;
@@ -56,11 +73,14 @@ function draw(c,l,b){
   if(cfg?.version!==1||cfg.fieldId!==FIELD||JSON.stringify(cfg.sourceIds)!==JSON.stringify(IDS))return fallback(c,sources,'invalid-config');
   if(sources.some(a=>!a?.vector))return fallback(c,sources,'missing-source');
   if(field?.params?.stage33ExteriorField!==1||field?.params?.registration?.newBandInverseAffine?.length!==6)return fallback(c,sources,'missing-field');
+  const core=coreRect(c);
+  if(core&&core.left===0&&core.bottom===core.h){for(const a of sources)G.HonroVectorArt.draw(c,a,instance);counters.directCoreDraws++;counters.fullCoreDraws++;return true;}
   let q;try{q=prepare(c,sources);}catch{return fallback(c,sources,'source-render-error');}
   if(q.error)return fallback(c,sources,q.error);
   // Existing clips on c still apply. Shared buffer holds raw palette; caller
   // supplies HonroVisualStyle.raw(c), so no additional tint is introduced.
-  exterior(c,field);c.setTransform(1,0,0,1,0,0);c.drawImage(q.canvas,0,0);return true;
+  c.save();try{if(core)coreClip(c,core,true);exterior(c,field);c.setTransform(1,0,0,1,0,0);c.drawImage(q.canvas,0,0);}finally{c.restore();}
+  if(core)originalCore(c,core,sources);return true;
  }finally{c.restore();}
 }
 G.HonroStage33ExteriorArt={draw,stats:()=>({...counters,reasons:{...counters.reasons},maxPixels:MAX_PIXELS}),clear:()=>{last=null;if(buffer){buffer.width=1;buffer.height=1;}counters.bytes=buffer?4:0;}};
