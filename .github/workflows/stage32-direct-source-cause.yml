@@ -1,0 +1,47 @@
+name: Diagnose Stage32 same-raw-source compositing
+on:
+  workflow_dispatch:
+  push:
+    branches: ['inspect/stage32-direct-source-cause-20261117']
+permissions:
+  contents: read
+jobs:
+  diagnose:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm ci && npm ci --prefix game
+      - name: Generate six isolated d18 diagnostics
+        run: HONRO_ACT4_RELEASE=1 node tests/stage32-direct-source-browser-fixture.mjs "$RUNNER_TEMP/direct-source-fixtures"
+      - name: Actual Chrome, isolated profiles and no saved game
+        shell: bash
+        run: |
+          browser=$(command -v google-chrome || command -v chromium)
+          mkdir -p "$RUNNER_TEMP/direct-source-evidence"
+          failed=0
+          for variant in direct-candidate-source candidate original-colors; do
+            for view in lower left; do
+              dump="$RUNNER_TEMP/stage32-$variant-$view.html"
+              if timeout 300s "$browser" --headless --no-first-run --no-default-browser-check --force-device-scale-factor=1 --virtual-time-budget=60000 --user-data-dir="$RUNNER_TEMP/direct-source-profile-$variant-$view" --dump-dom "file://$RUNNER_TEMP/direct-source-fixtures/stage32-$variant-$view.html" > "$dump"; then
+                node tests/stage32-direct-source-browser-result.mjs "$dump" "$RUNNER_TEMP/direct-source-evidence" "$variant" "$view" || failed=1
+              else
+                printf '{"ok":false,"reason":"Chrome process timeout or failure"}\n' > "$RUNNER_TEMP/direct-source-evidence/stage32-$variant-$view-process-failure.json"
+                failed=1
+              fi
+            done
+          done
+          exit "$failed"
+      - name: Compare strict contracts and report pixel differences
+        if: ${{ !cancelled() }}
+        run: node tests/stage32-direct-source-browser-compare.mjs "$RUNNER_TEMP/direct-source-evidence"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage32-direct-source-cause-diagnostic
+          path: ${{ runner.temp }}/direct-source-evidence
+          if-no-files-found: error
