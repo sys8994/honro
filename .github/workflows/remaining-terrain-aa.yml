@@ -1,0 +1,62 @@
+name: Diagnose residual pixels with identical baseline repeats
+on:
+  push:
+    branches: ['audit/remaining-terrain-aa-20261117']
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: early
+            stages: '2,4,5'
+          - name: late
+            stages: '6,8,9,10'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm ci && npm ci --prefix game
+      - name: Verify original fixture and untouched public production source
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/evidence"
+          git fetch --depth=1 origin 7d238d20663c3ceffe430eb0304e01516ae625cf
+          git worktree add --detach "$RUNNER_TEMP/public-baseline" 7d238d20663c3ceffe430eb0304e01516ae625cf
+          cmp package-lock.json "$RUNNER_TEMP/public-baseline/package-lock.json"
+          cmp game/package-lock.json "$RUNNER_TEMP/public-baseline/game/package-lock.json"
+          ln -s "$GITHUB_WORKSPACE/node_modules" "$RUNNER_TEMP/public-baseline/node_modules"
+          ln -s "$GITHUB_WORKSPACE/game/node_modules" "$RUNNER_TEMP/public-baseline/game/node_modules"
+          node -e "const fs=require('fs'),crypto=require('crypto'),r=require('./tests/fixtures/remaining-terrain-aa-reference.json');if(crypto.createHash('sha256').update(fs.readFileSync('tests/remaining-terrain-browser-fixture.mjs')).digest('hex')!==r.fixtureSha256)throw Error('Fixture changed')"
+          cp tests/remaining-terrain-browser-fixture.mjs "$RUNNER_TEMP/public-baseline/tests/remaining-terrain-browser-fixture.mjs"
+          (cd "$RUNNER_TEMP/public-baseline" && git rev-parse HEAD && git diff --exit-code && git rev-parse HEAD^{tree}) > "$RUNNER_TEMP/evidence/source-identity.txt"
+      - name: Generate unchanged baseline fixture once
+        run: |
+          (cd "$RUNNER_TEMP/public-baseline" && node tests/remaining-terrain-browser-fixture.mjs "$RUNNER_TEMP/baseline-fixtures" '${{ matrix.stages }}' baseline)
+          node -e "const r=require('./tests/fixtures/remaining-terrain-aa-reference.json'),s=process.argv[1].split(',').map(Number);for(const q of r.rows.filter(q=>s.includes(q.stage)))console.log(q.stage+':'+q.view)" '${{ matrix.stages }}' > "$RUNNER_TEMP/selected.txt"
+      - name: Two independent Chrome executions of each exact same baseline HTML
+        shell: bash
+        run: |
+          browser=$(command -v google-chrome || command -v chromium)
+          "$browser" --version > "$RUNNER_TEMP/evidence/browser-version.txt"
+          for repeat in 1 2; do
+            while IFS=: read -r stage view; do
+              name="stage$stage-baseline-$view"
+              timeout 300s "$browser" --headless --no-first-run --no-default-browser-check --force-device-scale-factor=1 --virtual-time-budget=60000 --user-data-dir="$RUNNER_TEMP/profile-repeat$repeat-$name" --dump-dom "file://$RUNNER_TEMP/baseline-fixtures/$name.html" > "$RUNNER_TEMP/repeat$repeat-$name.html"
+              node tests/remaining-terrain-browser-result.mjs "$RUNNER_TEMP/repeat$repeat-$name.html" "$RUNNER_TEMP/evidence/repeat$repeat" "$stage" baseline "$view"
+            done < "$RUNNER_TEMP/selected.txt"
+          done
+      - name: Compare source runtime camera physics Chrome and each previously residual coordinate
+        run: node tests/remaining-terrain-aa-compare.mjs "$RUNNER_TEMP/evidence" tests/fixtures/remaining-terrain-aa-reference.json '${{ matrix.stages }}'
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: remaining-terrain-aa-${{ matrix.name }}
+          path: ${{ runner.temp }}/evidence
+          if-no-files-found: error

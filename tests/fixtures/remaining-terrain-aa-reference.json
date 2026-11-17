@@ -1,0 +1,3392 @@
+{
+  "source": "7d238d20663c3ceffe430eb0304e01516ae625cf",
+  "fixtureRef": "fcf63304e53705cbdc50a7a7a9c4923803e5c3fa",
+  "previousRun": 44165802225,
+  "fixtureSha256": "38e08d9ce3d1f584a4fc29c7d0d616dfd9888d4bc51bb902059cf942480793b5",
+  "rows": [
+    {
+      "stage": 10,
+      "view": "desktop-br",
+      "baselineMetadata": {
+        "ok": true,
+        "scope": "Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.",
+        "stage": 10,
+        "variant": "baseline",
+        "view": "desktop-br",
+        "width": 1331,
+        "height": 763,
+        "dpr": 1,
+        "camera": {
+          "x": 5000,
+          "y": 3900,
+          "scale": 0.19573529411764706
+        },
+        "time": 2,
+        "seed": 3910,
+        "runtimeSha256": "cffb6906fdf5e6aefbf5e9de58d908141b03ce58a75c24da612df95f25971ef8",
+        "physicsSha256": "cb9f6608e6363bc1cd5f5504545a2f3d968a6615c261ce7d5ba1a58766c13ab6",
+        "renderPure": true,
+        "fontStatus": "loaded",
+        "fontNote": "System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+        "imageCount": 2,
+        "pendingImages": 0,
+        "imageErrors": 0,
+        "storage": [],
+        "errors": [],
+        "violations": [],
+        "pngSha256": "638f3bc4388d34eb3b75af2f443f52b11531550a7c1298529c636df482335571"
+      },
+      "candidateMetadata": {
+        "ok": true,
+        "scope": "Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.",
+        "stage": 10,
+        "variant": "candidate",
+        "view": "desktop-br",
+        "width": 1331,
+        "height": 763,
+        "dpr": 1,
+        "camera": {
+          "x": 5000,
+          "y": 3900,
+          "scale": 0.19573529411764706
+        },
+        "time": 2,
+        "seed": 3910,
+        "runtimeSha256": "690de5e9ee8390aa6a6094021337cbf908eab53f9d61d1c3d8b2e9d7d6802cfc",
+        "physicsSha256": "cb9f6608e6363bc1cd5f5504545a2f3d968a6615c261ce7d5ba1a58766c13ab6",
+        "renderPure": true,
+        "fontStatus": "loaded",
+        "fontNote": "System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+        "imageCount": 2,
+        "pendingImages": 0,
+        "imageErrors": 0,
+        "storage": [],
+        "errors": [],
+        "violations": [],
+        "pngSha256": "afced9e545082e0e03f2659c5f2fef038a2624b9d66f795b15bdb5fa71dbdfc0"
+      },
+      "pixels": [
+        {
+          "x": 636,
+          "y": 51,
+          "baseline": [
+            18,
+            20,
+            23,
+            255
+          ],
+          "candidate": [
+            18,
+            19,
+            22,
+            255
+          ]
+        },
+        {
+          "x": 636,
+          "y": 59,
+          "baseline": [
+            19,
+            21,
+            24,
+            255
+          ],
+          "candidate": [
+            19,
+            20,
+            23,
+            255
+          ]
+        },
+        {
+          "x": 636,
+          "y": 65,
+          "baseline": [
+            19,
+            21,
+            25,
+            255
+          ],
+          "candidate": [
+            19,
+            21,
+            24,
+            255
+          ]
+        },
+        {
+          "x": 1072,
+          "y": 146,
+          "baseline": [
+            29,
+            31,
+            36,
+            255
+          ],
+          "candidate": [
+            29,
+            32,
+            36,
+            255
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 2,
+      "view": "desktop-br",
+      "baselineMetadata": {
+        "ok": true,
+        "scope": "Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.",
+        "stage": 2,
+        "variant": "baseline",
+        "view": "desktop-br",
+        "width": 1331,
+        "height": 763,
+        "dpr": 1,
+        "camera": {
+          "x": 4300,
+          "y": 3300,
+          "scale": 0.19573529411764706
+        },
+        "time": 2,
+        "seed": 3910,
+        "runtimeSha256": "cffb6906fdf5e6aefbf5e9de58d908141b03ce58a75c24da612df95f25971ef8",
+        "physicsSha256": "86d2783bad413acd61b946b233c49905b41c73aacbb077cdd27b037b53157824",
+        "renderPure": true,
+        "fontStatus": "loaded",
+        "fontNote": "System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+        "imageCount": 2,
+        "pendingImages": 0,
+        "imageErrors": 0,
+        "storage": [],
+        "errors": [],
+        "violations": [],
+        "pngSha256": "518e349860c7fd4d221cbb27f838026250032f3a1af8058a2ba9b596fd5895cb"
+      },
+      "candidateMetadata": {
+        "ok": true,
+        "scope": "Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.",
+        "stage": 2,
+        "variant": "candidate",
+        "view": "desktop-br",
+        "width": 1331,
+        "height": 763,
+        "dpr": 1,
+        "camera": {
+          "x": 4300,
+          "y": 3300,
+          "scale": 0.19573529411764706
+        },
+        "time": 2,
+        "seed": 3910,
+        "runtimeSha256": "690de5e9ee8390aa6a6094021337cbf908eab53f9d61d1c3d8b2e9d7d6802cfc",
+        "physicsSha256": "86d2783bad413acd61b946b233c49905b41c73aacbb077cdd27b037b53157824",
+        "renderPure": true,
+        "fontStatus": "loaded",
+        "fontNote": "System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+        "imageCount": 2,
+        "pendingImages": 0,
+        "imageErrors": 0,
+        "storage": [],
+        "errors": [],
+        "violations": [],
+        "pngSha256": "0a461f8c41f12edfb5a7c13be8b393b8651f99421aa534b1a5a780f971cbf9d5"
+      },
+      "pixels": [
+        {
+          "x": 238,
+          "y": 144,
+          "baseline": [
+            93,
+            92,
+            92,
+            255
+          ],
+          "candidate": [
+            94,
+            92,
+            92,
+            255
+          ]
+        },
+        {
+          "x": 481,
+          "y": 154,
+          "baseline": [
+            97,
+            95,
+            94,
+            255
+          ],
+          "candidate": [
+            97,
+            94,
+            94,
+            255
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 2,
+      "view": "portrait-tl",
+      "baselineMetadata": {
+        "ok": true,
+        "scope": "Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.",
+        "stage": 2,
+        "variant": "baseline",
+        "view": "portrait-tl",
+        "width": 390,
+        "height": 696,
+        "dpr": 1,
+        "camera": {
+          "x": 0,
+          "y": 0,
+          "scale": 0.057352941176470586
+        },
+        "time": 2,
+        "seed": 3910,
+        "runtimeSha256": "cffb6906fdf5e6aefbf5e9de58d908141b03ce58a75c24da612df95f25971ef8",
+        "physicsSha256": "86d2783bad413acd61b946b233c49905b41c73aacbb077cdd27b037b53157824",
+        "renderPure": true,
+        "fontStatus": "loaded",
+        "fontNote": "System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+        "imageCount": 2,
+        "pendingImages": 0,
+        "imageErrors": 0,
+        "storage": [],
+        "errors": [],
+        "violations": [],
+        "pngSha256": "f443619b278e201dd32904474cd6ff5e20b95d26ff762d30f7edb2d5a49db6ab"
+      },
+      "candidateMetadata": {
+        "ok": true,
+        "scope": "Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.",
+        "stage": 2,
+        "variant": "candidate",
+        "view": "portrait-tl",
+        "width": 390,
+        "height": 696,
+        "dpr": 1,
+        "camera": {
+          "x": 0,
+          "y": 0,
+          "scale": 0.057352941176470586
+        },
+        "time": 2,
+        "seed": 3910,
+        "runtimeSha256": "690de5e9ee8390aa6a6094021337cbf908eab53f9d61d1c3d8b2e9d7d6802cfc",
+        "physicsSha256": "86d2783bad413acd61b946b233c49905b41c73aacbb077cdd27b037b53157824",
+        "renderPure": true,
+        "fontStatus": "loaded",
+        "fontNote": "System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+        "imageCount": 2,
+        "pendingImages": 0,
+        "imageErrors": 0,
+        "storage": [],
+        "errors": [],
+        "violations": [],
+        "pngSha256": "70a97ccb8e810496f93b38281f7654a8731e125978da9ee1f3d02608fc8102a4"
+      },
+      "pixels": [
+        {
+          "x": 214,
+          "y": 74,
+          "baseline": [
+            68,
+            71,
+            73,
+            255
+          ],
+          "candidate": [
+            68,
+            71,
+            74,
+            255
+          ]
+        },
+        {
+          "x": 116,
+          "y": 117,
+          "baseline": [
+            78,
+            77,
+            79,
+            255
+          ],
+          "candidate": [
+            77,
+            77,
+            78,
+            255
+          ]
+        },
+        {
+          "x": 311,
+          "y": 127,
+          "baseline": [
+            89,
+            87,
+            88,
+            255
+          ],
+          "candidate": [
+            88,
+            87,
+            87,
+            255
+          ]
+        },
+        {
+          "x": 116,
+          "y": 156,
+          "baseline": [
+            97,
+            95,
+            93,
+            255
+          ],
+          "candidate": [
+            96,
+            95,
+            93,
+            255
+          ]
+        },
+        {
+          "x": 194,
+          "y": 156,
+          "baseline": [
+            98,
+            94,
+            92,
+            255
+          ],
+          "candidate": [
+            97,
+            94,
+            92,
+            255
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 4,
+      "view": "portrait-br",
+      "baselineMetadata": {
+        "ok": true,
+        "scope": "Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.",
+        "stage": 4,
+        "variant": "baseline",
+        "view": "portrait-br",
+        "width": 390,
+        "height": 696,
+        "dpr": 1,
+        "camera": {
+          "x": 4600,
+          "y": 3500,
+          "scale": 0.057352941176470586
+        },
+        "time": 2,
+        "seed": 3910,
+        "runtimeSha256": "cffb6906fdf5e6aefbf5e9de58d908141b03ce58a75c24da612df95f25971ef8",
+        "physicsSha256": "c648dce51f9c9030f5d964a6b6fb845eda404dd24bf4dce37c5c8b691b3f643a",
+        "renderPure": true,
+        "fontStatus": "loaded",
+        "fontNote": "System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+        "imageCount": 2,
+        "pendingImages": 0,
+        "imageErrors": 0,
+        "storage": [],
+        "errors": [],
+        "violations": [],
+        "pngSha256": "82eddce862709d3ccf7a55ffb54295406539a30aeec69bbf17b8579d48194aee"
+      },
+      "candidateMetadata": {
+        "ok": true,
+        "scope": "Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.",
+        "stage": 4,
+        "variant": "candidate",
+        "view": "portrait-br",
+        "width": 390,
+        "height": 696,
+        "dpr": 1,
+        "camera": {
+          "x": 4600,
+          "y": 3500,
+          "scale": 0.057352941176470586
+        },
+        "time": 2,
+        "seed": 3910,
+        "runtimeSha256": "690de5e9ee8390aa6a6094021337cbf908eab53f9d61d1c3d8b2e9d7d6802cfc",
+        "physicsSha256": "c648dce51f9c9030f5d964a6b6fb845eda404dd24bf4dce37c5c8b691b3f643a",
+        "renderPure": true,
+        "fontStatus": "loaded",
+        "fontNote": "System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+        "imageCount": 2,
+        "pendingImages": 0,
+        "imageErrors": 0,
+        "storage": [],
+        "errors": [],
+        "violations": [],
+        "pngSha256": "07dd63ab595d25e7e8a8d124d107a36cccf0d16f5bf038bf6fad257d03f8a7a4"
+      },
+      "pixels": [
+        {
+          "x": 268,
+          "y": 61,
+          "baseline": [
+            41,
+            44,
+            48,
+            255
+          ],
+          "candidate": [
+            40,
+            44,
+            47,
+            255
+          ]
+        },
+        {
+          "x": 132,
+          "y": 71,
+          "baseline": [
+            42,
+            46,
+            50,
+            255
+          ],
+          "candidate": [
+            43,
+            46,
+            50,
+            255
+          ]
+        },
+        {
+          "x": 358,
+          "y": 129,
+          "baseline": [
+            54,
+            58,
+            64,
+            255
+          ],
+          "candidate": [
+            55,
+            59,
+            64,
+            255
+          ]
+        },
+        {
+          "x": 85,
+          "y": 130,
+          "baseline": [
+            67,
+            71,
+            77,
+            255
+          ],
+          "candidate": [
+            67,
+            72,
+            78,
+            255
+          ]
+        },
+        {
+          "x": 358,
+          "y": 132,
+          "baseline": [
+            53,
+            56,
+            63,
+            255
+          ],
+          "candidate": [
+            53,
+            57,
+            63,
+            255
+          ]
+        },
+        {
+          "x": 163,
+          "y": 137,
+          "baseline": [
+            56,
+            60,
+            66,
+            255
+          ],
+          "candidate": [
+            56,
+            61,
+            67,
+            255
+          ]
+        },
+        {
+          "x": 85,
+          "y": 138,
+          "baseline": [
+            74,
+            79,
+            87,
+            247
+          ],
+          "candidate": [
+            74,
+            81,
+            88,
+            247
+          ]
+        },
+        {
+          "x": 241,
+          "y": 139,
+          "baseline": [
+            49,
+            53,
+            60,
+            255
+          ],
+          "candidate": [
+            49,
+            54,
+            60,
+            255
+          ]
+        },
+        {
+          "x": 280,
+          "y": 139,
+          "baseline": [
+            56,
+            59,
+            65,
+            255
+          ],
+          "candidate": [
+            55,
+            59,
+            65,
+            255
+          ]
+        },
+        {
+          "x": 241,
+          "y": 140,
+          "baseline": [
+            51,
+            57,
+            62,
+            255
+          ],
+          "candidate": [
+            51,
+            56,
+            62,
+            255
+          ]
+        },
+        {
+          "x": 241,
+          "y": 146,
+          "baseline": [
+            57,
+            61,
+            67,
+            255
+          ],
+          "candidate": [
+            57,
+            61,
+            68,
+            255
+          ]
+        },
+        {
+          "x": 85,
+          "y": 148,
+          "baseline": [
+            95,
+            100,
+            110,
+            232
+          ],
+          "candidate": [
+            95,
+            101,
+            110,
+            232
+          ]
+        },
+        {
+          "x": 241,
+          "y": 148,
+          "baseline": [
+            56,
+            60,
+            67,
+            255
+          ],
+          "candidate": [
+            57,
+            60,
+            67,
+            255
+          ]
+        },
+        {
+          "x": 280,
+          "y": 150,
+          "baseline": [
+            63,
+            68,
+            74,
+            255
+          ],
+          "candidate": [
+            64,
+            69,
+            75,
+            255
+          ]
+        },
+        {
+          "x": 241,
+          "y": 160,
+          "baseline": [
+            45,
+            49,
+            55,
+            255
+          ],
+          "candidate": [
+            45,
+            50,
+            55,
+            255
+          ]
+        },
+        {
+          "x": 241,
+          "y": 162,
+          "baseline": [
+            44,
+            48,
+            53,
+            255
+          ],
+          "candidate": [
+            44,
+            49,
+            54,
+            255
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 4,
+      "view": "portrait-tl",
+      "baselineMetadata": {
+        "ok": true,
+        "scope": "Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.",
+        "stage": 4,
+        "variant": "baseline",
+        "view": "portrait-tl",
+        "width": 390,
+        "height": 696,
+        "dpr": 1,
+        "camera": {
+          "x": 0,
+          "y": 0,
+          "scale": 0.057352941176470586
+        },
+        "time": 2,
+        "seed": 3910,
+        "runtimeSha256": "cffb6906fdf5e6aefbf5e9de58d908141b03ce58a75c24da612df95f25971ef8",
+        "physicsSha256": "c648dce51f9c9030f5d964a6b6fb845eda404dd24bf4dce37c5c8b691b3f643a",
+        "renderPure": true,
+        "fontStatus": "loaded",
+        "fontNote": "System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+        "imageCount": 2,
+        "pendingImages": 0,
+        "imageErrors": 0,
+        "storage": [],
+        "errors": [],
+        "violations": [],
+        "pngSha256": "731fb3cc4c841161dc065c9d87a1b3ae788c5a9a5664e447ed5d6bc0e095da46"
+      },
+      "candidateMetadata": {
+        "ok": true,
+        "scope": "Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.",
+        "stage": 4,
+        "variant": "candidate",
+        "view": "portrait-tl",
+        "width": 390,
+        "height": 696,
+        "dpr": 1,
+        "camera": {
+          "x": 0,
+          "y": 0,
+          "scale": 0.057352941176470586
+        },
+        "time": 2,
+        "seed": 3910,
+        "runtimeSha256": "690de5e9ee8390aa6a6094021337cbf908eab53f9d61d1c3d8b2e9d7d6802cfc",
+        "physicsSha256": "c648dce51f9c9030f5d964a6b6fb845eda404dd24bf4dce37c5c8b691b3f643a",
+        "renderPure": true,
+        "fontStatus": "loaded",
+        "fontNote": "System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+        "imageCount": 2,
+        "pendingImages": 0,
+        "imageErrors": 0,
+        "storage": [],
+        "errors": [],
+        "violations": [],
+        "pngSha256": "38fc1a514905dd2953df8578cc94a1c273191bb2d46d4364ac74bc67c25a851d"
+      },
+      "pixels": [
+        {
+          "x": 268,
+          "y": 61,
+          "baseline": [
+            41,
+            44,
+            48,
+            255
+          ],
+          "candidate": [
+            40,
+            44,
+            47,
+            255
+          ]
+        },
+        {
+          "x": 132,
+          "y": 71,
+          "baseline": [
+            43,
+            46,
+            50,
+            255
+          ],
+          "candidate": [
+            43,
+            47,
+            50,
+            255
+          ]
+        },
+        {
+          "x": 358,
+          "y": 129,
+          "baseline": [
+            53,
+            58,
+            64,
+            255
+          ],
+          "candidate": [
+            54,
+            58,
+            64,
+            255
+          ]
+        },
+        {
+          "x": 85,
+          "y": 130,
+          "baseline": [
+            66,
+            71,
+            77,
+            255
+          ],
+          "candidate": [
+            67,
+            72,
+            77,
+            255
+          ]
+        },
+        {
+          "x": 241,
+          "y": 133,
+          "baseline": [
+            46,
+            49,
+            54,
+            255
+          ],
+          "candidate": [
+            45,
+            49,
+            54,
+            255
+          ]
+        },
+        {
+          "x": 85,
+          "y": 138,
+          "baseline": [
+            74,
+            81,
+            88,
+            247
+          ],
+          "candidate": [
+            75,
+            82,
+            89,
+            247
+          ]
+        },
+        {
+          "x": 241,
+          "y": 139,
+          "baseline": [
+            49,
+            53,
+            59,
+            255
+          ],
+          "candidate": [
+            49,
+            52,
+            59,
+            255
+          ]
+        },
+        {
+          "x": 241,
+          "y": 140,
+          "baseline": [
+            51,
+            57,
+            62,
+            255
+          ],
+          "candidate": [
+            51,
+            56,
+            62,
+            255
+          ]
+        },
+        {
+          "x": 241,
+          "y": 144,
+          "baseline": [
+            54,
+            60,
+            65,
+            255
+          ],
+          "candidate": [
+            55,
+            60,
+            65,
+            255
+          ]
+        },
+        {
+          "x": 85,
+          "y": 145,
+          "baseline": [
+            93,
+            100,
+            110,
+            232
+          ],
+          "candidate": [
+            93,
+            101,
+            111,
+            232
+          ]
+        },
+        {
+          "x": 241,
+          "y": 146,
+          "baseline": [
+            57,
+            61,
+            67,
+            255
+          ],
+          "candidate": [
+            57,
+            61,
+            68,
+            255
+          ]
+        },
+        {
+          "x": 85,
+          "y": 148,
+          "baseline": [
+            95,
+            100,
+            110,
+            232
+          ],
+          "candidate": [
+            95,
+            101,
+            110,
+            232
+          ]
+        },
+        {
+          "x": 241,
+          "y": 148,
+          "baseline": [
+            56,
+            60,
+            67,
+            255
+          ],
+          "candidate": [
+            57,
+            60,
+            67,
+            255
+          ]
+        },
+        {
+          "x": 280,
+          "y": 150,
+          "baseline": [
+            62,
+            67,
+            73,
+            255
+          ],
+          "candidate": [
+            62,
+            68,
+            74,
+            255
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 8,
+      "view": "portrait-tl",
+      "baselineMetadata": {
+        "ok": true,
+        "scope": "Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.",
+        "stage": 8,
+        "variant": "baseline",
+        "view": "portrait-tl",
+        "width": 390,
+        "height": 696,
+        "dpr": 1,
+        "camera": {
+          "x": 0,
+          "y": 0,
+          "scale": 0.057352941176470586
+        },
+        "time": 2,
+        "seed": 3910,
+        "runtimeSha256": "cffb6906fdf5e6aefbf5e9de58d908141b03ce58a75c24da612df95f25971ef8",
+        "physicsSha256": "34ba9c574158fae754ce64b815722f557b4debf0548a0c89d6e42b05024d85bf",
+        "renderPure": true,
+        "fontStatus": "loaded",
+        "fontNote": "System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+        "imageCount": 1,
+        "pendingImages": 0,
+        "imageErrors": 0,
+        "storage": [],
+        "errors": [],
+        "violations": [],
+        "pngSha256": "b6887a419c0bbd15c507dd60ee765e15de8b8c2bc69179ecbc6d64781d33c4cd"
+      },
+      "candidateMetadata": {
+        "ok": true,
+        "scope": "Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.",
+        "stage": 8,
+        "variant": "candidate",
+        "view": "portrait-tl",
+        "width": 390,
+        "height": 696,
+        "dpr": 1,
+        "camera": {
+          "x": 0,
+          "y": 0,
+          "scale": 0.057352941176470586
+        },
+        "time": 2,
+        "seed": 3910,
+        "runtimeSha256": "690de5e9ee8390aa6a6094021337cbf908eab53f9d61d1c3d8b2e9d7d6802cfc",
+        "physicsSha256": "34ba9c574158fae754ce64b815722f557b4debf0548a0c89d6e42b05024d85bf",
+        "renderPure": true,
+        "fontStatus": "loaded",
+        "fontNote": "System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+        "imageCount": 1,
+        "pendingImages": 0,
+        "imageErrors": 0,
+        "storage": [],
+        "errors": [],
+        "violations": [],
+        "pngSha256": "d121c0c3bbf26fe296444d49ed379350bc5830f782e12f4d264f3a6969e3f262"
+      },
+      "pixels": [
+        {
+          "x": 269,
+          "y": 115,
+          "baseline": [
+            26,
+            26,
+            29,
+            255
+          ],
+          "candidate": [
+            26,
+            27,
+            30,
+            255
+          ]
+        },
+        {
+          "x": 269,
+          "y": 116,
+          "baseline": [
+            26,
+            28,
+            31,
+            255
+          ],
+          "candidate": [
+            26,
+            27,
+            30,
+            255
+          ]
+        },
+        {
+          "x": 230,
+          "y": 120,
+          "baseline": [
+            34,
+            34,
+            38,
+            255
+          ],
+          "candidate": [
+            33,
+            34,
+            38,
+            255
+          ]
+        },
+        {
+          "x": 230,
+          "y": 125,
+          "baseline": [
+            39,
+            40,
+            45,
+            255
+          ],
+          "candidate": [
+            38,
+            40,
+            45,
+            255
+          ]
+        },
+        {
+          "x": 230,
+          "y": 127,
+          "baseline": [
+            40,
+            42,
+            46,
+            255
+          ],
+          "candidate": [
+            39,
+            42,
+            46,
+            255
+          ]
+        },
+        {
+          "x": 152,
+          "y": 128,
+          "baseline": [
+            41,
+            42,
+            47,
+            255
+          ],
+          "candidate": [
+            40,
+            42,
+            47,
+            255
+          ]
+        },
+        {
+          "x": 386,
+          "y": 128,
+          "baseline": [
+            44,
+            46,
+            51,
+            255
+          ],
+          "candidate": [
+            43,
+            45,
+            51,
+            255
+          ]
+        },
+        {
+          "x": 230,
+          "y": 129,
+          "baseline": [
+            40,
+            42,
+            46,
+            255
+          ],
+          "candidate": [
+            39,
+            42,
+            46,
+            255
+          ]
+        },
+        {
+          "x": 230,
+          "y": 131,
+          "baseline": [
+            39,
+            40,
+            45,
+            255
+          ],
+          "candidate": [
+            38,
+            40,
+            45,
+            255
+          ]
+        },
+        {
+          "x": 347,
+          "y": 132,
+          "baseline": [
+            45,
+            47,
+            52,
+            255
+          ],
+          "candidate": [
+            44,
+            47,
+            52,
+            255
+          ]
+        },
+        {
+          "x": 347,
+          "y": 133,
+          "baseline": [
+            43,
+            46,
+            51,
+            255
+          ],
+          "candidate": [
+            43,
+            46,
+            50,
+            255
+          ]
+        },
+        {
+          "x": 230,
+          "y": 134,
+          "baseline": [
+            37,
+            39,
+            43,
+            255
+          ],
+          "candidate": [
+            38,
+            39,
+            43,
+            255
+          ]
+        },
+        {
+          "x": 347,
+          "y": 134,
+          "baseline": [
+            44,
+            47,
+            51,
+            255
+          ],
+          "candidate": [
+            44,
+            46,
+            50,
+            255
+          ]
+        },
+        {
+          "x": 230,
+          "y": 136,
+          "baseline": [
+            37,
+            39,
+            44,
+            255
+          ],
+          "candidate": [
+            38,
+            39,
+            44,
+            255
+          ]
+        },
+        {
+          "x": 347,
+          "y": 138,
+          "baseline": [
+            45,
+            48,
+            52,
+            255
+          ],
+          "candidate": [
+            45,
+            47,
+            52,
+            255
+          ]
+        },
+        {
+          "x": 230,
+          "y": 139,
+          "baseline": [
+            40,
+            42,
+            46,
+            255
+          ],
+          "candidate": [
+            39,
+            42,
+            46,
+            255
+          ]
+        },
+        {
+          "x": 230,
+          "y": 140,
+          "baseline": [
+            41,
+            42,
+            48,
+            255
+          ],
+          "candidate": [
+            40,
+            42,
+            48,
+            255
+          ]
+        },
+        {
+          "x": 230,
+          "y": 142,
+          "baseline": [
+            43,
+            45,
+            49,
+            255
+          ],
+          "candidate": [
+            42,
+            44,
+            49,
+            255
+          ]
+        },
+        {
+          "x": 230,
+          "y": 144,
+          "baseline": [
+            44,
+            47,
+            52,
+            255
+          ],
+          "candidate": [
+            44,
+            46,
+            51,
+            255
+          ]
+        },
+        {
+          "x": 191,
+          "y": 146,
+          "baseline": [
+            54,
+            56,
+            61,
+            255
+          ],
+          "candidate": [
+            54,
+            57,
+            62,
+            255
+          ]
+        },
+        {
+          "x": 230,
+          "y": 148,
+          "baseline": [
+            44,
+            46,
+            51,
+            255
+          ],
+          "candidate": [
+            43,
+            46,
+            51,
+            255
+          ]
+        },
+        {
+          "x": 230,
+          "y": 151,
+          "baseline": [
+            42,
+            44,
+            48,
+            255
+          ],
+          "candidate": [
+            41,
+            44,
+            48,
+            255
+          ]
+        },
+        {
+          "x": 269,
+          "y": 161,
+          "baseline": [
+            31,
+            32,
+            35,
+            255
+          ],
+          "candidate": [
+            30,
+            32,
+            35,
+            255
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 9,
+      "view": "desktop-tl",
+      "baselineMetadata": {
+        "ok": true,
+        "scope": "Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.",
+        "stage": 9,
+        "variant": "baseline",
+        "view": "desktop-tl",
+        "width": 1331,
+        "height": 763,
+        "dpr": 1,
+        "camera": {
+          "x": 0,
+          "y": 0,
+          "scale": 0.19573529411764706
+        },
+        "time": 2,
+        "seed": 3910,
+        "runtimeSha256": "cffb6906fdf5e6aefbf5e9de58d908141b03ce58a75c24da612df95f25971ef8",
+        "physicsSha256": "2a54863573ccc3ff29b0a3ebc477f3b931ae4ce770092a3bb7299ce720ae1c72",
+        "renderPure": true,
+        "fontStatus": "loaded",
+        "fontNote": "System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+        "imageCount": 2,
+        "pendingImages": 0,
+        "imageErrors": 0,
+        "storage": [],
+        "errors": [],
+        "violations": [],
+        "pngSha256": "1dbdd3092f779cba8972b9d3907c3b48dd403495c03bc86e48ded1fdbb8f1b2b"
+      },
+      "candidateMetadata": {
+        "ok": true,
+        "scope": "Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.",
+        "stage": 9,
+        "variant": "candidate",
+        "view": "desktop-tl",
+        "width": 1331,
+        "height": 763,
+        "dpr": 1,
+        "camera": {
+          "x": 0,
+          "y": 0,
+          "scale": 0.19573529411764706
+        },
+        "time": 2,
+        "seed": 3910,
+        "runtimeSha256": "690de5e9ee8390aa6a6094021337cbf908eab53f9d61d1c3d8b2e9d7d6802cfc",
+        "physicsSha256": "2a54863573ccc3ff29b0a3ebc477f3b931ae4ce770092a3bb7299ce720ae1c72",
+        "renderPure": true,
+        "fontStatus": "loaded",
+        "fontNote": "System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+        "imageCount": 2,
+        "pendingImages": 0,
+        "imageErrors": 0,
+        "storage": [],
+        "errors": [],
+        "violations": [],
+        "pngSha256": "ff9d799c8a86260b2c6da177b58b44f22cd54706141787b9983a11d9c2c78b35"
+      },
+      "pixels": [
+        {
+          "x": 963,
+          "y": 56,
+          "baseline": [
+            21,
+            23,
+            27,
+            255
+          ],
+          "candidate": [
+            21,
+            23,
+            26,
+            255
+          ]
+        },
+        {
+          "x": 963,
+          "y": 57,
+          "baseline": [
+            22,
+            24,
+            27,
+            255
+          ],
+          "candidate": [
+            21,
+            23,
+            27,
+            255
+          ]
+        },
+        {
+          "x": 963,
+          "y": 70,
+          "baseline": [
+            25,
+            27,
+            31,
+            255
+          ],
+          "candidate": [
+            25,
+            26,
+            30,
+            255
+          ]
+        },
+        {
+          "x": 290,
+          "y": 142,
+          "baseline": [
+            37,
+            40,
+            46,
+            255
+          ],
+          "candidate": [
+            37,
+            40,
+            45,
+            255
+          ]
+        },
+        {
+          "x": 839,
+          "y": 143,
+          "baseline": [
+            35,
+            38,
+            43,
+            255
+          ],
+          "candidate": [
+            35,
+            39,
+            43,
+            255
+          ]
+        },
+        {
+          "x": 625,
+          "y": 203,
+          "baseline": [
+            34,
+            36,
+            42,
+            255
+          ],
+          "candidate": [
+            34,
+            36,
+            41,
+            255
+          ]
+        },
+        {
+          "x": 625,
+          "y": 233,
+          "baseline": [
+            44,
+            48,
+            54,
+            255
+          ],
+          "candidate": [
+            44,
+            47,
+            54,
+            255
+          ]
+        },
+        {
+          "x": 1130,
+          "y": 236,
+          "baseline": [
+            45,
+            48,
+            54,
+            255
+          ],
+          "candidate": [
+            45,
+            48,
+            55,
+            255
+          ]
+        },
+        {
+          "x": 1130,
+          "y": 242,
+          "baseline": [
+            45,
+            49,
+            55,
+            255
+          ],
+          "candidate": [
+            45,
+            49,
+            56,
+            255
+          ]
+        },
+        {
+          "x": 1130,
+          "y": 244,
+          "baseline": [
+            45,
+            49,
+            55,
+            255
+          ],
+          "candidate": [
+            45,
+            50,
+            56,
+            255
+          ]
+        },
+        {
+          "x": 1130,
+          "y": 245,
+          "baseline": [
+            45,
+            49,
+            56,
+            255
+          ],
+          "candidate": [
+            45,
+            49,
+            55,
+            255
+          ]
+        },
+        {
+          "x": 1130,
+          "y": 246,
+          "baseline": [
+            45,
+            48,
+            55,
+            255
+          ],
+          "candidate": [
+            45,
+            49,
+            56,
+            255
+          ]
+        },
+        {
+          "x": 732,
+          "y": 248,
+          "baseline": [
+            40,
+            43,
+            49,
+            255
+          ],
+          "candidate": [
+            40,
+            43,
+            50,
+            255
+          ]
+        },
+        {
+          "x": 1130,
+          "y": 248,
+          "baseline": [
+            45,
+            48,
+            54,
+            255
+          ],
+          "candidate": [
+            45,
+            48,
+            55,
+            255
+          ]
+        },
+        {
+          "x": 732,
+          "y": 249,
+          "baseline": [
+            40,
+            43,
+            50,
+            255
+          ],
+          "candidate": [
+            40,
+            43,
+            49,
+            255
+          ]
+        },
+        {
+          "x": 839,
+          "y": 269,
+          "baseline": [
+            31,
+            34,
+            39,
+            255
+          ],
+          "candidate": [
+            32,
+            35,
+            39,
+            255
+          ]
+        },
+        {
+          "x": 946,
+          "y": 270,
+          "baseline": [
+            35,
+            39,
+            43,
+            255
+          ],
+          "candidate": [
+            35,
+            38,
+            43,
+            255
+          ]
+        },
+        {
+          "x": 13,
+          "y": 277,
+          "baseline": [
+            30,
+            32,
+            37,
+            255
+          ],
+          "candidate": [
+            30,
+            32,
+            36,
+            255
+          ]
+        },
+        {
+          "x": 334,
+          "y": 291,
+          "baseline": [
+            33,
+            35,
+            40,
+            255
+          ],
+          "candidate": [
+            32,
+            35,
+            40,
+            255
+          ]
+        },
+        {
+          "x": 839,
+          "y": 293,
+          "baseline": [
+            25,
+            28,
+            32,
+            255
+          ],
+          "candidate": [
+            26,
+            28,
+            32,
+            255
+          ]
+        },
+        {
+          "x": 839,
+          "y": 298,
+          "baseline": [
+            25,
+            27,
+            31,
+            255
+          ],
+          "candidate": [
+            24,
+            27,
+            31,
+            255
+          ]
+        },
+        {
+          "x": 13,
+          "y": 299,
+          "baseline": [
+            25,
+            28,
+            32,
+            255
+          ],
+          "candidate": [
+            26,
+            29,
+            32,
+            255
+          ]
+        },
+        {
+          "x": 334,
+          "y": 301,
+          "baseline": [
+            29,
+            32,
+            37,
+            255
+          ],
+          "candidate": [
+            29,
+            32,
+            36,
+            255
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 9,
+      "view": "portrait-br",
+      "baselineMetadata": {
+        "ok": true,
+        "scope": "Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.",
+        "stage": 9,
+        "variant": "baseline",
+        "view": "portrait-br",
+        "width": 390,
+        "height": 696,
+        "dpr": 1,
+        "camera": {
+          "x": 3600,
+          "y": 3500,
+          "scale": 0.057352941176470586
+        },
+        "time": 2,
+        "seed": 3910,
+        "runtimeSha256": "cffb6906fdf5e6aefbf5e9de58d908141b03ce58a75c24da612df95f25971ef8",
+        "physicsSha256": "2a54863573ccc3ff29b0a3ebc477f3b931ae4ce770092a3bb7299ce720ae1c72",
+        "renderPure": true,
+        "fontStatus": "loaded",
+        "fontNote": "System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+        "imageCount": 2,
+        "pendingImages": 0,
+        "imageErrors": 0,
+        "storage": [],
+        "errors": [],
+        "violations": [],
+        "pngSha256": "817e739841ce652a9701d81ba3b9209719e4f9a93743eb95e8f794ffa6973fb8"
+      },
+      "candidateMetadata": {
+        "ok": true,
+        "scope": "Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.",
+        "stage": 9,
+        "variant": "candidate",
+        "view": "portrait-br",
+        "width": 390,
+        "height": 696,
+        "dpr": 1,
+        "camera": {
+          "x": 3600,
+          "y": 3500,
+          "scale": 0.057352941176470586
+        },
+        "time": 2,
+        "seed": 3910,
+        "runtimeSha256": "690de5e9ee8390aa6a6094021337cbf908eab53f9d61d1c3d8b2e9d7d6802cfc",
+        "physicsSha256": "2a54863573ccc3ff29b0a3ebc477f3b931ae4ce770092a3bb7299ce720ae1c72",
+        "renderPure": true,
+        "fontStatus": "loaded",
+        "fontNote": "System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+        "imageCount": 2,
+        "pendingImages": 0,
+        "imageErrors": 0,
+        "storage": [],
+        "errors": [],
+        "violations": [],
+        "pngSha256": "b11037ea5dc2679483096764ebfd2834597778b0d64af961587f09348740f23e"
+      },
+      "pixels": [
+        {
+          "x": 283,
+          "y": 63,
+          "baseline": [
+            34,
+            37,
+            42,
+            255
+          ],
+          "candidate": [
+            35,
+            37,
+            42,
+            255
+          ]
+        },
+        {
+          "x": 324,
+          "y": 119,
+          "baseline": [
+            28,
+            30,
+            34,
+            255
+          ],
+          "candidate": [
+            28,
+            31,
+            35,
+            255
+          ]
+        },
+        {
+          "x": 26,
+          "y": 126,
+          "baseline": [
+            28,
+            30,
+            34,
+            255
+          ],
+          "candidate": [
+            27,
+            30,
+            34,
+            255
+          ]
+        },
+        {
+          "x": 143,
+          "y": 126,
+          "baseline": [
+            33,
+            36,
+            41,
+            255
+          ],
+          "candidate": [
+            33,
+            36,
+            42,
+            255
+          ]
+        },
+        {
+          "x": 246,
+          "y": 141,
+          "baseline": [
+            31,
+            33,
+            38,
+            255
+          ],
+          "candidate": [
+            31,
+            33,
+            37,
+            255
+          ]
+        },
+        {
+          "x": 26,
+          "y": 153,
+          "baseline": [
+            35,
+            38,
+            43,
+            255
+          ],
+          "candidate": [
+            35,
+            39,
+            43,
+            255
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 5,
+      "view": "portrait-tl",
+      "baselineMetadata": {
+        "ok": true,
+        "scope": "Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.",
+        "stage": 5,
+        "variant": "baseline",
+        "view": "portrait-tl",
+        "width": 390,
+        "height": 696,
+        "dpr": 1,
+        "camera": {
+          "x": 0,
+          "y": 0,
+          "scale": 0.057352941176470586
+        },
+        "time": 2,
+        "seed": 3910,
+        "runtimeSha256": "cffb6906fdf5e6aefbf5e9de58d908141b03ce58a75c24da612df95f25971ef8",
+        "physicsSha256": "230ddae8f982fce6538b4c4617309b7e773d70ba37abde0562483828164ac8b9",
+        "renderPure": true,
+        "fontStatus": "loaded",
+        "fontNote": "System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+        "imageCount": 2,
+        "pendingImages": 0,
+        "imageErrors": 0,
+        "storage": [],
+        "errors": [],
+        "violations": [],
+        "pngSha256": "669b6e476e3dcbb8cefae4eef8941a1e7ecd9d8540b5e6c7c6c6df102f9da342"
+      },
+      "candidateMetadata": {
+        "ok": true,
+        "scope": "Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.",
+        "stage": 5,
+        "variant": "candidate",
+        "view": "portrait-tl",
+        "width": 390,
+        "height": 696,
+        "dpr": 1,
+        "camera": {
+          "x": 0,
+          "y": 0,
+          "scale": 0.057352941176470586
+        },
+        "time": 2,
+        "seed": 3910,
+        "runtimeSha256": "690de5e9ee8390aa6a6094021337cbf908eab53f9d61d1c3d8b2e9d7d6802cfc",
+        "physicsSha256": "230ddae8f982fce6538b4c4617309b7e773d70ba37abde0562483828164ac8b9",
+        "renderPure": true,
+        "fontStatus": "loaded",
+        "fontNote": "System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+        "imageCount": 2,
+        "pendingImages": 0,
+        "imageErrors": 0,
+        "storage": [],
+        "errors": [],
+        "violations": [],
+        "pngSha256": "024f2b75ff4f2e1f5a1e8bfe684b5f3e78337b3b043bf48cd023c7d12c64e020"
+      },
+      "pixels": [
+        {
+          "x": 272,
+          "y": 59,
+          "baseline": [
+            77,
+            84,
+            89,
+            255
+          ],
+          "candidate": [
+            76,
+            84,
+            89,
+            255
+          ]
+        },
+        {
+          "x": 272,
+          "y": 70,
+          "baseline": [
+            84,
+            91,
+            95,
+            255
+          ],
+          "candidate": [
+            84,
+            91,
+            96,
+            255
+          ]
+        },
+        {
+          "x": 385,
+          "y": 74,
+          "baseline": [
+            73,
+            79,
+            85,
+            255
+          ],
+          "candidate": [
+            73,
+            78,
+            84,
+            255
+          ]
+        },
+        {
+          "x": 18,
+          "y": 111,
+          "baseline": [
+            63,
+            68,
+            74,
+            255
+          ],
+          "candidate": [
+            63,
+            67,
+            73,
+            255
+          ]
+        },
+        {
+          "x": 18,
+          "y": 113,
+          "baseline": [
+            64,
+            68,
+            74,
+            255
+          ],
+          "candidate": [
+            63,
+            67,
+            73,
+            255
+          ]
+        },
+        {
+          "x": 18,
+          "y": 115,
+          "baseline": [
+            64,
+            71,
+            76,
+            255
+          ],
+          "candidate": [
+            64,
+            70,
+            76,
+            255
+          ]
+        },
+        {
+          "x": 252,
+          "y": 117,
+          "baseline": [
+            72,
+            77,
+            83,
+            255
+          ],
+          "candidate": [
+            71,
+            77,
+            83,
+            255
+          ]
+        },
+        {
+          "x": 18,
+          "y": 118,
+          "baseline": [
+            67,
+            72,
+            79,
+            255
+          ],
+          "candidate": [
+            67,
+            71,
+            79,
+            255
+          ]
+        },
+        {
+          "x": 18,
+          "y": 119,
+          "baseline": [
+            68,
+            74,
+            80,
+            255
+          ],
+          "candidate": [
+            68,
+            73,
+            79,
+            255
+          ]
+        },
+        {
+          "x": 252,
+          "y": 120,
+          "baseline": [
+            73,
+            78,
+            84,
+            255
+          ],
+          "candidate": [
+            72,
+            78,
+            84,
+            255
+          ]
+        },
+        {
+          "x": 18,
+          "y": 121,
+          "baseline": [
+            72,
+            77,
+            83,
+            255
+          ],
+          "candidate": [
+            71,
+            77,
+            83,
+            255
+          ]
+        },
+        {
+          "x": 135,
+          "y": 124,
+          "baseline": [
+            87,
+            94,
+            99,
+            255
+          ],
+          "candidate": [
+            86,
+            94,
+            99,
+            255
+          ]
+        },
+        {
+          "x": 213,
+          "y": 126,
+          "baseline": [
+            88,
+            95,
+            100,
+            255
+          ],
+          "candidate": [
+            87,
+            95,
+            100,
+            255
+          ]
+        },
+        {
+          "x": 18,
+          "y": 127,
+          "baseline": [
+            81,
+            86,
+            92,
+            255
+          ],
+          "candidate": [
+            81,
+            86,
+            91,
+            255
+          ]
+        },
+        {
+          "x": 18,
+          "y": 128,
+          "baseline": [
+            83,
+            88,
+            93,
+            255
+          ],
+          "candidate": [
+            82,
+            88,
+            93,
+            255
+          ]
+        },
+        {
+          "x": 213,
+          "y": 128,
+          "baseline": [
+            88,
+            95,
+            101,
+            255
+          ],
+          "candidate": [
+            88,
+            95,
+            100,
+            255
+          ]
+        },
+        {
+          "x": 18,
+          "y": 129,
+          "baseline": [
+            82,
+            90,
+            94,
+            255
+          ],
+          "candidate": [
+            82,
+            89,
+            94,
+            255
+          ]
+        },
+        {
+          "x": 213,
+          "y": 129,
+          "baseline": [
+            89,
+            96,
+            101,
+            255
+          ],
+          "candidate": [
+            88,
+            96,
+            101,
+            255
+          ]
+        },
+        {
+          "x": 174,
+          "y": 131,
+          "baseline": [
+            86,
+            94,
+            98,
+            255
+          ],
+          "candidate": [
+            86,
+            93,
+            98,
+            255
+          ]
+        },
+        {
+          "x": 213,
+          "y": 131,
+          "baseline": [
+            89,
+            96,
+            102,
+            255
+          ],
+          "candidate": [
+            89,
+            96,
+            101,
+            255
+          ]
+        },
+        {
+          "x": 96,
+          "y": 132,
+          "baseline": [
+            92,
+            98,
+            104,
+            255
+          ],
+          "candidate": [
+            91,
+            98,
+            103,
+            255
+          ]
+        },
+        {
+          "x": 96,
+          "y": 133,
+          "baseline": [
+            91,
+            98,
+            103,
+            255
+          ],
+          "candidate": [
+            90,
+            97,
+            103,
+            255
+          ]
+        },
+        {
+          "x": 96,
+          "y": 134,
+          "baseline": [
+            91,
+            98,
+            103,
+            255
+          ],
+          "candidate": [
+            91,
+            97,
+            103,
+            255
+          ]
+        },
+        {
+          "x": 96,
+          "y": 135,
+          "baseline": [
+            91,
+            98,
+            103,
+            255
+          ],
+          "candidate": [
+            91,
+            97,
+            103,
+            255
+          ]
+        },
+        {
+          "x": 213,
+          "y": 138,
+          "baseline": [
+            96,
+            101,
+            107,
+            255
+          ],
+          "candidate": [
+            95,
+            101,
+            107,
+            255
+          ]
+        },
+        {
+          "x": 213,
+          "y": 140,
+          "baseline": [
+            98,
+            104,
+            109,
+            255
+          ],
+          "candidate": [
+            98,
+            105,
+            109,
+            255
+          ]
+        },
+        {
+          "x": 238,
+          "y": 141,
+          "baseline": [
+            84,
+            92,
+            97,
+            255
+          ],
+          "candidate": [
+            84,
+            91,
+            96,
+            255
+          ]
+        },
+        {
+          "x": 213,
+          "y": 142,
+          "baseline": [
+            100,
+            107,
+            111,
+            255
+          ],
+          "candidate": [
+            99,
+            107,
+            111,
+            255
+          ]
+        },
+        {
+          "x": 238,
+          "y": 143,
+          "baseline": [
+            87,
+            94,
+            99,
+            255
+          ],
+          "candidate": [
+            86,
+            94,
+            99,
+            255
+          ]
+        },
+        {
+          "x": 96,
+          "y": 147,
+          "baseline": [
+            103,
+            111,
+            115,
+            255
+          ],
+          "candidate": [
+            102,
+            111,
+            115,
+            255
+          ]
+        },
+        {
+          "x": 213,
+          "y": 147,
+          "baseline": [
+            99,
+            105,
+            110,
+            255
+          ],
+          "candidate": [
+            98,
+            105,
+            110,
+            255
+          ]
+        },
+        {
+          "x": 330,
+          "y": 148,
+          "baseline": [
+            108,
+            114,
+            118,
+            255
+          ],
+          "candidate": [
+            108,
+            115,
+            118,
+            255
+          ]
+        },
+        {
+          "x": 369,
+          "y": 164,
+          "baseline": [
+            75,
+            80,
+            86,
+            255
+          ],
+          "candidate": [
+            75,
+            81,
+            86,
+            255
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 6,
+      "view": "desktop-br",
+      "baselineMetadata": {
+        "ok": true,
+        "scope": "Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.",
+        "stage": 6,
+        "variant": "baseline",
+        "view": "desktop-br",
+        "width": 1331,
+        "height": 763,
+        "dpr": 1,
+        "camera": {
+          "x": 6600,
+          "y": 3800,
+          "scale": 0.19573529411764706
+        },
+        "time": 2,
+        "seed": 3910,
+        "runtimeSha256": "cffb6906fdf5e6aefbf5e9de58d908141b03ce58a75c24da612df95f25971ef8",
+        "physicsSha256": "766f56de011502db7ea6ce65c4c3d51c7daf21c080d237602b9aaff0625bd073",
+        "renderPure": true,
+        "fontStatus": "loaded",
+        "fontNote": "System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+        "imageCount": 2,
+        "pendingImages": 0,
+        "imageErrors": 0,
+        "storage": [],
+        "errors": [],
+        "violations": [],
+        "pngSha256": "1a60f30f4b06bce1dbff0625f5c71965401d00dd348a6c02057c383f5dcd8659"
+      },
+      "candidateMetadata": {
+        "ok": true,
+        "scope": "Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.",
+        "stage": 6,
+        "variant": "candidate",
+        "view": "desktop-br",
+        "width": 1331,
+        "height": 763,
+        "dpr": 1,
+        "camera": {
+          "x": 6600,
+          "y": 3800,
+          "scale": 0.19573529411764706
+        },
+        "time": 2,
+        "seed": 3910,
+        "runtimeSha256": "690de5e9ee8390aa6a6094021337cbf908eab53f9d61d1c3d8b2e9d7d6802cfc",
+        "physicsSha256": "766f56de011502db7ea6ce65c4c3d51c7daf21c080d237602b9aaff0625bd073",
+        "renderPure": true,
+        "fontStatus": "loaded",
+        "fontNote": "System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+        "imageCount": 2,
+        "pendingImages": 0,
+        "imageErrors": 0,
+        "storage": [],
+        "errors": [],
+        "violations": [],
+        "pngSha256": "bfa22d0615dd665864a11fd370d5856bb37f2bf6be72bf80cada3b3c903cdb8e"
+      },
+      "pixels": [
+        {
+          "x": 578,
+          "y": 73,
+          "baseline": [
+            72,
+            76,
+            84,
+            255
+          ],
+          "candidate": [
+            71,
+            76,
+            84,
+            255
+          ]
+        },
+        {
+          "x": 494,
+          "y": 93,
+          "baseline": [
+            83,
+            89,
+            95,
+            255
+          ],
+          "candidate": [
+            83,
+            89,
+            94,
+            255
+          ]
+        },
+        {
+          "x": 494,
+          "y": 103,
+          "baseline": [
+            84,
+            90,
+            96,
+            255
+          ],
+          "candidate": [
+            84,
+            90,
+            97,
+            255
+          ]
+        },
+        {
+          "x": 494,
+          "y": 105,
+          "baseline": [
+            84,
+            92,
+            98,
+            255
+          ],
+          "candidate": [
+            84,
+            91,
+            98,
+            255
+          ]
+        },
+        {
+          "x": 494,
+          "y": 107,
+          "baseline": [
+            87,
+            92,
+            98,
+            255
+          ],
+          "candidate": [
+            86,
+            92,
+            98,
+            255
+          ]
+        },
+        {
+          "x": 494,
+          "y": 117,
+          "baseline": [
+            92,
+            99,
+            105,
+            255
+          ],
+          "candidate": [
+            92,
+            98,
+            105,
+            255
+          ]
+        },
+        {
+          "x": 494,
+          "y": 119,
+          "baseline": [
+            94,
+            101,
+            106,
+            255
+          ],
+          "candidate": [
+            94,
+            100,
+            106,
+            255
+          ]
+        },
+        {
+          "x": 494,
+          "y": 121,
+          "baseline": [
+            94,
+            100,
+            107,
+            255
+          ],
+          "candidate": [
+            94,
+            100,
+            106,
+            255
+          ]
+        },
+        {
+          "x": 578,
+          "y": 121,
+          "baseline": [
+            86,
+            91,
+            97,
+            255
+          ],
+          "candidate": [
+            85,
+            90,
+            96,
+            255
+          ]
+        },
+        {
+          "x": 494,
+          "y": 122,
+          "baseline": [
+            96,
+            102,
+            107,
+            255
+          ],
+          "candidate": [
+            95,
+            102,
+            107,
+            255
+          ]
+        },
+        {
+          "x": 494,
+          "y": 128,
+          "baseline": [
+            97,
+            103,
+            109,
+            255
+          ],
+          "candidate": [
+            96,
+            103,
+            109,
+            255
+          ]
+        },
+        {
+          "x": 494,
+          "y": 130,
+          "baseline": [
+            97,
+            103,
+            109,
+            255
+          ],
+          "candidate": [
+            96,
+            103,
+            108,
+            255
+          ]
+        },
+        {
+          "x": 494,
+          "y": 131,
+          "baseline": [
+            96,
+            103,
+            109,
+            255
+          ],
+          "candidate": [
+            96,
+            102,
+            109,
+            255
+          ]
+        },
+        {
+          "x": 578,
+          "y": 136,
+          "baseline": [
+            88,
+            94,
+            100,
+            255
+          ],
+          "candidate": [
+            89,
+            95,
+            100,
+            255
+          ]
+        },
+        {
+          "x": 434,
+          "y": 145,
+          "baseline": [
+            100,
+            107,
+            112,
+            255
+          ],
+          "candidate": [
+            99,
+            107,
+            112,
+            255
+          ]
+        },
+        {
+          "x": 327,
+          "y": 211,
+          "baseline": [
+            103,
+            108,
+            114,
+            255
+          ],
+          "candidate": [
+            103,
+            109,
+            114,
+            255
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 6,
+      "view": "portrait-br",
+      "baselineMetadata": {
+        "ok": true,
+        "scope": "Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.",
+        "stage": 6,
+        "variant": "baseline",
+        "view": "portrait-br",
+        "width": 390,
+        "height": 696,
+        "dpr": 1,
+        "camera": {
+          "x": 6600,
+          "y": 3800,
+          "scale": 0.057352941176470586
+        },
+        "time": 2,
+        "seed": 3910,
+        "runtimeSha256": "cffb6906fdf5e6aefbf5e9de58d908141b03ce58a75c24da612df95f25971ef8",
+        "physicsSha256": "766f56de011502db7ea6ce65c4c3d51c7daf21c080d237602b9aaff0625bd073",
+        "renderPure": true,
+        "fontStatus": "loaded",
+        "fontNote": "System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+        "imageCount": 2,
+        "pendingImages": 0,
+        "imageErrors": 0,
+        "storage": [],
+        "errors": [],
+        "violations": [],
+        "pngSha256": "2211d321641286661cc148866b2e6542113f3751c9916261ae1c6dae4f3611a8"
+      },
+      "candidateMetadata": {
+        "ok": true,
+        "scope": "Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.",
+        "stage": 6,
+        "variant": "candidate",
+        "view": "portrait-br",
+        "width": 390,
+        "height": 696,
+        "dpr": 1,
+        "camera": {
+          "x": 6600,
+          "y": 3800,
+          "scale": 0.057352941176470586
+        },
+        "time": 2,
+        "seed": 3910,
+        "runtimeSha256": "690de5e9ee8390aa6a6094021337cbf908eab53f9d61d1c3d8b2e9d7d6802cfc",
+        "physicsSha256": "766f56de011502db7ea6ce65c4c3d51c7daf21c080d237602b9aaff0625bd073",
+        "renderPure": true,
+        "fontStatus": "loaded",
+        "fontNote": "System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+        "imageCount": 2,
+        "pendingImages": 0,
+        "imageErrors": 0,
+        "storage": [],
+        "errors": [],
+        "violations": [],
+        "pngSha256": "759c6b5f26e8236e92041c2ffa9c57acf0533ff72b3c3ef28546f88755d48240"
+      },
+      "pixels": [
+        {
+          "x": 320,
+          "y": 43,
+          "baseline": [
+            63,
+            70,
+            77,
+            255
+          ],
+          "candidate": [
+            64,
+            70,
+            77,
+            255
+          ]
+        },
+        {
+          "x": 184,
+          "y": 51,
+          "baseline": [
+            71,
+            77,
+            84,
+            255
+          ],
+          "candidate": [
+            71,
+            77,
+            85,
+            255
+          ]
+        },
+        {
+          "x": 117,
+          "y": 64,
+          "baseline": [
+            91,
+            97,
+            102,
+            255
+          ],
+          "candidate": [
+            91,
+            97,
+            103,
+            255
+          ]
+        },
+        {
+          "x": 66,
+          "y": 117,
+          "baseline": [
+            69,
+            76,
+            83,
+            255
+          ],
+          "candidate": [
+            69,
+            76,
+            84,
+            255
+          ]
+        },
+        {
+          "x": 339,
+          "y": 117,
+          "baseline": [
+            74,
+            79,
+            87,
+            255
+          ],
+          "candidate": [
+            74,
+            79,
+            86,
+            255
+          ]
+        },
+        {
+          "x": 353,
+          "y": 120,
+          "baseline": [
+            78,
+            85,
+            92,
+            255
+          ],
+          "candidate": [
+            79,
+            85,
+            93,
+            255
+          ]
+        },
+        {
+          "x": 2,
+          "y": 121,
+          "baseline": [
+            76,
+            83,
+            88,
+            255
+          ],
+          "candidate": [
+            77,
+            83,
+            88,
+            255
+          ]
+        },
+        {
+          "x": 41,
+          "y": 121,
+          "baseline": [
+            70,
+            77,
+            85,
+            255
+          ],
+          "candidate": [
+            70,
+            77,
+            84,
+            255
+          ]
+        },
+        {
+          "x": 300,
+          "y": 137,
+          "baseline": [
+            93,
+            100,
+            104,
+            255
+          ],
+          "candidate": [
+            94,
+            100,
+            105,
+            255
+          ]
+        },
+        {
+          "x": 261,
+          "y": 145,
+          "baseline": [
+            93,
+            99,
+            103,
+            255
+          ],
+          "candidate": [
+            93,
+            99,
+            104,
+            255
+          ]
+        },
+        {
+          "x": 158,
+          "y": 150,
+          "baseline": [
+            105,
+            111,
+            116,
+            255
+          ],
+          "candidate": [
+            105,
+            111,
+            115,
+            255
+          ]
+        },
+        {
+          "x": 300,
+          "y": 157,
+          "baseline": [
+            89,
+            94,
+            101,
+            255
+          ],
+          "candidate": [
+            89,
+            94,
+            100,
+            255
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 6,
+      "view": "portrait-tl",
+      "baselineMetadata": {
+        "ok": true,
+        "scope": "Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.",
+        "stage": 6,
+        "variant": "baseline",
+        "view": "portrait-tl",
+        "width": 390,
+        "height": 696,
+        "dpr": 1,
+        "camera": {
+          "x": 0,
+          "y": 0,
+          "scale": 0.057352941176470586
+        },
+        "time": 2,
+        "seed": 3910,
+        "runtimeSha256": "cffb6906fdf5e6aefbf5e9de58d908141b03ce58a75c24da612df95f25971ef8",
+        "physicsSha256": "766f56de011502db7ea6ce65c4c3d51c7daf21c080d237602b9aaff0625bd073",
+        "renderPure": true,
+        "fontStatus": "loaded",
+        "fontNote": "System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+        "imageCount": 2,
+        "pendingImages": 0,
+        "imageErrors": 0,
+        "storage": [],
+        "errors": [],
+        "violations": [],
+        "pngSha256": "b2634088f55a2cc2a6472fb417c32312f8c96f23b9519afb37452aa30de5410f"
+      },
+      "candidateMetadata": {
+        "ok": true,
+        "scope": "Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.",
+        "stage": 6,
+        "variant": "candidate",
+        "view": "portrait-tl",
+        "width": 390,
+        "height": 696,
+        "dpr": 1,
+        "camera": {
+          "x": 0,
+          "y": 0,
+          "scale": 0.057352941176470586
+        },
+        "time": 2,
+        "seed": 3910,
+        "runtimeSha256": "690de5e9ee8390aa6a6094021337cbf908eab53f9d61d1c3d8b2e9d7d6802cfc",
+        "physicsSha256": "766f56de011502db7ea6ce65c4c3d51c7daf21c080d237602b9aaff0625bd073",
+        "renderPure": true,
+        "fontStatus": "loaded",
+        "fontNote": "System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+        "imageCount": 2,
+        "pendingImages": 0,
+        "imageErrors": 0,
+        "storage": [],
+        "errors": [],
+        "violations": [],
+        "pngSha256": "919d795b78f6d35b0c5371215086abd8c0523269ccca5dc23df81bdc0cd2bbad"
+      },
+      "pixels": [
+        {
+          "x": 184,
+          "y": 51,
+          "baseline": [
+            70,
+            76,
+            83,
+            255
+          ],
+          "candidate": [
+            70,
+            76,
+            84,
+            255
+          ]
+        },
+        {
+          "x": 117,
+          "y": 64,
+          "baseline": [
+            91,
+            96,
+            102,
+            255
+          ],
+          "candidate": [
+            91,
+            97,
+            102,
+            255
+          ]
+        },
+        {
+          "x": 66,
+          "y": 117,
+          "baseline": [
+            66,
+            73,
+            80,
+            255
+          ],
+          "candidate": [
+            67,
+            73,
+            81,
+            255
+          ]
+        },
+        {
+          "x": 339,
+          "y": 117,
+          "baseline": [
+            73,
+            78,
+            86,
+            255
+          ],
+          "candidate": [
+            73,
+            78,
+            85,
+            255
+          ]
+        },
+        {
+          "x": 353,
+          "y": 120,
+          "baseline": [
+            77,
+            84,
+            90,
+            255
+          ],
+          "candidate": [
+            78,
+            84,
+            91,
+            255
+          ]
+        },
+        {
+          "x": 41,
+          "y": 121,
+          "baseline": [
+            69,
+            76,
+            83,
+            255
+          ],
+          "candidate": [
+            69,
+            76,
+            82,
+            255
+          ]
+        },
+        {
+          "x": 66,
+          "y": 137,
+          "baseline": [
+            96,
+            103,
+            108,
+            255
+          ],
+          "candidate": [
+            96,
+            103,
+            109,
+            255
+          ]
+        },
+        {
+          "x": 300,
+          "y": 157,
+          "baseline": [
+            89,
+            94,
+            101,
+            255
+          ],
+          "candidate": [
+            89,
+            94,
+            100,
+            255
+          ]
+        }
+      ]
+    }
+  ]
+}
