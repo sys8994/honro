@@ -159,7 +159,7 @@ async function capture(id,runtimeSha256,variant,requestedCamera){
       }
       const playerAdvance={from:advanceFrom,to:{x:h.x,y:h.y,hp:h.hp},method:'Actual Engine.move/tick, capped at forty world units; no coordinate or health assignment'};
       Object.assign(scene,{x:(u.x+h.x)/2,y:h.y-180,scale:.65});
-      HonroApp={engine:probe,scene:{x:scene.x,y:scene.y,scale:scene.scale,canvas:cv}};
+      HonroApp={engine:probe,scene,dialogue:null,charging:false,modal:{classList:{contains:()=>false}}};
       scene.render(probe,0,'',.6,false,0,false);await drain();
       const shown=structuredClone(u.honroMonsterWindup||u.enemyEffectCast||u.honroPilotCombat?.target),health=h.hp,shield=h.shield||0;
       if(!warningImages.length)warningImages.push({group:group.id,actor:u.id,target:h.id,png:cv.toDataURL('image/png')});
