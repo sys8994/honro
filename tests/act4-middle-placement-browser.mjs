@@ -96,14 +96,15 @@ async function capture(id,runtimeSha256,variant,requestedCamera){
     const copy=structuredClone(b),events=[],probe=new HONRO_CORE.Engine(copy,ev=>events.push(ev),true);
     const members=copy.units.filter(u=>group.unitIds.includes(u.id)),u=members.find(u=>!u.honroMidboss&&(u.honroPilotRole==='bow'||u.role==='bow'))||members.find(u=>!u.honroMidboss)||members[0],h=probe.heroesAlive().find(u=>u.cls==='archer')||probe.heroesAlive()[0];
     const support=u.honroEncounterSupport,lo=Math.min(...members.map(u=>u.x)),hi=Math.max(...members.map(u=>u.x));
-    const pos=[lo-260,hi+260,lo-160,hi+160].map(x=>at(support,x)).find(p=>p&&!copy.units.some(v=>v.id!==h.id&&Math.abs(v.x-p.x)<65&&Math.abs(v.y-p.y)<125));
+    const approaches=group.id==='place37-upper-west-wall'?[hi+260,hi+160,lo-260,lo-160]:[lo-260,hi+260,lo-160,hi+160];
+    const pos=approaches.map(x=>at(support,x)).find(p=>p&&!copy.units.some(v=>v.id!==h.id&&Math.abs(v.x-p.x)<65&&Math.abs(v.y-p.y)<125));
     if(!pos||probe.contactSurface(pos.x,pos.y-8,pos.y+10)?.t.id!==support){localActions.push({group:group.id,error:'No valid synthetic local approach on actual compiled support',preparedHero:pos,support});continue;}
     Object.assign(h,pos,{vx:0,vy:0});Object.assign(u,{awake:true,acted:false,moveLeft:u.maxMove});
     Object.assign(copy,{side:1,phase:'enemy',active:u.id,queue:[u.id],turnAge:0});
     HonroAct4PilotCombat.attach({engine:probe,dialogue:null,charging:false});
-    const start={x:u.x,y:u.y,hp:h.hp,shot:copy.shot};let projectiles=0;
+    const start={x:u.x,y:u.y,hp:h.hp,shot:copy.shot},heroHealth=new Map(probe.heroesAlive().map(h=>[h.id,h.hp]));let projectiles=0;
     for(let i=0;i<Math.ceil(12/HONRO_CORE.STEP);i++){probe.tick(HONRO_CORE.STEP);projectiles=Math.max(projectiles,copy.projectiles.length);if(u.acted&&!copy.projectiles.length)break;}
-    const firstAction={hpLoss:start.hp-h.hp,dx:u.x-start.x,dy:u.y-start.y,shots:copy.shot-start.shot,acted:!!u.acted,intent:u.intent};
+    const firstAction={heroDamage:[...heroHealth].map(([id,hp])=>({id,hpLoss:hp-(probe.unit(id)?.hp||0)})).filter(r=>r.hpLoss>0),hpLoss:start.hp-h.hp,dx:u.x-start.x,dy:u.y-start.y,shots:copy.shot-start.shot,acted:!!u.acted,intent:u.intent};
     let followUp=null;
     const pending=u.honroMonsterWindup||u.enemyEffectCast;
     if(pending){
