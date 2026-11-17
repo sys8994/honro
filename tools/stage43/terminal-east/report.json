@@ -1,0 +1,127 @@
+{
+  "scope": "Original source and all paint geometry unchanged. Shared world-coordinate clip only on deep and contact, source y710..740 at east outer contact.",
+  "basis": {
+    "source": [
+      [
+        690.0,
+        2165.709090909093
+      ],
+      [
+        695.0,
+        2166.2636363636384
+      ],
+      [
+        700.0,
+        2166.3545454545474
+      ],
+      [
+        702.0,
+        2166.390909090911
+      ],
+      [
+        704.0,
+        2165.509375000002
+      ],
+      [
+        706.0,
+        2164.321875000002
+      ],
+      [
+        707.0,
+        2163.728125000002
+      ],
+      [
+        708.0,
+        2163.134375000002
+      ],
+      [
+        709.0,
+        2162.2000000000025
+      ],
+      [
+        709.9,
+        2158.8500000000026
+      ]
+    ],
+    "deep": [
+      [
+        710.03,
+        2169.8643176848013
+      ],
+      [
+        711.0,
+        2169.353694437822
+      ],
+      [
+        715.0,
+        2167.2573268408682
+      ],
+      [
+        720.0,
+        2164.636867344676
+      ],
+      [
+        725.0,
+        2162.638040869581
+      ],
+      [
+        730.0,
+        2160.7467021463285
+      ],
+      [
+        735.0,
+        2158.8553634230766
+      ],
+      [
+        740.0,
+        2156.96350684386
+      ],
+      [
+        745.0,
+        2155.0715690556503
+      ],
+      [
+        750.0,
+        2153.179631267441
+      ],
+      [
+        760.0,
+        2152.9473684210525
+      ],
+      [
+        770.0,
+        2152.9473684210525
+      ]
+    ]
+  },
+  "preservation": {
+    "deep": {
+      "originalBytes": 1019106,
+      "candidateBytes": 1019349,
+      "onlyAddedSharedClip": true,
+      "inputSHA256": "5a01aebe38cc9ea310073629e0d31e04bb25f2a14aa9dfe12b8c10de2b094571"
+    },
+    "contact": {
+      "originalBytes": 1021527,
+      "candidateBytes": 1021761,
+      "onlyAddedSharedClip": true,
+      "inputSHA256": "44e1d68eff608b31b93893fdd6be62029e25e345890d244af389e7ec9835ccc9"
+    }
+  },
+  "needBoth": {
+    "compared": "native-deep-only vs native-both, same1.65 camera",
+    "changedPixels": 52,
+    "maximumChannelDifference": 45,
+    "screenBBox": [
+      1076,
+      575,
+      1081,
+      594
+    ],
+    "reason": "Deep-only removes main wedge but contact retains a thin bright edge."
+  },
+  "visual": "native-both inspected: large bright wedge removed, original rounded edge retained. Browser final confirmation belongs to parent.",
+  "reproducibility": "CLI reproduction-check JSON outputs structurally identical to delivered deep/contact candidates.",
+  "productionChanged": false,
+  "renderNote": "One concurrent first run exited137; final comparisons rerun sequentially and finished exit0. No more renders pending."
+}

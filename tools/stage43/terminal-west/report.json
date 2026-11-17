@@ -1,0 +1,29 @@
+{
+  "method": "Existing native west geometry only. Preserve inward boundary measured from original alpha at each source y, move exterior boundary toward actual deep upper-left. No vertical stretch. Native original-alpha difference and final overlap intersection.",
+  "unchangedAboveSourceY": 680,
+  "actualDeepUpperLeft": [
+    4.76315789473685,
+    710.02
+  ],
+  "terminalY": 710.12,
+  "overlapY": 0.1,
+  "oldWestPreserved": true,
+  "sourceDeepContactUnchanged": true,
+  "productionChanged": false,
+  "failedPointConvergence": "v2 parent directory preserves attempt that contracted both sides and exposed an open triangular gap. This candidate contracts exterior only.",
+  "visual": "At1.65 and.45 long blade and open triangular gap no longer visible. Short change in exterior direction at deep top remains; browser confirmation pending.",
+  "counts": {
+    "original": {
+      "bytes": 18146,
+      "pathElements": 12,
+      "parsedSegments": 1157
+    },
+    "candidate": {
+      "bytes": 37898,
+      "pathElements": 12,
+      "parsedSegments": 1691
+    },
+    "assetBytes": 43363
+  },
+  "note": "Vector geometry edit, not optimization or nonincrease claim."
+}

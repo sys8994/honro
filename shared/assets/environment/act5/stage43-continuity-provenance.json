@@ -1,30 +1,33 @@
 {
   "stage": 43,
-  "status": "local integration candidate; final full-Scene review pending; NOT approved for deployment",
+  "status": "Initial native continuity deployed in 007dd3adec2209ff081440de5698272e368244e0. Public review found terminal-edge defects; this follow-up awaits final public verification.",
   "assets": [
     {
       "role": "deep",
-      "source": "stage43-deep-serialization-study/asset-integer.json",
+      "source": "stage43-east-terminal-wedge/deep.json",
       "file": "shared/assets/environment/act5/stage43-continuity-deep.json",
-      "sha256": "5a01aebe38cc9ea310073629e0d31e04bb25f2a14aa9dfe12b8c10de2b094571",
-      "status": "candidate pending final visual approval",
+      "sha256": "4a55c65762c0a74f576d02187e506926c06b9f1e0a171ccf79723cdfa86491d5",
+      "status": "Original paint geometry unchanged; shared native clip removes east terminal wedge below sourcey710. Public verification pending.",
       "preservedOriginal": "stage43-recovery-deep-study/asset-local-grid01.json",
       "preservedOriginalSha256": "313dd1be0d2feaad061c021e92ba01b4b27e447fd765563bff76b59936d22e94",
-      "serialization": "Exact tenth-grid integer normalization with per-path 0.1 transform; same 12 paths, 64414 segments and existing dParts. No precision reduction or geometry removal."
+      "serialization": "Exact tenth-grid integer normalization with per-path 0.1 transform; same 12 paths, 64414 segments and existing dParts. No precision reduction or geometry removal.",
+      "preservedTerminalInputSha256": "5a01aebe38cc9ea310073629e0d31e04bb25f2a14aa9dfe12b8c10de2b094571"
     },
     {
       "role": "west",
-      "source": "stage43-west-final-study/v2/asset.json",
+      "source": "stage43-west-terminal-taper/v2/surface-merge/asset.json",
       "file": "shared/assets/environment/act5/stage43-continuity-west.json",
-      "sha256": "880b2bae088e3c09c4d8e4ddddce7dbe03e3daacdb8d45115abc3aa4acf8b095",
-      "status": "candidate; parent reports normal Scene checked; full integration review pending"
+      "sha256": "510c24a63cda352cbd1da1b4488b986c2158ffe3b76f536883c04ce427633ca0",
+      "status": "Short exterior convergence, original-facing boundary retained. Native 1.65/.45 reviewed; public verification pending.",
+      "preservedOriginalCommit": "007dd3adec2209ff081440de5698272e368244e0"
     },
     {
       "role": "contact",
-      "source": "stage43-contact-alpha-repair/asset.json",
+      "source": "stage43-east-terminal-wedge/contact.json",
       "file": "shared/assets/environment/act5/stage43-continuity-contact.json",
-      "sha256": "44e1d68eff608b31b93893fdd6be62029e25e345890d244af389e7ec9835ccc9",
-      "status": "final contour repair candidate; parent center Scene diagnostic matched; final integrated review pending"
+      "sha256": "9c3bcaf733c8f8e78ce3becfd29d1989ddd38ed27b437a5e1ba9618ec5c6f136",
+      "status": "Original paint geometry unchanged; shared native clip removes east terminal wedge below sourcey710. Public verification pending.",
+      "preservedTerminalInputSha256": "44e1d68eff608b31b93893fdd6be62029e25e345890d244af389e7ec9835ccc9"
     }
   ]
 }

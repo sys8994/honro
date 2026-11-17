@@ -1,0 +1,57 @@
+{
+  "method": "Existing native west geometry only. Preserve inward boundary measured from original alpha at each source y, move exterior boundary toward actual deep upper-left. No vertical stretch. Native original-alpha difference and final overlap intersection.",
+  "unchangedAboveSourceY": 680,
+  "actualDeepUpperLeft": [
+    4.76315789473685,
+    710.02
+  ],
+  "terminalY": 710.12,
+  "overlapY": 0.1,
+  "oldWestPreserved": true,
+  "sourceDeepContactUnchanged": false,
+  "productionChanged": false,
+  "failedPointConvergence": "v2 parent directory preserves attempt that contracted both sides and exposed an open triangular gap. This candidate contracts exterior only.",
+  "visual": "At1.65 and.45 long blade and open triangular gap no longer visible. Short change in exterior direction at deep top remains; browser confirmation pending.",
+  "counts": {
+    "original": {
+      "bytes": 18146,
+      "pathElements": 12,
+      "parsedSegments": 1157
+    },
+    "candidate": {
+      "bytes": 37898,
+      "pathElements": 12,
+      "parsedSegments": 1691
+    },
+    "assetBytes": 43363
+  },
+  "note": "West geometry edit, not optimization. East adds a shared clip; original paint path geometry remains unchanged.",
+  "sourceCommit": "007dd3adec2209ff081440de5698272e368244e0",
+  "westSha256": "510c24a63cda352cbd1da1b4488b986c2158ffe3b76f536883c04ce427633ca0",
+  "focusedChecks": {
+    "nativeContinuity": "passed",
+    "contactPostclip": "passed with eight clips: existing seven plus east-terminal-cut; exact normal/mobile reference pixels",
+    "workflowYaml": "passed"
+  },
+  "nativeIntegratedCapture": {
+    "stageSha256": "edaa868800a3836bfc9b6c6becb80e9a008c9334dc8bc7a3740688617f52884a",
+    "gameplaySha256": "5010609ff55f6623fa522911bf5e37970b9ef10ff1d683f56507eef784dba538",
+    "note": "Earlier concurrent capture exited137 after writing. Final sequential west and east runs completed exit0 and were visually inspected."
+  },
+  "publicStatus": "Follow-up not yet deployed; original007dd3 actual movement/center/east checked. Normal save not used.",
+  "east": {
+    "deep": {
+      "originalBytes": 1019106,
+      "candidateBytes": 1019349,
+      "onlyAddedSharedClip": true,
+      "inputSHA256": "5a01aebe38cc9ea310073629e0d31e04bb25f2a14aa9dfe12b8c10de2b094571"
+    },
+    "contact": {
+      "originalBytes": 1021527,
+      "candidateBytes": 1021761,
+      "onlyAddedSharedClip": true,
+      "inputSHA256": "44e1d68eff608b31b93893fdd6be62029e25e345890d244af389e7ec9835ccc9"
+    },
+    "method": "Shared root clip only, source y710..740; original source ends x~2158.85 while deep originally begins x~2169.86. Same native clip applied to deep and contact to remove the exterior wedge without new paint or changes to original architecture."
+  }
+}

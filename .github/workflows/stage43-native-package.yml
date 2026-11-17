@@ -39,6 +39,9 @@ jobs:
           set -euo pipefail
           mapfile -t refs < <(node --input-type=module -e 'import fs from "node:fs";import {selectPublishedGenerations} from "./shared/web-retention.mjs";const m=JSON.parse(fs.readFileSync("web/manifest.json"));for(const g of selectPublishedGenerations(m.publishedGenerations||[],{now:Date.now()})){if(!/^[a-f0-9]{40}$/.test(g.sourceSha))throw Error("Invalid publication ref");console.log(g.sourceSha)}')
           if ((${#refs[@]})); then git fetch --no-tags --depth=1 origin "${refs[@]}"; fi
+          # Attested Pages success, not an intermediate generated build.
+          git fetch --no-tags --depth=1 origin 007dd3adec2209ff081440de5698272e368244e0
+          node tools/release/retain-published-web.mjs 007dd3adec2209ff081440de5698272e368244e0 --published-at 2026-11-16T23:46:04Z --evidence https://github.com/sys8994/honro/actions/runs/43981780847
           node game/build.mjs
           sha256sum HONRO.html HONRO_WORKSHOP.html web/manifest.json
       - name: Preserve generated candidate only

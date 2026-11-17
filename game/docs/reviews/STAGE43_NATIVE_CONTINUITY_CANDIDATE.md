@@ -1,6 +1,6 @@
-# Stage43 native continuity: local integration candidate
+# Stage43 native continuity: review history
 
-Status: **NOT approved for deployment**. Current contact is the final contour-repair candidate from `stage43-contact-alpha-repair/asset.json`, SHA256 `44e1d68eff608b31b93893fdd6be62029e25e345890d244af389e7ec9835ccc9`. No remote/master/Pages action is part of this preparation.
+Current status: native continuity is deployed in `007dd3adec2209ff081440de5698272e368244e0`. Public review found small terminal defects; the follow-up below is awaiting final public verification. Earlier “pending” statements in this chronological record describe their named checkpoints, not the current deployment.
 
 ## Changes
 - `shared/act5-world.mjs`: attaches `nativeContinuity.deep/west/contact` only to `act5:near:43`. Original vector/clips/anchor/bounds/collision and stage data stay unchanged.
@@ -53,3 +53,17 @@ Deep native JSON is now 1,019,106 bytes, down from 1,344,909. Existing 0.1-raw-g
 Inkscape full-body700/1400px renders are byte-pixel identical. Native Canvas coordinate/CTM arithmetic has small AA differences, so native pixel identity is NOT claimed: direct normal/mobile/maxzoom maximumRGBA7/5/5. Actual full Scene normal bottom-center max2,151 changed pixels, MAE0.0000388/255; mobile min-east max4,94 changed pixels, MAE0.0001473/255. Both full Scene alpha arrays are identical; every changed pixel is on an existing local color boundary. Changes occur below the preserved architecture (normal screeny743+, mobiley428+); enlarged A/B inspected with no shape or support change. This is shape-preserving serialization, not new art.
 
 Reproduction and original/candidate evidence are preserved in `stage43-deep-serialization-study`: serialize-integer.py, asset-integer.json, report-integer.json, render.py, inkscape-report.json, check.mjs, native-report.json, scene.mjs, compare.py, scene-comparison.json, and before/after PNGs. Integration contact/west/runtime remain unchanged. Public deployment and browser verification still pending.
+
+
+## Public verification and terminal follow-up, 2026-11-17
+The earlier pending-public statements above are historical checkpoints. Source ac97f31ef19a4048471070d86307894975932d9b built successfully in Actions43981253977; generated/master007dd3adec2209ff081440de5698272e368244e0 deployed successfully in Pages43981780847. Public HTML, ordered-common-18 runtime and chapter43 asset bytes matched that generated commit.
+
+Actual Pages UI entered43 via the existing “디버그 · 기록 분리” journey book, without changing normal records. Right movement reduced movement budget1100→1016. Minimap camera movement to center/east and wheel zoom were observed. Central stairs retained original stone faces; lower native contact no longer exposes the broad rectangular band. No full battle completion or performance certification is claimed.
+
+One Chromium tab displayed error code9 after a camera attempt. One normal reload recovered the tab; repeat43 entry, movement and center/east camera controls worked. Extension metadata errors were logged, but there is no evidence attributing the crash to a particular game function.
+
+Public default zoom exposed a short square west terminal missed by the earlier wide view. New west candidate preserves the inward/source boundary and contracts only the exterior below sourcey680 to actual deep upper-left(4.76315789473685,710.02), with a0.1-source-unit overlap ending710.12. A rejected y750 taper and point-convergence triangle-gap candidate are preserved separately. This is a geometry edit, not a node-reduction optimization. Native1.65/.45 views remove the ledge and long claw; final public same-framing review remains pending. Original source, gameplay, deep/contact and runtime are unchanged by this west edit.
+
+East public view also exposed an approximately11-source-unit wedge: original alpha ends aroundx2158.85 at709.9, while BODY starts aroundx2169.86 at710.03. A shared native root clip limits only the new deep/contact exterior betweeny710..740. Deep-only left a52-pixel contact remnant, so both use the same clip. All existing paint-root structures/path strings are identical; deep/contact file growth is243/234bytes. Original architecture/walking surfaces and runtime remain unchanged. Native same-camera review removes the bright wedge; final public confirmation pending.
+
+Final sequential integrated west/east Native Scene captures completed exit0. Stage and gameplay SHA remain edaa8688/5010609f. Focused native-order/validation and eight-clip postclip tests pass; postclip still matches its independent normal/mobile pixel reference exactly. An earlier overlapping capture exited137 after writing its PNG; it is recorded as failed, not silently counted as a successful process.
