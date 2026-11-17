@@ -15,9 +15,13 @@ jobs:
           node-version: '22'
           package-manager-cache: false
       - run: npm ci && npm ci --prefix game
+      - name: Historical baseline and new allocation contracts
+        run: node tests/stage32-coverage-native-contract.mjs
       - name: Source-preserving independent scenes
+        if: ${{ !cancelled() }}
         run: HONRO_ACT4_RELEASE=1 node tests/stage32-coverage-browser-fixture.mjs "$RUNNER_TEMP/gray-fixtures"
       - name: Three controls in actual Chrome
+        if: ${{ !cancelled() }}
         shell: bash
         run: |
           browser=$(command -v google-chrome || command -v chromium)

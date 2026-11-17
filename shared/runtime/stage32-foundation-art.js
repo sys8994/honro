@@ -117,10 +117,10 @@ const coverageStats={boundaryFallbacks:0,labelOverrides:0,maxOverrideDistance:0,
 let coverageMasks=null;
 function coherentColor(c,cv,q){
  if(activeScanline!==q.scanline){activeScanline?.clearRows();activeScanline=q.scanline;}
- const t=performance.now(),m=c.getTransform(),world=m.d/2.2;
+ const t=G.performance?.now?.()??Date.now(),m=c.getTransform(),world=m.d/2.2;
  // Lowest actual walk y1342; authored roads extend to1368.4. Upper limit is the
  // existing independently validated lower-material transition at world1716.
- if(m.b||m.c||m.a<=0||m.d<=0||c.globalAlpha!==1||c.globalCompositeOperation!=='source-over')return;
+ if(m.b||m.c||m.a<=0||m.d<=0||c.globalAlpha!==1||c.globalCompositeOperation!=='source-over'||c.filter&&c.filter!=='none'||c.shadowBlur||c.shadowOffsetX||c.shadowOffsetY)return;
  const y0=Math.max(0,Math.ceil(world*1385+m.f)),y1=Math.min(c.canvas.height,Math.floor(world*1716+m.f));
  if(y1<=y0)return;const w=c.canvas.width,h=y1-y0;if(w*h>1024*1024)return;
  coverageStats.calls++;
@@ -155,7 +155,7 @@ function coherentColor(c,cv,q){
  }
  // Pixel write preserves alpha exactly, and only commits changed internal
  // pixels. putImageData ignores active clips, so eligibility is explicit above.
- c.putImageData(old,0,y0);coverageStats.bytes=8*w*h*4;coverageStats.ms+=performance.now()-t;
+ c.putImageData(old,0,y0);coverageStats.bytes=8*w*h*4;coverageStats.ms+=(G.performance?.now?.()??Date.now())-t;
 }
 
 function draw(c,l,b,originalOnly=false){
@@ -221,6 +221,6 @@ function draw(c,l,b,originalOnly=false){
  }
  return true;
 }
-G.HonroStage32FoundationArt={draw,stats:()=>({...counters,coverage:{...coverageStats,scanline:activeScanline?.stats()},maxPixels:MAX_PIXELS,transition:{...transitionCounters,maxPixels:MAX_TRANSITION_PIXELS,bufferDimensions:[transitionWork,transitionColor,transitionBody].map(c=>c?[c.width,c.height]:null)},totalLogicalBytes:counters.bytes+transitionCounters.bytes}),clear:()=>{activeScanline?.clearRows();last=null;if(buffer){buffer.width=1;buffer.height=1;}counters.bytes=buffer?4:0;for(const cv of [transitionWork,transitionColor,transitionBody])if(cv){cv.width=1;cv.height=1;}transitionMemory();}};
+G.HonroStage32FoundationArt={draw,stats:()=>({...counters,coverage:{...coverageStats,retainedCanvasBytes:(coverageMasks||[]).reduce((n,v)=>n+v.width*v.height*4,0),scanline:activeScanline?.stats()},maxPixels:MAX_PIXELS,transition:{...transitionCounters,maxPixels:MAX_TRANSITION_PIXELS,bufferDimensions:[transitionWork,transitionColor,transitionBody].map(c=>c?[c.width,c.height]:null)},totalLogicalBytes:counters.bytes+transitionCounters.bytes+(coverageMasks||[]).reduce((n,v)=>n+v.width*v.height*4,0)}),clear:()=>{activeScanline?.clearRows();for(const mask of coverageMasks||[]){mask.width=1;mask.height=1;}coverageStats.bytes=coverageMasks?12:0;last=null;if(buffer){buffer.width=1;buffer.height=1;}counters.bytes=buffer?4:0;for(const cv of [transitionWork,transitionColor,transitionBody])if(cv){cv.width=1;cv.height=1;}transitionMemory();}};
 })(globalThis);
 
