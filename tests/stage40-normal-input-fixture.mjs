@@ -79,24 +79,66 @@ async function capture(id,runtimeSha256,variant,requestedCamera){
  }for(let k=0;k<240&&!e.grounded(u)&&e.canAct();k++)tick();
  actions.push({op:'move',round:b.round,hero:u.id,from,to:{x:u.x,y:u.y},goal:{id:target.id,x:target.x,y:target.y},remaining:u.moveLeft});
  }
+
+ const waypoints=[
+ {x:3300,y:2376,s:'coast-west'},{x:5100,y:1807,s:'coast-east'},{x:5750,y:1400,s:'coast-east'},
+ {x:5670,y:1270,s:'upper-east',jump:true},{x:4700,y:1126,s:'upper-east'},
+ {x:5750,y:1329,s:'upper-east'},{x:5730,y:1406,s:'coast-east',drop:true},
+ {x:3660,y:2384,s:'coast-east'},{x:3690,y:2465,s:'spur',drop:true},
+ {x:4700,y:3120,s:'arrival-stair'},{x:3840,y:2610,s:'arrival-stair'},
+ {x:3740,y:2490,s:'spur',jump:true},{x:3640,y:2389,s:'coast-east',jump:true},
+ {x:2660,y:2244,s:'coast-west'},{x:2660,y:2297,s:'dock-stair',drop:true},
+ {x:2000,y:2680,s:'dock-stair'},{x:1800,y:2826,s:'dock'},
+ {x:600,y:2716,s:'dock'},{x:1600,y:2807,s:'dock'},
+ {x:1600,y:2935,s:'departure-stair',drop:true},{x:2150,y:3575,s:'departure-stair'},
+ {x:2175,y:3600,s:'departure-ramp'}
+ ].map(v=>({...v,s:'approved40-'+v.s}));
+ const routeIndex=new Map(heroes().map(u=>[u.id,0]));
+ const support=u=>e.contactSurface(u.x,u.y-8,u.y+12)?.t.id;
+ function walkRoute(u){let index=routeIndex.get(u.id)||0,target=waypoints[index];if(!target)return;
+ const from={x:u.x,y:u.y},startIndex=index;let still=0,jumped=false;
+ for(let k=0;k<1800&&e.canAct()&&e.active===u&&u.moveLeft>12;k++){
+  if(Math.abs(u.x-target.x)<45&&Math.abs(u.y-target.y)<55&&support(u)===target.s){index++;routeIndex.set(u.id,index);target=waypoints[index];if(!target)break;}
+  const minIndex=Math.min(...heroes().map(h=>routeIndex.get(h.id)||0));if(index>minIndex+1)break;
+  const x=u.x,y=u.y;
+  if(target.drop&&support(u)!==target.s&&Math.abs(u.x-target.x)<50){if(e.drop())actions.push({op:'drop',round:b.round,hero:u.id,index,x:u.x,y:u.y});}
+  if(target.jump&&!jumped&&support(u)!==target.s&&e.grounded(u)){jumped=e.jump();if(jumped)actions.push({op:'jump',round:b.round,hero:u.id,index,x:u.x,y:u.y});}
+  if(Math.abs(u.x-target.x)>5)e.move(Math.sign(target.x-u.x)*(Math.abs(u.x-target.x)<30?.3:1),C.STEP);tick();
+  if(Math.hypot(u.x-x,u.y-y)<.01)still++;else still=0;
+  if(still===14&&e.grounded(u)&&!target.drop){const ok=e.jump();actions.push({op:'jump-recover',round:b.round,hero:u.id,ok,index,x:u.x,y:u.y});}
+  if(still>90)break;
+ }
+ for(let k=0;k<240&&!e.grounded(u)&&e.canAct();k++)tick();
+ actions.push({op:'route-move',round:b.round,hero:u.id,from,to:{x:u.x,y:u.y},startIndex,index,support:support(u),remaining:u.moveLeft});
+ }
+ function heal(u){if(u.cls!=='mage'||!u.loadout.includes('M10')||e.manaCost(C.SKILLS.M10,u)>u.focus)return false;
+ const hurt=heroes().filter(v=>v.hp/v.maxHp<.78&&dist(v,u)<1800).sort((a,z)=>a.hp/a.maxHp-z.hp/z.maxHp);if(!hurt.length)return false;
+ const target=hurt[0];if((b.stakes||[]).some(s=>s.skill==='M10'&&s.expires>b.round+1&&dist(s,target)<180))return false;
+ let best=null;for(const {angle,power}of e.shotSeeds(u,C.SKILLS.M10,target)){const hit=e.predict(u,C.SKILLS.M10,angle,power),d=dist(hit,target);if(hit.terrain&&Math.abs(hit.y-target.y)<70&&d<90&&(!best||d<best.d))best={angle,power,d};}
+ if(best&&e.fire('M10',best.angle,best.power)){actions.push({op:'heal',round:b.round,hero:u.id,target:target.id,...best});return true;}return false;
+ }
+
  draw();await document.fonts.ready;
  const initialPng=cv.toDataURL('image/png');
- for(;actionNo<100&&!['won','lost'].includes(b.phase);actionNo++){
- while(!e.canAct()&&!['won','lost'].includes(b.phase)&&frames<150000){tick();if(performance.now()-start>150000)break;}
- if(performance.now()-start>150000){stopReason='150s wall budget; unfinished, not route failure';break;}
+ for(;actionNo<320&&!['won','lost'].includes(b.phase);actionNo++){
+ while(!e.canAct()&&!['won','lost'].includes(b.phase)&&frames<150000){tick();if(performance.now()-start>180000)break;}
+ if(performance.now()-start>180000){stopReason='180s wall budget; unfinished, not route failure';break;}
  if(frames>=150000){stopReason='frame budget';break;}if(['won','lost'].includes(b.phase))break;
- if(b.round>12){stopReason='12-round bounded comparison; not full-play acceptance';break;}
+ if(b.round>40){stopReason='40-round route-policy bounded comparison; not full-play acceptance';break;}
  if(latestRound!==b.round){latestRound=b.round;rounds.push({round:b.round,foes:foes().length,heroes:heroes().map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,level:u.level})),escort:b.honroAct4PreviewState.returnEscort||null});}
+ const lagging=heroes().filter(h=>!h.acted).sort((a,z)=>(routeIndex.get(a.id)||0)-(routeIndex.get(z.id)||0)||a.x-z.x)[0];if(lagging)e.select(lagging.id);
  const u=e.active;if(!u||u.side!==0){stopReason='no active hero';break;}
+ if(heal(u))continue;
+ const lag=heroes().some(h=>(routeIndex.get(h.id)||0)>(routeIndex.get(u.id)||0)||h.x-u.x>550&&Math.abs(h.y-u.y)<700);if(lag)walkRoute(u);if(!e.canAct())continue;
  let targets=foes().sort((a,z)=>dist(a,u)-dist(z,u)),fired=false;
  for(const t of targets.filter(t=>dist(t,u)<1500).slice(0,3))if(fireAt(u,t)){fired=true;break;}if(fired)continue;
  if(!targets.length){stopReason='all enemies defeated; full App narrative/escort continuation required';break;}
- walkToward(u,targets[0]);if(!e.canAct())continue;
+ walkRoute(u);if(!e.canAct())continue;if(heal(u))continue;
  for(const t of targets.filter(t=>alive(t)&&dist(t,u)<1600).slice(0,3))if(fireAt(u,t)){fired=true;break;}
  if(!fired){actions.push({op:'wait',round:b.round,hero:u.id});e.wait();}
  }
  draw();const final={phase:b.phase,round:b.round,heroes:heroes().map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,maxHp:u.maxHp,level:u.level})),remaining:foes().map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp})),escort:b.honroAct4PreviewState.returnEscort||null};
- publishProbe({ok:true,stage:40,variant,runtimeSha256,scope:'Native Engine ordinary input bounded comparison from canonical spawns, same synthetic stage-entry trained profile. Not full App narrative/escort or human gameplay acceptance. No teleports, HP deletion/refill, turn override, save manipulation or enemy removal.',entryLevel,initial,final,actions,rounds,frames,stopReason:stopReason||'action budget or battle ending',elapsed:(performance.now()-start)/1000,storage:p.storage,errors:p.errors,violations:p.violations,png:cv.toDataURL('image/png'),initialPng});
+ publishProbe({ok:true,stage:40,variant,runtimeSha256,waypoints,routeProgress:Object.fromEntries(routeIndex),scope:'Native Engine ordinary input bounded comparison from canonical spawns, same synthetic stage-entry trained profile. Not full App narrative/escort or human gameplay acceptance. No teleports, HP deletion/refill, turn override, save manipulation or enemy removal.',entryLevel,initial,final,actions,rounds,frames,stopReason:stopReason||'action budget or battle ending',elapsed:(performance.now()-start)/1000,storage:p.storage,errors:p.errors,violations:p.violations,png:cv.toDataURL('image/png'),initialPng});
  }catch(err){publishProbe({ok:false,error:String(err.stack||err),...p});}
 }
 const script=s=>'<script>'+s.replace(/<\/script/gi,'<\\/script')+'</script>';
