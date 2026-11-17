@@ -21,12 +21,29 @@ jobs:
         run: |
           git fetch --depth=1 origin 7d238d20663c3ceffe430eb0304e01516ae625cf
           git fetch --depth=1 origin e89242eedb5c040d38a9077c7289fbdc97786bdf
+      - name: Reproduce flag omission and corrected original terrain parent
+        run: |
+          git fetch --depth=1 origin e8d8aa8865c832e831d6d221223356b440652e5f
+          git worktree add --detach "$RUNNER_TEMP/terrain-parent" e8d8aa8865c832e831d6d221223356b440652e5f
+          ln -s "$GITHUB_WORKSPACE/node_modules" "$RUNNER_TEMP/terrain-parent/node_modules"
+          ln -s "$GITHUB_WORKSPACE/game/node_modules" "$RUNNER_TEMP/terrain-parent/game/node_modules"
+          cd "$RUNNER_TEMP/terrain-parent"
+          node tools/act4-source/world-source.mjs materialize
+          for t in stage34-edge-contract stage37-alpha-edge-contract stage38-alpha-edge-contract; do
+            if HONRO_ACT4_RELEASE=0 node tests/$t.mjs > "$RUNNER_TEMP/$t-no-flag.log" 2>&1; then
+              echo "Unexpected original-parent success without required flag"; exit 1
+            fi
+            grep -q 'assert(a)' "$RUNNER_TEMP/$t-no-flag.log"
+            HONRO_ACT4_RELEASE=1 node tests/$t.mjs
+          done
       - name: Relevant placement and renderer contracts, unchanged assertions
         run: |
           mkdir -p _local/reports/terrain-monster-preflight
           failure=0
           for t in stage40-placement-contract act4-middle-placement-contract early-encounter-contract act5-meaningful-encounters.test vector-snap-collapse stage34-edge-contract stage37-alpha-edge-contract stage38-alpha-edge-contract; do
-            node tests/$t.mjs > _local/reports/terrain-monster-preflight/$t.log 2>&1 || failure=1
+            flag=0
+            case "$t" in stage34-edge-contract|stage37-alpha-edge-contract|stage38-alpha-edge-contract) flag=1 ;; esac
+            HONRO_ACT4_RELEASE=$flag node tests/$t.mjs > _local/reports/terrain-monster-preflight/$t.log 2>&1 || failure=1
             cat _local/reports/terrain-monster-preflight/$t.log
           done
           exit "$failure"
