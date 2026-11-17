@@ -1,0 +1,829 @@
+[
+  {
+    "stage": 10,
+    "view": "desktop-br",
+    "changed": 4,
+    "maxDelta": 1,
+    "bbox": [
+      636,
+      51,
+      1072,
+      146
+    ],
+    "camera": {
+      "x": 5000,
+      "y": 3900,
+      "scale": 0.19573529411764706
+    },
+    "physicsUnchanged": true,
+    "baseline": "638f3bc4388d34eb3b75af2f443f52b11531550a7c1298529c636df482335571",
+    "candidate": "afced9e545082e0e03f2659c5f2fef038a2624b9d66f795b15bdb5fa71dbdfc0",
+    "visualReview": "Directly inspected baseline and candidate sheet; intended local change observed; no new large structural regression observed in these samples; not full acceptance",
+    "scope": "Four targeted isolated Chrome initial views, not public input/full stage acceptance",
+    "expectedRegionChanged": 0,
+    "outsideExpectedChanged": 4,
+    "outsideMaxDelta": 1,
+    "outsideBbox": [
+      636,
+      51,
+      1072,
+      146
+    ]
+  },
+  {
+    "stage": 10,
+    "view": "desktop-tl",
+    "changed": 0,
+    "maxDelta": 0,
+    "bbox": null,
+    "camera": {
+      "x": 0,
+      "y": 0,
+      "scale": 0.19573529411764706
+    },
+    "physicsUnchanged": true,
+    "baseline": "c604062266f937967600e34c02407eb18170e725627177ddca952ac32214ec53",
+    "candidate": "c604062266f937967600e34c02407eb18170e725627177ddca952ac32214ec53",
+    "visualReview": "Directly inspected baseline and candidate sheet; intended local change observed; no new large structural regression observed in these samples; not full acceptance",
+    "scope": "Four targeted isolated Chrome initial views, not public input/full stage acceptance",
+    "expectedRegionChanged": 0,
+    "outsideExpectedChanged": 0,
+    "outsideMaxDelta": 0,
+    "outsideBbox": null
+  },
+  {
+    "stage": 10,
+    "view": "portrait-br",
+    "changed": 39780,
+    "maxDelta": 8,
+    "bbox": [
+      0,
+      594,
+      389,
+      695
+    ],
+    "camera": {
+      "x": 5000,
+      "y": 3900,
+      "scale": 0.057352941176470586
+    },
+    "physicsUnchanged": true,
+    "baseline": "b93901c19196ad02b4ecffe9d86a99574cd30fae050eefa8da37fd7133fe1f00",
+    "candidate": "0aeb8ab888af13280a017ce0cfbb9e9259fa4962d10e6e350d25c97101df0378",
+    "visualReview": "Directly inspected baseline and candidate sheet; intended local change observed; no new large structural regression observed in these samples; not full acceptance",
+    "scope": "Four targeted isolated Chrome initial views, not public input/full stage acceptance",
+    "expectedRegionChanged": 39780,
+    "outsideExpectedChanged": 0,
+    "outsideMaxDelta": 0,
+    "outsideBbox": null
+  },
+  {
+    "stage": 10,
+    "view": "portrait-tl",
+    "changed": 0,
+    "maxDelta": 0,
+    "bbox": null,
+    "camera": {
+      "x": 0,
+      "y": 0,
+      "scale": 0.057352941176470586
+    },
+    "physicsUnchanged": true,
+    "baseline": "493ac64d742102e8ee7cdfd096b2a129f31c00661f32486e44e0f2a510feb162",
+    "candidate": "493ac64d742102e8ee7cdfd096b2a129f31c00661f32486e44e0f2a510feb162",
+    "visualReview": "Directly inspected baseline and candidate sheet; intended local change observed; no new large structural regression observed in these samples; not full acceptance",
+    "scope": "Four targeted isolated Chrome initial views, not public input/full stage acceptance",
+    "expectedRegionChanged": 0,
+    "outsideExpectedChanged": 0,
+    "outsideMaxDelta": 0,
+    "outsideBbox": null
+  },
+  {
+    "stage": 14,
+    "view": "desktop-br",
+    "changed": 3998,
+    "maxDelta": 50,
+    "bbox": [
+      0,
+      427,
+      666,
+      432
+    ],
+    "camera": {
+      "x": 4800,
+      "y": 5400,
+      "scale": 0.19573529411764706
+    },
+    "physicsUnchanged": true,
+    "baseline": "62f56ce40420569178cb9ef89a3a366eb46f2aa64856fe5dbee32f2e9ded38cd",
+    "candidate": "53b77f3be0ad5a742a973932c65a81b9ffcc1acf16ae361d1b71f3d85b137dbe",
+    "visualReview": "Directly inspected baseline and candidate sheet; intended local change observed; no new large structural regression observed in these samples; not full acceptance",
+    "scope": "Four targeted isolated Chrome initial views, not public input/full stage acceptance",
+    "expectedRegionChanged": 3998,
+    "outsideExpectedChanged": 0,
+    "outsideMaxDelta": 0,
+    "outsideBbox": null
+  },
+  {
+    "stage": 14,
+    "view": "desktop-tl",
+    "changed": 0,
+    "maxDelta": 0,
+    "bbox": null,
+    "camera": {
+      "x": 0,
+      "y": 0,
+      "scale": 0.19573529411764706
+    },
+    "physicsUnchanged": true,
+    "baseline": "4fcf24b8602ecafc0629bcb4be5c6d1f0a469fcfb4b26fab08b86e89a5d91329",
+    "candidate": "4fcf24b8602ecafc0629bcb4be5c6d1f0a469fcfb4b26fab08b86e89a5d91329",
+    "visualReview": "Directly inspected baseline and candidate sheet; intended local change observed; no new large structural regression observed in these samples; not full acceptance",
+    "scope": "Four targeted isolated Chrome initial views, not public input/full stage acceptance",
+    "expectedRegionChanged": 0,
+    "outsideExpectedChanged": 0,
+    "outsideMaxDelta": 0,
+    "outsideBbox": null
+  },
+  {
+    "stage": 14,
+    "view": "portrait-br",
+    "changed": 585,
+    "maxDelta": 18,
+    "bbox": [
+      0,
+      361,
+      194,
+      363
+    ],
+    "camera": {
+      "x": 4800,
+      "y": 5400,
+      "scale": 0.057352941176470586
+    },
+    "physicsUnchanged": true,
+    "baseline": "67327d84e0dc77977df2d1f5c502869faae67779e276ec172e87b0ee31be8fde",
+    "candidate": "da48f8d8ea0c66fe4bc075e5dcc70df0b6b73f3e1c58b1938f225699f253273a",
+    "visualReview": "Directly inspected baseline and candidate sheet; intended local change observed; no new large structural regression observed in these samples; not full acceptance",
+    "scope": "Four targeted isolated Chrome initial views, not public input/full stage acceptance",
+    "expectedRegionChanged": 585,
+    "outsideExpectedChanged": 0,
+    "outsideMaxDelta": 0,
+    "outsideBbox": null
+  },
+  {
+    "stage": 14,
+    "view": "portrait-tl",
+    "changed": 390,
+    "maxDelta": 27,
+    "bbox": [
+      195,
+      671,
+      389,
+      672
+    ],
+    "camera": {
+      "x": 0,
+      "y": 0,
+      "scale": 0.057352941176470586
+    },
+    "physicsUnchanged": true,
+    "baseline": "6ce9ff42791f2406fb83522e6fac5cfa101851b6f454816f23528ffc7a6c72d6",
+    "candidate": "996cae9271250686bb6f31c524fbf40ed82bf76537cbbef4b8a26f416b35c604",
+    "visualReview": "Directly inspected baseline and candidate sheet; intended local change observed; no new large structural regression observed in these samples; not full acceptance",
+    "scope": "Four targeted isolated Chrome initial views, not public input/full stage acceptance",
+    "expectedRegionChanged": 390,
+    "outsideExpectedChanged": 0,
+    "outsideMaxDelta": 0,
+    "outsideBbox": null
+  },
+  {
+    "stage": 2,
+    "view": "desktop-br",
+    "changed": 98496,
+    "maxDelta": 17,
+    "bbox": [
+      0,
+      144,
+      1330,
+      762
+    ],
+    "camera": {
+      "x": 4300,
+      "y": 3300,
+      "scale": 0.19573529411764706
+    },
+    "physicsUnchanged": true,
+    "baseline": "518e349860c7fd4d221cbb27f838026250032f3a1af8058a2ba9b596fd5895cb",
+    "candidate": "0a461f8c41f12edfb5a7c13be8b393b8651f99421aa534b1a5a780f971cbf9d5",
+    "visualReview": "Directly inspected baseline and candidate sheet; intended local change observed; no new large structural regression observed in these samples; not full acceptance",
+    "scope": "Four targeted isolated Chrome initial views, not public input/full stage acceptance",
+    "expectedRegionChanged": 98494,
+    "outsideExpectedChanged": 2,
+    "outsideMaxDelta": 1,
+    "outsideBbox": [
+      238,
+      144,
+      481,
+      154
+    ]
+  },
+  {
+    "stage": 2,
+    "view": "desktop-tl",
+    "changed": 0,
+    "maxDelta": 0,
+    "bbox": null,
+    "camera": {
+      "x": 0,
+      "y": 0,
+      "scale": 0.19573529411764706
+    },
+    "physicsUnchanged": true,
+    "baseline": "50e3fc24b9eb259bf6e8741f7cbc804b498cf90b9534be30e610c966eec3d4e0",
+    "candidate": "50e3fc24b9eb259bf6e8741f7cbc804b498cf90b9534be30e610c966eec3d4e0",
+    "visualReview": "Directly inspected baseline and candidate sheet; intended local change observed; no new large structural regression observed in these samples; not full acceptance",
+    "scope": "Four targeted isolated Chrome initial views, not public input/full stage acceptance",
+    "expectedRegionChanged": 0,
+    "outsideExpectedChanged": 0,
+    "outsideMaxDelta": 0,
+    "outsideBbox": null
+  },
+  {
+    "stage": 2,
+    "view": "portrait-br",
+    "changed": 26130,
+    "maxDelta": 17,
+    "bbox": [
+      0,
+      629,
+      389,
+      695
+    ],
+    "camera": {
+      "x": 4300,
+      "y": 3300,
+      "scale": 0.057352941176470586
+    },
+    "physicsUnchanged": true,
+    "baseline": "a1ec5b49b8a5aa197801bb7f0aa1403a98f66abce2e3d6a445e76f4e1f175a46",
+    "candidate": "8fc4a903822cb02a6307e1a640de02f36d8c5d79ec33f72514850bf7fc979355",
+    "visualReview": "Directly inspected baseline and candidate sheet; intended local change observed; no new large structural regression observed in these samples; not full acceptance",
+    "scope": "Four targeted isolated Chrome initial views, not public input/full stage acceptance",
+    "expectedRegionChanged": 26130,
+    "outsideExpectedChanged": 0,
+    "outsideMaxDelta": 0,
+    "outsideBbox": null
+  },
+  {
+    "stage": 2,
+    "view": "portrait-tl",
+    "changed": 5,
+    "maxDelta": 1,
+    "bbox": [
+      116,
+      74,
+      311,
+      156
+    ],
+    "camera": {
+      "x": 0,
+      "y": 0,
+      "scale": 0.057352941176470586
+    },
+    "physicsUnchanged": true,
+    "baseline": "f443619b278e201dd32904474cd6ff5e20b95d26ff762d30f7edb2d5a49db6ab",
+    "candidate": "70a97ccb8e810496f93b38281f7654a8731e125978da9ee1f3d02608fc8102a4",
+    "visualReview": "Directly inspected baseline and candidate sheet; intended local change observed; no new large structural regression observed in these samples; not full acceptance",
+    "scope": "Four targeted isolated Chrome initial views, not public input/full stage acceptance",
+    "expectedRegionChanged": 0,
+    "outsideExpectedChanged": 5,
+    "outsideMaxDelta": 1,
+    "outsideBbox": [
+      116,
+      74,
+      311,
+      156
+    ]
+  },
+  {
+    "stage": 4,
+    "view": "desktop-br",
+    "changed": 0,
+    "maxDelta": 0,
+    "bbox": null,
+    "camera": {
+      "x": 4600,
+      "y": 3500,
+      "scale": 0.19573529411764706
+    },
+    "physicsUnchanged": true,
+    "baseline": "f8c664ddb0bb9dab591ffb634b9ca872b8ac950ea3386b9243858fbb9e9d5ded",
+    "candidate": "f8c664ddb0bb9dab591ffb634b9ca872b8ac950ea3386b9243858fbb9e9d5ded",
+    "visualReview": "Directly inspected baseline and candidate sheet; intended local change observed; no new large structural regression observed in these samples; not full acceptance",
+    "scope": "Four targeted isolated Chrome initial views, not public input/full stage acceptance",
+    "expectedRegionChanged": 0,
+    "outsideExpectedChanged": 0,
+    "outsideMaxDelta": 0,
+    "outsideBbox": null
+  },
+  {
+    "stage": 4,
+    "view": "desktop-tl",
+    "changed": 0,
+    "maxDelta": 0,
+    "bbox": null,
+    "camera": {
+      "x": 0,
+      "y": 0,
+      "scale": 0.19573529411764706
+    },
+    "physicsUnchanged": true,
+    "baseline": "40a072712e12fb571a120f52493871b360872aad4bb021f625f5bed46fc0ff38",
+    "candidate": "40a072712e12fb571a120f52493871b360872aad4bb021f625f5bed46fc0ff38",
+    "visualReview": "Directly inspected baseline and candidate sheet; intended local change observed; no new large structural regression observed in these samples; not full acceptance",
+    "scope": "Four targeted isolated Chrome initial views, not public input/full stage acceptance",
+    "expectedRegionChanged": 0,
+    "outsideExpectedChanged": 0,
+    "outsideMaxDelta": 0,
+    "outsideBbox": null
+  },
+  {
+    "stage": 4,
+    "view": "portrait-br",
+    "changed": 30826,
+    "maxDelta": 17,
+    "bbox": [
+      0,
+      61,
+      389,
+      695
+    ],
+    "camera": {
+      "x": 4600,
+      "y": 3500,
+      "scale": 0.057352941176470586
+    },
+    "physicsUnchanged": true,
+    "baseline": "82eddce862709d3ccf7a55ffb54295406539a30aeec69bbf17b8579d48194aee",
+    "candidate": "07dd63ab595d25e7e8a8d124d107a36cccf0d16f5bf038bf6fad257d03f8a7a4",
+    "visualReview": "Directly inspected baseline and candidate sheet; intended local change observed; no new large structural regression observed in these samples; not full acceptance",
+    "scope": "Four targeted isolated Chrome initial views, not public input/full stage acceptance",
+    "expectedRegionChanged": 30810,
+    "outsideExpectedChanged": 16,
+    "outsideMaxDelta": 2,
+    "outsideBbox": [
+      85,
+      61,
+      358,
+      162
+    ]
+  },
+  {
+    "stage": 4,
+    "view": "portrait-tl",
+    "changed": 14,
+    "maxDelta": 1,
+    "bbox": [
+      85,
+      61,
+      358,
+      150
+    ],
+    "camera": {
+      "x": 0,
+      "y": 0,
+      "scale": 0.057352941176470586
+    },
+    "physicsUnchanged": true,
+    "baseline": "731fb3cc4c841161dc065c9d87a1b3ae788c5a9a5664e447ed5d6bc0e095da46",
+    "candidate": "38fc1a514905dd2953df8578cc94a1c273191bb2d46d4364ac74bc67c25a851d",
+    "visualReview": "Directly inspected baseline and candidate sheet; intended local change observed; no new large structural regression observed in these samples; not full acceptance",
+    "scope": "Four targeted isolated Chrome initial views, not public input/full stage acceptance",
+    "expectedRegionChanged": 0,
+    "outsideExpectedChanged": 14,
+    "outsideMaxDelta": 1,
+    "outsideBbox": [
+      85,
+      61,
+      358,
+      150
+    ]
+  },
+  {
+    "stage": 8,
+    "view": "desktop-br",
+    "changed": 0,
+    "maxDelta": 0,
+    "bbox": null,
+    "camera": {
+      "x": 9600,
+      "y": 5500,
+      "scale": 0.19573529411764706
+    },
+    "physicsUnchanged": true,
+    "baseline": "e80f6c345c45324a515938655a8f1fb98995430e19e45154855519b85808cd92",
+    "candidate": "e80f6c345c45324a515938655a8f1fb98995430e19e45154855519b85808cd92",
+    "visualReview": "Directly inspected baseline and candidate sheet; intended local change observed; no new large structural regression observed in these samples; not full acceptance",
+    "scope": "Four targeted isolated Chrome initial views, not public input/full stage acceptance",
+    "expectedRegionChanged": 0,
+    "outsideExpectedChanged": 0,
+    "outsideMaxDelta": 0,
+    "outsideBbox": null
+  },
+  {
+    "stage": 8,
+    "view": "desktop-tl",
+    "changed": 0,
+    "maxDelta": 0,
+    "bbox": null,
+    "camera": {
+      "x": 0,
+      "y": 0,
+      "scale": 0.19573529411764706
+    },
+    "physicsUnchanged": true,
+    "baseline": "401899a310c56ded24b511fac0a16b8f58316b1c2fab7e291d4460ea9c8504a8",
+    "candidate": "401899a310c56ded24b511fac0a16b8f58316b1c2fab7e291d4460ea9c8504a8",
+    "visualReview": "Directly inspected baseline and candidate sheet; intended local change observed; no new large structural regression observed in these samples; not full acceptance",
+    "scope": "Four targeted isolated Chrome initial views, not public input/full stage acceptance",
+    "expectedRegionChanged": 0,
+    "outsideExpectedChanged": 0,
+    "outsideMaxDelta": 0,
+    "outsideBbox": null
+  },
+  {
+    "stage": 8,
+    "view": "portrait-br",
+    "changed": 75660,
+    "maxDelta": 12,
+    "bbox": [
+      0,
+      502,
+      389,
+      695
+    ],
+    "camera": {
+      "x": 9600,
+      "y": 5500,
+      "scale": 0.057352941176470586
+    },
+    "physicsUnchanged": true,
+    "baseline": "b4ea224fc4755b6fd8b7112562f470b65e590e2a8704862146dc29f5d83ef90e",
+    "candidate": "66f6c6b753468b237cec0775ba93aa7dd40f2d6f1fe1aae2c8be98fbca207595",
+    "visualReview": "Directly inspected baseline and candidate sheet; intended local change observed; no new large structural regression observed in these samples; not full acceptance",
+    "scope": "Four targeted isolated Chrome initial views, not public input/full stage acceptance",
+    "expectedRegionChanged": 75660,
+    "outsideExpectedChanged": 0,
+    "outsideMaxDelta": 0,
+    "outsideBbox": null
+  },
+  {
+    "stage": 8,
+    "view": "portrait-tl",
+    "changed": 23,
+    "maxDelta": 1,
+    "bbox": [
+      152,
+      115,
+      386,
+      161
+    ],
+    "camera": {
+      "x": 0,
+      "y": 0,
+      "scale": 0.057352941176470586
+    },
+    "physicsUnchanged": true,
+    "baseline": "b6887a419c0bbd15c507dd60ee765e15de8b8c2bc69179ecbc6d64781d33c4cd",
+    "candidate": "d121c0c3bbf26fe296444d49ed379350bc5830f782e12f4d264f3a6969e3f262",
+    "visualReview": "Directly inspected baseline and candidate sheet; intended local change observed; no new large structural regression observed in these samples; not full acceptance",
+    "scope": "Four targeted isolated Chrome initial views, not public input/full stage acceptance",
+    "expectedRegionChanged": 0,
+    "outsideExpectedChanged": 23,
+    "outsideMaxDelta": 1,
+    "outsideBbox": [
+      152,
+      115,
+      386,
+      161
+    ]
+  },
+  {
+    "stage": 9,
+    "view": "desktop-br",
+    "changed": 0,
+    "maxDelta": 0,
+    "bbox": null,
+    "camera": {
+      "x": 3600,
+      "y": 3500,
+      "scale": 0.19573529411764706
+    },
+    "physicsUnchanged": true,
+    "baseline": "72e6af1d65fee0bc70257ee6bef0094a35af1ff27989fee3c5ce524cf4eab31a",
+    "candidate": "72e6af1d65fee0bc70257ee6bef0094a35af1ff27989fee3c5ce524cf4eab31a",
+    "visualReview": "Directly inspected baseline and candidate sheet; intended local change observed; no new large structural regression observed in these samples; not full acceptance",
+    "scope": "Four targeted isolated Chrome initial views, not public input/full stage acceptance",
+    "expectedRegionChanged": 0,
+    "outsideExpectedChanged": 0,
+    "outsideMaxDelta": 0,
+    "outsideBbox": null
+  },
+  {
+    "stage": 9,
+    "view": "desktop-tl",
+    "changed": 23,
+    "maxDelta": 1,
+    "bbox": [
+      13,
+      56,
+      1130,
+      301
+    ],
+    "camera": {
+      "x": 0,
+      "y": 0,
+      "scale": 0.19573529411764706
+    },
+    "physicsUnchanged": true,
+    "baseline": "1dbdd3092f779cba8972b9d3907c3b48dd403495c03bc86e48ded1fdbb8f1b2b",
+    "candidate": "ff9d799c8a86260b2c6da177b58b44f22cd54706141787b9983a11d9c2c78b35",
+    "visualReview": "Directly inspected baseline and candidate sheet; intended local change observed; no new large structural regression observed in these samples; not full acceptance",
+    "scope": "Four targeted isolated Chrome initial views, not public input/full stage acceptance",
+    "expectedRegionChanged": 0,
+    "outsideExpectedChanged": 23,
+    "outsideMaxDelta": 1,
+    "outsideBbox": [
+      13,
+      56,
+      1130,
+      301
+    ]
+  },
+  {
+    "stage": 9,
+    "view": "portrait-br",
+    "changed": 30816,
+    "maxDelta": 8,
+    "bbox": [
+      0,
+      63,
+      389,
+      695
+    ],
+    "camera": {
+      "x": 3600,
+      "y": 3500,
+      "scale": 0.057352941176470586
+    },
+    "physicsUnchanged": true,
+    "baseline": "817e739841ce652a9701d81ba3b9209719e4f9a93743eb95e8f794ffa6973fb8",
+    "candidate": "b11037ea5dc2679483096764ebfd2834597778b0d64af961587f09348740f23e",
+    "visualReview": "Directly inspected baseline and candidate sheet; intended local change observed; no new large structural regression observed in these samples; not full acceptance",
+    "scope": "Four targeted isolated Chrome initial views, not public input/full stage acceptance",
+    "expectedRegionChanged": 30810,
+    "outsideExpectedChanged": 6,
+    "outsideMaxDelta": 1,
+    "outsideBbox": [
+      26,
+      63,
+      324,
+      153
+    ]
+  },
+  {
+    "stage": 9,
+    "view": "portrait-tl",
+    "changed": 0,
+    "maxDelta": 0,
+    "bbox": null,
+    "camera": {
+      "x": 0,
+      "y": 0,
+      "scale": 0.057352941176470586
+    },
+    "physicsUnchanged": true,
+    "baseline": "297b8daf708fd044bf8fb0131bfab9981eb9444b0e4f952fcfd1c8ebb55435c0",
+    "candidate": "297b8daf708fd044bf8fb0131bfab9981eb9444b0e4f952fcfd1c8ebb55435c0",
+    "visualReview": "Directly inspected baseline and candidate sheet; intended local change observed; no new large structural regression observed in these samples; not full acceptance",
+    "scope": "Four targeted isolated Chrome initial views, not public input/full stage acceptance",
+    "expectedRegionChanged": 0,
+    "outsideExpectedChanged": 0,
+    "outsideMaxDelta": 0,
+    "outsideBbox": null
+  },
+  {
+    "stage": 5,
+    "view": "desktop-br",
+    "changed": 0,
+    "maxDelta": 0,
+    "bbox": null,
+    "camera": {
+      "x": 6400,
+      "y": 4300,
+      "scale": 0.19573529411764706
+    },
+    "physicsUnchanged": true,
+    "baseline": "ce50bde683e2f2d5c421fa6691d9d14039694c2a3e412eb193c8803aa84d17f2",
+    "candidate": "ce50bde683e2f2d5c421fa6691d9d14039694c2a3e412eb193c8803aa84d17f2",
+    "visualReview": "Directly inspected baseline and candidate sheet; intended local change observed; no new large structural regression observed in these samples; not full acceptance",
+    "scope": "Four targeted isolated Chrome initial views, not public input/full stage acceptance",
+    "expectedRegionChanged": 0,
+    "outsideExpectedChanged": 0,
+    "outsideMaxDelta": 0,
+    "outsideBbox": null
+  },
+  {
+    "stage": 5,
+    "view": "desktop-tl",
+    "changed": 0,
+    "maxDelta": 0,
+    "bbox": null,
+    "camera": {
+      "x": 0,
+      "y": 0,
+      "scale": 0.19573529411764706
+    },
+    "physicsUnchanged": true,
+    "baseline": "5b6163061993a7631aa7c0f53197d60bcaf401047b6506404a3d212b7ca5ea73",
+    "candidate": "5b6163061993a7631aa7c0f53197d60bcaf401047b6506404a3d212b7ca5ea73",
+    "visualReview": "Directly inspected baseline and candidate sheet; intended local change observed; no new large structural regression observed in these samples; not full acceptance",
+    "scope": "Four targeted isolated Chrome initial views, not public input/full stage acceptance",
+    "expectedRegionChanged": 0,
+    "outsideExpectedChanged": 0,
+    "outsideMaxDelta": 0,
+    "outsideBbox": null
+  },
+  {
+    "stage": 5,
+    "view": "portrait-br",
+    "changed": 48750,
+    "maxDelta": 19,
+    "bbox": [
+      0,
+      571,
+      389,
+      695
+    ],
+    "camera": {
+      "x": 6400,
+      "y": 4300,
+      "scale": 0.057352941176470586
+    },
+    "physicsUnchanged": true,
+    "baseline": "6802db9d661ca6c5c769d7699139d1d8f20b39f572499dd9a893e14ae5ebcdf7",
+    "candidate": "af9437b090a2516bc4ec595ec7b3987e693059713e2e0ceb2bf6af49ea21d672",
+    "visualReview": "Directly inspected baseline and candidate sheet; intended local change observed; no new large structural regression observed in these samples; not full acceptance",
+    "scope": "Four targeted isolated Chrome initial views, not public input/full stage acceptance",
+    "expectedRegionChanged": 48750,
+    "outsideExpectedChanged": 0,
+    "outsideMaxDelta": 0,
+    "outsideBbox": null
+  },
+  {
+    "stage": 5,
+    "view": "portrait-tl",
+    "changed": 33,
+    "maxDelta": 1,
+    "bbox": [
+      18,
+      59,
+      385,
+      164
+    ],
+    "camera": {
+      "x": 0,
+      "y": 0,
+      "scale": 0.057352941176470586
+    },
+    "physicsUnchanged": true,
+    "baseline": "669b6e476e3dcbb8cefae4eef8941a1e7ecd9d8540b5e6c7c6c6df102f9da342",
+    "candidate": "024f2b75ff4f2e1f5a1e8bfe684b5f3e78337b3b043bf48cd023c7d12c64e020",
+    "visualReview": "Directly inspected baseline and candidate sheet; intended local change observed; no new large structural regression observed in these samples; not full acceptance",
+    "scope": "Four targeted isolated Chrome initial views, not public input/full stage acceptance",
+    "expectedRegionChanged": 0,
+    "outsideExpectedChanged": 33,
+    "outsideMaxDelta": 1,
+    "outsideBbox": [
+      18,
+      59,
+      385,
+      164
+    ]
+  },
+  {
+    "stage": 6,
+    "view": "desktop-br",
+    "changed": 16,
+    "maxDelta": 1,
+    "bbox": [
+      327,
+      73,
+      578,
+      211
+    ],
+    "camera": {
+      "x": 6600,
+      "y": 3800,
+      "scale": 0.19573529411764706
+    },
+    "physicsUnchanged": true,
+    "baseline": "1a60f30f4b06bce1dbff0625f5c71965401d00dd348a6c02057c383f5dcd8659",
+    "candidate": "bfa22d0615dd665864a11fd370d5856bb37f2bf6be72bf80cada3b3c903cdb8e",
+    "visualReview": "Directly inspected baseline and candidate sheet; intended local change observed; no new large structural regression observed in these samples; not full acceptance",
+    "scope": "Four targeted isolated Chrome initial views, not public input/full stage acceptance",
+    "expectedRegionChanged": 0,
+    "outsideExpectedChanged": 16,
+    "outsideMaxDelta": 1,
+    "outsideBbox": [
+      327,
+      73,
+      578,
+      211
+    ]
+  },
+  {
+    "stage": 6,
+    "view": "desktop-tl",
+    "changed": 0,
+    "maxDelta": 0,
+    "bbox": null,
+    "camera": {
+      "x": 0,
+      "y": 0,
+      "scale": 0.19573529411764706
+    },
+    "physicsUnchanged": true,
+    "baseline": "df17f373819328c0a744c2e98afff224a5d08149e78ccede8c4b841b94e33024",
+    "candidate": "df17f373819328c0a744c2e98afff224a5d08149e78ccede8c4b841b94e33024",
+    "visualReview": "Directly inspected baseline and candidate sheet; intended local change observed; no new large structural regression observed in these samples; not full acceptance",
+    "scope": "Four targeted isolated Chrome initial views, not public input/full stage acceptance",
+    "expectedRegionChanged": 0,
+    "outsideExpectedChanged": 0,
+    "outsideMaxDelta": 0,
+    "outsideBbox": null
+  },
+  {
+    "stage": 6,
+    "view": "portrait-br",
+    "changed": 37452,
+    "maxDelta": 32,
+    "bbox": [
+      0,
+      43,
+      389,
+      695
+    ],
+    "camera": {
+      "x": 6600,
+      "y": 3800,
+      "scale": 0.057352941176470586
+    },
+    "physicsUnchanged": true,
+    "baseline": "2211d321641286661cc148866b2e6542113f3751c9916261ae1c6dae4f3611a8",
+    "candidate": "759c6b5f26e8236e92041c2ffa9c57acf0533ff72b3c3ef28546f88755d48240",
+    "visualReview": "Directly inspected baseline and candidate sheet; intended local change observed; no new large structural regression observed in these samples; not full acceptance",
+    "scope": "Four targeted isolated Chrome initial views, not public input/full stage acceptance",
+    "expectedRegionChanged": 37440,
+    "outsideExpectedChanged": 12,
+    "outsideMaxDelta": 1,
+    "outsideBbox": [
+      2,
+      43,
+      353,
+      157
+    ]
+  },
+  {
+    "stage": 6,
+    "view": "portrait-tl",
+    "changed": 8,
+    "maxDelta": 1,
+    "bbox": [
+      41,
+      51,
+      353,
+      157
+    ],
+    "camera": {
+      "x": 0,
+      "y": 0,
+      "scale": 0.057352941176470586
+    },
+    "physicsUnchanged": true,
+    "baseline": "b2634088f55a2cc2a6472fb417c32312f8c96f23b9519afb37452aa30de5410f",
+    "candidate": "919d795b78f6d35b0c5371215086abd8c0523269ccca5dc23df81bdc0cd2bbad",
+    "visualReview": "Directly inspected baseline and candidate sheet; intended local change observed; no new large structural regression observed in these samples; not full acceptance",
+    "scope": "Four targeted isolated Chrome initial views, not public input/full stage acceptance",
+    "expectedRegionChanged": 0,
+    "outsideExpectedChanged": 8,
+    "outsideMaxDelta": 1,
+    "outsideBbox": [
+      41,
+      51,
+      353,
+      157
+    ]
+  }
+]
