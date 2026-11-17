@@ -90,12 +90,12 @@ export function extendNaruBody(core){
  strip('naru-outer-left',27-27/390,506,27/390,381,-1200,506,810.25,381);
  strip('naru-outer-right',1752,470,22/400,417,2173.75,470,800.25,417);
  strip('naru-lower-left',1,858,1,28,-1200,886.75,1200,380.5);
- strip('naru-lower-right',1771,858,1,28,1774,886.75,1200,380.5);
+ strip('naru-lower-right',1771,858,1,28,1773,886.75,1201,380.5);
  strip('naru-core-bottom-join',0,858.1,1774,.1,0,886.75,1774,.5);
  const y=885,h=1;
- strip('naru-bottom-left',1,y,1,h,-1200,1266,1200,3621);
- strip('naru-bottom-middle',0,y,1774,h,0,1266,1774,3621);
- strip('naru-bottom-right',1771,y,1,h,1774,1266,1200,3621);
+ strip('naru-bottom-left',1,y,1,h,-1200,1264,1201,3623);
+ strip('naru-bottom-middle',0,y,1774,h,0,1264,1774,3623);
+ strip('naru-bottom-right',1771,y,1,h,1773,1264,1201,3623);
  return {...core,viewBox:[-1200,0,4174,4887],clips,root:{tag:'g',children:parts}};
 }
 function artAsset(project,id,name,vector,sha,foot={x:0,y:0}){
