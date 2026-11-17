@@ -1,0 +1,14 @@
+import {readFile,writeFile} from 'node:fs/promises';
+import assert from 'node:assert/strict';
+import path from 'node:path';
+const [root,out]=process.argv.slice(2),load=async v=>JSON.parse(await readFile(path.join(root,v+'-fixtures/source-contract.json'),'utf8'));
+const p=await load('public'),e=await load('extended'),s=await load('safe');
+assert.deepEqual(s.body3,p.body3,'Safe final optimized BODY must exactly equal public BODY, including vector/transform/clips/bounds/reference');
+assert.deepEqual(s.stage3,p.stage3,'Public Stage3 source/placements/physics/config must be exact');
+assert.deepEqual(s.stage3,e.stage3,'Exclusion must not change authored stage state');
+assert.deepEqual(s.otherAssets,e.otherAssets,'No other provider changes');
+assert.deepEqual(s.otherStages,e.otherStages,'No other stage changes');
+assert.equal(s.sourceSha256,p.sourceSha256);assert.equal(s.sourceSha256,e.sourceSha256);
+assert.notDeepEqual(e.body3,s.body3,'Rejected extension must really be excluded');
+const report={publicBodyExact:true,publicStageExact:true,rawSourceUnchanged:true,otherAssetsExact:true,otherStagesExact:true,rejectedExtensionActuallyExcluded:true,scope:'Safe exclusion, not art completion. Existing lower/side limits remain. Existing extension-era audit/manifest unchanged and incompatible with intentional exclusion.'};
+await writeFile(path.join(out,'safe-source-contract.json'),JSON.stringify(report,null,2));console.log(report);

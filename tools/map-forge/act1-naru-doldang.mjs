@@ -164,7 +164,7 @@ function authorStage(project,s,data){
   [16,1049,1402,19,16,1068,1402,380]];
  const faces=shore?[]:footholds.map(([x,y,w,h,dx,dy,dw])=>[x,y,w,h,dx,dy,dw,h*dw/w]);
  const bodyCollage=collage(body.vector,faces,[-390,0,sourceWidth+790,sourceHeight+380],true,edges);
- artAsset(project,bodyId,site+' 지형',shore?extendNaruBody(bodyCollage):extendVillageBody(bodyCollage),body.sha256);
+ artAsset(project,bodyId,site+' 지형',shore?bodyCollage:extendVillageBody(bodyCollage),body.sha256);
  artAsset(project,sheetId,site+' 랜드마크',collage(data.art.landmarks.vector,data.layout,body.vector.viewBox),data.art.landmarks.sha256);
  const placement=(id,assetId,x=0,y=0,z=1,layer='structural-back')=>({id,assetId,...world(x,y),scale:z*scale,layer,depthLayer:'L1',visualRole:'scenery'});
  s.elements=[placement('site-body-'+n,bodyId),placement('site-landmarks-'+n,sheetId,0,0,1,'prop')];
@@ -280,3 +280,4 @@ export async function applyAct1Sites(project){
  }
  return project;
 }
+

@@ -1,0 +1,72 @@
+name: Stage3 safe exclusion three-way Chrome
+on:
+  push:
+    branches: ['fix/stage3-safe-exclusion-20261117']
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm ci && npm ci --prefix game
+      - run: node tests/vector-snap-collapse.mjs
+      - name: Preserve and record extension-era policy conflict, without weakening tests
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/evidence"
+          set +e
+          node tools/act1-vector-production/check-edge-integration-manifest.mjs > "$RUNNER_TEMP/evidence/old-manifest.txt" 2>&1
+          a=$?
+          node tools/act1-vector-production/check-stage3-edge-audit.mjs > "$RUNNER_TEMP/evidence/old-extension-audit.txt" 2>&1
+          b=$?
+          set -e
+          printf '{"oldManifestExit":%s,"oldExtensionAuditExit":%s,"intentionallyUnchanged":true,"newPolicy":"exclude rejected extension"}\n' "$a" "$b" > "$RUNNER_TEMP/evidence/policy-conflict.json"
+          test "$a" -ne 0
+          test "$b" -ne 0
+      - name: Build isolated source refs
+        shell: bash
+        run: |
+          for pair in public:7d238d20663c3ceffe430eb0304e01516ae625cf extended:e8d8aa8865c832e831d6d221223356b440652e5f; do
+            name=${pair%%:*}; ref=${pair#*:}
+            git fetch --depth=1 origin "$ref"
+            git worktree add --detach "$RUNNER_TEMP/$name" "$ref"
+            cmp package-lock.json "$RUNNER_TEMP/$name/package-lock.json"
+            cmp game/package-lock.json "$RUNNER_TEMP/$name/game/package-lock.json"
+            ln -s "$GITHUB_WORKSPACE/node_modules" "$RUNNER_TEMP/$name/node_modules"
+            ln -s "$GITHUB_WORKSPACE/game/node_modules" "$RUNNER_TEMP/$name/game/node_modules"
+            cp tests/stage3-safe-browser-fixture.mjs "$RUNNER_TEMP/$name/tests/"
+          done
+          (cd "$RUNNER_TEMP/public" && node tests/stage3-safe-browser-fixture.mjs "$RUNNER_TEMP/public-fixtures" 3 baseline)
+          (cd "$RUNNER_TEMP/extended" && node tests/stage3-safe-browser-fixture.mjs "$RUNNER_TEMP/extended-fixtures" 3 candidate)
+          node tests/stage3-safe-browser-fixture.mjs "$RUNNER_TEMP/safe-fixtures" 3 candidate
+          node tests/stage3-safe-source-contract.mjs "$RUNNER_TEMP" "$RUNNER_TEMP/evidence"
+      - name: Actual Chrome identical cameras and synthetic untouched battles
+        shell: bash
+        run: |
+          browser=$(command -v google-chrome || command -v chromium)
+          for v in public extended safe; do
+            variant=candidate; if [ "$v" = public ]; then variant=baseline; fi
+            for view in portrait-bl desktop-br; do
+              name="stage3-$variant-$view"
+              timeout 300s "$browser" --headless --no-first-run --no-default-browser-check --force-device-scale-factor=1 --virtual-time-budget=60000 --user-data-dir="$RUNNER_TEMP/profile-$v-$view" --dump-dom "file://$RUNNER_TEMP/$v-fixtures/$name.html" > "$RUNNER_TEMP/$v-$view.html"
+              node tests/act123-terrain-browser-result.mjs "$RUNNER_TEMP/$v-$view.html" "$RUNNER_TEMP/evidence/$v" 3 "$variant" "$view"
+            done
+          done
+          node tests/stage3-safe-browser-compare.mjs "$RUNNER_TEMP/evidence"
+      - name: Official build and saved-data compatibility
+        run: |
+          node tests/terrain-edge-act1-save-compat.mjs
+          node tests/terrain-edge-save-roundtrip.mjs
+          npm run build
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage3-safe-exclusion-three-way
+          path: ${{ runner.temp }}/evidence
+          if-no-files-found: error
