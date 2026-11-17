@@ -90,6 +90,40 @@ function compileScanline(nodes,cfg){
  return {row,uniqueSegments:segments.length,clearRows:()=>{rowCache.clear();rowBytes=0;},stats:()=>({rowBytes,rowHits,rowMisses,rows:rowCache.size,uniqueSegments:segments.length,scope:"Logical numeric/reference payload estimate, not JS heap/GPU bytes; bounded LRU4MiB"})};
 }
 
+function compileSpatialOracle(nodes,cfg,Path2D,options={}){
+ const cellWidth=options.cellWidth??64,cellHeight=options.cellHeight??32,margin=options.margin??.01,maxEntries=options.maxEntries??128,maxStringBytes=options.maxStringBytes??(2*1024*1024);
+ if(!(cellWidth>0&&cellHeight>0&&margin>=0&&maxEntries>=1&&maxStringBytes>=0))throw Error('Invalid spatial-oracle limits');
+ const cache=new Map();let bytes=0,hits=0,misses=0,evictions=0,built=0,maxObservedEntries=0,maxObservedBytes=0;
+ const paths=nodes.map((n,index)=>{
+  const raw=n.d??n.dParts.join(''),subs=raw.match(/M[^M]*/g);if(!subs||subs.join('')!==raw||subs.some(s=>!s.trimEnd().endsWith('z')||/[AHQSTVZachlmqstv]/.test(s.replace(/[eE][-+]?\d+/g,''))))throw Error('Requires original absolute M/L/C/z source');
+  const grayIndices=new Set(cfg.graySubpaths?.[index]??[]);
+  const parts=subs.map((source,i)=>{
+   const tok=source.match(/[MLCz]|[-+]?(?:\d*\.\d+|\d+\.?\d*)(?:[eE][-+]?\d+)?/g);if(tok.join('').replace(/\+/g,'')!==source.replace(/[\s,]/g,'').replace(/\+/g,''))throw Error('Unsupported source token');
+   const p=tok.filter(t=>!/[MLCz]/.test(t)).map(Number);if(p.length%2||!p.every(Number.isFinite))throw Error('Invalid coordinate pairs');
+   const box=[Infinity,Infinity,-Infinity,-Infinity];for(let j=0;j<p.length;j+=2){box[0]=Math.min(box[0],p[j]);box[1]=Math.min(box[1],p[j+1]);box[2]=Math.max(box[2],p[j]);box[3]=Math.max(box[3],p[j+1]);}
+   return {source,gray:grayIndices.has(i),box};
+  });
+  const supplied=options.fullPaths?.[index];return {parts,rule:n.fillRule||'nonzero',full:supplied?.path??new Path2D(raw),gray:supplied?.gray??(grayIndices.size?new Path2D(parts.filter(p=>p.gray).map(p=>p.source).join('')):null)};
+ });
+ function get(index,x,y){
+  if(!Number.isFinite(x)||!Number.isFinite(y)||!paths[index])throw Error('Invalid spatial query');
+  const ix=Math.floor(x/cellWidth),iy=Math.floor(y/cellHeight),key=index+':'+ix+':'+iy;
+  const hit=cache.get(key);if(hit){cache.delete(key);cache.set(key,hit);hits++;return hit;}misses++;
+  const x0=ix*cellWidth-margin,x1=(ix+1)*cellWidth+margin,y0=iy*cellHeight-margin,y1=(iy+1)*cellHeight+margin,p=paths[index];
+  const selected=p.parts.filter(s=>s.box[2]>=x0&&s.box[0]<=x1&&s.box[3]>=y0&&s.box[1]<=y1);
+  const source=selected.map(s=>s.source).join(''),graySource=selected.filter(s=>s.gray).map(s=>s.source).join('');
+  const all=selected.length===p.parts.length;
+  const result={path:all?p.full:(source?new Path2D(source):null),gray:all?p.gray:(graySource?new Path2D(graySource):null),source,graySource,rule:p.rule,selectedSubpaths:selected.length,totalSubpaths:p.parts.length,inputStringBytes:2*(source.length+graySource.length+key.length)};
+  built++;
+  if(result.inputStringBytes<=maxStringBytes){
+   while(cache.size&&(cache.size>=maxEntries||bytes+result.inputStringBytes>maxStringBytes)){const first=cache.keys().next().value;bytes-=cache.get(first).inputStringBytes;cache.delete(first);evictions++;}
+   cache.set(key,result);bytes+=result.inputStringBytes;maxObservedEntries=Math.max(maxObservedEntries,cache.size);maxObservedBytes=Math.max(maxObservedBytes,bytes);
+  }
+  return result;
+ }
+ return {paths,get,clear(){cache.clear();bytes=0;},stats:()=>({cellWidth,cellHeight,margin,maxEntries,maxStringBytes,entries:cache.size,inputStringBytes:bytes,maxObservedEntries,maxObservedBytes,hits,misses,evictions,built,scope:'Bounded retained input UTF-16 string payload only. Not actual JS heap or native Path2D/GPU memory; original full paths and source metadata are outside this cache estimate.'})};
+}
+
 function geometry(asset){
  if(prepared.has(asset))return prepared.get(asset);
  const q={};
@@ -111,7 +145,7 @@ function geometry(asset){
    if(indices?.some(j=>!Number.isInteger(j)||!subs[j]))throw Error('Invalid Stage 32 original subpath index');
    return {sourceIndex:i,bounds,path:new G.Path2D(path),fill:n.fill,rule:n.fillRule||'nonzero',protected:protect.has(i),gray:indices?new G.Path2D(indices.map(j=>subs[j]).join('')):null};
   });
-  q.scanline=compileScanline(nodes,cfg);
+  q.scanline=compileScanline(nodes,cfg);q.spatial=compileSpatialOracle(nodes,cfg,G.Path2D,{fullPaths:q.paths});
  }
  prepared.set(asset,q);return q;
 }
@@ -135,10 +169,11 @@ function bitmap(c,cv){c.save();c.setTransform(1,0,0,1,0,0);c.drawImage(cv,0,0);c
 // Candidate only. Correct correlated-AA hidden-green residue on internal non-walk
 // seams. Never changes source geometry or full BODY alpha. The finite sampling
 // is explicitly measured; not a claim of analytic exact area integration.
-let activeScanline=null;
-const coverageStats={maskComparisons:0,maskComparedPixels:0,maskMismatches:0,boundaryFallbacks:0,labelOverrides:0,maxOverrideDistance:0,calls:0,eligible:0,corrected:0,samples:0,ms:0,alphaChanged:0,roadSkipped:0,opaqueGrassSkipped:0,actualGrassSamples:0,bytes:0};
+let activeScanline=null,activeSpatial=null;
+const coverageStats={spatialQueries:0,spatialCompared:0,spatialMismatches:0,maskComparisons:0,maskComparedPixels:0,maskMismatches:0,boundaryFallbacks:0,labelOverrides:0,maxOverrideDistance:0,calls:0,eligible:0,corrected:0,samples:0,ms:0,alphaChanged:0,roadSkipped:0,opaqueGrassSkipped:0,actualGrassSamples:0,bytes:0};
 let coverageMasks=null;
 function coherentColor(c,cv,q){
+ if(activeSpatial!==q.spatial){activeSpatial?.clear();activeSpatial=q.spatial;}
  if(activeScanline!==q.scanline){activeScanline?.clearRows();activeScanline=q.scanline;}
  const t=G.performance?.now?.()??Date.now(),m=c.getTransform(),world=m.d/2.2;
  // Lowest actual walk y1342; authored roads extend to1368.4. Upper limit is the
@@ -184,7 +219,9 @@ function coherentColor(c,cv,q){
    }
    for(let sx=0;sx<sampleN;sx++){
    const dx=x+(sx+.5)/sampleN,dy=y+y0+(sy+.5)/sampleN;let color=null;
-   const label=scanRows[sy].at((dx-m.e)/m.a,(_x,_y,distance,estimate)=>{coverageStats.boundaryFallbacks++;let actual={top:-1,gray:false};for(let j=q.paths.length-1;j>=0;j--){const p=q.paths[j],bb=p.bounds;if(_x<bb[0]-.01||_x>bb[2]+.01||_y<bb[1]-.01||_y>bb[3]+.01)continue;if(c.isPointInPath(p.path,dx,dy,p.rule)){actual={top:j,gray:!!p.gray&&c.isPointInPath(p.gray,dx,dy,p.rule)};break;}}if(actual.top!==estimate.top||actual.gray!==estimate.gray){coverageStats.labelOverrides++;coverageStats.maxOverrideDistance=Math.max(coverageStats.maxOverrideDistance,distance);}return actual;});
+   const label=scanRows[sy].at((dx-m.e)/m.a,(_x,_y,distance,estimate)=>{coverageStats.boundaryFallbacks++;let actual={top:-1,gray:false};for(let j=q.paths.length-1;j>=0;j--){const p=q.paths[j],bb=p.bounds;if(_x<bb[0]-.01||_x>bb[2]+.01||_y<bb[1]-.01||_y>bb[3]+.01)continue;const cell=q.spatial.get(j,_x,_y),inside=!!cell.path&&c.isPointInPath(cell.path,dx,dy,p.rule);coverageStats.spatialQueries++;
+if(G.HONRO_STAGE32_VERIFY_PACKED_MASKS){coverageStats.spatialCompared++;if(inside!==c.isPointInPath(p.path,dx,dy,p.rule)){coverageStats.spatialMismatches++;throw Error('Spatial full-path oracle mismatch');}}
+if(inside){const gray=!!cell.gray&&c.isPointInPath(cell.gray,dx,dy,p.rule);if(G.HONRO_STAGE32_VERIFY_PACKED_MASKS){coverageStats.spatialCompared++;if(gray!==(!!p.gray&&c.isPointInPath(p.gray,dx,dy,p.rule))){coverageStats.spatialMismatches++;throw Error('Spatial gray oracle mismatch');}}actual={top:j,gray};break;}}if(actual.top!==estimate.top||actual.gray!==estimate.gray){coverageStats.labelOverrides++;coverageStats.maxOverrideDistance=Math.max(coverageStats.maxOverrideDistance,distance);}return actual;});
    if(label.top>=0){const j=label.top,p=q.paths[j];if(j>=12&&j<=17)actualGrass++;color=p.protected||label.gray?colors[j]:field.subarray(k,k+3);}
    // A fully opaque raster BODY can still contain unresolved subpixel holes.
    // Such a pixel is not safe to recolor: leave the complete original pixel.
@@ -270,6 +307,6 @@ function draw(c,l,b,originalOnly=false){
  }
  return true;
 }
-G.HonroStage32FoundationArt={draw,stats:()=>({...counters,coverage:{...coverageStats,retainedCanvasBytes:(coverageMasks||[]).reduce((n,v)=>n+v.width*v.height*4,0),scanline:activeScanline?.stats()},maxPixels:MAX_PIXELS,transition:{...transitionCounters,maxPixels:MAX_TRANSITION_PIXELS,bufferDimensions:[transitionWork,transitionColor,transitionBody].map(c=>c?[c.width,c.height]:null)},totalLogicalBytes:counters.bytes+transitionCounters.bytes+(coverageMasks||[]).reduce((n,v)=>n+v.width*v.height*4,0)}),clear:()=>{activeScanline?.clearRows();for(const mask of coverageMasks||[]){mask.width=1;mask.height=1;}coverageStats.bytes=coverageMasks?4:0;last=null;if(buffer){buffer.width=1;buffer.height=1;}counters.bytes=buffer?4:0;for(const cv of [transitionWork,transitionColor,transitionBody])if(cv){cv.width=1;cv.height=1;}transitionMemory();}};
+G.HonroStage32FoundationArt={draw,stats:()=>({...counters,coverage:{...coverageStats,retainedCanvasBytes:(coverageMasks||[]).reduce((n,v)=>n+v.width*v.height*4,0),scanline:activeScanline?.stats(),spatial:activeSpatial?.stats()},maxPixels:MAX_PIXELS,transition:{...transitionCounters,maxPixels:MAX_TRANSITION_PIXELS,bufferDimensions:[transitionWork,transitionColor,transitionBody].map(c=>c?[c.width,c.height]:null)},totalLogicalBytes:counters.bytes+transitionCounters.bytes+(coverageMasks||[]).reduce((n,v)=>n+v.width*v.height*4,0)}),clear:()=>{activeSpatial?.clear();activeScanline?.clearRows();for(const mask of coverageMasks||[]){mask.width=1;mask.height=1;}coverageStats.bytes=coverageMasks?4:0;last=null;if(buffer){buffer.width=1;buffer.height=1;}counters.bytes=buffer?4:0;for(const cv of [transitionWork,transitionColor,transitionBody])if(cv){cv.width=1;cv.height=1;}transitionMemory();}};
 })(globalThis);
 
