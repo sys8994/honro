@@ -55,6 +55,7 @@ async function capture(id,runtimeSha256,variant,requestedCamera){
   HonroMaps.compile(stage,project); // Match Native setup order.
   const b=HonroMaps.createBattle(stage,project,HonroProfileStore.fresh());HonroStageRules.sanitizeStageBattle(b);
   assert(b.honroStage===id&&b.honroAct4Official===1,'Not official Act4 stage');
+  b.honroAct4PreviewState.visualDrawn={}; // official liveWater allocates this receipt object even without an App scene
   const engine=new HONRO_CORE.Engine(b,()=>{},true);
   globalThis.HonroApp={engine};
   const physics=JSON.stringify({terrain:b.terrain,units:b.units});
@@ -68,7 +69,7 @@ async function capture(id,runtimeSha256,variant,requestedCamera){
   const drain=async()=>{for(let i=0;i<200;i++){if(!p.images.some(v=>v.pending))return;await new Promise(r=>setTimeout(r,50));}throw Error('Image decode timeout');};
   for(let i=0;i<3;i++){scene.render(engine,0,'',.6,false,0);await drain();await new Promise(r=>setTimeout(r,100));}
   scene.render(engine,0,'',.6,false,0);await drain();
-  assert(JSON.stringify(b)===before,'Scene mutated battle');
+  if(JSON.stringify(b)!==before){const old=JSON.parse(before),diff=Object.keys(b).filter(k=>JSON.stringify(old[k])!==JSON.stringify(b[k]));throw Error('Scene mutated battle: '+JSON.stringify(diff.map(k=>({key:k,before:old[k],after:b[k]}))));}
   assert(JSON.stringify({terrain:b.terrain,units:b.units})===physics,'Physics changed');
   assert(!p.storage.length&&!p.errors.length&&!p.violations.length,'Storage/runtime/CSP error');
   assert(!p.images.some(v=>v.pending||v.error),'Pending or failed image');
