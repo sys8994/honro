@@ -124,8 +124,8 @@ S.landmark=function(c,l){
  if(l.asset?.id==='act5:near:46'&&l.asset.shaftExterior&&!l.rotation){
   const a=l.asset,z=l.scale??1,V=G.HonroVisualStyle,cc=V?V.context(c,V.classify(l,this.battle,a)==='gameplay'?'gameplay':V.depth(l,a)):c;
   let keep=stage46Parts.get(a);if(!keep){const body=a.shaftExterior,parts=[body,...(a.shaftExteriorParts||[])].map(part=>{const root={...part.vector.root};delete root.clipPath;return{...part,vector:{...part.vector,root}};});
-   keep={body:{...parts[0],paintParts:parts},bodyMask:new Path2D(body.vector.clips['native-source-alpha'].join(' ')),original:a,protectedMask:new Path2D([...a.shaftProtected.a,...a.shaftProtected.b].join(' ')),interior:{...a,vector:{...a.vector,root:{tag:'g',children:a.vector.root.children.slice(2)}}}};stage46Parts.set(a,keep);}
-  cc.save();try{cc.translate(l.x,l.y);cc.scale(z,z);stage45Body(this,cc,keep.body,keep.bodyMask);if(a.shaftTree)G.HonroVectorArt.draw(cc,a.shaftTree,{x:0,y:0,scale:1});stage45Body(this,cc,keep.original,keep.protectedMask);G.HonroVectorArt.draw(cc,keep.interior,{x:0,y:0,scale:1});}finally{cc.restore();}return;
+   const tree=a.shaftTree,treeRoot=tree?{...tree.vector.root}:null;if(treeRoot)delete treeRoot.clipPath;keep={tree:tree?{...tree,vector:{...tree.vector,root:treeRoot}}:null,treeMask:tree?new Path2D(tree.vector.clips['native-source-alpha'].join(' ')):null,body:{...parts[0],paintParts:parts},bodyMask:new Path2D(body.vector.clips['native-source-alpha'].join(' ')),originals:['a','b'].map((key,i)=>{const root={...a.vector.root.children[i]};delete root.clipPath;return{asset:{...a,vector:{...a.vector,symbols:{},root}},mask:new Path2D(a.shaftProtected[key].join(' '))};}),interior:{...a,vector:{...a.vector,root:{tag:'g',children:a.vector.root.children.slice(2)}}}};stage46Parts.set(a,keep);}
+  cc.save();try{cc.translate(l.x,l.y);cc.scale(z,z);stage45Body(this,cc,keep.body,keep.bodyMask);if(keep.tree)stage45Body(this,cc,keep.tree,keep.treeMask);for(const original of keep.originals)stage45Body(this,cc,original.asset,original.mask);G.HonroVectorArt.draw(cc,keep.interior,{x:0,y:0,scale:1});}finally{cc.restore();}return;
  }
 
 
