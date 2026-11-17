@@ -145,7 +145,28 @@ function instrument(code){
   const pattern=c.createPattern(color,'no-repeat');if(!pattern)throw Error('Missing transition pattern');pattern.setTransform(inv);
   c.save();c.setTransform(1,0,0,1,0,0);c.beginPath();c.rect(0,split,cv.width,cv.height-split);c.clip();c.setTransform(m);c.fillStyle=pattern;c.fill(n.path,n.rule);c.restore();G.__transitionFills++;continue;
  }`;
- return code.replace(needle,replacement);
+ let result=code.replace(needle,replacement);
+ const before='c.save();try{';const after='}finally{c.restore();}\n return true;';
+ if(result.split(before).length!==2||result.split(after).length!==2)throw Error('Unexpected BODY wrapper');
+ result=result.replace(before,`let originalContext=null,transitionCanvas=null;
+ if(id===BODY&&G.HONRO_STAGE32_TRANSITION){
+  originalContext=c;const matrix=c.getTransform();
+  transitionCanvas=G.__transitionBodyCanvas||(G.__transitionBodyCanvas=G.document.createElement('canvas'));
+  if(transitionCanvas.width!==c.canvas.width||transitionCanvas.height!==c.canvas.height){transitionCanvas.width=c.canvas.width;transitionCanvas.height=c.canvas.height;}
+  const next=transitionCanvas.getContext('2d');next.setTransform(1,0,0,1,0,0);next.globalAlpha=1;next.globalCompositeOperation='copy';next.drawImage(c.canvas,0,0);next.globalCompositeOperation='source-over';next.setTransform(matrix);next.globalAlpha=c.globalAlpha;c=next;
+ }
+ c.save();try{`);
+ result=result.replace(after,`}finally{c.restore();}
+ if(originalContext){
+  // Preserve the original BODY pass exactly above the approved non-walk band.
+  // The alternate pass is staged independently; only integer lower rows publish.
+  const matrix=originalContext.getTransform(),split=Math.max(0,Math.min(transitionCanvas.height,Math.floor(matrix.d*1716+matrix.f)));
+  const flag=G.HONRO_STAGE32_TRANSITION;G.HONRO_STAGE32_TRANSITION=false;
+  try{draw(originalContext,l,b);}finally{G.HONRO_STAGE32_TRANSITION=flag;}
+  if(split<transitionCanvas.height){originalContext.save();originalContext.setTransform(1,0,0,1,0,0);originalContext.globalAlpha=1;originalContext.globalCompositeOperation='source-over';originalContext.beginPath();originalContext.rect(0,split,transitionCanvas.width,transitionCanvas.height-split);originalContext.clip();originalContext.drawImage(transitionCanvas,0,0);originalContext.restore();}
+ }
+ return true;`);
+ return result;
 }
 
 const script=s=>'<script>'+s.replace(/<\/script/gi,'<\\/script')+'</script>';
