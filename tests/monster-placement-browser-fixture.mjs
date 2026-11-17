@@ -102,6 +102,8 @@ async function capture(id,runtimeSha256,variant,requestedCamera){
   const settling=[];
   if(variant==='candidate'&&requestedCamera.name==='west'){
    const copy=structuredClone(b),probe=new HONRO_CORE.Engine(copy,()=>{},true);
+   HonroAct4TerrainPreview.attachCoast({engine:probe,dialogue:null});
+   HonroAct4PilotCombat.attach({engine:probe,dialogue:null,charging:false});
    const initial=new Map(copy.units.filter(u=>u.side===1).map(u=>[u.id,{x:u.x,y:u.y,hp:u.hp}]));
    for(let i=0;i<Math.ceil(8/HONRO_CORE.STEP);i++)probe.tick(HONRO_CORE.STEP);
    for(const u of copy.units.filter(u=>initial.has(u.id))){const a=initial.get(u.id);settling.push({id:u.id,dx:u.x-a.x,dy:u.y-a.y,hpLoss:a.hp-u.hp,dead:!!u.dead,support:probe.contactSurface(u.x,u.y-8,u.y+10)?.t.id||null});}
@@ -130,11 +132,11 @@ async function capture(id,runtimeSha256,variant,requestedCamera){
   const localActions=[];
   if(variant==='candidate'&&requestedCamera.name==='overview'){
    const at=(support,x)=>{const t=stage.terrains.find(t=>t.id===support);for(const i of t?.properties?.honroWalkEdges||[]){const a=t.points[i],z=t.points[(i+1)%t.points.length];if(a.x!==z.x&&x>=Math.min(a.x,z.x)&&x<=Math.max(a.x,z.x))return {x,y:a.y+(z.y-a.y)*(x-a.x)/(z.x-a.x)};}return null;};
-   for(const group of stage.encounters.filter(q=>['place40-east-junction','place40-arrival-watch','place40-ridge-watch','place40-ridge-entry','place40-east-rearguard','place40-stair-foot','place40-stair-head','place40-road-scout'].includes(q.id))){
+   for(const group of stage.encounters.filter(q=>q.id.startsWith('place40-')&&!['place40-boarding-pair','place40-tide-keeper'].includes(q.id))){
     const copy=structuredClone(b),events=[],probe=new HONRO_CORE.Engine(copy,ev=>events.push(ev),true);
-    const members=copy.units.filter(u=>group.unitIds.includes(u.id)),u=members.find(u=>!u.honroMidboss&&(u.honroPilotRole==='bow'||u.role==='bow'))||members.find(u=>!u.honroMidboss)||members[0],h=probe.heroesAlive().find(u=>u.cls==='archer')||probe.heroesAlive()[0];
+    const members=copy.units.filter(u=>group.unitIds.includes(u.id)),u=(group.id==='place40-stair-head'?members.find(u=>u.id==='final40-dock-stair-6'):null)||members.find(u=>!u.honroMidboss&&(u.honroPilotRole==='bow'||u.role==='bow'))||members.find(u=>!u.honroMidboss)||members[0],h=probe.heroesAlive().find(u=>u.cls==='archer')||probe.heroesAlive()[0];
     const support=u.honroEncounterSupport,lo=Math.min(...members.map(u=>u.x)),hi=Math.max(...members.map(u=>u.x));
-    const pos=[lo-260,hi+260,lo-160,hi+160].map(x=>at(support,x)).find(p=>p&&!copy.units.some(v=>v.id!==h.id&&Math.abs(v.x-p.x)<65&&Math.abs(v.y-p.y)<125));
+    const pos=[lo-260,hi+260,lo-160,hi+160,lo-100,hi+100].map(x=>at(support,x)).find(p=>p&&!copy.units.some(v=>v.id!==h.id&&Math.abs(v.x-p.x)<65&&Math.abs(v.y-p.y)<125));
     if(pos&&!HONRO_CORE.validTerrainContactPose(copy.terrain,{...h,...pos})){localActions.push({group:group.id,error:'Unsupported prepared hero pose',pos});continue;}
     if(!pos){localActions.push({group:group.id,error:'No synthetic local approach on same support'});continue;}
     Object.assign(h,pos,{vx:0,vy:0});Object.assign(u,{awake:true,acted:false,moveLeft:u.maxMove});
@@ -147,7 +149,7 @@ async function capture(id,runtimeSha256,variant,requestedCamera){
     const firstAction={hpLoss:start.hp-h.hp,dx:u.x-start.x,dy:u.y-start.y,shots:copy.shot-start.shot,acted:!!u.acted,intent:u.intent};
     let followUp=null;
     const pending=u.honroMonsterWindup||u.enemyEffectCast;
-    if(pending||group.id==='place40-east-rearguard'){
+    if(pending||(group.id==='place40-east-rearguard'&&firstAction.hpLoss===0&&firstAction.shots===0)){
      for(let i=0;i<720&&!(copy.side===0&&copy.phase==='aim');i++)probe.tick(HONRO_CORE.STEP);
      if(probe.select(h.id)){
       Object.assign(scene,{x:(u.x+h.x)/2,y:h.y-180,scale:.65});
