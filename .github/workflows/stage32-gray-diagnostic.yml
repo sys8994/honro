@@ -1,0 +1,48 @@
+name: Diagnose Stage32 gray compound edge coverage
+on:
+  push:
+    branches: ['inspect/stage32-gray-aa-20261118']
+permissions:
+  contents: read
+jobs:
+  diagnose:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm ci && npm ci --prefix game
+      - name: Source-preserving independent scenes
+        run: HONRO_ACT4_RELEASE=1 node tests/stage32-gray-diagnostic-fixture.mjs "$RUNNER_TEMP/gray-fixtures"
+      - name: Three controls in actual Chrome
+        shell: bash
+        run: |
+          browser=$(command -v google-chrome || command -v chromium)
+          mkdir -p "$RUNNER_TEMP/gray-evidence"
+          cp "$RUNNER_TEMP/gray-fixtures/source-evidence.json" "$RUNNER_TEMP/gray-evidence/"
+          "$browser" --version > "$RUNNER_TEMP/gray-evidence/chrome-version.txt"
+          failed=0
+          for variant in current outside solid; do
+            for view in lower left; do
+              dump="$RUNNER_TEMP/stage32-$variant-$view.html"
+              if timeout 320s node tests/stage32-real-clock-chrome.mjs "$browser" "$RUNNER_TEMP/gray-profile-$variant-$view" "$RUNNER_TEMP/gray-fixtures/stage32-$variant-$view.html" "$dump"; then
+                node tests/stage32-gray-diagnostic-result.mjs "$dump" "$RUNNER_TEMP/gray-evidence" "$variant" "$view" || failed=1
+              else
+                printf '{"ok":false,"reason":"Chrome timeout or failure"}\n' > "$RUNNER_TEMP/gray-evidence/$variant-$view-process-failure.json"
+                failed=1
+              fi
+            done
+          done
+          exit "$failed"
+      - name: Exact current PNG and semantic coverage diagnosis
+        if: ${{ !cancelled() }}
+        run: node tests/stage32-gray-diagnostic-compare.mjs "$RUNNER_TEMP/gray-evidence"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage32-gray-diagnostic
+          path: ${{ runner.temp }}/gray-evidence
+          if-no-files-found: error
