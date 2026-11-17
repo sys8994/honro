@@ -7,6 +7,7 @@ assert.equal(JSON.stringify(authored),JSON.stringify(P.author(authored)),'idempo
 const restored=structuredClone(authored);
 for(const stage of restored.stages){const source=old.HONRO_PROJECT.stages.find(s=>s.id===stage.id),rows=P.placements[stage.metadata.stageId]||[];for(const row of rows){if(row.clone){stage.design=structuredClone(source.design);continue;}const u=stage.units.find(u=>u.id===row.id),v=source.units.find(u=>u.id===row.id);u.x=v.x;u.y=v.y;if(row.cell){u.stageOverrides.honroDensityCell=v.stageOverrides.honroDensityCell;stage.encounters=structuredClone(source.encounters);}}}
 assert.equal(JSON.stringify(restored),JSON.stringify(old.HONRO_PROJECT),'only declared positions and explicit clone positions change');
+for(const id of [13,17,29]){const legacy=structuredClone(authored.stages.find(s=>s.metadata.stageId===id));delete legacy.initialState.honroAct2CompactRevision;delete legacy.initialState.honroStage29BossRevision;legacy.units[0].x+=17;assert.equal(JSON.stringify(P.author({stages:[legacy]})),JSON.stringify({stages:[legacy]}),'disabled historical layout untouched');}
 const report=[],clean=u=>{const v=structuredClone(u);for(const k of ['x','y','spawnX','spawnY',...(u.id==='ws-west-screen'?['honroDensityCell','honroCluster','group']:[])])delete v[k];return JSON.stringify(v);};
 for(const id of [9,13,17,29]){
  const {b,e}=battlefield(g,id),prior=battlefield(old,id).b,rows=P.placements[id];

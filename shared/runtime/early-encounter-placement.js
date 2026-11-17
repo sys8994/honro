@@ -21,9 +21,10 @@ function point(stage,row){
  }
  throw Error('Early encounter point outside authored support: '+row.id);
 }
+function enabled(stage){const id=stage.metadata?.stageId;return id===9||([13,17].includes(id)?stage.initialState?.honroAct2CompactRevision===1:id===29&&stage.initialState?.honroStage29BossRevision===1);}
 function author(project){
  const out=structuredClone(project);
- for(const stage of out.stages||[])for(const row of placements[stage.metadata?.stageId]||[]){
+ for(const stage of out.stages||[])for(const row of (enabled(stage)?placements[stage.metadata?.stageId]:null)||[]){
   if(row.clone){stage.design.positioning??={};stage.design.positioning.clusterPositions??={};stage.design.positioning.clusterPositions[row.id]=point(stage,row);continue;}
   const unit=stage.units.find(u=>u.id===row.id);
   if(!unit)throw Error('Missing existing early encounter actor: '+row.id);
@@ -32,5 +33,5 @@ function author(project){
  }
  return out;
 }
-G.HonroEarlyEncounterPlacement={author,placements,point};
+G.HonroEarlyEncounterPlacement={author,placements,point,enabled};
 })(globalThis);
