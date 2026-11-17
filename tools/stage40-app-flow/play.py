@@ -19,6 +19,7 @@ result={'passed':False,'scope':__doc__,'sourceProfileSha256':hashlib.sha256(raw)
 waypoints=[(1400,1527,'coast-west','', ['coast-west'],1500),(3300,2376,'coast-west','',['coast-west'],None),(5100,1807,'coast-east','',[],None),(5750,1400,'coast-east','',[],None),(5670,1270,'upper-east','jump',[],None),(4700,1126,'upper-east','',['upper-east'],None),(5750,1329,'upper-east','',[],None),(5730,1406,'coast-east','drop',[],None),(3660,2384,'coast-east','',['coast-east'],None),(3690,2465,'spur','drop',[],None),(4700,3120,'arrival-stair','',['arrival-stair'],None),(3840,2610,'arrival-stair','',[],None),(3740,2490,'spur','jump',[],None),(3640,2389,'coast-east','jump',[],None),(2660,2244,'coast-west','',[],None),(2660,2297,'dock-stair','drop',[],None),(2000,2680,'dock-stair','',['dock-stair'],None),(1800,2826,'dock','',[],None),(600,2716,'dock','',['dock'],None),(1600,2807,'dock','',[],None),(1600,2935,'departure-stair','drop',[],None),(2150,3575,'departure-stair','',[],None),(2175,3600,'departure-ramp','',['departure-stair','departure-ramp'],None)]
 STATE='''()=>{const a=HonroApp,e=a.engine,b=e?.b;if(!b)return{screen:a.screen,dialogue:!!a.dialogue};const u=e.active,q=b.honroAct4PreviewState;return{stage:b.honroStage,round:b.round,phase:b.phase,side:b.side,active:b.active,can:a.canInput(),dialogue:!!a.dialogue,dialogueId:a.dialogue?.id,x:u?.x,y:u?.y,move:u?.moveLeft,moveLeft:u?.moveLeft,facing:u?.facing,angle:u?.angle,shots:b.shot,health:b.units.filter(v=>v.side===0).map(v=>[v.id,v.hp,!!v.dead]),enemyUnits:b.units.filter(v=>v.side===1).map(v=>[v.id,v.hp,!!v.dead]),enemyHpSum:b.units.filter(v=>v.side===1).reduce((a,v)=>a+Math.max(0,v.hp),0),grounded:u&&e.grounded(u),support:u&&e.contactSurface(u.x,u.y-8,u.y+12)?.t.id,shot:b.shot,heroes:b.units.filter(v=>v.side===0&&!v.summoned&&!v.honroAct4Resident).map(v=>({id:v.id,x:v.x,y:v.y,hp:v.hp,maxHp:v.maxHp,dead:v.dead,acted:v.acted,loadout:v.loadout})),residents:b.units.filter(v=>v.honroAct4Resident).map(v=>({id:v.id,x:v.x,y:v.y,hp:v.hp,dead:v.dead})),foes:b.units.filter(v=>v.side===1&&v.hp>0&&!v.dead).map(v=>({id:v.id,x:v.x,y:v.y,hp:v.hp,support:v.honroEncounterSupport})),events:q?.events,receipts:q?.receipts,escort:q?.returnEscort,complete:q?.complete,failure:q?.failure,proof:HonroAct4TerrainPreview.proofValid(b),quietReady:HonroAct4TerrainPreview.quietReady(b),storedRound:a.profile.honroBattle?.round,sceneIsActual:!!a.scene&&a.scene.canvas===document.querySelector('#battlecanvas')}}'''
 PLAN='''()=>{const a=HonroApp,e=a.engine,b=e.b,u=e.active,C=HONRO_CORE;if(!a.canInput())return null;const targets=b.units.filter(v=>v.side===1&&!v.dead&&v.hp>0&&Math.hypot(v.x-u.x,v.y-u.y)<1550).sort((x,y)=>Math.hypot(x.x-u.x,x.y-u.y)-Math.hypot(y.x-u.x,y.y-u.y));let best=null;for(const t of targets.slice(0,4))for(const id of u.loadout){const s=C.SKILLS[id];if(!s||s.passive||s.damage<=0||['O13','S08','S06'].includes(id)||!e.skillAllowed(s,u)||e.cooldownLeft(u,id)>0||e.manaCost(s,u)>u.focus)continue;for(const aim of e.shotSeeds(u,s,t)){const v=C.shotViable(e,u,s,t,aim.angle,aim.power);if(v.ok&&v.risk<.5&&v.enemyDamage>0&&(!best||v.net>best.score))best={id,idx:u.loadout.indexOf(id),angle:aim.angle,power:aim.power,target:t.id,score:v.net,actor:u.id,round:b.round};}}return best;}'''
+DODGE='''()=>{const a=HonroApp,e=a.engine,b=e.b,u=e.active,C=HONRO_CORE;if(!a.canInput()||!e.grounded(u))return null;const alerts=b.units.filter(v=>v.side===1&&!v.dead&&v.hp>0&&v.honroPilotCombat?.phase==='telegraph'&&v.honroPilotCombat.target?.seen===true).map(v=>({id:v.id,...v.honroPilotCombat.target})).filter(t=>Math.hypot(u.x-t.x,u.y-u.h*.5-t.y)<220);if(!alerts.length)return null;const support=e.contactSurface(u.x,u.y-8,u.y+12)?.t;if(!support)return{alerts,blocked:'no support'};const choices=[];for(const dx of [-300,-240,-180,180,240,300]){const x=u.x+dx;if(x<support.x+20||x>support.x+support.w-20)continue;let previous=u.y,ok=true,y=u.y;for(let i=1;i<=6;i++){const px=u.x+dx*i/6;y=C.topAt(support,px,previous);if(!Number.isFinite(y)||Math.abs(y-previous)>Math.abs(dx/6)*1.35+2){ok=false;break;}previous=y;}if(ok&&alerts.every(t=>Math.hypot(x-t.x,y-u.h*.5-t.y)>220))choices.push({x,y,support:support.id,cost:Math.abs(dx)});}choices.sort((a,b)=>a.cost-b.cost);return{alerts,goal:choices[0]||null,blocked:choices.length?null:'no safe same-support walk'}}'''
 with sync_playwright() as w:
  browser=w.chromium.launch(headless=True)
  context=browser.new_context(viewport={'width':1440,'height':900});p=context.new_page();p.on('pageerror',lambda e:result['errors'].append(str(e)))
@@ -74,9 +75,26 @@ with sync_playwright() as w:
     choice=min(usable,key=lambda u:(route[u['id']],u['x']))
     if choice['id']!=s['active']:p.locator('[data-action="select-hero"][data-id="'+choice['id']+'"]').click();p.wait_for_timeout(120);ready();s=state()
    current=next(u for u in s['heroes'] if u['id']==s['active'])
-   if current['hp']/current['maxHp']<.5:p.keyboard.press('f');record('normal-defend-wounded');p.wait_for_timeout(300);continue
+   dodge=p.evaluate(DODGE)
+   if dodge:
+    record('observed-warning',dodge)
+    goal=dodge.get('goal')
+    if goal:
+     for _ in range(12):
+      before=state()
+      if before['active']!=current['id'] or not before['can'] or before['move']<30 or abs(before['x']-goal['x'])<20:break
+      hold('ArrowRight' if goal['x']>before['x'] else 'ArrowLeft',120)
+     ready();s=record('warning-ui-move',dodge)
+    else:
+     p.keyboard.press('f');record('warning-blocked-normal-defense');p.wait_for_timeout(300);continue
+   # Wounded heroes first rejoin the route, never stay indefinitely defending.
+   wounded=current['hp']/current['maxHp']<.5
+   same_band=[u for u in s['heroes'] if u['id']!=current['id'] and u['hp']>0 and abs(u['y']-s['y'])<160]
+   rejoined=not same_band or min(abs(u['x']-s['x']) for u in same_band)<240
+   if wounded and (s['move']<110 or (rejoined and not dodge)):
+    if s['move']<110:p.keyboard.press('f');record('normal-defend-after-movement');p.wait_for_timeout(300);continue
    plan=p.evaluate(PLAN)
-   if plan:
+   if plan and not wounded:
     desired=-1 if plan['angle']>90 else 1
     if s['facing']!=desired:
      hold('ArrowLeft' if desired<0 else 'ArrowRight',60);ready();record('face-for-aim')
