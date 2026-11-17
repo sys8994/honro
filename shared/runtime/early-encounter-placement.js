@@ -2,7 +2,10 @@
 // Initial project authoring only: existing battle snapshots are never migrated.
 // Coordinates refer to named, unchanged walk surfaces, not aesthetic jitter.
 const placements={
- 9:[{id:'foe-9',x:2380,support:'tactical-east-root-ascent',reason:'Single ascent sentry separated from the well floor.'},
+ 9:[{id:'foe-7-cluster',x:1000,support:'tactical-west-collapsed-gallery',clone:true,reason:'Broken-gallery heavy lookout rather than a second body in the well-to-ramp procession.'},
+ {id:'foe-4-cluster',x:1180,support:'tactical-west-collapsed-gallery',clone:true,reason:'Gallery escort beside the heavy lookout, on the connected raised route.'},
+ {id:'foe-1-cluster',x:3220,support:'tactical-east-root-return',clone:true,reason:'Eastern return-route lone patrol, separate from the well trio and exit guards.'},
+ {id:'foe-9',x:2380,support:'tactical-east-root-ascent',reason:'Single ascent sentry separated from the well floor.'},
  {id:'foe-9-cluster',x:1400,support:'tactical-west-rubble-return',clone:true,reason:'West broken-gallery watch above the well approach.'},
  {id:'foe-11-cluster',x:2910,support:'tactical-east-stone-shoulder',clone:true,reason:'Upper east shoulder spirit, apart from the remaining foot-of-ascent spirit.'}],
  13:[{id:'a2-enemy-20',x:4934.4,support:'act2-floor',reason:'Preserve the previous final west house guard position now that actor 21 no longer forces a sanitizer shift.'},{id:'a2-enemy-21',x:4435,support:'tactical-inner-gallery',reason:'Single upper-gallery sentinel; the cave-house pair and lower-slope guard remain.'}],
