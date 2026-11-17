@@ -1,0 +1,75 @@
+name: Inspect Stage7 rejected-extension exclusion
+on:
+  push:
+    branches: ['fix/stage7-exclude-rejected-skirt-20261117']
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm ci && npm ci --prefix game
+      - name: Prepare baseline and rejected candidate in independent worktrees
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/evidence"
+          for pair in baseline:7d238d20663c3ceffe430eb0304e01516ae625cf rejected:e8d8aa8865c832e831d6d221223356b440652e5f; do
+            variant=${pair%%:*}; sha=${pair#*:}; target="$RUNNER_TEMP/$variant"
+            git fetch --depth=1 origin "$sha"
+            git worktree add --detach "$target" "$sha"
+            cmp package-lock.json "$target/package-lock.json"
+            cmp game/package-lock.json "$target/game/package-lock.json"
+            ln -s "$GITHUB_WORKSPACE/node_modules" "$target/node_modules"
+            ln -s "$GITHUB_WORKSPACE/game/node_modules" "$target/game/node_modules"
+            cp tests/stage7-safe-browser-fixture.mjs tests/stage7-safe-contract.mjs "$target/tests/"
+          done
+      - name: Original BODY, stage, source geometry and codec contracts
+        shell: bash
+        run: |
+          (cd "$RUNNER_TEMP/baseline" && node tests/stage7-safe-contract.mjs export "$RUNNER_TEMP/evidence/original-contract.json")
+          node tests/stage7-safe-contract.mjs verify "$RUNNER_TEMP/evidence/safe-contract.json" "$RUNNER_TEMP/evidence/original-contract.json"
+          BASELINE_REF=7d238d20663c3ceffe430eb0304e01516ae625cf node tests/terrain-edge-save-baseline.mjs > "$RUNNER_TEMP/evidence/codec-baseline.json"
+          node tests/terrain-edge-act1-save-compat.mjs
+          node tests/terrain-edge-save-roundtrip.mjs
+          node tests/vector-snap-collapse.mjs
+          node tools/act1-vector-production/check-stage7-edge-audit.mjs
+      - name: Record unrevised rejected-extension expectations as known nonacceptance
+        shell: bash
+        run: |
+          set +e
+          node tests/stage7-art-bounds.mjs > "$RUNNER_TEMP/evidence/old-stage7-contract.log" 2>&1; old=$?
+          node tools/act1-vector-production/check-edge-integration-manifest.mjs > "$RUNNER_TEMP/evidence/old-integration-manifest.log" 2>&1; manifest=$?
+          set -e
+          printf '{"oldStage7ContractExit":%s,"oldIntegrationManifestExit":%s,"scope":"Recorded without changing old tests. Candidate is not final integration acceptance."}\n' "$old" "$manifest" > "$RUNNER_TEMP/evidence/old-contract-status.json"
+      - name: Build official runtime
+        run: npm run build
+      - name: Generate three immutable sources without user storage
+        shell: bash
+        run: |
+          (cd "$RUNNER_TEMP/baseline" && node tests/stage7-safe-browser-fixture.mjs "$RUNNER_TEMP/baseline-fixtures" 7 baseline)
+          (cd "$RUNNER_TEMP/rejected" && node tests/stage7-safe-browser-fixture.mjs "$RUNNER_TEMP/rejected-fixtures" 7 rejected)
+          node tests/stage7-safe-browser-fixture.mjs "$RUNNER_TEMP/candidate-fixtures" 7 candidate
+      - name: Actual Chrome four views per variant
+        shell: bash
+        run: |
+          browser=$(command -v google-chrome || command -v chromium)
+          for variant in baseline rejected candidate; do
+            for view in portrait-bl desktop-br portrait-tl desktop-tl; do
+              name="stage7-$variant-$view"
+              timeout 300s "$browser" --headless --no-first-run --no-default-browser-check --force-device-scale-factor=1 --virtual-time-budget=60000 --user-data-dir="$RUNNER_TEMP/profile-$name" --dump-dom "file://$RUNNER_TEMP/$variant-fixtures/$name.html" > "$RUNNER_TEMP/$name.html"
+              node tests/stage7-safe-browser-result.mjs "$RUNNER_TEMP/$name.html" "$RUNNER_TEMP/evidence" 7 "$variant" "$view"
+            done
+          done
+          node tests/stage7-safe-browser-compare.mjs "$RUNNER_TEMP/evidence"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage7-safe-exclusion
+          path: ${{ runner.temp }}/evidence
+          if-no-files-found: error
