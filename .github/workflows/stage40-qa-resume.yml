@@ -1,0 +1,49 @@
+name: Stage40 actual UI QA autosave continuation
+on:
+  push:
+    branches: ['audit/stage40-qa-resume-20261117']
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      HONRO_CAPTURE_URL: http://127.0.0.1:8870/HONRO.html
+      HONRO_CAPTURE_OUT: _local/reports/stage40-qa-resume
+      HONRO40_QA_ENTRY_APPROVED: '1'
+      HONRO40_PLACEMENT_SOURCE: b5c3fc203d9df64268d5f73ba3ae359e4847c283
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - run: |
+          npm ci
+          npm ci --prefix game
+          python -m pip install 'playwright==1.58.0'
+          python -m playwright install --with-deps chromium
+      - name: Build actual unpublished App
+        run: |
+          mkdir -p "$HONRO_CAPTURE_OUT"
+          HONRO_ACT4_RELEASE=1 HONRO_ACT5_RELEASE=1 npm run build > "$HONRO_CAPTURE_OUT/build.log" 2>&1
+          sha256sum HONRO.html web/manifest.json shared/act4-stage40-placement.mjs > "$HONRO_CAPTURE_OUT/served-sha256.txt"
+          node tools/stage40-app-flow/check-input-contract.mjs
+          python -m py_compile tools/stage40-app-flow/play.py tools/stage40-app-flow/escort_inputs.py
+      - name: Real App entry combat escort and same-context reload
+        run: |
+          set -euo pipefail
+          python -m http.server 8870 --bind 127.0.0.1 > "$HONRO_CAPTURE_OUT/server.log" 2>&1 &
+          server=$!; trap 'kill "$server" 2>/dev/null || true' EXIT
+          sleep 2
+          timeout 1500s python tools/stage40-qa-resume/play.py > "$HONRO_CAPTURE_OUT/play.log" 2>&1
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage40-qa-resume
+          path: _local/reports/stage40-qa-resume
+          if-no-files-found: warn
