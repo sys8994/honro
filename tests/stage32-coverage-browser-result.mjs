@@ -18,6 +18,7 @@ try{
  assert.equal(r.cacheStats.fallbacks,0);if(variant==='direct-candidate-source'){assert(r.drawDiagnostic.directBypasses>0);assert.equal(r.drawDiagnostic.directVectorDraws,r.drawDiagnostic.directBypasses);}assert.equal(r.vectorSHA,'76e4fc6c04fc1f95aa9dcd0d97c9b8294c05cbe0a75169eb53174768f8da7cd1');assert(r.cacheStats.rasterizations>0);if(variant!=='direct-candidate-source')assert(r.cacheStats.hits>0);
  assert.match(r.png,/^data:image\/png;base64,/);const png=Buffer.from(r.png.split(',')[1],'base64');
  assert.equal(png.subarray(0,8).toString('hex'),'89504e470d0a1a0a');assert.equal(png.readUInt32BE(16),1331);assert.equal(png.readUInt32BE(20),763);
+ if(r.priorPng){const prior=Buffer.from(r.priorPng.split(',')[1],'base64');r.priorPngSha256=createHash('sha256').update(prior).digest('hex');await writeFile(path.join(out,`stage32-prior-${view}.png`),prior,{flag:'wx'});delete r.priorPng;}
  delete r.png;r.pngSha256=createHash('sha256').update(png).digest('hex');
  await writeFile(path.join(out,`stage32-${variant}-${view}.png`),png,{flag:'wx'});
  await writeFile(path.join(out,`stage32-${variant}-${view}.json`),JSON.stringify(r,null,2)+'\n',{flag:'wx'});console.log(JSON.stringify(r));

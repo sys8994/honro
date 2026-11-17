@@ -1,7 +1,7 @@
 (function(G){'use strict';
 // Stage 32 only. Original 25 path geometries/order remain verbatim. The limited
 // non-walk band (source y780..904) transitions pale/green to the existing material.
-// Roads and world y<=1700 retain the original BODY rendering. Not a general blur.
+// Roads and original geometry retained. Nonwalk color edits start at world1420. Not a general blur.
 // Rasterize one shared world-coordinate material into the current device plane;
 // every geology clip then samples the same bitmap without repeated vector AA.
 if(G.HonroStage32FoundationArt)return;
@@ -144,7 +144,7 @@ function coherentColor(c,cv,q){
  // Lowest actual walk y1342; authored roads extend to1368.4. Upper limit is the
  // existing independently validated lower-material transition at world1716.
  if(m.b||m.c||m.a<=0||m.d<=0||c.globalAlpha!==1||c.globalCompositeOperation!=='source-over'||c.filter&&c.filter!=='none'||c.shadowBlur||c.shadowOffsetX||c.shadowOffsetY)return;
- const y0=Math.max(0,Math.ceil(world*1385+m.f)),y1=Math.min(c.canvas.height,Math.floor(world*1716+m.f));
+ const y0=Math.max(0,Math.ceil(world*1420+m.f)),y1=Math.min(c.canvas.height,Math.floor(world*1716+m.f));
  if(y1<=y0)return;const w=c.canvas.width,h=y1-y0;if(w*h>1024*1024)return;
  coverageStats.calls++;
  coverageMasks??=Array.from({length:3},()=>G.document.createElement('canvas'));
@@ -182,7 +182,10 @@ function coherentColor(c,cv,q){
   // Correct only independently composited excess green, not genuine grass AA.
   // 1/255 is a quantization guard, not a removal threshold for real small grass.
   if(grass[k]/255<=actualGrass/256+1/255)continue;
-  const rgb=sum.map(v=>Math.round(v/256));if(rgb.some((v,j)=>v!==data[k+j])){for(let j=0;j<3;j++)data[k+j]=rgb[j];coverageStats.corrected++;}
+  // Smooth the newly declared nonwalk start band. The larger setback protects
+  // the final minimum-zoom filtered walk buffer, not only source sample rows.
+  const worldY=(y+y0+.5-m.f)/world,fade=Math.max(0,Math.min(1,(worldY-1420)/40)),weight=fade*fade*(3-2*fade);
+  const rgb=sum.map((v,j)=>Math.round(data[k+j]+weight*(Math.round(v/256)-data[k+j])));if(rgb.some((v,j)=>v!==data[k+j])){for(let j=0;j<3;j++)data[k+j]=rgb[j];coverageStats.corrected++;}
  }
  }
  // Pixel write preserves alpha exactly, and only commits changed internal
