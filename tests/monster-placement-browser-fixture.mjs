@@ -132,11 +132,11 @@ async function capture(id,runtimeSha256,variant,requestedCamera){
   const localActions=[];
   if(variant==='candidate'&&requestedCamera.name==='overview'){
    const at=(support,x)=>{const t=stage.terrains.find(t=>t.id===support);for(const i of t?.properties?.honroWalkEdges||[]){const a=t.points[i],z=t.points[(i+1)%t.points.length];if(a.x!==z.x&&x>=Math.min(a.x,z.x)&&x<=Math.max(a.x,z.x))return {x,y:a.y+(z.y-a.y)*(x-a.x)/(z.x-a.x)};}return null;};
-   for(const group of stage.encounters.filter(q=>q.id.startsWith('place40-')&&!['place40-boarding-pair','place40-tide-keeper'].includes(q.id)))for(const approach of (['place40-west-sentry','place40-stair-head'].includes(group.id)?['distant','close']:['default'])){
+   for(const group of stage.encounters.filter(q=>q.id.startsWith('place40-')&&!['place40-boarding-pair','place40-tide-keeper'].includes(q.id)))for(const approach of (['place40-west-sentry','place40-stair-head','place40-boss-approach'].includes(group.id)?['distant','close']:group.id==='place40-arrival-watch'?['default','caster']:['default'])){
     const copy=structuredClone(b),events=[],probe=new HONRO_CORE.Engine(copy,ev=>events.push(ev),true);
-    const members=copy.units.filter(u=>group.unitIds.includes(u.id)),u=(group.id==='place40-stair-head'?members.find(u=>u.id==='final40-dock-stair-6'):null)||members.find(u=>!u.honroMidboss&&(u.honroPilotRole==='bow'||u.role==='bow'))||members.find(u=>!u.honroMidboss)||members[0],h=probe.heroesAlive().find(u=>u.cls==='archer')||probe.heroesAlive()[0];
+    const members=copy.units.filter(u=>group.unitIds.includes(u.id)),u=(approach==='caster'?members.find(u=>u.id==='final40-departure-upper-1'):null)||(group.id==='place40-stair-head'?members.find(u=>u.id==='final40-dock-stair-6'):null)||members.find(u=>!u.honroMidboss&&(u.honroPilotRole==='bow'||u.role==='bow'))||members.find(u=>!u.honroMidboss)||members[0],h=probe.heroesAlive().find(u=>u.cls==='archer')||probe.heroesAlive()[0];
     const support=u.honroEncounterSupport,lo=Math.min(...members.map(u=>u.x)),hi=Math.max(...members.map(u=>u.x));
-    const pos=(approach==='close'?[group.id==='place40-west-sentry'?1700:2310]:[lo-260,hi+260,lo-160,hi+160,lo-100,hi+100]).map(x=>at(support,x)).find(p=>p&&!copy.units.some(v=>v.id!==h.id&&Math.abs(v.x-p.x)<65&&Math.abs(v.y-p.y)<125));
+    const pos=(approach==='close'?[group.id==='place40-west-sentry'?1700:group.id==='place40-stair-head'?2640:1625]:[lo-260,hi+260,lo-160,hi+160,lo-100,hi+100]).map(x=>at(support,x)).find(p=>p&&!copy.units.some(v=>v.id!==h.id&&Math.abs(v.x-p.x)<65&&Math.abs(v.y-p.y)<125));
     if(pos&&!HONRO_CORE.validTerrainContactPose(copy.terrain,{...h,...pos})){localActions.push({group:group.id,approach,error:'Unsupported prepared hero pose',pos});continue;}
     if(!pos){localActions.push({group:group.id,error:'No synthetic local approach on same support'});continue;}
     Object.assign(h,pos,{vx:0,vy:0});Object.assign(u,{awake:true,acted:false,moveLeft:u.maxMove});
@@ -170,7 +170,7 @@ async function capture(id,runtimeSha256,variant,requestedCamera){
       HonroApp={engine};Object.assign(scene,camera);if(id===37)HonroApp.scene={...camera,canvas:cv};
      }else followUp={error:'Could not offer target an actual ally turn'};
     }
-    localActions.push({group:group.id,actor:u.id,target:h.id,preparedHero:pos,support,followUp,firstAction,actorSupport:probe.contactSurface(start.x,start.y-8,start.y+10)?.t.id||null,hpLoss:start.hp-h.hp,dx:u.x-start.x,dy:u.y-start.y,projectiles,shots:copy.shot-start.shot,acted:!!u.acted,intent:u.intent,scope:'Prepared one-actor local Engine action on production terrain; not normal route, quest or full-play acceptance'});
+    localActions.push({group:group.id,approach,actor:u.id,target:h.id,preparedHero:pos,support,followUp,firstAction,actorSupport:probe.contactSurface(start.x,start.y-8,start.y+10)?.t.id||null,hpLoss:start.hp-h.hp,dx:u.x-start.x,dy:u.y-start.y,projectiles,shots:copy.shot-start.shot,acted:!!u.acted,intent:u.intent,scope:'Prepared one-actor local Engine action on production terrain; not normal route, quest or full-play acceptance'});
    }
   }
   const hash=async s=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s))),v=>v.toString(16).padStart(2,'0')).join('');
