@@ -22,7 +22,7 @@ jobs:
         run: |
           browser=$(command -v google-chrome || command -v chromium)
           for stage in 13 29 30 9 17; do
-            variants='candidate'; if [[ "$stage" == 13 || "$stage" == 29 ]]; then variants='baseline candidate'; fi
+            variants='candidate'; if [[ "$stage" == 9 || "$stage" == 13 || "$stage" == 29 ]]; then variants='baseline candidate'; fi
             for variant in $variants; do
             for view in focus overview; do
               name="stage$stage-$variant-$view"

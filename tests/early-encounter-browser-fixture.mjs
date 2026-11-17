@@ -32,6 +32,7 @@ const p=PROBE;try{
  const b=HonroWorld.build(st,profile,false,'archer','A01');HonroStageRules.sanitizeStageBattle(b);
  const engine=new C.Engine(b,()=>{},true),cv=document.getElementById('scene');cv.width=1331;cv.height=763;
  const scene=new HonroScene(cv);Object.assign(scene,{x:camera.x,y:camera.y,scale:camera.scale||HonroBounds.zoomLimits(1331).min,manual:true,time:2,editorView:false,skillPreview:false});HonroBounds.constrain(scene,b);
+ if(id===17)HonroAct23V4Act2.worksite(b); // Official lazy scene data, no progression.
  const before=JSON.stringify(b);await document.fonts.ready;
  const drain=async()=>{for(let i=0;i<200;i++){if(!p.images.some(v=>v.pending))return;await new Promise(r=>setTimeout(r,50));}throw Error('Images timed out');};
  for(let i=0;i<3;i++){scene.render(engine,0,'',.6,false,0);await drain();await new Promise(r=>setTimeout(r,100));}
@@ -39,13 +40,14 @@ const p=PROBE;try{
  const initialPng=cv.toDataURL('image/png'),initialCamera={x:scene.x,y:scene.y,scale:scene.scale};
 
  const localActions=[],warningImages=[];
- if(variant==='candidate'&&camera.name==='focus'&&[13,29].includes(id)){
+ if(variant==='candidate'&&camera.name==='focus'&&[9,13,29].includes(id)){
   const source=HONRO_PROJECT.stages.find(s=>s.metadata.stageId===id);
-  for(const row of HonroEarlyEncounterPlacement.placements[id]){
+  for(const row of HonroEarlyEncounterPlacement.placements[id].filter(row=>!(id===13&&row.id==='a2-enemy-20'))){
    const copy=structuredClone(b),probe=new C.Engine(copy,()=>{},true),u=copy.units.find(u=>u.id===row.id),h=probe.heroesAlive().find(h=>h.cls==='knight')||probe.heroesAlive()[0];
    const support=source.terrains.find(t=>t.id===row.support);
    const point=x=>{for(const i of support.properties.honroWalkEdges){const a=support.points[i],z=support.points[(i+1)%support.points.length];if(a.x!==z.x&&x>=Math.min(a.x,z.x)&&x<=Math.max(a.x,z.x))return{x,y:a.y+(z.y-a.y)*(x-a.x)/(z.x-a.x)};}};
-   const pos=[u.x-230,u.x+230,u.x-160,u.x+160].map(point).filter(Boolean).find(p=>C.validTerrainContactPose(copy.terrain,{...h,...p})&&!copy.units.some(v=>v!==h&&v!==u&&Math.abs(v.x-p.x)<v.r+h.r+18&&Math.abs(v.y-p.y)<Math.min(v.h,h.h)));
+   const offsets=row.id==='a3-29-letter-store-guard-2'?[150,-150]:[-230,230,-160,160];
+   const pos=offsets.map(dx=>u.x+dx).map(point).filter(Boolean).find(p=>C.validTerrainContactPose(copy.terrain,{...h,...p})&&!copy.units.some(v=>v!==h&&v!==u&&Math.abs(v.x-p.x)<v.r+h.r+18&&Math.abs(v.y-p.y)<Math.min(v.h,h.h)));
    if(!pos){localActions.push({id:row.id,error:'No supported local approach'});continue;}
    Object.assign(h,pos,{vx:0,vy:0});Object.assign(u,{awake:true,acted:false,moveLeft:u.maxMove});
    Object.assign(copy,{side:1,phase:'enemy',active:u.id,queue:[u.id],turnAge:0});
