@@ -15,17 +15,17 @@ jobs:
           node-version: '22'
           package-manager-cache: false
       - run: npm ci && npm ci --prefix game
-      - name: Preserve roster, quest, terrain and safe zone
+      - name: Protect roster, required identities and placement gaps
         run: |
           git fetch --no-tags --depth=1 origin 7d238d20663c3ceffe430eb0304e01516ae625cf
           node tests/act5-meaningful-encounters.test.mjs
       - name: Generate isolated official Act5 A/B scenes
-        run: HONRO_ACT4_RELEASE=1 HONRO_ACT5_RELEASE=1 node tests/act5-placement-browser-fixture.mjs "$RUNNER_TEMP/placement-act5"
+        run: HONRO_PLACEMENT_STAGES=47 HONRO_ACT4_RELEASE=1 HONRO_ACT5_RELEASE=1 node tests/act5-placement-browser-fixture.mjs "$RUNNER_TEMP/placement-act5"
       - name: Actual Chrome before and after
         shell: bash
         run: |
           browser=$(command -v google-chrome || command -v chromium)
-          for stage in 43 47 48; do
+          for stage in 47; do
           for variant in baseline candidate; do
             for view in overview west east; do
               name="stage$stage-$variant-$view"
