@@ -8,7 +8,8 @@ import {makeAct5} from '../shared/act5-world.mjs';
 import {runtimeEntries,root} from '../shared/build.mjs';
 const out=process.argv[2];
 if(!out)throw Error('Usage: node tests/actual-scene-browser-fixture.mjs OUTPUT_DIRECTORY [23,26,29|32|33]');
-const stages=[43,47,48];
+const stages=(process.env.HONRO_PLACEMENT_STAGES||'43,47,48').split(',').map(Number);
+if(stages.some(id=>![43,47,48].includes(id)))throw Error('Only approved placement stages');
 if(process.env.HONRO_ACT4_RELEASE!=='1'||process.env.HONRO_ACT5_RELEASE!=='1')throw Error('Act4/5 release required');
 const originalCombat=structuredClone(combat);
 for(const [filename,exportName] of [['encounters-early.mjs','earlyEncounters'],['encounters-late.mjs','lateEncounters']]){
