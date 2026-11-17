@@ -76,4 +76,3 @@ function draw(c,l,b){
 }
 G.HonroStage32FoundationArt={draw,stats:()=>({...counters,maxPixels:MAX_PIXELS}),clear:()=>{last=null;if(buffer){buffer.width=1;buffer.height=1;}counters.bytes=buffer?4:0;}};
 })(globalThis);
-
