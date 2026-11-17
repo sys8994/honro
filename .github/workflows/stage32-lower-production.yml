@@ -36,7 +36,7 @@ jobs:
           for variant in candidate transition; do
             for view in lower left; do
               dump="$RUNNER_TEMP/stage32-$variant-$view.html"
-              if timeout 300s "$browser" --headless --no-first-run --no-default-browser-check --force-device-scale-factor=1 --virtual-time-budget=60000 --user-data-dir="$RUNNER_TEMP/transition-profile-$variant-$view" --dump-dom "file://$RUNNER_TEMP/transition-fixtures/stage32-$variant-$view.html" > "$dump"; then
+              if timeout 320s node tests/stage32-real-clock-chrome.mjs "$browser" "$RUNNER_TEMP/transition-profile-$variant-$view" "$RUNNER_TEMP/transition-fixtures/stage32-$variant-$view.html" "$dump"; then
                 node tests/stage32-lower-production-browser-result.mjs "$dump" "$RUNNER_TEMP/transition-evidence" "$variant" "$view" || failed=1
               else
                 printf '{"ok":false,"reason":"Chrome process timeout or failure"}\n' > "$RUNNER_TEMP/transition-evidence/stage32-$variant-$view-process-failure.json"
