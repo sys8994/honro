@@ -18,7 +18,7 @@ export function placeAct4Stage40(stage, point) {
   ['stair-head','dock-stair','상층 갈림길 바로 아래 사격/수의귀 묶음',[[ref('dock-stair',6),2470],[ref('dock-stair',7),2550]]],
   ['road-scout','coast-west','부두 전방의 떨어진 단독 감시병; 주 전위까지 접근 여백을 둔다',[[ref('dock-stair',3),1400]]],
   ['ridge-entry','upper-east','동쪽 상부 길의 진입턱을 지키는 두 체; 뒤쪽 고지 사격조와 구분',[[ref('dock-stair',4),4780],[ref('dock-stair',5),4865]]],
-  ['boss-approach','departure-stair','하부 장승으로 내려가는 턱의 호위; 계단 전체를 채우지 않는다',[[ref('departure-upper',1),1620],[ref('departure-upper',2),1700],[ref('departure-upper',3),1850]]],
+  ['boss-approach','departure-stair','하부 장승 접근의 호위; 사수는 부두 지붕 아래를 벗어난 하부 계단에서 사선을 확보한다',[[ref('departure-upper',1),1770],[ref('departure-upper',2),1700],[ref('departure-upper',3),1850]]],
   ['crossing-scout','coast-west','바다 위 상부 횡단로 입구의 떨어진 감시 두 체',[[ref('departure-upper',4),3200],[ref('departure-upper',5),3370]]],
   ['boarding-pair','departure-ramp','저조위 승선턱을 지키는 근접 둘; 조수/승선 이벤트는 그대로',[[ref('departure-low',1),2090],[ref('departure-low',2),2180]]],
   ['tide-keeper','departure-stair','기존 조수 보스의 위치와 전투를 보존',[[ref('tide-keeper',1),2050]]]
