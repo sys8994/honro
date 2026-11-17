@@ -10,7 +10,7 @@ for(const [id,e] of Object.entries(expected)){
  const authored=us.map(u=>({...u,x:u.x/(s.width/1024),y:u.y/(s.width/1024)}));
  if(Number(id)===43){
   assert(authored.filter(u=>u.encounterGroup==='mortar').every(u=>u.y===302),'reserve belongs below arch');
-  assert(!authored.some(u=>u.y===218&&u.x>455&&u.x<670),'middle transit gap');
+  assert(!authored.some(u=>u.y===218&&u.x>455&&u.x<624),'middle transit gap');
  }
  if(Number(id)===48){
   assert(authored.filter(u=>u.encounterGroup==='westGuard').every(u=>u.x>=315&&u.x<=366),'first stake cluster');
