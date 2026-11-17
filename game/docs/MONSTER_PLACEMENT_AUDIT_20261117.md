@@ -14,3 +14,6 @@
 정적 계약은42ID/종류/수치,14장소,동쪽13명,실제저작 지지면,초기 몸 겹침,안전집결 비점유,지형/목표/주민 보존을 확인한다. 이는 실제 공격·호송·정상 플레이를 대신하지 않는다. 별도 실제Chrome 초기Scene A/B와 전체50장 최종 컴파일좌표 감사, 공식빌드를 CI에 구성한다. 후보/미검수이며 공개배포 아님. 배치 수/그룹 수는 이번 저작 결과이지 보편 합격선이 아니다.
 
 다음: 실제 초기Scene 시각 검토 →8초 자연물리 접지/겹침/활성화→바뀐 동쪽 군집 사선/접근/호송 경로의 짧은 실제엔진 검사. 전체진행·난이도는 별도 미검수.
+
+### Chrome review iteration
+The first candidate A/B Chrome render passed storage isolation/render purity, but visual review still found an almost continuous seven-unit dock stair. Rejected that arrangement: four remain as foot/head pairs with a wide middle gap; three become a lone road scout and a two-unit upper ridge entry guard. Candidate now has 16 places and 15 enemies east of x3600, unchanged42 identities. Actual local-support activation diagnostics added; this remains distinct from traversed-route/full gameplay acceptance. The initial all50 generator logged Act4 initialization errors; corrected initialization and now fail the step on any stage error.
