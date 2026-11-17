@@ -54,11 +54,13 @@ function compileScanline(nodes,cfg){
  else if(cmd==='z'){line(x0,y0);cmd=null;}
  else throw Error('Unsupported path command');
  }});
- const segments=[...pool.values()];
- function row(y){const events=[];for(const s of segments)for(const p of s.pieces){if(!(y>=p.min&&y<p.max)||p.min===p.max)continue;let lo=p.lo,hi=p.hi;for(let k=0;k<44;k++){const mid=(lo+hi)/2,v=evalC(s.ys,mid);if((v<y)===(p.delta>0))lo=mid;else hi=mid;}events.push({x:evalC(s.xs,(lo+hi)/2),delta:p.delta,owners:s.owners});}
+ const segments=[...pool.values()],buckets=new Map();
+ for(const segment of segments)for(const piece of segment.pieces){if(piece.min===piece.max)continue;const first=Math.floor(piece.min/8),last=Math.floor(piece.max/8);if(last-first>4096)throw Error('Unexpected source coordinate range');for(let key=first;key<=last;key++){if(!buckets.has(key))buckets.set(key,[]);buckets.get(key).push({s:segment,p:piece});}}
+
+ function row(y){const events=[];for(const {s,p} of buckets.get(Math.floor(y/8))||[]){if(!(y>=p.min&&y<p.max)||p.min===p.max)continue;let lo=p.lo,hi=p.hi;for(let k=0;k<44;k++){const mid=(lo+hi)/2,v=evalC(s.ys,mid);if((v<y)===(p.delta>0))lo=mid;else hi=mid;}events.push({x:evalC(s.xs,(lo+hi)/2),delta:p.delta,owners:s.owners});}
  events.sort((a,b)=>a.x-b.x);const winding=new Int32Array(nodes.length),gray=new Int32Array(nodes.length),bounds=[],labels=[];
  for(const e of events){for(const o of e.owners){winding[o.owner]+=e.delta;if(o.gray)gray[o.owner]+=e.delta;}let top=-1;for(let i=nodes.length-1;i>=0;i--)if(winding[i]){top=i;break;}const label={top,gray:top>=0&&gray[top]!==0};if(bounds.length&&e.x===bounds.at(-1))labels[labels.length-1]=label;else{bounds.push(e.x);labels.push(label);}}
- return {events:events.length,at(x,fallback){let lo=0,hi=bounds.length;while(lo<hi){const mid=(lo+hi)>>1;if(bounds[mid]<=x)lo=mid+1;else hi=mid;}if(Math.min(Math.abs(x-(bounds[lo]??Infinity)),Math.abs(x-(bounds[lo-1]??-Infinity)))<1e-7)return fallback(x,y);return lo?labels[lo-1]:{top:-1,gray:false};}};
+ return {events:events.length,at(x,fallback){let lo=0,hi=bounds.length;while(lo<hi){const mid=(lo+hi)>>1;if(bounds[mid]<=x)lo=mid+1;else hi=mid;}const estimate=lo?labels[lo-1]:{top:-1,gray:false},distance=Math.min(Math.abs(x-(bounds[lo]??Infinity)),Math.abs(x-(bounds[lo-1]??-Infinity)));if(distance<.001)return fallback(x,y,distance,estimate);return estimate;}};
  }
  return {row,uniqueSegments:segments.length};
 }
@@ -108,7 +110,7 @@ function bitmap(c,cv){c.save();c.setTransform(1,0,0,1,0,0);c.drawImage(cv,0,0);c
 // Candidate only. Correct correlated-AA hidden-green residue on internal non-walk
 // seams. Never changes source geometry or full BODY alpha. The finite sampling
 // is explicitly measured; not a claim of analytic exact area integration.
-const coverageStats={calls:0,eligible:0,corrected:0,samples:0,ms:0,alphaChanged:0,roadSkipped:0,opaqueGrassSkipped:0,actualGrassSamples:0,bytes:0};
+const coverageStats={boundaryFallbacks:0,labelOverrides:0,maxOverrideDistance:0,calls:0,eligible:0,corrected:0,samples:0,ms:0,alphaChanged:0,roadSkipped:0,opaqueGrassSkipped:0,actualGrassSamples:0,bytes:0};
 let coverageMasks=null;
 function coherentColor(c,cv,q){
  const t=performance.now(),m=c.getTransform(),world=m.d/2.2;
@@ -133,7 +135,7 @@ function coherentColor(c,cv,q){
   coverageStats.eligible++;scanRows??=Array.from({length:sampleN},(_,sy)=>q.scanline.row((y+y0+(sy+.5)/sampleN-m.f)/m.d));const sum=[0,0,0];let actualGrass=0;
   for(let sy=0;sy<sampleN;sy++)for(let sx=0;sx<sampleN;sx++){
    const dx=x+(sx+.5)/sampleN,dy=y+y0+(sy+.5)/sampleN;let color=null;
-   const label=scanRows[sy].at((dx-m.e)/m.a,()=>{for(let j=q.paths.length-1;j>=0;j--){const p=q.paths[j];if(c.isPointInPath(p.path,dx,dy,p.rule))return{top:j,gray:!!p.gray&&c.isPointInPath(p.gray,dx,dy,p.rule)};}return{top:-1,gray:false};});
+   const label=scanRows[sy].at((dx-m.e)/m.a,(_x,_y,distance,estimate)=>{coverageStats.boundaryFallbacks++;let actual={top:-1,gray:false};for(let j=q.paths.length-1;j>=0;j--){const p=q.paths[j];if(c.isPointInPath(p.path,dx,dy,p.rule)){actual={top:j,gray:!!p.gray&&c.isPointInPath(p.gray,dx,dy,p.rule)};break;}}if(actual.top!==estimate.top||actual.gray!==estimate.gray){coverageStats.labelOverrides++;coverageStats.maxOverrideDistance=Math.max(coverageStats.maxOverrideDistance,distance);}return actual;});
    if(label.top>=0){const j=label.top,p=q.paths[j];if(j>=12&&j<=17)actualGrass++;color=p.protected||label.gray?colors[j]:field.subarray(k,k+3);}
    // A fully opaque raster BODY can still contain unresolved subpixel holes.
    // Such a pixel is not safe to recolor: leave the complete original pixel.
