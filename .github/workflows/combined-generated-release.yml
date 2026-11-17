@@ -32,6 +32,8 @@ jobs:
       - name: Register actual successful public graph and build officially
         run: |
           set -euo pipefail
+          node --input-type=module -e 'import fs from "node:fs";const m=JSON.parse(fs.readFileSync("web/manifest.json"));for(const sha of new Set((m.publishedGenerations||[]).map(g=>g.sourceSha||g.commit))){if(!/^[a-f0-9]{40}$/.test(sha))throw Error("Invalid published source "+sha);console.log(sha);}' > "$OUT/published-source-refs.txt"
+          while read -r sha; do git fetch --no-tags --depth=1 origin "$sha"; done < "$OUT/published-source-refs.txt"
           node tools/release/retain-published-web.mjs 7d238d20663c3ceffe430eb0304e01516ae625cf --published-at 2026-11-17T05:51:48.1757357Z --evidence https://github.com/sys8994/honro/actions/runs/44026770659 | tee "$OUT/retention.log"
           npm run build > "$OUT/build.log" 2>&1
           node tests/combined-generated-release-graph.mjs
