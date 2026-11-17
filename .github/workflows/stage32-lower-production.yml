@@ -29,6 +29,9 @@ jobs:
         run: |
           browser=$(command -v google-chrome || command -v chromium)
           mkdir -p "$RUNNER_TEMP/transition-evidence"
+          "$browser" --version > "$RUNNER_TEMP/transition-evidence/chrome-version.txt"
+          sha256sum "$(readlink -f "$browser")" > "$RUNNER_TEMP/transition-evidence/chrome-launcher-sha256.txt"
+          if [ -f /opt/google/chrome/chrome ]; then sha256sum /opt/google/chrome/chrome > "$RUNNER_TEMP/transition-evidence/chrome-binary-sha256.txt"; fi
           failed=0
           for variant in candidate transition; do
             for view in lower left; do
