@@ -1,0 +1,9 @@
+# Source-backed solid footer display study, not production
+
+Original BODY and old two lateral source strips rendered unchanged. Old bottom site-edge-2 (29 rows stretched) omitted. Last drawing is opaque #142c2f rectangle source x=-390..2174,y=880..4887, overlaying only nonwalking last uniform source rows and closure AA. No path surgery, generated rocks, tile repetition or image stretching. Original vector/source unchanged. Original bottom rows880..886 measured fully opaque exact20,44,47. Lowest walk line811, gap69source=222.87world. Existing side strips unchanged and still imperfect.
+
+Actual Inkscape page renders: join0,650,1774,900 at1200x609; full-390,0,2564,3400 at550x730. Portrait390x844 minimumzoom sourceToPixel.18525,viewBox(-1052.6315789473683,-1338.3711201079623,2105.2631578947367,4556.005398110661). Source original plus side-strips control without new base: sourcey<879 protected186000pixels exact RGBA0. New join rows154..163 each1200pixels exactly(20,44,47,255), including start880 and old end887. This native sample removes the previously observed multi-layer closure seam without clipping each source path at an antialiased boundary.
+
+Directly inspected enlarged join and minimumzoom portrait: no new rock/platform silhouette or horizontal color seam; deep plain region remains substantial. Lateral repeated strip and finite left vertical edge remain obvious. No actual Chrome Scene, background, dynamic input, performance or user-save validation. Not overall terrain-art acceptance. No production/registration/master/deployment changes.
+
+compose.py references sibling body-original.svg saved in earlier study. No original structure, walking edge, arch or bridge is edited. The original BODY is still drawn then opaque nonwalking footer overlay replaces only its displayed uniform-color closure region; this is not a claim that all old pixels are globally preserved.
