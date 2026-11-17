@@ -2,6 +2,7 @@ name: Early Scene census
 on:
   push:
     branches: ['audit/early-scene-census-20261118']
+    paths: ['tests/early-scene-focus-fixture.mjs']
 permissions:
   contents: read
 jobs:
@@ -11,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        stages: ['1 2 3 4 5', '6 7 8 10 11', '12 14 15 16 18', '19 20 21 22 23', '24 25 26 27 28']
+        stages: ['4 12 14', '15 18 19', '22 23 28']
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
       - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
@@ -19,14 +20,14 @@ jobs:
           node-version: '22'
           package-manager-cache: false
       - run: npm ci && npm ci --prefix game
-      - run: node tests/early-scene-census-fixture.mjs "$RUNNER_TEMP/census"
+      - run: node tests/early-scene-focus-fixture.mjs "$RUNNER_TEMP/census"
       - name: Read-only isolated Chrome Scene
         shell: bash
         run: |
           browser=$(command -v google-chrome || command -v chromium)
           failed=0
           for stage in ${{ matrix.stages }}; do
-            views='center nw ne sw se'; if [[ "$stage" == 21 ]]; then views="$views gate"; fi
+            views='detail'
             for view in $views; do
               name="stage$stage-$view"
               timeout 180s "$browser" --headless --no-first-run --no-default-browser-check --force-device-scale-factor=1 --virtual-time-budget=60000 --user-data-dir="$RUNNER_TEMP/profile-$name" --dump-dom "file://$RUNNER_TEMP/census/stage$stage.html#$view" > "$RUNNER_TEMP/$name.html"
@@ -38,6 +39,6 @@ jobs:
       - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
         if: always()
         with:
-          name: early-census-${{ strategy.job-index }}
+          name: early-focus-${{ strategy.job-index }}
           path: ${{ runner.temp }}/census-results
           if-no-files-found: warn
