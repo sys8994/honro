@@ -107,9 +107,9 @@ function geometry(asset){
   q.apron=new G.Path2D(asset.vector.clips.portApron.join(''));
   const protect=new Set(cfg.protectedPaths);
   q.paths=nodes.map((n,i)=>{
-   const path=d(n),indices=cfg.graySubpaths?.[i],subs=indices?path.match(/[Mm][^Mm]*/g):null;
+   const path=d(n),coords=path.match(/[-+]?(?:\d*\.\d+|\d+\.?\d*)(?:[eE][-+]?\d+)?/g).map(Number),bounds=[Infinity,Infinity,-Infinity,-Infinity];for(let j=0;j<coords.length;j+=2){bounds[0]=Math.min(bounds[0],coords[j]);bounds[1]=Math.min(bounds[1],coords[j+1]);bounds[2]=Math.max(bounds[2],coords[j]);bounds[3]=Math.max(bounds[3],coords[j+1]);}const indices=cfg.graySubpaths?.[i],subs=indices?path.match(/[Mm][^Mm]*/g):null;
    if(indices?.some(j=>!Number.isInteger(j)||!subs[j]))throw Error('Invalid Stage 32 original subpath index');
-   return {sourceIndex:i,path:new G.Path2D(path),fill:n.fill,rule:n.fillRule||'nonzero',protected:protect.has(i),gray:indices?new G.Path2D(indices.map(j=>subs[j]).join('')):null};
+   return {sourceIndex:i,bounds,path:new G.Path2D(path),fill:n.fill,rule:n.fillRule||'nonzero',protected:protect.has(i),gray:indices?new G.Path2D(indices.map(j=>subs[j]).join('')):null};
   });
   q.scanline=compileScanline(nodes,cfg);
  }
@@ -170,7 +170,7 @@ function coherentColor(c,cv,q){
    }
    for(let sx=0;sx<sampleN;sx++){
    const dx=x+(sx+.5)/sampleN,dy=y+y0+(sy+.5)/sampleN;let color=null;
-   const label=scanRows[sy].at((dx-m.e)/m.a,(_x,_y,distance,estimate)=>{coverageStats.boundaryFallbacks++;let actual={top:-1,gray:false};for(let j=q.paths.length-1;j>=0;j--){const p=q.paths[j];if(c.isPointInPath(p.path,dx,dy,p.rule)){actual={top:j,gray:!!p.gray&&c.isPointInPath(p.gray,dx,dy,p.rule)};break;}}if(actual.top!==estimate.top||actual.gray!==estimate.gray){coverageStats.labelOverrides++;coverageStats.maxOverrideDistance=Math.max(coverageStats.maxOverrideDistance,distance);}return actual;});
+   const label=scanRows[sy].at((dx-m.e)/m.a,(_x,_y,distance,estimate)=>{coverageStats.boundaryFallbacks++;let actual={top:-1,gray:false};for(let j=q.paths.length-1;j>=0;j--){const p=q.paths[j],bb=p.bounds;if(_x<bb[0]-.01||_x>bb[2]+.01||_y<bb[1]-.01||_y>bb[3]+.01)continue;if(c.isPointInPath(p.path,dx,dy,p.rule)){actual={top:j,gray:!!p.gray&&c.isPointInPath(p.gray,dx,dy,p.rule)};break;}}if(actual.top!==estimate.top||actual.gray!==estimate.gray){coverageStats.labelOverrides++;coverageStats.maxOverrideDistance=Math.max(coverageStats.maxOverrideDistance,distance);}return actual;});
    if(label.top>=0){const j=label.top,p=q.paths[j];if(j>=12&&j<=17)actualGrass++;color=p.protected||label.gray?colors[j]:field.subarray(k,k+3);}
    // A fully opaque raster BODY can still contain unresolved subpixel holes.
    // Such a pixel is not safe to recolor: leave the complete original pixel.
