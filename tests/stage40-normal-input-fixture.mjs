@@ -139,7 +139,7 @@ async function capture(id,runtimeSha256,variant,requestedCamera){
  for(const t of targets.filter(t=>alive(t)&&dist(t,u)<1600).slice(0,3))if(fireAt(u,t)){fired=true;break;}
  if(!fired){actions.push({op:'wait',round:b.round,hero:u.id});e.wait();}
  }
- draw();const final={phase:b.phase,round:b.round,heroes:heroes().map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,maxHp:u.maxHp,level:u.level})),remaining:foes().map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp})),escort:b.honroAct4PreviewState.returnEscort||null};
+ draw();const final={pilotHistory:b.units.filter(u=>u.honroPilotCombat).map(u=>({id:u.id,hp:u.hp,dead:!!u.dead,combat:structuredClone(u.honroPilotCombat)})),residents:b.units.filter(u=>u.honroAct4Resident).map(u=>({id:u.id,hp:u.hp,dead:!!u.dead,x:u.x,y:u.y})),eventFailure:b.honroAct4PreviewState.failure||null,phase:b.phase,round:b.round,heroes:heroes().map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,maxHp:u.maxHp,level:u.level})),remaining:foes().map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp})),escort:b.honroAct4PreviewState.returnEscort||null};
  publishProbe({ok:true,stage:40,variant,runtimeSha256,waypoints,routeProgress:Object.fromEntries(routeIndex),scope:'Native Engine ordinary input bounded comparison from canonical spawns, same synthetic stage-entry trained profile. Not full App narrative/escort or human gameplay acceptance. No teleports, HP deletion/refill, turn override, save manipulation or enemy removal.',entryLevel,initial,final,actions,rounds,frames,stopReason:stopReason||'action budget or battle ending',elapsed:(performance.now()-start)/1000,storage:p.storage,errors:p.errors,violations:p.violations,png:cv.toDataURL('image/png'),initialPng});
  }catch(err){publishProbe({ok:false,error:String(err.stack||err),...p});}
 }
