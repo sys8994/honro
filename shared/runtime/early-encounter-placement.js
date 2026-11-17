@@ -11,7 +11,7 @@ const placements={
  13:[{id:'a2-enemy-20',x:4934.4,support:'act2-floor',reason:'Preserve the previous final west house guard position now that actor 21 no longer forces a sanitizer shift.'},{id:'a2-enemy-21',x:4435,support:'tactical-inner-gallery',reason:'Single upper-gallery sentinel; the cave-house pair and lower-slope guard remain.'}],
  17:[{id:'a2-enemy-0',x:970,support:'ws-west-work-buttress',reason:'Front sentry at the work-buttress entrance, beside the tool-bench partner.'},
  {id:'a2-enemy-1',x:1115,support:'ws-west-work-buttress',reason:'Two legible guards at the same work-buttress entrance, not three overlapping picks.'},
- {id:'a2-enemy-3',x:2350,support:'ws-west-work-buttress',reason:'Elite rear watch beyond the brace, keeping the required west worksite threat on its original ground route.'},
+ {id:'a2-enemy-3',x:2286,support:'ws-west-work-buttress',reason:'Elite rear watch beyond the brace, keeping the required west worksite threat on its original ground route.'},
  {id:'ws-west-screen',x:2045,support:'ws-west-work-buttress',cell:'brace-front',reason:'Separate flank watch beside the brace approach, outside the brace hazard footprint.'}],
  29:[{id:'a3-29-letter-store-guard-2',x:2690,support:'a3-foundation',reason:'Archive entrance and sluice approach guard, separated from the command formation.'},
  {id:'a3-29-letter-store-guard-3',x:4050,support:'r29-upper-ascent',reason:'Rear ascent lookout guarding the upper exit approach, not a fourth body beside the boss.'}]
