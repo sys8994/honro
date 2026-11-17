@@ -72,3 +72,8 @@ Re-designed stairs with their supporting rock instead of detached per-step skins
 - 변경: 실제 Inkscape 추적·형상 보존 최적화 암벽, 원본 하단 색경계 분할, 원본 보행/계단/산문/아치 보호 및 단일 alpha 합성. 원본 데이터와 다른 장, 충돌·저장·카메라는 불변이다.
 - 확인: 데이터 hash·보행 327점·색면 968점·아치 323점·6개 화면비 bounds, 합성 예외/opacity/clip 회귀, 서쪽/동쪽/세로 Native 화면.
 - 아직 master/CI/Pages/공개 실제 입력은 미완료. source PNG/raw는 지원 Library 및 로컬에 원본 보존했으며 전송 제한 우회는 하지 않았다. 세부 근거와 한계는 `game/docs/STAGE50_CONTINUITY_STATUS.md`.
+
+## 2026-11-17 · 28장 지반 하단 source 연속성 후보
+
+- 관측 y669 절단은 실제 source polygon y9000 끝과 일치했다. 저작 바닥 두 점만 기존 domain 하단27400으로 연장하고 collision projection9000은 유지했다. 별도 렌더 지리/스커트를 만들지 않았다.
+- 전체 project에서 두 점 외 불변, projection·충돌·보행·unit 불변, Native 전후5뷰를 확인했다. portrait4뷰 하단띠만 없어지고 desktop중앙은 byte 동일하다. 기존 저장된 world polygon은 변환하지 않으며 공개 UI·동적 상태는 미검수다. 상세: `game/docs/STAGE28_EDGE_JOIN_STATUS.md`.
