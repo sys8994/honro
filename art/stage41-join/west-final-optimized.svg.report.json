@@ -1,0 +1,55 @@
+{
+  "input": "/workspace/scratch/0b8c8f8d81c7/stage41-final-work/art/stage41-join/west-final-native.svg",
+  "input_sha256": "49680e90df774ade7ecf1f36dd74181beb3869f33dcb25b51b48fc4bf9bb8944",
+  "epsilon_viewbox_units": 0.05,
+  "changed_paths": 1,
+  "segments_before": 78,
+  "segments_after": 77,
+  "skips": {},
+  "render_checks": [
+    {
+      "mean_channel_error": 3.313098204671405e-07,
+      "changed_pixel_fraction": 0.0,
+      "max_channel_error": 0.04313725233078003,
+      "width": 860,
+      "accepted": true
+    },
+    {
+      "mean_channel_error": 2.3022472817046946e-07,
+      "changed_pixel_fraction": 4.542151162790698e-07,
+      "max_channel_error": 0.0627451241016388,
+      "width": 1720,
+      "accepted": true
+    }
+  ],
+  "growth_guard": {
+    "original_bytes": 2635,
+    "candidate_bytes": 2465,
+    "reasons": [],
+    "before": {
+      "segments": 78,
+      "subpaths": 6,
+      "paths": 1,
+      "shape_elements": 1
+    },
+    "candidate": {
+      "segments": 77,
+      "subpaths": 6,
+      "paths": 1,
+      "shape_elements": 1
+    },
+    "accepted": true
+  },
+  "accepted": true,
+  "candidate_bytes": 2465,
+  "original_bytes": 2635,
+  "output_bytes": 2465,
+  "output_metrics": {
+    "segments": 77,
+    "subpaths": 6,
+    "paths": 1,
+    "shape_elements": 1
+  },
+  "output_sha256": "c4bb0d0ca49126694142122a48773f0ba86be9202062a06d1e5e12332904ecb6",
+  "input_unchanged": true
+}

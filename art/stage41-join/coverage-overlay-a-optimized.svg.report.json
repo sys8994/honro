@@ -1,0 +1,57 @@
+{
+  "input": "/workspace/scratch/0b8c8f8d81c7/stage41-final-work/art/stage41-join/coverage-overlay-a-native.svg",
+  "input_sha256": "627645f0c5b5a74018825c3a247d617d156daa09f04f55d0eba9a30a715b5ec6",
+  "epsilon_viewbox_units": 0.01,
+  "changed_paths": 0,
+  "segments_before": 44,
+  "segments_after": 44,
+  "skips": {
+    "not smaller/guarded": 1
+  },
+  "render_checks": [
+    {
+      "mean_channel_error": 0.0,
+      "changed_pixel_fraction": 0.0,
+      "max_channel_error": 0.0,
+      "width": 951,
+      "accepted": true
+    },
+    {
+      "mean_channel_error": 0.0,
+      "changed_pixel_fraction": 0.0,
+      "max_channel_error": 0.0,
+      "width": 1902,
+      "accepted": true
+    }
+  ],
+  "growth_guard": {
+    "original_bytes": 1086,
+    "candidate_bytes": 1014,
+    "reasons": [],
+    "before": {
+      "segments": 44,
+      "subpaths": 5,
+      "paths": 1,
+      "shape_elements": 1
+    },
+    "candidate": {
+      "segments": 44,
+      "subpaths": 5,
+      "paths": 1,
+      "shape_elements": 1
+    },
+    "accepted": true
+  },
+  "accepted": true,
+  "candidate_bytes": 1014,
+  "original_bytes": 1086,
+  "output_bytes": 1014,
+  "output_metrics": {
+    "segments": 44,
+    "subpaths": 5,
+    "paths": 1,
+    "shape_elements": 1
+  },
+  "output_sha256": "24b61e6b9ba5433bf73a3ff8fa21927d1ab82e7be4f66be9835a8c11afc0d8ae",
+  "input_unchanged": true
+}

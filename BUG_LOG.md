@@ -1,3 +1,9 @@
+## 2026-11-17 · 41장 접합 coverage 수정
+
+- 기존 clip이 색면마다 반복되고 원본 내부/외부 alpha가 중첩되어 밝은 수평·지그재그 경계가 생겼다. 서쪽의 서로 배타적인 영역도 source-over로 겹쳐 coverage가 부족했다.
+- 실제 Inkscape의 기존 alpha 교집합과 bounded single-coverage 합성, 기존 서쪽 암영 한 색상의 정합으로 수정한다. 도형·원본·충돌·다른 장은 보존한다. 암괴 확장 후보는 원본 가시 영역을 가려 반려했고 활성화하지 않았다.
+- 회귀·Native 결과 및 배포 상태: `game/docs/STAGE41_JOIN_STATUS.md`, 상세 native 근거: `art/stage41-join/README.md`. 공개 UI 확인 전에는 배포/미션 완료로 표시하지 않는다.
+
 
 ## 2026-11-16 Stage33 foreground continuity
 Previous west extension only continued rear stone; foreground still closed at x0.

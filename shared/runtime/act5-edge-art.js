@@ -75,16 +75,105 @@ function contact43(scene,c,asset){
   }
  }finally{scene._releaseRasterCanvas(cv);}
 }
+// Stage41 only: paint each complete stack, then apply its unchanged outer
+// coverage once. Geometry is cached; bounded scratch canvases never are.
+const stage41Masks=new WeakMap();
+function campMasks(asset){
+ let masks=stage41Masks.get(asset);if(masks)return masks;
+ const p=(d,rule='nonzero')=>[new Path2D(d),rule];
+ masks={
+  main:[p('M-10000 -10000H10000V10000H-10000Z M0 0H300V560L190 650Q200 720 300 750V827H0Z','evenodd'),p('M0 0H1902V350H1796V428H1838V438Q1841 456 1820 466Q1790 476 1790 488Q1794 505 1820 514V530H1902V827H0Z')],
+  overlay:[p('M300 428H1838V438H300ZM300 514H1902V529H300ZM0 545Q35 546 70 548L130 555L220 562L280 566L300 557V565L280 574L220 570L130 563L70 556Q35 550 0 545Z')],
+  west:[p('M-1400 -500H300V560L190 650Q200 720 300 750V1200H-1400Z')],
+  east:[p('M1796 350H4000V4400H1902V827L1893 770L1902 710L1887 655L1902 600L1885 557L1902 530H1820V514Q1794 505 1790 488Q1790 476 1820 466Q1841 456 1838 438V428H1796Z')],
+  deep:[p('M-1400 1000Q-600 1010 300 1000Q900 800 1700 780Q1850 760 2020 645Q2900 655 4010 650V3500H-1400Z')]
+ };
+ stage41Masks.set(asset,masks);return masks;
+}
+function campPost(scene,c,masks,paint,{placement=null,styled=false}={}){
+ const w=c.canvas.width,h=c.canvas.height;if(!w||!h)return;
+ const m=c.getTransform();let cv,maskCanvas;
+ try{
+  cv=scene._makeLayerCanvas(Math.min(1024,w),Math.min(1024,h));
+  maskCanvas=scene._makeLayerCanvas(cv.width,cv.height);
+  const raw=cv.getContext('2d'),mc=maskCanvas.getContext('2d'),V=G.HonroVisualStyle;
+  // Source uses the original landmark wrapper (including its style handling).
+  // Camp paint already has V.context, so transfer only that style to scratch.
+  const ink=styled&&V?V.contextLike(c,raw):raw;
+  for(let y=0;y<h;y+=1024)for(let x=0;x<w;x+=1024){
+   raw.setTransform(1,0,0,1,0,0);raw.globalAlpha=1;raw.globalCompositeOperation='source-over';raw.clearRect(0,0,cv.width,cv.height);
+   raw.setTransform(m.a,m.b,m.c,m.d,m.e-x,m.f-y);paint(ink);
+   mc.setTransform(1,0,0,1,0,0);mc.clearRect(0,0,maskCanvas.width,maskCanvas.height);
+   mc.setTransform(m.a,m.b,m.c,m.d,m.e-x,m.f-y);
+   if(placement){mc.translate(placement.x,placement.y);mc.scale(placement.scale??1,placement.scale??1);}
+   mc.save();try{
+    for(let i=0;i<masks.length-1;i++)mc.clip(...masks[i]);
+    mc.fillStyle='#fff';mc.fill(...masks[masks.length-1]);
+   }finally{mc.restore();}
+   // Raster coverage first avoids Native Canvas destination-in fill quirks.
+   raw.save();try{raw.setTransform(1,0,0,1,0,0);raw.globalAlpha=1;raw.globalCompositeOperation='destination-in';raw.drawImage(maskCanvas,0,0);}finally{raw.restore();}
+   // Caller transform, clip, opacity, filter and blend remain unchanged.
+   const tw=Math.min(1024,w-x),th=Math.min(1024,h-y);
+   c.save();try{c.setTransform(1,0,0,1,0,0);c.drawImage(cv,0,0,tw,th,x,y,tw,th);}finally{c.restore();}
+  }
+ }finally{try{if(maskCanvas)scene._releaseRasterCanvas(maskCanvas);}finally{if(cv)scene._releaseRasterCanvas(cv);}}
+}
+// Optional native-precomputed intersections replace nested intrinsic/outer masks.
+// Each source branch is immutable; its original landmark wrapper still paints it.
+const campCoveredSource=new WeakMap();
+function campSourceCoverage(asset){
+ if(!asset.campSourceCoverage)return null;
+ let prepared=campCoveredSource.get(asset);if(prepared)return prepared;
+ const root=asset.vector.root,coverage=asset.campSourceCoverage;
+ if(root.clipPath||root.children?.length!==2)throw Error('Unexpected stage41 source branches');
+ for(const phase of ['main','overlay'])if(!Array.isArray(coverage[phase])||coverage[phase].length!==2)throw Error('Invalid stage41 source coverage');
+ prepared=root.children.map((branch,index)=>{
+  const key=index===0?'a':'b';let found=0;
+  const copy=(node,shared)=>{
+   const q={...node};
+   if(node.clipPath===key){if(!shared||found++)throw Error('Unexpected stage41 native source clip');delete q.clipPath;}
+   if(node.children)q.children=node.children.map(child=>copy(child,shared&&node.children.length===1));
+   return q;
+  };
+  const node=copy(branch,true);if(found!==1)throw Error('Missing stage41 native source clip');
+  const masks={};for(const phase of ['main','overlay']){
+   const paths=coverage[phase][index];if(!Array.isArray(paths)||paths.some(d=>typeof d!=='string'))throw Error('Invalid stage41 native coverage paths');
+   masks[phase]=[[new Path2D(paths.join(' ')),'nonzero']];
+  }
+  return{asset:{...asset,vector:{...asset.vector,root:{...root,children:[node]}}},masks};
+ });campCoveredSource.set(asset,prepared);return prepared;
+}
+function campPaintSource(scene,c,l,phase){
+ const prepared=campSourceCoverage(l.asset);
+ if(!prepared){campPost(scene,c,campMasks(l.asset)[phase],ink=>draw.call(scene,ink,l),{placement:l});return;}
+ for(const part of prepared)campPost(scene,c,part.masks[phase],ink=>draw.call(scene,ink,{...l,asset:part.asset}),{placement:l});
+}
+// Complementary ownership group. Source a/b retain source-over;
+// only disjoint source/west/fill ownership is summed premultiplied.
+function campOwnershipGroup(scene,c,l){
+ const w=c.canvas.width,h=c.canvas.height;if(!w||!h)return;
+ const m=c.getTransform(),masks=campMasks(l.asset),V=G.HonroVisualStyle;let cv;
+ try{
+  cv=scene._makeLayerCanvas(Math.min(1024,w),Math.min(1024,h));const raw=cv.getContext('2d');
+  for(let y=0;y<h;y+=1024)for(let x=0;x<w;x+=1024){
+   raw.setTransform(1,0,0,1,0,0);raw.globalAlpha=1;raw.globalCompositeOperation='source-over';raw.clearRect(0,0,cv.width,cv.height);
+   raw.setTransform(m.a,m.b,m.c,m.d,m.e-x,m.f-y);
+   campPaintSource(scene,raw,l,'main');
+   raw.globalCompositeOperation='lighter';
+   const ink=V?V.context(raw,V.classify(l,scene.battle,l.asset)==='gameplay'?'gameplay':V.depth(l,l.asset)):raw;
+   ink.save();try{
+    ink.translate(l.x,l.y);ink.scale(l.scale??1,l.scale??1);
+    ink.fillStyle='#3a3029';ink.fillRect(300,l.asset.vector.viewBox[3],l.asset.vector.viewBox[2]-300,2400-l.asset.vector.viewBox[3]);
+    campPost(scene,ink,masks.west,paint=>G.HonroVectorArt.draw(paint,l.asset.campExterior.west,{x:-1300,y:-100,scale:1.1}),{styled:true});
+   }finally{ink.restore();}
+   const tw=Math.min(1024,w-x),th=Math.min(1024,h-y);
+   c.save();try{c.setTransform(1,0,0,1,0,0);c.drawImage(cv,0,0,tw,th,x,y,tw,th);}finally{c.restore();}
+  }
+ }finally{if(cv)scene._releaseRasterCanvas(cv);}
+}
 function camp(scene,c,l){
  const V=G.HonroVisualStyle;if(V)c=V.context(c,V.classify(l,scene.battle,l.asset)==='gameplay'?'gameplay':V.depth(l,l.asset));
- const scale=l.scale??1,w=l.asset.vector.viewBox[2],h=l.asset.vector.viewBox[3];
- c.save();c.translate(l.x,l.y);c.scale(scale,scale);
- c.save();c.clip(new Path2D('M-1400 -500H300V560L190 650Q200 720 300 750V1200H-1400Z'));
- G.HonroVectorArt.draw(c,l.asset.campExterior.west,{x:-1300,y:-100,scale:1.1});c.restore();
- c.fillStyle='#3a3029';c.fillRect(300,h,w-300,2400-h);
- c.save();c.clip(new Path2D('M1796 350H4000V4400H1902V827L1893 770L1902 710L1887 655L1902 600L1885 557L1902 530H1820V514Q1794 505 1790 488Q1790 476 1820 466Q1841 456 1838 438V428H1796Z'));
- G.HonroVectorArt.draw(c,l.asset.campExterior.east,{x:1700,y:-25,scale:2.4});c.restore();
- c.save();c.clip(new Path2D('M-1400 1000Q-600 1010 300 1000Q900 800 1700 780Q1850 760 2020 645Q2900 655 4010 650V3500H-1400Z'));G.HonroVectorArt.draw(c,l.asset.campExterior.deep,{x:-1400,y:600,scale:3.05});c.restore();c.restore();
+ c.save();try{c.translate(l.x,l.y);c.scale(l.scale??1,l.scale??1);campPost(scene,c,campMasks(l.asset).east,ink=>G.HonroVectorArt.draw(ink,l.asset.campExterior.east,{x:1700,y:-25,scale:2.4}),{styled:true});campPost(scene,c,campMasks(l.asset).deep,ink=>G.HonroVectorArt.draw(ink,l.asset.campExterior.deep,{x:-1400,y:600,scale:3.05}),{styled:true});}finally{c.restore();}
 }
 function active(l){return /^act5:near:4[1-9]$|^act5:near:50$/.test(l.asset?.id||'');}
 function prepare(scene,l){
@@ -192,8 +281,8 @@ S.landmark=function(c,l){
   cc.restore();return;
  }
  if(l.asset?.id==='act5:near:41'&&l.asset.campExterior&&!l.rotation){
- const s=l.scale??1;c.save();c.translate(l.x,l.y);c.scale(s,s);c.beginPath();c.rect(-10000,-10000,20000,20000);c.moveTo(0,0);c.lineTo(300,0);c.lineTo(300,560);c.lineTo(190,650);c.quadraticCurveTo(200,720,300,750);c.lineTo(300,827);c.lineTo(0,827);c.closePath();c.clip('evenodd');c.clip(new Path2D('M0 0H1902V350H1796V428H1838V438Q1841 456 1820 466Q1790 476 1790 488Q1794 505 1820 514V530H1902V827H0Z'));c.scale(1/s,1/s);c.translate(-l.x,-l.y);draw.call(this,c,l);c.restore();camp(this,c,l);
- c.save();c.translate(l.x,l.y);c.scale(s,s);c.clip(new Path2D('M300 428H1838V438H300ZM300 514H1902V529H300ZM0 545Q35 546 70 548L130 555L220 562L280 566L300 557V565L280 574L220 570L130 563L70 556Q35 550 0 545Z'));c.scale(1/s,1/s);c.translate(-l.x,-l.y);draw.call(this,c,l);c.restore();return;}
+ campOwnershipGroup(this,c,l);camp(this,c,l);campPaintSource(this,c,l,'overlay');return;}
+
 
  if(!active(l)||l.rotation)return draw.call(this,c,l);
  const q=prepare(this,l),scale=l.scale??1;

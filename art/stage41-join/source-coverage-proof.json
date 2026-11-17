@@ -1,0 +1,70 @@
+{
+  "method": "exact native Boolean intersection of authored alpha with unchanged pre-existing external ownership; no silhouette changes",
+  "inputNearSHA256": "5c667b2f7af9a071f2c2be997ebeb3933a586edcca42ffb8c5dde10ed06a9a93",
+  "masks": [
+    {
+      "mask": "main-a",
+      "originalClip": "a",
+      "transform": [
+        1.0,
+        0,
+        0,
+        1.0,
+        0,
+        0
+      ],
+      "segmentsBefore": 178,
+      "segmentsAfter": 178,
+      "accepted": true,
+      "nativeSHA256": "db47bb5a5108b185b3e28c957e2df54dce1e05f355be8d9413a220f230373cbd"
+    },
+    {
+      "mask": "main-b",
+      "originalClip": "b",
+      "transform": [
+        1.0010526315789474,
+        0,
+        0,
+        0.998792270531401,
+        0,
+        0
+      ],
+      "segmentsBefore": 1899,
+      "segmentsAfter": 1609,
+      "accepted": true,
+      "nativeSHA256": "0c4d3c783447e1e93dbb41a4ebc8dcb2afe73ad5afd440d52ffe3e40f6b6ff4f"
+    },
+    {
+      "mask": "overlay-a",
+      "originalClip": "a",
+      "transform": [
+        1.0,
+        0,
+        0,
+        1.0,
+        0,
+        0
+      ],
+      "segmentsBefore": 44,
+      "segmentsAfter": 44,
+      "accepted": true,
+      "nativeSHA256": "627645f0c5b5a74018825c3a247d617d156daa09f04f55d0eba9a30a715b5ec6"
+    },
+    {
+      "mask": "overlay-b",
+      "originalClip": "b",
+      "transform": [
+        1.0010526315789474,
+        0,
+        0,
+        0.998792270531401,
+        0,
+        0
+      ],
+      "segmentsBefore": 172,
+      "segmentsAfter": 146,
+      "accepted": true,
+      "nativeSHA256": "d06b6a5d891ffda068bb07c835e82f3d08681d8f9714f78c9b5cb9da18e56181"
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "input": "/workspace/scratch/0b8c8f8d81c7/stage41-final-work/art/stage41-join/coverage-main-a-native.svg",
+  "input_sha256": "db47bb5a5108b185b3e28c957e2df54dce1e05f355be8d9413a220f230373cbd",
+  "epsilon_viewbox_units": 0.01,
+  "changed_paths": 0,
+  "segments_before": 178,
+  "segments_after": 178,
+  "skips": {
+    "not smaller/guarded": 1
+  },
+  "render_checks": [
+    {
+      "mean_channel_error": 0.0,
+      "changed_pixel_fraction": 0.0,
+      "max_channel_error": 0.0,
+      "width": 951,
+      "accepted": true
+    },
+    {
+      "mean_channel_error": 0.0,
+      "changed_pixel_fraction": 0.0,
+      "max_channel_error": 0.0,
+      "width": 1902,
+      "accepted": true
+    }
+  ],
+  "growth_guard": {
+    "original_bytes": 3560,
+    "candidate_bytes": 3488,
+    "reasons": [],
+    "before": {
+      "segments": 178,
+      "subpaths": 1,
+      "paths": 1,
+      "shape_elements": 1
+    },
+    "candidate": {
+      "segments": 178,
+      "subpaths": 1,
+      "paths": 1,
+      "shape_elements": 1
+    },
+    "accepted": true
+  },
+  "accepted": true,
+  "candidate_bytes": 3488,
+  "original_bytes": 3560,
+  "output_bytes": 3488,
+  "output_metrics": {
+    "segments": 178,
+    "subpaths": 1,
+    "paths": 1,
+    "shape_elements": 1
+  },
+  "output_sha256": "e120db2c6bbdb51ea2f424418f7ddf2a8e7101b9a7fb458d766e0aad07695bee",
+  "input_unchanged": true
+}

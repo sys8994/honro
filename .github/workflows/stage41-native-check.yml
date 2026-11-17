@@ -1,0 +1,60 @@
+name: Build reviewed Stage41 native continuity candidate
+on:
+  push:
+    branches: ['fix/stage41-join-20261117']
+permissions:
+  contents: write
+concurrency:
+  group: stage41-native-package-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  package:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      HONRO_ACT4_RELEASE: '1'
+      HONRO_ACT5_RELEASE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 1
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Install locked dependencies and materialize existing source
+        run: |
+          set -euo pipefail
+          npm ci
+          npm ci --prefix game
+          node tools/act4-source/world-source.mjs materialize
+      - name: Focused Stage41 rendering checks
+        run: |
+          set -euo pipefail
+          mkdir -p _local/stage41
+          node tests/stage41-coverage.mjs --baseline-all
+          node tests/stage41-composite.mjs
+          node tests/web-build-retention.mjs
+          node tests/act5-terrain-contact.mjs
+      - name: Build without changing retained publication history
+        run: |
+          set -euo pipefail
+          mapfile -t refs < <(node --input-type=module -e 'import fs from "node:fs";import {selectPublishedGenerations} from "./shared/web-retention.mjs";const m=JSON.parse(fs.readFileSync("web/manifest.json"));for(const g of selectPublishedGenerations(m.publishedGenerations||[],{now:Date.now()})){if(!/^[a-f0-9]{40}$/.test(g.sourceSha))throw Error("Invalid publication ref");console.log(g.sourceSha)}')
+          if ((${#refs[@]})); then git fetch --no-tags --depth=1 origin "${refs[@]}"; fi
+          # Attested Pages success, not an intermediate generated build.
+          git fetch --no-tags --depth=1 origin f20e8f4a39470ed632f01c9237cb95d4501c6eb0
+          node tools/release/retain-published-web.mjs f20e8f4a39470ed632f01c9237cb95d4501c6eb0 --published-at 2026-11-17T04:38:42Z --evidence https://github.com/sys8994/honro/actions/runs/44018292206
+          node game/build.mjs
+          sha256sum HONRO.html HONRO_WORKSHOP.html web/manifest.json
+      - name: Preserve generated candidate only
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          git add web HONRO.html HONRO_WORKSHOP.html index.html
+          git diff --cached --stat
+          if ! git diff --cached --quiet; then
+            git -c user.name='honro release automation' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m "Build checked Stage41 native candidate from $GITHUB_SHA"
+          fi
+          git push origin "HEAD:refs/heads/art/stage41-generated/$GITHUB_SHA"
+          # No master write, force push, authentication change or Pages action.

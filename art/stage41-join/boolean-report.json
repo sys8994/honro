@@ -1,0 +1,64 @@
+{
+  "operations": [
+    {
+      "name": "protected-native-props-and-overlay",
+      "operation": "union",
+      "input": "protected-native-props-and-overlay-input.svg",
+      "output": "protected-native-props-and-overlay-native.svg"
+    },
+    {
+      "name": "upper-outside-old-west",
+      "operation": "difference",
+      "input": "upper-outside-old-west-input.svg",
+      "output": "upper-outside-old-west-native.svg"
+    },
+    {
+      "name": "lower-outside-old-west",
+      "operation": "difference",
+      "input": "lower-outside-old-west-input.svg",
+      "output": "lower-outside-old-west-native.svg"
+    },
+    {
+      "name": "upper-addition-with-protection",
+      "operation": "difference",
+      "input": "upper-addition-with-protection-input.svg",
+      "output": "upper-addition-with-protection-native.svg"
+    },
+    {
+      "name": "west-final",
+      "operation": "union",
+      "input": "west-final-input.svg",
+      "output": "west-final-native.svg"
+    },
+    {
+      "name": "source-west-old",
+      "operation": "difference",
+      "input": "source-west-old-input.svg",
+      "output": "source-west-old-native.svg"
+    },
+    {
+      "name": "source-main-original",
+      "operation": "intersection",
+      "input": "source-main-original-input.svg",
+      "output": "source-main-original-native.svg"
+    },
+    {
+      "name": "source-main-final",
+      "operation": "difference",
+      "input": "source-main-final-input.svg",
+      "output": "source-main-final-native.svg"
+    },
+    {
+      "name": "protected-loss-check",
+      "operation": "intersection",
+      "input": "protected-loss-check-input.svg",
+      "output": "protected-loss-check-native.svg"
+    }
+  ],
+  "notes": [
+    "No collision/source asset/runtime changes",
+    "Lower rock is not added",
+    "West addition replaces old nonwalk body pixels but excludes native props and source overlay",
+    "Visual/native source-rock preservation is pending parent scene review"
+  ]
+}
