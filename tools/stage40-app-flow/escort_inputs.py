@@ -46,14 +46,19 @@ def finish_escort(p,out):
    s=state();support=s['support']
    if support in ['approved40-coast-west','approved40-coast-east','approved40-upper-east']:return
    if s['move']<100:p.keyboard.press('f');p.wait_for_timeout(700);continue
-   if support in ['approved40-departure-stair','approved40-departure-ramp','a4-return-deck']:goal=1440
+   if support=='approved40-departure-ramp':goal=2170
+   elif support=='approved40-departure-stair':goal=1615
+   elif support=='a4-return-deck':goal=1905
    elif support=='approved40-dock':goal=1905
    elif support=='approved40-dock-stair':goal=2740
    else:
     record('unhandled-return-support');raise AssertionError('No prepared input policy for '+str(support))
    key='ArrowRight' if goal>s['x'] else 'ArrowLeft'
+   takeoff=(support=='approved40-departure-ramp' and abs(s['x']-2170)<25) or (support=='approved40-departure-stair' and abs(s['x']-1615)<25)
+   if takeoff:
+    p.keyboard.press('Control');key='ArrowLeft' if support=='approved40-departure-ramp' else 'ArrowRight';record('normal-ascent-jump-'+id)
    if (support=='approved40-dock' and s['x']>1845) or (support=='approved40-dock-stair' and s['x']>2600):p.keyboard.press('Control')
-   p.keyboard.down(key);p.wait_for_timeout(min(350,max(90,abs(goal-s['x'])/500*1000)));p.keyboard.up(key);p.wait_for_timeout(200);ready();after=record('return-to-coast-'+id)
+   p.keyboard.down(key);p.wait_for_timeout(90 if takeoff else min(350,max(65,abs(goal-s['x'])/500*1000)));p.keyboard.up(key);p.wait_for_timeout(200);ready();after=record('return-to-coast-'+id)
    if after['active']==id and abs(after['x']-s['x'])<10 and after['move']>120:p.keyboard.press('Control');p.keyboard.down(key);p.wait_for_timeout(220);p.keyboard.up(key);p.wait_for_timeout(400)
   raise TimeoutError('actual lower-to-coast ascent stalled')
  for hero in state()['heroes']:return_to_coast(hero['id'])
