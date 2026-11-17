@@ -1,0 +1,38 @@
+{
+  "ok": true,
+  "scope": "Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.",
+  "stage": 33,
+  "tideSnapshot": {
+    "phase": "low",
+    "surface": 4095,
+    "warningRound": 2,
+    "highRound": 5,
+    "lowRound": 7
+  },
+  "appReadyUnresolved": true,
+  "initialization": "Official coast.tide; fresh in-memory profile; no App launch or event progression",
+  "view": "focus-landscape-2",
+  "width": 844,
+  "height": 390,
+  "dpr": 1,
+  "camera": {
+    "x": -320,
+    "y": 4848,
+    "scale": 0.12411764705882353
+  },
+  "time": 2,
+  "seed": 3910,
+  "runtimeSha256": "1deb9e31a01a77310b8fd4717859b562539ebae92e87c02a5b0b63b82ef929c6",
+  "physicsSha256": "bb437927bcd1f6d3ffdf83933fc9aad429ac19eb83ca513edf8452e6023cb722",
+  "renderPure": true,
+  "fontStatus": "loaded",
+  "fontNote": "System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.",
+  "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+  "imageCount": 1,
+  "pendingImages": 0,
+  "imageErrors": 0,
+  "storage": [],
+  "errors": [],
+  "violations": [],
+  "pngSha256": "3cffdc37ab79cc96d4befb8ff4dd78ab2d7bd1706e0309ab99346d95938a98d1"
+}
