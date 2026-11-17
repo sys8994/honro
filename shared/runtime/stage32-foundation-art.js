@@ -39,6 +39,30 @@ function canTransition(c,l){
 const counters={rasterizations:0,hits:0,allocations:0,resizes:0,bytes:0,peakBytes:0,fallbacks:0,lastFallback:null};
 const d=n=>typeof n.d==='string'?n.d:Array.isArray(n.dParts)?n.dParts.join(''):null;
 function fallback(reason){counters.fallbacks++;counters.lastFallback=reason;return false;}
+'use strict';
+// Source-curve scanline accelerator. Geometry is never flattened or modified.
+// Near boundary queries defer to the original browser point-containment oracle.
+function compileScanline(nodes,cfg){
+ const pool=new Map();
+ const evalC=(p,t)=>{const u=1-t;return u*u*u*p[0]+3*u*u*t*p[1]+3*u*t*t*p[2]+t*t*t*p[3];};
+ function add(coords,owner,gray){const key=coords.join(',');let s=pool.get(key);if(!s){const xs=[coords[0],coords[2],coords[4],coords[6]],ys=[coords[1],coords[3],coords[5],coords[7]],a=-ys[0]+3*ys[1]-3*ys[2]+ys[3],b=2*(ys[0]-2*ys[1]+ys[2]),c=ys[1]-ys[0],cuts=[0,1];if(Math.abs(a)<1e-14){if(Math.abs(b)>1e-14){const r=-c/b;if(r>0&&r<1)cuts.push(r);}}else{const disc=b*b-4*a*c;if(disc>0){for(const r of[(-b-Math.sqrt(disc))/(2*a),(-b+Math.sqrt(disc))/(2*a)])if(r>0&&r<1)cuts.push(r);}}cuts.sort((a,b)=>a-b);s={xs,ys,pieces:cuts.slice(0,-1).map((lo,i)=>{const hi=cuts[i+1],ylo=evalC(ys,lo),yhi=evalC(ys,hi);return{lo,hi,ylo,yhi,min:Math.min(ylo,yhi),max:Math.max(ylo,yhi),delta:yhi>ylo?1:-1};}),owners:[]};pool.set(key,s);}s.owners.push({owner,gray});}
+ nodes.forEach((n,owner)=>{const raw=n.d??n.dParts.join(''),tokens=raw.match(/[MLCz]|[-+]?(?:\d*\.\d+|\d+\.?\d*)(?:[eE][-+]?\d+)?/g);if(tokens.join('').replace(/\+/g,'')!==raw.replace(/[\s,]/g,'').replace(/\+/g,''))throw Error('Unsupported SVG syntax');let i=0,x=0,y=0,x0=0,y0=0,loop=-1,cmd;while(i<tokens.length){if(/[MLCz]/.test(tokens[i]))cmd=tokens[i++];const gray=cfg.graySubpaths?.[owner]?.includes(loop)||false;
+ const line=(nx,ny)=>{add([x,y,x+(nx-x)/3,y+(ny-y)/3,x+2*(nx-x)/3,y+2*(ny-y)/3,nx,ny],owner,gray);x=nx;y=ny;};
+ if(cmd==='M'){x=+tokens[i++];y=+tokens[i++];x0=x;y0=y;loop++;cmd='L';}
+ else if(cmd==='L')line(+tokens[i++],+tokens[i++]);
+ else if(cmd==='C'){const v=tokens.slice(i,i+6).map(Number);i+=6;add([x,y,...v],owner,gray);x=v[4];y=v[5];}
+ else if(cmd==='z'){line(x0,y0);cmd=null;}
+ else throw Error('Unsupported path command');
+ }});
+ const segments=[...pool.values()];
+ function row(y){const events=[];for(const s of segments)for(const p of s.pieces){if(!(y>=p.min&&y<p.max)||p.min===p.max)continue;let lo=p.lo,hi=p.hi;for(let k=0;k<44;k++){const mid=(lo+hi)/2,v=evalC(s.ys,mid);if((v<y)===(p.delta>0))lo=mid;else hi=mid;}events.push({x:evalC(s.xs,(lo+hi)/2),delta:p.delta,owners:s.owners});}
+ events.sort((a,b)=>a.x-b.x);const winding=new Int32Array(nodes.length),gray=new Int32Array(nodes.length),bounds=[],labels=[];
+ for(const e of events){for(const o of e.owners){winding[o.owner]+=e.delta;if(o.gray)gray[o.owner]+=e.delta;}let top=-1;for(let i=nodes.length-1;i>=0;i--)if(winding[i]){top=i;break;}const label={top,gray:top>=0&&gray[top]!==0};if(bounds.length&&e.x===bounds.at(-1))labels[labels.length-1]=label;else{bounds.push(e.x);labels.push(label);}}
+ return {events:events.length,at(x,fallback){let lo=0,hi=bounds.length;while(lo<hi){const mid=(lo+hi)>>1;if(bounds[mid]<=x)lo=mid+1;else hi=mid;}if(Math.min(Math.abs(x-(bounds[lo]??Infinity)),Math.abs(x-(bounds[lo-1]??-Infinity)))<1e-7)return fallback(x,y);return lo?labels[lo-1]:{top:-1,gray:false};}};
+ }
+ return {row,uniqueSegments:segments.length};
+}
+
 function geometry(asset){
  if(prepared.has(asset))return prepared.get(asset);
  const q={};
@@ -60,6 +84,7 @@ function geometry(asset){
    if(indices?.some(j=>!Number.isInteger(j)||!subs[j]))throw Error('Invalid Stage 32 original subpath index');
    return {sourceIndex:i,path:new G.Path2D(path),fill:n.fill,rule:n.fillRule||'nonzero',protected:protect.has(i),gray:indices?new G.Path2D(indices.map(j=>subs[j]).join('')):null};
   });
+  q.scanline=compileScanline(nodes,cfg);
  }
  prepared.set(asset,q);return q;
 }
@@ -98,18 +123,18 @@ function coherentColor(c,cv,q){
  const old=c.getImageData(0,y0,w,h),data=old.data,field=cv.getContext('2d').getImageData(0,y0,w,h).data;
  const colors=q.paths.map(p=>{const hex=p.fill.replace('#','');if(!/^[0-9a-f]{6}$/i.test(hex))throw Error('Unexpected source palette');return [0,2,4].map(i=>parseInt(hex.slice(i,i+2),16));});
  const grass=masks[0],road=masks[1],body=masks[2],sampleN=16;
- for(let y=0;y<h;y++)for(let x=0;x<w;x++){
+ for(let y=0;y<h;y++){
+  let scanRows=null;
+  for(let x=0;x<w;x++){
   const k=(y*w+x)*4;if(!grass[k])continue;
   if(grass[k]===255){coverageStats.opaqueGrassSkipped++;continue;}
   if(road[k]){coverageStats.roadSkipped++;continue;}
   if(body[k+3]!==255||data[k+3]!==255||field[k+3]!==255)continue;
-  coverageStats.eligible++;const sum=[0,0,0];let actualGrass=0;
+  coverageStats.eligible++;scanRows??=Array.from({length:sampleN},(_,sy)=>q.scanline.row((y+y0+(sy+.5)/sampleN-m.f)/m.d));const sum=[0,0,0];let actualGrass=0;
   for(let sy=0;sy<sampleN;sy++)for(let sx=0;sx<sampleN;sx++){
    const dx=x+(sx+.5)/sampleN,dy=y+y0+(sy+.5)/sampleN;let color=null;
-   for(let j=q.paths.length-1;j>=0;j--){const p=q.paths[j];if(!c.isPointInPath(p.path,dx,dy,p.rule))continue;
-    if(j>=12&&j<=17)actualGrass++;
-    color=p.protected||p.gray&&c.isPointInPath(p.gray,dx,dy,p.rule)?colors[j]:field.subarray(k,k+3);break;
-   }
+   const label=scanRows[sy].at((dx-m.e)/m.a,()=>{for(let j=q.paths.length-1;j>=0;j--){const p=q.paths[j];if(c.isPointInPath(p.path,dx,dy,p.rule))return{top:j,gray:!!p.gray&&c.isPointInPath(p.gray,dx,dy,p.rule)};}return{top:-1,gray:false};});
+   if(label.top>=0){const j=label.top,p=q.paths[j];if(j>=12&&j<=17)actualGrass++;color=p.protected||label.gray?colors[j]:field.subarray(k,k+3);}
    // A fully opaque raster BODY can still contain unresolved subpixel holes.
    // Such a pixel is not safe to recolor: leave the complete original pixel.
    if(!color){sum[0]=NaN;break;}for(let ch=0;ch<3;ch++)sum[ch]+=color[ch];
@@ -121,9 +146,10 @@ function coherentColor(c,cv,q){
   if(grass[k]/255<=actualGrass/256+1/255)continue;
   const rgb=sum.map(v=>Math.round(v/256));if(rgb.some((v,j)=>v!==data[k+j])){for(let j=0;j<3;j++)data[k+j]=rgb[j];coverageStats.corrected++;}
  }
+ }
  // Pixel write preserves alpha exactly, and only commits changed internal
  // pixels. putImageData ignores active clips, so eligibility is explicit above.
- c.putImageData(old,0,y0);coverageStats.bytes=3*w*h*4+2*w*h*4;coverageStats.ms+=performance.now()-t;
+ c.putImageData(old,0,y0);coverageStats.bytes=8*w*h*4;coverageStats.ms+=performance.now()-t;
 }
 
 function draw(c,l,b,originalOnly=false){

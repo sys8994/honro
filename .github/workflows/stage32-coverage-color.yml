@@ -1,7 +1,7 @@
 name: Diagnose Stage32 gray compound edge coverage
 on:
   push:
-    branches: ['fix/stage32-coverage-color-20261118']
+    branches: ['inspect/stage32-scanline-20261118']
 permissions:
   contents: read
 jobs:
@@ -42,6 +42,6 @@ jobs:
       - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
         if: always()
         with:
-          name: stage32-coverage-color
+          name: stage32-scanline-color
           path: ${{ runner.temp }}/gray-evidence
           if-no-files-found: error
