@@ -91,17 +91,26 @@ def finish_escort(p,out):
  assert s['roster']=={'total':13,'living':11,'priorDeaths':2},s['roster']
  p.keyboard.press('e');p.wait_for_function("HonroApp.engine.b.phase==='won'",timeout=30000);final=record('won');assert final['complete'] and final['round']<=120
  p.screenshot(path=str(out/'outcome.jpg'),type='jpeg',quality=90)
- p.locator('[data-action="result-continue"]').click();p.wait_for_function("HonroApp.screen==='rest'",timeout=60000)
- projection='''()=>Object.fromEntries(['cleared','heroes','equipment','honroAct4','recruited'].map(k=>[k,HonroApp.profile[k]]))'''
- immediate=p.evaluate(projection)
- # The committed reward is notified by the normal rest UI. This legitimate
- # false->true acknowledgement is not growth/equipment loss on reload.
- p.wait_for_function("HonroApp.profile.equipment.rewardLedger.eq_so_t3b.notified===true",timeout=15000)
- before=p.evaluate(projection)
- transition={'immediate':immediate,'settled':before}
- (out/'postwin-notification.json').write_text(json.dumps(transition,ensure_ascii=False,indent=2))
+ p.locator('[data-action="result-continue"]').click()
+ # With Act5 released, the normal destination is Stage41, not a forced rest.
+ p.wait_for_function("HonroApp.screen==='battle'&&HonroApp.engine?.b?.honroStage===41&&HonroApp.profile.honroBattle?.honroStage===41",timeout=60000)
+ p.wait_for_timeout(1200)
+ projection="""()=>Object.fromEntries(['cleared','heroes','equipment','honroAct4','recruited','loadouts'].map(k=>[k,HonroApp.profile[k]]))"""
+ battle_projection="""()=>{const b=HonroApp.engine.b;return{stage:b.honroStage,round:b.round,phase:b.phase,heroes:b.units.filter(u=>u.side===0&&!u.summoned).map(u=>({id:u.id,hp:u.hp,maxHp:u.maxHp,dead:!!u.dead,x:u.x,y:u.y,loadout:u.loadout})),enemyCount:b.units.filter(u=>u.side===1&&!u.dead&&u.hp>0).length}}"""
+ before=p.evaluate(projection);battle_before=p.evaluate(battle_projection)
+ assert before['cleared'].get('40',{}).get('rounds')==final['round']
+ assert before['equipment']['rewardLedger']['eq_so_t3b']['state']=='committed'
+ (out/'postwin-destination.json').write_text(json.dumps({'profile':before,'battle':battle_before,'dialogue':p.evaluate('HonroApp.dialogue?.title')},ensure_ascii=False,indent=2))
  raw=p.evaluate("localStorage.getItem('honro-first-act-profile-1')");(out/'completed-storage.json.xz').write_bytes(lzma.compress(raw.encode()))
- p.reload();p.wait_for_function('window.HonroApp');p.locator('.title-actions button.primary[data-action="rest"]').click();p.wait_for_function("HonroApp.screen==='rest'",timeout=60000);after=p.evaluate(projection);(out/'postwin-reload.json').write_text(json.dumps({'before':before,'after':after},ensure_ascii=False,indent=2));assert before==after
+ p.screenshot(path=str(out/'next-stage-entry.jpg'),type='jpeg',quality=90)
+ p.reload();p.wait_for_function('window.HonroApp');p.locator('.title-actions button.primary[data-action="continue"]').click()
+ p.wait_for_function("HonroApp.screen==='battle'&&HonroApp.engine?.b?.honroStage===41",timeout=60000);p.wait_for_timeout(1200)
+ after=p.evaluate(projection);battle_after=p.evaluate(battle_projection)
+ (out/'postwin-reload.json').write_text(json.dumps({'before':before,'after':after,'battleBefore':battle_before,'battleAfter':battle_after},ensure_ascii=False,indent=2))
+ assert before==after,'growth/proof/reward/clear/loadout changed on normal continuation'
+ assert {k:v for k,v in battle_before.items() if k!='heroes'}=={k:v for k,v in battle_after.items() if k!='heroes'}
+ for a,b in zip(battle_before['heroes'],battle_after['heroes']):
+  assert {k:v for k,v in a.items() if k not in ['x','y']}=={k:v for k,v in b.items() if k not in ['x','y']}
+  assert abs(a['x']-b['x'])<2 and abs(a['y']-b['y'])<2,(a,b)
  p.screenshot(path=str(out/'same-context-restored.jpg'),type='jpeg',quality=90)
- return {'passed':True,'round':final['round'],'heroes':final['heroes'],'residents':final['residents'],'roster':final['roster'],'presentedRequired':coverage['presented'],'retiredRequired':coverage['retired'],'missingRequired':coverage['missing'],'allRequiredPresented':not coverage['missing'],'waterRecoveries':final['water'],'sameOriginalContextPostVictoryReload':True,'completedStorageSha256':hashlib.sha256(raw.encode()).hexdigest()}
-
+ return {'passed':True,'round':final['round'],'heroes':final['heroes'],'residents':final['residents'],'roster':final['roster'],'presentedRequired':coverage['presented'],'retiredRequired':coverage['retired'],'unaccountedRequired':[r for r in rows if r not in presented and r not in retired],'allRequiredPresented':not coverage['missing'],'waterRecoveries':final['water'],'sameOriginalContextPostVictoryReload':True,'normalDestination':battle_after,'completedStorageSha256':hashlib.sha256(raw.encode()).hexdigest()}
