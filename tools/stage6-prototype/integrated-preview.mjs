@@ -8,7 +8,9 @@ import {brokenDeckEdges} from './broken-deck-edges.mjs';
 import {addRockContactShadow} from './contact-shadow-preview.mjs';
 import {addDeckFractures} from './deck-fractures-preview.mjs';
 const expected={
- 'art-preview.mjs':'2e497eec8741bc4767e39e52ed94e8e12779f41478a1d08ede8dba82b02e97ef',
+ // Registration-only Stage6 bounds expansion; reviewed vector and stage hashes
+ // remain locked by tests/stage6-art-bounds.mjs. Do not relax the source guard.
+ 'art-preview.mjs':'fafc24f79e8d9f1d5bae805d7b4460e446b07ffcfb0bb54aa85e0e18f343620a',
  'author.mjs':'1c3f1f1825e39cabf653688ed779dcc42d80ce448e4e582173a8eb53cbb80870',
  'broken-deck-edges.mjs':'1917c02d729ee55002e92c4d7c246a499fde56c6b0ed329f479931d4d21a5ca2'
 };
