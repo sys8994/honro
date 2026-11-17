@@ -1,0 +1,32 @@
+name: Inspect remaining Act4 edges in isolated Chrome
+on:
+  push:
+    branches: ['audit/act4-remaining-chrome-baseline-20261117']
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm ci && npm ci --prefix game
+      - name: Generate official initial scenes
+        run: HONRO_ACT4_RELEASE=1 node tests/actual-scene-browser-fixture.mjs "$RUNNER_TEMP/act4-remaining" 34,37,38
+      - name: Render exact survey cameras in real Chrome
+        shell: bash
+        run: |
+          browser=$(command -v google-chrome || command -v chromium)
+          for stage in 34 37 38; do
+            timeout 300s "$browser" --headless --no-first-run --no-default-browser-check --force-device-scale-factor=1 --virtual-time-budget=60000 --user-data-dir="$RUNNER_TEMP/act4-$stage-profile" --dump-dom "file://$RUNNER_TEMP/act4-remaining/stage$stage.html" > "$RUNNER_TEMP/stage$stage-dump.html"
+            node tests/actual-scene-browser-result.mjs "$RUNNER_TEMP/stage$stage-dump.html" "$RUNNER_TEMP/act4-remaining-evidence" "$stage"
+          done
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        with:
+          name: act4-remaining-chrome-baseline
+          path: ${{ runner.temp }}/act4-remaining-evidence
+          if-no-files-found: error
