@@ -81,7 +81,7 @@ export async function applyAct4HandoffArt(project,{stages:enabled=Object.keys(ad
   const terrainIds=new Set(stage.terrains.map(t=>t.id));
   const nativeArt={...stage.design.nativeArt,compatibilityAssetIds};
   const design={...stage.design,nativeArt};
-  const bodyId=assetId(n,n===32?"body-joined":"body");
+  const bodyId=assetId(n,n===32?"body-shared-material":"body");
   const elements=stage.elements.flatMap(element=>{
    if(n===32&&element.id==='approved32-coastal-foundation'){
     compatibilityAssetIds.push(element.assetId);
@@ -107,7 +107,10 @@ export async function applyAct4HandoffArt(project,{stages:enabled=Object.keys(ad
   if(n===32){
    const door=design.vectorShelterDoor;
    compatibilityAssetIds.push(door.assetId,assetId(n,'body'));
-   pack.assets.push(joinPortGround(pack.assets.find(a=>a.id===assetId(n,'body'))));
+   const joined=joinPortGround(pack.assets.find(a=>a.id===assetId(n,'body')));
+   const protection=JSON.parse(await readFile(new URL('./data/act4/handoff-art/32-material-protection.json',import.meta.url),'utf8'));
+   compatibilityAssetIds.push(joined.id);
+   pack.assets.push(joined,{...joined,id:bodyId,params:{...joined.params,stage32SharedMaterial:protection}});
    design.vectorShelterDoor={...door,assetId:assetId(n,'door'),bodyAssetId:bodyId,standalone:true};
    nativeArt.coveredTerrainIds=nativeArt.coveredTerrainIds.filter(id=>terrainIds.has(id));
   }

@@ -47,6 +47,7 @@ function bodyLive(l,b){const ids=terrainIds(l);return ids.length>0&&new Set(ids)
 function covered(t,b){const q=config(b);return !!(q&&q.coveredTerrainIds.includes(t.id)&&!t.honroElementCollision&&(b.honroLandmarks||[]).some(l=>native(l,b)&&l.nativeArtLayer==='body'&&bodyLive(l,b)&&terrainIds(l).includes(t.id)&&(l.opacity??1)===1));}
 const contactUnderpaint={
  'act4-handoff:32:body-joined':{'approved32-east-face':['#626b70','#879193']},
+ 'act4-handoff:32:body-shared-material':{'approved32-east-face':['#626b70','#879193']},
  'act4-handoff:35:body':{'approved35-bridge-pier':['#55594c','#797965']},
 };
 function paintContactUnderlay(c,l,b){
@@ -91,6 +92,7 @@ if(S){
    if(l.nativeArtLayer==='body'&&!bodyLive(l,b))return;
    const raw=G.HonroVisualStyle?.raw(c)||c;
    if(l.nativeArtLayer==='body')paintContactUnderlay(raw,l,b);
+   if(G.HonroStage32FoundationArt?.draw(raw,l,b))return;
    if(G.HonroVectorArt?.draw(raw,l.asset,l))return;
   }
   // Paint the existing event-controlled boat pose exactly once, without making
