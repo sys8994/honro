@@ -11,3 +11,8 @@ Chrome fixtures load the actual production helper without instrumentation. The o
 Raw BODY is intentionally retained: 843367 bytes versus old optimized684521, +158846 bytes. The optimized alias changes relative-m subpath semantics and is not safe for the unchanged gray-selection mask. This is separate from transition overhead.
 
 Validation pending. Previous ROI prototype single cache samples were162.7/108.2ms versus original106.6/66.6ms, improved from first605/415ms, not formal p50/p95. Mobile, extreme-pan matrix, actual public UI, real hardware, real saves and gameplay quantitative acceptance remain unverified. No master/Pages deployment is authorized for this child task.
+
+## Verified production candidate 661161a0
+CI44165810113 passed original V1/new bounded contract, original provider/path/isolated-codec, four actual Chrome captures, strict protected-pixel comparison and official Act4 build. Artifact14365288179. Original control PNG SHA values are unchanged. Both views retain zero changed pixels at world y<=1700. Direct review confirms lower horizontal seam reduction, but internal fine green seams remain.
+
+Both views allocate material1065024 + auxiliary1882368 = total2947392 logical RGBA bytes. Auxiliary sizes516x198,516x198,516x516; 3 allocations,3 resizes, no skipped transition. Single cache-build samples baseline/production: lower129.3/224.7ms, left84.2/146.8ms. These are not comparable formal benchmarks; follow-up fixture records first synchronous Scene.render and subsequent cached calls without altering rendering or strict PNG criteria.
