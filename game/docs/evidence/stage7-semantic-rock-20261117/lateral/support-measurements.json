@@ -1,0 +1,128 @@
+{
+  "raw-study": {
+    "left": {
+      "x": [
+        -381,
+        8
+      ],
+      "sourceY": 991,
+      "contactOpaqueSamples": 0,
+      "totalSamples": 390,
+      "firstSupportGapMin": 98,
+      "firstSupportGapMax": 458,
+      "noSupportWithinView": 50,
+      "samples": {
+        "-381": null,
+        "-300": 389,
+        "-200": 306,
+        "-100": 257,
+        "0": 112,
+        "8": 98
+      }
+    },
+    "right": {
+      "x": [
+        1447,
+        1831
+      ],
+      "sourceY": 884,
+      "contactOpaqueSamples": 0,
+      "totalSamples": 385,
+      "firstSupportGapMin": 236,
+      "firstSupportGapMax": 565,
+      "noSupportWithinView": 71,
+      "samples": {
+        "1447": 236,
+        "1500": 278,
+        "1600": 349,
+        "1700": 476,
+        "1800": null,
+        "1831": null
+      }
+    }
+  },
+  "with-original-sides": {
+    "left": {
+      "x": [
+        -381,
+        8
+      ],
+      "sourceY": 991,
+      "contactOpaqueSamples": 346,
+      "totalSamples": 390,
+      "firstSupportGapMin": 0,
+      "firstSupportGapMax": 155,
+      "noSupportWithinView": 0,
+      "samples": {
+        "-381": 0,
+        "-300": 0,
+        "-200": 0,
+        "-100": 0,
+        "0": 112,
+        "8": 98
+      }
+    },
+    "right": {
+      "x": [
+        1447,
+        1831
+      ],
+      "sourceY": 884,
+      "contactOpaqueSamples": 385,
+      "totalSamples": 385,
+      "firstSupportGapMin": 0,
+      "firstSupportGapMax": 0,
+      "noSupportWithinView": 0,
+      "samples": {
+        "1447": 0,
+        "1500": 0,
+        "1600": 0,
+        "1700": 0,
+        "1800": 0,
+        "1831": 0
+      }
+    }
+  },
+  "baseline": {
+    "left": {
+      "x": [
+        -381,
+        8
+      ],
+      "sourceY": 991,
+      "contactOpaqueSamples": 346,
+      "totalSamples": 390,
+      "firstSupportGapMin": 0,
+      "firstSupportGapMax": 0,
+      "noSupportWithinView": 44,
+      "samples": {
+        "-381": 0,
+        "-300": 0,
+        "-200": 0,
+        "-100": 0,
+        "0": null,
+        "8": null
+      }
+    },
+    "right": {
+      "x": [
+        1447,
+        1831
+      ],
+      "sourceY": 884,
+      "contactOpaqueSamples": 385,
+      "totalSamples": 385,
+      "firstSupportGapMin": 0,
+      "firstSupportGapMax": 0,
+      "noSupportWithinView": 0,
+      "samples": {
+        "1447": 0,
+        "1500": 0,
+        "1600": 0,
+        "1700": 0,
+        "1800": 0,
+        "1831": 0
+      }
+    }
+  }
+}
