@@ -72,18 +72,18 @@ export const lateEncounters = {
     ],
     packs:[
       pack('entry',['stakeOne'],154,145,[
-        foe('shade',178,721,{label:'들린 제기'}), flyer('lantern',212,721,52), foe('ghost',229,721),
+        foe('shade',178,721,{label:'들린 제기'}), flyer('lantern',193,721,63), foe('ghost',205,721),
       ]),
       pack('westGuard',['stakeOne','stakeTwo'],146,119,[
-        foe('mourner',258,721,{label:'서쪽 진목 주박귀'}), foe('shade',302,721,{label:'들린 제기'}),
+        foe('mourner',258,721,{label:'서쪽 진목 주박귀'}), foe('shade',279,721,{label:'들린 제기'}),
         flyer('bat',335,721,85),
       ]),
       pack('bridgeGuard',['stakeTwo','center'],160,169,[
-        foe('ghost',389,721), flyer('lantern',428,721,75), flyer('bat',444,940,111),
-        foe('shade',472,721,{label:'제의터 잔혼'}),
+        foe('ghost',414,721), flyer('lantern',428,721,75), flyer('bat',444,940,111),
+        foe('shade',454,721,{label:'제의터 잔혼'}),
       ]),
       pack('eastGuard',['stakeTwo','center'],156,143,[
-        flyer('lantern',512,721,53), foe('ghost',548,721), foe('mourner',601,721,{label:'동쪽 진목 주박귀'}),
+        flyer('lantern',512,721,53), foe('ghost',548,721), foe('mourner',574,721,{label:'동쪽 진목 주박귀'}),
       ]),
       pack('rampWatch',['center','reverseGuard'],156,160,[
         foe('shade',650,677,{label:'계단 길목 제기귀'}), flyer('lantern',696,636,46),
