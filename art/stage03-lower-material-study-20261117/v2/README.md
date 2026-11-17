@@ -1,0 +1,5 @@
+# Stage3 lower field v2: NOT ACCEPTED
+
+One final image-generation attempt requested many small low-contrast embedded geological facets, no isolated stones, ledges, bright tops, repetition or blank band. Native Inkscape preview overlays unchanged original SVG on generated raster only below source y887. Raster registration is uniform x=-1200,y887,width4174,height974*4174/1615. Full viewBox -1200 0 4174 3400 at800x652; join0 650 1774 900 at1200x609. No production raster embedding: these are diagnostic previews only.
+
+Direct inspection: giant stones, bright fake-platform tops and long blank band are reduced, but diagonal leaf-like repeated motifs dominate the entire field and look unlike the original organic broad veins. Top colors are not the requested exact base, so the horizontal join remains. Rejected before tracing/optimization/production/Chrome. No additional generation, no acceptance, no deployment. Old BODY geometry/colors/physics untouched. Sides remain unimplemented. These studies do not solve the complete Stage3 lower-art requirement.
