@@ -1,0 +1,8 @@
+import {readFile} from 'node:fs/promises';import path from 'node:path';import assert from 'node:assert/strict';import {createCanvas,loadImage} from '@napi-rs/canvas';
+const out=process.argv[2];for(const view of ['desktop','portrait','landscape']){
+ const read=async v=>JSON.parse(await readFile(path.join(out,`stage34-${v}-${view}.json`),'utf8')),a=await read('baseline'),b=await read('candidate');for(const k of ['sourceSha256','camera','physicsSha256','runtimeSha256','width','height'])assert.deepEqual(b[k],a[k]);if(view==='desktop')assert.equal(a.pngSha256,'58748898e6baa2b9195fb57ab0eb7124c1185f7f74dda7bb1732aee3472248bc');
+ const pixels=async v=>{const im=await loadImage(await readFile(path.join(out,`stage34-${v}-${view}.png`))),c=createCanvas(a.width,a.height).getContext('2d');c.drawImage(im,0,0);return c.getImageData(0,0,a.width,a.height).data;},pa=await pixels('baseline'),pb=await pixels('candidate');
+ const right=(7680-a.camera.x)*a.camera.scale+a.width/2,bottom=(5888-a.camera.y)*a.camera.scale+a.height/2,col=Math.floor(right),row=Math.floor(bottom);let changed=0,outside=0,maxDelta=0;
+ for(let y=0;y<a.height;y++)for(let x=0;x<a.width;x++){const i=(y*a.width+x)*4;let d=0;for(let k=0;k<4;k++)d=Math.max(d,Math.abs(pa[i+k]-pb[i+k]));if(d){changed++;maxDelta=Math.max(d,maxDelta);if(x!==col&&y!==row)outside++;}}
+ assert.equal(outside,0,'Interior or other source changed');assert(changed>0,'No boundary effect');assert(b.edgeStats.peakBytes<=4*(a.width+a.height),'Unexpected strip memory');console.log(JSON.stringify({view,changed,outsideBand:outside,maxDelta,col,row,physicsUnchanged:true,sourceUnchanged:true,edgeStats:b.edgeStats,visualAcceptance:'pending'}));
+}
