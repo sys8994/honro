@@ -12,6 +12,8 @@ cliff 최종자산 act1-traced:stage05-cliff-v1의 유효 중첩clip은 x4270..1
 ## A/B 및 상태 범위
 11개 물리지형 접점×3화면비33뷰, 최소줌5위치×3화면비15뷰 총48뷰. 수정전후 terrain/units SHA230ddae8f982fce6538b4c4617309b7e773d70ba37abde0562483828164ac8b9 동일. 45뷰 픽셀불변, 세로 좌하/우하 y571..695와 세로전체의 마지막 y695 한 줄만 달라져 하단 경계가 제거됐다. cliff 보완은 이번48뷰에서 별도 가시차를 만들지 않았다.
 
-수관·동굴 접합 표본에서는 잘림 미관측. 파괴불가 지형만 보고 상태를 전부 N/A로 처리하지 않는다. waterfall-open은 정상 production setOpen을 별도 메모리 fixture에 호출한6뷰이며 열린 flag와 렌더 순수성을 확인했다. 실제 주박목 타격→폭포 전환 플레이 합격을 뜻하지 않는다. ritual active 및 cliff-cleat broken fixture 추가 검수 진행. 파인 하단 발판 변위·실제 전투상태전환·저장 재진입은 미검수.
+수관·동굴 접합 표본에서는 잘림 미관측. 파괴불가 지형만 보고 상태를 전부 N/A로 처리하지 않는다. waterfall-open은 정상 production setOpen을 별도 메모리 fixture에 호출한6뷰이며 열린 flag와 렌더 순수성을 확인했다. 실제 주박목 타격→폭포 전환 플레이 합격을 뜻하지 않는다. ritual active 3뷰와 cliff-cleat broken 3뷰도 독립 fixture로 완료했다. 데스크톱 직접 이미지 확인에서 ritual 효과는 하단 y724..762, 파괴된 cleat는 x427..842/y311..493 범위에 국한됐다. 실제 타격/전환·낙하 실행이 아닌 합성 상태 렌더 검사다. 파인 하단 발판 변위·실제 전투상태전환·저장 재진입은 미검수.
 
 master/Pages 보류, fix/stage5-art-bounds-20261117 후보만 보존한다.
+
+CI 44039006391은 코드 5beb2f5e1219754cdc700b71e5dce049250123af에서 success. 검수 표본은 play-area corner이며 실제 focus 최극단 팬은 아직 미검수다.
