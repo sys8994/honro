@@ -1,0 +1,3 @@
+# Exact semantic-mask work reduction
+
+Each road/grass semantic canvas is initialized to opaque black before path traversal. Paths before the first relevant white layer also fill opaque black. Such source-over black on opaque black operations cannot change any mask byte and can be omitted. Grass skips source0..11; road skips0..20. Subsequent occluding black layers remain, BODY union mask remains unchanged, all allocations/grid/oracle rules remain. This removes33 of75 path fill submissions per coverage call without dropping actual mask content. Actual Chrome exact safe-band PNG comparison plus historical baseline/prior references still required. Not release-ready by this observation alone.
