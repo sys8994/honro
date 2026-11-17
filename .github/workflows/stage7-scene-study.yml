@@ -27,7 +27,10 @@ jobs:
       - name: Regenerate test-only native candidate
         run: python game/tools/stage7-vector-study/convert.py
       - name: Generate isolated production Scene fixtures
-        run: node game/tools/stage7-scene-study/fixture.mjs "$RUNNER_TEMP/stage7-scenes"
+        run: |
+          node game/tools/stage7-scene-study/fixture.mjs "$RUNNER_TEMP/stage7-scenes"
+          mkdir -p artifacts/stage7-scene-study
+          cp "$RUNNER_TEMP/stage7-scenes/source-adapter-contract.json" artifacts/stage7-scene-study/
       - name: Render actual Scene at five constrained cameras
         run: |
           export CHROME_BIN="$(command -v google-chrome || command -v chromium)"

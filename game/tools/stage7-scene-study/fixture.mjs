@@ -2,10 +2,31 @@ import {mkdir,writeFile,readFile} from 'node:fs/promises';
 import path from 'node:path';
 import {createHash} from 'node:crypto';
 import {runtimeEntries} from '../../../shared/build.mjs';
+import {applyAct1Sites} from '../../../tools/map-forge/act1-naru-doldang.mjs';
+import {terrainPathOptimization} from '../../../shared/terrain-path-optimization.mjs';
 const out=process.argv[2];if(!out)throw Error('Output directory required');await mkdir(out,{recursive:true});
 const candidate=JSON.parse(await readFile(new URL('../stage7-vector-study/generated/candidate.json',import.meta.url),'utf8'));
 const entries=await runtimeEntries({vector:true,render:true,app:false,productionStory:true});
 const runtime=entries.map(e=>e.code).join('\n;\n'),runtimeSha=createHash('sha256').update(runtime).digest('hex');
+// Recreate the production author -> registered path optimizer boundary exactly.
+// Never substitute the unoptimized JSON source into the running game.
+const stableBuild=x=>JSON.stringify(x,(k,v)=>v&&typeof v==='object'&&!Array.isArray(v)?Object.fromEntries(Object.keys(v).sort().map(k=>[k,v[k]])):v);
+const shaBuild=x=>createHash('sha256').update(stableBuild(x)).digest('hex');
+const runtimeProject=entries.find(e=>e.project)?.project;if(!runtimeProject)throw Error('Runtime campaign project missing');
+const rawProject=structuredClone(runtimeProject);rawProject.library=rawProject.library.filter(a=>!a.id.startsWith('act1-site:'));
+await applyAct1Sites(rawProject);
+const body=p=>p.library.find(a=>a.id==='act1-site:7:body');
+const rawBody=structuredClone(body(rawProject));
+if(stableBuild(candidate.vector.symbols['original-body-source'])!==stableBuild(rawBody.vector.symbols.source))throw Error('Candidate changed authoritative unoptimized source');
+const opt=await terrainPathOptimization();opt.apply(rawProject.library);
+const optimizedBody=body(rawProject),actualBody=body(runtimeProject);
+if(stableBuild(optimizedBody.vector)!==stableBuild(actualBody.vector))throw Error('Registered optimizer does not reproduce actual runtime BODY');
+const changes=[];
+function differences(a,b,path=[]){if(stableBuild(a)===stableBuild(b))return;if(a&&b&&typeof a==='object'&&typeof b==='object'){for(const k of new Set([...Object.keys(a),...Object.keys(b)]))differences(a[k],b[k],[...path,k]);return;}changes.push({path,rawType:typeof a,runtimeType:typeof b,rawLength:typeof a==='string'?a.length:null,runtimeLength:typeof b==='string'?b.length:null,rawSha256:shaBuild(a??null),runtimeSha256:shaBuild(b??null)});}
+differences(rawBody.vector.symbols.source,actualBody.vector.symbols.source);
+const sourceContract={rawSource:rawBody.vector.symbols.source,runtimeSource:actualBody.vector.symbols.source,rawSha256:shaBuild(rawBody.vector.symbols.source),runtimeSha256:shaBuild(actualBody.vector.symbols.source)};
+await writeFile(path.join(out,'source-adapter-contract.json'),JSON.stringify({scope:'Authoritative source -> existing registered production optimizer, not candidate source edits',rawSha256:sourceContract.rawSha256,runtimeSha256:sourceContract.runtimeSha256,exactRuntimeVectorReproduction:true,changes},null,2));
+
 function bootstrap(id){
  if(id===32)globalThis.HONRO_APP_READY=new Promise(()=>{}); // Never attach a real App or resolve this promise.
  globalThis.PROBE={storage:[],errors:[],images:[],violations:[]};
@@ -24,7 +45,7 @@ function bootstrap(id){
   descriptor.set.call(this,value);
  }});
 }
-async function capture(candidate,runtimeSha,variant,view){
+async function capture(candidate,sourceContract,runtimeSha,variant,view){
  const p=PROBE,assert=(v,m)=>{if(!v)throw Error(m);},plain=x=>JSON.parse(JSON.stringify(x));
  const stable=x=>JSON.stringify(x,(k,v)=>v&&typeof v==='object'&&!Array.isArray(v)?Object.fromEntries(Object.keys(v).sort().map(k=>[k,v[k]])):v);
  const hash=async x=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(typeof x==='string'?x:stable(x)))),v=>v.toString(16).padStart(2,'0')).join('');
@@ -35,7 +56,7 @@ async function capture(candidate,runtimeSha,variant,view){
   const findCaps=v=>{const map={};function walk(n){const m=/^(?:site-crop-|cap-)(\d+)$/.exec(n.clipPath||'');if(m)map[+m[1]]=n;for(const c of n.children||[])walk(c);}walk(v.root);return map;};
   const currentCaps=findCaps(original.vector);assert(Object.keys(currentCaps).length===13,'Actual 13 footholds required');
   if(variant==='candidate'){
-   const v=plain(candidate.vector);assert(stable(v.symbols['original-body-source'])===stable(source),'Authoritative runtime foreground changed');
+   const v=plain(candidate.vector);assert(stable(v.symbols['original-body-source'])===stable(sourceContract.rawSource),'Authoritative raw foreground changed');assert(stable(source)===stable(sourceContract.runtimeSource),'Authoritative runtime foreground changed');
    delete v.symbols['original-body-source'];v.symbols.source=plain(source);
    function adapt(n){if(n.tag==='use'&&n.symbol==='original-body-source')n.symbol='source';const m=/^cap-(\d+)$/.exec(n.clipPath||'');if(m)return plain(currentCaps[+m[1]]);if(n.children)n.children=n.children.map(adapt);return n;}
    v.root=adapt(v.root);for(const key of Object.keys(v.symbols))if(key!=='source')v.symbols[key]=adapt(v.symbols[key]);
@@ -67,5 +88,5 @@ async function capture(candidate,runtimeSha,variant,view){
 }
 const views=[{name:'portrait-bl',width:390,height:696,x:'left',y:'bottom'},{name:'desktop-br',width:1331,height:763,x:'right',y:'bottom'},{name:'portrait-tr',width:390,height:696,x:'right',y:'top'},{name:'desktop-tr',width:1331,height:763,x:'right',y:'top'},{name:'desktop-cut-close',width:1331,height:763,x:'right',y:'cut',close:true}];
 const script=s=>'<script>'+s.replace(/<\/script/gi,'<\\/script')+'</script>',list=[];
-for(const variant of ['original','candidate'])for(const view of views){const file=`${variant}-${view.name}.html`;const html='<!doctype html><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src \'none\'; script-src \'unsafe-inline\'; style-src \'unsafe-inline\'; img-src data:; font-src data:; connect-src \'none\'"><style>body{margin:0}canvas{display:block}</style><canvas id="scene"></canvas><pre id="result">pending</pre>'+script('('+bootstrap.toString()+')(7);')+script(runtime)+script('('+capture.toString()+')('+JSON.stringify(candidate)+','+JSON.stringify(runtimeSha)+','+JSON.stringify(variant)+','+JSON.stringify(view)+');');await writeFile(path.join(out,file),html);list.push({variant,view:view.name,file});}
+for(const variant of ['original','candidate'])for(const view of views){const file=`${variant}-${view.name}.html`;const html='<!doctype html><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src \'none\'; script-src \'unsafe-inline\'; style-src \'unsafe-inline\'; img-src data:; font-src data:; connect-src \'none\'"><style>body{margin:0}canvas{display:block}</style><canvas id="scene"></canvas><pre id="result">pending</pre>'+script('('+bootstrap.toString()+')(7);')+script(runtime)+script('('+capture.toString()+')('+JSON.stringify(candidate)+','+JSON.stringify(sourceContract)+','+JSON.stringify(runtimeSha)+','+JSON.stringify(variant)+','+JSON.stringify(view)+');');await writeFile(path.join(out,file),html);list.push({variant,view:view.name,file});}
 await writeFile(path.join(out,'capture-list.json'),JSON.stringify(list,null,2));console.log({runtimeSha,views:views.length,variants:2,productionModified:false});
