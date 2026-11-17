@@ -77,9 +77,9 @@ export function extendNaruBody(core){
  const clips={...core.clips},parts=core.root.children.map(n=>{
   if(!n.clipPath)return n;const q={...n,pixelSnapClip:true,transform:[...n.transform]};
   // The imported base has an antialiased edge. Underlap only its off-map
-  // adjoining strips by less than one source pixel, without moving source art.
-  if(n.clipPath==='site-edge-0')q.transform[4]+=.75;
-  if(n.clipPath==='site-edge-1')q.transform[4]-=.75;
+  // adjoining strips by at most two source pixels, without moving source art.
+  if(n.clipPath==='site-edge-0')q.transform[4]+=2;
+  if(n.clipPath==='site-edge-1')q.transform[4]-=2;
   if(n.clipPath==='site-edge-2')q.transform[5]-=.75;
   return q;
  });
@@ -87,9 +87,9 @@ export function extendNaruBody(core){
   clips[key]=[rect([x,y,w,h])];const sx=dw/w,sy=dh/h;
   parts.push({tag:'g',clipPath:key,pixelSnapClip:true,transform:[sx,0,0,sy,dx-x*sx,dy-y*sy],children:[{tag:'use',symbol:'source'}]});
  }
- strip('naru-outer-left',27-27/390,506,27/390,381,-1200,506,810.25,381);
- strip('naru-outer-right',1752,470,22/400,417,2173.75,470,800.25,417);
- strip('naru-lower-left',1,858,1,28,-1200,886.75,1200,380.5);
+ strip('naru-outer-left',27-27/390,506,27/390,381,-1200,506,814,381);
+ strip('naru-outer-right',1752,470,22/400,417,2170,470,804,417);
+ strip('naru-lower-left',1,858,1,28,-1200,886.75,1201,380.5);
  strip('naru-lower-right',1771,858,1,28,1773,886.75,1201,380.5);
  strip('naru-core-bottom-join',0,858.1,1774,.1,0,886.75,1774,.5);
  const y=885,h=1;
