@@ -168,8 +168,8 @@
         _terrainPaintBounds(t){const work=!!t.honroWorkAccess,cap=t.honroV4Support?32:0;return{left:t.x-(work?32:0),right:t.x+t.w+(work?32:0),top:t.y-cap,bottom:t.y+Math.max(t.h,work?600:0)};}
         _terrainRasterBounds(b){
             const domain={...b.honroTerrainBounds};
-            // Naru's visual skirt extends beyond its unchanged collision domain.
-            if(b.honroStage===3){const body=(b.honroLandmarks||[]).find(l=>l.asset?.id==='act1-site:3:body'),paint=body&&this._landmarkPaintBounds(body);
+            // Painted sites' visual skirts extend beyond unchanged collision domains.
+            if(b.honroStage===3||b.honroStage===7){const body=(b.honroLandmarks||[]).find(l=>l.asset?.id==='act1-site:'+b.honroStage+':body'),paint=body&&this._landmarkPaintBounds(body);
                 if(paint){domain.left=Math.min(domain.left,paint.left);domain.right=Math.max(domain.right,paint.right);domain.top=Math.min(domain.top,paint.top);domain.bottom=Math.max(domain.bottom,paint.bottom);}}
             return domain;
         }

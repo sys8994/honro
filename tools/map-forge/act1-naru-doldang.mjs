@@ -29,7 +29,7 @@ const stairs={
  'fall-caps':[[1124,967,55],[1068,945,56],[1007,919,58],[953,891,51]]
 };
 // Added footholds reuse the painted cap samples alongside the existing rock.
-const footholds=[
+export const footholds=[
  [191,550,75,24,247,867,75,868],
  [143,589,78,23,289,825,77,826],
  [95,619,76,24,267,783,75,784],
@@ -98,6 +98,34 @@ export function extendNaruBody(core){
  strip('naru-bottom-right',1771,y,1,h,1773,1264,1201,3623);
  return {...core,viewBox:[-1200,0,4174,4887],clips,root:{tag:'g',children:parts}};
 }
+// Doldang's reviewed paths and footholds stay exact. Only the off-map skirt
+// receives source-pixel extensions; overlaps prevent raster clip seams.
+export function extendVillageBody(core){
+ const clips={...core.clips,'site-edge-2':[rect([16,1067,1402,1])]},parts=core.root.children.map(n=>{
+  if(!n.clipPath)return n;const q={...n,pixelSnapClip:true,transform:[...n.transform]};
+  if(n.clipPath==='site-edge-0')q.transform[4]+=2;
+  if(n.clipPath==='site-edge-1')q.transform[4]-=2;
+  // Continue the last opaque row rather than repeat 19 source rows.
+  if(n.clipPath==='site-edge-2')q.transform=[1,0,0,2532.75,0,1067.25-1067*2532.75];
+  return q;
+ });
+ function strip(key,x,y,w,h,dx,dy,dw,dh){
+  clips[key]=[rect([x,y,w,h])];const sx=dw/w,sy=dh/h;
+  parts.push({tag:'g',clipPath:key,pixelSnapClip:true,transform:[sx,0,0,sy,dx-x*sx,dy-y*sy],children:[{tag:'use',symbol:'source'}]});
+ }
+ strip('village-outer-left',38,908,1,157,-1200,908,821,157);
+ strip('village-outer-right',1421,882,1,181,1832,882,816,181);
+ strip('village-left-join-underlay',38,990,1,1,-1200,990,1218,74);
+ strip('village-lower-left',38,1049,1,14,-1200,1061,1218,389);
+ // The right source edge slopes up: alpha ends at y994..1034, not1063.
+ // Underlay its last opaque row; keep the original sloping edge over it.
+ strip('village-right-underlay',1421,990,13,1,1834,990,-400,2610);
+ strip('village-right-outer-underlay',1421,990,1,1,1832,990,816,2610);
+ strip('village-bottom-left',38,1062,1,1,-1200,1446,1218,2154);
+ strip('village-right-join-underlay',1414,990,1,1,1414,990,21,2610);
+ const underlay=parts.filter(n=>n.clipPath?.includes('underlay')),rest=parts.filter(n=>!n.clipPath?.includes('underlay'));
+ return {...core,viewBox:[-1200,0,3848,3600],clips,root:{tag:'g',children:[...underlay,...rest]}};
+}
 function artAsset(project,id,name,vector,sha,foot={x:0,y:0}){
  const [x,y,w,h]=vector.viewBox,bounds={x,y,w,h};
  project.library.push({id,name,category:'rock',visual:[],collision:[],sockets:[],tags:['act1-site'],anchor:{x:0,y:0},params:{
@@ -136,7 +164,7 @@ function authorStage(project,s,data){
   [16,1049,1402,19,16,1068,1402,380]];
  const faces=shore?[]:footholds.map(([x,y,w,h,dx,dy,dw])=>[x,y,w,h,dx,dy,dw,h*dw/w]);
  const bodyCollage=collage(body.vector,faces,[-390,0,sourceWidth+790,sourceHeight+380],true,edges);
- artAsset(project,bodyId,site+' 지형',shore?extendNaruBody(bodyCollage):bodyCollage,body.sha256);
+ artAsset(project,bodyId,site+' 지형',shore?extendNaruBody(bodyCollage):extendVillageBody(bodyCollage),body.sha256);
  artAsset(project,sheetId,site+' 랜드마크',collage(data.art.landmarks.vector,data.layout,body.vector.viewBox),data.art.landmarks.sha256);
  const placement=(id,assetId,x=0,y=0,z=1,layer='structural-back')=>({id,assetId,...world(x,y),scale:z*scale,layer,depthLayer:'L1',visualRole:'scenery'});
  s.elements=[placement('site-body-'+n,bodyId),placement('site-landmarks-'+n,sheetId,0,0,1,'prop')];

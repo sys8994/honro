@@ -9,5 +9,7 @@ const vector=extendNaruBody(core),path='shared/data/terrain-path-optimization.js
 assert.equal(entry.original,sha(core),'Must register from unchanged reviewed core');
 assert.deepEqual(vector.symbols.source,core.symbols.source);
 for(const [p,key] of entry.paths)assert.deepEqual(p.reduce((v,k)=>v[k],core)[key],p.reduce((v,k)=>v[k],vector)[key]);
-writeFileSync('shared/data/terrain-path-registrations.json',JSON.stringify([{id:entry.id,sourceOriginal:entry.original,original:sha(vector)}],null,2)+'\n');
+const registryPath='shared/data/terrain-path-registrations.json',registrations=JSON.parse(readFileSync(registryPath,'utf8')).filter(r=>r.id!==entry.id);
+registrations.push({id:entry.id,sourceOriginal:entry.original,original:sha(vector)});
+writeFileSync(registryPath,JSON.stringify(registrations.sort((a,b)=>a.id.localeCompare(b.id)),null,2)+'\n');
 console.log(JSON.stringify({original:entry.original,extended:sha(vector),optimizedPathsPreserved:entry.paths.length}));

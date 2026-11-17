@@ -1,0 +1,21 @@
+/** Final production Stage7: off-map skirt only, immutable source/physics. */
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+import {runtimeEntries} from '../shared/build.mjs';
+const entries=await runtimeEntries({vector:false,render:false,productionStory:true});
+const p=entries.find(e=>e.project).project,stage=p.stages.find(s=>s.metadata?.stageId===7);
+const a=p.library.find(a=>a.id==='act1-site:7:body'),hash=x=>createHash('sha256').update(JSON.stringify(x)).digest('hex');
+assert.equal(hash(stage),'7ec52e52f4ee62d9765747e8b0b143a753c9fd5cbcc1e47ee80371fd883e1789','Full stage/physics/placements changed');
+assert.equal(hash(a.vector.symbols),'74aea53168168576d828b6135fa8de0d4e81b0e302aa3124e6f3e3a54fa3324e','Reviewed original source paths changed');
+assert.equal(hash(a.vector.root.children.filter(n=>!n.clipPath?.startsWith('site-edge-')&&!n.clipPath?.startsWith('village-')).map(({pixelSnapClip,...rest})=>rest)),'97eac4bd68a526a1af608940ac80bb859ffa3cc405d7bb3bb9a2a4aaa95d7af8','Reviewed core and foothold placements changed');
+assert.deepEqual(a.collision,[]);
+assert.deepEqual(a.bounds,{x:-1200,y:0,w:3848,h:3600});
+assert.deepEqual(a.reference.bounds,a.bounds);
+const strips=a.vector.root.children.filter(n=>n.clipPath?.startsWith('village-'));
+assert.equal(strips.length,8);assert(strips.every(n=>n.pixelSnapClip===true&&n.children[0].symbol==='source'));
+const scale=3.13,minZoom=390/6800;
+assert(a.bounds.x*scale < -3400);
+assert((a.bounds.x+a.bounds.w)*scale > stage.width+3400);
+assert((a.bounds.y+a.bounds.h)*scale > stage.height+696/2/minZoom);
+assert(stage.terrains.every(t=>t.breakable===false));
+console.log('Stage7 source paths, full stage, physics and placements unchanged; off-map skirt covers minimum zoom/focus corners. Native seam and public UI checks remain separate.');
