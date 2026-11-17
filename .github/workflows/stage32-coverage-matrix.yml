@@ -17,7 +17,7 @@ jobs:
           package-manager-cache: false
       - run: npm ci && npm ci --prefix game
       - name: Original V1 and new bounded cache contracts
-        run: node tests/stage32-lower-transition-contract.mjs
+        run: node tests/stage32-coverage-native-contract.mjs
       - name: Original providers, path and codec contracts
         run: |
           git fetch origin e89242eedb5c040d38a9077c7289fbdc97786bdf --depth=1
