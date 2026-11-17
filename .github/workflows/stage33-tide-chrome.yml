@@ -1,0 +1,46 @@
+name: Inspect stage33 official rising and high tide
+on:
+  push:
+    branches: ['audit/stage33-tide-review-20261117']
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm ci && npm ci --prefix game
+      - name: Stage33 preservation and bounded compositor contracts
+        run: node tests/stage33-exterior-test.mjs
+      - name: Generate isolated official Scene A/B fixtures
+        if: ${{ !cancelled() }}
+        run: HONRO_ACT4_RELEASE=1 node tests/stage33-tide-browser-fixture.mjs "$RUNNER_TEMP/s33-fixtures"
+      - name: Render both variants in fresh temporary Chrome profiles
+        if: ${{ !cancelled() }}
+        shell: bash
+        run: |
+          browser=$(command -v google-chrome || command -v chromium)
+          for variant in baseline candidate; do
+            for view in rising-landscape high-landscape high-portrait; do
+              name="stage33-$variant-$view"
+              timeout 300s "$browser" --headless --no-first-run --no-default-browser-check --force-device-scale-factor=1 --virtual-time-budget=60000 --user-data-dir="$RUNNER_TEMP/profile-$name" --dump-dom "file://$RUNNER_TEMP/s33-fixtures/$name.html" > "$RUNNER_TEMP/$name.html"
+              node tests/stage33-tide-browser-result.mjs "$RUNNER_TEMP/$name.html" "$RUNNER_TEMP/s33-evidence" "$variant" "$view"
+            done
+          done
+      - name: Compare identical physics and forbid candidate fallback
+        if: ${{ !cancelled() }}
+        run: node tests/stage33-tide-browser-compare.mjs "$RUNNER_TEMP/s33-evidence"
+      - name: Official Act4 build
+        if: ${{ !cancelled() }}
+        run: HONRO_ACT4_RELEASE=1 npm run build
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage33-tide-chrome
+          path: ${{ runner.temp }}/s33-evidence
+          if-no-files-found: error
