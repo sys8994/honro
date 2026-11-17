@@ -1,7 +1,7 @@
 {
   "baselineMaster": "7d238d20663c3ceffe430eb0304e01516ae625cf",
   "baseCandidate": "af1c736416d54b85150a44ac515f84d1813be45c",
-  "scope": "Existing stage2-15 candidates preserved, with scoped stage22 buried-plane compositor followup; no public/UI acceptance. HTML/web outputs excluded.",
+  "scope": "Combined technical candidate; Stage3/7 rejected extensions excluded. Only author/registry/renderer and two obsolete registration-tool guards revised; other43 identities unchanged. Original BODY retained; not completed exterior art or public/UI acceptance.",
   "files": [
     {
       "path": "shared/data/act2/stage12-compact-package.json",
@@ -13,7 +13,9 @@
     },
     {
       "path": "shared/data/terrain-path-registrations.json",
-      "gitBlobSha1": "cb8b3dd17ce10a1416faf28aacfce75cf8517c58"
+      "gitBlobSha1": "85737030075ac77936c5e39a848a26f06c84c2d5",
+      "priorExtensionGitBlobSha1": "cb8b3dd17ce10a1416faf28aacfce75cf8517c58",
+      "intentionalFollowup": "Exclude rejected Stage3/7 extension; preserve public original BODY and all other candidates. Not completed exterior art."
     },
     {
       "path": "shared/runtime/act2-spatial-art.js",
@@ -23,7 +25,9 @@
     },
     {
       "path": "shared/runtime/renderer.js",
-      "gitBlobSha1": "1ed73d31978211cea936cc28712a89f9bbde657f"
+      "gitBlobSha1": "107ccf65f81ba7ad2e231bc5cb850f9d712e482a",
+      "priorExtensionGitBlobSha1": "1ed73d31978211cea936cc28712a89f9bbde657f",
+      "intentionalFollowup": "Exclude rejected Stage3/7 extension; preserve public original BODY and all other candidates. Not completed exterior art."
     },
     {
       "path": "shared/runtime/terrain-readability.js",
@@ -83,11 +87,15 @@
     },
     {
       "path": "tools/act1-vector-production/register-stage3-extension-optimization.mjs",
-      "gitBlobSha1": "a3604e7959be71769b5c22ae917c589989f6ec74"
+      "gitBlobSha1": "43538d18e933006050f64d5b464a65fbb1f088b7",
+      "priorExtensionGitBlobSha1": "a3604e7959be71769b5c22ae917c589989f6ec74",
+      "intentionalFollowup": "Fail closed before writes to prevent obsolete rejected extension registration; historical recipe retained."
     },
     {
       "path": "tools/act1-vector-production/register-stage7-extension-optimization.mjs",
-      "gitBlobSha1": "1f620ef982727649a1e55dfc247854c0608dafa0"
+      "gitBlobSha1": "3b6e058816cc1fb9fcdf2a3b68ae3d47b9424214",
+      "priorExtensionGitBlobSha1": "1f620ef982727649a1e55dfc247854c0608dafa0",
+      "intentionalFollowup": "Fail closed before writes to prevent obsolete rejected extension registration; historical recipe retained."
     },
     {
       "path": "tools/act2-vector-production/register-stage12-skirt-optimization.mjs",
@@ -103,7 +111,9 @@
     },
     {
       "path": "tools/map-forge/act1-naru-doldang.mjs",
-      "gitBlobSha1": "810e0e61c52a8d21117bfa9e175d0300bff0b5e5"
+      "gitBlobSha1": "7316cc683e1732f4768896c1ec100d3c7a4cff95",
+      "priorExtensionGitBlobSha1": "810e0e61c52a8d21117bfa9e175d0300bff0b5e5",
+      "intentionalFollowup": "Exclude rejected Stage3/7 extension; preserve public original BODY and all other candidates. Not completed exterior art."
     },
     {
       "path": "tools/map-forge/stage15-compact.mjs",

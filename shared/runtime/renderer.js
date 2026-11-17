@@ -169,7 +169,7 @@
         _terrainRasterBounds(b){
             const domain={...b.honroTerrainBounds};
             // Painted sites' visual skirts extend beyond unchanged collision domains.
-            if(b.honroStage===3||b.honroStage===7){const body=(b.honroLandmarks||[]).find(l=>l.asset?.id==='act1-site:'+b.honroStage+':body'),paint=body&&this._landmarkPaintBounds(body);
+            if(b.honroStage===7){const body=(b.honroLandmarks||[]).find(l=>l.asset?.id==='act1-site:'+b.honroStage+':body'),paint=body&&this._landmarkPaintBounds(body);
                 if(paint){domain.left=Math.min(domain.left,paint.left);domain.right=Math.max(domain.right,paint.right);domain.top=Math.min(domain.top,paint.top);domain.bottom=Math.max(domain.bottom,paint.bottom);}}
             return domain;
         }

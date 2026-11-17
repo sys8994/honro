@@ -1,3 +1,5 @@
+// Historical rejected extension recipe remains below for provenance, not active registration.
+throw new Error('미채택 확장 등록 중지: Stage7 safety exclusion forbids restoring the rejected optimizer registration.');
 import {readFileSync,writeFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import assert from 'node:assert/strict';

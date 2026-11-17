@@ -1,0 +1,63 @@
+name: Combined safe exclusion source and loader preparation
+on:
+  push:
+    branches: ['integration/terrain-monster-safe-20261118']
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      HONRO_ACT4_RELEASE: '1'
+      HONRO_ACT5_RELEASE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm ci && npm ci --prefix game
+      - name: Verify unchanged identities and scoped three-file policy delta
+        run: |
+          node tests/terrain-monster-preflight.mjs
+          node tools/act1-vector-production/check-edge-integration-manifest.mjs
+          node tests/vector-snap-collapse.mjs
+          node tests/rejected-extension-registration-guard.mjs
+      - name: Exact original-body and prior combined-state comparison
+        run: |
+          mkdir -p "$RUNNER_TEMP/evidence"
+          for pair in public:7d238d20663c3ceffe430eb0304e01516ae625cf prior:6db36f5fb3b6d733ed5523746e84fe2b632eeabe; do
+            name=${pair%%:*}; sha=${pair#*:}; dir="$RUNNER_TEMP/$name"
+            git fetch --depth=1 origin "$sha"
+            git worktree add --detach "$dir" "$sha"
+            cmp package-lock.json "$dir/package-lock.json"
+            cmp game/package-lock.json "$dir/game/package-lock.json"
+            ln -s "$GITHUB_WORKSPACE/node_modules" "$dir/node_modules"
+            ln -s "$GITHUB_WORKSPACE/game/node_modules" "$dir/game/node_modules"
+            cp tests/combined-safe-exclusion-contract.mjs "$dir/tests/"
+            (cd "$dir" && node tools/act4-source/world-source.mjs materialize && node tests/combined-safe-exclusion-contract.mjs export "$RUNNER_TEMP/evidence/$name.json")
+          done
+          node tests/combined-safe-exclusion-contract.mjs verify "$RUNNER_TEMP/evidence/current.json" "$RUNNER_TEMP/evidence/public.json" "$RUNNER_TEMP/evidence/prior.json"
+      - name: Preserve placement contracts and current synthetic save
+        run: |
+          for t in stage40-placement-contract act4-middle-placement-contract early-encounter-contract act5-meaningful-encounters.test; do node tests/$t.mjs; done
+          node tests/terrain-edge-save-roundtrip.mjs
+      - name: Build official manifest-derived isolated middle fixtures
+        run: node tests/combined-act4-middle-placement-browser.mjs "$RUNNER_TEMP/middle"
+      - name: Verify actual Chrome helper presence and candidate Scene initialization
+        run: |
+          browser=$(command -v google-chrome || command -v chromium)
+          for stage in 34 37 38; do
+            name="stage$stage-candidate-overview"
+            timeout 300s "$browser" --headless --no-first-run --no-default-browser-check --force-device-scale-factor=1 --virtual-time-budget=60000 --user-data-dir="$RUNNER_TEMP/profile-$name" --dump-dom "file://$RUNNER_TEMP/middle/$name.html" > "$RUNNER_TEMP/$name.html"
+            node tests/act4-middle-placement-result.mjs "$RUNNER_TEMP/$name.html" "$RUNNER_TEMP/evidence/middle"
+          done
+      - name: Official build
+        run: npm run build
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: combined-safe-source-loader
+          path: ${{ runner.temp }}/evidence
+          if-no-files-found: error

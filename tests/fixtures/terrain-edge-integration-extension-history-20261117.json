@@ -1,0 +1,201 @@
+{
+  "baselineMaster": "7d238d20663c3ceffe430eb0304e01516ae625cf",
+  "baseCandidate": "af1c736416d54b85150a44ac515f84d1813be45c",
+  "scope": "Existing stage2-15 candidates preserved, with scoped stage22 buried-plane compositor followup; no public/UI acceptance. HTML/web outputs excluded.",
+  "files": [
+    {
+      "path": "shared/data/act2/stage12-compact-package.json",
+      "gitBlobSha1": "4a229931c6d70166ee9f868cdf4a7897f30b7b0c"
+    },
+    {
+      "path": "shared/data/act2/stage15-compact-package.json",
+      "gitBlobSha1": "6b2d3fb786fb2ef5a8b280fd0c494ba0563fe4fb"
+    },
+    {
+      "path": "shared/data/terrain-path-registrations.json",
+      "gitBlobSha1": "cb8b3dd17ce10a1416faf28aacfce75cf8517c58"
+    },
+    {
+      "path": "shared/runtime/act2-spatial-art.js",
+      "gitBlobSha1": "ff3bd76a94251c2f3478fbeae450a139fac4f221",
+      "priorCandidateGitBlobSha1": "9f9fd19b8ca378c5c3401cb739333e8afb4a9ec0",
+      "intentionalFollowup": "Stage22 two buried-plane blend only; Stage14 rim fix preserved and regression-tested."
+    },
+    {
+      "path": "shared/runtime/renderer.js",
+      "gitBlobSha1": "1ed73d31978211cea936cc28712a89f9bbde657f"
+    },
+    {
+      "path": "shared/runtime/terrain-readability.js",
+      "gitBlobSha1": "c1a3ed81dc5167711399da6521f062806ca367d2"
+    },
+    {
+      "path": "shared/terrain-path-optimization.mjs",
+      "gitBlobSha1": "6fd93612eed5ccba39b0ccfe88a1a7a49631cd79"
+    },
+    {
+      "path": "tests/fixtures/stage3-readability-before.js",
+      "gitBlobSha1": "fc483c8da2bd44899f4a582b89cbaa3e206a542c"
+    },
+    {
+      "path": "tests/stage12-ground-skirt.mjs",
+      "gitBlobSha1": "8f250012248ca1aaf2288b8c7c66a280c764acd3"
+    },
+    {
+      "path": "tests/stage13-edge-domain.mjs",
+      "gitBlobSha1": "a10ac41345dac7fd82784a953bf119c551cd72ba"
+    },
+    {
+      "path": "tests/stage14-art-rim.mjs",
+      "gitBlobSha1": "df1d98bc1cf0376932a24c8de7956f04f4ed2453"
+    },
+    {
+      "path": "tests/stage14-edge-domain.mjs",
+      "gitBlobSha1": "01c6d7f6a605a79c27e36ac42f050e414e0bff36"
+    },
+    {
+      "path": "tests/stage15-edge-domain.mjs",
+      "gitBlobSha1": "5b8bac19ec80e8684c00aecaf9727ecdd08cb9bf"
+    },
+    {
+      "path": "tests/stage16-edge-domain.mjs",
+      "gitBlobSha1": "969c9f4bd8b46467cb4b79f0ddf2a87c912f1b3d"
+    },
+    {
+      "path": "tests/stage7-art-bounds.mjs",
+      "gitBlobSha1": "973caaa31400b2dfbb9d9fddc41e2d1e7d810122"
+    },
+    {
+      "path": "tools/act1-vector-production/capture-stage-independent-audit.mjs",
+      "gitBlobSha1": "8338aafb2bc131e59e7ae200ba978f5300799404"
+    },
+    {
+      "path": "tools/act1-vector-production/check-stage12-tree-bounds.mjs",
+      "gitBlobSha1": "b9d31f5dbba61ecbb16df1b585a96088eb3274dc"
+    },
+    {
+      "path": "tools/act1-vector-production/check-stage3-edge-audit.mjs",
+      "gitBlobSha1": "10e8c6d2732f990cf0c7a6f1f6f426bab54892e6"
+    },
+    {
+      "path": "tools/act1-vector-production/check-stage7-edge-audit.mjs",
+      "gitBlobSha1": "04e6037a5137611e3f5bb8bdfc2cbc15e0e6421f"
+    },
+    {
+      "path": "tools/act1-vector-production/register-stage3-extension-optimization.mjs",
+      "gitBlobSha1": "a3604e7959be71769b5c22ae917c589989f6ec74"
+    },
+    {
+      "path": "tools/act1-vector-production/register-stage7-extension-optimization.mjs",
+      "gitBlobSha1": "1f620ef982727649a1e55dfc247854c0608dafa0"
+    },
+    {
+      "path": "tools/act2-vector-production/register-stage12-skirt-optimization.mjs",
+      "gitBlobSha1": "9820e3c505a30db44cb1d2352bd1b9da805ac7ae"
+    },
+    {
+      "path": "tools/act2-vector-production/register-stage15-domain-optimization.mjs",
+      "gitBlobSha1": "f969ecdd18ab4824f3aaeb2c796f5b816d2910ab"
+    },
+    {
+      "path": "tools/environment/stage12-compact-art.mjs",
+      "gitBlobSha1": "79dd060e5d23c2f5af5eabcbccb69173a21d361b"
+    },
+    {
+      "path": "tools/map-forge/act1-naru-doldang.mjs",
+      "gitBlobSha1": "810e0e61c52a8d21117bfa9e175d0300bff0b5e5"
+    },
+    {
+      "path": "tools/map-forge/stage15-compact.mjs",
+      "gitBlobSha1": "1cce57c86559f63643de2e3e82307305d0cdd536"
+    },
+    {
+      "path": "shared/data/act1/stage02-body-candidate.json",
+      "gitBlobSha1": "1ae8c3da3990b33b80f2f06a130e5d0eb538b43b"
+    },
+    {
+      "path": "shared/data/act1/stage02-rear-candidate.json",
+      "gitBlobSha1": "fba9cd1108a2d2c5068cd41eef9f609011b5a055"
+    },
+    {
+      "path": "tests/stage2-art-bounds.mjs",
+      "gitBlobSha1": "b9912e26c2896d20e404c1121102412b40ffe545"
+    },
+    {
+      "path": "tools/act1-vector-production/capture-stage2-bounds-audit.mjs",
+      "gitBlobSha1": "ee1091ec7d687f9b23d52703b3f70b5a685d329a"
+    },
+    {
+      "path": "tools/act1-vector-production/capture-stage2-contacts-audit.mjs",
+      "gitBlobSha1": "803c1252dd422255e13e0415ffcbc6573dbe6d8e"
+    },
+    {
+      "path": "shared/data/act1/stage04-body-candidate.json",
+      "gitBlobSha1": "19ef7fefffb28461e7cbe9b44a6d22692cec7199"
+    },
+    {
+      "path": "tests/stage4-art-bounds.mjs",
+      "gitBlobSha1": "c0111f6bfdfa85ea63b36ef0d3dbc2bbb9cfb2dd"
+    },
+    {
+      "path": "shared/data/act1/stage05-cliff-v1-candidate.json",
+      "gitBlobSha1": "607554084201357e1678656fc77b62212f3dd9db"
+    },
+    {
+      "path": "shared/data/act1/stage05-floor-v4-candidate.json",
+      "gitBlobSha1": "719a081e7d222ee1d2aec375cce9b23a6ce57e4e"
+    },
+    {
+      "path": "tests/stage5-art-bounds.mjs",
+      "gitBlobSha1": "22dbbcb9827adcdeeac0a2b2ef8ef672ed9d2fd9"
+    },
+    {
+      "path": "tests/stage6-art-bounds.mjs",
+      "gitBlobSha1": "8dd481b808c957352cc44e210252a598b520fd07"
+    },
+    {
+      "path": "tools/stage6-prototype/art-preview.mjs",
+      "gitBlobSha1": "328e4687618fae4c7cd4a3fb5f285c01e633e74f"
+    },
+    {
+      "path": "tools/stage6-prototype/integrated-preview.mjs",
+      "gitBlobSha1": "704865badf6ecf8011c2d0a7e159c1cf116f2b40"
+    },
+    {
+      "path": "shared/data/act1/stage08-floor-v1-candidate.json",
+      "gitBlobSha1": "1716cf22ee66b4669b7c0dfa2451ee578eb5f41b"
+    },
+    {
+      "path": "tests/stage8-art-bounds.mjs",
+      "gitBlobSha1": "33d1fac7b0dadc7ba69c99f0e2c8a350adc21d3a"
+    },
+    {
+      "path": "shared/data/act1/stage09-floor-v3-candidate.json",
+      "gitBlobSha1": "6bcdf4f9ba0a267ad57934c9d9c6183e994d7b65"
+    },
+    {
+      "path": "tests/stage9-art-bounds.mjs",
+      "gitBlobSha1": "77743635e3646e87680929696633dec48d840c82"
+    },
+    {
+      "path": "shared/data/act1/stage10-floor-v4-candidate.json",
+      "gitBlobSha1": "32f456b0f7321257c3c31cdb9268c1129e6a528c"
+    },
+    {
+      "path": "tests/stage10-art-bounds.mjs",
+      "gitBlobSha1": "a0cf9c428df9dd45c84c3d0c6b92a01f894e8548"
+    },
+    {
+      "path": "tools/act1-vector-production/check-stage10-tree-bounds.mjs",
+      "gitBlobSha1": "36cbc6ae57bf8ee22cd1bb67fe56980f68c90ac7"
+    },
+    {
+      "path": "tests/stage11-edge-domain.mjs",
+      "gitBlobSha1": "43e0c6ad4a3eb15c07348c7d7d14b92a201c063e"
+    },
+    {
+      "path": "tools/act1-vector-production/check-stage11-tree-bounds.mjs",
+      "gitBlobSha1": "55745ba224776332c51b491316fb41eb7637880f"
+    }
+  ]
+}
