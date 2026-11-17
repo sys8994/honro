@@ -14,7 +14,7 @@ export function placeAct4Stage40(stage, point) {
   ['arrival-watch','arrival-stair','배 도착 후 올라가는 계단의 감시조; 승선갑판과 최종 집결면에는 적을 두지 않는다',[[ref('dock-left',5),4190],[ref('dock-left',6),4270],[ref('dock-left',7),4450]]],
   ['dock-battery','dock','하층 포격귀를 전위와 사수가 호위하는 국소 화점',[[ref('dock-right',1),1510],[ref('dock-right',2),1595],[ref('dock-right',3),1690],[ref('dock-right',4),1825]]],
   ['east-rearguard','coast-east','동쪽 경사 상단의 후위; 주민 안전 구역보다 높은 별도 지지면',[[ref('dock-right',5),5390],[ref('dock-right',6),5480],[ref('dock-right',7),5690]]],
-  ['stair-foot','dock-stair','부두 계단 아래쪽 전위; 중간 계단은 접근 선택을 위해 비운다',[[ref('dock-stair',1),1905],[ref('dock-stair',2),1990]]],
+  ['stair-foot','dock-stair','계단 진입부의 전위와 아래 부두의 사격 지원; 바위 아래 머리 공간이 없는 중간 계단은 비운다',[[ref('dock-stair',1),1905],[ref('dock-stair',2),1990,'dock']]],
   ['stair-head','dock-stair','상층 갈림길 바로 아래 사격/수의귀 묶음',[[ref('dock-stair',6),2470],[ref('dock-stair',7),2550]]],
   ['road-scout','coast-west','부두 전방의 떨어진 단독 감시병; 주 전위까지 접근 여백을 둔다',[[ref('dock-stair',3),1400]]],
   ['ridge-entry','upper-east','동쪽 상부 길의 진입턱을 지키는 두 체; 뒤쪽 고지 사격조와 구분',[[ref('dock-stair',4),4780],[ref('dock-stair',5),4865]]],
@@ -26,12 +26,12 @@ export function placeAct4Stage40(stage, point) {
  const defs={},encounters=[],replacements=new Map();
  for(const [i,[name,route,purpose,slots]]of layouts.entries()){
   const key='place40-'+name,support='approved40-'+route;
-  for(const [id,x]of slots){const u=old[id];if(!u||replacements.has(id))throw Error('Invalid stage40 authored slot '+id);
-   const o={...u.stageOverrides,group:140+i,honroDensityCell:key,honroEncounterSupport:support};
-   if(o.honroPilotMidboss==='harbor')o.honroPilotRelocation=point(stage,support,x+(o.honroPilotVariant==='arc'?150:170));
-   replacements.set(id,{...u,...point(stage,support,x),encounterGroup:key,stageOverrides:o});
+  for(const [id,x,memberRoute]of slots){const memberSupport=memberRoute?'approved40-'+memberRoute:support;const u=old[id];if(!u||replacements.has(id))throw Error('Invalid stage40 authored slot '+id);
+   const o={...u.stageOverrides,group:140+i,honroDensityCell:key,honroEncounterSupport:memberSupport};
+   if(o.honroPilotMidboss==='harbor')o.honroPilotRelocation=point(stage,memberSupport,x+(o.honroPilotVariant==='arc'?150:170));
+   replacements.set(id,{...u,...point(stage,memberSupport,x),encounterGroup:key,stageOverrides:o});
   }
-  defs[key]={supports:[support],radius:['ridge-watch','east-rearguard'].includes(name)?1000:750,maxHeight:500,engagementRounds:1};
+  defs[key]={supports:[...new Set(slots.map(([, ,memberRoute])=>memberRoute?'approved40-'+memberRoute:support))],radius:['ridge-watch','east-rearguard'].includes(name)?1000:750,maxHeight:500,engagementRounds:1};
   if(name==='boarding-pair')defs[key].extra=[{support:'a4-return-deck',minX:2170,maxX:3000}];
   if(name==='ridge-watch')defs[key].extra=[{support:'approved40-coast-east',minX:5120,maxX:5800}];
   encounters.push({id:key,key,unitIds:slots.map(([id])=>id),behavior:'guard',purpose});

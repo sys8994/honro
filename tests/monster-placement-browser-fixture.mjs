@@ -90,6 +90,15 @@ async function capture(id,runtimeSha256,variant,requestedCamera){
     placementDiagnostics.push({x,y,other,blocked});
    }
   }
+  const contacts=[];
+  if(variant==='candidate'){
+   for(const u of b.units.filter(u=>u.side===1&&!HONRO_CORE.flyingEnemy(u))){
+    const actual=engine.contactSurface(u.x,u.y-8,u.y+10)?.t.id||null;
+    assert(actual===u.honroEncounterSupport,'authored/runtime support mismatch '+u.id+' '+actual+' vs '+u.honroEncounterSupport);
+    contacts.push({id:u.id,support:actual});
+   }
+   assert(contacts.length===41,'41 ground enemies and one flying crow');
+  }
   const settling=[];
   if(variant==='candidate'&&requestedCamera.name==='west'){
    const copy=structuredClone(b),probe=new HONRO_CORE.Engine(copy,()=>{},true);
@@ -117,8 +126,26 @@ async function capture(id,runtimeSha256,variant,requestedCamera){
    }
    assert(activation.length===16,'all sixteen authored places');
   }
+  const localActions=[];
+  if(variant==='candidate'&&requestedCamera.name==='overview'){
+   const at=(support,x)=>{const t=stage.terrains.find(t=>t.id===support);for(const i of t?.properties?.honroWalkEdges||[]){const a=t.points[i],z=t.points[(i+1)%t.points.length];if(a.x!==z.x&&x>=Math.min(a.x,z.x)&&x<=Math.max(a.x,z.x))return {x,y:a.y+(z.y-a.y)*(x-a.x)/(z.x-a.x)};}return null;};
+   for(const group of stage.encounters.filter(q=>['place40-east-junction','place40-arrival-watch','place40-ridge-watch','place40-ridge-entry','place40-east-rearguard','place40-stair-foot','place40-stair-head','place40-road-scout'].includes(q.id))){
+    const copy=structuredClone(b),events=[],probe=new HONRO_CORE.Engine(copy,ev=>events.push(ev),true);
+    const members=copy.units.filter(u=>group.unitIds.includes(u.id)),u=members.find(u=>!u.honroMidboss&&(u.honroPilotRole==='bow'||u.role==='bow'))||members.find(u=>!u.honroMidboss)||members[0],h=probe.heroesAlive().find(u=>u.cls==='archer')||probe.heroesAlive()[0];
+    const support=u.honroEncounterSupport,lo=Math.min(...members.map(u=>u.x)),hi=Math.max(...members.map(u=>u.x));
+    const pos=[lo-260,hi+260,lo-160,hi+160].map(x=>at(support,x)).find(p=>p&&!copy.units.some(v=>v.id!==h.id&&Math.abs(v.x-p.x)<65&&Math.abs(v.y-p.y)<125));
+    if(pos&&!HONRO_CORE.validTerrainContactPose(copy.terrain,{...h,...pos})){localActions.push({group:group.id,error:'Unsupported prepared hero pose',pos});continue;}
+    if(!pos){localActions.push({group:group.id,error:'No synthetic local approach on same support'});continue;}
+    Object.assign(h,pos,{vx:0,vy:0});Object.assign(u,{awake:true,acted:false,moveLeft:u.maxMove});
+    Object.assign(copy,{side:1,phase:'enemy',active:u.id,queue:[u.id],turnAge:0});
+    HonroAct4PilotCombat.attach({engine:probe,dialogue:null,charging:false});
+    const start={x:u.x,y:u.y,hp:h.hp,shot:copy.shot};let projectiles=0;
+    for(let i=0;i<Math.ceil(12/HONRO_CORE.STEP);i++){probe.tick(HONRO_CORE.STEP);projectiles=Math.max(projectiles,copy.projectiles.length);if(u.acted&&!copy.projectiles.length)break;}
+    localActions.push({group:group.id,actor:u.id,target:h.id,preparedHero:pos,support,actorSupport:probe.contactSurface(start.x,start.y-8,start.y+10)?.t.id||null,hpLoss:start.hp-h.hp,dx:u.x-start.x,dy:u.y-start.y,projectiles,shots:copy.shot-start.shot,acted:!!u.acted,intent:u.intent,scope:'Prepared one-actor local Engine action on production terrain; not normal route, quest or full-play acceptance'});
+   }
+  }
   const hash=async s=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s))),v=>v.toString(16).padStart(2,'0')).join('');
-  publishProbe({ok:true,placementDiagnostics,settling,activation,scope:'Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.',stage:id,variant,units:b.units.filter(u=>u.side===1).map(u=>({id:u.id,x:u.x,y:u.y,role:u.role,group:u.group})),...((id===40)?{tideSnapshot,appReadyUnresolved:true,initialization:'Official coast.tide; fresh in-memory profile; no App launch or event progression'}:{}),view,width,height,dpr:devicePixelRatio,camera,time:2,seed:3910,runtimeSha256,physicsSha256:await hash(physics),renderPure:true,fontStatus:document.fonts.status,fontNote:'System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.',userAgent:navigator.userAgent,imageCount:p.images.length,pendingImages:p.images.filter(v=>v.pending).length,imageErrors:p.images.filter(v=>v.error).length,storage:p.storage,errors:p.errors,violations:p.violations,png:cv.toDataURL('image/png')});
+  publishProbe({ok:true,contacts,localActions,placementDiagnostics,settling,activation,scope:'Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.',stage:id,variant,units:b.units.filter(u=>u.side===1).map(u=>({id:u.id,x:u.x,y:u.y,role:u.role,group:u.group})),...((id===40)?{tideSnapshot,appReadyUnresolved:true,initialization:'Official coast.tide; fresh in-memory profile; no App launch or event progression'}:{}),view,width,height,dpr:devicePixelRatio,camera,time:2,seed:3910,runtimeSha256,physicsSha256:await hash(physics),renderPure:true,fontStatus:document.fonts.status,fontNote:'System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.',userAgent:navigator.userAgent,imageCount:p.images.length,pendingImages:p.images.filter(v=>v.pending).length,imageErrors:p.images.filter(v=>v.error).length,storage:p.storage,errors:p.errors,violations:p.violations,png:cv.toDataURL('image/png')});
  }catch(e){publishProbe({ok:false,stage:id,error:String(e.stack||e),...p});}
 }
 const script=s=>'<script>'+s.replace(/<\/script/gi,'<\\/script')+'</script>';

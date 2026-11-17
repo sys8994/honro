@@ -17,3 +17,6 @@
 
 ### Chrome review iteration
 The first candidate A/B Chrome render passed storage isolation/render purity, but visual review still found an almost continuous seven-unit dock stair. Rejected that arrangement: four remain as foot/head pairs with a wide middle gap; three become a lone road scout and a two-unit upper ridge entry guard. Candidate now has 16 places and 15 enemies east of x3600, unchanged42 identities. Actual local-support activation diagnostics added; this remains distinct from traversed-route/full gameplay acceptance. The initial all50 generator logged Act4 initialization errors; corrected initialization and now fail the step on any stage error.
+
+### 실제 지지면 보정 원인
+실제 생성 좌표 대조에서 dock-stair-2 궁수가 저작 계단(1990,2690)에서 아래 부두(1990,2856.77)로 이동했다. 실제충돌 진단에서1990..2110 계단에 서면 머리/몸이 approved40-west-rock 아래면에 침투,1950은전위몸체와중첩했다. 지형을변형하거나sanitize를우회하지않고 해당궁수를실제부두지지면에명시저작하여 계단진입전위+부두사격지원이라는같은지역군집으로수정. 그룹활성지지면에두표면을명시하고41지상개체의실제접지==저작태그회귀검증추가.
