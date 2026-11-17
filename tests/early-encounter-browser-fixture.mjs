@@ -36,8 +36,41 @@ const p=PROBE;try{
  const drain=async()=>{for(let i=0;i<200;i++){if(!p.images.some(v=>v.pending))return;await new Promise(r=>setTimeout(r,50));}throw Error('Images timed out');};
  for(let i=0;i<3;i++){scene.render(engine,0,'',.6,false,0);await drain();await new Promise(r=>setTimeout(r,100));}
  if(JSON.stringify(b)!==before)throw Error('render mutation');
+ const initialPng=cv.toDataURL('image/png'),initialCamera={x:scene.x,y:scene.y,scale:scene.scale};
+
+ const localActions=[],warningImages=[];
+ if(variant==='candidate'&&camera.name==='focus'&&[13,29].includes(id)){
+  const source=HONRO_PROJECT.stages.find(s=>s.metadata.stageId===id);
+  for(const row of HonroEarlyEncounterPlacement.placements[id]){
+   const copy=structuredClone(b),probe=new C.Engine(copy,()=>{},true),u=copy.units.find(u=>u.id===row.id),h=probe.heroesAlive().find(h=>h.cls==='knight')||probe.heroesAlive()[0];
+   const support=source.terrains.find(t=>t.id===row.support);
+   const point=x=>{for(const i of support.properties.honroWalkEdges){const a=support.points[i],z=support.points[(i+1)%support.points.length];if(a.x!==z.x&&x>=Math.min(a.x,z.x)&&x<=Math.max(a.x,z.x))return{x,y:a.y+(z.y-a.y)*(x-a.x)/(z.x-a.x)};}};
+   const pos=[u.x-230,u.x+230,u.x-160,u.x+160].map(point).filter(Boolean).find(p=>C.validTerrainContactPose(copy.terrain,{...h,...p})&&!copy.units.some(v=>v!==h&&v!==u&&Math.abs(v.x-p.x)<v.r+h.r+18&&Math.abs(v.y-p.y)<Math.min(v.h,h.h)));
+   if(!pos){localActions.push({id:row.id,error:'No supported local approach'});continue;}
+   Object.assign(h,pos,{vx:0,vy:0});Object.assign(u,{awake:true,acted:false,moveLeft:u.maxMove});
+   Object.assign(copy,{side:1,phase:'enemy',active:u.id,queue:[u.id],turnAge:0});
+   const start={x:u.x,y:u.y,hp:h.hp,shot:copy.shot};let projectiles=0;
+   for(let i=0;i<Math.ceil(12/C.STEP);i++){probe.tick(C.STEP);projectiles=Math.max(projectiles,copy.projectiles.length);if(u.acted&&!copy.projectiles.length)break;}
+   const firstAction={hpLoss:start.hp-h.hp,dx:u.x-start.x,dy:u.y-start.y,shots:copy.shot-start.shot,acted:!!u.acted,intent:u.intent};let followUp=null;
+   if(u.honroMonsterWindup||u.enemyEffectCast){
+    for(let i=0;i<720&&!(copy.side===0&&copy.phase==='aim');i++)probe.tick(C.STEP);
+    if(probe.select(h.id)){
+     Object.assign(scene,{x:(u.x+h.x)/2,y:h.y-180,scale:.65});globalThis.HonroApp={engine:probe,scene};
+     scene.render(probe,0,'',.6,false,0,false);await drain();
+     const shown=structuredClone(u.honroMonsterWindup||u.enemyEffectCast),hp=h.hp,shield=h.shield||0;
+     warningImages.push({id:row.id,png:cv.toDataURL('image/png')});
+     probe.wait();for(let i=0;i<1440&&copy.side===0;i++){if(probe.canAct())probe.wait();probe.tick(C.STEP);}
+     const answer=structuredClone(u.honroMonsterWindup||u.enemyEffectCast||null);
+     if(copy.side===1){copy.queue=[u.id];copy.active=u.id;copy.phase='enemy';u.acted=false;for(let i=0;i<1440;i++){probe.tick(C.STEP);if(u.acted&&!copy.projectiles.length)break;}}
+     followUp={shown,answer,hpLoss:hp-h.hp,shieldLoss:shield-(h.shield||0),remainingWindup:!!(u.honroMonsterWindup||u.enemyEffectCast),intent:u.intent};
+    }else followUp={error:'No actual hero turn'};
+   }
+   localActions.push({id:row.id,preparedHero:pos,support:row.support,firstAction,followUp,hpLoss:start.hp-h.hp,projectiles,shots:copy.shot-start.shot,scope:'Synthetic nearby hero pose and enemy slot, original Engine action. Not normal route or full-play acceptance.'});
+  }
+ }
+
  const source=HONRO_PROJECT.stages.find(s=>s.metadata.stageId===id);
- publishProbe({ok:true,stage:id,variant,view:camera.name,source:{metadata:source.metadata,units:source.units,terrains:source.terrains,markers:source.markers,elements:source.elements,encounters:source.encounters},units:b.units.map(u=>({id:u.id,x:u.x,y:u.y,r:u.r,h:u.h,role:u.role,kind:u.kind,side:u.side,hp:u.hp,group:u.group,contact:engine.contactSurface(u.x,u.y-8,u.y+10)?.t.id||null})),camera:{x:scene.x,y:scene.y,scale:scene.scale},...p,png:cv.toDataURL('image/png')});
+ publishProbe({ok:true,stage:id,variant,view:camera.name,localActions,warningImages,source:{metadata:source.metadata,units:source.units,terrains:source.terrains,markers:source.markers,elements:source.elements,encounters:source.encounters},units:b.units.map(u=>({id:u.id,x:u.x,y:u.y,r:u.r,h:u.h,role:u.role,kind:u.kind,side:u.side,hp:u.hp,group:u.group,contact:engine.contactSurface(u.x,u.y-8,u.y+10)?.t.id||null})),camera:initialCamera,scope:'Isolated initial production Chrome Scene and synthetic local Engine diagnostic, not public input or full-play acceptance.',...p,png:initialPng});
 }catch(e){publishProbe({ok:false,stage:id,error:String(e.stack||e),...p});}
 }
 const script=s=>'<script>'+s.replace(/<\/script/gi,'<\\/script')+'</script>';
