@@ -1,7 +1,7 @@
 import fs from 'node:fs';import assert from 'node:assert/strict';
 for(const name of ['play.py','escort_inputs.py']){
  const s=fs.readFileSync('tools/stage40-app-flow/'+name,'utf8');
- for(const re of [/\b(?:e|engine)\.fire\s*\(/,/\.tick\s*\(/,/HonroStory\.finish\s*\(/,/localStorage\.setItem\s*\(/,/\b(?:b\.phase|u\.hp|q\.complete|q\.returnEscort)\s*=/]){
+ for(const re of [/\b(?:e|engine)\.fire\s*\(/,/\.tick\s*\(/,/HonroStory\.finish\s*\(/,/localStorage\.setItem\s*\(/,/\b(?:b\.phase|u\.hp|q\.complete|q\.returnEscort)\s*=(?!=)/]){
   assert(!re.test(s),name+' contains forbidden direct battle/input mutation '+re);
  }
 }

@@ -99,6 +99,7 @@ with sync_playwright() as w:
    index=route[s['active']]
    if index>=len(waypoints):record('route-ended-with-living-enemies');raise AssertionError('route policy left enemies; no forced clear')
    x,y,support,op,gates,max_x=waypoints[index];support='approved40-'+support
+   if support=='approved40-coast-east' and s['support']=='approved40-upper-east' and y>s['y']+45:op='drop'
    at=abs(s['x']-x)<45 and abs(s['y']-y)<55 and s['support']==support
    pending=[u for u in s['foes'] if initial_by_id[u['id']]['support'] in ['approved40-'+g for g in gates] and (max_x is None or initial_by_id[u['id']]['x']<max_x)]
    if at and not pending:record('waypoint',{'index':index,'actual':[s['x'],s['y']],'support':s['support']});route[s['active']]+=1;continue
@@ -108,7 +109,7 @@ with sync_playwright() as w:
    if op=='jump' and s['support']!=support:p.keyboard.press('Control');record('jump',{'index':index})
    before=s;key='ArrowRight' if x>s['x'] else 'ArrowLeft';hold(key,min(380,max(65,abs(x-s['x'])/500*1000)));ready();s=record('walk',{'index':index,'key':key,'from':[before['x'],before['y']]})
    if s['active']==before['active'] and abs(s['x']-before['x'])<8 and s['move']>140:p.keyboard.press('Control');hold(key,260);record('jump-recovery',{'index':index})
-  final=record('all-enemies-cleared');assert not final['foes'];snapshot('combat-end')
+  final=record('combat-loop-end');assert not final['foes'],'input budget ended with living enemies; not a game clear';record('all-enemies-cleared');snapshot('combat-end')
   result['pilotHistory']=p.evaluate('''()=>HonroApp.engine.b.units.filter(u=>u.honroPilotCombat).map(u=>({id:u.id,hp:u.hp,dead:!!u.dead,combat:u.honroPilotCombat}))''')
   result['combat']={'round':final['round'],'heroes':final['heroes'],'residents':final['residents'],'route':route}
   # Existing real App escort inputs; no direct state completion.
