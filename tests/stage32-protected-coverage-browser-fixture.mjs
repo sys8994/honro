@@ -48,15 +48,15 @@ async function protectedCoverage(asset,camera,width,height){
  const nodes=[];function collect(n){assert(n.opacity===undefined||n.opacity===1,'Coverage requires original opaque nodes');assert(n.tag!=='use','Coverage use traversal not implemented');if(n.tag==='path')nodes.push(n);for(const child of n.children||[])collect(child);}collect(asset.vector.root);
  assert(nodes.length===25&&nodes.every(n=>/^#[0-9a-f]{6}$/i.test(n.fill)&&(!n.stroke||n.stroke==='none')),'Coverage requires exact 25 opaque fills');
  const groups={pale:[1,2,3,4],grass:[12,13,14,15,16,17],road:[21,22,23,24],all:[1,2,3,4,12,13,14,15,16,17,21,22,23,24]};
- const masks={},report={scope:'Diagnostic source-order contribution on opaque black, NOT final scene alpha or tile-cache-exact coverage',camera,width,height,groups:{},pngs:{}};
+ const masks={},report={scope:'Diagnostic source-order contribution on opaque black, NOT final scene alpha or tile-cache-exact coverage',backend:'HTMLCanvasElement 2d, synchronous PNG serialization',camera,width,height,groups:{},pngs:{}};
  for(const [name,ids]of Object.entries(groups)){
   const output={};
   for(const mode of ['visible','union']){
    const v=structuredClone(asset.vector);let index=0;function paint(n){if(n.tag==='path')n.fill=ids.includes(index++)?'#ffffff':mode==='visible'?'#000000':'none';for(const child of n.children||[])paint(child);}paint(v.root);
-   const cv=new OffscreenCanvas(width,height),c=cv.getContext('2d');c.fillStyle='#000000';c.fillRect(0,0,width,height);c.setTransform(camera.scale,0,0,camera.scale,width/2-camera.x*camera.scale,height/2-camera.y*camera.scale);
+   const cv=document.createElement('canvas');cv.width=width;cv.height=height;const c=cv.getContext('2d');c.fillStyle='#000000';c.fillRect(0,0,width,height);c.setTransform(camera.scale,0,0,camera.scale,width/2-camera.x*camera.scale,height/2-camera.y*camera.scale);
    assert(HonroVectorArt.draw(c,{...asset,id:asset.id+':coverage:'+name+':'+mode,vector:v},{x:0,y:0,scale:1,rotation:0}),'Coverage vector draw failed');
    const rgba=c.getImageData(0,0,width,height).data,values=new Uint8Array(width*height),hist=new Array(256).fill(0);for(let i=0;i<values.length;i++){const p=i*4;assert(rgba[p+3]===255&&rgba[p]===rgba[p+1]&&rgba[p]===rgba[p+2],'Coverage must remain opaque neutral diagnostic');values[i]=rgba[p];hist[values[i]]++;}
-   output[mode]=values;const blob=await cv.convertToBlob({type:'image/png'});const bytes=new Uint8Array(await blob.arrayBuffer());let binary='';for(let i=0;i<bytes.length;i+=16384)binary+=String.fromCharCode(...bytes.subarray(i,i+16384));report.pngs[name+'-'+mode]='data:image/png;base64,'+btoa(binary);
+   output[mode]=values;report.pngs[name+'-'+mode]=cv.toDataURL('image/png');
    report.groups[name]??={sourcePathIndices:ids};report.groups[name][mode]={zero:hist[0],partial:hist.slice(1,255).reduce((a,b)=>a+b,0),full:hist[255],histogram:hist};
   }
   let reduced=0,fullyOccluded=0,maxLoss=0,monotonicViolations=0;for(let i=0;i<output.visible.length;i++){const a=output.union[i],b=output.visible[i];if(b>a)monotonicViolations++;if(a>b)reduced++;if(a>0&&b===0)fullyOccluded++;maxLoss=Math.max(maxLoss,a-b);}assert(monotonicViolations===0,'Coverage occlusion increased target weight');Object.assign(report.groups[name],{reduced,fullyOccluded,maxLoss,monotonicViolations});masks[name]=output.visible;

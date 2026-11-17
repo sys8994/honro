@@ -5,7 +5,7 @@ assert(input&&out&&['direct-candidate-source','candidate','original-colors'].inc
 await mkdir(out,{recursive:true});
 let r;
 try{
- const html=await readFile(input,'utf8'),m=html.match(/<pre id="result">([A-Za-z0-9+/=]+)<\/pre>/);assert(m,'No completed result');
+ const html=await readFile(input,'utf8'),m=html.match(/<pre id="result">([A-Za-z0-9+/=]+)<\/pre>/);assert(m&&m[1]!=='pending','No completed result (pending/timeout)');
  r=JSON.parse(Buffer.from(m[1],'base64').toString('utf8'));
  assert.equal(r.ok,true,JSON.stringify(r));assert.equal(r.stage,32);assert.equal(r.variant,variant);assert.equal(r.view,view);
  assert.deepEqual(r.camera,view==='lower'?{x:1689.6,y:1900,scale:.6}:{x:320,y:1650,scale:.6});
