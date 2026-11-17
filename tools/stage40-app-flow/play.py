@@ -62,7 +62,7 @@ with sync_playwright() as w:
   p.get_by_text('새 지형에서 다시 걷기',exact=True).click()
   p.wait_for_function('HonroApp.engine?.b?.honroStage===40&&HonroApp.engine.b.round===1',timeout=120000);ready()
   initial=record('fresh-entry');assert initial['proof'] and len(initial['foes'])==42 and initial['sceneIsActual'],initial
-  result['sourceCheckpoint40']={k:json.loads(raw)['honroBattle'].get('honroAct4PreviewState',{}).get(k) for k in ['events','receipts','returnEscort','complete']};result['initial']=initial;initial_by_id={u['id']:u for u in initial['foes']};route={u['id']:0 for u in initial['heroes']};snapshot('initial');started=time.monotonic();last_round=0
+  result['sourceCheckpoint40']={k:json.loads(raw)['honroBattle'].get('honroAct4PreviewState',{}).get(k) for k in ['events','receipts','returnEscort','complete']};result['initial']=initial;initial_by_id={u['id']:u for u in initial['foes']};route={u['id']:0 for u in initial['heroes']};snapshot('initial');started=time.monotonic();last_round=0;progress_watch={}
   for n in range(1200):
    if time.monotonic()-started>2200:raise TimeoutError('normal App combat observation budget')
    if not ready():raise AssertionError('App ended before confirmed enemy clear: '+str(state()))
@@ -117,11 +117,33 @@ with sync_playwright() as w:
    index=route[s['active']]
    if index>=len(waypoints):record('route-ended-with-living-enemies');raise AssertionError('route policy left enemies; no forced clear')
    x,y,support,op,gates,max_x=waypoints[index];support='approved40-'+support
-   if support=='approved40-coast-east' and s['support']=='approved40-upper-east' and y>s['y']+45:op='drop'
+   # Re-enter the documented east U connection after knockback/ordinary drops.
+   # Never chase a different floor by x alone, and never force a rejected drop.
+   route_recovery=False
+   if support=='approved40-upper-east' and s['support'] in ['approved40-coast-west','approved40-coast-east']:
+    x,y,op=(5750,1400,'') if s['x']<5700 else (5670,1270,'jump')
+    route_recovery=True
+   elif support=='approved40-coast-east' and s['support']=='approved40-upper-east':
+    x,y,op=5820,1384,'';route_recovery=True
+   if route_recovery:record('support-reapproach',{'index':index,'actualSupport':s['support'],'expectedSupport':support,'goal':[x,y],'operation':op})
+   # Observation-only watchdog. Meaningful distance, HP, route or story progress
+   # resets the budget. No game time, turn or actor state is changed.
+   key=(s['active'],index,s['support'],route_recovery)
+   distance=abs(s['x']-x)+abs(s['y']-y)
+   health=tuple(round(u['hp'],1) for u in s['heroes'])
+   signature=(s['enemyHpSum'],health,str(s.get('events')),str(s.get('escort')))
+   watch=progress_watch.get(key)
+   if not watch or watch['signature']!=signature or distance<watch['distance']-12:
+    progress_watch[key]={'signature':signature,'distance':distance,'inputs':0}
+   else:
+    watch['inputs']+=1
+    if watch['inputs']>=30:
+     record('controller-stall',{'index':index,'actualSupport':s['support'],'expectedSupport':support,'goal':[x,y],'distance':distance})
+     raise TimeoutError('controller: no route/health/story progress in 30 repeated inputs')
    at=abs(s['x']-x)<45 and abs(s['y']-y)<55 and s['support']==support
    pending=[u for u in s['foes'] if initial_by_id[u['id']]['support'] in ['approved40-'+g for g in gates] and (max_x is None or initial_by_id[u['id']]['x']<max_x)]
-   if at and not pending:record('waypoint',{'index':index,'actual':[s['x'],s['y']],'support':s['support']});route[s['active']]+=1;continue
-   if at and pending:t=min(pending,key=lambda u:abs(u['x']-s['x'])+abs(u['y']-s['y']));x,y=t['x'],t['y'];op='';record('clear-gate',{'index':index,'target':t['id']})
+   if at and not pending and not route_recovery:record('waypoint',{'index':index,'actual':[s['x'],s['y']],'support':s['support']});route[s['active']]+=1;continue
+   if at and pending and not route_recovery:t=min(pending,key=lambda u:abs(u['x']-s['x'])+abs(u['y']-s['y']));x,y=t['x'],t['y'];op='';record('clear-gate',{'index':index,'target':t['id']})
    if s['move']<110:p.keyboard.press('f');record('wait');p.wait_for_timeout(300);continue
    if op=='drop' and s['support']!=support and abs(s['x']-x)<50:p.keyboard.press('AltLeft');record('drop',{'index':index});p.wait_for_timeout(450);continue
    if op=='jump' and s['support']!=support:p.keyboard.press('Control');record('jump',{'index':index})
@@ -140,3 +162,4 @@ with sync_playwright() as w:
   raise
  finally:
   (out/'result.json').write_text(json.dumps(result,ensure_ascii=False,indent=2));context.close();browser.close()
+
