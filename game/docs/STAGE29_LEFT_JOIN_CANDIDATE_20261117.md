@@ -5,3 +5,8 @@ Native의 내부 strip 누락은 실제 production tile/Scene의 Chrome 비교�
 후보는 `edgeFade[0]` 한 곳만 `[0,170]`으로 변경한다. 약33px 폭의 기존 정상 브라우저 fade를 재사용한다. 원본 vector·접지 mapping·bounds·collision·오른쪽 fade를 보존하며 범위 확대나 원본 늘이기를 하지 않는다. 재생성/멱등성·원본 환원 hash 검사 통과. Native 렌더는 알려진 backend 차이 때문에 이번 시각 판정 근거로 사용하지 않는다.
 
 실제 Chrome A/B에서 왼쪽 이음과 함께 상단 돌·독립 보행 rim이 유지되는지 확인하기 전에는 미술 합격으로 처리하지 않는다. CI는 app:false 일회성 초기 Scene이며 사용자 전투/저장, 정상 입력이나 공개 UI 검수를 뜻하지 않는다. storage/CSP/image 오류 0, 물리·카메라 불변을 검사하고 PNG를 보존한다. 최종 공개 배포와는 별개 후보다.
+
+## 실제 Chrome A/B 결과
+80e5f5b6 / CI44069792603 전체 성공(정적/재생성/Chrome/공식 빌드). 기준선 fed80d5a의 동일 view와 비교해 camera·physics SHA·imageCount2가 동일하고 storage/CSP/image 오류는0이다. 변경 픽셀4154개는 bbox (665,225)~(699,352), 즉 x665~698/y225~351의 왼쪽 이음에만 있다. 그 밖 픽셀은 완전히 동일하다. 직접 확인에서 수직 이음이 완화되고 상단 돌·보행선의 새 틈은 보이지 않는다.
+
+이 좁은 초기 Scene 검수는 통과했다. 공개 정상 입력·고배율·동적 상태·실기기 및 최종 master/Pages 검수와는 구분한다.
