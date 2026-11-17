@@ -31,6 +31,8 @@ function bootstrap(id){
  addEventListener('unhandledrejection',e=>{p.errors.push(String(e.reason?.stack||e.reason));publishProbe({ok:false,...p});});
  addEventListener('securitypolicyviolation',e=>p.violations.push({directive:e.violatedDirective,uri:e.blockedURI}));
  for(const key of ['localStorage','sessionStorage','indexedDB'])Object.defineProperty(globalThis,key,{configurable:true,get(){p.storage.push(key);throw Error('Forbidden storage access: '+key);}});
+ // Synthetic session clock only. compiler.createBattle embeds Date.now() in session.
+ Date.now=()=>1794916800000;
  let seed=3910;Math.random=()=>((seed=(seed*1664525+1013904223)>>>0)/2**32);
  const descriptor=Object.getOwnPropertyDescriptor(HTMLImageElement.prototype,'src');
  Object.defineProperty(HTMLImageElement.prototype,'src',{...descriptor,set(value){
