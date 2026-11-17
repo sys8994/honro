@@ -32,7 +32,7 @@ with sync_playwright() as w:
   assert live['proof']==original['honroAct4'] and not live['restart']
   assert live['battle']['round']==52 and not [u for u in live['battle']['units'] if u['side']==1 and u['hp']>0 and not u.get('dead')]
   result['importPreservedBattleAndGrowth']=True;snapshot('imported')
-  p.get_by_text('여정 이어가기',exact=True).click()
+  p.get_by_text('이어서 걷기',exact=True).click()
   p.wait_for_function('HonroApp.engine?.b?.honroStage===40&&HonroApp.engine.b.round===52',timeout=60000)
   result['initial']=p.evaluate(STATE);snapshot('resumed')
   assert result['initial']['foes']==0 and result['initial']['phase']=='aim'
