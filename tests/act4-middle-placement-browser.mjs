@@ -64,7 +64,14 @@ async function capture(id,runtimeSha256,variant,requestedCamera){
   const scene=new HonroScene(cv);
   Object.assign(scene,{x:requestedCamera.x,y:requestedCamera.y,scale:requestedCamera.scale||HonroBounds.zoomLimits(width).min,manual:true,time:2,editorView:false,skillPreview:false});
   HonroBounds.constrain(scene,b);
-  const camera={x:scene.x,y:scene.y,scale:scene.scale},before=JSON.stringify(b);
+  const camera={x:scene.x,y:scene.y,scale:scene.scale};
+  if(id===37){
+   // Signal drawing reads a camera even in isolation. A descriptor, not the
+   // live Scene, prevents App observer progression while preserving the visual.
+   HonroApp.scene={...camera,canvas:cv};
+   const p=b.honroAct4Design.signal;if(HonroAct4TerrainPreview.eventAPI.inView(HonroApp,{x:p.x,y:p.y-70}))b.honroAct4PreviewState.visualDrawn.gesture=b.honroAct4PreviewState.clock;
+  }
+  const before=JSON.stringify(b);
   await document.fonts.ready;
   const drain=async()=>{for(let i=0;i<200;i++){if(!p.images.some(v=>v.pending))return;await new Promise(r=>setTimeout(r,50));}throw Error('Image decode timeout');};
   for(let i=0;i<3;i++){scene.render(engine,0,'',.6,false,0);await drain();await new Promise(r=>setTimeout(r,100));}
