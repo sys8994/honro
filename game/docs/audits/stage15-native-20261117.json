@@ -1,0 +1,1325 @@
+{
+  "scope": "Actual opt-in build project, compiler, Engine and production renderer. No manually injected art. Not browser or combat acceptance.",
+  "stage": 15,
+  "syntheticState": {
+    "receivers": 0,
+    "broken": null,
+    "waterOpen": false,
+    "ritualActive": false
+  },
+  "sourceWidth": 5800,
+  "sourceHeight": 4200,
+  "terrainIds": [
+    "act2-floor",
+    "cave-roof",
+    "dry-shoulder",
+    "fc15-west-arch",
+    "fc15-east-arch",
+    "fc15-west-shoulder",
+    "fc15-crown-return",
+    "fc15-water-toe",
+    "fc15-east-access",
+    "fc15-dry-basin-rim",
+    "fc15-drained-ledge",
+    "fc15-safe-crown-descent"
+  ],
+  "assetIds": [
+    "act2:sluice",
+    "act2:lamp",
+    "act2:timber-rack",
+    "act2:mine-rail",
+    "act2:lamp",
+    "act2:mine-rail",
+    "act2:lamp",
+    "act2:ritual",
+    "act2:ritual",
+    "act2:ritual",
+    "act2:lamp",
+    "quest-redesign:tablet",
+    "quest-redesign:opening",
+    "act2-compact:stage15-act2-stage15-traced-outer-v1-1",
+    "act2-compact:stage15-act2-stage15-traced-west-flat-v2-1",
+    "act2-compact:stage15-act2-stage15-traced-east-flat-v2-1",
+    "act2-compact:stage15-act2-stage15-traced-arches-flat-v2-1"
+  ],
+  "results": [
+    {
+      "view": {
+        "name": "edge-desktop-0",
+        "width": 1331,
+        "height": 763,
+        "scale": 0.19573529411764706,
+        "x": 0,
+        "y": 0
+      },
+      "actualCamera": {
+        "x": 0,
+        "y": 0,
+        "scale": 0.19573529411764706
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "edge-desktop-1",
+        "width": 1331,
+        "height": 763,
+        "scale": 0.19573529411764706,
+        "x": 5800,
+        "y": 0
+      },
+      "actualCamera": {
+        "x": 5800,
+        "y": 0,
+        "scale": 0.19573529411764706
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "edge-desktop-2",
+        "width": 1331,
+        "height": 763,
+        "scale": 0.19573529411764706,
+        "x": 0,
+        "y": 4200
+      },
+      "actualCamera": {
+        "x": 0,
+        "y": 4200,
+        "scale": 0.19573529411764706
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "edge-desktop-3",
+        "width": 1331,
+        "height": 763,
+        "scale": 0.19573529411764706,
+        "x": 5800,
+        "y": 4200
+      },
+      "actualCamera": {
+        "x": 5800,
+        "y": 4200,
+        "scale": 0.19573529411764706
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "edge-desktop-4",
+        "width": 1331,
+        "height": 763,
+        "scale": 0.19573529411764706,
+        "x": 2900,
+        "y": 2100
+      },
+      "actualCamera": {
+        "x": 2900,
+        "y": 2100,
+        "scale": 0.19573529411764706
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "edge-portrait-0",
+        "width": 390,
+        "height": 696,
+        "scale": 0.057352941176470586,
+        "x": 0,
+        "y": 0
+      },
+      "actualCamera": {
+        "x": 0,
+        "y": 0,
+        "scale": 0.057352941176470586
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "edge-portrait-1",
+        "width": 390,
+        "height": 696,
+        "scale": 0.057352941176470586,
+        "x": 5800,
+        "y": 0
+      },
+      "actualCamera": {
+        "x": 5800,
+        "y": 0,
+        "scale": 0.057352941176470586
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "edge-portrait-2",
+        "width": 390,
+        "height": 696,
+        "scale": 0.057352941176470586,
+        "x": 0,
+        "y": 4200
+      },
+      "actualCamera": {
+        "x": 0,
+        "y": 4200,
+        "scale": 0.057352941176470586
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "edge-portrait-3",
+        "width": 390,
+        "height": 696,
+        "scale": 0.057352941176470586,
+        "x": 5800,
+        "y": 4200
+      },
+      "actualCamera": {
+        "x": 5800,
+        "y": 4200,
+        "scale": 0.057352941176470586
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "edge-portrait-4",
+        "width": 390,
+        "height": 696,
+        "scale": 0.057352941176470586,
+        "x": 2900,
+        "y": 2100
+      },
+      "actualCamera": {
+        "x": 2900,
+        "y": 2100,
+        "scale": 0.057352941176470586
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "edge-landscape-0",
+        "width": 844,
+        "height": 390,
+        "scale": 0.12411764705882353,
+        "x": 0,
+        "y": 0
+      },
+      "actualCamera": {
+        "x": 0,
+        "y": 0,
+        "scale": 0.12411764705882353
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "edge-landscape-1",
+        "width": 844,
+        "height": 390,
+        "scale": 0.12411764705882353,
+        "x": 5800,
+        "y": 0
+      },
+      "actualCamera": {
+        "x": 5800,
+        "y": 0,
+        "scale": 0.12411764705882353
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "edge-landscape-2",
+        "width": 844,
+        "height": 390,
+        "scale": 0.12411764705882353,
+        "x": 0,
+        "y": 4200
+      },
+      "actualCamera": {
+        "x": 0,
+        "y": 4200,
+        "scale": 0.12411764705882353
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "edge-landscape-3",
+        "width": 844,
+        "height": 390,
+        "scale": 0.12411764705882353,
+        "x": 5800,
+        "y": 4200
+      },
+      "actualCamera": {
+        "x": 5800,
+        "y": 4200,
+        "scale": 0.12411764705882353
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "edge-landscape-4",
+        "width": 844,
+        "height": 390,
+        "scale": 0.12411764705882353,
+        "x": 2900,
+        "y": 2100
+      },
+      "actualCamera": {
+        "x": 2900,
+        "y": 2100,
+        "scale": 0.12411764705882353
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "act2-floor-desktop",
+        "width": 1331,
+        "height": 763,
+        "scale": 0.94,
+        "x": 2900,
+        "y": 2818.75,
+        "terrainId": "act2-floor",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 2900,
+        "y": 2818.75,
+        "scale": 0.94
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "act2-floor-portrait",
+        "width": 390,
+        "height": 696,
+        "scale": 0.82,
+        "x": 2900,
+        "y": 2818.75,
+        "terrainId": "act2-floor",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 2900,
+        "y": 2818.75,
+        "scale": 0.82
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "act2-floor-landscape",
+        "width": 844,
+        "height": 390,
+        "scale": 0.82,
+        "x": 2900,
+        "y": 2818.75,
+        "terrainId": "act2-floor",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 2900,
+        "y": 2818.75,
+        "scale": 0.82
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "cave-roof-desktop",
+        "width": 1331,
+        "height": 763,
+        "scale": 0.94,
+        "x": 2900,
+        "y": -14.444444444444343,
+        "terrainId": "cave-roof",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 2900,
+        "y": -14.444444444444343,
+        "scale": 0.94
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "cave-roof-portrait",
+        "width": 390,
+        "height": 696,
+        "scale": 0.82,
+        "x": 2900,
+        "y": -14.444444444444343,
+        "terrainId": "cave-roof",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 2900,
+        "y": -14.444444444444343,
+        "scale": 0.82
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "cave-roof-landscape",
+        "width": 844,
+        "height": 390,
+        "scale": 0.82,
+        "x": 2900,
+        "y": -14.444444444444343,
+        "terrainId": "cave-roof",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 2900,
+        "y": -14.444444444444343,
+        "scale": 0.82
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "dry-shoulder-desktop",
+        "width": 1331,
+        "height": 763,
+        "scale": 0.94,
+        "x": 1829.837837837838,
+        "y": 2178.3333333333335,
+        "terrainId": "dry-shoulder",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 1829.837837837838,
+        "y": 2178.3333333333335,
+        "scale": 0.94
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "dry-shoulder-portrait",
+        "width": 390,
+        "height": 696,
+        "scale": 0.82,
+        "x": 1829.837837837838,
+        "y": 2178.3333333333335,
+        "terrainId": "dry-shoulder",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 1829.837837837838,
+        "y": 2178.3333333333335,
+        "scale": 0.82
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "dry-shoulder-landscape",
+        "width": 844,
+        "height": 390,
+        "scale": 0.82,
+        "x": 1829.837837837838,
+        "y": 2178.3333333333335,
+        "terrainId": "dry-shoulder",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 1829.837837837838,
+        "y": 2178.3333333333335,
+        "scale": 0.82
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "fc15-west-arch-desktop",
+        "width": 1331,
+        "height": 763,
+        "scale": 0.94,
+        "x": 2800,
+        "y": 1421.4653913447,
+        "terrainId": "fc15-west-arch",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 2800,
+        "y": 1421.4653913447,
+        "scale": 0.94
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "fc15-west-arch-portrait",
+        "width": 390,
+        "height": 696,
+        "scale": 0.82,
+        "x": 2800,
+        "y": 1421.4653913447,
+        "terrainId": "fc15-west-arch",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 2800,
+        "y": 1421.4653913447,
+        "scale": 0.82
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "fc15-west-arch-landscape",
+        "width": 844,
+        "height": 390,
+        "scale": 0.82,
+        "x": 2800,
+        "y": 1421.4653913447,
+        "terrainId": "fc15-west-arch",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 2800,
+        "y": 1421.4653913447,
+        "scale": 0.82
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "fc15-east-arch-desktop",
+        "width": 1331,
+        "height": 763,
+        "scale": 0.94,
+        "x": 5138.690476190476,
+        "y": 2132.8414001647375,
+        "terrainId": "fc15-east-arch",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 5138.690476190476,
+        "y": 2132.8414001647375,
+        "scale": 0.94
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "fc15-east-arch-portrait",
+        "width": 390,
+        "height": 696,
+        "scale": 0.82,
+        "x": 5138.690476190476,
+        "y": 2132.8414001647375,
+        "terrainId": "fc15-east-arch",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 5138.690476190476,
+        "y": 2132.8414001647375,
+        "scale": 0.82
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "fc15-east-arch-landscape",
+        "width": 844,
+        "height": 390,
+        "scale": 0.82,
+        "x": 5138.690476190476,
+        "y": 2132.8414001647375,
+        "terrainId": "fc15-east-arch",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 5138.690476190476,
+        "y": 2132.8414001647375,
+        "scale": 0.82
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "fc15-west-shoulder-desktop",
+        "width": 1331,
+        "height": 763,
+        "scale": 0.94,
+        "x": 3106.019417475728,
+        "y": 1725,
+        "terrainId": "fc15-west-shoulder",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 3106.019417475728,
+        "y": 1725,
+        "scale": 0.94
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "fc15-west-shoulder-portrait",
+        "width": 390,
+        "height": 696,
+        "scale": 0.82,
+        "x": 3106.019417475728,
+        "y": 1725,
+        "terrainId": "fc15-west-shoulder",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 3106.019417475728,
+        "y": 1725,
+        "scale": 0.82
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "fc15-west-shoulder-landscape",
+        "width": 844,
+        "height": 390,
+        "scale": 0.82,
+        "x": 3106.019417475728,
+        "y": 1725,
+        "terrainId": "fc15-west-shoulder",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 3106.019417475728,
+        "y": 1725,
+        "scale": 0.82
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "fc15-crown-return-desktop",
+        "width": 1331,
+        "height": 763,
+        "scale": 0.94,
+        "x": 3035.922330097087,
+        "y": 1560,
+        "terrainId": "fc15-crown-return",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 3035.922330097087,
+        "y": 1560,
+        "scale": 0.94
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "fc15-crown-return-portrait",
+        "width": 390,
+        "height": 696,
+        "scale": 0.82,
+        "x": 3035.922330097087,
+        "y": 1560,
+        "terrainId": "fc15-crown-return",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 3035.922330097087,
+        "y": 1560,
+        "scale": 0.82
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "fc15-crown-return-landscape",
+        "width": 844,
+        "height": 390,
+        "scale": 0.82,
+        "x": 3035.922330097087,
+        "y": 1560,
+        "terrainId": "fc15-crown-return",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 3035.922330097087,
+        "y": 1560,
+        "scale": 0.82
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "fc15-water-toe-desktop",
+        "width": 1331,
+        "height": 763,
+        "scale": 0.94,
+        "x": 4565,
+        "y": 2825,
+        "terrainId": "fc15-water-toe",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 4565,
+        "y": 2825,
+        "scale": 0.94
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "fc15-water-toe-portrait",
+        "width": 390,
+        "height": 696,
+        "scale": 0.82,
+        "x": 4565,
+        "y": 2825,
+        "terrainId": "fc15-water-toe",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 4565,
+        "y": 2825,
+        "scale": 0.82
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "fc15-water-toe-landscape",
+        "width": 844,
+        "height": 390,
+        "scale": 0.82,
+        "x": 4565,
+        "y": 2825,
+        "terrainId": "fc15-water-toe",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 4565,
+        "y": 2825,
+        "scale": 0.82
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "fc15-east-access-desktop",
+        "width": 1331,
+        "height": 763,
+        "scale": 0.94,
+        "x": 5656.818181818182,
+        "y": 2290,
+        "terrainId": "fc15-east-access",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 5656.818181818182,
+        "y": 2290,
+        "scale": 0.94
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "fc15-east-access-portrait",
+        "width": 390,
+        "height": 696,
+        "scale": 0.82,
+        "x": 5656.818181818182,
+        "y": 2290,
+        "terrainId": "fc15-east-access",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 5656.818181818182,
+        "y": 2290,
+        "scale": 0.82
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "fc15-east-access-landscape",
+        "width": 844,
+        "height": 390,
+        "scale": 0.82,
+        "x": 5656.818181818182,
+        "y": 2290,
+        "terrainId": "fc15-east-access",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 5656.818181818182,
+        "y": 2290,
+        "scale": 0.82
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "fc15-dry-basin-rim-desktop",
+        "width": 1331,
+        "height": 763,
+        "scale": 0.94,
+        "x": 4072.6213592233007,
+        "y": 2720,
+        "terrainId": "fc15-dry-basin-rim",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 4072.6213592233007,
+        "y": 2720,
+        "scale": 0.94
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "fc15-dry-basin-rim-portrait",
+        "width": 390,
+        "height": 696,
+        "scale": 0.82,
+        "x": 4072.6213592233007,
+        "y": 2720,
+        "terrainId": "fc15-dry-basin-rim",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 4072.6213592233007,
+        "y": 2720,
+        "scale": 0.82
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "fc15-dry-basin-rim-landscape",
+        "width": 844,
+        "height": 390,
+        "scale": 0.82,
+        "x": 4072.6213592233007,
+        "y": 2720,
+        "terrainId": "fc15-dry-basin-rim",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 4072.6213592233007,
+        "y": 2720,
+        "scale": 0.82
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "fc15-drained-ledge-desktop",
+        "width": 1331,
+        "height": 763,
+        "scale": 0.94,
+        "x": 4143.9320388349515,
+        "y": 3030,
+        "terrainId": "fc15-drained-ledge",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 4143.9320388349515,
+        "y": 3030,
+        "scale": 0.94
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "fc15-drained-ledge-portrait",
+        "width": 390,
+        "height": 696,
+        "scale": 0.82,
+        "x": 4143.9320388349515,
+        "y": 3030,
+        "terrainId": "fc15-drained-ledge",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 4143.9320388349515,
+        "y": 3030,
+        "scale": 0.82
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "fc15-drained-ledge-landscape",
+        "width": 844,
+        "height": 390,
+        "scale": 0.82,
+        "x": 4143.9320388349515,
+        "y": 3030,
+        "terrainId": "fc15-drained-ledge",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 4143.9320388349515,
+        "y": 3030,
+        "scale": 0.82
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "fc15-safe-crown-descent-desktop",
+        "width": 1331,
+        "height": 763,
+        "scale": 0.94,
+        "x": 3320,
+        "y": 2020,
+        "terrainId": "fc15-safe-crown-descent",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 3320,
+        "y": 2020,
+        "scale": 0.94
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "fc15-safe-crown-descent-portrait",
+        "width": 390,
+        "height": 696,
+        "scale": 0.82,
+        "x": 3320,
+        "y": 2020,
+        "terrainId": "fc15-safe-crown-descent",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 3320,
+        "y": 2020,
+        "scale": 0.82
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "fc15-safe-crown-descent-landscape",
+        "width": 844,
+        "height": 390,
+        "scale": 0.82,
+        "x": 3320,
+        "y": 2020,
+        "terrainId": "fc15-safe-crown-descent",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 3320,
+        "y": 2020,
+        "scale": 0.82
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "focus-desktop-0",
+        "width": 1331,
+        "height": 763,
+        "scale": 0.19573529411764706,
+        "x": -320,
+        "y": -1800,
+        "focusBounds": {
+          "left": -320,
+          "top": -1800,
+          "right": 6120,
+          "bottom": 4440
+        }
+      },
+      "actualCamera": {
+        "x": -320,
+        "y": -1800,
+        "scale": 0.19573529411764706
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "focus-desktop-1",
+        "width": 1331,
+        "height": 763,
+        "scale": 0.19573529411764706,
+        "x": 6120,
+        "y": -1800,
+        "focusBounds": {
+          "left": -320,
+          "top": -1800,
+          "right": 6120,
+          "bottom": 4440
+        }
+      },
+      "actualCamera": {
+        "x": 6120,
+        "y": -1800,
+        "scale": 0.19573529411764706
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "focus-desktop-2",
+        "width": 1331,
+        "height": 763,
+        "scale": 0.19573529411764706,
+        "x": -320,
+        "y": 4440,
+        "focusBounds": {
+          "left": -320,
+          "top": -1800,
+          "right": 6120,
+          "bottom": 4440
+        }
+      },
+      "actualCamera": {
+        "x": -320,
+        "y": 4440,
+        "scale": 0.19573529411764706
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "focus-desktop-3",
+        "width": 1331,
+        "height": 763,
+        "scale": 0.19573529411764706,
+        "x": 6120,
+        "y": 4440,
+        "focusBounds": {
+          "left": -320,
+          "top": -1800,
+          "right": 6120,
+          "bottom": 4440
+        }
+      },
+      "actualCamera": {
+        "x": 6120,
+        "y": 4440,
+        "scale": 0.19573529411764706
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "focus-portrait-0",
+        "width": 390,
+        "height": 696,
+        "scale": 0.057352941176470586,
+        "x": -320,
+        "y": -1800,
+        "focusBounds": {
+          "left": -320,
+          "top": -1800,
+          "right": 6120,
+          "bottom": 4440
+        }
+      },
+      "actualCamera": {
+        "x": -320,
+        "y": -1800,
+        "scale": 0.057352941176470586
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "focus-portrait-1",
+        "width": 390,
+        "height": 696,
+        "scale": 0.057352941176470586,
+        "x": 6120,
+        "y": -1800,
+        "focusBounds": {
+          "left": -320,
+          "top": -1800,
+          "right": 6120,
+          "bottom": 4440
+        }
+      },
+      "actualCamera": {
+        "x": 6120,
+        "y": -1800,
+        "scale": 0.057352941176470586
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "focus-portrait-2",
+        "width": 390,
+        "height": 696,
+        "scale": 0.057352941176470586,
+        "x": -320,
+        "y": 4440,
+        "focusBounds": {
+          "left": -320,
+          "top": -1800,
+          "right": 6120,
+          "bottom": 4440
+        }
+      },
+      "actualCamera": {
+        "x": -320,
+        "y": 4440,
+        "scale": 0.057352941176470586
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "focus-portrait-3",
+        "width": 390,
+        "height": 696,
+        "scale": 0.057352941176470586,
+        "x": 6120,
+        "y": 4440,
+        "focusBounds": {
+          "left": -320,
+          "top": -1800,
+          "right": 6120,
+          "bottom": 4440
+        }
+      },
+      "actualCamera": {
+        "x": 6120,
+        "y": 4440,
+        "scale": 0.057352941176470586
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "focus-landscape-0",
+        "width": 844,
+        "height": 390,
+        "scale": 0.12411764705882353,
+        "x": -320,
+        "y": -1800,
+        "focusBounds": {
+          "left": -320,
+          "top": -1800,
+          "right": 6120,
+          "bottom": 4440
+        }
+      },
+      "actualCamera": {
+        "x": -320,
+        "y": -1800,
+        "scale": 0.12411764705882353
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "focus-landscape-1",
+        "width": 844,
+        "height": 390,
+        "scale": 0.12411764705882353,
+        "x": 6120,
+        "y": -1800,
+        "focusBounds": {
+          "left": -320,
+          "top": -1800,
+          "right": 6120,
+          "bottom": 4440
+        }
+      },
+      "actualCamera": {
+        "x": 6120,
+        "y": -1800,
+        "scale": 0.12411764705882353
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "focus-landscape-2",
+        "width": 844,
+        "height": 390,
+        "scale": 0.12411764705882353,
+        "x": -320,
+        "y": 4440,
+        "focusBounds": {
+          "left": -320,
+          "top": -1800,
+          "right": 6120,
+          "bottom": 4440
+        }
+      },
+      "actualCamera": {
+        "x": -320,
+        "y": 4440,
+        "scale": 0.12411764705882353
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "focus-landscape-3",
+        "width": 844,
+        "height": 390,
+        "scale": 0.12411764705882353,
+        "x": 6120,
+        "y": 4440,
+        "focusBounds": {
+          "left": -320,
+          "top": -1800,
+          "right": 6120,
+          "bottom": 4440
+        }
+      },
+      "actualCamera": {
+        "x": 6120,
+        "y": 4440,
+        "scale": 0.12411764705882353
+      },
+      "heroHeight": 92,
+      "physicsSha256": "4f2c018d634a37cee49300345da598ef10911a64b8859f3dc4170c9c890e8627",
+      "renderPure": true
+    }
+  ]
+}

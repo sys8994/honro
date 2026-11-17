@@ -51,7 +51,10 @@ function art(project,source){
  for(const e of source.elements.filter(isBody)){
   const a=lib.get(e.assetId);if(!a?.vector||a.collision?.length||e.rotation)throw Error('Stage15 BODY must be unrotated collision-free native vector: '+e.assetId);
   const scale=e.scale??1,matrix=[scale,0,0,scale,(e.x||0)-scale*(a.anchor?.x||0),(e.y||0)-scale*(a.anchor?.y||0)],b=a.bounds;
-  const left=matrix[0]*b.x+matrix[4],right=left+scale*b.w,top=matrix[3]*b.y+matrix[5],bottom=top+scale*b.h;
+  // The outer source already paints the complete canonical floor/ceiling.
+  // Its historical illustration bbox must not crop that domain after compaction.
+  const outer=a.id==='act2-traced:stage15-outer-v1';
+  const left=matrix[0]*b.x+matrix[4],right=left+scale*b.w,top=outer?-24000:matrix[3]*b.y+matrix[5],bottom=outer?30000:top+scale*b.h;
   const cuts=[left,...STAGE15_X_KNOTS.map(k=>k[0]).filter(x=>x>left&&x<right),right],size=count(a.vector.root,a.vector.symbols||{});
   if(size.nodes>470||size.chars>3700000)throw Error('Stage15 native BODY exceeds safe composition budget: '+a.id);
   const chunk=Math.max(1,Math.min(16,Math.floor(475/(size.nodes+3)),size.chars?Math.floor(3700000/size.chars):16));let chunks=0;
