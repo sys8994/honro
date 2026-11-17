@@ -1,0 +1,11 @@
+# Stage 33 exterior-only candidate
+
+Status: candidate, not merged, not deployed, manual Chrome review pending. Base 396bac7909d7750cfdd85bc7ff98d3739a00d8d7 excludes the incomplete Stage32 material revision.
+
+The original 27 upper/lowland native path compounds, colors, clipping and registration remain in their existing providers. The new provider references those providers, combines them once in a bounded device buffer, and applies the limited left x=-3300..-3000 and submerged bottom y=5100..5300 transition to that combined result. New exterior paint is drawn behind it, not over the road or platform core. No Gaussian blur is applied. Original source assets remain available to old saves; new compatibility IDs preload all referenced sources. No terrain, collision, encounter or unit placement change is intended.
+
+The exterior field uses V3 native Inkscape trace, not a raster in runtime. Source and raw/final trace are preserved in art/stage33-exterior-study-20261117 at 559f6df020ece4704c48e3fa9367981fb251035e. Generated-source inverse registration and source→world affine are recorded in the field params. The initial global left Y correction caused double pale strata and was rejected. The revised candidate changes only the new left ridge above source y=200, mapping132.48→157 and200→200. Lower layers use the original inverse affine with no Y correction. These are art registration observations, not exact pixel identity claims.
+
+Compositing keeps one buffer capped at 8,388,608 device pixels (32MiB), reports allocation/raster/hit/fallback counters, and uses explicit original-provider fallback when unsupported. Unit checks cover overlap alpha, transformed masks, caching, pixel cap and source immutability. CI checks actual production Scene baseline/candidate in fresh synthetic in-memory battles, no storage or app launch; official low tide, unchanged physics, save codec JSON roundtrip and render purity. Full public UI, real device, gameplay and frame-time acceptance remain unverified.
+
+The native preview improved the hard exterior cut and large ghost bands; small material/bright-edge mismatch remains a manual-review concern. A passing technical CI alone is not visual approval. Stage32 remains separate and incomplete.
