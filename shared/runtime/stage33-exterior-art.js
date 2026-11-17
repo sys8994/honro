@@ -3,7 +3,7 @@ if(G.HonroStage33ExteriorArt)return;
 const MARKER='act4-sideview:33:exterior-v3:composite',FIELD='act4-sideview:33:exterior-v3:field',IDS=['act4-sideview:33:coastal-v2:west-continuous-geology','act4-sideview:33:coastal-v2:lowland'];
 const MAX_PIXELS=8*1024*1024,BX=14000/1983,BY=5600/793,A=43/67.52,B=200-200*A,SPLIT=-300+200*BY;
 let buffer=null,last=null;
-const counters={allocations:0,rasterizations:0,hits:0,bytes:0,peakBytes:0,fallbacks:0,directCoreDraws:0,fullCoreDraws:0,reasons:{}};
+const counters={allocations:0,rasterizations:0,hits:0,bytes:0,peakBytes:0,fallbacks:0,directCoreDraws:0,fullCoreDraws:0,backdropCopies:0,backdropRestores:0,reasons:{}};
 const instance={x:0,y:0,scale:1,rotation:0};
 function find(b,id){return b?.honroLandmarks?.find(l=>l.asset?.id===id)?.asset||G.HONRO_PROJECT?.library?.find(a=>a.id===id);}
 function fallback(c,sources,reason){counters.fallbacks++;counters.reasons[reason]=(counters.reasons[reason]||0)+1;for(const a of sources)if(a?.vector)G.HonroVectorArt.draw(c,a,instance);return true;}
@@ -16,16 +16,21 @@ function mask(c,m,axis,start,end,w,h){
  g.addColorStop(0,axis==='x'?'#ffffff00':'#ffffffff');g.addColorStop(1,axis==='x'?'#ffffffff':'#ffffff00');
  c.globalCompositeOperation='destination-in';c.fillStyle=g;c.fillRect(0,0,w,h);
 }
-function prepare(c,sources){
+function ensureBuffer(c){
  const w=c.canvas?.width,h=c.canvas?.height,m=c.getTransform(),matrix=[m.a,m.b,m.c,m.d,m.e,m.f];
  if(!Number.isInteger(w)||!Number.isInteger(h)||w<1||h<1||w*h>MAX_PIXELS)return {error:'device-pixel-cap'};
  if(matrix.some(v=>!Number.isFinite(v))||Math.abs(m.a*m.d-m.b*m.c)<1e-15)return {error:'invalid-transform'};
+ if(!buffer){buffer=typeof G.OffscreenCanvas==='function'?new G.OffscreenCanvas(w,h):G.document?.createElement('canvas');if(!buffer)return {error:'no-canvas'};counters.allocations++;}
+ if(buffer.width!==w||buffer.height!==h){last=null;buffer.width=w;buffer.height=h;}
+ const cc=buffer.getContext('2d');if(!cc)return {error:'no-context'};
+ counters.bytes=w*h*4;counters.peakBytes=Math.max(counters.peakBytes,counters.bytes);return {w,h,m,matrix,cc};
+}
+function resetBuffer(cc,w,h){cc.setTransform(1,0,0,1,0,0);cc.globalAlpha=1;cc.globalCompositeOperation='source-over';cc.filter='none';cc.clearRect(0,0,w,h);}
+function prepare(c,sources){
+ const env=ensureBuffer(c);if(env.error)return env;const {w,h,m,matrix,cc}=env;
  const key=[w,h,...matrix,G.HonroVisualStyle?.key?.()||''].join('|');
  if(last?.context===c&&last.key===key&&sources.every((v,i)=>v===last.sources[i])){counters.hits++;return {canvas:buffer};}
- if(!buffer){buffer=typeof G.OffscreenCanvas==='function'?new G.OffscreenCanvas(w,h):G.document?.createElement('canvas');if(!buffer)return {error:'no-canvas'};counters.allocations++;}
- if(buffer.width!==w||buffer.height!==h){buffer.width=w;buffer.height=h;}
- const cc=buffer.getContext('2d');if(!cc)return {error:'no-context'};
- cc.setTransform(1,0,0,1,0,0);cc.globalAlpha=1;cc.globalCompositeOperation='source-over';cc.filter='none';cc.clearRect(0,0,w,h);cc.setTransform(...matrix);
+ resetBuffer(cc,w,h);cc.setTransform(...matrix);
  // The two original providers are isolated together in original order. Only
  // the resulting composite is masked; overlapping original paint is not faded twice.
  for(const a of sources)G.HonroVectorArt.draw(cc,a,instance);
@@ -60,8 +65,11 @@ function coreClip(c,r,outside){
  c.rect(r.left,0,r.w-r.left,r.bottom);c.clip(outside?'evenodd':'nonzero');
  c.setTransform(r.m.a,0,0,r.m.d,r.m.e,r.m.f);
 }
-function originalCore(c,r,sources){
- c.save();try{coreClip(c,r,false);for(const a of sources)G.HonroVectorArt.draw(c,a,instance);counters.directCoreDraws++;}finally{c.restore();}
+// Error-only recovery: main core already contains exact originals. Restore
+// the available original art outside as well instead of leaving backdrop only.
+// Added outside clipping can alter AA in this diagnosed fallback, not normal use.
+function outsideFallback(c,core,sources,reason){
+ c.save();try{coreClip(c,core,true);return fallback(c,sources,reason);}finally{c.restore();}
 }
 function draw(c,l,b){
  if(b?.honroStage!==33||b?.honroCustom||l?.asset?.id!==MARKER)return false;
@@ -75,12 +83,22 @@ function draw(c,l,b){
   if(field?.params?.stage33ExteriorField!==1||field?.params?.registration?.newBandInverseAffine?.length!==6)return fallback(c,sources,'missing-field');
   const core=coreRect(c);
   if(core&&core.left===0&&core.bottom===core.h){for(const a of sources)G.HonroVectorArt.draw(c,a,instance);counters.directCoreDraws++;counters.fullCoreDraws++;return true;}
-  let q;try{q=prepare(c,sources);}catch{return fallback(c,sources,'source-render-error');}
-  if(q.error)return fallback(c,sources,q.error);
+  if(core){
+   // Validate/allocate before touching main. Reuse the SAME bounded buffer as
+   // a backdrop snapshot, then as the masked original; never hold two bitmaps.
+   let env;try{env=ensureBuffer(c);if(!env.error&&G.HonroVectorArt.prepare){for(const a of [...sources,field])G.HonroVectorArt.prepare(a.vector);}}catch{return fallback(c,sources,'source-render-error');}
+   if(env.error)return fallback(c,sources,env.error);
+   last=null;resetBuffer(env.cc,env.w,env.h);env.cc.drawImage(c.canvas,0,0);counters.backdropCopies++;
+   // Crucial: no extra clipping or transform round-trip on original paths.
+   for(const a of sources)G.HonroVectorArt.draw(c,a,instance);counters.directCoreDraws++;
+   c.save();try{coreClip(c,core,true);c.setTransform(1,0,0,1,0,0);c.globalAlpha=1;c.filter='none';c.globalCompositeOperation='copy';c.drawImage(buffer,0,0);counters.backdropRestores++;}finally{c.restore();}
+  }
+  let q;try{q=prepare(c,sources);}catch{return core?outsideFallback(c,core,sources,'post-snapshot-render-error'):fallback(c,sources,'source-render-error');}
+  if(q.error)return core?outsideFallback(c,core,sources,q.error):fallback(c,sources,q.error);
   // Existing clips on c still apply. Shared buffer holds raw palette; caller
   // supplies HonroVisualStyle.raw(c), so no additional tint is introduced.
   c.save();try{if(core)coreClip(c,core,true);exterior(c,field);c.setTransform(1,0,0,1,0,0);c.drawImage(q.canvas,0,0);}finally{c.restore();}
-  if(core)originalCore(c,core,sources);return true;
+  return true;
  }finally{c.restore();}
 }
 G.HonroStage33ExteriorArt={draw,stats:()=>({...counters,reasons:{...counters.reasons},maxPixels:MAX_PIXELS}),clear:()=>{last=null;if(buffer){buffer.width=1;buffer.height=1;}counters.bytes=buffer?4:0;}};
