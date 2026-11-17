@@ -182,7 +182,14 @@ function tracePaint(c,cv,q,n,originalOnly,label){
   const key=[label,originalOnly,...[m.a,m.b,m.c,m.d,m.e,m.f],point.id,n?.sourceIndex??25].join('|');if(seen.has(key))continue;seen.add(key);
   const mask=(path)=>{const v=document.createElement('canvas');v.width=v.height=size;const z=v.getContext('2d');z.setTransform(m.a/2.2,0,0,m.d/2.2,m.e-x+r,m.f-y+r);z.clip(q.apron);z.scale(2.2,2.2);z.fillStyle='#fff';if(path)z.fill(path,n?.rule||'nonzero');return Array.from(z.getImageData(0,0,size,size).data).filter((_,i)=>i%4===3);};
   let grass=null;if(!n){const v=document.createElement('canvas');v.width=v.height=size;const z=v.getContext('2d');z.fillStyle='#000';z.fillRect(0,0,size,size);z.setTransform(m.a/2.2,0,0,m.d/2.2,m.e-x+r,m.f-y+r);z.clip(q.apron);z.scale(2.2,2.2);for(const p of q.paths){z.fillStyle=p.sourceIndex>=12&&p.sourceIndex<=17?'#fff':'#000';z.fill(p.path,p.rule);}grass=Array.from(z.getImageData(0,0,size,size).data).filter((_,i)=>i%4===0);}
-  records.push({point:point.id,world:[wx,wy],screen:point.screen,device:[x,y],matrix:[m.a,m.b,m.c,m.d,m.e,m.f],label,originalOnly,path:n?.sourceIndex??25,phase:n?'before-path':'after-all',fill:n?.fill??null,protected:n?.protected??null,size,rgba:Array.from(c.getImageData(x-r,y-r,size,size).data),field:Array.from(cv.getContext('2d').getImageData(x-r,y-r,size,size).data),full:n?mask(n.path):null,gray:n?.gray?mask(n.gray):null,grassVisible:grass});
+  let topology=null;
+  if(!n){
+   const pixels=c.getImageData(x-r,y-r,size,size).data;let best=0;for(let k=1;k<size*size;k++)if(pixels[k*4+1]-pixels[k*4+2]>pixels[best*4+1]-pixels[best*4+2])best=k;
+   const px=x-r+best%size,py=y-r+Math.floor(best/size),counts={};
+   for(let sy=0;sy<16;sy++)for(let sx=0;sx<16;sx++){let top=-1;for(let j=q.paths.length-1;j>=0;j--){const z=q.paths[j];if(c.isPointInPath(z.path,px+(sx+.5)/16,py+(sy+.5)/16,z.rule)){top=j;break;}}counts[top]=(counts[top]||0)+1;}
+   topology={pixelIndex:best,devicePixel:[px,py],samples:256,topmostPathCounts:counts,grassGeometricSamples:Object.entries(counts).reduce((sum,[key,v])=>sum+(+key>=12&&+key<=17?v:0),0),note:'Original raw Path2D nonzero winding point containment, topmost authored path. Exact same current cache transform. Samples lie in previously source-apron masked patch; no outline dilation or geometry edits.'};
+  }
+  records.push({topology,point:point.id,world:[wx,wy],screen:point.screen,device:[x,y],matrix:[m.a,m.b,m.c,m.d,m.e,m.f],label,originalOnly,path:n?.sourceIndex??25,phase:n?'before-path':'after-all',fill:n?.fill??null,protected:n?.protected??null,size,rgba:Array.from(c.getImageData(x-r,y-r,size,size).data),field:Array.from(cv.getContext('2d').getImageData(x-r,y-r,size,size).data),full:n?mask(n.path):null,gray:n?.gray?mask(n.gray):null,grassVisible:grass});
  }
 }
 
