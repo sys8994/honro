@@ -58,6 +58,7 @@ async function capture(id,runtimeSha256,variant,requestedCamera){
   HonroAct4TerrainPreview.eventAPI.memory(b).visualDrawn={}; // official liveWater allocates this receipt object even without an App scene
   const engine=new HONRO_CORE.Engine(b,()=>{},true);
   globalThis.HonroApp={engine};
+  HonroAct4TerrainPreview.attachCoast({engine,dialogue:null,charging:false,modal:{classList:{contains(){return false;}}}});
   const physics=JSON.stringify({terrain:b.terrain,units:b.units});
   const view=requestedCamera.name,width=1331,height=763;
   const cv=document.getElementById('scene');cv.width=width;cv.height=height;cv.style.width=width+'px';cv.style.height=height+'px';
@@ -84,6 +85,7 @@ async function capture(id,runtimeSha256,variant,requestedCamera){
   const settling=[];
   if(variant==='candidate'&&requestedCamera.name==='overview'){
    const copy=structuredClone(b),probe=new HONRO_CORE.Engine(copy,()=>{},true);
+   HonroAct4TerrainPreview.attachCoast({engine:probe,dialogue:null,charging:false,modal:{classList:{contains(){return false;}}}});
    const initial=new Map(copy.units.filter(u=>u.side===1).map(u=>[u.id,{x:u.x,y:u.y,hp:u.hp}]));
    for(let i=0;i<Math.ceil(8/HONRO_CORE.STEP);i++)probe.tick(HONRO_CORE.STEP);
    for(const u of copy.units.filter(u=>initial.has(u.id))){const a=initial.get(u.id);settling.push({id:u.id,dx:u.x-a.x,dy:u.y-a.y,hpLoss:a.hp-u.hp,dead:!!u.dead,support:probe.contactSurface(u.x,u.y-8,u.y+10)?.t.id||null});}
@@ -101,7 +103,7 @@ async function capture(id,runtimeSha256,variant,requestedCamera){
     if(!pos||probe.contactSurface(pos.x,pos.y-8,pos.y+10)?.t.id!==support){localActions.push({group:group.id,error:'No valid synthetic local approach on actual compiled support',preparedHero:pos,support});continue;}
     Object.assign(h,pos,{vx:0,vy:0});Object.assign(u,{awake:true,acted:false,moveLeft:u.maxMove});
     Object.assign(copy,{side:1,phase:'enemy',active:u.id,queue:[u.id],turnAge:0});
-    HonroAct4PilotCombat.attach({engine:probe,dialogue:null,charging:false});
+    HonroAct4TerrainPreview.attachCoast({engine:probe,dialogue:null,charging:false,modal:{classList:{contains(){return false;}}}});
     const start={x:u.x,y:u.y,hp:h.hp,shot:copy.shot},heroHealth=new Map(probe.heroesAlive().map(h=>[h.id,h.hp]));let projectiles=0;
     for(let i=0;i<Math.ceil(12/HONRO_CORE.STEP);i++){probe.tick(HONRO_CORE.STEP);projectiles=Math.max(projectiles,copy.projectiles.length);if(u.acted&&!copy.projectiles.length)break;}
     const firstAction={heroDamage:[...heroHealth].map(([id,hp])=>({id,hpLoss:hp-(probe.unit(id)?.hp||0)})).filter(r=>r.hpLoss>0),hpLoss:start.hp-h.hp,dx:u.x-start.x,dy:u.y-start.y,shots:copy.shot-start.shot,acted:!!u.acted,intent:u.intent};
