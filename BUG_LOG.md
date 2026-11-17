@@ -48,3 +48,10 @@ Re-designed stairs with their supporting rock instead of detached per-step skins
 - Native 동일구도 전후는 1440×900 `(150,3252)` / `0.45`. 공개 전후는 동일 브라우저의 초기 진입 자동 카메라와 HP/이동도 같은 상태에서 별도 캡처했다. 두 증거를 혼동하지 않는다.
 - 미검수: 전체 미션/전투 완주, 실제 모바일 기기, Workshop 실입력. 모바일·극단 세로 상하 팬은 Native Scene 검사다.
 - 남는 시각 한계: 외벽은 원본보다 각지고 조밀한 색면이며 동쪽 계단 끝 주변에 재질 전환이 남는다. 반복 블러·신규 절단·큰 사각 접합·밝은 가짜 발판은 이번 Native/공개 범위에서 발견하지 못했다.
+
+## 50장 연속 암벽 후보 · 2026-11-17
+
+- 원인: 기본 늘림/gradient 외곽이 원본 암면과 분리됐다.
+- 변경: 실제 Inkscape 추적·형상 보존 최적화 암벽, 원본 하단 색경계 분할, 원본 보행/계단/산문/아치 보호 및 단일 alpha 합성. 원본 데이터와 다른 장, 충돌·저장·카메라는 불변이다.
+- 확인: 데이터 hash·보행 327점·색면 968점·아치 323점·6개 화면비 bounds, 합성 예외/opacity/clip 회귀, 서쪽/동쪽/세로 Native 화면.
+- 아직 master/CI/Pages/공개 실제 입력은 미완료. source PNG/raw는 지원 Library 및 로컬에 원본 보존했으며 전송 제한 우회는 하지 않았다. 세부 근거와 한계는 `game/docs/STAGE50_CONTINUITY_STATUS.md`.
