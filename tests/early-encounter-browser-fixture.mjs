@@ -41,7 +41,7 @@ const p=PROBE;try{
 }catch(e){publishProbe({ok:false,stage:id,error:String(e.stack||e),...p});}
 }
 const script=s=>'<script>'+s.replace(/<\/script/gi,'<\\/script')+'</script>';
-for(const [id,x,y] of [[13,4650,2440],[29,3400,2110],[30,5200,5350],[9,3000,2700],[17,2600,2000]])for(const variant of ([13,29].includes(id)?['baseline','candidate']:['candidate']))for(const camera of [{name:'focus',x,y,scale:.65},{name:'overview',x:x/2,y:y/2}]){
+for(const [id,x,y] of [[13,4650,2440],[29,3400,2110],[30,5200,5350],[9,1850,2390],[17,1400,2290]])for(const variant of ([13,29].includes(id)?['baseline','candidate']:['candidate']))for(const camera of [{name:'focus',x,y,scale:.65},{name:'overview',x:x/2,y:y/2}]){
  const runtime=variant==='baseline'?baselineRuntime:candidateRuntime;
  const html='<!doctype html><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src \'none\'; script-src \'unsafe-inline\'; style-src \'unsafe-inline\'; img-src data:; font-src data:; connect-src \'none\'"><canvas id="scene"></canvas><pre id="result">pending</pre>'+script('('+bootstrap.toString()+')('+id+');')+script(runtime)+script('('+capture.toString()+')('+id+','+JSON.stringify(camera)+','+JSON.stringify(variant)+');');
  await writeFile(path.join(out,'stage'+id+'-'+variant+'-'+camera.name+'.html'),html);
