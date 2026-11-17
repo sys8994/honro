@@ -102,7 +102,7 @@ export const lateEncounters = {
   },
   48: {
     encounterVersion:6, rounds:[16,19], active:6, hits:2.18, incoming:.113, eliteHits:4.7,
-    required:{eastGuard:[505,565],reflection:[778,811]},
+    required:{eastGuard:[527,553],reflection:[778,811]},
     sites:{westGuard:[306,407],eastGuard:[539,410],reflection:[778,312]},
     contest:{
       stakeOne:{group:'westGuard',radius:34},
@@ -123,13 +123,15 @@ export const lateEncounters = {
         flyer('lantern',257,362,75), foe('mourner',276,403,{label:'하강로 주박귀'}),
         flyer('bat',306,409,58),
       ]),
+      // The first stake owns this compact trio; leave the center basin clear.
       pack('westGuard',['stakeOne','eastGuard'],169,137,[
-        foe('shade',345,411,{label:'서쪽 진목 제기귀'}), flyer('lantern',369,411,53),
-        foe('ghost',402,413),
+        foe('shade',316,410,{label:'서쪽 진목 제기귀'}), flyer('lantern',342,411,61),
+        foe('ghost',365,411),
       ]),
+      // The second stake and ascent foot form one defended place, not a floor-wide queue.
       pack('eastGuard',['eastGuard','stakeTwo','center'],178,166,[
-        flyer('lantern',476,415,78), foe('mourner',505,413,{label:'동쪽 진목 주박귀'}),
-        foe('ghost',565,408,{label:'진목 수비혼'}), foe('shade',584,395,{label:'갈라진 석단 제기귀'}),
+        flyer('lantern',535,410,78), foe('mourner',527,411,{label:'동쪽 진목 주박귀'}),
+        foe('ghost',553,409,{label:'진목 수비혼'}), foe('shade',578,400,{label:'갈라진 석단 제기귀'}),
       ],undefined,'stakeOne'),
       pack('recoveryAscent',['stakeTwo','reflection','tools'],155,155,[
         flyer('lantern',598,382,39), foe('ghost',630,356), foe('shade',716,318,{label:'회수로 제기귀'}),
