@@ -52,7 +52,7 @@ async function protectedCoverage(asset,camera,width,height){
  for(const [name,ids]of Object.entries(groups)){
   const output={};
   for(const mode of ['visible','union']){
-   const v=structuredClone(asset.vector);let index=0;function paint(n){if(n.tag==='path')n.fill=ids.includes(index++)?'#ffffff':mode==='visible'?'#000000':'none';for(const child of n.children||[])paint(child);}paint(v);
+   const v=structuredClone(asset.vector);let index=0;function paint(n){if(n.tag==='path')n.fill=ids.includes(index++)?'#ffffff':mode==='visible'?'#000000':'none';for(const child of n.children||[])paint(child);}paint(v.root);
    const cv=new OffscreenCanvas(width,height),c=cv.getContext('2d');c.fillStyle='#000000';c.fillRect(0,0,width,height);c.setTransform(camera.scale,0,0,camera.scale,width/2-camera.x*camera.scale,height/2-camera.y*camera.scale);
    assert(HonroVectorArt.draw(c,{...asset,id:asset.id+':coverage:'+name+':'+mode,vector:v},{x:0,y:0,scale:1,rotation:0}),'Coverage vector draw failed');
    const rgba=c.getImageData(0,0,width,height).data,values=new Uint8Array(width*height),hist=new Array(256).fill(0);for(let i=0;i<values.length;i++){const p=i*4;assert(rgba[p+3]===255&&rgba[p]===rgba[p+1]&&rgba[p]===rgba[p+2],'Coverage must remain opaque neutral diagnostic');values[i]=rgba[p];hist[values[i]]++;}
