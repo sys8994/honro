@@ -2,7 +2,7 @@ import fs from 'node:fs';import vm from 'node:vm';
 process.env.HONRO_ACT4_RELEASE='1';process.env.HONRO_ACT5_RELEASE='1';
 const {runtime,battlefield}=await import('../game/tests/helpers.mjs');
 const g=await runtime({legacyMaps:false,productionStory:true});
-g.HONRO_APP_READY={then(){}};
+g.HONRO_APP_READY={then(){}};g.HonroScene??=class{};g.document={addEventListener(){},getElementById(){return null;}}; // No render or App loop in roster-only diagnostic.
 for(const [name,file]of [['HONRO_ACT4_PILOT_COMBAT_REFERENCE','pilot-combat-reference.json'],['HONRO_ACT4_PREVIEW_SEEDS','reviewed.json']])g[name]=JSON.parse(fs.readFileSync('shared/data/act4/'+file));
 for(const name of ['act4-art','act4-maps','act4-coast-maps','act4-coast-art','act4-events','act4-coast-events','act4-pilot-combat','act4-pilot-art'])vm.runInContext(fs.readFileSync('shared/runtime/'+name+'.js','utf8'),g);
 fs.mkdirSync('_local/reports/monster-placement',{recursive:true});const all=[];
