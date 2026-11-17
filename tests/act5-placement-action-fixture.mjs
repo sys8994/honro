@@ -88,7 +88,8 @@ async function capture(id,runtimeSha256,variant,requestedCamera){
   assert(JSON.stringify({terrain:b.terrain,units:b.units})===physics,'Physics changed');
   assert(!p.storage.length&&!p.errors.length&&!p.violations.length,'Storage/runtime/CSP error');
   assert(!p.images.some(v=>v.pending||v.error),'Pending or failed image');
-    const localActions=[],settling=[];
+    const initialPng=cv.toDataURL('image/png'),warningImages=[];
+  const localActions=[],settling=[];
   {
    const copy=structuredClone(b),probe=new HONRO_CORE.Engine(copy,()=>{},true);HonroAct5.attach(probe);
    const initial=new Map(copy.units.filter(u=>u.side===1&&!u.dead).map(u=>[u.id,{x:u.x,y:u.y,hp:u.hp}]));
@@ -111,11 +112,32 @@ async function capture(id,runtimeSha256,variant,requestedCamera){
    const start={x:u.x,y:u.y,hp:h.hp,shot:copy.shot||0};let projectiles=0,maxMove=0;
    const grounded=probe.grounded(h);assert(grounded,'Prepared hero must stand on production support');
    for(let i=0;i<Math.ceil(12/HONRO_CORE.STEP);i++){probe.tick(HONRO_CORE.STEP);projectiles=Math.max(projectiles,copy.projectiles.length);maxMove=Math.max(maxMove,Math.hypot(u.x-start.x,u.y-start.y));if(u.acted&&!copy.projectiles.length)break;}
-   localActions.push({actor:u.id,kind:u.honroVariant,group:stage.units.find(v=>v.id===u.id)?.encounterGroup,target:h.id,preparedHero:pos,grounded,support:support.t.id,hpLoss:start.hp-h.hp,dx:u.x-start.x,dy:u.y-start.y,maxMove,projectiles,shots:(copy.shot||0)-start.shot,acted:!!u.acted,intent:u.intent,effect:!!u.enemyEffectCast,scope:'Synthetic one-hero approach, forced-awake actor; original Engine action on actual terrain. Not normal route, wake eligibility, quest completion or full-play acceptance'});
+   const firstAction={hpLoss:start.hp-h.hp,dx:u.x-start.x,dy:u.y-start.y,maxMove,projectiles,shots:(copy.shot||0)-start.shot,acted:!!u.acted,intent:u.intent,effect:!!u.enemyEffectCast};
+   let followUp=null;
+   if(u.honroMonsterWindup||u.enemyEffectCast){
+    for(let i=0;i<720&&!(copy.side===0&&copy.phase==='aim');i++)probe.tick(HONRO_CORE.STEP);
+    if(probe.select(h.id)){
+     Object.assign(scene,{x:(u.x+h.x)/2,y:h.y-180,scale:.65});
+     globalThis.HonroApp={engine:probe,scene:{x:scene.x,y:scene.y,scale:scene.scale,canvas:cv}};
+     scene.render(probe,0,'',.6,false,0,false);await drain();
+     const shown=structuredClone(u.honroMonsterWindup||u.enemyEffectCast),health=h.hp;
+     warningImages.push({actor:u.id,target:h.id,png:cv.toDataURL('image/png')});
+     probe.wait(); const guardAfterWait=h.shield||0;
+     for(let i=0;i<1440&&copy.side===0;i++){if(probe.canAct())probe.wait();probe.tick(HONRO_CORE.STEP);}
+     const answer=structuredClone(u.honroMonsterWindup||u.enemyEffectCast||null);
+     if(copy.side===1){
+      copy.queue=[u.id];copy.active=u.id;copy.phase='enemy';u.acted=false;
+      for(let i=0;i<1440;i++){probe.tick(HONRO_CORE.STEP);if(u.acted&&!copy.projectiles.length)break;}
+     }
+     followUp={shown,answer,hpLoss:health-h.hp,guardAfterWait,guardRemaining:h.shield||0,conditions:h.honroMonsterConditions||h.bound||null,remainingWindup:!!(u.honroMonsterWindup||u.enemyEffectCast),intent:u.intent,scope:'Actual Canvas warning observation and original Engine.wait, then second prepared enemy slot. No seen/answered, damage or effect outcome assignments. Not normal play.'};
+     delete globalThis.HonroApp;Object.assign(scene,camera);
+    }else followUp={error:'Actual player turn could not be offered'};
+   }
+   localActions.push({actor:u.id,kind:u.honroVariant,group:stage.units.find(v=>v.id===u.id)?.encounterGroup,target:h.id,preparedHero:pos,grounded,support:support.t.id,...firstAction,followUp,scope:'Synthetic one-hero approach, forced-awake actor; original Engine action on actual terrain. Not normal route, wake eligibility, quest completion or full-play acceptance'});
   }
 
   const hash=async s=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s))),v=>v.toString(16).padStart(2,'0')).join('');
-  publishProbe({ok:true,localActions,settling,scope:'Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.',stage:id,variant,units:b.units.filter(u=>u.side===1).map(u=>({id:u.id,x:u.x,y:u.y,role:u.role,group:u.group})),...((id===40)?{tideSnapshot,appReadyUnresolved:true,initialization:'Official coast.tide; fresh in-memory profile; no App launch or event progression'}:{}),view,width,height,dpr:devicePixelRatio,camera,time:2,seed:3910,runtimeSha256,physicsSha256:await hash(physics),renderPure:true,fontStatus:document.fonts.status,fontNote:'System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.',userAgent:navigator.userAgent,imageCount:p.images.length,pendingImages:p.images.filter(v=>v.pending).length,imageErrors:p.images.filter(v=>v.error).length,storage:p.storage,errors:p.errors,violations:p.violations,png:cv.toDataURL('image/png')});
+  publishProbe({ok:true,localActions,settling,warningImages,scope:'Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.',stage:id,variant,units:b.units.filter(u=>u.side===1).map(u=>({id:u.id,x:u.x,y:u.y,role:u.role,group:u.group})),...((id===40)?{tideSnapshot,appReadyUnresolved:true,initialization:'Official coast.tide; fresh in-memory profile; no App launch or event progression'}:{}),view,width,height,dpr:devicePixelRatio,camera,time:2,seed:3910,runtimeSha256,physicsSha256:await hash(physics),renderPure:true,fontStatus:document.fonts.status,fontNote:'System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.',userAgent:navigator.userAgent,imageCount:p.images.length,pendingImages:p.images.filter(v=>v.pending).length,imageErrors:p.images.filter(v=>v.error).length,storage:p.storage,errors:p.errors,violations:p.violations,png:initialPng});
  }catch(e){publishProbe({ok:false,stage:id,error:String(e.stack||e),...p});}
 }
 const script=s=>'<script>'+s.replace(/<\/script/gi,'<\\/script')+'</script>';
