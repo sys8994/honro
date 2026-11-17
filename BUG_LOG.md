@@ -82,3 +82,8 @@ Re-designed stairs with their supporting rock instead of detached per-step skins
 
 - 후면 수면 source의 y7100 끝과 두 유한 암면의 y7668/y7290 끝이 실제 관측 위치에 일치했다. 수면 첫 path·정합 bounds만 기존 domain31200으로 잇고, 두 암면의 깊은 끝만 기존 바탕과 합성했다.
 - campaign 자산1개 외 불변, 원본 forms/색/배율·물리·배 이벤트/22장메타 보존, 재생성/원문복원/Native6뷰를 확인했다. 재질 차이·고배율 AA/연속 줌·공개 UI·배 상태는 미검수다. 상세: `game/docs/STAGE30_EDGE_COMPOSITION_20261117.md`.
+
+## 2026-11-17 · 29장 Chrome 왼쪽 외곽 접합 후보
+
+- Native 내부 strip 누락은 철회했지만 실제 독립 Chrome Scene에서 world x0의 수직 외곽 이음은 남았다. source 왼쪽 fade가 null인 별개 원인이다.
+- edgeFade[0]만 [0,170]으로 추가하고 원본 path·mapping·bounds·오른쪽 fade·물리를 보존했다. 정적/재생성 검사는 통과했으며 Chrome A/B의 상단 돌/보행rim 확인 전 판정은 보류한다. 상세: `game/docs/STAGE29_LEFT_JOIN_CANDIDATE_20261117.md`.
