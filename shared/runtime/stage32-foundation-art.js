@@ -80,6 +80,52 @@ function material(c,asset){
  last={context:c,asset,key};return buffer;
 }
 function bitmap(c,cv){c.save();c.setTransform(1,0,0,1,0,0);c.drawImage(cv,0,0);c.restore();}
+// Candidate only. Correct correlated-AA hidden-green residue on internal non-walk
+// seams. Never changes source geometry or full BODY alpha. The finite sampling
+// is explicitly measured; not a claim of analytic exact area integration.
+const coverageStats={calls:0,eligible:0,corrected:0,samples:0,ms:0,alphaChanged:0,roadSkipped:0,opaqueGrassSkipped:0,actualGrassSamples:0,bytes:0};
+let coverageMasks=null;
+function coherentColor(c,cv,q){
+ const t=performance.now(),m=c.getTransform(),world=m.d/2.2;
+ // Lowest actual walk y1342; authored roads extend to1368.4. Upper limit is the
+ // existing independently validated lower-material transition at world1716.
+ if(m.b||m.c||m.a<=0||m.d<=0||c.globalAlpha!==1||c.globalCompositeOperation!=='source-over')return;
+ const y0=Math.max(0,Math.ceil(world*1385+m.f)),y1=Math.min(c.canvas.height,Math.floor(world*1716+m.f));
+ if(y1<=y0)return;const w=c.canvas.width,h=y1-y0;if(w*h>1024*1024)return;
+ coverageStats.calls++;
+ coverageMasks??=Array.from({length:3},()=>G.document.createElement('canvas'));
+ const masks=coverageMasks.map((v,index)=>{if(v.width!==w||v.height!==h){v.width=w;v.height=h;}const z=v.getContext('2d');z.setTransform(1,0,0,1,0,0);z.globalAlpha=1;z.globalCompositeOperation='copy';z.fillStyle=index===2?'rgba(0,0,0,0)':'#000';z.fillRect(0,0,w,h);z.globalCompositeOperation='source-over';z.setTransform(m.a/2.2,0,0,m.d/2.2,m.e,m.f-y0);z.save();z.clip(q.apron);z.scale(2.2,2.2);for(const p of q.paths){z.fillStyle=index===2?'#fff':index===0&&p.sourceIndex>=12&&p.sourceIndex<=17||index===1&&p.sourceIndex>=21?'#fff':'#000';z.fill(p.path,p.rule);}z.restore();return z.getImageData(0,0,w,h).data;});
+ const old=c.getImageData(0,y0,w,h),data=old.data,field=cv.getContext('2d').getImageData(0,y0,w,h).data;
+ const colors=q.paths.map(p=>{const hex=p.fill.replace('#','');if(!/^[0-9a-f]{6}$/i.test(hex))throw Error('Unexpected source palette');return [0,2,4].map(i=>parseInt(hex.slice(i,i+2),16));});
+ const grass=masks[0],road=masks[1],body=masks[2],sampleN=16;
+ for(let y=0;y<h;y++)for(let x=0;x<w;x++){
+  const k=(y*w+x)*4;if(!grass[k])continue;
+  if(grass[k]===255){coverageStats.opaqueGrassSkipped++;continue;}
+  if(road[k]){coverageStats.roadSkipped++;continue;}
+  if(body[k+3]!==255||data[k+3]!==255||field[k+3]!==255)continue;
+  coverageStats.eligible++;const sum=[0,0,0];let actualGrass=0;
+  for(let sy=0;sy<sampleN;sy++)for(let sx=0;sx<sampleN;sx++){
+   const dx=x+(sx+.5)/sampleN,dy=y+y0+(sy+.5)/sampleN;let color=null;
+   for(let j=q.paths.length-1;j>=0;j--){const p=q.paths[j];if(!c.isPointInPath(p.path,dx,dy,p.rule))continue;
+    if(j>=12&&j<=17)actualGrass++;
+    color=p.protected||p.gray&&c.isPointInPath(p.gray,dx,dy,p.rule)?colors[j]:field.subarray(k,k+3);break;
+   }
+   // A fully opaque raster BODY can still contain unresolved subpixel holes.
+   // Such a pixel is not safe to recolor: leave the complete original pixel.
+   if(!color){sum[0]=NaN;break;}for(let ch=0;ch<3;ch++)sum[ch]+=color[ch];
+  }
+  coverageStats.samples+=256;coverageStats.actualGrassSamples+=actualGrass;
+  if(!Number.isFinite(sum[0]))continue;
+  // Correct only independently composited excess green, not genuine grass AA.
+  // 1/255 is a quantization guard, not a removal threshold for real small grass.
+  if(grass[k]/255<=actualGrass/256+1/255)continue;
+  const rgb=sum.map(v=>Math.round(v/256));if(rgb.some((v,j)=>v!==data[k+j])){for(let j=0;j<3;j++)data[k+j]=rgb[j];coverageStats.corrected++;}
+ }
+ // Pixel write preserves alpha exactly, and only commits changed internal
+ // pixels. putImageData ignores active clips, so eligibility is explicit above.
+ c.putImageData(old,0,y0);coverageStats.bytes=3*w*h*4+2*w*h*4;coverageStats.ms+=performance.now()-t;
+}
+
 function draw(c,l,b,originalOnly=false){
  const id=l?.asset?.id;
  if(b?.honroStage!==32||b?.honroCustom||![FOUNDATION,BODY].includes(id))return false;
@@ -131,6 +177,7 @@ function draw(c,l,b,originalOnly=false){
     c.save();c.clip(n.path,n.rule);bitmap(c,cv);
     if(n.gray){c.fillStyle=n.fill;c.fill(n.gray,n.rule);}c.restore();
    }
+   if(!originalContext)coherentColor(c,cv,q);
   }
  }finally{c.restore();}
  if(originalContext){
@@ -142,6 +189,6 @@ function draw(c,l,b,originalOnly=false){
  }
  return true;
 }
-G.HonroStage32FoundationArt={draw,stats:()=>({...counters,maxPixels:MAX_PIXELS,transition:{...transitionCounters,maxPixels:MAX_TRANSITION_PIXELS,bufferDimensions:[transitionWork,transitionColor,transitionBody].map(c=>c?[c.width,c.height]:null)},totalLogicalBytes:counters.bytes+transitionCounters.bytes}),clear:()=>{last=null;if(buffer){buffer.width=1;buffer.height=1;}counters.bytes=buffer?4:0;for(const cv of [transitionWork,transitionColor,transitionBody])if(cv){cv.width=1;cv.height=1;}transitionMemory();}};
+G.HonroStage32FoundationArt={draw,stats:()=>({...counters,coverage:{...coverageStats},maxPixels:MAX_PIXELS,transition:{...transitionCounters,maxPixels:MAX_TRANSITION_PIXELS,bufferDimensions:[transitionWork,transitionColor,transitionBody].map(c=>c?[c.width,c.height]:null)},totalLogicalBytes:counters.bytes+transitionCounters.bytes}),clear:()=>{last=null;if(buffer){buffer.width=1;buffer.height=1;}counters.bytes=buffer?4:0;for(const cv of [transitionWork,transitionColor,transitionBody])if(cv){cv.width=1;cv.height=1;}transitionMemory();}};
 })(globalThis);
 
