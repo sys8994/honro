@@ -1,0 +1,838 @@
+{
+  "scope": "Actual opt-in build project, compiler, Engine and production renderer. No manually injected art. Not browser or combat acceptance.",
+  "stage": 14,
+  "syntheticState": {
+    "receivers": 0,
+    "broken": null,
+    "waterOpen": false,
+    "ritualActive": false
+  },
+  "sourceWidth": 4800,
+  "sourceHeight": 5400,
+  "terrainIds": [
+    "v14-upper-hamlet",
+    "v14-east-crown-road",
+    "v14-refuge-ground",
+    "v14-cavern-vault"
+  ],
+  "assetIds": [
+    "stage14:vertical-household-rock-upper",
+    "stage14:vertical-home-vacant",
+    "stage14:vertical-household-yard",
+    "stage14:vertical-home-upper",
+    "stage14:vertical-home-earthen-wing",
+    "stage14:vertical-ondol-hearth",
+    "act2-compact:stage14-upper-domain",
+    "act2-compact:stage14-upper",
+    "act2-compact:stage14-vault-domain",
+    "act2-compact:stage14-vault",
+    "act2-compact:stage14-east-descent",
+    "act2-compact:stage14-low-domain",
+    "act2-compact:stage14-low",
+    "stage14:vertical-home-earthen-wing",
+    "stage14:vertical-household-yard",
+    "stage14:vertical-home-river-stone-base",
+    "stage14:vertical-market-cloth",
+    "stage14:vertical-river-lamp"
+  ],
+  "results": [
+    {
+      "view": {
+        "name": "edge-desktop-0",
+        "width": 1331,
+        "height": 763,
+        "scale": 0.19573529411764706,
+        "x": 0,
+        "y": 0
+      },
+      "actualCamera": {
+        "x": 0,
+        "y": 0,
+        "scale": 0.19573529411764706
+      },
+      "heroHeight": 92,
+      "physicsSha256": "1e8d0b83385565a4cd9db19a8952e0946b693abe2eb847e6ee3adda5af642d2a",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "edge-desktop-1",
+        "width": 1331,
+        "height": 763,
+        "scale": 0.19573529411764706,
+        "x": 4800,
+        "y": 0
+      },
+      "actualCamera": {
+        "x": 4800,
+        "y": 0,
+        "scale": 0.19573529411764706
+      },
+      "heroHeight": 92,
+      "physicsSha256": "1e8d0b83385565a4cd9db19a8952e0946b693abe2eb847e6ee3adda5af642d2a",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "edge-desktop-2",
+        "width": 1331,
+        "height": 763,
+        "scale": 0.19573529411764706,
+        "x": 0,
+        "y": 5400
+      },
+      "actualCamera": {
+        "x": 0,
+        "y": 5400,
+        "scale": 0.19573529411764706
+      },
+      "heroHeight": 92,
+      "physicsSha256": "1e8d0b83385565a4cd9db19a8952e0946b693abe2eb847e6ee3adda5af642d2a",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "edge-desktop-3",
+        "width": 1331,
+        "height": 763,
+        "scale": 0.19573529411764706,
+        "x": 4800,
+        "y": 5400
+      },
+      "actualCamera": {
+        "x": 4800,
+        "y": 5400,
+        "scale": 0.19573529411764706
+      },
+      "heroHeight": 92,
+      "physicsSha256": "1e8d0b83385565a4cd9db19a8952e0946b693abe2eb847e6ee3adda5af642d2a",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "edge-desktop-4",
+        "width": 1331,
+        "height": 763,
+        "scale": 0.19573529411764706,
+        "x": 2400,
+        "y": 2700
+      },
+      "actualCamera": {
+        "x": 2400,
+        "y": 2700,
+        "scale": 0.19573529411764706
+      },
+      "heroHeight": 92,
+      "physicsSha256": "1e8d0b83385565a4cd9db19a8952e0946b693abe2eb847e6ee3adda5af642d2a",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "edge-portrait-0",
+        "width": 390,
+        "height": 696,
+        "scale": 0.057352941176470586,
+        "x": 0,
+        "y": 0
+      },
+      "actualCamera": {
+        "x": 0,
+        "y": 0,
+        "scale": 0.057352941176470586
+      },
+      "heroHeight": 92,
+      "physicsSha256": "1e8d0b83385565a4cd9db19a8952e0946b693abe2eb847e6ee3adda5af642d2a",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "edge-portrait-1",
+        "width": 390,
+        "height": 696,
+        "scale": 0.057352941176470586,
+        "x": 4800,
+        "y": 0
+      },
+      "actualCamera": {
+        "x": 4800,
+        "y": 0,
+        "scale": 0.057352941176470586
+      },
+      "heroHeight": 92,
+      "physicsSha256": "1e8d0b83385565a4cd9db19a8952e0946b693abe2eb847e6ee3adda5af642d2a",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "edge-portrait-2",
+        "width": 390,
+        "height": 696,
+        "scale": 0.057352941176470586,
+        "x": 0,
+        "y": 5400
+      },
+      "actualCamera": {
+        "x": 0,
+        "y": 5400,
+        "scale": 0.057352941176470586
+      },
+      "heroHeight": 92,
+      "physicsSha256": "1e8d0b83385565a4cd9db19a8952e0946b693abe2eb847e6ee3adda5af642d2a",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "edge-portrait-3",
+        "width": 390,
+        "height": 696,
+        "scale": 0.057352941176470586,
+        "x": 4800,
+        "y": 5400
+      },
+      "actualCamera": {
+        "x": 4800,
+        "y": 5400,
+        "scale": 0.057352941176470586
+      },
+      "heroHeight": 92,
+      "physicsSha256": "1e8d0b83385565a4cd9db19a8952e0946b693abe2eb847e6ee3adda5af642d2a",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "edge-portrait-4",
+        "width": 390,
+        "height": 696,
+        "scale": 0.057352941176470586,
+        "x": 2400,
+        "y": 2700
+      },
+      "actualCamera": {
+        "x": 2400,
+        "y": 2700,
+        "scale": 0.057352941176470586
+      },
+      "heroHeight": 92,
+      "physicsSha256": "1e8d0b83385565a4cd9db19a8952e0946b693abe2eb847e6ee3adda5af642d2a",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "edge-landscape-0",
+        "width": 844,
+        "height": 390,
+        "scale": 0.12411764705882353,
+        "x": 0,
+        "y": 0
+      },
+      "actualCamera": {
+        "x": 0,
+        "y": 0,
+        "scale": 0.12411764705882353
+      },
+      "heroHeight": 92,
+      "physicsSha256": "1e8d0b83385565a4cd9db19a8952e0946b693abe2eb847e6ee3adda5af642d2a",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "edge-landscape-1",
+        "width": 844,
+        "height": 390,
+        "scale": 0.12411764705882353,
+        "x": 4800,
+        "y": 0
+      },
+      "actualCamera": {
+        "x": 4800,
+        "y": 0,
+        "scale": 0.12411764705882353
+      },
+      "heroHeight": 92,
+      "physicsSha256": "1e8d0b83385565a4cd9db19a8952e0946b693abe2eb847e6ee3adda5af642d2a",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "edge-landscape-2",
+        "width": 844,
+        "height": 390,
+        "scale": 0.12411764705882353,
+        "x": 0,
+        "y": 5400
+      },
+      "actualCamera": {
+        "x": 0,
+        "y": 5400,
+        "scale": 0.12411764705882353
+      },
+      "heroHeight": 92,
+      "physicsSha256": "1e8d0b83385565a4cd9db19a8952e0946b693abe2eb847e6ee3adda5af642d2a",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "edge-landscape-3",
+        "width": 844,
+        "height": 390,
+        "scale": 0.12411764705882353,
+        "x": 4800,
+        "y": 5400
+      },
+      "actualCamera": {
+        "x": 4800,
+        "y": 5400,
+        "scale": 0.12411764705882353
+      },
+      "heroHeight": 92,
+      "physicsSha256": "1e8d0b83385565a4cd9db19a8952e0946b693abe2eb847e6ee3adda5af642d2a",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "edge-landscape-4",
+        "width": 844,
+        "height": 390,
+        "scale": 0.12411764705882353,
+        "x": 2400,
+        "y": 2700
+      },
+      "actualCamera": {
+        "x": 2400,
+        "y": 2700,
+        "scale": 0.12411764705882353
+      },
+      "heroHeight": 92,
+      "physicsSha256": "1e8d0b83385565a4cd9db19a8952e0946b693abe2eb847e6ee3adda5af642d2a",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "v14-upper-hamlet-desktop",
+        "width": 1331,
+        "height": 763,
+        "scale": 0.94,
+        "x": 1550,
+        "y": 4050,
+        "terrainId": "v14-upper-hamlet",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 1550,
+        "y": 4050,
+        "scale": 0.94
+      },
+      "heroHeight": 92,
+      "physicsSha256": "1e8d0b83385565a4cd9db19a8952e0946b693abe2eb847e6ee3adda5af642d2a",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "v14-upper-hamlet-portrait",
+        "width": 390,
+        "height": 696,
+        "scale": 0.82,
+        "x": 1550,
+        "y": 4050,
+        "terrainId": "v14-upper-hamlet",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 1550,
+        "y": 4050,
+        "scale": 0.82
+      },
+      "heroHeight": 92,
+      "physicsSha256": "1e8d0b83385565a4cd9db19a8952e0946b693abe2eb847e6ee3adda5af642d2a",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "v14-upper-hamlet-landscape",
+        "width": 844,
+        "height": 390,
+        "scale": 0.82,
+        "x": 1550,
+        "y": 4050,
+        "terrainId": "v14-upper-hamlet",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 1550,
+        "y": 4050,
+        "scale": 0.82
+      },
+      "heroHeight": 92,
+      "physicsSha256": "1e8d0b83385565a4cd9db19a8952e0946b693abe2eb847e6ee3adda5af642d2a",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "v14-east-crown-road-desktop",
+        "width": 1331,
+        "height": 763,
+        "scale": 0.94,
+        "x": 3900,
+        "y": 4210,
+        "terrainId": "v14-east-crown-road",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 3900,
+        "y": 4210,
+        "scale": 0.94
+      },
+      "heroHeight": 92,
+      "physicsSha256": "1e8d0b83385565a4cd9db19a8952e0946b693abe2eb847e6ee3adda5af642d2a",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "v14-east-crown-road-portrait",
+        "width": 390,
+        "height": 696,
+        "scale": 0.82,
+        "x": 3900,
+        "y": 4210,
+        "terrainId": "v14-east-crown-road",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 3900,
+        "y": 4210,
+        "scale": 0.82
+      },
+      "heroHeight": 92,
+      "physicsSha256": "1e8d0b83385565a4cd9db19a8952e0946b693abe2eb847e6ee3adda5af642d2a",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "v14-east-crown-road-landscape",
+        "width": 844,
+        "height": 390,
+        "scale": 0.82,
+        "x": 3900,
+        "y": 4210,
+        "terrainId": "v14-east-crown-road",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 3900,
+        "y": 4210,
+        "scale": 0.82
+      },
+      "heroHeight": 92,
+      "physicsSha256": "1e8d0b83385565a4cd9db19a8952e0946b693abe2eb847e6ee3adda5af642d2a",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "v14-refuge-ground-desktop",
+        "width": 1331,
+        "height": 763,
+        "scale": 0.94,
+        "x": 1825,
+        "y": 4680,
+        "terrainId": "v14-refuge-ground",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 1825,
+        "y": 4680,
+        "scale": 0.94
+      },
+      "heroHeight": 92,
+      "physicsSha256": "1e8d0b83385565a4cd9db19a8952e0946b693abe2eb847e6ee3adda5af642d2a",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "v14-refuge-ground-portrait",
+        "width": 390,
+        "height": 696,
+        "scale": 0.82,
+        "x": 1825,
+        "y": 4680,
+        "terrainId": "v14-refuge-ground",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 1825,
+        "y": 4680,
+        "scale": 0.82
+      },
+      "heroHeight": 92,
+      "physicsSha256": "1e8d0b83385565a4cd9db19a8952e0946b693abe2eb847e6ee3adda5af642d2a",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "v14-refuge-ground-landscape",
+        "width": 844,
+        "height": 390,
+        "scale": 0.82,
+        "x": 1825,
+        "y": 4680,
+        "terrainId": "v14-refuge-ground",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 1825,
+        "y": 4680,
+        "scale": 0.82
+      },
+      "heroHeight": 92,
+      "physicsSha256": "1e8d0b83385565a4cd9db19a8952e0946b693abe2eb847e6ee3adda5af642d2a",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "v14-cavern-vault-desktop",
+        "width": 1331,
+        "height": 763,
+        "scale": 0.94,
+        "x": 2100,
+        "y": 330,
+        "terrainId": "v14-cavern-vault",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 2100,
+        "y": 330,
+        "scale": 0.94
+      },
+      "heroHeight": 92,
+      "physicsSha256": "1e8d0b83385565a4cd9db19a8952e0946b693abe2eb847e6ee3adda5af642d2a",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "v14-cavern-vault-portrait",
+        "width": 390,
+        "height": 696,
+        "scale": 0.82,
+        "x": 2100,
+        "y": 330,
+        "terrainId": "v14-cavern-vault",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 2100,
+        "y": 330,
+        "scale": 0.82
+      },
+      "heroHeight": 92,
+      "physicsSha256": "1e8d0b83385565a4cd9db19a8952e0946b693abe2eb847e6ee3adda5af642d2a",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "v14-cavern-vault-landscape",
+        "width": 844,
+        "height": 390,
+        "scale": 0.82,
+        "x": 2100,
+        "y": 330,
+        "terrainId": "v14-cavern-vault",
+        "breakable": false
+      },
+      "actualCamera": {
+        "x": 2100,
+        "y": 330,
+        "scale": 0.82
+      },
+      "heroHeight": 92,
+      "physicsSha256": "1e8d0b83385565a4cd9db19a8952e0946b693abe2eb847e6ee3adda5af642d2a",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "focus-desktop-0",
+        "width": 1331,
+        "height": 763,
+        "scale": 0.19573529411764706,
+        "x": -320,
+        "y": -1800,
+        "focusBounds": {
+          "left": -320,
+          "top": -1800,
+          "right": 5120,
+          "bottom": 5640
+        }
+      },
+      "actualCamera": {
+        "x": -320,
+        "y": -1800,
+        "scale": 0.19573529411764706
+      },
+      "heroHeight": 92,
+      "physicsSha256": "1e8d0b83385565a4cd9db19a8952e0946b693abe2eb847e6ee3adda5af642d2a",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "focus-desktop-1",
+        "width": 1331,
+        "height": 763,
+        "scale": 0.19573529411764706,
+        "x": 5120,
+        "y": -1800,
+        "focusBounds": {
+          "left": -320,
+          "top": -1800,
+          "right": 5120,
+          "bottom": 5640
+        }
+      },
+      "actualCamera": {
+        "x": 5120,
+        "y": -1800,
+        "scale": 0.19573529411764706
+      },
+      "heroHeight": 92,
+      "physicsSha256": "1e8d0b83385565a4cd9db19a8952e0946b693abe2eb847e6ee3adda5af642d2a",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "focus-desktop-2",
+        "width": 1331,
+        "height": 763,
+        "scale": 0.19573529411764706,
+        "x": -320,
+        "y": 5640,
+        "focusBounds": {
+          "left": -320,
+          "top": -1800,
+          "right": 5120,
+          "bottom": 5640
+        }
+      },
+      "actualCamera": {
+        "x": -320,
+        "y": 5640,
+        "scale": 0.19573529411764706
+      },
+      "heroHeight": 92,
+      "physicsSha256": "1e8d0b83385565a4cd9db19a8952e0946b693abe2eb847e6ee3adda5af642d2a",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "focus-desktop-3",
+        "width": 1331,
+        "height": 763,
+        "scale": 0.19573529411764706,
+        "x": 5120,
+        "y": 5640,
+        "focusBounds": {
+          "left": -320,
+          "top": -1800,
+          "right": 5120,
+          "bottom": 5640
+        }
+      },
+      "actualCamera": {
+        "x": 5120,
+        "y": 5640,
+        "scale": 0.19573529411764706
+      },
+      "heroHeight": 92,
+      "physicsSha256": "1e8d0b83385565a4cd9db19a8952e0946b693abe2eb847e6ee3adda5af642d2a",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "focus-portrait-0",
+        "width": 390,
+        "height": 696,
+        "scale": 0.057352941176470586,
+        "x": -320,
+        "y": -1800,
+        "focusBounds": {
+          "left": -320,
+          "top": -1800,
+          "right": 5120,
+          "bottom": 5640
+        }
+      },
+      "actualCamera": {
+        "x": -320,
+        "y": -1800,
+        "scale": 0.057352941176470586
+      },
+      "heroHeight": 92,
+      "physicsSha256": "1e8d0b83385565a4cd9db19a8952e0946b693abe2eb847e6ee3adda5af642d2a",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "focus-portrait-1",
+        "width": 390,
+        "height": 696,
+        "scale": 0.057352941176470586,
+        "x": 5120,
+        "y": -1800,
+        "focusBounds": {
+          "left": -320,
+          "top": -1800,
+          "right": 5120,
+          "bottom": 5640
+        }
+      },
+      "actualCamera": {
+        "x": 5120,
+        "y": -1800,
+        "scale": 0.057352941176470586
+      },
+      "heroHeight": 92,
+      "physicsSha256": "1e8d0b83385565a4cd9db19a8952e0946b693abe2eb847e6ee3adda5af642d2a",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "focus-portrait-2",
+        "width": 390,
+        "height": 696,
+        "scale": 0.057352941176470586,
+        "x": -320,
+        "y": 5640,
+        "focusBounds": {
+          "left": -320,
+          "top": -1800,
+          "right": 5120,
+          "bottom": 5640
+        }
+      },
+      "actualCamera": {
+        "x": -320,
+        "y": 5640,
+        "scale": 0.057352941176470586
+      },
+      "heroHeight": 92,
+      "physicsSha256": "1e8d0b83385565a4cd9db19a8952e0946b693abe2eb847e6ee3adda5af642d2a",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "focus-portrait-3",
+        "width": 390,
+        "height": 696,
+        "scale": 0.057352941176470586,
+        "x": 5120,
+        "y": 5640,
+        "focusBounds": {
+          "left": -320,
+          "top": -1800,
+          "right": 5120,
+          "bottom": 5640
+        }
+      },
+      "actualCamera": {
+        "x": 5120,
+        "y": 5640,
+        "scale": 0.057352941176470586
+      },
+      "heroHeight": 92,
+      "physicsSha256": "1e8d0b83385565a4cd9db19a8952e0946b693abe2eb847e6ee3adda5af642d2a",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "focus-landscape-0",
+        "width": 844,
+        "height": 390,
+        "scale": 0.12411764705882353,
+        "x": -320,
+        "y": -1800,
+        "focusBounds": {
+          "left": -320,
+          "top": -1800,
+          "right": 5120,
+          "bottom": 5640
+        }
+      },
+      "actualCamera": {
+        "x": -320,
+        "y": -1800,
+        "scale": 0.12411764705882353
+      },
+      "heroHeight": 92,
+      "physicsSha256": "1e8d0b83385565a4cd9db19a8952e0946b693abe2eb847e6ee3adda5af642d2a",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "focus-landscape-1",
+        "width": 844,
+        "height": 390,
+        "scale": 0.12411764705882353,
+        "x": 5120,
+        "y": -1800,
+        "focusBounds": {
+          "left": -320,
+          "top": -1800,
+          "right": 5120,
+          "bottom": 5640
+        }
+      },
+      "actualCamera": {
+        "x": 5120,
+        "y": -1800,
+        "scale": 0.12411764705882353
+      },
+      "heroHeight": 92,
+      "physicsSha256": "1e8d0b83385565a4cd9db19a8952e0946b693abe2eb847e6ee3adda5af642d2a",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "focus-landscape-2",
+        "width": 844,
+        "height": 390,
+        "scale": 0.12411764705882353,
+        "x": -320,
+        "y": 5640,
+        "focusBounds": {
+          "left": -320,
+          "top": -1800,
+          "right": 5120,
+          "bottom": 5640
+        }
+      },
+      "actualCamera": {
+        "x": -320,
+        "y": 5640,
+        "scale": 0.12411764705882353
+      },
+      "heroHeight": 92,
+      "physicsSha256": "1e8d0b83385565a4cd9db19a8952e0946b693abe2eb847e6ee3adda5af642d2a",
+      "renderPure": true
+    },
+    {
+      "view": {
+        "name": "focus-landscape-3",
+        "width": 844,
+        "height": 390,
+        "scale": 0.12411764705882353,
+        "x": 5120,
+        "y": 5640,
+        "focusBounds": {
+          "left": -320,
+          "top": -1800,
+          "right": 5120,
+          "bottom": 5640
+        }
+      },
+      "actualCamera": {
+        "x": 5120,
+        "y": 5640,
+        "scale": 0.12411764705882353
+      },
+      "heroHeight": 92,
+      "physicsSha256": "1e8d0b83385565a4cd9db19a8952e0946b693abe2eb847e6ee3adda5af642d2a",
+      "renderPure": true
+    }
+  ]
+}
