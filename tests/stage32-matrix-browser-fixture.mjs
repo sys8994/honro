@@ -9,7 +9,7 @@ const stages=[32];
 if(process.env.HONRO_ACT4_RELEASE!=='1')throw Error('Stage32 requires HONRO_ACT4_RELEASE=1');
 await mkdir(out,{recursive:true});
 const rendererCanonical=await readFile(path.join(root,'shared/runtime/stage32-foundation-art.js'),'utf8');
-if(createHash('sha256').update(rendererCanonical).digest('hex')!=='2e292c0e1d8a6c9f7180e98261ef3f5dce7b0916394b2988678999691b973876')throw Error('Requires exact production transition renderer');
+if(createHash('sha256').update(rendererCanonical).digest('hex')!=='bb1fd1e057be4f8b3e7c9acec028231ca604ee8e141c7b359306cf9c82c74958')throw Error('Requires exact production transition renderer');
 const baselineRenderer=await readFile(path.join(root,'tests/fixtures/stage32-material-v1.js'),'utf8');
 if(createHash('sha256').update(baselineRenderer).digest('hex')!=='8f48f81c25be136756ac320abd3715d75fb9fbdd7ee6bb624180a3898601611d')throw Error('Baseline helper source changed');
 // runtimeParts is exactly runtimeEntries(...).map(entry=>entry.code). Names allow safe deduplication.

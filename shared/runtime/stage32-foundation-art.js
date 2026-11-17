@@ -101,9 +101,9 @@ function draw(c,l,b,originalOnly=false){
  if(transition)transitionCounters.passes++;
  c.save();try{
   // Only the alternate boundary-tile pass is clipped. Its upper rows are never
-  // published; retain 64 device pixels above publication for raster AA stability.
+  // published; retain 128 device pixels above publication for raster AA stability.
   // The original BODY pass below still paints the real context fully.
-  if(originalContext){const matrix=c.getTransform(),split=Math.max(0,Math.floor(threshold)-64);c.setTransform(1,0,0,1,0,0);c.beginPath();c.rect(0,split,c.canvas.width,c.canvas.height-split);c.clip();c.setTransform(matrix);}
+  if(originalContext){const matrix=c.getTransform(),split=Math.max(0,Math.floor(threshold)-128);c.setTransform(1,0,0,1,0,0);c.beginPath();c.rect(0,split,c.canvas.width,c.canvas.height-split);c.clip();c.setTransform(matrix);}
   c.globalAlpha*=(l.opacity??1);
   if(id===FOUNDATION){c.translate(l.x,l.y);c.scale(7.2,7.2);c.clip(q.silhouette);bitmap(c,cv);}
   else{
