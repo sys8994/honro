@@ -46,7 +46,7 @@ async function capture(id,runtimeSha256,variant){
   assert(devicePixelRatio===1,'DPR must be 1');
   assert(id===38&&['baseline','no-basefill','no-clip'].includes(variant),'Invalid diagnostic');
   const source=HONRO_PROJECT.library.find(a=>a.id==='approved38:body-timber-smooth-v1');
-  assert(source&&source.params.nonplayEnvironment===true&&source.params.silhouetteUnderpaint===false,'Unexpected source semantics');
+  assert(source&&source.params.semanticLayer==='BODY'&&source.params.silhouetteUnderpaint===false&&source.params.source==='stage38/trace24-material-protected/04-final.svg; exact order, alpha groups and native protected glyph/timber','Unexpected source semantics');
   const original=JSON.stringify(source),asset=structuredClone(source),nodes=[];
   const walk=n=>{nodes.push(n);for(const c of n.children||[])walk(c);};walk(asset.vector.root);
   const bases=nodes.filter(n=>n.tag==='path'&&n.fill==='#d7d5ad');
