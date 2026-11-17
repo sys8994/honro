@@ -18,7 +18,7 @@ await applyAct1Sites(rawProject);
 const body=p=>p.library.find(a=>a.id==='act1-site:7:body');
 const rawBody=structuredClone(body(rawProject));
 if(stableBuild(candidate.vector.symbols['original-body-source'])!==stableBuild(rawBody.vector.symbols.source))throw Error('Candidate changed authoritative unoptimized source');
-const opt=await terrainPathOptimization();opt.apply(rawProject.library);
+const opt=await terrainPathOptimization();opt.apply([body(rawProject)]);
 const optimizedBody=body(rawProject),actualBody=body(runtimeProject);
 if(stableBuild(optimizedBody.vector)!==stableBuild(actualBody.vector))throw Error('Registered optimizer does not reproduce actual runtime BODY');
 const changes=[];
