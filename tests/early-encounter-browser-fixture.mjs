@@ -40,7 +40,7 @@ const p=PROBE;try{
  const initialPng=cv.toDataURL('image/png'),initialCamera={x:scene.x,y:scene.y,scale:scene.scale};
 
  const localActions=[],warningImages=[];
- if(variant==='candidate'&&camera.name==='focus'&&[9,13,29].includes(id)){
+ if(variant==='candidate'&&camera.name==='focus'&&[9,13,17,29].includes(id)){
   const source=HONRO_PROJECT.stages.find(s=>s.metadata.stageId===id);
   for(const row of HonroEarlyEncounterPlacement.placements[id].filter(row=>!(id===13&&row.id==='a2-enemy-20'))){
    const copy=structuredClone(b),probe=new C.Engine(copy,()=>{},true),u=copy.units.find(u=>u.id===row.id),h=probe.heroesAlive().find(h=>h.cls==='knight')||probe.heroesAlive()[0];
@@ -51,6 +51,8 @@ const p=PROBE;try{
    if(!pos){localActions.push({id:row.id,error:'No supported local approach'});continue;}
    Object.assign(h,pos,{vx:0,vy:0});Object.assign(u,{awake:true,acted:false,moveLeft:u.maxMove});
    Object.assign(copy,{side:1,phase:'enemy',active:u.id,queue:[u.id],turnAge:0});
+   const damageLog=[],nativeHurt=probe.hurt.bind(probe);probe.hurt=(v,...args)=>{const before={hp:v.hp,shield:v.shield||0},out=nativeHurt(v,...args);damageLog.push({id:v.id,before,after:{hp:v.hp,shield:v.shield||0},damage:args[0],owner:args[1]});return out;};
+   if(id===17){HonroEncounterDensity.installActivation(probe);probe.refreshActivation();if(!probe.combatEnemies().some(v=>v.id===u.id))throw Error('Changed stage17 post not eligible from prepared local access '+u.id);}
    const start={x:u.x,y:u.y,hp:h.hp,shot:copy.shot};let projectiles=0;
    for(let i=0;i<Math.ceil(12/C.STEP);i++){probe.tick(C.STEP);projectiles=Math.max(projectiles,copy.projectiles.length);if(u.acted&&!copy.projectiles.length)break;}
    const firstAction={hpLoss:start.hp-h.hp,dx:u.x-start.x,dy:u.y-start.y,shots:copy.shot-start.shot,acted:!!u.acted,intent:u.intent};let followUp=null;
@@ -63,11 +65,12 @@ const p=PROBE;try{
      warningImages.push({id:row.id,png:cv.toDataURL('image/png')});
      probe.wait();for(let i=0;i<1440&&copy.side===0;i++){if(probe.canAct())probe.wait();probe.tick(C.STEP);}
      const answer=structuredClone(u.honroMonsterWindup||u.enemyEffectCast||null);
+     const responsePose={x:h.x,y:h.y,stunnedRound:h.stunnedRound,round:copy.round,teamEnds:[...copy.teamEnds]},laneBlockers=answer?.origin?probe.collisionTerrain(answer.origin,{x:h.x,y:h.y-h.h*.44},0).filter(t=>!t.broken&&C.segmentTerrain(answer.origin,{x:h.x,y:h.y-h.h*.44},t,0)).map(t=>t.id):[];
      if(copy.side===1){copy.queue=[u.id];copy.active=u.id;copy.phase='enemy';u.acted=false;for(let i=0;i<1440;i++){probe.tick(C.STEP);if(u.acted&&!copy.projectiles.length)break;}}
-     followUp={shown,answer,hpLoss:hp-h.hp,shieldLoss:shield-(h.shield||0),remainingWindup:!!(u.honroMonsterWindup||u.enemyEffectCast),intent:u.intent};
+     followUp={shown,answer,responsePose,laneBlockers,finalPose:{x:h.x,y:h.y},hpLoss:hp-h.hp,shieldLoss:shield-(h.shield||0),remainingWindup:!!(u.honroMonsterWindup||u.enemyEffectCast),intent:u.intent};
     }else followUp={error:'No actual hero turn'};
    }
-   localActions.push({id:row.id,preparedHero:pos,support:row.support,firstAction,followUp,hpLoss:start.hp-h.hp,projectiles,shots:copy.shot-start.shot,scope:'Synthetic nearby hero pose and enemy slot, original Engine action. Not normal route or full-play acceptance.'});
+   localActions.push({id:row.id,preparedHero:pos,support:row.support,damageLog,firstAction,followUp,hpLoss:start.hp-h.hp,projectiles,shots:copy.shot-start.shot,scope:'Synthetic nearby hero pose and enemy slot, original Engine action. Not normal route or full-play acceptance.'});
   }
  }
 
@@ -76,7 +79,7 @@ const p=PROBE;try{
 }catch(e){publishProbe({ok:false,stage:id,error:String(e.stack||e),...p});}
 }
 const script=s=>'<script>'+s.replace(/<\/script/gi,'<\\/script')+'</script>';
-for(const [id,x,y] of [[13,4650,2440],[29,3400,2110],[30,5200,5350],[9,1850,2390],[17,1400,2290]])for(const variant of ([13,29].includes(id)?['baseline','candidate']:['candidate']))for(const camera of [{name:'focus',x,y,scale:.65},{name:'overview',x:x/2,y:y/2}]){
+for(const [id,x,y] of [[13,4650,2440],[29,3400,2110],[30,5200,5350],[9,1850,2390],[17,1400,2290]])for(const variant of ([9,13,17,29].includes(id)?['baseline','candidate']:['candidate']))for(const camera of [{name:'focus',x,y,scale:.65},{name:'overview',x:x/2,y:y/2}]){
  const runtime=variant==='baseline'?baselineRuntime:candidateRuntime;
  const html='<!doctype html><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src \'none\'; script-src \'unsafe-inline\'; style-src \'unsafe-inline\'; img-src data:; font-src data:; connect-src \'none\'"><canvas id="scene"></canvas><pre id="result">pending</pre>'+script('('+bootstrap.toString()+')('+id+');')+script(runtime)+script('('+capture.toString()+')('+id+','+JSON.stringify(camera)+','+JSON.stringify(variant)+');');
  await writeFile(path.join(out,'stage'+id+'-'+variant+'-'+camera.name+'.html'),html);

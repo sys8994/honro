@@ -5,10 +5,10 @@ const make=baseline=>{const g=vm.createContext({console,performance,structuredCl
 const g=make(false),old=make(true),P=g.HonroEarlyEncounterPlacement,authored=g.HONRO_PROJECT;
 assert.equal(JSON.stringify(authored),JSON.stringify(P.author(authored)),'idempotent fresh author');
 const restored=structuredClone(authored);
-for(const stage of restored.stages){const source=old.HONRO_PROJECT.stages.find(s=>s.id===stage.id),rows=P.placements[stage.metadata.stageId]||[];for(const row of rows){if(row.clone){stage.design=structuredClone(source.design);continue;}const u=stage.units.find(u=>u.id===row.id),v=source.units.find(u=>u.id===row.id);u.x=v.x;u.y=v.y;}}
+for(const stage of restored.stages){const source=old.HONRO_PROJECT.stages.find(s=>s.id===stage.id),rows=P.placements[stage.metadata.stageId]||[];for(const row of rows){if(row.clone){stage.design=structuredClone(source.design);continue;}const u=stage.units.find(u=>u.id===row.id),v=source.units.find(u=>u.id===row.id);u.x=v.x;u.y=v.y;if(row.cell){u.stageOverrides.honroDensityCell=v.stageOverrides.honroDensityCell;stage.encounters=structuredClone(source.encounters);}}}
 assert.equal(JSON.stringify(restored),JSON.stringify(old.HONRO_PROJECT),'only declared positions and explicit clone positions change');
-const report=[],clean=u=>{const v=structuredClone(u);for(const k of ['x','y','spawnX','spawnY'])delete v[k];return JSON.stringify(v);};
-for(const id of [9,13,29]){
+const report=[],clean=u=>{const v=structuredClone(u);for(const k of ['x','y','spawnX','spawnY',...(u.id==='ws-west-screen'?['honroDensityCell','honroCluster','group']:[])])delete v[k];return JSON.stringify(v);};
+for(const id of [9,13,17,29]){
  const {b,e}=battlefield(g,id),prior=battlefield(old,id).b,rows=P.placements[id];
  assert.equal(JSON.stringify(b.units.map(u=>u.id)),JSON.stringify(prior.units.map(u=>u.id)));
  for(const u of b.units)assert.equal(clean(u),clean(prior.units.find(v=>v.id===u.id)),'non-position runtime change '+id+'/'+u.id);
