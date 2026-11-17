@@ -81,8 +81,27 @@ async function capture(id,runtimeSha256,variant,requestedCamera){
   assert(JSON.stringify({terrain:b.terrain,units:b.units})===physics,'Physics changed');
   assert(!p.storage.length&&!p.errors.length&&!p.violations.length,'Storage/runtime/CSP error');
   assert(!p.images.some(v=>v.pending||v.error),'Pending or failed image');
+  const activation=[];
+  if(variant==='candidate'){
+   for(const cell of Object.keys(b.honroEncounterDensityActivation||{})){
+    const copy=structuredClone(b),probe=new HONRO_CORE.Engine(copy,()=>{},true);
+    HonroEncounterDensity.installActivation(probe);
+    const members=copy.units.filter(u=>u.honroDensityCell===cell),h=probe.heroesAlive()[0];
+    assert(members.length&&h,'activation fixture actors');
+    for(const other of probe.heroesAlive()){other.x=0;other.y=0;}
+    // Synthetic local-contact diagnostic, NOT a traversed route or gameplay win.
+    h.x=members[0].x;h.y=members[0].y;
+    const contact=probe.contactSurface(h.x,h.y-8,h.y+10)?.t.id;
+    probe.refreshActivation();
+    assert(probe.honroDensityEligible.has(cell),'unreachable activation cell '+cell+' on '+contact);
+    const eligible=probe.combatEnemies().filter(u=>u.honroDensityCell===cell);
+    assert(eligible.length===members.length,'missing active members '+cell);
+    activation.push({cell,contact,members:members.length,eligible:eligible.length});
+   }
+   assert(activation.length===14,'all fourteen authored places');
+  }
   const hash=async s=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s))),v=>v.toString(16).padStart(2,'0')).join('');
-  publishProbe({ok:true,scope:'Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.',stage:id,variant,units:b.units.filter(u=>u.side===1).map(u=>({id:u.id,x:u.x,y:u.y,role:u.role,group:u.group})),...((id===40)?{tideSnapshot,appReadyUnresolved:true,initialization:'Official coast.tide; fresh in-memory profile; no App launch or event progression'}:{}),view,width,height,dpr:devicePixelRatio,camera,time:2,seed:3910,runtimeSha256,physicsSha256:await hash(physics),renderPure:true,fontStatus:document.fonts.status,fontNote:'System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.',userAgent:navigator.userAgent,imageCount:p.images.length,pendingImages:p.images.filter(v=>v.pending).length,imageErrors:p.images.filter(v=>v.error).length,storage:p.storage,errors:p.errors,violations:p.violations,png:cv.toDataURL('image/png')});
+  publishProbe({ok:true,activation,scope:'Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.',stage:id,variant,units:b.units.filter(u=>u.side===1).map(u=>({id:u.id,x:u.x,y:u.y,role:u.role,group:u.group})),...((id===40)?{tideSnapshot,appReadyUnresolved:true,initialization:'Official coast.tide; fresh in-memory profile; no App launch or event progression'}:{}),view,width,height,dpr:devicePixelRatio,camera,time:2,seed:3910,runtimeSha256,physicsSha256:await hash(physics),renderPure:true,fontStatus:document.fonts.status,fontNote:'System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.',userAgent:navigator.userAgent,imageCount:p.images.length,pendingImages:p.images.filter(v=>v.pending).length,imageErrors:p.images.filter(v=>v.error).length,storage:p.storage,errors:p.errors,violations:p.violations,png:cv.toDataURL('image/png')});
  }catch(e){publishProbe({ok:false,stage:id,error:String(e.stack||e),...p});}
 }
 const script=s=>'<script>'+s.replace(/<\/script/gi,'<\\/script')+'</script>';
