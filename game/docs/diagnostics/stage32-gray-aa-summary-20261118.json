@@ -1,0 +1,170 @@
+[
+  {
+    "view": "lower",
+    "changed": 6886,
+    "max": 30,
+    "bbox": [
+      0,
+      0,
+      1267,
+      434
+    ],
+    "formerUpperGateChanged": 5821,
+    "tiles": 12,
+    "currentReplayChanged": 0,
+    "semantic": {
+      "grass": {
+        "changed": 8341,
+        "opaque": 1,
+        "edge": 8340,
+        "max": 91
+      },
+      "road": {
+        "changed": 637,
+        "opaque": 0,
+        "edge": 637,
+        "max": 51
+      },
+      "grayOriginalOpaque": {
+        "changed": 25131,
+        "opaque": 6951,
+        "edge": 18180,
+        "max": 45
+      }
+    },
+    "subset": [
+      {
+        "path": 5,
+        "outsideFull": 0,
+        "greaterCoverage": 0,
+        "maxOutsideAlpha": 0
+      },
+      {
+        "path": 6,
+        "outsideFull": 7318,
+        "greaterCoverage": 7914,
+        "maxOutsideAlpha": 255
+      },
+      {
+        "path": 7,
+        "outsideFull": 1712,
+        "greaterCoverage": 1958,
+        "maxOutsideAlpha": 255
+      },
+      {
+        "path": 8,
+        "outsideFull": 4795,
+        "greaterCoverage": 5041,
+        "maxOutsideAlpha": 255
+      },
+      {
+        "path": 10,
+        "outsideFull": 4102,
+        "greaterCoverage": 4445,
+        "maxOutsideAlpha": 255
+      },
+      {
+        "path": 11,
+        "outsideFull": 4965,
+        "greaterCoverage": 5227,
+        "maxOutsideAlpha": 255
+      },
+      {
+        "path": 18,
+        "outsideFull": 8,
+        "greaterCoverage": 69,
+        "maxOutsideAlpha": 8
+      },
+      {
+        "path": 19,
+        "outsideFull": 1,
+        "greaterCoverage": 4,
+        "maxOutsideAlpha": 8
+      }
+    ]
+  },
+  {
+    "view": "left",
+    "changed": 9952,
+    "max": 45,
+    "bbox": [
+      499,
+      0,
+      1330,
+      582
+    ],
+    "formerUpperGateChanged": 9562,
+    "tiles": 9,
+    "currentReplayChanged": 0,
+    "semantic": {
+      "grass": {
+        "changed": 4606,
+        "opaque": 1,
+        "edge": 4605,
+        "max": 91
+      },
+      "road": {
+        "changed": 298,
+        "opaque": 0,
+        "edge": 298,
+        "max": 51
+      },
+      "grayOriginalOpaque": {
+        "changed": 9894,
+        "opaque": 1644,
+        "edge": 8250,
+        "max": 45
+      }
+    },
+    "subset": [
+      {
+        "path": 5,
+        "outsideFull": 0,
+        "greaterCoverage": 0,
+        "maxOutsideAlpha": 0
+      },
+      {
+        "path": 6,
+        "outsideFull": 1636,
+        "greaterCoverage": 1807,
+        "maxOutsideAlpha": 255
+      },
+      {
+        "path": 7,
+        "outsideFull": 1712,
+        "greaterCoverage": 1958,
+        "maxOutsideAlpha": 255
+      },
+      {
+        "path": 8,
+        "outsideFull": 0,
+        "greaterCoverage": 0,
+        "maxOutsideAlpha": 0
+      },
+      {
+        "path": 10,
+        "outsideFull": 4102,
+        "greaterCoverage": 4445,
+        "maxOutsideAlpha": 255
+      },
+      {
+        "path": 11,
+        "outsideFull": 0,
+        "greaterCoverage": 0,
+        "maxOutsideAlpha": 0
+      },
+      {
+        "path": 18,
+        "outsideFull": 8,
+        "greaterCoverage": 69,
+        "maxOutsideAlpha": 8
+      },
+      {
+        "path": 19,
+        "outsideFull": 0,
+        "greaterCoverage": 0,
+        "maxOutsideAlpha": 0
+      }
+    ]
+  }
+]
