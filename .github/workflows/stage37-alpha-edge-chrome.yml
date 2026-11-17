@@ -15,17 +15,19 @@ jobs:
           node-version: '22'
           package-manager-cache: false
       - run: npm ci && npm ci --prefix game
-      - run: HONRO_ACT4_RELEASE=1 node tests/stage37-alpha-proof-browser-fixture.mjs "$RUNNER_TEMP/fixtures"
+      - run: HONRO_ACT4_RELEASE=1 node tests/stage37-multiview-fixture.mjs "$RUNNER_TEMP/fixtures"
       - name: Render original and diagnostic-only layer isolates
         shell: bash
         run: |
           browser=$(command -v google-chrome || command -v chromium)
+          for view in desktop landscape portrait; do
           for variant in baseline single-clip; do
-            timeout 300s "$browser" --headless --no-first-run --no-default-browser-check --force-device-scale-factor=1 --virtual-time-budget=60000 --user-data-dir="$RUNNER_TEMP/profile-$variant" --dump-dom "file://$RUNNER_TEMP/fixtures/stage37-$variant.html" > "$RUNNER_TEMP/$variant.html"
-            node tests/stage37-alpha-proof-browser-result.mjs "$RUNNER_TEMP/$variant.html" "$RUNNER_TEMP/evidence" 37 "$variant"
+            timeout 300s "$browser" --headless --no-first-run --no-default-browser-check --force-device-scale-factor=1 --virtual-time-budget=60000 --user-data-dir="$RUNNER_TEMP/profile-$variant-$view" --dump-dom "file://$RUNNER_TEMP/fixtures/stage37-$variant-$view.html" > "$RUNNER_TEMP/$variant-$view.html"
+            node tests/stage37-multiview-result.mjs "$RUNNER_TEMP/$variant-$view.html" "$RUNNER_TEMP/evidence" 37 "$variant" "$view"
+          done
           done
       - name: Assert diagnostic physics and unchanged baseline
-        run: node tests/stage37-alpha-proof-browser-compare.mjs "$RUNNER_TEMP/evidence"
+        run: node tests/stage37-multiview-compare.mjs "$RUNNER_TEMP/evidence"
       - name: Build official Act4 production
         run: HONRO_ACT4_RELEASE=1 npm run build
       - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4

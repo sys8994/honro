@@ -16,7 +16,7 @@ const runtime=entries.map(entry=>entry.code).join('\n;\n');
 const names=new Set(entries.map(entry=>entry.name)),act4Extra=[];
 if(stages.some(id=>[34,37,38].includes(id))){
  for(const [name,file]of [['HONRO_ACT4_PILOT_COMBAT_REFERENCE','pilot-combat-reference.json'],['HONRO_ACT4_PREVIEW_SEEDS','reviewed.json']])if(!entries.some(e=>e.global===name||e.name===name))act4Extra.push('globalThis.'+name+'='+JSON.stringify(JSON.parse(await readFile(path.join(root,'shared/data/act4',file),'utf8')))+';');
- for(const name of ['act4-art','act4-maps','act4-coast-maps','act4-coast-art','act4-events','act4-coast-events','act4-pilot-combat','act4-pilot-art']){
+ for(const name of ['act4-art','act4-maps','act4-coast-maps','act4-coast-art','act4-events','act4-coast-events','act4-pilot-combat','stage37-alpha-edge','act4-pilot-art']){
   const file='shared/runtime/'+name+'.js';if(names.has(file))continue;
   names.add(file);act4Extra.push(await readFile(path.join(root,file),'utf8'));
  }
