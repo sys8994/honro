@@ -12,14 +12,14 @@ export function placeAct4Stage40(stage, point) {
   ['east-junction','coast-east','상부 귀환로와 배 도착로가 만나는 동쪽 굽이의 차단조; 집결 안전면 밖',[[ref('west-anchor',4),3830],[ref('west-anchor',5),3910],[ref('west-anchor',6),4110],[ref('west-anchor',7),4240]]],
   ['dock-cargo','dock','서쪽 하역장 가장자리의 작은 무리와 뒤쪽 공중 감시; 긴 부두 연결부는 비움',[[ref('dock-left',1),1080],[ref('dock-left',2),820],[ref('dock-left',3),600],[ref('dock-left',4),675]]],
   ['arrival-watch','arrival-stair','배 도착 후 올라가는 계단의 감시조; 승선갑판과 최종 집결면에는 적을 두지 않는다',[[ref('dock-left',5),4190],[ref('dock-left',6),4270],[ref('dock-left',7),4450],[ref('departure-upper',1),4670]]],
-  ['dock-battery','dock','하층 포격귀를 전위와 사수가 호위하는 국소 화점',[[ref('dock-right',1),1510],[ref('dock-right',2),1595],[ref('dock-right',3),1690],[ref('dock-right',4),1825]]],
+  ['dock-battery','dock','하역 계단 아래의 근접 전위 둘과 사격 지원; 머리 위 암반 때문에 곡사 포격귀는 개방된 상부 횡단로로 옮긴다',[[ref('dock-right',1),1510],[ref('dock-right',2),1595],[ref('dock-right',4),1825]]],
   ['east-rearguard','coast-east','동쪽 경사 후위; 궁수는 낮은 굽이에서 사선을 확보하고 근접 둘은 뒤쪽 경사를 지킨다. 주민 안전 구역 밖',[[ref('dock-right',5),5390],[ref('dock-right',6),5480],[ref('dock-right',7),5260]]],
   ['stair-foot','dock-stair','계단 진입부의 전위와 아래 부두의 사격 지원; 바위 아래 머리 공간이 없는 중간 계단은 비운다',[[ref('dock-stair',1),1905],[ref('dock-stair',2),1990,'dock']]],
   ['stair-head','dock-stair','상층 갈림길 바로 아래 사격/수의귀 묶음',[[ref('dock-stair',6),2470],[ref('dock-stair',7),2550]]],
   ['road-scout','coast-west','부두 전방의 떨어진 단독 감시병; 주 전위까지 접근 여백을 둔다',[[ref('dock-stair',3),1400]]],
   ['ridge-entry','upper-east','동쪽 상부 길의 진입턱을 지키는 두 체; 뒤쪽 고지 사격조와 구분',[[ref('dock-stair',4),4780],[ref('dock-stair',5),4865]]],
   ['boss-approach','departure-stair','하부 장승 접근을 지키는 근접 호위 둘; 좁은 계단의 사수는 개방된 동쪽 도착 감시조로 옮긴다',[[ref('departure-upper',2),1700],[ref('departure-upper',3),1850]]],
-  ['crossing-scout','coast-west','바다 위 상부 횡단로 입구의 떨어진 감시 두 체',[[ref('departure-upper',4),3200],[ref('departure-upper',5),3370]]],
+  ['crossing-scout','coast-west','선착장 위 개방된 횡단로 화점: 곡사 포격귀와 떨어진 두 감시병, 상부 지형을 가로지르는 이동을 통제',[[ref('dock-right',3),3000],[ref('departure-upper',4),3200],[ref('departure-upper',5),3370]]],
   ['boarding-pair','departure-ramp','저조위 승선턱을 지키는 근접 둘; 조수/승선 이벤트는 그대로',[[ref('departure-low',1),2090],[ref('departure-low',2),2180]]],
   ['tide-keeper','departure-stair','기존 조수 보스의 위치와 전투를 보존',[[ref('tide-keeper',1),2050]]]
  ];
