@@ -1,0 +1,39 @@
+name: Verify stage32 foundation material candidate
+on:
+  push:
+    branches: ['fix/stage32-foundation-material-20261117']
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm ci && npm ci --prefix game
+      - name: Verify historical source and narrow candidate contracts
+        run: |
+          git fetch --no-tags --depth=1 origin e89242eedb5c040d38a9077c7289fbdc97786bdf
+          BASELINE_REF=e89242eedb5c040d38a9077c7289fbdc97786bdf node tests/stage32-foundation-contract.mjs
+          python3 tools/environment/stage32-foundation-field.py
+          git diff --exit-code -- shared/data/act4/handoff-art/32-foundation.json
+          node tools/act1-vector-production/check-edge-integration-manifest.mjs
+      - name: Generate official Stage32 initial Scene without app launch
+        run: HONRO_ACT4_RELEASE=1 node tests/actual-scene-browser-fixture.mjs "$RUNNER_TEMP/honro-stage32-fixtures" 32
+      - name: Render baseline with no synthesized tide or stored profile
+        shell: bash
+        run: |
+          browser=$(command -v google-chrome || command -v chromium)
+          timeout 300s "$browser" --headless --no-first-run --no-default-browser-check --force-device-scale-factor=1 --virtual-time-budget=60000 --user-data-dir="$RUNNER_TEMP/honro-stage32-profile" --dump-dom "file://$RUNNER_TEMP/honro-stage32-fixtures/stage32.html" > "$RUNNER_TEMP/honro-stage32-dump.html"
+          node tests/actual-scene-browser-result.mjs "$RUNNER_TEMP/honro-stage32-dump.html" "$RUNNER_TEMP/honro-stage32-evidence" 32
+      - name: Build official runtime
+        run: HONRO_ACT4_RELEASE=1 npm run build
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        with:
+          name: stage32-foundation-material
+          path: ${{ runner.temp }}/honro-stage32-evidence
+          if-no-files-found: error

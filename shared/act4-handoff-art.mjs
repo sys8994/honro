@@ -75,12 +75,18 @@ export async function applyAct4HandoffArt(project,{stages:enabled=Object.keys(ad
   const pack=JSON.parse(await readFile(new URL('./data/act4/handoff-art/'+n+'.json',import.meta.url),'utf8'));
   if(pack.worldSize.some((value,index)=>Math.abs(value-[stage.width,stage.height][index])>1e-6))
    throw Error('Act 4 handoff artwork has stale registration: '+n);
+  // A separate material provider preserves the old foundation and saved battles.
+  if(n===32)pack.assets.push(JSON.parse(await readFile(new URL('./data/act4/handoff-art/32-foundation.json',import.meta.url),'utf8')));
   const compatibilityAssetIds=[];
   const terrainIds=new Set(stage.terrains.map(t=>t.id));
   const nativeArt={...stage.design.nativeArt,compatibilityAssetIds};
   const design={...stage.design,nativeArt};
   const bodyId=assetId(n,n===32?"body-joined":"body");
   const elements=stage.elements.flatMap(element=>{
+   if(n===32&&element.id==='approved32-coastal-foundation'){
+    compatibilityAssetIds.push(element.assetId);
+    return [{...element,assetId:assetId(32,'foundation')}];
+   }
    if(n===36&&['approved36-near-slope-join','approved36-mountain-foundation'].includes(element.id)){
     const tinted=villageFoundation(project.library.find(a=>a.id===element.assetId));
     compatibilityAssetIds.push(element.assetId);
