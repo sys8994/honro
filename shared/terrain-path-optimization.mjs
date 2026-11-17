@@ -6,6 +6,12 @@ const sha = text => createHash('sha256').update(text).digest('hex');
 
 export async function terrainPathOptimization() {
   const entries = JSON.parse(await readFile(file, 'utf8'));
+  const registrations=JSON.parse(await readFile(new URL('./data/terrain-path-registrations.json',import.meta.url),'utf8'));
+  for(const registration of registrations){
+    const entry=entries.find(e=>e.id===registration.id);
+    if(!entry||entry.original!==registration.sourceOriginal)throw Error('Terrain registration baseline changed: '+registration.id);
+    entry.original=registration.original;
+  }
   const byId = new Map(entries.map(entry => [entry.id, entry]));
   if (byId.size !== entries.length) throw Error('Duplicate terrain optimization asset');
   return {

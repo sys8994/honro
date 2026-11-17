@@ -55,7 +55,7 @@ const outline=node=>{
  return children?{...keep,children:children.map(outline)}:keep;
 };
 function rect([x,y,w,h]){return 'M'+x+' '+y+'H'+(x+w)+'V'+(y+h)+'H'+x+'Z';}
-function collage(vector,layout,viewBox,base=false,edges=[]){
+export function collage(vector,layout,viewBox,base=false,edges=[]){
  const clips={...vector.clips},parts=base?[{tag:'use',symbol:'source'}]:[];
  for(const [i,r] of layout.entries()){
   const [x,y,w,h,dx,dy,dw,dh]=r,scale=dw/w,clipPath='site-crop-'+i;
@@ -70,6 +70,25 @@ function collage(vector,layout,viewBox,base=false,edges=[]){
   parts.push({tag:'g',transform:[sx,0,0,sy,dx-x*sx,dy-y*sy],clipPath,children:[{tag:'use',symbol:'source'}]});
  }
  return {version:1,viewBox,root:{tag:'g',children:parts},clips,symbols:{source:outline(vector.root)}};
+}
+// Keep the reviewed core exact and append adjoining edge samples. Compose
+// transforms directly against the source to stay within vector depth limits.
+export function extendNaruBody(core){
+ const clips={...core.clips},parts=[...core.root.children];
+ function strip(key,x,y,w,h,dx,dy,dw,dh){
+  clips[key]=[rect([x,y,w,h])];const sx=dw/w,sy=dh/h;
+  parts.push({tag:'g',clipPath:key,transform:[sx,0,0,sy,dx-x*sx,dy-y*sy],children:[{tag:'use',symbol:'source'}]});
+ }
+ strip('naru-outer-left',27-27/390,506,27/390,381,-1200,506,810.25,381);
+ strip('naru-outer-right',1752,470,22/400,417,2173.75,470,800.25,417);
+ strip('naru-lower-left',0,858,1,29,-1200,886.75,1200,380.5);
+ strip('naru-lower-right',1773,858,1,29,1774,886.75,1200,380.5);
+ strip('naru-core-bottom-join',0,858.1,1774,.1,0,886.75,1774,.5);
+ const y=887-29/380,h=29/380;
+ strip('naru-bottom-left',0,y,1,h,-1200,1266.75,1200,3620.25);
+ strip('naru-bottom-middle',0,y,1774,h,0,1266.75,1774,3620.25);
+ strip('naru-bottom-right',1773,y,1,h,1774,1266.75,1200,3620.25);
+ return {...core,viewBox:[-1200,0,4174,4887],clips,root:{tag:'g',children:parts}};
 }
 function artAsset(project,id,name,vector,sha,foot={x:0,y:0}){
  const [x,y,w,h]=vector.viewBox,bounds={x,y,w,h};
@@ -108,7 +127,8 @@ function authorStage(project,s,data){
   [0,858,1774,29,0,887,1774,380]]:[[9,908,30,157,9,908,-390,157],[1421,882,13,181,1834,882,-400,181],
   [16,1049,1402,19,16,1068,1402,380]];
  const faces=shore?[]:footholds.map(([x,y,w,h,dx,dy,dw])=>[x,y,w,h,dx,dy,dw,h*dw/w]);
- artAsset(project,bodyId,site+' 지형',collage(body.vector,faces,[-390,0,sourceWidth+790,sourceHeight+380],true,edges),body.sha256);
+ const bodyCollage=collage(body.vector,faces,[-390,0,sourceWidth+790,sourceHeight+380],true,edges);
+ artAsset(project,bodyId,site+' 지형',shore?extendNaruBody(bodyCollage):bodyCollage,body.sha256);
  artAsset(project,sheetId,site+' 랜드마크',collage(data.art.landmarks.vector,data.layout,body.vector.viewBox),data.art.landmarks.sha256);
  const placement=(id,assetId,x=0,y=0,z=1,layer='structural-back')=>({id,assetId,...world(x,y),scale:z*scale,layer,depthLayer:'L1',visualRole:'scenery'});
  s.elements=[placement('site-body-'+n,bodyId),placement('site-landmarks-'+n,sheetId,0,0,1,'prop')];

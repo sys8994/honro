@@ -1,0 +1,13 @@
+import {readFileSync,writeFileSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+import assert from 'node:assert/strict';
+import {collage,extendNaruBody} from '../map-forge/act1-naru-doldang.mjs';
+const sha=x=>createHash('sha256').update(JSON.stringify(x)).digest('hex');
+const data=JSON.parse(readFileSync('shared/assets/environment/act1-sites/stage03.json','utf8'));
+const core=collage(data.art.body.vector,[],[-390,0,2564,1267],true,[[0,506,27,381,0,506,-390,381],[1752,470,22,417,2174,470,-400,417],[0,858,1774,29,0,887,1774,380]]);
+const vector=extendNaruBody(core),path='shared/data/terrain-path-optimization.json',raw=readFileSync(path,'utf8'),entries=JSON.parse(raw),entry=entries.find(e=>e.id==='act1-site:3:body');
+assert.equal(entry.original,sha(core),'Must register from unchanged reviewed core');
+assert.deepEqual(vector.symbols.source,core.symbols.source);
+for(const [p,key] of entry.paths)assert.deepEqual(p.reduce((v,k)=>v[k],core)[key],p.reduce((v,k)=>v[k],vector)[key]);
+writeFileSync('shared/data/terrain-path-registrations.json',JSON.stringify([{id:entry.id,sourceOriginal:entry.original,original:sha(vector)}],null,2)+'\n');
+console.log(JSON.stringify({original:entry.original,extended:sha(vector),optimizedPathsPreserved:entry.paths.length}));

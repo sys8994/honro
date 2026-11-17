@@ -1,0 +1,22 @@
+name: Verify Stage3 authored outer joins
+on:
+  push:
+    branches: ['fix/stage3-art-bounds-20261117']
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Install locked dependencies
+        run: npm ci && npm ci --prefix game
+      - name: Check immutable art and visible bounds
+        run: node tools/act1-vector-production/check-stage3-edge-audit.mjs
+      - name: Build official runtime
+        run: npm run build
