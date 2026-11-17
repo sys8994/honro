@@ -1,0 +1,1521 @@
+{
+  "baseline": "7d238d20663c3ceffe430eb0304e01516ae625cf",
+  "production": "09ac90235b89031b6df8d88cde4c16f39aba78f7",
+  "reviewedHead": "c95b4067801a50bd95635e3fc3a68bb79e256206",
+  "sourceOnly": true,
+  "generatedChanged": [],
+  "productionFiles": [
+    {
+      "path": "shared/act4-finale-author.mjs",
+      "status": "modified",
+      "gitBlob": "16694a5578debbb7585faa8ec8207bd3886c8b09"
+    },
+    {
+      "path": "shared/act4-finale-revision.mjs",
+      "status": "modified",
+      "gitBlob": "ed97b06a417837722c2776dbc7d548b711cae626"
+    },
+    {
+      "path": "shared/act4-middle-placement.mjs",
+      "status": "added",
+      "gitBlob": "6fb6779e1427e9c7ed4b0e8e457ce69f2c601aa8"
+    },
+    {
+      "path": "shared/act4-sideview-art.mjs",
+      "status": "modified",
+      "gitBlob": "415af6a1b77270cbd12fb669f1af4a434b806c4a"
+    },
+    {
+      "path": "shared/act4-stage33-exterior-art.mjs",
+      "status": "added",
+      "gitBlob": "6d8f65c82947a334a10f294eb1175a90da0121cb"
+    },
+    {
+      "path": "shared/act4-stage40-placement.mjs",
+      "status": "added",
+      "gitBlob": "84379471a820d124545ef403a8206e4d273ce630"
+    },
+    {
+      "path": "shared/assets/environment/act3-handoff/stage21-bedrock.json",
+      "status": "modified",
+      "gitBlob": "7a4bbc333328829546ead683e2ab5c6bb793303c"
+    },
+    {
+      "path": "shared/assets/environment/act3-handoff/stage29-west-bank.json",
+      "status": "modified",
+      "gitBlob": "25486645ed0ae742844c0a140e0463b6865238ce"
+    },
+    {
+      "path": "shared/build.mjs",
+      "status": "modified",
+      "gitBlob": "78535d94c0cb9c7aff38aabe88e3fd757fd57c5b"
+    },
+    {
+      "path": "shared/data/act1/stage02-body-candidate.json",
+      "status": "modified",
+      "gitBlob": "1ae8c3da3990b33b80f2f06a130e5d0eb538b43b"
+    },
+    {
+      "path": "shared/data/act1/stage02-rear-candidate.json",
+      "status": "modified",
+      "gitBlob": "fba9cd1108a2d2c5068cd41eef9f609011b5a055"
+    },
+    {
+      "path": "shared/data/act1/stage04-body-candidate.json",
+      "status": "modified",
+      "gitBlob": "19ef7fefffb28461e7cbe9b44a6d22692cec7199"
+    },
+    {
+      "path": "shared/data/act1/stage05-cliff-v1-candidate.json",
+      "status": "modified",
+      "gitBlob": "607554084201357e1678656fc77b62212f3dd9db"
+    },
+    {
+      "path": "shared/data/act1/stage05-floor-v4-candidate.json",
+      "status": "modified",
+      "gitBlob": "719a081e7d222ee1d2aec375cce9b23a6ce57e4e"
+    },
+    {
+      "path": "shared/data/act1/stage08-floor-v1-candidate.json",
+      "status": "modified",
+      "gitBlob": "1716cf22ee66b4669b7c0dfa2451ee578eb5f41b"
+    },
+    {
+      "path": "shared/data/act1/stage09-floor-v3-candidate.json",
+      "status": "modified",
+      "gitBlob": "6bcdf4f9ba0a267ad57934c9d9c6183e994d7b65"
+    },
+    {
+      "path": "shared/data/act1/stage10-floor-v4-candidate.json",
+      "status": "modified",
+      "gitBlob": "32f456b0f7321257c3c31cdb9268c1129e6a528c"
+    },
+    {
+      "path": "shared/data/act2/stage12-compact-package.json",
+      "status": "modified",
+      "gitBlob": "4a229931c6d70166ee9f868cdf4a7897f30b7b0c"
+    },
+    {
+      "path": "shared/data/act2/stage15-compact-package.json",
+      "status": "modified",
+      "gitBlob": "6b2d3fb786fb2ef5a8b280fd0c494ba0563fe4fb"
+    },
+    {
+      "path": "shared/data/act4/sideview-art/33-exterior-field.json",
+      "status": "added",
+      "gitBlob": "3bbd8447e03de512881964d2740bc598c0ce30bb"
+    },
+    {
+      "path": "shared/data/act5/encounters-early.mjs",
+      "status": "modified",
+      "gitBlob": "b50f8d3dbeeea781cd6278c5ef9f12c251f20a2a"
+    },
+    {
+      "path": "shared/data/act5/encounters-late.mjs",
+      "status": "modified",
+      "gitBlob": "b88c9b5858ce3fbd1a47824ac2d2715901d55b89"
+    },
+    {
+      "path": "shared/data/campaign.json",
+      "status": "modified",
+      "gitBlob": "575ca8a3d1a9799a18456d0e774b803ca4ed0b63"
+    },
+    {
+      "path": "shared/data/terrain-path-registrations.json",
+      "status": "added",
+      "gitBlob": "85737030075ac77936c5e39a848a26f06c84c2d5"
+    },
+    {
+      "path": "shared/map/vector-art.js",
+      "status": "modified",
+      "gitBlob": "fad1d722d4fa34c8372633541d3784423ab38144"
+    },
+    {
+      "path": "shared/runtime/act2-spatial-art.js",
+      "status": "modified",
+      "gitBlob": "ff3bd76a94251c2f3478fbeae450a139fac4f221"
+    },
+    {
+      "path": "shared/runtime/act3-handoff-art.js",
+      "status": "modified",
+      "gitBlob": "9fe0d8896de2219379ce9d039bbc5ed7bdf2cb21"
+    },
+    {
+      "path": "shared/runtime/act4-pilot-art.js",
+      "status": "modified",
+      "gitBlob": "c6ccf0e3a425374057b6634f05f7327193acb446"
+    },
+    {
+      "path": "shared/runtime/early-encounter-placement.js",
+      "status": "added",
+      "gitBlob": "6c480f6ec8b30877b78a68404c8249351e25f6af"
+    },
+    {
+      "path": "shared/runtime/encounters.js",
+      "status": "modified",
+      "gitBlob": "12bb4afdc2b743ff3b0a9ab3e0e12f29a6adb615"
+    },
+    {
+      "path": "shared/runtime/renderer.js",
+      "status": "modified",
+      "gitBlob": "107ccf65f81ba7ad2e231bc5cb850f9d712e482a"
+    },
+    {
+      "path": "shared/runtime/stage30-ferry-art.js",
+      "status": "modified",
+      "gitBlob": "fd9a64fcdd4abfe6f103859fa7c143f6e3435302"
+    },
+    {
+      "path": "shared/runtime/stage33-exterior-art.js",
+      "status": "added",
+      "gitBlob": "837d23ac1f3badb54ba179f614c1ca77d18a9868"
+    },
+    {
+      "path": "shared/runtime/stage34-foundation-edge.js",
+      "status": "added",
+      "gitBlob": "d694c2aa04bae5f94fd7fe628c4d87bbbb087d75"
+    },
+    {
+      "path": "shared/runtime/stage37-alpha-edge.js",
+      "status": "added",
+      "gitBlob": "a3d5e6e0c20f86c838f672b836b2a02db9a73664"
+    },
+    {
+      "path": "shared/runtime/stage38-alpha-edge.js",
+      "status": "added",
+      "gitBlob": "bc7ac3764025da83ecf71dc8c8ec82887953218c"
+    },
+    {
+      "path": "shared/runtime/terrain-readability.js",
+      "status": "modified",
+      "gitBlob": "c1a3ed81dc5167711399da6521f062806ca367d2"
+    },
+    {
+      "path": "shared/terrain-path-optimization.mjs",
+      "status": "modified",
+      "gitBlob": "6fd93612eed5ccba39b0ccfe88a1a7a49631cd79"
+    },
+    {
+      "path": "tools/environment/stage12-compact-art.mjs",
+      "status": "modified",
+      "gitBlob": "79dd060e5d23c2f5af5eabcbccb69173a21d361b"
+    },
+    {
+      "path": "tools/environment/stage21-handoff-blend.mjs",
+      "status": "added",
+      "gitBlob": "6bd191073f71027872695b64b4af42764b45af61"
+    },
+    {
+      "path": "tools/environment/stage22-buried-blend.mjs",
+      "status": "added",
+      "gitBlob": "eeb80e32f6c7d2615c290dad36f5b6449d373093"
+    },
+    {
+      "path": "tools/environment/stage22-vertical-art.mjs",
+      "status": "modified",
+      "gitBlob": "d2b9420429808acdda0fb2def2808710ed7b9387"
+    },
+    {
+      "path": "tools/environment/stage29-handoff-left-blend.mjs",
+      "status": "added",
+      "gitBlob": "8899fe064153a220d84eb64a4846833d9cbde9c9"
+    },
+    {
+      "path": "tools/environment/stage30-edge-composition.mjs",
+      "status": "added",
+      "gitBlob": "36c8c1dcc96da1e193f562ada2b79d6ec5040101"
+    },
+    {
+      "path": "tools/environment/stage30-ferry-art.mjs",
+      "status": "modified",
+      "gitBlob": "ec243629537ab571e8b90687c2e49b94716acae6"
+    },
+    {
+      "path": "tools/map-forge/act1-naru-doldang.mjs",
+      "status": "modified",
+      "gitBlob": "7316cc683e1732f4768896c1ec100d3c7a4cff95"
+    },
+    {
+      "path": "tools/map-forge/stage15-compact.mjs",
+      "status": "modified",
+      "gitBlob": "1cce57c86559f63643de2e3e82307305d0cdd536"
+    },
+    {
+      "path": "tools/map-forge/stage28-record-court.mjs",
+      "status": "modified",
+      "gitBlob": "018b8da856ae848a734b9507793a5885c3b04821"
+    },
+    {
+      "path": "tools/stage6-prototype/art-preview.mjs",
+      "status": "modified",
+      "gitBlob": "328e4687618fae4c7cd4a3fb5f285c01e633e74f"
+    },
+    {
+      "path": "tools/stage6-prototype/integrated-preview.mjs",
+      "status": "modified",
+      "gitBlob": "704865badf6ecf8011c2d0a7e159c1cf116f2b40"
+    }
+  ],
+  "allChanges": [
+    {
+      "path": ".github/workflows/act123-terrain-chrome.yml",
+      "status": "added",
+      "gitBlob": "388e16945d9260b5629d08859f639ffeb484a2b7"
+    },
+    {
+      "path": ".github/workflows/act4-middle-placement.yml",
+      "status": "added",
+      "gitBlob": "691c7dd97514ea0eafc99b2a52607c9e2657faeb"
+    },
+    {
+      "path": ".github/workflows/act5-placement-actions.yml",
+      "status": "added",
+      "gitBlob": "3bec756e2209c636a36fe3d4921865cf5f0fb2b2"
+    },
+    {
+      "path": ".github/workflows/act5-placement.yml",
+      "status": "added",
+      "gitBlob": "0dca478e8a442141caf42b49d184e9fe394c6ede"
+    },
+    {
+      "path": ".github/workflows/combined-loader-evidence.yml",
+      "status": "added",
+      "gitBlob": "2952fe3b0587f33037e9c01d138c6ae20d9df4ee"
+    },
+    {
+      "path": ".github/workflows/combined-monster-full-matrix.yml",
+      "status": "added",
+      "gitBlob": "30ba55fbc1640537601f4fc90a2719cf3521b897"
+    },
+    {
+      "path": ".github/workflows/combined-safe-exclusion.yml",
+      "status": "added",
+      "gitBlob": "f09245a9f776e8d36e6ef585341ee75a69a44ffa"
+    },
+    {
+      "path": ".github/workflows/combined-stage34-active-edge.yml",
+      "status": "added",
+      "gitBlob": "d89dd6770641c7dde5120af4fc9d1fe3b0cd9259"
+    },
+    {
+      "path": ".github/workflows/early-encounter.yml",
+      "status": "added",
+      "gitBlob": "d35639e918f975bf25fa25caaaa42bb1677fc595"
+    },
+    {
+      "path": ".github/workflows/monster-placement.yml",
+      "status": "added",
+      "gitBlob": "7e884cf2e8edddcb5764b4d1dbef81d1791deec1"
+    },
+    {
+      "path": ".github/workflows/stage10-bounds-check.yml",
+      "status": "added",
+      "gitBlob": "aa5798d0c065747eaffa21d00c1f0ba4361d339d"
+    },
+    {
+      "path": ".github/workflows/stage11-edge-check.yml",
+      "status": "added",
+      "gitBlob": "e5ed5841b6fdcbbe96c973bf9d21ae475b429cf2"
+    },
+    {
+      "path": ".github/workflows/stage12-edge-check.yml",
+      "status": "added",
+      "gitBlob": "75ac03336d7a0b7cbb0ed2b245dd205b96653f66"
+    },
+    {
+      "path": ".github/workflows/stage13-edge-check.yml",
+      "status": "added",
+      "gitBlob": "8ba7a6578d2464998f052a40be141a5e88af6ab3"
+    },
+    {
+      "path": ".github/workflows/stage14-edge-check.yml",
+      "status": "added",
+      "gitBlob": "eb11eaf88a52df571df2e343515ccf1987309a6b"
+    },
+    {
+      "path": ".github/workflows/stage15-edge-check.yml",
+      "status": "added",
+      "gitBlob": "4d015afce74f21923364650b4327e54d4e971395"
+    },
+    {
+      "path": ".github/workflows/stage16-edge-check.yml",
+      "status": "added",
+      "gitBlob": "fdcd7ef6cbe479a0a7bd104d3a01f4d3ae1fb80f"
+    },
+    {
+      "path": ".github/workflows/stage2-bounds-check.yml",
+      "status": "added",
+      "gitBlob": "5308e36e3752c8ff63d2cba09c71be9a6d9de594"
+    },
+    {
+      "path": ".github/workflows/stage21-edge-blend-check.yml",
+      "status": "added",
+      "gitBlob": "69dade0ef52706fffef8931d5af2e1cc175d358b"
+    },
+    {
+      "path": ".github/workflows/stage22-buried-blend-check.yml",
+      "status": "added",
+      "gitBlob": "5e4f9524af0c1223acecd5993f7eea98c51be6f8"
+    },
+    {
+      "path": ".github/workflows/stage28-foundation-domain-check.yml",
+      "status": "added",
+      "gitBlob": "9449bcc21b8eeebbc2e9d64cb26e847d3ba9ba49"
+    },
+    {
+      "path": ".github/workflows/stage29-left-join-check.yml",
+      "status": "added",
+      "gitBlob": "0b550e706133a60174e99590be2118937c5e6040"
+    },
+    {
+      "path": ".github/workflows/stage3-edge-check.yml",
+      "status": "added",
+      "gitBlob": "af49e1126a454eaad22519a3b22a545ebd891cef"
+    },
+    {
+      "path": ".github/workflows/stage3-safe-exclusion.yml",
+      "status": "added",
+      "gitBlob": "7b7e43ee88b0c3f15a9b02c58a0c52999026d59e"
+    },
+    {
+      "path": ".github/workflows/stage3-snap-chrome.yml",
+      "status": "added",
+      "gitBlob": "205acffebf70e30760d5b2fffeabdba9be8d9925"
+    },
+    {
+      "path": ".github/workflows/stage30-edge-composition-check.yml",
+      "status": "added",
+      "gitBlob": "cf5e9a11b098cf0312569065ff8505d1ba67a8cd"
+    },
+    {
+      "path": ".github/workflows/stage32-chrome-baseline.yml",
+      "status": "added",
+      "gitBlob": "7fcfa293dc2cc2904b9fac9d70d3c61f855f1ec0"
+    },
+    {
+      "path": ".github/workflows/stage33-exterior-chrome.yml",
+      "status": "added",
+      "gitBlob": "2da2d6a9c3d95c651014a4561f04c14acb976071"
+    },
+    {
+      "path": ".github/workflows/stage4-bounds-check.yml",
+      "status": "added",
+      "gitBlob": "d9a805dc99f0f202251833019bc57858300708a0"
+    },
+    {
+      "path": ".github/workflows/stage5-bounds-check.yml",
+      "status": "added",
+      "gitBlob": "0100d38ff90c2bd5d62e662671784a8154b02723"
+    },
+    {
+      "path": ".github/workflows/stage6-bounds-check.yml",
+      "status": "added",
+      "gitBlob": "cdcb3d178ea8a24ebd9607a0763c326e118ec753"
+    },
+    {
+      "path": ".github/workflows/stage7-edge-check.yml",
+      "status": "added",
+      "gitBlob": "b9e056ba615e26ad6d8537f2f6ccf8ab68e5139b"
+    },
+    {
+      "path": ".github/workflows/stage7-safe-exclusion.yml",
+      "status": "added",
+      "gitBlob": "5ecfe7080d8ad62db672eb254faa9f420f590ea7"
+    },
+    {
+      "path": ".github/workflows/stage8-bounds-check.yml",
+      "status": "added",
+      "gitBlob": "81b5b2e337d2f7b6699e2b7bbc3ba1524432aa1e"
+    },
+    {
+      "path": ".github/workflows/stage9-bounds-check.yml",
+      "status": "added",
+      "gitBlob": "af686e0917c5ccc7a4e6eee552503b6f02531430"
+    },
+    {
+      "path": ".github/workflows/terrain-edge-integration-check.yml",
+      "status": "added",
+      "gitBlob": "625bf354ee3c840db74a0b65704461a069634c5c"
+    },
+    {
+      "path": ".github/workflows/terrain-integration.yml",
+      "status": "added",
+      "gitBlob": "61d02664b5e135778c662b188b844783786704fd"
+    },
+    {
+      "path": ".github/workflows/terrain-monster-preflight.yml",
+      "status": "added",
+      "gitBlob": "90afa141e32b7534acd2a441a993ec9bdd47a017"
+    },
+    {
+      "path": "BUG_LOG.md",
+      "status": "modified",
+      "gitBlob": "bba81ade14500df062d4deb30f52813f934f89bf"
+    },
+    {
+      "path": "game/docs/ACT123_TERRAIN_CHROME_FINDINGS_20261117.md",
+      "status": "added",
+      "gitBlob": "c3ef3dfadd168a301fe0e54477047571e332f552"
+    },
+    {
+      "path": "game/docs/ACT123_TERRAIN_CHROME_REVIEW.md",
+      "status": "added",
+      "gitBlob": "83cbf34fb6576896b8b01ef6c1b33f2f84f603eb"
+    },
+    {
+      "path": "game/docs/ACT1_EDGE_JOIN_CANDIDATE_INDEX_20261117.md",
+      "status": "added",
+      "gitBlob": "20ea6dd1d52ef349ecf5f9421dbec65500a9d3c9"
+    },
+    {
+      "path": "game/docs/ACT2_EDGE_JOIN_CANDIDATE_INDEX_20261117.md",
+      "status": "added",
+      "gitBlob": "fd5229b45225f220c26dc37c7ad4c674759679a5"
+    },
+    {
+      "path": "game/docs/ACT4_MIDDLE_PLACEMENT_20261117.md",
+      "status": "added",
+      "gitBlob": "33c69b001d5cfa82a3e87af8209ea0e1dd8f9fa1"
+    },
+    {
+      "path": "game/docs/ACT5_LOCAL_ACTION_DIAGNOSTIC_20261118.md",
+      "status": "added",
+      "gitBlob": "a42f41b5d956bf0ee0628be904e33c3501c87dcd"
+    },
+    {
+      "path": "game/docs/ACT5_PLACEMENT_AUDIT_20261117.md",
+      "status": "added",
+      "gitBlob": "b4960e3bf95b2126b7f6812a70a5730eeaa9467f"
+    },
+    {
+      "path": "game/docs/BUG_LOG.md",
+      "status": "modified",
+      "gitBlob": "98b07c891e6df178dcaf9cb03c7a2064b2cf3e7f"
+    },
+    {
+      "path": "game/docs/COMBINED_CHROME_APP_REPLAY_PLAN_20261118.md",
+      "status": "added",
+      "gitBlob": "ae848f98a75a8da9b733aed738faf3f6b54502c0"
+    },
+    {
+      "path": "game/docs/COMBINED_ISOLATED_LOADER_PREPARATION_20261118.md",
+      "status": "added",
+      "gitBlob": "3474120569fe2558714e54d1704b5d1de85b0aac"
+    },
+    {
+      "path": "game/docs/COMBINED_MONSTER_FULL_MATRIX_PLAN_20261118.md",
+      "status": "added",
+      "gitBlob": "58b1caeb533f6f79f8bf257f279f9204c47024f5"
+    },
+    {
+      "path": "game/docs/COMBINED_MONSTER_FULL_MATRIX_RESULT_20261118.md",
+      "status": "added",
+      "gitBlob": "20c3f8ad2dd5db5e13bed41617894e6455057d6d"
+    },
+    {
+      "path": "game/docs/COMBINED_SAFE_EXCLUSION_20261118.md",
+      "status": "added",
+      "gitBlob": "0561dc47263a13f30ba17cbd57db1211a085d678"
+    },
+    {
+      "path": "game/docs/COMBINED_TERRAIN_MONSTER_CHROME_RESULT_20261118.md",
+      "status": "added",
+      "gitBlob": "fa118aac4e35a6e540c7101052156502f1d6cc78"
+    },
+    {
+      "path": "game/docs/EARLY_ENCOUNTER_AUDIT_RECOVERED.md",
+      "status": "added",
+      "gitBlob": "1a5a7287595d3e0fed095d1ec38be43f55f011de"
+    },
+    {
+      "path": "game/docs/EARLY_ENCOUNTER_PLACEMENT_REVIEW.md",
+      "status": "added",
+      "gitBlob": "670b9d6af640a568b6b71835e6352c3f6f91cf97"
+    },
+    {
+      "path": "game/docs/MONSTER_PLACEMENT_AUDIT_20261117.md",
+      "status": "added",
+      "gitBlob": "a42e78e4a30821f64c7dd15431043e2dc4c700b8"
+    },
+    {
+      "path": "game/docs/MONSTER_PLACEMENT_STAGE_LEDGER_20261118.md",
+      "status": "added",
+      "gitBlob": "00f4f553ff22d5537adeee6e4f5cb2b6a2b4b942"
+    },
+    {
+      "path": "game/docs/NATIVE_GRADIENT_DIAGNOSTIC_20261117.md",
+      "status": "added",
+      "gitBlob": "77a543c721b2ede57460bffd06859445bb917e94"
+    },
+    {
+      "path": "game/docs/STAGE07_REJECTED_SKIRT_EXCLUSION_CANDIDATE.md",
+      "status": "added",
+      "gitBlob": "d85c6be72573b5793ccfb36fbe9983b0f92d8fe3"
+    },
+    {
+      "path": "game/docs/STAGE10_EDGE_JOIN_STATUS.md",
+      "status": "added",
+      "gitBlob": "486095095b263fafbc38973fa36580cf4f4adc9d"
+    },
+    {
+      "path": "game/docs/STAGE11_EDGE_JOIN_STATUS.md",
+      "status": "added",
+      "gitBlob": "d64eacde76e337efdeea07f1f070d3a321c65566"
+    },
+    {
+      "path": "game/docs/STAGE12_EDGE_JOIN_STATUS.md",
+      "status": "added",
+      "gitBlob": "0c21a25b2d48fe489900c68533d11277257685d1"
+    },
+    {
+      "path": "game/docs/STAGE13_EDGE_JOIN_STATUS.md",
+      "status": "added",
+      "gitBlob": "83eb4b8eb52b8d94935a1ef96968a2e110fff478"
+    },
+    {
+      "path": "game/docs/STAGE14_EDGE_JOIN_STATUS.md",
+      "status": "added",
+      "gitBlob": "ddd2f15d5149d9f395fc83ba23153d6194b1c537"
+    },
+    {
+      "path": "game/docs/STAGE15_EDGE_JOIN_STATUS.md",
+      "status": "added",
+      "gitBlob": "f48f30406ddd69f7ca6f4b136b713decda0f30d6"
+    },
+    {
+      "path": "game/docs/STAGE16_EDGE_JOIN_STATUS.md",
+      "status": "added",
+      "gitBlob": "217d3824104ceee9ce895f9dfe24a81441c9b30d"
+    },
+    {
+      "path": "game/docs/STAGE21_EDGE_BLEND_CANDIDATE_20261117.md",
+      "status": "added",
+      "gitBlob": "75bdfd43a57ba180bdff367ab1350a2b12fc493a"
+    },
+    {
+      "path": "game/docs/STAGE22_BURIED_EDGE_CANDIDATE_20261117.md",
+      "status": "added",
+      "gitBlob": "bea2621a8d10ca5521d175e2345c05ea05a49eb4"
+    },
+    {
+      "path": "game/docs/STAGE28_EDGE_JOIN_STATUS.md",
+      "status": "added",
+      "gitBlob": "b512a7701eb3da3b0fac630c1c189cb015a882d2"
+    },
+    {
+      "path": "game/docs/STAGE29_LEFT_JOIN_CANDIDATE_20261117.md",
+      "status": "added",
+      "gitBlob": "2e285144677266969f3dd5d28c3f1b0071e54f16"
+    },
+    {
+      "path": "game/docs/STAGE2_EDGE_JOIN_STATUS.md",
+      "status": "added",
+      "gitBlob": "fe71a28fdc7973f2d1259003fab996a4f077aad5"
+    },
+    {
+      "path": "game/docs/STAGE30_EDGE_COMPOSITION_20261117.md",
+      "status": "added",
+      "gitBlob": "bfb3cd82a403ff24dc5ac75ce78a8ea34574d76f"
+    },
+    {
+      "path": "game/docs/STAGE33_EXTERIOR_CANDIDATE_20261117.md",
+      "status": "added",
+      "gitBlob": "349609f37bb5e372e087bb58b481ef9bbe4aa3aa"
+    },
+    {
+      "path": "game/docs/STAGE3_COLLAPSED_SNAP_CLIP_20261117.md",
+      "status": "added",
+      "gitBlob": "b76360d84b51efbb99f27536196efa44386220ef"
+    },
+    {
+      "path": "game/docs/STAGE3_EDGE_JOIN_STATUS.md",
+      "status": "added",
+      "gitBlob": "5b434de7b5cf85de6ac086ba84c6a0e2255573ce"
+    },
+    {
+      "path": "game/docs/STAGE3_SAFE_EXCLUSION_20261117.md",
+      "status": "added",
+      "gitBlob": "ba2c01df3b2adc5877e58850be66589f7975ffd5"
+    },
+    {
+      "path": "game/docs/STAGE4_EDGE_JOIN_STATUS.md",
+      "status": "added",
+      "gitBlob": "ffc582f0956d0a1547022ea4ab567d0137cb9e96"
+    },
+    {
+      "path": "game/docs/STAGE5_EDGE_JOIN_STATUS.md",
+      "status": "added",
+      "gitBlob": "7ce44047e1d11f1fd41aae11baac8a5444aaf51c"
+    },
+    {
+      "path": "game/docs/STAGE6_EDGE_JOIN_STATUS.md",
+      "status": "added",
+      "gitBlob": "ea5be59ab9d9508a4b70bb82aadf322bceb5a25b"
+    },
+    {
+      "path": "game/docs/STAGE7_EDGE_JOIN_STATUS.md",
+      "status": "added",
+      "gitBlob": "2319ef0bc417c8419a3010b9f0c9a412476bb873"
+    },
+    {
+      "path": "game/docs/STAGE8_EDGE_JOIN_STATUS.md",
+      "status": "added",
+      "gitBlob": "a698051363af9e3bebac959efadf6d58b7d2a2cc"
+    },
+    {
+      "path": "game/docs/STAGE9_EDGE_JOIN_STATUS.md",
+      "status": "added",
+      "gitBlob": "be5054ba36f998c2862aca99a3c1073f107b0863"
+    },
+    {
+      "path": "game/docs/TERRAIN_33_34_37_38_INTEGRATION.md",
+      "status": "added",
+      "gitBlob": "abea4ee4cb1aaa4280f875ce81e5909d08e3f776"
+    },
+    {
+      "path": "game/docs/TERRAIN_EDGE_CANDIDATE_INTEGRATION_20261117.md",
+      "status": "added",
+      "gitBlob": "ededf758a88e6a28f964c60f387737bf61c774bb"
+    },
+    {
+      "path": "game/docs/TERRAIN_EDGE_SURVEY_20261117.md",
+      "status": "added",
+      "gitBlob": "b8be917b566969a623e5933db826875669c06174"
+    },
+    {
+      "path": "game/docs/TERRAIN_MONSTER_PREFLIGHT_20261118.md",
+      "status": "added",
+      "gitBlob": "9e58332e9544e6dc32b5d5d3cc371fe73abacb87"
+    },
+    {
+      "path": "game/docs/TERRAIN_MONSTER_PREFLIGHT_RESULT_20261118.md",
+      "status": "added",
+      "gitBlob": "2c1351cec91d9c1cbf685a1966000d5319ac13ef"
+    },
+    {
+      "path": "game/docs/audits/stage11-native-20261117.json",
+      "status": "added",
+      "gitBlob": "a262df7f928a3c2335f0bf0f52db06ee970d5a6d"
+    },
+    {
+      "path": "game/docs/audits/stage13-native-20261117.json",
+      "status": "added",
+      "gitBlob": "c82068794ff00555e0da92d480e429eac92aeb7a"
+    },
+    {
+      "path": "game/docs/audits/stage14-native-20261117.json",
+      "status": "added",
+      "gitBlob": "7792ba26f179c10fce9133d5de67c31ee4b45e9c"
+    },
+    {
+      "path": "game/docs/audits/stage15-native-20261117.json",
+      "status": "added",
+      "gitBlob": "4a03f5c0df120b1eaaedc10d253f9c1a44afb2f1"
+    },
+    {
+      "path": "game/docs/audits/stage16-native-20261117.json",
+      "status": "added",
+      "gitBlob": "1a18775dea7fe3c27f7c751faf87b32b145c1dff"
+    },
+    {
+      "path": "game/docs/evidence/chrome-handoff-tile-20261117.json",
+      "status": "added",
+      "gitBlob": "e6724f0cb1a21b3494973333cb0a293614b54977"
+    },
+    {
+      "path": "game/docs/evidence/stage29-chrome-join-comparison-20261117.json",
+      "status": "added",
+      "gitBlob": "f35c4e7f29bded2b7864f1152a0f9f70d7ede590"
+    },
+    {
+      "path": "shared/act4-finale-author.mjs",
+      "status": "modified",
+      "gitBlob": "16694a5578debbb7585faa8ec8207bd3886c8b09"
+    },
+    {
+      "path": "shared/act4-finale-revision.mjs",
+      "status": "modified",
+      "gitBlob": "ed97b06a417837722c2776dbc7d548b711cae626"
+    },
+    {
+      "path": "shared/act4-middle-placement.mjs",
+      "status": "added",
+      "gitBlob": "6fb6779e1427e9c7ed4b0e8e457ce69f2c601aa8"
+    },
+    {
+      "path": "shared/act4-sideview-art.mjs",
+      "status": "modified",
+      "gitBlob": "415af6a1b77270cbd12fb669f1af4a434b806c4a"
+    },
+    {
+      "path": "shared/act4-stage33-exterior-art.mjs",
+      "status": "added",
+      "gitBlob": "6d8f65c82947a334a10f294eb1175a90da0121cb"
+    },
+    {
+      "path": "shared/act4-stage40-placement.mjs",
+      "status": "added",
+      "gitBlob": "84379471a820d124545ef403a8206e4d273ce630"
+    },
+    {
+      "path": "shared/assets/environment/act3-handoff/stage21-bedrock.json",
+      "status": "modified",
+      "gitBlob": "7a4bbc333328829546ead683e2ab5c6bb793303c"
+    },
+    {
+      "path": "shared/assets/environment/act3-handoff/stage29-west-bank.json",
+      "status": "modified",
+      "gitBlob": "25486645ed0ae742844c0a140e0463b6865238ce"
+    },
+    {
+      "path": "shared/build.mjs",
+      "status": "modified",
+      "gitBlob": "78535d94c0cb9c7aff38aabe88e3fd757fd57c5b"
+    },
+    {
+      "path": "shared/data/act1/stage02-body-candidate.json",
+      "status": "modified",
+      "gitBlob": "1ae8c3da3990b33b80f2f06a130e5d0eb538b43b"
+    },
+    {
+      "path": "shared/data/act1/stage02-rear-candidate.json",
+      "status": "modified",
+      "gitBlob": "fba9cd1108a2d2c5068cd41eef9f609011b5a055"
+    },
+    {
+      "path": "shared/data/act1/stage04-body-candidate.json",
+      "status": "modified",
+      "gitBlob": "19ef7fefffb28461e7cbe9b44a6d22692cec7199"
+    },
+    {
+      "path": "shared/data/act1/stage05-cliff-v1-candidate.json",
+      "status": "modified",
+      "gitBlob": "607554084201357e1678656fc77b62212f3dd9db"
+    },
+    {
+      "path": "shared/data/act1/stage05-floor-v4-candidate.json",
+      "status": "modified",
+      "gitBlob": "719a081e7d222ee1d2aec375cce9b23a6ce57e4e"
+    },
+    {
+      "path": "shared/data/act1/stage08-floor-v1-candidate.json",
+      "status": "modified",
+      "gitBlob": "1716cf22ee66b4669b7c0dfa2451ee578eb5f41b"
+    },
+    {
+      "path": "shared/data/act1/stage09-floor-v3-candidate.json",
+      "status": "modified",
+      "gitBlob": "6bcdf4f9ba0a267ad57934c9d9c6183e994d7b65"
+    },
+    {
+      "path": "shared/data/act1/stage10-floor-v4-candidate.json",
+      "status": "modified",
+      "gitBlob": "32f456b0f7321257c3c31cdb9268c1129e6a528c"
+    },
+    {
+      "path": "shared/data/act2/stage12-compact-package.json",
+      "status": "modified",
+      "gitBlob": "4a229931c6d70166ee9f868cdf4a7897f30b7b0c"
+    },
+    {
+      "path": "shared/data/act2/stage15-compact-package.json",
+      "status": "modified",
+      "gitBlob": "6b2d3fb786fb2ef5a8b280fd0c494ba0563fe4fb"
+    },
+    {
+      "path": "shared/data/act4/sideview-art/33-exterior-field.json",
+      "status": "added",
+      "gitBlob": "3bbd8447e03de512881964d2740bc598c0ce30bb"
+    },
+    {
+      "path": "shared/data/act5/encounters-early.mjs",
+      "status": "modified",
+      "gitBlob": "b50f8d3dbeeea781cd6278c5ef9f12c251f20a2a"
+    },
+    {
+      "path": "shared/data/act5/encounters-late.mjs",
+      "status": "modified",
+      "gitBlob": "b88c9b5858ce3fbd1a47824ac2d2715901d55b89"
+    },
+    {
+      "path": "shared/data/campaign.json",
+      "status": "modified",
+      "gitBlob": "575ca8a3d1a9799a18456d0e774b803ca4ed0b63"
+    },
+    {
+      "path": "shared/data/terrain-path-registrations.json",
+      "status": "added",
+      "gitBlob": "85737030075ac77936c5e39a848a26f06c84c2d5"
+    },
+    {
+      "path": "shared/map/vector-art.js",
+      "status": "modified",
+      "gitBlob": "fad1d722d4fa34c8372633541d3784423ab38144"
+    },
+    {
+      "path": "shared/runtime/act2-spatial-art.js",
+      "status": "modified",
+      "gitBlob": "ff3bd76a94251c2f3478fbeae450a139fac4f221"
+    },
+    {
+      "path": "shared/runtime/act3-handoff-art.js",
+      "status": "modified",
+      "gitBlob": "9fe0d8896de2219379ce9d039bbc5ed7bdf2cb21"
+    },
+    {
+      "path": "shared/runtime/act4-pilot-art.js",
+      "status": "modified",
+      "gitBlob": "c6ccf0e3a425374057b6634f05f7327193acb446"
+    },
+    {
+      "path": "shared/runtime/early-encounter-placement.js",
+      "status": "added",
+      "gitBlob": "6c480f6ec8b30877b78a68404c8249351e25f6af"
+    },
+    {
+      "path": "shared/runtime/encounters.js",
+      "status": "modified",
+      "gitBlob": "12bb4afdc2b743ff3b0a9ab3e0e12f29a6adb615"
+    },
+    {
+      "path": "shared/runtime/renderer.js",
+      "status": "modified",
+      "gitBlob": "107ccf65f81ba7ad2e231bc5cb850f9d712e482a"
+    },
+    {
+      "path": "shared/runtime/stage30-ferry-art.js",
+      "status": "modified",
+      "gitBlob": "fd9a64fcdd4abfe6f103859fa7c143f6e3435302"
+    },
+    {
+      "path": "shared/runtime/stage33-exterior-art.js",
+      "status": "added",
+      "gitBlob": "837d23ac1f3badb54ba179f614c1ca77d18a9868"
+    },
+    {
+      "path": "shared/runtime/stage34-foundation-edge.js",
+      "status": "added",
+      "gitBlob": "d694c2aa04bae5f94fd7fe628c4d87bbbb087d75"
+    },
+    {
+      "path": "shared/runtime/stage37-alpha-edge.js",
+      "status": "added",
+      "gitBlob": "a3d5e6e0c20f86c838f672b836b2a02db9a73664"
+    },
+    {
+      "path": "shared/runtime/stage38-alpha-edge.js",
+      "status": "added",
+      "gitBlob": "bc7ac3764025da83ecf71dc8c8ec82887953218c"
+    },
+    {
+      "path": "shared/runtime/terrain-readability.js",
+      "status": "modified",
+      "gitBlob": "c1a3ed81dc5167711399da6521f062806ca367d2"
+    },
+    {
+      "path": "shared/terrain-path-optimization.mjs",
+      "status": "modified",
+      "gitBlob": "6fd93612eed5ccba39b0ccfe88a1a7a49631cd79"
+    },
+    {
+      "path": "tests/act123-terrain-browser-compare.mjs",
+      "status": "added",
+      "gitBlob": "3d8900b788d3d8158dd24cf36de7d30840800b98"
+    },
+    {
+      "path": "tests/act123-terrain-browser-fixture.mjs",
+      "status": "added",
+      "gitBlob": "acbc8ce07df71d9e22f6178b598eefbf22c07a74"
+    },
+    {
+      "path": "tests/act123-terrain-browser-result.mjs",
+      "status": "added",
+      "gitBlob": "0e50b3457153a7903d0ef8a50e42ac8a4429349c"
+    },
+    {
+      "path": "tests/act4-middle-frame-contract-test.mjs",
+      "status": "added",
+      "gitBlob": "a87cf8c1110e9b623ceca3e46f2d5b0542fa7729"
+    },
+    {
+      "path": "tests/act4-middle-frame-contract.mjs",
+      "status": "added",
+      "gitBlob": "bb0b7d5d933ca558676440830dbe19e5144662d7"
+    },
+    {
+      "path": "tests/act4-middle-placement-browser.mjs",
+      "status": "added",
+      "gitBlob": "057415a09310debc26e4809b2e26b4229f24539a"
+    },
+    {
+      "path": "tests/act4-middle-placement-contract.mjs",
+      "status": "added",
+      "gitBlob": "48c78a460e2929b9d667ebc3079e3ba3bacc2b78"
+    },
+    {
+      "path": "tests/act4-middle-placement-result.mjs",
+      "status": "added",
+      "gitBlob": "4afbcf7a42e021ea72bbefce7496d350d6693e4c"
+    },
+    {
+      "path": "tests/act5-meaningful-encounters.test.mjs",
+      "status": "added",
+      "gitBlob": "a6d279c1551b313e160365e52b55805ebb3750b1"
+    },
+    {
+      "path": "tests/act5-placement-action-fixture.mjs",
+      "status": "added",
+      "gitBlob": "b0427ef6af6eb57c2fb59df4aaff53e2681dd6d1"
+    },
+    {
+      "path": "tests/act5-placement-browser-fixture.mjs",
+      "status": "added",
+      "gitBlob": "6295636f49f5d4ec5f72b28f3177100aae8bb215"
+    },
+    {
+      "path": "tests/act5-placement-browser-result.mjs",
+      "status": "added",
+      "gitBlob": "66eb45fd679ba9ee6ad1349fffe160e4216a5999"
+    },
+    {
+      "path": "tests/actual-scene-browser-fixture.mjs",
+      "status": "added",
+      "gitBlob": "468bf7199ae1c6cc29f15288f43c11b911114bbd"
+    },
+    {
+      "path": "tests/actual-scene-browser-result.mjs",
+      "status": "added",
+      "gitBlob": "258cea5fdc94adc4e0c9bd5248914a7147a1121f"
+    },
+    {
+      "path": "tests/combined-act4-middle-placement-browser.mjs",
+      "status": "added",
+      "gitBlob": "801454cad69c5e8195dfb825681c18864f4e0bab"
+    },
+    {
+      "path": "tests/combined-loader-evidence.mjs",
+      "status": "added",
+      "gitBlob": "a506e0baf495dfbc3f0c8d12d7bbb9b86c4200b3"
+    },
+    {
+      "path": "tests/combined-matrix-evidence.mjs",
+      "status": "added",
+      "gitBlob": "0fca82788cae23ab5565f25a10de711628618b9d"
+    },
+    {
+      "path": "tests/combined-monster-placement-browser-fixture.mjs",
+      "status": "added",
+      "gitBlob": "acc5fb7eeb011d6f308c31519fb2e6004d88538a"
+    },
+    {
+      "path": "tests/combined-safe-exclusion-contract.mjs",
+      "status": "added",
+      "gitBlob": "639136adfb8ef7d37f575952700ba9957f3dae3e"
+    },
+    {
+      "path": "tests/combined-stage34-edge-browser-compare.mjs",
+      "status": "added",
+      "gitBlob": "439767cf4b8196345d6477da9bedce73fe0720e2"
+    },
+    {
+      "path": "tests/combined-stage34-edge-browser-fixture.mjs",
+      "status": "added",
+      "gitBlob": "17a61b8fab85a1883a3a4121bc1637bb1b4e28ee"
+    },
+    {
+      "path": "tests/early-encounter-browser-fixture.mjs",
+      "status": "added",
+      "gitBlob": "78d6f9ebbd7b92696851682697d3ef8410135f63"
+    },
+    {
+      "path": "tests/early-encounter-browser-result.mjs",
+      "status": "added",
+      "gitBlob": "e81347314b29c8f41731336282baaa2618174332"
+    },
+    {
+      "path": "tests/early-encounter-contract.mjs",
+      "status": "added",
+      "gitBlob": "ccca90c418423e33e939e0cef17d432bdd562a47"
+    },
+    {
+      "path": "tests/fixtures/stage3-readability-before.js",
+      "status": "added",
+      "gitBlob": "fc483c8da2bd44899f4a582b89cbaa3e206a542c"
+    },
+    {
+      "path": "tests/fixtures/terrain-edge-integration-20261117.json",
+      "status": "added",
+      "gitBlob": "10547989cb0ffc450fa32bcad94858f31e3f23bc"
+    },
+    {
+      "path": "tests/fixtures/terrain-edge-integration-extension-history-20261117.json",
+      "status": "added",
+      "gitBlob": "0339bd7e76e6cb17331631b5cbadd6fbc655effd"
+    },
+    {
+      "path": "tests/fixtures/terrain-integration-individual-pngs.json",
+      "status": "added",
+      "gitBlob": "8efb6dc0901ffcf433b78a18f95773649ab3af36"
+    },
+    {
+      "path": "tests/fixtures/terrain-monster-preflight.json",
+      "status": "added",
+      "gitBlob": "69af8f27db309dc89a7907e40daeee457704565d"
+    },
+    {
+      "path": "tests/isolated-act4-production-extras.mjs",
+      "status": "added",
+      "gitBlob": "aa08eb2910659ff5e621b882dfd04282820bc6c2"
+    },
+    {
+      "path": "tests/matrix-act4-middle-placement-browser.mjs",
+      "status": "added",
+      "gitBlob": "4106a20114153142653a137a17f238d1b0374245"
+    },
+    {
+      "path": "tests/matrix-act5-placement-action-fixture.mjs",
+      "status": "added",
+      "gitBlob": "8f3f069a0d85daf3d55dc01e3fb003ef6610cdd5"
+    },
+    {
+      "path": "tests/matrix-act5-placement-browser-fixture.mjs",
+      "status": "added",
+      "gitBlob": "94c48b724503f95c7f06a099f4b74fa39f799d97"
+    },
+    {
+      "path": "tests/matrix-early-encounter-browser-fixture.mjs",
+      "status": "added",
+      "gitBlob": "437763d164bd26b85c004730f87689f8674b9034"
+    },
+    {
+      "path": "tests/matrix-monster-placement-browser-fixture.mjs",
+      "status": "added",
+      "gitBlob": "3223453a57a45dc57c96cfdffab7db2734a24d7c"
+    },
+    {
+      "path": "tests/monster-placement-browser-fixture.mjs",
+      "status": "added",
+      "gitBlob": "cdd5f5e8ef1470fc2a50a0eccfb455970f5cd252"
+    },
+    {
+      "path": "tests/monster-placement-browser-result.mjs",
+      "status": "added",
+      "gitBlob": "4787cfdf86333730e92c1eb67434d321f3ae9624"
+    },
+    {
+      "path": "tests/monster-placement-survey.mjs",
+      "status": "added",
+      "gitBlob": "e84cdb5f138c489596480b7bf3ba7d0a8598ad9f"
+    },
+    {
+      "path": "tests/rejected-extension-registration-guard.mjs",
+      "status": "added",
+      "gitBlob": "63aa800b34491e41e2bd9dc13f9bbcee732c094d"
+    },
+    {
+      "path": "tests/stage10-art-bounds.mjs",
+      "status": "added",
+      "gitBlob": "a0cf9c428df9dd45c84c3d0c6b92a01f894e8548"
+    },
+    {
+      "path": "tests/stage11-edge-domain.mjs",
+      "status": "added",
+      "gitBlob": "43e0c6ad4a3eb15c07348c7d7d14b92a201c063e"
+    },
+    {
+      "path": "tests/stage12-ground-skirt.mjs",
+      "status": "added",
+      "gitBlob": "8f250012248ca1aaf2288b8c7c66a280c764acd3"
+    },
+    {
+      "path": "tests/stage13-edge-domain.mjs",
+      "status": "added",
+      "gitBlob": "a10ac41345dac7fd82784a953bf119c551cd72ba"
+    },
+    {
+      "path": "tests/stage14-art-rim.mjs",
+      "status": "added",
+      "gitBlob": "df1d98bc1cf0376932a24c8de7956f04f4ed2453"
+    },
+    {
+      "path": "tests/stage14-edge-domain.mjs",
+      "status": "added",
+      "gitBlob": "01c6d7f6a605a79c27e36ac42f050e414e0bff36"
+    },
+    {
+      "path": "tests/stage15-edge-domain.mjs",
+      "status": "added",
+      "gitBlob": "5b8bac19ec80e8684c00aecaf9727ecdd08cb9bf"
+    },
+    {
+      "path": "tests/stage16-edge-domain.mjs",
+      "status": "added",
+      "gitBlob": "969c9f4bd8b46467cb4b79f0ddf2a87c912f1b3d"
+    },
+    {
+      "path": "tests/stage2-art-bounds.mjs",
+      "status": "added",
+      "gitBlob": "b9912e26c2896d20e404c1121102412b40ffe545"
+    },
+    {
+      "path": "tests/stage21-handoff-blend.mjs",
+      "status": "added",
+      "gitBlob": "21e0bc92ac2e36b7a667bc25def34b8329feca60"
+    },
+    {
+      "path": "tests/stage22-buried-blend.mjs",
+      "status": "added",
+      "gitBlob": "ed97991372ed637891219aa1e8367080963ddc2f"
+    },
+    {
+      "path": "tests/stage28-foundation-domain.mjs",
+      "status": "added",
+      "gitBlob": "99e9258186a12f7c99a8494a065e641d26884454"
+    },
+    {
+      "path": "tests/stage29-handoff-left-blend.mjs",
+      "status": "added",
+      "gitBlob": "7d7f726709d73f3b13399f7b9af4fd662ba7b396"
+    },
+    {
+      "path": "tests/stage3-safe-browser-compare.mjs",
+      "status": "added",
+      "gitBlob": "35b2a8683a7890d3d7be9b3f1157e4bd65ec4e68"
+    },
+    {
+      "path": "tests/stage3-safe-browser-fixture.mjs",
+      "status": "added",
+      "gitBlob": "ebfa7a7ac3f6c96d10a9327d77fce639eb3aa0b8"
+    },
+    {
+      "path": "tests/stage3-safe-source-contract.mjs",
+      "status": "added",
+      "gitBlob": "1731269622aead41999b3ffd56d74463d4999235"
+    },
+    {
+      "path": "tests/stage3-snap-protected-core.mjs",
+      "status": "added",
+      "gitBlob": "65eb576661f821690ec2d229dbc8d61bf93b874b"
+    },
+    {
+      "path": "tests/stage30-edge-composition.mjs",
+      "status": "added",
+      "gitBlob": "fb582112913b96661cf147fe0eff2a52ea8be0b2"
+    },
+    {
+      "path": "tests/stage33-exterior-browser-compare.mjs",
+      "status": "added",
+      "gitBlob": "4fb992f85dd15d67a560f7396b6e69447287fa5b"
+    },
+    {
+      "path": "tests/stage33-exterior-browser-fixture.mjs",
+      "status": "added",
+      "gitBlob": "921d94c25df418c7dac5a601ef016870eee8812a"
+    },
+    {
+      "path": "tests/stage33-exterior-browser-result.mjs",
+      "status": "added",
+      "gitBlob": "50407518d929dc8fb41430bfaa4fa1e3516c4528"
+    },
+    {
+      "path": "tests/stage33-exterior-test.mjs",
+      "status": "added",
+      "gitBlob": "f49fb6caf1c60e1eabcfdcb0b2e872ea68354ec2"
+    },
+    {
+      "path": "tests/stage33-tide-browser-compare.mjs",
+      "status": "added",
+      "gitBlob": "a1df0eacf49f7e041656f6756b56fcd6d61f80f0"
+    },
+    {
+      "path": "tests/stage33-tide-browser-fixture.mjs",
+      "status": "added",
+      "gitBlob": "2f4823ee8dde95f169e6758d772eaacdd8e1550c"
+    },
+    {
+      "path": "tests/stage33-tide-browser-result.mjs",
+      "status": "added",
+      "gitBlob": "c33b21abbea41f3fcb13f0e57b5b7711062acdb4"
+    },
+    {
+      "path": "tests/stage34-edge-browser-compare.mjs",
+      "status": "added",
+      "gitBlob": "172ccaf96d22b765d7f19ec55a00e770badc2796"
+    },
+    {
+      "path": "tests/stage34-edge-browser-fixture.mjs",
+      "status": "added",
+      "gitBlob": "c30f39d02fa0516a5d714f7d2887a3b6de78974c"
+    },
+    {
+      "path": "tests/stage34-edge-browser-result.mjs",
+      "status": "added",
+      "gitBlob": "eb810315ae32b9ee43856a8e05e11bcdc3e40272"
+    },
+    {
+      "path": "tests/stage34-edge-contract.mjs",
+      "status": "added",
+      "gitBlob": "4c34bfd71b337f6e476c1d6dec21f87181bdaa37"
+    },
+    {
+      "path": "tests/stage37-alpha-edge-contract.mjs",
+      "status": "added",
+      "gitBlob": "24b008f358fd6b25f196fcfe948c7bd48abcdd15"
+    },
+    {
+      "path": "tests/stage37-multiview-compare.mjs",
+      "status": "added",
+      "gitBlob": "be0282c30dcc89b458a32af1b9055d568ef05fef"
+    },
+    {
+      "path": "tests/stage37-multiview-fixture.mjs",
+      "status": "added",
+      "gitBlob": "f818c1ff7411b062c835789806cb0baacd67aab4"
+    },
+    {
+      "path": "tests/stage37-multiview-result.mjs",
+      "status": "added",
+      "gitBlob": "dbefb487bf5d99ab04acf424b913ff069049387a"
+    },
+    {
+      "path": "tests/stage38-alpha-edge-contract.mjs",
+      "status": "added",
+      "gitBlob": "06bfd5f6f2a11904f9f17f1fd9547b2d3fea3596"
+    },
+    {
+      "path": "tests/stage38-multiview-compare.mjs",
+      "status": "added",
+      "gitBlob": "dff05194e51ff2339c91a10b1c98a09eda6ae144"
+    },
+    {
+      "path": "tests/stage38-multiview-fixture.mjs",
+      "status": "added",
+      "gitBlob": "830741eee33cd9ab01ff7311b7cef7a487a116c9"
+    },
+    {
+      "path": "tests/stage38-multiview-result.mjs",
+      "status": "added",
+      "gitBlob": "47bb9a0b0d40138d84294648d62010fd56fe9b07"
+    },
+    {
+      "path": "tests/stage4-art-bounds.mjs",
+      "status": "added",
+      "gitBlob": "c0111f6bfdfa85ea63b36ef0d3dbc2bbb9cfb2dd"
+    },
+    {
+      "path": "tests/stage40-placement-contract.mjs",
+      "status": "added",
+      "gitBlob": "ced495b063ff39ad609bbd39e418053942cb1bd7"
+    },
+    {
+      "path": "tests/stage5-art-bounds.mjs",
+      "status": "added",
+      "gitBlob": "22dbbcb9827adcdeeac0a2b2ef8ef672ed9d2fd9"
+    },
+    {
+      "path": "tests/stage6-art-bounds.mjs",
+      "status": "added",
+      "gitBlob": "8dd481b808c957352cc44e210252a598b520fd07"
+    },
+    {
+      "path": "tests/stage7-art-bounds.mjs",
+      "status": "added",
+      "gitBlob": "973caaa31400b2dfbb9d9fddc41e2d1e7d810122"
+    },
+    {
+      "path": "tests/stage7-safe-browser-compare.mjs",
+      "status": "added",
+      "gitBlob": "ec4e7c180832b72e5bfdd59663f35fe53eca4758"
+    },
+    {
+      "path": "tests/stage7-safe-browser-fixture.mjs",
+      "status": "added",
+      "gitBlob": "27b1bb9dc66e77421b95041e9e2404e9e000bf1d"
+    },
+    {
+      "path": "tests/stage7-safe-browser-result.mjs",
+      "status": "added",
+      "gitBlob": "a48789e74d66317afdbc46e20dc24f767214fb21"
+    },
+    {
+      "path": "tests/stage7-safe-contract.mjs",
+      "status": "added",
+      "gitBlob": "c28aaa979392de9af5b3b23ecd8bc44340994072"
+    },
+    {
+      "path": "tests/stage8-art-bounds.mjs",
+      "status": "added",
+      "gitBlob": "33d1fac7b0dadc7ba69c99f0e2c8a350adc21d3a"
+    },
+    {
+      "path": "tests/stage9-art-bounds.mjs",
+      "status": "added",
+      "gitBlob": "77743635e3646e87680929696633dec48d840c82"
+    },
+    {
+      "path": "tests/terrain-edge-act1-save-compat.mjs",
+      "status": "added",
+      "gitBlob": "fb4846f150114d22e6ebf7b4c9867fd3865a271a"
+    },
+    {
+      "path": "tests/terrain-edge-save-baseline.mjs",
+      "status": "added",
+      "gitBlob": "eab59fad58d15885ca94b388a4ad23b21b9032d8"
+    },
+    {
+      "path": "tests/terrain-edge-save-roundtrip.mjs",
+      "status": "added",
+      "gitBlob": "b54ee8a66716d0b6e3a19ac4bddd94dc4ed92fa3"
+    },
+    {
+      "path": "tests/terrain-integration-pngs.mjs",
+      "status": "added",
+      "gitBlob": "44cc4af71d960e7a17f0c707b6fc4d143a24c8c5"
+    },
+    {
+      "path": "tests/terrain-monster-preflight.mjs",
+      "status": "added",
+      "gitBlob": "ae162323a31fe202c3954e7077a97386e8a1a0fa"
+    },
+    {
+      "path": "tests/vector-snap-collapse-browser-fixture.mjs",
+      "status": "added",
+      "gitBlob": "7393b6f1fbccfac5fe0d71620594149b50c3a718"
+    },
+    {
+      "path": "tests/vector-snap-collapse-browser-result.mjs",
+      "status": "added",
+      "gitBlob": "642e334454cc21deb3bb089c128ed721f3254a9b"
+    },
+    {
+      "path": "tests/vector-snap-collapse.mjs",
+      "status": "added",
+      "gitBlob": "646ac0af3970f4d4949ea5b3c067864f5408811c"
+    },
+    {
+      "path": "tools/act1-vector-production/capture-stage-independent-audit.mjs",
+      "status": "added",
+      "gitBlob": "8338aafb2bc131e59e7ae200ba978f5300799404"
+    },
+    {
+      "path": "tools/act1-vector-production/capture-stage2-bounds-audit.mjs",
+      "status": "added",
+      "gitBlob": "ee1091ec7d687f9b23d52703b3f70b5a685d329a"
+    },
+    {
+      "path": "tools/act1-vector-production/capture-stage2-contacts-audit.mjs",
+      "status": "added",
+      "gitBlob": "803c1252dd422255e13e0415ffcbc6573dbe6d8e"
+    },
+    {
+      "path": "tools/act1-vector-production/check-edge-integration-manifest.mjs",
+      "status": "added",
+      "gitBlob": "febb4a1ffe5d998a04bb9cea7a6f8820a42590b0"
+    },
+    {
+      "path": "tools/act1-vector-production/check-stage10-tree-bounds.mjs",
+      "status": "added",
+      "gitBlob": "36cbc6ae57bf8ee22cd1bb67fe56980f68c90ac7"
+    },
+    {
+      "path": "tools/act1-vector-production/check-stage11-tree-bounds.mjs",
+      "status": "added",
+      "gitBlob": "55745ba224776332c51b491316fb41eb7637880f"
+    },
+    {
+      "path": "tools/act1-vector-production/check-stage12-tree-bounds.mjs",
+      "status": "added",
+      "gitBlob": "b9d31f5dbba61ecbb16df1b585a96088eb3274dc"
+    },
+    {
+      "path": "tools/act1-vector-production/check-stage3-edge-audit.mjs",
+      "status": "added",
+      "gitBlob": "10e8c6d2732f990cf0c7a6f1f6f426bab54892e6"
+    },
+    {
+      "path": "tools/act1-vector-production/check-stage7-edge-audit.mjs",
+      "status": "added",
+      "gitBlob": "04e6037a5137611e3f5bb8bdfc2cbc15e0e6421f"
+    },
+    {
+      "path": "tools/act1-vector-production/register-stage3-extension-optimization.mjs",
+      "status": "added",
+      "gitBlob": "43538d18e933006050f64d5b464a65fbb1f088b7"
+    },
+    {
+      "path": "tools/act1-vector-production/register-stage7-extension-optimization.mjs",
+      "status": "added",
+      "gitBlob": "3b6e058816cc1fb9fcdf2a3b68ae3d47b9424214"
+    },
+    {
+      "path": "tools/act2-vector-production/register-stage12-skirt-optimization.mjs",
+      "status": "added",
+      "gitBlob": "9820e3c505a30db44cb1d2352bd1b9da805ac7ae"
+    },
+    {
+      "path": "tools/act2-vector-production/register-stage15-domain-optimization.mjs",
+      "status": "added",
+      "gitBlob": "f969ecdd18ab4824f3aaeb2c796f5b816d2910ab"
+    },
+    {
+      "path": "tools/environment/stage12-compact-art.mjs",
+      "status": "modified",
+      "gitBlob": "79dd060e5d23c2f5af5eabcbccb69173a21d361b"
+    },
+    {
+      "path": "tools/environment/stage21-handoff-blend.mjs",
+      "status": "added",
+      "gitBlob": "6bd191073f71027872695b64b4af42764b45af61"
+    },
+    {
+      "path": "tools/environment/stage22-buried-blend.mjs",
+      "status": "added",
+      "gitBlob": "eeb80e32f6c7d2615c290dad36f5b6449d373093"
+    },
+    {
+      "path": "tools/environment/stage22-vertical-art.mjs",
+      "status": "modified",
+      "gitBlob": "d2b9420429808acdda0fb2def2808710ed7b9387"
+    },
+    {
+      "path": "tools/environment/stage29-handoff-left-blend.mjs",
+      "status": "added",
+      "gitBlob": "8899fe064153a220d84eb64a4846833d9cbde9c9"
+    },
+    {
+      "path": "tools/environment/stage30-edge-composition.mjs",
+      "status": "added",
+      "gitBlob": "36c8c1dcc96da1e193f562ada2b79d6ec5040101"
+    },
+    {
+      "path": "tools/environment/stage30-ferry-art.mjs",
+      "status": "modified",
+      "gitBlob": "ec243629537ab571e8b90687c2e49b94716acae6"
+    },
+    {
+      "path": "tools/map-forge/act1-naru-doldang.mjs",
+      "status": "modified",
+      "gitBlob": "7316cc683e1732f4768896c1ec100d3c7a4cff95"
+    },
+    {
+      "path": "tools/map-forge/stage15-compact.mjs",
+      "status": "modified",
+      "gitBlob": "1cce57c86559f63643de2e3e82307305d0cdd536"
+    },
+    {
+      "path": "tools/map-forge/stage28-record-court.mjs",
+      "status": "modified",
+      "gitBlob": "018b8da856ae848a734b9507793a5885c3b04821"
+    },
+    {
+      "path": "tools/stage6-prototype/art-preview.mjs",
+      "status": "modified",
+      "gitBlob": "328e4687618fae4c7cd4a3fb5f285c01e633e74f"
+    },
+    {
+      "path": "tools/stage6-prototype/integrated-preview.mjs",
+      "status": "modified",
+      "gitBlob": "704865badf6ecf8011c2d0a7e159c1cf116f2b40"
+    }
+  ]
+}
