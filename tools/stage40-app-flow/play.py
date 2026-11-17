@@ -62,7 +62,7 @@ with sync_playwright() as w:
   p.get_by_text('새 지형에서 다시 걷기',exact=True).click()
   p.wait_for_function('HonroApp.engine?.b?.honroStage===40&&HonroApp.engine.b.round===1',timeout=120000);ready()
   initial=record('fresh-entry');assert initial['proof'] and len(initial['foes'])==42 and initial['sceneIsActual'],initial
-  result['sourceCheckpoint40']={k:json.loads(raw)['honroBattle'].get('honroAct4PreviewState',{}).get(k) for k in ['events','receipts','returnEscort','complete']};result['initial']=initial;initial_by_id={u['id']:u for u in initial['foes']};route={u['id']:0 for u in initial['heroes']};snapshot('initial');started=time.monotonic();last_round=0;progress_watch={}
+  result['sourceCheckpoint40']={k:json.loads(raw)['honroBattle'].get('honroAct4PreviewState',{}).get(k) for k in ['events','receipts','returnEscort','complete']};result['initial']=initial;initial_by_id={u['id']:u for u in initial['foes']};route={u['id']:0 for u in initial['heroes']};snapshot('initial');started=time.monotonic();last_round=0;progress_watch={};turn_starts={}
   for n in range(1200):
    if time.monotonic()-started>2200:raise TimeoutError('normal App combat observation budget')
    if not ready():raise AssertionError('App ended before confirmed enemy clear: '+str(state()))
@@ -75,6 +75,7 @@ with sync_playwright() as w:
     choice=min(usable,key=lambda u:(route[u['id']],u['x']))
     if choice['id']!=s['active']:p.locator('[data-action="select-hero"][data-id="'+choice['id']+'"]').click();p.wait_for_timeout(120);ready();s=state()
    current=next(u for u in s['heroes'] if u['id']==s['active'])
+   turn_start=turn_starts.setdefault((s['round'],s['active']),{'move':s['move'],'x':s['x'],'y':s['y']})
    dodge=p.evaluate(DODGE)
    if dodge:
     record('observed-warning',dodge)
@@ -89,12 +90,11 @@ with sync_playwright() as w:
      p.keyboard.press('f');record('warning-blocked-normal-defense');p.wait_for_timeout(300);continue
    # Wounded heroes first rejoin the route, never stay indefinitely defending.
    wounded=current['hp']/current['maxHp']<.5
-   same_band=[u for u in s['heroes'] if u['id']!=current['id'] and u['hp']>0 and abs(u['y']-s['y'])<160]
-   rejoined=not same_band or min(abs(u['x']-s['x']) for u in same_band)<240
-   if wounded and (s['move']<110 or (rejoined and not dodge)):
-    if s['move']<110:p.keyboard.press('f');record('normal-defend-after-movement');p.wait_for_timeout(300);continue
+   moved=max(0,turn_start['move']-s['move'])
+   if wounded and (moved>=220 or s['move']<110):
+    p.keyboard.press('f');record('normal-defend-after-movement',{'movementUsed':moved});p.wait_for_timeout(300);continue
    plan=p.evaluate(PLAN)
-   if plan and not wounded:
+   if plan:
     desired=-1 if plan['angle']>90 else 1
     if s['facing']!=desired:
      hold('ArrowLeft' if desired<0 else 'ArrowRight',60);ready();record('face-for-aim')
