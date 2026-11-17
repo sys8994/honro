@@ -1,0 +1,39 @@
+name: Diagnose Act4 middle-stage Scene artwork
+on:
+  workflow_dispatch:
+  push:
+    branches: ['inspect/act4-middle-scene-20261117']
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm ci && npm ci --prefix game
+      - name: Strict first-frame contract positive and negative tests
+        run: node tests/act4-middle-frame-contract-test.mjs
+      - name: Generate unchanged production Scene diagnostics
+        run: HONRO_ACT4_RELEASE=1 node tests/act4-middle-browser-fixture.mjs "$RUNNER_TEMP/middle-fixtures"
+      - name: Inspect each stage in an isolated temporary Chrome profile
+        shell: bash
+        run: |
+          browser=$(command -v google-chrome || command -v chromium)
+          failed=0
+          for stage in 34 37 38; do
+            if timeout 300s "$browser" --headless --no-first-run --no-default-browser-check --force-device-scale-factor=1 --virtual-time-budget=60000 --user-data-dir="$RUNNER_TEMP/middle-profile-$stage" --dump-dom "file://$RUNNER_TEMP/middle-fixtures/stage$stage.html" > "$RUNNER_TEMP/stage$stage-middle.html"; then
+              node tests/act4-middle-browser-result.mjs "$RUNNER_TEMP/stage$stage-middle.html" "$RUNNER_TEMP/middle-evidence" "$stage" || failed=1
+            else failed=1; fi
+          done
+          exit "$failed"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: act4-middle-scene-diagnostic
+          path: ${{ runner.temp }}/middle-evidence
+          if-no-files-found: error
