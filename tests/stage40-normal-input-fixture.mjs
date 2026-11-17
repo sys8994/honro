@@ -100,7 +100,7 @@ async function capture(id,runtimeSha256,variant,requestedCamera){
  function walkRoute(u){let index=routeIndex.get(u.id)||0,target=waypoints[index];if(!target)return;
  const from={x:u.x,y:u.y},startIndex=index;let still=0,jumped=false;
  for(let k=0;k<1800&&e.canAct()&&e.active===u&&u.moveLeft>12;k++){
-  if(Math.abs(u.x-target.x)<45&&Math.abs(u.y-target.y)<55&&support(u)===target.s){const pending=gateTargets(target);if(pending.length){pending.sort((a,z)=>dist(a,u)-dist(z,u));actions.push({op:'clear-gate',round:b.round,hero:u.id,index,remaining:pending.map(v=>v.id)});walkToward(u,pending[0]);break;}index++;routeIndex.set(u.id,index);target=waypoints[index];if(!target)break;}
+  if(Math.abs(u.x-target.x)<45&&Math.abs(u.y-target.y)<55&&support(u)===target.s){const pending=gateTargets(target);if(pending.length){pending.sort((a,z)=>dist(a,u)-dist(z,u));actions.push({op:'clear-gate',round:b.round,hero:u.id,index,remaining:pending.map(v=>v.id)});walkToward(u,pending[0]);break;}actions.push({op:'waypoint',round:b.round,hero:u.id,index,x:u.x,y:u.y,support:support(u)});index++;routeIndex.set(u.id,index);target=waypoints[index];if(!target)break;}
   const minIndex=Math.min(...heroes().map(h=>routeIndex.get(h.id)||0));if(index>minIndex+1)break;
   const x=u.x,y=u.y;
   if(target.drop&&support(u)!==target.s&&Math.abs(u.x-target.x)<50){if(e.drop())actions.push({op:'drop',round:b.round,hero:u.id,index,x:u.x,y:u.y});}
