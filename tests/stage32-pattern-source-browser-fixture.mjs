@@ -73,8 +73,8 @@ async function capture(id,runtimeSha256,variant,requestedCamera){
   assert(foundation.assetId===newFoundation&&body.assetId===newBody,'Expected candidate providers');
   assert(stage.design.vectorShelterDoor.bodyAssetId===newBody,'Candidate door BODY link');
   for(const aid of [oldFoundation,newFoundation,oldBody,newBody])assert(HONRO_PROJECT.library.some(a=>a.id===aid),'Missing provider '+aid);
-  assert(['direct-candidate-source','candidate','original-colors','pattern-original-colors','pattern-material'].includes(variant),'Invalid variant');
-  globalThis.HONRO_STAGE32_DIAGNOSTIC_ORIGINAL_COLORS=variant==='original-colors'||variant==='pattern-original-colors'; globalThis.HONRO_STAGE32_DIAGNOSTIC_PATTERN=variant.startsWith('pattern-'); globalThis.__patternFills=0;
+  assert(['direct-candidate-source','candidate','original-colors','pattern-original-colors','pattern-material','pattern-original-no-gray','original-solid-no-gray'].includes(variant),'Invalid variant');
+  globalThis.HONRO_STAGE32_DIAGNOSTIC_ORIGINAL_COLORS=['original-colors','pattern-original-colors','pattern-original-no-gray','original-solid-no-gray'].includes(variant); globalThis.HONRO_STAGE32_DIAGNOSTIC_PATTERN=variant.startsWith('pattern-'); globalThis.__patternFills=0; globalThis.HONRO_STAGE32_DIAGNOSTIC_NO_GRAY=['pattern-original-no-gray','original-solid-no-gray'].includes(variant); globalThis.HONRO_STAGE32_DIAGNOSTIC_SOLID=variant==='original-solid-no-gray'; globalThis.__solidFills=0;
   const project={...HONRO_PROJECT,stages:HONRO_PROJECT.stages.map(s=>s===originalStage?stage:s)};
   assert(JSON.stringify(originalStage)===originalStageText,'Original project mutated');
 
@@ -116,7 +116,7 @@ async function capture(id,runtimeSha256,variant,requestedCamera){
   if(variant==='direct-candidate-source')assert(drawDiagnostic.directBypasses>0&&drawDiagnostic.directVectorDraws===drawDiagnostic.directBypasses,'Direct candidate source was not drawn through VectorArt');
   if(variant!=='direct-candidate-source')assert(materialStats.rasterizations>0&&materialStats.hits>0,'Candidate did not exercise shared material cache');
   const hash=async s=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s))),v=>v.toString(16).padStart(2,'0')).join('');
-  if(variant.startsWith('pattern-'))assert(globalThis.__patternFills>0,'Pattern path never exercised'); publishProbe({ok:true,patternFills:globalThis.__patternFills,scope:'Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.',stage:id,variant,requestedCamera,drawDiagnostic,cacheStats:globalThis.HonroStage32FoundationArt?.stats?.()??null,sceneCacheStats:scene._cacheStats??null,...((id===32)?{tideSnapshot,appReadyUnresolved:true,initialization:'Official coast.tide; fresh in-memory profile; no App launch or event progression'}:{}),view,width,height,dpr:devicePixelRatio,camera,time:2,seed:3910,runtimeSha256,physicsSha256:await hash(physics),renderPure:true,firstFramePure:true,vectorSHA,sourcePathHashes,battleSha256:await hash(before),sourceCanonicalSha256:await hash(sourceCanonical),diagnosticMode:'Same raw candidate provider/physics across all groups. Direct-candidate-source bypasses helper only. Not released-old equivalence.',fontStatus:document.fonts.status,fontNote:'System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.',userAgent:navigator.userAgent,imageCount:p.images.length,pendingImages:p.images.filter(v=>v.pending).length,imageErrors:p.images.filter(v=>v.error).length,storage:p.storage,errors:p.errors,violations:p.violations,png:cv.toDataURL('image/png')});
+  if(variant.startsWith('pattern-'))assert(globalThis.__patternFills>0,'Pattern path never exercised'); if(variant==='original-solid-no-gray')assert(globalThis.__solidFills>0,'Solid path never exercised'); publishProbe({ok:true,solidFills:globalThis.__solidFills,patternFills:globalThis.__patternFills,scope:'Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.',stage:id,variant,requestedCamera,drawDiagnostic,cacheStats:globalThis.HonroStage32FoundationArt?.stats?.()??null,sceneCacheStats:scene._cacheStats??null,...((id===32)?{tideSnapshot,appReadyUnresolved:true,initialization:'Official coast.tide; fresh in-memory profile; no App launch or event progression'}:{}),view,width,height,dpr:devicePixelRatio,camera,time:2,seed:3910,runtimeSha256,physicsSha256:await hash(physics),renderPure:true,firstFramePure:true,vectorSHA,sourcePathHashes,battleSha256:await hash(before),sourceCanonicalSha256:await hash(sourceCanonical),diagnosticMode:'Same raw candidate provider/physics across all groups. Direct-candidate-source bypasses helper only. Not released-old equivalence.',fontStatus:document.fonts.status,fontNote:'System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.',userAgent:navigator.userAgent,imageCount:p.images.length,pendingImages:p.images.filter(v=>v.pending).length,imageErrors:p.images.filter(v=>v.error).length,storage:p.storage,errors:p.errors,violations:p.violations,png:cv.toDataURL('image/png')});
  }catch(e){
   let png=null,pngError=null;try{png=document.getElementById('scene')?.toDataURL('image/png')??null;}catch(error){pngError=String(error);}
   publishProbe({ok:false,stage:id,variant,view:requestedCamera.name,requestedCamera,error:String(e.stack||e),canonicalDiagnostic,...p,drawDiagnostic,cacheStats:globalThis.HonroStage32FoundationArt?.stats?.()??null,sceneCacheStats:diagnosticScene?._cacheStats??null,png,pngError});
@@ -135,13 +135,13 @@ function instrument(code){
   if(dc.width!==cv.width||dc.height!==cv.height){dc.width=cv.width;dc.height=cv.height;}
   const cc=dc.getContext('2d');cc.setTransform(1,0,0,1,0,0);cc.globalAlpha=1;cc.globalCompositeOperation='copy';cc.filter='none';cc.fillStyle=n.fill;cc.fillRect(0,0,dc.width,dc.height);diagnosticBitmap=dc;
  }
- if(G.HONRO_STAGE32_DIAGNOSTIC_PATTERN){
+ if(G.HONRO_STAGE32_DIAGNOSTIC_SOLID){c.fillStyle=n.fill;c.fill(n.path,n.rule);G.__solidFills++;}else if(G.HONRO_STAGE32_DIAGNOSTIC_PATTERN){
   const m=c.getTransform(), inv=m.inverse();
   if(![inv.a,inv.b,inv.c,inv.d,inv.e,inv.f].every(Number.isFinite))throw Error('Noninvertible pattern mapping');
   const pattern=c.createPattern(diagnosticBitmap,'no-repeat');if(!pattern)throw Error('No pattern');
   pattern.setTransform(inv);c.fillStyle=pattern;c.fill(n.path,n.rule);G.__patternFills++;
   // Selected gray subpaths retain their original compound clipping and order.
-  if(n.gray){c.clip(n.path,n.rule);c.fillStyle=n.fill;c.fill(n.gray,n.rule);}
+  if(n.gray&&!G.HONRO_STAGE32_DIAGNOSTIC_NO_GRAY){c.clip(n.path,n.rule);c.fillStyle=n.fill;c.fill(n.gray,n.rule);}
  }else{
   c.clip(n.path,n.rule);bitmap(c,diagnosticBitmap);
   if(n.gray){c.fillStyle=n.fill;c.fill(n.gray,n.rule);}
@@ -152,11 +152,11 @@ function instrument(code){
 
 const script=s=>'<script>'+s.replace(/<\/script/gi,'<\\/script')+'</script>';
 const views=[{name:'lower',x:1689.6,y:1900,scale:.6},{name:'left',x:320,y:1650,scale:.6}];
-for(const id of stages)for(const variant of ['direct-candidate-source','candidate','original-colors','pattern-original-colors','pattern-material'])for(const view of views){
+for(const id of stages)for(const variant of ['direct-candidate-source','candidate','original-colors','pattern-original-colors','pattern-material','pattern-original-no-gray','original-solid-no-gray'])for(const view of views){
  const stageRuntime=instrument((id===32)?runtime+'\n;\n'+act4Extra.join('\n;\n'):runtime);
  const stageRuntimeSha256=createHash('sha256').update(stageRuntime).digest('hex');
  const html='<!doctype html><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src \'none\'; script-src \'unsafe-inline\'; style-src \'unsafe-inline\'; img-src data:; font-src data:; connect-src \'none\'"><title>Isolated production Scene diagnostic</title><style>body{margin:0}canvas{width:1331px;height:763px}</style><canvas id="scene"></canvas><pre id="result">pending</pre>'+script('('+bootstrap.toString()+')('+id+');')+script(stageRuntime)+script('('+capture.toString()+')('+id+','+JSON.stringify(stageRuntimeSha256)+','+JSON.stringify(variant)+','+JSON.stringify(view)+');');
  await writeFile(path.join(out,`stage${id}-${variant}-${view.name}.html`),html);
 }
-console.log(JSON.stringify({stages,views,variants:['direct-candidate-source','candidate','original-colors','pattern-original-colors','pattern-material'],runtimeSha256,runtimeBytes:Buffer.byteLength(runtime),scope:'Generator only. Run each fixture in a separate temporary Chrome profile with --force-device-scale-factor=1 --virtual-time-budget=60000 --dump-dom and external timeout 300s. Extractor requires completion, no fixed sleep acceptance.'}));
+console.log(JSON.stringify({stages,views,variants:['direct-candidate-source','candidate','original-colors','pattern-original-colors','pattern-material','pattern-original-no-gray','original-solid-no-gray'],runtimeSha256,runtimeBytes:Buffer.byteLength(runtime),scope:'Generator only. Run each fixture in a separate temporary Chrome profile with --force-device-scale-factor=1 --virtual-time-budget=60000 --dump-dom and external timeout 300s. Extractor requires completion, no fixed sleep acceptance.'}));
 

@@ -1,0 +1,619 @@
+{
+  "scope": "Separate source-order RGB contribution masks are not exact Scene tile-cache coverage. ROI classification is diagnostic, no deletion/acceptance threshold.",
+  "lower": {
+    "direct-candidate-source__pattern-original-colors": {
+      "whole": {
+        "changed": 27015,
+        "over2": 831,
+        "max": 8
+      },
+      "footer": {
+        "changed": 2809,
+        "over2": 24,
+        "max": 3
+      },
+      "interiorgrass": {
+        "changed": 2185,
+        "over2": 10,
+        "max": 3
+      },
+      "upper": {
+        "changed": 6729,
+        "over2": 735,
+        "max": 8
+      },
+      "pale": {
+        "full": {
+          "population": 11670,
+          "changed": 300,
+          "over2": 19,
+          "max": 4
+        },
+        "partial": {
+          "population": 2783,
+          "changed": 2208,
+          "over2": 391,
+          "max": 8
+        },
+        "zero": {
+          "population": 1001100,
+          "changed": 24507,
+          "over2": 421,
+          "max": 7
+        }
+      },
+      "grass": {
+        "full": {
+          "population": 54894,
+          "changed": 719,
+          "over2": 0,
+          "max": 2
+        },
+        "partial": {
+          "population": 13815,
+          "changed": 11100,
+          "over2": 232,
+          "max": 7
+        },
+        "zero": {
+          "population": 946844,
+          "changed": 15196,
+          "over2": 599,
+          "max": 8
+        }
+      },
+      "road": {
+        "full": {
+          "population": 7118,
+          "changed": 13,
+          "over2": 0,
+          "max": 1
+        },
+        "partial": {
+          "population": 853,
+          "changed": 104,
+          "over2": 12,
+          "max": 6
+        },
+        "zero": {
+          "population": 1007582,
+          "changed": 26898,
+          "over2": 819,
+          "max": 8
+        }
+      },
+      "all": {
+        "full": {
+          "population": 73831,
+          "changed": 1036,
+          "over2": 19,
+          "max": 4
+        },
+        "partial": {
+          "population": 16302,
+          "changed": 12712,
+          "over2": 571,
+          "max": 8
+        },
+        "zero": {
+          "population": 925420,
+          "changed": 13267,
+          "over2": 241,
+          "max": 7
+        }
+      }
+    },
+    "original-colors__pattern-original-colors": {
+      "whole": {
+        "changed": 25437,
+        "over2": 104,
+        "max": 4
+      },
+      "footer": {
+        "changed": 2650,
+        "over2": 21,
+        "max": 3
+      },
+      "interiorgrass": {
+        "changed": 2043,
+        "over2": 9,
+        "max": 3
+      },
+      "upper": {
+        "changed": 5973,
+        "over2": 28,
+        "max": 3
+      },
+      "pale": {
+        "full": {
+          "population": 11670,
+          "changed": 247,
+          "over2": 0,
+          "max": 2
+        },
+        "partial": {
+          "population": 2783,
+          "changed": 2186,
+          "over2": 67,
+          "max": 4
+        },
+        "zero": {
+          "population": 1001100,
+          "changed": 23004,
+          "over2": 37,
+          "max": 3
+        }
+      },
+      "grass": {
+        "full": {
+          "population": 54894,
+          "changed": 619,
+          "over2": 0,
+          "max": 2
+        },
+        "partial": {
+          "population": 13815,
+          "changed": 10479,
+          "over2": 58,
+          "max": 4
+        },
+        "zero": {
+          "population": 946844,
+          "changed": 14339,
+          "over2": 46,
+          "max": 4
+        }
+      },
+      "road": {
+        "full": {
+          "population": 7118,
+          "changed": 9,
+          "over2": 0,
+          "max": 1
+        },
+        "partial": {
+          "population": 853,
+          "changed": 63,
+          "over2": 0,
+          "max": 1
+        },
+        "zero": {
+          "population": 1007582,
+          "changed": 25365,
+          "over2": 104,
+          "max": 4
+        }
+      },
+      "all": {
+        "full": {
+          "population": 73831,
+          "changed": 877,
+          "over2": 0,
+          "max": 2
+        },
+        "partial": {
+          "population": 16302,
+          "changed": 12034,
+          "over2": 93,
+          "max": 4
+        },
+        "zero": {
+          "population": 925420,
+          "changed": 12526,
+          "over2": 11,
+          "max": 3
+        }
+      }
+    },
+    "candidate__pattern-material": {
+      "whole": {
+        "changed": 16483,
+        "over2": 77,
+        "max": 6
+      },
+      "footer": {
+        "changed": 1596,
+        "over2": 18,
+        "max": 6
+      },
+      "interiorgrass": {
+        "changed": 1675,
+        "over2": 10,
+        "max": 3
+      },
+      "upper": {
+        "changed": 4343,
+        "over2": 25,
+        "max": 4
+      },
+      "pale": {
+        "full": {
+          "population": 11670,
+          "changed": 262,
+          "over2": 0,
+          "max": 2
+        },
+        "partial": {
+          "population": 2783,
+          "changed": 2019,
+          "over2": 68,
+          "max": 6
+        },
+        "zero": {
+          "population": 1001100,
+          "changed": 14202,
+          "over2": 9,
+          "max": 4
+        }
+      },
+      "grass": {
+        "full": {
+          "population": 54894,
+          "changed": 526,
+          "over2": 0,
+          "max": 2
+        },
+        "partial": {
+          "population": 13815,
+          "changed": 8788,
+          "over2": 31,
+          "max": 6
+        },
+        "zero": {
+          "population": 946844,
+          "changed": 7169,
+          "over2": 46,
+          "max": 5
+        }
+      },
+      "road": {
+        "full": {
+          "population": 7118,
+          "changed": 5,
+          "over2": 0,
+          "max": 1
+        },
+        "partial": {
+          "population": 853,
+          "changed": 60,
+          "over2": 0,
+          "max": 2
+        },
+        "zero": {
+          "population": 1007582,
+          "changed": 16418,
+          "over2": 77,
+          "max": 6
+        }
+      },
+      "all": {
+        "full": {
+          "population": 73831,
+          "changed": 796,
+          "over2": 0,
+          "max": 2
+        },
+        "partial": {
+          "population": 16302,
+          "changed": 10219,
+          "over2": 71,
+          "max": 6
+        },
+        "zero": {
+          "population": 925420,
+          "changed": 5468,
+          "over2": 6,
+          "max": 4
+        }
+      }
+    }
+  },
+  "left": {
+    "direct-candidate-source__pattern-original-colors": {
+      "whole": {
+        "changed": 24311,
+        "over2": 1696,
+        "max": 9
+      },
+      "footer": {
+        "changed": 3961,
+        "over2": 58,
+        "max": 6
+      },
+      "interiorgrass": {
+        "changed": 2364,
+        "over2": 10,
+        "max": 3
+      },
+      "upper": {
+        "changed": 11121,
+        "over2": 1605,
+        "max": 9
+      },
+      "pale": {
+        "full": {
+          "population": 19346,
+          "changed": 412,
+          "over2": 24,
+          "max": 4
+        },
+        "partial": {
+          "population": 2762,
+          "changed": 2205,
+          "over2": 679,
+          "max": 9
+        },
+        "zero": {
+          "population": 993445,
+          "changed": 21694,
+          "over2": 993,
+          "max": 7
+        }
+      },
+      "grass": {
+        "full": {
+          "population": 38260,
+          "changed": 604,
+          "over2": 2,
+          "max": 3
+        },
+        "partial": {
+          "population": 13677,
+          "changed": 10863,
+          "over2": 842,
+          "max": 8
+        },
+        "zero": {
+          "population": 963616,
+          "changed": 12844,
+          "over2": 852,
+          "max": 9
+        }
+      },
+      "road": {
+        "full": {
+          "population": 9570,
+          "changed": 17,
+          "over2": 0,
+          "max": 2
+        },
+        "partial": {
+          "population": 1064,
+          "changed": 110,
+          "over2": 12,
+          "max": 5
+        },
+        "zero": {
+          "population": 1004919,
+          "changed": 24184,
+          "over2": 1684,
+          "max": 9
+        }
+      },
+      "all": {
+        "full": {
+          "population": 67567,
+          "changed": 1039,
+          "over2": 26,
+          "max": 4
+        },
+        "partial": {
+          "population": 15813,
+          "changed": 12455,
+          "over2": 1351,
+          "max": 9
+        },
+        "zero": {
+          "population": 932173,
+          "changed": 10817,
+          "over2": 319,
+          "max": 6
+        }
+      }
+    },
+    "original-colors__pattern-original-colors": {
+      "whole": {
+        "changed": 21677,
+        "over2": 96,
+        "max": 7
+      },
+      "footer": {
+        "changed": 3804,
+        "over2": 25,
+        "max": 4
+      },
+      "interiorgrass": {
+        "changed": 2255,
+        "over2": 3,
+        "max": 3
+      },
+      "upper": {
+        "changed": 9088,
+        "over2": 42,
+        "max": 7
+      },
+      "pale": {
+        "full": {
+          "population": 19346,
+          "changed": 356,
+          "over2": 0,
+          "max": 2
+        },
+        "partial": {
+          "population": 2762,
+          "changed": 1953,
+          "over2": 60,
+          "max": 7
+        },
+        "zero": {
+          "population": 993445,
+          "changed": 19368,
+          "over2": 36,
+          "max": 3
+        }
+      },
+      "grass": {
+        "full": {
+          "population": 38260,
+          "changed": 454,
+          "over2": 0,
+          "max": 2
+        },
+        "partial": {
+          "population": 13677,
+          "changed": 9844,
+          "over2": 60,
+          "max": 7
+        },
+        "zero": {
+          "population": 963616,
+          "changed": 11379,
+          "over2": 36,
+          "max": 5
+        }
+      },
+      "road": {
+        "full": {
+          "population": 9570,
+          "changed": 10,
+          "over2": 0,
+          "max": 1
+        },
+        "partial": {
+          "population": 1064,
+          "changed": 63,
+          "over2": 0,
+          "max": 2
+        },
+        "zero": {
+          "population": 1004919,
+          "changed": 21604,
+          "over2": 96,
+          "max": 7
+        }
+      },
+      "all": {
+        "full": {
+          "population": 67567,
+          "changed": 822,
+          "over2": 0,
+          "max": 2
+        },
+        "partial": {
+          "population": 15813,
+          "changed": 11239,
+          "over2": 83,
+          "max": 7
+        },
+        "zero": {
+          "population": 932173,
+          "changed": 9616,
+          "over2": 13,
+          "max": 3
+        }
+      }
+    },
+    "candidate__pattern-material": {
+      "whole": {
+        "changed": 15087,
+        "over2": 93,
+        "max": 8
+      },
+      "footer": {
+        "changed": 1856,
+        "over2": 28,
+        "max": 6
+      },
+      "interiorgrass": {
+        "changed": 1786,
+        "over2": 0,
+        "max": 2
+      },
+      "upper": {
+        "changed": 7179,
+        "over2": 49,
+        "max": 8
+      },
+      "pale": {
+        "full": {
+          "population": 19346,
+          "changed": 382,
+          "over2": 0,
+          "max": 2
+        },
+        "partial": {
+          "population": 2762,
+          "changed": 1986,
+          "over2": 68,
+          "max": 8
+        },
+        "zero": {
+          "population": 993445,
+          "changed": 12719,
+          "over2": 25,
+          "max": 5
+        }
+      },
+      "grass": {
+        "full": {
+          "population": 38260,
+          "changed": 369,
+          "over2": 0,
+          "max": 2
+        },
+        "partial": {
+          "population": 13677,
+          "changed": 8170,
+          "over2": 37,
+          "max": 8
+        },
+        "zero": {
+          "population": 963616,
+          "changed": 6548,
+          "over2": 56,
+          "max": 5
+        }
+      },
+      "road": {
+        "full": {
+          "population": 9570,
+          "changed": 8,
+          "over2": 0,
+          "max": 1
+        },
+        "partial": {
+          "population": 1064,
+          "changed": 75,
+          "over2": 0,
+          "max": 2
+        },
+        "zero": {
+          "population": 1004919,
+          "changed": 15004,
+          "over2": 93,
+          "max": 8
+        }
+      },
+      "all": {
+        "full": {
+          "population": 67567,
+          "changed": 761,
+          "over2": 0,
+          "max": 2
+        },
+        "partial": {
+          "population": 15813,
+          "changed": 9604,
+          "over2": 73,
+          "max": 8
+        },
+        "zero": {
+          "population": 932173,
+          "changed": 4722,
+          "over2": 20,
+          "max": 5
+        }
+      }
+    }
+  }
+}

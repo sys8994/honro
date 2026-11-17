@@ -16,7 +16,7 @@ jobs:
           node-version: '22'
           package-manager-cache: false
       - run: npm ci && npm ci --prefix game
-      - name: Generate ten isolated d18 diagnostics
+      - name: Generate fourteen isolated d18 diagnostics
         run: HONRO_ACT4_RELEASE=1 node tests/stage32-pattern-source-browser-fixture.mjs "$RUNNER_TEMP/pattern-source-fixtures"
       - name: Actual Chrome, isolated profiles and no saved game
         shell: bash
@@ -24,7 +24,7 @@ jobs:
           browser=$(command -v google-chrome || command -v chromium)
           mkdir -p "$RUNNER_TEMP/pattern-source-evidence"
           failed=0
-          for variant in direct-candidate-source candidate original-colors pattern-original-colors pattern-material; do
+          for variant in direct-candidate-source candidate original-colors pattern-original-colors pattern-material pattern-original-no-gray original-solid-no-gray; do
             for view in lower left; do
               dump="$RUNNER_TEMP/stage32-$variant-$view.html"
               if timeout 300s "$browser" --headless --no-first-run --no-default-browser-check --force-device-scale-factor=1 --virtual-time-budget=60000 --user-data-dir="$RUNNER_TEMP/pattern-source-profile-$variant-$view" --dump-dom "file://$RUNNER_TEMP/pattern-source-fixtures/stage32-$variant-$view.html" > "$dump"; then

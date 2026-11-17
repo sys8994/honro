@@ -1,7 +1,7 @@
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import path from 'node:path';import assert from 'node:assert/strict';import {createHash} from 'node:crypto';
 const [input,out,variant,view]=process.argv.slice(2);
-assert(input&&out&&['direct-candidate-source','candidate','original-colors','pattern-original-colors','pattern-material'].includes(variant)&&['lower','left'].includes(view));
+assert(input&&out&&['direct-candidate-source','candidate','original-colors','pattern-original-colors','pattern-material','pattern-original-no-gray','original-solid-no-gray'].includes(variant)&&['lower','left'].includes(view));
 await mkdir(out,{recursive:true});
 let r;
 try{
