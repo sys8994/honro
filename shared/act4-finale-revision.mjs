@@ -1,3 +1,4 @@
+import {placeAct4Middle} from './act4-middle-placement.mjs';
 import {authorAct4Finale} from './act4-finale-author.mjs';
 import {authorAct4Stage32} from './act4-stage32-author.mjs';
 import {authorAct4Stage37} from './act4-stage37-author.mjs';
@@ -20,6 +21,6 @@ export function applyAct4FinaleRevision(project) {
  };
  return {...project, stages: project.stages.map(stage => {
   const author = authors[stage.metadata?.stageId];
-  return author ? author(stage, supportPoint) : stage;
+  return placeAct4Middle(author ? author(stage, supportPoint) : stage, supportPoint);
  })};
 }
