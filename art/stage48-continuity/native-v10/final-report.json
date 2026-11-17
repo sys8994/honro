@@ -1,0 +1,25 @@
+{
+  "status": "candidate only; no runtime/gameplay/visual approval",
+  "partitionPaths": 20,
+  "maxCompoundChars": 181129,
+  "maxSubpathChars": 39190,
+  "partitionRaster1536": {
+    "meanChannelError": 0.006644725799560547,
+    "changedPixelFraction": 0.011686325073242188,
+    "maxChannelError": 64.0
+  },
+  "asset": {
+    "sha256": "2c8c90cfa5786fd11a370d52ecda8456712948c76131099bd02093ecfffec248",
+    "bytes": 1145954,
+    "collision": [],
+    "transform": [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0
+    ]
+  },
+  "optimization": "epsilon0.3 accepted but zero geometric reduction; 199 bytes XML reduction only"
+}
