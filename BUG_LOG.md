@@ -77,3 +77,8 @@ Re-designed stairs with their supporting rock instead of detached per-step skins
 
 - 관측 y669 절단은 실제 source polygon y9000 끝과 일치했다. 저작 바닥 두 점만 기존 domain 하단27400으로 연장하고 collision projection9000은 유지했다. 별도 렌더 지리/스커트를 만들지 않았다.
 - 전체 project에서 두 점 외 불변, projection·충돌·보행·unit 불변, Native 전후5뷰를 확인했다. portrait4뷰 하단띠만 없어지고 desktop중앙은 byte 동일하다. 기존 저장된 world polygon은 변환하지 않으며 공개 UI·동적 상태는 미검수다. 상세: `game/docs/STAGE28_EDGE_JOIN_STATUS.md`.
+
+## 2026-11-17 · 30장 후면 수면·암면 하드컷 후보
+
+- 후면 수면 source의 y7100 끝과 두 유한 암면의 y7668/y7290 끝이 실제 관측 위치에 일치했다. 수면 첫 path·정합 bounds만 기존 domain31200으로 잇고, 두 암면의 깊은 끝만 기존 바탕과 합성했다.
+- campaign 자산1개 외 불변, 원본 forms/색/배율·물리·배 이벤트/22장메타 보존, 재생성/원문복원/Native6뷰를 확인했다. 재질 차이·고배율 AA/연속 줌·공개 UI·배 상태는 미검수다. 상세: `game/docs/STAGE30_EDGE_COMPOSITION_20261117.md`.

@@ -3,11 +3,19 @@ import {readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {applyStage22BuriedBlend,isStage22BuriedPlane} from '../tools/environment/stage22-buried-blend.mjs';
 import {applyStage22VerticalArt} from '../tools/environment/stage22-vertical-art.mjs';
+import {distantRiver} from '../tools/environment/stage30-ferry-art.mjs';
 const hash=x=>createHash('sha256').update(JSON.stringify(x)).digest('hex');
 const p=JSON.parse(await readFile(new URL('../shared/data/campaign.json',import.meta.url),'utf8')),original=structuredClone(p);
 const s=original.stages.find(s=>s.metadata?.stageId===22),planes=s.design.space.terrainPlanes.filter(isStage22BuriedPlane);assert.equal(planes.length,2);
 for(const q of planes){assert.deepEqual(q.buriedEdgeBlend,{side:140,bottom:260});delete q.buriedEdgeBlend;}
-assert.equal(hash(original),'5e86f718a80baff5bdda8dde55499f427f8fa572749e3b461826c02f52af3b91','Entire pre-candidate campaign preserved except two blend fields');
+// Later Stage30 has one separately verified water asset. Normalize only its
+// exact approved bytes for this historical Stage22 baseline comparison.
+const baselineExpected=structuredClone(original),waterIndex=baselineExpected.library.findIndex(a=>a.id==='stage30:ferry-distant-channel');
+if(hash(baselineExpected.library[waterIndex])==='62cab76995a647715f94429a9c9b5d5d317d8e303d5cd0e2f2f7fcfce2b5990e'){
+ const s30=baselineExpected.stages.find(s=>s.metadata?.stageId===30);
+ baselineExpected.library[waterIndex]=distantRiver({...s30,terrainBounds:{...s30.terrainBounds,bottom:7100}});
+}
+assert.equal(hash(baselineExpected),'5e86f718a80baff5bdda8dde55499f427f8fa572749e3b461826c02f52af3b91','Campaign baseline differs beyond two blend fields and exact approved Stage30 asset');
 assert.equal(hash(applyStage22BuriedBlend(original)),hash(p));assert.equal(hash(applyStage22BuriedBlend(p)),hash(p));
 const rebuilt=applyStage22VerticalArt(structuredClone(original));
 assert.deepEqual(rebuilt.stages.find(s=>s.metadata?.stageId===22).design.space.terrainPlanes.filter(isStage22BuriedPlane),p.stages.find(s=>s.metadata?.stageId===22).design.space.terrainPlanes.filter(isStage22BuriedPlane));

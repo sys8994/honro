@@ -12,3 +12,8 @@ Native canvas에서 identity gradient와 동일 source 좌표를 translate한 gr
 Chrome 157.0.8103.50의 CI44066126321은 성공했다. identity/translated 모두 alpha [255,255,156,0]으로 동일하다. 동일 fixture를 Native @napi-rs/canvas에서 실행하면 identity [255,255,156,0], translated [0,0,0,0]으로 다르다. 독립 canvas 최소 재현의 backend 차이는 확인됐으나, 이를 모든 지형 관측의 원인으로 일반화하지 않는다.
 
 26장과29장도 원본이 연속인데 관측 빈칸/사각형은 contact strip 경계에 일치한다. 두 장은 이미 source 바닥 전에 투명해지는 fade가 있다. 23·26·29는 생산 수정 보류 상태로 actual production tile의 브라우저 비교를 준비한다. 28/30처럼 별도로 source geometry 끝과 관측 위치가 일치하는 문제는 구분한다.
+
+## 실제 production tile의 Chrome 비교
+88dd5ccd / CI44067029699가 성공했다. 동일 runtime·자산 SHA로 총94개 strip/density를 비교했다. Chrome157에서 완전히 빈 tile은0개였으나 Native에서는23장8/16,26장29/34,29장6/12가 완전히 투명했다. 따라서 관측된 큰 strip 누락은 Native backend에서 발생한 것으로 분리한다. 세 장의 원본 미술을 수정하지 않는다. 공개 전체 Scene·정상 입력 검수와는 여전히 별개다.
+
+21장 device gradient와 기존 source gradient는 실제 Chrome에서32개 비교를 수행했다. 최대 평균 alpha 차이는0.010326/255, 최대 평균 채널 차이는0.016020/255이며 단일 경계 채널 최대 차이는128이었다. 완전한 pixel 동일로 주장하지 않으며 AA/마스크 경계 차이를 보존한다. 후보의 상부 source 보존과 하드컷 완화는 별도 장별 증거를 따른다.

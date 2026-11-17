@@ -111,11 +111,11 @@ function shoreMaterials(st){
  b+=poly([[4030,6255],[4410,6220],[4710,6310],[5070,6320],[5290,6280],[5480,6305],[5180,6395],[4720,6390],[4430,6305]],'#40574e');
  return asset('weathered-shore-planes','실제 지형 안에서 이어지는 젖은 모래·풍화암의 넓은 층',b,[-6000,4200,22000,28000],{category:'terrain',role:'rock',extra:{collisionSource:'none',authoredTerrainIds:ids,insideTerrainOnly:true,noWalkRim:true}});
 }
-function distantRiver(){let b='<defs><linearGradient id="ferry-rear-channel" x1="0" y1="5000" x2="0" y2="6700" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#3b555d"/><stop offset="0.45" stop-color="#344d56"/><stop offset="1" stop-color="#2b444e"/></linearGradient></defs>';
- b+=path('M-6000 5080Q-2600 5240-700 5150L900 5220 1930 5170 3100 5290 4470 5210 5810 5340 7190 5240 8680 5320 11000 5180 17200 5310V7100H-6000Z','url(#ferry-rear-channel)');
+export function distantRiver(st){const bottom=st?.terrainBounds?.bottom||31200;let b='<defs><linearGradient id="ferry-rear-channel" x1="0" y1="5000" x2="0" y2="6700" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#3b555d"/><stop offset="0.45" stop-color="#344d56"/><stop offset="1" stop-color="#2b444e"/></linearGradient></defs>';
+ b+=path(`M-6000 5080Q-2600 5240-700 5150L900 5220 1930 5170 3100 5290 4470 5210 5810 5340 7190 5240 8680 5320 11000 5180 17200 5310V${bottom}H-6000Z`,'url(#ferry-rear-channel)');
  b+=path('M-6000 5050L-2700 4910-1200 5060 160 4980 790 5110 1310 5070 1860 5150 2390 5060 2910 5150 3380 5040 4030 5140 4660 5090 5210 5200 5740 5160 6310 5070 6930 5130 7560 5020 8230 5140 8710 5050 9370 5170 11000 5060 17200 5140V5400Q10300 5320 7770 5410Q5030 5330 2630 5380Q-1000 5280-6000 5390Z','#3b5056');
  b+=path('M-6000 5620Q-2300 5520 500 5620Q2980 5490 4470 5600L3790 5670Q1320 5600-1500 5720Z M5700 5740Q7660 5600 10600 5730L13500 5720 14000 5800Q9380 5740 7300 5820Z','#405b62');
- return asset('distant-channel','나루 뒤로 넓게 이어지는 낮은 대비의 강과 건너편 둑',b,[-6000,4800,23200,2300],{category:'terrain',role:'water',extra:{rearOnly:true,collisionSource:'none',scenicWaterOnly:true,noExtraWaterMotion:true,noWalkRim:true}});
+ return asset('distant-channel','나루 뒤로 넓게 이어지는 낮은 대비의 강과 건너편 둑',b,[-6000,4800,23200,bottom-4800],{category:'terrain',role:'water',extra:{rearOnly:true,collisionSource:'none',scenicWaterOnly:true,noExtraWaterMotion:true,noWalkRim:true}});
 }
 function bankRoots(){let b=path('M-170 5Q-84-31-17-18L71-30 155 8 60 17-29 9Z','#334b43');b+=path('M-18-4Q-42-71-19-128Q-11-90 4-55L68-13 113 4 61-4 6-23 17 5Z','#606447');b+=path('M-15-32L-69-44-118-16M-4-16L-50-9-96 8M6-15L63-54 94-51','none','#7b7a56',7);return asset('bank-roots','물가의 낮은 뿌리와 젖은 흙덩이',b,[-180,-140,350,165],{category:'tree',role:'tree'});}
 function quayBacking(st){let b='',feet=[];for(const id of ['sf-quay-west-loft','sf-quay-east-loft','sf-east-landing-planks','sf-cape-bank-link','sf-old-road-west-bridge']){const t=st.terrains.find(t=>t.id===id);if(!t)continue;const q=box(t),edges=stage30SurfaceEdges(st,t);for(const[a,z]of edges){b+=poly([[a.x,a.y+7],[z.x,z.y+7],[z.x,z.y+46],[a.x,a.y+46]],'#34483c');b+=line([[a.x,a.y+9],[z.x,z.y+9]],'#a3966e',6);}
@@ -124,7 +124,7 @@ function quayBacking(st){let b='',feet=[];for(const id of ['sf-quay-west-loft','
  const q={x:0,y:3500,w:11200,h:3300};return{asset:asset('timber-bearing-frames','나루 널판 아래 실제 돌해안에 닿는 뒤받침',b,[q.x,q.y,q.w,q.h],{extra:{rearOnly:true,supports:feet}}),feet};}
 export function applyStage30FerryArt(project){const st=project.stages.find(s=>s.metadata?.stageId===30);if(st?.design?.ferry?.version!==1)throw Error('Stage 30 ferry art requires authored ferry version 1');const spec=st.design.ferry.art||{};st.elements=st.elements.filter(e=>!e.id.startsWith('sf-art-'));const local=st.terrains.filter(t=>t.id.startsWith('sf-'));if(!local.length)throw Error('Stage 30 ferry art requires authored sf terrain');
  const backdrop=register(project,asset('far-river','멀어진 단 하나의 먹산과 넓은 강굽이',readFileSync(new URL('../../shared/assets/environment/stage30-ferry-far.svg',import.meta.url),'utf8'),null,{category:'terrain',role:'mountain',source:true,extra:{skyOnly:true,collisionSource:'none'}}));
- add(project,st,distantRiver(),'distant-channel');
+ add(project,st,distantRiver(st),'distant-channel');
  const deep=riverDepth(st);if(deep)add(project,st,deep,'deep-river-underlay');const rear=groundedRearSupports(st);add(project,st,rear.asset,'recessed-grounded-supports',0,0,{stage30Supports:rear.feet});
  const has=id=>local.some(t=>t.id===id),place=(a,key,s)=>has(s.terrainId)?on(project,st,a,key,s):null;
  place(hut(),'abandoned-hut',spec.hut||{terrainId:'sf-map-rock',x:760,scale:.8});const map=st.markers.find(m=>/transport-map/.test(m.id));if(map&&has('sf-map-rock'))place(recordStone(),'map-stone',{terrainId:'sf-map-rock',x:map.x});

@@ -1,0 +1,28 @@
+name: Verify stage30 edge composition candidate
+on:
+  push:
+    branches: ['fix/stage30-edge-composition-20261117']
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm ci && npm ci --prefix game
+      - name: Preserve source, prior candidates and scoped masks
+        run: |
+          node tools/act1-vector-production/check-edge-integration-manifest.mjs
+          node tests/stage30-edge-composition.mjs
+          node tests/stage22-buried-blend.mjs
+          node tools/environment/stage30-edge-composition.mjs
+          git diff --exit-code -- shared/data/campaign.json
+      - name: Independent Native lower-right portrait
+        run: HONRO_AUDIT_STAGE=30 HONRO_AUDIT_LABEL=stage30-ci HONRO_AUDIT_VIEW=edge-portrait-3 node tools/act1-vector-production/capture-stage-independent-audit.mjs
+      - name: Build official runtime
+        run: npm run build
