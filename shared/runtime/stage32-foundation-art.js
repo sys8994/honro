@@ -136,7 +136,7 @@ function bitmap(c,cv){c.save();c.setTransform(1,0,0,1,0,0);c.drawImage(cv,0,0);c
 // seams. Never changes source geometry or full BODY alpha. The finite sampling
 // is explicitly measured; not a claim of analytic exact area integration.
 let activeScanline=null;
-const coverageStats={boundaryFallbacks:0,labelOverrides:0,maxOverrideDistance:0,calls:0,eligible:0,corrected:0,samples:0,ms:0,alphaChanged:0,roadSkipped:0,opaqueGrassSkipped:0,actualGrassSamples:0,bytes:0};
+const coverageStats={maskComparisons:0,maskComparedPixels:0,maskMismatches:0,boundaryFallbacks:0,labelOverrides:0,maxOverrideDistance:0,calls:0,eligible:0,corrected:0,samples:0,ms:0,alphaChanged:0,roadSkipped:0,opaqueGrassSkipped:0,actualGrassSamples:0,bytes:0};
 let coverageMasks=null;
 function coherentColor(c,cv,q){
  if(activeScanline!==q.scanline){activeScanline?.clearRows();activeScanline=q.scanline;}
@@ -147,18 +147,32 @@ function coherentColor(c,cv,q){
  const y0=Math.max(0,Math.ceil(world*1420+m.f)),y1=Math.min(c.canvas.height,Math.floor(world*1716+m.f));
  if(y1<=y0)return;const w=c.canvas.width,h=y1-y0;if(w*h>1024*1024)return;
  coverageStats.calls++;
- coverageMasks??=Array.from({length:3},()=>G.document.createElement('canvas'));
- const masks=coverageMasks.map((v,index)=>{if(v.width!==w||v.height!==h){v.width=w;v.height=h;}const z=v.getContext('2d');z.setTransform(1,0,0,1,0,0);z.globalAlpha=1;z.globalCompositeOperation='copy';z.fillStyle=index===2?'rgba(0,0,0,0)':'#000';z.fillRect(0,0,w,h);z.globalCompositeOperation='source-over';z.setTransform(m.a/2.2,0,0,m.d/2.2,m.e,m.f-y0);z.save();z.clip(q.apron);z.scale(2.2,2.2);for(const p of q.paths){if((index===0&&p.sourceIndex<12)||(index===1&&p.sourceIndex<21))continue;z.fillStyle=index===2?'#fff':index===0&&p.sourceIndex>=12&&p.sourceIndex<=17||index===1&&p.sourceIndex>=21?'#fff':'#000';z.fill(p.path,p.rule);}z.restore();return z.getImageData(0,0,w,h).data;});
+ coverageMasks??=[G.document.createElement('canvas')];
+ const v=coverageMasks[0];if(v.width!==w||v.height!==h){v.width=w;v.height=h;}
+ const z=v.getContext('2d');z.setTransform(1,0,0,1,0,0);z.globalAlpha=1;z.globalCompositeOperation='copy';z.fillStyle='#000';z.fillRect(0,0,w,h);z.globalCompositeOperation='source-over';z.setTransform(m.a/2.2,0,0,m.d/2.2,m.e,m.f-y0);z.save();z.clip(q.apron);z.scale(2.2,2.2);
+ for(const p of q.paths){z.fillStyle=p.sourceIndex>=21?'#00ffff':p.sourceIndex>=12&&p.sourceIndex<=17?'#ff00ff':'#0000ff';z.fill(p.path,p.rule);}z.restore();
+ const packed=z.getImageData(0,0,w,h).data;
+ // Debug-only exact original three-mask comparison. The benchmark explicitly
+ // disables this verification before any timed cold/pan calls.
+ if(G.HONRO_STAGE32_VERIFY_PACKED_MASKS){
+  for(let index=0;index<3;index++){
+   const cv=G.document.createElement('canvas');cv.width=w;cv.height=h;const t=cv.getContext('2d');t.globalCompositeOperation='copy';t.fillStyle=index===2?'rgba(0,0,0,0)':'#000';t.fillRect(0,0,w,h);t.globalCompositeOperation='source-over';t.setTransform(m.a/2.2,0,0,m.d/2.2,m.e,m.f-y0);t.save();t.clip(q.apron);t.scale(2.2,2.2);
+   for(const p of q.paths){t.fillStyle=index===2?'#fff':index===0&&p.sourceIndex>=12&&p.sourceIndex<=17||index===1&&p.sourceIndex>=21?'#fff':'#000';t.fill(p.path,p.rule);}t.restore();const reference=t.getImageData(0,0,w,h).data;
+   for(let k=0;k<packed.length;k+=4)if(packed[k+index]!==reference[k+(index===2?3:0)]){coverageStats.maskMismatches++;throw Error('Packed semantic mask mismatch');}
+   coverageStats.maskComparisons++;coverageStats.maskComparedPixels+=w*h;cv.width=1;cv.height=1;
+  }
+ }
+
  const old=c.getImageData(0,y0,w,h),data=old.data,field=cv.getContext('2d').getImageData(0,y0,w,h).data;
  const colors=q.paths.map(p=>{const hex=p.fill.replace('#','');if(!/^[0-9a-f]{6}$/i.test(hex))throw Error('Unexpected source palette');return [0,2,4].map(i=>parseInt(hex.slice(i,i+2),16));});
- const grass=masks[0],road=masks[1],body=masks[2],sampleN=16;
+ const grass=packed,road=packed,body=packed,sampleN=16;
  for(let y=0;y<h;y++){
   let scanRows=null;
   for(let x=0;x<w;x++){
   const k=(y*w+x)*4;if(!grass[k])continue;
   if(grass[k]===255){coverageStats.opaqueGrassSkipped++;continue;}
-  if(road[k]){coverageStats.roadSkipped++;continue;}
-  if(body[k+3]!==255||data[k+3]!==255||field[k+3]!==255)continue;
+  if(road[k+1]){coverageStats.roadSkipped++;continue;}
+  if(body[k+2]!==255||data[k+3]!==255||field[k+3]!==255)continue;
   coverageStats.eligible++;scanRows??=Array.from({length:sampleN},(_,sy)=>q.scanline.row((y+y0+(sy+.5)/sampleN-m.f)/m.d));const sum=[0,0,0];let actualGrass=0;
   for(let sy=0;sy<sampleN;sy++){
    const uniform=scanRows[sy].span((x+.5/sampleN-m.e)/m.a,(x+(sampleN-.5)/sampleN-m.e)/m.a);
@@ -190,7 +204,7 @@ function coherentColor(c,cv,q){
  }
  // Pixel write preserves alpha exactly, and only commits changed internal
  // pixels. putImageData ignores active clips, so eligibility is explicit above.
- c.putImageData(old,0,y0);coverageStats.bytes=8*w*h*4;coverageStats.ms+=(G.performance?.now?.()??Date.now())-t;
+ c.putImageData(old,0,y0);coverageStats.bytes=4*w*h*4;coverageStats.ms+=(G.performance?.now?.()??Date.now())-t;
 }
 
 function draw(c,l,b,originalOnly=false){
@@ -256,6 +270,6 @@ function draw(c,l,b,originalOnly=false){
  }
  return true;
 }
-G.HonroStage32FoundationArt={draw,stats:()=>({...counters,coverage:{...coverageStats,retainedCanvasBytes:(coverageMasks||[]).reduce((n,v)=>n+v.width*v.height*4,0),scanline:activeScanline?.stats()},maxPixels:MAX_PIXELS,transition:{...transitionCounters,maxPixels:MAX_TRANSITION_PIXELS,bufferDimensions:[transitionWork,transitionColor,transitionBody].map(c=>c?[c.width,c.height]:null)},totalLogicalBytes:counters.bytes+transitionCounters.bytes+(coverageMasks||[]).reduce((n,v)=>n+v.width*v.height*4,0)}),clear:()=>{activeScanline?.clearRows();for(const mask of coverageMasks||[]){mask.width=1;mask.height=1;}coverageStats.bytes=coverageMasks?12:0;last=null;if(buffer){buffer.width=1;buffer.height=1;}counters.bytes=buffer?4:0;for(const cv of [transitionWork,transitionColor,transitionBody])if(cv){cv.width=1;cv.height=1;}transitionMemory();}};
+G.HonroStage32FoundationArt={draw,stats:()=>({...counters,coverage:{...coverageStats,retainedCanvasBytes:(coverageMasks||[]).reduce((n,v)=>n+v.width*v.height*4,0),scanline:activeScanline?.stats()},maxPixels:MAX_PIXELS,transition:{...transitionCounters,maxPixels:MAX_TRANSITION_PIXELS,bufferDimensions:[transitionWork,transitionColor,transitionBody].map(c=>c?[c.width,c.height]:null)},totalLogicalBytes:counters.bytes+transitionCounters.bytes+(coverageMasks||[]).reduce((n,v)=>n+v.width*v.height*4,0)}),clear:()=>{activeScanline?.clearRows();for(const mask of coverageMasks||[]){mask.width=1;mask.height=1;}coverageStats.bytes=coverageMasks?4:0;last=null;if(buffer){buffer.width=1;buffer.height=1;}counters.bytes=buffer?4:0;for(const cv of [transitionWork,transitionColor,transitionBody])if(cv){cv.width=1;cv.height=1;}transitionMemory();}};
 })(globalThis);
 
