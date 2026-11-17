@@ -14,7 +14,7 @@ try{
  assert.equal(r.tideSnapshot,null);assert.equal(r.pendingImages,0);assert.equal(r.imageErrors,0);assert.equal(r.fontStatus,'loaded');
  for(const k of ['storage','errors','violations'])assert.deepEqual(r[k],[]);
  for(const k of ['runtimeSha256','sourceCanonicalSha256','physicsSha256','vectorSHA','battleSha256'])assert.match(r[k],/^[a-f0-9]{64}$/);
- assert.equal(r.performanceReport.coldRender.count,10);assert.equal(r.performanceReport.warmRender.count,60);assert(r.performanceReport.coldRender.p50>0,'Invalid zero clock');assert(r.performanceReport.warmRender.max>0,'Invalid zero warm clock');assert(r.performanceReport.warmNoMaterialRebuild);
+ assert.deepEqual(r.performanceReport.viewport,{width:1331,height:763,cssWidth:1331,cssHeight:763});assert.equal(r.performanceReport.coldRender.count,10);assert.equal(r.performanceReport.warmRender.count,60);assert(r.performanceReport.coldRender.p50>0,'Invalid zero clock');assert(r.performanceReport.warmRender.max>0,'Invalid zero warm clock');assert(r.performanceReport.warmNoMaterialRebuild);
  assert.equal(r.cacheStats.fallbacks,0);if(variant==='direct-candidate-source'){assert(r.drawDiagnostic.directBypasses>0);assert.equal(r.drawDiagnostic.directVectorDraws,r.drawDiagnostic.directBypasses);}assert.equal(r.vectorSHA,'76e4fc6c04fc1f95aa9dcd0d97c9b8294c05cbe0a75169eb53174768f8da7cd1');assert(r.cacheStats.rasterizations>0);if(variant!=='direct-candidate-source')assert(r.cacheStats.hits>0);
  assert.match(r.png,/^data:image\/png;base64,/);const png=Buffer.from(r.png.split(',')[1],'base64');
  assert.equal(png.subarray(0,8).toString('hex'),'89504e470d0a1a0a');assert.equal(png.readUInt32BE(16),1331);assert.equal(png.readUInt32BE(20),763);

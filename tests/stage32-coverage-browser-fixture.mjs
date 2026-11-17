@@ -124,10 +124,10 @@ async function capture(id,runtimeSha256,variant,requestedCamera){
   if(variant!=='direct-candidate-source')assert(materialStats.rasterizations>0&&materialStats.hits>0,'Candidate did not exercise shared material cache');
   const hash=async s=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s))),v=>v.toString(16).padStart(2,'0')).join('');
   const verifiedPng=cv.toDataURL('image/png'),cold=[],warm=[];
-  const benchCanvas=document.createElement('canvas');benchCanvas.width=width;benchCanvas.height=height;
+  const benchCanvas=document.createElement('canvas');benchCanvas.width=width;benchCanvas.height=height;Object.assign(benchCanvas.style,{position:'fixed',left:'-20000px',top:'0px',width:width+'px',height:height+'px'});document.body.appendChild(benchCanvas);
   let bench;
   for(let i=0;i<10;i++){
-   HonroStage32FoundationArt.clear();bench=new HonroScene(benchCanvas);
+   HonroStage32FoundationArt.clear();bench=new HonroScene(benchCanvas);assert(benchCanvas.width===width&&benchCanvas.height===height,'Benchmark viewport resized');
    Object.assign(bench,{x:camera.x,y:camera.y,scale:camera.scale,manual:true,time:2,editorView:false,skillPreview:false});
    HonroBounds.constrain(bench,b);const r0=HonroStage32FoundationArt.stats().rasterizations,t=performance.now();bench.render(engine,0,'',.6,false,0);const ms=performance.now()-t;
    assert(HonroStage32FoundationArt.stats().rasterizations>r0,'Cold material not rebuilt');
@@ -143,19 +143,19 @@ async function capture(id,runtimeSha256,variant,requestedCamera){
   const pan=[];
   for(let i=0;i<60;i++){bench.x=camera.x+16*(i+1);bench.y=camera.y;HonroBounds.constrain(bench,b);const beforeRaster=HonroStage32FoundationArt.stats().rasterizations,t=performance.now();bench.render(engine,0,'',.6,false,0);pan.push({ms:performance.now()-t,x:bench.x,y:bench.y,scale:bench.scale,materialRebuilds:HonroStage32FoundationArt.stats().rasterizations-beforeRaster,worldBuildMs:bench._cacheStats.worldBuildMs});}
   assert(JSON.stringify(b)===before&&JSON.stringify({terrain:b.terrain,units:b.units})===physics,'Pan benchmark mutated battle');
-  const performanceReport={scope:'10 independent in-memory Scene cold builds with helper.clear; 60 same-scene cached calls. Synchronous rendering only, decoded assets reused. No user battle/save or device/gameplay FPS. Nearest-rank percentiles; n=10 p95 is maximum. Scene tile/image/GPU allocations not included in helper logical RGBA bytes.',cold,warm,pan,panRender:summary(pan.map(v=>v.ms)),panFramesWithMaterialRebuild:pan.filter(v=>v.materialRebuilds>0).length,panMaterialRebuilds:pan.reduce((n,v)=>n+v.materialRebuilds,0),coldRender:summary(cold.map(x=>x.ms)),coldWorldBuild:summary(cold.map(x=>x.worldBuildMs)),warmRender:summary(warm),warmNoMaterialRebuild:true,helperStats:HonroStage32FoundationArt.stats()};
+  const performanceReport={viewport:{width:benchCanvas.width,height:benchCanvas.height,cssWidth:benchCanvas.clientWidth,cssHeight:benchCanvas.clientHeight},scope:'10 independent in-memory Scene cold builds with helper.clear; 60 same-scene cached calls. Synchronous rendering only, decoded assets reused. No user battle/save or device/gameplay FPS. Nearest-rank percentiles; n=10 p95 is maximum. Scene tile/image/GPU allocations not included in helper logical RGBA bytes.',cold,warm,pan,panRender:summary(pan.map(v=>v.ms)),panFramesWithMaterialRebuild:pan.filter(v=>v.materialRebuilds>0).length,panMaterialRebuilds:pan.reduce((n,v)=>n+v.materialRebuilds,0),coldRender:summary(cold.map(x=>x.ms)),coldWorldBuild:summary(cold.map(x=>x.worldBuildMs)),warmRender:summary(warm),warmNoMaterialRebuild:true,helperStats:HonroStage32FoundationArt.stats()};
 
   let priorPng=null;
   if(variant==='transition'){
-   const current=HonroStage32FoundationArt,pc=document.createElement('canvas');pc.width=width;pc.height=height;
+   const current=HonroStage32FoundationArt,pc=document.createElement('canvas');pc.width=width;pc.height=height;Object.assign(pc.style,{position:'fixed',left:'-20000px',top:'0px',width:width+'px',height:height+'px'});document.body.appendChild(pc);
    try{
     globalThis.HonroStage32FoundationArt=HonroStage32FoundationPriorArt;HonroStage32FoundationArt.clear();
-    const ps=new HonroScene(pc);Object.assign(ps,{...camera,manual:true,time:2,editorView:false,skillPreview:false});HonroBounds.constrain(ps,b);
+    const ps=new HonroScene(pc);assert(pc.width===width&&pc.height===height,'Prior reference viewport resized');Object.assign(ps,{...camera,manual:true,time:2,editorView:false,skillPreview:false});HonroBounds.constrain(ps,b);
     for(let i=0;i<4;i++){ps.render(engine,0,'',.6,false,0);await drain();}
     assert(JSON.stringify(b)===before,'Prior reference mutated battle');
     assert(JSON.stringify(HONRO_PROJECT.library.filter(a=>[oldFoundation,newFoundation,oldBody,newBody].includes(a.id)))===sourceCanonical,'Prior reference changed provider');
     priorPng=pc.toDataURL('image/png');
-   }finally{globalThis.HonroStage32FoundationArt=current;}
+   }finally{globalThis.HonroStage32FoundationArt=current;pc.remove();}
   }
 
   if(variant==='transition'){assert(materialStats.transition.fills>0,'No production transition fills');assert(materialStats.transition.skips===0,'Unexpected transition fallback');assert(materialStats.totalLogicalBytes<=4*1024*1024*4,'Unexpected logical buffer allocation');assert(materialStats.coverage.calls>0,'No correction evaluation');assert(materialStats.coverage.alphaChanged===0,'Alpha changed');} publishProbe({ok:true,priorPng,performanceReport,renderSamples,renderTimingScope:'First synchronous Scene.render and three subsequent cached calls, excludes asynchronous image wait. Single run, not p50/p95 or hardware benchmark.',transitionFills:materialStats.transition?.fills??0,scope:'Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.',stage:id,variant,requestedCamera,drawDiagnostic,cacheStats:materialStats,sceneCacheStats:scene._cacheStats??null,...((id===32)?{tideSnapshot,appReadyUnresolved:true,initialization:'Official coast.tide; fresh in-memory profile; no App launch or event progression'}:{}),view,width,height,dpr:devicePixelRatio,camera,time:2,seed:3910,runtimeSha256,physicsSha256:await hash(physics),renderPure:true,firstFramePure:true,vectorSHA,sourcePathHashes,battleSha256:await hash(before),sourceCanonicalSha256:await hash(sourceCanonical),diagnosticMode:'Same raw candidate provider/physics across all groups. Direct-candidate-source bypasses helper only. Not released-old equivalence.',fontStatus:document.fonts.status,fontNote:'System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.',userAgent:navigator.userAgent,imageCount:p.images.length,pendingImages:p.images.filter(v=>v.pending).length,imageErrors:p.images.filter(v=>v.error).length,storage:p.storage,errors:p.errors,violations:p.violations,png:verifiedPng});
