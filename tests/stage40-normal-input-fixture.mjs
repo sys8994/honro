@@ -81,24 +81,26 @@ async function capture(id,runtimeSha256,variant,requestedCamera){
  }
 
  const waypoints=[
- {x:3300,y:2376,s:'coast-west'},{x:5100,y:1807,s:'coast-east'},{x:5750,y:1400,s:'coast-east'},
- {x:5670,y:1270,s:'upper-east',jump:true},{x:4700,y:1126,s:'upper-east'},
+ {x:1400,y:1527,s:'coast-west',gate:['coast-west'],gateMaxX:1500},
+ {x:3300,y:2376,s:'coast-west',gate:['coast-west']},{x:5100,y:1807,s:'coast-east'},{x:5750,y:1400,s:'coast-east'},
+ {x:5670,y:1270,s:'upper-east',jump:true},{x:4700,y:1126,s:'upper-east',gate:['upper-east']},
  {x:5750,y:1329,s:'upper-east'},{x:5730,y:1406,s:'coast-east',drop:true},
- {x:3660,y:2384,s:'coast-east'},{x:3690,y:2465,s:'spur',drop:true},
- {x:4700,y:3120,s:'arrival-stair'},{x:3840,y:2610,s:'arrival-stair'},
+ {x:3660,y:2384,s:'coast-east',gate:['coast-east']},{x:3690,y:2465,s:'spur',drop:true},
+ {x:4700,y:3120,s:'arrival-stair',gate:['arrival-stair']},{x:3840,y:2610,s:'arrival-stair'},
  {x:3740,y:2490,s:'spur',jump:true},{x:3640,y:2389,s:'coast-east',jump:true},
  {x:2660,y:2244,s:'coast-west'},{x:2660,y:2297,s:'dock-stair',drop:true},
- {x:2000,y:2680,s:'dock-stair'},{x:1800,y:2826,s:'dock'},
- {x:600,y:2716,s:'dock'},{x:1600,y:2807,s:'dock'},
+ {x:2000,y:2680,s:'dock-stair',gate:['dock-stair']},{x:1800,y:2826,s:'dock'},
+ {x:600,y:2716,s:'dock',gate:['dock']},{x:1600,y:2807,s:'dock'},
  {x:1600,y:2935,s:'departure-stair',drop:true},{x:2150,y:3575,s:'departure-stair'},
- {x:2175,y:3600,s:'departure-ramp'}
+ {x:2175,y:3600,s:'departure-ramp',gate:['departure-stair','departure-ramp']}
  ].map(v=>({...v,s:'approved40-'+v.s}));
+ const gateTargets=t=>!t.gate?[]:foes().filter(u=>{const seed=initial.enemies.find(z=>z.id===u.id);return t.gate.some(s=>seed?.honroEncounterSupport==='approved40-'+s)&&(t.gateMaxX===undefined||seed.x<t.gateMaxX);});
  const routeIndex=new Map(heroes().map(u=>[u.id,0]));
  const support=u=>e.contactSurface(u.x,u.y-8,u.y+12)?.t.id;
  function walkRoute(u){let index=routeIndex.get(u.id)||0,target=waypoints[index];if(!target)return;
  const from={x:u.x,y:u.y},startIndex=index;let still=0,jumped=false;
  for(let k=0;k<1800&&e.canAct()&&e.active===u&&u.moveLeft>12;k++){
-  if(Math.abs(u.x-target.x)<45&&Math.abs(u.y-target.y)<55&&support(u)===target.s){index++;routeIndex.set(u.id,index);target=waypoints[index];if(!target)break;}
+  if(Math.abs(u.x-target.x)<45&&Math.abs(u.y-target.y)<55&&support(u)===target.s){const pending=gateTargets(target);if(pending.length){pending.sort((a,z)=>dist(a,u)-dist(z,u));actions.push({op:'clear-gate',round:b.round,hero:u.id,index,remaining:pending.map(v=>v.id)});walkToward(u,pending[0]);break;}index++;routeIndex.set(u.id,index);target=waypoints[index];if(!target)break;}
   const minIndex=Math.min(...heroes().map(h=>routeIndex.get(h.id)||0));if(index>minIndex+1)break;
   const x=u.x,y=u.y;
   if(target.drop&&support(u)!==target.s&&Math.abs(u.x-target.x)<50){if(e.drop())actions.push({op:'drop',round:b.round,hero:u.id,index,x:u.x,y:u.y});}
@@ -120,11 +122,11 @@ async function capture(id,runtimeSha256,variant,requestedCamera){
 
  draw();await document.fonts.ready;
  const initialPng=cv.toDataURL('image/png');
- for(;actionNo<320&&!['won','lost'].includes(b.phase);actionNo++){
+ for(;actionNo<600&&!['won','lost'].includes(b.phase);actionNo++){
  while(!e.canAct()&&!['won','lost'].includes(b.phase)&&frames<150000){tick();if(performance.now()-start>180000)break;}
  if(performance.now()-start>180000){stopReason='180s wall budget; unfinished, not route failure';break;}
  if(frames>=150000){stopReason='frame budget';break;}if(['won','lost'].includes(b.phase))break;
- if(b.round>40){stopReason='40-round route-policy bounded comparison; not full-play acceptance';break;}
+ if(b.round>80){stopReason='80-round clear-before-leaving policy bounded comparison; not full-play acceptance';break;}
  if(latestRound!==b.round){latestRound=b.round;rounds.push({round:b.round,foes:foes().length,heroes:heroes().map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,level:u.level})),escort:b.honroAct4PreviewState.returnEscort||null});}
  const lagging=heroes().filter(h=>!h.acted).sort((a,z)=>(routeIndex.get(a.id)||0)-(routeIndex.get(z.id)||0)||a.x-z.x)[0];if(lagging)e.select(lagging.id);
  const u=e.active;if(!u||u.side!==0){stopReason='no active hero';break;}
