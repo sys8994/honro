@@ -1,0 +1,56 @@
+name: Validate Stage32 bounded lower transition production candidate
+on:
+  workflow_dispatch:
+  push:
+    branches: ['fix/stage32-lower-transition-20261117']
+permissions:
+  contents: read
+jobs:
+  diagnose:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm ci && npm ci --prefix game
+      - name: Original V1 and new bounded cache contracts
+        run: node tests/stage32-lower-transition-contract.mjs
+      - name: Original providers, path and codec contracts
+        run: |
+          git fetch origin e89242eedb5c040d38a9077c7289fbdc97786bdf --depth=1
+          BASELINE_REF=e89242eedb5c040d38a9077c7289fbdc97786bdf node tests/stage32-foundation-contract.mjs
+      - name: Generate four isolated production-source scenes
+        run: HONRO_ACT4_RELEASE=1 node tests/stage32-lower-production-browser-fixture.mjs "$RUNNER_TEMP/transition-fixtures"
+      - name: Actual Chrome, isolated profiles and no saved game
+        shell: bash
+        run: |
+          browser=$(command -v google-chrome || command -v chromium)
+          mkdir -p "$RUNNER_TEMP/transition-evidence"
+          failed=0
+          for variant in candidate transition; do
+            for view in lower left; do
+              dump="$RUNNER_TEMP/stage32-$variant-$view.html"
+              if timeout 300s "$browser" --headless --no-first-run --no-default-browser-check --force-device-scale-factor=1 --virtual-time-budget=60000 --user-data-dir="$RUNNER_TEMP/transition-profile-$variant-$view" --dump-dom "file://$RUNNER_TEMP/transition-fixtures/stage32-$variant-$view.html" > "$dump"; then
+                node tests/stage32-lower-production-browser-result.mjs "$dump" "$RUNNER_TEMP/transition-evidence" "$variant" "$view" || failed=1
+              else
+                printf '{"ok":false,"reason":"Chrome process timeout or failure"}\n' > "$RUNNER_TEMP/transition-evidence/stage32-$variant-$view-process-failure.json"
+                failed=1
+              fi
+            done
+          done
+          exit "$failed"
+      - name: Compare strict contracts and report pixel differences
+        if: ${{ !cancelled() }}
+        run: node tests/stage32-lower-production-browser-compare.mjs "$RUNNER_TEMP/transition-evidence"
+      - name: Official Act4 build
+        run: HONRO_ACT4_RELEASE=1 node workshop/build.mjs
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage32-lower-production
+          path: ${{ runner.temp }}/transition-evidence
+          if-no-files-found: error
+
