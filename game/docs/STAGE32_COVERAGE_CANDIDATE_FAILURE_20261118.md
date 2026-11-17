@@ -1,0 +1,13 @@
+# Stage32 point-query color candidate: rejected performance
+
+Candidate89772b5bed6a483c451e79712a07bf6689d48561, helper SHA32ebb00ebbdf595e46ef0faf875149750a4d2356c7e6935e909c767667793129. Baseline13d671e3. Production integration/deployment prohibited pending final validation.
+
+Actual Chrome real-clock CI44178945707 FAIL. Lower candidate exceeded320-second process budget. Left completed: cold10 calls p50=20193.8ms,max=20497ms, compared with baseline20.3ms/max21.8ms. Pan60 calls max22842.7ms vs18.6ms. Warm60 p50~0.2ms does not compensate for unusable new-cache stalls. Baseline lower cold p50=23.8ms,max24.5ms; its image matched exactly. Original benchmark and timeout remain unchanged. Artifact14371487775, SHA7d759d445e26c33ea4f2f9f700c50685a12abe29f2ff508e4a2b9952e345de66.
+
+Independent visual-only CI44180499504 success means screenshot collection, not performance acceptance. It omits the benchmark only in separately named test files and reports this restriction. Same production candidate. First lower render108487.2ms, left56517.5ms. Lower calls8, eligible9010, corrected5959, sampled2306560; left calls6, eligible4802, corrected3452, sampled1229312. Final lower6949 changed pixels/max78 and left5199/max20; alpha changes0 in both. Current/raw comparison confirms paths, stage and battle unchanged. The candidate corrects partial grass overcontribution over all x in world y1385..1716 only, excludes roads and opaque grass, preserves source geometry and full alpha.
+
+Directly inspected lower crop: green seams mostly diminish, but bright underpaint seams become more visible and the top band cutoff leaves remaining lines above1385. Do not call art accepted. At1385/1716 changes start/stop sharply by design; full7-view/mobile/walk boundary review remains pending. Scene alpha equality is not a substitute for source alpha/hole tests.
+
+Logical-memory accounting in this failed helper understates transient mask ImageData3 buffers. Correct accounting is retained3 canvas RGBA plus5 transient ImageData RGBA,8*w*h*4, not5*w*h*4; GPU/scene caches are separate. No false reported memory pass may use the old count.
+
+Next diagnostic4a4205ff640702b6f88c3cf31b7abb7a20c50fa8 reuses original source cubic scanline intersections while keeping the exact16x16 sample grid and boundary point-query fallback. It must match both previous candidate PNG hashes exactly before any acceleration claim. Source geometry not flattened, original25 path count remains fixed. Native preliminary768 labels match but Chrome result is pending. Bright seams and band cutoff remain separate art issues; acceleration is not their fix.
