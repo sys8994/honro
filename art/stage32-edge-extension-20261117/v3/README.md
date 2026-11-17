@@ -1,0 +1,13 @@
+# V3: continuous nonwalk foundation study, not integrated
+
+Unlike v1/v2, this is an independent edge-to-edge rock material field, not a regenerated gameplay BODY or floating island. The current BODY, routes, holes, door and buildings will remain immutable if a trial is later integrated. Opaque rectangle is only a source texture; it must never be installed as an unconstrained terrain rectangle. A source-grounded visibility mask/placement and real Chrome review remain required. No production files are changed by this study.
+
+Generated source SHA2568265333e5044ca7755da2f19ef7c0318cb157fa4afd2dce8fda2bc0b6cc464a4,1611×976. Prompt requested a continuous edge-to-edge nonrepeating underground geological field, matching current muted taupe/brown/slate palette, smaller facets top-center and larger farther out; no paths/grass/buildings/sky/objects/ledges, flat colors and no outer island silhouette. Source nevertheless has smooth color variation, so source→trace loss is explicitly2.6256 RGB/255, not optimizer error.
+
+Actual Inkscape1.4(e7c3feb100) object-trace12,true,true,false,4,1,0.2. Ordinary startup failed missing Gdk C++ wrapper registration, preserved log. Only after observing this failure, bundled init-wrappers.cpp was inspected and compiled; no tracing algorithm/security change. Shim source SHA2566afe170e45845e706461879a7c00ff328b342ba1954f28a16f34debca7cf5d59. No binary shim committed. Use compiler/link command from main terrain-vector skill.
+
+Two simplification candidates from same raw at0.0001/0.00015, per edge SOP's two-candidate limit, not six default alternatives. Raw:12paths/9195segments/388subpaths/410463bytes, zero images. Selected0.00015:6197segments,32.6047% reduction, unchangedsubpaths/components. Precision2 final201480bytes. Raw→final RGB MAE0.037947/255,maxdiff>24 fraction0, internal-curve bound1.217774sourcepx, source/raw/final silhouette deviation0. Measurements are at source resolution; world-space error scales with placement.
+
+Full optimized render was visually inspected: continuous large muted rock planes, no isolated outer silhouette. Trace introduces small quantization fragments in gradient areas. This is neither art approval nor final seam acceptance. Exact BODY joins, scale, visibility, extreme cameras, mobile and performance remain unchecked. Master/Pages unchanged.
+
+Trace outputs were generated under /tmp, a separate tmpfs with over2GB free; working-repository filesystem had20MB free. Guards limited per-file3MB,total8MB and stopped below9MB free on the OUTPUT filesystem; actual initial trace output5.2MB. No originals or user files deleted.

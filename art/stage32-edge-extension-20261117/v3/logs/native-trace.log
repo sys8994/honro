@@ -1,0 +1,24 @@
+COMMAND: inkscape /tmp/honro-stage32-v3-native/01-raster-wrapper.svg --batch-process --actions=select-by-id:raster;object-trace:12,true,true,false,4,1,0.2;select-clear;select-by-id:raster;delete;export-plain-svg;export-filename:/tmp/honro-stage32-v3-native/02-inkscape-trace.svg;export-do
+No GUI available, some actions may fail
+
+(inkscape:24): GLib-GObject-CRITICAL **: 19:32:53.537: g_object_get: assertion 'G_IS_OBJECT (object)' failed
+Tracing... 2%
+Tracing... 18%
+Tracing... 22%
+Tracing... 27%
+Tracing... 33%
+Tracing... 38%
+Tracing... 46%
+
+(inkscape:24): Gtk-WARNING **: 19:32:53.787: Attempting to store changes into '/home/agent/.local/share/recently-used.xbel', but failed: Failed to create file “/home/agent/.local/share/recently-used.xbel.MEPGY3”: Read-only file system
+
+(inkscape:24): Gtk-WARNING **: 19:32:53.787: Attempting to set the permissions of '/home/agent/.local/share/recently-used.xbel', but failed: Read-only file system
+Tracing... 52%
+Tracing... 58%
+Tracing... 64%
+Tracing... 68%
+Tracing... 74%
+Tracing... 82%
+Tracing... 94%
+Tracing... 100%
+Tracing done.

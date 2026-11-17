@@ -1,0 +1,30 @@
+COMMAND: inkscape /tmp/honro-stage32-v3-trace/01-raster-wrapper.svg --batch-process --actions=select-by-id:raster;object-trace:12,true,true,false,4,1,0.2;select-clear;select-by-id:raster;delete;export-plain-svg;export-filename:/tmp/honro-stage32-v3-trace/02-inkscape-trace.svg;export-do
+No GUI available, some actions may fail
+
+** (inkscape:24): WARNING **: 19:32:09.908: Failed to wrap object of type 'PangoFT2FontMap'. Hint: this error is commonly caused by failing to call a library init() function.
+
+** (inkscape:24): WARNING **: 19:32:10.054: Failed to wrap object of type 'GtkRecentManager'. Hint: this error is commonly caused by failing to call a library init() function.
+
+** (inkscape:24): WARNING **: 19:32:10.128: Failed to wrap object of type 'GdkPixbuf'. Hint: this error is commonly caused by failing to call a library init() function.
+
+Emergency save activated!
+Emergency save completed. Inkscape will close now.
+If you can reproduce this crash, please file a bug at https://inkscape.org/report
+with a detailed description of the steps leading to the crash, so we can fix it.
+** Message: 19:32:10.128: Error: 
+ 0# Inkscape::Application::crash_handler(int) in /usr/bin/../lib/x86_64-linux-gnu/inkscape/libinkscape_base.so.1.4.0.0
+ 1# 0x00007F726D49BD70 in /lib/x86_64-linux-gnu/libc.so.6
+ 2# Gdk::Pixbuf::get_width() const in /usr/bin/../lib/x86_64-linux-gnu/inkscape/../libgdkmm-3.0.so.1
+ 3# Inkscape::Trace::gdkPixbufToRgbMap(Glib::RefPtr<Gdk::Pixbuf> const&) in /usr/bin/../lib/x86_64-linux-gnu/inkscape/libinkscape_base.so.1.4.0.0
+ 4# Inkscape::Trace::Potrace::PotraceTracingEngine::filterIndexed(Glib::RefPtr<Gdk::Pixbuf> const&) const in /usr/bin/../lib/x86_64-linux-gnu/inkscape/libinkscape_base.so.1.4.0.0
+ 5# Inkscape::Trace::Potrace::PotraceTracingEngine::traceQuant(Glib::RefPtr<Gdk::Pixbuf> const&, Inkscape::Async::Progress<double>&) in /usr/bin/../lib/x86_64-linux-gnu/inkscape/libinkscape_base.so.1.4.0.0
+ 6# Inkscape::Trace::Potrace::PotraceTracingEngine::trace(Glib::RefPtr<Gdk::Pixbuf> const&, Inkscape::Async::Progress<double>&) in /usr/bin/../lib/x86_64-linux-gnu/inkscape/libinkscape_base.so.1.4.0.0
+ 7# Inkscape::Trace::TraceTask::do_async_work(std::unique_ptr<Inkscape::Trace::TraceTask, std::default_delete<Inkscape::Trace::TraceTask> >) in /usr/bin/../lib/x86_64-linux-gnu/inkscape/libinkscape_base.so.1.4.0.0
+ 8# 0x00007F726F21FB42 in /usr/bin/../lib/x86_64-linux-gnu/inkscape/libinkscape_base.so.1.4.0.0
+ 9# std::__future_base::_State_baseV2::_M_do_set(std::function<std::unique_ptr<std::__future_base::_Result_base, std::__future_base::_Result_base::_Deleter> ()>*, bool*) in /usr/bin/../lib/x86_64-linux-gnu/inkscape/libinkscape_base.so.1.4.0.0
+10# 0x00007F726D4F38F7 in /lib/x86_64-linux-gnu/libc.so.6
+11# pthread_once in /lib/x86_64-linux-gnu/libc.so.6
+12# 0x00007F726F21D4FF in /usr/bin/../lib/x86_64-linux-gnu/inkscape/libinkscape_base.so.1.4.0.0
+13# 0x00007F726D75E224 in /lib/x86_64-linux-gnu/libstdc++.so.6
+14# 0x00007F726D4EE8BB in /lib/x86_64-linux-gnu/libc.so.6
+15# 0x00007F726D56C538 in /lib/x86_64-linux-gnu/libc.so.6
