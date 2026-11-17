@@ -1,6 +1,7 @@
-name: Prepared combined Stage40 actual UI QA autosave continuation
+name: Combined Stage40 actual UI QA autosave continuation
 on:
-  workflow_dispatch:
+  push:
+    branches: ['test/combined-stage40-app-replay-20261118']
 permissions:
   contents: read
 jobs:
@@ -29,6 +30,9 @@ jobs:
       - name: Build actual unpublished App
         run: |
           mkdir -p "$HONRO_CAPTURE_OUT"
+          git fetch --depth=1 origin 09ac90235b89031b6df8d88cde4c16f39aba78f7
+          git diff --exit-code 09ac90235b89031b6df8d88cde4c16f39aba78f7 -- shared game/src game/config tools/map-forge tools/environment tools/stage6-prototype
+          printf '{"productionSource":"09ac90235b89031b6df8d88cde4c16f39aba78f7","actualAppURL":"http://127.0.0.1:8870/HONRO.html","act4Release":1,"act5Release":1,"scope":"Independent intact QA autosave resume; not fresh combat or public UI"}\\n' > "$HONRO_CAPTURE_OUT/combined-source.json"
           HONRO_ACT4_RELEASE=1 HONRO_ACT5_RELEASE=1 npm run build > "$HONRO_CAPTURE_OUT/build.log" 2>&1
           sha256sum HONRO.html web/manifest.json shared/act4-stage40-placement.mjs > "$HONRO_CAPTURE_OUT/served-sha256.txt"
           node tools/stage40-app-flow/check-input-contract.mjs
