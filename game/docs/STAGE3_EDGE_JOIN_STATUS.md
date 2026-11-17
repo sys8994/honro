@@ -13,3 +13,12 @@
 초기 진단이 legacy source 위치와 최소줌보다 작은 줌을 사용한 것을 확인해 폐기하고 위 production 기준으로 재실행했다. legacy BODY metadata 변경은 효과가 없어 원복했으며 원격에 올리지 않았다. 혼동된 초기 캡처는 최종 검수 근거로 사용하지 않는다.
 
 master7d238d20 불변. 후보 브랜치 fix/stage3-art-bounds-20261117에 재현 도구와 중간 기록만 보존. 신규 미술·충돌·카메라·저장 변경 또는 Pages 배포 없음.
+
+
+## 독립 수정 후보와 잔여 검수
+
+후보 a525d62b의 CI44035942742는 성공했다. source vector/11개 최적화 경로는 보존하고 합성 경계 strip을 확장, 렌더 타일영역만 그림 bounds까지 확대, 3장 painted ferry-ground의 인위적 폐합선3개만 제외했다. 보행 rim 배열은 수정전과 완전 동일하고 다른 장/비painted 음성검사 및 물리 SHA 불변검사가 통과했다. 그림 등록 hash는 작은 terrain-path-registrations.json에 두고 원래 대형 최적화표 baseline hash와 최종 source hash 둘 다 검증한다. 최적화 검증을 끄거나 완화하지 않았다.
+
+아주 얇은 0.076px 원본 strip을 확대했을 때 Native 타일에서 alpha0이 발생했다. 1px 내부 strip으로 바꾼 후 해당 하단 타일 direct/vector/landmark 모두 alpha255이고 배경 노출은 사라졌다. 원본 그림 끝이 투명하다고 단정하지 않는다. pixelSnapClip 및 소스0.75px 이내 합성 underlap으로 경계 AA를 보정 중이다.
+
+최소줌의 데스크톱/세로/가로15뷰와 8개 물리지형의 세 화면비24뷰 총39뷰를 생성했다. 전체 상태행렬·실제입력·공개모바일은 여전히 미검수. 중간39뷰에서 하단 사각 배경노출은 해결됐으나 일부 극단 화면에 얇은 접합선이 남아 마지막 보정/검증 중이다. 잔선을 무시하거나 장 전체 완료로 보고하지 않는다. master/Pages 미반영, 다음장 미착수.

@@ -8,7 +8,7 @@ const document={createElement(tag){if(tag!=='canvas')throw Error(tag);return can
 const project=g.HONRO_PROJECT,stage=project.stages.find(s=>s.metadata?.stageId===id),compiled=g.HonroMaps.compile(stage,project),b=g.HonroMaps.createBattle(stage,project);g.HonroStageRules.sanitizeStageBattle(b);const engine=new g.HONRO_CORE.Engine(b,()=>{},true),hash=x=>createHash('sha256').update(JSON.stringify(x)).digest('hex'),physics=hash({terrain:b.terrain,units:b.units}),hero=b.units.find(u=>u.side===0&&!u.dead);assert(hero);
 const source=stage,sources=stage.terrains;
 const {width:sw,height:sh}=source;
-const views=[...[[0,0],[sw,0],[0,sh],[sw,sh],[sw/2,sh/2]].map(([x,y],i)=>({name:`edge-${i}`,width:1331,height:763,scale:g.HonroBounds.zoomLimits(1331).min,x,y})),...sources.flatMap(t=>{
+const views=[...[[1331,763,'desktop'],[390,696,'portrait'],[844,390,'landscape']].flatMap(([width,height,mode])=>[[0,0],[sw,0],[0,sh],[sw,sh],[sw/2,sh/2]].map(([x,y],i)=>({name:`edge-${mode}-${i}`,width,height,scale:g.HonroBounds.zoomLimits(width).min,x,y}))),...sources.flatMap(t=>{
  const ps=(t.control||t.points).filter(p=>p.x>=0&&p.x<=sw&&p.y>=-300&&p.y<=sh);
  assert(ps.length,`No play-area points: ${t.id}`);
  const x=(Math.min(...ps.map(p=>p.x))+Math.max(...ps.map(p=>p.x)))/2;
