@@ -1,7 +1,7 @@
 {
   "baselineMaster": "7d238d20663c3ceffe430eb0304e01516ae625cf",
   "baseCandidate": "af1c736416d54b85150a44ac515f84d1813be45c",
-  "scope": "Existing stage2-15 terrain candidates only; no public/UI acceptance. HTML/web build outputs excluded.",
+  "scope": "Existing stage2-15 candidates preserved, with scoped stage22 buried-plane compositor followup; no public/UI acceptance. HTML/web outputs excluded.",
   "files": [
     {
       "path": "shared/data/act2/stage12-compact-package.json",
@@ -17,7 +17,9 @@
     },
     {
       "path": "shared/runtime/act2-spatial-art.js",
-      "gitBlobSha1": "9f9fd19b8ca378c5c3401cb739333e8afb4a9ec0"
+      "gitBlobSha1": "ff3bd76a94251c2f3478fbeae450a139fac4f221",
+      "priorCandidateGitBlobSha1": "9f9fd19b8ca378c5c3401cb739333e8afb4a9ec0",
+      "intentionalFollowup": "Stage22 two buried-plane blend only; Stage14 rim fix preserved and regression-tested."
     },
     {
       "path": "shared/runtime/renderer.js",

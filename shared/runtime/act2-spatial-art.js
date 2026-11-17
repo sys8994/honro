@@ -9,6 +9,20 @@ const C=G.HONRO_CORE,A=G.HonroEnvironmentArt,E=G.HonroEnvironment,terrainCache=n
 if(typeof Image!=='undefined')for(const [key,src] of Object.entries(G.HONRO_ACT2_FAR_DATA||{}))Object.defineProperty(images,key,{configurable:true,enumerable:true,get(){const image=new Image();image.decoding='async';Object.defineProperty(images,key,{value:image,enumerable:true});image.src=src;return image;}});
 const active=b=>b?.honroStage>=11&&b.honroStage<=20&&b.honroMap?.space?.version===1;
 const polygon=points=>{const p=new Path2D();points.forEach(([x,y],i)=>i?p.lineTo(x,y):p.moveTo(x,y));p.closePath();return p;};
+// Stage 22 buried foundations retain their exact source rectangle and colour.
+// Isolated device-space masks preserve the solid underneath without transformed
+// gradient backend differences. Other authored planes use the original path.
+function stage22BuriedTile(p,b){
+ if(b.honroStage!==22||b.honroCustom||!p.buriedEdgeBlend||!['v22-art-built-buried-west-foundation','v22-art-built-buried-east-foundation'].includes(p.id))return null;
+ const xs=p.points.map(q=>q[0]),ys=p.points.map(q=>q[1]),x=Math.min(...xs),y=Math.min(...ys),w=Math.max(...xs)-x,h=Math.max(...ys)-y;
+ const cv=document.createElement('canvas'),d=.5;cv.width=Math.ceil(w*d);cv.height=Math.ceil(h*d);
+ const c=cv.getContext('2d'),sx=cv.width/w,sy=cv.height/h,side=p.buriedEdgeBlend.side*sx,depth=p.buriedEdgeBlend.bottom*sy;
+ c.fillStyle=p.fill;c.fillRect(0,0,cv.width,cv.height);c.globalCompositeOperation='destination-in';
+ for(const [x0,y0,x1,y1,reverse]of [[0,0,side,0,true],[cv.width-side,0,cv.width,0,false],[0,cv.height-depth,0,cv.height,false]]){
+  const g=c.createLinearGradient(x0,y0,x1,y1);g.addColorStop(0,reverse?'#0000':'#000');g.addColorStop(1,reverse?'#000':'#0000');c.fillStyle=g;c.fillRect(0,0,cv.width,cv.height);
+ }
+ return{canvas:cv,x,y,w,h};
+}
 function roundedPolygon(points,radius=28,roundIndices=null){const p=new Path2D(),cuts=points.map((v,i)=>{const a=points[(i+points.length-1)%points.length],z=points[(i+1)%points.length],da=Math.hypot(v[0]-a[0],v[1]-a[1]),dz=Math.hypot(z[0]-v[0],z[1]-v[1]),r=roundIndices&&!roundIndices.has(i)?0:Math.min(radius,da*.14,dz*.14);return{v,enter:[v[0]+(a[0]-v[0])*r/(da||1),v[1]+(a[1]-v[1])*r/(da||1)],exit:[v[0]+(z[0]-v[0])*r/(dz||1),v[1]+(z[1]-v[1])*r/(dz||1)]};});p.moveTo(...cuts[0].exit);for(let i=1;i<=cuts.length;i++){const q=cuts[i%cuts.length];p.lineTo(...q.enter);p.quadraticCurveTo(...q.v,...q.exit);}p.closePath();return p;}
 function pointIn(x,y,pts){let inside=false;for(let i=0,j=pts.length-1;i<pts.length;j=i++){const a=pts[i],z=pts[j];if((a.y>y)!==(z.y>y)&&x<(z.x-a.x)*(y-a.y)/(z.y-a.y)+a.x)inside=!inside;}return inside;}
 function surfaceEdges(t,b){const original=t.honroDomain?b.terrain.find(v=>v.id===t.id)||t:t,ps=C.poly(original),space=b.honroMap.space,ref=space.surfaces?.find(s=>s.terrainId===t.id),indices=ref?.edgeIndices||t.honroWalkEdges||[];const edges=indices.map(i=>[ps[i],ps[(i+1)%ps.length]]).filter(p=>p[0]&&p[1]&&(!t.honroDomain||!(Math.abs(p[0].x-p[1].x)<.001&&(p[0].x===0||p[0].x===b.width))));// Compact14 retains old surface indices, but its projected refuge polygon
@@ -80,7 +94,7 @@ function prepareTerrain(t,b){const material=rockMaterial(t,b),materialKey=materi
  if([18,19].includes(b.honroStage)&&t.honroSurfaceRole==='floor'){const bell=(b.honroMap.space.landmarks||[]).find(l=>l.kind==='bell');if(bell)for(const side of [-1,1]){const cx=bell.x+side*650,left=cx-270,right=cx+270,top=[left,left+130,right-120,right].map(x=>[x,at(x)]),a=top[0],z=top.at(-1),depth=side<0?470:620,lower=[[right-80,z[1]+depth*.68],[cx+side*70,(a[1]+z[1])/2+depth],[left+55,a[1]+depth*.64]];wedges.push({body:polygon([...top,...lower]),side:polygon([[cx,at(cx)],[...z],lower[0],lower[1],[cx-45,at(cx)+depth*.4]]),contact:polygon([[cx-13,at(cx)+14],[cx+12,at(cx)+14],[cx-28,at(cx)+depth*.4],[lower[1][0]+12,lower[1][1]],[lower[1][0]-13,lower[1][1]],[cx-64,at(cx)+depth*.4]])});}}
  if(b.honroStage===16&&t.honroSurfaceRole==='floor'){const hall=b.honroMap.space.sites?.hall,hx=hall?.x??hall?.position?.x;const hy=Number.isFinite(hx)?at(hx):NaN,flat=surface.filter(([a,z])=>Math.abs(a.y-hy)<.5&&Math.abs(z.y-hy)<.5&&Math.abs((a.x+z.x)/2-hx)<1800);if(flat.length){const l=Math.min(...flat.flat().map(v=>v.x)),r=Math.max(...flat.flat().map(v=>v.x));for(const [i,depth]of [8,55,111].entries()){masonry.push({body:polygon([[l+18-i*13,hy+depth],[r-18+i*13,hy+depth],[r-10+i*13,hy+depth+43],[l+10-i*13,hy+depth+43]]),edge:polygon([[l+18-i*13,hy+depth],[r-18+i*13,hy+depth],[r-18+i*13,hy+depth+5],[l+18-i*13,hy+depth+5]])});}}}
  const joints=new Path2D();if(timber&&!t.honroRavine)for(let i=1;i<=3;i++){const x=t.x+t.w*[.24,.57,.81][i-1];joints.moveTo(x,at(x)+6);joints.lineTo(x-3,Math.min(t.y+t.h,at(x)+t.h*.86));}
- const authoredPlanes=(b.honroMap.space.terrainPlanes||[]).filter(p=>p.terrainId===t.id).map(p=>({fill:p.fill,path:polygon(p.points)}));
+ const authoredPlanes=(b.honroMap.space.terrainPlanes||[]).filter(p=>p.terrainId===t.id).map(p=>({fill:p.fill,path:polygon(p.points),buriedTile:stage22BuriedTile(p,b)}));
  const rockMasses=prepareRockMasses(t,b,surface,material);
  q={source:t.vertices,version:b.sceneVersion,materialKey,rockMasses,shape,rim,facets,blocks,wedges,masonry,lip,ceiling,timber,joints,authoredPlanes};terrainCache.set(t,q);return q;
 }
@@ -111,7 +125,7 @@ function terrain(c,t,b){if(G.HonroStage11LandscapeArt?.terrain(c,t,b))return;con
   for(const [i,row]of q.masonry.entries()){c.fillStyle=i%2?'#414c56':'#53616c';c.fill(row.body);c.fillStyle='#8c98924f';c.fill(row.edge);}
   // Optional broad authored planes remain clipped to the CURRENT solid.
   // Destroyed geometry cannot retain a detached decorative silhouette.
-  for(const p of q.authoredPlanes){c.fillStyle=p.fill;c.fill(p.path);}
+  for(const p of q.authoredPlanes){if(p.buriedTile){const t=p.buriedTile;c.drawImage(t.canvas,t.x,t.y,t.w,t.h);}else{c.fillStyle=p.fill;c.fill(p.path);}}
   // A local oil lamp warms only the neighbouring solid. The clipped bounce
   // shares the world's static cache; it never brightens actors or the cave.
   if(!q.ceiling)for(const light of b.honroMap.space.lights||[]){if(light.kind!=='oil'||!Number.isFinite(light.x)||!Number.isFinite(light.y)||light.x<t.x-160||light.x>t.x+t.w+160||light.y<t.y-220||light.y>t.y+t.h)continue;A.glow(c,light.x,light.y+74,155,118,light.color||'#d6aa70',.19);}
