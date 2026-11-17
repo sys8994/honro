@@ -149,9 +149,15 @@ async function capture(id,runtimeSha256,variant,requestedCamera){
     const firstAction={hpLoss:start.hp-h.hp,dx:u.x-start.x,dy:u.y-start.y,shots:copy.shot-start.shot,acted:!!u.acted,intent:u.intent};
     let followUp=null;
     const pending=u.honroMonsterWindup||u.enemyEffectCast;
-    if(pending||(group.id==='place40-east-rearguard'&&firstAction.hpLoss===0&&firstAction.shots===0)){
+    if(pending||(['place40-east-rearguard','place40-stair-head','place40-boss-approach'].includes(group.id)&&firstAction.hpLoss===0&&firstAction.shots===0)){
      for(let i=0;i<720&&!(copy.side===0&&copy.phase==='aim');i++)probe.tick(HONRO_CORE.STEP);
      if(probe.select(h.id)){
+      const advanceFrom={x:h.x,y:h.y,hp:h.hp};
+      if(!pending&&['place40-stair-head','place40-boss-approach'].includes(group.id)){
+       const direction=Math.sign(u.x-h.x);
+       for(let i=0;i<240&&Math.abs(h.x-advanceFrom.x)<40;i++){probe.move(direction,HONRO_CORE.STEP);probe.tick(HONRO_CORE.STEP);if(copy.side!==0||copy.phase!=='aim')break;}
+      }
+      const playerAdvance={from:advanceFrom,to:{x:h.x,y:h.y,hp:h.hp},method:'Actual Engine.move/tick, capped at forty world units; no coordinate or health assignment'};
       Object.assign(scene,{x:(u.x+h.x)/2,y:h.y-180,scale:.65});
       HonroApp={engine:probe,scene:{x:scene.x,y:scene.y,scale:scene.scale,canvas:cv}};
       scene.render(probe,0,'',.6,false,0,false);await drain();
@@ -166,7 +172,7 @@ async function capture(id,runtimeSha256,variant,requestedCamera){
        copy.queue=[u.id];copy.active=u.id;copy.phase='enemy';u.acted=false;
        for(let i=0;i<1440;i++){probe.tick(HONRO_CORE.STEP);if(u.acted&&!copy.projectiles.length)break;}
       }
-      followUp={shown,answer,hpLoss:health-h.hp,shieldLoss:shield-(h.shield||0),conditions:h.honroMonsterConditions||h.bound||null,remainingWindup:!!(u.honroMonsterWindup||u.enemyEffectCast),intent:u.intent,scope:'Actual Canvas warning, actual hero wait then a second prepared enemy slot. Not normal route or full-play acceptance.'};
+      followUp={shown,answer,playerAdvance,hpLoss:health-h.hp,shieldLoss:shield-(h.shield||0),conditions:h.honroMonsterConditions||h.bound||null,remainingWindup:!!(u.honroMonsterWindup||u.enemyEffectCast),intent:u.intent,scope:'Actual Canvas warning, actual hero wait then a second prepared enemy slot. Not normal route or full-play acceptance.'};
       HonroApp={engine};Object.assign(scene,camera);if(id===37)HonroApp.scene={...camera,canvas:cv};
      }else followUp={error:'Could not offer target an actual ally turn'};
     }
