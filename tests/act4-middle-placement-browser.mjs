@@ -80,6 +80,7 @@ async function capture(id,runtimeSha256,variant,requestedCamera){
   assert(JSON.stringify({terrain:b.terrain,units:b.units})===physics,'Physics changed');
   assert(!p.storage.length&&!p.errors.length&&!p.violations.length,'Storage/runtime/CSP error');
   assert(!p.images.some(v=>v.pending||v.error),'Pending or failed image');
+  const initialPng=cv.toDataURL('image/png'),warningImages=[];
   const settling=[];
   if(variant==='candidate'&&requestedCamera.name==='overview'){
    const copy=structuredClone(b),probe=new HONRO_CORE.Engine(copy,()=>{},true);
@@ -102,11 +103,35 @@ async function capture(id,runtimeSha256,variant,requestedCamera){
     HonroAct4PilotCombat.attach({engine:probe,dialogue:null,charging:false});
     const start={x:u.x,y:u.y,hp:h.hp,shot:copy.shot};let projectiles=0;
     for(let i=0;i<Math.ceil(12/HONRO_CORE.STEP);i++){probe.tick(HONRO_CORE.STEP);projectiles=Math.max(projectiles,copy.projectiles.length);if(u.acted&&!copy.projectiles.length)break;}
-    localActions.push({group:group.id,actor:u.id,target:h.id,preparedHero:pos,support,actorSupport:probe.contactSurface(start.x,start.y-8,start.y+10)?.t.id||null,targetSupport:probe.contactSurface(pos.x,pos.y-8,pos.y+10)?.t.id||null,hpLoss:start.hp-h.hp,dx:u.x-start.x,dy:u.y-start.y,projectiles,shots:copy.shot-start.shot,acted:!!u.acted,intent:u.intent,windup:u.honroMonsterWindup||u.enemyEffectCast||null,scope:'Prepared one-actor local Engine action on production terrain; not normal route, quest or full-play acceptance'});
+    const firstAction={hpLoss:start.hp-h.hp,dx:u.x-start.x,dy:u.y-start.y,shots:copy.shot-start.shot,acted:!!u.acted,intent:u.intent};
+    let followUp=null;
+    const pending=u.honroMonsterWindup||u.enemyEffectCast;
+    if(pending){
+     for(let i=0;i<720&&!(copy.side===0&&copy.phase==='aim');i++)probe.tick(HONRO_CORE.STEP);
+     if(probe.select(h.id)){
+      Object.assign(scene,{x:(u.x+h.x)/2,y:h.y-180,scale:.65});
+      HonroApp={engine:probe,scene:{x:scene.x,y:scene.y,scale:scene.scale,canvas:cv}};
+      scene.render(probe,0,'',.6,false,0,false);await drain();
+      const shown=structuredClone(u.honroMonsterWindup||u.enemyEffectCast),health=h.hp,shield=h.shield||0;
+      if(!warningImages.length)warningImages.push({group:group.id,actor:u.id,target:h.id,png:cv.toDataURL('image/png')});
+      probe.wait();
+      for(let i=0;i<1440&&copy.side===0;i++){if(probe.canAct())probe.wait();probe.tick(HONRO_CORE.STEP);}
+      const answer=structuredClone(u.honroMonsterWindup||u.enemyEffectCast||null);
+      if(copy.side===1){
+       // A second prepared actor slot, after real hero wait/turn completion.
+       // No seen/answered receipts, damage or skill outcome are assigned.
+       copy.queue=[u.id];copy.active=u.id;copy.phase='enemy';u.acted=false;
+       for(let i=0;i<1440;i++){probe.tick(HONRO_CORE.STEP);if(u.acted&&!copy.projectiles.length)break;}
+      }
+      followUp={shown,answer,hpLoss:health-h.hp,shieldLoss:shield-(h.shield||0),conditions:h.honroMonsterConditions||h.bound||null,remainingWindup:!!(u.honroMonsterWindup||u.enemyEffectCast),intent:u.intent,scope:'Actual Canvas warning, actual hero wait then a second prepared enemy slot. Not normal route or full-play acceptance.'};
+      HonroApp={engine};Object.assign(scene,camera);if(id===37)HonroApp.scene={...camera,canvas:cv};
+     }else followUp={error:'Could not offer target an actual ally turn'};
+    }
+    localActions.push({group:group.id,actor:u.id,target:h.id,preparedHero:pos,support,actorSupport:probe.contactSurface(start.x,start.y-8,start.y+10)?.t.id||null,targetSupport:probe.contactSurface(pos.x,pos.y-8,pos.y+10)?.t.id||null,...firstAction,projectiles,followUp,windup:u.honroMonsterWindup||u.enemyEffectCast||null,scope:'Prepared one-actor local Engine action on production terrain; not normal route, quest or full-play acceptance'});
    }
   }
   const hash=async s=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s))),v=>v.toString(16).padStart(2,'0')).join('');
-  publishProbe({ok:true,settling,localActions,scope:'Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.',stage:id,variant,units:b.units.filter(u=>u.side===1).map(u=>({id:u.id,x:u.x,y:u.y,role:u.role,group:u.group})),appReadyUnresolved:true,view,width,height,dpr:devicePixelRatio,camera,time:2,seed:3910,runtimeSha256,physicsSha256:await hash(physics),renderPure:true,fontStatus:document.fonts.status,fontNote:'System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.',userAgent:navigator.userAgent,imageCount:p.images.length,pendingImages:p.images.filter(v=>v.pending).length,imageErrors:p.images.filter(v=>v.error).length,storage:p.storage,errors:p.errors,violations:p.violations,png:cv.toDataURL('image/png')});
+  publishProbe({ok:true,settling,localActions,warningImages,scope:'Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.',stage:id,variant,units:b.units.filter(u=>u.side===1).map(u=>({id:u.id,x:u.x,y:u.y,role:u.role,group:u.group})),appReadyUnresolved:true,view,width,height,dpr:devicePixelRatio,camera,time:2,seed:3910,runtimeSha256,physicsSha256:await hash(physics),renderPure:true,fontStatus:document.fonts.status,fontNote:'System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.',userAgent:navigator.userAgent,imageCount:p.images.length,pendingImages:p.images.filter(v=>v.pending).length,imageErrors:p.images.filter(v=>v.error).length,storage:p.storage,errors:p.errors,violations:p.violations,png:initialPng});
  }catch(e){publishProbe({ok:false,stage:id,error:String(e.stack||e),...p});}
 }
 const script=s=>'<script>'+s.replace(/<\/script/gi,'<\\/script')+'</script>';
