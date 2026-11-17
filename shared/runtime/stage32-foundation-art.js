@@ -91,6 +91,7 @@ function compileScanline(nodes,cfg){
 }
 
 function compileSpatialOracle(nodes,cfg,Path2D,options={}){
+ const now=options.now??Date.now,setupStart=now();const composeWithAddPath=options.composeWithAddPath!==false&&typeof Path2D.prototype.addPath==='function';let immutableSubpathCount=0,immutableSubpathStringBytes=0,compositePathsBuilt=0;
  const cellWidth=options.cellWidth??64,cellHeight=options.cellHeight??32,margin=options.margin??.01,maxEntries=options.maxEntries??128,maxStringBytes=options.maxStringBytes??(2*1024*1024);
  if(!(cellWidth>0&&cellHeight>0&&margin>=0&&maxEntries>=1&&maxStringBytes>=0))throw Error('Invalid spatial-oracle limits');
  const cache=new Map();let bytes=0,hits=0,misses=0,evictions=0,built=0,maxObservedEntries=0,maxObservedBytes=0;
@@ -101,7 +102,7 @@ function compileSpatialOracle(nodes,cfg,Path2D,options={}){
    const tok=source.match(/[MLCz]|[-+]?(?:\d*\.\d+|\d+\.?\d*)(?:[eE][-+]?\d+)?/g);if(tok.join('').replace(/\+/g,'')!==source.replace(/[\s,]/g,'').replace(/\+/g,''))throw Error('Unsupported source token');
    const p=tok.filter(t=>!/[MLCz]/.test(t)).map(Number);if(p.length%2||!p.every(Number.isFinite))throw Error('Invalid coordinate pairs');
    const box=[Infinity,Infinity,-Infinity,-Infinity];for(let j=0;j<p.length;j+=2){box[0]=Math.min(box[0],p[j]);box[1]=Math.min(box[1],p[j+1]);box[2]=Math.max(box[2],p[j]);box[3]=Math.max(box[3],p[j+1]);}
-   return {source,gray:grayIndices.has(i),box};
+   const subpath=composeWithAddPath?new Path2D(source):null;if(subpath){immutableSubpathCount++;immutableSubpathStringBytes+=2*source.length;}return {source,gray:grayIndices.has(i),box,subpath,start:[p[0],p[1]]};
   });
   const supplied=options.fullPaths?.[index];return {parts,rule:n.fillRule||'nonzero',full:supplied?.path??new Path2D(raw),gray:supplied?.gray??(grayIndices.size?new Path2D(parts.filter(p=>p.gray).map(p=>p.source).join('')):null)};
  });
@@ -113,7 +114,8 @@ function compileSpatialOracle(nodes,cfg,Path2D,options={}){
   const selected=p.parts.filter(s=>s.box[2]>=x0&&s.box[0]<=x1&&s.box[3]>=y0&&s.box[1]<=y1);
   const source=selected.map(s=>s.source).join(''),graySource=selected.filter(s=>s.gray).map(s=>s.source).join('');
   const all=selected.length===p.parts.length;
-  const result={path:all?p.full:(source?new Path2D(source):null),gray:all?p.gray:(graySource?new Path2D(graySource):null),source,graySource,rule:p.rule,selectedSubpaths:selected.length,totalSubpaths:p.parts.length,inputStringBytes:2*(source.length+graySource.length+key.length)};
+  const compose=(parts,text)=>{if(!text)return null;compositePathsBuilt++;if(!composeWithAddPath)return new Path2D(text);const path=new Path2D();for(const part of parts){path.moveTo(part.start[0],part.start[1]);path.addPath(part.subpath);}return path;};
+  const result={path:all?p.full:compose(selected,source),gray:all?p.gray:compose(selected.filter(s=>s.gray),graySource),source,graySource,rule:p.rule,selectedSubpaths:selected.length,totalSubpaths:p.parts.length,inputStringBytes:2*(source.length+graySource.length+key.length)};
   built++;
   if(result.inputStringBytes<=maxStringBytes){
    while(cache.size&&(cache.size>=maxEntries||bytes+result.inputStringBytes>maxStringBytes)){const first=cache.keys().next().value;bytes-=cache.get(first).inputStringBytes;cache.delete(first);evictions++;}
@@ -121,8 +123,10 @@ function compileSpatialOracle(nodes,cfg,Path2D,options={}){
   }
   return result;
  }
- return {paths,get,clear(){cache.clear();bytes=0;},stats:()=>({cellWidth,cellHeight,margin,maxEntries,maxStringBytes,entries:cache.size,inputStringBytes:bytes,maxObservedEntries,maxObservedBytes,hits,misses,evictions,built,scope:'Bounded retained input UTF-16 string payload only. Not actual JS heap or native Path2D/GPU memory; original full paths and source metadata are outside this cache estimate.'})};
+ const setupMs=now()-setupStart;
+ return {paths,get,clear(){cache.clear();bytes=0;},stats:()=>({setupMs,composeWithAddPath,immutableSubpathCount,immutableSubpathStringBytes,compositePathsBuilt,cellWidth,cellHeight,margin,maxEntries,maxStringBytes,entries:cache.size,inputStringBytes:bytes,maxObservedEntries,maxObservedBytes,hits,misses,evictions,built,scope:'Cell cache uses unchanged equivalent retained input UTF-16 string charge. Immutable subpath count/string payload reported separately. Neither bounds native Path2D/JS heap/GPU memory; original full paths and source metadata are separate. clear releases cell entries only, not immutable prepared subpaths.'})};
 }
+
 
 function geometry(asset){
  if(prepared.has(asset))return prepared.get(asset);
@@ -145,7 +149,7 @@ function geometry(asset){
    if(indices?.some(j=>!Number.isInteger(j)||!subs[j]))throw Error('Invalid Stage 32 original subpath index');
    return {sourceIndex:i,bounds,path:new G.Path2D(path),fill:n.fill,rule:n.fillRule||'nonzero',protected:protect.has(i),gray:indices?new G.Path2D(indices.map(j=>subs[j]).join('')):null};
   });
-  q.scanline=compileScanline(nodes,cfg);q.spatial=compileSpatialOracle(nodes,cfg,G.Path2D,{fullPaths:q.paths});
+  q.scanline=compileScanline(nodes,cfg);q.spatial=compileSpatialOracle(nodes,cfg,G.Path2D,{fullPaths:q.paths,now:()=>G.performance?.now?.()??Date.now()});
  }
  prepared.set(asset,q);return q;
 }

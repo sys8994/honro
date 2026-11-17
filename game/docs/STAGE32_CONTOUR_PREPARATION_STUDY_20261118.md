@@ -1,0 +1,7 @@
+# Immutable original-contour preparation study
+
+Repeated cell-subset text parsing replaced by original subpath Path2D preparation and addPath composition. Always moveTo the original M coordinate before adding each contour. An earlier naive addPath experiment failed9 Native boundary comparisons because it introduced an unwanted connecting L; that rejected experiment is not this candidate. The general original-M handling restored Native normalized path equality, not a point-specific exception.
+
+Native checks:565064 full/gray queries difference0 and6868 selected compound Path2D.equals difference0. Synthetic9000-query cold p50 concat1150.52ms vs prepared593.20ms. Factory setup17.39→27.21ms, max54.51ms;723 additional immutable Path2D objects. Native memory/GC is NOT measured. Equivalent cache string charge remains bounded128entries/2MiB. Actual renderer reports spatial setupMs separately; prepared geometry remains after clear, while cellcache clears. The Scene cold benchmark reuses decoded assets/prepared geometry and is NOT cold app startup. These tradeoffs must not be hidden by a lower frame timing.
+
+Actual Chrome repeats full-path oracle comparison during scene capture, exact prior/frozen/current PNG checks remain. Additional setup cost is reported via stats. Unsupported addPath falls back to prior original-text composition rather than breaking the renderer. No release approval or master/Pages changes.
