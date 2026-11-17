@@ -1,0 +1,19 @@
+name: Diagnose browser and Native gradient semantics
+on:
+  push:
+    branches: ['audit/canvas-gradient-browser-20261117']
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - name: Execute isolated Chrome Canvas2D fixture
+        shell: bash
+        run: |
+          browser=$(command -v google-chrome || command -v chromium)
+          "$browser" --version
+          timeout 60s "$browser" --headless --no-first-run --no-default-browser-check --user-data-dir="$RUNNER_TEMP/honro-gradient-probe" --dump-dom "file://$PWD/tests/fixtures/canvas/transformed-gradient.html" > "$RUNNER_TEMP/honro-gradient-result.html"
+          node tests/canvas-gradient-browser-result.mjs "$RUNNER_TEMP/honro-gradient-result.html"
