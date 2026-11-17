@@ -15,21 +15,27 @@ jobs:
           node-version: '22'
           package-manager-cache: false
       - run: npm ci && npm ci --prefix game
+      - run: node tests/early-encounter-contract.mjs
       - run: node tests/early-encounter-browser-fixture.mjs "$RUNNER_TEMP/early"
       - name: Isolated initial Chrome scenes
         shell: bash
         run: |
           browser=$(command -v google-chrome || command -v chromium)
-          for stage in 13 29 30; do
+          for stage in 13 29 30 9 17; do
+            variants='candidate'; if [[ "$stage" == 13 || "$stage" == 29 ]]; then variants='baseline candidate'; fi
+            for variant in $variants; do
             for view in focus overview; do
-              name="stage$stage-$view"
+              name="stage$stage-$variant-$view"
               timeout 300s "$browser" --headless --no-first-run --no-default-browser-check --force-device-scale-factor=1 --virtual-time-budget=60000 --user-data-dir="$RUNNER_TEMP/profile-$name" --dump-dom "file://$RUNNER_TEMP/early/$name.html" > "$RUNNER_TEMP/$name.html"
               node tests/early-encounter-browser-result.mjs "$RUNNER_TEMP/$name.html" "$RUNNER_TEMP/early-results"
+            done
             done
           done
       - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
         if: always()
         with:
           name: early-encounter-inspection
-          path: ${{ runner.temp }}/early-results
+          path: |
+            ${{ runner.temp }}/early-results
+            _local/reports/early-encounters
           if-no-files-found: warn

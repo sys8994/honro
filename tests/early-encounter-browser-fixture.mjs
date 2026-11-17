@@ -3,7 +3,8 @@ import path from 'node:path';
 import {runtimeEntries} from '../shared/build.mjs';
 const out=process.argv[2];await mkdir(out,{recursive:true});
 const entries=await runtimeEntries({vector:true,render:true,app:false,productionStory:true});
-const runtime=entries.map(e=>e.code).join('\n;\n');
+const candidateRuntime=entries.map(e=>e.code).join('\n;\n');
+const baselineRuntime=entries.map(e=>e.name==='shared/runtime/early-encounter-placement.js'?'globalThis.HonroEarlyEncounterPlacement={author:p=>p};':e.code).join('\n;\n');
 function bootstrap(id){
  if(id===40)globalThis.HONRO_APP_READY=new Promise(()=>{}); // Never attach a real App or resolve this promise.
  globalThis.PROBE={storage:[],errors:[],images:[],violations:[]};
@@ -23,7 +24,7 @@ function bootstrap(id){
  }});
 }
 
-async function capture(id,camera){
+async function capture(id,camera,variant){
 const p=PROBE;try{
  const C=HONRO_CORE,st=HONRO_CONTENT.stages[id-1],profile=C.defaults();
  profile.recruited=HonroStageRules.stageParty(id);profile.honroGrowth={version:2,stages:{}};
@@ -36,11 +37,12 @@ const p=PROBE;try{
  for(let i=0;i<3;i++){scene.render(engine,0,'',.6,false,0);await drain();await new Promise(r=>setTimeout(r,100));}
  if(JSON.stringify(b)!==before)throw Error('render mutation');
  const source=HONRO_PROJECT.stages.find(s=>s.metadata.stageId===id);
- publishProbe({ok:true,stage:id,view:camera.name,source:{metadata:source.metadata,units:source.units,terrains:source.terrains,markers:source.markers,elements:source.elements,encounters:source.encounters},units:b.units.map(u=>({id:u.id,x:u.x,y:u.y,r:u.r,h:u.h,role:u.role,kind:u.kind,side:u.side,hp:u.hp,group:u.group,contact:engine.contactSurface(u.x,u.y-8,u.y+10)?.t.id||null})),camera:{x:scene.x,y:scene.y,scale:scene.scale},...p,png:cv.toDataURL('image/png')});
+ publishProbe({ok:true,stage:id,variant,view:camera.name,source:{metadata:source.metadata,units:source.units,terrains:source.terrains,markers:source.markers,elements:source.elements,encounters:source.encounters},units:b.units.map(u=>({id:u.id,x:u.x,y:u.y,r:u.r,h:u.h,role:u.role,kind:u.kind,side:u.side,hp:u.hp,group:u.group,contact:engine.contactSurface(u.x,u.y-8,u.y+10)?.t.id||null})),camera:{x:scene.x,y:scene.y,scale:scene.scale},...p,png:cv.toDataURL('image/png')});
 }catch(e){publishProbe({ok:false,stage:id,error:String(e.stack||e),...p});}
 }
 const script=s=>'<script>'+s.replace(/<\/script/gi,'<\\/script')+'</script>';
-for(const [id,x,y] of [[13,4800,2640],[29,3400,2110],[30,3200,5300]])for(const camera of [{name:'focus',x,y,scale:.65},{name:'overview',x:x/2,y:y/2}]){
- const html='<!doctype html><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src \'none\'; script-src \'unsafe-inline\'; style-src \'unsafe-inline\'; img-src data:; font-src data:; connect-src \'none\'"><canvas id="scene"></canvas><pre id="result">pending</pre>'+script('('+bootstrap.toString()+')('+id+');')+script(runtime)+script('('+capture.toString()+')('+id+','+JSON.stringify(camera)+');');
- await writeFile(path.join(out,'stage'+id+'-'+camera.name+'.html'),html);
+for(const [id,x,y] of [[13,4650,2440],[29,3400,2110],[30,5200,5350],[9,3000,2700],[17,2600,2000]])for(const variant of ([13,29].includes(id)?['baseline','candidate']:['candidate']))for(const camera of [{name:'focus',x,y,scale:.65},{name:'overview',x:x/2,y:y/2}]){
+ const runtime=variant==='baseline'?baselineRuntime:candidateRuntime;
+ const html='<!doctype html><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src \'none\'; script-src \'unsafe-inline\'; style-src \'unsafe-inline\'; img-src data:; font-src data:; connect-src \'none\'"><canvas id="scene"></canvas><pre id="result">pending</pre>'+script('('+bootstrap.toString()+')('+id+');')+script(runtime)+script('('+capture.toString()+')('+id+','+JSON.stringify(camera)+','+JSON.stringify(variant)+');');
+ await writeFile(path.join(out,'stage'+id+'-'+variant+'-'+camera.name+'.html'),html);
 }
