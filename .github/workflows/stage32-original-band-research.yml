@@ -1,0 +1,60 @@
+name: Stage32 original-band independent research
+on:
+  workflow_dispatch:
+  push:
+    branches: [inspect/stage32-scanline-20261118]
+    paths:
+      - tests/stage32-original-band-*
+      - tests/fixtures/stage32-original-band*
+      - .github/workflows/stage32-original-band-research.yml
+permissions:
+  contents: read
+jobs:
+  diagnostic:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm ci && npm ci --prefix game
+      - name: Generate isolated fixtures without production registration
+        run: |
+          HONRO_ACT4_RELEASE=1 node tests/stage32-original-band-perf-fixture.mjs "$RUNNER_TEMP/band-perf"
+          HONRO_ACT4_RELEASE=1 node tests/stage32-original-band-matrix-fixture.mjs "$RUNNER_TEMP/band-matrix"
+      - name: Actual Chrome with original, spatial reference and new candidate
+        shell: bash
+        run: |
+          browser=$(command -v google-chrome || command -v chromium)
+          mkdir -p "$RUNNER_TEMP/band-evidence/perf" "$RUNNER_TEMP/band-evidence/matrix"
+          "$browser" --version > "$RUNNER_TEMP/band-evidence/chrome-version.txt"
+          failed=0
+          for kind in perf matrix; do
+            views='lower left'; prefix=''
+            if [ "$kind" = matrix ]; then views='portrait-overview portrait-bottom landscape-overview landscape-bottom desktop-walk'; prefix='matrix-'; fi
+            for variant in candidate spatial transition; do
+              for view in $views; do
+                dump="$RUNNER_TEMP/band-$kind-$variant-$view.html"
+                if timeout 320s node tests/stage32-real-clock-chrome.mjs "$browser" "$RUNNER_TEMP/band-profile-$kind-$variant-$view" "$RUNNER_TEMP/band-$kind/stage32-$prefix$variant-$view.html" "$dump"; then
+                  node "tests/stage32-original-band-$kind-result.mjs" "$dump" "$RUNNER_TEMP/band-evidence/$kind" "$variant" "$view" || failed=1
+                else
+                  printf '{"ok":false,"reason":"Chrome timeout/process failure"}\n' > "$RUNNER_TEMP/band-evidence/$kind/$variant-$view-process-failure.json"
+                  failed=1
+                fi
+              done
+            done
+          done
+          exit "$failed"
+      - name: Strict protected source, alpha and road-buffer comparisons
+        if: ${{ !cancelled() }}
+        run: |
+          node tests/stage32-original-band-perf-compare.mjs "$RUNNER_TEMP/band-evidence/perf"
+          node tests/stage32-original-band-matrix-compare.mjs "$RUNNER_TEMP/band-evidence/matrix" spatial
+          node tests/stage32-original-band-matrix-compare.mjs "$RUNNER_TEMP/band-evidence/matrix" transition
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage32-original-band-research
+          path: ${{ runner.temp }}/band-evidence
