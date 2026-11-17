@@ -10,7 +10,7 @@ assert.equal(JSON.stringify(restored),JSON.stringify(old.HONRO_PROJECT),'only de
 const report=[],clean=u=>{const v=structuredClone(u);for(const k of ['x','y','spawnX','spawnY'])delete v[k];return JSON.stringify(v);};
 for(const id of [9,13,29]){
  const {b,e}=battlefield(g,id),prior=battlefield(old,id).b,rows=P.placements[id];
- assert.deepEqual(b.units.map(u=>u.id),prior.units.map(u=>u.id));
+ assert.equal(JSON.stringify(b.units.map(u=>u.id)),JSON.stringify(prior.units.map(u=>u.id)));
  for(const u of b.units)assert.equal(clean(u),clean(prior.units.find(v=>v.id===u.id)),'non-position runtime change '+id+'/'+u.id);
  for(const row of rows){const u=b.units.find(u=>u.id===row.id),s=authored.stages.find(s=>s.metadata.stageId===id),p=P.point(s,row);
   assert(Math.abs(u.x-p.x)<.01&&Math.abs(u.y-p.y)<.01,'sanitize relocated '+row.id+' '+JSON.stringify({actual:{x:u.x,y:u.y},expected:p}));

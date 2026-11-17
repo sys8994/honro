@@ -17,7 +17,9 @@ jobs:
       - run: npm ci && npm ci --prefix game
       - run: node tests/early-encounter-contract.mjs
       - run: node tests/early-encounter-browser-fixture.mjs "$RUNNER_TEMP/early"
+        if: always()
       - name: Isolated initial Chrome scenes
+        if: always()
         shell: bash
         run: |
           browser=$(command -v google-chrome || command -v chromium)
