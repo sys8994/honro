@@ -48,7 +48,11 @@ export function placeAct4Middle(stage,point){
  for(const [i,[name,route,purpose,slots]]of places.entries()){
   const key=`place${id}-${name}`,support=`approved${id}-${route}`;
   for(const [suffix,x]of slots){const uid=`a4-${id}-${suffix}`,u=stage.units.find(u=>u.id===uid&&u.team==='enemy');if(!u||moves.has(uid))throw Error('Unknown/duplicate placement '+uid);
-   moves.set(uid,{...u,...point(stage,support,x),encounterGroup:key,stageOverrides:{...u.stageOverrides,group:2000+id*20+i,honroEncounterSupport:support}});
+   const position=point(stage,support,x);
+   // The exit lantern hovers over the grove, not inside the bank. A ground
+   // seed at this concave edge was sanitized to the underside of the cliff.
+   if(uid==='a4-35-e-5')position.y-=150;
+   moves.set(uid,{...u,...position,encounterGroup:key,stageOverrides:{...u.stageOverrides,group:2000+id*20+i,honroEncounterSupport:support}});
   }
   newGroups.push({id:key,key,behavior:'guard',purpose,unitIds:slots.map(([suffix])=>`a4-${id}-${suffix}`)});
  }

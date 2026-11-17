@@ -11,7 +11,7 @@ for(const id of [34,35,37,38]){
  const after=placeAct4Middle(before,supportPoint);
  const stable=u=>{const s=structuredClone(u);delete s.x;delete s.y;delete s.encounterGroup;delete s.stageOverrides?.group;delete s.stageOverrides?.honroEncounterSupport;return s;};
  assert.deepEqual(after.units.map(stable),before.units.map(stable));for(const k of ['terrains','elements','events','objectives','design'])assert.deepEqual(after[k],before[k]);
- const changed=after.units.filter((u,i)=>u.x!==before.units[i].x||u.y!==before.units[i].y);for(const u of changed){const p=supportPoint(after,u.stageOverrides.honroEncounterSupport,u.x);assert.deepEqual({x:u.x,y:u.y},p);}
+ const changed=after.units.filter((u,i)=>u.x!==before.units[i].x||u.y!==before.units[i].y);for(const u of changed){const p=supportPoint(after,u.stageOverrides.honroEncounterSupport,u.x);if(u.id==='a4-35-e-5')p.y-=150;assert.deepEqual({x:u.x,y:u.y},p);}
  const enemies=after.units.filter(u=>u.team==='enemy'),overlap=[];for(let i=0;i<enemies.length;i++)for(let j=i+1;j<enemies.length;j++){const a=enemies[i],b=enemies[j];if(Math.abs(a.x-b.x)<55&&Math.abs(a.y-b.y)<125)overlap.push([a.id,b.id]);}
  assert.deepEqual(overlap,[],`body-overlap candidates stage${id}`);
  const listed=after.encounters.flatMap(e=>e.unitIds);assert.equal(new Set(listed).size,listed.length);for(const u of changed)assert(listed.includes(u.id));
