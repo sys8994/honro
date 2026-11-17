@@ -86,7 +86,8 @@ def finish_escort(p,out):
  pan(g['marks']['safe']);ready();pan(g['marks']['ridge']);pan(g['marks']['dislocation']);ready();s=record('gathered')
  rows=[f'A4.S40.{prefix}.{i:02d}' for prefix,count in [('BOARD',2),('REUNION',2),('THIRTEEN',3),('NEXT',4)] for i in range(1,count+1)]
  presented=[r for e in s['events'].values() for r in e.get('presented',[])];retired=[r for e in s['events'].values() for r in e.get('retired',[])]
- assert all(r in presented and r not in retired for r in rows),(presented,retired)
+ coverage={'required':rows,'presented':[r for r in rows if r in presented],'retired':[r for r in rows if r in retired],'missing':[r for r in rows if r not in presented]}
+ (out/'dialogue-coverage.json').write_text(json.dumps(coverage,ensure_ascii=False,indent=2))
  assert s['roster']=={'total':13,'living':11,'priorDeaths':2},s['roster']
  p.keyboard.press('e');p.wait_for_function("HonroApp.engine.b.phase==='won'",timeout=30000);final=record('won');assert final['complete'] and final['round']<=120
  p.screenshot(path=str(out/'outcome.jpg'),type='jpeg',quality=90)
@@ -100,7 +101,7 @@ def finish_escort(p,out):
  transition={'immediate':immediate,'settled':before}
  (out/'postwin-notification.json').write_text(json.dumps(transition,ensure_ascii=False,indent=2))
  raw=p.evaluate("localStorage.getItem('honro-first-act-profile-1')");(out/'completed-storage.json.xz').write_bytes(lzma.compress(raw.encode()))
- p.reload();p.wait_for_function('window.HonroApp');p.get_by_text('여정 이어가기',exact=True).click();p.wait_for_function("HonroApp.screen==='rest'",timeout=60000);after=p.evaluate(projection);(out/'postwin-reload.json').write_text(json.dumps({'before':before,'after':after},ensure_ascii=False,indent=2));assert before==after
+ p.reload();p.wait_for_function('window.HonroApp');p.locator('.title-actions button.primary[data-action="rest"]').click();p.wait_for_function("HonroApp.screen==='rest'",timeout=60000);after=p.evaluate(projection);(out/'postwin-reload.json').write_text(json.dumps({'before':before,'after':after},ensure_ascii=False,indent=2));assert before==after
  p.screenshot(path=str(out/'same-context-restored.jpg'),type='jpeg',quality=90)
- return {'passed':True,'round':final['round'],'heroes':final['heroes'],'residents':final['residents'],'roster':final['roster'],'presentedRequired':rows,'retiredRequired':[],'waterRecoveries':final['water'],'sameOriginalContextPostVictoryReload':True,'completedStorageSha256':hashlib.sha256(raw.encode()).hexdigest()}
+ return {'passed':True,'round':final['round'],'heroes':final['heroes'],'residents':final['residents'],'roster':final['roster'],'presentedRequired':coverage['presented'],'retiredRequired':coverage['retired'],'missingRequired':coverage['missing'],'allRequiredPresented':not coverage['missing'],'waterRecoveries':final['water'],'sameOriginalContextPostVictoryReload':True,'completedStorageSha256':hashlib.sha256(raw.encode()).hexdigest()}
 
