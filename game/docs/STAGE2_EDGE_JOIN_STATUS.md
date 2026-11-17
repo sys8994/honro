@@ -63,3 +63,16 @@ Native production Scene, DPR1, 정적time2, 카메라는 현행 HonroBounds.cons
 Native 캐시 부담 진단1표본: 동일1331×763 하단 줌에서 warm render30회. 수정전/후 p50=51.19/49.83ms, p95=66.61/59.62ms, 최대102.66/67.53ms. tile12개, world cache12,780,288B와 screen slot각4,062,212B로 동일했다. 초기render+settle은887.34/931.44ms였다. 공유환경 단일표본이므로 속도 개선이나 브라우저 FPS를 주장하지 않는다. 실제 브라우저/실기기 성능은 미측정이다.
 
 결론: 확정된 bounds 누락은 정적·Native에서 해결되고 관련CI 통과. 공개 수정후·전체 상태행렬은 여전히 미완. 다음 장은 착수하지 않았다.
+
+
+## 사용자 저장과 분리한 14개 지형 접점 확장 검수
+
+사용자가 컴퓨터 제어 인계를 원하지 않아 기존 공개 전투 및 저장을 전혀 조작하지 않고 독립적인 Native production Scene 검수만 진행했다. 초기화 거부를 다른 브라우저나 저장 조작으로 우회하지 않았다.
+
+`capture-stage2-contacts-audit.mjs`가 source의 14개 물리지형 각각에 대해 중심 x에 가까운 상부 지점을 추출해 데스크톱 1331×763/.94, 세로390×696/.82, 가로844×390/.82 총42뷰를 생성했다. 카메라는 production constrain을 적용하고 실제 좌표를 report에 남긴다. 최초 표본에서 canyon 가로 화면이 접점을 빗나간 것을 확인하여 상부점 선택을 보정하고 전후 전체를 재실행했다.
+
+최종42뷰는 bounds 수정 전후 변경 픽셀0이며 terrain/units SHA는 모든 뷰에서 86d2783bad413acd61b946b233c49905b41c73aacbb077cdd27b037b53157824로 동일하다. 세 화면비 contact sheet를 직접 열어 확인했으며 이번 접점 표본에서 새 분리·잘림 회귀는 관측하지 않았다. 이것은 각 지형의 한 접점 표본이지 모든 외곽점, 전체 보행·착지·호송 완주나 공개 모바일 합격이 아니다. 저배율 하단 seam 개선 증거는 앞선15뷰 기록을 참조한다.
+
+bounds 불변검사 및 Stage2 한정 저장왕복·변이격리·provider독립·구inline호환·malformed11건 원자거부를 재실행해 통과했다. 전체 Act1 성공으로 확대하지 않는다. 원본84PNG와 report/pixel-diff/contact sheet는 `_local/reports/stage2-all-contacts-{before,after}`에 보존한다.
+
+배포 상태 재확인: master는7d238d20663c3ceffe430eb0304e01516ae625cf. 수정은 fix/stage2-art-bounds-20261117 후보 브랜치이며 master·Pages 반영/공개 수정후 검수는 아직 수행하지 않았다. 기존 전투·사용자 저장은 보존 상태다.
