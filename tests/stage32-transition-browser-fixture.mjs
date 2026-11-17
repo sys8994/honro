@@ -130,8 +130,10 @@ function instrument(code){
   if(!G.HONRO_STAGE32_TRANSITION){c.fillStyle=n.fill;c.fill(n.path,n.rule);continue;}
   // Prototype only: original path/order is unchanged. No geometry erasure.
   // Source y780 = world1716, below the lowest actual route at world1342.
-  c.save();c.beginPath();c.rect(-1000000,-1000000,2000000,1000780);c.clip();c.fillStyle=n.fill;c.fill(n.path,n.rule);c.restore();
-  const m=c.getTransform(),inv=m.inverse();
+  const m=c.getTransform(),inv=m.inverse();if(m.b!==0||m.c!==0||m.d<=0)throw Error('Unexpected tile transform');
+  const split=Math.max(0,Math.min(cv.height,Math.floor(m.d*780+m.f)));
+  if(split===cv.height){c.fillStyle=n.fill;c.fill(n.path,n.rule);continue;}
+  if(split>0){c.save();c.setTransform(1,0,0,1,0,0);c.beginPath();c.rect(0,0,cv.width,split);c.clip();c.setTransform(m);c.fillStyle=n.fill;c.fill(n.path,n.rule);c.restore();}
   let work=G.__transitionWork,color=G.__transitionColor;
   if(!work){work=G.__transitionWork=G.document.createElement('canvas');color=G.__transitionColor=G.document.createElement('canvas');}
   if(work.width!==cv.width||work.height!==cv.height){work.width=color.width=cv.width;work.height=color.height=cv.height;}
@@ -141,7 +143,7 @@ function instrument(code){
   const g=wc.createLinearGradient(0,780,0,900);g.addColorStop(0,'rgba(255,255,255,0)');g.addColorStop(.25,'rgba(255,255,255,.15625)');g.addColorStop(.5,'rgba(255,255,255,.5)');g.addColorStop(.75,'rgba(255,255,255,.84375)');g.addColorStop(1,'rgba(255,255,255,1)');wc.fillStyle=g;wc.fillRect(-1000000,-1000000,2000000,2000000);
   cc.setTransform(1,0,0,1,0,0);cc.globalAlpha=1;cc.globalCompositeOperation='copy';cc.fillStyle=n.fill;cc.fillRect(0,0,cv.width,cv.height);cc.globalCompositeOperation='source-over';cc.drawImage(work,0,0);
   const pattern=c.createPattern(color,'no-repeat');if(!pattern)throw Error('Missing transition pattern');pattern.setTransform(inv);
-  c.save();c.beginPath();c.rect(-1000000,780,2000000,1000000);c.clip();c.fillStyle=pattern;c.fill(n.path,n.rule);c.restore();G.__transitionFills++;continue;
+  c.save();c.setTransform(1,0,0,1,0,0);c.beginPath();c.rect(0,split,cv.width,cv.height-split);c.clip();c.setTransform(m);c.fillStyle=pattern;c.fill(n.path,n.rule);c.restore();G.__transitionFills++;continue;
  }`;
  return code.replace(needle,replacement);
 }
