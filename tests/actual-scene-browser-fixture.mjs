@@ -1,14 +1,28 @@
 /** CI-only generator: isolated production Scene, not public UI/gameplay acceptance. */
-import {mkdir,writeFile} from 'node:fs/promises';
+import {mkdir,writeFile,readFile} from 'node:fs/promises';
 import path from 'node:path';
 import {createHash} from 'node:crypto';
-import {runtimeParts} from '../shared/build.mjs';
+import {runtimeEntries,root} from '../shared/build.mjs';
 const out=process.argv[2];
-if(!out)throw Error('Usage: node tests/actual-scene-browser-fixture.mjs OUTPUT_DIRECTORY');
+if(!out)throw Error('Usage: node tests/actual-scene-browser-fixture.mjs OUTPUT_DIRECTORY [23,26,29|32]');
+const stages=process.argv[3]?process.argv[3].split(',').map(Number):[23,26,29];
+if(!stages.length||new Set(stages).size!==stages.length||stages.some(id=>![23,26,29,32].includes(id)))throw Error('Unsupported or duplicate stage');
+if(stages.includes(32)&&process.env.HONRO_ACT4_RELEASE!=='1')throw Error('Stage32 requires HONRO_ACT4_RELEASE=1');
 await mkdir(out,{recursive:true});
-const runtime=(await runtimeParts({vector:true,render:true,app:false,productionStory:true})).join('\n;\n');
+// runtimeParts is exactly runtimeEntries(...).map(entry=>entry.code). Names allow safe deduplication.
+const entries=await runtimeEntries({vector:true,render:true,app:false,productionStory:true});
+const runtime=entries.map(entry=>entry.code).join('\n;\n');
+const names=new Set(entries.map(entry=>entry.name)),act4Extra=[];
+if(stages.includes(32)){
+ for(const [name,file]of [['HONRO_ACT4_PILOT_COMBAT_REFERENCE','pilot-combat-reference.json'],['HONRO_ACT4_PREVIEW_SEEDS','reviewed.json']])if(!entries.some(e=>e.global===name||e.name===name))act4Extra.push('globalThis.'+name+'='+JSON.stringify(JSON.parse(await readFile(path.join(root,'shared/data/act4',file),'utf8')))+';');
+ for(const name of ['act4-art','act4-maps','act4-coast-maps','act4-coast-art','act4-events','act4-coast-events','act4-pilot-combat','act4-pilot-art']){
+  const file='shared/runtime/'+name+'.js';if(names.has(file))continue;
+  names.add(file);act4Extra.push(await readFile(path.join(root,file),'utf8'));
+ }
+}
 const runtimeSha256=createHash('sha256').update(runtime).digest('hex');
-function bootstrap(){
+function bootstrap(id){
+ if(id===32)globalThis.HONRO_APP_READY=new Promise(()=>{}); // Never attach a real App or resolve this promise.
  globalThis.PROBE={storage:[],errors:[],images:[],violations:[]};
  const p=globalThis.PROBE;
  globalThis.publishProbe=value=>{document.getElementById('result').textContent=btoa(unescape(encodeURIComponent(JSON.stringify(value))));};
@@ -32,8 +46,19 @@ async function capture(id,runtimeSha256){
   const project=HONRO_PROJECT,stage=project.stages.find(s=>s.metadata?.stageId===id);
   assert(stage,'Missing production stage');
   HonroMaps.compile(stage,project); // Match Native setup order.
-  const b=HonroMaps.createBattle(stage,project);HonroStageRules.sanitizeStageBattle(b);
+  const b=id===32?HonroMaps.createBattle(stage,project,HonroProfileStore.fresh()):HonroMaps.createBattle(stage,project);HonroStageRules.sanitizeStageBattle(b);
+  let tideSnapshot=null;
+  if(id===32){
+   assert(HONRO_ACT4_RELEASE===true,'Act4 release absent');
+   assert(b.honroStage===32&&b.honroAct4Official===1,'Not official Stage32');
+   assert(!b.honroAct4Design.tide&&b.honroAct4Design.waterPolicies.length===0,'Stage32 tide contract changed');
+   HonroAct4TerrainPreview.coast.tide(b);
+   b.honroAct4PreviewState.visualDrawn={};
+   tideSnapshot=structuredClone(b.honroAct4PreviewState.tide??null);
+   assert(tideSnapshot===null,'Stage32 must not synthesize tide');
+  }
   const engine=new HONRO_CORE.Engine(b,()=>{},true);
+  if(id===32)globalThis.HonroApp={engine};
   const physics=JSON.stringify({terrain:b.terrain,units:b.units});
   const cv=document.getElementById('scene');cv.width=1331;cv.height=763;
   const scene=new HonroScene(cv);
@@ -49,12 +74,14 @@ async function capture(id,runtimeSha256){
   assert(!p.storage.length&&!p.errors.length&&!p.violations.length,'Storage/runtime/CSP error');
   assert(!p.images.some(v=>v.pending||v.error),'Pending or failed image');
   const hash=async s=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s))),v=>v.toString(16).padStart(2,'0')).join('');
-  publishProbe({ok:true,scope:'Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.',stage:id,view:'edge-desktop-2',width:1331,height:763,dpr:devicePixelRatio,camera,time:2,seed:3910,runtimeSha256,physicsSha256:await hash(physics),renderPure:true,fontStatus:document.fonts.status,fontNote:'System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.',userAgent:navigator.userAgent,imageCount:p.images.length,pendingImages:p.images.filter(v=>v.pending).length,imageErrors:p.images.filter(v=>v.error).length,storage:p.storage,errors:p.errors,violations:p.violations,png:cv.toDataURL('image/png')});
+  publishProbe({ok:true,scope:'Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.',stage:id,...(id===32?{tideSnapshot,appReadyUnresolved:true,initialization:'Official coast.tide; fresh in-memory profile; no App launch or event progression'}:{}),view:'edge-desktop-2',width:1331,height:763,dpr:devicePixelRatio,camera,time:2,seed:3910,runtimeSha256,physicsSha256:await hash(physics),renderPure:true,fontStatus:document.fonts.status,fontNote:'System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.',userAgent:navigator.userAgent,imageCount:p.images.length,pendingImages:p.images.filter(v=>v.pending).length,imageErrors:p.images.filter(v=>v.error).length,storage:p.storage,errors:p.errors,violations:p.violations,png:cv.toDataURL('image/png')});
  }catch(e){publishProbe({ok:false,stage:id,error:String(e.stack||e),...p});}
 }
 const script=s=>'<script>'+s.replace(/<\/script/gi,'<\\/script')+'</script>';
-for(const id of [23,26,29]){
- const html='<!doctype html><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src \'none\'; script-src \'unsafe-inline\'; style-src \'unsafe-inline\'; img-src data:; font-src data:; connect-src \'none\'"><title>Isolated production Scene diagnostic</title><style>body{margin:0}canvas{width:1331px;height:763px}</style><canvas id="scene"></canvas><pre id="result">pending</pre>'+script('('+bootstrap.toString()+')();')+script(runtime)+script('('+capture.toString()+')('+id+','+JSON.stringify(runtimeSha256)+');');
+for(const id of stages){
+ const stageRuntime=id===32?runtime+'\n;\n'+act4Extra.join('\n;\n'):runtime;
+ const stageRuntimeSha256=createHash('sha256').update(stageRuntime).digest('hex');
+ const html='<!doctype html><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src \'none\'; script-src \'unsafe-inline\'; style-src \'unsafe-inline\'; img-src data:; font-src data:; connect-src \'none\'"><title>Isolated production Scene diagnostic</title><style>body{margin:0}canvas{width:1331px;height:763px}</style><canvas id="scene"></canvas><pre id="result">pending</pre>'+script('('+bootstrap.toString()+')('+id+');')+script(stageRuntime)+script('('+capture.toString()+')('+id+','+JSON.stringify(stageRuntimeSha256)+');');
  await writeFile(path.join(out,`stage${id}.html`),html);
 }
-console.log(JSON.stringify({stages:[23,26,29],runtimeSha256,runtimeBytes:Buffer.byteLength(runtime),scope:'Generator only. Run each fixture in a separate temporary Chrome profile with --force-device-scale-factor=1 --virtual-time-budget=60000 --dump-dom and external timeout 300s. Extractor requires completion, no fixed sleep acceptance.'}));
+console.log(JSON.stringify({stages,runtimeSha256,runtimeBytes:Buffer.byteLength(runtime),scope:'Generator only. Run each fixture in a separate temporary Chrome profile with --force-device-scale-factor=1 --virtual-time-budget=60000 --dump-dom and external timeout 300s. Extractor requires completion, no fixed sleep acceptance.'}));

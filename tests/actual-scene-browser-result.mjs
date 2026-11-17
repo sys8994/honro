@@ -4,11 +4,12 @@ import path from 'node:path';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 const [input,out,idText]=process.argv.slice(2),id=Number(idText);
-assert(input&&out&&[23,26,29].includes(id),'Usage: node tests/actual-scene-browser-result.mjs DUMP.html OUTPUT_DIRECTORY STAGE');
+assert(input&&out&&[23,26,29,32].includes(id),'Usage: node tests/actual-scene-browser-result.mjs DUMP.html OUTPUT_DIRECTORY STAGE');
 const html=await readFile(input,'utf8'),match=html.match(/<pre id="result">([A-Za-z0-9+/=]+)<\/pre>/);
 assert(match&&match[1]!=='pending','No completed base64 result (pending/timeout/DOM error)');
 const result=JSON.parse(Buffer.from(match[1],'base64').toString('utf8'));
 assert.equal(result.ok,true,JSON.stringify(result));assert.equal(result.stage,id);
+if(id===32){assert.equal(result.tideSnapshot,null);assert.equal(result.appReadyUnresolved,true);}
 assert.equal(result.view,'edge-desktop-2');assert.equal(result.dpr,1);
 assert.equal(result.width,1331);assert.equal(result.height,763);assert.equal(result.renderPure,true);
 assert.equal(result.pendingImages,0);assert.equal(result.imageErrors,0);assert.equal(result.fontStatus,'loaded');
