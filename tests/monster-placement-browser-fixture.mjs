@@ -139,7 +139,9 @@ async function capture(id,runtimeSha256,variant,requestedCamera){
     if(!pos){localActions.push({group:group.id,error:'No synthetic local approach on same support'});continue;}
     Object.assign(h,pos,{vx:0,vy:0});Object.assign(u,{awake:true,acted:false,moveLeft:u.maxMove});
     Object.assign(copy,{side:1,phase:'enemy',active:u.id,queue:[u.id],turnAge:0});
-    HonroAct4PilotCombat.attach({engine:probe,dialogue:null,charging:false});
+    const probeApp={engine:probe,dialogue:null,charging:false};
+    HonroAct4TerrainPreview.attachCoast(probeApp); // Real exclusion, tide/water and cluster activation wrappers.
+    HonroAct4PilotCombat.attach(probeApp);
     const start={x:u.x,y:u.y,hp:h.hp,shot:copy.shot};let projectiles=0;
     for(let i=0;i<Math.ceil(12/HONRO_CORE.STEP);i++){probe.tick(HONRO_CORE.STEP);projectiles=Math.max(projectiles,copy.projectiles.length);if(u.acted&&!copy.projectiles.length)break;}
     const firstAction={hpLoss:start.hp-h.hp,dx:u.x-start.x,dy:u.y-start.y,shots:copy.shot-start.shot,acted:!!u.acted,intent:u.intent};

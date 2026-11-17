@@ -13,7 +13,7 @@ export function placeAct4Stage40(stage, point) {
   ['dock-cargo','dock','서쪽 하역장 가장자리의 작은 무리와 뒤쪽 공중 감시; 긴 부두 연결부는 비움',[[ref('dock-left',1),1080],[ref('dock-left',2),820],[ref('dock-left',3),600],[ref('dock-left',4),675]]],
   ['arrival-watch','arrival-stair','배 도착 후 올라가는 계단의 감시조; 승선갑판과 최종 집결면에는 적을 두지 않는다',[[ref('dock-left',5),4190],[ref('dock-left',6),4270],[ref('dock-left',7),4450]]],
   ['dock-battery','dock','하층 포격귀를 전위와 사수가 호위하는 국소 화점',[[ref('dock-right',1),1510],[ref('dock-right',2),1595],[ref('dock-right',3),1690],[ref('dock-right',4),1825]]],
-  ['east-rearguard','coast-east','동쪽 경사 상단의 후위; 주민 안전 구역보다 높은 별도 지지면',[[ref('dock-right',5),5390],[ref('dock-right',6),5480],[ref('dock-right',7),5690]]],
+  ['east-rearguard','coast-east','동쪽 경사 후위; 궁수는 낮은 굽이에서 사선을 확보하고 근접 둘은 뒤쪽 경사를 지킨다. 주민 안전 구역 밖',[[ref('dock-right',5),5390],[ref('dock-right',6),5480],[ref('dock-right',7),5260]]],
   ['stair-foot','dock-stair','계단 진입부의 전위와 아래 부두의 사격 지원; 바위 아래 머리 공간이 없는 중간 계단은 비운다',[[ref('dock-stair',1),1905],[ref('dock-stair',2),1990,'dock']]],
   ['stair-head','dock-stair','상층 갈림길 바로 아래 사격/수의귀 묶음',[[ref('dock-stair',6),2470],[ref('dock-stair',7),2550]]],
   ['road-scout','coast-west','부두 전방의 떨어진 단독 감시병; 주 전위까지 접근 여백을 둔다',[[ref('dock-stair',3),1400]]],
