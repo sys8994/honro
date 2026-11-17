@@ -103,7 +103,7 @@ export const earlyEncounters = {
     encounterVersion:6, rounds:[18,20], active:7, hits:1.61, incoming:.110, eliteHits:5.0, bossHits:13,
     exit:[973,169],
     sites:{banner:[666,218], gateGuard:[389,218], armorWave:[935,169], sealGuard:[625,218]},
-    required:{gateGuard:[181,272,359,407,450,498], armorWave:[922,948,967,997]},
+    required:{gateGuard:[181,272,359,407,434,455], armorWave:[922,948,967,997]},
     contest:{commander:{group:'commanderApproach',radius:47,text:'장무율 곁의 수의귀를 밀어내거나 제압하세요'}},
     flow:[
       ['fight','gateGuard','암문 아래와 돌계단 위의 선봉조 제압'],
@@ -116,11 +116,13 @@ export const earlyEncounters = {
       pack('wallLine',188,[['human',150],['crow',195,-2,undefined,undefined,undefined,42],['human',223,-26]],{
         wake:{distance:195,height:98},
       }),
-      pack('gateGuard',218,[['human',359],['mourner',407],['shade',434],['human',450],['human',498]]),
+      // Stair sentry + a compact inner-arch group. The long causeway to the banner stays empty.
+      pack('gateGuard',218,[['human',359],['mourner',407],['shade',421],['human',434],['human',455]]),
       pack('archFoot',311,[['shade',566,-9],['mourner',638,-9]],{
         wake:{distance:152,height:47,after:'gateGuard'},
       }),
-      pack('mortar',218,[['shade',543],['human',576],['mourner',597]]),
+      // Reserve beneath the central bridge: front/rear pressure on the lower route, not another middle-floor queue.
+      pack('mortar',302,[['shade',584],['human',610],['mourner',665]]),
       // The inner palisade is the support for the banner, not a separate extermination goal.
       pack('sealGuard',218,[
         ['warden',625,0,'elite','군패 수문귀','device'], ['human',694], ['shade',669], ['hound',722],

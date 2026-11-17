@@ -1,0 +1,224 @@
+{
+  "purpose": "Integration preflight only. Stage3/7 art remains unfinished; stage32 excluded. Not deployable.",
+  "base": "e8d8aa8865c832e831d6d221223356b440652e5f",
+  "parents": {
+    "terrain": "e8d8aa8865c832e831d6d221223356b440652e5f",
+    "m40": "321a8a61a9fd383ef3f4470cbf08d68bc3464092",
+    "middle": "afc7b98d772e3c22d25e82d8d32202c3801e66fa",
+    "early": "6a6b538b95042e93562dab72a64725bea41fcc3b",
+    "act5": "9a75ec977d00947c7cefbf2424de920a1e569943"
+  },
+  "copied": [
+    {
+      "path": ".github/workflows/monster-placement.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7e884cf2e8edddcb5764b4d1dbef81d1791deec1"
+    },
+    {
+      "path": "game/docs/MONSTER_PLACEMENT_AUDIT_20261117.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a42e78e4a30821f64c7dd15431043e2dc4c700b8"
+    },
+    {
+      "path": "game/docs/MONSTER_PLACEMENT_STAGE_LEDGER_20261118.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "00f4f553ff22d5537adeee6e4f5cb2b6a2b4b942"
+    },
+    {
+      "path": "shared/act4-finale-author.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "16694a5578debbb7585faa8ec8207bd3886c8b09"
+    },
+    {
+      "path": "shared/act4-stage40-placement.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "84379471a820d124545ef403a8206e4d273ce630"
+    },
+    {
+      "path": "tests/monster-placement-browser-fixture.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cdd5f5e8ef1470fc2a50a0eccfb455970f5cd252"
+    },
+    {
+      "path": "tests/monster-placement-browser-result.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4787cfdf86333730e92c1eb67434d321f3ae9624"
+    },
+    {
+      "path": "tests/monster-placement-survey.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e84cdb5f138c489596480b7bf3ba7d0a8598ad9f"
+    },
+    {
+      "path": "tests/stage40-placement-contract.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ced495b063ff39ad609bbd39e418053942cb1bd7"
+    },
+    {
+      "path": ".github/workflows/act4-middle-placement.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "691c7dd97514ea0eafc99b2a52607c9e2657faeb"
+    },
+    {
+      "path": "game/docs/ACT4_MIDDLE_PLACEMENT_20261117.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "33c69b001d5cfa82a3e87af8209ea0e1dd8f9fa1"
+    },
+    {
+      "path": "shared/act4-finale-revision.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ed97b06a417837722c2776dbc7d548b711cae626"
+    },
+    {
+      "path": "shared/act4-middle-placement.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6fb6779e1427e9c7ed4b0e8e457ce69f2c601aa8"
+    },
+    {
+      "path": "tests/act4-middle-placement-browser.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "057415a09310debc26e4809b2e26b4229f24539a"
+    },
+    {
+      "path": "tests/act4-middle-placement-contract.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "48c78a460e2929b9d667ebc3079e3ba3bacc2b78"
+    },
+    {
+      "path": "tests/act4-middle-placement-result.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4afbcf7a42e021ea72bbefce7496d350d6693e4c"
+    },
+    {
+      "path": ".github/workflows/early-encounter.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d35639e918f975bf25fa25caaaa42bb1677fc595"
+    },
+    {
+      "path": "game/docs/BUG_LOG.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "98b07c891e6df178dcaf9cb03c7a2064b2cf3e7f"
+    },
+    {
+      "path": "game/docs/EARLY_ENCOUNTER_AUDIT_RECOVERED.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1a5a7287595d3e0fed095d1ec38be43f55f011de"
+    },
+    {
+      "path": "game/docs/EARLY_ENCOUNTER_PLACEMENT_REVIEW.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "670b9d6af640a568b6b71835e6352c3f6f91cf97"
+    },
+    {
+      "path": "shared/runtime/early-encounter-placement.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6c480f6ec8b30877b78a68404c8249351e25f6af"
+    },
+    {
+      "path": "shared/runtime/encounters.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "12bb4afdc2b743ff3b0a9ab3e0e12f29a6adb615"
+    },
+    {
+      "path": "tests/early-encounter-browser-fixture.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "78d6f9ebbd7b92696851682697d3ef8410135f63"
+    },
+    {
+      "path": "tests/early-encounter-browser-result.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e81347314b29c8f41731336282baaa2618174332"
+    },
+    {
+      "path": "tests/early-encounter-contract.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ccca90c418423e33e939e0cef17d432bdd562a47"
+    },
+    {
+      "path": ".github/workflows/act5-placement-actions.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3bec756e2209c636a36fe3d4921865cf5f0fb2b2"
+    },
+    {
+      "path": ".github/workflows/act5-placement.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0dca478e8a442141caf42b49d184e9fe394c6ede"
+    },
+    {
+      "path": "game/docs/ACT5_LOCAL_ACTION_DIAGNOSTIC_20261118.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a42f41b5d956bf0ee0628be904e33c3501c87dcd"
+    },
+    {
+      "path": "game/docs/ACT5_PLACEMENT_AUDIT_20261117.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b4960e3bf95b2126b7f6812a70a5730eeaa9467f"
+    },
+    {
+      "path": "shared/data/act5/encounters-early.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b50f8d3dbeeea781cd6278c5ef9f12c251f20a2a"
+    },
+    {
+      "path": "shared/data/act5/encounters-late.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b88c9b5858ce3fbd1a47824ac2d2715901d55b89"
+    },
+    {
+      "path": "tests/act5-meaningful-encounters.test.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a6d279c1551b313e160365e52b55805ebb3750b1"
+    },
+    {
+      "path": "tests/act5-placement-action-fixture.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b0427ef6af6eb57c2fb59df4aaff53e2681dd6d1"
+    },
+    {
+      "path": "tests/act5-placement-browser-fixture.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6295636f49f5d4ec5f72b28f3177100aae8bb215"
+    },
+    {
+      "path": "tests/act5-placement-browser-result.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "66eb45fd679ba9ee6ad1349fffe160e4216a5999"
+    }
+  ],
+  "conflict": "shared/build.mjs: retain four terrain runtime helpers and two early placement registrations."
+}

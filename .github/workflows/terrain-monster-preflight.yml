@@ -1,0 +1,47 @@
+name: Terrain and monster integration preflight
+on:
+  push:
+    branches: ['integration/terrain-monster-preflight-20261118']
+permissions:
+  contents: read
+jobs:
+  preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm ci && npm ci --prefix game
+      - name: Exact copy and shared registration checks
+        run: node tests/terrain-monster-preflight.mjs
+      - name: Fetch explicit comparison baselines
+        run: |
+          git fetch --depth=1 origin 7d238d20663c3ceffe430eb0304e01516ae625cf
+          git fetch --depth=1 origin e89242eedb5c040d38a9077c7289fbdc97786bdf
+      - name: Relevant placement and renderer contracts, unchanged assertions
+        run: |
+          mkdir -p _local/reports/terrain-monster-preflight
+          failure=0
+          for t in stage40-placement-contract act4-middle-placement-contract early-encounter-contract act5-meaningful-encounters.test vector-snap-collapse stage34-edge-contract stage37-alpha-edge-contract stage38-alpha-edge-contract; do
+            node tests/$t.mjs > _local/reports/terrain-monster-preflight/$t.log 2>&1 || failure=1
+            cat _local/reports/terrain-monster-preflight/$t.log
+          done
+          exit "$failure"
+      - name: Baseline codec and current synthetic save roundtrip
+        if: always()
+        run: |
+          BASELINE_REF=e89242eedb5c040d38a9077c7289fbdc97786bdf node tests/terrain-edge-save-baseline.mjs
+          node tests/terrain-edge-save-roundtrip.mjs
+      - name: Official production build
+        if: always()
+        run: npm run build
+      - name: Preserve reports
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: terrain-monster-preflight
+          path: _local/reports
+          retention-days: 90
