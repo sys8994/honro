@@ -173,7 +173,7 @@ const rawRenderer=rendererCanonical.replace('const transition=id===BODY&&!origin
 function tracePaint(c,cv,q,n,originalOnly,label){
  const m=c.getTransform(),size=7,r=3;
  // Three visible fine green contours in lower-view crop (full screenshot coordinates).
- const points=[{id:'gray-diagonal',screen:[754,140]},{id:'arch-inner',screen:[800,167]},{id:'gray-upper',screen:[825,82]}];
+ const points=[{id:'gray-diagonal',screen:[753,150]},{id:'arch-inner',screen:[800,167]},{id:'gray-upper',screen:[815,90]}];
  const records=globalThis.GRAY_TRACE??=[],seen=globalThis.GRAY_TRACE_SEEN??=new Set();
  for(const point of points){
   const wx=(point.screen[0]-1331/2)/.6+1689.6,wy=(point.screen[1]-763/2)/.6+1900;
