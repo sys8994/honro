@@ -26,16 +26,42 @@ const raw=nodes(current.vector),optimized=nodes(alias.vector),oldNodes=nodes(old
 const cfg=current.params.stage32SharedMaterial;assert.equal(cfg.sourcePathSHA256.length,25);
 const noD=v=>{const q=clone(v);for(const n of nodes(q)){delete n.node.d;delete n.node.dParts;}return q;};assert.deepEqual(noD(current.vector),noD(alias.vector));
 const report={scope:'Source-only in-memory exact existing optimization reuse. No production registry/code changes, no rasterization; not footer or visual acceptance.',sourceRawSHA,oldRuntimeSHA,aliasRuntimeSHA:sha(JSON.stringify(alias.vector)),nonPathDataUnchanged:true,wholeProjectUnchanged:null,rawHashContract:'sourcePathSHA256 remains author/raw only; must not be mislabeled optimized runtime hashes',paths:[],totalRawSubpaths:0,totalOptimizedSubpaths:0,selectedCount:0,indexNotUniqueClosest:[]};
-function subpaths(d){return (d.match(/[Mm][^Mm]*/g)??[]).map((text,index)=>{assert(text[0]==='M','Relative moveto requires a different correspondence analysis');const bounds=new Path2D(text).computeTightBounds();const nums=text.slice(1).match(/[-+]?(?:\d*\.\d+|\d+\.?\d*)(?:[eE][-+]?\d+)?/g);const start=nums.slice(0,2).map(Number);return {index,sha:sha(text),bounds,start,descriptor:[...start,...bounds]};});}
+function subpaths(d){
+ let x=0,y=0,sx=0,sy=0;
+ return (d.match(/[Mm][^Mm]*/g)??[]).map((text,index)=>{
+  const tokens=text.match(/[a-df-zA-DF-Z]|[-+]?(?:\d*\.\d+|\d+\.?\d*)(?:[eE][-+]?\d+)?/g);assert(tokens?.length>=3);
+  let i=0,cmd=null,start=null;
+  const arity={M:2,L:2,H:1,V:1,C:6,S:4,Q:4,T:2,A:7};
+  while(i<tokens.length){
+   if(/^[a-z]$/i.test(tokens[i]))cmd=tokens[i++];assert(cmd);
+   const op=cmd.toUpperCase(),rel=cmd!==op;
+   if(op==='Z'){x=sx;y=sy;cmd=null;continue;}
+   const n=arity[op];assert(n&&i+n<=tokens.length);const v=tokens.slice(i,i+n).map(Number);assert(v.every(Number.isFinite));i+=n;
+   let nx=x,ny=y;
+   if(op==='H')nx=v[0]+(rel?x:0);else if(op==='V')ny=v[0]+(rel?y:0);else {nx=v[n-2]+(rel?x:0);ny=v[n-1]+(rel?y:0);}
+   x=nx;y=ny;if(op==='M'){sx=x;sy=y;start=[x,y];cmd=rel?'l':'L';}
+  }
+  assert(start);const isolated=['M',...start,...tokens.slice(3)].join(' '),bounds=new Path2D(isolated).computeTightBounds();
+  return {index,sha:sha(text),text,isolated,bounds,start,relativeMove:text[0]==='m',descriptor:[...start,...bounds]};
+ });
+}
+// Parser controls: relative subpath begins at the full path's previous start after Z.
+assert.deepEqual(subpaths('M10 20l10 0z m30 40l5 0z').map(s=>s.start),[[10,20],[40,60]]);
+assert.deepEqual(subpaths('M10 20C0 0 10 10 15 30m2 4h5v2z').map(s=>s.start),[[10,20],[17,34]]);
+
 for(let i=0;i<25;i++){
  assert.deepEqual(raw[i].address,optimized[i].address);assert.equal(sha(raw[i].d),cfg.sourcePathSHA256[i]);assert.equal(optimized[i].d,oldNodes[i].d);
  const a=subpaths(raw[i].d),b=subpaths(optimized[i].d);assert.equal(a.length,b.length,'Subpath count/order contract '+i);
  const selected=cfg.graySubpaths?.[i]??[];assert.equal(new Set(selected).size,selected.length);for(const k of selected)assert(k>=0&&k<a.length&&Number.isInteger(k));
+ const grayRaw=new Path2D(selected.map(k=>a[k].text).join('')),grayOptimizedNaive=new Path2D(selected.map(k=>b[k].text).join('')),grayOptimizedAnchored=new Path2D(selected.map(k=>b[k].isolated).join(''));
+ const gray={selectedCount:selected.length,relativeMoveIndices:b.filter(v=>v.relativeMove).map(v=>v.index),selectedRelativeMoves:selected.filter(k=>b[k].relativeMove),rawBounds:grayRaw.computeTightBounds(),naiveOptimizedBounds:grayOptimizedNaive.computeTightBounds(),anchoredOptimizedBounds:grayOptimizedAnchored.computeTightBounds(),naiveEqualsAnchored:grayOptimizedNaive.equals(grayOptimizedAnchored)};
  const rows=a.map((x,k)=>{const y=b[k],distance=(p,q)=>p.descriptor.reduce((s,v,n)=>s+(v-q.descriptor[n])**2,0),own=distance(x,y);let best=Infinity,bestIndices=[];for(let j=0;j<b.length;j++){const d=distance(x,b[j]);if(d<best){best=d;bestIndices=[j];}else if(d===best)bestIndices.push(j);}const closestAtSameIndex=bestIndices.includes(k);if(!closestAtSameIndex||bestIndices.length!==1)report.indexNotUniqueClosest.push({path:i,index:k,selected:selected.includes(k),own,best,bestIndices});return {index:k,selected:selected.includes(k),rawSHA:x.sha,optimizedSHA:y.sha,rawStart:x.start,optimizedStart:y.start,rawBounds:x.bounds,optimizedBounds:y.bounds,maxDescriptorDelta:Math.max(...x.descriptor.map((v,n)=>Math.abs(v-y.descriptor[n]))),closestAtSameIndex,uniqueClosest:bestIndices.length===1};});
- report.paths.push({index:i,address:raw[i].address,rawSHA:sha(raw[i].d),optimizedSHA:sha(optimized[i].d),subpaths:a.length,selected,rows});report.totalRawSubpaths+=a.length;report.totalOptimizedSubpaths+=b.length;report.selectedCount+=selected.length;
+ report.paths.push({index:i,address:raw[i].address,rawSHA:sha(raw[i].d),optimizedSHA:sha(optimized[i].d),subpaths:a.length,selected,gray,rows});report.totalRawSubpaths+=a.length;report.totalOptimizedSubpaths+=b.length;report.selectedCount+=selected.length;
 }
 report.wholeProjectUnchanged=sha(JSON.stringify(project))===originalProjectSHA;assert(report.wholeProjectUnchanged);assert.equal(report.totalRawSubpaths,723);assert.equal(report.totalOptimizedSubpaths,723);
 report.correspondenceNote='Original subpath ordinal is preserved by equal per-path count and ordered M-command stream. Unique closest start+bbox at the same ordinal provides additional measured identity evidence, not a replacement geometric error budget or proof of curve equivalence. Approved optimization values are reused verbatim; no tolerance changed.';
 await writeFile(path.join(out,'optimization-alias.json'),JSON.stringify(report,null,2)+'\n');
-console.log(JSON.stringify({sourceRawSHA,oldRuntimeSHA,aliasRuntimeSHA:report.aliasRuntimeSHA,totalRawSubpaths:report.totalRawSubpaths,selectedCount:report.selectedCount,indexNotUniqueClosest:report.indexNotUniqueClosest,wholeProjectUnchanged:report.wholeProjectUnchanged}));
+console.log(JSON.stringify({gray:report.paths.filter(v=>v.selected.length).map(v=>({index:v.index,...v.gray})),sourceRawSHA,oldRuntimeSHA,aliasRuntimeSHA:report.aliasRuntimeSHA,totalRawSubpaths:report.totalRawSubpaths,selectedCount:report.selectedCount,indexNotUniqueClosest:report.indexNotUniqueClosest,wholeProjectUnchanged:report.wholeProjectUnchanged}));
 assert.deepEqual(report.indexNotUniqueClosest,[],'Ambiguous or changed subpath identity must be reviewed; do not assume index safety');
+
+assert(report.paths.filter(v=>v.selected.length).every(v=>v.gray.naiveEqualsAnchored),'Existing gray regex selection is not equivalent after relative-path optimization; alias-only is unsafe');
