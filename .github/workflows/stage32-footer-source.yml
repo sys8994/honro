@@ -1,0 +1,25 @@
+name: Inspect Stage32 exact footer source geometry
+on:
+  push:
+    branches: ['inspect/stage32-footer-source-20261117']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm ci && npm ci --prefix game
+      - run: HONRO_ACT4_RELEASE=1 node tests/stage32-source-footer-probe.mjs "$RUNNER_TEMP/footer-source"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage32-footer-source
+          path: ${{ runner.temp }}/footer-source
+          if-no-files-found: error

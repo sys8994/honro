@@ -1,0 +1,336 @@
+{
+  "scope": "Same raw candidate source only; historical old/new strict failure unresolved; not artwork acceptance",
+  "views": [
+    {
+      "view": "lower",
+      "hashes": {
+        "direct-candidate-source": "dc94a47568fb229b88806ac2dedd0dc235bdbea12f1b90e538028470f6a7d9a5",
+        "candidate": "d12510fc955164e70ab890e0a3a2dc7196ce02c2bd8b613cacddf7b53eb4f337",
+        "original-colors": "e6ca64bd8d893a0a94697b988eb968b09339e6f300c90f3d36cc533c93f919ea",
+        "pattern-original-colors": "93845f7be50ef67fb7bc30995eab5e3f5d63b0ab1553d7570c5ebe654ccb5e52",
+        "pattern-material": "81ce34ba82cdf6adafc3a633ed47493a015e880419b3f2ce14f2016e05be18b9",
+        "pattern-original-no-gray": "888d2340ce1c1dfe1ec2af28e6286db057c3f84c034d226a42d0be9129e82168",
+        "original-solid-no-gray": "dc94a47568fb229b88806ac2dedd0dc235bdbea12f1b90e538028470f6a7d9a5"
+      },
+      "comparisons": [
+        {
+          "a": "direct-candidate-source",
+          "b": "original-colors",
+          "changed": 17268,
+          "over2": 1094,
+          "max": 9,
+          "meanMaxChannelDelta": 0.021289878519387958,
+          "bbox": [
+            0,
+            0,
+            1330,
+            441
+          ]
+        },
+        {
+          "a": "original-colors",
+          "b": "candidate",
+          "changed": 424384,
+          "over2": 421497,
+          "max": 62,
+          "meanMaxChannelDelta": 12.74702551220862,
+          "bbox": [
+            0,
+            0,
+            1330,
+            441
+          ]
+        },
+        {
+          "a": "direct-candidate-source",
+          "b": "candidate",
+          "changed": 424407,
+          "over2": 421516,
+          "max": 62,
+          "meanMaxChannelDelta": 12.74886490414582,
+          "bbox": [
+            0,
+            0,
+            1330,
+            441
+          ]
+        },
+        {
+          "a": "direct-candidate-source",
+          "b": "pattern-original-colors",
+          "changed": 27015,
+          "over2": 831,
+          "max": 8,
+          "meanMaxChannelDelta": 0.03167141449043034,
+          "bbox": [
+            0,
+            0,
+            1330,
+            441
+          ]
+        },
+        {
+          "a": "original-colors",
+          "b": "pattern-original-colors",
+          "changed": 25437,
+          "over2": 104,
+          "max": 4,
+          "meanMaxChannelDelta": 0.027023700387867496,
+          "bbox": [
+            0,
+            0,
+            1330,
+            441
+          ]
+        },
+        {
+          "a": "candidate",
+          "b": "pattern-material",
+          "changed": 16483,
+          "over2": 77,
+          "max": 6,
+          "meanMaxChannelDelta": 0.017399387328874024,
+          "bbox": [
+            0,
+            0,
+            1330,
+            434
+          ]
+        },
+        {
+          "a": "pattern-original-colors",
+          "b": "pattern-material",
+          "changed": 424403,
+          "over2": 421523,
+          "max": 62,
+          "meanMaxChannelDelta": 12.746748815669886,
+          "bbox": [
+            0,
+            0,
+            1330,
+            441
+          ]
+        },
+        {
+          "a": "direct-candidate-source",
+          "b": "pattern-original-no-gray",
+          "changed": 26589,
+          "over2": 117,
+          "max": 4,
+          "meanMaxChannelDelta": 0.028819766176654493,
+          "bbox": [
+            0,
+            0,
+            1330,
+            441
+          ]
+        },
+        {
+          "a": "direct-candidate-source",
+          "b": "original-solid-no-gray",
+          "changed": 0,
+          "over2": 0,
+          "max": 0,
+          "meanMaxChannelDelta": 0,
+          "bbox": null
+        },
+        {
+          "a": "pattern-original-colors",
+          "b": "pattern-original-no-gray",
+          "changed": 4348,
+          "over2": 1026,
+          "max": 9,
+          "meanMaxChannelDelta": 0.008106913179322005,
+          "bbox": [
+            0,
+            0,
+            1323,
+            434
+          ]
+        },
+        {
+          "a": "pattern-original-no-gray",
+          "b": "original-solid-no-gray",
+          "changed": 26589,
+          "over2": 117,
+          "max": 4,
+          "meanMaxChannelDelta": 0.028819766176654493,
+          "bbox": [
+            0,
+            0,
+            1330,
+            441
+          ]
+        }
+      ],
+      "manualBodyOnlyROIReview": "Pending; full-view difference counts are not AA classification"
+    },
+    {
+      "view": "left",
+      "hashes": {
+        "direct-candidate-source": "a3d184fd79a9485b797995a3ed18c8cd16cb4482ff7d0386765332a49a22f201",
+        "candidate": "9c837a7c482f47ef8e21ed290b952e7536be85f6a3adc99b6c39f4714973a90d",
+        "original-colors": "724c879359243f4e5396c376b0aab4d5f1094cbb41a472fdd339f83f241cf7a0",
+        "pattern-original-colors": "8327a13a0a7d0db81642c597b965059e56f2711a5579a5f00172e9bded509d13",
+        "pattern-material": "1ce87288b3d7b2dd94bda51deb416b703a6026c1930e3e4c6dabcc4a7e1610e4",
+        "pattern-original-no-gray": "0c5df907468e3d6962c4e8ad35f546131a0506c0b76582f3a266979dd429fb0e",
+        "original-solid-no-gray": "a3d184fd79a9485b797995a3ed18c8cd16cb4482ff7d0386765332a49a22f201"
+      },
+      "comparisons": [
+        {
+          "a": "direct-candidate-source",
+          "b": "original-colors",
+          "changed": 16879,
+          "over2": 2115,
+          "max": 10,
+          "meanMaxChannelDelta": 0.02450192161315067,
+          "bbox": [
+            499,
+            0,
+            1330,
+            587
+          ]
+        },
+        {
+          "a": "original-colors",
+          "b": "candidate",
+          "changed": 353719,
+          "over2": 350417,
+          "max": 62,
+          "meanMaxChannelDelta": 11.283118655550227,
+          "bbox": [
+            499,
+            0,
+            1330,
+            587
+          ]
+        },
+        {
+          "a": "direct-candidate-source",
+          "b": "candidate",
+          "changed": 353768,
+          "over2": 350392,
+          "max": 62,
+          "meanMaxChannelDelta": 11.283760670294903,
+          "bbox": [
+            499,
+            0,
+            1330,
+            587
+          ]
+        },
+        {
+          "a": "direct-candidate-source",
+          "b": "pattern-original-colors",
+          "changed": 24311,
+          "over2": 1696,
+          "max": 9,
+          "meanMaxChannelDelta": 0.031826994750643246,
+          "bbox": [
+            499,
+            0,
+            1330,
+            587
+          ]
+        },
+        {
+          "a": "original-colors",
+          "b": "pattern-original-colors",
+          "changed": 21677,
+          "over2": 96,
+          "max": 7,
+          "meanMaxChannelDelta": 0.023115484863911583,
+          "bbox": [
+            499,
+            0,
+            1330,
+            587
+          ]
+        },
+        {
+          "a": "candidate",
+          "b": "pattern-material",
+          "changed": 15087,
+          "over2": 93,
+          "max": 8,
+          "meanMaxChannelDelta": 0.015992272190619296,
+          "bbox": [
+            499,
+            0,
+            1330,
+            582
+          ]
+        },
+        {
+          "a": "pattern-original-colors",
+          "b": "pattern-material",
+          "changed": 353743,
+          "over2": 350391,
+          "max": 62,
+          "meanMaxChannelDelta": 11.283466249422728,
+          "bbox": [
+            499,
+            0,
+            1330,
+            587
+          ]
+        },
+        {
+          "a": "direct-candidate-source",
+          "b": "pattern-original-no-gray",
+          "changed": 22987,
+          "over2": 101,
+          "max": 4,
+          "meanMaxChannelDelta": 0.025006080431055788,
+          "bbox": [
+            499,
+            0,
+            1330,
+            587
+          ]
+        },
+        {
+          "a": "direct-candidate-source",
+          "b": "original-solid-no-gray",
+          "changed": 0,
+          "over2": 0,
+          "max": 0,
+          "meanMaxChannelDelta": 0,
+          "bbox": null
+        },
+        {
+          "a": "pattern-original-colors",
+          "b": "pattern-original-no-gray",
+          "changed": 6816,
+          "over2": 2036,
+          "max": 10,
+          "meanMaxChannelDelta": 0.014076074808503347,
+          "bbox": [
+            500,
+            0,
+            1330,
+            582
+          ]
+        },
+        {
+          "a": "pattern-original-no-gray",
+          "b": "original-solid-no-gray",
+          "changed": 22987,
+          "over2": 101,
+          "max": 4,
+          "meanMaxChannelDelta": 0.025006080431055788,
+          "bbox": [
+            499,
+            0,
+            1330,
+            587
+          ]
+        }
+      ],
+      "manualBodyOnlyROIReview": "Pending; full-view difference counts are not AA classification"
+    }
+  ],
+  "previousCandidateHashes": "Exact SHA-256 checked against d18 actual Chrome artifact14329687058",
+  "sourceCanonicalSha256": "b024386e60e0aed8011d1412541b648565de8015d5574c04942e1f6b7880bc23",
+  "physicsSha256": "699b6a494763270ff98c1f632ab848f91d34fdf084367e532e57f627363d5c97"
+}

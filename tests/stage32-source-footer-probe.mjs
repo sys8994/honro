@@ -1,0 +1,13 @@
+import {readFile,writeFile,mkdir} from 'node:fs/promises';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+import {Path2D} from '@napi-rs/canvas';
+import {runtimeEntries,root} from '../shared/build.mjs';
+const out=process.argv[2];assert(out);await mkdir(out,{recursive:true});
+const pack=JSON.parse(await readFile(path.join(root,'shared/data/act4/handoff-art/32.json'),'utf8'));
+const asset=pack.assets.find(a=>a.id==='act4-handoff:32:body');assert(asset);
+const paths=[];function walk(n,ancestry=[]){if(n.tag==='path'){const d=n.d??n.dParts?.join('');assert(d);const p=new Path2D(d);paths.push({index:paths.length,fill:n.fill,fillRule:n.fillRule??'nonzero',dSHA256:createHash('sha256').update(d).digest('hex'),commands:d.match(/[a-z]/ig)?.filter(v=>v!=='e').length,bounds:p.computeTightBounds(),end:d.slice(-140),footerSubpaths:(d.match(/[Mm][^Mm]*/g)??[]).map((v,i)=>({index:i,bounds:new Path2D(v).computeTightBounds(),end:v.slice(-100)})).filter(s=>s.bounds[3]>=895&&s.bounds[1]<=910),ancestry});}for(const c of n.children??[])walk(c,[...ancestry,{tag:n.tag,transform:n.transform,clipPath:n.clipPath}]);}walk(asset.vector.root);
+const entries=await runtimeEntries({vector:true,render:true,app:false,productionStory:true});const entry=entries.find(e=>e.project);assert(entry?.project,'Production project entry missing');const project=entry.project;const stage=project.stages.find(s=>s.metadata?.stageId===32);assert(stage,'Stage32 missing');const body=project.library.find(a=>a.id==='act4-handoff:32:body-shared-material');assert(body);
+const report={scope:'Source-only bounds/contact probe; no canvas rasterization, browser, saved battle or production mutation.',asset:{id:asset.id,bounds:asset.bounds,reference:asset.reference,anchor:asset.anchor,params:asset.params,viewBox:asset.vector.viewBox,rootTransform:asset.vector.root.transform},paths,portApron:body.vector.clips.portApron,bodyElements:stage.elements.filter(e=>e.assetId?.includes('32:body')),terrain:stage.terrains.map(t=>({id:t.id,points:t.points,walkEdges:t.properties?.honroWalkEdges,destructible:t.destructible,properties:t.properties})),stageSize:[stage.width,stage.height],physicsSHA256:createHash('sha256').update(JSON.stringify(stage.terrains)).digest('hex')};
+await writeFile(path.join(out,'source-footer.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({paths:paths.length,terrains:stage.terrains.length,portApron:report.portApron,physicsSHA256:report.physicsSHA256}));
