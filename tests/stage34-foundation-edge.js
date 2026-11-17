@@ -3,7 +3,7 @@
 // Keep every source path, interior pixel and authored silhouette unchanged.
 if(G.HonroStage34FoundationEdge)return;
 const ID='approved34:coastal-foundation',MAX_PIXELS=8388608;
-let column=null,row=null;const stats={draws:0,columns:0,rows:0,allocations:0,bytes:0,peakBytes:0,fallbacks:0,lastFallback:null};
+let column=null,row=null;const tiles=[];const stats={eligibleTiles:0,draws:0,columns:0,rows:0,allocations:0,bytes:0,peakBytes:0,fallbacks:0,lastFallback:null};
 const fail=reason=>{stats.fallbacks++;stats.lastFallback=reason;return false;};
 function strip(existing,w,h){if(!existing){existing=typeof G.OffscreenCanvas==='function'?new G.OffscreenCanvas(w,h):G.document?.createElement('canvas');if(!existing)return null;stats.allocations++;}if(existing.width!==w)existing.width=w;if(existing.height!==h)existing.height=h;return existing;}
 function draw(c,l,b){
@@ -14,6 +14,7 @@ function draw(c,l,b){
  const right=m.a*7680+m.e,bottom=m.d*5888+m.f;
  if(!Number.isFinite(right)||!Number.isFinite(bottom))return fail('invalid-boundary');
  const x=Math.floor(right),y=Math.floor(bottom),hasColumn=x>=0&&x<W&&right-x>1e-7&&1-(right-x)>1e-7,hasRow=y>=0&&y<H&&bottom-y>1e-7&&1-(bottom-y)>1e-7;
+ stats.eligibleTiles++;if(tiles.length<64)tiles.push({W,H,m:[m.a,m.b,m.c,m.d,m.e,m.f],right,bottom,hasColumn,hasRow});
  if(!hasColumn&&!hasRow)return false;
  let cc,rc;
  try{
@@ -29,5 +30,5 @@ function draw(c,l,b){
   if(hasRow){c.clearRect(0,y,W,1);c.drawImage(row,0,y);stats.rows++;}
  }finally{c.restore();}return true;
 }
-G.HonroStage34FoundationEdge={draw,stats:()=>({...stats,maxPixels:MAX_PIXELS})};
+G.HonroStage34FoundationEdge={draw,stats:()=>({...stats,tiles:tiles.map(t=>({...t,m:[...t.m]})),maxPixels:MAX_PIXELS})};
 })(globalThis);

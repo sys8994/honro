@@ -1,0 +1,7 @@
+# Stage34 cache-edge diagnostic revision
+
+Production files remain unchanged. Initial diagnostic 57afbdf0 / CI44138852304 failed and is not accepted. The desktop image removed the bright line, but the extractor stopped on portrait because `draws > 0` was false. Separately, manual desktop comparison found 1,565 changed pixels, with 506 outside the initially assumed one final-screen-pixel band: the bottom occupied rows684–685. This is not reported as a pass.
+
+The next diagnostic records every eligible cache tile's exact matrix, dimensions and right/bottom edge decision. It independently recomputes decisions, traces a changed cache pixel's linear reconstruction-kernel support into final screen coordinates, and requires zero changes outside that support. No color tolerance is added. The desktop baseline must still match the previous Chrome PNG byte-for-byte. A no-op is permitted only when all traced tiles have no eligible fractional edge and candidate/baseline PNG pixels are exactly equal; desktop must still change and exercise the compositor. Source and physics equality remain strict. At this point the traced support explanation itself is still pending actual CI confirmation.
+
+This is a test-only candidate, not production integration, art acceptance, performance acceptance or deployment. Original vectors, holes, roads and collision are not edited. If tracing reveals a changed region outside the reconstructed one-cache-pixel support, the candidate fails. Explicit public UI/input, real devices, dynamic states and p50/p95 performance remain untested.
