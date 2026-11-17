@@ -53,3 +53,8 @@ seen/offered/answered 또는 responded 상태를 직접 대입하지 않았다. 
 6역할 모두 방어막에 실제 유효 타격이 있었고 대기 방어막이 흡수해 HP 피해는0이었다. 1차9역할의 HP 명중과 합쳐15역할의 국소 기능 증거가 확보됐다. 매듭실의 방어막 관통 후 제어효과까지 확인했다고 주장하지 않는다.
 
 표시상 관찰:5개 몬스터 패턴이 방어막을 때렸는데 intent는 '헛친 뒤 빈틈'이다. monsterPatterns.ts의 hit 판정은 e.hurt 전후 HP만 비교하므로 방어막만 줄면 recover 표시로 이어진다. 이는 기존 상태문구/회복 판정의 별도 검토 항목이며, 이번 배치 변경이 공격을 무기능으로 만든 증거가 아니다. 이번 작업에서는 엔진 판정을 변경하지 않았다.
+
+## 공식 5막 연결 확인
+진단은 makeAct5 → HonroMaps.createBattle/Act5.prepare → StageRules.sanitize → 원래 Engine → HonroAct5.attach 순서를 사용했다. Act5.attach는48장 unstable 투사체 중력장과 지지면 기억을 설정한다. Engine 자체가 HonroAct5.wakeEligible,damageFloor,fallReturn을 직접 호출하므로 해당5막 코드가 들어 있다.
+
+다만 원래 Main의 일반 Allies/Encounters/missionTick 전체 루프와 스토리/웨이브 진행을 붙인 정상 App 실행은 아니다. actor를 강제 각성해 단일/두번째 슬롯에 준비한 것이므로 자연 각성 조건 통과나 정상 퀘스트 진행을 증명하지 않는다. 이 제한을 후속 전체 플레이 검수에서도 유지해야 한다.
