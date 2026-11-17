@@ -56,8 +56,8 @@ async function capture(id,runtimeSha256,variant,requestedCamera){
  profile.loadouts={...profile.loadouts,archer:['A01','A02','A09','A05'],mage:['M01','M10','M03','M11'],knight:['S00','S03','S05','S09'],occultist:['O01','O02','O08','O11']};for(const cls of profile.recruited)C.sanitizeLoadout(profile,cls);
  HonroMaps.compile(stage,project);const b=HonroMaps.createBattle(stage,project,profile);HonroStageRules.sanitizeStageBattle(b);HonroAct4TerrainPreview.coast.tide(b);
  const notices=[],e=new C.Engine(b,x=>notices.push(x),true),cv=document.getElementById('scene');cv.width=1331;cv.height=763;
- const scene=new HonroScene(cv),app={engine:e,scene,stage,profile,modal:{classList:{contains:()=>false}},dialogue:null};
- globalThis.HonroApp=app;HonroAct4TerrainPreview.attachCoast(app);
+ const scene=new HonroScene(cv),app={engine:e,scene,stage,profile,modal:{classList:{contains:()=>false}},dialogue:null,charging:false};
+ globalThis.HonroApp=app;HonroAct4TerrainPreview.attachCoast(app);HonroAct4PilotCombat.attach(app);
  b.honroAct4PreviewState.visualDrawn={};
  const initial=structuredClone({heroes:b.units.filter(u=>u.side===0),enemies:b.units.filter(u=>u.side===1),terrain:b.terrain,design:b.honroAct4Design,round:b.round});
  let frames=0,stopReason=null,latestRound=0,actionNo=0;const actions=[],rounds=[],start=performance.now();
