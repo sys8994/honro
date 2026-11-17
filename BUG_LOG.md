@@ -22,3 +22,11 @@ Re-designed stairs with their supporting rock instead of detached per-step skins
 - Reloaded public Game, entered stage47 via debug Journey UI; actual minimum zoom and west/east/lower drag pans showed continuous non-blurred rock. Original steps/openings remain readable.
 - Actual Right movement:1100→981 movement, original starting bridge. No normal-save writes; not a stage-clear/campaign proof. Portrait tests were Native/camera coverage, not mobile browser.
 - Accepted limitation: exterior color masses remain somewhat larger than the original inner rock.
+
+## 2026-11-17 — 48장 연속 지지 암반 배포 검수
+
+- 원인: 원본 하단 y655 절단과 단순 늘이기, v8의 인공 어깨/재질 크기 차이. v9 원본 전체 덧붙임과 v10 사각 접합도 반려하고, 원배율 근거리 v12와 별도 심부 v11-bleed 시안을 실제 Inkscape로 제작했다.
+- 변경: 원본 계단·발판·갈고리·터널, 충돌·배우·저장·기획은 유지. 새 비보행 지지체를 Native Boolean으로 접합하고 세 paint stack에 coverage를 각각 한 번 적용했다. 경로 예산은 유지했고 epsilon0.3 최적화와 추적/분할 오차를 기록했다.
+- 확인: 전체 stage/content/다른 장 asset 불변, 터널 내부1,982점과 원본 접촉 보호330점, single-alpha 및 예외시 canvas 해제 회귀 통과. 정식 CI44006099211 성공, 코드78035c8a8ddada7241d9a7fe74245ab5562a7623 master 반영, Pages44006345050 성공. 공개 HTML2개·manifest·entry·campaign·변경 renderer·48장 assets 총7파일이 로컬 빌드와 byte/hash 일치.
+- 공개 게임: 정상 타이틀→여정첩→5막→48장→진입에서 ‘디버그 · 기록 분리’를 확인. 서쪽·동쪽 터널·하단·전체 화면을 검수했고 첫 계단 하강과 착지 후 이동/발사 가능 복귀, HP365/365 유지(이동도1100→799)를 확인했다. 일반 저장이나 기존 탭을 덮어쓰지 않았다.
+- 한계: 전체 미션/전투 완주는 수행하지 않았다. 모바일·극단 세로 팬은 Native Scene 검수이며 실제 모바일 기기 검증이 아니다. Boolean 경계2표본의 1 source pixel 이내 판정 차이는 남으며 내부 침범은 검출되지 않았다. 로컬 브라우저 연결/파일 URL 제한은 우회하지 않고 공개 Pages에서 검수했다.
