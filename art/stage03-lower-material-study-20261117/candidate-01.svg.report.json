@@ -1,0 +1,60 @@
+{
+  "input": "/tmp/honro-stage3-field-native-clean/04-palette-matched-raw.svg",
+  "input_sha256": "edae2f8089423c5fd1eb3a3c78f3c9df8a8fbebafa3bc40476f5cb3f603db6fe",
+  "epsilon_viewbox_units": 0.1,
+  "changed_paths": 1,
+  "segments_before": 5038,
+  "segments_after": 5035,
+  "skips": {
+    "not smaller/guarded": 7
+  },
+  "render_checks": [
+    {
+      "mean_channel_error": 0.0,
+      "changed_pixel_fraction": 0.0,
+      "max_channel_error": 0.0,
+      "width": 1616,
+      "accepted": true
+    },
+    {
+      "mean_channel_error": 0.0,
+      "changed_pixel_fraction": 0.0,
+      "max_channel_error": 0.0,
+      "width": 3232,
+      "accepted": true
+    }
+  ],
+  "growth_guard": {
+    "original_bytes": 228368,
+    "candidate_bytes": 228392,
+    "reasons": [
+      "bytes increased"
+    ],
+    "before": {
+      "segments": 5038,
+      "subpaths": 166,
+      "paths": 8,
+      "shape_elements": 8
+    },
+    "candidate": {
+      "segments": 5035,
+      "subpaths": 166,
+      "paths": 8,
+      "shape_elements": 8
+    },
+    "accepted": false
+  },
+  "accepted": false,
+  "candidate_bytes": 228392,
+  "original_bytes": 228368,
+  "reason": "raster/non-growth gate failed; output is unchanged original",
+  "output_bytes": 228368,
+  "output_metrics": {
+    "segments": 5038,
+    "subpaths": 166,
+    "paths": 8,
+    "shape_elements": 8
+  },
+  "output_sha256": "edae2f8089423c5fd1eb3a3c78f3c9df8a8fbebafa3bc40476f5cb3f603db6fe",
+  "input_unchanged": true
+}

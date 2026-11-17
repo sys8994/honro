@@ -1,0 +1,12 @@
+{
+  "changes": [
+    {
+      "id": "path1",
+      "from": "#0e2a2d",
+      "to": "#142c2f"
+    }
+  ],
+  "reason": "match measured full opaque original BODY rows880..886 RGB20,44,47; no path geometry changes",
+  "before": "db464cc88ec315e5f70fb481d76987a4951202272419b5221ff2daf28e1811a1",
+  "after": "edae2f8089423c5fd1eb3a3c78f3c9df8a8fbebafa3bc40476f5cb3f603db6fe"
+}

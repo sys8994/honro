@@ -1,0 +1,49 @@
+{
+  "source_sha256": "19f3c6e9364d615b0d965a5ae2587fb0f43b1d7c968bb5d657d0a1b812f7f908",
+  "color_input_sanitation": {
+    "operation": "RGB unchanged where original alpha>=128; RGB forced to white where alpha<128; original alpha separately traced natively as clip",
+    "file": "trace-color-input.png",
+    "sha256": "57ef00565170c9df146669a4a9ffce9ed20b92c60fbe03e918d180c1972b4aa9"
+  },
+  "source_to_raw_rgb_mae": 2.3988175795996867,
+  "source_silhouette_vs_native": {
+    "max_silhouette_deviation_px": 0.0,
+    "components_a": 1,
+    "components_b": 1
+  },
+  "source": "/workspace/scratch/0b8c8f8d81c7/stage3-exterior-study/v1/source.png",
+  "source_size": [
+    1616,
+    973
+  ],
+  "engine": "Inkscape 1.4 (e7c3feb100, 2024-10-09)",
+  "trace_action": "object-trace:8,true,true,false,16,1,0.2",
+  "native_headless_workaround": "/tmp/honro-stage7-art-tools/init-wrappers.so",
+  "raw": {
+    "paths": 8,
+    "segments": 5038,
+    "subpaths": 166,
+    "images": 0,
+    "bytes": 228593
+  },
+  "candidates": [],
+  "selected": "02-inkscape-trace.svg",
+  "final": {
+    "paths": 8,
+    "segments": 5038,
+    "subpaths": 166,
+    "images": 0,
+    "bytes": 228329
+  },
+  "final_metrics": {
+    "mean_abs_rgb": 0.0,
+    "fraction_pixels_maxdiff_gt24": 0.0
+  },
+  "segment_reduction_percent": 0.0,
+  "bounds": {
+    "max_silhouette_deviation_px": 1.5,
+    "mean_abs_rgb_max": 0.8,
+    "fraction_pixels_maxdiff_gt24_max": 0.01
+  },
+  "note": "Pixel bounds compare final vector to raw Inkscape trace, not to original painterly concept. Segment count is parsed SVG path segments, not Bezier control-point count."
+}
