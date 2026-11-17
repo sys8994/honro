@@ -67,7 +67,7 @@ const p=PROBE;try{
      const answer=structuredClone(u.honroMonsterWindup||u.enemyEffectCast||null);
      const responsePose={x:h.x,y:h.y,stunnedRound:h.stunnedRound,round:copy.round,teamEnds:[...copy.teamEnds]},laneBlockers=answer?.origin?probe.collisionTerrain(answer.origin,{x:h.x,y:h.y-h.h*.44},0).filter(t=>!t.broken&&C.segmentTerrain(answer.origin,{x:h.x,y:h.y-h.h*.44},t,0)).map(t=>t.id):[];
      if(copy.side===1){copy.queue=[u.id];copy.active=u.id;copy.phase='enemy';u.acted=false;for(let i=0;i<1440;i++){probe.tick(C.STEP);if(u.acted&&!copy.projectiles.length)break;}}
-     followUp={shown,answer,responsePose,laneBlockers,finalPose:{x:h.x,y:h.y},hpLoss:hp-h.hp,shieldLoss:shield-(h.shield||0),remainingWindup:!!(u.honroMonsterWindup||u.enemyEffectCast),intent:u.intent};
+     followUp={shown,answer,responsePose,laneBlockers,finalPose:{x:h.x,y:h.y},hpLoss:hp-h.hp,turnNetShieldDecrease:shield-(h.shield||0),remainingWindup:!!(u.honroMonsterWindup||u.enemyEffectCast),intent:u.intent};
     }else followUp={error:'No actual hero turn'};
    }
    localActions.push({id:row.id,preparedHero:pos,support:row.support,damageLog,firstAction,followUp,hpLoss:start.hp-h.hp,projectiles,shots:copy.shot-start.shot,scope:'Synthetic nearby hero pose and enemy slot, original Engine action. Not normal route or full-play acceptance.'});
