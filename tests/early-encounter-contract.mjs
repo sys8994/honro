@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';import vm from 'node:vm';import {battlefield} from '../game/tests/helpers.mjs';import {runtimeEntries} from '../shared/build.mjs';
 import {mkdir,writeFile} from 'node:fs/promises';
 const entries=await runtimeEntries({vector:false,render:false,app:false,productionStory:true});
-const make=baseline=>{const g=vm.createContext({console,performance,structuredClone});for(const e of entries)vm.runInContext(baseline&&e.name==='shared/runtime/early-encounter-placement.js'?'globalThis.HonroEarlyEncounterPlacement={author:p=>p};':e.code,g);return g;};
+const make=baseline=>{const g=vm.createContext({console,performance,structuredClone});for(const e of entries)vm.runInContext(baseline&&e.name==='shared/runtime/early-encounter-placement.js'?'globalThis.HonroEarlyEncounterPlacement={author:p=>p};':baseline&&e.name==='shared/runtime/encounters.js'?e.code.replace('[1,2,3,4,6,7,9,10]','[1,2,3,4,6,7,10]'):e.code,g);return g;};
 const g=make(false),old=make(true),P=g.HonroEarlyEncounterPlacement,authored=g.HONRO_PROJECT;
 assert.equal(JSON.stringify(authored),JSON.stringify(P.author(authored)),'idempotent fresh author');
 const restored=structuredClone(authored);

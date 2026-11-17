@@ -4,7 +4,8 @@ import {runtimeEntries} from '../shared/build.mjs';
 const out=process.argv[2];await mkdir(out,{recursive:true});
 const entries=await runtimeEntries({vector:true,render:true,app:false,productionStory:true});
 const candidateRuntime=entries.map(e=>e.code).join('\n;\n');
-const baselineRuntime=entries.map(e=>e.name==='shared/runtime/early-encounter-placement.js'?'globalThis.HonroEarlyEncounterPlacement={author:p=>p};':e.code).join('\n;\n');
+const baselineCode=e=>e.name==='shared/runtime/early-encounter-placement.js'?'globalThis.HonroEarlyEncounterPlacement={author:p=>p};':e.name==='shared/runtime/encounters.js'?e.code.replace('[1,2,3,4,6,7,9,10]','[1,2,3,4,6,7,10]'):e.code;
+const baselineRuntime=entries.map(baselineCode).join('\n;\n');
 function bootstrap(id){
  if(id===40)globalThis.HONRO_APP_READY=new Promise(()=>{}); // Never attach a real App or resolve this promise.
  globalThis.PROBE={storage:[],errors:[],images:[],violations:[]};
