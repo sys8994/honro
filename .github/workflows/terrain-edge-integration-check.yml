@@ -39,7 +39,11 @@ jobs:
         run: |
           node tools/map-forge/pack-act2-compact.mjs --stage15
           git diff --exit-code -- shared/data/act2/stage12-compact-package.json shared/data/act2/stage15-compact-package.json
+      - name: Verify baseline save-format assumption
+        run: |
+          git fetch --depth=1 origin e89242eedb5c040d38a9077c7289fbdc97786bdf
+          BASELINE_REF=e89242eedb5c040d38a9077c7289fbdc97786bdf node tests/terrain-edge-save-baseline.mjs
       - name: Verify self-contained saved-art compatibility
-        run: node tests/act1-local-art-save.mjs && node tests/act2-local-art-save.mjs
+        run: node tests/terrain-edge-act1-save-compat.mjs && node tests/terrain-edge-save-roundtrip.mjs && node tests/act2-local-art-save.mjs
       - name: Build official runtime
         run: npm run build
