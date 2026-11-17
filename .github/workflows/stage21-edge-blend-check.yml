@@ -1,0 +1,27 @@
+name: Verify stage21 edge blend candidate
+on:
+  push:
+    branches: ['fix/stage21-edge-blend-20261117']
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm ci && npm ci --prefix game
+      - name: Preserve integrated candidates and source art
+        run: |
+          node tools/act1-vector-production/check-edge-integration-manifest.mjs
+          node tests/stage21-handoff-blend.mjs
+          node tools/environment/stage21-handoff-blend.mjs
+          git diff --exit-code -- shared/assets/environment/act3-handoff/stage21-bedrock.json
+      - name: Independent Native overview across three aspect ratios
+        run: HONRO_AUDIT_STAGE=21 HONRO_AUDIT_LABEL=stage21-ci HONRO_AUDIT_FILTER=-4 node tools/act1-vector-production/capture-stage-independent-audit.mjs
+      - name: Build official runtime
+        run: npm run build
