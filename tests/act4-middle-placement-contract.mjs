@@ -21,3 +21,5 @@ for(const id of [34,35,37,38]){
  result.push({stage:id,count:enemies.length,moved:changed.length,places:ACT4_MIDDLE_PLACES[id].length,scope:'Source preservation/support/body-gap contract only, not visual/play approval',before:before.units,after:after.units});
 }
 fs.mkdirSync('_local/reports/act4-middle-placement',{recursive:true});fs.writeFileSync('_local/reports/act4-middle-placement/source-contract.json',JSON.stringify(result,null,2));console.log(result.map(({before,after,...r})=>r));
+
+const {applyAct4FinaleRevision}=await import('../shared/act4-finale-revision.mjs');const project={...raw,stages:raw.stages.filter(s=>[34,35,37,38].includes(s.metadata.stageId))};const once=applyAct4FinaleRevision(project);assert.deepEqual(applyAct4FinaleRevision(once),once,'whole author pipeline idempotence');
