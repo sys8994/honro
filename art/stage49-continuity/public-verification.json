@@ -1,0 +1,70 @@
+{
+  "commit": "fd7329bc810fa57b8dc6537d68bda6e8cde5e3a1",
+  "rows": [
+    {
+      "path": "HONRO.html",
+      "bytes": 17379,
+      "sha256": "5f8a0fa7ce1b212e38886eec096dfca86c55c9ce5cd6f8f13d23421107c140bf",
+      "same": true
+    },
+    {
+      "path": "HONRO_WORKSHOP.html",
+      "bytes": 4011,
+      "sha256": "f318d66cf521b98acfd2119ee29e367800cbec8098ab2e532f90d6c55b21be0c",
+      "same": true
+    },
+    {
+      "path": "web/manifest.json",
+      "bytes": 7102376,
+      "sha256": "ce1cd018d0111e33b5bf61cd00bb6472d347687a02b18973e0e635e4f33d23c5",
+      "same": true
+    },
+    {
+      "path": "web/entries/game.1587dac870290b94.js",
+      "bytes": 20483,
+      "sha256": "1587dac870290b947ec448a7c7069c4cadcabe5145423cfc584777127f6ec33d",
+      "same": true
+    },
+    {
+      "path": "web/data/campaign.864f8f11c0afd383.json",
+      "bytes": 54885,
+      "sha256": "864f8f11c0afd3834f8d4a67c06be53d103c37af7737e6625e87cec1d9249c3c",
+      "same": true
+    },
+    {
+      "path": "web/runtime/ordered-common-18.87ed70b2e723534f.js",
+      "bytes": 30564,
+      "sha256": "87ed70b2e723534f6e5288e50fe604c2e9c2822e083b7bd3edbcd25037fc81cb",
+      "same": true
+    },
+    {
+      "path": "web/data/chapter-49-assets.ff99589db2047937.json",
+      "bytes": 3365602,
+      "sha256": "ff99589db2047937797f318740305087ad2d12fc5b0bd153e43585e8a5f0102f",
+      "same": true
+    }
+  ],
+  "ci": 44011887800,
+  "pages": 44012140967,
+  "publicUrl": "https://sys8994.github.io/honro/HONRO.html",
+  "browserTab": 29,
+  "normalSaveModified": false,
+  "inputProof": {
+    "drop": "landed and movement/fire available",
+    "rightDurationMs": 1000,
+    "movementBefore": 1100,
+    "movementAfter": 863,
+    "healthBefore": 365,
+    "healthAfter": 365,
+    "objectiveAdvanced": true
+  },
+  "scope": "49 only; no full mission or real mobile device or Workshop input proof",
+  "publicScreenshots": {
+    "public-overview.jpg": "380fac3cb4165ce2d8f4f96a2b57f58118065407d4b03ef5f0b16dd33d7d4ab1",
+    "public-after.jpg": "7b216ae736dad6a3f4b5da13b01b826b7664810cff0541264d355f270b547fbf",
+    "public-stair-movement.jpg": "1780e139ec64ea017a59ce9ab2731bc05ea93a5ab789491454bef6469708f171",
+    "public-bottom.jpg": "f3facde2a72fc8ac7fc49ff1ef56c483c3388c0b24ec19a75690caf923adad95",
+    "public-before.jpg": "ea9462d66f97fd6ce61639f93d54ba3f24b31281e0ddfbc6a94e90d96be21506",
+    "public-east.jpg": "c7daf20f333682aa92d6a051370e6ce1481ecfd6b875a5f3f9615dd097749da8"
+  }
+}

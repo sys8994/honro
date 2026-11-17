@@ -37,3 +37,14 @@ Re-designed stairs with their supporting rock instead of detached per-step skins
 - 변경: 실제 Inkscape 추적·형상 보존 최적화·Boolean 분할 암벽, 원본 접촉 보호와 single-alpha 합성. source 전체 데이터·다른 장·충돌·저장·카메라는 보존했다.
 - 확인: 보호 접촉2,022점, 아치 내부1,661점, 6개 화면비 coverage, 원본 stage/content/다른 asset 불변 및 합성 예외/opacity/clip 회귀. 후보7 Native 전체·좌우·하단·세로 화면 확인.
 - 아직 CI/master/Pages/실제 공개 입력은 미완료. 세부 근거와 미술 한계는 `game/docs/STAGE49_CONTINUITY_STATUS.md`.
+
+## 공개 배포 검수 완료 · 2026-11-17
+
+- 코드 master: `fd7329bc810fa57b8dc6537d68bda6e8cde5e3a1`. 정식 CI `44011887800`와 Pages `44012140967` 성공. 변경 전 master `1228a522`의 기록을 보존했다.
+- 공개 `HONRO.html`, `HONRO_WORKSHOP.html`, manifest, Game entry, campaign data, 변경 renderer, 49장 asset 총 7파일이 로컬 production build와 byte/SHA256 일치했다.
+- 공개 Game을 새로고침하고 정상 UI `길을 열다 → 여정첩 → 5막 → 49장 → 휴식터 → 진입`으로 확인했다. ‘디버그 · 기록 분리’를 확인했으며 일반 저장과 기존 검수 탭은 변경하지 않았다.
+- 서쪽 시작 발판의 하강 버튼으로 실제 하강 후 착지, `이동·발사 가능` 복귀를 확인했다. Right 1초로 원본 계단을 이동해 이동도 1100→863, HP365/365 유지, ‘낮은 석단으로 하강’에서 다음 하층 제압 목표로 전환됐다.
+- 실제 휠 축소와 미니맵 팬으로 서쪽·동쪽 두 아치/계단 끝·하단 연속 암벽을 확인했다. 공개 탭 29와 전후/이동/동쪽/하단/종합 화면을 보존했다.
+- Native 동일구도 전후는 1440×900 `(150,3252)` / `0.45`. 공개 전후는 동일 브라우저의 초기 진입 자동 카메라와 HP/이동도 같은 상태에서 별도 캡처했다. 두 증거를 혼동하지 않는다.
+- 미검수: 전체 미션/전투 완주, 실제 모바일 기기, Workshop 실입력. 모바일·극단 세로 상하 팬은 Native Scene 검사다.
+- 남는 시각 한계: 외벽은 원본보다 각지고 조밀한 색면이며 동쪽 계단 끝 주변에 재질 전환이 남는다. 반복 블러·신규 절단·큰 사각 접합·밝은 가짜 발판은 이번 Native/공개 범위에서 발견하지 못했다.
