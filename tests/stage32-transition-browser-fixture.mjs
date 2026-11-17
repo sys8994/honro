@@ -127,25 +127,28 @@ function instrument(code){
  const needle="if(n.protected){c.fillStyle=n.fill;c.fill(n.path,n.rule);continue;}";
  if(code.split(needle).length!==2)throw Error('Requires exact protected fill branch');
  const replacement=`if(n.protected){
-  if(!G.HONRO_STAGE32_TRANSITION){c.fillStyle=n.fill;c.fill(n.path,n.rule);continue;}
+  if(!G.HONRO_STAGE32_TRANSITION||n.sourceIndex>=21){c.fillStyle=n.fill;c.fill(n.path,n.rule);continue;}
   // Prototype only: original path/order is unchanged. No geometry erasure.
   // Source y780 = world1716, below the lowest actual route at world1342.
   const m=c.getTransform(),inv=m.inverse();if(m.b!==0||m.c!==0||m.d<=0)throw Error('Unexpected tile transform');
   const split=Math.max(0,Math.min(cv.height,Math.floor(m.d*780+m.f)));
   if(split===cv.height){c.fillStyle=n.fill;c.fill(n.path,n.rule);continue;}
   if(split>0){c.save();c.setTransform(1,0,0,1,0,0);c.beginPath();c.rect(0,0,cv.width,split);c.clip();c.setTransform(m);c.fillStyle=n.fill;c.fill(n.path,n.rule);c.restore();}
+  const y0=Math.max(0,Math.floor(m.d*780+m.f)-2),y1=Math.min(cv.height,Math.ceil(m.d*904+m.f)+2),bandHeight=y1-y0;
+  if(bandHeight<=0){c.fillStyle=n.fill;c.fill(n.path,n.rule);continue;}
   let work=G.__transitionWork,color=G.__transitionColor;
   if(!work){work=G.__transitionWork=G.document.createElement('canvas');color=G.__transitionColor=G.document.createElement('canvas');}
-  if(work.width!==cv.width||work.height!==cv.height){work.width=color.width=cv.width;work.height=color.height=cv.height;}
+  if(work.width!==cv.width||work.height!==bandHeight){work.width=color.width=cv.width;work.height=color.height=bandHeight;}
   const wc=work.getContext('2d'),cc=color.getContext('2d');
-  wc.setTransform(1,0,0,1,0,0);wc.globalAlpha=1;wc.globalCompositeOperation='copy';wc.drawImage(cv,0,0);
-  wc.globalCompositeOperation='destination-in';wc.setTransform(m);
+  wc.setTransform(1,0,0,1,0,0);wc.globalAlpha=1;wc.globalCompositeOperation='copy';wc.drawImage(cv,0,y0,cv.width,bandHeight,0,0,cv.width,bandHeight);
+  wc.globalCompositeOperation='destination-in';wc.setTransform(m.a,m.b,m.c,m.d,m.e,m.f-y0);
   const g=wc.createLinearGradient(0,780,0,900);g.addColorStop(0,'rgba(255,255,255,0)');g.addColorStop(.25,'rgba(255,255,255,.15625)');g.addColorStop(.5,'rgba(255,255,255,.5)');g.addColorStop(.75,'rgba(255,255,255,.84375)');g.addColorStop(1,'rgba(255,255,255,1)');wc.fillStyle=g;wc.fillRect(-1000000,-1000000,2000000,2000000);
-  cc.setTransform(1,0,0,1,0,0);cc.globalAlpha=1;cc.globalCompositeOperation='copy';cc.fillStyle=n.fill;cc.fillRect(0,0,cv.width,cv.height);cc.globalCompositeOperation='source-over';cc.drawImage(work,0,0);
-  const pattern=c.createPattern(color,'no-repeat');if(!pattern)throw Error('Missing transition pattern');pattern.setTransform(inv);
+  cc.setTransform(1,0,0,1,0,0);cc.globalAlpha=1;cc.globalCompositeOperation='copy';cc.fillStyle=n.fill;cc.fillRect(0,0,cv.width,bandHeight);cc.globalCompositeOperation='source-over';cc.drawImage(work,0,0);
+  const pattern=c.createPattern(color,'no-repeat');if(!pattern)throw Error('Missing transition pattern');pattern.setTransform(inv.translate(0,y0));
   c.save();c.setTransform(1,0,0,1,0,0);c.beginPath();c.rect(0,split,cv.width,cv.height-split);c.clip();c.setTransform(m);c.fillStyle=pattern;c.fill(n.path,n.rule);c.restore();G.__transitionFills++;continue;
  }`;
  let result=code.replace(needle,replacement);
+ const pathRecord='return {path:new G.Path2D(path),fill:n.fill';if(result.split(pathRecord).length!==2)throw Error('Missing indexed source path record');result=result.replace(pathRecord,'return {sourceIndex:i,path:new G.Path2D(path),fill:n.fill');
  const before='c.save();try{\n  c.globalAlpha*=(l.opacity??1);';const after='}finally{c.restore();}\n return true;\n}\nG.HonroStage32FoundationArt';
  if(result.split(before).length!==2||result.split(after).length!==2)throw Error('Unexpected BODY wrapper');
  result=result.replace(before,`let originalContext=null,transitionCanvas=null;
