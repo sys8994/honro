@@ -43,7 +43,7 @@ function fallback(reason){counters.fallbacks++;counters.lastFallback=reason;retu
 // Source-curve scanline accelerator. Geometry is never flattened or modified.
 // Near boundary queries defer to the original browser point-containment oracle.
 function compileScanline(nodes,cfg){
- const pool=new Map(),rowCache=new Map(),labelTable=Array.from({length:52},(_,i)=>({top:i%26-1,gray:i>=26}));let rowBytes=0,rowHits=0,rowMisses=0;const MAX_ROW_BYTES=2*1024*1024;
+ const pool=new Map(),rowCache=new Map(),labelTable=Array.from({length:52},(_,i)=>({top:i%26-1,gray:i>=26}));let rowBytes=0,rowHits=0,rowMisses=0;const MAX_ROW_BYTES=4*1024*1024;
  const evalC=(p,t)=>{const u=1-t;return u*u*u*p[0]+3*u*u*t*p[1]+3*u*t*t*p[2]+t*t*t*p[3];};
  function add(coords,owner,gray){const key=coords.join(',');let s=pool.get(key);if(!s){const xs=[coords[0],coords[2],coords[4],coords[6]],ys=[coords[1],coords[3],coords[5],coords[7]],a=-ys[0]+3*ys[1]-3*ys[2]+ys[3],b=2*(ys[0]-2*ys[1]+ys[2]),c=ys[1]-ys[0],cuts=[0,1];if(Math.abs(a)<1e-14){if(Math.abs(b)>1e-14){const r=-c/b;if(r>0&&r<1)cuts.push(r);}}else{const disc=b*b-4*a*c;if(disc>0){for(const r of[(-b-Math.sqrt(disc))/(2*a),(-b+Math.sqrt(disc))/(2*a)])if(r>0&&r<1)cuts.push(r);}}cuts.sort((a,b)=>a-b);s={xs,ys,pieces:cuts.slice(0,-1).map((lo,i)=>{const hi=cuts[i+1],ylo=evalC(ys,lo),yhi=evalC(ys,hi);return{lo,hi,ylo,yhi,min:Math.min(ylo,yhi),max:Math.max(ylo,yhi),delta:yhi>ylo?1:-1};}),owners:[]};pool.set(key,s);}s.owners.push({owner,gray});}
  nodes.forEach((n,owner)=>{const raw=n.d??n.dParts.join(''),tokens=raw.match(/[MLCz]|[-+]?(?:\d*\.\d+|\d+\.?\d*)(?:[eE][-+]?\d+)?/g);if(tokens.join('').replace(/\+/g,'')!==raw.replace(/[\s,]/g,'').replace(/\+/g,''))throw Error('Unsupported SVG syntax');let i=0,x=0,y=0,x0=0,y0=0,loop=-1,cmd;while(i<tokens.length){if(/[MLCz]/.test(tokens[i]))cmd=tokens[i++];const gray=cfg.graySubpaths?.[owner]?.includes(loop)||false;
@@ -57,13 +57,31 @@ function compileScanline(nodes,cfg){
  const segments=[...pool.values()],buckets=new Map();
  for(const segment of segments)for(const piece of segment.pieces){if(piece.min===piece.max)continue;const first=Math.floor(piece.min/8),last=Math.floor(piece.max/8);if(last-first>4096)throw Error('Unexpected source coordinate range');for(let key=first;key<=last;key++){if(!buckets.has(key))buckets.set(key,[]);buckets.get(key).push({s:segment,p:piece});}}
 
- function row(y){if(rowCache.has(y)){const hit=rowCache.get(y);rowCache.delete(y);rowCache.set(y,hit);rowHits++;return hit;}rowMisses++;const events=[];for(const {s,p} of buckets.get(Math.floor(y/8))||[]){if(!(y>=p.min&&y<p.max)||p.min===p.max)continue;let lo=p.lo,hi=p.hi;for(let k=0;k<44;k++){const mid=(lo+hi)/2,v=evalC(s.ys,mid);if((v<y)===(p.delta>0))lo=mid;else hi=mid;}events.push({x:evalC(s.xs,(lo+hi)/2),delta:p.delta,owners:s.owners});}
+ // Research candidate only: safeguarded Newton inversion. Near horizontal
+ // tangencies use the untouched 44-step baseline to avoid cancellation error.
+ function crossingX(s,p,y){
+  const reference=()=>{let lo=p.lo,hi=p.hi;for(let k=0;k<44;k++){const mid=(lo+hi)/2,v=evalC(s.ys,mid);if((v<y)===(p.delta>0))lo=mid;else hi=mid;}return evalC(s.xs,(lo+hi)/2);};
+  const derivative=t=>{const u=1-t,v=s.ys;return 3*(u*u*(v[1]-v[0])+2*u*t*(v[2]-v[1])+t*t*(v[3]-v[2]));};
+  let lo=p.lo,hi=p.hi,t=lo+(hi-lo)*(y-p.ylo)/(p.yhi-p.ylo);
+  for(let k=0;k<12;k++){
+   const v=evalC(s.ys,t),der=derivative(t);if(Math.abs(der)<1)return reference();
+   if(v===y)return evalC(s.xs,t);
+   if((v<y)===(p.delta>0))lo=t;else hi=t;
+   const next=t-(v-y)/der;
+   if(Math.abs(next-t)<1e-13&&Number.isFinite(next)&&next>=lo&&next<=hi)return evalC(s.xs,next);
+   t=Number.isFinite(next)&&next>lo&&next<hi?next:(lo+hi)/2;
+  }
+  return reference();
+ }
+
+ function row(y){if(rowCache.has(y)){const hit=rowCache.get(y);rowCache.delete(y);rowCache.set(y,hit);rowHits++;return hit;}rowMisses++;const events=[];for(const {s,p} of buckets.get(Math.floor(y/8))||[]){if(!(y>=p.min&&y<p.max)||p.min===p.max)continue;events.push({x:crossingX(s,p,y),delta:p.delta,owners:s.owners});}
  events.sort((a,b)=>a.x-b.x);const winding=new Int32Array(nodes.length),gray=new Int32Array(nodes.length),bounds=[],labels=[];
  for(const e of events){for(const o of e.owners){winding[o.owner]+=e.delta;if(o.gray)gray[o.owner]+=e.delta;}let top=-1;for(let i=nodes.length-1;i>=0;i--)if(winding[i]){top=i;break;}const label=labelTable[top+1+(top>=0&&gray[top]!==0?26:0)];if(bounds.length&&e.x===bounds.at(-1))labels[labels.length-1]=label;else{bounds.push(e.x);labels.push(label);}}
- const result={events:events.length,logicalBytes:bounds.length*16+128,at(x,fallback){let lo=0,hi=bounds.length;while(lo<hi){const mid=(lo+hi)>>1;if(bounds[mid]<=x)lo=mid+1;else hi=mid;}const estimate=lo?labels[lo-1]:{top:-1,gray:false},distance=Math.min(Math.abs(x-(bounds[lo]??Infinity)),Math.abs(x-(bounds[lo-1]??-Infinity)));if(distance<.002)return fallback(x,y,distance,estimate);return estimate;}};
+ const rowX=Float64Array.from(bounds),rowLabels=Uint8Array.from(labels,v=>v.top+1+(v.gray?26:0));
+ const result={events:events.length,logicalBytes:rowX.byteLength+rowLabels.byteLength+128,at(x,fallback){let lo=0,hi=rowX.length;while(lo<hi){const mid=(lo+hi)>>1;if(rowX[mid]<=x)lo=mid+1;else hi=mid;}const estimate=lo?labelTable[rowLabels[lo-1]]:{top:-1,gray:false},distance=Math.min(Math.abs(x-(rowX[lo]??Infinity)),Math.abs(x-(rowX[lo-1]??-Infinity)));if(distance<.002)return fallback(x,y,distance,estimate);return estimate;}};
  if(result.logicalBytes<=MAX_ROW_BYTES){while(rowBytes+result.logicalBytes>MAX_ROW_BYTES&&rowCache.size){const first=rowCache.keys().next().value;rowBytes-=rowCache.get(first).logicalBytes;rowCache.delete(first);}rowCache.set(y,result);rowBytes+=result.logicalBytes;}return result;
  }
- return {row,uniqueSegments:segments.length,clearRows:()=>{rowCache.clear();rowBytes=0;},stats:()=>({rowBytes,rowHits,rowMisses,rows:rowCache.size,uniqueSegments:segments.length,scope:"Logical numeric/reference payload estimate, not JS heap/GPU bytes; bounded LRU2MiB"})};
+ return {row,uniqueSegments:segments.length,clearRows:()=>{rowCache.clear();rowBytes=0;},stats:()=>({rowBytes,rowHits,rowMisses,rows:rowCache.size,uniqueSegments:segments.length,scope:"Logical numeric/reference payload estimate, not JS heap/GPU bytes; bounded LRU4MiB"})};
 }
 
 function geometry(asset){
@@ -116,10 +134,10 @@ const coverageStats={boundaryFallbacks:0,labelOverrides:0,maxOverrideDistance:0,
 let coverageMasks=null;
 function coherentColor(c,cv,q){
  if(activeScanline!==q.scanline){activeScanline?.clearRows();activeScanline=q.scanline;}
- const t=performance.now(),m=c.getTransform(),world=m.d/2.2;
+ const t=G.performance?.now?.()??Date.now(),m=c.getTransform(),world=m.d/2.2;
  // Lowest actual walk y1342; authored roads extend to1368.4. Upper limit is the
  // existing independently validated lower-material transition at world1716.
- if(m.b||m.c||m.a<=0||m.d<=0||c.globalAlpha!==1||c.globalCompositeOperation!=='source-over')return;
+ if(m.b||m.c||m.a<=0||m.d<=0||c.globalAlpha!==1||c.globalCompositeOperation!=='source-over'||c.filter&&c.filter!=='none'||c.shadowBlur||c.shadowOffsetX||c.shadowOffsetY)return;
  const y0=Math.max(0,Math.ceil(world*1385+m.f)),y1=Math.min(c.canvas.height,Math.floor(world*1716+m.f));
  if(y1<=y0)return;const w=c.canvas.width,h=y1-y0;if(w*h>1024*1024)return;
  coverageStats.calls++;
@@ -154,7 +172,7 @@ function coherentColor(c,cv,q){
  }
  // Pixel write preserves alpha exactly, and only commits changed internal
  // pixels. putImageData ignores active clips, so eligibility is explicit above.
- c.putImageData(old,0,y0);coverageStats.bytes=8*w*h*4;coverageStats.ms+=performance.now()-t;
+ c.putImageData(old,0,y0);coverageStats.bytes=8*w*h*4;coverageStats.ms+=(G.performance?.now?.()??Date.now())-t;
 }
 
 function draw(c,l,b,originalOnly=false){
@@ -220,6 +238,6 @@ function draw(c,l,b,originalOnly=false){
  }
  return true;
 }
-G.HonroStage32FoundationArt={draw,stats:()=>({...counters,coverage:{...coverageStats,scanline:activeScanline?.stats()},maxPixels:MAX_PIXELS,transition:{...transitionCounters,maxPixels:MAX_TRANSITION_PIXELS,bufferDimensions:[transitionWork,transitionColor,transitionBody].map(c=>c?[c.width,c.height]:null)},totalLogicalBytes:counters.bytes+transitionCounters.bytes}),clear:()=>{activeScanline?.clearRows();last=null;if(buffer){buffer.width=1;buffer.height=1;}counters.bytes=buffer?4:0;for(const cv of [transitionWork,transitionColor,transitionBody])if(cv){cv.width=1;cv.height=1;}transitionMemory();}};
+G.HonroStage32FoundationArt={draw,stats:()=>({...counters,coverage:{...coverageStats,retainedCanvasBytes:(coverageMasks||[]).reduce((n,v)=>n+v.width*v.height*4,0),scanline:activeScanline?.stats()},maxPixels:MAX_PIXELS,transition:{...transitionCounters,maxPixels:MAX_TRANSITION_PIXELS,bufferDimensions:[transitionWork,transitionColor,transitionBody].map(c=>c?[c.width,c.height]:null)},totalLogicalBytes:counters.bytes+transitionCounters.bytes+(coverageMasks||[]).reduce((n,v)=>n+v.width*v.height*4,0)}),clear:()=>{activeScanline?.clearRows();for(const mask of coverageMasks||[]){mask.width=1;mask.height=1;}coverageStats.bytes=coverageMasks?12:0;last=null;if(buffer){buffer.width=1;buffer.height=1;}counters.bytes=buffer?4:0;for(const cv of [transitionWork,transitionColor,transitionBody])if(cv){cv.width=1;cv.height=1;}transitionMemory();}};
 })(globalThis);
 
