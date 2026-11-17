@@ -1,0 +1,35 @@
+name: Early encounter inspection
+on:
+  push:
+    branches: ['fix/early-meaningful-encounters-20261118']
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm ci && npm ci --prefix game
+      - run: node tests/early-encounter-browser-fixture.mjs "$RUNNER_TEMP/early"
+      - name: Isolated initial Chrome scenes
+        shell: bash
+        run: |
+          browser=$(command -v google-chrome || command -v chromium)
+          for stage in 13 29 30; do
+            for view in focus overview; do
+              name="stage$stage-$view"
+              timeout 300s "$browser" --headless --no-first-run --no-default-browser-check --force-device-scale-factor=1 --virtual-time-budget=60000 --user-data-dir="$RUNNER_TEMP/profile-$name" --dump-dom "file://$RUNNER_TEMP/early/$name.html" > "$RUNNER_TEMP/$name.html"
+              node tests/early-encounter-browser-result.mjs "$RUNNER_TEMP/$name.html" "$RUNNER_TEMP/early-results"
+            done
+          done
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: early-encounter-inspection
+          path: ${{ runner.temp }}/early-results
+          if-no-files-found: warn
