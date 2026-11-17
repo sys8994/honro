@@ -46,7 +46,7 @@ const p=PROBE;try{
    const copy=structuredClone(b),probe=new C.Engine(copy,()=>{},true),u=copy.units.find(u=>u.id===row.id),h=probe.heroesAlive().find(h=>h.cls==='knight')||probe.heroesAlive()[0];
    const support=source.terrains.find(t=>t.id===row.support);
    const point=x=>{for(const i of support.properties.honroWalkEdges){const a=support.points[i],z=support.points[(i+1)%support.points.length];if(a.x!==z.x&&x>=Math.min(a.x,z.x)&&x<=Math.max(a.x,z.x))return{x,y:a.y+(z.y-a.y)*(x-a.x)/(z.x-a.x)};}};
-   const offsets=row.id==='a3-29-letter-store-guard-2'?[150,-150]:[-230,230,-160,160];
+   const offsets=row.id==='a3-29-letter-store-guard-2'?[150,-150]:[-230,230,-160,160,-100,100];
    const pos=offsets.map(dx=>u.x+dx).map(point).filter(Boolean).find(p=>C.validTerrainContactPose(copy.terrain,{...h,...p})&&!copy.units.some(v=>v!==h&&v!==u&&Math.abs(v.x-p.x)<v.r+h.r+18&&Math.abs(v.y-p.y)<Math.min(v.h,h.h)));
    if(!pos){localActions.push({id:row.id,error:'No supported local approach'});continue;}
    Object.assign(h,pos,{vx:0,vy:0});Object.assign(u,{awake:true,acted:false,moveLeft:u.maxMove});
