@@ -91,6 +91,7 @@ if(S){
    if(l.nativeArtLayer==='body'&&!bodyLive(l,b))return;
    const raw=G.HonroVisualStyle?.raw(c)||c;
    if(l.nativeArtLayer==='body')paintContactUnderlay(raw,l,b);
+   if(G.HonroStage37AlphaEdge?.draw(raw,l,b))return;
    if(G.HonroVectorArt?.draw(raw,l.asset,l))return;
   }
   // Paint the existing event-controlled boat pose exactly once, without making

@@ -52,30 +52,15 @@ async function capture(id,runtimeSha256,variant){
   const bases=nodes.filter(n=>n.tag==='path'&&n.fill==='#f2e4c6');
   const clips=nodes.filter(n=>n.clipPath==='sourceAlpha');
   assert(bases.length===1&&clips.length===1,'Unexpected base fill / source clip count');
-  if(variant==='single-clip'){
-   const originalDraw=HonroVectorArt.draw,prepared=new WeakMap(),seen=new Set();let buffer=null,maskCanvas=null,replacement=null;globalThis.S37_ALPHA_MASKS=[];
+  assert(globalThis.HonroStage37AlphaEdge,'Production helper missing');
+  if(variant==='baseline')globalThis.HonroStage37AlphaEdge=undefined;
+  else{
+   const originalDraw=HonroVectorArt.draw,seen=new Set();globalThis.S37_ALPHA_MASKS=[];
    HonroVectorArt.draw=function(c,a,l){
-    if(a.id!==source.id)return originalDraw.apply(this,arguments);
-    assert((l.scale??1)===1&&(l.rotation??0)===0&&c.globalAlpha===1&&c.globalCompositeOperation==='source-over','Unsupported isolation state');
-    const w=c.canvas.width,h=c.canvas.height;assert(w*h<=8388608,'Diagnostic buffer cap');
-    let q=prepared.get(a);if(!q){const copy=structuredClone(a),found=[];const visit=n=>{if(n.clipPath==='sourceAlpha')found.push(n);for(const ch of n.children||[])visit(ch);};visit(copy.vector.root);assert(found.length===1,'Single clip expected');delete found[0].clipPath;q={copy,clip:new Path2D(a.vector.clips.sourceAlpha.join(' '))};prepared.set(a,q);}
-    if(!buffer)buffer=document.createElement('canvas');if(buffer.width!==w)buffer.width=w;if(buffer.height!==h)buffer.height=h;
-    const cc=buffer.getContext('2d'),m=c.getTransform();cc.setTransform(1,0,0,1,0,0);cc.globalAlpha=1;cc.globalCompositeOperation='source-over';cc.filter='none';cc.clearRect(0,0,w,h);cc.setTransform(m.a,m.b,m.c,m.d,m.e,m.f);cc.honroVisualLayer=c.honroVisualLayer;
-    const key=[w,h,m.a,m.b,m.c,m.d,m.e,m.f,l.x,l.y].join('|');
-    {const newMask=!seen.has(key);seen.add(key);assert(seen.size<=32,'Too many diagnostic masks');assert(m.a>0&&m.d>0&&m.b===0&&m.c===0,'Axis-aligned mask mapping required');
-     if(!maskCanvas)maskCanvas=document.createElement('canvas');maskCanvas.width=w;maskCanvas.height=h;const mc=maskCanvas.getContext('2d');mc.setTransform(m.a,m.b,m.c,m.d,m.e,m.f);mc.translate(l.x||0,l.y||0);mc.translate(-(a.anchor?.x||0),-(a.anchor?.y||0));mc.transform(...a.vector.root.transform);mc.clip(q.clip);mc.setTransform(1,0,0,1,0,0);mc.fillStyle='#ffffff';mc.fillRect(0,0,w,h);
-     if(newMask)S37_ALPHA_MASKS.push({width:w,height:h,m:[m.a,m.b,m.c,m.d,m.e,m.f],png:maskCanvas.toDataURL('image/png')});
-    }
-    originalDraw(cc,q.copy,l);
-    // Diagnostic: preserve the exact original result everywhere except partially covered source-alpha pixels.
-    // This is a coverage correction, not a threshold/erosion: alpha=0 and alpha=255 pixels are untouched.
-    if(!replacement)replacement=document.createElement('canvas');replacement.width=w;replacement.height=h;
-    const rc=replacement.getContext('2d');rc.drawImage(c.canvas,0,0);rc.setTransform(m.a,m.b,m.c,m.d,m.e,m.f);
-    rc.save();try{rc.translate(l.x||0,l.y||0);rc.translate(-(a.anchor?.x||0),-(a.anchor?.y||0));rc.transform(...a.vector.root.transform);rc.clip(q.clip);rc.setTransform(1,0,0,1,0,0);rc.drawImage(buffer,0,0);}finally{rc.restore();}
-    originalDraw(c,a,l);
-    const originalPixels=c.getImageData(0,0,w,h),newPixels=rc.getImageData(0,0,w,h),maskPixels=maskCanvas.getContext('2d').getImageData(0,0,w,h);
-    for(let i=0;i<originalPixels.data.length;i+=4){const alpha=maskPixels.data[i+3];if(alpha>0&&alpha<255)for(let k=0;k<4;k++)originalPixels.data[i+k]=newPixels.data[i+k];}
-    c.putImageData(originalPixels,0,0);return true;
+    if(a.id===source.id){const w=c.canvas.width,h=c.canvas.height,m=c.getTransform(),key=[w,h,m.a,m.b,m.c,m.d,m.e,m.f,l.x,l.y].join('|');if(!seen.has(key)){
+     seen.add(key);assert(seen.size<=32,'Too many diagnostic masks');const cv=document.createElement('canvas');cv.width=w;cv.height=h;const mc=cv.getContext('2d');mc.setTransform(m.a,m.b,m.c,m.d,m.e,m.f);mc.translate(l.x||0,l.y||0);mc.translate(-(source.anchor?.x||0),-(source.anchor?.y||0));mc.transform(...source.vector.root.transform);mc.clip(new Path2D(source.vector.clips.sourceAlpha.join(' ')));mc.setTransform(1,0,0,1,0,0);mc.fillStyle='#fff';mc.fillRect(0,0,w,h);
+     S37_ALPHA_MASKS.push({width:w,height:h,m:[m.a,m.b,m.c,m.d,m.e,m.f],png:cv.toDataURL('image/png')});
+    }}return originalDraw.apply(this,arguments);
    };
   }
   assert(!HonroVectorArt.validate(asset.vector).length,'Invalid diagnostic vector');
@@ -116,7 +101,8 @@ async function capture(id,runtimeSha256,variant){
   assert(!p.storage.length&&!p.errors.length&&!p.violations.length,'Storage/runtime/CSP error');
   assert(!p.images.some(v=>v.pending||v.error),'Pending or failed image');
   const hash=async s=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s))),v=>v.toString(16).padStart(2,'0')).join('');
-  publishProbe({ok:true,clipMasks:globalThis.S37_ALPHA_MASKS??[],variant,diagnosticOnly:true,sourceUnchanged:JSON.stringify(source)===original,scope:'Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.',stage:id,...([34,37,38].includes(id)?{tideSnapshot,appReadyUnresolved:true,initialization:'Official coast.tide; fresh in-memory profile; no App launch or event progression'}:{}),view:requested.name,width:1331,height:763,dpr:devicePixelRatio,camera,time:2,seed:3910,runtimeSha256,physicsSha256:await hash(physics),renderPure:id!==37,firstRenderInitializations,renderStableAfterInitialization:true,frameCount:4,receiptScope:id===37?'Scene connected; only empty receipt initialization allowed':'No App.scene; receipt wrapper short-circuits',fontStatus:document.fonts.status,fontNote:'System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.',userAgent:navigator.userAgent,imageCount:p.images.length,pendingImages:p.images.filter(v=>v.pending).length,imageErrors:p.images.filter(v=>v.error).length,storage:p.storage,errors:p.errors,violations:p.violations,png:cv.toDataURL('image/png')});
+  const alphaStats=globalThis.HonroStage37AlphaEdge?.stats()??null;if(variant==='single-clip'){assert(alphaStats.draws>0,'Helper not used');assert(alphaStats.fallbacks===0,JSON.stringify(alphaStats));assert(alphaStats.peakBytes<=20971520,'Memory cap');}
+  publishProbe({ok:true,alphaStats,clipMasks:globalThis.S37_ALPHA_MASKS??[],variant,diagnosticOnly:true,sourceUnchanged:JSON.stringify(source)===original,scope:'Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.',stage:id,...([34,37,38].includes(id)?{tideSnapshot,appReadyUnresolved:true,initialization:'Official coast.tide; fresh in-memory profile; no App launch or event progression'}:{}),view:requested.name,width:1331,height:763,dpr:devicePixelRatio,camera,time:2,seed:3910,runtimeSha256,physicsSha256:await hash(physics),renderPure:id!==37,firstRenderInitializations,renderStableAfterInitialization:true,frameCount:4,receiptScope:id===37?'Scene connected; only empty receipt initialization allowed':'No App.scene; receipt wrapper short-circuits',fontStatus:document.fonts.status,fontNote:'System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.',userAgent:navigator.userAgent,imageCount:p.images.length,pendingImages:p.images.filter(v=>v.pending).length,imageErrors:p.images.filter(v=>v.error).length,storage:p.storage,errors:p.errors,violations:p.violations,png:cv.toDataURL('image/png')});
  }catch(e){publishProbe({ok:false,stage:id,variant,error:String(e.stack||e),...p});}
 }
 const script=s=>'<script>'+s.replace(/<\/script/gi,'<\\/script')+'</script>';
