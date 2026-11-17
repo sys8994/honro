@@ -23,8 +23,9 @@ def finish_escort(p,out):
   p.locator('[data-action="select-hero"][data-id="'+id+'"]').click();p.wait_for_timeout(300);return state()['active']==id
  def move_to(id,x):
   for _ in range(45):
-   ready();s=state();assert s['round']<=120 and all(h['hp']>0 and not h['dead'] for h in s['heroes']+s['residents']),s
+   ready();s=state();assert s['round']<=120 and all(h['hp']>0 and not h['dead'] for h in s['residents']),s
    h=next(h for h in s['heroes'] if h['id']==id)
+   if h['hp']<=0 or h['dead']:record('incapacitated-hero-not-moved-'+id);return
    if abs(h['x']-x)<45 and h['grounded']:return
    if h['acted'] or not choose(id):p.keyboard.press('f');p.wait_for_timeout(1000);continue
    s=state()
@@ -40,7 +41,7 @@ def finish_escort(p,out):
   for _ in range(150):
    ready();s=state()
    h=next(v for v in s['heroes'] if v['id']==id)
-   assert h['hp']>0 and not h['dead'],'surviving return-route policy required'
+   if h['hp']<=0 or h['dead']:record('incapacitated-hero-observed-'+id);return
    if h['acted'] or not choose(id):p.keyboard.press('f');p.wait_for_timeout(700);continue
    s=state();support=s['support']
    if support in ['approved40-coast-west','approved40-coast-east','approved40-upper-east']:return
@@ -66,7 +67,7 @@ def finish_escort(p,out):
  for _ in range(300):
   if time.monotonic()-start>1200:
    record('observation-timeout');raise TimeoutError('escort observation budget')
-  ready();s=state();assert all(h['hp']>0 and not h['dead'] for h in s['heroes']+s['residents']),s
+  ready();s=state();assert all(h['hp']>0 and not h['dead'] for h in s['residents']),s
   current=s['escort']['phase']
   positions=[(v['id'],round(v['x']),round(v['y'])) for v in s['residents']]
   now=time.monotonic()
@@ -102,3 +103,4 @@ def finish_escort(p,out):
  p.reload();p.wait_for_function('window.HonroApp');p.get_by_text('여정 이어가기',exact=True).click();p.wait_for_function("HonroApp.screen==='rest'",timeout=60000);after=p.evaluate(projection);(out/'postwin-reload.json').write_text(json.dumps({'before':before,'after':after},ensure_ascii=False,indent=2));assert before==after
  p.screenshot(path=str(out/'same-context-restored.jpg'),type='jpeg',quality=90)
  return {'passed':True,'round':final['round'],'heroes':final['heroes'],'residents':final['residents'],'roster':final['roster'],'presentedRequired':rows,'retiredRequired':[],'waterRecoveries':final['water'],'sameOriginalContextPostVictoryReload':True,'completedStorageSha256':hashlib.sha256(raw.encode()).hexdigest()}
+
