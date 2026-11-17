@@ -1,0 +1,45 @@
+name: Verify integrated terrain edge candidates
+on:
+  push:
+    branches: ['integration/terrain-edge-candidates-20261117']
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Install locked dependencies
+        run: npm ci && npm ci --prefix game
+      - name: Verify integrated source identities
+        run: node tools/act1-vector-production/check-edge-integration-manifest.mjs
+      - name: Verify bounds, source preservation and scoped rims
+        run: |
+          for test in stage2-art-bounds stage4-art-bounds stage5-art-bounds stage6-art-bounds stage7-art-bounds stage8-art-bounds stage9-art-bounds stage10-art-bounds stage11-edge-domain stage12-ground-skirt stage13-edge-domain stage14-art-rim stage14-edge-domain stage15-edge-domain stage16-edge-domain; do
+            node tests/$test.mjs || exit 1
+          done
+      - name: Verify related visual seams and upper tree extents
+        run: |
+          for test in check-stage3-edge-audit check-stage7-edge-audit check-stage10-tree-bounds check-stage11-tree-bounds check-stage12-tree-bounds; do
+            HONRO_AUDIT_LABEL=integration-ci node tools/act1-vector-production/$test.mjs || exit 1
+          done
+      - name: Verify optimizer registration preservation
+        run: |
+          node tools/act1-vector-production/register-stage3-extension-optimization.mjs
+          node tools/act1-vector-production/register-stage7-extension-optimization.mjs
+          node tools/act2-vector-production/register-stage12-skirt-optimization.mjs
+          node tools/act2-vector-production/register-stage15-domain-optimization.mjs
+          git diff --exit-code -- shared/data/terrain-path-registrations.json
+      - name: Verify official package reproduction
+        run: |
+          node tools/map-forge/pack-act2-compact.mjs --stage15
+          git diff --exit-code -- shared/data/act2/stage12-compact-package.json shared/data/act2/stage15-compact-package.json
+      - name: Verify self-contained saved-art compatibility
+        run: node tests/act1-local-art-save.mjs && node tests/act2-local-art-save.mjs
+      - name: Build official runtime
+        run: npm run build
