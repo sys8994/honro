@@ -1,0 +1,9 @@
+# V4 denser foundation material study (not integrated)
+
+Following rejection of V3 in actual Chrome, source asks for roughly4x terrain-width coverage with35–45 irregular faces across and20–25 layers vertically, matching BODY taupe/slate/brown, no routes/grass/sky/island silhouette, no repeated tiles. Generated image is2172×724, SHA2560ad8c14cdfc7dc32ddf67e1ad21fa797427648a71216a6b13d4b44b0cdc7d28b. It visibly has more material structure than V3 but this is NOT approval or seam completion.
+
+Same actual Inkscape1.4 native trace12,true,true,false,4,1,0.2, verified source-only wrapper-init shim and exactly two simplification candidates; tooling is preserved in ../v3/tooling. Source→raw RGB MAE2.502305/255 is quantization loss. Raw30275segments/1777subpaths/1341583bytes; selected18780segments/1777subpaths,37.9686% reduction, zero embedded images. Precision2 final603777bytes; raw→final RGB MAE0.103558/255, maxdiff>24 fraction6.36e-7, internal-curve bound1.486546sourcepx, silhouette deviation0. Source/full final render visually inspected. Local trace outputs13MB reside in separate /tmp tmpfs with2.1GB free, not scarce repository filesystem.
+
+The603KB final exceeds the exploratory V3 asset generator's300KB implementation guard. Do not silently raise it or claim equal cost: denser imagery has3.03x selected segments than V3, and must be measured in actual rendering if selected. Underlying saved original foundation remains unchanged. No production JSON/generator currently points to V4.
+
+Material density alone cannot fix the BODY lower color discontinuity. A source-grounded contact band remains necessary. Current BODY has no reusable full-width natural lower contour; ad-hoc mask stitching, removal ofZ and fade-only patches are not acceptable replacements. Public UI/input/gameplay/mobile/performance still unverified. Master/Pages unchanged.
