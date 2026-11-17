@@ -149,7 +149,8 @@ function instrument(code){
  const before='c.save();try{\n  c.globalAlpha*=(l.opacity??1);';const after='}finally{c.restore();}\n return true;\n}\nG.HonroStage32FoundationArt';
  if(result.split(before).length!==2||result.split(after).length!==2)throw Error('Unexpected BODY wrapper');
  result=result.replace(before,`let originalContext=null,transitionCanvas=null;
- if(id===BODY&&G.HONRO_STAGE32_TRANSITION){
+ const threshold=c.getTransform().d*1716+c.getTransform().f;
+ if(id===BODY&&G.HONRO_STAGE32_TRANSITION&&threshold>0&&threshold<c.canvas.height){
   originalContext=c;const matrix=c.getTransform();
   transitionCanvas=G.__transitionBodyCanvas||(G.__transitionBodyCanvas=G.document.createElement('canvas'));
   if(transitionCanvas.width!==c.canvas.width||transitionCanvas.height!==c.canvas.height){transitionCanvas.width=c.canvas.width;transitionCanvas.height=c.canvas.height;}
