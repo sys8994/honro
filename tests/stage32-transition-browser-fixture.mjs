@@ -146,7 +146,7 @@ function instrument(code){
   c.save();c.setTransform(1,0,0,1,0,0);c.beginPath();c.rect(0,split,cv.width,cv.height-split);c.clip();c.setTransform(m);c.fillStyle=pattern;c.fill(n.path,n.rule);c.restore();G.__transitionFills++;continue;
  }`;
  let result=code.replace(needle,replacement);
- const before='c.save();try{';const after='}finally{c.restore();}\n return true;';
+ const before='c.save();try{\n  c.globalAlpha*=(l.opacity??1);';const after='}finally{c.restore();}\n return true;\n}\nG.HonroStage32FoundationArt';
  if(result.split(before).length!==2||result.split(after).length!==2)throw Error('Unexpected BODY wrapper');
  result=result.replace(before,`let originalContext=null,transitionCanvas=null;
  if(id===BODY&&G.HONRO_STAGE32_TRANSITION){
@@ -155,7 +155,7 @@ function instrument(code){
   if(transitionCanvas.width!==c.canvas.width||transitionCanvas.height!==c.canvas.height){transitionCanvas.width=c.canvas.width;transitionCanvas.height=c.canvas.height;}
   const next=transitionCanvas.getContext('2d');next.setTransform(1,0,0,1,0,0);next.globalAlpha=1;next.globalCompositeOperation='copy';next.drawImage(c.canvas,0,0);next.globalCompositeOperation='source-over';next.setTransform(matrix);next.globalAlpha=c.globalAlpha;c=next;
  }
- c.save();try{`);
+ c.save();try{\n  c.globalAlpha*=(l.opacity??1);`);
  result=result.replace(after,`}finally{c.restore();}
  if(originalContext){
   // Preserve the original BODY pass exactly above the approved non-walk band.
@@ -165,7 +165,7 @@ function instrument(code){
   try{draw(originalContext,l,b);}finally{G.HONRO_STAGE32_TRANSITION=flag;}
   if(split<transitionCanvas.height){originalContext.save();originalContext.setTransform(1,0,0,1,0,0);originalContext.globalAlpha=1;originalContext.globalCompositeOperation='source-over';originalContext.beginPath();originalContext.rect(0,split,transitionCanvas.width,transitionCanvas.height-split);originalContext.clip();originalContext.drawImage(transitionCanvas,0,0);originalContext.restore();}
  }
- return true;`);
+ return true;\n}\nG.HonroStage32FoundationArt`);
  return result;
 }
 
