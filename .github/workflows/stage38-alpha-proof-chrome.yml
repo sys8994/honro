@@ -1,0 +1,34 @@
+name: Diagnose stage38 single-coverage source alpha
+on:
+  push:
+    branches: ['inspect/stage38-alpha-proof-cause-20261117']
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm ci && npm ci --prefix game
+      - run: HONRO_ACT4_RELEASE=1 node tests/stage38-alpha-proof-browser-fixture.mjs "$RUNNER_TEMP/fixtures"
+      - name: Render original and diagnostic-only layer isolates
+        shell: bash
+        run: |
+          browser=$(command -v google-chrome || command -v chromium)
+          for variant in baseline single-clip; do
+            timeout 300s "$browser" --headless --no-first-run --no-default-browser-check --force-device-scale-factor=1 --virtual-time-budget=60000 --user-data-dir="$RUNNER_TEMP/profile-$variant" --dump-dom "file://$RUNNER_TEMP/fixtures/stage38-$variant.html" > "$RUNNER_TEMP/$variant.html"
+            node tests/stage38-alpha-proof-browser-result.mjs "$RUNNER_TEMP/$variant.html" "$RUNNER_TEMP/evidence" 38 "$variant"
+          done
+      - name: Assert diagnostic physics and unchanged baseline
+        run: node tests/stage38-alpha-proof-browser-compare.mjs "$RUNNER_TEMP/evidence"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage38-alpha-proof-cause
+          path: ${{ runner.temp }}/evidence
+          if-no-files-found: error
