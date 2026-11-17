@@ -1,0 +1,8 @@
+# Stage32 protected source-order coverage diagnostic
+Based on the successful same-raw-source experiment0f058553; historical old/new geometry mismatch remains unresolved.
+Original source vector, path d, transforms, clips, fillRule, order, opacity and production data remain unchanged. Diagnostic vector clones recolor opaque fills only.
+On opaque black, a selected protected group is white. In visible mode every other path is black, rendered in exact original order using HonroVectorArt.draw. White-channel intensity is source-order surviving color contribution, not final PNG alpha. In union mode other paths are fill:none, exposing initially available protected support before later occlusion. The masks are not used as production masks.
+Groups: pale1–4, grass12–17, road/surface21–24, all fourteen protected paths. Selected gray subpaths are NOT included because they need a separate compound-clip measurement; no assumption of their exact alpha is made.
+Each mask uses the same world camera and original BODY transform on a separate opaque diagnostic canvas. It does not reproduce Scene tile cache resampling and must not be labeled exact final-scene coverage. Rendered source-order support is measured in8-bit color; separate-category rounding discrepancies are reported, not silently discarded.
+Original source hash,25rawpath hashes, physical JSON, full battle JSON, per-frame purity and historical candidate PNG exact checks remain enforced. The full Scene is rendered unchanged before the diagnostic masks. Coverage must not mutate any source or battle.
+This new experiment adds test/workflow/document files only. No production edits, Boolean masking, erosion, threshold deletion, gameplay inputs, user save access, merge or deployment.
