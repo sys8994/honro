@@ -26,3 +26,13 @@
 최적화 alias 관련 naive relative-m 선택 마스크 문제는 별개로 남아 있다. raw source와 optimized source를 혼동하지 않으며 Native parser exact 진단이 Chrome 원본 동등성이나 안전한 생산 mask를 증명하지 않는다. 단순 alias 적용 금지.
 
 원격 artifact14362319251, ZIP SHA256 bcd645f25fce5c037610f7f154428a82d55cea71c1ed854b45c3fb2b791ede57, 1,879,222바이트. 만료2027-02-15로 영구 아카이브라고 부르지 않는다. 생산 helper 변경·master 병합·Pages 배포 없음.
+
+## 경계/ROI 비용 축소 후속
+
+- f48d3a755ce935dab13d429ba95135746724aac9 / CI44161271249 성공. 경계에 걸친 tile만 두 번 BODY를 렌더한다. lower/left 출력은 앞서 직접 본24455837과 RGBA 전체0차이. 단일 cache 구축표본은 원래103.8/67.4ms 대 후속390.1/258ms로 여전히 비용 증가.
+- d1cc421f6a4fb5a8e25cdab9a8f97deb251c7854 / CI44162169328 성공. source780..904 측정밴드만 색 합성 canvas에 두고 원래 sourceY622 이하의 road21..24는 전이 합성을 건너뛴다. 원본 path/진행/physics/보호 world1700 위 RGBA0 유지. lower/left 두 시안을 다시 직접 확인했고 하단 개선과 내부 미세녹색선 잔여는 같다.
+- 같은 run의 단일 cache 구축표본: 원래 lower106.6ms/left66.6ms, 시안162.7ms/108.2ms. 최초605/415ms에서 줄었지만 통제된 반복 benchmark가 아니며 원래보다 빠르다는 주장도 하지 않는다. 실제 팬/프레임 p50/p95/메모리·실기기는 미검수.
+- ROI 시안과24455837의 차이는 하부881/880픽셀, 최대2 단계이다. 보호 상부는0. 전체 RGBA동일로 가장하지 않으며 색 버퍼 원점/범위 변경 후 직접 이미지 검토한 결과다. 새 임계값을 적용해 기존 실패를 통과시키지 않았다.
+- 최신 artifact14363333277 ZIP1,878,964바이트, SHA256 89aa4f61ca53efe46b6b32922e001c4d3c24c9ca2e6188011c128aea862ac2e4. 마찬가지로 만료2027-02-15.
+
+후속은 아직 테스트 fixture의 독립시안이다. 생산 helper로 옮기기 전 상태/버퍼 수명·상한, 관련 저장/공식 빌드, 필요한 확대·모바일 확인을 마쳐야 하며 내부 미세선의 범위도 구분한다. master/Pages 미반영.
