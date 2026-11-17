@@ -1,0 +1,40 @@
+{
+  "sourceSize": [
+    1213,
+    1296
+  ],
+  "matrix": [
+    [
+      3.009068425391591,
+      0.0,
+      -1250.0
+    ],
+    [
+      0.0,
+      3.009259259259259,
+      -100.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "bounds": [
+    -1250,
+    -100,
+    3650,
+    3900
+  ],
+  "alpha": "v3 canonical alpha; apply once after all parts",
+  "nativeColumnEdges": [
+    -1250,
+    -600,
+    0,
+    600,
+    1200,
+    1800,
+    2400
+  ],
+  "overlapSourceUnits": 1
+}

@@ -1,0 +1,49 @@
+{
+  "input": "/workspace/scratch/0b8c8f8d81c7/stage46-work/art/stage46-continuity/v6/tree-wide/color-registered.svg",
+  "input_sha256": "eaed611e0bd6f477318401b91106bf630d5bccaffa31eed80a727f959d561546",
+  "epsilon_viewbox_units": 0.35,
+  "changed_paths": 20,
+  "segments_before": 17896,
+  "segments_after": 10839,
+  "skips": {},
+  "render_checks": [
+    {
+      "mean_channel_error": 0.001770953182131052,
+      "changed_pixel_fraction": 0.011626901798063624,
+      "max_channel_error": 0.9686274528503418,
+      "width": 1280,
+      "accepted": false
+    }
+  ],
+  "growth_guard": {
+    "original_bytes": 1398859,
+    "candidate_bytes": 180993,
+    "reasons": [],
+    "before": {
+      "segments": 17896,
+      "subpaths": 698,
+      "paths": 20,
+      "shape_elements": 20
+    },
+    "candidate": {
+      "segments": 10839,
+      "subpaths": 698,
+      "paths": 20,
+      "shape_elements": 20
+    },
+    "accepted": true
+  },
+  "accepted": false,
+  "candidate_bytes": 180993,
+  "original_bytes": 1398859,
+  "reason": "raster/non-growth gate failed; output is unchanged original",
+  "output_bytes": 1398859,
+  "output_metrics": {
+    "segments": 17896,
+    "subpaths": 698,
+    "paths": 20,
+    "shape_elements": 20
+  },
+  "output_sha256": "eaed611e0bd6f477318401b91106bf630d5bccaffa31eed80a727f959d561546",
+  "input_unchanged": true
+}

@@ -1,0 +1,20 @@
+{
+  "sourceRawSHA256": "a01596d3ed727ddee64336c892bb98a0ed063799771f5723161dfdafe31e768f",
+  "sourceRawBytes": 17419521,
+  "candidateSHA256": "42e75dd187b99551c186d1a8deb52bf26e75a9b59702d10a7e63cbbb05b1cabb",
+  "pipeline": "Existing v6-grid registration; actual Inkscape 3-row intersections; epsilon1 conservative optimizer; .01 quantization; unchanged native importer budgets",
+  "runtimeInstalled": false,
+  "visual": "Native isolated crop reviewed. Irregular finer rock faces retained. Not actor-scale Scene approval. White matte remap follows existing v6-grid; canonical alpha mismatch still requires Scene inspection.",
+  "reproduce": "python tools/stage46-continuity/resume-v6-grid.py --trace-dir PATH_TO_ORIGINAL_TRACE_V6 (fresh 4/5 output directories required)",
+  "validation": {
+    "column": 5,
+    "bytes": 2750468,
+    "paths": 80,
+    "maxD": 59972,
+    "clipLengths": [
+      27651
+    ],
+    "collision": [],
+    "errors": []
+  }
+}

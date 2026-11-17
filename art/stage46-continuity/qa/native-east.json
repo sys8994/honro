@@ -1,0 +1,24 @@
+{
+  "runtimeSha256": "ac313cf93449f854f9d9d6733bd5d6646e95d2fa7aa797f990451508c2b1e3d1",
+  "projectSha256": "57fe9e2836cd3d309879309b606d64fd38d5532540f7387241c4fb35596c87ab",
+  "rows": [
+    {
+      "file": "stage-46-east.png",
+      "view": {
+        "stage": 46,
+        "id": "east",
+        "x": 3946,
+        "y": 3252,
+        "scale": 0.45,
+        "z": 0.45,
+        "w": 1440,
+        "h": 900
+      },
+      "pngSha256": "8652cccbfc77f4111801283342195e85393935c6b1f481ded7935452107fc344",
+      "stageSha256": "29c4d8fa485a707a6bb9a3fc62c3f8002116d8a22aa25a7acfed167b66978cf4",
+      "actors": 26,
+      "gameplaySha256": "9bb1b06981a5f5b3058887bff17110630b96d210f2c26c69a2004fa660f96023",
+      "scope": "Production Scene composition in native Canvas. Original collision and actors, fixed diagnostic camera. Not browser or campaign play."
+    }
+  ]
+}

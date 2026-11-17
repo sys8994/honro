@@ -1,0 +1,2 @@
+import{makeAct5}from'../../shared/act5-world.mjs';import{mkdirSync,writeFileSync}from'node:fs';
+mkdirSync('_local/stage46',{recursive:true});const p=await makeAct5(),{shaftExterior,shaftProtected,...source}=p.library.find(x=>x.id==='act5:near:46');writeFileSync('_local/stage46/source.json',JSON.stringify(source));writeFileSync('_local/stage46/stage.json',JSON.stringify(p.stages.find(x=>x.metadata.stageId===46)));

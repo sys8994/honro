@@ -1,0 +1,45 @@
+{
+  "strokeWidth": 32,
+  "insideNominalWidth": 16,
+  "excluded": {
+    "a": [
+      0,
+      491,
+      492,
+      493
+    ],
+    "b": [
+      413,
+      414,
+      415
+    ]
+  },
+  "sourceSha256": "1fb19772d82620d8d941b3ad41f19919f70907ae678dd08c703408e94a7f5523",
+  "scope": "Diagnostic protection only; original source and runtime unchanged",
+  "pathCounts": {
+    "a": 1,
+    "b": 1
+  },
+  "maxPathCharacters": {
+    "a": 24456,
+    "b": 18537
+  },
+  "warning": "Raw native diagnostic masks; verify budgets before runtime. stroke32 protects16px inward; goldstroke16 protects8px inward. Gold components under20sqpx bounding box keep exact fill without expanded support.",
+  "goldSupportStrokeWidth": 16,
+  "fix": "Independent path relative initial m normalized to absolute M before concatenation. Native stroke groups ungrouped and unioned before intersection. Gold components retained only within12px of source collision lines or protected source feature ROI.",
+  "cleanOutputs": [
+    "a-protected.svg",
+    "b-protected.svg",
+    "protected.json"
+  ],
+  "goldRasterCheck": {
+    "tested": 6616,
+    "missing": 0
+  },
+  "normalizationCheck": {
+    "paths": 212,
+    "samplesPerSegment": 5,
+    "maxCoordinateDelta": 0
+  },
+  "cause": "Independent native paths beginning with relative m were concatenated without resetting the current point; stroke fill and outline were offset before intersection. Initial m implicit relative lineto pairs now explicitly preserved. Painter overpaint paths now actually unioned rather than compounded."
+}

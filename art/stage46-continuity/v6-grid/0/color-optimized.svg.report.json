@@ -1,0 +1,50 @@
+{
+  "input": "/workspace/scratch/0b8c8f8d81c7/stage46-work/art/stage46-continuity/v6-grid/0/color-partition-raw.svg",
+  "input_sha256": "352fcb52c2a670944bb8eb66d60f06bb8d7283c69f35893b6f32d816c6310d4b",
+  "epsilon_viewbox_units": 1.0,
+  "changed_paths": 56,
+  "segments_before": 96193,
+  "segments_after": 93315,
+  "skips": {
+    "not smaller/guarded": 4
+  },
+  "render_checks": [
+    {
+      "mean_channel_error": 7.676416134927422e-05,
+      "changed_pixel_fraction": 1.1421783625730994e-06,
+      "max_channel_error": 0.07058823108673096,
+      "width": 1280,
+      "accepted": true
+    }
+  ],
+  "growth_guard": {
+    "original_bytes": 4492990,
+    "candidate_bytes": 3787940,
+    "reasons": [],
+    "before": {
+      "segments": 96193,
+      "subpaths": 6615,
+      "paths": 60,
+      "shape_elements": 60
+    },
+    "candidate": {
+      "segments": 93315,
+      "subpaths": 6615,
+      "paths": 60,
+      "shape_elements": 60
+    },
+    "accepted": true
+  },
+  "accepted": true,
+  "candidate_bytes": 3787940,
+  "original_bytes": 4492990,
+  "output_bytes": 3787940,
+  "output_metrics": {
+    "segments": 93315,
+    "subpaths": 6615,
+    "paths": 60,
+    "shape_elements": 60
+  },
+  "output_sha256": "628b966a6bc3b3135c48b864e227535f4e9cb201adb4121ca8771a6f5350eb8e",
+  "input_unchanged": true
+}

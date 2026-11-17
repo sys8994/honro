@@ -21,3 +21,8 @@ workshop/*.png
 
 # Exact generated Act4 working copy; canonical source is world.parts/.
 /shared/data/act4/world.json
+
+# Stage46 oversized native raw: preserved in Library; see RAW_SOURCE_RECOVERY.md.
+/art/stage46-continuity/v6/color-native-raw.svg
+/art/stage46-continuity/v6-split/color-native-raw.svg
+/art/stage46-continuity/v6-grid/color-native-raw.svg
