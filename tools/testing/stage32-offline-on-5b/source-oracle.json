@@ -1,0 +1,15 @@
+{
+  "helperSHA256": "6823eda0e8d3c5250396c857f09f96ee3eba8fbfba124af540d080a5a76d03c7",
+  "pilotSHA256": "ded8ef211d3b7504470b5f6afd41ba0b46e29a910fcb2603b13aeeef49dd2292",
+  "pilotStage32DispatchExactCount": 1,
+  "buildRegistrationCount": 1,
+  "providerCExactIgnoringTrailingNewlines": true,
+  "commonRendererUnchanged": true,
+  "checks": [
+    "helper draw rejects non32/custom and noncanonical placement",
+    "pilot explicit stage32 guard; route uses actual owningScene.scale",
+    "lower native gate>1.05 and budget preflight before material; originalOnly recursion retained",
+    "provider and metadata exactly same32 source model tested in C; asset originals/compatibility IDs retained"
+  ],
+  "scope": "Static source oracle only; actual5b build/runtime registration, save and Scene verification pending."
+}

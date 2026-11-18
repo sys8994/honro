@@ -1,0 +1,66 @@
+{
+  "base": "5b2edf0b868a6f4ab656574b036586304eb12808",
+  "patches": [
+    {
+      "path": "shared/build.mjs",
+      "old": "'act4-campaign','act4-pilot-art'",
+      "new": "'act4-campaign','stage32-foundation-art','act4-pilot-art'",
+      "label": "Register only Stage32 helper before consumer"
+    },
+    {
+      "path": "shared/runtime/act4-pilot-art.js",
+      "old": " 'act4-handoff:32:body-joined':{'approved32-east-face':['#626b70','#879193']},",
+      "new": " 'act4-handoff:32:body-joined':{'approved32-east-face':['#626b70','#879193']},\n 'act4-handoff:32:body-shared-material':{'approved32-east-face':['#626b70','#879193']},",
+      "label": "Matching source contact underlay for new provider"
+    },
+    {
+      "path": "shared/runtime/act4-pilot-art.js",
+      "old": "   if(G.HonroVectorArt?.draw(raw,l.asset,l))return;",
+      "new": "   if(b?.honroStage===32&&G.HonroStage32FoundationArt?.draw(raw,l,b,false,{sceneScale:this.scale,nativeLive:this.scale>1.05}))return;\n   if(G.HonroVectorArt?.draw(raw,l.asset,l))return;",
+      "label": "Explicit stage32-only dispatch; no3/7/33/34/37/38 hooks"
+    },
+    {
+      "path": "shared/act4-handoff-art.mjs",
+      "old": "  const compatibilityAssetIds=[];",
+      "new": "  // A separate material provider preserves the old foundation and saved battles.\n  if(n===32)pack.assets.push(JSON.parse(await readFile(new URL('./data/act4/handoff-art/32-foundation.json',import.meta.url),'utf8')));\n  const compatibilityAssetIds=[];",
+      "label": "Append independent Stage32 foundation"
+    },
+    {
+      "path": "shared/act4-handoff-art.mjs",
+      "old": "  const bodyId=assetId(n,n===32?\"body-joined\":\"body\");",
+      "new": "  const bodyId=assetId(n,n===32?\"body-shared-material\":\"body\");",
+      "label": "Only Stage32 active BODY provider"
+    },
+    {
+      "path": "shared/act4-handoff-art.mjs",
+      "old": "  const elements=stage.elements.flatMap(element=>{",
+      "new": "  const elements=stage.elements.flatMap(element=>{\n   if(n===32&&element.id==='approved32-coastal-foundation'){\n    compatibilityAssetIds.push(element.assetId);\n    return [{...element,assetId:assetId(32,'foundation')}];\n   }",
+      "label": "Only Stage32 foundation element visual provider"
+    },
+    {
+      "path": "shared/act4-handoff-art.mjs",
+      "old": "   pack.assets.push(joinPortGround(pack.assets.find(a=>a.id===assetId(n,'body'))));",
+      "new": "   const joined=joinPortGround(pack.assets.find(a=>a.id===assetId(n,'body')));\n   const protection=JSON.parse(await readFile(new URL('./data/act4/handoff-art/32-material-protection.json',import.meta.url),'utf8'));\n   compatibilityAssetIds.push(joined.id);\n   pack.assets.push(joined,{...joined,id:bodyId,params:{...joined.params,stage32SharedMaterial:protection}});",
+      "label": "Keep original/joined assets; add shared material clone and metadata"
+    }
+  ],
+  "proof": {
+    "shared/runtime/act4-pilot-art.js": {
+      "baseSHA256": "9793faadf143ec0e4800d7f48c2cf7a7af018a9c3e008295e23f10d1c86ef768",
+      "candidateSHA256": "ded8ef211d3b7504470b5f6afd41ba0b46e29a910fcb2603b13aeeef49dd2292",
+      "inverseExact": true
+    },
+    "shared/build.mjs": {
+      "baseSHA256": "1d655423beeae3de62cbc8893136039d035e94a88ea756e5a53488fce303b4b7",
+      "candidateSHA256": "03bd7bbeb9c49dc734149f402c8a2e629b6caca651ff048960751ad35ffe160c",
+      "inverseExact": true
+    },
+    "shared/act4-handoff-art.mjs": {
+      "baseSHA256": "904b7479127fa912fa1a78526aec485b34ba58f9cc06c5c1e1ede734b1e1a1b4",
+      "candidateSHA256": "26f5101f019a8aaf6d27030a4241636642922d89d6bfd1d294928c7b4ec48b3b",
+      "inverseExact": true
+    }
+  },
+  "rendererUnchangedSHA256": "5919fd7b8bcbf3f7ff1815033015143a0c419d7cf21f4716b8a1e5e2eba7bfd9",
+  "scope": "Only32 dependencies. Common renderer untouched. Explicit pilot stage guard. Latest5b monster and3/7 original files untouched. Actual build/runtime untested."
+}
