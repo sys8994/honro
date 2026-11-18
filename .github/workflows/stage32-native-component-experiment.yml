@@ -4,8 +4,12 @@ on:
   push:
     branches: [inspect/stage32-scanline-20261118]
     paths:
-      - tests/stage32-native-component-*
-      - tests/fixtures/stage32-native-component-*
+      - tests/stage32-native-component-static-contract.mjs
+      - tests/stage32-native-component-fixture.mjs
+      - tests/stage32-native-component-result.mjs
+      - tests/stage32-native-component-compare.mjs
+      - tests/fixtures/stage32-native-component-candidate.js
+      - tests/fixtures/stage32-native-component-coverage.svgpath
       - .github/workflows/stage32-native-component-experiment.yml
 permissions:
   contents: read

@@ -1,0 +1,15 @@
+# Native component V2: original apron-boundary guard
+
+Test-only; parent5f39fe3f4bc216d0b1deead0fabb6f0afd16cd8c. Production remains337c4ff0. No source paths/palette/provider/physics changes, no added runtime canvas/SS/readback. Same static native clip+existing material bitmap approach, static coverage1828B.
+
+V1 actual CI44225531442 failed:815 Scene RGB changes, Scene alpha0 and7335 source-owner samples0, but transparent BODY alpha changed2pixels and fully outside-BODY Scene RGB changed3pixels. The independent added alpha/background tests detected a real missed original clip boundary, not an acceptable tolerance. No adoption.
+
+Root cause: original BODY is clipped by portApron in addition to25raw source paths. The lower original segment(190,1900)→(-96,1850) passes the failed pixels nearworld(61,1877). Author-time safe coverage and prior point oracle omitted that final clip. Repeating source-over paint through its partial AA increases alpha155→159 and250→251. An opaque Scene background concealed this in final Scene alpha. Raw-path ownership alone was never sufficient exterior proof.
+
+V2 intersects the same semantic component with the original portApron transformed to source coordinates and inset by2device pixels atscale0.6, corresponding toworld3.3333/source1.51515 units. Geometry-based continuous boundary guard, no pixel exception. Static coverage lower bound contracts fromsource866.8736 to852.4506; the rest of the native paint remains unchanged. Runtime/helper guard math and SS are untouched. Actual fixture records tile draw matrix/canvas dimensions so this fixed study guard can be checked against real render planes; minimum/maximum zoom/phase verification is still future work, not claimed by this one camera.
+
+Compare strengthens original owner gate to reject visible1..4 pale underpaints,12..17grass,21..24road, raw holes and original portApron exterior. The V1 artifact was separately re-audited with original1..4 and fixed-gray owner checks:0 violations among7335 samples, so this is a real additional guard, not an effort to make a failure pass. Fixed-gray source region reclassification remains limited to approved nonwalk rock; path1 is NOT globally gray. Original BODY alpha and outside-BODY Scene RGB remain exact0change, no tolerances added.
+
+Native V2 .6 proof changed415 versus old417, alpha0, protected owner samples0,30,083 source-grid points protected0/outside original-derived coverage0. These finite Native tests are not continuous geometric or Chrome proof. Actual paired Scene, transparent BODY, background/holes, and cost checks must run. Same original baseline hash, three no-op Scene calls, source/physics/storage contracts, measuredcold/pan.
+
+Remaining visual limitation: upper continuation beyond the1716 declared band is still unsolved. Partialgrass independent expected-composite proof and other zooms are not complete. This package is a guarded partial integration experiment, never production/whole-stage acceptance. Existing source-atop diagnostic is not used.
