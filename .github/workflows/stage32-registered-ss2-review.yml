@@ -6,6 +6,7 @@ on:
     paths:
       - shared/runtime/stage32-foundation-art.js
       - tests/stage32-registered-ss2-*
+      - tests/stage32-registered-empty-*
       - .github/workflows/stage32-registered-ss2-review.yml
 permissions:
   contents: read
@@ -21,7 +22,9 @@ jobs:
           package-manager-cache: false
       - run: npm ci && npm ci --prefix game
       - name: Production-source six-buffer contracts
-        run: node tests/stage32-registered-ss2-native-contract.mjs
+        run: |
+          node tests/stage32-ss2-native-contract.mjs
+          node tests/stage32-registered-empty-native-contract.mjs
       - name: Original providers, paths, physics and codec contracts
         run: |
           git fetch origin e89242eedb5c040d38a9077c7289fbdc97786bdf --depth=1
