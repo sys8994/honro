@@ -1,0 +1,8 @@
+{
+  "baseline": "stage32-upper-long-diagonal/candidate.js",
+  "baselineSHA256": "2cbc7689548b871021ebcf5c4190052029bac510a65cc16ef5ed10290ea828e5",
+  "candidateSHA256": "461b6300878fffb858bf536cece4df1ecee357c04810e87cefc36eeb2929ad54",
+  "old": "   for(const n of q.paths){\n    if(n.protected){",
+  "new": "   for(const n of q.paths){\n    // Original paths 21..24 end at world Y <= 1368.4. On the staged\n    // alternate only, their pixels are above the published Y1716 split.\n    if(originalContext&&n.sourceIndex>=21)continue;\n    if(n.protected){",
+  "inverseExact": true
+}

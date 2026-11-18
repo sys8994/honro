@@ -1,0 +1,43 @@
+{
+  "baselineSHA256": "2cbc7689548b871021ebcf5c4190052029bac510a65cc16ef5ed10290ea828e5",
+  "candidateSHA256": "4d5ddbbb8edab97727b70c6b75c670818e46e420f2752ed6fb74bceadaf6a476",
+  "changes": [
+    {
+      "old": "let anyEligible=false;",
+      "new": "let anyEligible=false,minX=w,minY=count,maxX=-1,maxY=-1;"
+    },
+    {
+      "old": "for(let y=0;y<count&&!anyEligible;y++)for(let x=0;x<w;x++){",
+      "new": "/* ROI full eligibility scan */ for(let y=0;y<count;y++)for(let x=0;x<w;x++){"
+    },
+    {
+      "old": "anyEligible=true;break;",
+      "new": "anyEligible=true;minX=Math.min(minX,x);minY=Math.min(minY,y);maxX=Math.max(maxX,x);maxY=Math.max(maxY,y);"
+    },
+    {
+      "old": "ssStats.highRasterStripes++;",
+      "new": "ssStats.highRasterStripes++;\n  const rx=minX*SS,ry=minY*SS,rw=(maxX-minX+1)*SS,rh=(maxY-minY+1)*SS;"
+    },
+    {
+      "old": "const colors=hi.getImageData(0,0,hw,hh).data;",
+      "new": "const colors=hi.getImageData(rx,ry,rw,rh).data;"
+    },
+    {
+      "old": "const labels=hi.getImageData(0,0,hw,hh).data;",
+      "new": "const labels=hi.getImageData(rx,ry,rw,rh).data;"
+    },
+    {
+      "old": "if(colors.length!==hw*hh*4||labels.length!==hw*hh*4)",
+      "new": "if(colors.length!==rw*rh*4||labels.length!==rw*rh*4)"
+    },
+    {
+      "old": "ssStats.readbackBytes=(2*hw*hh+3*w*h)*4;",
+      "new": "ssStats.readbackBytes=(2*rw*rh+3*w*h)*4;"
+    },
+    {
+      "old": "const label=boxMean(labels,hw,x,y,SS),color=boxMean(colors,hw,x,y,SS);",
+      "new": "const label=boxMean(labels,rw,x-minX,y-minY,SS),color=boxMean(colors,rw,x-minX,y-minY,SS);"
+    }
+  ],
+  "inverseExact": true
+}

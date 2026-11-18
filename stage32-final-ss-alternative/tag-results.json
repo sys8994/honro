@@ -1,0 +1,1071 @@
+{
+  "scope": "Native original fill/clip/bitmap order with source fill white for selected original paths and other source/material fills black. SS disabled in both to avoid changing nonlinear eligibility; existing native/internal masks retained. Tests incremental band impact on original pre-SS tagged contribution, NOT exact frozen-SS reference or full Scene filters.",
+  "reports": [
+    {
+      "pose": {
+        "name": "left",
+        "z": 0.6,
+        "w": 1331,
+        "h": 763,
+        "cx": 320,
+        "cy": 1650
+      },
+      "tag": "grass",
+      "changed": 888,
+      "fullWhiteChanged": 5,
+      "maxLoss": 95,
+      "nonzero": 47732,
+      "alpha": 0,
+      "examples": [
+        {
+          "x": 692,
+          "y": 243,
+          "before": 140,
+          "after": 128
+        },
+        {
+          "x": 693,
+          "y": 243,
+          "before": 46,
+          "after": 28
+        },
+        {
+          "x": 950,
+          "y": 243,
+          "before": 156,
+          "after": 122
+        },
+        {
+          "x": 951,
+          "y": 243,
+          "before": 58,
+          "after": 29
+        },
+        {
+          "x": 1120,
+          "y": 243,
+          "before": 45,
+          "after": 24
+        },
+        {
+          "x": 690,
+          "y": 244,
+          "before": 77,
+          "after": 24
+        },
+        {
+          "x": 691,
+          "y": 244,
+          "before": 154,
+          "after": 111
+        },
+        {
+          "x": 692,
+          "y": 244,
+          "before": 6,
+          "after": 1
+        },
+        {
+          "x": 948,
+          "y": 244,
+          "before": 135,
+          "after": 87
+        },
+        {
+          "x": 949,
+          "y": 244,
+          "before": 16,
+          "after": 3
+        },
+        {
+          "x": 1118,
+          "y": 244,
+          "before": 56,
+          "after": 0
+        },
+        {
+          "x": 1119,
+          "y": 244,
+          "before": 3,
+          "after": 0
+        },
+        {
+          "x": 688,
+          "y": 245,
+          "before": 57,
+          "after": 13
+        },
+        {
+          "x": 689,
+          "y": 245,
+          "before": 197,
+          "after": 149
+        },
+        {
+          "x": 690,
+          "y": 245,
+          "before": 68,
+          "after": 36
+        },
+        {
+          "x": 701,
+          "y": 245,
+          "before": 3,
+          "after": 1
+        },
+        {
+          "x": 702,
+          "y": 245,
+          "before": 8,
+          "after": 3
+        },
+        {
+          "x": 703,
+          "y": 245,
+          "before": 16,
+          "after": 8
+        },
+        {
+          "x": 704,
+          "y": 245,
+          "before": 24,
+          "after": 14
+        },
+        {
+          "x": 705,
+          "y": 245,
+          "before": 35,
+          "after": 24
+        },
+        {
+          "x": 706,
+          "y": 245,
+          "before": 48,
+          "after": 37
+        },
+        {
+          "x": 707,
+          "y": 245,
+          "before": 63,
+          "after": 54
+        },
+        {
+          "x": 708,
+          "y": 245,
+          "before": 77,
+          "after": 73
+        },
+        {
+          "x": 945,
+          "y": 245,
+          "before": 221,
+          "after": 214
+        },
+        {
+          "x": 946,
+          "y": 245,
+          "before": 109,
+          "after": 64
+        },
+        {
+          "x": 947,
+          "y": 245,
+          "before": 12,
+          "after": 2
+        },
+        {
+          "x": 1116,
+          "y": 245,
+          "before": 36,
+          "after": 0
+        },
+        {
+          "x": 1117,
+          "y": 245,
+          "before": 15,
+          "after": 0
+        },
+        {
+          "x": 686,
+          "y": 246,
+          "before": 41,
+          "after": 13
+        },
+        {
+          "x": 687,
+          "y": 246,
+          "before": 177,
+          "after": 134
+        }
+      ],
+      "palettePoints": [
+        {
+          "x": 648,
+          "y": 262,
+          "baseline": [
+            131,
+            136,
+            54,
+            255
+          ],
+          "candidate": [
+            130,
+            135,
+            56,
+            255
+          ],
+          "originalTag": 255,
+          "candidateTag": 246
+        },
+        {
+          "x": 646,
+          "y": 263,
+          "baseline": [
+            131,
+            136,
+            54,
+            255
+          ],
+          "candidate": [
+            130,
+            135,
+            56,
+            255
+          ],
+          "originalTag": 255,
+          "candidateTag": 246
+        },
+        {
+          "x": 1292,
+          "y": 419,
+          "baseline": [
+            131,
+            136,
+            54,
+            255
+          ],
+          "candidate": [
+            131,
+            135,
+            60,
+            255
+          ],
+          "originalTag": 255,
+          "candidateTag": 239
+        }
+      ]
+    },
+    {
+      "pose": {
+        "name": "left",
+        "z": 0.6,
+        "w": 1331,
+        "h": 763,
+        "cx": 320,
+        "cy": 1650
+      },
+      "tag": "pale",
+      "changed": 0,
+      "fullWhiteChanged": 0,
+      "maxLoss": 0,
+      "nonzero": 22012,
+      "alpha": 0,
+      "examples": [],
+      "palettePoints": [
+        {
+          "x": 648,
+          "y": 262,
+          "baseline": [
+            131,
+            136,
+            54,
+            255
+          ],
+          "candidate": [
+            130,
+            135,
+            56,
+            255
+          ],
+          "originalTag": 0,
+          "candidateTag": 0
+        },
+        {
+          "x": 646,
+          "y": 263,
+          "baseline": [
+            131,
+            136,
+            54,
+            255
+          ],
+          "candidate": [
+            130,
+            135,
+            56,
+            255
+          ],
+          "originalTag": 0,
+          "candidateTag": 0
+        },
+        {
+          "x": 1292,
+          "y": 419,
+          "baseline": [
+            131,
+            136,
+            54,
+            255
+          ],
+          "candidate": [
+            131,
+            135,
+            60,
+            255
+          ],
+          "originalTag": 0,
+          "candidateTag": 0
+        }
+      ]
+    },
+    {
+      "pose": {
+        "name": "left",
+        "z": 0.6,
+        "w": 1331,
+        "h": 763,
+        "cx": 320,
+        "cy": 1650
+      },
+      "tag": "road",
+      "changed": 0,
+      "fullWhiteChanged": 0,
+      "maxLoss": 0,
+      "nonzero": 10634,
+      "alpha": 0,
+      "examples": [],
+      "palettePoints": [
+        {
+          "x": 648,
+          "y": 262,
+          "baseline": [
+            131,
+            136,
+            54,
+            255
+          ],
+          "candidate": [
+            130,
+            135,
+            56,
+            255
+          ],
+          "originalTag": 0,
+          "candidateTag": 0
+        },
+        {
+          "x": 646,
+          "y": 263,
+          "baseline": [
+            131,
+            136,
+            54,
+            255
+          ],
+          "candidate": [
+            130,
+            135,
+            56,
+            255
+          ],
+          "originalTag": 0,
+          "candidateTag": 0
+        },
+        {
+          "x": 1292,
+          "y": 419,
+          "baseline": [
+            131,
+            136,
+            54,
+            255
+          ],
+          "candidate": [
+            131,
+            135,
+            60,
+            255
+          ],
+          "originalTag": 0,
+          "candidateTag": 0
+        }
+      ]
+    },
+    {
+      "pose": {
+        "name": "maximum",
+        "z": 1.65,
+        "w": 1331,
+        "h": 763,
+        "cx": 320,
+        "cy": 1650
+      },
+      "tag": "grass",
+      "changed": 852,
+      "fullWhiteChanged": 0,
+      "maxLoss": 69,
+      "nonzero": 68780,
+      "alpha": 0,
+      "examples": [
+        {
+          "x": 739,
+          "y": 2,
+          "before": 107,
+          "after": 84
+        },
+        {
+          "x": 741,
+          "y": 2,
+          "before": 107,
+          "after": 84
+        },
+        {
+          "x": 742,
+          "y": 2,
+          "before": 1,
+          "after": 0
+        },
+        {
+          "x": 737,
+          "y": 3,
+          "before": 50,
+          "after": 30
+        },
+        {
+          "x": 739,
+          "y": 3,
+          "before": 220,
+          "after": 213
+        },
+        {
+          "x": 740,
+          "y": 3,
+          "before": 24,
+          "after": 11
+        },
+        {
+          "x": 735,
+          "y": 4,
+          "before": 35,
+          "after": 14
+        },
+        {
+          "x": 736,
+          "y": 4,
+          "before": 169,
+          "after": 156
+        },
+        {
+          "x": 738,
+          "y": 4,
+          "before": 121,
+          "after": 95
+        },
+        {
+          "x": 739,
+          "y": 4,
+          "before": 2,
+          "after": 0
+        },
+        {
+          "x": 733,
+          "y": 5,
+          "before": 21,
+          "after": 5
+        },
+        {
+          "x": 734,
+          "y": 5,
+          "before": 150,
+          "after": 118
+        },
+        {
+          "x": 737,
+          "y": 5,
+          "before": 32,
+          "after": 15
+        },
+        {
+          "x": 731,
+          "y": 6,
+          "before": 13,
+          "after": 3
+        },
+        {
+          "x": 732,
+          "y": 6,
+          "before": 131,
+          "after": 97
+        },
+        {
+          "x": 735,
+          "y": 6,
+          "before": 134,
+          "after": 107
+        },
+        {
+          "x": 736,
+          "y": 6,
+          "before": 2,
+          "after": 0
+        },
+        {
+          "x": 729,
+          "y": 7,
+          "before": 11,
+          "after": 2
+        },
+        {
+          "x": 730,
+          "y": 7,
+          "before": 122,
+          "after": 88
+        },
+        {
+          "x": 734,
+          "y": 7,
+          "before": 40,
+          "after": 19
+        },
+        {
+          "x": 773,
+          "y": 7,
+          "before": 1,
+          "after": 0
+        },
+        {
+          "x": 774,
+          "y": 7,
+          "before": 7,
+          "after": 4
+        },
+        {
+          "x": 775,
+          "y": 7,
+          "before": 18,
+          "after": 11
+        },
+        {
+          "x": 776,
+          "y": 7,
+          "before": 30,
+          "after": 20
+        },
+        {
+          "x": 777,
+          "y": 7,
+          "before": 47,
+          "after": 35
+        },
+        {
+          "x": 778,
+          "y": 7,
+          "before": 68,
+          "after": 54
+        },
+        {
+          "x": 779,
+          "y": 7,
+          "before": 94,
+          "after": 81
+        },
+        {
+          "x": 780,
+          "y": 7,
+          "before": 123,
+          "after": 115
+        },
+        {
+          "x": 727,
+          "y": 8,
+          "before": 11,
+          "after": 2
+        },
+        {
+          "x": 728,
+          "y": 8,
+          "before": 123,
+          "after": 87
+        }
+      ],
+      "palettePoints": []
+    },
+    {
+      "pose": {
+        "name": "maximum",
+        "z": 1.65,
+        "w": 1331,
+        "h": 763,
+        "cx": 320,
+        "cy": 1650
+      },
+      "tag": "pale",
+      "changed": 0,
+      "fullWhiteChanged": 0,
+      "maxLoss": 0,
+      "nonzero": 0,
+      "alpha": 0,
+      "examples": [],
+      "palettePoints": []
+    },
+    {
+      "pose": {
+        "name": "maximum",
+        "z": 1.65,
+        "w": 1331,
+        "h": 763,
+        "cx": 320,
+        "cy": 1650
+      },
+      "tag": "road",
+      "changed": 0,
+      "fullWhiteChanged": 0,
+      "maxLoss": 0,
+      "nonzero": 0,
+      "alpha": 0,
+      "examples": [],
+      "palettePoints": []
+    },
+    {
+      "pose": {
+        "name": "minimum",
+        "z": 0.057352941176470586,
+        "w": 390,
+        "h": 696,
+        "cx": 1689.6,
+        "cy": 1200
+      },
+      "tag": "grass",
+      "changed": 377,
+      "fullWhiteChanged": 2,
+      "maxLoss": 36,
+      "nonzero": 3629,
+      "alpha": 0,
+      "examples": [
+        {
+          "x": 103,
+          "y": 360,
+          "before": 23,
+          "after": 21
+        },
+        {
+          "x": 108,
+          "y": 360,
+          "before": 9,
+          "after": 8
+        },
+        {
+          "x": 118,
+          "y": 360,
+          "before": 25,
+          "after": 22
+        },
+        {
+          "x": 119,
+          "y": 360,
+          "before": 20,
+          "after": 19
+        },
+        {
+          "x": 143,
+          "y": 360,
+          "before": 191,
+          "after": 178
+        },
+        {
+          "x": 159,
+          "y": 360,
+          "before": 39,
+          "after": 32
+        },
+        {
+          "x": 165,
+          "y": 360,
+          "before": 7,
+          "after": 5
+        },
+        {
+          "x": 166,
+          "y": 360,
+          "before": 41,
+          "after": 38
+        },
+        {
+          "x": 181,
+          "y": 360,
+          "before": 23,
+          "after": 19
+        },
+        {
+          "x": 103,
+          "y": 361,
+          "before": 10,
+          "after": 8
+        },
+        {
+          "x": 108,
+          "y": 361,
+          "before": 17,
+          "after": 16
+        },
+        {
+          "x": 116,
+          "y": 361,
+          "before": 102,
+          "after": 85
+        },
+        {
+          "x": 117,
+          "y": 361,
+          "before": 192,
+          "after": 171
+        },
+        {
+          "x": 142,
+          "y": 361,
+          "before": 240,
+          "after": 223
+        },
+        {
+          "x": 143,
+          "y": 361,
+          "before": 201,
+          "after": 184
+        },
+        {
+          "x": 144,
+          "y": 361,
+          "before": 128,
+          "after": 123
+        },
+        {
+          "x": 145,
+          "y": 361,
+          "before": 128,
+          "after": 108
+        },
+        {
+          "x": 146,
+          "y": 361,
+          "before": 109,
+          "after": 88
+        },
+        {
+          "x": 147,
+          "y": 361,
+          "before": 64,
+          "after": 60
+        },
+        {
+          "x": 148,
+          "y": 361,
+          "before": 50,
+          "after": 45
+        },
+        {
+          "x": 157,
+          "y": 361,
+          "before": 24,
+          "after": 20
+        },
+        {
+          "x": 158,
+          "y": 361,
+          "before": 31,
+          "after": 24
+        },
+        {
+          "x": 163,
+          "y": 361,
+          "before": 15,
+          "after": 14
+        },
+        {
+          "x": 164,
+          "y": 361,
+          "before": 33,
+          "after": 26
+        },
+        {
+          "x": 181,
+          "y": 361,
+          "before": 37,
+          "after": 30
+        },
+        {
+          "x": 195,
+          "y": 361,
+          "before": 26,
+          "after": 23
+        },
+        {
+          "x": 107,
+          "y": 362,
+          "before": 39,
+          "after": 31
+        },
+        {
+          "x": 115,
+          "y": 362,
+          "before": 237,
+          "after": 229
+        },
+        {
+          "x": 149,
+          "y": 362,
+          "before": 255,
+          "after": 227
+        },
+        {
+          "x": 150,
+          "y": 362,
+          "before": 245,
+          "after": 209
+        }
+      ],
+      "palettePoints": [
+        {
+          "x": 149,
+          "y": 362,
+          "baseline": [
+            131,
+            136,
+            54,
+            255
+          ],
+          "candidate": [
+            128,
+            132,
+            59,
+            255
+          ],
+          "originalTag": 255,
+          "candidateTag": 227
+        }
+      ]
+    },
+    {
+      "pose": {
+        "name": "minimum",
+        "z": 0.057352941176470586,
+        "w": 390,
+        "h": 696,
+        "cx": 1689.6,
+        "cy": 1200
+      },
+      "tag": "pale",
+      "changed": 23,
+      "fullWhiteChanged": 0,
+      "maxLoss": 5,
+      "nonzero": 1339,
+      "alpha": 0,
+      "examples": [
+        {
+          "x": 103,
+          "y": 360,
+          "before": 12,
+          "after": 11
+        },
+        {
+          "x": 103,
+          "y": 361,
+          "before": 6,
+          "after": 5
+        },
+        {
+          "x": 208,
+          "y": 367,
+          "before": 25,
+          "after": 24
+        },
+        {
+          "x": 287,
+          "y": 367,
+          "before": 22,
+          "after": 19
+        },
+        {
+          "x": 102,
+          "y": 369,
+          "before": 12,
+          "after": 11
+        },
+        {
+          "x": 209,
+          "y": 369,
+          "before": 34,
+          "after": 31
+        },
+        {
+          "x": 288,
+          "y": 369,
+          "before": 32,
+          "after": 30
+        },
+        {
+          "x": 102,
+          "y": 370,
+          "before": 17,
+          "after": 16
+        },
+        {
+          "x": 102,
+          "y": 371,
+          "before": 19,
+          "after": 18
+        },
+        {
+          "x": 210,
+          "y": 371,
+          "before": 29,
+          "after": 26
+        },
+        {
+          "x": 102,
+          "y": 372,
+          "before": 19,
+          "after": 17
+        },
+        {
+          "x": 210,
+          "y": 372,
+          "before": 2,
+          "after": 1
+        },
+        {
+          "x": 241,
+          "y": 372,
+          "before": 31,
+          "after": 27
+        },
+        {
+          "x": 289,
+          "y": 372,
+          "before": 39,
+          "after": 38
+        },
+        {
+          "x": 211,
+          "y": 373,
+          "before": 9,
+          "after": 7
+        },
+        {
+          "x": 289,
+          "y": 373,
+          "before": 28,
+          "after": 25
+        },
+        {
+          "x": 215,
+          "y": 374,
+          "before": 32,
+          "after": 27
+        },
+        {
+          "x": 240,
+          "y": 374,
+          "before": 26,
+          "after": 21
+        },
+        {
+          "x": 289,
+          "y": 374,
+          "before": 13,
+          "after": 11
+        },
+        {
+          "x": 239,
+          "y": 375,
+          "before": 33,
+          "after": 32
+        },
+        {
+          "x": 289,
+          "y": 375,
+          "before": 22,
+          "after": 20
+        },
+        {
+          "x": 235,
+          "y": 376,
+          "before": 57,
+          "after": 53
+        },
+        {
+          "x": 289,
+          "y": 376,
+          "before": 27,
+          "after": 26
+        }
+      ],
+      "palettePoints": [
+        {
+          "x": 149,
+          "y": 362,
+          "baseline": [
+            131,
+            136,
+            54,
+            255
+          ],
+          "candidate": [
+            128,
+            132,
+            59,
+            255
+          ],
+          "originalTag": 0,
+          "candidateTag": 0
+        }
+      ]
+    },
+    {
+      "pose": {
+        "name": "minimum",
+        "z": 0.057352941176470586,
+        "w": 390,
+        "h": 696,
+        "cx": 1689.6,
+        "cy": 1200
+      },
+      "tag": "road",
+      "changed": 0,
+      "fullWhiteChanged": 0,
+      "maxLoss": 0,
+      "nonzero": 836,
+      "alpha": 0,
+      "examples": [],
+      "palettePoints": [
+        {
+          "x": 149,
+          "y": 362,
+          "baseline": [
+            131,
+            136,
+            54,
+            255
+          ],
+          "candidate": [
+            128,
+            132,
+            59,
+            255
+          ],
+          "originalTag": 0,
+          "candidateTag": 0
+        }
+      ]
+    }
+  ]
+}
