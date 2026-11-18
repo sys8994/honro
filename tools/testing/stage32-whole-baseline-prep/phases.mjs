@@ -2,7 +2,7 @@
 // Caller must finish image/font readiness, freeze only visual-time arguments,
 // keep performance.now real, establish official fresh battle/tide and purity.
 export async function measureWholeScene({canvas,engine,battle,camera,makeScene,assertPure,drain}){
- const helper=globalThis.HonroStage32FoundationArt;const stats=()=>({helper:helper?.stats?.()??null});const run=s=>{const before=stats(),worldBefore=s._cacheStats?.worldBuilds??0,t=performance.now();s.render(engine,0,'',.6,false,0);const ms=performance.now()-t;return{ms,worldRebuilds:(s._cacheStats?.worldBuilds??0)-worldBefore,sceneCache:{...s._cacheStats},before,after:stats()};};
+ const helper=globalThis.HonroStage32FoundationArt;const stats=()=>({helper:helper?.stats?.()??null});const run=s=>{const before=stats(),worldBefore=s._cacheStats?.worldBuilds??0,t=performance.now();s.render(engine,0,'',.6,false,0);const ms=performance.now()-t;assertPure();return{ms,worldRebuilds:(s._cacheStats?.worldBuilds??0)-worldBefore,sceneCache:{...s._cacheStats},before,after:stats()};};
  // First render explicitly includes lazy original geometry AND native/band preparation.
  // Counters are read if registered provider exposes them; absence is null, NOT zero.
  const pristine=stats(),firstScene=makeScene(canvas,camera),first=run(firstScene);assertPure();await drain();const readinessRenders=[];for(let i=0;i<3;i++){readinessRenders.push(run(firstScene));assertPure();await drain();}const prepared=stats();const cold=[],warm=[],pan=[];let scene;
