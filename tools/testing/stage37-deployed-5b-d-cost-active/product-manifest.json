@@ -1,0 +1,73 @@
+{
+  "ready": true,
+  "base": "5b2edf0b868a6f4ab656574b036586304eb12808",
+  "sourceOnly": true,
+  "scope": "Stage3+7 only, no Stage32 helper/pilot or unrelated candidate placement",
+  "files": [
+    {
+      "path": "shared/build.mjs",
+      "local": "stage37-release-scope/candidate/shared/build.mjs",
+      "bytes": 24755,
+      "sha256": "1723baa38ab7b691f9b5a1bf9d9e42c2bba78c15d1fb6cb833ba43addda8d47b",
+      "blob": "dfd27d06ac0751043da85595e3a8897f728cd43f"
+    },
+    {
+      "path": "shared/data/stage7-terrain-path-registration.json",
+      "local": "stage37-release-scope/candidate/shared/data/stage7-terrain-path-registration.json",
+      "bytes": 561,
+      "sha256": "3270a3519b3e05b4088185e9018f94f44d38cd71f14bd99f9bfe0f8dc8b32fcf",
+      "blob": "7dcda76560fe6096ef1a17cf90d0cfa16a5056e1"
+    },
+    {
+      "path": "shared/runtime/renderer.js",
+      "local": "stage37-release-scope/candidate/shared/runtime/renderer.js",
+      "bytes": 76023,
+      "sha256": "9d3c8b4ba03e63f009a61310a47d01a23d76b7abada91b8aa786f5e01027994c",
+      "blob": "07c4ac503e55cbdf53b57083842e4dd09ff6c5b0"
+    },
+    {
+      "path": "shared/runtime/terrain-readability.js",
+      "local": "stage37-release-scope/candidate/shared/runtime/terrain-readability.js",
+      "bytes": 6098,
+      "sha256": "63e38cbfd2d625886df7e88c447999415c716f3ca35a7094503b23959ff85000",
+      "blob": "6687b62a1f5a4c872c5fda7a7fe891e5d6faf311"
+    },
+    {
+      "path": "shared/terrain-path-optimization.mjs",
+      "local": "stage37-release-scope/candidate/shared/terrain-path-optimization.mjs",
+      "bytes": 3091,
+      "sha256": "0bceb927cc7f0bdc8ab27d6c68427e96da0e3a5de14e484b7976c7fbba1e57eb",
+      "blob": "c8621ad53461a741607ddb972d4186111ac331e1"
+    },
+    {
+      "path": "tools/map-forge/act1-naru-doldang.mjs",
+      "local": "stage37-release-scope/candidate/tools/map-forge/act1-naru-doldang.mjs",
+      "bytes": 14713,
+      "sha256": "21d4c970795cd8a2eb171d440e5f9e890d2eb67a69bdd1f0620394c67f2d9366",
+      "blob": "1f9dc6ee17fbad5cca0dbf357bdfa3fad5ef3d31"
+    },
+    {
+      "path": "tools/map-forge/naru-body-finish.mjs",
+      "local": "stage37-release-scope/candidate/tools/map-forge/naru-body-finish.mjs",
+      "bytes": 4841,
+      "sha256": "119eaf37447051d55df3cbc93ea0e50cc1a24076f9b3a5b2d9722f7ee8e420d5",
+      "blob": "002f5c046601ab04cd38826166ccb86d6101e465"
+    },
+    {
+      "path": "tools/map-forge/stage7-terrain-finish.json",
+      "local": "stage37-release-scope/candidate/tools/map-forge/stage7-terrain-finish.json",
+      "bytes": 333878,
+      "sha256": "5236c1338b12bf5e2f5d6a0198214e9deccc90f1c0b99597e47415ebae1129e6",
+      "blob": "528625a1c98ed59cf2325f5fb5f5284855a76f41"
+    },
+    {
+      "path": "tools/map-forge/stage7-terrain-finish.mjs",
+      "local": "stage37-release-scope/candidate/tools/map-forge/stage7-terrain-finish.mjs",
+      "bytes": 2362,
+      "sha256": "10c39872fa9ab204fd4fdb9b2752f180155aeca01b2bc60e2b38bbda1cc94e90",
+      "blob": "037615c8878107c39e1f20475fee0635766181ee"
+    }
+  ],
+  "validation": "Source inverse/hash/syntax and pure author/registry proof only; official build/Chrome/save/performance pending",
+  "notReleaseAcceptance": true
+}

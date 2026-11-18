@@ -1,0 +1,66 @@
+{
+  "readyForCI": true,
+  "baselineRef": "5b2edf0b868a6f4ab656574b036586304eb12808",
+  "candidateRef": "3700686f1556b5fbc8f3c4fe93413b957d3650bb",
+  "order": [
+    "baseline",
+    "candidate",
+    "candidate",
+    "baseline"
+  ],
+  "poses": [
+    {
+      "name": "stage3-cached",
+      "stage": 3,
+      "width": 1331,
+      "height": 763,
+      "dpr": 1,
+      "x": 5730.0199999999995,
+      "y": 2454.8,
+      "scale": 0.65
+    },
+    {
+      "name": "stage3-phone-native",
+      "stage": 3,
+      "width": 390,
+      "height": 696,
+      "dpr": 3,
+      "x": 5730.0199999999995,
+      "y": 2454.8,
+      "scale": 1.65,
+      "raf": true
+    },
+    {
+      "name": "stage7-cached",
+      "stage": 7,
+      "width": 1331,
+      "height": 763,
+      "dpr": 1,
+      "x": 4532.24,
+      "y": 2034.5,
+      "scale": 0.6
+    },
+    {
+      "name": "stage7-phone-native",
+      "stage": 7,
+      "width": 390,
+      "height": 696,
+      "dpr": 3,
+      "x": 4532.24,
+      "y": 2034.5,
+      "scale": 1.65,
+      "raf": true
+    },
+    {
+      "name": "stage32-native-control",
+      "stage": 32,
+      "width": 1331,
+      "height": 763,
+      "dpr": 1,
+      "x": 320,
+      "y": 1650,
+      "scale": 1.65
+    }
+  ],
+  "scope": "Stage3/7 performance only plus unchanged32 control; normal App lifecycle/art/save separate. Last successful Pages5b, no liveHTTP assertion."
+}
