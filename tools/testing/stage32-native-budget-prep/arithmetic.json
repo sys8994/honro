@@ -1,0 +1,65 @@
+{
+  "ready": false,
+  "rows": [
+    {
+      "name": "desktop1080",
+      "native": true,
+      "axis": true,
+      "y0": 648,
+      "y1": 1080,
+      "rows": 432,
+      "current": 13994788,
+      "beforeRelease": 20000776,
+      "afterRelease": 11612176,
+      "logicalPeakScheduled": 13994788,
+      "admissible": true,
+      "requiresRelease": true,
+      "scope": "Helper-owned canvas logical RGBA bytes only; not Scene/tile/JS/GPU/process memory. No readbacks in admitted native route."
+    },
+    {
+      "name": "phoneD2",
+      "native": true,
+      "axis": true,
+      "y0": 913,
+      "y1": 1392,
+      "rows": 479,
+      "current": 13994788,
+      "beforeRelease": 14226136,
+      "afterRelease": 5837536,
+      "logicalPeakScheduled": 13994788,
+      "admissible": true,
+      "requiresRelease": true,
+      "scope": "Helper-owned canvas logical RGBA bytes only; not Scene/tile/JS/GPU/process memory. No readbacks in admitted native route."
+    },
+    {
+      "name": "phoneD3",
+      "native": true,
+      "axis": true,
+      "y0": 1370,
+      "y1": 2088,
+      "rows": 718,
+      "current": 13994788,
+      "beforeRelease": 21520696,
+      "afterRelease": 13132096,
+      "logicalPeakScheduled": 13994788,
+      "admissible": true,
+      "requiresRelease": true,
+      "scope": "Helper-owned canvas logical RGBA bytes only; not Scene/tile/JS/GPU/process memory. No readbacks in admitted native route."
+    },
+    {
+      "name": "4K",
+      "native": true,
+      "axis": true,
+      "y0": 1188,
+      "y1": 1642,
+      "rows": 454,
+      "current": 13994788,
+      "beforeRelease": 48539656,
+      "afterRelease": 40151056,
+      "logicalPeakScheduled": 40151056,
+      "admissible": true,
+      "requiresRelease": true,
+      "scope": "Helper-owned canvas logical RGBA bytes only; not Scene/tile/JS/GPU/process memory. No readbacks in admitted native route."
+    }
+  ]
+}

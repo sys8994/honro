@@ -1,0 +1,51 @@
+{
+  "baselineRef": "7d238d20663c3ceffe430eb0304e01516ae625cf",
+  "candidateRef": "PENDING_FINAL_NATIVE_BUDGET_SOURCE",
+  "candidateRegisteredHelperSHA256": "PENDING",
+  "readyForCI": false,
+  "poses": [
+    {
+      "name": "left-tile",
+      "width": 1331,
+      "height": 763,
+      "x": 320,
+      "y": 1650,
+      "scale": 0.6
+    },
+    {
+      "name": "phone-min",
+      "width": 390,
+      "height": 696,
+      "x": 1689.6,
+      "y": 1200,
+      "minimum": true
+    },
+    {
+      "name": "maximum-live",
+      "width": 1331,
+      "height": 763,
+      "x": 320,
+      "y": 1650,
+      "scale": 1.65
+    }
+  ],
+  "order": [
+    "baseline",
+    "candidate",
+    "candidate",
+    "baseline"
+  ],
+  "cold": 5,
+  "warm": 30,
+  "pan": 60,
+  "baselineEvidence": {
+    "lastSuccessfulPagesRun": 44026770659,
+    "liveHTTPVerified": false
+  },
+  "helperInventory": {
+    "baseline": null,
+    "candidate": null
+  },
+  "sourceRepresentationProof": null,
+  "stage3Policy": "inventory-only-across-historical-releases; final-artpatch-parent-to-candidate-invariance-separate"
+}
