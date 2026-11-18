@@ -71,9 +71,65 @@ function damageFloor(b,u){
  return 0;
 }
 const phase=b=>design(b).flow[memory(b).step];
+// Campaign objective revision 1: a fight row keeps its stable key/index for
+// saved steps, wave cues and story beats, but ordinary groups no longer need
+// to die. Named bosses and physical seals deliberately have no replacement.
+const objectivePolicies={
+ 41:{campGuard:['guard','천막 통로에서 도식을 엄호',1],watch:['secure','옹벽 보초막의 굽이 확보']},
+ 42:{approach:['reach','아래 짐길의 차단선을 돌파'],captain:['secure','관문 통과 지점 확보']},
+ 43:{gateGuard:['reach','암문 계단을 돌파해 군패로 접근']},
+ 44:{summit:['reach','산짐승을 따돌리고 고갯마루 통과']},
+ 45:{screen:['guard','신목 아래에서 도식의 귀환길 엄호',1],farGuard:['gather','동쪽 석축 너머에 동행 집결',0,'exit']},
+ 46:{rimGuard:['secure','기억진목 작업 자리 확보'],stakeTwo:['guard','중앙 석단에서 진목 설치 자리 수호',1],eastGuard:['reach','동쪽 하강로 위쪽 돌턱에 도착']},
+ 47:{reverseGuard:['reach','역류를 피해 오른쪽 계단 돌파'],exitGuard:['gather','상층 비상 통로에 동행 집결']},
+ 48:{eastGuard:['guard','동쪽 진목의 작업 자리를 수호',1],reflection:['reach','수면흉의 사선을 피해 시험 도구 곁으로 이동',0,'tools']},
+ 49:{lowerGuard:['reach','하층 징검길을 건너 진입 발판 확보',0,'@a5-cross-2'],midGuard:['reach','중층 돌계단을 올라 진입 발판 확보',0,'@a5-cross-4'],high:['gather','상층 진목길 앞에 동행 집결',0,'@a5-cross-6']},
+ 50:{firstGuard:['reach','악귀의 추격을 뚫고 조망 능선에 도착'],path:['reach','문턱귀의 돌진을 피해 오른쪽 돌턱으로 통과',0,'ledge']}
+};
+function objectivePolicy(b,row=phase(b)){
+ return row?.[0]==='fight'?objectivePolicies[b.honroStage]?.[row[1]]:undefined;
+}
+function policyPoint(b,row,policy){
+ const key=policy[3]||row[1];
+ return key.startsWith('@')?(b.honroMarkers||[]).find(m=>m.id===key.slice(1)):design(b).sites[key];
+}
+function policyGrounded(b,u){
+ return alive(u)&&!u.airborne&&!u.jumping&&Math.abs(u.vy||0)<30&&
+  G.HONRO_CORE.validTerrainContactPose(b.terrain,u);
+}
+function policyThreats(b,point){
+ return point?b.units.filter(u=>u.side===1&&alive(u)&&!u.honroObjectiveTarget&&
+  !u.honroAct5Reserve&&!u.honroSubdued&&!restrained(b,u)&&
+  Math.abs(u.x-point.x)<=200&&Math.abs(u.y-point.y)<=105):[];
+}
+function policyStatus(b,row=phase(b)){
+ const policy=objectivePolicy(b,row);if(!policy)return null;
+ const point=policyPoint(b,row,policy),party=heroes(b),present=point?party.filter(u=>policyGrounded(b,u)&&near(u,point,230,110)):[];
+ const guarded=['guard','secure'].includes(policy[0]),threats=guarded?policyThreats(b,point):[];
+ const required=policy[0]==='gather'?Math.min(party.length,design(b).exitParty??party.length):1;
+ const ready=!!point&&required>0&&present.length>=required&&!threats.length;
+ const progress=memory(b).objectiveRoutes?.[memory(b).step],rounds=policy[2]||0;
+ const turns=ready&&progress?Math.max(0,(b.teamEnds?.[1]||0)-progress.enemyEnd):0;
+ return{policy,point,present,threats,required,ready,turns,complete:ready&&turns>=rounds};
+}
+function objectiveTick(app,row){
+ const b=app.engine.b,m=memory(b),status=policyStatus(b,row);if(!status)return false;
+ if(!status.ready){if(m.objectiveRoutes?.[m.step]){delete m.objectiveRoutes[m.step];app.dirty=true;}return true;}
+ if(!m.objectiveRoutes?.[m.step]){
+  (m.objectiveRoutes??={})[m.step]={version:1,key:row[1],enemyEnd:(b.teamEnds?.[1]||0)+(b.side===1&&b.phase!=='transition'?1:0)};
+  app.dirty=true;
+ }
+ if(policyStatus(b,row).complete){
+  const proof=m.objectiveRoutes[m.step];proof.completed=true;proof.actors=status.present.map(u=>u.id);
+  proof.enemiesAlive=b.units.filter(u=>u.side===1&&alive(u)&&!u.honroAct5Reserve).length;
+  G.HonroObjectiveContributions?.interact(b,'act5-route:'+row[1],status.present[0]);advance(app);
+ }
+ return true;
+}
+
 const target=(id,kind,point,label)=>({id,kind,x:point.x,y:point.y,label});
 function state(b){
- const d=design(b),m=memory(b),row=phase(b),party=heroes(b),all=d.flow.map(([,key,text],i)=>({...target('a5-step-'+i,'route',d.sites[key],text),done:i<m.step}));
+ const d=design(b),m=memory(b),row=phase(b),party=heroes(b),all=d.flow.map((r,i)=>{const [,key,text]=r,p=objectivePolicy(b,r);return({...target('a5-step-'+i,'route',p?policyPoint(b,r,p)||d.sites[key]:d.sites[key],p?p[1]:text),done:i<m.step});});
  let text=row?.[2],targets=[],complete=false;
  if(!row){
   const n=party.filter(u=>near(u,d.sites.exit,315)).length;
@@ -83,17 +139,19 @@ function state(b){
   targets=[target('a5-exit','exit',d.sites.exit,text)];
  }else{
   const [kind,key]=row,point=d.sites[key];
-  if(kind==='fight'||kind==='subdue'){
+  if(objectivePolicy(b,row)){
+   const q=policyStatus(b,row);text=q.policy[1];
+   if(q.policy[0]==='guard')text+=' · 적 턴 '+Math.min(q.policy[2],q.turns)+'/'+q.policy[2]+'회';
+   if(q.policy[0]==='gather')text+=' · 동행 '+q.present.length+'/'+q.required;
+   if(q.threats.length)text+=' · 자리의 위협은 밀어내거나 구속해도 됩니다';
+   if(q.point)targets=[target('a5-step-'+m.step,'route',q.point,text)];
+  }else if(kind==='fight'||kind==='subdue'){
    const enemies=fightTargets(b,key);
    if(b.honroStage===45&&key==='tether'&&enemies[0]?.honroObjectiveTarget)text='상여에 연결된 결박 파괴';
    const hint=G.HonroObjectiveGuide.hostileHint(b,enemies,text);
    targets=hint.targets;
    if(kind==='subdue'&&enemies.length)text+=' · 남은 체력 '+Math.ceil(enemies[0].hp)+'/'+enemies[0].maxHp;
    else if(enemies.length)text=enemies.every(u=>u.honroObjectiveTarget)?text+' · '+enemies.map(u=>u.name+' '+Math.ceil(u.hp)+'/'+u.maxHp).join(', '):hint.text;
-   if(kind==='subdue'&&row[3]&&fightTargets(b,row[3]).length){
-    const guards=G.HonroObjectiveGuide.hostileHint(b,fightTargets(b,row[3]),'곁에서 깨어난 군령 갑주 제압');
-    text+=' · '+guards.text;targets.push(...guards.targets);
-   }
    if(focused(b)&&b.honroStage===41&&key==='watch')text+=' · 도식은 천막 뒤에서 대기';
    if(revised(b)&&key==='drum'&&enemies.length&&!m.waves?.[d.waves[0].id])
     text+=' · 다음 적 턴이 끝나기 전에 막으면 증원 없음';
@@ -115,7 +173,7 @@ function state(b){
   }else if(kind==='escort'){
    const residents=escorts(b).filter(alive),arrived=residents.filter(u=>near(u,point));
    text+=' · '+arrived.length+'/'+escorts(b).length+' · 같은 층에서 앞서 이동';
-   const blockers=row[3]?fightTargets(b,row[3]):[],nearby=escortThreats(b).filter(u=>!blockers.includes(u));
+   const blockers=[],nearby=escortThreats(b);
    if(blockers.length){
     const hint=G.HonroObjectiveGuide.hostileHint(b,blockers,'아래 후송로의 차단병 제압');
     text+=' · '+hint.text;targets.push(...hint.targets);
@@ -134,7 +192,8 @@ function state(b){
    targets=[target('a5-hold','route',point,text)];
   }else {
    targets=[target('a5-step-'+m.step,kind==='use'?'interact':'route',point,text)];
-   if(kind==='reach'&&reachSites(b,key).length>1){
+   if(objectiveTick(app,row)){}
+  else if(kind==='reach'&&reachSites(b,key).length>1){
     const [upper,lower]=reachSites(b,key);
     text='위 뿌리 능선 또는 아래 골의 거목에 접근';
     targets=[target('a5-reach-upper','route',upper,'위 뿌리 능선'),target('a5-reach-lower','route',lower,'아래 골')];
@@ -146,7 +205,7 @@ function state(b){
     text=hint.text;targets.push(...hint.targets);
    }
   }
-  if(revised(b)&&kind==='fight'&&waitingWave(b,key))text+=' · 이 길로 접근하는 적이 있습니다';
+  if(revised(b)&&kind==='fight'&&!objectivePolicy(b,row)&&waitingWave(b,key))text+=' · 이 길로 접근하는 적이 있습니다';
   const blocked=engaged(b)&&d.waves.find(w=>m.waveBlocked?.[w.id]&&m.waves?.[w.id]==='pending');
   if(blocked?.entry){
    text+=' · 예고된 증원 진입로를 비우거나 엄호';
@@ -365,13 +424,13 @@ function tick(app,dt){
    else if(kind==='fight'&&(key==='watch'||revised(b)&&key==='campGuard'))escort(app,design(b).sites.guide,dt);
   }
   if(b.honroStage===45&&(focused(b)||['tether','turnback'].includes(key)))escort(app,design(b).sites.turnback,dt);
-  if(kind==='reach'&&reachSites(b,key).some(p=>heroes(b).some(u=>near(u,p,260)))||kind==='fight'&&!fightTargets(b,key).length&&(!revised(b)||!waitingWave(b,key))||
+  if(objectiveTick(app,row)){}
+  else if(kind==='reach'&&reachSites(b,key).some(p=>heroes(b).some(u=>near(u,p,260)))||kind==='fight'&&!fightTargets(b,key).length&&(!revised(b)||!waitingWave(b,key))||
       kind==='pass'&&passageOpen(app,b,key)||kind==='secure'&&guardedGround(b,key)||
-      kind==='subdue'&&group(b,key).some(u=>alive(u)&&u.hp<=floorHP(u))&&
-       (!row[3]||!fightTargets(b,row[3]).length&&!waitingWave(b,row[3])))advance(app);
+      kind==='subdue'&&group(b,key).some(u=>alive(u)&&u.hp<=floorHP(u)))advance(app);
   else if(kind==='escort'){
    escort(app,point,dt);
-   if(escorts(b).every(u=>alive(u)&&near(u,point))&&(!row[3]||!fightTargets(b,row[3]).length)){
+   if(escorts(b).every(u=>alive(u)&&near(u,point))&&!escortThreats(b).length){
     if(focused(b))evacuate(app,b,m);
     advance(app);
    }
@@ -439,9 +498,9 @@ function eligibility(app,m){
  if(link&&b.honroStage===46&&link.id==='a5-cross-2'&&!finishedUse(b,'stakeOne'))return {ok:false,reason:'서쪽 진목을 설치해 중앙 석단으로 건너세요'};
  if(link&&b.honroStage===46&&link.id==='a5-cross-6'&&row)return {ok:false,reason:'두 진목을 설치해 하강 밧줄을 여세요'};
  if(link&&b.honroStage===47&&link.id==='a5-cross-0'&&memory(b).field!=='shutdown')return {ok:false,reason:'담허로 진을 거둔 뒤 상층 비상 통로를 이용하세요'};
- if(link&&b.honroStage===49&&link.id==='a5-cross-6'&&row)return {ok:false,reason:'역행귀를 제압한 뒤 상층 진목길을 쓰세요'};
- if(link&&engaged(b)&&b.honroStage===49&&link.id==='a5-cross-2'&&!passed(b,'lowerGuard'))return {ok:false,reason:'아래 징검길의 위협을 제압한 뒤 올라가세요'};
- if(link&&engaged(b)&&b.honroStage===49&&link.id==='a5-cross-4'&&!passed(b,'midGuard'))return {ok:false,reason:'중층 돌계단의 사격조를 제압한 뒤 올라가세요'};
+ if(link&&b.honroStage===49&&link.id==='a5-cross-6'&&row)return {ok:false,reason:'상층 진목길 앞에 동행을 모은 뒤 건너세요'};
+ if(link&&engaged(b)&&b.honroStage===49&&link.id==='a5-cross-2'&&!passed(b,'lowerGuard'))return {ok:false,reason:'아래 징검길을 건너 진입 발판에 도착하세요'};
+ if(link&&engaged(b)&&b.honroStage===49&&link.id==='a5-cross-4'&&!passed(b,'midGuard'))return {ok:false,reason:'중층 돌계단의 진입 발판에 도착하세요'};
  if(link&&engaged(b)&&b.honroStage===50&&link.id==='a5-cross-0'&&!passed(b,'saddle'))return {ok:false,reason:'낮은 석교를 건넌 뒤 이 돌계단을 이용하세요'};
  if(link&&engaged(b)&&b.honroStage===50&&link.id==='a5-cross-2'&&!passed(b,design(b).contest?.stair?'stair':'path'))return {ok:false,reason:design(b).contest?.stair?'중간 돌계단의 사선을 끊고 회랑에 접근하세요':'석교 끝의 문턱귀를 제압한 뒤 산문으로 올라가세요'};
  if(link&&u.moveLeft<150)return {ok:false,reason:'이동도 150 필요 · 다음 아군 턴에 건너세요'};
@@ -507,5 +566,6 @@ function recordOutcome(app,won){
  if(!won||!active(b)||b.honroJourneyReplay)return;
  for(const flag of chapterFlags[b.honroStage-41])app.profile.honroFlags['act5.'+flag]=true;
 }
-G.HonroAct5={active,recordOutcome,state,failure,entry,tick,current,eligibility,use,attach,prepare,damageFloor,wakeEligible,fallReturn,escortThreats};
+G.HonroAct5={active,recordOutcome,state,failure,entry,tick,current,eligibility,use,attach,prepare,damageFloor,wakeEligible,fallReturn,escortThreats,objectivePolicy,policyStatus};
 })(globalThis);
+
