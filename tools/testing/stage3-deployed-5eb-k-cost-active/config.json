@@ -1,0 +1,35 @@
+{
+  "readyForCI": true,
+  "baselineRef": "5eb0381269868e501a1cd187d963ddb716cd2dc6",
+  "candidateRef": "a6f2935935eed559c3ecd27207d8d8a78a1ed22d",
+  "order": [
+    "baseline",
+    "candidate",
+    "candidate",
+    "baseline"
+  ],
+  "poses": [
+    {
+      "name": "stage3-cached",
+      "stage": 3,
+      "width": 1331,
+      "height": 763,
+      "dpr": 1,
+      "x": 5730.0199999999995,
+      "y": 2454.8,
+      "scale": 0.65
+    },
+    {
+      "name": "stage3-phone-native",
+      "stage": 3,
+      "width": 390,
+      "height": 696,
+      "dpr": 3,
+      "x": 5730.0199999999995,
+      "y": 2454.8,
+      "scale": 1.65,
+      "raf": true
+    }
+  ],
+  "scope": "Stage3 selected G on5eb K, two conditions ABBA8+rAF2, official defaults"
+}

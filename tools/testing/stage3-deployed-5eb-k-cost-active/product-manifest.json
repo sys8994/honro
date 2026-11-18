@@ -1,0 +1,33 @@
+{
+  "ready": true,
+  "parent": "5eb0381269868e501a1cd187d963ddb716cd2dc6",
+  "preserveMasterMonsterBlob": "f6649b9df68c320e8045c44b231f51d03800a9ff",
+  "selectedArt": "Stage3joinG97b26847, NOT H/I",
+  "files": [
+    {
+      "local": "stage3-latest5eb-G/candidate/shared/build.mjs",
+      "path": "shared/build.mjs",
+      "bytes": 24755,
+      "sha256": "1723baa38ab7b691f9b5a1bf9d9e42c2bba78c15d1fb6cb833ba43addda8d47b"
+    },
+    {
+      "local": "stage3-latest5eb-G/candidate/shared/runtime/renderer.js",
+      "path": "shared/runtime/renderer.js",
+      "bytes": 75570,
+      "sha256": "fcd75ad8580c3b43a374757a1436d3bebc18cc185c48068a704866a4cfcd1a43"
+    },
+    {
+      "local": "stage3-latest5eb-G/candidate/shared/runtime/terrain-readability.js",
+      "path": "shared/runtime/terrain-readability.js",
+      "bytes": 5059,
+      "sha256": "74f29322fdf42edbe320db8e94774b65e24d268486e492e24cd164a5d0fc3ad6"
+    },
+    {
+      "local": "stage3-latest5eb-G/candidate/tools/map-forge/naru-body-finish.mjs",
+      "path": "tools/map-forge/naru-body-finish.mjs",
+      "bytes": 5325,
+      "sha256": "24e50197a56d2e667edc4edaa10644c08e811098feb5c38a9c0109ed536b9692"
+    }
+  ],
+  "base": "5eb0381269868e501a1cd187d963ddb716cd2dc6"
+}

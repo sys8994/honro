@@ -1,0 +1,730 @@
+{
+  "startup": [
+    {
+      "pose": "maximum",
+      "variant": "original",
+      "helperBytes": 260894,
+      "wholeRuntimeParseEvalWallMs": 3322.5,
+      "firstRenderMs": 41.29999999998836
+    },
+    {
+      "pose": "maximum",
+      "variant": "profiled",
+      "helperBytes": 262186,
+      "wholeRuntimeParseEvalWallMs": 3270,
+      "firstRenderMs": 31.79999999998836
+    }
+  ],
+  "startupScope": "Whole runtime script load/parse/eval wall before capture, not pure helperparse; source bytes separately recorded",
+  "passed": true,
+  "errors": [],
+  "rows": [
+    {
+      "pose": "maximum",
+      "frame": "first",
+      "camera": {
+        "x": 320,
+        "y": 1650,
+        "scale": 1.65
+      },
+      "changed": 0,
+      "alpha": 0,
+      "maxDelta": 0,
+      "bbox": null,
+      "originalMs": 41.29999999998836,
+      "profiledMs": 31.79999999998836,
+      "componentBefore": {},
+      "componentAfter": {
+        "field12Fills": {
+          "calls": 1,
+          "ms": 0.5
+        },
+        "material": {
+          "calls": 3,
+          "ms": 2.2999999999883585
+        },
+        "bitmap": {
+          "calls": 16,
+          "ms": 3.1000000000349246
+        },
+        "drawInclusive": {
+          "calls": 2,
+          "ms": 13.300000000046566
+        },
+        "originalBODYInclusive": {
+          "calls": 1,
+          "ms": 0.5
+        },
+        "offlineFaceFill": {
+          "calls": 33,
+          "ms": 0.09999999997671694
+        },
+        "offline33Faces": {
+          "calls": 1,
+          "ms": 0.40000000002328306
+        },
+        "lowerTargetROI": {
+          "calls": 1,
+          "ms": 1.2999999999883585
+        },
+        "liveSSReplacementDraw": {
+          "calls": 1,
+          "ms": 0.30000000004656613
+        },
+        "nativeJunction": {
+          "calls": 1,
+          "ms": 0.09999999997671694
+        },
+        "internalGraySeam": {
+          "calls": 1,
+          "ms": 0
+        }
+      }
+    },
+    {
+      "pose": "maximum",
+      "frame": "cold",
+      "camera": {
+        "x": 320,
+        "y": 1650,
+        "scale": 1.65
+      },
+      "changed": 0,
+      "alpha": 0,
+      "maxDelta": 0,
+      "bbox": null,
+      "originalMs": 7.100000000034925,
+      "profiledMs": 7.2999999999883585,
+      "componentBefore": {
+        "field12Fills": {
+          "calls": 2,
+          "ms": 0.5
+        },
+        "material": {
+          "calls": 6,
+          "ms": 2.2999999999883585
+        },
+        "bitmap": {
+          "calls": 32,
+          "ms": 6.600000000034925
+        },
+        "drawInclusive": {
+          "calls": 4,
+          "ms": 17.40000000008149
+        },
+        "originalBODYInclusive": {
+          "calls": 2,
+          "ms": 0.7000000000116415
+        },
+        "offlineFaceFill": {
+          "calls": 66,
+          "ms": 0.09999999997671694
+        },
+        "offline33Faces": {
+          "calls": 2,
+          "ms": 0.7000000000116415
+        },
+        "lowerTargetROI": {
+          "calls": 2,
+          "ms": 1.7999999999883585
+        },
+        "liveSSReplacementDraw": {
+          "calls": 2,
+          "ms": 0.30000000004656613
+        },
+        "nativeJunction": {
+          "calls": 2,
+          "ms": 0.20000000001164153
+        },
+        "internalGraySeam": {
+          "calls": 2,
+          "ms": 0
+        }
+      },
+      "componentAfter": {
+        "field12Fills": {
+          "calls": 3,
+          "ms": 0.5
+        },
+        "material": {
+          "calls": 9,
+          "ms": 3.7999999999883585
+        },
+        "bitmap": {
+          "calls": 48,
+          "ms": 9.800000000046566
+        },
+        "drawInclusive": {
+          "calls": 6,
+          "ms": 22.600000000093132
+        },
+        "originalBODYInclusive": {
+          "calls": 3,
+          "ms": 0.8000000000465661
+        },
+        "offlineFaceFill": {
+          "calls": 99,
+          "ms": 0.09999999997671694
+        },
+        "offline33Faces": {
+          "calls": 3,
+          "ms": 0.7999999999883585
+        },
+        "lowerTargetROI": {
+          "calls": 3,
+          "ms": 2
+        },
+        "liveSSReplacementDraw": {
+          "calls": 3,
+          "ms": 0.30000000004656613
+        },
+        "nativeJunction": {
+          "calls": 3,
+          "ms": 0.29999999998835847
+        },
+        "internalGraySeam": {
+          "calls": 3,
+          "ms": 0
+        }
+      }
+    },
+    {
+      "pose": "maximum",
+      "frame": "pan0",
+      "camera": {
+        "x": 480,
+        "y": 1650,
+        "scale": 1.65
+      },
+      "changed": 0,
+      "alpha": 0,
+      "maxDelta": 0,
+      "bbox": null,
+      "originalMs": 13.299999999988358,
+      "profiledMs": 7.5,
+      "componentBefore": {
+        "field12Fills": {
+          "calls": 3,
+          "ms": 0.5
+        },
+        "material": {
+          "calls": 9,
+          "ms": 3.7999999999883585
+        },
+        "bitmap": {
+          "calls": 48,
+          "ms": 9.800000000046566
+        },
+        "drawInclusive": {
+          "calls": 6,
+          "ms": 22.600000000093132
+        },
+        "originalBODYInclusive": {
+          "calls": 3,
+          "ms": 0.8000000000465661
+        },
+        "offlineFaceFill": {
+          "calls": 99,
+          "ms": 0.09999999997671694
+        },
+        "offline33Faces": {
+          "calls": 3,
+          "ms": 0.7999999999883585
+        },
+        "lowerTargetROI": {
+          "calls": 3,
+          "ms": 2
+        },
+        "liveSSReplacementDraw": {
+          "calls": 3,
+          "ms": 0.30000000004656613
+        },
+        "nativeJunction": {
+          "calls": 3,
+          "ms": 0.29999999998835847
+        },
+        "internalGraySeam": {
+          "calls": 3,
+          "ms": 0
+        }
+      },
+      "componentAfter": {
+        "field12Fills": {
+          "calls": 4,
+          "ms": 0.5
+        },
+        "material": {
+          "calls": 12,
+          "ms": 3.8999999999650754
+        },
+        "bitmap": {
+          "calls": 64,
+          "ms": 13.100000000034925
+        },
+        "drawInclusive": {
+          "calls": 8,
+          "ms": 26.40000000008149
+        },
+        "originalBODYInclusive": {
+          "calls": 4,
+          "ms": 0.9000000000232831
+        },
+        "offlineFaceFill": {
+          "calls": 132,
+          "ms": 0.09999999997671694
+        },
+        "offline33Faces": {
+          "calls": 4,
+          "ms": 1
+        },
+        "lowerTargetROI": {
+          "calls": 4,
+          "ms": 2.3999999999650754
+        },
+        "liveSSReplacementDraw": {
+          "calls": 4,
+          "ms": 0.30000000004656613
+        },
+        "nativeJunction": {
+          "calls": 4,
+          "ms": 0.40000000002328306
+        },
+        "internalGraySeam": {
+          "calls": 4,
+          "ms": 0
+        }
+      }
+    },
+    {
+      "pose": "maximum",
+      "frame": "pan1",
+      "camera": {
+        "x": 640,
+        "y": 1650,
+        "scale": 1.65
+      },
+      "changed": 0,
+      "alpha": 0,
+      "maxDelta": 0,
+      "bbox": null,
+      "originalMs": 5.099999999976717,
+      "profiledMs": 5.2000000000116415,
+      "componentBefore": {
+        "field12Fills": {
+          "calls": 4,
+          "ms": 0.5
+        },
+        "material": {
+          "calls": 12,
+          "ms": 3.8999999999650754
+        },
+        "bitmap": {
+          "calls": 64,
+          "ms": 13.100000000034925
+        },
+        "drawInclusive": {
+          "calls": 8,
+          "ms": 26.40000000008149
+        },
+        "originalBODYInclusive": {
+          "calls": 4,
+          "ms": 0.9000000000232831
+        },
+        "offlineFaceFill": {
+          "calls": 132,
+          "ms": 0.09999999997671694
+        },
+        "offline33Faces": {
+          "calls": 4,
+          "ms": 1
+        },
+        "lowerTargetROI": {
+          "calls": 4,
+          "ms": 2.3999999999650754
+        },
+        "liveSSReplacementDraw": {
+          "calls": 4,
+          "ms": 0.30000000004656613
+        },
+        "nativeJunction": {
+          "calls": 4,
+          "ms": 0.40000000002328306
+        },
+        "internalGraySeam": {
+          "calls": 4,
+          "ms": 0
+        }
+      },
+      "componentAfter": {
+        "field12Fills": {
+          "calls": 5,
+          "ms": 0.5
+        },
+        "material": {
+          "calls": 15,
+          "ms": 3.9999999999417923
+        },
+        "bitmap": {
+          "calls": 80,
+          "ms": 16.100000000034925
+        },
+        "drawInclusive": {
+          "calls": 10,
+          "ms": 30.000000000116415
+        },
+        "originalBODYInclusive": {
+          "calls": 5,
+          "ms": 1.0000000000582077
+        },
+        "offlineFaceFill": {
+          "calls": 165,
+          "ms": 0.09999999997671694
+        },
+        "offline33Faces": {
+          "calls": 5,
+          "ms": 1.2000000000116415
+        },
+        "lowerTargetROI": {
+          "calls": 5,
+          "ms": 2.7000000000116415
+        },
+        "liveSSReplacementDraw": {
+          "calls": 5,
+          "ms": 0.30000000004656613
+        },
+        "nativeJunction": {
+          "calls": 5,
+          "ms": 0.40000000002328306
+        },
+        "internalGraySeam": {
+          "calls": 5,
+          "ms": 0
+        }
+      }
+    },
+    {
+      "pose": "maximum",
+      "frame": "pan2",
+      "camera": {
+        "x": 656,
+        "y": 1650,
+        "scale": 1.65
+      },
+      "changed": 0,
+      "alpha": 0,
+      "maxDelta": 0,
+      "bbox": null,
+      "originalMs": 4.7999999999883585,
+      "profiledMs": 5.199999999953434,
+      "componentBefore": {
+        "field12Fills": {
+          "calls": 5,
+          "ms": 0.5
+        },
+        "material": {
+          "calls": 15,
+          "ms": 3.9999999999417923
+        },
+        "bitmap": {
+          "calls": 80,
+          "ms": 16.100000000034925
+        },
+        "drawInclusive": {
+          "calls": 10,
+          "ms": 30.000000000116415
+        },
+        "originalBODYInclusive": {
+          "calls": 5,
+          "ms": 1.0000000000582077
+        },
+        "offlineFaceFill": {
+          "calls": 165,
+          "ms": 0.09999999997671694
+        },
+        "offline33Faces": {
+          "calls": 5,
+          "ms": 1.2000000000116415
+        },
+        "lowerTargetROI": {
+          "calls": 5,
+          "ms": 2.7000000000116415
+        },
+        "liveSSReplacementDraw": {
+          "calls": 5,
+          "ms": 0.30000000004656613
+        },
+        "nativeJunction": {
+          "calls": 5,
+          "ms": 0.40000000002328306
+        },
+        "internalGraySeam": {
+          "calls": 5,
+          "ms": 0
+        }
+      },
+      "componentAfter": {
+        "field12Fills": {
+          "calls": 6,
+          "ms": 0.5999999999767169
+        },
+        "material": {
+          "calls": 18,
+          "ms": 4.099999999918509
+        },
+        "bitmap": {
+          "calls": 96,
+          "ms": 19.300000000046566
+        },
+        "drawInclusive": {
+          "calls": 12,
+          "ms": 33.800000000104774
+        },
+        "originalBODYInclusive": {
+          "calls": 6,
+          "ms": 1.1000000000349246
+        },
+        "offlineFaceFill": {
+          "calls": 198,
+          "ms": 0.09999999997671694
+        },
+        "offline33Faces": {
+          "calls": 6,
+          "ms": 1.400000000023283
+        },
+        "lowerTargetROI": {
+          "calls": 6,
+          "ms": 3.099999999976717
+        },
+        "liveSSReplacementDraw": {
+          "calls": 6,
+          "ms": 0.30000000004656613
+        },
+        "nativeJunction": {
+          "calls": 6,
+          "ms": 0.40000000002328306
+        },
+        "internalGraySeam": {
+          "calls": 6,
+          "ms": 0
+        }
+      }
+    },
+    {
+      "pose": "maximum",
+      "frame": "pan3",
+      "camera": {
+        "x": 656,
+        "y": 1666,
+        "scale": 1.65
+      },
+      "changed": 0,
+      "alpha": 0,
+      "maxDelta": 0,
+      "bbox": null,
+      "originalMs": 4.800000000046566,
+      "profiledMs": 5,
+      "componentBefore": {
+        "field12Fills": {
+          "calls": 6,
+          "ms": 0.5999999999767169
+        },
+        "material": {
+          "calls": 18,
+          "ms": 4.099999999918509
+        },
+        "bitmap": {
+          "calls": 96,
+          "ms": 19.300000000046566
+        },
+        "drawInclusive": {
+          "calls": 12,
+          "ms": 33.800000000104774
+        },
+        "originalBODYInclusive": {
+          "calls": 6,
+          "ms": 1.1000000000349246
+        },
+        "offlineFaceFill": {
+          "calls": 198,
+          "ms": 0.09999999997671694
+        },
+        "offline33Faces": {
+          "calls": 6,
+          "ms": 1.400000000023283
+        },
+        "lowerTargetROI": {
+          "calls": 6,
+          "ms": 3.099999999976717
+        },
+        "liveSSReplacementDraw": {
+          "calls": 6,
+          "ms": 0.30000000004656613
+        },
+        "nativeJunction": {
+          "calls": 6,
+          "ms": 0.40000000002328306
+        },
+        "internalGraySeam": {
+          "calls": 6,
+          "ms": 0
+        }
+      },
+      "componentAfter": {
+        "field12Fills": {
+          "calls": 7,
+          "ms": 0.5999999999767169
+        },
+        "material": {
+          "calls": 21,
+          "ms": 4.199999999895226
+        },
+        "bitmap": {
+          "calls": 112,
+          "ms": 22.5
+        },
+        "drawInclusive": {
+          "calls": 14,
+          "ms": 37.50000000005821
+        },
+        "originalBODYInclusive": {
+          "calls": 7,
+          "ms": 1.3000000000465661
+        },
+        "offlineFaceFill": {
+          "calls": 231,
+          "ms": 0.09999999997671694
+        },
+        "offline33Faces": {
+          "calls": 7,
+          "ms": 1.7000000000116415
+        },
+        "lowerTargetROI": {
+          "calls": 7,
+          "ms": 3.599999999976717
+        },
+        "liveSSReplacementDraw": {
+          "calls": 7,
+          "ms": 0.30000000004656613
+        },
+        "nativeJunction": {
+          "calls": 7,
+          "ms": 0.40000000002328306
+        },
+        "internalGraySeam": {
+          "calls": 7,
+          "ms": 0
+        }
+      }
+    },
+    {
+      "pose": "maximum",
+      "frame": "pan4",
+      "camera": {
+        "x": 656,
+        "y": 1650,
+        "scale": 1.65
+      },
+      "changed": 0,
+      "alpha": 0,
+      "maxDelta": 0,
+      "bbox": null,
+      "originalMs": 5.099999999976717,
+      "profiledMs": 6.199999999953434,
+      "componentBefore": {
+        "field12Fills": {
+          "calls": 7,
+          "ms": 0.5999999999767169
+        },
+        "material": {
+          "calls": 21,
+          "ms": 4.199999999895226
+        },
+        "bitmap": {
+          "calls": 112,
+          "ms": 22.5
+        },
+        "drawInclusive": {
+          "calls": 14,
+          "ms": 37.50000000005821
+        },
+        "originalBODYInclusive": {
+          "calls": 7,
+          "ms": 1.3000000000465661
+        },
+        "offlineFaceFill": {
+          "calls": 231,
+          "ms": 0.09999999997671694
+        },
+        "offline33Faces": {
+          "calls": 7,
+          "ms": 1.7000000000116415
+        },
+        "lowerTargetROI": {
+          "calls": 7,
+          "ms": 3.599999999976717
+        },
+        "liveSSReplacementDraw": {
+          "calls": 7,
+          "ms": 0.30000000004656613
+        },
+        "nativeJunction": {
+          "calls": 7,
+          "ms": 0.40000000002328306
+        },
+        "internalGraySeam": {
+          "calls": 7,
+          "ms": 0
+        }
+      },
+      "componentAfter": {
+        "field12Fills": {
+          "calls": 8,
+          "ms": 0.7000000000116415
+        },
+        "material": {
+          "calls": 24,
+          "ms": 4.299999999930151
+        },
+        "bitmap": {
+          "calls": 128,
+          "ms": 25.900000000023283
+        },
+        "drawInclusive": {
+          "calls": 16,
+          "ms": 41.70000000006985
+        },
+        "originalBODYInclusive": {
+          "calls": 8,
+          "ms": 1.400000000023283
+        },
+        "offlineFaceFill": {
+          "calls": 264,
+          "ms": 0.09999999997671694
+        },
+        "offline33Faces": {
+          "calls": 8,
+          "ms": 2.0000000000582077
+        },
+        "lowerTargetROI": {
+          "calls": 8,
+          "ms": 4
+        },
+        "liveSSReplacementDraw": {
+          "calls": 8,
+          "ms": 0.30000000004656613
+        },
+        "nativeJunction": {
+          "calls": 8,
+          "ms": 0.5
+        },
+        "internalGraySeam": {
+          "calls": 8,
+          "ms": 0
+        }
+      }
+    }
+  ],
+  "scope": "Two-page component diagnostic; all frameRGBA exact required, readback-influenced timing not clean performance/acceptance",
+  "qualityAccepted": false,
+  "performanceAccepted": false
+}
