@@ -1,0 +1,48 @@
+name: Stage32 live-route clean ABBA preview
+on:
+  workflow_dispatch:
+  push:
+    branches: [inspect/stage32-scanline-20261118]
+    paths:
+      - tools/testing/stage32-live-route-clean-prep/**
+      - .github/workflows/stage32-live-route-clean-prep.yml
+permissions:
+  contents: read
+jobs:
+  compare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          path: harness
+      - name: Reject unapproved candidate placeholders
+        id: pins
+        run: |
+          node -e 'const c=require("./harness/tools/testing/stage32-live-route-clean-prep/config.json");if(!c.readyForCI||!/^[a-f0-9]{64}$/.test(c.candidateHelperSHA256)||!/^[a-f0-9]{64}$/.test(c.candidatePilotSHA256)||!/^[a-f0-9]{40}$/.test(c.candidateRef)||!/^[a-f0-9]{64}$/.test(c.candidateRegisteredHelperSHA256))throw Error("Final candidate not pinned");require("fs").appendFileSync(process.env.GITHUB_OUTPUT,"candidate="+c.sourceCommit+"\n")'
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          ref: ${{ steps.pins.outputs.candidate }}
+          path: final
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: |
+          for checkout in final; do
+            (cd "$checkout" && npm ci && npm ci --prefix game)
+          done
+      - run: python3 -m pip install Pillow
+      - name: Own-source three-pose clean ABBA preview
+        run: |
+          export CHROME_BIN="$(command -v google-chrome || command -v chromium)"
+          node harness/tools/testing/stage32-live-route-clean-prep/orchestrate.mjs "$PWD/final" "$RUNNER_TEMP/component-profile"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage32-live-route-clean-prep-cost
+          path: |
+            ${{ runner.temp }}/component-profile/evidence
+            ${{ runner.temp }}/component-profile/control/runtime-provenance.json
+            ${{ runner.temp }}/component-profile/candidate/runtime-provenance.json
+          if-no-files-found: warn
