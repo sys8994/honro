@@ -1,0 +1,58 @@
+name: Deployed 5b to Stage32-only J save and continue compatibility
+on:
+  workflow_dispatch:
+  push:
+    branches: [inspect/stage32-scanline-20261118]
+    paths: ['tools/testing/deployed-5b-save-J/**', '.github/workflows/deployed-5b-save-J.yml']
+permissions:
+  contents: read
+  actions: read
+jobs:
+  compatibility:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with: {path: study}
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with: {node-version: '22', package-manager-cache: false}
+      - id: ready
+        run: |
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';import assert from 'node:assert/strict';
+          const c=JSON.parse(fs.readFileSync('study/tools/testing/deployed-5b-save-J/config.json'));
+          assert.equal(c.ready,true);assert.equal(c.candidateCommit,'af5b77e15accea03470fdfd0c6cb00a0bb12c5e9');assert.equal(c.deployedCommit,'5b2edf0b868a6f4ab656574b036586304eb12808');
+          fs.appendFileSync(process.env.GITHUB_OUTPUT,'candidate='+c.candidateCommit+'\n');
+          JS
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with: {path: candidate, ref: '${{ steps.ready.outputs.candidate }}'}
+      - run: npm ci && npm ci --prefix game
+        working-directory: candidate
+      - name: Reuse exact successful5b baseline evidence only
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api repos/sys8994/honro/actions/artifacts/14421333040/zip > "$RUNNER_TEMP/baseline-evidence.zip"
+          echo "447208b221070b4177ce85735d2c62ae17a80d6972c3c9e9fb7cdf22403b07de  $RUNNER_TEMP/baseline-evidence.zip" | sha256sum -c -
+          unzip -q "$RUNNER_TEMP/baseline-evidence.zip" -d "$RUNNER_TEMP/prior-evidence"
+          mkdir -p artifacts
+          cp -R "$RUNNER_TEMP/prior-evidence/base" artifacts/base
+          cp -R "$RUNNER_TEMP/prior-evidence/app-baseline" artifacts/app-baseline
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';import assert from 'node:assert/strict';
+          const pin='5b2edf0b868a6f4ab656574b036586304eb12808';const p=JSON.parse(fs.readFileSync('artifacts/base/export-deployed-stages.json'));assert(p.ok);assert.equal(p.provenance.commit,pin);
+          for(const id of [3,7,32]){const a=JSON.parse(fs.readFileSync('artifacts/app-baseline/baseline-continue-stage'+id+'.json'));assert(a.ok);assert.equal(a.currentCommit,pin);assert.equal(a.sourceCommit,pin);assert.equal(a.stage,id);}
+          fs.writeFileSync('artifacts/baseline-reuse.json',JSON.stringify({run:44292338464,artifact:14421333040,sha256:'447208b221070b4177ce85735d2c62ae17a80d6972c3c9e9fb7cdf22403b07de',commit:pin,scope:'Only original baseline5b export and App outputs reused. Prior candidate E outputs excluded.'},null,2));
+          JS
+      - name: Pinned J official codec and App continuation
+        run: |
+          T=study/tools/testing/deployed-5b-save-J
+          node "$T/fixture.mjs" candidate "$RUNNER_TEMP/candidate-cross" restore artifacts/base/export-deployed-stages.json
+          node "$T/run.mjs" "$RUNNER_TEMP/candidate-cross" artifacts/new
+          node "$T/check.mjs" artifacts
+          node "$T/continue-fixture.mjs" candidate "$RUNNER_TEMP/new-app" candidate artifacts/base/export-deployed-stages.json
+          node "$T/run.mjs" "$RUNNER_TEMP/new-app" artifacts/app-candidate
+          node "$T/continue-check.mjs" artifacts
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with: {name: deployed-5b-save-J, path: artifacts, if-no-files-found: warn}
