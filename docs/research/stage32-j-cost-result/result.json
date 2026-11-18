@@ -1,0 +1,1068 @@
+{
+  "baselineEvidence": {
+    "lastSuccessfulPagesRun": 44280132384,
+    "liveHTTPVerified": false
+  },
+  "rows": [
+    {
+      "pose": "left-tile",
+      "crossVersionChecks": {
+        "stage3SHA": true,
+        "stage3ReferencedAssetsSHA": true,
+        "physicsSHA": true,
+        "stage32SourcePathSHA": false,
+        "stage32SourceClipSHA": true,
+        "stage32PathCount": true
+      },
+      "cost": {
+        "baseline": {
+          "first": {
+            "n": 2,
+            "median": 142.75,
+            "p95": 142.79999999993015,
+            "maximum": 142.79999999993015
+          },
+          "cold": {
+            "n": 10,
+            "median": 59.600000000034925,
+            "p95": 62.40000000002328,
+            "maximum": 62.40000000002328
+          },
+          "warm": {
+            "n": 60,
+            "median": 2.0499999999883585,
+            "p95": 8.400000000023283,
+            "maximum": 16.699999999953434
+          },
+          "pan": {
+            "n": 120,
+            "median": 2.299999999930151,
+            "p95": 2.900000000023283,
+            "maximum": 33.20000000006985
+          },
+          "panByAxis": {
+            "horizontal": {
+              "n": 60,
+              "median": 2.2000000000116415,
+              "p95": 4.5,
+              "maximum": 33.20000000006985
+            },
+            "vertical": {
+              "n": 60,
+              "median": 2.300000000046566,
+              "p95": 2.900000000023283,
+              "maximum": 6
+            }
+          },
+          "panByDirection": {
+            "right": {
+              "n": 60,
+              "median": 2.2000000000116415,
+              "p95": 4.5,
+              "maximum": 33.20000000006985
+            },
+            "up": {
+              "n": 30,
+              "median": 2.2999999999883585,
+              "p95": 2.400000000023283,
+              "maximum": 6
+            },
+            "down": {
+              "n": 30,
+              "median": 2.300000000046566,
+              "p95": 2.900000000023283,
+              "maximum": 2.900000000023283
+            }
+          },
+          "panActualMotion": {
+            "horizontal": {
+              "uniqueX": 30,
+              "uniqueY": 1
+            },
+            "vertical": {
+              "uniqueX": 1,
+              "uniqueY": 16
+            }
+          },
+          "helperFinal": [
+            null,
+            null
+          ]
+        },
+        "candidate": {
+          "first": {
+            "n": 2,
+            "median": 330.0,
+            "p95": 332.30000000004657,
+            "maximum": 332.30000000004657
+          },
+          "cold": {
+            "n": 10,
+            "median": 130.19999999995343,
+            "p95": 137.5,
+            "maximum": 137.5
+          },
+          "warm": {
+            "n": 60,
+            "median": 2.099999999976717,
+            "p95": 2.799999999930151,
+            "maximum": 16.199999999953434
+          },
+          "pan": {
+            "n": 120,
+            "median": 2.300000000046566,
+            "p95": 3,
+            "maximum": 67.20000000006985
+          },
+          "panByAxis": {
+            "horizontal": {
+              "n": 60,
+              "median": 2.299999999930151,
+              "p95": 3.199999999953434,
+              "maximum": 67.20000000006985
+            },
+            "vertical": {
+              "n": 60,
+              "median": 2.400000000023283,
+              "p95": 3,
+              "maximum": 4.599999999976717
+            }
+          },
+          "panByDirection": {
+            "right": {
+              "n": 60,
+              "median": 2.299999999930151,
+              "p95": 3.199999999953434,
+              "maximum": 67.20000000006985
+            },
+            "up": {
+              "n": 30,
+              "median": 2.400000000023283,
+              "p95": 3,
+              "maximum": 4.599999999976717
+            },
+            "down": {
+              "n": 30,
+              "median": 2.300000000046566,
+              "p95": 3,
+              "maximum": 3.099999999976717
+            }
+          },
+          "panActualMotion": {
+            "horizontal": {
+              "uniqueX": 30,
+              "uniqueY": 1
+            },
+            "vertical": {
+              "uniqueX": 1,
+              "uniqueY": 16
+            }
+          },
+          "helperFinal": [
+            {
+              "rasterizations": 75,
+              "hits": 76,
+              "allocations": 1,
+              "resizes": 5,
+              "bytes": 1065024,
+              "peakBytes": 1065024,
+              "fallbacks": 0,
+              "lastFallback": null,
+              "nativeBudget": {
+                "plans": 0,
+                "admitted": 0,
+                "rejected": 0,
+                "releases": 0,
+                "last": null,
+                "limitBytes": 50331648
+              },
+              "nativeJunction": {
+                "calls": 57,
+                "ms": 1.1999999998370185,
+                "prepareCalls": 1,
+                "prepareMs": 0,
+                "staticBytes": 26782,
+                "scope": "Connected nonwalk gray seam; test only, BODY/apron min2device and visible min1device at .05; test-only sampled scale >= .05"
+              },
+              "supersample": {
+                "calls": 38,
+                "stripes": 38,
+                "emptyStripes": 12,
+                "highRasterStripes": 26,
+                "eligibilityScanPixels": 658991,
+                "eligible": 26435,
+                "corrected": 15453,
+                "opaqueGrassSkipped": 133526,
+                "protectedPaletteSkipped": 62,
+                "roadSkipped": 0,
+                "subpixelRoadSkipped": 0,
+                "unresolvedHolesSkipped": 234,
+                "alphaChanged": 0,
+                "skips": 0,
+                "allocations": 2,
+                "resizes": 28,
+                "scratchBytes": 1971120,
+                "peakLogicalBytes": 6307584,
+                "readbackBytes": 4336464,
+                "ms": 535.199999999837,
+                "factor": 2,
+                "maxScratchPixels": 1048576,
+                "scope": "Logical canvas and live readback payload only; not total JS/native/GPU heap"
+              },
+              "maxPixels": 8388608,
+              "transition": {
+                "fills": 190,
+                "passes": 57,
+                "boundaryPasses": 19,
+                "allocations": 3,
+                "resizes": 18,
+                "bytes": 1882368,
+                "peakBytes": 1882368,
+                "skips": 0,
+                "lastSkip": null,
+                "maxPixels": 1048576,
+                "bufferDimensions": [
+                  [
+                    516,
+                    198
+                  ],
+                  [
+                    516,
+                    198
+                  ],
+                  [
+                    516,
+                    516
+                  ]
+                ]
+              },
+              "totalLogicalBytes": 4918512
+            },
+            {
+              "rasterizations": 75,
+              "hits": 76,
+              "allocations": 1,
+              "resizes": 5,
+              "bytes": 1065024,
+              "peakBytes": 1065024,
+              "fallbacks": 0,
+              "lastFallback": null,
+              "nativeBudget": {
+                "plans": 0,
+                "admitted": 0,
+                "rejected": 0,
+                "releases": 0,
+                "last": null,
+                "limitBytes": 50331648
+              },
+              "nativeJunction": {
+                "calls": 57,
+                "ms": 0.5999999998603016,
+                "prepareCalls": 1,
+                "prepareMs": 0.09999999997671694,
+                "staticBytes": 26782,
+                "scope": "Connected nonwalk gray seam; test only, BODY/apron min2device and visible min1device at .05; test-only sampled scale >= .05"
+              },
+              "supersample": {
+                "calls": 38,
+                "stripes": 38,
+                "emptyStripes": 12,
+                "highRasterStripes": 26,
+                "eligibilityScanPixels": 658991,
+                "eligible": 26435,
+                "corrected": 15453,
+                "opaqueGrassSkipped": 133526,
+                "protectedPaletteSkipped": 62,
+                "roadSkipped": 0,
+                "subpixelRoadSkipped": 0,
+                "unresolvedHolesSkipped": 234,
+                "alphaChanged": 0,
+                "skips": 0,
+                "allocations": 2,
+                "resizes": 28,
+                "scratchBytes": 1971120,
+                "peakLogicalBytes": 6307584,
+                "readbackBytes": 4336464,
+                "ms": 545.4999999998836,
+                "factor": 2,
+                "maxScratchPixels": 1048576,
+                "scope": "Logical canvas and live readback payload only; not total JS/native/GPU heap"
+              },
+              "maxPixels": 8388608,
+              "transition": {
+                "fills": 190,
+                "passes": 57,
+                "boundaryPasses": 19,
+                "allocations": 3,
+                "resizes": 18,
+                "bytes": 1882368,
+                "peakBytes": 1882368,
+                "skips": 0,
+                "lastSkip": null,
+                "maxPixels": 1048576,
+                "bufferDimensions": [
+                  [
+                    516,
+                    198
+                  ],
+                  [
+                    516,
+                    198
+                  ],
+                  [
+                    516,
+                    516
+                  ]
+                ]
+              },
+              "totalLogicalBytes": 4918512
+            }
+          ]
+        }
+      }
+    },
+    {
+      "pose": "phone-dpr3-native",
+      "crossVersionChecks": {
+        "stage3SHA": true,
+        "stage3ReferencedAssetsSHA": true,
+        "physicsSHA": true,
+        "stage32SourcePathSHA": false,
+        "stage32SourceClipSHA": true,
+        "stage32PathCount": true
+      },
+      "cost": {
+        "baseline": {
+          "first": {
+            "n": 2,
+            "median": 51.00000000005821,
+            "p95": 51.70000000006985,
+            "maximum": 51.70000000006985
+          },
+          "cold": {
+            "n": 10,
+            "median": 1.9500000000116415,
+            "p95": 2.199999999953434,
+            "maximum": 2.199999999953434
+          },
+          "warm": {
+            "n": 60,
+            "median": 0.5999999999767169,
+            "p95": 0.7000000000698492,
+            "maximum": 31.199999999953434
+          },
+          "pan": {
+            "n": 120,
+            "median": 0.9000000000232831,
+            "p95": 1.1999999999534339,
+            "maximum": 3.5
+          },
+          "panByAxis": {
+            "horizontal": {
+              "n": 60,
+              "median": 0.8000000000465661,
+              "p95": 1,
+              "maximum": 2.200000000069849
+            },
+            "vertical": {
+              "n": 60,
+              "median": 1.0,
+              "p95": 1.2000000000698492,
+              "maximum": 3.5
+            }
+          },
+          "panByDirection": {
+            "right": {
+              "n": 60,
+              "median": 0.8000000000465661,
+              "p95": 1,
+              "maximum": 2.200000000069849
+            },
+            "up": {
+              "n": 30,
+              "median": 1.0499999999883585,
+              "p95": 3.300000000046566,
+              "maximum": 3.5
+            },
+            "down": {
+              "n": 30,
+              "median": 1.0,
+              "p95": 1.099999999976717,
+              "maximum": 1.1999999999534339
+            }
+          },
+          "panActualMotion": {
+            "horizontal": {
+              "uniqueX": 30,
+              "uniqueY": 1
+            },
+            "vertical": {
+              "uniqueX": 1,
+              "uniqueY": 16
+            }
+          },
+          "helperFinal": [
+            null,
+            null
+          ]
+        },
+        "candidate": {
+          "first": {
+            "n": 2,
+            "median": 37.5,
+            "p95": 37.59999999997672,
+            "maximum": 37.59999999997672
+          },
+          "cold": {
+            "n": 10,
+            "median": 11.800000000046566,
+            "p95": 12.599999999976717,
+            "maximum": 12.599999999976717
+          },
+          "warm": {
+            "n": 60,
+            "median": 0.5999999999767169,
+            "p95": 0.7000000000698492,
+            "maximum": 44.20000000006985
+          },
+          "pan": {
+            "n": 120,
+            "median": 7.799999999930151,
+            "p95": 8.79999999993015,
+            "maximum": 11.300000000046566
+          },
+          "panByAxis": {
+            "horizontal": {
+              "n": 60,
+              "median": 7.800000000046566,
+              "p95": 8.79999999993015,
+              "maximum": 11.300000000046566
+            },
+            "vertical": {
+              "n": 60,
+              "median": 7.700000000069849,
+              "p95": 8.5,
+              "maximum": 10.199999999953434
+            }
+          },
+          "panByDirection": {
+            "right": {
+              "n": 60,
+              "median": 7.800000000046566,
+              "p95": 8.79999999993015,
+              "maximum": 11.300000000046566
+            },
+            "up": {
+              "n": 30,
+              "median": 7.7000000000116415,
+              "p95": 9.800000000046566,
+              "maximum": 10.199999999953434
+            },
+            "down": {
+              "n": 30,
+              "median": 7.75,
+              "p95": 8.199999999953434,
+              "maximum": 8.5
+            }
+          },
+          "panActualMotion": {
+            "horizontal": {
+              "uniqueX": 30,
+              "uniqueY": 1
+            },
+            "vertical": {
+              "uniqueX": 1,
+              "uniqueY": 16
+            }
+          },
+          "helperFinal": [
+            {
+              "rasterizations": 68,
+              "hits": 136,
+              "allocations": 1,
+              "resizes": 5,
+              "bytes": 9771840,
+              "peakBytes": 9771840,
+              "fallbacks": 0,
+              "lastFallback": null,
+              "nativeBudget": {
+                "plans": 136,
+                "admitted": 136,
+                "rejected": 0,
+                "releases": 0,
+                "last": {
+                  "w": 1170,
+                  "h": 2088,
+                  "rows": 718,
+                  "current": 9771852,
+                  "projected": 13132088,
+                  "admitted": true,
+                  "scope": "Post-cleanup helper-owned logical canvas bytes; not physical heap or preexisting peak"
+                },
+                "limitBytes": 50331648
+              },
+              "nativeJunction": {
+                "calls": 68,
+                "ms": 1,
+                "prepareCalls": 1,
+                "prepareMs": 0,
+                "staticBytes": 26782,
+                "scope": "Connected nonwalk gray seam; test only, BODY/apron min2device and visible min1device at .05; test-only sampled scale >= .05"
+              },
+              "supersample": {
+                "calls": 0,
+                "stripes": 0,
+                "emptyStripes": 0,
+                "highRasterStripes": 0,
+                "eligibilityScanPixels": 0,
+                "eligible": 0,
+                "corrected": 0,
+                "opaqueGrassSkipped": 0,
+                "protectedPaletteSkipped": 0,
+                "roadSkipped": 0,
+                "subpixelRoadSkipped": 0,
+                "unresolvedHolesSkipped": 0,
+                "alphaChanged": 0,
+                "skips": 0,
+                "allocations": 0,
+                "resizes": 0,
+                "scratchBytes": 0,
+                "peakLogicalBytes": 0,
+                "readbackBytes": 0,
+                "ms": 0,
+                "factor": 2,
+                "maxScratchPixels": 1048576,
+                "scope": "Logical canvas and live readback payload only; not total JS/native/GPU heap"
+              },
+              "maxPixels": 8388608,
+              "transition": {
+                "fills": 0,
+                "passes": 0,
+                "boundaryPasses": 0,
+                "allocations": 3,
+                "resizes": 0,
+                "bytes": 12,
+                "peakBytes": 12,
+                "skips": 0,
+                "lastSkip": null,
+                "maxPixels": 1048576,
+                "bufferDimensions": [
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    1,
+                    1
+                  ]
+                ]
+              },
+              "totalLogicalBytes": 9771852
+            },
+            {
+              "rasterizations": 68,
+              "hits": 136,
+              "allocations": 1,
+              "resizes": 5,
+              "bytes": 9771840,
+              "peakBytes": 9771840,
+              "fallbacks": 0,
+              "lastFallback": null,
+              "nativeBudget": {
+                "plans": 136,
+                "admitted": 136,
+                "rejected": 0,
+                "releases": 0,
+                "last": {
+                  "w": 1170,
+                  "h": 2088,
+                  "rows": 718,
+                  "current": 9771852,
+                  "projected": 13132088,
+                  "admitted": true,
+                  "scope": "Post-cleanup helper-owned logical canvas bytes; not physical heap or preexisting peak"
+                },
+                "limitBytes": 50331648
+              },
+              "nativeJunction": {
+                "calls": 68,
+                "ms": 1.0999999998603016,
+                "prepareCalls": 1,
+                "prepareMs": 0.09999999997671694,
+                "staticBytes": 26782,
+                "scope": "Connected nonwalk gray seam; test only, BODY/apron min2device and visible min1device at .05; test-only sampled scale >= .05"
+              },
+              "supersample": {
+                "calls": 0,
+                "stripes": 0,
+                "emptyStripes": 0,
+                "highRasterStripes": 0,
+                "eligibilityScanPixels": 0,
+                "eligible": 0,
+                "corrected": 0,
+                "opaqueGrassSkipped": 0,
+                "protectedPaletteSkipped": 0,
+                "roadSkipped": 0,
+                "subpixelRoadSkipped": 0,
+                "unresolvedHolesSkipped": 0,
+                "alphaChanged": 0,
+                "skips": 0,
+                "allocations": 0,
+                "resizes": 0,
+                "scratchBytes": 0,
+                "peakLogicalBytes": 0,
+                "readbackBytes": 0,
+                "ms": 0,
+                "factor": 2,
+                "maxScratchPixels": 1048576,
+                "scope": "Logical canvas and live readback payload only; not total JS/native/GPU heap"
+              },
+              "maxPixels": 8388608,
+              "transition": {
+                "fills": 0,
+                "passes": 0,
+                "boundaryPasses": 0,
+                "allocations": 3,
+                "resizes": 0,
+                "bytes": 12,
+                "peakBytes": 12,
+                "skips": 0,
+                "lastSkip": null,
+                "maxPixels": 1048576,
+                "bufferDimensions": [
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    1,
+                    1
+                  ]
+                ]
+              },
+              "totalLogicalBytes": 9771852
+            }
+          ]
+        }
+      }
+    },
+    {
+      "pose": "maximum-live",
+      "crossVersionChecks": {
+        "stage3SHA": true,
+        "stage3ReferencedAssetsSHA": true,
+        "physicsSHA": true,
+        "stage32SourcePathSHA": false,
+        "stage32SourceClipSHA": true,
+        "stage32PathCount": true
+      },
+      "cost": {
+        "baseline": {
+          "first": {
+            "n": 2,
+            "median": 55.45000000001164,
+            "p95": 61.70000000006985,
+            "maximum": 61.70000000006985
+          },
+          "cold": {
+            "n": 10,
+            "median": 2.099999999976717,
+            "p95": 2.300000000046566,
+            "maximum": 2.300000000046566
+          },
+          "warm": {
+            "n": 60,
+            "median": 0.5999999999767169,
+            "p95": 0.7000000000698492,
+            "maximum": 24.099999999976717
+          },
+          "pan": {
+            "n": 120,
+            "median": 1.1000000000931323,
+            "p95": 1.599999999976717,
+            "maximum": 3.6000000000931323
+          },
+          "panByAxis": {
+            "horizontal": {
+              "n": 60,
+              "median": 1.1000000000931323,
+              "p95": 1.7000000000698492,
+              "maximum": 3.6000000000931323
+            },
+            "vertical": {
+              "n": 60,
+              "median": 1.1000000000931323,
+              "p95": 1.400000000023283,
+              "maximum": 3.099999999976717
+            }
+          },
+          "panByDirection": {
+            "right": {
+              "n": 60,
+              "median": 1.1000000000931323,
+              "p95": 1.7000000000698492,
+              "maximum": 3.6000000000931323
+            },
+            "up": {
+              "n": 30,
+              "median": 1.1999999999534339,
+              "p95": 1.5,
+              "maximum": 3.099999999976717
+            },
+            "down": {
+              "n": 30,
+              "median": 1.1000000000931323,
+              "p95": 1.400000000023283,
+              "maximum": 1.599999999976717
+            }
+          },
+          "panActualMotion": {
+            "horizontal": {
+              "uniqueX": 30,
+              "uniqueY": 1
+            },
+            "vertical": {
+              "uniqueX": 1,
+              "uniqueY": 16
+            }
+          },
+          "helperFinal": [
+            null,
+            null
+          ]
+        },
+        "candidate": {
+          "first": {
+            "n": 2,
+            "median": 30.899999999965075,
+            "p95": 31,
+            "maximum": 31
+          },
+          "cold": {
+            "n": 10,
+            "median": 7.5499999999883585,
+            "p95": 7.800000000046566,
+            "maximum": 7.800000000046566
+          },
+          "warm": {
+            "n": 60,
+            "median": 0.5999999999767169,
+            "p95": 0.7000000000698492,
+            "maximum": 31
+          },
+          "pan": {
+            "n": 120,
+            "median": 5.199999999953434,
+            "p95": 5.699999999953434,
+            "maximum": 16.599999999976717
+          },
+          "panByAxis": {
+            "horizontal": {
+              "n": 60,
+              "median": 5.2999999999883585,
+              "p95": 5.900000000023283,
+              "maximum": 7.900000000023283
+            },
+            "vertical": {
+              "n": 60,
+              "median": 5.199999999953434,
+              "p95": 5.400000000023283,
+              "maximum": 16.599999999976717
+            }
+          },
+          "panByDirection": {
+            "right": {
+              "n": 60,
+              "median": 5.2999999999883585,
+              "p95": 5.900000000023283,
+              "maximum": 7.900000000023283
+            },
+            "up": {
+              "n": 30,
+              "median": 5.200000000069849,
+              "p95": 5.699999999953434,
+              "maximum": 16.599999999976717
+            },
+            "down": {
+              "n": 30,
+              "median": 5.099999999976717,
+              "p95": 5.400000000023283,
+              "maximum": 5.400000000023283
+            }
+          },
+          "panActualMotion": {
+            "horizontal": {
+              "uniqueX": 30,
+              "uniqueY": 1
+            },
+            "vertical": {
+              "uniqueX": 1,
+              "uniqueY": 16
+            }
+          },
+          "helperFinal": [
+            {
+              "rasterizations": 68,
+              "hits": 136,
+              "allocations": 1,
+              "resizes": 5,
+              "bytes": 4062212,
+              "peakBytes": 4062212,
+              "fallbacks": 0,
+              "lastFallback": null,
+              "nativeBudget": {
+                "plans": 136,
+                "admitted": 136,
+                "rejected": 0,
+                "releases": 0,
+                "last": {
+                  "w": 1331,
+                  "h": 763,
+                  "rows": 273,
+                  "current": 4062224,
+                  "projected": 5515672,
+                  "admitted": true,
+                  "scope": "Post-cleanup helper-owned logical canvas bytes; not physical heap or preexisting peak"
+                },
+                "limitBytes": 50331648
+              },
+              "nativeJunction": {
+                "calls": 68,
+                "ms": 0.5,
+                "prepareCalls": 1,
+                "prepareMs": 0.10000000009313226,
+                "staticBytes": 26782,
+                "scope": "Connected nonwalk gray seam; test only, BODY/apron min2device and visible min1device at .05; test-only sampled scale >= .05"
+              },
+              "supersample": {
+                "calls": 0,
+                "stripes": 0,
+                "emptyStripes": 0,
+                "highRasterStripes": 0,
+                "eligibilityScanPixels": 0,
+                "eligible": 0,
+                "corrected": 0,
+                "opaqueGrassSkipped": 0,
+                "protectedPaletteSkipped": 0,
+                "roadSkipped": 0,
+                "subpixelRoadSkipped": 0,
+                "unresolvedHolesSkipped": 0,
+                "alphaChanged": 0,
+                "skips": 0,
+                "allocations": 0,
+                "resizes": 0,
+                "scratchBytes": 0,
+                "peakLogicalBytes": 0,
+                "readbackBytes": 0,
+                "ms": 0,
+                "factor": 2,
+                "maxScratchPixels": 1048576,
+                "scope": "Logical canvas and live readback payload only; not total JS/native/GPU heap"
+              },
+              "maxPixels": 8388608,
+              "transition": {
+                "fills": 0,
+                "passes": 0,
+                "boundaryPasses": 0,
+                "allocations": 3,
+                "resizes": 0,
+                "bytes": 12,
+                "peakBytes": 12,
+                "skips": 0,
+                "lastSkip": null,
+                "maxPixels": 1048576,
+                "bufferDimensions": [
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    1,
+                    1
+                  ]
+                ]
+              },
+              "totalLogicalBytes": 4062224
+            },
+            {
+              "rasterizations": 68,
+              "hits": 136,
+              "allocations": 1,
+              "resizes": 5,
+              "bytes": 4062212,
+              "peakBytes": 4062212,
+              "fallbacks": 0,
+              "lastFallback": null,
+              "nativeBudget": {
+                "plans": 136,
+                "admitted": 136,
+                "rejected": 0,
+                "releases": 0,
+                "last": {
+                  "w": 1331,
+                  "h": 763,
+                  "rows": 273,
+                  "current": 4062224,
+                  "projected": 5515672,
+                  "admitted": true,
+                  "scope": "Post-cleanup helper-owned logical canvas bytes; not physical heap or preexisting peak"
+                },
+                "limitBytes": 50331648
+              },
+              "nativeJunction": {
+                "calls": 68,
+                "ms": 0.7999999999301508,
+                "prepareCalls": 1,
+                "prepareMs": 0,
+                "staticBytes": 26782,
+                "scope": "Connected nonwalk gray seam; test only, BODY/apron min2device and visible min1device at .05; test-only sampled scale >= .05"
+              },
+              "supersample": {
+                "calls": 0,
+                "stripes": 0,
+                "emptyStripes": 0,
+                "highRasterStripes": 0,
+                "eligibilityScanPixels": 0,
+                "eligible": 0,
+                "corrected": 0,
+                "opaqueGrassSkipped": 0,
+                "protectedPaletteSkipped": 0,
+                "roadSkipped": 0,
+                "subpixelRoadSkipped": 0,
+                "unresolvedHolesSkipped": 0,
+                "alphaChanged": 0,
+                "skips": 0,
+                "allocations": 0,
+                "resizes": 0,
+                "scratchBytes": 0,
+                "peakLogicalBytes": 0,
+                "readbackBytes": 0,
+                "ms": 0,
+                "factor": 2,
+                "maxScratchPixels": 1048576,
+                "scope": "Logical canvas and live readback payload only; not total JS/native/GPU heap"
+              },
+              "maxPixels": 8388608,
+              "transition": {
+                "fills": 0,
+                "passes": 0,
+                "boundaryPasses": 0,
+                "allocations": 3,
+                "resizes": 0,
+                "bytes": 12,
+                "peakBytes": 12,
+                "skips": 0,
+                "lastSkip": null,
+                "maxPixels": 1048576,
+                "bufferDimensions": [
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    1,
+                    1
+                  ]
+                ]
+              },
+              "totalLogicalBytes": 4062224
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "rAF": {
+    "phone-dpr3-native": {
+      "baseline": {
+        "submit": {
+          "n": 120,
+          "median": 0.6000000000349246,
+          "p95": 1,
+          "maximum": 5.5
+        },
+        "gaps": {
+          "n": 119,
+          "median": 16.699999999999818,
+          "p95": 33.399999999999636,
+          "maximum": 266.6999999999998
+        },
+        "finalReadbackMs": 18.600000000093132,
+        "endpointRGBA": "85fa512343f8bb9392969b4b1d79f2c57e628d8af18cd840cd328d3a7be73a49",
+        "loopMs": 2277.899999999907
+      },
+      "candidate": {
+        "submit": {
+          "n": 120,
+          "median": 6.150000000023283,
+          "p95": 6.799999999930151,
+          "maximum": 9.5
+        },
+        "gaps": {
+          "n": 119,
+          "median": 33.30000000000018,
+          "p95": 33.400000000000546,
+          "maximum": 299.90000000000055
+        },
+        "finalReadbackMs": 22.5,
+        "endpointRGBA": "291a45ca3d7accacb61c45e167e30143d106658c331d6e54bfcd575230108906",
+        "loopMs": 3737
+      }
+    },
+    "maximum-live": {
+      "baseline": {
+        "submit": {
+          "n": 120,
+          "median": 0.7999999999301508,
+          "p95": 1,
+          "maximum": 3.700000000069849
+        },
+        "gaps": {
+          "n": 119,
+          "median": 16.699999999999818,
+          "p95": 16.700000000000728,
+          "maximum": 216.70000000000073
+        },
+        "finalReadbackMs": 12.79999999993015,
+        "endpointRGBA": "b52b6158197d0e5f3a0b1fd6a6798a0898cccdac6e35feb938ef795f25ed8a10",
+        "loopMs": 1970.9000000000233
+      },
+      "candidate": {
+        "submit": {
+          "n": 120,
+          "median": 4.099999999976717,
+          "p95": 4.599999999976717,
+          "maximum": 7.100000000093132
+        },
+        "gaps": {
+          "n": 119,
+          "median": 16.699999999999818,
+          "p95": 33.399999999999636,
+          "maximum": 266.6999999999998
+        },
+        "finalReadbackMs": 17,
+        "endpointRGBA": "ae186828d4d9b574880f18691e5991926458a77a67e673971e3fdd175ae6dc60",
+        "loopMs": 2394.20000000007
+      }
+    }
+  },
+  "errors": [],
+  "performanceAccepted": false,
+  "scope": "Last-successful-Pages pinned release vs candidate own official builds; not liveHTTP verification. Historical gameplay changes must not be mislabeled32art regressions; failed32match blocks same-map interpretation. No normalized renderer."
+}

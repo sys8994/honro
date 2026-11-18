@@ -1,0 +1,102 @@
+{
+  "passed": true,
+  "rows": [
+    {
+      "view": "gray-left",
+      "registeredTerrainExact": true,
+      "referenceRun": 44262521022,
+      "actualDPR": 1,
+      "ownCodecExact": true,
+      "normalSceneRGBA": "bb2be9299f4a23445050b535f8f4433f0f86ca2696de09de6773890e105319d4"
+    },
+    {
+      "view": "portrait-overview",
+      "registeredTerrainExact": true,
+      "referenceRun": 44262521022,
+      "actualDPR": 1,
+      "ownCodecExact": true,
+      "normalSceneRGBA": "1be8e84ddf09904e7f8064d07a3e504ea3cc07a5c9d3e3b26facbca30717680b"
+    },
+    {
+      "view": "portrait-bottom",
+      "registeredTerrainExact": true,
+      "referenceRun": 44262521022,
+      "actualDPR": 1,
+      "ownCodecExact": true,
+      "normalSceneRGBA": "93d010a3d20cb68a5e594a3c309865174a22841379e276b5a7dc615a08a51085"
+    },
+    {
+      "view": "landscape-overview",
+      "registeredTerrainExact": true,
+      "referenceRun": 44262521022,
+      "actualDPR": 1,
+      "ownCodecExact": true,
+      "normalSceneRGBA": "a8092f6bf396235e328a35448c80f9f7aa8b0b51b8c426857a4564e9a06274be"
+    },
+    {
+      "view": "landscape-bottom",
+      "registeredTerrainExact": true,
+      "referenceRun": 44262521022,
+      "actualDPR": 1,
+      "ownCodecExact": true,
+      "normalSceneRGBA": "acd6c9d9a9815f1dd8e713c4927c454c3ec0d19260719a627b055bb277fbbf1d"
+    },
+    {
+      "view": "desktop-walk",
+      "registeredTerrainExact": true,
+      "referenceRun": 44262521022,
+      "actualDPR": 1,
+      "ownCodecExact": true,
+      "normalSceneRGBA": "a444fc5fc1c9ff2cd94a1e9836c4271444b565b1d24def7efe5627cd29d45eb7"
+    },
+    {
+      "view": "native-walk",
+      "registeredTerrainExact": true,
+      "referenceRun": 44295576744,
+      "actualDPR": 1,
+      "ownCodecExact": true,
+      "normalSceneRGBA": "ed40a0d5d5d0de5c935deef914e62195592364256b135b575d1cc7e24b9dc113"
+    },
+    {
+      "view": "maximum",
+      "registeredTerrainExact": true,
+      "referenceRun": 44294047688,
+      "actualDPR": 1,
+      "ownCodecExact": true,
+      "normalSceneRGBA": "ffc959989fcae669206f908892e1e336841a01c3b523245da5f5b45348651ac7"
+    },
+    {
+      "view": "renderer-below",
+      "registeredTerrainExact": true,
+      "referenceRun": 44262521022,
+      "actualDPR": 1,
+      "ownCodecExact": true,
+      "normalSceneRGBA": "7ee36a387c91a16ea145d899ca659775253efc489b6a44fa8f832c27adb4bae7"
+    },
+    {
+      "view": "renderer-above",
+      "registeredTerrainExact": true,
+      "referenceRun": 44294047688,
+      "actualDPR": 1,
+      "ownCodecExact": true,
+      "normalSceneRGBA": "2eecdb453b4c7bbf0e3373120be516c206df6c2bcb6e075987077fb01a93dcde"
+    },
+    {
+      "view": "coverage-phone-dpr3",
+      "registeredTerrainExact": true,
+      "referenceRun": 44295576744,
+      "actualDPR": 3,
+      "ownCodecExact": true,
+      "normalSceneRGBA": "3063a673b6cd2289c57f75c5cb3c1f26b2d00d48db13890d30bb33252d9830d8"
+    },
+    {
+      "view": "coverage-desktop-large",
+      "registeredTerrainExact": true,
+      "referenceRun": 44295576744,
+      "actualDPR": 1,
+      "ownCodecExact": true,
+      "normalSceneRGBA": "cfab40a53319accb06d868458e97677e5c3cb8612d487082a806b2262c1d28d1"
+    }
+  ],
+  "scope": "Official J registration; terrain goldens from separately identified research runs. FullScene manual visual and current-deployed cost remain separate. All50/optimizer/oldsave separate results."
+}

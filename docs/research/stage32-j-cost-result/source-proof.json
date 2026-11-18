@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "baselineRef": "5b2edf0b868a6f4ab656574b036586304eb12808",
+  "candidateRef": "af5b77e15accea03470fdfd0c6cb00a0bb12c5e9",
+  "stage3Exact": true,
+  "nonvisualRuntimeExact": true,
+  "monsterScaleModulesExact": true,
+  "optimizerProof": {
+    "officialOptimizerCloneExact": true,
+    "candidateRawSourcePathSHA": "0b78f6b925226b41f68b4ffba68efc2e53c7aaecf6d74ce68dbd2d3c53fcbde4",
+    "baselineSourcePathSHA": "b26965ef1bae84b0cf3c069bc98cc326c4b7f0abbbe0e1e0bfa969124e1a17d3",
+    "baselineRef": "5b2edf0b868a6f4ab656574b036586304eb12808",
+    "candidateRef": "af5b77e15accea03470fdfd0c6cb00a0bb12c5e9",
+    "rawSourceHashMetadataExact": true
+  },
+  "errors": []
+}
