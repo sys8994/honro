@@ -1,0 +1,29 @@
+name: Isolated stage 42 proof (no deploy)
+on:
+  push:
+    branches: ['qa/stage42-production']
+    paths: ['tests/stage42-qa/**', '.github/workflows/stage42-qa.yml']
+permissions:
+  contents: read
+jobs:
+  scenic-proof:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      HONRO_QA_SMOKE: "1"
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm ci && npm ci --prefix game
+      - run: bash tests/stage42-qa/run.sh
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage42-isolated-chrome
+          path: ${{ runner.temp }}/stage42-evidence
+          if-no-files-found: error
