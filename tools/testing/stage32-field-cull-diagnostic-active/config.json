@@ -1,0 +1,35 @@
+{
+  "readyForCI": true,
+  "sourceRef": "af5b77e15accea03470fdfd0c6cb00a0bb12c5e9",
+  "registeredHelperSHA256": "6823eda0e8d3c5250396c857f09f96ee3eba8fbfba124af540d080a5a76d03c7",
+  "registeredPilotSHA256": "ded8ef211d3b7504470b5f6afd41ba0b46e29a910fcb2603b13aeeef49dd2292",
+  "normalizationSHA256": "9c38a9569223594c0df6d9bd178b2d3b22089868ed808988d5dae6c54c23d92c",
+  "culledSHA256": "670349e76850fc325d3a4244b3f299e66f3b1a426064a70a7c67e8cb7dbb56cc",
+  "poses": [
+    {
+      "name": "maximum",
+      "width": 1331,
+      "height": 763,
+      "dpr": 1,
+      "x": 320,
+      "y": 1650,
+      "scale": 1.65
+    },
+    {
+      "name": "nativewalk",
+      "width": 1331,
+      "height": 763,
+      "dpr": 1,
+      "x": 1689.6,
+      "y": 1342,
+      "scale": 1.65
+    }
+  ],
+  "variants": [
+    "original",
+    "culled"
+  ],
+  "diagnosticOnly": true,
+  "foundationPath": "shared/data/act4/handoff-art/32-foundation.json",
+  "foundationSHA256": "2ec84007352614d3319293d8b46384842550fe87f999cbf671145444d4a1cfa7"
+}
