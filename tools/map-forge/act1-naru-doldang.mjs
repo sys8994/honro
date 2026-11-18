@@ -224,4 +224,3 @@ export async function applyAct1Sites(project){
  }
  return project;
 }
-
