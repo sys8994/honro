@@ -1,9 +1,10 @@
 (function(G){'use strict';
 // Display only. (1) Flat contact shadow under enlarged monsters (no gradient:
-// vector art rule). (2) Stage 5: the great darkness seen once in the plunge
-// pool, a non-hostile omen of the stage-46 encounter (temporary eoduksini3 art).
+// vector art rule). (2) Stage 16 (잠운사): the great darkness half-seen in the
+// dark cavern behind the floor, a non-hostile omen of the stage-46 encounter
+// (temporary eoduksini3 art). Chosen with the user: Act 2 deep cave.
 const S=G.HonroScene?.prototype;if(!S?.unitBody)return;
-const OMEN={5:{x:4760,y:3255,m:10,sink:.45,alpha:.34}};G.HonroMonsterOmen=OMEN;
+const OMEN={16:{x:4300,y:3480,m:13,sink:.04,alpha:.3}};G.HonroMonsterOmen=OMEN;
 function omen(scene,c){
  const b=scene.battle||scene.actorEngine?.b,o=b?.honroMonsterScaleRevision===1&&OMEN[b.honroStage];if(!o)return;
  const V=G.HonroMonsterVisual,a=V?.assets?.eoduksini3;if(!a)return;
