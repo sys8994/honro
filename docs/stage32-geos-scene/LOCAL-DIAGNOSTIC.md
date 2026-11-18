@@ -1,0 +1,13 @@
+# GEOS source-native diagnostic
+
+This is a separate author-time geometry investigation, not production acceptance. Original25paths, original BODY/apron and stage physics remain untouched. Stage32-geos-study provides adaptive flattened source curves (epsilon .005 source), nonzero faces selected against original Native curve membership,22,418 independent query checks without a mismatch. Role geometries distinguish gray0/5..11/18..20 from visible protected1..4/12..17/21..24, plus original BODYunion/apron and actual49walk edges/roads24world safety.
+
+Important scope discovery: the real connected gray boundary band is much wider than the historical Native Boolean left component. Whole connected selection spans source20..1516.76,442.97..904.82. This is NOT silently described as the old left scope. Mathematical connectivity is not itself an art-authoring boundary. Current tests are labeled whole-connected diagnostic, pending parent scope decision or an explicit artist-face selection.
+
+At .6 local source-only Native drawing, unsimplified2,305,712byte path changes4811pixels; alpha/BG/forbidden9owner samples all0. Fill-onlyp50 2.65ms (not actual bitmapclip/Scene cost). No new runtime canvas/readback/SS is part of this prototype.
+
+A conservative inward offset.03source followed by topology-preserving simplification.01source reduces the path to319,449bytes/17,399vertices/34polygons. GEOS difference from original safe coverage has area0 before decimal export.4-decimal export has per-axis rounding at most.00005source, well below retained original guard approximation allowance. Local .6 render:4806changed, alpha/BG/forbidden9owner0, fill-onlyp50 .49ms. This is an approximation with recorded margins and tests, not a claim of exact original geometry or universal raster output equivalence.
+
+Direct visual review shows central and lower long lines mostly removed, but other upper branches and endpoint fragments remain. No whole-stage art completion. Lower zoom, larger zoom, actual registered material bitmap, tile filtering, original partial foreground contributions, state/cache/codec and real Scene cost still require independent tests. A new upper coverage would overlap current SS1420..1716; SS stays enabled, and overlap must be measured/documented rather than reusing the old disjoint-domain assertion or claiming SS removal eligibility.
+
+Same simplified diagnostic at1.65 local zoom:5361changed, alpha/BG/forbidden9owner samples0, fill-onlyp50 .537ms. This adds one high-zoom camera, not full-stage or low-zoom proof. High-zoom image still has fragments on other branches/near protected source boundaries, so no claim that all remaining seams are solved.
