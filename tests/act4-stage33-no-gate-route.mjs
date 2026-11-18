@@ -1,4 +1,5 @@
 /** Read-only map reachability diagnostic. Real Engine walk/jump/body integration; synthetic budget resets, no combat or full-play claim. */
+import assert from 'node:assert/strict';
 import {appHarness,plain} from './app-regression-helpers.mjs';
 import vm from 'node:vm';import {readFile,mkdir,writeFile} from 'node:fs/promises';
 process.env.HONRO_ACT4_RELEASE='1';
@@ -17,9 +18,9 @@ for(const mode of ['east-switchback'])for(const cls of ['archer','mage','knight'
   if(p[0]<u.x-150&&p[1]<=u.y+60&&e.grounded(u)){u.moveLeft=Math.max(u.moveLeft,e.jumpCost(u));if(e.jump(u))jumps++;}
   for(let i=0;i<3600;i++){
    if(u.dead||u.hp<=0){stop='dead';break;}
-   if(Math.abs(u.x-p[0])<12&&Math.abs(u.y-p[1])<40&&e.grounded(u)){reached=true;break;}
+   if(Math.abs(u.x-p[0])<12&&u.y<=p[1]+40&&e.grounded(u)){reached=true;break;}
    if(u.moveLeft<Math.max(10,e.jumpCost(u))){u.moveLeft=u.maxMove;resets++;}
-   if(e.grounded(u)&&(u.y>p[1]+24||stationary>30)){if(e.jump(u))jumps++;}
+   if(e.grounded(u)&&((index>0&&u.y>p[1]+24)||stationary>30)){if(e.jump(u))jumps++;}
    if(Math.abs(u.x-p[0])>3)e.walk(u,Math.sign(p[0]-u.x),Math.min(C.STEP,Math.abs(p[0]-u.x)/u.walkSpeed));
    e.integrateBody(u,C.STEP);P.coast.water(e,C.STEP);
    if(Math.abs(u.x-lastX)<.001)stationary++;else stationary=0;lastX=u.x;
@@ -29,6 +30,7 @@ for(const mode of ['east-switchback'])for(const cls of ['archer','mage','knight'
   if(!reached){stop='waypoint-'+index+'-failed';break;}
  }
  if(stop==='')stop='reached';
+ assert.equal(stop,'reached',cls);assert(e.grounded(u));assert(Math.abs(u.x-target.x)<15&&Math.abs(u.y-target.y)<30);assert.equal(u.hp,before.hp);
 
  results.push({mode,cls,before,target,after:{x:u.x,y:u.y,hp:u.hp},jumps,syntheticBudgetResets:resets,stop,trace});
 }
