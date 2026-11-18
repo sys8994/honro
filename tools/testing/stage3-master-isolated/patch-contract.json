@@ -1,0 +1,39 @@
+{
+  "base": "5b2edf0b868a6f4ab656574b036586304eb12808",
+  "changes": [
+    {
+      "path": "shared/build.mjs",
+      "old": "import {applyAct3HandoffArt} from './act3-handoff-art.mjs';",
+      "new": "import {applyAct3HandoffArt} from './act3-handoff-art.mjs';\nimport {applyNaruBodyFinish} from '../tools/map-forge/naru-body-finish.mjs';"
+    },
+    {
+      "path": "shared/build.mjs",
+      "old": "  terrainOptimization.apply(project.library);",
+      "new": "  terrainOptimization.apply(project.library);\n  applyNaruBodyFinish(project);"
+    },
+    {
+      "path": "shared/runtime/renderer.js",
+      "old": "        _drawTerrainDomainTiles(c,b,w,h){",
+      "new": "        _naruRasterBounds(b){\n            const domain={...b.honroTerrainBounds};\n            // Only fresh Stage3's explicit approved art may exceed collision bounds.\n            // Every other stage keeps the original master path and domain reference.\n            for(const l of G.HonroTerrainDomain.materialLandmarks(b)){\n                if(l.asset?.params?.paintBeyondTerrainDomain!==true)continue;\n                const a=this._landmarkPaintBounds(l);if(!a)continue;\n                domain.left=Math.min(domain.left,a.left);domain.top=Math.min(domain.top,a.top);\n                domain.right=Math.max(domain.right,a.right);domain.bottom=Math.max(domain.bottom,a.bottom);\n            }\n            return domain;\n        }\n        _drawTerrainDomainTiles(c,b,w,h){"
+    },
+    {
+      "path": "shared/runtime/renderer.js",
+      "old": "v=G.HonroBounds.viewport(this,w,h),domain=b.honroTerrainBounds,",
+      "new": "v=G.HonroBounds.viewport(this,w,h),domain=b.honroStage===3?this._naruRasterBounds(b):b.honroTerrainBounds,"
+    },
+    {
+      "path": "shared/runtime/terrain-readability.js",
+      "old": " const solids=ts.filter",
+      "new": " const omittedClosures=b.honroStage===3?new Set((b.honroLandmarks||[]).flatMap(l=>l.asset?.params?.omitTerrainClosureIds||[])):null;\n const solids=ts.filter"
+    },
+    {
+      "path": "shared/runtime/terrain-readability.js",
+      "old": "if(t.oneWay&&!walkable)continue;",
+      "new": "if(t.oneWay&&!walkable)continue;if(!walkable&&omittedClosures?.has(t.id))continue;"
+    }
+  ],
+  "newFiles": [
+    "tools/map-forge/naru-body-finish.mjs"
+  ],
+  "inverseExact": true
+}

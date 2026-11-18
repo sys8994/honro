@@ -1,0 +1,739 @@
+{
+  "run": 44291327073,
+  "runConclusion": "failure",
+  "artifact": 14422426287,
+  "zipSHA256": "9b31ddf8dba97b831d52f6e19f4c16fd129d9ee76bfdfcba1bfec2c6d3ba832b",
+  "head": "0e5a9d4d126d8aea2da729654e4000c5a99bf29d",
+  "baseline": "5b2edf0b868a6f4ab656574b036586304eb12808",
+  "candidate": "3700686f1556b5fbc8f3c4fe93413b957d3650bb",
+  "officialBuildsBothPassed": true,
+  "sourceGuardPassed": true,
+  "candidateSceneOrAppExecuted": false,
+  "defaultReleasePolicy": [
+    {
+      "checkout": "baseline",
+      "policy": {
+        "revision": 1,
+        "reviewedAct23": true,
+        "act3HandoffStages": [
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30
+        ],
+        "act4": true,
+        "act5": true,
+        "act4HandoffStages": [
+          31,
+          32,
+          35,
+          36,
+          38
+        ]
+      },
+      "appTrueDefaultEnabled": true,
+      "forcedEnvironment": false
+    },
+    {
+      "checkout": "candidate",
+      "policy": {
+        "revision": 1,
+        "reviewedAct23": true,
+        "act3HandoffStages": [
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30
+        ],
+        "act4": true,
+        "act5": true,
+        "act4HandoffStages": [
+          31,
+          32,
+          35,
+          36,
+          38
+        ]
+      },
+      "appTrueDefaultEnabled": true,
+      "forcedEnvironment": false
+    }
+  ],
+  "rows": [
+    {
+      "file": "baseline-3-dpr3.json",
+      "sha256": "1232a9deedeae64580a028f2af130279e9a0b80d1094ce6fca5ff54a1f3fefd9",
+      "ok": true,
+      "phase": null,
+      "error": null,
+      "view": "3-dpr3",
+      "all50": null,
+      "requestedDPR": 3,
+      "actualDPR": 3,
+      "officialPixelRatio": 1.7,
+      "dimensions": [
+        663,
+        1183
+      ]
+    },
+    {
+      "file": "baseline-3-native.json",
+      "sha256": "d4e7f1374d58c238c537ca705f317e430ea0ecc2fd49e526c8d7d4302cb2e42b",
+      "ok": true,
+      "phase": null,
+      "error": null,
+      "view": "3-native",
+      "all50": null,
+      "requestedDPR": 1,
+      "actualDPR": 1,
+      "officialPixelRatio": 1,
+      "dimensions": [
+        1331,
+        763
+      ]
+    },
+    {
+      "file": "baseline-3-overview.json",
+      "sha256": "8cee1a0c6d63da39ce3f73867d9f38efe1e678add9370a7c4e905e73dcb749ad",
+      "ok": true,
+      "phase": null,
+      "error": null,
+      "view": "3-overview",
+      "all50": [
+        {
+          "stage": 1,
+          "fullSHA": "e1940a72b01073093bba7837450691246ac59a23c4439bc343ae65304005faf2",
+          "permittedArtworkNormalizedSHA": "e1940a72b01073093bba7837450691246ac59a23c4439bc343ae65304005faf2",
+          "bodyOccurrences": 0,
+          "unitsSHA": "9b1a6e27613e9c1f01e4ed7f25ec1c7008272e3d24b75643a8eded37eb9509a3",
+          "terrainSHA": "e5b2e8dd1d13a61c5706f8f98697a88bd1de55ede1e5c8b3b8570d6e19d67364",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 6
+        },
+        {
+          "stage": 2,
+          "fullSHA": "ef4717076c9e66647c7013c252248f1538beb90b3248ced813bb5b26c2acc6c4",
+          "permittedArtworkNormalizedSHA": "ef4717076c9e66647c7013c252248f1538beb90b3248ced813bb5b26c2acc6c4",
+          "bodyOccurrences": 0,
+          "unitsSHA": "df6f7b4c15954bd13cfc543e099962a073adb4f195c890f843a11bf0f24a8727",
+          "terrainSHA": "06ef3c9c67fefbd8649f774140b5f5475cebdd8c6564a1010ff2cc85073d08c7",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 8
+        },
+        {
+          "stage": 3,
+          "fullSHA": "9cde79c4b0a0ffecafd686f0e10fe654ef1ecae4e69b2fba7b1369a12b0b2b9f",
+          "permittedArtworkNormalizedSHA": "0e6769a92aeaecc4017702ad027956347814cd91afe283335b33547a7daa1b12",
+          "bodyOccurrences": 2,
+          "unitsSHA": "557ee537cc61fbc440e28560a9f809d27e4b7205981fe91e23d1a258b652e698",
+          "terrainSHA": "9c5a8bed487f33f6023cb3598ea52efa157600629cb5eedbd67d404438969ae6",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 10
+        },
+        {
+          "stage": 4,
+          "fullSHA": "e41d2bdc6476e5c69830eac70398d31830d171e67ed62fe79fac2183487b1750",
+          "permittedArtworkNormalizedSHA": "e41d2bdc6476e5c69830eac70398d31830d171e67ed62fe79fac2183487b1750",
+          "bodyOccurrences": 0,
+          "unitsSHA": "760a92ff4163afd3fed7a7a8f2ecfe031682ff250e2159b3333ca74e9afc01c9",
+          "terrainSHA": "2e98e70c8727b6cfddec74293014184aa32695ac848e208a8895e1698a22578b",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 12
+        },
+        {
+          "stage": 5,
+          "fullSHA": "6da8e575eadffbe6cc028575bcf1a333972c14c56273c96495b4925ac958d57f",
+          "permittedArtworkNormalizedSHA": "6da8e575eadffbe6cc028575bcf1a333972c14c56273c96495b4925ac958d57f",
+          "bodyOccurrences": 0,
+          "unitsSHA": "94f1b165e9792b01a83542a9767fd9af67ddf29ca478de15470592e3118fc102",
+          "terrainSHA": "7a7253fb44464d340433603338a3defe1f29da803334e4fe0daa1664fbcbd1ed",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 8
+        },
+        {
+          "stage": 6,
+          "fullSHA": "e780683382109824d654d415773622dbaf99e87c0516d942083bce7995c91265",
+          "permittedArtworkNormalizedSHA": "e780683382109824d654d415773622dbaf99e87c0516d942083bce7995c91265",
+          "bodyOccurrences": 0,
+          "unitsSHA": "3a127e4bfac3d4d2f68a9c415221d0180f715cae65dd244c5d1260a6754a170d",
+          "terrainSHA": "7d312f969c0bf0d8012829cce9a6c04a53a8b55730044256e6e7a42c90550a02",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 11
+        },
+        {
+          "stage": 7,
+          "fullSHA": "78f1e1e7e1e0fccb07215511d8e6aeba801d6eb07acdcbec0be68958b50b8437",
+          "permittedArtworkNormalizedSHA": "818e72338a57340d5eccead4a9ad35525da2f2f02dd70293f5af703febbd2ef1",
+          "bodyOccurrences": 2,
+          "unitsSHA": "eeddb0e958b21070078fdd5fcc7472e7a4be79c859d6ca5b6a4fe3ee81459653",
+          "terrainSHA": "a5c7b0e383825f3b2076564095e0b83147ec738f6b706b82c0b6ed5feb3289ca",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 14
+        },
+        {
+          "stage": 8,
+          "fullSHA": "59cf9846fddae72e4064330bbaa76eb131189ee8a592af3195df7a9ce32be632",
+          "permittedArtworkNormalizedSHA": "59cf9846fddae72e4064330bbaa76eb131189ee8a592af3195df7a9ce32be632",
+          "bodyOccurrences": 0,
+          "unitsSHA": "3aec71bffe26d88e1f49caf770c1ff9688b0287424043804dbbf089208b07f1d",
+          "terrainSHA": "e22dd5134f91c12c96da683099706525db7b314892e9bb6345a05838237ef790",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 24
+        },
+        {
+          "stage": 9,
+          "fullSHA": "a9ab163087621aeba4408ed1c649beab8a48f5c4514cd7e76b904c77a41ac239",
+          "permittedArtworkNormalizedSHA": "a9ab163087621aeba4408ed1c649beab8a48f5c4514cd7e76b904c77a41ac239",
+          "bodyOccurrences": 0,
+          "unitsSHA": "6a111d2db0e73d03c945964ad0dcb35ab79e6af8d434626e41609c0c75afaf6e",
+          "terrainSHA": "fadc80262e55c1011b72616c47cf00d06d6b06060f8501bfc8b2018493542627",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 18
+        },
+        {
+          "stage": 10,
+          "fullSHA": "ed74d9621ae676d8e70dabfb4e6eced53861002910bfe4572bf25f1cb5c1b015",
+          "permittedArtworkNormalizedSHA": "ed74d9621ae676d8e70dabfb4e6eced53861002910bfe4572bf25f1cb5c1b015",
+          "bodyOccurrences": 0,
+          "unitsSHA": "93b8c4dd8cfb227be2835001f5b3914ada53971a73a82d2d997ac1af67454d5a",
+          "terrainSHA": "5c0087f06a68651672586d0eba45abaabcc8e51e27b4cbbf41beb8e4775a0310",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 16
+        },
+        {
+          "stage": 11,
+          "fullSHA": "81d0306f8e9cccf88aaf512710d7745130496bdbd70a07c9f6d759e7d13d0163",
+          "permittedArtworkNormalizedSHA": "81d0306f8e9cccf88aaf512710d7745130496bdbd70a07c9f6d759e7d13d0163",
+          "bodyOccurrences": 0,
+          "unitsSHA": "7d934e0621d69827bce553412318f2192e0926af999b7f43af3637cdb79680d6",
+          "terrainSHA": "93848a29c19deb0131859a1182a4b45072adbbd7af3a6fff96c45c8a2b6739c6",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 11
+        },
+        {
+          "stage": 12,
+          "fullSHA": "3eb5468aa9c7d051973c1e8b56d398d2cd64b53a37f0d6d57ab52e9be081c58e",
+          "permittedArtworkNormalizedSHA": "3eb5468aa9c7d051973c1e8b56d398d2cd64b53a37f0d6d57ab52e9be081c58e",
+          "bodyOccurrences": 0,
+          "unitsSHA": "0d6b46e29f06ae31e34ced955f4fa1265310267b7d166acc6a0cb0f8c95c3214",
+          "terrainSHA": "a1729146fe56d6807f36e1ebcd3b9122056c4853ee7f2ecb2e42ef2e7778242c",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 20
+        },
+        {
+          "stage": 13,
+          "fullSHA": "550adb43b5640abd650cab910ec79183dcc8f5fcc6a4c6cc6827cca40539128d",
+          "permittedArtworkNormalizedSHA": "550adb43b5640abd650cab910ec79183dcc8f5fcc6a4c6cc6827cca40539128d",
+          "bodyOccurrences": 0,
+          "unitsSHA": "db4f6d3178d0771d8b66f1e44b7f8946263db3911801cee804265f64fd655775",
+          "terrainSHA": "4133ae6d57132c6d724457ea38039119a12126bec0d766304bf7b07cb382f2e7",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 15
+        },
+        {
+          "stage": 14,
+          "fullSHA": "719944a4178fd45ebc5f9884431f6fe9bb3877a9275e6f090c50e2b054dd4e7f",
+          "permittedArtworkNormalizedSHA": "719944a4178fd45ebc5f9884431f6fe9bb3877a9275e6f090c50e2b054dd4e7f",
+          "bodyOccurrences": 0,
+          "unitsSHA": "ed85875da9bcc6afafc5fda87bc7506f3249d9b7979440f9afe931ff98feb3f3",
+          "terrainSHA": "27c0d2afefadf3c68340599989a6e6122bf6cd3bfd0e6e0b6ae3edc559b5853c",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 16
+        },
+        {
+          "stage": 15,
+          "fullSHA": "d004a7f82ad34f94c9324bb0422c6aa8959df5af00df3a0a9bea719e8a6aad72",
+          "permittedArtworkNormalizedSHA": "d004a7f82ad34f94c9324bb0422c6aa8959df5af00df3a0a9bea719e8a6aad72",
+          "bodyOccurrences": 0,
+          "unitsSHA": "a780bf27f70cd7cbe98079f86874e4d4a10a7b5d5a62c970e311f7dad6d4d44d",
+          "terrainSHA": "a36624dc74afe5f96357c8ecd23bc6eb80faaf65f5cd57b4ac56531f568ed08f",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 13
+        },
+        {
+          "stage": 16,
+          "fullSHA": "ecd5df9e33d418b1d1951b5db76320a6a8ced52ead0b9f67e5360aec43045cf9",
+          "permittedArtworkNormalizedSHA": "ecd5df9e33d418b1d1951b5db76320a6a8ced52ead0b9f67e5360aec43045cf9",
+          "bodyOccurrences": 0,
+          "unitsSHA": "b175cbd978dcdc3c5fe941fe7542cb84022ac15e67d1df51ced6c0fe2b426072",
+          "terrainSHA": "ac33b408411880976b0611610ec2268673ea7eb4ea9bd6fd9ecebbf3b9b49953",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 24
+        },
+        {
+          "stage": 17,
+          "fullSHA": "242b8e2c7393905ea6f34cd2bf6f1dc33f067c2082dd0c003b24e7e10163757e",
+          "permittedArtworkNormalizedSHA": "242b8e2c7393905ea6f34cd2bf6f1dc33f067c2082dd0c003b24e7e10163757e",
+          "bodyOccurrences": 0,
+          "unitsSHA": "4f64e95f6c82ed04e122b5115a387eba4de8a2771e19c9c697de81c09b7fd9b3",
+          "terrainSHA": "eda71d23778cc715a710a8747bfd73299ccb64442bca2210bed8d3245aa03901",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 23
+        },
+        {
+          "stage": 18,
+          "fullSHA": "4c32af1551ccc7028171035bbf6f5f64b4a1fbb6bdf1d5cfa01acca08fe2d22d",
+          "permittedArtworkNormalizedSHA": "4c32af1551ccc7028171035bbf6f5f64b4a1fbb6bdf1d5cfa01acca08fe2d22d",
+          "bodyOccurrences": 0,
+          "unitsSHA": "2e4a2f9c47a93dcb780b01bb85cdfcd55806bcf4b8d4f3dfdd93fbed6ad8ab81",
+          "terrainSHA": "e7f00d521aae91622450d80ed42427f72969d335f572c07355c3c1b796b2c7fc",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 8
+        },
+        {
+          "stage": 19,
+          "fullSHA": "0c3ba56492011657ba0b9bc95d80e9dbb77d11f4841535492d0e0b60f459779e",
+          "permittedArtworkNormalizedSHA": "0c3ba56492011657ba0b9bc95d80e9dbb77d11f4841535492d0e0b60f459779e",
+          "bodyOccurrences": 0,
+          "unitsSHA": "76df395b5585b27f302852ae8024f2465562b5ce83944798e35ad569905be86b",
+          "terrainSHA": "c3a5d39911e596a89fe84aba71245aadf1bfd0f811cb8724bc5502ff7c6daaf8",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 0
+        },
+        {
+          "stage": 20,
+          "fullSHA": "19997f35502714debfc48921004616e45ecbba996abb771afdb17ead9998b563",
+          "permittedArtworkNormalizedSHA": "19997f35502714debfc48921004616e45ecbba996abb771afdb17ead9998b563",
+          "bodyOccurrences": 0,
+          "unitsSHA": "3d6a6dbbcaadd354847ac82705c0ecf46f715d2a28c39562ae6d88a72d413cee",
+          "terrainSHA": "d9f351614043a9ececa926e43abe9ca2172f287a9524cb290dbf58456a07d7de",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 14
+        },
+        {
+          "stage": 21,
+          "fullSHA": "4f495db01acd7a7963b9f0f4c160bce03f5506176d6d1b45aa8084c2dc4808e3",
+          "permittedArtworkNormalizedSHA": "4f495db01acd7a7963b9f0f4c160bce03f5506176d6d1b45aa8084c2dc4808e3",
+          "bodyOccurrences": 0,
+          "unitsSHA": "421172b098dc04d78743808f4e3d6fb3841838e7c3154ee34690e23675bbb71d",
+          "terrainSHA": "8a9ae7386e1a897ff54ea03cc6ba6013e027f409e72e99d6f633472c727729a3",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 19
+        },
+        {
+          "stage": 22,
+          "fullSHA": "a6a0cb7ec836c81234011c8067d5938f9ca6db477056479f8aab829f8fe7d0ce",
+          "permittedArtworkNormalizedSHA": "a6a0cb7ec836c81234011c8067d5938f9ca6db477056479f8aab829f8fe7d0ce",
+          "bodyOccurrences": 0,
+          "unitsSHA": "a4c0af875e79c85867e1d7fd65d1d34764109880107c73ec98732bc1c41de413",
+          "terrainSHA": "f69f3557730be23296f7e21f8e4061229542407131331ede2a6311e32c56d338",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 30
+        },
+        {
+          "stage": 23,
+          "fullSHA": "c3143ef132a2e98bfb7f2b3588b46976a71ef1cf9b0a03f1d37b8c866aec94d4",
+          "permittedArtworkNormalizedSHA": "c3143ef132a2e98bfb7f2b3588b46976a71ef1cf9b0a03f1d37b8c866aec94d4",
+          "bodyOccurrences": 0,
+          "unitsSHA": "2d2d32c3182fc15675c6a146a352890bcd0118c06e8ac60b0defdeddba47fa8e",
+          "terrainSHA": "de454fa5aef2338a861ce72b85693633fbd6c956b126b5512645f0595f4cb174",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 37
+        },
+        {
+          "stage": 24,
+          "fullSHA": "4a12a5d49190e5b48ef36b001bbc4c4dee85ae437ac98f53c99caac55bde6aba",
+          "permittedArtworkNormalizedSHA": "4a12a5d49190e5b48ef36b001bbc4c4dee85ae437ac98f53c99caac55bde6aba",
+          "bodyOccurrences": 0,
+          "unitsSHA": "a4c17989dcc42568ffd60be25c0bb57743a213642eadae4587088c6998a19b29",
+          "terrainSHA": "c47086aceb03158ad3fd8fc0309ffcebcd52679679de615e10b604b9e667ded0",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 21
+        },
+        {
+          "stage": 25,
+          "fullSHA": "063a7ab4dba84a216f2bf3bdce919e7beddbc6fb676196390964e029f091da89",
+          "permittedArtworkNormalizedSHA": "063a7ab4dba84a216f2bf3bdce919e7beddbc6fb676196390964e029f091da89",
+          "bodyOccurrences": 0,
+          "unitsSHA": "20c976fdb933fe766fc8168ca514d361a275a0d79538e20c1345cb5ee204fc9a",
+          "terrainSHA": "650d9d79ea32b1bdf906fe930904db0efe97493e6784020637a641c438a21d85",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 10
+        },
+        {
+          "stage": 26,
+          "fullSHA": "6223afc05dc975f659874f6a56245b910eed8dd707fd7f29bd853f3f8b53563f",
+          "permittedArtworkNormalizedSHA": "6223afc05dc975f659874f6a56245b910eed8dd707fd7f29bd853f3f8b53563f",
+          "bodyOccurrences": 0,
+          "unitsSHA": "a182003781af1f3109c1859a1f230a49308281f7b1e92679bdbdabc221e06f84",
+          "terrainSHA": "3816444dc1020b939b9cecb10cb3305b2578fbd9501db6200063e3f7597c3eaf",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 14
+        },
+        {
+          "stage": 27,
+          "fullSHA": "35e103a26a799ba1a46fc6476158f801532a5cb00e4bb1be83eb568793c2caa1",
+          "permittedArtworkNormalizedSHA": "35e103a26a799ba1a46fc6476158f801532a5cb00e4bb1be83eb568793c2caa1",
+          "bodyOccurrences": 0,
+          "unitsSHA": "fbfbe5fd748edc7546d9e65cc72adab3c8ac8f3b3f3b22af466b1f0967f36cc5",
+          "terrainSHA": "ef82613ce15060440176f0ba6aeea65840e068481681f55d7e662e94e0e0908b",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 10
+        },
+        {
+          "stage": 28,
+          "fullSHA": "4a1b6fd8b3ec6baff50943fe223cb2b7cfd8f7a424a625357bf53f5b6848e1e9",
+          "permittedArtworkNormalizedSHA": "4a1b6fd8b3ec6baff50943fe223cb2b7cfd8f7a424a625357bf53f5b6848e1e9",
+          "bodyOccurrences": 0,
+          "unitsSHA": "8e1a59b4e93f8358e9eff2c5cffc6d5dde9163ca101bf9f40082ed08273688a2",
+          "terrainSHA": "e0648be81edf5c06eb70a6ec19b78c661359180ee87edea41e4ade48f1b1be1e",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 20
+        },
+        {
+          "stage": 29,
+          "fullSHA": "572d1aaa9fbc86545ab56603b39069d2b669d437e135b61d0b9902c510fca80d",
+          "permittedArtworkNormalizedSHA": "572d1aaa9fbc86545ab56603b39069d2b669d437e135b61d0b9902c510fca80d",
+          "bodyOccurrences": 0,
+          "unitsSHA": "3b06b5b5174e3d6dfadb267fb4566949ab0e747bf9c8ff588200f90c8c6fdcc0",
+          "terrainSHA": "0ecc27777f9fcfd7945cf8cdf424e0309cba8ea21e9fe293da80874cb955da0c",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 31
+        },
+        {
+          "stage": 30,
+          "fullSHA": "4146895cddd68f98e28edf67f03f067c15b4a3d29356b7c2302b74465d0118e6",
+          "permittedArtworkNormalizedSHA": "4146895cddd68f98e28edf67f03f067c15b4a3d29356b7c2302b74465d0118e6",
+          "bodyOccurrences": 0,
+          "unitsSHA": "7ae40978634f5d4d63d5291fe553240586320cb462c71938d36dc22125da96c1",
+          "terrainSHA": "2093f7e75492eb0d1189c5aa3f4e5e949022bad1a29d11d6e9d97bb82a8321d5",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 34
+        },
+        {
+          "stage": 31,
+          "fullSHA": "dd61c4a235e166dfe86d156270300ae7b3267b79b67bd20d39549ce72944281a",
+          "permittedArtworkNormalizedSHA": "dd61c4a235e166dfe86d156270300ae7b3267b79b67bd20d39549ce72944281a",
+          "bodyOccurrences": 0,
+          "unitsSHA": "c5d8785917c32a701a32d51ff9055b74a69d07518e0ca61edf0557b347993310",
+          "terrainSHA": "f35c1ef65beed3992de2daa2541dc9739b8c1e867804364fa968a865d3acb4c9",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 32
+        },
+        {
+          "stage": 32,
+          "fullSHA": "5290c57a3e01064ad35dfb5f4b6d50bdd9743a22f8999b01bd967aab11611aed",
+          "permittedArtworkNormalizedSHA": "5290c57a3e01064ad35dfb5f4b6d50bdd9743a22f8999b01bd967aab11611aed",
+          "bodyOccurrences": 0,
+          "unitsSHA": "2edab476493a8846d964863c84c9bb2bf1d79c66e2c0d53d5145900253e50da9",
+          "terrainSHA": "5446b6befeb11b3ad7bc3accf53557ca73e4312399749ee94212b7b710914a6e",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 10
+        },
+        {
+          "stage": 33,
+          "fullSHA": "0a98e919be2e72bc74ccd0d73e4b5019eefef144c7d2f0f2d9c614095ba8c133",
+          "permittedArtworkNormalizedSHA": "0a98e919be2e72bc74ccd0d73e4b5019eefef144c7d2f0f2d9c614095ba8c133",
+          "bodyOccurrences": 0,
+          "unitsSHA": "defd950c6c78a6cd8b922a06dfd1debce0f7925305ee560ad50769d4aa81665f",
+          "terrainSHA": "91ba729fd013417db75692d2a9609637c4e21ee71129537a9f1411845c9c1b38",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 26
+        },
+        {
+          "stage": 34,
+          "fullSHA": "b9ac8e356d2858cf90337fcdd052713bf41ec63b470972ea39a27aef10a3ecbe",
+          "permittedArtworkNormalizedSHA": "b9ac8e356d2858cf90337fcdd052713bf41ec63b470972ea39a27aef10a3ecbe",
+          "bodyOccurrences": 0,
+          "unitsSHA": "7bb1c8fb0828693804ddae08bf43efefe74c5f5a20a85b9bd7dcafed86a3b477",
+          "terrainSHA": "2857162445416e4711590580a8697d491b8f8108ef47cc2159665e7864f4d4cf",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 28
+        },
+        {
+          "stage": 35,
+          "fullSHA": "338d5e4b3dacc751f26a5f8a5ecdfb2e839fb1029263caee58f4292096f2a402",
+          "permittedArtworkNormalizedSHA": "338d5e4b3dacc751f26a5f8a5ecdfb2e839fb1029263caee58f4292096f2a402",
+          "bodyOccurrences": 0,
+          "unitsSHA": "a5db1d794e2dd62c3683836928b7a507a691ad719193bb0384a86a308e980043",
+          "terrainSHA": "1d1369e82a1ef8a95b2c6397bc055b4c1e2a79b4fd4c794f1edc619579427b8a",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 26
+        },
+        {
+          "stage": 36,
+          "fullSHA": "93fd17237c86685403f9a52693dc4f2f01884cfbee868d69bc3032056ab7eede",
+          "permittedArtworkNormalizedSHA": "93fd17237c86685403f9a52693dc4f2f01884cfbee868d69bc3032056ab7eede",
+          "bodyOccurrences": 0,
+          "unitsSHA": "71cd1ca000bd082e38f5b752240f4b9741a4b6fd4c86bf7040b9a99eed84e21f",
+          "terrainSHA": "6607bb716a21e5bcfdf27dc68fdca40983dd61b05c589d59b89ddccedd90a725",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 7
+        },
+        {
+          "stage": 37,
+          "fullSHA": "140a45ddfb9f7035a155eb5c274426f1eb1ea01f5d3bfcf27a0a2834614fbac0",
+          "permittedArtworkNormalizedSHA": "140a45ddfb9f7035a155eb5c274426f1eb1ea01f5d3bfcf27a0a2834614fbac0",
+          "bodyOccurrences": 0,
+          "unitsSHA": "b37c4e5603da0a137f2bdcf6df3e091224227e7cb704eb8a875b209804fb8ecd",
+          "terrainSHA": "0a52fd0a6c21f8f0e406fa405ebc0980ee2aa0050db6f88813993b7dbd5927da",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 27
+        },
+        {
+          "stage": 38,
+          "fullSHA": "d05f4fe3485e3c785070e4019ab51c6e5d9514c120a943bc193288e9d3440add",
+          "permittedArtworkNormalizedSHA": "d05f4fe3485e3c785070e4019ab51c6e5d9514c120a943bc193288e9d3440add",
+          "bodyOccurrences": 0,
+          "unitsSHA": "2ae9fa619ba5a643c7c4edd0743cbfacd537213a547236a856154125ca4c30ac",
+          "terrainSHA": "fbe05533249d8d0d89749f04f4365ca171e134f63fc64548b7212153e6db4453",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 25
+        },
+        {
+          "stage": 39,
+          "fullSHA": "bb071f58cd4a9b4989802c1ae668f29ba0e2babea4916273786cf0fc1bab0569",
+          "permittedArtworkNormalizedSHA": "bb071f58cd4a9b4989802c1ae668f29ba0e2babea4916273786cf0fc1bab0569",
+          "bodyOccurrences": 0,
+          "unitsSHA": "6a5eeb8a79f75b97b34a2552eef51e07bcdc410a511105861fadaa26b4e15736",
+          "terrainSHA": "842337dd34e72bec8a9d9c42e567436ddbcd2cde1abac6c680446d5ab9145fcf",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 22
+        },
+        {
+          "stage": 40,
+          "fullSHA": "991917dbab7a81f1f87654093f84f1f2b0c25f8e480b56cce6a7fca3845b8c5d",
+          "permittedArtworkNormalizedSHA": "991917dbab7a81f1f87654093f84f1f2b0c25f8e480b56cce6a7fca3845b8c5d",
+          "bodyOccurrences": 0,
+          "unitsSHA": "071891cb6bafa701d4cad631aebdecaa59c57ac67a8b20dc111716ea4a7ceec3",
+          "terrainSHA": "964d65ab11fcbba9ec86ef64253d2457ec7c0e3cbf39f50767dbdcd7218285f3",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 41
+        },
+        {
+          "stage": 41,
+          "fullSHA": "ee24cdff94b29ab8dbf8c89f403099d253ae4f00fdedb15880760069636a88a2",
+          "permittedArtworkNormalizedSHA": "ee24cdff94b29ab8dbf8c89f403099d253ae4f00fdedb15880760069636a88a2",
+          "bodyOccurrences": 0,
+          "unitsSHA": "fb3f73a830ca769e4366906c7529f0c07fa5d5a656bf93d812cfd6dddc618254",
+          "terrainSHA": "890f3f077cb529771f928f4134bcac4344e133560021b350f5f8af89e27ebe6b",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 20
+        },
+        {
+          "stage": 42,
+          "fullSHA": "b74e5b063403ed6da4e5f1d7ad95735e10d29ff262a457a4acf1fd8504e78bd5",
+          "permittedArtworkNormalizedSHA": "b74e5b063403ed6da4e5f1d7ad95735e10d29ff262a457a4acf1fd8504e78bd5",
+          "bodyOccurrences": 0,
+          "unitsSHA": "f64cfa3ecf172524ba359e92156897604c762bd65e1f4cd9b0978bf73be88c0a",
+          "terrainSHA": "30fd21fc1cc969b4b75f96fe7b086e29a1c5e42fa65a063afc57ce32ab0cf7ad",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 21
+        },
+        {
+          "stage": 43,
+          "fullSHA": "f64d0d57ad27a96691a6585be2b59efed4309e62065660ca47be20ce4552efbb",
+          "permittedArtworkNormalizedSHA": "f64d0d57ad27a96691a6585be2b59efed4309e62065660ca47be20ce4552efbb",
+          "bodyOccurrences": 0,
+          "unitsSHA": "1a9a6193799c5e3ea48ff172af48cf6e5a1bb8efaecb7d159b38a0421f959468",
+          "terrainSHA": "f7247282dad5ffc3a4d6f4e48f393dab21c545c0b3333a9c08c78637b52b12ba",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 26
+        },
+        {
+          "stage": 44,
+          "fullSHA": "6989e4d109f0fe854d01ea0641fb4cc69d76f160899520ba0fde3cd961a799bd",
+          "permittedArtworkNormalizedSHA": "6989e4d109f0fe854d01ea0641fb4cc69d76f160899520ba0fde3cd961a799bd",
+          "bodyOccurrences": 0,
+          "unitsSHA": "25ebb32c5a63a424afdbca543e6b9cc28e6feb6cd509c6957faaf7f4f0868ac8",
+          "terrainSHA": "e3c5f6dd5cd7c0df8abf77e59c32f679387d4699c70e6f4871e8d04dfdb912d6",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 23
+        },
+        {
+          "stage": 45,
+          "fullSHA": "382fa66a8fe1d84b4ec7e75f3d5f4f8785c61fdd24ed78db72eedfe309804252",
+          "permittedArtworkNormalizedSHA": "382fa66a8fe1d84b4ec7e75f3d5f4f8785c61fdd24ed78db72eedfe309804252",
+          "bodyOccurrences": 0,
+          "unitsSHA": "353286a7c6d187bda216d458c670b143ab7487a721bd99f5e879d76089f2a387",
+          "terrainSHA": "3bee2f0e6826b3d869f2f22506a8f9b07906d797689628c318d490733db37192",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 20
+        },
+        {
+          "stage": 46,
+          "fullSHA": "5f87a2da58e492f55cbd95c2e6be07d9149212ab1cd0a0d4384df44aaf46923e",
+          "permittedArtworkNormalizedSHA": "5f87a2da58e492f55cbd95c2e6be07d9149212ab1cd0a0d4384df44aaf46923e",
+          "bodyOccurrences": 0,
+          "unitsSHA": "a9b3f7062d5549b1a9cffad7645ba5b053fe5bed3ea7fcbd2f0d565adab24b31",
+          "terrainSHA": "25195f3087552db0465f7e22b612454ae75b093a663946e650c3a82fc681d7d3",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 11
+        },
+        {
+          "stage": 47,
+          "fullSHA": "3bd2b58581341cf463f25c2c8c336453539f6debeb673e8c31c3a0de298c57a8",
+          "permittedArtworkNormalizedSHA": "3bd2b58581341cf463f25c2c8c336453539f6debeb673e8c31c3a0de298c57a8",
+          "bodyOccurrences": 0,
+          "unitsSHA": "c29173025503d0d17e27bdf330c04f94b683cbbcf7b13332bc66e0ff3f23b28d",
+          "terrainSHA": "8b1fb7062228b0050b53818495358e56c8cc92baf22c8e86b0b00379ad8bb2f7",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 11
+        },
+        {
+          "stage": 48,
+          "fullSHA": "6381ee8ce96731cc05e26e12e20980ffb8d31faaff3d27034cef028af707f830",
+          "permittedArtworkNormalizedSHA": "6381ee8ce96731cc05e26e12e20980ffb8d31faaff3d27034cef028af707f830",
+          "bodyOccurrences": 0,
+          "unitsSHA": "16de9d5b3c5b01a7ec543c9b9603586df60975fadb232cba89c4e1b89805db2a",
+          "terrainSHA": "0cc2f9822c7ce5d4574bd363db74f4f9a6ce23b6b336fbe149d33fd804211d09",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 12
+        },
+        {
+          "stage": 49,
+          "fullSHA": "429a6c7c8495df2a456152d62cbffbc71775a0dd05ff100cdb108526045f3add",
+          "permittedArtworkNormalizedSHA": "429a6c7c8495df2a456152d62cbffbc71775a0dd05ff100cdb108526045f3add",
+          "bodyOccurrences": 0,
+          "unitsSHA": "429f8d0dea8ce544e9bd649401863b4b502b2448908c5bc78a1e742ad8b9a54c",
+          "terrainSHA": "4d610b60544bb6b2f054a62ac3b779b7bc88f00dcf5a972a7da2e8786410f03b",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 16
+        },
+        {
+          "stage": 50,
+          "fullSHA": "05ab79e6014dafcc927575f3d9c8919a455ab1a671d980e7a3040f323f0d68f6",
+          "permittedArtworkNormalizedSHA": "05ab79e6014dafcc927575f3d9c8919a455ab1a671d980e7a3040f323f0d68f6",
+          "bodyOccurrences": 0,
+          "unitsSHA": "d02b1d19b7b3264db53ec8c028a8e8b595ff76725d8715fe3a7b93be0d1877c8",
+          "terrainSHA": "353da224d9d16551a267d09f3368c762d99afc97b6bfdb962385bdafe216307f",
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 20
+        }
+      ],
+      "requestedDPR": 1,
+      "actualDPR": 1,
+      "officialPixelRatio": 1,
+      "dimensions": [
+        390,
+        696
+      ]
+    },
+    {
+      "file": "baseline-32-cached.json",
+      "sha256": "12bac78b4fdce94e240eda69ec489fa73decabea96ce0ed8cbea0a999128621f",
+      "ok": false,
+      "phase": "scene",
+      "error": "Error: Normal renderer mutation\n    at check (file:///home/runner/work/_temp/baseline-scene/baseline-32-cached.html:45939:118)\n    at capture (file:///home/runner/work/_temp/baseline-scene/baseline-32-cached.html:45945:1191)",
+      "view": "32-cached",
+      "all50": null,
+      "requestedDPR": null,
+      "actualDPR": null,
+      "officialPixelRatio": null,
+      "dimensions": [
+        null,
+        null
+      ]
+    },
+    {
+      "file": "baseline-7-dpr3.json",
+      "sha256": "1bdc02168d6207af718160562e82d20494e572fc24fc4cf81e3bf3b89c3b0a32",
+      "ok": true,
+      "phase": null,
+      "error": null,
+      "view": "7-dpr3",
+      "all50": null,
+      "requestedDPR": 3,
+      "actualDPR": 3,
+      "officialPixelRatio": 1.7,
+      "dimensions": [
+        663,
+        1183
+      ]
+    },
+    {
+      "file": "baseline-7-native.json",
+      "sha256": "dd72de5deeab4f92b480d5a0fe194fdab3ae1573aba2a394e9e7d4f78f17f926",
+      "ok": true,
+      "phase": null,
+      "error": null,
+      "view": "7-native",
+      "all50": null,
+      "requestedDPR": 1,
+      "actualDPR": 1,
+      "officialPixelRatio": 1,
+      "dimensions": [
+        1331,
+        763
+      ]
+    },
+    {
+      "file": "baseline-7-overview.json",
+      "sha256": "193d2b779e20f2fdbf44b36f9fba27d5546e4ebbba2cbd8cd2e752adc2dc1204",
+      "ok": true,
+      "phase": null,
+      "error": null,
+      "view": "7-overview",
+      "all50": null,
+      "requestedDPR": 1,
+      "actualDPR": 1,
+      "officialPixelRatio": 1,
+      "dimensions": [
+        1331,
+        763
+      ]
+    }
+  ]
+}
