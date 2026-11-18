@@ -12,7 +12,7 @@ const rendererCanonical=await readFile(path.join(root,'shared/runtime/stage32-fo
 if(createHash('sha256').update(rendererCanonical).digest('hex')!=='0281052db3e3d89efff8a75d9859ffe871a50ceef4a7d17ec7398a7c2ff1f6b0')throw Error('Requires exact registered SS2 production renderer');
 const declaredCoverage=await readFile(path.join(root,'tests/fixtures/stage32-geos-lowcomplex-coverage.svgpath'),'utf8');
 const testRenderer=await readFile(path.join(root,'tests/fixtures/stage32-geos-lowcomplex-candidate.js'),'utf8');
-if(createHash('sha256').update(testRenderer).digest('hex')!=='db5ed9c154d9b0950e8fea91f89cd5166b1ed06352386139f4c971c2d76acc71')throw Error('Native-component candidate source changed');
+if(createHash('sha256').update(testRenderer).digest('hex')!=='97fbd09a17d477ff3c62fe4601b6bc4b7b2de76c3e8bc7d447e1932f522715f0')throw Error('Native-component candidate source changed');
 const actualCoverage=JSON.parse(testRenderer.match(/const nativeCoverageD=("[^\n]*");/)[1]);if(actualCoverage!==declaredCoverage)throw Error('Independent declared coverage differs from helper literal');
 // runtimeParts is exactly runtimeEntries(...).map(entry=>entry.code). Names allow safe deduplication.
 // Use actual App build order. Exclude exactly main.js: it constructs App, loads
