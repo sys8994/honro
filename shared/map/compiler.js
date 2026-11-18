@@ -89,6 +89,7 @@ function createBattle(st,project,profile=profileFor(st),options={}){
  G.HonroAct4Content?.prepare(b,profile);
  G.HonroMonsterRoster?.prepareFresh(b);
  G.HonroMonsterDiversity?.prepare(b);
+ G.HonroMonsterScale?.prepare(b);
  if(b.honroMapOrigin==='campaign'&&!b.honroCustom)b.honroEquipmentRewardRevision=2;
  G.HonroCampaignMapRevision?.stamp(b);
  C.initializePlayerTurnOrder(b,profile);
