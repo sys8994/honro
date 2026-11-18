@@ -1,0 +1,30 @@
+{
+  "run": 44295576744,
+  "artifact": 14423552367,
+  "zipSHA256": "83dc74b343efd3713747e0c1c1282cd2feaa01449dda5c705cedc2c21b5d2869",
+  "files": {
+    "baseline-coverage-phone-dpr3.png": "fd49f7cf8e65ca4ca0845a73bce7e5e12191a73c3cedd6df2ab124989ac17b9d",
+    "candidate-coverage-desktop-large.json": "4cf77cd98587557155cbf1d0c675f85f236cf73b0fb459e161238b6ade1efe26",
+    "baseline-coverage-desktop-large-terrain-mask.png": "221e0798828552097208b452fc41d133eced4fcc83adb52bc522d566ec400630",
+    "candidate-coverage-phone-dpr3.json": "7aaef4697cbc825823863d7c764b8ec851c0b52dc570f72d0234ead1c6e95b0b",
+    "baseline-coverage-phone-dpr3-terrain-mask.png": "fd49f7cf8e65ca4ca0845a73bce7e5e12191a73c3cedd6df2ab124989ac17b9d",
+    "baseline-native-walk.png": "70392b898dea1e1b54377b64d1f4ad2e392c24e52c26c128b52118c7d3c6b695",
+    "candidate-coverage-phone-dpr3.png": "97492a1838bbba47bea0352cca9fc4aa759ec205c61d779f255c357edd3502fd",
+    "candidate-coverage-desktop-large-terrain-mask.png": "fbc18440ca52f5236ee7fcbef4cb8b6ef9c19ce7cee4b6bea2e6dcc77017dbb1",
+    "candidate-native-walk-terrain-mask.png": "77f391d839027f485aa9feea53e2b79a1576f2b23c222fd51595708ea04c5fbd",
+    "baseline-native-walk.json": "6a763aeb18d30adf6cb2ae160babb804dedd10555df9eaf5c8f68a01c96b8331",
+    "candidate-native-walk.json": "8c75df7057defea1e58b28fd91d20a43d80c8cf8b5ac49687dd74939549c8bae",
+    "candidate-coverage-phone-dpr3-terrain-mask.png": "97492a1838bbba47bea0352cca9fc4aa759ec205c61d779f255c357edd3502fd",
+    "baseline-coverage-phone-dpr3.json": "5aad97d997dd9c5ef530e1c50e1f909fd80e45ab8ef82f662bfa4676f0e70e09",
+    "offline-result.json": "6314425b0b9a61c758b6f8c1d55df8270a08a70867d5df6805784524e68a793d",
+    "candidate-coverage-desktop-large.png": "fbc18440ca52f5236ee7fcbef4cb8b6ef9c19ce7cee4b6bea2e6dcc77017dbb1",
+    "candidate-native-walk.png": "70392b898dea1e1b54377b64d1f4ad2e392c24e52c26c128b52118c7d3c6b695",
+    "baseline-native-walk-terrain-mask.png": "77f391d839027f485aa9feea53e2b79a1576f2b23c222fd51595708ea04c5fbd",
+    "baseline-coverage-desktop-large.json": "f6be9d0fd20d03e0d769a941c74eb7169d7f542925ab3823c879b953bc8103ab",
+    "baseline-coverage-desktop-large.png": "221e0798828552097208b452fc41d133eced4fcc83adb52bc522d566ec400630"
+  },
+  "classificationInputs": {
+    "stage32-geos-study/source-geometries.geojson": "00a87ff113d7c72f649bc7a9ddf5881f89703d2745a78a8ff3f76bd7d25b366d",
+    "stage32-geos-scene/walk-edges.json": "94c87b7d80619c5e3d8d0c4cb2b84e967677b4ddb3af7e805e2292c935cde3aa"
+  }
+}

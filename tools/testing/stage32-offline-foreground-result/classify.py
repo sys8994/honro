@@ -1,0 +1,8 @@
+import json,collections
+from pathlib import Path
+from shapely.geometry import shape,Point,LineString
+from shapely.ops import unary_union
+p=Path('stage32-offline-foreground-result');tag=json.load(open('stage32-offline-foreground-actual/evidence/candidate-native-walk.json'))['liveTagProbe']['lower']['rows'][0];g=[shape(f['geometry']) for f in json.load(open('stage32-geos-study/source-geometries.geojson'))['features']];walk=unary_union([LineString([(a,b),(c,d)]) for a,b,c,d in json.load(open('stage32-geos-scene/walk-edges.json'))]);out=[]
+for r in tag['examples']:
+ wx=(r['x']+.5-1331/2)/1.65+320;wy=(r['y']+.5-763/2)/1.65+1650;s=Point(wx/2.2,wy/2.2);owners=[i for i,v in enumerate(g[:25]) if v.covers(s)];out.append({**r,'world':[wx,wy],'source':[s.x,s.y],'topOwner':max(owners) if owners else -1,'apronBoundaryDistanceSource':s.distance(g[25].boundary),'walkDistanceWorld':Point(wx,wy).distance(walk)})
+report={'scope':'All243 actual direct-D1 raw-tag changed pixels, original GEOS source top-owner at pixel center only. Contribution differences are real in tag model; source owner does not prove mixed AA invisibility. Raw source paths unchanged.','count':len(out),'ownerCounts':dict(collections.Counter(r['topOwner'] for r in out)),'worldBounds':[min(r['world'][0] for r in out),min(r['world'][1] for r in out),max(r['world'][0] for r in out),max(r['world'][1] for r in out)],'minWalkDistanceWorld':min(r['walkDistanceWorld'] for r in out),'maxBeforeTag':max(r['before'] for r in out),'maxAfterTag':max(r['after'] for r in out),'pixels':out};(p/'partial-classification.json').write_text(json.dumps(report,indent=2));print({k:v for k,v in report.items() if k!='pixels'})

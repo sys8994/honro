@@ -1,0 +1,11 @@
+# Foreground and common high-DPR diagnostic
+
+Actual CI44295576744 SUCCESS. Artifact14423552367 ZIP SHA83dc74b343efd3713747e0c1c1282cd2feaa01449dda5c705cedc2c21b5d2869 independently verified, safely extracted and checker rerun PASS. Same frozen6823 candidate against8c, official126 runtime study overrides. No product registration claim.
+
+Native-walk Scene and terrain images exact. Raw original paint-order versus offline role-color tags: grass115033,pale78001,road59517 positive pixels; all contribution differences0. Native walk screenshot viewed: bridge/steps/grass shapes and existing white gap/old fine contours unchanged.
+
+Phone DPR3 actual1170x2088 lower view:103589 RGB changes maximum1. Desktop1080:156101 maximum19. Both transparent-terrain/Scene alpha0, upper-split0, actualSceneRGB differences outside original terrain0. Full actual pairs viewed; no new bright diagonal/curl or horizontal split, large material/grass shapes preserved. Prior2-view result separately covers maximum/renderer-above; these two runs are not falsely described as one run.
+
+Separate D1 direct lower terrain tag probe has243 grass partial-contribution changes,max85, no full255 loss, alpha/upper0. Pale/road zero positive at that lower camera, hence their protection rests on positive walk test and unchanged upper split, not vacuous lower proof. All243 positions are retained. Center ownership against original source GEOS geometry is gray9:46,18:83,10:65,20:49; world bounds478.18..723.03,1766.97..1880.91. Minimum distance to49actualwalksegments646.38world. Original tag contributions1..85 drop/shift to0..12; we do not claim raw contribution exact. This is evidence for intentional removal of residual grass AA inside declared nonwalk gray material, not erasure of a large exposed grass face. Center classification is finite and does not establish all mixed-pixel support is gray. Raw source and physics remain unchanged.
+
+Bounded visual judgment: acceptable to continue the offline recipe study under the explicitly changed lower nonwalk material model. No blanket delta19 tolerance and no all-device/all-view release acceptance. Final product registration, same-current-deployed cost comparison, remaining gameplay/camera lifecycle checks and production integration remain separate.

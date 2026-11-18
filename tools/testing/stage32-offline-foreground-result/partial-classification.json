@@ -1,0 +1,4152 @@
+{
+  "scope": "All243 actual direct-D1 raw-tag changed pixels, original GEOS source top-owner at pixel center only. Contribution differences are real in tag model; source owner does not prove mixed AA invisibility. Raw source paths unchanged.",
+  "count": 243,
+  "ownerCounts": {
+    "9": 46,
+    "18": 83,
+    "10": 65,
+    "20": 49
+  },
+  "worldBounds": [
+    478.1818181818182,
+    1766.969696969697,
+    723.030303030303,
+    1880.909090909091
+  ],
+  "minWalkDistanceWorld": 646.3816543816542,
+  "maxBeforeTag": 85,
+  "maxAfterTag": 12,
+  "pixels": [
+    {
+      "x": 954,
+      "y": 574,
+      "before": 50,
+      "after": 0,
+      "world": [
+        495.1515151515151,
+        1766.969696969697
+      ],
+      "source": [
+        225.06887052341594,
+        803.1680440771349
+      ],
+      "topOwner": 9,
+      "apronBoundaryDistanceSource": 111.02597787602538,
+      "walkDistanceWorld": 685.0379062256511
+    },
+    {
+      "x": 955,
+      "y": 574,
+      "before": 80,
+      "after": 0,
+      "world": [
+        495.75757575757575,
+        1766.969696969697
+      ],
+      "source": [
+        225.34435261707986,
+        803.1680440771349
+      ],
+      "topOwner": 9,
+      "apronBoundaryDistanceSource": 111.08210136379145,
+      "walkDistanceWorld": 684.833909740319
+    },
+    {
+      "x": 956,
+      "y": 574,
+      "before": 84,
+      "after": 0,
+      "world": [
+        496.3636363636364,
+        1766.969696969697
+      ],
+      "source": [
+        225.6198347107438,
+        803.1680440771349
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 111.13822485155748,
+      "walkDistanceWorld": 684.630388978838
+    },
+    {
+      "x": 957,
+      "y": 574,
+      "before": 61,
+      "after": 0,
+      "world": [
+        496.969696969697,
+        1766.969696969697
+      ],
+      "source": [
+        225.8953168044077,
+        803.1680440771349
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 111.19434833932353,
+      "walkDistanceWorld": 684.427344365591
+    },
+    {
+      "x": 958,
+      "y": 574,
+      "before": 14,
+      "after": 0,
+      "world": [
+        497.5757575757576,
+        1766.969696969697
+      ],
+      "source": [
+        226.17079889807164,
+        803.1680440771349
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 111.25047182708957,
+      "walkDistanceWorld": 684.2247763244706
+    },
+    {
+      "x": 960,
+      "y": 574,
+      "before": 56,
+      "after": 12,
+      "world": [
+        498.7878787878788,
+        1766.969696969697
+      ],
+      "source": [
+        226.72176308539943,
+        803.1680440771349
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 111.36271880262167,
+      "walkDistanceWorld": 683.821071651711
+    },
+    {
+      "x": 961,
+      "y": 574,
+      "before": 46,
+      "after": 8,
+      "world": [
+        499.3939393939394,
+        1766.969696969697
+      ],
+      "source": [
+        226.99724517906333,
+        803.1680440771349
+      ],
+      "topOwner": 9,
+      "apronBoundaryDistanceSource": 111.4188422903877,
+      "walkDistanceWorld": 683.6199358653757
+    },
+    {
+      "x": 949,
+      "y": 575,
+      "before": 67,
+      "after": 0,
+      "world": [
+        492.1212121212121,
+        1767.5757575757575
+      ],
+      "source": [
+        223.6914600550964,
+        803.4435261707988
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 110.4756558987639,
+      "walkDistanceWorld": 686.634798265544
+    },
+    {
+      "x": 950,
+      "y": 575,
+      "before": 85,
+      "after": 0,
+      "world": [
+        492.72727272727275,
+        1767.5757575757575
+      ],
+      "source": [
+        223.96694214876032,
+        803.4435261707988
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 110.53177938652998,
+      "walkDistanceWorld": 686.4286008455427
+    },
+    {
+      "x": 951,
+      "y": 575,
+      "before": 75,
+      "after": 0,
+      "world": [
+        493.33333333333337,
+        1767.5757575757575
+      ],
+      "source": [
+        224.24242424242425,
+        803.4435261707988
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 110.587902874296,
+      "walkDistanceWorld": 686.2228767297772
+    },
+    {
+      "x": 952,
+      "y": 575,
+      "before": 45,
+      "after": 0,
+      "world": [
+        493.93939393939394,
+        1767.5757575757575
+      ],
+      "source": [
+        224.51790633608815,
+        803.4435261707988
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 110.64402636206206,
+      "walkDistanceWorld": 686.0176263440533
+    },
+    {
+      "x": 953,
+      "y": 575,
+      "before": 7,
+      "after": 0,
+      "world": [
+        494.54545454545456,
+        1767.5757575757575
+      ],
+      "source": [
+        224.79338842975204,
+        803.4435261707988
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 110.7001498498281,
+      "walkDistanceWorld": 685.8128501137052
+    },
+    {
+      "x": 961,
+      "y": 575,
+      "before": 10,
+      "after": 0,
+      "world": [
+        499.3939393939394,
+        1767.5757575757575
+      ],
+      "source": [
+        226.99724517906333,
+        803.4435261707988
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 111.14913775195646,
+      "walkDistanceWorld": 684.1917607461455
+    },
+    {
+      "x": 962,
+      "y": 575,
+      "before": 81,
+      "after": 0,
+      "world": [
+        500.0,
+        1767.5757575757575
+      ],
+      "source": [
+        227.27272727272725,
+        803.4435261707988
+      ],
+      "topOwner": 9,
+      "apronBoundaryDistanceSource": 111.20526123972249,
+      "walkDistanceWorld": 683.9912709746473
+    },
+    {
+      "x": 944,
+      "y": 576,
+      "before": 63,
+      "after": 0,
+      "world": [
+        489.0909090909091,
+        1768.1818181818182
+      ],
+      "source": [
+        222.31404958677686,
+        803.7190082644628
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 109.92533392150234,
+      "walkDistanceWorld": 688.2418611971611
+    },
+    {
+      "x": 945,
+      "y": 576,
+      "before": 84,
+      "after": 0,
+      "world": [
+        489.69696969696975,
+        1768.1818181818182
+      ],
+      "source": [
+        222.58953168044079,
+        803.7190082644628
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 109.98145740926842,
+      "walkDistanceWorld": 688.0334761326336
+    },
+    {
+      "x": 946,
+      "y": 576,
+      "before": 75,
+      "after": 0,
+      "world": [
+        490.3030303030303,
+        1768.1818181818182
+      ],
+      "source": [
+        222.86501377410468,
+        803.7190082644628
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 110.03758089703445,
+      "walkDistanceWorld": 687.825561950917
+    },
+    {
+      "x": 947,
+      "y": 576,
+      "before": 43,
+      "after": 0,
+      "world": [
+        490.9090909090909,
+        1768.1818181818182
+      ],
+      "source": [
+        223.14049586776855,
+        803.7190082644628
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 110.09370438480049,
+      "walkDistanceWorld": 687.6181190791518
+    },
+    {
+      "x": 963,
+      "y": 576,
+      "before": 79,
+      "after": 0,
+      "world": [
+        500.6060606060606,
+        1768.1818181818182
+      ],
+      "source": [
+        227.54820936639118,
+        803.7190082644628
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 110.99168018905722,
+      "walkDistanceWorld": 684.3634780321634
+    },
+    {
+      "x": 938,
+      "y": 577,
+      "before": 34,
+      "after": 0,
+      "world": [
+        485.4545454545455,
+        1768.7878787878788
+      ],
+      "source": [
+        220.6611570247934,
+        803.9944903581267
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 109.31888845647484,
+      "walkDistanceWorld": 690.0700514073939
+    },
+    {
+      "x": 939,
+      "y": 577,
+      "before": 77,
+      "after": 0,
+      "world": [
+        486.06060606060606,
+        1768.7878787878788
+      ],
+      "source": [
+        220.9366391184573,
+        803.9944903581267
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 109.3750119442409,
+      "walkDistanceWorld": 689.8590239396217
+    },
+    {
+      "x": 940,
+      "y": 577,
+      "before": 84,
+      "after": 0,
+      "world": [
+        486.6666666666667,
+        1768.7878787878788
+      ],
+      "source": [
+        221.2121212121212,
+        803.9944903581267
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 109.43113543200694,
+      "walkDistanceWorld": 689.6484645030164
+    },
+    {
+      "x": 941,
+      "y": 577,
+      "before": 68,
+      "after": 0,
+      "world": [
+        487.27272727272725,
+        1768.7878787878788
+      ],
+      "source": [
+        221.4876033057851,
+        803.9944903581267
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 109.48725891977298,
+      "walkDistanceWorld": 689.4383735263983
+    },
+    {
+      "x": 942,
+      "y": 577,
+      "before": 40,
+      "after": 0,
+      "world": [
+        487.8787878787879,
+        1768.7878787878788
+      ],
+      "source": [
+        221.763085399449,
+        803.9944903581267
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 109.54338240753903,
+      "walkDistanceWorld": 689.2287514381558
+    },
+    {
+      "x": 964,
+      "y": 577,
+      "before": 42,
+      "after": 0,
+      "world": [
+        501.21212121212125,
+        1768.7878787878788
+      ],
+      "source": [
+        227.8236914600551,
+        803.9944903581267
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 110.77809913839205,
+      "walkDistanceWorld": 684.7365556160106
+    },
+    {
+      "x": 965,
+      "y": 577,
+      "before": 44,
+      "after": 0,
+      "world": [
+        501.81818181818187,
+        1768.7878787878788
+      ],
+      "source": [
+        228.09917355371903,
+        803.9944903581267
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 110.83422262615808,
+      "walkDistanceWorld": 684.5378351488175
+    },
+    {
+      "x": 933,
+      "y": 578,
+      "before": 34,
+      "after": 0,
+      "world": [
+        482.42424242424244,
+        1769.3939393939395
+      ],
+      "source": [
+        219.28374655647383,
+        804.2699724517906
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 108.7685664792133,
+      "walkDistanceWorld": 691.6994017943113
+    },
+    {
+      "x": 934,
+      "y": 578,
+      "before": 79,
+      "after": 0,
+      "world": [
+        483.030303030303,
+        1769.3939393939395
+      ],
+      "source": [
+        219.5592286501377,
+        804.2699724517906
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 108.82468996697934,
+      "walkDistanceWorld": 691.486215632351
+    },
+    {
+      "x": 935,
+      "y": 578,
+      "before": 83,
+      "after": 0,
+      "world": [
+        483.6363636363636,
+        1769.3939393939395
+      ],
+      "source": [
+        219.83471074380162,
+        804.2699724517906
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 108.88081345474536,
+      "walkDistanceWorld": 691.2734950765932
+    },
+    {
+      "x": 936,
+      "y": 578,
+      "before": 61,
+      "after": 0,
+      "world": [
+        484.24242424242425,
+        1769.3939393939395
+      ],
+      "source": [
+        220.11019283746555,
+        804.2699724517906
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 108.93693694251142,
+      "walkDistanceWorld": 691.0612405570029
+    },
+    {
+      "x": 937,
+      "y": 578,
+      "before": 22,
+      "after": 0,
+      "world": [
+        484.8484848484849,
+        1769.3939393939395
+      ],
+      "source": [
+        220.38567493112947,
+        804.2699724517906
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 108.99306043027745,
+      "walkDistanceWorld": 690.8494525031306
+    },
+    {
+      "x": 965,
+      "y": 578,
+      "before": 17,
+      "after": 0,
+      "world": [
+        501.81818181818187,
+        1769.3939393939395
+      ],
+      "source": [
+        228.09917355371903,
+        804.2699724517906
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 110.56451808772674,
+      "walkDistanceWorld": 685.1105023040514
+    },
+    {
+      "x": 966,
+      "y": 578,
+      "before": 67,
+      "after": 0,
+      "world": [
+        502.42424242424244,
+        1769.3939393939395
+      ],
+      "source": [
+        228.3746556473829,
+        804.2699724517906
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 110.62064157549277,
+      "walkDistanceWorld": 684.9124266207891
+    },
+    {
+      "x": 928,
+      "y": 579,
+      "before": 13,
+      "after": 0,
+      "world": [
+        479.3939393939394,
+        1770.0
+      ],
+      "source": [
+        217.90633608815423,
+        804.5454545454545
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 108.21824450195179,
+      "walkDistanceWorld": 693.3386972668121
+    },
+    {
+      "x": 929,
+      "y": 579,
+      "before": 71,
+      "after": 0,
+      "world": [
+        480.0,
+        1770.0
+      ],
+      "source": [
+        218.18181818181816,
+        804.5454545454545
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 108.27436798971786,
+      "walkDistanceWorld": 693.1233656427981
+    },
+    {
+      "x": 930,
+      "y": 579,
+      "before": 85,
+      "after": 0,
+      "world": [
+        480.6060606060606,
+        1770.0
+      ],
+      "source": [
+        218.45730027548208,
+        804.5454545454545
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 108.33049147748389,
+      "walkDistanceWorld": 692.9084971995051
+    },
+    {
+      "x": 931,
+      "y": 579,
+      "before": 64,
+      "after": 0,
+      "world": [
+        481.21212121212125,
+        1770.0
+      ],
+      "source": [
+        218.732782369146,
+        804.5454545454545
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 108.38661496524995,
+      "walkDistanceWorld": 692.6940923679581
+    },
+    {
+      "x": 932,
+      "y": 579,
+      "before": 23,
+      "after": 0,
+      "world": [
+        481.8181818181818,
+        1770.0
+      ],
+      "source": [
+        219.0082644628099,
+        804.5454545454545
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 108.44273845301598,
+      "walkDistanceWorld": 692.480151578786
+    },
+    {
+      "x": 967,
+      "y": 579,
+      "before": 82,
+      "after": 0,
+      "world": [
+        503.030303030303,
+        1770.0
+      ],
+      "source": [
+        228.6501377410468,
+        804.5454545454545
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 110.40706052482759,
+      "walkDistanceWorld": 685.2878853202926
+    },
+    {
+      "x": 926,
+      "y": 580,
+      "before": 53,
+      "after": 0,
+      "world": [
+        478.1818181818182,
+        1770.6060606060605
+      ],
+      "source": [
+        217.35537190082644,
+        804.8209366391184
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 107.83629298798851,
+      "walkDistanceWorld": 694.3368585165143
+    },
+    {
+      "x": 927,
+      "y": 580,
+      "before": 43,
+      "after": 0,
+      "world": [
+        478.7878787878788,
+        1770.6060606060605
+      ],
+      "source": [
+        217.63085399449034,
+        804.8209366391184
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 107.89241647575454,
+      "walkDistanceWorld": 694.1207782000977
+    },
+    {
+      "x": 968,
+      "y": 580,
+      "before": 83,
+      "after": 0,
+      "world": [
+        503.6363636363636,
+        1770.6060606060605
+      ],
+      "source": [
+        228.92561983471072,
+        804.8209366391184
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 110.1934794741624,
+      "walkDistanceWorld": 685.6642098226888
+    },
+    {
+      "x": 969,
+      "y": 581,
+      "before": 67,
+      "after": 0,
+      "world": [
+        504.24242424242425,
+        1771.2121212121212
+      ],
+      "source": [
+        229.20110192837464,
+        805.0964187327824
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 109.9798984234971,
+      "walkDistanceWorld": 686.0413987031825
+    },
+    {
+      "x": 970,
+      "y": 582,
+      "before": 52,
+      "after": 0,
+      "world": [
+        504.8484848484849,
+        1771.8181818181818
+      ],
+      "source": [
+        229.47658402203857,
+        805.3719008264462
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 109.76631737283194,
+      "walkDistanceWorld": 686.4194505368408
+    },
+    {
+      "x": 971,
+      "y": 582,
+      "before": 20,
+      "after": 0,
+      "world": [
+        505.4545454545455,
+        1771.8181818181818
+      ],
+      "source": [
+        229.7520661157025,
+        805.3719008264462
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 109.822440860598,
+      "walkDistanceWorld": 686.2244289896337
+    },
+    {
+      "x": 971,
+      "y": 583,
+      "before": 38,
+      "after": 0,
+      "world": [
+        505.4545454545455,
+        1772.4242424242425
+      ],
+      "source": [
+        229.7520661157025,
+        805.6473829201102
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 109.55273632216665,
+      "walkDistanceWorld": 686.7983638986125
+    },
+    {
+      "x": 972,
+      "y": 583,
+      "before": 35,
+      "after": 0,
+      "world": [
+        506.06060606060606,
+        1772.4242424242425
+      ],
+      "source": [
+        230.0275482093664,
+        805.6473829201102
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 109.60885980993268,
+      "walkDistanceWorld": 686.6039849429784
+    },
+    {
+      "x": 972,
+      "y": 584,
+      "before": 23,
+      "after": 0,
+      "world": [
+        506.06060606060606,
+        1773.030303030303
+      ],
+      "source": [
+        230.0275482093664,
+        805.9228650137741
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 109.33915527150143,
+      "walkDistanceWorld": 687.178137363345
+    },
+    {
+      "x": 973,
+      "y": 584,
+      "before": 56,
+      "after": 8,
+      "world": [
+        506.6666666666667,
+        1773.030303030303
+      ],
+      "source": [
+        230.30303030303028,
+        805.9228650137741
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 109.3952787592675,
+      "walkDistanceWorld": 686.9844005323843
+    },
+    {
+      "x": 973,
+      "y": 585,
+      "before": 10,
+      "after": 0,
+      "world": [
+        506.6666666666667,
+        1773.6363636363637
+      ],
+      "source": [
+        230.30303030303028,
+        806.198347107438
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 109.12557422083616,
+      "walkDistanceWorld": 687.5587695058034
+    },
+    {
+      "x": 974,
+      "y": 585,
+      "before": 78,
+      "after": 0,
+      "world": [
+        507.27272727272725,
+        1773.6363636363637
+      ],
+      "source": [
+        230.57851239669418,
+        806.198347107438
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 109.18169770860219,
+      "walkDistanceWorld": 687.3656743305808
+    },
+    {
+      "x": 975,
+      "y": 586,
+      "before": 83,
+      "after": 0,
+      "world": [
+        507.8787878787879,
+        1774.2424242424242
+      ],
+      "source": [
+        230.8539944903581,
+        806.4738292011019
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 108.96811665793702,
+      "walkDistanceWorld": 687.7478049102457
+    },
+    {
+      "x": 976,
+      "y": 587,
+      "before": 71,
+      "after": 0,
+      "world": [
+        508.4848484848485,
+        1774.8484848484848
+      ],
+      "source": [
+        231.12947658402203,
+        806.7493112947658
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 108.7545356072718,
+      "walkDistanceWorld": 688.1307908440239
+    },
+    {
+      "x": 977,
+      "y": 588,
+      "before": 59,
+      "after": 0,
+      "world": [
+        509.0909090909091,
+        1775.4545454545455
+      ],
+      "source": [
+        231.40495867768595,
+        807.0247933884297
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 108.54095455660664,
+      "walkDistanceWorld": 688.5146307045443
+    },
+    {
+      "x": 978,
+      "y": 589,
+      "before": 48,
+      "after": 0,
+      "world": [
+        509.69696969696975,
+        1776.060606060606
+      ],
+      "source": [
+        231.68044077134988,
+        807.3002754820935
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 108.32737350594145,
+      "walkDistanceWorld": 688.899323064438
+    },
+    {
+      "x": 979,
+      "y": 589,
+      "before": 24,
+      "after": 0,
+      "world": [
+        510.3030303030303,
+        1776.060606060606
+      ],
+      "source": [
+        231.95592286501375,
+        807.3002754820935
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 108.3834969937075,
+      "walkDistanceWorld": 688.7092704013957
+    },
+    {
+      "x": 979,
+      "y": 590,
+      "before": 33,
+      "after": 0,
+      "world": [
+        510.3030303030303,
+        1776.6666666666667
+      ],
+      "source": [
+        231.95592286501375,
+        807.5757575757575
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 108.11379245527614,
+      "walkDistanceWorld": 689.2848664963566
+    },
+    {
+      "x": 980,
+      "y": 590,
+      "before": 36,
+      "after": 0,
+      "world": [
+        510.9090909090909,
+        1776.6666666666667
+      ],
+      "source": [
+        232.23140495867764,
+        807.5757575757575
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 108.1699159430422,
+      "walkDistanceWorld": 689.0954531978849
+    },
+    {
+      "x": 980,
+      "y": 591,
+      "before": 24,
+      "after": 0,
+      "world": [
+        510.9090909090909,
+        1777.2727272727273
+      ],
+      "source": [
+        232.23140495867764,
+        807.8512396694214
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 107.90021140461096,
+      "walkDistanceWorld": 689.671259572988
+    },
+    {
+      "x": 981,
+      "y": 591,
+      "before": 48,
+      "after": 0,
+      "world": [
+        511.5151515151515,
+        1777.2727272727273
+      ],
+      "source": [
+        232.50688705234157,
+        807.8512396694214
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 107.95633489237701,
+      "walkDistanceWorld": 689.4824851560817
+    },
+    {
+      "x": 981,
+      "y": 592,
+      "before": 16,
+      "after": 0,
+      "world": [
+        511.5151515151515,
+        1777.878787878788
+      ],
+      "source": [
+        232.50688705234157,
+        808.1267217630854
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 107.68663035394566,
+      "walkDistanceWorld": 690.0585008670762
+    },
+    {
+      "x": 982,
+      "y": 592,
+      "before": 60,
+      "after": 0,
+      "world": [
+        512.1212121212121,
+        1777.878787878788
+      ],
+      "source": [
+        232.7823691460055,
+        808.1267217630854
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 107.7427538417117,
+      "walkDistanceWorld": 689.8703648467933
+    },
+    {
+      "x": 1009,
+      "y": 592,
+      "before": 11,
+      "after": 0,
+      "world": [
+        528.4848484848485,
+        1777.878787878788
+      ],
+      "source": [
+        240.22038567493112,
+        808.1267217630854
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 109.25808801139495,
+      "walkDistanceWorld": 684.9738823250135
+    },
+    {
+      "x": 982,
+      "y": 593,
+      "before": 8,
+      "after": 0,
+      "world": [
+        512.1212121212121,
+        1778.4848484848485
+      ],
+      "source": [
+        232.7823691460055,
+        808.4022038567492
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 107.47304930328048,
+      "walkDistanceWorld": 690.4465889514366
+    },
+    {
+      "x": 983,
+      "y": 593,
+      "before": 73,
+      "after": 0,
+      "world": [
+        512.7272727272727,
+        1778.4848484848485
+      ],
+      "source": [
+        233.05785123966942,
+        808.4022038567492
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 107.52917279104653,
+      "walkDistanceWorld": 690.2590908409114
+    },
+    {
+      "x": 1006,
+      "y": 593,
+      "before": 12,
+      "after": 0,
+      "world": [
+        526.6666666666667,
+        1778.4848484848485
+      ],
+      "source": [
+        239.3939393939394,
+        808.4022038567492
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 108.82001300966559,
+      "walkDistanceWorld": 686.0802679482571
+    },
+    {
+      "x": 1007,
+      "y": 593,
+      "before": 2,
+      "after": 0,
+      "world": [
+        527.2727272727273,
+        1778.4848484848485
+      ],
+      "source": [
+        239.66942148760327,
+        808.4022038567492
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 108.87613649743162,
+      "walkDistanceWorld": 685.9044286311281
+    },
+    {
+      "x": 984,
+      "y": 594,
+      "before": 80,
+      "after": 0,
+      "world": [
+        513.3333333333334,
+        1779.090909090909
+      ],
+      "source": [
+        233.33333333333334,
+        808.6776859504131
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 107.31559174038135,
+      "walkDistanceWorld": 690.6486617094312
+    },
+    {
+      "x": 1004,
+      "y": 594,
+      "before": 22,
+      "after": 0,
+      "world": [
+        525.4545454545455,
+        1779.090909090909
+      ],
+      "source": [
+        238.84297520661158,
+        808.6776859504131
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 108.43806149570227,
+      "walkDistanceWorld": 687.0130582083285
+    },
+    {
+      "x": 985,
+      "y": 595,
+      "before": 82,
+      "after": 0,
+      "world": [
+        513.939393939394,
+        1779.6969696969697
+      ],
+      "source": [
+        233.60881542699724,
+        808.9531680440771
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 107.10201068971604,
+      "walkDistanceWorld": 691.0390760234679
+    },
+    {
+      "x": 1001,
+      "y": 595,
+      "before": 27,
+      "after": 0,
+      "world": [
+        523.6363636363636,
+        1779.6969696969697
+      ],
+      "source": [
+        238.0165289256198,
+        808.9531680440771
+      ],
+      "topOwner": 9,
+      "apronBoundaryDistanceSource": 107.99998649397277,
+      "walkDistanceWorld": 688.1252395246746
+    },
+    {
+      "x": 1002,
+      "y": 595,
+      "before": 23,
+      "after": 0,
+      "world": [
+        524.2424242424242,
+        1779.6969696969697
+      ],
+      "source": [
+        238.29201101928373,
+        808.9531680440771
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 108.05610998173883,
+      "walkDistanceWorld": 687.9472533008259
+    },
+    {
+      "x": 986,
+      "y": 596,
+      "before": 78,
+      "after": 0,
+      "world": [
+        514.5454545454545,
+        1780.3030303030303
+      ],
+      "source": [
+        233.8842975206611,
+        809.2286501377409
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 106.88842963905086,
+      "walkDistanceWorld": 691.4303323542733
+    },
+    {
+      "x": 999,
+      "y": 596,
+      "before": 69,
+      "after": 0,
+      "world": [
+        522.4242424242425,
+        1780.3030303030303
+      ],
+      "source": [
+        237.46556473829202,
+        809.2286501377409
+      ],
+      "topOwner": 9,
+      "apronBoundaryDistanceSource": 107.61803498000945,
+      "walkDistanceWorld": 689.0616581835736
+    },
+    {
+      "x": 1000,
+      "y": 596,
+      "before": 25,
+      "after": 0,
+      "world": [
+        523.030303030303,
+        1780.3030303030303
+      ],
+      "source": [
+        237.74104683195588,
+        809.2286501377409
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 107.67415846777548,
+      "walkDistanceWorld": 688.8828475104624
+    },
+    {
+      "x": 987,
+      "y": 597,
+      "before": 71,
+      "after": 0,
+      "world": [
+        515.1515151515151,
+        1780.909090909091
+      ],
+      "source": [
+        234.15977961432503,
+        809.5041322314049
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 106.67484858838556,
+      "walkDistanceWorld": 691.822429273254
+    },
+    {
+      "x": 996,
+      "y": 597,
+      "before": 36,
+      "after": 0,
+      "world": [
+        520.6060606060606,
+        1780.909090909091
+      ],
+      "source": [
+        236.63911845730027,
+        809.5041322314049
+      ],
+      "topOwner": 9,
+      "apronBoundaryDistanceSource": 107.17995997827997,
+      "walkDistanceWorld": 690.1795856314544
+    },
+    {
+      "x": 997,
+      "y": 597,
+      "before": 81,
+      "after": 0,
+      "world": [
+        521.2121212121212,
+        1780.909090909091
+      ],
+      "source": [
+        236.9146005509642,
+        809.5041322314049
+      ],
+      "topOwner": 9,
+      "apronBoundaryDistanceSource": 107.23608346604601,
+      "walkDistanceWorld": 689.9994676672466
+    },
+    {
+      "x": 998,
+      "y": 597,
+      "before": 19,
+      "after": 0,
+      "world": [
+        521.8181818181819,
+        1780.909090909091
+      ],
+      "source": [
+        237.1900826446281,
+        809.5041322314049
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 107.29220695381207,
+      "walkDistanceWorld": 689.8198351444222
+    },
+    {
+      "x": 988,
+      "y": 598,
+      "before": 58,
+      "after": 0,
+      "world": [
+        515.7575757575758,
+        1781.5151515151515
+      ],
+      "source": [
+        234.43526170798896,
+        809.7796143250688
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 106.46126753772039,
+      "walkDistanceWorld": 692.215365351987
+    },
+    {
+      "x": 994,
+      "y": 598,
+      "before": 74,
+      "after": 0,
+      "world": [
+        519.3939393939394,
+        1781.5151515151515
+      ],
+      "source": [
+        236.08815426997242,
+        809.7796143250688
+      ],
+      "topOwner": 9,
+      "apronBoundaryDistanceSource": 106.79800846431664,
+      "walkDistanceWorld": 691.1195984467583
+    },
+    {
+      "x": 995,
+      "y": 598,
+      "before": 61,
+      "after": 0,
+      "world": [
+        520.0,
+        1781.5151515151515
+      ],
+      "source": [
+        236.36363636363635,
+        809.7796143250688
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 106.85413195208268,
+      "walkDistanceWorld": 690.9386623124034
+    },
+    {
+      "x": 989,
+      "y": 599,
+      "before": 47,
+      "after": 0,
+      "world": [
+        516.3636363636364,
+        1782.121212121212
+      ],
+      "source": [
+        234.71074380165288,
+        810.0550964187327
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 106.2476864870552,
+      "walkDistanceWorld": 692.6091391622376
+    },
+    {
+      "x": 990,
+      "y": 599,
+      "before": 24,
+      "after": 0,
+      "world": [
+        516.969696969697,
+        1782.121212121212
+      ],
+      "source": [
+        234.9862258953168,
+        810.0550964187327
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 106.30380997482123,
+      "walkDistanceWorld": 692.4259399223274
+    },
+    {
+      "x": 991,
+      "y": 599,
+      "before": 32,
+      "after": 0,
+      "world": [
+        517.5757575757576,
+        1782.121212121212
+      ],
+      "source": [
+        235.26170798898073,
+        810.0550964187327
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 106.35993346258728,
+      "walkDistanceWorld": 692.2432228071991
+    },
+    {
+      "x": 992,
+      "y": 599,
+      "before": 80,
+      "after": 0,
+      "world": [
+        518.1818181818182,
+        1782.121212121212
+      ],
+      "source": [
+        235.53719008264463,
+        810.0550964187327
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 106.41605695035332,
+      "walkDistanceWorld": 692.0609881987231
+    },
+    {
+      "x": 993,
+      "y": 599,
+      "before": 27,
+      "after": 0,
+      "world": [
+        518.7878787878788,
+        1782.121212121212
+      ],
+      "source": [
+        235.8126721763085,
+        810.0550964187327
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 106.47218043811935,
+      "walkDistanceWorld": 691.8792364781624
+    },
+    {
+      "x": 990,
+      "y": 600,
+      "before": 21,
+      "after": 0,
+      "world": [
+        516.969696969697,
+        1782.7272727272727
+      ],
+      "source": [
+        234.9862258953168,
+        810.3305785123966
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 106.0341054363899,
+      "walkDistanceWorld": 693.0037492759762
+    },
+    {
+      "x": 1330,
+      "y": 619,
+      "before": 25,
+      "after": 0,
+      "world": [
+        723.030303030303,
+        1794.2424242424242
+      ],
+      "source": [
+        328.6501377410468,
+        815.5647382920109
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 126.4608555059182,
+      "walkDistanceWorld": 646.3816543816542
+    },
+    {
+      "x": 1329,
+      "y": 620,
+      "before": 48,
+      "after": 0,
+      "world": [
+        722.4242424242425,
+        1794.8484848484848
+      ],
+      "source": [
+        328.37465564738295,
+        815.8402203856748
+      ],
+      "topOwner": 9,
+      "apronBoundaryDistanceSource": 126.11101251109415,
+      "walkDistanceWorld": 647.1515151515149
+    },
+    {
+      "x": 1327,
+      "y": 621,
+      "before": 6,
+      "after": 0,
+      "world": [
+        721.2121212121212,
+        1795.4545454545455
+      ],
+      "source": [
+        327.8236914600551,
+        816.1157024793388
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 125.67196652157378,
+      "walkDistanceWorld": 648.1179361179361
+    },
+    {
+      "x": 1328,
+      "y": 621,
+      "before": 37,
+      "after": 0,
+      "world": [
+        721.8181818181818,
+        1795.4545454545455
+      ],
+      "source": [
+        328.09917355371897,
+        816.1157024793388
+      ],
+      "topOwner": 9,
+      "apronBoundaryDistanceSource": 125.76116951626996,
+      "walkDistanceWorld": 647.921375921376
+    },
+    {
+      "x": 1326,
+      "y": 622,
+      "before": 27,
+      "after": 0,
+      "world": [
+        720.6060606060606,
+        1796.060606060606
+      ],
+      "source": [
+        327.5482093663912,
+        816.3911845730026
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 125.32212352674972,
+      "walkDistanceWorld": 648.8877968877968
+    },
+    {
+      "x": 1325,
+      "y": 623,
+      "before": 48,
+      "after": 0,
+      "world": [
+        720.0,
+        1796.6666666666667
+      ],
+      "source": [
+        327.27272727272725,
+        816.6666666666666
+      ],
+      "topOwner": 9,
+      "apronBoundaryDistanceSource": 124.9722805319255,
+      "walkDistanceWorld": 649.6576576576576
+    },
+    {
+      "x": 1323,
+      "y": 624,
+      "before": 7,
+      "after": 0,
+      "world": [
+        718.7878787878788,
+        1797.2727272727273
+      ],
+      "source": [
+        326.7217630853994,
+        816.9421487603305
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 124.53323454240525,
+      "walkDistanceWorld": 650.6240786240785
+    },
+    {
+      "x": 1324,
+      "y": 624,
+      "before": 38,
+      "after": 0,
+      "world": [
+        719.3939393939395,
+        1797.2727272727273
+      ],
+      "source": [
+        326.9972451790634,
+        816.9421487603305
+      ],
+      "topOwner": 9,
+      "apronBoundaryDistanceSource": 124.62243753710146,
+      "walkDistanceWorld": 650.4275184275183
+    },
+    {
+      "x": 1322,
+      "y": 625,
+      "before": 4,
+      "after": 0,
+      "world": [
+        718.1818181818182,
+        1797.878787878788
+      ],
+      "source": [
+        326.44628099173553,
+        817.2176308539945
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 124.18339154758108,
+      "walkDistanceWorld": 651.3939393939394
+    },
+    {
+      "x": 1322,
+      "y": 710,
+      "before": 33,
+      "after": 0,
+      "world": [
+        718.1818181818182,
+        1849.3939393939395
+      ],
+      "source": [
+        326.44628099173553,
+        840.633608815427
+      ],
+      "topOwner": 9,
+      "apronBoundaryDistanceSource": 102.02899153670754,
+      "walkDistanceWorld": 700.1244881244882
+    },
+    {
+      "x": 1323,
+      "y": 710,
+      "before": 3,
+      "after": 0,
+      "world": [
+        718.7878787878788,
+        1849.3939393939395
+      ],
+      "source": [
+        326.7217630853994,
+        840.633608815427
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 102.11819453140372,
+      "walkDistanceWorld": 699.927927927928
+    },
+    {
+      "x": 1320,
+      "y": 711,
+      "before": 34,
+      "after": 0,
+      "world": [
+        716.969696969697,
+        1850.0
+      ],
+      "source": [
+        325.8953168044077,
+        840.9090909090909
+      ],
+      "topOwner": 9,
+      "apronBoundaryDistanceSource": 101.58994554718727,
+      "walkDistanceWorld": 701.090909090909
+    },
+    {
+      "x": 1321,
+      "y": 711,
+      "before": 6,
+      "after": 0,
+      "world": [
+        717.5757575757576,
+        1850.0
+      ],
+      "source": [
+        326.1707988980716,
+        840.9090909090909
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 101.67914854188346,
+      "walkDistanceWorld": 700.8943488943488
+    },
+    {
+      "x": 1318,
+      "y": 712,
+      "before": 34,
+      "after": 0,
+      "world": [
+        715.7575757575758,
+        1850.6060606060605
+      ],
+      "source": [
+        325.34435261707983,
+        841.1845730027547
+      ],
+      "topOwner": 9,
+      "apronBoundaryDistanceSource": 101.15089955766702,
+      "walkDistanceWorld": 702.0573300573299
+    },
+    {
+      "x": 1319,
+      "y": 712,
+      "before": 7,
+      "after": 0,
+      "world": [
+        716.3636363636364,
+        1850.6060606060605
+      ],
+      "source": [
+        325.61983471074376,
+        841.1845730027547
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 101.2401025523632,
+      "walkDistanceWorld": 701.8607698607697
+    },
+    {
+      "x": 1316,
+      "y": 713,
+      "before": 33,
+      "after": 0,
+      "world": [
+        714.5454545454545,
+        1851.2121212121212
+      ],
+      "source": [
+        324.79338842975204,
+        841.4600550964187
+      ],
+      "topOwner": 9,
+      "apronBoundaryDistanceSource": 100.71185356814664,
+      "walkDistanceWorld": 703.023751023751
+    },
+    {
+      "x": 1317,
+      "y": 713,
+      "before": 8,
+      "after": 0,
+      "world": [
+        715.1515151515152,
+        1851.2121212121212
+      ],
+      "source": [
+        325.06887052341597,
+        841.4600550964187
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 100.80105656284285,
+      "walkDistanceWorld": 702.8271908271909
+    },
+    {
+      "x": 1314,
+      "y": 714,
+      "before": 28,
+      "after": 0,
+      "world": [
+        713.3333333333334,
+        1851.8181818181818
+      ],
+      "source": [
+        324.24242424242425,
+        841.7355371900826
+      ],
+      "topOwner": 9,
+      "apronBoundaryDistanceSource": 100.27280757862638,
+      "walkDistanceWorld": 703.9901719901718
+    },
+    {
+      "x": 1315,
+      "y": 714,
+      "before": 12,
+      "after": 0,
+      "world": [
+        713.939393939394,
+        1851.8181818181818
+      ],
+      "source": [
+        324.5179063360882,
+        841.7355371900826
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 100.36201057332259,
+      "walkDistanceWorld": 703.7936117936116
+    },
+    {
+      "x": 1312,
+      "y": 715,
+      "before": 19,
+      "after": 0,
+      "world": [
+        712.1212121212121,
+        1852.4242424242425
+      ],
+      "source": [
+        323.6914600550964,
+        842.0110192837465
+      ],
+      "topOwner": 9,
+      "apronBoundaryDistanceSource": 99.83376158910613,
+      "walkDistanceWorld": 704.956592956593
+    },
+    {
+      "x": 1313,
+      "y": 715,
+      "before": 18,
+      "after": 0,
+      "world": [
+        712.7272727272727,
+        1852.4242424242425
+      ],
+      "source": [
+        323.9669421487603,
+        842.0110192837465
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 99.92296458380231,
+      "walkDistanceWorld": 704.7600327600328
+    },
+    {
+      "x": 1310,
+      "y": 716,
+      "before": 12,
+      "after": 0,
+      "world": [
+        710.909090909091,
+        1853.030303030303
+      ],
+      "source": [
+        323.1404958677686,
+        842.2865013774103
+      ],
+      "topOwner": 9,
+      "apronBoundaryDistanceSource": 99.39471559958587,
+      "walkDistanceWorld": 705.9230139230137
+    },
+    {
+      "x": 1311,
+      "y": 716,
+      "before": 22,
+      "after": 0,
+      "world": [
+        711.5151515151515,
+        1853.030303030303
+      ],
+      "source": [
+        323.4159779614325,
+        842.2865013774103
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 99.48391859428206,
+      "walkDistanceWorld": 705.7264537264537
+    },
+    {
+      "x": 1308,
+      "y": 717,
+      "before": 7,
+      "after": 0,
+      "world": [
+        709.6969696969697,
+        1853.6363636363637
+      ],
+      "source": [
+        322.58953168044076,
+        842.5619834710743
+      ],
+      "topOwner": 9,
+      "apronBoundaryDistanceSource": 98.9556696100655,
+      "walkDistanceWorld": 706.8894348894349
+    },
+    {
+      "x": 1309,
+      "y": 717,
+      "before": 26,
+      "after": 0,
+      "world": [
+        710.3030303030303,
+        1853.6363636363637
+      ],
+      "source": [
+        322.8650137741046,
+        842.5619834710743
+      ],
+      "topOwner": 9,
+      "apronBoundaryDistanceSource": 99.0448726047617,
+      "walkDistanceWorld": 706.6928746928747
+    },
+    {
+      "x": 1307,
+      "y": 718,
+      "before": 28,
+      "after": 0,
+      "world": [
+        709.0909090909091,
+        1854.2424242424242
+      ],
+      "source": [
+        322.31404958677683,
+        842.8374655647382
+      ],
+      "topOwner": 9,
+      "apronBoundaryDistanceSource": 98.60582661524144,
+      "walkDistanceWorld": 707.6592956592956
+    },
+    {
+      "x": 1308,
+      "y": 718,
+      "before": 2,
+      "after": 0,
+      "world": [
+        709.6969696969697,
+        1854.2424242424242
+      ],
+      "source": [
+        322.58953168044076,
+        842.8374655647382
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 98.69502960993763,
+      "walkDistanceWorld": 707.4627354627354
+    },
+    {
+      "x": 1305,
+      "y": 719,
+      "before": 26,
+      "after": 0,
+      "world": [
+        707.8787878787879,
+        1854.848484848485
+      ],
+      "source": [
+        321.763085399449,
+        843.1129476584022
+      ],
+      "topOwner": 9,
+      "apronBoundaryDistanceSource": 98.16678062572107,
+      "walkDistanceWorld": 708.6257166257167
+    },
+    {
+      "x": 1306,
+      "y": 719,
+      "before": 4,
+      "after": 0,
+      "world": [
+        708.4848484848485,
+        1854.848484848485
+      ],
+      "source": [
+        322.0385674931129,
+        843.1129476584022
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 98.25598362041724,
+      "walkDistanceWorld": 708.4291564291566
+    },
+    {
+      "x": 1303,
+      "y": 720,
+      "before": 23,
+      "after": 0,
+      "world": [
+        706.6666666666667,
+        1855.4545454545455
+      ],
+      "source": [
+        321.21212121212125,
+        843.388429752066
+      ],
+      "topOwner": 9,
+      "apronBoundaryDistanceSource": 97.72773463620084,
+      "walkDistanceWorld": 709.5921375921375
+    },
+    {
+      "x": 1304,
+      "y": 720,
+      "before": 7,
+      "after": 0,
+      "world": [
+        707.2727272727273,
+        1855.4545454545455
+      ],
+      "source": [
+        321.4876033057851,
+        843.388429752066
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 97.81693763089702,
+      "walkDistanceWorld": 709.3955773955773
+    },
+    {
+      "x": 1301,
+      "y": 721,
+      "before": 17,
+      "after": 0,
+      "world": [
+        705.4545454545455,
+        1856.060606060606
+      ],
+      "source": [
+        320.6611570247934,
+        843.6639118457299
+      ],
+      "topOwner": 9,
+      "apronBoundaryDistanceSource": 97.28868864668057,
+      "walkDistanceWorld": 710.5585585585584
+    },
+    {
+      "x": 1302,
+      "y": 721,
+      "before": 12,
+      "after": 0,
+      "world": [
+        706.060606060606,
+        1856.060606060606
+      ],
+      "source": [
+        320.93663911845726,
+        843.6639118457299
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 97.37789164137675,
+      "walkDistanceWorld": 710.3619983619983
+    },
+    {
+      "x": 1299,
+      "y": 722,
+      "before": 10,
+      "after": 0,
+      "world": [
+        704.2424242424242,
+        1856.6666666666667
+      ],
+      "source": [
+        320.11019283746555,
+        843.9393939393939
+      ],
+      "topOwner": 9,
+      "apronBoundaryDistanceSource": 96.84964265716019,
+      "walkDistanceWorld": 711.5249795249795
+    },
+    {
+      "x": 1300,
+      "y": 722,
+      "before": 17,
+      "after": 0,
+      "world": [
+        704.8484848484849,
+        1856.6666666666667
+      ],
+      "source": [
+        320.3856749311295,
+        843.9393939393939
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 96.93884565185637,
+      "walkDistanceWorld": 711.3284193284194
+    },
+    {
+      "x": 1297,
+      "y": 723,
+      "before": 7,
+      "after": 0,
+      "world": [
+        703.030303030303,
+        1857.2727272727273
+      ],
+      "source": [
+        319.5592286501377,
+        844.2148760330577
+      ],
+      "topOwner": 9,
+      "apronBoundaryDistanceSource": 96.41059666763992,
+      "walkDistanceWorld": 712.4914004914003
+    },
+    {
+      "x": 1298,
+      "y": 723,
+      "before": 21,
+      "after": 0,
+      "world": [
+        703.6363636363637,
+        1857.2727272727273
+      ],
+      "source": [
+        319.8347107438017,
+        844.2148760330577
+      ],
+      "topOwner": 9,
+      "apronBoundaryDistanceSource": 96.49979966233614,
+      "walkDistanceWorld": 712.2948402948401
+    },
+    {
+      "x": 1296,
+      "y": 724,
+      "before": 24,
+      "after": 0,
+      "world": [
+        702.4242424242425,
+        1857.878787878788
+      ],
+      "source": [
+        319.28374655647383,
+        844.4903581267217
+      ],
+      "topOwner": 9,
+      "apronBoundaryDistanceSource": 96.06075367281576,
+      "walkDistanceWorld": 713.2612612612613
+    },
+    {
+      "x": 1297,
+      "y": 724,
+      "before": 1,
+      "after": 0,
+      "world": [
+        703.030303030303,
+        1857.878787878788
+      ],
+      "source": [
+        319.5592286501377,
+        844.4903581267217
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 96.14995666751193,
+      "walkDistanceWorld": 713.0647010647011
+    },
+    {
+      "x": 1294,
+      "y": 725,
+      "before": 25,
+      "after": 0,
+      "world": [
+        701.2121212121212,
+        1858.4848484848485
+      ],
+      "source": [
+        318.732782369146,
+        844.7658402203856
+      ],
+      "topOwner": 9,
+      "apronBoundaryDistanceSource": 95.62170768329548,
+      "walkDistanceWorld": 714.2276822276822
+    },
+    {
+      "x": 1295,
+      "y": 725,
+      "before": 3,
+      "after": 0,
+      "world": [
+        701.8181818181818,
+        1858.4848484848485
+      ],
+      "source": [
+        319.00826446280985,
+        844.7658402203856
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 95.71091067799168,
+      "walkDistanceWorld": 714.031122031122
+    },
+    {
+      "x": 1292,
+      "y": 726,
+      "before": 23,
+      "after": 10,
+      "world": [
+        700.0,
+        1859.090909090909
+      ],
+      "source": [
+        318.18181818181813,
+        845.0413223140495
+      ],
+      "topOwner": 9,
+      "apronBoundaryDistanceSource": 95.18266169377524,
+      "walkDistanceWorld": 715.194103194103
+    },
+    {
+      "x": 1293,
+      "y": 726,
+      "before": 5,
+      "after": 4,
+      "world": [
+        700.6060606060606,
+        1859.090909090909
+      ],
+      "source": [
+        318.45730027548205,
+        845.0413223140495
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 95.27186468847142,
+      "walkDistanceWorld": 714.9975429975428
+    },
+    {
+      "x": 1290,
+      "y": 727,
+      "before": 18,
+      "after": 0,
+      "world": [
+        698.7878787878788,
+        1859.6969696969697
+      ],
+      "source": [
+        317.63085399449034,
+        845.3168044077134
+      ],
+      "topOwner": 9,
+      "apronBoundaryDistanceSource": 94.74361570425488,
+      "walkDistanceWorld": 716.1605241605242
+    },
+    {
+      "x": 1291,
+      "y": 727,
+      "before": 10,
+      "after": 0,
+      "world": [
+        699.3939393939395,
+        1859.6969696969697
+      ],
+      "source": [
+        317.90633608815426,
+        845.3168044077134
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 94.83281869895106,
+      "walkDistanceWorld": 715.963963963964
+    },
+    {
+      "x": 1288,
+      "y": 728,
+      "before": 12,
+      "after": 0,
+      "world": [
+        697.5757575757576,
+        1860.3030303030303
+      ],
+      "source": [
+        317.07988980716254,
+        845.5922865013773
+      ],
+      "topOwner": 9,
+      "apronBoundaryDistanceSource": 94.30456971473463,
+      "walkDistanceWorld": 717.126945126945
+    },
+    {
+      "x": 1289,
+      "y": 728,
+      "before": 15,
+      "after": 0,
+      "world": [
+        698.1818181818182,
+        1860.3030303030303
+      ],
+      "source": [
+        317.35537190082647,
+        845.5922865013773
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 94.39377270943082,
+      "walkDistanceWorld": 716.9303849303848
+    },
+    {
+      "x": 1286,
+      "y": 729,
+      "before": 4,
+      "after": 0,
+      "world": [
+        696.3636363636364,
+        1860.909090909091
+      ],
+      "source": [
+        316.5289256198347,
+        845.8677685950413
+      ],
+      "topOwner": 9,
+      "apronBoundaryDistanceSource": 93.86552372521423,
+      "walkDistanceWorld": 718.0933660933662
+    },
+    {
+      "x": 1287,
+      "y": 729,
+      "before": 22,
+      "after": 0,
+      "world": [
+        696.969696969697,
+        1860.909090909091
+      ],
+      "source": [
+        316.8044077134986,
+        845.8677685950413
+      ],
+      "topOwner": 9,
+      "apronBoundaryDistanceSource": 93.95472671991043,
+      "walkDistanceWorld": 717.896805896806
+    },
+    {
+      "x": 1285,
+      "y": 730,
+      "before": 24,
+      "after": 0,
+      "world": [
+        695.7575757575758,
+        1861.5151515151515
+      ],
+      "source": [
+        316.25344352617077,
+        846.1432506887052
+      ],
+      "topOwner": 9,
+      "apronBoundaryDistanceSource": 93.51568073039016,
+      "walkDistanceWorld": 718.8632268632268
+    },
+    {
+      "x": 1286,
+      "y": 730,
+      "before": 2,
+      "after": 0,
+      "world": [
+        696.3636363636364,
+        1861.5151515151515
+      ],
+      "source": [
+        316.5289256198347,
+        846.1432506887052
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 93.60488372508635,
+      "walkDistanceWorld": 718.6666666666666
+    },
+    {
+      "x": 1283,
+      "y": 731,
+      "before": 17,
+      "after": 0,
+      "world": [
+        694.5454545454545,
+        1862.121212121212
+      ],
+      "source": [
+        315.7024793388429,
+        846.418732782369
+      ],
+      "topOwner": 9,
+      "apronBoundaryDistanceSource": 93.0766347408699,
+      "walkDistanceWorld": 719.8296478296476
+    },
+    {
+      "x": 1284,
+      "y": 731,
+      "before": 7,
+      "after": 0,
+      "world": [
+        695.1515151515152,
+        1862.121212121212
+      ],
+      "source": [
+        315.9779614325069,
+        846.418732782369
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 93.1658377355661,
+      "walkDistanceWorld": 719.6330876330875
+    },
+    {
+      "x": 1281,
+      "y": 732,
+      "before": 6,
+      "after": 0,
+      "world": [
+        693.3333333333334,
+        1862.7272727272727
+      ],
+      "source": [
+        315.1515151515151,
+        846.694214876033
+      ],
+      "topOwner": 9,
+      "apronBoundaryDistanceSource": 92.63758875134955,
+      "walkDistanceWorld": 720.7960687960688
+    },
+    {
+      "x": 1282,
+      "y": 732,
+      "before": 14,
+      "after": 0,
+      "world": [
+        693.939393939394,
+        1862.7272727272727
+      ],
+      "source": [
+        315.42699724517905,
+        846.694214876033
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 92.72679174604575,
+      "walkDistanceWorld": 720.5995085995086
+    },
+    {
+      "x": 1280,
+      "y": 733,
+      "before": 19,
+      "after": 0,
+      "world": [
+        692.7272727272727,
+        1863.3333333333333
+      ],
+      "source": [
+        314.8760330578512,
+        846.9696969696969
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 92.28774575652548,
+      "walkDistanceWorld": 721.5659295659294
+    },
+    {
+      "x": 1278,
+      "y": 734,
+      "before": 18,
+      "after": 0,
+      "world": [
+        691.5151515151515,
+        1863.939393939394
+      ],
+      "source": [
+        314.3250688705234,
+        847.2451790633609
+      ],
+      "topOwner": 9,
+      "apronBoundaryDistanceSource": 91.84869976700513,
+      "walkDistanceWorld": 722.5323505323505
+    },
+    {
+      "x": 1279,
+      "y": 734,
+      "before": 2,
+      "after": 0,
+      "world": [
+        692.1212121212121,
+        1863.939393939394
+      ],
+      "source": [
+        314.6005509641873,
+        847.2451790633609
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 91.93790276170131,
+      "walkDistanceWorld": 722.3357903357904
+    },
+    {
+      "x": 1276,
+      "y": 735,
+      "before": 12,
+      "after": 0,
+      "world": [
+        690.3030303030303,
+        1864.5454545454545
+      ],
+      "source": [
+        313.77410468319556,
+        847.5206611570247
+      ],
+      "topOwner": 9,
+      "apronBoundaryDistanceSource": 91.40965377748486,
+      "walkDistanceWorld": 723.4987714987714
+    },
+    {
+      "x": 1277,
+      "y": 735,
+      "before": 7,
+      "after": 0,
+      "world": [
+        690.909090909091,
+        1864.5454545454545
+      ],
+      "source": [
+        314.04958677685954,
+        847.5206611570247
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 91.49885677218106,
+      "walkDistanceWorld": 723.3022113022112
+    },
+    {
+      "x": 1275,
+      "y": 736,
+      "before": 14,
+      "after": 0,
+      "world": [
+        689.6969696969697,
+        1865.1515151515152
+      ],
+      "source": [
+        313.4986225895317,
+        847.7961432506887
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 91.0598107826607,
+      "walkDistanceWorld": 724.2686322686324
+    },
+    {
+      "x": 1273,
+      "y": 737,
+      "before": 18,
+      "after": 0,
+      "world": [
+        688.4848484848485,
+        1865.7575757575758
+      ],
+      "source": [
+        312.94765840220384,
+        848.0716253443526
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 90.62076479314041,
+      "walkDistanceWorld": 725.2350532350532
+    },
+    {
+      "x": 1274,
+      "y": 737,
+      "before": 1,
+      "after": 0,
+      "world": [
+        689.0909090909091,
+        1865.7575757575758
+      ],
+      "source": [
+        313.22314049586777,
+        848.0716253443526
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 90.7099677878366,
+      "walkDistanceWorld": 725.038493038493
+    },
+    {
+      "x": 1271,
+      "y": 738,
+      "before": 13,
+      "after": 0,
+      "world": [
+        687.2727272727273,
+        1866.3636363636365
+      ],
+      "source": [
+        312.396694214876,
+        848.3471074380166
+      ],
+      "topOwner": 9,
+      "apronBoundaryDistanceSource": 90.18171880362004,
+      "walkDistanceWorld": 726.2014742014743
+    },
+    {
+      "x": 1272,
+      "y": 738,
+      "before": 2,
+      "after": 0,
+      "world": [
+        687.8787878787879,
+        1866.3636363636365
+      ],
+      "source": [
+        312.6721763085399,
+        848.3471074380166
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 90.27092179831624,
+      "walkDistanceWorld": 726.004914004914
+    },
+    {
+      "x": 1269,
+      "y": 739,
+      "before": 9,
+      "after": 0,
+      "world": [
+        686.060606060606,
+        1866.969696969697
+      ],
+      "source": [
+        311.84573002754814,
+        848.6225895316804
+      ],
+      "topOwner": 9,
+      "apronBoundaryDistanceSource": 89.74267281409978,
+      "walkDistanceWorld": 727.1678951678952
+    },
+    {
+      "x": 1270,
+      "y": 739,
+      "before": 6,
+      "after": 0,
+      "world": [
+        686.6666666666667,
+        1866.969696969697
+      ],
+      "source": [
+        312.1212121212121,
+        848.6225895316804
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 89.83187580879598,
+      "walkDistanceWorld": 726.971334971335
+    },
+    {
+      "x": 1268,
+      "y": 740,
+      "before": 15,
+      "after": 0,
+      "world": [
+        685.4545454545455,
+        1867.5757575757575
+      ],
+      "source": [
+        311.5702479338843,
+        848.8980716253443
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 89.39282981927572,
+      "walkDistanceWorld": 727.9377559377558
+    },
+    {
+      "x": 1266,
+      "y": 741,
+      "before": 20,
+      "after": 0,
+      "world": [
+        684.2424242424242,
+        1868.1818181818182
+      ],
+      "source": [
+        311.0192837465564,
+        849.1735537190082
+      ],
+      "topOwner": 9,
+      "apronBoundaryDistanceSource": 88.95378382975547,
+      "walkDistanceWorld": 728.9041769041769
+    },
+    {
+      "x": 1267,
+      "y": 741,
+      "before": 1,
+      "after": 0,
+      "world": [
+        684.8484848484849,
+        1868.1818181818182
+      ],
+      "source": [
+        311.29476584022035,
+        849.1735537190082
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 89.04298682445165,
+      "walkDistanceWorld": 728.7076167076166
+    },
+    {
+      "x": 1264,
+      "y": 742,
+      "before": 17,
+      "after": 0,
+      "world": [
+        683.030303030303,
+        1868.7878787878788
+      ],
+      "source": [
+        310.46831955922863,
+        849.449035812672
+      ],
+      "topOwner": 9,
+      "apronBoundaryDistanceSource": 88.5147378402352,
+      "walkDistanceWorld": 729.8705978705979
+    },
+    {
+      "x": 1265,
+      "y": 742,
+      "before": 4,
+      "after": 0,
+      "world": [
+        683.6363636363637,
+        1868.7878787878788
+      ],
+      "source": [
+        310.74380165289256,
+        849.449035812672
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 88.60394083493141,
+      "walkDistanceWorld": 729.6740376740377
+    },
+    {
+      "x": 1262,
+      "y": 743,
+      "before": 11,
+      "after": 0,
+      "world": [
+        681.8181818181818,
+        1869.3939393939395
+      ],
+      "source": [
+        309.9173553719008,
+        849.724517906336
+      ],
+      "topOwner": 9,
+      "apronBoundaryDistanceSource": 88.07569185071483,
+      "walkDistanceWorld": 730.8370188370187
+    },
+    {
+      "x": 1263,
+      "y": 743,
+      "before": 9,
+      "after": 0,
+      "world": [
+        682.4242424242425,
+        1869.3939393939395
+      ],
+      "source": [
+        310.19283746556476,
+        849.724517906336
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 88.16489484541104,
+      "walkDistanceWorld": 730.6404586404586
+    },
+    {
+      "x": 1261,
+      "y": 744,
+      "before": 17,
+      "after": 0,
+      "world": [
+        681.2121212121212,
+        1870.0
+      ],
+      "source": [
+        309.6418732782369,
+        849.9999999999999
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 87.72584885589079,
+      "walkDistanceWorld": 731.6068796068796
+    },
+    {
+      "x": 1121,
+      "y": 746,
+      "before": 4,
+      "after": 0,
+      "world": [
+        596.3636363636364,
+        1871.2121212121212
+      ],
+      "source": [
+        271.07438016528926,
+        850.5509641873277
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 74.71614959816858,
+      "walkDistanceWorld": 757.317377751464
+    },
+    {
+      "x": 1122,
+      "y": 746,
+      "before": 11,
+      "after": 0,
+      "world": [
+        596.969696969697,
+        1871.2121212121212
+      ],
+      "source": [
+        271.3498622589532,
+        850.5509641873277
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 74.80535259286478,
+      "walkDistanceWorld": 757.1612185693061
+    },
+    {
+      "x": 1127,
+      "y": 746,
+      "before": 7,
+      "after": 0,
+      "world": [
+        600.0,
+        1871.2121212121212
+      ],
+      "source": [
+        272.7272727272727,
+        850.5509641873277
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 75.2513675663457,
+      "walkDistanceWorld": 756.3804226585173
+    },
+    {
+      "x": 1128,
+      "y": 746,
+      "before": 2,
+      "after": 0,
+      "world": [
+        600.6060606060606,
+        1871.2121212121212
+      ],
+      "source": [
+        273.0027548209366,
+        850.5509641873277
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 75.3405705610419,
+      "walkDistanceWorld": 756.2242634763595
+    },
+    {
+      "x": 1119,
+      "y": 747,
+      "before": 19,
+      "after": 0,
+      "world": [
+        595.1515151515152,
+        1871.8181818181818
+      ],
+      "source": [
+        270.52341597796146,
+        850.8264462809916
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 74.27710360864835,
+      "walkDistanceWorld": 758.2152930488711
+    },
+    {
+      "x": 1120,
+      "y": 747,
+      "before": 32,
+      "after": 0,
+      "world": [
+        595.7575757575758,
+        1871.8181818181818
+      ],
+      "source": [
+        270.79889807162533,
+        850.8264462809916
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 74.36630660334451,
+      "walkDistanceWorld": 758.0591338667133
+    },
+    {
+      "x": 1128,
+      "y": 747,
+      "before": 12,
+      "after": 0,
+      "world": [
+        600.6060606060606,
+        1871.8181818181818
+      ],
+      "source": [
+        273.0027548209366,
+        850.8264462809916
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 75.07993056091402,
+      "walkDistanceWorld": 756.8098604094512
+    },
+    {
+      "x": 1118,
+      "y": 748,
+      "before": 34,
+      "after": 0,
+      "world": [
+        594.5454545454545,
+        1872.4242424242425
+      ],
+      "source": [
+        270.2479338842975,
+        851.1019283746556
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 73.92726061382415,
+      "walkDistanceWorld": 758.9570491641208
+    },
+    {
+      "x": 1125,
+      "y": 748,
+      "before": 32,
+      "after": 0,
+      "world": [
+        598.7878787878788,
+        1872.4242424242425
+      ],
+      "source": [
+        272.17630853994484,
+        851.1019283746556
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 74.55168157669745,
+      "walkDistanceWorld": 757.8639348890164
+    },
+    {
+      "x": 1126,
+      "y": 748,
+      "before": 24,
+      "after": 0,
+      "world": [
+        599.3939393939395,
+        1872.4242424242425
+      ],
+      "source": [
+        272.4517906336088,
+        851.1019283746556
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 74.64088457139367,
+      "walkDistanceWorld": 757.7077757068586
+    },
+    {
+      "x": 1127,
+      "y": 748,
+      "before": 10,
+      "after": 0,
+      "world": [
+        600.0,
+        1872.4242424242425
+      ],
+      "source": [
+        272.7272727272727,
+        851.1019283746556
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 74.73008756608984,
+      "walkDistanceWorld": 757.5516165247008
+    },
+    {
+      "x": 1116,
+      "y": 749,
+      "before": 13,
+      "after": 0,
+      "world": [
+        593.3333333333334,
+        1873.030303030303
+      ],
+      "source": [
+        269.6969696969697,
+        851.3774104683195
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 73.48821512422498,
+      "walkDistanceWorld": 759.8549644615279
+    },
+    {
+      "x": 1117,
+      "y": 749,
+      "before": 25,
+      "after": 0,
+      "world": [
+        593.939393939394,
+        1873.030303030303
+      ],
+      "source": [
+        269.9724517906336,
+        851.3774104683195
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 73.57741761900007,
+      "walkDistanceWorld": 759.69880527937
+    },
+    {
+      "x": 1124,
+      "y": 749,
+      "before": 13,
+      "after": 0,
+      "world": [
+        598.1818181818182,
+        1873.030303030303
+      ],
+      "source": [
+        271.900826446281,
+        851.3774104683195
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 74.20183858187339,
+      "walkDistanceWorld": 758.6056910042656
+    },
+    {
+      "x": 1125,
+      "y": 749,
+      "before": 5,
+      "after": 0,
+      "world": [
+        598.7878787878788,
+        1873.030303030303
+      ],
+      "source": [
+        272.17630853994484,
+        851.3774104683195
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 74.29104157656957,
+      "walkDistanceWorld": 758.4495318221079
+    },
+    {
+      "x": 1115,
+      "y": 750,
+      "before": 18,
+      "after": 0,
+      "world": [
+        592.7272727272727,
+        1873.6363636363637
+      ],
+      "source": [
+        269.42148760330576,
+        851.6528925619834
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 73.1385931488979,
+      "walkDistanceWorld": 760.5967205767774
+    },
+    {
+      "x": 1116,
+      "y": 750,
+      "before": 10,
+      "after": 0,
+      "world": [
+        593.3333333333334,
+        1873.6363636363637
+      ],
+      "source": [
+        269.6969696969697,
+        851.6528925619834
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 73.2275746241759,
+      "walkDistanceWorld": 760.4405613946196
+    },
+    {
+      "x": 1124,
+      "y": 750,
+      "before": 35,
+      "after": 0,
+      "world": [
+        598.1818181818182,
+        1873.6363636363637
+      ],
+      "source": [
+        271.900826446281,
+        851.6528925619834
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 73.9411985817454,
+      "walkDistanceWorld": 759.1912879373574
+    },
+    {
+      "x": 1114,
+      "y": 751,
+      "before": 17,
+      "after": 0,
+      "world": [
+        592.1212121212121,
+        1874.2424242424242
+      ],
+      "source": [
+        269.14600550964184,
+        851.9283746556473
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 72.78937707517073,
+      "walkDistanceWorld": 761.3384766920268
+    },
+    {
+      "x": 1115,
+      "y": 751,
+      "before": 12,
+      "after": 0,
+      "world": [
+        592.7272727272727,
+        1874.2424242424242
+      ],
+      "source": [
+        269.42148760330576,
+        851.9283746556473
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 72.87778820151048,
+      "walkDistanceWorld": 761.182317509869
+    },
+    {
+      "x": 1124,
+      "y": 751,
+      "before": 14,
+      "after": 0,
+      "world": [
+        598.1818181818182,
+        1874.2424242424242
+      ],
+      "source": [
+        271.900826446281,
+        851.9283746556473
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 73.68055858161752,
+      "walkDistanceWorld": 759.7768848704491
+    },
+    {
+      "x": 1113,
+      "y": 752,
+      "before": 19,
+      "after": 0,
+      "world": [
+        591.5151515151515,
+        1874.848484848485
+      ],
+      "source": [
+        268.8705234159779,
+        852.2038567493113
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 72.44057277326341,
+      "walkDistanceWorld": 762.0802328072764
+    },
+    {
+      "x": 1114,
+      "y": 752,
+      "before": 9,
+      "after": 0,
+      "world": [
+        592.1212121212121,
+        1874.848484848485
+      ],
+      "source": [
+        269.14600550964184,
+        852.2038567493113
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 72.52836273557705,
+      "walkDistanceWorld": 761.9240736251186
+    },
+    {
+      "x": 1123,
+      "y": 752,
+      "before": 19,
+      "after": 0,
+      "world": [
+        597.5757575757575,
+        1874.848484848485
+      ],
+      "source": [
+        271.62534435261705,
+        852.2038567493113
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 73.33071558679333,
+      "walkDistanceWorld": 760.5186409856985
+    },
+    {
+      "x": 1112,
+      "y": 753,
+      "before": 10,
+      "after": 0,
+      "world": [
+        590.909090909091,
+        1875.4545454545455
+      ],
+      "source": [
+        268.59504132231405,
+        852.4793388429752
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 72.09218622001478,
+      "walkDistanceWorld": 762.8219889225256
+    },
+    {
+      "x": 1113,
+      "y": 753,
+      "before": 14,
+      "after": 0,
+      "world": [
+        591.5151515151515,
+        1875.4545454545455
+      ],
+      "source": [
+        268.8705234159779,
+        852.4793388429752
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 72.17934850494564,
+      "walkDistanceWorld": 762.6658297403679
+    },
+    {
+      "x": 1123,
+      "y": 753,
+      "before": 34,
+      "after": 0,
+      "world": [
+        597.5757575757575,
+        1875.4545454545455
+      ],
+      "source": [
+        271.62534435261705,
+        852.4793388429752
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 73.07007558666545,
+      "walkDistanceWorld": 761.1042379187901
+    },
+    {
+      "x": 1111,
+      "y": 754,
+      "before": 3,
+      "after": 0,
+      "world": [
+        590.3030303030303,
+        1876.060606060606
+      ],
+      "source": [
+        268.3195592286501,
+        852.754820936639
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 71.74422350112809,
+      "walkDistanceWorld": 763.5637450377751
+    },
+    {
+      "x": 1112,
+      "y": 754,
+      "before": 25,
+      "after": 0,
+      "world": [
+        590.909090909091,
+        1876.060606060606
+      ],
+      "source": [
+        268.59504132231405,
+        852.754820936639
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 71.83075150399773,
+      "walkDistanceWorld": 763.4075858556173
+    },
+    {
+      "x": 1123,
+      "y": 754,
+      "before": 33,
+      "after": 0,
+      "world": [
+        597.5757575757575,
+        1876.060606060606
+      ],
+      "source": [
+        271.62534435261705,
+        852.754820936639
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 72.80943558653757,
+      "walkDistanceWorld": 761.6898348518818
+    },
+    {
+      "x": 1111,
+      "y": 755,
+      "before": 34,
+      "after": 0,
+      "world": [
+        590.3030303030303,
+        1876.6666666666667
+      ],
+      "source": [
+        268.3195592286501,
+        853.030303030303
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 71.48257783680893,
+      "walkDistanceWorld": 764.1493419708669
+    },
+    {
+      "x": 1123,
+      "y": 755,
+      "before": 26,
+      "after": 0,
+      "world": [
+        597.5757575757575,
+        1876.6666666666667
+      ],
+      "source": [
+        271.62534435261705,
+        853.030303030303
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 72.54879558640958,
+      "walkDistanceWorld": 762.2754317849735
+    },
+    {
+      "x": 1103,
+      "y": 756,
+      "before": 34,
+      "after": 0,
+      "world": [
+        585.4545454545455,
+        1877.2727272727273
+      ],
+      "source": [
+        266.11570247933884,
+        853.3057851239669
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 70.5585863253216,
+      "walkDistanceWorld": 765.9842123612207
+    },
+    {
+      "x": 1104,
+      "y": 756,
+      "before": 33,
+      "after": 0,
+      "world": [
+        586.060606060606,
+        1877.2727272727273
+      ],
+      "source": [
+        266.3911845730027,
+        853.3057851239669
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 70.63797218164065,
+      "walkDistanceWorld": 765.828053179063
+    },
+    {
+      "x": 1110,
+      "y": 756,
+      "before": 9,
+      "after": 0,
+      "world": [
+        589.6969696969697,
+        1877.2727272727273
+      ],
+      "source": [
+        268.04407713498625,
+        853.3057851239669
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 71.1348337194764,
+      "walkDistanceWorld": 764.8910980861161
+    },
+    {
+      "x": 1111,
+      "y": 756,
+      "before": 5,
+      "after": 0,
+      "world": [
+        590.3030303030303,
+        1877.2727272727273
+      ],
+      "source": [
+        268.3195592286501,
+        853.3057851239669
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 71.2210365227785,
+      "walkDistanceWorld": 764.7349389039584
+    },
+    {
+      "x": 1123,
+      "y": 756,
+      "before": 19,
+      "after": 0,
+      "world": [
+        597.5757575757575,
+        1877.2727272727273
+      ],
+      "source": [
+        271.62534435261705,
+        853.3057851239669
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 72.2881555862817,
+      "walkDistanceWorld": 762.8610287180651
+    },
+    {
+      "x": 1103,
+      "y": 757,
+      "before": 22,
+      "after": 0,
+      "world": [
+        585.4545454545455,
+        1877.878787878788
+      ],
+      "source": [
+        266.11570247933884,
+        853.5812672176309
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 70.29468681329482,
+      "walkDistanceWorld": 766.5698092943124
+    },
+    {
+      "x": 1105,
+      "y": 757,
+      "before": 34,
+      "after": 0,
+      "world": [
+        586.6666666666667,
+        1877.878787878788
+      ],
+      "source": [
+        266.6666666666667,
+        853.5812672176309
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 70.45504094356785,
+      "walkDistanceWorld": 766.2574909299968
+    },
+    {
+      "x": 1110,
+      "y": 757,
+      "before": 33,
+      "after": 0,
+      "world": [
+        589.6969696969697,
+        1877.878787878788
+      ],
+      "source": [
+        268.04407713498625,
+        853.5812672176309
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 70.87307992636487,
+      "walkDistanceWorld": 765.4766950192079
+    },
+    {
+      "x": 1123,
+      "y": 757,
+      "before": 12,
+      "after": 0,
+      "world": [
+        597.5757575757575,
+        1877.878787878788
+      ],
+      "source": [
+        271.62534435261705,
+        853.5812672176309
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 72.02751558615373,
+      "walkDistanceWorld": 763.4466256511569
+    },
+    {
+      "x": 1103,
+      "y": 758,
+      "before": 13,
+      "after": 0,
+      "world": [
+        585.4545454545455,
+        1878.4848484848485
+      ],
+      "source": [
+        266.11570247933884,
+        853.8567493112947
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 70.03087651099636,
+      "walkDistanceWorld": 767.1554062274039
+    },
+    {
+      "x": 1106,
+      "y": 758,
+      "before": 25,
+      "after": 0,
+      "world": [
+        587.2727272727273,
+        1878.4848484848485
+      ],
+      "source": [
+        266.94214876033055,
+        853.8567493112947
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 70.27379338217868,
+      "walkDistanceWorld": 766.6869286809307
+    },
+    {
+      "x": 1110,
+      "y": 758,
+      "before": 30,
+      "after": 0,
+      "world": [
+        589.6969696969697,
+        1878.4848484848485
+      ],
+      "source": [
+        268.04407713498625,
+        853.8567493112947
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 70.61143058293128,
+      "walkDistanceWorld": 766.0622919522993
+    },
+    {
+      "x": 1123,
+      "y": 758,
+      "before": 6,
+      "after": 0,
+      "world": [
+        597.5757575757575,
+        1878.4848484848485
+      ],
+      "source": [
+        271.62534435261705,
+        853.8567493112947
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 71.76687558602583,
+      "walkDistanceWorld": 764.0322225842484
+    },
+    {
+      "x": 1098,
+      "y": 759,
+      "before": 4,
+      "after": 0,
+      "world": [
+        582.4242424242425,
+        1879.090909090909
+      ],
+      "source": [
+        264.73829201101927,
+        854.1322314049586
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 69.38074501885579,
+      "walkDistanceWorld": 768.5217990712842
+    },
+    {
+      "x": 1102,
+      "y": 759,
+      "before": 7,
+      "after": 0,
+      "world": [
+        584.8484848484849,
+        1879.090909090909
+      ],
+      "source": [
+        265.8402203856749,
+        854.1322314049586
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 69.68786757712549,
+      "walkDistanceWorld": 767.8971623426532
+    },
+    {
+      "x": 1106,
+      "y": 759,
+      "before": 9,
+      "after": 0,
+      "world": [
+        587.2727272727273,
+        1879.090909090909
+      ],
+      "source": [
+        266.94214876033055,
+        854.1322314049586
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 70.01098833617633,
+      "walkDistanceWorld": 767.2725256140221
+    },
+    {
+      "x": 1107,
+      "y": 759,
+      "before": 10,
+      "after": 0,
+      "world": [
+        587.8787878787879,
+        1879.090909090909
+      ],
+      "source": [
+        267.2176308539945,
+        854.1322314049586
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 70.09424255827417,
+      "walkDistanceWorld": 767.1163664318644
+    },
+    {
+      "x": 1110,
+      "y": 759,
+      "before": 29,
+      "after": 0,
+      "world": [
+        589.6969696969697,
+        1879.090909090909
+      ],
+      "source": [
+        268.04407713498625,
+        854.1322314049586
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 70.34988685460127,
+      "walkDistanceWorld": 766.647888885391
+    },
+    {
+      "x": 1123,
+      "y": 759,
+      "before": 4,
+      "after": 0,
+      "world": [
+        597.5757575757575,
+        1879.090909090909
+      ],
+      "source": [
+        271.62534435261705,
+        854.1322314049586
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 71.50623558589795,
+      "walkDistanceWorld": 764.61781951734
+    },
+    {
+      "x": 1276,
+      "y": 759,
+      "before": 1,
+      "after": 0,
+      "world": [
+        690.3030303030303,
+        1879.090909090909
+      ],
+      "source": [
+        313.77410468319556,
+        854.1322314049586
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 85.15429377441471,
+      "walkDistanceWorld": 737.2579852579852
+    },
+    {
+      "x": 1277,
+      "y": 759,
+      "before": 3,
+      "after": 0,
+      "world": [
+        690.909090909091,
+        1879.090909090909
+      ],
+      "source": [
+        314.04958677685954,
+        854.1322314049586
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 85.24349676911092,
+      "walkDistanceWorld": 737.061425061425
+    },
+    {
+      "x": 1278,
+      "y": 759,
+      "before": 2,
+      "after": 0,
+      "world": [
+        691.5151515151515,
+        1879.090909090909
+      ],
+      "source": [
+        314.3250688705234,
+        854.1322314049586
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 85.33269976380708,
+      "walkDistanceWorld": 736.8648648648647
+    },
+    {
+      "x": 1279,
+      "y": 759,
+      "before": 1,
+      "after": 0,
+      "world": [
+        692.1212121212121,
+        1879.090909090909
+      ],
+      "source": [
+        314.6005509641873,
+        854.1322314049586
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 85.42190275850326,
+      "walkDistanceWorld": 736.6683046683045
+    },
+    {
+      "x": 1098,
+      "y": 760,
+      "before": 12,
+      "after": 0,
+      "world": [
+        582.4242424242425,
+        1879.6969696969697
+      ],
+      "source": [
+        264.73829201101927,
+        854.4077134986226
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 69.11564230784812,
+      "walkDistanceWorld": 769.107396004376
+    },
+    {
+      "x": 1099,
+      "y": 760,
+      "before": 17,
+      "after": 0,
+      "world": [
+        583.030303030303,
+        1879.6969696969697
+      ],
+      "source": [
+        265.01377410468314,
+        854.4077134986226
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 69.19119971133243,
+      "walkDistanceWorld": 768.9512368222183
+    },
+    {
+      "x": 1102,
+      "y": 760,
+      "before": 33,
+      "after": 0,
+      "world": [
+        584.8484848484849,
+        1879.6969696969697
+      ],
+      "source": [
+        265.8402203856749,
+        854.4077134986226
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 69.4239376562717,
+      "walkDistanceWorld": 768.482759275745
+    },
+    {
+      "x": 1107,
+      "y": 760,
+      "before": 29,
+      "after": 0,
+      "world": [
+        587.8787878787879,
+        1879.6969696969697
+      ],
+      "source": [
+        267.2176308539945,
+        854.4077134986226
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 69.8318485511668,
+      "walkDistanceWorld": 767.7019633649563
+    },
+    {
+      "x": 1110,
+      "y": 760,
+      "before": 26,
+      "after": 0,
+      "world": [
+        589.6969696969697,
+        1879.6969696969697
+      ],
+      "source": [
+        268.04407713498625,
+        854.4077134986226
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 70.08844992372225,
+      "walkDistanceWorld": 767.2334858184829
+    },
+    {
+      "x": 1123,
+      "y": 760,
+      "before": 4,
+      "after": 0,
+      "world": [
+        597.5757575757575,
+        1879.6969696969697
+      ],
+      "source": [
+        271.62534435261705,
+        854.4077134986226
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 71.24559558576996,
+      "walkDistanceWorld": 765.2034164504317
+    },
+    {
+      "x": 1281,
+      "y": 760,
+      "before": 8,
+      "after": 0,
+      "world": [
+        693.3333333333334,
+        1879.6969696969697
+      ],
+      "source": [
+        315.1515151515151,
+        854.4077134986226
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 85.33966874776766,
+      "walkDistanceWorld": 736.8484848484849
+    },
+    {
+      "x": 1282,
+      "y": 760,
+      "before": 12,
+      "after": 0,
+      "world": [
+        693.939393939394,
+        1879.6969696969697
+      ],
+      "source": [
+        315.42699724517905,
+        854.4077134986226
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 85.42887174246385,
+      "walkDistanceWorld": 736.6519246519247
+    },
+    {
+      "x": 1283,
+      "y": 760,
+      "before": 14,
+      "after": 0,
+      "world": [
+        694.5454545454545,
+        1879.6969696969697
+      ],
+      "source": [
+        315.7024793388429,
+        854.4077134986226
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 85.51807473716003,
+      "walkDistanceWorld": 736.4553644553646
+    },
+    {
+      "x": 1284,
+      "y": 760,
+      "before": 14,
+      "after": 0,
+      "world": [
+        695.1515151515152,
+        1879.6969696969697
+      ],
+      "source": [
+        315.9779614325069,
+        854.4077134986226
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 85.60727773185623,
+      "walkDistanceWorld": 736.2588042588044
+    },
+    {
+      "x": 1285,
+      "y": 760,
+      "before": 11,
+      "after": 0,
+      "world": [
+        695.7575757575758,
+        1879.6969696969697
+      ],
+      "source": [
+        316.25344352617077,
+        854.4077134986226
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 85.69648072655241,
+      "walkDistanceWorld": 736.0622440622441
+    },
+    {
+      "x": 1286,
+      "y": 760,
+      "before": 9,
+      "after": 0,
+      "world": [
+        696.3636363636364,
+        1879.6969696969697
+      ],
+      "source": [
+        316.5289256198347,
+        854.4077134986226
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 85.7856837212486,
+      "walkDistanceWorld": 735.8656838656839
+    },
+    {
+      "x": 1287,
+      "y": 760,
+      "before": 6,
+      "after": 0,
+      "world": [
+        696.969696969697,
+        1879.6969696969697
+      ],
+      "source": [
+        316.8044077134986,
+        854.4077134986226
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 85.87488671594481,
+      "walkDistanceWorld": 735.6691236691237
+    },
+    {
+      "x": 1288,
+      "y": 760,
+      "before": 3,
+      "after": 0,
+      "world": [
+        697.5757575757576,
+        1879.6969696969697
+      ],
+      "source": [
+        317.07988980716254,
+        854.4077134986226
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 85.96408971064099,
+      "walkDistanceWorld": 735.4725634725636
+    },
+    {
+      "x": 1100,
+      "y": 761,
+      "before": 27,
+      "after": 0,
+      "world": [
+        583.6363636363636,
+        1880.3030303030303
+      ],
+      "source": [
+        265.28925619834706,
+        854.6831955922864
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 69.00333337710019,
+      "walkDistanceWorld": 769.3806745731523
+    },
+    {
+      "x": 1101,
+      "y": 761,
+      "before": 13,
+      "after": 0,
+      "world": [
+        584.2424242424242,
+        1880.3030303030303
+      ],
+      "source": [
+        265.564738292011,
+        854.6831955922864
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 69.0812107924726,
+      "walkDistanceWorld": 769.2245153909945
+    },
+    {
+      "x": 1108,
+      "y": 761,
+      "before": 28,
+      "after": 0,
+      "world": [
+        588.4848484848485,
+        1880.3030303030303
+      ],
+      "source": [
+        267.4931129476584,
+        854.6831955922864
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 69.65442712328992,
+      "walkDistanceWorld": 768.13140111589
+    },
+    {
+      "x": 1110,
+      "y": 761,
+      "before": 18,
+      "after": 0,
+      "world": [
+        589.6969696969697,
+        1880.3030303030303
+      ],
+      "source": [
+        268.04407713498625,
+        854.6831955922864
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 69.82712098986265,
+      "walkDistanceWorld": 767.8190827515745
+    },
+    {
+      "x": 1123,
+      "y": 761,
+      "before": 4,
+      "after": 0,
+      "world": [
+        597.5757575757575,
+        1880.3030303030303
+      ],
+      "source": [
+        271.62534435261705,
+        854.6831955922864
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 70.98495558564208,
+      "walkDistanceWorld": 765.7890133835234
+    },
+    {
+      "x": 1295,
+      "y": 761,
+      "before": 6,
+      "after": 0,
+      "world": [
+        701.8181818181818,
+        1880.3030303030303
+      ],
+      "source": [
+        319.00826446280985,
+        854.6831955922864
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 86.3278706733864,
+      "walkDistanceWorld": 734.6699426699427
+    },
+    {
+      "x": 1296,
+      "y": 761,
+      "before": 4,
+      "after": 0,
+      "world": [
+        702.4242424242425,
+        1880.3030303030303
+      ],
+      "source": [
+        319.28374655647383,
+        854.6831955922864
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 86.41707366808261,
+      "walkDistanceWorld": 734.4733824733825
+    },
+    {
+      "x": 1297,
+      "y": 761,
+      "before": 2,
+      "after": 0,
+      "world": [
+        703.030303030303,
+        1880.3030303030303
+      ],
+      "source": [
+        319.5592286501377,
+        854.6831955922864
+      ],
+      "topOwner": 20,
+      "apronBoundaryDistanceSource": 86.50627666277877,
+      "walkDistanceWorld": 734.2768222768223
+    },
+    {
+      "x": 1108,
+      "y": 762,
+      "before": 6,
+      "after": 0,
+      "world": [
+        588.4848484848485,
+        1880.909090909091
+      ],
+      "source": [
+        267.4931129476584,
+        854.9586776859504
+      ],
+      "topOwner": 10,
+      "apronBoundaryDistanceSource": 69.39255732183638,
+      "walkDistanceWorld": 768.7169980489817
+    },
+    {
+      "x": 1109,
+      "y": 762,
+      "before": 29,
+      "after": 0,
+      "world": [
+        589.0909090909091,
+        1880.909090909091
+      ],
+      "source": [
+        267.7685950413223,
+        854.9586776859504
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 69.478737216576,
+      "walkDistanceWorld": 768.5608388668242
+    },
+    {
+      "x": 1123,
+      "y": 762,
+      "before": 6,
+      "after": 0,
+      "world": [
+        597.5757575757575,
+        1880.909090909091
+      ],
+      "source": [
+        271.62534435261705,
+        854.9586776859504
+      ],
+      "topOwner": 18,
+      "apronBoundaryDistanceSource": 70.72431558551408,
+      "walkDistanceWorld": 766.3746103166152
+    }
+  ]
+}
