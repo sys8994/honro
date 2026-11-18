@@ -1,0 +1,490 @@
+{
+  "startup": [
+    {
+      "pose": "maximum",
+      "variant": "original",
+      "helperBytes": 260894,
+      "wholeRuntimeParseEvalWallMs": 3252.8000000000175,
+      "firstRenderMs": 47.10000000000582
+    },
+    {
+      "pose": "maximum",
+      "variant": "candidate",
+      "helperBytes": 262150,
+      "wholeRuntimeParseEvalWallMs": 3250.5999999999767,
+      "firstRenderMs": 30.099999999976717
+    },
+    {
+      "pose": "nativewalk",
+      "variant": "original",
+      "helperBytes": 260894,
+      "wholeRuntimeParseEvalWallMs": 3203.399999999994,
+      "firstRenderMs": 34
+    },
+    {
+      "pose": "nativewalk",
+      "variant": "candidate",
+      "helperBytes": 262150,
+      "wholeRuntimeParseEvalWallMs": 3212.899999999965,
+      "firstRenderMs": 33.09999999997672
+    }
+  ],
+  "startupScope": "Whole runtime script load/parse/eval wall before capture, not pure helperparse; source bytes separately recorded",
+  "passed": true,
+  "errors": [],
+  "rows": [
+    {
+      "pose": "maximum",
+      "frame": "first",
+      "camera": {
+        "x": 320,
+        "y": 1650,
+        "scale": 1.65
+      },
+      "changed": 0,
+      "alpha": 0,
+      "maxDelta": 0,
+      "bbox": null,
+      "originalMs": 47.10000000000582,
+      "candidateMs": 30.099999999976717,
+      "imageBitmap": {
+        "created": 1,
+        "closed": 0,
+        "bytes": 4062212,
+        "peakBytes": 4062212,
+        "transferMs": 2.900000000023283,
+        "closeMs": 0,
+        "unsupported": 0
+      },
+      "totalLogicalBytes": 8124436
+    },
+    {
+      "pose": "maximum",
+      "frame": "cold",
+      "camera": {
+        "x": 320,
+        "y": 1650,
+        "scale": 1.65
+      },
+      "changed": 0,
+      "alpha": 0,
+      "maxDelta": 0,
+      "bbox": null,
+      "originalMs": 7.099999999976717,
+      "candidateMs": 7,
+      "imageBitmap": {
+        "created": 3,
+        "closed": 2,
+        "bytes": 4062212,
+        "peakBytes": 4062212,
+        "transferMs": 9.000000000058208,
+        "closeMs": 0.40000000002328306,
+        "unsupported": 0
+      },
+      "totalLogicalBytes": 8124436
+    },
+    {
+      "pose": "maximum",
+      "frame": "pan0",
+      "camera": {
+        "x": 480,
+        "y": 1650,
+        "scale": 1.65
+      },
+      "changed": 0,
+      "alpha": 0,
+      "maxDelta": 0,
+      "bbox": null,
+      "originalMs": 7.100000000005821,
+      "candidateMs": 8.200000000011642,
+      "imageBitmap": {
+        "created": 4,
+        "closed": 3,
+        "bytes": 4062212,
+        "peakBytes": 4062212,
+        "transferMs": 11.800000000046566,
+        "closeMs": 0.5999999999767169,
+        "unsupported": 0
+      },
+      "totalLogicalBytes": 8124436
+    },
+    {
+      "pose": "maximum",
+      "frame": "pan1",
+      "camera": {
+        "x": 640,
+        "y": 1650,
+        "scale": 1.65
+      },
+      "changed": 0,
+      "alpha": 0,
+      "maxDelta": 0,
+      "bbox": null,
+      "originalMs": 5.100000000005821,
+      "candidateMs": 6.199999999953434,
+      "imageBitmap": {
+        "created": 5,
+        "closed": 4,
+        "bytes": 4062212,
+        "peakBytes": 4062212,
+        "transferMs": 14.800000000046566,
+        "closeMs": 0.7999999999883585,
+        "unsupported": 0
+      },
+      "totalLogicalBytes": 8124436
+    },
+    {
+      "pose": "maximum",
+      "frame": "pan2",
+      "camera": {
+        "x": 656,
+        "y": 1650,
+        "scale": 1.65
+      },
+      "changed": 0,
+      "alpha": 0,
+      "maxDelta": 0,
+      "bbox": null,
+      "originalMs": 4.7000000000116415,
+      "candidateMs": 5.800000000046566,
+      "imageBitmap": {
+        "created": 6,
+        "closed": 5,
+        "bytes": 4062212,
+        "peakBytes": 4062212,
+        "transferMs": 17.70000000006985,
+        "closeMs": 0.9000000000232831,
+        "unsupported": 0
+      },
+      "totalLogicalBytes": 8124436
+    },
+    {
+      "pose": "maximum",
+      "frame": "pan3",
+      "camera": {
+        "x": 656,
+        "y": 1666,
+        "scale": 1.65
+      },
+      "changed": 0,
+      "alpha": 0,
+      "maxDelta": 0,
+      "bbox": null,
+      "originalMs": 4.600000000005821,
+      "candidateMs": 6,
+      "imageBitmap": {
+        "created": 7,
+        "closed": 6,
+        "bytes": 4062212,
+        "peakBytes": 4062212,
+        "transferMs": 20.70000000006985,
+        "closeMs": 1.1000000000349246,
+        "unsupported": 0
+      },
+      "totalLogicalBytes": 8124436
+    },
+    {
+      "pose": "maximum",
+      "frame": "pan4",
+      "camera": {
+        "x": 656,
+        "y": 1650,
+        "scale": 1.65
+      },
+      "changed": 0,
+      "alpha": 0,
+      "maxDelta": 0,
+      "bbox": null,
+      "originalMs": 5.100000000005821,
+      "candidateMs": 6.399999999965075,
+      "imageBitmap": {
+        "created": 8,
+        "closed": 7,
+        "bytes": 4062212,
+        "peakBytes": 4062212,
+        "transferMs": 23.800000000046566,
+        "closeMs": 1.3000000000465661,
+        "unsupported": 0
+      },
+      "totalLogicalBytes": 8124436
+    },
+    {
+      "pose": "maximum",
+      "frame": "cached",
+      "camera": {
+        "x": 320,
+        "y": 1650,
+        "scale": 0.6
+      },
+      "changed": 0,
+      "alpha": 0,
+      "maxDelta": 0,
+      "bbox": null,
+      "originalMs": 287.29999999998836,
+      "candidateMs": 278.80000000004657,
+      "imageBitmap": {
+        "created": 8,
+        "closed": 8,
+        "bytes": 0,
+        "peakBytes": 4062212,
+        "transferMs": 23.800000000046566,
+        "closeMs": 1.6000000000349246,
+        "unsupported": 0
+      },
+      "totalLogicalBytes": 4918512
+    },
+    {
+      "pose": "maximum",
+      "frame": "nativeReturn",
+      "camera": {
+        "x": 320,
+        "y": 1650,
+        "scale": 1.65
+      },
+      "changed": 0,
+      "alpha": 0,
+      "maxDelta": 0,
+      "bbox": null,
+      "originalMs": 6.699999999982538,
+      "candidateMs": 6.7999999999883585,
+      "imageBitmap": {
+        "created": 9,
+        "closed": 8,
+        "bytes": 4062212,
+        "peakBytes": 4062212,
+        "transferMs": 26.90000000008149,
+        "closeMs": 1.6000000000349246,
+        "unsupported": 0
+      },
+      "totalLogicalBytes": 8124444
+    },
+    {
+      "pose": "nativewalk",
+      "frame": "first",
+      "camera": {
+        "x": 1689.6,
+        "y": 1342,
+        "scale": 1.65
+      },
+      "changed": 0,
+      "alpha": 0,
+      "maxDelta": 0,
+      "bbox": null,
+      "originalMs": 34,
+      "candidateMs": 33.09999999997672,
+      "imageBitmap": {
+        "created": 1,
+        "closed": 0,
+        "bytes": 4062212,
+        "peakBytes": 4062212,
+        "transferMs": 3.5,
+        "closeMs": 0,
+        "unsupported": 0
+      },
+      "totalLogicalBytes": 8124436
+    },
+    {
+      "pose": "nativewalk",
+      "frame": "cold",
+      "camera": {
+        "x": 1689.6,
+        "y": 1342,
+        "scale": 1.65
+      },
+      "changed": 0,
+      "alpha": 0,
+      "maxDelta": 0,
+      "bbox": null,
+      "originalMs": 8,
+      "candidateMs": 8,
+      "imageBitmap": {
+        "created": 3,
+        "closed": 2,
+        "bytes": 4062212,
+        "peakBytes": 4062212,
+        "transferMs": 10.699999999953434,
+        "closeMs": 0.6000000000349246,
+        "unsupported": 0
+      },
+      "totalLogicalBytes": 8124436
+    },
+    {
+      "pose": "nativewalk",
+      "frame": "pan0",
+      "camera": {
+        "x": 1849.6,
+        "y": 1342,
+        "scale": 1.65
+      },
+      "changed": 0,
+      "alpha": 0,
+      "maxDelta": 0,
+      "bbox": null,
+      "originalMs": 11.300000000017462,
+      "candidateMs": 6.599999999976717,
+      "imageBitmap": {
+        "created": 4,
+        "closed": 3,
+        "bytes": 4062212,
+        "peakBytes": 4062212,
+        "transferMs": 14.09999999991851,
+        "closeMs": 0.8000000000465661,
+        "unsupported": 0
+      },
+      "totalLogicalBytes": 8124436
+    },
+    {
+      "pose": "nativewalk",
+      "frame": "pan1",
+      "camera": {
+        "x": 2009.6,
+        "y": 1342,
+        "scale": 1.65
+      },
+      "changed": 0,
+      "alpha": 0,
+      "maxDelta": 0,
+      "bbox": null,
+      "originalMs": 4.7999999999883585,
+      "candidateMs": 6.100000000034925,
+      "imageBitmap": {
+        "created": 5,
+        "closed": 4,
+        "bytes": 4062212,
+        "peakBytes": 4062212,
+        "transferMs": 17.199999999953434,
+        "closeMs": 1.1000000000349246,
+        "unsupported": 0
+      },
+      "totalLogicalBytes": 8124436
+    },
+    {
+      "pose": "nativewalk",
+      "frame": "pan2",
+      "camera": {
+        "x": 2025.6,
+        "y": 1342,
+        "scale": 1.65
+      },
+      "changed": 0,
+      "alpha": 0,
+      "maxDelta": 0,
+      "bbox": null,
+      "originalMs": 5.100000000005821,
+      "candidateMs": 6.7000000000116415,
+      "imageBitmap": {
+        "created": 6,
+        "closed": 5,
+        "bytes": 4062212,
+        "peakBytes": 4062212,
+        "transferMs": 20.29999999998836,
+        "closeMs": 1.5000000000582077,
+        "unsupported": 0
+      },
+      "totalLogicalBytes": 8124436
+    },
+    {
+      "pose": "nativewalk",
+      "frame": "pan3",
+      "camera": {
+        "x": 2025.6,
+        "y": 1358,
+        "scale": 1.65
+      },
+      "changed": 0,
+      "alpha": 0,
+      "maxDelta": 0,
+      "bbox": null,
+      "originalMs": 5.600000000005821,
+      "candidateMs": 6.2999999999883585,
+      "imageBitmap": {
+        "created": 7,
+        "closed": 6,
+        "bytes": 4062212,
+        "peakBytes": 4062212,
+        "transferMs": 23.400000000023283,
+        "closeMs": 1.7000000000116415,
+        "unsupported": 0
+      },
+      "totalLogicalBytes": 8124436
+    },
+    {
+      "pose": "nativewalk",
+      "frame": "pan4",
+      "camera": {
+        "x": 2025.6,
+        "y": 1342,
+        "scale": 1.65
+      },
+      "changed": 0,
+      "alpha": 0,
+      "maxDelta": 0,
+      "bbox": null,
+      "originalMs": 5.2999999999883585,
+      "candidateMs": 6.7000000000116415,
+      "imageBitmap": {
+        "created": 8,
+        "closed": 7,
+        "bytes": 4062212,
+        "peakBytes": 4062212,
+        "transferMs": 26.599999999976717,
+        "closeMs": 1.900000000023283,
+        "unsupported": 0
+      },
+      "totalLogicalBytes": 8124436
+    },
+    {
+      "pose": "nativewalk",
+      "frame": "cached",
+      "camera": {
+        "x": 1689.6,
+        "y": 1342,
+        "scale": 0.6
+      },
+      "changed": 0,
+      "alpha": 0,
+      "maxDelta": 0,
+      "bbox": null,
+      "originalMs": 383.5,
+      "candidateMs": 369.9000000000233,
+      "imageBitmap": {
+        "created": 8,
+        "closed": 8,
+        "bytes": 0,
+        "peakBytes": 4062212,
+        "transferMs": 26.599999999976717,
+        "closeMs": 2.2000000000116415,
+        "unsupported": 0
+      },
+      "totalLogicalBytes": 4918512
+    },
+    {
+      "pose": "nativewalk",
+      "frame": "nativeReturn",
+      "camera": {
+        "x": 1689.6,
+        "y": 1342,
+        "scale": 1.65
+      },
+      "changed": 0,
+      "alpha": 0,
+      "maxDelta": 0,
+      "bbox": null,
+      "originalMs": 9.5,
+      "candidateMs": 7.599999999976717,
+      "imageBitmap": {
+        "created": 9,
+        "closed": 8,
+        "bytes": 4062212,
+        "peakBytes": 4062212,
+        "transferMs": 30.29999999998836,
+        "closeMs": 2.2000000000116415,
+        "unsupported": 0
+      },
+      "totalLogicalBytes": 8124444
+    }
+  ],
+  "scope": "Four-page ImageBitmap diagnostic; all frameRGBA exact required, readback-influenced timing not clean performance/acceptance",
+  "qualityAccepted": false,
+  "performanceAccepted": false
+}
