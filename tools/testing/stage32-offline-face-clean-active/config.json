@@ -1,0 +1,37 @@
+{
+  "baselineRef": "126a2b5600f31bd686c79caef1e7c91dffd7759f",
+  "candidateRef": "126a2b5600f31bd686c79caef1e7c91dffd7759f",
+  "candidateRegisteredHelperSHA256": "2cbc7689548b871021ebcf5c4190052029bac510a65cc16ef5ed10290ea828e5",
+  "readyForCI": true,
+  "poses": [
+    {
+      "name": "maximum-live",
+      "width": 1331,
+      "height": 763,
+      "x": 320,
+      "y": 1650,
+      "scale": 1.65
+    }
+  ],
+  "order": [
+    "control",
+    "candidate",
+    "candidate",
+    "control"
+  ],
+  "cold": 5,
+  "warm": 30,
+  "pan": 60,
+  "sourceCommit": "126a2b5600f31bd686c79caef1e7c91dffd7759f",
+  "candidateHelperSHA256": "6823eda0e8d3c5250396c857f09f96ee3eba8fbfba124af540d080a5a76d03c7",
+  "candidatePilotSHA256": "636b0562211ab2ee8b0018bc8c6ea8a584653c99ccaad5c76cd0d6ca5bd819c8",
+  "registeredPilotSHA256": "2296c1edc9d316cbca882b8ed350c73aeb2668c9c8a659b15c754db3200efb7b",
+  "controlHelperSHA256": "8c8fd33fc74ea89cca7895d01bd96b6a0928330b3b531a3c55671a181d3bbdc2",
+  "qualityEvidence": {
+    "run": 44294047688,
+    "sha256": "167832ad1c1f407e8557a1edd14fc09902709f211dea98b8c0bf695f4fa090f8",
+    "file": "quality-evidence.json",
+    "scope": "Actual2 max/above alpha-upper-empty pass; partialforeground/allviews/highDPR unverified",
+    "qualityAccepted": false
+  }
+}
