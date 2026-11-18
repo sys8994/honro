@@ -22,7 +22,7 @@ jobs:
           browser=$(command -v google-chrome || command -v chromium)
           for variant in baseline candidate; do
             node tests/stage3-repair-study-fixture.mjs "$RUNNER_TEMP/$variant" 3 "$variant"
-            for view in portrait-bl desktop-br pier-close terrain-close; do
+            for view in portrait-bl desktop-br pier-close terrain-close pier-native; do
               name="stage3-$variant-$view"
               timeout 300s "$browser" --headless --no-first-run --no-default-browser-check --force-device-scale-factor=1 --virtual-time-budget=60000 --user-data-dir="$RUNNER_TEMP/profile-$name" --dump-dom "file://$RUNNER_TEMP/$variant/$name.html" > "$RUNNER_TEMP/$name.html"
               node tests/stage3-repair-study-result.mjs "$RUNNER_TEMP/$name.html" "$RUNNER_TEMP/evidence" 3 "$variant" "$view"

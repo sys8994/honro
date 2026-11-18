@@ -7,7 +7,7 @@ import {runtimeEntries,root} from '../shared/build.mjs';
 const out=process.argv[2];
 if(!out)throw Error('Usage: node tests/actual-scene-browser-fixture.mjs OUTPUT_DIRECTORY [23,26,29|32]');
 const stages=(process.argv[3]||'3,7').split(',').map(Number),variant=process.argv[4];
-const cases={3:['portrait-bl','desktop-br','pier-close','terrain-close']};
+const cases={3:['portrait-bl','desktop-br','pier-close','terrain-close','pier-native']};
 if(!stages.length||new Set(stages).size!==stages.length||stages.some(id=>!cases[id])||!['baseline','candidate'].includes(variant))throw Error('Unsupported inspection');
 await mkdir(out,{recursive:true});
 // runtimeParts is exactly runtimeEntries(...).map(entry=>entry.code). Names allow safe deduplication.
@@ -73,6 +73,7 @@ async function capture(id,runtimeSha256,variant,view){
   const scene=new HonroScene(cv);
   Object.assign(scene,{x:view.endsWith('br')?stage.width:0,y:view.endsWith('tl')?0:stage.height,scale:HonroBounds.zoomLimits(W).min,manual:true,time:2,editorView:false,skillPreview:false});
   if(view==='pier-close')Object.assign(scene,{x:553*3.23,y:610*3.23,scale:1.05});
+  if(view==='pier-native')Object.assign(scene,{x:553*3.23,y:610*3.23,scale:1.65});
   if(view==='terrain-close')Object.assign(scene,{x:1774*3.23,y:760*3.23,scale:.65});
   HonroBounds.constrain(scene,b);
   const camera={x:scene.x,y:scene.y,scale:scene.scale},before=JSON.stringify(b);
@@ -89,8 +90,13 @@ async function capture(id,runtimeSha256,variant,view){
  }catch(e){publishProbe({ok:false,stage:id,error:String(e.stack||e),...p});}
 }
 const script=s=>'<script>'+s.replace(/<\/script/gi,'<\\/script')+'</script>';
+// Study-only renderer change: paint-domain union does not mutate battle bounds.
+const paintAnchor='domain=b.honroTerrainBounds,';
+const paintUnion=`domain=(()=>{const d={...b.honroTerrainBounds};if(b.honroStage===3)for(const l of G.HonroTerrainDomain.materialLandmarks(b)){const q=this._landmarkPaintBounds(l);if(q){d.left=Math.min(d.left,q.left);d.top=Math.min(d.top,q.top);d.right=Math.max(d.right,q.right);d.bottom=Math.max(d.bottom,q.bottom);}}return d;})(),`;
+if(runtime.split(paintAnchor).length!==2)throw Error('Unexpected paint-domain anchor count');
+const studyRuntime=variant==='candidate'?runtime.replace(paintAnchor,paintUnion):runtime;
 const captureList=[];for(const id of stages)for(const view of cases[id]){
- const stageRuntime=id===32?runtime+'\n;\n'+act4Extra.join('\n;\n'):runtime;
+ const stageRuntime=id===32?studyRuntime+'\n;\n'+act4Extra.join('\n;\n'):studyRuntime;
  const stageRuntimeSha256=createHash('sha256').update(stageRuntime).digest('hex');
  const html='<!doctype html><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src \'none\'; script-src \'unsafe-inline\'; style-src \'unsafe-inline\'; img-src data:; font-src data:; connect-src \'none\'"><title>Isolated production Scene diagnostic</title><style>body{margin:0}canvas{width:1331px;height:763px}</style><canvas id="scene"></canvas><pre id="result">pending</pre>'+script('('+bootstrap.toString()+')('+id+');')+script(stageRuntime)+script('globalThis.naruBodyStudy='+naruBodyStudy.toString()+';')+script('('+capture.toString()+')('+id+','+JSON.stringify(stageRuntimeSha256)+','+JSON.stringify(variant)+','+JSON.stringify(view)+');');
  captureList.push({stage:id,variant,view});await writeFile(path.join(out,`stage${id}-${variant}-${view}.html`),html);
