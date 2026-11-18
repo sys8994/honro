@@ -1,0 +1,141 @@
+{
+  "workflowRun": 44292746267,
+  "job": 134761827485,
+  "status": "success",
+  "artifact": 14421249013,
+  "artifactZIPsha256": "c879a2909c2f2030e4071ef8669b706f012b19a596a149a73c18e98c840923c8",
+  "baseline": "5b2edf0b868a6f4ab656574b036586304eb12808",
+  "candidate": "abdef6fc12042714f02d8ea2bf3b2c80757273f0",
+  "all50CodecExact": true,
+  "fortyNineWholeBattleExact": true,
+  "stage3OnlyExplicitApprovedArt": true,
+  "repeat": {
+    "camera": {
+      "baselineFirstLastEqual": true,
+      "candidateFirstLastEqual": true
+    },
+    "physics": {
+      "baselineFirstLastEqual": true,
+      "candidateFirstLastEqual": true
+    },
+    "pngSHA": {
+      "baselineFirstLastEqual": true,
+      "candidateFirstLastEqual": true
+    }
+  },
+  "lifecycleStops": [
+    {
+      "variant": "baseline",
+      "rows": [
+        {
+          "phase": "stopped",
+          "id": 3,
+          "pendingRAF": 2,
+          "sceneNull": true,
+          "engineNull": true,
+          "observedReachableCanvasBytes": 33703796,
+          "observedReachableCanvasCount": 26,
+          "priorSceneRefsStillLive": 1
+        },
+        {
+          "phase": "stopped",
+          "id": 7,
+          "pendingRAF": 2,
+          "sceneNull": true,
+          "engineNull": true,
+          "observedReachableCanvasBytes": 59342736,
+          "observedReachableCanvasCount": 45,
+          "priorSceneRefsStillLive": 1
+        },
+        {
+          "phase": "stopped",
+          "id": 32,
+          "pendingRAF": 2,
+          "sceneNull": true,
+          "engineNull": true,
+          "observedReachableCanvasBytes": 94394812,
+          "observedReachableCanvasCount": 72,
+          "priorSceneRefsStillLive": 2
+        },
+        {
+          "phase": "stopped",
+          "id": 3,
+          "pendingRAF": 2,
+          "sceneNull": true,
+          "engineNull": true,
+          "observedReachableCanvasBytes": 110706244,
+          "observedReachableCanvasCount": 85,
+          "priorSceneRefsStillLive": 3
+        },
+        {
+          "phase": "menu",
+          "id": null,
+          "pendingRAF": 2,
+          "sceneNull": true,
+          "engineNull": true,
+          "observedReachableCanvasBytes": 106377920,
+          "observedReachableCanvasCount": 82,
+          "priorSceneRefsStillLive": 3
+        }
+      ]
+    },
+    {
+      "variant": "candidate",
+      "rows": [
+        {
+          "phase": "stopped",
+          "id": 3,
+          "pendingRAF": 2,
+          "sceneNull": true,
+          "engineNull": true,
+          "observedReachableCanvasBytes": 33703796,
+          "observedReachableCanvasCount": 26,
+          "priorSceneRefsStillLive": 1
+        },
+        {
+          "phase": "stopped",
+          "id": 7,
+          "pendingRAF": 2,
+          "sceneNull": true,
+          "engineNull": true,
+          "observedReachableCanvasBytes": 59342736,
+          "observedReachableCanvasCount": 45,
+          "priorSceneRefsStillLive": 1
+        },
+        {
+          "phase": "stopped",
+          "id": 32,
+          "pendingRAF": 2,
+          "sceneNull": true,
+          "engineNull": true,
+          "observedReachableCanvasBytes": 94394812,
+          "observedReachableCanvasCount": 72,
+          "priorSceneRefsStillLive": 2
+        },
+        {
+          "phase": "stopped",
+          "id": 3,
+          "pendingRAF": 2,
+          "sceneNull": true,
+          "engineNull": true,
+          "observedReachableCanvasBytes": 110706244,
+          "observedReachableCanvasCount": 85,
+          "priorSceneRefsStillLive": 3
+        },
+        {
+          "phase": "menu",
+          "id": null,
+          "pendingRAF": 2,
+          "sceneNull": true,
+          "engineNull": true,
+          "observedReachableCanvasBytes": 106377920,
+          "observedReachableCanvasCount": 82,
+          "priorSceneRefsStillLive": 3
+        }
+      ]
+    }
+  ],
+  "evidenceFiles": [],
+  "visualStatus": "overview/native observed improved; existing highDPR is interior only, right walking endpoint supplement pending",
+  "deployed": false
+}
