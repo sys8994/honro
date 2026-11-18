@@ -101,6 +101,9 @@ async function capture(candidate,closure,join,sourceContract,runtimeSha,variant,
    // Same final role ordering as the independently checked lower-role fixture.
    {const ch=v.root.children,indices=ch.map((n,i)=>n.clipPath==='nonwalk-envelope'?i:-1).filter(i=>i>=0);assert(indices.length===1,'Exactly one authored lower layer required');
     const lower=ch.splice(indices[0],1)[0],sourceIndex=ch.findIndex(n=>n.tag==='use'&&n.symbol==='source');assert(sourceIndex>=0,'Source required');ch.splice(sourceIndex+1,0,lower);}
+   // Same final role ordering as the independently checked lower-role fixture.
+   {const ch=v.root.children,indices=ch.map((n,i)=>n.clipPath==='nonwalk-envelope'?i:-1).filter(i=>i>=0);assert(indices.length===1,'Exactly one authored lower layer required');
+    const lower=ch.splice(indices[0],1)[0],sourceIndex=ch.findIndex(n=>n.tag==='use'&&n.symbol==='source');assert(sourceIndex>=0,'Source required');ch.splice(sourceIndex+1,0,lower);}
    if(['closure','joined'].includes(variant)){
     const index=v.root.children.findIndex(n=>n.tag==='use'&&n.symbol==='source');assert(index>=0,'Foreground source missing');
     v.clips[closure.clipId]=plain(closure.clip);v.root.children.unshift(plain(closure.root)); // Same reviewed layer candidate: below all lower/side backing.
