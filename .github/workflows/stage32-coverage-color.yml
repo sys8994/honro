@@ -1,7 +1,12 @@
 name: Diagnose Stage32 gray compound edge coverage
 on:
+  workflow_dispatch:
   push:
     branches: ['inspect/stage32-scanline-20261118']
+    paths:
+      - tests/stage32-coverage-*
+      - tests/fixtures/stage32-coverage-*
+      - .github/workflows/stage32-coverage-color.yml
 permissions:
   contents: read
 jobs:
