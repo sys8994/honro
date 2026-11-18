@@ -1,0 +1,40 @@
+name: Stage32 registered nine-view exact art parity
+on:
+  workflow_dispatch:
+  push:
+    branches: [art/stage7-semantic-rock-study-20261117]
+    paths: ['tools/testing/stage32-nineview/**', '.github/workflows/stage32-registered-nineview.yml']
+permissions:
+  contents: read
+jobs:
+  visual:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      HONRO_ACT4_RELEASE: '1'
+      HONRO_ACT5_RELEASE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with: {path: candidate}
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with: {path: baseline, ref: 9f78358e58bfaa914b8b76d3f0272412057b4b91}
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with: {node-version: '22', package-manager-cache: false}
+      - run: npm ci && npm ci --prefix game
+        working-directory: candidate
+      - run: npm ci && npm ci --prefix game
+        working-directory: baseline
+      - name: Own runtime baseline and registered nine-view captures
+        run: |
+          node candidate/tools/testing/stage32-nineview/fixture.mjs baseline "$RUNNER_TEMP/base" baseline
+          node candidate/tools/testing/stage32-nineview/run.mjs "$RUNNER_TEMP/base" artifacts/base
+          node candidate/tools/testing/stage32-nineview/fixture.mjs candidate "$RUNNER_TEMP/new" registered
+          node candidate/tools/testing/stage32-nineview/run.mjs "$RUNNER_TEMP/new" artifacts/new
+      - run: python -m pip install Pillow
+      - name: Exact original research parity and before-after evidence
+        run: |
+          python candidate/tools/testing/stage32-nineview/diff.py artifacts/base artifacts/new
+          node candidate/tools/testing/stage32-nineview/check.mjs artifacts/new
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with: {name: stage32-registered-nineview, path: artifacts, if-no-files-found: error}
