@@ -4,8 +4,16 @@ on:
   push:
     branches: [inspect/stage32-scanline-20261118]
     paths:
-      - tests/stage32-bodyguard-*
-      - tests/fixtures/stage32-bodyguard-*
+      - tests/stage32-bodyguard-fixture.mjs
+      - tests/stage32-bodyguard-result.mjs
+      - tests/stage32-bodyguard-compare.mjs
+      - tests/stage32-bodyguard-replay.mjs
+      - tests/stage32-bodyguard-static-contract.mjs
+      - tests/stage32-bodyguard-source-fixture.mjs
+      - tests/stage32-bodyguard-source-result.mjs
+      - tests/fixtures/stage32-bodyguard-candidate.js
+      - tests/fixtures/stage32-bodyguard-golden.json
+      - tests/fixtures/stage32-bodyguard-coverage.svgpath
       - .github/workflows/stage32-bodyguard-experiment.yml
 permissions:
   contents: read

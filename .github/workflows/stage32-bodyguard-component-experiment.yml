@@ -1,0 +1,38 @@
+name: Stage32 actual tile component and support counterfactual
+on:
+  workflow_dispatch:
+  push:
+    branches: [inspect/stage32-scanline-20261118]
+    paths:
+      - tests/stage32-bodyguard-component-*
+      - tests/fixtures/stage32-bodyguard-component-*
+      - .github/workflows/stage32-bodyguard-component-experiment.yml
+permissions:
+  contents: read
+jobs:
+  narrow:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm ci
+      - name: Original source-bound isolated component fixture
+        run: node tests/stage32-bodyguard-component-fixture.mjs "$RUNNER_TEMP/buried-input"
+      - name: One actual Chrome source-only no-op, gray and foreground-tag probe
+        shell: bash
+        run: |
+          browser=$(command -v google-chrome || command -v chromium)
+          mkdir -p "$RUNNER_TEMP/narrow-evidence"
+          "$browser" --version > "$RUNNER_TEMP/narrow-evidence/chrome-version.txt"
+          timeout 150s node tests/stage32-registered-one-probe.mjs "$browser" "$RUNNER_TEMP/buried-profile" "$RUNNER_TEMP/buried-input/probe.html" "$RUNNER_TEMP/narrow-evidence/probe"
+          node tests/stage32-bodyguard-component-result.mjs "$RUNNER_TEMP/narrow-evidence/probe/result.html" "$RUNNER_TEMP/narrow-evidence"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage32-bodyguard-component-experiment
+          path: ${{ runner.temp }}/narrow-evidence
+          if-no-files-found: warn
