@@ -27,6 +27,10 @@ export function finishNaruBody(core,{palette=true,exterior=true}={}){
  // silhouette/control points stay exact beyond the original source edge.
  const joinGradient=color=>({type:'linear',x1:1740,y1:0,x2:1774,y2:0,stops:[{offset:0,color,opacity:0},{offset:1,color,opacity:1}]});
  result.gradients={...result.gradients,naruJoinRim:joinGradient('#51533a'),naruJoinGrass:joinGradient('#70884a'),naruJoinRock:joinGradient('#213d40')};
+ // Keep the original solid shader outside the bounded internal overlap.
+ // A whole-path saturated gradient needlessly perturbs far-edge AA pixels.
+ result.clips={...result.clips,'naru-join-fade':['M1740 620H1774V720H1740Z'],'naru-join-solid':['M1774 620H3000V720H1774Z']};
+ const localized=(node,color)=>({tag:'g',children:[{...node,clipPath:'naru-join-fade'},{...node,fill:color,clipPath:'naru-join-solid'}]});
  const rightRim=p('url(#naruJoinRim)',`M1740 631H1770C1792 631 1806 637 1834 638H${R}V646L2101 647 2055 645 1989 648 1903 645 1830 647C1808 647 1793 645 1770 647H1740Z`);
  const rightGrass=p('url(#naruJoinGrass)',`M1740 634H1770C1790 634 1808 640 1834 641L1903 640 1989 642 2055 640 2101 642 ${R} 641V644L2101 645 2055 643 1989 645 1903 643 1834 644C1808 644 1790 641 1770 641H1740Z`);
  // Closed narrow fill ribbons keep the timber finish explicit in material geometry.
@@ -39,11 +43,11 @@ export function finishNaruBody(core,{palette=true,exterior=true}={}){
  // side tails are equally solid below y723(left)/708(right). Cap only
  // synthetic AA closures in that nonwalkable solid-color area, after source.
  const seamBase=p('#142c2f','M-1 885H1775V889H-1Z M-1 723H2V887H-1Z M1772 708H1776V887H1772Z M1772 495H1776V631H1772Z M1772 647H1776V668H1772Z');
- const join={tag:'g',children:[seamBase,rightRim,rightGrass]};
+ const join={tag:'g',children:[seamBase,localized(rightRim,'#51533a'),localized(rightGrass,'#70884a')]};
  const rockJoin=p('url(#naruJoinRock)','M1740 668H1777V716H1740Z');
  const original=result.root.children.find(n=>n.tag==='use'&&n.symbol==='source');
  if(!original)throw Error('Expected untouched source use');
- result.root={tag:'g',children:[base,left,right,...strata,original,join,rockJoin,woodGrain]};
+ result.root={tag:'g',children:[base,left,right,...strata,original,join,localized(rockJoin,'#213d40'),woodGrain]};
  for(const key of Object.keys(result.clips))if(key.startsWith('site-edge-'))delete result.clips[key];
  result.viewBox=[-1200,0,4174,4887];
  return result;
