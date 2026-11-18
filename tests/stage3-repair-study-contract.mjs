@@ -4,8 +4,8 @@ const core={...original,root:{tag:'g',children:[{tag:'use',symbol:'source'},{tag
 const before=JSON.stringify(core),next=naruBodyStudy(core,{palette:true,exterior:true});assert.equal(JSON.stringify(core),before,'Input mutation');
 const geometry=o=>JSON.stringify(o,(k,v)=>k==='fill'?undefined:v);
 assert.equal(geometry(core.symbols.source),geometry(next.symbols.source),'Source paths/transforms/clips changed');
-assert.deepEqual(next.clips,original.clips,'Source clip changed');assert.deepEqual(next.root.children.at(-2),{tag:'use',symbol:'source'});
+assert.deepEqual(next.clips,original.clips,'Source clip changed');assert.deepEqual(next.root.children.at(-3),{tag:'use',symbol:'source'});
 assert(!next.root.children.some(n=>n.clipPath?.startsWith('site-edge-')),'Stretched edge retained');
-const paletteOnly=naruBodyStudy(core,{palette:true});assert.deepEqual(paletteOnly.viewBox,core.viewBox);assert.deepEqual(paletteOnly.root,core.root);
-const exteriorOnly=naruBodyStudy(core,{exterior:true});assert.deepEqual(exteriorOnly.symbols,core.symbols);
+const paletteOnly=naruBodyStudy(core,{palette:true,exterior:false});assert.deepEqual(paletteOnly.viewBox,core.viewBox);assert.deepEqual(paletteOnly.root,core.root);
+const exteriorOnly=naruBodyStudy(core,{palette:false,exterior:true});assert.deepEqual(exteriorOnly.symbols,core.symbols);
 console.log(JSON.stringify({inputUnchanged:true,sourceGeometryUnchanged:true,sourceClipsUnchanged:true,sourceColorsOnly:true,stretchedEdgesRemoved:true,visualAcceptance:false}));

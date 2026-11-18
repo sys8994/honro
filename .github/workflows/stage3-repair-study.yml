@@ -16,12 +16,24 @@ jobs:
           package-manager-cache: false
       - run: npm ci && npm ci --prefix game
       - run: node tests/stage3-repair-study-contract.mjs
+      - name: Prepare exact published source baseline
+        shell: bash
+        run: |
+          git fetch --depth=1 origin 7d238d20663c3ceffe430eb0304e01516ae625cf
+          git worktree add --detach "$RUNNER_TEMP/baseline-source" 7d238d20663c3ceffe430eb0304e01516ae625cf
+          ln -s "$GITHUB_WORKSPACE/node_modules" "$RUNNER_TEMP/baseline-source/node_modules"
+          ln -s "$GITHUB_WORKSPACE/game/node_modules" "$RUNNER_TEMP/baseline-source/game/node_modules"
+          cp tests/stage3-repair-study-fixture.mjs "$RUNNER_TEMP/baseline-source/tests/stage3-repair-study-fixture.mjs"
       - name: Render unchanged public runtime and isolated visual study
         shell: bash
         run: |
           browser=$(command -v google-chrome || command -v chromium)
           for variant in baseline candidate; do
-            node tests/stage3-repair-study-fixture.mjs "$RUNNER_TEMP/$variant" 3 "$variant"
+            if [ "$variant" = baseline ]; then
+              (cd "$RUNNER_TEMP/baseline-source" && node tests/stage3-repair-study-fixture.mjs "$RUNNER_TEMP/$variant" 3 "$variant")
+            else
+              node tests/stage3-repair-study-fixture.mjs "$RUNNER_TEMP/$variant" 3 "$variant"
+            fi
             for view in portrait-bl desktop-br pier-close terrain-close pier-native; do
               name="stage3-$variant-$view"
               timeout 300s "$browser" --headless --no-first-run --no-default-browser-check --force-device-scale-factor=1 --virtual-time-budget=60000 --user-data-dir="$RUNNER_TEMP/profile-$name" --dump-dom "file://$RUNNER_TEMP/$variant/$name.html" > "$RUNNER_TEMP/$name.html"

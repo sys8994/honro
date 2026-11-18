@@ -2,7 +2,6 @@
 import {mkdir,writeFile,readFile} from 'node:fs/promises';
 import path from 'node:path';
 import {createHash} from 'node:crypto';
-import {naruBodyStudy} from './fixtures/naru-body-study.mjs';
 import {runtimeEntries,root} from '../shared/build.mjs';
 const out=process.argv[2];
 if(!out)throw Error('Usage: node tests/actual-scene-browser-fixture.mjs OUTPUT_DIRECTORY [23,26,29|32]');
@@ -46,14 +45,11 @@ async function capture(id,runtimeSha256,variant,view){
   assert(devicePixelRatio===1,'DPR must be 1');
   const project=HONRO_PROJECT,stage=project.stages.find(s=>s.metadata?.stageId===id);
   assert(stage,'Missing production stage');
-  const stageBefore=JSON.stringify(stage);
-  if(variant==='candidate'){
-   const art=project.library.find(a=>a.id==='act1-site:3:body');
-   assert(art,'Missing BODY');
-   const next=globalThis.naruBodyStudy(art.vector,{palette:true,exterior:true});
-   art.vector=next;const [x,y,w,h]=next.viewBox;art.bounds={x,y,w,h};art.reference.bounds={x,y,w,h};
-  }
-  assert(JSON.stringify(stage)===stageBefore,'Authored stage changed');
+  const art=project.library.find(a=>a.id==='act1-site:3:body');
+  assert(art,'Missing BODY');
+  const paintFlags={extended:art.params?.paintBeyondTerrainDomain===true,omitted:art.params?.omitTerrainClosureIds||[]};
+  assert(paintFlags.extended===(variant==='candidate'),'Unexpected production BODY registration');
+  assert(JSON.stringify(paintFlags.omitted)===JSON.stringify(variant==='candidate'?['ferry-ground']:[]),'Unexpected closure flag');
   HonroMaps.compile(stage,project); // Match Native setup order.
   const b=id===32?HonroMaps.createBattle(stage,project,HonroProfileStore.fresh()):HonroMaps.createBattle(stage,project);HonroStageRules.sanitizeStageBattle(b);
   let tideSnapshot=null;
@@ -86,21 +82,14 @@ async function capture(id,runtimeSha256,variant,view){
   assert(!p.storage.length&&!p.errors.length&&!p.violations.length,'Storage/runtime/CSP error');
   assert(!p.images.some(v=>v.pending||v.error),'Pending or failed image');
   const hash=async s=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s))),v=>v.toString(16).padStart(2,'0')).join('');
-  publishProbe({ok:true,scope:'Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.',stage:id,variant,...(id===32?{tideSnapshot,appReadyUnresolved:true,initialization:'Official coast.tide; fresh in-memory profile; no App launch or event progression'}:{}),view,width:W,height:H,dpr:devicePixelRatio,camera,time:2,seed:3910,runtimeSha256,physicsSha256:await hash(physics),renderPure:true,fontStatus:document.fonts.status,fontNote:'System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.',userAgent:navigator.userAgent,imageCount:p.images.length,pendingImages:p.images.filter(v=>v.pending).length,imageErrors:p.images.filter(v=>v.error).length,storage:p.storage,errors:p.errors,violations:p.violations,png:cv.toDataURL('image/png')});
+  publishProbe({ok:true,paintFlags,cacheStats:scene.renderCacheStats(),scope:'Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.',stage:id,variant,...(id===32?{tideSnapshot,appReadyUnresolved:true,initialization:'Official coast.tide; fresh in-memory profile; no App launch or event progression'}:{}),view,width:W,height:H,dpr:devicePixelRatio,camera,time:2,seed:3910,runtimeSha256,physicsSha256:await hash(physics),renderPure:true,fontStatus:document.fonts.status,fontNote:'System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.',userAgent:navigator.userAgent,imageCount:p.images.length,pendingImages:p.images.filter(v=>v.pending).length,imageErrors:p.images.filter(v=>v.error).length,storage:p.storage,errors:p.errors,violations:p.violations,png:cv.toDataURL('image/png')});
  }catch(e){publishProbe({ok:false,stage:id,error:String(e.stack||e),...p});}
 }
 const script=s=>'<script>'+s.replace(/<\/script/gi,'<\\/script')+'</script>';
-// Study-only renderer change: paint-domain union does not mutate battle bounds.
-const paintAnchor='domain=b.honroTerrainBounds,';
-const paintUnion=`domain=(()=>{const d={...b.honroTerrainBounds};if(b.honroStage===3)for(const l of G.HonroTerrainDomain.materialLandmarks(b)){const q=this._landmarkPaintBounds(l);if(q){d.left=Math.min(d.left,q.left);d.top=Math.min(d.top,q.top);d.right=Math.max(d.right,q.right);d.bottom=Math.max(d.bottom,q.bottom);}}return d;})(),`;
-if(runtime.split(paintAnchor).length!==2)throw Error('Unexpected paint-domain anchor count');
-const rimAnchor='if(t.oneWay&&!walkable)continue;';
-if(runtime.split(rimAnchor).length!==2)throw Error('Unexpected rim anchor count');
-const studyRuntime=variant==='candidate'?runtime.replace(paintAnchor,paintUnion).replace(rimAnchor,rimAnchor+"if(b.honroStage===3&&t.id==='ferry-ground'&&!walkable)continue;"):runtime;
 const captureList=[];for(const id of stages)for(const view of cases[id]){
- const stageRuntime=id===32?studyRuntime+'\n;\n'+act4Extra.join('\n;\n'):studyRuntime;
+ const stageRuntime=id===32?runtime+'\n;\n'+act4Extra.join('\n;\n'):runtime;
  const stageRuntimeSha256=createHash('sha256').update(stageRuntime).digest('hex');
- const html='<!doctype html><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src \'none\'; script-src \'unsafe-inline\'; style-src \'unsafe-inline\'; img-src data:; font-src data:; connect-src \'none\'"><title>Isolated production Scene diagnostic</title><style>body{margin:0}canvas{width:1331px;height:763px}</style><canvas id="scene"></canvas><pre id="result">pending</pre>'+script('('+bootstrap.toString()+')('+id+');')+script(stageRuntime)+script('globalThis.naruBodyStudy='+naruBodyStudy.toString()+';')+script('('+capture.toString()+')('+id+','+JSON.stringify(stageRuntimeSha256)+','+JSON.stringify(variant)+','+JSON.stringify(view)+');');
+ const html='<!doctype html><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src \'none\'; script-src \'unsafe-inline\'; style-src \'unsafe-inline\'; img-src data:; font-src data:; connect-src \'none\'"><title>Isolated production Scene diagnostic</title><style>body{margin:0}canvas{width:1331px;height:763px}</style><canvas id="scene"></canvas><pre id="result">pending</pre>'+script('('+bootstrap.toString()+')('+id+');')+script(stageRuntime)+script('('+capture.toString()+')('+id+','+JSON.stringify(stageRuntimeSha256)+','+JSON.stringify(variant)+','+JSON.stringify(view)+');');
  captureList.push({stage:id,variant,view});await writeFile(path.join(out,`stage${id}-${variant}-${view}.html`),html);
 }
 await writeFile(path.join(out,'capture-list.json'),JSON.stringify(captureList));

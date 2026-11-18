@@ -166,10 +166,23 @@
             c.restore();
         }
         _terrainPaintBounds(t){const work=!!t.honroWorkAccess,cap=t.honroV4Support?32:0;return{left:t.x-(work?32:0),right:t.x+t.w+(work?32:0),top:t.y-cap,bottom:t.y+Math.max(t.h,work?600:0)};}
+        _terrainArtworkPaintBounds(b){
+            // Opted-in non-colliding BODY may extend past physical terrain bounds.
+            // Never change battle/camera bounds to make decorative art visible.
+            let domain=b.honroTerrainBounds;
+            for(const l of G.HonroTerrainDomain.materialLandmarks(b)){
+                if(l.asset?.params?.paintBeyondTerrainDomain!==true)continue;
+                const a=this._landmarkPaintBounds(l);if(!a)continue;
+                if(domain===b.honroTerrainBounds)domain={...domain};
+                domain.left=Math.min(domain.left,a.left);domain.top=Math.min(domain.top,a.top);
+                domain.right=Math.max(domain.right,a.right);domain.bottom=Math.max(domain.bottom,a.bottom);
+            }
+            return domain;
+        }
         _drawTerrainDomainTiles(c,b,w,h){
             // Geographically fixed tiles, never a bitmap cut at Play Bounds.
             // Pixel-aligned clips consume each gutter sample exactly once.
-            const rs=this._worldRasterScale(b,w),px=512,gutter=2,size=px/rs,v=G.HonroBounds.viewport(this,w,h),domain=b.honroTerrainBounds,
+            const rs=this._worldRasterScale(b,w),px=512,gutter=2,size=px/rs,v=G.HonroBounds.viewport(this,w,h),domain=this._terrainArtworkPaintBounds(b),
                 key=this._worldCacheKey(b,w),limit=w<900?12:24;
             let q=this._domainTiles;if(!q||q.key!==key){this._releaseDomainTiles();q=this._domainTiles={key,tiles:new Map(),rs};this._cacheStats.worldBuilds++;}
             const minX=Math.floor(Math.max(v.left,domain.left)/size),maxX=Math.floor(Math.min(v.right,domain.right)/size),
@@ -836,3 +849,4 @@
     G.HonroScene = Scene;
     G.honroDraw = { P, L, E, glyph, glow, building, tree };
 })(globalThis);
+

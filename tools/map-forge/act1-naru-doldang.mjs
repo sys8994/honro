@@ -1,4 +1,5 @@
 import {readFile} from 'node:fs/promises';
+import {finishNaruBody} from './naru-body-finish.mjs';
 import {preserveCompound} from '../vector-production/preserve-compound.mjs';
 
 const WATER='ferry-ground',SOLE='root-floor';
@@ -108,7 +109,9 @@ function authorStage(project,s,data){
   [0,858,1774,29,0,887,1774,380]]:[[9,908,30,157,9,908,-390,157],[1421,882,13,181,1834,882,-400,181],
   [16,1049,1402,19,16,1068,1402,380]];
  const faces=shore?[]:footholds.map(([x,y,w,h,dx,dy,dw])=>[x,y,w,h,dx,dy,dw,h*dw/w]);
- artAsset(project,bodyId,site+' 지형',collage(body.vector,faces,[-390,0,sourceWidth+790,sourceHeight+380],true,edges),body.sha256);
+ const originalBody=collage(body.vector,faces,[-390,0,sourceWidth+790,sourceHeight+380],true,edges);
+ artAsset(project,bodyId,site+' 지형',shore?finishNaruBody(originalBody):originalBody,body.sha256);
+ if(shore)Object.assign(project.library.at(-1).params,{paintBeyondTerrainDomain:true,omitTerrainClosureIds:['ferry-ground'],derivedPaintRevision:'naru-exterior-v1'});
  artAsset(project,sheetId,site+' 랜드마크',collage(data.art.landmarks.vector,data.layout,body.vector.viewBox),data.art.landmarks.sha256);
  const placement=(id,assetId,x=0,y=0,z=1,layer='structural-back')=>({id,assetId,...world(x,y),scale:z*scale,layer,depthLayer:'L1',visualRole:'scenery'});
  s.elements=[placement('site-body-'+n,bodyId),placement('site-landmarks-'+n,sheetId,0,0,1,'prop')];
@@ -224,3 +227,4 @@ export async function applyAct1Sites(project){
  }
  return project;
 }
+

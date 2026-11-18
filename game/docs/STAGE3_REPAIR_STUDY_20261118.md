@@ -18,3 +18,10 @@ CI44250277976 passed all5 paired views including native1.65. Artifact14403123835
 
 ## Underground edge result and AA-tail correction
 CI44250891553 passed all5 views. Artifact14403323216 SHA256629c099296cab54db8b57a1886b5295839d1431c2c4553ee17bfffc430a4a5ec. Actual captures confirm the large synthetic collision-outline rectangle is removed while walking rims remain. Underpainting AA joins reduced but did not remove the smaller source rectangle. Native source pixel inspection finds every pixel in rows882..886 exactly RGBA(20,44,47,255), and side tails below723(left)/708(right) solid. Next cap paints only those synthetic AA closure tails after the original source, retaining all paths and all actual surface contact art. No blanket masking of visible roots/supports/walking edges. Upper right source seam remains outside this bounded correction.
+
+## Production registration candidate
+The current branch now registers the finish in the Stage3 BODY author only. The raw source JSON, original source paths/clips, stages, collision, units, goals, story, camera and revision fields remain unchanged. A dedicated production module owns the same finish used by tests. New BODY params explicitly opt into decorative paint-domain extension and omission of `ferry-ground` nonwalking closure ink. These flags gate renderer behavior, instead of a Stage3-ID-only rule, so restored old BODY assets do not acquire the new behavior.
+
+Art refinements add low-contrast irregular strata/fractures, short intentional wood-grain strokes inside the four supporting timbers, and narrow right-hand floor finishing only up to its actual physical endpoint. Existing source controls are retained. Uniform right wall AA tails receive the same bounded correction as the bottom tail; no visible walking rim is erased.
+
+The actual Scene harness now runs an untouched public-master worktree and the registered branch source, with no monkeypatch and no after-build art injection. All5 paired views must pass and be visually inspected again. Save roundtrip and ABBA performance validation are being prepared separately. No master merge or Pages deployment has occurred.
