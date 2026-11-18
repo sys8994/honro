@@ -54,7 +54,10 @@ function resumeHand(app){const b=app.engine.b,q=memory(b);if(!missingHand(b))ret
  // save already reached won. Existing pending readers/barks remain intact.
  if(play(app,'hand',true))q.hand.completed=true;
 }
-function quiet(b){return !b.units.some(u=>u.side===1&&alive(u))&&!b.projectiles.length&&!b.volley&&b.phase==='aim'&&(!P.quietReady||P.quietReady(b));}
+const settled=b=>!b.projectiles.length&&!b.volley&&b.phase==='aim';
+const signalPoint=b=>({x:boarding(b).approachX,y:boarding(b).approachY});
+function canSignal(e,u){const p=signalPoint(e.b);return Math.abs(u.x-p.x)<420&&Math.abs(u.y-p.y)<280&&e.grounded(u);}
+function quiet(b){if(b.honroAct4Preview===36)return settled(b)&&b.side===0;return !b.units.some(u=>u.side===1&&alive(u))&&!b.projectiles.length&&!b.volley&&b.phase==='aim'&&(!P.quietReady||P.quietReady(b));}
 const tourViews=[{key:'boat',x:550,y:1770,scale:.64,point:{x:500,y:1735}},{key:'dock',x:6150,y:1790,scale:.56,point:{x:6150,y:1890}},{key:'threat',x:1510,y:1780,scale:.55,point:{x:1390,y:1864}}];
 function arrivalTour(app,q,dt){const t=q.arrivalTour;if(!t?.active)return false;if(app.modal.classList.contains('open')||G.document.hidden)return true;const v=(app.engine.b.honroAct4Design?.boarding?.tourViews||tourViews)[t.index];if(!v){t.active=false;if(!P.startCamera?.(app))Object.assign(app.scene,{manual:false,x:boarding(app.engine.b).startX??450,y:boarding(app.engine.b).startY??1840,scale:G.innerWidth<600?.62:.94});play(app,'arrival');return false;}Object.assign(app.scene,{manual:true,x:v.x,y:v.y,scale:v.scale,storyTween:null,cinematic:null,goalFocus:null,storyFrame:null});if(t.seen?.[v.key]!==undefined){t.elapsed=(t.elapsed||0)+dt;if(t.elapsed>.8){t.index++;t.elapsed=0;}}return true;}
 function observe(app,dt){const b=app.engine?.b,node=G.document.getElementById('act4-banter');if(!(b?.honroCustom||b?.honroAct4Official===1)||!b.honroAct4Preview||G.document.hidden||app.modal?.classList.contains('open')){if(node)node.hidden=true;return;}const q=memory(b),n=b.honroAct4Preview;q.clock+=dt;
@@ -76,7 +79,7 @@ function observe(app,dt){const b=app.engine?.b,node=G.document.getElementById('a
   if(arrivalTour(app,q,dt))return;
   if(['docked','boarded'].includes(q.boat.phase)){const text=G.HONRO_ACT4_PREVIEW_SEEDS.ui.find(v=>v[0]==='A4.S31.BOARD_OBJECTIVE')[1],goal=G.document.getElementById('objective-text');app.stage.goal=text;if(goal&&goal.textContent!==text)goal.textContent=text;}
   if(!q.events.arrival?.started&&party(b).some(u=>app.engine.grounded(u))&&inView(app,{x:500,y:cfg.approachY})&&inView(app,{x:6150,y:cfg.deckY+30}))play(app,'arrival');
-  if(quiet(b)&&q.boat.phase==='waiting'&&!app.dialogue&&!q.reader&&(offered(b,'boat_approach')||play(app,'boat_approach')))q.boat.phase='approach';
+  if(settled(b)&&q.boatSignal&&b.round>=q.boatSignal.round+2&&q.boat.phase==='waiting'&&!app.dialogue&&!q.reader&&(offered(b,'boat_approach')||play(app,'boat_approach')))q.boat.phase='approach';
   // Old saves may have moved despite a rejected BOAT offer. Keep their current
   // boat position until that missing reader can actually be accepted.
   if(['approach','docked'].includes(q.boat.phase)&&!offered(b,'boat_approach')){if(!play(app,'boat_approach'))return;}
@@ -103,9 +106,10 @@ function observe(app,dt){const b=app.engine?.b,node=G.document.getElementById('a
  }
 }
 function interact(app=G.HonroApp,probe=false){const b=app.engine?.b;if(!(b?.honroCustom||b?.honroAct4Official===1)||!b.honroAct4Preview||app.dialogue)return false;const q=memory(b),n=b.honroAct4Preview,u=app.engine.active;if(b.side!==0||b.phase!=='aim'||u?.side!==0||u.acted||!alive(u)||!app.engine.grounded(u))return false;
- if(n===31&&q.boat.phase==='docked'&&!narrativePending(b)&&offered(b,'boat_approach')&&offered(b,'board_ready')&&quiet(b)&&party(b).every(u=>u.x>boarding(b).boardX1&&u.x<boarding(b).boardX2&&Math.abs(u.y-boarding(b).deckY)<5&&app.engine.grounded(u))){if(probe)return probe==='label'?'갑판에서 출항':true;q.boat.phase='boarded';q.complete=true;return true;}
+ if(n===31&&q.boat.phase==='waiting'&&!q.boatSignal&&settled(b)&&canSignal(app.engine,u)){if(probe)return probe==='label'?'나룻배에 신호 보내기 · 2라운드 버티기':true;q.boatSignal={round:b.round,actor:u.id};app.engine.finishAction();return true;}
+ if(n===31&&q.boat.phase==='docked'&&!narrativePending(b)&&offered(b,'boat_approach')&&offered(b,'board_ready')&&settled(b)&&party(b).every(u=>u.x>boarding(b).boardX1&&u.x<boarding(b).boardX2&&Math.abs(u.y-boarding(b).deckY)<5&&app.engine.grounded(u))){if(probe)return probe==='label'?'갑판에서 출항':true;q.boat.phase='boarded';q.complete=true;return true;}
  if(n===36&&u.cls==='knight'&&quiet(b)&&atDoor(b,u)&&q.door.phase==='standing'){if(probe)return probe==='label'?'휘겸으로 문 밀기':true;q.door.phase='falling';q.door.time=0;return true;}
- if(n===35&&quiet(b)&&party(b).every(u=>u.x>K(b,'completeX',6500)&&u.y<K(b,'completeYMax',1e9))){if(probe)return probe==='label'?'대숲을 떠나기':true;q.complete=true;return true;}
+ if(n===35&&settled(b)&&!narrativePending(b)&&party(b).length&&party(b).every(u=>u.x>K(b,'completeX',6500)&&u.y<K(b,'completeYMax',1e9)&&app.engine.grounded(u))){if(probe)return probe==='label'?'대숲을 떠나기':true;q.complete=true;return true;}
  // The compact court leaves only 88 world units beyond completeX. Use the
  // already-authored leave approach for the living party's final assembly;
  // the fallen door, observed dialogue and quiet-state gates still apply.
@@ -149,3 +153,4 @@ function attachApp(){const appPrototype=Object.getPrototypeOf(G.HonroApp),canInp
 if(G.HonroApp)attachApp();else G.HONRO_APP_READY.then(attachApp);
 G.document.addEventListener('keydown',ev=>{const app=G.HonroApp,b=app?.engine?.b;if(ev.code!=='Escape'||!(b?.honroCustom||b?.honroAct4Official===1)||b.honroAct4Preview!==31)return;const q=memory(b);if(!q.arrivalTour?.active)return;q.arrivalTour.active=false;const e=event(q,'arrival');e.started=e.terminal=true;e.retired=seed(31,'arrival').lines.map(l=>l[0]);if(!P.startCamera?.(app))Object.assign(app.scene,{manual:false,x:boarding(app.engine.b).startX??450,y:boarding(app.engine.b).startY??1840,scale:G.innerWidth<600?.62:.94});});
 })(globalThis);
+

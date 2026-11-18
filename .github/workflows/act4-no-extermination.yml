@@ -1,0 +1,21 @@
+name: Verify Act4 objective progression without extermination
+on:
+  workflow_dispatch:
+  push:
+    branches: ['fix/act4-objectives-no-extermination-20261118']
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm ci && npm ci --prefix game
+      - run: node --check shared/runtime/act4-events.js && node --check shared/runtime/act4-coast-events.js
+      - run: node tests/act4-no-extermination.mjs
+      - run: HONRO_ACT4_RELEASE=1 node tests/act4-shelter-travel.mjs
