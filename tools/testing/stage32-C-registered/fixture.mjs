@@ -46,7 +46,7 @@ async function capture(requestedCamera,provenance){const isRegistered=true,id=32
   assert(JSON.stringify(originalStage)===originalStageText,'Original project mutated');
 
   HonroMaps.compile(stage,project); // Match Native setup order.
-  const b=(id===32)?HonroMaps.createBattle(stage,project,HonroProfileStore.fresh()):HonroMaps.createBattle(stage,project);HonroStageRules.sanitizeStageBattle(b);
+  const b=(id===32)?HonroMaps.createBattle(stage,project,HonroProfileStore.fresh(),{origin:'campaign'}):HonroMaps.createBattle(stage,project);HonroStageRules.sanitizeStageBattle(b);
   let tideSnapshot=null;
   if(id===32){
    assert(HONRO_ACT4_RELEASE===true,'Act4 release absent');
