@@ -1,0 +1,170 @@
+{
+  "scope": "Local Native; counts are differing pixels, not magnitude; no production change.",
+  "patternUniform": {
+    "scope": "Local Native source-only transparent BODY, constant gray material, finite9owner samples; not actualScene/tile/SS/performance acceptance",
+    "coverage": "stage32-hidden-grass-pattern/coverage.svgpath",
+    "zoom": 0.6,
+    "coverageBytes": 33245,
+    "changed": 3364,
+    "alpha": 678,
+    "bg": 0,
+    "protectedSamples": null,
+    "violations": [],
+    "fillOnlyMs": {}
+  },
+  "atopBoundaryAlpha": [
+    {
+      "z": 0.05,
+      "pixel": [
+        651,
+        392
+      ],
+      "before": [
+        137,
+        134,
+        124,
+        203
+      ],
+      "after": [
+        138,
+        134,
+        127,
+        201
+      ],
+      "source": [
+        18.18181818,
+        850
+      ],
+      "bodyBoundaryDistanceSource": 1.818182
+    },
+    {
+      "z": 0.25,
+      "pixel": [
+        668,
+        461
+      ],
+      "before": [
+        120,
+        118,
+        98,
+        233
+      ],
+      "after": [
+        123,
+        120,
+        99,
+        231
+      ],
+      "source": [
+        150.9090909,
+        895.454545
+      ],
+      "bodyBoundaryDistanceSource": 0.428278
+    },
+    {
+      "z": 0.35,
+      "pixel": [
+        669,
+        493
+      ],
+      "before": [
+        117,
+        116,
+        94,
+        237
+      ],
+      "after": [
+        118,
+        118,
+        94,
+        235
+      ],
+      "source": [
+        150.64935065,
+        895.454545
+      ],
+      "bodyBoundaryDistanceSource": 0.427033
+    }
+  ],
+  "partitionOriginalColor": [
+    {
+      "zoom": 0.05,
+      "changed": 1,
+      "alpha": 0,
+      "bg": 0,
+      "protectedSamples": 0
+    },
+    {
+      "zoom": 0.25,
+      "changed": 25,
+      "alpha": 0,
+      "bg": 0,
+      "protectedSamples": 15
+    },
+    {
+      "zoom": 0.6,
+      "changed": 57,
+      "alpha": 0,
+      "bg": 0,
+      "protectedSamples": 26
+    },
+    {
+      "zoom": 1.65,
+      "changed": 111,
+      "alpha": 0,
+      "bg": 0,
+      "protectedSamples": 4
+    }
+  ],
+  "manualLargeCandidate": [
+    {
+      "zoom": 0.05,
+      "changed": 658,
+      "alpha": 0,
+      "bg": 0,
+      "protectedSamples": 125
+    },
+    {
+      "zoom": 0.125,
+      "changed": 1991,
+      "alpha": 0,
+      "bg": 0,
+      "protectedSamples": 13
+    },
+    {
+      "zoom": 0.25,
+      "changed": 4557,
+      "alpha": 0,
+      "bg": 0,
+      "protectedSamples": 0
+    },
+    {
+      "zoom": 0.35,
+      "changed": 5657,
+      "alpha": 0,
+      "bg": 0,
+      "protectedSamples": 0
+    },
+    {
+      "zoom": 0.6,
+      "changed": 7255,
+      "alpha": 0,
+      "bg": 0,
+      "protectedSamples": 0
+    },
+    {
+      "zoom": 1.05001,
+      "changed": 8032,
+      "alpha": 0,
+      "bg": 0,
+      "protectedSamples": 2
+    },
+    {
+      "zoom": 1.65,
+      "changed": 8604,
+      "alpha": 0,
+      "bg": 0,
+      "protectedSamples": 0
+    }
+  ]
+}
