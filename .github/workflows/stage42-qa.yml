@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 35
     env:
-      HONRO_QA_SMOKE: "1"
-      HONRO_QA_SINGLE: "1"
+      HONRO_QA_SMOKE: "0"
+      HONRO_QA_SINGLE: "0"
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
