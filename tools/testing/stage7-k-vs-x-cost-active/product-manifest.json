@@ -1,0 +1,59 @@
+{
+  "ready": true,
+  "parent": "a6f2935935eed559c3ecd27207d8d8a78a1ed22d",
+  "sourceOnly": true,
+  "scope": "K\u2192X exact7 source: latest3K preserved, seven Stage7 source set including right material6face paths",
+  "pending": "Official default-build full integration Scene, all50/other48 regression, save compatibility and performance; not source package blockers",
+  "productionAccepted": false,
+  "files": [
+    {
+      "local": "stage7-right-join-x/source/shared/data/stage7-terrain-path-registration.json",
+      "path": "shared/data/stage7-terrain-path-registration.json",
+      "bytes": 561,
+      "sha256": "720597ed6eeaa1c7b6e340da891d4104b14cc226f84ab266ba98339a5325bbf9"
+    },
+    {
+      "path": "shared/runtime/renderer.js",
+      "local": "stage37-latest5eb-Q/candidate/shared/runtime/renderer.js",
+      "bytes": 76098,
+      "sha256": "e7098357a94845d83f02c10decab239484619f48aba3910ea203fdefb1e220c7",
+      "blob": "22c06c938530fe85b4ee108640f2e09001f9863f"
+    },
+    {
+      "path": "shared/runtime/terrain-readability.js",
+      "local": "stage37-latest5eb-Q/candidate/shared/runtime/terrain-readability.js",
+      "bytes": 6436,
+      "sha256": "c2d1993b449e15beceecdd661e91ca8c5398bd0c9ffd341c2b8f74e03861cd33",
+      "blob": "527fd6f9890e3544a0d49d11e407989162c8b9a0"
+    },
+    {
+      "path": "shared/terrain-path-optimization.mjs",
+      "local": "stage37-latest5eb-Q/candidate/shared/terrain-path-optimization.mjs",
+      "bytes": 3091,
+      "sha256": "0bceb927cc7f0bdc8ab27d6c68427e96da0e3a5de14e484b7976c7fbba1e57eb",
+      "blob": "c8621ad53461a741607ddb972d4186111ac331e1"
+    },
+    {
+      "path": "tools/map-forge/act1-naru-doldang.mjs",
+      "local": "stage37-latest5eb-Q/candidate/tools/map-forge/act1-naru-doldang.mjs",
+      "bytes": 14713,
+      "sha256": "21d4c970795cd8a2eb171d440e5f9e890d2eb67a69bdd1f0620394c67f2d9366",
+      "blob": "1f9dc6ee17fbad5cca0dbf357bdfa3fad5ef3d31"
+    },
+    {
+      "path": "tools/map-forge/stage7-terrain-finish.json",
+      "local": "stage37-latest5eb-Q/candidate/tools/map-forge/stage7-terrain-finish.json",
+      "bytes": 333878,
+      "sha256": "5236c1338b12bf5e2f5d6a0198214e9deccc90f1c0b99597e47415ebae1129e6",
+      "blob": "528625a1c98ed59cf2325f5fb5f5284855a76f41"
+    },
+    {
+      "local": "stage7-right-join-x/source/tools/map-forge/stage7-terrain-finish.mjs",
+      "path": "tools/map-forge/stage7-terrain-finish.mjs",
+      "bytes": 5206,
+      "sha256": "349e5d4ee1fce66e3567c36f49f6b452592ed037b57f9a7ceff54d34f29417f0"
+    }
+  ],
+  "independentReview": "Parent independently reviewed updated X two hashes within K\u2192X seven-file set and actual-run source contract. Earlier L review is historical, not X proof.",
+  "base": "a6f2935935eed559c3ecd27207d8d8a78a1ed22d"
+}

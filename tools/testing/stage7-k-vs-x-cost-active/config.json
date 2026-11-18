@@ -1,0 +1,35 @@
+{
+  "readyForCI": true,
+  "baselineRef": "a6f2935935eed559c3ecd27207d8d8a78a1ed22d",
+  "candidateRef": "88f644e8f1cc2c043ce40ca0359f31f3b30badbd",
+  "order": [
+    "baseline",
+    "candidate",
+    "candidate",
+    "baseline"
+  ],
+  "poses": [
+    {
+      "name": "stage7-cached",
+      "stage": 7,
+      "width": 1331,
+      "height": 763,
+      "dpr": 1,
+      "x": 4532.24,
+      "y": 2034.5,
+      "scale": 0.6
+    },
+    {
+      "name": "stage7-phone-native",
+      "stage": 7,
+      "width": 390,
+      "height": 696,
+      "dpr": 3,
+      "x": 4532.24,
+      "y": 2034.5,
+      "scale": 1.65,
+      "raf": true
+    }
+  ],
+  "scope": "K vsX Stage7 Q plus X right-face addition, 2 conditions10pages own official defaults"
+}

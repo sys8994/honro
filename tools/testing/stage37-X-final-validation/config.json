@@ -1,0 +1,26 @@
+{
+  "ready": true,
+  "baseline": "85bae4a08993d3b71d22ea3fec76686e0ae3c61c",
+  "candidate": "88f644e8f1cc2c043ce40ca0359f31f3b30badbd",
+  "assetOracles": {
+    "3": {
+      "id": "act1-site:3:body",
+      "assetSHA": "ea8b604fa02da75d49eab049427abec1f49aa78cd571a5da87a012ae64a1efad",
+      "vectorSHA": "7e7611c9a89636f2d0c019a175ef20cb5a1990dd596a0489b8c424c34f0a9e44"
+    },
+    "7": {
+      "id": "act1-site:7:body",
+      "vectorSHA": "9bb8996d76ada5c829a850497b303060443cc86df2a7f2258fbdbc29a45bd774"
+    }
+  },
+  "production": [
+    {
+      "path": "shared/data/stage7-terrain-path-registration.json",
+      "sha256": "720597ed6eeaa1c7b6e340da891d4104b14cc226f84ab266ba98339a5325bbf9"
+    },
+    {
+      "path": "tools/map-forge/stage7-terrain-finish.mjs",
+      "sha256": "349e5d4ee1fce66e3567c36f49f6b452592ed037b57f9a7ceff54d34f29417f0"
+    }
+  ]
+}
