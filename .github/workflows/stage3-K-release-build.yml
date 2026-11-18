@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   push:
     branches: [inspect/stage32-scanline-20261118, inspect/stage3-current-master-20261118]
-    paths: ['tools/testing/stage3-K-release-build/**', '.github/workflows/stage3-K-release-build.yml']
+    paths: ['tools/testing/stage3-K-release-build/**', 'tools/testing/stage3-K-release-check-fix/**', '.github/workflows/stage3-K-release-build.yml']
 permissions: {contents: read}
 jobs:
   prepare:
@@ -14,10 +14,12 @@ jobs:
         with: {path: study}
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with: {path: candidate, ref: a6f2935935eed559c3ecd27207d8d8a78a1ed22d, fetch-depth: 2, filter: 'blob:none'}
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with: {path: baseline, ref: 5eb0381269868e501a1cd187d963ddb716cd2dc6}
       - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
         with: {node-version: '22', package-manager-cache: false}
       - name: Install locked build dependencies
-        run: cd candidate && npm ci && npm ci --prefix game
+        run: for d in baseline candidate; do (cd "$d" && npm ci && npm ci --prefix game); done
       - name: Pin source and retain attested successful publications
         run: |
           set -o pipefail
@@ -36,8 +38,17 @@ jobs:
         run: |
           set -o pipefail
           cd candidate
-          node tests/web-split.mjs 2>&1 | tee ../artifacts/web-split.log
           node tests/web-build-retention.mjs 2>&1 | tee ../artifacts/web-build-retention.log
+          cd ..
+          node --input-type=module - <<'JS'
+          import {spawnSync}from'node:child_process';import fs from'node:fs';import assert from'node:assert/strict';
+          const r=spawnSync(process.execPath,['tests/web-split.mjs'],{cwd:'baseline',encoding:'utf8'});const text=(r.stdout||'')+(r.stderr||'');fs.writeFileSync('artifacts/original-baseline-web-split.log',text);assert.equal(r.status,1);assert(text.includes('ERR_INVALID_ARG_TYPE')&&text.includes('Received undefined')&&text.includes('web-split.mjs:18:72'),'Expected same stale baseline schema failure, not arbitrary failure');
+          JS
+          for d in baseline candidate; do
+            node study/tools/testing/stage3-K-release-check-fix/graph-check.mjs "$d" "artifacts/$d-current-graph.json" 2>&1 | tee "artifacts/$d-current-graph.log"
+          done
+      - name: Verify post-test source and payload identity
+        run: node study/tools/testing/stage3-K-release-check-fix/verify-final.mjs candidate artifacts
       - name: Hash final payload without publishing
         run: |
           python3 - <<'PY'
@@ -48,7 +59,7 @@ jobs:
               if f.is_file(): z.write(f,str(f.relative_to(payload)))
           b=(root/'release-delta.zip').read_bytes()
           (root/'artifact-checksum.json').write_text(json.dumps({'file':'release-delta.zip','bytes':len(b),'sha256':hashlib.sha256(b).hexdigest(),'published':False},indent=2)+'\n')
-          (root/'CHECKS_PASSED.txt').write_text('Official default build, scoped web-split graph and web-build-retention passed. Artifact only; not deployed.\n')
+          (root/'CHECKS_PASSED.txt').write_text('Official default build, schema-current exact graph/title/embed successor and web-build-retention passed. Original web-split baseline/candidate schema failure recorded separately. Artifact only; not deployed.\n')
           PY
       - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
         if: always()
