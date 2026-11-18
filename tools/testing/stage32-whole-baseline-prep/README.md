@@ -1,3 +1,13 @@
+# Activated research trial: 842 versus registered candidate 126a2b56
+
+Candidate is pinned to 126a2b5600f31bd686c79caef1e7c91dffd7759f, registered helper SHA256 2cbc7689548b871021ebcf5c4190052029bac510a65cc16ef5ed10290ea828e5 (54,048 bytes). Baseline is 842aa12fd1144e4f7e9ee616a6ae65d632389f51 using its own build/runtime, without SS2 injection. readyForCI=true authorizes this local test configuration, NOT product or performance acceptance.
+
+Only config pins and this activation notice differ from the previously preserved scaffold. The original placeholder package remains unchanged. Publish these files at their existing manifest destinations, then dispatch `stage32-whole-baseline-cost.yml` on the research branch. Workflow checks out exact baseline and candidate separately; root Workshop/Game builds, canonical own runtime bindings, three poses, fresh-context ABBA and 5 cold / 30 warm / 60 pan phases run unchanged.
+
+CPU values are full synchronous Scene submission costs, not GPU completion or frame-rate. First render and readiness capture lazy preparation; new internal-band preparation lacks independent stats and remains null, never zero. Helper/Scene logical canvas memory is recorded, not complete native/JS/GPU heap. Source/clip/physics/units/Stage3 invariance and synthetic same-version save roundtrip are required. No real user storage; any access fails. These are not cross-version saved-battle tests or full pixel-protection acceptance; previously approved visual/protection evidence remains separate. No benchmark has run yet.
+
+## Preserved scaffold documentation (historical placeholder notes below)
+
 # Whole842-versus-final Stage32 cost preparation (NOT READY)
 
 Final candidate commit and registered helper SHA are explicit PENDING placeholders. config.readyForCI=false. prepare.mjs refuses execution before approval pins exist The full browser binding, orchestration, checker and dispatch-only workflow are now supplied but unexecuted against actual final registration. This is an executable scaffold awaiting approval pins, not a completed benchmark.

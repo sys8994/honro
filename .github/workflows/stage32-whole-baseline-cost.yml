@@ -1,6 +1,11 @@
 name: Stage32 whole842 versus final registered cost
 on:
   workflow_dispatch:
+  push:
+    branches: [inspect/stage32-scanline-20261118]
+    paths:
+      - tools/testing/stage32-whole-baseline-prep/**
+      - .github/workflows/stage32-whole-baseline-cost.yml
 permissions:
   contents: read
 jobs:
