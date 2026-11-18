@@ -1,0 +1,11 @@
+# Combined internal gray seam, nine paired actual Scene views
+
+Test-only candidate SHA3906cbaea58a4ae7063d243298794f412606932ff807923bb9550d4af7581b44. Baseline remains the prior26782 experimental helper SHAefe0137396a2f984c6847f69972785ecd504d1104cbbed02d40a7fa6a9b73f43, not production. Production helper/source/physics contracts are unchanged. A reversal contract proves the only code addition is the static internalSeamD + one lazy Path2D #5e5e60 fill after existing BODY/native painting. No additional canvas/readback/SS.
+
+The join shape expands into the old internal BODYguard gap and intentionally reclassifies exactly two separate original visible microfaces: pale1 area.0947758288 and grass12 area.1088183931source². Their true original cubic winding and nonzero source-only raster contribution were recorded, not denied. They are nonwalk internal overlap remnants in the same foundation gray face, not the large exposed grass or road/step surfaces. Exact two component descriptors are SHA-pinned. All other visible samples remain strict, while raw/allowed pale/allowed grass counts remain explicit. Original assets and physical bounds remain immutable.
+
+Nine paired views: gray-left, phoneoverview/minimum, phonebottom, landscapeoverview, landscapebottom, desktopwalk, maximum, renderer1.05-below andabove. Each baseline PNG/BODY SHA is pinned to prior actual captures. All old static terrain union alpha, finalScene alpha, independent direct-BODY support, real49walk checks remain. Scene support uses the solid-fill replay validated by CI44253456352, not the old clip+bitmap AA surrogate. The old2/6 support failures remain historical evidence.
+
+Transparent foundation+BODY probes are direct-camera, separate from the actual cached/direct Scene support. Nine-point visible geometry samples are finite evidence, not universal continuous foreground contribution proof. No performance claim comes from this instrumented correctness run; clean totalScene cost is separate.
+
+The targeted long seam now looks clean in Native maximum/overview; other faint lines near the maximum top and lower-left are still being classified against source roles and the selected artist face. This package does not claim wholeStage32 art or release acceptance, and it is not production registration.
