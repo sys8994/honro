@@ -1,0 +1,997 @@
+{
+  "passed": true,
+  "scope": "Official C runtime; terrain-only5B golden exact. FullScene/units may change due preserved latestmaster scale; reported separately, not waived. Source-only contract preserves3/7/32 art source. No performance/App lifecycle acceptance.",
+  "goldenRun": 44279550948,
+  "commit": "dbb25e21e075a495581ddaf8e2c0e615fe2e621e",
+  "rows": [
+    {
+      "all50": null,
+      "view": "maximum",
+      "terrainExactGolden": true,
+      "sceneSameAsB": true,
+      "physicsSameAsB": false,
+      "scaleSummary": {
+        "revision": 1,
+        "tagged": 10,
+        "enlarged": 8,
+        "omenStages": [
+          "16"
+        ],
+        "darknessStages": [
+          "46"
+        ]
+      },
+      "codecRoundtripExact": true,
+      "stats": {
+        "rasterizations": 18,
+        "hits": 24,
+        "allocations": 1,
+        "resizes": 2,
+        "bytes": 4062212,
+        "peakBytes": 4062212,
+        "fallbacks": 0,
+        "lastFallback": null,
+        "nativeBudget": {
+          "plans": 12,
+          "admitted": 12,
+          "rejected": 0,
+          "releases": 6,
+          "last": {
+            "w": 1331,
+            "h": 763,
+            "rows": 273,
+            "current": 5515680,
+            "projected": 5515680,
+            "admitted": true,
+            "scope": "Post-cleanup helper-owned logical canvas bytes; not physical heap or preexisting peak"
+          },
+          "limitBytes": 50331648
+        },
+        "nativeJunction": {
+          "calls": 15,
+          "ms": 0.30000000004656613,
+          "prepareCalls": 1,
+          "prepareMs": 0.09999999997671694,
+          "staticBytes": 26782,
+          "scope": "Connected nonwalk gray seam; test only, BODY/apron min2device and visible min1device at .05; test-only sampled scale >= .05"
+        },
+        "supersample": {
+          "calls": 6,
+          "stripes": 6,
+          "emptyStripes": 2,
+          "highRasterStripes": 4,
+          "eligibilityScanPixels": 109774,
+          "eligible": 4015,
+          "corrected": 2385,
+          "opaqueGrassSkipped": 19117,
+          "protectedPaletteSkipped": 7,
+          "roadSkipped": 0,
+          "subpixelRoadSkipped": 0,
+          "unresolvedHolesSkipped": 39,
+          "alphaChanged": 0,
+          "skips": 0,
+          "allocations": 2,
+          "resizes": 4,
+          "scratchBytes": 8,
+          "peakLogicalBytes": 6307584,
+          "readbackBytes": 0,
+          "ms": 208.39999999990687,
+          "factor": 2,
+          "maxScratchPixels": 1048576,
+          "scope": "Logical canvas and live readback payload only; not total JS/native/GPU heap"
+        },
+        "maxPixels": 8388608,
+        "transition": {
+          "fills": 30,
+          "passes": 9,
+          "boundaryPasses": 3,
+          "allocations": 3,
+          "resizes": 5,
+          "bytes": 1453460,
+          "peakBytes": 2518480,
+          "skips": 0,
+          "lastSkip": null,
+          "maxPixels": 1048576,
+          "bufferDimensions": [
+            [
+              1331,
+              273
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        "totalLogicalBytes": 5515680
+      }
+    },
+    {
+      "all50": [
+        {
+          "stage": 1,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 6,
+          "terrainSHA": "4616b4ecfb6775f6b491d78a189ef9058b62351a73e1da79905d683ce1b47434",
+          "unitsSHA": "3f8e6ea91e7991919fba7d084b7d2b1c36e08ae7415b53ff29c7c2c73514e6bb",
+          "fullSHA": "e1940a72b01073093bba7837450691246ac59a23c4439bc343ae65304005faf2"
+        },
+        {
+          "stage": 2,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 8,
+          "terrainSHA": "17d4be3533a6dd12939f189bf0a628f2ee3425d28b955f2e7a686e569a9a7702",
+          "unitsSHA": "48d8f564e860eda4eb876be76cdf52efee70f6aa09180a44e4acde55e9d8a0e3",
+          "fullSHA": "bf47b3da3c549933ad2d53a69852be98491234af0706f1b45cdbac5866978e81"
+        },
+        {
+          "stage": 3,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 10,
+          "terrainSHA": "e323b4d9e5b1bc7ce0d96483c35f8dfe28a1e899054fc1e53aa92d753cb57d65",
+          "unitsSHA": "fb81e7770a5802a57fba2b0ea2c0c1edbe59dcbd893ca663fe75b89f96089122",
+          "fullSHA": "3d02d61932e476588bf27250058436c748c6bd7cbd035514bc9c82fb28d3faca"
+        },
+        {
+          "stage": 4,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 12,
+          "terrainSHA": "689f219cbc46881e56f9950b86eacb924390e4eb3f1f541b755888fffc337da7",
+          "unitsSHA": "ddcc93acb61e98bb2cb7c27cc3be534d4369e0fe83f67afe0d1577e87e87b076",
+          "fullSHA": "b0fd81d70b1337704a82b320b7f3635c1b6e57fe3fca47a86678b13b2c0ad4ec"
+        },
+        {
+          "stage": 5,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 8,
+          "terrainSHA": "5719f1da0268cac80aba1fbcd4a8d8be5692a8606d8c6e45b506e3810a090252",
+          "unitsSHA": "ab69feecd54248460a60bf3d585cbede9ba410ed9650d14bb9025494fc1af45a",
+          "fullSHA": "c24b30d1fc28ff14019ade4d8669f32dc2c90602bda95f1ec2ea93b37eeced36"
+        },
+        {
+          "stage": 6,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 11,
+          "terrainSHA": "e3e6458f30aca823aafd37edb76d0fb12252857f5070865273977856af0a8a59",
+          "unitsSHA": "0e84a9658533fa9e47cd9c4a80ebed94804a983796cb9b1436830db499a82653",
+          "fullSHA": "2c1180a2c2c3bde066932303f92b3575750380a851ad9a26dc09d1807ce4484c"
+        },
+        {
+          "stage": 7,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 14,
+          "terrainSHA": "fb7ab9e30f42d998afe2cf63f498d2f41f07430d66843240e27135cb1a81203d",
+          "unitsSHA": "76da58cb64f4715799a573b4c021be73d5fe999fa2041d0a81b300e946b36ebe",
+          "fullSHA": "c0552d9047c8465c6439949934c15aaa990733161b031f5c7f6e887369efd7d3"
+        },
+        {
+          "stage": 8,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 24,
+          "terrainSHA": "bbedad815a94e8777c4bdf0ed6995f86be02a02a1485f7f6eba476746e0c9caa",
+          "unitsSHA": "3d9354de7a4ff15be7388b579628955329fc2889b7ee33d4724eed1ecca56843",
+          "fullSHA": "2c9128c7c81fcb26076afaa8f0a7e6cacee1207985939016034fb475c98abce7"
+        },
+        {
+          "stage": 9,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 18,
+          "terrainSHA": "9b943f3d3da3c377c02c8a6b1e7c5e0a0034bba9ffdca7e1bdd58575571fb231",
+          "unitsSHA": "ade531592bb96fe829b0616cbedf7c4e36991337c5aa7ace90a5697f8362faa8",
+          "fullSHA": "8ae4298d60282140345a5287f11b4445b6a8587f15da91443c269f096f15d302"
+        },
+        {
+          "stage": 10,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 16,
+          "terrainSHA": "ff97d16dc041b5abc89e11b006f3ab5fe4518e0ffa8e243415bf885d80c25bad",
+          "unitsSHA": "791fed672997b79432042248acce4a5d4c9768675fdfde4374b6255171589ec5",
+          "fullSHA": "a3a0d68cbdd8b3d7732867cb5978c7e0841505dd86a3a9c0edc90db767a2670c"
+        },
+        {
+          "stage": 11,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 11,
+          "terrainSHA": "2cd19d693b0d43957a1fd41326ec146e3e1b3f27c8de1642cda812fb97e3c413",
+          "unitsSHA": "2d9c68b6c0820d34f01eeb44c9b71a72743c0ad29d6c128fed2e77ee8a337396",
+          "fullSHA": "81d0306f8e9cccf88aaf512710d7745130496bdbd70a07c9f6d759e7d13d0163"
+        },
+        {
+          "stage": 12,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 20,
+          "terrainSHA": "d9578fbe5fb12847a7189a5196fa77474660c50a6212aaca78f613ab05e74618",
+          "unitsSHA": "f217da36673c1e38240b95dc7af5323ab6a15376d0306966e5ff798de7058411",
+          "fullSHA": "7d01be21d7cb98bced1533d0a48314c54404a62a3b2da1432ce26b750cb3f3e4"
+        },
+        {
+          "stage": 13,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 15,
+          "terrainSHA": "7ab5d13f62b1dce52e5eacce162f5a842f1f67326e229364f8c335f3940fe8f7",
+          "unitsSHA": "cb63f8ceace042b21154bf8202ca097691939a5369fffaa5cd90efc866ca49d7",
+          "fullSHA": "72598b015ff7a39083f6f5173352de1c57f065c77a835633394feb12d82e92bf"
+        },
+        {
+          "stage": 14,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 16,
+          "terrainSHA": "7fa34dc5f231bf3911cc96c87917e3feb3c861ad00fd20de8641c438c1afa32d",
+          "unitsSHA": "46fa5192055c932d10d1fb76eabf80c31ab55d6efc381d07806a4ab887e8a0cb",
+          "fullSHA": "719944a4178fd45ebc5f9884431f6fe9bb3877a9275e6f090c50e2b054dd4e7f"
+        },
+        {
+          "stage": 15,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 13,
+          "terrainSHA": "20779dd0b1584f9973071688dd001eeea34110c19af4b9c9ba59178a55f2cbb9",
+          "unitsSHA": "fdec64d3b9203c4ca121c0d3f8757058b2dd41c81665e01b6a20573a1748d779",
+          "fullSHA": "c61dd914d9553a95bd39dd09830933a236efaccd3f264712482d5db47143e8ec"
+        },
+        {
+          "stage": 16,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 24,
+          "terrainSHA": "19b86e5a06d858d15a9e5d5232e65924b93cf304533137364296fb5c14a74266",
+          "unitsSHA": "6eb952045e3ded3144a83f95affd619b835c3c12a807716ed1084346bd588c15",
+          "fullSHA": "ecd5df9e33d418b1d1951b5db76320a6a8ced52ead0b9f67e5360aec43045cf9"
+        },
+        {
+          "stage": 17,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 23,
+          "terrainSHA": "9ec85a92d6581b759f5d657d5ae191fec338d6a3cc24c68c5d21b51826ba1f6f",
+          "unitsSHA": "3ac97bbe2cda2614d69a553cab638d28e326e09a36fd915d58c1b67c048454df",
+          "fullSHA": "4207dd2aecd86bffc55cd5c49a827d40985df0232e2a8d589a7322800ff7ed72"
+        },
+        {
+          "stage": 18,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 8,
+          "terrainSHA": "1e2841e356c34bf1b2074dc225a8cb1543e41573b698484a52b2458085ee2791",
+          "unitsSHA": "78fe08da76d820f3ebcc4206ef3c8e2618f0581d89de0a0b0247b32391edb2c3",
+          "fullSHA": "4c32af1551ccc7028171035bbf6f5f64b4a1fbb6bdf1d5cfa01acca08fe2d22d"
+        },
+        {
+          "stage": 19,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 0,
+          "terrainSHA": "1d602f0c5973a5cdb786bc83f1573f2f785c85f35f193713c45915531790d91b",
+          "unitsSHA": "7ee3400fc7181e8baaeaa0cecfca013da744df1f5f4dfa2dbeb6bc398673ff1a",
+          "fullSHA": "0c3ba56492011657ba0b9bc95d80e9dbb77d11f4841535492d0e0b60f459779e"
+        },
+        {
+          "stage": 20,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 14,
+          "terrainSHA": "e1c71b1100011b85e9c95964b37a44d369d854a015fd98769aec2154aeaac33d",
+          "unitsSHA": "a9b3ab929f88fd99fd9479f4829e19873af790872c80d7a99f5426ee7ea2f0bc",
+          "fullSHA": "19997f35502714debfc48921004616e45ecbba996abb771afdb17ead9998b563"
+        },
+        {
+          "stage": 21,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 19,
+          "terrainSHA": "1f3e1aab36be84e65aa07d66af525c55849b8a9e884e3fe3b3e46c6067d50d1e",
+          "unitsSHA": "94aaa4ab3d5e4e8a3a65288369996b42f2b52e57867547a034f374307b898c49",
+          "fullSHA": "4f495db01acd7a7963b9f0f4c160bce03f5506176d6d1b45aa8084c2dc4808e3"
+        },
+        {
+          "stage": 22,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 30,
+          "terrainSHA": "e83a6e7189f5e711ffd458e7f003a7e826ad89d3c3bb381c7c6cc81bb84254d0",
+          "unitsSHA": "6040285ba0891b88951b6d8d7c1f51b9772e0416a262806e301ff8391f5705bc",
+          "fullSHA": "389123bf328898352fad06be94c85a34352e6c8d3a5dee584a8cd6fdf522e5b3"
+        },
+        {
+          "stage": 23,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 37,
+          "terrainSHA": "424fdc0afa3a61c41b8f969965994589efc3b66c5660a72e893299e48c317cb8",
+          "unitsSHA": "066e6e0c9009d8febcecd5c4ddfd7b9dedc8455a11bce65b1b144716685807b7",
+          "fullSHA": "c3143ef132a2e98bfb7f2b3588b46976a71ef1cf9b0a03f1d37b8c866aec94d4"
+        },
+        {
+          "stage": 24,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 21,
+          "terrainSHA": "f2476a2aa69711e760553a771f2826fd35511aaddc141b42ffb12ea88cdc02b1",
+          "unitsSHA": "93197a39e20e5d9de3d854adb714fdc4fc60daa6479ceacbecef14ac8e7632d8",
+          "fullSHA": "4a12a5d49190e5b48ef36b001bbc4c4dee85ae437ac98f53c99caac55bde6aba"
+        },
+        {
+          "stage": 25,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 10,
+          "terrainSHA": "9820828b566d2bac59309d9b60d615e9ad540f3261e9a97bfe8b56a77a41ad58",
+          "unitsSHA": "a96fdc786e003db6e7b31b8870fee7d2df919a1da0970886604f729a0c01b90a",
+          "fullSHA": "063a7ab4dba84a216f2bf3bdce919e7beddbc6fb676196390964e029f091da89"
+        },
+        {
+          "stage": 26,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 14,
+          "terrainSHA": "8a125b2894e26b761cb20562a11ff1ea16442c1d0449bc690f120798c7c298eb",
+          "unitsSHA": "4047ce1adc7e3ea17b5ea8af1895fd7e72329434f59becde70eb565a74c696d0",
+          "fullSHA": "6223afc05dc975f659874f6a56245b910eed8dd707fd7f29bd853f3f8b53563f"
+        },
+        {
+          "stage": 27,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 10,
+          "terrainSHA": "dbdefe9f92726a3e41b8bbb3234a52d35b1523c9bd1248c471e94ff261b2d506",
+          "unitsSHA": "7758bbb03c5f4abb62efd89cdd7d70f3762547dc841c21969db46698d3d0582d",
+          "fullSHA": "35e103a26a799ba1a46fc6476158f801532a5cb00e4bb1be83eb568793c2caa1"
+        },
+        {
+          "stage": 28,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 20,
+          "terrainSHA": "7140c3af11301b43f39b7131876e3eb7c75816e57d6eef6a275581b21fd6c0a8",
+          "unitsSHA": "5c93b1d5fd6bede16c7ec8c17fcec0416f581cce8a0274f7df7a14ff214e3299",
+          "fullSHA": "47093f1bd69ec18c5976b046db4c5469808012c28120c14cb87375d88ae44e03"
+        },
+        {
+          "stage": 29,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 31,
+          "terrainSHA": "25e5cb3e9e525f5db66ed2a2d41803df136913156576f37bdad478d7dbcfac57",
+          "unitsSHA": "91dec2536f74d55069607fffc786d5e1ec4d15f239cb26390367f12272312878",
+          "fullSHA": "7785d1412accde0921ebc4e40a1b765696657d1b8cd45a290199e5bdb5171089"
+        },
+        {
+          "stage": 30,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 34,
+          "terrainSHA": "51c642e5f12a56962c60b71c39b14d7dce8ea31700d459f502456e15c53ea795",
+          "unitsSHA": "67aee0b176e173f240e36e70d06164f50934e7361bef9b3d4fef98b7d3e3acc3",
+          "fullSHA": "eedf47a39f6632ab3a0c45b5c6c7fb513e0fff1c58a124b2f3eab5ebe74a70d8"
+        },
+        {
+          "stage": 31,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 32,
+          "terrainSHA": "337dc177c8e92ea2f1f60fc400e741cb32f90032e37273abaecf4c1b3376bd94",
+          "unitsSHA": "00944b5e931611f32e6390b21b2efb35224dc5c6062d1284cae63813a1764fe2",
+          "fullSHA": "3173ebda61e6be5d9e964f54aa5c0471fbf8558d0a6d7bba57e3aa2f217a9d47"
+        },
+        {
+          "stage": 32,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 10,
+          "terrainSHA": "b10d3e8f642fc5a817918c8742f84f9cc3210341f2e0102303ebe76564cd6e42",
+          "unitsSHA": "88888e6359bd0c396405d0019f96ac05d494fee13df903acd67eb657d2ad68f6",
+          "fullSHA": "4e8e3f34a77b0a35b08ff56bcb599eef5701adf29d9fc6ba575dfc82b788522f"
+        },
+        {
+          "stage": 33,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 26,
+          "terrainSHA": "24775a2c24d1330310b3955270df7aee15289a131bc0c54fced3ec38f0996277",
+          "unitsSHA": "5c85ee235e85164708beec708b5f5194c433074d96d7b4c1009c67d7d8d228d5",
+          "fullSHA": "fc9f578e506143bc8c4a40b2ffe2e8cc830c7b6c20cad306969b1b08301beada"
+        },
+        {
+          "stage": 34,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 28,
+          "terrainSHA": "afe409b6c9db7bcf42dfa9bc395e947ef0db7dc50638a094fa4af5b3259c5101",
+          "unitsSHA": "9a370f1dce4451d417a3a9fc2e0c67ce7782ed7026846c47f6faf717726e3e08",
+          "fullSHA": "d3695ebadba0e61dae5ccaeb3a60ba56f5c4cbef2f28c2a5a2425632ccfbc361"
+        },
+        {
+          "stage": 35,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 26,
+          "terrainSHA": "0e99af720cb9595861c521c3ba702ce88d66c556f1bf179eb6736a1c931e205d",
+          "unitsSHA": "5f5ef8f25db26bc0e66c5584938fcacfd959fce7c05890edf4d69c004d128556",
+          "fullSHA": "162fc4f3954c83b7d277f2aa0065eb2361fe71d80d71fbcebea76fa46291cc5e"
+        },
+        {
+          "stage": 36,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 7,
+          "terrainSHA": "37d7f2bcb4b0211cdd4f9cb079dcb5ec7feecc653531f49af713f67e903b2d1d",
+          "unitsSHA": "a4905012415221038ddf3af789861b144df403c8729b1fd554d819f3103d7d8c",
+          "fullSHA": "97999b96bd9ad9e02e64131fd831a353c1974432637f0406f5990ea3d238fb5e"
+        },
+        {
+          "stage": 37,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 27,
+          "terrainSHA": "dce24f49c61ccb8585530c6d89ab4114406babc12736ed3bf36b83b6d59735e1",
+          "unitsSHA": "74bb36eecf43bb99678850a02941febca32221f795a1e8743ecf1ef725bdb88c",
+          "fullSHA": "0950925bf109aac5bff6ed8394bddc89f8582d857d2ffab0e210ea2d6d1806d2"
+        },
+        {
+          "stage": 38,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 26,
+          "terrainSHA": "06813756c5752292bbcbbfa3f0a512f7d8e39cbebde139393fafb94c89a42b56",
+          "unitsSHA": "cbdec52766608c6db5aab8a9b5963c9946f7b1cba6ce32d00b19d770ea8360c2",
+          "fullSHA": "cddf93978fccf734426edb0dad1c46d5d5901c9c9fb51b87dd70381356074784"
+        },
+        {
+          "stage": 39,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 22,
+          "terrainSHA": "588e06f99f331c73c2c981399e258b1e9537864dd149ef1dcc348168f3e1c39b",
+          "unitsSHA": "beb188d6ed6f14e9146c30452605eb823ac17216137579786d592ac2ce7f111b",
+          "fullSHA": "1597ef1bbbeb882b6b051a49d75435bf875a8361ae32eb28e678bae875d20139"
+        },
+        {
+          "stage": 40,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 41,
+          "terrainSHA": "fb6e45bc96cb86cee9721443ca6dd17cdf6c6d5df5e4ed42b11119039dab5773",
+          "unitsSHA": "6bc787e6e3fbf65614e1f7f8782e3e6c78a4c8a9d25110954525b0ef6d782792",
+          "fullSHA": "0439468cf4c607b8f3f9a676c9ee0b705199a43ed3f2f656ebe18742a5e93e14"
+        },
+        {
+          "stage": 41,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 20,
+          "terrainSHA": "477f9a6aa38d44264f480d83611ead4b114b75d85492319bf520a1c87573b14b",
+          "unitsSHA": "8565e575211f7b4f3c101c33624c0812bca7119bbfc0214b0583d3d24d21aa02",
+          "fullSHA": "ee24cdff94b29ab8dbf8c89f403099d253ae4f00fdedb15880760069636a88a2"
+        },
+        {
+          "stage": 42,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 21,
+          "terrainSHA": "8d76f6db63c8bd29687edcb832e6942d6b970bd79a256b5967e50438b0036259",
+          "unitsSHA": "c2889ea235897f694258d485c8520446a343e1f4f4c14a9207e92dd210e6abe8",
+          "fullSHA": "b74e5b063403ed6da4e5f1d7ad95735e10d29ff262a457a4acf1fd8504e78bd5"
+        },
+        {
+          "stage": 43,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 26,
+          "terrainSHA": "e97fe59ee781fbe95f71af4f360ef1541ef7b4df1eca4ec3b540c4d960e75dbb",
+          "unitsSHA": "66b8f79b95a0f695b3f382b24649db69ae09195fdf8ebd24b14024af3b862e84",
+          "fullSHA": "78a9d12e1bbe83a1b192acf158d1f1c7c7e263682c7310dedd7f0efaf8bbd2c7"
+        },
+        {
+          "stage": 44,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 23,
+          "terrainSHA": "2970c390d5a59726e8825a343b4d5fd402a9c6640383e9302f69f1f44049b413",
+          "unitsSHA": "f97f9979b404b1471f45bbcabeab790a036cff19d6e230dd76b4ccd218fdd7a2",
+          "fullSHA": "6989e4d109f0fe854d01ea0641fb4cc69d76f160899520ba0fde3cd961a799bd"
+        },
+        {
+          "stage": 45,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 20,
+          "terrainSHA": "143f9846189eccdbfc8ca3af3c4363d634ac23b175fcbc33f987eae3f2e83193",
+          "unitsSHA": "0269f546269fad6b168d063daf7029a30e06acb2d3b991f5c03fb7dc18da14c4",
+          "fullSHA": "382fa66a8fe1d84b4ec7e75f3d5f4f8785c61fdd24ed78db72eedfe309804252"
+        },
+        {
+          "stage": 46,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 11,
+          "terrainSHA": "f9410912cc8e8e7465c5bd2b584f1a4138d5edaf95d873ce2c1bd777dab7aa05",
+          "unitsSHA": "d5bc275765ee8faa92ee1c982b1dbd94e5f3ebf20d8f0613ab20758b09f9c69a",
+          "fullSHA": "5f87a2da58e492f55cbd95c2e6be07d9149212ab1cd0a0d4384df44aaf46923e"
+        },
+        {
+          "stage": 47,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 11,
+          "terrainSHA": "882e1137454771c43bb9fe4e8fd7f0fe852ae515bbe1777b23764b2804cd53e3",
+          "unitsSHA": "7b27d4bddb7e92e960ee0a09639e25e2370ce6d26b76fc6111b1ab16b47417f9",
+          "fullSHA": "06cc666470a7f391b660528f2485d83c274fa497a0b049960826ba030088645a"
+        },
+        {
+          "stage": 48,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 12,
+          "terrainSHA": "289f106170940d40c822dbbddfc8b6957a1096f67a1f59656dfeb9d73da8921f",
+          "unitsSHA": "2fb7064d6cc42908992d6743f902476c580ae205314c7534ee7edc0fec9cbf98",
+          "fullSHA": "f8946c5cb37abce27cb3c74c6192524f13ac7875f61a35e0e21aad6a7abc8c59"
+        },
+        {
+          "stage": 49,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 16,
+          "terrainSHA": "050a694413e2b80ef30acbbe764d7b4edd7a9bc5a1aed1cad8458f3ae5126da7",
+          "unitsSHA": "842ca01a08f542bf8cdfe312af0fec028ebc70375e3ede7120bd00c8e7d01a78",
+          "fullSHA": "429a6c7c8495df2a456152d62cbffbc71775a0dd05ff100cdb108526045f3add"
+        },
+        {
+          "stage": 50,
+          "codecExact": true,
+          "scaleRevision": 1,
+          "tagged": 20,
+          "terrainSHA": "81d792e88525cb336b4490af5901ba17b5f65738dc8a0c14e58d167efab34d92",
+          "unitsSHA": "db5fb4f7eb0d19302eedd0a4d6ab1f993c9c761e14c86c9c7ff262ef3b8c68c4",
+          "fullSHA": "05ab79e6014dafcc927575f3d9c8919a455ab1a671d980e7a3040f323f0d68f6"
+        }
+      ],
+      "view": "gray-left",
+      "terrainExactGolden": true,
+      "sceneSameAsB": false,
+      "physicsSameAsB": false,
+      "scaleSummary": {
+        "revision": 1,
+        "tagged": 10,
+        "enlarged": 8,
+        "omenStages": [
+          "16"
+        ],
+        "darknessStages": [
+          "46"
+        ]
+      },
+      "codecRoundtripExact": true,
+      "stats": {
+        "rasterizations": 12,
+        "hits": 12,
+        "allocations": 1,
+        "resizes": 0,
+        "bytes": 1065024,
+        "peakBytes": 1065024,
+        "fallbacks": 0,
+        "lastFallback": null,
+        "nativeBudget": {
+          "plans": 0,
+          "admitted": 0,
+          "rejected": 0,
+          "releases": 0,
+          "last": null,
+          "limitBytes": 50331648
+        },
+        "nativeJunction": {
+          "calls": 9,
+          "ms": 0.19999999995343387,
+          "prepareCalls": 1,
+          "prepareMs": 0.10000000009313226,
+          "staticBytes": 26782,
+          "scope": "Connected nonwalk gray seam; test only, BODY/apron min2device and visible min1device at .05; test-only sampled scale >= .05"
+        },
+        "supersample": {
+          "calls": 6,
+          "stripes": 6,
+          "emptyStripes": 2,
+          "highRasterStripes": 4,
+          "eligibilityScanPixels": 109774,
+          "eligible": 4015,
+          "corrected": 2385,
+          "opaqueGrassSkipped": 19117,
+          "protectedPaletteSkipped": 7,
+          "roadSkipped": 0,
+          "subpixelRoadSkipped": 0,
+          "unresolvedHolesSkipped": 39,
+          "alphaChanged": 0,
+          "skips": 0,
+          "allocations": 2,
+          "resizes": 4,
+          "scratchBytes": 1971120,
+          "peakLogicalBytes": 6307584,
+          "readbackBytes": 4336464,
+          "ms": 211.00000000011642,
+          "factor": 2,
+          "maxScratchPixels": 1048576,
+          "scope": "Logical canvas and live readback payload only; not total JS/native/GPU heap"
+        },
+        "maxPixels": 8388608,
+        "transition": {
+          "fills": 30,
+          "passes": 9,
+          "boundaryPasses": 3,
+          "allocations": 3,
+          "resizes": 3,
+          "bytes": 1882368,
+          "peakBytes": 1882368,
+          "skips": 0,
+          "lastSkip": null,
+          "maxPixels": 1048576,
+          "bufferDimensions": [
+            [
+              516,
+              198
+            ],
+            [
+              516,
+              198
+            ],
+            [
+              516,
+              516
+            ]
+          ]
+        },
+        "totalLogicalBytes": 4918512
+      }
+    },
+    {
+      "all50": null,
+      "view": "phone-dpr2",
+      "terrainExactGolden": true,
+      "sceneSameAsB": true,
+      "physicsSameAsB": false,
+      "scaleSummary": {
+        "revision": 1,
+        "tagged": 10,
+        "enlarged": 8,
+        "omenStages": [
+          "16"
+        ],
+        "darknessStages": [
+          "46"
+        ]
+      },
+      "codecRoundtripExact": true,
+      "stats": {
+        "rasterizations": 2,
+        "hits": 4,
+        "allocations": 1,
+        "resizes": 0,
+        "bytes": 4343040,
+        "peakBytes": 4343040,
+        "fallbacks": 0,
+        "lastFallback": null,
+        "nativeBudget": {
+          "plans": 4,
+          "admitted": 4,
+          "rejected": 0,
+          "releases": 0,
+          "last": {
+            "w": 780,
+            "h": 1392,
+            "rows": 479,
+            "current": 5837528,
+            "projected": 5837528,
+            "admitted": true,
+            "scope": "Post-cleanup helper-owned logical canvas bytes; not physical heap or preexisting peak"
+          },
+          "limitBytes": 50331648
+        },
+        "nativeJunction": {
+          "calls": 2,
+          "ms": 0,
+          "prepareCalls": 1,
+          "prepareMs": 0.10000000009313226,
+          "staticBytes": 26782,
+          "scope": "Connected nonwalk gray seam; test only, BODY/apron min2device and visible min1device at .05; test-only sampled scale >= .05"
+        },
+        "supersample": {
+          "calls": 0,
+          "stripes": 0,
+          "emptyStripes": 0,
+          "highRasterStripes": 0,
+          "eligibilityScanPixels": 0,
+          "eligible": 0,
+          "corrected": 0,
+          "opaqueGrassSkipped": 0,
+          "protectedPaletteSkipped": 0,
+          "roadSkipped": 0,
+          "subpixelRoadSkipped": 0,
+          "unresolvedHolesSkipped": 0,
+          "alphaChanged": 0,
+          "skips": 0,
+          "allocations": 0,
+          "resizes": 0,
+          "scratchBytes": 0,
+          "peakLogicalBytes": 0,
+          "readbackBytes": 0,
+          "ms": 0,
+          "factor": 2,
+          "maxScratchPixels": 1048576,
+          "scope": "Logical canvas and live readback payload only; not total JS/native/GPU heap"
+        },
+        "maxPixels": 8388608,
+        "transition": {
+          "fills": 0,
+          "passes": 0,
+          "boundaryPasses": 0,
+          "allocations": 3,
+          "resizes": 1,
+          "bytes": 1494488,
+          "peakBytes": 1494488,
+          "skips": 0,
+          "lastSkip": null,
+          "maxPixels": 1048576,
+          "bufferDimensions": [
+            [
+              780,
+              479
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        "totalLogicalBytes": 5837528
+      }
+    },
+    {
+      "all50": null,
+      "view": "phone-dpr3",
+      "terrainExactGolden": true,
+      "sceneSameAsB": true,
+      "physicsSameAsB": false,
+      "scaleSummary": {
+        "revision": 1,
+        "tagged": 10,
+        "enlarged": 8,
+        "omenStages": [
+          "16"
+        ],
+        "darknessStages": [
+          "46"
+        ]
+      },
+      "codecRoundtripExact": true,
+      "stats": {
+        "rasterizations": 2,
+        "hits": 4,
+        "allocations": 1,
+        "resizes": 0,
+        "bytes": 9771840,
+        "peakBytes": 9771840,
+        "fallbacks": 0,
+        "lastFallback": null,
+        "nativeBudget": {
+          "plans": 4,
+          "admitted": 4,
+          "rejected": 0,
+          "releases": 0,
+          "last": {
+            "w": 1170,
+            "h": 2088,
+            "rows": 718,
+            "current": 13132088,
+            "projected": 13132088,
+            "admitted": true,
+            "scope": "Post-cleanup helper-owned logical canvas bytes; not physical heap or preexisting peak"
+          },
+          "limitBytes": 50331648
+        },
+        "nativeJunction": {
+          "calls": 2,
+          "ms": 0.09999999997671694,
+          "prepareCalls": 1,
+          "prepareMs": 0.09999999997671694,
+          "staticBytes": 26782,
+          "scope": "Connected nonwalk gray seam; test only, BODY/apron min2device and visible min1device at .05; test-only sampled scale >= .05"
+        },
+        "supersample": {
+          "calls": 0,
+          "stripes": 0,
+          "emptyStripes": 0,
+          "highRasterStripes": 0,
+          "eligibilityScanPixels": 0,
+          "eligible": 0,
+          "corrected": 0,
+          "opaqueGrassSkipped": 0,
+          "protectedPaletteSkipped": 0,
+          "roadSkipped": 0,
+          "subpixelRoadSkipped": 0,
+          "unresolvedHolesSkipped": 0,
+          "alphaChanged": 0,
+          "skips": 0,
+          "allocations": 0,
+          "resizes": 0,
+          "scratchBytes": 0,
+          "peakLogicalBytes": 0,
+          "readbackBytes": 0,
+          "ms": 0,
+          "factor": 2,
+          "maxScratchPixels": 1048576,
+          "scope": "Logical canvas and live readback payload only; not total JS/native/GPU heap"
+        },
+        "maxPixels": 8388608,
+        "transition": {
+          "fills": 0,
+          "passes": 0,
+          "boundaryPasses": 0,
+          "allocations": 3,
+          "resizes": 1,
+          "bytes": 3360248,
+          "peakBytes": 3360248,
+          "skips": 0,
+          "lastSkip": null,
+          "maxPixels": 1048576,
+          "bufferDimensions": [
+            [
+              1170,
+              718
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        "totalLogicalBytes": 13132088
+      }
+    },
+    {
+      "all50": null,
+      "view": "desktop1080",
+      "terrainExactGolden": true,
+      "sceneSameAsB": true,
+      "physicsSameAsB": false,
+      "scaleSummary": {
+        "revision": 1,
+        "tagged": 10,
+        "enlarged": 8,
+        "omenStages": [
+          "16"
+        ],
+        "darknessStages": [
+          "46"
+        ]
+      },
+      "codecRoundtripExact": true,
+      "stats": {
+        "rasterizations": 2,
+        "hits": 4,
+        "allocations": 1,
+        "resizes": 0,
+        "bytes": 8294400,
+        "peakBytes": 8294400,
+        "fallbacks": 0,
+        "lastFallback": null,
+        "nativeBudget": {
+          "plans": 4,
+          "admitted": 4,
+          "rejected": 0,
+          "releases": 0,
+          "last": {
+            "w": 1920,
+            "h": 1080,
+            "rows": 432,
+            "current": 11612168,
+            "projected": 11612168,
+            "admitted": true,
+            "scope": "Post-cleanup helper-owned logical canvas bytes; not physical heap or preexisting peak"
+          },
+          "limitBytes": 50331648
+        },
+        "nativeJunction": {
+          "calls": 2,
+          "ms": 0,
+          "prepareCalls": 1,
+          "prepareMs": 0.09999999997671694,
+          "staticBytes": 26782,
+          "scope": "Connected nonwalk gray seam; test only, BODY/apron min2device and visible min1device at .05; test-only sampled scale >= .05"
+        },
+        "supersample": {
+          "calls": 0,
+          "stripes": 0,
+          "emptyStripes": 0,
+          "highRasterStripes": 0,
+          "eligibilityScanPixels": 0,
+          "eligible": 0,
+          "corrected": 0,
+          "opaqueGrassSkipped": 0,
+          "protectedPaletteSkipped": 0,
+          "roadSkipped": 0,
+          "subpixelRoadSkipped": 0,
+          "unresolvedHolesSkipped": 0,
+          "alphaChanged": 0,
+          "skips": 0,
+          "allocations": 0,
+          "resizes": 0,
+          "scratchBytes": 0,
+          "peakLogicalBytes": 0,
+          "readbackBytes": 0,
+          "ms": 0,
+          "factor": 2,
+          "maxScratchPixels": 1048576,
+          "scope": "Logical canvas and live readback payload only; not total JS/native/GPU heap"
+        },
+        "maxPixels": 8388608,
+        "transition": {
+          "fills": 0,
+          "passes": 0,
+          "boundaryPasses": 0,
+          "allocations": 3,
+          "resizes": 1,
+          "bytes": 3317768,
+          "peakBytes": 3317768,
+          "skips": 0,
+          "lastSkip": null,
+          "maxPixels": 1048576,
+          "bufferDimensions": [
+            [
+              1920,
+              432
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        "totalLogicalBytes": 11612168
+      }
+    }
+  ],
+  "terrain37": [
+    {
+      "view": "3-overview",
+      "actorFreeSceneExact": true,
+      "terrainSHA": "e323b4d9e5b1bc7ce0d96483c35f8dfe28a1e899054fc1e53aa92d753cb57d65",
+      "normalUnitsSame": false,
+      "normalSceneSame": false
+    },
+    {
+      "view": "7-left",
+      "actorFreeSceneExact": true,
+      "terrainSHA": "fb7ab9e30f42d998afe2cf63f498d2f41f07430d66843240e27135cb1a81203d",
+      "normalUnitsSame": false,
+      "normalSceneSame": true
+    }
+  ]
+}
