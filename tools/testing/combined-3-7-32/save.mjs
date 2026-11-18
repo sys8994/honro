@@ -9,6 +9,20 @@ import {appHarness,plain} from './app-regression-helpers.mjs';
 const [mode,file]=process.argv.slice(2);assert(['snapshot','verify'].includes(mode)&&file,'Usage: snapshot|verify SNAPSHOT.json');
 const h=await appHarness({productionStory:true}),g=h.g,S=g.HonroProfileStore;
 vm.runInContext('Date.now=()=>1794931200000;{let seed=3910;Math.random=()=>((seed=(seed*1664525+1013904223)>>>0)/2**32);}',g);
+// The legacy App model harness uses app:false and omits the real pilot module.
+// Load only the two missing official initialization entries, not a test stub.
+const {runtimeEntries}=await import('../shared/build.mjs');
+const official=await runtimeEntries({vector:true,render:true,app:true,productionStory:true});
+const pilotNames=['HONRO_ACT4_PILOT_COMBAT_REFERENCE','shared/runtime/act4-pilot-combat.js'];
+const modelProjectBefore=JSON.stringify(g.HONRO_PROJECT),pilotInitialization=[];
+for(const name of pilotNames){const found=official.filter(e=>e.name===name);assert.equal(found.length,1,'Official pilot entry '+name);const entry=found[0];
+ if(name==='shared/runtime/act4-pilot-combat.js')assert.equal(entry.code,await readFile(name,'utf8'),'Official pilot source mismatch');
+ else assert.deepEqual(entry.data,JSON.parse(await readFile('shared/data/act4/pilot-combat-reference.json','utf8')),'Official pilot reference mismatch');
+ vm.runInContext(entry.code,g);pilotInitialization.push({name,sourceSHA256:createHash('sha256').update(entry.code).digest('hex')});
+}
+assert.equal(typeof g.HonroAct4PilotCombat?.attach,'function');assert.equal(typeof g.HonroAct4PilotCombat?.tuneFresh,'function');assert.equal(g.HONRO_ACT4_PILOT_COMBAT_REFERENCE?.version,2);assert(g.HONRO_ACT4_PILOT_COMBAT_REFERENCE.stages[31]?.roles);
+assert.equal(JSON.stringify(g.HONRO_PROJECT),modelProjectBefore,'Pilot initialization mutated project');
+await mkdir(path.dirname(file),{recursive:true});await writeFile(file+'.pilot-initialization.json',JSON.stringify({mode,pilotInitialization,officialSourceOnly:true,projectUnchanged:true},null,2));
 const project=g.HONRO_PROJECT,stage=project.stages.find(s=>s.metadata?.stageId===3),bodyId='act1-site:3:body';assert(stage);
 const sha=x=>createHash('sha256').update(JSON.stringify(x)).digest('hex');
 const body=project.library.find(a=>a.id===bodyId);assert(body);
@@ -39,6 +53,7 @@ for(const source of project.stages){
  const before=JSON.stringify(original),packed=plain(S.compactBattleArt(original));assert.equal(JSON.stringify(original),before,'All50 compact input mutation '+source.metadata.stageId);
  const roundtrip=plain(packed);assert(S.restoreBattleArt(roundtrip),'All50 restore rejected '+source.metadata.stageId);const rawDeepStrictEqual=isDeepStrictEqual(roundtrip,original),savedOriginal=plain(original),savedRestored=plain(roundtrip);const jsonExact=isDeepStrictEqual(savedRestored,savedOriginal);
  codecRealmDiagnostics.push({stage:source.metadata.stageId,rawDeepStrictEqual,jsonExact,expectedJSONSHA:sha(savedOriginal),restoredJSONSHA:sha(savedRestored)});
+ await writeFile(file+'.codec-diagnostics.json',JSON.stringify({mode,codecRealmDiagnostics},null,2));
  if(!jsonExact){await mkdir(path.dirname(file),{recursive:true});await writeFile(file+'.codec-failure.json',JSON.stringify({mode,stage:source.metadata.stageId,codecRealmDiagnostics,scope:'Serialized save equality remains mandatory; no field normalization or waiver'},null,2));}
  assert(jsonExact,'All50 serialized exact roundtrip '+source.metadata.stageId+'; see codec-failure hashes');
  all50.push({id:source.metadata.stageId,full:sha(original),onlyStage3ArtworkNormalized:sha(gameplay(original)),roundtripExact:true,packedBytes:Buffer.byteLength(JSON.stringify(packed))});
