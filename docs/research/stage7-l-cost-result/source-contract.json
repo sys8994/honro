@@ -1,0 +1,52 @@
+{
+  "passed": true,
+  "baselineRef": "a6f2935935eed559c3ecd27207d8d8a78a1ed22d",
+  "candidateRef": "85bae4a08993d3b71d22ea3fec76686e0ae3c61c",
+  "changed": [
+    "shared/data/stage7-terrain-path-registration.json",
+    "shared/runtime/renderer.js",
+    "shared/runtime/terrain-readability.js",
+    "shared/terrain-path-optimization.mjs",
+    "tools/map-forge/act1-naru-doldang.mjs",
+    "tools/map-forge/stage7-terrain-finish.json",
+    "tools/map-forge/stage7-terrain-finish.mjs"
+  ],
+  "files": [
+    {
+      "path": "shared/data/stage7-terrain-path-registration.json",
+      "sha256": "93a55394b2bab802e364e834b1a47be8fd951995a3fcf0be1ca205777e75fd1e",
+      "bytes": 561
+    },
+    {
+      "path": "shared/runtime/renderer.js",
+      "sha256": "e7098357a94845d83f02c10decab239484619f48aba3910ea203fdefb1e220c7",
+      "bytes": 76098
+    },
+    {
+      "path": "shared/runtime/terrain-readability.js",
+      "sha256": "c2d1993b449e15beceecdd661e91ca8c5398bd0c9ffd341c2b8f74e03861cd33",
+      "bytes": 6436
+    },
+    {
+      "path": "shared/terrain-path-optimization.mjs",
+      "sha256": "0bceb927cc7f0bdc8ab27d6c68427e96da0e3a5de14e484b7976c7fbba1e57eb",
+      "bytes": 3091
+    },
+    {
+      "path": "tools/map-forge/act1-naru-doldang.mjs",
+      "sha256": "21d4c970795cd8a2eb171d440e5f9e890d2eb67a69bdd1f0620394c67f2d9366",
+      "bytes": 14713
+    },
+    {
+      "path": "tools/map-forge/stage7-terrain-finish.json",
+      "sha256": "5236c1338b12bf5e2f5d6a0198214e9deccc90f1c0b99597e47415ebae1129e6",
+      "bytes": 333878
+    },
+    {
+      "path": "tools/map-forge/stage7-terrain-finish.mjs",
+      "sha256": "e9fbaee111858616d3ce4d7ad8158cd25d6a21aa4f210c1a1e77cc5b9761b5d6",
+      "bytes": 4408
+    }
+  ],
+  "scope": "Exactly7 approved source files; all other git tree paths unchanged including32 data/pilot/helper absence. Runtime/compiler/battle checks follow, not inferred here."
+}

@@ -1,0 +1,8 @@
+# Two-page J fieldwindow diagnostic, not acceptance
+Original registered J versus copied candidate25da935d. Maximum originalcamera320/1650 scale1.65 1331×763 DPR1. Every observed first/cold/six pans/edge records whole submission, stats and PNG/hash outside timer. Pan offsets16/0,32/0,32/16,0/0,160/0,176/16 exercise fractional resampling/reuse/return/long rebuild. Last edge camera1689.6/1342 supplies nonempty exterior. No full builds or clean16suite rerun. Source/foundation/pilot pins retained.
+
+Expected RGB resampling differences are fully counted/maxdelta/bbox recorded, NOT waived as exact. Scenealpha and separately replayed transparent terrain alpha must be exact; terrain and Scene pixels outside original transparent terrain support must not change. Edge empty/partial pixels must be positive. This direct original FOUNDATION+BODY replay uses recorded cameras after all timing; it is NOT a Scene-internal observer, nor proof of every foreground component contribution. Partialforeground/visibleart acceptance remains false, regardless checker green. Actual PNG visual judgment remains mandatory.
+
+Nativefieldwindow cache hits and long-pan misses must both grow. All helper logical canvases+window bytes must sum exactly and remain≤48MiB. Not GPUheap or lifecycle proof. Explicit coldclear and later transparent replay alterhelperstate intentionally, only after timed sequence. End screenshot is captured after replay/reset and is not substituted for individual observed frame images.
+
+Timings include raster/rebuild/all native copying, but per-frame readbacks perturb execution; no FPS or clean performance claims. Two pages minimize wasted study if larger than expected visual/cost regressions appear. No production registration.
