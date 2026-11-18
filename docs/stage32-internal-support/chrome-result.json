@@ -1,0 +1,500 @@
+{
+  "ok": true,
+  "sourceRun": 44252479563,
+  "sourceArtifact": 14403743942,
+  "scope": "Independent original solid-fill support replay over immutable prior actual Scene PNGs. Old clip-bitmap support failure retained. No production or art completion claim.",
+  "rows": [
+    {
+      "view": "gray-left",
+      "changed": 845,
+      "baselinePNG": "f5709191430a6eccd4dc55ec650dc39682c928696125bef36d802d76968f35ba",
+      "candidatePNG": "868c22afe308fda508ece49bc33a0ee6503a18c179bce15053cd74fea46c1563",
+      "tests": [
+        {
+          "name": "old-clip-bitmap",
+          "mode": "coverage",
+          "outsideCount": 5,
+          "outside": [
+            {
+              "pixel": [
+                519,
+                385
+              ],
+              "before": [
+                94,
+                94,
+                96,
+                255
+              ],
+              "after": [
+                93,
+                93,
+                95,
+                255
+              ]
+            },
+            {
+              "pixel": [
+                515,
+                436
+              ],
+              "before": [
+                94,
+                94,
+                96,
+                255
+              ],
+              "after": [
+                93,
+                93,
+                96,
+                255
+              ]
+            },
+            {
+              "pixel": [
+                515,
+                437
+              ],
+              "before": [
+                94,
+                94,
+                96,
+                255
+              ],
+              "after": [
+                93,
+                93,
+                95,
+                255
+              ]
+            },
+            {
+              "pixel": [
+                508,
+                444
+              ],
+              "before": [
+                94,
+                94,
+                96,
+                255
+              ],
+              "after": [
+                93,
+                93,
+                95,
+                255
+              ]
+            },
+            {
+              "pixel": [
+                515,
+                460
+              ],
+              "before": [
+                94,
+                94,
+                96,
+                255
+              ],
+              "after": [
+                93,
+                93,
+                95,
+                255
+              ]
+            }
+          ],
+          "sha256": "caf7d391fa8289ec17da1fde926b087aef96c5c0c40fa40cec48706a541944d1"
+        },
+        {
+          "name": "old-clip-bitmap",
+          "mode": "binary-tile-support",
+          "outsideCount": 2,
+          "outside": [
+            {
+              "pixel": [
+                515,
+                436
+              ],
+              "before": [
+                94,
+                94,
+                96,
+                255
+              ],
+              "after": [
+                93,
+                93,
+                96,
+                255
+              ]
+            },
+            {
+              "pixel": [
+                508,
+                444
+              ],
+              "before": [
+                94,
+                94,
+                96,
+                255
+              ],
+              "after": [
+                93,
+                93,
+                95,
+                255
+              ]
+            }
+          ],
+          "sha256": "fe380f1ad526075153385e91c5c356243f41c33ac8aa9a2b8a532893c8ff9cc4"
+        },
+        {
+          "name": "solid-fill",
+          "mode": "coverage",
+          "outsideCount": 4,
+          "outside": [
+            {
+              "pixel": [
+                519,
+                385
+              ],
+              "before": [
+                94,
+                94,
+                96,
+                255
+              ],
+              "after": [
+                93,
+                93,
+                95,
+                255
+              ]
+            },
+            {
+              "pixel": [
+                515,
+                436
+              ],
+              "before": [
+                94,
+                94,
+                96,
+                255
+              ],
+              "after": [
+                93,
+                93,
+                96,
+                255
+              ]
+            },
+            {
+              "pixel": [
+                515,
+                437
+              ],
+              "before": [
+                94,
+                94,
+                96,
+                255
+              ],
+              "after": [
+                93,
+                93,
+                95,
+                255
+              ]
+            },
+            {
+              "pixel": [
+                515,
+                460
+              ],
+              "before": [
+                94,
+                94,
+                96,
+                255
+              ],
+              "after": [
+                93,
+                93,
+                95,
+                255
+              ]
+            }
+          ],
+          "sha256": "1616ed2a171c5d614fe7ff56e6791737587b8280ccf930d0da87bbde70e30cde"
+        },
+        {
+          "name": "solid-fill",
+          "mode": "binary-tile-support",
+          "outsideCount": 0,
+          "outside": [],
+          "sha256": "c3625baa8b11ae8000ae8f2542b3a7469871f1e61749b73f71f31d14f87a116b"
+        }
+      ]
+    },
+    {
+      "view": "maximum",
+      "changed": 1232,
+      "baselinePNG": "bf8e104d970aadea74c6a4aeb626e2d4f5911b5e9cdc24b38ad88fb966128127",
+      "candidatePNG": "d24317d619b2e38a94c06d9ecfe0e616d14cea4cc670be6c08bfbbfd9769c406",
+      "tests": [
+        {
+          "name": "old-clip-bitmap",
+          "mode": "coverage",
+          "outsideCount": 6,
+          "outside": [
+            {
+              "pixel": [
+                257,
+                162
+              ],
+              "before": [
+                94,
+                94,
+                96,
+                255
+              ],
+              "after": [
+                93,
+                93,
+                95,
+                255
+              ]
+            },
+            {
+              "pixel": [
+                248,
+                452
+              ],
+              "before": [
+                94,
+                94,
+                96,
+                255
+              ],
+              "after": [
+                93,
+                93,
+                96,
+                255
+              ]
+            },
+            {
+              "pixel": [
+                233,
+                477
+              ],
+              "before": [
+                94,
+                94,
+                96,
+                255
+              ],
+              "after": [
+                93,
+                93,
+                95,
+                255
+              ]
+            },
+            {
+              "pixel": [
+                234,
+                529
+              ],
+              "before": [
+                94,
+                94,
+                96,
+                255
+              ],
+              "after": [
+                93,
+                93,
+                95,
+                255
+              ]
+            },
+            {
+              "pixel": [
+                235,
+                581
+              ],
+              "before": [
+                94,
+                94,
+                96,
+                255
+              ],
+              "after": [
+                93,
+                93,
+                95,
+                255
+              ]
+            },
+            {
+              "pixel": [
+                224,
+                746
+              ],
+              "before": [
+                94,
+                94,
+                96,
+                255
+              ],
+              "after": [
+                93,
+                93,
+                95,
+                255
+              ]
+            }
+          ],
+          "sha256": "43be552d2a1e7fef7607d60e328fd29ce92751211157dbcad8772f4a5099d9b2"
+        },
+        {
+          "name": "old-clip-bitmap",
+          "mode": "binary-tile-support",
+          "outsideCount": 6,
+          "outside": [
+            {
+              "pixel": [
+                257,
+                162
+              ],
+              "before": [
+                94,
+                94,
+                96,
+                255
+              ],
+              "after": [
+                93,
+                93,
+                95,
+                255
+              ]
+            },
+            {
+              "pixel": [
+                248,
+                452
+              ],
+              "before": [
+                94,
+                94,
+                96,
+                255
+              ],
+              "after": [
+                93,
+                93,
+                96,
+                255
+              ]
+            },
+            {
+              "pixel": [
+                233,
+                477
+              ],
+              "before": [
+                94,
+                94,
+                96,
+                255
+              ],
+              "after": [
+                93,
+                93,
+                95,
+                255
+              ]
+            },
+            {
+              "pixel": [
+                234,
+                529
+              ],
+              "before": [
+                94,
+                94,
+                96,
+                255
+              ],
+              "after": [
+                93,
+                93,
+                95,
+                255
+              ]
+            },
+            {
+              "pixel": [
+                235,
+                581
+              ],
+              "before": [
+                94,
+                94,
+                96,
+                255
+              ],
+              "after": [
+                93,
+                93,
+                95,
+                255
+              ]
+            },
+            {
+              "pixel": [
+                224,
+                746
+              ],
+              "before": [
+                94,
+                94,
+                96,
+                255
+              ],
+              "after": [
+                93,
+                93,
+                95,
+                255
+              ]
+            }
+          ],
+          "sha256": "d9022a567b0a2710cc90800db64d10b912d2c4a6de24389457fbcb8b34a21471"
+        },
+        {
+          "name": "solid-fill",
+          "mode": "coverage",
+          "outsideCount": 0,
+          "outside": [],
+          "sha256": "a4f8d13d58be1ad3fb777ba0dc58629a58be5f5a96dfaba261dd4675c03d1e12"
+        },
+        {
+          "name": "solid-fill",
+          "mode": "binary-tile-support",
+          "outsideCount": 0,
+          "outside": [],
+          "sha256": "f66755a8d022d825066dbdc4e39db3ee5b660720e1f11de1b854571b516fd668"
+        }
+      ]
+    }
+  ],
+  "failures": []
+}
