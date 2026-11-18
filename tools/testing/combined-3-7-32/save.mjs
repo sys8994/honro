@@ -1,6 +1,7 @@
 /** Synthetic/model cross-version contract; never opens a browser or user storage. */
 import assert from 'node:assert/strict';
 import vm from 'node:vm';
+import {isDeepStrictEqual} from 'node:util';
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import path from 'node:path';
 import {createHash} from 'node:crypto';
@@ -29,16 +30,21 @@ const snapshot={format:2,representation,scope:'Synthetic initial campaign battle
 // Same official model harness, all authored stages. No extra browser or user data.
 // Direct old-save migration remains the separate Stage3 encoded check below.
 const projectBeforeAll50=sha(project),all50=[];
+const codecRealmDiagnostics=[];
 assert.deepEqual(project.stages.map(s=>s.metadata?.stageId).sort((a,b)=>a-b),Array.from({length:50},(_,i)=>i+1),'All fifty official stages required');
 for(const source of project.stages){
  vm.runInContext('{let seed=3910;Math.random=()=>((seed=(Math.imul(seed,1664525)+1013904223)>>>0)/2**32);}',g);
  const st=plain(source);g.HonroMaps.compile(st,project);
  const original=plain(g.HonroMaps.createBattle(st,project,S.fresh(),{origin:'campaign'}));g.HonroStageRules.sanitizeStageBattle(original);
  const before=JSON.stringify(original),packed=plain(S.compactBattleArt(original));assert.equal(JSON.stringify(original),before,'All50 compact input mutation '+source.metadata.stageId);
- const roundtrip=plain(packed);assert(S.restoreBattleArt(roundtrip),'All50 restore rejected '+source.metadata.stageId);assert.deepEqual(roundtrip,original,'All50 exact roundtrip '+source.metadata.stageId);
+ const roundtrip=plain(packed);assert(S.restoreBattleArt(roundtrip),'All50 restore rejected '+source.metadata.stageId);const rawDeepStrictEqual=isDeepStrictEqual(roundtrip,original),savedOriginal=plain(original),savedRestored=plain(roundtrip);const jsonExact=isDeepStrictEqual(savedRestored,savedOriginal);
+ codecRealmDiagnostics.push({stage:source.metadata.stageId,rawDeepStrictEqual,jsonExact,expectedJSONSHA:sha(savedOriginal),restoredJSONSHA:sha(savedRestored)});
+ if(!jsonExact){await mkdir(path.dirname(file),{recursive:true});await writeFile(file+'.codec-failure.json',JSON.stringify({mode,stage:source.metadata.stageId,codecRealmDiagnostics,scope:'Serialized save equality remains mandatory; no field normalization or waiver'},null,2));}
+ assert(jsonExact,'All50 serialized exact roundtrip '+source.metadata.stageId+'; see codec-failure hashes');
  all50.push({id:source.metadata.stageId,full:sha(original),onlyStage3ArtworkNormalized:sha(gameplay(original)),roundtripExact:true,packedBytes:Buffer.byteLength(JSON.stringify(packed))});
 }
-assert.equal(sha(project),projectBeforeAll50,'All50 codec/compile mutated project');snapshot.all50=all50;
+assert.equal(sha(project),projectBeforeAll50,'All50 codec/compile mutated project');snapshot.all50=all50;snapshot.codecRealmDiagnostics=codecRealmDiagnostics;
+console.log(JSON.stringify({mode,codecRealmDiagnostics,comparisonScope:"Actual JSON save data; VM object prototypes are not serialized, every saved field remains exact"}));
 if(mode==='snapshot'){
  assert(!body.params?.paintBeyondTerrainDomain,'Baseline unexpectedly contains new paint flag');
  await mkdir(path.dirname(file),{recursive:true});await writeFile(file,JSON.stringify(snapshot));console.log(JSON.stringify({ok:true,mode,bodySha:snapshot.bodySha,inlineBytes:Buffer.byteLength(JSON.stringify(battle)),encodedBytes:Buffer.byteLength(JSON.stringify(encoded)),representation}));
