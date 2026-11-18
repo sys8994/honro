@@ -1,0 +1,9 @@
+# DPR gate diagnosis and same-backend transform oracle correction
+
+CI44284841855 intentionally retains strict failure. Artifact14417689440 ZIP SHA25634be98ba290104ab1bda340b367fb338093c9752dc99ca3cb065c12b2b79f966. Actual7d Chrome157 condition: windowDPR3; CSS390×696; Scene.size d3; backing1170×2088; camera320,1650,scale1.65. BODY actualmatrix[4.949999928474426,0,0,4.949999928474426,-998.9999771118164,-7123.499881982803], same final canvas. NoDPR1 fallback or offscreen mismatch.
+
+a=d exactly3*Math.fround(1.65); discrepancy from double4.95 is7.1525574e-8, exceeding the incorrectly chosen1e-9 test threshold. This is measured Canvas transform representation, not an art pixel tolerance or actualDPR loss.7d officialrenderer source uses setTransform(d), translate(CSScenter), scale(sceneScale), translate(-camera); >1.05live/same-matrix screenRaster. The diagnostic source and immutable failure remain unchanged.
+
+Separate capture.js correction executes this identical official transform sequence on a1×1 reference Canvas only after all measured frames. It compares all6getTransform components by exact equality, plus exact backing/DPR and nonempty actualBODY rows. Noepsilon increase, bodymatrix forcing or runtime source edit. The small reference is not a renderer: it supplies independently composed expected Canvas matrix using the same backend. It does not produce/suppress actual BODY observations. Wrapper remains absent during timing, restored after untimed final Scene. Captured diagnostics now survive failures and include expectedmatrix.
+
+This file is for integrating into the new finalbaseline package after parent review, not modifying historical failed source. Current deploy baseline has advanced to5b; do not automatically rerun7d16pages. Old.6ABBA4/source/compiledpreflight may remain historical7d evidence, not new5b cost evidence. New5b ownrenderer transform sequence must be verified before reusing this oracle. No new CI or production changes here.
