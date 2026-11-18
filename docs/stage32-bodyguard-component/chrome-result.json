@@ -1,0 +1,296 @@
+{
+  "ok": true,
+  "sourceRun": 44247043774,
+  "artifact": 14402153285,
+  "baselinePNG": "7502e978998966f6541ee859ffd996c3a05e8590b0db7b0de1c9c937129bc187",
+  "candidatePNG": "f3db2fed1b5aacc953db3837175ec950c91e5a8d4f6bb0314e3d8eaa38fba78c",
+  "scope": "Independent original exposed-component tile paint and recorded exact screen blit counterfactual. Original raw owner/support failures retained. GEOS visible-role oracle .005source flatten; not a continuous universal proof or actual Scene regeneration.",
+  "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+  "rows": [
+    {
+      "kind": "grass",
+      "baselineNonzero": 2566,
+      "baselineMax": 255,
+      "screenChanged": 0,
+      "max": 0,
+      "points": [],
+      "tileDiff": [
+        {
+          "id": 0,
+          "changed": 0,
+          "max": 0
+        },
+        {
+          "id": 1,
+          "changed": 0,
+          "max": 0
+        },
+        {
+          "id": 2,
+          "changed": 0,
+          "max": 0
+        },
+        {
+          "id": 3,
+          "changed": 0,
+          "max": 0
+        }
+      ],
+      "atRawConflicts": [
+        {
+          "pixel": [
+            123,
+            364
+          ],
+          "before": 11,
+          "after": 11
+        },
+        {
+          "pixel": [
+            123,
+            364
+          ],
+          "before": 11,
+          "after": 11
+        },
+        {
+          "pixel": [
+            124,
+            364
+          ],
+          "before": 16,
+          "after": 16
+        },
+        {
+          "pixel": [
+            124,
+            364
+          ],
+          "before": 16,
+          "after": 16
+        },
+        {
+          "pixel": [
+            175,
+            365
+          ],
+          "before": 5,
+          "after": 5
+        }
+      ]
+    },
+    {
+      "kind": "pale",
+      "baselineNonzero": 1355,
+      "baselineMax": 255,
+      "screenChanged": 0,
+      "max": 0,
+      "points": [],
+      "tileDiff": [
+        {
+          "id": 0,
+          "changed": 0,
+          "max": 0
+        },
+        {
+          "id": 1,
+          "changed": 0,
+          "max": 0
+        },
+        {
+          "id": 2,
+          "changed": 0,
+          "max": 0
+        },
+        {
+          "id": 3,
+          "changed": 0,
+          "max": 0
+        }
+      ],
+      "atRawConflicts": [
+        {
+          "pixel": [
+            123,
+            364
+          ],
+          "before": 0,
+          "after": 0
+        },
+        {
+          "pixel": [
+            123,
+            364
+          ],
+          "before": 0,
+          "after": 0
+        },
+        {
+          "pixel": [
+            124,
+            364
+          ],
+          "before": 0,
+          "after": 0
+        },
+        {
+          "pixel": [
+            124,
+            364
+          ],
+          "before": 0,
+          "after": 0
+        },
+        {
+          "pixel": [
+            175,
+            365
+          ],
+          "before": 0,
+          "after": 0
+        }
+      ]
+    },
+    {
+      "kind": "road",
+      "baselineNonzero": 1034,
+      "baselineMax": 255,
+      "screenChanged": 0,
+      "max": 0,
+      "points": [],
+      "tileDiff": [
+        {
+          "id": 0,
+          "changed": 0,
+          "max": 0
+        },
+        {
+          "id": 1,
+          "changed": 0,
+          "max": 0
+        },
+        {
+          "id": 2,
+          "changed": 0,
+          "max": 0
+        },
+        {
+          "id": 3,
+          "changed": 0,
+          "max": 0
+        }
+      ],
+      "atRawConflicts": [
+        {
+          "pixel": [
+            123,
+            364
+          ],
+          "before": 0,
+          "after": 0
+        },
+        {
+          "pixel": [
+            123,
+            364
+          ],
+          "before": 0,
+          "after": 0
+        },
+        {
+          "pixel": [
+            124,
+            364
+          ],
+          "before": 0,
+          "after": 0
+        },
+        {
+          "pixel": [
+            124,
+            364
+          ],
+          "before": 0,
+          "after": 0
+        },
+        {
+          "pixel": [
+            175,
+            365
+          ],
+          "before": 0,
+          "after": 0
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "name": "support-magnitude",
+      "sha256": "2d3dbfa333b45704d12dae445862fb0c86471bd78163e1ff012216f1ffb913c1"
+    },
+    {
+      "name": "support-binary-tile-support",
+      "sha256": "9043947897f6e43f1158276e9fa61d6056f35740edcbfb8905768b2522d0aea5"
+    },
+    {
+      "name": "grass-baseline",
+      "sha256": "7497bd77e62a16c77e90f04a22895f2d2c208bcf8a2da454fb00a82346ad2b17"
+    },
+    {
+      "name": "grass-gray",
+      "sha256": "7497bd77e62a16c77e90f04a22895f2d2c208bcf8a2da454fb00a82346ad2b17"
+    },
+    {
+      "name": "pale-baseline",
+      "sha256": "695294b6f42455567305d8bfec226d017f1a9043c1005e2aff76f99c101fdfa3"
+    },
+    {
+      "name": "pale-gray",
+      "sha256": "695294b6f42455567305d8bfec226d017f1a9043c1005e2aff76f99c101fdfa3"
+    },
+    {
+      "name": "road-baseline",
+      "sha256": "d0ec9c921c57cf2e17b45b08d97aecbe218d29d2857147330fb3855bfae5fe50"
+    },
+    {
+      "name": "road-gray",
+      "sha256": "d0ec9c921c57cf2e17b45b08d97aecbe218d29d2857147330fb3855bfae5fe50"
+    }
+  ],
+  "support": [
+    {
+      "mode": "magnitude",
+      "source": "Independent declared geometry clip, before comparison with observed Scene changes",
+      "changedCount": 571,
+      "outsideCount": 1,
+      "outside": [
+        {
+          "pixel": [
+            287,
+            379
+          ],
+          "before": [
+            135,
+            111,
+            99,
+            255
+          ],
+          "after": [
+            135,
+            110,
+            99,
+            255
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "binary-tile-support",
+      "source": "Independent declared geometry clip, before comparison with observed Scene changes",
+      "changedCount": 571,
+      "outsideCount": 0,
+      "outside": []
+    }
+  ]
+}
