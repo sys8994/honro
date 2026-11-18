@@ -23,7 +23,8 @@ export function finishNaruBody(core,{palette=true,exterior=true}={}){
  p('#10282b','M-445 826L-408 891-393 1015-347 1094-329 1186-382 1125-425 1013-438 919Z'),
  p('#10282b','M2200 882L2180 960 2213 1051 2218 1164 2259 1230 2248 1116 2233 1045 2218 964Z')
  ];
- const rightRim=p('#51533a',`M1772 638H${R}V646L2101 647 2055 645 1989 648 1903 645 1830 647 1772 645Z`);
+ const rightRim=p('#51533a',`M1770 631C1792 631 1806 637 1834 638H${R}V646L2101 647 2055 645 1989 648 1903 645 1830 647C1808 647 1793 645 1770 647Z`);
+ const rightGrass=p('#70884a',`M1770 634C1790 634 1808 640 1834 641L1903 640 1989 642 2055 640 2101 642 ${R} 641V644L2101 645 2055 643 1989 645 1903 643 1834 644C1808 644 1790 641 1770 641Z`);
  // Closed narrow fill ribbons keep the timber finish explicit in material geometry.
  const woodGrain={tag:'g',children:[
  p('#3d493b','M550 588C552 608 548 629 552 650L550 680 551 680 553 650C549 629 553 608 551 588Z M562 615C559 635 564 647 561 668L562 668C565 647 560 635 563 615Z'),
@@ -33,11 +34,12 @@ export function finishNaruBody(core,{palette=true,exterior=true}={}){
  // The original raster's entire rows882..886 are exactly #142c2f;
  // side tails are equally solid below y723(left)/708(right). Cap only
  // synthetic AA closures in that nonwalkable solid-color area, after source.
- const join=p('#142c2f','M-1 885H1775V889H-1Z M-1 723H2V887H-1Z M1772 708H1776V887H1772Z M1772 495H1776V631H1772Z M1772 648H1776V667H1772Z');
+ const seamBase=p('#142c2f','M-1 885H1775V889H-1Z M-1 723H2V887H-1Z M1772 708H1776V887H1772Z M1772 495H1776V631H1772Z M1772 648H1776V667H1772Z');
+ const join={tag:'g',children:[seamBase,rightRim,rightGrass]};
  const rockJoin=p('#213d40','M1770 668H1777V716H1770Z');
  const original=result.root.children.find(n=>n.tag==='use'&&n.symbol==='source');
  if(!original)throw Error('Expected untouched source use');
- result.root={tag:'g',children:[base,left,right,...strata,rightRim,original,join,rockJoin,woodGrain]};
+ result.root={tag:'g',children:[base,left,right,...strata,original,join,rockJoin,woodGrain]};
  for(const key of Object.keys(result.clips))if(key.startsWith('site-edge-'))delete result.clips[key];
  result.viewBox=[-1200,0,4174,4887];
  return result;
