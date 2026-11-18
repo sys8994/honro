@@ -1,0 +1,8 @@
+{
+  "baselineSHA": "6823eda0e8d3c5250396c857f09f96ee3eba8fbfba124af540d080a5a76d03c7",
+  "candidateSHA": "f1c88bb81221604a556de7414e6e1a60aef8733762d8e6c8249d47d710c3ff3d",
+  "before": "if(id===FOUNDATION){c.translate(l.x,l.y);c.scale(7.2,7.2);c.clip(q.silhouette);bitmap(c,cv);}",
+  "after": "if(id===FOUNDATION){c.translate(l.x,l.y);c.scale(7.2,7.2);c.clip(q.silhouette);if(route?.nativeLive===true&&route.sceneScale>1.05){c.transform(...q.fieldTransform);for(const n of q.field){c.fillStyle=n.fill;c.fill(n.path);}}else bitmap(c,cv);}",
+  "inverseExact": true,
+  "scope": "Only native FOUNDATION display primitive; BODY bitmap/material preparation unchanged. Not a performance claim."
+}
