@@ -47,9 +47,9 @@ jobs:
             if [ "$kind" = matrix ]; then views='portrait-overview landscape-overview portrait-bottom landscape-bottom desktop-walk'; prefix='matrix-'; extractor='tests/stage32-ss2-overview-result.mjs'; fi
             for variant in candidate ss2; do
               for view in $views; do
-                dump="$RUNNER_TEMP/registered-$kind-$variant-$view.html"
-                if timeout 320s node tests/stage32-real-clock-chrome.mjs "$browser" "$RUNNER_TEMP/registered-profile-$kind-$variant-$view" "$RUNNER_TEMP/registered-$kind/stage32-$prefix$variant-$view.html" "$dump"; then
-                  node "$extractor" "$dump" "$RUNNER_TEMP/registered-evidence/$kind" "$variant" "$view" || failed=1
+                probe="$RUNNER_TEMP/registered-evidence/probes/$kind-$variant-$view"
+                if timeout 150s node tests/stage32-registered-one-probe.mjs "$browser" "$RUNNER_TEMP/registered-profile-$kind-$variant-$view" "$RUNNER_TEMP/registered-$kind/stage32-$prefix$variant-$view.html" "$probe"; then
+                  node "$extractor" "$probe/result.html" "$RUNNER_TEMP/registered-evidence/$kind" "$variant" "$view" || failed=1
                 else
                   printf '{"ok":false,"reason":"Chrome timeout/process failure"}\n' > "$RUNNER_TEMP/registered-evidence/$kind/$variant-$view-process-failure.json"
                   failed=1
