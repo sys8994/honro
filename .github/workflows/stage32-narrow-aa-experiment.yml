@@ -1,0 +1,59 @@
+name: Stage32 narrow hidden-grass AA experiment
+on:
+  workflow_dispatch:
+  push:
+    branches: [inspect/stage32-scanline-20261118]
+    paths:
+      - tests/stage32-narrow-aa-*
+      - tests/fixtures/stage32-narrow-aa-*
+      - .github/workflows/stage32-narrow-aa-experiment.yml
+permissions:
+  contents: read
+jobs:
+  narrow:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm ci && npm ci --prefix game
+      - name: Preserve production and test new bounded eight-buffer candidate
+        run: |
+          node tests/stage32-registered-empty-native-contract.mjs
+          node tests/stage32-narrow-aa-native-contract.mjs
+      - name: Original geometry, providers, other stages and codec
+        run: |
+          git fetch origin e89242eedb5c040d38a9077c7289fbdc97786bdf --depth=1
+          BASELINE_REF=e89242eedb5c040d38a9077c7289fbdc97786bdf node tests/stage32-foundation-contract.mjs
+      - name: Three paired isolated registered-App Scene fixtures
+        run: HONRO_ACT4_RELEASE=1 node tests/stage32-narrow-aa-fixture.mjs "$RUNNER_TEMP/narrow-input"
+      - name: Actual Chrome left, walk and genuine-grass close view
+        shell: bash
+        run: |
+          browser=$(command -v google-chrome || command -v chromium)
+          mkdir -p "$RUNNER_TEMP/narrow-evidence"
+          "$browser" --version > "$RUNNER_TEMP/narrow-evidence/chrome-version.txt"
+          failed=0
+          for variant in candidate ss2; do
+            for view in left walk normal-grass; do
+              probe="$RUNNER_TEMP/narrow-evidence/probes/$variant-$view"
+              if timeout 150s node tests/stage32-registered-one-probe.mjs "$browser" "$RUNNER_TEMP/narrow-profile-$variant-$view" "$RUNNER_TEMP/narrow-input/stage32-$variant-$view.html" "$probe"; then
+                node tests/stage32-narrow-aa-result.mjs "$probe/result.html" "$RUNNER_TEMP/narrow-evidence" "$variant" "$view" || failed=1
+              else
+                failed=1
+              fi
+            done
+          done
+          exit "$failed"
+      - name: Independent source ownership, alpha, real grass and narrow-domain checks
+        if: ${{ !cancelled() }}
+        run: node tests/stage32-narrow-aa-compare.mjs "$RUNNER_TEMP/narrow-evidence"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage32-narrow-aa-experiment
+          path: ${{ runner.temp }}/narrow-evidence
+          if-no-files-found: warn
