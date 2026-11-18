@@ -1,0 +1,537 @@
+{
+  "foundationSHA": "dfd795239ee47aafda4865269280ec144645512d70ba81b8ccc079e554e31669",
+  "scope": "Original foundation vector independent Native render; matching actual Scene samples does not replace Chrome full-silhouette validation",
+  "samples": [
+    {
+      "pixel": [
+        262,
+        200
+      ],
+      "source": [
+        34.43526170798898,
+        700.1377410468319
+      ],
+      "scene": [
+        94,
+        94,
+        96,
+        255
+      ],
+      "bodyAlpha": 159,
+      "neighborScene": [
+        [
+          94,
+          94,
+          96,
+          255
+        ],
+        [
+          94,
+          94,
+          96,
+          255
+        ]
+      ],
+      "neighborBodyAlpha": [
+        0,
+        255
+      ],
+      "bodyBoundaryDistanceSource": 0.02695940338654284,
+      "visibleDistanceSource": 0.23858997485508493,
+      "walkGuardDistanceSource": 241.2293111878748,
+      "roadGuardDistanceSource": 228.22931745962043,
+      "foundationRGBA": [
+        94,
+        94,
+        96,
+        255
+      ],
+      "foundationNeighbors": [
+        [
+          94,
+          94,
+          96,
+          255
+        ],
+        [
+          94,
+          94,
+          96,
+          255
+        ]
+      ]
+    },
+    {
+      "pixel": [
+        272,
+        250
+      ],
+      "source": [
+        37.1900826446281,
+        713.9118457300276
+      ],
+      "scene": [
+        94,
+        94,
+        94,
+        255
+      ],
+      "bodyAlpha": 255,
+      "neighborScene": [
+        [
+          94,
+          94,
+          96,
+          255
+        ],
+        [
+          94,
+          94,
+          96,
+          255
+        ]
+      ],
+      "neighborBodyAlpha": [
+        0,
+        255
+      ],
+      "bodyBoundaryDistanceSource": 0.09344470368677249,
+      "visibleDistanceSource": 7.061070358062988,
+      "walkGuardDistanceSource": 255.00275482002763,
+      "roadGuardDistanceSource": 242.01289314149724,
+      "foundationRGBA": [
+        94,
+        94,
+        96,
+        255
+      ],
+      "foundationNeighbors": [
+        [
+          94,
+          94,
+          96,
+          255
+        ],
+        [
+          94,
+          94,
+          96,
+          255
+        ]
+      ]
+    },
+    {
+      "pixel": [
+        276,
+        300
+      ],
+      "source": [
+        38.29201101928375,
+        727.6859504132232
+      ],
+      "scene": [
+        101,
+        102,
+        85,
+        255
+      ],
+      "bodyAlpha": 254,
+      "neighborScene": [
+        [
+          94,
+          94,
+          96,
+          255
+        ],
+        [
+          94,
+          94,
+          96,
+          255
+        ]
+      ],
+      "neighborBodyAlpha": [
+        0,
+        255
+      ],
+      "bodyBoundaryDistanceSource": 0.02327908843896007,
+      "visibleDistanceSource": 6.287802641376089,
+      "walkGuardDistanceSource": 268.7768595032232,
+      "roadGuardDistanceSource": 255.79775733786147,
+      "foundationRGBA": [
+        94,
+        94,
+        96,
+        255
+      ],
+      "foundationNeighbors": [
+        [
+          94,
+          94,
+          96,
+          255
+        ],
+        [
+          94,
+          94,
+          96,
+          255
+        ]
+      ]
+    },
+    {
+      "pixel": [
+        273,
+        360
+      ],
+      "source": [
+        37.46556473829201,
+        744.2148760330579
+      ],
+      "scene": [
+        99,
+        100,
+        88,
+        255
+      ],
+      "bodyAlpha": 255,
+      "neighborScene": [
+        [
+          94,
+          94,
+          96,
+          255
+        ],
+        [
+          94,
+          94,
+          96,
+          255
+        ]
+      ],
+      "neighborBodyAlpha": [
+        0,
+        255
+      ],
+      "bodyBoundaryDistanceSource": 0.0047174088107636665,
+      "visibleDistanceSource": 22.617783641188282,
+      "walkGuardDistanceSource": 285.30578512305794,
+      "roadGuardDistanceSource": 272.31717557336333,
+      "foundationRGBA": [
+        94,
+        94,
+        96,
+        255
+      ],
+      "foundationNeighbors": [
+        [
+          94,
+          94,
+          96,
+          255
+        ],
+        [
+          94,
+          94,
+          96,
+          255
+        ]
+      ]
+    },
+    {
+      "pixel": [
+        240,
+        420
+      ],
+      "source": [
+        28.37465564738292,
+        760.7438016528926
+      ],
+      "scene": [
+        94,
+        94,
+        94,
+        255
+      ],
+      "bodyAlpha": 255,
+      "neighborScene": [
+        [
+          94,
+          94,
+          96,
+          255
+        ],
+        [
+          94,
+          94,
+          96,
+          255
+        ]
+      ],
+      "neighborBodyAlpha": [
+        0,
+        255
+      ],
+      "bodyBoundaryDistanceSource": 0.09302939634248895,
+      "visibleDistanceSource": 40.79090262828711,
+      "walkGuardDistanceSource": 301.90494431876,
+      "roadGuardDistanceSource": 288.9080365924152,
+      "foundationRGBA": [
+        94,
+        94,
+        96,
+        255
+      ],
+      "foundationNeighbors": [
+        [
+          94,
+          94,
+          96,
+          255
+        ],
+        [
+          94,
+          94,
+          96,
+          255
+        ]
+      ]
+    },
+    {
+      "pixel": [
+        241,
+        490
+      ],
+      "source": [
+        28.650137741046834,
+        780.0275482093664
+      ],
+      "scene": [
+        100,
+        101,
+        87,
+        255
+      ],
+      "bodyAlpha": 255,
+      "neighborScene": [
+        [
+          94,
+          94,
+          96,
+          255
+        ],
+        [
+          94,
+          94,
+          96,
+          255
+        ]
+      ],
+      "neighborBodyAlpha": [
+        0,
+        255
+      ],
+      "bodyBoundaryDistanceSource": 0.0004206400581629825,
+      "visibleDistanceSource": 59.42152111868176,
+      "walkGuardDistanceSource": 321.17933650803366,
+      "roadGuardDistanceSource": 308.18189616352356,
+      "foundationRGBA": [
+        94,
+        94,
+        96,
+        255
+      ],
+      "foundationNeighbors": [
+        [
+          94,
+          94,
+          96,
+          255
+        ],
+        [
+          94,
+          94,
+          96,
+          255
+        ]
+      ]
+    },
+    {
+      "pixel": [
+        242,
+        550
+      ],
+      "source": [
+        28.925619834710744,
+        796.5564738292011
+      ],
+      "scene": [
+        101,
+        103,
+        86,
+        255
+      ],
+      "bodyAlpha": 255,
+      "neighborScene": [
+        [
+          94,
+          94,
+          96,
+          255
+        ],
+        [
+          94,
+          94,
+          96,
+          255
+        ]
+      ],
+      "neighborBodyAlpha": [
+        0,
+        255
+      ],
+      "bodyBoundaryDistanceSource": 0.04116615479339443,
+      "visibleDistanceSource": 75.64618969350667,
+      "walkGuardDistanceSource": 337.7005940745847,
+      "roadGuardDistanceSource": 324.7027642283799,
+      "foundationRGBA": [
+        94,
+        94,
+        96,
+        255
+      ],
+      "foundationNeighbors": [
+        [
+          94,
+          94,
+          96,
+          255
+        ],
+        [
+          94,
+          94,
+          96,
+          255
+        ]
+      ]
+    },
+    {
+      "pixel": [
+        240,
+        600
+      ],
+      "source": [
+        28.37465564738292,
+        810.3305785123968
+      ],
+      "scene": [
+        118,
+        115,
+        113,
+        255
+      ],
+      "bodyAlpha": 255,
+      "neighborScene": [
+        [
+          94,
+          94,
+          96,
+          255
+        ],
+        [
+          94,
+          94,
+          96,
+          255
+        ]
+      ],
+      "neighborBodyAlpha": [
+        0,
+        255
+      ],
+      "bodyBoundaryDistanceSource": 0.0009185340759548582,
+      "visibleDistanceSource": 89.35555479100977,
+      "walkGuardDistanceSource": 351.48227635282126,
+      "roadGuardDistanceSource": 338.48463613402566,
+      "foundationRGBA": [
+        94,
+        94,
+        96,
+        255
+      ],
+      "foundationNeighbors": [
+        [
+          94,
+          94,
+          96,
+          255
+        ],
+        [
+          94,
+          94,
+          96,
+          255
+        ]
+      ]
+    },
+    {
+      "pixel": [
+        218,
+        650
+      ],
+      "source": [
+        22.31404958677686,
+        824.1046831955923
+      ],
+      "scene": [
+        94,
+        94,
+        96,
+        255
+      ],
+      "bodyAlpha": 255,
+      "neighborScene": [
+        [
+          94,
+          94,
+          96,
+          255
+        ],
+        [
+          94,
+          94,
+          96,
+          255
+        ]
+      ],
+      "neighborBodyAlpha": [
+        0,
+        255
+      ],
+      "bodyBoundaryDistanceSource": 0.09567345048798775,
+      "visibleDistanceSource": 103.9081773577343,
+      "walkGuardDistanceSource": 365.4099517093874,
+      "roadGuardDistanceSource": 352.4175235137604,
+      "foundationRGBA": [
+        94,
+        94,
+        96,
+        255
+      ],
+      "foundationNeighbors": [
+        [
+          94,
+          94,
+          96,
+          255
+        ],
+        [
+          94,
+          94,
+          96,
+          255
+        ]
+      ]
+    }
+  ]
+}
