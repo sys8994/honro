@@ -17,10 +17,13 @@ export function naruBodyStudy(core,{palette=false,exterior=false}={}){
  const left=p('#213d40',`M0 692L${L} 692L-364 714-320 747-261 773-242 842-207 889-210 953-160 1028-86 1057-42 1145 22 1183 0 1086-56 1023-49 939-100 871-119 812-182 781-202 742-102 717 0 714Z`);
  const right=p('#213d40',`M1774 646H${R}L2147 669 2097 710 2071 771 2040 827 2049 917 2008 969 1983 1044 1916 1092 1935 997 1960 916 1954 830 2008 747 2021 703 1774 668Z`);
  const lower=p('#1b3538','M-240 1206L-118 1270 89 1304 331 1276 483 1301 696 1258 849 1202 1012 1167 1188 1140 1429 1048 1550 1052 1454 1104 1243 1161 1069 1218 948 1230 790 1302 621 1336 408 1364 186 1351-42 1350-191 1293Z');
- const join=p('#142c2f','M0 885H1774V889H0Z M0 510H2V887H0Z M1772 470H1774V887H1772Z');
+ // The original raster's entire rows882..886 are exactly #142c2f;
+ // side tails are equally solid below y723(left)/708(right). Cap only
+ // synthetic AA closures in that nonwalkable solid-color area, after source.
+ const join=p('#142c2f','M-1 885H1775V889H-1Z M-1 723H2V887H-1Z M1772 708H1776V887H1772Z');
  const original=result.root.children.find(n=>n.tag==='use'&&n.symbol==='source');
  if(!original)throw Error('Expected untouched source use');
- result.root={tag:'g',children:[base,left,right,lower,join,original]};
+ result.root={tag:'g',children:[base,left,right,lower,original,join]};
  for(const key of Object.keys(result.clips))if(key.startsWith('site-edge-'))delete result.clips[key];
  result.viewBox=[-1200,0,4174,4887];
  return result;
