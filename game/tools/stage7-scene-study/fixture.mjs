@@ -113,9 +113,9 @@ async function capture(candidate,closure,join,sourceContract,runtimeSha,variant,
   const paintClosure=(ctx,inst,anchor,white=false)=>{ctx.save();ctx.translate(inst.x||0,inst.y||0);ctx.rotate(inst.rotation||0);ctx.scale(inst.scale??1,inst.scale??1);ctx.translate(-(anchor?.x||0),-(anchor?.y||0));ctx.clip(new Path2D(closure.clip.join(' ')));for(const n of closure.root.children){ctx.fillStyle=white?'#ffffff':n.fill;ctx.fill(new Path2D(n.d));}ctx.restore();};
   const paintJoin=(ctx,inst,anchor,white=false)=>{
    // Independent constructive fill; never call decoration-suppressed stroke(Path2D).
-   const shape=new Path2D(),ps=join.ribbon.points,r=join.ribbon.radius;
-   for(let i=1;i<ps.length;i++){const a=ps[i-1],b=ps[i],dx=b[0]-a[0],dy=b[1]-a[1],len=Math.hypot(dx,dy),nx=-dy*r/len,ny=dx*r/len;shape.moveTo(a[0]+nx,a[1]+ny);shape.lineTo(a[0]-nx,a[1]-ny);shape.lineTo(b[0]-nx,b[1]-ny);shape.lineTo(b[0]+nx,b[1]+ny);shape.closePath();}
-   for(const [x,y]of ps){shape.moveTo(x+r,y);shape.arc(x,y,r,0,Math.PI*2);shape.closePath();}
+   const shape=new Path2D();
+   // Independent command construction from canonical polygon coordinates, not native d parsing.
+   for(const poly of join.ribbon.polygons){shape.moveTo(...poly[0]);for(const point of poly.slice(1))shape.lineTo(...point);shape.closePath();}
    ctx.save();ctx.translate(inst.x||0,inst.y||0);ctx.rotate(inst.rotation||0);ctx.scale(inst.scale??1,inst.scale??1);ctx.translate(-(anchor?.x||0),-(anchor?.y||0));ctx.fillStyle=white?'#ffffff':join.node.fill;ctx.fill(shape,'nonzero');ctx.restore();
   };
   if(['expected','joined-expected'].includes(variant)){
@@ -150,10 +150,11 @@ async function capture(candidate,closure,join,sourceContract,runtimeSha,variant,
      const paths={source:{tag:'use',symbol:'source'},caps:{tag:'g',children:Object.keys(currentCaps).sort((a,b)=>+a-+b).map(k=>plain(currentCaps[k]))},sourceCaps:{tag:'g',children:[{tag:'use',symbol:'source'},...Object.keys(currentCaps).sort((a,b)=>+a-+b).map(k=>plain(currentCaps[k]))]}};
      paths.rim=plain(originalRim);paths.foreground={tag:'g',children:[...paths.sourceCaps.children,plain(originalRim)]};
      paths.closure=null;paths.join=null;paths.paintedUnion={tag:'use',symbol:'source'};
-     paths.sourceBlack=paths.source;paths.sourceWhite=paths.source;paths.closureOnBlack=null;paths.closureOnWhite=null;
+     paths.sourceBlack=paths.source;paths.sourceWhite=paths.source;paths.closureOnBlack=null;paths.closureOnWhite=null;paths.joinOnBlack=null;paths.joinOnWhite=null;
      const replay={};for(const [name,root]of Object.entries(paths)){
       const cv=document.createElement('canvas');cv.width=ctx.canvas.width;cv.height=ctx.canvas.height;const cc=cv.getContext('2d');if(/(?:Black|White)$/.test(name)){cc.fillStyle=name.endsWith('Black')?'#000000':'#ffffff';cc.fillRect(0,0,cv.width,cv.height);}cc.setTransform(ctx.getTransform());cc.globalAlpha=ctx.globalAlpha;cc.globalCompositeOperation=ctx.globalCompositeOperation;cc.filter=ctx.filter;cc.imageSmoothingEnabled=ctx.imageSmoothingEnabled;cc.imageSmoothingQuality=ctx.imageSmoothingQuality;
       if(name==='closureOnBlack'||name==='closureOnWhite')paintClosure(cc,inst,original.anchor,false);
+      if(name==='joinOnBlack'||name==='joinOnWhite')paintJoin(cc,inst,original.anchor,false);
       if(['closure','paintedUnion'].includes(name))paintClosure(cc,inst,original.anchor,true);if(name==='join')paintJoin(cc,inst,original.anchor,true);if(root)nativeDraw(HonroVisualStyle?.contextLike(ctx,cc)||cc,{...original,vector:{...original.vector,clips:{...original.vector.clips,'original-rim-domain':foregroundReference.clips['original-rim-domain']},root}},inst);replay[name]=cv;
      }sourceReplayTiles.set(ctx.canvas,replay);
     }
@@ -193,7 +194,7 @@ async function capture(candidate,closure,join,sourceContract,runtimeSha,variant,
    const material=HonroTerrainDomain.materialLandmarks(b).find(l=>l.asset?.id==='act1-site:7:body');assert(material&&!material.honroTerrainMaterialClip,'External BODY material clip requires replay support');
    assert(scene._domainTiles&&scene._screenWorldCache?.canvas,'Actual tile and screen caches required');
    const replayReports={};
-   for(const name of ['source','caps','sourceCaps','rim','foreground','closure','join','paintedUnion','sourceBlack','sourceWhite','closureOnBlack','closureOnWhite']){
+   for(const name of ['source','caps','sourceCaps','rim','foreground','closure','join','paintedUnion','sourceBlack','sourceWhite','closureOnBlack','closureOnWhite','joinOnBlack','joinOnWhite']){
     const mask=document.createElement('canvas');mask.width=W;mask.height=H;Object.assign(mask.style,{position:'fixed',left:'-20000px',top:'0',width:W+'px',height:H+'px'});document.body.appendChild(mask);
     const replay=new HonroScene(mask);Object.assign(replay,{...camera,manual:true,battle:b});
     replay._domainTiles={key:replay._worldCacheKey(b,W),rs:scene._domainTiles.rs,tiles:new Map()};let matched=0,empty=0;
@@ -223,3 +224,4 @@ const views=[{name:'portrait-bl',width:390,height:696,x:'left',y:'bottom'},{name
 const script=s=>'<script>'+s.replace(/<\/script/gi,'<\\/script')+'</script>',list=[];
 for(const variant of (controlMode?['original','original-repeat','bounds-only','candidate','right-backing-off']:['original','legacy','candidate','closure','expected','joined','joined-expected']))for(const view of views){const file=`${variant}-${view.name}.html`;const html='<!doctype html><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src \'none\'; script-src \'unsafe-inline\'; style-src \'unsafe-inline\'; img-src data:; font-src data:; connect-src \'none\'"><style>body{margin:0}canvas{display:block}</style><canvas id="scene"></canvas><pre id="result">pending</pre>'+script('('+bootstrap.toString()+')(7);')+script(runtime)+script('('+capture.toString()+')('+JSON.stringify(candidate)+','+JSON.stringify(closure)+','+JSON.stringify(join)+','+JSON.stringify(sourceContract)+','+JSON.stringify(runtimeSha)+','+JSON.stringify(variant)+','+JSON.stringify(view)+','+JSON.stringify(controlMode)+');');await writeFile(path.join(out,file),html);list.push({variant,view:view.name,file});}
 await writeFile(path.join(out,'capture-list.json'),JSON.stringify(list,null,2));console.log({runtimeSha,views:views.length,controlMode,variants:controlMode?5:6,productionModified:false});
+
