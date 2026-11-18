@@ -1,0 +1,92 @@
+{
+  "run": 44301035231,
+  "artifact": 14427205377,
+  "zipSHA256": "5a2ccd4ea63facb27d08f0459e529de7577ceaba0bf8f41c629a4b0c5e41d6ef",
+  "allEightCaptured": true,
+  "all50Codec49FullAndSceneOutsideROIPassedBeforeAlpha": true,
+  "alphaDifferent": 83,
+  "alphaSourceBBox": [
+    1812.5,
+    636.0,
+    1833.5,
+    637.75
+  ],
+  "maxAbsDelta": 51,
+  "positiveE": 232008,
+  "positiveH": 232009,
+  "visualReleaseAccepted": false,
+  "pngs": [
+    {
+      "file": "baseline-3-native-terrain-mask.png",
+      "sha256": "9490918a54beaadca0942728f2c7d0c268a694e7f91e327b6d442bba57b4b25c"
+    },
+    {
+      "file": "baseline-3-native.png",
+      "sha256": "6c1472fe4aff7f06ab91fdf492439ab724435953d45b14993862b79f814e9862"
+    },
+    {
+      "file": "baseline-3-overview-asset-mask.png",
+      "sha256": "4e2eb00c647b65204b17648535a6539245f3cccabb4c1de346069f52390acd81"
+    },
+    {
+      "file": "baseline-3-overview-terrain-mask.png",
+      "sha256": "14ec4a7bbf70019e9c93968b4e4741347558ac55a81dc03380e86ead51ce33a4"
+    },
+    {
+      "file": "baseline-3-overview.png",
+      "sha256": "3cfae0bd44678bca5491be95a25bd4f31eb2f1f5176401faebb80b0c1d86e496"
+    },
+    {
+      "file": "baseline-3-right-ground-dpr3-terrain-mask.png",
+      "sha256": "ab3752d492dec4f98627b832a7b243f509be14a3863e782a9b2990b6e11e3330"
+    },
+    {
+      "file": "baseline-3-right-ground-dpr3.png",
+      "sha256": "ab3752d492dec4f98627b832a7b243f509be14a3863e782a9b2990b6e11e3330"
+    },
+    {
+      "file": "baseline-3-right-shore-dpr3-terrain-mask.png",
+      "sha256": "743a49755b3d4127c85f8673ca918688a01635b6f12dce0d146a8e0b787ab973"
+    },
+    {
+      "file": "baseline-3-right-shore-dpr3.png",
+      "sha256": "743a49755b3d4127c85f8673ca918688a01635b6f12dce0d146a8e0b787ab973"
+    },
+    {
+      "file": "candidate-3-native-terrain-mask.png",
+      "sha256": "9490918a54beaadca0942728f2c7d0c268a694e7f91e327b6d442bba57b4b25c"
+    },
+    {
+      "file": "candidate-3-native.png",
+      "sha256": "6c1472fe4aff7f06ab91fdf492439ab724435953d45b14993862b79f814e9862"
+    },
+    {
+      "file": "candidate-3-overview-asset-mask.png",
+      "sha256": "a627ae268572344172fd6ec7b5c1c01a31bb418704668629b56a3ba27ffded0a"
+    },
+    {
+      "file": "candidate-3-overview-terrain-mask.png",
+      "sha256": "0e63cdc763ea242169bace32a79d29cc65d448b01e1e5c801e7f9f5e73736615"
+    },
+    {
+      "file": "candidate-3-overview.png",
+      "sha256": "a1906b7f0a7970f939726f0e818d0ce2997b4fef976562ff68c4934eb7cd229d"
+    },
+    {
+      "file": "candidate-3-right-ground-dpr3-terrain-mask.png",
+      "sha256": "f721162079818415bae8cdc9b02695b347bac94bedcfbae3f5955693ac4147ea"
+    },
+    {
+      "file": "candidate-3-right-ground-dpr3.png",
+      "sha256": "f721162079818415bae8cdc9b02695b347bac94bedcfbae3f5955693ac4147ea"
+    },
+    {
+      "file": "candidate-3-right-shore-dpr3-terrain-mask.png",
+      "sha256": "743a49755b3d4127c85f8673ca918688a01635b6f12dce0d146a8e0b787ab973"
+    },
+    {
+      "file": "candidate-3-right-shore-dpr3.png",
+      "sha256": "743a49755b3d4127c85f8673ca918688a01635b6f12dce0d146a8e0b787ab973"
+    }
+  ]
+}
