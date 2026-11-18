@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "baselineRef": "5eb0381269868e501a1cd187d963ddb716cd2dc6",
+  "candidateRef": "a6f2935935eed559c3ecd27207d8d8a78a1ed22d",
+  "changed": [
+    "shared/build.mjs",
+    "shared/runtime/renderer.js",
+    "shared/runtime/terrain-readability.js",
+    "tools/map-forge/naru-body-finish.mjs"
+  ],
+  "files": [
+    {
+      "path": "shared/build.mjs",
+      "sha256": "1723baa38ab7b691f9b5a1bf9d9e42c2bba78c15d1fb6cb833ba43addda8d47b",
+      "bytes": 24755
+    },
+    {
+      "path": "shared/runtime/renderer.js",
+      "sha256": "fcd75ad8580c3b43a374757a1436d3bebc18cc185c48068a704866a4cfcd1a43",
+      "bytes": 75570
+    },
+    {
+      "path": "shared/runtime/terrain-readability.js",
+      "sha256": "74f29322fdf42edbe320db8e94774b65e24d268486e492e24cd164a5d0fc3ad6",
+      "bytes": 5059
+    },
+    {
+      "path": "tools/map-forge/naru-body-finish.mjs",
+      "sha256": "24e50197a56d2e667edc4edaa10644c08e811098feb5c38a9c0109ed536b9692",
+      "bytes": 5325
+    }
+  ],
+  "scope": "Exactly4 approved source files; all other git tree paths unchanged including32 data/pilot/helper absence. Runtime/compiler/battle checks follow, not inferred here."
+}
