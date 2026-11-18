@@ -20,6 +20,12 @@ function prepare(b){const ts=G.HonroTerrainDomain?.render(b)||b.terrain||[],prio
   const edge=new Path2D(),top=new Path2D(),segments=[];let area=0;for(let i=0;i<ps.length;i++){const a=ps[i],z=ps[(i+1)%ps.length];area+=cross(a.x,a.y,z.x,z.y);}const sign=area>=0?1:-1;
   for(let i=0;i<ps.length;i++){const a=ps[i],z=ps[(i+1)%ps.length],dx=z.x-a.x,dy=z.y-a.y,len=Math.hypot(dx,dy);if(len<.01)continue;
    const nx=sign*dy/len,ny=-sign*dx/len,walkable=ny<0&&Math.abs(dy)<=Math.abs(dx)*1.35;if(t.oneWay&&!walkable)continue;
+   // Stage7 painted BODY supplies the non-walk exterior. The authored domain
+   // closes its root mass at terrainBounds only for collision/domain coverage.
+   // Do not expose those artificial sides/bottom as a rectangular ink frame.
+   const bounds=b.honroTerrainBounds,near=(u,v)=>Number.isFinite(v)&&Math.abs(u-v)<1e-6;
+   if(b.honroStage===7&&t.id==='root-floor'&&t.honroDomain&&!walkable&&bounds&&
+    ((near(a.x,bounds.left)&&near(z.x,bounds.left))||(near(a.x,bounds.right)&&near(z.x,bounds.right))||(near(a.y,bounds.bottom)&&near(z.y,bounds.bottom))))continue;
    const left=Math.min(a.x,z.x),right=Math.max(a.x,z.x),low=Math.min(a.y,z.y),high=Math.max(a.y,z.y),peers=solids.filter(o=>o.t!==t&&!o.t.oneWay&&o.t.x<=right+1&&o.t.x+o.t.w>=left-1&&o.t.y<=high+1&&o.t.y+o.t.h>=low-1),cuts=[0,1];
    for(const o of peers)for(let j=0;j<o.ps.length;j++)cutAt(a,z,o.ps[j],o.ps[(j+1)%o.ps.length],cuts);cuts.sort((a,z)=>a-z);
    for(let k=1;k<cuts.length;k++){const start=cuts[k-1],end=cuts[k];if((end-start)*len<.05)continue;const mid=(start+end)/2;if(peers.some(o=>inside(a.x+dx*mid+nx*.6,a.y+dy*mid+ny*.6,o.ps)))continue;
@@ -39,3 +45,4 @@ S.terrainReadability=function(c,b,view){const q=prepare(b),raster=this._staticCa
 };
 G.HonroTerrainReadability={STYLE,prepare};
 })(globalThis);
+

@@ -1,0 +1,44 @@
+name: Stage7 registered runtime acceptance
+on:
+  workflow_dispatch:
+  push:
+    branches: [art/stage7-semantic-rock-study-20261117]
+    paths:
+      - tools/map-forge/stage7-terrain-finish.*
+      - tools/map-forge/act1-naru-doldang.mjs
+      - shared/runtime/terrain-readability.js
+      - shared/runtime/renderer.js
+      - game/tools/stage7-registered-study/**
+      - .github/workflows/stage7-registered-study.yml
+permissions:
+  contents: read
+jobs:
+  registered:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci && npm ci --prefix game
+      - run: python -m pip install Pillow
+      - name: Root Workshop and Game builds
+        run: |
+          HONRO_ACT4_RELEASE=1 node workshop/build.mjs
+          HONRO_ACT4_RELEASE=1 node game/build.mjs
+      - run: node game/tools/stage7-registered-study/fixture.mjs "$RUNNER_TEMP/stage7-registered"
+      - name: Capture registered candidate without injection
+        run: |
+          export CHROME_BIN="$(command -v google-chrome || command -v chromium)"
+          node game/tools/stage7-registered-study/run.mjs "$RUNNER_TEMP/stage7-registered" artifacts/stage7-registered-study
+          cp "$RUNNER_TEMP/stage7-registered/registered-contract.json" artifacts/stage7-registered-study/
+      - run: node game/tools/stage7-registered-study/check.mjs artifacts/stage7-registered-study
+      - run: python game/tools/stage7-registered-study/exact-clean.py artifacts/stage7-registered-study
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage7-registered-study-${{ github.sha }}
+          path: artifacts/stage7-registered-study
+          if-no-files-found: error
+          retention-days: 14

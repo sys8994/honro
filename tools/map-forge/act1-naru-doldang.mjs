@@ -1,4 +1,5 @@
 import {readFile} from 'node:fs/promises';
+import {finishStage7Body,loadStage7TerrainFinish} from './stage7-terrain-finish.mjs';
 import {preserveCompound} from '../vector-production/preserve-compound.mjs';
 
 const WATER='ferry-ground',SOLE='root-floor';
@@ -77,7 +78,18 @@ function artAsset(project,id,name,vector,sha,foot={x:0,y:0}){
   sourceSha256:sha,semanticLayer:'BODY',silhouetteUnderpaint:false},bounds,
  reference:{bounds,foot,heightM:h/60,scaleRange:[.1,8],backgroundRange:[1,8]},vector});
 }
-function authorStage(project,s,data){
+// Read-only baseline: original author collage only. Never calls finishStage7Body,
+// optimizer or runtime registry; QA must use this pre-finish reference.
+export function buildOriginalAct1SiteBody(data,stageId){
+ const shore=stageId===3;if(!shore&&stageId!==7)throw Error('Unexpected Act1 site');
+ const body=data.art.body,[,,sourceWidth,sourceHeight]=body.vector.viewBox;
+ const edges=shore?[[0,506,27,381,0,506,-390,381],[1752,470,22,417,2174,470,-400,417],
+  [0,858,1774,29,0,887,1774,380]]:[[9,908,30,157,9,908,-390,157],[1421,882,13,181,1834,882,-400,181],
+  [16,1049,1402,19,16,1068,1402,380]];
+ const faces=shore?[]:footholds.map(([x,y,w,h,dx,dy,dw])=>[x,y,w,h,dx,dy,dw,h*dw/w]);
+ return collage(body.vector,faces,[-390,0,sourceWidth+790,sourceHeight+380],true,edges);
+}
+function authorStage(project,s,data,finishData){
  const n=s.metadata.stageId,shore=n===3,scale=shore?3.23:3.13,lines=shore?naru:village;
  const site=shore?'서낭나루':'돌당골',floor=shore?WATER:SOLE,body=data.art.body;
  const [, ,sourceWidth,sourceHeight]=body.vector.viewBox;
@@ -104,11 +116,9 @@ function authorStage(project,s,data){
    detail:{interpolation:'linear',roughness:0,spacing:25},properties:{honroAct1SitePainted:true,route:true}};
  });
  const bodyId='act1-site:'+n+':body',sheetId='act1-site:'+n+':landmarks';
- const edges=shore?[[0,506,27,381,0,506,-390,381],[1752,470,22,417,2174,470,-400,417],
-  [0,858,1774,29,0,887,1774,380]]:[[9,908,30,157,9,908,-390,157],[1421,882,13,181,1834,882,-400,181],
-  [16,1049,1402,19,16,1068,1402,380]];
- const faces=shore?[]:footholds.map(([x,y,w,h,dx,dy,dw])=>[x,y,w,h,dx,dy,dw,h*dw/w]);
- artAsset(project,bodyId,site+' 지형',collage(body.vector,faces,[-390,0,sourceWidth+790,sourceHeight+380],true,edges),body.sha256);
+ const originalBody=buildOriginalAct1SiteBody(data,n);
+ const bodyVector=n===7?finishStage7Body(originalBody,finishData):originalBody;
+ artAsset(project,bodyId,site+' 지형',bodyVector,body.sha256);
  artAsset(project,sheetId,site+' 랜드마크',collage(data.art.landmarks.vector,data.layout,body.vector.viewBox),data.art.landmarks.sha256);
  const placement=(id,assetId,x=0,y=0,z=1,layer='structural-back')=>({id,assetId,...world(x,y),scale:z*scale,layer,depthLayer:'L1',visualRole:'scenery'});
  s.elements=[placement('site-body-'+n,bodyId),placement('site-landmarks-'+n,sheetId,0,0,1,'prop')];
@@ -220,7 +230,7 @@ export async function applyAct1Sites(project){
   const s=project.stages.find(x=>x.metadata?.stageId===id);
   if(!s)throw Error('Missing Act 1 site chapter '+id);
   const source=JSON.parse(await readFile(new URL('stage0'+id+'.json',artPath),'utf8'));
-  authorStage(project,s,source);
+  authorStage(project,s,source,id===7?await loadStage7TerrainFinish():null);
  }
  return project;
 }

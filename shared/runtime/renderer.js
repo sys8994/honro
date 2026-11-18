@@ -169,7 +169,7 @@
         _drawTerrainDomainTiles(c,b,w,h){
             // Geographically fixed tiles, never a bitmap cut at Play Bounds.
             // Pixel-aligned clips consume each gutter sample exactly once.
-            const rs=this._worldRasterScale(b,w),px=512,gutter=2,size=px/rs,v=G.HonroBounds.viewport(this,w,h),domain=b.honroTerrainBounds,
+            const rs=this._worldRasterScale(b,w),px=512,gutter=2,size=px/rs,v=G.HonroBounds.viewport(this,w,h),domain=(()=>{const d=b.honroTerrainBounds;if(b.honroStage!==7)return d;const body=G.HonroTerrainDomain.materialLandmarks(b).find(l=>l.asset?.id==='act1-site:7:body');const a=body&&this._landmarkPaintBounds(body);if(!a)return d;return{left:Math.min(d.left,a.left),right:Math.max(d.right,a.right),top:Math.min(d.top,a.top),bottom:Math.max(d.bottom,a.bottom)};})(),
                 key=this._worldCacheKey(b,w),limit=w<900?12:24;
             let q=this._domainTiles;if(!q||q.key!==key){this._releaseDomainTiles();q=this._domainTiles={key,tiles:new Map(),rs};this._cacheStats.worldBuilds++;}
             const minX=Math.floor(Math.max(v.left,domain.left)/size),maxX=Math.floor(Math.min(v.right,domain.right)/size),
