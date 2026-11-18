@@ -48,6 +48,30 @@ function bootstrap(id){
  }});
 }
 async function capture(candidate,closure,join,sourceContract,runtimeSha,variant,view,controlMode=false){
+ const partitionRim=function(original,candidate){
+ const v=structuredClone(candidate),orig=original;
+ const envelope=v.clips['nonwalk-envelope'];
+ if(!Array.isArray(envelope)||envelope.length!==1)throw Error('Expected single authored lower envelope');
+ // Complement the EXISTING lower-art envelope inside candidate viewBox. No new width/tolerance.
+ const [x,y,w,h]=v.viewBox;
+ v.clips['original-rim-domain']=[`M${x} ${y}H${x+w}V${y+h}H${x}Z`,...envelope];
+ // Evenodd is not supported as clip metadata: use simple upper polygon from envelope top chain.
+ const d=envelope[0],tokens=d.match(/[MLZ]|-?\d+(?:\.\d+)?/g),pts=[];
+ for(let i=0;i<tokens.length;){const cmd=tokens[i++];if(cmd==='Z')break;if(!['M','L'].includes(cmd))throw Error('Envelope command');pts.push([+tokens[i++],+tokens[i++]]);}
+ if(pts.length<4||pts.at(-1)[1]!==y+h||pts.at(-2)[1]!==y+h)throw Error('Expected bottom-closed envelope');
+ const top=pts.slice(0,-2);v.clips['original-rim-domain']=[`M${x} ${y}L${x+w} ${y}`+top.slice().reverse().map(p=>'L'+p.join(' ')).join('')+'Z'];
+ const foreground=orig.root.children.filter(n=>n.tag==='use'&&n.symbol==='source'||/^site-crop-\d+$/.test(n.clipPath||''));
+ const edges=orig.root.children.filter(n=>/^site-edge-\d+$/.test(n.clipPath||''));
+ if(foreground.length!==14||edges.length!==3)throw Error('Unexpected original role layout');
+ for(const [k,c]of Object.entries(orig.clips))v.clips[k]=structuredClone(c);
+ v.symbols.source=structuredClone(orig.symbols.source);
+ // Adapt only original alias, leave material's exact source unchanged.
+ function adapt(n){if(n.symbol==='original-body-source')n.symbol='source';if(n.children)n.children.forEach(adapt);}
+ Object.values(v.symbols).forEach(adapt);delete v.symbols['original-body-source'];
+ const backing=v.root.children.filter(n=>!(n.tag==='use'&&['original-body-source','source'].includes(n.symbol))&&!/^(?:cap-|site-crop-)\d+$/.test(n.clipPath||'')&&n.clipPath!=='protected-right');backing.forEach(adapt);
+ v.root={tag:'g',children:[...backing,...structuredClone(foreground),{tag:'g',clipPath:'original-rim-domain',children:structuredClone(edges)}]};
+ return v;
+};
  const qaDiagnostics=true;
  const p=PROBE,assert=(v,m)=>{if(!v)throw Error(m);},plain=x=>JSON.parse(JSON.stringify(x));
  const stable=x=>JSON.stringify(x,(k,v)=>v&&typeof v==='object'&&!Array.isArray(v)?Object.fromEntries(Object.keys(v).sort().map(k=>[k,v[k]])):v);
@@ -65,6 +89,7 @@ async function capture(candidate,closure,join,sourceContract,runtimeSha,variant,
    v.root=adapt(v.root);for(const key of Object.keys(v.symbols))if(key!=='source')v.symbols[key]=adapt(v.symbols[key]);
    for(let i=0;i<13;i++){const cp=currentCaps[i].clipPath;v.clips[cp]=plain(original.vector.clips[cp]);delete v.clips['cap-'+i];}
    for(const [key,value]of Object.entries(original.vector.clips)){if(key==='source-alpha'){assert(stable(v.clips[key])===stable(value),'Native source clip changed');v.clips[key]=plain(value);}}
+   if(!controlMode&&variant!=='legacy')v=partitionRim(original.vector,v); // Experimental semantic foreground/backing partition.
    if(['closure','joined'].includes(variant)){
     const index=v.root.children.findIndex(n=>n.tag==='use'&&n.symbol==='source');assert(index>=0,'Foreground source missing');
     v.clips[closure.clipId]=plain(closure.clip);v.root.children.splice(index,0,plain(closure.root));
@@ -86,7 +111,13 @@ async function capture(candidate,closure,join,sourceContract,runtimeSha,variant,
   assert(stable(stage)===stageBefore,'Stage/camera/placements changed');assert(stable(asset.collision)===stable(original.collision),'Collision art changed');assert(stable(asset.params)===stable(original.params),'Source metadata/style changed');
   const nativeDraw=HonroVectorArt.draw;let expectedDraws=0;
   const paintClosure=(ctx,inst,anchor,white=false)=>{ctx.save();ctx.translate(inst.x||0,inst.y||0);ctx.rotate(inst.rotation||0);ctx.scale(inst.scale??1,inst.scale??1);ctx.translate(-(anchor?.x||0),-(anchor?.y||0));ctx.clip(new Path2D(closure.clip.join(' ')));for(const n of closure.root.children){ctx.fillStyle=white?'#ffffff':n.fill;ctx.fill(new Path2D(n.d));}ctx.restore();};
-  const paintJoin=(ctx,inst,anchor,white=false)=>{ctx.save();ctx.translate(inst.x||0,inst.y||0);ctx.rotate(inst.rotation||0);ctx.scale(inst.scale??1,inst.scale??1);ctx.translate(-(anchor?.x||0),-(anchor?.y||0));ctx.strokeStyle=white?'#ffffff':join.node.stroke;ctx.lineWidth=join.node.lineWidth;ctx.lineJoin=join.node.lineJoin;ctx.lineCap=join.node.lineCap;ctx.miterLimit=4;ctx.setLineDash([]);ctx.stroke(new Path2D(join.node.d));ctx.restore();};
+  const paintJoin=(ctx,inst,anchor,white=false)=>{
+   // Independent constructive fill; never call decoration-suppressed stroke(Path2D).
+   const shape=new Path2D(),ps=join.ribbon.points,r=join.ribbon.radius;
+   for(let i=1;i<ps.length;i++){const a=ps[i-1],b=ps[i],dx=b[0]-a[0],dy=b[1]-a[1],len=Math.hypot(dx,dy),nx=-dy*r/len,ny=dx*r/len;shape.moveTo(a[0]+nx,a[1]+ny);shape.lineTo(a[0]-nx,a[1]-ny);shape.lineTo(b[0]-nx,b[1]-ny);shape.lineTo(b[0]+nx,b[1]+ny);shape.closePath();}
+   for(const [x,y]of ps){shape.moveTo(x+r,y);shape.arc(x,y,r,0,Math.PI*2);shape.closePath();}
+   ctx.save();ctx.translate(inst.x||0,inst.y||0);ctx.rotate(inst.rotation||0);ctx.scale(inst.scale??1,inst.scale??1);ctx.translate(-(anchor?.x||0),-(anchor?.y||0));ctx.fillStyle=white?'#ffffff':join.node.fill;ctx.fill(shape,'nonzero');ctx.restore();
+  };
   if(['expected','joined-expected'].includes(variant)){
    const partVector=(vector,root)=>{
     const symbols={},clips={},gradients={},visiting=new Set();
@@ -108,16 +139,22 @@ async function capture(candidate,closure,join,sourceContract,runtimeSha,variant,
     for(const part of split){if(part.vector.root.tag==='use'&&part.vector.root.symbol==='source'){paintClosure(ctx,inst,a.anchor);expectedDraws++;}nativeDraw(ctx,part,inst);if(variant==='joined-expected'&&part.vector.root.tag==='use'&&part.vector.root.symbol==='source')paintJoin(ctx,inst,a.anchor);}return true;
    };
   }
+  const foregroundReference=partitionRim(original.vector,candidate.vector);
+  const originalRim=foregroundReference.root.children.at(-1);
+  assert(originalRim.clipPath==='original-rim-domain','Independent rim reference');
   const bodyDrawMetadata=[],sourceReplayTiles=new WeakMap(),observedDraw=HonroVectorArt.draw;
   if(qaDiagnostics)HonroVectorArt.draw=function(ctx,a,inst){
    if(a.id==='act1-site:7:body'){
     if(qaDiagnostics){
      assert(!sourceReplayTiles.has(ctx.canvas),'Multiple BODY calls on one tile require explicit replay ordering');
      const paths={source:{tag:'use',symbol:'source'},caps:{tag:'g',children:Object.keys(currentCaps).sort((a,b)=>+a-+b).map(k=>plain(currentCaps[k]))},sourceCaps:{tag:'g',children:[{tag:'use',symbol:'source'},...Object.keys(currentCaps).sort((a,b)=>+a-+b).map(k=>plain(currentCaps[k]))]}};
+     paths.rim=plain(originalRim);paths.foreground={tag:'g',children:[...paths.sourceCaps.children,plain(originalRim)]};
      paths.closure=null;paths.join=null;paths.paintedUnion={tag:'use',symbol:'source'};
+     paths.sourceBlack=paths.source;paths.sourceWhite=paths.source;paths.closureOnBlack=null;paths.closureOnWhite=null;
      const replay={};for(const [name,root]of Object.entries(paths)){
-      const cv=document.createElement('canvas');cv.width=ctx.canvas.width;cv.height=ctx.canvas.height;const cc=cv.getContext('2d');cc.setTransform(ctx.getTransform());cc.globalAlpha=ctx.globalAlpha;cc.globalCompositeOperation=ctx.globalCompositeOperation;cc.filter=ctx.filter;cc.imageSmoothingEnabled=ctx.imageSmoothingEnabled;cc.imageSmoothingQuality=ctx.imageSmoothingQuality;
-      if(['closure','paintedUnion'].includes(name))paintClosure(cc,inst,original.anchor,true);if(name==='join')paintJoin(cc,inst,original.anchor,true);if(root)nativeDraw(HonroVisualStyle?.contextLike(ctx,cc)||cc,{...original,vector:{...original.vector,root}},inst);replay[name]=cv;
+      const cv=document.createElement('canvas');cv.width=ctx.canvas.width;cv.height=ctx.canvas.height;const cc=cv.getContext('2d');if(/(?:Black|White)$/.test(name)){cc.fillStyle=name.endsWith('Black')?'#000000':'#ffffff';cc.fillRect(0,0,cv.width,cv.height);}cc.setTransform(ctx.getTransform());cc.globalAlpha=ctx.globalAlpha;cc.globalCompositeOperation=ctx.globalCompositeOperation;cc.filter=ctx.filter;cc.imageSmoothingEnabled=ctx.imageSmoothingEnabled;cc.imageSmoothingQuality=ctx.imageSmoothingQuality;
+      if(name==='closureOnBlack'||name==='closureOnWhite')paintClosure(cc,inst,original.anchor,false);
+      if(['closure','paintedUnion'].includes(name))paintClosure(cc,inst,original.anchor,true);if(name==='join')paintJoin(cc,inst,original.anchor,true);if(root)nativeDraw(HonroVisualStyle?.contextLike(ctx,cc)||cc,{...original,vector:{...original.vector,clips:{...original.vector.clips,'original-rim-domain':foregroundReference.clips['original-rim-domain']},root}},inst);replay[name]=cv;
      }sourceReplayTiles.set(ctx.canvas,replay);
     }
     const m=ctx.getTransform(),row={canvas:[ctx.canvas.width,ctx.canvas.height],matrix:[m.a,m.b,m.c,m.d,m.e,m.f],globalAlpha:ctx.globalAlpha,composite:ctx.globalCompositeOperation,filter:ctx.filter,placement:{x:inst.x,y:inst.y,scale:inst.scale,rotation:inst.rotation??0}};
@@ -156,7 +193,7 @@ async function capture(candidate,closure,join,sourceContract,runtimeSha,variant,
    const material=HonroTerrainDomain.materialLandmarks(b).find(l=>l.asset?.id==='act1-site:7:body');assert(material&&!material.honroTerrainMaterialClip,'External BODY material clip requires replay support');
    assert(scene._domainTiles&&scene._screenWorldCache?.canvas,'Actual tile and screen caches required');
    const replayReports={};
-   for(const name of ['source','sourceCaps','caps','closure','join','paintedUnion']){
+   for(const name of ['source','caps','sourceCaps','rim','foreground','closure','join','paintedUnion','sourceBlack','sourceWhite','closureOnBlack','closureOnWhite']){
     const mask=document.createElement('canvas');mask.width=W;mask.height=H;Object.assign(mask.style,{position:'fixed',left:'-20000px',top:'0',width:W+'px',height:H+'px'});document.body.appendChild(mask);
     const replay=new HonroScene(mask);Object.assign(replay,{...camera,manual:true,battle:b});
     replay._domainTiles={key:replay._worldCacheKey(b,W),rs:scene._domainTiles.rs,tiles:new Map()};let matched=0,empty=0;
@@ -178,11 +215,11 @@ async function capture(candidate,closure,join,sourceContract,runtimeSha,variant,
   }
   if(['expected','joined-expected'].includes(variant))assert(expectedDraws>0,'Expected control never intercepted BODY draw');
   const cut={source:{x:1448,y0:419,y1:884},world:{x:1448*3.13,y0:419*3.13,y1:884*3.13}};cut.screen={x:W/2+(cut.world.x-camera.x)*camera.scale,y0:H/2+(cut.world.y0-camera.y)*camera.scale,y1:H/2+(cut.world.y1-camera.y)*camera.scale};cut.intersectsViewport=cut.screen.x>=0&&cut.screen.x<W&&Math.max(cut.screen.y0,cut.screen.y1)>=0&&Math.min(cut.screen.y0,cut.screen.y1)<H;cut.note='Unchanged authored source right boundary. Visibility is measured here; image review determines whether its finish is a visual defect.';
-  publishProbe({ok:true,scope:'Actual isolated production HonroScene with test-only in-memory BODY injection. No App/user storage/public deployment; bounded engine movement and codec, not full campaign.',variant,view:view.name,width:W,height:H,camera,upperRightCut:cut,stageBounds:{play:stage.playBounds,terrain:stage.terrainBounds,camera:stage.camera},runtimeSha,stageSha256:await hash(stage),physicsSha256:await hash(physics),sourceSha256:await hash(source),capsSha256:await hash(currentCaps),assetSha256:await hash(asset),save:{roundtrip:true,packedBytes:JSON.stringify(packed).length,inlineBytes:JSON.stringify(saved).length,table:!!packed.honroLocalArtTable},movement,canvas:{width:cv.width,height:cv.height,cssWidth:cv.getBoundingClientRect().width,cssHeight:cv.getBoundingClientRect().height},timing:{firstRenderMs,coldReadySceneMs,repeated,pan,cache,notes:'Real elapsed clock outside scoped frozen visual time. Control source-mask instrumentation runs inside BODY calls: NOT performance acceptance. coldReadyScene is new Scene caches after decode/global VectorArt warmup, not cold process.'},expectedDraws,controls,masks,fontStatus:document.fonts.status,images:p.images.length,...p,png});
+  publishProbe({ok:true,scope:'Actual isolated production HonroScene with test-only in-memory BODY injection. No App/user storage/public deployment; bounded engine movement and codec, not full campaign.',variant,view:view.name,width:W,height:H,camera,upperRightCut:cut,stageBounds:{play:stage.playBounds,terrain:stage.terrainBounds,camera:stage.camera},runtimeSha,stageSha256:await hash(stage),physicsSha256:await hash(physics),sourceSha256:await hash(source),capsSha256:await hash(currentCaps),rimReference:{sha256:await hash(originalRim),domain:foregroundReference.clips['original-rim-domain'],meaning:'Original source + 13 caps + original edge nodes clipped only by complement of existing lower-art domain; no epsilon'},assetSha256:await hash(asset),save:{roundtrip:true,packedBytes:JSON.stringify(packed).length,inlineBytes:JSON.stringify(saved).length,table:!!packed.honroLocalArtTable},movement,canvas:{width:cv.width,height:cv.height,cssWidth:cv.getBoundingClientRect().width,cssHeight:cv.getBoundingClientRect().height},timing:{firstRenderMs,coldReadySceneMs,repeated,pan,cache,notes:'Real elapsed clock outside scoped frozen visual time. Control source-mask instrumentation runs inside BODY calls: NOT performance acceptance. coldReadyScene is new Scene caches after decode/global VectorArt warmup, not cold process.'},expectedDraws,controls,masks,fontStatus:document.fonts.status,images:p.images.length,...p,png});
  }catch(e){publishProbe({ok:false,variant,view:view.name,error:String(e.stack||e),...p});}
 }
 const controlMode=process.env.STAGE7_CONTROLS==='1';
 const views=[{name:'portrait-bl',width:390,height:696,x:'left',y:'bottom'},{name:'desktop-br',width:1331,height:763,x:'right',y:'bottom'},{name:'portrait-tr',width:390,height:696,x:'right',y:'top'},{name:'desktop-tr',width:1331,height:763,x:'right',y:'top'},{name:'desktop-cut-close',width:1331,height:763,x:'right',y:'cut',close:true}].filter(v=>!controlMode||['desktop-br','portrait-tr','portrait-bl'].includes(v.name));
 const script=s=>'<script>'+s.replace(/<\/script/gi,'<\\/script')+'</script>',list=[];
-for(const variant of (controlMode?['original','original-repeat','bounds-only','candidate','right-backing-off']:['original','candidate','closure','expected','joined','joined-expected']))for(const view of views){const file=`${variant}-${view.name}.html`;const html='<!doctype html><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src \'none\'; script-src \'unsafe-inline\'; style-src \'unsafe-inline\'; img-src data:; font-src data:; connect-src \'none\'"><style>body{margin:0}canvas{display:block}</style><canvas id="scene"></canvas><pre id="result">pending</pre>'+script('('+bootstrap.toString()+')(7);')+script(runtime)+script('('+capture.toString()+')('+JSON.stringify(candidate)+','+JSON.stringify(closure)+','+JSON.stringify(join)+','+JSON.stringify(sourceContract)+','+JSON.stringify(runtimeSha)+','+JSON.stringify(variant)+','+JSON.stringify(view)+','+JSON.stringify(controlMode)+');');await writeFile(path.join(out,file),html);list.push({variant,view:view.name,file});}
+for(const variant of (controlMode?['original','original-repeat','bounds-only','candidate','right-backing-off']:['original','legacy','candidate','closure','expected','joined','joined-expected']))for(const view of views){const file=`${variant}-${view.name}.html`;const html='<!doctype html><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src \'none\'; script-src \'unsafe-inline\'; style-src \'unsafe-inline\'; img-src data:; font-src data:; connect-src \'none\'"><style>body{margin:0}canvas{display:block}</style><canvas id="scene"></canvas><pre id="result">pending</pre>'+script('('+bootstrap.toString()+')(7);')+script(runtime)+script('('+capture.toString()+')('+JSON.stringify(candidate)+','+JSON.stringify(closure)+','+JSON.stringify(join)+','+JSON.stringify(sourceContract)+','+JSON.stringify(runtimeSha)+','+JSON.stringify(variant)+','+JSON.stringify(view)+','+JSON.stringify(controlMode)+');');await writeFile(path.join(out,file),html);list.push({variant,view:view.name,file});}
 await writeFile(path.join(out,'capture-list.json'),JSON.stringify(list,null,2));console.log({runtimeSha,views:views.length,controlMode,variants:controlMode?5:6,productionModified:false});

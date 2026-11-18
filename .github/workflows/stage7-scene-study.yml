@@ -54,6 +54,9 @@ jobs:
       - name: Explicit narrow nonwalk join scope and independent expected composite
         if: ${{ always() && matrix.controls == '0' }}
         run: python game/tools/stage7-scene-study/joined-check.py
+      - name: Quantization attribution without waiving strict failures
+        if: ${{ always() && matrix.controls == '0' }}
+        run: python game/tools/stage7-scene-study/transmission-check.py artifacts/stage7-scene-study artifacts/stage7-scene-study
       - name: Production sources remain unchanged
         if: always()
         run: git diff --exit-code -- shared tools/map-forge

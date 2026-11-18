@@ -12,6 +12,9 @@ for view in ['portrait-bl','desktop-br','portrait-tr','desktop-tr','desktop-cut-
   source=image('joined','sourceEffective')[:,:,3];caps=image('joined','capsEffective')[:,:,3]
   def count(mask):return int(np.count_nonzero(mask))
   row={'view':view,'closureExpectedStaticMismatch':count(np.any(world['closure']!=world['expected'],axis=2)),'joinedExpectedStaticMismatch':count(np.any(world['joined']!=world['joined-expected'],axis=2)),'joinedVsClosureChanged':count(delta),'changedOutsideDeclaredStroke':count(delta&~stroke),'changedOpaqueSourceInsideDeclaredStroke':count(delta&stroke&(source==255)),'changedOpaqueSourceOutsideDeclaredStroke':count(delta&~stroke&(source==255)),'changedCapPixels':count(delta&(caps>0)),'strokeOutsidePaintedUnion':count(stroke&~painted)}
+  if view=='desktop-cut-close' and not delta.any():errors.append(f'{view}: zero actual join effect; a no-op cannot pass')
+  row['declaredFootprintPixels']=count(stroke)
+  if view=='desktop-cut-close' and not stroke.any():errors.append(f'{view}: missing join footprint')
   for key in ['stageSha256','physicsSha256','sourceSha256','capsSha256','runtimeSha','camera']:
    if any(r[v][key]!=r['candidate'][key]for v in variants):errors.append(f'{view}: {key}')
   for v in variants:
