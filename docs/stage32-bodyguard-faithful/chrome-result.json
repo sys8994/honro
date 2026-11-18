@@ -1,0 +1,604 @@
+{
+  "ok": true,
+  "sourceRun": 44247043774,
+  "artifact": 14402153285,
+  "baselinePNG": "7502e978998966f6541ee859ffd996c3a05e8590b0db7b0de1c9c937129bc187",
+  "candidatePNG": "f3db2fed1b5aacc953db3837175ec950c91e5a8d4f6bb0314e3d8eaa38fba78c",
+  "scope": "Fill diagnostic alongside original clip/bitmap/gray-subpath primitive and frozen original-RGB SS-write replay, restricted to solidfill upper transition domain. GEOS visible oracle .005source, not universal continuous proof; no original failure deletion.",
+  "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+  "rows": [
+    {
+      "model": "fill",
+      "kind": "grass",
+      "upperChanged": 0,
+      "upperBaselineNonzero": 2188,
+      "baselineNonzero": 2566,
+      "baselineMax": 255,
+      "screenChanged": 0,
+      "max": 0,
+      "points": [],
+      "tileDiff": [
+        {
+          "id": 0,
+          "changed": 0,
+          "max": 0
+        },
+        {
+          "id": 1,
+          "changed": 0,
+          "max": 0
+        },
+        {
+          "id": 2,
+          "changed": 0,
+          "max": 0
+        },
+        {
+          "id": 3,
+          "changed": 0,
+          "max": 0
+        }
+      ],
+      "atRawConflicts": [
+        {
+          "pixel": [
+            123,
+            364
+          ],
+          "before": 11,
+          "after": 11
+        },
+        {
+          "pixel": [
+            123,
+            364
+          ],
+          "before": 11,
+          "after": 11
+        },
+        {
+          "pixel": [
+            124,
+            364
+          ],
+          "before": 16,
+          "after": 16
+        },
+        {
+          "pixel": [
+            124,
+            364
+          ],
+          "before": 16,
+          "after": 16
+        },
+        {
+          "pixel": [
+            175,
+            365
+          ],
+          "before": 5,
+          "after": 5
+        }
+      ]
+    },
+    {
+      "model": "fill",
+      "kind": "pale",
+      "upperChanged": 0,
+      "upperBaselineNonzero": 1342,
+      "baselineNonzero": 1355,
+      "baselineMax": 255,
+      "screenChanged": 0,
+      "max": 0,
+      "points": [],
+      "tileDiff": [
+        {
+          "id": 0,
+          "changed": 0,
+          "max": 0
+        },
+        {
+          "id": 1,
+          "changed": 0,
+          "max": 0
+        },
+        {
+          "id": 2,
+          "changed": 0,
+          "max": 0
+        },
+        {
+          "id": 3,
+          "changed": 0,
+          "max": 0
+        }
+      ],
+      "atRawConflicts": [
+        {
+          "pixel": [
+            123,
+            364
+          ],
+          "before": 0,
+          "after": 0
+        },
+        {
+          "pixel": [
+            123,
+            364
+          ],
+          "before": 0,
+          "after": 0
+        },
+        {
+          "pixel": [
+            124,
+            364
+          ],
+          "before": 0,
+          "after": 0
+        },
+        {
+          "pixel": [
+            124,
+            364
+          ],
+          "before": 0,
+          "after": 0
+        },
+        {
+          "pixel": [
+            175,
+            365
+          ],
+          "before": 0,
+          "after": 0
+        }
+      ]
+    },
+    {
+      "model": "fill",
+      "kind": "road",
+      "upperChanged": 0,
+      "upperBaselineNonzero": 1034,
+      "baselineNonzero": 1034,
+      "baselineMax": 255,
+      "screenChanged": 0,
+      "max": 0,
+      "points": [],
+      "tileDiff": [
+        {
+          "id": 0,
+          "changed": 0,
+          "max": 0
+        },
+        {
+          "id": 1,
+          "changed": 0,
+          "max": 0
+        },
+        {
+          "id": 2,
+          "changed": 0,
+          "max": 0
+        },
+        {
+          "id": 3,
+          "changed": 0,
+          "max": 0
+        }
+      ],
+      "atRawConflicts": [
+        {
+          "pixel": [
+            123,
+            364
+          ],
+          "before": 0,
+          "after": 0
+        },
+        {
+          "pixel": [
+            123,
+            364
+          ],
+          "before": 0,
+          "after": 0
+        },
+        {
+          "pixel": [
+            124,
+            364
+          ],
+          "before": 0,
+          "after": 0
+        },
+        {
+          "pixel": [
+            124,
+            364
+          ],
+          "before": 0,
+          "after": 0
+        },
+        {
+          "pixel": [
+            175,
+            365
+          ],
+          "before": 0,
+          "after": 0
+        }
+      ]
+    },
+    {
+      "model": "faithful-frozenSS",
+      "kind": "grass",
+      "upperChanged": 0,
+      "upperBaselineNonzero": 2171,
+      "baselineNonzero": 2545,
+      "baselineMax": 255,
+      "screenChanged": 0,
+      "max": 0,
+      "points": [],
+      "tileDiff": [
+        {
+          "id": 0,
+          "changed": 0,
+          "max": 0
+        },
+        {
+          "id": 1,
+          "changed": 0,
+          "max": 0
+        },
+        {
+          "id": 2,
+          "changed": 0,
+          "max": 0
+        },
+        {
+          "id": 3,
+          "changed": 0,
+          "max": 0
+        }
+      ],
+      "atRawConflicts": [
+        {
+          "pixel": [
+            123,
+            364
+          ],
+          "before": 11,
+          "after": 11
+        },
+        {
+          "pixel": [
+            123,
+            364
+          ],
+          "before": 11,
+          "after": 11
+        },
+        {
+          "pixel": [
+            124,
+            364
+          ],
+          "before": 16,
+          "after": 16
+        },
+        {
+          "pixel": [
+            124,
+            364
+          ],
+          "before": 16,
+          "after": 16
+        },
+        {
+          "pixel": [
+            175,
+            365
+          ],
+          "before": 5,
+          "after": 5
+        }
+      ]
+    },
+    {
+      "model": "faithful-frozenSS",
+      "kind": "pale",
+      "upperChanged": 0,
+      "upperBaselineNonzero": 1301,
+      "baselineNonzero": 1312,
+      "baselineMax": 255,
+      "screenChanged": 0,
+      "max": 0,
+      "points": [],
+      "tileDiff": [
+        {
+          "id": 0,
+          "changed": 0,
+          "max": 0
+        },
+        {
+          "id": 1,
+          "changed": 0,
+          "max": 0
+        },
+        {
+          "id": 2,
+          "changed": 0,
+          "max": 0
+        },
+        {
+          "id": 3,
+          "changed": 0,
+          "max": 0
+        }
+      ],
+      "atRawConflicts": [
+        {
+          "pixel": [
+            123,
+            364
+          ],
+          "before": 0,
+          "after": 0
+        },
+        {
+          "pixel": [
+            123,
+            364
+          ],
+          "before": 0,
+          "after": 0
+        },
+        {
+          "pixel": [
+            124,
+            364
+          ],
+          "before": 0,
+          "after": 0
+        },
+        {
+          "pixel": [
+            124,
+            364
+          ],
+          "before": 0,
+          "after": 0
+        },
+        {
+          "pixel": [
+            175,
+            365
+          ],
+          "before": 0,
+          "after": 0
+        }
+      ]
+    },
+    {
+      "model": "faithful-frozenSS",
+      "kind": "road",
+      "upperChanged": 0,
+      "upperBaselineNonzero": 1034,
+      "baselineNonzero": 1034,
+      "baselineMax": 255,
+      "screenChanged": 0,
+      "max": 0,
+      "points": [],
+      "tileDiff": [
+        {
+          "id": 0,
+          "changed": 0,
+          "max": 0
+        },
+        {
+          "id": 1,
+          "changed": 0,
+          "max": 0
+        },
+        {
+          "id": 2,
+          "changed": 0,
+          "max": 0
+        },
+        {
+          "id": 3,
+          "changed": 0,
+          "max": 0
+        }
+      ],
+      "atRawConflicts": [
+        {
+          "pixel": [
+            123,
+            364
+          ],
+          "before": 0,
+          "after": 0
+        },
+        {
+          "pixel": [
+            123,
+            364
+          ],
+          "before": 0,
+          "after": 0
+        },
+        {
+          "pixel": [
+            124,
+            364
+          ],
+          "before": 0,
+          "after": 0
+        },
+        {
+          "pixel": [
+            124,
+            364
+          ],
+          "before": 0,
+          "after": 0
+        },
+        {
+          "pixel": [
+            175,
+            365
+          ],
+          "before": 0,
+          "after": 0
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "name": "upper-filter-domain",
+      "sha256": "2901048f5d0de720258bca90ebf63fc4334e6f2c332502ace3af27ee819d5d7b"
+    },
+    {
+      "name": "support-magnitude",
+      "sha256": "2d3dbfa333b45704d12dae445862fb0c86471bd78163e1ff012216f1ffb913c1"
+    },
+    {
+      "name": "support-binary-tile-support",
+      "sha256": "9043947897f6e43f1158276e9fa61d6056f35740edcbfb8905768b2522d0aea5"
+    },
+    {
+      "name": "fill-grass-baseline",
+      "sha256": "7497bd77e62a16c77e90f04a22895f2d2c208bcf8a2da454fb00a82346ad2b17"
+    },
+    {
+      "name": "fill-grass-gray",
+      "sha256": "7497bd77e62a16c77e90f04a22895f2d2c208bcf8a2da454fb00a82346ad2b17"
+    },
+    {
+      "name": "fill-pale-baseline",
+      "sha256": "695294b6f42455567305d8bfec226d017f1a9043c1005e2aff76f99c101fdfa3"
+    },
+    {
+      "name": "fill-pale-gray",
+      "sha256": "695294b6f42455567305d8bfec226d017f1a9043c1005e2aff76f99c101fdfa3"
+    },
+    {
+      "name": "fill-road-baseline",
+      "sha256": "d0ec9c921c57cf2e17b45b08d97aecbe218d29d2857147330fb3855bfae5fe50"
+    },
+    {
+      "name": "fill-road-gray",
+      "sha256": "d0ec9c921c57cf2e17b45b08d97aecbe218d29d2857147330fb3855bfae5fe50"
+    },
+    {
+      "name": "faithful-frozenSS-grass-baseline",
+      "sha256": "6a9c3b8a6f127a5415d647307870f45bfc2d758dd5b3e50da0e7d3ff36b54453"
+    },
+    {
+      "name": "faithful-frozenSS-grass-gray",
+      "sha256": "6a9c3b8a6f127a5415d647307870f45bfc2d758dd5b3e50da0e7d3ff36b54453"
+    },
+    {
+      "name": "faithful-frozenSS-pale-baseline",
+      "sha256": "9d43d6d7ba0678b8e80c05f06dc687602f2aced686d7000c165b7fdb00ccef83"
+    },
+    {
+      "name": "faithful-frozenSS-pale-gray",
+      "sha256": "9d43d6d7ba0678b8e80c05f06dc687602f2aced686d7000c165b7fdb00ccef83"
+    },
+    {
+      "name": "faithful-frozenSS-road-baseline",
+      "sha256": "d0ec9c921c57cf2e17b45b08d97aecbe218d29d2857147330fb3855bfae5fe50"
+    },
+    {
+      "name": "faithful-frozenSS-road-gray",
+      "sha256": "d0ec9c921c57cf2e17b45b08d97aecbe218d29d2857147330fb3855bfae5fe50"
+    }
+  ],
+  "frozenSS": {
+    "observed": 380,
+    "samples": 380,
+    "unique": 380,
+    "scope": "Eligibility fixed from original RGB actual capture; never rerun on tag colors"
+  },
+  "upperDomain": {
+    "scope": "Primitive-faithful protected solidfill + frozen SS only above transition1716, with2tile-row filter separation. Lower gradient not claimed faithful.",
+    "rawConflictSupport": [
+      {
+        "pixel": [
+          123,
+          364
+        ],
+        "upper": 255
+      },
+      {
+        "pixel": [
+          123,
+          364
+        ],
+        "upper": 255
+      },
+      {
+        "pixel": [
+          124,
+          364
+        ],
+        "upper": 255
+      },
+      {
+        "pixel": [
+          124,
+          364
+        ],
+        "upper": 255
+      },
+      {
+        "pixel": [
+          175,
+          365
+        ],
+        "upper": 255
+      }
+    ]
+  },
+  "support": [
+    {
+      "mode": "magnitude",
+      "source": "Independent declared geometry clip, before comparison with observed Scene changes",
+      "changedCount": 571,
+      "outsideCount": 1,
+      "outside": [
+        {
+          "pixel": [
+            287,
+            379
+          ],
+          "before": [
+            135,
+            111,
+            99,
+            255
+          ],
+          "after": [
+            135,
+            110,
+            99,
+            255
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "binary-tile-support",
+      "source": "Independent declared geometry clip, before comparison with observed Scene changes",
+      "changedCount": 571,
+      "outsideCount": 0,
+      "outside": []
+    }
+  ]
+}
