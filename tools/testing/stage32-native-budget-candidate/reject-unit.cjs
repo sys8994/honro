@@ -1,0 +1,5 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+const src=fs.readFileSync(__dirname+'/candidate.js','utf8');const start=src.indexOf('function nativeBudgetPreflight('),end=src.indexOf('\nfunction canTransition',start);assert(start>0&&end>start);
+let allocations=0;const context={G:{document:{createElement(){allocations++;throw Error('must not allocate');}}},NATIVE_BUDGET_BYTES:48*1024*1024,MAX_PIXELS:8*1024*1024,nativeBudgetStats:{plans:0,rejected:0},buffer:null,transitionWork:null,transitionColor:null,transitionBody:null,ssCanvas:null,lowMaskCanvas:null};vm.createContext(context);vm.runInContext(src.slice(start,end),context);
+const c={canvas:{width:4096,height:2000},getTransform:()=>({a:10,b:0,c:0,d:10,e:0,f:1000-1850*10}),globalAlpha:1,globalCompositeOperation:'source-over',filter:'none',shadowBlur:0,shadowOffsetX:0,shadowOffsetY:0};
+assert.equal(context.nativeBudgetPreflight(c,{opacity:1},{nativeLive:true,sceneScale:1.65}),false);assert(context.nativeBudgetStats.last.projected>48*1024*1024);assert.equal(allocations,0);console.log(JSON.stringify(context.nativeBudgetStats));

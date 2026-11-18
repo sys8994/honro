@@ -1,0 +1,38 @@
+name: Stage32 native logical budget study
+on:
+  workflow_dispatch:
+  push:
+    branches: [inspect/stage32-scanline-20261118]
+    paths: ['tools/testing/stage32-native-budget-candidate/**', '.github/workflows/stage32-native-budget-candidate.yml']
+permissions:
+  contents: read
+jobs:
+  study:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env: {HONRO_ACT4_RELEASE: '1', HONRO_ACT5_RELEASE: '1'}
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with: {path: study}
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with: {path: product, ref: 126a2b5600f31bd686c79caef1e7c91dffd7759f}
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with: {node-version: '22', package-manager-cache: false}
+      - run: npm ci && npm ci --prefix game
+        working-directory: product
+      - run: node study/tools/testing/stage32-native-budget-candidate/actual/contract.mjs && node study/tools/testing/stage32-native-budget-candidate/reject-unit.cjs
+      - name: Actual five paired views and cache/native roundtrip
+        run: |
+          node study/tools/testing/stage32-native-budget-candidate/actual/fixture.mjs product "$RUNNER_TEMP/base" baseline
+          node study/tools/testing/stage32-live-ss/actual/run.mjs "$RUNNER_TEMP/base" artifacts/evidence
+          node study/tools/testing/stage32-native-budget-candidate/actual/fixture.mjs product "$RUNNER_TEMP/new" candidate
+          node study/tools/testing/stage32-live-ss/actual/run.mjs "$RUNNER_TEMP/new" artifacts/evidence
+      - name: Original capped appearance for the three large-device poses
+        run: |
+          node study/tools/testing/stage32-native-budget-candidate/actual/fixture.mjs product "$RUNNER_TEMP/old" fallback
+          node study/tools/testing/stage32-live-ss/actual/run.mjs "$RUNNER_TEMP/old" artifacts/evidence
+      - run: python -m pip install Pillow numpy
+      - run: python study/tools/testing/stage32-native-budget-candidate/actual/check.py artifacts/evidence
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with: {name: stage32-native-budget-candidate, path: artifacts, if-no-files-found: error}
