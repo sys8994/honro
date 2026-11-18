@@ -1,0 +1,36 @@
+name: Stage7 clean Scene performance and art study
+on:
+  workflow_dispatch:
+  push:
+    branches: [art/stage7-semantic-rock-study-20261117]
+    paths:
+      - game/tools/stage7-clean-scene-study/**
+      - .github/workflows/stage7-clean-scene-study.yml
+permissions:
+  contents: read
+jobs:
+  clean:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci && npm ci --prefix game
+      - run: node game/tools/stage7-clean-scene-study/fixture.mjs "$RUNNER_TEMP/stage7-clean"
+      - name: Capture two clean art variants at five real cameras
+        run: |
+          export CHROME_BIN="$(command -v google-chrome || command -v chromium)"
+          node game/tools/stage7-clean-scene-study/run.mjs "$RUNNER_TEMP/stage7-clean" artifacts/stage7-clean-scene-study
+      - run: node game/tools/stage7-clean-scene-study/check.mjs artifacts/stage7-clean-scene-study
+      - name: Production unchanged
+        if: always()
+        run: git diff --exit-code -- shared tools/map-forge
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage7-clean-scene-study-${{ github.sha }}
+          path: artifacts/stage7-clean-scene-study
+          if-no-files-found: error
+          retention-days: 14
