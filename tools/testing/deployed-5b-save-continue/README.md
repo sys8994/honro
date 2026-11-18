@@ -1,0 +1,11 @@
+# Latest deployed5b to integratedC save and bounded continuation
+
+Research validation only. Latest5b `5b2edf0b868a6f4ab656574b036586304eb12808` (successful Pages44280132384) → C `dbb25e21e075a495581ddaf8e2c0e615fe2e621e`. Original7d prepared packages/reports remain unchanged. No production write, actual user save or deployment.
+
+First: same direct battle-codec contract for independent synthetic3/7/32 states: original self-roundtrip, C restore whole old battle exact, recompact exact, second restore exact. No fresh5b versus C equality assumption and no field normalization. Runtime release defaults are used; source/runtime/codec pins and payload hashes are retained.
+
+Second: each exact old5b encoded snapshot is passed through unmodified official App.continue on both5b and C in separate isolated real Chrome sessions. It uses full official runtime including main, synthetic unlocked fresh profile, in-memory Storage, paused RAF and a real mounted Engine/Scene. Mounted marker/HP/position/size must match saved values. Three explicit calls each to the official Engine.tick(1/120) and HonroMission.tick(app,1/120) follow. We do not directly call or replace MonsterScale.sync, remove its guards, or change5b migration policy. Compare full mounted and post-tick battle hashes and selected actor state between5b and C; terrain hash must stay fixed. Real App.stopBattle must null engine/scene afterward. PNG is diagnostic, not artwork equivalence acceptance.
+
+This is controlled official-method continuation, not autonomous App.frame, full user interaction, all historical schemas, all future spawn waves or long gameplay. mission.tick includes the actual5b scale-sync hook, so codec equality alone is not misrepresented as runtime preservation. A5b save may legitimately change in both baselines through official tick policies; such changes must match, not be erased. Revisionless7d/B preservation is not tested here and must not be inferred solely from source guards.
+
+No test has executed locally. Config/pinned workflow are ready only for parent registration after review. All assertions remain strict; a real difference is a failure to investigate. No resource/device performance or final release claim.
