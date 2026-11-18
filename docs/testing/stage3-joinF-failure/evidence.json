@@ -1,0 +1,38 @@
+{
+  "run": 44297233355,
+  "artifact": 14424218018,
+  "zipSHA256": "71cea846b3189eb8d8b1418f5634dd4d83b8f903e1b29985d6eb45d5bb1e299e",
+  "baseline": "abdef6fc12042714f02d8ea2bf3b2c80757273f0",
+  "candidate": "0dcaa618c756dda324430b1328020e2983e0e742",
+  "structuralBeforeAlphaPassed": true,
+  "alphaDifferent": 115,
+  "sourceAlphaBBox": [
+    1812.5,
+    635.75,
+    1833.5,
+    637.75
+  ],
+  "positiveE": 232008,
+  "positiveF": 232017,
+  "rgbChanged": 3634,
+  "visualAccepted": false,
+  "productRelease": false,
+  "screenshots": [
+    {
+      "local": "stage3-joinF-chrome/evidence/baseline-3-right-ground-dpr3.png",
+      "sha256": "ab3752d492dec4f98627b832a7b243f509be14a3863e782a9b2990b6e11e3330"
+    },
+    {
+      "local": "stage3-joinF-chrome/evidence/candidate-3-right-ground-dpr3.png",
+      "sha256": "dc8dba6c1b41398ffc303c77bd43b78d673ce2e5bd810c3be0633a84e6b675ec"
+    },
+    {
+      "local": "stage3-joinF-chrome/evidence/baseline-3-overview-asset-mask.png",
+      "sha256": "4e2eb00c647b65204b17648535a6539245f3cccabb4c1de346069f52390acd81"
+    },
+    {
+      "local": "stage3-joinF-chrome/evidence/candidate-3-overview-asset-mask.png",
+      "sha256": "b8a74c25c8c6c7152206ccb784ac8c8ab5c16a1dd7c5454b6345db8b8b1c0e32"
+    }
+  ]
+}
