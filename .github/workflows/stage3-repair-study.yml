@@ -1,0 +1,36 @@
+name: Stage3 isolated contour and palette study
+on:
+  push:
+    branches: ['fix/stage03-exterior-readability-20261118']
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm ci && npm ci --prefix game
+      - name: Render unchanged public runtime and isolated visual study
+        shell: bash
+        run: |
+          browser=$(command -v google-chrome || command -v chromium)
+          for variant in baseline candidate; do
+            node tests/stage3-repair-study-fixture.mjs "$RUNNER_TEMP/$variant" 3 "$variant"
+            for view in portrait-bl desktop-br pier-close terrain-close; do
+              name="stage3-$variant-$view"
+              timeout 300s "$browser" --headless --no-first-run --no-default-browser-check --force-device-scale-factor=1 --virtual-time-budget=60000 --user-data-dir="$RUNNER_TEMP/profile-$name" --dump-dom "file://$RUNNER_TEMP/$variant/$name.html" > "$RUNNER_TEMP/$name.html"
+              node tests/stage3-repair-study-result.mjs "$RUNNER_TEMP/$name.html" "$RUNNER_TEMP/evidence" 3 "$variant" "$view"
+            done
+          done
+          node tests/stage3-repair-study-compare.mjs "$RUNNER_TEMP/evidence"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage3-repair-study
+          path: ${{ runner.temp }}/evidence
+          if-no-files-found: error
