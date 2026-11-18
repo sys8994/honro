@@ -1,0 +1,184 @@
+{
+  "scope": "Hypothetical allocation plan only; frozen bdb9 currently rejects all four by1MiPixel gate",
+  "cachedStagedMaxBytes": 4194304,
+  "retainedSSMaxBytes": 8388608,
+  "proposedLiveLogicalStudyBudget": 50331648,
+  "rows": [
+    {
+      "name": "phoneDPR2",
+      "css": [
+        390,
+        696
+      ],
+      "dpr": 2,
+      "physical": [
+        780,
+        1392
+      ],
+      "pixels": 1085760,
+      "current1MiPixelTransitionAllowed": false,
+      "material8MiPixelAllowed": true,
+      "poses": [
+        {
+          "scale": 1.65,
+          "cameraY": 1342,
+          "split": 1392,
+          "roiRows": 0,
+          "roiPixels": 0,
+          "materialBytes": 4343040,
+          "twoROIBytes": 8,
+          "freshBytes": 4343052,
+          "withCachedStagedAndSSBytes": 25314560,
+          "withCachedMiB": 24.141845703125
+        },
+        {
+          "scale": 1.65,
+          "cameraY": 1650,
+          "split": 913,
+          "roiRows": 479,
+          "roiPixels": 373620,
+          "materialBytes": 4343040,
+          "twoROIBytes": 2988960,
+          "freshBytes": 7332004,
+          "withCachedStagedAndSSBytes": 19914912,
+          "withCachedMiB": 18.992340087890625
+        }
+      ],
+      "fullHeightTwoROIWithCachedBytes": 25612032,
+      "fullHeightTwoROIWithCachedMiB": 24.425537109375,
+      "fits48MiBFull": true
+    },
+    {
+      "name": "phoneDPR3",
+      "css": [
+        390,
+        696
+      ],
+      "dpr": 3,
+      "physical": [
+        1170,
+        2088
+      ],
+      "pixels": 2442960,
+      "current1MiPixelTransitionAllowed": false,
+      "material8MiPixelAllowed": true,
+      "poses": [
+        {
+          "scale": 1.65,
+          "cameraY": 1342,
+          "split": 2088,
+          "roiRows": 0,
+          "roiPixels": 0,
+          "materialBytes": 9771840,
+          "twoROIBytes": 8,
+          "freshBytes": 9771852,
+          "withCachedStagedAndSSBytes": 30743360,
+          "withCachedMiB": 29.31915283203125
+        },
+        {
+          "scale": 1.65,
+          "cameraY": 1650,
+          "split": 1370,
+          "roiRows": 718,
+          "roiPixels": 840060,
+          "materialBytes": 9771840,
+          "twoROIBytes": 6720480,
+          "freshBytes": 16492324,
+          "withCachedStagedAndSSBytes": 29075232,
+          "withCachedMiB": 27.728302001953125
+        }
+      ],
+      "fullHeightTwoROIWithCachedBytes": 41898432,
+      "fullHeightTwoROIWithCachedMiB": 39.95745849609375,
+      "fits48MiBFull": true
+    },
+    {
+      "name": "desktop1080",
+      "css": [
+        1920,
+        1080
+      ],
+      "dpr": 1,
+      "physical": [
+        1920,
+        1080
+      ],
+      "pixels": 2073600,
+      "current1MiPixelTransitionAllowed": false,
+      "material8MiPixelAllowed": true,
+      "poses": [
+        {
+          "scale": 1.65,
+          "cameraY": 1342,
+          "split": 1080,
+          "roiRows": 0,
+          "roiPixels": 0,
+          "materialBytes": 8294400,
+          "twoROIBytes": 8,
+          "freshBytes": 8294412,
+          "withCachedStagedAndSSBytes": 29265920,
+          "withCachedMiB": 27.91015625
+        },
+        {
+          "scale": 1.65,
+          "cameraY": 1650,
+          "split": 648,
+          "roiRows": 432,
+          "roiPixels": 829440,
+          "materialBytes": 8294400,
+          "twoROIBytes": 6635520,
+          "freshBytes": 14929924,
+          "withCachedStagedAndSSBytes": 27512832,
+          "withCachedMiB": 26.23828125
+        }
+      ],
+      "fullHeightTwoROIWithCachedBytes": 37466112,
+      "fullHeightTwoROIWithCachedMiB": 35.73046875,
+      "fits48MiBFull": true
+    },
+    {
+      "name": "desktop4K",
+      "css": [
+        3840,
+        2160
+      ],
+      "dpr": 1,
+      "physical": [
+        3840,
+        2160
+      ],
+      "pixels": 8294400,
+      "current1MiPixelTransitionAllowed": false,
+      "material8MiPixelAllowed": true,
+      "poses": [
+        {
+          "scale": 1.65,
+          "cameraY": 1342,
+          "split": 1697,
+          "roiRows": 453,
+          "roiPixels": 1739520,
+          "materialBytes": 33177600,
+          "twoROIBytes": 13916160,
+          "freshBytes": 47093764,
+          "withCachedStagedAndSSBytes": 59676672,
+          "withCachedMiB": 56.912109375
+        },
+        {
+          "scale": 1.65,
+          "cameraY": 1650,
+          "split": 1188,
+          "roiRows": 454,
+          "roiPixels": 1743360,
+          "materialBytes": 33177600,
+          "twoROIBytes": 13946880,
+          "freshBytes": 47124484,
+          "withCachedStagedAndSSBytes": 59707392,
+          "withCachedMiB": 56.94140625
+        }
+      ],
+      "fullHeightTwoROIWithCachedBytes": 112115712,
+      "fullHeightTwoROIWithCachedMiB": 106.921875,
+      "fits48MiBFull": false
+    }
+  ]
+}
