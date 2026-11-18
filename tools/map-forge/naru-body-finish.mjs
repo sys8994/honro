@@ -23,16 +23,8 @@ export function finishNaruBody(core,{palette=true,exterior=true}={}){
  p('#10282b','M-445 826L-408 891-393 1015-347 1094-329 1186-382 1125-425 1013-438 919Z'),
  p('#10282b','M2200 882L2180 960 2213 1051 2218 1164 2259 1230 2248 1116 2233 1045 2218 964Z')
  ];
- // Blend only inside the original opaque material overlap. The E band
- // silhouette/control points stay exact beyond the original source edge.
- const joinGradient=color=>({type:'linear',x1:1740,y1:0,x2:1774,y2:0,stops:[{offset:0,color,opacity:0},{offset:1,color,opacity:1}]});
- result.gradients={...result.gradients,naruJoinRim:joinGradient('#51533a'),naruJoinGrass:joinGradient('#70884a'),naruJoinRock:joinGradient('#213d40')};
- // Keep the original solid shader outside the bounded internal overlap.
- // A whole-path saturated gradient needlessly perturbs far-edge AA pixels.
- result.clips={...result.clips,'naru-join-fade':['M1740 620H1774V720H1740Z'],'naru-join-solid':['M1774 620H3000V720H1774Z']};
- const localized=(node,color)=>({tag:'g',children:[{...node,clipPath:'naru-join-fade'},{...node,fill:color,clipPath:'naru-join-solid'}]});
- const rightRim=p('url(#naruJoinRim)',`M1740 631H1770C1792 631 1806 637 1834 638H${R}V646L2101 647 2055 645 1989 648 1903 645 1830 647C1808 647 1793 645 1770 647H1740Z`);
- const rightGrass=p('url(#naruJoinGrass)',`M1740 634H1770C1790 634 1808 640 1834 641L1903 640 1989 642 2055 640 2101 642 ${R} 641V644L2101 645 2055 643 1989 645 1903 643 1834 644C1808 644 1790 641 1770 641H1740Z`);
+ const rightRim=p('#51533a',`M1770 631C1792 631 1806 637 1834 638H${R}V646L2101 647 2055 645 1989 648 1903 645 1830 647C1808 647 1793 645 1770 647Z`);
+ const rightGrass=p('#70884a',`M1770 634C1790 634 1808 640 1834 641L1903 640 1989 642 2055 640 2101 642 ${R} 641V644L2101 645 2055 643 1989 645 1903 643 1834 644C1808 644 1790 641 1770 641Z`);
  // Closed narrow fill ribbons keep the timber finish explicit in material geometry.
  const woodGrain={tag:'g',children:[
  p('#3d493b','M550 588C552 608 548 629 552 650L550 680 551 680 553 650C549 629 553 608 551 588Z M562 615C559 635 564 647 561 668L562 668C565 647 560 635 563 615Z'),
@@ -42,12 +34,22 @@ export function finishNaruBody(core,{palette=true,exterior=true}={}){
  // The original raster's entire rows882..886 are exactly #142c2f;
  // side tails are equally solid below y723(left)/708(right). Cap only
  // synthetic AA closures in that nonwalkable solid-color area, after source.
- const seamBase=p('#142c2f','M-1 885H1775V889H-1Z M-1 723H2V887H-1Z M1772 708H1776V887H1772Z M1772 495H1776V631H1772Z M1772 647H1776V668H1772Z');
- const join={tag:'g',children:[seamBase,localized(rightRim,'#51533a'),localized(rightGrass,'#70884a')]};
- const rockJoin=p('url(#naruJoinRock)','M1740 668H1777V716H1740Z');
+ const seamBase=p('#142c2f','M-1 885H1775V889H-1Z M-1 723H2V887H-1Z M1772 708H1776V887H1772Z M1772 495H1776V631H1772Z M1772 648H1776V667H1772Z');
+ const join={tag:'g',children:[seamBase,rightRim,rightGrass]};
+ const rockJoin=p('#213d40','M1770 668H1777V716H1770Z');
+ // Leave every original solid exterior draw unmodified. Restore and blend
+ // only within the already-opaque original source material strip.
+ const fade=color=>({type:'linear',x1:1740,y1:0,x2:1774,y2:0,stops:[{offset:0,color,opacity:0},{offset:1,color,opacity:1}]});
+ result.gradients={...result.gradients,naruJoinRim:fade('#51533a'),naruJoinGrass:fade('#70884a'),naruJoinRock:fade('#213d40')};
+ result.clips={...result.clips,'naru-join-fade':['M1740 620H1774V720H1740Z']};
+ const materialPatch={tag:'g',clipPath:'naru-join-fade',children:[{tag:'use',symbol:'source'},
+  {...rightRim,fill:'url(#naruJoinRim)',d:rightRim.d.replace('M1770 631','M1740 631H1770').replace('1770 647Z','1770 647H1740Z')},
+  {...rightGrass,fill:'url(#naruJoinGrass)',d:rightGrass.d.replace('M1770 634','M1740 634H1770').replace('1770 641Z','1770 641H1740Z')},
+  {...rockJoin,fill:'url(#naruJoinRock)',d:rockJoin.d.replaceAll('1770','1740')} ]};
+ const capGaps=p('#142c2f','M1772 647H1776V648H1772Z M1772 667H1776V668H1772Z');
  const original=result.root.children.find(n=>n.tag==='use'&&n.symbol==='source');
  if(!original)throw Error('Expected untouched source use');
- result.root={tag:'g',children:[base,left,right,...strata,original,join,localized(rockJoin,'#213d40'),woodGrain]};
+ result.root={tag:'g',children:[base,left,right,...strata,original,join,rockJoin,materialPatch,capGaps,woodGrain]};
  for(const key of Object.keys(result.clips))if(key.startsWith('site-edge-'))delete result.clips[key];
  result.viewBox=[-1200,0,4174,4887];
  return result;
