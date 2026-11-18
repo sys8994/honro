@@ -15,6 +15,7 @@ jobs:
           node-version: '22'
           package-manager-cache: false
       - run: npm ci && npm ci --prefix game
+      - run: node tests/stage3-repair-study-contract.mjs
       - name: Render unchanged public runtime and isolated visual study
         shell: bash
         run: |
