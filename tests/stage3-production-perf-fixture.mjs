@@ -9,6 +9,8 @@ function bootstrap(){
  addEventListener('error',e=>{p.errors.push(String(e.error?.stack||e.message));publishProbe({ok:false,...p});});addEventListener('unhandledrejection',e=>{p.errors.push(String(e.reason?.stack||e.reason));publishProbe({ok:false,...p});});
  addEventListener('securitypolicyviolation',e=>p.violations.push({directive:e.violatedDirective,uri:e.blockedURI}));
  for(const key of ['localStorage','sessionStorage','indexedDB'])Object.defineProperty(globalThis,key,{configurable:true,get(){p.storage.push(key);throw Error('Forbidden storage '+key);}});
+ // Keep the production animation clock fixed, but preserve the native monotonic clock for measurement.
+ globalThis.stage3MeasureNow=performance.now.bind(performance);Object.defineProperty(performance,'now',{configurable:true,value:()=>2000});
  Date.now=()=>1794931200000;let seed=3910;Math.random=()=>((seed=(seed*1664525+1013904223)>>>0)/2**32);
  const d=Object.getOwnPropertyDescriptor(HTMLImageElement.prototype,'src');Object.defineProperty(HTMLImageElement.prototype,'src',{...d,set(v){const r={pending:!!v,error:false};p.images.push(r);this.addEventListener('load',()=>r.pending=false,{once:true});this.addEventListener('error',()=>{r.pending=false;r.error=!!v;},{once:true});d.set.call(this,v);}});
 }
@@ -22,13 +24,13 @@ async function capture(variant,view,runtimeSha256){
  if(view==='native')Object.assign(requested,{x:553*3.23,y:610*3.23,scale:1.65});
  const configure=scene=>{Object.assign(scene,{...requested,manual:true,time:2,editorView:false,skillPreview:false});HonroBounds.constrain(scene,b);return scene;};
  let scene=configure(new HonroScene(cv));await document.fonts.ready;
- const t=performance.now();scene.render(engine,0,'',.6,false,0);const firstFrameMs=performance.now()-t;
+ const t=stage3MeasureNow();scene.render(engine,0,'',.6,false,0);const firstFrameMs=stage3MeasureNow()-t;
  const drain=async()=>{for(let i=0;i<200;i++){if(!p.images.some(q=>q.pending))return;await new Promise(r=>setTimeout(r,50));}throw Error('Image timeout');};await drain();
  for(let i=0;i<3;i++){scene.render(engine,0,'',.6,false,0);await drain();}
  const camera={x:scene.x,y:scene.y,scale:scene.scale},png=cv.toDataURL('image/png');
  const clean=()=>{scene._releaseDomainTiles?.();for(const name of ['_staticWorldCache','_screenWorldCache','_screenBackgroundCache','_screenForegroundCache','_backgroundCache']){const canvas=scene[name]?.canvas;if(canvas){canvas.width=1;canvas.height=1;}}};
  const samples=[],stats=()=>structuredClone(scene.renderCacheStats?.()??scene._cacheStats);
- const render=(phase,index)=>{const beforeTiles=scene._cacheStats?.domainTileBuilds||0,begin=performance.now();scene.render(engine,0,'',.6,false,0);const ms=performance.now()-begin;const cache=stats();samples.push({phase,index,ms,x:scene.x,y:scene.y,scale:scene.scale,tileBuilds:(scene._cacheStats?.domainTileBuilds||0)-beforeTiles,cache});assert(JSON.stringify(b)===before,'Render mutated battle');assert(!p.images.some(q=>q.pending||q.error),'Unexpected image/decode during timed frame');};
+ const render=(phase,index)=>{const beforeTiles=scene._cacheStats?.domainTileBuilds||0,begin=stage3MeasureNow();scene.render(engine,0,'',.6,false,0);const ms=stage3MeasureNow()-begin;const cache=stats();samples.push({phase,index,ms,x:scene.x,y:scene.y,scale:scene.scale,tileBuilds:(scene._cacheStats?.domainTileBuilds||0)-beforeTiles,cache});assert(JSON.stringify(b)===before,'Render mutated battle');assert(!p.images.some(q=>q.pending||q.error),'Unexpected image/decode during timed frame');};
  for(let i=0;i<5;i++){clean();scene=configure(new HonroScene(cv));render('scene-cold',i);}
  render('screen-prime',0);render('screen-prime',1);
  for(let i=0;i<24;i++)render('warm',i);
@@ -37,7 +39,7 @@ async function capture(variant,view,runtimeSha256){
  for(let i=0;i<xs.length;i++){scene.x=stage.width*xs[i];scene.y=requested.y;HonroBounds.constrain(scene,b);render('pan',i);}
  assert(JSON.stringify(stage)===stageText,'Stage mutated');assert(JSON.stringify({terrain:b.terrain,units:b.units})===physics,'Physics mutated');assert(!p.storage.length&&!p.errors.length&&!p.violations.length,'Storage/runtime error');
  const digest=async s=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s))),v=>v.toString(16).padStart(2,'0')).join('');
- publishProbe({ok:true,variant,view,width:W,height:H,dpr:devicePixelRatio,runtimeSha256,physicsSha256:await digest(physics),stageSha256:await digest(stageText),bodySha256:await digest(JSON.stringify(body)),camera,firstFrameMs,samples,storage:p.storage,errors:p.errors,violations:p.violations,userAgent:navigator.userAgent,png,scope:'Synthetic production Scene; first frame measured separately before image decode. Scene-cold recreates Scene and its tile/screen caches after image/source warmup; not full app startup. Synchronous rendering only. No real save access or gameplay FPS claim.'});
+ publishProbe({ok:true,variant,view,width:W,height:H,dpr:devicePixelRatio,runtimeSha256,physicsSha256:await digest(physics),stageSha256:await digest(stageText),bodySha256:await digest(JSON.stringify(body)),camera,firstFrameMs,samples,storage:p.storage,errors:p.errors,violations:p.violations,userAgent:navigator.userAgent,clocks:{productionAnimationMs:performance.now(),measurement:'native performance.now bound before fixed animation clock',internalBuildMsValid:false},png,scope:'Synthetic production Scene; first frame measured separately before image decode. Scene-cold recreates Scene and its tile/screen caches after image/source warmup; not full app startup. Synchronous rendering only. No real save access or gameplay FPS claim.'});
  }catch(e){publishProbe({ok:false,variant,view,error:String(e.stack||e),...p});}
 }
 const script=s=>'<script>'+s.replace(/<\/script/gi,'<\\/script')+'</script>';
