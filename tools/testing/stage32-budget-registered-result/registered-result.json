@@ -1,0 +1,460 @@
+{
+  "passed": true,
+  "scope": "Official B runtime entries without helper/pilot override; App main entry alone excluded. Registered Scene/source/physics and codec own roundtrip tested, not official App lifecycle/user saves or performance acceptance. Exact5 prior candidate outputs; combined stage3 renderer changes do not affect these Stage32 views.",
+  "goldenRun": 44279550948,
+  "commit": "fdac97818c09536f5d0057181d04fbd60d48df18",
+  "rows": [
+    {
+      "view": "maximum",
+      "exactGolden": true,
+      "codecRoundtripExact": true,
+      "stats": {
+        "rasterizations": 18,
+        "hits": 24,
+        "allocations": 1,
+        "resizes": 2,
+        "bytes": 4062212,
+        "peakBytes": 4062212,
+        "fallbacks": 0,
+        "lastFallback": null,
+        "nativeBudget": {
+          "plans": 12,
+          "admitted": 12,
+          "rejected": 0,
+          "releases": 6,
+          "last": {
+            "w": 1331,
+            "h": 763,
+            "rows": 273,
+            "current": 5515680,
+            "projected": 5515680,
+            "admitted": true,
+            "scope": "Post-cleanup helper-owned logical canvas bytes; not physical heap or preexisting peak"
+          },
+          "limitBytes": 50331648
+        },
+        "nativeJunction": {
+          "calls": 15,
+          "ms": 0.39999999990686774,
+          "prepareCalls": 1,
+          "prepareMs": 0.09999999997671694,
+          "staticBytes": 26782,
+          "scope": "Connected nonwalk gray seam; test only, BODY/apron min2device and visible min1device at .05; test-only sampled scale >= .05"
+        },
+        "supersample": {
+          "calls": 6,
+          "stripes": 6,
+          "emptyStripes": 2,
+          "highRasterStripes": 4,
+          "eligibilityScanPixels": 109774,
+          "eligible": 4015,
+          "corrected": 2385,
+          "opaqueGrassSkipped": 19117,
+          "protectedPaletteSkipped": 7,
+          "roadSkipped": 0,
+          "subpixelRoadSkipped": 0,
+          "unresolvedHolesSkipped": 39,
+          "alphaChanged": 0,
+          "skips": 0,
+          "allocations": 2,
+          "resizes": 4,
+          "scratchBytes": 8,
+          "peakLogicalBytes": 6307584,
+          "readbackBytes": 0,
+          "ms": 191.30000000004657,
+          "factor": 2,
+          "maxScratchPixels": 1048576,
+          "scope": "Logical canvas and live readback payload only; not total JS/native/GPU heap"
+        },
+        "maxPixels": 8388608,
+        "transition": {
+          "fills": 30,
+          "passes": 9,
+          "boundaryPasses": 3,
+          "allocations": 3,
+          "resizes": 5,
+          "bytes": 1453460,
+          "peakBytes": 2518480,
+          "skips": 0,
+          "lastSkip": null,
+          "maxPixels": 1048576,
+          "bufferDimensions": [
+            [
+              1331,
+              273
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        "totalLogicalBytes": 5515680
+      }
+    },
+    {
+      "view": "gray-left",
+      "exactGolden": true,
+      "codecRoundtripExact": true,
+      "stats": {
+        "rasterizations": 12,
+        "hits": 12,
+        "allocations": 1,
+        "resizes": 0,
+        "bytes": 1065024,
+        "peakBytes": 1065024,
+        "fallbacks": 0,
+        "lastFallback": null,
+        "nativeBudget": {
+          "plans": 0,
+          "admitted": 0,
+          "rejected": 0,
+          "releases": 0,
+          "last": null,
+          "limitBytes": 50331648
+        },
+        "nativeJunction": {
+          "calls": 9,
+          "ms": 0.09999999997671694,
+          "prepareCalls": 1,
+          "prepareMs": 0.09999999997671694,
+          "staticBytes": 26782,
+          "scope": "Connected nonwalk gray seam; test only, BODY/apron min2device and visible min1device at .05; test-only sampled scale >= .05"
+        },
+        "supersample": {
+          "calls": 6,
+          "stripes": 6,
+          "emptyStripes": 2,
+          "highRasterStripes": 4,
+          "eligibilityScanPixels": 109774,
+          "eligible": 4015,
+          "corrected": 2385,
+          "opaqueGrassSkipped": 19117,
+          "protectedPaletteSkipped": 7,
+          "roadSkipped": 0,
+          "subpixelRoadSkipped": 0,
+          "unresolvedHolesSkipped": 39,
+          "alphaChanged": 0,
+          "skips": 0,
+          "allocations": 2,
+          "resizes": 4,
+          "scratchBytes": 1971120,
+          "peakLogicalBytes": 6307584,
+          "readbackBytes": 4336464,
+          "ms": 187.9000000001397,
+          "factor": 2,
+          "maxScratchPixels": 1048576,
+          "scope": "Logical canvas and live readback payload only; not total JS/native/GPU heap"
+        },
+        "maxPixels": 8388608,
+        "transition": {
+          "fills": 30,
+          "passes": 9,
+          "boundaryPasses": 3,
+          "allocations": 3,
+          "resizes": 3,
+          "bytes": 1882368,
+          "peakBytes": 1882368,
+          "skips": 0,
+          "lastSkip": null,
+          "maxPixels": 1048576,
+          "bufferDimensions": [
+            [
+              516,
+              198
+            ],
+            [
+              516,
+              198
+            ],
+            [
+              516,
+              516
+            ]
+          ]
+        },
+        "totalLogicalBytes": 4918512
+      }
+    },
+    {
+      "view": "phone-dpr2",
+      "exactGolden": true,
+      "codecRoundtripExact": true,
+      "stats": {
+        "rasterizations": 2,
+        "hits": 4,
+        "allocations": 1,
+        "resizes": 0,
+        "bytes": 4343040,
+        "peakBytes": 4343040,
+        "fallbacks": 0,
+        "lastFallback": null,
+        "nativeBudget": {
+          "plans": 4,
+          "admitted": 4,
+          "rejected": 0,
+          "releases": 0,
+          "last": {
+            "w": 780,
+            "h": 1392,
+            "rows": 479,
+            "current": 5837528,
+            "projected": 5837528,
+            "admitted": true,
+            "scope": "Post-cleanup helper-owned logical canvas bytes; not physical heap or preexisting peak"
+          },
+          "limitBytes": 50331648
+        },
+        "nativeJunction": {
+          "calls": 2,
+          "ms": 0,
+          "prepareCalls": 1,
+          "prepareMs": 0.09999999997671694,
+          "staticBytes": 26782,
+          "scope": "Connected nonwalk gray seam; test only, BODY/apron min2device and visible min1device at .05; test-only sampled scale >= .05"
+        },
+        "supersample": {
+          "calls": 0,
+          "stripes": 0,
+          "emptyStripes": 0,
+          "highRasterStripes": 0,
+          "eligibilityScanPixels": 0,
+          "eligible": 0,
+          "corrected": 0,
+          "opaqueGrassSkipped": 0,
+          "protectedPaletteSkipped": 0,
+          "roadSkipped": 0,
+          "subpixelRoadSkipped": 0,
+          "unresolvedHolesSkipped": 0,
+          "alphaChanged": 0,
+          "skips": 0,
+          "allocations": 0,
+          "resizes": 0,
+          "scratchBytes": 0,
+          "peakLogicalBytes": 0,
+          "readbackBytes": 0,
+          "ms": 0,
+          "factor": 2,
+          "maxScratchPixels": 1048576,
+          "scope": "Logical canvas and live readback payload only; not total JS/native/GPU heap"
+        },
+        "maxPixels": 8388608,
+        "transition": {
+          "fills": 0,
+          "passes": 0,
+          "boundaryPasses": 0,
+          "allocations": 3,
+          "resizes": 1,
+          "bytes": 1494488,
+          "peakBytes": 1494488,
+          "skips": 0,
+          "lastSkip": null,
+          "maxPixels": 1048576,
+          "bufferDimensions": [
+            [
+              780,
+              479
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        "totalLogicalBytes": 5837528
+      }
+    },
+    {
+      "view": "phone-dpr3",
+      "exactGolden": true,
+      "codecRoundtripExact": true,
+      "stats": {
+        "rasterizations": 2,
+        "hits": 4,
+        "allocations": 1,
+        "resizes": 0,
+        "bytes": 9771840,
+        "peakBytes": 9771840,
+        "fallbacks": 0,
+        "lastFallback": null,
+        "nativeBudget": {
+          "plans": 4,
+          "admitted": 4,
+          "rejected": 0,
+          "releases": 0,
+          "last": {
+            "w": 1170,
+            "h": 2088,
+            "rows": 718,
+            "current": 13132088,
+            "projected": 13132088,
+            "admitted": true,
+            "scope": "Post-cleanup helper-owned logical canvas bytes; not physical heap or preexisting peak"
+          },
+          "limitBytes": 50331648
+        },
+        "nativeJunction": {
+          "calls": 2,
+          "ms": 0.09999999997671694,
+          "prepareCalls": 1,
+          "prepareMs": 0.09999999997671694,
+          "staticBytes": 26782,
+          "scope": "Connected nonwalk gray seam; test only, BODY/apron min2device and visible min1device at .05; test-only sampled scale >= .05"
+        },
+        "supersample": {
+          "calls": 0,
+          "stripes": 0,
+          "emptyStripes": 0,
+          "highRasterStripes": 0,
+          "eligibilityScanPixels": 0,
+          "eligible": 0,
+          "corrected": 0,
+          "opaqueGrassSkipped": 0,
+          "protectedPaletteSkipped": 0,
+          "roadSkipped": 0,
+          "subpixelRoadSkipped": 0,
+          "unresolvedHolesSkipped": 0,
+          "alphaChanged": 0,
+          "skips": 0,
+          "allocations": 0,
+          "resizes": 0,
+          "scratchBytes": 0,
+          "peakLogicalBytes": 0,
+          "readbackBytes": 0,
+          "ms": 0,
+          "factor": 2,
+          "maxScratchPixels": 1048576,
+          "scope": "Logical canvas and live readback payload only; not total JS/native/GPU heap"
+        },
+        "maxPixels": 8388608,
+        "transition": {
+          "fills": 0,
+          "passes": 0,
+          "boundaryPasses": 0,
+          "allocations": 3,
+          "resizes": 1,
+          "bytes": 3360248,
+          "peakBytes": 3360248,
+          "skips": 0,
+          "lastSkip": null,
+          "maxPixels": 1048576,
+          "bufferDimensions": [
+            [
+              1170,
+              718
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        "totalLogicalBytes": 13132088
+      }
+    },
+    {
+      "view": "desktop1080",
+      "exactGolden": true,
+      "codecRoundtripExact": true,
+      "stats": {
+        "rasterizations": 2,
+        "hits": 4,
+        "allocations": 1,
+        "resizes": 0,
+        "bytes": 8294400,
+        "peakBytes": 8294400,
+        "fallbacks": 0,
+        "lastFallback": null,
+        "nativeBudget": {
+          "plans": 4,
+          "admitted": 4,
+          "rejected": 0,
+          "releases": 0,
+          "last": {
+            "w": 1920,
+            "h": 1080,
+            "rows": 432,
+            "current": 11612168,
+            "projected": 11612168,
+            "admitted": true,
+            "scope": "Post-cleanup helper-owned logical canvas bytes; not physical heap or preexisting peak"
+          },
+          "limitBytes": 50331648
+        },
+        "nativeJunction": {
+          "calls": 2,
+          "ms": 0,
+          "prepareCalls": 1,
+          "prepareMs": 0.09999999997671694,
+          "staticBytes": 26782,
+          "scope": "Connected nonwalk gray seam; test only, BODY/apron min2device and visible min1device at .05; test-only sampled scale >= .05"
+        },
+        "supersample": {
+          "calls": 0,
+          "stripes": 0,
+          "emptyStripes": 0,
+          "highRasterStripes": 0,
+          "eligibilityScanPixels": 0,
+          "eligible": 0,
+          "corrected": 0,
+          "opaqueGrassSkipped": 0,
+          "protectedPaletteSkipped": 0,
+          "roadSkipped": 0,
+          "subpixelRoadSkipped": 0,
+          "unresolvedHolesSkipped": 0,
+          "alphaChanged": 0,
+          "skips": 0,
+          "allocations": 0,
+          "resizes": 0,
+          "scratchBytes": 0,
+          "peakLogicalBytes": 0,
+          "readbackBytes": 0,
+          "ms": 0,
+          "factor": 2,
+          "maxScratchPixels": 1048576,
+          "scope": "Logical canvas and live readback payload only; not total JS/native/GPU heap"
+        },
+        "maxPixels": 8388608,
+        "transition": {
+          "fills": 0,
+          "passes": 0,
+          "boundaryPasses": 0,
+          "allocations": 3,
+          "resizes": 1,
+          "bytes": 3317768,
+          "peakBytes": 3317768,
+          "skips": 0,
+          "lastSkip": null,
+          "maxPixels": 1048576,
+          "bufferDimensions": [
+            [
+              1920,
+              432
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        "totalLogicalBytes": 11612168
+      }
+    }
+  ]
+}
