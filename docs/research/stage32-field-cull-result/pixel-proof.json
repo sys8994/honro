@@ -1,0 +1,723 @@
+{
+  "run": 44302354144,
+  "researchCommit": "4c4702f1c9f675f8f2495a5222047c08a885dfec",
+  "artifact": 14427226780,
+  "zipSHA256": "2f4abab1a97a725a2ea2ad90950468fcd77bf681fe4b67f86f2293455d543c95",
+  "classification": "All four captures and nonpixel contracts passed; reproducible renderer RGB differences, not camera clamp or fixture setup failure. Raster backend/compound-path cause not established.",
+  "repeatSamePose": [
+    {
+      "pose": "maximum",
+      "variant": "original",
+      "frames": [
+        "first",
+        "cold"
+      ],
+      "exact": true
+    },
+    {
+      "pose": "maximum",
+      "variant": "original",
+      "frames": [
+        "pan2",
+        "pan4"
+      ],
+      "exact": true
+    },
+    {
+      "pose": "maximum",
+      "variant": "culled",
+      "frames": [
+        "first",
+        "cold"
+      ],
+      "exact": true
+    },
+    {
+      "pose": "maximum",
+      "variant": "culled",
+      "frames": [
+        "pan2",
+        "pan4"
+      ],
+      "exact": true
+    },
+    {
+      "pose": "nativewalk",
+      "variant": "original",
+      "frames": [
+        "first",
+        "cold"
+      ],
+      "exact": false
+    },
+    {
+      "pose": "nativewalk",
+      "variant": "original",
+      "frames": [
+        "pan2",
+        "pan4"
+      ],
+      "exact": true
+    },
+    {
+      "pose": "nativewalk",
+      "variant": "culled",
+      "frames": [
+        "first",
+        "cold"
+      ],
+      "exact": false
+    },
+    {
+      "pose": "nativewalk",
+      "variant": "culled",
+      "frames": [
+        "pan2",
+        "pan4"
+      ],
+      "exact": true
+    }
+  ],
+  "changedSamples": [
+    {
+      "pose": "maximum",
+      "frame": "first",
+      "pixel": [
+        0,
+        26
+      ],
+      "original": [
+        126,
+        127,
+        130,
+        255
+      ],
+      "culled": [
+        127,
+        127,
+        130,
+        255
+      ]
+    },
+    {
+      "pose": "maximum",
+      "frame": "cold",
+      "pixel": [
+        0,
+        26
+      ],
+      "original": [
+        126,
+        127,
+        130,
+        255
+      ],
+      "culled": [
+        127,
+        127,
+        130,
+        255
+      ]
+    },
+    {
+      "pose": "maximum",
+      "frame": "pan1",
+      "pixel": [
+        0,
+        164
+      ],
+      "original": [
+        94,
+        93,
+        94,
+        255
+      ],
+      "culled": [
+        93,
+        92,
+        94,
+        255
+      ]
+    },
+    {
+      "pose": "maximum",
+      "frame": "pan1",
+      "pixel": [
+        352,
+        164
+      ],
+      "original": [
+        93,
+        93,
+        95,
+        255
+      ],
+      "culled": [
+        94,
+        93,
+        95,
+        255
+      ]
+    },
+    {
+      "pose": "maximum",
+      "frame": "pan1",
+      "pixel": [
+        353,
+        164
+      ],
+      "original": [
+        93,
+        93,
+        94,
+        255
+      ],
+      "culled": [
+        93,
+        92,
+        94,
+        255
+      ]
+    },
+    {
+      "pose": "maximum",
+      "frame": "pan1",
+      "pixel": [
+        0,
+        559
+      ],
+      "original": [
+        128,
+        126,
+        129,
+        255
+      ],
+      "culled": [
+        128,
+        126,
+        130,
+        255
+      ]
+    },
+    {
+      "pose": "maximum",
+      "frame": "pan1",
+      "pixel": [
+        1,
+        559
+      ],
+      "original": [
+        138,
+        128,
+        122,
+        255
+      ],
+      "culled": [
+        138,
+        128,
+        123,
+        255
+      ]
+    },
+    {
+      "pose": "maximum",
+      "frame": "pan2",
+      "pixel": [
+        0,
+        548
+      ],
+      "original": [
+        127,
+        126,
+        130,
+        255
+      ],
+      "culled": [
+        128,
+        126,
+        129,
+        255
+      ]
+    },
+    {
+      "pose": "maximum",
+      "frame": "pan2",
+      "pixel": [
+        1,
+        548
+      ],
+      "original": [
+        130,
+        126,
+        129,
+        255
+      ],
+      "culled": [
+        129,
+        127,
+        128,
+        255
+      ]
+    },
+    {
+      "pose": "maximum",
+      "frame": "pan2",
+      "pixel": [
+        2,
+        548
+      ],
+      "original": [
+        139,
+        128,
+        122,
+        255
+      ],
+      "culled": [
+        138,
+        128,
+        122,
+        255
+      ]
+    },
+    {
+      "pose": "maximum",
+      "frame": "pan2",
+      "pixel": [
+        3,
+        548
+      ],
+      "original": [
+        152,
+        130,
+        115,
+        255
+      ],
+      "culled": [
+        154,
+        130,
+        115,
+        255
+      ]
+    },
+    {
+      "pose": "maximum",
+      "frame": "pan3",
+      "pixel": [
+        1066,
+        751
+      ],
+      "original": [
+        127,
+        127,
+        130,
+        255
+      ],
+      "culled": [
+        127,
+        126,
+        130,
+        255
+      ]
+    },
+    {
+      "pose": "maximum",
+      "frame": "pan3",
+      "pixel": [
+        1118,
+        751
+      ],
+      "original": [
+        128,
+        128,
+        131,
+        255
+      ],
+      "culled": [
+        127,
+        128,
+        130,
+        255
+      ]
+    },
+    {
+      "pose": "maximum",
+      "frame": "pan3",
+      "pixel": [
+        1202,
+        751
+      ],
+      "original": [
+        127,
+        128,
+        131,
+        255
+      ],
+      "culled": [
+        126,
+        128,
+        130,
+        255
+      ]
+    },
+    {
+      "pose": "maximum",
+      "frame": "pan4",
+      "pixel": [
+        0,
+        548
+      ],
+      "original": [
+        127,
+        126,
+        130,
+        255
+      ],
+      "culled": [
+        128,
+        126,
+        129,
+        255
+      ]
+    },
+    {
+      "pose": "maximum",
+      "frame": "pan4",
+      "pixel": [
+        1,
+        548
+      ],
+      "original": [
+        130,
+        126,
+        129,
+        255
+      ],
+      "culled": [
+        129,
+        127,
+        128,
+        255
+      ]
+    },
+    {
+      "pose": "maximum",
+      "frame": "pan4",
+      "pixel": [
+        2,
+        548
+      ],
+      "original": [
+        139,
+        128,
+        122,
+        255
+      ],
+      "culled": [
+        138,
+        128,
+        122,
+        255
+      ]
+    },
+    {
+      "pose": "maximum",
+      "frame": "pan4",
+      "pixel": [
+        3,
+        548
+      ],
+      "original": [
+        152,
+        130,
+        115,
+        255
+      ],
+      "culled": [
+        154,
+        130,
+        115,
+        255
+      ]
+    },
+    {
+      "pose": "nativewalk",
+      "frame": "first",
+      "pixel": [
+        230,
+        508
+      ],
+      "original": [
+        103,
+        90,
+        83,
+        255
+      ],
+      "culled": [
+        103,
+        89,
+        83,
+        255
+      ]
+    },
+    {
+      "pose": "nativewalk",
+      "frame": "cold",
+      "pixel": [
+        230,
+        508
+      ],
+      "original": [
+        103,
+        90,
+        83,
+        255
+      ],
+      "culled": [
+        103,
+        89,
+        83,
+        255
+      ]
+    },
+    {
+      "pose": "nativewalk",
+      "frame": "pan0",
+      "pixel": [
+        13,
+        473
+      ],
+      "original": [
+        102,
+        90,
+        85,
+        255
+      ],
+      "culled": [
+        102,
+        90,
+        84,
+        255
+      ]
+    },
+    {
+      "pose": "nativewalk",
+      "frame": "pan0",
+      "pixel": [
+        457,
+        569
+      ],
+      "original": [
+        103,
+        90,
+        85,
+        255
+      ],
+      "culled": [
+        102,
+        90,
+        84,
+        255
+      ]
+    },
+    {
+      "pose": "nativewalk",
+      "frame": "pan1",
+      "pixel": [
+        37,
+        36
+      ],
+      "original": [
+        103,
+        89,
+        82,
+        255
+      ],
+      "culled": [
+        103,
+        90,
+        82,
+        255
+      ]
+    },
+    {
+      "pose": "nativewalk",
+      "frame": "pan1",
+      "pixel": [
+        0,
+        729
+      ],
+      "original": [
+        103,
+        91,
+        85,
+        255
+      ],
+      "culled": [
+        103,
+        92,
+        86,
+        255
+      ]
+    },
+    {
+      "pose": "nativewalk",
+      "frame": "pan2",
+      "pixel": [
+        167,
+        569
+      ],
+      "original": [
+        109,
+        94,
+        88,
+        255
+      ],
+      "culled": [
+        110,
+        93,
+        88,
+        255
+      ]
+    },
+    {
+      "pose": "nativewalk",
+      "frame": "pan2",
+      "pixel": [
+        481,
+        709
+      ],
+      "original": [
+        94,
+        93,
+        95,
+        255
+      ],
+      "culled": [
+        93,
+        93,
+        95,
+        255
+      ]
+    },
+    {
+      "pose": "nativewalk",
+      "frame": "pan2",
+      "pixel": [
+        550,
+        709
+      ],
+      "original": [
+        93,
+        93,
+        93,
+        255
+      ],
+      "culled": [
+        94,
+        93,
+        94,
+        255
+      ]
+    },
+    {
+      "pose": "nativewalk",
+      "frame": "pan3",
+      "pixel": [
+        1,
+        683
+      ],
+      "original": [
+        113,
+        96,
+        87,
+        255
+      ],
+      "culled": [
+        116,
+        98,
+        89,
+        255
+      ]
+    },
+    {
+      "pose": "nativewalk",
+      "frame": "pan3",
+      "pixel": [
+        481,
+        683
+      ],
+      "original": [
+        94,
+        93,
+        95,
+        255
+      ],
+      "culled": [
+        93,
+        93,
+        95,
+        255
+      ]
+    },
+    {
+      "pose": "nativewalk",
+      "frame": "pan4",
+      "pixel": [
+        167,
+        569
+      ],
+      "original": [
+        109,
+        94,
+        88,
+        255
+      ],
+      "culled": [
+        110,
+        93,
+        88,
+        255
+      ]
+    },
+    {
+      "pose": "nativewalk",
+      "frame": "pan4",
+      "pixel": [
+        481,
+        709
+      ],
+      "original": [
+        94,
+        93,
+        95,
+        255
+      ],
+      "culled": [
+        93,
+        93,
+        95,
+        255
+      ]
+    },
+    {
+      "pose": "nativewalk",
+      "frame": "pan4",
+      "pixel": [
+        550,
+        709
+      ],
+      "original": [
+        93,
+        93,
+        93,
+        255
+      ],
+      "culled": [
+        94,
+        93,
+        94,
+        255
+      ]
+    }
+  ]
+}

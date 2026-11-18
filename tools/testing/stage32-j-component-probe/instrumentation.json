@@ -1,0 +1,79 @@
+{
+  "baselineSHA256": "6823eda0e8d3c5250396c857f09f96ee3eba8fbfba124af540d080a5a76d03c7",
+  "profiledSHA256": "0d86fb8a845fbd748f81046f14f71d462d1f054cc2aca714e82901af7edd5042",
+  "inverseExact": true,
+  "changes": [
+    [
+      "const FOUNDATION=",
+      "const __component={};function __measure(n,fn){const t=performance.now();try{return fn();}finally{const q=__component[n]||(__component[n]={calls:0,ms:0});q.calls++;q.ms+=performance.now()-t;}}G.__stage32Component=()=>JSON.parse(JSON.stringify(__component));\nconst FOUNDATION="
+    ],
+    [
+      "function material(",
+      "function __original_material("
+    ],
+    [
+      "function __original_material(",
+      "function material(...args){return __measure('material',()=>__original_material(...args));}\nfunction __original_material("
+    ],
+    [
+      "function bitmap(",
+      "function __original_bitmap("
+    ],
+    [
+      "function __original_bitmap(",
+      "function bitmap(...args){return __measure('bitmap',()=>__original_bitmap(...args));}\nfunction __original_bitmap("
+    ],
+    [
+      "function lowerTargetROI(",
+      "function __original_lowerTargetROI("
+    ],
+    [
+      "function __original_lowerTargetROI(",
+      "function lowerTargetROI(...args){return __measure('lowerTargetROI',()=>__original_lowerTargetROI(...args));}\nfunction __original_lowerTargetROI("
+    ],
+    [
+      "function liveSSReplacementDraw(",
+      "function __original_liveSSReplacementDraw("
+    ],
+    [
+      "function __original_liveSSReplacementDraw(",
+      "function liveSSReplacementDraw(...args){return __measure('liveSSReplacementDraw',()=>__original_liveSSReplacementDraw(...args));}\nfunction __original_liveSSReplacementDraw("
+    ],
+    [
+      "function nativeJunction(",
+      "function __original_nativeJunction("
+    ],
+    [
+      "function __original_nativeJunction(",
+      "function nativeJunction(...args){return __measure('nativeJunction',()=>__original_nativeJunction(...args));}\nfunction __original_nativeJunction("
+    ],
+    [
+      "function internalGraySeam(",
+      "function __original_internalGraySeam("
+    ],
+    [
+      "function __original_internalGraySeam(",
+      "function internalGraySeam(...args){return __measure('internalGraySeam',()=>__original_internalGraySeam(...args));}\nfunction __original_internalGraySeam("
+    ],
+    [
+      "function draw(",
+      "function __original_draw("
+    ],
+    [
+      "function __original_draw(",
+      "function draw(c,l,b,originalOnly=false,route=null,inheritedReplacement=false){return __measure(originalOnly?'originalBODYInclusive':'drawInclusive',()=>__original_draw(c,l,b,originalOnly,route,inheritedReplacement));}\nfunction __original_draw("
+    ],
+    [
+      " for(const n of q.field){cc.fillStyle=n.fill;cc.fill(n.path);}",
+      " __measure('field12Fills',()=>{for(const n of q.field){cc.fillStyle=n.fill;cc.fill(n.path);}});"
+    ],
+    [
+      " for(const r of offlinePrepared){\n",
+      " __measure('offline33Faces',()=>{for(const r of offlinePrepared){\n"
+    ],
+    [
+      "  c.fill(r.path,'nonzero');\n }\n c.restore();",
+      "  __measure('offlineFaceFill',()=>c.fill(r.path,'nonzero'));\n }});\n c.restore();"
+    ]
+  ]
+}

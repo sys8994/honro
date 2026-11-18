@@ -1,0 +1,18 @@
+import json,sys,pathlib,hashlib
+from PIL import Image,ImageChops
+root=pathlib.Path(sys.argv[1]);cfg=json.loads((pathlib.Path(__file__).parent/'config.json').read_text());errors=[];rows=[];startup=[]
+def require(v,m):
+ if not v:errors.append(m)
+for pose in cfg['poses']:
+ name=pose['name'];a=json.loads((root/('original-'+name+'.json')).read_text());b=json.loads((root/('profiled-'+name+'.json')).read_text());require(a['ok'] and b['ok'],'capture '+name)
+ for x in [a,b]:
+  require(not x['storage'] and not x['errors'] and not x['violations'],'runtime/storage '+name);require(x['contract']['ownSaveRoundtripExact'],'codec');require(x['width']==pose['width'] and x['height']==pose['height'],'backing');require(x['provenance']['sourceRef']==cfg['sourceRef'],'source pin')
+ for x in [a,b]:startup.append({'pose':name,'variant':x['variant'],'helperBytes':x['provenance']['helperBytes'],'wholeRuntimeParseEvalWallMs':x.get('runtimeParseEvalWallMs'),'firstRenderMs':x['performanceReport']['first']['ms']})
+ require(a['initialization']==b['initialization'] and a['contract']==b['contract'],'initialgameplay '+name);require(a['provenance']['originalRuntimeSHA']==b['provenance']['originalRuntimeSHA'],'same runtime');require(a['provenance']['helperSHA256']==cfg['registeredHelperSHA256'] and b['provenance']['helperSHA256']==cfg['profiledSHA256'],'helper pins')
+ frames=lambda x:[x['performanceReport']['first'],x['performanceReport']['cold']]+x['performanceReport']['pan'];aa,bb=frames(a),frames(b);require(len(aa)==len(bb)==7,'frame counts')
+ hashes=set()
+ for x,y in zip(aa,bb):
+  require(x['camera']==y['camera'] and x['backing']==y['backing'],'same camera '+name+x['name']);i=Image.open(root/('original-'+name+'-'+x['name']+'-mask.png')).convert('RGBA');j=Image.open(root/('profiled-'+name+'-'+x['name']+'-mask.png')).convert('RGBA');ib,jb=i.tobytes(),j.tobytes();hashes.add(hashlib.sha256(ib).hexdigest());require(hashlib.sha256(ib).hexdigest()==x['rgbaSHA256'] and hashlib.sha256(jb).hexdigest()==y['rgbaSHA256'],'PNG/frame hashes');changed=sum(ib[k:k+4]!=jb[k:k+4] for k in range(0,len(ib),4));alpha=sum(ib[k]!=jb[k] for k in range(3,len(ib),4));delta=max(abs(u-v)for u,v in zip(ib,jb));bbox=ImageChops.difference(i.convert('RGB'),j.convert('RGB')).getbbox();colors=i.convert('RGB').getcolors(i.width*i.height);require(colors and len(colors)>16,'Positive reference painted colors');require(changed==0,name+'/'+x['name']+' exactRGBA');rows.append({'pose':name,'frame':x['name'],'camera':x['camera'],'changed':changed,'alpha':alpha,'maxDelta':delta,'bbox':bbox,'originalMs':x['ms'],'profiledMs':y['ms'],'componentBefore':y['componentBefore'],'componentAfter':y['componentAfter']})
+ require(len(hashes)>2,'Actual motion visible '+name);
+ require(bool(b['performanceReport']['pan'][-1]['componentAfter'].get('field12Fills')),'positive field scope');require(bool(b['performanceReport']['pan'][-1]['componentAfter'].get('offline33Faces')),'positive face scope')
+out={'startup':startup,'startupScope':'Whole runtime script load/parse/eval wall before capture, not pure helperparse; source bytes separately recorded','passed':not errors,'errors':errors,'rows':rows,'scope':'Two-page component diagnostic; all frameRGBA exact required, readback-influenced timing not clean performance/acceptance','qualityAccepted':False,'performanceAccepted':False};(root/'component-result.json').write_text(json.dumps(out,indent=2));print(json.dumps({'passed':not errors,'errors':errors}));sys.exit(bool(errors))

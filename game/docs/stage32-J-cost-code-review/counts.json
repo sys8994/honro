@@ -1,0 +1,21 @@
+{
+  "helperSHA": "6823eda0e8d3c5250396c857f09f96ee3eba8fbfba124af540d080a5a76d03c7",
+  "scope": "Static expected calls for one admitted native FOUNDATION then BODY, lower band visible; not measured GPU timing.",
+  "materialCalls": 3,
+  "expectedMaterialRaster": 1,
+  "expectedMaterialHits": 2,
+  "originalBodyPasses": 1,
+  "originalProtectedFillCount": 14,
+  "retainedGrayFillCount": 8,
+  "bodyClipBitmapCount": 11,
+  "foundationBitmap": 1,
+  "lowerResetBitmap": 1,
+  "correctionBitmaps": 3,
+  "totalBitmapCalls": 16,
+  "offlineFaces": 33,
+  "gradientCreations": 33,
+  "gradientStops": 165,
+  "warmPathParsing": "None expected: prepared WeakMap and static lazy Path2D remain across clear. First preparation separate.",
+  "nativeReadbackSS": 0,
+  "stagedFullBodyCopy": 0
+}
