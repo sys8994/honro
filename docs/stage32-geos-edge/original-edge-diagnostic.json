@@ -1,0 +1,520 @@
+{
+  "ok": true,
+  "scope": "Source-only independent original-curve membership/tagged contribution and fill-vs-clip support diagnostic; NOT production acceptance",
+  "sourceRun": 44234241948,
+  "sourceVectorSHA": "76e4fc6c04fc1f95aa9dcd0d97c9b8294c05cbe0a75169eb53174768f8da7cd1",
+  "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+  "points": [
+    {
+      "pixel": [
+        1100,
+        418
+      ],
+      "sourceNominal": [
+        333.591281814632,
+        766.017163472902
+      ],
+      "sourceActual": [
+        333.5912879251465,
+        766.0171639931251
+      ],
+      "nominal": {
+        "top": 14,
+        "owners": [
+          0,
+          1,
+          2,
+          3,
+          5,
+          6,
+          7,
+          9,
+          14
+        ]
+      },
+      "actual": {
+        "top": 14,
+        "owners": [
+          0,
+          1,
+          2,
+          3,
+          5,
+          6,
+          7,
+          9,
+          14
+        ]
+      },
+      "jitter": [
+        {
+          "dx": -0.0002,
+          "dy": -0.0002,
+          "top": 9,
+          "owners": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            9
+          ]
+        },
+        {
+          "dx": 0,
+          "dy": -0.0002,
+          "top": 9,
+          "owners": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            9
+          ]
+        },
+        {
+          "dx": 0.0002,
+          "dy": -0.0002,
+          "top": 20,
+          "owners": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            9,
+            10,
+            12,
+            18,
+            20
+          ]
+        },
+        {
+          "dx": -0.0002,
+          "dy": 0,
+          "top": 14,
+          "owners": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            9,
+            14
+          ]
+        },
+        {
+          "dx": 0,
+          "dy": 0,
+          "top": 14,
+          "owners": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            9,
+            14
+          ]
+        },
+        {
+          "dx": 0.0002,
+          "dy": 0,
+          "top": 20,
+          "owners": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            9,
+            10,
+            12,
+            14,
+            18,
+            20
+          ]
+        },
+        {
+          "dx": -0.0002,
+          "dy": 0.0002,
+          "top": 20,
+          "owners": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            9,
+            10,
+            12,
+            14,
+            18,
+            20
+          ]
+        },
+        {
+          "dx": 0,
+          "dy": 0.0002,
+          "top": 20,
+          "owners": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            9,
+            10,
+            12,
+            14,
+            18,
+            20
+          ]
+        },
+        {
+          "dx": 0.0002,
+          "dy": 0.0002,
+          "top": 20,
+          "owners": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            9,
+            10,
+            12,
+            14,
+            18,
+            20
+          ]
+        }
+      ]
+    },
+    {
+      "pixel": [
+        1098,
+        419
+      ],
+      "sourceNominal": [
+        332.89864771850654,
+        766.4500597829804
+      ],
+      "sourceActual": [
+        332.8986538065249,
+        766.4500603172637
+      ],
+      "nominal": {
+        "top": 14,
+        "owners": [
+          0,
+          1,
+          2,
+          3,
+          5,
+          6,
+          7,
+          9,
+          14
+        ]
+      },
+      "actual": {
+        "top": 14,
+        "owners": [
+          0,
+          1,
+          2,
+          3,
+          5,
+          6,
+          7,
+          9,
+          14
+        ]
+      },
+      "jitter": [
+        {
+          "dx": -0.0002,
+          "dy": -0.0002,
+          "top": 9,
+          "owners": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            9
+          ]
+        },
+        {
+          "dx": 0,
+          "dy": -0.0002,
+          "top": 9,
+          "owners": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            9
+          ]
+        },
+        {
+          "dx": 0.0002,
+          "dy": -0.0002,
+          "top": 20,
+          "owners": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            9,
+            10,
+            12,
+            18,
+            20
+          ]
+        },
+        {
+          "dx": -0.0002,
+          "dy": 0,
+          "top": 14,
+          "owners": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            9,
+            14
+          ]
+        },
+        {
+          "dx": 0,
+          "dy": 0,
+          "top": 14,
+          "owners": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            9,
+            14
+          ]
+        },
+        {
+          "dx": 0.0002,
+          "dy": 0,
+          "top": 20,
+          "owners": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            9,
+            10,
+            12,
+            14,
+            18,
+            20
+          ]
+        },
+        {
+          "dx": -0.0002,
+          "dy": 0.0002,
+          "top": 14,
+          "owners": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            9,
+            14
+          ]
+        },
+        {
+          "dx": 0,
+          "dy": 0.0002,
+          "top": 14,
+          "owners": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            9,
+            14
+          ]
+        },
+        {
+          "dx": 0.0002,
+          "dy": 0.0002,
+          "top": 20,
+          "owners": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            9,
+            10,
+            12,
+            14,
+            18,
+            20
+          ]
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "name": "micro-0-raw",
+      "scope": "Original Path2D high transform: cancellation/float precision limitation recorded",
+      "halfSource": 0.002,
+      "pixelsPerSource": 192000,
+      "nonzero": 0,
+      "above128": 0,
+      "max": 0,
+      "sha256": "eba85f64dcf8fefb0832378363085607130d37d5be278879c070a510ce115e71"
+    },
+    {
+      "name": "micro-0-recentered",
+      "scope": "Double-recentered original absolute M/L/C control points before Path2D: independent microgeometry, not original float representation",
+      "halfSource": 0.002,
+      "pixelsPerSource": 192000,
+      "nonzero": 0,
+      "above128": 0,
+      "max": 0,
+      "sha256": "eba85f64dcf8fefb0832378363085607130d37d5be278879c070a510ce115e71"
+    },
+    {
+      "name": "micro-1-raw",
+      "scope": "Original Path2D high transform: cancellation/float precision limitation recorded",
+      "halfSource": 0.002,
+      "pixelsPerSource": 192000,
+      "nonzero": 0,
+      "above128": 0,
+      "max": 0,
+      "sha256": "eba85f64dcf8fefb0832378363085607130d37d5be278879c070a510ce115e71"
+    },
+    {
+      "name": "micro-1-recentered",
+      "scope": "Double-recentered original absolute M/L/C control points before Path2D: independent microgeometry, not original float representation",
+      "halfSource": 0.002,
+      "pixelsPerSource": 192000,
+      "nonzero": 0,
+      "above128": 0,
+      "max": 0,
+      "sha256": "eba85f64dcf8fefb0832378363085607130d37d5be278879c070a510ce115e71"
+    },
+    {
+      "name": "original-source14-tag-contribution",
+      "scope": "Source path14 white with later original paths black; diagnostic measures final layer14 AA contribution, not automatically genuine exposed grass vs buried AA",
+      "sha256": "2710e93811f30e34bac7c0d55226dde7f30e4fcf0c22e13f4e8e4ba1f7cd305a"
+    },
+    {
+      "name": "desktop-support-fill",
+      "scope": "Independent declared static geometry support; fill vs clip rasterization, not candidate helper invocation",
+      "sha256": "441056843f2892cb9baf24a7f6c32e59a6b602d12ba8c7683e4aecf118eaec97"
+    },
+    {
+      "name": "desktop-support-clip",
+      "scope": "Independent declared static geometry support; fill vs clip rasterization, not candidate helper invocation",
+      "sha256": "11291fd6ec251c5cdf38798e1bfecc58e3726743534f3bdea3c0223507caa9c3"
+    }
+  ],
+  "support": {
+    "fill": {
+      "pixel": [
+        253,
+        648
+      ],
+      "rgba": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "clip": {
+      "pixel": [
+        253,
+        648
+      ],
+      "rgba": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "originalTag14AtPixels": [
+    {
+      "pixel": [
+        1100,
+        418
+      ],
+      "rgba": [
+        4,
+        4,
+        4,
+        255
+      ]
+    },
+    {
+      "pixel": [
+        1098,
+        419
+      ],
+      "rgba": [
+        27,
+        27,
+        27,
+        255
+      ]
+    }
+  ]
+}
