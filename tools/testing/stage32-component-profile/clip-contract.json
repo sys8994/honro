@@ -1,0 +1,8 @@
+{
+  "baseline": "stage32-upper-long-diagonal/candidate.js",
+  "baselineSHA256": "2cbc7689548b871021ebcf5c4190052029bac510a65cc16ef5ed10290ea828e5",
+  "candidateSHA256": "b6a0564ecc0956965676eef0b5c6efb5abe21b4801c32c0d2757d501780ff496",
+  "old": " c.save();try{\n  c.globalAlpha*=(l.opacity??1);",
+  "new": " c.save();try{\n  // The staged alternate publishes only these integer device rows below.\n  // Keep the original recursive BODY pass and supersampling unchanged.\n  if(originalContext){\n   const stagedMatrix=c.getTransform(),stagedSplit=Math.max(0,Math.min(c.canvas.height,Math.floor(threshold)));\n   c.setTransform(1,0,0,1,0,0);c.beginPath();c.rect(0,stagedSplit,c.canvas.width,c.canvas.height-stagedSplit);c.clip();c.setTransform(stagedMatrix);\n  }\n  c.globalAlpha*=(l.opacity??1);",
+  "inverseExact": true
+}

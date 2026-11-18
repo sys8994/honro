@@ -1,0 +1,126 @@
+{
+  "scope": "Native maxpose instrumentation output smoke; not Chrome performance",
+  "rgbaExact": true,
+  "stats": {
+    "functions": {
+      "geometry": {
+        "calls": 4,
+        "inclusiveMs": 15.964218000000074,
+        "selfMs": 15.964218000000074
+      },
+      "foundationMaterialBuffer": {
+        "calls": 3,
+        "inclusiveMs": 2.0014260000000377,
+        "selfMs": 0.5532489999998234
+      },
+      "bitmap": {
+        "calls": 25,
+        "inclusiveMs": 216.50965200000041,
+        "selfMs": 1.4744250000003376
+      },
+      "helperDrawRecursive": {
+        "calls": 3,
+        "inclusiveMs": 1413.2987790000002,
+        "selfMs": 86.9442749999971
+      },
+      "SS2": {
+        "calls": 1,
+        "inclusiveMs": 392.46995900000024,
+        "selfMs": 28.898467000002938
+      },
+      "nativeCoverage": {
+        "calls": 1,
+        "inclusiveMs": 3.3268510000002607,
+        "selfMs": 0.5660820000002786
+      },
+      "internalBand": {
+        "calls": 1,
+        "inclusiveMs": 1.679113000000143,
+        "selfMs": 0.1533540000004905
+      }
+    },
+    "canvas": {
+      "foundationMaterialBuffer::clearRect": {
+        "calls": 1,
+        "inclusiveMs": 1.0416479999998955,
+        "selfMs": 1.0416479999998955
+      },
+      "foundationMaterialBuffer::fill": {
+        "calls": 12,
+        "inclusiveMs": 0.4026230000004034,
+        "selfMs": 0.4026230000004034
+      },
+      "helperDrawRecursive::clip": {
+        "calls": 46,
+        "inclusiveMs": 43.243317000000616,
+        "selfMs": 43.243317000000616
+      },
+      "bitmap::drawImage": {
+        "calls": 25,
+        "inclusiveMs": 215.03522700000008,
+        "selfMs": 215.03522700000008
+      },
+      "helperDrawRecursive::drawImage": {
+        "calls": 13,
+        "inclusiveMs": 124.41415900000084,
+        "selfMs": 124.41415900000084
+      },
+      "helperDrawRecursive::fill": {
+        "calls": 54,
+        "inclusiveMs": 5.37508600000001,
+        "selfMs": 5.37508600000001
+      },
+      "helperDrawRecursive::fillRect": {
+        "calls": 11,
+        "inclusiveMs": 0.09038100000020677,
+        "selfMs": 0.09038100000020677
+      },
+      "SS2::fillRect": {
+        "calls": 1,
+        "inclusiveMs": 0.013599999999996726,
+        "selfMs": 0.013599999999996726
+      },
+      "SS2::clip": {
+        "calls": 40,
+        "inclusiveMs": 69.02735200000052,
+        "selfMs": 69.02735200000052
+      },
+      "SS2::fill": {
+        "calls": 166,
+        "inclusiveMs": 2.6965849999974125,
+        "selfMs": 2.6965849999974125
+      },
+      "SS2::getImageData": {
+        "calls": 9,
+        "inclusiveMs": 142.4961069999997,
+        "selfMs": 142.4961069999997
+      },
+      "SS2::clearRect": {
+        "calls": 6,
+        "inclusiveMs": 14.18670100000054,
+        "selfMs": 14.18670100000054
+      },
+      "SS2::drawImage": {
+        "calls": 33,
+        "inclusiveMs": 134.44168599999875,
+        "selfMs": 134.44168599999875
+      },
+      "SS2::putImageData": {
+        "calls": 1,
+        "inclusiveMs": 0.709461000000374,
+        "selfMs": 0.709461000000374
+      },
+      "nativeCoverage::clip": {
+        "calls": 2,
+        "inclusiveMs": 1.4576170000000275,
+        "selfMs": 1.4576170000000275
+      },
+      "internalBand::clip": {
+        "calls": 1,
+        "inclusiveMs": 0.06911199999967721,
+        "selfMs": 0.06911199999967721
+      }
+    },
+    "scope": "Instrumented diagnostic submission timings, not clean cost acceptance"
+  }
+}

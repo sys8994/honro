@@ -1,0 +1,51 @@
+{
+  "scope": "Native direct FOUNDATION+BODY only; single cold timings diagnostic, not Chrome Scene or performance acceptance",
+  "rows": [
+    {
+      "name": "maximum",
+      "z": 1.65,
+      "W": 1331,
+      "H": 763,
+      "cx": 320,
+      "cy": 1650,
+      "pixels": 15,
+      "alpha": 0,
+      "maxDelta": 1,
+      "baselineRGBA": "09ea7ec4678f8e7326bf0f2cda36eee3c8164f13e150e3ce2e21536dc3885bec",
+      "candidateRGBA": "b79f8bec6d294e88f18e92f23c68d6d3a5809855f30d5ac5dae2f6b5679f59a1",
+      "baselineMs": 1001.7856339999998,
+      "candidateMs": 736.5484159999999
+    },
+    {
+      "name": "left",
+      "z": 0.6,
+      "W": 1331,
+      "H": 763,
+      "cx": 320,
+      "cy": 1650,
+      "pixels": 87,
+      "alpha": 0,
+      "maxDelta": 7,
+      "baselineRGBA": "20030c958a727c8f89648eae3d6c923cccf4e2ddee2b46f46d8fa9f03daa3f21",
+      "candidateRGBA": "1531d4c904dc493cc0326025dce682e01485b0c18d36bcfd361dee27339a2a3b",
+      "baselineMs": 516.4482829999997,
+      "candidateMs": 295.6197629999997
+    },
+    {
+      "name": "phone-min",
+      "z": 0.05735,
+      "W": 390,
+      "H": 844,
+      "cx": 1500,
+      "cy": 1000,
+      "pixels": 87,
+      "alpha": 0,
+      "maxDelta": 5,
+      "baselineRGBA": "269a5d71ae42c2dd06f5efbd760d0719fcf9b2952eef593e3a9c17378830bba7",
+      "candidateRGBA": "0e2b94c1d4e65598a1baadcbb02dabd65a90befc923674dd54622c6e584b1427",
+      "baselineMs": 140.88399500000014,
+      "candidateMs": 139.55241100000012
+    }
+  ],
+  "pass": false
+}

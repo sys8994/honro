@@ -1,0 +1,54 @@
+name: Stage32 two-pose component profile diagnostic
+on:
+  workflow_dispatch:
+  push:
+    branches: [inspect/stage32-scanline-20261118]
+    paths:
+      - tools/testing/stage32-component-profile/**
+      - .github/workflows/stage32-component-profile.yml
+permissions:
+  contents: read
+jobs:
+  compare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          path: harness
+      - name: Reject unapproved candidate placeholders
+        id: pins
+        run: |
+          node -e 'const c=require("./harness/tools/testing/stage32-component-profile/config.json");if(!c.readyForCI||!/^[a-f0-9]{40}$/.test(c.candidateRef)||!/^[a-f0-9]{64}$/.test(c.candidateRegisteredHelperSHA256))throw Error("Final candidate not pinned");require("fs").appendFileSync(process.env.GITHUB_OUTPUT,"candidate="+c.candidateRef+"\n")'
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          ref: 842aa12fd1144e4f7e9ee616a6ae65d632389f51
+          path: baseline
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          ref: ${{ steps.pins.outputs.candidate }}
+          path: final
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: |
+          for checkout in baseline final; do
+            (cd "$checkout" && npm ci && npm ci --prefix game)
+          done
+      - run: python3 -m pip install Pillow
+      - name: Own-source two-pose diagnostic without full rebuild
+        run: |
+          export CHROME_BIN="$(command -v google-chrome || command -v chromium)"
+          node harness/tools/testing/stage32-component-profile/orchestrate.mjs "$PWD/baseline" "$PWD/final" "$RUNNER_TEMP/component-profile"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage32-component-profile-cost
+          path: |
+            ${{ runner.temp }}/component-profile/evidence
+            ${{ runner.temp }}/component-profile/baseline/runtime-provenance.json
+            ${{ runner.temp }}/component-profile/candidate/runtime-provenance.json
+            ${{ runner.temp }}/component-profile/profiled/runtime-provenance.json
+            ${{ runner.temp }}/component-profile/clip/runtime-provenance.json
+          if-no-files-found: warn
