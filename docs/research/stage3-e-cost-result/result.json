@@ -1,0 +1,529 @@
+{
+  "passed": true,
+  "performanceAccepted": false,
+  "scope": "Paired submission/callback cost, not art acceptance, physical phone FPS or normal lifecycle release",
+  "conditions": {
+    "stage3-cached": {
+      "baseline": {
+        "cold": {
+          "n": 10,
+          "median": 22.75,
+          "p95": 23.900000000023283,
+          "max": 23.900000000023283
+        },
+        "warm": {
+          "n": 60,
+          "median": 0.30000000004656613,
+          "p95": 0.5,
+          "max": 11.199999999953434
+        },
+        "horizontal": {
+          "n": 60,
+          "median": 0.5,
+          "p95": 2.900000000023283,
+          "max": 7.5
+        },
+        "vertical": {
+          "n": 60,
+          "median": 0.5999999999767169,
+          "p95": 0.7999999999883585,
+          "max": 1
+        },
+        "logicalCacheLast": [
+          {
+            "worldBuilds": 1,
+            "worldBuildMs": 9.200000000128057,
+            "bgBuilds": 0,
+            "bgBuildMs": 0,
+            "worldHits": 614,
+            "bgHits": 29,
+            "domainCanvasAllocations": 12,
+            "domainTileBuilds": 12,
+            "screenBuilds": 2,
+            "screenHits": 58,
+            "screenWorldBytes": 0,
+            "screenBackgroundBytes": 0,
+            "screenForegroundBytes": 0,
+            "worldBytes": 12780288,
+            "worldScale": 0.68,
+            "backgroundBytes": 0
+          },
+          {
+            "worldBuilds": 1,
+            "worldBuildMs": 8.999999999941792,
+            "bgBuilds": 0,
+            "bgBuildMs": 0,
+            "worldHits": 614,
+            "bgHits": 29,
+            "domainCanvasAllocations": 12,
+            "domainTileBuilds": 12,
+            "screenBuilds": 2,
+            "screenHits": 58,
+            "screenWorldBytes": 0,
+            "screenBackgroundBytes": 0,
+            "screenForegroundBytes": 0,
+            "worldBytes": 12780288,
+            "worldScale": 0.68,
+            "backgroundBytes": 0
+          }
+        ]
+      },
+      "candidate": {
+        "cold": {
+          "n": 10,
+          "median": 18.79999999998836,
+          "p95": 22.100000000034925,
+          "max": 22.100000000034925
+        },
+        "warm": {
+          "n": 60,
+          "median": 0.3999999999650754,
+          "p95": 0.5,
+          "max": 11.700000000011642
+        },
+        "horizontal": {
+          "n": 60,
+          "median": 0.5,
+          "p95": 5.600000000034925,
+          "max": 6.900000000023283
+        },
+        "vertical": {
+          "n": 60,
+          "median": 0.6000000000349246,
+          "p95": 0.9000000000232831,
+          "max": 5.599999999976717
+        },
+        "logicalCacheLast": [
+          {
+            "worldBuilds": 1,
+            "worldBuildMs": 8.600000000093132,
+            "bgBuilds": 0,
+            "bgBuildMs": 0,
+            "worldHits": 614,
+            "bgHits": 29,
+            "domainCanvasAllocations": 12,
+            "domainTileBuilds": 12,
+            "screenBuilds": 2,
+            "screenHits": 58,
+            "screenWorldBytes": 0,
+            "screenBackgroundBytes": 0,
+            "screenForegroundBytes": 0,
+            "worldBytes": 12780288,
+            "worldScale": 0.68,
+            "backgroundBytes": 0
+          },
+          {
+            "worldBuilds": 1,
+            "worldBuildMs": 8.399999999965075,
+            "bgBuilds": 0,
+            "bgBuildMs": 0,
+            "worldHits": 614,
+            "bgHits": 29,
+            "domainCanvasAllocations": 12,
+            "domainTileBuilds": 12,
+            "screenBuilds": 2,
+            "screenHits": 58,
+            "screenWorldBytes": 0,
+            "screenBackgroundBytes": 0,
+            "screenForegroundBytes": 0,
+            "worldBytes": 12780288,
+            "worldScale": 0.68,
+            "backgroundBytes": 0
+          }
+        ]
+      }
+    },
+    "stage3-phone-native": {
+      "baseline": {
+        "cold": {
+          "n": 10,
+          "median": 2.1000000000058208,
+          "p95": 2.7999999999883585,
+          "max": 2.7999999999883585
+        },
+        "warm": {
+          "n": 60,
+          "median": 0.40000000002328306,
+          "p95": 0.5,
+          "max": 15.299999999988358
+        },
+        "horizontal": {
+          "n": 60,
+          "median": 0.7000000000116415,
+          "p95": 0.9000000000232831,
+          "max": 1.5
+        },
+        "vertical": {
+          "n": 60,
+          "median": 0.7000000000116415,
+          "p95": 0.8000000000465661,
+          "max": 0.9000000000232831
+        },
+        "logicalCacheLast": [
+          {
+            "worldBuilds": 0,
+            "worldBuildMs": 0,
+            "bgBuilds": 0,
+            "bgBuildMs": 0,
+            "worldHits": 29,
+            "bgHits": 29,
+            "screenBuilds": 2,
+            "screenHits": 58,
+            "screenWorldBytes": 0,
+            "screenBackgroundBytes": 0,
+            "screenForegroundBytes": 0,
+            "worldBytes": 0,
+            "worldScale": 0,
+            "backgroundBytes": 0
+          },
+          {
+            "worldBuilds": 0,
+            "worldBuildMs": 0,
+            "bgBuilds": 0,
+            "bgBuildMs": 0,
+            "worldHits": 29,
+            "bgHits": 29,
+            "screenBuilds": 2,
+            "screenHits": 58,
+            "screenWorldBytes": 0,
+            "screenBackgroundBytes": 0,
+            "screenForegroundBytes": 0,
+            "worldBytes": 0,
+            "worldScale": 0,
+            "backgroundBytes": 0
+          }
+        ],
+        "rafGap": {
+          "n": 119,
+          "median": 16.699999999999818,
+          "p95": 16.700000000000728,
+          "max": 50
+        },
+        "rafSubmit": {
+          "n": 120,
+          "median": 0.7999999999301508,
+          "p95": 1.1000000000931323,
+          "max": 1.7999999999301508
+        }
+      },
+      "candidate": {
+        "cold": {
+          "n": 10,
+          "median": 1.9500000000116415,
+          "p95": 2.5,
+          "max": 2.5
+        },
+        "warm": {
+          "n": 60,
+          "median": 0.3999999999650754,
+          "p95": 0.5,
+          "max": 8.400000000023283
+        },
+        "horizontal": {
+          "n": 60,
+          "median": 0.6000000000349246,
+          "p95": 1.2999999999883585,
+          "max": 6.399999999965075
+        },
+        "vertical": {
+          "n": 60,
+          "median": 0.6000000000349246,
+          "p95": 0.7999999999883585,
+          "max": 0.9000000000232831
+        },
+        "logicalCacheLast": [
+          {
+            "worldBuilds": 0,
+            "worldBuildMs": 0,
+            "bgBuilds": 0,
+            "bgBuildMs": 0,
+            "worldHits": 29,
+            "bgHits": 29,
+            "screenBuilds": 2,
+            "screenHits": 58,
+            "screenWorldBytes": 0,
+            "screenBackgroundBytes": 0,
+            "screenForegroundBytes": 0,
+            "worldBytes": 0,
+            "worldScale": 0,
+            "backgroundBytes": 0
+          },
+          {
+            "worldBuilds": 0,
+            "worldBuildMs": 0,
+            "bgBuilds": 0,
+            "bgBuildMs": 0,
+            "worldHits": 29,
+            "bgHits": 29,
+            "screenBuilds": 2,
+            "screenHits": 58,
+            "screenWorldBytes": 0,
+            "screenBackgroundBytes": 0,
+            "screenForegroundBytes": 0,
+            "worldBytes": 0,
+            "worldScale": 0,
+            "backgroundBytes": 0
+          }
+        ],
+        "rafGap": {
+          "n": 119,
+          "median": 16.699999999999818,
+          "p95": 16.800000000000182,
+          "max": 66.69999999999982
+        },
+        "rafSubmit": {
+          "n": 120,
+          "median": 0.7999999999301508,
+          "p95": 1.3000000000465661,
+          "max": 2.5
+        }
+      }
+    },
+    "stage7-phone-native": {
+      "baseline": {
+        "cold": {
+          "n": 10,
+          "median": 2.599999999976717,
+          "p95": 3,
+          "max": 3
+        },
+        "warm": {
+          "n": 60,
+          "median": 0.40000000002328306,
+          "p95": 0.6000000000349246,
+          "max": 10.200000000011642
+        },
+        "horizontal": {
+          "n": 60,
+          "median": 1.400000000023283,
+          "p95": 2,
+          "max": 3.599999999976717
+        },
+        "vertical": {
+          "n": 60,
+          "median": 1.2999999999883585,
+          "p95": 1.7000000000116415,
+          "max": 8.599999999976717
+        },
+        "logicalCacheLast": [
+          {
+            "worldBuilds": 0,
+            "worldBuildMs": 0,
+            "bgBuilds": 0,
+            "bgBuildMs": 0,
+            "worldHits": 29,
+            "bgHits": 29,
+            "screenBuilds": 2,
+            "screenHits": 58,
+            "screenWorldBytes": 0,
+            "screenBackgroundBytes": 0,
+            "screenForegroundBytes": 0,
+            "worldBytes": 0,
+            "worldScale": 0,
+            "backgroundBytes": 0
+          },
+          {
+            "worldBuilds": 0,
+            "worldBuildMs": 0,
+            "bgBuilds": 0,
+            "bgBuildMs": 0,
+            "worldHits": 29,
+            "bgHits": 29,
+            "screenBuilds": 2,
+            "screenHits": 58,
+            "screenWorldBytes": 0,
+            "screenBackgroundBytes": 0,
+            "screenForegroundBytes": 0,
+            "worldBytes": 0,
+            "worldScale": 0,
+            "backgroundBytes": 0
+          }
+        ]
+      },
+      "candidate": {
+        "cold": {
+          "n": 10,
+          "median": 2.6000000000349246,
+          "p95": 3.2000000000116415,
+          "max": 3.2000000000116415
+        },
+        "warm": {
+          "n": 60,
+          "median": 0.40000000002328306,
+          "p95": 0.5999999999767169,
+          "max": 9.900000000023283
+        },
+        "horizontal": {
+          "n": 60,
+          "median": 1.400000000023283,
+          "p95": 1.7999999999883585,
+          "max": 3.7000000000116415
+        },
+        "vertical": {
+          "n": 60,
+          "median": 1.3000000000465661,
+          "p95": 1.599999999976717,
+          "max": 2
+        },
+        "logicalCacheLast": [
+          {
+            "worldBuilds": 0,
+            "worldBuildMs": 0,
+            "bgBuilds": 0,
+            "bgBuildMs": 0,
+            "worldHits": 29,
+            "bgHits": 29,
+            "screenBuilds": 2,
+            "screenHits": 58,
+            "screenWorldBytes": 0,
+            "screenBackgroundBytes": 0,
+            "screenForegroundBytes": 0,
+            "worldBytes": 0,
+            "worldScale": 0,
+            "backgroundBytes": 0
+          },
+          {
+            "worldBuilds": 0,
+            "worldBuildMs": 0,
+            "bgBuilds": 0,
+            "bgBuildMs": 0,
+            "worldHits": 29,
+            "bgHits": 29,
+            "screenBuilds": 2,
+            "screenHits": 58,
+            "screenWorldBytes": 0,
+            "screenBackgroundBytes": 0,
+            "screenForegroundBytes": 0,
+            "worldBytes": 0,
+            "worldScale": 0,
+            "backgroundBytes": 0
+          }
+        ]
+      }
+    },
+    "stage32-native-control": {
+      "baseline": {
+        "cold": {
+          "n": 10,
+          "median": 2.0,
+          "p95": 2.2000000000116415,
+          "max": 2.2000000000116415
+        },
+        "warm": {
+          "n": 60,
+          "median": 0.5999999999767169,
+          "p95": 0.7000000000116415,
+          "max": 18.5
+        },
+        "horizontal": {
+          "n": 60,
+          "median": 1.1000000000349246,
+          "p95": 3.400000000023283,
+          "max": 11.5
+        },
+        "vertical": {
+          "n": 60,
+          "median": 1.1000000000349246,
+          "p95": 1.400000000023283,
+          "max": 5.900000000023283
+        },
+        "logicalCacheLast": [
+          {
+            "worldBuilds": 0,
+            "worldBuildMs": 0,
+            "bgBuilds": 0,
+            "bgBuildMs": 0,
+            "worldHits": 29,
+            "bgHits": 58,
+            "screenBuilds": 3,
+            "screenHits": 87,
+            "screenWorldBytes": 0,
+            "screenBackgroundBytes": 0,
+            "screenForegroundBytes": 0,
+            "worldBytes": 0,
+            "worldScale": 0,
+            "backgroundBytes": 0
+          },
+          {
+            "worldBuilds": 0,
+            "worldBuildMs": 0,
+            "bgBuilds": 0,
+            "bgBuildMs": 0,
+            "worldHits": 29,
+            "bgHits": 58,
+            "screenBuilds": 3,
+            "screenHits": 87,
+            "screenWorldBytes": 0,
+            "screenBackgroundBytes": 0,
+            "screenForegroundBytes": 0,
+            "worldBytes": 0,
+            "worldScale": 0,
+            "backgroundBytes": 0
+          }
+        ]
+      },
+      "candidate": {
+        "cold": {
+          "n": 10,
+          "median": 1.8999999999941792,
+          "p95": 2.2999999999883585,
+          "max": 2.2999999999883585
+        },
+        "warm": {
+          "n": 60,
+          "median": 0.5999999999767169,
+          "p95": 0.8000000000465661,
+          "max": 18.70000000001164
+        },
+        "horizontal": {
+          "n": 60,
+          "median": 1.099999999976717,
+          "p95": 3.599999999976717,
+          "max": 16.79999999998836
+        },
+        "vertical": {
+          "n": 60,
+          "median": 1.1000000000349246,
+          "p95": 1.2999999999883585,
+          "max": 6.2999999999883585
+        },
+        "logicalCacheLast": [
+          {
+            "worldBuilds": 0,
+            "worldBuildMs": 0,
+            "bgBuilds": 0,
+            "bgBuildMs": 0,
+            "worldHits": 29,
+            "bgHits": 58,
+            "screenBuilds": 3,
+            "screenHits": 87,
+            "screenWorldBytes": 0,
+            "screenBackgroundBytes": 0,
+            "screenForegroundBytes": 0,
+            "worldBytes": 0,
+            "worldScale": 0,
+            "backgroundBytes": 0
+          },
+          {
+            "worldBuilds": 0,
+            "worldBuildMs": 0,
+            "bgBuilds": 0,
+            "bgBuildMs": 0,
+            "worldHits": 29,
+            "bgHits": 58,
+            "screenBuilds": 3,
+            "screenHits": 87,
+            "screenWorldBytes": 0,
+            "screenBackgroundBytes": 0,
+            "screenForegroundBytes": 0,
+            "worldBytes": 0,
+            "worldScale": 0,
+            "backgroundBytes": 0
+          }
+        ]
+      }
+    }
+  },
+  "errors": [],
+  "partial": false
+}

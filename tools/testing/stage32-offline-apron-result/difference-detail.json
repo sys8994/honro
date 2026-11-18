@@ -1,0 +1,44 @@
+[
+  {
+    "view": "maximum",
+    "maximum": {
+      "x": 956,
+      "y": 574,
+      "baseline": [
+        140,
+        124,
+        86,
+        255
+      ],
+      "candidate": [
+        147,
+        120,
+        105,
+        255
+      ]
+    },
+    "deltaOver3": 126,
+    "deltaOver10": 46
+  },
+  {
+    "view": "renderer-above",
+    "maximum": {
+      "x": 844,
+      "y": 505,
+      "baseline": [
+        140,
+        123,
+        86,
+        255
+      ],
+      "candidate": [
+        147,
+        120,
+        105,
+        255
+      ]
+    },
+    "deltaOver3": 330,
+    "deltaOver10": 61
+  }
+]

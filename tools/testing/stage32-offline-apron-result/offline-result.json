@@ -1,0 +1,45 @@
+{
+  "scope": "Two actual source-overridden Scene pairs. Alpha/upper gates only; manual visual and foreground contribution review required. Not product acceptance.",
+  "rows": [
+    {
+      "view": "maximum",
+      "qualityAccepted": false,
+      "tagOracle": "Not evaluated in this bounded backend diagnostic",
+      "scene": {
+        "changed": 53837,
+        "alpha": 0,
+        "aboveSplit": 0,
+        "maxRGB": 19,
+        "emptyChanged": 0
+      },
+      "-terrain-mask": {
+        "changed": 53837,
+        "alpha": 0,
+        "aboveSplit": 0,
+        "maxRGB": 19,
+        "emptyChanged": 0
+      },
+      "sceneChangedOutsideTerrain": 0
+    },
+    {
+      "view": "renderer-above",
+      "qualityAccepted": false,
+      "tagOracle": "Not evaluated in this bounded backend diagnostic",
+      "scene": {
+        "changed": 71168,
+        "alpha": 0,
+        "aboveSplit": 0,
+        "maxRGB": 19,
+        "emptyChanged": 0
+      },
+      "-terrain-mask": {
+        "changed": 71166,
+        "alpha": 0,
+        "aboveSplit": 0,
+        "maxRGB": 19,
+        "emptyChanged": 0
+      },
+      "sceneChangedOutsideTerrain": 0
+    }
+  ]
+}
