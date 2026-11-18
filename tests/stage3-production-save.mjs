@@ -25,7 +25,7 @@ const representation=encoded.honroLocalArtTable?'mixed-inline-and-local-table':'
 const restored=plain(encoded);assert(S.restoreBattleArt(restored));assert.deepEqual(restored,battle,'Fresh save-representation roundtrip');
 const hashes=xs=>Object.fromEntries(xs.map(x=>[String(x.id),sha(x)]));
 const gameplay=x=>JSON.parse(JSON.stringify(x,(k,v)=>k==='asset'&&v?.id===bodyId?{id:bodyId,stage3ArtworkExcluded:true}:v));
-const snapshot={format:2,representation,scope:'Synthetic initial campaign battle; model codec only. No user storage, no gameplay completion.',stage,stages:hashes(project.stages),otherAssets:hashes(project.library.filter(a=>a.id!==bodyId)),bodySha:sha(body),battle,encoded,gameplay:gameplay(battle)};
+const snapshot={format:2,representation,scope:'Synthetic initial campaign battle; model codec only. No user storage, no gameplay completion.',stage:plain(stage),stages:hashes(project.stages),otherAssets:hashes(project.library.filter(a=>a.id!==bodyId)),bodySha:sha(body),battle,encoded,gameplay:gameplay(battle)};
 if(mode==='snapshot'){
  assert(!body.params?.paintBeyondTerrainDomain,'Baseline unexpectedly contains new paint flag');
  await mkdir(path.dirname(file),{recursive:true});await writeFile(file,JSON.stringify(snapshot));console.log(JSON.stringify({ok:true,mode,bodySha:snapshot.bodySha,inlineBytes:Buffer.byteLength(JSON.stringify(battle)),encodedBytes:Buffer.byteLength(JSON.stringify(encoded)),representation}));
