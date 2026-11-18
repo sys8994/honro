@@ -1,6 +1,6 @@
 import {readFile,writeFile,mkdir} from 'node:fs/promises';import path from 'node:path';import {pathToFileURL} from 'node:url';import assert from 'node:assert/strict';import {createHash} from 'node:crypto';import {execFileSync} from 'node:child_process';
 const [rootArg,outArg,mode,payloadFile]=process.argv.slice(2);assert(rootArg&&outArg&&['export','restore'].includes(mode));const root=path.resolve(rootArg),out=path.resolve(outArg);await mkdir(out,{recursive:true});
-const config=JSON.parse(await readFile(new URL('./config.json',import.meta.url),'utf8'));assert.equal(config.ready,true,'Inactive preparation: final candidate not pinned');const commit=execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim();assert.equal(commit,mode==='export'?config.deployedCommit:config.candidateDommit);
+const config=JSON.parse(await readFile(new URL('./config.json',import.meta.url),'utf8'));assert.equal(config.ready,true,'Inactive preparation: final candidate not pinned');const commit=execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim();assert.equal(commit,mode==='export'?config.deployedCommit:config.candidateCommit);
 // Use each checkout's release defaults, not latest data or a replacement codec.
 for(const key of Object.keys(process.env))assert(!key.startsWith('HONRO_'),'Unexpected release override '+key);
 Date.now=()=>1794931200000;let seed=7;Math.random=()=>((seed=(Math.imul(seed,1664525)+1013904223)>>>0)/4294967296);
