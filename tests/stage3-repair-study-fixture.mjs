@@ -94,7 +94,9 @@ const script=s=>'<script>'+s.replace(/<\/script/gi,'<\\/script')+'</script>';
 const paintAnchor='domain=b.honroTerrainBounds,';
 const paintUnion=`domain=(()=>{const d={...b.honroTerrainBounds};if(b.honroStage===3)for(const l of G.HonroTerrainDomain.materialLandmarks(b)){const q=this._landmarkPaintBounds(l);if(q){d.left=Math.min(d.left,q.left);d.top=Math.min(d.top,q.top);d.right=Math.max(d.right,q.right);d.bottom=Math.max(d.bottom,q.bottom);}}return d;})(),`;
 if(runtime.split(paintAnchor).length!==2)throw Error('Unexpected paint-domain anchor count');
-const studyRuntime=variant==='candidate'?runtime.replace(paintAnchor,paintUnion):runtime;
+const rimAnchor='if(t.oneWay&&!walkable)continue;';
+if(runtime.split(rimAnchor).length!==2)throw Error('Unexpected rim anchor count');
+const studyRuntime=variant==='candidate'?runtime.replace(paintAnchor,paintUnion).replace(rimAnchor,rimAnchor+"if(b.honroStage===3&&t.id==='ferry-ground'&&!walkable)continue;"):runtime;
 const captureList=[];for(const id of stages)for(const view of cases[id]){
  const stageRuntime=id===32?studyRuntime+'\n;\n'+act4Extra.join('\n;\n'):studyRuntime;
  const stageRuntimeSha256=createHash('sha256').update(stageRuntime).digest('hex');
