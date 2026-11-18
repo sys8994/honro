@@ -1,0 +1,18 @@
+{
+  "run": 44302721985,
+  "artifact": 14427082006,
+  "zipSHA256": "30379186e3dd166defbd71b961d19157f15e32052ed28654c0c07f0168474909",
+  "alphaDifferent": 0,
+  "originalEDrawOracleExact": true,
+  "positiveEach": 232008,
+  "rgbChanged": 8332,
+  "outsideROIPixelsEach": 441,
+  "outsideROIWorldSourceBox": [
+    1740.00497784253,
+    619.9980905393397,
+    1773.9999999999998,
+    624.8545222761211
+  ],
+  "cause": "Internal source redraw clip620..720 extends above declared materialROI625; source redraw also creates visible rectangle boundary",
+  "accepted": false
+}

@@ -1,0 +1,486 @@
+{
+  "run": 44299182535,
+  "artifact": 14424249709,
+  "zipSHA": "9962b9b2425b800ee3647b1e9a18b2dfec3b9bd58c8575b2648155c1a5cb712e",
+  "all50CodecExact": true,
+  "fortyNineFullExact": true,
+  "unitsTerrainCameraExact": true,
+  "assetAlphaDifferent": 0,
+  "assetPositiveEach": 232008,
+  "assetRGBChanged": 8937,
+  "overviewOutside15Pixels": [
+    {
+      "x": 373,
+      "y": 293,
+      "delta": [
+        0,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "x": 374,
+      "y": 293,
+      "delta": [
+        0,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "x": 375,
+      "y": 293,
+      "delta": [
+        1,
+        0,
+        2,
+        0
+      ]
+    },
+    {
+      "x": 376,
+      "y": 293,
+      "delta": [
+        0,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "x": 377,
+      "y": 293,
+      "delta": [
+        0,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "x": 379,
+      "y": 293,
+      "delta": [
+        1,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "x": 381,
+      "y": 293,
+      "delta": [
+        1,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "x": 382,
+      "y": 293,
+      "delta": [
+        1,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "x": 383,
+      "y": 293,
+      "delta": [
+        0,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "x": 385,
+      "y": 293,
+      "delta": [
+        1,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "x": 386,
+      "y": 293,
+      "delta": [
+        0,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "x": 387,
+      "y": 293,
+      "delta": [
+        0,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "x": 388,
+      "y": 293,
+      "delta": [
+        0,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "x": 389,
+      "y": 293,
+      "delta": [
+        0,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "x": 374,
+      "y": 294,
+      "delta": [
+        1,
+        1,
+        0,
+        0
+      ]
+    }
+  ],
+  "rows": [
+    {
+      "view": "3-overview",
+      "changedPixels": 68
+    },
+    {
+      "view": "3-native",
+      "changedPixels": 0
+    },
+    {
+      "view": "3-right-shore-dpr3",
+      "changedPixels": 0
+    },
+    {
+      "view": "3-right-ground-dpr3",
+      "changedPixels": 39354
+    }
+  ],
+  "releaseAccepted": false,
+  "pngs": [
+    {
+      "file": "baseline-3-native-terrain-mask.png",
+      "sha256": "9490918a54beaadca0942728f2c7d0c268a694e7f91e327b6d442bba57b4b25c"
+    },
+    {
+      "file": "baseline-3-native.png",
+      "sha256": "6c1472fe4aff7f06ab91fdf492439ab724435953d45b14993862b79f814e9862"
+    },
+    {
+      "file": "baseline-3-overview-asset-mask.png",
+      "sha256": "4e2eb00c647b65204b17648535a6539245f3cccabb4c1de346069f52390acd81"
+    },
+    {
+      "file": "baseline-3-overview-terrain-mask.png",
+      "sha256": "14ec4a7bbf70019e9c93968b4e4741347558ac55a81dc03380e86ead51ce33a4"
+    },
+    {
+      "file": "baseline-3-overview.png",
+      "sha256": "3cfae0bd44678bca5491be95a25bd4f31eb2f1f5176401faebb80b0c1d86e496"
+    },
+    {
+      "file": "baseline-3-right-ground-dpr3-terrain-mask.png",
+      "sha256": "ab3752d492dec4f98627b832a7b243f509be14a3863e782a9b2990b6e11e3330"
+    },
+    {
+      "file": "baseline-3-right-ground-dpr3.png",
+      "sha256": "ab3752d492dec4f98627b832a7b243f509be14a3863e782a9b2990b6e11e3330"
+    },
+    {
+      "file": "baseline-3-right-shore-dpr3-terrain-mask.png",
+      "sha256": "743a49755b3d4127c85f8673ca918688a01635b6f12dce0d146a8e0b787ab973"
+    },
+    {
+      "file": "baseline-3-right-shore-dpr3.png",
+      "sha256": "743a49755b3d4127c85f8673ca918688a01635b6f12dce0d146a8e0b787ab973"
+    },
+    {
+      "file": "candidate-3-native-terrain-mask.png",
+      "sha256": "9490918a54beaadca0942728f2c7d0c268a694e7f91e327b6d442bba57b4b25c"
+    },
+    {
+      "file": "candidate-3-native.png",
+      "sha256": "6c1472fe4aff7f06ab91fdf492439ab724435953d45b14993862b79f814e9862"
+    },
+    {
+      "file": "candidate-3-overview-asset-mask.png",
+      "sha256": "a34ca0ef1e166d47f17f4e73ffaf599415594b88c4bd5f4b18bc687b4cd244c3"
+    },
+    {
+      "file": "candidate-3-overview-terrain-mask.png",
+      "sha256": "3ed785e7a404cf6101f356674282d284e6712a0d9891bd1e6eae3d837f301f51"
+    },
+    {
+      "file": "candidate-3-overview.png",
+      "sha256": "15296ece3377c295b69c800f40e4d9add6d8545bd08b106fd45b7ebd43022478"
+    },
+    {
+      "file": "candidate-3-right-ground-dpr3-terrain-mask.png",
+      "sha256": "ed564a9be9a8e28a4beed14514eeb3128a2c4895a01ef76cadca74e600de61ec"
+    },
+    {
+      "file": "candidate-3-right-ground-dpr3.png",
+      "sha256": "ed564a9be9a8e28a4beed14514eeb3128a2c4895a01ef76cadca74e600de61ec"
+    },
+    {
+      "file": "candidate-3-right-shore-dpr3-terrain-mask.png",
+      "sha256": "743a49755b3d4127c85f8673ca918688a01635b6f12dce0d146a8e0b787ab973"
+    },
+    {
+      "file": "candidate-3-right-shore-dpr3.png",
+      "sha256": "743a49755b3d4127c85f8673ca918688a01635b6f12dce0d146a8e0b787ab973"
+    }
+  ],
+  "decision": "Selected G for latest-master Stage3-only integration; H/I rejected",
+  "decisionReason": "Differences confined to generated non-play extension material, not original visible play surface",
+  "originalSourceWidth": 1774,
+  "worldScale": 3.23,
+  "playBounds": {
+    "left": 0,
+    "top": 0,
+    "right": 5730.02,
+    "bottom": 3035.01
+  },
+  "terrainBounds": {
+    "left": -1200,
+    "top": -900,
+    "right": 6930.02,
+    "bottom": 4535.01
+  },
+  "classification": "Only observed generated-extension material RGB differences1..2, alpha0; no global tolerance",
+  "publicDeployment": false,
+  "classifiedPixels": [
+    {
+      "x": 373,
+      "y": 293,
+      "delta": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "worldX": 5977.317692307693,
+      "sourceX": 1850.5627530364372,
+      "sourceY": 645.4345479082323,
+      "beyondPlayRight": 247.29769230769216
+    },
+    {
+      "x": 374,
+      "y": 293,
+      "delta": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "worldX": 5994.75358974359,
+      "sourceX": 1855.960863697706,
+      "sourceY": 645.4345479082323,
+      "beyondPlayRight": 264.7335897435896
+    },
+    {
+      "x": 375,
+      "y": 293,
+      "delta": [
+        1,
+        0,
+        2,
+        0
+      ],
+      "worldX": 6012.1894871794875,
+      "sourceX": 1861.3589743589744,
+      "sourceY": 645.4345479082323,
+      "beyondPlayRight": 282.1694871794871
+    },
+    {
+      "x": 376,
+      "y": 293,
+      "delta": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "worldX": 6029.625384615385,
+      "sourceX": 1866.757085020243,
+      "sourceY": 645.4345479082323,
+      "beyondPlayRight": 299.60538461538454
+    },
+    {
+      "x": 377,
+      "y": 293,
+      "delta": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "worldX": 6047.061282051282,
+      "sourceX": 1872.1551956815115,
+      "sourceY": 645.4345479082323,
+      "beyondPlayRight": 317.041282051282
+    },
+    {
+      "x": 379,
+      "y": 293,
+      "delta": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "worldX": 6081.933076923077,
+      "sourceX": 1882.9514170040488,
+      "sourceY": 645.4345479082323,
+      "beyondPlayRight": 351.9130769230769
+    },
+    {
+      "x": 381,
+      "y": 293,
+      "delta": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "worldX": 6116.804871794872,
+      "sourceX": 1893.747638326586,
+      "sourceY": 645.4345479082323,
+      "beyondPlayRight": 386.78487179487183
+    },
+    {
+      "x": 382,
+      "y": 293,
+      "delta": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "worldX": 6134.24076923077,
+      "sourceX": 1899.1457489878544,
+      "sourceY": 645.4345479082323,
+      "beyondPlayRight": 404.2207692307693
+    },
+    {
+      "x": 383,
+      "y": 293,
+      "delta": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "worldX": 6151.676666666667,
+      "sourceX": 1904.543859649123,
+      "sourceY": 645.4345479082323,
+      "beyondPlayRight": 421.65666666666675
+    },
+    {
+      "x": 385,
+      "y": 293,
+      "delta": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "worldX": 6186.548461538462,
+      "sourceX": 1915.3400809716602,
+      "sourceY": 645.4345479082323,
+      "beyondPlayRight": 456.52846153846167
+    },
+    {
+      "x": 386,
+      "y": 293,
+      "delta": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "worldX": 6203.98435897436,
+      "sourceX": 1920.7381916329286,
+      "sourceY": 645.4345479082323,
+      "beyondPlayRight": 473.96435897435913
+    },
+    {
+      "x": 387,
+      "y": 293,
+      "delta": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "worldX": 6221.420256410256,
+      "sourceX": 1926.1363022941969,
+      "sourceY": 645.4345479082323,
+      "beyondPlayRight": 491.4002564102557
+    },
+    {
+      "x": 388,
+      "y": 293,
+      "delta": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "worldX": 6238.8561538461545,
+      "sourceX": 1931.5344129554658,
+      "sourceY": 645.4345479082323,
+      "beyondPlayRight": 508.83615384615405
+    },
+    {
+      "x": 389,
+      "y": 293,
+      "delta": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "worldX": 6256.292051282051,
+      "sourceX": 1936.932523616734,
+      "sourceY": 645.4345479082323,
+      "beyondPlayRight": 526.2720512820506
+    },
+    {
+      "x": 374,
+      "y": 294,
+      "delta": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "worldX": 5994.75358974359,
+      "sourceX": 1855.960863697706,
+      "sourceY": 650.8326585695008,
+      "beyondPlayRight": 264.7335897435896
+    }
+  ]
+}
