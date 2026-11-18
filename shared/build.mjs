@@ -6,6 +6,7 @@ import {applyAct4HandoffArt} from './act4-handoff-art.mjs';
 import {applyAct4SideviewArt} from './act4-sideview-art.mjs';
 import {makeAct5,far as act5Far,farStages as act5FarStages,clock as act5Clock,journey as act5Journey} from './act5-world.mjs';
 import {applyAct3HandoffArt} from './act3-handoff-art.mjs';
+import {applyNaruBodyFinish} from '../tools/map-forge/naru-body-finish.mjs';
 import {terrainPathOptimization} from './terrain-path-optimization.mjs';
 import {applyReviewedAct2Art} from '../tools/act2-vector-production/apply-candidates.mjs';
 import {validateSkillIcons} from '../tools/skill-icons/manifest.mjs';
@@ -193,6 +194,7 @@ export async function runtimeEntries({vector=true,render=true,app=false,producti
   project=applyStage6ReviewedPursuit(applyStage6IntegratedPreview(applyStage6ArtPreview(project)));
   project=await applyAct1Sites(project);
   terrainOptimization.apply(project.library);
+  applyNaruBodyFinish(project);
   if(act5)project={...project,stages:[...project.stages,...act5.stages],library:[...project.library,...act5.library]};
   if(act4Enabled)code('terrain-previous-provider-signatures','globalThis.HONRO_PREVIOUS_TERRAIN_ART='+JSON.stringify(terrainOptimization.previousAct4Signatures)+';');
   parts.push({name:'campaign',project,code:'globalThis.HONRO_PROJECT='+authorProjectExpression(JSON.stringify(project))+';'});
@@ -265,3 +267,4 @@ export const authorProjectExpression=value=>projectAuthors.reduce((value,name)=>
 export async function runtimeParts(options={}) {
   return (await runtimeEntries(options)).map(entry=>entry.code);
 }
+

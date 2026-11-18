@@ -39,3 +39,16 @@ export function finishNaruBody(core,{palette=true,exterior=true}={}){
  result.viewBox=[-1200,0,4174,4887];
  return result;
 }
+
+// Apply after the canonical path optimizer has validated and optimized the
+// original collage. Do not weaken or skip its original SHA guard.
+export function applyNaruBodyFinish(project){
+ const art=project.library.find(a=>a.id==='act1-site:3:body');
+ if(!art)throw Error('Missing canonical Naru BODY');
+ if(art.params?.derivedPaintRevision)throw Error('Naru finish applied twice');
+ art.vector=finishNaruBody(art.vector);
+ const [x,y,w,h]=art.vector.viewBox;art.bounds={x,y,w,h};
+ art.reference={...art.reference,bounds:{x,y,w,h},heightM:h/60};
+ Object.assign(art.params,{paintBeyondTerrainDomain:true,omitTerrainClosureIds:['ferry-ground'],derivedPaintRevision:'naru-exterior-v1'});
+ return project;
+}

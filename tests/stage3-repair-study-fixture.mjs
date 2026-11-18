@@ -6,7 +6,7 @@ import {runtimeEntries,root} from '../shared/build.mjs';
 const out=process.argv[2];
 if(!out)throw Error('Usage: node tests/actual-scene-browser-fixture.mjs OUTPUT_DIRECTORY [23,26,29|32]');
 const stages=(process.argv[3]||'3,7').split(',').map(Number),variant=process.argv[4];
-const cases={3:['portrait-bl','desktop-br','pier-close','terrain-close','pier-native']};
+const cases={3:['portrait-bl','desktop-br','pier-close','terrain-close','pier-native','terrain-native']};
 if(!stages.length||new Set(stages).size!==stages.length||stages.some(id=>!cases[id])||!['baseline','candidate'].includes(variant))throw Error('Unsupported inspection');
 await mkdir(out,{recursive:true});
 // runtimeParts is exactly runtimeEntries(...).map(entry=>entry.code). Names allow safe deduplication.
@@ -70,6 +70,7 @@ async function capture(id,runtimeSha256,variant,view){
   Object.assign(scene,{x:view.endsWith('br')?stage.width:0,y:view.endsWith('tl')?0:stage.height,scale:HonroBounds.zoomLimits(W).min,manual:true,time:2,editorView:false,skillPreview:false});
   if(view==='pier-close')Object.assign(scene,{x:553*3.23,y:610*3.23,scale:1.05});
   if(view==='pier-native')Object.assign(scene,{x:553*3.23,y:610*3.23,scale:1.65});
+  if(view==='terrain-native')Object.assign(scene,{x:1774*3.23,y:760*3.23,scale:1.05001});
   if(view==='terrain-close')Object.assign(scene,{x:1774*3.23,y:760*3.23,scale:.65});
   HonroBounds.constrain(scene,b);
   const camera={x:scene.x,y:scene.y,scale:scene.scale},before=JSON.stringify(b);
