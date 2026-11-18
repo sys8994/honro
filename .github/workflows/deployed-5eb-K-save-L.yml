@@ -1,0 +1,47 @@
+name: Latest5eb and Stage3K old saves to combined L
+on:
+  workflow_dispatch:
+  push:
+    branches: [inspect/stage32-scanline-20261118]
+    paths: ['tools/testing/deployed-5eb-K-save-L/**', '.github/workflows/deployed-5eb-K-save-L.yml']
+permissions: {contents: read}
+jobs:
+  compatibility:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with: {path: study}
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with: {path: deployed, ref: 5eb0381269868e501a1cd187d963ddb716cd2dc6}
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with: {path: K, ref: a6f2935935eed559c3ecd27207d8d8a78a1ed22d}
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with: {path: candidate, ref: 85bae4a08993d3b71d22ea3fec76686e0ae3c61c}
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with: {node-version: '22', package-manager-cache: false}
+      - run: |
+          for root in deployed K candidate; do (cd "$root" && npm ci && npm ci --prefix game); done
+      - name: Fresh source snapshots and real App continuation in both versions
+        run: |
+          SOURCE=study/tools/testing/deployed-5eb-K-save-L
+          for ROLE in deployed K; do
+            T="$RUNNER_TEMP/save-$ROLE"
+            O="$PWD/artifacts/$ROLE"
+            mkdir -p "$T" "$O"
+            cp "$SOURCE/"*.mjs "$T/"
+            cp "$SOURCE/config-$ROLE.json" "$T/config.json"
+            node "$T/fixture.mjs" "$ROLE" "$RUNNER_TEMP/$ROLE-export" export
+            node "$T/run.mjs" "$RUNNER_TEMP/$ROLE-export" "$O/base"
+            node "$T/fixture.mjs" candidate "$RUNNER_TEMP/$ROLE-restore" restore "$O/base/export-deployed-stages.json"
+            node "$T/run.mjs" "$RUNNER_TEMP/$ROLE-restore" "$O/new"
+            node "$T/check.mjs" "$O"
+            node "$T/continue-fixture.mjs" "$ROLE" "$RUNNER_TEMP/$ROLE-old-app" baseline "$O/base/export-deployed-stages.json"
+            node "$T/run.mjs" "$RUNNER_TEMP/$ROLE-old-app" "$O/app-baseline"
+            node "$T/continue-fixture.mjs" candidate "$RUNNER_TEMP/$ROLE-new-app" candidate "$O/base/export-deployed-stages.json"
+            node "$T/run.mjs" "$RUNNER_TEMP/$ROLE-new-app" "$O/app-candidate"
+            node "$T/continue-check.mjs" "$O"
+          done
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with: {name: deployed-5eb-K-save-L, path: artifacts, if-no-files-found: error}

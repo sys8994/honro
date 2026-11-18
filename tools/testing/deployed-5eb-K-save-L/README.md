@@ -1,0 +1,7 @@
+# Two fresh old-save sources → combined L
+
+L85bae4a08993d3b71d22ea3fec76686e0ae3c61c directly follows Ka6f2935935eed559c3ecd27207d8d8a78a1ed22d. Execute two independent source cases: latest deployed5eb0381269868e501a1cd187d963ddb716cd2dc6 → L, and K → L. Each exports fresh synthetic3/7/32 saves, executes original App.continue and fresh L restoration/App continuation. No artifact reuse. In particular, previous Ksave results restored old5eb art, not freshly created KbodyG saves; they cannot substitute for this new K source case.
+
+The five executable bodies are byte-identical to successful Ksave44304772740. They are copied into separate temporary directories with each pinned config.json. Output directories deployed/ and K/ are separate. Both retain full-battle direct restore/recompact/secondrestore exact; actual App mount and three explicit Engine/Mission ticks compare full battle/actors/terrain, then official stop. K3 tests preservation of its approved bodyG save; K7/32 are extra unchanged controls. Main runtime remains official, no helper override or HONRO flags.
+
+Legacy5b/D prose in unchanged raw test scopes is not source identity: config/provenance hashes identify each exact source and L. No actual user storage, profile migration, autonomous frame loop, pickup/reward execution, long playthrough, art/performance or deployment claim. Auxiliary PNGs are not art acceptance. Source/50fresh/normalScene/transitions are separate.
