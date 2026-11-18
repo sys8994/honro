@@ -170,6 +170,6 @@ const diversity=G.HonroMonsterDiversity;
 if(diversity){const spawn=diversity.spawn;diversity.spawn=function(b,u,...rest){const out=spawn.call(this,b,u,...rest);apply(b,u);return out;};}
 const roster=G.HonroMonsterRoster;
 const mission=G.HonroMission;
-if(mission?.tick){const tick=mission.tick;mission.tick=function(app,dt){const out=tick.call(this,app,dt);try{hookWake();sync(app?.engine?.b);shade(app);reveal(app);}catch{}return out;};}
+if(mission?.tick){const tick=mission.tick;mission.tick=function(app,dt){const out=tick.call(this,app,dt);try{hookWake();G.HonroMonsterScaleArt?.install();sync(app?.engine?.b);shade(app);reveal(app);}catch{}return out;};}
 if(roster){const prep=roster.prepareSpawn;roster.prepareSpawn=function(b,u){const out=prep.call(this,b,u);apply(b,u);return out;};}
 })(globalThis);

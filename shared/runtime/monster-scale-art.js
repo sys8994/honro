@@ -17,14 +17,24 @@ function omen(scene,c){
 let frame=0;const raf=G.requestAnimationFrame?.bind(G);if(raf){const loop=()=>{frame++;raf(loop);};raf(loop);}
 const body=S.unitBody;
 S.unitBody=function(c,u,...args){
- if(this._honroOmenFrame!==frame){this._honroOmenFrame=frame;try{omen(this,c);}catch{}}
- if(u?.honroGreatDarkness&&!u.dead){const V=G.HonroMonsterVisual,a=V?.assets?.eoduksini3;if(a){
-  c.save();c.translate(u.x,u.y);const k=u.h/a.baseHeight;c.scale(k*(u.facing||1),k);const m=c.getTransform(),ratio=c.canvas.clientWidth?c.canvas.width/c.canvas.clientWidth:1;
-  V.draw(c,'eoduksini3',{time:this.time||0,state:V.state?.(u)||{},pixels:a.baseHeight*Math.hypot(m.c,m.d)/ratio});c.restore();return;}}
+ if(this._honroOmenFrame!==frame){this._honroOmenFrame=frame;try{omen(this,c);darkness();}catch{}}
  const sc=u?.honroMonsterScale;
  if(sc&&!sc.kept&&u.side===1&&u.h>=180&&!u.dead&&!u.airborne&&!u.fixed){
   const w=Math.max(u.r*1.5,u.h*.2);c.save();c.fillStyle='rgba(12,14,16,.28)';c.beginPath();c.ellipse(u.x,u.y+2,w,Math.max(6,w*.14),0,0,Math.PI*2);c.fill();c.restore();
  }
  return body.call(this,c,u,...args);
 };
+// The great darkness always uses the full-height rig (its body h is the drawn
+// height). Installed after every art module so later unitBody wrappers that
+// dispatch monsters themselves cannot draw the smaller growth forms instead.
+function darkness(){
+ const inner=S.unitBody;if(inner.honroDarkness)return;// re-wraps if a later module replaced it
+ S.unitBody=function(c,u,...args){
+  if(u?.honroGreatDarkness&&!u.dead){const V=G.HonroMonsterVisual,a=V?.assets?.eoduksini3;if(a){
+   c.save();c.translate(u.x,u.y);const k=u.h/a.baseHeight;c.scale(k*(u.facing||1),k);const m=c.getTransform(),ratio=c.canvas.clientWidth?c.canvas.width/c.canvas.clientWidth:1;
+   V.draw(c,'eoduksini3',{time:this.time||0,state:V.state?.(u)||{},pixels:a.baseHeight*Math.hypot(m.c,m.d)/ratio});c.restore();return;}}
+  return inner.call(this,c,u,...args);
+ };S.unitBody.honroDarkness=true;
+}
+G.HonroMonsterScaleArt={install:darkness}; // called from the mission tick, after all modules load
 })(globalThis);
