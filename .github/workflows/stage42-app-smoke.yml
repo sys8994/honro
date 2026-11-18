@@ -1,0 +1,61 @@
+name: Isolated Stage42 app smoke (no deploy)
+on:
+  push:
+    branches: ['qa/stage42-app']
+    paths:
+      - .github/workflows/stage42-app-smoke.yml
+      - tests/stage42-app-smoke/**
+      - shared/assets/environment/act5/stage42-registered-body.json
+permissions:
+  contents: read
+jobs:
+  app-smoke:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      HONRO_ACT4_RELEASE: '1'
+      HONRO_ACT5_RELEASE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Build exactly the candidate checkout
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = refs/heads/qa/stage42-app
+          printf '7a455c2c1096ec1b0ed327f6a7397b8273f48db25df0e2b8d3eec81e12d660da  shared/assets/environment/act5/stage42-registered-body.json\n' | sha256sum --check
+          mkdir -p "$RUNNER_TEMP/stage42-app-evidence"
+          npm ci
+          npm ci --prefix game
+          npm run build
+          sha256sum HONRO.html HONRO_WORKSHOP.html web/manifest.json > "$RUNNER_TEMP/stage42-app-evidence/build-sha256.txt"
+      - name: Exercise generated Game and Workshop
+        run: |
+          set -euo pipefail
+          python -m pip install 'playwright==1.58.0'
+          python -m playwright install --with-deps chromium
+          python -m http.server 8870 --bind 127.0.0.1 > "$RUNNER_TEMP/stage42-app-evidence/server.log" 2>&1 &
+          server=$!
+          trap 'kill "$server" 2>/dev/null || true' EXIT
+          for i in {1..20}; do
+            if curl -fsS -o /dev/null http://127.0.0.1:8870/HONRO.html; then break; fi
+            sleep 1
+          done
+          python tests/stage42-app-smoke/smoke.py --url http://127.0.0.1:8870 --candidate shared/assets/environment/act5/stage42-registered-body.json --out "$RUNNER_TEMP/stage42-app-evidence"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage42-app-smoke
+          path: |
+            ${{ runner.temp }}/stage42-app-evidence/*.png
+            ${{ runner.temp }}/stage42-app-evidence/result.json
+            ${{ runner.temp }}/stage42-app-evidence/build-sha256.txt
+          if-no-files-found: warn
+          retention-days: 7
