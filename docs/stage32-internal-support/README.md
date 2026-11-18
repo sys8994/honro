@@ -1,0 +1,7 @@
+# Independent fill-support replay, not a new Scene candidate
+
+Immutable input: actual run44252479563/artifact14403743942, archive SHA355ca3897c2ef6a958a5916d14adff54c4c64ff76459c67d75a06d37257e8be5. Four actual Scene PNGs are encoded-SHA pinned and all observed changes are regenerated after decoding and compared to the complete fixed metadata. Actual numeric tile matrices, blits and screen clips are from the same artifact; metadata SHA is fixed.
+
+Historical support used clip(coverage)+white rectangle, the correct surrogate for the earlier bitmap painting primitive but not the new solid-fill seam. This probe retains and exactly reproduces the old2/6 binary-support failures. It independently paints the declared source path using the new seam's solid fill primitive (without invented apron clipping), then replays the same recorded blits. Binary support derives from nonzero geometry-rendered tile alpha, never from changed Scene pixels. All actual changed pixels must be supported; no RGB tolerance or coordinate whitelist.
+
+Maximum's six old failures independently have direct-camera solid-fill alpha3..7 already, supporting a primitive-AA discrepancy. The two cached-view failures remain to be proved. Final terrain/Scene alpha, foreground, BODY-outside-band and original source protections are the unchanged prior results, not silently rerun or waived here. This diagnostic does not mean complete art, release, or all-transform proof. New helper/coverage remain byte unchanged.
