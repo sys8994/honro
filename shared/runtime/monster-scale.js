@@ -146,7 +146,12 @@ function addDarkness(b){
 const lastActive=new WeakMap();
 function shade(app){
  const b=app?.engine?.b;if(!b||b.honroMonsterScaleRevision!==REVISION)return;
- const dead=b.units.find(v=>v.honroGreatDarkness&&!alive(v));if(dead&&!b.honroEquipmentFacts?.greatDarkness)(b.honroEquipmentFacts??={}).greatDarkness=dead.id; // reward hook: item choice pending
+ // Reward: what the darkness had swallowed — one of each field supply, once.
+ // (Kept off the equipment ledger, whose items are authored per act.)
+ const dead=b.units.find(v=>v.honroGreatDarkness&&!alive(v));
+ if(dead&&!b.honroEquipmentFacts?.greatDarkness){(b.honroEquipmentFacts??={}).greatDarkness=dead.id;
+  if(b.items)for(const k of ['heal','focus','cleanse','ward'])if(Number.isFinite(b.items[k]))b.items[k]++;
+  app.engine.fx?.('text',dead.x,dead.y-160,'#d8c99a',24,'삼켜졌던 보급품');app.notify?.('큰 어둠이 흩어지며 삼켰던 보급품이 남았습니다 · 치료·기력·정화·보호 각 1');app.dirty=true;}
  const u=b.units.find(v=>v.honroGreatDarkness&&alive(v));if(!u)return;
  const prev=lastActive.get(b),now=b.active;if(prev===now)return;lastActive.set(b,now);
  const hero=b.units.find(v=>v.id===prev&&v.side===0&&!v.summoned&&alive(v));if(!hero||!inZone(u,hero))return;
