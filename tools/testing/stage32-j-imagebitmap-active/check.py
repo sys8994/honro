@@ -1,0 +1,22 @@
+import json,sys,pathlib,hashlib
+from PIL import Image,ImageChops
+root=pathlib.Path(sys.argv[1]);cfg=json.loads((pathlib.Path(__file__).parent/'config.json').read_text());errors=[];rows=[];startup=[]
+def require(v,m):
+ if not v:errors.append(m)
+for pose in cfg['poses']:
+ name=pose['name'];a=json.loads((root/('original-'+name+'.json')).read_text());b=json.loads((root/('candidate-'+name+'.json')).read_text());require(a['ok'] and b['ok'],'capture '+name)
+ for x in [a,b]:
+  require(not x['storage'] and not x['errors'] and not x['violations'],'runtime/storage '+name);require(x['contract']['ownSaveRoundtripExact'],'codec');require(x['width']==pose['width'] and x['height']==pose['height'],'backing');require(x['provenance']['sourceRef']==cfg['sourceRef'],'source pin')
+ for x in [a,b]:startup.append({'pose':name,'variant':x['variant'],'helperBytes':x['provenance']['helperBytes'],'wholeRuntimeParseEvalWallMs':x.get('runtimeParseEvalWallMs'),'firstRenderMs':x['performanceReport']['first']['ms']})
+ require(a['initialization']==b['initialization'] and a['contract']==b['contract'],'initialgameplay '+name);require(a['provenance']['originalRuntimeSHA']==b['provenance']['originalRuntimeSHA'],'same runtime');require(a['provenance']['helperSHA256']==cfg['registeredHelperSHA256'] and b['provenance']['helperSHA256']==cfg['candidateSHA256'],'helper pins')
+ frames=lambda x:[x['performanceReport']['first'],x['performanceReport']['cold']]+x['performanceReport']['pan']+[x['performanceReport']['cached'],x['performanceReport']['nativeReturn']];aa,bb=frames(a),frames(b);require(len(aa)==len(bb)==9,'frame counts')
+ hashes=set()
+ for x,y in zip(aa,bb):
+  require(x['camera']==y['camera'] and x['backing']==y['backing'],'same camera '+name+x['name']);i=Image.open(root/('original-'+name+'-'+x['name']+'-mask.png')).convert('RGBA');j=Image.open(root/('candidate-'+name+'-'+x['name']+'-mask.png')).convert('RGBA');ib,jb=i.tobytes(),j.tobytes();hashes.add(hashlib.sha256(ib).hexdigest());require(hashlib.sha256(ib).hexdigest()==x['rgbaSHA256'] and hashlib.sha256(jb).hexdigest()==y['rgbaSHA256'],'PNG/frame hashes');changed=sum(ib[k:k+4]!=jb[k:k+4] for k in range(0,len(ib),4));alpha=sum(ib[k]!=jb[k] for k in range(3,len(ib),4));delta=max(abs(u-v)for u,v in zip(ib,jb));bbox=ImageChops.difference(i.convert('RGB'),j.convert('RGB')).getbbox();colors=i.convert('RGB').getcolors(i.width*i.height);require(colors and len(colors)>16,'Positive reference painted colors');require(changed==0,name+'/'+x['name']+' exactRGBA');rows.append({'pose':name,'frame':x['name'],'camera':x['camera'],'changed':changed,'alpha':alpha,'maxDelta':delta,'bbox':bbox,'originalMs':x['ms'],'candidateMs':y['ms'],'imageBitmap':y['after'].get('imageBitmap'),'totalLogicalBytes':y['after'].get('totalLogicalBytes')})
+ for y in bb:
+  stats=y['after'];im=stats['imageBitmap'];require(stats['totalLogicalBytes']==stats['bytes']+stats['transition']['bytes']+stats['supersample']['scratchBytes']+im['bytes'],'logical sum includes bitmap')
+  if y['camera']['scale']>1.05:
+   plan=stats['nativeBudget']['last'];require(plan['admitted'] and plan['projected']<=48*1024*1024,'native admission budget');require(stats['totalLogicalBytes']<=48*1024*1024,'actual logical budget');require(im['bytes']==pose['width']*pose['height']*4,'full material image ownership');require(plan['projected']>=pose['width']*pose['height']*8,'reserve canvas plus image')
+ require(len(hashes)>2,'Actual motion visible '+name);
+ perf=b['performanceReport'];native=perf['nativeReturn']['after']['imageBitmap'];cached=perf['cached']['after']['imageBitmap'];cleared=perf['afterExplicitClear']['imageBitmap'];require(native['created']>0,'actual transfer positive');require(native['closed']+1==native['created'],'one owned native bitmap');require(cached['bytes']==0,'cached returns to Canvas');require(cleared['bytes']==0 and cleared['closed']==cleared['created'],'explicit clear closes all images')
+out={'startup':startup,'startupScope':'Whole runtime script load/parse/eval wall before capture, not pure helperparse; source bytes separately recorded','passed':not errors,'errors':errors,'rows':rows,'scope':'Four-page ImageBitmap diagnostic; all frameRGBA exact required, readback-influenced timing not clean performance/acceptance','qualityAccepted':False,'performanceAccepted':False};(root/'imagebitmap-result.json').write_text(json.dumps(out,indent=2));print(json.dumps({'passed':not errors,'errors':errors}));sys.exit(bool(errors))

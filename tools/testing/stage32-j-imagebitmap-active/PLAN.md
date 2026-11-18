@@ -1,0 +1,6 @@
+# J ImageBitmap transfer diagnostic (approved small study; not product acceptance)
+Four pages: original registered J versus copied ImageBitmap helper, maximum/nativewalk. Exact J/pilot/foundation pins unchanged. Nine strict RGBA frames per pose include first/cold/five HV pan/cached .6/return native1.65. Real whole submission times include transfer and close. No per-Canvas-method instrumentation; no broad cost suite. Every observed frame hashes and PNGs outside timer, therefore diagnostic timings are readback-influenced, not clean acceptance.
+
+Positive created>0 is mandatory: Native fallback created0 evidence is not sufficient. After native one image remains owned, cached image bytes0, explicit helper clear must close all. This proves helper ownership under these explicit transitions, NOT normal App lifecycle/GC release. Canvas plus ImageBitmap logical reservation is included; actual GPU memory remains unmeasured. No source art change or DPR reduction. Camera/backing/gameplay/storage/codec strict preserved. Candidate may simply move the synchronization stall to transfer or BODY; compare whole cost without subtracting transfer/close.
+
+Independent architecture review: source pins, nine-frame exact/positive/lifetime/memory checks and manifest verified; no known execution blocker. Actual Chrome pending.
