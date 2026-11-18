@@ -122,8 +122,7 @@ async function capture(candidate,closure,join,sourceContract,runtimeSha,variant,
    for(const poly of join.ribbon.polygons){shape.moveTo(...poly[0]);for(const point of poly.slice(1))shape.lineTo(...point);shape.closePath();}
    ctx.save();ctx.translate(inst.x||0,inst.y||0);ctx.rotate(inst.rotation||0);ctx.scale(inst.scale??1,inst.scale??1);ctx.translate(-(anchor?.x||0),-(anchor?.y||0));ctx.fillStyle=white?'#ffffff':join.node.fill;ctx.fill(shape,'nonzero');ctx.restore();
   };
-  if(['expected','joined-expected','lower-expected'].includes(variant)){
-   const partVector=(vector,root)=>{
+  const partVector=(vector,root)=>{
     const symbols={},clips={},gradients={},visiting=new Set();
     function walk(n){
      if(n.clipPath!==undefined){assert(Object.hasOwn(vector.clips||{},n.clipPath),'Expected control missing clip');clips[n.clipPath]=vector.clips[n.clipPath];}
@@ -136,6 +135,7 @@ async function capture(candidate,closure,join,sourceContract,runtimeSha,variant,
     }
     walk(root);const v={...vector,root,symbols,clips,gradients};const errors=HonroVectorArt.validate(v);assert(!errors.length,'Expected control part validation: '+errors.join(';'));return v;
    };
+  if(['expected','joined-expected','lower-expected'].includes(variant)){
    const splits=new WeakMap();HonroVectorArt.draw=(ctx,a,inst)=>{
     if(!a.vector?.symbols?.source||stable(a.vector.symbols.source)!==stable(source))return nativeDraw(ctx,a,inst);
     assert(a.vector.root.tag==='g'&&Object.keys(a.vector.root).every(k=>['tag','children'].includes(k)),'Expected control requires identity root');
@@ -149,6 +149,8 @@ async function capture(candidate,closure,join,sourceContract,runtimeSha,variant,
   }
   const foregroundReference=partitionRim(original.vector,candidate.vector);
   const lowerReference=foregroundReference.root.children.find(n=>n.clipPath==='nonwalk-envelope');assert(lowerReference,'Lower reference required');
+  const lowerReplayVector=partVector(foregroundReference,lowerReference);
+  const maskReplayVectors=new Map();
   const originalRim=foregroundReference.root.children.at(-1);
   assert(originalRim.clipPath==='original-rim-domain','Independent rim reference');
   const bodyDrawMetadata=[],sourceReplayTiles=new WeakMap(),observedDraw=HonroVectorArt.draw;
@@ -163,10 +165,10 @@ async function capture(candidate,closure,join,sourceContract,runtimeSha,variant,
      paths.sourceBlack=paths.source;paths.sourceWhite=paths.source;paths.closureOnBlack=null;paths.closureOnWhite=null;paths.joinOnBlack=null;paths.joinOnWhite=null;
      const replay={};for(const [name,root]of Object.entries(paths)){
       const cv=document.createElement('canvas');cv.width=ctx.canvas.width;cv.height=ctx.canvas.height;const cc=cv.getContext('2d');if(/(?:Black|White)$/.test(name)){cc.fillStyle=name.endsWith('Black')?'#000000':'#ffffff';cc.fillRect(0,0,cv.width,cv.height);}cc.setTransform(ctx.getTransform());cc.globalAlpha=ctx.globalAlpha;cc.globalCompositeOperation=ctx.globalCompositeOperation;cc.filter=ctx.filter;cc.imageSmoothingEnabled=ctx.imageSmoothingEnabled;cc.imageSmoothingQuality=ctx.imageSmoothingQuality;
-      if(['lower','lowerOnBlack','lowerOnWhite'].includes(name))nativeDraw(HonroVisualStyle?.contextLike(ctx,cc)||cc,{...original,vector:{...foregroundReference,root:lowerReference}},inst);
+      if(['lower','lowerOnBlack','lowerOnWhite'].includes(name))nativeDraw(HonroVisualStyle?.contextLike(ctx,cc)||cc,{...original,vector:lowerReplayVector},inst);
       if(name==='closureOnBlack'||name==='closureOnWhite')paintClosure(cc,inst,original.anchor,false);
       if(name==='joinOnBlack'||name==='joinOnWhite')paintJoin(cc,inst,original.anchor,false);
-      if(['closure','paintedUnion'].includes(name))paintClosure(cc,inst,original.anchor,true);if(name==='join')paintJoin(cc,inst,original.anchor,true);if(root)nativeDraw(HonroVisualStyle?.contextLike(ctx,cc)||cc,{...original,vector:{...original.vector,clips:{...original.vector.clips,'original-rim-domain':foregroundReference.clips['original-rim-domain']},root}},inst);replay[name]=cv;
+      if(['closure','paintedUnion'].includes(name))paintClosure(cc,inst,original.anchor,true);if(name==='join')paintJoin(cc,inst,original.anchor,true);if(root){if(!maskReplayVectors.has(name))maskReplayVectors.set(name,partVector({...original.vector,clips:{...original.vector.clips,'original-rim-domain':foregroundReference.clips['original-rim-domain']}},root));nativeDraw(HonroVisualStyle?.contextLike(ctx,cc)||cc,{...original,vector:maskReplayVectors.get(name)},inst);}replay[name]=cv;
      }sourceReplayTiles.set(ctx.canvas,replay);
     }
     const m=ctx.getTransform(),row={canvas:[ctx.canvas.width,ctx.canvas.height],matrix:[m.a,m.b,m.c,m.d,m.e,m.f],globalAlpha:ctx.globalAlpha,composite:ctx.globalCompositeOperation,filter:ctx.filter,placement:{x:inst.x,y:inst.y,scale:inst.scale,rotation:inst.rotation??0}};
