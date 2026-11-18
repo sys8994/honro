@@ -1,0 +1,449 @@
+{
+  "run": 44311959526,
+  "head": "ad44fae0b0dee056a594dc58ea883b1711205492",
+  "artifact": 14431875432,
+  "outerArtifactSHA256": "d82cc90cb469598677232ca04b6d53b8d534a118c61b436b4566311d47c7d30e",
+  "status": "SUCCESS",
+  "independentDownloadedZIPReview": "PASS",
+  "published": false,
+  "release-summary.json": {
+    "readyForParentReview": true,
+    "published": false,
+    "sourceCandidate": "a6f2935935eed559c3ecd27207d8d8a78a1ed22d",
+    "baseMaster": "5eb0381269868e501a1cd187d963ddb716cd2dc6",
+    "afterMaster": "5eb0381269868e501a1cd187d963ddb716cd2dc6",
+    "releaseTree": "749dc3403620e8291acf582302761bf6a0e4e89a",
+    "sourceFiles": [
+      {
+        "path": "shared/build.mjs",
+        "sha256": "1723baa38ab7b691f9b5a1bf9d9e42c2bba78c15d1fb6cb833ba43addda8d47b"
+      },
+      {
+        "path": "shared/runtime/renderer.js",
+        "sha256": "fcd75ad8580c3b43a374757a1436d3bebc18cc185c48068a704866a4cfcd1a43"
+      },
+      {
+        "path": "shared/runtime/terrain-readability.js",
+        "sha256": "74f29322fdf42edbe320db8e94774b65e24d268486e492e24cd164a5d0fc3ad6"
+      },
+      {
+        "path": "tools/map-forge/naru-body-finish.mjs",
+        "sha256": "24e50197a56d2e667edc4edaa10644c08e811098feb5c38a9c0109ed536b9692"
+      }
+    ],
+    "generated": [
+      {
+        "path": "HONRO.html",
+        "bytes": 17379,
+        "sha256": "6ddf82a5ca127e0355a981e8e21d41e2363984c0e4622633e1ea97994898a281",
+        "gitBlob": "53b4cf0696390b5309d93edece042f3a2b55e0e5"
+      },
+      {
+        "path": "HONRO_WORKSHOP.html",
+        "bytes": 4011,
+        "sha256": "e575e868a24b9e1bc9e371230620a27d5ec69fb945c55afa7ff046d1c50842ba",
+        "gitBlob": "2656dea9e83ce32f4dca568232fbb92156e94eb8"
+      },
+      {
+        "path": "index.html",
+        "bytes": 17379,
+        "sha256": "6ddf82a5ca127e0355a981e8e21d41e2363984c0e4622633e1ea97994898a281",
+        "gitBlob": "53b4cf0696390b5309d93edece042f3a2b55e0e5"
+      },
+      {
+        "path": "web/data/HONRO_STAGE11_COMPACT_DATA.b34ecfc98114cb9b.json",
+        "bytes": 2735626,
+        "sha256": "b34ecfc98114cb9bf17a937d713ef3a31547f21a4acc1275503c1186137a2370",
+        "gitBlob": "76698985d012881ff59828ccb213af9fcb9ccedc"
+      },
+      {
+        "path": "web/data/campaign.a629f3c78fdda249.json",
+        "bytes": 54865,
+        "sha256": "a629f3c78fdda24992c97ed6b06326b08944eb170f5a33b72c7ada18315bb371",
+        "gitBlob": "8d74d96a64ad6b7af5d2505dc03e971f92ce388f"
+      },
+      {
+        "path": "web/data/campaign.cbe42950bef06fb8.json",
+        "bytes": 49543,
+        "sha256": "cbe42950bef06fb80f1efb55741e19475a9bd04687d63ac2cfd43ab461ab8a2b",
+        "gitBlob": "ea14efa74d5368d50998b95fb757a1fc4d852d40"
+      },
+      {
+        "path": "web/data/campaign.f876f67fe414184f.json",
+        "bytes": 54885,
+        "sha256": "f876f67fe414184fb03931ecf6061d02440fae687631ae54d151286565b4a6cf",
+        "gitBlob": "2d5a0368bce31b5d4058ab93fd1ee2cdb58ee35d"
+      },
+      {
+        "path": "web/data/chapter-03-assets.7d50da94d4da1893.json",
+        "bytes": 554962,
+        "sha256": "7d50da94d4da1893009bf3718ed0f1d624d849e29ab715d21723cd2eff469148",
+        "gitBlob": "fb3857d7a96aaa29238b68ed6b732dd6c0d887fb"
+      },
+      {
+        "path": "web/data/chapter-33-assets.f64617ed1f410d0a.json",
+        "bytes": 3864811,
+        "sha256": "f64617ed1f410d0a791a4eabef20a0dfe289bb79f8c3d7d13b9e0dbde031eefc",
+        "gitBlob": "1e70930bae576812abe3625c3d120636bf776d16"
+      },
+      {
+        "path": "web/data/chapter-37.163987c80fde3c1f.json",
+        "bytes": 22388,
+        "sha256": "163987c80fde3c1fcc790f2ac907cc6f48c9f19653ba08d1e782b27b94fb33d0",
+        "gitBlob": "320014be60be1d9a7f7d4e05aff2bfdaa9da13be"
+      },
+      {
+        "path": "web/data/chapter-38.f0566f8bbced826c.json",
+        "bytes": 33179,
+        "sha256": "f0566f8bbced826c75f0f60fd07da3b565a95cbfd19f22f5ede312402a760d11",
+        "gitBlob": "98f1ec4f97f2baad9b415158eb2a494f8da09047"
+      },
+      {
+        "path": "web/data/chapter-39.99633000c43fc9ee.json",
+        "bytes": 34350,
+        "sha256": "99633000c43fc9eeee59a2fb5ecbb2583fdabb6574cbc5f68bd388739e72268c",
+        "gitBlob": "573a855e1a192c1d3af8a9bb0dedc5c7c1fabc3a"
+      },
+      {
+        "path": "web/entries/game.0001c0d1a3079be1.html",
+        "bytes": 11318,
+        "sha256": "0001c0d1a3079be17c9aa37e8237d8025cd13b4cb687975f3da77544dfbb2840",
+        "gitBlob": "ce0c1c111aaee0aba0b048beeb9e10d2a46c776b"
+      },
+      {
+        "path": "web/entries/game.0215f9b7f8c82cc1.html",
+        "bytes": 11318,
+        "sha256": "0215f9b7f8c82cc1e59f0dd431aa1aa02ff0bcf457b6ad6b1481441bfa3a4d75",
+        "gitBlob": "3a2b1f9e5030f6e8fe23c5c21fb0a0d948e96009"
+      },
+      {
+        "path": "web/entries/game.13479e16047c0b46.js",
+        "bytes": 20483,
+        "sha256": "13479e16047c0b468472ce290ece765dfe50e40a3ea2c443dd494e671edbe8d5",
+        "gitBlob": "761b791c0974f4c40d860651bd3a3c3ddf5a6b4e"
+      },
+      {
+        "path": "web/entries/game.1cf2db4d1987874b.js",
+        "bytes": 19962,
+        "sha256": "1cf2db4d1987874bc9f7c9c31d853e6bfa4cfcc649043cb5ccc52a0576a53f1a",
+        "gitBlob": "32b7b4eb6736bc7d31a06b2ccd4b01af33c9662a"
+      },
+      {
+        "path": "web/entries/game.21e74b3cd94dca44.js",
+        "bytes": 19962,
+        "sha256": "21e74b3cd94dca44ed4334478f9c51cf7f2845ad1dd4cbcc194fcc7d51080a74",
+        "gitBlob": "9e6813ecfa9b637fe82d1fe3073c674e1e29c885"
+      },
+      {
+        "path": "web/entries/game.2d70c65727e55550.html",
+        "bytes": 11318,
+        "sha256": "2d70c65727e555500d9d88dbb34d9c4a16a602bc77d206b529f74dad5813fcac",
+        "gitBlob": "c9cbca281b3a48138b3ac11ed94d3310d949c083"
+      },
+      {
+        "path": "web/entries/game.55c31c46bc75de64.js",
+        "bytes": 19962,
+        "sha256": "55c31c46bc75de646d9d0dac94365f7350b4fe8778eb577b07f014579cc53066",
+        "gitBlob": "8e8f68ab01c3f426cce8e5e08b14fa2924324d51"
+      },
+      {
+        "path": "web/entries/game.9975466719067f4a.html",
+        "bytes": 11318,
+        "sha256": "9975466719067f4a50a02bb481e1b55e83dc8d58d9cc13d8332d69f32493f420",
+        "gitBlob": "fd0145af9024206f987276090fb8d77525232ea5"
+      },
+      {
+        "path": "web/entries/game.bd647743213807e5.js",
+        "bytes": 20483,
+        "sha256": "bd647743213807e5c9e2fbb22a385a1c05f578de1ce1b092c3346a6382debd70",
+        "gitBlob": "ca01b10a119a36e18d26db687b6f1ce84eb16ccd"
+      },
+      {
+        "path": "web/entries/game.c7f1e186d1c165c9.js",
+        "bytes": 19962,
+        "sha256": "c7f1e186d1c165c9d874882d03962208eec22a42cf222b3fa0a905cb4bff21e4",
+        "gitBlob": "0b7003f284194287503ba643cd673eb8bdc166f9"
+      },
+      {
+        "path": "web/entries/game.edfbf9c8ab562142.html",
+        "bytes": 11318,
+        "sha256": "edfbf9c8ab5621425bd045cd1cff16ef25685f69100a927f9f5194b8f46f428d",
+        "gitBlob": "b2ef230a5bb934da345d8f6759785da208ba90db"
+      },
+      {
+        "path": "web/entries/game.f4dfb0c2c1274d81.html",
+        "bytes": 11318,
+        "sha256": "f4dfb0c2c1274d81a1891eca6dda75ae04a5f788c0239f8bde6646434c6c8fbb",
+        "gitBlob": "6ec0eb85e1fb5a33abc254d2cef56db031ba5b11"
+      },
+      {
+        "path": "web/entries/workshop.00c264a3bde30bfd.js",
+        "bytes": 16185,
+        "sha256": "00c264a3bde30bfd6ef64cffbef20ec78355717ad6baf05855ab59592c36cb68",
+        "gitBlob": "9fa9230948e2a62fc97c17ffa60593f744358375"
+      },
+      {
+        "path": "web/entries/workshop.208159c350d98602.js",
+        "bytes": 16706,
+        "sha256": "208159c350d98602f09cb4a2a914f6a7b1f7f36247876fe88250f36b1b915b9f",
+        "gitBlob": "391116f9ebfb555af5b1c8864fe2acaa5f13752d"
+      },
+      {
+        "path": "web/entries/workshop.7a4a39005814fc81.js",
+        "bytes": 16706,
+        "sha256": "7a4a39005814fc8174f3cfd3d918d2e3f3127bfc96e20c0d2c45a33e17b38863",
+        "gitBlob": "6c16d06fd4547d265a5affd127e6425998b0add3"
+      },
+      {
+        "path": "web/entries/workshop.c4eeeaf53b6a7049.js",
+        "bytes": 16185,
+        "sha256": "c4eeeaf53b6a7049c9a341d752581551ce43e93e6ffb92303f267248a7d006fc",
+        "gitBlob": "830877ea08d32380ec257cfeba1f33c2212eea68"
+      },
+      {
+        "path": "web/entries/workshop.d507394b40c919c1.js",
+        "bytes": 16185,
+        "sha256": "d507394b40c919c1389af85f83bddb3a8beeb5ec2c2ae4d8da3e2211bb71da50",
+        "gitBlob": "56a9dbe9fa825fb5cbf3349cc79f31ea53dc1763"
+      },
+      {
+        "path": "web/entries/workshop.eac04c28ab092ec6.js",
+        "bytes": 16185,
+        "sha256": "eac04c28ab092ec6b7be9980c1b4d8a9a4498fe66a193a7bde5f137554a55d65",
+        "gitBlob": "66b9632d515aea74c6bec7ffaf39f2cdcc647b13"
+      },
+      {
+        "path": "web/manifest.json",
+        "bytes": 10483727,
+        "sha256": "dfd96bc13ec7d11baf4c0c8296e7773b71a87eeb67dc99c004705b692e50477b",
+        "gitBlob": "a2c034fd8cacb264498eb3bdaacca0b368cfc378"
+      },
+      {
+        "path": "web/runtime/HONRO_STAGE11_COMPACT_DATA.4386ec1f8eb2e683.js",
+        "bytes": 203,
+        "sha256": "4386ec1f8eb2e683df4f7d0cdeb72f677e64ed42fcd0c35c91149c921f1e3c78",
+        "gitBlob": "e7226a9ae0f46aa3c433979a3eb001f189eaf4ed"
+      },
+      {
+        "path": "web/runtime/campaign.626e6e4e73a1f2a6.js",
+        "bytes": 527,
+        "sha256": "626e6e4e73a1f2a65be957d8c06b5a57430ec42cca836b04a3985439d2177ad8",
+        "gitBlob": "eb014cbf06c5051acf67b65bf14e2186391f3067"
+      },
+      {
+        "path": "web/runtime/campaign.68fc2f87d1710bb2.js",
+        "bytes": 527,
+        "sha256": "68fc2f87d1710bb24a492d5965b29ccb1147d467ee811274ab2260ab3dcaa86d",
+        "gitBlob": "dff4997c61bd7ba0c739d7001706345024dd7a51"
+      },
+      {
+        "path": "web/runtime/campaign.95828891fe63e8c4.js",
+        "bytes": 527,
+        "sha256": "95828891fe63e8c46f83ccb0866b665deccece80f4bf515fcc81c5a2d14afc42",
+        "gitBlob": "de71ac9d0ec031f05dec010c19a349e379c37725"
+      },
+      {
+        "path": "web/runtime/ordered-common-10.090f19f045c272a2.js",
+        "bytes": 182928,
+        "sha256": "090f19f045c272a22310da1009844670558ced002af11ea0f9235fdf2c70909e",
+        "gitBlob": "cbbf0bef7fcd2fb6adab4c4c2fc5649055168411"
+      },
+      {
+        "path": "web/runtime/ordered-common-10.2404fc8b5caebac1.js",
+        "bytes": 183284,
+        "sha256": "2404fc8b5caebac1247c6050079c943179824b646f5bd34ac64fb38112ee5b91",
+        "gitBlob": "27aa6532aefaeb96d0256e63c202dc9cc22ac43f"
+      },
+      {
+        "path": "web/runtime/ordered-common-15.4e089023dc2dde90.js",
+        "bytes": 157147,
+        "sha256": "4e089023dc2dde909e65acaee076b82a48d488a920c08c997c8e6a3cb5f5d11a",
+        "gitBlob": "4b917aef98528bc9c1577f88fcf6cefd2e62722b"
+      },
+      {
+        "path": "web/runtime/ordered-common-16.3e6503a9399b9ccf.js",
+        "bytes": 175834,
+        "sha256": "3e6503a9399b9ccf9275bb103fcba75a5091e879aa5c1dcdb76ddf0fafd480a1",
+        "gitBlob": "16778524fa48734c5fb0886df2641a5887c2ba0a"
+      },
+      {
+        "path": "web/runtime/ordered-common-4.49998bdb321a9cf6.js",
+        "bytes": 179334,
+        "sha256": "49998bdb321a9cf65d0e4a8d50a28c505df0862629a00b1bdc74a0309f60970c",
+        "gitBlob": "5ae78be3a3439fcaebfe0d16b97fe4bf33b8978c"
+      },
+      {
+        "path": "web/runtime/ordered-common-5.5df8ed1dd79a2acd.js",
+        "bytes": 177017,
+        "sha256": "5df8ed1dd79a2acd949d39dfbab3c695214e469df34eb152509ff564ba10d183",
+        "gitBlob": "46016ea3b312a982e1c55aebff3cf898dfb639ce"
+      },
+      {
+        "path": "web/runtime/ordered-common-5.f171a02fe591e380.js",
+        "bytes": 177119,
+        "sha256": "f171a02fe591e380da827b60572f52c1826321393d9d750e63be682b89c87be4",
+        "gitBlob": "98a6c419ab618a5557f0ace92f27bd8d833130ba"
+      },
+      {
+        "path": "web/runtime/ordered-common-8.5da3c854b9cd7bc5.js",
+        "bytes": 182519,
+        "sha256": "5da3c854b9cd7bc55bf553af2ebeb8f56c00f8722ddc19a67f780500a1eea5f8",
+        "gitBlob": "1054516b5a21d6e54e8211c406f5b373f4fe7ee4"
+      },
+      {
+        "path": "web/runtime/ordered-common-8.e9ebe12e1a8ecbf6.js",
+        "bytes": 181940,
+        "sha256": "e9ebe12e1a8ecbf6b08ce92e4526dd573cfa0481a4eb7ce6eff2b6aa55c184bc",
+        "gitBlob": "97fda7fe8860daca6d6d71f01e72a1becf3c74d3"
+      },
+      {
+        "path": "web/runtime/ordered-common-9.79014ce6dee3f0c0.js",
+        "bytes": 185959,
+        "sha256": "79014ce6dee3f0c0efa03a6ee9b9638d1fe312cb4c0b04ce882b9120666b2031",
+        "gitBlob": "66a5d5a29ee74d49267b3d8b0f105ab1967f4656"
+      },
+      {
+        "path": "web/runtime/ordered-common-9.9e032d16c62ea273.js",
+        "bytes": 187067,
+        "sha256": "9e032d16c62ea273d3ed391a8412ebeba6579ffafbc82d2130d6dbd5bbb7aa3d",
+        "gitBlob": "b0a4e7e55ace830db30058db7f49db1b7235c7fd"
+      },
+      {
+        "path": "web/runtime/ordered-game-20.95ed8721dd2d98ba.js",
+        "bytes": 72881,
+        "sha256": "95ed8721dd2d98badcf4ae45a028a9cb336b2049cfda1e375b3b98b9ec120e91",
+        "gitBlob": "46bfe65d7158a6594bff64794bd47c5a1407e20d"
+      },
+      {
+        "path": "web/runtime/ordered-game-22.c9b74959e7e0b91b.js",
+        "bytes": 92126,
+        "sha256": "c9b74959e7e0b91be9366d779a412bdfba54fe67f751899bdbc3164d45459221",
+        "gitBlob": "3ed43c8c3f7929f7b9ae34b01d9c73e44885d96e"
+      },
+      {
+        "path": "web/runtime/ordered-game-23.0cd2da7856168a15.js",
+        "bytes": 178866,
+        "sha256": "0cd2da7856168a15ba6613186449320c8cbb73204189a59050309ca74fc0bfeb",
+        "gitBlob": "e4b5a70b43bf8679db1fcefaa894d93d610dee3f"
+      },
+      {
+        "path": "web/runtime/ordered-game-23.59392cf001a5e330.js",
+        "bytes": 178314,
+        "sha256": "59392cf001a5e3306d21f072895ac69fa93b9a71f406272eaa02384ad2e93929",
+        "gitBlob": "a608902f5c8a10125d6a987eacab959cec5ebe29"
+      }
+    ],
+    "restoredOfficialPruning": [
+      "web/entries/game.132f0e64096b4e79.js",
+      "web/entries/game.ba960f8571ac4d91.html",
+      "web/entries/workshop.a6d88efc0960b131.js",
+      "web/runtime/ordered-common-9.eb30795622f04172.js"
+    ],
+    "verifiedGraphRecords": 49804,
+    "publishedGraphs": 62,
+    "releaseDiffPaths": [
+      "HONRO.html",
+      "HONRO_WORKSHOP.html",
+      "index.html",
+      "shared/build.mjs",
+      "shared/runtime/renderer.js",
+      "shared/runtime/terrain-readability.js",
+      "tools/map-forge/naru-body-finish.mjs",
+      "web/data/HONRO_STAGE11_COMPACT_DATA.b34ecfc98114cb9b.json",
+      "web/data/campaign.a629f3c78fdda249.json",
+      "web/data/campaign.cbe42950bef06fb8.json",
+      "web/data/campaign.f876f67fe414184f.json",
+      "web/data/chapter-03-assets.7d50da94d4da1893.json",
+      "web/data/chapter-33-assets.f64617ed1f410d0a.json",
+      "web/data/chapter-37.163987c80fde3c1f.json",
+      "web/data/chapter-38.f0566f8bbced826c.json",
+      "web/data/chapter-39.99633000c43fc9ee.json",
+      "web/entries/game.0001c0d1a3079be1.html",
+      "web/entries/game.0215f9b7f8c82cc1.html",
+      "web/entries/game.13479e16047c0b46.js",
+      "web/entries/game.1cf2db4d1987874b.js",
+      "web/entries/game.21e74b3cd94dca44.js",
+      "web/entries/game.2d70c65727e55550.html",
+      "web/entries/game.55c31c46bc75de64.js",
+      "web/entries/game.9975466719067f4a.html",
+      "web/entries/game.bd647743213807e5.js",
+      "web/entries/game.c7f1e186d1c165c9.js",
+      "web/entries/game.edfbf9c8ab562142.html",
+      "web/entries/game.f4dfb0c2c1274d81.html",
+      "web/entries/workshop.00c264a3bde30bfd.js",
+      "web/entries/workshop.208159c350d98602.js",
+      "web/entries/workshop.7a4a39005814fc81.js",
+      "web/entries/workshop.c4eeeaf53b6a7049.js",
+      "web/entries/workshop.d507394b40c919c1.js",
+      "web/entries/workshop.eac04c28ab092ec6.js",
+      "web/manifest.json",
+      "web/runtime/HONRO_STAGE11_COMPACT_DATA.4386ec1f8eb2e683.js",
+      "web/runtime/campaign.626e6e4e73a1f2a6.js",
+      "web/runtime/campaign.68fc2f87d1710bb2.js",
+      "web/runtime/campaign.95828891fe63e8c4.js",
+      "web/runtime/ordered-common-10.090f19f045c272a2.js",
+      "web/runtime/ordered-common-10.2404fc8b5caebac1.js",
+      "web/runtime/ordered-common-15.4e089023dc2dde90.js",
+      "web/runtime/ordered-common-16.3e6503a9399b9ccf.js",
+      "web/runtime/ordered-common-4.49998bdb321a9cf6.js",
+      "web/runtime/ordered-common-5.5df8ed1dd79a2acd.js",
+      "web/runtime/ordered-common-5.f171a02fe591e380.js",
+      "web/runtime/ordered-common-8.5da3c854b9cd7bc5.js",
+      "web/runtime/ordered-common-8.e9ebe12e1a8ecbf6.js",
+      "web/runtime/ordered-common-9.79014ce6dee3f0c0.js",
+      "web/runtime/ordered-common-9.9e032d16c62ea273.js",
+      "web/runtime/ordered-game-20.95ed8721dd2d98ba.js",
+      "web/runtime/ordered-game-22.c9b74959e7e0b91b.js",
+      "web/runtime/ordered-game-23.0cd2da7856168a15.js",
+      "web/runtime/ordered-game-23.59392cf001a5e330.js"
+    ],
+    "remoteWrites": false,
+    "limitations": [
+      "Local tree and artifact only; not committed or deployed",
+      "Existing K QA evidence applies to unchanged source; generated graph checked separately"
+    ]
+  },
+  "artifact-checksum.json": {
+    "file": "release-delta.zip",
+    "bytes": 6434424,
+    "sha256": "d514ad418861c6094462e197ca075526966bee790287f5c6ae9f41c87ead2edc",
+    "published": false
+  },
+  "post-test-identity.json": {
+    "passed": true,
+    "releaseTree": "749dc3403620e8291acf582302761bf6a0e4e89a",
+    "source4AndGeneratedHashesExact": true,
+    "master": "5eb0381269868e501a1cd187d963ddb716cd2dc6",
+    "published": false
+  },
+  "baseline-current-graph.json": {
+    "passed": true,
+    "files": 809,
+    "stages": 50,
+    "assets": 1102,
+    "checks": [
+      "Every current file byte/hash/name",
+      "JSON part byte/hash/total",
+      "Exact ordered shared/stage/compat/editor library and native full project",
+      "Native and embedded title",
+      "Embedded storage preservation",
+      "Direct Workshop iframe"
+    ],
+    "productionSourceChanged": false
+  },
+  "candidate-current-graph.json": {
+    "passed": true,
+    "files": 809,
+    "stages": 50,
+    "assets": 1102,
+    "checks": [
+      "Every current file byte/hash/name",
+      "JSON part byte/hash/total",
+      "Exact ordered shared/stage/compat/editor library and native full project",
+      "Native and embedded title",
+      "Embedded storage preservation",
+      "Direct Workshop iframe"
+    ],
+    "productionSourceChanged": false
+  }
+}
