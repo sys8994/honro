@@ -1,0 +1,40 @@
+name: Stage3 right walking edge high DPR supplement
+on:
+  workflow_dispatch:
+  push:
+    branches: [inspect/stage32-scanline-20261118, inspect/stage37-master-isolated-20261118, inspect/stage3-master-isolated-20261118]
+    paths: ['tools/testing/stage3-E-rightwalk-extra/**', '.github/workflows/stage3-E-rightwalk-extra.yml']
+permissions: {contents: read}
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with: {path: study}
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with: {path: baseline, ref: 5b2edf0b868a6f4ab656574b036586304eb12808}
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with: {path: candidate, ref: abdef6fc12042714f02d8ea2bf3b2c80757273f0, fetch-depth: 2}
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with: {node-version: '22', package-manager-cache: false}
+      - run: |
+          for d in baseline candidate; do (cd "$d" && npm ci && npm ci --prefix game); done
+          mkdir -p artifacts
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';import assert from 'node:assert/strict';
+          for(const key of Object.keys(process.env))assert(!key.startsWith('HONRO_'),'Unexpected product override '+key);
+          const rows=[];for(const checkout of ['baseline','candidate']){const policy=JSON.parse(fs.readFileSync(checkout+'/game/config/story-release.json'));assert.equal(policy.act4,true);assert.equal(policy.act5,true);rows.push({checkout,policy,appTrueDefaultEnabled:true,forcedEnvironment:false});}
+          fs.writeFileSync('artifacts/default-release-policy.json',JSON.stringify(rows,null,2));
+          JS
+      - name: Paired actual right walking edge Scenes
+        run: |
+          mkdir -p artifacts/evidence
+          for d in baseline candidate; do
+            node study/tools/testing/stage3-E-rightwalk-extra/fixture.mjs "$d" "$RUNNER_TEMP/$d-scene" "$d"
+            node study/tools/testing/stage3-E-rightwalk-extra/run.mjs "$RUNNER_TEMP/$d-scene" artifacts/evidence
+          done
+          node study/tools/testing/stage3-E-rightwalk-extra/check.mjs artifacts/evidence
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with: {name: stage3-E-rightwalk-extra, path: artifacts, if-no-files-found: error}
