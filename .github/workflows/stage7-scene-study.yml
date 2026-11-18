@@ -37,7 +37,7 @@ jobs:
           node game/tools/stage7-scene-study/fixture.mjs "$RUNNER_TEMP/stage7-scenes"
           mkdir -p artifacts/stage7-scene-study
           cp "$RUNNER_TEMP/stage7-scenes/source-adapter-contract.json" artifacts/stage7-scene-study/
-      - name: Render five controlled variants at three constrained cameras
+      - name: Render controls or six art variants at constrained cameras
         run: |
           export CHROME_BIN="$(command -v google-chrome || command -v chromium)"
           node game/tools/stage7-scene-study/run.mjs "$RUNNER_TEMP/stage7-scenes" artifacts/stage7-scene-study
@@ -51,6 +51,9 @@ jobs:
       - name: Independent closure source-over
         if: ${{ always() && matrix.controls == '0' }}
         run: python game/tools/stage7-scene-study/closure-check.py
+      - name: Explicit narrow nonwalk join scope and independent expected composite
+        if: ${{ always() && matrix.controls == '0' }}
+        run: python game/tools/stage7-scene-study/joined-check.py
       - name: Production sources remain unchanged
         if: always()
         run: git diff --exit-code -- shared tools/map-forge
