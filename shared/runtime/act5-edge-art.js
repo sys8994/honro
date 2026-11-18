@@ -209,7 +209,18 @@ function prepare(scene,l){
  scene._releaseRasterCanvas(src);
  return scene._act5Edge={asset:a,canvas:cv,pad:pad/r,w:cv.width/r,h:cv.height/r};
 }
+// Separate immutable foundation asset preserves prior 44 save signatures and art.
+const stage44FoundationParts=new WeakMap();
+function singleAlpha44(asset){
+ let p=stage44FoundationParts.get(asset);if(p)return p;
+ const copy=n=>{const q={...n};if(q.clipPath==='native-source-alpha')delete q.clipPath;if(q.children)q.children=q.children.map(copy);return q;};
+ p={asset:{...asset,vector:{...asset.vector,root:copy(asset.vector.root)}},mask:new Path2D(asset.vector.clips['native-source-alpha'].join(' '))};stage44FoundationParts.set(asset,p);return p;
+}
 S.landmark=function(c,l){
+ if(l.asset?.id==='act5:foundation:44:v1'&&!l.rotation){
+  const a=l.asset,z=l.scale??1,V=G.HonroVisualStyle,cc=V?V.context(c,V.classify(l,this.battle,a)==='gameplay'?'gameplay':V.depth(l,a)):c,p=singleAlpha44(a);
+  cc.save();try{cc.translate(l.x,l.y);cc.scale(z,z);stage45Body(this,cc,p.asset,p.mask);}finally{cc.restore();}return;
+ }
  if(l.asset?.id==='act5:near:48'&&l.asset.continuousBody&&!l.rotation){
  const a=l.asset,z=l.scale??1,V=G.HonroVisualStyle,cc=V?V.context(c,V.classify(l,this.battle,a)==='gameplay'?'gameplay':V.depth(l,a)):c;
  let parts=stage48Parts.get(a);if(!parts){
@@ -259,7 +270,7 @@ S.landmark=function(c,l){
 
  if(l.asset?.id==='act5:near:44'&&l.asset.rootExterior&&!l.rotation){
   const V=G.HonroVisualStyle,cc=V?V.context(c,V.classify(l,this.battle,l.asset)==='gameplay'?'gameplay':V.depth(l,l.asset)):c,z=l.scale??1;
-  cc.save();cc.translate(l.x,l.y);cc.scale(z,z);G.HonroVectorArt.draw(cc,l.asset.rootExterior,{x:0,y:0,scale:1});cc.restore();
+  cc.save();cc.translate(l.x,l.y);cc.scale(z,z);const rootPart=singleAlpha44(l.asset.rootExterior);stage45Body(this,cc,rootPart.asset,rootPart.mask);cc.restore();
   cc.save();cc.translate(l.x,l.y);cc.scale(z,z);let upper=stage44Parts.get(l.asset);if(!upper){upper={...l.asset,vector:{...l.asset.vector,clips:{...l.asset.vector.clips,a:l.asset.rootUpperClip}}};stage44Parts.set(l.asset,upper);}G.HonroVectorArt.draw(cc,upper,{x:0,y:0,scale:1});if(l.asset.upperCanopy)G.HonroVectorArt.draw(cc,l.asset.upperCanopy,{x:0,y:0,scale:1});cc.restore();return;
  }
 
@@ -298,8 +309,8 @@ S._drawTerrainDomainTiles=function(c,b,w,h){
  const left=Math.floor(d.left/size)*size,top=Math.floor(d.top/size)*size,right=(Math.floor(d.right/size)+1)*size,bottom=(Math.floor(d.bottom/size)+1)*size;
  if(v.left>=left&&v.right<=right&&v.top>=top&&v.bottom<=bottom)return;
  c.save();c.beginPath();c.rect(v.left-1,v.top-1,v.right-v.left+2,v.bottom-v.top+2);// Stage43 exterior coverage must share the domain tiles' rounded device edge.
- if([43,48,49,50].includes(b.honroStage)){const m=c.getTransform();if(m.b===0&&m.c===0&&m.a!==0&&m.d!==0){const sx=Math.round(left*m.a+m.e),sy=Math.round(top*m.d+m.f),ex=Math.round(right*m.a+m.e),ey=Math.round(bottom*m.d+m.f);c.rect((sx-m.e)/m.a,(sy-m.f)/m.d,(ex-sx)/m.a,(ey-sy)/m.d);}else c.rect(left,top,right-left,bottom-top);}else c.rect(left,top,right-left,bottom-top);c.clip('evenodd');
- for(const l of G.HonroTerrainDomain.materialLandmarks(b))if(l.asset?.id==='act5:near:'+b.honroStage)this.landmark(c,l);
+ if([43,44,48,49,50].includes(b.honroStage)){const m=c.getTransform();if(m.b===0&&m.c===0&&m.a!==0&&m.d!==0){const sx=Math.round(left*m.a+m.e),sy=Math.round(top*m.d+m.f),ex=Math.round(right*m.a+m.e),ey=Math.round(bottom*m.d+m.f);c.rect((sx-m.e)/m.a,(sy-m.f)/m.d,(ex-sx)/m.a,(ey-sy)/m.d);}else c.rect(left,top,right-left,bottom-top);}else c.rect(left,top,right-left,bottom-top);c.clip('evenodd');
+ for(const l of G.HonroTerrainDomain.materialLandmarks(b))if(l.asset?.id==='act5:near:'+b.honroStage||(b.honroStage===44&&l.asset?.id==='act5:foundation:44:v1'))this.landmark(c,l);
  c.restore();
 };
 const readability=S.terrainReadability;
@@ -311,3 +322,4 @@ S.terrainReadability=function(c,b,view){
 };
 G.HonroAct5EdgeArt={version:3};
 })(globalThis);
+

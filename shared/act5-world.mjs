@@ -113,7 +113,8 @@ export async function makeAct5(){
  const stage48Body=JSON.parse(await readFile(new URL('./assets/environment/act5/stage48-continuous-v11-bleed.json',import.meta.url),'utf8'));
  const stage45Body=JSON.parse(await readFile(new URL('./assets/environment/act5/stage45-root-body.json',import.meta.url),'utf8'));
  const stage44Roots=JSON.parse(await readFile(new URL('./assets/environment/act5/stage44-root-exterior.json',import.meta.url),'utf8'));
- const library=[],stages=[],content=[];
+ const stage44Foundation=JSON.parse(await readFile(new URL('./assets/environment/act5/stage44-foundation-v1.json',import.meta.url),'utf8'));
+ const library=[stage44Foundation],stages=[],content=[];
  for(const [i,chapter] of chapters.entries()){
   const id=41+i,source=imports[i],g=terrain[i];
   if(source.id!==id||!(/^[0-9a-f]{64}$/).test(source.sha256))throw Error('Invalid Act 5 terrain provenance '+id);
@@ -220,7 +221,7 @@ export async function makeAct5(){
    metadata:{stageId:id,act:5,actStage:i+1,campaign:true},layers:layerIds.map(id=>({id,name:id,visible:true,locked:false})),
    terrainDomainVersion:1,playBounds:{left:0,top:0,right:g.width,bottom:height},
    terrainBounds:{left:-1800,top:-2400,right:g.width+1800,bottom:height+2200},
-   terrains:surfaces,materials:[],elements:[{id:'a5-near',assetId,x:0,y:0,scale:artworkScale,rotation:0,layer:'structural-back',depthLayer:'L1',visualRole:'scenery'}],
+   terrains:surfaces,materials:[],elements:[...(id===44?[{id:'a5-root-foundation-v1',assetId:stage44Foundation.id,x:0,y:0,scale:artworkScale,rotation:0,layer:'structural-back',depthLayer:'L1',visualRole:'scenery'}]:[]),{id:'a5-near',assetId,x:0,y:0,scale:artworkScale,rotation:0,layer:'structural-back',depthLayer:'L1',visualRole:'scenery'}],
    units,events:[],encounters:[],objectives,markers:marks,anchors:{spawn:start,exit},
    environment:{version:4,preset:enclosed?'enclosed':'forest',atmosphere:{preset:enclosed?'enclosed':chapter.theme==='gate'?'burned':'forest'},groups:[],surfaces:[],zones:[{id:'a5-depth',from:0,to:height,blend:300}],placements:[],skyVisible:clock[id].sky},
    meta:{notes:name,seed:5100+i},design:{act5:{encounterVersion:spec.encounterVersion??4,sites,links,groups,required,waves,
@@ -233,3 +234,4 @@ export async function makeAct5(){
  }
  return {name,library,stages,content};
 }
+
