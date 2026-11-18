@@ -1,0 +1,1090 @@
+{
+  "run": 44285548348,
+  "runStatus": "failure",
+  "researchCommit": "7030338f8060c6d98b24b4f26506def8e1c4e8a6",
+  "baseline": "bea9a71ef22a4116e403dc747e521416c736b103",
+  "candidate": "fdac97818c09536f5d0057181d04fbd60d48df18",
+  "artifact": 14418154604,
+  "zipSHA256": "872db9cfd062affa54a5ffcf7f6fd9286215e23959185a8f3ef0f848f702625c",
+  "baselineAll50": [
+    {
+      "id": 1,
+      "full": "5c473ae6ce15323a7c6526173dc10bce93b6bd1faa439ae9a9bb8a300c8b4c70",
+      "onlyStage3ArtworkNormalized": "5c473ae6ce15323a7c6526173dc10bce93b6bd1faa439ae9a9bb8a300c8b4c70",
+      "roundtripExact": true,
+      "packedBytes": 397546
+    },
+    {
+      "id": 2,
+      "full": "cad28c866e3557bd8f40e22c4982c807d5c9234910c5e87ee24795deb85e1650",
+      "onlyStage3ArtworkNormalized": "cad28c866e3557bd8f40e22c4982c807d5c9234910c5e87ee24795deb85e1650",
+      "roundtripExact": true,
+      "packedBytes": 625059
+    },
+    {
+      "id": 3,
+      "full": "75affd930c0dceb24a7d37e3298f80894a455adf48c128cd3050a1aff7be7e3a",
+      "onlyStage3ArtworkNormalized": "aa6df98f07bc16b0aeb379cd8bd3e3f95b90c72524f9b8d027a93873a8ebf907",
+      "roundtripExact": true,
+      "packedBytes": 1153748
+    },
+    {
+      "id": 4,
+      "full": "56e721ea09d50b47dcaa37613fae1db1077d4b803395be481174eb5cf0e918de",
+      "onlyStage3ArtworkNormalized": "56e721ea09d50b47dcaa37613fae1db1077d4b803395be481174eb5cf0e918de",
+      "roundtripExact": true,
+      "packedBytes": 314986
+    },
+    {
+      "id": 5,
+      "full": "3c3c1e600f05dccba53c29c7950460ecc5870e38e5f550cac8d507d71f978758",
+      "onlyStage3ArtworkNormalized": "3c3c1e600f05dccba53c29c7950460ecc5870e38e5f550cac8d507d71f978758",
+      "roundtripExact": true,
+      "packedBytes": 331791
+    },
+    {
+      "id": 6,
+      "full": "0ce2483cae596410c0e1f83ecffb5a60a5837b520f2545af7cd326ea24e19e28",
+      "onlyStage3ArtworkNormalized": "0ce2483cae596410c0e1f83ecffb5a60a5837b520f2545af7cd326ea24e19e28",
+      "roundtripExact": true,
+      "packedBytes": 1951245
+    },
+    {
+      "id": 7,
+      "full": "af8e03d794d30ce9b7cd492c860672d9c0c4d7d2b7f7aded407958f5052e9048",
+      "onlyStage3ArtworkNormalized": "af8e03d794d30ce9b7cd492c860672d9c0c4d7d2b7f7aded407958f5052e9048",
+      "roundtripExact": true,
+      "packedBytes": 2051931
+    },
+    {
+      "id": 8,
+      "full": "54e728c7b93d06b1a79771c52bf4a336e050bfa99ad8346e69d1aaab495357cc",
+      "onlyStage3ArtworkNormalized": "54e728c7b93d06b1a79771c52bf4a336e050bfa99ad8346e69d1aaab495357cc",
+      "roundtripExact": true,
+      "packedBytes": 525571
+    },
+    {
+      "id": 9,
+      "full": "e151017b745649f9e6e8966fe7e7f0922e8e422a439d995d312b24fc4ea5412d",
+      "onlyStage3ArtworkNormalized": "e151017b745649f9e6e8966fe7e7f0922e8e422a439d995d312b24fc4ea5412d",
+      "roundtripExact": true,
+      "packedBytes": 261854
+    },
+    {
+      "id": 10,
+      "full": "219536fd0c4652ba1ee879894802c53ac55b3fe4ceef9001fcc447a34d7593f9",
+      "onlyStage3ArtworkNormalized": "219536fd0c4652ba1ee879894802c53ac55b3fe4ceef9001fcc447a34d7593f9",
+      "roundtripExact": true,
+      "packedBytes": 594539
+    },
+    {
+      "id": 11,
+      "full": "17c6a4de0c5714d9ac56b4777eb94997ceadb7c7d181dabf501a527f3e71e24b",
+      "onlyStage3ArtworkNormalized": "17c6a4de0c5714d9ac56b4777eb94997ceadb7c7d181dabf501a527f3e71e24b",
+      "roundtripExact": true,
+      "packedBytes": 2138824
+    },
+    {
+      "id": 12,
+      "full": "8a12f735f5be5ae8bd804e7586a598da09afa2b6d6d7c95fa7a5c8140b584203",
+      "onlyStage3ArtworkNormalized": "8a12f735f5be5ae8bd804e7586a598da09afa2b6d6d7c95fa7a5c8140b584203",
+      "roundtripExact": true,
+      "packedBytes": 1790190
+    },
+    {
+      "id": 13,
+      "full": "c59f59507f289d40f06819ead2392e3e2ec93f8c50391fdf4b6f49fe6ec903bb",
+      "onlyStage3ArtworkNormalized": "c59f59507f289d40f06819ead2392e3e2ec93f8c50391fdf4b6f49fe6ec903bb",
+      "roundtripExact": true,
+      "packedBytes": 625527
+    },
+    {
+      "id": 14,
+      "full": "afce12b838a9bba9586b60c157413b8eda7d1630d613dce8ce893e838cae167e",
+      "onlyStage3ArtworkNormalized": "afce12b838a9bba9586b60c157413b8eda7d1630d613dce8ce893e838cae167e",
+      "roundtripExact": true,
+      "packedBytes": 855172
+    },
+    {
+      "id": 15,
+      "full": "4d21c5157a4bb1ec8d710aa623a92fd1988d76eb985c8e0dd27e94f9238c34b6",
+      "onlyStage3ArtworkNormalized": "4d21c5157a4bb1ec8d710aa623a92fd1988d76eb985c8e0dd27e94f9238c34b6",
+      "roundtripExact": true,
+      "packedBytes": 344716
+    },
+    {
+      "id": 16,
+      "full": "b8ea42540e0d5360361e7118049c57dca5f1ef50f9b78ca1d05b756414ef0950",
+      "onlyStage3ArtworkNormalized": "b8ea42540e0d5360361e7118049c57dca5f1ef50f9b78ca1d05b756414ef0950",
+      "roundtripExact": true,
+      "packedBytes": 468432
+    },
+    {
+      "id": 17,
+      "full": "b42e0e2e58944e39254b3e91f0512cbef66131e8f25caa65cdd8dd582df9d200",
+      "onlyStage3ArtworkNormalized": "b42e0e2e58944e39254b3e91f0512cbef66131e8f25caa65cdd8dd582df9d200",
+      "roundtripExact": true,
+      "packedBytes": 1163029
+    },
+    {
+      "id": 18,
+      "full": "5ceee3a8956246b985809f7980ae28dcea85844747b983cf6dd8e36e73b03d4a",
+      "onlyStage3ArtworkNormalized": "5ceee3a8956246b985809f7980ae28dcea85844747b983cf6dd8e36e73b03d4a",
+      "roundtripExact": true,
+      "packedBytes": 807840
+    },
+    {
+      "id": 19,
+      "full": "3d5485d7168aefc94d85c419d2d239ba5fea8b90788a297d171a01f26436aafe",
+      "onlyStage3ArtworkNormalized": "3d5485d7168aefc94d85c419d2d239ba5fea8b90788a297d171a01f26436aafe",
+      "roundtripExact": true,
+      "packedBytes": 803842
+    },
+    {
+      "id": 20,
+      "full": "4aff7ad2e16e54d513a9a1a31fa656da30f277d13e2106c8e506e966bf0e5139",
+      "onlyStage3ArtworkNormalized": "4aff7ad2e16e54d513a9a1a31fa656da30f277d13e2106c8e506e966bf0e5139",
+      "roundtripExact": true,
+      "packedBytes": 1338787
+    },
+    {
+      "id": 21,
+      "full": "66bb236c1e2042ec0d3022f20cc225f8bee408c65e93ecada4dc67a8de0d0f92",
+      "onlyStage3ArtworkNormalized": "66bb236c1e2042ec0d3022f20cc225f8bee408c65e93ecada4dc67a8de0d0f92",
+      "roundtripExact": true,
+      "packedBytes": 1101441
+    },
+    {
+      "id": 22,
+      "full": "cef01066512b88888471fe0f8b94267971c0f7aaa2c8c27dbb3db9a8f401cd9e",
+      "onlyStage3ArtworkNormalized": "cef01066512b88888471fe0f8b94267971c0f7aaa2c8c27dbb3db9a8f401cd9e",
+      "roundtripExact": true,
+      "packedBytes": 861471
+    },
+    {
+      "id": 23,
+      "full": "27343fb500fa3108ce1796c07c630631e600b2b6e93acbf34cf5a664f72024e2",
+      "onlyStage3ArtworkNormalized": "27343fb500fa3108ce1796c07c630631e600b2b6e93acbf34cf5a664f72024e2",
+      "roundtripExact": true,
+      "packedBytes": 514972
+    },
+    {
+      "id": 24,
+      "full": "b9d87c0276e14f8a38cbb4625ba26d841edb2672377f90bd7ba232e3144c05a6",
+      "onlyStage3ArtworkNormalized": "b9d87c0276e14f8a38cbb4625ba26d841edb2672377f90bd7ba232e3144c05a6",
+      "roundtripExact": true,
+      "packedBytes": 458677
+    },
+    {
+      "id": 25,
+      "full": "886a4a1a56ea572f205a70870bf0330d73cdbfaff7ac3abf59439a79edd91e90",
+      "onlyStage3ArtworkNormalized": "886a4a1a56ea572f205a70870bf0330d73cdbfaff7ac3abf59439a79edd91e90",
+      "roundtripExact": true,
+      "packedBytes": 425576
+    },
+    {
+      "id": 26,
+      "full": "f0ac313d72fba67e1d402270a5e7ff99623d716bccc025ae1182ff21f6bdce9f",
+      "onlyStage3ArtworkNormalized": "f0ac313d72fba67e1d402270a5e7ff99623d716bccc025ae1182ff21f6bdce9f",
+      "roundtripExact": true,
+      "packedBytes": 252142
+    },
+    {
+      "id": 27,
+      "full": "ae8f5ec3e2caf3e709ce197de8d4c97c03b0585213f53add59e793de04082071",
+      "onlyStage3ArtworkNormalized": "ae8f5ec3e2caf3e709ce197de8d4c97c03b0585213f53add59e793de04082071",
+      "roundtripExact": true,
+      "packedBytes": 496859
+    },
+    {
+      "id": 28,
+      "full": "7176ca7e0094097c9251566059491488a8ffb075dff18a6c3db584bbfe90cad4",
+      "onlyStage3ArtworkNormalized": "7176ca7e0094097c9251566059491488a8ffb075dff18a6c3db584bbfe90cad4",
+      "roundtripExact": true,
+      "packedBytes": 309687
+    },
+    {
+      "id": 29,
+      "full": "715ab651667e23b0d1a1c4d48e78016917c74341f65f609b34444590002092ee",
+      "onlyStage3ArtworkNormalized": "715ab651667e23b0d1a1c4d48e78016917c74341f65f609b34444590002092ee",
+      "roundtripExact": true,
+      "packedBytes": 247230
+    },
+    {
+      "id": 30,
+      "full": "32256842294128fb16fdd4128a5c85bce4cb775047775bfbbcf4cc45d4cc3809",
+      "onlyStage3ArtworkNormalized": "32256842294128fb16fdd4128a5c85bce4cb775047775bfbbcf4cc45d4cc3809",
+      "roundtripExact": true,
+      "packedBytes": 493576
+    },
+    {
+      "id": 31,
+      "full": "1e072c2503b445fecb40f76a20e3feb58d96bda837ebfbb19f745f717364f2df",
+      "onlyStage3ArtworkNormalized": "1e072c2503b445fecb40f76a20e3feb58d96bda837ebfbb19f745f717364f2df",
+      "roundtripExact": true,
+      "packedBytes": 99544
+    },
+    {
+      "id": 32,
+      "full": "8edaab917d69e9ff82ee0c1a8214d492eb26b396b6356134b042845d70f64c37",
+      "onlyStage3ArtworkNormalized": "8edaab917d69e9ff82ee0c1a8214d492eb26b396b6356134b042845d70f64c37",
+      "roundtripExact": true,
+      "packedBytes": 53848
+    },
+    {
+      "id": 33,
+      "full": "b9faa650ed3a74913ebf13be80e13654c67d03aadf7da92fc7dc124d13d798b5",
+      "onlyStage3ArtworkNormalized": "b9faa650ed3a74913ebf13be80e13654c67d03aadf7da92fc7dc124d13d798b5",
+      "roundtripExact": true,
+      "packedBytes": 92350
+    },
+    {
+      "id": 34,
+      "full": "c251c73fc5bbb1482bb827bc71eecc44c60cdf0e0c08c9266822a60678bc452e",
+      "onlyStage3ArtworkNormalized": "c251c73fc5bbb1482bb827bc71eecc44c60cdf0e0c08c9266822a60678bc452e",
+      "roundtripExact": true,
+      "packedBytes": 78694
+    },
+    {
+      "id": 35,
+      "full": "42f53bbda6c91e01fc8fedce7058e3f85271deb1334d7012126107add221872c",
+      "onlyStage3ArtworkNormalized": "42f53bbda6c91e01fc8fedce7058e3f85271deb1334d7012126107add221872c",
+      "roundtripExact": true,
+      "packedBytes": 78956
+    },
+    {
+      "id": 36,
+      "full": "e03cea4d295fda4b9c8a1cc279263c7d60335b8ea790398f4df265bbf796a91c",
+      "onlyStage3ArtworkNormalized": "e03cea4d295fda4b9c8a1cc279263c7d60335b8ea790398f4df265bbf796a91c",
+      "roundtripExact": true,
+      "packedBytes": 41523
+    },
+    {
+      "id": 37,
+      "full": "88f4e33000ef7b8194d5838736bfb09598b2e88e53fa607ccb0bee27b0c48cf4",
+      "onlyStage3ArtworkNormalized": "88f4e33000ef7b8194d5838736bfb09598b2e88e53fa607ccb0bee27b0c48cf4",
+      "roundtripExact": true,
+      "packedBytes": 67477
+    },
+    {
+      "id": 38,
+      "full": "7cfd6c9c4831b0027f4134ce1876cacf273b625448de5da10aeffc56e3bd9847",
+      "onlyStage3ArtworkNormalized": "7cfd6c9c4831b0027f4134ce1876cacf273b625448de5da10aeffc56e3bd9847",
+      "roundtripExact": true,
+      "packedBytes": 90367
+    },
+    {
+      "id": 39,
+      "full": "dd82449e598220731a1fabb7fbec0c9760c80bf656ed506e5d02423b1ace6028",
+      "onlyStage3ArtworkNormalized": "dd82449e598220731a1fabb7fbec0c9760c80bf656ed506e5d02423b1ace6028",
+      "roundtripExact": true,
+      "packedBytes": 83896
+    },
+    {
+      "id": 40,
+      "full": "409d2a45810c49efe4722cd08a13f55e0fab5c15ba0d56edd4ee6e275462e297",
+      "onlyStage3ArtworkNormalized": "409d2a45810c49efe4722cd08a13f55e0fab5c15ba0d56edd4ee6e275462e297",
+      "roundtripExact": true,
+      "packedBytes": 122856
+    },
+    {
+      "id": 41,
+      "full": "0e2f529546c9517d61a6b707293809c675ac9035ee5f722f039ccffc7e7fdbfd",
+      "onlyStage3ArtworkNormalized": "0e2f529546c9517d61a6b707293809c675ac9035ee5f722f039ccffc7e7fdbfd",
+      "roundtripExact": true,
+      "packedBytes": 49605
+    },
+    {
+      "id": 42,
+      "full": "653e658c3c9f99640aaf593542ebd9bce36652dff090727f94caa3e021365cd5",
+      "onlyStage3ArtworkNormalized": "653e658c3c9f99640aaf593542ebd9bce36652dff090727f94caa3e021365cd5",
+      "roundtripExact": true,
+      "packedBytes": 49067
+    },
+    {
+      "id": 43,
+      "full": "083ffa36ee84ae26331f0853b48f67b2c76d369794183897c325168e7b7128a0",
+      "onlyStage3ArtworkNormalized": "083ffa36ee84ae26331f0853b48f67b2c76d369794183897c325168e7b7128a0",
+      "roundtripExact": true,
+      "packedBytes": 58005
+    },
+    {
+      "id": 44,
+      "full": "359db2beacc8d0b2d5b6c7878cf29b730b8685883fdbc7cb5cadb1cb2105d77b",
+      "onlyStage3ArtworkNormalized": "359db2beacc8d0b2d5b6c7878cf29b730b8685883fdbc7cb5cadb1cb2105d77b",
+      "roundtripExact": true,
+      "packedBytes": 53156
+    },
+    {
+      "id": 45,
+      "full": "6e5357fbd5dbdd086287089a6952c4d33be8e0d448ec539e7a1a3b0666a495c2",
+      "onlyStage3ArtworkNormalized": "6e5357fbd5dbdd086287089a6952c4d33be8e0d448ec539e7a1a3b0666a495c2",
+      "roundtripExact": true,
+      "packedBytes": 48275
+    },
+    {
+      "id": 46,
+      "full": "c7b9042acd6bb7abea6b75e81287a2a0c2bf20bcc817a31a63ba927dda5a9772",
+      "onlyStage3ArtworkNormalized": "c7b9042acd6bb7abea6b75e81287a2a0c2bf20bcc817a31a63ba927dda5a9772",
+      "roundtripExact": true,
+      "packedBytes": 59828
+    },
+    {
+      "id": 47,
+      "full": "c13ac6646d3d2b15cdea0252b4c0e74a06da989404e7c19eed65adab18b86029",
+      "onlyStage3ArtworkNormalized": "c13ac6646d3d2b15cdea0252b4c0e74a06da989404e7c19eed65adab18b86029",
+      "roundtripExact": true,
+      "packedBytes": 45557
+    },
+    {
+      "id": 48,
+      "full": "92c70c133c962cc7e42bd74823352a253b1d5c8cb733d8a75238ff6aaeaeed75",
+      "onlyStage3ArtworkNormalized": "92c70c133c962cc7e42bd74823352a253b1d5c8cb733d8a75238ff6aaeaeed75",
+      "roundtripExact": true,
+      "packedBytes": 47969
+    },
+    {
+      "id": 49,
+      "full": "80058c663c90f8f24859c35ca090ea6e613e0c8ba1e3b40397f6c124a30adbf6",
+      "onlyStage3ArtworkNormalized": "80058c663c90f8f24859c35ca090ea6e613e0c8ba1e3b40397f6c124a30adbf6",
+      "roundtripExact": true,
+      "packedBytes": 55381
+    },
+    {
+      "id": 50,
+      "full": "f7cbb2d006184f7e3735b8fce691dd8aa4fb9c4686b850601ef0811929337879",
+      "onlyStage3ArtworkNormalized": "f7cbb2d006184f7e3735b8fce691dd8aa4fb9c4686b850601ef0811929337879",
+      "roundtripExact": true,
+      "packedBytes": 55554
+    }
+  ],
+  "baselineCodecDiagnostic": [
+    {
+      "stage": 1,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "5c473ae6ce15323a7c6526173dc10bce93b6bd1faa439ae9a9bb8a300c8b4c70",
+      "restoredJSONSHA": "5c473ae6ce15323a7c6526173dc10bce93b6bd1faa439ae9a9bb8a300c8b4c70"
+    },
+    {
+      "stage": 2,
+      "rawDeepStrictEqual": false,
+      "jsonExact": true,
+      "expectedJSONSHA": "cad28c866e3557bd8f40e22c4982c807d5c9234910c5e87ee24795deb85e1650",
+      "restoredJSONSHA": "cad28c866e3557bd8f40e22c4982c807d5c9234910c5e87ee24795deb85e1650"
+    },
+    {
+      "stage": 3,
+      "rawDeepStrictEqual": false,
+      "jsonExact": true,
+      "expectedJSONSHA": "75affd930c0dceb24a7d37e3298f80894a455adf48c128cd3050a1aff7be7e3a",
+      "restoredJSONSHA": "75affd930c0dceb24a7d37e3298f80894a455adf48c128cd3050a1aff7be7e3a"
+    },
+    {
+      "stage": 4,
+      "rawDeepStrictEqual": false,
+      "jsonExact": true,
+      "expectedJSONSHA": "56e721ea09d50b47dcaa37613fae1db1077d4b803395be481174eb5cf0e918de",
+      "restoredJSONSHA": "56e721ea09d50b47dcaa37613fae1db1077d4b803395be481174eb5cf0e918de"
+    },
+    {
+      "stage": 5,
+      "rawDeepStrictEqual": false,
+      "jsonExact": true,
+      "expectedJSONSHA": "3c3c1e600f05dccba53c29c7950460ecc5870e38e5f550cac8d507d71f978758",
+      "restoredJSONSHA": "3c3c1e600f05dccba53c29c7950460ecc5870e38e5f550cac8d507d71f978758"
+    },
+    {
+      "stage": 6,
+      "rawDeepStrictEqual": false,
+      "jsonExact": true,
+      "expectedJSONSHA": "0ce2483cae596410c0e1f83ecffb5a60a5837b520f2545af7cd326ea24e19e28",
+      "restoredJSONSHA": "0ce2483cae596410c0e1f83ecffb5a60a5837b520f2545af7cd326ea24e19e28"
+    },
+    {
+      "stage": 7,
+      "rawDeepStrictEqual": false,
+      "jsonExact": true,
+      "expectedJSONSHA": "af8e03d794d30ce9b7cd492c860672d9c0c4d7d2b7f7aded407958f5052e9048",
+      "restoredJSONSHA": "af8e03d794d30ce9b7cd492c860672d9c0c4d7d2b7f7aded407958f5052e9048"
+    },
+    {
+      "stage": 8,
+      "rawDeepStrictEqual": false,
+      "jsonExact": true,
+      "expectedJSONSHA": "54e728c7b93d06b1a79771c52bf4a336e050bfa99ad8346e69d1aaab495357cc",
+      "restoredJSONSHA": "54e728c7b93d06b1a79771c52bf4a336e050bfa99ad8346e69d1aaab495357cc"
+    },
+    {
+      "stage": 9,
+      "rawDeepStrictEqual": false,
+      "jsonExact": true,
+      "expectedJSONSHA": "e151017b745649f9e6e8966fe7e7f0922e8e422a439d995d312b24fc4ea5412d",
+      "restoredJSONSHA": "e151017b745649f9e6e8966fe7e7f0922e8e422a439d995d312b24fc4ea5412d"
+    },
+    {
+      "stage": 10,
+      "rawDeepStrictEqual": false,
+      "jsonExact": true,
+      "expectedJSONSHA": "219536fd0c4652ba1ee879894802c53ac55b3fe4ceef9001fcc447a34d7593f9",
+      "restoredJSONSHA": "219536fd0c4652ba1ee879894802c53ac55b3fe4ceef9001fcc447a34d7593f9"
+    },
+    {
+      "stage": 11,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "17c6a4de0c5714d9ac56b4777eb94997ceadb7c7d181dabf501a527f3e71e24b",
+      "restoredJSONSHA": "17c6a4de0c5714d9ac56b4777eb94997ceadb7c7d181dabf501a527f3e71e24b"
+    },
+    {
+      "stage": 12,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "8a12f735f5be5ae8bd804e7586a598da09afa2b6d6d7c95fa7a5c8140b584203",
+      "restoredJSONSHA": "8a12f735f5be5ae8bd804e7586a598da09afa2b6d6d7c95fa7a5c8140b584203"
+    },
+    {
+      "stage": 13,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "c59f59507f289d40f06819ead2392e3e2ec93f8c50391fdf4b6f49fe6ec903bb",
+      "restoredJSONSHA": "c59f59507f289d40f06819ead2392e3e2ec93f8c50391fdf4b6f49fe6ec903bb"
+    },
+    {
+      "stage": 14,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "afce12b838a9bba9586b60c157413b8eda7d1630d613dce8ce893e838cae167e",
+      "restoredJSONSHA": "afce12b838a9bba9586b60c157413b8eda7d1630d613dce8ce893e838cae167e"
+    },
+    {
+      "stage": 15,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "4d21c5157a4bb1ec8d710aa623a92fd1988d76eb985c8e0dd27e94f9238c34b6",
+      "restoredJSONSHA": "4d21c5157a4bb1ec8d710aa623a92fd1988d76eb985c8e0dd27e94f9238c34b6"
+    },
+    {
+      "stage": 16,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "b8ea42540e0d5360361e7118049c57dca5f1ef50f9b78ca1d05b756414ef0950",
+      "restoredJSONSHA": "b8ea42540e0d5360361e7118049c57dca5f1ef50f9b78ca1d05b756414ef0950"
+    },
+    {
+      "stage": 17,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "b42e0e2e58944e39254b3e91f0512cbef66131e8f25caa65cdd8dd582df9d200",
+      "restoredJSONSHA": "b42e0e2e58944e39254b3e91f0512cbef66131e8f25caa65cdd8dd582df9d200"
+    },
+    {
+      "stage": 18,
+      "rawDeepStrictEqual": false,
+      "jsonExact": true,
+      "expectedJSONSHA": "5ceee3a8956246b985809f7980ae28dcea85844747b983cf6dd8e36e73b03d4a",
+      "restoredJSONSHA": "5ceee3a8956246b985809f7980ae28dcea85844747b983cf6dd8e36e73b03d4a"
+    },
+    {
+      "stage": 19,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "3d5485d7168aefc94d85c419d2d239ba5fea8b90788a297d171a01f26436aafe",
+      "restoredJSONSHA": "3d5485d7168aefc94d85c419d2d239ba5fea8b90788a297d171a01f26436aafe"
+    },
+    {
+      "stage": 20,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "4aff7ad2e16e54d513a9a1a31fa656da30f277d13e2106c8e506e966bf0e5139",
+      "restoredJSONSHA": "4aff7ad2e16e54d513a9a1a31fa656da30f277d13e2106c8e506e966bf0e5139"
+    },
+    {
+      "stage": 21,
+      "rawDeepStrictEqual": false,
+      "jsonExact": true,
+      "expectedJSONSHA": "66bb236c1e2042ec0d3022f20cc225f8bee408c65e93ecada4dc67a8de0d0f92",
+      "restoredJSONSHA": "66bb236c1e2042ec0d3022f20cc225f8bee408c65e93ecada4dc67a8de0d0f92"
+    },
+    {
+      "stage": 22,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "cef01066512b88888471fe0f8b94267971c0f7aaa2c8c27dbb3db9a8f401cd9e",
+      "restoredJSONSHA": "cef01066512b88888471fe0f8b94267971c0f7aaa2c8c27dbb3db9a8f401cd9e"
+    },
+    {
+      "stage": 23,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "27343fb500fa3108ce1796c07c630631e600b2b6e93acbf34cf5a664f72024e2",
+      "restoredJSONSHA": "27343fb500fa3108ce1796c07c630631e600b2b6e93acbf34cf5a664f72024e2"
+    },
+    {
+      "stage": 24,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "b9d87c0276e14f8a38cbb4625ba26d841edb2672377f90bd7ba232e3144c05a6",
+      "restoredJSONSHA": "b9d87c0276e14f8a38cbb4625ba26d841edb2672377f90bd7ba232e3144c05a6"
+    },
+    {
+      "stage": 25,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "886a4a1a56ea572f205a70870bf0330d73cdbfaff7ac3abf59439a79edd91e90",
+      "restoredJSONSHA": "886a4a1a56ea572f205a70870bf0330d73cdbfaff7ac3abf59439a79edd91e90"
+    },
+    {
+      "stage": 26,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "f0ac313d72fba67e1d402270a5e7ff99623d716bccc025ae1182ff21f6bdce9f",
+      "restoredJSONSHA": "f0ac313d72fba67e1d402270a5e7ff99623d716bccc025ae1182ff21f6bdce9f"
+    },
+    {
+      "stage": 27,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "ae8f5ec3e2caf3e709ce197de8d4c97c03b0585213f53add59e793de04082071",
+      "restoredJSONSHA": "ae8f5ec3e2caf3e709ce197de8d4c97c03b0585213f53add59e793de04082071"
+    },
+    {
+      "stage": 28,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "7176ca7e0094097c9251566059491488a8ffb075dff18a6c3db584bbfe90cad4",
+      "restoredJSONSHA": "7176ca7e0094097c9251566059491488a8ffb075dff18a6c3db584bbfe90cad4"
+    },
+    {
+      "stage": 29,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "715ab651667e23b0d1a1c4d48e78016917c74341f65f609b34444590002092ee",
+      "restoredJSONSHA": "715ab651667e23b0d1a1c4d48e78016917c74341f65f609b34444590002092ee"
+    },
+    {
+      "stage": 30,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "32256842294128fb16fdd4128a5c85bce4cb775047775bfbbcf4cc45d4cc3809",
+      "restoredJSONSHA": "32256842294128fb16fdd4128a5c85bce4cb775047775bfbbcf4cc45d4cc3809"
+    },
+    {
+      "stage": 31,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "1e072c2503b445fecb40f76a20e3feb58d96bda837ebfbb19f745f717364f2df",
+      "restoredJSONSHA": "1e072c2503b445fecb40f76a20e3feb58d96bda837ebfbb19f745f717364f2df"
+    },
+    {
+      "stage": 32,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "8edaab917d69e9ff82ee0c1a8214d492eb26b396b6356134b042845d70f64c37",
+      "restoredJSONSHA": "8edaab917d69e9ff82ee0c1a8214d492eb26b396b6356134b042845d70f64c37"
+    },
+    {
+      "stage": 33,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "b9faa650ed3a74913ebf13be80e13654c67d03aadf7da92fc7dc124d13d798b5",
+      "restoredJSONSHA": "b9faa650ed3a74913ebf13be80e13654c67d03aadf7da92fc7dc124d13d798b5"
+    },
+    {
+      "stage": 34,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "c251c73fc5bbb1482bb827bc71eecc44c60cdf0e0c08c9266822a60678bc452e",
+      "restoredJSONSHA": "c251c73fc5bbb1482bb827bc71eecc44c60cdf0e0c08c9266822a60678bc452e"
+    },
+    {
+      "stage": 35,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "42f53bbda6c91e01fc8fedce7058e3f85271deb1334d7012126107add221872c",
+      "restoredJSONSHA": "42f53bbda6c91e01fc8fedce7058e3f85271deb1334d7012126107add221872c"
+    },
+    {
+      "stage": 36,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "e03cea4d295fda4b9c8a1cc279263c7d60335b8ea790398f4df265bbf796a91c",
+      "restoredJSONSHA": "e03cea4d295fda4b9c8a1cc279263c7d60335b8ea790398f4df265bbf796a91c"
+    },
+    {
+      "stage": 37,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "88f4e33000ef7b8194d5838736bfb09598b2e88e53fa607ccb0bee27b0c48cf4",
+      "restoredJSONSHA": "88f4e33000ef7b8194d5838736bfb09598b2e88e53fa607ccb0bee27b0c48cf4"
+    },
+    {
+      "stage": 38,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "7cfd6c9c4831b0027f4134ce1876cacf273b625448de5da10aeffc56e3bd9847",
+      "restoredJSONSHA": "7cfd6c9c4831b0027f4134ce1876cacf273b625448de5da10aeffc56e3bd9847"
+    },
+    {
+      "stage": 39,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "dd82449e598220731a1fabb7fbec0c9760c80bf656ed506e5d02423b1ace6028",
+      "restoredJSONSHA": "dd82449e598220731a1fabb7fbec0c9760c80bf656ed506e5d02423b1ace6028"
+    },
+    {
+      "stage": 40,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "409d2a45810c49efe4722cd08a13f55e0fab5c15ba0d56edd4ee6e275462e297",
+      "restoredJSONSHA": "409d2a45810c49efe4722cd08a13f55e0fab5c15ba0d56edd4ee6e275462e297"
+    },
+    {
+      "stage": 41,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "0e2f529546c9517d61a6b707293809c675ac9035ee5f722f039ccffc7e7fdbfd",
+      "restoredJSONSHA": "0e2f529546c9517d61a6b707293809c675ac9035ee5f722f039ccffc7e7fdbfd"
+    },
+    {
+      "stage": 42,
+      "rawDeepStrictEqual": false,
+      "jsonExact": true,
+      "expectedJSONSHA": "653e658c3c9f99640aaf593542ebd9bce36652dff090727f94caa3e021365cd5",
+      "restoredJSONSHA": "653e658c3c9f99640aaf593542ebd9bce36652dff090727f94caa3e021365cd5"
+    },
+    {
+      "stage": 43,
+      "rawDeepStrictEqual": false,
+      "jsonExact": true,
+      "expectedJSONSHA": "083ffa36ee84ae26331f0853b48f67b2c76d369794183897c325168e7b7128a0",
+      "restoredJSONSHA": "083ffa36ee84ae26331f0853b48f67b2c76d369794183897c325168e7b7128a0"
+    },
+    {
+      "stage": 44,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "359db2beacc8d0b2d5b6c7878cf29b730b8685883fdbc7cb5cadb1cb2105d77b",
+      "restoredJSONSHA": "359db2beacc8d0b2d5b6c7878cf29b730b8685883fdbc7cb5cadb1cb2105d77b"
+    },
+    {
+      "stage": 45,
+      "rawDeepStrictEqual": false,
+      "jsonExact": true,
+      "expectedJSONSHA": "6e5357fbd5dbdd086287089a6952c4d33be8e0d448ec539e7a1a3b0666a495c2",
+      "restoredJSONSHA": "6e5357fbd5dbdd086287089a6952c4d33be8e0d448ec539e7a1a3b0666a495c2"
+    },
+    {
+      "stage": 46,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "c7b9042acd6bb7abea6b75e81287a2a0c2bf20bcc817a31a63ba927dda5a9772",
+      "restoredJSONSHA": "c7b9042acd6bb7abea6b75e81287a2a0c2bf20bcc817a31a63ba927dda5a9772"
+    },
+    {
+      "stage": 47,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "c13ac6646d3d2b15cdea0252b4c0e74a06da989404e7c19eed65adab18b86029",
+      "restoredJSONSHA": "c13ac6646d3d2b15cdea0252b4c0e74a06da989404e7c19eed65adab18b86029"
+    },
+    {
+      "stage": 48,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "92c70c133c962cc7e42bd74823352a253b1d5c8cb733d8a75238ff6aaeaeed75",
+      "restoredJSONSHA": "92c70c133c962cc7e42bd74823352a253b1d5c8cb733d8a75238ff6aaeaeed75"
+    },
+    {
+      "stage": 49,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "80058c663c90f8f24859c35ca090ea6e613e0c8ba1e3b40397f6c124a30adbf6",
+      "restoredJSONSHA": "80058c663c90f8f24859c35ca090ea6e613e0c8ba1e3b40397f6c124a30adbf6"
+    },
+    {
+      "stage": 50,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "f7cbb2d006184f7e3735b8fce691dd8aa4fb9c4686b850601ef0811929337879",
+      "restoredJSONSHA": "f7cbb2d006184f7e3735b8fce691dd8aa4fb9c4686b850601ef0811929337879"
+    }
+  ],
+  "candidateCodecDiagnostic": [
+    {
+      "stage": 1,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "5c473ae6ce15323a7c6526173dc10bce93b6bd1faa439ae9a9bb8a300c8b4c70",
+      "restoredJSONSHA": "5c473ae6ce15323a7c6526173dc10bce93b6bd1faa439ae9a9bb8a300c8b4c70"
+    },
+    {
+      "stage": 2,
+      "rawDeepStrictEqual": false,
+      "jsonExact": true,
+      "expectedJSONSHA": "cad28c866e3557bd8f40e22c4982c807d5c9234910c5e87ee24795deb85e1650",
+      "restoredJSONSHA": "cad28c866e3557bd8f40e22c4982c807d5c9234910c5e87ee24795deb85e1650"
+    },
+    {
+      "stage": 3,
+      "rawDeepStrictEqual": false,
+      "jsonExact": true,
+      "expectedJSONSHA": "bcbcea12175f9dece581769f08f6935d25a0f387446f9cbb6ec3d58419e25913",
+      "restoredJSONSHA": "bcbcea12175f9dece581769f08f6935d25a0f387446f9cbb6ec3d58419e25913"
+    },
+    {
+      "stage": 4,
+      "rawDeepStrictEqual": false,
+      "jsonExact": true,
+      "expectedJSONSHA": "56e721ea09d50b47dcaa37613fae1db1077d4b803395be481174eb5cf0e918de",
+      "restoredJSONSHA": "56e721ea09d50b47dcaa37613fae1db1077d4b803395be481174eb5cf0e918de"
+    },
+    {
+      "stage": 5,
+      "rawDeepStrictEqual": false,
+      "jsonExact": true,
+      "expectedJSONSHA": "3c3c1e600f05dccba53c29c7950460ecc5870e38e5f550cac8d507d71f978758",
+      "restoredJSONSHA": "3c3c1e600f05dccba53c29c7950460ecc5870e38e5f550cac8d507d71f978758"
+    },
+    {
+      "stage": 6,
+      "rawDeepStrictEqual": false,
+      "jsonExact": true,
+      "expectedJSONSHA": "0ce2483cae596410c0e1f83ecffb5a60a5837b520f2545af7cd326ea24e19e28",
+      "restoredJSONSHA": "0ce2483cae596410c0e1f83ecffb5a60a5837b520f2545af7cd326ea24e19e28"
+    },
+    {
+      "stage": 7,
+      "rawDeepStrictEqual": false,
+      "jsonExact": true,
+      "expectedJSONSHA": "af8e03d794d30ce9b7cd492c860672d9c0c4d7d2b7f7aded407958f5052e9048",
+      "restoredJSONSHA": "af8e03d794d30ce9b7cd492c860672d9c0c4d7d2b7f7aded407958f5052e9048"
+    },
+    {
+      "stage": 8,
+      "rawDeepStrictEqual": false,
+      "jsonExact": true,
+      "expectedJSONSHA": "54e728c7b93d06b1a79771c52bf4a336e050bfa99ad8346e69d1aaab495357cc",
+      "restoredJSONSHA": "54e728c7b93d06b1a79771c52bf4a336e050bfa99ad8346e69d1aaab495357cc"
+    },
+    {
+      "stage": 9,
+      "rawDeepStrictEqual": false,
+      "jsonExact": true,
+      "expectedJSONSHA": "e151017b745649f9e6e8966fe7e7f0922e8e422a439d995d312b24fc4ea5412d",
+      "restoredJSONSHA": "e151017b745649f9e6e8966fe7e7f0922e8e422a439d995d312b24fc4ea5412d"
+    },
+    {
+      "stage": 10,
+      "rawDeepStrictEqual": false,
+      "jsonExact": true,
+      "expectedJSONSHA": "219536fd0c4652ba1ee879894802c53ac55b3fe4ceef9001fcc447a34d7593f9",
+      "restoredJSONSHA": "219536fd0c4652ba1ee879894802c53ac55b3fe4ceef9001fcc447a34d7593f9"
+    },
+    {
+      "stage": 11,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "17c6a4de0c5714d9ac56b4777eb94997ceadb7c7d181dabf501a527f3e71e24b",
+      "restoredJSONSHA": "17c6a4de0c5714d9ac56b4777eb94997ceadb7c7d181dabf501a527f3e71e24b"
+    },
+    {
+      "stage": 12,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "8a12f735f5be5ae8bd804e7586a598da09afa2b6d6d7c95fa7a5c8140b584203",
+      "restoredJSONSHA": "8a12f735f5be5ae8bd804e7586a598da09afa2b6d6d7c95fa7a5c8140b584203"
+    },
+    {
+      "stage": 13,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "c59f59507f289d40f06819ead2392e3e2ec93f8c50391fdf4b6f49fe6ec903bb",
+      "restoredJSONSHA": "c59f59507f289d40f06819ead2392e3e2ec93f8c50391fdf4b6f49fe6ec903bb"
+    },
+    {
+      "stage": 14,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "afce12b838a9bba9586b60c157413b8eda7d1630d613dce8ce893e838cae167e",
+      "restoredJSONSHA": "afce12b838a9bba9586b60c157413b8eda7d1630d613dce8ce893e838cae167e"
+    },
+    {
+      "stage": 15,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "4d21c5157a4bb1ec8d710aa623a92fd1988d76eb985c8e0dd27e94f9238c34b6",
+      "restoredJSONSHA": "4d21c5157a4bb1ec8d710aa623a92fd1988d76eb985c8e0dd27e94f9238c34b6"
+    },
+    {
+      "stage": 16,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "b8ea42540e0d5360361e7118049c57dca5f1ef50f9b78ca1d05b756414ef0950",
+      "restoredJSONSHA": "b8ea42540e0d5360361e7118049c57dca5f1ef50f9b78ca1d05b756414ef0950"
+    },
+    {
+      "stage": 17,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "b42e0e2e58944e39254b3e91f0512cbef66131e8f25caa65cdd8dd582df9d200",
+      "restoredJSONSHA": "b42e0e2e58944e39254b3e91f0512cbef66131e8f25caa65cdd8dd582df9d200"
+    },
+    {
+      "stage": 18,
+      "rawDeepStrictEqual": false,
+      "jsonExact": true,
+      "expectedJSONSHA": "5ceee3a8956246b985809f7980ae28dcea85844747b983cf6dd8e36e73b03d4a",
+      "restoredJSONSHA": "5ceee3a8956246b985809f7980ae28dcea85844747b983cf6dd8e36e73b03d4a"
+    },
+    {
+      "stage": 19,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "3d5485d7168aefc94d85c419d2d239ba5fea8b90788a297d171a01f26436aafe",
+      "restoredJSONSHA": "3d5485d7168aefc94d85c419d2d239ba5fea8b90788a297d171a01f26436aafe"
+    },
+    {
+      "stage": 20,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "4aff7ad2e16e54d513a9a1a31fa656da30f277d13e2106c8e506e966bf0e5139",
+      "restoredJSONSHA": "4aff7ad2e16e54d513a9a1a31fa656da30f277d13e2106c8e506e966bf0e5139"
+    },
+    {
+      "stage": 21,
+      "rawDeepStrictEqual": false,
+      "jsonExact": true,
+      "expectedJSONSHA": "66bb236c1e2042ec0d3022f20cc225f8bee408c65e93ecada4dc67a8de0d0f92",
+      "restoredJSONSHA": "66bb236c1e2042ec0d3022f20cc225f8bee408c65e93ecada4dc67a8de0d0f92"
+    },
+    {
+      "stage": 22,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "cef01066512b88888471fe0f8b94267971c0f7aaa2c8c27dbb3db9a8f401cd9e",
+      "restoredJSONSHA": "cef01066512b88888471fe0f8b94267971c0f7aaa2c8c27dbb3db9a8f401cd9e"
+    },
+    {
+      "stage": 23,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "27343fb500fa3108ce1796c07c630631e600b2b6e93acbf34cf5a664f72024e2",
+      "restoredJSONSHA": "27343fb500fa3108ce1796c07c630631e600b2b6e93acbf34cf5a664f72024e2"
+    },
+    {
+      "stage": 24,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "b9d87c0276e14f8a38cbb4625ba26d841edb2672377f90bd7ba232e3144c05a6",
+      "restoredJSONSHA": "b9d87c0276e14f8a38cbb4625ba26d841edb2672377f90bd7ba232e3144c05a6"
+    },
+    {
+      "stage": 25,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "886a4a1a56ea572f205a70870bf0330d73cdbfaff7ac3abf59439a79edd91e90",
+      "restoredJSONSHA": "886a4a1a56ea572f205a70870bf0330d73cdbfaff7ac3abf59439a79edd91e90"
+    },
+    {
+      "stage": 26,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "f0ac313d72fba67e1d402270a5e7ff99623d716bccc025ae1182ff21f6bdce9f",
+      "restoredJSONSHA": "f0ac313d72fba67e1d402270a5e7ff99623d716bccc025ae1182ff21f6bdce9f"
+    },
+    {
+      "stage": 27,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "ae8f5ec3e2caf3e709ce197de8d4c97c03b0585213f53add59e793de04082071",
+      "restoredJSONSHA": "ae8f5ec3e2caf3e709ce197de8d4c97c03b0585213f53add59e793de04082071"
+    },
+    {
+      "stage": 28,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "7176ca7e0094097c9251566059491488a8ffb075dff18a6c3db584bbfe90cad4",
+      "restoredJSONSHA": "7176ca7e0094097c9251566059491488a8ffb075dff18a6c3db584bbfe90cad4"
+    },
+    {
+      "stage": 29,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "715ab651667e23b0d1a1c4d48e78016917c74341f65f609b34444590002092ee",
+      "restoredJSONSHA": "715ab651667e23b0d1a1c4d48e78016917c74341f65f609b34444590002092ee"
+    },
+    {
+      "stage": 30,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "32256842294128fb16fdd4128a5c85bce4cb775047775bfbbcf4cc45d4cc3809",
+      "restoredJSONSHA": "32256842294128fb16fdd4128a5c85bce4cb775047775bfbbcf4cc45d4cc3809"
+    },
+    {
+      "stage": 31,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "1e072c2503b445fecb40f76a20e3feb58d96bda837ebfbb19f745f717364f2df",
+      "restoredJSONSHA": "1e072c2503b445fecb40f76a20e3feb58d96bda837ebfbb19f745f717364f2df"
+    },
+    {
+      "stage": 32,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "8edaab917d69e9ff82ee0c1a8214d492eb26b396b6356134b042845d70f64c37",
+      "restoredJSONSHA": "8edaab917d69e9ff82ee0c1a8214d492eb26b396b6356134b042845d70f64c37"
+    },
+    {
+      "stage": 33,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "b9faa650ed3a74913ebf13be80e13654c67d03aadf7da92fc7dc124d13d798b5",
+      "restoredJSONSHA": "b9faa650ed3a74913ebf13be80e13654c67d03aadf7da92fc7dc124d13d798b5"
+    },
+    {
+      "stage": 34,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "c251c73fc5bbb1482bb827bc71eecc44c60cdf0e0c08c9266822a60678bc452e",
+      "restoredJSONSHA": "c251c73fc5bbb1482bb827bc71eecc44c60cdf0e0c08c9266822a60678bc452e"
+    },
+    {
+      "stage": 35,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "42f53bbda6c91e01fc8fedce7058e3f85271deb1334d7012126107add221872c",
+      "restoredJSONSHA": "42f53bbda6c91e01fc8fedce7058e3f85271deb1334d7012126107add221872c"
+    },
+    {
+      "stage": 36,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "e03cea4d295fda4b9c8a1cc279263c7d60335b8ea790398f4df265bbf796a91c",
+      "restoredJSONSHA": "e03cea4d295fda4b9c8a1cc279263c7d60335b8ea790398f4df265bbf796a91c"
+    },
+    {
+      "stage": 37,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "88f4e33000ef7b8194d5838736bfb09598b2e88e53fa607ccb0bee27b0c48cf4",
+      "restoredJSONSHA": "88f4e33000ef7b8194d5838736bfb09598b2e88e53fa607ccb0bee27b0c48cf4"
+    },
+    {
+      "stage": 38,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "7cfd6c9c4831b0027f4134ce1876cacf273b625448de5da10aeffc56e3bd9847",
+      "restoredJSONSHA": "7cfd6c9c4831b0027f4134ce1876cacf273b625448de5da10aeffc56e3bd9847"
+    },
+    {
+      "stage": 39,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "dd82449e598220731a1fabb7fbec0c9760c80bf656ed506e5d02423b1ace6028",
+      "restoredJSONSHA": "dd82449e598220731a1fabb7fbec0c9760c80bf656ed506e5d02423b1ace6028"
+    },
+    {
+      "stage": 40,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "409d2a45810c49efe4722cd08a13f55e0fab5c15ba0d56edd4ee6e275462e297",
+      "restoredJSONSHA": "409d2a45810c49efe4722cd08a13f55e0fab5c15ba0d56edd4ee6e275462e297"
+    },
+    {
+      "stage": 41,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "0e2f529546c9517d61a6b707293809c675ac9035ee5f722f039ccffc7e7fdbfd",
+      "restoredJSONSHA": "0e2f529546c9517d61a6b707293809c675ac9035ee5f722f039ccffc7e7fdbfd"
+    },
+    {
+      "stage": 42,
+      "rawDeepStrictEqual": false,
+      "jsonExact": true,
+      "expectedJSONSHA": "653e658c3c9f99640aaf593542ebd9bce36652dff090727f94caa3e021365cd5",
+      "restoredJSONSHA": "653e658c3c9f99640aaf593542ebd9bce36652dff090727f94caa3e021365cd5"
+    },
+    {
+      "stage": 43,
+      "rawDeepStrictEqual": false,
+      "jsonExact": true,
+      "expectedJSONSHA": "083ffa36ee84ae26331f0853b48f67b2c76d369794183897c325168e7b7128a0",
+      "restoredJSONSHA": "083ffa36ee84ae26331f0853b48f67b2c76d369794183897c325168e7b7128a0"
+    },
+    {
+      "stage": 44,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "359db2beacc8d0b2d5b6c7878cf29b730b8685883fdbc7cb5cadb1cb2105d77b",
+      "restoredJSONSHA": "359db2beacc8d0b2d5b6c7878cf29b730b8685883fdbc7cb5cadb1cb2105d77b"
+    },
+    {
+      "stage": 45,
+      "rawDeepStrictEqual": false,
+      "jsonExact": true,
+      "expectedJSONSHA": "6e5357fbd5dbdd086287089a6952c4d33be8e0d448ec539e7a1a3b0666a495c2",
+      "restoredJSONSHA": "6e5357fbd5dbdd086287089a6952c4d33be8e0d448ec539e7a1a3b0666a495c2"
+    },
+    {
+      "stage": 46,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "c7b9042acd6bb7abea6b75e81287a2a0c2bf20bcc817a31a63ba927dda5a9772",
+      "restoredJSONSHA": "c7b9042acd6bb7abea6b75e81287a2a0c2bf20bcc817a31a63ba927dda5a9772"
+    },
+    {
+      "stage": 47,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "c13ac6646d3d2b15cdea0252b4c0e74a06da989404e7c19eed65adab18b86029",
+      "restoredJSONSHA": "c13ac6646d3d2b15cdea0252b4c0e74a06da989404e7c19eed65adab18b86029"
+    },
+    {
+      "stage": 48,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "92c70c133c962cc7e42bd74823352a253b1d5c8cb733d8a75238ff6aaeaeed75",
+      "restoredJSONSHA": "92c70c133c962cc7e42bd74823352a253b1d5c8cb733d8a75238ff6aaeaeed75"
+    },
+    {
+      "stage": 49,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "80058c663c90f8f24859c35ca090ea6e613e0c8ba1e3b40397f6c124a30adbf6",
+      "restoredJSONSHA": "80058c663c90f8f24859c35ca090ea6e613e0c8ba1e3b40397f6c124a30adbf6"
+    },
+    {
+      "stage": 50,
+      "rawDeepStrictEqual": true,
+      "jsonExact": true,
+      "expectedJSONSHA": "f7cbb2d006184f7e3735b8fce691dd8aa4fb9c4686b850601ef0811929337879",
+      "restoredJSONSHA": "f7cbb2d006184f7e3735b8fce691dd8aa4fb9c4686b850601ef0811929337879"
+    }
+  ],
+  "stage3Result": {
+    "ok": true,
+    "mode": "verify",
+    "authoredAllStagesExact": true,
+    "otherAssetsExact": true,
+    "compiledGameplayExact": true,
+    "oldSaveRepresentationExact": true,
+    "oldRepresentation": "inline",
+    "newRepresentation": "inline",
+    "oldInlineExact": true,
+    "providerIndependent": true,
+    "savedVariantExact": true,
+    "freshRoundtripExact": true,
+    "oldSnapshotsUnflagged": true,
+    "freshBodyFlagged": true,
+    "oldBodySha": "0c7f5d090b66c3834ae8958dbfd789c824ea95f1550b63bbc2693c891fba905e",
+    "newBodySha": "7be847f8c092585bea64e6943e74783f537db9a36fc9c26928237301c5214cc0",
+    "oldInlineBytes": 1153396,
+    "newInlineBytes": 1158250,
+    "newEncodedBytes": 1158250,
+    "scope": "Synthetic initial campaign battle; model codec only. No user storage, no gameplay completion."
+  },
+  "all50EachJSONCodecExact": true,
+  "other49FullBattleExact": true,
+  "gateStillFailed": "Existing critical-save-failure line22 cross-realm tuple deepStrictEqual; official Scene/App phase not run"
+}

@@ -1,0 +1,2 @@
+Test-only C follow-up: copy critical-save-realm.mjs into candidate/tests/ then run from checkout root. Original tests/critical-save-failure.mjs unchanged and SHA-pinned. All original quota/security/serialization/reward rollback checks remain; only final five-field unit tuple comparison crosses JSON boundaries. Both array prototypes/raw equality are recorded. Negative HP mutation must fail equality. This does not rerun the whole B suite. No runtime or codec modifications.
+Original SHA256 00f9ee4a48a61fef813596ee2c329c20975b6a9d8e4a46088384393239d138df
