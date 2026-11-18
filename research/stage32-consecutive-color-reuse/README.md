@@ -1,0 +1,7 @@
+# Consecutive same-color transition reuse: local candidate
+
+Baseline registered final helper2cbc7689548b871021ebcf5c4190052029bac510a65cc16ef5ed10290ea828e5. Only two substitutions: declare draw-local last color, and skip rebuilding the existing transitionColor canvas when the next protected path has the same fill. No extra canvas/cache lifetime, no geometry/clip/source/SS/path-order changes. Each path still creates/uses its pattern and executes the same fill. The shared work bitmap and dimensions/transform remain fixed throughout this draw; different colors still rebuild normally.
+
+Ten protected paths have only5consecutive color runs: white; tan; repeated tan3/4; olive12/13; darkerolive14..17. This removes5redundant color copies per active transition draw, not all13direct drawImage calls and not SS. It does not use the rejected staged clipping optimization.
+
+Inverse substitutions reproduce baseline exact. Native direct originalFOUNDATION+BODY at maximum1.65, .6 and minimum.05735 passes exactRGBA with zero differences. The recorded singlecold times are diagnostic only: one ordering/JIT/cache state, not performance proof and not actual Scene Chrome. Before adoption, actual registered Scene control/candidate cold+pan per-frameRGBA hashes and uninstrumented costs must be checked; final-only screenshots are insufficient after the prior clip counterexample. No production registration or remote writes.

@@ -1,0 +1,41 @@
+{
+  "baselineRef": "842aa12fd1144e4f7e9ee616a6ae65d632389f51",
+  "candidateRef": "126a2b5600f31bd686c79caef1e7c91dffd7759f",
+  "candidateRegisteredHelperSHA256": "2cbc7689548b871021ebcf5c4190052029bac510a65cc16ef5ed10290ea828e5",
+  "readyForCI": true,
+  "poses": [
+    {
+      "name": "left-tile",
+      "width": 1331,
+      "height": 763,
+      "x": 320,
+      "y": 1650,
+      "scale": 0.6
+    },
+    {
+      "name": "phone-min",
+      "width": 390,
+      "height": 696,
+      "x": 1689.6,
+      "y": 1200,
+      "minimum": true
+    },
+    {
+      "name": "maximum-live",
+      "width": 1331,
+      "height": 763,
+      "x": 320,
+      "y": 1650,
+      "scale": 1.65
+    }
+  ],
+  "order": [
+    "baseline",
+    "candidate",
+    "candidate",
+    "baseline"
+  ],
+  "cold": 5,
+  "warm": 30,
+  "pan": 60
+}

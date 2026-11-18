@@ -1,0 +1,16 @@
+{
+  "baseline": "stage32-upper-long-diagonal/candidate.js",
+  "baselineSHA256": "2cbc7689548b871021ebcf5c4190052029bac510a65cc16ef5ed10290ea828e5",
+  "candidateSHA256": "d167fc744de249bed31194d85e17d1ed682f0664c487a55014f3f1d506c17143",
+  "replacements": [
+    {
+      "old": "let transitionMaskReady=false;",
+      "new": "let transitionColorFill=null;let transitionMaskReady=false;"
+    },
+    {
+      "old": "cc.setTransform(1,0,0,1,0,0);cc.globalAlpha=1;cc.globalCompositeOperation='copy';cc.fillStyle=n.fill;cc.fillRect(0,0,cv.width,bandHeight);cc.globalCompositeOperation='source-over';cc.drawImage(work,0,0);",
+      "new": "if(transitionColorFill!==n.fill){cc.setTransform(1,0,0,1,0,0);cc.globalAlpha=1;cc.globalCompositeOperation='copy';cc.fillStyle=n.fill;cc.fillRect(0,0,cv.width,bandHeight);cc.globalCompositeOperation='source-over';cc.drawImage(work,0,0);transitionColorFill=n.fill;}"
+    }
+  ],
+  "inverseExact": true
+}
