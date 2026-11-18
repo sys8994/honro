@@ -1,0 +1,45 @@
+name: Stage32 C terrain and latest monster registration
+on:
+  workflow_dispatch:
+  push:
+    branches: [inspect/stage32-scanline-20261118]
+    paths: ['tools/testing/stage32-C-registered/**', '.github/workflows/stage32-C-registered.yml']
+permissions: {contents: read}
+jobs:
+  study:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env: {HONRO_ACT4_RELEASE: '1', HONRO_ACT5_RELEASE: '1'}
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with: {path: study}
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with: {path: product, ref: dbb25e21e075a495581ddaf8e2c0e615fe2e621e, fetch-depth: 2}
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with: {path: baseline, ref: fdac97818c09536f5d0057181d04fbd60d48df18}
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with: {node-version: '22', package-manager-cache: false}
+      - run: npm ci && npm ci --prefix game
+        working-directory: product
+      - run: npm ci && npm ci --prefix game
+        working-directory: baseline
+      - run: node study/tools/testing/stage32-C-registered/source-contract.mjs product
+      - name: Official Game and Workshop builds, critical save rollback QA
+        run: |
+          (cd product && node workshop/build.mjs && node game/build.mjs)
+          mkdir -p artifacts/evidence
+          cp study/tools/testing/critical-save-realm/critical-save-realm.mjs product/tests/critical-save-realm.mjs
+          (cd product && node tests/critical-save-realm.mjs) > artifacts/critical-save-realm.log 2>&1
+          node study/tools/testing/critical-save-realm/mock.mjs > artifacts/critical-save-realm-mock.log
+      - name: Official registered C runtime, five32 and four3/7 captures
+        run: |
+          node study/tools/testing/stage32-C-registered/fixture.mjs product "$RUNNER_TEMP/registered"
+          node study/tools/testing/stage32-live-ss/actual/run.mjs "$RUNNER_TEMP/registered" artifacts/evidence
+          node study/tools/testing/stage32-C-registered/terrain37.mjs baseline "$RUNNER_TEMP/base37" baseline
+          node study/tools/testing/stage32-live-ss/actual/run.mjs "$RUNNER_TEMP/base37" artifacts/evidence
+          node study/tools/testing/stage32-C-registered/terrain37.mjs product "$RUNNER_TEMP/new37" candidate
+          node study/tools/testing/stage32-live-ss/actual/run.mjs "$RUNNER_TEMP/new37" artifacts/evidence
+          python study/tools/testing/stage32-C-registered/check.py artifacts/evidence
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with: {name: stage32-C-registered, path: artifacts, if-no-files-found: error}

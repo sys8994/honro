@@ -1,0 +1,265 @@
+{
+  "sourceRun": 44279550948,
+  "sourceArtifact": 14416233563,
+  "sourceArtifactSHA256": "5b14e61d0536086331ec0ce3589c4aae0d139f3d5afc3c53a1021f0d65a05a09",
+  "candidateHelperSHA256": "8c8fd33fc74ea89cca7895d01bd96b6a0928330b3b531a3c55671a181d3bbdc2",
+  "views": {
+    "maximum": {
+      "sceneRGBA": "8b467cfdf4fb787a21de9d3809659c4ec3c85aa83170f87e18b452c679c7f99f",
+      "terrainRGBA": "8b467cfdf4fb787a21de9d3809659c4ec3c85aa83170f87e18b452c679c7f99f",
+      "camera": {
+        "x": 320,
+        "y": 1650,
+        "scale": 1.65
+      },
+      "physicsSha256": "699b6a494763270ff98c1f632ab848f91d34fdf084367e532e57f627363d5c97",
+      "vectorSHA": "76e4fc6c04fc1f95aa9dcd0d97c9b8294c05cbe0a75169eb53174768f8da7cd1",
+      "sourcePathHashes": [
+        "88ec1462d08db96d3bfac44bc3edc7c1a1e9d958a1c4532ecdb903438feb9169",
+        "5a48dcec78253ccedb8f8b7e89d9dcc045c9d2321dc35c21dfdcae6b085b605c",
+        "f441936b67b2539b0de3647aaf32700468faaae2070f387aabb972539d29a31f",
+        "a9e2f2395f237e3eadbc8a45b9fbc7ac77343ac01252111224aca4920525d031",
+        "00f1b1b757e50ac7aba9e1be62cbd59e411b8144de69b9e4dc29d044b0aeef01",
+        "c9f611ee4e779bf2bf526be1b5931ae029e24b11b683e6c43df2d45d5285bbff",
+        "018c13771d0c6e9168403797cb9bcdbe7c9f34dd07743323b5468d1b6b160a22",
+        "2821fa339d278babbf51e8208d17e225851200c810694d4fb035919949a6e1ed",
+        "c12e22c231e0d926428f54dc29a218bd5b026be5574683836f4c85ab0b2cc04c",
+        "be912d6527ed1d8a3a7fea1a3fa49c35125e024f841cfa19e1416cbb8da69f1b",
+        "0c7c44249f6fa9f2ef67f1ae5be6355f7923f2ad9dfd13cdf9dfae57c10384f1",
+        "59793f5d388eb45049b9be23473469c93e0a8a58e9f6bed683dd34e84ace4f37",
+        "1ef9bf8c537efd43f6c3c8723ec755a4bc24a0f2e6598af15fb7efbf0a377d1e",
+        "0b4fde82b0a4e4165a99c413fba386431ebbf00174a1f20d942e6de3b6b68f2c",
+        "0b2ed2d2544511be9077805c75a305f1f3e6845c6314856095536512886d9f11",
+        "c22abdd94e89b3492913de155be6a28f5255be45e9bf6268959557f326be173d",
+        "7a44d293e7bd7e2f3ded6ecf242fd73cbc62508f3f106faa1837d715f730fe27",
+        "587c88e566a3a4c4a6da861c2241f5e4f2f0736897199884c458a7d2ca3673ba",
+        "951e55065b34db9cd666cd69302cad9a7ad88ba437b61c663c8ea568582b9d0e",
+        "cd022735dfa9dcaa6f3f87503905b4af2aa0eb87f3f63e55bb8910cc22c83eaa",
+        "b4a7539496a6d0bb404d8985267d8f240221ec3e07d765734ce98cd652d75f7e",
+        "d44cf46f255019833f83834bbf84cffae1f465f2083bf71a1ef566db08ff9910",
+        "45ae54f59bc2c83cd403ebebdb442b8cc6d7ff330415e839affbfb3cfea82c7c",
+        "0c75525383b5e259169518ad83e9274c1c3cc7665f25f72487dba9cca1fae439",
+        "ea8eb7556f5f9323e0ea2b2eebf0fd470d23c607631f03092835239de7d1388d"
+      ],
+      "width": 1331,
+      "height": 763,
+      "cssWidth": 1331,
+      "cssHeight": 763,
+      "actualDPR": 1,
+      "lifecycle": [
+        {
+          "scale": 0.6,
+          "frameHash": "ea0afe39f1262d6cb49f6319cd132a683e73c16284e5ab19649c179a2b54b0f3"
+        },
+        {
+          "scale": 1.65,
+          "frameHash": "8b467cfdf4fb787a21de9d3809659c4ec3c85aa83170f87e18b452c679c7f99f"
+        },
+        {
+          "scale": 0.6,
+          "frameHash": "ea0afe39f1262d6cb49f6319cd132a683e73c16284e5ab19649c179a2b54b0f3"
+        },
+        {
+          "scale": 1.65,
+          "frameHash": "8b467cfdf4fb787a21de9d3809659c4ec3c85aa83170f87e18b452c679c7f99f"
+        }
+      ],
+      "pngSHA256": {
+        "": "73c872030982a6bfe4856411c43a8cae535f256d2f158ea0735f6c4fd737f628",
+        "-terrain-mask": "73c872030982a6bfe4856411c43a8cae535f256d2f158ea0735f6c4fd737f628"
+      }
+    },
+    "gray-left": {
+      "sceneRGBA": "ea0afe39f1262d6cb49f6319cd132a683e73c16284e5ab19649c179a2b54b0f3",
+      "terrainRGBA": "efa57a1eb85e54cd846a256861970b21802010b79f34a595cc7b26929d5d1c7b",
+      "camera": {
+        "x": 320,
+        "y": 1650,
+        "scale": 0.6
+      },
+      "physicsSha256": "699b6a494763270ff98c1f632ab848f91d34fdf084367e532e57f627363d5c97",
+      "vectorSHA": "76e4fc6c04fc1f95aa9dcd0d97c9b8294c05cbe0a75169eb53174768f8da7cd1",
+      "sourcePathHashes": [
+        "88ec1462d08db96d3bfac44bc3edc7c1a1e9d958a1c4532ecdb903438feb9169",
+        "5a48dcec78253ccedb8f8b7e89d9dcc045c9d2321dc35c21dfdcae6b085b605c",
+        "f441936b67b2539b0de3647aaf32700468faaae2070f387aabb972539d29a31f",
+        "a9e2f2395f237e3eadbc8a45b9fbc7ac77343ac01252111224aca4920525d031",
+        "00f1b1b757e50ac7aba9e1be62cbd59e411b8144de69b9e4dc29d044b0aeef01",
+        "c9f611ee4e779bf2bf526be1b5931ae029e24b11b683e6c43df2d45d5285bbff",
+        "018c13771d0c6e9168403797cb9bcdbe7c9f34dd07743323b5468d1b6b160a22",
+        "2821fa339d278babbf51e8208d17e225851200c810694d4fb035919949a6e1ed",
+        "c12e22c231e0d926428f54dc29a218bd5b026be5574683836f4c85ab0b2cc04c",
+        "be912d6527ed1d8a3a7fea1a3fa49c35125e024f841cfa19e1416cbb8da69f1b",
+        "0c7c44249f6fa9f2ef67f1ae5be6355f7923f2ad9dfd13cdf9dfae57c10384f1",
+        "59793f5d388eb45049b9be23473469c93e0a8a58e9f6bed683dd34e84ace4f37",
+        "1ef9bf8c537efd43f6c3c8723ec755a4bc24a0f2e6598af15fb7efbf0a377d1e",
+        "0b4fde82b0a4e4165a99c413fba386431ebbf00174a1f20d942e6de3b6b68f2c",
+        "0b2ed2d2544511be9077805c75a305f1f3e6845c6314856095536512886d9f11",
+        "c22abdd94e89b3492913de155be6a28f5255be45e9bf6268959557f326be173d",
+        "7a44d293e7bd7e2f3ded6ecf242fd73cbc62508f3f106faa1837d715f730fe27",
+        "587c88e566a3a4c4a6da861c2241f5e4f2f0736897199884c458a7d2ca3673ba",
+        "951e55065b34db9cd666cd69302cad9a7ad88ba437b61c663c8ea568582b9d0e",
+        "cd022735dfa9dcaa6f3f87503905b4af2aa0eb87f3f63e55bb8910cc22c83eaa",
+        "b4a7539496a6d0bb404d8985267d8f240221ec3e07d765734ce98cd652d75f7e",
+        "d44cf46f255019833f83834bbf84cffae1f465f2083bf71a1ef566db08ff9910",
+        "45ae54f59bc2c83cd403ebebdb442b8cc6d7ff330415e839affbfb3cfea82c7c",
+        "0c75525383b5e259169518ad83e9274c1c3cc7665f25f72487dba9cca1fae439",
+        "ea8eb7556f5f9323e0ea2b2eebf0fd470d23c607631f03092835239de7d1388d"
+      ],
+      "width": 1331,
+      "height": 763,
+      "cssWidth": 1331,
+      "cssHeight": 763,
+      "actualDPR": 1,
+      "lifecycle": [],
+      "pngSHA256": {
+        "": "6667ef03081295423a18518113578af0eeb3ef1952c8d4fa92c5ded5c419d4c0",
+        "-terrain-mask": "93fd851ed2506fa03e67a42a0a95a0296fd72c909bea9f385d188eaf899e68b0"
+      }
+    },
+    "phone-dpr2": {
+      "sceneRGBA": "81130dadcf9c661bab65ceb973c974dcdeb664aad486ce683e35a59adfd39b8e",
+      "terrainRGBA": "81130dadcf9c661bab65ceb973c974dcdeb664aad486ce683e35a59adfd39b8e",
+      "camera": {
+        "x": 320,
+        "y": 1650,
+        "scale": 1.65
+      },
+      "physicsSha256": "699b6a494763270ff98c1f632ab848f91d34fdf084367e532e57f627363d5c97",
+      "vectorSHA": "76e4fc6c04fc1f95aa9dcd0d97c9b8294c05cbe0a75169eb53174768f8da7cd1",
+      "sourcePathHashes": [
+        "88ec1462d08db96d3bfac44bc3edc7c1a1e9d958a1c4532ecdb903438feb9169",
+        "5a48dcec78253ccedb8f8b7e89d9dcc045c9d2321dc35c21dfdcae6b085b605c",
+        "f441936b67b2539b0de3647aaf32700468faaae2070f387aabb972539d29a31f",
+        "a9e2f2395f237e3eadbc8a45b9fbc7ac77343ac01252111224aca4920525d031",
+        "00f1b1b757e50ac7aba9e1be62cbd59e411b8144de69b9e4dc29d044b0aeef01",
+        "c9f611ee4e779bf2bf526be1b5931ae029e24b11b683e6c43df2d45d5285bbff",
+        "018c13771d0c6e9168403797cb9bcdbe7c9f34dd07743323b5468d1b6b160a22",
+        "2821fa339d278babbf51e8208d17e225851200c810694d4fb035919949a6e1ed",
+        "c12e22c231e0d926428f54dc29a218bd5b026be5574683836f4c85ab0b2cc04c",
+        "be912d6527ed1d8a3a7fea1a3fa49c35125e024f841cfa19e1416cbb8da69f1b",
+        "0c7c44249f6fa9f2ef67f1ae5be6355f7923f2ad9dfd13cdf9dfae57c10384f1",
+        "59793f5d388eb45049b9be23473469c93e0a8a58e9f6bed683dd34e84ace4f37",
+        "1ef9bf8c537efd43f6c3c8723ec755a4bc24a0f2e6598af15fb7efbf0a377d1e",
+        "0b4fde82b0a4e4165a99c413fba386431ebbf00174a1f20d942e6de3b6b68f2c",
+        "0b2ed2d2544511be9077805c75a305f1f3e6845c6314856095536512886d9f11",
+        "c22abdd94e89b3492913de155be6a28f5255be45e9bf6268959557f326be173d",
+        "7a44d293e7bd7e2f3ded6ecf242fd73cbc62508f3f106faa1837d715f730fe27",
+        "587c88e566a3a4c4a6da861c2241f5e4f2f0736897199884c458a7d2ca3673ba",
+        "951e55065b34db9cd666cd69302cad9a7ad88ba437b61c663c8ea568582b9d0e",
+        "cd022735dfa9dcaa6f3f87503905b4af2aa0eb87f3f63e55bb8910cc22c83eaa",
+        "b4a7539496a6d0bb404d8985267d8f240221ec3e07d765734ce98cd652d75f7e",
+        "d44cf46f255019833f83834bbf84cffae1f465f2083bf71a1ef566db08ff9910",
+        "45ae54f59bc2c83cd403ebebdb442b8cc6d7ff330415e839affbfb3cfea82c7c",
+        "0c75525383b5e259169518ad83e9274c1c3cc7665f25f72487dba9cca1fae439",
+        "ea8eb7556f5f9323e0ea2b2eebf0fd470d23c607631f03092835239de7d1388d"
+      ],
+      "width": 780,
+      "height": 1392,
+      "cssWidth": 390,
+      "cssHeight": 696,
+      "actualDPR": 2,
+      "lifecycle": [],
+      "pngSHA256": {
+        "": "4b1314822e45a9e821a8edab9c7043a150dc5f4299d27230ad8e2c27adb7c8af",
+        "-terrain-mask": "4b1314822e45a9e821a8edab9c7043a150dc5f4299d27230ad8e2c27adb7c8af"
+      }
+    },
+    "phone-dpr3": {
+      "sceneRGBA": "a1be977c63cd9c7ba5fd1e1926830abdfff173853239e762e57c0e077753fd35",
+      "terrainRGBA": "a1be977c63cd9c7ba5fd1e1926830abdfff173853239e762e57c0e077753fd35",
+      "camera": {
+        "x": 320,
+        "y": 1650,
+        "scale": 1.65
+      },
+      "physicsSha256": "699b6a494763270ff98c1f632ab848f91d34fdf084367e532e57f627363d5c97",
+      "vectorSHA": "76e4fc6c04fc1f95aa9dcd0d97c9b8294c05cbe0a75169eb53174768f8da7cd1",
+      "sourcePathHashes": [
+        "88ec1462d08db96d3bfac44bc3edc7c1a1e9d958a1c4532ecdb903438feb9169",
+        "5a48dcec78253ccedb8f8b7e89d9dcc045c9d2321dc35c21dfdcae6b085b605c",
+        "f441936b67b2539b0de3647aaf32700468faaae2070f387aabb972539d29a31f",
+        "a9e2f2395f237e3eadbc8a45b9fbc7ac77343ac01252111224aca4920525d031",
+        "00f1b1b757e50ac7aba9e1be62cbd59e411b8144de69b9e4dc29d044b0aeef01",
+        "c9f611ee4e779bf2bf526be1b5931ae029e24b11b683e6c43df2d45d5285bbff",
+        "018c13771d0c6e9168403797cb9bcdbe7c9f34dd07743323b5468d1b6b160a22",
+        "2821fa339d278babbf51e8208d17e225851200c810694d4fb035919949a6e1ed",
+        "c12e22c231e0d926428f54dc29a218bd5b026be5574683836f4c85ab0b2cc04c",
+        "be912d6527ed1d8a3a7fea1a3fa49c35125e024f841cfa19e1416cbb8da69f1b",
+        "0c7c44249f6fa9f2ef67f1ae5be6355f7923f2ad9dfd13cdf9dfae57c10384f1",
+        "59793f5d388eb45049b9be23473469c93e0a8a58e9f6bed683dd34e84ace4f37",
+        "1ef9bf8c537efd43f6c3c8723ec755a4bc24a0f2e6598af15fb7efbf0a377d1e",
+        "0b4fde82b0a4e4165a99c413fba386431ebbf00174a1f20d942e6de3b6b68f2c",
+        "0b2ed2d2544511be9077805c75a305f1f3e6845c6314856095536512886d9f11",
+        "c22abdd94e89b3492913de155be6a28f5255be45e9bf6268959557f326be173d",
+        "7a44d293e7bd7e2f3ded6ecf242fd73cbc62508f3f106faa1837d715f730fe27",
+        "587c88e566a3a4c4a6da861c2241f5e4f2f0736897199884c458a7d2ca3673ba",
+        "951e55065b34db9cd666cd69302cad9a7ad88ba437b61c663c8ea568582b9d0e",
+        "cd022735dfa9dcaa6f3f87503905b4af2aa0eb87f3f63e55bb8910cc22c83eaa",
+        "b4a7539496a6d0bb404d8985267d8f240221ec3e07d765734ce98cd652d75f7e",
+        "d44cf46f255019833f83834bbf84cffae1f465f2083bf71a1ef566db08ff9910",
+        "45ae54f59bc2c83cd403ebebdb442b8cc6d7ff330415e839affbfb3cfea82c7c",
+        "0c75525383b5e259169518ad83e9274c1c3cc7665f25f72487dba9cca1fae439",
+        "ea8eb7556f5f9323e0ea2b2eebf0fd470d23c607631f03092835239de7d1388d"
+      ],
+      "width": 1170,
+      "height": 2088,
+      "cssWidth": 390,
+      "cssHeight": 696,
+      "actualDPR": 3,
+      "lifecycle": [],
+      "pngSHA256": {
+        "": "fd49f7cf8e65ca4ca0845a73bce7e5e12191a73c3cedd6df2ab124989ac17b9d",
+        "-terrain-mask": "fd49f7cf8e65ca4ca0845a73bce7e5e12191a73c3cedd6df2ab124989ac17b9d"
+      }
+    },
+    "desktop1080": {
+      "sceneRGBA": "16e17b8961458a7a4655467a4bc81d756a0d19a860decfeac999a34e067df2e3",
+      "terrainRGBA": "16e17b8961458a7a4655467a4bc81d756a0d19a860decfeac999a34e067df2e3",
+      "camera": {
+        "x": 320,
+        "y": 1650,
+        "scale": 1.65
+      },
+      "physicsSha256": "699b6a494763270ff98c1f632ab848f91d34fdf084367e532e57f627363d5c97",
+      "vectorSHA": "76e4fc6c04fc1f95aa9dcd0d97c9b8294c05cbe0a75169eb53174768f8da7cd1",
+      "sourcePathHashes": [
+        "88ec1462d08db96d3bfac44bc3edc7c1a1e9d958a1c4532ecdb903438feb9169",
+        "5a48dcec78253ccedb8f8b7e89d9dcc045c9d2321dc35c21dfdcae6b085b605c",
+        "f441936b67b2539b0de3647aaf32700468faaae2070f387aabb972539d29a31f",
+        "a9e2f2395f237e3eadbc8a45b9fbc7ac77343ac01252111224aca4920525d031",
+        "00f1b1b757e50ac7aba9e1be62cbd59e411b8144de69b9e4dc29d044b0aeef01",
+        "c9f611ee4e779bf2bf526be1b5931ae029e24b11b683e6c43df2d45d5285bbff",
+        "018c13771d0c6e9168403797cb9bcdbe7c9f34dd07743323b5468d1b6b160a22",
+        "2821fa339d278babbf51e8208d17e225851200c810694d4fb035919949a6e1ed",
+        "c12e22c231e0d926428f54dc29a218bd5b026be5574683836f4c85ab0b2cc04c",
+        "be912d6527ed1d8a3a7fea1a3fa49c35125e024f841cfa19e1416cbb8da69f1b",
+        "0c7c44249f6fa9f2ef67f1ae5be6355f7923f2ad9dfd13cdf9dfae57c10384f1",
+        "59793f5d388eb45049b9be23473469c93e0a8a58e9f6bed683dd34e84ace4f37",
+        "1ef9bf8c537efd43f6c3c8723ec755a4bc24a0f2e6598af15fb7efbf0a377d1e",
+        "0b4fde82b0a4e4165a99c413fba386431ebbf00174a1f20d942e6de3b6b68f2c",
+        "0b2ed2d2544511be9077805c75a305f1f3e6845c6314856095536512886d9f11",
+        "c22abdd94e89b3492913de155be6a28f5255be45e9bf6268959557f326be173d",
+        "7a44d293e7bd7e2f3ded6ecf242fd73cbc62508f3f106faa1837d715f730fe27",
+        "587c88e566a3a4c4a6da861c2241f5e4f2f0736897199884c458a7d2ca3673ba",
+        "951e55065b34db9cd666cd69302cad9a7ad88ba437b61c663c8ea568582b9d0e",
+        "cd022735dfa9dcaa6f3f87503905b4af2aa0eb87f3f63e55bb8910cc22c83eaa",
+        "b4a7539496a6d0bb404d8985267d8f240221ec3e07d765734ce98cd652d75f7e",
+        "d44cf46f255019833f83834bbf84cffae1f465f2083bf71a1ef566db08ff9910",
+        "45ae54f59bc2c83cd403ebebdb442b8cc6d7ff330415e839affbfb3cfea82c7c",
+        "0c75525383b5e259169518ad83e9274c1c3cc7665f25f72487dba9cca1fae439",
+        "ea8eb7556f5f9323e0ea2b2eebf0fd470d23c607631f03092835239de7d1388d"
+      ],
+      "width": 1920,
+      "height": 1080,
+      "cssWidth": 1920,
+      "cssHeight": 1080,
+      "actualDPR": 1,
+      "lifecycle": [],
+      "pngSHA256": {
+        "": "221e0798828552097208b452fc41d133eced4fcc83adb52bc522d566ec400630",
+        "-terrain-mask": "221e0798828552097208b452fc41d133eced4fcc83adb52bc522d566ec400630"
+      }
+    }
+  }
+}
