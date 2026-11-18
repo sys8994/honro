@@ -1,0 +1,1 @@
+export async function measureWholeScene({canvas,engine,battle,camera,makeScene,assertPure,drain}){const s=makeScene(canvas,camera);for(let i=0;i<4;i++){s.render(engine,0,'',.6,false,0);assertPure();await drain();}return{diagnosticOnly:true,renderCount:4};}

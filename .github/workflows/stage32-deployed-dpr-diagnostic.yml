@@ -1,0 +1,29 @@
+name: Stage32 deployed DPR3 BODY transform diagnostic
+on:
+  push:
+    branches: [inspect/stage32-scanline-20261118]
+    paths: [tools/testing/stage32-deployed-dpr-diagnostic/**, .github/workflows/stage32-deployed-dpr-diagnostic.yml]
+permissions:
+  contents: read
+jobs:
+  diagnose:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with: {path: harness}
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with: {path: baseline, ref: 7d238d20663c3ceffe430eb0304e01516ae625cf}
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with: {node-version: '22', package-manager-cache: false}
+      - run: cd baseline && npm ci && npm ci --prefix game
+      - run: |
+          export HONRO_ACT4_RELEASE=1
+          export CHROME_BIN="$(command -v google-chrome || command -v chromium)"
+          node harness/tools/testing/stage32-deployed-dpr-diagnostic/prepare.mjs "$PWD/baseline" "$RUNNER_TEMP/dpr-input"
+          node harness/tools/testing/stage32-deployed-dpr-diagnostic/run.mjs "$RUNNER_TEMP/dpr-input" "$RUNNER_TEMP/dpr-evidence"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage32-deployed-dpr-diagnostic
+          path: ${{ runner.temp }}/dpr-evidence
