@@ -1,0 +1,123 @@
+{
+  "passed": true,
+  "baseline": "5b2edf0b868a6f4ab656574b036586304eb12808",
+  "candidate": "abdef6fc12042714f02d8ea2bf3b2c80757273f0",
+  "rows": [
+    {
+      "variant": "baseline",
+      "view": "3-right-shore-dpr3",
+      "suffix": "",
+      "pngSHA256": "2fc2978565db38aa6415cc49a353782a7687a3c8b30b6a4ebabcb559da213e7d",
+      "camera": {
+        "x": 5730.0199999999995,
+        "y": 1518.1,
+        "scale": 1.65
+      },
+      "actualDPR": 3,
+      "backingRatio": 1.7
+    },
+    {
+      "variant": "baseline",
+      "view": "3-right-shore-dpr3",
+      "suffix": "-terrain-mask",
+      "pngSHA256": "2fc2978565db38aa6415cc49a353782a7687a3c8b30b6a4ebabcb559da213e7d",
+      "camera": {
+        "x": 5730.0199999999995,
+        "y": 1518.1,
+        "scale": 1.65
+      },
+      "actualDPR": 3,
+      "backingRatio": 1.7
+    },
+    {
+      "variant": "candidate",
+      "view": "3-right-shore-dpr3",
+      "suffix": "",
+      "pngSHA256": "743a49755b3d4127c85f8673ca918688a01635b6f12dce0d146a8e0b787ab973",
+      "camera": {
+        "x": 5730.0199999999995,
+        "y": 1518.1,
+        "scale": 1.65
+      },
+      "actualDPR": 3,
+      "backingRatio": 1.7
+    },
+    {
+      "variant": "candidate",
+      "view": "3-right-shore-dpr3",
+      "suffix": "-terrain-mask",
+      "pngSHA256": "743a49755b3d4127c85f8673ca918688a01635b6f12dce0d146a8e0b787ab973",
+      "camera": {
+        "x": 5730.0199999999995,
+        "y": 1518.1,
+        "scale": 1.65
+      },
+      "actualDPR": 3,
+      "backingRatio": 1.7
+    },
+    {
+      "variant": "baseline",
+      "view": "3-right-ground-dpr3",
+      "suffix": "",
+      "pngSHA256": "661cb281546b1e70572f274ea42c529f52729e9e171321106e48f5716923feb7",
+      "camera": {
+        "x": 5730.0199999999995,
+        "y": 2060.74,
+        "scale": 1.65
+      },
+      "actualDPR": 3,
+      "backingRatio": 1.7
+    },
+    {
+      "variant": "baseline",
+      "view": "3-right-ground-dpr3",
+      "suffix": "-terrain-mask",
+      "pngSHA256": "661cb281546b1e70572f274ea42c529f52729e9e171321106e48f5716923feb7",
+      "camera": {
+        "x": 5730.0199999999995,
+        "y": 2060.74,
+        "scale": 1.65
+      },
+      "actualDPR": 3,
+      "backingRatio": 1.7
+    },
+    {
+      "variant": "candidate",
+      "view": "3-right-ground-dpr3",
+      "suffix": "",
+      "pngSHA256": "ab3752d492dec4f98627b832a7b243f509be14a3863e782a9b2990b6e11e3330",
+      "camera": {
+        "x": 5730.0199999999995,
+        "y": 2060.74,
+        "scale": 1.65
+      },
+      "actualDPR": 3,
+      "backingRatio": 1.7
+    },
+    {
+      "variant": "candidate",
+      "view": "3-right-ground-dpr3",
+      "suffix": "-terrain-mask",
+      "pngSHA256": "ab3752d492dec4f98627b832a7b243f509be14a3863e782a9b2990b6e11e3330",
+      "camera": {
+        "x": 5730.0199999999995,
+        "y": 2060.74,
+        "scale": 1.65
+      },
+      "actualDPR": 3,
+      "backingRatio": 1.7
+    }
+  ],
+  "scope": "Actual official paired normal/actor-free Scene at two authored right walk elevations. Requested Chrome DPR3, official backing cap1.7. Structural/purity only; direct PNG art review remains. Not a physical phone or frame-performance test.",
+  "workflowRun": 44295188393,
+  "artifact": 14423278224,
+  "zipSHA256": "cc0789fe9846f4a44ec8f6ca7088b4f418f3783c3e0e9d4129c9d18f73711f36",
+  "visualAcceptance": false,
+  "productionReady": false,
+  "findings": [
+    "Upper shore: outside false flat block removed; pre-existing original corner stroke retained.",
+    "Lower ground: former gap filled, but new ribbon start at source1770 has abrupt vertical material step; small vertical traces at original source1774 remain visible in normal and actor-free.",
+    "Original old crop source1774,760 was interior, now coverage corrected."
+  ],
+  "files": []
+}
