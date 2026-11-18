@@ -1,0 +1,716 @@
+{
+  "method": "Analytic line/quadratic B\u00e9zier crossings with each exact physical-pixel source-space square; polynomial roots and nonzero winding. No raster-mask dilation or RGB tolerance establishes acceptance.",
+  "count": 30,
+  "allFootprintsIntersectApprovedNonwalkPlanes": false,
+  "maxRGBDifference": 1,
+  "rows": [
+    {
+      "view": "reported-left",
+      "x": 898,
+      "y": 199,
+      "rgbMaxDifference": 1,
+      "whiteMaskAlpha": 0,
+      "sourceFootprint": [
+        123.80191693290735,
+        1043.1352502662407,
+        124.33439829605963,
+        1043.667731629393
+      ],
+      "intersectingApprovedPlanes": [
+        7
+      ],
+      "centerDistanceToClosestCurvePhysicalPixels": 0.49520646448079786,
+      "footprintDistanceToApprovedPlane": 0,
+      "minWorldUnitsBelowWalkFloor": 125.49054726368149,
+      "bodyAlphaBeforeAfter": [
+        255,
+        255
+      ],
+      "capAlpha": 0
+    },
+    {
+      "view": "reported-left",
+      "x": 915,
+      "y": 213,
+      "rgbMaxDifference": 1,
+      "whiteMaskAlpha": 0,
+      "sourceFootprint": [
+        132.85410010649628,
+        1050.5899893503727,
+        133.38658146964858,
+        1051.122470713525
+      ],
+      "intersectingApprovedPlanes": [],
+      "centerDistanceToClosestCurvePhysicalPixels": 0.8063115083664394,
+      "footprintDistanceToApprovedPlane": null,
+      "minWorldUnitsBelowWalkFloor": 145.2293532338308,
+      "bodyAlphaBeforeAfter": [
+        255,
+        255
+      ],
+      "capAlpha": 0
+    },
+    {
+      "view": "reported-left",
+      "x": 664,
+      "y": 232,
+      "rgbMaxDifference": 1,
+      "whiteMaskAlpha": 0,
+      "sourceFootprint": [
+        -0.7987220447284346,
+        1060.7071352502662,
+        -0.2662406815761449,
+        1061.2396166134185
+      ],
+      "intersectingApprovedPlanes": [
+        2
+      ],
+      "centerDistanceToClosestCurvePhysicalPixels": 0.5884921363577453,
+      "footprintDistanceToApprovedPlane": 0,
+      "minWorldUnitsBelowWalkFloor": 218.1833333333334,
+      "bodyAlphaBeforeAfter": [
+        255,
+        255
+      ],
+      "capAlpha": 0
+    },
+    {
+      "view": "reported-left",
+      "x": 672,
+      "y": 236,
+      "rgbMaxDifference": 1,
+      "whiteMaskAlpha": 0,
+      "sourceFootprint": [
+        3.4611288604898833,
+        1062.8370607028753,
+        3.993610223642173,
+        1063.3695420660276
+      ],
+      "intersectingApprovedPlanes": [],
+      "centerDistanceToClosestCurvePhysicalPixels": 0.7173559818158572,
+      "footprintDistanceToApprovedPlane": null,
+      "minWorldUnitsBelowWalkFloor": 224.84999999999945,
+      "bodyAlphaBeforeAfter": [
+        255,
+        255
+      ],
+      "capAlpha": 0
+    },
+    {
+      "view": "reported-left",
+      "x": 660,
+      "y": 237,
+      "rgbMaxDifference": 1,
+      "whiteMaskAlpha": 0,
+      "sourceFootprint": [
+        -2.9286474973375936,
+        1063.3695420660276,
+        -2.3961661341853038,
+        1063.90202342918
+      ],
+      "intersectingApprovedPlanes": [
+        2
+      ],
+      "centerDistanceToClosestCurvePhysicalPixels": 0.6171174090745822,
+      "footprintDistanceToApprovedPlane": 0,
+      "minWorldUnitsBelowWalkFloor": 226.51666666666642,
+      "bodyAlphaBeforeAfter": [
+        255,
+        255
+      ],
+      "capAlpha": 0
+    },
+    {
+      "view": "reported-left",
+      "x": 927,
+      "y": 246,
+      "rgbMaxDifference": 1,
+      "whiteMaskAlpha": 0,
+      "sourceFootprint": [
+        139.24387646432376,
+        1068.1618743343981,
+        139.77635782747606,
+        1068.6943556975505
+      ],
+      "intersectingApprovedPlanes": [],
+      "centerDistanceToClosestCurvePhysicalPixels": 0.7075596725335898,
+      "footprintDistanceToApprovedPlane": null,
+      "minWorldUnitsBelowWalkFloor": 197.69203980099428,
+      "bodyAlphaBeforeAfter": [
+        255,
+        255
+      ],
+      "capAlpha": 0
+    },
+    {
+      "view": "reported-left",
+      "x": 650,
+      "y": 249,
+      "rgbMaxDifference": 1,
+      "whiteMaskAlpha": 0,
+      "sourceFootprint": [
+        -8.253461128860492,
+        1069.7593184238551,
+        -7.720979765708202,
+        1070.2917997870074
+      ],
+      "intersectingApprovedPlanes": [
+        2
+      ],
+      "centerDistanceToClosestCurvePhysicalPixels": 0.5990247792368193,
+      "footprintDistanceToApprovedPlane": 0,
+      "minWorldUnitsBelowWalkFloor": 246.51666666666642,
+      "bodyAlphaBeforeAfter": [
+        255,
+        255
+      ],
+      "capAlpha": 0
+    },
+    {
+      "view": "reported-left",
+      "x": 652,
+      "y": 256,
+      "rgbMaxDifference": 1,
+      "whiteMaskAlpha": 0,
+      "sourceFootprint": [
+        -7.18849840255591,
+        1073.4866879659212,
+        -6.656017039403621,
+        1074.0191693290735
+      ],
+      "intersectingApprovedPlanes": [
+        2
+      ],
+      "centerDistanceToClosestCurvePhysicalPixels": 0.5401619241437051,
+      "footprintDistanceToApprovedPlane": 0,
+      "minWorldUnitsBelowWalkFloor": 258.1833333333334,
+      "bodyAlphaBeforeAfter": [
+        255,
+        255
+      ],
+      "capAlpha": 0
+    },
+    {
+      "view": "reported-left",
+      "x": 651,
+      "y": 257,
+      "rgbMaxDifference": 1,
+      "whiteMaskAlpha": 0,
+      "sourceFootprint": [
+        -7.720979765708201,
+        1074.0191693290735,
+        -7.188498402555911,
+        1074.5516506922258
+      ],
+      "intersectingApprovedPlanes": [
+        2
+      ],
+      "centerDistanceToClosestCurvePhysicalPixels": 0.5330931208863909,
+      "footprintDistanceToApprovedPlane": 0,
+      "minWorldUnitsBelowWalkFloor": 259.8499999999999,
+      "bodyAlphaBeforeAfter": [
+        255,
+        255
+      ],
+      "capAlpha": 0
+    },
+    {
+      "view": "reported-left",
+      "x": 650,
+      "y": 258,
+      "rgbMaxDifference": 1,
+      "whiteMaskAlpha": 0,
+      "sourceFootprint": [
+        -8.253461128860492,
+        1074.5516506922256,
+        -7.720979765708202,
+        1075.084132055378
+      ],
+      "intersectingApprovedPlanes": [
+        2
+      ],
+      "centerDistanceToClosestCurvePhysicalPixels": 0.5289268859848131,
+      "footprintDistanceToApprovedPlane": 0,
+      "minWorldUnitsBelowWalkFloor": 261.51666666666597,
+      "bodyAlphaBeforeAfter": [
+        255,
+        255
+      ],
+      "capAlpha": 0
+    },
+    {
+      "view": "reported-left",
+      "x": 647,
+      "y": 261,
+      "rgbMaxDifference": 1,
+      "whiteMaskAlpha": 0,
+      "sourceFootprint": [
+        -9.85090521831736,
+        1076.1490947816826,
+        -9.31842385516507,
+        1076.681576144835
+      ],
+      "intersectingApprovedPlanes": [
+        2
+      ],
+      "centerDistanceToClosestCurvePhysicalPixels": 0.5333073700728932,
+      "footprintDistanceToApprovedPlane": 0,
+      "minWorldUnitsBelowWalkFloor": 266.5166666666664,
+      "bodyAlphaBeforeAfter": [
+        255,
+        255
+      ],
+      "capAlpha": 0
+    },
+    {
+      "view": "reported-left",
+      "x": 646,
+      "y": 262,
+      "rgbMaxDifference": 1,
+      "whiteMaskAlpha": 0,
+      "sourceFootprint": [
+        -10.383386581469649,
+        1076.681576144835,
+        -9.85090521831736,
+        1077.2140575079873
+      ],
+      "intersectingApprovedPlanes": [
+        2
+      ],
+      "centerDistanceToClosestCurvePhysicalPixels": 0.5402229919859227,
+      "footprintDistanceToApprovedPlane": 0,
+      "minWorldUnitsBelowWalkFloor": 268.1833333333334,
+      "bodyAlphaBeforeAfter": [
+        255,
+        255
+      ],
+      "capAlpha": 0
+    },
+    {
+      "view": "reported-left",
+      "x": 645,
+      "y": 263,
+      "rgbMaxDifference": 1,
+      "whiteMaskAlpha": 0,
+      "sourceFootprint": [
+        -10.91586794462194,
+        1077.2140575079873,
+        -10.38338658146965,
+        1077.7465388711396
+      ],
+      "intersectingApprovedPlanes": [
+        2
+      ],
+      "centerDistanceToClosestCurvePhysicalPixels": 0.5497845672381316,
+      "footprintDistanceToApprovedPlane": 0,
+      "minWorldUnitsBelowWalkFloor": 269.8499999999999,
+      "bodyAlphaBeforeAfter": [
+        255,
+        255
+      ],
+      "capAlpha": 0
+    },
+    {
+      "view": "reported-left",
+      "x": 640,
+      "y": 275,
+      "rgbMaxDifference": 1,
+      "whiteMaskAlpha": 0,
+      "sourceFootprint": [
+        -13.578274760383387,
+        1083.6038338658147,
+        -13.045793397231098,
+        1084.136315228967
+      ],
+      "intersectingApprovedPlanes": [
+        3
+      ],
+      "centerDistanceToClosestCurvePhysicalPixels": 0.5036010348886277,
+      "footprintDistanceToApprovedPlane": 0,
+      "minWorldUnitsBelowWalkFloor": 289.8499999999999,
+      "bodyAlphaBeforeAfter": [
+        255,
+        255
+      ],
+      "capAlpha": 0
+    },
+    {
+      "view": "reported-left",
+      "x": 624,
+      "y": 283,
+      "rgbMaxDifference": 1,
+      "whiteMaskAlpha": 0,
+      "sourceFootprint": [
+        -22.097976570820023,
+        1087.8636847710331,
+        -21.565495207667734,
+        1088.3961661341855
+      ],
+      "intersectingApprovedPlanes": [
+        2
+      ],
+      "centerDistanceToClosestCurvePhysicalPixels": 0.5540653868220382,
+      "footprintDistanceToApprovedPlane": 0,
+      "minWorldUnitsBelowWalkFloor": 303.18333333333385,
+      "bodyAlphaBeforeAfter": [
+        255,
+        255
+      ],
+      "capAlpha": 0
+    },
+    {
+      "view": "reported-left",
+      "x": 619,
+      "y": 291,
+      "rgbMaxDifference": 1,
+      "whiteMaskAlpha": 0,
+      "sourceFootprint": [
+        -24.76038338658147,
+        1092.1235356762513,
+        -24.22790202342918,
+        1092.6560170394037
+      ],
+      "intersectingApprovedPlanes": [],
+      "centerDistanceToClosestCurvePhysicalPixels": 0.7216171265256213,
+      "footprintDistanceToApprovedPlane": null,
+      "minWorldUnitsBelowWalkFloor": 316.5166666666664,
+      "bodyAlphaBeforeAfter": [
+        255,
+        255
+      ],
+      "capAlpha": 0
+    },
+    {
+      "view": "reported-left",
+      "x": 613,
+      "y": 293,
+      "rgbMaxDifference": 1,
+      "whiteMaskAlpha": 0,
+      "sourceFootprint": [
+        -27.95527156549521,
+        1093.188498402556,
+        -27.42279020234292,
+        1093.7209797657083
+      ],
+      "intersectingApprovedPlanes": [
+        2
+      ],
+      "centerDistanceToClosestCurvePhysicalPixels": 0.5344746275305464,
+      "footprintDistanceToApprovedPlane": 0,
+      "minWorldUnitsBelowWalkFloor": 319.85000000000036,
+      "bodyAlphaBeforeAfter": [
+        255,
+        255
+      ],
+      "capAlpha": 0
+    },
+    {
+      "view": "reported-left",
+      "x": 602,
+      "y": 299,
+      "rgbMaxDifference": 1,
+      "whiteMaskAlpha": 0,
+      "sourceFootprint": [
+        -33.812566560170396,
+        1096.3833865814697,
+        -33.2800851970181,
+        1096.915867944622
+      ],
+      "intersectingApprovedPlanes": [
+        2
+      ],
+      "centerDistanceToClosestCurvePhysicalPixels": 0.5714085765954142,
+      "footprintDistanceToApprovedPlane": 0,
+      "minWorldUnitsBelowWalkFloor": 329.85000000000036,
+      "bodyAlphaBeforeAfter": [
+        255,
+        255
+      ],
+      "capAlpha": 0
+    },
+    {
+      "view": "reported-left",
+      "x": 604,
+      "y": 301,
+      "rgbMaxDifference": 1,
+      "whiteMaskAlpha": 0,
+      "sourceFootprint": [
+        -32.74760383386582,
+        1097.4483493077742,
+        -32.215122470713524,
+        1097.9808306709265
+      ],
+      "intersectingApprovedPlanes": [
+        2
+      ],
+      "centerDistanceToClosestCurvePhysicalPixels": 0.5167766163068412,
+      "footprintDistanceToApprovedPlane": 0,
+      "minWorldUnitsBelowWalkFloor": 333.18333333333294,
+      "bodyAlphaBeforeAfter": [
+        255,
+        255
+      ],
+      "capAlpha": 0
+    },
+    {
+      "view": "reported-left",
+      "x": 881,
+      "y": 305,
+      "rgbMaxDifference": 1,
+      "whiteMaskAlpha": 0,
+      "sourceFootprint": [
+        114.74973375931843,
+        1099.5782747603835,
+        115.28221512247072,
+        1100.1107561235358
+      ],
+      "intersectingApprovedPlanes": [
+        10
+      ],
+      "centerDistanceToClosestCurvePhysicalPixels": 0.6865495486672545,
+      "footprintDistanceToApprovedPlane": 0,
+      "minWorldUnitsBelowWalkFloor": 305.1127586206899,
+      "bodyAlphaBeforeAfter": [
+        255,
+        255
+      ],
+      "capAlpha": 0
+    },
+    {
+      "view": "reported-left",
+      "x": 586,
+      "y": 314,
+      "rgbMaxDifference": 1,
+      "whiteMaskAlpha": 0,
+      "sourceFootprint": [
+        -42.33226837060703,
+        1104.370607028754,
+        -41.79978700745474,
+        1104.9030883919063
+      ],
+      "intersectingApprovedPlanes": [
+        2
+      ],
+      "centerDistanceToClosestCurvePhysicalPixels": 0.5785624633625562,
+      "footprintDistanceToApprovedPlane": 0,
+      "minWorldUnitsBelowWalkFloor": 354.8499999999999,
+      "bodyAlphaBeforeAfter": [
+        255,
+        255
+      ],
+      "capAlpha": 0
+    },
+    {
+      "view": "reported-left",
+      "x": 617,
+      "y": 332,
+      "rgbMaxDifference": 1,
+      "whiteMaskAlpha": 0,
+      "sourceFootprint": [
+        -25.825346112886052,
+        1113.9552715654952,
+        -25.292864749733763,
+        1114.4877529286475
+      ],
+      "intersectingApprovedPlanes": [],
+      "centerDistanceToClosestCurvePhysicalPixels": 0.7465564136055285,
+      "footprintDistanceToApprovedPlane": null,
+      "minWorldUnitsBelowWalkFloor": 384.8499999999999,
+      "bodyAlphaBeforeAfter": [
+        255,
+        255
+      ],
+      "capAlpha": 0
+    },
+    {
+      "view": "reported-left",
+      "x": 605,
+      "y": 344,
+      "rgbMaxDifference": 1,
+      "whiteMaskAlpha": 0,
+      "sourceFootprint": [
+        -32.21512247071353,
+        1120.3450479233227,
+        -31.682641107561242,
+        1120.877529286475
+      ],
+      "intersectingApprovedPlanes": [
+        1
+      ],
+      "centerDistanceToClosestCurvePhysicalPixels": 0.6993628204670931,
+      "footprintDistanceToApprovedPlane": 0,
+      "minWorldUnitsBelowWalkFloor": 404.8499999999999,
+      "bodyAlphaBeforeAfter": [
+        255,
+        255
+      ],
+      "capAlpha": 0
+    },
+    {
+      "view": "reported-left",
+      "x": 593,
+      "y": 355,
+      "rgbMaxDifference": 1,
+      "whiteMaskAlpha": 0,
+      "sourceFootprint": [
+        -38.604898828541,
+        1126.2023429179978,
+        -38.07241746538871,
+        1126.7348242811502
+      ],
+      "intersectingApprovedPlanes": [
+        1
+      ],
+      "centerDistanceToClosestCurvePhysicalPixels": 0.6089380463038131,
+      "footprintDistanceToApprovedPlane": 0,
+      "minWorldUnitsBelowWalkFloor": 423.1833333333334,
+      "bodyAlphaBeforeAfter": [
+        255,
+        255
+      ],
+      "capAlpha": 0
+    },
+    {
+      "view": "overview",
+      "x": 226,
+      "y": 674,
+      "rgbMaxDifference": 1,
+      "whiteMaskAlpha": 0,
+      "sourceFootprint": [
+        6.6263853116755325,
+        1047.5895012757949,
+        8.25863471938503,
+        1049.2217506835043
+      ],
+      "intersectingApprovedPlanes": [
+        2
+      ],
+      "centerDistanceToClosestCurvePhysicalPixels": 0.6046817087855595,
+      "footprintDistanceToApprovedPlane": 0,
+      "minWorldUnitsBelowWalkFloor": 177.0413948547889,
+      "bodyAlphaBeforeAfter": [
+        255,
+        255
+      ],
+      "capAlpha": 0
+    },
+    {
+      "view": "overview",
+      "x": 217,
+      "y": 686,
+      "rgbMaxDifference": 1,
+      "whiteMaskAlpha": 0,
+      "sourceFootprint": [
+        -8.06385935770995,
+        1067.1764941683089,
+        -6.4316099500004515,
+        1068.8087435760183
+      ],
+      "intersectingApprovedPlanes": [
+        2
+      ],
+      "centerDistanceToClosestCurvePhysicalPixels": 0.6618594823241328,
+      "footprintDistanceToApprovedPlane": 0,
+      "minWorldUnitsBelowWalkFloor": 238.43242674680687,
+      "bodyAlphaBeforeAfter": [
+        255,
+        255
+      ],
+      "capAlpha": 0
+    },
+    {
+      "view": "overview",
+      "x": 345,
+      "y": 712,
+      "rgbMaxDifference": 1,
+      "whiteMaskAlpha": 0,
+      "sourceFootprint": [
+        200.86406482910584,
+        1109.614978768756,
+        202.49631423681535,
+        1111.2472281764653
+      ],
+      "intersectingApprovedPlanes": [],
+      "centerDistanceToClosestCurvePhysicalPixels": 0.5147513493120554,
+      "footprintDistanceToApprovedPlane": null,
+      "minWorldUnitsBelowWalkFloor": 302.53481727351254,
+      "bodyAlphaBeforeAfter": [
+        255,
+        255
+      ],
+      "capAlpha": 0
+    },
+    {
+      "view": "left-native",
+      "x": 1303,
+      "y": 660,
+      "rgbMaxDifference": 1,
+      "whiteMaskAlpha": 0,
+      "sourceFootprint": [
+        123.4388614580308,
+        1044.3411753315909,
+        123.63249104463164,
+        1044.5348049181916
+      ],
+      "intersectingApprovedPlanes": [
+        7
+      ],
+      "centerDistanceToClosestCurvePhysicalPixels": 0.504804977616109,
+      "footprintDistanceToApprovedPlane": 0,
+      "minWorldUnitsBelowWalkFloor": 129.5168756530834,
+      "bodyAlphaBeforeAfter": [
+        255,
+        255
+      ],
+      "capAlpha": 0
+    },
+    {
+      "view": "left-native",
+      "x": 696,
+      "y": 738,
+      "rgbMaxDifference": 1,
+      "whiteMaskAlpha": 0,
+      "sourceFootprint": [
+        5.905702391325395,
+        1059.4442830864557,
+        6.099331977926227,
+        1059.6379126730565
+      ],
+      "intersectingApprovedPlanes": [
+        2
+      ],
+      "centerDistanceToClosestCurvePhysicalPixels": 0.5777124904421407,
+      "footprintDistanceToApprovedPlane": 0,
+      "minWorldUnitsBelowWalkFloor": 214.23060606060608,
+      "bodyAlphaBeforeAfter": [
+        255,
+        255
+      ],
+      "capAlpha": 0
+    },
+    {
+      "view": "left-native",
+      "x": 682,
+      "y": 754,
+      "rgbMaxDifference": 1,
+      "whiteMaskAlpha": 0,
+      "sourceFootprint": [
+        3.194888178913738,
+        1062.542356472069,
+        3.388517765514571,
+        1062.7359860586698
+      ],
+      "intersectingApprovedPlanes": [
+        2
+      ],
+      "centerDistanceToClosestCurvePhysicalPixels": 0.5551166369416806,
+      "footprintDistanceToApprovedPlane": 0,
+      "minWorldUnitsBelowWalkFloor": 223.92757575757605,
+      "bodyAlphaBeforeAfter": [
+        255,
+        255
+      ],
+      "capAlpha": 0
+    }
+  ]
+}
