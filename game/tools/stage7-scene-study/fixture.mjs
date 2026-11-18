@@ -6,6 +6,7 @@ import {applyAct1Sites} from '../../../tools/map-forge/act1-naru-doldang.mjs';
 import {terrainPathOptimization} from '../../../shared/terrain-path-optimization.mjs';
 const out=process.argv[2];if(!out)throw Error('Output directory required');await mkdir(out,{recursive:true});
 const candidate=JSON.parse(await readFile(new URL('../stage7-vector-study/generated/candidate.json',import.meta.url),'utf8'));
+const closure=JSON.parse(await readFile(new URL('./right-closure.json',import.meta.url),'utf8'));
 const entries=await runtimeEntries({vector:true,render:true,app:false,productionStory:true});
 const runtime=entries.map(e=>e.code).join('\n;\n'),runtimeSha=createHash('sha256').update(runtime).digest('hex');
 // Recreate the production author -> registered path optimizer boundary exactly.
@@ -45,7 +46,7 @@ function bootstrap(id){
   descriptor.set.call(this,value);
  }});
 }
-async function capture(candidate,sourceContract,runtimeSha,variant,view){
+async function capture(candidate,closure,sourceContract,runtimeSha,variant,view){
  const p=PROBE,assert=(v,m)=>{if(!v)throw Error(m);},plain=x=>JSON.parse(JSON.stringify(x));
  const stable=x=>JSON.stringify(x,(k,v)=>v&&typeof v==='object'&&!Array.isArray(v)?Object.fromEntries(Object.keys(v).sort().map(k=>[k,v[k]])):v);
  const hash=async x=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(typeof x==='string'?x:stable(x)))),v=>v.toString(16).padStart(2,'0')).join('');
@@ -55,18 +56,32 @@ async function capture(candidate,sourceContract,runtimeSha,variant,view){
   const stageBefore=stable(stage),original=plain(asset),source=original.vector.symbols.source;assert(source,'Actual native source symbol required');
   const findCaps=v=>{const map={};function walk(n){const m=/^(?:site-crop-|cap-)(\d+)$/.exec(n.clipPath||'');if(m)map[+m[1]]=n;for(const c of n.children||[])walk(c);}walk(v.root);return map;};
   const currentCaps=findCaps(original.vector);assert(Object.keys(currentCaps).length===13,'Actual 13 footholds required');
-  if(variant==='candidate'){
+  if(variant!=='original'){
    const v=plain(candidate.vector);assert(stable(v.symbols['original-body-source'])===stable(sourceContract.rawSource),'Authoritative raw foreground changed');assert(stable(source)===stable(sourceContract.runtimeSource),'Authoritative runtime foreground changed');
    delete v.symbols['original-body-source'];v.symbols.source=plain(source);
    function adapt(n){if(n.tag==='use'&&n.symbol==='original-body-source')n.symbol='source';const m=/^cap-(\d+)$/.exec(n.clipPath||'');if(m)return plain(currentCaps[+m[1]]);if(n.children)n.children=n.children.map(adapt);return n;}
    v.root=adapt(v.root);for(const key of Object.keys(v.symbols))if(key!=='source')v.symbols[key]=adapt(v.symbols[key]);
    for(let i=0;i<13;i++){const cp=currentCaps[i].clipPath;v.clips[cp]=plain(original.vector.clips[cp]);delete v.clips['cap-'+i];}
    for(const [key,value]of Object.entries(original.vector.clips)){if(key==='source-alpha'){assert(stable(v.clips[key])===stable(value),'Native source clip changed');v.clips[key]=plain(value);}}
+   if(variant==='closure'){
+    const index=v.root.children.findIndex(n=>n.tag==='use'&&n.symbol==='source');assert(index>=0,'Foreground source missing');
+    v.clips[closure.clipId]=plain(closure.clip);v.root.children.splice(index,0,plain(closure.root));
+   }
    const errors=HonroVectorArt.validate(v);assert(!errors.length,'Native validator: '+errors.join(';'));
    asset.vector=v;const [x,y,w,h]=v.viewBox;asset.bounds={x,y,w,h};asset.reference.bounds={x,y,w,h};
    assert(stable(asset.vector.symbols.source)===stable(source),'Source symbol not preserved');assert(stable(findCaps(v))===stable(currentCaps),'13 actual cap trees not preserved');
   }
   assert(stable(stage)===stageBefore,'Stage/camera/placements changed');assert(stable(asset.collision)===stable(original.collision),'Collision art changed');assert(stable(asset.params)===stable(original.params),'Source metadata/style changed');
+  const nativeDraw=HonroVectorArt.draw;let expectedDraws=0;
+  const paintClosure=(ctx,inst,anchor,white=false)=>{ctx.save();ctx.translate(inst.x||0,inst.y||0);ctx.rotate(inst.rotation||0);ctx.scale(inst.scale??1,inst.scale??1);ctx.translate(-(anchor?.x||0),-(anchor?.y||0));ctx.clip(new Path2D(closure.clip.join(' ')));for(const n of closure.root.children){ctx.fillStyle=white?'#ffffff':n.fill;ctx.fill(new Path2D(n.d));}ctx.restore();};
+  if(variant==='expected'){
+   const splits=new WeakMap();HonroVectorArt.draw=(ctx,a,inst)=>{
+    if(!a.vector?.symbols?.source||stable(a.vector.symbols.source)!==stable(source))return nativeDraw(ctx,a,inst);
+    assert(a.vector.root.tag==='g'&&Object.keys(a.vector.root).every(k=>['tag','children'].includes(k)),'Expected control requires identity root');
+    let split=splits.get(a.vector);if(!split){split=a.vector.root.children.map(n=>({...a,vector:{...a.vector,root:n}}));splits.set(a.vector,split);}
+    for(const part of split){if(part.vector.root.tag==='use'&&part.vector.root.symbol==='source'){paintClosure(ctx,inst,a.anchor);expectedDraws++;}nativeDraw(ctx,part,inst);}return true;
+   };
+  }
   HonroMaps.compile(stage,project);const b=HonroMaps.createBattle(stage,project,undefined,{origin:'campaign'});HonroStageRules.sanitizeStageBattle(b);const engine=new HONRO_CORE.Engine(b,()=>{},true);
   const physics={terrain:b.terrain,units:b.units,width:b.width,height:b.height,waters:b.waters,anchors:b.anchors};
   const S=HonroProfileStore;assert(S?.compactBattleArt&&S?.restoreBattleArt,'Save codec missing');const saved=plain(b),savedText=stable(saved),packed=plain(S.compactBattleArt(saved));assert(stable(saved)===savedText,'Save compactor mutated source');const restored=plain(packed);assert(S.restoreBattleArt(restored),'Save restore failed');assert(stable(restored)===savedText,'Candidate save roundtrip changed battle');
@@ -82,11 +97,18 @@ async function capture(candidate,sourceContract,runtimeSha,variant,view){
   const camera={x:scene.x,y:scene.y,scale:scene.scale},png=cv.toDataURL('image/png'),cache=plain(scene._cacheStats||{}),pan=[];
   for(const delta of [-60,-20,0,20,60]){scene.x=camera.x+delta;HonroBounds.constrain(scene,b);const actual={x:scene.x,y:scene.y,scale:scene.scale};pan.push({requestedWorldDx:delta,appliedWorldDx:actual.x-camera.x,ms:draw(),cache:plain(scene._cacheStats||{})});}
   assert(stable(b)===before,'Scene mutated battle');assert(stable(stage)===stageBefore,'Stage mutated');assert(!p.storage.length&&!p.errors.length&&!p.violations.length,'Storage/runtime/CSP failure');assert(!p.images.some(v=>v.pending||v.error),'Image not ready');
+  const masks={};
+  if(variant==='closure'){
+   const mask=document.createElement('canvas');mask.width=W;mask.height=H;const ctx=mask.getContext('2d');ctx.translate(W/2,H/2);ctx.scale(camera.scale,camera.scale);ctx.translate(-camera.x,-camera.y);
+   nativeDraw(ctx,{...original,vector:{...original.vector,root:{tag:'use',symbol:'source'}}},placement);masks.source=mask.toDataURL('image/png');
+   ctx.save();ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,W,H);ctx.restore();paintClosure(ctx,placement,original.anchor,true);masks.closure=mask.toDataURL('image/png');
+  }
+  if(variant==='expected')assert(expectedDraws>0,'Expected control never intercepted BODY draw');
   const cut={source:{x:1448,y0:419,y1:884},world:{x:1448*3.13,y0:419*3.13,y1:884*3.13}};cut.screen={x:W/2+(cut.world.x-camera.x)*camera.scale,y0:H/2+(cut.world.y0-camera.y)*camera.scale,y1:H/2+(cut.world.y1-camera.y)*camera.scale};cut.intersectsViewport=cut.screen.x>=0&&cut.screen.x<W&&Math.max(cut.screen.y0,cut.screen.y1)>=0&&Math.min(cut.screen.y0,cut.screen.y1)<H;cut.note='Unchanged authored source right boundary. Visibility is measured here; image review determines whether its finish is a visual defect.';
-  publishProbe({ok:true,scope:'Actual isolated production HonroScene with test-only in-memory BODY injection. No App/user storage/public deployment; bounded engine movement and codec, not full campaign.',variant,view:view.name,width:W,height:H,camera,upperRightCut:cut,stageBounds:{play:stage.playBounds,terrain:stage.terrainBounds,camera:stage.camera},runtimeSha,stageSha256:await hash(stage),physicsSha256:await hash(physics),sourceSha256:await hash(source),capsSha256:await hash(currentCaps),assetSha256:await hash(asset),save:{roundtrip:true,packedBytes:JSON.stringify(packed).length,inlineBytes:JSON.stringify(saved).length,table:!!packed.honroLocalArtTable},movement,canvas:{width:cv.width,height:cv.height,cssWidth:cv.getBoundingClientRect().width,cssHeight:cv.getBoundingClientRect().height},timing:{firstRenderMs,coldReadySceneMs,repeated,pan,cache,notes:'Real performance.now; coldReadyScene is new Scene caches after image decode and global VectorArt warmup, not cold process. CI only, not phone FPS.'},fontStatus:document.fonts.status,images:p.images.length,...p,png});
+  publishProbe({ok:true,scope:'Actual isolated production HonroScene with test-only in-memory BODY injection. No App/user storage/public deployment; bounded engine movement and codec, not full campaign.',variant,view:view.name,width:W,height:H,camera,upperRightCut:cut,stageBounds:{play:stage.playBounds,terrain:stage.terrainBounds,camera:stage.camera},runtimeSha,stageSha256:await hash(stage),physicsSha256:await hash(physics),sourceSha256:await hash(source),capsSha256:await hash(currentCaps),assetSha256:await hash(asset),save:{roundtrip:true,packedBytes:JSON.stringify(packed).length,inlineBytes:JSON.stringify(saved).length,table:!!packed.honroLocalArtTable},movement,canvas:{width:cv.width,height:cv.height,cssWidth:cv.getBoundingClientRect().width,cssHeight:cv.getBoundingClientRect().height},timing:{firstRenderMs,coldReadySceneMs,repeated,pan,cache,notes:'Real performance.now; coldReadyScene is new Scene caches after image decode and global VectorArt warmup, not cold process. CI only, not phone FPS.'},expectedDraws,masks,fontStatus:document.fonts.status,images:p.images.length,...p,png});
  }catch(e){publishProbe({ok:false,variant,view:view.name,error:String(e.stack||e),...p});}
 }
 const views=[{name:'portrait-bl',width:390,height:696,x:'left',y:'bottom'},{name:'desktop-br',width:1331,height:763,x:'right',y:'bottom'},{name:'portrait-tr',width:390,height:696,x:'right',y:'top'},{name:'desktop-tr',width:1331,height:763,x:'right',y:'top'},{name:'desktop-cut-close',width:1331,height:763,x:'right',y:'cut',close:true}];
 const script=s=>'<script>'+s.replace(/<\/script/gi,'<\\/script')+'</script>',list=[];
-for(const variant of ['original','candidate'])for(const view of views){const file=`${variant}-${view.name}.html`;const html='<!doctype html><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src \'none\'; script-src \'unsafe-inline\'; style-src \'unsafe-inline\'; img-src data:; font-src data:; connect-src \'none\'"><style>body{margin:0}canvas{display:block}</style><canvas id="scene"></canvas><pre id="result">pending</pre>'+script('('+bootstrap.toString()+')(7);')+script(runtime)+script('('+capture.toString()+')('+JSON.stringify(candidate)+','+JSON.stringify(sourceContract)+','+JSON.stringify(runtimeSha)+','+JSON.stringify(variant)+','+JSON.stringify(view)+');');await writeFile(path.join(out,file),html);list.push({variant,view:view.name,file});}
-await writeFile(path.join(out,'capture-list.json'),JSON.stringify(list,null,2));console.log({runtimeSha,views:views.length,variants:2,productionModified:false});
+for(const variant of ['original','candidate','closure','expected'])for(const view of views){const file=`${variant}-${view.name}.html`;const html='<!doctype html><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src \'none\'; script-src \'unsafe-inline\'; style-src \'unsafe-inline\'; img-src data:; font-src data:; connect-src \'none\'"><style>body{margin:0}canvas{display:block}</style><canvas id="scene"></canvas><pre id="result">pending</pre>'+script('('+bootstrap.toString()+')(7);')+script(runtime)+script('('+capture.toString()+')('+JSON.stringify(candidate)+','+JSON.stringify(closure)+','+JSON.stringify(sourceContract)+','+JSON.stringify(runtimeSha)+','+JSON.stringify(variant)+','+JSON.stringify(view)+');');await writeFile(path.join(out,file),html);list.push({variant,view:view.name,file});}
+await writeFile(path.join(out,'capture-list.json'),JSON.stringify(list,null,2));console.log({runtimeSha,views:views.length,variants:4,productionModified:false});

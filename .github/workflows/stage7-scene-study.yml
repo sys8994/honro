@@ -13,7 +13,7 @@ permissions:
 jobs:
   scene:
     runs-on: ubuntu-22.04
-    timeout-minutes: 30
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -31,7 +31,7 @@ jobs:
           node game/tools/stage7-scene-study/fixture.mjs "$RUNNER_TEMP/stage7-scenes"
           mkdir -p artifacts/stage7-scene-study
           cp "$RUNNER_TEMP/stage7-scenes/source-adapter-contract.json" artifacts/stage7-scene-study/
-      - name: Render actual Scene at five constrained cameras
+      - name: Render four actual Scene variants at five constrained cameras
         run: |
           export CHROME_BIN="$(command -v google-chrome || command -v chromium)"
           node game/tools/stage7-scene-study/run.mjs "$RUNNER_TEMP/stage7-scenes" artifacts/stage7-scene-study
@@ -39,6 +39,9 @@ jobs:
         run: node game/tools/stage7-scene-study/compare.mjs artifacts/stage7-scene-study
       - name: Strict original source-region pixels in actual Scene
         run: python game/tools/stage7-scene-study/pixels.py
+      - name: Independent closure source-over and exact exterior footprint
+        if: always()
+        run: python game/tools/stage7-scene-study/closure-check.py
       - name: Production sources remain unchanged
         if: always()
         run: git diff --exit-code -- shared tools/map-forge
