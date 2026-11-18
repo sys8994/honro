@@ -1,0 +1,102 @@
+name: Combined Stage3 Stage7 Stage32 controlled validation
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  combined:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      HONRO_ACT4_RELEASE: '1'
+      HONRO_ACT5_RELEASE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          path: control
+      - name: Explicit ready/ref guard (initially blocked)
+        id: refs
+        working-directory: control
+        run: |
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';import assert from 'node:assert/strict';
+          const c=JSON.parse(fs.readFileSync('tools/testing/combined-3-7-32/config.json'));
+          assert.equal(c.ready,true,'Prepared only: parent must choose verified Stage32 base and registered combined candidate');
+          for(const k of ['baselineRef','candidateRef'])assert(/^[0-9a-f]{40}$/.test(c[k]),k);
+          const p=JSON.parse(fs.readFileSync('tools/testing/combined-3-7-32/policy.json'));assert.equal(c.baselineRef,p.base,'Rebind policy to accepted final32 baseline');for(const k of ['approvedStage32HelperSHA256','approvedStage32PilotSHA256'])assert(/^[0-9a-f]{64}$/.test(c[k]),k);assert.notEqual(c.baselineRef,c.candidateRef);fs.appendFileSync(process.env.GITHUB_OUTPUT,`baseline=${c.baselineRef}\ncandidate=${c.candidateRef}\n`);
+          JS
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          path: baseline
+          ref: ${{ steps.refs.outputs.baseline }}
+          fetch-depth: 0
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          path: candidate
+          ref: ${{ steps.refs.outputs.candidate }}
+          fetch-depth: 0
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Install both official worktrees
+        run: |
+          (cd baseline && npm ci && npm ci --prefix game)
+          (cd candidate && npm ci && npm ci --prefix game)
+      - name: Pin accepted final Stage32 sources in both worktrees
+        run: |
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';import assert from 'node:assert/strict';import {createHash} from 'node:crypto';
+          const c=JSON.parse(fs.readFileSync('control/tools/testing/combined-3-7-32/config.json'));
+          for(const dir of ['baseline','candidate'])for(const [file,key]of [['stage32-foundation-art.js','approvedStage32HelperSHA256'],['act4-pilot-art.js','approvedStage32PilotSHA256']])assert.equal(createHash('sha256').update(fs.readFileSync(`${dir}/shared/runtime/${file}`)).digest('hex'),c[key],dir+':'+file);
+          JS
+      - name: Four-file scope and normal builds
+        run: |
+          QA="$GITHUB_WORKSPACE/control/tools/testing/combined-3-7-32"
+          node "$QA/static.mjs" "$GITHUB_WORKSPACE/candidate" '${{ steps.refs.outputs.baseline }}' "$QA/policy.json"
+          (cd candidate && node workshop/build.mjs && node game/build.mjs)
+      - name: Exact old3 model restore and fresh representation (synthetic Map storage)
+        run: |
+          QA="$GITHUB_WORKSPACE/control/tools/testing/combined-3-7-32"
+          mkdir -p artifacts
+          cp "$QA/save.mjs" baseline/tests/combined-stage3-save.mjs
+          cp "$QA/save.mjs" candidate/tests/combined-stage3-save.mjs
+          (cd baseline && node tests/combined-stage3-save.mjs snapshot "$GITHUB_WORKSPACE/artifacts/old3.json")
+          (cd candidate && node tests/combined-stage3-save.mjs verify "$GITHUB_WORKSPACE/artifacts/old3.json")
+          (cd candidate && node tests/critical-save-failure.mjs) > artifacts/critical-save-failure.log 2>&1
+      - name: Preserve legacy table-assumption failure separately
+        shell: bash
+        run: |
+          set +e
+          (cd baseline && node tests/act1-local-art-save.mjs) > artifacts/legacy-baseline.log 2>&1
+          a=$?
+          (cd candidate && node tests/act1-local-art-save.mjs) > artifacts/legacy-candidate.log 2>&1
+          b=$?
+          set -e
+          if [ "$a" -eq 0 ] && [ "$b" -eq 0 ]; then
+            echo '{"status":"passed-both"}' > artifacts/legacy-status.json
+          elif [ "$a" -ne 0 ] && [ "$a" -eq "$b" ] && grep -q 'Missing table for stage3' artifacts/legacy-baseline.log && grep -q 'Missing table for stage3' artifacts/legacy-candidate.log; then
+            echo '{"status":"pre-existing-failure-both","notCountedAsPass":true}' > artifacts/legacy-status.json
+          else
+            cat artifacts/legacy-baseline.log artifacts/legacy-candidate.log
+            exit 1
+          fi
+      - name: Baseline and candidate Scene plus official App lifecycle
+        run: |
+          export CHROME_BIN="$(command -v google-chrome || command -v chromium)"
+          QA="$GITHUB_WORKSPACE/control/tools/testing/combined-3-7-32"
+          for variant in baseline candidate; do
+            ROOT="$GITHUB_WORKSPACE/$variant"
+            node "$QA/fixture.mjs" "$ROOT" "$RUNNER_TEMP/$variant-scene" "$variant" scene
+            node "$QA/browser.mjs" "$RUNNER_TEMP/$variant-scene" "$GITHUB_WORKSPACE/artifacts/$variant"
+            node "$QA/fixture.mjs" "$ROOT" "$RUNNER_TEMP/$variant-lifecycle" "$variant" lifecycle "$GITHUB_WORKSPACE/artifacts/old3.json"
+            node "$QA/browser.mjs" "$RUNNER_TEMP/$variant-lifecycle" "$GITHUB_WORKSPACE/artifacts/$variant"
+          done
+      - name: Compare7/32 exact and record lifecycle memory/cost (not FPS acceptance)
+        run: node control/tools/testing/combined-3-7-32/compare.mjs artifacts/baseline artifacts/candidate artifacts/combined-result.json
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: combined-3-7-32-validation
+          path: artifacts
+          if-no-files-found: warn

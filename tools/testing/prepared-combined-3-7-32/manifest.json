@@ -1,0 +1,65 @@
+{
+  "parent": "126a2b5600f31bd686c79caef1e7c91dffd7759f",
+  "localOnly": true,
+  "ready": false,
+  "productionFilesChanged": false,
+  "validation": "Syntax only; no Chrome or complete repo execution. Future accepted Stage32 refs/source pins remain blockers.",
+  "files": [
+    {
+      "local": "combined-3-7-32-ci-final-prep/config.json",
+      "path": "tools/testing/combined-3-7-32/config.json",
+      "bytes": 393,
+      "sha256": "4364e06b576c894616a3ea778a433be60b2fb01b7356d475ca5ecb9bd85b82d6"
+    },
+    {
+      "local": "combined-3-7-32-ci-final-prep/policy.json",
+      "path": "tools/testing/combined-3-7-32/policy.json",
+      "bytes": 3240,
+      "sha256": "e1145617ce8408be10663ba0a97e05f82d3ea85585f1702067c4464edf833675"
+    },
+    {
+      "local": "combined-3-7-32-ci-final-prep/static.mjs",
+      "path": "tools/testing/combined-3-7-32/static.mjs",
+      "bytes": 1280,
+      "sha256": "f5a805a1dd72eb42dd0646f56a68ef506318811c7281ef3c2fad8d318dd2ffe5"
+    },
+    {
+      "local": "combined-3-7-32-ci-final-prep/save.mjs",
+      "path": "tools/testing/combined-3-7-32/save.mjs",
+      "bytes": 8191,
+      "sha256": "b4b1cdf0956d12a7e67a3664d0836ae109eeb2e28060b43e13b102e56c2387a2"
+    },
+    {
+      "local": "combined-3-7-32-ci-final-prep/fixture.mjs",
+      "path": "tools/testing/combined-3-7-32/fixture.mjs",
+      "bytes": 13315,
+      "sha256": "9ceca2674b32fd2754bbe7d255a3c794500c2efbc059e879282eaeae997c5c45"
+    },
+    {
+      "local": "combined-3-7-32-ci-final-prep/browser.mjs",
+      "path": "tools/testing/combined-3-7-32/browser.mjs",
+      "bytes": 3867,
+      "sha256": "f8f7cedfc1fa7ec204f591fa718419ec475181e41210affdc5c0435c6384105f"
+    },
+    {
+      "local": "combined-3-7-32-ci-final-prep/compare.mjs",
+      "path": "tools/testing/combined-3-7-32/compare.mjs",
+      "bytes": 2949,
+      "sha256": "6576dfaf95a28a48882b92d6c8b5e0bb4d9afd8847ab633edb91c9295d663fa0"
+    },
+    {
+      "local": "combined-3-7-32-ci-final-prep/README.md",
+      "path": "tools/testing/combined-3-7-32/README.md",
+      "bytes": 6773,
+      "sha256": "a68f1b483ae40b5ccb5e4491b68ceab8df45bcb7129bc474bcd8af19377b184c"
+    },
+    {
+      "local": "combined-3-7-32-ci-final-prep/workflow.yml",
+      "path": ".github/workflows/combined-3-7-32-validation.yml",
+      "bytes": 5909,
+      "sha256": "efc461db1cce40d841a0b78b138c362ef15d4edecf32f3a56fefd4c8a8aa3f25"
+    }
+  ],
+  "archiveOnly": true,
+  "note": "Inert preparation archive. Workflow kept outside .github; final Stage32 source pins unresolved."
+}
