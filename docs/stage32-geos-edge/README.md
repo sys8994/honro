@@ -1,0 +1,11 @@
+# Original near-coincident curve and clip-edge diagnosis
+
+One small actual Chrome probe, no repeated26Scene captures. It is not an art/protection acceptance test. Existing failed matrix44234241948 remains failed until evidence is reviewed. Original production and both native candidates unchanged.
+
+Two live1.05001 changed pixels have Native source-owner14 samples, but independent analytical originalcubic winding identifies latergray20/9. They are within~.00012..00020source of multiple near-coincident boundaries, much smaller than GEOS authorflatten.005. Source-only diagnosis reads original25paths from official materialized project32 and verifies canonical vectorSHA. It records actualChrome originalPath2D membership at exact nominal/recordedCTM points plus a small symmetric source-point neighborhood. No coordinate exceptions are applied to a gate.
+
+For eachpoint it separately renders path14white followed by later original pathsblack at a ±.002source microregion. Both raw originalPath2D under high transform and mathematically double-recentered originalabsoluteM/L/C controls are captured. Raw microtransforms can lose float precision; recentering reduces cancellation but changes float representation and is not represented as the exact original browserdraw. Counts/maxwhite and PNGs are retained. Tagged path14 AA contribution at the original actual Scene CTM is also measured. A nonzero tagged value alone does NOT distinguish genuine visible grass from buried antialias leakage; microgeometry/raster evidence must be interpreted with original curves and source order. Original partialforeground protection is not silently weakened.
+
+The desktop-walk1pixel support failure is independently replayed using immutable candidategeometry and recorded tileplanes/camera. Two support masks differ only in fill(path) versus clip(path)+opaque device support rectangle, matching the operation class of the actual helper without invoking it. The actualhelper draws a bitmap through a clip, so fill andclip AA may differ. If both supportvalues remainzero, no1RGBwaiver or radius expansion is assumed. Retain the failure and investigate further.
+
+Success of this workflow only means diagnostic data were produced. It does not mean owner/protection/art/performance passed. No production geometry, sourcepalette, SS, master or Pages changes.
