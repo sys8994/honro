@@ -4,8 +4,11 @@ on:
   push:
     branches: [inspect/stage32-scanline-20261118]
     paths:
-      - tests/stage32-narrow-aa-*
-      - tests/fixtures/stage32-narrow-aa-*
+      - tests/stage32-narrow-aa-native-contract.mjs
+      - tests/stage32-narrow-aa-fixture.mjs
+      - tests/stage32-narrow-aa-result.mjs
+      - tests/stage32-narrow-aa-compare.mjs
+      - tests/fixtures/stage32-narrow-aa-candidate.js
       - .github/workflows/stage32-narrow-aa-experiment.yml
 permissions:
   contents: read
