@@ -171,6 +171,14 @@
             // Painted sites' visual skirts extend beyond unchanged collision domains.
             if(b.honroStage===7){const body=G.HonroTerrainDomain.materialLandmarks(b).find(l=>l.asset?.id==='act1-site:7:body'),paint=body&&this._landmarkPaintBounds(body);
                 if(paint){domain.left=Math.min(domain.left,paint.left);domain.right=Math.max(domain.right,paint.right);domain.top=Math.min(domain.top,paint.top);domain.bottom=Math.max(domain.bottom,paint.bottom);}}
+            // Fresh flagged artwork can extend decorative paint, never physics/camera.
+            // Preserve the existing Stage7 expansion above and old unflagged save behavior.
+            for(const l of G.HonroTerrainDomain.materialLandmarks(b)){
+                if(l.asset?.params?.paintBeyondTerrainDomain!==true)continue;
+                const a=this._landmarkPaintBounds(l);if(!a)continue;
+                domain.left=Math.min(domain.left,a.left);domain.top=Math.min(domain.top,a.top);
+                domain.right=Math.max(domain.right,a.right);domain.bottom=Math.max(domain.bottom,a.bottom);
+            }
             return domain;
         }
         _drawTerrainDomainTiles(c,b,w,h){

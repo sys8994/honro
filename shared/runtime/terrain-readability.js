@@ -11,6 +11,7 @@ function cutAt(a,z,p,q,cuts){const dx=z.x-a.x,dy=z.y-a.y,ex=q.x-p.x,ey=q.y-p.y,d
 }
 function prepare(b){const ts=G.HonroTerrainDomain?.render(b)||b.terrain||[],prior=cache.get(b);if(prior?.source===ts&&prior.version===b.sceneVersion)return prior;
  // The waterfall is rendered by its flowing sheet, not a rock-edge outline.
+ const omittedClosures=new Set((b.honroLandmarks||[]).flatMap(l=>l.asset?.params?.omitTerrainClosureIds||[]));
  const solids=ts.filter(t=>!t.broken&&!(G.HonroStage5Waterfall?.active(b)&&t.id==='waterfall-veil')).map(t=>({t,ps:C.poly(t)})),groups=[];
  for(const {t,ps}of solids){
   // Some legacy sprite hitboxes deliberately enclose empty air. Outlining
@@ -19,7 +20,7 @@ function prepare(b){const ts=G.HonroTerrainDomain?.render(b)||b.terrain||[],prio
   if(t.honroElementCollision){const asset=b.honroLandmarks?.find(l=>l.id===t.honroElementId)?.asset;if(asset?.params?.rearOnly||asset?.params?.collisionSource!=='sampled-drawn-roof')continue;}
   const edge=new Path2D(),top=new Path2D(),segments=[];let area=0;for(let i=0;i<ps.length;i++){const a=ps[i],z=ps[(i+1)%ps.length];area+=cross(a.x,a.y,z.x,z.y);}const sign=area>=0?1:-1;
   for(let i=0;i<ps.length;i++){const a=ps[i],z=ps[(i+1)%ps.length],dx=z.x-a.x,dy=z.y-a.y,len=Math.hypot(dx,dy);if(len<.01)continue;
-   const nx=sign*dy/len,ny=-sign*dx/len,walkable=ny<0&&Math.abs(dy)<=Math.abs(dx)*1.35;if(t.oneWay&&!walkable)continue;
+   const nx=sign*dy/len,ny=-sign*dx/len,walkable=ny<0&&Math.abs(dy)<=Math.abs(dx)*1.35;if(t.oneWay&&!walkable)continue;if(!walkable&&omittedClosures.has(t.id))continue;
    // Painted Naru and Doldang own their skirts. Do not reveal the simulation polygon's
    // artificial side/bottom closure; retain every authored walking rim.
    if(((b.honroStage===3&&t.id==='ferry-ground')||(b.honroStage===7&&t.id==='root-floor'))&&t.honroAct1SitePainted&&!t.oneWay&&!walkable){
