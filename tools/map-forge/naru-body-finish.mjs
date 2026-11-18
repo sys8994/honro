@@ -26,7 +26,7 @@ export function finishNaruBody(core,{palette=true,exterior=true}={}){
  const rightRim=p('#51533a',`M1772 638H${R}V646L2101 647 2055 645 1989 648 1903 645 1830 647 1772 645Z`);
  const woodGrain={tag:'g',children:[
  {tag:'path',fill:'none',stroke:'#3d493b',lineWidth:1.25,lineCap:'round',d:'M696 589C698 611 692 630 695 651C697 670 694 692 696 718 M707 620C706 638 711 645 708 661 M701 677C700 681 701 687 704 688C708 685 707 679 704 677Z'},
- {tag:'path',fill:'none',stroke:'#3d493b',lineWidth:1.1,lineCap:'round',d:'M491 565C494 586 488 602 491 624 M499 610L498 643 M908 603C911 621 908 640 912 657 M918 636L916 671 M1077 603C1075 616 1081 634 1077 648'}
+ {tag:'path',fill:'none',stroke:'#3d493b',lineWidth:1.1,lineCap:'round',d:'M550 588C552 608 548 629 552 650L550 680 M562 615C559 635 564 647 561 668 M555 606C552 608 553 613 556 615C559 612 559 608 555 606Z M491 565C494 586 488 602 491 624 M499 610L498 643 M908 603C911 621 908 640 912 657 M918 636L916 671 M1077 603C1075 616 1081 634 1077 648'}
  ]};
  // The original raster's entire rows882..886 are exactly #142c2f;
  // side tails are equally solid below y723(left)/708(right). Cap only
