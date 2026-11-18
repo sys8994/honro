@@ -1,0 +1,23 @@
+{
+  "baselineRef": "5b2edf0b868a6f4ab656574b036586304eb12808",
+  "sourceRead": "GitHub exact pinned sources",
+  "storyPolicy": {
+    "revision": 1,
+    "reviewedAct23": true,
+    "act4": true,
+    "act5": true
+  },
+  "buildEntrypoints": "game/build.mjs and workshop/build.mjs both invoke shared/web-build.mjs buildWeb; runtimeEntries({vector,app:true}); Workshop assembled from common modules",
+  "runtimeEvidence": {
+    "run": 44292746654,
+    "artifact": 14423125954,
+    "variant": "E baseline5b defaultflag runtime",
+    "dataSHA256": {
+      "HONRO_ACT5_RELEASE": "98a6fa37c592f4421d71c10fdfdca3e3f854127006a3c95b97dba21bc0f7021d",
+      "HONRO_ACT4_RELEASE": "a7adb70b8a1e44ead955e238f633fcd89038046e47a22220a653ddd2da5765a7",
+      "HONRO_ACT23_V4_PHASE_A": "cf60f7fb5ed0003d04a31ad374b469c3046264ce89680e8d90f4090377eee48a"
+    },
+    "allValuesTrueCodeSHAExact": true
+  },
+  "scope": "Proves baseline official default semantics; pending candidate must supply own actual defaultBuildProof. No app:false build assumption."
+}

@@ -1,0 +1,64 @@
+{
+  "baselineRef": "5b2edf0b868a6f4ab656574b036586304eb12808",
+  "candidateRef": "af5b77e15accea03470fdfd0c6cb00a0bb12c5e9",
+  "candidateRegisteredHelperSHA256": "6823eda0e8d3c5250396c857f09f96ee3eba8fbfba124af540d080a5a76d03c7",
+  "readyForCI": true,
+  "poses": [
+    {
+      "name": "left-tile",
+      "width": 1331,
+      "height": 763,
+      "x": 320,
+      "y": 1650,
+      "scale": 0.6,
+      "dpr": 1,
+      "raf": false
+    },
+    {
+      "name": "phone-dpr3-native",
+      "width": 390,
+      "height": 696,
+      "x": 320,
+      "y": 1650,
+      "scale": 1.65,
+      "dpr": 3,
+      "raf": true
+    },
+    {
+      "name": "maximum-live",
+      "width": 1331,
+      "height": 763,
+      "x": 320,
+      "y": 1650,
+      "scale": 1.65,
+      "dpr": 1,
+      "raf": true
+    }
+  ],
+  "order": [
+    "baseline",
+    "candidate",
+    "candidate",
+    "baseline"
+  ],
+  "cold": 5,
+  "warm": 30,
+  "pan": 60,
+  "baselineEvidence": {
+    "lastSuccessfulPagesRun": 44280132384,
+    "liveHTTPVerified": false
+  },
+  "helperInventory": {
+    "baseline": "FROM_PINNED_OWN_RELEASE",
+    "candidate": [
+      {
+        "name": "shared/runtime/stage32-foundation-art.js",
+        "sha256": "6823eda0e8d3c5250396c857f09f96ee3eba8fbfba124af540d080a5a76d03c7"
+      }
+    ]
+  },
+  "sourceRepresentationProof": null,
+  "stage3Policy": "Strict Stage3 unchanged; source6 exact and compiled32 equality",
+  "candidatePilotSHA256": "ded8ef211d3b7504470b5f6afd41ba0b46e29a910fcb2603b13aeeef49dd2292",
+  "preflightRequired": true
+}

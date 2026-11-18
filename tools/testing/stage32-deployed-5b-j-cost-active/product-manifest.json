@@ -1,0 +1,44 @@
+{
+  "parent": "5b2edf0b868a6f4ab656574b036586304eb12808",
+  "ready": true,
+  "sourceOnly": true,
+  "productAccepted": false,
+  "files": [
+    {
+      "local": "stage32-offline-on-5b/production/shared/build.mjs",
+      "path": "shared/build.mjs",
+      "bytes": 24671,
+      "sha256": "03bd7bbeb9c49dc734149f402c8a2e629b6caca651ff048960751ad35ffe160c"
+    },
+    {
+      "local": "stage32-offline-on-5b/production/shared/act4-handoff-art.mjs",
+      "path": "shared/act4-handoff-art.mjs",
+      "bytes": 8258,
+      "sha256": "26f5101f019a8aaf6d27030a4241636642922d89d6bfd1d294928c7b4ec48b3b"
+    },
+    {
+      "local": "stage32-offline-on-5b/production/shared/runtime/act4-pilot-art.js",
+      "path": "shared/runtime/act4-pilot-art.js",
+      "bytes": 15779,
+      "sha256": "ded8ef211d3b7504470b5f6afd41ba0b46e29a910fcb2603b13aeeef49dd2292"
+    },
+    {
+      "local": "stage32-offline-on-5b/production/shared/runtime/stage32-foundation-art.js",
+      "path": "shared/runtime/stage32-foundation-art.js",
+      "bytes": 260894,
+      "sha256": "6823eda0e8d3c5250396c857f09f96ee3eba8fbfba124af540d080a5a76d03c7"
+    },
+    {
+      "local": "stage32-offline-on-5b/production/shared/data/act4/handoff-art/32-foundation.json",
+      "path": "shared/data/act4/handoff-art/32-foundation.json",
+      "bytes": 609306,
+      "sha256": "2ec84007352614d3319293d8b46384842550fe87f999cbf671145444d4a1cfa7"
+    },
+    {
+      "local": "stage32-offline-on-5b/production/shared/data/act4/handoff-art/32-material-protection.json",
+      "path": "shared/data/act4/handoff-art/32-material-protection.json",
+      "bytes": 2832,
+      "sha256": "c2aefafd0e44e5ccd0a953db30005fccab1c444a374da8aee5884365367762aa"
+    }
+  ]
+}
