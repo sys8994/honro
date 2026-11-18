@@ -1,0 +1,65 @@
+{
+  "run": 44308195512,
+  "artifact": 14430500089,
+  "artifactZipSHA256": "a2074017a22fd1398428ee5f1f20b9b3448a2ec056ecb491d197884e72dd368c",
+  "research": "338f5e4629e71c077d08ae188a557d7d3ce720f6",
+  "candidate": "85bae4a08993d3b71d22ea3fec76686e0ae3c61c",
+  "baseline": "a6f2935935eed559c3ecd27207d8d8a78a1ed22d",
+  "ci": "success",
+  "localCheckerRerun": "PASS",
+  "stage7VisualViewsReviewed": [
+    "overview",
+    "reported",
+    "native",
+    "dpr3",
+    "lower",
+    "right"
+  ],
+  "stage7FreshDefaultVisualAccepted": false,
+  "productionAccepted": false,
+  "sameQActual": [
+    {
+      "view": "7-native",
+      "approvedQActualRgbaDifferentPixels": 0
+    },
+    {
+      "view": "7-dpr3",
+      "approvedQActualRgbaDifferentPixels": 0
+    }
+  ],
+  "reportedExistingRootFloorRimProjected": [
+    [
+      665.5,
+      101.09000000000009
+    ],
+    [
+      680.524,
+      101.09000000000009
+    ],
+    [
+      898.372,
+      123.62600000000003
+    ],
+    [
+      1150.024,
+      155.55200000000005
+    ],
+    [
+      1642.06,
+      157.43000000000012
+    ]
+  ],
+  "stage7TargetedLeftAndLowerFixesAccepted": true,
+  "residualArt": [
+    {
+      "region": "lower x545..763 y32..113",
+      "classification": "Existing standalone crop-cap rectangular endpoint; K/L ROI RGBA difference0",
+      "newRegression": false
+    },
+    {
+      "region": "overview x1100.483 right native source boundary",
+      "classification": "Original source right edge meets added exterior mass; near-vertical material division still visible. Earlier F/G/Q retained it, but it is not an unchanged K internal seam. No open sky gap or bright AA ring seen.",
+      "overallStage7ArtSignoffPending": true
+    }
+  ]
+}
