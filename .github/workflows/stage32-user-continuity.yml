@@ -1,0 +1,35 @@
+name: Stage32 user-reported left and lower continuity
+on:
+  workflow_dispatch:
+  push:
+    branches: [inspect/stage32-scanline-20261118]
+    paths: ['tools/testing/stage32-user-continuity/**', '.github/workflows/stage32-user-continuity.yml']
+permissions: {contents: read}
+jobs:
+  compare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with: {path: study}
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with: {path: baseline, ref: 1e043b09d4ce107e1d2dcf70fe2274dff7098476}
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with: {path: candidate, ref: af5b77e15accea03470fdfd0c6cb00a0bb12c5e9}
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with: {node-version: '22', package-manager-cache: false}
+      - run: for d in baseline candidate; do (cd "$d" && npm ci && npm ci --prefix game); done
+      - name: Nine actual normal Scenes, frozen source and research-window comparison
+        run: |
+          mkdir -p artifacts
+          S=study/tools/testing/stage32-user-continuity
+          node "$S/fixture.mjs" baseline "$RUNNER_TEMP/user-baseline" baseline study
+          node "$S/run.mjs" "$RUNNER_TEMP/user-baseline" artifacts
+          node "$S/fixture.mjs" candidate "$RUNNER_TEMP/user-candidate" candidate study
+          node "$S/run.mjs" "$RUNNER_TEMP/user-candidate" artifacts
+          node "$S/fixture.mjs" candidate "$RUNNER_TEMP/user-window" window study
+          node "$S/run.mjs" "$RUNNER_TEMP/user-window" artifacts
+          python "$S/check.py" artifacts
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with: {name: stage32-user-continuity, path: artifacts, if-no-files-found: error}
