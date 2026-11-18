@@ -67,7 +67,7 @@ jobs:
               for slot in 0 1 2 3; do
                 variant="${order[$slot]}"
                 name="stage3-perf-$view-$block-$slot-$variant"
-                timeout 240s "$browser" --headless --no-first-run --no-default-browser-check --force-device-scale-factor=1 --virtual-time-budget=60000 --user-data-dir="$RUNNER_TEMP/profile-$name" --dump-dom "file://$RUNNER_TEMP/$variant-fixtures/stage3-perf-$variant-$view.html" > "$RUNNER_TEMP/$name.html"
+                timeout 240s node tests/stage3-production-browser.mjs "$browser" "$RUNNER_TEMP/$variant-fixtures/stage3-perf-$variant-$view.html" "$RUNNER_TEMP/$name.html"
                 node tests/stage3-production-perf-result.mjs "$RUNNER_TEMP/$name.html" "$RUNNER_TEMP/evidence" "$variant" "$view" "$block-$slot"
               done
             done

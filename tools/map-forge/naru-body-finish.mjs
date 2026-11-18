@@ -32,7 +32,7 @@ export function finishNaruBody(core,{palette=true,exterior=true}={}){
  // side tails are equally solid below y723(left)/708(right). Cap only
  // synthetic AA closures in that nonwalkable solid-color area, after source.
  const join=p('#142c2f','M-1 885H1775V889H-1Z M-1 723H2V887H-1Z M1772 708H1776V887H1772Z M1772 495H1776V631H1772Z M1772 648H1776V667H1772Z');
- const rockJoin=p('#213d40','M1770 669L1774 668 1777 668V716L1774 716 1770 708Z');
+ const rockJoin=p('#213d40','M1770 668H1777V716H1770Z');
  const original=result.root.children.find(n=>n.tag==='use'&&n.symbol==='source');
  if(!original)throw Error('Expected untouched source use');
  result.root={tag:'g',children:[base,left,right,...strata,rightRim,original,join,rockJoin,woodGrain]};
