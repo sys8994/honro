@@ -1,0 +1,5 @@
+# First public verification: fixture-art mismatch
+Run44314657411 failed. Artifact14432815628 ZIP SHA6ceceb1e2c5f2f0e5fb9849d035b72d88f786e4c48395257e6d8bb7929225075 independently verified.
+Exact public HONRO entry, web manifest and all current graph resources passed (811 resources). Actual clean browser normal settings/import/continue reached Stage3. BODY oracle comparison failed; actual BODY hash was not saved by that first harness, so do not invent it.
+The supplied synthetic profile itself contains BODY9c03c41a3623fa3221398da81487404cdeae2afc10808d50c87bba1da5458094, not accepted production-vector K ea8b604fa02da75d49eab049427abec1f49aa78cd571a5da87a012ae64a1efad. Official game/tests/helpers.mjs explicitly uses vector:false; app-regression-helpers imports it. It is inappropriate for new-art identity verification through saved-art-preserving continuation.
+Correct the research-only generator to use same official runtimeParts with vector:true, assert exact accepted BODY before generating/importing, then rerun actual public checks. Preserve this failure, do not label first run a pass or product-deployment failure. No production correction or rollback performed.

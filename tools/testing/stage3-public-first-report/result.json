@@ -1,0 +1,9 @@
+{
+  "passed": false,
+  "release": "1e043b09d4ce107e1d2dcf70fe2274dff7098476",
+  "syntheticProfileSHA256": "93aa48db9f0bbd16ba43a021ec55ccf9c9307b68b2443df892e1c77da3c49bea",
+  "scope": "Public exact release network identity and normal UI import/continue Stage3 smoke. Synthetic profile, not user save, full playthrough, device benchmark or all-stage art review.",
+  "initialScreen": "title",
+  "failure": "Public mounted Stage3 art differs from accepted K",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/honro/honro/study/tools/testing/stage3-K-public-smoke/play.py\", line 19, in <module>\n    assert body_sha=='ea8b604fa02da75d49eab049427abec1f49aa78cd571a5da87a012ae64a1efad','Public mounted Stage3 art differs from accepted K'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Public mounted Stage3 art differs from accepted K\n"
+}
