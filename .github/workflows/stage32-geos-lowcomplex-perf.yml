@@ -1,0 +1,56 @@
+name: Stage32 lowcomplex GEOS protection and clean ABBA costs
+on:
+  workflow_dispatch:
+  push:
+    branches: [inspect/stage32-scanline-20261118]
+    paths:
+      - tests/stage32-geos-lowcomplex-*
+      - tests/fixtures/stage32-geos-lowcomplex-*
+      - .github/workflows/stage32-geos-lowcomplex-perf.yml
+permissions:
+  contents: read
+jobs:
+  cost:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm ci && npm ci --prefix game
+      - name: Unchanged candidate and registered production sources
+        run: |
+          node tests/stage32-registered-empty-native-contract.mjs
+          node tests/stage32-geos-lowcomplex-static-contract.mjs
+      - name: Paired-left source protection and independent actual paint mask
+        run: |
+          HONRO_ACT4_RELEASE=1 node tests/stage32-geos-lowcomplex-protection-fixture.mjs "$RUNNER_TEMP/lowcomplex-proof"
+          HONRO_ACT4_RELEASE=1 node tests/stage32-geos-scene-fixture.mjs "$RUNNER_TEMP/old319-proof"
+          browser=$(command -v google-chrome || command -v chromium)
+          for variant in candidate ss2; do
+            probe="$RUNNER_TEMP/geos-clean-evidence/protection/probes/$variant"
+            node tests/stage32-registered-one-probe.mjs "$browser" "$RUNNER_TEMP/lowcomplex-profile-$variant" "$RUNNER_TEMP/lowcomplex-proof/stage32-$variant-left.html" "$probe"
+            node tests/stage32-geos-lowcomplex-protection-result.mjs "$probe/result.html" "$RUNNER_TEMP/geos-clean-evidence/protection" "$variant" left
+          done
+          node tests/stage32-geos-lowcomplex-protection-compare.mjs "$RUNNER_TEMP/geos-clean-evidence/protection"
+          probe="$RUNNER_TEMP/geos-clean-evidence/protection/probes/old319"
+          node tests/stage32-registered-one-probe.mjs "$browser" "$RUNNER_TEMP/old319-profile" "$RUNNER_TEMP/old319-proof/stage32-ss2-left.html" "$probe"
+          node tests/stage32-geos-scene-result.mjs "$probe/result.html" "$RUNNER_TEMP/geos-clean-evidence/protection/old319" ss2 left
+          node tests/stage32-geos-lowcomplex-delta.mjs "$RUNNER_TEMP/geos-clean-evidence/protection"
+      - name: Build clean baseline and unchanged native Scene fixtures
+        run: HONRO_ACT4_RELEASE=1 node tests/stage32-geos-lowcomplex-perf-fixture.mjs "$RUNNER_TEMP/geos-clean-input"
+      - name: Two sequential ABBA blocks in independent fresh Chrome contexts
+        run: |
+          export CHROME_BIN="$(command -v google-chrome || command -v chromium)"
+          node tests/stage32-geos-lowcomplex-perf-run.mjs "$RUNNER_TEMP/geos-clean-input" "$RUNNER_TEMP/geos-clean-evidence"
+      - name: Baseline exact and native repeat exact; costs only, not art acceptance
+        if: ${{ !cancelled() }}
+        run: node tests/stage32-geos-lowcomplex-perf-check.mjs "$RUNNER_TEMP/geos-clean-evidence"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage32-geos-lowcomplex-perf
+          path: ${{ runner.temp }}/geos-clean-evidence
+          if-no-files-found: warn

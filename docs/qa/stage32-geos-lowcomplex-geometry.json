@@ -1,0 +1,38 @@
+[
+  {
+    "name": "tol-0.03",
+    "tolerance": 0.03,
+    "inset": 0.06999999999999999,
+    "bytes": 186811,
+    "vertices": 10174,
+    "polygons": 30,
+    "outsideSafeArea": 0.0,
+    "originalArea": 30860.832512339417,
+    "candidateArea": 28572.33004536987,
+    "retainedAreaFraction": 0.925844435141064
+  },
+  {
+    "name": "tol-0.05",
+    "tolerance": 0.05,
+    "inset": 0.11,
+    "bytes": 141401,
+    "vertices": 7700,
+    "polygons": 30,
+    "outsideSafeArea": 0.0,
+    "originalArea": 30860.832512339417,
+    "candidateArea": 27285.748365444837,
+    "retainedAreaFraction": 0.8841546434152379
+  },
+  {
+    "name": "tol-0.1",
+    "tolerance": 0.1,
+    "inset": 0.21000000000000002,
+    "bytes": 57038,
+    "vertices": 3117,
+    "polygons": 140,
+    "outsideSafeArea": 0.0,
+    "originalArea": 30860.832512339417,
+    "candidateArea": 25048.610393434996,
+    "retainedAreaFraction": 0.8116634696558993
+  }
+]

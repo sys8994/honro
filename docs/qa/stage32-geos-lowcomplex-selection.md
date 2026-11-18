@@ -1,0 +1,9 @@
+# Stage32 lower-complexity GEOS experiment
+
+Selected .1-source topology simplification after .21-source inward buffer, export four decimals. Reconstruct exported rings and prove validity + difference from original safe GEOS coverage has zero area. Original source geometry, protected owner bands and SS are unchanged. This is a sampled/flattened safe geometry proof, not all-real-coordinate original cubic proof.
+
+Three candidates: .03/.05/.1, sizes 186811/141401/57038 bytes and 10174/7700/3117 vertices. Native 0.6 and 1.65 tests all alpha/background/9-point protected-owner violations zero. Old319KB vs .1 changes only114/25 rendered pixels, max channel8; candidate corrects4779/5350 pixels versus old4806/5361. Direct full image inspection at .6 shows no new large hard edge; old near-grass thin remnants remain. Native source-only constant gray proof is NOT actual Scene protection or performance acceptance.
+
+Candidate code is byte-identical to current GEOS helper after replacing exactly the nativeCoverageD literal. No SS removal/skipping or extra readback/canvas. Selected safe geometry retains81.17% of original safe area, with140 polygons; thin-region connectivity changes from additional inward buffer are explicit. Most area removed is not a visible source RGB correction in these two views.
+
+trial/manifest.json is one clean ABBA trial, not production. Baseline keeps previous exact PNG gate. New native image cannot equal old319KB golden by design: checker requires repeated native PNGs exact, records new hash, explicitly reports nativeQualityAccepted=false. No new native golden approval. Full Scene owner/alpha/grass/road and threshold-phase correctness must be separately checked before adoption; one left-view performance trial cannot certify seven views. Lazy prepare reported separately, module parse/network/startup not measured. No absolute cost cap.
