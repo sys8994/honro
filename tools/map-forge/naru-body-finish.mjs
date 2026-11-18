@@ -15,7 +15,7 @@ export function finishNaruBody(core,{palette=true,exterior=true}={}){
  const L=-1200/3.23,R=1774+1200/3.23;
  const base=p('#142c2f',`M0 510 C-10 558-24 618-44 665L-44 684H${L}L${L} 704C-398 745-451 762-465 823L-480 922-518 978-564 1100-621 1176-650 1310-733 1432-765 1627-900 1812-1200 2080V4887H2974V2030L2735 1834 2589 1677 2498 1474 2420 1387 2370 1239 2291 1131 2255 969 2212 874 2186 734 ${R} 667V638H1813C1805 594 1782 541 1774 470V887H0Z`);
  const left=p('#213d40',`M0 692L${L} 692L-364 714-320 747-261 773-242 842-207 889-210 953-160 1028-86 1057-42 1145 22 1183 0 1086-56 1023-49 939-100 871-119 812-182 781-202 742-102 717 0 714Z`);
- const right=p('#213d40',`M1774 646H${R}L2147 669 2097 710 2071 771 2040 827 2049 917 2008 969 1983 1044 1916 1092 1935 997 1960 916 1954 830 2008 747 2021 703 1774 668Z`);
+ const right=p('#213d40',`M1774 668C1853 668 1949 677 2021 688L2105 687 2147 669 2097 710 2071 771 2040 827 2049 917 2008 969 1983 1044 1916 1092 1935 997 1960 916 1954 830 2008 747 2021 721 1925 730 1844 714 1774 716Z`);
  const strata=[
  p('#1b3538','M150 956C260 924 389 929 502 913L741 934 624 960 503 967 407 1017 327 1084 293 1063 349 996 247 1005Z'),
  p('#1c3639','M1016 1081L1172 1010 1334 986 1450 946 1663 936 1583 969 1413 1009 1300 1018 1227 1071 1091 1100Z'),
@@ -32,9 +32,10 @@ export function finishNaruBody(core,{palette=true,exterior=true}={}){
  // side tails are equally solid below y723(left)/708(right). Cap only
  // synthetic AA closures in that nonwalkable solid-color area, after source.
  const join=p('#142c2f','M-1 885H1775V889H-1Z M-1 723H2V887H-1Z M1772 708H1776V887H1772Z M1772 495H1776V631H1772Z M1772 648H1776V667H1772Z');
+ const rockJoin=p('#213d40','M1770 669L1774 668 1777 668V716L1774 716 1770 708Z');
  const original=result.root.children.find(n=>n.tag==='use'&&n.symbol==='source');
  if(!original)throw Error('Expected untouched source use');
- result.root={tag:'g',children:[base,left,right,...strata,rightRim,original,join,woodGrain]};
+ result.root={tag:'g',children:[base,left,right,...strata,rightRim,original,join,rockJoin,woodGrain]};
  for(const key of Object.keys(result.clips))if(key.startsWith('site-edge-'))delete result.clips[key];
  result.viewBox=[-1200,0,4174,4887];
  return result;
