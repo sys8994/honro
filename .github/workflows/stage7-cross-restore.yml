@@ -1,0 +1,56 @@
+name: Stage7 synthetic842 cross-version restore
+on:
+  workflow_dispatch:
+  push:
+    branches: [art/stage7-semantic-rock-study-20261117]
+    paths:
+      - tools/testing/stage7-cross-restore/**
+      - .github/workflows/stage7-cross-restore.yml
+permissions:
+  contents: read
+jobs:
+  cross-restore:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 25
+    env:
+      HONRO_ACT4_RELEASE: '1'
+      HONRO_ACT5_RELEASE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: candidate
+      - uses: actions/checkout@v4
+        with:
+          path: baseline
+          ref: 842aa12fd1144e4f7e9ee616a6ae65d632389f51
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install baseline dependencies in independent root
+        working-directory: baseline
+        run: npm ci && npm ci --prefix game
+      - name: Install candidate dependencies in independent root
+        working-directory: candidate
+        run: npm ci && npm ci --prefix game
+      - name: Build baseline own official runtime and export synthetic battle
+        working-directory: baseline
+        run: |
+          node "$GITHUB_WORKSPACE/candidate/tools/testing/stage7-cross-restore/fixture.mjs" "$PWD" "$RUNNER_TEMP/cross842" export
+          export CHROME_BIN="$(command -v google-chrome || command -v chromium)"
+          node "$GITHUB_WORKSPACE/candidate/tools/testing/stage7-cross-restore/run.mjs" "$RUNNER_TEMP/cross842" "$GITHUB_WORKSPACE/artifacts/base"
+      - name: Build new own official runtime and restore exact842 payload
+        working-directory: candidate
+        run: |
+          node tools/testing/stage7-cross-restore/fixture.mjs "$PWD" "$RUNNER_TEMP/crossnew" restore "$GITHUB_WORKSPACE/artifacts/base/export-stage7.json"
+          export CHROME_BIN="$(command -v google-chrome || command -v chromium)"
+          node tools/testing/stage7-cross-restore/run.mjs "$RUNNER_TEMP/crossnew" "$GITHUB_WORKSPACE/artifacts/new"
+      - name: Verify complete direct cross-version report
+        working-directory: candidate
+        run: node tools/testing/stage7-cross-restore/check.mjs "$GITHUB_WORKSPACE/artifacts"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage7-cross-restore-${{ github.sha }}
+          path: artifacts
+          if-no-files-found: error
+          retention-days: 14
