@@ -1,0 +1,40 @@
+name: Stage32 GEOS clean ABBA Scene costs
+on:
+  workflow_dispatch:
+  push:
+    branches: [inspect/stage32-scanline-20261118]
+    paths:
+      - tests/stage32-geos-clean-perf-*
+      - .github/workflows/stage32-geos-clean-perf.yml
+permissions:
+  contents: read
+jobs:
+  cost:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm ci && npm ci --prefix game
+      - name: Unchanged candidate and registered production sources
+        run: |
+          node tests/stage32-registered-empty-native-contract.mjs
+          node tests/stage32-geos-scene-static-contract.mjs
+      - name: Build clean baseline and unchanged native Scene fixtures
+        run: HONRO_ACT4_RELEASE=1 node tests/stage32-geos-clean-perf-fixture.mjs "$RUNNER_TEMP/geos-clean-input"
+      - name: Two sequential ABBA blocks in independent fresh Chrome contexts
+        run: |
+          export CHROME_BIN="$(command -v google-chrome || command -v chromium)"
+          node tests/stage32-geos-clean-perf-run.mjs "$RUNNER_TEMP/geos-clean-input" "$RUNNER_TEMP/geos-clean-evidence"
+      - name: Unchanged correctness pixels and separated cost report
+        if: ${{ !cancelled() }}
+        run: node tests/stage32-geos-clean-perf-check.mjs "$RUNNER_TEMP/geos-clean-evidence"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage32-geos-clean-perf
+          path: ${{ runner.temp }}/geos-clean-evidence
+          if-no-files-found: warn
