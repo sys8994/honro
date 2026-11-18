@@ -1,0 +1,43 @@
+name: Stage7 X right material join official default Scene
+on:
+  workflow_dispatch:
+  push:
+    branches: [inspect/stage32-scanline-20261118]
+    paths: ['tools/testing/stage7-right-join-x/**', '.github/workflows/stage7-right-join-x.yml']
+permissions: {contents: read}
+jobs:
+  study:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with: {path: study}
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with: {path: product, ref: 88f644e8f1cc2c043ce40ca0359f31f3b30badbd, fetch-depth: 2}
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with: {path: baseline, ref: 85bae4a08993d3b71d22ea3fec76686e0ae3c61c}
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with: {node-version: '22', package-manager-cache: false}
+      - run: npm ci && npm ci --prefix game
+        working-directory: product
+      - run: npm ci && npm ci --prefix game
+        working-directory: baseline
+      - run: python -m pip install pillow numpy
+      - run: node study/tools/testing/stage7-right-join-x/source-contract.mjs product
+      - run: node -e "for(const k of Object.keys(process.env))if(k.startsWith('HONRO_'))throw Error('Unexpected override '+k)"
+      - run: python study/tools/testing/stage7-right-join-x/mock.py
+      - name: Own official builds
+        run: |
+          (cd product && node workshop/build.mjs && node game/build.mjs)
+          (cd baseline && node workshop/build.mjs && node game/build.mjs)
+          mkdir -p artifacts/evidence
+      - name: Four normal Scenes and explicit diagnostic masks
+        run: |
+          node study/tools/testing/stage7-right-join-x/fixture.mjs baseline "$RUNNER_TEMP/edge-before" baseline
+          node study/tools/testing/stage32-live-ss/actual/run.mjs "$RUNNER_TEMP/edge-before" artifacts/evidence
+          node study/tools/testing/stage7-right-join-x/fixture.mjs product "$RUNNER_TEMP/edge-after" candidate
+          node study/tools/testing/stage32-live-ss/actual/run.mjs "$RUNNER_TEMP/edge-after" artifacts/evidence
+          python study/tools/testing/stage7-right-join-x/check.py artifacts/evidence
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with: {name: stage7-right-join-x, path: artifacts, if-no-files-found: error}
