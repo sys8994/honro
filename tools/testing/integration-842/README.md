@@ -1,0 +1,9 @@
+# Narrow 842 integration regression
+
+Baseline checkout is pinned842aa12fd1144e4f7e9ee616a6ae65d632389f51. Candidate is current commit in a separate checkout. No entire research branch/project copied into baseline. Both perform real root Workshop/Game builds with ACT4/5 release1. Snapshot dynamically imports each checkout's own runtimeEntries and own author applyAct1Sites, with deterministic clock/random.
+
+Gates: all50stage author records including units/encounters/physics routes exact; all assets except approved7BODY exact; Stage3raw and optimized full assets exact; canonical3/7source files and legacy registry exact;7raw/optimized BODY equals independently approved hashes; original7source/caps/clip/collision/params exact. Product compile/createBattle/savecompact/restore runs for all50 in isolated Chrome without App or userstorage. Every save roundtrip is byte-exact JSON; comparison allows only the actual7BODY visual fields to differ in restored snapshots. Full gameplay/visual/performance tests are separate.
+
+Current policy additionalVisualAssets=[] means Stage32 is NOT allowed. A future explicitly approved32registration requires pinned id,before/after asset SHA and authorization-reference in the policy; no blanket32 exclusion exists. Physics/stage/monsters stay strict even then. New asset addition/removal is currently not allowed and would require separately reviewed policy/code, not automatic tolerance.
+
+Artifacts: base/ and merged/project-snapshot.json; contracts-all-stages.json; integration-842-result.json. Stage7snapshot provides rawVector/optimizedVector hashes that Scene integration can link. Synthetic comparator tests pass but actual build/runtime/browser execution is pending CI. Workflow contents:read only, checkout baseline read-only, no Git push/ref updates, deployment or user storage.

@@ -20,6 +20,12 @@ function prepare(b){const ts=G.HonroTerrainDomain?.render(b)||b.terrain||[],prio
   const edge=new Path2D(),top=new Path2D(),segments=[];let area=0;for(let i=0;i<ps.length;i++){const a=ps[i],z=ps[(i+1)%ps.length];area+=cross(a.x,a.y,z.x,z.y);}const sign=area>=0?1:-1;
   for(let i=0;i<ps.length;i++){const a=ps[i],z=ps[(i+1)%ps.length],dx=z.x-a.x,dy=z.y-a.y,len=Math.hypot(dx,dy);if(len<.01)continue;
    const nx=sign*dy/len,ny=-sign*dx/len,walkable=ny<0&&Math.abs(dy)<=Math.abs(dx)*1.35;if(t.oneWay&&!walkable)continue;
+   // Painted Naru and Doldang own their skirts. Do not reveal the simulation polygon's
+   // artificial side/bottom closure; retain every authored walking rim.
+   if(((b.honroStage===3&&t.id==='ferry-ground')||(b.honroStage===7&&t.id==='root-floor'))&&t.honroAct1SitePainted&&!t.oneWay&&!walkable){
+    const box=G.HonroBounds.terrain(b),near=(u,v)=>Math.abs(u-v)<1e-6;
+    if((near(a.x,z.x)&&(near(a.x,box.left)||near(a.x,box.right)))||(near(a.y,z.y)&&near(a.y,box.bottom)))continue;
+   }
    // Stage7 painted BODY supplies the non-walk exterior. The authored domain
    // closes its root mass at terrainBounds only for collision/domain coverage.
    // Do not expose those artificial sides/bottom as a rectangular ink frame.

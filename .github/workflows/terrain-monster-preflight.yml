@@ -1,0 +1,64 @@
+name: Terrain and monster integration preflight
+on:
+  push:
+    branches: ['integration/terrain-monster-preflight-20261118']
+permissions:
+  contents: read
+jobs:
+  preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm ci && npm ci --prefix game
+      - name: Exact copy and shared registration checks
+        run: node tests/terrain-monster-preflight.mjs
+      - name: Fetch explicit comparison baselines
+        run: |
+          git fetch --depth=1 origin 7d238d20663c3ceffe430eb0304e01516ae625cf
+          git fetch --depth=1 origin e89242eedb5c040d38a9077c7289fbdc97786bdf
+      - name: Reproduce flag omission and corrected original terrain parent
+        run: |
+          git fetch --depth=1 origin e8d8aa8865c832e831d6d221223356b440652e5f
+          git worktree add --detach "$RUNNER_TEMP/terrain-parent" e8d8aa8865c832e831d6d221223356b440652e5f
+          ln -s "$GITHUB_WORKSPACE/node_modules" "$RUNNER_TEMP/terrain-parent/node_modules"
+          ln -s "$GITHUB_WORKSPACE/game/node_modules" "$RUNNER_TEMP/terrain-parent/game/node_modules"
+          cd "$RUNNER_TEMP/terrain-parent"
+          node tools/act4-source/world-source.mjs materialize
+          for t in stage34-edge-contract stage37-alpha-edge-contract stage38-alpha-edge-contract; do
+            if HONRO_ACT4_RELEASE=0 node tests/$t.mjs > "$RUNNER_TEMP/$t-no-flag.log" 2>&1; then
+              echo "Unexpected original-parent success without required flag"; exit 1
+            fi
+            grep -q 'assert(a)' "$RUNNER_TEMP/$t-no-flag.log"
+            HONRO_ACT4_RELEASE=1 node tests/$t.mjs
+          done
+      - name: Relevant placement and renderer contracts, unchanged assertions
+        run: |
+          mkdir -p _local/reports/terrain-monster-preflight
+          failure=0
+          for t in stage40-placement-contract act4-middle-placement-contract early-encounter-contract act5-meaningful-encounters.test vector-snap-collapse stage34-edge-contract stage37-alpha-edge-contract stage38-alpha-edge-contract; do
+            flag=0
+            case "$t" in stage34-edge-contract|stage37-alpha-edge-contract|stage38-alpha-edge-contract) flag=1 ;; esac
+            HONRO_ACT4_RELEASE=$flag node tests/$t.mjs > _local/reports/terrain-monster-preflight/$t.log 2>&1 || failure=1
+            cat _local/reports/terrain-monster-preflight/$t.log
+          done
+          exit "$failure"
+      - name: Baseline codec and current synthetic save roundtrip
+        if: always()
+        run: |
+          BASELINE_REF=e89242eedb5c040d38a9077c7289fbdc97786bdf node tests/terrain-edge-save-baseline.mjs
+          node tests/terrain-edge-save-roundtrip.mjs
+      - name: Official production build
+        if: always()
+        run: npm run build
+      - name: Preserve reports
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: terrain-monster-preflight
+          path: _local/reports
+          retention-days: 90

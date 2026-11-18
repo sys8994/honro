@@ -55,6 +55,27 @@ function faceTile(asset,row,density){
  ctx.setTransform(sx,0,0,sy,-x0*sx,-top*sy);
  ctx.transform(...matrix);
  G.HonroVectorArt.draw(ctx,asset,{x:0,y:0});
+ // Stage 21: resolve the source-y fade in device space. This is affine-
+ // equivalent to the source gradient, but avoids transformed-gradient backend
+ // differences. Do not change the legacy compositor of other handoff chapters.
+ if(asset.id==='act3-handoff:21:bedrock'){
+  const m=ctx.getTransform(),det=m.a*m.d-m.b*m.c;
+  const qx=-m.b/det,qy=m.a/det,qn=qx*qx+qy*qy;
+  const y=bottom-33,dx=31*qx/qn,dy=31*qy/qn;
+  const startX=m.c*y+m.e,startY=m.d*y+m.f;
+  ctx.setTransform(1,0,0,1,0,0);ctx.globalCompositeOperation='destination-in';
+  const fade=ctx.createLinearGradient(startX,startY,startX+dx,startY+dy);
+  fade.addColorStop(0,'#000');fade.addColorStop(1,'#0000');
+  ctx.fillStyle=fade;ctx.fillRect(0,0,canvas.width,canvas.height);
+  const [left,right]=asset.params.edgeFade||[];
+  for(const [range,reverse] of [[left,true],[right,false]]){
+   if(!range||(!reverse&&x1<=range[0])||(reverse&&x0>=range[1]))continue;
+   const gradient=ctx.createLinearGradient((range[0]-x0)*sx,0,(range[1]-x0)*sx,0);
+   gradient.addColorStop(0,reverse?'#0000':'#000');gradient.addColorStop(1,reverse?'#000':'#0000');
+   ctx.fillStyle=gradient;ctx.fillRect(0,0,canvas.width,canvas.height);
+  }
+  const tile={canvas,top,height};row.tiles.set(density,tile);return tile;
+ }
  ctx.globalCompositeOperation='destination-in';
  const fade=ctx.createLinearGradient(0,bottom-33,0,bottom-2);
  fade.addColorStop(0,'#000');fade.addColorStop(1,'#0000');

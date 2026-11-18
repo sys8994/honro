@@ -1,0 +1,46 @@
+name: Act5 meaningful placement review
+on:
+  push:
+    branches: ['fix/act5-meaningful-encounters-20261117']
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm ci && npm ci --prefix game
+      - name: Protect roster, required identities and placement gaps
+        run: |
+          git fetch --no-tags --depth=1 origin 7d238d20663c3ceffe430eb0304e01516ae625cf
+          node tests/act5-meaningful-encounters.test.mjs
+      - name: Generate isolated official Act5 A/B scenes
+        run: HONRO_PLACEMENT_STAGES=47 HONRO_ACT4_RELEASE=1 HONRO_ACT5_RELEASE=1 node tests/act5-placement-browser-fixture.mjs "$RUNNER_TEMP/placement-act5"
+      - name: Actual Chrome before and after
+        shell: bash
+        run: |
+          browser=$(command -v google-chrome || command -v chromium)
+          for stage in 47; do
+          for variant in baseline candidate; do
+            for view in overview west east; do
+              name="stage$stage-$variant-$view"
+              timeout 300s "$browser" --headless --no-first-run --no-default-browser-check --force-device-scale-factor=1 --virtual-time-budget=60000 --user-data-dir="$RUNNER_TEMP/profile-$name" --dump-dom "file://$RUNNER_TEMP/placement-act5/$name.html" > "$RUNNER_TEMP/$name.html"
+              node tests/act5-placement-browser-result.mjs "$RUNNER_TEMP/$name.html" "$RUNNER_TEMP/placement-act5-results"
+            done
+          done
+          done
+      - name: Official app build
+        run: HONRO_ACT4_RELEASE=1 HONRO_ACT5_RELEASE=1 npm run build
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: act5-placement-review
+          path: |
+            ${{ runner.temp }}/placement-act5-results
+            _local/reports/monster-placement
+          if-no-files-found: warn

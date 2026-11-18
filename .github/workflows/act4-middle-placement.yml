@@ -1,0 +1,41 @@
+name: Act4 middle placement review
+on:
+  push:
+    branches: ['fix/act4-middle-placements-20261117']
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm ci && npm ci --prefix game
+      - run: node tests/act4-middle-placement-contract.mjs
+      - run: HONRO_ACT4_RELEASE=1 node tests/act4-middle-placement-browser.mjs "$RUNNER_TEMP/middle"
+      - name: Actual Chrome A/B scenes
+        shell: bash
+        run: |
+          browser=$(command -v google-chrome || command -v chromium)
+          for stage in 34 35 37 38; do
+            for variant in baseline candidate; do
+              for view in overview focus; do
+                name="stage$stage-$variant-$view"
+                timeout 300s "$browser" --headless --no-first-run --no-default-browser-check --force-device-scale-factor=1 --virtual-time-budget=60000 --user-data-dir="$RUNNER_TEMP/profile-$name" --dump-dom "file://$RUNNER_TEMP/middle/$name.html" > "$RUNNER_TEMP/$name.html"
+                node tests/act4-middle-placement-result.mjs "$RUNNER_TEMP/$name.html" "$RUNNER_TEMP/middle-results"
+              done
+            done
+          done
+      - run: HONRO_ACT4_RELEASE=1 HONRO_ACT5_RELEASE=1 npm run build
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: act4-middle-placement-review
+          path: |
+            ${{ runner.temp }}/middle-results
+            _local/reports/act4-middle-placement
+          if-no-files-found: warn

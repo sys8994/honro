@@ -1,3 +1,4 @@
+import {applyStage33ExteriorCandidate} from './act4-stage33-exterior-art.mjs';
 import {readFile} from 'node:fs/promises';
 import {applyStage33CoastalArt} from './act4-stage33-coastal-art.mjs';
 
@@ -30,5 +31,7 @@ export async function applyAct4SideviewArt(project) {
   return {stage:{...stage,elements},assets:pack.assets};
  }));
  for(const entry of entries)library.push(...entry.assets);
- return applyStage33CoastalArt({...project,library,stages:entries.map(e=>e.stage)});
+ const coastal=await applyStage33CoastalArt({...project,library,stages:entries.map(e=>e.stage)});
+ const field=JSON.parse(await readFile(new URL('./data/act4/sideview-art/33-exterior-field.json',import.meta.url),'utf8'));
+ return applyStage33ExteriorCandidate(coastal,field);
 }

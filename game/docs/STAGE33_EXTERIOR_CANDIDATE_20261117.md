@@ -1,0 +1,25 @@
+# Stage 33 exterior-only candidate
+
+Status: candidate, not merged, not deployed, manual Chrome review pending. Base 396bac7909d7750cfdd85bc7ff98d3739a00d8d7 excludes the incomplete Stage32 material revision.
+
+The original 27 upper/lowland native path compounds, colors, clipping and registration remain in their existing providers. The new provider references those providers, combines them once in a bounded device buffer, and applies the limited left x=-3300..-3000 and submerged bottom y=5100..5300 transition to that combined result. New exterior paint is drawn behind it, not over the road or platform core. No Gaussian blur is applied. Original source assets remain available to old saves; new compatibility IDs preload all referenced sources. No terrain, collision, encounter or unit placement change is intended.
+
+The exterior field uses V3 native Inkscape trace, not a raster in runtime. Source and raw/final trace are preserved in art/stage33-exterior-study-20261117 at 559f6df020ece4704c48e3fa9367981fb251035e. Generated-source inverse registration and source→world affine are recorded in the field params. The initial global left Y correction caused double pale strata and was rejected. The revised candidate changes only the new left ridge above source y=200, mapping132.48→157 and200→200. Lower layers use the original inverse affine with no Y correction. These are art registration observations, not exact pixel identity claims.
+
+Compositing keeps one buffer capped at 8,388,608 device pixels (32MiB), reports allocation/raster/hit/fallback counters, and uses explicit original-provider fallback when unsupported. Unit checks cover overlap alpha, transformed masks, caching, pixel cap and source immutability. CI checks actual production Scene baseline/candidate in fresh synthetic in-memory battles, no storage or app launch; official low tide, unchanged physics, save codec JSON roundtrip and render purity. Full public UI, real device, gameplay and frame-time acceptance remain unverified.
+
+The native preview improved the hard exterior cut and large ghost bands; small material/bright-edge mismatch remains a manual-review concern. A passing technical CI alone is not visual approval. Stage32 remains separate and incomplete.
+
+## First actual Chrome run and follow-up
+
+a9e2c1ad / run44122538137 passed technical checks and official build. Artifact14345758590 ZIP SHA2566bd4ee25313b1e461eae2ce9b36d77d703d670cac3468379b6a635d129a03c00 contains four A/B views. Physics bb437927bcd1f6d3ffdf83933fc9aad429ac19eb83ca513edf8452e6023cb722 remained identical. The vertical left cut and submerged bottom edge were removed in reviewed views. However, protected-core silhouette antialiasing changed due to offscreen compositing: 0/1156/328/2814 pixels over channel delta2 in landscape/portrait/desktop/detail, all within two pixels of baseline color boundaries. This is real displayed edge coverage change, not proof of source-path damage and not merely accepted rounding.
+
+The follow-up candidate draws the protected core directly through the original renderer for positive axis-aligned transforms; only the exterior transition uses the isolated buffer. Integer device-pixel partitioning avoids a fractional clip gap/double edge. The detail view must be exactly baseline-identical, and all four protected core ROIs must have zero pixel difference in CI. Other transforms retain the previously unit-tested mask path. These strengthened checks are pending execution.
+
+Remaining scope: low tide only, no high/rising tide, real-device DPR2, continuous input or public UI; JSON-restored battle equivalence is checked but rendering the restored object and production lazy-loading remain separate unverified paths. The requested detail camera is constrained to x=-320 by normal bounds and does not expose the far external join; portrait maximum zoom-out does.
+
+## Exact clip diagnostic (not accepted)
+
+cfd28d6b run44125711408 failed the new mixed-core Native exact comparison. 2d3103a0 run44126857703 retained that failure and independently ran Chrome without hiding the failed job. Native original-source comparison proved transform roundtrip alone differed by0, while either device-rect or inverse-world clip changed33pixels/max2. Chrome likewise changed protected mixed-tile pixels: landscape377/max2, portrait496/max9, desktop687/max3; full-core detail0/max0. Official build and save/physics contracts passed. Artifact14347494672 ZIP SHA256bd0c4b6d1aacb2b5406bbabb922c4f015d02ff5c1e7c87fb18afe78bcfc68b52.
+
+The next candidate must not introduce a new clip around original-provider drawing at all. The one-buffer proposal temporarily preserves the existing backdrop, draws originals with their original context clip, restores only the exterior region's backdrop, then reuses the same buffer for exterior masked compositing. No tolerance relaxation is intended. Mixed tiles cannot reuse their old masked-buffer cache after backdrop preservation; extra copies/rasterization cost is explicitly pending performance measurement. Full-core tiles continue to use the unmodified direct path without allocating a buffer.

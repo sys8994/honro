@@ -1,0 +1,19 @@
+// Historical rejected extension recipe remains below for provenance, not active registration.
+throw new Error('미채택 확장 등록 중지: Stage7 safety exclusion forbids restoring the rejected optimizer registration.');
+import {readFileSync,writeFileSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+import assert from 'node:assert/strict';
+import {collage,extendVillageBody,footholds} from '../map-forge/act1-naru-doldang.mjs';
+const sha=x=>createHash('sha256').update(JSON.stringify(x)).digest('hex');
+const data=JSON.parse(readFileSync('shared/assets/environment/act1-sites/stage07.json','utf8'));
+const [,,w,h]=data.art.body.vector.viewBox;
+const faces=footholds.map(([x,y,w,h,dx,dy,dw])=>[x,y,w,h,dx,dy,dw,h*dw/w]);
+const core=collage(data.art.body.vector,faces,[-390,0,w+790,h+380],true,[[9,908,30,157,9,908,-390,157],[1421,882,13,181,1834,882,-400,181],[16,1049,1402,19,16,1068,1402,380]]);
+const vector=extendVillageBody(core),entries=JSON.parse(readFileSync('shared/data/terrain-path-optimization.json','utf8')),entry=entries.find(e=>e.id==='act1-site:7:body');
+assert.equal(entry.original,sha(core),'Must register from unchanged reviewed village core');
+assert.deepEqual(vector.symbols.source,core.symbols.source);
+for(const [p,key] of entry.paths)assert.deepEqual(p.reduce((v,k)=>v[k],core)[key],p.reduce((v,k)=>v[k],vector)[key]);
+const path='shared/data/terrain-path-registrations.json',registrations=JSON.parse(readFileSync(path,'utf8')).filter(r=>r.id!==entry.id);
+registrations.push({id:entry.id,sourceOriginal:entry.original,original:sha(vector)});
+writeFileSync(path,JSON.stringify(registrations.sort((a,b)=>a.id.localeCompare(b.id)),null,2)+'\n');
+console.log(JSON.stringify({original:entry.original,extended:sha(vector),optimizedPathsPreserved:entry.paths.length}));

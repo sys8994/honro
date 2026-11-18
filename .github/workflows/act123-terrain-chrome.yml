@@ -1,0 +1,71 @@
+name: Inspect prior terrain candidates in actual Chrome
+on:
+  push:
+    branches: ['audit/act123-terrain-chrome-20261117']
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: act1
+            stages: '3,7'
+          - name: act2
+            stages: '12,15'
+          - name: act3-foundations
+            stages: '21,22'
+          - name: act3-bottoms
+            stages: '28,30'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm ci && npm ci --prefix game
+      - name: Retain prior source registrations and actual save compatibility
+        if: matrix.name == 'act1'
+        run: |
+          node tools/act1-vector-production/check-edge-integration-manifest.mjs
+          node tests/terrain-edge-act1-save-compat.mjs
+          node tests/terrain-edge-save-roundtrip.mjs
+          node tests/act2-local-art-save.mjs
+      - name: Prepare untouched public source in an independent temporary worktree
+        shell: bash
+        run: |
+          git fetch --depth=1 origin 7d238d20663c3ceffe430eb0304e01516ae625cf
+          git worktree add --detach "$RUNNER_TEMP/public-baseline" 7d238d20663c3ceffe430eb0304e01516ae625cf
+          cmp package-lock.json "$RUNNER_TEMP/public-baseline/package-lock.json"
+          cmp game/package-lock.json "$RUNNER_TEMP/public-baseline/game/package-lock.json"
+          ln -s "$GITHUB_WORKSPACE/node_modules" "$RUNNER_TEMP/public-baseline/node_modules"
+          ln -s "$GITHUB_WORKSPACE/game/node_modules" "$RUNNER_TEMP/public-baseline/game/node_modules"
+          cp tests/act123-terrain-browser-fixture.mjs "$RUNNER_TEMP/public-baseline/tests/act123-terrain-browser-fixture.mjs"
+      - name: Generate baseline and combined candidate without saved game access
+        shell: bash
+        run: |
+          (cd "$RUNNER_TEMP/public-baseline" && node tests/act123-terrain-browser-fixture.mjs "$RUNNER_TEMP/baseline-fixtures" '${{ matrix.stages }}' baseline)
+          node tests/act123-terrain-browser-fixture.mjs "$RUNNER_TEMP/candidate-fixtures" '${{ matrix.stages }}' candidate
+      - name: Actual Chrome two changed views per stage
+        shell: bash
+        run: |
+          browser=$(command -v google-chrome || command -v chromium)
+          for variant in baseline candidate; do
+            node -e "for(const q of require(process.argv[1]))console.log(q.stage+':'+q.view)" "$RUNNER_TEMP/$variant-fixtures/capture-list.json" > "$RUNNER_TEMP/capture-list.txt"
+            while IFS=: read -r stage view; do
+              name="stage$stage-$variant-$view"
+              timeout 300s "$browser" --headless --no-first-run --no-default-browser-check --force-device-scale-factor=1 --virtual-time-budget=60000 --user-data-dir="$RUNNER_TEMP/profile-$name" --dump-dom "file://$RUNNER_TEMP/$variant-fixtures/$name.html" > "$RUNNER_TEMP/$name.html"
+              node tests/act123-terrain-browser-result.mjs "$RUNNER_TEMP/$name.html" "$RUNNER_TEMP/evidence" "$stage" "$variant" "$view"
+            done < "$RUNNER_TEMP/capture-list.txt"
+          done
+      - name: Compare unchanged physics and camera and require an actual candidate effect
+        run: node tests/act123-terrain-browser-compare.mjs "$RUNNER_TEMP/evidence" '${{ matrix.stages }}'
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: terrain-chrome-${{ matrix.name }}
+          path: ${{ runner.temp }}/evidence
+          if-no-files-found: error

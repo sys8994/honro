@@ -166,10 +166,17 @@
             c.restore();
         }
         _terrainPaintBounds(t){const work=!!t.honroWorkAccess,cap=t.honroV4Support?32:0;return{left:t.x-(work?32:0),right:t.x+t.w+(work?32:0),top:t.y-cap,bottom:t.y+Math.max(t.h,work?600:0)};}
+        _terrainRasterBounds(b){
+            const domain={...b.honroTerrainBounds};
+            // Painted sites' visual skirts extend beyond unchanged collision domains.
+            if(b.honroStage===7){const body=G.HonroTerrainDomain.materialLandmarks(b).find(l=>l.asset?.id==='act1-site:7:body'),paint=body&&this._landmarkPaintBounds(body);
+                if(paint){domain.left=Math.min(domain.left,paint.left);domain.right=Math.max(domain.right,paint.right);domain.top=Math.min(domain.top,paint.top);domain.bottom=Math.max(domain.bottom,paint.bottom);}}
+            return domain;
+        }
         _drawTerrainDomainTiles(c,b,w,h){
             // Geographically fixed tiles, never a bitmap cut at Play Bounds.
             // Pixel-aligned clips consume each gutter sample exactly once.
-            const rs=this._worldRasterScale(b,w),px=512,gutter=2,size=px/rs,v=G.HonroBounds.viewport(this,w,h),domain=(()=>{const d=b.honroTerrainBounds;if(b.honroStage!==7)return d;const body=G.HonroTerrainDomain.materialLandmarks(b).find(l=>l.asset?.id==='act1-site:7:body');const a=body&&this._landmarkPaintBounds(body);if(!a)return d;return{left:Math.min(d.left,a.left),right:Math.max(d.right,a.right),top:Math.min(d.top,a.top),bottom:Math.max(d.bottom,a.bottom)};})(),
+            const rs=this._worldRasterScale(b,w),px=512,gutter=2,size=px/rs,v=G.HonroBounds.viewport(this,w,h),domain=this._terrainRasterBounds(b),
                 key=this._worldCacheKey(b,w),limit=w<900?12:24;
             let q=this._domainTiles;if(!q||q.key!==key){this._releaseDomainTiles();q=this._domainTiles={key,tiles:new Map(),rs};this._cacheStats.worldBuilds++;}
             const minX=Math.floor(Math.max(v.left,domain.left)/size),maxX=Math.floor(Math.min(v.right,domain.right)/size),
@@ -836,3 +843,4 @@
     G.HonroScene = Scene;
     G.honroDraw = { P, L, E, glyph, glow, building, tree };
 })(globalThis);
+

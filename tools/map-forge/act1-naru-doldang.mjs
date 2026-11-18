@@ -30,7 +30,7 @@ const stairs={
  'fall-caps':[[1124,967,55],[1068,945,56],[1007,919,58],[953,891,51]]
 };
 // Added footholds reuse the painted cap samples alongside the existing rock.
-const footholds=[
+export const footholds=[
  [191,550,75,24,247,867,75,868],
  [143,589,78,23,289,825,77,826],
  [95,619,76,24,267,783,75,784],
@@ -56,7 +56,7 @@ const outline=node=>{
  return children?{...keep,children:children.map(outline)}:keep;
 };
 function rect([x,y,w,h]){return 'M'+x+' '+y+'H'+(x+w)+'V'+(y+h)+'H'+x+'Z';}
-function collage(vector,layout,viewBox,base=false,edges=[]){
+export function collage(vector,layout,viewBox,base=false,edges=[]){
  const clips={...vector.clips},parts=base?[{tag:'use',symbol:'source'}]:[];
  for(const [i,r] of layout.entries()){
   const [x,y,w,h,dx,dy,dw,dh]=r,scale=dw/w,clipPath='site-crop-'+i;
@@ -71,6 +71,61 @@ function collage(vector,layout,viewBox,base=false,edges=[]){
   parts.push({tag:'g',transform:[sx,0,0,sy,dx-x*sx,dy-y*sy],clipPath,children:[{tag:'use',symbol:'source'}]});
  }
  return {version:1,viewBox,root:{tag:'g',children:parts},clips,symbols:{source:outline(vector.root)}};
+}
+// Keep the reviewed core exact and append adjoining edge samples. Compose
+// transforms directly against the source to stay within vector depth limits.
+export function extendNaruBody(core){
+ const clips={...core.clips},parts=core.root.children.map(n=>{
+  if(!n.clipPath)return n;const q={...n,pixelSnapClip:true,transform:[...n.transform]};
+  // The imported base has an antialiased edge. Underlap only its off-map
+  // adjoining strips by at most two source pixels, without moving source art.
+  if(n.clipPath==='site-edge-0')q.transform[4]+=2;
+  if(n.clipPath==='site-edge-1')q.transform[4]-=2;
+  if(n.clipPath==='site-edge-2')q.transform[5]-=.75;
+  return q;
+ });
+ function strip(key,x,y,w,h,dx,dy,dw,dh){
+  clips[key]=[rect([x,y,w,h])];const sx=dw/w,sy=dh/h;
+  parts.push({tag:'g',clipPath:key,pixelSnapClip:true,transform:[sx,0,0,sy,dx-x*sx,dy-y*sy],children:[{tag:'use',symbol:'source'}]});
+ }
+ strip('naru-outer-left',27-27/390,506,27/390,381,-1200,506,814,381);
+ strip('naru-outer-right',1752,470,22/400,417,2170,470,804,417);
+ strip('naru-lower-left',1,858,1,28,-1200,886.75,1201,380.5);
+ strip('naru-lower-right',1771,858,1,28,1773,886.75,1201,380.5);
+ strip('naru-core-bottom-join',0,858.1,1774,.1,0,886.75,1774,.5);
+ const y=885,h=1;
+ strip('naru-bottom-left',1,y,1,h,-1200,1264,1201,3623);
+ strip('naru-bottom-middle',0,y,1774,h,0,1264,1774,3623);
+ strip('naru-bottom-right',1771,y,1,h,1773,1264,1201,3623);
+ return {...core,viewBox:[-1200,0,4174,4887],clips,root:{tag:'g',children:parts}};
+}
+// Doldang's reviewed paths and footholds stay exact. Only the off-map skirt
+// receives source-pixel extensions; overlaps prevent raster clip seams.
+export function extendVillageBody(core){
+ const clips={...core.clips,'site-edge-2':[rect([16,1067,1402,1])]},parts=core.root.children.map(n=>{
+  if(!n.clipPath)return n;const q={...n,pixelSnapClip:true,transform:[...n.transform]};
+  if(n.clipPath==='site-edge-0')q.transform[4]+=2;
+  if(n.clipPath==='site-edge-1')q.transform[4]-=2;
+  // Continue the last opaque row rather than repeat 19 source rows.
+  if(n.clipPath==='site-edge-2')q.transform=[1,0,0,2532.75,0,1067.25-1067*2532.75];
+  return q;
+ });
+ function strip(key,x,y,w,h,dx,dy,dw,dh){
+  clips[key]=[rect([x,y,w,h])];const sx=dw/w,sy=dh/h;
+  parts.push({tag:'g',clipPath:key,pixelSnapClip:true,transform:[sx,0,0,sy,dx-x*sx,dy-y*sy],children:[{tag:'use',symbol:'source'}]});
+ }
+ strip('village-outer-left',38,908,1,157,-1200,908,821,157);
+ strip('village-outer-right',1421,882,1,181,1832,882,816,181);
+ strip('village-left-join-underlay',38,990,1,1,-1200,990,1218,74);
+ strip('village-lower-left',38,1049,1,14,-1200,1061,1218,389);
+ // The right source edge slopes up: alpha ends at y994..1034, not1063.
+ // Underlay its last opaque row; keep the original sloping edge over it.
+ strip('village-right-underlay',1421,990,13,1,1834,990,-400,2610);
+ strip('village-right-outer-underlay',1421,990,1,1,1832,990,816,2610);
+ strip('village-bottom-left',38,1062,1,1,-1200,1446,1218,2154);
+ strip('village-right-join-underlay',1414,990,1,1,1414,990,21,2610);
+ const underlay=parts.filter(n=>n.clipPath?.includes('underlay')),rest=parts.filter(n=>!n.clipPath?.includes('underlay'));
+ return {...core,viewBox:[-1200,0,3848,3600],clips,root:{tag:'g',children:[...underlay,...rest]}};
 }
 function artAsset(project,id,name,vector,sha,foot={x:0,y:0}){
  const [x,y,w,h]=vector.viewBox,bounds={x,y,w,h};
@@ -116,9 +171,13 @@ function authorStage(project,s,data,finishData){
    detail:{interpolation:'linear',roughness:0,spacing:25},properties:{honroAct1SitePainted:true,route:true}};
  });
  const bodyId='act1-site:'+n+':body',sheetId='act1-site:'+n+':landmarks';
- const originalBody=buildOriginalAct1SiteBody(data,n);
- const bodyVector=n===7?finishStage7Body(originalBody,finishData):originalBody;
- artAsset(project,bodyId,site+' 지형',bodyVector,body.sha256);
+ const edges=shore?[[0,506,27,381,0,506,-390,381],[1752,470,22,417,2174,470,-400,417],
+  [0,858,1774,29,0,887,1774,380]]:[[9,908,30,157,9,908,-390,157],[1421,882,13,181,1834,882,-400,181],
+  [16,1049,1402,19,16,1068,1402,380]];
+ const faces=shore?[]:footholds.map(([x,y,w,h,dx,dy,dw])=>[x,y,w,h,dx,dy,dw,h*dw/w]);
+ const bodyCollage=collage(body.vector,faces,[-390,0,sourceWidth+790,sourceHeight+380],true,edges);
+ const finishedBody=n===7?finishStage7Body(bodyCollage,finishData):bodyCollage;
+ artAsset(project,bodyId,site+' 지형',finishedBody,body.sha256);
  artAsset(project,sheetId,site+' 랜드마크',collage(data.art.landmarks.vector,data.layout,body.vector.viewBox),data.art.landmarks.sha256);
  const placement=(id,assetId,x=0,y=0,z=1,layer='structural-back')=>({id,assetId,...world(x,y),scale:z*scale,layer,depthLayer:'L1',visualRole:'scenery'});
  s.elements=[placement('site-body-'+n,bodyId),placement('site-landmarks-'+n,sheetId,0,0,1,'prop')];
@@ -234,3 +293,4 @@ export async function applyAct1Sites(project){
  }
  return project;
 }
+

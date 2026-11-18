@@ -1,3 +1,18 @@
+## 2026-11-17 지형 33·34·37·38 결합 후보 (미배포)
+
+33 외곽 필드, 34 유한 이미지 우측/하부 캐시 잔선, 37/38 부분 알파 중첩 잔선 교정을 별도 결합 브랜치에서 검증한다. 원본 도로·풀·구멍·벡터 형상과 물리/저장을 유지하며, 부정확한 바탕/clip 제거 및 변화 0인 후보는 폐기했다. 장별 Chrome 표본 통과와 결합판·공개 검증은 구분한다. 공통 번들/landmark 훅 충돌 해결, 32 미완 제외, 몬스터 결합 충돌 및 미검수 범위는 game/docs/TERRAIN_33_34_37_38_INTEGRATION.md 참조. 실제 공개 배포는 아직 하지 않았다.
+
+## 2026-11-17 · 22장 매립 기초 끝 합성 후보
+
+- 사각 단면 관측은 저작된 두 매립 기초 색면의 하단/측면 끝과 일치했다. 의도된 기초 자체와 상부 건축 접점은 보존하고 두 ID에만 경계 합성 메타데이터와 isolated device mask를 적용했다.
+- 전체 campaign의 두 필드 외 불변, 원본 점·색·물리·6뷰 카메라/상태 보존, 재생성, mask alpha, 기존 runtime 복원 일치, 14장 251개 rim 회귀를 확인했다. 공개 UI·확대/연속 줌·동적 상태는 미검수다. 상세: `game/docs/STAGE22_BURIED_EDGE_CANDIDATE_20261117.md`.
+
+## 2026-11-17 · 21장 유한 암면 끝 합성 후보
+
+- 유한 원본의 좌우/아래 색 경계가 직접 노출되던 합성에 21장 한정 fade를 적용했다. 원본 vector·접지·bounds·충돌은 그대로다.
+- Native 변환 gradient에서 strip이 사라진 첫 후보는 반려하고 affine source-y 등고선을 보존하는 device gradient로 보완했다. 다른 장의 기존 분기는 그대로다. 브라우저 동일 버그라고 단정하지 않는다.
+- 6뷰 물리/카메라 불변과 원본 보존, affine 수학검사, 다른 9장 첫 tile RGBA 동일을 확인했다. 하드컷은 완화되지만 재질 밀도 차이·공개 UI·동적 플레이는 미해결/미검수다. 상세: `game/docs/STAGE21_EDGE_BLEND_CANDIDATE_20261117.md`. 원격 후보와 실제 배포를 구분한다.
+
 ## 2026-11-17 · 41장 접합 coverage 수정
 
 - 기존 clip이 색면마다 반복되고 원본 내부/외부 alpha가 중첩되어 밝은 수평·지그재그 경계가 생겼다. 서쪽의 서로 배타적인 영역도 source-over로 겹쳐 coverage가 부족했다.
@@ -61,3 +76,18 @@ Re-designed stairs with their supporting rock instead of detached per-step skins
 - 변경: 실제 Inkscape 추적·형상 보존 최적화 암벽, 원본 하단 색경계 분할, 원본 보행/계단/산문/아치 보호 및 단일 alpha 합성. 원본 데이터와 다른 장, 충돌·저장·카메라는 불변이다.
 - 확인: 데이터 hash·보행 327점·색면 968점·아치 323점·6개 화면비 bounds, 합성 예외/opacity/clip 회귀, 서쪽/동쪽/세로 Native 화면.
 - 아직 master/CI/Pages/공개 실제 입력은 미완료. source PNG/raw는 지원 Library 및 로컬에 원본 보존했으며 전송 제한 우회는 하지 않았다. 세부 근거와 한계는 `game/docs/STAGE50_CONTINUITY_STATUS.md`.
+
+## 2026-11-17 · 28장 지반 하단 source 연속성 후보
+
+- 관측 y669 절단은 실제 source polygon y9000 끝과 일치했다. 저작 바닥 두 점만 기존 domain 하단27400으로 연장하고 collision projection9000은 유지했다. 별도 렌더 지리/스커트를 만들지 않았다.
+- 전체 project에서 두 점 외 불변, projection·충돌·보행·unit 불변, Native 전후5뷰를 확인했다. portrait4뷰 하단띠만 없어지고 desktop중앙은 byte 동일하다. 기존 저장된 world polygon은 변환하지 않으며 공개 UI·동적 상태는 미검수다. 상세: `game/docs/STAGE28_EDGE_JOIN_STATUS.md`.
+
+## 2026-11-17 · 30장 후면 수면·암면 하드컷 후보
+
+- 후면 수면 source의 y7100 끝과 두 유한 암면의 y7668/y7290 끝이 실제 관측 위치에 일치했다. 수면 첫 path·정합 bounds만 기존 domain31200으로 잇고, 두 암면의 깊은 끝만 기존 바탕과 합성했다.
+- campaign 자산1개 외 불변, 원본 forms/색/배율·물리·배 이벤트/22장메타 보존, 재생성/원문복원/Native6뷰를 확인했다. 재질 차이·고배율 AA/연속 줌·공개 UI·배 상태는 미검수다. 상세: `game/docs/STAGE30_EDGE_COMPOSITION_20261117.md`.
+
+## 2026-11-17 · 29장 Chrome 왼쪽 외곽 접합 후보
+
+- Native 내부 strip 누락은 철회했지만 실제 독립 Chrome Scene에서 world x0의 수직 외곽 이음은 남았다. source 왼쪽 fade가 null인 별개 원인이다.
+- edgeFade[0]만 [0,170]으로 추가하고 원본 path·mapping·bounds·오른쪽 fade·물리를 보존했다. 정적/재생성 검사는 통과했으며 Chrome A/B의 상단 돌/보행rim 확인 전 판정은 보류한다. 상세: `game/docs/STAGE29_LEFT_JOIN_CANDIDATE_20261117.md`.

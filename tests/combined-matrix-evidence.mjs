@@ -1,0 +1,6 @@
+import fs from'node:fs';import path from'node:path';import assert from'node:assert/strict';
+const dir=process.argv[2], rows=fs.readdirSync(dir).filter(n=>/^stage.*\.json$/.test(n)).map(n=>JSON.parse(fs.readFileSync(path.join(dir,n))));
+assert(rows.length>0);
+for(const j of rows){assert(j.ok);assert.match(j.terrainGeometrySha256,/^[a-f0-9]{64}$/);const peer=rows.find(x=>x.stage===j.stage&&x.view===j.view&&x.variant!==j.variant);if(peer)assert.equal(j.terrainGeometrySha256,peer.terrainGeometrySha256,'geometry A/B '+j.stage);
+if(j.stage>=31&&j.stage<=40){const m=j.officialAct4Manifest;assert(m);assert.equal(m.source,'official runtimeEntries(app:true)');assert.equal(new Set(m.proof.map(p=>p.name)).size,m.proof.length);for(const p of m.proof)assert.match(p.sha256,/^[a-f0-9]{64}$/);for(const n of ['HonroStage33ExteriorArt','HonroStage34FoundationEdge','HonroStage37AlphaEdge','HonroStage38AlphaEdge']){assert(m.helpers.some(h=>h.global===n));assert(j.officialAct4HelperStats[n]);assert.equal(j.officialAct4HelperStats[n].fallbacks,0);}}
+console.log(JSON.stringify({stage:j.stage,variant:j.variant,view:j.view,terrainGeometrySha256:j.terrainGeometrySha256,geometryABEqual:!!peer,helpers:j.officialAct4HelperStats||null,localActions:j.localActions?.length||0}));}

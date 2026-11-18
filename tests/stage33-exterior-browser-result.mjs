@@ -1,0 +1,13 @@
+import {readFile,writeFile,mkdir} from 'node:fs/promises';
+import path from 'node:path';import assert from 'node:assert/strict';import {createHash} from 'node:crypto';
+const [input,out,variant,view]=process.argv.slice(2);
+assert(input&&out&&['baseline','candidate'].includes(variant)&&view);
+const html=await readFile(input,'utf8'),match=html.match(/<pre id="result">([A-Za-z0-9+/=]+)<\/pre>/);
+assert(match,'Diagnostic did not complete');const r=JSON.parse(Buffer.from(match[1],'base64').toString('utf8'));
+assert.equal(r.ok,true,JSON.stringify(r));assert.equal(r.stage,33);assert.equal(r.variant,variant);assert.equal(r.view,view);assert.equal(r.dpr,1);
+assert.deepEqual(r.tideSnapshot,{phase:'low',surface:4095,warningRound:2,highRound:5,lowRound:7});assert.equal(r.appReadyUnresolved,true);assert.equal(r.renderPure,true);assert.equal(r.saveRoundtrip,true);
+for(const k of ['storage','errors','violations'])assert.deepEqual(r[k],[]);assert.equal(r.pendingImages,0);assert.equal(r.imageErrors,0);assert.equal(r.fontStatus,'loaded');
+assert.match(r.physicsSha256,/^[a-f0-9]{64}$/);assert.match(r.png,/^data:image\/png;base64,/);
+const png=Buffer.from(r.png.split(',')[1],'base64');assert.equal(png.subarray(0,8).toString('hex'),'89504e470d0a1a0a');assert.equal(png.readUInt32BE(16),r.width);assert.equal(png.readUInt32BE(20),r.height);
+delete r.png;r.pngSha256=createHash('sha256').update(png).digest('hex');await mkdir(out,{recursive:true});const name=`stage33-${variant}-${view}`;
+await writeFile(path.join(out,name+'.png'),png,{flag:'wx'});await writeFile(path.join(out,name+'.json'),JSON.stringify(r,null,2)+'\n',{flag:'wx'});console.log(JSON.stringify(r));

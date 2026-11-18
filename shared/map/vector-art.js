@@ -2,7 +2,7 @@
 const VERSION=1,cache=new WeakMap(),prewarmed=new WeakMap(),validPaint=s=>s===undefined||s==='none'||/^#[\da-f]{6}([\da-f]{2})?$/i.test(s)||/^url\(#[\w-]+\)$/.test(s);
 let snapUnit;
 function clipRectangle(vector,node){const paths=vector.clips?.[node.clipPath];if(!Array.isArray(paths)||paths.length!==1||typeof paths[0]!=='string')return null;const number='([-+]?(?:\\d*\\.\\d+|\\d+\\.?\\d*)(?:[eE][-+]?\\d+)?)',match=paths[0].match(new RegExp('^\\s*M\\s*'+number+'[\\s,]+'+number+'\\s*H\\s*'+number+'\\s*V\\s*'+number+'\\s*H\\s*'+number+'\\s*Z\\s*$'));if(!match)return null;const[x,y,x2,y2,closeX]=match.slice(1).map(Number);return[x,y,x2,y2,closeX].every(Number.isFinite)&&x===closeX&&x!==x2&&y!==y2?[x,y,x2,y2]:null;}
-function applyClip(c,node){if(!node.clip)return;if(node.snapRect){const m=c.getTransform(),r=node.snapRect;if(m.b===0&&m.c===0&&m.a!==0&&m.d!==0){const p=[m.a*r[0]+m.e,m.d*r[1]+m.f,m.a*r[2]+m.e,m.d*r[3]+m.f];if(p.every(Number.isFinite)){const left=Math.round(Math.min(p[0],p[2])),top=Math.round(Math.min(p[1],p[3])),right=Math.round(Math.max(p[0],p[2])),bottom=Math.round(Math.max(p[1],p[3]));c.setTransform(right-left,0,0,bottom-top,left,top);c.clip(node.snapPath);c.setTransform(m.a,m.b,m.c,m.d,m.e,m.f);return;}}}c.clip(node.clip);}
+function applyClip(c,node){if(!node.clip)return;if(node.snapRect){const m=c.getTransform(),r=node.snapRect;if(m.b===0&&m.c===0&&m.a!==0&&m.d!==0){const p=[m.a*r[0]+m.e,m.d*r[1]+m.f,m.a*r[2]+m.e,m.d*r[3]+m.f];if(p.every(Number.isFinite)){const left=Math.round(Math.min(p[0],p[2])),top=Math.round(Math.min(p[1],p[3])),right=Math.round(Math.max(p[0],p[2])),bottom=Math.round(Math.max(p[1],p[3]));if(right===left||bottom===top){c.clip(node.clip);return;}c.setTransform(right-left,0,0,bottom-top,left,top);c.clip(node.snapPath);c.setTransform(m.a,m.b,m.c,m.d,m.e,m.f);return;}}}c.clip(node.clip);}
 // Long imported compounds stay a single fill operation. Parts preserve authored
 // subpath order (including relative moveto origins); never fill each part alone.
 const COMPOUND_LIMITS=Object.freeze({parts:32,partChars:60000,totalChars:240000,numberTokens:120000,assetChars:4000000});
@@ -80,3 +80,4 @@ function draw(c,asset,inst){if(!asset.vector)return false;const data=prepare(ass
 }
 G.HonroVectorArt={VERSION,COMPOUND_LIMITS,validate,prepare,prepareIncremental,draw};
 })(globalThis);
+

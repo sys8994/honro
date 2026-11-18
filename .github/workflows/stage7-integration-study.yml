@@ -1,0 +1,44 @@
+name: Stage7 integrated842 runtime evidence
+on:
+  workflow_dispatch:
+  push:
+    branches: [art/stage7-semantic-rock-study-20261117]
+    paths:
+      - tools/map-forge/stage7-terrain-finish.*
+      - tools/map-forge/act1-naru-doldang.mjs
+      - shared/runtime/terrain-readability.js
+      - shared/runtime/renderer.js
+      - shared/terrain-path-optimization.mjs
+      - shared/data/stage7-terrain-path-registration.json
+      - game/tools/stage7-integration-study/**
+      - .github/workflows/stage7-integration-study.yml
+permissions:
+  contents: read
+jobs:
+  registered:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci && npm ci --prefix game
+      - name: Root Workshop and Game builds
+        run: |
+          HONRO_ACT4_RELEASE=1 HONRO_ACT5_RELEASE=1 node workshop/build.mjs
+          HONRO_ACT4_RELEASE=1 HONRO_ACT5_RELEASE=1 node game/build.mjs
+      - run: HONRO_ACT4_RELEASE=1 HONRO_ACT5_RELEASE=1 node game/tools/stage7-integration-study/fixture.mjs "$RUNNER_TEMP/stage7-integration"
+      - name: Capture registered candidate without injection
+        run: |
+          export CHROME_BIN="$(command -v google-chrome || command -v chromium)"
+          node game/tools/stage7-integration-study/run.mjs "$RUNNER_TEMP/stage7-integration" artifacts/stage7-integration-study
+          cp "$RUNNER_TEMP/stage7-integration/registered-contract.json" artifacts/stage7-integration-study/
+      - run: node game/tools/stage7-integration-study/check.mjs artifacts/stage7-integration-study
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage7-integration-study-${{ github.sha }}
+          path: artifacts/stage7-integration-study
+          if-no-files-found: error
+          retention-days: 14

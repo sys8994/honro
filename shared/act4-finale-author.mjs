@@ -1,3 +1,4 @@
+import {placeAct4Stage40} from './act4-stage40-placement.mjs';
 /** Stage40 final-defense candidate. Existing terrain, art and civilian routes
  * are immutable inputs. This roster is a design target, not play acceptance. */
 export function authorAct4Finale(stage,point){
@@ -39,5 +40,5 @@ export function authorAct4Finale(stage,point){
  }
  Object.assign(s.initialState,{honroFinalDefenseRevision:2,honroAct4EncounterRevision:1,honroActiveLimit:6,honroActionBudgetRevision:1,honroEncounterDensityActivation:defs});
  if(s.units.filter(u=>u.team==='enemy').length!==42)throw Error('Finale roster must have42 unique enemies');
- return s;
+ return placeAct4Stage40(s,point);
 }

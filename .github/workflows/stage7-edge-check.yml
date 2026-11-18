@@ -1,0 +1,24 @@
+name: Verify Stage7 authored edge joins
+on:
+  push:
+    branches: ['fix/stage7-art-edges-20261117']
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Install locked dependencies
+        run: npm ci && npm ci --prefix game
+      - name: Verify unchanged authored core and physical stage
+        run: node tests/stage7-art-bounds.mjs
+      - name: Verify production renderer and stage3 regression
+        run: node tools/act1-vector-production/check-stage7-edge-audit.mjs && node tools/act1-vector-production/check-stage3-edge-audit.mjs
+      - name: Build official runtime
+        run: npm run build

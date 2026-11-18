@@ -44,7 +44,9 @@ export function applyStage28RecordCourt(input){
  
  // Idempotent final author runs after existing quest and city route authors.
  const gateSource=id=>clone(s.terrains.find(t=>t.id===id));const gates=[gateSource('fire-door'),gateSource('water-gate')];
- s.terrains=[{id:'a3-foundation',name:'Raised record court / service lanes',type:'solid',points:[[-9000,2700],...COURT28_PROFILE,[16200,2590],[16200,9000],[-9000,9000]].map(([x,y])=>({x,y})),baseMaterial:'earth',oneWay:false,breakable:false,layer:'terrain',properties:{honroCourt28:true,honroWalkEdges:Array.from({length:COURT28_PROFILE.length+1},(_,i)=>i)},detail:{spacing:24,roughness:0,seed:28,optimizeEpsilon:0}}];
+ // Continue only the buried source mass; the collision projection below stays at 9000.
+ const foundationBottom=Math.max(9000,s.terrainBounds?.bottom??9000);
+ s.terrains=[{id:'a3-foundation',name:'Raised record court / service lanes',type:'solid',points:[[-9000,2700],...COURT28_PROFILE,[16200,2590],[16200,foundationBottom],[-9000,foundationBottom]].map(([x,y])=>({x,y})),baseMaterial:'earth',oneWay:false,breakable:false,layer:'terrain',properties:{honroCourt28:true,honroWalkEdges:Array.from({length:COURT28_PROFILE.length+1},(_,i)=>i)},detail:{spacing:24,roughness:0,seed:28,optimizeEpsilon:0}}];
  // Preserve the authored world polygon while projecting collision to Play Bounds.
  // This final pass replaces an already-domain-authored foundation, so it must
  // carry its own projection and contain its existing outer vertices explicitly.

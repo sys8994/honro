@@ -1,0 +1,38 @@
+name: Verify stage29 left join in isolated Chrome
+on:
+  push:
+    branches: ['fix/stage29-left-join-20261117']
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm ci && npm ci --prefix game
+      - name: Preserve source metadata and prior candidates
+        run: |
+          node tools/act1-vector-production/check-edge-integration-manifest.mjs
+          node tests/stage29-handoff-left-blend.mjs
+          node tools/environment/stage29-handoff-left-blend.mjs
+          git diff --exit-code -- shared/assets/environment/act3-handoff/stage29-west-bank.json
+      - name: Generate isolated production Scene
+        run: node tests/actual-scene-browser-fixture.mjs "$RUNNER_TEMP/honro-stage29-fixtures"
+      - name: Actual Chrome left join candidate
+        shell: bash
+        run: |
+          browser=$(command -v google-chrome || command -v chromium)
+          timeout 300s "$browser" --headless --no-first-run --no-default-browser-check --force-device-scale-factor=1 --virtual-time-budget=60000 --user-data-dir="$RUNNER_TEMP/honro-stage29-profile" --dump-dom "file://$RUNNER_TEMP/honro-stage29-fixtures/stage29.html" > "$RUNNER_TEMP/honro-stage29-dump.html"
+          node tests/actual-scene-browser-result.mjs "$RUNNER_TEMP/honro-stage29-dump.html" "$RUNNER_TEMP/honro-stage29-evidence" 29
+      - name: Build official runtime
+        run: npm run build
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        with:
+          name: stage29-left-join-chrome
+          path: ${{ runner.temp }}/honro-stage29-evidence
+          if-no-files-found: error

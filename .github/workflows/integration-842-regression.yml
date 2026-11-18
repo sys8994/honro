@@ -1,0 +1,60 @@
+name: 842 narrow integration regression
+on:
+  workflow_dispatch:
+  push:
+    branches: [art/stage7-semantic-rock-study-20261117]
+    paths:
+      - tools/testing/integration-842/**
+      - .github/workflows/integration-842-regression.yml
+permissions:
+  contents: read
+jobs:
+  compare:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 40
+    env:
+      HONRO_ACT4_RELEASE: '1'
+      HONRO_ACT5_RELEASE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: candidate
+      - uses: actions/checkout@v4
+        with:
+          ref: 842aa12fd1144e4f7e9ee616a6ae65d632389f51
+          path: baseline
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build independent baseline at its own repository root
+        working-directory: baseline
+        run: |
+          npm ci && npm ci --prefix game
+          node workshop/build.mjs
+          node game/build.mjs
+      - name: Build merged candidate at its own repository root
+        working-directory: candidate
+        run: |
+          npm ci && npm ci --prefix game
+          node workshop/build.mjs
+          node game/build.mjs
+      - name: Independent raw and actual runtime baseline snapshot
+        working-directory: baseline
+        run: node "$GITHUB_WORKSPACE/candidate/tools/testing/integration-842/snapshot.mjs" "$PWD" "$GITHUB_WORKSPACE/artifacts/base" "$RUNNER_TEMP/base-842"
+      - name: Actual merged raw and runtime snapshot
+        working-directory: candidate
+        run: node tools/testing/integration-842/snapshot.mjs "$PWD" "$GITHUB_WORKSPACE/artifacts/merged" "$RUNNER_TEMP/merged-842"
+      - name: Real codec contracts in isolated browser contexts
+        run: |
+          export CHROME_BIN="$(command -v google-chrome || command -v chromium)"
+          node candidate/tools/testing/integration-842/run.mjs "$RUNNER_TEMP/base-842" artifacts/base
+          node candidate/tools/testing/integration-842/run.mjs "$RUNNER_TEMP/merged-842" artifacts/merged
+      - name: Enforce narrow allowed delta
+        run: node candidate/tools/testing/integration-842/compare.mjs artifacts/base artifacts/merged artifacts/integration-842-result.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: integration-842-regression-${{ github.sha }}
+          path: artifacts
+          if-no-files-found: error
+          retention-days: 14

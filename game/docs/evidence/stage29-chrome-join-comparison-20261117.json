@@ -1,0 +1,73 @@
+{
+  "baselineCommit": "fed80d5a775ec8d7b046da6c93bd1b4e3d79c61d",
+  "candidateCommit": "80e5f5b6042a2df05d9f461e03e74164b5a72a5e",
+  "run": 44069792603,
+  "view": "edge-desktop-2",
+  "changedPixels": 4154,
+  "differenceBBoxExclusive": [
+    665,
+    225,
+    699,
+    352
+  ],
+  "outsideBoxPixelIdentical": true,
+  "scope": "Isolated initial production Chrome Scene, not public UI or normal input/gameplay acceptance.",
+  "baseline": {
+    "ok": true,
+    "scope": "Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.",
+    "stage": 29,
+    "view": "edge-desktop-2",
+    "width": 1331,
+    "height": 763,
+    "dpr": 1,
+    "camera": {
+      "x": 0,
+      "y": 3500,
+      "scale": 0.19573529411764706
+    },
+    "time": 2,
+    "seed": 3910,
+    "runtimeSha256": "e3271906ab99f563f78335c619dc7acd0cef028ca13282093bc2fecaece07091",
+    "physicsSha256": "5a64281691dfef8dcd4cdc926bd4bff2b713b155833e2d60442f13dc3c0c26d4",
+    "renderPure": true,
+    "fontStatus": "loaded",
+    "fontNote": "System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+    "imageCount": 2,
+    "pendingImages": 0,
+    "imageErrors": 0,
+    "storage": [],
+    "errors": [],
+    "violations": [],
+    "pngSha256": "7c2fde58aa87386f670898986cd3821622c25abf0d5ff39076c75ed578f2cdb9"
+  },
+  "candidate": {
+    "ok": true,
+    "scope": "Isolated Chrome production Scene diagnostic. Synthetic initial battle only; no user save, public UI, normal input or gameplay acceptance.",
+    "stage": 29,
+    "view": "edge-desktop-2",
+    "width": 1331,
+    "height": 763,
+    "dpr": 1,
+    "camera": {
+      "x": 0,
+      "y": 3500,
+      "scale": 0.19573529411764706
+    },
+    "time": 2,
+    "seed": 3910,
+    "runtimeSha256": "4accc82c8c35fd5202a86b86f6d4eff89b104366d965dfd30c7ef7b705e7f085",
+    "physicsSha256": "5a64281691dfef8dcd4cdc926bd4bff2b713b155833e2d60442f13dc3c0c26d4",
+    "renderPure": true,
+    "fontStatus": "loaded",
+    "fontNote": "System sans-serif; document.fonts.ready awaited. Cross-backend text pixels are not an exact equality claim.",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+    "imageCount": 2,
+    "pendingImages": 0,
+    "imageErrors": 0,
+    "storage": [],
+    "errors": [],
+    "violations": [],
+    "pngSha256": "ac3662a33977ac0a8f4b459a30e24ae8afef69883bff16b3ba44bc970bcd7545"
+  }
+}
