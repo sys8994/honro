@@ -1,0 +1,49 @@
+name: Deployed 5b to candidate E save and continue compatibility
+on:
+  workflow_dispatch:
+  push:
+    branches: [inspect/stage32-scanline-20261118]
+    paths: ['tools/testing/deployed-5b-save-E/**', '.github/workflows/deployed-5b-save-E.yml']
+permissions:
+  contents: read
+jobs:
+  compatibility:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with: {path: study}
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with: {node-version: '22', package-manager-cache: false}
+      - id: ready
+        run: |
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';import assert from 'node:assert/strict';
+          const c=JSON.parse(fs.readFileSync('study/tools/testing/deployed-5b-save-E/config.json'));
+          assert.equal(c.ready,true,'Final candidate still pending');assert(/^[a-f0-9]{40}$/.test(c.candidateCommit));assert.equal(c.deployedCommit,'5b2edf0b868a6f4ab656574b036586304eb12808');
+          fs.appendFileSync(process.env.GITHUB_OUTPUT,'candidate='+c.candidateCommit+'\n');
+          JS
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with: {path: deployed, ref: 5b2edf0b868a6f4ab656574b036586304eb12808}
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with: {path: candidate, ref: '${{ steps.ready.outputs.candidate }}'}
+      - run: npm ci && npm ci --prefix game
+        working-directory: deployed
+      - run: npm ci && npm ci --prefix game
+        working-directory: candidate
+      - name: Deployed synthetic snapshots then exact candidate restores
+        run: |
+          T=study/tools/testing/deployed-5b-save-E
+          node "$T/fixture.mjs" deployed "$RUNNER_TEMP/deployed-cross" export
+          node "$T/run.mjs" "$RUNNER_TEMP/deployed-cross" artifacts/base
+          node "$T/fixture.mjs" candidate "$RUNNER_TEMP/candidate-cross" restore artifacts/base/export-deployed-stages.json
+          node "$T/run.mjs" "$RUNNER_TEMP/candidate-cross" artifacts/new
+          node "$T/check.mjs" artifacts
+          node "$T/continue-fixture.mjs" deployed "$RUNNER_TEMP/old-app" baseline artifacts/base/export-deployed-stages.json
+          node "$T/run.mjs" "$RUNNER_TEMP/old-app" artifacts/app-baseline
+          node "$T/continue-fixture.mjs" candidate "$RUNNER_TEMP/new-app" candidate artifacts/base/export-deployed-stages.json
+          node "$T/run.mjs" "$RUNNER_TEMP/new-app" artifacts/app-candidate
+          node "$T/continue-check.mjs" artifacts
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with: {name: deployed-5b-save-E, path: artifacts, if-no-files-found: warn}

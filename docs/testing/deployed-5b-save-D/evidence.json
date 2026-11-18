@@ -1,0 +1,109 @@
+{
+  "run": 44290829951,
+  "researchCommit": "f5a7150da84767d89a2259319649c656359c283b",
+  "artifact": 14420639591,
+  "artifactSHA256": "fc2559d844315e603bf0c77f75cb6f0219ad398379032f63d25806eb590b8cb0",
+  "baseline": "5b2edf0b868a6f4ab656574b036586304eb12808",
+  "candidate": "3700686f1556b5fbc8f3c4fe93413b957d3650bb",
+  "codec": {
+    "passed": true,
+    "deployedCommit": "5b2edf0b868a6f4ab656574b036586304eb12808",
+    "candidateCommit": "3700686f1556b5fbc8f3c4fe93413b957d3650bb",
+    "stages": [
+      {
+        "stage": 3,
+        "oldProfileSchema": 5,
+        "currentProfileSchema": 5,
+        "expectedSHA": "57a259a277671d3c267b46115def061b53f2472d23125317f53fae61382d9d81",
+        "restoredSHA": "57a259a277671d3c267b46115def061b53f2472d23125317f53fae61382d9d81",
+        "encodedSHA": "57a259a277671d3c267b46115def061b53f2472d23125317f53fae61382d9d81",
+        "fullBattleExact": true,
+        "recompactExact": true,
+        "secondRestoreExact": true,
+        "normalization": false
+      },
+      {
+        "stage": 7,
+        "oldProfileSchema": 5,
+        "currentProfileSchema": 5,
+        "expectedSHA": "4468be6e141870921f2402f689c996d528b49c08e85d2a8dc6bbe120a845939d",
+        "restoredSHA": "4468be6e141870921f2402f689c996d528b49c08e85d2a8dc6bbe120a845939d",
+        "encodedSHA": "4468be6e141870921f2402f689c996d528b49c08e85d2a8dc6bbe120a845939d",
+        "fullBattleExact": true,
+        "recompactExact": true,
+        "secondRestoreExact": true,
+        "normalization": false
+      },
+      {
+        "stage": 32,
+        "oldProfileSchema": 5,
+        "currentProfileSchema": 5,
+        "expectedSHA": "26937fcc565becc4bd082b4df174480f93bb8df700ceabbdd660dcbeda9ff00e",
+        "restoredSHA": "26937fcc565becc4bd082b4df174480f93bb8df700ceabbdd660dcbeda9ff00e",
+        "encodedSHA": "3345cefca32158028e002417a3f9f76e005f36ddeaa6c4a8671514097be7479b",
+        "fullBattleExact": true,
+        "recompactExact": true,
+        "secondRestoreExact": true,
+        "normalization": false
+      }
+    ],
+    "scope": "Independent synthetic deployed 5b battles 3/7/32; exact old snapshot preservation through official codec only. No current fresh-battle equivalence, profile migration, App continue, visual or actual user-save claim.",
+    "userStorageAccess": 0
+  },
+  "appContinue": {
+    "passed": true,
+    "scope": "Same old5b encoded snapshots through real App continue on5b and D; three explicit official Engine.tick/Mission.tick calls. Exact mounted/after battle plus marker/HP/position/size comparison, not autonomous frame loop or long gameplay.",
+    "rows": [
+      {
+        "id": 3,
+        "mountedBattleSHA": "fc610f7d5fa9223d81c57f8355b8c9718cef874ab997b0de6de1deb52baf58cf",
+        "afterTickBattleSHA": "736268aee14d6913ef954e1fa2afeeaeb7d965ab53c7241afbc16dad9013f36b",
+        "exact": true
+      },
+      {
+        "id": 7,
+        "mountedBattleSHA": "ae30e4e11246c6b54628b6183361ccc5d87fa4232c606bd68118e3fd0cbe8590",
+        "afterTickBattleSHA": "9904662b4de1c547a227b2db97fea1700a0519efee6838533d3ca5c15a32e2b5",
+        "exact": true
+      },
+      {
+        "id": 32,
+        "mountedBattleSHA": "443908c4566584f996379083393d1ab89676e88ff415fe48096a8b55a75fd49c",
+        "afterTickBattleSHA": "24d4fe161b6de02472edff515b5539d9ef394e803f998751621c1afc0001216b",
+        "exact": true
+      }
+    ]
+  },
+  "inputFiles": {
+    "app-baseline/baseline-continue-stage3-chrome.log": "9cec09b306119ab3364018dae07d4edaff7e497a5c8f385229c445fe86fea03b",
+    "app-baseline/baseline-continue-stage3.json": "df9db9529c85b2cbf2c6d185482aa334fdd6feddb89ec14bdc660d358d220e6f",
+    "app-baseline/baseline-continue-stage3.png": "92cccbc31db9839bd7abda98a00be89f198e09552b74cf6590cbcb1fbb67a7ac",
+    "app-baseline/baseline-continue-stage32-chrome.log": "21e56f684820a1b071e8f7daa8e399d5f6642f45aade47e8a360e0ff634df560",
+    "app-baseline/baseline-continue-stage32.json": "db5ac69facc4b1fd9a94d23b7d06642ccd514fff49babe095b3980cc11597c56",
+    "app-baseline/baseline-continue-stage32.png": "601c791578e5b5e9bdd4a52c40aad215c43b80a9654445fedc64864e26f735fb",
+    "app-baseline/baseline-continue-stage7-chrome.log": "6375e08b776ab6dfd3ce286ee88c42d6c85810c41c9fa8279d8ab24e9d6ae345",
+    "app-baseline/baseline-continue-stage7.json": "f4e4abb8127c1dc23fc29f34f09b174d28b950f6fa6997af6e5bd78a6380b482",
+    "app-baseline/baseline-continue-stage7.png": "b955244a229fbe4171738931b8159978475a30204eaaab018d5fa64bece45088",
+    "app-candidate/candidate-continue-stage3-chrome.log": "8cca0e58907e026802714eb4823437b91a46ef5c1eb8451b35acc571bdd008f2",
+    "app-candidate/candidate-continue-stage3.json": "094270456de08c819b33f01dd83aa5f9780a6f6c571d091d452bb3013b233442",
+    "app-candidate/candidate-continue-stage3.png": "87e66c5973db650f9ff1d8d63c0e3b8c80440d9a084bc6400349ab9d7e1fd6f5",
+    "app-candidate/candidate-continue-stage32-chrome.log": "adeae6df37257523ebc80fe7f4d910d87b1b8c4150457a38a59c30788ecf67ab",
+    "app-candidate/candidate-continue-stage32.json": "5c5a91030cb5e03fb23daae77659d1c29e302aa3f362e3939bd1d3b13c4b5e78",
+    "app-candidate/candidate-continue-stage32.png": "601c791578e5b5e9bdd4a52c40aad215c43b80a9654445fedc64864e26f735fb",
+    "app-candidate/candidate-continue-stage7-chrome.log": "dfa2640dad6296cd6ccb2ed6083629e7f951865a48008753e8347eded349a619",
+    "app-candidate/candidate-continue-stage7.json": "d313b833188a631696c7ad0f0dba36f4152e4b2c806cbee6562b18452703ff40",
+    "app-candidate/candidate-continue-stage7.png": "7b3fb433fe3e2f9d0411eb270abb1bc007bd5aee6d15f5cacb8aff430dd3774d",
+    "base/export-deployed-stages-chrome.log": "74aadca125bac6f4b043c22fffa6dcaed7d281a657925ba3f7b88bee9650e7ee",
+    "base/export-deployed-stages.json": "cd015944b6ebabde4854c9f6e8e65fba04b79f2609d40dad984fffb264517b5e",
+    "continue-result.json": "16316fd905580de4652480abfe0629e2dd9560f9b86dfe387e7a8d25bd73b934",
+    "deployed-compatibility.json": "f48a4eb40663fab366ee93bda157a5becc6ac7dc53967d1ac47ce1c3eeb99623",
+    "new/restore-deployed-stages-chrome.log": "e8989055887bcaa39a39ff48a9224395ede81d7b0261054e540f5885c536e9a8",
+    "new/restore-deployed-stages.json": "0bffa26eb80587cc3d5154a2513c70deb3070ec76ec43e1170061a6914c3248c"
+  },
+  "notCovered": [
+    "Actual user storage/profile migration",
+    "Autonomous App frames/long gameplay",
+    "Visual or performance acceptance",
+    "Different candidate E or deployment"
+  ]
+}
