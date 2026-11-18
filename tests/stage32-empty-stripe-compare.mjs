@@ -1,0 +1,13 @@
+import{readFile,writeFile}from'node:fs/promises';import assert from'node:assert/strict';import path from'node:path';
+const dir=process.argv[2],expected={"perf/lower": "139f158adaa9cb2e5c3be78f2bb0ecde2f67bbf2abda5161dfb3663042a918cb", "perf/left": "0866d0b6811777f2c2ca3e71c4f1545da4257204186919cdfe8c601e7c86070c", "matrix/portrait-overview": "7502e978998966f6541ee859ffd996c3a05e8590b0db7b0de1c9c937129bc187", "matrix/landscape-overview": "c8ecd5fdc0c0ab26785ff790b31df1d3cb6755452a149c5e8cb571b738fb061f", "matrix/portrait-bottom": "0fd71da2ce5d7d762bfb3d55a0f3fc808fde3a98eee975f474b021526ef79943", "matrix/landscape-bottom": "7ae5da74c54bc1404619f713fa7721ddcf7e7e10c85f997e264e56241c88cc4f", "matrix/desktop-walk": "5510505acc101498f126521e398ec899b33a430f2a3fa30041564940ea13fe2d"},report={scope:'candidate=registered SS2 baseline; ss2=test-only empty-stripe optimization. Exact same seven reviewed images required. Bench includes diagnostic CDP overhead in both groups. Not mobile gameplay.',views:[],performance:[]};
+for(const [key,hash]of Object.entries(expected)){
+ const [kind,view]=key.split('/'),rows=await Promise.all(['candidate','ss2'].map(v=>readFile(path.join(dir,kind,`stage32-${v}-${view}.json`),'utf8').then(JSON.parse)));
+ for(const r of rows){assert.equal(r.pngSha256,hash,key+' PNG changed');assert.equal(r.cacheStats.supersample.alphaChanged,0);assert.equal(r.cacheStats.supersample.skips,0);for(const k of ['storage','errors','violations'])assert.deepEqual(r[k],[]);}
+ for(const k of ['camera','width','height','physicsSha256','battleSha256','sourceCanonicalSha256','vectorSHA','sourcePathHashes','runtimeSha256'])assert.deepEqual(rows[0][k],rows[1][k],k);
+ for(const k of ['eligible','corrected','opaqueGrassSkipped','protectedPaletteSkipped','roadSkipped','subpixelRoadSkipped','unresolvedHolesSkipped','calls','stripes'])assert.equal(rows[0].cacheStats.supersample[k],rows[1].cacheStats.supersample[k],view+' semantic counter '+k);
+ const st=rows[1].cacheStats.supersample;assert.equal(st.emptyStripes+st.highRasterStripes,st.stripes);
+ report.views.push({key,pngSha256:hash,emptyStripes:st.emptyStripes,allStripes:st.stripes,scanPixels:st.eligibilityScanPixels,highRasterStripes:st.highRasterStripes});
+ if(kind==='perf')report.performance.push({view,baseline:rows[0].performanceReport,optimized:rows[1].performanceReport});
+}
+report.emptyStripeObserved=report.views.some(v=>v.emptyStripes>0);report.decision='PENDING measured same-run benefit; if no empty stripes or no benefit, discard. Never deploy from this experimental CI success.';
+await writeFile(path.join(dir,'empty-stripe-comparison.json'),JSON.stringify(report,null,2));console.log(JSON.stringify(report));
