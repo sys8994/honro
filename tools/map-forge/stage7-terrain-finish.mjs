@@ -20,6 +20,6 @@ export function finishStage7Body(original,data){
  const other=d.backing.filter(n=>n!==lower[0]);
  const clips={...d.clips,...structuredClone(original.clips),'original-rim-domain':rim,[d.closure.clipId]:d.closure.clip};
  const symbols={...d.symbols,source:structuredClone(original.symbols.source)};
- const root={tag:'g',children:[d.closure.root,...other,{tag:'path',fill:'#43333a',d:'M8 991L18 992V1032H8Z'},structuredClone(foreground[0]),d.join,lower[0],...structuredClone(foreground.slice(1)),{tag:'g',clipPath:'original-rim-domain',children:structuredClone(edges.filter(n=>n.clipPath!=='site-edge-0'))}]};
+ const root={tag:'g',children:[d.closure.root,...other,{tag:'path',fill:'#43333a',d:'M8 991L18 992V1032H8Z'},structuredClone(foreground[0]),{tag:'path',fill:'#43333a',d:'M11 992.5L14.5 993L16 1000L16.8 1015L17 1031.9L11 1031.4Z'},d.join,lower[0],...structuredClone(foreground.slice(1)),{tag:'g',clipPath:'original-rim-domain',children:structuredClone(edges.filter(n=>n.clipPath!=='site-edge-0'))}]};
  return {...structuredClone(original),viewBox:d.viewBox,clips,symbols,root};
 }
