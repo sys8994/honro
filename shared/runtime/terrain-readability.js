@@ -34,8 +34,10 @@ function prepare(b){const ts=G.HonroTerrainDomain?.render(b)||b.terrain||[],prio
    if(b.honroStage===7&&t.id==='root-floor'&&t.honroDomain&&!walkable&&bounds&&
     ((near(a.x,bounds.left)&&near(z.x,bounds.left))||(near(a.x,bounds.right)&&near(z.x,bounds.right))||(near(a.y,bounds.bottom)&&near(z.y,bounds.bottom))))continue;
    const left=Math.min(a.x,z.x),right=Math.max(a.x,z.x),low=Math.min(a.y,z.y),high=Math.max(a.y,z.y),peers=solids.filter(o=>o.t!==t&&!o.t.oneWay&&o.t.x<=right+1&&o.t.x+o.t.w>=left-1&&o.t.y<=high+1&&o.t.y+o.t.h>=low-1),cuts=[0,1];
+   const outsidePlayRim=b.honroMapOrigin==='campaign'&&b.honroCanonical===true&&!b.honroCustom&&b.honroStage===7&&t.id==='root-floor'&&t.honroDomain&&walkable&&Number.isFinite(b.width)&&b.width>0;
+   if(outsidePlayRim&&Math.abs(dx)>1e-8)for(const x of[0,b.width]){const u=(x-a.x)/dx;if(u>0&&u<1)cuts.push(u);}
    for(const o of peers)for(let j=0;j<o.ps.length;j++)cutAt(a,z,o.ps[j],o.ps[(j+1)%o.ps.length],cuts);cuts.sort((a,z)=>a-z);
-   for(let k=1;k<cuts.length;k++){const start=cuts[k-1],end=cuts[k];if((end-start)*len<.05)continue;const mid=(start+end)/2;if(peers.some(o=>inside(a.x+dx*mid+nx*.6,a.y+dy*mid+ny*.6,o.ps)))continue;
+   for(let k=1;k<cuts.length;k++){const start=cuts[k-1],end=cuts[k];if((end-start)*len<.05)continue;const mid=(start+end)/2;if(outsidePlayRim&&(a.x+dx*mid<0||a.x+dx*mid>b.width))continue;if(peers.some(o=>inside(a.x+dx*mid+nx*.6,a.y+dy*mid+ny*.6,o.ps)))continue;
     const p={x:a.x+dx*start,y:a.y+dy*start},q={x:a.x+dx*end,y:a.y+dy*end};edge.moveTo(p.x,p.y);edge.lineTo(q.x,q.y);const walkRim=walkable&&(G.HonroStage11LandscapeArt?.walkRim?.(t,b,p,q)??true);if(walkRim){top.moveTo(p.x,p.y);top.lineTo(q.x,q.y);}segments.push({a:p,z:q,walkable});
    }
   }
