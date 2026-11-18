@@ -1,0 +1,5 @@
+import{readFile}from'node:fs/promises';import vm from'node:vm';import assert from'node:assert/strict';
+const source=await readFile(new URL('./fixtures/stage32-supersample.js',import.meta.url),'utf8'),context={};vm.createContext(context);vm.runInContext(source,context);const f=context.HonroStage32FoundationArt.testBoxMean;
+for(const n of[2,4]){const data=new Uint8ClampedArray(4*n*n);for(let k=0;k<data.length;k+=4)data.set([23,107,221,255],k);assert.equal(f(data,n,0,0,n).a,255);assert.equal(f(data,n,0,0,n).r,23);assert.equal(f(data,n,0,0,n).g,107);assert.equal(f(data,n,0,0,n).b,221);}
+const data=Uint8ClampedArray.from([255,0,0,255,0,0,255,0,0,255,0,128,0,0,255,255]),r=f(data,2,0,0,2);assert.equal(r.sumAlpha,638);assert.equal(r.a,159.5);assert.equal(r.r,65025/638);assert.equal(r.g,32640/638);assert.equal(r.b,65025/638);
+const blank=f(new Uint8ClampedArray(16),2,0,0,2);assert.deepEqual(JSON.parse(JSON.stringify(blank)),{r:0,g:0,b:0,a:0,sumAlpha:0});console.log('Exact integer-grid premultiplied box-mean unit cases passed');
