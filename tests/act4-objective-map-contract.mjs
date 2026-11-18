@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import vm from 'node:vm';import {readFile} from 'node:fs/promises';
 import {appHarness,plain} from './app-regression-helpers.mjs';
 process.env.HONRO_ACT4_RELEASE='1';
-const h=await appHarness({productionStory:true}),g=h.g,app=h.load(h.profileThrough(30));app.launch(31);h.finish(app);const entry=plain(app.engine.b);app.stopBattle();g.HonroApp=app;
+const h=await appHarness({productionStory:true}),g=h.g,app=h.load(h.profileThrough(30));g.HONRO_ACT4_PILOT_COMBAT_REFERENCE=JSON.parse(await readFile('shared/data/act4/pilot-combat-reference.json','utf8'));vm.runInContext(await readFile('shared/runtime/act4-pilot-combat.js','utf8'),g);app.launch(31);h.finish(app);const entry=plain(app.engine.b);app.stopBattle();g.HonroApp=app;
 g.HONRO_ACT4_PREVIEW_SEEDS=JSON.parse(await readFile('shared/data/act4/reviewed.json','utf8'));
 for(const m of ['interactions','act4-art','act4-maps','act4-coast-maps','act4-coast-art','act4-events','act4-coast-events'])vm.runInContext(await readFile('shared/runtime/'+m+'.js','utf8'),g);
 const P=g.HonroAct4TerrainPreview,b=plain(entry),e=new h.C.Engine(b,()=>{});e.checkEnd=()=>false;app.engine=e;app.dialogue=null;b.phase='aim';b.side=0;const u=b.units.find(u=>u.side===0),cfg=b.honroAct4Design.boarding;b.active=u.id;u.acted=false;

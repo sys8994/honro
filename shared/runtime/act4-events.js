@@ -114,7 +114,7 @@ function interact(app=G.HonroApp,probe=false){const b=app.engine?.b;if(!(b?.honr
  // already-authored leave approach for the living party's final assembly;
  // the fallen door, observed dialogue and quiet-state gates still apply.
  const doorRead=n===36&&(q.events.door_falls?.skipped||['A4.S36.DOOR.01','A4.S36.DOOR.02'].every(id=>q.receipts.includes(id)));
- if(n===36&&quiet(b)&&q.door.phase==='fallen'&&q.events.leave?.terminal&&doorRead&&party(b).every(u=>u.x>Math.min(K(b,'completeX',6500),K(b,'leaveX',K(b,'completeX',6500)))&&u.y<K(b,'completeYMax',1e9))){if(probe)return probe==='label'?'폐촌을 떠나기':true;q.complete=true;return true;}
+ if(n===36&&quiet(b)&&!narrativePending(b)&&q.door.phase==='fallen'&&q.events.leave?.terminal&&doorRead&&party(b).length&&party(b).every(u=>u.x>Math.min(K(b,'completeX',6500),K(b,'leaveX',K(b,'completeX',6500)))&&u.y<K(b,'completeYMax',1e9)&&app.engine.grounded(u))){if(probe)return probe==='label'?'폐촌을 떠나기':true;q.complete=true;return true;}
  if(n===36&&u.cls==='knight'&&quiet(b)&&atDoor(b,u)&&q.door.phase==='fallen'&&q.events.door_falls?.terminal&&!doorRead&&!q.reader&&!q.bark){if(probe)return probe==='label'?'무너진 문 조사':true;const d=event(q,'door_falls');d.started=d.terminal=false;return play(app,'door_falls');}
  return false;
 }

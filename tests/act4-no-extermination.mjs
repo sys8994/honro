@@ -54,7 +54,7 @@ function fixture(n){
  const {b,e,app,q,hero,mate,foe}=fixture(36);hero.cls='knight';hero.x=2370;
  assert.equal(P.interact(app),true,'door push with surviving enemy');assert.equal(q.door.phase,'falling');assert(!q.complete);
  q.door.phase='fallen';Object.assign(hero,{x:6600,y:100});Object.assign(mate,{x:6700,y:100});assert.equal(P.interact(app),false,'missing departure event blocks win');
- q.events.leave={terminal:true};q.events.door_falls={terminal:true,skipped:true};assert.equal(P.interact(app),true);assert(q.complete&&foe.hp>0);
+ q.events.leave={terminal:true};q.events.door_falls={terminal:true,skipped:true};mate.jumping=true;assert.equal(P.interact(app),false);mate.jumping=false;assert.equal(P.interact(app),true);assert(q.complete&&foe.hp>0);
 }
 {
  const {b,e,app,q,hero,mate,foe}=fixture(40);b.honroAct4Design.escort={boat:{x:3000,destination:4800}};
@@ -62,7 +62,7 @@ function fixture(n){
  Object.assign(hero,{x:2700,y:1950});q.observed={'return-boat':0,'return-high':0};q.events.boarding={started:true,terminal:false};
  P.coastObserve(app,.1);assert.equal(q.returnEscort.phase,'boarding','escort starts with enemy alive');assert(!q.complete);
  Object.assign(hero,{x:5500,y:100});Object.assign(mate,{x:5600,y:100});q.returnEscort.phase='safe';
- assert.equal(P.interact(app),false,'roster/next story gate remains');q.events.next={terminal:true};
+ assert.equal(P.interact(app),false,'roster/next story gate remains');q.events.next={terminal:true};b.units.at(-1).hp=0;assert.equal(P.interact(app),false,'dead resident cannot be counted safe');b.units.at(-1).hp=100;
  assert.equal(P.interact(app),true);assert(q.complete&&foe.hp>0);
 }
 console.log('PASS Act4 31 signal/2-round/restore/boarding, 32 local safety/reunion proof, 35 breakout, 36 door, 40 escort with enemies alive. Doubled physics/UI, not full-play proof.');
