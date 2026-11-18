@@ -59,7 +59,7 @@ jobs:
           trap 'cp "$RUNNER_TEMP/original-stage32-helper.js" shared/runtime/stage32-foundation-art.js' EXIT
           cp tests/fixtures/stage32-ss2-release-candidate.js shared/runtime/stage32-foundation-art.js
           HONRO_ACT4_RELEASE=1 node workshop/build.mjs
-          HONRO_ACT4_RELEASE=1 npm --prefix game run build
+          HONRO_ACT4_RELEASE=1 node game/build.mjs
       - name: Production helper restored, no persistent registration
         if: always()
         run: git diff --exit-code -- shared/runtime/stage32-foundation-art.js
