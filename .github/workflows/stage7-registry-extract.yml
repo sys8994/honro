@@ -1,0 +1,30 @@
+name: Stage7 registry boundary extraction
+on:
+  workflow_dispatch:
+  push:
+    branches: [art/stage7-semantic-rock-study-20261117]
+    paths:
+      - game/tools/stage7-registered-study/extract-registry.mjs
+      - .github/workflows/stage7-registry-extract.yml
+permissions:
+  contents: read
+jobs:
+  extract:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node game/tools/stage7-registered-study/extract-registry.mjs artifacts/stage7-registry-extract
+      - name: Confirm read-only repository
+        if: always()
+        run: git diff --exit-code -- shared tools
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage7-registry-extract-${{ github.sha }}
+          path: artifacts/stage7-registry-extract
+          if-no-files-found: error
+          retention-days: 14
