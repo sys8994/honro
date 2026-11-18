@@ -1,0 +1,13 @@
+# Continuous screen-weight correction plane: initial endpoints only
+
+This is a test-only architecture prototype, not production registration. Exact97fbd09a current57KB helper is the starting point; original source25paths, stage geometry, collision, save/profile remain unchanged. Lowcore is the separately derived minimum-scale safe subset, not a new wider art scope.
+
+The helper draws lowcore into the original BODY tile and retains a separate transparent full57KB correction image using the original material bitmap. Tile drawImage instrumentation submits this plane immediately after the original tile using identical numeric arguments/current clips, weighted by actual Scene.scale smoothstep(.25,.45), never by tile CTM. Camera weight is not inserted into terrain cache keys. Live contexts use the same weight directly. Existing tile release also releases its correction canvas. Logical bytes/peak/canvas count and compose/build call times are diagnostic; they exclude JS/GPU allocations and are NOT clean performance measurements.
+
+A516² plane costs1,065,024 logical bytes. Extra planes persist only with their owning tile, with original renderer eviction rules, no invented cap. Whole-view memory is measured rather than inferred from helper-only counters. No new readback or supersampling is added to the rendering helper. Field/material source is not regenerated for the correction: it reuses the BODY pass bitmap. Path2D preparation includes the additional core.
+
+Important risk: compositing over a finished tile can cover static objects originally painted after BODY. Lowcore+full AA may also differ from standalonefull atweight1. Therefore this FIRST trial contains only weight0(.25) andweight1(.6), paired against original production plus independently standalone low/full references. Exact wholeScene AND transparentBODY endpoint PNG comparisons are mandatory. Original strict alpha/BG/owner/walk/footprint checks remain. If an endpoint fails, inspect before expanding any fade/performance matrix.
+
+Local source-only constant-gray model examined12scales. Alpha/BG0 and finite9owner checks passed except the previously classified two live near-coincident raw hits. Local weight1 matches standalone57KB at.45,.6,1.05001 exactly. This is not actualtile/Scene/occlusion evidence and not a proof that partialgrass contribution is preserved in the runtime.
+
+After endpoints pass, remaining tests are fade endpoints±epsilon, same-tile camera.35→.36 without material/tile rebuild, old.5946tileboundary and1.05cached/live sides, genuine foreground overlap canonical views, and separate clean cold/warm/pan/memory checks. Do not report those as already run. Upper/vertical lines also remain unfinished.
