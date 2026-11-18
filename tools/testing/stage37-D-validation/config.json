@@ -1,0 +1,55 @@
+{
+  "ready": true,
+  "baseline": "5b2edf0b868a6f4ab656574b036586304eb12808",
+  "candidate": "3700686f1556b5fbc8f3c4fe93413b957d3650bb",
+  "assetOracles": {
+    "3": {
+      "id": "act1-site:3:body",
+      "assetSHA": "06c81d5f68ec14e1ee4121c40917fc5c761cad632c55be488adee75b6c3def66",
+      "vectorSHA": "dcabd5e8ba2a48af477bbe17a159805f7055622f58807524c620f6902e998eac"
+    },
+    "7": {
+      "id": "act1-site:7:body",
+      "assetSHA": "bf6990a4dcbe022e68554bb1c671871d8daffbd6aa49e1a74e562486987cfb5d",
+      "vectorSHA": "517f157f867dd23c63ec1cc9c3ba9df78d8173bb788b41bb5aa7f7a4c740ae63"
+    }
+  },
+  "production": [
+    {
+      "path": "shared/build.mjs",
+      "sha256": "1723baa38ab7b691f9b5a1bf9d9e42c2bba78c15d1fb6cb833ba43addda8d47b"
+    },
+    {
+      "path": "shared/data/stage7-terrain-path-registration.json",
+      "sha256": "3270a3519b3e05b4088185e9018f94f44d38cd71f14bd99f9bfe0f8dc8b32fcf"
+    },
+    {
+      "path": "shared/runtime/renderer.js",
+      "sha256": "9d3c8b4ba03e63f009a61310a47d01a23d76b7abada91b8aa786f5e01027994c"
+    },
+    {
+      "path": "shared/runtime/terrain-readability.js",
+      "sha256": "63e38cbfd2d625886df7e88c447999415c716f3ca35a7094503b23959ff85000"
+    },
+    {
+      "path": "shared/terrain-path-optimization.mjs",
+      "sha256": "0bceb927cc7f0bdc8ab27d6c68427e96da0e3a5de14e484b7976c7fbba1e57eb"
+    },
+    {
+      "path": "tools/map-forge/act1-naru-doldang.mjs",
+      "sha256": "21d4c970795cd8a2eb171d440e5f9e890d2eb67a69bdd1f0620394c67f2d9366"
+    },
+    {
+      "path": "tools/map-forge/naru-body-finish.mjs",
+      "sha256": "119eaf37447051d55df3cbc93ea0e50cc1a24076f9b3a5b2d9722f7ee8e420d5"
+    },
+    {
+      "path": "tools/map-forge/stage7-terrain-finish.json",
+      "sha256": "5236c1338b12bf5e2f5d6a0198214e9deccc90f1c0b99597e47415ebae1129e6"
+    },
+    {
+      "path": "tools/map-forge/stage7-terrain-finish.mjs",
+      "sha256": "10c39872fa9ab204fd4fdb9b2752f180155aeca01b2bc60e2b38bbda1cc94e90"
+    }
+  ]
+}

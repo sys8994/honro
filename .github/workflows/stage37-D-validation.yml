@@ -1,0 +1,51 @@
+name: Stage3 and Stage7 isolated master validation
+on:
+  workflow_dispatch:
+  push:
+    branches: [inspect/stage32-scanline-20261118, inspect/stage37-master-isolated-20261118]
+    paths: ['tools/testing/stage37-D-validation/**', '.github/workflows/stage37-D-validation.yml']
+permissions: {contents: read}
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with: {path: study}
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with: {path: baseline, ref: 5b2edf0b868a6f4ab656574b036586304eb12808}
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with: {path: candidate, ref: 3700686f1556b5fbc8f3c4fe93413b957d3650bb, fetch-depth: 2}
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with: {node-version: '22', package-manager-cache: false}
+      - run: |
+          for d in baseline candidate; do (cd "$d" && npm ci && npm ci --prefix game); done
+          mkdir -p artifacts
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';import assert from 'node:assert/strict';
+          for(const key of Object.keys(process.env))assert(!key.startsWith('HONRO_'),'Unexpected product override '+key);
+          const rows=[];for(const checkout of ['baseline','candidate']){const policy=JSON.parse(fs.readFileSync(checkout+'/game/config/story-release.json'));assert.equal(policy.act4,true);assert.equal(policy.act5,true);rows.push({checkout,policy,appTrueDefaultEnabled:true,forcedEnvironment:false});}
+          fs.writeFileSync('artifacts/default-release-policy.json',JSON.stringify(rows,null,2));
+          JS
+          node study/tools/testing/stage37-D-validation/source-contract.mjs candidate
+          node study/tools/testing/stage37-D-validation/mock.mjs
+      - name: Both official Game and Workshop builds
+        run: |
+          for d in baseline candidate; do (cd "$d" && node workshop/build.mjs && node game/build.mjs); done
+      - name: Paired actual Scenes and all50 codec
+        run: |
+          mkdir -p artifacts/evidence
+          for d in baseline candidate; do
+            node study/tools/testing/stage37-D-validation/fixture.mjs "$d" "$RUNNER_TEMP/$d-scene" "$d"
+            node study/tools/testing/stage37-D-validation/run.mjs "$RUNNER_TEMP/$d-scene" artifacts/evidence
+          done
+      - name: Official App stage lifecycle, no manual clearing
+        run: |
+          for d in baseline candidate; do
+            node study/tools/testing/stage37-D-validation/lifecycle.mjs "$d" "$RUNNER_TEMP/$d-app" "$d" lifecycle
+            node study/tools/testing/stage37-D-validation/run.mjs "$RUNNER_TEMP/$d-app" artifacts/evidence
+          done
+          node study/tools/testing/stage37-D-validation/check.mjs artifacts/evidence
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with: {name: stage37-D-validation, path: artifacts, if-no-files-found: error}
