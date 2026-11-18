@@ -1,0 +1,147 @@
+{
+  "ok": true,
+  "rows": [
+    {
+      "scale": 1.65,
+      "dpr": 1,
+      "width": 1331,
+      "height": 763,
+      "bandHeight": 275,
+      "m": {
+        "a": 3.63,
+        "d": 3.63,
+        "e": 137.5,
+        "f": -2341
+      },
+      "y0": 488,
+      "positiveOriginal": 360701,
+      "positiveDevice": 360701,
+      "alphaChanged": 0,
+      "maxAlphaDelta": 0,
+      "centerSamples": [
+        {
+          "y": 0,
+          "original": 0,
+          "device": 0
+        },
+        {
+          "y": 137,
+          "original": 61,
+          "device": 61
+        },
+        {
+          "y": 274,
+          "original": 171,
+          "device": 171
+        }
+      ]
+    },
+    {
+      "scale": 1.05001,
+      "dpr": 1,
+      "width": 1331,
+      "height": 763,
+      "bandHeight": 292,
+      "m": {
+        "a": 2.3100220000000005,
+        "d": 2.3100220000000005,
+        "e": 329.49679999999995,
+        "f": -1351.0165000000002
+      },
+      "y0": 448,
+      "positiveOriginal": 383328,
+      "positiveDevice": 383328,
+      "alphaChanged": 0,
+      "maxAlphaDelta": 0,
+      "centerSamples": [
+        {
+          "y": 0,
+          "original": 0,
+          "device": 0
+        },
+        {
+          "y": 146,
+          "original": 134,
+          "device": 134
+        },
+        {
+          "y": 291,
+          "original": 255,
+          "device": 255
+        }
+      ]
+    },
+    {
+      "scale": 1.65,
+      "dpr": 2,
+      "width": 780,
+      "height": 1392,
+      "bandHeight": 481,
+      "m": {
+        "a": 7.26,
+        "d": 7.26,
+        "e": -666,
+        "f": -4749
+      },
+      "y0": 911,
+      "positiveOriginal": 370500,
+      "positiveDevice": 370500,
+      "alphaChanged": 0,
+      "maxAlphaDelta": 0,
+      "centerSamples": [
+        {
+          "y": 0,
+          "original": 0,
+          "device": 0
+        },
+        {
+          "y": 240,
+          "original": 48,
+          "device": 48
+        },
+        {
+          "y": 480,
+          "original": 145,
+          "device": 145
+        }
+      ]
+    },
+    {
+      "scale": 1.65,
+      "dpr": 3,
+      "width": 1170,
+      "height": 2088,
+      "bandHeight": 720,
+      "m": {
+        "a": 10.889999999999999,
+        "d": 10.889999999999999,
+        "e": -998.9999999999998,
+        "f": -7123.499999999999
+      },
+      "y0": 1368,
+      "positiveOriginal": 834210,
+      "positiveDevice": 834210,
+      "alphaChanged": 0,
+      "maxAlphaDelta": 0,
+      "centerSamples": [
+        {
+          "y": 0,
+          "original": 0,
+          "device": 0
+        },
+        {
+          "y": 360,
+          "original": 48,
+          "device": 48
+        },
+        {
+          "y": 719,
+          "original": 145,
+          "device": 145
+        }
+      ]
+    }
+  ],
+  "scope": "Original primitive vs algebraically equivalent finite device fill; no full Scene, no product change",
+  "browser": "Chrome/157.0.8103.50"
+}
