@@ -1,0 +1,165 @@
+{
+  "withinVariantCleanExact": true,
+  "crossVariantResetPNG": {
+    "changedPixels": 53784,
+    "alphaChanged": 0,
+    "maxChannelDelta": 3
+  },
+  "rafFinalCrossVariantExact": false,
+  "cost": {
+    "control": {
+      "first": [
+        71.19999999995343,
+        60.399999999965075
+      ],
+      "cold": {
+        "n": 10,
+        "median": 40.84999999997672,
+        "p95": 41.29999999998836,
+        "max": 41.29999999998836
+      },
+      "warm": {
+        "n": 58,
+        "median": 0.5,
+        "p95": 0.6000000000349246,
+        "max": 0.7000000000116415
+      },
+      "pan": {
+        "n": 120,
+        "median": 34.05000000001746,
+        "p95": 37.59999999997672,
+        "max": 51.899999999965075
+      },
+      "blocks": [
+        {
+          "cold": {
+            "n": 5,
+            "median": 40.79999999998836,
+            "p95": 41.29999999998836,
+            "max": 41.29999999998836
+          },
+          "pan": {
+            "n": 60,
+            "median": 35.59999999997672,
+            "p95": 38.199999999953434,
+            "max": 51.899999999965075
+          }
+        },
+        {
+          "cold": {
+            "n": 5,
+            "median": 40.899999999965075,
+            "p95": 41.29999999998836,
+            "max": 41.29999999998836
+          },
+          "pan": {
+            "n": 60,
+            "median": 32.0,
+            "p95": 37.199999999953434,
+            "max": 37.59999999997672
+          }
+        }
+      ]
+    },
+    "candidate": {
+      "first": [
+        42.09999999997672,
+        42.70000000001164
+      ],
+      "cold": {
+        "n": 10,
+        "median": 20.650000000023283,
+        "p95": 27.599999999976717,
+        "max": 27.599999999976717
+      },
+      "warm": {
+        "n": 58,
+        "median": 0.5,
+        "p95": 0.6000000000349246,
+        "max": 0.7000000000116415
+      },
+      "pan": {
+        "n": 120,
+        "median": 15.549999999988358,
+        "p95": 17.70000000001164,
+        "max": 19.399999999965075
+      },
+      "blocks": [
+        {
+          "cold": {
+            "n": 5,
+            "median": 20.400000000023283,
+            "p95": 20.70000000001164,
+            "max": 20.70000000001164
+          },
+          "pan": {
+            "n": 60,
+            "median": 15.5,
+            "p95": 17.5,
+            "max": 18.400000000023283
+          }
+        },
+        {
+          "cold": {
+            "n": 5,
+            "median": 20.899999999965075,
+            "p95": 27.599999999976717,
+            "max": 27.599999999976717
+          },
+          "pan": {
+            "n": 60,
+            "median": 15.599999999976717,
+            "p95": 18,
+            "max": 19.399999999965075
+          }
+        }
+      ]
+    }
+  },
+  "rAF": {
+    "control": {
+      "gapsMs": {
+        "n": 119,
+        "median": 49.900000000000546,
+        "p95": 50.100000000000364,
+        "max": 316.6999999999998
+      },
+      "submitMs": {
+        "n": 120,
+        "median": 31.300000000017462,
+        "p95": 36.399999999965075,
+        "max": 46.20000000001164
+      },
+      "gapsOver50ms": 15,
+      "loopWallMs": 5176.200000000012,
+      "finalReadbackMs": 12
+    },
+    "candidate": {
+      "gapsMs": {
+        "n": 119,
+        "median": 33.19999999999982,
+        "p95": 33.400000000000546,
+        "max": 283.3000000000002
+      },
+      "submitMs": {
+        "n": 120,
+        "median": 13.900000000023283,
+        "p95": 15.900000000023283,
+        "max": 21.400000000023283
+      },
+      "gapsOver50ms": 1,
+      "loopWallMs": 3049.5999999999767,
+      "finalReadbackMs": 12.200000000011642
+    }
+  },
+  "qualityEvidence": {
+    "run": 44275422616,
+    "sha256": "768df0037815fe79bdde75e8d69b36990bc0400f2b66515158c7f445274dddd3",
+    "file": "quality-evidence.json",
+    "scope": "Actual4 passed; broad lower RGB changes recorded; exterior positive followup still pending",
+    "qualityAccepted": false
+  },
+  "qualityAccepted": false,
+  "performanceAccepted": false,
+  "scope": "Copied targetROI preview vs7ca maxpose only. Intentional lower RGB changes, no crossvariant golden equality assumption. Public842 final comparison and exterior followup still required."
+}
