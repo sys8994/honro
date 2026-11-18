@@ -59,6 +59,8 @@ const hero=(u?:Unit):u is Unit=>live(u)&&u.side===0&&!u.summoned&&!u.enthrall;
 const fresh=(b:Battle)=>b.honroMonsterReworkRevision===1;
 const state=(u:Unit):MonsterState=>u.honroMonsterState??={};
 const center=(u:Unit)=>({x:u.x,y:u.y-u.h*.44});
+// Great darkness (stage 46): its slam reaches only the shade zone around its feet.
+export const darknessZone=(u:Unit)=>380+100*(((u as any).honroMonsterGrowth||1)-1);
 const distance=(p:Vec,q:Vec)=>Math.hypot(p.x-q.x,p.y-q.y);
 const validKind=(k?:string):k is MonsterPatternKind=>!!k&&Object.hasOwn(rules,k);
 const clear=(e:Engine,a:Vec,b:Vec)=>!e.collisionTerrain(a,b,0).some(t=>!t.broken&&!!segmentTerrain(a,b,t,0));
@@ -118,6 +120,7 @@ function push(e:Engine,u:Unit,dir:number,budget:number){
 }
 function waveRange(e:Engine,u:Unit,kind:MonsterPatternKind){
  const [ ,range,radius ]=rules[kind],growth=kind==='eoduksini'?u.honroMonsterGrowth||1:1;
+ const vast=(u as any).honroGreatDarkness;if(vast)return {range:darknessZone(u),radius:radius*(1+(growth-1)*.35)};
  return {range,radius:radius*(1+(growth-1)*.1)*(u.honroMonsterVariant==='giant'?1.12:1)};
 }
 function attackDamage(e:Engine,u:Unit,k:MonsterPatternKind){
@@ -307,7 +310,7 @@ export function prepareMonsterPattern(e:Engine,u:Unit,t:Unit){
  if(s.cooldown){s.cooldown--;return false;}
  if(k==='yagwanggwi'&&s.lifted||k==='gaekgwi'&&s.attachedTo||k==='mulgwishin'&&!isWaterfront(e,u))return false;
  if(u.stunnedRound===e.b.round||(u.stun||0)>0)return false;
- const [baseLabel,,,baseShape]=rules[k],origin=center(u),impact=center(t),{range,radius}=waveRange(e,u,k);
+ const [baseLabel,,,baseShape]=rules[k],origin=(u as any).honroGreatDarkness?{x:u.x,y:u.y-60}:center(u),impact=center(t),{range,radius}=waveRange(e,u,k);
  const baseTitle=u.honroMonsterPattern?baseLabel:u.honroMonsterVariant==='giant'?'큰 내려찍기':u.honroMonsterVariant==='burning'?'불씨 낙하':'약화하는 혼불';
  const second=(s.nextCast||0)%2===1;
  const alternate=k==='naruWarden'||k==='bridgeWarden';
@@ -454,7 +457,7 @@ function roundConditions(e:Engine){
    if(next)signal(e,e.unit(a.source)!,'spread',next.id);
    e.hurt(target,Math.max(8,target.maxHp*.045),a.source,false,undefined,center(u),'normal',undefined,{attackSide:1});
   }
-  if(u.honroMonsterPattern==='eoduksini'&&enemy(u)&&b.teamEnds[0]>0&&s?.growthRound!==b.teamEnds[0]-1&&(u.honroMonsterGrowth||1)>1){
+  if(u.honroMonsterPattern==='eoduksini'&&enemy(u)&&b.teamEnds[0]>0&&s?.growthRound!==b.teamEnds[0]-1&&!((u as any).honroGreatDarkness&&s?.growthRound===b.teamEnds[0]-2)&&(u.honroMonsterGrowth||1)>1){
    u.honroMonsterGrowth!--;say(e,u,'그림자가 가라앉는다','shrink');
   }
   if(s?.lifted&&b.teamEnds[1]>=s.lifted.expiry)refund(e,u);

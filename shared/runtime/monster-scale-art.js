@@ -1,0 +1,29 @@
+(function(G){'use strict';
+// Display only. (1) Flat contact shadow under enlarged monsters (no gradient:
+// vector art rule). (2) Stage 5: the great darkness seen once in the plunge
+// pool, a non-hostile omen of the stage-46 encounter (temporary eoduksini3 art).
+const S=G.HonroScene?.prototype;if(!S?.unitBody)return;
+const OMEN={5:{x:4760,y:3255,m:10,sink:.45,alpha:.34}};G.HonroMonsterOmen=OMEN;
+function omen(scene,c){
+ const b=scene.battle||scene.actorEngine?.b,o=b?.honroMonsterScaleRevision===1&&OMEN[b.honroStage];if(!o)return;
+ const V=G.HonroMonsterVisual,a=V?.assets?.eoduksini3;if(!a)return;
+ const h=o.m*60.6,scale=h/a.baseHeight;
+ c.save();c.beginPath();c.rect(o.x-h,o.y-h*1.2,h*2,h*1.2);c.clip(); // rises out of the water line
+ c.globalAlpha*=(o.alpha??.2)+.04*Math.sin((scene.time||0)*.6);c.translate(o.x,o.y+h*(o.sink??.22));c.scale(-scale,scale);
+ const m=c.getTransform(),ratio=c.canvas.clientWidth?c.canvas.width/c.canvas.clientWidth:1;
+ V.draw(c,'eoduksini3',{time:scene.time||0,state:{},pixels:a.baseHeight*Math.hypot(m.c,m.d)/ratio});c.restore();
+}
+let frame=0;const raf=G.requestAnimationFrame?.bind(G);if(raf){const loop=()=>{frame++;raf(loop);};raf(loop);}
+const body=S.unitBody;
+S.unitBody=function(c,u,...args){
+ if(this._honroOmenFrame!==frame){this._honroOmenFrame=frame;try{omen(this,c);}catch{}}
+ if(u?.honroGreatDarkness&&!u.dead){const V=G.HonroMonsterVisual,a=V?.assets?.eoduksini3;if(a){
+  c.save();c.translate(u.x,u.y);const k=u.h/a.baseHeight;c.scale(k*(u.facing||1),k);const m=c.getTransform(),ratio=c.canvas.clientWidth?c.canvas.width/c.canvas.clientWidth:1;
+  V.draw(c,'eoduksini3',{time:this.time||0,state:V.state?.(u)||{},pixels:a.baseHeight*Math.hypot(m.c,m.d)/ratio});c.restore();return;}}
+ const sc=u?.honroMonsterScale;
+ if(sc&&!sc.kept&&u.side===1&&u.h>=180&&!u.dead&&!u.airborne&&!u.fixed){
+  const w=Math.max(u.r*1.5,u.h*.2);c.save();c.fillStyle='rgba(12,14,16,.28)';c.beginPath();c.ellipse(u.x,u.y+2,w,Math.max(6,w*.14),0,0,Math.PI*2);c.fill();c.restore();
+ }
+ return body.call(this,c,u,...args);
+};
+})(globalThis);
