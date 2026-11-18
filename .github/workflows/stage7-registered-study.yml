@@ -8,6 +8,8 @@ on:
       - tools/map-forge/act1-naru-doldang.mjs
       - shared/runtime/terrain-readability.js
       - shared/runtime/renderer.js
+      - shared/terrain-path-optimization.mjs
+      - shared/data/stage7-terrain-path-registration.json
       - game/tools/stage7-registered-study/**
       - .github/workflows/stage7-registered-study.yml
 permissions:

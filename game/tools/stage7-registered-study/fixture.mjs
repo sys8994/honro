@@ -16,12 +16,25 @@ const actual=project.library.find(a=>a.id==='act1-site:7:body');assert(actual);
 const sourceData=JSON.parse(await readFile(new URL('../../../shared/assets/environment/act1-sites/stage07.json',import.meta.url),'utf8'));
 const rawOriginal=buildOriginalAct1SiteBody(sourceData,7),originalSnapshot=stableBuild(rawOriginal);
 const rawFinished=finishStage7Body(rawOriginal,await loadStage7TerrainFinish());assert.equal(stableBuild(rawOriginal),originalSnapshot,'Mutation of readonly original');
-const expected={...structuredClone(actual),vector:rawFinished},baseline={...structuredClone(actual),vector:rawOriginal};
-const opt=await terrainPathOptimization();opt.apply([expected,baseline]);
+const expected={...structuredClone(actual),vector:rawFinished},baseline={...structuredClone(actual),vector:structuredClone(rawOriginal)};
+const frozen=JSON.parse(await readFile(new URL('./frozen-original-recipe.json',import.meta.url),'utf8'));
+const boundary=JSON.parse(await readFile(new URL('./frozen-registry-boundary.json',import.meta.url),'utf8'));
+const exactSha=x=>createHash('sha256').update(JSON.stringify(x)).digest('hex');
+assert.equal(exactSha(rawOriginal),frozen.original,'Independent raw baseline differs from frozen recipe');
+assert.equal(frozen.original,boundary.rawOriginalSha256);
+assert.equal(exactSha(rawOriginal.symbols.source),boundary.sourceRawSha256);
+assert.equal(frozen.paths.length,5);
+for(const [p,key,value] of frozen.paths){assert.deepEqual(p.slice(0,2),['symbols','source']);const node=p.reduce((v,k)=>v?.[k],baseline.vector);assert.equal(node?.tag,'path');assert(['d','dParts'].includes(key)&&Object.hasOwn(node,key));node[key]=value;}
+assert.equal(exactSha(baseline.vector),boundary.oldOptimizedVectorSha256,'Frozen baseline optimized hash');
+assert.equal(exactSha(baseline.vector.symbols.source),boundary.sourceOptimizedSha256);
+const registry=JSON.parse(await readFile(new URL('../../../shared/data/terrain-path-optimization.json',import.meta.url),'utf8'));
+assert.deepEqual(registry.find(e=>e.id===frozen.id),frozen,'Legacy five-path recipe changed');
+assert.equal(exactSha(registry.filter(e=>e.id!==frozen.id)),boundary.otherEntriesSha256,'Other asset recipes changed');
+const opt=await terrainPathOptimization();opt.apply([expected]);
 assert.equal(stableBuild(actual.vector),stableBuild(expected.vector),'Registered raw->optimizer differs from runtime final');
 assert.equal(stableBuild(actual.vector.symbols.source),stableBuild(baseline.vector.symbols.source),'Registered source changed');
 const baselineVector=baseline.vector,registeredVectorSha=shaBuild(actual.vector);
-await writeFile(path.join(out,'registered-contract.json'),JSON.stringify({rawOriginalSha:shaBuild(rawOriginal),rawFinishedSha:shaBuild(rawFinished),registeredVectorSha,actualRuntimeReproduced:true,readonlyOriginalUnchanged:true,scope:'Independent readonly original author builder, normal optimizer, actual runtime final. Candidate has no fixture injection.'},null,2));
+await writeFile(path.join(out,'registered-contract.json'),JSON.stringify({rawOriginalSha:shaBuild(rawOriginal),rawFinishedSha:shaBuild(rawFinished),registeredVectorSha,actualRuntimeReproduced:true,readonlyOriginalUnchanged:true,frozenBaselineValidated:true,otherRecipesUnchanged:true,scope:'Independent readonly original author builder, normal optimizer, actual runtime final. Candidate has no fixture injection.'},null,2));
 function bootstrap(id){
  if(id===32)globalThis.HONRO_APP_READY=new Promise(()=>{}); // Never attach a real App or resolve this promise.
  globalThis.PROBE={storage:[],errors:[],images:[],violations:[]};

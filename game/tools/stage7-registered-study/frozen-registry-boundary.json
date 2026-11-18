@@ -1,0 +1,102 @@
+{
+  "scope": "Read-only extraction; no registry, author, or runtime changes",
+  "entryKeys": [
+    "id",
+    "original",
+    "paths"
+  ],
+  "registrySha256": "e7d13f4b40a41123c58c866eed47785524a03e39fa79a73d9f8cc52964658c12",
+  "otherEntriesSha256": "5252fce671edb205e19dd7944eff4317f85893db0c6fb5da07ea2be734452140",
+  "rawOriginalSha256": "eae291824281e0ae52ac9eb0842a65bb6b025c8ffff608efc21ff25342f63299",
+  "oldOptimizedVectorSha256": "9d1e11d0b4ff599203237990baf2e7c71a6b2454a11066ff0a63dd7e96419919",
+  "sourceRawSha256": "e8e1322c8c19d396507ca3f21e784564157486c8dbcfcfda5b8e37a77ac33e19",
+  "sourceOptimizedSha256": "aabb980e22f30b41362fb8aa8c1c13759ca53dc500e1b62a08960de364b78cbf",
+  "finishedRawSha256": "621dcb6fd970898297bf328abb42476f5b540b6bcda789fac3868629f14afc69",
+  "finishedOptimizedSha256": "fd5772719874e3c8599dec290540863a5c8009c94c6818cf50545986cb885d95",
+  "sourcePathsExact": true,
+  "sourceRawExact": true,
+  "sourceOptimizedExact": true,
+  "allNonSourceNodesUnchanged": true,
+  "paths": [
+    {
+      "path": [
+        "symbols",
+        "source",
+        "children",
+        0,
+        "children",
+        0,
+        "children",
+        0,
+        "children",
+        2
+      ],
+      "key": "d",
+      "bytes": 5167
+    },
+    {
+      "path": [
+        "symbols",
+        "source",
+        "children",
+        0,
+        "children",
+        0,
+        "children",
+        0,
+        "children",
+        3
+      ],
+      "key": "d",
+      "bytes": 9593
+    },
+    {
+      "path": [
+        "symbols",
+        "source",
+        "children",
+        0,
+        "children",
+        0,
+        "children",
+        0,
+        "children",
+        9
+      ],
+      "key": "d",
+      "bytes": 35730
+    },
+    {
+      "path": [
+        "symbols",
+        "source",
+        "children",
+        0,
+        "children",
+        0,
+        "children",
+        0,
+        "children",
+        10
+      ],
+      "key": "d",
+      "bytes": 40052
+    },
+    {
+      "path": [
+        "symbols",
+        "source",
+        "children",
+        0,
+        "children",
+        0,
+        "children",
+        0,
+        "children",
+        11
+      ],
+      "key": "d",
+      "bytes": 19461
+    }
+  ]
+}
