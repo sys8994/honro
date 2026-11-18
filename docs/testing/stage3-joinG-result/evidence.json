@@ -1,0 +1,256 @@
+{
+  "run": 44299182535,
+  "artifact": 14424249709,
+  "zipSHA": "9962b9b2425b800ee3647b1e9a18b2dfec3b9bd58c8575b2648155c1a5cb712e",
+  "all50CodecExact": true,
+  "fortyNineFullExact": true,
+  "unitsTerrainCameraExact": true,
+  "assetAlphaDifferent": 0,
+  "assetPositiveEach": 232008,
+  "assetRGBChanged": 8937,
+  "overviewOutside15Pixels": [
+    {
+      "x": 373,
+      "y": 293,
+      "delta": [
+        0,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "x": 374,
+      "y": 293,
+      "delta": [
+        0,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "x": 375,
+      "y": 293,
+      "delta": [
+        1,
+        0,
+        2,
+        0
+      ]
+    },
+    {
+      "x": 376,
+      "y": 293,
+      "delta": [
+        0,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "x": 377,
+      "y": 293,
+      "delta": [
+        0,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "x": 379,
+      "y": 293,
+      "delta": [
+        1,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "x": 381,
+      "y": 293,
+      "delta": [
+        1,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "x": 382,
+      "y": 293,
+      "delta": [
+        1,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "x": 383,
+      "y": 293,
+      "delta": [
+        0,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "x": 385,
+      "y": 293,
+      "delta": [
+        1,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "x": 386,
+      "y": 293,
+      "delta": [
+        0,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "x": 387,
+      "y": 293,
+      "delta": [
+        0,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "x": 388,
+      "y": 293,
+      "delta": [
+        0,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "x": 389,
+      "y": 293,
+      "delta": [
+        0,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "x": 374,
+      "y": 294,
+      "delta": [
+        1,
+        1,
+        0,
+        0
+      ]
+    }
+  ],
+  "rows": [
+    {
+      "view": "3-overview",
+      "changedPixels": 68
+    },
+    {
+      "view": "3-native",
+      "changedPixels": 0
+    },
+    {
+      "view": "3-right-shore-dpr3",
+      "changedPixels": 0
+    },
+    {
+      "view": "3-right-ground-dpr3",
+      "changedPixels": 39354
+    }
+  ],
+  "releaseAccepted": false,
+  "pngs": [
+    {
+      "file": "baseline-3-native-terrain-mask.png",
+      "sha256": "9490918a54beaadca0942728f2c7d0c268a694e7f91e327b6d442bba57b4b25c"
+    },
+    {
+      "file": "baseline-3-native.png",
+      "sha256": "6c1472fe4aff7f06ab91fdf492439ab724435953d45b14993862b79f814e9862"
+    },
+    {
+      "file": "baseline-3-overview-asset-mask.png",
+      "sha256": "4e2eb00c647b65204b17648535a6539245f3cccabb4c1de346069f52390acd81"
+    },
+    {
+      "file": "baseline-3-overview-terrain-mask.png",
+      "sha256": "14ec4a7bbf70019e9c93968b4e4741347558ac55a81dc03380e86ead51ce33a4"
+    },
+    {
+      "file": "baseline-3-overview.png",
+      "sha256": "3cfae0bd44678bca5491be95a25bd4f31eb2f1f5176401faebb80b0c1d86e496"
+    },
+    {
+      "file": "baseline-3-right-ground-dpr3-terrain-mask.png",
+      "sha256": "ab3752d492dec4f98627b832a7b243f509be14a3863e782a9b2990b6e11e3330"
+    },
+    {
+      "file": "baseline-3-right-ground-dpr3.png",
+      "sha256": "ab3752d492dec4f98627b832a7b243f509be14a3863e782a9b2990b6e11e3330"
+    },
+    {
+      "file": "baseline-3-right-shore-dpr3-terrain-mask.png",
+      "sha256": "743a49755b3d4127c85f8673ca918688a01635b6f12dce0d146a8e0b787ab973"
+    },
+    {
+      "file": "baseline-3-right-shore-dpr3.png",
+      "sha256": "743a49755b3d4127c85f8673ca918688a01635b6f12dce0d146a8e0b787ab973"
+    },
+    {
+      "file": "candidate-3-native-terrain-mask.png",
+      "sha256": "9490918a54beaadca0942728f2c7d0c268a694e7f91e327b6d442bba57b4b25c"
+    },
+    {
+      "file": "candidate-3-native.png",
+      "sha256": "6c1472fe4aff7f06ab91fdf492439ab724435953d45b14993862b79f814e9862"
+    },
+    {
+      "file": "candidate-3-overview-asset-mask.png",
+      "sha256": "a34ca0ef1e166d47f17f4e73ffaf599415594b88c4bd5f4b18bc687b4cd244c3"
+    },
+    {
+      "file": "candidate-3-overview-terrain-mask.png",
+      "sha256": "3ed785e7a404cf6101f356674282d284e6712a0d9891bd1e6eae3d837f301f51"
+    },
+    {
+      "file": "candidate-3-overview.png",
+      "sha256": "15296ece3377c295b69c800f40e4d9add6d8545bd08b106fd45b7ebd43022478"
+    },
+    {
+      "file": "candidate-3-right-ground-dpr3-terrain-mask.png",
+      "sha256": "ed564a9be9a8e28a4beed14514eeb3128a2c4895a01ef76cadca74e600de61ec"
+    },
+    {
+      "file": "candidate-3-right-ground-dpr3.png",
+      "sha256": "ed564a9be9a8e28a4beed14514eeb3128a2c4895a01ef76cadca74e600de61ec"
+    },
+    {
+      "file": "candidate-3-right-shore-dpr3-terrain-mask.png",
+      "sha256": "743a49755b3d4127c85f8673ca918688a01635b6f12dce0d146a8e0b787ab973"
+    },
+    {
+      "file": "candidate-3-right-shore-dpr3.png",
+      "sha256": "743a49755b3d4127c85f8673ca918688a01635b6f12dce0d146a8e0b787ab973"
+    }
+  ]
+}
