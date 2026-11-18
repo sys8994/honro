@@ -20,3 +20,9 @@ jobs:
       - run: node tests/act4-no-extermination.mjs
       - run: HONRO_ACT4_RELEASE=1 node tests/act4-objective-map-contract.mjs
       - run: HONRO_ACT4_RELEASE=1 node tests/act4-shelter-travel.mjs
+      - run: HONRO_ACT4_RELEASE=1 node tests/act4-stage36-door-geometry.mjs
+      - run: HONRO_ACT4_RELEASE=1 node tests/act4-equipment-release.mjs
+      - run: node tests/act4-story-compact-save.mjs
+      - run: HONRO_ACT4_RELEASE=1 node tests/act4-exit-reward-contract.mjs
+      - run: HONRO_ACT4_RELEASE=1 node tests/act4-stage35-blocked-shot.mjs
+      - run: HONRO_ACT4_RELEASE=1 node tests/act4-return-follower-guards.mjs
