@@ -1,0 +1,24 @@
+{
+  "scope": "Independent Native reconstruction of paint-only tile raster plus cache-to-screen filter; not actual Chrome mask yet",
+  "tileScale": 0.0625,
+  "screenScale": 0.057352941176470586,
+  "screenMatrix": [
+    0.057352941176470586,
+    0,
+    0,
+    0.057352941176470586,
+    98.0964705882353,
+    279.1764705882353
+  ],
+  "pixel": [
+    120,
+    379
+  ],
+  "coverageAlpha": 11,
+  "targetRGBA": [
+    255,
+    255,
+    255,
+    11
+  ]
+}
