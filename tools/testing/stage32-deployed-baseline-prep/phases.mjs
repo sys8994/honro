@@ -8,6 +8,13 @@ export async function measureWholeScene({canvas,engine,battle,camera,makeScene,a
  const pristine=stats(),firstScene=makeScene(canvas,camera),first=run(firstScene);assertPure();await drain();const readinessRenders=[];for(let i=0;i<3;i++){readinessRenders.push(run(firstScene));assertPure();await drain();}const prepared=stats();const cold=[],warm=[],pan=[];let scene;
  for(let i=0;i<5;i++){helper?.clear?.();scene=makeScene(canvas,camera);cold.push(run(scene));assertPure();}
  for(let i=0;i<30;i++)warm.push(run(scene));
- for(let i=0;i<60;i++){scene.x=camera.x+16*(i+1);scene.y=camera.y;HonroBounds.constrain(scene,battle);pan.push({...run(scene),camera:{x:scene.x,y:scene.y,scale:scene.scale}});}
- assertPure();return{pristine,firstIncludingLazyPreparation:first,readinessRenders,prepared,cold,warm,pan,scope:'Whole registered Scene; helper absent at842 is valid. World-cache rebuild and helper material rebuild are separate. Live path may rebuild no world tile; retain per-frame helper stats. Initial geometry and band preparation measured separately only if provider exposes counters. Without them report unknown, not zero.',memoryScope:'Record scene and helper canvas logical bytes; native/GPU heap unmeasured'};
+ // Same60 renders, continuous segments: horizontal30, up15, down15.
+ // Vertical motion crosses ROI height changes and returns without a teleport.
+ for(let i=0;i<60;i++){
+  const axis=i<30?'horizontal':'vertical',direction=i<30?'right':i<45?'up':'down';
+  const requested={x:i<30?camera.x+16*(i+1):camera.x+480,y:i<30?camera.y:i<45?camera.y-16*(i-29):camera.y-240+16*(i-44)};
+  scene.x=requested.x;scene.y=requested.y;HonroBounds.constrain(scene,battle);
+  pan.push({...run(scene),axis,direction,requested,camera:{x:scene.x,y:scene.y,scale:scene.scale}});
+ }
+ assertPure();return{pristine,firstIncludingLazyPreparation:first,readinessRenders,prepared,cold,warm,pan,scope:'Whole registered Scene; helper absence follows pinned own-runtime inventory. World-cache rebuild and helper material rebuild are separate. Live path may rebuild no world tile; retain per-frame helper stats. Initial geometry and band preparation measured separately only if provider exposes counters. Without them report unknown, not zero.',memoryScope:'Record scene and helper canvas logical bytes; native/GPU heap unmeasured'};
 }

@@ -25,9 +25,14 @@ for pose in cfg['poses']:
  costs={}
  for role in ['baseline','candidate']:
   b=[x for x in a if x['variant']==role];ps=[x['performanceReport']for x in b]
-  for p in ps:assert [len(p[k])for k in ['cold','warm','pan']]==[5,30,60]
+  for p in ps:
+   assert [len(p[k])for k in ['cold','warm','pan']]==[5,30,60]
+   assert [f['axis']for f in p['pan']]==['horizontal']*30+['vertical']*30
+   assert [f['direction']for f in p['pan']]==['right']*30+['up']*15+['down']*15
+  sequences=[[f['camera']for f in x['performanceReport']['pan']]for x in a]
+  if not all(z==sequences[0]for z in sequences):errors.append(pose['name']+':actual-pan-trajectories-differ')
   assert b[0]['contract']==b[1]['contract']and b[0]['initialization']==b[1]['initialization']
-  costs[role]={'first':stats([p['firstIncludingLazyPreparation']['ms']for p in ps]),**{k:stats([f['ms']for p in ps for f in p[k]])for k in ['cold','warm','pan']},'helperFinal':[p['pan'][-1]['after']['helper']for p in ps]}
+  costs[role]={'first':stats([p['firstIncludingLazyPreparation']['ms']for p in ps]),**{k:stats([f['ms']for p in ps for f in p[k]])for k in ['cold','warm','pan']},'panByAxis':{axis:stats([f['ms']for p in ps for f in p['pan']if f['axis']==axis])for axis in ['horizontal','vertical']},'panByDirection':{direction:stats([f['ms']for p in ps for f in p['pan']if f['direction']==direction])for direction in ['right','up','down']},'panActualMotion':{axis:{'uniqueX':len(set(f['camera']['x']for p in ps for f in p['pan']if f['axis']==axis)),'uniqueY':len(set(f['camera']['y']for p in ps for f in p['pan']if f['axis']==axis))}for axis in ['horizontal','vertical']},'helperFinal':[p['pan'][-1]['after']['helper']for p in ps]}
  rows.append(dict(pose=pose['name'],crossVersionChecks=checks,cost=costs))
 raf={}
 for role in ['baseline','candidate']:
