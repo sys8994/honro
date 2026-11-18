@@ -1,0 +1,159 @@
+{
+  "passed": true,
+  "baselineRef": "5b2edf0b868a6f4ab656574b036586304eb12808",
+  "candidateRef": "dbb25e21e075a495581ddaf8e2c0e615fe2e621e",
+  "stage3Exact": true,
+  "monsterScaleModulesExact": true,
+  "optimizerProof": {
+    "officialOptimizerCloneExact": true,
+    "candidateRawSourcePathSHA": "0b78f6b925226b41f68b4ffba68efc2e53c7aaecf6d74ce68dbd2d3c53fcbde4",
+    "baselineSourcePathSHA": "b26965ef1bae84b0cf3c069bc98cc326c4b7f0abbbe0e1e0bfa969124e1a17d3",
+    "baselineRef": "5b2edf0b868a6f4ab656574b036586304eb12808",
+    "candidateRef": "dbb25e21e075a495581ddaf8e2c0e615fe2e621e",
+    "rawSourceHashMetadataExact": true
+  },
+  "runtimeDiffNeedsBehaviorReview": [
+    {
+      "name": "HONRO_ACT2_COMPACT_PACKAGES",
+      "before": {
+        "name": "HONRO_ACT2_COMPACT_PACKAGES",
+        "sha256": "0f8dcce89416a8f4e769a16e48da49fe4c42c3a7bc91291c0c9a2054533a0a31"
+      },
+      "after": {
+        "name": "HONRO_ACT2_COMPACT_PACKAGES",
+        "sha256": "d4a97122ddbc9e9cf02dc0e1e3618776248266938dbe66d6d80df8afb4c33073"
+      },
+      "approvedVisualRole": false
+    },
+    {
+      "name": "shared/runtime/encounters.js",
+      "before": {
+        "name": "shared/runtime/encounters.js",
+        "sha256": "028d22fcf214428a8e534d95e91e9738308073ed470803dd90e87d410084c87c"
+      },
+      "after": {
+        "name": "shared/runtime/encounters.js",
+        "sha256": "a2b740c8f3deede33cf67094c205b9cdb1a5d2984fdd49687260f8aaca2dd5ef"
+      },
+      "approvedVisualRole": false
+    },
+    {
+      "name": "shared/map/vector-art.js",
+      "before": {
+        "name": "shared/map/vector-art.js",
+        "sha256": "0b79f9dc0c1896e27014561c755d743ef58dacbad5b8c1de89018794bf6ae8ba"
+      },
+      "after": {
+        "name": "shared/map/vector-art.js",
+        "sha256": "477484263bc5900ef368584fb1f7848478f9bf6cfa4636e5fd8a387eaa4c5ec3"
+      },
+      "approvedVisualRole": false
+    },
+    {
+      "name": "shared/runtime/renderer.js",
+      "before": {
+        "name": "shared/runtime/renderer.js",
+        "sha256": "5919fd7b8bcbf3f7ff1815033015143a0c419d7cf21f4716b8a1e5e2eba7bfd9"
+      },
+      "after": {
+        "name": "shared/runtime/renderer.js",
+        "sha256": "9d3c8b4ba03e63f009a61310a47d01a23d76b7abada91b8aa786f5e01027994c"
+      },
+      "approvedVisualRole": false
+    },
+    {
+      "name": "shared/runtime/act2-spatial-art.js",
+      "before": {
+        "name": "shared/runtime/act2-spatial-art.js",
+        "sha256": "99eb1151fa859aaa3cafe05f7011b054e62f1226ae5990a0f1d3aa72498cf38b"
+      },
+      "after": {
+        "name": "shared/runtime/act2-spatial-art.js",
+        "sha256": "3f5488051782c270dd2ea627220b520342943062ce446de3d04bd1754205a30b"
+      },
+      "approvedVisualRole": false
+    },
+    {
+      "name": "shared/runtime/terrain-readability.js",
+      "before": {
+        "name": "shared/runtime/terrain-readability.js",
+        "sha256": "b4e674d4d5c1eb85896db83d8ef1bd79bc1446ca72c31d5b21f8407da46f1018"
+      },
+      "after": {
+        "name": "shared/runtime/terrain-readability.js",
+        "sha256": "63e38cbfd2d625886df7e88c447999415c716f3ca35a7094503b23959ff85000"
+      },
+      "approvedVisualRole": false
+    },
+    {
+      "name": "shared/runtime/stage30-ferry-art.js",
+      "before": {
+        "name": "shared/runtime/stage30-ferry-art.js",
+        "sha256": "5f023ac8fd37c85454bffb61555eac3dc028e260f6ed77e0459ad69801bad952"
+      },
+      "after": {
+        "name": "shared/runtime/stage30-ferry-art.js",
+        "sha256": "fc1738776f500a561c59bd6b2b003e861f98b56c6a67c232dd42e65bf370e19f"
+      },
+      "approvedVisualRole": false
+    },
+    {
+      "name": "shared/runtime/act3-handoff-art.js",
+      "before": {
+        "name": "shared/runtime/act3-handoff-art.js",
+        "sha256": "65f7ddb49092c782f1176c10c3c7e566396b60b92ee6ebee8ab25a8781deafda"
+      },
+      "after": {
+        "name": "shared/runtime/act3-handoff-art.js",
+        "sha256": "659dc81a964dd01090b36c94b6709dafe2c2cdad321d9c517f5c5cd63fb18a5c"
+      },
+      "approvedVisualRole": false
+    },
+    {
+      "name": "shared/runtime/early-encounter-placement.js",
+      "before": null,
+      "after": {
+        "name": "shared/runtime/early-encounter-placement.js",
+        "sha256": "c37afeb01c0ef46f8bcf872615b29e70e5e0c6b8a528dff6b5e8d42c5bf48886"
+      },
+      "approvedVisualRole": false
+    },
+    {
+      "name": "shared/runtime/stage33-exterior-art.js",
+      "before": null,
+      "after": {
+        "name": "shared/runtime/stage33-exterior-art.js",
+        "sha256": "7898a7c1b73b91e925bb8ad00135c51809a8fa60e463a38893dd920b98819e10"
+      },
+      "approvedVisualRole": false
+    },
+    {
+      "name": "shared/runtime/stage34-foundation-edge.js",
+      "before": null,
+      "after": {
+        "name": "shared/runtime/stage34-foundation-edge.js",
+        "sha256": "6dcb86ae48a5eb14ca1299dd563809f8bc099a350256c9ff23f33ef4d8bfe80e"
+      },
+      "approvedVisualRole": false
+    },
+    {
+      "name": "shared/runtime/stage37-alpha-edge.js",
+      "before": null,
+      "after": {
+        "name": "shared/runtime/stage37-alpha-edge.js",
+        "sha256": "dfd3cdcd7df4fc8d6059a6f82279f236ab5640b0f7f21eaceafd5452c7441c05"
+      },
+      "approvedVisualRole": false
+    },
+    {
+      "name": "shared/runtime/stage38-alpha-edge.js",
+      "before": null,
+      "after": {
+        "name": "shared/runtime/stage38-alpha-edge.js",
+        "sha256": "0760335373e913a8d0821db2a84e7f64749516cfe6893775cdff63fc86adfe22"
+      },
+      "approvedVisualRole": false
+    }
+  ],
+  "errors": []
+}

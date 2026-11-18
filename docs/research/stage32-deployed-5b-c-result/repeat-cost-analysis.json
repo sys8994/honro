@@ -1,0 +1,98 @@
+{
+  "maximum-live": {
+    "horizontal": {
+      "frames": 60,
+      "totalMsMedian": 16.800000000046566,
+      "materialDeltas": {
+        "rasterizations": {
+          "1": 60
+        },
+        "hits": {
+          "2": 60
+        },
+        "resizes": {
+          "0": 60
+        }
+      },
+      "roiResizeSum": 0,
+      "helperLogicalBytesMin": 5515672,
+      "helperLogicalBytesMax": 5515672,
+      "worldRebuildDelta": {
+        "0": 60
+      },
+      "nativeJunctionSubmitMsMedian": 0.0,
+      "SSCallsTotal": 0
+    },
+    "vertical": {
+      "frames": 60,
+      "totalMsMedian": 12.150000000023283,
+      "materialDeltas": {
+        "rasterizations": {
+          "1": 60
+        },
+        "hits": {
+          "2": 60
+        },
+        "resizes": {
+          "0": 60
+        }
+      },
+      "roiResizeSum": 42,
+      "helperLogicalBytesMin": 4062224,
+      "helperLogicalBytesMax": 5515672,
+      "worldRebuildDelta": {
+        "0": 60
+      },
+      "nativeJunctionSubmitMsMedian": 0.0,
+      "SSCallsTotal": 0
+    }
+  },
+  "phone-dpr3-native": {
+    "horizontal": {
+      "frames": 60,
+      "totalMsMedian": 29.79999999998836,
+      "materialDeltas": {
+        "rasterizations": {
+          "1": 60
+        },
+        "hits": {
+          "2": 60
+        },
+        "resizes": {
+          "0": 60
+        }
+      },
+      "roiResizeSum": 0,
+      "helperLogicalBytesMin": 13132088,
+      "helperLogicalBytesMax": 13132088,
+      "worldRebuildDelta": {
+        "0": 60
+      },
+      "nativeJunctionSubmitMsMedian": 0.0,
+      "SSCallsTotal": 0
+    },
+    "vertical": {
+      "frames": 60,
+      "totalMsMedian": 19.650000000023283,
+      "materialDeltas": {
+        "rasterizations": {
+          "1": 60
+        },
+        "hits": {
+          "2": 60
+        },
+        "resizes": {
+          "0": 60
+        }
+      },
+      "roiResizeSum": 38,
+      "helperLogicalBytesMin": 9771852,
+      "helperLogicalBytesMax": 13132088,
+      "worldRebuildDelta": {
+        "0": 60
+      },
+      "nativeJunctionSubmitMsMedian": 0.0,
+      "SSCallsTotal": 0
+    }
+  }
+}
