@@ -18,4 +18,5 @@ jobs:
       - run: npm ci && npm ci --prefix game
       - run: node --check shared/runtime/act4-events.js && node --check shared/runtime/act4-coast-events.js
       - run: node tests/act4-no-extermination.mjs
+      - run: HONRO_ACT4_RELEASE=1 node tests/act4-objective-map-contract.mjs
       - run: HONRO_ACT4_RELEASE=1 node tests/act4-shelter-travel.mjs
