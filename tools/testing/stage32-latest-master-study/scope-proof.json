@@ -1,0 +1,48 @@
+{
+  "base": "7d238d20663c3ceffe430eb0304e01516ae625cf",
+  "B": "fdac97818c09536f5d0057181d04fbd60d48df18",
+  "master": "5b2edf0b868a6f4ab656574b036586304eb12808",
+  "productionFiles": [
+    {
+      "path": "shared/build.mjs",
+      "baseB_SHA256": "c76d646f0c7a20632770f7139a2f4aea211107d6ccdb32bcf61e7c7cb78a09b5",
+      "master_SHA256": "1d655423beeae3de62cbc8893136039d035e94a88ea756e5a53488fce303b4b7",
+      "merged_SHA256": "a904f67c9c581747956cb7ccf89ad22312ae04b1a0f6744a7c24ec26ce38f8a9",
+      "inverseExact": true,
+      "detail": "Two token insertions only. Same modelFiles line intersects B early-encounter-placement; retain that entry, append monster-scale after monster-diversity. Preserve B Naru/stage32 registrations. Exact inverse==B and master inverse==7d."
+    },
+    {
+      "path": "shared/map/compiler.js",
+      "baseB_SHA256": "a35c47ba4970d33ccdc0602d181a791f96f7b2e7f72352cb5a73a0bd2959167c",
+      "master_SHA256": "1c18b854bbdae6ab5b9c49de53ef4c2d708ffa73a7af393fc5e57e318e001cd2",
+      "merged_SHA256": "1c18b854bbdae6ab5b9c49de53ef4c2d708ffa73a7af393fc5e57e318e001cd2",
+      "inverseExact": true,
+      "detail": "B==7d; exact latest master source copied, no conflict."
+    },
+    {
+      "path": "shared/engine/src/monsterPatterns.ts",
+      "baseB_SHA256": "fd4ba7b45b5a010454820c9c6c6ef0a7ab2d494e2a6718f06dec64ec364e8150",
+      "master_SHA256": "b06fa2f05d52981ef0ad6f79d82aba9915c4c66bd18695a365a9497fdc980322",
+      "merged_SHA256": "b06fa2f05d52981ef0ad6f79d82aba9915c4c66bd18695a365a9497fdc980322",
+      "inverseExact": true,
+      "detail": "B==7d; exact latest master source copied, no conflict."
+    },
+    {
+      "path": "shared/runtime/monster-scale.js",
+      "baseB_SHA256": null,
+      "master_SHA256": "a2458a7208e09d7aa96f6d439223be371308d16e8d3950122e9595bc4fd4e44e",
+      "merged_SHA256": "a2458a7208e09d7aa96f6d439223be371308d16e8d3950122e9595bc4fd4e44e",
+      "inverseExact": true,
+      "detail": "New file copied byte-exact from latest master; inverse is deletion."
+    },
+    {
+      "path": "shared/runtime/monster-scale-art.js",
+      "baseB_SHA256": null,
+      "master_SHA256": "adf41b356bb29daaafcbc96ab62752f088cdbcb8fc751b9a927a727ef8b17889",
+      "merged_SHA256": "adf41b356bb29daaafcbc96ab62752f088cdbcb8fc751b9a927a727ef8b17889",
+      "inverseExact": true,
+      "detail": "New file copied byte-exact from latest master; inverse is deletion."
+    }
+  ],
+  "generatedFilesIncluded": false
+}
