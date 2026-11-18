@@ -297,7 +297,7 @@ P.questGuidance=function(app){
  if(!q)return hint(app.stage.goal);
  const enemies=foes(b),count=enemies.length,exit=cfg.exit,combat=(text,units=enemies)=>G.HonroObjectiveGuide.hostileHint(b,units,text);
  if(n===31){
-  if(q.boat.phase==='waiting'){const p=cfg.boarding,point={x:p?.approachX??5900,y:p?.approachY??1735};return hint(q.boatSignal?'배가 올 때까지 버티기 · '+Math.max(0,q.boatSignal.round+2-b.round)+'라운드 남음':'나루로 돌파해 배에 신호 보내기',point,'승선 신호','interact');}
+  if(q.boat.phase==='waiting'){const point=P.signalPoint(b);return hint(q.boatSignal?'배가 올 때까지 버티기 · '+Math.max(0,q.boatSignal.round+2-b.round)+'라운드 남음':'나루로 돌파해 배에 신호 보내기',point,'승선 신호','interact');}
   const p=cfg.boarding,deck=p&&{x:(p.boardX1+p.boardX2)/2,y:p.deckY};
   return q.boat.phase==='docked'&&p?gather(deck,'배의 갑판으로 이동',u=>u.x>p.boardX1&&u.x<p.boardX2&&Math.abs(u.y-p.deckY)<5&&e.grounded(u)):hint('나룻배가 접안할 때까지 나루에서 기다리기',deck,'나루');
  }
