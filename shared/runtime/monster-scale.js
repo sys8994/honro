@@ -67,15 +67,25 @@ function grow(b,u,metres,hpMul,speedMul,cap,why){
  Object.assign(u,{h:fit.h,r:fit.r});
  if(hpGain>1.001){const full=u.hp>=u.maxHp;u.maxHp=Math.round(u.maxHp*hpGain);u.hp=full?u.maxHp:Math.round(u.hp*hpGain);if(Number.isFinite(u.combatBaseHp))u.combatBaseHp*=hpGain;}
  if(speedMul<1){if(Number.isFinite(u.walkSpeed))u.walkSpeed*=speedMul;if(Number.isFinite(u.maxMove)){u.maxMove=Math.round(u.maxMove*speedMul);u.moveLeft=Math.min(u.moveLeft??u.maxMove,u.maxMove);}}
- u.honroMonsterScale={v:REVISION,why,base,rest:fit.h,step:fit.step,hp:+hpGain.toFixed(3)};
+ u.honroMonsterScale={v:REVISION,why,base,rest:fit.h,restR:fit.r,step:fit.step,hp:+hpGain.toFixed(3)};
  if(fit.step<1)record(b,u,{why,result:'reduced',step:fit.step,target,h:fit.h});
+}
+const covers=(b,u)=>b.units.some(t=>t.honroObjectiveTarget&&alive(t)&&Math.abs(t.x-u.x)<t.r+u.r+200&&Math.abs(t.y-u.y)<220);
+// Grown ordinary bodies that walk up to an objective return to their authored
+// size there (and regain the new size once they leave), so they never wall it off.
+function guard(b,u){
+ const sc=u.honroMonsterScale;if(!sc||sc.kept||!sc.base||NAMED[u.id]||sc.why==='midboss'||sc.why==='great-darkness')return false;
+ const near=covers(b,u);
+ if(near&&!sc.covering){sc.covering=true;u.h=sc.base.h;u.r=sc.base.r;return true;}
+ if(!near&&sc.covering){const fit=fitted(b,u,sc.rest,sc.restR??sc.base.r);if(fit&&fit.step===1){delete sc.covering;u.h=fit.h;u.r=fit.r;}return true;}
+ return !!sc.covering;
 }
 function apply(b,u){
  if(!eligible(b,u)||u.honroMonsterScale||OFF_STAGES.has(b.honroStage))return;
  const named=NAMED[u.id];
  // A body standing at an objective (bier knots, seals) keeps its authored
  // size so the line of fire to that objective stays as the stage was tuned.
- if(!named&&b.units.some(t=>t.honroObjectiveTarget&&alive(t)&&Math.abs(t.x-u.x)<t.r+u.r+200&&Math.abs(t.y-u.y)<220)){u.honroMonsterScale={v:REVISION,why:'objective-cover',kept:true,base:{h:u.h,r:u.r},rest:u.h};return;}
+ if(!named&&covers(b,u)){u.honroMonsterScale={v:REVISION,why:'objective-cover',kept:true,base:{h:u.h,r:u.r},rest:u.h};return;}
  if(named){grow(b,u,named[0],named[1],.8,64,'named');return;}
  const key=look(u);
  if(u.honroMidboss||u.boss){const m=ROLE_MID[key]||ROLE_MID[u.honroType];if(m){grow(b,u,m,1.3,.8,60,'midboss');return;}}
@@ -98,6 +108,7 @@ function sync(b){
  for(const u of b.units){
   if(!u.honroMonsterScale){apply(b,u);continue;} // late arrivals from any spawn path
   const sc=u.honroMonsterScale;if(!eligible(b,u)||!sc?.base)continue;
+  if(guard(b,u))continue;
   const key=u.honroMonsterSpecies;let m=null;
   if(u.honroGreatDarkness)m=DARK_GROWTH[Math.max(0,Math.min(2,(u.honroMonsterGrowth||1)-1))];
   else if(GROWTH[key])m=GROWTH[key][Math.max(0,Math.min(2,(u.honroMonsterGrowth||1)-1))];
@@ -153,7 +164,7 @@ function reveal(app){
  for(const u of b.units){const sc=u.honroMonsterScale;if(!sc||sc.kept||sc.revealed||u.h<250||!alive(u)||!u.awake)continue;
   sc.revealed=true;app.scene.focusUnit(u.id,1500);return;}
 }
-G.HonroMonsterScale={REVISION,addDarkness,DARK,prepare,apply,sync,headroom,look,SPECIES,NAMED,ROLE_MID,OFF_STAGES};
+G.HonroMonsterScale={REVISION,KEEP,addDarkness,DARK,prepare,apply,sync,headroom,look,SPECIES,NAMED,ROLE_MID,OFF_STAGES};
 // Later finite waves and act-5 reserves use the same path.
 const diversity=G.HonroMonsterDiversity;
 if(diversity){const spawn=diversity.spawn;diversity.spawn=function(b,u,...rest){const out=spawn.call(this,b,u,...rest);apply(b,u);return out;};}
