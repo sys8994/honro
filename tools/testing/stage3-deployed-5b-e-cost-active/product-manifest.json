@@ -1,0 +1,38 @@
+{
+  "ready": true,
+  "base": "5b2edf0b868a6f4ab656574b036586304eb12808",
+  "productionFiles": 4,
+  "scope": "Stage3 approved finish only; explicit3 renderer/readability dispatch; no7/32 or other source changes",
+  "files": [
+    {
+      "path": "shared/build.mjs",
+      "local": "stage3-master-isolated/candidate/shared/build.mjs",
+      "bytes": 24755,
+      "sha256": "1723baa38ab7b691f9b5a1bf9d9e42c2bba78c15d1fb6cb833ba43addda8d47b",
+      "blob": "dfd27d06ac0751043da85595e3a8897f728cd43f"
+    },
+    {
+      "path": "shared/runtime/renderer.js",
+      "local": "stage3-master-isolated/candidate/shared/runtime/renderer.js",
+      "bytes": 75570,
+      "sha256": "fcd75ad8580c3b43a374757a1436d3bebc18cc185c48068a704866a4cfcd1a43",
+      "blob": "22cb61244270a5088fa5bd8a8228035df8820f2e"
+    },
+    {
+      "path": "shared/runtime/terrain-readability.js",
+      "local": "stage3-master-isolated/candidate/shared/runtime/terrain-readability.js",
+      "bytes": 5059,
+      "sha256": "74f29322fdf42edbe320db8e94774b65e24d268486e492e24cd164a5d0fc3ad6",
+      "blob": "5c3b3cd4df6fcb383a77bd6a8b21cbb90dd4ca04"
+    },
+    {
+      "path": "tools/map-forge/naru-body-finish.mjs",
+      "local": "stage3-master-isolated/candidate/tools/map-forge/naru-body-finish.mjs",
+      "bytes": 4841,
+      "sha256": "119eaf37447051d55df3cbc93ea0e50cc1a24076f9b3a5b2d9722f7ee8e420d5",
+      "blob": "002f5c046601ab04cd38826166ccb86d6101e465"
+    }
+  ],
+  "notReleaseAcceptance": true,
+  "validation": "Source inverse/syntax/extracted methods/approved asset oracle passed; independent review and official CI pending"
+}
