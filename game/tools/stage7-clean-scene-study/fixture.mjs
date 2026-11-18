@@ -6,6 +6,10 @@ import {applyAct1Sites} from '../../../tools/map-forge/act1-naru-doldang.mjs';
 import {terrainPathOptimization} from '../../../shared/terrain-path-optimization.mjs';
 const out=process.argv[2];if(!out)throw Error('Output directory required');await mkdir(out,{recursive:true});
 const candidate=JSON.parse(await readFile(new URL('../stage7-vector-study/generated/candidate.json',import.meta.url),'utf8'));
+const lowerGuard=JSON.parse(await readFile(new URL('../stage7-scene-study/lower-domain-guard.json',import.meta.url),'utf8'));
+if(JSON.stringify(candidate.vector.clips['nonwalk-envelope'])!==JSON.stringify(lowerGuard.originalClip))throw Error('Unexpected authored lower envelope before shared guard');
+candidate.vector.clips['nonwalk-envelope']=structuredClone(lowerGuard.clip);
+
 const closure=JSON.parse(await readFile(new URL('../stage7-scene-study/right-closure.json',import.meta.url),'utf8'));
 const join=JSON.parse(await readFile(new URL('../stage7-scene-study/nonwalk-join.json',import.meta.url),'utf8'));
 const readabilityHelper=await readFile(new URL('../../../tests/fixtures/stage7-readability.js',import.meta.url),'utf8');
@@ -98,9 +102,6 @@ async function capture(candidate,closure,join,sourceContract,runtimeSha,variant,
    for(let i=0;i<13;i++){const cp=currentCaps[i].clipPath;v.clips[cp]=plain(original.vector.clips[cp]);delete v.clips['cap-'+i];}
    for(const [key,value]of Object.entries(original.vector.clips)){if(key==='source-alpha'){assert(stable(v.clips[key])===stable(value),'Native source clip changed');v.clips[key]=plain(value);}}
    if(!controlMode&&variant!=='legacy')v=partitionRim(original.vector,v); // Experimental semantic foreground/backing partition.
-   // Same final role ordering as the independently checked lower-role fixture.
-   {const ch=v.root.children,indices=ch.map((n,i)=>n.clipPath==='nonwalk-envelope'?i:-1).filter(i=>i>=0);assert(indices.length===1,'Exactly one authored lower layer required');
-    const lower=ch.splice(indices[0],1)[0],sourceIndex=ch.findIndex(n=>n.tag==='use'&&n.symbol==='source');assert(sourceIndex>=0,'Source required');ch.splice(sourceIndex+1,0,lower);}
    // Same final role ordering as the independently checked lower-role fixture.
    {const ch=v.root.children,indices=ch.map((n,i)=>n.clipPath==='nonwalk-envelope'?i:-1).filter(i=>i>=0);assert(indices.length===1,'Exactly one authored lower layer required');
     const lower=ch.splice(indices[0],1)[0],sourceIndex=ch.findIndex(n=>n.tag==='use'&&n.symbol==='source');assert(sourceIndex>=0,'Source required');ch.splice(sourceIndex+1,0,lower);}
