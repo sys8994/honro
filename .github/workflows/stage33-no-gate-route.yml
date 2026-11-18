@@ -1,0 +1,25 @@
+name: Stage33 no-gate locomotion diagnostic
+on:
+  push:
+    branches: [audit/stage33-no-gate-20261118]
+permissions:
+  contents: read
+jobs:
+  route:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      HONRO_ACT4_RELEASE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm ci && npm ci --prefix game
+      - run: node tests/act4-stage33-no-gate-route.mjs
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: stage33-route
+          path: _local/reports/stage33-route
