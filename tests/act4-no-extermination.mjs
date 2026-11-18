@@ -26,7 +26,8 @@ function fixture(n){
  // JSON checkpoint round and actor survive; no counter reset on repeated input.
  b.honroAct4PreviewState=JSON.parse(JSON.stringify(q));const saved=b.honroAct4PreviewState;
  b.round=5;P.observe(app,.1);assert.equal(saved.boat.phase,'approach');
- saved.boat.phase='docked';delete saved.boatSignal; // Legacy docked save has no new signal field.saved.events.board_ready={started:true,terminal:true};
+ saved.boat.phase='docked';delete saved.boatSignal; // Legacy docked save has no new signal field.
+ saved.events.board_ready={started:true,terminal:true};
  Object.assign(hero,{x:6350,y:1860});Object.assign(mate,{x:6500,y:1860});
  b.projectiles.push({});assert.equal(P.interact(app),false);b.projectiles=[];
  mate.jumping=true;assert.equal(P.interact(app),false);mate.jumping=false;
