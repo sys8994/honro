@@ -16,18 +16,19 @@ if(createHash('sha256').update(baselineRenderer).digest('hex')!=='aab056752d65b3
 const priorRenderer=await readFile(path.join(root,'tests/fixtures/stage32-coverage-prior-span.js'),'utf8');
 if(createHash('sha256').update(priorRenderer).digest('hex')!=='6fb4250253b658a29442be550a146bd38de50b1f682211af93847ad293f45745')throw Error('Prior helper changed');
 // runtimeParts is exactly runtimeEntries(...).map(entry=>entry.code). Names allow safe deduplication.
-const entries=await runtimeEntries({vector:true,render:true,app:false,productionStory:true});
+// Use actual App build order. Exclude exactly main.js: it constructs App, loads
+// user storage and starts the RAF loop. Every other production entry is retained.
+const appEntries=await runtimeEntries({vector:true,render:true,app:true,productionStory:true});
+const excluded=appEntries.filter(e=>e.name==='shared/runtime/main.js');
+if(excluded.length!==1)throw Error('Expected exactly one App startup entry');
+const entries=appEntries.filter(e=>e.name!=='shared/runtime/main.js');
 const registered=entries.filter(e=>e.name==='shared/runtime/stage32-foundation-art.js');
-if(registered.length!==1||registered[0].code!==rendererCanonical)throw Error('Production runtimeEntries must contain exact registered helper once');
+if(registered.length!==1||registered[0].code!==rendererCanonical)throw Error('Production App manifest must contain exact registered helper once');
+if(entries.filter(e=>e.name==='engine/core').length!==1)throw Error('Expected exactly one production core');
+const coreIndex=entries.findIndex(e=>e.name==='engine/core'),helperIndex=entries.findIndex(e=>e.name==='shared/runtime/stage32-foundation-art.js'),artIndex=entries.findIndex(e=>e.name==='shared/runtime/act4-pilot-art.js');
+if(!(coreIndex<helperIndex&&helperIndex<artIndex))throw Error('Production core/helper/art order changed');
 const runtime=entries.map(entry=>entry.code).join('\n;\n');
-const names=new Set(entries.map(entry=>entry.name)),act4Extra=[];
-if(stages.some(id=>id===32)){
- for(const [name,file]of [['HONRO_ACT4_PILOT_COMBAT_REFERENCE','pilot-combat-reference.json'],['HONRO_ACT4_PREVIEW_SEEDS','reviewed.json']])if(!entries.some(e=>e.global===name||e.name===name))act4Extra.push('globalThis.'+name+'='+JSON.stringify(JSON.parse(await readFile(path.join(root,'shared/data/act4',file),'utf8')))+';');
- for(const name of ['act4-art','act4-maps','act4-coast-maps','act4-coast-art','act4-events','act4-coast-events','act4-pilot-combat','stage32-foundation-art','act4-pilot-art']){
-  const file='shared/runtime/'+name+'.js';if(names.has(file))continue;
-  names.add(file);act4Extra.push(await readFile(path.join(root,file),'utf8'));
- }
-}
+const act4Extra=[]; // No fixture-sourced helper, Act4 modules or module reordering.
 const runtimeSha256=createHash('sha256').update(runtime).digest('hex');
 function bootstrap(id){
  if(id===32)globalThis.HONRO_APP_READY=new Promise(()=>{}); // Never attach a real App or resolve this promise.
