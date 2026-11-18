@@ -11,6 +11,7 @@ jobs:
     timeout-minutes: 35
     env:
       HONRO_QA_SMOKE: "1"
+      HONRO_QA_SINGLE: "1"
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:

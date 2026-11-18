@@ -43,7 +43,9 @@ async function capture(p,v,variant,runtimeSha,projectSha){
  function encode(o){const bytes=new TextEncoder().encode(JSON.stringify(o));let s='';for(let i=0;i<bytes.length;i+=32768)s+=String.fromCharCode(...bytes.subarray(i,i+32768));return btoa(s);}
  try{
   if(devicePixelRatio!==1)throw Error('DPR');
-  p=HonroMaps.finalize(p); const s=p.stages.find(s=>s.id==='stage-42');
+  const original=p.stages.find(s=>s.id==='stage-42');
+  if(!original)throw Error('Stage42 missing before finalize');
+  p=HonroMaps.finalize({...p,stages:[original],activeStageId:'stage-42'}); const s=p.stages[0];
   const b=HonroMaps.createBattle(s,p,HonroProfileStore.fresh(),{origin:'campaign'}); HonroStageRules.sanitizeStageBattle(b);
   const canvas=document.querySelector('canvas'); canvas.width=v.w;canvas.height=v.h;
   const engine=new HONRO_CORE.Engine(b,()=>{},true),sc=new HonroScene(canvas);
@@ -62,7 +64,7 @@ async function capture(p,v,variant,runtimeSha,projectSha){
  }catch(e){put({ok:false,error:String(e.stack??e)});}
 }
 await mkdir(out,{recursive:true});
-for(const name of ['overview','west','east','top','bottom','contact','portrait']){
+for(const name of process.env.HONRO_QA_SINGLE==='1'?['overview']:['overview','west','east','top','bottom','contact','portrait']){
  const view=views[name];assert(view?.name===name&&['w','h','x','y','scale'].every(k=>Number.isFinite(view[k])),name);
  for(const [t,p] of [['baseline',b],['candidate',c]]){
   const params=[view,t,sha(runtime),sha(JSON.stringify(p))].map(x=>JSON.stringify(x)).join(',');

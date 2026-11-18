@@ -2,7 +2,7 @@ import {readFileSync,writeFileSync} from 'node:fs';
 import {join} from 'node:path';
 import assert from 'node:assert/strict';
 const out=process.argv[2];
-for(const v of ['overview','west','east','top','bottom','contact','portrait']){
+for(const v of process.env.HONRO_QA_SINGLE==='1'?['overview']:['overview','west','east','top','bottom','contact','portrait']){
  const data=[];
  for(const t of ['baseline','candidate']){
   const n=t+'-'+v;
