@@ -1,0 +1,91 @@
+{
+  "passed": true,
+  "scope": "Mock failed transition trio creation; canvas material reacquired before SS getContext",
+  "stats": {
+    "rasterizations": 2,
+    "hits": 1,
+    "allocations": 1,
+    "resizes": 0,
+    "bytes": 4062212,
+    "peakBytes": 4062212,
+    "fallbacks": 0,
+    "lastFallback": null,
+    "imageBitmap": {
+      "created": 1,
+      "closed": 1,
+      "bytes": 0,
+      "peakBytes": 4062212,
+      "transferMs": 3.524243999999726,
+      "closeMs": 0.026538999999957014,
+      "unsupported": 0
+    },
+    "nativeBudget": {
+      "plans": 2,
+      "admitted": 2,
+      "rejected": 0,
+      "releases": 0,
+      "last": {
+        "w": 1331,
+        "h": 763,
+        "rows": 273,
+        "current": 8124424,
+        "projected": 9577884,
+        "admitted": true,
+        "scope": "Post-cleanup helper-owned logical canvas bytes; not physical heap or preexisting peak"
+      },
+      "limitBytes": 50331648
+    },
+    "nativeJunction": {
+      "calls": 0,
+      "ms": 0,
+      "prepareCalls": 0,
+      "prepareMs": 0,
+      "staticBytes": 26782,
+      "scope": "Connected nonwalk gray seam; test only, BODY/apron min2device and visible min1device at .05; test-only sampled scale >= .05"
+    },
+    "supersample": {
+      "calls": 1,
+      "stripes": 3,
+      "emptyStripes": 0,
+      "highRasterStripes": 3,
+      "eligibilityScanPixels": 950,
+      "eligible": 4597,
+      "corrected": 2384,
+      "opaqueGrassSkipped": 65781,
+      "protectedPaletteSkipped": 25,
+      "roadSkipped": 0,
+      "subpixelRoadSkipped": 0,
+      "unresolvedHolesSkipped": 1,
+      "alphaChanged": 0,
+      "skips": 0,
+      "allocations": 2,
+      "resizes": 3,
+      "scratchBytes": 4615908,
+      "peakLogicalBytes": 22893200,
+      "readbackBytes": 11824604,
+      "ms": 215.51114400000006,
+      "factor": 2,
+      "maxScratchPixels": 1048576,
+      "scope": "Logical canvas and live readback payload only; not total JS/native/GPU heap"
+    },
+    "maxPixels": 8388608,
+    "transition": {
+      "fills": 0,
+      "passes": 0,
+      "boundaryPasses": 0,
+      "allocations": 0,
+      "resizes": 0,
+      "bytes": 0,
+      "peakBytes": 0,
+      "skips": 1,
+      "lastSkip": "canvas-unavailable",
+      "maxPixels": 1048576,
+      "bufferDimensions": [
+        null,
+        null,
+        null
+      ]
+    },
+    "totalLogicalBytes": 8678120
+  }
+}

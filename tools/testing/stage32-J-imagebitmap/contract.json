@@ -1,0 +1,59 @@
+{
+  "baselineSHA": "6823eda0e8d3c5250396c857f09f96ee3eba8fbfba124af540d080a5a76d03c7",
+  "candidateSHA": "2e6af21851d8b12b4eec58138be49da2b5ffc5ba204adb0011a29f9f51a4ab80",
+  "inverseExact": true,
+  "changes": [
+    {
+      "before": "let buffer=null,bufferContext=null,last=null;",
+      "after": "let buffer=null,bufferContext=null,last=null;\nlet fieldImage=null;\nconst imageStats={created:0,closed:0,bytes:0,peakBytes:0,transferMs:0,closeMs:0,unsupported:0};\nfunction imageSupported(){return typeof G.OffscreenCanvas==='function'&&typeof G.OffscreenCanvas.prototype.transferToImageBitmap==='function';}\nfunction closeFieldImage(){if(fieldImage){const t=G.performance.now();fieldImage.close();imageStats.closeMs+=G.performance.now()-t;imageStats.closed++;fieldImage=null;imageStats.bytes=0;}}\n"
+    },
+    {
+      "before": "const projected=w*h*4+(rows?w*rows*4:4)+8+(ssCanvas?4:0)+(lowMaskCanvas?4:0);",
+      "after": "const projected=w*h*(imageSupported()?8:4)+(rows?w*rows*4:4)+8+(ssCanvas?4:0)+(lowMaskCanvas?4:0);"
+    },
+    {
+      "before": "current=[buffer,transitionWork,transitionColor,transitionBody,ssCanvas,lowMaskCanvas].reduce((n,v)=>n+bytes(v),0);",
+      "after": "current=[buffer,transitionWork,transitionColor,transitionBody,ssCanvas,lowMaskCanvas].reduce((n,v)=>n+bytes(v),0)+imageStats.bytes;"
+    },
+    {
+      "before": "if(buffer&&(buffer.width!==w||buffer.height!==h)){release(buffer);last=null;}",
+      "after": "if(buffer&&(buffer.width!==w||buffer.height!==h)){closeFieldImage();release(buffer);last=null;}"
+    },
+    {
+      "before": "function material(c,asset){",
+      "after": "function material(c,asset,wantImage=false){"
+    },
+    {
+      "before": "const style=G.HonroVisualStyle?.key?.()||'',key=[w,h,...matrix,style].join('|');",
+      "after": "const useImage=wantImage&&imageSupported();if(wantImage&&!useImage)imageStats.unsupported++;\n const style=G.HonroVisualStyle?.key?.()||'',key=[w,h,...matrix,style,useImage?'image':'canvas'].join('|');"
+    },
+    {
+      "before": "if(last?.context===c&&last.asset===asset&&last.key===key){counters.hits++;return buffer;}",
+      "after": "if(last?.context===c&&last.asset===asset&&last.key===key){counters.hits++;return fieldImage||buffer;}\n closeFieldImage();last=null;"
+    },
+    {
+      "before": "last={context:c,asset,key};return buffer;",
+      "after": "if(useImage){const t=G.performance.now();fieldImage=buffer.transferToImageBitmap();imageStats.transferMs+=G.performance.now()-t;imageStats.created++;imageStats.bytes=fieldImage.width*fieldImage.height*4;imageStats.peakBytes=Math.max(imageStats.peakBytes,imageStats.bytes);}\n last={context:c,asset,key};return fieldImage||buffer;"
+    },
+    {
+      "before": "cv=q&&material(c,field);",
+      "after": "cv=q&&material(c,field,nativeBudget||(originalOnly&&inheritedReplacement&&!!fieldImage));"
+    },
+    {
+      "before": "const replaceLiveSS=route?.nativeLive",
+      "after": "if(id===BODY&&!originalOnly&&!transition&&fieldImage&&cv===fieldImage){cv=material(c,field,false);if(!cv)return fallback('image-transition-unavailable');}\n const replaceLiveSS=route?.nativeLive"
+    },
+    {
+      "before": "stats:()=>({...counters,nativeBudget:",
+      "after": "stats:()=>({...counters,imageBitmap:{...imageStats},nativeBudget:"
+    },
+    {
+      "before": "totalLogicalBytes:counters.bytes+transitionCounters.bytes+ssStats.scratchBytes",
+      "after": "totalLogicalBytes:counters.bytes+transitionCounters.bytes+ssStats.scratchBytes+imageStats.bytes"
+    },
+    {
+      "before": "clear:()=>{for(const cv of [ssCanvas,lowMaskCanvas])",
+      "after": "clear:()=>{closeFieldImage();for(const cv of [ssCanvas,lowMaskCanvas])"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "runId": 44304341088,
+  "artifactId": 14428440449,
+  "zipSha256": "f7f1effd8fe758a9a77228f14a04820f240aa1b3cc9e004a383c6564c9b29236",
+  "researchRef": "d97a94ad380183d36c50946b839648b2aaa35be1",
+  "candidate": "279d0ef80cfc2977266c819fde809e4f9889fde7",
+  "baseline": "de8234e486633152fa376aa37633629dfecc83ee",
+  "ciConclusion": "success",
+  "targetedVisualAccepted": true,
+  "productionAccepted": false,
+  "rows": [
+    {
+      "view": "left-native",
+      "diagnosticCount": 25,
+      "nonIntersectingFootprints": 9,
+      "maxRgbDifference": 1,
+      "finalBodyAlphaChangedPixels": 0,
+      "capsChangedPixels": 0,
+      "actualSceneOutsideEditGuardPixels": 0,
+      "actualRimExact": true,
+      "gameplayExact": true
+    },
+    {
+      "view": "left-phone",
+      "diagnosticCount": 0,
+      "nonIntersectingFootprints": 0,
+      "maxRgbDifference": 0,
+      "finalBodyAlphaChangedPixels": 0,
+      "capsChangedPixels": 0,
+      "actualSceneOutsideEditGuardPixels": 0,
+      "actualRimExact": true,
+      "gameplayExact": true
+    }
+  ]
+}

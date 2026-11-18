@@ -1,0 +1,443 @@
+{
+  "contractsPassed": true,
+  "qualityAccepted": false,
+  "scope": "Only the explicit old/new union of7 nonwalk attachment faces may change source colors. Source data/caps/physics/final BODY alpha remain exact; actual Scene outside those planes +3 physical-pixel sampling guard remains exact. Art must be manually judged in actual Scene, especially lower-join-native endpoint.",
+  "rows": [
+    {
+      "view": "left-native",
+      "normalSceneChangedPixels": 5396,
+      "bodyChangedPixels": 5457,
+      "finalBodyAlphaChangedPixels": 0,
+      "bodyOutsideWhiteMaskBoundaryDiagnostics": [
+        {
+          "x": 1303,
+          "y": 660,
+          "rgbMaxDifference": 1,
+          "sourceFootprint": [
+            123.4388614580308,
+            1044.3411753315909,
+            123.63249104463164,
+            1044.5348049181916
+          ],
+          "intersectingPlanes": [
+            6
+          ],
+          "centerDistancePhysicalPixels": 0.504804977616109,
+          "minWorldBelowFloor": 129.5168756530834,
+          "classification": "Opaque nonwalk 1-level difference within1physical pixel of approved face boundary; no renderer-cause assertion; actual Scene protection independently required"
+        },
+        {
+          "x": 1207,
+          "y": 684,
+          "rgbMaxDifference": 1,
+          "sourceFootprint": [
+            104.85042114435086,
+            1048.9882854100108,
+            105.0440507309517,
+            1049.1819149966116
+          ],
+          "intersectingPlanes": [],
+          "centerDistancePhysicalPixels": 0.744972203985007,
+          "minWorldBelowFloor": 150.08113897596695,
+          "classification": "Opaque nonwalk 1-level difference within1physical pixel of approved face boundary; no renderer-cause assertion; actual Scene protection independently required"
+        },
+        {
+          "x": 705,
+          "y": 686,
+          "rgbMaxDifference": 1,
+          "sourceFootprint": [
+            7.648368670732888,
+            1049.3755445832123,
+            7.841998257333721,
+            1049.569174169813
+          ],
+          "intersectingPlanes": [
+            8
+          ],
+          "centerDistancePhysicalPixels": 0.6536227865898506,
+          "minWorldBelowFloor": 182.71545454545458,
+          "classification": "Opaque nonwalk 1-level difference within1physical pixel of approved face boundary; no renderer-cause assertion; actual Scene protection independently required"
+        },
+        {
+          "x": 1204,
+          "y": 689,
+          "rgbMaxDifference": 1,
+          "sourceFootprint": [
+            104.26953238454837,
+            1049.9564333430149,
+            104.4631619711492,
+            1050.1500629296156
+          ],
+          "intersectingPlanes": [
+            13
+          ],
+          "centerDistancePhysicalPixels": 0.6172542413632539,
+          "minWorldBelowFloor": 153.29952978056463,
+          "classification": "Opaque nonwalk 1-level difference within1physical pixel of approved face boundary; no renderer-cause assertion; actual Scene protection independently required"
+        },
+        {
+          "x": 691,
+          "y": 707,
+          "rgbMaxDifference": 1,
+          "sourceFootprint": [
+            4.937554458321232,
+            1053.44176590183,
+            5.1311840449220645,
+            1053.6353954884307
+          ],
+          "intersectingPlanes": [
+            8
+          ],
+          "centerDistancePhysicalPixels": 0.6488340441337681,
+          "minWorldBelowFloor": 195.44272727272755,
+          "classification": "Opaque nonwalk 1-level difference within1physical pixel of approved face boundary; no renderer-cause assertion; actual Scene protection independently required"
+        },
+        {
+          "x": 1185,
+          "y": 714,
+          "rgbMaxDifference": 1,
+          "sourceFootprint": [
+            100.59057023913255,
+            1054.7971730080358,
+            100.78419982573338,
+            1054.9908025946365
+          ],
+          "intersectingPlanes": [],
+          "centerDistancePhysicalPixels": 0.7704770598182852,
+          "minWorldBelowFloor": 169.64226750261287,
+          "classification": "Opaque nonwalk 1-level difference within1physical pixel of approved face boundary; no renderer-cause assertion; actual Scene protection independently required"
+        },
+        {
+          "x": 1179,
+          "y": 721,
+          "rgbMaxDifference": 1,
+          "sourceFootprint": [
+            99.42879271952756,
+            1056.1525801142416,
+            99.6224223061284,
+            1056.3462097008423
+          ],
+          "intersectingPlanes": [
+            13
+          ],
+          "centerDistancePhysicalPixels": 0.5748253538961651,
+          "minWorldBelowFloor": 174.26086729362623,
+          "classification": "Opaque nonwalk 1-level difference within1physical pixel of approved face boundary; no renderer-cause assertion; actual Scene protection independently required"
+        },
+        {
+          "x": 1178,
+          "y": 722,
+          "rgbMaxDifference": 1,
+          "sourceFootprint": [
+            99.23516313292671,
+            1056.3462097008423,
+            99.42879271952755,
+            1056.539839287443
+          ],
+          "intersectingPlanes": [
+            13
+          ],
+          "centerDistancePhysicalPixels": 0.6239166101116043,
+          "minWorldBelowFloor": 174.92962382445148,
+          "classification": "Opaque nonwalk 1-level difference within1physical pixel of approved face boundary; no renderer-cause assertion; actual Scene protection independently required"
+        },
+        {
+          "x": 1177,
+          "y": 723,
+          "rgbMaxDifference": 1,
+          "sourceFootprint": [
+            99.04153354632588,
+            1056.539839287443,
+            99.23516313292671,
+            1056.7334688740439
+          ],
+          "intersectingPlanes": [
+            13
+          ],
+          "centerDistancePhysicalPixels": 0.6653301274046535,
+          "minWorldBelowFloor": 175.5983803552772,
+          "classification": "Opaque nonwalk 1-level difference within1physical pixel of approved face boundary; no renderer-cause assertion; actual Scene protection independently required"
+        },
+        {
+          "x": 1176,
+          "y": 724,
+          "rgbMaxDifference": 1,
+          "sourceFootprint": [
+            98.84790395972506,
+            1056.7334688740439,
+            99.0415335463259,
+            1056.9270984606446
+          ],
+          "intersectingPlanes": [
+            13
+          ],
+          "centerDistancePhysicalPixels": 0.6991157174529302,
+          "minWorldBelowFloor": 176.26713688610198,
+          "classification": "Opaque nonwalk 1-level difference within1physical pixel of approved face boundary; no renderer-cause assertion; actual Scene protection independently required"
+        },
+        {
+          "x": 1175,
+          "y": 725,
+          "rgbMaxDifference": 1,
+          "sourceFootprint": [
+            98.65427437312422,
+            1056.9270984606449,
+            98.84790395972506,
+            1057.1207280472456
+          ],
+          "intersectingPlanes": [],
+          "centerDistancePhysicalPixels": 0.7253239896383793,
+          "minWorldBelowFloor": 176.93589341692814,
+          "classification": "Opaque nonwalk 1-level difference within1physical pixel of approved face boundary; no renderer-cause assertion; actual Scene protection independently required"
+        },
+        {
+          "x": 1174,
+          "y": 726,
+          "rgbMaxDifference": 1,
+          "sourceFootprint": [
+            98.46064478652339,
+            1057.1207280472456,
+            98.65427437312422,
+            1057.3143576338464
+          ],
+          "intersectingPlanes": [],
+          "centerDistancePhysicalPixels": 0.7440063001258272,
+          "minWorldBelowFloor": 177.6046499477534,
+          "classification": "Opaque nonwalk 1-level difference within1physical pixel of approved face boundary; no renderer-cause assertion; actual Scene protection independently required"
+        },
+        {
+          "x": 1173,
+          "y": 727,
+          "rgbMaxDifference": 1,
+          "sourceFootprint": [
+            98.26701519992257,
+            1057.3143576338466,
+            98.4606447865234,
+            1057.5079872204474
+          ],
+          "intersectingPlanes": [],
+          "centerDistancePhysicalPixels": 0.7552147016397693,
+          "minWorldBelowFloor": 178.27340647857955,
+          "classification": "Opaque nonwalk 1-level difference within1physical pixel of approved face boundary; no renderer-cause assertion; actual Scene protection independently required"
+        },
+        {
+          "x": 1172,
+          "y": 728,
+          "rgbMaxDifference": 1,
+          "sourceFootprint": [
+            98.07338561332173,
+            1057.5079872204474,
+            98.26701519992257,
+            1057.7016168070481
+          ],
+          "intersectingPlanes": [],
+          "centerDistancePhysicalPixels": 0.7590018940311855,
+          "minWorldBelowFloor": 178.94216300940434,
+          "classification": "Opaque nonwalk 1-level difference within1physical pixel of approved face boundary; no renderer-cause assertion; actual Scene protection independently required"
+        },
+        {
+          "x": 1171,
+          "y": 729,
+          "rgbMaxDifference": 1,
+          "sourceFootprint": [
+            97.87975602672088,
+            1057.7016168070481,
+            98.07338561332172,
+            1057.895246393649
+          ],
+          "intersectingPlanes": [],
+          "centerDistancePhysicalPixels": 0.755421175673859,
+          "minWorldBelowFloor": 179.61091954023004,
+          "classification": "Opaque nonwalk 1-level difference within1physical pixel of approved face boundary; no renderer-cause assertion; actual Scene protection independently required"
+        },
+        {
+          "x": 1170,
+          "y": 730,
+          "rgbMaxDifference": 1,
+          "sourceFootprint": [
+            97.68612644012005,
+            1057.895246393649,
+            97.87975602672088,
+            1058.0888759802497
+          ],
+          "intersectingPlanes": [],
+          "centerDistancePhysicalPixels": 0.7445263957904877,
+          "minWorldBelowFloor": 180.2796760710553,
+          "classification": "Opaque nonwalk 1-level difference within1physical pixel of approved face boundary; no renderer-cause assertion; actual Scene protection independently required"
+        },
+        {
+          "x": 1169,
+          "y": 731,
+          "rgbMaxDifference": 1,
+          "sourceFootprint": [
+            97.49249685351923,
+            1058.08887598025,
+            97.68612644012006,
+            1058.2825055668507
+          ],
+          "intersectingPlanes": [],
+          "centerDistancePhysicalPixels": 0.7263719077449586,
+          "minWorldBelowFloor": 180.948432601881,
+          "classification": "Opaque nonwalk 1-level difference within1physical pixel of approved face boundary; no renderer-cause assertion; actual Scene protection independently required"
+        },
+        {
+          "x": 1168,
+          "y": 732,
+          "rgbMaxDifference": 1,
+          "sourceFootprint": [
+            97.29886726691839,
+            1058.2825055668507,
+            97.49249685351923,
+            1058.4761351534514
+          ],
+          "intersectingPlanes": [
+            13
+          ],
+          "centerDistancePhysicalPixels": 0.70101252336193,
+          "minWorldBelowFloor": 181.6171891327067,
+          "classification": "Opaque nonwalk 1-level difference within1physical pixel of approved face boundary; no renderer-cause assertion; actual Scene protection independently required"
+        },
+        {
+          "x": 1167,
+          "y": 733,
+          "rgbMaxDifference": 1,
+          "sourceFootprint": [
+            97.10523768031756,
+            1058.4761351534514,
+            97.29886726691839,
+            1058.6697647400522
+          ],
+          "intersectingPlanes": [
+            13
+          ],
+          "centerDistancePhysicalPixels": 0.6685034683116537,
+          "minWorldBelowFloor": 182.28594566353195,
+          "classification": "Opaque nonwalk 1-level difference within1physical pixel of approved face boundary; no renderer-cause assertion; actual Scene protection independently required"
+        },
+        {
+          "x": 1166,
+          "y": 734,
+          "rgbMaxDifference": 1,
+          "sourceFootprint": [
+            96.91160809371674,
+            1058.6697647400522,
+            97.10523768031757,
+            1058.863394326653
+          ],
+          "intersectingPlanes": [
+            13
+          ],
+          "centerDistancePhysicalPixels": 0.6289003386196667,
+          "minWorldBelowFloor": 182.95470219435674,
+          "classification": "Opaque nonwalk 1-level difference within1physical pixel of approved face boundary; no renderer-cause assertion; actual Scene protection independently required"
+        },
+        {
+          "x": 1165,
+          "y": 735,
+          "rgbMaxDifference": 1,
+          "sourceFootprint": [
+            96.7179785071159,
+            1058.8633943266532,
+            96.91160809371674,
+            1059.057023913254
+          ],
+          "intersectingPlanes": [
+            13
+          ],
+          "centerDistancePhysicalPixels": 0.5822590583152529,
+          "minWorldBelowFloor": 183.62345872518335,
+          "classification": "Opaque nonwalk 1-level difference within1physical pixel of approved face boundary; no renderer-cause assertion; actual Scene protection independently required"
+        },
+        {
+          "x": 696,
+          "y": 738,
+          "rgbMaxDifference": 1,
+          "sourceFootprint": [
+            5.905702391325395,
+            1059.4442830864557,
+            6.099331977926227,
+            1059.6379126730565
+          ],
+          "intersectingPlanes": [
+            1
+          ],
+          "centerDistancePhysicalPixels": 0.5777124904421407,
+          "minWorldBelowFloor": 214.23060606060608,
+          "classification": "Opaque nonwalk 1-level difference within1physical pixel of approved face boundary; no renderer-cause assertion; actual Scene protection independently required"
+        },
+        {
+          "x": 660,
+          "y": 749,
+          "rgbMaxDifference": 1,
+          "sourceFootprint": [
+            -1.0649627263045793,
+            1061.5742085390648,
+            -0.8713331397037467,
+            1061.7678381256655
+          ],
+          "intersectingPlanes": [
+            8
+          ],
+          "centerDistancePhysicalPixels": 0.6518126773729113,
+          "minWorldBelowFloor": 220.8972727272726,
+          "classification": "Opaque nonwalk 1-level difference within1physical pixel of approved face boundary; no renderer-cause assertion; actual Scene protection independently required"
+        },
+        {
+          "x": 682,
+          "y": 754,
+          "rgbMaxDifference": 1,
+          "sourceFootprint": [
+            3.194888178913738,
+            1062.542356472069,
+            3.388517765514571,
+            1062.7359860586698
+          ],
+          "intersectingPlanes": [
+            1
+          ],
+          "centerDistancePhysicalPixels": 0.5551166369416806,
+          "minWorldBelowFloor": 223.92757575757605,
+          "classification": "Opaque nonwalk 1-level difference within1physical pixel of approved face boundary; no renderer-cause assertion; actual Scene protection independently required"
+        },
+        {
+          "x": 684,
+          "y": 758,
+          "rgbMaxDifference": 1,
+          "sourceFootprint": [
+            3.5821473521154035,
+            1063.3168748184723,
+            3.775776938716236,
+            1063.510504405073
+          ],
+          "intersectingPlanes": [
+            9
+          ],
+          "centerDistancePhysicalPixels": 0.6464947094931641,
+          "minWorldBelowFloor": 226.35181818181854,
+          "classification": "Opaque nonwalk 1-level difference within1physical pixel of approved face boundary; no renderer-cause assertion; actual Scene protection independently required"
+        }
+      ],
+      "bodyOutsideApprovedGeometricBoundaryBandChangedPixels": 0,
+      "capsChangedPixels": 0,
+      "normalSceneOutsideExplicitPlanesWith3PixelGuardChangedPixels": 0,
+      "actualRimGeometryAndRasterExact": true,
+      "sourceFullColorChangedInsideExplicitNonwalkPlanes": 4639,
+      "sourcePartialColorChangedInsideExplicitNonwalkPlanes": 12,
+      "gameplayExact": true
+    },
+    {
+      "view": "left-phone",
+      "normalSceneChangedPixels": 3425,
+      "bodyChangedPixels": 3476,
+      "finalBodyAlphaChangedPixels": 0,
+      "bodyOutsideWhiteMaskBoundaryDiagnostics": [],
+      "bodyOutsideApprovedGeometricBoundaryBandChangedPixels": 0,
+      "capsChangedPixels": 0,
+      "normalSceneOutsideExplicitPlanesWith3PixelGuardChangedPixels": 0,
+      "actualRimGeometryAndRasterExact": true,
+      "sourceFullColorChangedInsideExplicitNonwalkPlanes": 2320,
+      "sourcePartialColorChangedInsideExplicitNonwalkPlanes": 14,
+      "gameplayExact": true
+    }
+  ]
+}
