@@ -1,0 +1,9 @@
+# Complete lower target ROI: bounded clean cost preview
+
+Control7ca vs candidate230bb60b on identical official source126a2b and copied pilot636. readyForCI=true for this experiment only. Actual quality CI44275422616 and exact frozen helper SHA are pinned; its visual-delta report is included by SHA. Cached/walk exact and observed alpha/upper/road/full-tag contracts passed, lower broad delta1 changes recorded. Final positive exterior followup remains pending, qualityAccepted=false. This is not the rejected bdb9 alpha-squared model.
+
+Six pages, maximum pose1331x763 scale1.65 only: clean ABBA4 (first/5cold/30warm/60pan) and independent120rAF2. No perframe readback in clean/rAF. Clean checks each render's synthetic battle outside its timer. rAF no fullbattle serialization inside callbacks; pre/post checks with one finalreadback outside loop timing. Initial preparation included first render; independent band cost is unmeasured, not0. Same source/physics/Stage3/save/storage exact gates retained.
+
+Cross-variant RGB exact is intentionally NOT a requirement for this new art model: record changed pixels/maxdelta, require repeated samevariant PNG exact and alpha0, retain separate actual4 protected-role evidence. rAF end hashes are reported, not falsely used as equality gate. PNGs are reset-camera captures; endpoint hash belongs to actual last pan. Actual4 quality approval cannot be expanded to every pan pixel by this cost test.
+
+No new normal builds; ownruntime source126 remains pinned and helper/pilot overrides are preview only. Original public842 final whole-cost comparison is still required. There is no user-approved numeric performance threshold; report paired timings and scheduling without inventing acceptance or phone/GPU FPS. No product registration, cap changes or storage access.

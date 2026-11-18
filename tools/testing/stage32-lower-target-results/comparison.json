@@ -1,0 +1,1626 @@
+{
+  "scope": "Four actual views, lower complete-target composition model not exact optimization. Structural gates do not authorize all partial-tag or lower RGB changes; independent visual/source-role judgment required. Original 7ca baseline exact to prior real images. No production/performance acceptance.",
+  "pass": true,
+  "failures": [],
+  "qualityAccepted": false,
+  "rows": [
+    {
+      "view": "gray-left",
+      "sceneChanged": 0,
+      "terrainChanged": 0,
+      "alpha": 0,
+      "terrainAlpha": 0,
+      "exterior": 0,
+      "aboveSplit": 0,
+      "terrainAboveSplit": 0,
+      "maxRGBDelta": 0,
+      "split": 421,
+      "lowerProbe": null,
+      "tag": null,
+      "baselineStats": {
+        "rasterizations": 12,
+        "hits": 12,
+        "allocations": 1,
+        "resizes": 0,
+        "bytes": 1065024,
+        "peakBytes": 1065024,
+        "fallbacks": 0,
+        "lastFallback": null,
+        "nativeJunction": {
+          "calls": 9,
+          "ms": 0.3000000000174623,
+          "prepareCalls": 1,
+          "prepareMs": 0,
+          "staticBytes": 26782,
+          "scope": "Connected nonwalk gray seam; test only, BODY/apron min2device and visible min1device at .05; test-only sampled scale >= .05"
+        },
+        "supersample": {
+          "calls": 6,
+          "stripes": 6,
+          "emptyStripes": 2,
+          "highRasterStripes": 4,
+          "eligibilityScanPixels": 109774,
+          "eligible": 4015,
+          "corrected": 2385,
+          "opaqueGrassSkipped": 19117,
+          "protectedPaletteSkipped": 7,
+          "roadSkipped": 0,
+          "subpixelRoadSkipped": 0,
+          "unresolvedHolesSkipped": 39,
+          "alphaChanged": 0,
+          "skips": 0,
+          "allocations": 2,
+          "resizes": 4,
+          "scratchBytes": 1971120,
+          "peakLogicalBytes": 6307584,
+          "readbackBytes": 4336464,
+          "ms": 189.5999999999476,
+          "factor": 2,
+          "maxScratchPixels": 1048576,
+          "scope": "Logical canvas and live readback payload only; not total JS/native/GPU heap"
+        },
+        "maxPixels": 8388608,
+        "transition": {
+          "fills": 30,
+          "passes": 9,
+          "boundaryPasses": 3,
+          "allocations": 3,
+          "resizes": 3,
+          "bytes": 1882368,
+          "peakBytes": 1882368,
+          "skips": 0,
+          "lastSkip": null,
+          "maxPixels": 1048576,
+          "bufferDimensions": [
+            [
+              516,
+              198
+            ],
+            [
+              516,
+              198
+            ],
+            [
+              516,
+              516
+            ]
+          ]
+        },
+        "totalLogicalBytes": 4918512
+      },
+      "candidateStats": {
+        "rasterizations": 12,
+        "hits": 12,
+        "allocations": 1,
+        "resizes": 0,
+        "bytes": 1065024,
+        "peakBytes": 1065024,
+        "fallbacks": 0,
+        "lastFallback": null,
+        "nativeJunction": {
+          "calls": 9,
+          "ms": 0.2000000000698492,
+          "prepareCalls": 1,
+          "prepareMs": 0.09999999997671694,
+          "staticBytes": 26782,
+          "scope": "Connected nonwalk gray seam; test only, BODY/apron min2device and visible min1device at .05; test-only sampled scale >= .05"
+        },
+        "supersample": {
+          "calls": 6,
+          "stripes": 6,
+          "emptyStripes": 2,
+          "highRasterStripes": 4,
+          "eligibilityScanPixels": 109774,
+          "eligible": 4015,
+          "corrected": 2385,
+          "opaqueGrassSkipped": 19117,
+          "protectedPaletteSkipped": 7,
+          "roadSkipped": 0,
+          "subpixelRoadSkipped": 0,
+          "unresolvedHolesSkipped": 39,
+          "alphaChanged": 0,
+          "skips": 0,
+          "allocations": 2,
+          "resizes": 4,
+          "scratchBytes": 1971120,
+          "peakLogicalBytes": 6307584,
+          "readbackBytes": 4336464,
+          "ms": 198.5,
+          "factor": 2,
+          "maxScratchPixels": 1048576,
+          "scope": "Logical canvas and live readback payload only; not total JS/native/GPU heap"
+        },
+        "maxPixels": 8388608,
+        "transition": {
+          "fills": 30,
+          "passes": 9,
+          "boundaryPasses": 3,
+          "allocations": 3,
+          "resizes": 3,
+          "bytes": 1882368,
+          "peakBytes": 1882368,
+          "skips": 0,
+          "lastSkip": null,
+          "maxPixels": 1048576,
+          "bufferDimensions": [
+            [
+              516,
+              198
+            ],
+            [
+              516,
+              198
+            ],
+            [
+              516,
+              516
+            ]
+          ]
+        },
+        "totalLogicalBytes": 4918512
+      }
+    },
+    {
+      "view": "maximum",
+      "sceneChanged": 53784,
+      "terrainChanged": 53784,
+      "alpha": 0,
+      "terrainAlpha": 0,
+      "exterior": 0,
+      "aboveSplit": 0,
+      "terrainAboveSplit": 0,
+      "maxRGBDelta": 3,
+      "split": 490,
+      "lowerProbe": {
+        "y0": 490,
+        "width": 1331,
+        "height": 273,
+        "workPositive": 360701,
+        "targetDifferencePixels": 3157,
+        "fieldNonopaque": 0,
+        "targetAlphaChanged": 0
+      },
+      "tag": {
+        "scope": "Actual Chrome direct native context original fill/clip/bitmap order plus independent GEOS visible-role clip. Both tag variants omit SS to avoid changed nonlinear eligibility; raw model reports original source-primitive tag losses including hidden AA; visible-oracle model is a bounded GEOS-defined classification and not universal true-foreground preservation or frozen-SS semantic equivalence. Original SS-on vs candidate real RGB/alpha/visual still compared separately.",
+        "rows": [
+          {
+            "model": "raw-primitive",
+            "kind": "grass",
+            "changed": 137,
+            "fullChanged": 0,
+            "alpha": 0,
+            "max": 2,
+            "positive": 68596,
+            "aboveSplitChanged": 0,
+            "split": 490,
+            "examples": [
+              {
+                "x": 954,
+                "y": 574,
+                "before": 51,
+                "after": 50
+              },
+              {
+                "x": 951,
+                "y": 575,
+                "before": 74,
+                "after": 75
+              },
+              {
+                "x": 945,
+                "y": 576,
+                "before": 85,
+                "after": 84
+              },
+              {
+                "x": 938,
+                "y": 577,
+                "before": 33,
+                "after": 34
+              },
+              {
+                "x": 939,
+                "y": 577,
+                "before": 78,
+                "after": 77
+              },
+              {
+                "x": 941,
+                "y": 577,
+                "before": 67,
+                "after": 68
+              },
+              {
+                "x": 942,
+                "y": 577,
+                "before": 39,
+                "after": 40
+              },
+              {
+                "x": 933,
+                "y": 578,
+                "before": 33,
+                "after": 34
+              },
+              {
+                "x": 930,
+                "y": 579,
+                "before": 84,
+                "after": 85
+              },
+              {
+                "x": 971,
+                "y": 583,
+                "before": 37,
+                "after": 38
+              },
+              {
+                "x": 972,
+                "y": 583,
+                "before": 36,
+                "after": 35
+              },
+              {
+                "x": 972,
+                "y": 584,
+                "before": 22,
+                "after": 23
+              },
+              {
+                "x": 976,
+                "y": 587,
+                "before": 70,
+                "after": 71
+              },
+              {
+                "x": 978,
+                "y": 589,
+                "before": 47,
+                "after": 48
+              },
+              {
+                "x": 979,
+                "y": 589,
+                "before": 25,
+                "after": 24
+              },
+              {
+                "x": 980,
+                "y": 590,
+                "before": 35,
+                "after": 36
+              },
+              {
+                "x": 982,
+                "y": 592,
+                "before": 61,
+                "after": 60
+              },
+              {
+                "x": 1009,
+                "y": 592,
+                "before": 10,
+                "after": 11
+              },
+              {
+                "x": 983,
+                "y": 593,
+                "before": 74,
+                "after": 73
+              },
+              {
+                "x": 1004,
+                "y": 594,
+                "before": 21,
+                "after": 22
+              },
+              {
+                "x": 1001,
+                "y": 595,
+                "before": 26,
+                "after": 27
+              },
+              {
+                "x": 999,
+                "y": 596,
+                "before": 70,
+                "after": 69
+              },
+              {
+                "x": 1000,
+                "y": 596,
+                "before": 24,
+                "after": 25
+              },
+              {
+                "x": 987,
+                "y": 597,
+                "before": 70,
+                "after": 71
+              }
+            ]
+          },
+          {
+            "model": "raw-primitive",
+            "kind": "pale",
+            "changed": 0,
+            "fullChanged": 0,
+            "alpha": 0,
+            "max": 0,
+            "positive": 0,
+            "aboveSplitChanged": 0,
+            "split": 490,
+            "examples": []
+          },
+          {
+            "model": "raw-primitive",
+            "kind": "road",
+            "changed": 0,
+            "fullChanged": 0,
+            "alpha": 0,
+            "max": 0,
+            "positive": 0,
+            "aboveSplitChanged": 0,
+            "split": 490,
+            "examples": []
+          },
+          {
+            "model": "visible-oracle",
+            "kind": "grass",
+            "changed": 240,
+            "fullChanged": 0,
+            "alpha": 0,
+            "max": 85,
+            "positive": 68498,
+            "aboveSplitChanged": 0,
+            "split": 490,
+            "examples": [
+              {
+                "x": 954,
+                "y": 574,
+                "before": 51,
+                "after": 0
+              },
+              {
+                "x": 955,
+                "y": 574,
+                "before": 80,
+                "after": 0
+              },
+              {
+                "x": 956,
+                "y": 574,
+                "before": 84,
+                "after": 0
+              },
+              {
+                "x": 957,
+                "y": 574,
+                "before": 61,
+                "after": 0
+              },
+              {
+                "x": 958,
+                "y": 574,
+                "before": 14,
+                "after": 0
+              },
+              {
+                "x": 960,
+                "y": 574,
+                "before": 56,
+                "after": 0
+              },
+              {
+                "x": 961,
+                "y": 574,
+                "before": 46,
+                "after": 0
+              },
+              {
+                "x": 949,
+                "y": 575,
+                "before": 67,
+                "after": 0
+              },
+              {
+                "x": 950,
+                "y": 575,
+                "before": 85,
+                "after": 0
+              },
+              {
+                "x": 951,
+                "y": 575,
+                "before": 74,
+                "after": 0
+              },
+              {
+                "x": 952,
+                "y": 575,
+                "before": 45,
+                "after": 0
+              },
+              {
+                "x": 953,
+                "y": 575,
+                "before": 7,
+                "after": 0
+              },
+              {
+                "x": 961,
+                "y": 575,
+                "before": 10,
+                "after": 0
+              },
+              {
+                "x": 962,
+                "y": 575,
+                "before": 81,
+                "after": 0
+              },
+              {
+                "x": 944,
+                "y": 576,
+                "before": 63,
+                "after": 0
+              },
+              {
+                "x": 945,
+                "y": 576,
+                "before": 85,
+                "after": 0
+              },
+              {
+                "x": 946,
+                "y": 576,
+                "before": 75,
+                "after": 0
+              },
+              {
+                "x": 947,
+                "y": 576,
+                "before": 43,
+                "after": 0
+              },
+              {
+                "x": 963,
+                "y": 576,
+                "before": 79,
+                "after": 0
+              },
+              {
+                "x": 938,
+                "y": 577,
+                "before": 33,
+                "after": 0
+              },
+              {
+                "x": 939,
+                "y": 577,
+                "before": 78,
+                "after": 0
+              },
+              {
+                "x": 940,
+                "y": 577,
+                "before": 84,
+                "after": 0
+              },
+              {
+                "x": 941,
+                "y": 577,
+                "before": 67,
+                "after": 0
+              },
+              {
+                "x": 942,
+                "y": 577,
+                "before": 39,
+                "after": 0
+              }
+            ]
+          },
+          {
+            "model": "visible-oracle",
+            "kind": "pale",
+            "changed": 0,
+            "fullChanged": 0,
+            "alpha": 0,
+            "max": 0,
+            "positive": 0,
+            "aboveSplitChanged": 0,
+            "split": 490,
+            "examples": []
+          },
+          {
+            "model": "visible-oracle",
+            "kind": "road",
+            "changed": 0,
+            "fullChanged": 0,
+            "alpha": 0,
+            "max": 0,
+            "positive": 0,
+            "aboveSplitChanged": 0,
+            "split": 490,
+            "examples": []
+          }
+        ]
+      },
+      "baselineStats": {
+        "rasterizations": 2,
+        "hits": 4,
+        "allocations": 1,
+        "resizes": 0,
+        "bytes": 4062212,
+        "peakBytes": 4062212,
+        "fallbacks": 0,
+        "lastFallback": null,
+        "nativeJunction": {
+          "calls": 2,
+          "ms": 0,
+          "prepareCalls": 1,
+          "prepareMs": 0.09999999997671694,
+          "staticBytes": 26782,
+          "scope": "Connected nonwalk gray seam; test only, BODY/apron min2device and visible min1device at .05; test-only sampled scale >= .05"
+        },
+        "supersample": {
+          "calls": 0,
+          "stripes": 0,
+          "emptyStripes": 0,
+          "highRasterStripes": 0,
+          "eligibilityScanPixels": 0,
+          "eligible": 0,
+          "corrected": 0,
+          "opaqueGrassSkipped": 0,
+          "protectedPaletteSkipped": 0,
+          "roadSkipped": 0,
+          "subpixelRoadSkipped": 0,
+          "unresolvedHolesSkipped": 0,
+          "alphaChanged": 0,
+          "skips": 0,
+          "allocations": 0,
+          "resizes": 0,
+          "scratchBytes": 0,
+          "peakLogicalBytes": 0,
+          "readbackBytes": 0,
+          "ms": 0,
+          "factor": 2,
+          "maxScratchPixels": 1048576,
+          "scope": "Logical canvas and live readback payload only; not total JS/native/GPU heap"
+        },
+        "maxPixels": 8388608,
+        "transition": {
+          "fills": 20,
+          "passes": 2,
+          "boundaryPasses": 2,
+          "allocations": 3,
+          "resizes": 3,
+          "bytes": 6990412,
+          "peakBytes": 6990412,
+          "skips": 0,
+          "lastSkip": null,
+          "maxPixels": 1048576,
+          "bufferDimensions": [
+            [
+              1331,
+              275
+            ],
+            [
+              1331,
+              275
+            ],
+            [
+              1331,
+              763
+            ]
+          ]
+        },
+        "totalLogicalBytes": 11052624
+      },
+      "candidateStats": {
+        "rasterizations": 2,
+        "hits": 4,
+        "allocations": 1,
+        "resizes": 0,
+        "bytes": 4062212,
+        "peakBytes": 4062212,
+        "fallbacks": 0,
+        "lastFallback": null,
+        "nativeJunction": {
+          "calls": 2,
+          "ms": 0.1000000000349246,
+          "prepareCalls": 1,
+          "prepareMs": 0,
+          "staticBytes": 26782,
+          "scope": "Connected nonwalk gray seam; test only, BODY/apron min2device and visible min1device at .05; test-only sampled scale >= .05"
+        },
+        "supersample": {
+          "calls": 0,
+          "stripes": 0,
+          "emptyStripes": 0,
+          "highRasterStripes": 0,
+          "eligibilityScanPixels": 0,
+          "eligible": 0,
+          "corrected": 0,
+          "opaqueGrassSkipped": 0,
+          "protectedPaletteSkipped": 0,
+          "roadSkipped": 0,
+          "subpixelRoadSkipped": 0,
+          "unresolvedHolesSkipped": 0,
+          "alphaChanged": 0,
+          "skips": 0,
+          "allocations": 0,
+          "resizes": 0,
+          "scratchBytes": 0,
+          "peakLogicalBytes": 0,
+          "readbackBytes": 0,
+          "ms": 0,
+          "factor": 2,
+          "maxScratchPixels": 1048576,
+          "scope": "Logical canvas and live readback payload only; not total JS/native/GPU heap"
+        },
+        "maxPixels": 8388608,
+        "transition": {
+          "fills": 0,
+          "passes": 0,
+          "boundaryPasses": 0,
+          "allocations": 3,
+          "resizes": 1,
+          "bytes": 1453460,
+          "peakBytes": 1453460,
+          "skips": 0,
+          "lastSkip": null,
+          "maxPixels": 1048576,
+          "bufferDimensions": [
+            [
+              1331,
+              273
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        "totalLogicalBytes": 5515672
+      }
+    },
+    {
+      "view": "renderer-above",
+      "sceneChanged": 70819,
+      "terrainChanged": 70814,
+      "alpha": 0,
+      "terrainAlpha": 0,
+      "exterior": 0,
+      "aboveSplit": 0,
+      "terrainAboveSplit": 0,
+      "maxRGBDelta": 11,
+      "split": 450,
+      "lowerProbe": {
+        "y0": 450,
+        "width": 1331,
+        "height": 290,
+        "workPositive": 383328,
+        "targetDifferencePixels": 4341,
+        "fieldNonopaque": 0,
+        "targetAlphaChanged": 0
+      },
+      "tag": {
+        "scope": "Actual Chrome direct native context original fill/clip/bitmap order plus independent GEOS visible-role clip. Both tag variants omit SS to avoid changed nonlinear eligibility; raw model reports original source-primitive tag losses including hidden AA; visible-oracle model is a bounded GEOS-defined classification and not universal true-foreground preservation or frozen-SS semantic equivalence. Original SS-on vs candidate real RGB/alpha/visual still compared separately.",
+        "rows": [
+          {
+            "model": "raw-primitive",
+            "kind": "grass",
+            "changed": 1164,
+            "fullChanged": 0,
+            "alpha": 0,
+            "max": 60,
+            "positive": 57523,
+            "aboveSplitChanged": 0,
+            "split": 450,
+            "examples": [
+              {
+                "x": 1227,
+                "y": 450,
+                "before": 67,
+                "after": 64
+              },
+              {
+                "x": 1228,
+                "y": 450,
+                "before": 137,
+                "after": 120
+              },
+              {
+                "x": 1229,
+                "y": 450,
+                "before": 62,
+                "after": 67
+              },
+              {
+                "x": 1224,
+                "y": 451,
+                "before": 66,
+                "after": 62
+              },
+              {
+                "x": 1225,
+                "y": 451,
+                "before": 149,
+                "after": 114
+              },
+              {
+                "x": 1226,
+                "y": 451,
+                "before": 84,
+                "after": 55
+              },
+              {
+                "x": 1221,
+                "y": 452,
+                "before": 63,
+                "after": 60
+              },
+              {
+                "x": 1222,
+                "y": 452,
+                "before": 151,
+                "after": 112
+              },
+              {
+                "x": 1223,
+                "y": 452,
+                "before": 101,
+                "after": 49
+              },
+              {
+                "x": 1224,
+                "y": 452,
+                "before": 9,
+                "after": 0
+              },
+              {
+                "x": 1219,
+                "y": 453,
+                "before": 133,
+                "after": 104
+              },
+              {
+                "x": 1220,
+                "y": 453,
+                "before": 126,
+                "after": 66
+              },
+              {
+                "x": 1221,
+                "y": 453,
+                "before": 17,
+                "after": 0
+              },
+              {
+                "x": 1216,
+                "y": 454,
+                "before": 94,
+                "after": 81
+              },
+              {
+                "x": 1217,
+                "y": 454,
+                "before": 142,
+                "after": 82
+              },
+              {
+                "x": 1218,
+                "y": 454,
+                "before": 34,
+                "after": 0
+              },
+              {
+                "x": 1213,
+                "y": 455,
+                "before": 52,
+                "after": 50
+              },
+              {
+                "x": 1214,
+                "y": 455,
+                "before": 132,
+                "after": 90
+              },
+              {
+                "x": 1215,
+                "y": 455,
+                "before": 55,
+                "after": 15
+              },
+              {
+                "x": 1211,
+                "y": 456,
+                "before": 104,
+                "after": 88
+              },
+              {
+                "x": 1212,
+                "y": 456,
+                "before": 96,
+                "after": 51
+              },
+              {
+                "x": 1208,
+                "y": 457,
+                "before": 64,
+                "after": 58
+              },
+              {
+                "x": 1209,
+                "y": 457,
+                "before": 132,
+                "after": 86
+              },
+              {
+                "x": 1210,
+                "y": 457,
+                "before": 32,
+                "after": 10
+              }
+            ]
+          },
+          {
+            "model": "raw-primitive",
+            "kind": "pale",
+            "changed": 481,
+            "fullChanged": 0,
+            "alpha": 0,
+            "max": 3,
+            "positive": 46,
+            "aboveSplitChanged": 0,
+            "split": 450,
+            "examples": [
+              {
+                "x": 564,
+                "y": 662,
+                "before": 0,
+                "after": 1
+              },
+              {
+                "x": 566,
+                "y": 663,
+                "before": 0,
+                "after": 2
+              },
+              {
+                "x": 568,
+                "y": 664,
+                "before": 0,
+                "after": 2
+              },
+              {
+                "x": 570,
+                "y": 665,
+                "before": 0,
+                "after": 2
+              },
+              {
+                "x": 572,
+                "y": 666,
+                "before": 0,
+                "after": 2
+              },
+              {
+                "x": 574,
+                "y": 667,
+                "before": 0,
+                "after": 3
+              },
+              {
+                "x": 576,
+                "y": 668,
+                "before": 0,
+                "after": 2
+              },
+              {
+                "x": 578,
+                "y": 669,
+                "before": 0,
+                "after": 2
+              },
+              {
+                "x": 580,
+                "y": 670,
+                "before": 0,
+                "after": 2
+              },
+              {
+                "x": 582,
+                "y": 671,
+                "before": 0,
+                "after": 2
+              },
+              {
+                "x": 584,
+                "y": 672,
+                "before": 1,
+                "after": 2
+              },
+              {
+                "x": 586,
+                "y": 673,
+                "before": 0,
+                "after": 2
+              },
+              {
+                "x": 588,
+                "y": 674,
+                "before": 1,
+                "after": 2
+              },
+              {
+                "x": 590,
+                "y": 675,
+                "before": 1,
+                "after": 2
+              },
+              {
+                "x": 592,
+                "y": 676,
+                "before": 1,
+                "after": 2
+              },
+              {
+                "x": 594,
+                "y": 677,
+                "before": 0,
+                "after": 2
+              },
+              {
+                "x": 596,
+                "y": 678,
+                "before": 0,
+                "after": 2
+              },
+              {
+                "x": 598,
+                "y": 679,
+                "before": 0,
+                "after": 2
+              },
+              {
+                "x": 600,
+                "y": 680,
+                "before": 0,
+                "after": 2
+              },
+              {
+                "x": 602,
+                "y": 681,
+                "before": 0,
+                "after": 1
+              },
+              {
+                "x": 604,
+                "y": 682,
+                "before": 0,
+                "after": 1
+              },
+              {
+                "x": 606,
+                "y": 683,
+                "before": 0,
+                "after": 1
+              },
+              {
+                "x": 608,
+                "y": 684,
+                "before": 0,
+                "after": 1
+              },
+              {
+                "x": 610,
+                "y": 685,
+                "before": 0,
+                "after": 1
+              }
+            ]
+          },
+          {
+            "model": "raw-primitive",
+            "kind": "road",
+            "changed": 0,
+            "fullChanged": 0,
+            "alpha": 0,
+            "max": 0,
+            "positive": 0,
+            "aboveSplitChanged": 0,
+            "split": 450,
+            "examples": []
+          },
+          {
+            "model": "visible-oracle",
+            "kind": "grass",
+            "changed": 1188,
+            "fullChanged": 0,
+            "alpha": 0,
+            "max": 124,
+            "positive": 56486,
+            "aboveSplitChanged": 0,
+            "split": 450,
+            "examples": [
+              {
+                "x": 1226,
+                "y": 450,
+                "before": 8,
+                "after": 0
+              },
+              {
+                "x": 1227,
+                "y": 450,
+                "before": 67,
+                "after": 13
+              },
+              {
+                "x": 1228,
+                "y": 450,
+                "before": 137,
+                "after": 23
+              },
+              {
+                "x": 1229,
+                "y": 450,
+                "before": 62,
+                "after": 14
+              },
+              {
+                "x": 1223,
+                "y": 451,
+                "before": 8,
+                "after": 0
+              },
+              {
+                "x": 1224,
+                "y": 451,
+                "before": 66,
+                "after": 17
+              },
+              {
+                "x": 1225,
+                "y": 451,
+                "before": 149,
+                "after": 25
+              },
+              {
+                "x": 1226,
+                "y": 451,
+                "before": 84,
+                "after": 8
+              },
+              {
+                "x": 1220,
+                "y": 452,
+                "before": 5,
+                "after": 0
+              },
+              {
+                "x": 1221,
+                "y": 452,
+                "before": 63,
+                "after": 16
+              },
+              {
+                "x": 1222,
+                "y": 452,
+                "before": 151,
+                "after": 27
+              },
+              {
+                "x": 1223,
+                "y": 452,
+                "before": 101,
+                "after": 8
+              },
+              {
+                "x": 1224,
+                "y": 452,
+                "before": 9,
+                "after": 0
+              },
+              {
+                "x": 1218,
+                "y": 453,
+                "before": 39,
+                "after": 15
+              },
+              {
+                "x": 1219,
+                "y": 453,
+                "before": 133,
+                "after": 40
+              },
+              {
+                "x": 1220,
+                "y": 453,
+                "before": 126,
+                "after": 17
+              },
+              {
+                "x": 1221,
+                "y": 453,
+                "before": 17,
+                "after": 0
+              },
+              {
+                "x": 1215,
+                "y": 454,
+                "before": 14,
+                "after": 4
+              },
+              {
+                "x": 1216,
+                "y": 454,
+                "before": 94,
+                "after": 32
+              },
+              {
+                "x": 1217,
+                "y": 454,
+                "before": 142,
+                "after": 27
+              },
+              {
+                "x": 1218,
+                "y": 454,
+                "before": 34,
+                "after": 0
+              },
+              {
+                "x": 1212,
+                "y": 455,
+                "before": 1,
+                "after": 0
+              },
+              {
+                "x": 1213,
+                "y": 455,
+                "before": 52,
+                "after": 18
+              },
+              {
+                "x": 1214,
+                "y": 455,
+                "before": 132,
+                "after": 24
+              }
+            ]
+          },
+          {
+            "model": "visible-oracle",
+            "kind": "pale",
+            "changed": 4,
+            "fullChanged": 0,
+            "alpha": 0,
+            "max": 1,
+            "positive": 28,
+            "aboveSplitChanged": 0,
+            "split": 450,
+            "examples": [
+              {
+                "x": 584,
+                "y": 672,
+                "before": 1,
+                "after": 0
+              },
+              {
+                "x": 588,
+                "y": 674,
+                "before": 1,
+                "after": 0
+              },
+              {
+                "x": 590,
+                "y": 675,
+                "before": 1,
+                "after": 0
+              },
+              {
+                "x": 592,
+                "y": 676,
+                "before": 1,
+                "after": 0
+              }
+            ]
+          },
+          {
+            "model": "visible-oracle",
+            "kind": "road",
+            "changed": 0,
+            "fullChanged": 0,
+            "alpha": 0,
+            "max": 0,
+            "positive": 0,
+            "aboveSplitChanged": 0,
+            "split": 450,
+            "examples": []
+          }
+        ]
+      },
+      "baselineStats": {
+        "rasterizations": 2,
+        "hits": 4,
+        "allocations": 1,
+        "resizes": 0,
+        "bytes": 4062212,
+        "peakBytes": 4062212,
+        "fallbacks": 0,
+        "lastFallback": null,
+        "nativeJunction": {
+          "calls": 2,
+          "ms": 0,
+          "prepareCalls": 1,
+          "prepareMs": 0.1000000000349246,
+          "staticBytes": 26782,
+          "scope": "Connected nonwalk gray seam; test only, BODY/apron min2device and visible min1device at .05; test-only sampled scale >= .05"
+        },
+        "supersample": {
+          "calls": 0,
+          "stripes": 0,
+          "emptyStripes": 0,
+          "highRasterStripes": 0,
+          "eligibilityScanPixels": 0,
+          "eligible": 0,
+          "corrected": 0,
+          "opaqueGrassSkipped": 0,
+          "protectedPaletteSkipped": 0,
+          "roadSkipped": 0,
+          "subpixelRoadSkipped": 0,
+          "unresolvedHolesSkipped": 0,
+          "alphaChanged": 0,
+          "skips": 0,
+          "allocations": 0,
+          "resizes": 0,
+          "scratchBytes": 0,
+          "peakLogicalBytes": 0,
+          "readbackBytes": 0,
+          "ms": 0,
+          "factor": 2,
+          "maxScratchPixels": 1048576,
+          "scope": "Logical canvas and live readback payload only; not total JS/native/GPU heap"
+        },
+        "maxPixels": 8388608,
+        "transition": {
+          "fills": 20,
+          "passes": 2,
+          "boundaryPasses": 2,
+          "allocations": 3,
+          "resizes": 3,
+          "bytes": 7171428,
+          "peakBytes": 7171428,
+          "skips": 0,
+          "lastSkip": null,
+          "maxPixels": 1048576,
+          "bufferDimensions": [
+            [
+              1331,
+              292
+            ],
+            [
+              1331,
+              292
+            ],
+            [
+              1331,
+              763
+            ]
+          ]
+        },
+        "totalLogicalBytes": 11233640
+      },
+      "candidateStats": {
+        "rasterizations": 2,
+        "hits": 4,
+        "allocations": 1,
+        "resizes": 0,
+        "bytes": 4062212,
+        "peakBytes": 4062212,
+        "fallbacks": 0,
+        "lastFallback": null,
+        "nativeJunction": {
+          "calls": 2,
+          "ms": 0,
+          "prepareCalls": 1,
+          "prepareMs": 0,
+          "staticBytes": 26782,
+          "scope": "Connected nonwalk gray seam; test only, BODY/apron min2device and visible min1device at .05; test-only sampled scale >= .05"
+        },
+        "supersample": {
+          "calls": 0,
+          "stripes": 0,
+          "emptyStripes": 0,
+          "highRasterStripes": 0,
+          "eligibilityScanPixels": 0,
+          "eligible": 0,
+          "corrected": 0,
+          "opaqueGrassSkipped": 0,
+          "protectedPaletteSkipped": 0,
+          "roadSkipped": 0,
+          "subpixelRoadSkipped": 0,
+          "unresolvedHolesSkipped": 0,
+          "alphaChanged": 0,
+          "skips": 0,
+          "allocations": 0,
+          "resizes": 0,
+          "scratchBytes": 0,
+          "peakLogicalBytes": 0,
+          "readbackBytes": 0,
+          "ms": 0,
+          "factor": 2,
+          "maxScratchPixels": 1048576,
+          "scope": "Logical canvas and live readback payload only; not total JS/native/GPU heap"
+        },
+        "maxPixels": 8388608,
+        "transition": {
+          "fills": 0,
+          "passes": 0,
+          "boundaryPasses": 0,
+          "allocations": 3,
+          "resizes": 1,
+          "bytes": 1543968,
+          "peakBytes": 1543968,
+          "skips": 0,
+          "lastSkip": null,
+          "maxPixels": 1048576,
+          "bufferDimensions": [
+            [
+              1331,
+              290
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        "totalLogicalBytes": 5606180
+      }
+    },
+    {
+      "view": "native-walk",
+      "sceneChanged": 0,
+      "terrainChanged": 0,
+      "alpha": 0,
+      "terrainAlpha": 0,
+      "exterior": 0,
+      "aboveSplit": 0,
+      "terrainAboveSplit": 0,
+      "maxRGBDelta": 0,
+      "split": 763,
+      "lowerProbe": null,
+      "tag": {
+        "scope": "Actual Chrome direct native context original fill/clip/bitmap order plus independent GEOS visible-role clip. Both tag variants omit SS to avoid changed nonlinear eligibility; raw model reports original source-primitive tag losses including hidden AA; visible-oracle model is a bounded GEOS-defined classification and not universal true-foreground preservation or frozen-SS semantic equivalence. Original SS-on vs candidate real RGB/alpha/visual still compared separately.",
+        "rows": [
+          {
+            "model": "raw-primitive",
+            "kind": "grass",
+            "changed": 0,
+            "fullChanged": 0,
+            "alpha": 0,
+            "max": 0,
+            "positive": 115033,
+            "aboveSplitChanged": 0,
+            "split": 763,
+            "examples": []
+          },
+          {
+            "model": "raw-primitive",
+            "kind": "pale",
+            "changed": 0,
+            "fullChanged": 0,
+            "alpha": 0,
+            "max": 0,
+            "positive": 78001,
+            "aboveSplitChanged": 0,
+            "split": 763,
+            "examples": []
+          },
+          {
+            "model": "raw-primitive",
+            "kind": "road",
+            "changed": 0,
+            "fullChanged": 0,
+            "alpha": 0,
+            "max": 0,
+            "positive": 59517,
+            "aboveSplitChanged": 0,
+            "split": 763,
+            "examples": []
+          },
+          {
+            "model": "visible-oracle",
+            "kind": "grass",
+            "changed": 0,
+            "fullChanged": 0,
+            "alpha": 0,
+            "max": 0,
+            "positive": 109823,
+            "aboveSplitChanged": 0,
+            "split": 763,
+            "examples": []
+          },
+          {
+            "model": "visible-oracle",
+            "kind": "pale",
+            "changed": 0,
+            "fullChanged": 0,
+            "alpha": 0,
+            "max": 0,
+            "positive": 77333,
+            "aboveSplitChanged": 0,
+            "split": 763,
+            "examples": []
+          },
+          {
+            "model": "visible-oracle",
+            "kind": "road",
+            "changed": 0,
+            "fullChanged": 0,
+            "alpha": 0,
+            "max": 0,
+            "positive": 59296,
+            "aboveSplitChanged": 0,
+            "split": 763,
+            "examples": []
+          }
+        ]
+      },
+      "baselineStats": {
+        "rasterizations": 2,
+        "hits": 2,
+        "allocations": 1,
+        "resizes": 0,
+        "bytes": 4062212,
+        "peakBytes": 4062212,
+        "fallbacks": 0,
+        "lastFallback": null,
+        "nativeJunction": {
+          "calls": 2,
+          "ms": 0,
+          "prepareCalls": 1,
+          "prepareMs": 0,
+          "staticBytes": 26782,
+          "scope": "Connected nonwalk gray seam; test only, BODY/apron min2device and visible min1device at .05; test-only sampled scale >= .05"
+        },
+        "supersample": {
+          "calls": 0,
+          "stripes": 0,
+          "emptyStripes": 0,
+          "highRasterStripes": 0,
+          "eligibilityScanPixels": 0,
+          "eligible": 0,
+          "corrected": 0,
+          "opaqueGrassSkipped": 0,
+          "protectedPaletteSkipped": 0,
+          "roadSkipped": 0,
+          "subpixelRoadSkipped": 0,
+          "unresolvedHolesSkipped": 0,
+          "alphaChanged": 0,
+          "skips": 0,
+          "allocations": 0,
+          "resizes": 0,
+          "scratchBytes": 0,
+          "peakLogicalBytes": 0,
+          "readbackBytes": 0,
+          "ms": 0,
+          "factor": 2,
+          "maxScratchPixels": 1048576,
+          "scope": "Logical canvas and live readback payload only; not total JS/native/GPU heap"
+        },
+        "maxPixels": 8388608,
+        "transition": {
+          "fills": 0,
+          "passes": 2,
+          "boundaryPasses": 0,
+          "allocations": 3,
+          "resizes": 0,
+          "bytes": 12,
+          "peakBytes": 12,
+          "skips": 0,
+          "lastSkip": null,
+          "maxPixels": 1048576,
+          "bufferDimensions": [
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        "totalLogicalBytes": 4062224
+      },
+      "candidateStats": {
+        "rasterizations": 2,
+        "hits": 4,
+        "allocations": 1,
+        "resizes": 0,
+        "bytes": 4062212,
+        "peakBytes": 4062212,
+        "fallbacks": 0,
+        "lastFallback": null,
+        "nativeJunction": {
+          "calls": 2,
+          "ms": 0.1000000000349246,
+          "prepareCalls": 1,
+          "prepareMs": 0,
+          "staticBytes": 26782,
+          "scope": "Connected nonwalk gray seam; test only, BODY/apron min2device and visible min1device at .05; test-only sampled scale >= .05"
+        },
+        "supersample": {
+          "calls": 0,
+          "stripes": 0,
+          "emptyStripes": 0,
+          "highRasterStripes": 0,
+          "eligibilityScanPixels": 0,
+          "eligible": 0,
+          "corrected": 0,
+          "opaqueGrassSkipped": 0,
+          "protectedPaletteSkipped": 0,
+          "roadSkipped": 0,
+          "subpixelRoadSkipped": 0,
+          "unresolvedHolesSkipped": 0,
+          "alphaChanged": 0,
+          "skips": 0,
+          "allocations": 0,
+          "resizes": 0,
+          "scratchBytes": 0,
+          "peakLogicalBytes": 0,
+          "readbackBytes": 0,
+          "ms": 0,
+          "factor": 2,
+          "maxScratchPixels": 1048576,
+          "scope": "Logical canvas and live readback payload only; not total JS/native/GPU heap"
+        },
+        "maxPixels": 8388608,
+        "transition": {
+          "fills": 0,
+          "passes": 0,
+          "boundaryPasses": 0,
+          "allocations": 3,
+          "resizes": 0,
+          "bytes": 12,
+          "peakBytes": 12,
+          "skips": 0,
+          "lastSkip": null,
+          "maxPixels": 1048576,
+          "bufferDimensions": [
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        "totalLogicalBytes": 4062224
+      }
+    }
+  ]
+}

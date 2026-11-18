@@ -1,0 +1,36 @@
+[
+  {
+    "view": "maximum",
+    "histogram": {
+      "1": 53768,
+      "2": 14,
+      "3": 2
+    }
+  },
+  {
+    "view": "renderer-above",
+    "histogram": {
+      "1": 70733,
+      "2": 43,
+      "3": 18,
+      "4": 3,
+      "5": 7,
+      "6": 4,
+      "7": 2,
+      "8": 3,
+      "9": 3,
+      "10": 0,
+      "11": 3
+    }
+  },
+  {
+    "roi": "curl",
+    "changed": 1760,
+    "maxDelta": 1
+  },
+  {
+    "roi": "right-diagonal",
+    "changed": 665,
+    "maxDelta": 2
+  }
+]
