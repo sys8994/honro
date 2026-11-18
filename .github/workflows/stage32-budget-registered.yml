@@ -1,0 +1,29 @@
+name: Stage32 registered budget five-view validation
+on:
+  workflow_dispatch:
+  push:
+    branches: [inspect/stage32-scanline-20261118]
+    paths: ['tools/testing/stage32-budget-registered/**', '.github/workflows/stage32-budget-registered.yml']
+permissions: {contents: read}
+jobs:
+  study:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env: {HONRO_ACT4_RELEASE: '1', HONRO_ACT5_RELEASE: '1'}
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with: {path: study}
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with: {path: product, ref: fdac97818c09536f5d0057181d04fbd60d48df18}
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with: {node-version: '22', package-manager-cache: false}
+      - run: npm ci && npm ci --prefix game
+        working-directory: product
+      - name: Official registered runtime, five captures only
+        run: |
+          node study/tools/testing/stage32-budget-registered/fixture.mjs product "$RUNNER_TEMP/registered"
+          node study/tools/testing/stage32-live-ss/actual/run.mjs "$RUNNER_TEMP/registered" artifacts/evidence
+          python study/tools/testing/stage32-budget-registered/check.py artifacts/evidence
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with: {name: stage32-budget-registered, path: artifacts, if-no-files-found: error}

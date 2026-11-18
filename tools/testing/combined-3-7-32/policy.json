@@ -1,0 +1,51 @@
+{
+  "base": "bea9a71ef22a4116e403dc747e521416c736b103",
+  "stage3Source": "f7c1767a8968dca4c7eaa386bdcccf9db8b09451",
+  "stage3ValidatedProduct": "5960c2b9d81b291552ead223d83ae0ae9c876845",
+  "changes": [
+    {
+      "path": "shared/build.mjs",
+      "old": "import {applyAct3HandoffArt} from './act3-handoff-art.mjs';",
+      "new": "import {applyAct3HandoffArt} from './act3-handoff-art.mjs';\nimport {applyNaruBodyFinish} from '../tools/map-forge/naru-body-finish.mjs';",
+      "label": "Import final Stage3 source-only finisher"
+    },
+    {
+      "path": "shared/build.mjs",
+      "old": "  terrainOptimization.apply(project.library);",
+      "new": "  terrainOptimization.apply(project.library);\n  applyNaruBodyFinish(project);",
+      "label": "Apply only after unchanged optimizer and before campaign serialization"
+    },
+    {
+      "path": "shared/runtime/renderer.js",
+      "old": "            return domain;\n        }\n        _drawTerrainDomainTiles",
+      "new": "            // Fresh flagged artwork can extend decorative paint, never physics/camera.\n            // Preserve the existing Stage7 expansion above and old unflagged save behavior.\n            for(const l of G.HonroTerrainDomain.materialLandmarks(b)){\n                if(l.asset?.params?.paintBeyondTerrainDomain!==true)continue;\n                const a=this._landmarkPaintBounds(l);if(!a)continue;\n                domain.left=Math.min(domain.left,a.left);domain.top=Math.min(domain.top,a.top);\n                domain.right=Math.max(domain.right,a.right);domain.bottom=Math.max(domain.bottom,a.bottom);\n            }\n            return domain;\n        }\n        _drawTerrainDomainTiles",
+      "label": "Extend existing Stage7 raster bounds; retain call/cache caps unchanged"
+    },
+    {
+      "path": "shared/runtime/terrain-readability.js",
+      "old": " const solids=ts.filter",
+      "new": " const omittedClosures=new Set((b.honroLandmarks||[]).flatMap(l=>l.asset?.params?.omitTerrainClosureIds||[]));\n const solids=ts.filter",
+      "label": "Only asset-carried nonwalk closure opt-in"
+    },
+    {
+      "path": "shared/runtime/terrain-readability.js",
+      "old": "if(t.oneWay&&!walkable)continue;",
+      "new": "if(t.oneWay&&!walkable)continue;if(!walkable&&omittedClosures.has(t.id))continue;",
+      "label": "Keep all current Stage3/7 closure rules and every walking rim"
+    }
+  ],
+  "addedFiles": [
+    "tools/map-forge/naru-body-finish.mjs"
+  ],
+  "expectedProduction": {
+    "shared/build.mjs": "c76d646f0c7a20632770f7139a2f4aea211107d6ccdb32bcf61e7c7cb78a09b5",
+    "shared/runtime/renderer.js": "9d3c8b4ba03e63f009a61310a47d01a23d76b7abada91b8aa786f5e01027994c",
+    "shared/runtime/terrain-readability.js": "63e38cbfd2d625886df7e88c447999415c716f3ca35a7094503b23959ff85000",
+    "tools/map-forge/naru-body-finish.mjs": "119eaf37447051d55df3cbc93ea0e50cc1a24076f9b3a5b2d9722f7ee8e420d5"
+  },
+  "expectedBase": {
+    "shared/build.mjs": "b9b5d1c985bca151f60d608605657bc3939d06a74d205ff5b43d7009fa18896b",
+    "shared/runtime/renderer.js": "87012272fbe74d0f7f0cf825c4aca5c59f86965e46fcb5fb13138c5d9c36258d",
+    "shared/runtime/terrain-readability.js": "b8541b7be0a4515f3ad7083f314b32bf791881609c9960de3ac89b13f9ba9792"
+  }
+}
