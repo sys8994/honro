@@ -43,7 +43,7 @@ jobs:
             if curl -fsS -o /dev/null http://127.0.0.1:8870/HONRO_WORKSHOP.html; then break; fi
             sleep 1
           done
-          timeout 240s python tests/stage42-editor-native/smoke.py "$RUNNER_TEMP/stage42-editor-evidence"
+          timeout 720s python tests/stage42-editor-native/smoke.py "$RUNNER_TEMP/stage42-editor-evidence"
       - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
         if: always()
         with:

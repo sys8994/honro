@@ -2,7 +2,11 @@ import json,sys,os
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 out=Path(sys.argv[1]);out.mkdir(parents=True,exist_ok=True)
-r={'pass':False}
+r={'pass':False,'step':'launch'}
+def checkpoint(step):
+ r['step']=step
+ (out/'result.json').write_text(json.dumps(r,ensure_ascii=False,indent=2))
+ print(step,flush=True)
 with sync_playwright() as pw:
  b=pw.chromium.launch(headless=True,executable_path=os.environ["HONRO_CHROME"])
  page=b.new_page(viewport={'width':1500,'height':1000},device_scale_factor=1)
@@ -25,7 +29,10 @@ with sync_playwright() as pw:
   page.locator('[data-tool="nativeBody"]').click()
   if not page.evaluate("HonroWorkshopAPI.getEditorState().overlayEnabled"):page.locator("#overlayToggle").click()
   page.screenshot(path=str(out/'01-editor-ready.png'))
-  for q in screen:canvas.click(position=q)
+  checkpoint('editor-ready')
+  for i,q in enumerate(screen):
+   canvas.click(position=q)
+   checkpoint('point-'+str(i+1))
   assert page.evaluate(project)==before,'draft unexpectedly committed'
   page.screenshot(path=str(out/'02-editor-drawing.png'))
   # True pointer drag: do not silently substitute an API call or click-to-place.
@@ -36,10 +43,12 @@ with sync_playwright() as pw:
   page.mouse.up()
   page.locator('.body-controls').get_by_role('button',name='미리보기',exact=True).click()
   r['preview_toast']=page.locator('#toast').text_content()
+  checkpoint('preview-clicked')
   assert page.evaluate(project)==before,'preview unexpectedly committed'
   page.screenshot(path=str(out/'04-editor-preview.png'))
   page.locator('.body-controls').get_by_role('button',name='저장',exact=True).click()
   r['save_toast']=page.locator('#toast').text_content()
+  checkpoint('save-clicked')
   after=page.evaluate(project)
   assert other(after)==other(before)
   assert len(faces(after))==len(faces(before))+1,('new face did not persist',r['preview_toast'],r['save_toast'],len(faces(before)),len(faces(after)))
