@@ -1,10 +1,10 @@
-import json,sys
+import json,sys,os
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 out=Path(sys.argv[1]);out.mkdir(parents=True,exist_ok=True)
 r={'pass':False}
 with sync_playwright() as pw:
- b=pw.chromium.launch(headless=True)
+ b=pw.chromium.launch(headless=True,executable_path=os.environ["HONRO_CHROME"])
  page=b.new_page(viewport={'width':1500,'height':1000},device_scale_factor=1)
  errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
  try:
@@ -35,12 +35,14 @@ with sync_playwright() as pw:
   page.screenshot(path=str(out/'03-editor-pointer-drag.png'))
   page.mouse.up()
   page.locator('.body-controls').get_by_role('button',name='미리보기',exact=True).click()
+  r['preview_toast']=page.locator('#toast').text_content()
   assert page.evaluate(project)==before,'preview unexpectedly committed'
   page.screenshot(path=str(out/'04-editor-preview.png'))
   page.locator('.body-controls').get_by_role('button',name='저장',exact=True).click()
+  r['save_toast']=page.locator('#toast').text_content()
   after=page.evaluate(project)
   assert other(after)==other(before)
-  assert len(faces(after))==len(faces(before))+1
+  assert len(faces(after))==len(faces(before))+1,('new face did not persist',r['preview_toast'],r['save_toast'],len(faces(before)),len(faces(after)))
   verts=faces(after)[-1]['points']
   assert abs(verts[1][0]-225)>4 and verts[1][0]>225,'drag did not persist as an edited vertex'
   assert body(after)['vector']['clips']==body(before)['vector']['clips']
