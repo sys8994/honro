@@ -3,6 +3,9 @@ from playwright.sync_api import sync_playwright
 from identity import Identity
 out=pathlib.Path(os.environ['HONRO_CAPTURE_OUT']);out.mkdir(parents=True,exist_ok=True)
 identity=Identity(out);identity.preflight();source=pathlib.Path(os.environ['HONRO_SYNTHETIC_PROFILE']);raw=source.read_bytes();saved=json.loads(raw);assert saved['honroBattle']['honroStage']==3
+provenance=json.loads(pathlib.Path(str(source)+'.provenance.json').read_text());assert provenance['release']==identity.release and provenance['entireCompiledBodyRoundtripExact']
+assert provenance['rawAcceptedBodySHA']=='ea8b604fa02da75d49eab049427abec1f49aa78cd571a5da87a012ae64a1efad'
+assert provenance['liveBodySHA']==provenance['restoredBodySHA']
 result={'passed':False,'release':identity.release,'syntheticProfileSHA256':hashlib.sha256(raw).hexdigest(),'scope':'Public exact release network identity and normal UI import/continue Stage3 smoke. Synthetic profile, not user save, full playthrough, device benchmark or all-stage art review.'}
 with sync_playwright() as w:
  browser=w.chromium.launch(headless=True);context=browser.new_context(viewport={'width':1331,'height':763});assert context.storage_state()=={'cookies':[],'origins':[]};p=context.new_page();identity.attach(p)
@@ -17,8 +20,8 @@ with sync_playwright() as w:
   assert state['stage']==3 and state['scene'] and not state['lastError'] and state['canvas']['w']>0 and state['canvas']['h']>0
   body_sha=p.evaluate("async()=>{const a=HonroApp.engine.b.honroLandmarks.find(x=>x.asset?.id==='act1-site:3:body')?.asset;if(!a)throw Error('Missing Stage3 body');async function restore(v){if(typeof v==='string'&&v.startsWith('https://sys8994.github.io/honro/web/graphics/')){const r=await fetch(v);if(!r.ok)throw Error('Missing public body asset');const b=new Uint8Array(await r.arrayBuffer());let text='';for(const n of b)text+=String.fromCharCode(n);const mime={svg:'image/svg+xml',png:'image/png',jpg:'image/jpeg',webp:'image/webp'}[v.split('.').at(-1)];if(!mime)throw Error('Unknown image mime');return 'data:'+mime+';base64,'+btoa(text);}if(Array.isArray(v))return Promise.all(v.map(restore));if(v&&typeof v==='object')return Object.fromEntries(await Promise.all(Object.entries(v).map(async([k,x])=>[k,await restore(x)])));return v;}const original=await restore(a);return Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(JSON.stringify(original)))),x=>x.toString(16).padStart(2,'0')).join('')}")
   result['observedBodySHA256']=body_sha
-  assert body_sha=='ea8b604fa02da75d49eab049427abec1f49aa78cd571a5da87a012ae64a1efad','Public mounted Stage3 art differs from accepted K'
-  result['stage3BodySHA256']=body_sha;result['state']=state;p.screenshot(path=str(out/'public-stage3.png'));identity.finish(p);result['passed']=True
+  assert body_sha==provenance['restoredBodySHA'],'Public mounted Stage3 art differs from independently restored official K snapshot'
+  result['stage3BodySHA256']=body_sha;result['sourceAndSnapshotProvenance']=provenance;result['state']=state;p.screenshot(path=str(out/'public-stage3.png'));identity.finish(p);result['passed']=True
  except Exception as e:
   result['failure']=str(e);result['traceback']=traceback.format_exc()
   try:identity.finish(p)
