@@ -1,0 +1,70 @@
+name: Stage32 narrow integration all50 and old-save restore
+on:
+  workflow_dispatch:
+  push:
+    branches: [art/stage7-semantic-rock-study-20261117]
+    paths:
+      - tools/testing/stage32-integration/**
+      - .github/workflows/stage32-integration-regression.yml
+permissions:
+  contents: read
+jobs:
+  regression:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      HONRO_ACT4_RELEASE: '1'
+      HONRO_ACT5_RELEASE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          path: candidate
+          fetch-depth: 0
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          path: baseline
+          ref: 9f78358e58bfaa914b8b76d3f0272412057b4b91
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm ci && npm ci --prefix game
+        working-directory: baseline
+      - run: npm ci && npm ci --prefix game
+        working-directory: candidate
+      - name: Exact six-file source scope and normal builds
+        working-directory: candidate
+        run: |
+          node tools/testing/stage32-integration/static.mjs
+          node workshop/build.mjs
+          node game/build.mjs
+      - name: Independent baseline all50 and old32 export
+        working-directory: baseline
+        run: |
+          export CHROME_BIN="$(command -v google-chrome || command -v chromium)"
+          QA="$GITHUB_WORKSPACE/candidate/tools/testing/stage32-integration"
+          node "$QA/snapshot.mjs" "$PWD" "$GITHUB_WORKSPACE/artifacts/base" "$RUNNER_TEMP/base50"
+          node "$QA/run.mjs" "$RUNNER_TEMP/base50" "$GITHUB_WORKSPACE/artifacts/base"
+          node "$QA/cross-fixture.mjs" "$PWD" "$RUNNER_TEMP/old32" export
+          node "$QA/run.mjs" "$RUNNER_TEMP/old32" "$GITHUB_WORKSPACE/artifacts/cross/base"
+      - name: Independent integrated all50 and direct old32 restore
+        working-directory: candidate
+        run: |
+          export CHROME_BIN="$(command -v google-chrome || command -v chromium)"
+          QA=tools/testing/stage32-integration
+          node "$QA/snapshot.mjs" "$PWD" "$GITHUB_WORKSPACE/artifacts/new" "$RUNNER_TEMP/new50"
+          node "$QA/run.mjs" "$RUNNER_TEMP/new50" "$GITHUB_WORKSPACE/artifacts/new"
+          node "$QA/cross-fixture.mjs" "$PWD" "$RUNNER_TEMP/new32" restore "$GITHUB_WORKSPACE/artifacts/cross/base/export-stage32.json"
+          node "$QA/run.mjs" "$RUNNER_TEMP/new32" "$GITHUB_WORKSPACE/artifacts/cross/new"
+      - name: Exact regression and cross-restore reports
+        working-directory: candidate
+        run: |
+          QA=tools/testing/stage32-integration
+          node "$QA/compare.mjs" "$GITHUB_WORKSPACE/artifacts/base" "$GITHUB_WORKSPACE/artifacts/new" "$GITHUB_WORKSPACE/artifacts/integration-result.json"
+          node "$QA/cross-check.mjs" "$GITHUB_WORKSPACE/artifacts/cross"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage32-integration-regression
+          path: artifacts
+          if-no-files-found: error

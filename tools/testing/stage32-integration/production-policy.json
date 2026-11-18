@@ -1,0 +1,60 @@
+{
+  "base": "9f78358e58bfaa914b8b76d3f0272412057b4b91",
+  "changes": [
+    {
+      "path": "shared/build.mjs",
+      "old": "'act4-campaign','stage33-exterior-art'",
+      "new": "'act4-campaign','stage32-foundation-art','stage33-exterior-art'",
+      "label": "Register stage32 before consumer; retain all existing helpers"
+    },
+    {
+      "path": "shared/runtime/act4-pilot-art.js",
+      "old": " 'act4-handoff:32:body-joined':{'approved32-east-face':['#626b70','#879193']},",
+      "new": " 'act4-handoff:32:body-joined':{'approved32-east-face':['#626b70','#879193']},\n 'act4-handoff:32:body-shared-material':{'approved32-east-face':['#626b70','#879193']},",
+      "label": "Matching source contact underlay for new provider"
+    },
+    {
+      "path": "shared/runtime/act4-pilot-art.js",
+      "old": "   if(G.HonroStage33ExteriorArt?.draw(raw,l,b))return;",
+      "new": "   if(G.HonroStage32FoundationArt?.draw(raw,l,b))return;\n   if(G.HonroStage33ExteriorArt?.draw(raw,l,b))return;",
+      "label": "Dispatch stage32 raw context; retain 33/34/37/38 hooks"
+    },
+    {
+      "path": "shared/act4-handoff-art.mjs",
+      "old": "  const compatibilityAssetIds=[];",
+      "new": "  // A separate material provider preserves the old foundation and saved battles.\n  if(n===32)pack.assets.push(JSON.parse(await readFile(new URL('./data/act4/handoff-art/32-foundation.json',import.meta.url),'utf8')));\n  const compatibilityAssetIds=[];",
+      "label": "Append independent Stage32 foundation"
+    },
+    {
+      "path": "shared/act4-handoff-art.mjs",
+      "old": "  const bodyId=assetId(n,n===32?\"body-joined\":\"body\");",
+      "new": "  const bodyId=assetId(n,n===32?\"body-shared-material\":\"body\");",
+      "label": "Only Stage32 active BODY provider"
+    },
+    {
+      "path": "shared/act4-handoff-art.mjs",
+      "old": "  const elements=stage.elements.flatMap(element=>{",
+      "new": "  const elements=stage.elements.flatMap(element=>{\n   if(n===32&&element.id==='approved32-coastal-foundation'){\n    compatibilityAssetIds.push(element.assetId);\n    return [{...element,assetId:assetId(32,'foundation')}];\n   }",
+      "label": "Only Stage32 foundation element visual provider"
+    },
+    {
+      "path": "shared/act4-handoff-art.mjs",
+      "old": "   pack.assets.push(joinPortGround(pack.assets.find(a=>a.id===assetId(n,'body'))));",
+      "new": "   const joined=joinPortGround(pack.assets.find(a=>a.id===assetId(n,'body')));\n   const protection=JSON.parse(await readFile(new URL('./data/act4/handoff-art/32-material-protection.json',import.meta.url),'utf8'));\n   compatibilityAssetIds.push(joined.id);\n   pack.assets.push(joined,{...joined,id:bodyId,params:{...joined.params,stage32SharedMaterial:protection}});",
+      "label": "Keep original/joined assets; add shared material clone and metadata"
+    }
+  ],
+  "newGitBlobs": {
+    "shared/runtime/stage32-foundation-art.js": "45301d509950ddeb61d8979b0851d93878e9aec9",
+    "shared/data/act4/handoff-art/32-foundation.json": "d94f58e8aaf4dba610fd2b9a1974ae131766414c",
+    "shared/data/act4/handoff-art/32-material-protection.json": "2cd090241d30c7f8457838c9cb8af7b7ea453364"
+  },
+  "expectedProduction": {
+    "shared/act4-handoff-art.mjs": "26f5101f019a8aaf6d27030a4241636642922d89d6bfd1d294928c7b4ec48b3b",
+    "shared/build.mjs": "b9b5d1c985bca151f60d608605657bc3939d06a74d205ff5b43d7009fa18896b",
+    "shared/data/act4/handoff-art/32-foundation.json": "2ec84007352614d3319293d8b46384842550fe87f999cbf671145444d4a1cfa7",
+    "shared/data/act4/handoff-art/32-material-protection.json": "c2aefafd0e44e5ccd0a953db30005fccab1c444a374da8aee5884365367762aa",
+    "shared/runtime/act4-pilot-art.js": "2296c1edc9d316cbca882b8ed350c73aeb2668c9c8a659b15c754db3200efb7b",
+    "shared/runtime/stage32-foundation-art.js": "2cbc7689548b871021ebcf5c4190052029bac510a65cc16ef5ed10290ea828e5"
+  }
+}
