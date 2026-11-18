@@ -14,6 +14,12 @@ jobs:
   scene:
     runs-on: ubuntu-22.04
     timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix:
+        controls: ['0', '1']
+    env:
+      STAGE7_CONTROLS: ${{ matrix.controls }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -31,7 +37,7 @@ jobs:
           node game/tools/stage7-scene-study/fixture.mjs "$RUNNER_TEMP/stage7-scenes"
           mkdir -p artifacts/stage7-scene-study
           cp "$RUNNER_TEMP/stage7-scenes/source-adapter-contract.json" artifacts/stage7-scene-study/
-      - name: Render four actual Scene variants at five constrained cameras
+      - name: Render five controlled variants at three constrained cameras
         run: |
           export CHROME_BIN="$(command -v google-chrome || command -v chromium)"
           node game/tools/stage7-scene-study/run.mjs "$RUNNER_TEMP/stage7-scenes" artifacts/stage7-scene-study
@@ -39,8 +45,11 @@ jobs:
         run: node game/tools/stage7-scene-study/compare.mjs artifacts/stage7-scene-study
       - name: Strict original source-region pixels in actual Scene
         run: python game/tools/stage7-scene-study/pixels.py
-      - name: Independent closure source-over and exact exterior footprint
-        if: always()
+      - name: Independent control attribution (strict gate remains above)
+        if: ${{ always() && matrix.controls == '1' }}
+        run: python game/tools/stage7-scene-study/controls-check.py
+      - name: Independent closure source-over
+        if: ${{ always() && matrix.controls == '0' }}
         run: python game/tools/stage7-scene-study/closure-check.py
       - name: Production sources remain unchanged
         if: always()
@@ -48,7 +57,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: stage7-scene-study-${{ github.sha }}
+          name: stage7-scene-study-${{ github.sha }}-controls-${{ matrix.controls }}
           path: artifacts/stage7-scene-study
           if-no-files-found: error
           retention-days: 14
