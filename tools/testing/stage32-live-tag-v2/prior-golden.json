@@ -1,0 +1,319 @@
+{
+  "priorRun": 44268810252,
+  "artifact": 14411961285,
+  "artifactSHA256": "cc47516e853297585703c168ed8b7c97e0fd7d82853dd086794df5c86ef2d458",
+  "outputs": {
+    "baseline-maximum": {
+      "sceneRGBA": "849951f7a3fbb4b96b1e06d6c076ae390e76e037ceb8fd870c2bfe5e3f19d4a6",
+      "terrainRGBA": "849951f7a3fbb4b96b1e06d6c076ae390e76e037ceb8fd870c2bfe5e3f19d4a6",
+      "camera": {
+        "x": 320,
+        "y": 1650,
+        "scale": 1.65
+      },
+      "physicsSha256": "699b6a494763270ff98c1f632ab848f91d34fdf084367e532e57f627363d5c97",
+      "vectorSHA": "76e4fc6c04fc1f95aa9dcd0d97c9b8294c05cbe0a75169eb53174768f8da7cd1",
+      "sourcePathHashes": [
+        "88ec1462d08db96d3bfac44bc3edc7c1a1e9d958a1c4532ecdb903438feb9169",
+        "5a48dcec78253ccedb8f8b7e89d9dcc045c9d2321dc35c21dfdcae6b085b605c",
+        "f441936b67b2539b0de3647aaf32700468faaae2070f387aabb972539d29a31f",
+        "a9e2f2395f237e3eadbc8a45b9fbc7ac77343ac01252111224aca4920525d031",
+        "00f1b1b757e50ac7aba9e1be62cbd59e411b8144de69b9e4dc29d044b0aeef01",
+        "c9f611ee4e779bf2bf526be1b5931ae029e24b11b683e6c43df2d45d5285bbff",
+        "018c13771d0c6e9168403797cb9bcdbe7c9f34dd07743323b5468d1b6b160a22",
+        "2821fa339d278babbf51e8208d17e225851200c810694d4fb035919949a6e1ed",
+        "c12e22c231e0d926428f54dc29a218bd5b026be5574683836f4c85ab0b2cc04c",
+        "be912d6527ed1d8a3a7fea1a3fa49c35125e024f841cfa19e1416cbb8da69f1b",
+        "0c7c44249f6fa9f2ef67f1ae5be6355f7923f2ad9dfd13cdf9dfae57c10384f1",
+        "59793f5d388eb45049b9be23473469c93e0a8a58e9f6bed683dd34e84ace4f37",
+        "1ef9bf8c537efd43f6c3c8723ec755a4bc24a0f2e6598af15fb7efbf0a377d1e",
+        "0b4fde82b0a4e4165a99c413fba386431ebbf00174a1f20d942e6de3b6b68f2c",
+        "0b2ed2d2544511be9077805c75a305f1f3e6845c6314856095536512886d9f11",
+        "c22abdd94e89b3492913de155be6a28f5255be45e9bf6268959557f326be173d",
+        "7a44d293e7bd7e2f3ded6ecf242fd73cbc62508f3f106faa1837d715f730fe27",
+        "587c88e566a3a4c4a6da861c2241f5e4f2f0736897199884c458a7d2ca3673ba",
+        "951e55065b34db9cd666cd69302cad9a7ad88ba437b61c663c8ea568582b9d0e",
+        "cd022735dfa9dcaa6f3f87503905b4af2aa0eb87f3f63e55bb8910cc22c83eaa",
+        "b4a7539496a6d0bb404d8985267d8f240221ec3e07d765734ce98cd652d75f7e",
+        "d44cf46f255019833f83834bbf84cffae1f465f2083bf71a1ef566db08ff9910",
+        "45ae54f59bc2c83cd403ebebdb442b8cc6d7ff330415e839affbfb3cfea82c7c",
+        "0c75525383b5e259169518ad83e9274c1c3cc7665f25f72487dba9cca1fae439",
+        "ea8eb7556f5f9323e0ea2b2eebf0fd470d23c607631f03092835239de7d1388d"
+      ],
+      "provenance": {
+        "runtimeSHA256": "c06a9e3c4cd9c0126ba22e54df1cafd7d692797c60d6075e6a41b16c59ae572f",
+        "mode": "baseline",
+        "helperSHA256": "2cbc7689548b871021ebcf5c4190052029bac510a65cc16ef5ed10290ea828e5",
+        "ownRegisteredRuntime": true,
+        "sourceOverride": false,
+        "candidateHelperSHA256": null,
+        "candidatePilotSHA256": null,
+        "excluded": [
+          "shared/runtime/main.js"
+        ]
+      },
+      "pngSHA256": "122eabdaada1e4d8717058571c68f19da58430d9feef5aefbfea01819555a9c8",
+      "terrainPNG_SHA256": "122eabdaada1e4d8717058571c68f19da58430d9feef5aefbfea01819555a9c8"
+    },
+    "candidate-maximum": {
+      "sceneRGBA": "10e9e466e3813c9c19a34e1b6f5cedcee06f735ba3429ac3c425ca1c916b49f8",
+      "terrainRGBA": "10e9e466e3813c9c19a34e1b6f5cedcee06f735ba3429ac3c425ca1c916b49f8",
+      "camera": {
+        "x": 320,
+        "y": 1650,
+        "scale": 1.65
+      },
+      "physicsSha256": "699b6a494763270ff98c1f632ab848f91d34fdf084367e532e57f627363d5c97",
+      "vectorSHA": "76e4fc6c04fc1f95aa9dcd0d97c9b8294c05cbe0a75169eb53174768f8da7cd1",
+      "sourcePathHashes": [
+        "88ec1462d08db96d3bfac44bc3edc7c1a1e9d958a1c4532ecdb903438feb9169",
+        "5a48dcec78253ccedb8f8b7e89d9dcc045c9d2321dc35c21dfdcae6b085b605c",
+        "f441936b67b2539b0de3647aaf32700468faaae2070f387aabb972539d29a31f",
+        "a9e2f2395f237e3eadbc8a45b9fbc7ac77343ac01252111224aca4920525d031",
+        "00f1b1b757e50ac7aba9e1be62cbd59e411b8144de69b9e4dc29d044b0aeef01",
+        "c9f611ee4e779bf2bf526be1b5931ae029e24b11b683e6c43df2d45d5285bbff",
+        "018c13771d0c6e9168403797cb9bcdbe7c9f34dd07743323b5468d1b6b160a22",
+        "2821fa339d278babbf51e8208d17e225851200c810694d4fb035919949a6e1ed",
+        "c12e22c231e0d926428f54dc29a218bd5b026be5574683836f4c85ab0b2cc04c",
+        "be912d6527ed1d8a3a7fea1a3fa49c35125e024f841cfa19e1416cbb8da69f1b",
+        "0c7c44249f6fa9f2ef67f1ae5be6355f7923f2ad9dfd13cdf9dfae57c10384f1",
+        "59793f5d388eb45049b9be23473469c93e0a8a58e9f6bed683dd34e84ace4f37",
+        "1ef9bf8c537efd43f6c3c8723ec755a4bc24a0f2e6598af15fb7efbf0a377d1e",
+        "0b4fde82b0a4e4165a99c413fba386431ebbf00174a1f20d942e6de3b6b68f2c",
+        "0b2ed2d2544511be9077805c75a305f1f3e6845c6314856095536512886d9f11",
+        "c22abdd94e89b3492913de155be6a28f5255be45e9bf6268959557f326be173d",
+        "7a44d293e7bd7e2f3ded6ecf242fd73cbc62508f3f106faa1837d715f730fe27",
+        "587c88e566a3a4c4a6da861c2241f5e4f2f0736897199884c458a7d2ca3673ba",
+        "951e55065b34db9cd666cd69302cad9a7ad88ba437b61c663c8ea568582b9d0e",
+        "cd022735dfa9dcaa6f3f87503905b4af2aa0eb87f3f63e55bb8910cc22c83eaa",
+        "b4a7539496a6d0bb404d8985267d8f240221ec3e07d765734ce98cd652d75f7e",
+        "d44cf46f255019833f83834bbf84cffae1f465f2083bf71a1ef566db08ff9910",
+        "45ae54f59bc2c83cd403ebebdb442b8cc6d7ff330415e839affbfb3cfea82c7c",
+        "0c75525383b5e259169518ad83e9274c1c3cc7665f25f72487dba9cca1fae439",
+        "ea8eb7556f5f9323e0ea2b2eebf0fd470d23c607631f03092835239de7d1388d"
+      ],
+      "provenance": {
+        "runtimeSHA256": "7aef062c6d14d7a88e09a64f17dd9504f52d393ac1a5f6ce6d778c8c393baa84",
+        "mode": "candidate",
+        "helperSHA256": "2cbc7689548b871021ebcf5c4190052029bac510a65cc16ef5ed10290ea828e5",
+        "ownRegisteredRuntime": false,
+        "sourceOverride": true,
+        "candidateHelperSHA256": "7ca476433572d83201e8e767fc3aa99d65192b592d59920a3bdf37acf41a64e3",
+        "candidatePilotSHA256": "636b0562211ab2ee8b0018bc8c6ea8a584653c99ccaad5c76cd0d6ca5bd819c8",
+        "excluded": [
+          "shared/runtime/main.js"
+        ]
+      },
+      "pngSHA256": "d084ebe21e60ff257585599ff009e08eea512c12da4ea0b20c1c2517ae55389f",
+      "terrainPNG_SHA256": "d084ebe21e60ff257585599ff009e08eea512c12da4ea0b20c1c2517ae55389f"
+    },
+    "baseline-renderer-above": {
+      "sceneRGBA": "bf72d040cbe1a71b6855055b5e28b7ece48485db281d078a40c20dc8994b20d8",
+      "terrainRGBA": "c76100b04fd3a79dbb8c928e3ee3b834ea6dc00f804c9930218f7892c3c9c208",
+      "camera": {
+        "x": 320,
+        "y": 1650,
+        "scale": 1.05001
+      },
+      "physicsSha256": "699b6a494763270ff98c1f632ab848f91d34fdf084367e532e57f627363d5c97",
+      "vectorSHA": "76e4fc6c04fc1f95aa9dcd0d97c9b8294c05cbe0a75169eb53174768f8da7cd1",
+      "sourcePathHashes": [
+        "88ec1462d08db96d3bfac44bc3edc7c1a1e9d958a1c4532ecdb903438feb9169",
+        "5a48dcec78253ccedb8f8b7e89d9dcc045c9d2321dc35c21dfdcae6b085b605c",
+        "f441936b67b2539b0de3647aaf32700468faaae2070f387aabb972539d29a31f",
+        "a9e2f2395f237e3eadbc8a45b9fbc7ac77343ac01252111224aca4920525d031",
+        "00f1b1b757e50ac7aba9e1be62cbd59e411b8144de69b9e4dc29d044b0aeef01",
+        "c9f611ee4e779bf2bf526be1b5931ae029e24b11b683e6c43df2d45d5285bbff",
+        "018c13771d0c6e9168403797cb9bcdbe7c9f34dd07743323b5468d1b6b160a22",
+        "2821fa339d278babbf51e8208d17e225851200c810694d4fb035919949a6e1ed",
+        "c12e22c231e0d926428f54dc29a218bd5b026be5574683836f4c85ab0b2cc04c",
+        "be912d6527ed1d8a3a7fea1a3fa49c35125e024f841cfa19e1416cbb8da69f1b",
+        "0c7c44249f6fa9f2ef67f1ae5be6355f7923f2ad9dfd13cdf9dfae57c10384f1",
+        "59793f5d388eb45049b9be23473469c93e0a8a58e9f6bed683dd34e84ace4f37",
+        "1ef9bf8c537efd43f6c3c8723ec755a4bc24a0f2e6598af15fb7efbf0a377d1e",
+        "0b4fde82b0a4e4165a99c413fba386431ebbf00174a1f20d942e6de3b6b68f2c",
+        "0b2ed2d2544511be9077805c75a305f1f3e6845c6314856095536512886d9f11",
+        "c22abdd94e89b3492913de155be6a28f5255be45e9bf6268959557f326be173d",
+        "7a44d293e7bd7e2f3ded6ecf242fd73cbc62508f3f106faa1837d715f730fe27",
+        "587c88e566a3a4c4a6da861c2241f5e4f2f0736897199884c458a7d2ca3673ba",
+        "951e55065b34db9cd666cd69302cad9a7ad88ba437b61c663c8ea568582b9d0e",
+        "cd022735dfa9dcaa6f3f87503905b4af2aa0eb87f3f63e55bb8910cc22c83eaa",
+        "b4a7539496a6d0bb404d8985267d8f240221ec3e07d765734ce98cd652d75f7e",
+        "d44cf46f255019833f83834bbf84cffae1f465f2083bf71a1ef566db08ff9910",
+        "45ae54f59bc2c83cd403ebebdb442b8cc6d7ff330415e839affbfb3cfea82c7c",
+        "0c75525383b5e259169518ad83e9274c1c3cc7665f25f72487dba9cca1fae439",
+        "ea8eb7556f5f9323e0ea2b2eebf0fd470d23c607631f03092835239de7d1388d"
+      ],
+      "provenance": {
+        "runtimeSHA256": "c06a9e3c4cd9c0126ba22e54df1cafd7d692797c60d6075e6a41b16c59ae572f",
+        "mode": "baseline",
+        "helperSHA256": "2cbc7689548b871021ebcf5c4190052029bac510a65cc16ef5ed10290ea828e5",
+        "ownRegisteredRuntime": true,
+        "sourceOverride": false,
+        "candidateHelperSHA256": null,
+        "candidatePilotSHA256": null,
+        "excluded": [
+          "shared/runtime/main.js"
+        ]
+      },
+      "pngSHA256": "4a51b56ed8880008c0a460db2e0d38a85abf42e6a1bbf2026d7b0038ae1d4ecd",
+      "terrainPNG_SHA256": "9aa8d7ff73eb28ab6170abdb6ad661dd4531f456fe47bd76817827c43afe46b9"
+    },
+    "candidate-renderer-above": {
+      "sceneRGBA": "797a08cf9c8b026fb0875922de55ff9996fe526d954da6ad1626564eb8b5f802",
+      "terrainRGBA": "dd70ab33bb676dd5f2af2cf20485b7c7a5f0680b22521da567757f1051eeb086",
+      "camera": {
+        "x": 320,
+        "y": 1650,
+        "scale": 1.05001
+      },
+      "physicsSha256": "699b6a494763270ff98c1f632ab848f91d34fdf084367e532e57f627363d5c97",
+      "vectorSHA": "76e4fc6c04fc1f95aa9dcd0d97c9b8294c05cbe0a75169eb53174768f8da7cd1",
+      "sourcePathHashes": [
+        "88ec1462d08db96d3bfac44bc3edc7c1a1e9d958a1c4532ecdb903438feb9169",
+        "5a48dcec78253ccedb8f8b7e89d9dcc045c9d2321dc35c21dfdcae6b085b605c",
+        "f441936b67b2539b0de3647aaf32700468faaae2070f387aabb972539d29a31f",
+        "a9e2f2395f237e3eadbc8a45b9fbc7ac77343ac01252111224aca4920525d031",
+        "00f1b1b757e50ac7aba9e1be62cbd59e411b8144de69b9e4dc29d044b0aeef01",
+        "c9f611ee4e779bf2bf526be1b5931ae029e24b11b683e6c43df2d45d5285bbff",
+        "018c13771d0c6e9168403797cb9bcdbe7c9f34dd07743323b5468d1b6b160a22",
+        "2821fa339d278babbf51e8208d17e225851200c810694d4fb035919949a6e1ed",
+        "c12e22c231e0d926428f54dc29a218bd5b026be5574683836f4c85ab0b2cc04c",
+        "be912d6527ed1d8a3a7fea1a3fa49c35125e024f841cfa19e1416cbb8da69f1b",
+        "0c7c44249f6fa9f2ef67f1ae5be6355f7923f2ad9dfd13cdf9dfae57c10384f1",
+        "59793f5d388eb45049b9be23473469c93e0a8a58e9f6bed683dd34e84ace4f37",
+        "1ef9bf8c537efd43f6c3c8723ec755a4bc24a0f2e6598af15fb7efbf0a377d1e",
+        "0b4fde82b0a4e4165a99c413fba386431ebbf00174a1f20d942e6de3b6b68f2c",
+        "0b2ed2d2544511be9077805c75a305f1f3e6845c6314856095536512886d9f11",
+        "c22abdd94e89b3492913de155be6a28f5255be45e9bf6268959557f326be173d",
+        "7a44d293e7bd7e2f3ded6ecf242fd73cbc62508f3f106faa1837d715f730fe27",
+        "587c88e566a3a4c4a6da861c2241f5e4f2f0736897199884c458a7d2ca3673ba",
+        "951e55065b34db9cd666cd69302cad9a7ad88ba437b61c663c8ea568582b9d0e",
+        "cd022735dfa9dcaa6f3f87503905b4af2aa0eb87f3f63e55bb8910cc22c83eaa",
+        "b4a7539496a6d0bb404d8985267d8f240221ec3e07d765734ce98cd652d75f7e",
+        "d44cf46f255019833f83834bbf84cffae1f465f2083bf71a1ef566db08ff9910",
+        "45ae54f59bc2c83cd403ebebdb442b8cc6d7ff330415e839affbfb3cfea82c7c",
+        "0c75525383b5e259169518ad83e9274c1c3cc7665f25f72487dba9cca1fae439",
+        "ea8eb7556f5f9323e0ea2b2eebf0fd470d23c607631f03092835239de7d1388d"
+      ],
+      "provenance": {
+        "runtimeSHA256": "7aef062c6d14d7a88e09a64f17dd9504f52d393ac1a5f6ce6d778c8c393baa84",
+        "mode": "candidate",
+        "helperSHA256": "2cbc7689548b871021ebcf5c4190052029bac510a65cc16ef5ed10290ea828e5",
+        "ownRegisteredRuntime": false,
+        "sourceOverride": true,
+        "candidateHelperSHA256": "7ca476433572d83201e8e767fc3aa99d65192b592d59920a3bdf37acf41a64e3",
+        "candidatePilotSHA256": "636b0562211ab2ee8b0018bc8c6ea8a584653c99ccaad5c76cd0d6ca5bd819c8",
+        "excluded": [
+          "shared/runtime/main.js"
+        ]
+      },
+      "pngSHA256": "7dc8152d9871e8734c0592f07d29029abc4e3e74901d73549acc4755f297cc69",
+      "terrainPNG_SHA256": "fad40730a2f9404fa2e3b1909315a1cd79427de45d8f97c0c27d11db82136221"
+    },
+    "baseline-native-walk": {
+      "sceneRGBA": "3840620619e5200f4cbea4dc1a0a24659d5d696b99d6b10fadc218583b358d9d",
+      "terrainRGBA": "3bcbae69d16fb2a82d1718d4c6fd5a2f8f258c6ffd916c79955d15109dfbb1ed",
+      "camera": {
+        "x": 1689.6,
+        "y": 1342,
+        "scale": 1.65
+      },
+      "physicsSha256": "699b6a494763270ff98c1f632ab848f91d34fdf084367e532e57f627363d5c97",
+      "vectorSHA": "76e4fc6c04fc1f95aa9dcd0d97c9b8294c05cbe0a75169eb53174768f8da7cd1",
+      "sourcePathHashes": [
+        "88ec1462d08db96d3bfac44bc3edc7c1a1e9d958a1c4532ecdb903438feb9169",
+        "5a48dcec78253ccedb8f8b7e89d9dcc045c9d2321dc35c21dfdcae6b085b605c",
+        "f441936b67b2539b0de3647aaf32700468faaae2070f387aabb972539d29a31f",
+        "a9e2f2395f237e3eadbc8a45b9fbc7ac77343ac01252111224aca4920525d031",
+        "00f1b1b757e50ac7aba9e1be62cbd59e411b8144de69b9e4dc29d044b0aeef01",
+        "c9f611ee4e779bf2bf526be1b5931ae029e24b11b683e6c43df2d45d5285bbff",
+        "018c13771d0c6e9168403797cb9bcdbe7c9f34dd07743323b5468d1b6b160a22",
+        "2821fa339d278babbf51e8208d17e225851200c810694d4fb035919949a6e1ed",
+        "c12e22c231e0d926428f54dc29a218bd5b026be5574683836f4c85ab0b2cc04c",
+        "be912d6527ed1d8a3a7fea1a3fa49c35125e024f841cfa19e1416cbb8da69f1b",
+        "0c7c44249f6fa9f2ef67f1ae5be6355f7923f2ad9dfd13cdf9dfae57c10384f1",
+        "59793f5d388eb45049b9be23473469c93e0a8a58e9f6bed683dd34e84ace4f37",
+        "1ef9bf8c537efd43f6c3c8723ec755a4bc24a0f2e6598af15fb7efbf0a377d1e",
+        "0b4fde82b0a4e4165a99c413fba386431ebbf00174a1f20d942e6de3b6b68f2c",
+        "0b2ed2d2544511be9077805c75a305f1f3e6845c6314856095536512886d9f11",
+        "c22abdd94e89b3492913de155be6a28f5255be45e9bf6268959557f326be173d",
+        "7a44d293e7bd7e2f3ded6ecf242fd73cbc62508f3f106faa1837d715f730fe27",
+        "587c88e566a3a4c4a6da861c2241f5e4f2f0736897199884c458a7d2ca3673ba",
+        "951e55065b34db9cd666cd69302cad9a7ad88ba437b61c663c8ea568582b9d0e",
+        "cd022735dfa9dcaa6f3f87503905b4af2aa0eb87f3f63e55bb8910cc22c83eaa",
+        "b4a7539496a6d0bb404d8985267d8f240221ec3e07d765734ce98cd652d75f7e",
+        "d44cf46f255019833f83834bbf84cffae1f465f2083bf71a1ef566db08ff9910",
+        "45ae54f59bc2c83cd403ebebdb442b8cc6d7ff330415e839affbfb3cfea82c7c",
+        "0c75525383b5e259169518ad83e9274c1c3cc7665f25f72487dba9cca1fae439",
+        "ea8eb7556f5f9323e0ea2b2eebf0fd470d23c607631f03092835239de7d1388d"
+      ],
+      "provenance": {
+        "runtimeSHA256": "c06a9e3c4cd9c0126ba22e54df1cafd7d692797c60d6075e6a41b16c59ae572f",
+        "mode": "baseline",
+        "helperSHA256": "2cbc7689548b871021ebcf5c4190052029bac510a65cc16ef5ed10290ea828e5",
+        "ownRegisteredRuntime": true,
+        "sourceOverride": false,
+        "candidateHelperSHA256": null,
+        "candidatePilotSHA256": null,
+        "excluded": [
+          "shared/runtime/main.js"
+        ]
+      },
+      "pngSHA256": "7c18935ca7f7c39d9b9124e9985c7a4e88bee0dd67791215b7f89f41618a06d3",
+      "terrainPNG_SHA256": "b0b7160d6a065dea09e0e9e57a4b62a4c506411ea3b817cf2e69b104699da718"
+    },
+    "candidate-native-walk": {
+      "sceneRGBA": "49d54b85a5126749190a452128ca8240ba1fd41c8902cf3022068d64e6614c89",
+      "terrainRGBA": "807384b0895340f47aa856c13244863881e4d91ea93eb92c849ea61519bc6ecc",
+      "camera": {
+        "x": 1689.6,
+        "y": 1342,
+        "scale": 1.65
+      },
+      "physicsSha256": "699b6a494763270ff98c1f632ab848f91d34fdf084367e532e57f627363d5c97",
+      "vectorSHA": "76e4fc6c04fc1f95aa9dcd0d97c9b8294c05cbe0a75169eb53174768f8da7cd1",
+      "sourcePathHashes": [
+        "88ec1462d08db96d3bfac44bc3edc7c1a1e9d958a1c4532ecdb903438feb9169",
+        "5a48dcec78253ccedb8f8b7e89d9dcc045c9d2321dc35c21dfdcae6b085b605c",
+        "f441936b67b2539b0de3647aaf32700468faaae2070f387aabb972539d29a31f",
+        "a9e2f2395f237e3eadbc8a45b9fbc7ac77343ac01252111224aca4920525d031",
+        "00f1b1b757e50ac7aba9e1be62cbd59e411b8144de69b9e4dc29d044b0aeef01",
+        "c9f611ee4e779bf2bf526be1b5931ae029e24b11b683e6c43df2d45d5285bbff",
+        "018c13771d0c6e9168403797cb9bcdbe7c9f34dd07743323b5468d1b6b160a22",
+        "2821fa339d278babbf51e8208d17e225851200c810694d4fb035919949a6e1ed",
+        "c12e22c231e0d926428f54dc29a218bd5b026be5574683836f4c85ab0b2cc04c",
+        "be912d6527ed1d8a3a7fea1a3fa49c35125e024f841cfa19e1416cbb8da69f1b",
+        "0c7c44249f6fa9f2ef67f1ae5be6355f7923f2ad9dfd13cdf9dfae57c10384f1",
+        "59793f5d388eb45049b9be23473469c93e0a8a58e9f6bed683dd34e84ace4f37",
+        "1ef9bf8c537efd43f6c3c8723ec755a4bc24a0f2e6598af15fb7efbf0a377d1e",
+        "0b4fde82b0a4e4165a99c413fba386431ebbf00174a1f20d942e6de3b6b68f2c",
+        "0b2ed2d2544511be9077805c75a305f1f3e6845c6314856095536512886d9f11",
+        "c22abdd94e89b3492913de155be6a28f5255be45e9bf6268959557f326be173d",
+        "7a44d293e7bd7e2f3ded6ecf242fd73cbc62508f3f106faa1837d715f730fe27",
+        "587c88e566a3a4c4a6da861c2241f5e4f2f0736897199884c458a7d2ca3673ba",
+        "951e55065b34db9cd666cd69302cad9a7ad88ba437b61c663c8ea568582b9d0e",
+        "cd022735dfa9dcaa6f3f87503905b4af2aa0eb87f3f63e55bb8910cc22c83eaa",
+        "b4a7539496a6d0bb404d8985267d8f240221ec3e07d765734ce98cd652d75f7e",
+        "d44cf46f255019833f83834bbf84cffae1f465f2083bf71a1ef566db08ff9910",
+        "45ae54f59bc2c83cd403ebebdb442b8cc6d7ff330415e839affbfb3cfea82c7c",
+        "0c75525383b5e259169518ad83e9274c1c3cc7665f25f72487dba9cca1fae439",
+        "ea8eb7556f5f9323e0ea2b2eebf0fd470d23c607631f03092835239de7d1388d"
+      ],
+      "provenance": {
+        "runtimeSHA256": "7aef062c6d14d7a88e09a64f17dd9504f52d393ac1a5f6ce6d778c8c393baa84",
+        "mode": "candidate",
+        "helperSHA256": "2cbc7689548b871021ebcf5c4190052029bac510a65cc16ef5ed10290ea828e5",
+        "ownRegisteredRuntime": false,
+        "sourceOverride": true,
+        "candidateHelperSHA256": "7ca476433572d83201e8e767fc3aa99d65192b592d59920a3bdf37acf41a64e3",
+        "candidatePilotSHA256": "636b0562211ab2ee8b0018bc8c6ea8a584653c99ccaad5c76cd0d6ca5bd819c8",
+        "excluded": [
+          "shared/runtime/main.js"
+        ]
+      },
+      "pngSHA256": "70392b898dea1e1b54377b64d1f4ad2e392c24e52c26c128b52118c7d3c6b695",
+      "terrainPNG_SHA256": "77f391d839027f485aa9feea53e2b79a1576f2b23c222fd51595708ea04c5fbd"
+    }
+  }
+}

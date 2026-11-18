@@ -1,0 +1,38 @@
+name: Stage32 native-route corrected protected-tag model
+on:
+  workflow_dispatch:
+  push:
+    branches: [inspect/stage32-scanline-20261118]
+    paths: ['tools/testing/stage32-live-tag-v2/**', '.github/workflows/stage32-live-tag-v2.yml']
+permissions:
+  contents: read
+jobs:
+  study:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      HONRO_ACT4_RELEASE: '1'
+      HONRO_ACT5_RELEASE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with: {path: study}
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with: {path: product, ref: 126a2b5600f31bd686c79caef1e7c91dffd7759f}
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with: {node-version: '22', package-manager-cache: false}
+      - run: npm ci && npm ci --prefix game
+        working-directory: product
+      - name: Exact copied-source scope
+        run: node study/tools/testing/stage32-live-ss/actual/contract.mjs product
+      - name: Actual unchanged runtime and two-source candidate three-view capture
+        run: |
+          node study/tools/testing/stage32-live-tag-v2/fixture.mjs product "$RUNNER_TEMP/baseline" baseline
+          node study/tools/testing/stage32-live-ss/actual/run.mjs "$RUNNER_TEMP/baseline" artifacts/evidence
+          node study/tools/testing/stage32-live-tag-v2/fixture.mjs product "$RUNNER_TEMP/candidate" candidate
+          node study/tools/testing/stage32-live-ss/actual/run.mjs "$RUNNER_TEMP/candidate" artifacts/evidence
+      - run: python -m pip install Pillow numpy
+      - name: Cached exact and live union-alpha foreground contracts
+        run: python study/tools/testing/stage32-live-tag-v2/check.py artifacts/evidence
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with: {name: stage32-native-route-tag-v2, path: artifacts, if-no-files-found: error}

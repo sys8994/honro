@@ -1,0 +1,183 @@
+{
+  "run": 44268810252,
+  "commit": "3bb7511e3959e0f0f6e227de8f2caa1e84dec0a3",
+  "artifact": 14411961285,
+  "artifactSHA256": "cc47516e853297585703c168ed8b7c97e0fd7d82853dd086794df5c86ef2d458",
+  "originalPass": false,
+  "originalFailures": [
+    "native-walk:tag-visible-oracle-grass",
+    "native-walk:tag-visible-oracle-pale"
+  ],
+  "views": [
+    {
+      "view": "gray-left",
+      "camera": {
+        "x": 320,
+        "y": 1650,
+        "scale": 0.6
+      },
+      "nativeLive": false,
+      "sceneChanged": 0,
+      "terrainChanged": 0,
+      "terrainAlphaChanged": 0,
+      "sceneAlphaChanged": 0,
+      "terrainOutsideRGB": 0,
+      "ssCalls": 6,
+      "routeRows": 10,
+      "maxChannelDelta": 0
+    },
+    {
+      "view": "portrait-overview",
+      "camera": {
+        "x": 1689.6,
+        "y": 1200,
+        "scale": 0.057352941176470586
+      },
+      "nativeLive": false,
+      "sceneChanged": 0,
+      "terrainChanged": 0,
+      "terrainAlphaChanged": 0,
+      "sceneAlphaChanged": 0,
+      "terrainOutsideRGB": 0,
+      "ssCalls": 2,
+      "routeRows": 5,
+      "maxChannelDelta": 0
+    },
+    {
+      "view": "portrait-bottom",
+      "camera": {
+        "x": 1689.6,
+        "y": 2492.8,
+        "scale": 0.057352941176470586
+      },
+      "nativeLive": false,
+      "sceneChanged": 0,
+      "terrainChanged": 0,
+      "terrainAlphaChanged": 0,
+      "sceneAlphaChanged": 0,
+      "terrainOutsideRGB": 0,
+      "ssCalls": 2,
+      "routeRows": 5,
+      "maxChannelDelta": 0
+    },
+    {
+      "view": "landscape-overview",
+      "camera": {
+        "x": 1689.6,
+        "y": 1200,
+        "scale": 0.12411764705882353
+      },
+      "nativeLive": false,
+      "sceneChanged": 0,
+      "terrainChanged": 0,
+      "terrainAlphaChanged": 0,
+      "sceneAlphaChanged": 0,
+      "terrainOutsideRGB": 0,
+      "ssCalls": 2,
+      "routeRows": 5,
+      "maxChannelDelta": 0
+    },
+    {
+      "view": "landscape-bottom",
+      "camera": {
+        "x": 1689.6,
+        "y": 2492.8,
+        "scale": 0.12411764705882353
+      },
+      "nativeLive": false,
+      "sceneChanged": 0,
+      "terrainChanged": 0,
+      "terrainAlphaChanged": 0,
+      "sceneAlphaChanged": 0,
+      "terrainOutsideRGB": 0,
+      "ssCalls": 2,
+      "routeRows": 3,
+      "maxChannelDelta": 0
+    },
+    {
+      "view": "desktop-walk",
+      "camera": {
+        "x": 1689.6,
+        "y": 1342,
+        "scale": 1
+      },
+      "nativeLive": false,
+      "sceneChanged": 0,
+      "terrainChanged": 0,
+      "terrainAlphaChanged": 0,
+      "sceneAlphaChanged": 0,
+      "terrainOutsideRGB": 0,
+      "ssCalls": 6,
+      "routeRows": 10,
+      "maxChannelDelta": 0
+    },
+    {
+      "view": "native-walk",
+      "camera": {
+        "x": 1689.6,
+        "y": 1342,
+        "scale": 1.65
+      },
+      "nativeLive": true,
+      "sceneChanged": 1024,
+      "terrainChanged": 1022,
+      "terrainAlphaChanged": 0,
+      "sceneAlphaChanged": 0,
+      "terrainOutsideRGB": 0,
+      "ssCalls": 0,
+      "routeRows": 3,
+      "maxChannelDelta": 30
+    },
+    {
+      "view": "maximum",
+      "camera": {
+        "x": 320,
+        "y": 1650,
+        "scale": 1.65
+      },
+      "nativeLive": true,
+      "sceneChanged": 353,
+      "terrainChanged": 353,
+      "terrainAlphaChanged": 0,
+      "sceneAlphaChanged": 0,
+      "terrainOutsideRGB": 0,
+      "ssCalls": 0,
+      "routeRows": 3,
+      "maxChannelDelta": 23
+    },
+    {
+      "view": "renderer-below",
+      "camera": {
+        "x": 320,
+        "y": 1650,
+        "scale": 1.04999
+      },
+      "nativeLive": false,
+      "sceneChanged": 0,
+      "terrainChanged": 0,
+      "terrainAlphaChanged": 0,
+      "sceneAlphaChanged": 0,
+      "terrainOutsideRGB": 0,
+      "ssCalls": 4,
+      "routeRows": 13,
+      "maxChannelDelta": 0
+    },
+    {
+      "view": "renderer-above",
+      "camera": {
+        "x": 320,
+        "y": 1650,
+        "scale": 1.05001
+      },
+      "nativeLive": true,
+      "sceneChanged": 518,
+      "terrainChanged": 518,
+      "terrainAlphaChanged": 0,
+      "sceneAlphaChanged": 0,
+      "terrainOutsideRGB": 0,
+      "ssCalls": 0,
+      "routeRows": 3,
+      "maxChannelDelta": 16
+    }
+  ]
+}

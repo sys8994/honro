@@ -1,0 +1,81 @@
+{
+  "scope": "Native direct FOUNDATION+BODY only; single cold timings diagnostic, not Chrome Scene or performance acceptance",
+  "rows": [
+    {
+      "name": "maximum",
+      "z": 1.65,
+      "W": 1331,
+      "H": 763,
+      "cx": 320,
+      "cy": 1650,
+      "pixels": 0,
+      "alpha": 0,
+      "maxDelta": 0,
+      "baselineRGBA": "5c03af266577affa74c334cacd959faf1e0ac72f606ac5acbc6d45390e14c05e",
+      "candidateRGBA": "5c03af266577affa74c334cacd959faf1e0ac72f606ac5acbc6d45390e14c05e",
+      "baselineMs": 625.207914,
+      "candidateMs": 468.13912099999993
+    },
+    {
+      "name": "left",
+      "z": 0.6,
+      "W": 1331,
+      "H": 763,
+      "cx": 320,
+      "cy": 1650,
+      "pixels": 0,
+      "alpha": 0,
+      "maxDelta": 0,
+      "baselineRGBA": "20030c958a727c8f89648eae3d6c923cccf4e2ddee2b46f46d8fa9f03daa3f21",
+      "candidateRGBA": "20030c958a727c8f89648eae3d6c923cccf4e2ddee2b46f46d8fa9f03daa3f21",
+      "baselineMs": 665.7003399999999,
+      "candidateMs": 567.012358
+    },
+    {
+      "name": "phone-min",
+      "z": 0.05735,
+      "W": 390,
+      "H": 844,
+      "cx": 1500,
+      "cy": 1000,
+      "pixels": 0,
+      "alpha": 0,
+      "maxDelta": 0,
+      "baselineRGBA": "269a5d71ae42c2dd06f5efbd760d0719fcf9b2952eef593e3a9c17378830bba7",
+      "candidateRGBA": "269a5d71ae42c2dd06f5efbd760d0719fcf9b2952eef593e3a9c17378830bba7",
+      "baselineMs": 152.45367699999997,
+      "candidateMs": 154.0088679999999
+    },
+    {
+      "name": "large-cap",
+      "z": 1.65,
+      "W": 1920,
+      "H": 1080,
+      "cx": 1689.6,
+      "cy": 1342,
+      "pixels": 0,
+      "alpha": 0,
+      "maxDelta": 0,
+      "baselineRGBA": "eb2e425d5c711b72ad0b1be1476eff4f02f66da0b2ada7610f0917c1b4f05552",
+      "candidateRGBA": "eb2e425d5c711b72ad0b1be1476eff4f02f66da0b2ada7610f0917c1b4f05552",
+      "baselineMs": 636.401273,
+      "candidateMs": 458.27861499999926
+    },
+    {
+      "name": "phone-D2-cap",
+      "z": 1.65,
+      "W": 780,
+      "H": 1392,
+      "cx": 1689.6,
+      "cy": 1342,
+      "pixels": 0,
+      "alpha": 0,
+      "maxDelta": 0,
+      "baselineRGBA": "a9e7f7ded560e89775f0488fcb0900d51b82622235c49ad2c338f93df5c790b7",
+      "candidateRGBA": "a9e7f7ded560e89775f0488fcb0900d51b82622235c49ad2c338f93df5c790b7",
+      "baselineMs": 220.9643240000005,
+      "candidateMs": 244.85041399999955
+    }
+  ],
+  "pass": true
+}

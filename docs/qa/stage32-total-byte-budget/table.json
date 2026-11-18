@@ -1,0 +1,206 @@
+{
+  "retainedSSWorstBytes": 8388608,
+  "proposedStudyLogicalBudget": 50331648,
+  "rows": [
+    {
+      "device": "desktop1080",
+      "css": [
+        1920,
+        1080
+      ],
+      "dpr": 1,
+      "physical": [
+        1920,
+        1080
+      ],
+      "pixels": 2073600,
+      "materialBytes": 8294400,
+      "poses": [
+        {
+          "scale": 1.65,
+          "cameraY": 1342,
+          "thresholdDevice": 1157.1,
+          "bandRows": 0,
+          "boundaryPass": false,
+          "freshLogicalBytes": 8294412,
+          "plusRetainedSSWorst8MiB": 16683020,
+          "MiBWithSS": 15.910167694091797
+        },
+        {
+          "scale": 1.65,
+          "cameraY": 1650,
+          "thresholdDevice": 648.9,
+          "bandRows": 434,
+          "boundaryPass": true,
+          "freshLogicalBytes": 23255040,
+          "plusRetainedSSWorst8MiB": 31643648,
+          "MiBWithSS": 30.177734375
+        }
+      ],
+      "fullBandSplitWorstBytes": 33177600,
+      "withRetainedSSWorstBytes": 41566208,
+      "withRetainedSSWorstMiB": 39.640625,
+      "fitsProposed48MiBAtFullBand": true
+    },
+    {
+      "device": "phoneD2",
+      "css": [
+        390,
+        696
+      ],
+      "dpr": 2,
+      "physical": [
+        780,
+        1392
+      ],
+      "pixels": 1085760,
+      "materialBytes": 4343040,
+      "poses": [
+        {
+          "scale": 1.65,
+          "cameraY": 1342,
+          "thresholdDevice": 1930.2,
+          "bandRows": 0,
+          "boundaryPass": false,
+          "freshLogicalBytes": 4343052,
+          "plusRetainedSSWorst8MiB": 12731660,
+          "MiBWithSS": 12.141857147216797
+        },
+        {
+          "scale": 1.65,
+          "cameraY": 1650,
+          "thresholdDevice": 913.8,
+          "bandRows": 481,
+          "boundaryPass": true,
+          "freshLogicalBytes": 11687520,
+          "plusRetainedSSWorst8MiB": 20076128,
+          "MiBWithSS": 19.146087646484375
+        }
+      ],
+      "fullBandSplitWorstBytes": 17372160,
+      "withRetainedSSWorstBytes": 25760768,
+      "withRetainedSSWorstMiB": 24.5673828125,
+      "fitsProposed48MiBAtFullBand": true
+    },
+    {
+      "device": "phoneD3",
+      "css": [
+        390,
+        696
+      ],
+      "dpr": 3,
+      "physical": [
+        1170,
+        2088
+      ],
+      "pixels": 2442960,
+      "materialBytes": 9771840,
+      "poses": [
+        {
+          "scale": 1.65,
+          "cameraY": 1342,
+          "thresholdDevice": 2895.3,
+          "bandRows": 0,
+          "boundaryPass": false,
+          "freshLogicalBytes": 9771852,
+          "plusRetainedSSWorst8MiB": 18160460,
+          "MiBWithSS": 17.319164276123047
+        },
+        {
+          "scale": 1.65,
+          "cameraY": 1650,
+          "thresholdDevice": 1370.6999999999998,
+          "bandRows": 720,
+          "boundaryPass": true,
+          "freshLogicalBytes": 26282880,
+          "plusRetainedSSWorst8MiB": 34671488,
+          "MiBWithSS": 33.0653076171875
+        }
+      ],
+      "fullBandSplitWorstBytes": 39087360,
+      "withRetainedSSWorstBytes": 47475968,
+      "withRetainedSSWorstMiB": 45.276611328125,
+      "fitsProposed48MiBAtFullBand": true
+    },
+    {
+      "device": "sixMiPixelStudy",
+      "css": [
+        3072,
+        2048
+      ],
+      "dpr": 1,
+      "physical": [
+        3072,
+        2048
+      ],
+      "pixels": 6291456,
+      "materialBytes": 25165824,
+      "poses": [
+        {
+          "scale": 1.65,
+          "cameraY": 1342,
+          "thresholdDevice": 1641.1,
+          "bandRows": 409,
+          "boundaryPass": true,
+          "freshLogicalBytes": 60383232,
+          "plusRetainedSSWorst8MiB": 68771840,
+          "MiBWithSS": 65.5859375
+        },
+        {
+          "scale": 1.65,
+          "cameraY": 1650,
+          "thresholdDevice": 1132.9,
+          "bandRows": 456,
+          "boundaryPass": true,
+          "freshLogicalBytes": 61538304,
+          "plusRetainedSSWorst8MiB": 69926912,
+          "MiBWithSS": 66.6875
+        }
+      ],
+      "fullBandSplitWorstBytes": 100663296,
+      "withRetainedSSWorstBytes": 109051904,
+      "withRetainedSSWorstMiB": 104.0,
+      "fitsProposed48MiBAtFullBand": false
+    },
+    {
+      "device": "fourK",
+      "css": [
+        3840,
+        2160
+      ],
+      "dpr": 1,
+      "physical": [
+        3840,
+        2160
+      ],
+      "pixels": 8294400,
+      "materialBytes": 33177600,
+      "poses": [
+        {
+          "scale": 1.65,
+          "cameraY": 1342,
+          "thresholdDevice": 1697.1,
+          "bandRows": 455,
+          "boundaryPass": true,
+          "freshLogicalBytes": 80332800,
+          "plusRetainedSSWorst8MiB": 88721408,
+          "MiBWithSS": 84.611328125
+        },
+        {
+          "scale": 1.65,
+          "cameraY": 1650,
+          "thresholdDevice": 1188.9,
+          "bandRows": 456,
+          "boundaryPass": true,
+          "freshLogicalBytes": 80363520,
+          "plusRetainedSSWorst8MiB": 88752128,
+          "MiBWithSS": 84.640625
+        }
+      ],
+      "fullBandSplitWorstBytes": 132710400,
+      "withRetainedSSWorstBytes": 141099008,
+      "withRetainedSSWorstMiB": 134.5625,
+      "fitsProposed48MiBAtFullBand": false
+    }
+  ]
+}
