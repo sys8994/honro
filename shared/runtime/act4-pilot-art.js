@@ -92,7 +92,7 @@ if(S){
    if(l.nativeArtLayer==='body'&&!bodyLive(l,b))return;
    const raw=G.HonroVisualStyle?.raw(c)||c;
    if(l.nativeArtLayer==='body')paintContactUnderlay(raw,l,b);
-   if(G.HonroStage32FoundationArt?.draw(raw,l,b))return;
+   if(G.HonroStage32FoundationArt?.draw(raw,l,b,false,{sceneScale:this.scale,nativeLive:this.scale>1.05}))return;
    if(G.HonroStage33ExteriorArt?.draw(raw,l,b))return;
    if(G.HonroStage34FoundationEdge?.draw(raw,l,b))return;
    if(G.HonroStage37AlphaEdge?.draw(raw,l,b))return;
