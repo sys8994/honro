@@ -1,0 +1,9 @@
+{
+  "source": "stage32-internal-material-final/candidate.js",
+  "sourceSHA256": "6adee100c0437946cc4548a993c9bb5d3082606a0deb29f9ad588ebc3ce331fb",
+  "offSHA256": "3e85dd6dcdd9de6407258f239956323c9f1b5b89c9bf6b3a627770a4e6495af5",
+  "removed": "if(!originalContext)coherentColor(c,cv,q);",
+  "replacement": "/* Research-only SS-off ablation: no coherentColor invocation. */",
+  "reverseExact": true,
+  "scope": "Only one coherentColor call disabled; native/internal/transition/source geometry unchanged. Research only."
+}
