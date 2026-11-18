@@ -1,0 +1,107 @@
+{
+  "ciRun": 44282130340,
+  "ciCommit": "dd0ae1fd0d92007336aef1d5bf042995ab5da170",
+  "artifactId": 14416224640,
+  "archiveSHA256": "b0156b92b591f61e923b276e744478364c683f14f570a155ac5e604047defc31",
+  "baselineProvenance": {
+    "commit": "7d238d20663c3ceffe430eb0304e01516ae625cf",
+    "runtimeSHA": "e4da1f7f8d5fdd4117cfc5d084b1b1d1c247501d56707aab21956b17efcefbe9",
+    "codecSHA": "3b270b6ca132a70559f1c7691d63d6d8a82ca4bfef5d06c69522c20fe6884f2c",
+    "excluded": [
+      "shared/runtime/main.js"
+    ],
+    "sourceOverrides": false
+  },
+  "candidateProvenance": {
+    "commit": "fdac97818c09536f5d0057181d04fbd60d48df18",
+    "runtimeSHA": "87da2f8b7dc64cc83adeccd563f228ef945abaf44c9144037479360bc1ad7274",
+    "codecSHA": "3b270b6ca132a70559f1c7691d63d6d8a82ca4bfef5d06c69522c20fe6884f2c",
+    "excluded": [
+      "shared/runtime/main.js"
+    ],
+    "sourceOverrides": false
+  },
+  "result": {
+    "passed": true,
+    "deployedCommit": "7d238d20663c3ceffe430eb0304e01516ae625cf",
+    "candidateCommit": "fdac97818c09536f5d0057181d04fbd60d48df18",
+    "stages": [
+      {
+        "stage": 3,
+        "oldProfileSchema": 5,
+        "currentProfileSchema": 5,
+        "expectedSHA": "893e8bb53c686425f43c200c30f7fc403d47bd399ac695879f3f8d6b9382384d",
+        "restoredSHA": "893e8bb53c686425f43c200c30f7fc403d47bd399ac695879f3f8d6b9382384d",
+        "encodedSHA": "893e8bb53c686425f43c200c30f7fc403d47bd399ac695879f3f8d6b9382384d",
+        "fullBattleExact": true,
+        "recompactExact": true,
+        "secondRestoreExact": true,
+        "normalization": false
+      },
+      {
+        "stage": 7,
+        "oldProfileSchema": 5,
+        "currentProfileSchema": 5,
+        "expectedSHA": "c9123260991a64d5476de8124babbb8e710930aeaa5cb826eba2856695c1e62e",
+        "restoredSHA": "c9123260991a64d5476de8124babbb8e710930aeaa5cb826eba2856695c1e62e",
+        "encodedSHA": "c9123260991a64d5476de8124babbb8e710930aeaa5cb826eba2856695c1e62e",
+        "fullBattleExact": true,
+        "recompactExact": true,
+        "secondRestoreExact": true,
+        "normalization": false
+      },
+      {
+        "stage": 32,
+        "oldProfileSchema": 5,
+        "currentProfileSchema": 5,
+        "expectedSHA": "64f5bb01120cbc606eb590bfb627f908cbe8e8e1c8b16073c3dc5e3559d800f3",
+        "restoredSHA": "64f5bb01120cbc606eb590bfb627f908cbe8e8e1c8b16073c3dc5e3559d800f3",
+        "encodedSHA": "a1b1c98a0adde814e31e62e8bf3bd097713decd7ac16bfe428692fa5e2522fc8",
+        "fullBattleExact": true,
+        "recompactExact": true,
+        "secondRestoreExact": true,
+        "normalization": false
+      }
+    ],
+    "scope": "Independent synthetic deployed 7d battles 3/7/32; exact old snapshot preservation through official codec only. No current fresh-battle equivalence, profile migration, App continue, visual or actual user-save claim.",
+    "userStorageAccess": 0
+  },
+  "representations": [
+    {
+      "stage": 3,
+      "representation": {
+        "localArtTable": false,
+        "staticProviderReferences": false
+      },
+      "syntheticActorCount": 15
+    },
+    {
+      "stage": 7,
+      "representation": {
+        "localArtTable": false,
+        "staticProviderReferences": false
+      },
+      "syntheticActorCount": 26
+    },
+    {
+      "stage": 32,
+      "representation": {
+        "localArtTable": false,
+        "staticProviderReferences": true
+      },
+      "syntheticActorCount": 17
+    }
+  ],
+  "syntheticOnly": true,
+  "userStorageAccess": 0,
+  "normalization": false,
+  "profileMigrationTested": false,
+  "appContinueTested": false,
+  "baselineStatus": "Previous deployed version 7d, not latest current deployment",
+  "laterDeployment": {
+    "commit": "5b2edf0b868a6f4ab656574b036586304eb12808",
+    "pagesRun": 44280132384,
+    "conclusion": "success",
+    "coveredByThisTest": false
+  }
+}
