@@ -1,0 +1,9 @@
+# Official J32-only registration, twelve views, all50
+
+Pinned J af5b77e15accea03470fdfd0c6cb00a0bb12c5e9 directly on deployed5b. Official default build/runtimeEntries; no environment release override, no helper/pilot source substitution. Registered helper6823 and narrow pilotded8 content pinned exactly once. Main entry alone excluded from isolated Scene/model tests. Actual App continuation is separate.
+
+Source contract exact six-file diff and inverse patch; renderer/profile/monster source unchanged. Official Game+Workshop builds. Two actual browser all50 snapshots use full app dependencies except main, campaign origin, deterministic synthetic clock/random and storage denial. Owncodec50 exact on each, physics/units50 and49 full battles exact. Only32 named visual providers canonicalized; existing assets exact and two additions only. Raw25 original SHA preserved and official optimizer applied solely to a cloned provider must reproduce retained old optimized BODY; no blanket path-string normalization.
+
+Twelve J Scene captures: canonical nine plus nativewalk/DPR3/1080. Terrain RGBA strictly matches prior pinned evidence; references explicitly identify different runs. Cached goldens from original registered helper, native from same6823 offline research. FullScene normal images retained for manual visual classification because latest5b monsters can differ from older research. No old screenshot is substituted for J execution. Actual DPR/backing, route, codec, source paths, project/render immutability, storage denial and cached/native repeat checks retained. Scene result does not imply all50 playthrough or performance acceptance.
+
+3/7 source and their entire fresh battles remain5b unchanged; this package intentionally does not introduce unfinished3/7 assets. Old5b saved3/7/32 App continue/tick is owned by separate deployed-5b-save-J package. Cost against deployed5b is a separate clean/rAF package.

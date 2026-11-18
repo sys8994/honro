@@ -1,0 +1,46 @@
+name: Stage32 J official registration and all50 regression
+on:
+  workflow_dispatch:
+  push:
+    branches: [inspect/stage32-scanline-20261118]
+    paths: ['tools/testing/stage32-J-registered/**', '.github/workflows/stage32-J-registered.yml']
+permissions: {contents: read}
+jobs:
+  study:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with: {path: study}
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with: {path: product, ref: af5b77e15accea03470fdfd0c6cb00a0bb12c5e9, fetch-depth: 2}
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with: {path: baseline, ref: 5b2edf0b868a6f4ab656574b036586304eb12808}
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with: {node-version: '22', package-manager-cache: false}
+      - run: npm ci && npm ci --prefix game
+        working-directory: product
+      - run: npm ci && npm ci --prefix game
+        working-directory: baseline
+      - name: Exact J source and official builds
+        run: |
+          node study/tools/testing/stage32-J-registered/source-contract.mjs product
+          (cd product && node workshop/build.mjs && node game/build.mjs)
+      - name: Actual official all50 codec and cloned optimizer proof
+        run: |
+          T=study/tools/testing/stage32-J-registered
+          node "$T/snapshot.mjs" baseline artifacts/base "$RUNNER_TEMP/base50"
+          node study/tools/testing/stage32-live-ss/actual/run.mjs "$RUNNER_TEMP/base50" artifacts/base
+          node "$T/snapshot.mjs" product artifacts/new "$RUNNER_TEMP/new50"
+          node study/tools/testing/stage32-live-ss/actual/run.mjs "$RUNNER_TEMP/new50" artifacts/new
+          node "$T/compare.mjs" artifacts/base artifacts/new artifacts/all50-result.json
+      - name: Actual J registered twelve views, no helper injection
+        run: |
+          T=study/tools/testing/stage32-J-registered
+          node "$T/fixture.mjs" product "$RUNNER_TEMP/registered"
+          node study/tools/testing/stage32-live-ss/actual/run.mjs "$RUNNER_TEMP/registered" artifacts/evidence
+          python -m pip install Pillow
+          python "$T/check.py" artifacts/evidence
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with: {name: stage32-J-registered, path: artifacts, if-no-files-found: error}

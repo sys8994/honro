@@ -1,0 +1,84 @@
+{
+  "files": [
+    {
+      "local": "stage32-offline-on-5b/production/shared/build.mjs",
+      "path": "shared/build.mjs",
+      "bytes": 24671,
+      "sha256": "03bd7bbeb9c49dc734149f402c8a2e629b6caca651ff048960751ad35ffe160c"
+    },
+    {
+      "local": "stage32-offline-on-5b/production/shared/act4-handoff-art.mjs",
+      "path": "shared/act4-handoff-art.mjs",
+      "bytes": 8258,
+      "sha256": "26f5101f019a8aaf6d27030a4241636642922d89d6bfd1d294928c7b4ec48b3b"
+    },
+    {
+      "local": "stage32-offline-on-5b/production/shared/runtime/act4-pilot-art.js",
+      "path": "shared/runtime/act4-pilot-art.js",
+      "bytes": 15779,
+      "sha256": "ded8ef211d3b7504470b5f6afd41ba0b46e29a910fcb2603b13aeeef49dd2292"
+    },
+    {
+      "local": "stage32-offline-on-5b/production/shared/runtime/stage32-foundation-art.js",
+      "path": "shared/runtime/stage32-foundation-art.js",
+      "bytes": 260894,
+      "sha256": "6823eda0e8d3c5250396c857f09f96ee3eba8fbfba124af540d080a5a76d03c7"
+    },
+    {
+      "local": "stage32-offline-on-5b/production/shared/data/act4/handoff-art/32-foundation.json",
+      "path": "shared/data/act4/handoff-art/32-foundation.json",
+      "bytes": 609306,
+      "sha256": "2ec84007352614d3319293d8b46384842550fe87f999cbf671145444d4a1cfa7"
+    },
+    {
+      "local": "stage32-offline-on-5b/production/shared/data/act4/handoff-art/32-material-protection.json",
+      "path": "shared/data/act4/handoff-art/32-material-protection.json",
+      "bytes": 2832,
+      "sha256": "c2aefafd0e44e5ccd0a953db30005fccab1c444a374da8aee5884365367762aa"
+    }
+  ],
+  "patches": [
+    {
+      "path": "shared/build.mjs",
+      "old": "'act4-campaign','act4-pilot-art'",
+      "new": "'act4-campaign','stage32-foundation-art','act4-pilot-art'",
+      "label": "Register only Stage32 helper before consumer"
+    },
+    {
+      "path": "shared/runtime/act4-pilot-art.js",
+      "old": " 'act4-handoff:32:body-joined':{'approved32-east-face':['#626b70','#879193']},",
+      "new": " 'act4-handoff:32:body-joined':{'approved32-east-face':['#626b70','#879193']},\n 'act4-handoff:32:body-shared-material':{'approved32-east-face':['#626b70','#879193']},",
+      "label": "Matching source contact underlay for new provider"
+    },
+    {
+      "path": "shared/runtime/act4-pilot-art.js",
+      "old": "   if(G.HonroVectorArt?.draw(raw,l.asset,l))return;",
+      "new": "   if(b?.honroStage===32&&G.HonroStage32FoundationArt?.draw(raw,l,b,false,{sceneScale:this.scale,nativeLive:this.scale>1.05}))return;\n   if(G.HonroVectorArt?.draw(raw,l.asset,l))return;",
+      "label": "Explicit stage32-only dispatch; no3/7/33/34/37/38 hooks"
+    },
+    {
+      "path": "shared/act4-handoff-art.mjs",
+      "old": "  const compatibilityAssetIds=[];",
+      "new": "  // A separate material provider preserves the old foundation and saved battles.\n  if(n===32)pack.assets.push(JSON.parse(await readFile(new URL('./data/act4/handoff-art/32-foundation.json',import.meta.url),'utf8')));\n  const compatibilityAssetIds=[];",
+      "label": "Append independent Stage32 foundation"
+    },
+    {
+      "path": "shared/act4-handoff-art.mjs",
+      "old": "  const bodyId=assetId(n,n===32?\"body-joined\":\"body\");",
+      "new": "  const bodyId=assetId(n,n===32?\"body-shared-material\":\"body\");",
+      "label": "Only Stage32 active BODY provider"
+    },
+    {
+      "path": "shared/act4-handoff-art.mjs",
+      "old": "  const elements=stage.elements.flatMap(element=>{",
+      "new": "  const elements=stage.elements.flatMap(element=>{\n   if(n===32&&element.id==='approved32-coastal-foundation'){\n    compatibilityAssetIds.push(element.assetId);\n    return [{...element,assetId:assetId(32,'foundation')}];\n   }",
+      "label": "Only Stage32 foundation element visual provider"
+    },
+    {
+      "path": "shared/act4-handoff-art.mjs",
+      "old": "   pack.assets.push(joinPortGround(pack.assets.find(a=>a.id===assetId(n,'body'))));",
+      "new": "   const joined=joinPortGround(pack.assets.find(a=>a.id===assetId(n,'body')));\n   const protection=JSON.parse(await readFile(new URL('./data/act4/handoff-art/32-material-protection.json',import.meta.url),'utf8'));\n   compatibilityAssetIds.push(joined.id);\n   pack.assets.push(joined,{...joined,id:bodyId,params:{...joined.params,stage32SharedMaterial:protection}});",
+      "label": "Keep original/joined assets; add shared material clone and metadata"
+    }
+  ]
+}
