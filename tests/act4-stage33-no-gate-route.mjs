@@ -14,6 +14,7 @@ for(const mode of ['east-switchback'])for(const cls of ['archer','mage','knight'
  const route=[[6180,3437],[6240,3352.5],[6310,3267],[6390,3181.5],[6470,3091.5],[6550,2997],[6620,2907],[6240,2902.5],[6310,2817],[6390,2731.5],[6470,2641.5],[6550,2547],[6620,2457],[6710,2358],[6800,2322],[6550,2317.5],[6650,2227.5],[6725,2133],[6810,2043],[6860,1944],[6500,1998],[6400,1954],[6300,1858],[6240,1800],[6350,1707],[6525,1620],[6705,1507.5]];
  for(const [index,p] of route.entries()){
   let reached=false,stationary=0,lastX=u.x;
+  if(p[0]<u.x-150&&p[1]<=u.y+60&&e.grounded(u)){u.moveLeft=Math.max(u.moveLeft,e.jumpCost(u));if(e.jump(u))jumps++;}
   for(let i=0;i<3600;i++){
    if(u.dead||u.hp<=0){stop='dead';break;}
    if(Math.abs(u.x-p[0])<12&&Math.abs(u.y-p[1])<40&&e.grounded(u)){reached=true;break;}
@@ -32,5 +33,7 @@ for(const mode of ['east-switchback'])for(const cls of ['archer','mage','knight'
  results.push({mode,cls,before,target,after:{x:u.x,y:u.y,hp:u.hp},jumps,syntheticBudgetResets:resets,stop,trace});
 }
 await mkdir('_local/reports/stage33-route',{recursive:true});
+await writeFile('_local/reports/stage33-route/initial.json',JSON.stringify(initial));
+await writeFile('_local/reports/stage33-route/core.js',await (await import('../game/engine/build.mjs')).buildCore());
 await writeFile('_local/reports/stage33-route/result.json',JSON.stringify({scope:'Actual Engine locomotion only. Synthetic per-actor isolated budget reset; no enemy turns, no skill use, no coordinate teleport, tide held initial low. Not full gameplay.',initial:{design:initial.honroAct4Design,units:initial.units.map(u=>({id:u.id,side:u.side,x:u.x,y:u.y,hp:u.hp,maxMove:u.maxMove})),terrain:initial.terrain},results},null,2));
 console.log(JSON.stringify(results.map(({trace,...r})=>r),null,2));
