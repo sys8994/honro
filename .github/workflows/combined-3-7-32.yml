@@ -2,7 +2,7 @@ name: Combined Stage3 Stage7 Stage32 controlled validation
 on:
   workflow_dispatch:
   push:
-    branches: [art/stage7-semantic-rock-study-20261117]
+    branches: [art/stage7-semantic-rock-study-20261117, inspect/stage32-scanline-20261118]
     paths: ['tools/testing/combined-3-7-32/**', '.github/workflows/combined-3-7-32.yml']
 permissions:
   contents: read

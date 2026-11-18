@@ -2,7 +2,7 @@ name: Deployed 7d to candidate B synthetic save compatibility
 on:
   workflow_dispatch:
   push:
-    branches: [art/stage7-semantic-rock-study-20261117]
+    branches: [art/stage7-semantic-rock-study-20261117, inspect/stage32-scanline-20261118]
     paths: ['tools/testing/deployed-7d-save-compat/**', '.github/workflows/deployed-7d-save-compat.yml']
 permissions:
   contents: read
