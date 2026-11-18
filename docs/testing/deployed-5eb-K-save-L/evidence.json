@@ -1,0 +1,4547 @@
+{
+  "passed": true,
+  "run": 44308195479,
+  "researchCommit": "338f5e4629e71c077d08ae188a557d7d3ce720f6",
+  "artifact": 14429896328,
+  "zipSHA256": "959587daac9bfa618965e2d70e0e21c14f96f6861ff0fb3aadccde8c60688568",
+  "freshBothSources": true,
+  "priorEvidenceReused": false,
+  "independentK3SnapshotDistinctFrom5eb3": true,
+  "checkersIndependentlyRerun": true,
+  "cases": {
+    "deployed": {
+      "codec": {
+        "passed": true,
+        "deployedCommit": "5eb0381269868e501a1cd187d963ddb716cd2dc6",
+        "candidateCommit": "85bae4a08993d3b71d22ea3fec76686e0ae3c61c",
+        "stages": [
+          {
+            "stage": 3,
+            "oldProfileSchema": 5,
+            "currentProfileSchema": 5,
+            "expectedSHA": "57a259a277671d3c267b46115def061b53f2472d23125317f53fae61382d9d81",
+            "restoredSHA": "57a259a277671d3c267b46115def061b53f2472d23125317f53fae61382d9d81",
+            "encodedSHA": "57a259a277671d3c267b46115def061b53f2472d23125317f53fae61382d9d81",
+            "fullBattleExact": true,
+            "recompactExact": true,
+            "secondRestoreExact": true,
+            "normalization": false
+          },
+          {
+            "stage": 7,
+            "oldProfileSchema": 5,
+            "currentProfileSchema": 5,
+            "expectedSHA": "4468be6e141870921f2402f689c996d528b49c08e85d2a8dc6bbe120a845939d",
+            "restoredSHA": "4468be6e141870921f2402f689c996d528b49c08e85d2a8dc6bbe120a845939d",
+            "encodedSHA": "4468be6e141870921f2402f689c996d528b49c08e85d2a8dc6bbe120a845939d",
+            "fullBattleExact": true,
+            "recompactExact": true,
+            "secondRestoreExact": true,
+            "normalization": false
+          },
+          {
+            "stage": 32,
+            "oldProfileSchema": 5,
+            "currentProfileSchema": 5,
+            "expectedSHA": "26937fcc565becc4bd082b4df174480f93bb8df700ceabbdd660dcbeda9ff00e",
+            "restoredSHA": "26937fcc565becc4bd082b4df174480f93bb8df700ceabbdd660dcbeda9ff00e",
+            "encodedSHA": "3345cefca32158028e002417a3f9f76e005f36ddeaa6c4a8671514097be7479b",
+            "fullBattleExact": true,
+            "recompactExact": true,
+            "secondRestoreExact": true,
+            "normalization": false
+          }
+        ],
+        "scope": "Independent synthetic deployed 5b battles 3/7/32; exact old snapshot preservation through official codec only. No current fresh-battle equivalence, profile migration, App continue, visual or actual user-save claim.",
+        "userStorageAccess": 0
+      },
+      "app": {
+        "passed": true,
+        "deployedCommit": "5eb0381269868e501a1cd187d963ddb716cd2dc6",
+        "candidateCommit": "85bae4a08993d3b71d22ea3fec76686e0ae3c61c",
+        "rows": [
+          {
+            "id": 3,
+            "mountedBattleSHA": "fc610f7d5fa9223d81c57f8355b8c9718cef874ab997b0de6de1deb52baf58cf",
+            "afterTickBattleSHA": "736268aee14d6913ef954e1fa2afeeaeb7d965ab53c7241afbc16dad9013f36b",
+            "actorsBefore": {
+              "revision": 1,
+              "units": [
+                {
+                  "id": "p-archer",
+                  "side": 0,
+                  "x": 187.34,
+                  "y": 1647.3,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 92,
+                  "r": 22,
+                  "hp": 364,
+                  "maxHp": 365
+                },
+                {
+                  "id": "p-mage",
+                  "side": 0,
+                  "x": 300.39,
+                  "y": 1649.853953488372,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 92,
+                  "r": 22,
+                  "hp": 390,
+                  "maxHp": 390
+                },
+                {
+                  "id": "midboss-stage3",
+                  "side": 1,
+                  "x": 2018.75,
+                  "y": 2616.41962962963,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 352,
+                  "r": 54,
+                  "hp": 848,
+                  "maxHp": 848,
+                  "combatBaseHp": 652.1814545302324,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "named",
+                    "base": {
+                      "h": 146,
+                      "r": 32
+                    },
+                    "rest": 352,
+                    "restR": 54,
+                    "step": 1,
+                    "hp": 1.3
+                  }
+                },
+                {
+                  "id": "site-3-patrol-0-0",
+                  "side": 1,
+                  "x": 813.96,
+                  "y": 1702.21,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 88,
+                  "r": 32,
+                  "hp": 154,
+                  "maxHp": 154,
+                  "combatBaseHp": 118.39126265723071,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-3-patrol-0-1",
+                  "side": 1,
+                  "x": 1036.83,
+                  "y": 2450.976734693878,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 88,
+                  "r": 32,
+                  "hp": 154,
+                  "maxHp": 154,
+                  "combatBaseHp": 118.39126265723071,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-3-patrol-0-2",
+                  "side": 1,
+                  "x": 1411.51,
+                  "y": 1540.7602723735408,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 108,
+                  "r": 41,
+                  "hp": 154,
+                  "maxHp": 154,
+                  "combatBaseHp": 118.39126265723071,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true,
+                    "base": {
+                      "h": 108,
+                      "r": 41
+                    },
+                    "rest": 108
+                  }
+                },
+                {
+                  "id": "site-3-patrol-1-0",
+                  "side": 1,
+                  "x": 1679.6,
+                  "y": 2568.9774528301887,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 88,
+                  "r": 32,
+                  "hp": 154,
+                  "maxHp": 154,
+                  "combatBaseHp": 118.39126265723071,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-3-patrol-1-1",
+                  "side": 1,
+                  "x": 2231.93,
+                  "y": 1369.52,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 80,
+                  "r": 33,
+                  "hp": 95,
+                  "maxHp": 95,
+                  "combatBaseHp": 73.45639705778179
+                },
+                {
+                  "id": "site-3-patrol-1-2",
+                  "side": 1,
+                  "x": 2622.76,
+                  "y": 1944.46,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 66,
+                  "r": 28,
+                  "hp": 84,
+                  "maxHp": 84,
+                  "combatBaseHp": 64.40484688553353
+                },
+                {
+                  "id": "site-3-patrol-2-0",
+                  "side": 1,
+                  "x": 3139.56,
+                  "y": 1742.39463878327,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 91,
+                  "r": 21,
+                  "hp": 154,
+                  "maxHp": 154,
+                  "combatBaseHp": 118.39126265723071,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-3-patrol-3-0",
+                  "side": 1,
+                  "x": 4031.04,
+                  "y": 1807.7758536585366,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 91,
+                  "r": 21,
+                  "hp": 154,
+                  "maxHp": 154,
+                  "combatBaseHp": 118.39126265723071,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-3-patrol-3-1",
+                  "side": 1,
+                  "x": 4754.56,
+                  "y": 1568.9517948717948,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 91,
+                  "r": 21,
+                  "hp": 154,
+                  "maxHp": 154,
+                  "combatBaseHp": 118.39126265723071,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-3-patrol-3-2",
+                  "side": 1,
+                  "x": 4279.75,
+                  "y": 1779.4186746987953,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 152,
+                  "r": 44,
+                  "hp": 208,
+                  "maxHp": 208,
+                  "combatBaseHp": 159.82820458726147,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 88,
+                      "r": 32
+                    },
+                    "rest": 152,
+                    "restR": 44,
+                    "step": 1,
+                    "hp": 1.35
+                  }
+                },
+                {
+                  "id": "site-3-patrol-3-3",
+                  "side": 1,
+                  "x": 4948.36,
+                  "y": 1544.105641025641,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 108,
+                  "r": 41,
+                  "hp": 193,
+                  "maxHp": 193,
+                  "combatBaseHp": 147.9890783215384,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true,
+                    "base": {
+                      "h": 108,
+                      "r": 41
+                    },
+                    "rest": 108
+                  }
+                },
+                {
+                  "id": "site-3-patrol-3-4",
+                  "side": 1,
+                  "x": 4560.76,
+                  "y": 1330.76,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 80,
+                  "r": 33,
+                  "hp": 95,
+                  "maxHp": 95,
+                  "combatBaseHp": 73.45639705778179
+                }
+              ]
+            },
+            "actorsAfter": {
+              "revision": 1,
+              "units": [
+                {
+                  "id": "p-archer",
+                  "side": 0,
+                  "x": 187.34,
+                  "y": 1647.3,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 92,
+                  "r": 22,
+                  "hp": 364,
+                  "maxHp": 365
+                },
+                {
+                  "id": "p-mage",
+                  "side": 0,
+                  "x": 300.39,
+                  "y": 1649.853953488372,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 92,
+                  "r": 22,
+                  "hp": 390,
+                  "maxHp": 390
+                },
+                {
+                  "id": "midboss-stage3",
+                  "side": 1,
+                  "x": 2018.75,
+                  "y": 2616.41962962963,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 352,
+                  "r": 54,
+                  "hp": 848,
+                  "maxHp": 848,
+                  "combatBaseHp": 652.1814545302324,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "named",
+                    "base": {
+                      "h": 146,
+                      "r": 32
+                    },
+                    "rest": 352,
+                    "restR": 54,
+                    "step": 1,
+                    "hp": 1.3,
+                    "revealed": true
+                  }
+                },
+                {
+                  "id": "site-3-patrol-0-0",
+                  "side": 1,
+                  "x": 813.96,
+                  "y": 1702.21,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 88,
+                  "r": 32,
+                  "hp": 154,
+                  "maxHp": 154,
+                  "combatBaseHp": 118.39126265723071,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-3-patrol-0-1",
+                  "side": 1,
+                  "x": 1036.83,
+                  "y": 2450.976734693878,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 88,
+                  "r": 32,
+                  "hp": 154,
+                  "maxHp": 154,
+                  "combatBaseHp": 118.39126265723071,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-3-patrol-0-2",
+                  "side": 1,
+                  "x": 1411.51,
+                  "y": 1540.7602723735408,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 108,
+                  "r": 41,
+                  "hp": 154,
+                  "maxHp": 154,
+                  "combatBaseHp": 118.39126265723071,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true,
+                    "base": {
+                      "h": 108,
+                      "r": 41
+                    },
+                    "rest": 108
+                  }
+                },
+                {
+                  "id": "site-3-patrol-1-0",
+                  "side": 1,
+                  "x": 1679.6,
+                  "y": 2568.9774528301887,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 88,
+                  "r": 32,
+                  "hp": 154,
+                  "maxHp": 154,
+                  "combatBaseHp": 118.39126265723071,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-3-patrol-1-1",
+                  "side": 1,
+                  "x": 2231.93,
+                  "y": 1369.52,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 80,
+                  "r": 33,
+                  "hp": 95,
+                  "maxHp": 95,
+                  "combatBaseHp": 73.45639705778179
+                },
+                {
+                  "id": "site-3-patrol-1-2",
+                  "side": 1,
+                  "x": 2622.76,
+                  "y": 1944.46,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 66,
+                  "r": 28,
+                  "hp": 84,
+                  "maxHp": 84,
+                  "combatBaseHp": 64.40484688553353
+                },
+                {
+                  "id": "site-3-patrol-2-0",
+                  "side": 1,
+                  "x": 3139.56,
+                  "y": 1742.39463878327,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 91,
+                  "r": 21,
+                  "hp": 154,
+                  "maxHp": 154,
+                  "combatBaseHp": 118.39126265723071,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-3-patrol-3-0",
+                  "side": 1,
+                  "x": 4031.04,
+                  "y": 1807.7758536585366,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 91,
+                  "r": 21,
+                  "hp": 154,
+                  "maxHp": 154,
+                  "combatBaseHp": 118.39126265723071,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-3-patrol-3-1",
+                  "side": 1,
+                  "x": 4754.56,
+                  "y": 1568.9517948717948,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 91,
+                  "r": 21,
+                  "hp": 154,
+                  "maxHp": 154,
+                  "combatBaseHp": 118.39126265723071,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-3-patrol-3-2",
+                  "side": 1,
+                  "x": 4279.75,
+                  "y": 1779.4186746987953,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 152,
+                  "r": 44,
+                  "hp": 208,
+                  "maxHp": 208,
+                  "combatBaseHp": 159.82820458726147,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 88,
+                      "r": 32
+                    },
+                    "rest": 152,
+                    "restR": 44,
+                    "step": 1,
+                    "hp": 1.35
+                  }
+                },
+                {
+                  "id": "site-3-patrol-3-3",
+                  "side": 1,
+                  "x": 4948.36,
+                  "y": 1544.105641025641,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 108,
+                  "r": 41,
+                  "hp": 193,
+                  "maxHp": 193,
+                  "combatBaseHp": 147.9890783215384,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true,
+                    "base": {
+                      "h": 108,
+                      "r": 41
+                    },
+                    "rest": 108
+                  }
+                },
+                {
+                  "id": "site-3-patrol-3-4",
+                  "side": 1,
+                  "x": 4560.76,
+                  "y": 1330.76,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 80,
+                  "r": 33,
+                  "hp": 95,
+                  "maxHp": 95,
+                  "combatBaseHp": 73.45639705778179
+                }
+              ]
+            },
+            "exact": true
+          },
+          {
+            "id": 7,
+            "mountedBattleSHA": "ae30e4e11246c6b54628b6183361ccc5d87fa4232c606bd68118e3fd0cbe8590",
+            "afterTickBattleSHA": "9904662b4de1c547a227b2db97fea1700a0519efee6838533d3ca5c15a32e2b5",
+            "actorsBefore": {
+              "revision": 1,
+              "units": [
+                {
+                  "id": "p-archer",
+                  "side": 0,
+                  "x": 81.38,
+                  "y": 2862.152364864865,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 92,
+                  "r": 22,
+                  "hp": 364,
+                  "maxHp": 365
+                },
+                {
+                  "id": "p-mage",
+                  "side": 0,
+                  "x": 172.15,
+                  "y": 2859.085810810811,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 92,
+                  "r": 22,
+                  "hp": 390,
+                  "maxHp": 390
+                },
+                {
+                  "id": "p-knight",
+                  "side": 0,
+                  "x": 262.92,
+                  "y": 2856.019256756757,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 92,
+                  "r": 22,
+                  "hp": 610,
+                  "maxHp": 610
+                },
+                {
+                  "id": "resident-1",
+                  "side": 2,
+                  "x": 560.27,
+                  "y": 2848.3,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 90,
+                  "r": 20,
+                  "hp": 600,
+                  "maxHp": 600
+                },
+                {
+                  "id": "resident-2",
+                  "side": 2,
+                  "x": 3230.16,
+                  "y": 2118.0629743589743,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 90,
+                  "r": 20,
+                  "hp": 600,
+                  "maxHp": 600
+                },
+                {
+                  "id": "resident-3",
+                  "side": 2,
+                  "x": 2588.51,
+                  "y": 1093.1639512195122,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 90,
+                  "r": 20,
+                  "hp": 600,
+                  "maxHp": 600
+                },
+                {
+                  "id": "site-7-patrol-0-0",
+                  "side": 1,
+                  "x": 788.76,
+                  "y": 2848.3,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 110,
+                  "r": 37,
+                  "hp": 370,
+                  "maxHp": 370,
+                  "combatBaseHp": 285.00588927461894,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 88,
+                      "r": 32
+                    },
+                    "rest": 110,
+                    "restR": 37,
+                    "step": 1,
+                    "hp": 1.15
+                  }
+                },
+                {
+                  "id": "site-7-patrol-0-1",
+                  "side": 1,
+                  "x": 1586.91,
+                  "y": 2697.139411764706,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 88,
+                  "r": 32,
+                  "hp": 322,
+                  "maxHp": 322,
+                  "combatBaseHp": 247.83120806488606,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-7-patrol-0-2",
+                  "side": 1,
+                  "x": 1183.14,
+                  "y": 2848.3690441176473,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 91,
+                  "r": 21,
+                  "hp": 322,
+                  "maxHp": 322,
+                  "combatBaseHp": 247.83120806488606,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-7-patrol-0-3",
+                  "side": 1,
+                  "x": 1386.59,
+                  "y": 2651.11,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 66,
+                  "r": 28,
+                  "hp": 175,
+                  "maxHp": 175,
+                  "combatBaseHp": 134.82017718729804
+                },
+                {
+                  "id": "site-7-patrol-0-4",
+                  "side": 1,
+                  "x": 1790.36,
+                  "y": 2334.98,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 80,
+                  "r": 33,
+                  "hp": 200,
+                  "maxHp": 200,
+                  "combatBaseHp": 153.76799954934975
+                },
+                {
+                  "id": "site-7-patrol-1-0",
+                  "side": 1,
+                  "x": 2904.64,
+                  "y": 2121.401641025641,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 88,
+                  "r": 32,
+                  "hp": 322,
+                  "maxHp": 322,
+                  "combatBaseHp": 247.83120806488606,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-7-patrol-1-1",
+                  "side": 1,
+                  "x": 3843.64,
+                  "y": 2126.6927272727276,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 152,
+                  "r": 44,
+                  "hp": 435,
+                  "maxHp": 435,
+                  "combatBaseHp": 334.5721308875962,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 88,
+                      "r": 32
+                    },
+                    "rest": 152,
+                    "restR": 44,
+                    "step": 1,
+                    "hp": 1.35
+                  }
+                },
+                {
+                  "id": "site-7-patrol-1-2",
+                  "side": 1,
+                  "x": 2563.47,
+                  "y": 2611.491917808219,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 139,
+                  "r": 42,
+                  "hp": 370,
+                  "maxHp": 370,
+                  "combatBaseHp": 285.00588927461894,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 116,
+                      "r": 38
+                    },
+                    "rest": 139,
+                    "restR": 42,
+                    "step": 1,
+                    "hp": 1.15
+                  }
+                },
+                {
+                  "id": "site-7-patrol-1-3",
+                  "side": 1,
+                  "x": 3687.14,
+                  "y": 2118.0994545454546,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 91,
+                  "r": 21,
+                  "hp": 322,
+                  "maxHp": 322,
+                  "combatBaseHp": 247.83120806488606,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-7-patrol-1-4",
+                  "side": 1,
+                  "x": 2288.03,
+                  "y": 2541.961282051282,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 137,
+                  "r": 24,
+                  "hp": 532,
+                  "maxHp": 532,
+                  "combatBaseHp": 409.69596583226473,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 115,
+                      "r": 22
+                    },
+                    "rest": 137,
+                    "restR": 24,
+                    "step": 1,
+                    "hp": 1.15
+                  }
+                },
+                {
+                  "id": "site-7-patrol-1-5",
+                  "side": 1,
+                  "x": 3399.18,
+                  "y": 1965.64,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 66,
+                  "r": 28,
+                  "hp": 175,
+                  "maxHp": 175,
+                  "combatBaseHp": 134.82017718729804
+                },
+                {
+                  "id": "site-7-patrol-2-0",
+                  "side": 1,
+                  "x": 2150.31,
+                  "y": 1094.9745255474452,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 88,
+                  "r": 32,
+                  "hp": 322,
+                  "maxHp": 322,
+                  "combatBaseHp": 247.83120806488606,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-7-patrol-2-1",
+                  "side": 1,
+                  "x": 2914.03,
+                  "y": 1096.339756097561,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 91,
+                  "r": 21,
+                  "hp": 322,
+                  "maxHp": 322,
+                  "combatBaseHp": 247.83120806488606,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-7-patrol-2-2",
+                  "side": 1,
+                  "x": 2306.81,
+                  "y": 1093.832189781022,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 137,
+                  "r": 24,
+                  "hp": 427,
+                  "maxHp": 427,
+                  "combatBaseHp": 327.7567726658118,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 115,
+                      "r": 22
+                    },
+                    "rest": 137,
+                    "restR": 24,
+                    "step": 1,
+                    "hp": 1.15
+                  }
+                },
+                {
+                  "id": "site-7-patrol-2-3",
+                  "side": 1,
+                  "x": 2172.22,
+                  "y": 879.53,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 66,
+                  "r": 28,
+                  "hp": 175,
+                  "maxHp": 175,
+                  "combatBaseHp": 134.82017718729804
+                },
+                {
+                  "id": "site-7-patrol-2-4",
+                  "side": 1,
+                  "x": 2748.14,
+                  "y": 751.2,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 80,
+                  "r": 33,
+                  "hp": 200,
+                  "maxHp": 200,
+                  "combatBaseHp": 153.76799954934975
+                },
+                {
+                  "id": "site-7-patrol-3-0",
+                  "side": 1,
+                  "x": 2557.21,
+                  "y": 3077.66783908046,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 88,
+                  "r": 32,
+                  "hp": 322,
+                  "maxHp": 322,
+                  "combatBaseHp": 247.83120806488606,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-7-patrol-3-1",
+                  "side": 1,
+                  "x": 4144.12,
+                  "y": 1394.9477659574468,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 91,
+                  "r": 21,
+                  "hp": 322,
+                  "maxHp": 322,
+                  "combatBaseHp": 247.83120806488606,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-7-patrol-3-2",
+                  "side": 1,
+                  "x": 3812.34,
+                  "y": 2948.841707317073,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 139,
+                  "r": 42,
+                  "hp": 370,
+                  "maxHp": 370,
+                  "combatBaseHp": 285.00588927461894,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 116,
+                      "r": 38
+                    },
+                    "rest": 139,
+                    "restR": 42,
+                    "step": 1,
+                    "hp": 1.15
+                  }
+                },
+                {
+                  "id": "site-7-patrol-3-3",
+                  "side": 1,
+                  "x": 4128.47,
+                  "y": 2557.21,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 80,
+                  "r": 33,
+                  "hp": 250,
+                  "maxHp": 250,
+                  "combatBaseHp": 192.2099994366872
+                }
+              ]
+            },
+            "actorsAfter": {
+              "revision": 1,
+              "units": [
+                {
+                  "id": "p-archer",
+                  "side": 0,
+                  "x": 81.38,
+                  "y": 2862.152364864865,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 92,
+                  "r": 22,
+                  "hp": 364,
+                  "maxHp": 365
+                },
+                {
+                  "id": "p-mage",
+                  "side": 0,
+                  "x": 172.15,
+                  "y": 2859.085810810811,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 92,
+                  "r": 22,
+                  "hp": 390,
+                  "maxHp": 390
+                },
+                {
+                  "id": "p-knight",
+                  "side": 0,
+                  "x": 262.92,
+                  "y": 2856.019256756757,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 92,
+                  "r": 22,
+                  "hp": 610,
+                  "maxHp": 610
+                },
+                {
+                  "id": "resident-1",
+                  "side": 2,
+                  "x": 560.27,
+                  "y": 2848.3,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 90,
+                  "r": 20,
+                  "hp": 600,
+                  "maxHp": 600
+                },
+                {
+                  "id": "resident-2",
+                  "side": 2,
+                  "x": 3230.16,
+                  "y": 2118.0629743589743,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 90,
+                  "r": 20,
+                  "hp": 600,
+                  "maxHp": 600
+                },
+                {
+                  "id": "resident-3",
+                  "side": 2,
+                  "x": 2588.51,
+                  "y": 1093.1639512195122,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 90,
+                  "r": 20,
+                  "hp": 600,
+                  "maxHp": 600
+                },
+                {
+                  "id": "site-7-patrol-0-0",
+                  "side": 1,
+                  "x": 788.76,
+                  "y": 2848.3,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 110,
+                  "r": 37,
+                  "hp": 370,
+                  "maxHp": 370,
+                  "combatBaseHp": 285.00588927461894,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 88,
+                      "r": 32
+                    },
+                    "rest": 110,
+                    "restR": 37,
+                    "step": 1,
+                    "hp": 1.15
+                  }
+                },
+                {
+                  "id": "site-7-patrol-0-1",
+                  "side": 1,
+                  "x": 1586.91,
+                  "y": 2697.139411764706,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 88,
+                  "r": 32,
+                  "hp": 322,
+                  "maxHp": 322,
+                  "combatBaseHp": 247.83120806488606,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-7-patrol-0-2",
+                  "side": 1,
+                  "x": 1183.14,
+                  "y": 2848.3690441176473,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 91,
+                  "r": 21,
+                  "hp": 322,
+                  "maxHp": 322,
+                  "combatBaseHp": 247.83120806488606,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-7-patrol-0-3",
+                  "side": 1,
+                  "x": 1386.59,
+                  "y": 2651.11,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 66,
+                  "r": 28,
+                  "hp": 175,
+                  "maxHp": 175,
+                  "combatBaseHp": 134.82017718729804
+                },
+                {
+                  "id": "site-7-patrol-0-4",
+                  "side": 1,
+                  "x": 1790.36,
+                  "y": 2334.98,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 80,
+                  "r": 33,
+                  "hp": 200,
+                  "maxHp": 200,
+                  "combatBaseHp": 153.76799954934975
+                },
+                {
+                  "id": "site-7-patrol-1-0",
+                  "side": 1,
+                  "x": 2904.64,
+                  "y": 2121.401641025641,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 88,
+                  "r": 32,
+                  "hp": 322,
+                  "maxHp": 322,
+                  "combatBaseHp": 247.83120806488606,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-7-patrol-1-1",
+                  "side": 1,
+                  "x": 3843.64,
+                  "y": 2126.6927272727276,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 152,
+                  "r": 44,
+                  "hp": 435,
+                  "maxHp": 435,
+                  "combatBaseHp": 334.5721308875962,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 88,
+                      "r": 32
+                    },
+                    "rest": 152,
+                    "restR": 44,
+                    "step": 1,
+                    "hp": 1.35
+                  }
+                },
+                {
+                  "id": "site-7-patrol-1-2",
+                  "side": 1,
+                  "x": 2563.47,
+                  "y": 2611.491917808219,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 139,
+                  "r": 42,
+                  "hp": 370,
+                  "maxHp": 370,
+                  "combatBaseHp": 285.00588927461894,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 116,
+                      "r": 38
+                    },
+                    "rest": 139,
+                    "restR": 42,
+                    "step": 1,
+                    "hp": 1.15
+                  }
+                },
+                {
+                  "id": "site-7-patrol-1-3",
+                  "side": 1,
+                  "x": 3687.14,
+                  "y": 2118.0994545454546,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 91,
+                  "r": 21,
+                  "hp": 322,
+                  "maxHp": 322,
+                  "combatBaseHp": 247.83120806488606,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-7-patrol-1-4",
+                  "side": 1,
+                  "x": 2288.03,
+                  "y": 2541.961282051282,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 137,
+                  "r": 24,
+                  "hp": 532,
+                  "maxHp": 532,
+                  "combatBaseHp": 409.69596583226473,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 115,
+                      "r": 22
+                    },
+                    "rest": 137,
+                    "restR": 24,
+                    "step": 1,
+                    "hp": 1.15
+                  }
+                },
+                {
+                  "id": "site-7-patrol-1-5",
+                  "side": 1,
+                  "x": 3399.18,
+                  "y": 1965.64,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 66,
+                  "r": 28,
+                  "hp": 175,
+                  "maxHp": 175,
+                  "combatBaseHp": 134.82017718729804
+                },
+                {
+                  "id": "site-7-patrol-2-0",
+                  "side": 1,
+                  "x": 2150.31,
+                  "y": 1094.9745255474452,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 88,
+                  "r": 32,
+                  "hp": 322,
+                  "maxHp": 322,
+                  "combatBaseHp": 247.83120806488606,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-7-patrol-2-1",
+                  "side": 1,
+                  "x": 2914.03,
+                  "y": 1096.339756097561,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 91,
+                  "r": 21,
+                  "hp": 322,
+                  "maxHp": 322,
+                  "combatBaseHp": 247.83120806488606,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-7-patrol-2-2",
+                  "side": 1,
+                  "x": 2306.81,
+                  "y": 1093.832189781022,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 137,
+                  "r": 24,
+                  "hp": 427,
+                  "maxHp": 427,
+                  "combatBaseHp": 327.7567726658118,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 115,
+                      "r": 22
+                    },
+                    "rest": 137,
+                    "restR": 24,
+                    "step": 1,
+                    "hp": 1.15
+                  }
+                },
+                {
+                  "id": "site-7-patrol-2-3",
+                  "side": 1,
+                  "x": 2172.22,
+                  "y": 879.53,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 66,
+                  "r": 28,
+                  "hp": 175,
+                  "maxHp": 175,
+                  "combatBaseHp": 134.82017718729804
+                },
+                {
+                  "id": "site-7-patrol-2-4",
+                  "side": 1,
+                  "x": 2748.14,
+                  "y": 751.2,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 80,
+                  "r": 33,
+                  "hp": 200,
+                  "maxHp": 200,
+                  "combatBaseHp": 153.76799954934975
+                },
+                {
+                  "id": "site-7-patrol-3-0",
+                  "side": 1,
+                  "x": 2557.21,
+                  "y": 3077.66783908046,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 88,
+                  "r": 32,
+                  "hp": 322,
+                  "maxHp": 322,
+                  "combatBaseHp": 247.83120806488606,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-7-patrol-3-1",
+                  "side": 1,
+                  "x": 4144.12,
+                  "y": 1394.9477659574468,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 91,
+                  "r": 21,
+                  "hp": 322,
+                  "maxHp": 322,
+                  "combatBaseHp": 247.83120806488606,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-7-patrol-3-2",
+                  "side": 1,
+                  "x": 3812.34,
+                  "y": 2948.841707317073,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 139,
+                  "r": 42,
+                  "hp": 370,
+                  "maxHp": 370,
+                  "combatBaseHp": 285.00588927461894,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 116,
+                      "r": 38
+                    },
+                    "rest": 139,
+                    "restR": 42,
+                    "step": 1,
+                    "hp": 1.15
+                  }
+                },
+                {
+                  "id": "site-7-patrol-3-3",
+                  "side": 1,
+                  "x": 4128.47,
+                  "y": 2557.21,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 80,
+                  "r": 33,
+                  "hp": 250,
+                  "maxHp": 250,
+                  "combatBaseHp": 192.2099994366872
+                }
+              ]
+            },
+            "exact": true
+          },
+          {
+            "id": 32,
+            "mountedBattleSHA": "443908c4566584f996379083393d1ab89676e88ff415fe48096a8b55a75fd49c",
+            "afterTickBattleSHA": "24d4fe161b6de02472edff515b5539d9ef394e803f998751621c1afc0001216b",
+            "actorsBefore": {
+              "revision": 1,
+              "units": [
+                {
+                  "id": "archer",
+                  "side": 0,
+                  "x": 143,
+                  "y": 985.6000000000001,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 92,
+                  "r": 22,
+                  "hp": 364,
+                  "maxHp": 365
+                },
+                {
+                  "id": "mage",
+                  "side": 0,
+                  "x": 213.4,
+                  "y": 985.6000000000001,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 92,
+                  "r": 22,
+                  "hp": 390,
+                  "maxHp": 390
+                },
+                {
+                  "id": "knight",
+                  "side": 0,
+                  "x": 283.8,
+                  "y": 985.6000000000001,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 92,
+                  "r": 22,
+                  "hp": 610,
+                  "maxHp": 610
+                },
+                {
+                  "id": "occultist",
+                  "side": 0,
+                  "x": 354.20000000000005,
+                  "y": 985.6000000000001,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 92,
+                  "r": 22,
+                  "hp": 460,
+                  "maxHp": 460
+                },
+                {
+                  "id": "a4-shelter-speaker",
+                  "side": 2,
+                  "x": 3069.0000000000005,
+                  "y": 869.0000000000001,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 92,
+                  "r": 22,
+                  "hp": 1450,
+                  "maxHp": 1450
+                },
+                {
+                  "id": "a4-32-a-1",
+                  "side": 1,
+                  "x": 880.0000000000001,
+                  "y": 847.0000000000001,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 111,
+                  "r": 27,
+                  "hp": 1613,
+                  "maxHp": 1613,
+                  "combatBaseHp": 1240.64351130322,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 98,
+                      "r": 25
+                    },
+                    "rest": 111,
+                    "restR": 27,
+                    "step": 1,
+                    "hp": 1.1
+                  }
+                },
+                {
+                  "id": "a4-32-a-2",
+                  "side": 1,
+                  "x": 1210,
+                  "y": 847.0000000000001,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 105,
+                  "r": 25,
+                  "hp": 1613,
+                  "maxHp": 1613,
+                  "combatBaseHp": 1240.64351130322,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 96,
+                      "r": 24
+                    },
+                    "rest": 105,
+                    "restR": 25,
+                    "step": 1,
+                    "hp": 1.1
+                  }
+                },
+                {
+                  "id": "a4-32-a-3",
+                  "side": 1,
+                  "x": 1562.0000000000002,
+                  "y": 774.4000000000001,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 110,
+                  "r": 26,
+                  "hp": 1613,
+                  "maxHp": 1613,
+                  "combatBaseHp": 1240.64351130322,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 96,
+                      "r": 24
+                    },
+                    "rest": 110,
+                    "restR": 26,
+                    "step": 1,
+                    "hp": 1.1
+                  }
+                },
+                {
+                  "id": "a4-32-b-1",
+                  "side": 1,
+                  "x": 1012.0000000000001,
+                  "y": 1210,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 106,
+                  "r": 36,
+                  "hp": 1686,
+                  "maxHp": 1686,
+                  "combatBaseHp": 1297.0363981806388,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 88,
+                      "r": 32
+                    },
+                    "rest": 106,
+                    "restR": 36,
+                    "step": 1,
+                    "hp": 1.15
+                  }
+                },
+                {
+                  "id": "a4-32-b-2",
+                  "side": 1,
+                  "x": 1144,
+                  "y": 1251.4857142857143,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 88,
+                  "r": 32,
+                  "hp": 1466,
+                  "maxHp": 1466,
+                  "combatBaseHp": 1127.8577375483817,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "a4-32-b-3",
+                  "side": 1,
+                  "x": 1298,
+                  "y": 1271.6,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 111,
+                  "r": 27,
+                  "hp": 1613,
+                  "maxHp": 1613,
+                  "combatBaseHp": 1240.64351130322,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 98,
+                      "r": 25
+                    },
+                    "rest": 111,
+                    "restR": 27,
+                    "step": 1,
+                    "hp": 1.1
+                  }
+                },
+                {
+                  "id": "a4-32-b-4",
+                  "side": 1,
+                  "x": 1694.0000000000002,
+                  "y": 1179.2,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 115,
+                  "r": 22,
+                  "hp": 1686,
+                  "maxHp": 1686,
+                  "combatBaseHp": 1297.0363981806388,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "a4-32-c-1",
+                  "side": 1,
+                  "x": 2068,
+                  "y": 1026.96,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 152,
+                  "r": 30,
+                  "hp": 2870,
+                  "maxHp": 2870,
+                  "combatBaseHp": 2207.781521250957,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 120,
+                      "r": 26
+                    },
+                    "rest": 152,
+                    "restR": 30,
+                    "step": 1,
+                    "hp": 1.35
+                  }
+                },
+                {
+                  "id": "a4-32-c-2",
+                  "side": 1,
+                  "x": 2398,
+                  "y": 867.5200000000002,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 96,
+                  "r": 24,
+                  "hp": 1466,
+                  "maxHp": 1466,
+                  "combatBaseHp": 1127.8577375483817
+                },
+                {
+                  "id": "a4-32-d-1",
+                  "side": 1,
+                  "x": 2640,
+                  "y": 1042.8000000000002,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 111,
+                  "r": 27,
+                  "hp": 1613,
+                  "maxHp": 1613,
+                  "combatBaseHp": 1240.64351130322,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 98,
+                      "r": 25
+                    },
+                    "rest": 111,
+                    "restR": 27,
+                    "step": 1,
+                    "hp": 1.1
+                  }
+                },
+                {
+                  "id": "a4-32-d-2",
+                  "side": 1,
+                  "x": 2926.0000000000005,
+                  "y": 869.0000000000001,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 144,
+                  "r": 31,
+                  "hp": 1686,
+                  "maxHp": 1686,
+                  "combatBaseHp": 1297.0363981806388,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 96,
+                      "r": 24
+                    },
+                    "rest": 144,
+                    "restR": 31,
+                    "step": 1,
+                    "hp": 1.15
+                  }
+                },
+                {
+                  "id": "a4-32-d-3",
+                  "side": 1,
+                  "x": 3234.0000000000005,
+                  "y": 805.0000000000001,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 92,
+                  "r": 25,
+                  "hp": 1173,
+                  "maxHp": 1173,
+                  "combatBaseHp": 902.2861900387053
+                }
+              ]
+            },
+            "actorsAfter": {
+              "revision": 1,
+              "units": [
+                {
+                  "id": "archer",
+                  "side": 0,
+                  "x": 143,
+                  "y": 985.6000000000001,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 92,
+                  "r": 22,
+                  "hp": 364,
+                  "maxHp": 365
+                },
+                {
+                  "id": "mage",
+                  "side": 0,
+                  "x": 213.4,
+                  "y": 985.6000000000001,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 92,
+                  "r": 22,
+                  "hp": 390,
+                  "maxHp": 390
+                },
+                {
+                  "id": "knight",
+                  "side": 0,
+                  "x": 283.8,
+                  "y": 985.6000000000001,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 92,
+                  "r": 22,
+                  "hp": 610,
+                  "maxHp": 610
+                },
+                {
+                  "id": "occultist",
+                  "side": 0,
+                  "x": 354.20000000000005,
+                  "y": 985.6000000000001,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 92,
+                  "r": 22,
+                  "hp": 460,
+                  "maxHp": 460
+                },
+                {
+                  "id": "a4-shelter-speaker",
+                  "side": 2,
+                  "x": 3069.0000000000005,
+                  "y": 869.0000000000001,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 92,
+                  "r": 22,
+                  "hp": 1450,
+                  "maxHp": 1450
+                },
+                {
+                  "id": "a4-32-a-1",
+                  "side": 1,
+                  "x": 880.0000000000001,
+                  "y": 847.0000000000001,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 111,
+                  "r": 27,
+                  "hp": 1613,
+                  "maxHp": 1613,
+                  "combatBaseHp": 1240.64351130322,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 98,
+                      "r": 25
+                    },
+                    "rest": 111,
+                    "restR": 27,
+                    "step": 1,
+                    "hp": 1.1
+                  }
+                },
+                {
+                  "id": "a4-32-a-2",
+                  "side": 1,
+                  "x": 1210,
+                  "y": 847.0000000000001,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 105,
+                  "r": 25,
+                  "hp": 1613,
+                  "maxHp": 1613,
+                  "combatBaseHp": 1240.64351130322,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 96,
+                      "r": 24
+                    },
+                    "rest": 105,
+                    "restR": 25,
+                    "step": 1,
+                    "hp": 1.1
+                  }
+                },
+                {
+                  "id": "a4-32-a-3",
+                  "side": 1,
+                  "x": 1562.0000000000002,
+                  "y": 774.4000000000001,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 110,
+                  "r": 26,
+                  "hp": 1613,
+                  "maxHp": 1613,
+                  "combatBaseHp": 1240.64351130322,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 96,
+                      "r": 24
+                    },
+                    "rest": 110,
+                    "restR": 26,
+                    "step": 1,
+                    "hp": 1.1
+                  }
+                },
+                {
+                  "id": "a4-32-b-1",
+                  "side": 1,
+                  "x": 1012.0000000000001,
+                  "y": 1210,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 106,
+                  "r": 36,
+                  "hp": 1686,
+                  "maxHp": 1686,
+                  "combatBaseHp": 1297.0363981806388,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 88,
+                      "r": 32
+                    },
+                    "rest": 106,
+                    "restR": 36,
+                    "step": 1,
+                    "hp": 1.15
+                  }
+                },
+                {
+                  "id": "a4-32-b-2",
+                  "side": 1,
+                  "x": 1144,
+                  "y": 1251.4857142857143,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 88,
+                  "r": 32,
+                  "hp": 1466,
+                  "maxHp": 1466,
+                  "combatBaseHp": 1127.8577375483817,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "a4-32-b-3",
+                  "side": 1,
+                  "x": 1298,
+                  "y": 1271.6,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 111,
+                  "r": 27,
+                  "hp": 1613,
+                  "maxHp": 1613,
+                  "combatBaseHp": 1240.64351130322,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 98,
+                      "r": 25
+                    },
+                    "rest": 111,
+                    "restR": 27,
+                    "step": 1,
+                    "hp": 1.1
+                  }
+                },
+                {
+                  "id": "a4-32-b-4",
+                  "side": 1,
+                  "x": 1694.0000000000002,
+                  "y": 1179.2,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 115,
+                  "r": 22,
+                  "hp": 1686,
+                  "maxHp": 1686,
+                  "combatBaseHp": 1297.0363981806388,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "a4-32-c-1",
+                  "side": 1,
+                  "x": 2068,
+                  "y": 1026.96,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 152,
+                  "r": 30,
+                  "hp": 2870,
+                  "maxHp": 2870,
+                  "combatBaseHp": 2207.781521250957,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 120,
+                      "r": 26
+                    },
+                    "rest": 152,
+                    "restR": 30,
+                    "step": 1,
+                    "hp": 1.35
+                  }
+                },
+                {
+                  "id": "a4-32-c-2",
+                  "side": 1,
+                  "x": 2398,
+                  "y": 867.5200000000002,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 96,
+                  "r": 24,
+                  "hp": 1466,
+                  "maxHp": 1466,
+                  "combatBaseHp": 1127.8577375483817
+                },
+                {
+                  "id": "a4-32-d-1",
+                  "side": 1,
+                  "x": 2640,
+                  "y": 1042.8000000000002,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 111,
+                  "r": 27,
+                  "hp": 1613,
+                  "maxHp": 1613,
+                  "combatBaseHp": 1240.64351130322,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 98,
+                      "r": 25
+                    },
+                    "rest": 111,
+                    "restR": 27,
+                    "step": 1,
+                    "hp": 1.1
+                  }
+                },
+                {
+                  "id": "a4-32-d-2",
+                  "side": 1,
+                  "x": 2926.0000000000005,
+                  "y": 869.0000000000001,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 144,
+                  "r": 31,
+                  "hp": 1686,
+                  "maxHp": 1686,
+                  "combatBaseHp": 1297.0363981806388,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 96,
+                      "r": 24
+                    },
+                    "rest": 144,
+                    "restR": 31,
+                    "step": 1,
+                    "hp": 1.15
+                  }
+                },
+                {
+                  "id": "a4-32-d-3",
+                  "side": 1,
+                  "x": 3234.0000000000005,
+                  "y": 805.0000000000001,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 92,
+                  "r": 25,
+                  "hp": 1173,
+                  "maxHp": 1173,
+                  "combatBaseHp": 902.2861900387053
+                }
+              ]
+            },
+            "exact": true
+          }
+        ],
+        "scope": "Same old5b encoded snapshots through real App continue on5b and D; three explicit official Engine.tick/Mission.tick calls. Exact mounted/after battle plus marker/HP/position/size comparison, not autonomous frame loop or long gameplay."
+      }
+    },
+    "K": {
+      "codec": {
+        "passed": true,
+        "deployedCommit": "a6f2935935eed559c3ecd27207d8d8a78a1ed22d",
+        "candidateCommit": "85bae4a08993d3b71d22ea3fec76686e0ae3c61c",
+        "stages": [
+          {
+            "stage": 3,
+            "oldProfileSchema": 5,
+            "currentProfileSchema": 5,
+            "expectedSHA": "a2d53148ef488865b03827e99412c827b7d75dc6b42f3f2b5f783698814f66d6",
+            "restoredSHA": "a2d53148ef488865b03827e99412c827b7d75dc6b42f3f2b5f783698814f66d6",
+            "encodedSHA": "a2d53148ef488865b03827e99412c827b7d75dc6b42f3f2b5f783698814f66d6",
+            "fullBattleExact": true,
+            "recompactExact": true,
+            "secondRestoreExact": true,
+            "normalization": false
+          },
+          {
+            "stage": 7,
+            "oldProfileSchema": 5,
+            "currentProfileSchema": 5,
+            "expectedSHA": "4468be6e141870921f2402f689c996d528b49c08e85d2a8dc6bbe120a845939d",
+            "restoredSHA": "4468be6e141870921f2402f689c996d528b49c08e85d2a8dc6bbe120a845939d",
+            "encodedSHA": "4468be6e141870921f2402f689c996d528b49c08e85d2a8dc6bbe120a845939d",
+            "fullBattleExact": true,
+            "recompactExact": true,
+            "secondRestoreExact": true,
+            "normalization": false
+          },
+          {
+            "stage": 32,
+            "oldProfileSchema": 5,
+            "currentProfileSchema": 5,
+            "expectedSHA": "26937fcc565becc4bd082b4df174480f93bb8df700ceabbdd660dcbeda9ff00e",
+            "restoredSHA": "26937fcc565becc4bd082b4df174480f93bb8df700ceabbdd660dcbeda9ff00e",
+            "encodedSHA": "3345cefca32158028e002417a3f9f76e005f36ddeaa6c4a8671514097be7479b",
+            "fullBattleExact": true,
+            "recompactExact": true,
+            "secondRestoreExact": true,
+            "normalization": false
+          }
+        ],
+        "scope": "Independent synthetic deployed 5b battles 3/7/32; exact old snapshot preservation through official codec only. No current fresh-battle equivalence, profile migration, App continue, visual or actual user-save claim.",
+        "userStorageAccess": 0
+      },
+      "app": {
+        "passed": true,
+        "deployedCommit": "a6f2935935eed559c3ecd27207d8d8a78a1ed22d",
+        "candidateCommit": "85bae4a08993d3b71d22ea3fec76686e0ae3c61c",
+        "rows": [
+          {
+            "id": 3,
+            "mountedBattleSHA": "869ad135f915d62d16df0bad968e6af568850d6e3804ce3f27cbd24d9f35ebea",
+            "afterTickBattleSHA": "8819d4a82e43dd9d738d5ae7d62d461a14752ad08c5bcd79ae12ef2d73c244f6",
+            "actorsBefore": {
+              "revision": 1,
+              "units": [
+                {
+                  "id": "p-archer",
+                  "side": 0,
+                  "x": 187.34,
+                  "y": 1647.3,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 92,
+                  "r": 22,
+                  "hp": 364,
+                  "maxHp": 365
+                },
+                {
+                  "id": "p-mage",
+                  "side": 0,
+                  "x": 300.39,
+                  "y": 1649.853953488372,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 92,
+                  "r": 22,
+                  "hp": 390,
+                  "maxHp": 390
+                },
+                {
+                  "id": "midboss-stage3",
+                  "side": 1,
+                  "x": 2018.75,
+                  "y": 2616.41962962963,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 352,
+                  "r": 54,
+                  "hp": 848,
+                  "maxHp": 848,
+                  "combatBaseHp": 652.1814545302324,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "named",
+                    "base": {
+                      "h": 146,
+                      "r": 32
+                    },
+                    "rest": 352,
+                    "restR": 54,
+                    "step": 1,
+                    "hp": 1.3
+                  }
+                },
+                {
+                  "id": "site-3-patrol-0-0",
+                  "side": 1,
+                  "x": 813.96,
+                  "y": 1702.21,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 88,
+                  "r": 32,
+                  "hp": 154,
+                  "maxHp": 154,
+                  "combatBaseHp": 118.39126265723071,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-3-patrol-0-1",
+                  "side": 1,
+                  "x": 1036.83,
+                  "y": 2450.976734693878,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 88,
+                  "r": 32,
+                  "hp": 154,
+                  "maxHp": 154,
+                  "combatBaseHp": 118.39126265723071,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-3-patrol-0-2",
+                  "side": 1,
+                  "x": 1411.51,
+                  "y": 1540.7602723735408,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 108,
+                  "r": 41,
+                  "hp": 154,
+                  "maxHp": 154,
+                  "combatBaseHp": 118.39126265723071,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true,
+                    "base": {
+                      "h": 108,
+                      "r": 41
+                    },
+                    "rest": 108
+                  }
+                },
+                {
+                  "id": "site-3-patrol-1-0",
+                  "side": 1,
+                  "x": 1679.6,
+                  "y": 2568.9774528301887,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 88,
+                  "r": 32,
+                  "hp": 154,
+                  "maxHp": 154,
+                  "combatBaseHp": 118.39126265723071,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-3-patrol-1-1",
+                  "side": 1,
+                  "x": 2231.93,
+                  "y": 1369.52,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 80,
+                  "r": 33,
+                  "hp": 95,
+                  "maxHp": 95,
+                  "combatBaseHp": 73.45639705778179
+                },
+                {
+                  "id": "site-3-patrol-1-2",
+                  "side": 1,
+                  "x": 2622.76,
+                  "y": 1944.46,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 66,
+                  "r": 28,
+                  "hp": 84,
+                  "maxHp": 84,
+                  "combatBaseHp": 64.40484688553353
+                },
+                {
+                  "id": "site-3-patrol-2-0",
+                  "side": 1,
+                  "x": 3139.56,
+                  "y": 1742.39463878327,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 91,
+                  "r": 21,
+                  "hp": 154,
+                  "maxHp": 154,
+                  "combatBaseHp": 118.39126265723071,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-3-patrol-3-0",
+                  "side": 1,
+                  "x": 4031.04,
+                  "y": 1807.7758536585366,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 91,
+                  "r": 21,
+                  "hp": 154,
+                  "maxHp": 154,
+                  "combatBaseHp": 118.39126265723071,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-3-patrol-3-1",
+                  "side": 1,
+                  "x": 4754.56,
+                  "y": 1568.9517948717948,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 91,
+                  "r": 21,
+                  "hp": 154,
+                  "maxHp": 154,
+                  "combatBaseHp": 118.39126265723071,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-3-patrol-3-2",
+                  "side": 1,
+                  "x": 4279.75,
+                  "y": 1779.4186746987953,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 152,
+                  "r": 44,
+                  "hp": 208,
+                  "maxHp": 208,
+                  "combatBaseHp": 159.82820458726147,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 88,
+                      "r": 32
+                    },
+                    "rest": 152,
+                    "restR": 44,
+                    "step": 1,
+                    "hp": 1.35
+                  }
+                },
+                {
+                  "id": "site-3-patrol-3-3",
+                  "side": 1,
+                  "x": 4948.36,
+                  "y": 1544.105641025641,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 108,
+                  "r": 41,
+                  "hp": 193,
+                  "maxHp": 193,
+                  "combatBaseHp": 147.9890783215384,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true,
+                    "base": {
+                      "h": 108,
+                      "r": 41
+                    },
+                    "rest": 108
+                  }
+                },
+                {
+                  "id": "site-3-patrol-3-4",
+                  "side": 1,
+                  "x": 4560.76,
+                  "y": 1330.76,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 80,
+                  "r": 33,
+                  "hp": 95,
+                  "maxHp": 95,
+                  "combatBaseHp": 73.45639705778179
+                }
+              ]
+            },
+            "actorsAfter": {
+              "revision": 1,
+              "units": [
+                {
+                  "id": "p-archer",
+                  "side": 0,
+                  "x": 187.34,
+                  "y": 1647.3,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 92,
+                  "r": 22,
+                  "hp": 364,
+                  "maxHp": 365
+                },
+                {
+                  "id": "p-mage",
+                  "side": 0,
+                  "x": 300.39,
+                  "y": 1649.853953488372,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 92,
+                  "r": 22,
+                  "hp": 390,
+                  "maxHp": 390
+                },
+                {
+                  "id": "midboss-stage3",
+                  "side": 1,
+                  "x": 2018.75,
+                  "y": 2616.41962962963,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 352,
+                  "r": 54,
+                  "hp": 848,
+                  "maxHp": 848,
+                  "combatBaseHp": 652.1814545302324,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "named",
+                    "base": {
+                      "h": 146,
+                      "r": 32
+                    },
+                    "rest": 352,
+                    "restR": 54,
+                    "step": 1,
+                    "hp": 1.3,
+                    "revealed": true
+                  }
+                },
+                {
+                  "id": "site-3-patrol-0-0",
+                  "side": 1,
+                  "x": 813.96,
+                  "y": 1702.21,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 88,
+                  "r": 32,
+                  "hp": 154,
+                  "maxHp": 154,
+                  "combatBaseHp": 118.39126265723071,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-3-patrol-0-1",
+                  "side": 1,
+                  "x": 1036.83,
+                  "y": 2450.976734693878,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 88,
+                  "r": 32,
+                  "hp": 154,
+                  "maxHp": 154,
+                  "combatBaseHp": 118.39126265723071,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-3-patrol-0-2",
+                  "side": 1,
+                  "x": 1411.51,
+                  "y": 1540.7602723735408,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 108,
+                  "r": 41,
+                  "hp": 154,
+                  "maxHp": 154,
+                  "combatBaseHp": 118.39126265723071,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true,
+                    "base": {
+                      "h": 108,
+                      "r": 41
+                    },
+                    "rest": 108
+                  }
+                },
+                {
+                  "id": "site-3-patrol-1-0",
+                  "side": 1,
+                  "x": 1679.6,
+                  "y": 2568.9774528301887,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 88,
+                  "r": 32,
+                  "hp": 154,
+                  "maxHp": 154,
+                  "combatBaseHp": 118.39126265723071,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-3-patrol-1-1",
+                  "side": 1,
+                  "x": 2231.93,
+                  "y": 1369.52,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 80,
+                  "r": 33,
+                  "hp": 95,
+                  "maxHp": 95,
+                  "combatBaseHp": 73.45639705778179
+                },
+                {
+                  "id": "site-3-patrol-1-2",
+                  "side": 1,
+                  "x": 2622.76,
+                  "y": 1944.46,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 66,
+                  "r": 28,
+                  "hp": 84,
+                  "maxHp": 84,
+                  "combatBaseHp": 64.40484688553353
+                },
+                {
+                  "id": "site-3-patrol-2-0",
+                  "side": 1,
+                  "x": 3139.56,
+                  "y": 1742.39463878327,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 91,
+                  "r": 21,
+                  "hp": 154,
+                  "maxHp": 154,
+                  "combatBaseHp": 118.39126265723071,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-3-patrol-3-0",
+                  "side": 1,
+                  "x": 4031.04,
+                  "y": 1807.7758536585366,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 91,
+                  "r": 21,
+                  "hp": 154,
+                  "maxHp": 154,
+                  "combatBaseHp": 118.39126265723071,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-3-patrol-3-1",
+                  "side": 1,
+                  "x": 4754.56,
+                  "y": 1568.9517948717948,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 91,
+                  "r": 21,
+                  "hp": 154,
+                  "maxHp": 154,
+                  "combatBaseHp": 118.39126265723071,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-3-patrol-3-2",
+                  "side": 1,
+                  "x": 4279.75,
+                  "y": 1779.4186746987953,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 152,
+                  "r": 44,
+                  "hp": 208,
+                  "maxHp": 208,
+                  "combatBaseHp": 159.82820458726147,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 88,
+                      "r": 32
+                    },
+                    "rest": 152,
+                    "restR": 44,
+                    "step": 1,
+                    "hp": 1.35
+                  }
+                },
+                {
+                  "id": "site-3-patrol-3-3",
+                  "side": 1,
+                  "x": 4948.36,
+                  "y": 1544.105641025641,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 108,
+                  "r": 41,
+                  "hp": 193,
+                  "maxHp": 193,
+                  "combatBaseHp": 147.9890783215384,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true,
+                    "base": {
+                      "h": 108,
+                      "r": 41
+                    },
+                    "rest": 108
+                  }
+                },
+                {
+                  "id": "site-3-patrol-3-4",
+                  "side": 1,
+                  "x": 4560.76,
+                  "y": 1330.76,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 80,
+                  "r": 33,
+                  "hp": 95,
+                  "maxHp": 95,
+                  "combatBaseHp": 73.45639705778179
+                }
+              ]
+            },
+            "exact": true
+          },
+          {
+            "id": 7,
+            "mountedBattleSHA": "ae30e4e11246c6b54628b6183361ccc5d87fa4232c606bd68118e3fd0cbe8590",
+            "afterTickBattleSHA": "9904662b4de1c547a227b2db97fea1700a0519efee6838533d3ca5c15a32e2b5",
+            "actorsBefore": {
+              "revision": 1,
+              "units": [
+                {
+                  "id": "p-archer",
+                  "side": 0,
+                  "x": 81.38,
+                  "y": 2862.152364864865,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 92,
+                  "r": 22,
+                  "hp": 364,
+                  "maxHp": 365
+                },
+                {
+                  "id": "p-mage",
+                  "side": 0,
+                  "x": 172.15,
+                  "y": 2859.085810810811,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 92,
+                  "r": 22,
+                  "hp": 390,
+                  "maxHp": 390
+                },
+                {
+                  "id": "p-knight",
+                  "side": 0,
+                  "x": 262.92,
+                  "y": 2856.019256756757,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 92,
+                  "r": 22,
+                  "hp": 610,
+                  "maxHp": 610
+                },
+                {
+                  "id": "resident-1",
+                  "side": 2,
+                  "x": 560.27,
+                  "y": 2848.3,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 90,
+                  "r": 20,
+                  "hp": 600,
+                  "maxHp": 600
+                },
+                {
+                  "id": "resident-2",
+                  "side": 2,
+                  "x": 3230.16,
+                  "y": 2118.0629743589743,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 90,
+                  "r": 20,
+                  "hp": 600,
+                  "maxHp": 600
+                },
+                {
+                  "id": "resident-3",
+                  "side": 2,
+                  "x": 2588.51,
+                  "y": 1093.1639512195122,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 90,
+                  "r": 20,
+                  "hp": 600,
+                  "maxHp": 600
+                },
+                {
+                  "id": "site-7-patrol-0-0",
+                  "side": 1,
+                  "x": 788.76,
+                  "y": 2848.3,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 110,
+                  "r": 37,
+                  "hp": 370,
+                  "maxHp": 370,
+                  "combatBaseHp": 285.00588927461894,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 88,
+                      "r": 32
+                    },
+                    "rest": 110,
+                    "restR": 37,
+                    "step": 1,
+                    "hp": 1.15
+                  }
+                },
+                {
+                  "id": "site-7-patrol-0-1",
+                  "side": 1,
+                  "x": 1586.91,
+                  "y": 2697.139411764706,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 88,
+                  "r": 32,
+                  "hp": 322,
+                  "maxHp": 322,
+                  "combatBaseHp": 247.83120806488606,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-7-patrol-0-2",
+                  "side": 1,
+                  "x": 1183.14,
+                  "y": 2848.3690441176473,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 91,
+                  "r": 21,
+                  "hp": 322,
+                  "maxHp": 322,
+                  "combatBaseHp": 247.83120806488606,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-7-patrol-0-3",
+                  "side": 1,
+                  "x": 1386.59,
+                  "y": 2651.11,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 66,
+                  "r": 28,
+                  "hp": 175,
+                  "maxHp": 175,
+                  "combatBaseHp": 134.82017718729804
+                },
+                {
+                  "id": "site-7-patrol-0-4",
+                  "side": 1,
+                  "x": 1790.36,
+                  "y": 2334.98,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 80,
+                  "r": 33,
+                  "hp": 200,
+                  "maxHp": 200,
+                  "combatBaseHp": 153.76799954934975
+                },
+                {
+                  "id": "site-7-patrol-1-0",
+                  "side": 1,
+                  "x": 2904.64,
+                  "y": 2121.401641025641,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 88,
+                  "r": 32,
+                  "hp": 322,
+                  "maxHp": 322,
+                  "combatBaseHp": 247.83120806488606,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-7-patrol-1-1",
+                  "side": 1,
+                  "x": 3843.64,
+                  "y": 2126.6927272727276,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 152,
+                  "r": 44,
+                  "hp": 435,
+                  "maxHp": 435,
+                  "combatBaseHp": 334.5721308875962,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 88,
+                      "r": 32
+                    },
+                    "rest": 152,
+                    "restR": 44,
+                    "step": 1,
+                    "hp": 1.35
+                  }
+                },
+                {
+                  "id": "site-7-patrol-1-2",
+                  "side": 1,
+                  "x": 2563.47,
+                  "y": 2611.491917808219,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 139,
+                  "r": 42,
+                  "hp": 370,
+                  "maxHp": 370,
+                  "combatBaseHp": 285.00588927461894,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 116,
+                      "r": 38
+                    },
+                    "rest": 139,
+                    "restR": 42,
+                    "step": 1,
+                    "hp": 1.15
+                  }
+                },
+                {
+                  "id": "site-7-patrol-1-3",
+                  "side": 1,
+                  "x": 3687.14,
+                  "y": 2118.0994545454546,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 91,
+                  "r": 21,
+                  "hp": 322,
+                  "maxHp": 322,
+                  "combatBaseHp": 247.83120806488606,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-7-patrol-1-4",
+                  "side": 1,
+                  "x": 2288.03,
+                  "y": 2541.961282051282,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 137,
+                  "r": 24,
+                  "hp": 532,
+                  "maxHp": 532,
+                  "combatBaseHp": 409.69596583226473,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 115,
+                      "r": 22
+                    },
+                    "rest": 137,
+                    "restR": 24,
+                    "step": 1,
+                    "hp": 1.15
+                  }
+                },
+                {
+                  "id": "site-7-patrol-1-5",
+                  "side": 1,
+                  "x": 3399.18,
+                  "y": 1965.64,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 66,
+                  "r": 28,
+                  "hp": 175,
+                  "maxHp": 175,
+                  "combatBaseHp": 134.82017718729804
+                },
+                {
+                  "id": "site-7-patrol-2-0",
+                  "side": 1,
+                  "x": 2150.31,
+                  "y": 1094.9745255474452,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 88,
+                  "r": 32,
+                  "hp": 322,
+                  "maxHp": 322,
+                  "combatBaseHp": 247.83120806488606,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-7-patrol-2-1",
+                  "side": 1,
+                  "x": 2914.03,
+                  "y": 1096.339756097561,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 91,
+                  "r": 21,
+                  "hp": 322,
+                  "maxHp": 322,
+                  "combatBaseHp": 247.83120806488606,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-7-patrol-2-2",
+                  "side": 1,
+                  "x": 2306.81,
+                  "y": 1093.832189781022,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 137,
+                  "r": 24,
+                  "hp": 427,
+                  "maxHp": 427,
+                  "combatBaseHp": 327.7567726658118,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 115,
+                      "r": 22
+                    },
+                    "rest": 137,
+                    "restR": 24,
+                    "step": 1,
+                    "hp": 1.15
+                  }
+                },
+                {
+                  "id": "site-7-patrol-2-3",
+                  "side": 1,
+                  "x": 2172.22,
+                  "y": 879.53,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 66,
+                  "r": 28,
+                  "hp": 175,
+                  "maxHp": 175,
+                  "combatBaseHp": 134.82017718729804
+                },
+                {
+                  "id": "site-7-patrol-2-4",
+                  "side": 1,
+                  "x": 2748.14,
+                  "y": 751.2,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 80,
+                  "r": 33,
+                  "hp": 200,
+                  "maxHp": 200,
+                  "combatBaseHp": 153.76799954934975
+                },
+                {
+                  "id": "site-7-patrol-3-0",
+                  "side": 1,
+                  "x": 2557.21,
+                  "y": 3077.66783908046,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 88,
+                  "r": 32,
+                  "hp": 322,
+                  "maxHp": 322,
+                  "combatBaseHp": 247.83120806488606,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-7-patrol-3-1",
+                  "side": 1,
+                  "x": 4144.12,
+                  "y": 1394.9477659574468,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 91,
+                  "r": 21,
+                  "hp": 322,
+                  "maxHp": 322,
+                  "combatBaseHp": 247.83120806488606,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-7-patrol-3-2",
+                  "side": 1,
+                  "x": 3812.34,
+                  "y": 2948.841707317073,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 139,
+                  "r": 42,
+                  "hp": 370,
+                  "maxHp": 370,
+                  "combatBaseHp": 285.00588927461894,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 116,
+                      "r": 38
+                    },
+                    "rest": 139,
+                    "restR": 42,
+                    "step": 1,
+                    "hp": 1.15
+                  }
+                },
+                {
+                  "id": "site-7-patrol-3-3",
+                  "side": 1,
+                  "x": 4128.47,
+                  "y": 2557.21,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 80,
+                  "r": 33,
+                  "hp": 250,
+                  "maxHp": 250,
+                  "combatBaseHp": 192.2099994366872
+                }
+              ]
+            },
+            "actorsAfter": {
+              "revision": 1,
+              "units": [
+                {
+                  "id": "p-archer",
+                  "side": 0,
+                  "x": 81.38,
+                  "y": 2862.152364864865,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 92,
+                  "r": 22,
+                  "hp": 364,
+                  "maxHp": 365
+                },
+                {
+                  "id": "p-mage",
+                  "side": 0,
+                  "x": 172.15,
+                  "y": 2859.085810810811,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 92,
+                  "r": 22,
+                  "hp": 390,
+                  "maxHp": 390
+                },
+                {
+                  "id": "p-knight",
+                  "side": 0,
+                  "x": 262.92,
+                  "y": 2856.019256756757,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 92,
+                  "r": 22,
+                  "hp": 610,
+                  "maxHp": 610
+                },
+                {
+                  "id": "resident-1",
+                  "side": 2,
+                  "x": 560.27,
+                  "y": 2848.3,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 90,
+                  "r": 20,
+                  "hp": 600,
+                  "maxHp": 600
+                },
+                {
+                  "id": "resident-2",
+                  "side": 2,
+                  "x": 3230.16,
+                  "y": 2118.0629743589743,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 90,
+                  "r": 20,
+                  "hp": 600,
+                  "maxHp": 600
+                },
+                {
+                  "id": "resident-3",
+                  "side": 2,
+                  "x": 2588.51,
+                  "y": 1093.1639512195122,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 90,
+                  "r": 20,
+                  "hp": 600,
+                  "maxHp": 600
+                },
+                {
+                  "id": "site-7-patrol-0-0",
+                  "side": 1,
+                  "x": 788.76,
+                  "y": 2848.3,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 110,
+                  "r": 37,
+                  "hp": 370,
+                  "maxHp": 370,
+                  "combatBaseHp": 285.00588927461894,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 88,
+                      "r": 32
+                    },
+                    "rest": 110,
+                    "restR": 37,
+                    "step": 1,
+                    "hp": 1.15
+                  }
+                },
+                {
+                  "id": "site-7-patrol-0-1",
+                  "side": 1,
+                  "x": 1586.91,
+                  "y": 2697.139411764706,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 88,
+                  "r": 32,
+                  "hp": 322,
+                  "maxHp": 322,
+                  "combatBaseHp": 247.83120806488606,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-7-patrol-0-2",
+                  "side": 1,
+                  "x": 1183.14,
+                  "y": 2848.3690441176473,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 91,
+                  "r": 21,
+                  "hp": 322,
+                  "maxHp": 322,
+                  "combatBaseHp": 247.83120806488606,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-7-patrol-0-3",
+                  "side": 1,
+                  "x": 1386.59,
+                  "y": 2651.11,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 66,
+                  "r": 28,
+                  "hp": 175,
+                  "maxHp": 175,
+                  "combatBaseHp": 134.82017718729804
+                },
+                {
+                  "id": "site-7-patrol-0-4",
+                  "side": 1,
+                  "x": 1790.36,
+                  "y": 2334.98,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 80,
+                  "r": 33,
+                  "hp": 200,
+                  "maxHp": 200,
+                  "combatBaseHp": 153.76799954934975
+                },
+                {
+                  "id": "site-7-patrol-1-0",
+                  "side": 1,
+                  "x": 2904.64,
+                  "y": 2121.401641025641,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 88,
+                  "r": 32,
+                  "hp": 322,
+                  "maxHp": 322,
+                  "combatBaseHp": 247.83120806488606,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-7-patrol-1-1",
+                  "side": 1,
+                  "x": 3843.64,
+                  "y": 2126.6927272727276,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 152,
+                  "r": 44,
+                  "hp": 435,
+                  "maxHp": 435,
+                  "combatBaseHp": 334.5721308875962,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 88,
+                      "r": 32
+                    },
+                    "rest": 152,
+                    "restR": 44,
+                    "step": 1,
+                    "hp": 1.35
+                  }
+                },
+                {
+                  "id": "site-7-patrol-1-2",
+                  "side": 1,
+                  "x": 2563.47,
+                  "y": 2611.491917808219,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 139,
+                  "r": 42,
+                  "hp": 370,
+                  "maxHp": 370,
+                  "combatBaseHp": 285.00588927461894,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 116,
+                      "r": 38
+                    },
+                    "rest": 139,
+                    "restR": 42,
+                    "step": 1,
+                    "hp": 1.15
+                  }
+                },
+                {
+                  "id": "site-7-patrol-1-3",
+                  "side": 1,
+                  "x": 3687.14,
+                  "y": 2118.0994545454546,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 91,
+                  "r": 21,
+                  "hp": 322,
+                  "maxHp": 322,
+                  "combatBaseHp": 247.83120806488606,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-7-patrol-1-4",
+                  "side": 1,
+                  "x": 2288.03,
+                  "y": 2541.961282051282,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 137,
+                  "r": 24,
+                  "hp": 532,
+                  "maxHp": 532,
+                  "combatBaseHp": 409.69596583226473,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 115,
+                      "r": 22
+                    },
+                    "rest": 137,
+                    "restR": 24,
+                    "step": 1,
+                    "hp": 1.15
+                  }
+                },
+                {
+                  "id": "site-7-patrol-1-5",
+                  "side": 1,
+                  "x": 3399.18,
+                  "y": 1965.64,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 66,
+                  "r": 28,
+                  "hp": 175,
+                  "maxHp": 175,
+                  "combatBaseHp": 134.82017718729804
+                },
+                {
+                  "id": "site-7-patrol-2-0",
+                  "side": 1,
+                  "x": 2150.31,
+                  "y": 1094.9745255474452,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 88,
+                  "r": 32,
+                  "hp": 322,
+                  "maxHp": 322,
+                  "combatBaseHp": 247.83120806488606,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-7-patrol-2-1",
+                  "side": 1,
+                  "x": 2914.03,
+                  "y": 1096.339756097561,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 91,
+                  "r": 21,
+                  "hp": 322,
+                  "maxHp": 322,
+                  "combatBaseHp": 247.83120806488606,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-7-patrol-2-2",
+                  "side": 1,
+                  "x": 2306.81,
+                  "y": 1093.832189781022,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 137,
+                  "r": 24,
+                  "hp": 427,
+                  "maxHp": 427,
+                  "combatBaseHp": 327.7567726658118,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 115,
+                      "r": 22
+                    },
+                    "rest": 137,
+                    "restR": 24,
+                    "step": 1,
+                    "hp": 1.15
+                  }
+                },
+                {
+                  "id": "site-7-patrol-2-3",
+                  "side": 1,
+                  "x": 2172.22,
+                  "y": 879.53,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 66,
+                  "r": 28,
+                  "hp": 175,
+                  "maxHp": 175,
+                  "combatBaseHp": 134.82017718729804
+                },
+                {
+                  "id": "site-7-patrol-2-4",
+                  "side": 1,
+                  "x": 2748.14,
+                  "y": 751.2,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 80,
+                  "r": 33,
+                  "hp": 200,
+                  "maxHp": 200,
+                  "combatBaseHp": 153.76799954934975
+                },
+                {
+                  "id": "site-7-patrol-3-0",
+                  "side": 1,
+                  "x": 2557.21,
+                  "y": 3077.66783908046,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 88,
+                  "r": 32,
+                  "hp": 322,
+                  "maxHp": 322,
+                  "combatBaseHp": 247.83120806488606,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-7-patrol-3-1",
+                  "side": 1,
+                  "x": 4144.12,
+                  "y": 1394.9477659574468,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 91,
+                  "r": 21,
+                  "hp": 322,
+                  "maxHp": 322,
+                  "combatBaseHp": 247.83120806488606,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "site-7-patrol-3-2",
+                  "side": 1,
+                  "x": 3812.34,
+                  "y": 2948.841707317073,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 139,
+                  "r": 42,
+                  "hp": 370,
+                  "maxHp": 370,
+                  "combatBaseHp": 285.00588927461894,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 116,
+                      "r": 38
+                    },
+                    "rest": 139,
+                    "restR": 42,
+                    "step": 1,
+                    "hp": 1.15
+                  }
+                },
+                {
+                  "id": "site-7-patrol-3-3",
+                  "side": 1,
+                  "x": 4128.47,
+                  "y": 2557.21,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 80,
+                  "r": 33,
+                  "hp": 250,
+                  "maxHp": 250,
+                  "combatBaseHp": 192.2099994366872
+                }
+              ]
+            },
+            "exact": true
+          },
+          {
+            "id": 32,
+            "mountedBattleSHA": "443908c4566584f996379083393d1ab89676e88ff415fe48096a8b55a75fd49c",
+            "afterTickBattleSHA": "24d4fe161b6de02472edff515b5539d9ef394e803f998751621c1afc0001216b",
+            "actorsBefore": {
+              "revision": 1,
+              "units": [
+                {
+                  "id": "archer",
+                  "side": 0,
+                  "x": 143,
+                  "y": 985.6000000000001,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 92,
+                  "r": 22,
+                  "hp": 364,
+                  "maxHp": 365
+                },
+                {
+                  "id": "mage",
+                  "side": 0,
+                  "x": 213.4,
+                  "y": 985.6000000000001,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 92,
+                  "r": 22,
+                  "hp": 390,
+                  "maxHp": 390
+                },
+                {
+                  "id": "knight",
+                  "side": 0,
+                  "x": 283.8,
+                  "y": 985.6000000000001,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 92,
+                  "r": 22,
+                  "hp": 610,
+                  "maxHp": 610
+                },
+                {
+                  "id": "occultist",
+                  "side": 0,
+                  "x": 354.20000000000005,
+                  "y": 985.6000000000001,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 92,
+                  "r": 22,
+                  "hp": 460,
+                  "maxHp": 460
+                },
+                {
+                  "id": "a4-shelter-speaker",
+                  "side": 2,
+                  "x": 3069.0000000000005,
+                  "y": 869.0000000000001,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 92,
+                  "r": 22,
+                  "hp": 1450,
+                  "maxHp": 1450
+                },
+                {
+                  "id": "a4-32-a-1",
+                  "side": 1,
+                  "x": 880.0000000000001,
+                  "y": 847.0000000000001,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 111,
+                  "r": 27,
+                  "hp": 1613,
+                  "maxHp": 1613,
+                  "combatBaseHp": 1240.64351130322,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 98,
+                      "r": 25
+                    },
+                    "rest": 111,
+                    "restR": 27,
+                    "step": 1,
+                    "hp": 1.1
+                  }
+                },
+                {
+                  "id": "a4-32-a-2",
+                  "side": 1,
+                  "x": 1210,
+                  "y": 847.0000000000001,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 105,
+                  "r": 25,
+                  "hp": 1613,
+                  "maxHp": 1613,
+                  "combatBaseHp": 1240.64351130322,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 96,
+                      "r": 24
+                    },
+                    "rest": 105,
+                    "restR": 25,
+                    "step": 1,
+                    "hp": 1.1
+                  }
+                },
+                {
+                  "id": "a4-32-a-3",
+                  "side": 1,
+                  "x": 1562.0000000000002,
+                  "y": 774.4000000000001,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 110,
+                  "r": 26,
+                  "hp": 1613,
+                  "maxHp": 1613,
+                  "combatBaseHp": 1240.64351130322,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 96,
+                      "r": 24
+                    },
+                    "rest": 110,
+                    "restR": 26,
+                    "step": 1,
+                    "hp": 1.1
+                  }
+                },
+                {
+                  "id": "a4-32-b-1",
+                  "side": 1,
+                  "x": 1012.0000000000001,
+                  "y": 1210,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 106,
+                  "r": 36,
+                  "hp": 1686,
+                  "maxHp": 1686,
+                  "combatBaseHp": 1297.0363981806388,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 88,
+                      "r": 32
+                    },
+                    "rest": 106,
+                    "restR": 36,
+                    "step": 1,
+                    "hp": 1.15
+                  }
+                },
+                {
+                  "id": "a4-32-b-2",
+                  "side": 1,
+                  "x": 1144,
+                  "y": 1251.4857142857143,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 88,
+                  "r": 32,
+                  "hp": 1466,
+                  "maxHp": 1466,
+                  "combatBaseHp": 1127.8577375483817,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "a4-32-b-3",
+                  "side": 1,
+                  "x": 1298,
+                  "y": 1271.6,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 111,
+                  "r": 27,
+                  "hp": 1613,
+                  "maxHp": 1613,
+                  "combatBaseHp": 1240.64351130322,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 98,
+                      "r": 25
+                    },
+                    "rest": 111,
+                    "restR": 27,
+                    "step": 1,
+                    "hp": 1.1
+                  }
+                },
+                {
+                  "id": "a4-32-b-4",
+                  "side": 1,
+                  "x": 1694.0000000000002,
+                  "y": 1179.2,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 115,
+                  "r": 22,
+                  "hp": 1686,
+                  "maxHp": 1686,
+                  "combatBaseHp": 1297.0363981806388,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "a4-32-c-1",
+                  "side": 1,
+                  "x": 2068,
+                  "y": 1026.96,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 152,
+                  "r": 30,
+                  "hp": 2870,
+                  "maxHp": 2870,
+                  "combatBaseHp": 2207.781521250957,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 120,
+                      "r": 26
+                    },
+                    "rest": 152,
+                    "restR": 30,
+                    "step": 1,
+                    "hp": 1.35
+                  }
+                },
+                {
+                  "id": "a4-32-c-2",
+                  "side": 1,
+                  "x": 2398,
+                  "y": 867.5200000000002,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 96,
+                  "r": 24,
+                  "hp": 1466,
+                  "maxHp": 1466,
+                  "combatBaseHp": 1127.8577375483817
+                },
+                {
+                  "id": "a4-32-d-1",
+                  "side": 1,
+                  "x": 2640,
+                  "y": 1042.8000000000002,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 111,
+                  "r": 27,
+                  "hp": 1613,
+                  "maxHp": 1613,
+                  "combatBaseHp": 1240.64351130322,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 98,
+                      "r": 25
+                    },
+                    "rest": 111,
+                    "restR": 27,
+                    "step": 1,
+                    "hp": 1.1
+                  }
+                },
+                {
+                  "id": "a4-32-d-2",
+                  "side": 1,
+                  "x": 2926.0000000000005,
+                  "y": 869.0000000000001,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 144,
+                  "r": 31,
+                  "hp": 1686,
+                  "maxHp": 1686,
+                  "combatBaseHp": 1297.0363981806388,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 96,
+                      "r": 24
+                    },
+                    "rest": 144,
+                    "restR": 31,
+                    "step": 1,
+                    "hp": 1.15
+                  }
+                },
+                {
+                  "id": "a4-32-d-3",
+                  "side": 1,
+                  "x": 3234.0000000000005,
+                  "y": 805.0000000000001,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 92,
+                  "r": 25,
+                  "hp": 1173,
+                  "maxHp": 1173,
+                  "combatBaseHp": 902.2861900387053
+                }
+              ]
+            },
+            "actorsAfter": {
+              "revision": 1,
+              "units": [
+                {
+                  "id": "archer",
+                  "side": 0,
+                  "x": 143,
+                  "y": 985.6000000000001,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 92,
+                  "r": 22,
+                  "hp": 364,
+                  "maxHp": 365
+                },
+                {
+                  "id": "mage",
+                  "side": 0,
+                  "x": 213.4,
+                  "y": 985.6000000000001,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 92,
+                  "r": 22,
+                  "hp": 390,
+                  "maxHp": 390
+                },
+                {
+                  "id": "knight",
+                  "side": 0,
+                  "x": 283.8,
+                  "y": 985.6000000000001,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 92,
+                  "r": 22,
+                  "hp": 610,
+                  "maxHp": 610
+                },
+                {
+                  "id": "occultist",
+                  "side": 0,
+                  "x": 354.20000000000005,
+                  "y": 985.6000000000001,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 92,
+                  "r": 22,
+                  "hp": 460,
+                  "maxHp": 460
+                },
+                {
+                  "id": "a4-shelter-speaker",
+                  "side": 2,
+                  "x": 3069.0000000000005,
+                  "y": 869.0000000000001,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 92,
+                  "r": 22,
+                  "hp": 1450,
+                  "maxHp": 1450
+                },
+                {
+                  "id": "a4-32-a-1",
+                  "side": 1,
+                  "x": 880.0000000000001,
+                  "y": 847.0000000000001,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 111,
+                  "r": 27,
+                  "hp": 1613,
+                  "maxHp": 1613,
+                  "combatBaseHp": 1240.64351130322,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 98,
+                      "r": 25
+                    },
+                    "rest": 111,
+                    "restR": 27,
+                    "step": 1,
+                    "hp": 1.1
+                  }
+                },
+                {
+                  "id": "a4-32-a-2",
+                  "side": 1,
+                  "x": 1210,
+                  "y": 847.0000000000001,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 105,
+                  "r": 25,
+                  "hp": 1613,
+                  "maxHp": 1613,
+                  "combatBaseHp": 1240.64351130322,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 96,
+                      "r": 24
+                    },
+                    "rest": 105,
+                    "restR": 25,
+                    "step": 1,
+                    "hp": 1.1
+                  }
+                },
+                {
+                  "id": "a4-32-a-3",
+                  "side": 1,
+                  "x": 1562.0000000000002,
+                  "y": 774.4000000000001,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 110,
+                  "r": 26,
+                  "hp": 1613,
+                  "maxHp": 1613,
+                  "combatBaseHp": 1240.64351130322,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 96,
+                      "r": 24
+                    },
+                    "rest": 110,
+                    "restR": 26,
+                    "step": 1,
+                    "hp": 1.1
+                  }
+                },
+                {
+                  "id": "a4-32-b-1",
+                  "side": 1,
+                  "x": 1012.0000000000001,
+                  "y": 1210,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 106,
+                  "r": 36,
+                  "hp": 1686,
+                  "maxHp": 1686,
+                  "combatBaseHp": 1297.0363981806388,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 88,
+                      "r": 32
+                    },
+                    "rest": 106,
+                    "restR": 36,
+                    "step": 1,
+                    "hp": 1.15
+                  }
+                },
+                {
+                  "id": "a4-32-b-2",
+                  "side": 1,
+                  "x": 1144,
+                  "y": 1251.4857142857143,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 88,
+                  "r": 32,
+                  "hp": 1466,
+                  "maxHp": 1466,
+                  "combatBaseHp": 1127.8577375483817,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "a4-32-b-3",
+                  "side": 1,
+                  "x": 1298,
+                  "y": 1271.6,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 111,
+                  "r": 27,
+                  "hp": 1613,
+                  "maxHp": 1613,
+                  "combatBaseHp": 1240.64351130322,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 98,
+                      "r": 25
+                    },
+                    "rest": 111,
+                    "restR": 27,
+                    "step": 1,
+                    "hp": 1.1
+                  }
+                },
+                {
+                  "id": "a4-32-b-4",
+                  "side": 1,
+                  "x": 1694.0000000000002,
+                  "y": 1179.2,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 115,
+                  "r": 22,
+                  "hp": 1686,
+                  "maxHp": 1686,
+                  "combatBaseHp": 1297.0363981806388,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "kept": true
+                  }
+                },
+                {
+                  "id": "a4-32-c-1",
+                  "side": 1,
+                  "x": 2068,
+                  "y": 1026.96,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 152,
+                  "r": 30,
+                  "hp": 2870,
+                  "maxHp": 2870,
+                  "combatBaseHp": 2207.781521250957,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 120,
+                      "r": 26
+                    },
+                    "rest": 152,
+                    "restR": 30,
+                    "step": 1,
+                    "hp": 1.35
+                  }
+                },
+                {
+                  "id": "a4-32-c-2",
+                  "side": 1,
+                  "x": 2398,
+                  "y": 867.5200000000002,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 96,
+                  "r": 24,
+                  "hp": 1466,
+                  "maxHp": 1466,
+                  "combatBaseHp": 1127.8577375483817
+                },
+                {
+                  "id": "a4-32-d-1",
+                  "side": 1,
+                  "x": 2640,
+                  "y": 1042.8000000000002,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 111,
+                  "r": 27,
+                  "hp": 1613,
+                  "maxHp": 1613,
+                  "combatBaseHp": 1240.64351130322,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 98,
+                      "r": 25
+                    },
+                    "rest": 111,
+                    "restR": 27,
+                    "step": 1,
+                    "hp": 1.1
+                  }
+                },
+                {
+                  "id": "a4-32-d-2",
+                  "side": 1,
+                  "x": 2926.0000000000005,
+                  "y": 869.0000000000001,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 144,
+                  "r": 31,
+                  "hp": 1686,
+                  "maxHp": 1686,
+                  "combatBaseHp": 1297.0363981806388,
+                  "honroMonsterScale": {
+                    "v": 1,
+                    "why": "species",
+                    "base": {
+                      "h": 96,
+                      "r": 24
+                    },
+                    "rest": 144,
+                    "restR": 31,
+                    "step": 1,
+                    "hp": 1.15
+                  }
+                },
+                {
+                  "id": "a4-32-d-3",
+                  "side": 1,
+                  "x": 3234.0000000000005,
+                  "y": 805.0000000000001,
+                  "vx": 0,
+                  "vy": 0,
+                  "h": 92,
+                  "r": 25,
+                  "hp": 1173,
+                  "maxHp": 1173,
+                  "combatBaseHp": 902.2861900387053
+                }
+              ]
+            },
+            "exact": true
+          }
+        ],
+        "scope": "Same old5b encoded snapshots through real App continue on5b and D; three explicit official Engine.tick/Mission.tick calls. Exact mounted/after battle plus marker/HP/position/size comparison, not autonomous frame loop or long gameplay."
+      }
+    }
+  },
+  "files": [
+    {
+      "path": "K/app-baseline/baseline-continue-stage3-chrome.log",
+      "sha256": "c2b562d5fbbf47acdc75d2a154248b970b589dcfdff615e3aa60131ea45e43e1"
+    },
+    {
+      "path": "K/app-baseline/baseline-continue-stage3.json",
+      "sha256": "a542d8079fee4bba4edb36a1c4f790b5ee79b7994ee012a9c070beff5359a674"
+    },
+    {
+      "path": "K/app-baseline/baseline-continue-stage3.png",
+      "sha256": "faaaaa9465b135a5ddcfcbcf4edb5f13da7b045dfe48bd5df8220ef5b6a9ccba"
+    },
+    {
+      "path": "K/app-baseline/baseline-continue-stage32-chrome.log",
+      "sha256": "0761459d6e9b7cc44df290cff503ec4e1098081e1cad445ece8fd193cad699d7"
+    },
+    {
+      "path": "K/app-baseline/baseline-continue-stage32.json",
+      "sha256": "5ec800eab6bbb14314b5a8548532e626fc71124d181b0917f6a7cbbf36536cdc"
+    },
+    {
+      "path": "K/app-baseline/baseline-continue-stage32.png",
+      "sha256": "601c791578e5b5e9bdd4a52c40aad215c43b80a9654445fedc64864e26f735fb"
+    },
+    {
+      "path": "K/app-baseline/baseline-continue-stage7-chrome.log",
+      "sha256": "a5281f50f7b52d8d907a3954f7c30bea83a9580a6324444fe50151b4017bcc37"
+    },
+    {
+      "path": "K/app-baseline/baseline-continue-stage7.json",
+      "sha256": "864c874be986138cb20dd9154caddb8bd20e644cfd04cb84ac9953b0fb0bead9"
+    },
+    {
+      "path": "K/app-baseline/baseline-continue-stage7.png",
+      "sha256": "b955244a229fbe4171738931b8159978475a30204eaaab018d5fa64bece45088"
+    },
+    {
+      "path": "K/app-candidate/candidate-continue-stage3-chrome.log",
+      "sha256": "a39cc339af9b55ad6c3a71254547aca35dff25dc4da65ffcd6b8259936878887"
+    },
+    {
+      "path": "K/app-candidate/candidate-continue-stage3.json",
+      "sha256": "c5ff880146bb8f650b910b072dbca9f825a9fd06dd4ff427b0bd3ebae4dfe479"
+    },
+    {
+      "path": "K/app-candidate/candidate-continue-stage3.png",
+      "sha256": "faaaaa9465b135a5ddcfcbcf4edb5f13da7b045dfe48bd5df8220ef5b6a9ccba"
+    },
+    {
+      "path": "K/app-candidate/candidate-continue-stage32-chrome.log",
+      "sha256": "8019abb66b2c93afda70e317b2393b4a3c9e49ee4f95e4be3c0e9650a38cf9f8"
+    },
+    {
+      "path": "K/app-candidate/candidate-continue-stage32.json",
+      "sha256": "cefd50a3815e68415b782b5865a3b5244b7659e1277f4cfbc2f3028177891371"
+    },
+    {
+      "path": "K/app-candidate/candidate-continue-stage32.png",
+      "sha256": "601c791578e5b5e9bdd4a52c40aad215c43b80a9654445fedc64864e26f735fb"
+    },
+    {
+      "path": "K/app-candidate/candidate-continue-stage7-chrome.log",
+      "sha256": "6c13a3c0d4e86a4f78835b735ec5bdbf75ea269fb26e9bec36325527f347c4ba"
+    },
+    {
+      "path": "K/app-candidate/candidate-continue-stage7.json",
+      "sha256": "ec7c6947d32d036409fdc7222cf7b3f0ab1571c6cc3a561eb221fcd5e2b92701"
+    },
+    {
+      "path": "K/app-candidate/candidate-continue-stage7.png",
+      "sha256": "4908ca74b74c15555c0ef033cb8c73566019e11b8bfd011848da6d47ce66ea5f"
+    },
+    {
+      "path": "K/base/export-deployed-stages-chrome.log",
+      "sha256": "4341037db99876be598d26992f4adb7165b4f758d8c864822f1deed1f5887780"
+    },
+    {
+      "path": "K/base/export-deployed-stages.json",
+      "sha256": "01228dd3825d168fd353a2cb1e8c872001a2d8988616e84b7343c042571cebd3"
+    },
+    {
+      "path": "K/continue-result.json",
+      "sha256": "d7f8cc5939636bc3b0e65e96dee0621fc0da7bd0bd1ce62b7a23c76df19736a7"
+    },
+    {
+      "path": "K/deployed-compatibility.json",
+      "sha256": "9ef4872297f7753470f95728bdc5b867df12ce8ef737da99ec7d117851bf48c1"
+    },
+    {
+      "path": "K/new/restore-deployed-stages-chrome.log",
+      "sha256": "1d90f47706db8296064adcc4828bbc13cbe7ddfaab91d0e29749b9a4b450d027"
+    },
+    {
+      "path": "K/new/restore-deployed-stages.json",
+      "sha256": "d9bb6db6a5a86fa75160da2b91311a7fd44b7816f4b76cd8b429aa71e25f5bc1"
+    },
+    {
+      "path": "deployed/app-baseline/baseline-continue-stage3-chrome.log",
+      "sha256": "99c24f9d6c91caf9f26cc093c77ed3009da50ece134f6f2a25930a0c6a5f9435"
+    },
+    {
+      "path": "deployed/app-baseline/baseline-continue-stage3.json",
+      "sha256": "36aeaf1ec8b337e49fc7437da52da58055aa710ea4201b0b51d31c02d489816f"
+    },
+    {
+      "path": "deployed/app-baseline/baseline-continue-stage3.png",
+      "sha256": "92cccbc31db9839bd7abda98a00be89f198e09552b74cf6590cbcb1fbb67a7ac"
+    },
+    {
+      "path": "deployed/app-baseline/baseline-continue-stage32-chrome.log",
+      "sha256": "7b4dc668fc650b9c25967fda5ed985caa695c18b4de474e6b11ae1779a01cea5"
+    },
+    {
+      "path": "deployed/app-baseline/baseline-continue-stage32.json",
+      "sha256": "3ebaa808fa01cc34b5efffc69896942710306f97c59f5c2977dfdad60fa3ce35"
+    },
+    {
+      "path": "deployed/app-baseline/baseline-continue-stage32.png",
+      "sha256": "601c791578e5b5e9bdd4a52c40aad215c43b80a9654445fedc64864e26f735fb"
+    },
+    {
+      "path": "deployed/app-baseline/baseline-continue-stage7-chrome.log",
+      "sha256": "14c71444134e3ab3943db3d5f9d76d3b5b07df17cf30e3250bb28bff8cf84254"
+    },
+    {
+      "path": "deployed/app-baseline/baseline-continue-stage7.json",
+      "sha256": "ba0abb107f742cb947d755d397f8922d46c87e8cc227edc5a5d4eeed127a63af"
+    },
+    {
+      "path": "deployed/app-baseline/baseline-continue-stage7.png",
+      "sha256": "b955244a229fbe4171738931b8159978475a30204eaaab018d5fa64bece45088"
+    },
+    {
+      "path": "deployed/app-candidate/candidate-continue-stage3-chrome.log",
+      "sha256": "070062cb177eb95c4c6dd6eca49e34d79bc02ca071bc25857bd34961f4ec1f00"
+    },
+    {
+      "path": "deployed/app-candidate/candidate-continue-stage3.json",
+      "sha256": "8f53ff0f22e1999ba9fb5435fc11327d47991ed9613ef81de14e4d7b4addd9e2"
+    },
+    {
+      "path": "deployed/app-candidate/candidate-continue-stage3.png",
+      "sha256": "92cccbc31db9839bd7abda98a00be89f198e09552b74cf6590cbcb1fbb67a7ac"
+    },
+    {
+      "path": "deployed/app-candidate/candidate-continue-stage32-chrome.log",
+      "sha256": "5cd5be5639ff8fc27b0274415dfb2bbeb62f2973f403d77a0a69b811bb8ff6af"
+    },
+    {
+      "path": "deployed/app-candidate/candidate-continue-stage32.json",
+      "sha256": "325ebf7dcc877f11003d0b6acc36c7be734b250ee9db9b7b80cede97c92febe8"
+    },
+    {
+      "path": "deployed/app-candidate/candidate-continue-stage32.png",
+      "sha256": "601c791578e5b5e9bdd4a52c40aad215c43b80a9654445fedc64864e26f735fb"
+    },
+    {
+      "path": "deployed/app-candidate/candidate-continue-stage7-chrome.log",
+      "sha256": "dea4df51004560b096558d67aee560c75560bdac72ae976137d039fecfad21f3"
+    },
+    {
+      "path": "deployed/app-candidate/candidate-continue-stage7.json",
+      "sha256": "50d043cadfda7f0c7b2e37f8ee647dc6523dfc2c35b665bff2ba2b97fdcb1e9f"
+    },
+    {
+      "path": "deployed/app-candidate/candidate-continue-stage7.png",
+      "sha256": "4908ca74b74c15555c0ef033cb8c73566019e11b8bfd011848da6d47ce66ea5f"
+    },
+    {
+      "path": "deployed/base/export-deployed-stages-chrome.log",
+      "sha256": "407855338188c1a99cce009ea7cbe04d23dbd458bd9fab5ff0ee09047b24efe6"
+    },
+    {
+      "path": "deployed/base/export-deployed-stages.json",
+      "sha256": "284a7a6ecfbbdd890398a0c322c537fed263f027584dfab50ef7b3bdb29f0a3b"
+    },
+    {
+      "path": "deployed/continue-result.json",
+      "sha256": "f9f5e5cc6b583c86fd311cd4baeade23cf506f3da669d98457f5a5630196c0d6"
+    },
+    {
+      "path": "deployed/deployed-compatibility.json",
+      "sha256": "8a31ce456dbcb372e74253a79b1d51e7a9a330b6d8580ba538c24bc598b939fe"
+    },
+    {
+      "path": "deployed/new/restore-deployed-stages-chrome.log",
+      "sha256": "833c5aa3c7d450bc34bdb8ab9140a75133677764a8fce8317bfcb6ea11e6383a"
+    },
+    {
+      "path": "deployed/new/restore-deployed-stages.json",
+      "sha256": "873f80ee95d4d0b59cab22fd43935e8f098cf3a7f315402ad93aa2cfcc949653"
+    }
+  ]
+}
