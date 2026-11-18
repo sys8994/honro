@@ -1,0 +1,63 @@
+{
+  "scope": "Initial exact lowcore/full57KB endpoint gate only. Screen-weight fade and transitions remain untested here; no performance or production acceptance.",
+  "views": [
+    {
+      "view": "weight-zero",
+      "equalScene": true,
+      "equalBody": true,
+      "memory": {
+        "allocations": 6,
+        "releases": 0,
+        "bytes": 6390144,
+        "peakBytes": 6390144,
+        "buildMs": 2.7999999999883585,
+        "composites": 0,
+        "composeMs": 0,
+        "count": 6
+      },
+      "afterClear": {
+        "allocations": 6,
+        "releases": 6,
+        "bytes": 0,
+        "peakBytes": 6390144,
+        "buildMs": 2.7999999999883585,
+        "composites": 0,
+        "composeMs": 0,
+        "count": 0
+      },
+      "source": [
+        "b024386e60e0aed8011d1412541b648565de8015d5574c04942e1f6b7880bc23",
+        "b024386e60e0aed8011d1412541b648565de8015d5574c04942e1f6b7880bc23"
+      ]
+    },
+    {
+      "view": "weight-one",
+      "equalScene": false,
+      "equalBody": true,
+      "memory": {
+        "allocations": 9,
+        "releases": 0,
+        "bytes": 9585216,
+        "peakBytes": 9585216,
+        "buildMs": 4.400000000023283,
+        "composites": 18,
+        "composeMs": 1.499999999825377,
+        "count": 9
+      },
+      "afterClear": {
+        "allocations": 9,
+        "releases": 9,
+        "bytes": 0,
+        "peakBytes": 9585216,
+        "buildMs": 4.400000000023283,
+        "composites": 18,
+        "composeMs": 1.499999999825377,
+        "count": 0
+      },
+      "source": [
+        "b024386e60e0aed8011d1412541b648565de8015d5574c04942e1f6b7880bc23",
+        "b024386e60e0aed8011d1412541b648565de8015d5574c04942e1f6b7880bc23"
+      ]
+    }
+  ]
+}
