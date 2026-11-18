@@ -1,0 +1,65 @@
+name: Stage3 production save and paired rendering cost
+on:
+  push:
+    branches: ['fix/stage03-exterior-readability-20261118']
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm ci && npm ci --prefix game
+      - name: Exact public baseline worktree and identical validation scripts
+        shell: bash
+        run: |
+          git fetch --depth=1 origin 7d238d20663c3ceffe430eb0304e01516ae625cf
+          git worktree add --detach "$RUNNER_TEMP/baseline" 7d238d20663c3ceffe430eb0304e01516ae625cf
+          cmp package-lock.json "$RUNNER_TEMP/baseline/package-lock.json"
+          cmp game/package-lock.json "$RUNNER_TEMP/baseline/game/package-lock.json"
+          ln -s "$GITHUB_WORKSPACE/node_modules" "$RUNNER_TEMP/baseline/node_modules"
+          ln -s "$GITHUB_WORKSPACE/game/node_modules" "$RUNNER_TEMP/baseline/game/node_modules"
+          for f in stage3-production-save.mjs stage3-production-perf-fixture.mjs; do
+            cp "tests/$f" "$RUNNER_TEMP/baseline/tests/$f"
+            cmp "tests/$f" "$RUNNER_TEMP/baseline/tests/$f"
+          done
+      - name: Real old-code snapshot decoded by final production codec
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/evidence"
+          (cd "$RUNNER_TEMP/baseline" && node tests/stage3-production-save.mjs snapshot "$RUNNER_TEMP/evidence/stage3-old-synthetic-save.json")
+          node tests/stage3-production-save.mjs verify "$RUNNER_TEMP/evidence/stage3-old-synthetic-save.json"
+          node tests/act1-local-art-save.mjs
+          node tests/critical-save-failure.mjs
+      - name: Generate unmodified production runtime fixtures from both worktrees
+        shell: bash
+        run: |
+          (cd "$RUNNER_TEMP/baseline" && node tests/stage3-production-perf-fixture.mjs "$RUNNER_TEMP/baseline-fixtures" baseline)
+          node tests/stage3-production-perf-fixture.mjs "$RUNNER_TEMP/candidate-fixtures" candidate
+      - name: Sequential ABBA twice, fresh Chrome process/profile for every entry
+        shell: bash
+        run: |
+          browser=$(command -v google-chrome || command -v chromium)
+          order=(baseline candidate candidate baseline)
+          for view in desktop portrait native; do
+            for block in 0 1; do
+              for slot in 0 1 2 3; do
+                variant="${order[$slot]}"
+                name="stage3-perf-$view-$block-$slot-$variant"
+                timeout 240s "$browser" --headless --no-first-run --no-default-browser-check --force-device-scale-factor=1 --virtual-time-budget=60000 --user-data-dir="$RUNNER_TEMP/profile-$name" --dump-dom "file://$RUNNER_TEMP/$variant-fixtures/stage3-perf-$variant-$view.html" > "$RUNNER_TEMP/$name.html"
+                node tests/stage3-production-perf-result.mjs "$RUNNER_TEMP/$name.html" "$RUNNER_TEMP/evidence" "$variant" "$view" "$block-$slot"
+              done
+            done
+          done
+          node tests/stage3-production-perf-compare.mjs "$RUNNER_TEMP/evidence"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage3-production-validation
+          path: ${{ runner.temp }}/evidence
+          if-no-files-found: error
