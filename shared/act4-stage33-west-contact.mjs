@@ -9,7 +9,7 @@ export function applyStage33WestContact(project){
 
  outline=outline.replaceAll('-3299 ',String(-3299+overlap)+' ');
  const extended=sourcePlanes.map(source=>({...source,planes:source.planes.map(n=>({...n,d:n.d.replaceAll('-3299.000,',String(-3299+overlap)+',')}))}));
- const additions=extended.map((source,i)=>({id:'act4-sideview:33:coastal-v2:west-contact-plane-'+i,name:'Stage33 coastal west contact',category:'terrain',visual:[],collision:[],anchor:{x:0,y:0},sockets:[],tags:['coastal-west-contact'],params:{semanticLayer:'REAR',sourceCommit:'1e043b09d4ce107e1d2dcf70fe2274dff7098476'},vector:{version:1,viewBox:[-4700,-300,1401+overlap,6200],clips:{outline:[outline]},root:{tag:'g',clipPath:'outline',children:source.planes}}}));
+ const additions=extended.map((source,i)=>({id:'act4-sideview:33:coastal-v2:west-contact-plane-'+i,name:'Stage33 coastal west contact',category:'terrain',visual:[],collision:[],anchor:{x:0,y:0},bounds:{x:-4700,y:-300,w:1449,h:6200},reference:{bounds:{x:-4700,y:-300,w:1449,h:6200},foot:{x:-3299,y:5300},heightM:6200/60,scaleRange:[0.1,8],backgroundRange:[0.1,8]},sockets:[],tags:['coastal-west-contact'],params:{semanticLayer:'REAR',sourceCommit:'1e043b09d4ce107e1d2dcf70fe2274dff7098476'},vector:{version:1,viewBox:[-4700,-300,1401+overlap,6200],clips:{outline:[outline]},root:{tag:'g',clipPath:'outline',children:source.planes}}}));
  const elements=stage.elements.flatMap(e=>{const i=sourcePlanes.findIndex(s=>s.source===e.assetId);return i<0?[e]:[{...e,id:additions[i].id,assetId:additions[i].id},e]});
  return {...project,library:[...project.library,...additions],stages:project.stages.map(s=>s===stage?{...s,elements}:s)};
 }
