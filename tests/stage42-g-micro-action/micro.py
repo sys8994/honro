@@ -56,14 +56,38 @@ with sync_playwright() as pw:
   result['movement']={'before':s['active'],'after':m['active'],'dx':m['active']['x']-s['active']['x'],'dy':m['active']['y']-s['active']['y']};save()
   assert 0<result['movement']['dx']<200 and m['active']['moveLeft']<s['active']['moveLeft'],'D200 did not prove movement expenditure'
   assert m['active']['facing']>0
+  # Prior genuine D200 measured 128.530759 world units. Re-measure this run,
+  # then walk normally ahead of stationary teammates; never change actor pose.
+  rate=result['movement']['dx']/200
+  assert .1<rate<1.0,'Unexpected measured movement rate'
+  result['clearanceMovement']=[]
+  for attempt in range(6):
+   m=read();guard(m,True);actor=m['active']
+   if actor['x']>=550:break
+   assert actor['moveLeft']>=100 and actor['x']<620,'Movement budget/position unsafe'
+   target=next(v for v in m['units'] if v['id']=='a5-foe-0')
+   guests=[v for v in m['units'] if v['id'] in ('a5-gwak','a5-soldier-one','a5-soldier-two')]
+   assert not target['dead'] and target['x']-actor['x']>350
+   assert len(guests)==3 and all(not v['dead'] and v['x']-actor['x']>1500 for v in guests)
+   ms=max(20,min(70,(570-actor['x'])/rate))
+   pulse('KeyD',ms);n=read();guard(n,True)
+   row={'durationMs':ms,'before':actor,'after':n['active']}
+   result['clearanceMovement'].append(row);save()
+   assert 0<n['active']['x']-actor['x']<100 and n['active']['moveLeft']<actor['moveLeft'],'No genuine forward budget use'
+   assert n['active']['x']<=620,'Exceeded safe clearance window'
+  m=read();guard(m,True)
+  assert 550<=m['active']['x']<=620,'Clearance window not reached within bounded inputs'
+  teammates=[v for v in m['units'] if v['id'] in ('p-mage','p-knight','p-occultist')]
+  assert len(teammates)==3 and all(not v['dead'] and m['active']['x']-v['x']>=60 for v in teammates),'Not safely ahead of teammates'
   # Only ordinary A01, selected through the real loadout key; no guessed special skill.
   slot=m['active']['loadout'].index('A01')+1;assert 1<=slot<=4
   pulse('Digit'+str(slot),40);m=read();assert m['selected']=='A01' and m['fireDisabled'] is False
   target=next(v for v in m['units'] if v['id']=='a5-foe-0');assert not target['dead'] and target['hp']>0 and target['x']>m['active']['x']
+  assert 350<target['x']-m['active']['x']<550,'Nearest foe no longer in planned directional window'
   result['target']={'id':target['id'],'x':target['x'],'y':target['y'],'reason':'first living required approach foe to the right; hit not promised'}
   # Conservative elevated rightward shot, not a claimed ballistic solution.
   # Raise the barrel above allied bodies on the initial rising shoulder; reject blocked launch ray.
-  goal=70.0
+  goal=65.0
   for i in range(18):
    m=read();guard(m,True);delta=goal-m['active']['angle']
    if abs(delta)<=2:break

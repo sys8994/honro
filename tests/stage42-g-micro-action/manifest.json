@@ -1,14 +1,9 @@
 {
-  "classification": "one G ordinary input action; no mission completion",
+  "classification": "one G ordinary shot after bounded teammate-clearance walking; no hit or mission claim",
   "branch": "qa/stage42-g-micro-action",
-  "parent": "9e2787d1d643e467c4387521e93862040a075fda",
+  "parent": "634394c8a86e31c70976550407bb5c63a8fba113",
   "productPin": "1e043b09d4ce107e1d2dcf70fe2274dff7098476",
-  "addOnly": [
-    ".github/workflows/stage42-g-micro-action.yml",
-    "tests/stage42-g-micro-action/micro.py",
-    "tests/stage42-g-micro-action/manifest.json"
-  ],
-  "microSha256": "178825280f6d092757d3b067ba6882c11243b45a82e63342d49b48b5e95ea107",
+  "microSha256": "af611fce4f7e85540b9b1b7b6b87e79d9d6df22ca484ce6a00ea2db04ea01b06",
   "inherited": {
     ".github/workflows/stage42-g-campaign-entry.yml": "4e66d7f7b127e6934896719866ae182ffa75f6fff146f84d6f4171ffcf4b15df",
     "tests/stage42-g-campaign-entry/verify-domain.cjs": "0b9639f0d2502818698c4e0ca13e216b7f39c6a56de0db0d977601bb5f9b7a87",
@@ -382,5 +377,10 @@
     "gitBlobIdentity": true,
     "matchingPush": 0,
     "create": 0
-  }
+  },
+  "modifyOnly": [
+    ".github/workflows/stage42-g-micro-action.yml",
+    "tests/stage42-g-micro-action/micro.py",
+    "tests/stage42-g-micro-action/manifest.json"
+  ]
 }
