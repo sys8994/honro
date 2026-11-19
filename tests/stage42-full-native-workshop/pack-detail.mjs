@@ -29,7 +29,7 @@ export function buildFullDetails(maps,base,details,{complete=true}={}){
  s.elements.unshift(...append);
  const basePathsPreserved=project.library.every((a,i)=>JSON.stringify(a.vector.root.children)===JSON.stringify(edited.library[i].vector.root.children.slice(0,a.vector.root.children.length)));
  must(basePathsPreserved&&!s.terrains.length&&JSON.stringify(stage.terrainBounds)===JSON.stringify(s.terrainBounds)&&edited.library.every(a=>!a.collision.length),'Full detail changed structural base, bounds or collision');
- return {project:edited,details:q.length};
+ return {project:edited,detailCount:q.length};
 }
 export async function exportFullDetails(maps,raw,details){
  const q=await verifiedWholeBase(maps,raw);
@@ -42,5 +42,8 @@ export async function reopenFullDetails(maps,raw,receipt){
  must(typeof receipt==='string'&&new TextEncoder().encode(receipt).length<=28000,'Invalid detail receipt bytes');
  const d=JSON.parse(receipt),b=await verifiedWholeBase(maps,raw);
  must(receipt===canon(d)&&Object.keys(d).sort().join(',')==='baseSha256,details,kind,version'&&d.kind===KIND&&d.version===1&&d.baseSha256===basePin,'Wrong scope/version/canonical full detail receipt');
- return {base:b.design,details:structuredClone(d.details),...buildFullDetails(maps,b.design,d.details)};
+ const built=buildFullDetails(maps,b.design,d.details);
+ const details=structuredClone(d.details);
+ must(Array.isArray(details)&&details.length===built.detailCount,'Editable whole-detail records lost');
+ return {base:b.design,details,detailCount:built.detailCount,project:built.project};
 }

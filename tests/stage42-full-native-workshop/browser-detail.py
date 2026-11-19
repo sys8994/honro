@@ -104,7 +104,10 @@ with sync_playwright() as pw:
    b0.value.set_files(str(f));again.wait_for_function("document.documentElement.dataset.full42Import==='opened'")
    with again.expect_file_chooser() as b1:click(again,'전체 상세 초안 열기')
    b1.value.set_files(str(g));again.wait_for_function("['opened','error'].includes(document.documentElement.dataset.wholeDetailImport)")
-   assert again.locator('html').get_attribute('data-whole-detail-import')=='opened' and get(again)==complete
+   r['fresh_import']={'status':again.locator('html').get_attribute('data-whole-detail-import'),'reported_error':again.locator('html').get_attribute('data-whole-detail-error'),'records':again.locator('html').get_attribute('data-whole-detail-count')}
+   assert r['fresh_import']['status']=='opened',r['fresh_import']
+   assert int(r['fresh_import']['records'])==len(detail_plan['details']),r['fresh_import']
+   assert get(again)==complete,'Reopened detail native asset/ownership state did not match the saved detail state'
    camera(again,cameras[0]['requested']);again.screenshot(path=str(out/'05-exact-reopened-full-detail-neutral.png'));ck('full-detail-reopened-exact')
    r['detail_frames']={}
    for v in cameras:

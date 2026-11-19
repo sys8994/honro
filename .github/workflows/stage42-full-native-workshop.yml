@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
-          fetch-depth: 3
+          fetch-depth: 4
           persist-credentials: false
       - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
         with:
@@ -30,9 +30,9 @@ jobs:
           set -euo pipefail
           test "$GITHUB_REF" = refs/heads/qa/stage42-full-native-workshop
           test "$GITHUB_SHA" = "$(git rev-parse HEAD)"
-          test "$(git rev-parse HEAD^^)" = 1e043b09d4ce107e1d2dcf70fe2274dff7098476
-          test "$(git rev-parse HEAD^)" = d61f4b85cbbc33decab98a35c7387c5a0c9c9818
-          printf '%s\n' .github/workflows/stage42-full-native-workshop.yml tests/stage42-full-native-workshop/author-detail.mjs tests/stage42-full-native-workshop/browser-detail.py tests/stage42-full-native-workshop/detail-itinerary.json tests/stage42-full-native-workshop/detail.mjs tests/stage42-full-native-workshop/host-detail.js tests/stage42-full-native-workshop/pack-detail.mjs tests/stage42-full-native-workshop/prepare-detail.mjs > "$RUNNER_TEMP/full-detail-allowed.txt"
+          test "$(git rev-parse HEAD^^^)" = 1e043b09d4ce107e1d2dcf70fe2274dff7098476
+          test "$(git rev-parse HEAD^)" = f98defc00bd3c04d9c61a9f3df3829ec4e9c6cc7
+          printf '%s\n' .github/workflows/stage42-full-native-workshop.yml tests/stage42-full-native-workshop/browser-detail.py tests/stage42-full-native-workshop/host-detail.js tests/stage42-full-native-workshop/pack-detail.mjs > "$RUNNER_TEMP/full-detail-allowed.txt"
           git diff --name-only HEAD^ HEAD | diff -u "$RUNNER_TEMP/full-detail-allowed.txt" -
           echo "2a9127bc2394378eb60f6fbfca2e31cff25afa8108bde67fb92b9e5bb36399bd  tests/stage42-full-native-workshop/detail-itinerary.json" | sha256sum -c -
           echo "a4ef814abb314e4767f95096e769405232d46be1561044f95ff0d2ec582dc510  tests/stage42-full-native-workshop/full-itinerary.json" | sha256sum -c -

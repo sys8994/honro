@@ -5,6 +5,7 @@ function installWholeDetail({bar,status,canvas,baseRaw,onProject}){
  const message=(k,s)=>{status[k]=s;toast(s)};
  const err=s=>message('wholeDetailError',s),ok=s=>message('wholeDetailStatus',s);
  const mount=async(records=[])=>{
+  if(!Array.isArray(records))throw Error('Editable whole detail array required');
   b=await FD.pack.verifiedWholeBase(HonroMaps,baseRaw());status.full42DetailMode='1';status.wholeDetailError='';
   if(dispose)dispose();
   dispose=FD.author.mountDetails({canvas,toolbar:controls,base:b.design,record:records,getCamera:()=>stageView,
@@ -25,7 +26,11 @@ function installWholeDetail({bar,status,canvas,baseRaw,onProject}){
  btn('전체 상세 초안 열기',()=>{status.wholeDetailImport='waiting';input.click()});
  input.onchange=async()=>{
   try{const f=input.files?.[0];if(!f||f.size>28000)throw Error('Wrong full detail draft');const x=await f.text(),v=await FD.pack.reopenFullDetails(HonroMaps,baseRaw(),x);
-   onProject(v.project);r=x;await mount(v.details);previewing=false;status.wholeDetailImport='opened';ok('전체 상세 정확 재열기 완료');
+   if(v.project.activeStageId!=='stage-42-whole-native-blockout'||v.project.stages.length!==1||
+      v.project.stages[0].terrains.length||v.project.library.some(a=>a.collision.length))throw Error('Wrong rebuilt native review scope');
+   await mount(v.details);
+   if(Number(status.wholeDetailCount)!==v.detailCount)throw Error('Whole detail controls did not mount exact records');
+   onProject(v.project);r=x;previewing=false;status.wholeDetailImport='opened';ok('전체 상세 정확 재열기 완료');
   }catch(e){status.wholeDetailImport='error';err(e.message)}finally{input.value=''}
  };
  bar.append(input,controls);
