@@ -1,4 +1,4 @@
-name: Stage42 P6r5 A16 stock world domain and Player smoke
+name: Stage42 P6r5 A18 stock world domain and Player smoke
 on:
   push:
     branches: ['qa/stage42-mib-world-domain']
@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
-          fetch-depth: 3
+          fetch-depth: 4
           persist-credentials: false
       - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
         with:
@@ -26,13 +26,14 @@ jobs:
           set -euo pipefail
           test "$GITHUB_REF" = refs/heads/qa/stage42-mib-world-domain
           test "$GITHUB_SHA" = "$(git rev-parse HEAD)"
-          test "$(git rev-parse HEAD^)" = 4a5c77ff888de343c1614257ba1986256a166d2b
-          test "$(git rev-parse HEAD^^)" = 1e043b09d4ce107e1d2dcf70fe2274dff7098476
+          test "$(git rev-parse HEAD^)" = d2654f5931a92b76c05f44cae5b9107bd7d29bfd
+          test "$(git rev-parse HEAD^^)" = 4a5c77ff888de343c1614257ba1986256a166d2b
+          test "$(git rev-parse HEAD^^^)" = 1e043b09d4ce107e1d2dcf70fe2274dff7098476
           Q=tests/stage42-mib-world-domain
-          printf '%s\n' .github/workflows/stage42-mib-world-domain.yml "$Q/smoke.SHA256SUMS" "$Q/world-domain-smoke.py" | LC_ALL=C sort > "$RUNNER_TEMP/solid-allowlist"
+          printf '%s\n' .github/workflows/stage42-mib-world-domain.yml "$Q/smoke.SHA256SUMS" "$Q/world-domain-smoke.py" "$Q/A16-honro-asset.json" | LC_ALL=C sort > "$RUNNER_TEMP/solid-allowlist"
           git diff --name-only HEAD^ HEAD | LC_ALL=C sort | diff -u "$RUNNER_TEMP/solid-allowlist" -
           git diff --name-only --diff-filter=M HEAD^ HEAD | LC_ALL=C sort | diff -u "$RUNNER_TEMP/solid-allowlist" -
-          echo '8f58fc48b5b986fabbe91583cb8391220ff815df2f29022fd87cc06810433b39  tests/stage42-mib-world-domain/smoke.SHA256SUMS' | sha256sum -c -
+          echo '259a96c0833150d218e514b6376b983d38f65a5fabb7ac7b0757cac1906ee0d8  tests/stage42-mib-world-domain/smoke.SHA256SUMS' | sha256sum -c -
           (cd "$Q" && sha256sum -c smoke.SHA256SUMS)
       - name: Build unmodified stock Workshop
         run: |

@@ -13,13 +13,13 @@ assert domain['sourceSHA256']==sha(src) and [domain[k] for k in ('width','height
 assert list(map(lambda t:len(t['points']),domain['terrains']))==[112,108,163]
 assert domain['playBounds']==dict(left=0,top=0,right=1620,bottom=560)
 assert domain['terrainBounds']==dict(left=-2050,top=-620,right=3740,bottom=1960)
-art_bytes=Path(__file__).with_name('A16-honro-asset.json').read_bytes()
-assert sha(art_bytes)=='f2dbabb2dad6b7abae71b5e5f35067568f82fdb32f730f2d186fb66078f2a0cd'
+art_bytes=Path(__file__).with_name('A16-honro-asset.json').read_bytes()  # fixed QA fixture slot; exact A18 bytes
+assert sha(art_bytes)=='c48a840f7b6a0f68748dc9967c2f9bcf7aa2cb0b2be81e5d5517bb0835543a53'
 art=json.loads(art_bytes)
-pose=dict(id='qa-p6-r5-a16-surface',assetId=art['id'],layer='prop',depthLayer='L1',
+pose=dict(id='qa-p6-r5-a18-surface',assetId=art['id'],layer='prop',depthLayer='L1',
           x=0,y=0,scale=1,rotation=0,snap=False)
 assert art['collision']==art['visual']==[] and art['anchor']==dict(x=0,y=0)
-assert art['id']=='mib-p6r5-a16-world' and art['vector']['viewBox']==[-2050,-620,5790,2580]
+assert art['id']=='mib-p6r5-a18-world' and art['vector']['viewBox']==[-2050,-620,5790,2580]
 assert art['params'].get('semanticLayer')=='BODY' and art['params'].get('silhouetteUnderpaint') is False
 assert not art.get('interactionType') and art.get('renderer') is None
 names={'B':'SupplyBasin','W':'WestLookout','M':'RescueOverhang'}
@@ -43,7 +43,10 @@ sid='qa-p6r4-slice'
 out=Path(sys.argv[1]);out.mkdir(parents=True,exist_ok=True)
 assert sys.argv[2]=='http://127.0.0.1:8884/HONRO_WORKSHOP.html'
 url=sys.argv[2]
-proof={'scope':'Exact P6r5 exterior domain+A16 stock Workshop Player. Retains P6r4 collision and controls. Synthetic one Archer, no story/combat/W route or final art.','source':sha(src),'asset':sha(art_bytes),'domain':sha(domain_bytes),'checkpoints':[],'pageErrors':[],'passed':False}
+prior_line={'run':44552672189,'asset':'A16','label':'09-east-tile','pngSHA256':'60c5f95f0b8bc712b9de443c08cab8022d63def72b481d122b95a8e7cc34a541',
+ 'camera':[1450,290,.7,960,440],'rasterScale':.68,'measure':{'1620':{'length':273,'worstConsecutive':145,'worstTotal':268},'1506':{'length':179,'worstConsecutive':0,'worstTotal':0}},
+ 'scope':'Previously observed actual stock PNG, separately calibrated using same two-shoulder formula; not loaded into this browser.'}
+proof={'scope':'Exact P6r5 exterior domain+A18 stock Workshop Player. Retains P6r4 collision and controls. Synthetic one Archer, no story/combat/W route or final art.','source':sha(src),'asset':sha(art_bytes),'domain':sha(domain_bytes),'checkpoints':[],'pageErrors':[],'priorLowContrastLine':prior_line,'passed':False}
 def dump(n,obj):
     (out/n).write_text(json.dumps(obj,ensure_ascii=False,indent=2))
 def note(label,**kw):
@@ -209,6 +212,40 @@ with sync_playwright() as pw:
               mid.every(r=>r.gt12<=Math.max(9,...ref.map(s=>s.gt12))+Math.ceil(rows*.045)&&r.gt24<=Math.ceil(rows*.05));
             out.push({axis,key,start,end,total,opaque,rows,cols,pass});
           }
+          // Old step detector intentionally ignored faint lines. Measure the
+          // same exact old east tile bands in final actual composed pixels.
+          // Test single- and two-pixel lines; use the brighter centre, and
+          // mean RGB of two outside pixels on *each* flank. Both flanks
+          // must agree within 4 per channel and each channel must darken >=1.
+          let low=null;
+          if(colored&&cam.x===1450&&cam.z===.7){
+            if(q.rs!==.68)throw Error('Not the pinned old .68 native cache photo: '+q.rs);
+            const rows=[];
+            for(const [worldX,y0,y1] of [[1620,120,510],[Math.round(2*512/q.rs),210,465]]){
+              const ix=Math.round(W/2+(worldX-cam.x)*cam.z),
+                begin=Math.round(H/2+(y0-cam.y)*cam.z),end=Math.round(H/2+(y1-cam.y)*cam.z);
+              const all=[];
+              for(const width of [1,2])for(let d=-3;d<=3;d++){
+                let current=0,longest=0,total=0;const x=ix+d;
+                for(let iy=begin;iy<end;iy++){
+                  const here=c=>4*(iy*W+c), c0=here(x),left=here(x-2),right=here(x+width);
+                  let yes=true;
+                  for(let xx=x-2;xx<x+width+2;xx++)if(q.maskPix[here(xx)+3]<240){yes=false;break;}
+                  for(let k=0;k<3&&yes;k++){
+                    const A=(q.pixels[left+k]+q.pixels[left+4+k])/2,
+                      B=(q.pixels[right+k]+q.pixels[right+4+k])/2,
+                      center=width===1?q.pixels[c0+k]:Math.max(q.pixels[c0+k],q.pixels[c0+4+k]);
+                    if(Math.abs(A-B)>4||Math.min(A,B)-center<1)yes=false;
+                  }
+                  if(yes){total++;current++;longest=Math.max(longest,current);}else current=0;
+                }
+                all.push({width,offset:d,longest,total});
+              }
+              const maxRun=Math.max(...all.map(x=>x.longest)),maxTotal=Math.max(...all.map(x=>x.total)),len=end-begin;
+              rows.push({worldX,y0,y1,ix,length:len,maxRun,maxTotal,all,pass:maxRun<=25&&maxTotal<=Math.ceil(len*.12)});
+            }
+            low={camera:[cam.x,cam.y,cam.z,W,H],rs:q.rs,measure:rows,pass:rows.every(x=>x.pass)};
+          }
           // This aperture is a per-pixel negative control: no stock background
           // or paint extension may count as a rock bridge between west owners.
           let westGap=null;
@@ -225,9 +262,9 @@ with sync_playwright() as pw:
           const routePass=cam.z<=1.05?q.tiles>0&&q.cacheTiles<=24:q.tiles===0;
           const pass=routePass&&q.skirt===1&&q.skirtChanges===0&&q.ext>=1&&
             (colored?q.land>0:q.land===0)&&(!old||diff>=3000&&!offAlphaLost)&&out.every(x=>x.pass)&&
-            (!westGap||westGap.hole===westGap.tested&&westGap.tested>=150);
+            (!westGap||westGap.hole===westGap.tested&&westGap.tested>=150)&&(!low||low.pass);
           return {png:q.png,mask:q.mask,pass,cam,screen:[W,H],tiles:q.tiles,cacheTiles:q.cacheTiles,rs:q.rs,
-            skirt:q.skirt,skirtChanges:q.skirtChanges,land:q.land,worldTerrainCalls:q.ext,offDomainArtRgbChanges:diff,offAlphaLost,out,westGap,stableRaster};
+            skirt:q.skirt,skirtChanges:q.skirtChanges,land:q.land,worldTerrainCalls:q.ext,offDomainArtRgbChanges:diff,offAlphaLost,out,westGap,stableRaster,lowContrastLine:low};
         }""",dict(cam=cam,colored=colored,aba=aba,strips=strips,pose=pose))
         png=result.pop('png');mask=result.pop('mask')
         write_url(label,png)
@@ -257,7 +294,7 @@ with sync_playwright() as pw:
     t.context.close();t=fresh()
     data_color=t.evaluate("""({data,art,pose})=>{
         const errors=HonroVectorArt.validate(art.vector);
-        if(errors.length)throw Error('Invalid stock A16 tree: '+errors);
+        if(errors.length)throw Error('Invalid stock A18 tree: '+errors);
         art.reference=HonroEnvironment.referenceForLegacyAsset(art);
         data.library.push(art);data.stages[0].elements=[pose];
         return HonroMaps.finalize(data);
@@ -265,21 +302,21 @@ with sync_playwright() as pw:
     exact_places(data_color,True,True)
     just_bare=copy.deepcopy(data_color);just_bare['library'].pop();just_bare['stages'][0]['elements']=[]
     assert just_bare==r5,'Beyond single appearance-owner addition'
-    load(t,buffered('isolated-r5-a16.honro-map.json',data_color))
+    load(t,buffered('isolated-r5-a18.honro-map.json',data_color))
     before=project(t);exact_places(before,True,True)
     with t.expect_download() as d:t.locator('#exportBtn').click()
-    export=out.parent/'r5-a16-synthetic.honro-map.json';d.value.save_as(export)
+    export=out.parent/'r5-a18-synthetic.honro-map.json';d.value.save_as(export)
     assert json.loads(export.read_bytes())==before
     old=t;t=fresh();load(t,export);old.context.close()
     assert project(t)==before;exact_places(project(t),True,True)
     c=preview(t);assert c['compile']==c['preview']==expected
     note('exact-native-import-export-fresh-reopen',exportDigest=sha(export.read_bytes()),exactStockGeometry=True,pose=pose,vectorSource=sha(art_bytes))
     t.evaluate("HonroWorkshopAPI.setCamera({x:810,y:275,zoom:.65})")
-    snap(t,'01-native-a16-reopened')
+    snap(t,'01-native-a18-reopened')
     open_player(t)
     assert actual(t)==expected and physics(t)==bare_battle and check_domain(t,1)
-    note('live-exact-r4-r5-r5-a16-physics',fields=list(bare_battle.keys()))
-    render_view(t,'07-a16-domain-camera',{'x':700,'y':280,'z':.7},colored=True,aba=bare_domain,
+    note('live-exact-r4-r5-r5-a18-physics',fields=list(bare_battle.keys()))
+    render_view(t,'07-a18-domain-camera',{'x':700,'y':280,'z':.7},colored=True,aba=bare_domain,
        strips=[['y',560,185,570]])
     js="""()=>{const a=HonroWorkshopAPI.getPlayApp(),e=a.engine,u=e.active;
       return {id:u.id,side:u.side,x:u.x,y:u.y,vy:u.vy,h:u.h,move:u.moveLeft,round:e.b.round,hp:u.hp,
