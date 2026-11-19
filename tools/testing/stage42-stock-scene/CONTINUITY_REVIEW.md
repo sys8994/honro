@@ -20,3 +20,7 @@ Run `python stage42-continuity-study/compose-study.py` from workspace root. cont
 
 ## Earlier optimization history
 Hybrid18BODY/12SURFACE rejected for conspicuous right/lower angular distortion. Clip-only CI44622020170 completed as evidence with no noticeable difference in 18 fixed views; it does not repair continuity and is NOT adopted. No further optimization publication or merge is authorized in this work.
+
+## First actual Scene rejection and corrected import representation
+Run44624532695 stopped with `Invalid vector path`, before candidate capture. No quality pass. Canonical stock guard remained intact.
+The corrected source splits ONLY path6 and path3 (native color ordering indices6,9) using actual Inkscape intersection at x701.5 with2-source-pixel shared interior. Other10color paths remain verbatim. Official `import-svg.py` preserve_compound uses unchanged dParts schema as one fill operation. No simplification. Native1403px comparison: alpha difference0pixels; seam strip maximumRGB2/255; overall9901RGBA differences,1pixelRGB>16(max29). Geometry not claimed mathematically identical. Enlarged seam strip inspected without visible gap/hole. Full actual Scene rerun required.
