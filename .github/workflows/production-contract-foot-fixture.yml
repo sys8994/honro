@@ -1,0 +1,48 @@
+name: Production contract fixture reason QA
+on:
+  push:
+    branches: [qa/production-contract-foot-fixture-20261120]
+permissions:
+  contents: read
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci && npm ci --prefix game
+      - name: Verify scope and pristine parent reproduction
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD^)" = 1e043b09d4ce107e1d2dcf70fe2274dff7098476
+          git diff --name-only HEAD^ HEAD | sort > /tmp/changed
+          printf '%s\n' .github/workflows/production-contract-foot-fixture.yml tests/production-contract.mjs | sort > /tmp/expected
+          diff -u /tmp/expected /tmp/changed
+          mkdir -p _local/reports/production-contract-foot
+          cp tests/production-contract.mjs /tmp/fixed-test.mjs
+          git show HEAD^:tests/production-contract.mjs > tests/production-contract.mjs
+          set +e
+          npm run test:production-contract 2>&1 | tee _local/reports/production-contract-foot/pristine-parent.log
+          code=${PIPESTATUS[0]}
+          set -e
+          cp /tmp/fixed-test.mjs tests/production-contract.mjs
+          test "$code" -ne 0
+          grep -F '기존 미술에서 가져온 에셋이 아니면 사용 사유를 먼저 기록하십시오.' _local/reports/production-contract-foot/pristine-parent.log
+          grep -F 'tests/production-contract.mjs:77:' _local/reports/production-contract-foot/pristine-parent.log
+      - name: Complete production contract with justified positive fixture
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run test:production-contract 2>&1 | tee _local/reports/production-contract-foot/fixed.log
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: production-contract-foot-fixture
+          path: _local/reports/production-contract-foot
