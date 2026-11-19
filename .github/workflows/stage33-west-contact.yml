@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
-          fetch-depth: 4
+          fetch-depth: 12
       - name: Reject production changes
         run: |
           git diff --name-only 00cf4edc20fecebb5dc0efed54a17ad040a75fe4 HEAD > /tmp/changed
