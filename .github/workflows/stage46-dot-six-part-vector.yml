@@ -1,0 +1,80 @@
+name: Stage46 Dot six-part vector local candidate QA
+on:
+  push:
+    branches: [qa/stage46-dot-six-part-vector]
+permissions:
+  contents: read
+jobs:
+  exact:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Verify isolated add-only child and stock source
+        shell: bash
+        run: |
+          set -euo pipefail
+          stock=1e043b09d4ce107e1d2dcf70fe2274dff7098476
+          test "$(git rev-parse HEAD^)" = "$stock"
+          git diff --name-status "$stock" HEAD > /tmp/scope
+          python - <<'PY'
+          from pathlib import Path
+          allowed={'.github/workflows/stage46-dot-six-part-vector.yml'}|{'game/tests/stage46-dot-six-part-vector/'+x for x in ['run.py','primitives.py','assemble.mjs','render.cjs','aggregate.py']}
+          rows=[l.split('\t') for l in Path('/tmp/scope').read_text().splitlines()]
+          assert len(rows)==len(allowed) and all(x[0]=='A' for x in rows)
+          assert {x[1] for x in rows}==allowed
+          PY
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Prepare disposable analysis directory
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/stage46-dot-six-part-vector"
+          mkdir -p "$out/original" "$out/candidate"
+          cp game/tests/stage46-dot-six-part-vector/* "$out/"
+          cp shared/assets/environment/act5/stage46-*.json "$out/original/"
+          cp shared/assets/environment/act5/near-import.json "$out/"
+          cp shared/map/{vector-art.js,visual-style.js} "$out/"
+          cp shared/runtime/act5-edge-art.js "$out/"
+          cp tools/vector-production/preserve-compound.mjs "$out/"
+          python -m pip install numpy
+          cd "$out"
+          npm install playwright
+          npx playwright install --with-deps chromium
+          echo "OUT=$out" >> "$GITHUB_ENV"
+      - name: Generate six independent guarded candidates
+        run: |
+          set -euo pipefail
+          cd "$OUT"
+          python run.py
+          python aggregate.py
+          node assemble.mjs
+          node - <<'JS'
+          const fs=require('fs'),vm=require('vm');vm.runInThisContext(fs.readFileSync('vector-art.js','utf8'));
+          for(const f of fs.readdirSync('candidate')){const j=JSON.parse(fs.readFileSync('candidate/'+f));const errors=HonroVectorArt.validate(j.vector);if(errors.length)throw Error(f+JSON.stringify(errors));}
+          JS
+      - name: Stock stage46 painter comparisons
+        run: |
+          set -euo pipefail
+          cd "$OUT"
+          HONRO_QA_PLAYWRIGHT_BROWSER=managed node render.cjs > render.log 2>&1
+      - name: Verify original checkout stayed unchanged
+        if: always()
+        run: test -z "$(git status --porcelain --untracked-files=no)"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage46-dot-six-part-vector
+          path: |
+            ${{ env.OUT }}/*proof*.json
+            ${{ env.OUT }}/*.png
+            ${{ env.OUT }}/candidate/
+            ${{ env.OUT }}/render.log
+          retention-days: 7
