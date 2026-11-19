@@ -24,6 +24,7 @@ jobs:
             SEAM_VARIANT=$variant HONRO_NATIVE_OUT=/tmp/stage34-evidence/$variant node --expose-gc --max-old-space-size=12000 tools/stage34-geological-seam/capture.mjs 34
           done
       - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
         with:
           name: stage34-seam-native-candidate
           path: /tmp/stage34-evidence
