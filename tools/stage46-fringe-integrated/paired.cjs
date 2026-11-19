@@ -6,7 +6,7 @@ if(!OUT)throw Error('Missing output');
 for(const [width,height]of [[1440,900],[390,844],[390,1000]]){
  for(const mode of ['original','candidate']){
  const context=await browser.newContext({viewport:{width,height},deviceScaleFactor:1});const page=await context.newPage();
- await page.goto(urls[mode]);await page.waitForFunction(()=>!!globalThis.HonroApp&&!!globalThis.HONRO_APP_READY);
+ await page.goto(urls[mode]);await page.waitForFunction(()=>!!globalThis.HonroApp&&document.documentElement.dataset.honroReady==='true');
  const setup=await page.evaluate(async()=>{await HONRO_APP_READY;await HonroCampaignLoader.ensureStage(46);const app=HonroApp;app.stopBattle();app.close();const stage=HONRO_PROJECT.stages.find(s=>s.metadata?.stageId===46);if(!stage||stage.pending)throw Error('Original stage46 not loaded');
  // Isolated DOM diagnostic only: exact stock battle container and bottom markup,
  // no profile preparation, launch, state advance, objectives or gameplay writes.
