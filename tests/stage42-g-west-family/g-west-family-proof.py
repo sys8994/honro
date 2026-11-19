@@ -186,15 +186,14 @@ def run_shoulder(fresh,open_page,domain,root):
    # The stock Point handler considers vertices first (10 screen px).
    # Select from the actual seed interior, outside the authored dark face,
    # with a 2-world rounding reserve beyond both shapes' node hit radii.
-   hit_radius=10/z
-   targets=[(x,y) for x in range(-22,23,2) for y in range(-22,23,2)]
+   hit_radius=10/fit['camera'][2]
+   targets=[(x,y+.5) for x in range(-22,23,2) for y in range(-22,23,2)]
    targets.sort(key=lambda t:(math.hypot(*t),t))
    cursor_choices=[pt for pt in targets if point_poly(base,*pt) and point_dist(base,*pt)>2
     and not point_poly(matrix,*pt) and point_dist(matrix,*pt)>2
     and min(math.dist(pt,u) for u in base+matrix)>hit_radius+2]
    assert cursor_choices,'No safe disjoint real starter interior at the fitted camera'
-   tx,ty=cursor_choices[0]
-   pt=(tx,ty+.5)
+   pt=cursor_choices[0]
    fit_native_element(fresh,[pt],root,'true-seed-interior')
    fresh.mouse.click(*map(round,cursor(fresh,'element',pt)))
    state=fresh.evaluate('HonroWorkshopAPI.getEditorState()')
