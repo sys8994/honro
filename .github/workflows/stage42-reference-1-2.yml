@@ -1,0 +1,62 @@
+name: Honro two reference stages visual capture
+on:
+  push:
+    branches: ['qa/stage42-reference-1-2']
+    paths: ['.github/workflows/stage42-reference-1-2.yml','tests/stage42-reference-fixture.mjs','tests/stage42-reference-result.mjs']
+permissions:
+  contents: read
+jobs:
+  references:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        chapter: [1,2]
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Pin untouched stock build and scope
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = refs/heads/qa/stage42-reference-1-2
+          test "$GITHUB_SHA" = "$(git rev-parse HEAD)"
+          test "$(git rev-parse HEAD^)" = 1e043b09d4ce107e1d2dcf70fe2274dff7098476
+          printf '%s\n' .github/workflows/stage42-reference-1-2.yml tests/stage42-reference-fixture.mjs tests/stage42-reference-result.mjs > "$RUNNER_TEMP/allowed"
+          git diff --name-only HEAD^ HEAD | diff -u "$RUNNER_TEMP/allowed" -
+          git diff --name-only --diff-filter=A HEAD^ HEAD | diff -u "$RUNNER_TEMP/allowed" -
+          printf '%s  %s\n' 1661731ca5726db1bb48ad9ccb8b848d249eede413d4049ad1d92f938ff81038 tests/stage42-reference-fixture.mjs 09559fa00b9c3e02d37992229573437677588e14d050485e76be40bc924a766a tests/stage42-reference-result.mjs | sha256sum -c -
+          npm ci
+          npm ci --prefix game
+      - name: Capture original chapter at overview and two near cameras in Chromium
+        env:
+          REFERENCE_CHAPTER: ${{ matrix.chapter }}
+        run: |
+          set -euo pipefail
+          d="$RUNNER_TEMP/refs"
+          e="$RUNNER_TEMP/evidence"
+          browser=$(command -v google-chrome || command -v chromium)
+          test -x "$browser"
+          "$browser" --version
+          mkdir -p "$d" "$e"
+          node tests/stage42-reference-fixture.mjs "$d"
+          for view in overview near landmark; do
+            key="stage$REFERENCE_CHAPTER-stock-$view"
+            timeout 180s "$browser" --headless --no-first-run --no-default-browser-check --window-size=1280,800 --force-device-scale-factor=1 --virtual-time-budget=60000 --user-data-dir="$RUNNER_TEMP/profile-$key" --dump-dom "file://$d/$key.html" > "$d/$key.dump"
+            node tests/stage42-reference-result.mjs "$d/$key.dump" "$e" "$REFERENCE_CHAPTER" stock "$view"
+          done
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: honro-style-reference-chapter-${{ matrix.chapter }}
+          path: |
+            ${{ runner.temp }}/evidence/*.png
+            ${{ runner.temp }}/evidence/*.json
+          if-no-files-found: error
+          retention-days: 7
