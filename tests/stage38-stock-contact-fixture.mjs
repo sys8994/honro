@@ -65,7 +65,7 @@ async function capture(id,runtimeSha256,variant,view){
   const physics=JSON.stringify({terrain:b.terrain,units:b.units});
   const cv=document.getElementById('scene');cv.width=1331;cv.height=763;
   const scene=new HonroScene(cv);
-  const requested={whole:{name:'whole',x:3456,y:2304,scale:1331/6800},middle:{name:'hero-spawn',x:b.units.find(u=>u.side===0).x,y:b.units.find(u=>u.side===0).y-80,scale:1},upper:{name:'upper-path',x:5200,y:1250,scale:.6}}[view];
+  const requested={whole:{name:'whole',x:3456,y:2304,scale:1331/6800},middle:{name:'hero-spawn',x:b.units.find(u=>u.side===0).x,y:b.units.find(u=>u.side===0).y-80,scale:1},upper:{name:'upper-path',x:5200,y:1250,scale:.6},crest:{name:'crest',x:1850,y:1750,scale:1},middleRoute:{name:'middle-route',x:2050,y:2600,scale:1},junction:{name:'junction',x:3420,y:1980,scale:1},rescue:{name:'rescue',x:4850,y:2600,scale:1}}[view];
   Object.assign(scene,{x:requested.x,y:requested.y,scale:requested.scale,manual:true,time:2,editorView:false,skillPreview:false});
   HonroBounds.constrain(scene,b);
   // Native constrain is retained; compare actual before/after cameras in evidence.
@@ -85,7 +85,7 @@ async function capture(id,runtimeSha256,variant,view){
  }catch(e){publishProbe({ok:false,stage:id,error:String(e.stack||e),...p});}
 }
 const script=s=>'<script>'+s.replace(/<\/script/gi,'<\\/script')+'</script>';
-for(const id of stages)for(const variant of ['integrated'])for(const view of ['whole','middle','upper']){
+for(const id of stages)for(const variant of ['integrated'])for(const view of ['crest','middleRoute','junction','rescue']){
  const stageRuntime=[38].includes(id)?runtime+'\n;\n'+act4Extra.join('\n;\n'):runtime;
  const stageRuntimeSha256=createHash('sha256').update(stageRuntime).digest('hex');
  const html='<!doctype html><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src \'none\'; script-src \'unsafe-inline\'; style-src \'unsafe-inline\'; img-src data:; font-src data:; connect-src \'none\'"><title>Isolated production Scene diagnostic</title><style>body{margin:0}canvas{width:1331px;height:763px}</style><canvas id="scene"></canvas><pre id="result">pending</pre>'+script('('+bootstrap.toString()+')('+id+');')+script(stageRuntime)+script('('+capture.toString()+')('+id+','+JSON.stringify(stageRuntimeSha256)+','+JSON.stringify(variant)+','+JSON.stringify(view)+');');
