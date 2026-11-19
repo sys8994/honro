@@ -1,6 +1,7 @@
 import json,sys,os
 from pathlib import Path
 from playwright.sync_api import sync_playwright
+assert os.environ.get('HONRO_QA_SCENE') in (None,'0','1')
 out=Path(sys.argv[1]);out.mkdir(parents=True,exist_ok=True)
 r={'pass':False,'step':'launch'}
 def checkpoint(step):
@@ -105,6 +106,11 @@ with sync_playwright() as pw:
    fresh.evaluate("""()=>{const a=HonroWorkshopAPI,e=a.queryScene().stage.elements.find(e=>e.assetId==='act5:near:42');a.setCamera({x:e.x+222*e.scale,y:e.y+612*e.scale,zoom:2});}""")
    fresh.get_by_role('button',name='최근 작성면 편집',exact=True).click()
    fresh.screenshot(path=str(out/'06-editor-reopened-editable.png'))
+   r['fresh_reopen']=True
+   checkpoint('manual-draft-reopen-exact')
+   if os.environ.get('HONRO_QA_SCENE')=='1':
+    from scene.scene_qa import capture_pair
+    capture_pair(b,fresh,project,before,after,out,r,checkpoint)
   r['fresh_reopen']=True
   r.update(points=verts,stage42_face_id=target_id,before_project_sha256=before['full'],committed_project_sha256=after['full'],original_clips_sha256=before['clips']); r['pass']=True
   checkpoint('fresh-reopen-exact')

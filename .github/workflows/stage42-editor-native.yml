@@ -8,10 +8,12 @@ permissions:
 jobs:
   workshop:
     runs-on: ubuntu-24.04
-    timeout-minutes: 25
+    timeout-minutes: 35
     env:
       HONRO_ACT4_RELEASE: '1'
       HONRO_ACT5_RELEASE: '1'
+      HONRO_QA_SCENE: '1'
+      HONRO_AUTHORED_BASE_SHA256: 135e9a633d311d3b8b03ab2c676a7e94a46601629e0a91d7835988ed96438ddf
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
@@ -26,6 +28,7 @@ jobs:
       - name: Build isolated editor
         run: |
           test "$GITHUB_REF" = refs/heads/qa/stage42-editor-native
+          test "$GITHUB_SHA" = "$(git rev-parse HEAD)"
           npm ci
           npm ci --prefix game
           npm run build
@@ -43,7 +46,7 @@ jobs:
             if curl -fsS -o /dev/null http://127.0.0.1:8870/HONRO_WORKSHOP.html; then break; fi
             sleep 1
           done
-          timeout 720s python tests/stage42-editor-native/smoke.py "$RUNNER_TEMP/stage42-editor-evidence"
+          timeout 1200s python tests/stage42-editor-native/smoke.py "$RUNNER_TEMP/stage42-editor-evidence"
       - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
         if: always()
         with:
