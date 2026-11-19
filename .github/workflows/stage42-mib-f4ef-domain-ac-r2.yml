@@ -1,0 +1,86 @@
+name: Stage42 exact f4ef world continuity and camera domain
+on:
+  push:
+    branches: ['qa/stage42-mib-f4ef-domain-ac-r2']
+    paths: ['.github/workflows/stage42-mib-f4ef-domain-ac-r2.yml','tests/stage42-mib-f4ef-domain-ac-r2/**']
+permissions:
+  contents: read
+jobs:
+  visual-ab:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Prepare two guarded detached hosts
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = refs/heads/qa/stage42-mib-f4ef-domain-ac-r2
+          test "$GITHUB_SHA" = "$(git rev-parse HEAD)"
+          pin=1e043b09d4ce107e1d2dcf70fe2274dff7098476
+          test "$(git rev-parse HEAD^)" = "$pin"
+          q="$GITHUB_WORKSPACE/tests/stage42-mib-f4ef-domain-ac-r2"
+          p=tests/stage42-mib-f4ef-domain-ac-r2
+          printf '%s\n' .github/workflows/stage42-mib-f4ef-domain-ac-r2.yml "$p/observe.py" "$p/SHA256SUMS" "$p/old-packet.json" "$p/new-packet.json" "$p/prepare.py" "$p/official-qa-stage.json" "$p/source-contract.mjs" "$p/manifest.json" | sort > "$RUNNER_TEMP/visual-allow"
+          git diff --name-only HEAD^ HEAD | sort | diff -u "$RUNNER_TEMP/visual-allow" -
+          git diff --name-only --diff-filter=A HEAD^ HEAD | sort | diff -u "$RUNNER_TEMP/visual-allow" -
+          echo "184d7eeb5056241bcf1d796a665894a4a8f69a6cdf8a43f0343de3a419a0371b  $q/SHA256SUMS" | sha256sum -c -
+          (cd "$q" && sha256sum -c SHA256SUMS)
+          mkdir -p "$RUNNER_TEMP/visual-evidence"
+          for arm in A C; do
+            h="$RUNNER_TEMP/stage42-domain-$arm"
+            test ! -e "$h"
+            git worktree add --detach "$h" "$pin"
+            (
+              cd "$h"
+              echo '5306b3cdce1ea97efcc5f22bc054abe0a826a13a72f4a7919b03cfe3b5f15560  shared/runtime/quest-targets.js' | sha256sum -c -
+              echo 'fcd75ad8580c3b43a374757a1436d3bebc18cc185c48068a704866a4cfcd1a43  shared/runtime/renderer.js' | sha256sum -c -
+              echo '0b79f9dc0c1896e27014561c755d743ef58dacbad5b8c1de89018794bf6ae8ba  shared/map/vector-art.js' | sha256sum -c -
+              echo 'b9fdf7541ef1e0e89c9177688664a82b32c44473191141df837aeec0a88ce7a5  shared/runtime/time-of-day.js' | sha256sum -c -
+              npm ci
+              npm ci --prefix game
+              if [ "$arm" = A ]; then node "$q/source-contract.mjs" baseline "$PWD" "$RUNNER_TEMP/visual-source-stock.json"; fi
+              python "$q/prepare.py" "$PWD" "$arm"
+              node "$q/source-contract.mjs" candidate "$PWD" "$RUNNER_TEMP/visual-source-stock.json" "$RUNNER_TEMP/visual-evidence/$arm-source-invariants.json" "$arm"
+              sha256sum shared/act5-world.mjs shared/data/act5/stage42-domain.qa.json > "$RUNNER_TEMP/visual-owned-$arm.sha"
+              HONRO_ACT4_RELEASE=1 HONRO_ACT5_RELEASE=1 npm run build
+              test "$(git rev-parse HEAD)" = "$pin"
+              if git symbolic-ref -q HEAD; then exit 1; fi
+              sha256sum -c "$RUNNER_TEMP/visual-owned-$arm.sha"
+            )
+          done
+          cmp "$RUNNER_TEMP/visual-evidence/A-source-invariants.json" "$RUNNER_TEMP/visual-evidence/C-source-invariants.json"
+          git diff --exit-code
+          git diff --cached --exit-code
+      - name: Six ordinary launches, matched desktop and mobile Scene cameras and separate movement
+        run: |
+          set -euo pipefail
+          python -m pip install 'playwright==1.58.0'
+          export HONRO_CHROME="$(command -v google-chrome || command -v chromium)"
+          python -m http.server 8884 --bind 127.0.0.1 --directory "$RUNNER_TEMP/stage42-domain-A" & a=$!
+          python -m http.server 8885 --bind 127.0.0.1 --directory "$RUNNER_TEMP/stage42-domain-C" & b=$!
+          trap 'kill "$a" "$b" 2>/dev/null || true' EXIT
+          for p in 8884 8885; do
+            for i in {1..20}; do if curl -fsS -o /dev/null "http://127.0.0.1:$p/HONRO.html"; then break; fi; sleep 1; done
+            curl -fsS -o /dev/null "http://127.0.0.1:$p/HONRO.html"
+          done
+          timeout 825s python tests/stage42-mib-f4ef-domain-ac-r2/observe.py "$RUNNER_TEMP/visual-evidence" http://127.0.0.1:8884/HONRO.html http://127.0.0.1:8885/HONRO.html
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage42-mib-f4ef-domain-ac-r2-evidence
+          path: |
+            ${{ runner.temp }}/visual-evidence/[AC]-source-invariants.json
+            ${{ runner.temp }}/visual-evidence/actual-ac.json
+            ${{ runner.temp }}/visual-evidence/[AC]-*.png
+          if-no-files-found: warn
+          retention-days: 7
