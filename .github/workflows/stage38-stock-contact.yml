@@ -1,50 +1,73 @@
-name: Stage38 stock contact diagnostic
+name: Stage38 native rescue rock source verification
 on:
   push:
-    branches: ['qa/stage38-shelf-ownership-20261120']
+    branches: ['qa/stage38-owned-rock-source-20261120']
 permissions:
   contents: read
 jobs:
-  capture:
+  verify:
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    timeout-minutes: 45
     env:
       HONRO_ACT4_RELEASE: '1'
       HONRO_ACT5_RELEASE: '1'
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
-          fetch-depth: 14
-      - name: Exact add-only gate
-        run: |
-          test "$(git merge-base HEAD 1e043b09d4ce107e1d2dcf70fe2274dff7098476)" = 1e043b09d4ce107e1d2dcf70fe2274dff7098476
-          git diff --name-status 1e043b09d4ce107e1d2dcf70fe2274dff7098476 HEAD > /tmp/diff
-          cat /tmp/diff
-          test "$(wc -l < /tmp/diff)" = 4
-          if grep -vE '^A[[:space:]]+(tests/stage38-stock-contact-fixture.mjs|tests/stage38-stock-contact-extract.mjs|tests/stage38-rescue-pair.mjs|.github/workflows/stage38-stock-contact.yml)$' /tmp/diff; then exit 1; fi
+          fetch-depth: 25
       - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
         with:
           node-version: '22'
           package-manager-cache: false
-      - run: npm ci && npm ci --prefix game
-      - run: node tools/act4-source/world-source.mjs materialize
-      - run: node tests/stage38-stock-contact-fixture.mjs "$RUNNER_TEMP/fixtures"
-      - name: Isolated stock Chrome contact evidence
+      - name: Exact source and fixture boundary
         run: |
-          mkdir -p "$RUNNER_TEMP/evidence"
-          git rev-parse HEAD > "$RUNNER_TEMP/evidence/qa-head.txt"
-          browser=$(command -v google-chrome || command -v chromium)
-          for view in control candidate; do
-            for camera in rescue whole; do
-            name="stage38-$view-$camera"
-            timeout 300s "$browser" --headless --no-first-run --no-default-browser-check --force-device-scale-factor=1 --virtual-time-budget=60000 --user-data-dir="$RUNNER_TEMP/profile-$view-$camera" --dump-dom "file://$RUNNER_TEMP/fixtures/$name.html" > "$RUNNER_TEMP/$name.html"
-            node tests/stage38-stock-contact-extract.mjs "$RUNNER_TEMP/$name.html" "$RUNNER_TEMP/evidence" "$name"
-            done
-          done
-      - run: node tests/stage38-rescue-pair.mjs "$RUNNER_TEMP/evidence"
+          test "$(git hash-object tests/production-contract.mjs)" = 29210abc75f37bca44d772a78e85e334a09a0229
+          git diff --name-only 1e043b09d4ce107e1d2dcf70fe2274dff7098476 HEAD > /tmp/changed
+          cat /tmp/changed
+          if grep -vE '^(shared/data/act4/handoff-art/38.json|tests/production-contract.mjs|tests/stage38-source-http.py|tests/stage38-stock-contact-fixture.mjs|tests/stage38-stock-contact-extract.mjs|tests/stage38-rescue-pair.mjs|.github/workflows/stage38-stock-contact.yml)$' /tmp/changed; then exit 1; fi
+          node --input-type=module -e "import{execFileSync as x}from'node:child_process';import{readFileSync as r}from'node:fs';const p='shared/data/act4/handoff-art/38.json',b=x('git',['show','1e043b09d4ce107e1d2dcf70fe2274dff7098476:'+p],{encoding:'utf8'}),t='M1060.000,567.778 L1073.333,567.778 L1073.333,571.778 L1060.000,571.778 Z';if(b.split(t).length!==2||b.replace(t,'')!==r(p,'utf8'))throw Error('Not exact single cap removal');"
+      - run: npm ci && npm ci --prefix game
+      - run: python -m pip install playwright pillow numpy && python -m playwright install chromium
+      - name: Official baseline build and normal HTTP
+        run: |
+          cp shared/data/act4/handoff-art/38.json /tmp/candidate38.json
+          git show 1e043b09d4ce107e1d2dcf70fe2274dff7098476:shared/data/act4/handoff-art/38.json > shared/data/act4/handoff-art/38.json
+          npm run test:release-guard
+          npm run build
+          npm run test:production-contract
+          python tests/stage38-source-http.py baseline
+      - name: Official candidate build and normal HTTP
+        run: |
+          cp /tmp/candidate38.json shared/data/act4/handoff-art/38.json
+          npm run test:release-guard
+          npm run build
+          npm run test:production-contract
+          python tests/stage38-source-http.py candidate
+      - name: Pair equality and visible footprint
+        run: |
+          python - <<'PY'
+          import json,numpy as np
+          from pathlib import Path
+          from PIL import Image
+          p=Path('_local/reports/stage38-source')
+          a=json.loads((p/'baseline/report.json').read_text());b=json.loads((p/'candidate/report.json').read_text())
+          report=[]
+          for aa,bb in zip(a['rows'],b['rows']):
+            for key in ['camera','canvas','gameplaySha256','support','units']:
+              assert aa[key]==bb[key],key
+            assert aa['support']['vertices'][2:4]==[{'x':4770,'y':2555},{'x':4830,'y':2555}]
+            label=aa['label'];im=np.array(Image.open(p/'baseline'/f'{label}.png'));jm=np.array(Image.open(p/'candidate'/f'{label}.png'))
+            d=np.any(im!=jm,axis=2);ys,xs=np.where(d)
+            report.append({'view':label,'changed':len(xs),'bbox':[int(xs.min()),int(ys.min()),int(xs.max()),int(ys.max())] if len(xs) else None})
+            assert len(xs)>0
+            if label=='rescue':
+              d[335:357,583:648]=False
+              assert not d.any(),'Outside exact cap footprint'
+          (p/'pair.json').write_text(json.dumps(report,indent=2))
+          PY
       - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
         if: always()
         with:
-          name: stage38-stock-contact
-          path: ${{ runner.temp }}/evidence
+          name: stage38-native-rock-source
+          path: _local/reports/stage38-source
           if-no-files-found: error
