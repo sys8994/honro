@@ -5,6 +5,32 @@ const S=G.HonroScene.prototype,draw=S.landmark,bounds=S._landmarkPaintBounds,sta
 // Stage45's stacked opaque faces must meet the depth mask as one image.
 // Per-face antialiased clipping repeatedly accumulates coverage into a pale rim.
 // Temporary surfaces are capped at1024² and released, never retained per world.
+// Stage46 color pieces overlap by source design. Their independently anti-aliased
+// leading edges are not geological contours. Retain the preceding face color in
+// each narrow overlap without a second vector pass or changes to shared coverage.
+const stage46PartCuts=[-600,0,600,1200,1800];
+function stage46JoinTile(scene,raw,paint,parts,m,tileX){
+ const strips=[],axis=m.a>0&&m.b===0&&m.c===0,w=raw.canvas.width,h=raw.canvas.height;
+ try{
+  for(let i=0;i<parts.length;i++){
+   if(i&&axis){
+    const mid=m.a*stage46PartCuts[i-1]+m.e-tileX,lo=Math.max(0,Math.floor(mid-1.85*m.a)),hi=Math.min(w,Math.ceil(mid));
+    if(hi>lo){
+     const seam=scene._makeLayerCanvas(hi-lo,h),sc=seam.getContext('2d');
+     strips.push({seam,lo});sc.setTransform(1,0,0,1,0,0);sc.globalAlpha=1;sc.globalCompositeOperation='source-over';
+     sc.clearRect(0,0,hi-lo,h);sc.drawImage(raw.canvas,lo,0,hi-lo,h,0,0,hi-lo,h);
+    }
+   }
+   G.HonroVectorArt.draw(paint,parts[i],{x:0,y:0,scale:1});
+  }
+  if(strips.length){
+   raw.save();try{
+    raw.setTransform(1,0,0,1,0,0);raw.globalAlpha=1;raw.globalCompositeOperation='source-atop';
+    for(const {seam,lo} of strips)raw.drawImage(seam,lo,0);
+   }finally{raw.restore();}
+  }
+ }finally{for(const {seam} of strips)scene._releaseRasterCanvas(seam);}
+}
 function stage45Body(scene,c,asset,mask){
  const w=c.canvas.width,h=c.canvas.height;if(!w||!h)return;
  const m=c.getTransform(),cv=scene._makeLayerCanvas(Math.min(1024,w),Math.min(1024,h)),raw=cv.getContext('2d'),V=G.HonroVisualStyle,paint=V?.contextLike(c,raw)||raw;
@@ -15,7 +41,8 @@ function stage45Body(scene,c,asset,mask){
    const tw=Math.min(1024,w-x),th=Math.min(1024,h-y);
    raw.setTransform(1,0,0,1,0,0);raw.globalAlpha=1;raw.globalCompositeOperation='source-over';raw.clearRect(0,0,cv.width,cv.height);
    raw.setTransform(m.a,m.b,m.c,m.d,m.e-x,m.f-y);
-   for(const part of asset.paintParts||[asset])G.HonroVectorArt.draw(paint,part,{x:0,y:0,scale:1});
+   if(asset.stage46TileFringes===true)stage46JoinTile(scene,raw,paint,asset.paintParts,m,x);
+   else for(const part of asset.paintParts||[asset])G.HonroVectorArt.draw(paint,part,{x:0,y:0,scale:1});
    // Rasterize coverage in source-over first. Native Canvas may incorrectly
    // clear a whole tile for destination-in fill of a large transformed Path2D.
    mc.setTransform(1,0,0,1,0,0);mc.clearRect(0,0,maskCanvas.width,maskCanvas.height);
@@ -222,7 +249,7 @@ S.landmark=function(c,l){
  if(l.asset?.id==='act5:near:46'&&l.asset.shaftExterior&&!l.rotation){
   const a=l.asset,z=l.scale??1,V=G.HonroVisualStyle,cc=V?V.context(c,V.classify(l,this.battle,a)==='gameplay'?'gameplay':V.depth(l,a)):c;
   let keep=stage46Parts.get(a);if(!keep){const body=a.shaftExterior,parts=[body,...(a.shaftExteriorParts||[])].map(part=>{const root={...part.vector.root};delete root.clipPath;return{...part,vector:{...part.vector,root}};});
-   const tree=a.shaftTree,treeRoot=tree?{...tree.vector.root}:null;if(treeRoot)delete treeRoot.clipPath;keep={tree:tree?{...tree,vector:{...tree.vector,root:treeRoot}}:null,treeMask:tree?new Path2D(tree.vector.clips['native-source-alpha'].join(' ')):null,body:{...parts[0],paintParts:parts},bodyMask:new Path2D(body.vector.clips['native-source-alpha'].join(' ')),originals:['a','b'].map((key,i)=>{const root={...a.vector.root.children[i]};delete root.clipPath;return{asset:{...a,vector:{...a.vector,symbols:{},root}},mask:new Path2D(a.shaftProtected[key].join(' '))};}),interior:{...a,vector:{...a.vector,root:{tag:'g',children:a.vector.root.children.slice(2)}}}};stage46Parts.set(a,keep);}
+   const tree=a.shaftTree,treeRoot=tree?{...tree.vector.root}:null;if(treeRoot)delete treeRoot.clipPath;keep={tree:tree?{...tree,vector:{...tree.vector,root:treeRoot}}:null,treeMask:tree?new Path2D(tree.vector.clips['native-source-alpha'].join(' ')):null,body:{...parts[0],paintParts:parts,stage46TileFringes:parts.length===6&&parts.every((part,i)=>part.id==='act5:stage46:exterior-body'+(i?':'+i:''))},bodyMask:new Path2D(body.vector.clips['native-source-alpha'].join(' ')),originals:['a','b'].map((key,i)=>{const root={...a.vector.root.children[i]};delete root.clipPath;return{asset:{...a,vector:{...a.vector,symbols:{},root}},mask:new Path2D(a.shaftProtected[key].join(' '))};}),interior:{...a,vector:{...a.vector,root:{tag:'g',children:a.vector.root.children.slice(2)}}}};stage46Parts.set(a,keep);}
   cc.save();try{cc.translate(l.x,l.y);cc.scale(z,z);stage45Body(this,cc,keep.body,keep.bodyMask);if(keep.tree)stage45Body(this,cc,keep.tree,keep.treeMask);for(const original of keep.originals)stage45Body(this,cc,original.asset,original.mask);G.HonroVectorArt.draw(cc,keep.interior,{x:0,y:0,scale:1});}finally{cc.restore();}return;
  }
 
