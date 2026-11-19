@@ -1,0 +1,103 @@
+name: Stage42 lower basin stock Workshop geometry A/B
+on:
+  push:
+    branches: ['qa/stage42-mib-eroded-basin-workshop-r2']
+    paths: ['.github/workflows/stage42-mib-eroded-basin-workshop-r2.yml','tests/stage42-mib-eroded-basin-workshop-r2/**']
+permissions:
+  contents: read
+jobs:
+  workshop_ab:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Verify base and test-only additions
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = refs/heads/qa/stage42-mib-eroded-basin-workshop-r2
+          test "$GITHUB_SHA" = "$(git rev-parse HEAD)"
+          pin=1e043b09d4ce107e1d2dcf70fe2274dff7098476
+          test "$(git rev-parse HEAD^)" = "$pin"
+          q=tests/stage42-mib-eroded-basin-workshop-r2
+          printf '%s\n' .github/workflows/stage42-mib-eroded-basin-workshop-r2.yml "$q/source-A.json" "$q/source-B.json" "$q/ledger-46.json" "$q/workshop-ab.py" "$q/SHA256SUMS" | LC_ALL=C sort > "$RUNNER_TEMP/workshop-basin-allow"
+          git diff --name-only HEAD^ HEAD | LC_ALL=C sort | diff -u "$RUNNER_TEMP/workshop-basin-allow" -
+          git diff --name-only --diff-filter=A HEAD^ HEAD | LC_ALL=C sort | diff -u "$RUNNER_TEMP/workshop-basin-allow" -
+          echo "bbb6f06f4f19c8b0e31583c09765524bafad11c2a935ed0c92f5e6bd716b478d  $q/SHA256SUMS" | sha256sum -c -
+          (cd "$q" && sha256sum -c SHA256SUMS)
+      - name: Build a detached unmodified HONRO Workshop
+        run: |
+          set -Eeuo pipefail
+          e="$RUNNER_TEMP/basin-workshop-evidence"
+          mkdir -p "$e"
+          exec > >(tee "$e/build.log") 2>&1
+          phase=start
+          trap 'rc=$?; printf "build-phase=%s rc=%s\n" "$phase" "$rc" | tee "$e/build-phase.txt"; trap - EXIT; exit "$rc"' EXIT
+          pin=1e043b09d4ce107e1d2dcf70fe2274dff7098476
+          p="$RUNNER_TEMP/basin-stock-workshop"
+          phase=detached-checkout
+          git worktree add --detach "$p" "$pin"
+          cd "$p"
+          test "$(git rev-parse HEAD)" = "$pin"
+          if git symbolic-ref -q HEAD; then exit 1; fi
+          git status --porcelain --untracked-files=all | tee "$e/git-before.txt"
+          test ! -s "$e/git-before.txt"
+          git diff --exit-code
+          echo '1c18b854bbdae6ab5b9c49de53ef4c2d708ffa73a7af393fc5e57e318e001cd2  shared/map/compiler.js' | sha256sum -c -
+          echo '50772ada658c33f0f514465b4fc161587a1a648d7c19eec0d2f2de80ddd5c3ae  shared/map/terrain-domain.js' | sha256sum -c -
+          phase=root-npm-ci
+          echo "$phase"
+          npm ci
+          phase=game-npm-ci
+          echo "$phase"
+          npm ci --prefix game
+          phase=stock-build
+          echo "$phase"
+          HONRO_ACT4_RELEASE=1 HONRO_ACT5_RELEASE=1 npm run build
+          phase=verify-generated-vs-source
+          git diff --cached --exit-code
+          git diff --name-only --no-renames --diff-filter=ACDMRTUXB HEAD | LC_ALL=C sort | tee "$e/git-after-generated.txt"
+          python - "$e/git-after-generated.txt" <<'PY2'
+          import re,sys
+          from pathlib import Path
+          items=Path(sys.argv[1]).read_text().splitlines()
+          allow=re.compile(r'(?:web/.+|index\.html|HONRO(?:_WORKSHOP)?\.html|workshop/HONRO_MAP_WORKSHOP\.html|shared/assets/(?:party/party|monsters/monsters|actors/actors)\.runtime\.js|game/(?:engine/)?(?:dist|build)/.+)')
+          bad=[k for k in items if not allow.fullmatch(k)]
+          if bad:raise SystemExit('Unexpected tracked source changes: '+', '.join(bad))
+          PY2
+          echo '1c18b854bbdae6ab5b9c49de53ef4c2d708ffa73a7af393fc5e57e318e001cd2  shared/map/compiler.js' | sha256sum -c -
+          echo '50772ada658c33f0f514465b4fc161587a1a648d7c19eec0d2f2de80ddd5c3ae  shared/map/terrain-domain.js' | sha256sum -c -
+          test -e HONRO_WORKSHOP.html
+          phase=ready
+      - name: Native A/B import, export, fresh reopen and matched editor captures
+        run: |
+          set -euo pipefail
+          python -m pip install 'playwright==1.58.0'
+          export HONRO_CHROME="$(command -v google-chrome || command -v chromium)"
+          mkdir -p "$RUNNER_TEMP/basin-workshop-evidence"
+          python -m http.server 8884 --bind 127.0.0.1 --directory "$RUNNER_TEMP/basin-stock-workshop" &
+          pid=$!; trap 'kill "$pid" 2>/dev/null || true' EXIT
+          for i in {1..20}; do if curl -fsS -o /dev/null http://127.0.0.1:8884/HONRO_WORKSHOP.html; then break; fi; sleep 1; done
+          curl -fsS -o /dev/null http://127.0.0.1:8884/HONRO_WORKSHOP.html
+          timeout 300s python tests/stage42-mib-eroded-basin-workshop-r2/workshop-ab.py "$RUNNER_TEMP/basin-workshop-evidence" http://127.0.0.1:8884/HONRO_WORKSHOP.html
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage42-basin-stock-workshop-ab
+          path: |
+            ${{ runner.temp }}/basin-workshop-evidence/[AB]-*.png
+            ${{ runner.temp }}/basin-workshop-evidence/workshop-ab.json
+            ${{ runner.temp }}/basin-workshop-evidence/build*.txt
+            ${{ runner.temp }}/basin-workshop-evidence/build.log
+            ${{ runner.temp }}/basin-workshop-evidence/git-*.txt
+          if-no-files-found: warn
+          retention-days: 7
