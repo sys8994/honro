@@ -1,0 +1,80 @@
+name: Stage42 slate atlas pass native UI QA
+on:
+  push:
+    branches: ['qa/stage42-slate-atlas']
+    paths: ['.github/workflows/stage42-slate-atlas.yml','tests/stage42-slate-atlas/**']
+permissions:
+  contents: read
+jobs:
+  isolated:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      HONRO_ACT4_RELEASE: '1'
+      HONRO_ACT5_RELEASE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 3
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Verify exact branch and assemble pinned Gate plus composed ancestors
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = refs/heads/qa/stage42-slate-atlas
+          test "$GITHUB_SHA" = "$(git rev-parse HEAD)"
+          test "$(git rev-parse HEAD^)" = ed93dd280c9558260250a8e7b7a288cf6b75bd45
+          test "$(git rev-parse HEAD^^)" = c4a5b20d907474ac66df2ddf3feca801c4853d64
+          N=tests/stage42-slate-atlas
+          Z=tests/stage42-central-hierarchy
+          C=tests/stage42-composed-native
+          G=tests/stage42-full-native-workshop
+          printf '%s\n' .github/workflows/stage42-slate-atlas.yml "$N/browser-gate.py" "$N/c01_pairs.py" "$N/detail-itinerary.json" "$N/detail.mjs" "$N/pack-gate.mjs" "$N/prepare-c01.mjs" "$N/review-cameras.json" "$N/run-slate-atlas-proof.sh" "$N/atlas-candidate.SHA256SUMS" | LC_ALL=C sort > "$RUNNER_TEMP/central-allowed.txt"
+          git diff --name-only --diff-filter=A HEAD^ HEAD | LC_ALL=C sort | diff -u "$RUNNER_TEMP/central-allowed.txt" -
+          git diff --name-only HEAD^ HEAD | LC_ALL=C sort | diff -u "$RUNNER_TEMP/central-allowed.txt" -
+          printf '%s  %s\n' 39186841dda764dfdfcc116a61fb8fb28060812f1b2115afea10255ae6af57ba "$N/atlas-candidate.SHA256SUMS" 0c8e8944abff77f66ad2c1bd2617cec0935a03654d55007fdda9a724bf5db454 "$Z/sample-candidate.SHA256SUMS" 21c2c53d474b5843c271ada2a16ac112677772ae742800bac7560e558d4faca8 "$C/candidate.SHA256SUMS" | sha256sum -c -
+          (cd "$N" && sha256sum -c atlas-candidate.SHA256SUMS)
+          (cd "$Z" && sha256sum -c sample-candidate.SHA256SUMS)
+          (cd "$C" && sha256sum -c candidate.SHA256SUMS)
+          sha256sum "$C/inherited.SHA256SUMS"
+          (cd "$G" && sha256sum -c "$GITHUB_WORKSPACE/$C/inherited.SHA256SUMS")
+          npm ci
+          npm ci --prefix game
+          npm run build
+          mkdir -p "$RUNNER_TEMP/stage42-atlas-stock"
+          cp -a web HONRO_WORKSHOP.html HONRO.html "$RUNNER_TEMP/stage42-atlas-stock/"
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          ref: be0ed7e34746533fc655ddc5598e1e7a600d6e80
+          path: c01-exact-input
+          sparse-checkout: tests/stage42-c01-integrated-qa
+          persist-credentials: false
+      - name: Native slate atlas pass pointer authoring and proof
+        run: |
+          set -euo pipefail
+          python -m pip install 'playwright==1.58.0' 'Pillow==12.0.0'
+          export HONRO_CHROME="$(command -v google-chrome || command -v chromium)"
+          test -x "$HONRO_CHROME"
+          "$HONRO_CHROME" --version
+          export STAGE42_C01_PNG="$GITHUB_WORKSPACE/c01-exact-input/tests/stage42-c01-integrated-qa/C01.png"
+          printf '%s  %s\n' 1bd2b2d24d6590371b0ffd4a944c2f83327afee3f3d5c4a91e0cbe83c707cbab "$STAGE42_C01_PNG" | sha256sum -c -
+          bash tests/stage42-slate-atlas/run-slate-atlas-proof.sh "$RUNNER_TEMP/stage42-atlas-stock" "$RUNNER_TEMP/stage42-atlas-copies" "$RUNNER_TEMP/stage42-atlas-evidence"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage42-slate-atlas-browser-art
+          path: |
+            ${{ runner.temp }}/stage42-atlas-evidence/result.json
+            ${{ runner.temp }}/stage42-atlas-evidence/gate-stock-*.png
+            ${{ runner.temp }}/stage42-atlas-evidence/05-exact-reopened-full-detail-neutral.png
+            ${{ runner.temp }}/stage42-atlas-evidence/c01-whole-c01.png
+            ${{ runner.temp }}/stage42-atlas-evidence/c01-center-body-c01.png
+            ${{ runner.temp }}/stage42-atlas-evidence/failure.png
+          if-no-files-found: warn
+          retention-days: 7
