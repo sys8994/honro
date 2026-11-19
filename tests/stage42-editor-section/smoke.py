@@ -27,7 +27,11 @@ with sync_playwright() as pw:
     def project_paths(page):
         return page.evaluate("""()=>HonroWorkshopAPI.getProject().library.find(a=>a.id==='act5:near:42').edgeWall.vector.root.children[1].children.map(n=>n.d)""")
     def coords(page, points):
-        return page.evaluate("""pts=>{const api=HonroWorkshopAPI,s=api.queryScene().stage,e=s.elements.find(e=>e.assetId==='act5:near:42');api.setCamera({x:150,y:1850,zoom:.6});const c=document.querySelector('#stageCanvas'),v=api.getEditorState().stageView;return pts.map(([x,y])=>{const a=c.clientWidth/2+(e.x+x*e.scale-v.x)*v.zoom,b=c.clientHeight/2+(e.y+y*e.scale-v.y)*v.zoom;if(a<10||b<10||a>c.clientWidth-10||b>c.clientHeight-10)throw Error('authored point outside canvas');return {x:a,y:b};});}""",points)
+        layout=page.evaluate("""pts=>{const api=HonroWorkshopAPI,s=api.queryScene().stage,e=s.elements.find(e=>e.assetId==='act5:near:42');api.setCamera({x:100,y:1850,zoom:.44});const c=document.querySelector('#stageCanvas'),v=api.getEditorState().stageView,box=c.getBoundingClientRect();return {camera:v,width:c.clientWidth,height:c.clientHeight,points:pts.map(([x,y])=>{const a=c.clientWidth/2+(e.x+x*e.scale-v.x)*v.zoom,b=c.clientHeight/2+(e.y+y*e.scale-v.y)*v.zoom;return {x:a,y:b,unobstructed:document.elementFromPoint(box.left+a,box.top+b)===c};})};}""",points)
+        report.setdefault('camera_checks',[]).append(layout)
+        for p in layout['points']:
+            assert p['unobstructed'] and 10<=p['x']<=layout['width']-10 and 10<=p['y']<=layout['height']-10,('authored point outside or occluded canvas',layout)
+        return [{'x':p['x'],'y':p['y']} for p in layout['points']]
     def move(page, local, photo):
         c=page.locator('#stageCanvas')
         q=coords(page,[local])[0];b=c.bounding_box()
