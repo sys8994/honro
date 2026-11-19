@@ -1,0 +1,2 @@
+import fs from 'node:fs';import path from 'node:path';import assert from 'node:assert/strict';
+const [input,out,name]=process.argv.slice(2),html=fs.readFileSync(input,'utf8'),m=html.match(/<pre id="result">([A-Za-z0-9+/=]+)<\/pre>/);assert(m,'No result');const r=JSON.parse(Buffer.from(m[1],'base64'));fs.mkdirSync(out,{recursive:true});if(r.png){fs.writeFileSync(path.join(out,name+'.png'),Buffer.from(r.png.split(',')[1],'base64'));delete r.png;}fs.writeFileSync(path.join(out,name+'.json'),JSON.stringify(r,null,2));assert(r.ok,JSON.stringify(r));console.log(name+' PASS');
