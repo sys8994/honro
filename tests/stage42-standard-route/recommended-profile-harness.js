@@ -22,11 +22,19 @@ async ({baseRaw, detailRaw, gateRaw, westRaw=null, buildVisual})=>{
  must(eq(v.playBounds,st.playBounds)&&eq(v.terrainBounds,st.terrainBounds)&&v.height===st.height,'Published and art experiment domains differ');
  const plan=HonroProgression.plan(42);
  must(westRaw&&await hex(westRaw)==='53b235379b01e360db9cdac3d5d5aa70cbe891c8bc27230bcd42a86dddac4b30'&&Number.isFinite(plan.entryLevel),'Only actual multiface and official planned entry accepted');
- let profile=HonroMaps.profileFor(st);
- const expectedXP=HonroProgression.xpAt(plan.entryLevel);
- must(profile.recruited.length>0&&profile.recruited.every(c=>profile.heroes[c]?.xp===expectedXP),'Recommended official profile was not at exact entry XP');
- must(eq([...profile.recruited].sort(),[...HonroStageRules.stageParty(42)].sort()),'Official recommended map roster disagrees with stock campaign stage party');
- profile.party=[...profile.recruited];
+ // The map preset is not a serialized campaign profile. Copy only numeric official XP and canonical roster into fresh campaign defaults.
+ const recommended=HonroMaps.profileFor(st),expectedXP=HonroProgression.xpAt(plan.entryLevel), roster=HonroStageRules.stageParty(42);
+ must(Array.isArray(recommended.recruited)&&roster.length>0&&eq([...recommended.recruited].sort(),[...roster].sort()),'entry: official preset roster is not canonical Stage42 campaign cast');
+ must(Number.isSafeInteger(expectedXP)&&expectedXP>=0&&recommended.recruited.every(c=>Number.isSafeInteger(recommended.heroes[c]?.xp)&&recommended.heroes[c].xp===expectedXP),'entry: official preset XP does not match published plan');
+ let profile=HonroProfileStore.fresh();
+ must(profile.game==='honro'&&profile.schema===5&&!profile.honroBattle&&Object.keys(profile.cleared??{}).length===0,'entry: fresh campaign shell has saved or invalid state');
+ must(profile.equipment?.initialAutoEquip===true&&profile.equipment.basicPrepared?.length===0&&profile.equipment.ownedItemIds?.length===0&&Object.keys(profile.equipment.rewardLedger??{}).length===0,'entry: fresh campaign equipment baseline is not blank');
+ profile.recruited=[...recommended.recruited];profile.party=[...profile.recruited];
+ for(const c of profile.recruited){
+  must(profile.heroes[c]&&Array.isArray(profile.loadouts[c]),'entry: fresh shell has no stock hero/loadout for '+c);
+  profile.heroes[c].xp=recommended.heroes[c].xp;
+ }
+ const canonicalLoadouts=structuredClone(profile.loadouts);
  const levels=profile.recruited.map(c=>[c,HONRO_CORE.levelOf(profile.heroes[c])]);
  // App uses this new in-memory object; normal profile/save hooks remain untouched.
  must(app.screen==='title'&&!app.engine&&!app.customMap&&!app.debugMode,'Fresh disposable title required');
@@ -38,6 +46,8 @@ async ({baseRaw, detailRaw, gateRaw, westRaw=null, buildVisual})=>{
  must(typeof window.HonroStage42EquipmentEntryInMemory==='function','Isolated equipment entry guard absent');
  const entryEquipment=window.HonroStage42EquipmentEntryInMemory(app,window,()=>localStorage.length+sessionStorage.length+HonroQaStorageAttempts.length);
  profile=app.profile;
+ must(profile.recruited.every(c=>profile.heroes[c]?.xp===expectedXP)&&eq(profile.recruited,recommended.recruited)&&eq(profile.party,recommended.recruited)&&eq(profile.loadouts,canonicalLoadouts),'entry: stock starter gear changed planned XP, canonical roster or stock sanitized loadout');
+ must(localStorage.length+sessionStorage.length+HonroQaStorageAttempts.length===0,'entry: recommended campaign profile created an unexpected storage attempt');
  const entry=HONRO_CONTENT.stages.find(s=>s.id===42);
  // Compile two independent copies to assert that modifying presentation only cannot change any physical/event input.
  const toPortable=b=>JSON.parse(JSON.stringify({stage:b.honroStage,origin:b.honroMapOrigin,canonical:b.honroCanonical,custom:b.honroCustom,terrain:b.terrain,world:b.honroWorldTerrain,markers:b.honroMarkers,events:b.honroEvents,authoredEvents:b.honroAuthoredEvents,actors:b.units.map(u=>[u.id,u.cls,u.side,u.x,u.y,u.spawnX,u.spawnY,u.honroAct5Escort]),map:b.honroMap,objectives:b.honroObjectives,bounds:b.honroPlayBounds,anchors:b.honroMapAnchors}));

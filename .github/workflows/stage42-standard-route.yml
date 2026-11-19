@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
-          fetch-depth: 14
+          fetch-depth: 15
           persist-credentials: false
       - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
         with:
@@ -29,14 +29,14 @@ jobs:
           set -euo pipefail
           test "$GITHUB_REF" = refs/heads/qa/stage42-standard-route
           test "$GITHUB_SHA" = "$(git rev-parse HEAD)"
-          test "$(git rev-parse HEAD^)" = 390887e011611a5d77ebbf3d01c5575cd05fdc4f
-          test "$(git rev-parse HEAD~13)" = 1e043b09d4ce107e1d2dcf70fe2274dff7098476
+          test "$(git rev-parse HEAD^)" = 8a66d2c607b773506151bd059c6e8c6d39d9aa5c
+          test "$(git rev-parse HEAD~14)" = 1e043b09d4ce107e1d2dcf70fe2274dff7098476
           N=tests/stage42-standard-route; A=tests/stage42-slate-atlas; Z=tests/stage42-central-hierarchy
           C=tests/stage42-composed-native; G=tests/stage42-full-native-workshop; I=tests/stage42-atlas-west-integrated; M=tests/stage42-west-multiface
-          printf '%s\n' .github/workflows/stage42-standard-route.yml "$N/recommended-profile-harness.js" "$N/route-entry.py" "$N/route.SHA256SUMS" "$N/route_operator.py" "$N/run-route.sh" | LC_ALL=C sort > "$RUNNER_TEMP/atlas-west-allowed.txt"
-          git diff --name-only --diff-filter=A HEAD^ HEAD | LC_ALL=C sort | diff -u "$RUNNER_TEMP/atlas-west-allowed.txt" -
+          printf '%s\n' .github/workflows/stage42-standard-route.yml "$N/recommended-profile-harness.js" "$N/route.SHA256SUMS" | LC_ALL=C sort > "$RUNNER_TEMP/atlas-west-allowed.txt"
+          git diff --name-only --diff-filter=M HEAD^ HEAD | LC_ALL=C sort | diff -u "$RUNNER_TEMP/atlas-west-allowed.txt" -
           git diff --name-only HEAD^ HEAD | LC_ALL=C sort | diff -u "$RUNNER_TEMP/atlas-west-allowed.txt" -
-          printf '%s  %s\n' e8fc571873a2d283ed07a6f338310a04ef855567701b0e9d18cd4d568ff5ccf1 "$N/route.SHA256SUMS" f0391e95197a289f03a03576a99477ad485fe775a431c48a435fc095e62bb7ad "$M/multiface.SHA256SUMS" bf01eafda47627b659ed528d48d5954346ac40cfca9f9f02a3da3f9deb6dbe83 "$I/integrated.SHA256SUMS" 39186841dda764dfdfcc116a61fb8fb28060812f1b2115afea10255ae6af57ba "$A/atlas-candidate.SHA256SUMS" 0c8e8944abff77f66ad2c1bd2617cec0935a03654d55007fdda9a724bf5db454 "$Z/sample-candidate.SHA256SUMS" 21c2c53d474b5843c271ada2a16ac112677772ae742800bac7560e558d4faca8 "$C/candidate.SHA256SUMS" | sha256sum -c -
+          printf '%s  %s\n' 3ba17663b2f89d27a5159a6ba5ede310d8a2c1b12940e1226db8adbcd7405799 "$N/route.SHA256SUMS" f0391e95197a289f03a03576a99477ad485fe775a431c48a435fc095e62bb7ad "$M/multiface.SHA256SUMS" bf01eafda47627b659ed528d48d5954346ac40cfca9f9f02a3da3f9deb6dbe83 "$I/integrated.SHA256SUMS" 39186841dda764dfdfcc116a61fb8fb28060812f1b2115afea10255ae6af57ba "$A/atlas-candidate.SHA256SUMS" 0c8e8944abff77f66ad2c1bd2617cec0935a03654d55007fdda9a724bf5db454 "$Z/sample-candidate.SHA256SUMS" 21c2c53d474b5843c271ada2a16ac112677772ae742800bac7560e558d4faca8 "$C/candidate.SHA256SUMS" | sha256sum -c -
           (cd "$N" && sha256sum -c route.SHA256SUMS)
           (cd "$M" && sha256sum -c multiface.SHA256SUMS)
           (cd "$I" && sha256sum -c integrated.SHA256SUMS)
@@ -44,7 +44,7 @@ jobs:
           (cd "$Z" && sha256sum -c sample-candidate.SHA256SUMS)
           (cd "$C" && sha256sum -c candidate.SHA256SUMS)
           (cd "$G" && sha256sum -c "$GITHUB_WORKSPACE/$C/inherited.SHA256SUMS")
-          test -z "$(git diff --name-only "$(git rev-parse HEAD~13)" HEAD -- web game shared assets workshop HONRO.html HONRO_WORKSHOP.html)"
+          test -z "$(git diff --name-only "$(git rev-parse HEAD~14)" HEAD -- web game shared assets workshop HONRO.html HONRO_WORKSHOP.html)"
           npm ci
           npm ci --prefix game
           npm run build
