@@ -14,6 +14,58 @@ source=source.replace(originalToolbar,originalToolbar+'.concat(project.activeSta
 .replace(cancelHook,'pointer=null});c.addEventListener("pointercancel",()=>{if(kind==="stage"&&pointer?.nativeBodyVertex!=null){bodyDraft[pointer.nativeBodyVertex]=pointer.nativeBodyBefore;bodyMoving=-1;renderStage()}pointer=null});c.addEventListener("dblclick"').replace(canvasRender,'function renderStage(){nativeRenderStage();drawBodyDraft();}function nativeRenderStage(){');
 return source.replace(marker,`const nativeBodyStage='stage-42',nativeBodyAsset='act5:near:42';
 let bodyDraft=[],bodyMoving=-1,bodyFill='#626256',bodyPreviewKey=null,bodyEditing=null;
+function validBodyGeometry(points,owner){
+ const [x,y,w,h]=owner.edgeWall.vector.viewBox;
+ if(points.some(([a,b])=>a<x||b<y||a>x+w||b>y+h))throw Error('outside BODY viewBox');
+ const cross=(a,b,c)=>(b[0]-a[0])*(c[1]-a[1])-(b[1]-a[1])*(c[0]-a[0]);
+ const n=points.length;
+ const area=points.reduce((s,p,i)=>s+cross([0,0],p,points[(i+1)%n]),0);
+ if(Math.abs(area)<1)throw Error('degenerate polygon');
+ for(let i=0;i<n;i++)for(let j=i+2;j<n;j++){
+  if(i===0&&j===n-1)continue;
+  const [a,b,c,d]=[points[i],points[(i+1)%n],points[j],points[(j+1)%n]];
+  if(cross(a,b,c)*cross(a,b,d)<0&&cross(c,d,a)*cross(c,d,b)<0)throw Error('self-intersecting polygon');
+ }
+}
+function bodyTarget(p){
+ const owners=p.library.filter(x=>x.id===nativeBodyAsset), users=p.stages.filter(x=>x.elements.some(e=>e.assetId===nativeBodyAsset));
+ if(owners.length!==1||users.length!==1||users[0].id!==nativeBodyStage||p.activeStageId!==nativeBodyStage)throw Error('Invalid BODY draft owner');
+ return owners[0];
+}
+function bodyRestricted(p){const x=deep(p);delete bodyTarget(x).edgeWall;return x}
+function bodyProject(next){
+ const owner=bodyTarget(project), proposed=deep(project), original=owner.edgeWall;
+ if(!next?.vector?.root?.clipPath||JSON.stringify(next.vector.clips)!==JSON.stringify(original.vector.clips))throw Error('BODY clips changed');
+ const trim=x=>{const y=deep(x);delete y.params?.bodyEditorFaces;y.vector.root.children=y.vector.root.children.filter(n=>!String(n.id||'').startsWith('native-body-face_'));return y};
+ if(JSON.stringify(trim(next))!==JSON.stringify(trim(original)))throw Error('Non-authored BODY geometry changed');
+ const exactKeys=(v,k)=>v!=null&&typeof v==='object'&&!Array.isArray(v)&&Object.keys(v).length===k.length&&k.every(x=>Object.hasOwn(v,x));
+ const records=next.params?.bodyEditorFaces??[], paths=next.vector.root.children.filter(n=>String(n.id||'').startsWith('native-body-face_'));
+ if(!Array.isArray(records)||records.length!==paths.length||new Set(records.map(f=>f?.id)).size!==records.length)throw Error('Invalid authored face records');
+ for(const [i,f] of records.entries()){
+  const n=paths[i], pts=f?.points;
+  if(!exactKeys(f,['id','points','fill'])||!exactKeys(n,['tag','id','fill','d'])||n.id!==f.id||n.tag!=='path'||n.fill!==f.fill||!/^#[0-9a-fA-F]{6}$/.test(f.fill)||!Array.isArray(pts)||pts.length<3||pts.length>128||pts.some(p=>!Array.isArray(p)||p.length!==2||p.some(v=>!Number.isFinite(v)))||new Set(pts.map(p=>p.map(v=>(+v.toFixed(2)).toFixed(2)).join(','))).size!==pts.length||n.d!=='M'+pts.map(p=>p.map(v=>v.toFixed(2)).join(' ')).join('L')+'Z')throw Error('Invalid authored face');
+  validBodyGeometry(pts,owner);
+ }
+ bodyTarget(proposed).edgeWall=deep(next);
+ const errors=p=>HonroMaps.validate(p).filter(i=>i.level==='err').map(i=>JSON.stringify(i));
+ const remaining=errors(project);
+ for(const e of errors(proposed)){const i=remaining.indexOf(e);if(i<0)throw Error('BODY draft introduces a validation error');remaining.splice(i,1)}
+ if(JSON.stringify(bodyRestricted(proposed))!==JSON.stringify(bodyRestricted(project)))throw Error('Unrelated data changed');
+ return proposed;
+}
+function bodyCommit(proposed){
+ const next=bodyProject(bodyTarget(proposed).edgeWall), before=deep(project);
+ project=next;history.push({label:'BODY 암면 그리기',state:before});if(history.length>80)history.shift();
+ future=[];previewProject=null;previewCommandsKey=null;bodyPreviewKey=null;invalidateRuntime();
+ const saved=saveAutosave();renderAll();setStatus(saved?'BODY 초안 저장':autosaveFailureMessage());
+}
+function exportBodyDraft(){return JSON.stringify({kind:'honro-stage42-body-draft-v1',project:deep(project)})}
+function importBodyDraft(raw){
+ if(previewProject)throw Error('Resolve preview first');
+ const doc=typeof raw==='string'?JSON.parse(raw):raw;
+ if(doc?.kind!=='honro-stage42-body-draft-v1'||JSON.stringify(bodyRestricted(doc.project))!==JSON.stringify(bodyRestricted(project)))throw Error('Draft base differs from opened project');
+ bodyCommit(doc.project);return deep(project);
+}
 function bodyTransform(){
  const s=realStage(),e=s.elements.find(e=>e.assetId===nativeBodyAsset);
  if(s.id!==nativeBodyStage||!e||e.rotation||!Number.isFinite(e.scale)||e.scale<=0)throw Error('unsupported stage/asset transform');
@@ -51,14 +103,18 @@ function bodyControls(){
  let bar=host.querySelector('.body-controls');
  if(bar)return;
  bar=document.createElement('span');bar.className='body-controls';
- bar.innerHTML='<label> 암면 색 <input type="color" value="'+bodyFill+'"></label><button type="button">빈 면</button><button type="button">최근 작성면 편집</button><button type="button">미리보기</button><button type="button">저장</button><button type="button">취소</button>';
+ bar.innerHTML='<label> 암면 색 <input type="color" value="'+bodyFill+'"></label><button type="button">빈 면</button><button type="button">최근 작성면 편집</button><button type="button">미리보기</button><button type="button">저장</button><button type="button">취소</button><button type="button">암반 초안 내보내기</button><button type="button">암반 초안 열기</button><input type="file" accept=".json" hidden>';
  host.appendChild(bar);
  bar.querySelector('input').onchange=e=>{bodyFill=e.target.value;};
- const [start,edit,preview,apply,cancel]=bar.querySelectorAll('button');
+ const [start,edit,preview,apply,cancel,exportDraft,importDraft]=bar.querySelectorAll('button');
  start.onclick=()=>{if(!previewProject){bodyDraft=[];bodyMoving=-1;bodyEditing=null;renderStage();}};
  edit.onclick=()=>{if(previewProject)return;const f=project.library.find(a=>a.id===nativeBodyAsset)?.edgeWall?.params?.bodyEditorFaces?.at(-1);if(!f){toast('에디터로 작성한 암면이 없습니다');return;}bodyEditing=f.id;bodyFill=f.fill;bodyDraft=deep(f.points);bar.querySelector('input').value=f.fill;bodyMoving=-1;renderStage();};
  preview.onclick=bodyPreview;
- apply.onclick=()=>{if(previewProject&&previewProject===bodyPreviewKey){applyPreview();bodyPreviewKey=null;bodyDraft=[];bodyMoving=-1;bodyEditing=null;renderStage();}};
+ apply.onclick=()=>{if(previewProject&&previewProject===bodyPreviewKey){bodyCommit(previewProject);bodyPreviewKey=null;bodyDraft=[];bodyMoving=-1;bodyEditing=null;renderStage();}};
+ exportDraft.onclick=()=>download('stage42-body-draft.json',exportBodyDraft(),'application/json');
+ const input=bar.querySelector('input[type=file]');input.setAttribute('aria-label','암반 초안 파일');
+ importDraft.onclick=()=>input.click();
+ input.onchange=async()=>{try{if(input.files?.[0])importBodyDraft(await input.files[0].text())}catch(e){toast(e.message)}finally{input.value=''}};
  cancel.onclick=()=>{if(previewProject&&previewProject===bodyPreviewKey){clearPreview();bodyPreviewKey=null;}bodyDraft=[];bodyMoving=-1;bodyEditing=null;renderStage();};
 }
 function drawBodyDraft(){
@@ -81,17 +137,7 @@ function prepareTerrainBody({points,fill,id},preview){
  const users=project.stages.filter(s=>s.elements.some(e=>e.assetId===nativeBodyAsset));
  if(!owner?.edgeWall?.vector?.root?.clipPath||users.length!==1||users[0].id!==nativeBodyStage)throw Error('invalid or shared BODY');
  if(!/^#[0-9a-fA-F]{6}$/.test(fill)||!Array.isArray(points)||points.length<3||points.length>128||points.some(p=>!Array.isArray(p)||p.length!==2||p.some(n=>!Number.isFinite(n)))||new Set(points.map(p=>p.join(','))).size!==points.length)throw Error('invalid polygon');
- const [x,y,w,h]=owner.edgeWall.vector.viewBox;
- if(points.some(([a,b])=>a<x||b<y||a>x+w||b>y+h))throw Error('outside BODY viewBox');
- const cross=(a,b,c)=>(b[0]-a[0])*(c[1]-a[1])-(b[1]-a[1])*(c[0]-a[0]);
- const n=points.length;
- const area=points.reduce((s,p,i)=>s+cross([0,0],p,points[(i+1)%n]),0);
- if(Math.abs(area)<1)throw Error('degenerate polygon');
- for(let i=0;i<n;i++)for(let j=i+2;j<n;j++){
-  if(i===0&&j===n-1)continue;
-  const [a,b,c,d]=[points[i],points[(i+1)%n],points[j],points[(j+1)%n]];
-  if(cross(a,b,c)*cross(a,b,d)<0&&cross(c,d,a)*cross(c,d,b)<0)throw Error('self-intersecting polygon');
- }
+ validBodyGeometry(points,owner);
  const d='M'+points.map((p)=>p.map(n=>n.toFixed(2)).join(' ')).join('L')+'Z';
  const next=deep(owner.edgeWall);
  const children=next.vector.root.children;
@@ -99,9 +145,10 @@ function prepareTerrainBody({points,fill,id},preview){
  const rec={id:id??uid('native-body-face'),points:deep(points),fill};
  if(id!=null){const i=faces.findIndex(f=>f.id===id),j=children.findIndex(n=>n.id===id);if(i<0||j<0)throw Error('authored face not found');faces[i]=rec;children[j]={tag:'path',id:rec.id,fill,d};}
  else {faces.push(rec);children.push({tag:'path',id:rec.id,fill,d});}
- if(preview){previewCommands([{op:'asset.update',id:nativeBodyAsset,values:{edgeWall:next}}]);bodyPreviewKey=previewProject;}
- else commit('BODY 암면 그리기',()=>{owner.edgeWall=next;});
+ const scoped=bodyProject(next);
+ if(preview){previewProject=scoped;previewCommandsKey=null;bodyPreviewKey=scoped;invalidateRuntime();renderStage();}
+ else bodyCommit(scoped);
 
 }
-`+marker).replace(marker+'{',marker+'{authorTerrainBody,previewTerrainBody:p=>prepareTerrainBody(p,true),');
+`+marker).replace(marker+'{',marker+'{authorTerrainBody,exportBodyDraft,importBodyDraft,applyBodyPreview:()=>{if(!bodyPreviewKey||previewProject!==bodyPreviewKey)throw Error("No BODY preview");bodyCommit(previewProject)},previewTerrainBody:p=>prepareTerrainBody(p,true),');
 }

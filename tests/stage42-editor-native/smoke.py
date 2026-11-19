@@ -56,6 +56,28 @@ with sync_playwright() as pw:
   assert abs(verts[1][0]-225)>4 and verts[1][0]>225,'drag did not persist as an edited vertex'
   assert body(after)['vector']['clips']==body(before)['vector']['clips']
   page.screenshot(path=str(out/'05-editor-committed.png'))
+  target_id=faces(after)[-1]['id']
+  with page.expect_download(timeout=30000) as d:
+   page.get_by_role('button',name='암반 초안 내보내기',exact=True).click()
+  # Runner-local only: never include the full draft in artifact output.
+  import tempfile
+  with tempfile.TemporaryDirectory() as td:
+   draft=Path(td)/'stage42-draft.json';d.value.save_as(draft)
+   fresh=b.new_context(viewport={'width':1500,'height':1000},device_scale_factor=1).new_page()
+   fresh.goto('http://127.0.0.1:8870/HONRO_WORKSHOP.html')
+   fresh.wait_for_function('window.HonroWorkshopAPI?.getProject()?.stages.some(s=>s.id==="stage-42")',timeout=90000)
+   fresh.evaluate("HonroWorkshopAPI.selectStage('stage-42')")
+   assert fresh.evaluate(project)==before,'Fresh editor did not open the original'
+   fresh.locator('[data-tool="nativeBody"]').click()
+   with fresh.expect_file_chooser() as f:
+    fresh.get_by_role('button',name='암반 초안 열기',exact=True).click()
+   f.value.set_files(str(draft))
+   fresh.wait_for_function("""id=>HonroWorkshopAPI.getProject().library.find(x=>x.id==='act5:near:42').edgeWall.params.bodyEditorFaces?.some(f=>f.id===id)""",arg=target_id,timeout=30000)
+   assert fresh.evaluate(project)==after,'Reopened draft differs from saved editor source'
+   fresh.evaluate("""()=>{const a=HonroWorkshopAPI,e=a.queryScene().stage.elements.find(e=>e.assetId==='act5:near:42');a.setCamera({x:e.x+222*e.scale,y:e.y+612*e.scale,zoom:2});}""")
+   fresh.get_by_role('button',name='최근 작성면 편집',exact=True).click()
+   fresh.screenshot(path=str(out/'06-editor-reopened-editable.png'))
+  r['fresh_reopen']=True
   r.update(pass_=True,points=verts); r['pass']=True
  except Exception as e:
   r['error']=str(e);page.screenshot(path=str(out/'failure-editor-screen.png'));raise
