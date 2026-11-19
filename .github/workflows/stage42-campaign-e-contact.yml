@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
-          fetch-depth: 2
+          fetch-depth: 3
           persist-credentials: false
       - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
         with:
@@ -27,15 +27,20 @@ jobs:
           test "$GITHUB_REF" = refs/heads/qa/stage42-campaign-e-contact
           test "$GITHUB_SHA" = "$(git rev-parse HEAD)"
           PIN=1e043b09d4ce107e1d2dcf70fe2274dff7098476
-          test "$(git rev-parse HEAD^)" = "$PIN"
+          test "$(git rev-parse HEAD^)" = 9c71aa53138963707a5ccae44f88be813e4282e8
           Q=tests/stage42-campaign-e-contact
           printf '%s\n' .github/workflows/stage42-campaign-e-contact.yml "$Q/prepare.py" "$Q/observe.py" "$Q/verify-domain.cjs" "$Q/manifest.json" "$Q/domain-proof.json" "$Q/local-deck-grade.json" "$Q/SHA256SUMS" | sort > "$RUNNER_TEMP/allow"
-          git diff --name-only HEAD^ HEAD | sort | diff -u "$RUNNER_TEMP/allow" -
-          git diff --name-only --diff-filter=A HEAD^ HEAD | sort | diff -u "$RUNNER_TEMP/allow" -
-          echo "c28462200c3b6ec6a943988bb9f6c727adf9d68a808d9e1a5a319ca3e437421b  $Q/SHA256SUMS" | sha256sum -c -
+          git diff --name-only "$PIN" HEAD | sort | diff -u "$RUNNER_TEMP/allow" -
+          git diff --name-only --diff-filter=A "$PIN" HEAD | sort | diff -u "$RUNNER_TEMP/allow" -
+          printf '%s\n' .github/workflows/stage42-campaign-e-contact.yml "$Q/prepare.py" "$Q/SHA256SUMS" | sort > "$RUNNER_TEMP/replacement-allow"
+          git diff --name-only HEAD^ HEAD | sort | diff -u "$RUNNER_TEMP/replacement-allow" -
+          git diff --name-only --diff-filter=M HEAD^ HEAD | sort | diff -u "$RUNNER_TEMP/replacement-allow" -
+          echo "48688a8f0cfec8e7456f63105c61451b28f9cadfcf8e9a4e0f5def29d5d81219  $Q/SHA256SUMS" | sha256sum -c -
           (cd "$Q" && sha256sum -c SHA256SUMS)
-          git worktree add --detach "$RUNNER_TEMP/pinned" "$PIN"
-          python "$Q/prepare.py" "$RUNNER_TEMP/pinned" "$RUNNER_TEMP/fixture"
+          test ! -e "$RUNNER_TEMP/fixture"
+          git worktree add --detach "$RUNNER_TEMP/fixture" "$PIN"
+          python "$Q/prepare.py" "$RUNNER_TEMP/fixture"
+          sha256sum "$RUNNER_TEMP/fixture/shared/act5-world.mjs" "$RUNNER_TEMP/fixture/shared/data/act5/stage42-ground-domain.witness.mjs" > "$RUNNER_TEMP/patched-owned.sha"
       - name: Build only detached temporary fixture
         run: |
           set -euo pipefail
@@ -43,6 +48,11 @@ jobs:
           npm ci
           npm ci --prefix game
           HONRO_ACT4_RELEASE=1 HONRO_ACT5_RELEASE=1 npm run build
+          test "$(git rev-parse HEAD)" = 1e043b09d4ce107e1d2dcf70fe2274dff7098476
+          if git symbolic-ref -q HEAD; then exit 1; fi
+          sha256sum -c "$RUNNER_TEMP/patched-owned.sha"
+          git -C "$GITHUB_WORKSPACE" diff --exit-code
+          git -C "$GITHUB_WORKSPACE" diff --cached --exit-code
       - name: Actual campaign initial contact observation
         run: |
           set -euo pipefail
