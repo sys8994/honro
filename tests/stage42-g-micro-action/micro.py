@@ -17,9 +17,9 @@ READ='''()=>{const a=HonroApp,e=a.engine,b=e.b,u=e.active;const cv=document.quer
  stage:b.honroStage,origin:b.honroMapOrigin,custom:!!b.honroCustom,screen:a.screen,dialogue:!!a.dialogue,modal:a.modal.classList.contains('open'),done:!!a.done,canInput:a.canInput(),focus:document.hasFocus(),focusTag:document.activeElement?.tagName,focusEditable:!!document.activeElement?.isContentEditable,
  round:b.round,side:b.side,step:b.honroState.act5.step,phase:b.phase,shot:b.shot,selected:a.selected,charging:a.charging,power:a.power,fireDisabled:document.querySelector('#fire')?.disabled,
  ground:b.terrain.find(t=>t.id==='stage42-g-engineering-ground')?.vertices.length,world:b.honroWorldTerrain?.find(t=>t.id==='stage42-g-engineering-ground')?.vertices.length,
- active:u&&{id:u.id,x:u.x,y:u.y,h:u.h,angle:u.angle,facing:u.facing,moveLeft:u.moveLeft,acted:!!u.acted,loadout:u.loadout},
- units:b.units.map(v=>({id:v.id,side:v.side,x:v.x,y:v.y,h:v.h,hp:v.hp,maxHp:v.maxHp,dead:!!v.dead,airborne:!!v.airborne})),
- projectiles:b.projectiles.map(q=>({owner:q.owner,x:q.x,y:q.y,vx:q.vx,vy:q.vy})),canvas:!!cv&&cv.isConnected};}'''
+ active:u&&{id:u.id,x:u.x,y:u.y,h:u.h,tune:u.tune,angle:u.angle,facing:u.facing,moveLeft:u.moveLeft,acted:!!u.acted,loadout:u.loadout},
+ units:b.units.map(v=>({id:v.id,side:v.side,x:v.x,y:v.y,h:v.h,r:v.r,hp:v.hp,maxHp:v.maxHp,dead:!!v.dead,airborne:!!v.airborne})),
+ environment:{wind:b.wind,physics:b.physics,drafts:b.drafts.length,fields:b.fields.length},skill:{id:HONRO_CORE.SKILLS[a.selected]?.id,cls:HONRO_CORE.SKILLS[a.selected]?.cls,mode:HONRO_CORE.SKILLS[a.selected]?.mode,gravity:HONRO_CORE.SKILLS[a.selected]?.gravity,drag:HONRO_CORE.SKILLS[a.selected]?.drag},projectiles:b.projectiles.map(q=>({id:q.id,skill:q.skill,shot:q.shot,age:q.age,followup:!!q.followup,repeatIndex:q.repeatIndex,child:!!q.child,launchX:q.launchX,launchY:q.launchY,owner:q.owner,x:q.x,y:q.y,vx:q.vx,vy:q.vy})),canvas:!!cv&&cv.isConnected};}'''
 with sync_playwright() as pw:
  browser=pw.chromium.launch(headless=True,executable_path=os.environ.get('HONRO_CHROME') or None);context=browser.new_context(viewport={'width':1280,'height':800});page=context.new_page();errors=[]
  context.add_init_script("Storage.prototype.setItem=function(){throw Error('QA persistent storage blocked')};")
@@ -101,24 +101,73 @@ with sync_playwright() as pw:
   guests=[v for v in m['units'] if v['id'] in ('a5-gwak','a5-soldier-one','a5-soldier-two')]
   assert len(guests)==3 and all(not v['dead'] and v['x']>actor['x']+1500 for v in guests)
   result['preFire']=m;save()
-  # Exactly one Space down/up. Never retry a rejected/blocked shot.
-  pulse('Space',650)
-  seen=[];deadline=time.monotonic()+15
+  env=m['environment'];ph=env['physics'];sk=m['skill']
+  assert sk['id']=='A01' and sk['cls']=='archer' and sk['mode']=='arrow','Unexpected draw/shot type'
+  assert sk.get('gravity',1) in (None,1) and sk.get('drag',.034) in (None,.034)
+  assert env['wind']==0 and env['drafts']==0 and env['fields']==0,'Unmodelled force source'
+  assert ph['gravity']=={'x':0,'y':320} and ph['dragScale']==1 and ph['flow']=={'x':0,'y':0} and not ph['regions'] and not ph['timeline'],'Nonconstant environment'
+  assert 0<=actor['tune']<=1 and 63<=actor['angle']<=67
+  target=next(v for v in m['units'] if v['id']=='a5-foe-0')
+  assert abs(target['x']-1034.67)<.1 and abs(target['y']-1615.8852941176472)<.1 and target['h']==120 and not target['dead']
+  assert target['r']>3 and target['hp']==1451
+  # Analytic inverse of exact constant-force linear drag; no game predict/fire API.
+  rad=math.radians(actor['angle']);ox=actor['x']+42*math.cos(rad);oy=actor['y']-actor['h']*.63-42*math.sin(rad);dx=target['x']-ox;aimY=target['y']-target['h']*.5
+  def at(v,x):
+   z=1-.034*(x-ox)/(v*math.cos(rad))
+   if z<=0:return math.inf
+   t=-math.log(z)/.034;U=(1-z)/.034
+   return oy-v*math.sin(rad)*U+320*(t-U)/.034
+  lo,hi=380.,500.
+  assert at(lo,target['x'])>aimY>at(hi,target['x'])
+  for _ in range(50):
+   mid=(lo+hi)/2
+   if at(mid,target['x'])>aimY:lo=mid
+   else:hi=mid
+  speed=(lo+hi)/2;full=805*1.15943759*(1+(.5-actor['tune'])*.04);goalPower=speed/full
+  assert .4<=goalPower<=.55 and .8<=speed/480<=1.05
+  # Validate the trajectory against actual G ring, not a restored old terrain.
+  ring=page.evaluate("()=>HonroApp.engine.b.terrain.find(t=>t.id==='stage42-g-engineering-ground').vertices.map(v=>({x:v.x,y:v.y}))")
+  assert len(ring)==76
+  def top(x):
+   ys=[a['y']+(x-a['x'])/(b['x']-a['x'])*(b['y']-a['y']) for a,b in zip(ring,ring[1:]+ring[:1]) if a['x']!=b['x'] and min(a['x'],b['x'])<=x<=max(a['x'],b['x'])]
+   assert ys
+   return min(ys)
+  clear=min(top(ox+dx*i/1000)-at(speed,ox+dx*i/1000) for i in range(1001))
+  assert clear>20,'Ground clearance too small'
+  blockers=[v['id'] for v in m['units'] if not v['dead'] and v['id'] not in (actor['id'],target['id']) and ox-3<=v['x']+v['r'] and v['x']-v['r']<=target['x']]
+  assert not blockers,'Another body lies in target corridor'
+  result['prediction']={'speed':speed,'actualAngle':actor['angle'],'fullSpeed':full,'power':goalPower,'holdSeconds':speed/480,'origin':{'x':ox,'y':oy},'aimY':aimY,'minVerticalClearance':clear};save()
+  # Exactly one ordinary Space press/release. RAF only reads current charge HUD.
+  guard(read(),True);log('key',key='Space',release='read-only RAF threshold');page.keyboard.down('Space');held.add('Space')
+  try:
+   result['chargeGate']=page.evaluate("""goal=>new Promise(resolve=>{const start=performance.now();let n=0;const poll=()=>{const a=HonroApp,b=a.engine.b,u=a.engine.active;n++;const q={frames:n,elapsedMs:performance.now()-start,power:a.power,charging:a.charging,holdMs:performance.now()-a.chargeAt};if(!document.hasFocus()||a.dialogue||a.modal.classList.contains('open')||b.honroStage!==42||b.round!==1||b.honroState.act5.step!==0||b.phase!=='aim'||u.id!=='p-archer'||a.selected!=='A01')return resolve({...q,ok:false,reason:'state changed'});if(a.charging&&a.power>=goal)return resolve({...q,ok:true});if(q.elapsedMs>=1200)return resolve({...q,ok:false,reason:'charge timeout'});requestAnimationFrame(poll)};requestAnimationFrame(poll)})""",goalPower)
+  finally:
+   page.keyboard.up('Space');held.discard('Space')
+  result['postRelease']=read();save()
+  result['chargeWithinTolerance']=result['chargeGate']['ok'] and abs(result['postRelease']['power']-goalPower)<=.015
+  seen=[];result['projectileObservations']=seen;deadline=time.monotonic()+15;flightPhoto=False
   while time.monotonic()<deadline:
    q=read();guard(q)
    own=[v for v in q['projectiles'] if v.get('owner')==actor['id']]
-   if own:seen.append({'ms':round((time.monotonic()-start)*1000),'phase':q['phase'],'projectiles':own})
+   if own:
+    seen.append({'ms':round((time.monotonic()-start)*1000),'phase':q['phase'],'projectiles':own});save()
+    if not flightPhoto:flightPhoto=photo('in-flight.png');result['inFlightPng']=flightPhoto
    if seen and not own and q['phase']!='flight':break
    if q['shot']!=m['shot'] and not own and time.monotonic()>deadline-12:break
    page.wait_for_timeout(50)
   result['after']=read();result['projectileObservations']=seen;result['shotCounterChanged']=result['after']['shot']!=m['shot']
   beforeHP={v['id']:v['hp'] for v in m['units']};result['hpDelta']=[{'id':v['id'],'before':beforeHP[v['id']],'after':v['hp'],'delta':v['hp']-beforeHP[v['id']]} for v in result['after']['units'] if v['id'] in beforeHP]
-  result['completed']=bool(seen) or any(v['delta']!=0 for v in result['hpDelta'])
-  result['stopReason']='one-input shot observation finished' if result['completed'] else 'no projectile or HP evidence; no retry'
+  result['targetDamaged']=any(v['id']=='a5-foe-0' and v['delta']<0 for v in result['hpDelta'])
+  protected={v['id'] for v in m['units'] if v['side']==0 or v['id'] in ('a5-gwak','a5-soldier-one','a5-soldier-two')}
+  result['protectedHpUnchanged']=all(v['delta']==0 for v in result['hpDelta'] if v['id'] in protected)
+  result['projectileIds']=sorted({v['id'] for f in seen for v in f['projectiles']})
+  result['completed']=bool(seen) and result['targetDamaged'] and result['protectedHpUnchanged'] and result['chargeWithinTolerance']
+  result['stopReason']='one target0 damage test finished; no quest claim' if result['completed'] else 'partial or failed target0 test; no retry'
  except Exception as e:result['stopReason']=type(e).__name__+': '+str(e)
  finally:
   for key in list(held):page.keyboard.up(key)
   try:result['last']=read();result['afterPng']=photo('after.png')
   except Exception:result['captureFailed']=True
-  result['pageErrorTypes']=errors;save();context.close();browser.close()
+  result['pageErrorTypes']=errors;result['inFlightPng']=result.get('inFlightPng',False);save();context.close();browser.close()
 print(a.output/'micro.json')
+

@@ -1,9 +1,9 @@
 {
-  "classification": "one G ordinary shot after bounded teammate-clearance walking; no hit or mission claim",
+  "classification": "one measured A01 target0 damage test; no quest or escort completion",
   "branch": "qa/stage42-g-micro-action",
-  "parent": "634394c8a86e31c70976550407bb5c63a8fba113",
+  "parent": "994a300909ff9e76f5015577044c7c01b90823e3",
   "productPin": "1e043b09d4ce107e1d2dcf70fe2274dff7098476",
-  "microSha256": "af611fce4f7e85540b9b1b7b6b87e79d9d6df22ca484ce6a00ea2db04ea01b06",
+  "microSha256": "8fc6d07f5dea91dd27445d15afe80b834ee108d0f0e1c8bf7d7a03ee5e78820b",
   "inherited": {
     ".github/workflows/stage42-g-campaign-entry.yml": "4e66d7f7b127e6934896719866ae182ffa75f6fff146f84d6f4171ffcf4b15df",
     "tests/stage42-g-campaign-entry/verify-domain.cjs": "0b9639f0d2502818698c4e0ca13e216b7f39c6a56de0db0d977601bb5f9b7a87",
