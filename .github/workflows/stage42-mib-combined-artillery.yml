@@ -1,0 +1,62 @@
+name: Stage42 stock combined lookout same-target artillery
+on:
+  push:
+    branches: ['qa/stage42-mib-combined-artillery']
+    paths: ['.github/workflows/stage42-mib-combined-artillery.yml','tests/stage42-mib-combined-artillery/**']
+permissions:
+  contents: read
+jobs:
+  stock_smoke:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Confirm exact stock base and narrow QA additions
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = refs/heads/qa/stage42-mib-combined-artillery
+          test "$GITHUB_SHA" = "$(git rev-parse HEAD)"
+          test "$(git rev-parse HEAD^)" = 1e043b09d4ce107e1d2dcf70fe2274dff7098476
+          Q=tests/stage42-mib-combined-artillery
+          printf '%s\n' .github/workflows/stage42-mib-combined-artillery.yml "$Q/smoke.SHA256SUMS" "$Q/combined-artillery.py" "$Q/combined.json" | LC_ALL=C sort > "$RUNNER_TEMP/solid-allowlist"
+          git diff --name-only HEAD^ HEAD | LC_ALL=C sort | diff -u "$RUNNER_TEMP/solid-allowlist" -
+          git diff --name-only --diff-filter=A HEAD^ HEAD | LC_ALL=C sort | diff -u "$RUNNER_TEMP/solid-allowlist" -
+          echo 'a58be422fe28a626063d113793ca14e347bfafe6007fa96c0dd2add7a4c0d2c1  tests/stage42-mib-combined-artillery/smoke.SHA256SUMS' | sha256sum -c -
+          (cd "$Q" && sha256sum -c smoke.SHA256SUMS)
+      - name: Build unmodified stock Workshop
+        run: |
+          set -euo pipefail
+          npm ci
+          npm ci --prefix game
+          npm run build
+          test -e HONRO_WORKSHOP.html
+      - name: Run exact Solid import and normal Player input
+        run: |
+          set -euo pipefail
+          python -m pip install 'playwright==1.58.0'
+          export HONRO_CHROME="$(command -v google-chrome || command -v chromium)"
+          "$HONRO_CHROME" --version
+          python -m http.server 8884 --bind 127.0.0.1 &
+          pid=$!; trap 'kill "$pid" 2>/dev/null || true' EXIT
+          for i in {1..20}; do if curl -fsS -o /dev/null http://127.0.0.1:8884/HONRO_WORKSHOP.html; then break; fi; sleep 1; done
+          timeout 420s python tests/stage42-mib-combined-artillery/combined-artillery.py "$RUNNER_TEMP/stock-solid-evidence" http://127.0.0.1:8884/HONRO_WORKSHOP.html
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage42-mib-combined-artillery-evidence
+          path: |
+            ${{ runner.temp }}/stock-solid-evidence/0[1-9]-*.png
+            ${{ runner.temp }}/stock-solid-evidence/proof.json
+          if-no-files-found: warn
+          retention-days: 7
+
