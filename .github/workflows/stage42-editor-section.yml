@@ -1,0 +1,59 @@
+name: Stage42 guarded section editor browser evidence
+on:
+  push:
+    branches: ['qa/stage42-editor-section']
+    paths: ['.github/workflows/stage42-editor-section.yml', 'tests/stage42-editor-section/**']
+permissions:
+  contents: read
+jobs:
+  workshop:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      HONRO_ACT4_RELEASE: '1'
+      HONRO_ACT5_RELEASE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Build and strictly pin inputs
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = refs/heads/qa/stage42-editor-section
+          mkdir -p "$RUNNER_TEMP/stage42-editor-section"
+          npm ci
+          npm ci --prefix game
+          npm run build
+          node tests/stage42-editor-section/source-check.mjs . | tee "$RUNNER_TEMP/stage42-editor-section/source.json"
+          node tests/stage42-editor-section/prepare.mjs .
+      - name: Real Workshop section authoring
+        run: |
+          python -m pip install 'playwright==1.58.0'
+          export HONRO_CHROME="$(command -v google-chrome || command -v chromium)"
+          test -x "$HONRO_CHROME"
+          "$HONRO_CHROME" --version
+          python -m http.server 8870 --bind 127.0.0.1 &
+          pid=$!
+          trap 'kill "$pid" 2>/dev/null || true' EXIT
+          for ((i=0;i<20;i++)); do
+            if curl -fsS -o /dev/null http://127.0.0.1:8870/HONRO_WORKSHOP.html; then break; fi
+            sleep 1
+          done
+          python tests/stage42-editor-section/smoke.py "$RUNNER_TEMP/stage42-editor-section"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage42-guarded-section-browser-evidence
+          path: |
+            ${{ runner.temp }}/stage42-editor-section/*.png
+            ${{ runner.temp }}/stage42-editor-section/result.json
+            ${{ runner.temp }}/stage42-editor-section/source.json
+          if-no-files-found: warn
+          retention-days: 7

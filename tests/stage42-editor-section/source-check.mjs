@@ -1,0 +1,16 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import {createHash} from 'node:crypto';
+const base=path.resolve(process.argv[2]??'.');
+const dir=path.join(base,'web/data');
+const names=fs.readdirSync(dir).filter(x=>/^chapter-42-assets\..+\.json$/.test(x));
+if(names.length!==1)throw Error('ambiguous raw Stage 42 asset manifest');
+const list=JSON.parse(fs.readFileSync(path.join(dir,names[0]),'utf8'));
+const asset=list.find(a=>a.id==='act5:near:42');
+const v=asset.edgeWall.vector, key=v.root.clipPath;
+const sha=x=>createHash('sha256').update(JSON.stringify(x)).digest('hex');
+const body=sha([v.root,v.clips[key]]),clips=sha(v.clips);
+const guard=JSON.parse(fs.readFileSync(new URL('./visible-guard.json',import.meta.url),'utf8'));
+const result={assetManifest:names[0],assetId:asset.id,key,bodySha256:body,clipsSha256:clips,visibleGuardSha256:sha(guard)};
+if(body!=='4a413feb79ba5cabb75a8a3e204bce816548db1c80857e11a9538391625756a8'||clips!=='6784931b63ee57114f0c90810a16b886eba91d45f868a319178a4ccf4f11cedb'||result.visibleGuardSha256!=='45469a164c7633befa5a5b41777fda5b1eeb314d35b994f9f4bf23807cd60aea')throw Error('wrong raw source owner/geometry');
+console.log(JSON.stringify(result,null,2));

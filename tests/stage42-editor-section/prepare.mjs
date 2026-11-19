@@ -1,0 +1,10 @@
+import fs from 'node:fs';
+import {createHash} from 'node:crypto';
+import path from 'node:path';
+import {installEditor} from './patch.mjs';
+const root=process.argv[2];
+if(!root)throw Error('usage: node prepare.mjs <separate disposable fixture root>');
+const f=path.resolve(root,'web/runtime/workshop-app.489f733634454986.js');
+const original=fs.readFileSync(f);
+if(createHash('sha256').update(original).digest('hex')!=='489f733634454986a5f4cd94468e7b7393a18508ee1e02e1ce0cad77ab8b324f')throw Error('unexpected official fixture; refusing to patch');
+fs.writeFileSync(f,installEditor(original.toString('utf8')));
