@@ -26,7 +26,7 @@ function qaEastInstall(){
   if(!canvas||project.activeStageId!=='stage-42')throw Error('먼저 5막 2장을 여세요');
   qaEastSession=mountEastCapWorkshopTool({canvas,toolbar:ui,getProject:()=>project,getCamera:()=>stageView,isActive:()=>currentTab==='stage',
    preview:(prev,next)=>{if(project!==prev)throw Error('Stale Stage42 preview');previewProject=next;qaEastPreview=next;previewCommandsKey=null;invalidateRuntime();renderStage();},
-   commit:qaEastSetProject,
+   commit:(_label,prev,next)=>qaEastSetProject(prev,next),
    onScratch:(s,mode)=>{
     window.HonroEastCapQA={state:s,mode};document.documentElement.dataset.qaEastMode=mode;
     if(!qaEastPreview)renderStage();

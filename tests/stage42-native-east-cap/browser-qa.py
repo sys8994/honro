@@ -134,9 +134,15 @@ with sync_playwright() as pw:
   page.screenshot(path=str(out/'02-native-vertex-dragged.png'))
   click_button(page,'끝마감 미리보기');assert read(page)==original
   page.screenshot(path=str(out/'03-native-preview.png'))
-  click_button(page,'끝마감 저장');r['save_toast']=page.locator('#toast').text_content()
-  edited=read(page);assert edited['cap']['design']==post
+  previous_status=page.locator('html').get_attribute('data-qa-east-status')
+  click_button(page,'끝마감 저장')
+  page.wait_for_function("old=>document.documentElement.dataset.qaEastStatus!=null&&document.documentElement.dataset.qaEastStatus!==old",arg=previous_status,timeout=30000)
+  r['save_toast']=page.locator('#toast').text_content()
+  r['save_status']=page.locator('html').get_attribute('data-qa-east-status')
+  assert r['save_status']=='끝마감 초안을 저장했습니다.', ('Editor Save rejected',r['save_status'],r['save_toast'])
+  edited=read(page);assert edited['cap'] is not None and edited['cap']['design']==post
   assert all(edited[k]==original[k] for k in ('old','clip','protected'))
+  checkpoint('ui-draft-committed')
   with page.expect_download(timeout=30000) as a:click_button(page,'끝마감 내보내기')
   with tempfile.TemporaryDirectory() as t:
    draft=Path(t)/'temporary-east-cap.json';a.value.save_as(draft)
