@@ -25,11 +25,9 @@ jobs:
       - name: Render pinned before then candidate with identical cameras
         run: |
           mkdir -p /tmp/stage32-apron-evidence/{before,after}
-          cp shared/act4-handoff-art.mjs /tmp/candidate.mjs
           git show 1e043b09d4ce107e1d2dcf70fe2274dff7098476:shared/act4-handoff-art.mjs > shared/act4-handoff-art.mjs
           HONRO_NATIVE_OUT=/tmp/stage32-apron-evidence/before node --expose-gc tools/stage32-current-apron/capture.mjs 32
-          cp /tmp/candidate.mjs shared/act4-handoff-art.mjs
-          HONRO_NATIVE_OUT=/tmp/stage32-apron-evidence/after node --expose-gc tools/stage32-current-apron/capture.mjs 32
+          HONRO_APRON_PROBE=1 HONRO_NATIVE_OUT=/tmp/stage32-apron-evidence/after node --expose-gc tools/stage32-current-apron/capture.mjs 32
           node tools/stage32-current-apron/compare.mjs /tmp/stage32-apron-evidence
       - uses: actions/upload-artifact@v4
         if: always()

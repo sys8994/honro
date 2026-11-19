@@ -45,7 +45,7 @@ function stage35Bedrock(stage,source){
 function joinPortGround(asset){
  const vector=structuredClone(asset.vector);
  vector.clips={...vector.clips,portApron:[
-  'M-96-96H3480V1740L3312 1780 3176 1860 3035 1900 2880 1880 2720 1950 2584 1970 2395 1910 2180 1960 2004 1970 1844 1910 1636 1870 1460 1940 1296 1920 1100 1840 946 1900 728 1860 541 1800 368 1780 190 1760 -96 1740Z',
+  'M-96-96H3480V1740L3312 1780 3176 1905 3035 1966 2880 1988 2720 2095 2584 2128 2395 2112 2180 2230 2004 2245 1844 2184 1636 2154 1460 2200 1296 2180 1100 2112 946 2156 728 2090 541 2026 368 1990 190 1900 -96 1850Z',
  ]};
  vector.root={tag:'g',clipPath:'portApron',children:[vector.root]};
  return {...asset,id:assetId(32,'body-joined'),vector};
@@ -143,4 +143,3 @@ export async function applyAct4HandoffArt(project,{stages:enabled=Object.keys(ad
  for(const {assets} of entries)library.push(...assets);
  return {...project,stages:entries.map(({stage})=>stage),library};
 }
-
