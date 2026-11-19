@@ -1,5 +1,5 @@
 """Review-only proposal: two fresh native P6r3/A10 fixtures, one ordinary shot each."""
-import hashlib,json,math,os,sys,time
+import hashlib,json,math,os,sys,time,traceback
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 P=Path(__file__).parent;out=Path(sys.argv[1]);assert not out.exists();out.mkdir(parents=True)
@@ -26,11 +26,15 @@ with sync_playwright() as pw:
  for arm in ['B','M']:
   row={'passed':False,'inputs':[]};proof['arms'][arm]=row;save();ctx=browser.new_context(viewport={'width':1500,'height':900});page=ctx.new_page();held=set();errors=[];page.on('pageerror',lambda e:errors.append(type(e).__name__))
   def read():return page.evaluate(READ)
+  def snapshot(q):
+   return {k:q.get(k) for k in ['ready','focus','focusTag','dialogue','modal','round','phase','shot','selected','unit']} | {'terrainIds':[t['id'] for t in q.get('terrain',[])],'pageErrorTypes':list(errors)}
   def guard(q,act=True):
-   assert not errors and not q['dialogue'] and not q['modal'] and q['focus'] and q['focusTag'] not in ['BUTTON','INPUT','TEXTAREA','SELECT']
-   assert q['unit']['id']=='p6-r3-qa-scout' and q['round']==1 and q['unit']['hp']==365
-   if act:assert q['ready'] and q['phase']=='aim'
-   assert len(q['terrain'])==4 and {t['id']:t['vertices'] for t in q['terrain'] if t['id']!=tid}==wanted
+   checks={'noPageErrors':not errors,'noDialogue':not q['dialogue'],'noModal':not q['modal'],'frameFocused':q['focus'],'safeFocusTag':q['focusTag'] not in ['BUTTON','INPUT','TEXTAREA','SELECT'],
+    'sameActor':q['unit']['id']=='p6-r3-qa-scout','round1':q['round']==1,'unchangedActorHp':q['unit']['hp']==365,
+    'fourTerrain':len(q['terrain'])==4,'exactThreeSolids':{t['id']:t['vertices'] for t in q['terrain'] if t['id']!=tid}==wanted}
+   if act:checks.update(ready=q['ready'],aimPhase=q['phase']=='aim')
+   row.setdefault('guardSnapshots',[]).append({'checks':checks,'state':snapshot(q),'act':act});save()
+   assert all(checks.values()),'Guard failed: '+','.join(k for k,v in checks.items() if not v)
   def photo(label):
    q=read()
    if not q['dialogue'] and not q['modal']:page.screenshot(path=str(out/(arm+'-'+label+'.png')));return True
@@ -60,7 +64,15 @@ with sync_playwright() as pw:
    with page.expect_file_chooser() as fc:page.locator('#importBtn').click()
    fc.value.set_files(dict(name='synthetic-p6r3-tactical.honro-map.json',mimeType='application/json',buffer=json.dumps(data).encode()))
    page.wait_for_function("HonroWorkshopAPI.queryScene().stage.id==='qa-p6r3-tactical'")
-   page.locator('[data-tab=play]').click();page.wait_for_function('HonroWorkshopAPI.getPlayApp()?.canInput()',timeout=45000);page.locator('#runtimeFrame').evaluate('f=>f.contentWindow.focus()')
+   page.locator('[data-tab=play]').click();page.wait_for_function('!!HonroWorkshopAPI.getPlayApp()?.engine',timeout=45000)
+   row['preFocus']=snapshot(read());save()
+   page.bring_to_front()
+   page.locator('#runtimeFrame').evaluate('f=>f.contentWindow.focus()')
+   row['postFocus']=snapshot(read());save()
+   # Serial live RAF observations only: no changing phase, actor, geometry or readiness.
+   row['initialReadiness']=page.evaluate("""()=>new Promise(resolve=>{const start=performance.now();let stable=0,total=0,last=null;function poll(){const a=HonroWorkshopAPI.getPlayApp(),e=a?.engine,b=e?.b,u=e?.active,w=a?.scene?.canvas?.ownerDocument?.defaultView;total++;last={ready:!!a?.canInput(),focus:!!w?.document.hasFocus(),focusTag:w?.document.activeElement?.tagName,dialogue:!!a?.dialogue,modal:!!a?.modal.classList.contains('open'),round:b?.round,phase:b?.phase,actor:u?.id,hp:u?.hp,tune:u?.tune,grounded:!!u&&e.grounded(u),support:u?e.contactSurface(u.x,u.y-4,u.y+4)?.t.id:null};const ok=last.ready&&last.focus&&!['BUTTON','INPUT','TEXTAREA','SELECT'].includes(last.focusTag)&&!last.dialogue&&!last.modal&&last.round===1&&last.phase==='aim'&&last.actor==='p6-r3-qa-scout'&&last.hp===365&&last.tune===.5&&last.grounded&&last.support==='SupplyBasin';stable=ok?stable+1:0;if(stable>=8)return resolve({ok:true,stable,total,elapsedMs:performance.now()-start,last});if(performance.now()-start>=15000)return resolve({ok:false,stable,total,elapsedMs:performance.now()-start,last});requestAnimationFrame(poll)}requestAnimationFrame(poll)})""")
+   save();assert row['initialReadiness']['ok'],'Initial readiness/focus did not stabilize'
+   row['preFirstGuard']=snapshot(read());save()
    q=read();guard(q);assert q['unit']['tune']==.5 and q['unit']['grounded'] and q['unit']['support']=='SupplyBasin'
    row['entry']=q;save();walk(599);q=read();guard(q);assert 598<=q['unit']['x']<=614 and q['unit']['support']=='SupplyBasin' and q['unit']['move']>180
    if arm=='M':
@@ -110,10 +122,14 @@ with sync_playwright() as pw:
    ev=row['after']['observer']['events'];row['actualBlockOwners']=sorted({v['target'] for v in ev if v.get('phase')=='block' and v.get('target')})
    row['timingValid']=row['chargeGate']['ok'] and abs(row['release']['power']-power)<=.012
    row['passed']=row['timingValid'] and row['after']['unit']['hp']==365 and row['after']['shot']==1 and (('RescueOverhang' in row['actualBlockOwners'] and row['targetDamage']==0) if arm=='B' else (tid in row['actualBlockOwners'] and row['targetDamage']>0))
-  except Exception as e:row['error']=type(e).__name__+': '+str(e)
+  except Exception as e:
+   row['error']=type(e).__name__+': '+str(e)
+   row['traceback']=[{'file':Path(f.filename).name,'line':f.lineno,'function':f.name} for f in traceback.extract_tb(e.__traceback__) if Path(f.filename).name=='tactical.py']
+   save()
   finally:
    for key in list(held):page.keyboard.up(key)
    try:row['last']=read();photo('after');page.evaluate('()=>window.__tacticalObs?.restore?.()')
    except Exception:row['captureFailed']=True
    row['pageErrors']=errors;save();ctx.close()
  proof['passed']=all(proof['arms'][k]['passed'] for k in ['B','M']);save();browser.close()
+
