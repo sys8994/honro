@@ -43,7 +43,18 @@ async function capture(id,runtimeSha256,variant,view){
  const p=globalThis.PROBE,assert=(v,m)=>{if(!v)throw Error(m);};
  try{
   assert(devicePixelRatio===1,'DPR must be 1');
-  const project=HONRO_PROJECT,stage=project.stages.find(s=>s.metadata?.stageId===id);
+  const originalProject=HONRO_PROJECT, project=structuredClone(originalProject),stage=project.stages.find(s=>s.metadata?.stageId===id);
+  const originalStage=JSON.stringify(stage);
+  const cap=project.library.find(a=>a.id==='act4-handoff:38:cave-contact');
+  assert(cap&&cap.vector.root.transform.join(',')==='4.5,0,0,4.5,0,0','Contact source registration changed');
+  if(variant==='candidate'){
+   // One source-space shelf only. Original 1060..1073.333, y567.778 top and 4-unit cap remain untouched.
+   const body=project.library.find(a=>a.id==='approved38:body-timber-smooth-v1'),colors=[];
+   const walk=n=>{if(/^#[0-9a-f]{6}$/i.test(n.fill||'')){const s=n.fill;const rgb=[1,3,5].map(i=>parseInt(s.slice(i,i+2),16));if(rgb[2]>rgb[0]*1.2&&rgb[2]>rgb[1]&&rgb[2]<180)colors.push({s,d:rgb.reduce((v,n,i)=>v+(n-[28,58,103][i])**2,0)});}for(const n2 of n.children||[])walk(n2);};walk(body.vector.root);
+   colors.sort((a,b)=>a.d-b.d);assert(colors.length,'No existing blue rock palette');
+   cap.vector.root.children.push({tag:'path',d:'M1060 571.778L1073.333 571.778L1072 575.5L1068 580L1063 576Z',fill:colors[0].s,stroke:'none',opacity:1});
+  }
+  assert(JSON.stringify(stage)===originalStage,'Stage or collision changed');
   assert(stage,'Missing production stage');
   HonroMaps.compile(stage,project); // Match Native setup order.
   const b=[38].includes(id)?HonroMaps.createBattle(stage,project,HonroProfileStore.fresh()):HonroMaps.createBattle(stage,project);HonroStageRules.sanitizeStageBattle(b);
@@ -85,7 +96,7 @@ async function capture(id,runtimeSha256,variant,view){
  }catch(e){publishProbe({ok:false,stage:id,error:String(e.stack||e),...p});}
 }
 const script=s=>'<script>'+s.replace(/<\/script/gi,'<\\/script')+'</script>';
-for(const id of stages)for(const variant of ['integrated'])for(const view of ['crest','middleRoute','junction','rescue']){
+for(const id of stages)for(const variant of ['control','candidate'])for(const view of ['rescue']){
  const stageRuntime=[38].includes(id)?runtime+'\n;\n'+act4Extra.join('\n;\n'):runtime;
  const stageRuntimeSha256=createHash('sha256').update(stageRuntime).digest('hex');
  const html='<!doctype html><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src \'none\'; script-src \'unsafe-inline\'; style-src \'unsafe-inline\'; img-src data:; font-src data:; connect-src \'none\'"><title>Isolated production Scene diagnostic</title><style>body{margin:0}canvas{width:1331px;height:763px}</style><canvas id="scene"></canvas><pre id="result">pending</pre>'+script('('+bootstrap.toString()+')('+id+');')+script(stageRuntime)+script('('+capture.toString()+')('+id+','+JSON.stringify(stageRuntimeSha256)+','+JSON.stringify(variant)+','+JSON.stringify(view)+');');

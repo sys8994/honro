@@ -20,8 +20,8 @@ jobs:
           test "$(git merge-base HEAD 1e043b09d4ce107e1d2dcf70fe2274dff7098476)" = 1e043b09d4ce107e1d2dcf70fe2274dff7098476
           git diff --name-status 1e043b09d4ce107e1d2dcf70fe2274dff7098476 HEAD > /tmp/diff
           cat /tmp/diff
-          test "$(wc -l < /tmp/diff)" = 3
-          if grep -vE '^A[[:space:]]+(tests/stage38-stock-contact-fixture.mjs|tests/stage38-stock-contact-extract.mjs|.github/workflows/stage38-stock-contact.yml)$' /tmp/diff; then exit 1; fi
+          test "$(wc -l < /tmp/diff)" = 4
+          if grep -vE '^A[[:space:]]+(tests/stage38-stock-contact-fixture.mjs|tests/stage38-stock-contact-extract.mjs|tests/stage38-rescue-pair.mjs|.github/workflows/stage38-stock-contact.yml)$' /tmp/diff; then exit 1; fi
       - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
         with:
           node-version: '22'
@@ -34,11 +34,12 @@ jobs:
           mkdir -p "$RUNNER_TEMP/evidence"
           git rev-parse HEAD > "$RUNNER_TEMP/evidence/qa-head.txt"
           browser=$(command -v google-chrome || command -v chromium)
-          for view in crest middleRoute junction rescue; do
-            name="stage38-integrated-$view"
+          for view in control candidate; do
+            name="stage38-$view-rescue"
             timeout 300s "$browser" --headless --no-first-run --no-default-browser-check --force-device-scale-factor=1 --virtual-time-budget=60000 --user-data-dir="$RUNNER_TEMP/profile-$view" --dump-dom "file://$RUNNER_TEMP/fixtures/$name.html" > "$RUNNER_TEMP/$name.html"
             node tests/stage38-stock-contact-extract.mjs "$RUNNER_TEMP/$name.html" "$RUNNER_TEMP/evidence" "$name"
           done
+      - run: node tests/stage38-rescue-pair.mjs "$RUNNER_TEMP/evidence"
       - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
         if: always()
         with:
