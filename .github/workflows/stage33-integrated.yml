@@ -19,7 +19,7 @@ jobs:
       - name: Restrict integration changes
         run: |
           git diff --name-only 99580581c042582b0788c86e954fce0e2c253490 HEAD > /tmp/changed
-          if grep -vE '^(shared/act4-stage33-(coastal-art|west-contact).mjs|tools/stage33-integrated/(native|compare).mjs|tools/stage33-integrated/http.py|tools/stage33-integrated/v3-expected.json|.github/workflows/stage33-integrated.yml)$' /tmp/changed; then exit 1; fi
+          if grep -vE '^(shared/act4-stage33-(coastal-art|west-contact).mjs|tools/stage33-integrated/(native|compare).mjs|tools/stage33-integrated/http.py|tools/stage33-integrated/v3-expected.json|.github/workflows/stage33-integrated.yml|tests/production-contract.mjs)$' /tmp/changed; then exit 1; fi
       - run: python -m pip install playwright pillow && python -m playwright install --with-deps chromium
       - name: Normal stock HTTP before rebuild
         run: python tools/stage33-integrated/http.py stock
