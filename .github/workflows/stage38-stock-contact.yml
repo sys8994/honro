@@ -1,7 +1,7 @@
 name: Stage38 stock contact diagnostic
 on:
   push:
-    branches: ['qa/stage38-contact-material-partition-20261120']
+    branches: ['qa/stage38-shelf-ownership-20261120']
 permissions:
   contents: read
 jobs:
@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
-          fetch-depth: 10
+          fetch-depth: 14
       - name: Exact add-only gate
         run: |
           test "$(git merge-base HEAD 1e043b09d4ce107e1d2dcf70fe2274dff7098476)" = 1e043b09d4ce107e1d2dcf70fe2274dff7098476
