@@ -1,0 +1,9 @@
+{
+ "receiptParent":"44495932218 exact verified west multi-face v2; inherited 11 records unchanged",
+ "add":[
+  {"role":"west-open-bay-knee-crosspiece","owner":"upper-west-post-2450","parents":["upper-flat-main-worn-timber","mid-timber-north-post"],"layer":"structural-back before existing timber skin","fill":"#4c423a","points":[[2340,1479],[2370,1489],[2464,1577],[2467,1612],[2434,1603],[2361,1530],[2342,1501]]},
+  {"role":"dock-bay-short-saddle","owner":"upper-west-post-3260","parents":["upper-flat-main-worn-timber","dock-timber-south-post"],"layer":"structural-back before existing timber skin","fill":"#53483e","points":[[3200,1490],[3298,1489],[3300,1507],[3280,1530],[3240,1535],[3210,1522]]}
+ ],
+ "doNotChange":"Exact original stock rail, west-east dock at [4030,1339]/[4030,1416], existing 11 face geometries, east and lower collider, pinch below stock V, actor z-order, gate collision and portal. Mounted only in disposable adapter, one owner, two appended roles, no world yaw or asset import.",
+ "guard":"Prevent x from escaping per-role exact min/max; compare incremental 2D occupancy against current 11 face union in world units; limit union additions to local tested upper bay x2340–2467 y1479–1612 and x3200–3300 y1489–1535, never below y1612. Positive substantial seat intersection with both named native parents; no collider or front actor overlay. No horizontal exterior top outside tooth of small shoulder. Runtime must verify visibility because compiled art materials retain their original overlap rules."
+}
