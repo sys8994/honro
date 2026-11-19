@@ -1,0 +1,136 @@
+name: Stage42 native silhouette and right contact QA
+on:
+  push:
+    branches: ['qa/stage42-macro-contact']
+    paths: ['.github/workflows/stage42-macro-contact.yml', 'tests/stage42-macro-contact/**']
+permissions:
+  contents: read
+jobs:
+  isolated:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      HONRO_ACT4_RELEASE: '1'
+      HONRO_ACT5_RELEASE: '1'
+      HONRO_FULL42_WORKSHOP_LOCAL: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 4
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Verify patch scope and prepare two disposable runtime copies
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = refs/heads/qa/stage42-macro-contact
+          test "$GITHUB_SHA" = "$(git rev-parse HEAD)"
+          test "$(git rev-parse HEAD^)" = 0b6c3f603410a069a5a24b36b4031d9dd902e90f
+          printf '%s\n' .github/workflows/stage42-macro-contact.yml tests/stage42-macro-contact/macro-right-detail-itinerary.json tests/stage42-macro-contact/macro-right-full-itinerary.json > "$RUNNER_TEMP/macro-contact-allowlist.txt"
+          git diff --name-only HEAD^ HEAD | diff -u "$RUNNER_TEMP/macro-contact-allowlist.txt" -
+          T=tests/stage42-full-native-workshop
+          N=tests/stage42-macro-contact
+          echo "a4ef814abb314e4767f95096e769405232d46be1561044f95ff0d2ec582dc510  $T/full-itinerary.json" | sha256sum -c -
+          echo "2a9127bc2394378eb60f6fbfca2e31cff25afa8108bde67fb92b9e5bb36399bd  $T/detail-itinerary.json" | sha256sum -c -
+          echo "041cbf05d49aa2f6722ab87938e91e60eb30650bcec2b7b47d1f1fbfdd196abc  $T/review-cameras.json" | sha256sum -c -
+          echo "d9f3e9448293b3a15fb4cfe3cb0ce98b909a9937df44f304e5a3778572b406da  $N/macro-right-detail-itinerary.json" | sha256sum -c -
+          echo "dcda5ed23b55ace457dd7b0d8c82147d9481e3dd51a8aa16a8db2fedf4d4e02f  $N/macro-right-full-itinerary.json" | sha256sum -c -
+          node "$T/test.mjs"
+          npm ci
+          npm ci --prefix game
+          npm run build
+          export ROOT="$RUNNER_TEMP/stage42-macro-contact"
+          python - <<'PY'
+          from pathlib import Path
+          import os, shutil
+          root=Path(os.environ['ROOT'])
+          inherited=Path('tests/stage42-full-native-workshop')
+          candidate=Path('tests/stage42-macro-contact')
+          for arm in ['baseline','candidate']:
+             d=root/arm
+             shutil.copytree(inherited,d/'qa')
+             shutil.copytree('web',d/'build'/'web')
+             for entry in ['HONRO_WORKSHOP.html','HONRO.html']:
+                shutil.copyfile(entry,d/'build'/entry)
+          q=root/'candidate'/'qa'
+          for kind in ['full','detail']:
+             shutil.copyfile(candidate/f'macro-right-{kind}-itinerary.json',q/f'{kind}-itinerary.json')
+          old='6adcdaaac1d3e85b0a837680e9263ca9a72909fef96f872b9d6b85beedf580a3'
+          new='d6eaa460fc02c79a90bc9d62ab9423c0b1826523117b6cc56cd9c99003a3d860'
+          for name in ['pack-detail.mjs','browser-detail.py']:
+             f=q/name;s=f.read_text();assert s.count(old)==1,name
+             f.write_text(s.replace(old,new))
+          PY
+          for arm in baseline candidate; do
+            q="$ROOT/$arm/qa"; b="$ROOT/$arm/build"
+            node "$q/prepare.mjs" "$b"
+            HONRO_FULL_DETAIL_WORKSHOP_QA=1 HONRO_FULL_DISPOSABLE_SHA256=15b93ae4bff4f9367ec99b18e85b515109d871f53a70bfa5cb1129f02bd085f2 node "$q/prepare-detail.mjs" "$b"
+            node --check "$b/web/runtime/workshop-app.489f733634454986.js"
+          done
+      - name: Real native pointer redraw and exact matched-camera evidence
+        run: |
+          set -euo pipefail
+          python -m pip install 'playwright==1.58.0' 'Pillow==12.0.0'
+          export HONRO_CHROME="$(command -v google-chrome || command -v chromium)"
+          test -x "$HONRO_CHROME"
+          "$HONRO_CHROME" --version
+          export ROOT="$RUNNER_TEMP/stage42-macro-contact"
+          export E="$RUNNER_TEMP/stage42-macro-contact-evidence"
+          mkdir -p "$E/baseline" "$E/candidate"
+          trap 'jobs -pr | xargs -r kill 2>/dev/null || true' EXIT
+          for arm in baseline candidate; do
+            q="$ROOT/$arm/qa"; b="$ROOT/$arm/build"
+            case "$arm" in baseline) port=8870;; candidate) port=8871;; esac
+            export HONRO_FULL42_URL="http://127.0.0.1:$port/HONRO_WORKSHOP.html"
+            export HONRO_FULL42_ARTIST_ITINERARY="$q/full-itinerary.json"
+            python -m http.server "$port" --bind 127.0.0.1 --directory "$b" &
+            for ((i=0;i<20;i++)); do
+              if curl -fsS -o /dev/null "$HONRO_FULL42_URL"; then break; fi
+              sleep 1
+            done
+            if timeout 600s python "$q/browser-detail.py" "$E/$arm"; then rc=0; else rc=$?; fi
+            echo "$rc" > "$ROOT/$arm/status"
+          done
+          python - <<'PY'
+          from pathlib import Path
+          import json, os
+          root=Path(os.environ['ROOT']);e=Path(os.environ['E'])
+          expected={
+              'baseline': {'scope_save':'6adcdaaac1d3e85b0a837680e9263ca9a72909fef96f872b9d6b85beedf580a3','detail_manual_save':'f88f26fd857fddd55f700de35f761185b1864c0499cb97effba1b1223d15387e'},
+              'candidate':{'scope_save':'d6eaa460fc02c79a90bc9d62ab9423c0b1826523117b6cc56cd9c99003a3d860','detail_manual_save':'cc7992d6adc7085dfa6637469daba55f592e33b8dbd7d958909803e1850e3b28'}}
+          report={'scope':'Genuine blank pointer redraw; ART ONLY; no gate/C01/physics changes or real play claims','expected':expected,'arms':{},'violations':[]}
+          problems=report['violations']
+          refs={}
+          for arm in expected:
+             path=e/arm/'result.json'
+             result=json.loads(path.read_text()) if path.is_file() else {}
+             rc=int((root/arm/'status').read_text())
+             if rc or not result.get('pass'):
+                problems.append(f'{arm}: real UI did not pass (rc={rc}, step={result.get("step")}, error={result.get("error")})')
+             actual={key:result.get(key,{}).get('sha256') for key in expected[arm]}
+             for key,pin in expected[arm].items():
+                if actual[key]!=pin:problems.append(f'{arm}/{key}: EXPECTED {pin} OBSERVED {actual[key]}; exact pin divergence, no silent tolerance')
+             report['arms'][arm]={'exit':rc,'observed':actual,'step':result.get('step'),'clicks':result.get('click_count'),'detailCount':result.get('full_detail_count')}
+             refs[arm]={name:r.get('actual') for name,r in result.get('detail_frames',{}).items()}
+          if not refs['baseline'] or refs['baseline']!=refs['candidate']:
+             problems.append('Baseline and candidate true detail frames did not use identical cameras')
+          report['matched_cameras']=refs['baseline'] if not problems else None
+          report['pass']=not problems
+          (e/'result.json').write_text(json.dumps(report,indent=2)+'\n')
+          if problems:raise SystemExit('\n'.join(problems))
+          PY
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage42-macro-contact-browser-evidence
+          path: |
+            ${{ runner.temp }}/stage42-macro-contact-evidence/result.json
+            ${{ runner.temp }}/stage42-macro-contact-evidence/baseline/*.png
+            ${{ runner.temp }}/stage42-macro-contact-evidence/candidate/*.png
+          if-no-files-found: warn
+          retention-days: 7
