@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
-          fetch-depth: 2
+          fetch-depth: 3
           persist-credentials: false
       - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
         with:
@@ -26,12 +26,13 @@ jobs:
           set -euo pipefail
           test "$GITHUB_REF" = refs/heads/qa/stage42-playable-depth-solid
           test "$GITHUB_SHA" = "$(git rev-parse HEAD)"
-          test "$(git rev-parse HEAD^)" = 1e043b09d4ce107e1d2dcf70fe2274dff7098476
+          test "$(git rev-parse HEAD^)" = 37ab9de9cf64599e90cdca2f0aa3cccc096ae62c
+          test "$(git rev-parse HEAD^^)" = 1e043b09d4ce107e1d2dcf70fe2274dff7098476
           Q=tests/stage42-playable-depth-solid
           printf '%s\n' .github/workflows/stage42-playable-depth-solid.yml "$Q/smoke.SHA256SUMS" "$Q/playable-depth.py" | LC_ALL=C sort > "$RUNNER_TEMP/solid-allowlist"
           git diff --name-only HEAD^ HEAD | LC_ALL=C sort | diff -u "$RUNNER_TEMP/solid-allowlist" -
-          git diff --name-only --diff-filter=A HEAD^ HEAD | LC_ALL=C sort | diff -u "$RUNNER_TEMP/solid-allowlist" -
-          echo 'd1c6e9675dea4d1691edd516de908708c0fd883c0444599b9be9c65952dab9d5  tests/stage42-playable-depth-solid/smoke.SHA256SUMS' | sha256sum -c -
+          git diff --name-only --diff-filter=M HEAD^ HEAD | LC_ALL=C sort | diff -u "$RUNNER_TEMP/solid-allowlist" -
+          echo 'b8f5da51b150129a5de7441d2e9315b7e315a3701b799c1634a61e1c95b44331  tests/stage42-playable-depth-solid/smoke.SHA256SUMS' | sha256sum -c -
           (cd "$Q" && sha256sum -c smoke.SHA256SUMS)
       - name: Build unmodified stock Workshop
         run: |
@@ -58,5 +59,6 @@ jobs:
           path: |
             ${{ runner.temp }}/stock-solid-evidence/0[1-9]-*.png
             ${{ runner.temp }}/stock-solid-evidence/proof.json
+            ${{ runner.temp }}/stock-solid-evidence/trace-*.json
           if-no-files-found: warn
           retention-days: 7

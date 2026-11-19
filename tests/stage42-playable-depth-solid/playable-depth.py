@@ -149,7 +149,7 @@ with sync_playwright() as pw:
     assert live==collider,'Real play terrain drifted'
     state=lambda:t.evaluate("""()=>{const a=HonroWorkshopAPI.getPlayApp(),e=a.engine,u=e.active,b=e.b;
       return {id:u.id,x:u.x,y:u.y,h:u.h,side:b.side,round:b.round,phase:b.phase,move:u.moveLeft,
-       grounding:e.grounded(u),jumping:!!u.jumping,vy:u.vy,ready:a.canInput(),
+       grounding:e.grounded(u),jumping:!!u.jumping,airborne:!!u.airborne,vx:u.vx,vy:u.vy,walkSpeed:u.walkSpeed,ready:a.canInput(),
        support:e.contactSurface(u.x,u.y-4,u.y+4)?.t.id??null,
        camera:{x:a.scene.x,y:a.scene.y,z:a.scene.scale}};
     }""")
@@ -184,25 +184,63 @@ with sync_playwright() as pw:
             t.keyboard.press('KeyF')
             t.wait_for_function("""r=>{const a=HonroWorkshopAPI.getPlayApp();return a.canInput()&&a.engine.b.round>r}""",arg=end['round'],timeout=13000)
         raise AssertionError(('Round budget for approach',x,state()))
-    def jump_to(label,sr,tr,launch,edge,landing_direction,ceiling_y):
+    def start_trace(label):
+        t.evaluate("""label=>{
+          let frames=[];const info=window.__nativeTraj={label,frames,closed:false};
+          const start=performance.now();
+          function f(now){
+            if(info.closed||info!==window.__nativeTraj||now-start>4500||frames.length>=300)return;
+            const a=HonroWorkshopAPI.getPlayApp(),e=a.engine,u=e.active;
+            frames.push({ms:+(now-start).toFixed(2),x:u.x,y:u.y,vx:u.vx,vy:u.vy,
+              move:u.moveLeft,jump:!!u.jumping,airborne:!!u.airborne,grounded:e.grounded(u),
+              support:e.contactSurface(u.x,u.y-4,u.y+4)?.t.id??null,
+              keys:[a.keys.has('KeyA'),a.keys.has('KeyD'),a.keys.has('ControlLeft')]});
+            requestAnimationFrame(f);
+          }requestAnimationFrame(f);
+        }""",label)
+    def end_trace(label,edge,y,d):
+        frames=t.evaluate("""()=>{const t=window.__nativeTraj;if(!t)return [];t.closed=true;return t.frames}""")
+        first_move=next((f for f in frames if f['keys'][0 if d<0 else 1]),None)
+        crossing=next((f for f in frames if (f['x']-edge)*d>=0),None)
+        apex=min((f for f in frames if f['jump']),key=lambda f:f['y'],default=None)
+        below=next((f for f in frames if f['jump'] and f['vy']>0 and f['y']>=y),None)
+        wall_candidate=next((f for f in frames if f['jump'] and f['vy']>0 and abs(f['x']-edge)<10 and f['y']>y+2),None)
+        report('trace-'+label,rows=len(frames),edge=edge,targetY=y,lateralStart=first_move,
+               firstCrossing=crossing,measuredApex=apex,firstBelowLipOnDescent=below,
+               sideProximityCandidate=wall_candidate)
+        (out/('trace-'+label+'.json')).write_text(json.dumps({'measuredOnly':True,'samples':frames},indent=2))
+    def jump_to(label,sr,tr,launch,edge,landing_direction,ceiling_y,early=False):
         move_to(launch)
         cur=verified(label+'-outside-start',sr)
-        assert (edge-cur['x'])*landing_direction>24
+        assert (edge-cur['x'])*landing_direction>(65 if early else 24)
+        if early:
+            assert (edge-cur['x'])*landing_direction<143,cur
+            assert 136<cur['y']-ceiling_y<175,cur
         if cur['move']<145:
             t.keyboard.press('KeyF')
             t.wait_for_function("""r=>{const a=HonroWorkshopAPI.getPlayApp();return a.canInput()&&a.engine.b.round>r}""",arg=cur['round'],timeout=13000)
-        t.keyboard.press('ControlLeft')
-        t.wait_for_function("""lim=>{const u=HonroWorkshopAPI.getPlayApp().engine.active;return u.jumping&&u.y<lim;}""",
-                             arg=ceiling_y-14,timeout=1500)
-        # Real Ctrl launch is recorded; wait until the foot clears the open edge, then move across.
-        report(label+'-in-flight',state=state(),edge=edge,landingY=ceiling_y)
-        key='KeyD' if landing_direction>0 else 'KeyA'
-        t.keyboard.down(key)
+        start_trace(label)
         try:
-            t.wait_for_function("""({edge,d})=>(HonroWorkshopAPI.getPlayApp().engine.active.x-edge)*d>=38""",
-                  arg={'edge':edge,'d':landing_direction},timeout=3000)
-        finally:t.keyboard.up(key)
-        verified(label,tr);route.append(tr)
+            t.keyboard.press('ControlLeft')
+            # The first B attempt waited until after ~285 ms. The shorter x
+            # offset now uses lateral input after a genuine launch, not at the
+            # foot-clear height. The U edge still clears the lip before lateral.
+            early_reference=cur['y']-12
+            early_state=t.wait_for_function("""lim=>{const u=HonroWorkshopAPI.getPlayApp().engine.active;
+                return u.jumping&&u.y<lim?{x:u.x,y:u.y,vy:u.vy}:false;}""",
+                                 arg=early_reference if early else ceiling_y-14,
+                                 polling='raf',timeout=1500)
+            key='KeyD' if landing_direction>0 else 'KeyA'
+            t.keyboard.down(key)
+            try:
+                t.wait_for_function("""({edge,d})=>(HonroWorkshopAPI.getPlayApp().engine.active.x-edge)*d>=38""",
+                      arg={'edge': edge, 'd':landing_direction},polling='raf',timeout=3000)
+            finally:
+                t.keyboard.up(key)
+                report(label+'-in-flight',state=early_state.json_value(),edge=edge,landingY=ceiling_y,
+                       policy='confirmed-early-arc-entry' if early else 'confirm-foot-clears-lip')
+            verified(label,tr);route.append(tr)
+        finally:end_trace(label,edge,ceiling_y,landing_direction)
     def step_off(label,sr,tr,edge,off_direction,outboard):
         assert (outboard-edge)*off_direction>25
         verified(label+'-before-step',sr)
@@ -210,7 +248,7 @@ with sync_playwright() as pw:
         verified(label,tr);route.append(tr)
     try:
         # Solid, open edge beside upper body; never jump through underside.
-        jump_to('east-B-to-M', 'B','M',3585,3425,-1,587)
+        jump_to('east-B-to-M', 'B','M',3542,3425,-1,587,early=True)
         move_to(2510);verified('middle-shelf-role-band', 'M')
         jump_to('west-M-to-U','M','U',2712,2770,1,416)
         move_to(3150);verified('upper-defence-approach', 'U')
