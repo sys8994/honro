@@ -30,7 +30,7 @@ with sync_playwright() as play:
         d=t.evaluate("""()=>{
           const {stage:s}=HonroWorkshopAPI.queryScene(),p=HonroWorkshopAPI.getContext();
           return {id:s.id,name:s.name,width:s.width,height:s.height,terrain_count:s.terrains.length,
-             placement_count:s.elements.length,asset_count:p.availableAssets.length,
+             placement_count:s.elements.length+s.environment.placements.length,asset_count:p.availableAssets.length,
              units:s.units.map(u=>[u.kind??u.cls,u.team,u.x,u.y]),
              new_dialog_open:document.querySelector('#newStageModal').classList.contains('open'),
              toast:document.querySelector('#toast').textContent};
@@ -43,29 +43,24 @@ with sync_playwright() as play:
         return (cur['name']==NAME and cur['width']==2200 and cur['height']==1250 and
           cur['terrain_count']==0 and cur['placement_count']==0 and len(cur['units'])==1
           and cur['units'][0]==['archer','player',220,500])
-    before=summary('stock-ui-before-new')
-    t.locator('#newStageBtn').click()
-    for id,v in [('newStageName',NAME),('newStageW','2200'),('newStageH','1250')]:
-        t.locator('#'+id).fill(v)
-    t.locator('#createStageConfirm').click()
-    after=summary('stock-ui-after-new')
-    diag_case='stock-native-new'
-    if after['id']==before['id'] or not true_blank(after):
-        diag_case='manual-import-of-verified-blank-scratch'
-        if after['new_dialog_open']:t.locator('#createStageCancel').click()
-        # No original project, terrain, artwork, or collision read or copied. Use stock pure
-        # empty-stage & unit data factories, then read the file into the normal stock GUI.
+    before=summary('stock-ui-start')
+    diag_case='manual-import-of-verified-blank-scratch'
+    # Actual native creation rollback was already verified. Import a clean one-stage
+    # private file through the standard file chooser, without copying the loaded project.
+    try:
         scratch=t.evaluate("""n=>{
            const s=HonroMaps.emptyStage('qa-blank-solid-scratch',n,2200,1250);
+           s.environment.placements=[];
            s.units.push(HonroUnits.record('archer','qa-new-fixture-archer',220,500,'player'));
-           // Stock toolbar looks at activeAsset().vector; keep one inert, entirely empty
-           // local sentinel library item. It is not placed and never compiles to terrain.
+           // An unreachable-at-start QA destination prevents the unmodified stock
+           // no-enemy objective from instantly winning before walking. No rendered mesh.
+           s.objectives.push({id:'qa-contact-destination',type:'reach',label:'Mechanical test destination',x:1860,y:543,radius:55,required:true});
+           const sentinel={id:'qa-unplaced-empty',name:'Empty toolbar sentinel',category:'scenery',visual:[],
+             collision:[],anchor:{x:0,y:0},sockets:[],tags:[],params:{}};
+           sentinel.reference=HonroEnvironment.referenceForLegacyAsset(sentinel);
            const project={schema:'honro-map',version:HonroMaps.VERSION,activeStageId:s.id,
              name:'Blank stock Solid mechanical fixture',environmentVersion:HonroEnvironment.VERSION,
-             settings:{autosave:false},stages:[s],library:[{
-               id:'qa-unplaced-empty',name:'Empty toolbar sentinel',category:'scenery',visual:[],
-               collision:[],anchor:{x:0,y:0},sockets:[],tags:[],params:{}
-             }]};
+             settings:{autosave:false},stages:[s],library:[sentinel]};
            const q=HonroMaps.finalize(project);
            if(q.stages.length!==1||q.stages[0].terrains.length||q.stages[0].elements.length||
               q.stages[0].environment.placements?.length||q.library[0].visual.length||q.library[0].collision.length)throw Error('Scratch zero-content guard failed');
@@ -74,9 +69,9 @@ with sync_playwright() as play:
         with t.expect_file_chooser() as ask:t.locator('#importBtn').click()
         ask.value.set_files({'name':'qa-empty-scratch.honro-map.json','mimeType':'application/json',
                              'buffer':json.dumps(scratch,ensure_ascii=False).encode()})
-        try:t.wait_for_function("HonroWorkshopAPI.queryScene().stage.id==='qa-blank-solid-scratch'",timeout=12000)
-        finally:after=summary('manual-blank-file-import-result')
-        assert after['id']=='qa-blank-solid-scratch' and after['asset_count']==1,'Stock scratch import did not isolate the project'
+        t.wait_for_function("HonroWorkshopAPI.queryScene().stage.id==='qa-blank-solid-scratch'",timeout=12000)
+    finally:after=summary('manual-blank-file-import-result')
+    assert after['id']=='qa-blank-solid-scratch' and after['asset_count']==1,'Stock scratch import did not isolate the project'
     assert after['id']!=before['id'] and true_blank(after),f'Stock blank state failed exact gates: {after}'
     diagnostics['entry_case']=diag_case
     (p/'blank-diagnostics.json').write_text(json.dumps(diagnostics,ensure_ascii=False,indent=2))
@@ -95,12 +90,14 @@ with sync_playwright() as play:
         assert t.evaluate('q=>document.elementFromPoint(...q)?.id===\'stageCanvas\'',q),'Camera must show each real pointer on canvas'
         t.mouse.click(*q);vertices.append(q)
     t.keyboard.press('Enter')
+    t.screenshot(path=str(p/'02-pointer-solid-enter.png'))
     s=get(t); assert len(s['terrains'])==1 and not s['elements']
     a=s['terrains'][0];assert a['type']=='solid' and len(a['points'])==len(RING)
     assert all(max(abs(q['x']-x),abs(q['y']-y))<=3 for q,(x,y) in zip(a['points'],RING))
     t.screenshot(path=str(p/'02-stage-visible-overlay-off.png'))
     # Test real dragging of an edited route knot, not just an untouched save.
-    t.locator('#overlayToggle').check(); v=screen(RING[5]);t.mouse.move(*v);t.mouse.down();t.mouse.move(v[0]+4,v[1]-11,steps=5);t.mouse.up()
+    t.locator('[data-tool=select]').click(); t.locator('#overlayToggle').check(); v=screen(RING[5]);t.mouse.move(*v);t.mouse.down();t.mouse.move(v[0]+4,v[1]-11,steps=5);t.mouse.up()
+    t.screenshot(path=str(p/'02-pointer-solid-dragged.png'))
     s=get(t);q=s['terrains'][0]
     assert sum(x!=y for x,y in zip(q['points'],a['points']))==1 and q['points'][5]['y']<a['points'][5]['y']-8
     t.locator('#overlayToggle').uncheck()
@@ -123,7 +120,8 @@ with sync_playwright() as play:
     fresh.locator('#overlayToggle').uncheck()
     fresh.screenshot(path=str(p/'03-fresh-reopen-overlay-off.png'))
     fresh.locator('[data-tab=play]').click()
-    fresh.wait_for_function('HonroWorkshopAPI.getPlayApp()?.engine',timeout=45000)
+    try:fresh.wait_for_function('HonroWorkshopAPI.getPlayApp()?.engine',timeout=45000)
+    finally:fresh.screenshot(path=str(p/'04-native-playtest-entry.png'))
     r=fresh.evaluate("""q=>{
        const t=HonroWorkshopAPI.getPlayApp().engine.b.terrain.find(x=>x.id===q);
        if(!t)return null;return {id:t.id,vertices:t.vertices};
@@ -144,6 +142,7 @@ with sync_playwright() as play:
         start=state();samples.append(start)
         assert abs(start['x']-220)<5 and start['grounded'],'ordinary new stage hero did not start at GUI default'
         assert start['activeFocused'],'stock Playtest iframe did not receive keyboard focus'
+        assert start['move']>800 and start['aim'] not in ('won','lost'),f'insufficient real initial move budget or immediate win: {start}'
         fresh.screenshot(path=str(p/'05-live-descent-start.png'))
         downs=None;asc=None
         fresh.keyboard.down('KeyD')
