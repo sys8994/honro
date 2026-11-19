@@ -32,3 +32,8 @@ First CI44618310325 generated the exact hybrid successfully but failed before dr
 
 ## Real viewport / timing correction
 `capture-ci.mjs` uses pinned Playwright Core 1.56.1 solely inside official CI with the runner's installed Chrome and a fresh isolated browser per variant. There is no virtual-time override: performance.now measures actual synchronous renderer time. Each view asks the driver to set the actual browser viewport, then asserts innerWidth/innerHeight match the canvas. The diagnostic does not substitute local browser automation for CUA. Raw DOM payloads are excluded from uploaded evidence to avoid duplicating the complete runtime; PNGs, comparison metadata, failure results, logs and optimizer outputs are retained.
+
+
+## First candidate rejected; source-only clip candidate
+Hybrid18/12 is REJECTED by root visual review: right cliff/lower rock faceting is excessive. Existing finite floating lower BODY remains a separate defect. CI success did not grant visual approval and nothing was deployed.
+The next run reconstructs original SURFACE only from clip-removal-manifest.json:1331 closed rings; every path/chunk count and SHA is checked, all deletion indices consumed, BODY unchanged, final candidate SHA793dbe2264c9f4d577820e8344ba758a8c74d0c221f88f2f643af6a3bde1d2cc. No candidate asset blob is committed. Original1e043 sources are read and temporary outputs generated. Inkscape native review supplied separately:1280 exact;2560/4400 tiny alpha differences. Not claiming mathematical all-scale equivalence. The same actual stock Scene18-camera protocol and CPU samples must decide visible impact. No geometry epsilon, no finite-bottom camera hiding, no C sandbox, no production merge.

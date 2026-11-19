@@ -1,4 +1,4 @@
-name: Stage42 isolated stock Scene optimizer proof
+name: Stage42 isolated stock Scene source-clip proof
 on:
   push:
     branches: ['audit/stage42-stock-scene-20261120']
@@ -25,26 +25,12 @@ jobs:
           package-manager-cache: false
       - run: npm ci && npm ci --prefix game
       - run: npm install --prefix "$RUNNER_TEMP/browser-deps" --ignore-scripts playwright-core@1.56.1
-      - name: Stock Python optimizer dependencies and native Inkscape
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y inkscape
-          python -m venv "$RUNNER_TEMP/optimizer-venv"
-          "$RUNNER_TEMP/optimizer-venv/bin/pip" install -r tools/terrain-node-optimizer/requirements.txt
-          inkscape --version
-      - name: Extract pinned active assets and generate candidates in temporary output only
-        shell: bash
-        run: |
-          P="$RUNNER_TEMP/optimizer-venv/bin/python"
-          O="$RUNNER_TEMP/stage42-packages"
-          "$P" tools/testing/stage42-stock-scene/prepare.py "$GITHUB_WORKSPACE" "$O"
-          "$P" tools/terrain-node-optimizer/optimize_package.py "$O/baseline-package.json" "$O/candidate-e18.json" --asset-id 'act5:stage42:' --epsilon 18 --widths 1280,2560 > "$O/e18.log"
-          "$P" tools/terrain-node-optimizer/optimize_package.py "$O/baseline-package.json" "$O/candidate-e12.json" --asset-id 'act5:stage42:' --epsilon 12 --widths 1280,2560 > "$O/e12.log"
-          "$P" tools/testing/stage42-stock-scene/prepare.py "$GITHUB_WORKSPACE" "$O" hybrid
-      - name: Generate isolated baseline and hybrid stock Scenes
-        run: node tools/testing/stage42-stock-scene/fixture.mjs "$GITHUB_WORKSPACE" "$RUNNER_TEMP/stage42-fixtures" "$RUNNER_TEMP/stage42-packages/baseline-package.json" "$RUNNER_TEMP/stage42-packages/hybrid-18-12.json" hybrid-18-12
+      - name: Reproduce only certified clipped-out original SURFACE rings
+        run: python tools/testing/stage42-stock-scene/prepare-clip.py "$GITHUB_WORKSPACE" "$RUNNER_TEMP/stage42-packages"
+      - name: Generate isolated baseline and clip-only stock Scenes
+        run: node tools/testing/stage42-stock-scene/fixture.mjs "$GITHUB_WORKSPACE" "$RUNNER_TEMP/stage42-fixtures" "$RUNNER_TEMP/stage42-packages/baseline-package.json" "$RUNNER_TEMP/stage42-packages/clip-only-candidate.json" clip-only
       - name: Capture identical cameras and unchanged world in actual CI Chrome
-        run: bash tools/testing/stage42-stock-scene/run-ci.sh "$RUNNER_TEMP/stage42-fixtures" "$RUNNER_TEMP/stage42-evidence" hybrid-18-12
+        run: bash tools/testing/stage42-stock-scene/run-ci.sh "$RUNNER_TEMP/stage42-fixtures" "$RUNNER_TEMP/stage42-evidence" clip-only
       - name: Verify no production file modifications
         if: always()
         run: git diff --exit-code -- shared game tools/terrain-node-optimizer web HONRO.html
