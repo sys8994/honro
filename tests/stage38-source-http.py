@@ -30,6 +30,7 @@ try:
      return {camera:{x:s.x,y:s.y,scale:s.scale},canvas:[s.canvas.width,s.canvas.height],tide:b.honroAct4PreviewState?.tide,physics,support:b.terrain.find(t=>t.id==='a4-rescue-rock-step'),units:b.units.map(u=>({id:u.id,x:u.x,y:u.y,grounded:u.grounded})), capPresent:JSON.stringify(HONRO_PROJECT.library.find(v=>v.id==='act4-handoff:38:cave-contact')).includes('M1060.000,567.778 L1073.333,567.778 L1073.333,571.778 L1060.000,571.778 Z'),projectStage:st.id};}''',{'sid':sid,'x':x,'y':y,'z':z})
    page.wait_for_function("window.__qaImages.every(i=>i.complete)",timeout=120000)
    page.evaluate("()=>{const a=HonroApp; a.scene.time=2;a.scene.render(a.engine,0,'',.6,false,0);a.scene.render(a.engine,0,'',.6,false,0);}")
+   page.evaluate("""expected=>{const a=HonroApp,b=a.engine.b,st=HONRO_PROJECT.stages.find(t=>t.metadata?.stageId===38);if(JSON.stringify({terrain:b.terrain,units:b.units,design:st.design,initialState:st.initialState,objectives:st.objectives})!==expected)throw Error('Physics changed during image decode');}""",result['physics'])
    result['images']=page.evaluate("()=>window.__qaImages.map(i=>({src:i.src,complete:i.complete,width:i.naturalWidth}))")
    assert all(i['width']>0 for i in result['images']),result['images']
    assert result['canvas']==[w,h],result
