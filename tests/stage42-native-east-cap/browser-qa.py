@@ -5,10 +5,13 @@ from PIL import Image,ImageDraw
 from playwright.sync_api import sync_playwright
 from driver_binding import build_driver
 from pixel_gate import exact_stock,exact_protected
+from split_gates import transparent_body,full_scene_exact,sha
 D=Path(__file__).parent
 DRIVER=build_driver()
 SYNC_FLAGS=["--force-device-scale-factor=1","--force-color-profile=srgb"]
 assert os.environ['HONRO_EAST_CAP_QA']=='1'
+BODY_JS=(D/'body_driver.js').read_text()
+OBSERVED_JS=(D/'observed_driver.js').read_text()
 views=json.loads((D/'pinned-views.json').read_text())
 plan=json.loads((D/'technical-fixture.json').read_text())
 out=Path(sys.argv[1]);out.mkdir(parents=True,exist_ok=True)
@@ -47,13 +50,13 @@ def layout(page,points):
  return q
 def click_points(page,pts):
  for pos in layout(page,pts)['layout']:page.locator('#stageCanvas').click(position=pos)
-def capture(page,state,tag,kind):
+def capture(page,state,tag,kind,eligible=None):
  itinerary=(
   ('minimum-overview',[(3250,1430.5)],.16),
   ('landscape-pan',[(x,1850) for x in [-1000,-400,150,850,1550,2250,2950,3650,4350,5050,5750,6350,6950,7600]],.5),
   ('vertical-pan',[(3250,y) for y in [-1000,0,500,1000,1500,2000,2500,3000,3500,4400]],.35),
   ('corners',[(x,y) for y in (1050,3125) for x in (-550,7050)],.30))
- pins={v['label']:v for v in views}
+ pins={v["label"]:v for v in views if eligible is None or v["label"] in eligible}
  frames={};invariants=None
  for band,xy,z in itinerary:
   for start in range(0,len(xy),4):
@@ -94,6 +97,18 @@ def common_meta(a,b):
  assert a['pinnedFar'] and a['actualLOD'] is not None
  assert a['groupCache']>0 and b['groupCache']>0
  if a['label']=='corners-03':assert a['routes']['exterior']>0 and b['routes']['exterior']>0
+
+def approved_area(meta,outline):
+ x,y,z=meta['actual'];xmin=(2298.5*S-x)*z+640-3;xmax=(2324.2701*S-x)*z+640+3;ymin=(685*S-y)*z+400-3;ymax=(825*S-y)*z+400+3
+ mm=Image.new('1',(1280,800))
+ contour=[((v['at'][0]*S-x)*z+640,(v['at'][1]*S-y)*z+400) for v in outline]
+ pen=ImageDraw.Draw(mm);pen.polygon(contour,fill=1);pen.line(contour+[contour[0]],fill=1,width=7,joint='curve')
+ return bytes(bool(v) and xmin<=i%1280<=xmax and ymin<=i//1280<=ymax for i,v in enumerate(mm.getdata()))
+
+def native_body(page,meta,kind,label):
+ png=base64.b64decode(page.evaluate(BODY_JS,{'actual':meta['actual'],'kind':kind}).split(',',1)[1],validate=True)
+ (out/f'corner-body-{label}.png').write_bytes(png)
+ return Image.open(io.BytesIO(png)).convert('RGBA')
 
 with sync_playwright() as pw:
  b=pw.chromium.launch(headless=True,executable_path=os.environ['HONRO_CHROME'],args=SYNC_FLAGS)
@@ -176,26 +191,45 @@ with sync_playwright() as pw:
    check,checkmeta=control[name];common_meta(meta,checkmeta)
    r['stock_aa'][name]=exact_stock(base.tobytes(),check.tobytes())
   r['determinism_pass']=all(v['pass'] for v in r['stock_aa'].values())
-  checkpoint('stock-aa-exact' if r['determinism_pass'] else 'stock-aa-determinism-blocked')
-  assert r['determinism_pass'],('Unmodified same-run Chrome reconstruction drift; no candidate rendered',r['stock_aa'])
+  checkpoint('stock-controls-per-camera')
   assert read(fresh)==edited,'Reopened native candidate drift before Scene check'
-  B,news=capture(fresh,edited,'candidate-b','candidate')
-  assert A1==B
-  r['scope']={}
+  r['scope']={};r['scene_diagnostics']={}
   for name,(base,meta) in olds.items():
+   valid=r['stock_aa'][name]['pass']
+   assert read(fresh)==edited and edited['cap']['design']==post
+   assert all(edited[k]==original[k] for k in ('old','clip','protected'))
+   B,news=capture(fresh,edited,'candidate-exact' if valid else 'candidate-diagnostic-only','candidate',{name})
+   assert A1==B
    cand,result=news[name];common_meta(meta,result)
-   x,y,z=meta['actual'];xmin=(2298.5*S-x)*z+640-3;xmax=(2324.2701*S-x)*z+640+3;ymin=(685*S-y)*z+400-3;ymax=(825*S-y)*z+400+3
-   mm=Image.new('1',(1280,800))
-   contour=[((v['at'][0]*S-x)*z+640,(v['at'][1]*S-y)*z+400) for v in post['outline']]
-   pen=ImageDraw.Draw(mm);pen.polygon(contour,fill=1);pen.line(contour+[contour[0]],fill=1,width=7,joint='curve')
-   authorized=bytes(bool(p) and xmin<=i%1280<=xmax and ymin<=i//1280<=ymax for i,p in enumerate(mm.getdata()))
-   r['scope'][name]={**exact_protected(base.tobytes(),cand.tobytes(),authorized,opaque(fresh,meta)), 'same_camera_and_lod':True,'clip_band_output_pixels':3}
-   checkpoint('candidate-pixel-gate-'+name)
-   assert r['scope'][name]['pass'],r['scope'][name]
-  assert read(fresh)==edited,'Candidate project changed during rendering'
-  r['candidate_render_pass']=True
+   assert read(fresh)==edited
+   area=approved_area(meta,post['outline'])
+   summary=exact_protected(base.tobytes(),cand.tobytes(),area,opaque(fresh,meta))
+   if valid:
+    r['scope'][name]={**summary,'same_camera_and_lod':True,'clip_band_output_pixels':3}
+   else:
+    r['scene_diagnostics'][name]={'classification':'unverified full Scene: stock A/A unstable; visuals only','exact_pass':False,'unqualified_deltas':summary,'same_camera_and_lod':True}
+    base.save(out/f'stock-diagnostic-only-{name}.png')
+   checkpoint(('candidate-pixel-gate-' if valid else 'candidate-diagnostic-not-qualified-')+name)
+  corner=olds['corners-03'][1]
+  ca=native_body(fresh,corner,'stock','stock-a1')
+  ca2=native_body(fresh,corner,'stock','stock-a2')
+  cb=native_body(fresh,corner,'candidate','candidate-b')
+  clip=native_body(fresh,corner,'clip','clip-alpha-stock').getchannel('A')
+  r['corner_native_body']=transparent_body(ca.tobytes(),ca2.tobytes(),cb.tobytes(),approved_area(corner,post['outline']),clip.tobytes())
+  r['corner_native_body']['raw_rgba_sha256']=[sha(i.tobytes()) for i in (ca,ca2,cb)]
+  r['candidate_render_pass']=full_scene_exact(r['stock_aa'],r['scope'],set(olds))
+  r['partial_technical_pass']=bool(r['scope'].get('landscape-pan-12',{}).get('pass') and r['corner_native_body']['pass'])
+  assert read(fresh)==edited
   assert not r['page_errors']
-  r['pass']=True;r['art_approval']=False;checkpoint('mechanics-passed')
+  if r['ui_pass'] and r['partial_technical_pass']:
+   receipt=fresh.evaluate(OBSERVED_JS,{'draftDigest':r['scoped_record_sha256'],'reopenedDigest':edited['full'],'sha':os.environ['GITHUB_SHA'],'run':os.environ['GITHUB_RUN_ID']})
+   semantic=receipt['text'].encode('utf-8');assert 0<len(semantic)<=4096 and sha(semantic)==receipt['sha256']
+   (out/'observed-east-cap.json').write_bytes(semantic)
+   r['observed_cap']={'sha256':receipt['sha256'],'bytes':len(semantic),'source':'fresh reopened genuine UI'}
+  r['pass']=r['candidate_render_pass'];r['art_approval']=False
+  checkpoint('all-exact-technical' if r['pass'] else 'partial-only' if r['partial_technical_pass'] else 'insufficient-technical-proof')
+  if not r['partial_technical_pass']:raise AssertionError('Landscape exact or native corner BODY gate failed')
+  if not r['pass']:raise AssertionError('Partial technical evidence retained; full Scene exact is not qualified')
  except Exception as e:
   r['error']=str(e);checkpoint('failed')
   failure=fresh or page
