@@ -1,4 +1,4 @@
-"""True full E stock pointer replay and localized shoulder; no art brush/import/injection."""
+"""True full G stock pointer replay and two native noncollision contact sites."""
 import base64,hashlib,json,math,sys,tempfile
 from io import BytesIO
 from pathlib import Path
@@ -9,7 +9,7 @@ pin=json.loads((D/'evidence-pins.json').read_text())
 driver=Path(sys.argv[3]).resolve(strict=True);raw_driver=driver.read_bytes()
 assert hashlib.sha256(raw_driver).hexdigest()==pin['exactDriverSha256']
 PROPOSED=json.loads((D/'operator-points.json').read_text())
-TITLE='혼로 5막 2장 G · 서부 암반 절개 검증'
+TITLE='혼로 5막 2장 G · 서부 암반 맞닿음 검증'
 def canonical(v):return json.dumps(v,ensure_ascii=False,separators=(',',':')).encode()
 def hashb(v):return hashlib.sha256(v).hexdigest()
 def point_poly(p,x,y):return sum((a[1]>y)!=(b[1]>y) and x<a[0]+(b[0]-a[0])*(y-a[1])/(b[1]-a[1]) for a,b in zip(p,p[1:]+p[:1]))%2==1
@@ -71,8 +71,8 @@ def pixel_guard(before,after,p,cam):
 def color_probe(image,cam,xy,width=1):
  w,h=image.size;cx,cy,z=cam;x,y=round(w/2+(xy[0]-cx)*z),round(h/2+(xy[1]-cy)*z)
  return tuple(round(median(x[i] for x in image.crop((x-width,y-width,x+width+1,y+width+1)).getdata())) for i in range(3))
-def fit_native_element(p, targets, root, phase, first_zoom):
- # Using existing wheel and middle-drag controls, no direct Element camera mutation,
+def fit_native_element(p, targets, root, phase):
+ # Using existing integer middle-drag controls only; no direct Element camera mutation,
  # and every upcoming target must be the actual native canvas hit.
  controls="""xs=>{
   const c=document.querySelector('#elementCanvas'),r=c.getBoundingClientRect(),v=HonroWorkshopAPI.getEditorState().elementView;
@@ -97,14 +97,12 @@ def fit_native_element(p, targets, root, phase, first_zoom):
   assert visible(center),'Native element center is obscured; no fake camera fallback'
   xmin,xmax=min(v[0] for v in targets),max(v[0] for v in targets)
   ymin,ymax=min(v[1] for v in targets),max(v[1] for v in targets)
-  spans=(xmax-xmin,ymax-ymin);expected_zoom=math.exp(-.87)
+  spans=(xmax-xmin,ymax-ymin);expected_zoom=1.0
   margin=(w-spans[0]*expected_zoom,h-spans[1]*expected_zoom)
   assert all(v>=27 for v in margin) and math.sqrt(2)*.5/expected_zoom<1.8, 'Measured aperture is not large enough at legal input precision'
-  if first_zoom:
-   assert abs(z-1)<1e-8
-   p.mouse.move(*center);p.mouse.wheel(0,580)
-  p.wait_for_function("expected=>Math.abs(HonroWorkshopAPI.getEditorState().elementView.zoom-expected)<1e-7",arg=expected_zoom)
-  zoomed=check('real-wheel-580' if first_zoom else 'already-verified-native-zoom')
+  assert abs(z-1)<1e-12 and first['canvas']==[500,45,370,831], 'Unexpected native phase/viewport; no pointer authored'
+  assert p.evaluate("()=>{const c=document.querySelector('#elementCanvas');return [c.clientWidth,c.clientHeight]}")==[370,831]
+  zoomed=check('stock-integral-native-zoom')
   vx,vy,z=zoomed['camera']
   def margins(row):
    l,t,ww,hh=row['canvas'];ps=row['points']
@@ -127,28 +125,22 @@ def fit_native_element(p, targets, root, phase, first_zoom):
   last=check('final-fit-live-hit-map')
   rows[-1]['exactMarginsPx']=margins(last)
   rows[-1]['worldTargetSpans']=spans
+  assert all(abs(v-round(v))<1e-9 for q in last['points'] for v in q),'Live stock lattice phase cannot produce exact contact here' 
   write()
   assert not last['blocked'] and min(rows[-1]['exactMarginsPx'])>=12,'Native Element target coverage or 12px aperture margin shortage; no authoring'
   assert math.sqrt(2)*.5/last['camera'][2] < 1.8, 'Viewport fitting would exceed existing authored-point tolerance'
   return last
  except:
   write();p.screenshot(path=str(root/f'16-{phase}-actual-fit-blocked.png'));raise
-def assert_tones(d,old):
- luma=lambda a:sum(x*y for x,y in zip(a,(.2126,.7152,.0722)))
- ch={k:luma(d[k]) for k in ('return','main','mid','cleft','spall')}
- assert 12<=ch['return']-luma(old)<=34,'Return must deepen near substrate tone'
- assert ch['mid']-ch['return']>=14 and ch['main']-ch['mid']>=8,'Internal compression plane is not distinct'
- assert ch['mid']-ch['cleft']>=22 and abs(ch['cleft']-luma(old))<=12,'Interior cleft not anchored tonally to substrate'
- assert 5<=ch['spall']-ch['main']<=24,'One minor spall may not become a bright rail'
 def run_shoulder(fresh,open_page,domain,root):
- root=Path(root);report={'scope':'Only Stage42 G one west cutbank; no rest-of-stage/bridge/playability/production or art-pass claim','pass':False}
+ root=Path(root);report={'scope':'Only Stage42 G two intentionally border-meeting west sites; no rest-of-stage/bridge/playability/production or art-pass claim','pass':False}
  def write():(root/'shoulder-proof.json').write_text(json.dumps(report,ensure_ascii=False,indent=2))
  write()
  assert hashlib.sha256(canonical(domain['original'])).hexdigest()==pin['collisionGeometrySha256'],'Genuine base replay vertices drifted'
  assert hashlib.sha256(canonical(domain['world'])).hexdigest()==pin['projectedGeometrySha256'],'Genuine stock exterior projection drifted'
  q=get(fresh); assert q['stages'][0]['terrainDomainVersion']==1 and q['stages'][0]['name']==TITLE
  assert len(q['stages'][0]['terrains'])==1 and not q['stages'][0]['elements']
- base_stage=q['stages'][0]; start=evidence_views={'west-native-match':[580,1625,.5],'whole':[3250,1650,.14],'cutbank-fit':[560,1775,.5],'cached-close':[560,1775,.95],'direct-first-close':[560,1775,1.08]}
+ base_stage=q['stages'][0]; start=evidence_views={'west-native-match':[580,1625,.5],'whole':[3250,1650,.14],'quiet-crest':[770,1740,.5],'cached-close':[560,1775,.95],'direct-first-close':[560,1775,1.08]}
  before={}
  for name,cam in start.items():before[name]=snap(fresh,cam,root,f'11-before-{name}')
  fresh.locator('[data-tab=element]').click()
@@ -156,7 +148,7 @@ def run_shoulder(fresh,open_page,domain,root):
  aid=next(v['id'] for v in get(fresh)['library'] if v['category']=='custom')
  assert fresh.locator('#nativeShapeFill').is_disabled()
  fresh.locator('#assetCollision').uncheck()
- fresh.locator('#assetName').fill('서부 암반 절개 (검증용)')
+ fresh.locator('#assetName').fill('서부 암반 맞닿음 (검증용)')
  fresh.locator('#assetName').press('Tab')
  fresh.locator('#assetLayer').fill('prop');fresh.locator('#assetLayer').press('Tab')
  fresh.locator('[data-tab=stage]').click();fresh.locator(f'[data-asset="{aid}"]').click()
@@ -166,23 +158,22 @@ def run_shoulder(fresh,open_page,domain,root):
  placed=get(fresh)['stages'][0]['elements'][0]
  assert placed['assetId']==aid and placed['layer']=='prop' and placed['rotation']==0 and placed['scale']==1 and placed['depthLayer']=='L1' and not placed['snap']
  dx,dy=placed['x'],placed['y']
- assert abs(dx-159)<1 and abs(dy-1902)<2
+ assert [dx,dy]==PROPOSED["nativeAssetAnchorWorld"], "Exact stock placement lattice shifted"
  fresh.locator('[data-tab=element]').click()
  ordered=PROPOSED['faces'] # matrix first; three constrained surface faces above
  local=[[[x-dx,y-dy] for x,y in row['clockwiseWorld']] for row in ordered]
- targets=list(dict.fromkeys(tuple(xy) for p in local for xy in p+[p[0]]))+[(0,0)]
- assert len(targets)==len(set(targets))
- fit=fit_native_element(fresh,targets,root,'ascent',True)
- z=fit['camera'][2]
- assert all(math.dist(a,b)*z>=5 for row in local for a,b in zip(row,row[1:] + row[:1])), 'Adjacent native click spacing would coalesce at fit zoom'
+ targets=list(dict.fromkeys(tuple(xy) for row in local[:2] for xy in row))
+ fit=fit_native_element(fresh,targets,root,'primary-contact')
+ assert all(math.dist(a,b)>=5 for row in local for a,b in zip(row,row[1:] + row[:1]))
  seed=owned(fresh,aid)['visual']
  assert len(seed)==1 and seed[0]['type']=='polygon' and len(seed[0]['points'])==6
  seed=seed[0]
  seed_hash=hashb(canonical(seed))
  for k,s in enumerate(ordered):
+  if k>0:fit_native_element(fresh,local[k],root,s['material'])
   fresh.locator('[data-etool=polygon]').click();assert fresh.locator('#nativeShapeFill').is_disabled()
   for x,y in s['clockwiseWorld']:
-   try:fresh.mouse.click(*cursor(fresh,'element',[x-dx,y-dy]))
+   try:fresh.mouse.click(*map(round,cursor(fresh,'element',[x-dx,y-dy])))
    except: fresh.screenshot(path=str(root/'16-real-point-hit-blocked.png'));raise
   fresh.keyboard.press('Enter')
   inp=fresh.locator('#nativeShapeFill');assert inp.is_enabled()
@@ -202,8 +193,10 @@ def run_shoulder(fresh,open_page,domain,root):
     and not point_poly(matrix,*pt) and point_dist(matrix,*pt)>2
     and min(math.dist(pt,u) for u in base+matrix)>hit_radius+2]
    assert cursor_choices,'No safe disjoint real starter interior at the fitted camera'
-   pt=cursor_choices[0]
-   fresh.mouse.click(*cursor(fresh,'element',pt))
+   tx,ty=cursor_choices[0]
+   pt=(tx,ty+.5)
+   fit_native_element(fresh,[pt],root,'true-seed-interior')
+   fresh.mouse.click(*map(round,cursor(fresh,'element',pt)))
    state=fresh.evaluate('HonroWorkshopAPI.getEditorState()')
    current=owned(fresh,aid)
    fresh.screenshot(path=str(root/'17-elements-before-seed-delete.png'))
@@ -220,95 +213,75 @@ def run_shoulder(fresh,open_page,domain,root):
    report['seedDelete']['exactStarterOnlyRemoved']=True
    write()
  o=owned(fresh,aid)
- assert len(o['visual'])==5 and not o['collision'] and not o.get('interactionType')
- assert all(v['stroke']=='#222d30' for v in o['visual']),'Preferred ink behavior is not patched'
- assert [x['fill'] for x in o['visual']]==[x['fill'] for x in ordered]
- rings=[[[w['x']+dx,w['y']+dy] for w in row['points']] for row in o['visual']]
- assert all(len(r)==len(p['clockwiseWorld']) and all(math.dist(x,y)<=1.8 for x,y in zip(r,p['clockwiseWorld'])) for r,p in zip(rings,ordered))
- rr=lambda p:set((tuple(a),tuple(b)) for a,b in zip(p,p[1:]+p[:1]))
- assert len(rr(rings[1])&set((b,a) for a,b in rr(rings[2])))==7,'Main and mid planes lost exact seven-edge bedding joint'
- # Check every segment at all intervening real Solid knots, not planned top or raster.
+ assert len(o['visual'])==6 and not o['collision'] and not o.get('interactionType')
+ assert all(v['stroke']=='#222d30' for v in o['visual'])
+ assert [v['fill'] for v in o['visual']]==[s['fill'] for s in ordered]
+ rings=[[[w['x']+dx,w['y']+dy] for w in face['points']] for face in o['visual']]
+ assert rings==[s['clockwiseWorld'] for s in ordered], 'Native stored world lattice roundtrip mismatch'
  ground=[(v['x'],v['y']) for v in domain['original'] if v['y']<2600 and 0<=v['x']<=6500]
  def below(x,y):
   for a,b in zip(ground,ground[1:]):
    if a[0]<=x<=b[0]:return y-a[1]-(x-a[0])*(b[1]-a[1])/(b[0]-a[0])
-  raise AssertionError('No actual contact beneath target')
- minbelow=999.
+  raise AssertionError('No actual native rail')
+ def edge_checks(a,b):
+  xs=[a[0],b[0],*(x for x,y in ground if min(a[0],b[0])<x<max(a[0],b[0]))]
+  return [below(x,min(a[1],b[1]) if a[0]==b[0] else a[1]+(x-a[0])*(b[1]-a[1])/(b[0]-a[0])) for x in xs]
+ assert rings[0][:3]==rings[1][3:6], 'Structural faces lost exact shared diagonal'
+ def undirected(r):return {tuple(sorted((tuple(a),tuple(b)))) for a,b in zip(r,r[1:]+r[:1])}
+ for a,b,least in PROPOSED['layerJoins']:
+  assert len(undirected(rings[a])&undirected(rings[b]))>=least,'Connected bedrock broke its authored joint' 
  for r in rings:
-  for a,b in zip(r,r[1:]+r[:1]):
-   for x in [a[0],b[0],*(x for x,y in ground if min(a[0],b[0])<x<max(a[0],b[0]))]:
-    y=min(a[1],b[1]) if a[0]==b[0] else a[1]+(x-a[0])*(b[1]-a[1])/(b[0]-a[0])
-    minbelow=min(minbelow,below(x,y))
- assert minbelow>=9.0 and all(331<x<792 and y<2023 for p in rings for x,y in p),'False tread, apron, or geometry outside cut-bank'
- for xy in ([290,1840],[820,1660],[960,1750]):
-  assert all(not point_poly(poly,*xy) and point_dist(poly,*xy)>4 for poly in rings),'Original approach/crest/reverse remains quiet'
+  assert min(v for a,b in zip(r,r[1:]+r[:1]) for v in edge_checks(a,b))>=.49
+ for r,xs in zip(rings[1:],PROPOSED['contactSites']):
+  assert [p[0] for p in r[:3]]==xs
+  for a,b in zip(r[:2],r[1:3]): assert all(abs(v-.5)<1e-7 for v in edge_checks(a,b))
+ assert all(min(v for a,b in zip(r,r[1:]+r[:1]) for v in edge_checks(a,b))>=95 for r in rings[3:]), 'Original quiet crest lost mechanical separation'
+ # Independent weak-color/diff reach checks below both true tread intervals, not an art auto-pass.
+ def contact_diagnostics(im,prior,cam):
+  x0,y0,z=cam; w,h=im.size; target=[]
+  for r in rings[1:3]:
+   columns=[]
+   for a,b in zip(r[:2],r[1:3]):
+    for sx in range(math.ceil((a[0]-x0)*z+w/2)+2,math.floor((b[0]-x0)*z+w/2)-1):
+     xx=(sx+.5-w/2)/z+x0
+     sy=(ground_y(xx)-y0)*z+h/2
+     visible=[(j+.5)-sy for j in range(max(0,int(sy)-1),min(h,int(sy)+4)) if im.getpixel((sx,j))!=prior.getpixel((sx,j))]
+     columns.append([sx,min(visible,default=None,key=abs)])
+   target.append({'columns':columns,'nearWithinOnePixel':sum(d is not None and abs(d)<=1 for _,d in columns)})
+  return target
+ def ground_y(x):return -below(x,0)
  fresh.screenshot(path=str(root/'12-real-workshop-element.png'))
  edited=get(fresh)
  assert edited['stages'][0]['elements']==[placed]
  assert {k:v for k,v in edited['stages'][0].items() if k!='elements'}=={k:v for k,v in base_stage.items() if k!='elements'}
  assert [a for a in edited['library'] if a['id']!=aid]==q['library']
  fresh.locator('[data-tab=stage]').click();fresh.locator('#overlayToggle').uncheck()
- metrics={};raw_stats={}
- probes=[([674,1840],'return'),([428,1805],'main'),([625,1752],'mid'),([517,1841],'cleft'),([480,1709],'spall')]
+ metrics={}; contact={}; telemetry={}
  for name,cam in start.items():
   after,meta=snap(fresh,cam,root,f'13-after-{name}')
   assert meta['collider']==before[name][1]['collider']==domain['original']
   metrics[name]=pixel_guard(before[name][0],after,rings,cam)
-  raw_stats[name]={tag:{k:data[k] for k in ('camera','previous','cachePrior','cacheAfter','size')} for tag,data in [('before',before[name][1]),('after',meta)]}
-  if name in ('cached-close','direct-first-close'):
-   for i,(pt,k) in enumerate(probes):
-    assert point_poly(rings[i],*pt) and point_dist(rings[i],*pt)>3,(pt,rings[i])
-    assert not any(point_poly(poly,*pt) for poly in rings[i+1:]),'Probe lies under another face'
-    metrics[name][k]=color_probe(after,cam,pt)
-   for xy in ([290,1840],[820,1660]):
-    assert color_probe(before[name][0],cam,xy)==color_probe(after,cam,xy),'An intentionally blank window changed'
-   metrics[name]['old_matrix']=color_probe(before[name][0],cam,[820,1660])
- (root/'cache-path-proof.json').write_text(json.dumps(raw_stats,indent=2))
- report['supportAndTopologyVerifiedInActualEditor']=True
- report['measuredLowestClearanceBelowTrueContact']=minbelow
- report['authoredFamilyNames']=[q['material'] for q in ordered]
- report['pixelMetrics']=metrics;write() # diagnostics are emitted before strict rejection
- for leg in ('before','after'):
-  cache=raw_stats['cached-close'][leg]['cacheAfter']
-  direct=raw_stats['direct-first-close'][leg]
-  assert abs(cache['worldScale']-.68)<1e-7 and cache.get('domainTileBuilds',0)>0,'Missing true domain-tile .95 path telemetry'
-  assert direct['cacheAfter']['screenWorldBytes']==0 and direct['cacheAfter'].get('domainTileBuilds',0)==direct['cachePrior'].get('domainTileBuilds',0),'1.08 frame is not documented first native draw'
- for name in ('cached-close','direct-first-close'):
-  assert_tones(metrics[name],metrics[name]['old_matrix'])
- assert all(v['outsideChangedPx']==0 and v['interiorChangedPx']>0 for v in metrics.values()),metrics
- report.update({'supports_exact':True,'trueAuthoredFaces':5,'jointSegmentsShared':7,'pixelMetrics':metrics,'lowestClearanceBelowTrueContact':minbelow,'observedWorldPlacement':placed,'nativeFills':[v['fill'] for v in o['visual']]});write()
+  telemetry[name]={tag:{k:data[k] for k in ('camera','previous','cachePrior','cacheAfter')} for tag,data in [('before',before[name][1]),('after',meta)]}
+  if name in ('west-native-match','quiet-crest'):contact[name]=contact_diagnostics(after,before[name][0],cam)
+ report.update({'actualNativeWorldRingsVerified':True,'intentionallyBorderMeeting':PROPOSED['contactSites'],'contactScreens':contact,'pixelMetrics':metrics});write()
+ (root/'cache-path-proof.json').write_text(json.dumps(telemetry,indent=2))
  with tempfile.TemporaryDirectory() as pa:
-  f=Path(pa)/'private-evidence.honro-map.json'
+  f=Path(pa)/'private-contact.honro-map.json'
   with fresh.expect_download() as ask:fresh.locator('#exportBtn').click()
   ask.value.save_as(f); expect=hashb(f.read_bytes())
   again=open_page()
   with again.expect_file_chooser() as ask:again.locator('#importBtn').click()
   ask.value.set_files(f)
   again.wait_for_function("(n)=>HonroWorkshopAPI.queryScene().stage.name===n",arg=TITLE)
-  assert get(again)==edited,'Exact fresh workshop reopen changed draft, route, domain or style'
+  assert get(again)==edited,'Exact fresh reopen changed draft, rail or style'
   again.locator('#overlayToggle').uncheck()
-  sim,meta=snap(again,start['west-native-match'],root,'14-exact-reopen-native-stage-near')
-  assert meta['collider']==domain['original']
-  assert pixel_guardcheck_same(sim,root/'13-after-west-native-match.png')
-  again.locator('[data-tab=play]').click()
-  try:again.wait_for_function("()=>{const a=HonroWorkshopAPI.getPlayApp();return a?.engine?.b&&a.scene?.canvas?.width>1&&a.canInput()}",timeout=45000)
-  finally:again.screenshot(path=str(root/'15-native-playtest-shoulder.png'))
-  game=again.evaluate("""([aid,x,y])=>{
-    const a=HonroWorkshopAPI.getPlayApp(),b=a.engine.b;
-    const row=b.honroLandmarks?.find(v=>v.asset?.id===aid);return {id:row?.asset.id,fills:row?.asset.visual.map(v=>v.fill),collider:b.terrain[0]?.vertices, count:b.terrain.length, exterior:HonroTerrainDomain.active(b),
-      camera:[a.scene.x,a.scene.y,a.scene.scale], size:[a.scene.canvas.clientWidth,a.scene.canvas.clientHeight], canvas:a.scene.canvas.toDataURL('image/png'), x:row?.x, y:row?.y};
-  }""",[aid,dx,dy])
-  assert game['exterior'] and game['count']==1 and game['collider']==domain['original'] and game['fills']==[v['fill'] for v in o['visual']]
-  game_canvas=Image.open(BytesIO(base64.b64decode(game.pop('canvas').split(',',1)[1],validate=True))).convert('RGB')
-  assert game_canvas.size==tuple(game['size']),'Playtest pixel sampling requires actual device DPR 1'
-  game_probe={}
-  cx,cy,z=game['camera'];w,h=game_canvas.size
-  for pt,k in probes[1:2]+probes[3:4]:
-   assert abs(pt[0]-cx)*z<w/2-4 and abs(pt[1]-cy)*z<h/2-4,'Actual camera did not include valid shoulder material probe'
-   game_probe[k]=color_probe(game_canvas,game['camera'],pt,width=1)
-  lum=lambda a:sum(x*y for x,y in zip(a,(.2126,.7152,.0722)))
-  assert lum(game_probe['main'])-lum(game_probe['cleft'])>=25,'Actual spawn Playtest lacks distinct primary and internal-cleft values'
- report.update({'nativePlaytestRgbProbes':game_probe,'newReceiptSha256':expect,'exactReopen':True,'reopenedPlaytestHasSameColliderAndSceneMaterials':True,'playtestCamera':game['camera'],'pass':True});write()
+  for name in ('west-native-match','quiet-crest'):
+   im,meta=snap(again,start[name],root,f'14-exact-reopen-{name}')
+   assert meta['collider']==domain['original'] and pixel_guardcheck_same(im,root/f'13-after-{name}.png')
+ report.update({'nativeExportSha256':expect,'exactReopen':True});write()
+ assert all(a['columns'] and a['nearWithinOnePixel']==len(a['columns']) for group in contact.values() for a in group), 'Unverified visible first-pixel contact'
+ assert all(v['outsideChangedPx']==0 and v['interiorChangedPx']>0 for v in metrics.values()),'Strict owner gate failed; independent reopened evidence retained'
+ report['pass']=True;write()
 def pixel_guardcheck_same(im,other):
  from PIL import ImageChops
  return ImageChops.difference(im,Image.open(other).convert('RGB')).getbbox() is None
