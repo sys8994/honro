@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
-          fetch-depth: 6
+          fetch-depth: 7
           persist-credentials: false
       - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
         with:
@@ -30,9 +30,9 @@ jobs:
           set -euo pipefail
           test "$GITHUB_REF" = refs/heads/qa/stage42-native-east-cap
           test "$GITHUB_SHA" = "$(git rev-parse HEAD)"
-          test "$(git rev-parse HEAD^)" = 14b00b5a096e6c0ad71835ebd46888b224a665ee
-          test "$(git rev-parse HEAD^^^^^)" = 1e043b09d4ce107e1d2dcf70fe2274dff7098476
-          printf '%s\n' .github/workflows/stage42-native-east-cap.yml tests/stage42-native-east-cap/body_driver.js tests/stage42-native-east-cap/browser-qa.py tests/stage42-native-east-cap/observed_driver.js tests/stage42-native-east-cap/split_gates.py > "$RUNNER_TEMP/east-retry-allowed.txt"
+          test "$(git rev-parse HEAD^)" = efc0edd1811371c6569549a85a044e9d2e382f4d
+          test "$(git rev-parse HEAD^^^^^^)" = 1e043b09d4ce107e1d2dcf70fe2274dff7098476
+          printf '%s\n' .github/workflows/stage42-native-east-cap.yml tests/stage42-native-east-cap/browser-qa.py tests/stage42-native-east-cap/cached_owner_driver.js tests/stage42-native-east-cap/trace_binding.py > "$RUNNER_TEMP/east-retry-allowed.txt"
           git diff --name-only HEAD^ HEAD | diff -u "$RUNNER_TEMP/east-retry-allowed.txt" -
           git diff --name-only HEAD^ HEAD | grep -v -E '^(\.github/workflows/stage42-native-east-cap\.yml|tests/stage42-native-east-cap/[^/]+)$' > "$RUNNER_TEMP/unapproved-east-paths.txt" || true
           test ! -s "$RUNNER_TEMP/unapproved-east-paths.txt"

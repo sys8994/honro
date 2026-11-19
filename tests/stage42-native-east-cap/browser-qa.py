@@ -6,8 +6,10 @@ from playwright.sync_api import sync_playwright
 from driver_binding import build_driver
 from pixel_gate import exact_stock,exact_protected
 from split_gates import transparent_body,full_scene_exact,sha
+from trace_binding import bind_route_trace,require_same_tile_route
 D=Path(__file__).parent
-DRIVER=build_driver()
+DRIVER=bind_route_trace(build_driver())
+CACHE_JS=(D/'cached_owner_driver.js').read_text()
 SYNC_FLAGS=["--force-device-scale-factor=1","--force-color-profile=srgb"]
 assert os.environ['HONRO_EAST_CAP_QA']=='1'
 BODY_JS=(D/'body_driver.js').read_text()
@@ -110,6 +112,15 @@ def native_body(page,meta,kind,label):
  (out/f'corner-body-{label}.png').write_bytes(png)
  return Image.open(io.BytesIO(png)).convert('RGBA')
 
+def cached_native_body(page,meta,state,kind,name):
+ routes=page.evaluate(CACHE_JS,{'actual':meta['actual'],'w':1280,'h':800,'kind':kind,'expected':state['full']})
+ require_same_tile_route(meta['tileRoute'],routes)
+ raw=base64.b64decode(routes.pop('png').split(',',1)[1],validate=True)
+ im=Image.open(io.BytesIO(raw)).convert('RGBA')
+ assert len(set(im.getchannel('A').getdata()))>2,'Unexpected opaque/empty binary retained owner shadow'
+ (out/f'landscape-body-tile-{name}.png').write_bytes(raw)
+ return im,routes
+
 with sync_playwright() as pw:
  b=pw.chromium.launch(headless=True,executable_path=os.environ['HONRO_CHROME'],args=SYNC_FLAGS)
  try:
@@ -205,6 +216,25 @@ with sync_playwright() as pw:
    area=approved_area(meta,post['outline'])
    summary=exact_protected(base.tobytes(),cand.tobytes(),area,opaque(fresh,meta))
    if valid:
+    if name=='landscape-pan-12':
+     stock2,meta2=control[name]
+     aa,trace1=cached_native_body(fresh,meta,original,'stock','stock-a1')
+     aa2,trace2=cached_native_body(fresh,meta2,original,'stock','stock-a2')
+     bb,traceb=cached_native_body(fresh,result,edited,'candidate','candidate-b')
+     shadow_aa=exact_stock(aa.tobytes(),aa2.tobytes())
+     assert shadow_aa['pass'],('Landscape owner shadow nondeterministic',shadow_aa)
+     alpha=aa.getchannel('A').tobytes()
+     gate=exact_protected(base.tobytes(),cand.tobytes(),area,alpha)
+     owner_gate=exact_protected(aa.tobytes(),bb.tobytes(),area,alpha)
+     direct=opaque(fresh,meta)
+     ra,rb=base.tobytes(),cand.tobytes()
+     pixels=[i for i,old in enumerate(direct) if old==255 and ra[i*4:i*4+4]!=rb[i*4:i*4+4]]
+     r['landscape_retained_shadow']={'stock_aa':shadow_aa,'owner_ab':owner_gate,'dpr':trace1['dpr'],'world_raster_scale':trace1['rs'],
+                                     'exact_live_blits_matched':True,'body_shadow_digests':[sha(q.tobytes()) for q in (aa,aa2,bb)],
+                                     'direct_mask_diagnostic':summary}
+     from collections import Counter
+     r['landscape_retained_shadow']['direct_opaque_changed_alpha_in_retained']=dict(Counter(str(alpha[i]) for i in pixels))
+     summary={**gate,'pass':gate['pass'] and owner_gate['pass'],'opaque_basis':'native cached BODY shadow, exact native Scene tile blits'}
     r['scope'][name]={**summary,'same_camera_and_lod':True,'clip_band_output_pixels':3}
    else:
     r['scene_diagnostics'][name]={'classification':'unverified full Scene: stock A/A unstable; visuals only','exact_pass':False,'unqualified_deltas':summary,'same_camera_and_lod':True}
