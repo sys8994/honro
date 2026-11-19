@@ -1,0 +1,18 @@
+{
+ "baseDraft":"6adcdaaac1d3e85b0a837680e9263ca9a72909fef96f872b9d6b85beedf580a3",
+ "role":"gate-prop-back-no-collision",
+ "placement":{"owner":"lower-gate","seat":"upper-seat-integral-stone","surfaceY":946,"threshold":[5996,6128],"safeOpenHeight":[770,946],"drawOrder":"after back rocks and structural brace, before main terrain, actors, UI; lower layer numbers are behind higher numbers", "uiState":"withhold until separate prop ownership, collision empty, and the intended stage gate interaction are verified"},
+ "shapes":[
+  {"id":"stone-west-post-shoe","layer":10,"fill":"#454a4b","points":[[5899,946],[5908,916],[5946,901],[5987,910],[5995,946]]},
+  {"id":"stone-east-post-shoe","layer":10,"fill":"#474b4a","points":[[6129,946],[6137,913],[6173,903],[6203,913],[6214,946]]},
+  {"id":"timber-west-load-post","layer":20,"fill":"#55463e","points":[[5924,916],[5930,747],[5969,739],[5970,908],[5960,916]]},
+  {"id":"timber-east-load-post","layer":20,"fill":"#4b3d36","points":[[6150,909],[6147,750],[6182,747],[6190,918],[6174,909]]},
+  {"id":"timber-west-split-face","layer":21,"fill":"#675449","points":[[5930,761],[5943,756],[5944,849],[5934,896],[5927,904]]},
+  {"id":"timber-lintel-load-beam","layer":25,"fill":"#493c35","points":[[5909,753],[5927,725],[6174,719],[6196,742],[6194,763],[5909,769]]},
+  {"id":"bearing-west-bracket","layer":26,"fill":"#5f5146","points":[[5928,773],[5928,754],[5994,751],[5984,762],[5969,763],[5956,779]]},
+  {"id":"bearing-east-bracket","layer":26,"fill":"#584c43","points":[[6133,755],[6175,754],[6187,763],[6185,777],[6168,773],[6158,766],[6135,766]]},
+  {"id":"roof-lifted-end-silhouette","layer":30,"fill":"#333b40","points":[[5868,697],[5899,703],[5935,697],[5969,681],[6002,652],[6031,626],[6052,593],[6069,620],[6104,656],[6140,681],[6179,693],[6210,694],[6238,685],[6228,706],[6202,722],[6135,731],[6055,734],[5953,737],[5902,728],[5879,718]]},
+  {"id":"roof-weather-slope","layer":31,"fill":"#465056","points":[[5902,716],[5941,713],[5983,692],[6027,656],[6052,629],[6058,646],[6023,681],[5991,702],[5955,720],[5929,723]]},
+  {"id":"roof-ridge-tip","layer":32,"fill":"#414a50","points":[[6037,618],[6045,603],[6046,591],[6052,581],[6060,584],[6064,598],[6075,617],[6060,614],[6054,605],[6049,616]]}
+ ]
+}
