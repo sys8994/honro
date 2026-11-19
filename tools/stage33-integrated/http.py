@@ -12,8 +12,10 @@ try:
    page.on('pageerror',lambda e:errors.append(str(e)))
    page.goto('http://127.0.0.1:8765/HONRO.html',wait_until='domcontentloaded',timeout=180000)
    page.wait_for_function('window.HonroApp && window.HONRO_PROJECT && window.HonroAct4TerrainPreview',timeout=180000)
-   page.evaluate('''sid=>{const a=HonroApp;a.frame=()=>{};a.profile.settings.music=false;a.profile.settings.sound=false;
-     a.launchMap(HONRO_PROJECT,'stage-'+sid,{story:false});a.dialogue=null;a.turnNotice=null;a.close();}''',sid)
+   page.evaluate('''async sid=>{const a=HonroApp;a.frame=()=>{};a.profile.settings.music=false;a.profile.settings.sound=false;
+     await HonroCampaignLoader.ensureStage(sid);for(let n=1;n<sid;n++)a.profile.cleared[n]=true;
+     for(const hero of Object.values(a.profile.heroes))hero.xp=HonroProgression.xpAt(HonroProgression.plan(sid).entryLevel);
+     a.launch(sid);if(a.engine?.b.honroStage!==sid)throw Error('Campaign launch did not reach '+sid);a.dialogue=null;a.turnNotice=null;a.close();}''',sid)
    page.wait_for_timeout(250)
    result=page.evaluate('''q=>{const a=HonroApp,s=a.scene,b=a.engine.b;Object.assign(s,{manual:true,time:2,storyTween:null,goalFocus:null,x:q.x,y:q.y,scale:q.z});
      const st=HONRO_PROJECT.stages.find(t=>t.metadata?.stageId===q.sid);const physics=JSON.stringify({terrain:b.terrain,units:b.units,design:st.design,initialState:st.initialState,objectives:st.objectives});
@@ -24,7 +26,7 @@ try:
    page.locator('#battlecanvas').screenshot(path=str(out/(label+'.png')));rows.append(result);page.close()
   browser.close()
 finally:server.terminate();server.wait()
-(out/'report.json').write_text(json.dumps({'scope':'Normal HTTP HONRO.html source, stock HonroApp.launchMap, no injected project/art; fixed diagnostic camera, not full play','rows':rows,'errors':errors},indent=2))
+(out/'report.json').write_text(json.dumps({'scope':'Normal HTTP HONRO.html source, stock HonroCampaignLoader.ensureStage + HonroApp.launch, no injected project/art; fixed diagnostic camera, not full play','rows':rows,'errors':errors},indent=2))
 assert not errors,errors
 assert (len(rows[0]['contacts'])==2)==(tag=='integrated'),rows[0]
 print(tag,'HTTP launch capture passed')
