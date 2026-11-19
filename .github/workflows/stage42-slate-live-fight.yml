@@ -1,0 +1,74 @@
+name: Stage42 exact slate stock Player first fight QA
+on:
+  push:
+    branches: ['qa/stage42-slate-live-fight']
+    paths: ['.github/workflows/stage42-slate-live-fight.yml','tests/stage42-slate-live-fight/**']
+permissions:
+  contents: read
+jobs:
+  isolated:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      HONRO_ACT4_RELEASE: '1'
+      HONRO_ACT5_RELEASE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 10
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Verify strict QA-only diff, source receipts and stock build
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = refs/heads/qa/stage42-slate-live-fight
+          test "$GITHUB_SHA" = "$(git rev-parse HEAD)"
+          test "$(git rev-parse HEAD^)" = c4a5b20d907474ac66df2ddf3feca801c4853d64
+          test "$(git rev-parse HEAD^^^^^^^^^)" = 1e043b09d4ce107e1d2dcf70fe2274dff7098476
+          L=tests/stage42-slate-live-fight
+          N=tests/stage42-real-slate
+          Z=tests/stage42-central-hierarchy
+          C=tests/stage42-composed-native
+          G=tests/stage42-full-native-workshop
+          printf '%s\n' .github/workflows/stage42-slate-live-fight.yml "$L/build-composed-visual.mjs" "$L/equipment-ephemeral-entry.js" "$L/isolated-harness.js" "$L/live-candidate.SHA256SUMS" "$L/pilot.py" "$L/probe.js" "$L/run-slate-live.sh" "$L/slate-live-entry.py" "$L/walk_probe.py" | LC_ALL=C sort > "$RUNNER_TEMP/live-allowed.txt"
+          git diff --name-only --diff-filter=A HEAD^ HEAD | LC_ALL=C sort | diff -u "$RUNNER_TEMP/live-allowed.txt" -
+          git diff --name-only HEAD^ HEAD | LC_ALL=C sort | diff -u "$RUNNER_TEMP/live-allowed.txt" -
+          printf '%s  %s\n' cebd24200a99792f8dab73336348a1208fbdc53ce07119005659b5dada4fddf3 "$L/live-candidate.SHA256SUMS" 1c4baa99d07e29142b95923794cd87dc409e49d8f3c0305ab0ecd2ff9b510f57 "$N/slate-candidate.SHA256SUMS" 0c8e8944abff77f66ad2c1bd2617cec0935a03654d55007fdda9a724bf5db454 "$Z/sample-candidate.SHA256SUMS" 21c2c53d474b5843c271ada2a16ac112677772ae742800bac7560e558d4faca8 "$C/candidate.SHA256SUMS" | sha256sum -c -
+          (cd "$L" && sha256sum -c live-candidate.SHA256SUMS)
+          (cd "$N" && sha256sum -c slate-candidate.SHA256SUMS)
+          (cd "$Z" && sha256sum -c sample-candidate.SHA256SUMS)
+          (cd "$C" && sha256sum -c candidate.SHA256SUMS)
+          (cd "$G" && sha256sum -c "$GITHUB_WORKSPACE/$C/inherited.SHA256SUMS")
+          test -z "$(git diff --name-only "$(git rev-parse HEAD^^^^^^^^^)" HEAD -- web game shared assets workshop HONRO.html HONRO_WORKSHOP.html)"
+          npm ci
+          npm ci --prefix game
+          npm run build
+          mkdir -p "$RUNNER_TEMP/stage42-slate-live-stock"
+          cp -a web HONRO_WORKSHOP.html HONRO.html "$RUNNER_TEMP/stage42-slate-live-stock/"
+      - name: Actual exact slate Workshop, normal starter equipment and closed-loop required fight
+        run: |
+          set -euo pipefail
+          python -m pip install 'playwright==1.58.0' 'Pillow==12.0.0'
+          export HONRO_CHROME="$(command -v google-chrome || command -v chromium)"
+          test -x "$HONRO_CHROME"
+          "$HONRO_CHROME" --version
+          bash tests/stage42-slate-live-fight/run-slate-live.sh "$RUNNER_TEMP/stage42-slate-live-stock" "$RUNNER_TEMP/stage42-slate-live-copies" "$RUNNER_TEMP/stage42-slate-live-evidence"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage42-slate-live-fight-evidence
+          path: |
+            ${{ runner.temp }}/stage42-slate-live-evidence/result.json
+            ${{ runner.temp }}/stage42-slate-live-evidence/live-first-walk.json
+            ${{ runner.temp }}/stage42-slate-live-evidence/live-slate-scope.json
+            ${{ runner.temp }}/stage42-slate-live-evidence/08-stock-slate-first-walk.png
+            ${{ runner.temp }}/stage42-slate-live-evidence/approach-deterministic.json
+            ${{ runner.temp }}/stage42-slate-live-evidence/approach-deterministic.png
+          if-no-files-found: warn
+          retention-days: 7
