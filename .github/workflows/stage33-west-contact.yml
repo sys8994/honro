@@ -1,0 +1,40 @@
+name: Stage33 west contact isolated trial
+on:
+  push:
+    branches: ['audit/stage33-west-contact-20261120']
+permissions:
+  contents: read
+jobs:
+  capture:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix:
+        trial: ['0','1']
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 4
+      - name: Reject production changes
+        run: |
+          git diff --name-only 00cf4edc20fecebb5dc0efed54a17ad040a75fe4 HEAD > /tmp/changed
+          if grep -vE '^(tools/stage33-west-contact/(capture|contact).mjs|.github/workflows/stage33-west-contact.yml)$' /tmp/changed; then exit 1; fi
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm ci && npm ci --prefix game
+      - name: Same camera stock Scene versus contact trial
+        env:
+          HONRO_NATIVE_OUT: /tmp/contact-proof
+          HONRO_CONTACT_TRIAL: ${{ matrix.trial }}
+        run: |
+          mkdir -p "$HONRO_NATIVE_OUT"
+          git rev-parse HEAD > "$HONRO_NATIVE_OUT/test-head.txt"
+          node --expose-gc --max-old-space-size=12000 tools/stage33-west-contact/capture.mjs 33
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage33-contact-${{ matrix.trial }}
+          path: /tmp/contact-proof
