@@ -1,7 +1,7 @@
 /** Explicit return-event state/geometry fixtures. DOM is a double; no normal
  * play, actual dialogue receipt, mission or visual acceptance claim. */
 import assert from 'node:assert/strict';import vm from 'node:vm';import{readFile}from'node:fs/promises';import{appHarness,plain}from'./app-regression-helpers.mjs';
-process.env.HONRO_ACT4_RELEASE='1';const h=await appHarness({productionStory:true}),g=h.g,app=h.load(h.profileThrough(39));app.launch(40);h.finish(app);const base=plain(app.engine.b);app.stopBattle();g.HonroApp=app;g.HONRO_ACT4_PREVIEW_SEEDS=JSON.parse(await readFile('shared/data/act4/reviewed.json','utf8'));
+process.env.HONRO_ACT4_RELEASE='1';const h=await appHarness({productionStory:true}),g=h.g,app=h.load(h.profileThrough(39));g.HONRO_ACT4_PILOT_COMBAT_REFERENCE=JSON.parse(await readFile('shared/data/act4/pilot-combat-reference.json','utf8'));vm.runInContext(await readFile('shared/runtime/act4-pilot-combat.js','utf8'),g);app.launch(40);h.finish(app);const base=plain(app.engine.b);app.stopBattle();g.HonroApp=app;g.HONRO_ACT4_PREVIEW_SEEDS=JSON.parse(await readFile('shared/data/act4/reviewed.json','utf8'));
 for(const n of ['interactions','act4-art','act4-maps','act4-coast-maps','act4-coast-art','act4-events','act4-coast-events'])vm.runInContext(await readFile(n==='act4-coast-events'?(process.env.PACING_SOURCE||'shared/runtime/act4-coast-events.js'):'shared/runtime/'+n+'.js','utf8'),g);
 const P=g.HonroAct4TerrainPreview,C=g.HONRO_CORE;
 const geo={boardingTerrainId:'bank',arrivalTerrainId:'bank',deck:{y:1000,w:400,h:20},boatArtY:1000,boardingTriggerBounds:{x1:0,x2:600,y1:900,y2:1300},boatBoardingX:[400,480],boardingRoutes:[[{x:400,y:1000}],[{x:480,y:1000}]],passengerRoutes:[[{x:700,y:1200}],[{x:780,y:1200}]],highRoutes:[[{x:900,y:1200}],[{x:980,y:1200}]],safeZone:{x1:650,x2:1050,y1:1100,y2:1250},finishBounds:{x1:1100,x2:1500,y1:1100,y2:1250},marks:{boat:{x:400,y:900},high:{x:900,y:1100},safe:{x:800,y:1100},ridge:{x:1300,y:900},dislocation:{x:1350,y:1000}}};
@@ -28,3 +28,4 @@ for(const [index,separation,expected] of [[0,250,false],[1,100,false],[1,250,tru
  assert(calls.includes(f.np[0].id),'leader remains runnable');assert.equal(calls.includes(f.np[1].id),expected,`milestone=${index} gap=${separation}`);assert(!f.q.complete);
 }
 console.log('Synthetic boarding follower milestone and separation dispatch passed; no real route or resume proof.');
+

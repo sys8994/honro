@@ -1,0 +1,33 @@
+name: Verify Act4 objective progression without extermination
+on:
+  workflow_dispatch:
+  push:
+    branches: ['qa/act4-objectives-isolated-20261120']
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Verify pinned parent
+        run: test "$(git rev-parse HEAD^)" = 1e043b09d4ce107e1d2dcf70fe2274dff7098476
+      - run: npm ci && npm ci --prefix game
+      - run: node --check shared/runtime/act4-events.js && node --check shared/runtime/act4-coast-events.js
+      - run: node tests/act4-no-extermination.mjs
+      - run: HONRO_ACT4_RELEASE=1 node tests/act4-objective-map-contract.mjs
+      - run: HONRO_ACT4_RELEASE=1 node tests/act4-shelter-travel.mjs
+      - run: HONRO_ACT4_RELEASE=1 node tests/act4-stage36-door-geometry.mjs
+      - run: HONRO_ACT4_RELEASE=1 node tests/act4-equipment-release.mjs
+      - run: node tests/act4-story-compact-save.mjs
+      - run: HONRO_ACT4_RELEASE=1 node tests/act4-exit-reward-contract.mjs
+      - run: HONRO_ACT4_RELEASE=1 node tests/act4-stage35-blocked-shot.mjs
+      - run: HONRO_ACT4_RELEASE=1 node tests/act4-return-follower-guards.mjs
+
