@@ -314,7 +314,7 @@ with sync_playwright() as pw:
         }""",dict(label=label,script=js))
     def save_trace(label):
         a=t.evaluate("()=>{window.__p6Trace.done=true;return window.__p6Trace.frames}")
-        dump('trace-'+label+'.json',a)
+        note('normal-input-'+label,frames=a)
         return a
     trace('jump')
     try:
@@ -328,7 +328,7 @@ with sync_playwright() as pw:
     assert any(f['keys'][1] and f['x']>=642 for f in j)
     assert m['move']<launch['move']
     render_view(t,'09-east-tile',{'x':1450,'y':290,'z':.7},colored=True,strips=[['x',1620,120,510],['y',560,835,1450]])
-    render_view(t,'09-west-tile',{'x':100,'y':260,'z':.7},colored=True,strips=[['x',0,150,260],['x',0,472,515]])
+    render_view(t,'09-west-tile',{'x':100,'y':260,'z':.7},colored=True,strips=[['x',0,150,260],['x',0,478,538]])
     render_view(t,'09-domain-wide',{'x':760,'y':400,'z':.4},colored=True,strips=[['x',1620,150,490],['y',560,185,570]])
     render_view(t,'09-east-direct',{'x':1480,'y':400,'z':1.1},colored=True,strips=[['x',1620,230,520],['y',560,1150,1430]])
     # Descend around the real left lip, never through the solid; no Alt or changed physics.
