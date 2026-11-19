@@ -1,0 +1,25 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import {createHash} from 'node:crypto';
+const base=path.resolve(process.argv[2]??'.');
+const manifest=JSON.parse(fs.readFileSync(path.join(base,'web/manifest.json'),'utf8'));
+if(!/^web\/data\/campaign\.[a-f0-9]+\.json$/.test(manifest.project))throw Error('unknown active campaign pointer');
+const campaign=JSON.parse(fs.readFileSync(path.join(base,manifest.project),'utf8'));
+if(!/^web\/data\/chapter-42\.[a-f0-9]+\.json$/.test(campaign.stages?.[41]))throw Error('Stage 42 owner not in active campaign slot');
+const stagePath=campaign.stages[41];
+const stage=JSON.parse(fs.readFileSync(path.join(base,stagePath),'utf8'));
+if(stage.id!=='stage-42'||stage.elements?.filter(e=>e.assetId==='act5:near:42').length!==1)throw Error('Stage 42 semantic owner mismatch');
+const assetManifest=campaign.stageLibraries?.[41];
+if(!/^web\/data\/chapter-42-assets\.[a-f0-9]+\.json$/.test(assetManifest))throw Error('expected active Stage 42 asset pointer');
+const list=JSON.parse(fs.readFileSync(path.join(base,assetManifest),'utf8'));
+if(list.filter(a=>a.id==='act5:near:42').length!==1)throw Error('expected unique Stage 42 raw source owner');
+const asset=list.find(a=>a.id==='act5:near:42');
+const v=asset.edgeWall.vector, key=v.root.clipPath;
+const sha=x=>createHash('sha256').update(JSON.stringify(x)).digest('hex');
+const body=sha([v.root,v.clips[key]]),clips=sha(v.clips);
+
+const result={project:manifest.project,stage:stagePath,stageId:stage.id,assetManifest,assetId:asset.id,key,bodySha256:body,clipsSha256:clips};
+if(body!=='4a413feb79ba5cabb75a8a3e204bce816548db1c80857e11a9538391625756a8'||clips!=='6784931b63ee57114f0c90810a16b886eba91d45f868a319178a4ccf4f11cedb')throw Error('wrong original owner/geometry');
+if(stage.width!==6500||stage.height!==2861||JSON.stringify(stage.terrains.map(t=>t.id))!==JSON.stringify(['a5-supply-road','a5-palisade','a5-device-0']))throw Error('wrong stage physical source');
+if(asset.edgeWall.params?.workshopVisibleJoint42||asset.edgeWall.params?.bodyEditorFaces)throw Error('not original source');
+console.log(JSON.stringify(result,null,2));

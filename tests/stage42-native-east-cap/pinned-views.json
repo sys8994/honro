@@ -1,0 +1,56 @@
+[
+  {
+    "label": "landscape-pan-12",
+    "requested": [
+      6950,
+      1850,
+      0.5
+    ],
+    "actual": [
+      6820,
+      1850,
+      0.5
+    ],
+    "size": [
+      1280,
+      800
+    ],
+    "pinnedFar": true,
+    "worldViewport": {
+      "left": 5540,
+      "right": 8100,
+      "top": 1050,
+      "bottom": 2650
+    },
+    "file": "diagnostic-landscape-pan-12.png",
+    "png_sha256": "4dde81356093e517988ed8ca4e552cd43ae2c4e75c683c0d7905523d51549e66",
+    "clamped": true
+  },
+  {
+    "label": "corners-03",
+    "requested": [
+      7050,
+      3125,
+      0.3
+    ],
+    "actual": [
+      6820,
+      3101,
+      0.3
+    ],
+    "size": [
+      1280,
+      800
+    ],
+    "pinnedFar": true,
+    "worldViewport": {
+      "left": 4686.666666666666,
+      "right": 8953.333333333334,
+      "top": 1767.6666666666665,
+      "bottom": 4434.333333333334
+    },
+    "file": "diagnostic-corners-03.png",
+    "png_sha256": "82068364e17e939a6c5a5600e5282e3cacfdc86b2a6e227e4760e41ed751a778",
+    "clamped": true
+  }
+]
