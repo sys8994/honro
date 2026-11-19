@@ -1,0 +1,45 @@
+name: Stage3 single floor-end taper comparison
+on:
+  push:
+    branches: ['audit/stage3-floor-end-taper-20261120']
+permissions:
+  contents: read
+jobs:
+  paired:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 5
+      - name: Exact single production diff
+        shell: bash
+        run: |
+          git diff --name-only 1e043b09 HEAD > /tmp/changed
+          if grep -vE '^(tools/map-forge/naru-body-finish.mjs|tools/current-terrain-audit/capture.mjs|.github/workflows/current-terrain-audit.yml|.github/workflows/stage3-taper-audit.yml)$' /tmp/changed; then exit 1; fi
+          git diff 1e043b09 HEAD -- tools/map-forge/naru-body-finish.mjs
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm ci && npm ci --prefix game
+      - name: Compare original and candidate through same exact stock Scene
+        shell: bash
+        run: |
+          mkdir -p /tmp/paired
+          cp tools/map-forge/naru-body-finish.mjs /tmp/taper-candidate.mjs
+          git show 1e043b09:tools/map-forge/naru-body-finish.mjs > tools/map-forge/naru-body-finish.mjs
+          HONRO_NATIVE_OUT=/tmp/paired/before node --expose-gc --max-old-space-size=12000 tools/current-terrain-audit/capture.mjs 3
+          cp /tmp/taper-candidate.mjs tools/map-forge/naru-body-finish.mjs
+          HONRO_NATIVE_OUT=/tmp/paired/after node --expose-gc --max-old-space-size=12000 tools/current-terrain-audit/capture.mjs 3
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';import assert from 'node:assert/strict';
+          const a=JSON.parse(fs.readFileSync('/tmp/paired/before/report.json')),b=JSON.parse(fs.readFileSync('/tmp/paired/after/report.json'));
+          let changes=0;for(let i=0;i<a.rows.length;i++){assert.deepEqual(a.rows[i].view,b.rows[i].view);assert.equal(a.rows[i].gameplaySha256,b.rows[i].gameplaySha256);if(a.rows[i].pngSha256!==b.rows[i].pngSha256)changes++;}
+          assert(changes>0);fs.writeFileSync('/tmp/paired/comparison.json',JSON.stringify({sameCamera:true,sameGameplay:true,changedViews:changes,scope:'Native Scene, not gameplay or browser acceptance'},null,2));
+          JS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage3-single-floor-end-taper
+          path: /tmp/paired
