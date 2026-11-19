@@ -1,0 +1,76 @@
+name: Stage42 official integrated approach and first natural rescue
+on:
+  push:
+    branches: ['qa/stage42-mib-approach-priority-foe2']
+    paths: ['.github/workflows/stage42-mib-approach-priority-foe2.yml','tests/stage42-mib-approach-priority-foe2/**']
+permissions:
+  contents: read
+jobs:
+  entry:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Exact C-only packet and detached host
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = refs/heads/qa/stage42-mib-approach-priority-foe2
+          test "$GITHUB_SHA" = "$(git rev-parse HEAD)"
+          PIN=1e043b09d4ce107e1d2dcf70fe2274dff7098476
+          test "$(git rev-parse HEAD^)" = "$PIN"
+          Q=tests/stage42-mib-approach-priority-foe2
+          printf '%s\n' .github/workflows/stage42-mib-approach-priority-foe2.yml "$Q/prepare.py" "$Q/observe.py" "$Q/source-contract.mjs" "$Q/manifest.json" "$Q/official-qa-stage.json" "$Q/SHA256SUMS" "$Q/approach.py" "$Q/approach-probe.js" "$Q/stock_skill_trials.py" "$Q/ground_s03.py" | sort > "$RUNNER_TEMP/allow"
+          git diff --name-only HEAD^ HEAD | sort | diff -u "$RUNNER_TEMP/allow" -
+          git diff --name-only --diff-filter=A HEAD^ HEAD | sort | diff -u "$RUNNER_TEMP/allow" -
+          echo "b91eb127ef860eaf028288261af9fdfe2c59a49e206f43e7c4fe738b9915eca1  $Q/SHA256SUMS" | sha256sum -c -
+          (cd "$Q" && sha256sum -c SHA256SUMS)
+          test ! -e "$RUNNER_TEMP/c-stage42-entry-fixture"
+          git worktree add --detach "$RUNNER_TEMP/c-stage42-entry-fixture" "$PIN"
+      - name: Prepare C source and exact 46 contacts in temporary host only
+        run: |
+          set -euo pipefail
+          Q="$GITHUB_WORKSPACE/tests/stage42-mib-approach-priority-foe2"
+          cd "$RUNNER_TEMP/c-stage42-entry-fixture"
+          echo '5306b3cdce1ea97efcc5f22bc054abe0a826a13a72f4a7919b03cfe3b5f15560  shared/runtime/quest-targets.js' | sha256sum -c -
+          npm ci
+          npm ci --prefix game
+          node "$Q/source-contract.mjs" baseline "$PWD" "$RUNNER_TEMP/c-source-baseline.json"
+          python "$Q/prepare.py" "$PWD"
+          mkdir -p "$RUNNER_TEMP/c-evidence"
+          node "$Q/source-contract.mjs" candidate "$PWD" "$RUNNER_TEMP/c-source-baseline.json" "$RUNNER_TEMP/c-evidence/source-invariants.json"
+          sha256sum shared/act5-world.mjs shared/data/act5/stage42-c-entry.witness.json > "$RUNNER_TEMP/c-owned.sha"
+          HONRO_ACT4_RELEASE=1 HONRO_ACT5_RELEASE=1 npm run build
+          test "$(git rev-parse HEAD)" = 1e043b09d4ce107e1d2dcf70fe2274dff7098476
+          if git symbolic-ref -q HEAD; then exit 1; fi
+          sha256sum -c "$RUNNER_TEMP/c-owned.sha"
+          git -C "$GITHUB_WORKSPACE" diff --exit-code
+          git -C "$GITHUB_WORKSPACE" diff --cached --exit-code
+      - name: Real C campaign first launch, legal movement and bounded required defeat
+        run: |
+          set -euo pipefail
+          python -m pip install 'playwright==1.58.0'
+          export HONRO_CHROME="$(command -v google-chrome || command -v chromium)"
+          python -m http.server 8884 --bind 127.0.0.1 --directory "$RUNNER_TEMP/c-stage42-entry-fixture" &
+          pid=$!; trap 'kill "$pid" 2>/dev/null || true' EXIT
+          for i in {1..20}; do if curl -fsS -o /dev/null http://127.0.0.1:8884/HONRO.html; then break; fi; sleep 1; done
+          timeout 765s python tests/stage42-mib-approach-priority-foe2/observe.py http://127.0.0.1:8884/HONRO.html "$RUNNER_TEMP/c-evidence/entry" "$RUNNER_TEMP/c-evidence/source-invariants.json"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage42-c-official-entry-only
+          path: |
+            ${{ runner.temp }}/c-evidence/source-invariants.json
+            ${{ runner.temp }}/c-evidence/entry/entry-proof.json
+            ${{ runner.temp }}/c-evidence/entry/0[1-9]-*.png
+          if-no-files-found: warn
+          retention-days: 7
