@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
-          fetch-depth: 2
+          fetch-depth: 3
           persist-credentials: false
       - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
         with:
@@ -26,12 +26,13 @@ jobs:
           set -euo pipefail
           test "$GITHUB_REF" = refs/heads/qa/stage42-e-native-bridge
           test "$GITHUB_SHA" = "$(git rev-parse HEAD)"
-          test "$(git rev-parse HEAD^)" = 1e043b09d4ce107e1d2dcf70fe2274dff7098476
+          test "$(git rev-parse HEAD^)" = f88ca81d71416f1335f36f7014a3065eb3bbf448
+          test "$(git rev-parse HEAD~2)" = 1e043b09d4ce107e1d2dcf70fe2274dff7098476
           Q=tests/stage42-e-native-bridge
           printf '%s\n' .github/workflows/stage42-e-native-bridge.yml "$Q/smoke.SHA256SUMS" "$Q/bridge-e-proof.py" | LC_ALL=C sort > "$RUNNER_TEMP/solid-allowlist"
           git diff --name-only HEAD^ HEAD | LC_ALL=C sort | diff -u "$RUNNER_TEMP/solid-allowlist" -
-          git diff --name-only --diff-filter=A HEAD^ HEAD | LC_ALL=C sort | diff -u "$RUNNER_TEMP/solid-allowlist" -
-          echo '4a24e3317558603337f9892fae7061c00b02ef3470a645c58c9347b820a5bb0f  tests/stage42-e-native-bridge/smoke.SHA256SUMS' | sha256sum -c -
+          git diff --name-only --diff-filter=M HEAD^ HEAD | LC_ALL=C sort | diff -u "$RUNNER_TEMP/solid-allowlist" -
+          echo '292bbfd0de03a5af53b315d78edd63b233fb3a89edf6c8e7d57a5af0711f2fba  tests/stage42-e-native-bridge/smoke.SHA256SUMS' | sha256sum -c -
           (cd "$Q" && sha256sum -c smoke.SHA256SUMS)
       - name: Build unmodified stock Workshop
         run: |
@@ -61,6 +62,7 @@ jobs:
             ${{ runner.temp }}/stock-solid-evidence/camera-proof.json
             ${{ runner.temp }}/stock-solid-evidence/domain-proof.json
             ${{ runner.temp }}/stock-solid-evidence/bridge-proof.json
+            ${{ runner.temp }}/stock-solid-evidence/bridge-pointer-fit.json
             ${{ runner.temp }}/stock-solid-evidence/pointer-diagnostic.json
             ${{ runner.temp }}/stock-solid-evidence/proof.json
             ${{ runner.temp }}/stock-solid-evidence/movement.json

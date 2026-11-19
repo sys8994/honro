@@ -229,18 +229,45 @@ with sync_playwright() as play:
     field(fresh,'#assetMaterial','wood')
     field(fresh,'#assetLayer','prop')
     temp=props(fresh)['visual'][0]
-    # A high short rail strip is drawn first; its y cannot mask the temporary
-    # hex's center. Delete that original shape through normal Point selection.
     rail=[[-157,-76],[-57,-53],[52,-51],[144,-72],[145,-63],[53,-43],[-57,-44],[-157,-66]]
+    other_faces=(
+      deck+[(x,y+13) for x,y in reversed(deck)],
+      [[-176,deck[0][1]+7],[-142,deck[0][1]+6],[-136,deck[0][1]+30],[-182,deck[0][1]+27]],
+      [[125,deck[-1][1]+8],[155,deck[-1][1]+5],[177,deck[-1][1]+11],[177,deck[-1][1]+25],[126,deck[-1][1]+31]],
+      [[-150,-78],[-143,-77],[-143,deck[0][1]+5],[-151,deck[0][1]+6]],
+      [[135,-75],[144,-76],[145,deck[-1][1]+4],[136,deck[-1][1]+5]])
+    faces=[rail,*other_faces]
+    def camera_fit():
+        return fresh.evaluate("""faces=>{
+          const c=document.querySelector('#elementCanvas'),r=c.getBoundingClientRect(),v=HonroWorkshopAPI.getEditorState().elementView;
+          const project=([x,y])=>[r.left+r.width/2+(x-v.x)*v.zoom,r.top+r.height/2+(y-v.y)*v.zoom];
+          const projected=faces.map(f=>f.map(project));
+          const checks=projected.flat().map(([x,y])=>({x,y,hit:document.elementFromPoint(x,y)?.id,
+             padding:Math.min(x-r.left,r.right-x,y-r.top,r.bottom-y)}));
+          const minGapPx=Math.min(...projected.flatMap(f=>f.map(([x,y],i)=>Math.hypot(x-f[(i+1)%f.length][0],y-f[(i+1)%f.length][1]))));
+          return {zoom:v.zoom,canvas:[r.left,r.top,r.width,r.height],minGapPx,checks,center:[r.left+r.width/2,r.top+r.height/2]};
+        }""",faces)
+    states=[]
+    result=camera_fit();states.append(result)
+    fit=lambda v:v['minGapPx']>=4 and all(q['hit']=='elementCanvas' and q['padding']>=8 for q in v['checks'])
+    for wheel in (150,40,40,40):
+        if fit(result):break
+        if result['minGapPx']<4:break
+        fresh.mouse.move(*result['center'])
+        prior=result['zoom']
+        fresh.mouse.wheel(0,wheel)
+        fresh.wait_for_function('z=>HonroWorkshopAPI.getEditorState().elementView.zoom<z',arg=prior,timeout=2000)
+        result=camera_fit();states.append(result)
+    fresh.screenshot(path=str(p/'08-bridge-stock-wheel-fit.png'))
+    (p/'bridge-pointer-fit.json').write_text(json.dumps({'passed':fit(result),'states':states},indent=2))
+    assert fit(result),'Stock wheel did not expose all planned vertices with safe spacing/padding'
+    # A high short rail strip is drawn first; its y cannot mask the temporary
+    # hex center. Delete that original shape through normal Point selection.
     face(rail)
     fresh.locator('[data-etool=point]').click();asset_pointer(fresh,[0,0]);fresh.keyboard.press('Delete')
     still=props(fresh)
     assert len(still['visual'])==1 and still['visual'][0]!=temp and not still['collision'],'Starter hex or unwanted collision remains'
-    face(deck+[(x,y+13) for x,y in reversed(deck)])
-    face([[-176,deck[0][1]+7],[-142,deck[0][1]+6],[-136,deck[0][1]+30],[-182,deck[0][1]+27]])
-    face([[125,deck[-1][1]+8],[155,deck[-1][1]+5],[177,deck[-1][1]+11],[177,deck[-1][1]+25],[126,deck[-1][1]+31]])
-    face([[-150,-78],[-143,-77],[-143,deck[0][1]+5],[-151,deck[0][1]+6]])
-    face([[135,-75],[144,-76],[145,deck[-1][1]+4],[136,deck[-1][1]+5]])
+    for pts in other_faces:face(pts)
     fresh.locator('[data-etool=anchor]').click();asset_pointer(fresh,[0,0])
     authored=props(fresh);aid=authored['id']
     assert len(authored['visual'])==6 and not authored['collision'] and not authored['oneWay']
