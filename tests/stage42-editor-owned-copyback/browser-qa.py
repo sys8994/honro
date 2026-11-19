@@ -14,7 +14,7 @@ HERE=Path(__file__).resolve().parent
 assert os.environ.get("HONRO_STAGE42_OWNER_QA_SMOKE") == "1"
 plan=json.loads((HERE/'workpad.json').read_text())
 oracle_bytes=(HERE/'visual-oracle.json').read_bytes()
-assert hashlib.sha256(oracle_bytes).hexdigest()=='789f275bdbe18c190cb5a8a4bae64f7073b11ba947b0d47ebda90e9dc95106b3'
+assert hashlib.sha256(oracle_bytes).hexdigest()=='d1ab79d227021c016da539be8ed8a75906e8a3334de56ed3c2f8e287f1785fdb'
 oracle=json.loads(oracle_bytes)
 out=Path(sys.argv[1]);out.mkdir(parents=True,exist_ok=True)
 url='http://127.0.0.1:8870/HONRO_WORKSHOP.html'
@@ -109,6 +109,9 @@ with sync_playwright() as pw:
   assert s['afterZoomWarm']['owner']['attempts']==s['zoom']['owner']['attempts'], 'Warm draw after LOD invalidation recomposed'
   def image(name):return Image.open(out/(name+'.png')).convert('RGBA')
   A=image('02-same-camera-original');F=image('04-disabled-fallback');C=image('05-same-camera-replacement')
+  actual_png_sha=hashlib.sha256((out/'02-same-camera-original.png').read_bytes()).hexdigest()
+  r['baseline_png_sha']=actual_png_sha
+  r['baseline_png_encoded_match']=actual_png_sha==oracle['baseline']['pngSHA256']
   assert A.tobytes()==F.tobytes(),'Disable QA did not fall back to original exactly'
   masks=Image.new('1',A.size);m=ImageDraw.Draw(masks)
   shifted=[(x*.5*plan['placementScale']+(1280/2-150*.5),y*.5*plan['placementScale']+(800/2-1850*.5)) for x,y in authored['rim']]
@@ -132,12 +135,15 @@ with sync_playwright() as pw:
     delta=max(abs(u-v) for u,v in zip(ma,mc))
     ok=(a.tobytes()==c.tobytes() if spec.get('pixelsMustMatchExactly') else
         (delta<=spec.get('maxChannelDeltaFromBaseline',255) and mc[0]-mc[2]<=spec.get('maxRedMinusBlue',255) and mc[0]<=spec.get('maxRed',255)))
-    outputs.append({'xy':[x,y],'reference_v4_patch_exact':hashlib.sha256(a.tobytes()).hexdigest()==probe['baselinePatchRGBsha256'],
+    outputs.append({'xy':[x,y],'pinned_baseline_patch_exact':hashlib.sha256(a.tobytes()).hexdigest()==probe['baselinePatchRGBsha256'],
                     'before':ma,'after':mc,'delta':delta,'pass':ok})
    bands[band]=outputs
+  assert all(v['pinned_baseline_patch_exact'] for band in bands.values() for v in band), 'Official source pixel probe mismatch'
+  assert not any(n>candidate['start'].get('fallbacks',{}).get(k,0) for k,n in candidate['samples']['initial']['owner'].get('fallbacks',{}).items() if k!='disabled'), 'Local owner refused coverage; no fallback acceptance'
   r['art_oracle']={'mechanical_and_color_checks_are_separate':True,'visual_approval':False,'passed_all_color_probes':all(v['pass'] for band in bands.values() for v in band),'bands':bands}
   chk('pixel-gate')
   assert inside>0 and outside==0 and r['pixel_gate']['protected_shelf_exact'] and r['pixel_gate']['control_exact'],r['pixel_gate']
+  assert candidate['samples']['zoom']['owner']['underBudgetPixels']<=44000,'V6 unexpectedly exceeds the bounded preflight'
   assert not r['page_errors']
   r['cache_timing_summary_ms']={label:{phase:{'median':statistics.median(data['elapsedMs']),'max':max(data['elapsedMs'])} for phase,data in proof['samples'].items()} for label,proof in [('original',baseline),('disabled',disabled),('replacement',candidate)]}
   r['pass']=True;chk('complete')

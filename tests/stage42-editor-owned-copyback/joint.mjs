@@ -58,7 +58,7 @@ export function compileWorkshopJoint(owner,edit,facePath,compileJoint,guard,expe
    }
   }
  }else throw Error('unsupported joint move');
- const palettes={slate:'#393538',ledge:'#443f41',fracture:'#403b38',root:'#413c38',westMid:'#36393e',westDeep:'#303136'};
+ const palettes={slate:'#393538',ledge:'#443f41',fracture:'#403b38',root:'#413c38',westMid:'#2f3944',westDeep:'#222c36'};
  const m=joint.materials;
  if(!m||Object.keys(m).length!==2||!['left','right'].every(side=>Object.hasOwn(m,side)&&Object.hasOwn(palettes,m[side])))throw Error('invalid materials');
  const left=palettes[m.left],right=palettes[m.right];

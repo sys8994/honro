@@ -1,0 +1,73 @@
+name: Stage42 V6 native-source flank QA
+on:
+  push:
+    branches: ['qa/stage42-editor-v6-flank']
+    paths: ['.github/workflows/stage42-editor-v6-flank.yml', 'tests/stage42-editor-owned-copyback/**']
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      HONRO_ACT4_RELEASE: '1'
+      HONRO_ACT5_RELEASE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+          fetch-depth: 2
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Build isolated Workshop and patch only disposable generated runtime
+        run: |
+          set -euo pipefail
+          T=tests/stage42-editor-owned-copyback
+          test "$GITHUB_REF" = refs/heads/qa/stage42-editor-v6-flank
+          test "$GITHUB_SHA" = "$(git rev-parse HEAD)"
+          test "$(git rev-parse HEAD^)" = a057329d62c659f6e4a36ee480d8cb522b3e0d43
+          printf '%s\n' '.github/workflows/stage42-editor-v6-flank.yml' 'tests/stage42-editor-owned-copyback/browser-qa.py' 'tests/stage42-editor-owned-copyback/joint.mjs' 'tests/stage42-editor-owned-copyback/visual-oracle.json' 'tests/stage42-editor-owned-copyback/workpad.json' > "$RUNNER_TEMP/v6-allowed-paths.txt"
+          git diff --no-renames --name-only HEAD^ HEAD | LC_ALL=C sort > "$RUNNER_TEMP/v6-actual-paths.txt"
+          diff -u "$RUNNER_TEMP/v6-allowed-paths.txt" "$RUNNER_TEMP/v6-actual-paths.txt"
+          printf '%s\n' '209b22a76d8bfcc762416d82cd089b3106d0f74d642264dcc7cbe5263e2295c9  tests/stage42-editor-owned-copyback/workpad.json' 'd1ab79d227021c016da539be8ed8a75906e8a3334de56ed3c2f8e287f1785fdb  tests/stage42-editor-owned-copyback/visual-oracle.json' | sha256sum --check -
+          npm ci
+          npm ci --prefix game
+          npm run build
+          B="$RUNNER_TEMP/stage42-owner-copyback-build"
+          E="$RUNNER_TEMP/stage42-owner-copyback-evidence"
+          mkdir -p "$B" "$E"
+          cp -a web HONRO_WORKSHOP.html HONRO.html "$B/"
+          node "$T/source-check.mjs" "$B" | tee "$E/source.json"
+          node "$T/prepare.mjs" "$B"
+          HONRO_OWNER_QA_PREPARE=1 node "$T/prepare-owner-qa.mjs" "$B"
+      - name: Actual UI authoring and fresh file reopen, renderer and cache checks
+        run: |
+          set -euo pipefail
+          python -m pip install 'playwright==1.58.0' 'Pillow==12.0.0'
+          export HONRO_CHROME="$(command -v google-chrome || command -v chromium)"
+          test -x "$HONRO_CHROME"
+          "$HONRO_CHROME" --version
+          export HONRO_STAGE42_OWNER_QA_SMOKE=1
+          python -m http.server 8870 --bind 127.0.0.1 --directory "$RUNNER_TEMP/stage42-owner-copyback-build" &
+          pid=$!
+          trap 'kill "$pid" 2>/dev/null || true' EXIT
+          for ((i=0;i<20;i++)); do
+            if curl -fsS -o /dev/null http://127.0.0.1:8870/HONRO_WORKSHOP.html; then break; fi
+            sleep 1
+          done
+          timeout 1200s python tests/stage42-editor-owned-copyback/browser-qa.py "$RUNNER_TEMP/stage42-owner-copyback-evidence"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage42-v6-flank-browser-evidence
+          path: |
+            ${{ runner.temp }}/stage42-owner-copyback-evidence/*.png
+            ${{ runner.temp }}/stage42-owner-copyback-evidence/result.json
+            ${{ runner.temp }}/stage42-owner-copyback-evidence/source.json
+          if-no-files-found: warn
+          retention-days: 7
