@@ -1,0 +1,20 @@
+import assert from 'node:assert/strict';
+import {createBlankWorkshopStage} from './blank.mjs';
+import {compileNativeDraft} from './partition.mjs';
+const terrains=['a5-supply-road','a5-palisade','a5-device-0'].map(id=>({id,points:[[0,0],[1,1]]}));
+const stage={id:'stage-42',width:6500,height:2861,terrains,get elements(){throw Error('Must not access original art')}};
+const p={stages:[stage],get library(){throw Error('Must not access old library')}};
+const w=createBlankWorkshopStage(p);
+assert.equal(w.stage.elements.length,0);assert.equal(w.stage.terrains.length,0);assert.deepEqual(w.baseline.terrainCollision,terrains);
+w.baseline.terrainCollision[0].points[0][0]=-1;assert.equal(terrains[0].points[0][0],0);
+assert.equal(w.design.outline.length,0);
+// These synthetic bends test topology; do not use as authored stage geometry.
+const outline=[[0,0],[250,0],[550,0],[900,0],[900,500],[550,500],[250,500],[0,500]];
+const seams=[{a:1,b:6,knots:[[220,160],[310,300]]},{a:2,b:5,knots:[[480,200],[600,350]]}];
+const dummies=[[[0,0],[0,500],[-120,540],[-110,70]]];
+const d=compileNativeDraft({outline,seams,dummies});
+assert.equal(d.massCount,3);assert.equal(d.root.children.length,4);assert.deepEqual(d.collision,[]);
+assert.throws(()=>compileNativeDraft({outline,seams:[seams[0],{a:2,b:5,knots:[[100,250]]}],dummies}),/seam/i);
+assert.throws(()=>compileNativeDraft({outline,seams,dummies:[[[0,0],[0,500],[110,600],[100,-10]]]}),/cuts through/);
+assert.equal(JSON.stringify(w.design),JSON.stringify({version:1,outline:[],seams:[],dummies:[]}));
+console.log('Blank never reads existing art; separate collision copy, technical partition/shared seam/dummy topology passes. No browser and no authored stage.');
