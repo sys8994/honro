@@ -74,8 +74,19 @@ const missingMetadata=clone(base);delete missingMetadata.stages.find(s=>s.id===i
 assert(P.governed(missingMetadata,id),'Removing metadata cannot bypass Stage31 production checks');
 
 const rockDraft=clone(fixture);
-const groundedRock=P.placeScenery(rockDraft,st.id,{id:'test-foot-rock',assetId:'mockup-granite-large',x:900,scale:.6,supportId:'floor'});
+const rockSpec={id:'test-foot-rock',assetId:'mockup-granite-large',x:900,scale:.6,supportId:'floor'};
+// This positive fixture tests visual-foot grounding, not implicit art approval.
+// Keep unreferenced assets blocked until this fixture records its specific reason.
+const unapprovedRock=clone(rockDraft);
+unapprovedRock.production.cards[st.id].referenceStages=[];
+assert.throws(()=>P.placeScenery(unapprovedRock,st.id,rockSpec),/사용 사유/);
+unapprovedRock.production.cards[st.id].assetExceptions.push({assetId:rockSpec.assetId,reason:'   '});
+assert.throws(()=>P.placeScenery(unapprovedRock,st.id,rockSpec),/사용 사유/);
+rockDraft.production.cards[st.id].assetExceptions.push({assetId:rockSpec.assetId,
+ reason:'단위 검사 전용: 실제 공통 바위의 reference.foot과 원점이 다른 경우 지지면 배치를 검증한다. 캠페인 미술 승인 아님.'});
+const groundedRock=P.placeScenery(rockDraft,st.id,rockSpec);
 const rock=groundedRock.stages.find(s=>s.id===st.id).elements.find(e=>e.id==='test-foot-rock'),rockAsset=groundedRock.library.find(a=>a.id===rock.assetId);
 const actualFoot=g.HonroGeometry.transformPoint(rockAsset.reference.foot,rockAsset,rock);
 assert(Math.abs(actualFoot.y-rock.productionSupport.y)<1e-8,'Visual foot, not asset origin, must touch the declared surface');
 assert.equal(actualFoot.x,900);
+

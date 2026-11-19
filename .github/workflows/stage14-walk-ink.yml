@@ -1,0 +1,39 @@
+name: Stage14 visual closure isolated QA
+on:
+  push:
+    branches: [qa/stage14-walk-ink-20261120]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci && npm ci --prefix game
+      - run: python -m pip install playwright pillow && python -m playwright install --with-deps chromium
+      - name: Pristine source build and browser
+        run: |
+          test "$(git rev-parse HEAD^)" = 1e043b09d4ce107e1d2dcf70fe2274dff7098476
+          cp shared/runtime/act2-spatial-art.js /tmp/stage14-candidate.js
+          git show HEAD^:shared/runtime/act2-spatial-art.js > shared/runtime/act2-spatial-art.js
+          npm run build
+          python tools/stage14-walk-ink/http.py stock
+          cp /tmp/stage14-candidate.js shared/runtime/act2-spatial-art.js
+      - name: Official guards and candidate built browser
+        run: |
+          npm run test:release-guard
+          npm run build
+          npm run test:production-contract
+          python tools/stage14-walk-ink/http.py integrated
+          python tools/stage14-walk-ink/compare.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage14-walk-ink
+          path: _local/reports/stage14-walk-ink
