@@ -109,9 +109,30 @@ with sync_playwright() as pw:
     e.onEvent=function(ev){try{return original.call(this,ev)}finally{const s=ev.skillAudio;if(ev.type==='sound'&&ev.name==='playerSkill'&&s&&obs.events.length<100)obs.events.push({phase:s.phase,target:s.target,cast:s.cast,actor:s.actor,autonomous:!!s.autonomous,skill:s.skill,material:s.material});}};
     obs.restore=()=>{e.onEvent=original;obs.done=true};const start=performance.now();function tick(){if(obs.done||performance.now()-start>12000||obs.frames.length>=1000)return;const b=e.b;obs.frames.push({ms:performance.now()-start,phase:b.phase,shot:b.shot,power:a.power,terrain:b.terrain.map(t=>({id:t.id,hp:t.hp,broken:!!t.broken})),projectiles:b.projectiles.map(p=>({id:p.id,owner:p.owner,skill:p.skill,shot:p.shot,x:p.x,y:p.y,vx:p.vx,vy:p.vy,age:p.age,followup:!!p.followup,repeatIndex:p.repeatIndex}))});requestAnimationFrame(tick)}requestAnimationFrame(tick);}''')
    row['inputs'].append({'key':'Space','releaseAtPower':power});page.keyboard.down('Space');held.add('Space')
-   try:row['chargeGate']=page.evaluate('''goal=>new Promise(ok=>{const start=performance.now();function poll(){const a=HonroWorkshopAPI.getPlayApp(),e=a.engine,w=a.scene.canvas.ownerDocument.defaultView;const q={elapsedMs:performance.now()-start,power:a.power,charging:a.charging};if(!w.document.hasFocus()||e.b.round!==1||e.b.phase!=='aim'||a.dialogue||a.modal.classList.contains('open'))return ok({...q,ok:false});if(a.charging&&a.power>=goal)return ok({...q,ok:true});if(q.elapsedMs>1100)return ok({...q,ok:false});requestAnimationFrame(poll)}requestAnimationFrame(poll)})''',power)
+   # R2 observed native keyup lag: B29.4ms/M31.0ms, not an assumed one-frame zero-latency release.
+   row['chargeLatencyReference']={'run':44550183565,'proofSha256':'311ff40fcc20b283561c959ecf5c1eeb1df814d638667cb32c3324e5dfa91aad','lagMs':[29.4,31.0],'meanLagMs':30.2}
+   try:row['chargeGate']=page.evaluate("""goal=>new Promise(ok=>{
+    const start=performance.now(),samples=[];let calibration=null;
+    const median=x=>{const a=[...x].sort((x,y)=>x-y);const i=Math.floor(a.length/2);return a.length%2?a[i]:(a[i-1]+a[i])/2};
+    function poll(){const a=HonroWorkshopAPI.getPlayApp(),e=a.engine,w=a.scene.canvas.ownerDocument.defaultView,now=performance.now();
+     const q={elapsedMs:now-start,power:a.power,charging:a.charging};
+     const finish=(valid,reason)=>ok({...q,ok:valid,reason,plannedPower:goal,calibration,samples});
+     if(!w.document.hasFocus()||e.b.round!==1||e.b.phase!=='aim'||a.dialogue||a.modal.classList.contains('open'))return finish(false,'state changed');
+     if(a.charging&&a.power>0&&samples.length<6&&(!samples.length||a.power>samples[samples.length-1].power))samples.push({ms:q.elapsedMs,power:a.power});
+     if(samples.length===6&&!calibration){
+      const bins=samples.slice(1).map((s,i)=>s.ms-samples[i].ms),slopes=samples.slice(1).map((s,i)=>(s.power-samples[i].power)/(s.ms-samples[i].ms));
+      const binMs=median(bins),slope=median(slopes),referenceSlope=480/(805*1.15943759)/1000;
+      const correctionMs=30.2+binMs/2,correctionPower=slope*correctionMs,threshold=goal-correctionPower;
+      calibration={sampleCount:samples.length,binMs,powerPerMs:slope,referenceSlope,observedNativeKeyupLagMs:30.2,halfBinMs:binMs/2,correctionMs,correctionPower,releaseThreshold:threshold};
+      if(binMs<10||binMs>25||Math.abs(slope/referenceSlope-1)>.12||correctionPower<.014||correctionPower>.026||threshold<=a.power)return finish(false,'early calibration outside narrow bounds');
+     }
+     if(calibration&&a.charging&&a.power>=calibration.releaseThreshold)return finish(true,'measured early-release threshold');
+     if(q.elapsedMs>1100)return finish(false,'charge timeout');
+     requestAnimationFrame(poll);
+    }requestAnimationFrame(poll);
+   })""",power)
    finally:page.keyboard.up('Space');held.discard('Space')
-   row['release']=read();save();seen=False;deadline=time.monotonic()+8
+   row['release']=read();row['timingTelemetry']={'plannedPower':power,'observedGatePower':row['chargeGate']['power'],'actualReleasePower':row['release']['power'],'actualMinusPlanned':row['release']['power']-power,'strictTolerance':.012,'observedGateToReleaseMs':(row['release']['power']-row['chargeGate']['power'])*(805*1.15943759/480)*1000};save();seen=False;deadline=time.monotonic()+8
    while time.monotonic()<deadline:
     q=read()
     if q['projectiles'] and not seen:seen=photo('flight')
