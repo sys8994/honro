@@ -1,0 +1,56 @@
+name: Act 2 late stock normal launch perimeter audit
+on:
+  push:
+    branches: ['qa/act2-late-stock-perimeter-20261120']
+permissions:
+  contents: read
+jobs:
+  visual:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Require proof-only additions and create pinned stock host
+        run: |
+          set -euo pipefail
+          B=1e043b09d4ce107e1d2dcf70fe2274dff7098476
+          test "$(git rev-parse HEAD^)" = "$B"
+          git diff --name-status "$B" HEAD >/tmp/act2-late-audit-scope
+          python - <<'PY'
+          from pathlib import Path
+          got=set(Path('/tmp/act2-late-audit-scope').read_text().splitlines())
+          assert got=={'A\t.github/workflows/act2-late-stock-perimeter.yml','A\ttools/act2-late-stock-perimeter/capture.py'},got
+          PY
+          P="$RUNNER_TEMP/act2-late-stock"
+          mkdir -p "$P/observer" "$P/evidence"
+          cp tools/act2-late-stock-perimeter/capture.py "$P/observer/"
+          git worktree add --detach "$P/before" "$B"
+          echo "QA=$P" >> "$GITHUB_ENV"
+          echo "OUT=$P/evidence" >> "$GITHUB_ENV"
+      - name: Build official game sources
+        run: |
+          cd "$QA/before"
+          npm ci
+          npm ci --prefix game
+          npm run build
+      - name: Capture stock launch centre and perimeter
+        run: |
+          set -euo pipefail
+          python -m pip install playwright
+          python -m playwright install --with-deps chromium
+          python -m http.server 8884 --bind 127.0.0.1 --directory "$QA/before" > "$OUT/host.log" 2>&1 &
+          p=$!
+          trap 'kill "$p" || true' EXIT
+          for i in $(seq 1 20); do curl -fsSL http://127.0.0.1:8884/HONRO.html -o /dev/null && break || sleep 1; done
+          python "$QA/observer/capture.py" | tee "$OUT/scopes.log"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: act2-late-stock-perimeter-original-evidence
+          path: ${{ env.OUT }}
+          retention-days: 7
