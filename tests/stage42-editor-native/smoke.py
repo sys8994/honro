@@ -27,7 +27,11 @@ with sync_playwright() as pw:
   checkpoint('first-project-snapshot')
   points=[[180,580],[225,598],[265,590],[242,643],[192,638]]
   canvas=page.locator('#stageCanvas')
-  screen=page.evaluate("""pts=>{const a=HonroWorkshopAPI,s=a.queryScene().stage,e=s.elements.find(e=>e.assetId==='act5:near:42');a.setCamera({x:e.x+222*e.scale,y:e.y+612*e.scale,zoom:2});const c=document.querySelector('#stageCanvas'),v=a.getEditorState().stageView;return pts.map(([x,y])=>({x:c.clientWidth/2+(e.x+x*e.scale-v.x)*v.zoom,y:c.clientHeight/2+(e.y+y*e.scale-v.y)*v.zoom}));}""",points)
+  projection=page.evaluate("""pts=>{const a=HonroWorkshopAPI,s=a.queryScene().stage,e=s.elements.find(e=>e.assetId==='act5:near:42');a.setCamera({x:e.x+222*e.scale,y:e.y+612*e.scale,zoom:2});const c=document.querySelector('#stageCanvas'),v=a.getEditorState().stageView;return {pixelsPerLocal:e.scale*v.zoom,screen:pts.map(([x,y])=>({x:c.clientWidth/2+(e.x+x*e.scale-v.x)*v.zoom,y:c.clientHeight/2+(e.y+y*e.scale-v.y)*v.zoom}))};}""",points)
+  screen=projection['screen']
+  px_per_local=projection['pixelsPerLocal']
+  assert px_per_local>0
+  drag_px=(22,10)
   page.locator('[data-tool="nativeBody"]').click()
   if not page.evaluate("HonroWorkshopAPI.getEditorState().overlayEnabled"):page.locator("#overlayToggle").click()
   page.screenshot(path=str(out/'01-editor-ready.png'))
@@ -40,7 +44,7 @@ with sync_playwright() as pw:
   # True pointer drag: do not silently substitute an API call or click-to-place.
   q=screen[1];box=canvas.bounding_box()
   x,y=box['x']+q['x'],box['y']+q['y']
-  page.mouse.move(x,y);page.mouse.down();page.mouse.move(x+22,y+10,steps=8)
+  page.mouse.move(x,y);page.mouse.down();page.mouse.move(x+drag_px[0],y+drag_px[1],steps=8)
   page.screenshot(path=str(out/'03-editor-pointer-drag.png'))
   page.mouse.up()
   page.locator('.body-controls').get_by_role('button',name='미리보기',exact=True).click()
@@ -55,7 +59,15 @@ with sync_playwright() as pw:
   assert after['other']==before['other'],'Non-Stage42 data changed'
   assert after['count']==before['count']+1,('new face did not persist',r['preview_toast'],r['save_toast'],before['count'],after['count'])
   verts=after['last']['points']
-  assert abs(verts[1][0]-225)>4 and verts[1][0]>225,'drag did not persist as an edited vertex'
+  target=[[a,b] for a,b in points]
+  target[1]=[q+d/px_per_local for q,d in zip(points[1],drag_px)]
+  tolerance=1.5/px_per_local  # physical input offsets round to CSS pixels
+  r.update(points=verts, expected_points=target, drag_css_px=drag_px, css_px_per_asset_unit=px_per_local, tolerance_asset_units=tolerance)
+  checkpoint('saved-vertices-snapshot')
+  assert len(verts)==len(target),'unexpected vertex count after actual pointer edit'
+  for i,(observed,expected) in enumerate(zip(verts,target)):
+   assert all(abs(a-b)<=tolerance for a,b in zip(observed,expected)),('stored vertex did not match exact pointer edit',i,observed,expected,tolerance)
+
   assert after['clips']==before['clips'],'Original clips changed'
   page.screenshot(path=str(out/'05-editor-committed.png'))
   target_id=after['last']['id']
