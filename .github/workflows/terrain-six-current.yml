@@ -1,0 +1,53 @@
+name: Current terrain six-stage bounded evidence
+on:
+  push:
+    branches: ['audit/terrain-six-current-20261124']
+    paths: ['.github/workflows/terrain-six-current.yml']
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix:
+        stage: [23,24,25,26,27,29]
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm ci && npm ci --prefix game
+      - name: Prove only QA inputs differ from pinned production
+        run: |
+          git fetch --depth=1 origin 1e043b09d4ce107e1d2dcf70fe2274dff7098476
+          git diff --name-only 1e043b09d4ce107e1d2dcf70fe2274dff7098476 HEAD > "$RUNNER_TEMP/changed.txt"
+          if grep -vE '^(tests/terrain-six-current-(fixture|result).mjs|.github/workflows/terrain-six-current.yml)$' "$RUNNER_TEMP/changed.txt"; then exit 1; fi
+          mkdir -p "$RUNNER_TEMP/evidence"
+          cp "$RUNNER_TEMP/changed.txt" "$RUNNER_TEMP/evidence/"
+          git rev-parse HEAD > "$RUNNER_TEMP/evidence/qa-head.txt"
+      - name: Official production compilation without App or saved game access
+        run: node tests/terrain-six-current-fixture.mjs "$RUNNER_TEMP/fixtures" '${{ matrix.stage }}' baseline
+      - name: Actual stock minimum zoom and clamped corners
+        shell: bash
+        run: |
+          browser=$(command -v google-chrome || command -v chromium)
+          node -e "for(const q of require(process.argv[1]))console.log(q.stage+':'+q.view)" "$RUNNER_TEMP/fixtures/capture-list.json" > "$RUNNER_TEMP/capture-list.txt"
+          fail=0
+          while IFS=: read -r stage view; do
+            name="stage$stage-baseline-$view"
+            timeout 240s "$browser" --headless --no-first-run --no-default-browser-check --force-device-scale-factor=1 --virtual-time-budget=60000 --user-data-dir="$RUNNER_TEMP/profile-$name" --dump-dom "file://$RUNNER_TEMP/fixtures/$name.html" > "$RUNNER_TEMP/$name.html" || fail=1
+            node tests/terrain-six-current-result.mjs "$RUNNER_TEMP/$name.html" "$RUNNER_TEMP/evidence" "$stage" baseline "$view" || fail=1
+            rm -rf "$RUNNER_TEMP/profile-$name" "$RUNNER_TEMP/$name.html"
+          done < "$RUNNER_TEMP/capture-list.txt"
+          exit "$fail"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: terrain-six-current-${{ matrix.stage }}
+          path: ${{ runner.temp }}/evidence
+          if-no-files-found: error
