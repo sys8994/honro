@@ -1,0 +1,67 @@
+name: Stage46 west shared-color tile hairline
+on:
+  push:
+    branches: [qa/stage46-west-hairline-candidate-20261120]
+permissions:
+  contents: read
+jobs:
+  camera:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Exact add-only test scope
+        run: |
+          set -euo pipefail
+          parent=a9f9272c98f515ec2dd72cb3f2cf23e61c540e6c
+          test "$(git rev-parse HEAD^)" = "$parent"
+          git diff --name-status "$parent" HEAD > /tmp/scope
+          python - <<'PY'
+          from pathlib import Path
+          r=[s.split('\t') for s in Path('/tmp/scope').read_text().splitlines()]
+          assert len(r)==3 and all(s[0]=='A' for s in r)
+          assert {s[1] for s in r}=={'.github/workflows/stage46-west-hairline-candidate.yml', 'game/tests/stage46-west-hairline-candidate/paired.cjs', 'game/tests/stage46-west-hairline-candidate/verify.py'}
+          PY
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Pristine pinned stock host and isolated observer
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/stage46-camera-bounds"
+          mkdir -p "$root/runner" "$root/evidence"
+          git worktree add --detach "$root/stock" 1e043b09d4ce107e1d2dcf70fe2274dff7098476
+          test -z "$(git -C "$root/stock" status --porcelain)"
+          cp game/tests/stage46-west-hairline-candidate/* "$root/runner/"
+          cd "$root/runner"
+          npm install playwright
+          npx playwright install --with-deps chromium
+          pip install pillow
+          echo "ROOT=$root" >> "$GITHUB_ENV"
+          echo "OUT=$root/evidence" >> "$GITHUB_ENV"
+      - name: Three viewport source-accurate camera diagnostic
+        run: |
+          python3 -m http.server 8884 --bind 127.0.0.1 --directory "$ROOT/stock" > "$OUT/host.log" 2>&1 &
+          trap 'kill $! || true' EXIT
+          for i in $(seq 1 20); do curl -fsS http://127.0.0.1:8884/index.html >/dev/null && break || sleep 1; done
+          cd "$ROOT/runner"
+          node paired.cjs > "$OUT/runner.log" 2>&1
+          python verify.py
+      - name: Source unchanged
+        if: always()
+        run: |
+          test -z "$(git status --porcelain --untracked-files=no)"
+          test -z "$(git -C "$ROOT/stock" status --porcelain)"
+          test "$(git -C "$ROOT/stock" rev-parse HEAD)" = 1e043b09d4ce107e1d2dcf70fe2274dff7098476
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage46-west-hairline-candidate
+          path: |
+            ${{ env.OUT }}/proof.json
+            ${{ env.OUT }}/invariants.json
+            ${{ env.OUT }}/*.png
+            ${{ env.OUT }}/runner.log
+          retention-days: 7
