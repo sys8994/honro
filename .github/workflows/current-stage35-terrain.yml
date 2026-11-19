@@ -1,0 +1,29 @@
+name: Current stage35 terrain diagnostic
+on:
+  push:
+    branches: ['audit/current-stage35-terrain-20261120']
+permissions:
+  contents: read
+jobs:
+  stock:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+      - name: Verify diagnostic-only branch
+        run: |
+          git diff --name-only 1e043b09d4ce107e1d2dcf70fe2274dff7098476 HEAD > /tmp/changed
+          if grep -vE '^(tools/current-stage35-terrain/capture.mjs|.github/workflows/current-stage35-terrain.yml)$' /tmp/changed; then exit 1; fi
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm ci && npm ci --prefix game
+      - run: HONRO_NATIVE_OUT=/tmp/stage35-terrain node --expose-gc tools/current-stage35-terrain/capture.mjs 35
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: current-stage35-terrain
+          path: /tmp/stage35-terrain
