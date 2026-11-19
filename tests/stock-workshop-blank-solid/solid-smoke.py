@@ -5,7 +5,7 @@ from playwright.sync_api import sync_playwright
 
 # Screen y grows downward. Worsening descent, flow reversal, asymmetric higher recovery.
 RING=[[160,580],[360,614],[545,720],[700,786],[822,773],[1010,648],[1320,563],[1690,554],[1980,528],
-      [2024,662],[1920,858],[1690,936],[1250,1088],[910,1124],[623,1059],[328,944],[176,744]]
+      [2002,556],[1920,605],[1670,645],[1290,656],[945,778],[725,903],[470,801],[220,685]]
 NAME='QA native Solid blank contour'
 p=Path(sys.argv[1]);p.mkdir(parents=True,exist_ok=True); url=sys.argv[2]
 assert url.startswith('http://127.0.0.1:') and url.endswith('/HONRO_WORKSHOP.html')
@@ -19,10 +19,68 @@ with sync_playwright() as play:
         c=b.new_context(viewport={'width':1500,'height':900},accept_downloads=True)
         t=c.new_page();t.goto(url);t.wait_for_function('window.HonroWorkshopAPI')
         return t
-    t=open_page();t.locator('#newStageBtn').click()
-    for id,v in [('newStageName',NAME),('newStageW','2200'),('newStageH','1250')]:t.locator('#'+id).fill(v)
+    t=open_page()
+    diagnostics={'page_errors':[],'dialogs':[],'states':[]}
+    t.on('pageerror',lambda error: diagnostics['page_errors'].append(str(error)[:4000]))
+    def handle(dialog):
+        diagnostics['dialogs'].append({'type':dialog.type,'message':dialog.message[:1200]})
+        dialog.dismiss()
+    t.on('dialog',handle)
+    def summary(name):
+        d=t.evaluate("""()=>{
+          const {stage:s}=HonroWorkshopAPI.queryScene(),p=HonroWorkshopAPI.getContext();
+          return {id:s.id,name:s.name,width:s.width,height:s.height,terrain_count:s.terrains.length,
+             placement_count:s.elements.length,asset_count:p.availableAssets.length,
+             units:s.units.map(u=>[u.kind??u.cls,u.team,u.x,u.y]),
+             new_dialog_open:document.querySelector('#newStageModal').classList.contains('open'),
+             toast:document.querySelector('#toast').textContent};
+        }""")
+        diagnostics['states'].append({'checkpoint':name,'data':d})
+        t.screenshot(path=str(p/f'01-{name}.png'))
+        (p/'blank-diagnostics.json').write_text(json.dumps(diagnostics,ensure_ascii=False,indent=2))
+        return d
+    def true_blank(cur):
+        return (cur['name']==NAME and cur['width']==2200 and cur['height']==1250 and
+          cur['terrain_count']==0 and cur['placement_count']==0 and len(cur['units'])==1
+          and cur['units'][0]==['archer','player',220,500])
+    before=summary('stock-ui-before-new')
+    t.locator('#newStageBtn').click()
+    for id,v in [('newStageName',NAME),('newStageW','2200'),('newStageH','1250')]:
+        t.locator('#'+id).fill(v)
     t.locator('#createStageConfirm').click()
-    s0=get(t);assert s0['name']==NAME and not s0['terrains'] and not s0['elements'] and len(s0['units'])==1
+    after=summary('stock-ui-after-new')
+    diag_case='stock-native-new'
+    if after['id']==before['id'] or not true_blank(after):
+        diag_case='manual-import-of-verified-blank-scratch'
+        if after['new_dialog_open']:t.locator('#createStageCancel').click()
+        # No original project, terrain, artwork, or collision read or copied. Use stock pure
+        # empty-stage & unit data factories, then read the file into the normal stock GUI.
+        scratch=t.evaluate("""n=>{
+           const s=HonroMaps.emptyStage('qa-blank-solid-scratch',n,2200,1250);
+           s.units.push(HonroUnits.record('archer','qa-new-fixture-archer',220,500,'player'));
+           // Stock toolbar looks at activeAsset().vector; keep one inert, entirely empty
+           // local sentinel library item. It is not placed and never compiles to terrain.
+           const project={schema:'honro-map',version:HonroMaps.VERSION,activeStageId:s.id,
+             name:'Blank stock Solid mechanical fixture',environmentVersion:HonroEnvironment.VERSION,
+             settings:{autosave:false},stages:[s],library:[{
+               id:'qa-unplaced-empty',name:'Empty toolbar sentinel',category:'scenery',visual:[],
+               collision:[],anchor:{x:0,y:0},sockets:[],tags:[],params:{}
+             }]};
+           const q=HonroMaps.finalize(project);
+           if(q.stages.length!==1||q.stages[0].terrains.length||q.stages[0].elements.length||
+              q.stages[0].environment.placements?.length||q.library[0].visual.length||q.library[0].collision.length)throw Error('Scratch zero-content guard failed');
+           return q;
+        }""",NAME)
+        with t.expect_file_chooser() as ask:t.locator('#importBtn').click()
+        ask.value.set_files({'name':'qa-empty-scratch.honro-map.json','mimeType':'application/json',
+                             'buffer':json.dumps(scratch,ensure_ascii=False).encode()})
+        try:t.wait_for_function("HonroWorkshopAPI.queryScene().stage.id==='qa-blank-solid-scratch'",timeout=12000)
+        finally:after=summary('manual-blank-file-import-result')
+        assert after['id']=='qa-blank-solid-scratch' and after['asset_count']==1,'Stock scratch import did not isolate the project'
+    assert after['id']!=before['id'] and true_blank(after),f'Stock blank state failed exact gates: {after}'
+    diagnostics['entry_case']=diag_case
+    (p/'blank-diagnostics.json').write_text(json.dumps(diagnostics,ensure_ascii=False,indent=2))
+    s0=get(t)
     t.locator('#overlayToggle').uncheck()
     t.screenshot(path=str(p/'01-true-blank.png'))
     t.locator('[data-tool=solid]').click()

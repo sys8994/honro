@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
-          fetch-depth: 2
+          fetch-depth: 3
           persist-credentials: false
       - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
         with:
@@ -26,12 +26,13 @@ jobs:
           set -euo pipefail
           test "$GITHUB_REF" = refs/heads/qa/stock-workshop-blank-solid
           test "$GITHUB_SHA" = "$(git rev-parse HEAD)"
-          test "$(git rev-parse HEAD^)" = 1e043b09d4ce107e1d2dcf70fe2274dff7098476
+          test "$(git rev-parse HEAD^)" = 579f4147fa89aa4da110cce111e83dac95cafad0
+          test "$(git rev-parse HEAD~2)" = 1e043b09d4ce107e1d2dcf70fe2274dff7098476
           Q=tests/stock-workshop-blank-solid
           printf '%s\n' .github/workflows/stock-workshop-blank-solid.yml "$Q/smoke.SHA256SUMS" "$Q/solid-smoke.py" | LC_ALL=C sort > "$RUNNER_TEMP/solid-allowlist"
           git diff --name-only HEAD^ HEAD | LC_ALL=C sort | diff -u "$RUNNER_TEMP/solid-allowlist" -
-          git diff --name-only --diff-filter=A HEAD^ HEAD | LC_ALL=C sort | diff -u "$RUNNER_TEMP/solid-allowlist" -
-          echo 'f76b2867d0b393d3396c18ebeb1b191a5783f4b56a7f0786957dcfc7cd58be61  tests/stock-workshop-blank-solid/smoke.SHA256SUMS' | sha256sum -c -
+          git diff --name-only --diff-filter=M HEAD^ HEAD | LC_ALL=C sort | diff -u "$RUNNER_TEMP/solid-allowlist" -
+          echo 'c7ca50cb17dd375c1b80ff6539cad6128a4114bac87b2bbced7405f2f62b77ff  tests/stock-workshop-blank-solid/smoke.SHA256SUMS' | sha256sum -c -
           (cd "$Q" && sha256sum -c smoke.SHA256SUMS)
       - name: Build unmodified stock Workshop
         run: |
@@ -57,6 +58,7 @@ jobs:
           name: stock-workshop-blank-solid-evidence
           path: |
             ${{ runner.temp }}/stock-solid-evidence/0[1-8]-*.png
+            ${{ runner.temp }}/stock-solid-evidence/blank-diagnostics.json
             ${{ runner.temp }}/stock-solid-evidence/proof.json
             ${{ runner.temp }}/stock-solid-evidence/movement.json
           if-no-files-found: warn
