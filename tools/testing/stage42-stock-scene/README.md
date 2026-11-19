@@ -29,3 +29,6 @@ bash run-ci.sh "$OUT/fixtures" "$OUT/evidence" e12
 No full checkout currently exists in this preparation executor. Old local paths for stage37-L-default-validation do not exist here. The available proven terrain-remaining-chrome fixture and official source fetch confirmed stock stage42 runtime directly calls HonroVectorArt.draw on edgeWall and edgeSurface.
 
 First CI44618310325 generated the exact hybrid successfully but failed before drawing because app:false omits Act5. Corrected to official app:true release authoring, excluding ONLY main.js boot and leaving AppReady unresolved. No HONRO release environment override.
+
+## Real viewport / timing correction
+`capture-ci.mjs` uses pinned Playwright Core 1.56.1 solely inside official CI with the runner's installed Chrome and a fresh isolated browser per variant. There is no virtual-time override: performance.now measures actual synchronous renderer time. Each view asks the driver to set the actual browser viewport, then asserts innerWidth/innerHeight match the canvas. The diagnostic does not substitute local browser automation for CUA. Raw DOM payloads are excluded from uploaded evidence to avoid duplicating the complete runtime; PNGs, comparison metadata, failure results, logs and optimizer outputs are retained.

@@ -24,6 +24,7 @@ jobs:
           node-version: '22'
           package-manager-cache: false
       - run: npm ci && npm ci --prefix game
+      - run: npm install --prefix "$RUNNER_TEMP/browser-deps" --ignore-scripts playwright-core@1.56.1
       - name: Stock Python optimizer dependencies and native Inkscape
         run: |
           sudo apt-get update -qq
@@ -54,6 +55,7 @@ jobs:
           path: |
             ${{ runner.temp }}/stage42-packages
             ${{ runner.temp }}/stage42-evidence
+            !${{ runner.temp }}/stage42-evidence/*.dom.html
             ${{ runner.temp }}/stage42-fixtures/manifest.json
             ${{ runner.temp }}/scope.txt
           if-no-files-found: error

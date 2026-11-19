@@ -51,6 +51,7 @@ async function capture(baseline,selected,variant,runtimeSha256){
   const drain=async()=>{for(let i=0;i<200;i++){if(!p.images.some(v=>v.pending))return;await new Promise(r=>setTimeout(r,50));}throw Error('Image decode timeout');};
   const points=[['whole',.5,.5],['left',0,.5],['right',1,.5],['top',.5,0],['bottom',.5,1],['tl',0,0],['tr',1,0],['bl',0,1],['br',1,1]];
   for(const [screen,W,H]of [['desktop',1331,763],['portrait',390,844]])for(const [position,u,v]of points){
+   assert(typeof probeSetViewport==='function','Real CI viewport driver required');await probeSetViewport(W,H);assert(innerWidth===W&&innerHeight===H,'Browser viewport mismatch');
    cv.width=W;cv.height=H;cv.style.width=W+'px';cv.style.height=H+'px';const limits=HonroBounds.zoomLimits(W);
    const requested={x:stage.width*u,y:stage.height*v,scale:position==='whole'?limits.min:Math.min(limits.max,limits.min*2.8)};
    Object.assign(scene,requested,{manual:true,time:2,editorView:false,skillPreview:false});HonroBounds.constrain(scene,b);
@@ -62,7 +63,7 @@ async function capture(baseline,selected,variant,runtimeSha256){
    for(let i=0;i<16;i++){scene.x=camera.x+(i%2?3:-3)/camera.scale;const t=performance.now();render();pan.push(performance.now()-t);}Object.assign(scene,camera);
    assert(canon(b)===before,'Render mutated battle '+screen+'-'+position);assert(canon({terrain:b.terrain,units:b.units})===physics,'Physics changed');
    const stats=a=>{const s=[...a].sort((a,b)=>a-b);return{frames:a.length,p50:s[Math.floor(s.length*.5)],p95:s[Math.floor(s.length*.95)],max:s.at(-1),samples:a};};
-   frames.push({view:screen+'-'+position,width:W,height:H,dpr:1,requested,camera,time:2,seed:3910,draws:Object.fromEntries(Object.entries(draws).map(([k,v])=>[k,v-(prior[k]||0)])),stationary:stats(stationary),pan:stats(pan),png});
+   frames.push({view:screen+'-'+position,width:W,height:H,dpr:1,requested,camera,time:2,seed:3910,draws:Object.fromEntries(Object.entries(draws).map(([k,v])=>[k,v-(prior[k]||0)])),stationary:stats(stationary),pan:stats(pan),clock:'real performance.now, no virtual-time override',browserViewport:{width:innerWidth,height:innerHeight},png});
   }
   for(const id of ['act5:stage42:registered-body','act5:stage42:original-surface']){assert(draws[id]>0,'Target asset never drawn '+id);assert(await hash(observedVectors[id])===assetProof.find(q=>q.id===id).selectedSha256,'Draw used stale/wrong vector '+id);}
   assert(!p.storage.length&&!p.errors.length&&!p.violations.length&&!p.images.some(i=>i.error||i.pending),'Runtime/storage/image error');
