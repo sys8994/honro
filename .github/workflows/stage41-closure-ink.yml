@@ -1,0 +1,47 @@
+name: Stage41 buried closure ink only
+on:
+  push:
+    branches: ['audit/stage41-closure-ink-only-20261120']
+permissions:
+  contents: read
+jobs:
+  paired:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 8
+      - name: Single production file guard
+        run: |
+          git diff --name-only 1e043b09 HEAD > /tmp/changed
+          if grep -vE '^(shared/runtime/terrain-readability.js|tools/current-terrain-audit/(capture|stage41-attribution).mjs|.github/workflows/(current-terrain-audit|stage41-attribution|stage41-closure-ink).yml)$' /tmp/changed; then exit 1; fi
+          git diff 1e043b09 HEAD -- shared/runtime/terrain-readability.js
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm ci && npm ci --prefix game
+      - name: Same nine stock cameras with normal readability enabled
+        run: |
+          mkdir -p /tmp/closure-paired
+          cp shared/runtime/terrain-readability.js /tmp/closure-candidate.js
+          git show 1e043b09:shared/runtime/terrain-readability.js > shared/runtime/terrain-readability.js
+          HONRO_NATIVE_OUT=/tmp/closure-paired/before node --expose-gc --max-old-space-size=12000 tools/current-terrain-audit/stage41-attribution.mjs 41
+          cp /tmp/closure-candidate.js shared/runtime/terrain-readability.js
+          HONRO_NATIVE_OUT=/tmp/closure-paired/after node --expose-gc --max-old-space-size=12000 tools/current-terrain-audit/stage41-attribution.mjs 41
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';import assert from 'node:assert/strict';
+          const read=p=>JSON.parse(fs.readFileSync('/tmp/closure-paired/'+p));
+          const a=read('before/report.json'),b=read('after/report.json');
+          for(let i=0;i<a.rows.length;i++){assert.deepEqual(a.rows[i].view,b.rows[i].view);assert.equal(a.rows[i].gameplaySha256,b.rows[i].gameplaySha256);assert.equal(a.rows[i].stageSha256,b.rows[i].stageSha256);}
+          const x=read('before/west-readability-geometry.json'),y=read('after/west-readability-geometry.json');assert.deepEqual(x.terrain,y.terrain);assert.deepEqual(x.landmarks,y.landmarks);
+          let removed=[];for(let i=0;i<x.groups.length;i++){const u=x.groups[i],v=y.groups[i];assert.equal(u.id,v.id);const old=u.segments,newer=v.segments;assert.deepEqual(old.filter(s=>s.walkable),newer.filter(s=>s.walkable));for(const s of old)if(!newer.some(t=>JSON.stringify(t)===JSON.stringify(s)))removed.push({id:u.id,...s});assert(newer.every(s=>old.some(t=>JSON.stringify(t)===JSON.stringify(s))));}
+          assert.equal(removed.length,1);assert.equal(removed[0].id,'a5-lower-road');assert.equal(removed[0].walkable,false);assert.equal(removed[0].a.x,250);assert.equal(removed[0].z.x,250);assert.equal(removed[0].a.y,2785);assert.equal(removed[0].z.y,2343.75);
+          fs.writeFileSync('/tmp/closure-paired/comparison.json',JSON.stringify({sameCameras:true,sameStage:true,sameGameplay:true,sameTerrain:true,sameLandmarks:true,allWalkableCueSegmentsEqual:true,removed},null,2));
+          JS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage41-closure-ink-paired
+          path: /tmp/closure-paired
