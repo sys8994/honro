@@ -8,7 +8,7 @@ Scope: prepare only. No repository source change, remote mutation, login, user s
 - Chosen `candidate-e5.0.json` or e8/e12/e18/e24 package. No candidate chosen by this harness.
 
 ## File plan
-1. `fixture.mjs`: `runtimeEntries({vector:true,render:true,app:false,productionStory:true})` exactly once. Produces two independent HTML fixtures with identical stock runtime. Checks supplied baseline vector equals active near42 edgeWall/edgeSurface before replacing only those vector fields. Preserves all metadata and stage data. Compiles and creates actual stock battle/Engine/Scene. Never calls engine update, movement, fire, turn, or App.
+1. `fixture.mjs`: `runtimeEntries({vector:true,render:true,app:true,productionStory:true})` exactly once. Produces two independent HTML fixtures with identical stock runtime (only main.js boot excluded; unresolved AppReady, no App instance). Checks supplied baseline vector equals active near42 edgeWall/edgeSurface before replacing only those vector fields. Preserves all metadata and stage data. Compiles and creates actual stock battle/Engine/Scene. Never calls engine update, movement, fire, turn, or App.
 2. `extract-compare.mjs`: extracts completed PNGs and checks identical runtime, world, physics, viewport, constrained camera, seed/time, fonts and target draw evidence. Writes `comparison.json`; numerical pass does not mean visual acceptance.
 3. `run-ci.sh`: optional CI-only runner. Do not use as a substitute for permitted CUA on the local computer. Requires official authorized CI checkout and installed stock Chrome.
 
@@ -27,3 +27,5 @@ bash run-ci.sh "$OUT/fixtures" "$OUT/evidence" e12
 ```
 
 No full checkout currently exists in this preparation executor. Old local paths for stage37-L-default-validation do not exist here. The available proven terrain-remaining-chrome fixture and official source fetch confirmed stock stage42 runtime directly calls HonroVectorArt.draw on edgeWall and edgeSurface.
+
+First CI44618310325 generated the exact hybrid successfully but failed before drawing because app:false omits Act5. Corrected to official app:true release authoring, excluding ONLY main.js boot and leaving AppReady unresolved. No HONRO release environment override.

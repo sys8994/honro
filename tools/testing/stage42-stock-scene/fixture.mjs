@@ -6,12 +6,16 @@ import {createHash} from 'node:crypto';
 const [repo,out,baselinePath,candidatePath,label='candidate']=process.argv.slice(2);
 if(!repo||!out||!baselinePath||!candidatePath)throw Error('Usage: node fixture.mjs REPO OUTPUT BASELINE_PACKAGE CANDIDATE_PACKAGE [label]');
 const {runtimeEntries}=await import(pathToFileURL(path.resolve(repo,'shared/build.mjs')));
-const entries=await runtimeEntries({vector:true,render:true,app:false,productionStory:true});
+const allEntries=await runtimeEntries({vector:true,render:true,app:true,productionStory:true});
+// Official release authoring requires app:true. Exclude only the application boot module.
+const entries=allEntries.filter(e=>e.name!=='shared/runtime/main.js');
+if(allEntries.length-entries.length!==1)throw Error('Missing/excess application boot module');
 const runtime=entries.map(e=>e.code).join('\n;\n'), runtimeSha256=createHash('sha256').update(runtime).digest('hex');
 const baseline=JSON.parse(await readFile(baselinePath,'utf8')), candidate=JSON.parse(await readFile(candidatePath,'utf8'));
 const ids=['act5:stage42:registered-body','act5:stage42:original-surface'];
 for(const p of [baseline,candidate])if(p.assets.length!==2||ids.some(id=>!p.assets.find(a=>a.id===id)))throw Error('Wrong package');
 function bootstrap(){
+ globalThis.HONRO_APP_READY=new Promise(()=>{}); // No App is ever created or attached.
  globalThis.PROBE={storage:[],errors:[],images:[],violations:[]};const p=PROBE;
  globalThis.publishProbe=value=>document.getElementById('result').textContent=btoa(unescape(encodeURIComponent(JSON.stringify(value))));
  addEventListener('error',e=>{p.errors.push(String(e.error?.stack||e.message));publishProbe({ok:false,...p});});
@@ -70,4 +74,4 @@ for(const [variant,pkg]of [['baseline',baseline],[label,candidate]]){
  const html='<!doctype html><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src \'none\'; script-src \'unsafe-inline\'; style-src \'unsafe-inline\'; img-src data:; font-src data:; connect-src \'none\'"><title>Isolated stage42 Scene comparison</title><canvas id="scene"></canvas><pre id="result">pending</pre>'+script('('+bootstrap.toString()+')();')+script(runtime)+script('('+capture.toString()+')('+[baseline,pkg,variant,runtimeSha256].map(JSON.stringify).join(',')+');');
  await writeFile(path.join(out,variant+'.html'),html);
 }
-await writeFile(path.join(out,'manifest.json'),JSON.stringify({runtimeSha256,sourceMaster:'1e043b09d4ce107e1d2dcf70fe2274dff7098476',variants:['baseline',label],views:18,app:false},null,2));
+await writeFile(path.join(out,'manifest.json'),JSON.stringify({runtimeSha256,sourceMaster:'1e043b09d4ce107e1d2dcf70fe2274dff7098476',variants:['baseline',label],views:18,officialReleaseBuildApp:true,excludedBootModule:'shared/runtime/main.js',appLaunched:false},null,2));
