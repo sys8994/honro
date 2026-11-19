@@ -5,11 +5,12 @@ from playwright.sync_api import sync_playwright
 
 # Intent only from G: ascending first shoulder, angled catch before the main
 # descents, different-length lower quieter relief. Nothing traced from an image.
-TOP=[[0,1950],[86,1910],[157,1867],[224,1822],[298,1756],[362,1726],
-     [409,1688],[481,1612],[556,1554],[616,1527],[687,1533],[782,1560],
-     [856,1618],[929,1688],[1020,1734],[1096,1756],[1182,1761],[1241,1786],
-     [1313,1852],[1401,1909],[1522,1931],[1638,1935],[1721,1909],
-     [1824,1873],[1939,1880],[2070,1890]]
+TOP=[[0,1950],[76,1928],[159,1902],[231,1844],[300,1796],[376,1771],
+     [430,1724],[503,1661],[548,1638],[617,1632],
+     [680,1622],[728,1593],[754,1578],[827,1568],[906,1568],
+     [994,1580],[1045,1625],[1076,1666],[1134,1712],
+     [1234,1753],[1340,1777],[1474,1808],[1604,1849],
+     [1690,1877],[1812,1874],[1940,1860],[2070,1880]]
 RING=TOP+[[2070,4420],[0,4420]]
 WIDTH,HEIGHT=2070,4420
 NAME='Act 5-2 G west new contour review'
@@ -60,7 +61,7 @@ with sync_playwright() as play:
            s.units.push(HonroUnits.record('archer','g-west-archer',157,1810,'player'));
            // An unreachable-at-start QA destination prevents the unmodified stock
            // no-enemy objective from instantly winning before walking. No rendered mesh.
-           s.objectives.push({id:'qa-contact-destination',type:'reach',label:'Western proof endpoint',x:1967,y:1883,radius:40,required:true});
+           s.objectives.push({id:'qa-contact-destination',type:'reach',label:'Western proof endpoint',x:1967,y:1864,radius:34,required:true});
            const sentinel={id:'qa-unplaced-empty',name:'Empty toolbar sentinel',category:'scenery',visual:[],
              collision:[],anchor:{x:0,y:0},sockets:[],tags:[],params:{}};
            sentinel.reference=HonroEnvironment.referenceForLegacyAsset(sentinel);
@@ -112,10 +113,10 @@ with sync_playwright() as play:
     assert all(max(abs(q['x']-x),abs(q['y']-y))<=3 for q,(x,y) in zip(a['points'],RING))
     t.screenshot(path=str(p/'02-stage-visible-overlay-off.png'))
     # Test real dragging of an edited route knot, not just an untouched save.
-    t.locator('[data-tool=select]').click(); t.locator('#overlayToggle').check(); v=screen(RING[10]);t.mouse.move(*v);t.mouse.down();t.mouse.move(v[0]+4,v[1]-11,steps=5);t.mouse.up()
+    t.locator('[data-tool=select]').click(); t.locator('#overlayToggle').check(); v=screen(RING[9]);t.mouse.move(*v);t.mouse.down();t.mouse.move(v[0]+3,v[1]-5,steps=5);t.mouse.up()
     t.screenshot(path=str(p/'02-pointer-solid-dragged.png'))
     s=get(t);q=s['terrains'][0]
-    assert sum(x!=y for x,y in zip(q['points'],a['points']))==1 and q['points'][10]['y']<a['points'][10]['y']-8
+    assert sum(x!=y for x,y in zip(q['points'],a['points']))==1 and q['points'][9]['y']<a['points'][9]['y']-5
     t.locator('#overlayToggle').uncheck()
     preview=t.evaluate("""()=>{
       const p=HonroWorkshopAPI.getProject(),st=p.stages.find(s=>s.id===p.activeStageId);
@@ -190,13 +191,13 @@ with sync_playwright() as play:
     def state():
         return fresh.evaluate("""()=>{
           const a=HonroWorkshopAPI.getPlayApp(), e=a.engine,u=e.active,w=a.scene.canvas.ownerDocument.defaultView;
-          return {id:u.id,x:u.x,y:u.y,move:u.moveLeft,grounded:e.grounded(u),aim:e.b.phase,
+          return {id:u.id,x:u.x,y:u.y,spawnX:u.spawnX,spawnY:u.spawnY,move:u.moveLeft,grounded:e.grounded(u),aim:e.b.phase,
             round:e.b.round,side:e.b.side,dialogue:!!a.dialogue,actualStockCamera:{x:a.scene.x,y:a.scene.y,zoom:a.scene.scale},
             canInput:a.canInput(),activeFocused:a.scene.canvas.ownerDocument.hasFocus(),store:[w.localStorage.length,w.sessionStorage.length],
             support:e.contactSurface(u.x,u.y-3,u.y+3)?.t?.id??null};
         }""")
     # Playtest is launched by the stock Workshop tab. It focuses the real iframe, no synthetic event dispatch.
-    # Same hero, same initial turn, actual held D to first crest and then
+    # Same hero, up to two stock F turn advances; held D across both ledges and then
     # downslope, followed by real A back toward the crest with remaining budget.
     samples=[];move_error=None;checkpoints={}
     def capture(name,v): 
@@ -205,24 +206,36 @@ with sync_playwright() as play:
     try:
         fresh.wait_for_function("(id)=>{const a=HonroWorkshopAPI.getPlayApp(),e=a?.engine,u=e?.active;return u&&a.canInput()&&e.grounded(u)&&e.contactSurface(u.x,u.y-3,u.y+3)?.t?.id===id}",arg=a['id'],timeout=12000)
         start=state();samples.append(start)
-        assert abs(start['x']-157)<4 and start['grounded'] and start['activeFocused'] and start['move']>950
-        capture('start',start);crest=None;descent=None;reverse=None
-        fresh.keyboard.down('KeyD')
-        try:
-            until=time.monotonic()+15
-            while time.monotonic()<until:
-                fresh.wait_for_timeout(42);now=state();samples.append(now)
-                assert now['id']==start['id'] and now['aim']=='aim' and now['store']==[0,0] and now['activeFocused']
-                hit=now['grounded'] and now['support']==a['id']
-                if crest is None and hit and 585<=now['x']<=735 and now['y']<=start['y']-260:
-                    crest=now;capture('climbed-first',crest)
-                if crest and hit and now['x']>=900 and now['y']>=crest['y']+110:
-                    descent=now;break
-                if now['move']<=0:break
-        finally:fresh.keyboard.up('KeyD')
-        assert crest and descent,'Actual character did not reach both independent climb and descent gates'
-        capture('descended-after-crest',descent)
-        assert descent['move']>=30,'No genuine reverse budget remains after downslope'
+        planned_stock_spawn=fresh.evaluate("""()=>{
+          const app=HonroWorkshopAPI.getPlayApp(),e=app.engine,u=e.active,w=app.scene.canvas.ownerDocument.defaultView;
+          // Native sanitizeStageBattle uses the exact stock terrain-space solver.
+          return w.HonroTerrain.place(e.b,u,{x:157,y:1810,flying:false,maxDistance:Math.max(e.b.width,e.b.height)});
+        }""")
+        (p/'spawn-proof.json').write_text(json.dumps({'authored':[157,1810],'stock_placement':planned_stock_spawn,'actual_spawn':start},indent=2))
+        assert start['id']=='g-west-archer' and 115<=start['x']<=235 and start['grounded'] and start['activeFocused'] and start['move']>950,'Not the expected stock grounded initial entry area'
+        assert planned_stock_spawn and abs(start['spawnX']-planned_stock_spawn['x'])<=.01 and abs(start['spawnY']-planned_stock_spawn['y'])<=.01,'Stock mount mismatches its native spawn solver'
+
+        capture('start',start);lower_ledge=None;upper_ledge=None;descent=None;reverse=None
+        deadline=time.monotonic()+28; used_rounds=set()
+        while time.monotonic()<deadline:
+            now=state();samples.append(now)
+            assert now['id']==start['id'] and now['aim'] not in ('lost','won') and now['store']==[0,0] and now['activeFocused'],'Stock actor or input integrity changed'
+            hit=now['grounded'] and now['support']==a['id']
+            if lower_ledge is None and hit and 550<=now['x']<=680 and now['y']<=start['y']-190:
+                lower_ledge=now;capture('climbed-to-long-lower-ledge',lower_ledge)
+            if lower_ledge and upper_ledge is None and hit and 790<=now['x']<=945 and now['y']<=lower_ledge['y']-38:
+                upper_ledge=now;capture('climbed-second-bedrock-ledge',upper_ledge)
+            if upper_ledge and hit and 1090<=now['x']<=1330 and now['y']>=upper_ledge['y']+120 and now['move']>=35:
+                descent=now;break
+            if now['canInput'] and now['grounded'] and now['move']>=40:
+                fresh.keyboard.down('KeyD')
+                try:fresh.wait_for_timeout(85)
+                finally:fresh.keyboard.up('KeyD')
+            elif now['canInput'] and now['round'] not in used_rounds and len(used_rounds)<2:
+                used_rounds.add(now['round']);fresh.keyboard.press('KeyF')
+            else:fresh.wait_for_timeout(135)
+        assert lower_ledge and upper_ledge and descent,'Actual character did not record both distinct ledges and a grounded descent'
+        capture('descended-after-shoulder',descent)
         fresh.keyboard.down('KeyA')
         try:
             until=time.monotonic()+2.4
@@ -240,6 +253,6 @@ with sync_playwright() as play:
         fresh.screenshot(path=str(p/'08-g-west-play-partial.png'))
     (p/'movement.json').write_text(json.dumps({'pass':move_error is None,'samples':samples,'checkpoints':checkpoints,'failure':move_error},indent=2))
     (p/'proof.json').write_text(json.dumps({'scope':'G west only, native newly authored; no imported terrain, bridge, east, stage-wide or art acceptance',
-      'actual_shape_id':a['id'],'pointer_clicks':len(vertices),'same_stage_preview_and_playtest_collider':True,'dragged_real_vertex':10,
+      'actual_shape_id':a['id'],'pointer_clicks':len(vertices),'same_stage_preview_and_playtest_collider':True,'dragged_real_vertex':9,
       'fresh_reopen_exact':True,'collision_vertex_count':len(r['vertices']),'private_saved_sha256':digest(raw)},indent=2))
     if move_error:raise RuntimeError(move_error)

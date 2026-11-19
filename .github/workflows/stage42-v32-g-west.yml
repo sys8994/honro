@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
-          fetch-depth: 2
+          fetch-depth: 3
           persist-credentials: false
       - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
         with:
@@ -26,12 +26,13 @@ jobs:
           set -euo pipefail
           test "$GITHUB_REF" = refs/heads/qa/stage42-v32-g-west
           test "$GITHUB_SHA" = "$(git rev-parse HEAD)"
-          test "$(git rev-parse HEAD^)" = 1e043b09d4ce107e1d2dcf70fe2274dff7098476
+          test "$(git rev-parse HEAD^)" = ea507e298d353cbdfcdc238de9e6c1de3555f07a
+          test "$(git rev-parse HEAD~2)" = 1e043b09d4ce107e1d2dcf70fe2274dff7098476
           Q=tests/stage42-v32-g-west
           printf '%s\n' .github/workflows/stage42-v32-g-west.yml "$Q/smoke.SHA256SUMS" "$Q/g-west-proof.py" | LC_ALL=C sort > "$RUNNER_TEMP/solid-allowlist"
           git diff --name-only HEAD^ HEAD | LC_ALL=C sort | diff -u "$RUNNER_TEMP/solid-allowlist" -
-          git diff --name-only --diff-filter=A HEAD^ HEAD | LC_ALL=C sort | diff -u "$RUNNER_TEMP/solid-allowlist" -
-          echo '75507e9f34999871236192ef6e037c47bb3400f01c306826eede5847f41f1d79  tests/stage42-v32-g-west/smoke.SHA256SUMS' | sha256sum -c -
+          git diff --name-only --diff-filter=M HEAD^ HEAD | LC_ALL=C sort | diff -u "$RUNNER_TEMP/solid-allowlist" -
+          echo '28f14043a0258179586128559195a09e54b94a1b40870126f1b373a2a3114073  tests/stage42-v32-g-west/smoke.SHA256SUMS' | sha256sum -c -
           (cd "$Q" && sha256sum -c smoke.SHA256SUMS)
       - name: Build unmodified stock Workshop
         run: |
@@ -63,5 +64,6 @@ jobs:
             ${{ runner.temp }}/stock-solid-evidence/pointer-diagnostic.json
             ${{ runner.temp }}/stock-solid-evidence/proof.json
             ${{ runner.temp }}/stock-solid-evidence/movement.json
+            ${{ runner.temp }}/stock-solid-evidence/spawn-proof.json
           if-no-files-found: warn
           retention-days: 7
