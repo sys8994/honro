@@ -1,4 +1,4 @@
-name: Stage42 G west bedrock family native material proof
+name: Stage42 G one west cutbank with stock cached and first direct evidence
 on:
   push:
     branches: ['qa/stage42-g-west-family']
@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
-          fetch-depth: 3
+          fetch-depth: 4
           persist-credentials: false
       - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
         with:
@@ -26,13 +26,14 @@ jobs:
           set -euo pipefail
           test "$GITHUB_REF" = refs/heads/qa/stage42-g-west-family
           test "$GITHUB_SHA" = "$(git rev-parse HEAD)"
-          test "$(git rev-parse HEAD^)" = ec85a456e5bf9a2f84d2883c68832ee600d18826
-          test "$(git rev-parse HEAD~2)" = 1e043b09d4ce107e1d2dcf70fe2274dff7098476
+          test "$(git rev-parse HEAD^)" = 04d8686138262d4be7cdb6218c5d50e526d13071
+          test "$(git rev-parse HEAD~2)" = ec85a456e5bf9a2f84d2883c68832ee600d18826
+          test "$(git rev-parse HEAD~3)" = 1e043b09d4ce107e1d2dcf70fe2274dff7098476
           Q=tests/stage42-g-west-family
-          printf '%s\n' .github/workflows/stage42-g-west-family.yml "$Q/smoke.SHA256SUMS" "$Q/g-west-family-proof.py" "$Q/operator-points.json" "$Q/apply-native-fill.mjs" "$Q/evidence-pins.json" | LC_ALL=C sort > "$RUNNER_TEMP/solid-allowlist"
+          printf '%s\n' .github/workflows/stage42-g-west-family.yml "$Q/smoke.SHA256SUMS" "$Q/g-west-family-proof.py" "$Q/operator-points.json" | LC_ALL=C sort > "$RUNNER_TEMP/solid-allowlist"
           git diff --name-only HEAD^ HEAD | LC_ALL=C sort | diff -u "$RUNNER_TEMP/solid-allowlist" -
-          git diff --name-only --diff-filter=A HEAD^ HEAD | LC_ALL=C sort | diff -u "$RUNNER_TEMP/solid-allowlist" -
-          echo 'a47961f4ab6380dd7d2d47710f03c500e46b44fe9443327d503f5ef053878477  tests/stage42-g-west-family/smoke.SHA256SUMS' | sha256sum -c -
+          git diff --name-only --diff-filter=M HEAD^ HEAD | LC_ALL=C sort | diff -u "$RUNNER_TEMP/solid-allowlist" -
+          echo '5452788d3b12f4b5580d4813d90f3572c248e99b4f8e6c0ba88d6f033e631580  tests/stage42-g-west-family/smoke.SHA256SUMS' | sha256sum -c -
           (cd "$Q" && sha256sum -c smoke.SHA256SUMS)
           printf '%s  %s\n' f68a1c08d6ad170ae1e230726f1f04771faefe866de72812f71c4bf8cdf09727 tests/stage42-v32-g-full/g-full-proof.py | sha256sum -c -
       - name: Build original Workshop and patch only exact disposable bundle
@@ -64,5 +65,6 @@ jobs:
             ${{ runner.temp }}/native-fill-evidence/1[1-7]-*.png
             ${{ runner.temp }}/native-fill-evidence/pointer-fit-*.json
             ${{ runner.temp }}/native-fill-evidence/shoulder-proof.json
+            ${{ runner.temp }}/native-fill-evidence/cache-path-proof.json
           if-no-files-found: warn
           retention-days: 7
