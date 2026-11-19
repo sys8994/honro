@@ -1,0 +1,19 @@
+{
+  "pin": "1e043b09d4ce107e1d2dcf70fe2274dff7098476",
+  "receiptRun": 44518230662,
+  "classification": "G engineering entry only; graybox, not final art",
+  "receiptSha256": {
+    "domain-proof.json": "51da507935ab1ffafdb5225ecc0640f59a317780f6289b1af800b83204f44f9c",
+    "g-native-geometry-receipt.json": "1c63b521993dffcc3897d335a5f33b146239f042d41f8596c71eb68d2934330b"
+  },
+  "inputSha256": "1df2d3f1afeec4e3b0a14375ddee9ead0ba75b9ac76ae912e0496155aaad265f",
+  "stockSha256": {
+    "shared/runtime/profile-store.js": "3b270b6ca132a70559f1c7691d63d6d8a82ca4bfef5d06c69522c20fe6884f2c",
+    "shared/runtime/equipment-state.js": "378513409c561308c8463569936f85b9a6dddf1d0650b278f210164f98dcf3c8",
+    "shared/map/compiler.js": "1c18b854bbdae6ab5b9c49de53ef4c2d708ffa73a7af393fc5e57e318e001cd2",
+    "shared/runtime/main.js": "55a9b1a99dd7c0c5a406a8d0dfba02f9a2a887058b8de07befcd6442dfe4513e",
+    "shared/map/terrain-domain.js": "50772ada658c33f0f514465b4fc161587a1a648d7c19eec0d2f2de80ddd5c3ae",
+    "shared/runtime/campaign-entry.js": "223e75a915dd1430a46aa153ca0270151c68eaa54f2bc9b2644d8c046e2c6263",
+    "shared/act5-world.mjs": "1cc31b2112f51bc12b2c2525ec3e0ac647ba018cb1a9dcdf463c0e0b09a283a6"
+  }
+}
