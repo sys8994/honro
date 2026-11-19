@@ -1,0 +1,84 @@
+name: Stage46 source integration and paired renders
+on:
+  push:
+    branches: [qa/stage46-tile-fringe-integrated-20261120]
+permissions:
+  contents: read
+jobs:
+  integration:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Check the precise source scope
+        run: |
+          set -euo pipefail
+          BASE=1e043b09d4ce107e1d2dcf70fe2274dff7098476
+          test "$(git rev-parse HEAD^)" = "$BASE"
+          git diff --name-status "$BASE" HEAD > /tmp/stage46-scope
+          python - <<'PY'
+          from pathlib import Path
+          r=dict((f,s) for s,f in [ln.split('\t') for ln in Path('/tmp/stage46-scope').read_text().splitlines()])
+          s={'shared/runtime/act5-edge-art.js':'M','.github/workflows/stage46-tile-fringe-integrated.yml':'A'}
+          s.update({f'tools/stage46-fringe-integrated/{f}':'A' for f in ['paired.cjs','verify.py','launch.py']})
+          assert s==r,(s,r)
+          PY
+          QA="$RUNNER_TEMP/st46-fringe-integration"
+          mkdir -p "$QA/evidence" "$QA/observer"
+          cp tools/stage46-fringe-integrated/* "$QA/observer/"
+          git worktree add --detach "$QA/before" "$BASE"
+          echo "QA=$QA" >> "$GITHUB_ENV"
+          echo "OUT=$QA/evidence" >> "$GITHUB_ENV"
+      - name: Both official builds and guard checks
+        run: |
+          set -euo pipefail
+          for entry in "$QA/before" "$GITHUB_WORKSPACE"; do
+            cd "$entry"
+            npm ci
+            npm ci --prefix game
+            npm run test:release-guard
+            npm run build
+            mode=after
+            test "$entry" != "$QA/before" || mode=before
+            rc=0
+            npm run test:production-contract > "$OUT/contract-$mode.log" 2>&1 || rc=$?
+            printf '%s\n' "$rc" > "$OUT/contract-$mode.status"
+            tail -35 "$OUT/contract-$mode.log"
+          done
+      - name: Compare built land and launch through the normal entrypoint
+        run: |
+          set -euo pipefail
+          python -m pip install playwright pillow
+          python -m playwright install --with-deps chromium
+          cd "$QA/observer"
+          npm install playwright
+          npx playwright install chromium
+          python -m http.server 8884 --bind 127.0.0.1 --directory "$QA/before" > "$OUT/before-host.log" 2>&1 &
+          a=$!
+          python -m http.server 8885 --bind 127.0.0.1 --directory "$GITHUB_WORKSPACE" > "$OUT/after-host.log" 2>&1 &
+          b=$!
+          trap 'kill "$a" "$b" || true' EXIT
+          for i in $(seq 1 20); do
+            if curl -fsSL http://127.0.0.1:8884/HONRO.html -o /dev/null && curl -fsSL http://127.0.0.1:8885/HONRO.html -o /dev/null; then break; fi
+            sleep 1
+          done
+          node paired.cjs
+          python verify.py
+          python launch.py
+      - name: Enforce the unmodified official production gate separately
+        if: always()
+        run: |
+          set -euo pipefail
+          test "$(cat "$OUT/contract-before.status")" = 0
+          test "$(cat "$OUT/contract-after.status")" = 0
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage46-integrated-fringe-evidence
+          path: ${{ env.OUT }}
+          retention-days: 7
