@@ -4,6 +4,7 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright
 D=Path(__file__).parent
 plan=json.loads((D/'b01-pointer-plan.json').read_text())
+layers=json.loads((D/'contact-pointer-itinerary.json').read_text())
 out=Path(sys.argv[1]);out.mkdir(parents=True,exist_ok=True)
 url=os.environ['HONRO_BLANK_WORKSHOP_URL']
 GAME_JS=(D/'game-snapshot.js').read_text()
@@ -56,19 +57,41 @@ with sync_playwright() as pw:
   for pt in plan['dummies'][0]:click_at(p,pt)
   click(p,'비충돌 외곽 닫기')
   assert p.locator('html').get_attribute('data-clean-mode')=='edit'
-  assert json.loads(p.locator('html').get_attribute('data-clean-counts'))==[len(plan['outline']),2,1]
-  cp('native-drawn-outline-seams-dummy')
+  assert json.loads(p.locator('html').get_attribute('data-clean-counts'))==[len(plan['outline']),2,1,0,0]
+  click(p,'충돌 가이드 표시/숨기기');assert inspect(p)==base
+  click(p,'충돌 가이드 표시/숨기기');assert inspect(p)==base
+  p.get_by_label('암면 소유체',exact=True).select_option('mass-0')
+  click(p,'새 종속 암면')
+  for pt in layers['facets'][0]['points']:click_at(p,pt)
+  click(p,'시각 층 끝내기')
+  assert p.locator('html').get_attribute('data-clean-mode')=='layer-points','wrong owner unexpectedly accepted'
+  click(p,'시각 층 입력 취소')
+  for f in layers['facets']:
+   p.get_by_label('암면 소유체',exact=True).select_option(f['owner'])
+   p.get_by_label('암면 재질',exact=True).select_option(f['material'])
+   click(p,'새 종속 암면')
+   for pt in f['points']:click_at(p,pt)
+   click(p,'시각 층 끝내기')
+   assert p.locator('html').get_attribute('data-clean-mode')=='edit'
+  for c in layers['contacts']:
+   p.get_by_label('접촉 역할',exact=True).select_option(c['role'])
+   click(p,'새 접촉 시각 띠')
+   for pt in c['points']:click_at(p,pt)
+   click(p,'시각 층 끝내기')
+   assert p.locator('html').get_attribute('data-clean-mode')=='edit'
+  assert json.loads(p.locator('html').get_attribute('data-clean-counts'))==[len(plan['outline']),2,1,len(layers['facets']),len(layers['contacts'])]
+  cp('native-facets-and-contact-roles-drawn')
   click(p,'신규 지형 미리보기');assert inspect(p)==base
   p.screenshot(path=str(out/'02-native-preview.png'));overview(p,'03-native-overview.png')
   click(p,'신규 초안 저장')
   p.wait_for_function("document.documentElement.dataset.cleanStatus==='신규 초안 저장 완료'",timeout=30000)
   authored=inspect(p)
   assert authored['stages']==1 and authored['library']==['stage42-clean-workshop-native'] and authored['elements']==authored['library']
-  assert authored['terrain']==authored['collision']==[] and len(authored['paths'])==4 and len(set(v['fill'] for v in authored['paths']))==4
+  assert authored['terrain']==authored['collision']==[] and len(authored['paths'])==4+len(layers['facets'])+len(layers['contacts'])
   with p.expect_download() as dl:click(p,'신규 초안 내보내기')
   with tempfile.TemporaryDirectory() as tmp:
    f=Path(tmp)/'local-blank-draft.json';dl.value.save_as(f)
-   body=f.read_bytes();assert b'act5:near:42' not in body and 0<len(body)<=12000
+   body=f.read_bytes();assert b'act5:near:42' not in body and b'a5-supply-road' not in body and 0<len(body)<=12000
    record['bytes']=len(body);record['download_sha256']=hashlib.sha256(body).hexdigest()
    p2=start(b)
    with p2.expect_file_chooser() as picker:click(p2,'신규 초안 열기')
@@ -83,11 +106,12 @@ with sync_playwright() as pw:
    record['isolated_game_scene']={**render,'image_sha256':hashlib.sha256(raw_png).hexdigest()}
    anchor=plan['outline'][8];dest=[anchor[0]+24,anchor[1]+10];camera(p2,*anchor,.34)
    p2.mouse.move(*point(p2,*anchor));p2.mouse.down();p2.mouse.move(*point(p2,*dest),steps=6);p2.mouse.up()
+   assert '잠깁니다' in (p2.locator('html').get_attribute('data-clean-status') or '')
    click(p2,'신규 지형 미리보기');assert inspect(p2)==authored
    click(p2,'신규 초안 저장')
    p2.wait_for_function("document.documentElement.dataset.cleanStatus==='신규 초안 저장 완료'",timeout=30000)
-   assert inspect(p2)['paths']!=authored['paths']
-   overview(p2,'05-reopened-vertex-reedited.png')
+   assert inspect(p2)==authored
+   overview(p2,'05-reopened-parent-outline-locked.png')
   assert not record['browser_errors']
   record['pass']=True;cp('proof-only-passed-no-production')
  except Exception as e:

@@ -1,3 +1,5 @@
+import {compileNativeFacets} from './native-facets.mjs';
+import {compileContactBands} from './native-contact.mjs';
 // Native editor model. In user work the only producers of points are canvas
 // clicks and drags; no image pixels, external SVG or legacy vector consulted.
 const cross=(a,b,c)=>(b[0]-a[0])*(c[1]-a[1])-(b[1]-a[1])*(c[0]-a[0]);
@@ -57,7 +59,9 @@ export function compileNativeDraft(design){
  });
  const colors=['cold-mid','cold-dark','ash-shelf'];
  const assets=(ps,i,prefix,material)=>({tag:'path',id:prefix+'-'+i,d:path(ps),fill:PAINT[material]});
- return {role:'native-visual-only',collision:[],massCount:rings.length,
-  root:{tag:'g',children:[...allDummy.map((ps,i)=>assets(ps,i,'dummy','dummy-cold')),...rings.map((ps,i)=>assets(ps,i,'mass',colors[i]))]},
+ const masses=rings.map((polygon,i)=>({owner:'mass-'+i,polygon}));
+ const facets=compileNativeFacets(masses,design.facets??[]),contacts=compileContactBands(outline,design.facets??[],design.contacts??[]);
+ return {role:'native-visual-only',collision:[],massCount:rings.length,masses,
+  root:{tag:'g',children:[...allDummy.map((ps,i)=>assets(ps,i,'dummy','dummy-cold')),...rings.map((ps,i)=>assets(ps,i,'mass',colors[i])),...facets,...contacts]},
   bounds:[-2200,-2300,10900,7500]};
 }

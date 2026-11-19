@@ -1,0 +1,70 @@
+name: Stage42 clean-sheet facets and visual-contact QA
+on:
+  push:
+    branches: ['qa/stage42-clean-sheet-facets-contact']
+    paths: ['.github/workflows/stage42-clean-sheet-facets-contact.yml', 'tests/stage42-clean-sheet-workshop/**']
+permissions:
+  contents: read
+jobs:
+  isolated:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      HONRO_ACT4_RELEASE: '1'
+      HONRO_ACT5_RELEASE: '1'
+      HONRO_BLANK_WORKSHOP_LOCAL: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 3
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Build and verify disposable stock runtime, add only UI host
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = refs/heads/qa/stage42-clean-sheet-facets-contact
+          test "$GITHUB_SHA" = "$(git rev-parse HEAD)"
+          test "$(git rev-parse HEAD^)" = c5391a3cbdde43fdc5626ff8af40a21dd6ca25de
+          printf '%s\n' '.github/workflows/stage42-clean-sheet-facets-contact.yml' 'tests/stage42-clean-sheet-workshop/blank.mjs' 'tests/stage42-clean-sheet-workshop/browser-proof.py' 'tests/stage42-clean-sheet-workshop/contact-model-qa.mjs' 'tests/stage42-clean-sheet-workshop/contact-pointer-itinerary.json' 'tests/stage42-clean-sheet-workshop/host.js' 'tests/stage42-clean-sheet-workshop/native-contact.mjs' 'tests/stage42-clean-sheet-workshop/native-facets.mjs' 'tests/stage42-clean-sheet-workshop/pack.mjs' 'tests/stage42-clean-sheet-workshop/partition.mjs' 'tests/stage42-clean-sheet-workshop/prepare.mjs' > "$RUNNER_TEMP/facets-contact-allowed.txt"
+          git diff --no-renames --name-only HEAD^ HEAD | LC_ALL=C sort | diff -u "$RUNNER_TEMP/facets-contact-allowed.txt" -
+          printf '%s\n' '757e3c63da7abc7969714dc5e3d159370eecf9862c261586675bdf5d279e1716  tests/stage42-clean-sheet-workshop/b01-pointer-plan.json' '10f987e4979233f21e62bfa91c88b0997f60e2f58f65e8178ff8ca1bc36c1117  tests/stage42-clean-sheet-workshop/contact-pointer-itinerary.json' | sha256sum --check -
+          node tests/stage42-clean-sheet-workshop/contact-model-qa.mjs
+          npm ci
+          npm ci --prefix game
+          npm run build
+          B="$RUNNER_TEMP/stage42-clean-sheet-facets-contact-build"; E="$RUNNER_TEMP/stage42-clean-sheet-facets-contact-evidence"
+          mkdir -p "$B" "$E"
+          cp -a web HONRO_WORKSHOP.html HONRO.html "$B/"
+          node tests/stage42-clean-sheet-workshop/prepare.mjs "$B"
+          node --check "$B/web/runtime/workshop-app.489f733634454986.js"
+      - name: Real pointer facet and visual contact drawing, exact reopen
+        run: |
+          set -euo pipefail
+          python -m pip install 'playwright==1.58.0' 'Pillow==12.0.0'
+          export HONRO_BLANK_WORKSHOP_URL=http://127.0.0.1:8870/HONRO_WORKSHOP.html
+          export HONRO_CHROME="$(command -v google-chrome || command -v chromium)"
+          test -x "$HONRO_CHROME"
+          "$HONRO_CHROME" --version
+          python -m http.server 8870 --bind 127.0.0.1 --directory "$RUNNER_TEMP/stage42-clean-sheet-facets-contact-build" &
+          pid=$!
+          trap 'kill "$pid" 2>/dev/null || true' EXIT
+          for ((i=0;i<20;i++)); do
+            if curl -fsS -o /dev/null http://127.0.0.1:8870/HONRO_WORKSHOP.html; then break; fi
+            sleep 1
+          done
+          timeout 1000s python tests/stage42-clean-sheet-workshop/browser-proof.py "$RUNNER_TEMP/stage42-clean-sheet-facets-contact-evidence"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage42-clean-sheet-facets-contact-browser-evidence
+          path: |
+            ${{ runner.temp }}/stage42-clean-sheet-facets-contact-evidence/*.png
+            ${{ runner.temp }}/stage42-clean-sheet-facets-contact-evidence/result.json
+          if-no-files-found: warn
+          retention-days: 7

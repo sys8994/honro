@@ -1,14 +1,14 @@
 // Local isolated Workshop host. Never wired to production or project release.
 function blankNativeInstall(){
  const bar=document.createElement('div');bar.id='blankNativeHost';bar.setAttribute('aria-label','Blank terrain workshop controls');
- Object.assign(bar.style,{position:'fixed',right:'10px',bottom:'2px',zIndex:210,background:'#182024',padding:'4px'});
+ Object.assign(bar.style,{position:'fixed',right:'10px',bottom:'2px',zIndex:210,background:'#182024',padding:'4px',display:'flex',flexWrap:'wrap',gap:'4px',maxWidth:'max(360px,76vw)'});
  const canvas=document.querySelector('#stageCanvas'),readSource=()=>HONRO_PROJECT;
  if(!canvas)throw Error('Missing stock Workshop stage canvas');
  const status=document.documentElement.dataset;
- let base=null,design=null,mode='off',seam=null,dummy=null,selectedPoint=null,preview=null,draft=null,busy=false,showGuide=false;
+ let base=null,design=null,mode='off',seam=null,dummy=null,selectedPoint=null,layerDraft=null,preview=null,draft=null,busy=false,showGuide=false;
  const active=()=>base&&currentTab==='stage'&&project.activeStageId===IDS.draft;
  const report=s=>{status.cleanStatus=s;toast(s)};
- const sync=()=>{status.cleanMode=mode;status.cleanCounts=JSON.stringify([design?.outline.length??0,design?.seams.length??0,design?.dummies.length??0]);};
+ const sync=()=>{status.cleanMode=mode;status.cleanCounts=JSON.stringify([design?.outline.length??0,design?.seams.length??0,design?.dummies.length??0,design?.facets.length??0,design?.contacts.length??0]);};
  const need=(v,s)=>{if(!v)throw Error(s)};
  const paint=()=>{
   previewProject=preview;invalidateRuntime();renderStage();
@@ -21,7 +21,7 @@ function blankNativeInstall(){
    if(points.length>1)drawTransientLine(points,'#dbbf7c');
   }
   if(!design||preview)return;
-  const lines=[design.outline,...design.seams.map(s=>[design.outline[s.a],...s.knots,design.outline[s.b]]),...(seam?[[design.outline[seam.a],...seam.knots]]:[]),...design.dummies,...(dummy?[dummy]:[])];
+  const lines=[design.outline,...design.seams.map(s=>[design.outline[s.a],...s.knots,design.outline[s.b]]),...(seam?[[design.outline[seam.a],...seam.knots]]:[]),...design.dummies,...(dummy?[dummy]:[]),...design.facets.map(f=>f.points),...design.contacts.map(c=>c.points),...(layerDraft?[layerDraft.points]:[])];
   for(const points of lines)if(points.length>1)drawTransientLine(points.map(([x,y])=>({x,y})),'#6cc8e0');
  }
  const set=(next)=>{project=next;preview=previewProject=null;selected=null;selectedAssetId=next.library[0]?.id;history=[];future=[];stageView._fit=false;switchTab('stage');sync()};
@@ -47,7 +47,10 @@ function blankNativeInstall(){
     seam.b=i;design.seams.push(seam);seam=null;mode='outline-done';
    }else if(mode==='dummy'){
     const i=closest(q);dummy.push(Number.isInteger(i)?[...design.outline[i]]:q);
+   }else if(mode==='layer-points'){
+    need(layerDraft&&layerDraft.points.length<16,'점 한도를 초과했습니다');layerDraft.points.push(q);
    }else if(mode==='edit'){
+    need(!design.facets.length&&!design.contacts.length,'층 저작이 있는 동안 외곽 및 공유 절리는 잠깁니다');
     const i=closest(q);need(Number.isInteger(i),'편집할 외곽 점을 선택하세요');
     selectedPoint=i;canvas.setPointerCapture?.(e.pointerId);
    }
@@ -64,7 +67,7 @@ function blankNativeInstall(){
  },true);
  canvas.addEventListener('pointercancel',()=>{selectedPoint=null},true);
  button('빈 5막 2장 작업본',()=>{
-  base=createBlankWorkshopStage(readSource());design=structuredClone(base.design);mode='outline';seam=dummy=draft=null;
+  base=createBlankWorkshopStage(readSource());design=structuredClone(base.design);mode='outline';seam=dummy=draft=layerDraft=null;
   showGuide=false;status.cleanNeutral='1';set(blankProject(HonroMaps,base));report('빈 지형: 경로 0개');
  });
  button('중립 배경 표시/숨기기',()=>{need(active(),'먼저 신규 작업본을 여세요');status.cleanNeutral=status.cleanNeutral==='1'?'0':'1';paint()});
@@ -74,6 +77,19 @@ function blankNativeInstall(){
  button('절리 끝점 선택',()=>{need(active()&&mode==='seam-knots','먼저 절리 시작점을 선택하세요');mode='seam-end'});
  button('새 비충돌 외곽',()=>{need(active()&&mode==='outline-done'&&design.seams.length===2,'공유 절리 두 개가 필요합니다');dummy=[];mode='dummy'});
  button('비충돌 외곽 닫기',()=>{need(active()&&mode==='dummy'&&dummy.length>=3,'비충돌 외곽 점이 부족합니다');const edited={...design,dummies:[...design.dummies,dummy]};compileNativeDraft(edited);design=edited;dummy=null;mode='edit';paint()});
+ const selectLayer=(label,opts)=>{const a=document.createElement('select');a.setAttribute('aria-label',label);for(const [id,n] of opts){const row=document.createElement('option');row.value=id;row.textContent=n;a.append(row);}bar.append(a);return a;};
+ const ownerLayer=selectLayer('암면 소유체',[['mass-0','암체 1'],['mass-1','암체 2'],['mass-2','암체 3']]);
+ const inkLayer=selectLayer('암면 재질',[['cool-relief','밝은 암면'],['cold-shadow','암면 그늘'],['deep-fracture','깊은 절리']]);
+ const roleLayer=selectLayer('접촉 역할',[['lower-road','하단 길 표시'],['raised-deck','상부 다리 표시'],['gate-landing','성문 도착 표시'],['bearer-shadow','비이동 받침 그림자']]);
+ button('새 종속 암면',()=>{need(active()&&mode==='edit','원본 암체를 먼저 완성하세요');const master=compileNativeDraft(design);
+  need(master.masses.some(m=>m.owner===ownerLayer.value),'선택한 암체가 없습니다');
+  layerDraft={key:'facets',record:{id:'f'+design.facets.length,owner:ownerLayer.value,material:inkLayer.value},points:[]};mode='layer-points';preview=null;paint();});
+ button('새 접촉 시각 띠',()=>{need(active()&&mode==='edit','몸체를 먼저 완성하세요');
+  layerDraft={key:'contacts',record:{id:'c'+design.contacts.length,role:roleLayer.value},points:[]};mode='layer-points';preview=null;paint();});
+ button('시각 층 끝내기',()=>{need(active()&&mode==='layer-points'&&layerDraft,'먼저 암면이나 띠를 그리세요');
+  const {key,record,points}=layerDraft;const next={...design,[key]:[...design[key],{...record,points}]};
+  compileNativeDraft(next);design=next;layerDraft=null;mode='edit';paint();report('시각 층 기록: 충돌은 만들지 않았습니다');});
+ button('시각 층 입력 취소',()=>{need(active()&&mode==='layer-points','취소할 입력이 없습니다');layerDraft=null;mode='edit';paint();});
  button('신규 지형 미리보기',()=>{need(active()&&mode==='edit','신규 지형을 먼저 완성하세요');preview=composeBlankProject(HonroMaps,base,design);paint();report('신규 지형 미리보기: 작업본 미변경')});
  button('신규 초안 저장',async()=>{
   need(active()&&mode==='edit','신규 지형을 먼저 완성하세요');const prev=project;
@@ -87,7 +103,7 @@ function blankNativeInstall(){
   try{
    const f=input.files?.[0];need(f&&f.size<=12000,'올바른 신규 초안 파일이 아닙니다');
    const raw=await f.text(),r=await reopenBlankDraft(HonroMaps,readSource(),raw);
-   base=r.base;design=r.design;mode='edit';status.cleanNeutral='1';set(r.next);draft=raw;status.cleanImport='opened';report('새 작업본에서 초안 재열기 완료');
+   base=r.base;design=r.design;mode='edit';layerDraft=null;status.cleanNeutral='1';set(r.next);draft=raw;status.cleanImport='opened';report('새 작업본에서 초안 재열기 완료');
   }catch(error){status.cleanImport='error';report(error.message)}finally{input.value=''}
  };
  bar.append(input);document.body.append(bar);

@@ -1,0 +1,207 @@
+{
+  "scope": "Human-placed style/route approximation for independent QA; not finished art/collision or imported geometry.",
+  "contacts": [
+    {
+      "id": "road",
+      "role": "lower-road",
+      "points": [
+        [
+          390,
+          2094
+        ],
+        [
+          1560,
+          2089
+        ],
+        [
+          3050,
+          2094
+        ],
+        [
+          3950,
+          2092
+        ]
+      ]
+    },
+    {
+      "id": "deck",
+      "role": "raised-deck",
+      "points": [
+        [
+          2010,
+          1525
+        ],
+        [
+          2490,
+          1435
+        ],
+        [
+          3360,
+          1430
+        ],
+        [
+          3890,
+          1372
+        ],
+        [
+          4510,
+          1245
+        ],
+        [
+          5200,
+          1105
+        ],
+        [
+          5900,
+          1000
+        ]
+      ]
+    },
+    {
+      "id": "gate",
+      "role": "gate-landing",
+      "points": [
+        [
+          6000,
+          966
+        ],
+        [
+          6450,
+          969
+        ]
+      ]
+    },
+    {
+      "id": "bearer",
+      "role": "bearer-shadow",
+      "points": [
+        [
+          5300,
+          1740
+        ],
+        [
+          5520,
+          1630
+        ]
+      ]
+    }
+  ],
+  "facets": [
+    {
+      "id": "west",
+      "owner": "mass-2",
+      "material": "cool-relief",
+      "points": [
+        [
+          1200,
+          1400
+        ],
+        [
+          1260,
+          1170
+        ],
+        [
+          1420,
+          1000
+        ],
+        [
+          1530,
+          1060
+        ],
+        [
+          1480,
+          1290
+        ],
+        [
+          1300,
+          1520
+        ]
+      ]
+    },
+    {
+      "id": "west-heel",
+      "owner": "mass-2",
+      "material": "cold-shadow",
+      "points": [
+        [
+          880,
+          2260
+        ],
+        [
+          1130,
+          2205
+        ],
+        [
+          1460,
+          2290
+        ],
+        [
+          1510,
+          2500
+        ],
+        [
+          1210,
+          2570
+        ]
+      ]
+    },
+    {
+      "id": "bowl",
+      "owner": "mass-1",
+      "material": "deep-fracture",
+      "points": [
+        [
+          3050,
+          2410
+        ],
+        [
+          3350,
+          2270
+        ],
+        [
+          3890,
+          2390
+        ],
+        [
+          4040,
+          2670
+        ],
+        [
+          3660,
+          2700
+        ]
+      ]
+    },
+    {
+      "id": "east",
+      "owner": "mass-0",
+      "material": "cold-shadow",
+      "points": [
+        [
+          5340,
+          2190
+        ],
+        [
+          5520,
+          1880
+        ],
+        [
+          5940,
+          1710
+        ],
+        [
+          6200,
+          1650
+        ],
+        [
+          6060,
+          1940
+        ],
+        [
+          5600,
+          2230
+        ]
+      ]
+    }
+  ]
+}

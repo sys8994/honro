@@ -16,5 +16,5 @@ export function createBlankWorkshopStage(sourceProject){
    metadata:{sandbox:true,referenceStageId:IDS.source,authoringMode:'blank-native'}};
  // Keep separate immutable collision guides, never in active visual design.
  // A game-parity preview uses a temporary compose after visible path generation.
- return {stage,baseline,design:{version:1,outline:[],seams:[],dummies:[]}};
+ return {stage,baseline,design:{version:2,outline:[],seams:[],dummies:[],facets:[],contacts:[]}};
 }

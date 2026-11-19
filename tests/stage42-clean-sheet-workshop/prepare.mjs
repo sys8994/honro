@@ -15,8 +15,8 @@ if(createHash('sha256').update(original).digest('hex')!=='489f733634454986a5f4cd
 const marker='window.HonroWorkshopAPI=';
 if(original.split(marker).length!==2)throw Error('Missing Workshop connection seam');
 const source=n=>fs.readFileSync(new URL(n,import.meta.url),'utf8').replace(/^import .*?;\r?\n/gm,'').replace(/^export /gm,'');
-const moduleNames=['./blank.mjs','./partition.mjs','./pack.mjs','./host.js'];
-const payload=moduleNames.map(source).join('\n');
+const moduleNames=['./blank.mjs','./native-facets.mjs','./native-contact.mjs','./partition.mjs','./pack.mjs','./host.js'];
+const payload=moduleNames.map(n=>n.endsWith('native-facets.mjs')?'const compileNativeFacets=(()=>{'+source(n)+';return compileNativeFacets})();':source(n)).join('\n');
 let safe=original;
 for(const [needle,replacement] of [
  ['const eh=$("#elementToolbar");if(eh)eh.innerHTML=', 'const eh=$("#elementToolbar");if(eh&&!activeAsset())eh.innerHTML="";else if(eh)eh.innerHTML='],
