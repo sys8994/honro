@@ -1,0 +1,26 @@
+{
+ "baseline":"44493474547 actual native upper receipt read-only",
+ "designScope":"Existing west upper x0–4030 exact section outline; no physics or atlas lower art edits. New native Workshop pointers accepted only through dedicated local validator+receipt.",
+ "surfaceArts":[
+  {"id":"west-mica-cut-gentle-descent","material":"#46535a","points":[[0,1327],[984,1669],[984,1714],[684,1620],[0,1375]]},
+  {"id":"slate-west-short-falling-ledge","material":"#35434e","points":[[984,1669],[1358,1955],[1358,1976],[1292,1929],[1175,1852],[984,1714]]},
+  {"id":"thin-quiet-pinch-stone-tread","material":"#4b565a","points":[[1358,1955],[1568,1955],[1568,1976],[1358,1976]]},
+  {"id":"slate-east-rising-structural-slab","material":"#3c4953","points":[[1568,1955],[2215,1428],[2215,1493],[2040,1613],[1810,1806],[1643,1920],[1568,1976]]},
+  {"id":"upper-flat-main-worn-timber","material":"#4a4036","points":[[2215,1428],[3548,1428],[3548,1502],[3080,1505],[2590,1492],[2215,1493]]},
+  {"id":"wood-dock-same-material-return","material":"#49433d","points":[[3548,1428],[3999,1346],[4030,1339],[4030,1416],[3999,1422],[3805,1458],[3548,1502]]}
+ ],
+ "sparseStructures":[
+  {"id":"west-backed-fold","owner":"back-0","material":"#37454d","points":[[834,1667],[984,1714],[952,1755],[924,1814],[873,1848],[839,1924],[778,1950],[805,1818],[790,1743]],"semantics":"Visible plane within existing back-0 rock only; no new opaque coverage beyond it."},
+  {"id":"mid-timber-north-post","owner":"upper-west-post-2450","material":"#403c39","points":[[2427,1491],[2477,1491],[2480,1605],[2468,1688],[2465,1838],[2479,2010],[2495,2101],[2408,2105],[2421,1998],[2428,1822],[2422,1674]],"semantics":"Load from exact occupied timber bay into solid lower rock; conservatively behind actor painting."},
+  {"id":"mid-timber-stone-shoe","owner":"upper-west-post-2450","material":"#50575a","points":[[2421,1998],[2441,2007],[2446,2022],[2465,2025],[2479,2010],[2495,2101],[2408,2105]],"semantics":"Part of its same visible existing proposed post silhouette, steep tapered stone footing, no tread."},
+  {"id":"dock-timber-south-post","owner":"upper-west-post-3260","material":"#443d36","points":[[3240,1502],[3288,1502],[3283,1659],[3293,1762],[3274,1893],[3292,1980],[3309,2104],[3226,2114],[3239,2014],[3238,1921],[3241,1779],[3231,1604]],"semantics":"One structurally seated slender weather-exposed pier under center span, no diagonal visual floor."},
+  {"id":"dock-timber-stone-shoe","owner":"upper-west-post-3260","material":"#515b62","points":[[3239,2014],[3253,1996],[3274,1998],[3292,1980],[3309,2104],[3226,2114]],"semantics":"Part of the same post boundary; no extra under-air coverage."}
+ ],
+ "acceptance":{
+  "restAndOpen":[[985,2215],[2575,3100],[3370,4010]],
+  "exactWestEastDock":[[4030,1339],[4030,1416]],
+  "narrowNoSupport":[1149,1734],
+  "criticalShots":[["stock-whole",[3250,1800,0.195735]],["west-crease",[990,1800,0.5]],["pinch-occupancy",[1460,1950,0.5]],["actual-ground-archer",[2445,1670,0.5]],["between-bays",[2830,1725,0.5]],["seam-dock",[3835,1490,0.5]]],
+  "actorProof":"Temporary stock physics and real actor pose on upper y across anchor samples and crossing under both posts; named draw order, no alpha excavation/fit claim based only on math. Report separate stock initial runtime vs game readiness."
+ }
+}
