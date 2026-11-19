@@ -1,0 +1,386 @@
+{
+  "classification": "one G ordinary input action; no mission completion",
+  "branch": "qa/stage42-g-micro-action",
+  "parent": "9e2787d1d643e467c4387521e93862040a075fda",
+  "productPin": "1e043b09d4ce107e1d2dcf70fe2274dff7098476",
+  "addOnly": [
+    ".github/workflows/stage42-g-micro-action.yml",
+    "tests/stage42-g-micro-action/micro.py",
+    "tests/stage42-g-micro-action/manifest.json"
+  ],
+  "microSha256": "178825280f6d092757d3b067ba6882c11243b45a82e63342d49b48b5e95ea107",
+  "inherited": {
+    ".github/workflows/stage42-g-campaign-entry.yml": "4e66d7f7b127e6934896719866ae182ffa75f6fff146f84d6f4171ffcf4b15df",
+    "tests/stage42-g-campaign-entry/verify-domain.cjs": "0b9639f0d2502818698c4e0ca13e216b7f39c6a56de0db0d977601bb5f9b7a87",
+    "tests/stage42-g-campaign-entry/manifest.json": "660423f4c0b68f007e02b6ad6405db6a58532d8d13a4d8b3ad9bce1011a6175e",
+    "tests/stage42-g-campaign-entry/observe.py": "ad80cc9ad60be841ea64fe57f7f36fb6d1ec16ebaf8e566e31dd00e6fe5f0b12",
+    "tests/stage42-g-campaign-entry/prepare.py": "e1d777cf29abbcde8f98cfce6b9b214531f38b5622e36273c63d18677265ad22",
+    "tests/stage42-g-campaign-entry/source-contract.mjs": "88411cf7851bcd82a0f3d79e4d967d333a5daf5e595d3b5c4ac26be49c12ebd4",
+    "tests/stage42-g-campaign-entry/g-domain.json": "1df2d3f1afeec4e3b0a14375ddee9ead0ba75b9ac76ae912e0496155aaad265f",
+    "tests/stage42-g-campaign-entry/SHA256SUMS": "ebf51cac39beee1e7441bca3ccc89a7fb1adfbc833b65fa1edd328eda9e50198"
+  },
+  "workflowBlobs": [
+    {
+      "path": ".github/workflows/act1-body-candidate.yml",
+      "sha": "3ae0d689a34fdbc26fef00a41d7abefbda79cf3c"
+    },
+    {
+      "path": ".github/workflows/act1-save-dedup.yml",
+      "sha": "254427624c656dac34138c6392c637605f58ce13"
+    },
+    {
+      "path": ".github/workflows/act1-stage10-release.yml",
+      "sha": "abec701f7a0fd06cb2b5265314bd914621f0c876"
+    },
+    {
+      "path": ".github/workflows/act1-stage2-candidate.yml",
+      "sha": "8593d0029d4fae4343648577afd84430cbe5d5fd"
+    },
+    {
+      "path": ".github/workflows/act1-stage2-debug.yml",
+      "sha": "da261f259fd1c9d002c5d182e58a3a5cd3ca23a3"
+    },
+    {
+      "path": ".github/workflows/act1-stage2-release.yml",
+      "sha": "2a339e842b8602332f1eb247296367001901e921"
+    },
+    {
+      "path": ".github/workflows/act1-stage3-release.yml",
+      "sha": "b0f8e1369d89b05ab298989584c87e0186637246"
+    },
+    {
+      "path": ".github/workflows/act1-stage4-release.yml",
+      "sha": "f5930a11288a1895193c41e5ba0951e5e662b82c"
+    },
+    {
+      "path": ".github/workflows/act1-stage5-release.yml",
+      "sha": "3f1940a974b74aecb104fb43311534d4accc67ee"
+    },
+    {
+      "path": ".github/workflows/act1-stage6-release.yml",
+      "sha": "987153e6e480278a24f03be69da1e1d12dd19544"
+    },
+    {
+      "path": ".github/workflows/act1-stage7-release.yml",
+      "sha": "a18f71cba95df19a14b6591689f2392244fd4bc1"
+    },
+    {
+      "path": ".github/workflows/act1-stage8-release.yml",
+      "sha": "866d4c43892a011990614fa8ab8197c31211d2c8"
+    },
+    {
+      "path": ".github/workflows/act1-stage9-release.yml",
+      "sha": "aa5f2c8fe9a572a2c9fa6ebe4fe130c9aea6da6f"
+    },
+    {
+      "path": ".github/workflows/act2-art-integration.yml",
+      "sha": "ca1d9b6e68c4ef9e1cc99460d8d6e568f72ee947"
+    },
+    {
+      "path": ".github/workflows/act2-dialogue-integration.yml",
+      "sha": "8d4a2f0300f7c3640d298313e493153616d79262"
+    },
+    {
+      "path": ".github/workflows/act4-cleanup-comparison.yml",
+      "sha": "f35105e5fe23166e9e635ed0abb295cb6222634d"
+    },
+    {
+      "path": ".github/workflows/act4-escort-review.yml",
+      "sha": "e287637ee9d44a88df196032c8f25a474bc26cf1"
+    },
+    {
+      "path": ".github/workflows/act4-generated-qa.yml",
+      "sha": "b7cc26f5ede637708dce2d9487d773720e1344fc"
+    },
+    {
+      "path": ".github/workflows/act4-opening-review.yml",
+      "sha": "71a5cb07887604488a9a286f931b60667f6312cc"
+    },
+    {
+      "path": ".github/workflows/act4-package.yml",
+      "sha": "90902e640349b9c75e3d1a5e4b0b47520cefe58e"
+    },
+    {
+      "path": ".github/workflows/act4-postwin-review.yml",
+      "sha": "35fdc111c83f05cc5ae28f2dd008acb4eca74d86"
+    },
+    {
+      "path": ".github/workflows/act4-pressure-review.yml",
+      "sha": "11f47881d78b322a4e035444f58bfbd3f74b119b"
+    },
+    {
+      "path": ".github/workflows/act4-prune-validation.yml",
+      "sha": "27bfcd30e442ab6e9c0f78d712c9b387aaf3848c"
+    },
+    {
+      "path": ".github/workflows/act4-public-check.yml",
+      "sha": "38f533e07fbacac3740742de84bbc6e440b828ad"
+    },
+    {
+      "path": ".github/workflows/act4-qa-smoke.yml",
+      "sha": "abb1ba07b2c26b2a4409fb181a9746dae129c7d1"
+    },
+    {
+      "path": ".github/workflows/act4-stage31-art.yml",
+      "sha": "3c63442c7218fee8734c72b8d063a33a4ab2bf25"
+    },
+    {
+      "path": ".github/workflows/act4-stage31-boarding.yml",
+      "sha": "6edbe4782155132e900eec648adf94406b77a2e6"
+    },
+    {
+      "path": ".github/workflows/act4-stage38-art.yml",
+      "sha": "3d72fc4ff220ae88b3293fe5a31cc4878fd7a716"
+    },
+    {
+      "path": ".github/workflows/act4-stage38-play.yml",
+      "sha": "1c275f1b41f04d2799e6cc83233680c86c953e72"
+    },
+    {
+      "path": ".github/workflows/act4-stage38-toe.yml",
+      "sha": "66d06abc7907de0aa18b27ad1a3f74d45dbe3614"
+    },
+    {
+      "path": ".github/workflows/act4-wood-review.yml",
+      "sha": "0cc8508f934a52b076056f3687b956e62dec9b32"
+    },
+    {
+      "path": ".github/workflows/item-discovery-ui.yml",
+      "sha": "f78a1919fc5df00b696426e882882ad3d62f98e2"
+    },
+    {
+      "path": ".github/workflows/minimap-item-layout.yml",
+      "sha": "80ca43e9b523afac6a8e1b03b2ca0d5dfa367e31"
+    },
+    {
+      "path": ".github/workflows/monster-a1-integration.yml",
+      "sha": "595804f51316fa3009918278f98d4951581bacbe"
+    },
+    {
+      "path": ".github/workflows/runtime-repair-public.yml",
+      "sha": "afdb8e3f161a564dcf89de120cc0fe422aac0373"
+    },
+    {
+      "path": ".github/workflows/runtime-repair.yml",
+      "sha": "514120121f1ec67deb7ea9390e33ad16a9e36d02"
+    },
+    {
+      "path": ".github/workflows/stage23-candidate-final.yml",
+      "sha": "e06a7ab6dfee97d28c708c0d105589e95d7299a6"
+    },
+    {
+      "path": ".github/workflows/stage23-close-escort.yml",
+      "sha": "7a6f656ad37049d8a774c9e486c67d667145a532"
+    },
+    {
+      "path": ".github/workflows/stage23-command-post.yml",
+      "sha": "5ee007ac1d0d90a55aa7fc13158e9b0fb0e6bf4a"
+    },
+    {
+      "path": ".github/workflows/stage23-current-natural.yml",
+      "sha": "69a3fb786df036f52a3889812f9c49d03e2f6777"
+    },
+    {
+      "path": ".github/workflows/stage23-front-cluster.yml",
+      "sha": "964f687bca1607e4b65643d4aa17f76e85606576"
+    },
+    {
+      "path": ".github/workflows/stage23-full-browser.yml",
+      "sha": "d0eb29eadc6af61205f94e99a9be8fe14a68a937"
+    },
+    {
+      "path": ".github/workflows/stage23-hop-targets.yml",
+      "sha": "1b6f09a6d633c2cc8168005d4faa3389f7a74762"
+    },
+    {
+      "path": ".github/workflows/stage23-independent-probes.yml",
+      "sha": "c1bdb022d475b7c703d7427f94cd1ea7c46aff01"
+    },
+    {
+      "path": ".github/workflows/stage23-late-front.yml",
+      "sha": "c621d0bfd0f80ddcf3ef6caffdc30a97c37dab4c"
+    },
+    {
+      "path": ".github/workflows/stage23-lookahead-probe.yml",
+      "sha": "ef3bb2af8a1ab1d132cf3a14d59ad9fd7127ce69"
+    },
+    {
+      "path": ".github/workflows/stage23-objective-first.yml",
+      "sha": "1b6ac094782f98267c24abf2bf1640a502f73264"
+    },
+    {
+      "path": ".github/workflows/stage23-objective-targets.yml",
+      "sha": "3413204b63d83be536d0f02ba0f6addea72bf83a"
+    },
+    {
+      "path": ".github/workflows/stage23-original-contracts.yml",
+      "sha": "66ef9efce91e50396e1079f22f5ee3aff74ea6b9"
+    },
+    {
+      "path": ".github/workflows/stage23-public-combat.yml",
+      "sha": "4f3dfa61a90f56e2fb5ad084f873cf8907b05875"
+    },
+    {
+      "path": ".github/workflows/stage23-road-follow.yml",
+      "sha": "9d428cacb586d92ee39477fd11315fed8d78da9d"
+    },
+    {
+      "path": ".github/workflows/stage23-road-public.yml",
+      "sha": "30c264b42b43e1185ebccbc6db63c11425e8e978"
+    },
+    {
+      "path": ".github/workflows/stage23-road-release-build.yml",
+      "sha": "192a6600138fe86bae1bfe7e18282a84c585e429"
+    },
+    {
+      "path": ".github/workflows/stage23-road-support-final.yml",
+      "sha": "6c6f7b1e7bfd97af94997477cdd8d128020b7a0a"
+    },
+    {
+      "path": ".github/workflows/stage23-s04-native.yml",
+      "sha": "e0114f1345daaff9236c2bd5aa0bfc4feb0783f8"
+    },
+    {
+      "path": ".github/workflows/stage23-support-clearance.yml",
+      "sha": "c34da98c14d61f38fcb2c3d7061687398d93849e"
+    },
+    {
+      "path": ".github/workflows/stage31-boarding-resume.yml",
+      "sha": "39222840ef8e63db8106a1ed9fd39157d0c2bf49"
+    },
+    {
+      "path": ".github/workflows/stage40-calibrate.yml",
+      "sha": "5e0ca790431e8e8ca873c386497354a06cffbaad"
+    },
+    {
+      "path": ".github/workflows/stage40-coast-flank.yml",
+      "sha": "179d9dade8ba5340869416999328da331a0a214b"
+    },
+    {
+      "path": ".github/workflows/stage40-coast-joint.yml",
+      "sha": "bce6073abd0f6512d8346409e3c9c8df63f1f949"
+    },
+    {
+      "path": ".github/workflows/stage40-coast-role.yml",
+      "sha": "835a37a37777f015873757c9859d8612f1b2bf75"
+    },
+    {
+      "path": ".github/workflows/stage40-current-functional.yml",
+      "sha": "a307f9c595d1c65487bbc20ecee47739652e6553"
+    },
+    {
+      "path": ".github/workflows/stage40-current-public.yml",
+      "sha": "36797657481a0e3674aa4b40f5c71869ae672149"
+    },
+    {
+      "path": ".github/workflows/stage40-current.yml",
+      "sha": "d48c00d10033a3d244215309203f57cebf635120"
+    },
+    {
+      "path": ".github/workflows/stage40-dock-flank.yml",
+      "sha": "57a5958fb287d2b0c10e12c2b36fc0f516705963"
+    },
+    {
+      "path": ".github/workflows/stage40-evidence.yml",
+      "sha": "d06950c89f1f29074fa5008c12b0888a5c001703"
+    },
+    {
+      "path": ".github/workflows/stage40-guide-readability.yml",
+      "sha": "4e87d06a0cfb1770e24d9cfb24017a37a86c9690"
+    },
+    {
+      "path": ".github/workflows/stage40-late-return.yml",
+      "sha": "2a24289d7bf488086a02107806a403f4ff5a9ac1"
+    },
+    {
+      "path": ".github/workflows/stage40-mage-basic.yml",
+      "sha": "0c030ea05abd626cb6e7079dae0a857770545ec0"
+    },
+    {
+      "path": ".github/workflows/stage40-mage-choice.yml",
+      "sha": "49acbcfdd964cc0643029223d69958136ffd8b8b"
+    },
+    {
+      "path": ".github/workflows/stage40-movement-fire.yml",
+      "sha": "141a99d1c03f440e883901d177852649663a1041"
+    },
+    {
+      "path": ".github/workflows/stage40-qa.yml",
+      "sha": "754ba8fa4d1fefb1d00ef66c47c566865ee2fadc"
+    },
+    {
+      "path": ".github/workflows/stage40-recovery-pressure.yml",
+      "sha": "b4c43f0c5894a020e77f575f1feaac3335fdc00e"
+    },
+    {
+      "path": ".github/workflows/stage40-release-build.yml",
+      "sha": "d5040d341c666d9606a682f70f5af0fb49c4e610"
+    },
+    {
+      "path": ".github/workflows/stage40-split-role.yml",
+      "sha": "f0bce2984dd8c4e08065c3fd61b829812b480237"
+    },
+    {
+      "path": ".github/workflows/stage40-split-warning.yml",
+      "sha": "c90bcff82e3aaf5de1410c346d51d7c0cf064b96"
+    },
+    {
+      "path": ".github/workflows/stage40-tolerance.yml",
+      "sha": "7c79d3fcd32d085699b3ce90712dd2f150904928"
+    },
+    {
+      "path": ".github/workflows/stage41-native-check.yml",
+      "sha": "2c78b0fd679e6b3bcda42f2b60329f5c0e1929a2"
+    },
+    {
+      "path": ".github/workflows/stage42-g-campaign-entry.yml",
+      "sha": "0bb0c7273845b5ff17a09f620b5837697955a897"
+    },
+    {
+      "path": ".github/workflows/stage43-native-package.yml",
+      "sha": "c6a6b738453c18931d501863248f9f0d0d79280b"
+    },
+    {
+      "path": ".github/workflows/stage46-native-check.yml",
+      "sha": "dedb736b7dde6aa8b55bac91f343bed00147fe75"
+    },
+    {
+      "path": ".github/workflows/stage48-native-check.yml",
+      "sha": "516c90d2df049c6b3cb33502495743eb5cdc9522"
+    },
+    {
+      "path": ".github/workflows/stage49-native-check.yml",
+      "sha": "03a51227866470aff4c94d1d80635445d01a3925"
+    },
+    {
+      "path": ".github/workflows/stage50-native-package.yml",
+      "sha": "7c19880eda664cf37f3596b79afdfb8e17a8741a"
+    },
+    {
+      "path": ".github/workflows/stage6-master-preview.yml",
+      "sha": "f0bdb594471a0b676432b0e586a589cac413825d"
+    },
+    {
+      "path": ".github/workflows/stage6-master.yml",
+      "sha": "0146f5eb76305addc30601e4c329011ef846353a"
+    },
+    {
+      "path": ".github/workflows/stage6-product.yml",
+      "sha": "74c47943e5789c6731a32effcadac8092b41d272"
+    },
+    {
+      "path": ".github/workflows/stage6-public.yml",
+      "sha": "79fd55721a07a568a35919188878ebe5508beff8"
+    },
+    {
+      "path": ".github/workflows/stage8-reader-qa.yml",
+      "sha": "c313a034b9ebd78303087d8b5fd38f661814bc7b"
+    }
+  ],
+  "triggerAudit": {
+    "inheritedCount": 89,
+    "gitBlobIdentity": true,
+    "matchingPush": 0,
+    "create": 0
+  }
+}
