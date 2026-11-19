@@ -86,13 +86,21 @@ def fit_native_element(p, targets, root):
   def visible(q):return p.evaluate("q=>document.elementFromPoint(...q)===document.querySelector('#elementCanvas')",q)
   center=[round(left+w/2),round(top+h/2)]
   assert visible(center),'Native element center is obscured; no fake camera fallback'
-  p.mouse.move(*center);p.mouse.wheel(0,300)
-  p.wait_for_function("expected=>Math.abs(HonroWorkshopAPI.getEditorState().elementView.zoom-expected)<1e-7",arg=math.exp(-.45))
-  zoomed=check('real-wheel-300')
+  xmin,xmax=min(v[0] for v in targets),max(v[0] for v in targets)
+  ymin,ymax=min(v[1] for v in targets),max(v[1] for v in targets)
+  spans=(xmax-xmin,ymax-ymin);expected_zoom=math.exp(-.87)
+  margin=(w-spans[0]*expected_zoom,h-spans[1]*expected_zoom)
+  assert all(v>=27 for v in margin) and math.sqrt(2)*.5/expected_zoom<1.8, 'Measured aperture is not large enough at legal input precision'
+  p.mouse.move(*center);p.mouse.wheel(0,580)
+  p.wait_for_function("expected=>Math.abs(HonroWorkshopAPI.getEditorState().elementView.zoom-expected)<1e-7",arg=expected_zoom)
+  zoomed=check('real-wheel-580')
   vx,vy,z=zoomed['camera']
-  if zoomed['blocked']:
-   mx=(min(v[0] for v in targets)+max(v[0] for v in targets))/2
-   my=(min(v[1] for v in targets)+max(v[1] for v in targets))/2
+  def margins(row):
+   l,t,ww,hh=row['canvas'];ps=row['points']
+   return [min(x-l for x,y in ps),min(l+ww-x for x,y in ps),min(y-t for x,y in ps),min(t+hh-y for x,y in ps)]
+  if zoomed['blocked'] or min(margins(zoomed))<12:
+   mx=(xmin+xmax)/2
+   my=(ymin+ymax)/2
    planned=[round((vx-mx)*z),round((vy-my)*z)]
    candidates=[[round(left+w*fx),round(top+h*fy)] for fy in [.55,.5,.65,.45] for fx in [.55,.5,.65,.45]]
    start=next((q for q in candidates if all(visible([q[0]+fraction*planned[0],q[1]+fraction*planned[1]]) for fraction in [0,.25,.5,.75,1])),None)
@@ -101,8 +109,10 @@ def fit_native_element(p, targets, root):
    try:p.mouse.move(start[0]+planned[0],start[1]+planned[1],steps=8)
    finally:p.mouse.up(button='middle')
   last=check('final-fit-live-hit-map')
+  rows[-1]['exactMarginsPx']=margins(last)
+  rows[-1]['worldTargetSpans']=spans
   write()
-  assert not last['blocked'],'Full target coverage still blocked; never dispatch skipped/uncertified path points'
+  assert not last['blocked'] and min(rows[-1]['exactMarginsPx'])>=12,'Native Element target coverage or 12px aperture margin shortage; no authoring'
   assert math.sqrt(2)*.5/last['camera'][2] < 1.8, 'Viewport fitting would exceed existing authored-point tolerance'
   return last
  except:
