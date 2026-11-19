@@ -1,0 +1,38 @@
+name: Stage41 continuity source attribution
+on:
+  push:
+    branches: ['audit/stage41-continuity-attribution-20261120']
+permissions:
+  contents: read
+jobs:
+  witness:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    strategy:
+      matrix:
+        mode: [original, diagnostic-no-readability]
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 5
+      - name: No production mutation permitted
+        run: |
+          git diff --name-only 1e043b09 HEAD > /tmp/changed
+          if grep -vE '^(tools/current-terrain-audit/(capture|stage41-attribution).mjs|.github/workflows/(current-terrain-audit|stage41-attribution).yml)$' /tmp/changed; then exit 1; fi
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm ci && npm ci --prefix game
+      - name: Same cameras, unchanged gameplay, diagnostic render layer only
+        env:
+          MODE: ${{ matrix.mode }}
+          HONRO_NATIVE_OUT: /tmp/stage41-witness
+        run: |
+          if [ "$MODE" = diagnostic-no-readability ]; then export HONRO_DIAG_READABILITY_OFF=1; fi
+          node --expose-gc --max-old-space-size=12000 tools/current-terrain-audit/stage41-attribution.mjs 41
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage41-${{ matrix.mode }}
+          path: /tmp/stage41-witness
