@@ -9,7 +9,7 @@ pin=json.loads((D/'evidence-pins.json').read_text())
 driver=Path(sys.argv[3]).resolve(strict=True);raw_driver=driver.read_bytes()
 assert hashlib.sha256(raw_driver).hexdigest()==pin['exactDriverSha256']
 PROPOSED=json.loads((D/'operator-points.json').read_text())
-TITLE='혼로 5막 2장 E · 서쪽 암반 어깨 작도 검증'
+TITLE='혼로 5막 2장 E · 서쪽 상부 암반층 검증'
 def canonical(v):return json.dumps(v,ensure_ascii=False,separators=(',',':')).encode()
 def hashb(v):return hashlib.sha256(v).hexdigest()
 def point_poly(p,x,y):return sum((a[1]>y)!=(b[1]>y) and x<a[0]+(b[0]-a[0])*(y-a[1])/(b[1]-a[1]) for a,b in zip(p,p[1:]+p[:1]))%2==1
@@ -86,9 +86,9 @@ def fit_native_element(p, targets, root):
   def visible(q):return p.evaluate("q=>document.elementFromPoint(...q)===document.querySelector('#elementCanvas')",q)
   center=[round(left+w/2),round(top+h/2)]
   assert visible(center),'Native element center is obscured; no fake camera fallback'
-  p.mouse.move(*center);p.mouse.wheel(0,150)
-  p.wait_for_function("expected=>Math.abs(HonroWorkshopAPI.getEditorState().elementView.zoom-expected)<1e-7",arg=math.exp(-.225))
-  zoomed=check('real-wheel-150')
+  p.mouse.move(*center);p.mouse.wheel(0,300)
+  p.wait_for_function("expected=>Math.abs(HonroWorkshopAPI.getEditorState().elementView.zoom-expected)<1e-7",arg=math.exp(-.45))
+  zoomed=check('real-wheel-300')
   vx,vy,z=zoomed['camera']
   if zoomed['blocked']:
    mx=(min(v[0] for v in targets)+max(v[0] for v in targets))/2
@@ -107,15 +107,20 @@ def fit_native_element(p, targets, root):
   return last
  except:
   write();p.screenshot(path=str(root/'16-actual-fit-blocked.png'));raise
+def assert_tones(d,old):
+ luma=lambda a:sum(x*y for x,y in zip(a,(.2126,.7152,.0722)))
+ ch={k:luma(d[k]) for k in ('stitch','exposed','fold','inner')}
+ assert 8<=ch['stitch']-luma(old)<=27,'Dark stitch must have value near original dark body'
+ assert ch['fold']-ch['stitch']>=7 and ch['exposed']-ch['fold']>=10 and ch['inner']-ch['stitch']>=18,'No intentional exposure/fold/inner tonal hierarchy'
 def run_shoulder(fresh,open_page,domain,root):
- root=Path(root);report={'scope':'new full E graybox with only west shoulder style; no bridge/east/production or art-pass claim','pass':False}
+ root=Path(root);report={'scope':'Only Stage42 E west upper shell, candidate validation, no bridge/east/production or art-pass claim','pass':False}
  def write():(root/'shoulder-proof.json').write_text(json.dumps(report,ensure_ascii=False,indent=2))
  write()
  assert hashlib.sha256(canonical(domain['original'])).hexdigest()==pin['collisionGeometrySha256'],'Genuine base replay vertices drifted'
  assert hashlib.sha256(canonical(domain['world'])).hexdigest()==pin['projectedGeometrySha256'],'Genuine stock exterior projection drifted'
  q=get(fresh); assert q['stages'][0]['terrainDomainVersion']==1 and q['stages'][0]['name']==TITLE
  assert len(q['stages'][0]['terrains'])==1 and not q['stages'][0]['elements']
- base_stage=q['stages'][0]; start=evidence_views={'near':[285,1480,.5],'actual-full-e-west':[850,1490,.5],'whole':[3250,1430,.14],'probe':[278,1480,1.2]}
+ base_stage=q['stages'][0]; start=evidence_views={'near':[285,1480,.5],'actual-full-e-west':[850,1490,.5],'whole':[3250,1430,.14],'shell-fit':[480,1518,.5],'probe':[453,1525,.95]}
  before={}
  for name,cam in start.items():before[name]=snap(fresh,cam,root,f'11-before-{name}')
  fresh.locator('[data-tab=element]').click()
@@ -123,7 +128,7 @@ def run_shoulder(fresh,open_page,domain,root):
  aid=next(v['id'] for v in get(fresh)['library'] if v['category']=='custom')
  assert fresh.locator('#nativeShapeFill').is_disabled()
  fresh.locator('#assetCollision').uncheck()
- fresh.locator('#assetName').fill('서쪽 어깨 · 젖은 점판암 (검증용)')
+ fresh.locator('#assetName').fill('서쪽 상부 암반층 (검증용)')
  fresh.locator('#assetName').press('Tab')
  fresh.locator('#assetLayer').fill('prop');fresh.locator('#assetLayer').press('Tab')
  fresh.locator('[data-tab=stage]').click();fresh.locator(f'[data-asset="{aid}"]').click()
@@ -135,7 +140,7 @@ def run_shoulder(fresh,open_page,domain,root):
  dx,dy=placed['x'],placed['y']
  assert abs(dx-94)<1 and abs(dy-1364)<2
  fresh.locator('[data-tab=element]').click()
- ordered=[PROPOSED['faces'][1],PROPOSED['faces'][0],PROPOSED['faces'][2]] # print darkest return first
+ ordered=PROPOSED['faces'] # matrix first; three constrained surface faces above
  local=[[[x-dx,y-dy] for x,y in row['clockwiseWorld']] for row in ordered]
  targets=list(dict.fromkeys(tuple(xy) for p in local for xy in p+[p[0]]))+[(0,0)]
  assert len(targets)==len(set(targets))
@@ -156,13 +161,13 @@ def run_shoulder(fresh,open_page,domain,root):
  assert fresh.evaluate('HonroWorkshopAPI.getEditorState().selectedNode')==-1
  fresh.keyboard.press('Delete')
  o=owned(fresh,aid)
- assert len(o['visual'])==3 and not o['collision'] and not o.get('interactionType')
+ assert len(o['visual'])==4 and not o['collision'] and not o.get('interactionType')
  assert all(v['stroke']=='#222d30' for v in o['visual']),'Preferred ink behavior is not patched'
  assert [x['fill'] for x in o['visual']]==[x['fill'] for x in ordered]
  rings=[[[w['x']+dx,w['y']+dy] for w in row['points']] for row in o['visual']]
  assert all(len(r)==len(p['clockwiseWorld']) and all(math.dist(x,y)<=1.8 for x,y in zip(r,p['clockwiseWorld'])) for r,p in zip(rings,ordered))
  rr=lambda p:set((tuple(a),tuple(b)) for a,b in zip(p,p[1:]+p[:1]))
- assert len(rr(rings[0])&set((b,a) for a,b in rr(rings[1])))==5,'Real pointer sample did not preserve five exact shared seams'
+ assert len(rr(rings[1])&set((b,a) for a,b in rr(rings[2])))==4,'Main plate/fold lost a live shared seam segment'
  # Check every segment at all intervening real Solid knots, not planned top or raster.
  ground=[(v['x'],v['y']) for v in domain['original'] if v['y']<2000 and 0<=v['x']<=6500]
  def below(x,y):
@@ -175,7 +180,12 @@ def run_shoulder(fresh,open_page,domain,root):
    for x in [a[0],b[0],*(x for x,y in ground if min(a[0],b[0])<x<max(a[0],b[0]))]:
     y=min(a[1],b[1]) if a[0]==b[0] else a[1]+(x-a[0])*(b[1]-a[1])/(b[0]-a[0])
     minbelow=min(minbelow,below(x,y))
- assert minbelow>=1.7 and all(x<444 and y<1636 for p in rings for x,y in p),'False tread or extended face outside scope'
+ assert minbelow>=3.0 and all(58<x<871 and y<1710 for p in rings for x,y in p),'False tread, underside, or extended face outside scope'
+ assert max(x for poly in rings[1:3] for x,y in poly)<435 and min(x for x,y in rings[3])>532
+ for xy in ([476,1470],[476,1607],[852,1725]):
+  assert all(not point_poly(poly,*xy) and point_dist(poly,*xy)>4 for poly in rings), 'Original ground gaps must never be painted'
+ for poly in rings[1:]:
+  assert not point_poly(poly,475,1530) and not point_poly(poly,810,1675),'Preserve subdued gap and downslope taper, no bright distractor'
  fresh.screenshot(path=str(root/'12-real-workshop-element.png'))
  edited=get(fresh)
  assert edited['stages'][0]['elements']==[placed]
@@ -188,14 +198,17 @@ def run_shoulder(fresh,open_page,domain,root):
   assert meta['collider']==before[name][1]['collider']==domain['original']
   metrics[name]=pixel_guard(before[name][0],after,rings,cam)
   if name=='probe':
-   for i,(pt,k) in enumerate([([355.8,1510],'dark_return'),([207.4,1479],'slate_front'),([170.6,1383.8],'cambium')]):
-    assert point_poly(rings[i],*pt) and point_dist(rings[i],*pt)>3.0,(pt,rings[i])
+   probes=[([475,1530],'stitch'),([181,1450],'exposed'),([346,1510],'fold'),([617,1541],'inner')]
+   for i,(pt,k) in enumerate(probes):
+    assert point_poly(rings[i],*pt) and point_dist(rings[i],*pt)>5,(pt,rings[i])
+    assert not any(point_poly(poly,*pt) for poly in rings[i+1:]),'Probe lies under another face'
     metrics[name][k]=color_probe(after,cam,pt)
-   dr,mi,li=(metrics[name][k] for k in ('dark_return','slate_front','cambium'))
-   luma=lambda a:sum(x*y for x,y in zip(a,(.2126,.7152,.0722)))
-   assert luma(mi)-luma(dr)>=15 and luma(li)-luma(mi)>=10, metrics[name]
+   for xy in ([476,1470],[476,1607],[852,1725]):
+    assert color_probe(before[name][0],cam,xy)==color_probe(after,cam,xy),'Untouched visual gaps changed'
+   metrics[name]['old_matrix']=color_probe(before[name][0],cam,probes[0][0])
+   assert_tones(metrics[name],metrics[name]['old_matrix'])
  assert all(v['outsideChangedPx']==0 and v['interiorChangedPx']>0 for v in metrics.values()),metrics
- report.update({'supports_exact':True,'trueAuthoredFaces':3,'jointSegmentsShared':5,'pixelMetrics':metrics,'lowestClearanceBelowTrueContact':minbelow,'observedWorldPlacement':placed,'nativeFills':[v['fill'] for v in o['visual']]});write()
+ report.update({'supports_exact':True,'trueAuthoredFaces':4,'jointSegmentsShared':4,'pixelMetrics':metrics,'lowestClearanceBelowTrueContact':minbelow,'observedWorldPlacement':placed,'nativeFills':[v['fill'] for v in o['visual']]});write()
  with tempfile.TemporaryDirectory() as pa:
   f=Path(pa)/'private-evidence.honro-map.json'
   with fresh.expect_download() as ask:fresh.locator('#exportBtn').click()
@@ -222,12 +235,10 @@ def run_shoulder(fresh,open_page,domain,root):
   assert game_canvas.size==tuple(game['size']),'Playtest pixel sampling requires actual device DPR 1'
   game_probe={}
   cx,cy,z=game['camera'];w,h=game_canvas.size
-  for pt,k in [([355.8,1510],'dark_return'),([207.4,1479],'slate_front'),([170.6,1383.8],'cambium')]:
+  for pt,k in probes:
    assert abs(pt[0]-cx)*z<w/2-4 and abs(pt[1]-cy)*z<h/2-4,'Actual camera did not include valid shoulder material probe'
    game_probe[k]=color_probe(game_canvas,game['camera'],pt,width=1)
-  dr,mi,li=(game_probe[k] for k in ('dark_return','slate_front','cambium'))
-  luma=lambda a:sum(x*y for x,y in zip(a,(.2126,.7152,.0722)))
-  assert luma(mi)-luma(dr)>=15 and luma(li)-luma(mi)>=8,{'Playtest actual pixels':game_probe}
+  assert_tones(game_probe,metrics['probe']['old_matrix'])
  report.update({'nativePlaytestRgbProbes':game_probe,'newReceiptSha256':expect,'exactReopen':True,'reopenedPlaytestHasSameColliderAndSceneMaterials':True,'playtestCamera':game['camera'],'pass':True});write()
 def pixel_guardcheck_same(im,other):
  from PIL import ImageChops

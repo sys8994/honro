@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
-          fetch-depth: 4
+          fetch-depth: 5
           persist-credentials: false
       - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
         with:
@@ -26,14 +26,15 @@ jobs:
           set -euo pipefail
           test "$GITHUB_REF" = refs/heads/qa/stage42-e-shoulder
           test "$GITHUB_SHA" = "$(git rev-parse HEAD)"
-          test "$(git rev-parse HEAD^)" = f75f7d2129384dd0cf33a0a4f5f196ceb301df5c
-          test "$(git rev-parse HEAD~2)" = 370000cb5aa6be42bb33b8a72a2cd81b21ea8096
-          test "$(git rev-parse HEAD~3)" = 1e043b09d4ce107e1d2dcf70fe2274dff7098476
+          test "$(git rev-parse HEAD^)" = 85132315f1c0eea1ef03a0d067739e372a5cbe33
+          test "$(git rev-parse HEAD~2)" = f75f7d2129384dd0cf33a0a4f5f196ceb301df5c
+          test "$(git rev-parse HEAD~3)" = 370000cb5aa6be42bb33b8a72a2cd81b21ea8096
+          test "$(git rev-parse HEAD~4)" = 1e043b09d4ce107e1d2dcf70fe2274dff7098476
           Q=tests/stage42-e-shoulder
-          printf '%s\n' .github/workflows/stage42-e-shoulder.yml "$Q/smoke.SHA256SUMS" "$Q/e-shoulder-proof.py" | LC_ALL=C sort > "$RUNNER_TEMP/solid-allowlist"
+          printf '%s\n' .github/workflows/stage42-e-shoulder.yml "$Q/smoke.SHA256SUMS" "$Q/e-shoulder-proof.py" "$Q/operator-points.json" | LC_ALL=C sort > "$RUNNER_TEMP/solid-allowlist"
           git diff --name-only HEAD^ HEAD | LC_ALL=C sort | diff -u "$RUNNER_TEMP/solid-allowlist" -
           git diff --name-only --diff-filter=M HEAD^ HEAD | LC_ALL=C sort | diff -u "$RUNNER_TEMP/solid-allowlist" -
-          echo '11e0c1b6e65e24aa5656770fa30108b518ed6acc4256323ed9d90d5115501bce  tests/stage42-e-shoulder/smoke.SHA256SUMS' | sha256sum -c -
+          echo '36d8728ee0094cd0ea969d13831039933032da69a8fdf9784b6294cf2951e0ff  tests/stage42-e-shoulder/smoke.SHA256SUMS' | sha256sum -c -
           (cd "$Q" && sha256sum -c smoke.SHA256SUMS)
           printf '%s  %s\n' e3ff41106d86a5003d2d518172d17bf7f4b371e1e6695882fbe8782fbddef268 tests/stage42-full-e-stock-native/full-e-proof.py | sha256sum -c -
       - name: Build original Workshop and patch only exact disposable bundle
