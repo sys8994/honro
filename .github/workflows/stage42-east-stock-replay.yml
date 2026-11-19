@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
           persist-credentials: false
-          fetch-depth: 2
+          fetch-depth: 3
       - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
         with:
           node-version: '22'
@@ -30,12 +30,16 @@ jobs:
           set -euo pipefail
           test "$GITHUB_REF" = refs/heads/qa/stage42-east-stock-replay
           test "$GITHUB_SHA" = "$(git rev-parse HEAD)"
-          test "$(git rev-parse HEAD^)" = 1e043b09d4ce107e1d2dcf70fe2274dff7098476
+          test "$(git rev-parse HEAD^)" = 0d6bf4368b1766b2a0efd622dc37a25f651a50ff
+          test "$(git rev-parse HEAD^^)" = 1e043b09d4ce107e1d2dcf70fe2274dff7098476
+          printf '%s\n' .github/workflows/stage42-east-stock-replay.yml tests/stage42-east-stock-replay/verify-isolated.sh | sort > "$RUNNER_TEMP/east-replay-fix-allowed.txt"
+          git diff --name-only HEAD^ HEAD | sort > "$RUNNER_TEMP/east-replay-fix-actual.txt"
+          cmp "$RUNNER_TEMP/east-replay-fix-allowed.txt" "$RUNNER_TEMP/east-replay-fix-actual.txt"
           mkdir -p "$RUNNER_TEMP/stage42-east-stock-replay-evidence"
           printf '%s\n' .github/workflows/stage42-east-stock-replay.yml shared/assets/environment/act5/stage42-registered-body.json tests/stage42-east-stock-replay/{check-stock.py,east-views.json,gameplay.py,observed-east-cap.json,stock-scenes.js,support-probe.js,verify-isolated.sh} | sort > "$RUNNER_TEMP/east-replay-allowed.txt"
-          git diff --name-only HEAD^ HEAD | sort > "$RUNNER_TEMP/east-replay-actual.txt"
+          git diff --name-only HEAD^^ HEAD | sort > "$RUNNER_TEMP/east-replay-actual.txt"
           cmp "$RUNNER_TEMP/east-replay-allowed.txt" "$RUNNER_TEMP/east-replay-actual.txt"
-          git diff --numstat HEAD^ HEAD -- shared/assets/environment/act5/stage42-registered-body.json > "$RUNNER_TEMP/stage42-east-stock-replay-evidence/candidate-git-numstat.txt"
+          git diff --numstat HEAD^^ HEAD -- shared/assets/environment/act5/stage42-registered-body.json > "$RUNNER_TEMP/stage42-east-stock-replay-evidence/candidate-git-numstat.txt"
           test "$(git hash-object shared/assets/environment/act5/stage42-registered-body.json)" = 8a28d581d0621bdbf5d3c525201c9a98ffd38c68
           test "$(sha256sum tests/stage42-east-stock-replay/observed-east-cap.json|cut -d' ' -f1)" = 789365e94591057ab9b3a0131da0f23c6c903b59e62bf2608c642dbe39333252
       - name: Replay clean generated stock builds in independent Chrome contexts

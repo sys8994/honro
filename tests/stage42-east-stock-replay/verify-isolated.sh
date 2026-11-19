@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# This copy/build/run operator never edits a checkout, commits, pushes or deploys.
+# Detached QA worktrees only; no edit to the invoking tracked checkout, commit, push or deployment.
 set -euo pipefail
 [[ "$#" = 4 ]] || { echo "usage: verify-isolated.sh SOURCE_GIT EXACT_CANDIDATE_ASSET OBSERVED_RECEIPT EVIDENCE_DIR";exit 64; }
 test "${HONRO_EAST_STOCK_QA:-0}" = 1
@@ -15,12 +15,46 @@ test "$(git -C "$REPO" rev-parse "$PIN:$SURFACE")" = cabd9306550c0ccd742dfd3633f
 test "$(git hash-object "$BLOB")" = 8a28d581d0621bdbf5d3c525201c9a98ffd38c68
 test "$(sha256sum "$RECEIPT"|cut -d' ' -f1)" = 789365e94591057ab9b3a0131da0f23c6c903b59e62bf2608c642dbe39333252
 T="$(mktemp -d)";declare -a PIDS=()
-cleanup(){ for p in "${PIDS[@]}"; do kill "$p" 2>/dev/null || true; done; rm -rf "$T"; }
+origin_head="$(git -C "$REPO" rev-parse HEAD)"
+origin_status="$(git -C "$REPO" status --porcelain=v1 --untracked-files=all)"
+cleanup(){
+ local rc=$? remove_failed=0
+ trap - EXIT
+ set +e
+ for p in "${PIDS[@]}"; do kill "$p" 2>/dev/null; wait "$p" 2>/dev/null; done
+ for f in B A; do
+  if test -f "$T/$f/.git"; then
+   git -C "$REPO" -c core.hooksPath=/dev/null worktree remove --force -- "$T/$f" || remove_failed=1
+  fi
+ done
+ if test "$remove_failed" = 0; then
+  rm -rf -- "$T"
+ else
+  echo "Isolated worktree removal failed; preserved temp for investigation: $T" >&2
+ fi
+ if ! test "$(git -C "$REPO" rev-parse HEAD)" = "$origin_head" ||
+    ! test "$(git -C "$REPO" status --porcelain=v1 --untracked-files=all)" = "$origin_status"; then
+  echo "Invoking checkout source status changed during isolation" >&2
+  remove_failed=1
+ fi
+ if test "$rc" = 0 && test "$remove_failed" = 1; then rc=1; fi
+ exit "$rc"
+}
 trap cleanup EXIT
-mkdir "$T/A";git -C "$REPO" archive --format=tar "$PIN" | tar -x -C "$T/A"
-cp -a "$T/A" "$T/B"
+trap 'exit 130' INT
+trap 'exit 143' TERM
+for f in A B; do
+ git -C "$REPO" -c core.hooksPath=/dev/null worktree add --detach -- "$T/$f" "$PIN"
+ test "$(git -C "$T/$f" rev-parse HEAD)" = "$PIN"
+ if git -C "$T/$f" symbolic-ref --quiet HEAD >/dev/null; then echo "Expected detached worktree" >&2; exit 1; fi
+ test -z "$(git -C "$T/$f" status --porcelain=v1 --untracked-files=all)"
+done
 cp "$BLOB" "$T/B/$ASSET"
-diff -qr "$T/A" "$T/B" > "$OUT/source-diff.txt" || test "$?" = 1
+test "$(git -C "$T/B" status --porcelain=v1 --untracked-files=all)" = " M $ASSET"
+git -C "$T/B" diff --cached --quiet
+test "$(git -C "$T/B" diff --name-only)" = "$ASSET"
+test -z "$(git -C "$T/A" status --porcelain=v1 --untracked-files=all)"
+diff -qr --exclude=.git "$T/A" "$T/B" > "$OUT/source-diff.txt" || test "$?" = 1
 test "$(cat "$OUT/source-diff.txt")" = "Files $T/A/$ASSET and $T/B/$ASSET differ"
 node --input-type=module - "$T/A/$ASSET" "$T/B/$ASSET" > "$OUT/asset-metrics.json" <<'JS'
 import fs from 'fs';import assert from 'assert';import {createHash} from 'crypto';
@@ -39,7 +73,7 @@ console.log(JSON.stringify({onlySourceAsset:'shared/assets/environment/act5/stag
  fullClipHash:sha(a.vector.clips),derivedAddedNodes:1+cap.children.length,addedPaths:cap.children.length,
  originalAfterUnwrappingIdentical:true,rendererSourceUntouched:true},null,2));
 JS
-export HONRO_ACT4_RELEASE=1 HONRO_ACT5_RELEASE=1
+export HONRO_ACT4_RELEASE=1 HONRO_ACT5_RELEASE=1 PYTHONDONTWRITEBYTECODE=1
 for f in A B; do
  (
   cd "$T/$f"
