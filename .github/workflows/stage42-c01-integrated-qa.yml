@@ -1,0 +1,95 @@
+name: Stage42 C01 authored far plus same native Workshop terrain QA
+on:
+  push:
+    branches: ['qa/stage42-c01-integrated-qa']
+    paths: ['.github/workflows/stage42-c01-integrated-qa.yml', 'tests/stage42-c01-integrated-qa/**']
+permissions:
+  contents: read
+jobs:
+  isolated:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      HONRO_ACT4_RELEASE: '1'
+      HONRO_ACT5_RELEASE: '1'
+      HONRO_FULL42_WORKSHOP_LOCAL: '1'
+      HONRO_C01_DISPOSABLE_QA: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 5
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Build and verify disposable stock runtime, add only UI host
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = refs/heads/qa/stage42-c01-integrated-qa
+          test "$GITHUB_SHA" = "$(git rev-parse HEAD)"
+          test "$GITHUB_SHA" = "$(git rev-list -1 HEAD)"
+          test "$(git rev-list --count HEAD^..HEAD)" = 1
+          test "$(git show -s --format=%P HEAD)" = 0b6c3f603410a069a5a24b36b4031d9dd902e90f
+          test "$(git rev-parse HEAD^^)" = f98defc00bd3c04d9c61a9f3df3829ec4e9c6cc7
+          test "$(git rev-parse HEAD^^^^)" = 1e043b09d4ce107e1d2dcf70fe2274dff7098476
+          git diff --quiet HEAD && test -z "$(git status --porcelain --untracked-files=all)"
+          printf '%s\n' .github/workflows/stage42-c01-integrated-qa.yml tests/stage42-c01-integrated-qa/C01.png tests/stage42-c01-integrated-qa/c01_pairs.py tests/stage42-c01-integrated-qa/game-c01.js tests/stage42-c01-integrated-qa/prepare-c01.mjs tests/stage42-c01-integrated-qa/run-replay.py > "$RUNNER_TEMP/c01-allowed.txt"
+          git diff --diff-filter=A --name-only HEAD^ HEAD | diff -u "$RUNNER_TEMP/c01-allowed.txt" -
+          git diff --name-only HEAD^ HEAD | diff -u "$RUNNER_TEMP/c01-allowed.txt" -
+          echo "312bfbcd495f6a4a7640621b81f713d3ba69737bca4d2d890cac13df25f98060  tests/stage42-full-native-workshop/browser-detail.py" | sha256sum -c -
+          echo "2a9127bc2394378eb60f6fbfca2e31cff25afa8108bde67fb92b9e5bb36399bd  tests/stage42-full-native-workshop/detail-itinerary.json" | sha256sum -c -
+          echo "a4ef814abb314e4767f95096e769405232d46be1561044f95ff0d2ec582dc510  tests/stage42-full-native-workshop/full-itinerary.json" | sha256sum -c -
+          echo "8184722f5c95987a95ec0c499281b4fba8c87e0e569a1ec54c1e78492fd2bfa1  tests/stage42-full-native-workshop/game-full.js" | sha256sum -c -
+          echo "40e4efba91a5772469e1d9f89e57d5c16be37bec038ddea28f6fef825b078255  tests/stage42-full-native-workshop/host-detail.js" | sha256sum -c -
+          echo "56d803a8c18fb55f460ee30c9a8436bca1b827c1cecb90cf902f4a48ac8a2a06  tests/stage42-full-native-workshop/pack-detail.mjs" | sha256sum -c -
+          echo "7efc091150fdbfa91c3ba4f14b24a9f94bb95e5f748b39a22c334384e9dacf80  tests/stage42-full-native-workshop/prepare-detail.mjs" | sha256sum -c -
+          echo "92ba860dda0c5ad88015a2fd94e58122827871aabbfdd0931be9eb77d4a10529  tests/stage42-full-native-workshop/prepare.mjs" | sha256sum -c -
+          echo "041cbf05d49aa2f6722ab87938e91e60eb30650bcec2b7b47d1f1fbfdd196abc  tests/stage42-full-native-workshop/review-cameras.json" | sha256sum -c -
+          echo "1bd2b2d24d6590371b0ffd4a944c2f83327afee3f3d5c4a91e0cbe83c707cbab  tests/stage42-c01-integrated-qa/C01.png" | sha256sum -c -
+          echo "f22ea4d64c9e45f639b488a74d1fc34e1da644c96b9b458ad82cc67792df8698  tests/stage42-c01-integrated-qa/c01_pairs.py" | sha256sum -c -
+          echo "8f31d0ac82ca3cc5d9ab2fa251583882ccda13e3bba2026f275bd5f1c62f25eb  tests/stage42-c01-integrated-qa/game-c01.js" | sha256sum -c -
+          echo "04739103ca0e5a8e5661eeab8df3033014281f0b3186d7649f3a7c63fb49d781  tests/stage42-c01-integrated-qa/prepare-c01.mjs" | sha256sum -c -
+          echo "d49fe7cfd7b618fae8654a5e92c991e1062c877888c870542211ba721a94c85d  tests/stage42-c01-integrated-qa/run-replay.py" | sha256sum -c -
+          node tests/stage42-full-native-workshop/test.mjs
+          npm ci
+          npm ci --prefix game
+          npm run build
+          B="$RUNNER_TEMP/stage42-c01-integrated-qa-build"; E="$RUNNER_TEMP/stage42-c01-integrated-qa-evidence"
+          mkdir -p "$B" "$E"
+          cp -a web HONRO_WORKSHOP.html HONRO.html "$B/"
+          node tests/stage42-full-native-workshop/prepare.mjs "$B"
+          HONRO_FULL_DETAIL_WORKSHOP_QA=1 HONRO_FULL_DISPOSABLE_SHA256=15b93ae4bff4f9367ec99b18e85b515109d871f53a70bfa5cb1129f02bd085f2 node tests/stage42-full-native-workshop/prepare-detail.mjs "$B"
+          node --check "$B/web/runtime/workshop-app.489f733634454986.js"
+          node tests/stage42-c01-integrated-qa/prepare-c01.mjs "$B" tests/stage42-c01-integrated-qa/C01.png
+          node --check "$B/web/runtime/ordered-common-18.2334f4aecca41fe0.js"
+      - name: Real full-width detail native pointers and exact same-camera stock Game
+        run: |
+          set -euo pipefail
+          python -m pip install 'playwright==1.58.0' 'Pillow==12.0.0'
+          export HONRO_FULL42_URL=http://127.0.0.1:8870/HONRO_WORKSHOP.html
+          export HONRO_CHROME="$(command -v google-chrome || command -v chromium)"
+          test -x "$HONRO_CHROME"
+          "$HONRO_CHROME" --version
+          python -m http.server 8870 --bind 127.0.0.1 --directory "$RUNNER_TEMP/stage42-c01-integrated-qa-build" &
+          pid=$!
+          trap 'kill "$pid" 2>/dev/null || true' EXIT
+          for ((i=0;i<20;i++)); do
+            if curl -fsS -o /dev/null http://127.0.0.1:8870/HONRO_WORKSHOP.html; then break; fi
+            sleep 1
+          done
+          curl -fsS -o /dev/null "$HONRO_FULL42_URL"
+          timeout 1000s python tests/stage42-c01-integrated-qa/run-replay.py "$GITHUB_WORKSPACE/tests/stage42-full-native-workshop" "$RUNNER_TEMP/stage42-c01-integrated-qa-evidence"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage42-c01-integrated-qa-browser-evidence
+          path: |
+            ${{ runner.temp }}/stage42-c01-integrated-qa-evidence/*.png
+            ${{ runner.temp }}/stage42-c01-integrated-qa-evidence/result.json
+            ${{ runner.temp }}/stage42-c01-integrated-qa-evidence/c01-reviewed.json
+          if-no-files-found: warn
+          retention-days: 7

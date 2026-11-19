@@ -1,0 +1,33 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import {createHash} from 'node:crypto';
+const h=x=>createHash('sha256').update(x).digest('hex');
+if (process.env.HONRO_C01_DISPOSABLE_QA!=='1'||!process.argv[2]||!process.argv[3]) throw Error('Disposable C01 QA only');
+const temp=fs.realpathSync(process.env.RUNNER_TEMP||'/tmp');
+const root=fs.realpathSync(process.argv[2]);
+if (!root.startsWith(temp+path.sep)||root===fs.realpathSync(process.cwd())) throw Error('Not a disposable build');
+const asset=fs.readFileSync(process.argv[3]);
+const pin='1bd2b2d24d6590371b0ffd4a944c2f83327afee3f3d5c4a91e0cbe83c707cbab';
+if(asset.length!==1532625||h(asset)!==pin)throw Error('Wrong untouched C01');
+const name='ordered-common-18.2334f4aecca41fe0.js', p=path.join(root,'web/runtime',name);
+if(fs.realpathSync(p)!==p)throw Error('Stock module must not be a symlink');
+const original=fs.readFileSync(p,'utf8');
+if(h(original)!=='2334f4aecca41fe0876199199eef2f14cc0ec9dec1eaf7df28d1ee538d173b70')throw Error('Unrecognized authored-far stock bundle');
+const url='web/graphics/qa-stage42-c01.1bd2b2d24d659037.png', key='stage42C01CleanFar';
+let s=original;
+function apply(from,to){if(s.split(from).length!==2)throw Error('Nonunique stock anchor '+from);s=s.replace(from,()=>to);}
+apply('manifest=G.HONRO_AUTHORED_FAR,cache=new Map,MAX=3;',`manifest={...G.HONRO_AUTHORED_FAR,images:{...G.HONRO_AUTHORED_FAR?.images,${key}:${JSON.stringify(url)}}},cache=new Map,MAX=3;
+const qaC01Battles=new WeakSet,qaC01Spec=Object.freeze({key:${JSON.stringify(key)}});
+G.HonroC01DisposableQA=Object.freeze({enable(b,proof){
+ if (proof?.base!=='6adcdaaac1d3e85b0a837680e9263ca9a72909fef96f872b9d6b85beedf580a3'||proof?.detail!=='f88f26fd857fddd55f700de35f761185b1864c0499cb97effba1b1223d15387e'||!b?.honroCustom||b.honroAct4Preview||b.width!==6500||b.height!==2861||b.terrain?.length!==0||!b.honroLandmarks?.some(l=>l.asset?.id==='new-stage42-joined-lower')||b.honroLandmarks.some(l=>!l.asset?.id?.startsWith('new-stage42-')||l.asset.collision?.length))throw Error('Wrong clean native Stage42 proof');
+ qaC01Battles.add(b);
+},disable(b){qaC01Battles.delete(b)},ready(b){return qaC01Battles.has(b)&&!!request(qaC01Spec.key)?.canvas}});
+`);
+apply('function specFor(b){const site=', 'function specFor(b){if(qaC01Battles.has(b))return qaC01Spec;const site=');
+apply('if(b?.honroCustom&&!b.honroAct4Preview', 'if(b?.honroCustom&&!qaC01Battles.has(b)&&!b.honroAct4Preview');
+const dst=path.join(root,url);
+fs.mkdirSync(path.dirname(dst),{recursive:true});
+if(fs.realpathSync(path.dirname(dst))!==path.dirname(dst))throw Error('Graphics symlink not allowed');
+fs.writeFileSync(dst,asset,{flag:'wx'});
+fs.writeFileSync(p,s);
+console.log(JSON.stringify({stockModule:h(original),qaModule:h(s),assetSha:pin,assetBytes:asset.length,scope:'disposable authored far only'}));
