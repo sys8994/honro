@@ -1,0 +1,430 @@
+{
+  "pin": "1e043b09d4ce107e1d2dcf70fe2274dff7098476",
+  "inputSha256": "f4ef8f67dd560bffe675b3536c3ece1904b4a354d1fb555145732e2000ab4afe",
+  "stockSha256": {
+    "shared/runtime/profile-store.js": "3b270b6ca132a70559f1c7691d63d6d8a82ca4bfef5d06c69522c20fe6884f2c",
+    "shared/runtime/equipment-state.js": "378513409c561308c8463569936f85b9a6dddf1d0650b278f210164f98dcf3c8",
+    "shared/map/compiler.js": "1c18b854bbdae6ab5b9c49de53ef4c2d708ffa73a7af393fc5e57e318e001cd2",
+    "shared/runtime/main.js": "55a9b1a99dd7c0c5a406a8d0dfba02f9a2a887058b8de07befcd6442dfe4513e",
+    "shared/map/terrain-domain.js": "50772ada658c33f0f514465b4fc161587a1a648d7c19eec0d2f2de80ddd5c3ae",
+    "shared/runtime/campaign-entry.js": "223e75a915dd1430a46aa153ca0270151c68eaa54f2bc9b2644d8c046e2c6263",
+    "shared/act5-world.mjs": "1cc31b2112f51bc12b2c2525ec3e0ac647ba018cb1a9dcdf463c0e0b09a283a6"
+  },
+  "bindingSourceSHA256": "585f140b7ace7fed49c18a990def73028f30f93f39736f4257e7fb8175f08ed1",
+  "bindings": [
+    {
+      "path": "units.p-archer",
+      "id": "p-archer",
+      "x": 266.6,
+      "owner": "MAIN_ESCORT_C_FULL",
+      "supportY": 1090,
+      "lift": 0,
+      "y": 1090
+    },
+    {
+      "path": "units.p-mage",
+      "id": "p-mage",
+      "x": 336.43,
+      "owner": "MAIN_ESCORT_C_FULL",
+      "supportY": 1081.571007330745,
+      "lift": 0,
+      "y": 1081.571007330745
+    },
+    {
+      "path": "units.p-knight",
+      "id": "p-knight",
+      "x": 406.25,
+      "owner": "MAIN_ESCORT_C_FULL",
+      "supportY": 1074.0648437321374,
+      "lift": 0,
+      "y": 1074.0648437321374
+    },
+    {
+      "path": "units.p-occultist",
+      "id": "p-occultist",
+      "x": 476.07,
+      "owner": "MAIN_ESCORT_C_FULL",
+      "supportY": 1066.9325989802417,
+      "lift": 0,
+      "y": 1066.9325989802417
+    },
+    {
+      "path": "units.a5-foe-0",
+      "id": "a5-foe-0",
+      "x": 1034.67,
+      "owner": "MAIN_ESCORT_C_FULL",
+      "supportY": 955.1483217815818,
+      "lift": 0,
+      "y": 955.1483217815818
+    },
+    {
+      "path": "units.a5-foe-1",
+      "id": "a5-foe-1",
+      "x": 1180.66,
+      "owner": "MAIN_ESCORT_C_FULL",
+      "supportY": 952.6141456012299,
+      "lift": 0,
+      "y": 952.6141456012299
+    },
+    {
+      "path": "units.a5-foe-2",
+      "id": "a5-foe-2",
+      "x": 1390.14,
+      "owner": "MAIN_ESCORT_C_FULL",
+      "supportY": 971.3779396176726,
+      "lift": 0,
+      "y": 971.3779396176726
+    },
+    {
+      "path": "units.a5-foe-3",
+      "id": "a5-foe-3",
+      "x": 1567.87,
+      "owner": "MAIN_ESCORT_C_FULL",
+      "supportY": 979.2546771183933,
+      "lift": 0,
+      "y": 979.2546771183933
+    },
+    {
+      "path": "units.a5-foe-4",
+      "id": "a5-foe-4",
+      "x": 1834.47,
+      "owner": "MAIN_ESCORT_C_FULL",
+      "supportY": 917.4108537249734,
+      "lift": 0,
+      "y": 917.4108537249734
+    },
+    {
+      "path": "units.a5-foe-5",
+      "id": "a5-foe-5",
+      "x": 2500.98,
+      "owner": "MAIN_ESCORT_C_FULL",
+      "supportY": 761.7078402101124,
+      "lift": 0,
+      "y": 761.7078402101124
+    },
+    {
+      "path": "units.a5-foe-6",
+      "id": "a5-foe-6",
+      "x": 1916.99,
+      "owner": "WEST_OPTIONAL_LOOKOUT",
+      "supportY": 681.0053608247423,
+      "lift": 0,
+      "y": 681.0053608247423
+    },
+    {
+      "path": "units.a5-foe-7",
+      "id": "a5-foe-7",
+      "x": 2316.89,
+      "owner": "WEST_OPTIONAL_LOOKOUT",
+      "supportY": 557.0390654205607,
+      "lift": 0,
+      "y": 557.0390654205607
+    },
+    {
+      "path": "units.a5-foe-8",
+      "id": "a5-foe-8",
+      "x": 2653.32,
+      "owner": "WEST_OPTIONAL_LOOKOUT",
+      "supportY": 520.0573134328358,
+      "lift": 355.46875,
+      "y": 164.58856343283583
+    },
+    {
+      "path": "units.a5-foe-9",
+      "id": "a5-foe-9",
+      "x": 3211.91,
+      "owner": "EAST_OPTIONAL_LOOKOUT",
+      "supportY": 415.04750000000007,
+      "lift": 0,
+      "y": 415.04750000000007
+    },
+    {
+      "path": "units.a5-foe-10",
+      "id": "a5-foe-10",
+      "x": 3687.99,
+      "owner": "EAST_OPTIONAL_LOOKOUT",
+      "supportY": 364.1105384615385,
+      "lift": 0,
+      "y": 364.1105384615385
+    },
+    {
+      "path": "units.a5-foe-11",
+      "id": "a5-foe-11",
+      "x": 4011.72,
+      "owner": "EAST_OPTIONAL_LOOKOUT",
+      "supportY": 336.82800000000003,
+      "lift": 0,
+      "y": 336.82800000000003
+    },
+    {
+      "path": "units.a5-foe-12",
+      "id": "a5-foe-12",
+      "x": 4221.19,
+      "owner": "EAST_OPTIONAL_LOOKOUT",
+      "supportY": 325.9208333333335,
+      "lift": 209.47265625,
+      "y": 116.44817708333352
+    },
+    {
+      "path": "units.a5-foe-13",
+      "id": "a5-foe-13",
+      "x": 3453.13,
+      "owner": "MAIN_ESCORT_C_FULL",
+      "supportY": 614.9622658959391,
+      "lift": 0,
+      "y": 614.9622658959391
+    },
+    {
+      "path": "units.a5-foe-14",
+      "id": "a5-foe-14",
+      "x": 3681.64,
+      "owner": "MAIN_ESCORT_C_FULL",
+      "supportY": 609.0652407531992,
+      "lift": 0,
+      "y": 609.0652407531992
+    },
+    {
+      "path": "units.a5-foe-15",
+      "id": "a5-foe-15",
+      "x": 3935.55,
+      "owner": "MAIN_ESCORT_C_FULL",
+      "supportY": 556.1023293103448,
+      "lift": 0,
+      "y": 556.1023293103448
+    },
+    {
+      "path": "units.a5-foe-16",
+      "id": "a5-foe-16",
+      "x": 4379.88,
+      "owner": "EAST_OPTIONAL_LOOKOUT",
+      "supportY": 277.0075,
+      "lift": 0,
+      "y": 277.0075
+    },
+    {
+      "path": "units.a5-foe-17",
+      "id": "a5-foe-17",
+      "x": 4475.1,
+      "owner": "MAIN_ESCORT_C_FULL",
+      "supportY": 547.1065219081692,
+      "lift": 0,
+      "y": 547.1065219081692
+    },
+    {
+      "path": "units.a5-foe-18",
+      "id": "a5-foe-18",
+      "x": 4811.52,
+      "owner": "MAIN_ESCORT_C_FULL",
+      "supportY": 560.596213773266,
+      "lift": 0,
+      "y": 560.596213773266
+    },
+    {
+      "path": "units.a5-foe-19",
+      "id": "a5-foe-19",
+      "x": 5585.94,
+      "owner": "MAIN_ESCORT_C_FULL",
+      "supportY": 638.458342032024,
+      "lift": 0,
+      "y": 638.458342032024
+    },
+    {
+      "path": "units.a5-foe-20",
+      "id": "a5-foe-20",
+      "x": 5001.95,
+      "owner": "MAIN_ESCORT_C_FULL",
+      "supportY": 545.4919715575074,
+      "lift": 0,
+      "y": 545.4919715575074
+    },
+    {
+      "path": "units.a5-foe-21",
+      "id": "a5-foe-21",
+      "x": 6049.32,
+      "owner": "MAIN_ESCORT_C_FULL",
+      "supportY": 622.3659781858621,
+      "lift": 0,
+      "y": 622.3659781858621
+    },
+    {
+      "path": "units.a5-foe-22",
+      "id": "a5-foe-22",
+      "x": 6277.83,
+      "owner": "MAIN_ESCORT_C_FULL",
+      "supportY": 659.3798560153825,
+      "lift": 0,
+      "y": 659.3798560153825
+    },
+    {
+      "path": "units.a5-foe-23",
+      "id": "a5-foe-23",
+      "x": 4855.96,
+      "owner": "MAIN_ESCORT_C_FULL",
+      "supportY": 556.2611206386725,
+      "lift": 0,
+      "y": 556.2611206386725
+    },
+    {
+      "path": "units.a5-foe-24",
+      "id": "a5-foe-24",
+      "x": 5033.69,
+      "owner": "MAIN_ESCORT_C_FULL",
+      "supportY": 545,
+      "lift": 0,
+      "y": 545
+    },
+    {
+      "path": "units.a5-foe-25",
+      "id": "a5-foe-25",
+      "x": 5300.29,
+      "owner": "MAIN_ESCORT_C_FULL",
+      "supportY": 585.9763587639943,
+      "lift": 0,
+      "y": 585.9763587639943
+    },
+    {
+      "path": "units.a5-gwak",
+      "id": "a5-gwak",
+      "x": 2888.18,
+      "owner": "MAIN_ESCORT_C_FULL",
+      "supportY": 676.5747104383607,
+      "lift": 0,
+      "y": 676.5747104383607
+    },
+    {
+      "path": "units.a5-soldier-one",
+      "id": "a5-soldier-one",
+      "x": 2735.84,
+      "owner": "MAIN_ESCORT_C_FULL",
+      "supportY": 711.14499328,
+      "lift": 0,
+      "y": 711.14499328
+    },
+    {
+      "path": "units.a5-soldier-two",
+      "id": "a5-soldier-two",
+      "x": 3034.18,
+      "owner": "MAIN_ESCORT_C_FULL",
+      "supportY": 652.2708441280971,
+      "lift": 0,
+      "y": 652.2708441280971
+    },
+    {
+      "path": "design.act5.sites.rescue",
+      "id": "rescue",
+      "x": 2951.66,
+      "owner": "MAIN_ESCORT_C_FULL",
+      "supportY": 665,
+      "lift": 0,
+      "y": 665
+    },
+    {
+      "path": "design.act5.sites.refuge",
+      "id": "refuge",
+      "x": 3649.9,
+      "owner": "MAIN_ESCORT_C_FULL",
+      "supportY": 612,
+      "lift": 0,
+      "y": 612
+    },
+    {
+      "path": "design.act5.sites.drum",
+      "id": "drum",
+      "x": 4652.83,
+      "owner": "EAST_OPTIONAL_LOOKOUT",
+      "supportY": 313,
+      "lift": 0,
+      "y": 313
+    },
+    {
+      "path": "design.act5.sites.captain",
+      "id": "captain",
+      "x": 5712.89,
+      "owner": "MAIN_ESCORT_C_FULL",
+      "supportY": 650,
+      "lift": 0,
+      "y": 650
+    },
+    {
+      "path": "design.act5.sites.approach",
+      "id": "approach",
+      "x": 1548.83,
+      "owner": "MAIN_ESCORT_C_FULL",
+      "supportY": 980,
+      "lift": 0,
+      "y": 980
+    },
+    {
+      "path": "design.act5.sites.palisade",
+      "id": "palisade",
+      "x": 4348.14,
+      "owner": "EAST_OPTIONAL_LOOKOUT",
+      "supportY": 278.99125,
+      "lift": 0,
+      "y": 278.99125
+    },
+    {
+      "path": "design.act5.sites.corridor",
+      "id": "corridor",
+      "x": 3522.95,
+      "owner": "MAIN_ESCORT_C_FULL",
+      "supportY": 604.5975496963829,
+      "lift": 0,
+      "y": 604.5975496963829
+    },
+    {
+      "path": "design.act5.sites.exit",
+      "id": "exit",
+      "x": 6227.05,
+      "owner": "MAIN_ESCORT_C_FULL",
+      "supportY": 650,
+      "lift": 0,
+      "y": 650
+    },
+    {
+      "path": "anchors.spawn",
+      "id": "spawn",
+      "x": 266.6,
+      "owner": "MAIN_ESCORT_C_FULL",
+      "supportY": 1090,
+      "lift": 0,
+      "y": 1090
+    },
+    {
+      "path": "anchors.exit",
+      "id": "exit",
+      "x": 6227.05,
+      "owner": "MAIN_ESCORT_C_FULL",
+      "supportY": 650,
+      "lift": 0,
+      "y": 650
+    },
+    {
+      "path": "design.act5.waves.drumSupport-8.entry",
+      "id": "drumSupport-8.entry",
+      "x": 5033.69,
+      "owner": "MAIN_ESCORT_C_FULL",
+      "supportY": 545,
+      "lift": 0,
+      "y": 545
+    },
+    {
+      "path": "design.act5.waves.drumSupport-8.fallback",
+      "id": "drumSupport-8.fallback",
+      "x": 4335.45,
+      "owner": "MAIN_ESCORT_C_FULL",
+      "supportY": 523.3560864823816,
+      "lift": 0,
+      "y": 523.3560864823816
+    },
+    {
+      "path": "terrains.a5-device-0",
+      "id": "a5-device-0",
+      "x": 4652.83,
+      "owner": "EAST_OPTIONAL_LOOKOUT",
+      "supportY": 313,
+      "lift": 0,
+      "y": 313
+    }
+  ]
+}
