@@ -1,0 +1,61 @@
+name: Stage46 original continuity diagnostic
+on:
+  push:
+    branches: [qa/stage46-original-continuity]
+permissions:
+  contents: read
+jobs:
+  original:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Guard exact original-only two additions
+        shell: bash
+        run: |
+          set -euo pipefail
+          parent=6b69e86f01a4ae4c05ce2a6e04ff1b2cc6736280
+          test "$(git rev-parse HEAD^)" = "$parent"
+          git diff --name-status "$parent" HEAD > /tmp/scope
+          python - <<'PY'
+          from pathlib import Path
+          expected={'.github/workflows/stage46-original-continuity.yml','game/tests/stage46-original-continuity/render.cjs'}
+          rows=[x.split('\t') for x in Path('/tmp/scope').read_text().splitlines()]
+          assert len(rows)==2 and all(x[0]=='A' for x in rows) and {x[1] for x in rows}==expected
+          PY
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Prepare unchanged original in disposable directory
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/stage46-original-continuity"
+          mkdir -p "$out/original"
+          cp game/tests/stage46-original-continuity/render.cjs "$out/"
+          cp shared/assets/environment/act5/stage46-*.json "$out/original/"
+          cp shared/assets/environment/act5/near-import.json "$out/"
+          cp shared/map/{vector-art.js,visual-style.js} "$out/"
+          cp shared/runtime/act5-edge-art.js "$out/"
+          cp tools/vector-production/preserve-compound.mjs "$out/"
+          cd "$out"
+          npm install playwright
+          npx playwright install --with-deps chromium
+          echo "OUT=$out" >> "$GITHUB_ENV"
+      - name: Original-only expanded and in-bounds camera evidence
+        run: |
+          cd "$OUT"
+          HONRO_QA_PLAYWRIGHT_BROWSER=managed node render.cjs > render.log 2>&1
+      - name: Original checkout remained unchanged
+        if: always()
+        run: test -z "$(git status --porcelain --untracked-files=no)"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage46-original-continuity
+          path: |
+            ${{ env.OUT }}/render-proof.json
+            ${{ env.OUT }}/*.png
+            ${{ env.OUT }}/render.log
+          retention-days: 7
