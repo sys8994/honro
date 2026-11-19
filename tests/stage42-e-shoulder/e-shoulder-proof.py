@@ -62,6 +62,51 @@ def pixel_guard(before,after,p,cam):
 def color_probe(image,cam,xy,width=1):
  w,h=image.size;cx,cy,z=cam;x,y=round(w/2+(xy[0]-cx)*z),round(h/2+(xy[1]-cy)*z)
  return tuple(round(median(x[i] for x in image.crop((x-width,y-width,x+width+1,y+width+1)).getdata())) for i in range(3))
+def fit_native_element(p, targets, root):
+ # Using existing wheel and middle-drag controls, no direct Element camera mutation,
+ # and every upcoming target must be the actual native canvas hit.
+ controls="""xs=>{
+  const c=document.querySelector('#elementCanvas'),r=c.getBoundingClientRect(),v=HonroWorkshopAPI.getEditorState().elementView;
+  const clip=(x,y)=>document.elementFromPoint(x,y);
+  const hit=(x,y)=>clip(x,y)===c;
+  const points=xs.map(([x,y])=>[r.left+r.width/2+(x-v.x)*v.zoom,r.top+r.height/2+(y-v.y)*v.zoom]);
+  const blocked=points.flatMap((q,i)=>hit(...q)?[]:[{i,world:xs[i],screen:q,actual:clip(...q)?.id??'',className:String(clip(...q)?.className??'').slice(0,120)}]);
+  return {camera:[v.x,v.y,v.zoom],canvas:[r.left,r.top,r.width,r.height],dpr:devicePixelRatio,points,blocked};
+ }"""
+ rows=[]
+ def check(label):
+  data=p.evaluate(controls,targets);rows.append({'label':label,**data});return data
+ def write():
+  (root/'pointer-fit.json').write_text(json.dumps({'points':len(targets),'phases':rows},indent=2))
+ try:
+  first=check('stock-initial-element-view')
+  if first['blocked']:p.screenshot(path=str(root/'16-before-fit-pointer-blocked.png'))
+  left,top,w,h=first['canvas']
+  vx,vy,z=first['camera'];assert abs(z-1)<1e-8 and first['dpr']==1
+  def visible(q):return p.evaluate("q=>document.elementFromPoint(...q)===document.querySelector('#elementCanvas')",q)
+  center=[round(left+w/2),round(top+h/2)]
+  assert visible(center),'Native element center is obscured; no fake camera fallback'
+  p.mouse.move(*center);p.mouse.wheel(0,150)
+  p.wait_for_function("expected=>Math.abs(HonroWorkshopAPI.getEditorState().elementView.zoom-expected)<1e-7",arg=math.exp(-.225))
+  zoomed=check('real-wheel-150')
+  vx,vy,z=zoomed['camera']
+  if zoomed['blocked']:
+   mx=(min(v[0] for v in targets)+max(v[0] for v in targets))/2
+   my=(min(v[1] for v in targets)+max(v[1] for v in targets))/2
+   planned=[round((vx-mx)*z),round((vy-my)*z)]
+   candidates=[[round(left+w*fx),round(top+h*fy)] for fy in [.55,.5,.65,.45] for fx in [.55,.5,.65,.45]]
+   start=next((q for q in candidates if all(visible([q[0]+fraction*planned[0],q[1]+fraction*planned[1]]) for fraction in [0,.25,.5,.75,1])),None)
+   assert start is not None,'No proven native camera-pan stroke across this canvas'
+   p.mouse.move(*start);p.mouse.down(button='middle')
+   try:p.mouse.move(start[0]+planned[0],start[1]+planned[1],steps=8)
+   finally:p.mouse.up(button='middle')
+  last=check('final-fit-live-hit-map')
+  write()
+  assert not last['blocked'],'Full target coverage still blocked; never dispatch skipped/uncertified path points'
+  assert math.sqrt(2)*.5/last['camera'][2] < 1.8, 'Viewport fitting would exceed existing authored-point tolerance'
+  return last
+ except:
+  write();p.screenshot(path=str(root/'16-actual-fit-blocked.png'));raise
 def run_shoulder(fresh,open_page,domain,root):
  root=Path(root);report={'scope':'new full E graybox with only west shoulder style; no bridge/east/production or art-pass claim','pass':False}
  def write():(root/'shoulder-proof.json').write_text(json.dumps(report,ensure_ascii=False,indent=2))
@@ -91,9 +136,17 @@ def run_shoulder(fresh,open_page,domain,root):
  assert abs(dx-94)<1 and abs(dy-1364)<2
  fresh.locator('[data-tab=element]').click()
  ordered=[PROPOSED['faces'][1],PROPOSED['faces'][0],PROPOSED['faces'][2]] # print darkest return first
+ local=[[[x-dx,y-dy] for x,y in row['clockwiseWorld']] for row in ordered]
+ targets=list(dict.fromkeys(tuple(xy) for p in local for xy in p+[p[0]]))+[(0,0)]
+ assert len(targets)==len(set(targets))
+ fit=fit_native_element(fresh,targets,root)
+ z=fit['camera'][2]
+ assert all(math.dist(a,b)*z>=5 for row in local for a,b in zip(row,row[1:] + row[:1])), 'Adjacent native click spacing would coalesce at fit zoom'
  for k,s in enumerate(ordered):
   fresh.locator('[data-etool=polygon]').click();assert fresh.locator('#nativeShapeFill').is_disabled()
-  for x,y in s['clockwiseWorld']:fresh.mouse.click(*cursor(fresh,'element',[x-dx,y-dy]))
+  for x,y in s['clockwiseWorld']:
+   try:fresh.mouse.click(*cursor(fresh,'element',[x-dx,y-dy]))
+   except: fresh.screenshot(path=str(root/'16-real-point-hit-blocked.png'));raise
   fresh.keyboard.press('Enter')
   inp=fresh.locator('#nativeShapeFill');assert inp.is_enabled()
   inp.fill(s['fill']);inp.press('Tab')
