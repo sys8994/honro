@@ -157,6 +157,10 @@ def run_shoulder(fresh,open_page,domain,root):
  fit=fit_native_element(fresh,targets,root)
  z=fit['camera'][2]
  assert all(math.dist(a,b)*z>=5 for row in local for a,b in zip(row,row[1:] + row[:1])), 'Adjacent native click spacing would coalesce at fit zoom'
+ seed=owned(fresh,aid)['visual']
+ assert len(seed)==1 and seed[0]['type']=='polygon' and len(seed[0]['points'])==6
+ seed=seed[0]
+ seed_hash=hashb(canonical(seed))
  for k,s in enumerate(ordered):
   fresh.locator('[data-etool=polygon]').click();assert fresh.locator('#nativeShapeFill').is_disabled()
   for x,y in s['clockwiseWorld']:
@@ -165,11 +169,38 @@ def run_shoulder(fresh,open_page,domain,root):
   fresh.keyboard.press('Enter')
   inp=fresh.locator('#nativeShapeFill');assert inp.is_enabled()
   inp.fill(s['fill']);inp.press('Tab')
-  o=owned(fresh,aid);assert len(o['visual'])==k+2 and o['visual'][-1]['fill']==s['fill'] and not o['collision']
- fresh.mouse.click(*cursor(fresh,'element',[0,0]))
- assert fresh.evaluate('HonroWorkshopAPI.getEditorState().selectedShapeIndex')==0
- assert fresh.evaluate('HonroWorkshopAPI.getEditorState().selectedNode')==-1
- fresh.keyboard.press('Delete')
+  o=owned(fresh,aid)
+  assert len(o['visual'])==(2 if k==0 else k+1) and o['visual'][-1]['fill']==s['fill'] and not o['collision']
+  if k==0:
+   assert o['visual'][0]==seed and o['visual'][1]['fill']==ordered[0]['fill']
+   base,matrix=([[v['x'],v['y']] for v in face['points']] for face in o['visual'])
+   # The stock Point handler considers vertices first (10 screen px).
+   # Select from the actual seed interior, outside the authored dark face,
+   # with a 2-world rounding reserve beyond both shapes' node hit radii.
+   hit_radius=10/z
+   targets=[(x,y) for x in range(-22,23,2) for y in range(-22,23,2)]
+   targets.sort(key=lambda t:(math.hypot(*t),t))
+   cursor_choices=[pt for pt in targets if point_poly(base,*pt) and point_dist(base,*pt)>2
+    and not point_poly(matrix,*pt) and point_dist(matrix,*pt)>2
+    and min(math.dist(pt,u) for u in base+matrix)>hit_radius+2]
+   assert cursor_choices,'No safe disjoint real starter interior at the fitted camera'
+   pt=cursor_choices[0]
+   fresh.mouse.click(*cursor(fresh,'element',pt))
+   state=fresh.evaluate('HonroWorkshopAPI.getEditorState()')
+   current=owned(fresh,aid)
+   fresh.screenshot(path=str(root/'17-elements-before-seed-delete.png'))
+   report['seedDelete']={'ownerId':aid,'originalStarterVisualSha256':seed_hash,'selectedShapeIndex':state['selectedShapeIndex'],
+      'selectedNode':state['selectedNode'],'starterPointCount':len(base),'authoredCountBefore':1,'pointLocalXy':pt,
+      'nearestVertexWorld':min(math.dist(pt,u) for u in base+matrix),'vertexHitRadiusWorld':hit_radius}
+   write()
+   assert state['elementTool']=='point' and state['selectedShapeIndex']==0 and state['selectedNode']==-1,'Real click did not select original starter interior'
+   assert current['id']==aid and current['visual'][0]==seed and current['visual'][1:]==o['visual'][1:]
+   fresh.keyboard.press('Delete')
+   after=owned(fresh,aid)
+   assert after['id']==aid and after['visual']==o['visual'][1:] and not after['collision'],'Only exact verified starter may be deleted'
+   fresh.screenshot(path=str(root/'17-elements-after-seed-delete.png'))
+   report['seedDelete']['exactStarterOnlyRemoved']=True
+   write()
  o=owned(fresh,aid)
  assert len(o['visual'])==4 and not o['collision'] and not o.get('interactionType')
  assert all(v['stroke']=='#222d30' for v in o['visual']),'Preferred ink behavior is not patched'
