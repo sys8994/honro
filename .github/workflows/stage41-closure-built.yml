@@ -1,0 +1,48 @@
+name: Stage41 buried closure built normal launch
+on:
+  push:
+    branches: ['qa/stage41-closure-built-20261120']
+permissions:
+  contents: read
+jobs:
+  focused:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 4
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Exact one-file source extension
+        run: |
+          set -euo pipefail
+          SOURCE=5fc46f3e4bf3ffdd7917964e370dfe2d9b7f2a36
+          BASE=66679da33b448781fe549b78d4f77c5bb0710826
+          test "$(git rev-parse HEAD^)" = "$SOURCE"
+          test "$(git rev-parse "$SOURCE^")" = "$BASE"
+          test "$(git diff --name-only "$BASE" "$SOURCE")" = shared/runtime/terrain-readability.js
+          test "$(git rev-parse HEAD:shared/runtime/terrain-readability.js)" = d79d816425845daa22f677eaa24c222dbf828c5c
+          git diff --name-only "$SOURCE" HEAD > /tmp/qa-files
+          if grep -vE '^(tools/stage41-closure-built/(launch|verify).py|.github/workflows/stage41-closure-built.yml)$' /tmp/qa-files; then exit 1; fi
+          mkdir -p _local/reports/stage41-closure-built
+          git diff "$BASE" "$SOURCE" > _local/reports/stage41-closure-built/source-diff.txt
+      - run: npm ci && npm ci --prefix game
+      - run: python -m pip install playwright pillow && python -m playwright install --with-deps chromium
+      - name: Baseline normal compiled launch
+        run: python tools/stage41-closure-built/launch.py stock
+      - name: Official build with existing guards
+        run: |
+          npm run test:release-guard
+          npm run build
+          npm run test:production-contract
+      - name: Built normal launch and exact closure attribution
+        run: |
+          python tools/stage41-closure-built/launch.py integrated
+          python tools/stage41-closure-built/verify.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage41-closure-built-proof
+          path: _local/reports/stage41-closure-built
