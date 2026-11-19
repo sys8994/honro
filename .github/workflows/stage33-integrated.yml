@@ -1,0 +1,41 @@
+name: Stage33 production path integration QA
+on:
+  push:
+    branches: ['audit/stage33-west-integrated-20261120']
+permissions:
+  contents: read
+jobs:
+  integration:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 16
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - run: npm ci && npm ci --prefix game
+      - name: Restrict integration changes
+        run: |
+          git diff --name-only 99580581c042582b0788c86e954fce0e2c253490 HEAD > /tmp/changed
+          if grep -vE '^(shared/act4-stage33-(coastal-art|west-contact).mjs|tools/stage33-integrated/(native|compare).mjs|tools/stage33-integrated/http.py|tools/stage33-integrated/v3-expected.json|.github/workflows/stage33-integrated.yml)$' /tmp/changed; then exit 1; fi
+      - run: python -m pip install playwright pillow && python -m playwright install --with-deps chromium
+      - name: Normal stock HTTP before rebuild
+        run: python tools/stage33-integrated/http.py stock
+      - name: Official build and guards without fingerprint changes
+        run: |
+          npm run test:release-guard
+          npm run build
+          npm run test:production-contract
+      - name: Normal integrated HTTP from compiled wrappers
+        run: python tools/stage33-integrated/http.py integrated
+      - name: Integrated production native capture and v3 parity
+        run: |
+          HONRO_NATIVE_OUT=_local/reports/stage33-integrated/native node --expose-gc tools/stage33-integrated/native.mjs 33
+          node tools/stage33-integrated/compare.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage33-integrated-evidence
+          path: _local/reports/stage33-integrated

@@ -1,3 +1,4 @@
+import {applyStage33WestContact} from './act4-stage33-west-contact.mjs';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 // Paint-only revision: old IDs remain unchanged for suspended battle snapshots.
@@ -29,5 +30,5 @@ export function applyStage33CoastalPack(project,pack){
 }
 export async function applyStage33CoastalArt(project){
  const pack=JSON.parse(await readFile(new URL('./data/act4/sideview-art/33-coastal-v2.json',import.meta.url),'utf8'));
- return applyStage33CoastalPack(project,pack);
+ return applyStage33WestContact(applyStage33CoastalPack(project,pack));
 }

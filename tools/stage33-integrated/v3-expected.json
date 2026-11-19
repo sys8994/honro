@@ -1,0 +1,216 @@
+{
+  "rows": [
+    {
+      "file": "stage-33-prior-exact-low.png",
+      "view": {
+        "id": "prior-exact-low",
+        "x": -320,
+        "y": 4848,
+        "scale": 0.057352941176470586,
+        "w": 390,
+        "h": 844,
+        "stage": 33,
+        "z": 0.057352941176470586
+      },
+      "actualCamera": {
+        "x": -320,
+        "y": 4848,
+        "scale": 0.057352941176470586
+      },
+      "tide": {
+        "phase": "low",
+        "surface": 4095,
+        "warningRound": 2,
+        "highRound": 5,
+        "lowRound": 7
+      },
+      "pngSha256": "3e9a6e91baf7622f99be675dbad3267cd0c2302817572197478c0b0a802b4b06",
+      "stageSha256": "cffb5067ddb908e5e214bc075538961f0b9d7d374b3434f4483514df3acdd0e5",
+      "actors": 34,
+      "gameplaySha256": "4f07cabf55941920bba1bf3832f280f7c7dc101402f1adce79539c80722078c2",
+      "scope": "Production Scene composition in native Canvas. Original collision and actors, fixed diagnostic camera. Not browser or campaign play."
+    },
+    {
+      "file": "stage-33-west-allowed-clamp.png",
+      "view": {
+        "id": "west-allowed-clamp",
+        "x": -320,
+        "y": 2400,
+        "scale": 0.057352941176470586,
+        "w": 390,
+        "h": 844,
+        "stage": 33,
+        "z": 0.057352941176470586
+      },
+      "actualCamera": {
+        "x": -320,
+        "y": 2400,
+        "scale": 0.057352941176470586
+      },
+      "tide": {
+        "phase": "low",
+        "surface": 4095,
+        "warningRound": 2,
+        "highRound": 5,
+        "lowRound": 7
+      },
+      "pngSha256": "2921aedb3c83ed151b77b600452d2738eba1a3d9f8b3191e060080606be0e10b",
+      "stageSha256": "cffb5067ddb908e5e214bc075538961f0b9d7d374b3434f4483514df3acdd0e5",
+      "actors": 34,
+      "gameplaySha256": "4f07cabf55941920bba1bf3832f280f7c7dc101402f1adce79539c80722078c2",
+      "scope": "Production Scene composition in native Canvas. Original collision and actors, fixed diagnostic camera. Not browser or campaign play."
+    },
+    {
+      "file": "stage-33-overview.png",
+      "view": {
+        "id": "overview",
+        "x": 3456,
+        "y": 2304,
+        "scale": 0.1410590277777778,
+        "w": 1331,
+        "h": 763,
+        "stage": 33,
+        "z": 0.1410590277777778
+      },
+      "actualCamera": {
+        "x": 3456,
+        "y": 2304,
+        "scale": 0.48140914351851855
+      },
+      "tide": {
+        "phase": "low",
+        "surface": 4095,
+        "warningRound": 2,
+        "highRound": 5,
+        "lowRound": 7
+      },
+      "pngSha256": "967cf0418a65d7f9fc37a66168d8c50c01a24d96ef60b357a3a5abad0254e6f6",
+      "stageSha256": "cffb5067ddb908e5e214bc075538961f0b9d7d374b3434f4483514df3acdd0e5",
+      "actors": 34,
+      "gameplaySha256": "4f07cabf55941920bba1bf3832f280f7c7dc101402f1adce79539c80722078c2",
+      "scope": "Production Scene composition in native Canvas. Original collision and actors, fixed diagnostic camera. Not browser or campaign play."
+    },
+    {
+      "file": "stage-33-top-west.png",
+      "view": {
+        "id": "top-west",
+        "x": 0,
+        "y": 0,
+        "scale": 0.35,
+        "w": 1331,
+        "h": 763,
+        "stage": 33,
+        "z": 0.35
+      },
+      "actualCamera": {
+        "x": 0,
+        "y": 0,
+        "scale": 0.35
+      },
+      "tide": {
+        "phase": "low",
+        "surface": 4095,
+        "warningRound": 2,
+        "highRound": 5,
+        "lowRound": 7
+      },
+      "pngSha256": "1815905ae1ad0d7f00071db1b63a6292453f66e12ea364bcd38c49fc1838d0d4",
+      "stageSha256": "cffb5067ddb908e5e214bc075538961f0b9d7d374b3434f4483514df3acdd0e5",
+      "actors": 34,
+      "gameplaySha256": "4f07cabf55941920bba1bf3832f280f7c7dc101402f1adce79539c80722078c2",
+      "scope": "Production Scene composition in native Canvas. Original collision and actors, fixed diagnostic camera. Not browser or campaign play."
+    },
+    {
+      "file": "stage-33-top-east.png",
+      "view": {
+        "id": "top-east",
+        "x": 6912,
+        "y": 0,
+        "scale": 0.35,
+        "w": 1331,
+        "h": 763,
+        "stage": 33,
+        "z": 0.35
+      },
+      "actualCamera": {
+        "x": 6912,
+        "y": 0,
+        "scale": 0.35
+      },
+      "tide": {
+        "phase": "low",
+        "surface": 4095,
+        "warningRound": 2,
+        "highRound": 5,
+        "lowRound": 7
+      },
+      "pngSha256": "9177a1fe9b1275631be8e5984ebd976265791ed5ccb3e1a66c0f9d2df477dd92",
+      "stageSha256": "cffb5067ddb908e5e214bc075538961f0b9d7d374b3434f4483514df3acdd0e5",
+      "actors": 34,
+      "gameplaySha256": "4f07cabf55941920bba1bf3832f280f7c7dc101402f1adce79539c80722078c2",
+      "scope": "Production Scene composition in native Canvas. Original collision and actors, fixed diagnostic camera. Not browser or campaign play."
+    },
+    {
+      "file": "stage-33-bottom-west.png",
+      "view": {
+        "id": "bottom-west",
+        "x": 0,
+        "y": 4608,
+        "scale": 0.35,
+        "w": 1331,
+        "h": 763,
+        "stage": 33,
+        "z": 0.35
+      },
+      "actualCamera": {
+        "x": 0,
+        "y": 4608,
+        "scale": 0.35
+      },
+      "tide": {
+        "phase": "low",
+        "surface": 4095,
+        "warningRound": 2,
+        "highRound": 5,
+        "lowRound": 7
+      },
+      "pngSha256": "262801029f02c613af9ad62a5449f9753f03a3c5338ade526d42810691d8b68b",
+      "stageSha256": "cffb5067ddb908e5e214bc075538961f0b9d7d374b3434f4483514df3acdd0e5",
+      "actors": 34,
+      "gameplaySha256": "4f07cabf55941920bba1bf3832f280f7c7dc101402f1adce79539c80722078c2",
+      "scope": "Production Scene composition in native Canvas. Original collision and actors, fixed diagnostic camera. Not browser or campaign play."
+    },
+    {
+      "file": "stage-33-bottom-east.png",
+      "view": {
+        "id": "bottom-east",
+        "x": 6912,
+        "y": 4608,
+        "scale": 0.35,
+        "w": 1331,
+        "h": 763,
+        "stage": 33,
+        "z": 0.35
+      },
+      "actualCamera": {
+        "x": 6912,
+        "y": 4608,
+        "scale": 0.35
+      },
+      "tide": {
+        "phase": "low",
+        "surface": 4095,
+        "warningRound": 2,
+        "highRound": 5,
+        "lowRound": 7
+      },
+      "pngSha256": "cfae012e6d9f2681ab31955600ec771c93bf578bbaaf6a4184a8e103be697cd9",
+      "stageSha256": "cffb5067ddb908e5e214bc075538961f0b9d7d374b3434f4483514df3acdd0e5",
+      "actors": 34,
+      "gameplaySha256": "4f07cabf55941920bba1bf3832f280f7c7dc101402f1adce79539c80722078c2",
+      "scope": "Production Scene composition in native Canvas. Original collision and actors, fixed diagnostic camera. Not browser or campaign play."
+    }
+  ],
+  "referenceRun": 44631724684,
+  "referenceCommit": "99580581c042582b0788c86e954fce0e2c253490"
+}
