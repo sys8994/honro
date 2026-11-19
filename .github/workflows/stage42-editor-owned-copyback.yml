@@ -1,0 +1,71 @@
+name: Stage42 owner-opaque cold-cell copyback QA
+on:
+  push:
+    branches: ['qa/stage42-editor-owned-copyback']
+    paths: ['.github/workflows/stage42-editor-owned-copyback.yml', 'tests/stage42-editor-owned-copyback/**']
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      HONRO_ACT4_RELEASE: '1'
+      HONRO_ACT5_RELEASE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+          fetch-depth: 2
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Build isolated Workshop and patch only disposable generated runtime
+        run: |
+          set -euo pipefail
+          T=tests/stage42-editor-owned-copyback
+          test "$GITHUB_REF" = refs/heads/qa/stage42-editor-owned-copyback
+          test "$GITHUB_SHA" = "$(git rev-parse HEAD)"
+          test "$(git rev-parse HEAD^)" = 5609048070feaba5fa724b14d13e1ffc87ce3fc3
+          git diff --name-only HEAD^ HEAD | grep -v -E '^(\.github/workflows/stage42-editor-owned-copyback\.yml|tests/stage42-editor-owned-copyback/[^/]+)$' > "$RUNNER_TEMP/unapproved-paths.txt" || true
+          test ! -s "$RUNNER_TEMP/unapproved-paths.txt"
+          npm ci
+          npm ci --prefix game
+          npm run build
+          B="$RUNNER_TEMP/stage42-owner-copyback-build"
+          E="$RUNNER_TEMP/stage42-owner-copyback-evidence"
+          mkdir -p "$B" "$E"
+          cp -a web HONRO_WORKSHOP.html HONRO.html "$B/"
+          node "$T/source-check.mjs" "$B" | tee "$E/source.json"
+          node "$T/prepare.mjs" "$B"
+          HONRO_OWNER_QA_PREPARE=1 node "$T/prepare-owner-qa.mjs" "$B"
+      - name: Actual UI authoring and fresh file reopen, renderer and cache checks
+        run: |
+          set -euo pipefail
+          python -m pip install 'playwright==1.58.0' 'Pillow==12.0.0'
+          export HONRO_CHROME="$(command -v google-chrome || command -v chromium)"
+          test -x "$HONRO_CHROME"
+          "$HONRO_CHROME" --version
+          export HONRO_STAGE42_OWNER_QA_SMOKE=1
+          python -m http.server 8870 --bind 127.0.0.1 --directory "$RUNNER_TEMP/stage42-owner-copyback-build" &
+          pid=$!
+          trap 'kill "$pid" 2>/dev/null || true' EXIT
+          for ((i=0;i<20;i++)); do
+            if curl -fsS -o /dev/null http://127.0.0.1:8870/HONRO_WORKSHOP.html; then break; fi
+            sleep 1
+          done
+          timeout 1200s python tests/stage42-editor-owned-copyback/browser-qa.py "$RUNNER_TEMP/stage42-owner-copyback-evidence"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage42-owner-copyback-browser-evidence
+          path: |
+            ${{ runner.temp }}/stage42-owner-copyback-evidence/*.png
+            ${{ runner.temp }}/stage42-owner-copyback-evidence/result.json
+            ${{ runner.temp }}/stage42-owner-copyback-evidence/source.json
+          if-no-files-found: warn
+          retention-days: 7

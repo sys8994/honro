@@ -1,0 +1,31 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import {createHash} from 'node:crypto';
+import {installOwnedRasterQA} from './owner-raster.mjs';
+import {compositeOwnedReplacement} from './compose.mjs';
+import {copyOpaqueOwnerRuns} from './copy-owned-runs.mjs';
+// Only run after ordinary V4 prepare in an isolated build directory.
+const root=path.resolve(process.argv[2]??'');
+if(process.env.HONRO_OWNER_QA_PREPARE!=='1'||root===process.cwd())throw Error('Require isolated QA build directory and explicit opt-in');
+const manifest=JSON.parse(fs.readFileSync(path.join(root,'web/manifest.json'),'utf8'));
+const entry=fs.readFileSync(path.join(root,manifest.workshopEntry),'utf8');
+const file=n=>{const id=[...new Set(entry.match(new RegExp('ordered-common-'+n+'\\.[a-f0-9]+\\.js','g'))??[])];if(id.length!==1)throw Error('Unexpected active module '+n);return path.join(root,'web/runtime',id[0]);};
+const hash=s=>createHash('sha256').update(s).digest('hex');
+const once=(s,a,b)=>{if(s.split(a).length!==2)throw Error('Unknown source seam '+a);return s.replace(a,b);};
+const raster=file(15),edge=file(18);
+const current=[raster,edge].map(x=>fs.readFileSync(x,'utf8'));
+const sha=current.map(hash);
+if(process.argv[3]==='--print-pins'){console.log(JSON.stringify(sha));process.exit(0);}
+const expected=JSON.parse(fs.readFileSync(new URL('./runtime-pins.json',import.meta.url),'utf8'));
+if(JSON.stringify(sha)!==JSON.stringify(expected))throw Error('Wrong active Stage42 renderer pins: '+JSON.stringify(sha));
+const open='const landmarks=G.HonroTerrainDomain.materialLandmarks(b).filter(l=>this._landmarkVisible(l,{left:left,top:top,right:left+size,bottom:top+size}));';
+const close='this.terrainReadability?.(cc,b,{left:left,top:top,right:left+size,bottom:top+size});tile=';
+const direct='G.HonroVectorArt.draw(cc,a.edgeWall,{x:0,y:0,scale:1});';
+const adapter=';{const compositeOwnedReplacement='+compositeOwnedReplacement.toString()+';const copyOpaqueOwnerRuns='+copyOpaqueOwnerRuns.toString()+';('+installOwnedRasterQA.toString()+')(globalThis,compositeOwnedReplacement,copyOpaqueOwnerRuns)};';
+let rr=once(current[0],open,'G.HonroStage42OwnedRasterQA?.mark(cc);try{'+open);
+rr=once(rr,close,close.replace('tile=','}finally{G.HonroStage42OwnedRasterQA?.unmark(cc);}tile='));
+let a=once(current[1],direct,'G.HonroStage42OwnedRasterQA.paint(this,c,cc,a,V?(V.classify(l,this.battle,a)==="gameplay"?"gameplay":V.depth(l,a)):null,l);');
+const trigger='(()=>{"use strict";';
+if(!a.startsWith(trigger)&&!a.includes(trigger))throw Error('Unknown active module wrapper');
+a=adapter+a;
+fs.writeFileSync(raster,rr);fs.writeFileSync(edge,a);

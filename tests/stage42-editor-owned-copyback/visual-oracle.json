@@ -1,0 +1,524 @@
+{
+  "schema": "honro-stage42-v5-render-space-oracle-v1",
+  "intent": "one west fold, not full stage; diagnostic probes cannot override visible art rejection",
+  "stageId": "stage-42",
+  "assetId": "act5:near:42",
+  "sourcePin": {
+    "project": "web/data/campaign.f876f67fe414184f.json",
+    "stage": "web/data/chapter-42.0802015e8ba99d11.json",
+    "stageId": "stage-42",
+    "assetManifest": "web/data/chapter-42-assets.0a6fbe6c647b14f4.json",
+    "assetId": "act5:near:42",
+    "key": "native-source-alpha",
+    "bodySha256": "4a413feb79ba5cabb75a8a3e204bce816548db1c80857e11a9538391625756a8",
+    "clipsSha256": "6784931b63ee57114f0c90810a16b886eba91d45f868a319178a4ccf4f11cedb",
+    "visibleGuardSha256": "45469a164c7633befa5a5b41777fda5b1eeb314d35b994f9f4bf23807cd60aea"
+  },
+  "baseline": {
+    "runId": 44437331571,
+    "image": "00-game-west-original.png",
+    "encodedPNGsha256": "f68de6116d7329bf900edf27be9baae5a673426835fea153df3f6815fd046ab2",
+    "camera": [
+      150,
+      1850,
+      0.5,
+      1280,
+      800
+    ],
+    "engineRGBAsha256": "e29a22b8cf73d54bd8c5a1a6c31854e4a64618af2c0c5fb63d13711555c6863e",
+    "unitsSHA256": "f5d4bbda5072eabf0827e06fdc019ff243768fddd594b327c91af309fcd15abd",
+    "terrainSHA256": "8d76f6db63c8bd29687edcb832e6942d6b970bd79a256b5967e50438b0036259",
+    "officialFarReady": true
+  },
+  "transform": {
+    "instanceX": 0,
+    "instanceY": 0,
+    "instanceScale": 3.2146389713155292,
+    "worldFromScreenshot": {
+      "xMultiply": 2,
+      "xAdd": -1130,
+      "yMultiply": 2,
+      "yAdd": 1050
+    }
+  },
+  "itinerary": {
+    "space": "fixed-camera screenshot integer pixels (x,y); operator pointer itinerary, do not import as authored geometry",
+    "clickRimClockwise": [
+      [
+        655,
+        276
+      ],
+      [
+        669,
+        280
+      ],
+      [
+        662,
+        292
+      ],
+      [
+        645,
+        312
+      ],
+      [
+        628,
+        333
+      ],
+      [
+        613,
+        340
+      ],
+      [
+        602,
+        354
+      ],
+      [
+        583,
+        364
+      ],
+      [
+        590,
+        349
+      ],
+      [
+        594,
+        332
+      ],
+      [
+        605,
+        322
+      ],
+      [
+        612,
+        307
+      ],
+      [
+        625,
+        294
+      ],
+      [
+        636,
+        286
+      ]
+    ],
+    "startIndex": 0,
+    "markEndAtIndex": 7,
+    "clickSharedChain": [
+      [
+        646,
+        286
+      ],
+      [
+        631,
+        300
+      ],
+      [
+        618,
+        317
+      ],
+      [
+        607,
+        333
+      ],
+      [
+        599,
+        346
+      ]
+    ],
+    "addChildLedge": false
+  },
+  "materials": {
+    "left": {
+      "stagedInputSRGB": [
+        54,
+        57,
+        62
+      ],
+      "stagedInputLinear": [
+        0.036889,
+        0.040915,
+        0.048172
+      ],
+      "targetRenderSRGB": [
+        65,
+        61,
+        62
+      ],
+      "targetRenderLinear": [
+        0.052861,
+        0.046665,
+        0.048172
+      ]
+    },
+    "right": {
+      "stagedInputSRGB": [
+        48,
+        49,
+        54
+      ],
+      "stagedInputLinear": [
+        0.029557,
+        0.030713,
+        0.036889
+      ],
+      "targetRenderSRGB": [
+        59,
+        53,
+        54
+      ],
+      "targetRenderLinear": [
+        0.043735,
+        0.035601,
+        0.036889
+      ]
+    }
+  },
+  "pixelOracle": {
+    "patchSidePx": 3,
+    "distanceFromAnyNewEdgeMinPx": 2,
+    "outsideChangedPixelBudget": 0,
+    "outsideAAAllowancePx": 3,
+    "significantRGBChannelDelta": 3,
+    "bands": {
+      "protectedPaleShelf": {
+        "pixelsMustMatchExactly": true,
+        "probes": [
+          {
+            "center": [
+              681,
+              245
+            ],
+            "baselineRGB": [
+              80,
+              77,
+              78
+            ],
+            "baselinePatchRGBsha256": "21dbaa2df8c3ff8d5e9ffd10cc5e8ee026b988cba3cbecf7ad69514ccb0777e2"
+          },
+          {
+            "center": [
+              697,
+              237
+            ],
+            "baselineRGB": [
+              79,
+              76,
+              77
+            ],
+            "baselinePatchRGBsha256": "705ad5ef91039bf996394e19ddf1074f357ed65078f21580ed895cbd0af899fa"
+          },
+          {
+            "center": [
+              675,
+              268
+            ],
+            "baselineRGB": [
+              82,
+              78,
+              79
+            ],
+            "baselinePatchRGBsha256": "6162bafe91368909e4a1fd954dcf688b4c92a054c6f01b606799fea7973ce607"
+          }
+        ]
+      },
+      "leftMidSlate": {
+        "side": "left",
+        "maxChannelDeltaFromBaseline": 7,
+        "maxRedMinusBlue": 7,
+        "probes": [
+          {
+            "center": [
+              636,
+              290
+            ],
+            "baselineRGB": [
+              64,
+              60,
+              62
+            ],
+            "baselinePatchRGBsha256": "a4dabe46d920483a3eac7ab3f46d606e36fc96c791abb2206666d752130c4291"
+          },
+          {
+            "center": [
+              627,
+              298
+            ],
+            "baselineRGB": [
+              65,
+              61,
+              62
+            ],
+            "baselinePatchRGBsha256": "aadfd07e186c7fcd3a4a8a58909098eebcff6a82f27c11ccb6a0a1fc0fdc6d37"
+          },
+          {
+            "center": [
+              619,
+              307
+            ],
+            "baselineRGB": [
+              66,
+              61,
+              62
+            ],
+            "baselinePatchRGBsha256": "379253dc7269b78b96813833e34a88ae2c5d18f53d9348eb780811da2f40704d"
+          },
+          {
+            "center": [
+              614,
+              315
+            ],
+            "baselineRGB": [
+              62,
+              57,
+              58
+            ],
+            "baselinePatchRGBsha256": "d8a2ee78d2dd1d6c5a214c0745d5263adfc50f3462aa4f35b22511b7ee1ef041"
+          },
+          {
+            "center": [
+              609,
+              323
+            ],
+            "baselineRGB": [
+              65,
+              59,
+              60
+            ],
+            "baselinePatchRGBsha256": "aac63c3a93129762fed7abe8a553a17721dac41c77568dbf57ce5041c7671433"
+          },
+          {
+            "center": [
+              602,
+              331
+            ],
+            "baselineRGB": [
+              68,
+              63,
+              64
+            ],
+            "baselinePatchRGBsha256": "11e33dfe31f5fa7988fe16c801b3d7fbc59ad8d06c59f13039277c71de9e65d9"
+          },
+          {
+            "center": [
+              598,
+              338
+            ],
+            "baselineRGB": [
+              69,
+              63,
+              64
+            ],
+            "baselinePatchRGBsha256": "a2359eacf39588fd2e56f74f1a01cde0b470b096899a4ad0ff3b64e8ad4478c4"
+          }
+        ]
+      },
+      "upperRightJoin": {
+        "side": "right",
+        "maxChannelDeltaFromBaseline": 7,
+        "probes": [
+          {
+            "center": [
+              658,
+              284
+            ],
+            "baselineRGB": [
+              64,
+              60,
+              62
+            ],
+            "baselinePatchRGBsha256": "d150517ad91ac461401673c5925bebc488b0fb5344f19755c904067f19dc883e"
+          },
+          {
+            "center": [
+              653,
+              290
+            ],
+            "baselineRGB": [
+              64,
+              60,
+              62
+            ],
+            "baselinePatchRGBsha256": "51b4f44ab76dd1afc24cf7b3a42dfc955c2208e315b1c65ad5d42e4226d3e788"
+          },
+          {
+            "center": [
+              646,
+              298
+            ],
+            "baselineRGB": [
+              65,
+              61,
+              62
+            ],
+            "baselinePatchRGBsha256": "741278f195abea11a53e548abd9cd319743d2298227ec36f98da1853fdbbdb56"
+          }
+        ]
+      },
+      "rightDarkFold": {
+        "side": "right",
+        "maxChannelDeltaFromBaseline": 6,
+        "maxRedMinusBlue": 7,
+        "maxRed": 67,
+        "probes": [
+          {
+            "center": [
+              637,
+              307
+            ],
+            "baselineRGB": [
+              58,
+              53,
+              54
+            ],
+            "baselinePatchRGBsha256": "1781c9d5f65027960b92e3d6db236fc7dd3bde0dff6d6388e3accd19debd2ace"
+          },
+          {
+            "center": [
+              631,
+              315
+            ],
+            "baselineRGB": [
+              57,
+              51,
+              52
+            ],
+            "baselinePatchRGBsha256": "ba630d9d8183efb29c5b75077cb2ab70722a42e8a9420f9795146f19ac59095e"
+          },
+          {
+            "center": [
+              625,
+              323
+            ],
+            "baselineRGB": [
+              58,
+              52,
+              53
+            ],
+            "baselinePatchRGBsha256": "11df8db3a23789024175267c349eb172374afaee2fa102d792c9c31b0241670c"
+          },
+          {
+            "center": [
+              617,
+              331
+            ],
+            "baselineRGB": [
+              58,
+              52,
+              53
+            ],
+            "baselinePatchRGBsha256": "f64a1dd1e588ce398027c19705cfd7779d46aad21e483cf2bccecc714d7fce30"
+          },
+          {
+            "center": [
+              609,
+              338
+            ],
+            "baselineRGB": [
+              57,
+              51,
+              53
+            ],
+            "baselinePatchRGBsha256": "d2e8ed73af684275b4697a2e5e3667209c3b4a0b0434e9b9f0c3d2b06fe886d5"
+          },
+          {
+            "center": [
+              604,
+              345
+            ],
+            "baselineRGB": [
+              59,
+              52,
+              53
+            ],
+            "baselinePatchRGBsha256": "cfe3e80a670cd53cfec4ab3d6e29632e560cc920599f874f28d7f2a5b04cb86e"
+          },
+          {
+            "center": [
+              600,
+              351
+            ],
+            "baselineRGB": [
+              61,
+              54,
+              54
+            ],
+            "baselinePatchRGBsha256": "37f992ffb43ef1466651ba71c58cf74cd626f04cce6861885a97c86593376298"
+          },
+          {
+            "center": [
+              596,
+              354
+            ],
+            "baselineRGB": [
+              61,
+              54,
+              54
+            ],
+            "baselinePatchRGBsha256": "9916836642094015eca8f6d1331939012d8f072a58a9fc84af6a6d1b528222a4"
+          }
+        ]
+      },
+      "outsideControls": {
+        "pixelsMustMatchExactly": true,
+        "probes": [
+          {
+            "center": [
+              736,
+              234
+            ],
+            "baselineRGB": [
+              79,
+              76,
+              77
+            ],
+            "baselinePatchRGBsha256": "505f56e5e87498f59117863544c919d3822c9b3c49e4fd00fd3e826e0ea4623f"
+          },
+          {
+            "center": [
+              571,
+              373
+            ],
+            "baselineRGB": [
+              80,
+              72,
+              74
+            ],
+            "baselinePatchRGBsha256": "4b6b012e1803595b4f4deb061bd1c4ebf0fd7029694b2955560188238e66c32f"
+          },
+          {
+            "center": [
+              675,
+              302
+            ],
+            "baselineRGB": [
+              53,
+              49,
+              51
+            ],
+            "baselinePatchRGBsha256": "57da417671777535cd5446365c6340a847fc78a40e9d74d4a2d84870aff57bcc"
+          },
+          {
+            "center": [
+              568,
+              332
+            ],
+            "baselineRGB": [
+              62,
+              55,
+              57
+            ],
+            "baselinePatchRGBsha256": "862458a181885fb0a49e10a87562b0d4e0f0a6dc7d08514e2d670a22dc534fbb"
+          }
+        ]
+      }
+    }
+  },
+  "visualGate": {
+    "mandatory": true,
+    "probePassOverridesArt": false,
+    "requireActualRendererCutoutTest": true,
+    "noWarmTip": true,
+    "noSmearOrStackedOutline": true,
+    "noOriginalPaleShelfLoss": true
+  }
+}
