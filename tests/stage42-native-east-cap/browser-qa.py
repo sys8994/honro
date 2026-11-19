@@ -21,10 +21,10 @@ def read(page):
   delete a.edgeWall;
   return {full:await full,protected:await sha(p),old:await old,clip:await clip,cap};
  }""")
-def source(browser):
- page=browser.new_context(viewport={'width':1920,'height':1080},device_scale_factor=1).new_page()
+def source(browser, author=False):
+ page=browser.new_context(viewport={'width':1920 if author else 1440,'height':1080 if author else 900},device_scale_factor=1).new_page()
  page.on('pageerror',lambda e:r['page_errors'].append(str(e)))
- page.goto('http://127.0.0.1:8870/HONRO_WORKSHOP.html')
+ page.goto('http://127.0.0.1:8870/HONRO_WORKSHOP.html',wait_until='domcontentloaded')
  page.wait_for_function("window.HonroWorkshopAPI?.getEditorState() && document.querySelector('#qaEastCapHost')",timeout=90000)
  page.evaluate("HonroWorkshopAPI.selectStage('stage-42')")
  return page
@@ -42,25 +42,44 @@ def layout(page,points):
 def click_points(page,pts):
  for pos in layout(page,pts)['layout']:page.locator('#stageCanvas').click(position=pos)
 def capture(page,state,tag):
- x=page.evaluate((D/'scene-proof.js').read_text(),{'views':views,'expected':state['full'],'seed':3910})
- frames={}
- for shot in x.pop('results'):
-  img=base64.b64decode(shot.pop('png').split(',',1)[1],validate=True)
-  oldmask=base64.b64decode(shot.pop('oldBodyMask').split(',',1)[1],validate=True)
-  (out/f"{tag}-{shot['label']}.png").write_bytes(img)
-  if tag=='baseline':
-   original=next(v for v in views if v['label']==shot['label'])
-   assert hashlib.sha256(img).hexdigest()==original['png_sha256'], ('Original audited frame drift',shot['label'],hashlib.sha256(img).hexdigest())
-  frames[shot['label']]=(Image.open(io.BytesIO(img)).convert('RGBA'),Image.open(io.BytesIO(oldmask)).convert('RGBA'),shot)
- r[tag]={**x,'views':[f[-1] for f in frames.values()]};checkpoint(tag+'-rendered')
- return x,frames
+ # Stock audit 44441937287: identical group order, four-shot Scene boundaries,
+ # requested values/clamps and history. Only return/upload the two target shots.
+ itinerary=(
+  ('minimum-overview',[(3250,1430.5)],.16),
+  ('landscape-pan',[(x,1850) for x in [-1000,-400,150,850,1550,2250,2950,3650,4350,5050,5750,6350,6950,7600]],.5),
+  ('vertical-pan',[(3250,y) for y in [-1000,0,500,1000,1500,2000,2500,3000,3500,4400]],.35),
+  ('corners',[(x,y) for y in (1050,3125) for x in (-550,7050)],.30))
+ pins={v['label']:v for v in views}
+ frames={};invariants=None
+ for band,xy,z in itinerary:
+  for start in range(0,len(xy),4):
+   group=[{'label':f'{band}-{j:02d}','x':x,'y':y,'zoom':z} for j,(x,y) in enumerate(xy[start:start+4],start)]
+   x=page.evaluate((D/'scene-proof.js').read_text(),{'views':group,'targets':[v for v in views if v['label'] in [q['label'] for q in group]],'expected':state['full'],'seed':3910})
+   raw=x.pop('results')
+   if invariants is None:invariants=x
+   else:assert x==invariants,('candidate camera group changed fixed simulation data',band,start)
+   for shot in raw:
+    img=base64.b64decode(shot.pop('png').split(',',1)[1],validate=True)
+    oldmask=base64.b64decode(shot.pop('oldBodyMask').split(',',1)[1],validate=True)
+    (out/f"{tag}-{shot['label']}.png").write_bytes(img)
+    observed=hashlib.sha256(img).hexdigest()
+    r.setdefault('observed_png_sha256',{}).setdefault(tag,{})[shot['label']]=observed
+    checkpoint(tag+'-'+shot['label']+'-captured')
+    if tag=='baseline':
+     assert observed==pins[shot['label']]['png_sha256'],('Original audited frame drift',shot['label'],observed)
+    frames[shot['label']]=(Image.open(io.BytesIO(img)).convert('RGBA'),Image.open(io.BytesIO(oldmask)).convert('RGBA'),shot)
+ assert set(frames)==set(pins)
+ r[tag]={**invariants,'views':[f[-1] for f in frames.values()]};checkpoint(tag+'-rendered')
+ return invariants,frames
 with sync_playwright() as pw:
  b=pw.chromium.launch(headless=True,executable_path=os.environ['HONRO_CHROME'])
- page=fresh=None
+ page=fresh=base=None
  try:
-  page=source(b);original=read(page)
+  base=source(b);original=read(base)
   assert original['full']=='135e9a633d311d3b8b03ab2c676a7e94a46601629e0a91d7835988ed96438ddf'
-  old_evidence,olds=capture(page,original,'baseline')
+  old_evidence,olds=capture(base,original,'baseline')
+  base.context.close()
+  page=source(b,author=True);assert read(page)==original
   click_button(page,'동쪽 끝마감 도구')
   rim=plan['rim'][:-2]
   click_points(page,rim[:-1]);click_button(page,'외곽 끝점');click_points(page,[rim[-1]])
@@ -107,7 +126,8 @@ with sync_playwright() as pw:
   for name,(base,owner_alpha,meta) in olds.items():
    cand,_,result=news[name]
    assert meta['actual']==result['actual']
-   assert meta['counts']['cached']>0 and result['counts']['cached']>0
+   assert meta['cached_group_draws']>0 and result['cached_group_draws']>0
+   assert (meta['counts']['cached']>0 or meta['cache_hit_delta']>0) and (result['counts']['cached']>0 or result['cache_hit_delta']>0)
    if name=='corners-03':assert meta['counts']['exterior']>0 and result['counts']['exterior']>0
    x,y,z=meta['actual'];xmin=(2298.5*S-x)*z+640-3;xmax=(2324.2701*S-x)*z+640+3;ymin=(685*S-y)*z+400-3;ymax=(825*S-y)*z+400+3
    mm=Image.new('1',(1280,800))
@@ -127,6 +147,7 @@ with sync_playwright() as pw:
   r['pass']=True;r['art_approval']=False;checkpoint('mechanics-passed')
  except Exception as e:
   r['error']=str(e);checkpoint('failed')
-  if fresh or page:(fresh or page).screenshot(path=str(out/'failure-workshop.png'))
+  failure=fresh or page or base
+  if failure and not failure.is_closed():failure.screenshot(path=str(out/'failure-workshop.png'))
   raise
  finally:b.close()
