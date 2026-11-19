@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
-          fetch-depth: 2
+          fetch-depth: 3
           persist-credentials: false
       - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
         with:
@@ -30,9 +30,11 @@ jobs:
           set -euo pipefail
           test "$GITHUB_REF" = refs/heads/qa/stage42-full-native-workshop
           test "$GITHUB_SHA" = "$(git rev-parse HEAD)"
-          test "$(git rev-parse HEAD^)" = 1e043b09d4ce107e1d2dcf70fe2274dff7098476
-          printf '%s\n' .github/workflows/stage42-full-native-workshop.yml tests/stage42-full-native-workshop/author.mjs tests/stage42-full-native-workshop/browser-full.py tests/stage42-full-native-workshop/full-itinerary.json tests/stage42-full-native-workshop/game-full.js tests/stage42-full-native-workshop/host.js tests/stage42-full-native-workshop/model.mjs tests/stage42-full-native-workshop/prepare.mjs tests/stage42-full-native-workshop/review-cameras.json tests/stage42-full-native-workshop/test.mjs tests/stage42-full-native-workshop/workshop.mjs > "$RUNNER_TEMP/whole-allowed.txt"
-          git diff --name-only HEAD^ HEAD | diff -u "$RUNNER_TEMP/whole-allowed.txt" -
+          test "$(git rev-parse HEAD^^)" = 1e043b09d4ce107e1d2dcf70fe2274dff7098476
+          test "$(git rev-parse HEAD^)" = d61f4b85cbbc33decab98a35c7387c5a0c9c9818
+          printf '%s\n' .github/workflows/stage42-full-native-workshop.yml tests/stage42-full-native-workshop/author-detail.mjs tests/stage42-full-native-workshop/browser-detail.py tests/stage42-full-native-workshop/detail-itinerary.json tests/stage42-full-native-workshop/detail.mjs tests/stage42-full-native-workshop/host-detail.js tests/stage42-full-native-workshop/pack-detail.mjs tests/stage42-full-native-workshop/prepare-detail.mjs > "$RUNNER_TEMP/full-detail-allowed.txt"
+          git diff --name-only HEAD^ HEAD | diff -u "$RUNNER_TEMP/full-detail-allowed.txt" -
+          echo "2a9127bc2394378eb60f6fbfca2e31cff25afa8108bde67fb92b9e5bb36399bd  tests/stage42-full-native-workshop/detail-itinerary.json" | sha256sum -c -
           echo "a4ef814abb314e4767f95096e769405232d46be1561044f95ff0d2ec582dc510  tests/stage42-full-native-workshop/full-itinerary.json" | sha256sum -c -
           echo "041cbf05d49aa2f6722ab87938e91e60eb30650bcec2b7b47d1f1fbfdd196abc  tests/stage42-full-native-workshop/review-cameras.json" | sha256sum -c -
           node tests/stage42-full-native-workshop/test.mjs
@@ -43,8 +45,9 @@ jobs:
           mkdir -p "$B" "$E"
           cp -a web HONRO_WORKSHOP.html HONRO.html "$B/"
           node tests/stage42-full-native-workshop/prepare.mjs "$B"
+          HONRO_FULL_DETAIL_WORKSHOP_QA=1 HONRO_FULL_DISPOSABLE_SHA256=15b93ae4bff4f9367ec99b18e85b515109d871f53a70bfa5cb1129f02bd085f2 node tests/stage42-full-native-workshop/prepare-detail.mjs "$B"
           node --check "$B/web/runtime/workshop-app.489f733634454986.js"
-      - name: Real full-width native pointers, exact fresh file and regional Game views
+      - name: Real full-width detail native pointers and exact same-camera stock Game
         run: |
           set -euo pipefail
           python -m pip install 'playwright==1.58.0' 'Pillow==12.0.0'
@@ -60,7 +63,7 @@ jobs:
             if curl -fsS -o /dev/null http://127.0.0.1:8870/HONRO_WORKSHOP.html; then break; fi
             sleep 1
           done
-          timeout 1000s python tests/stage42-full-native-workshop/browser-full.py "$RUNNER_TEMP/stage42-full-native-workshop-evidence"
+          timeout 1000s python tests/stage42-full-native-workshop/browser-detail.py "$RUNNER_TEMP/stage42-full-native-workshop-evidence"
       - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
         if: always()
         with:
