@@ -9,15 +9,16 @@ try:
   browser=p.chromium.launch(headless=True,args=['--no-sandbox'])
   for sid,w,h,x,y,z,label in [(38,1331,763,4850,2600,1,'rescue'),(38,1331,763,3456,2304,1331/6800,'whole')]:
    page=browser.new_page(viewport={'width':w,'height':h},device_scale_factor=1)
-   page.add_init_script("let seed=3910;Math.random=()=>((seed=(seed*1664525+1013904223)>>>0)/2**32);")
+   page.add_init_script("let seed=3910;Math.random=()=>((seed=(seed*1664525+1013904223)>>>0)/2**32);window.__qaImages=[];const d=Object.getOwnPropertyDescriptor(HTMLImageElement.prototype,'src');Object.defineProperty(HTMLImageElement.prototype,'src',{...d,set(v){window.__qaImages.push(this);d.set.call(this,v)}});")
    page.on('pageerror',lambda e:errors.append(str(e)))
    page.goto('http://127.0.0.1:8765/HONRO.html',wait_until='domcontentloaded',timeout=180000)
    page.wait_for_function("document.documentElement.dataset.honroReady==='true' && window.HonroCampaignLoader && window.HonroAct4TerrainPreview",timeout=180000)
    page.evaluate('''async sid=>{const a=HonroApp;a.frame=()=>{};a.profile.settings.music=false;a.profile.settings.sound=false;
      await HonroCampaignLoader.ensureStage(sid);for(let n=1;n<sid;n++)a.profile.cleared[n]=true;
      for(const hero of Object.values(a.profile.heroes))hero.xp=HonroProgression.xpAt(HonroProgression.plan(sid).entryLevel);
-     a.launch(sid);if(a.engine?.b.honroStage!==sid)throw Error('Campaign launch did not reach '+sid);for(let n=0;n<40&&a.dialogue;n++)HonroStory.finish(a);if(a.dialogue)throw Error('Entry dialogue not closed');a.turnNotice=null;a.close();HonroStoryFraming.clear(a.scene);}''',sid)
-   page.wait_for_timeout(250)
+     a.launch(sid);if(a.engine?.b.honroStage!==sid)throw Error('Campaign launch did not reach '+sid);for(let n=0;n<40&&a.dialogue;n++)HonroStory.finish(a);if(a.dialogue)throw Error('Entry dialogue not closed');a.close();HonroStoryFraming.clear(a.scene);}''',sid)
+   page.wait_for_timeout(1500)
+   page.evaluate("()=>{const a=HonroApp;HonroStory.tick(a,performance.now());HonroStory.draw(a);if(document.getElementById('turn-banner')?.hidden===false)throw Error('Turn banner remains');}")
    actual_height=page.locator('#battlecanvas').evaluate('(c)=>c.clientHeight')
    if actual_height!=h:
     page.set_viewport_size({'width':w,'height':h+(h-actual_height)})
@@ -27,6 +28,10 @@ try:
      s.render(a.engine,0,'',.6,false,0);s.render(a.engine,0,'',.6,false,0);
      if(JSON.stringify({terrain:b.terrain,units:b.units,design:st.design,initialState:st.initialState,objectives:st.objectives})!==physics)throw Error('Physics changed during capture');
      return {camera:{x:s.x,y:s.y,scale:s.scale},canvas:[s.canvas.width,s.canvas.height],tide:b.honroAct4PreviewState?.tide,physics,support:b.terrain.find(t=>t.id==='a4-rescue-rock-step'),units:b.units.map(u=>({id:u.id,x:u.x,y:u.y,grounded:u.grounded})), capPresent:JSON.stringify(HONRO_PROJECT.library.find(v=>v.id==='act4-handoff:38:cave-contact')).includes('M1060.000,567.778 L1073.333,567.778 L1073.333,571.778 L1060.000,571.778 Z'),projectStage:st.id};}''',{'sid':sid,'x':x,'y':y,'z':z})
+   page.wait_for_function("window.__qaImages.every(i=>i.complete)",timeout=120000)
+   page.evaluate("()=>{const a=HonroApp; a.scene.time=2;a.scene.render(a.engine,0,'',.6,false,0);a.scene.render(a.engine,0,'',.6,false,0);}")
+   result['images']=page.evaluate("()=>window.__qaImages.map(i=>({src:i.src,complete:i.complete,width:i.naturalWidth}))")
+   assert all(i['width']>0 for i in result['images']),result['images']
    assert result['canvas']==[w,h],result
    assert abs(result['camera']['x']-x)<1e-8 and abs(result['camera']['y']-y)<1e-8 and abs(result['camera']['scale']-z)<1e-8,result
    (out/(label+'-physics.json')).write_text(result['physics'])
