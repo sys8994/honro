@@ -33,17 +33,20 @@ function bodyTarget(p){
  return owners[0];
 }
 function bodyRestricted(p){const x=deep(p);delete bodyTarget(x).edgeWall;return x}
+const bodyFaceId=id=>typeof id==='string'&&/^native-body-face_[a-z0-9]+_[a-z0-9]+$/.test(id);
+const isBodyFace=n=>String(n.id||'').startsWith('native-body-face_');
+const exactKeys=(v,k)=>v!=null&&typeof v==='object'&&!Array.isArray(v)&&Object.keys(v).length===k.length&&k.every(x=>Object.hasOwn(v,x));
+function bodyOwnedBase(x){const y=deep(x);delete y.params?.bodyEditorFaces;y.vector.root.children=y.vector.root.children.filter(n=>!isBodyFace(n));return y}
+function bodyFacePath(points){return 'M'+points.map(p=>p.map(v=>v.toFixed(2)).join(' ')).join('L')+'Z'}
 function bodyProject(next){
  const owner=bodyTarget(project), proposed=deep(project), original=owner.edgeWall;
  if(!next?.vector?.root?.clipPath||JSON.stringify(next.vector.clips)!==JSON.stringify(original.vector.clips))throw Error('BODY clips changed');
- const trim=x=>{const y=deep(x);delete y.params?.bodyEditorFaces;y.vector.root.children=y.vector.root.children.filter(n=>!String(n.id||'').startsWith('native-body-face_'));return y};
- if(JSON.stringify(trim(next))!==JSON.stringify(trim(original)))throw Error('Non-authored BODY geometry changed');
- const exactKeys=(v,k)=>v!=null&&typeof v==='object'&&!Array.isArray(v)&&Object.keys(v).length===k.length&&k.every(x=>Object.hasOwn(v,x));
- const records=next.params?.bodyEditorFaces??[], paths=next.vector.root.children.filter(n=>String(n.id||'').startsWith('native-body-face_'));
+ if(JSON.stringify(bodyOwnedBase(next))!==JSON.stringify(bodyOwnedBase(original)))throw Error('Non-authored BODY geometry changed');
+ const records=next.params?.bodyEditorFaces??[], paths=next.vector.root.children.filter(isBodyFace);
  if(!Array.isArray(records)||records.length!==paths.length||new Set(records.map(f=>f?.id)).size!==records.length)throw Error('Invalid authored face records');
  for(const [i,f] of records.entries()){
   const n=paths[i], pts=f?.points;
-  if(!exactKeys(f,['id','points','fill'])||!exactKeys(n,['tag','id','fill','d'])||n.id!==f.id||n.tag!=='path'||n.fill!==f.fill||!/^#[0-9a-fA-F]{6}$/.test(f.fill)||!Array.isArray(pts)||pts.length<3||pts.length>128||pts.some(p=>!Array.isArray(p)||p.length!==2||p.some(v=>!Number.isFinite(v)))||new Set(pts.map(p=>p.map(v=>(+v.toFixed(2)).toFixed(2)).join(','))).size!==pts.length||n.d!=='M'+pts.map(p=>p.map(v=>v.toFixed(2)).join(' ')).join('L')+'Z')throw Error('Invalid authored face');
+  if(!exactKeys(f,['id','points','fill'])||!exactKeys(n,['tag','id','fill','d'])||!bodyFaceId(f.id)||n.id!==f.id||n.tag!=='path'||n.fill!==f.fill||!/^#[0-9a-fA-F]{6}$/.test(f.fill)||!Array.isArray(pts)||pts.length<3||pts.length>128||pts.some(p=>!Array.isArray(p)||p.length!==2||p.some(v=>!Number.isFinite(v)))||new Set(pts.map(p=>p.map(v=>(+v.toFixed(2)).toFixed(2)).join(','))).size!==pts.length||n.d!==bodyFacePath(pts))throw Error('Invalid authored face');
   validBodyGeometry(pts,owner);
  }
  bodyTarget(proposed).edgeWall=deep(next);
@@ -59,12 +62,39 @@ function bodyCommit(proposed){
  future=[];previewProject=null;previewCommandsKey=null;bodyPreviewKey=null;invalidateRuntime();
  const saved=saveAutosave();renderAll();setStatus(saved?'BODY 초안 저장':autosaveFailureMessage());
 }
-function exportBodyDraft(){return JSON.stringify({kind:'honro-stage42-body-draft-v1',project:deep(project)})}
-function importBodyDraft(raw){
+const draftKind='honro-stage42-body-draft-v2', draftMaxBytes=2097152;
+function bodyBaseTexts(p){return [JSON.stringify(bodyRestricted(p)),JSON.stringify(bodyOwnedBase(bodyTarget(p).edgeWall))]}
+async function bodyDigest(x){return Array.from(new Uint8Array(await globalThis.crypto.subtle.digest('SHA-256',new TextEncoder().encode(x)))).map(b=>b.toString(16).padStart(2,'0')).join('')}
+async function exportBodyDraft(){
  if(previewProject)throw Error('Resolve preview first');
- const doc=typeof raw==='string'?JSON.parse(raw):raw;
- if(doc?.kind!=='honro-stage42-body-draft-v1'||JSON.stringify(bodyRestricted(doc.project))!==JSON.stringify(bodyRestricted(project)))throw Error('Draft base differs from opened project');
- bodyCommit(doc.project);return deep(project);
+ const p=project, faces=deep(bodyTarget(p).edgeWall.params?.bodyEditorFaces??[]);
+ if(!faces.length||faces.length>256)throw Error('No authored BODY faces or face count exceeds limit');
+ const [baseProjectSha256,baseBodySha256]=await Promise.all(bodyBaseTexts(p).map(bodyDigest));
+ const raw=JSON.stringify({kind:draftKind,stageId:nativeBodyStage,assetId:nativeBodyAsset,baseProjectSha256,baseBodySha256,faces});
+ if(new TextEncoder().encode(raw).length>draftMaxBytes)throw Error('BODY draft too large');
+ return raw;
+}
+async function importBodyDraft(raw){
+ if(previewProject)throw Error('Resolve preview first');
+ if(typeof raw==='string'&&new TextEncoder().encode(raw).length>draftMaxBytes)throw Error('BODY draft too large');
+ const doc=typeof raw==='string'?JSON.parse(raw):deep(raw), fields=['kind','stageId','assetId','baseProjectSha256','baseBodySha256','faces'];
+ const isSha=s=>typeof s==='string'&&/^[a-f0-9]{64}$/.test(s);
+ if(!exactKeys(doc,fields)||doc.kind!==draftKind||doc.stageId!==nativeBodyStage||doc.assetId!==nativeBodyAsset||!isSha(doc.baseProjectSha256)||!isSha(doc.baseBodySha256)||!Array.isArray(doc.faces)||doc.faces.length<1||doc.faces.length>256)throw Error('Invalid BODY draft envelope');
+ const p=project, texts=bodyBaseTexts(p), [baseProjectSha256,baseBodySha256]=await Promise.all(texts.map(bodyDigest));
+ if(p!==project||previewProject||bodyBaseTexts(project).some((x,i)=>x!==texts[i]))throw Error('BODY draft base changed while opening');
+ if(doc.baseProjectSha256!==baseProjectSha256||doc.baseBodySha256!==baseBodySha256)throw Error('Draft base differs from opened project');
+ const owner=bodyTarget(p), expected=owner.edgeWall.params?.bodyEditorFaces??[];
+ if(expected.length)throw Error('Open BODY draft into a fresh base project');
+ const next=bodyOwnedBase(owner.edgeWall);
+ next.params??={};
+ next.params.bodyEditorFaces=deep(doc.faces);
+ for(const f of doc.faces){
+  if(!exactKeys(f,['id','points','fill'])||!bodyFaceId(f.id)||typeof f.fill!=='string'||!Array.isArray(f.points)||f.points.length<3||f.points.length>128||f.points.some(q=>!Array.isArray(q)||q.length!==2||q.some(n=>!Number.isFinite(n))))throw Error('Invalid authored face');
+  next.vector.root.children.push({tag:'path',id:f.id,fill:f.fill,d:bodyFacePath(f.points)});
+ }
+ const proposed=deep(p);bodyTarget(proposed).edgeWall=next;
+ bodyCommit(proposed);
+ return deep(project);
 }
 function bodyTransform(){
  const s=realStage(),e=s.elements.find(e=>e.assetId===nativeBodyAsset);
@@ -111,10 +141,17 @@ function bodyControls(){
  edit.onclick=()=>{if(previewProject)return;const f=project.library.find(a=>a.id===nativeBodyAsset)?.edgeWall?.params?.bodyEditorFaces?.at(-1);if(!f){toast('에디터로 작성한 암면이 없습니다');return;}bodyEditing=f.id;bodyFill=f.fill;bodyDraft=deep(f.points);bar.querySelector('input').value=f.fill;bodyMoving=-1;renderStage();};
  preview.onclick=bodyPreview;
  apply.onclick=()=>{if(previewProject&&previewProject===bodyPreviewKey){bodyCommit(previewProject);bodyPreviewKey=null;bodyDraft=[];bodyMoving=-1;bodyEditing=null;renderStage();}};
- exportDraft.onclick=()=>download('stage42-body-draft.json',exportBodyDraft(),'application/json');
+ exportDraft.onclick=async()=>{try{download('stage42-body-draft.json',await exportBodyDraft(),'application/json')}catch(e){toast(e.message)}};
  const input=bar.querySelector('input[type=file]');input.setAttribute('aria-label','암반 초안 파일');
- importDraft.onclick=()=>input.click();
- input.onchange=async()=>{try{if(input.files?.[0])importBodyDraft(await input.files[0].text())}catch(e){toast(e.message)}finally{input.value=''}};
+ importDraft.onclick=()=>{delete document.documentElement.dataset.bodyDraftImportError;document.documentElement.dataset.bodyDraftImport='waiting-file';input.click();};
+ input.onchange=async()=>{
+  const status=document.documentElement.dataset,file=input.files?.[0];if(!file)return;
+  status.bodyDraftImport='reading';
+  try{if(file.size>draftMaxBytes)throw Error('BODY draft too large');const raw=await file.text();status.bodyDraftImport='validating';await importBodyDraft(raw);status.bodyDraftImport='opened';}
+  catch(e){status.bodyDraftImportError=String(e.message);status.bodyDraftImport='error';toast(e.message)}
+  finally{input.value=''}
+ };
+
  cancel.onclick=()=>{if(previewProject&&previewProject===bodyPreviewKey){clearPreview();bodyPreviewKey=null;}bodyDraft=[];bodyMoving=-1;bodyEditing=null;renderStage();};
 }
 function drawBodyDraft(){

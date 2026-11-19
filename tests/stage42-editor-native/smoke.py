@@ -10,7 +10,7 @@ def checkpoint(step):
 with sync_playwright() as pw:
  b=pw.chromium.launch(headless=True,executable_path=os.environ["HONRO_CHROME"])
  page=b.new_page(viewport={'width':1500,'height':1000},device_scale_factor=1)
- errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
+ fresh=None; fresh_errors=[]; errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
  try:
   page.goto('http://127.0.0.1:8870/HONRO_WORKSHOP.html')
   page.wait_for_function('window.HonroWorkshopAPI?.getProject()?.stages.some(s=>s.id==="stage-42")',timeout=90000)
@@ -79,8 +79,12 @@ with sync_playwright() as pw:
   import tempfile
   with tempfile.TemporaryDirectory() as td:
    draft=Path(td)/'stage42-draft.json';d.value.save_as(draft)
+   r['download_bytes']=draft.stat().st_size
    checkpoint('download-saved')
+   assert 0<r['download_bytes']<=2097152,'Invalid compact draft size'
+   assert set(json.loads(draft.read_text()))=={'kind','stageId','assetId','baseProjectSha256','baseBodySha256','faces'},'Out-of-scope draft contents'
    fresh=b.new_context(viewport={'width':1500,'height':1000},device_scale_factor=1).new_page()
+   fresh.on('pageerror',lambda e:fresh_errors.append(str(e)))
    fresh.goto('http://127.0.0.1:8870/HONRO_WORKSHOP.html')
    fresh.wait_for_function('window.HonroWorkshopAPI?.getProject()?.stages.some(s=>s.id==="stage-42")',timeout=90000)
    fresh.evaluate("HonroWorkshopAPI.selectStage('stage-42')")
@@ -91,7 +95,12 @@ with sync_playwright() as pw:
     fresh.get_by_role('button',name='암반 초안 열기',exact=True).click()
    f.value.set_files(str(draft))
    checkpoint('fresh-file-injected')
-   fresh.wait_for_function("""id=>HonroWorkshopAPI.getProject().library.find(x=>x.id==='act5:near:42').edgeWall.params.bodyEditorFaces?.some(f=>f.id===id)""",arg=target_id,timeout=30000)
+   fresh.wait_for_function("""()=>['opened','error'].includes(document.documentElement.dataset.bodyDraftImport)""",timeout=45000,polling=250)
+   r['fresh_import_status']=fresh.locator('html').get_attribute('data-body-draft-import')
+   r['fresh_import_error']=fresh.locator('html').get_attribute('data-body-draft-import-error')
+   r['fresh_toast']=fresh.locator('#toast').text_content()
+   checkpoint('fresh-import-finished')
+   assert r['fresh_import_status']=='opened',('manual draft failed to reopen',r['fresh_import_error'])
    assert fresh.evaluate(project)==after,'Reopened draft differs from saved editor source'
    fresh.evaluate("""()=>{const a=HonroWorkshopAPI,e=a.queryScene().stage.elements.find(e=>e.assetId==='act5:near:42');a.setCamera({x:e.x+222*e.scale,y:e.y+612*e.scale,zoom:2});}""")
    fresh.get_by_role('button',name='최근 작성면 편집',exact=True).click()
@@ -100,7 +109,17 @@ with sync_playwright() as pw:
   r.update(points=verts,stage42_face_id=target_id,before_project_sha256=before['full'],committed_project_sha256=after['full'],original_clips_sha256=before['clips']); r['pass']=True
   checkpoint('fresh-reopen-exact')
  except Exception as e:
-  r['error']=str(e);page.screenshot(path=str(out/'failure-editor-screen.png'));raise
+  r['error']=str(e)
+  try:
+   if fresh and not fresh.is_closed():
+    r['fresh_import_status']=fresh.locator('html').get_attribute('data-body-draft-import',timeout=5000)
+    r['fresh_import_error']=fresh.locator('html').get_attribute('data-body-draft-import-error',timeout=5000)
+    r['fresh_toast']=fresh.locator('#toast').text_content(timeout=5000)
+    fresh.screenshot(path=str(out/'failure-fresh-editor.png'),timeout=10000)
+   page.screenshot(path=str(out/'failure-editor-screen.png'),timeout=10000)
+  except Exception as capture_error:
+   r['failure_capture_error']=str(capture_error)
+  raise
  finally:
-  r['page_errors']=errors;(out/'result.json').write_text(json.dumps(r,ensure_ascii=False,indent=2))
+  r['page_errors']=errors;r['fresh_page_errors']=fresh_errors;(out/'result.json').write_text(json.dumps(r,ensure_ascii=False,indent=2))
   b.close()
