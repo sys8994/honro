@@ -24,13 +24,18 @@ jobs:
       - name: Normal stock HTTP before rebuild
         run: python tools/stage33-integrated/http.py stock
       - name: Official build and guards without fingerprint changes
+        id: build
         run: |
           npm run test:release-guard
           npm run build
-          npm run test:production-contract
+      - name: Official production contract (unmodified)
+        id: contract
+        run: npm run test:production-contract
       - name: Normal integrated HTTP from compiled wrappers
+        if: ${{ always() && steps.build.outcome == 'success' }}
         run: python tools/stage33-integrated/http.py integrated
       - name: Integrated production native capture and v3 parity
+        if: ${{ always() && steps.build.outcome == 'success' }}
         run: |
           HONRO_NATIVE_OUT=_local/reports/stage33-integrated/native node --expose-gc tools/stage33-integrated/native.mjs 33
           node tools/stage33-integrated/compare.mjs
