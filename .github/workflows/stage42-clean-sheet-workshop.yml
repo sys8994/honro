@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
-          fetch-depth: 2
+          fetch-depth: 3
           persist-credentials: false
       - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
         with:
@@ -30,8 +30,10 @@ jobs:
           set -euo pipefail
           test "$GITHUB_REF" = refs/heads/qa/stage42-clean-sheet-workshop
           test "$GITHUB_SHA" = "$(git rev-parse HEAD)"
-          test "$(git rev-parse HEAD^)" = 1e043b09d4ce107e1d2dcf70fe2274dff7098476
-          printf '%s\n' .github/workflows/stage42-clean-sheet-workshop.yml tests/stage42-clean-sheet-workshop/b01-pointer-plan.json tests/stage42-clean-sheet-workshop/blank.mjs tests/stage42-clean-sheet-workshop/browser-proof.py tests/stage42-clean-sheet-workshop/host.js tests/stage42-clean-sheet-workshop/pack.mjs tests/stage42-clean-sheet-workshop/partition.mjs tests/stage42-clean-sheet-workshop/prepare.mjs tests/stage42-clean-sheet-workshop/unit.mjs > "$RUNNER_TEMP/blank-allowed.txt"
+          test "$(git rev-parse HEAD^^)" = 1e043b09d4ce107e1d2dcf70fe2274dff7098476
+          test "$GITHUB_SHA" != "ab2c77eb1a165b7c5639d34b027b7f5820f9b1e5"
+          test "$(git rev-parse HEAD^)" = ab2c77eb1a165b7c5639d34b027b7f5820f9b1e5
+          printf '%s\n' .github/workflows/stage42-clean-sheet-workshop.yml tests/stage42-clean-sheet-workshop/browser-proof.py tests/stage42-clean-sheet-workshop/game-snapshot.js tests/stage42-clean-sheet-workshop/host.js tests/stage42-clean-sheet-workshop/prepare.mjs > "$RUNNER_TEMP/blank-allowed.txt"
           git diff --name-only HEAD^ HEAD | diff -u "$RUNNER_TEMP/blank-allowed.txt" -
           echo '757e3c63da7abc7969714dc5e3d159370eecf9862c261586675bdf5d279e1716  tests/stage42-clean-sheet-workshop/b01-pointer-plan.json' | sha256sum -c -
           node tests/stage42-clean-sheet-workshop/unit.mjs

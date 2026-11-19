@@ -17,4 +17,13 @@ if(original.split(marker).length!==2)throw Error('Missing Workshop connection se
 const source=n=>fs.readFileSync(new URL(n,import.meta.url),'utf8').replace(/^import .*?;\r?\n/gm,'').replace(/^export /gm,'');
 const moduleNames=['./blank.mjs','./partition.mjs','./pack.mjs','./host.js'];
 const payload=moduleNames.map(source).join('\n');
-fs.writeFileSync(file,original.replace(marker,'\n;{\n'+payload+'\n}\n'+marker));
+let safe=original;
+for(const [needle,replacement] of [
+ ['const eh=$("#elementToolbar");if(eh)eh.innerHTML=', 'const eh=$("#elementToolbar");if(eh&&!activeAsset())eh.innerHTML="";else if(eh)eh.innerHTML='],
+ ['function switchTab(t){if(currentTab===', 'function switchTab(t){if(t==="element"&&!activeAsset()){toast("먼저 신규 벡터 지형을 저장하세요.");return}if(currentTab==='],
+ ['scene.render(engine,0,"",.6,false,0);Object.assign(stageView', 'if(document.documentElement.dataset.cleanNeutral==="1"&&stage().id==="stage-42-clean-sheet"){const bg=scene.background,read=scene.backgroundReadability,weather=scene.weatherParticles,env=engine.b?.honroEnvironment,sky=env?.skyVisible;try{if(env)env.skyVisible=false;scene.background=(c,w,h)=>{c.save();c.fillStyle="#20262a";c.fillRect(0,0,w,h);c.restore()};scene.backgroundReadability=scene.weatherParticles=()=>{};scene.render(engine,0,"",.6,false,0)}finally{scene.background=bg;scene.backgroundReadability=read;scene.weatherParticles=weather;if(env)env.skyVisible=sky}}else scene.render(engine,0,"",.6,false,0);Object.assign(stageView']
+]){
+ if(safe.split(needle).length!==2)throw Error('Missing exact blank UI seam: '+needle);
+ safe=safe.replace(needle,replacement);
+}
+fs.writeFileSync(file,safe.replace(marker,'\n;{\n'+payload+'\n}\n'+marker));

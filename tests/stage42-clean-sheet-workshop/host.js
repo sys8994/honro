@@ -1,6 +1,6 @@
 // Local isolated Workshop host. Never wired to production or project release.
 function blankNativeInstall(){
- const bar=document.createElement('div');bar.id='blankNativeHost';
+ const bar=document.createElement('div');bar.id='blankNativeHost';bar.setAttribute('aria-label','Blank terrain workshop controls');
  Object.assign(bar.style,{position:'fixed',right:'10px',bottom:'2px',zIndex:210,background:'#182024',padding:'4px'});
  const canvas=document.querySelector('#stageCanvas'),readSource=()=>HONRO_PROJECT;
  if(!canvas)throw Error('Missing stock Workshop stage canvas');
@@ -24,7 +24,7 @@ function blankNativeInstall(){
   const lines=[design.outline,...design.seams.map(s=>[design.outline[s.a],...s.knots,design.outline[s.b]]),...(seam?[[design.outline[seam.a],...seam.knots]]:[]),...design.dummies,...(dummy?[dummy]:[])];
   for(const points of lines)if(points.length>1)drawTransientLine(points.map(([x,y])=>({x,y})),'#6cc8e0');
  }
- const set=(next)=>{project=next;preview=previewProject=null;selected=null;selectedAssetId=next.library[0]?.id;history=[];future=[];currentTab='stage';invalidateRuntime();renderAll();sync()};
+ const set=(next)=>{project=next;preview=previewProject=null;selected=null;selectedAssetId=next.library[0]?.id;history=[];future=[];stageView._fit=false;switchTab('stage');sync()};
  const button=(name,action)=>{const b=document.createElement('button');b.type='button';b.textContent=name;
   b.onclick=async e=>{if(!e.isTrusted||busy)return;busy=true;try{await action();sync()}catch(error){report(error.message)}finally{busy=false}};
   bar.append(b);};
@@ -65,8 +65,9 @@ function blankNativeInstall(){
  canvas.addEventListener('pointercancel',()=>{selectedPoint=null},true);
  button('빈 5막 2장 작업본',()=>{
   base=createBlankWorkshopStage(readSource());design=structuredClone(base.design);mode='outline';seam=dummy=draft=null;
-  showGuide=false;set(blankProject(HonroMaps,base));report('빈 지형: 경로 0개');
+  showGuide=false;status.cleanNeutral='1';set(blankProject(HonroMaps,base));report('빈 지형: 경로 0개');
  });
+ button('중립 배경 표시/숨기기',()=>{need(active(),'먼저 신규 작업본을 여세요');status.cleanNeutral=status.cleanNeutral==='1'?'0':'1';paint()});
  button('충돌 가이드 표시/숨기기',()=>{need(active(),'먼저 신규 작업본을 여세요');showGuide=!showGuide;paint()});
  button('실루엣 닫기',()=>{need(active()&&mode==='outline'&&design.outline.length>=8,'먼저 외곽을 그리세요');mode='outline-done';paint()});
  button('새 공유 절리',()=>{need(active()&&mode==='outline-done'&&design.seams.length<2,'외곽을 닫거나 이전 절리를 마치세요');mode='seam-start'});
@@ -86,7 +87,7 @@ function blankNativeInstall(){
   try{
    const f=input.files?.[0];need(f&&f.size<=12000,'올바른 신규 초안 파일이 아닙니다');
    const raw=await f.text(),r=await reopenBlankDraft(HonroMaps,readSource(),raw);
-   base=r.base;design=r.design;mode='edit';set(r.next);draft=raw;status.cleanImport='opened';report('새 작업본에서 초안 재열기 완료');
+   base=r.base;design=r.design;mode='edit';status.cleanNeutral='1';set(r.next);draft=raw;status.cleanImport='opened';report('새 작업본에서 초안 재열기 완료');
   }catch(error){status.cleanImport='error';report(error.message)}finally{input.value=''}
  };
  bar.append(input);document.body.append(bar);

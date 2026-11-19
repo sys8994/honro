@@ -1,11 +1,12 @@
 """Prepared actual browser proof; not run. B01 points drive pointer, never map state."""
-import hashlib,json,os,sys,tempfile
+import base64,hashlib,json,os,sys,tempfile
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 D=Path(__file__).parent
 plan=json.loads((D/'b01-pointer-plan.json').read_text())
 out=Path(sys.argv[1]);out.mkdir(parents=True,exist_ok=True)
 url=os.environ['HONRO_BLANK_WORKSHOP_URL']
+GAME_JS=(D/'game-snapshot.js').read_text()
 record={'pass':False,'old_terrain_assets_loaded_into_active_design':False,'browser_errors':[]}
 def cp(step):
  record['step']=step;(out/'result.json').write_text(json.dumps(record,indent=2))
@@ -38,7 +39,13 @@ with sync_playwright() as pw:
  try:
   click(p,'빈 5막 2장 작업본');base=inspect(p)
   assert base=={'active':'stage-42-clean-sheet','stages':1,'library':[],'elements':[],'terrain':[],'collision':None,'paths':[]}
-  overview(p,'01-blank-zero-paths.png');cp('blank-zero-paths')
+  p.wait_for_function("document.documentElement.dataset.cleanStatus==='빈 지형: 경로 0개'")
+  assert p.locator('#stageW').input_value()=='6500' and p.locator('#stageH').input_value()=='2861'
+  assert p.locator('[data-asset]:visible').count()==0
+  assert p.locator('#elementToolbar [data-etool]').count()==0
+  assert p.locator('html').get_attribute('data-clean-neutral')=='1'
+  assert 'Cannot read properties' not in (p.locator('#toast').text_content() or '')
+  overview(p,'01-blank-zero-paths.png');cp('blank-zero-paths-visible-confirmed')
   for pt in plan['outline']:click_at(p,pt)
   click(p,'실루엣 닫기')
   for s in plan['seams']:
@@ -70,6 +77,10 @@ with sync_playwright() as pw:
    assert p2.locator('html').get_attribute('data-clean-import')=='opened'
    assert inspect(p2)==authored
    overview(p2,'04-new-context-roundtrip.png');cp('roundtrip-exact')
+   render=p2.evaluate(GAME_JS,{'expectedPaths':authored['paths'],'view':{'x':3250,'y':1900,'zoom':.18}})
+   raw_png=base64.b64decode(render.pop('png').split(',',1)[1],validate=True)
+   (out/'06-stock-game-scene-reopened-blockout.png').write_bytes(raw_png)
+   record['isolated_game_scene']={**render,'image_sha256':hashlib.sha256(raw_png).hexdigest()}
    anchor=plan['outline'][8];dest=[anchor[0]+24,anchor[1]+10];camera(p2,*anchor,.34)
    p2.mouse.move(*point(p2,*anchor));p2.mouse.down();p2.mouse.move(*point(p2,*dest),steps=6);p2.mouse.up()
    click(p2,'신규 지형 미리보기');assert inspect(p2)==authored
