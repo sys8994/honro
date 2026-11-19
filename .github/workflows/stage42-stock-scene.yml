@@ -1,4 +1,4 @@
-name: Stage42 isolated stock Scene source-clip proof
+name: Stage42 isolated stock Scene terrain continuity proof
 on:
   push:
     branches: ['audit/stage42-stock-scene-20261120']
@@ -25,12 +25,12 @@ jobs:
           package-manager-cache: false
       - run: npm ci && npm ci --prefix game
       - run: npm install --prefix "$RUNNER_TEMP/browser-deps" --ignore-scripts playwright-core@1.56.1
-      - name: Reproduce only certified clipped-out original SURFACE rings
-        run: python tools/testing/stage42-stock-scene/prepare-clip.py "$GITHUB_WORKSPACE" "$RUNNER_TEMP/stage42-packages"
-      - name: Generate isolated baseline and clip-only stock Scenes
-        run: node tools/testing/stage42-stock-scene/fixture.mjs "$GITHUB_WORKSPACE" "$RUNNER_TEMP/stage42-fixtures" "$RUNNER_TEMP/stage42-packages/baseline-package.json" "$RUNNER_TEMP/stage42-packages/clip-only-candidate.json" clip-only
+      - name: Reproduce unoptimized continuous geological BODY study
+        run: python tools/testing/stage42-stock-scene/prepare-continuity.py "$GITHUB_WORKSPACE" "$RUNNER_TEMP/stage42-packages"
+      - name: Generate isolated baseline and continuity stock Scenes
+        run: node tools/testing/stage42-stock-scene/fixture.mjs "$GITHUB_WORKSPACE" "$RUNNER_TEMP/stage42-fixtures" "$RUNNER_TEMP/stage42-packages/baseline-package.json" "$RUNNER_TEMP/stage42-packages/continuity-candidate.json" continuity
       - name: Capture identical cameras and unchanged world in actual CI Chrome
-        run: bash tools/testing/stage42-stock-scene/run-ci.sh "$RUNNER_TEMP/stage42-fixtures" "$RUNNER_TEMP/stage42-evidence" clip-only
+        run: bash tools/testing/stage42-stock-scene/run-ci.sh "$RUNNER_TEMP/stage42-fixtures" "$RUNNER_TEMP/stage42-evidence" continuity
       - name: Verify no production file modifications
         if: always()
         run: git diff --exit-code -- shared game tools/terrain-node-optimizer web HONRO.html
