@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
-          fetch-depth: 2
+          fetch-depth: 3
           persist-credentials: false
       - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
         with:
@@ -30,10 +30,11 @@ jobs:
           set -euo pipefail
           test "$GITHUB_REF" = refs/heads/qa/stage42-native-structure-witness
           test "$GITHUB_SHA" = "$(git rev-parse HEAD)"
-          test "$(git rev-parse HEAD^)" = 1e043b09d4ce107e1d2dcf70fe2274dff7098476
-          printf '%s\n' .github/workflows/stage42-native-structure-witness.yml tests/stage42-native-structure-witness/author.mjs tests/stage42-native-structure-witness/browser-proof.py tests/stage42-native-structure-witness/game-witness.js tests/stage42-native-structure-witness/host.js tests/stage42-native-structure-witness/prepare.mjs tests/stage42-native-structure-witness/structure.mjs tests/stage42-native-structure-witness/test.mjs tests/stage42-native-structure-witness/witness-itinerary.json tests/stage42-native-structure-witness/workshop.mjs > "$RUNNER_TEMP/v4-allowed.txt"
-          git diff --name-only HEAD^ HEAD | diff -u "$RUNNER_TEMP/v4-allowed.txt" -
-          echo "1876edbb29d3c6e5d7b6912d99d5d01966fa1d3cb81be7386e27578899d0aac0  tests/stage42-native-structure-witness/witness-itinerary.json" | sha256sum -c -
+          test "$(git rev-parse HEAD^^)" = 1e043b09d4ce107e1d2dcf70fe2274dff7098476
+          test "$(git rev-parse HEAD^)" = fae4b1ec8f365dd028ff8695b19b1a513031c262
+          printf '%s\n' .github/workflows/stage42-native-structure-witness.yml tests/stage42-native-structure-witness/author-detail.mjs tests/stage42-native-structure-witness/browser-details.py tests/stage42-native-structure-witness/detail-itinerary.json tests/stage42-native-structure-witness/detail.mjs tests/stage42-native-structure-witness/game-detail.js tests/stage42-native-structure-witness/host-details.js tests/stage42-native-structure-witness/pack-detail.mjs tests/stage42-native-structure-witness/prepare-details.mjs > "$RUNNER_TEMP/detail-allowed.txt"
+          git diff --name-only HEAD^ HEAD | diff -u "$RUNNER_TEMP/detail-allowed.txt" -
+          echo "d5f8615973e33cb44120c928dfe9f84017c23262429646e7c5a255da0839bf73  tests/stage42-native-structure-witness/detail-itinerary.json" | sha256sum -c -
           node tests/stage42-native-structure-witness/test.mjs
           npm ci
           npm ci --prefix game
@@ -42,8 +43,9 @@ jobs:
           mkdir -p "$B" "$E"
           cp -a web HONRO_WORKSHOP.html HONRO.html "$B/"
           node tests/stage42-native-structure-witness/prepare.mjs "$B"
+          HONRO_DETAIL_WORKSHOP_QA=1 HONRO_STRUCT_DISPOSABLE_SHA256=b2e75d6120c0ab2a3bb546223fa7a8fbc336e1c04ff6df8e12af5823f9ced065 node tests/stage42-native-structure-witness/prepare-details.mjs "$B"
           node --check "$B/web/runtime/workshop-app.489f733634454986.js"
-      - name: Real pointer closed structures, fresh compact reopen and stock Game render
+      - name: User-pointer named anchored detail panels and before/after stock Game
         run: |
           set -euo pipefail
           python -m pip install 'playwright==1.58.0' 'Pillow==12.0.0'
@@ -58,7 +60,7 @@ jobs:
             if curl -fsS -o /dev/null http://127.0.0.1:8870/HONRO_WORKSHOP.html; then break; fi
             sleep 1
           done
-          timeout 1000s python tests/stage42-native-structure-witness/browser-proof.py "$RUNNER_TEMP/stage42-native-structure-witness-evidence"
+          timeout 1000s python tests/stage42-native-structure-witness/browser-details.py "$RUNNER_TEMP/stage42-native-structure-witness-evidence"
       - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
         if: always()
         with:
