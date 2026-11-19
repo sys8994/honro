@@ -1,0 +1,73 @@
+name: Stage46 far interior seams native paired camera audit
+on:
+  push:
+    branches: [qa/stage46-far-interior-seams]
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact add-only audit scope and fixed sources
+        run: |
+          set -euo pipefail
+          parent=3432cf2b6c6f70f6740bbe8097d95db030c03c08
+          test "$(git rev-parse HEAD^)" = "$parent"
+          git diff --name-status "$parent" HEAD > /tmp/scope
+          python - <<'PY'
+          from pathlib import Path
+          r=[s.split('\t') for s in Path('/tmp/scope').read_text().splitlines()]
+          assert len(r)==3 and all(s[0]=='A' for s in r)
+          assert {s[1] for s in r}=={'.github/workflows/stage46-far-interior-seams.yml','tools/stage46-far-interior-seams/paired.cjs','tools/stage46-far-interior-seams/verify.py'}
+          PY
+          QA="$RUNNER_TEMP/stage46-far-seams"
+          mkdir -p "$QA/observer" "$QA/evidence"
+          cp tools/stage46-far-interior-seams/* "$QA/observer/"
+          git worktree add --detach "$QA/original" 1e043b09d4ce107e1d2dcf70fe2274dff7098476
+          git worktree add --detach "$QA/candidate" "$parent"
+          echo "QA=$QA" >> "$GITHUB_ENV"
+          echo "OUT=$QA/evidence" >> "$GITHUB_ENV"
+      - name: Official builds in disposable hosts only
+        run: |
+          set -euo pipefail
+          for mode in original candidate; do
+            cd "$QA/$mode"
+            npm ci
+            npm ci --prefix game
+            npm run test:release-guard
+            npm run build > "$OUT/build-$mode.log" 2>&1
+            git diff --name-only > "$OUT/generated-$mode.txt"
+            test -z "$(git diff --name-only -- shared/runtime shared/assets shared/map)"
+            git rev-parse HEAD > "$OUT/commit-$mode.txt"
+          done
+      - name: Twelve paired far seam cameras
+        run: |
+          set -euo pipefail
+          python -m pip install pillow numpy
+          cd "$QA/observer"
+          npm install playwright
+          npx playwright install --with-deps chromium
+          python3 -m http.server 8884 --bind 127.0.0.1 --directory "$QA/original" > /tmp/st46-before.log 2>&1 &
+          a=$!
+          python3 -m http.server 8885 --bind 127.0.0.1 --directory "$QA/candidate" > /tmp/st46-after.log 2>&1 &
+          b=$!
+          trap 'kill "$a" "$b" || true' EXIT
+          sleep 2
+          node paired.cjs
+          python verify.py
+      - name: Audit checkout unchanged
+        if: always()
+        run: test -z "$(git status --porcelain --untracked-files=no)"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage46-far-seams-paired
+          path: ${{ env.OUT }}
+          retention-days: 7
