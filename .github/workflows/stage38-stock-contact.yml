@@ -1,7 +1,7 @@
 name: Stage38 stock contact diagnostic
 on:
   push:
-    branches: ['qa/stage38-stock-contact-20261120']
+    branches: ['qa/stage38-contact-material-partition-20261120']
 permissions:
   contents: read
 jobs:
@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
-          fetch-depth: 6
+          fetch-depth: 10
       - name: Exact add-only gate
         run: |
           test "$(git merge-base HEAD 1e043b09d4ce107e1d2dcf70fe2274dff7098476)" = 1e043b09d4ce107e1d2dcf70fe2274dff7098476
@@ -35,9 +35,11 @@ jobs:
           git rev-parse HEAD > "$RUNNER_TEMP/evidence/qa-head.txt"
           browser=$(command -v google-chrome || command -v chromium)
           for view in control candidate; do
-            name="stage38-$view-rescue"
-            timeout 300s "$browser" --headless --no-first-run --no-default-browser-check --force-device-scale-factor=1 --virtual-time-budget=60000 --user-data-dir="$RUNNER_TEMP/profile-$view" --dump-dom "file://$RUNNER_TEMP/fixtures/$name.html" > "$RUNNER_TEMP/$name.html"
+            for camera in rescue whole; do
+            name="stage38-$view-$camera"
+            timeout 300s "$browser" --headless --no-first-run --no-default-browser-check --force-device-scale-factor=1 --virtual-time-budget=60000 --user-data-dir="$RUNNER_TEMP/profile-$view-$camera" --dump-dom "file://$RUNNER_TEMP/fixtures/$name.html" > "$RUNNER_TEMP/$name.html"
             node tests/stage38-stock-contact-extract.mjs "$RUNNER_TEMP/$name.html" "$RUNNER_TEMP/evidence" "$name"
+            done
           done
       - run: node tests/stage38-rescue-pair.mjs "$RUNNER_TEMP/evidence"
       - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
