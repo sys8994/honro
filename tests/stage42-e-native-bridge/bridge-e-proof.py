@@ -226,7 +226,13 @@ with sync_playwright() as play:
     fresh.locator('#newAsset').click()
     field(fresh,'#assetName',bridge_name)
     fresh.locator('#assetCollision').uncheck()
+    # The empty native record displays a stock 'wood' fallback before any
+    # onChange. Commit an actual distinct value on this unplaced art-only asset,
+    # then commit wood through the same real field; never infer from label text.
+    field(fresh,'#assetMaterial','stone')
+    fresh.wait_for_function("n=>HonroWorkshopAPI.getProject().library.find(x=>x.name===n)?.material==='stone'",arg=bridge_name,timeout=4000)
     field(fresh,'#assetMaterial','wood')
+    fresh.wait_for_function("n=>HonroWorkshopAPI.getProject().library.find(x=>x.name===n)?.material==='wood'",arg=bridge_name,timeout=4000)
     field(fresh,'#assetLayer','prop')
     temp=props(fresh)['visual'][0]
     rail=[[-157,-76],[-57,-53],[52,-51],[144,-72],[145,-63],[53,-43],[-57,-44],[-157,-66]]
@@ -269,12 +275,12 @@ with sync_playwright() as play:
     assert len(still['visual'])==1 and still['visual'][0]!=temp and not still['collision'],'Starter hex or unwanted collision remains'
     for pts in other_faces:face(pts)
     fresh.locator('[data-etool=anchor]').click();asset_pointer(fresh,[0,0])
+    fresh.screenshot(path=str(p/'08-bridge-native-editor.png'))
     authored=props(fresh);aid=authored['id']
     assert len(authored['visual'])==6 and not authored['collision'] and not authored['oneWay']
     assert authored['material']=='wood' and authored['layer']=='prop'
     assert not authored.get('interactionType') and not authored.get('climbable') and not authored['breakable']
     assert len({v['fill'] for v in authored['visual']})==1,'Unexpected native paint workflow: stock mode is purely neutral'
-    fresh.screenshot(path=str(p/'08-bridge-native-editor.png'))
     fresh.locator('[data-tab=stage]').click();fresh.evaluate('([x,y,zoom])=>HonroWorkshopAPI.setCamera({x,y,zoom})',camera_seat)
     fresh.locator(f'.asset-card[data-asset="{aid}"]').click()
     q=fresh.evaluate("""([x,y])=>{

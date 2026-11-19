@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
-          fetch-depth: 3
+          fetch-depth: 4
           persist-credentials: false
       - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
         with:
@@ -26,13 +26,13 @@ jobs:
           set -euo pipefail
           test "$GITHUB_REF" = refs/heads/qa/stage42-e-native-bridge
           test "$GITHUB_SHA" = "$(git rev-parse HEAD)"
-          test "$(git rev-parse HEAD^)" = f88ca81d71416f1335f36f7014a3065eb3bbf448
-          test "$(git rev-parse HEAD~2)" = 1e043b09d4ce107e1d2dcf70fe2274dff7098476
+          test "$(git rev-parse HEAD^)" = 17d53586aface1677495ea8a89c71f64ae3ae563
+          test "$(git rev-parse HEAD~3)" = 1e043b09d4ce107e1d2dcf70fe2274dff7098476
           Q=tests/stage42-e-native-bridge
           printf '%s\n' .github/workflows/stage42-e-native-bridge.yml "$Q/smoke.SHA256SUMS" "$Q/bridge-e-proof.py" | LC_ALL=C sort > "$RUNNER_TEMP/solid-allowlist"
           git diff --name-only HEAD^ HEAD | LC_ALL=C sort | diff -u "$RUNNER_TEMP/solid-allowlist" -
           git diff --name-only --diff-filter=M HEAD^ HEAD | LC_ALL=C sort | diff -u "$RUNNER_TEMP/solid-allowlist" -
-          echo '292bbfd0de03a5af53b315d78edd63b233fb3a89edf6c8e7d57a5af0711f2fba  tests/stage42-e-native-bridge/smoke.SHA256SUMS' | sha256sum -c -
+          echo '3dce58f4416d3bca0d652d589b836fc1c378f6918ecf4d5f1127e4a423026add  tests/stage42-e-native-bridge/smoke.SHA256SUMS' | sha256sum -c -
           (cd "$Q" && sha256sum -c smoke.SHA256SUMS)
       - name: Build unmodified stock Workshop
         run: |
