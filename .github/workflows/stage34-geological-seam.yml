@@ -1,4 +1,4 @@
-name: Stage34 exact active foundation export
+name: Stage34 source-face geological seam candidate
 on:
   push:
     branches: ['qa/stage34-geological-seam-20261120']
@@ -16,7 +16,14 @@ jobs:
           package-manager-cache: false
       - run: npm ci && npm ci --prefix game
       - run: node tools/stage34-geological-seam/export.mjs
+      - run: python -m pip install svgpathtools
+      - run: python tools/stage34-geological-seam/warp.py
+      - name: Same cameras baseline and source-face extension
+        run: |
+          for variant in baseline candidate; do
+            SEAM_VARIANT=$variant HONRO_NATIVE_OUT=/tmp/stage34-evidence/$variant node --expose-gc --max-old-space-size=12000 tools/stage34-geological-seam/capture.mjs 34
+          done
       - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
         with:
-          name: stage34-exact-source
-          path: /tmp/stage34-source
+          name: stage34-seam-native-candidate
+          path: /tmp/stage34-evidence
