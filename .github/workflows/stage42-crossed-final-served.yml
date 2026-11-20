@@ -53,7 +53,7 @@ jobs:
             npm run build >"$OUT/build-$mode.log" 2>&1
             sha256sum -c "$OUT/source-before-$mode.sha"
           done
-      - name: Four actual Stage42 west-deep pairs, including east control
+      - name: Five remaining affected Stage42 pairs, isolated exact App builds
         run: |
           set -euo pipefail
           python -m pip install playwright==1.58.0 pillow numpy
