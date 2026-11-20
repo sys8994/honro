@@ -1,0 +1,105 @@
+name: Strict Stage22 generation with exact prior metadata baseline
+on:
+  push:
+    branches: ['qa/stage22-exact-source-baseline-20261120']
+permissions:
+  contents: read
+jobs:
+  exact:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 24
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Build exact disposable baseline and prove unchanged active Stage21 geometry
+        run: |
+          set -euo pipefail
+          BASE=787206f6dce947868ad9199da45fbe393d3f3c53
+          PARENT=a5ec11466e9b63ea1234664cfaa9ebf954467e8b
+          HOMEQA="$RUNNER_TEMP/stage22-exact-meta"; mkdir -p "$HOMEQA/out" "$HOMEQA/setup" "$HOMEQA/projection"
+          echo "HOMEQA=$HOMEQA" >> "$GITHUB_ENV"
+          git merge-base --is-ancestor "$PARENT" HEAD
+          git diff --name-status "$PARENT" HEAD >"$HOMEQA/out/qa-only-files.txt"
+          python - "$HOMEQA/out/qa-only-files.txt" <<'PY'
+          import pathlib,sys
+          expected={'A\t.github/workflows/stage22-exact-source-baseline.yml',*['A\ttools/stage13-18-proof/'+p for p in ['stage21-explicit-defaults/splice-stage21.py','stage21-explicit-defaults/runtime-projection.mjs','consolidated-qa/target.py','consolidated-qa/contract.mjs']]}
+          assert set(pathlib.Path(sys.argv[1]).read_text().splitlines())==expected
+          PY
+          for n in stock joint baseline; do git worktree add --detach "$HOMEQA/$n" "$BASE"; done
+          echo "$BASE" > "$HOMEQA/out/base.txt"
+          Q="$GITHUB_WORKSPACE/tools/stage13-18-proof"
+          python "$Q/ci/verify.py" "$HOMEQA/stock" "$HOMEQA/joint" "$HOMEQA/setup/typed-18.json"
+          python "$Q/ci/range.py" "$HOMEQA/joint/shared/data/campaign.json" "$HOMEQA/setup/typed-13.json"
+          cmp "$HOMEQA/stock/shared/data/act2/stage13-compact-package.json" "$HOMEQA/joint/shared/data/act2/stage13-compact-package.json"
+          for p in shared/data/act2/stage18-compact-package.json tools/map-forge/stage18-short-quest.mjs; do
+            cp "$HOMEQA/joint/$p" "$HOMEQA/baseline/$p"
+          done
+          python "$Q/stage21-explicit-defaults/splice-stage21.py" joint-canonical "$HOMEQA/joint/shared/data/campaign.json" "$HOMEQA/baseline/shared/data/campaign.json" "$HOMEQA/out/typed-21.json"
+          node "$Q/consolidated-qa/contract.mjs" metadata "$HOMEQA/joint" "$HOMEQA/baseline" "$HOMEQA/out/metadata-canonical-contract.json"
+          git -C "$HOMEQA/baseline" diff --name-only > "$HOMEQA/out/disposable-baseline-files.txt"
+          cmp "$HOMEQA/out/disposable-baseline-files.txt" <(printf '%s\n' shared/data/act2/stage18-compact-package.json shared/data/campaign.json tools/map-forge/stage18-short-quest.mjs)
+          cmp "$HOMEQA/stock/tools/environment/stage22-vertical-art.mjs" "$HOMEQA/baseline/tools/environment/stage22-vertical-art.mjs"
+          J="$HOMEQA/projection"; STOCK="$HOMEQA/stock"
+          cp "$STOCK/web/data/chapter-21.724a765a85d437a2.json" "$J/stage21-compiled.json"
+          cp "$STOCK/web/runtime/ordered-common-2.49982d8a68cfa528.js" "$J/active-core.mjs"
+          cp "$STOCK/shared/runtime/map-engine.js" "$J/"
+          cp "$STOCK/shared/map/"{geometry,terrain-domain,environment,schema}.js "$J/"
+          python "$Q/stage21-explicit-defaults/splice-stage21.py" published-compiled-fixture "$J/stage21-compiled.json" "$J/stage21-fixture-new.json" "$HOMEQA/setup/typed-21-packet.json"
+          node "$Q/stage21-explicit-defaults/runtime-projection.mjs" "$J" >"$HOMEQA/out/stage21-projection.json"
+      - name: Install original dependencies and check untouched full Stage22 generation on baseline
+        run: |
+          set -euo pipefail
+          cd "$HOMEQA/baseline"
+          npm ci; npm ci --prefix game
+          npm run test:release-guard > "$HOMEQA/out/release-guard.txt" 2>&1
+          set +e
+          node tests/stage22-vertical-regeneration.mjs > "$HOMEQA/baseline-regeneration.private" 2>&1
+          rc=$?
+          set -e
+          echo "$rc" > "$HOMEQA/out/baseline-regeneration.exit"
+          sha256sum "$HOMEQA/baseline-regeneration.private" | cut -d' ' -f1 > "$HOMEQA/out/baseline-private-log.sha256"
+          if [ "$rc" -ne 0 ]; then
+            python - "$HOMEQA/baseline-regeneration.private" "$HOMEQA/out/baseline-guard.json" <<'PY'
+          import json,re,sys,pathlib
+          s=pathlib.Path(sys.argv[1]).read_text(errors='replace')
+          m=re.search(r'(?m)^(Error|TypeError|SyntaxError|AssertionError \[ERR_ASSERTION\]):[^\S\n]*([^\n]*)',s)
+          msg=(m.group(0) if m and len(m.group(0))<=240 and not re.search(r'[{}]|https?://|/home/|/workspace/|/tmp/',m.group(2)) else None)
+          frames=re.findall(r'/(stage22-vertical-geometry|apply-stage22-vertical|stage22-vertical-regeneration|stage22-vertical-art)\.mjs:(\d+):(\d+)',s)
+          pathlib.Path(sys.argv[2]).write_text(json.dumps({'message':msg,'recognizedFrames':frames[:8]}))
+          PY
+            exit "$rc"
+          fi
+          cp _local/reports/vertical-stages/stage22-regeneration.json "$HOMEQA/out/baseline-regeneration.json"
+          node tests/act2-compact-save.mjs 18 > "$HOMEQA/out/stage18-save.txt" 2>&1
+      - name: Only after exact baseline success, check the exact existing two-plane product delta
+        run: |
+          set -euo pipefail
+          Q="$GITHUB_WORKSPACE/tools/stage13-18-proof/consolidated-qa"
+          git worktree add --detach "$HOMEQA/target" 787206f6dce947868ad9199da45fbe393d3f3c53
+          for p in shared/data/act2/stage18-compact-package.json shared/data/campaign.json tools/map-forge/stage18-short-quest.mjs; do
+            cp "$HOMEQA/baseline/$p" "$HOMEQA/target/$p"
+          done
+          python "$Q/target.py" "$HOMEQA/baseline" "$HOMEQA/target" "$HOMEQA/out/exact-stage22-target-splice.json"
+          node "$Q/contract.mjs" stage22 "$HOMEQA/baseline" "$HOMEQA/target" "$HOMEQA/out/exact-stage22-target-contract.json"
+          git -C "$HOMEQA/target" diff --name-only > "$HOMEQA/out/disposable-target-files.txt"
+          cmp "$HOMEQA/out/disposable-target-files.txt" <(printf '%s\n' shared/data/act2/stage18-compact-package.json shared/data/campaign.json tools/environment/stage22-vertical-art.mjs tools/map-forge/stage18-short-quest.mjs)
+          cd "$HOMEQA/target"
+          npm ci; npm ci --prefix game
+          set +e
+          node tests/stage22-vertical-regeneration.mjs > "$HOMEQA/target-regeneration.private" 2>&1
+          rc=$?
+          set -e
+          echo "$rc" > "$HOMEQA/out/target-regeneration.exit"
+          sha256sum "$HOMEQA/target-regeneration.private" | cut -d' ' -f1 > "$HOMEQA/out/target-private-log.sha256"
+          test "$rc" = 0
+          cp _local/reports/vertical-stages/stage22-regeneration.json "$HOMEQA/out/target-regeneration.json"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: exact-source-metadata-proof-only
+          path: ${{ env.HOMEQA }}/out
+          retention-days: 7
