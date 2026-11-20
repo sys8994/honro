@@ -1,0 +1,35 @@
+{
+  "source": "160f41d7f287df88ecce3574eb1b4e15eb8e08b6",
+  "base": "1e043b09d4ce107e1d2dcf70fe2274dff7098476",
+  "files": [
+    {
+      "path": "shared/act4-stage33-coastal-art.mjs",
+      "sha": "3c929d175e15d8933eb244409a1b369063f15f28"
+    },
+    {
+      "path": "shared/act4-stage33-west-contact.mjs",
+      "sha": "188518a718658285660aaa6906ecce411f0ccdb3"
+    },
+    {
+      "path": "shared/data/act4/handoff-art/38.json",
+      "sha": "024e0c5b3b12b143f08d3c13e3ef1488331cd0a2"
+    },
+    {
+      "path": "shared/runtime/act5-edge-art.js",
+      "sha": "09a70bccac0ede6bee32e57d893be6a0d63b51ef"
+    },
+    {
+      "path": "shared/runtime/terrain-readability.js",
+      "sha": "d79d816425845daa22f677eaa24c222dbf828c5c"
+    },
+    {
+      "path": "tests/production-contract.mjs",
+      "sha": "29210abc75f37bca44d772a78e85e334a09a0229"
+    },
+    {
+      "path": "shared/runtime/act2-spatial-art.js",
+      "sha": "9f9fd19b8ca378c5c3401cb739333e8afb4a9ec0"
+    }
+  ],
+  "includeStage14": true
+}

@@ -1,0 +1,39 @@
+name: Combined scoped built smoke
+on:
+  push:
+    branches: ['qa/combined-scoped-built-smoke-20261120']
+permissions:
+  contents: read
+jobs:
+  focused:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      INCLUDE_STAGE14: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Exact approved source and QA-only child
+        run: python tools/combined-built-smoke/guard.py
+      - run: npm ci && npm ci --prefix game
+      - run: python -m pip install playwright pillow && python -m playwright install --with-deps chromium
+      - name: Baseline normal compiled launch
+        run: python tools/combined-built-smoke/launch.py stock
+      - name: Official build with existing guards
+        run: |
+          npm run test:release-guard
+          npm run build
+          npm run test:production-contract
+      - name: Combined built normal launch
+        run: |
+          python tools/combined-built-smoke/launch.py integrated
+          python tools/combined-built-smoke/verify.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: combined-built-smoke-proof
+          path: _local/reports/combined-built-smoke
