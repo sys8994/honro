@@ -20,7 +20,9 @@ jobs:
         run: |
           set -euo pipefail
           BASE=52119985ad21a7d3de04245ee146293045edbeba
-          test "$(git rev-parse HEAD^)" = "$BASE"
+          test "$(git merge-base "$BASE" HEAD)" = "$BASE"
+          test "$(git rev-parse 617674f8d52e640a7070c65cfefd0301e842eef1^)" = "$BASE"
+          git merge-base --is-ancestor 617674f8d52e640a7070c65cfefd0301e842eef1 HEAD
           git diff --name-only "$BASE" HEAD | tee /tmp/qa-scope.txt
           ! grep -vE '^(tools/stage42-final-served-qa/|.github/workflows/stage42-crossed-final-served.yml$)' /tmp/qa-scope.txt
           Q="$GITHUB_WORKSPACE/tools/stage42-final-served-qa"
