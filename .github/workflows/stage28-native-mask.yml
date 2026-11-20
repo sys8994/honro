@@ -1,0 +1,83 @@
+name: Stage28 native single-stroke mask on current staging
+on:
+  push:
+    branches: ['qa/stage28-native-mask-current-20261120']
+permissions:
+  contents: read
+jobs:
+  focused:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 42
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Pin isolated stock and candidate source roots
+        run: |
+          B=787206f6dce947868ad9199da45fbe393d3f3c53
+          test "$(git rev-parse HEAD^)" = "$B"
+          git diff --name-only "$B" HEAD > /tmp/stage28-new-scope
+          test "$(wc -l </tmp/stage28-new-scope)" -eq 7
+          if grep -vE '^(.github/workflows/stage28-native-mask.yml|tools/stage28-native-mask/(capture.py|verify.py|apply-owner.py|apply-ink.py|facets.json|stroke-mask.js))$' /tmp/stage28-new-scope; then exit 1; fi
+          Q="$RUNNER_TEMP/stage28-one-off"
+          mkdir -p "$Q"
+          git worktree add --detach "$Q/stock" "$B"
+          git worktree add --detach "$Q/candidate" "$B"
+          echo "QA=$Q" >> "$GITHUB_ENV"
+      - name: Install build and browser QA dependencies
+        run: |
+          cd "$QA/stock"
+          npm ci
+          npm ci --prefix game
+          ln -s "$QA/stock/node_modules" "$QA/candidate/node_modules"
+          ln -s "$QA/stock/game/node_modules" "$QA/candidate/game/node_modules"
+          python -m pip install playwright pillow numpy
+          python -m playwright install --with-deps chromium
+      - name: Guard official stock and native candidate builds
+        run: |
+          SCRIPT="$GITHUB_WORKSPACE/tools/stage28-native-mask"
+          cd "$QA/stock"
+          python "$SCRIPT/apply-owner.py"
+          test "$(git diff --name-only)" = tools/map-forge/stage28-record-court.mjs
+          git diff -- tools/map-forge/stage28-record-court.mjs > "$QA/stage28-only.patch"
+          npm run test:release-guard
+          npm run build
+          npm run test:production-contract
+          cd "$QA/candidate"
+          python "$SCRIPT/apply-owner.py"
+          git diff -- tools/map-forge/stage28-record-court.mjs | cmp "$QA/stage28-only.patch"
+          python "$SCRIPT/apply-ink.py"
+          test "$(git diff --name-only)" = "$(printf '%s\n' shared/runtime/terrain-readability.js tools/map-forge/stage28-record-court.mjs)"
+          test "$(git hash-object shared/runtime/terrain-readability.js)" = 6c69e40fbd80f46b19946fd4dffb7b3d93de4e09
+          git diff -- shared/runtime/terrain-readability.js > "$QA/stage28-ink-only.patch"
+          npm run test:release-guard
+          npm run build
+          npm run test:production-contract
+      - name: Independent normal HTTP launches
+        run: |
+          readonly BASE="$GITHUB_WORKSPACE/_local/reports/stage28-one-off"
+          mkdir -p "$BASE"
+          cp "$QA"/stage28-*.patch "$BASE/"
+          for mode in stock candidate; do
+            mkdir -p "$BASE/$mode"
+            (cd "$QA/$mode"; sha256sum HONRO.html web/data/chapter-28.*.json web/data/chapter-28-assets.*.json) > "$BASE/$mode/packed-source.sha256"
+            python -m http.server 8884 --bind 127.0.0.1 --directory "$QA/$mode" >"$BASE/$mode/host.log" 2>&1 & server=$!
+            trap 'kill "$server" || true' EXIT
+            for i in $(seq 1 20); do curl -fsSL http://127.0.0.1:8884/HONRO.html -o /dev/null && break || sleep 1; done
+            mask=0
+            if [ "$mode" = stock ]; then mask=1; fi
+            MASK="$mask" MODE=candidate OUT="$BASE/$mode" python tools/stage28-native-mask/capture.py
+            kill "$server"
+            wait "$server" || true
+            trap - EXIT
+          done
+          test "$(find "$BASE/stock" -name '*-independent-stroke-mask.json' | wc -l)" -eq 3
+          python tools/stage28-native-mask/verify.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage28-native-mask-current-proof
+          path: _local/reports/stage28-one-off
