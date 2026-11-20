@@ -83,6 +83,13 @@ export async function applyAct4HandoffArt(project,{stages:enabled=Object.keys(ad
   const elements=stage.elements.flatMap(element=>{
    if(n===36&&['approved36-near-slope-join','approved36-mountain-foundation'].includes(element.id)){
     const tinted=villageFoundation(project.library.find(a=>a.id===element.assetId));
+    if(element.id==='approved36-near-slope-join'){
+      // Use the original rock, restoring only the enclosed east-base pocket.
+      const v=tinted.vector,key='source-alpha-silhouette';
+      if(element.x!==-260||element.y!==850||element.scale!==1||v.root.transform?.join()!=='2.2,0,0,2.2,0,0'||v.clips?.[key]?.length!==1)
+        throw Error('Stage 36 rock-pocket clip no longer matches its source');
+      v.clips[key]=[v.clips[key][0]+' M1146.977273 496.336648 L1169.515152 483.028567 L1182.393939 474.442708 L1208.580808 474.442708 L1201.712121 485.175032 L1184.540404 506.854324 L1146.977273 506.854324 Z'];
+    }
     compatibilityAssetIds.push(element.assetId);
     pack.assets.push(tinted);
     return [{...element,y:element.y-(element.id==='approved36-near-slope-join'?165:0),assetId:tinted.id}];
