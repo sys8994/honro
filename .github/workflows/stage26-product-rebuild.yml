@@ -1,0 +1,71 @@
+name: Exact current Stage26 west native rebuild regression
+on:
+  push:
+    branches: [qa/stage26-current-native-rebuild-20261121]
+permissions:
+  contents: read
+jobs:
+  verify:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage26-current-native-rebuild-20261121'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 3
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Exact current source and two normal rebuilds
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          export CI=true
+          R="$GITHUB_WORKSPACE"
+          Q="$R/tools/stage26-product-rebuild"
+          W="$RUNNER_TEMP/stage26-product-rebuild"
+          mkdir -p "$W/out"
+          echo "WORK=$W" >> "$GITHUB_ENV"
+          git worktree add --detach "$W/A" 4416dfb527f810398903d15510ab8ca05a892661
+          git worktree add --detach "$W/B" "$(git rev-parse HEAD^)"
+          python "$Q/guard.py" source "$R" "$W/A" "$W/B" "$W/out"
+          for side in A B; do
+            (
+              cd "$W/$side"
+              npm ci > "$W/out/npm-root-$side.log" 2>&1
+              npm ci --prefix game > "$W/out/npm-game-$side.log" 2>&1
+              npm run test:release-guard > "$W/out/release-guard-$side.log" 2>&1
+              npm run build > "$W/out/build-$side.log" 2>&1
+              npm run test:production-contract > "$W/out/production-contract-$side.log" 2>&1
+            )
+          done
+          python "$Q/guard.py" post "$R" "$W/A" "$W/B" "$W/out"
+          python "$Q/guard.py" built "$W/A" "$W/B" "$W/out"
+      - name: Registered Stage26 mobile and desktop native minzoom and near controls
+        shell: bash
+        timeout-minutes: 23
+        run: |
+          set -euo pipefail
+          Q="$GITHUB_WORKSPACE/tools/stage26-product-rebuild"
+          python3 -m venv "$WORK/venv"
+          V="$WORK/venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0 numpy
+          "$V" -m playwright install --with-deps chromium
+          python -m http.server 18841 --bind 127.0.0.1 --directory "$WORK/A" > "$WORK/out/http-A.log" 2>&1 &
+          x=$!
+          python -m http.server 18842 --bind 127.0.0.1 --directory "$WORK/B" > "$WORK/out/http-B.log" 2>&1 &
+          y=$!
+          trap 'kill "$x" "$y" 2>/dev/null || true' EXIT
+          for p in 18841 18842; do curl -fsS --retry 8 --retry-connrefused "http://127.0.0.1:$p/HONRO.html" -o /dev/null; done
+          STAGE26_QA="$WORK/out" PORT=18841 STAGE26_ARM=A "$V" "$Q/capture.py"
+          STAGE26_QA="$WORK/out" PORT=18842 STAGE26_ARM=B "$V" "$Q/capture.py"
+          STAGE26_QA="$WORK/out" "$V" "$Q/verify.py"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: stage26-current-native-rebuild-proof
+          path: ${{ runner.temp }}/stage26-product-rebuild/out/
+          if-no-files-found: error
+          retention-days: 7
