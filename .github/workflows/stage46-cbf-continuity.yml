@@ -1,0 +1,56 @@
+name: Stage46 unchanged after exact Stage42 source integration
+on:
+  push:
+    branches: [qa/stage46-cbf-continuity-20261120]
+permissions:
+  contents: read
+jobs:
+  continuity:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Check clean product lineage and isolated observer scope
+        run: |
+          set -euo pipefail
+          Q="$GITHUB_WORKSPACE/tools/stage46-cbf-continuity"
+          W="$RUNNER_TEMP/stage46-cbf-continuity"
+          mkdir -p "$W/out"
+          printf 'QA=%s\nTARGET=%s\nOUT=%s\n' "$Q" "$W/target" "$W/out" >> "$GITHUB_ENV"
+          python "$Q/guard.py" source | tee "$W/out/source-scope.json"
+          git worktree add --detach "$W/target" cbf037199e56c640165dd53d8b00827902260862
+          test -z "$(git -C "$W/target" status --porcelain)"
+      - name: Single official clean build and exact Stage46 published graph
+        run: |
+          set -euo pipefail
+          cd "$TARGET"
+          export CI=true
+          npm ci >"$OUT/npm-root.log" 2>&1
+          npm ci --prefix game >"$OUT/npm-game.log" 2>&1
+          npm run test:release-guard >"$OUT/release.log" 2>&1
+          node tests/act5-terrain-contact.mjs >"$OUT/act5-contact.log" 2>&1
+          npm run build >"$OUT/build.log" 2>&1
+          python "$QA/guard.py" built "$TARGET" "$OUT"
+      - name: Stage46 only, exact prior mobile west normal App and native phase
+        timeout-minutes: 6
+        run: |
+          set -euo pipefail
+          python -m pip install playwright==1.58.0 pillow
+          python -m playwright install --with-deps chromium
+          python -m http.server 18842 --bind 127.0.0.1 --directory "$TARGET" >"$OUT/http-target.log" 2>&1 &
+          pid=$!
+          trap 'kill "$pid" 2>/dev/null || true' EXIT
+          curl -fsS --retry 5 --retry-connrefused "http://127.0.0.1:18842/HONRO.html" -o /dev/null
+          timeout 135s python "$QA/capture.py"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: exact-stage46-cbf-continuity
+          path: ${{ env.OUT }}
+          retention-days: 7
