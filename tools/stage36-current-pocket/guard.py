@@ -17,7 +17,9 @@ def git(p,*args):
 def blob(b):
  return hashlib.sha1(b'blob '+str(len(b)).encode()+b'\0'+b).hexdigest()
 def check(root,stock,target,out,post=False):
- assert git(root,'show','-s','--format=%P','HEAD').strip().decode()==TARGET
+ qa_parent='056fc50f8798c8a84ea8471db064734d2dc3585b'
+ assert git(root,'show','-s','--format=%P','HEAD').strip().decode()==qa_parent
+ assert git(root,'show','-s','--format=%P',qa_parent).strip().decode()==TARGET
  qa=['.github/workflows/stage36-current-native-pocket.yml']+['tools/stage36-current-pocket/'+p for p in ['capture.py','guard.py','verify.py']]
  assert sorted(git(root,'diff','--name-status','--no-renames',TARGET,'HEAD').decode().splitlines())==['A\t'+p for p in sorted(qa)]
  assert git(root,'show','-s','--format=%P',TARGET).strip().decode()==BASE

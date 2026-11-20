@@ -33,7 +33,11 @@ for k in sorted(expected):
  ims=[]
  for s,m in [('stock',x),('target',y)]:
   p=OUT/s/form; assert hashlib.sha256(p.read_bytes()).hexdigest()==m['rasterSha256']
-  im=Image.open(p).convert('RGBA');assert list(im.size)==m['backing'];ims.append(im)
+  # Playwright's CSS element clip includes the fractional bottom pixel; canvas backing truncates on PC.
+  css=m['css']; expected_canvas={1440:(1440,769),390:(390,648)}[k[1]]
+  expected_dom={1440:(1440,770),390:(390,648)}[k[1]]
+  assert tuple(m['backing'])==expected_canvas and abs(css['h']-expected_canvas[1])<1
+  im=Image.open(p).convert('RGBA');assert im.size==expected_dom and math.ceil(css['h'])==im.height;ims.append(im)
  i,k2=ims
  dr=ImageChops.difference(i,k2)
  intensity=ImageChops.lighter(ImageChops.lighter(dr.getchannel(0),dr.getchannel(1)),dr.getchannel(2))
