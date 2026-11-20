@@ -15,7 +15,7 @@ for path,scope,blob in [(raw,'raw-campaign','edaf31a5fda2b7db0202bc0efb52dd83e54
  records.append(proof)
 old=(stock/author).read_bytes()
 assert (after/author).read_bytes()==old
-assert subprocess.check_output(['git','-C',stock,'hash-object',author],text=True).strip()=='3304d5d496f1e65cff3a307a920c1e57f6af9c4e5b'
+assert subprocess.check_output(['git','-C',stock,'hash-object',author],text=True).strip()=='3304d5d496f1e65cff3a307a920c1e57f6af9c4e'
 marker=b' s.anchors.spawn=party.archer;'
 patch=b' const present=new Set(s.units.map(u=>u.id));for(const group of s.encounters)group.unitIds=group.unitIds.filter(id=>present.has(id));\n'
 assert old.count(marker)==1 and patch not in old
