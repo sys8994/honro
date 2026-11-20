@@ -1,0 +1,63 @@
+name: Acts 2 and 3 stock perimeter evidence gaps
+on:
+  push:
+    branches: ['qa/act23-stock-perimeter-nine-20261120']
+permissions:
+  contents: read
+jobs:
+  visual:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        group: ["11,12,13", "15,16,21", "22,28,30"]
+    env:
+      AUDIT_STAGES: ${{ matrix.group }}
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Require proof-only additions and create pinned stock host
+        run: |
+          set -euo pipefail
+          B=1e043b09d4ce107e1d2dcf70fe2274dff7098476
+          test "$(git rev-parse HEAD^^)" = "$B"
+          git diff --name-status "$B" HEAD >/tmp/act23-audit-scope
+          python - <<'PY'
+          from pathlib import Path
+          got=set(Path('/tmp/act23-audit-scope').read_text().splitlines())
+          assert got=={'A\t.github/workflows/act23-stock-perimeter.yml','A\ttools/act23-stock-perimeter/capture.py'},got
+          PY
+          P="$RUNNER_TEMP/act23-stock"
+          mkdir -p "$P/observer" "$P/evidence"
+          cp tools/act23-stock-perimeter/capture.py "$P/observer/"
+          git worktree add --detach "$P/before" "$B"
+          echo "QA=$P" >> "$GITHUB_ENV"
+          echo "OUT=$P/evidence" >> "$GITHUB_ENV"
+      - name: Build official game sources
+        run: |
+          cd "$QA/before"
+          npm ci
+          npm ci --prefix game
+          npm run build
+          sha256sum HONRO.html $(find web/entries -type f -name "*.js" | sort) web/data/campaign.*.json > "$OUT/built-identity.sha256"
+      - name: Capture stock launch centre and perimeter
+        run: |
+          set -euo pipefail
+          python -m pip install playwright
+          python -m playwright install --with-deps chromium
+          python -m http.server 8884 --bind 127.0.0.1 --directory "$QA/before" > "$OUT/host.log" 2>&1 &
+          p=$!
+          trap 'kill "$p" || true' EXIT
+          for i in $(seq 1 20); do curl -fsSL http://127.0.0.1:8884/HONRO.html -o /dev/null && break || sleep 1; done
+          python "$QA/observer/capture.py" | tee "$OUT/scopes.log"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: act23-stock-perimeter-original-evidence-${{ strategy.job-index }}
+          path: ${{ env.OUT }}
+          retention-days: 7
