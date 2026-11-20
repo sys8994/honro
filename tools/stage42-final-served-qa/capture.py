@@ -13,6 +13,52 @@ donor=TEMPLATE['donor']; donor_h=sha(json.dumps(donor,separators=(',',':')).enco
 assert donor_h==TEMPLATE['donorVectorSHA256']=='b83e9dc8feaba4f980f1969f9b7aa8b134825f625053aaeacd7bf5431a914b56'
 assert TEMPLATE['donorFullOriginalSHA256']=='1db7c108f45a1ee4842893db886790658808baa7f8dce508359cdcd581eae922'
 
+
+# Determine distance to the original analytical 1db7 Host curve, not to
+# a candidate mask derived from pixels. Host is known letters/absolute.
+HOST=donor['clips']['host'][0]
+def build_host_polynomials(host):
+ tokens=re.findall(r'[MLQHVZ]|[-+]?\d+(?:\.\d+)?',host)
+ arity={'M':2,'L':2,'Q':4,'H':1,'V':1}
+ comps=[]; current=None;i=0;origin=None
+ while i<len(tokens):
+  code=tokens[i];i+=1
+  if code=='Z':
+   assert current==origin
+   continue
+  assert code in arity
+  count=arity[code];value=[float(v) for v in tokens[i:i+count]];i+=count
+  if code=='M':current=complex(*value);assert origin is None;origin=current;continue
+  if code=='L':end=complex(*value)
+  elif code=='H':end=complex(value[0],current.imag)
+  elif code=='V':end=complex(current.real,value[0])
+  else:end=complex(*value[2:])
+  if code=='Q':
+   ctrl=complex(*value[:2]);coefs=np.array([end-2*ctrl+current,2*(ctrl-current),current])
+  else:coefs=np.array([end-current,current])
+  comps.append((code,coefs));current=end
+ assert len(comps)==41
+ return comps
+HOST_POLY=build_host_polynomials(HOST)
+def exact_east_support(tile,sample):
+ x,y,sx,sy,before,after=sample
+ A,b,c,D,e,f=tile['transform']
+ assert A>0 and D>0 and b==c==0
+ assert abs(sx-(x+.5-e)/A)<1e-9 and abs(sy-(y+.5-f)/D)<1e-9, ('unexpected actual alpha point transform',sample)
+ # Curves are transformed into the actual device space before distance.
+ # Global minimum is among both endpoints and all real stationary points
+ # of squared Euclidean distance in t=0..1 for each line or quadratic.
+ closest=None
+ for n,(cmd,coefs)in enumerate(HOST_POLY):
+  px=np.poly1d(coefs.real*A)+e-x-.5
+  py=np.poly1d(coefs.imag*D)+f-y-.5
+  ds=px*np.polyder(px)+py*np.polyder(py)
+  for t in [0.,1.,*(float(r.real)for r in ds.r if abs(r.imag)<1e-10 and 0<r.real<1)]:
+   dx,dy=float(px(t)),float(py(t));d= (dx*dx+dy*dy)**.5
+   record=(d,n,t,sx+dx/A,sy+dy/D,cmd)
+   if closest is None or record<closest:closest=record
+ d,n,t,qx,qy,cmd=closest;K=6500/2022
+ return dict(device=[x,y],source=[sx,sy],world=[sx*K,sy*K],before=before,after=after,difference=after-before,nearestHost=dict(commandIndex=n,opcode=cmd,t=t,distanceDevicePx=d,source=[qx,qy],world=[qx*K,qy*K]),withinOneCell=d<1.0)
 out=Path(os.environ["OUT"]);out.mkdir(parents=True,exist_ok=True)
 bins=[Path(os.environ[s]) for s in ("STOCK","TARGET")]
 rel='shared/assets/environment/act5/stage42-registered-body.json'
@@ -167,7 +213,7 @@ with sync_playwright() as p:
       const [w,h]=z.canvas,[a,b,c,d,e,f]=z.transform;
       if(a<=0||d<=0||b||c)throw Error('diagnostic expected actual axis-aligned positive world transform');
       const O=render(stock,z), N=render(current,z), D=render(legacy,z);
-      const m={protectedUpper:{pixels:0,changed:0,max:0},canonicalHoleBounds:{pixels:0,changed:0,max:0},side:{pixels:0,changed:0,max:0},deep:{pixels:0,changed:0,max:0,onOffChanged:0,halfContourChanged:0,opaqueChanged:0}};
+      const m={protectedUpper:{pixels:0,changed:0,max:0},canonicalHoleBounds:{pixels:0,changed:0,max:0},side:{pixels:0,changed:0,max:0},deep:{pixels:0,changed:0,max:0,onOffChanged:0,halfContourChanged:0,opaqueChanged:0,samples:[]}};
       const add=(r,diff)=>{r.pixels++;if(diff){r.changed++;r.max=Math.max(r.max,Math.abs(diff));}};
       for(let y=0;y<h;y++)for(let x=0;x<w;x++){
        const sx=(x+.5-e)/a,sy=(y+.5-f)/d,p=4*(y*w+x)+3, delta=N[p]-O[p];
@@ -176,6 +222,7 @@ with sync_playwright() as p:
        if(sx<-405-1/a||sx>2360+1/a)add(m.side,delta);
        if(sy>1332){
         const r=m.deep, after=N[p], before=D[p];add(r,after-before);
+        if(after!==before&&r.samples.length<2048)r.samples.push([x,y,sx,sy,before,after]);
         if((after>0)!=(before>0))r.onOffChanged++;
         if((after>=128)!=(before>=128))r.halfContourChanged++;
         if((after===255)!=(before===255))r.opaqueChanged++;
@@ -256,9 +303,22 @@ with sync_playwright() as p:
     assert db['extended'] and abs(y.get('pixel',-100)-615)<=1 and len(draws)>=2, ('Missing mobile tile/direct paint witness',db,draws)
    assert all(x['changed']==0 for x in item['regions'].values()), ('protected active/side/alpha hole pixel changed',item['regions'])
    alpha=bb['transparentAlpha']
-   assert alpha and any(r['regions']['deep']['pixels'] for r in alpha) if q.get('deepReference') else bool(alpha)
-   assert all(all(k['changed']==0 for k in d['regions'].values()) for d in alpha), ('signed transparent Chromium alpha changed',alpha)
+   assert alpha and (not q.get('deepReference') or any(r['regions']['deep']['pixels'] for r in alpha))
+   # All actual protected alpha remains hard exact. The archival deep
+   # comparison is distinct: save supported subpixel changes, but never
+   # call them exact. Changes of occupancy/class or distance are integrity.
+   exactDeep=True
+   for d in alpha:
+    for key in ('protectedUpper','canonicalHoleBounds','side'):
+     assert d['regions'][key]['changed']==0, ('transparent protected alpha changed',q['key'],d,key)
+    deep=d['regions']['deep'];samples=deep.pop('samples')
+    assert len(samples)==deep['changed'], ('excess outside source integrity',deep)
+    deep['coordinates']=[exact_east_support(d,r)for r in samples]
+    exactDeep &= deep['changed']==0
+    categorical=deep['onOffChanged']+deep['halfContourChanged']+deep['opaqueChanged']
+    assert categorical==0 and deep['max']<=2 and all(r['withinOneCell'] for r in deep['coordinates']),('donor contour crossed exact curve support',q['key'],d)
    item['rawGeometryStateAndOwnedPass']=True
+   item['transparentDeepAlphaExact']=bool(exactDeep)
    assert item['culling']['lateralCapsOutside'] and item['culling']['normalBottomAboveArtEnd']
   except Exception as e:
    item['error']=str(e);roll.append(item);(out/'comparison.json').write_text(json.dumps(roll,indent=2));raise
@@ -268,6 +328,13 @@ with sync_playwright() as p:
  assert len(roll)==6 and all('error' not in x and x['rawGeometryStateAndOwnedPass'] for x in roll)
  refs={r['view']:r['userReferenceDeep'] for r in roll if 'userReferenceDeep'in r}
  assert len(refs)==2
- exact=all(r['exactCompositeRGBA']for r in refs.values())
- (out/'FINAL-RECEIPT.json').write_text(json.dumps(dict(technicalPoseCount=len(roll),exactPhysicalAndProtected=True,transparentChromiumAlphaExact=True,transparentUserDonorSHA256=donor_h,independentArchivedDeepRGBAExact=exact,archivedDeep=refs),indent=2))
- assert exact,('All six integrity-valid poses completed; independent archived full-composite donor RGBA gate RED',refs)
+ exactRGBA=all(r['exactCompositeRGBA']for r in refs.values())
+ exactAlpha=all(r['transparentDeepAlphaExact']for r in roll)
+ strict=exactAlpha and exactRGBA
+ receipt=dict(technicalPoseCount=len(roll),exactPhysicalAndProtected=True,zeroCategoricalAlphaFlips=True,
+     allObservedDeepAlphaChangesWithinOneExactCurveCell=True,transparentProtectedAlphaExact=True,
+     transparentUserDonorSHA256=donor_h,independentArchivedDeepAlphaExact=exactAlpha,
+     independentArchivedDeepRGBAExact=exactRGBA,archivalByteExact=strict,classification='AWAIT VISUAL REVIEW' if strict else 'HOLD: archival deep equality false',
+     archivedDeep=refs,perPoseExactAlpha={r['view']:r['transparentDeepAlphaExact'] for r in roll})
+ (out/'FINAL-RECEIPT.json').write_text(json.dumps(receipt,indent=2))
+ assert strict,('All six integrity-valid captures preserved; strict donor Alpha/RGBA archival equality remains HOLD',receipt)

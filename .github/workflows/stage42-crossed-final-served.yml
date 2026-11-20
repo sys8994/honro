@@ -1,4 +1,4 @@
-name: Stage42 single-intersection actual boundary proof
+name: Stage42 six intact scenes then strict donor comparison
 on:
   push:
     branches: [qa/stage42-crossed-final-served-20261120]
@@ -77,6 +77,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: stage42-single-intersection-actual
+          name: stage42-six-cameras-exact-donor-separate
           path: ${{ env.OUT }}
           retention-days: 7
