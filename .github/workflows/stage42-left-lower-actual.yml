@@ -1,0 +1,80 @@
+name: Stage42 lower west sole extension exact real frame check
+on:
+  push:
+    branches: ['qa/stage42-left-lower-actual-20261120']
+permissions:
+  contents: read
+jobs:
+  compare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Verify exact review-only parent and four QA paths
+        run: |
+          set -euo pipefail
+          BASE=4f53fe32665e40ea707c049f6e1014ed52b91c61
+          test "$(git rev-parse HEAD^)" = "$BASE"
+          test "$(git rev-parse "$BASE^{tree}")" = 988f280e347129406ae3eb5fa22d139893c8838c
+          test "$(git rev-parse "$BASE^")" = cbf037199e56c640165dd53d8b00827902260862
+          git diff --name-only "$BASE" HEAD | LC_ALL=C sort >/tmp/stage42-actual-scope
+          printf '%s\n' .github/workflows/stage42-left-lower-actual.yml tools/stage42-left-lower-actual/capture.py tools/stage42-left-lower-actual/config.json tools/stage42-left-lower-actual/prepare.py | diff - /tmp/stage42-actual-scope
+          Q="$GITHUB_WORKSPACE/tools/stage42-left-lower-actual"
+          W="$RUNNER_TEMP/stage42-left-lower-actual"
+          mkdir -p "$W/out"
+          printf 'QA=%s\nSTOCK=%s\nTARGET=%s\nOUT=%s\n' "$Q" "$W/stock" "$W/target" "$W/out" >>"$GITHUB_ENV"
+          git worktree add --detach "$W/stock" "$BASE"
+          git worktree add --detach "$W/target" "$BASE"
+          python "$Q/prepare.py" "$W/target" | tee "$W/out/preparation.txt"
+          BODY=shared/assets/environment/act5/stage42-registered-body.json
+          test "$(git -C "$W/stock" hash-object "$BODY")" = 478c8722ba41e047949fa717bc06b760dc859c6d
+          test "$(git -C "$W/target" hash-object "$BODY")" = 2a61346018d57c12021ad0d820a8b3ada73d985b
+          printf '%s\n' "$BODY" |diff - <(git -C "$W/target" diff --name-only HEAD)
+          git -C "$W/stock" diff --quiet HEAD --
+          git -C "$W/target" diff --stat > "$W/out/diagnostic-source-diff.txt"
+          test "$(git -C "$W/target" hash-object shared/runtime/renderer.js)" = 22cb61244270a5088fa5bd8a8228035df8820f2e
+          test "$(git -C "$W/target" hash-object shared/runtime/act5-edge-art.js)" = 1d0719ff1d56e3c6720f7e7166b3266864a49415
+      - name: Normal production build and preserved stock validation
+        run: |
+          set -euo pipefail
+          for mode in stock target; do
+            if [ "$mode" = stock ]; then cd "$STOCK"; else cd "$TARGET"; fi
+            npm ci >"$OUT/npm-root-$mode.log" 2>&1
+            npm ci --prefix game >"$OUT/npm-game-$mode.log" 2>&1
+            node - <<'JS' >"$OUT/vector-validation-$mode.log"
+          const fs=require('fs');require('./shared/map/vector-art.js');
+          const a=JSON.parse(fs.readFileSync('shared/assets/environment/act5/stage42-registered-body.json'));
+          const errors=HonroVectorArt.validate(a.vector);console.log(errors);if(errors.length)throw Error(errors.join(';'));
+          JS
+            if [ "$mode" = stock ]; then node tests/stage42-edge-geology.mjs >"$OUT/stage42-geology-stock.log" 2>&1; fi
+            node tests/act5-terrain-contact.mjs >"$OUT/act5-contact-$mode.log" 2>&1
+            npm run test:release-guard >"$OUT/release-$mode.log" 2>&1
+            sha256sum shared/assets/environment/act5/stage42-registered-body.json >"$OUT/source-before-$mode.sha"
+            npm run build >"$OUT/build-$mode.log" 2>&1
+            sha256sum -c "$OUT/source-before-$mode.sha"
+          done
+      - name: Save six actual game canvas and DOM pairs before strict pixel checks
+        timeout-minutes: 12
+        run: |
+          set -euo pipefail
+          python -m pip install playwright==1.58.0 pillow numpy
+          python -m playwright install --with-deps chromium
+          python -m http.server 18841 --bind 127.0.0.1 --directory "$STOCK" >/tmp/s42-stock-http.log 2>&1 &
+          p1=$!
+          python -m http.server 18842 --bind 127.0.0.1 --directory "$TARGET" >/tmp/s42-target-http.log 2>&1 &
+          p2=$!
+          trap 'kill "$p1" "$p2" 2>/dev/null || true' EXIT
+          for port in 18841 18842; do curl -fsS --retry 10 --retry-connrefused "http://127.0.0.1:$port/HONRO.html" -o /dev/null; done
+          python "$QA/capture.py"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage42-left-lower-six-actual-source-pinned
+          path: ${{ env.OUT }}
+          retention-days: 7
