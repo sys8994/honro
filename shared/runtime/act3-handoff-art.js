@@ -23,6 +23,11 @@ D.materialLandmarks=function(b){
  if(!asset.params.contactMapping.every(([, ,x,y])=>vertices.some(p=>Math.abs(p.x-x)<.01&&Math.abs(p.y-y)<.01)))return base;
  // Resolve art from the loaded chapter, never serialize it in a battle.
  const placement={id:artId,kind:'canonical-element',asset,x:0,y:0,scale:1,layer:'front',depthLayer:'L1'};
+ // Include the west paint in tile culling, without changing the authored asset or support.
+ if(b.honroStage===26&&artId==='act3-handoff:26:kiln-foundation'&&asset.id===artId&&
+    floor.id==='a3-foundation'&&asset.params.westBedMaterial&&asset.bounds?.x===0&&asset.bounds.w===7000){
+  placement.asset={...asset,bounds:{...asset.bounds,x:-1480,w:8480}};
+ }
  const result=[...base.filter(l=>l.asset?.id!==artId),placement];
  viewCache.set(b,{base,artId,result});return result;
 };
@@ -83,6 +88,21 @@ S.landmark=function(c,l){
  const raw=G.HonroVisualStyle.raw(c),rows=strips(l.asset),m=raw.getTransform();
  raw.save();
  const ps=G.HONRO_CORE.poly(floor);raw.beginPath();ps.forEach(({x,y},i)=>i?raw.lineTo(x,y):raw.moveTo(x,y));raw.closePath();raw.clip();
+ // Only this native Stage 26 foundation owns the west interior paint.
+ const west=asset.params.westBedMaterial;
+ if(west&&b.honroStage===26&&b.honroCanonical&&!b.honroCustom&&asset.id==='act3-handoff:26:kiln-foundation'&&
+    l.id===asset.id&&l.kind==='canonical-element'&&floor.id==='a3-foundation'&&l.x===0&&l.y===0&&l.scale===1){
+  raw.save();
+  try{
+   raw.clip(new Path2D(west.clipPath),west.clipRule);
+   for(const {path,gradient,stops} of west.paints){
+    const paint=raw.createLinearGradient(...gradient);
+    for(const [at,color] of stops)paint.addColorStop(at,color);
+    raw.fillStyle=paint;
+    raw.fill(new Path2D(path));
+   }
+  }finally{raw.restore();}
+ }
  const minX=-m.e/m.a,maxX=(raw.canvas.width-m.e)/m.a;
  const px=x=>(Math.round(x*m.a+m.e)-m.e)/m.a;
  for(const row of rows){
