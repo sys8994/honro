@@ -32,7 +32,8 @@ jobs:
           printf 'QA=%s\nSTOCK=%s\nTARGET=%s\nOUT=%s\n' "$Q" "$W/stock" "$W/target" "$W/out" >> "$GITHUB_ENV"
           git worktree add --detach "$W/stock" "$BASE"
           git worktree add --detach "$W/target" "$BASE"
-          python "$Q/prepare.py" "$W/target" | tee "$W/out/preparation.txt"
+          python "$Q/prepare.py" "$W/stock" stock | tee "$W/out/preparation-stock.txt"
+          python "$Q/prepare.py" "$W/target" target | tee "$W/out/preparation.txt"
           git -C "$W/target" diff --stat > "$W/out/diagnostic-source-diff.txt"
           git -C "$W/target" diff -- shared/runtime/act5-edge-art.js > "$W/out/diagnostic-bounds.diff"
       - name: Stock validation and official builds, no optimizer edits
@@ -52,7 +53,7 @@ jobs:
             npm run build >"$OUT/build-$mode.log" 2>&1
             sha256sum -c "$OUT/source-before-$mode.sha"
           done
-      - name: Four isolated App contexts and eighteen registered perimeter pairs plus overview returns
+      - name: Four actual Stage42 west-deep pairs, including east control
         run: |
           set -euo pipefail
           python -m pip install playwright==1.58.0 pillow numpy

@@ -8,7 +8,7 @@ from playwright.sync_api import sync_playwright
 from verify import sha,ADDR
 root=Path(__file__).resolve().parent
 views=json.loads((root/'views.json').read_text())
-ARCHIVED={'1440-east': {'stockBinding': '2123df732af9e534a8a63e3b70bb2cfdef065818df0ef5d17c012d75ee75a645', 'stockEntry': '3b3ba95261b2b7588447e1b9ee5db8fee4bdb72692e5153a356054fd26b660b0', 'priorTargetBinding': '600eac6aea07733c651dbe94b287c8bd1290a336e5d1bdb05ab61989920ee023', 'priorState': '913d0b98f987bc1fb4f1a62b65a1604febbe7c6d58f9923cc89e1b7714da1174'}, '390-southeast': {'stockBinding': '2123df732af9e534a8a63e3b70bb2cfdef065818df0ef5d17c012d75ee75a645', 'stockEntry': '3b3ba95261b2b7588447e1b9ee5db8fee4bdb72692e5153a356054fd26b660b0', 'priorTargetBinding': '600eac6aea07733c651dbe94b287c8bd1290a336e5d1bdb05ab61989920ee023', 'priorState': '913d0b98f987bc1fb4f1a62b65a1604febbe7c6d58f9923cc89e1b7714da1174'}}
+ARCHIVED={'1440-southwest': {'stockBinding': '5672adba9c31306eb27ca5d7db0a587296ec645493d5cb9a471d52ed1e10f6e7', 'stockEntry': '848c999127463080e2c98ba3ad7ebbca8443344280856a154d5833ed8ecdbf92', 'priorState': '913d0b98f987bc1fb4f1a62b65a1604febbe7c6d58f9923cc89e1b7714da1174', 'htmlSHA256': '918fb46fbe0ffc400f59e4e35345996679741ce33ac3ff558f8fb43d4864f33a'}, '1440-east': {'stockBinding': '5672adba9c31306eb27ca5d7db0a587296ec645493d5cb9a471d52ed1e10f6e7', 'stockEntry': '848c999127463080e2c98ba3ad7ebbca8443344280856a154d5833ed8ecdbf92', 'priorState': '913d0b98f987bc1fb4f1a62b65a1604febbe7c6d58f9923cc89e1b7714da1174', 'htmlSHA256': '918fb46fbe0ffc400f59e4e35345996679741ce33ac3ff558f8fb43d4864f33a'}, '390-south': {'stockBinding': '5672adba9c31306eb27ca5d7db0a587296ec645493d5cb9a471d52ed1e10f6e7', 'stockEntry': '848c999127463080e2c98ba3ad7ebbca8443344280856a154d5833ed8ecdbf92', 'priorState': '913d0b98f987bc1fb4f1a62b65a1604febbe7c6d58f9923cc89e1b7714da1174', 'htmlSHA256': '918fb46fbe0ffc400f59e4e35345996679741ce33ac3ff558f8fb43d4864f33a'}, '390-southwest': {'stockBinding': '5672adba9c31306eb27ca5d7db0a587296ec645493d5cb9a471d52ed1e10f6e7', 'stockEntry': '848c999127463080e2c98ba3ad7ebbca8443344280856a154d5833ed8ecdbf92', 'priorState': '913d0b98f987bc1fb4f1a62b65a1604febbe7c6d58f9923cc89e1b7714da1174', 'htmlSHA256': '918fb46fbe0ffc400f59e4e35345996679741ce33ac3ff558f8fb43d4864f33a'}}
 
 out=Path(os.environ["OUT"]);out.mkdir(parents=True,exist_ok=True)
 bins=[Path(os.environ[s]) for s in ("STOCK","TARGET")]
@@ -34,7 +34,7 @@ with sync_playwright() as p:
    response=page.goto(urls[i]+'/HONRO.html',wait_until='domcontentloaded',timeout=90000)
    assert response and response.ok and response.body()==(bins[i]/'HONRO.html').read_bytes(), 'actual served HTML mismatch'
    htmlSHA=sha(response.body())
-   if i==0:assert htmlSHA=='e176541027534d964517b53b2fc36825ebfdc207146f8b1879b7b53120441f1b', 'exact stock HTML pin' 
+   if i==0:assert htmlSHA==ARCHIVED[q['key']]['htmlSHA256'], 'exact stock HTML pin' 
    try:
     page.wait_for_function("() => document.documentElement.dataset.honroReady==='true' && typeof window.HonroCampaignLoader?.ensureStage==='function' && typeof window.HonroTimeOfDay?.sky==='function'",timeout=90000)
    except Exception:
@@ -151,15 +151,15 @@ with sync_playwright() as p:
   item={'view':q['key']}
   try:
    aa,a=get(0,q);bb,b=get(1,q)
-   prior=ARCHIVED['1440-east' if q['key'].startswith('1440') else '390-southeast'];assert aa['bindingSHA256']==prior['stockBinding'];assert aa['stateSHA256']==prior['priorState'];assert next(v['sha256'] for k,v in aa['assets'].items() if '/entries/game.' in k)==prior['stockEntry'];assert bb['bindingSHA256']!=prior['priorTargetBinding'];item['exactPriorStockEntryBindingState']=True;item.update(stock=aa,target=bb,stateCameraEqual=all(aa[k]==bb[k] for k in ('actual','css','backing','focus','viewport','stateSHA256')))
+   prior=ARCHIVED[q['key']];assert aa['bindingSHA256']==prior['stockBinding'];assert aa['stateSHA256']==prior['priorState'];assert next(v['sha256'] for k,v in aa['assets'].items() if '/entries/game.' in k)==prior['stockEntry'];assert bb['bindingSHA256']!=prior['stockBinding'];item['exactPriorStockEntryBindingState']=True;item.update(stock=aa,target=bb,stateCameraEqual=all(aa[k]==bb[k] for k in ('actual','css','backing','focus','viewport','stateSHA256')))
    assert item['stateCameraEqual'], 'world/camera/actors changed'
    assert not aa['bad'] and not bb['bad'], 'browser/asset error'
    assert aa['bindingSHA256']!=bb['bindingSHA256'], 'candidate binding lost in build'
    assert all(aa[k]==bb[k] for k in ('surfaceSHA256','propsSHA256')), 'SURFACE or props changed'
    A,B=[np.array(sig_image(x['raw'])).astype(np.int16) for x in (a,b)]
    h,w=A.shape[:2];err=np.abs(A-B).max(2);srcScale=6500/2022;sx=(np.arange(w)+.5-w/2)/aa['actual']['scale']/srcScale+aa['actual']['x']/srcScale;sy=(np.arange(h)+.5-h/2)/aa['actual']['scale']/srcScale+aa['actual']['y']/srcScale
-   top=sy[:,None]<779
-   owned=(~top)|((sx[None,:]>=2235)&(sx[None,:]<=2325)&(sy[:,None]>=662)&(sy[:,None]<=845))
+   top=sy[:,None]<1000
+   owned=(~top)&(sx[None,:]<=1025)
    core=np.unpackbits(np.frombuffer(zlib.decompress(base64.b64decode(q['nativeCore'])),dtype=np.uint8).reshape(h,(w+7)//8),axis=1)[:,:w].astype(bool)
    assert int(core.sum())==q['nativeCoreCount']
    def summary(mask):
@@ -189,8 +189,9 @@ with sync_playwright() as p:
    Image.fromarray((~owned*255).astype('uint8')).save(out/(q['key']+'-protected.png'))
    assert not any(aa['repeat'].values()) and not any(bb['repeat'].values()), 'unstable repeated frame'
    item['hashes']={mode:{kind:sha(im)for kind,im in imgs.items()}for mode,imgs in [('stock',a),('target',b)]}
-   if q.get('previous'):
-    assert item['hashes']==q['previous'], 'context sequence drifts from existing exact archive'
+   assert item['hashes']['stock']==q['oldControl'], 'old candidate image did not match exact archive'
+   assert item['regions']['outsideProtectedOwnership']['changed']==0, 'protected pixels drifted'
+   if q['key']=='1440-east':assert item['hashes']['stock']==item['hashes']['target'], 'east no-change witness differs'
    if q['key'].endswith('-overview-return'):
     assert item['hashes']==next(r['hashes'] for r in roll if r['view']==q['key'].split('-return')[0]), 'overview changed after camera cycle'
    item['changedPixels']=changed(sig_image(a['raw']),sig_image(b['raw'])).histogram()[255]
