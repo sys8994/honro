@@ -1,0 +1,44 @@
+--- a/shared/runtime/renderer.js
++++ b/shared/runtime/renderer.js
+@@ -307,6 +307,28 @@
+             clip.rect(domain.left,domain.top,domain.right-domain.left,domain.bottom-domain.top);
+             return{...l,honroTerrainMaterialClip:clip};
+         }
++        _stage5DeepBankTileLandmark(b,domain,l,view){
++            // Only the signed original lower bank in the current waterfall revision.
++            // Live water and Foundation material assignment do not use this copy.
++            if(b.honroStage!==5||b.honroCustom!==false||b.width!==6400||b.height!==4300||view.top<8192||
++                b.honroStage5FoundationRevision!==1||b.honroStage5DynamicRevision!==1||
++                b.honroStage5LakeRevision!==1||b.honroStage5WaterfallRevision!==1||
++                domain.left!==-6000||domain.top!==-24000||domain.right!==12400||domain.bottom!==28300)return null;
++            const a=l.asset,bb=a?.bounds,rb=a?.reference?.bounds,v=a?.vector?.viewBox,p=a?.params,root=a?.vector?.root,inner=root?.children?.[0];
++            const declared=r=>r?.x===-4000&&r.y===1600&&r.w===14400&&r.h===5200;
++            if(l.id!=='stage5-art-lower-bank'||l.kind!=='canonical-element'||l.layer!=='prop'||l.depthLayer!=='L1'||l.visualRole!=='scenery'||
++                l.x!==0||l.y!==0||l.scale!==1||l.rotation!==0||l.honroTerrainMaterialClip||
++                l.honroElementCollision||l.collisionIds?.length!==0||
++                a?.id!=='act1-traced:stage05-floor-v4'||a.anchor?.x!==0||a.anchor?.y!==0||a.collision?.length!==0||
++                p?.semanticLayer!=='BODY'||p.previewOnly!==false||p.bodyBaseColor!=='#263c3d'||p.bodyTerrainIds?.length!==1||
++                p.bodyTerrainIds[0]!=='valley-floor'||!declared(bb)||!declared(rb)||
++                v?.length!==4||v[0]!==-4000||v[1]!==1600||v[2]!==14400||v[3]!==5200||
++                root?.clipPath!=='canonicalSolid'||inner?.clipPath!=='contactInset'||inner.children?.[0]?.fill!=='#263c3d')return null;
++            if(view.right<=domain.left||view.left>=domain.right||view.top>=domain.bottom)return null;
++            const clip=new Path2D();
++            clip.rect(domain.left,domain.top,domain.right-domain.left,domain.bottom-domain.top);
++            return{...l,honroTerrainMaterialClip:clip};
++        }
+         _drawTerrainDomainTiles(c,b,w,h){
+             // Geographically fixed tiles, never a bitmap cut at Play Bounds.
+             // Pixel-aligned clips consume each gutter sample exactly once.
+@@ -322,7 +344,11 @@
+                     const cc=cv.getContext('2d',{alpha:true}),left=x*size,top=y*size;cc.setTransform(rs,0,0,rs,gutter-left*rs,gutter-top*rs);
+                     const view={left,top,right:left+size,bottom:top+size};
+                     const material=G.HonroTerrainDomain.materialLandmarks(b);
+-                    const landmarks=b.honroStage===6&&top>=8192?material.flatMap(l=>{
++                    const landmarks=b.honroStage===5&&top>=8192?material.flatMap(l=>{
++                        if(this._landmarkVisible(l,view))return[l];
++                        const deep=this._stage5DeepBankTileLandmark(b,domain,l,view);
++                        return deep?[deep]:[];
++                    }):b.honroStage===6&&top>=8192?material.flatMap(l=>{
+                         if(this._landmarkVisible(l,view))return[l];
+                         const deep=this._stage6DeepRoadBodyTileLandmark(b,domain,l,view);
+                         return deep?[deep]:[];
