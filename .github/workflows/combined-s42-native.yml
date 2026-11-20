@@ -1,0 +1,60 @@
+# Local template only; do not enable any live deployment job.
+name: Combined Act1 retained and Stage42 approved native comparison
+on:
+  push:
+    branches: [qa/combined-s02-s08-s09-s42-native-status-recovery-20261120]
+permissions:
+  contents: read
+jobs:
+  stage42:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/qa/combined-s02-s08-s09-s42-native-status-recovery-20261120'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Exact QA-only child and detached stock / approved / optimized sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE=810009f33ca4a122c98c2f270942dc17affed8c7
+          D=tools/combined-s42-native
+          W="$RUNNER_TEMP/combined-s42-native"
+          mkdir -p "$W/out"
+          echo "WORK=$W" >> "$GITHUB_ENV"
+          echo "OUT=$W/out" >> "$GITHUB_ENV"
+          test "$(git show -s --format=%P HEAD)" = "$BASE"
+          test "$(git rev-parse "$BASE^{tree}")" = 39598b5554980e5d762851890f2ab5d3c4b14555
+          printf 'A\t%s\n' .github/workflows/combined-s42-native.yml \
+            "$D/PINS.json" "$D/STAGE42-BOUNDS-HUNK.json" "$D/original-stage42-config.json" "$D/stage42-rgba-pins.json" \
+            "$D/materialize_from_git.py" "$D/prepare.py" "$D/built_graph.py" "$D/capture_stage42.py" "$D/run_prepared.local.sh" | LC_ALL=C sort > "$W/expected-qa"
+          git diff --name-status --no-renames "$BASE" HEAD | LC_ALL=C sort | diff - "$W/expected-qa"
+          git cat-file -e '098419896fca823f35843bc3633140a058b5b7c9^{commit}'
+          git cat-file -e '571d5f16340e4e75eaa3f04993ee531fbc3dbf84^{commit}'
+          python "$D/materialize_from_git.py" "$PWD" "$W/material"
+          for f in PINS.json STAGE42-BOUNDS-HUNK.json original-stage42-config.json stage42-rgba-pins.json \
+             prepare.py built_graph.py capture_stage42.py run_prepared.local.sh; do cp -- "$D/$f" "$W/material/$f"; done
+          for side in A B C; do git worktree add --detach "$W/$side" "$BASE"; done
+          python "$W/material/prepare.py" --trees "$W/A" "$W/B" "$W/C" > "$W/out/pins.json"
+      - name: Normal build contracts and pre-registered source-to-packet DAG
+        shell: bash
+        run: bash "$WORK/material/run_prepared.local.sh" build "$WORK/A" "$WORK/B" "$WORK/C" "$OUT"
+      - name: Normal application 12 Stage42 and neighbor pairs plus two actual renderer-cache tiles
+        shell: bash
+        timeout-minutes: 26
+        run: |
+          set -euo pipefail
+          python -m pip install playwright==1.58.0 pillow numpy
+          python -m playwright install --with-deps chromium
+          bash "$WORK/material/run_prepared.local.sh" stage42 "$WORK/A" "$WORK/B" "$WORK/C" "$OUT"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: combined-stage42-native-archive-exact
+          path: ${{ env.OUT }}
+          retention-days: 7
