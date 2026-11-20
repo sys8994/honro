@@ -242,6 +242,93 @@
             clip.rect(domain.left,top,domain.right-domain.left,domain.bottom-top);
             return{...l,honroTerrainMaterialClip:clip};
         }
+        _stage10DeepFloorTileLandmark(b,domain,l,view){
+            // Only the registered floor has solid author-native paint at this depth.
+            if(b.honroStage!==10||b.honroCustom!==false||b.width!==5000||b.height!==3900||view.top<=6840||
+                domain.left!==-6000||domain.top!==-24000||domain.right!==11000||domain.bottom!==27900)return null;
+            const a=l.asset,bb=a?.bounds,v=a?.vector?.viewBox,ids=a?.params?.bodyTerrainIds;
+            if(l.id!=='act1-stage10-traced-floor-v4'||l.kind!=='canonical-element'||l.layer!=='prop'||l.depthLayer!=='L1'||
+                l.x!==0||l.y!==0||l.scale!==1||l.rotation!==0||l.honroTerrainMaterialClip||
+                l.honroElementCollision||l.collisionIds?.length!==0||
+                a?.id!=='act1-traced:stage10-floor-v4'||a.anchor?.x!==0||a.anchor?.y!==0||
+                a.params?.semanticLayer!=='BODY'||a.params.previewOnly!==false||
+                !Array.isArray(ids)||ids.length!==1||ids[0]!=='outer-yard'||
+                a.vector?.root?.clipPath!=='canonicalSolid'||a.vector.root.children?.[0]?.clipPath!=='contactInset'||
+                a.collision?.length!==0||bb?.x!==-4000||bb.y!==1300||bb.w!==13000||bb.h!==5500||
+                v?.length!==4||v[0]!==-4000||v[1]!==1300||v[2]!==13000||v[3]!==5500)return null;
+            // Exact approved solid hull [-6000,2184,11000,27900] within the existing domain.
+            const top=2184;
+            if(view.right<=domain.left||view.left>=domain.right||view.bottom<=top||view.top>=domain.bottom)return null;
+            const clip=new Path2D();
+            clip.rect(domain.left,top,domain.right-domain.left,domain.bottom-top);
+            return{...l,honroTerrainMaterialClip:clip};
+        }
+        _stage4DeepBodyTileLandmark(b,domain,l,view){
+            // Restore only the witnessed deep lane of the original gate-basin BODY.
+            if(b.honroStage!==4||b.honroCustom!==false||b.width!==4600||b.height!==3500||view.top<8192||
+                domain.left!==-6000||domain.top!==-24000||domain.right!==10600||domain.bottom!==27500)return null;
+            const a=l.asset,bb=a?.bounds,rb=a?.reference?.bounds,v=a?.vector?.viewBox,p=a?.params,root=a?.vector?.root,inner=root?.children?.[0];
+            const declared=r=>r?.x===-4000&&r.y===0&&r.w===12600&&r.h===6000;
+            if(l.id!=='act1-stage04-traced-body'||l.kind!=='canonical-element'||l.layer!=='prop'||l.depthLayer!=='L1'||l.visualRole!=='scenery'||
+                l.x!==0||l.y!==0||l.scale!==1||l.rotation!==0||l.honroTerrainMaterialClip||
+                l.honroElementCollision||l.collisionIds?.length!==0||
+                a?.id!=='act1-traced:stage04-body-v2'||a.anchor?.x!==0||a.anchor?.y!==0||a.collision?.length!==0||
+                p?.semanticLayer!=='BODY'||p.previewOnly!==false||p.bodyBaseColor!=='#3b2e26'||p.bodyTerrainIds?.length!==1||
+                p.bodyTerrainIds[0]!=='gate-basin'||!declared(bb)||!declared(rb)||
+                v?.length!==4||v[0]!==-4000||v[1]!==0||v[2]!==12600||v[3]!==6000||
+                root?.clipPath!=='sourceSolid'||inner?.clipPath!=='sourceInset'||inner.children?.[0]?.fill!=='#3b2e26')return null;
+            if(view.right<=domain.left||view.left>=domain.right||view.top>=domain.bottom)return null;
+            // The native sourceSolid/sourceInset clips still determine paint;
+            // bound the supplementary copy to the original domain on edge tiles.
+            const clip=new Path2D();
+            clip.rect(domain.left,domain.top,domain.right-domain.left,domain.bottom-domain.top);
+            return{...l,honroTerrainMaterialClip:clip};
+        }
+        _stage6DeepRoadBodyTileLandmark(b,domain,l,view){
+            // Exact shipped road BODY. Despite its author preview tag, the other
+            // prototype pieces are not the native source of this deep strip.
+            if(b.honroStage!==6||b.honroCustom!==false||b.width!==6600||b.height!==3800||view.top<8192||
+                domain.left!==-6000||domain.top!==-24000||domain.right!==12600||domain.bottom!==27800)return null;
+            const a=l.asset,v=a?.vector,p=a?.params,root=v?.root,road=v?.clips?.road;
+            const declared=r=>r?.x===-4000&&r.y===1500&&r.w===14600&&r.h===5500;
+            if(l.id!=='stage06-prototype-body'||l.kind!=='canonical-element'||l.layer!=='prop'||l.depthLayer!=='L1'||l.visualRole!=='scenery'||
+                l.x!==0||l.y!==0||l.scale!==1||l.rotation!==0||l.honroTerrainMaterialClip||
+                l.honroElementCollision||l.collisionIds?.length!==0||
+                a?.id!=='stage06-prototype:continuous-body-v1'||a.anchor?.x!==0||a.anchor?.y!==0||a.collision?.length!==0||
+                p?.semanticLayer!=='BODY'||p.previewOnly!==true||p.collisionSource!=='lower-road'||
+                p.prototypeGeometrySha256!=='1c3f1f1825e39cabf653688ed779dcc42d80ce448e4e582173a8eb53cbb80870'||
+                !declared(a.bounds)||!declared(a.reference?.bounds)||
+                v?.viewBox?.length!==4||v.viewBox[0]!==-4000||v.viewBox[1]!==1500||v.viewBox[2]!==14600||v.viewBox[3]!==5500||
+                root?.clipPath!=='road'||root.children?.[0]?.fill!=='#364441'||
+                Object.keys(v.clips??{}).length!==1||!Array.isArray(road)||road.length!==1||typeof road[0]!=='string'||!road[0])return null;
+            if(view.right<=domain.left||view.left>=domain.right||view.top>=domain.bottom)return null;
+            // Preserve the exact road outline and existing source strata underneath.
+            const clip=new Path2D();
+            clip.rect(domain.left,domain.top,domain.right-domain.left,domain.bottom-domain.top);
+            return{...l,honroTerrainMaterialClip:clip};
+        }
+        _stage5DeepBankTileLandmark(b,domain,l,view){
+            // Only the signed original lower bank in the current waterfall revision.
+            // Live water and Foundation material assignment do not use this copy.
+            if(b.honroStage!==5||b.honroCustom!==false||b.width!==6400||b.height!==4300||view.top<8192||
+                b.honroStage5FoundationRevision!==1||b.honroStage5DynamicRevision!==1||
+                b.honroStage5LakeRevision!==1||b.honroStage5WaterfallRevision!==1||
+                domain.left!==-6000||domain.top!==-24000||domain.right!==12400||domain.bottom!==28300)return null;
+            const a=l.asset,bb=a?.bounds,rb=a?.reference?.bounds,v=a?.vector?.viewBox,p=a?.params,root=a?.vector?.root,inner=root?.children?.[0];
+            const declared=r=>r?.x===-4000&&r.y===1600&&r.w===14400&&r.h===5200;
+            if(l.id!=='stage5-art-lower-bank'||l.kind!=='canonical-element'||l.layer!=='prop'||l.depthLayer!=='L1'||l.visualRole!=='scenery'||
+                l.x!==0||l.y!==0||l.scale!==1||l.rotation!==0||l.honroTerrainMaterialClip||
+                l.honroElementCollision||l.collisionIds?.length!==0||
+                a?.id!=='act1-traced:stage05-floor-v4'||a.anchor?.x!==0||a.anchor?.y!==0||a.collision?.length!==0||
+                p?.semanticLayer!=='BODY'||p.previewOnly!==false||p.bodyBaseColor!=='#263c3d'||p.bodyTerrainIds?.length!==1||
+                p.bodyTerrainIds[0]!=='valley-floor'||!declared(bb)||!declared(rb)||
+                v?.length!==4||v[0]!==-4000||v[1]!==1600||v[2]!==14400||v[3]!==5200||
+                root?.clipPath!=='canonicalSolid'||inner?.clipPath!=='contactInset'||inner.children?.[0]?.fill!=='#263c3d')return null;
+            if(view.right<=domain.left||view.left>=domain.right||view.top>=domain.bottom)return null;
+            const clip=new Path2D();
+            clip.rect(domain.left,domain.top,domain.right-domain.left,domain.bottom-domain.top);
+            return{...l,honroTerrainMaterialClip:clip};
+        }
         _drawTerrainDomainTiles(c,b,w,h){
             // Geographically fixed tiles, never a bitmap cut at Play Bounds.
             // Pixel-aligned clips consume each gutter sample exactly once.
@@ -257,7 +344,23 @@
                     const cc=cv.getContext('2d',{alpha:true}),left=x*size,top=y*size;cc.setTransform(rs,0,0,rs,gutter-left*rs,gutter-top*rs);
                     const view={left,top,right:left+size,bottom:top+size};
                     const material=G.HonroTerrainDomain.materialLandmarks(b);
-                    const landmarks=b.honroStage===9&&top>6540?material.flatMap(l=>{
+                    const landmarks=b.honroStage===5&&top>=8192?material.flatMap(l=>{
+                        if(this._landmarkVisible(l,view))return[l];
+                        const deep=this._stage5DeepBankTileLandmark(b,domain,l,view);
+                        return deep?[deep]:[];
+                    }):b.honroStage===6&&top>=8192?material.flatMap(l=>{
+                        if(this._landmarkVisible(l,view))return[l];
+                        const deep=this._stage6DeepRoadBodyTileLandmark(b,domain,l,view);
+                        return deep?[deep]:[];
+                    }):b.honroStage===4&&top>=8192?material.flatMap(l=>{
+                        if(this._landmarkVisible(l,view))return[l];
+                        const deep=this._stage4DeepBodyTileLandmark(b,domain,l,view);
+                        return deep?[deep]:[];
+                    }):b.honroStage===10&&top>6840?material.flatMap(l=>{
+                        if(this._landmarkVisible(l,view))return[l];
+                        const deep=this._stage10DeepFloorTileLandmark(b,domain,l,view);
+                        return deep?[deep]:[];
+                    }):b.honroStage===9&&top>6540?material.flatMap(l=>{
                         if(this._landmarkVisible(l,view))return[l];
                         const deep=this._stage9DeepFloorTileLandmark(b,domain,l,view);
                         return deep?[deep]:[];
