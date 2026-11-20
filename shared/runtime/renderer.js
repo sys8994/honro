@@ -199,6 +199,28 @@
             clip.rect(domain.left,top,domain.right-domain.left,domain.bottom-top);
             return{...l,honroTerrainMaterialClip:clip};
         }
+        _stage8DeepBodyTileLandmark(b,domain,l,view){
+            // The approved funeral-court BODY continues to the domain's deep edge.
+            // Restore only the witnessed deep lane; canonical/editor bounds stay intact.
+            if(b.honroStage!==8||b.honroCustom!==false||b.width!==9600||b.height!==5500||view.top<8192||
+                domain.left!==-6000||domain.top!==-24000||domain.right!==15600||domain.bottom!==29500)return null;
+            const a=l.asset,bb=a?.bounds,rb=a?.reference?.bounds,v=a?.vector?.viewBox,p=a?.params,root=a?.vector?.root,inner=root?.children?.[0];
+            const declared=r=>r?.x===-4000&&r.y===1800&&r.w===17600&&r.h===6000;
+            if(l.id!=='act1-stage08-traced-floor-v1'||l.kind!=='canonical-element'||l.layer!=='prop'||l.visualRole!=='scenery'||
+                l.x!==0||l.y!==0||l.scale!==1||l.rotation!==0||l.honroTerrainMaterialClip||
+                l.honroElementCollision||l.collisionIds?.length!==0||
+                a?.id!=='act1-traced:stage08-floor-v1'||a.anchor?.x!==0||a.anchor?.y!==0||a.collision?.length!==0||
+                p?.semanticLayer!=='BODY'||p.previewOnly!==false||p.bodyBaseColor!=='#26342b'||p.bodyTerrainIds?.length!==1||
+                p.bodyTerrainIds[0]!=='s8-ground'||!declared(bb)||!declared(rb)||
+                v?.length!==4||v[0]!==-4000||v[1]!==1800||v[2]!==17600||v[3]!==6000||
+                root?.clipPath!=='canonicalSolid'||inner?.clipPath!=='contactInset'||inner.children?.[0]?.fill!=='#26342b')return null;
+            if(view.right<=domain.left||view.left>=domain.right||view.top>=domain.bottom)return null;
+            // Native canonicalSolid/contactInset stay on the vector. This extra
+            // intersection only prevents out-of-domain bleed in partial tiles.
+            const clip=new Path2D();
+            clip.rect(domain.left,domain.top,domain.right-domain.left,domain.bottom-domain.top);
+            return{...l,honroTerrainMaterialClip:clip};
+        }
         _drawTerrainDomainTiles(c,b,w,h){
             // Geographically fixed tiles, never a bitmap cut at Play Bounds.
             // Pixel-aligned clips consume each gutter sample exactly once.
@@ -214,7 +236,11 @@
                     const cc=cv.getContext('2d',{alpha:true}),left=x*size,top=y*size;cc.setTransform(rs,0,0,rs,gutter-left*rs,gutter-top*rs);
                     const view={left,top,right:left+size,bottom:top+size};
                     const material=G.HonroTerrainDomain.materialLandmarks(b);
-                    const landmarks=b.honroStage!==2||top<=4540?material.filter(l=>this._landmarkVisible(l,view)):material.flatMap(l=>{
+                    const landmarks=b.honroStage===8&&top>=8192?material.flatMap(l=>{
+                        if(this._landmarkVisible(l,view))return[l];
+                        const deep=this._stage8DeepBodyTileLandmark(b,domain,l,view);
+                        return deep?[deep]:[];
+                    }):b.honroStage!==2||top<=4540?material.filter(l=>this._landmarkVisible(l,view)):material.flatMap(l=>{
                         if(this._landmarkVisible(l,view))return[l];
                         const deep=this._stage2DeepBodyTileLandmark(b,domain,l,view);
                         return deep?[deep]:[];
