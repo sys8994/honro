@@ -1,0 +1,54 @@
+name: HONRO read-only live audit loop 1 Act2 9 missing stages
+on:
+  push:
+    branches: [qa/terrain-loop1-act2-gap-2939958]
+    paths:
+      - '.github/workflows/terrain-loop1-remaining.yml'
+      - 'tools/terrain-loop1-remaining/**'
+permissions:
+  contents: read
+jobs:
+  audit:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/terrain-loop1-act2-gap-2939958'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 23
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        group: [a2-gap-a, a2-gap-b]
+    env:
+      AUDIT_GROUP: ${{ matrix.group }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Verify QA-only checkout and prepare browser binary
+        shell: bash
+        run: |
+          set -euo pipefail
+          Q=tools/terrain-loop1-remaining
+          W="$(mktemp -d "$RUNNER_TEMP/honro-audit-loop1-${AUDIT_GROUP}.XXXXXX")"
+          export AUDIT_BATCH_OUT="$W/evidence"
+          mkdir "$AUDIT_BATCH_OUT"
+          echo "AUDIT_BATCH_OUT=$AUDIT_BATCH_OUT" >> "$GITHUB_ENV"
+          echo "AUDIT_WORK=$W" >> "$GITHUB_ENV"
+          PYTHONPATH="$Q" python3 -c 'from source import scope, matrix_integrity; scope(); matrix_integrity()'
+          python3 -m venv "$W/venv"
+          V="$W/venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+      - name: Record and verify public first-turn camera frames by stage
+        shell: bash
+        run: |
+          set -euo pipefail
+          "$AUDIT_WORK/venv/bin/python" tools/terrain-loop1-remaining/batch.py
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always() && env.AUDIT_BATCH_OUT != ''
+        with:
+          name: honro-live-2939958-act2-gap-${{ matrix.group }}
+          path: ${{ env.AUDIT_BATCH_OUT }}
+          if-no-files-found: error
+          retention-days: 7

@@ -1,0 +1,1200 @@
+{
+  "authority": {
+    "pagesCompletedUTC": "2026-11-20T21:37:21.9122544Z",
+    "pagesJob": 136584564179,
+    "pagesRun": 44821694897,
+    "release": "2939958cc87407ef60b58720bb6e086b8559031b",
+    "retainedManifestGitBlob": "dc5abd1657aa70245e456988202e1460f211fbf2",
+    "retainedManifestSHA256": "cc22d45754173a212ab3ce05d7bc5b3faf211c13e7ad5ba08f252f8e10f56304",
+    "tree": "08e22a8cc0ab608e125ad73f8e8e1c288d8c4c74"
+  },
+  "base": "web/data/campaign-base.0c57dcfe7c08d421.json",
+  "baseLeaves": {
+    "HONRO.html": {
+      "bytes": 17379,
+      "sha256": "be902800b7a24c145b09fb959909d24bfccc958c88c2d87d7c79725a16f2f708"
+    },
+    "web/data/HONRO_ACT23_V4_PHASE_B_STAGES.14aab2db4e01b0f3.json": {
+      "bytes": 29,
+      "sha256": "14aab2db4e01b0f3245ae967605cf032e2d27406fac4ba50ee8d3ed16335505f"
+    },
+    "web/data/HONRO_ACT2_COMPACT_PACKAGES-part-000.b74a29173f457f34.bin": {
+      "bytes": 4194304,
+      "sha256": "b74a29173f457f34e26864f87526b5d010dab2b378b04ef8a6ee3ec829a9877d"
+    },
+    "web/data/HONRO_ACT2_COMPACT_PACKAGES-part-001.b849c4559f257911.bin": {
+      "bytes": 3367429,
+      "sha256": "b849c4559f2579117de7296c15c06343dc273cf9b17b682909eaa42652d1d485"
+    },
+    "web/data/HONRO_ACT2_COMPACT_PACKAGES-parts.b0ecb9743ae28018.json": {
+      "bytes": 464,
+      "sha256": "b0ecb9743ae28018ea32e6d0c70c3f4fb305cc9878fa3d489f4ecfbc1023006e"
+    },
+    "web/data/HONRO_BGM_TRACKS.c152d3b0ef2ea83b.json": {
+      "bytes": 180,
+      "sha256": "c152d3b0ef2ea83bce77ff449c315feaa0a207f367104babb87cea135c9ae06d"
+    },
+    "web/data/HONRO_MONSTERS.502d3ac46c4666e6.json": {
+      "bytes": 259498,
+      "sha256": "502d3ac46c4666e63ae35f244f33c217edbf3a6a06f7b9ccbc2742727f121282"
+    },
+    "web/data/HONRO_STAGE11_COMPACT_DATA.52c4d43e8bfdb531.json": {
+      "bytes": 2309930,
+      "sha256": "52c4d43e8bfdb53175eb6911600d684b91100649c1e58551583d21d80e159c26"
+    },
+    "web/data/campaign-base.0c57dcfe7c08d421.json": {
+      "bytes": 257,
+      "sha256": "0c57dcfe7c08d421901ffa8eeb437940b6b6d4779816207b51dca7be44c73e5e"
+    },
+    "web/data/campaign-shared.8f8343b5c21518d4.json": {
+      "bytes": 577195,
+      "sha256": "8f8343b5c21518d4fdaa2314e58031fd137b8622d3a6c1ca2fdabafde3bb158f"
+    },
+    "web/data/campaign.fa9a5e8d3cb0a7e5.json": {
+      "bytes": 54885,
+      "sha256": "fa9a5e8d3cb0a7e54e7dd62130f61d93735f61fd4d56c9cb3b27874619ef4f3c"
+    },
+    "web/entries/game.3e9d3e271f161125.js": {
+      "bytes": 20483,
+      "sha256": "3e9d3e271f16112552f0384727ff2c10e238ab5ba85025cd45222a7f8acef2ce"
+    },
+    "web/runtime/HONRO_ACT1_FAR_DATA.e4d5edc5046d7e4b.js": {
+      "bytes": 235,
+      "sha256": "e4d5edc5046d7e4ba63c49b837c3a7c59f73d001ec4ef361322e79fd472ce7d0"
+    },
+    "web/runtime/HONRO_ACT23_V4_PHASE_A.76c1c817523e1124.js": {
+      "bytes": 195,
+      "sha256": "76c1c817523e11246d1af6aaa6eb75f593ccc6aefd106fb5980a866d13582137"
+    },
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_CH11.871bd8142d83de50.js": {
+      "bytes": 205,
+      "sha256": "871bd8142d83de50ff78f541c946d073eb8f6544ad29f03c5f3881f9c8aca093"
+    },
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_CH21.c7b98a5982f14df8.js": {
+      "bytes": 205,
+      "sha256": "c7b98a5982f14df8f7980427cd70fc4607f622d015adb126fed2364dc3f40f15"
+    },
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_CH22.1a074ebebf7d8105.js": {
+      "bytes": 205,
+      "sha256": "1a074ebebf7d8105175d44eac50f3ee78d7e9cf4ab847b544e31769d1f2e9773"
+    },
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_CH23.56d76c19f464e8bf.js": {
+      "bytes": 205,
+      "sha256": "56d76c19f464e8bfd14ed38b6d5423e9057d875f6bf5d2a55d45a6d747ebc979"
+    },
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_CH24.9b66c4c0717d4796.js": {
+      "bytes": 205,
+      "sha256": "9b66c4c0717d4796413893376e10aa61e59cb1d43ae839824f2328690ec68047"
+    },
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_CH25.c5136d2288a33205.js": {
+      "bytes": 205,
+      "sha256": "c5136d2288a33205e19ab45424bb1ec03f1d5ef185ed7b80d4a48999f78a4507"
+    },
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_CH26.c6f47e01d5381ed8.js": {
+      "bytes": 205,
+      "sha256": "c6f47e01d5381ed8c1be86301cc4438d3e3206725f0544717c646450c9044231"
+    },
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_CH27.681e86550140ee21.js": {
+      "bytes": 205,
+      "sha256": "681e86550140ee2157fef2c7bd59fca1c8149e235b31fe3d14e6fdb22c12ca6f"
+    },
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_CH28.46052d93fbddab90.js": {
+      "bytes": 205,
+      "sha256": "46052d93fbddab9020f5564e7becd7fca2973ab740082847ff09d99fb3ade8cb"
+    },
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_CH29.d0ddaf6a439c4dc7.js": {
+      "bytes": 205,
+      "sha256": "d0ddaf6a439c4dc72889e867699c7c356f028555f611658498aac09338902157"
+    },
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_CH30.7a14e97d3bd82ed2.js": {
+      "bytes": 205,
+      "sha256": "7a14e97d3bd82ed2b78d6531b87e7b89ddb609c1bcbc8e315c0f6a082389565d"
+    },
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_STAGES.236a861d9c714d37.js": {
+      "bytes": 209,
+      "sha256": "236a861d9c714d371df05975096ee95796a43ae1b130e2231fa50de157d8362f"
+    },
+    "web/runtime/HONRO_ACT23_V4_REVIEWED.c0ba36ff9c8dd235.js": {
+      "bytes": 197,
+      "sha256": "c0ba36ff9c8dd23584a0cb710481c71fd6159f7f2e3bfd3d0e117223518aab53"
+    },
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_CH21.65b8483047b7b156.js": {
+      "bytes": 207,
+      "sha256": "65b8483047b7b156aa79e6eef232006bd478657b4fe6222cc1b0ffe9f66747e9"
+    },
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_CH22.8cbedf1be6d53b20.js": {
+      "bytes": 207,
+      "sha256": "8cbedf1be6d53b20f70d0517b5f001842ca26a797f83aba0759ec47cca408df5"
+    },
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_CH23.897fa01b476153da.js": {
+      "bytes": 207,
+      "sha256": "897fa01b476153dac5c4b90bedd1afa0eb62ca4f3d7d749bdd86947454184312"
+    },
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_CH24.e6a4429d56fb9c50.js": {
+      "bytes": 207,
+      "sha256": "e6a4429d56fb9c501579b7ab36fbf3ba1a1ffef796519ea36169e4008f7bcaa0"
+    },
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_CH25.71aa9c82189d64b5.js": {
+      "bytes": 207,
+      "sha256": "71aa9c82189d64b59843706c3555d549d48aab997315e1f4837f98bfcd8a6a4e"
+    },
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_CH26.21398944a7db8bfb.js": {
+      "bytes": 207,
+      "sha256": "21398944a7db8bfb3da16a3009e5d7ff07b8371c5e271cb062d26f4a22fc20c7"
+    },
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_CH27.2364e9e435c7dcec.js": {
+      "bytes": 207,
+      "sha256": "2364e9e435c7dcecd99fb3d5fb165f7627ec34817c47afb64727aeafe400b0ff"
+    },
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_CH28.b05d278718873a06.js": {
+      "bytes": 207,
+      "sha256": "b05d278718873a06127b150fae1c41972b8882c36963b6b9ef2cd01fc2b0fd5d"
+    },
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_CH29.b3296b28f0669263.js": {
+      "bytes": 207,
+      "sha256": "b3296b28f06692636ab41ef8eb59123618ce0348c98ddbaf4be0a550b4109a26"
+    },
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_CH30.2601524ece85c248.js": {
+      "bytes": 207,
+      "sha256": "2601524ece85c2483d95af11a5e5f363a5716d793a54c59a410fb9739908803c"
+    },
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_CHAPTERS.3dec07adf8a49588.js": {
+      "bytes": 215,
+      "sha256": "3dec07adf8a4958896e0da2eca16c5e06c39131fe1e9ee194e5f4343d5cf271b"
+    },
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_COMMON.0ce9a3868ac0c548.js": {
+      "bytes": 211,
+      "sha256": "0ce9a3868ac0c5486fb2df5254f24e0614526eaf759a2a15b7a79803cbfbb014"
+    },
+    "web/runtime/HONRO_ACT2_COMPACT_PACKAGES.1e95648ad5f66d35.js": {
+      "bytes": 211,
+      "sha256": "1e95648ad5f66d35af52c308412ab42a1e2ad1a04abe0812152e139f43e27e7f"
+    },
+    "web/runtime/HONRO_ACT2_FAR_DATA.de2a4590f9969c42.js": {
+      "bytes": 256,
+      "sha256": "de2a4590f9969c42ebd08c2ada63c6466a410c0caa20b40c28429a9a844cb863"
+    },
+    "web/runtime/HONRO_ACT4_CONTENT.ca14aa5f882d5528.js": {
+      "bytes": 187,
+      "sha256": "ca14aa5f882d5528f383c600f048da9cdba9b56485383790c680f353e2af4973"
+    },
+    "web/runtime/HONRO_ACT4_PILOT_COMBAT_REFERENCE.72a89112ae79534b.js": {
+      "bytes": 217,
+      "sha256": "72a89112ae79534bcea7a255d835cb3b609a5a78a9e20db30378252ed6edc79e"
+    },
+    "web/runtime/HONRO_ACT4_PREVIEW_SEEDS.f59700a4d63d37fc.js": {
+      "bytes": 199,
+      "sha256": "f59700a4d63d37fc04b0dbe2dc71b66dac43c562f0765b1692eaf8c14aa33fca"
+    },
+    "web/runtime/HONRO_ACT4_RELEASE.ec334deca2d3b718.js": {
+      "bytes": 187,
+      "sha256": "ec334deca2d3b718248e9208afc85115a01790807e421bcab0c9c7da682677b1"
+    },
+    "web/runtime/HONRO_ACT4_REVIEWED.9a6c1bef6b8776ef.js": {
+      "bytes": 189,
+      "sha256": "9a6c1bef6b8776ef90283c611127072901216e1de08e8ca51a47f14050a7ea80"
+    },
+    "web/runtime/HONRO_ACT5_CONTENT.38bb7a8fa71b61c0.js": {
+      "bytes": 187,
+      "sha256": "38bb7a8fa71b61c0a42dd6ca567067ba527513b6df0ce7ea0729910f31e1b6cf"
+    },
+    "web/runtime/HONRO_ACT5_RELEASE.8ce1fbd252d16338.js": {
+      "bytes": 187,
+      "sha256": "8ce1fbd252d16338c6a7ff5e5728967d9b7001f260daccf9df3c697499c1c5f6"
+    },
+    "web/runtime/HONRO_AUTHORED_FAR.7d9bc00aabea227c.js": {
+      "bytes": 871,
+      "sha256": "7d9bc00aabea227c2c75a517f01b2b0578e63250e339e3ae72c356d8430504df"
+    },
+    "web/runtime/HONRO_BALANCE.203e3431e13c5fca.js": {
+      "bytes": 177,
+      "sha256": "203e3431e13c5fca99a95f880ec4274a5e4d8c46616298b44f5bd00226a0c903"
+    },
+    "web/runtime/HONRO_BGM_METADATA.3e30a609b581bb7a.js": {
+      "bytes": 187,
+      "sha256": "3e30a609b581bb7aa6915d1b7070bab245cfbb9abedc7681e0826c58b604cc97"
+    },
+    "web/runtime/HONRO_BGM_TRACKS.30e452c460f0bb8b.js": {
+      "bytes": 183,
+      "sha256": "30e452c460f0bb8b0f8f14d20b500aa92431cb9c1089e1841a4864a4326123ae"
+    },
+    "web/runtime/HONRO_EQUIPMENT_ICONS.62fedaa06e7fbe59.js": {
+      "bytes": 920,
+      "sha256": "62fedaa06e7fbe59a2334710f31083510a9540ab17f95fbe5ae9335cef866eda"
+    },
+    "web/runtime/HONRO_FAREWELL_SPIRITS.f62f950b73f5b8b4.js": {
+      "bytes": 195,
+      "sha256": "f62f950b73f5b8b47e6830aaabf638389b191124965887bf6315fbe115716e11"
+    },
+    "web/runtime/HONRO_JOURNEY_MAPS.c0766f60904faaa6.js": {
+      "bytes": 271,
+      "sha256": "c0766f60904faaa6bf31c5ca076152c2f93767d74062a6b31e3e5ab0ef9ad688"
+    },
+    "web/runtime/HONRO_MUKJONG_AUDIO.c2a8e1148786a21d.js": {
+      "bytes": 196,
+      "sha256": "c2a8e1148786a21d78969c267d4575d95bac78ec2b5a5970503888d834f80a70"
+    },
+    "web/runtime/HONRO_NARRATIVE_V0.e25b3623bdc124a4.js": {
+      "bytes": 187,
+      "sha256": "e25b3623bdc124a44cbb1602e7d0b02ad9ca08c39dc40d4054134c544807736c"
+    },
+    "web/runtime/HONRO_OPEN_STRUCTURES.481d47ec575fa6b5.js": {
+      "bytes": 193,
+      "sha256": "481d47ec575fa6b53d177d0fe62993fd7ef49e4f7ced468ccb2cfc7c7fe67c54"
+    },
+    "web/runtime/HONRO_PORTRAIT_VARIANTS.377dc8fab3a7ee5d.js": {
+      "bytes": 197,
+      "sha256": "377dc8fab3a7ee5df0c919bc8d0875a242e691666ce1bf03e8823587fb123a92"
+    },
+    "web/runtime/HONRO_REST_BACKDROPS.d0914f5572f0cc5e.js": {
+      "bytes": 513,
+      "sha256": "d0914f5572f0cc5e77efe0619ff8f6f32382ada63c6d40ef7bd560ae031777f9"
+    },
+    "web/runtime/HONRO_SKILL_AUDIO.0b85b9d203ebf41b.js": {
+      "bytes": 1227,
+      "sha256": "0b85b9d203ebf41b52fb06a232dc49d86db570ce519a23ebc7fc062d2b27f208"
+    },
+    "web/runtime/HONRO_SKILL_ICON_MANIFEST.5dfa866899b7b39e.js": {
+      "bytes": 2068,
+      "sha256": "5dfa866899b7b39e5d55b44aceb44c35042fd9a18fe98bf782c7f46dd8ef1d6c"
+    },
+    "web/runtime/HONRO_SPLIT_V1.c03b319b9a4988b2.js": {
+      "bytes": 179,
+      "sha256": "c03b319b9a4988b28e307c59adc262e89e831294d1393a25eab4cd35b547ff37"
+    },
+    "web/runtime/HONRO_STAGE11_COMPACT_DATA.c402b23223511a23.js": {
+      "bytes": 203,
+      "sha256": "c402b23223511a23013876e3d5013356a64ff5c04afe198f8dc05cfab362ef3f"
+    },
+    "web/runtime/HONRO_TIMELINE.2d35abe802c683c3.js": {
+      "bytes": 179,
+      "sha256": "2d35abe802c683c3f3cedb200e9d31daeee951f226dd1ff4a5a37ebd282e6955"
+    },
+    "web/runtime/campaign.748d97a778b7faa1.js": {
+      "bytes": 527,
+      "sha256": "748d97a778b7faa16a626dbf4c3f7d53c2cb7747076f183a0302534b29a6370a"
+    },
+    "web/runtime/game-art.a5fab3c18d72a12e.js": {
+      "bytes": 4113,
+      "sha256": "a5fab3c18d72a12eeaf13020e7de3af50ce04ca80b900f8ff712eb7306eca7de"
+    },
+    "web/runtime/load-data.248fb3aada6f16bb.js": {
+      "bytes": 15550,
+      "sha256": "248fb3aada6f16bbe2d7df7e369db772df2d923bc91b1e517daa53858f558dcb"
+    },
+    "web/runtime/narrative-data.6277857ddbf17ddf.js": {
+      "bytes": 176,
+      "sha256": "6277857ddbf17ddf543b5cbd2f011cde2396d9e04f13aaae77a968e76135f744"
+    },
+    "web/runtime/ordered-common-1.6e9161cc9c68342d.js": {
+      "bytes": 1743,
+      "sha256": "6e9161cc9c68342d110e957a5fb8463dd06a64efcff4199917d6e8b1aeac4127"
+    },
+    "web/runtime/ordered-common-10.7f6c8574f94f35df.js": {
+      "bytes": 179413,
+      "sha256": "7f6c8574f94f35df38a797b4d439a5c096d784b954529bfa4e9fc9df58dfc9ae"
+    },
+    "web/runtime/ordered-common-11.6adcb81897ec0663.js": {
+      "bytes": 177221,
+      "sha256": "6adcb81897ec06638dc92386b515b2f8ff10ee38a60c6fa4fb2d9040be22ea77"
+    },
+    "web/runtime/ordered-common-12.70b9c35c854ec2af.js": {
+      "bytes": 72081,
+      "sha256": "70b9c35c854ec2af805d4aa3e9890a152c4ce6f5bdb69917aea6b94a876e83ca"
+    },
+    "web/runtime/ordered-common-13.cc87f3d58b5389b1.js": {
+      "bytes": 21211,
+      "sha256": "cc87f3d58b5389b15cfe63e8a6548136407b8f9cd04ce27f90eaef65ed1207ea"
+    },
+    "web/runtime/ordered-common-14.85d7853ba3745e09.js": {
+      "bytes": 22301,
+      "sha256": "85d7853ba3745e09b8d3d697d1abe83519a172816e4e533441a236e43e5fa8b0"
+    },
+    "web/runtime/ordered-common-15.3dd35880565c92f2.js": {
+      "bytes": 160836,
+      "sha256": "3dd35880565c92f2fc1d67342b26fc16951c2d04294cbf695df2a5cdae58075e"
+    },
+    "web/runtime/ordered-common-16.8c8322e8250bb868.js": {
+      "bytes": 170334,
+      "sha256": "8c8322e8250bb868bfe5972fbb92e76c61aed9705884b99ec5d7dce4bbee69cc"
+    },
+    "web/runtime/ordered-common-17.2ed746adf1d3e0e3.js": {
+      "bytes": 97032,
+      "sha256": "2ed746adf1d3e0e384db957d7392a299be80db92cba7647b721d2c84bafec4e2"
+    },
+    "web/runtime/ordered-common-18.9dcb25cd7e4ae77b.js": {
+      "bytes": 34955,
+      "sha256": "9dcb25cd7e4ae77b50e3ff528a43d3a3a170c28c1995ddb9c694b66a10965bfe"
+    },
+    "web/runtime/ordered-common-19.8b183d53c733351f.js": {
+      "bytes": 10473,
+      "sha256": "8b183d53c733351fa535dce06f44975a4c8c7d0b64b7cdad9904b18a4ebeb5ac"
+    },
+    "web/runtime/ordered-common-2.49982d8a68cfa528.js": {
+      "bytes": 927571,
+      "sha256": "49982d8a68cfa528577da4570dbf8820b3065a25dc60b21cfcfc6ebbfd0d73ed"
+    },
+    "web/runtime/ordered-common-3.3def16b6135b0973.js": {
+      "bytes": 115050,
+      "sha256": "3def16b6135b0973b8dc153464feb722b8a87cf28f83075ff0ecfb7e3f915cf0"
+    },
+    "web/runtime/ordered-common-4.c84f463a629cb3dc.js": {
+      "bytes": 181306,
+      "sha256": "c84f463a629cb3dc26d1ab93d071c3499c8339888b9bc08d089f852c602b2191"
+    },
+    "web/runtime/ordered-common-5.2e5a74cface951ff.js": {
+      "bytes": 173371,
+      "sha256": "2e5a74cface951ff484cf7db6ec655941624d553469f947b2864a74a1349b6c7"
+    },
+    "web/runtime/ordered-common-6.857f5634e4395548.js": {
+      "bytes": 172085,
+      "sha256": "857f5634e439554828ec64b187fbe106d366c9c913f4c45a6163d084ed901318"
+    },
+    "web/runtime/ordered-common-7.31e16134eb8ab77b.js": {
+      "bytes": 179093,
+      "sha256": "31e16134eb8ab77bbeba775a848f5eb83f1a648b04aac9f471b35cb0badd3a1c"
+    },
+    "web/runtime/ordered-common-8.20b0aa56c33f63a5.js": {
+      "bytes": 169759,
+      "sha256": "20b0aa56c33f63a5de33c7a2e6b8f4ea63041ea53da2793162e19f42f678e7e5"
+    },
+    "web/runtime/ordered-common-9.24f4201c60fcdfce.js": {
+      "bytes": 174951,
+      "sha256": "24f4201c60fcdfce15b4fd90c659ca47bf66a7dcef231ccda2d531c2687dad98"
+    },
+    "web/runtime/ordered-game-20.8a028a8355ced977.js": {
+      "bytes": 62255,
+      "sha256": "8a028a8355ced9776157cd1258b7f567c7b26e1e1de51143c26a8525b1a5d7f7"
+    },
+    "web/runtime/ordered-game-21.8775c24e10e1a3d2.js": {
+      "bytes": 82527,
+      "sha256": "8775c24e10e1a3d2a39abd553bdabbf39443b19c20cc374b1e67070ff8e20c07"
+    },
+    "web/runtime/ordered-game-22.27e665c6427d9375.js": {
+      "bytes": 146814,
+      "sha256": "27e665c6427d93752459fc4e245eb50f89a3d8983424dc03acc046fd8a25fba1"
+    },
+    "web/runtime/ordered-game-23.d839a3c2c2061368.js": {
+      "bytes": 94701,
+      "sha256": "d839a3c2c20613685a56c73218a30ea80d90df7caeb97c015250e6dacdfd79c8"
+    },
+    "web/runtime/ordered-game-24.26a8010157c8fe32.js": {
+      "bytes": 173611,
+      "sha256": "26a8010157c8fe32e6aa7aa32ec55444beee808ced88e6b53a41a2e6157d29ff"
+    },
+    "web/runtime/ordered-game-25.12e2361380e24c93.js": {
+      "bytes": 25313,
+      "sha256": "12e2361380e24c93bd64b7e931f049a16648fb3f63497b14840eda3224858b32"
+    },
+    "web/runtime/party-alias.3485184cbddbd273.js": {
+      "bytes": 119,
+      "sha256": "3485184cbddbd273b67d9d4115557ac20e2f485ece2380efa2886cee059383fd"
+    },
+    "web/runtime/shared-assets-actors-actors-runtime.59fd424891c899af.js": {
+      "bytes": 175,
+      "sha256": "59fd424891c899afda3a5e0a7cede3f3b1e1062fed126d513341b1fae34a39fb"
+    },
+    "web/runtime/shared-assets-monsters-monsters-runtime.a0cdeca2c2cf4abc.js": {
+      "bytes": 179,
+      "sha256": "a0cdeca2c2cf4abc2030e06ba0dbf2c621ce1c98fea39b607e12d430be2eec59"
+    },
+    "web/runtime/shared-runtime-skill-preview.0873a72c3e01c88c.js": {
+      "bytes": 33099,
+      "sha256": "0873a72c3e01c88c898a71742d9b4b7fa850595df6983ede2752eb341fdd51de"
+    },
+    "web/runtime/shared-runtime-stage-rules.d77b19a2010f2791.js": {
+      "bytes": 3468,
+      "sha256": "d77b19a2010f2791cda5df172d9d2b2faa96e0b33e899bd04596fb21c1bd70b5"
+    },
+    "web/runtime/shared-runtime-title-markup.e0f242270b02362a.js": {
+      "bytes": 4490,
+      "sha256": "e0f242270b02362a5e70cc29d22bd5e37f9973baa480b49428e7ac07fedadf23"
+    },
+    "web/runtime/shared-runtime-training.84c5e6034d5b7c0b.js": {
+      "bytes": 8662,
+      "sha256": "84c5e6034d5b7c0b4b8afd0b38d8a668d6bc8ba68fc44b70c6ace682afa124dd"
+    },
+    "web/runtime/title-scene.63b44eb84d35b848.js": {
+      "bytes": 240,
+      "sha256": "63b44eb84d35b848250cb92ce4d33cd76d03e898a823e9fc5424c21111f9b922"
+    },
+    "web/styles/game-src-act-endings.9f0fb63251dea0e6.css": {
+      "bytes": 4204,
+      "sha256": "9f0fb63251dea0e645ed7a9edcdf9c97938f93431b3398c279569402dc12b580"
+    },
+    "web/styles/game-src-act3-void.fff422e530bb3189.css": {
+      "bytes": 2425,
+      "sha256": "fff422e530bb3189d0326057a19cda232ddf55e8de5206d9c631248bc4ec6aa5"
+    },
+    "web/styles/game-src-clear-report.bfdce1b8a64e3c97.css": {
+      "bytes": 6801,
+      "sha256": "bfdce1b8a64e3c9779018ca77f0aed4c4f5efb8a74f2b388548286e0d612de10"
+    },
+    "web/styles/game-src-controls.d744fc2f4f969945.css": {
+      "bytes": 36820,
+      "sha256": "d744fc2f4f969945a98a444104d14fdf40ac770809b42933584aa6ea46ca5c54"
+    },
+    "web/styles/game-src-equipment.aa2e752ae78a9866.css": {
+      "bytes": 16896,
+      "sha256": "aa2e752ae78a986692804150966940fb3b713c37f0f267769746763df7fe5ef7"
+    },
+    "web/styles/game-src-fonts.43855b81e6a81ba4.css": {
+      "bytes": 111673,
+      "sha256": "43855b81e6a81ba459f0455482a6e5e017202d7605d89cd94f0c22e7506b857d"
+    },
+    "web/styles/game-src-game-interface.832a9c9eb8c9517d.css": {
+      "bytes": 7909,
+      "sha256": "832a9c9eb8c9517d692592a935f315f2ebc0250889a84a2af07be8067d4ca1a5"
+    },
+    "web/styles/game-src-guide.869baa784cb9ba70.css": {
+      "bytes": 3138,
+      "sha256": "869baa784cb9ba70357a384dc3bffcd5618e948e3178fff5c978291e4046ada6"
+    },
+    "web/styles/game-src-hud.52581f3f9b27a561.css": {
+      "bytes": 24199,
+      "sha256": "52581f3f9b27a561ddb720f154832bba60391bebcb6f298874719eab50339f19"
+    },
+    "web/styles/game-src-journey.e6e72b21f1205f1c.css": {
+      "bytes": 31404,
+      "sha256": "e6e72b21f1205f1cea6a3502247327cd0f291785aa3585a7bc501620a7ac1e2e"
+    },
+    "web/styles/game-src-presentation.8d0dec87e1d85ac1.css": {
+      "bytes": 23107,
+      "sha256": "8d0dec87e1d85ac16b8b70e9bbdad0f48f8f1083423b0356619a542ac046f53f"
+    },
+    "web/styles/game-src-skill-icons.c041660a380bc346.css": {
+      "bytes": 5289,
+      "sha256": "c041660a380bc346388d4ad03c821bfc84cef798e06ada85fb2fe20c3767980d"
+    },
+    "web/styles/game-src-skill-presentation.9115388e87864ef4.css": {
+      "bytes": 18791,
+      "sha256": "9115388e87864ef405ecd50959b9678f3f307c7668463e359ce4eb8f595518df"
+    },
+    "web/styles/game-src-title.6feb904b14f9e87d.css": {
+      "bytes": 10448,
+      "sha256": "6feb904b14f9e87da63948bb7423b94328abe16e21c7e2b56fc106383a61815a"
+    },
+    "web/styles/game-src-training.2c1e01e835c1bc35.css": {
+      "bytes": 9655,
+      "sha256": "2c1e01e835c1bc3567d0fcb4da5541edb35732211178f7ba1fc40ae54b663b22"
+    },
+    "web/styles/game-src-unit-info.082de9b7c479495a.css": {
+      "bytes": 4350,
+      "sha256": "082de9b7c479495a5268675134329e3c01d56c4b5125fc299554556bd99522c4"
+    },
+    "web/styles/game-src-ux-polish.3d89764783c63e4e.css": {
+      "bytes": 10117,
+      "sha256": "3d89764783c63e4e973a4cce41941f2107220b761e3ac55d1cb35a134c0adc35"
+    },
+    "web/styles/game-vendor-style.7793a1c24f08e38d.css": {
+      "bytes": 46815,
+      "sha256": "7793a1c24f08e38db10d0bb0a5b9dd824b180bf0d555d7d1d996a994941a40bc"
+    },
+    "web/styles/game-vendor-ui-arcfall-layout.5dfc699852420d32.css": {
+      "bytes": 74325,
+      "sha256": "5dfc699852420d32e6af4394337b9b929f6868cbd6fa835bae0950f93aac775b"
+    }
+  },
+  "campaign": "web/data/campaign.fa9a5e8d3cb0a7e5.json",
+  "compatibility": {
+    "compatibility33": {
+      "bytes": 2630223,
+      "encoding": "json",
+      "path": "web/data/campaign-compat-33.a94eb973f1d85ce5.json",
+      "sha256": "a94eb973f1d85ce54435ae2c18003c34d523f5080ddb0a030c038164654a7ee2"
+    },
+    "compatibility34": {
+      "bytes": 3417284,
+      "encoding": "json",
+      "path": "web/data/campaign-compat-34.d70f3bda120cceb5.json",
+      "sha256": "d70f3bda120cceb53df0d501161f5bbbe11d5b68afb8064f168b2ca1c6dd007c"
+    }
+  },
+  "entry": "web/entries/game.3e9d3e271f161125.js",
+  "groups": {
+    "a2-gap-a": [
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "a2-gap-b": [
+      16,
+      17,
+      18,
+      20
+    ]
+  },
+  "leaves": {
+    "web/data/chapter-11-assets.cad9e03dd8bf52a5.json": {
+      "bytes": 740283,
+      "sha256": "cad9e03dd8bf52a5be4cd61fd22cc4430f7e66edb8c9a547377bd54219931916"
+    },
+    "web/data/chapter-11.4f36fd2ea4a1cafd.json": {
+      "bytes": 209933,
+      "sha256": "4f36fd2ea4a1cafd3e261f9b1eb222fde4e9ab4fda3799f6852a68db87cd5105"
+    },
+    "web/data/chapter-12-assets.afb92f0800d819a7.json": {
+      "bytes": 1155555,
+      "sha256": "afb92f0800d819a7422ce8b38cb6edf929cb8b5773e7768311b3de4e17f229f4"
+    },
+    "web/data/chapter-12.3fc1ce9748774263.json": {
+      "bytes": 90719,
+      "sha256": "3fc1ce974877426324527887c2bc905bf2545f6001f0949b91cb1ad902819a6c"
+    },
+    "web/data/chapter-13-assets.3964044a983fdd83.json": {
+      "bytes": 499064,
+      "sha256": "3964044a983fdd83e4815a9441c20c762d491abfbfe66ab2c74dbed878a0c332"
+    },
+    "web/data/chapter-13.41ce50695609e326.json": {
+      "bytes": 96984,
+      "sha256": "41ce50695609e32626b8218506d5b6c66affe8dd0a8b7696db60c2875ea982f1"
+    },
+    "web/data/chapter-14-assets.1c643f8db167fd00.json": {
+      "bytes": 1387745,
+      "sha256": "1c643f8db167fd00e9f52a0ed944576f4d03e8f3fc7912cf0cd6560c4f5307de"
+    },
+    "web/data/chapter-14.3ebef468ff597f01.json": {
+      "bytes": 272175,
+      "sha256": "3ebef468ff597f01dcd4d79d09e67a35e343c4e9941b8b36814bde6c4e34544a"
+    },
+    "web/data/chapter-15-assets.0a2add9aa414ce4b.json": {
+      "bytes": 131022,
+      "sha256": "0a2add9aa414ce4b734d57ba4aefe3b6257ffb9df9a225b89e2650d809518021"
+    },
+    "web/data/chapter-15.d5576d2733cbf0a5.json": {
+      "bytes": 110929,
+      "sha256": "d5576d2733cbf0a5dc574620b72318a29e1ff60b52a2f9ff5237622a83d246fe"
+    },
+    "web/data/chapter-16-assets.28430c66c477c468.json": {
+      "bytes": 269745,
+      "sha256": "28430c66c477c46812766f158a05fa1081be8274f6c3302cf67ddf447220371a"
+    },
+    "web/data/chapter-16.898867caea1ab883.json": {
+      "bytes": 139195,
+      "sha256": "898867caea1ab883efb143a2c5c605414ea84544a96faf897d3065396dd7e897"
+    },
+    "web/data/chapter-17-assets.8bba7223e8e4b46b.json": {
+      "bytes": 1228684,
+      "sha256": "8bba7223e8e4b46b1e81cfa7cd6ba68c786a81256eff0e979c2bd192d916f405"
+    },
+    "web/data/chapter-17.eabad82009495a1a.json": {
+      "bytes": 187107,
+      "sha256": "eabad82009495a1a3ef6122384a4b1f993aad8483459fa76bb015b708f7448c3"
+    },
+    "web/data/chapter-18-assets.37517e5f3dc66819.json": {
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    "web/data/chapter-18.e3a3d2934692422e.json": {
+      "bytes": 197793,
+      "sha256": "e3a3d2934692422e0db03ed30dfa74bd3919c2775119cdb8bc0cbeb02c9aa8e6"
+    },
+    "web/data/chapter-20-assets.1d8751b37ae131c5.json": {
+      "bytes": 1214008,
+      "sha256": "1d8751b37ae131c51ef6fe56368a89d52acf2ccfabb1ec5bc75ff2da309bb4e9"
+    },
+    "web/data/chapter-20.79e4bcb4455d531e.json": {
+      "bytes": 40489,
+      "sha256": "79e4bcb4455d531e6bdd52448bcd5eab1fcd73e2941a27ac5fc1c4b2bc217c64"
+    }
+  },
+  "loadData": "web/runtime/load-data.248fb3aada6f16bb.js",
+  "manifest": {
+    "bytes": 6421884,
+    "sha256": "cc22d45754173a212ab3ce05d7bc5b3faf211c13e7ad5ba08f252f8e10f56304"
+  },
+  "modules": [
+    "web/runtime/game-art.a5fab3c18d72a12e.js",
+    "web/runtime/title-scene.63b44eb84d35b848.js",
+    "web/runtime/ordered-common-1.6e9161cc9c68342d.js",
+    "web/runtime/shared-runtime-title-markup.e0f242270b02362a.js",
+    "web/runtime/HONRO_BGM_TRACKS.30e452c460f0bb8b.js",
+    "web/runtime/HONRO_BGM_METADATA.3e30a609b581bb7a.js",
+    "web/runtime/HONRO_SKILL_ICON_MANIFEST.5dfa866899b7b39e.js",
+    "web/runtime/ordered-common-2.49982d8a68cfa528.js",
+    "web/runtime/HONRO_EQUIPMENT_ICONS.62fedaa06e7fbe59.js",
+    "web/runtime/ordered-common-3.3def16b6135b0973.js",
+    "web/runtime/HONRO_BALANCE.203e3431e13c5fca.js",
+    "web/runtime/HONRO_NARRATIVE_V0.e25b3623bdc124a4.js",
+    "web/runtime/HONRO_SPLIT_V1.c03b319b9a4988b2.js",
+    "web/runtime/HONRO_OPEN_STRUCTURES.481d47ec575fa6b5.js",
+    "web/runtime/narrative-data.6277857ddbf17ddf.js",
+    "web/runtime/HONRO_ACT5_RELEASE.8ce1fbd252d16338.js",
+    "web/runtime/HONRO_ACT5_CONTENT.38bb7a8fa71b61c0.js",
+    "web/runtime/HONRO_ACT4_RELEASE.ec334deca2d3b718.js",
+    "web/runtime/HONRO_ACT4_CONTENT.ca14aa5f882d5528.js",
+    "web/runtime/HONRO_ACT4_REVIEWED.9a6c1bef6b8776ef.js",
+    "web/runtime/HONRO_ACT23_V4_PHASE_A.76c1c817523e1124.js",
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_CH11.871bd8142d83de50.js",
+    "web/runtime/HONRO_ACT23_V4_REVIEWED.c0ba36ff9c8dd235.js",
+    "web/runtime/HONRO_STAGE11_COMPACT_DATA.c402b23223511a23.js",
+    "web/runtime/HONRO_ACT2_COMPACT_PACKAGES.1e95648ad5f66d35.js",
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_STAGES.236a861d9c714d37.js",
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_CHAPTERS.3dec07adf8a49588.js",
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_COMMON.0ce9a3868ac0c548.js",
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_CH21.c7b98a5982f14df8.js",
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_CH21.65b8483047b7b156.js",
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_CH22.1a074ebebf7d8105.js",
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_CH22.8cbedf1be6d53b20.js",
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_CH23.56d76c19f464e8bf.js",
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_CH23.897fa01b476153da.js",
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_CH24.9b66c4c0717d4796.js",
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_CH24.e6a4429d56fb9c50.js",
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_CH25.c5136d2288a33205.js",
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_CH25.71aa9c82189d64b5.js",
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_CH26.c6f47e01d5381ed8.js",
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_CH26.21398944a7db8bfb.js",
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_CH27.681e86550140ee21.js",
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_CH27.2364e9e435c7dcec.js",
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_CH28.46052d93fbddab90.js",
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_CH28.b05d278718873a06.js",
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_CH29.d0ddaf6a439c4dc7.js",
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_CH29.b3296b28f0669263.js",
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_CH30.7a14e97d3bd82ed2.js",
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_CH30.2601524ece85c248.js",
+    "web/runtime/HONRO_PORTRAIT_VARIANTS.377dc8fab3a7ee5d.js",
+    "web/runtime/ordered-common-4.c84f463a629cb3dc.js",
+    "web/runtime/ordered-common-5.2e5a74cface951ff.js",
+    "web/runtime/ordered-common-6.857f5634e4395548.js",
+    "web/runtime/ordered-common-7.31e16134eb8ab77b.js",
+    "web/runtime/ordered-common-8.20b0aa56c33f63a5.js",
+    "web/runtime/ordered-common-9.24f4201c60fcdfce.js",
+    "web/runtime/ordered-common-10.7f6c8574f94f35df.js",
+    "web/runtime/ordered-common-11.6adcb81897ec0663.js",
+    "web/runtime/ordered-common-12.70b9c35c854ec2af.js",
+    "web/runtime/campaign.748d97a778b7faa1.js",
+    "web/runtime/ordered-common-13.cc87f3d58b5389b1.js",
+    "web/runtime/party-alias.3485184cbddbd273.js",
+    "web/runtime/ordered-common-14.85d7853ba3745e09.js",
+    "web/runtime/HONRO_FAREWELL_SPIRITS.f62f950b73f5b8b4.js",
+    "web/runtime/HONRO_ACT1_FAR_DATA.e4d5edc5046d7e4b.js",
+    "web/runtime/HONRO_ACT2_FAR_DATA.de2a4590f9969c42.js",
+    "web/runtime/HONRO_REST_BACKDROPS.d0914f5572f0cc5e.js",
+    "web/runtime/HONRO_AUTHORED_FAR.7d9bc00aabea227c.js",
+    "web/runtime/shared-assets-monsters-monsters-runtime.a0cdeca2c2cf4abc.js",
+    "web/runtime/shared-assets-actors-actors-runtime.59fd424891c899af.js",
+    "web/runtime/ordered-common-15.3dd35880565c92f2.js",
+    "web/runtime/ordered-common-16.8c8322e8250bb868.js",
+    "web/runtime/ordered-common-17.2ed746adf1d3e0e3.js",
+    "web/runtime/HONRO_TIMELINE.2d35abe802c683c3.js",
+    "web/runtime/ordered-common-18.9dcb25cd7e4ae77b.js",
+    "web/runtime/HONRO_SKILL_AUDIO.0b85b9d203ebf41b.js",
+    "web/runtime/HONRO_MUKJONG_AUDIO.c2a8e1148786a21d.js",
+    "web/runtime/HONRO_JOURNEY_MAPS.c0766f60904faaa6.js",
+    "web/runtime/ordered-common-19.8b183d53c733351f.js",
+    "web/runtime/ordered-game-20.8a028a8355ced977.js",
+    "web/runtime/shared-runtime-stage-rules.d77b19a2010f2791.js",
+    "web/runtime/ordered-game-21.8775c24e10e1a3d2.js",
+    "web/runtime/shared-runtime-training.84c5e6034d5b7c0b.js",
+    "web/runtime/shared-runtime-skill-preview.0873a72c3e01c88c.js",
+    "web/runtime/ordered-game-22.27e665c6427d9375.js",
+    "web/runtime/ordered-game-23.d839a3c2c2061368.js",
+    "web/runtime/HONRO_ACT4_PILOT_COMBAT_REFERENCE.72a89112ae79534b.js",
+    "web/runtime/HONRO_ACT4_PREVIEW_SEEDS.f59700a4d63d37fc.js",
+    "web/runtime/ordered-game-24.26a8010157c8fe32.js",
+    "web/runtime/ordered-game-25.12e2361380e24c93.js"
+  ],
+  "overrides": {
+    "act2Aggregate": {
+      "bytes": 7561733,
+      "sha256": "6ea7d13a1e196c9635002cf5ff81aa49f231dcacba68598d7468a37cf6d30c9e"
+    },
+    "act2Descriptor": "web/data/HONRO_ACT2_COMPACT_PACKAGES-parts.b0ecb9743ae28018.json",
+    "act2Loader": "web/runtime/HONRO_ACT2_COMPACT_PACKAGES.1e95648ad5f66d35.js",
+    "act2Parts": [
+      "web/data/HONRO_ACT2_COMPACT_PACKAGES-part-000.b74a29173f457f34.bin",
+      "web/data/HONRO_ACT2_COMPACT_PACKAGES-part-001.b849c4559f257911.bin"
+    ],
+    "bgmRegistry": "web/data/HONRO_BGM_TRACKS.c152d3b0ef2ea83b.json",
+    "phaseStages": "web/data/HONRO_ACT23_V4_PHASE_B_STAGES.14aab2db4e01b0f3.json",
+    "registeredMedia": [
+      "assets/bgm/main.mp3",
+      "assets/bgm/battle-1.mp3",
+      "assets/bgm/battle-2.mp3",
+      "assets/bgm/battle-3.mp3",
+      "assets/bgm/battle-4.mp3",
+      "assets/bgm/battle-5.mp3",
+      "assets/bgm/battle-6.mp3"
+    ],
+    "stage11": "web/data/HONRO_STAGE11_COMPACT_DATA.52c4d43e8bfdb531.json",
+    "stage11Loader": "web/runtime/HONRO_STAGE11_COMPACT_DATA.c402b23223511a23.js"
+  },
+  "reused": {
+    "run": 44829976893,
+    "stages": {
+      "1": {
+        "artifact": 14674994716,
+        "frameHashes": {
+          "s01-1440x900-east": "038d91c265f5b0c72b46f2f1c4df29c6a39386b2294d898ea1c56d6d2cfeff59",
+          "s01-1440x900-north": "17322e813af084d5fa2d40b95d82406d5133052dea83c2d1a544c224ad27dae3",
+          "s01-1440x900-northeast": "f3c307835cc354c8ea9de009c0594970c1ba5cfa11428e7d8ba5bb0b57a6d16f",
+          "s01-1440x900-northwest": "3741814da88937f8470e5e11d949b6c6891663bab205a70faae52b75881a8722",
+          "s01-1440x900-ordinary": "b7947df927168b3d8dc48b5109c429606e26cdbde356a295ec536a4efbbe84cd",
+          "s01-1440x900-overview": "a5fc9948bce8b2fa4d213d8eef646d027934227694df53aae5e53de40315e6a2",
+          "s01-1440x900-south": "292f1d89294e91e51661b38ea3ac2c50e110d5d3e4665c671cd7529f38ac7328",
+          "s01-1440x900-southeast": "de7db82f7e9f332c403e1555825d994eaf0ec2aa9fd7e8678c0033a6269fc0a4",
+          "s01-1440x900-southwest": "ca66d1b131f272b7c35b6c92dfab11e569ddc51731b2444ed9020856d6f76781",
+          "s01-1440x900-west": "48b3a8879a48df6c560b1f3af21755bf63883772d797b0287f334ff2ada5c25a",
+          "s01-390x844-east": "32ff914632b7f3c22e815085796e5c286d13c4682f3d8bffc05a99a146aef834",
+          "s01-390x844-north": "c855fc48c606d281282293c88b7e70b070530d34d93c197679d486440a68c6e0",
+          "s01-390x844-northeast": "2cfcc32562eec2706dc06a9726466f038b8d1bbaae2d7dc9f52ecc0172bd602f",
+          "s01-390x844-northwest": "91a5fa8509943f456c7cb9d9fec3b4746de500f7b117bd205c7a497f9dcfa3ff",
+          "s01-390x844-ordinary": "3556ade9b37e14750a8da29e110b5242fa461a427f496569f3835f4291178c52",
+          "s01-390x844-overview": "d394b2e6f2c2a71baed98cc47e49875f2f5878c4c4d6959bf90c49790af8edfa",
+          "s01-390x844-south": "e523d67dfade8ed4f53837967027ae66cbccc714428982044cf82929170c6a7d",
+          "s01-390x844-southeast": "d19dbfbbaecb636ecf2f7f10614431b718af5f94dec16dcfbb3164ad0e98cdbe",
+          "s01-390x844-southwest": "5469d96058ae7641c36cccf0ea40f9ec9c3ccad7bb68e96a3050fc067c9a030c",
+          "s01-390x844-west": "622a8424a34647bc2b25d63aa9a3f6e5c2b13330f7bfe4cd0493d93751b49771"
+        },
+        "zip": {
+          "bytes": 6228915,
+          "sha256": "cc28ca66dd10f0374ed2a46740c22fed3d656bae11c69f92597fcf36d9d5b43e"
+        }
+      },
+      "26": {
+        "artifact": 14675274156,
+        "frameHashes": {
+          "s26-1440x900-east": "0f24a5ae665ff9ae8db06f4b98a40056c4b55d1f755e72d02f8f0799c5469c0b",
+          "s26-1440x900-north": "249f404f87fbf7729f5def0b3ccd8034809c86e2787cd572531eaba854b68d53",
+          "s26-1440x900-northeast": "d8fb497add9f5490722b25cf0429f9b9302786d4c5a334a66e02a6f936fc09ae",
+          "s26-1440x900-northwest": "5f2b601dc4db91acc44bb5e911b144f53de01159305c7bc8399fdc8ec5f30008",
+          "s26-1440x900-ordinary": "7ad060543e982f9fd8894167932efd76638a3d1a69eabe9fbb4c5f1dde6c503e",
+          "s26-1440x900-overview": "a01c41dab071bfaa822c11b1880ea5512f9de9d815489e481c646cbb2550a9c0",
+          "s26-1440x900-south": "0d7bdf3742b52feb0508589f7bbc710603d23db25fc5fe3592937c2eebf6a483",
+          "s26-1440x900-southeast": "5ad8d84bce6177b60488ed4cb213567514293d46a1e8629e4318f8fa72d2fb1b",
+          "s26-1440x900-southwest": "64264e33c0703c745d04eae642c5536f89e483281ade9b6cb47d0d52d6c75f1d",
+          "s26-1440x900-west": "5e77a9f18c0d42c8541634f2de22940f42805a69935cfe788eca341fc1a12c62",
+          "s26-390x844-east": "762e1c0eaadb5f69e0b914905c72f8353005da53a246aca9d635907f05c7a26e",
+          "s26-390x844-north": "c12540a0d13cb8572a8a23f0a1056a319d24cede8e0523c795a9c2ed296e13f1",
+          "s26-390x844-northeast": "d5b2f96859c014f594c842f0a3c15eabf45f01d5401d8334ec7cf5cd28cabba6",
+          "s26-390x844-northwest": "0e56e3801c66551e73af14a80966662f089090a4582970b541c1099ab593104e",
+          "s26-390x844-ordinary": "a87f89b6e77c3a1a4e53bd2dc25c76f19d5311668f4353067762ab51fb4e748d",
+          "s26-390x844-overview": "704a86f8dad3c9fe7f051befab581c8e5424e0d3a1eb2ce03172e5ee8f327aaa",
+          "s26-390x844-south": "fd67d7295efc14fc58048b84ff0cee7a9fe53fff03e7b9f9c727f28c0cef9c66",
+          "s26-390x844-southeast": "1250ab9b3319ad87d9c52867195032dda40a99bb43730d2aa477a8506c78a8c7",
+          "s26-390x844-southwest": "c420b5488bf980808fcad76dab580c3742e420993f9b8434b9087ace9b201176",
+          "s26-390x844-west": "f562af03a2a0415ba256257d75777be09f94152a6e371ffbc60c306347b86dab"
+        },
+        "zip": {
+          "bytes": 11041345,
+          "sha256": "881508d09ab2bd0067837b9be1e6bed297d1088c7f8245c912885600f864c10e"
+        }
+      },
+      "38": {
+        "artifact": 14674889973,
+        "frameHashes": {
+          "s38-1440x900-east": "db19e0bf3785e84b13b4d5751c9edfb47e53fb8441b6ac37ad08979ebb1bde08",
+          "s38-1440x900-north": "4af7393ae5e756f910f2bf9f2001bfae73726d59bf2593d1d872e651c599cd9d",
+          "s38-1440x900-northeast": "27d61279966d9fefac72e29635cae5578c52b393fd952734e3d8be3a7a28ea98",
+          "s38-1440x900-northwest": "8b1fe725680d7b80740d0a34b6b69aa5f85ba03e384f6f899cc0293c8a868195",
+          "s38-1440x900-ordinary": "ee6d0db22970ae62d6d49e6d34f173fa773ef29e81dc4d20d27f6f22ce855f6a",
+          "s38-1440x900-overview": "83824f3ec2f64861e6c70b11f473b91a9c897b18fe7c7eda3de8e233ae8b017e",
+          "s38-1440x900-south": "6ccb9f6e999f29ed5613ec0cdf637db474dfe9f73a1dc932e4e320e69365da74",
+          "s38-1440x900-southeast": "3e75cec9efa9d217349d2e0050772c5078a86bf57fc413ae9a4baffc3c4b1dda",
+          "s38-1440x900-southwest": "b9891b253b5c7e122650281af74b5f9dffe95212563559638ed84c885c575182",
+          "s38-1440x900-west": "770f74273ab1add8d5f3498beefcdef0ad3cc21eb8a9a7d7033d063162920986",
+          "s38-390x844-east": "df9b87fe65b7733928b814ad7c4921563841ea8a747831143bd56070e1e8f32b",
+          "s38-390x844-north": "034a1733c24d6c542831da833abbd8fb14dcc6f6be827dc2800e95ee7ec3037a",
+          "s38-390x844-northeast": "13bc169f56988ab16055cffba3055fd1d46a0dbc3faa570a0a2f7b723ce6c8e7",
+          "s38-390x844-northwest": "fcf1d8057f1c8b88520a8c8f0e612a19cf46c6b7d7cd9e8501589a24b73760eb",
+          "s38-390x844-ordinary": "ee6669d4b9bc7e3c1e6f7106e0c5efffb2cdb51cdb61e650c1489a7233e46e52",
+          "s38-390x844-overview": "9d4d2ea4fff283a1881530f9e74cedb779e3d33aaffb0fc9ffbb11c275539a04",
+          "s38-390x844-south": "62c2b6a5be5ce7b9326c18f43e7895a271d0c13ecea3eb6af2794e222bb0d856",
+          "s38-390x844-southeast": "d34a8d793f8e5a60cd5ac170dfdb919ad3492790fc4d680882e8a1407470cbd8",
+          "s38-390x844-southwest": "0a3d15e76ee6655cd5f63ea91318b5ac2eda55a50c6418115b54f0adc117b823",
+          "s38-390x844-west": "b28795727644252eca579b3f04cb86a5ff6e9b392568b704f0c2a0bf7c14af07"
+        },
+        "zip": {
+          "bytes": 10744372,
+          "sha256": "d00f8255ecb0a98f6bcfd17e84d327d7df6ca412858386ff2c16d0dfeb0a5f0e"
+        }
+      }
+    }
+  },
+  "scopePrior": {
+    "run": 44833496468,
+    "scopedPriorArtifacts": [
+      14677383587,
+      14676989139
+    ],
+    "verifiedStages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      19,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50
+    ]
+  },
+  "shared": "web/data/campaign-shared.8f8343b5c21518d4.json",
+  "stages": {
+    "11": {
+      "allowPinnedEmpty": false,
+      "compact": {
+        "height": 3200,
+        "ownerIds": {
+          "compact11-art-0": "act2-traced:stage11-compact-ground-v1",
+          "compact11-art-foundation": "act2-traced:stage11-compact-foundation-v1",
+          "compact11-art-stage11-surface-west": "act2-traced:stage11-surface-west"
+        },
+        "prefixAuthorFields": [
+          "events",
+          "initialState",
+          "markers",
+          "terrains",
+          "units"
+        ],
+        "retainedOwners": [],
+        "revision": 413,
+        "spawn": [
+          145,
+          2390
+        ],
+        "spawnId": "p-archer",
+        "status": "selected-layout",
+        "width": 6200
+      },
+      "encoding": "json-pool-v1",
+      "map": "web/data/chapter-11.4f36fd2ea4a1cafd.json",
+      "ordinary": [
+        430,
+        2370,
+        0.5
+      ],
+      "packet": "web/data/chapter-11-assets.cad9e03dd8bf52a5.json",
+      "parts": []
+    },
+    "12": {
+      "allowPinnedEmpty": false,
+      "compact": {
+        "height": 5000,
+        "ownerIds": {
+          "act2-compact-stage12-act2-traced-stage12-ground-1": "act2-compact:stage12-act2-traced-stage12-ground-1",
+          "act2-compact-stage12-act2-traced-stage12-ground-2": "act2-compact:stage12-act2-traced-stage12-ground-2",
+          "act2-compact-stage12-act2-traced-stage12-quarry-1": "act2-compact:stage12-act2-traced-stage12-quarry-1"
+        },
+        "prefixAuthorFields": [
+          "elements",
+          "initialState",
+          "markers"
+        ],
+        "retainedOwners": [],
+        "revision": 612,
+        "spawn": [
+          5734.210526315789,
+          480
+        ],
+        "spawnId": "p-archer",
+        "status": "selected-layout",
+        "width": 6400
+      },
+      "encoding": "json",
+      "map": "web/data/chapter-12.3fc1ce9748774263.json",
+      "ordinary": [
+        5734.210526315789,
+        480,
+        0.5
+      ],
+      "packet": "web/data/chapter-12-assets.afb92f0800d819a7.json",
+      "parts": []
+    },
+    "13": {
+      "allowPinnedEmpty": false,
+      "compact": {
+        "height": 4600,
+        "ownerIds": {
+          "act2-compact-stage13-act2-stage13-traced-west-v1-1": "act2-compact:stage13-act2-stage13-traced-west-v1-1",
+          "act2-compact-stage13-tactical-recessed-support-1": "act2-compact:stage13-tactical-recessed-support-1"
+        },
+        "prefixAuthorFields": [
+          "initialState",
+          "markers",
+          "terrains",
+          "units"
+        ],
+        "retainedOwners": [],
+        "revision": 613,
+        "spawn": [
+          160,
+          1052
+        ],
+        "spawnId": "p-archer",
+        "status": "selected-layout",
+        "width": 5200
+      },
+      "encoding": "json",
+      "map": "web/data/chapter-13.41ce50695609e326.json",
+      "ordinary": [
+        160,
+        1052,
+        0.5
+      ],
+      "packet": "web/data/chapter-13-assets.3964044a983fdd83.json",
+      "parts": []
+    },
+    "14": {
+      "allowPinnedEmpty": false,
+      "compact": {
+        "height": 5400,
+        "ownerIds": {
+          "compact14-art-east-descent": "act2-compact:stage14-east-descent",
+          "compact14-art-upper-domain": "act2-compact:stage14-upper-domain",
+          "compact14-art-vault": "act2-compact:stage14-vault"
+        },
+        "prefixAuthorFields": [
+          "initialState",
+          "markers",
+          "units"
+        ],
+        "retainedOwners": [],
+        "revision": 614,
+        "spawn": [
+          70,
+          1450
+        ],
+        "spawnId": "p-archer",
+        "status": "selected-layout",
+        "width": 4800
+      },
+      "encoding": "json",
+      "map": "web/data/chapter-14.3ebef468ff597f01.json",
+      "ordinary": [
+        70,
+        1450,
+        0.5
+      ],
+      "packet": "web/data/chapter-14-assets.1c643f8db167fd00.json",
+      "parts": []
+    },
+    "15": {
+      "allowPinnedEmpty": false,
+      "compact": {
+        "height": 4200,
+        "ownerIds": {
+          "act2-compact-stage15-act2-stage15-traced-east-flat-v2-1": "act2-compact:stage15-act2-stage15-traced-east-flat-v2-1",
+          "act2-compact-stage15-act2-stage15-traced-west-flat-v2-1": "act2-compact:stage15-act2-stage15-traced-west-flat-v2-1"
+        },
+        "prefixAuthorFields": [
+          "initialState",
+          "markers"
+        ],
+        "retainedOwners": [],
+        "revision": 615,
+        "spawn": [
+          224,
+          2038.4444444444443
+        ],
+        "spawnId": "p-archer",
+        "status": "selected-layout",
+        "width": 5800
+      },
+      "encoding": "json",
+      "map": "web/data/chapter-15.d5576d2733cbf0a5.json",
+      "ordinary": [
+        224,
+        2038.4444444444443,
+        0.5
+      ],
+      "packet": "web/data/chapter-15-assets.0a2add9aa414ce4b.json",
+      "parts": []
+    },
+    "16": {
+      "allowPinnedEmpty": false,
+      "compact": {
+        "height": 4000,
+        "ownerIds": {
+          "act2-compact-stage16-act2-stage16-traced-floor-east-1": "act2-compact:stage16-act2-stage16-traced-floor-east-1",
+          "act2-compact-stage16-act2-stage16-traced-floor-under-1": "act2-compact:stage16-act2-stage16-traced-floor-under-1",
+          "act2-compact-stage16-act2-stage16-traced-floor-west-1": "act2-compact:stage16-act2-stage16-traced-floor-west-1"
+        },
+        "prefixAuthorFields": [
+          "design",
+          "events",
+          "initialState",
+          "markers",
+          "units"
+        ],
+        "retainedOwners": [],
+        "revision": 616,
+        "spawn": [
+          237.5,
+          2980
+        ],
+        "spawnId": "p-archer",
+        "status": "selected-layout",
+        "width": 6400
+      },
+      "encoding": "json",
+      "map": "web/data/chapter-16.898867caea1ab883.json",
+      "ordinary": [
+        237.5,
+        2980,
+        0.5
+      ],
+      "packet": "web/data/chapter-16-assets.28430c66c477c468.json",
+      "parts": []
+    },
+    "17": {
+      "allowPinnedEmpty": false,
+      "compact": {
+        "height": 4600,
+        "ownerIds": {
+          "act2-compact-stage17-act2-stage17-traced-east-v2-1": "act2-compact:stage17-act2-stage17-traced-east-v2-1",
+          "act2-compact-stage17-act2-stage17-traced-west-v2-1": "act2-compact:stage17-act2-stage17-traced-west-v2-1"
+        },
+        "prefixAuthorFields": [
+          "events",
+          "initialState",
+          "markers",
+          "units"
+        ],
+        "retainedOwners": [],
+        "revision": 617,
+        "spawn": [
+          224,
+          2300
+        ],
+        "spawnId": "p-archer",
+        "status": "selected-layout",
+        "width": 6200
+      },
+      "encoding": "json",
+      "map": "web/data/chapter-17.eabad82009495a1a.json",
+      "ordinary": [
+        224,
+        2300,
+        0.5
+      ],
+      "packet": "web/data/chapter-17-assets.8bba7223e8e4b46b.json",
+      "parts": []
+    },
+    "18": {
+      "allowPinnedEmpty": true,
+      "compact": {
+        "height": 7000,
+        "ownerIds": {
+          "act2-compact-stage18-act2-stage18-traced-floor-local-v2-1": "act2-compact:stage18-act2-stage18-traced-floor-local-v2-1",
+          "sb-bell-body": "stage18:bell-hollow-body"
+        },
+        "prefixAuthorFields": [
+          "events",
+          "initialState",
+          "markers",
+          "terrains",
+          "units"
+        ],
+        "retainedOwners": [
+          "sb-bell-body"
+        ],
+        "revision": 618,
+        "spawn": [
+          1462.5641025641025,
+          4467.368421052632
+        ],
+        "spawnId": "p-archer",
+        "status": "selected-layout",
+        "width": 8200
+      },
+      "encoding": "json",
+      "map": "web/data/chapter-18.e3a3d2934692422e.json",
+      "ordinary": [
+        1462.5641025641025,
+        4467.368421052632,
+        0.5
+      ],
+      "packet": "web/data/chapter-18-assets.37517e5f3dc66819.json",
+      "parts": []
+    },
+    "20": {
+      "allowPinnedEmpty": false,
+      "compact": {
+        "height": 3100,
+        "ownerIds": {
+          "act2-compact-stage20-act2-stage20-traced-east-v2-1": "act2-compact:stage20-act2-stage20-traced-east-v2-1",
+          "act2-compact-stage20-act2-stage20-traced-west-v2-1": "act2-compact:stage20-act2-stage20-traced-west-v2-1"
+        },
+        "prefixAuthorFields": [
+          "initialState",
+          "markers",
+          "units"
+        ],
+        "retainedOwners": [],
+        "revision": 620,
+        "spawn": [
+          218.1818181818182,
+          2368.363636363636
+        ],
+        "spawnId": "p-archer",
+        "status": "selected-layout",
+        "width": 7200
+      },
+      "encoding": "json",
+      "map": "web/data/chapter-20.79e4bcb4455d531e.json",
+      "ordinary": [
+        218.1818181818182,
+        2368.363636363636,
+        0.5
+      ],
+      "packet": "web/data/chapter-20-assets.1d8751b37ae131c5.json",
+      "parts": []
+    }
+  },
+  "styles": [
+    "web/styles/game-vendor-ui-arcfall-layout.5dfc699852420d32.css",
+    "web/styles/game-vendor-style.7793a1c24f08e38d.css",
+    "web/styles/game-src-hud.52581f3f9b27a561.css",
+    "web/styles/game-src-presentation.8d0dec87e1d85ac1.css",
+    "web/styles/game-src-controls.d744fc2f4f969945.css",
+    "web/styles/game-src-unit-info.082de9b7c479495a.css",
+    "web/styles/game-src-training.2c1e01e835c1bc35.css",
+    "web/styles/game-src-guide.869baa784cb9ba70.css",
+    "web/styles/game-src-skill-presentation.9115388e87864ef4.css",
+    "web/styles/game-src-journey.e6e72b21f1205f1c.css",
+    "web/styles/game-src-title.6feb904b14f9e87d.css",
+    "web/styles/game-src-fonts.43855b81e6a81ba4.css",
+    "web/styles/game-src-act3-void.fff422e530bb3189.css",
+    "web/styles/game-src-act-endings.9f0fb63251dea0e6.css",
+    "web/styles/game-src-skill-icons.c041660a380bc346.css",
+    "web/styles/game-src-clear-report.bfdce1b8a64e3c97.css",
+    "web/styles/game-src-equipment.aa2e752ae78a9866.css",
+    "web/styles/game-src-game-interface.832a9c9eb8c9517d.css",
+    "web/styles/game-src-ux-polish.3d89764783c63e4e.css"
+  ]
+}
