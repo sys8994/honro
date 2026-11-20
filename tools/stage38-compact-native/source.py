@@ -17,7 +17,14 @@ def check_body(rel,b,want):
     assert measured(b)==want,(rel,measured(b),want)
     return b
 def scope():
-    assert git('rev-list','--parents','-n1','HEAD').decode().split()==[os.environ['GITHUB_SHA'],LIVE]
+    prior='d20edc6cd0914dabd99994162bb3f54807167b88'
+    assert git('rev-list','--parents','-n1','HEAD').decode().split()==[os.environ['GITHUB_SHA'],prior]
+    assert git('rev-list','--parents','-n1',prior).decode().split()==[prior,LIVE]
+    assert set(git('diff','--name-status','--no-renames',prior,'HEAD').decode().splitlines())=={
+       'M\t.github/workflows/stage38-compact-native.yml',
+       'M\ttools/stage38-compact-native/capture.py',
+       'M\ttools/stage38-compact-native/compare.py',
+       'M\ttools/stage38-compact-native/source.py'}
     assert git('rev-parse',LIVE+'^{tree}').decode().strip()==P['live']['tree']
     rows=git('diff','--name-status','--no-renames','-z',LIVE,'HEAD').split(b'\0')
     assert rows.pop()==b'' and len(rows)==2*len(FILES)

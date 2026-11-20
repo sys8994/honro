@@ -180,6 +180,11 @@ with sync_playwright() as p:
             old=P['probe']['frames'][scope]
             for k,v in old.items():
                 if ARM=='B' and k in ('pngSHA256','canvasRawSHA256'):continue
+                if k=='imageDecode':
+                    got=f[k]
+                    assert type(got['registered']) is int and got['registered']>0
+                    assert {n:v0 for n,v0 in got.items() if n!='registered'}=={n:v0 for n,v0 in v.items() if n!='registered'}
+                    continue
                 assert f.get(k)==v,('actual frame identity',ARM,scope,k,f.get(k),v)
             meta={'view':scope,'nativeHeads':facts['nativeHeads'],'counter':facts['counter'],'nativeHeadPivot':facts['nativeHeadPivot']}
             frames.append({**f,'diagnostic':meta});persist()

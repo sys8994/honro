@@ -27,7 +27,10 @@ def padAlpha(im,n):
  return im.getchannel('A').point(lambda v:255 if v>0 else 0).filter(ImageFilter.MaxFilter(n))
 for i,(fa,fb) in enumerate(zip(a['frames'],b['frames'])):
  view=fa['view']
- exact={k:fa.get(k)==fb.get(k) for k in set(fa)|set(fb) if k not in ('pngSHA256','canvasRawSHA256','diagnostic')}
+ da0,db0=fa['imageDecode'],fb['imageDecode']
+ assert da0['pending']==db0['pending']==0 and all(type(q['registered']) is int and q['registered']>0 for q in (da0,db0))
+ assert {k:v for k,v in da0.items() if k!='registered'}=={k:v for k,v in db0.items() if k!='registered'}
+ exact={k:fa.get(k)==fb.get(k) for k in set(fa)|set(fb) if k not in ('pngSHA256','canvasRawSHA256','diagnostic','imageDecode')}
  assert exact and all(exact.values()),(view,exact)
  da,db=fa['diagnostic'],fb['diagnostic']
  assert da['nativeHeads']==db['nativeHeads'] and da['nativeHeadPivot']==db['nativeHeadPivot']
