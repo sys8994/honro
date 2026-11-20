@@ -1,0 +1,83 @@
+name: Stage7 detached final-packet native strip ablation
+on:
+  push:
+    branches: ['qa/stage7-final-packet-strip-off-20261120']
+permissions:
+  contents: read
+jobs:
+  observe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Require proof-only additions and verify exact original source
+        run: |
+          set -euo pipefail
+          B=52119985ad21a7d3de04245ee146293045edbeba
+          test "$(git rev-parse HEAD^)" = "$B"
+          git merge-base --is-ancestor 1e043b09d4ce107e1d2dcf70fe2274dff7098476 "$B"
+          git diff --name-status "$B" HEAD | sort > /tmp/s7-packet-adds
+          printf '%s\n' $'A\t.github/workflows/stage7-final-packet-strip-off.yml' $'A\ttools/stage7-final-packet/capture.py' $'A\ttools/stage7-final-packet/compiled-packet.mjs' | sort >/tmp/s7-packet-expected
+          diff -u /tmp/s7-packet-expected /tmp/s7-packet-adds
+          test "$(git rev-parse "$B:tools/map-forge/act1-naru-doldang.mjs")" = 821449837e6c30a664f2a62e67fe5b02f91bd912
+          test "$(git rev-parse "$B:shared/assets/environment/act1-sites/stage07.json")" = a90a4bc0498ab49b6503679e83d28f93b1782e4f
+          test "$(git rev-parse "$B:shared/map/vector-art.js")" = 6bce33f337c80db7be7f807fe8645561195115ec
+          test "$(git rev-parse "$B:shared/runtime/terrain-readability.js")" = 6c69e40fbd80f46b19946fd4dffb7b3d93de4e09
+          P="$RUNNER_TEMP/stage7-final-packet"
+          mkdir -p "$P/evidence" "$P/off"
+          git worktree add --detach "$P/stock" "$B"
+          printf 'QA=%s\nOUT=%s/evidence\n' "$P" "$P" >> "$GITHUB_ENV"
+      - name: Complete unchanged official build and test gates
+        run: |
+          set -euo pipefail
+          cd "$QA/stock"
+          npm ci
+          npm ci --prefix game
+          npm run test:release-guard
+          npm run build
+          npm run test:production-contract
+          git diff --exit-code -- tools/map-forge/act1-naru-doldang.mjs shared/assets/environment/act1-sites/stage07.json shared/build.mjs shared/terrain-path-optimization.mjs shared/data/terrain-path-optimization.json
+      - name: Rebind exactly the final served Stage7 packet in a detached localhost tree
+        run: |
+          set -euo pipefail
+          cp -al "$QA/stock/HONRO.html" "$QA/stock/assets" "$QA/stock/web" "$QA/off/"
+          node tools/stage7-final-packet/compiled-packet.mjs "$QA/stock" "$QA/off" "$OUT"
+          git -C "$QA/stock" diff --exit-code -- tools/map-forge/act1-naru-doldang.mjs shared/assets/environment/act1-sites/stage07.json shared/build.mjs shared/terrain-path-optimization.mjs shared/data/terrain-path-optimization.json
+          for d in assets web; do diff -qr "$QA/stock/$d" "$QA/off/$d" || test "$?" -eq 1; done >"$OUT/served-diff.txt"
+          python - <<'PY'
+          from pathlib import Path
+          import os,json
+          o=Path(os.environ['OUT']);q=Path(os.environ['QA'])
+          x=json.loads((o/'asset-contract.json').read_text())
+          expected={f'Files {q}/stock/{p["path"]} and {q}/off/{p["path"]} differ' for p in x['changes']}
+          seen=set((o/'served-diff.txt').read_text().splitlines())
+          assert expected==seen,(expected,seen)
+          assert (q/'stock/HONRO.html').read_bytes()==(q/'off/HONRO.html').read_bytes()
+          print(x['packetPath'], x['encoding'], len(expected))
+          PY
+      - name: Compare actual native visual owner with exact common world state
+        run: |
+          set -euo pipefail
+          python -m pip install playwright pillow numpy
+          python -m playwright install --with-deps chromium
+          python -m http.server 8884 --bind 127.0.0.1 --directory "$QA/stock" > "$OUT/host-stock.log" 2>&1 &
+          p=$!
+          python -m http.server 8885 --bind 127.0.0.1 --directory "$QA/off" > "$OUT/host-off.log" 2>&1 &
+          q=$!
+          trap 'kill "$p" "$q" || true' EXIT
+          for port in 8884 8885; do
+            for i in $(seq 1 20); do curl -fsSL "http://127.0.0.1:$port/HONRO.html" -o /dev/null && break || sleep 1; done
+            curl -fsSL "http://127.0.0.1:$port/HONRO.html" -o /dev/null
+          done
+          python tools/stage7-final-packet/capture.py | tee "$OUT/qa.log"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage7-final-packet-strip-off-native-evidence
+          path: ${{ env.OUT }}
+          retention-days: 7
