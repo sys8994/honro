@@ -1,0 +1,60 @@
+name: Stage36 exact verified fixed-ref transport
+on:
+  push:
+    branches: ['audit/stage36-native-pocket-checkout-transport-20261120']
+permissions:
+  contents: read
+jobs:
+  fixed-ref:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Transport previously verified exact tree from default checkout
+        run: |
+          set -euo pipefail
+          export GIT_TERMINAL_PROMPT=0
+          B=8079496a68516fcb2393f57fb9445c17dd3da37e
+          T=refs/heads/work/stage36-mask-clean-20261120
+          ET=dc1fc627c6a08c54c4fe39b7e80850796896f1fb
+          SRC=refs/heads/audit/stage36-native-pocket-checkout-transport-20261120
+          test "$GITHUB_REPOSITORY" = sys8994/honro
+          test "$GITHUB_REF" = "$SRC"
+          test "$(pwd -P)" = "$(cd "$GITHUB_WORKSPACE" && pwd -P)"
+          test "$(git config --get remote.origin.url)" = https://github.com/sys8994/honro
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test "$(git rev-parse HEAD^)" = "$B"
+          test "$(git diff --name-status "$B" HEAD | sort)" = "$(printf '%s\n' $'A\t.github/workflows/stage36-native-pocket-checkout-transport.yml' $'A\ttools/stage36-native-pocket-checkout-transport/patch.mjs')"
+          remote_sha(){ git ls-remote --exit-code origin "$T" | awk -v r="$T" '$2==r {print $1}'; }
+          test "$(remote_sha)" = "$B"
+          P="$RUNNER_TEMP/qa36-verified-patch.mjs"
+          cp tools/stage36-native-pocket-checkout-transport/patch.mjs "$P"
+          printf '%s  %s\n' a9f35e2edaad2cca11244c78848792d269b5329cf52ea10f65608838dbf979f6 "$P" | sha256sum -c
+          git switch --detach "$B"
+          test -z "$(git status --porcelain)"
+          test "$(git rev-parse HEAD^{tree})" = 508df30efc189193a16f469485967f116080cd3d
+          test "$(pwd -P)" = "$(cd "$GITHUB_WORKSPACE" && pwd -P)"
+          node "$P"
+          EXPECTED="$(printf '%s\n' shared/act4-handoff-art.mjs shared/data/terrain-path-optimization.json)"
+          test "$(git diff --name-only | sort)" = "$EXPECTED"
+          git add -- shared/act4-handoff-art.mjs shared/data/terrain-path-optimization.json
+          test "$(git diff --cached --name-only | sort)" = "$EXPECTED"
+          test "$(git write-tree)" = "$ET"
+          test "$(git hash-object shared/act4-handoff-art.mjs)" = c96da5bff3811b1cecedaa94be7e147c52651333
+          test "$(git hash-object shared/data/terrain-path-optimization.json)" = 70399325e30279f10a853835981913c635ba3386
+          printf 'Reusing guarded actual HTTP proof: run 44652425145 artifact 14590379595 SHA256 ac9c6e22709ad10c9591881fa073739609ac41cc92fee158c8721ee5a8f3eaad tree %s\n' "$ET"
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Restore original Stage36 rock in the east-base pocket'
+          SHA=$(git rev-parse HEAD)
+          test "$(git rev-parse HEAD^)" = "$B"
+          test "$(git rev-parse HEAD^{tree})" = "$ET"
+          test "$(remote_sha)" = "$B"
+          git push --porcelain origin "HEAD:$T"
+          test "$(remote_sha)" = "$SHA"
+          printf 'Clean Stage36 ref %s at %s (parent %s; verified tree %s)\n' "$T" "$SHA" "$B" "$ET"
