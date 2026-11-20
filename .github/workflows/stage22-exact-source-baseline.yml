@@ -32,14 +32,14 @@ jobs:
           for n in stock joint baseline; do git worktree add --detach "$HOMEQA/$n" "$BASE"; done
           echo "$BASE" > "$HOMEQA/out/base.txt"
           Q="$GITHUB_WORKSPACE/tools/stage13-18-proof"
-          python "$Q/ci/verify.py" "$HOMEQA/stock" "$HOMEQA/joint" "$HOMEQA/setup/typed-18.json"
+          python "$Q/ci/verify.py" "$HOMEQA/stock" "$HOMEQA/joint" "$HOMEQA/setup"
           python "$Q/ci/range.py" "$HOMEQA/joint/shared/data/campaign.json" "$HOMEQA/setup/typed-13.json"
           cmp "$HOMEQA/stock/shared/data/act2/stage13-compact-package.json" "$HOMEQA/joint/shared/data/act2/stage13-compact-package.json"
           for p in shared/data/act2/stage18-compact-package.json tools/map-forge/stage18-short-quest.mjs; do
             cp "$HOMEQA/joint/$p" "$HOMEQA/baseline/$p"
           done
           python "$Q/stage21-explicit-defaults/splice-stage21.py" joint-canonical "$HOMEQA/joint/shared/data/campaign.json" "$HOMEQA/baseline/shared/data/campaign.json" "$HOMEQA/out/typed-21.json"
-          node "$Q/consolidated-qa/contract.mjs" metadata "$HOMEQA/joint" "$HOMEQA/baseline" "$HOMEQA/out/metadata-canonical-contract.json"
+          node "$Q/consolidated-qa/contract.mjs" metadata "$HOMEQA/joint" "$HOMEQA/baseline" "$HOMEQA/out/metadata-canonical-contract.json" >"$HOMEQA/metadata-contract.private" 2>&1 || { sha256sum "$HOMEQA/metadata-contract.private" | cut -d' ' -f1 >"$HOMEQA/out/metadata-contract-error.sha256"; exit 1; }
           git -C "$HOMEQA/baseline" diff --name-only > "$HOMEQA/out/disposable-baseline-files.txt"
           cmp "$HOMEQA/out/disposable-baseline-files.txt" <(printf '%s\n' shared/data/act2/stage18-compact-package.json shared/data/campaign.json tools/map-forge/stage18-short-quest.mjs)
           cmp "$HOMEQA/stock/tools/environment/stage22-vertical-art.mjs" "$HOMEQA/baseline/tools/environment/stage22-vertical-art.mjs"
@@ -49,7 +49,7 @@ jobs:
           cp "$STOCK/shared/runtime/map-engine.js" "$J/"
           cp "$STOCK/shared/map/"{geometry,terrain-domain,environment,schema}.js "$J/"
           python "$Q/stage21-explicit-defaults/splice-stage21.py" published-compiled-fixture "$J/stage21-compiled.json" "$J/stage21-fixture-new.json" "$HOMEQA/setup/typed-21-packet.json"
-          node "$Q/stage21-explicit-defaults/runtime-projection.mjs" "$J" >"$HOMEQA/out/stage21-projection.json"
+          node "$Q/stage21-explicit-defaults/runtime-projection.mjs" "$J" >"$HOMEQA/out/stage21-projection.json" 2>"$HOMEQA/projection.private" || { sha256sum "$HOMEQA/projection.private" | cut -d' ' -f1 >"$HOMEQA/out/projection-error.sha256"; exit 1; }
       - name: Install original dependencies and check untouched full Stage22 generation on baseline
         run: |
           set -euo pipefail
@@ -84,7 +84,7 @@ jobs:
             cp "$HOMEQA/baseline/$p" "$HOMEQA/target/$p"
           done
           python "$Q/target.py" "$HOMEQA/baseline" "$HOMEQA/target" "$HOMEQA/out/exact-stage22-target-splice.json"
-          node "$Q/contract.mjs" stage22 "$HOMEQA/baseline" "$HOMEQA/target" "$HOMEQA/out/exact-stage22-target-contract.json"
+          node "$Q/contract.mjs" stage22 "$HOMEQA/baseline" "$HOMEQA/target" "$HOMEQA/out/exact-stage22-target-contract.json" >"$HOMEQA/target-contract.private" 2>&1 || { sha256sum "$HOMEQA/target-contract.private" | cut -d' ' -f1 >"$HOMEQA/out/target-contract-error.sha256"; exit 1; }
           git -C "$HOMEQA/target" diff --name-only > "$HOMEQA/out/disposable-target-files.txt"
           cmp "$HOMEQA/out/disposable-target-files.txt" <(printf '%s\n' shared/data/act2/stage18-compact-package.json shared/data/campaign.json tools/environment/stage22-vertical-art.mjs tools/map-forge/stage18-short-quest.mjs)
           cd "$HOMEQA/target"
