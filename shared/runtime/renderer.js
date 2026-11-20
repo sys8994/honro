@@ -178,6 +178,27 @@
             }
             return domain;
         }
+        _stage2DeepBodyTileLandmark(b,domain,l,view){
+            // Approved canyon BODY contains opaque underfill below its editor bounds.
+            // Supplement only deep rows, never revise editor or other visibility lanes.
+            if(b.honroStage!==2||b.honroCustom!==false||b.width!==4300||b.height!==3300||view.top<=4540||
+                domain.left!==-6000||domain.top!==-24000||domain.right!==10300||domain.bottom!==27300)return null;
+            const a=l.asset,bb=a?.bounds,v=a?.vector?.viewBox;
+            if(l.id!=='act1-stage02-traced-body'||l.kind!=='canonical-element'||l.layer!=='front'||
+                l.x!==0||l.y!==0||l.scale!==1||l.rotation!==0||l.honroTerrainMaterialClip||
+                l.honroElementCollision||l.collisionIds?.length!==0||
+                a?.id!=='act1-traced:stage02-body-v2'||a.anchor?.x!==0||a.anchor?.y!==0||
+                a.params?.semanticLayer!=='BODY'||a.params.previewOnly!==false||a.params.continuousTerrain!==true||
+                a.collision?.length!==0||bb?.x!==-4000||bb.y!==0||bb.w!==12300||bb.h!==4500||
+                v?.length!==4||v[0]!==-4000||v[1]!==0||v[2]!==12300||v[3]!==4500)return null;
+            // Measured source envelope [-6000,-207.25,10300,30000] intersected
+            // with the unchanged rendering domain; no paint in overshoot of edge tiles.
+            const top=-207.25;
+            if(view.right<=domain.left||view.left>=domain.right||view.bottom<=top||view.top>=domain.bottom)return null;
+            const clip=new Path2D();
+            clip.rect(domain.left,top,domain.right-domain.left,domain.bottom-top);
+            return{...l,honroTerrainMaterialClip:clip};
+        }
         _drawTerrainDomainTiles(c,b,w,h){
             // Geographically fixed tiles, never a bitmap cut at Play Bounds.
             // Pixel-aligned clips consume each gutter sample exactly once.
@@ -191,7 +212,13 @@
                 const id=x+':'+y;let tile=q.tiles.get(id);if(tile){q.tiles.delete(id);q.tiles.set(id,tile);this._cacheStats.worldHits++;}
                 else{const start=performance.now(),cv=this._makeLayerCanvas(px+gutter*2,px+gutter*2);this._cacheStats.domainCanvasAllocations=(this._cacheStats.domainCanvasAllocations||0)+1;
                     const cc=cv.getContext('2d',{alpha:true}),left=x*size,top=y*size;cc.setTransform(rs,0,0,rs,gutter-left*rs,gutter-top*rs);
-                    const landmarks=(G.HonroTerrainDomain.materialLandmarks(b)).filter(l=>this._landmarkVisible(l,{left,top,right:left+size,bottom:top+size}));
+                    const view={left,top,right:left+size,bottom:top+size};
+                    const material=G.HonroTerrainDomain.materialLandmarks(b);
+                    const landmarks=b.honroStage!==2||top<=4540?material.filter(l=>this._landmarkVisible(l,view)):material.flatMap(l=>{
+                        if(this._landmarkVisible(l,view))return[l];
+                        const deep=this._stage2DeepBodyTileLandmark(b,domain,l,view);
+                        return deep?[deep]:[];
+                    });
                     this._landmarkLayer(cc,landmarks,'back');this._landmarkLayer(cc,landmarks,'structural-back');
                     for(const t of terrain){const r=this._terrainPaintBounds(t);if(!t.broken&&r.right>=left&&r.left<=left+size&&r.bottom>=top&&r.top<=top+size)this.terrain(cc,t);}
                     this.surfaceZones?.(cc,b);for(const layer of ['mid','prop','front'])this._landmarkLayer(cc,landmarks,layer);
