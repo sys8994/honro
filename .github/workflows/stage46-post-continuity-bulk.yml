@@ -1,0 +1,56 @@
+name: Stage46 measurable actual rock bulk after verified continuity
+on:
+  push:
+    branches: ['qa/stage46-post-continuity-bulk-20261120']
+permissions:
+  contents: read
+jobs:
+  measurement:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Validate exact post-continuity renderer and proof-only additions
+        run: |
+          set -euo pipefail
+          B=160f41d7f287df88ecce3574eb1b4e15eb8e08b6
+          test "$(git rev-parse HEAD^)" = "$B"
+          git diff --name-status "$B" HEAD >/tmp/bulk-scope
+          python - <<'PY'
+          from pathlib import Path
+          allowed={'.github/workflows/stage46-post-continuity-bulk.yml','tools/stage46-post-continuity-bulk/assemble.mjs','tools/stage46-post-continuity-bulk/measure.cjs'}
+          rows=[x.split('\t') for x in Path('/tmp/bulk-scope').read_text().splitlines()]
+          assert len(rows)==len(allowed) and set(x[1] for x in rows)==allowed and all(x[0]=='A' for x in rows)
+          PY
+          test "$(git hash-object shared/runtime/act5-edge-art.js)" = "09a70bccac0ede6bee32e57d893be6a0d63b51ef"
+          test "$(git hash-object shared/map/vector-art.js)" = "6bce33f337c80db7be7f807fe8645561195115ec"
+          D="$RUNNER_TEMP/skywell-bulk"
+          mkdir -p "$D/original" "$D/evidence"
+          cp tools/stage46-post-continuity-bulk/* tools/vector-production/preserve-compound.mjs "$D/"
+          cp shared/assets/environment/act5/stage46-*.json "$D/original/"
+          cp shared/assets/environment/act5/near-import.json shared/map/{vector-art,visual-style}.js shared/runtime/act5-edge-art.js "$D/"
+          echo "D=$D" >> "$GITHUB_ENV"
+          echo "OUT=$D/evidence" >> "$GITHUB_ENV"
+      - name: Raster measure alpha coverage in three spatial windows and resolutions
+        run: |
+          set -euo pipefail
+          cd "$D"
+          npm install playwright
+          npx playwright install --with-deps chromium
+          node assemble.mjs
+          sha256sum original/stage46-*.json original-assembled.json near-import.json > evidence/sources.sha256
+          node measure.cjs | tee evidence/raster.log
+      - name: No changes to checkout
+        if: always()
+        run: test -z "$(git status --porcelain --untracked-files=no)"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage46-play-and-dummy-actual-bulk
+          path: ${{ env.OUT }}
+          retention-days: 7
