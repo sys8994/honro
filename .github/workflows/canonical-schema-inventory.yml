@@ -1,0 +1,65 @@
+name: Read-only official campaign schema inventory
+on:
+  push:
+    branches: ['qa/canonical-schema-inventory-20261120']
+permissions:
+  contents: read
+jobs:
+  inventory:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Pin a detached unmodified official checkout and confirm QA-only commit
+        run: |
+          set -euo pipefail
+          BASE=d357ac4f2a379b28c21e1c6af78ac641802b7c43
+          git merge-base --is-ancestor "$BASE" HEAD
+          python - "$BASE" <<'PY'
+          import subprocess,sys
+          rows=set(subprocess.check_output(['git','diff','--name-status',sys.argv[1],'HEAD'],text=True).splitlines())
+          expected={'A\t.github/workflows/canonical-schema-inventory.yml',*{'A\ttools/stage18-inventory-qa/'+p for p in [
+             'ci/parser.py','ci/splice.py','canonical-inventory/observe.mjs','canonical-inventory/inventory.py']}}
+          assert rows==expected,(rows,expected)
+          PY
+          S="$RUNNER_TEMP/canonical-inventory-work"
+          mkdir -p "$S/out"
+          printf 'INVENTORY=%s\n' "$S" >> "$GITHUB_ENV"
+          git worktree add --detach "$S/source" "$BASE"
+      - name: Prepare the original helper dependencies in the detached worktree
+        run: |
+          set -euo pipefail
+          cd "$INVENTORY/source"
+          npm ci
+          npm ci --prefix game
+      - name: Inventory both exact inputs without modifying the official validator
+        run: |
+          set -euo pipefail
+          SRC="$GITHUB_WORKSPACE/tools/stage18-inventory-qa/canonical-inventory"
+          set +e
+          python "$SRC/inventory.py" "$INVENTORY/source" "$INVENTORY/out/inventory.json" > "$INVENTORY/run.private" 2>&1
+          rc=$?
+          set -e
+          echo "$rc" > "$INVENTORY/out/observer.exit"
+          if [ "$rc" -ne 0 ] && [ "$rc" -ne 1 ]; then
+            sha256sum "$INVENTORY/run.private" | cut -d' ' -f1 > "$INVENTORY/out/unexported-collector-log.sha256"
+            exit "$rc"
+          fi
+          python - "$INVENTORY/out/inventory.json" <<'PY'
+          import json,pathlib,sys
+          r=json.loads(pathlib.Path(sys.argv[1]).read_text())
+          assert r['trackedCheckoutUnchanged']
+          print(json.dumps({'baselineErrors':r['baseline']['schema']['total'],'postOnlyStage18Errors':r['knownStage18Only']['schema']['total'],
+           'onlyExpectedStage18Removed':r['difference']['onlyExpectedStage18Removed'],'scope':'schema observer only; does not pass a release or Stage22 regeneration'}))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bounded-canonical-inventory-only
+          path: ${{ env.INVENTORY }}/out
+          retention-days: 7
