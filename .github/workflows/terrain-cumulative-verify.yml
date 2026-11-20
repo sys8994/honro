@@ -1,8 +1,8 @@
-name: One exact cumulative terrain source verification
+name: Cumulative terrain verification after exact legacy fixture classification
 on:
   push:
     branches:
-      - qa/terrain-cumulative-52119985-20261120
+      - qa/terrain-cumulative-52119985-legacy-fixture-20261120
 permissions:
   contents: read
 jobs:
@@ -31,7 +31,7 @@ jobs:
             test -z "$(git -C "$W/$v" status --porcelain)"
             git -C "$W/$v" log -1 --format='%H %T' >>"$W/out/root-pin.txt"
           done
-      - name: Both official release guards, normal builds, and production contracts
+      - name: Official builds and contracts with separate stock legacy fixture receipt
         run: |
           set -euo pipefail
           for mode in stock target; do
@@ -41,7 +41,34 @@ jobs:
             npm ci --prefix game >"$OUT/npm-game-$mode.log" 2>&1
             npm run test:release-guard >"$OUT/release-$mode.log" 2>&1
             npm run build >"$OUT/build-$mode.log" 2>&1
-            npm run test:production-contract >"$OUT/contract-$mode.log" 2>&1
+            if [ "$mode" = stock ]; then
+              set +e
+              npm run test:production-contract >"$OUT/contract-stock.log" 2>&1
+              contract_status=$?
+              set -e
+              printf '%s\n' "$contract_status" >"$OUT/contract-stock.exit"
+              python - "$OUT/contract-stock.log" "$contract_status" <<'PYCODE'
+          import pathlib,re,sys
+          file,rc=sys.argv[1:]
+          text=pathlib.Path(file).read_text('utf-8')
+          lines=text.splitlines()
+          message='기존 미술에서 가져온 에셋이 아니면 사용 사유를 먼저 기록하십시오.'
+          scope='Production contract: actual Stage31 fails; fake approvals cannot pass; edits expire reviews; no source mutation.'
+          errors=[s for s in lines if re.match(r'^[A-Za-z]*Error:',s)]
+          stacks=[s.strip() for s in lines if re.match(r'^\s+at ',s)]
+          assert rc=='1',('Unexpected stock exit',rc)
+          assert lines.count(scope)==1,('Unexpected first contract block')
+          assert errors==['Error: '+message],('Unexpected stock error class or text',len(errors))
+          assert len(stacks)==2 and stacks[0]=='at Object.placeScenery (evalmachine.<anonymous>:85:520)',('Unexpected stack root',len(stacks))
+          assert re.fullmatch(r'at file://[^\n]+/stock/tests/production-contract\.mjs:77:22',stacks[1]),('Unexpected stock failing fixture')
+          assert lines[-1].startswith('Node.js v22.'),('Unexpected stock failure termination')
+          print('LEGACY STOCK CONTRACT FAILED at exact unapproved positive fixture, not a pass. Artifact diagnostics may continue.')
+          PYCODE
+              printf '%s\n' 'FAILED_LEGACY_STOCK_FIXTURE_TEST_77_22' >"$OUT/stock-contract-classification.txt"
+            else
+              npm run test:production-contract >"$OUT/contract-target.log" 2>&1
+              printf '%s\n' 'PASS_UNMODIFIED_TARGET_CONTRACT' >"$OUT/target-contract-classification.txt"
+            fi
           done
           python "$QA/verify.py" "$STOCK" "$TARGET" "$OUT"
       - name: Source-equivalent final renderer and thirteen normal app pose pairs
