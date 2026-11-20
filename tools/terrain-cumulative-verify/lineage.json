@@ -1,0 +1,202 @@
+{
+  "base": "1e043b09d4ce107e1d2dcf70fe2274dff7098476",
+  "latest": "52119985ad21a7d3de04245ee146293045edbeba",
+  "mergeBase": "1e043b09d4ce107e1d2dcf70fe2274dff7098476",
+  "ahead": 12,
+  "behind": 0,
+  "commits": [
+    {
+      "sha": "66679da33b448781fe549b78d4f77c5bb0710826",
+      "parent": [
+        "1e043b09d4ce107e1d2dcf70fe2274dff7098476"
+      ],
+      "tree": "2f1d785e3a9959f51e90d5f7f16c1b37177be08f",
+      "subject": "Stage33 west contact and Stage46 fringe: verified scoped source integration"
+    },
+    {
+      "sha": "5fc46f3e4bf3ffdd7917964e370dfe2d9b7f2a36",
+      "parent": [
+        "66679da33b448781fe549b78d4f77c5bb0710826"
+      ],
+      "tree": "3caad612be667d1f486d4b62aa21ec030055f3b7",
+      "subject": "Stage41: omit only validated buried lower-road closure ink"
+    },
+    {
+      "sha": "8ed9b7adbd2491de14b3fa3bf22459c80e5e77dc",
+      "parent": [
+        "5fc46f3e4bf3ffdd7917964e370dfe2d9b7f2a36"
+      ],
+      "tree": "99d6851561b8c76e0c45f74c39aee199f99c5cc7",
+      "subject": "fix(stage38): expose the existing rescue shelf rock"
+    },
+    {
+      "sha": "160f41d7f287df88ecce3574eb1b4e15eb8e08b6",
+      "parent": [
+        "8ed9b7adbd2491de14b3fa3bf22459c80e5e77dc"
+      ],
+      "tree": "da7a66a53971ae36a88e0a9f74bb203923e349fe",
+      "subject": "fix(stage14): omit buried visual closing line"
+    },
+    {
+      "sha": "66b0697bad38100f46bae6d8e1e8ca1b8e35ae9b",
+      "parent": [
+        "160f41d7f287df88ecce3574eb1b4e15eb8e08b6"
+      ],
+      "tree": "8aa34ce2551035cadaf0090199f648e73003f470",
+      "subject": "fix(stage3): taper western exterior floor endpoint"
+    },
+    {
+      "sha": "09a8df2a1ccb9147b0b3eb3db20f23a6a924da70",
+      "parent": [
+        "66b0697bad38100f46bae6d8e1e8ca1b8e35ae9b"
+      ],
+      "tree": "3ae03fa69edd33bf51e470c6b4c7c7cc38af9571",
+      "subject": "fix(stage7): omit non-walkable buried floor closing stroke"
+    },
+    {
+      "sha": "8079496a68516fcb2393f57fb9445c17dd3da37e",
+      "parent": [
+        "09a8df2a1ccb9147b0b3eb3db20f23a6a924da70"
+      ],
+      "tree": "508df30efc189193a16f469485967f116080cd3d",
+      "subject": "fix(stage15): preserve compact deep bed integration after guarded optimizer"
+    },
+    {
+      "sha": "d357ac4f2a379b28c21e1c6af78ac641802b7c43",
+      "parent": [
+        "8079496a68516fcb2393f57fb9445c17dd3da37e"
+      ],
+      "tree": "dc1fc627c6a08c54c4fe39b7e80850796896f1fb",
+      "subject": "Restore original Stage36 rock in the east-base pocket"
+    },
+    {
+      "sha": "787206f6dce947868ad9199da45fbe393d3f3c53",
+      "parent": [
+        "d357ac4f2a379b28c21e1c6af78ac641802b7c43"
+      ],
+      "tree": "d1a3259b2deae2374aee362cce8dcdfb521f873c",
+      "subject": "Extend the original Stage12 lower material join"
+    },
+    {
+      "sha": "b81245966bc7f68b41ecc0581c82ab8b2e7d2714",
+      "parent": [
+        "787206f6dce947868ad9199da45fbe393d3f3c53"
+      ],
+      "tree": "e879e16e84eece516a61d355d33ac8e4512ca5ba",
+      "subject": "fix(stage28): continue buried court rock without changing collision"
+    },
+    {
+      "sha": "2e3e189c5dea5c7c21e2100a66ad09accecb4ac0",
+      "parent": [
+        "b81245966bc7f68b41ecc0581c82ab8b2e7d2714"
+      ],
+      "tree": "3549cab085dd5183e2fb96cf355233b5315fecd6",
+      "subject": "Reconcile authored campaign metadata with strict validation"
+    },
+    {
+      "sha": "52119985ad21a7d3de04245ee146293045edbeba",
+      "parent": [
+        "2e3e189c5dea5c7c21e2100a66ad09accecb4ac0"
+      ],
+      "tree": "746fafe4563775327f4ce87e65c87ae1d9a0b159",
+      "subject": "Remove two buried Stage22 archive paint seams"
+    }
+  ],
+  "files": [
+    {
+      "path": "shared/act4-handoff-art.mjs",
+      "blob": "c96da5bff3811b1cecedaa94be7e147c52651333",
+      "status": "modified"
+    },
+    {
+      "path": "shared/act4-stage33-coastal-art.mjs",
+      "blob": "3c929d175e15d8933eb244409a1b369063f15f28",
+      "status": "modified"
+    },
+    {
+      "path": "shared/act4-stage33-west-contact.mjs",
+      "blob": "188518a718658285660aaa6906ecce411f0ccdb3",
+      "status": "added"
+    },
+    {
+      "path": "shared/build.mjs",
+      "blob": "25960edf76a1ca456d49d8360efc9f4cfa2a4a34",
+      "status": "modified"
+    },
+    {
+      "path": "shared/data/act2/stage12-compact-package.json",
+      "blob": "4a229931c6d70166ee9f868cdf4a7897f30b7b0c",
+      "status": "modified"
+    },
+    {
+      "path": "shared/data/act2/stage18-compact-package.json",
+      "blob": "37b1ed2ff28cbee8d084af3a9472803021a42962",
+      "status": "modified"
+    },
+    {
+      "path": "shared/data/act4/handoff-art/38.json",
+      "blob": "024e0c5b3b12b143f08d3c13e3ef1488331cd0a2",
+      "status": "modified"
+    },
+    {
+      "path": "shared/data/campaign.json",
+      "blob": "9f760cdcc0744b2c84d8fdcb480e7ce2f5069c7b",
+      "status": "modified"
+    },
+    {
+      "path": "shared/data/terrain-path-optimization.json",
+      "blob": "07356df8bef0046da9baccb36ae3d11017e298b3",
+      "status": "modified"
+    },
+    {
+      "path": "shared/runtime/act2-spatial-art.js",
+      "blob": "9f9fd19b8ca378c5c3401cb739333e8afb4a9ec0",
+      "status": "modified"
+    },
+    {
+      "path": "shared/runtime/act5-edge-art.js",
+      "blob": "09a70bccac0ede6bee32e57d893be6a0d63b51ef",
+      "status": "modified"
+    },
+    {
+      "path": "shared/runtime/terrain-readability.js",
+      "blob": "6c69e40fbd80f46b19946fd4dffb7b3d93de4e09",
+      "status": "modified"
+    },
+    {
+      "path": "shared/stage15-deep-bed.mjs",
+      "blob": "27d8e37e6360db54ab51fb27babf85bb00ed4387",
+      "status": "added"
+    },
+    {
+      "path": "tests/production-contract.mjs",
+      "blob": "29210abc75f37bca44d772a78e85e334a09a0229",
+      "status": "modified"
+    },
+    {
+      "path": "tools/environment/stage12-compact-art.mjs",
+      "blob": "79dd060e5d23c2f5af5eabcbccb69173a21d361b",
+      "status": "modified"
+    },
+    {
+      "path": "tools/environment/stage22-vertical-art.mjs",
+      "blob": "2b272c0afcb9724ff7f2b15173fb64fc3feef5e3",
+      "status": "modified"
+    },
+    {
+      "path": "tools/map-forge/naru-body-finish.mjs",
+      "blob": "8d781191027ad34da6a5f86630502d6a4fa61c1e",
+      "status": "modified"
+    },
+    {
+      "path": "tools/map-forge/stage18-short-quest.mjs",
+      "blob": "512d50cc9f922994151b30746d93110183596e42",
+      "status": "modified"
+    },
+    {
+      "path": "tools/map-forge/stage28-record-court.mjs",
+      "blob": "1eacb5ee5bb3e3c269df3434e6c8a991fa99919e",
+      "status": "modified"
+    }
+  ]
+}

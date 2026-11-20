@@ -1,0 +1,66 @@
+name: One exact cumulative terrain source verification
+on:
+  push:
+    branches:
+      - qa/terrain-cumulative-52119985-20261120
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Verify exact two immutable trees and their QA-only observer
+        run: |
+          set -euo pipefail
+          Q="$GITHUB_WORKSPACE/tools/terrain-cumulative-verify"
+          W="$RUNNER_TEMP/terrain-cumulative"
+          mkdir -p "$W/out"
+          printf 'QA=%s\nSTOCK=%s\nTARGET=%s\nOUT=%s\n' "$Q" "$W/stock" "$W/target" "$W/out" >> "$GITHUB_ENV"
+          python "$Q/guard.py" | tee "$W/out/source-scope.txt"
+          git worktree add --detach "$W/stock" 1e043b09d4ce107e1d2dcf70fe2274dff7098476
+          git worktree add --detach "$W/target" 52119985ad21a7d3de04245ee146293045edbeba
+          for v in stock target; do
+            test -z "$(git -C "$W/$v" status --porcelain)"
+            git -C "$W/$v" log -1 --format='%H %T' >>"$W/out/root-pin.txt"
+          done
+      - name: Both official release guards, normal builds, and production contracts
+        run: |
+          set -euo pipefail
+          for mode in stock target; do
+            if [ "$mode" = stock ]; then cd "$STOCK"; else cd "$TARGET"; fi
+            export CI=true
+            npm ci >"$OUT/npm-root-$mode.log" 2>&1
+            npm ci --prefix game >"$OUT/npm-game-$mode.log" 2>&1
+            npm run test:release-guard >"$OUT/release-$mode.log" 2>&1
+            npm run build >"$OUT/build-$mode.log" 2>&1
+            npm run test:production-contract >"$OUT/contract-$mode.log" 2>&1
+          done
+          python "$QA/verify.py" "$STOCK" "$TARGET" "$OUT"
+      - name: Source-equivalent final renderer and thirteen normal app pose pairs
+        run: |
+          set -euo pipefail
+          python -m pip install playwright==1.58.0 pillow
+          python -m playwright install --with-deps chromium
+          python -m http.server 18841 --bind 127.0.0.1 --directory "$STOCK" >"$RUNNER_TEMP/terrain-stock-http.log" 2>&1 &
+          p1=$!
+          python -m http.server 18842 --bind 127.0.0.1 --directory "$TARGET" >"$RUNNER_TEMP/terrain-target-http.log" 2>&1 &
+          p2=$!
+          trap 'kill "$p1" "$p2" 2>/dev/null || true' EXIT
+          for port in 18841 18842; do
+            curl -fsS --retry 10 --retry-connrefused "http://127.0.0.1:$port/HONRO.html" -o /dev/null
+          done
+          python "$QA/capture.py"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: terrain-cumulative-exact-root-proof
+          path: ${{ env.OUT }}
+          retention-days: 7
