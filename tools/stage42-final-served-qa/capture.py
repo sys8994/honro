@@ -20,14 +20,23 @@ with sync_playwright() as p:
   mode=['stock','target'][i]; prefix=mode+f"-s{q['stage']:02}-{q['key']}"
   params=q['pose']; expected=params['actual']; w,h=params['width'],params['height']
   ctx=browser.new_context(viewport={'width':w,'height':h},device_scale_factor=1)
-  page=ctx.new_page(); bad=[]; immutable=[]
+  page=ctx.new_page(); bad=[]; immutable=[]; console=[]
+  page.on("console",lambda m:console.append([m.type,m.text]))
   page.on('pageerror',lambda e:bad.append(['page',scan_frame(e)]))
   page.on('requestfailed',lambda r: bad.append(['request',urlparse(r.url).path,r.resource_type,r.failure]) if not(r.resource_type=='media' and 'ERR_ABORTED' in (r.failure or '')) else None)
   page.on('response',lambda r:immutable.append(r) if ADDR.fullmatch(urlparse(r.url).path[1:]) or r.status>=400 else None)
   page.add_init_script("""window.__qaImages=[];const d=Object.getOwnPropertyDescriptor(HTMLImageElement.prototype,'src');Object.defineProperty(HTMLImageElement.prototype,'src',{...d,set(v){window.__qaImages.push(this);d.set.call(this,v)}});""")
   try:
    page.goto(urls[i]+'/HONRO.html',wait_until='domcontentloaded',timeout=90000)
-   page.wait_for_function("document.documentElement.dataset.honroReady==='true' && window.HonroCampaignLoader && window.HonroTimeOfDay?.sky",timeout=90000)
+   try:
+    page.wait_for_function("() => document.documentElement.dataset.honroReady==='true' && typeof window.HonroCampaignLoader?.ensureStage==='function' && typeof window.HonroTimeOfDay?.sky==='function'",timeout=90000)
+   except Exception:
+    snapshot=page.evaluate("""()=>({dataset:{...document.documentElement.dataset},loader:typeof window.HonroCampaignLoader,timeOfDay:typeof window.HonroTimeOfDay,sky:typeof window.HonroTimeOfDay?.sky,app:typeof window.HonroApp,ready:typeof window.HONRO_APP_READY,startup:document.querySelector('[data-startup-progress]')?.textContent,retry:!!document.querySelector('[data-startup-retry]'),body:document.body.innerText.slice(0,3000),scripts:[...document.scripts].map(s=>s.src)})""")
+    snapshot.update(errors=bad,console=console,responses=[{'url':r.url,'status':r.status}for r in immutable])
+    (out/(prefix+'-first-false.json')).write_text(json.dumps(snapshot,indent=2))
+    page.screenshot(path=str(out/(prefix+'-first-false.png')))
+    raise
+   (out/(prefix+'-init-ready.json')).write_text(json.dumps(page.evaluate("() => ({ready:document.documentElement.dataset.honroReady,loader:typeof window.HonroCampaignLoader?.ensureStage,sky:typeof window.HonroTimeOfDay?.sky,app:typeof window.HonroApp})")))
    page.evaluate("""async sid=>{const a=HonroApp;a.frame=()=>{};a.profile.settings.music=false;a.profile.settings.sound=false;
      await HonroCampaignLoader.ensureStage(sid);
      for(let n=1;n<sid;n++)a.profile.cleared[n]=true;
@@ -114,7 +123,8 @@ with sync_playwright() as p:
    assert aa['bindingSHA256']!=bb['bindingSHA256'], 'candidate binding lost in build'
    assert not any(aa['repeat'].values()) and not any(bb['repeat'].values()), 'unstable repeated frame'
    item['changedPixels']=changed(sig_image(a['raw']),sig_image(b['raw'])).histogram()[255]
-  except Exception as e:item['error']=str(e)
+  except Exception as e:
+   item['error']=str(e);roll.append(item);(out/'comparison.json').write_text(json.dumps(roll,indent=2));raise
   roll.append(item);(out/'comparison.json').write_text(json.dumps(roll,indent=2))
  browser.close()
  assert all('error' not in r for r in roll),roll
