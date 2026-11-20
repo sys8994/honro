@@ -1,0 +1,71 @@
+name: Stage28 one-off native deep visual owner QA
+on:
+  push:
+    branches: ['qa/stage28-registered-deep-rock-20261120']
+permissions:
+  contents: read
+jobs:
+  focused:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 42
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Pin isolated stock and candidate source roots
+        run: |
+          B=1e043b09d4ce107e1d2dcf70fe2274dff7098476
+          test "$(git rev-parse HEAD^)" = "$B"
+          git diff --name-only "$B" HEAD > /tmp/stage28-qa-scope
+          test "$(wc -l </tmp/stage28-qa-scope)" -eq 5
+          if grep -vE '^(.github/workflows/stage28-deep-rock-one-off.yml|tools/stage28-deep-rock-one-off/(facets.json|capture.py|verify.py|apply-qa-owner.py))$' /tmp/stage28-qa-scope; then exit 1; fi
+          Q="$RUNNER_TEMP/stage28-one-off"
+          mkdir -p "$Q"
+          git worktree add --detach "$Q/stock" "$B"
+          git worktree add --detach "$Q/candidate" "$B"
+          echo "QA=$Q" >> "$GITHUB_ENV"
+      - name: Install build and browser QA dependencies
+        run: |
+          cd "$QA/stock"
+          npm ci
+          npm ci --prefix game
+          ln -s "$QA/stock/node_modules" "$QA/candidate/node_modules"
+          ln -s "$QA/stock/game/node_modules" "$QA/candidate/game/node_modules"
+          python -m pip install playwright pillow numpy
+          python -m playwright install --with-deps chromium
+      - name: Guard official stock and native candidate builds
+        run: |
+          SCRIPT="$GITHUB_WORKSPACE/tools/stage28-deep-rock-one-off"
+          cd "$QA/stock"
+          npm run test:release-guard
+          npm run build
+          cd "$QA/candidate"
+          python "$SCRIPT/apply-qa-owner.py"
+          test "$(git diff --name-only)" = tools/map-forge/stage28-record-court.mjs
+          git diff -- tools/map-forge/stage28-record-court.mjs > "$QA/stage28-only.patch"
+          npm run test:release-guard
+          npm run build
+      - name: Independent normal HTTP launches
+        run: |
+          readonly BASE="$GITHUB_WORKSPACE/_local/reports/stage28-one-off"
+          mkdir -p "$BASE"
+          cp "$QA/stage28-only.patch" "$BASE/"
+          for mode in stock candidate; do
+            mkdir -p "$BASE/$mode"
+            python -m http.server 8884 --bind 127.0.0.1 --directory "$QA/$mode" >"$BASE/$mode/host.log" 2>&1 & server=$!
+            trap 'kill "$server" || true' EXIT
+            for i in $(seq 1 20); do curl -fsSL http://127.0.0.1:8884/HONRO.html -o /dev/null && break || sleep 1; done
+            MODE="$mode" OUT="$BASE/$mode" python tools/stage28-deep-rock-one-off/capture.py
+            kill "$server"
+            wait "$server" || true
+            trap - EXIT
+          done
+          python tools/stage28-deep-rock-one-off/verify.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage28-native-deep-rock-QA
+          path: _local/reports/stage28-one-off
