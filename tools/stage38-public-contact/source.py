@@ -17,7 +17,11 @@ def check_body(rel,b,want):
     assert measured(b)==want,(rel,measured(b),want)
     return b
 def scope():
-    assert git('rev-list','--parents','-n1','HEAD').decode().split()==[os.environ['GITHUB_SHA'],LIVE]
+    prior='eb5c8d054039f94a5a951ea6a8c0d7cfba78dfc2'
+    assert git('rev-list','--parents','-n1','HEAD').decode().split()==[os.environ['GITHUB_SHA'],prior]
+    assert git('rev-list','--parents','-n1',prior).decode().split()==[prior,LIVE]
+    assert set(git('diff','--name-status','--no-renames',prior,'HEAD').decode().splitlines())=={
+      'M\t.github/workflows/stage38-public-contact.yml','M\ttools/stage38-public-contact/capture.py','M\ttools/stage38-public-contact/source.py'}
     assert git('rev-parse',LIVE+'^{tree}').decode().strip()==P['live']['tree']
     assert set(git('diff','--name-status','--no-renames',LIVE,'HEAD').decode().splitlines())=={'A\t'+p for p in FILES}
     assert git('status','--porcelain=v1','-z')==b''

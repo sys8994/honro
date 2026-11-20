@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
-          fetch-depth: 2
+          fetch-depth: 3
           persist-credentials: false
       - name: Capture two read-only public parked views and actual terrain contact
         shell: bash

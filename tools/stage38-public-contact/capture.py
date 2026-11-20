@@ -12,9 +12,10 @@ SOURCE=json.loads((OUT/'public-source.json').read_bytes())
 assert SOURCE['release']==P['live']
 active={r['path'] for r in json.loads(show('web/manifest.json'))['files']}
 BGM=re.compile(r'assets/bgm/(?:main|battle-[123])\.mp3')
-frames,net,errors,media=[],[],[],[]
+frames,net,errors,media,local_blobs=[],[],[],[],[]
+LOCAL_BLOB=re.compile(r'blob:https://sys8994\.github\.io/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}')
 receipt={'scope':'Stationary first-turn Stage38 public diagnostic, only parked camera changes; no movement, skills, playthrough, fixes, or user save.',
-         'release':LIVE,'frames':frames,'network':net,'errors':errors,'silentMedia':media,'complete':False,
+         'release':LIVE,'frames':frames,'network':net,'errors':errors,'silentMedia':media,'localBrowserBlobs':local_blobs,'complete':False,
          'historicalReference':P['coverage']['historicalArchive']}
 def persist():save('proof.json',receipt)
 
@@ -86,6 +87,10 @@ with sync_playwright() as p:
         return u.path.removeprefix('/honro/') if url.startswith(BASE) and not u.query and not u.fragment else None
     def observe(r):
         rel=path(r.url)
+        # The packed stage creates local object URLs inside this document's browser.
+        # Record them as local only; they cannot satisfy any pinned HTTPS response.
+        if LOCAL_BLOB.fullmatch(r.url) and r.request.method=='GET' and r.status==200:
+            local_blobs.append({'url':r.url,'type':r.request.resource_type,'status':200});return
         if rel and BGM.fullmatch(rel) and r.request.resource_type=='media' and r.status in (200,206):
             media.append({'path':rel,'status':r.status});return
         if not rel or (rel!='HONRO.html' and rel not in active) or r.status!=200 or r.request.method not in ('GET','HEAD'):
