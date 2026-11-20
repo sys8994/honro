@@ -61,7 +61,7 @@ with sync_playwright() as p:
          const range=HonroBounds.viewport(s,rect.width,rect.height);
          const clamped=['x','y','scale'].every(k=>Math.abs(actual[k]-adjusted[k])<1e-6);
          const within=actual.x>=f.left-1e-6&&actual.x<=f.right+1e-6&&actual.y>=f.top-1e-6&&actual.y<=f.bottom+1e-6;
-         return{state,stageSource,owner:owner?{id:owner.id,collision:owner.asset.collision.length,sockets:owner.asset.sockets.length,mode:owner.asset.params.semanticLayer,layer:owner.layer,visible:s._landmarkVisible(owner,range),foreground:s._isForeground(owner)}:null,requested,actual,adjusted,clamped,within,focus:f,viewport:range,css:{w:rect.width,h:rect.height},backing:[s.canvas.width,s.canvas.height],actorCount:b.units.length,projectStage:st.id};
+         return{state,stageSource,ink:HonroTerrainReadability.prepare(b).groups.map(g=>({id:g.id,segments:g.segments})),owner:owner?{id:owner.id,collision:owner.asset.collision.length,sockets:owner.asset.sockets.length,mode:owner.asset.params.semanticLayer,layer:owner.layer,visible:s._landmarkVisible(owner,range),foreground:s._isForeground(owner)}:null,requested,actual,adjusted,clamped,within,focus:f,viewport:range,css:{w:rect.width,h:rect.height},backing:[s.canvas.width,s.canvas.height],actorCount:b.units.length,projectStage:st.id};
         }''',{'sid':sid,'dx':dx,'dy':dy,'expected':expected and sid==28})
         if True:
          page.wait_for_function("window.__qaImages.every(i=>!i.src||i.complete)",timeout=120000)
