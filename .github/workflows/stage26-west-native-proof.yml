@@ -1,0 +1,53 @@
+name: Stage 26 private browser injection diagnostic, no candidate build
+on:
+  push:
+    branches: [qa/stage26-west-native-proof-4416dfb]
+permissions:
+  contents: read
+jobs:
+  diagnostic:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage26-west-native-proof-4416dfb'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Exact add-only sandbox proof and unchanged shipped bytes
+        shell: bash
+        run: |
+          set -euo pipefail
+          B=4416dfb527f810398903d15510ab8ca05a892661
+          D=tools/stage26-west-native
+          test "$(git show -s --format=%P HEAD)" = "$B"
+          Q="$(mktemp -d "$RUNNER_TEMP/stage26-west.XXXXXX")"
+          echo "STAGE26_QA=$Q" >> "$GITHUB_ENV"
+          printf 'A\t%s\n' .github/workflows/stage26-west-native-proof.yml "$D/prepare.py" "$D/capture.py" "$D/compare.py" "$D/source.py" "$D/stock-reference.json" "$D/native-west.svg" | LC_ALL=C sort > "$Q/expected"
+          git diff --no-renames --name-status "$B" HEAD | LC_ALL=C sort | diff - "$Q/expected"
+          git show "$B:web/manifest.json" > "$Q/manifest.json"
+          git show "$B:web/runtime/ordered-common-17.9b8e07dd9a78ec92.js" > "$Q/stock-owner.js"
+          test "$(git hash-object "$Q/manifest.json")" = cf62cfd03527fd821f126d7b017f4c363ae09a7d
+          export STAGE26_QA="$Q"
+          python3 "$D/source.py"
+          python3 "$D/prepare.py"
+          cp "$Q/paint-receipt.json" "$Q/evidence/"
+      - name: Reuse prior stock Chromium and render two clean contexts per arm
+        shell: bash
+        run: |
+          set -euo pipefail
+          D=tools/stage26-west-native
+          python3 -m venv "$STAGE26_QA/venv"
+          V="$STAGE26_QA/venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0 numpy
+          "$V" -m playwright install --with-deps chromium
+          STAGE26_ARM=A "$V" "$D/capture.py"
+          STAGE26_ARM=B "$V" "$D/capture.py"
+          "$V" "$D/compare.py"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: stage26-west-native-diagnostic-not-product
+          path: ${{ env.STAGE26_QA }}/evidence/
+          if-no-files-found: error
+          retention-days: 7

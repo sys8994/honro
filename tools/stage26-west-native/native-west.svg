@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1500 2250 1630 1070" width="1630" height="1070">
+  <title>Stage26 West weathered shallow bed, warm fold, and separate deep cleavage</title>
+  <desc>Local diagnostic geometry only, three connected but independently terminating facets. All fills opaque and style native. Original paint fades and artwork untouched.</desc>
+  <defs>
+    <clipPath id="signed-solid">
+      <path clip-rule="evenodd" d="M-1500 2424.0237037037036 L-1000 2295.5496296296296 L-500 2305.3125 L0 2360 H130 V3320 H-1500 Z"/>
+    </clipPath>
+    <linearGradient id="buried-bedding" x1="-1330" y1="2920" x2="134" y2="2780" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#474033"/>
+      <stop offset=".30" stop-color="#453d30"/>
+      <stop offset=".61" stop-color="#3e352b"/>
+      <stop offset=".85" stop-color="#352d26"/>
+      <stop offset="1" stop-color="#302923"/>
+    </linearGradient>
+    <linearGradient id="fault-talus" x1="-1120" y1="2700" x2="132" y2="2600" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#58503c"/>
+      <stop offset=".33" stop-color="#5b503b"/>
+      <stop offset=".58" stop-color="#5a4e39"/>
+      <stop offset=".82" stop-color="#574733"/>
+      <stop offset="1" stop-color="#534231"/>
+    </linearGradient>
+    <linearGradient id="upper-buried-plane" x1="-950" y1="2440" x2="132" y2="2490" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6a5e46"/>
+      <stop offset=".22" stop-color="#62553e"/>
+      <stop offset=".41" stop-color="#544735"/>
+      <stop offset=".65" stop-color="#49402f"/>
+      <stop offset=".79" stop-color="#453b2c"/>
+      <stop offset=".90" stop-color="#3b3127"/>
+      <stop offset="1" stop-color="#352c25"/>
+    </linearGradient>
+  </defs>
+  <g clip-path="url(#signed-solid)">
+    <path id="deep-bedding-continuation" fill="url(#buried-bedding)" d="
+      M130 2726 C87 2730 43 2746 0 2749
+      L-95 2745 -182 2757 -279 2753
+      C-344 2762 -404 2776 -478 2777
+      L-562 2797 -641 2801 -716 2839 -804 2859
+      L-875 2852 -947 2871 -1028 2912
+      C-1120 2928 -1218 2899 -1291 2929
+      L-1388 2981 -1322 2978 -1256 3003 -1174 3008
+      L-1120 2995 -1024 3013 -949 3038 -822 3037 -695 3074
+      C-591 3061 -529 3101 -469 3144
+      L-339 3156 -211 3213 -109 3225 0 3273 130 3277 Z"/>
+    <path id="warm-fault-continuation" fill="url(#fault-talus)" d="
+      M130 2505 C73 2499 39 2515 0 2519
+      L-127 2517 -228 2538 -338 2540 -434 2556 -513 2564
+      L-618 2588 -719 2591 -806 2616 -859 2622
+      C-900 2628 -935 2654 -988 2662
+      L-1067 2686 -1106 2708 -1056 2715 -1013 2731 -967 2735
+      L-898 2737 -818 2759 -738 2756 -641 2774 -547 2781
+      L-466 2789 -377 2784 -303 2773 -230 2768 -155 2769
+      C-94 2774 -44 2759 0 2759 C47 2754 87 2756 130 2754 Z"/>
+    <path id="dark-plane-continuation" fill="url(#upper-buried-plane)" d="
+      M130 2369 C84 2370 31 2364 0 2367
+      L-82 2360 -163 2349 -234 2350 -310 2336
+      L-375 2338 -452 2323 -520 2327 -596 2318
+      C-642 2320 -660 2333 -712 2339
+      L-759 2358 -806 2363 -842 2381 -888 2388
+      L-928 2426 -879 2430 -854 2460 -806 2472
+      L-775 2504 -723 2514 -670 2552 -592 2553
+      L-546 2584 -488 2586 -435 2603 -364 2600
+      C-320 2622 -265 2618 -206 2637
+      L-130 2651 -64 2648 C-40 2657 -24 2658 0 2656
+      C49 2658 81 2652 130 2646 Z"/>
+  </g>
+</svg>
