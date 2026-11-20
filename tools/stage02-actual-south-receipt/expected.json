@@ -1,0 +1,1073 @@
+{
+  "base": "1e043b09d4ce107e1d2dcf70fe2274dff7098476",
+  "stockTree": "749dc3403620e8291acf582302761bf6a0e4e89a",
+  "rendererPath": "shared/runtime/renderer.js",
+  "stockBlob": "22cb61244270a5088fa5bd8a8228035df8820f2e",
+  "candidateBlob": "eba0950e060a40b250a3b29fdd156c737502b2d9",
+  "patchSha256": "76707481ac7ed8c5720d6020e9ebd45208b7be092cabd723948db407f5b856e1",
+  "referenceRun": 44643097017,
+  "rows": [
+    {
+      "stage": 1,
+      "view": "south",
+      "width": 390,
+      "height": 844,
+      "actual": {
+        "x": 2700,
+        "y": 2440,
+        "scale": 0.057352941176470586
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "viewport": {
+        "left": -700,
+        "right": 6100,
+        "top": -3205.8253205128203,
+        "bottom": 8085.82532051282
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 5720,
+        "bottom": 2440
+      },
+      "requested": {
+        "x": 2700,
+        "y": 1000000,
+        "scale": 0.057352941176470586
+      },
+      "physicsSha256": "c58440fe757884953a127f6bdb23f43a1ab9946281ea6c062da97275419c405a",
+      "rasterSha256": "41cfd1ace860a63fae458a82f390670a18b8effcd168eb203a6fa8de46cad38d",
+      "name": "act1-s01-390x844-south.png",
+      "actorCount": 9,
+      "projectStage": "stage-1",
+      "extra": 0
+    },
+    {
+      "stage": 1,
+      "view": "southwest",
+      "width": 390,
+      "height": 844,
+      "actual": {
+        "x": -320,
+        "y": 2440,
+        "scale": 0.057352941176470586
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "viewport": {
+        "left": -3720,
+        "right": 3080,
+        "top": -3205.8253205128203,
+        "bottom": 8085.82532051282
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 5720,
+        "bottom": 2440
+      },
+      "requested": {
+        "x": -1000000,
+        "y": 1000000,
+        "scale": 0.057352941176470586
+      },
+      "physicsSha256": "c58440fe757884953a127f6bdb23f43a1ab9946281ea6c062da97275419c405a",
+      "rasterSha256": "36c439cb67621cdb6bfe44c45ce4337616bce11612cd3ea02ee41a6064ea0d7f",
+      "name": "act1-s01-390x844-southwest.png",
+      "actorCount": 9,
+      "projectStage": "stage-1",
+      "extra": 0
+    },
+    {
+      "stage": 1,
+      "view": "southeast",
+      "width": 390,
+      "height": 844,
+      "actual": {
+        "x": 5720,
+        "y": 2440,
+        "scale": 0.057352941176470586
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "viewport": {
+        "left": 2320,
+        "right": 9120,
+        "top": -3205.8253205128203,
+        "bottom": 8085.82532051282
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 5720,
+        "bottom": 2440
+      },
+      "requested": {
+        "x": 1000000,
+        "y": 1000000,
+        "scale": 0.057352941176470586
+      },
+      "physicsSha256": "c58440fe757884953a127f6bdb23f43a1ab9946281ea6c062da97275419c405a",
+      "rasterSha256": "cc2ef0f02177fbf0bb137d06990ea28718113943163e02bd1c4f210787dc6e9c",
+      "name": "act1-s01-390x844-southeast.png",
+      "actorCount": 9,
+      "projectStage": "stage-1",
+      "extra": 0
+    },
+    {
+      "stage": 2,
+      "view": "overview",
+      "width": 1440,
+      "height": 900,
+      "actual": {
+        "x": 2150,
+        "y": 1650,
+        "scale": 0.21176470588235294
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "viewport": {
+        "left": -1250,
+        "right": 5550,
+        "top": -166.13715277777783,
+        "bottom": 3466.137152777778
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 4620,
+        "bottom": 3540
+      },
+      "requested": {
+        "x": 2150,
+        "y": 1650,
+        "scale": 0.21176470588235294
+      },
+      "physicsSha256": "144b90353d8ea5a8a917d5328f877be9e8626597758def06c6e41e8b8b8428fc",
+      "rasterSha256": "3dcd59d00b6490f066f1f3ad569d9ab44f3bac0ef46918ff9f8a1f4b7266ccbd",
+      "name": "act1-s02-1440x900-overview.png",
+      "actorCount": 18,
+      "projectStage": "stage-2",
+      "extra": 0
+    },
+    {
+      "stage": 2,
+      "view": "north",
+      "width": 1440,
+      "height": 900,
+      "actual": {
+        "x": 2150,
+        "y": -1800,
+        "scale": 0.21176470588235294
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "viewport": {
+        "left": -1250,
+        "right": 5550,
+        "top": -3616.137152777778,
+        "bottom": 16.13715277777783
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 4620,
+        "bottom": 3540
+      },
+      "requested": {
+        "x": 2150,
+        "y": -1000000,
+        "scale": 0.21176470588235294
+      },
+      "physicsSha256": "144b90353d8ea5a8a917d5328f877be9e8626597758def06c6e41e8b8b8428fc",
+      "rasterSha256": "29092feba4edfcdb420760cc6b1033f7fb92b510002ac63cf9500de4fbf8d53c",
+      "name": "act1-s02-1440x900-north.png",
+      "actorCount": 18,
+      "projectStage": "stage-2",
+      "extra": 0
+    },
+    {
+      "stage": 2,
+      "view": "south",
+      "width": 1440,
+      "height": 900,
+      "actual": {
+        "x": 2150,
+        "y": 3540,
+        "scale": 0.21176470588235294
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "viewport": {
+        "left": -1250,
+        "right": 5550,
+        "top": 1723.8628472222222,
+        "bottom": 5356.137152777777
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 4620,
+        "bottom": 3540
+      },
+      "requested": {
+        "x": 2150,
+        "y": 1000000,
+        "scale": 0.21176470588235294
+      },
+      "physicsSha256": "144b90353d8ea5a8a917d5328f877be9e8626597758def06c6e41e8b8b8428fc",
+      "rasterSha256": "07462b058103f20060867fc94237e6ee6ab998c0662e190d44897731f86f2e42",
+      "name": "act1-s02-1440x900-south.png",
+      "actorCount": 18,
+      "projectStage": "stage-2",
+      "extra": 0
+    },
+    {
+      "stage": 2,
+      "view": "west",
+      "width": 1440,
+      "height": 900,
+      "actual": {
+        "x": -320,
+        "y": 1650,
+        "scale": 0.21176470588235294
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "viewport": {
+        "left": -3720,
+        "right": 3080,
+        "top": -166.13715277777783,
+        "bottom": 3466.137152777778
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 4620,
+        "bottom": 3540
+      },
+      "requested": {
+        "x": -1000000,
+        "y": 1650,
+        "scale": 0.21176470588235294
+      },
+      "physicsSha256": "144b90353d8ea5a8a917d5328f877be9e8626597758def06c6e41e8b8b8428fc",
+      "rasterSha256": "4e8f5924f3d9fca72d549b0bbc692d73faed5837140aba441290df12107bf19b",
+      "name": "act1-s02-1440x900-west.png",
+      "actorCount": 18,
+      "projectStage": "stage-2",
+      "extra": 0
+    },
+    {
+      "stage": 2,
+      "view": "east",
+      "width": 1440,
+      "height": 900,
+      "actual": {
+        "x": 4620,
+        "y": 1650,
+        "scale": 0.21176470588235294
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "viewport": {
+        "left": 1220,
+        "right": 8020,
+        "top": -166.13715277777783,
+        "bottom": 3466.137152777778
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 4620,
+        "bottom": 3540
+      },
+      "requested": {
+        "x": 1000000,
+        "y": 1650,
+        "scale": 0.21176470588235294
+      },
+      "physicsSha256": "144b90353d8ea5a8a917d5328f877be9e8626597758def06c6e41e8b8b8428fc",
+      "rasterSha256": "d2ce0924b741b87f44357c36a06e911ceeea9e1be8c4a93df0156a193d7cef9d",
+      "name": "act1-s02-1440x900-east.png",
+      "actorCount": 18,
+      "projectStage": "stage-2",
+      "extra": 0
+    },
+    {
+      "stage": 2,
+      "view": "northwest",
+      "width": 1440,
+      "height": 900,
+      "actual": {
+        "x": -320,
+        "y": -1800,
+        "scale": 0.21176470588235294
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "viewport": {
+        "left": -3720,
+        "right": 3080,
+        "top": -3616.137152777778,
+        "bottom": 16.13715277777783
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 4620,
+        "bottom": 3540
+      },
+      "requested": {
+        "x": -1000000,
+        "y": -1000000,
+        "scale": 0.21176470588235294
+      },
+      "physicsSha256": "144b90353d8ea5a8a917d5328f877be9e8626597758def06c6e41e8b8b8428fc",
+      "rasterSha256": "da6b11a92a0c430677363267a19d2fbc45f3f7f949869a2d44ea8b398caf30e0",
+      "name": "act1-s02-1440x900-northwest.png",
+      "actorCount": 18,
+      "projectStage": "stage-2",
+      "extra": 0
+    },
+    {
+      "stage": 2,
+      "view": "northeast",
+      "width": 1440,
+      "height": 900,
+      "actual": {
+        "x": 4620,
+        "y": -1800,
+        "scale": 0.21176470588235294
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "viewport": {
+        "left": 1220,
+        "right": 8020,
+        "top": -3616.137152777778,
+        "bottom": 16.13715277777783
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 4620,
+        "bottom": 3540
+      },
+      "requested": {
+        "x": 1000000,
+        "y": -1000000,
+        "scale": 0.21176470588235294
+      },
+      "physicsSha256": "144b90353d8ea5a8a917d5328f877be9e8626597758def06c6e41e8b8b8428fc",
+      "rasterSha256": "7988f9bacd7641677877627d36705fec597887af85e65bcdb3cbc22cf65a37e6",
+      "name": "act1-s02-1440x900-northeast.png",
+      "actorCount": 18,
+      "projectStage": "stage-2",
+      "extra": 0
+    },
+    {
+      "stage": 2,
+      "view": "southwest",
+      "width": 1440,
+      "height": 900,
+      "actual": {
+        "x": -320,
+        "y": 3540,
+        "scale": 0.21176470588235294
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "viewport": {
+        "left": -3720,
+        "right": 3080,
+        "top": 1723.8628472222222,
+        "bottom": 5356.137152777777
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 4620,
+        "bottom": 3540
+      },
+      "requested": {
+        "x": -1000000,
+        "y": 1000000,
+        "scale": 0.21176470588235294
+      },
+      "physicsSha256": "144b90353d8ea5a8a917d5328f877be9e8626597758def06c6e41e8b8b8428fc",
+      "rasterSha256": "af84cdc07646308814f69a5e24a0b10dc0b6fd62580b83e476e17f1aadd7f4bd",
+      "name": "act1-s02-1440x900-southwest.png",
+      "actorCount": 18,
+      "projectStage": "stage-2",
+      "extra": 0
+    },
+    {
+      "stage": 2,
+      "view": "southeast",
+      "width": 1440,
+      "height": 900,
+      "actual": {
+        "x": 4620,
+        "y": 3540,
+        "scale": 0.21176470588235294
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "viewport": {
+        "left": 1220,
+        "right": 8020,
+        "top": 1723.8628472222222,
+        "bottom": 5356.137152777777
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 4620,
+        "bottom": 3540
+      },
+      "requested": {
+        "x": 1000000,
+        "y": 1000000,
+        "scale": 0.21176470588235294
+      },
+      "physicsSha256": "144b90353d8ea5a8a917d5328f877be9e8626597758def06c6e41e8b8b8428fc",
+      "rasterSha256": "851f7c11a9f05d6421fb2e7898804c63dc62fb1ea26f3b456455849cc4f63f7d",
+      "name": "act1-s02-1440x900-southeast.png",
+      "actorCount": 18,
+      "projectStage": "stage-2",
+      "extra": 0
+    },
+    {
+      "stage": 2,
+      "view": "overview",
+      "width": 390,
+      "height": 844,
+      "actual": {
+        "x": 2150,
+        "y": 1650,
+        "scale": 0.057352941176470586
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "viewport": {
+        "left": -1250,
+        "right": 5550,
+        "top": -3995.8253205128203,
+        "bottom": 7295.82532051282
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 4620,
+        "bottom": 3540
+      },
+      "requested": {
+        "x": 2150,
+        "y": 1650,
+        "scale": 0.057352941176470586
+      },
+      "physicsSha256": "144b90353d8ea5a8a917d5328f877be9e8626597758def06c6e41e8b8b8428fc",
+      "rasterSha256": "90fd9e0ee372a33bb7bba1380a208442a824555cb01892cb2deef0c74ccc222d",
+      "name": "act1-s02-390x844-overview.png",
+      "actorCount": 18,
+      "projectStage": "stage-2",
+      "extra": 0
+    },
+    {
+      "stage": 2,
+      "view": "north",
+      "width": 390,
+      "height": 844,
+      "actual": {
+        "x": 2150,
+        "y": -1800,
+        "scale": 0.057352941176470586
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "viewport": {
+        "left": -1250,
+        "right": 5550,
+        "top": -7445.82532051282,
+        "bottom": 3845.8253205128203
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 4620,
+        "bottom": 3540
+      },
+      "requested": {
+        "x": 2150,
+        "y": -1000000,
+        "scale": 0.057352941176470586
+      },
+      "physicsSha256": "144b90353d8ea5a8a917d5328f877be9e8626597758def06c6e41e8b8b8428fc",
+      "rasterSha256": "03623eda273463e399aa6c87b5f3264271aa1c5d8e088f711f2987b1ee1f4743",
+      "name": "act1-s02-390x844-north.png",
+      "actorCount": 18,
+      "projectStage": "stage-2",
+      "extra": 0
+    },
+    {
+      "stage": 2,
+      "view": "south",
+      "width": 390,
+      "height": 844,
+      "actual": {
+        "x": 2150,
+        "y": 3540,
+        "scale": 0.057352941176470586
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "viewport": {
+        "left": -1250,
+        "right": 5550,
+        "top": -2105.8253205128203,
+        "bottom": 9185.82532051282
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 4620,
+        "bottom": 3540
+      },
+      "requested": {
+        "x": 2150,
+        "y": 1000000,
+        "scale": 0.057352941176470586
+      },
+      "physicsSha256": "144b90353d8ea5a8a917d5328f877be9e8626597758def06c6e41e8b8b8428fc",
+      "rasterSha256": "8d4b66796e5a6694a83c5fc4e94d2177c5c88e1cb8856044ebcffda12c552674",
+      "name": "act1-s02-390x844-south.png",
+      "actorCount": 18,
+      "projectStage": "stage-2",
+      "extra": 2
+    },
+    {
+      "stage": 2,
+      "view": "west",
+      "width": 390,
+      "height": 844,
+      "actual": {
+        "x": -320,
+        "y": 1650,
+        "scale": 0.057352941176470586
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "viewport": {
+        "left": -3720,
+        "right": 3080,
+        "top": -3995.8253205128203,
+        "bottom": 7295.82532051282
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 4620,
+        "bottom": 3540
+      },
+      "requested": {
+        "x": -1000000,
+        "y": 1650,
+        "scale": 0.057352941176470586
+      },
+      "physicsSha256": "144b90353d8ea5a8a917d5328f877be9e8626597758def06c6e41e8b8b8428fc",
+      "rasterSha256": "240b7b811b019346872c2e474d4e4d8f0c015281aa97c262241237e39e2500f7",
+      "name": "act1-s02-390x844-west.png",
+      "actorCount": 18,
+      "projectStage": "stage-2",
+      "extra": 0
+    },
+    {
+      "stage": 2,
+      "view": "east",
+      "width": 390,
+      "height": 844,
+      "actual": {
+        "x": 4620,
+        "y": 1650,
+        "scale": 0.057352941176470586
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "viewport": {
+        "left": 1220,
+        "right": 8020,
+        "top": -3995.8253205128203,
+        "bottom": 7295.82532051282
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 4620,
+        "bottom": 3540
+      },
+      "requested": {
+        "x": 1000000,
+        "y": 1650,
+        "scale": 0.057352941176470586
+      },
+      "physicsSha256": "144b90353d8ea5a8a917d5328f877be9e8626597758def06c6e41e8b8b8428fc",
+      "rasterSha256": "d575e161dcb1cfbfd26cac52cbe7e846b6a46911d835b40d9b8d99c1630cb722",
+      "name": "act1-s02-390x844-east.png",
+      "actorCount": 18,
+      "projectStage": "stage-2",
+      "extra": 0
+    },
+    {
+      "stage": 2,
+      "view": "northwest",
+      "width": 390,
+      "height": 844,
+      "actual": {
+        "x": -320,
+        "y": -1800,
+        "scale": 0.057352941176470586
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "viewport": {
+        "left": -3720,
+        "right": 3080,
+        "top": -7445.82532051282,
+        "bottom": 3845.8253205128203
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 4620,
+        "bottom": 3540
+      },
+      "requested": {
+        "x": -1000000,
+        "y": -1000000,
+        "scale": 0.057352941176470586
+      },
+      "physicsSha256": "144b90353d8ea5a8a917d5328f877be9e8626597758def06c6e41e8b8b8428fc",
+      "rasterSha256": "363072de4c65942cf361d8734df650d6499ac18be6dd57d00faa86d6f4d32b3b",
+      "name": "act1-s02-390x844-northwest.png",
+      "actorCount": 18,
+      "projectStage": "stage-2",
+      "extra": 0
+    },
+    {
+      "stage": 2,
+      "view": "northeast",
+      "width": 390,
+      "height": 844,
+      "actual": {
+        "x": 4620,
+        "y": -1800,
+        "scale": 0.057352941176470586
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "viewport": {
+        "left": 1220,
+        "right": 8020,
+        "top": -7445.82532051282,
+        "bottom": 3845.8253205128203
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 4620,
+        "bottom": 3540
+      },
+      "requested": {
+        "x": 1000000,
+        "y": -1000000,
+        "scale": 0.057352941176470586
+      },
+      "physicsSha256": "144b90353d8ea5a8a917d5328f877be9e8626597758def06c6e41e8b8b8428fc",
+      "rasterSha256": "022a30aec89f33b03b2b5b459088f9c3551d67202dc91e8f2354a566bf8e8f3e",
+      "name": "act1-s02-390x844-northeast.png",
+      "actorCount": 18,
+      "projectStage": "stage-2",
+      "extra": 0
+    },
+    {
+      "stage": 2,
+      "view": "southwest",
+      "width": 390,
+      "height": 844,
+      "actual": {
+        "x": -320,
+        "y": 3540,
+        "scale": 0.057352941176470586
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "viewport": {
+        "left": -3720,
+        "right": 3080,
+        "top": -2105.8253205128203,
+        "bottom": 9185.82532051282
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 4620,
+        "bottom": 3540
+      },
+      "requested": {
+        "x": -1000000,
+        "y": 1000000,
+        "scale": 0.057352941176470586
+      },
+      "physicsSha256": "144b90353d8ea5a8a917d5328f877be9e8626597758def06c6e41e8b8b8428fc",
+      "rasterSha256": "76c319f22e9cfbf93381b5a77189b5301cd1fb43be20badc18ef0e10354c9843",
+      "name": "act1-s02-390x844-southwest.png",
+      "actorCount": 18,
+      "projectStage": "stage-2",
+      "extra": 2
+    },
+    {
+      "stage": 2,
+      "view": "southeast",
+      "width": 390,
+      "height": 844,
+      "actual": {
+        "x": 4620,
+        "y": 3540,
+        "scale": 0.057352941176470586
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "viewport": {
+        "left": 1220,
+        "right": 8020,
+        "top": -2105.8253205128203,
+        "bottom": 9185.82532051282
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 4620,
+        "bottom": 3540
+      },
+      "requested": {
+        "x": 1000000,
+        "y": 1000000,
+        "scale": 0.057352941176470586
+      },
+      "physicsSha256": "144b90353d8ea5a8a917d5328f877be9e8626597758def06c6e41e8b8b8428fc",
+      "rasterSha256": "57fd7f2e392873e430f3fab1aee889536c8895a616f0295fc73042b6cb16b86b",
+      "name": "act1-s02-390x844-southeast.png",
+      "actorCount": 18,
+      "projectStage": "stage-2",
+      "extra": 1
+    },
+    {
+      "stage": 3,
+      "view": "south",
+      "width": 390,
+      "height": 844,
+      "actual": {
+        "x": 2865.01,
+        "y": 3035.01,
+        "scale": 0.057352941176470586
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "viewport": {
+        "left": -534.9899999999998,
+        "right": 6265.01,
+        "top": -2610.81532051282,
+        "bottom": 8680.83532051282
+      },
+      "focus": {
+        "left": 0,
+        "top": 0,
+        "right": 5730.02,
+        "bottom": 3035.01
+      },
+      "requested": {
+        "x": 2865.01,
+        "y": 1000000,
+        "scale": 0.057352941176470586
+      },
+      "physicsSha256": "8c20d5fee09418293f474dfdb212ecd59a25cfe57c764b3ef624b42daef53b74",
+      "rasterSha256": "28da1ce4078e5f2b280a572cc4d6b75a977e26ce846a39130fb463bfa94614de",
+      "name": "act1-s03-390x844-south.png",
+      "actorCount": 16,
+      "projectStage": "stage-3",
+      "extra": 0
+    },
+    {
+      "stage": 3,
+      "view": "southwest",
+      "width": 390,
+      "height": 844,
+      "actual": {
+        "x": 0,
+        "y": 3035.01,
+        "scale": 0.057352941176470586
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "viewport": {
+        "left": -3400,
+        "right": 3400,
+        "top": -2610.81532051282,
+        "bottom": 8680.83532051282
+      },
+      "focus": {
+        "left": 0,
+        "top": 0,
+        "right": 5730.02,
+        "bottom": 3035.01
+      },
+      "requested": {
+        "x": -1000000,
+        "y": 1000000,
+        "scale": 0.057352941176470586
+      },
+      "physicsSha256": "8c20d5fee09418293f474dfdb212ecd59a25cfe57c764b3ef624b42daef53b74",
+      "rasterSha256": "1512473bd5457bec53bf22228cc0793e57cdb920e86deefdcc9bfe8cfb244ddd",
+      "name": "act1-s03-390x844-southwest.png",
+      "actorCount": 16,
+      "projectStage": "stage-3",
+      "extra": 0
+    },
+    {
+      "stage": 3,
+      "view": "southeast",
+      "width": 390,
+      "height": 844,
+      "actual": {
+        "x": 5730.02,
+        "y": 3035.01,
+        "scale": 0.057352941176470586
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "viewport": {
+        "left": 2330.0200000000004,
+        "right": 9130.02,
+        "top": -2610.81532051282,
+        "bottom": 8680.83532051282
+      },
+      "focus": {
+        "left": 0,
+        "top": 0,
+        "right": 5730.02,
+        "bottom": 3035.01
+      },
+      "requested": {
+        "x": 1000000,
+        "y": 1000000,
+        "scale": 0.057352941176470586
+      },
+      "physicsSha256": "8c20d5fee09418293f474dfdb212ecd59a25cfe57c764b3ef624b42daef53b74",
+      "rasterSha256": "308f9489641ae63ce5c840b900c1a8ae2abc9fe8d4f19b516a5637f7df44f106",
+      "name": "act1-s03-390x844-southeast.png",
+      "actorCount": 16,
+      "projectStage": "stage-3",
+      "extra": 0
+    }
+  ],
+  "leaf": {
+    "1": {
+      "stages": {
+        "path": "web/data/chapter-01.c3917afbdd6737bc.json",
+        "sha256": "c3917afbdd6737bc8d5c99d4e37a0a5778698d7f95d4bc6676678d48623e8a7c",
+        "bytes": 48157
+      },
+      "stageLibraries": {
+        "path": "web/data/chapter-01-assets.088719e10e63d482.json",
+        "sha256": "088719e10e63d4826b565b3a3a13857af068bed52ae8c8a8293d23becabeb1e3",
+        "bytes": 109473
+      }
+    },
+    "2": {
+      "stages": {
+        "path": "web/data/chapter-02.5faa275befa85b0d.json",
+        "sha256": "5faa275befa85b0d49205b25a9d902c9d7ce448cf52fe25e124d4005b10f2ad2",
+        "bytes": 55013
+      },
+      "stageLibraries": {
+        "path": "web/data/chapter-02-assets.ddddf53df4d749c6.json",
+        "sha256": "ddddf53df4d749c60375cba085a79d790319b1e9c1790cb29e840529409ab434",
+        "bytes": 256633
+      }
+    },
+    "3": {
+      "stages": {
+        "path": "web/data/chapter-03.631b7b001bd5cf5c.json",
+        "sha256": "631b7b001bd5cf5c6a2b2bf2b96b5ebe82251099d9e375eb1f3bd058302590d4",
+        "bytes": 17358
+      },
+      "stageLibraries": {
+        "path": "web/data/chapter-03-assets.7d50da94d4da1893.json",
+        "sha256": "7d50da94d4da1893009bf3718ed0f1d624d849e29ab715d21723cd2eff469148",
+        "bytes": 554962
+      }
+    }
+  },
+  "stockEntry": {
+    "path": "web/entries/game.bd647743213807e5.js",
+    "sha256": "bd647743213807e5c9e2fbb22a385a1c05f578de1ce1b092c3346a6382debd70",
+    "bytes": 20483
+  },
+  "stockHTML": "6ddf82a5ca127e0355a981e8e21d41e2363984c0e4622633e1ea97994898a281",
+  "stockCommon15": {
+    "path": "web/runtime/ordered-common-15.4e089023dc2dde90.js",
+    "sha256": "4e089023dc2dde909e65acaee076b82a48d488a920c08c997c8e6a3cb5f5d11a",
+    "bytes": 157147
+  },
+  "shared": {
+    "path": "web/data/campaign.f876f67fe414184f.json",
+    "sha256": "f876f67fe414184fb03931ecf6061d02440fae687631ae54d151286565b4a6cf",
+    "bytes": 54885
+  }
+}
