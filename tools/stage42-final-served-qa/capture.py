@@ -18,18 +18,23 @@ def sig_image(x):return Image.open(io.BytesIO(x)).convert("RGBA")
 def changed(a,b):return functools.reduce(ImageChops.lighter,ImageChops.difference(a,b).split()).point(lambda x:255 if x else 0,mode="1")
 with sync_playwright() as p:
  browser=p.chromium.launch(headless=True)
+ sessions={}; firstSignatures={}
  def get(i,q):
   mode=['stock','target'][i]; prefix=mode+f"-s{q['stage']:02}-{q['key']}"
   params=q['pose']; expected=params['actual']; w,h=params['width'],params['height']
-  ctx=browser.new_context(viewport={'width':w,'height':h},device_scale_factor=1)
-  page=ctx.new_page(); bad=[]; immutable=[]; console=[]
-  page.on("console",lambda m:console.append([m.type,m.text]))
-  page.on('pageerror',lambda e:bad.append(['page',scan_frame(e)]))
-  page.on('requestfailed',lambda r: bad.append(['request',urlparse(r.url).path,r.resource_type,r.failure]) if not(r.resource_type=='media' and 'ERR_ABORTED' in (r.failure or '')) else None)
-  page.on('response',lambda r:immutable.append(r) if ADDR.fullmatch(urlparse(r.url).path[1:]) or r.status>=400 else None)
-  page.add_init_script("""window.__qaImages=[];const d=Object.getOwnPropertyDescriptor(HTMLImageElement.prototype,'src');Object.defineProperty(HTMLImageElement.prototype,'src',{...d,set(v){window.__qaImages.push(this);d.set.call(this,v)}});""")
-  try:
-   page.goto(urls[i]+'/HONRO.html',wait_until='domcontentloaded',timeout=90000)
+  key=(i,w)
+  if key not in sessions:
+   ctx=browser.new_context(viewport={'width':w,'height':h},device_scale_factor=1)
+   page=ctx.new_page(); bad=[]; immutable=[]; console=[]
+   page.on("console",lambda m:console.append([m.type,m.text]))
+   page.on('pageerror',lambda e:bad.append(['page',scan_frame(e)]))
+   page.on('requestfailed',lambda r: bad.append(['request',urlparse(r.url).path,r.resource_type,r.failure]) if not(r.resource_type=='media' and 'ERR_ABORTED' in (r.failure or '')) else None)
+   page.on('response',lambda r:immutable.append(r) if ADDR.fullmatch(urlparse(r.url).path[1:]) or r.status>=400 else None)
+   page.add_init_script("""window.__qaImages=[];const d=Object.getOwnPropertyDescriptor(HTMLImageElement.prototype,'src');Object.defineProperty(HTMLImageElement.prototype,'src',{...d,set(v){window.__qaImages.push(this);d.set.call(this,v)}});""")
+   response=page.goto(urls[i]+'/HONRO.html',wait_until='domcontentloaded',timeout=90000)
+   assert response and response.ok and response.body()==(bins[i]/'HONRO.html').read_bytes(), 'actual served HTML mismatch'
+   htmlSHA=sha(response.body())
+   if i==0:assert htmlSHA=='e176541027534d964517b53b2fc36825ebfdc207146f8b1879b7b53120441f1b', 'exact stock HTML pin' 
    try:
     page.wait_for_function("() => document.documentElement.dataset.honroReady==='true' && typeof window.HonroCampaignLoader?.ensureStage==='function' && typeof window.HonroTimeOfDay?.sky==='function'",timeout=90000)
    except Exception:
@@ -53,6 +58,9 @@ with sync_playwright() as p:
     if orig!=h:page.set_viewport_size({'width':w,'height':h+(h-orig)})
    page.wait_for_timeout(1500)
    page.evaluate("()=>{const a=HonroApp;HonroStory.tick(a,performance.now());HonroStory.draw(a);if(document.getElementById('turn-banner')?.hidden===false)throw Error('First-turn banner still active');}")
+   sessions[key]=(ctx,page,bad,immutable,console,c,htmlSHA)
+  ctx,page,bad,immutable,console,c,htmlSHA=sessions[key]
+  try:
    page.evaluate("""q=>{const a=HonroApp,s=a.scene,b=a.engine.b;HonroStoryFraming.clear(s);
       if(q.case==='low-tide')HonroAct4TerrainPreview.coast.tide(b);
       Object.assign(s,{manual:true,time:2,storyTween:null,storyFrozen:false,goalFocus:null,cinematic:null,focusUntil:0,speakerUntil:0,...q.pose.actual});
@@ -127,17 +135,23 @@ with sync_playwright() as p:
    source=json.loads((bins[i]/'shared/assets/environment/act5/stage42-registered-body.json').read_text())
    assert json.loads(binding)==source, 'active BODY does not match the pinned exact package'
    result['surfaceSHA256']=sha(result.pop('surface').encode());result['propsSHA256']=sha(result.pop('props').encode())
-   assert result['edgeRenderer']['draws'] and result['edgeRenderer']['domains'], 'missing actual landscape paint/culling path'
+   assert result['edgeRenderer']['domains'], 'missing actual terrain dispatcher'
+   # Strict across-view state: camera is verified separately, not part of signature.
+   assert result['stateSHA256']==firstSignatures.setdefault(key,result['stateSHA256']), 'world state drifted across camera sequence'
+   result['htmlSHA256']=htmlSHA
+   assert result['focus']==q['expectedFocus'] and result['viewport']==q['expectedViewport'], 'native camera focus/viewport changed'
    result['assets']=response_indices
    result['repeat']=repeat;result['bad']=bad
    return result,pixels
-  finally:ctx.close()
+  except Exception:
+   (out/(prefix+'-fault.json')).write_text(json.dumps({'errors':bad,'console':console,'status':[(r.url,r.status)for r in immutable],'htmlSHA256':htmlSHA},indent=2))
+   raise
  roll=[]
  for q in views:
   item={'view':q['key']}
   try:
    aa,a=get(0,q);bb,b=get(1,q)
-   prior=ARCHIVED[q['key']];assert aa['bindingSHA256']==prior['stockBinding'];assert aa['stateSHA256']==prior['priorState'];assert next(v['sha256'] for k,v in aa['assets'].items() if '/entries/game.' in k)==prior['stockEntry'];assert bb['bindingSHA256']!=prior['priorTargetBinding'];item['exactPriorStockEntryBindingState']=True;item.update(stock=aa,target=bb,stateCameraEqual=all(aa[k]==bb[k] for k in ('actual','css','backing','focus','viewport','stateSHA256')))
+   prior=ARCHIVED['1440-east' if q['key'].startswith('1440') else '390-southeast'];assert aa['bindingSHA256']==prior['stockBinding'];assert aa['stateSHA256']==prior['priorState'];assert next(v['sha256'] for k,v in aa['assets'].items() if '/entries/game.' in k)==prior['stockEntry'];assert bb['bindingSHA256']!=prior['priorTargetBinding'];item['exactPriorStockEntryBindingState']=True;item.update(stock=aa,target=bb,stateCameraEqual=all(aa[k]==bb[k] for k in ('actual','css','backing','focus','viewport','stateSHA256')))
    assert item['stateCameraEqual'], 'world/camera/actors changed'
    assert not aa['bad'] and not bb['bad'], 'browser/asset error'
    assert aa['bindingSHA256']!=bb['bindingSHA256'], 'candidate binding lost in build'
@@ -155,14 +169,36 @@ with sync_playwright() as p:
     for k in (lo,hi):
      proj=abs(coords-domn['tiles'][k]/srcScale)*srcScale*bb['actual']['scale']
      if proj.min()<2.5:bbands[k]=dict(pixel=int(proj.argmin()),within2px=summary((proj<=2)[None,:] if axis=='x' else (proj<=2)[:,None]))
+   grids={}
+   step=domn['tileWorldSize']; vp=bb['viewport']; focus=bb['focus']
+   for axis,coords,lo,hi in [('x',sx,'left','right'),('y',sy,'top','bottom')]:
+    for at in range(int(np.ceil(vp[lo]/step)),int(np.floor(vp[hi]/step))+1):
+     world=at*step
+     if world==domn['tiles'][lo] or world==domn['tiles'][hi]:continue
+     dist=abs(coords-world/srcScale)*srcScale*bb['actual']['scale']
+     grids[f'{axis}:{world}']={'pixel':int(dist.argmin()),'delta':summary((dist<=2)[None,:] if axis=='x' else (dist<=2)[:,None])}
+   item['internalTileBands']=grids
+   if 'bottom' in bbands:
+    j=bbands['bottom']['pixel']
+    if 2<=j<h-2:
+     band=np.max(abs(B[j-2:j+3][1:]-B[j-2:j+3][:-1]),axis=2)
+     item['bottomSeamCandidatePerRow']=[{'row':j-1+k,'max':int(b.max()),'gt16':int((b>16).sum())}for k,b in enumerate(band)]
    item['regions']={'outsideProtectedOwnership':summary(~owned),'upperProtected':summary(top&~owned),'outsideNativeCore':summary(~core),'nativeCore':summary(core),'tileExteriorBoundaryBands':bbands}
    # Deviations are observations, not a tolerance-based pass.
    Image.fromarray((core*255).astype('uint8')).save(out/(q['key']+'-native-core.png'))
    Image.fromarray((~owned*255).astype('uint8')).save(out/(q['key']+'-protected.png'))
    assert not any(aa['repeat'].values()) and not any(bb['repeat'].values()), 'unstable repeated frame'
+   item['hashes']={mode:{kind:sha(im)for kind,im in imgs.items()}for mode,imgs in [('stock',a),('target',b)]}
+   if q.get('previous'):
+    assert item['hashes']==q['previous'], 'context sequence drifts from existing exact archive'
+   if q['key'].endswith('-overview-return'):
+    assert item['hashes']==next(r['hashes'] for r in roll if r['view']==q['key'].split('-return')[0]), 'overview changed after camera cycle'
    item['changedPixels']=changed(sig_image(a['raw']),sig_image(b['raw'])).histogram()[255]
+   if q['key'] in ('1440-north','1440-northeast','1440-northwest'):
+    assert item['changedPixels']==0, 'unexpected change in no-BODY top control'
   except Exception as e:
    item['error']=str(e);roll.append(item);(out/'comparison.json').write_text(json.dumps(roll,indent=2));raise
   roll.append(item);(out/'comparison.json').write_text(json.dumps(roll,indent=2))
+ for ctx,*_ in sessions.values():ctx.close()
  browser.close()
  assert all('error' not in r for r in roll),roll
