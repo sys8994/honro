@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
-          fetch-depth: 3
+          fetch-depth: 4
           persist-credentials: false
       - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
         with:
@@ -29,7 +29,7 @@ jobs:
           mkdir -p "$W/out"
           echo "WORK=$W" >> "$GITHUB_ENV"
           git worktree add --detach "$W/A" 4416dfb527f810398903d15510ab8ca05a892661
-          git worktree add --detach "$W/B" "$(git rev-parse HEAD^)"
+          git worktree add --detach "$W/B" ffa3f0bd7c99a6ba34610d8175598e9000c93600
           python "$Q/guard.py" source "$R" "$W/A" "$W/B" "$W/out"
           for side in A B; do
             (

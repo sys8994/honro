@@ -128,7 +128,13 @@ with sync_playwright() as p:
          a.load();frame['decodedPngSize']=list(a.size)
         frames.append(frame); persist()
        assert page.evaluate("()=>HonroApp.profile.settings.music===false&&HonroApp.profile.settings.sound===false")
-       loaded=page.evaluate("()=>{const b=HonroApp.engine.b;const a=(b.honroLandmarks||[]).find(v=>v.id==='act3-handoff:26:kiln-foundation'&&v.asset?.id===v.id);if(!a)throw Error('registered canonical foundation not loaded');return a.asset.params?.westBedMaterial??null}")
+       loaded=page.evaluate("""()=>{const b=HonroApp.engine.b,id='act3-handoff:26:kiln-foundation';
+         const a=HonroTerrainDomain.materialLandmarks(b).find(v=>v.id===id&&v.asset?.id===id);
+         if(!a||a.kind!=='canonical-element'||a.x!==0||a.y!==0||a.scale!==1||
+            !b.honroCanonical||b.honroCustom||b.honroStage!==26||
+            a.asset!==HONRO_PROJECT.library.find(v=>v.id===id))throw Error('registered canonical foundation missing from materialLandmarks');
+         return a.asset.params?.westBedMaterial??null;
+       }""")
        assert loaded==GRAPH['material'],('normal runtime asset field',ARM)
        for path in GRAPH['needed']:
         r=responses.get(path);assert r and r.status==200,('missing actual HTTP path',path)

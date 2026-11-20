@@ -23,7 +23,9 @@ def blob(b):
  return hashlib.sha1(b'blob '+str(len(b)).encode()+b'\0'+b).hexdigest()
 def check(root,stock,target,out,post=False):
  assert all(re.fullmatch(r'[a-f0-9]{40}',x) for x in (TARGET,*TREES,*sum(PINS.values(),[]))), 'four reviewed root pins required'
- assert git(root,'show','-s','--format=%P','HEAD').strip().decode()==TARGET
+ prior_qa='2dbdd0e668e5df7152893133e3628e4e7b61f93f'
+ assert git(root,'show','-s','--format=%P','HEAD').strip().decode()==prior_qa
+ assert git(root,'show','-s','--format=%P',prior_qa).strip().decode()==TARGET
  qa=['.github/workflows/stage26-product-rebuild.yml']+['tools/stage26-product-rebuild/'+p for p in ['capture.py','guard.py','verify.py','registered-v2.json']]
  assert sorted(git(root,'diff','--name-status','--no-renames',TARGET,'HEAD').decode().splitlines())==['A\t'+p for p in sorted(qa)]
  assert git(root,'show','-s','--format=%P',TARGET).strip().decode()==BASE
