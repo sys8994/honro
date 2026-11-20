@@ -119,14 +119,20 @@ OWNER_JS="""async()=>{
  const b=HonroApp.engine.b,st=HONRO_PROJECT.stages.find(t=>t.metadata?.stageId===42);
  const asset=HONRO_PROJECT.library.filter(x=>x.id==='act5:near:42');
  const land=HonroTerrainDomain.materialLandmarks(b).filter(x=>x.asset?.id==='act5:near:42');
- if(!st||st.id!=='stage-42'||b.honroStage!==42||b.honroCustom!==false||!b.honroCanonical||
-    asset.length!==1||land.length!==1||land[0].asset!==asset[0])throw Error('Noncanonical painter owner');
- const l=land[0],a=asset[0];
+ if(!st||st.id!=='stage-42'||b.honroStage!==42||b.honroCustom!==false||b.honroCanonical!==true||
+    asset.length!==1||land.length!==1)throw Error('Unexpected canonical owner counts/identity: '+JSON.stringify({
+      stage:st?.id??null,runtimeStage:b.honroStage,custom:b.honroCustom,canonical:b.honroCanonical,
+      projectOwners:asset.length,painterOwners:land.length}));
+ // Compiler.js:32 clones the registered asset during canonical map compilation;
+ // terrain-domain.js:148–150 returns b.honroLandmarks directly for Stage42.
+ const l=land[0],a=l.asset;
+ const cloned=a!==asset[0],samePayload=JSON.stringify(a)===JSON.stringify(asset[0]);
+ if(!cloned||!samePayload)throw Error('Painter compiler copy invariant failed: '+JSON.stringify({cloned,samePayload}));
  if(l.id!=='a5-near'||l.kind!=='canonical-element'||l.x!==0||l.y!==0||l.scale!==6500/2022||l.rotation||l.layer!=='structural-back')throw Error('Canonical placement changed');
  const digest=async s=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s))),b=>b.toString(16).padStart(2,'0')).join('');
  const fields={edgeWall:a.edgeWall,edgeSurface:a.edgeSurface,params:a.params,bounds:a.bounds,anchor:a.anchor,
   allVectorClips:a.vector.clips,originalPropsB:a.vector.root.children[1]};
- return {placement:{x:l.x,y:l.y,scale:l.scale,rotation:l.rotation??0,layer:l.layer},
+ return {compilerCopy:{cloned,samePayload},placement:{x:l.x,y:l.y,scale:l.scale,rotation:l.rotation??0,layer:l.layer},
     provenance:a.params.sourceSha256,clipA:await digest(a.vector.clips.a[0]),
     d:await Promise.all(a.vector.root.children[0].children.map(z=>digest(z.d))),
     protected:Object.fromEntries(await Promise.all(Object.entries(fields).map(async([k,v])=>[k,await digest(JSON.stringify(v))])))};

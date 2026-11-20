@@ -12,20 +12,23 @@ jobs:
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
-          fetch-depth: 2
+          fetch-depth: 3
           persist-credentials: false
           lfs: false
-      - name: Require exact public parent, exact additions and clean index
+      - name: Require exact R1 and public ancestors, fixture-only delta and clean index
         shell: bash
         run: |
           set -euo pipefail
           BASE=2939958cc87407ef60b58720bb6e086b8559031b
-          test "$(git rev-list -n1 --parents HEAD)" = "$GITHUB_SHA $BASE"
+          R1=20a35ff79c62220ba8589c5ca3b738ebaabc5c46
+          test "$(git rev-list -n1 --parents HEAD)" = "$GITHUB_SHA $R1"
+          test "$(git rev-list -n1 --parents "$R1")" = "$R1 $BASE"
+          diff -u <(printf 'M\t%s\n' .github/workflows/stage42-east-native-ab.yml tools/stage42-east-native-ab/probe.py) <(git diff --name-status --no-renames "$R1" HEAD)
           test -z "$(git status --porcelain --untracked-files=all)"
           diff -u <(printf 'A\t%s\n' .github/workflows/stage42-east-native-ab.yml tools/stage42-east-native-ab/pins.json tools/stage42-east-native-ab/probe.py) <(git diff --name-status --no-renames "$BASE" HEAD)
           sha256sum -c <<'SUMS'
           bcb5067ed39f60e0b9ed222b624745d3eb6465cb9f33368569d633f0927d9b7c  tools/stage42-east-native-ab/pins.json
-          233042c7856b41bc644cb757cad24142eba89873364d7053491c852cd44febb4  tools/stage42-east-native-ab/probe.py
+          9f8f29cec185bb79827e094eead2cc864c1822544cc080ab64764e9cceaa4007  tools/stage42-east-native-ab/probe.py
           SUMS
           echo "STAGE42_QA_OUT=$RUNNER_TEMP/stage42-east-ab" >> "$GITHUB_ENV"
       - name: Render one fixed A/B diagnostic with original compiled runtime
