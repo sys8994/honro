@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          fetch-depth: 4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -19,7 +19,7 @@ jobs:
         run: |
           set -euo pipefail
           B=1e043b09d4ce107e1d2dcf70fe2274dff7098476
-          test "$(git rev-parse HEAD^)" = 0e0424f135227a0a5151a0f424f1f4b73a4103b5
+          test "$(git rev-parse HEAD~2)" = 0e0424f135227a0a5151a0f424f1f4b73a4103b5
           P="$RUNNER_TEMP/s12"
           mkdir -p "$P/evidence/baseline" "$P/evidence/candidate"
           git diff --name-status "$B" HEAD > "$P/evidence/source-diff.txt"
