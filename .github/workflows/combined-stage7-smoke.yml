@@ -1,0 +1,56 @@
+name: Combined Stage7 closure and regression QA
+on:
+  push:
+    branches: ['qa/combined-scoped-stage7-smoke-20261120']
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      HONRO_ACT4_RELEASE: '1'
+      HONRO_ACT5_RELEASE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Scope and exact sources
+        run: python tools/combined-stage7-smoke/guard.py
+      - run: npm ci && npm ci --prefix game
+      - run: python -m pip install playwright pillow && python -m playwright install --with-deps chromium
+      - name: Official baseline build and launch
+        run: |
+          cp shared/runtime/terrain-readability.js /tmp/stage7-integrated.js
+          git show 66b0697bad38100f46bae6d8e1e8ca1b8e35ae9b:shared/runtime/terrain-readability.js > shared/runtime/terrain-readability.js
+          npm run build
+          python -m http.server 8884 --bind 127.0.0.1 >/tmp/qa-http.log 2>&1 & server=$!
+          trap 'kill $server' EXIT
+          OUT=_local/reports/stage7-closure/stock python tools/combined-stage7-smoke/capture.py
+          python tools/combined-stage7-smoke/stage41.py stock
+          python tools/combined-stage7-smoke/stage3.py baseline
+          cp /tmp/stage7-integrated.js shared/runtime/terrain-readability.js
+          test "$(git hash-object shared/runtime/terrain-readability.js)" = 9753f90b3417e02ab023b510a961f00bc6cb79a1
+      - name: Official guard and candidate launch
+        run: |
+          npm run test:release-guard
+          npm run build
+          npm run test:production-contract
+          python -m http.server 8884 --bind 127.0.0.1 >/tmp/qa-http.log 2>&1 & server=$!
+          trap 'kill $server' EXIT
+          OUT=_local/reports/stage7-closure/candidate python tools/combined-stage7-smoke/capture.py
+          python tools/combined-stage7-smoke/stage41.py integrated
+          python tools/combined-stage7-smoke/stage3.py candidate
+          python tools/combined-stage7-smoke/compare.py
+          python tools/combined-stage7-smoke/verify.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: combined-stage7-smoke-proof
+          path: |
+            _local/reports/stage7-closure
+            _local/reports/stage3-source
+            _local/reports/stage41-closure-built
