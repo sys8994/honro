@@ -1,0 +1,8 @@
+{
+  "source": "actual approved hunk in cbf03719, normalized against exact master; Stage46 intentionally kept master",
+  "replaceExactlyOnce": "if(l.asset?.id==='act5:near:42'){const s=l.scale??1;return{left:q.left-900*s,right:q.right+900*s,top:q.top,bottom:q.bottom+468*s};}",
+  "with": "if(l.asset?.id==='act5:near:42'){const s=l.scale??1,a=l.asset.edgeWall.bounds;return{left:Math.min(q.left-900*s,l.x+(a.x-(l.asset.edgeWall.anchor?.x||0))*s),right:Math.max(q.right+900*s,l.x+(a.x+a.w-(l.asset.edgeWall.anchor?.x||0))*s),top:Math.min(q.top,l.y+(a.y-(l.asset.edgeWall.anchor?.y||0))*s),bottom:Math.max(q.bottom+468*s,l.y+(a.y+a.h-(l.asset.edgeWall.anchor?.y||0))*s)};}",
+  "master": "611113216e115e2b94f42a0f79012748d3c10acb",
+  "expectedDerived": "66f656fe7beb164efcbed2729b2f6daa88781e42",
+  "sha256": "01e9ff9bb6287ca1b6a7ff722e4053ccc207474f808dd24ae9deaa521b029511"
+}
