@@ -1,14 +1,14 @@
-name: Cumulative terrain verification after exact legacy fixture classification
+name: Two-root exact Stage 1 startup preflight
 on:
   push:
     branches:
-      - qa/terrain-cumulative-52119985-legacy-fixture-20261120
+      - qa/terrain-cumulative-52119985-startup-only-20261120
 permissions:
   contents: read
 jobs:
   verify:
     runs-on: ubuntu-24.04
-    timeout-minutes: 50
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
@@ -71,23 +71,48 @@ jobs:
             fi
           done
           python "$QA/verify.py" "$STOCK" "$TARGET" "$OUT"
-      - name: Source-equivalent final renderer and thirteen normal app pose pairs
+      - name: One normal Stage 1 startup per root, no terrain matrix
+        timeout-minutes: 8
         run: |
           set -euo pipefail
           python -m pip install playwright==1.58.0 pillow
           python -m playwright install --with-deps chromium
-          python -m http.server 18841 --bind 127.0.0.1 --directory "$STOCK" >"$RUNNER_TEMP/terrain-stock-http.log" 2>&1 &
-          p1=$!
-          python -m http.server 18842 --bind 127.0.0.1 --directory "$TARGET" >"$RUNNER_TEMP/terrain-target-http.log" 2>&1 &
-          p2=$!
-          trap 'kill "$p1" "$p2" 2>/dev/null || true' EXIT
-          for port in 18841 18842; do
-            curl -fsS --retry 10 --retry-connrefused "http://127.0.0.1:$port/HONRO.html" -o /dev/null
+          python -m http.server 18841 --bind 127.0.0.1 --directory "$STOCK" >"$OUT/http-stock.log" 2>&1 &
+          h1=$!
+          python -m http.server 18842 --bind 127.0.0.1 --directory "$TARGET" >"$OUT/http-target.log" 2>&1 &
+          h2=$!
+          trap 'kill "$h1" "$h2" 2>/dev/null || true' EXIT
+          for p in 18841 18842; do
+            curl -fsS --retry 5 --retry-connrefused "http://127.0.0.1:$p/HONRO.html" -o /dev/null
           done
-          python "$QA/capture.py"
+          timeout 85s python "$QA/smoke-init.py" --mode stock --root "$STOCK" --port 18841 --out "$OUT/init-stock.json" >"$OUT/init-stock.log" 2>&1 &
+          p1=$!
+          timeout 85s python "$QA/smoke-init.py" --mode target --root "$TARGET" --port 18842 --out "$OUT/init-target.json" >"$OUT/init-target.log" 2>&1 &
+          p2=$!
+          set +e
+          wait "$p1"; r1=$?
+          wait "$p2"; r2=$?
+          set -e
+          printf 'stock=%s\ntarget=%s\n' "$r1" "$r2" >"$OUT/preflight-status.txt"
+          test "$r1" = 0 && test "$r2" = 0
+          python - "$OUT" <<'PYCODE'
+          from pathlib import Path
+          import json,sys
+          d=Path(sys.argv[1])
+          errors={}
+          for mode in ('stock','target'):
+              j=json.loads((d/f'init-{mode}.json').read_text())
+              checks={'stage1':j.get('stage1',{}).get('stage')==1,'sky':j.get('stage1',{}).get('sky')=='function',
+                      'entryBody':j.get('entryHTTP',{}).get('sha256')==j['entrySHA256'],'ready':any(x['stockPredicate'] for x in j['timeline']),
+                      'noErrors':not j['errors'] and not j.get('probeError'),'no404':all(x[1]<400 for x in j['status']),
+                      'settledAppPromise':any((x.get('promise') or {}).get('state')=='fulfilled' for x in j['timeline'])}
+              print(mode,checks)
+              if not all(checks.values()):errors[mode]=checks
+          assert not errors,errors
+          PYCODE
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: terrain-cumulative-exact-root-proof
+          name: terrain-exact-two-root-stage1-init-only
           path: ${{ env.OUT }}
           retention-days: 7
