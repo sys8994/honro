@@ -12,13 +12,29 @@ const g={HonroScene:Scene,Path2D:class{constructor(d){this.d=d;}},HonroVectorArt
 g.globalThis=g;vm.runInNewContext(fs.readFileSync('shared/runtime/act5-edge-art.js','utf8'),g);
 const ctx=Object.fromEntries(['save','restore','translate','scale','clip','beginPath','rect','transform'].map(k=>[k,(...args)=>ops.push([k,...args])]));
 const wall=JSON.parse(fs.readFileSync('shared/assets/environment/act5/stage42-registered-body.json'));
-const sha=value=>createHash('sha256').update(JSON.stringify(value)).digest('hex');
+const shaText=value=>createHash('sha256').update(value).digest('hex');
+const sha=value=>shaText(JSON.stringify(value));
 const {vector,bounds,reference:{bounds:referenceBounds,...reference},...metadata}=wall;
 assert.equal(sha({...metadata,reference}),'6111cebf1b0a2cf7905d414b7c9937f1e1fe0694e8291babe840778253ff063e','BODY wrapper metadata, sockets, collision and registration remain stock');
-assert.deepEqual(bounds,{x:-1250,y:0,w:4510,h:1255});
+assert.deepEqual(bounds,{x:-1250,y:0,w:4510,h:2900});
 assert.deepEqual(referenceBounds,bounds);
 assert.deepEqual(vector.viewBox,[bounds.x,bounds.y,bounds.w,bounds.h]);
-assert.equal(sha(vector),'e8fb6dd8e251c67703af92694408e84b74d7e4762650f4a90a4bc70e0089f38d','Reviewed BODY vector with untouched original substrate');
+// The three existing 55c5 draw roots and every original clip (not just the
+// native alpha) remain byte-identical in runtime JSON and in draw order.
+const {['mountain-host-front-intersection']:contact,...existingClips}=vector.clips;
+const children=vector.root.children;
+assert.equal(children.length,4,'One lower donor root, after all three existing roots');
+assert.equal(sha(children.slice(0,3)),'d7a134fdc4937455a17b55ad26f4fdd2be1c69f51fa4ec0bfdc890f8d92b684b','All retained BODY roots, upper and both side geology unchanged');
+assert.equal(sha(existingClips),'aa4158f29ab6ce3d6d353217e5c32181be78509f9c302b93764b3cab1b371563','Original alpha, holes and contact clips unchanged');
+// Signed HOST∩FRONT is one clip, not a new second clip of the donor asset.
+// Digest pins both solved side intersections and the original donor deep outline.
+assert.equal(contact?.length,1,'One signed contact contour');
+assert.equal(shaText(contact[0]),'35e538a84ec73049da5c3a7943adb453efd99dc46b3c961e485ac8a2288cb999','Reviewed single signed HOST/FRONT contour');
+const lower=children[3], colors=lower.children?.[0]?.children;
+assert.equal(colors?.length,14,'Fourteen ordered source donor fills');
+assert.equal(sha(colors),'edcfc293fb457a47790409b273de65fcef4588e237e3aa9c3d29e07bdf26fce9','Exact 1db7 donor paint data, not a second rendering of upper terrain');
+assert.deepEqual(lower,{tag:'g',children:[{tag:'g',children:colors}],clipPath:'mountain-host-front-intersection'},'Donor may not add an inner clip, transform or opacity');
+assert.equal(sha(vector),'b8f36b4638e1528c4cc6c26bb1f702f13fcdfc2c358d449528c49f34de5859f3','Exact 0a94 runtime BODY vector (not an on-screen byte equality assertion)');
 assert.equal(sha(vector.root.children[1]),'1499c9babc8644ea83dd91f4566dd7af6afda304145dfda1c9e7f94e600a973f','Retained original BODY subtree');
 assert.equal(sha(vector.clips['native-source-alpha']),'84ea89f47a065c9215637f560ef1818c63760d1f02f853390da784c1ae648c5d','Original clip and holes remain exact');
 assert.equal(sha(source),'bb159e158e18aad515714eff13f1626c366f9266563de10007eebf0195925a98','Original near art and authored props remain stock');
@@ -31,9 +47,12 @@ assert.equal(calls[0].asset,a,'Authored original remains first');
 assert.equal(ops.filter(x=>x[0]==='clip').length,3);
 assert(!ops.some(x=>x[0]==='transform'),'No mirror or shear of source paths');
 const paint=(l)=>JSON.parse(JSON.stringify(scene._landmarkPaintBounds(l)));
-assert.deepEqual(paint({asset:a,x:0,y:0,scale:1}),{left:-1250,right:3260,top:0,bottom:1255});
-assert.deepEqual(paint({asset:a,x:100,y:300,scale:2}),{left:-2400,right:6620,top:0,bottom:2810});
+assert.deepEqual(paint({asset:a,x:0,y:0,scale:1}),{left:-1250,right:3260,top:0,bottom:2900});
+assert.deepEqual(paint({asset:a,x:100,y:300,scale:2}),{left:-2400,right:6620,top:0,bottom:6100});
 assert.deepEqual(paint({asset:a,x:100,y:300,scale:2,rotation:.2}),{left:0,right:2022,top:0,bottom:778});
 assert.deepEqual(paint({asset:{...a,id:'act4:control'},x:100,y:300,scale:2}),{left:0,right:2022,top:0,bottom:778});
+const k=6500/2022; // actual authored Stage42 scale; world/camera data stays unchanged
+assert.deepEqual(paint({asset:a,x:0,y:0,scale:k}),
+ {left:-1250*k,right:3260*k,top:0,bottom:2900*k});
 assert.equal(JSON.stringify(a),old,'Visual bounds cannot mutate the landmark or asset');
-console.log('PASS: stage42 registered exterior BODY candidate, no source mirroring, source unchanged, bounded coverage');
+console.log('PASS: stage42 exact registered lower BODY envelope and original source ownership');
