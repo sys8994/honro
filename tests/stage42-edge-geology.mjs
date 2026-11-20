@@ -23,18 +23,31 @@ assert.deepEqual(vector.viewBox,[bounds.x,bounds.y,bounds.w,bounds.h]);
 // native alpha) remain byte-identical in runtime JSON and in draw order.
 const {['mountain-host-front-intersection']:contact,...existingClips}=vector.clips;
 const children=vector.root.children;
-assert.equal(children.length,4,'One lower donor root, after all three existing roots');
+assert.equal(children.length,5,'Exactly two lower-west paths in one group before the original donor');
 assert.equal(sha(children.slice(0,3)),'d7a134fdc4937455a17b55ad26f4fdd2be1c69f51fa4ec0bfdc890f8d92b684b','All retained BODY roots, upper and both side geology unchanged');
 assert.equal(sha(existingClips),'aa4158f29ab6ce3d6d353217e5c32181be78509f9c302b93764b3cab1b371563','Original alpha, holes and contact clips unchanged');
 // Signed HOST∩FRONT is one clip, not a new second clip of the donor asset.
 // Digest pins both solved side intersections and the original donor deep outline.
 assert.equal(contact?.length,1,'One signed contact contour');
 assert.equal(shaText(contact[0]),'35e538a84ec73049da5c3a7943adb453efd99dc46b3c961e485ac8a2288cb999','Reviewed single signed HOST/FRONT contour');
-const lower=children[3], colors=lower.children?.[0]?.children;
+// Original lower donor stays last. New paint is separate, with no extra clip.
+const added=children[3];
+assert.deepEqual(Object.keys(added),['tag','children'],'Lower-west group may not clip, transform, or change opacity');
+assert.equal(added.tag,'g');
+assert.equal(added.children.length,2);
+assert.deepEqual(added.children.map(n=>Object.keys(n)),[['tag','d','fill'],['tag','d','fill']],
+ 'Standalone lower-west paths without new child clips or transforms');
+assert.deepEqual(added.children.map(n=>[n.tag,n.fill,shaText(n.d)]),[
+ ['path','#29343e','b516b4287713645c43d92dba1f449a4a0ad6bddc18a1fbd0949bffa48960a34d'],
+ ['path','#252f39','2853d128ae3b794c166d46ef296bff4869ab21d50b2a267b28e6520d82e2842b']
+],'Exact approved lower-west patch contours');
+const lower=children[4], colors=lower.children?.[0]?.children;
 assert.equal(colors?.length,14,'Fourteen ordered source donor fills');
 assert.equal(sha(colors),'edcfc293fb457a47790409b273de65fcef4588e237e3aa9c3d29e07bdf26fce9','Exact 1db7 donor paint data, not a second rendering of upper terrain');
 assert.deepEqual(lower,{tag:'g',children:[{tag:'g',children:colors}],clipPath:'mountain-host-front-intersection'},'Donor may not add an inner clip, transform or opacity');
-assert.equal(sha(vector),'b8f36b4638e1528c4cc6c26bb1f702f13fcdfc2c358d449528c49f34de5859f3','Exact 0a94 runtime BODY vector (not an on-screen byte equality assertion)');
+assert.equal(sha([...children.slice(0,3),lower]),'84a2725ee72b7a23de6d81e8d428a772e1cf573b9935ace7381a3b3115b60b85','All four original ordered 0a94 draw roots unchanged');
+assert.equal(sha(vector.clips),'fee55eba8db51b03e0eb58297d2c1ed634261c399b766e4f8834e8431f8d6de9','All seven original clip definitions unchanged');
+assert.equal(sha(vector),'d475cb917c3bbf8b8bbee4a2b2f0d9f2437b59373d93c8921e0b58f97fd404b2','Exact lower-west registered vector (not a donor archive pixel claim)');
 assert.equal(sha(vector.root.children[1]),'1499c9babc8644ea83dd91f4566dd7af6afda304145dfda1c9e7f94e600a973f','Retained original BODY subtree');
 assert.equal(sha(vector.clips['native-source-alpha']),'84ea89f47a065c9215637f560ef1818c63760d1f02f853390da784c1ae648c5d','Original clip and holes remain exact');
 assert.equal(sha(source),'bb159e158e18aad515714eff13f1626c366f9266563de10007eebf0195925a98','Original near art and authored props remain stock');
@@ -55,4 +68,4 @@ const k=6500/2022; // actual authored Stage42 scale; world/camera data stays unc
 assert.deepEqual(paint({asset:a,x:0,y:0,scale:k}),
  {left:-1250*k,right:3260*k,top:0,bottom:2900*k});
 assert.equal(JSON.stringify(a),old,'Visual bounds cannot mutate the landmark or asset');
-console.log('PASS: stage42 exact registered lower BODY envelope and original source ownership');
+console.log('PASS: Stage42 exact lower-west addition, same BODY envelope and original source ownership');
