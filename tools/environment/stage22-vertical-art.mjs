@@ -320,7 +320,6 @@ function builtTerracePlanes(stage){
  // an east store wing. Its deep buried base is quiet, without giant boulders.
  storey('v22-lower-court','lower-clerk-basement',380,5380,915,194,5,{paper:true});
  storey('v22-lower-court','lower-east-record-wing',1970,4637,1250,203,6,{dim:true});
- box('v22-lower-court','buried-west-foundation',0,5660,1590,940,'#354d48');box('v22-lower-court','buried-east-foundation',1610,4940,3200,1680,'#304a47');
  for(const [i,y]of [5590,5635].entries())for(const [j,x]of [360,515,684,850,1010,1166].entries())stone('v22-lower-court','clerk-foot-'+i+'-'+j,x,y,145+(j%2)*13,38,(i+j)%3);
  // B keeps its existing timber circulation face. E now reads as a small
  // stone return, with the same unaltered continuous traffic band as F/G.
