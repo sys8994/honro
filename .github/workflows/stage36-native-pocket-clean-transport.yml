@@ -1,0 +1,123 @@
+name: Stage 36 exact-source clean transport and integrated HTTP A-B
+on:
+  push:
+    branches: ['audit/stage36-native-pocket-clean-transport-20261120']
+permissions:
+  contents: read
+jobs:
+  compare:
+    outputs:
+      verified_tree: ${{ steps.build.outputs.verified_tree }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Verify isolated patch and build stock and candidate
+        id: build
+        run: |
+          set -euo pipefail
+          B=8079496a68516fcb2393f57fb9445c17dd3da37e
+          test "$(git rev-parse HEAD^)" = "$B"
+          test "$(git diff --name-only "$B" HEAD | sort)" = "$(printf '%s\n' .github/workflows/stage36-native-pocket-clean-transport.yml tools/stage36-native-pocket-clean-transport/capture.py tools/stage36-native-pocket-clean-transport/patch.mjs tools/stage36-native-pocket-clean-transport/verify.py)"
+          mkdir -p "$RUNNER_TEMP/qa36/out"
+          echo "QA=$RUNNER_TEMP/qa36" >> "$GITHUB_ENV"
+          echo "OUT=$RUNNER_TEMP/qa36/out" >> "$GITHUB_ENV"
+          P="$RUNNER_TEMP/qa36"
+          cp tools/stage36-native-pocket-clean-transport/* "$P/"
+          (cd "$P" && echo 'a9f35e2edaad2cca11244c78848792d269b5329cf52ea10f65608838dbf979f6  patch.mjs' | sha256sum -c)
+          for variant in before after; do
+            git worktree add --detach "$P/$variant" "$B"
+            (
+              cd "$P/$variant"
+              if [ "$variant" = after ]; then
+                node "$P/patch.mjs" | tee "$P/out/source-resource-proof.json"
+                test "$(git diff --name-only | sort)" = "$(printf '%s\n' shared/act4-handoff-art.mjs shared/data/terrain-path-optimization.json)"
+                git diff -- shared/act4-handoff-art.mjs > "$P/out/source.patch"
+                git add -- shared/act4-handoff-art.mjs shared/data/terrain-path-optimization.json
+                T=$(git write-tree)
+                printf '%s\n' "$T" > "$P/out/verified-tree.txt"
+                printf 'verified_tree=%s\n' "$T" >> "$GITHUB_OUTPUT"
+              fi
+              npm ci
+              npm ci --prefix game
+              npm run build
+            )
+          done
+      - name: Capture and verify exact camera pairs via actual HTTP
+        run: |
+          set -euo pipefail
+          python -m pip install playwright Pillow
+          python -m playwright install --with-deps chromium
+          O="$OUT"
+          for variant in before after; do
+            python -m http.server 8884 --bind 127.0.0.1 --directory "$QA/$variant" > "$O/host-$variant.log" 2>&1 &
+            p=$!
+            trap 'kill "$p" || true' EXIT
+            for i in $(seq 1 20); do curl -fsSL http://127.0.0.1:8884/HONRO.html -o /dev/null && break || sleep 1; done
+            PORT=8884 OUT="$O/$variant" python "$QA/capture.py"
+            kill "$p"; wait "$p" || true
+            trap - EXIT
+          done
+          python "$QA/verify.py"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage36-native-pocket-http-pairs
+          path: ${{ env.OUT }}
+          retention-days: 7
+
+  clean-fast-forward:
+    needs: compare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Fast-forward only the fixed Stage36 isolated branch
+        env:
+          TESTED_TREE: ${{ needs.compare.outputs.verified_tree }}
+        run: |
+          set -euo pipefail
+          B=8079496a68516fcb2393f57fb9445c17dd3da37e
+          T=refs/heads/work/stage36-mask-clean-20261120
+          SRC=refs/heads/audit/stage36-native-pocket-clean-transport-20261120
+          test "$GITHUB_REPOSITORY" = sys8994/honro
+          test "$GITHUB_REF" = "$SRC"
+          test "$(git config --get remote.origin.url)" = https://github.com/sys8994/honro
+          test "$(git rev-parse HEAD^)" = "$B"
+          remote_sha(){ git ls-remote --exit-code origin "$T" | awk -v r="$T" '$2==r {print $1}'; }
+          test "$(remote_sha)" = "$B"
+          test "$TESTED_TREE" != ""
+          P="$RUNNER_TEMP/clean36"
+          mkdir -p "$P"
+          cp tools/stage36-native-pocket-clean-transport/patch.mjs "$P/patch.mjs"
+          (cd "$P" && echo 'a9f35e2edaad2cca11244c78848792d269b5329cf52ea10f65608838dbf979f6  patch.mjs' | sha256sum -c)
+          git worktree add --detach "$P/target" "$B"
+          cd "$P/target"
+          test -z "$(git status --porcelain)"
+          node "$P/patch.mjs"
+          EXPECTED="$(printf '%s\n' shared/act4-handoff-art.mjs shared/data/terrain-path-optimization.json)"
+          test "$(git diff --name-only | sort)" = "$EXPECTED"
+          git add -- shared/act4-handoff-art.mjs shared/data/terrain-path-optimization.json
+          test "$(git diff --cached --name-only | sort)" = "$EXPECTED"
+          test "$(git write-tree)" = "$TESTED_TREE"
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Restore original Stage36 rock in the east-base pocket'
+          test "$(git rev-parse HEAD^)" = "$B"
+          test "$(git rev-parse HEAD^{tree})" = "$TESTED_TREE"
+          SHA=$(git rev-parse HEAD)
+          test "$(remote_sha)" = "$B"
+          git push --porcelain origin "HEAD:$T"
+          test "$(remote_sha)" = "$SHA"
+          printf 'Clean Stage36 ref %s at %s (parent %s; verified tree %s)\n' "$T" "$SHA" "$B" "$TESTED_TREE"
