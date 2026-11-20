@@ -1,0 +1,54 @@
+name: Stage30 final stock V4 native melee and clear evidence
+on:
+  push:
+    branches: [qa/stage30-v4-stock-melee-20261120]
+permissions:
+  contents: read
+jobs:
+  replay:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Build exact stock isolated host
+        run: |
+          set -euo pipefail
+          B=b81245966bc7f68b41ecc0581c82ab8b2e7d2714
+          test "$(git rev-parse HEAD^)" = "$B"
+          test "$(git diff --name-only "$B" HEAD | wc -l)" = 2
+          test "$(git diff --diff-filter=A --name-only "$B" HEAD | wc -l)" = 2
+          test -f tools/stage30-v4-stock-melee/melee.py
+          QA="$RUNNER_TEMP/stage30-stock-v4"
+          mkdir -p "$QA/evidence"
+          echo "QA=$QA" >> "$GITHUB_ENV"
+          echo "OUT=$QA/evidence" >> "$GITHUB_ENV"
+          git worktree add --detach "$QA/stock" "$B"
+          git -C "$QA/stock" rev-parse HEAD > "$QA/evidence/base.sha"
+          cd "$QA/stock"
+          npm ci
+          npm ci --prefix game
+          npm run build
+          test -z "$(git diff --name-only -- shared/runtime shared/assets shared/map)"
+      - name: Ordinary player inputs and stock phase receipts
+        run: |
+          set -euo pipefail
+          python -m pip install playwright
+          python -m playwright install --with-deps chromium
+          python -m http.server 8884 --bind 127.0.0.1 --directory "$QA/stock" > "$OUT/host.log" 2>&1 &
+          p=$!; trap 'kill "$p" || true' EXIT
+          for _ in $(seq 1 20); do
+            if curl -fsS http://127.0.0.1:8884/HONRO.html -o /dev/null; then break; fi
+            sleep 1
+          done
+          python tools/stage30-v4-stock-melee/melee.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage30-v4-stock-melee
+          path: ${{ env.OUT }}
+          retention-days: 7
