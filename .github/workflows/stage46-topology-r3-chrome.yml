@@ -1,0 +1,77 @@
+name: Stage46 one-part guarded topology actual Chrome QA
+on:
+  push:
+    branches: [qa/stage46-topology-r3-chrome-20261120]
+permissions:
+  contents: read
+jobs:
+  exact:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify isolated QA diff and regenerate exact candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          pin=160f41d7f287df88ecce3574eb1b4e15eb8e08b6
+          test "$(git rev-parse HEAD^)" = "$pin"
+          git diff --name-status "$pin" HEAD > /tmp/scope46
+          awk -F '\t' '$1!="A"||($2!=".github/workflows/stage46-topology-r3-chrome.yml"&&$2!~/^tools\/stage46-topology-r3\//){exit 1}' /tmp/scope46
+          test "$(wc -l </tmp/scope46)" -eq 7
+          qa="$RUNNER_TEMP/r3"
+          mkdir -p "$qa/regen/original" "$qa/regen/candidate" "$qa/evidence"
+          cp tools/stage46-topology-r3/* "$qa/regen/"
+          git worktree add --detach "$qa/stock" "$pin"
+          git worktree add --detach "$qa/candidate" "$pin"
+          printf 'QA=%s\nOUT=%s/evidence\n' "$qa" "$qa" >> "$GITHUB_ENV"
+          f=shared/assets/environment/act5/stage46-exterior-body.json
+          cp "$qa/stock/$f" "$qa/regen/original/"
+          python -m pip install numpy==2.3.5 pillow
+          cd "$qa/regen"
+          python run.py 0 >"$qa/evidence/r1-regeneration.log"
+          python apply.py "$qa/regen" "$qa/candidate/$f"
+          sha256sum "$qa/stock/$f" "$qa/candidate/$f" > "$qa/evidence/source-bytes.txt"
+          git -C "$qa/candidate" diff --name-only > "$qa/evidence/prebuild-scope.txt"
+          test "$(cat "$qa/evidence/prebuild-scope.txt")" = "$f"
+      - name: Build both official hosts without guard changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          for mode in stock candidate; do
+            cd "$QA/$mode"
+            npm ci && npm ci --prefix game
+            npm run test:release-guard > "$OUT/$mode-release-guard.log" 2>&1
+            npm run build > "$OUT/$mode-build.log" 2>&1
+            git diff --name-only -- shared > "$OUT/$mode-shared-diff.txt"
+          done
+          test ! -s "$OUT/stock-shared-diff.txt"
+          test "$(cat "$OUT/candidate-shared-diff.txt")" = shared/assets/environment/act5/stage46-exterior-body.json
+      - name: Actual normal Chrome scene and same-camera transparent landmark evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "$QA/regen"
+          npm install playwright
+          npx playwright install --with-deps chromium
+          python -m http.server 8884 --bind 127.0.0.1 --directory "$QA/stock" >"$OUT/stock-http.log" 2>&1 & a=$!
+          python -m http.server 8885 --bind 127.0.0.1 --directory "$QA/candidate" >"$OUT/candidate-http.log" 2>&1 & b=$!
+          trap 'kill "$a" "$b" || true' EXIT
+          node capture.cjs
+          python check.py "$OUT"
+      - name: QA checkout unchanged
+        if: always()
+        run: test -z "$(git status --porcelain -uno)"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage46-one-body-r3-chrome
+          path: ${{ env.OUT }}
