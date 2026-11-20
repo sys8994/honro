@@ -1,0 +1,44 @@
+name: Stage26 v3 public native west verification
+on:
+  push:
+    branches: [qa/stage26-v3-public-west-20261121]
+    paths:
+      - '.github/workflows/stage26-v3-public-west.yml'
+      - 'tools/stage26-v3-public-west/**'
+permissions:
+  contents: read
+jobs:
+  public-stage26:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage26-v3-public-west-20261121'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Bind the exact release parent and check active plus retained public HTTPS bytes
+        shell: bash
+        run: |
+          set -euo pipefail
+          W="$(mktemp -d "$RUNNER_TEMP/stage26-public.XXXXXX")"
+          mkdir "$W/evidence"
+          export STAGE26_PUBLIC="$W/evidence"
+          echo "STAGE26_PUBLIC=$STAGE26_PUBLIC" >> "$GITHUB_ENV"
+          python3 tools/stage26-v3-public-west/public.py
+      - name: Public Stage26 west continuity in three native camera poses
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m venv "$STAGE26_PUBLIC/../venv"
+          V="$STAGE26_PUBLIC/../venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+          "$V" tools/stage26-v3-public-west/capture.py
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: stage26-v3-public-west-readback
+          path: ${{ env.STAGE26_PUBLIC }}
+          if-no-files-found: warn
+          retention-days: 7
