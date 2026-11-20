@@ -24,7 +24,7 @@ jobs:
           workref=refs/heads/work/stage22-buried-join-clean-20261120
           D="$RUNNER_TEMP/stage22-clean-source"; mkdir -p "$D/out" "$D/private"
           echo "D=$D" >> "$GITHUB_ENV"
-          test "$(git rev-parse HEAD^)" = "$parent"
+          git merge-base --is-ancestor "$parent" HEAD
           test "$(git diff --name-status "$parent" HEAD)" = $'A\t.github/workflows/stage22-exact-clean-source-save.yml'
           test "$(git rev-parse "$base^{tree}")" = e879e16e84eece516a61d355d33ac8e4512ca5ba
           test "$(git ls-remote --refs origin refs/heads/master | cut -f1)" = "$master"
@@ -84,11 +84,12 @@ jobs:
           test "$(git rev-list --count "$base..HEAD")" = 2
           for head in "$meta" "$target"; do git diff-tree --no-commit-id --name-status -r "$head" >"$D/out/$head-scope.txt"; done
           printf 'ref=%s\nbase=%s\nmetadata=%s\nmetadataTree=%s\ntarget=%s\ntargetTree=%s\nmasterPinned=%s\n' "$workref" "$base" "$meta" "$metadata_tree" "$target" "$target_tree" "$master" >"$D/out/verified-commit-candidates.txt"
-          test "$(git ls-remote --refs origin refs/heads/master | cut -f1)" = "$master"
-          test -z "$(git ls-remote --refs origin "$workref")"
-          git push --porcelain origin "HEAD:$workref"
-          hash="$(git ls-remote --refs origin "$workref" | cut -f1)"
-          current_master="$(git ls-remote --refs origin refs/heads/master | cut -f1)"
+          test "$(git -C "$GITHUB_WORKSPACE" cat-file -t "$target")" = commit
+          test "$(git -C "$GITHUB_WORKSPACE" ls-remote --refs origin refs/heads/master | cut -f1)" = "$master"
+          test -z "$(git -C "$GITHUB_WORKSPACE" ls-remote --refs origin "$workref")"
+          git -C "$GITHUB_WORKSPACE" push --porcelain origin "$target:$workref"
+          hash="$(git -C "$GITHUB_WORKSPACE" ls-remote --refs origin "$workref" | cut -f1)"
+          current_master="$(git -C "$GITHUB_WORKSPACE" ls-remote --refs origin refs/heads/master | cut -f1)"
           printf 'work=%s\nmaster=%s\n' "$hash" "$current_master" >"$D/out/remote-readback.txt"
           test "$hash" = "$target"
           test "$current_master" = "$master"
