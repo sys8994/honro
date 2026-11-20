@@ -1,0 +1,84 @@
+name: Exact Stage09 deep FLOOR placement and Stage02/08 continuity normal A/B
+on:
+  push:
+    branches: [qa/stage09-native-floor-receipt-20261120]
+permissions:
+  contents: read
+jobs:
+  stage09:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 34
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Only QA harness on immutable Stage08 product-review parent, exact patch in detached target
+        run: |
+          set -euo pipefail
+          Q="$GITHUB_WORKSPACE/tools/stage09-native-floor-receipt"
+          BASE=$(python -c 'import re,json,sys; a=json.load(open(sys.argv[1]))["base"]; assert isinstance(a,str) and re.fullmatch("[a-f0-9]{40}",a); print(a)' "$Q/expected.json")
+          W="$RUNNER_TEMP/stage09-native-floor-receipt"
+          mkdir -p "$W/out"
+          printf 'QA=%s\nSTOCK=%s\nTARGET=%s\nOUT=%s\n' "$Q" "$W/stock" "$W/target" "$W/out" >> "$GITHUB_ENV"
+          git worktree add --detach "$W/stock" "$BASE"
+          git worktree add --detach "$W/target" "$BASE"
+          python "$Q/guard.py" source "$GITHUB_WORKSPACE" "$W/stock" "$W/target" "$W/out"
+      - name: Exact official source builds and active graph, archive legacy contract as failure
+        run: |
+          set -euo pipefail
+          export CI=true
+          for side in stock target; do
+            if [ "$side" = stock ]; then cd "$STOCK"; else cd "$TARGET"; fi
+            npm ci >"$OUT/npm-root-$side.log" 2>&1
+            npm ci --prefix game >"$OUT/npm-game-$side.log" 2>&1
+            node --test tests/stage02-deep-body-tile.mjs tests/stage08-deep-body-tile.mjs >"$OUT/prior-stage02-08-source-tests-$side.log" 2>&1
+            npm run test:release-guard >"$OUT/release-$side.log" 2>&1
+            npm run build >"$OUT/build-$side.log" 2>&1
+            set +e
+            npm run test:production-contract >"$OUT/contract-$side.log" 2>&1
+            result=$?
+            set -e
+            python - "$OUT/contract-$side.log" "$result" "$OUT/classification-$side.txt" <<'PY'
+          from pathlib import Path
+          import re,sys
+          p,rc,o=sys.argv[1:]; lines=Path(p).read_text('utf-8').splitlines()
+          if rc=='0': classification='PASS_UNMODIFIED_PRODUCTION_CONTRACT'
+          else:
+           assert rc=='1'
+           assert lines.count('Production contract: actual Stage31 fails; fake approvals cannot pass; edits expire reviews; no source mutation.')==1
+           assert [l for l in lines if re.match(r'^[A-Za-z]*Error:',l)]==['Error: 기존 미술에서 가져온 에셋이 아니면 사용 사유를 먼저 기록하십시오.']
+           frames=[l.strip()for l in lines if re.match(r'^\s+at ',l)]
+           assert len(frames)==2 and frames[0]=='at Object.placeScenery (evalmachine.<anonymous>:85:520)'
+           assert re.fullmatch(r'at file://[^\n]+/(?:stock|target)/tests/production-contract\.mjs:77:22',frames[1])
+           assert lines[-1].startswith('Node.js v22.')
+           classification='FAIL_EXISTING_UNAPPROVED_POSITIVE_FIXTURE_77_22_DIAGNOSTIC_ONLY'
+          Path(o).write_text(classification+'\n')
+          print(classification)
+          PY
+          done
+          # A pre-existing contract failure is never reclassified as product success.
+          cmp "$OUT/classification-stock.txt" "$OUT/classification-target.txt"
+          python "$QA/guard.py" built "$STOCK" "$TARGET" "$OUT"
+      - name: 18 Stage09 plus 3 retained Stage02, 6 retained Stage08 and 1 Stage10 normal pairs
+        timeout-minutes: 25
+        run: |
+          set -euo pipefail
+          python -m pip install playwright==1.58.0 pillow
+          python -m playwright install --with-deps chromium
+          python -m http.server 18841 --bind 127.0.0.1 --directory "$STOCK" >"$OUT/http-stock.log" 2>&1 &
+          p1=$!
+          python -m http.server 18842 --bind 127.0.0.1 --directory "$TARGET" >"$OUT/http-target.log" 2>&1 &
+          p2=$!
+          trap 'kill "$p1" "$p2" 2>/dev/null || true' EXIT
+          for p in 18841 18842; do curl -fsS --retry 7 --retry-connrefused "http://127.0.0.1:$p/HONRO.html" -o /dev/null; done
+          timeout 1350s python "$QA/capture.py"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage09-signed-floor-real-campaign-plus-stage02-stage08-retention
+          path: ${{ env.OUT }}
+          retention-days: 7
