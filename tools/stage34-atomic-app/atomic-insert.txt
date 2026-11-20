@@ -1,0 +1,46 @@
+// QA-only candidate: existing foundation paint into one image, then one alpha.
+const qa34AtomicPrepared=new WeakMap();
+const qa34Blank=()=>({hit:0,skip:0,allocations:0,releases:0,peakBytes:0,fallbacks:0,cutCalls:0,tiles:[],errors:[]});
+let qa34AtomStats=qa34Blank();
+const qa34MaskPaths=__SIGNED_MASK_DATA__;
+G.HonroStage34AtomicReceipt=(reset=false)=>{const r=structuredClone(qa34AtomStats);if(reset)qa34AtomStats=qa34Blank();return r;};
+function qa34AtomicFoundation(scene,c,l,b){
+ if(b?.honroStage!==34||b.honroCustom||b.honroAct4Official!==1||l?.id!=='approved34-coastal-foundation'||l?.asset?.id!=='approved34:coastal-foundation')return false;
+ const a=l.asset,v=a.vector,W=c.canvas.width,H=c.canvas.height,m=c.getTransform();
+ const fail=why=>{qa34AtomStats.fallbacks++;qa34AtomStats.errors.push(why);return false;};
+ if(l.layer!=='structural-back'||l.nativeArtLayer!=='structure'||l.x!==-1536||l.y!==-256||(l.opacity??1)!==1||
+  (l.scale??1)!==1||(l.rotation??0)!==0||a.anchor?.x!==0||a.anchor?.y!==0||a.bounds?.w!==9216||a.bounds?.h!==6144||
+  a.params?.sourceSha256!=='33d17ad69cfb762d95ffddb47359143373d0b8afcc86f6e1b23cf89c8fed93cf'||
+  a.params?.nonplayEnvironment!==true||a.params?.silhouetteUnderpaint!==false||
+  v.root.transform?.join(',')!=='6,0,0,6,0,0'||Object.keys(v.clips).join()!=='source-alpha-silhouette'||
+  v.root.children?.length!==1||v.root.children[0].clipPath!=='source-alpha-silhouette'||
+  v.root.children[0].children?.[0]?.children?.length!==16)return fail('source or placement contract');
+ if(m.b!==0||m.c!==0||m.a<=0||m.d<=0||![m.a,m.d,m.e,m.f,W,H].every(Number.isFinite))return fail('unsupported actual device transform');
+ const hit=(x0,y0,x1,y1)=>m.a*x0+m.e<=W+2&&m.a*x1+m.e>=-2&&m.d*y0+m.f<=H+2&&m.d*y1+m.f>=-2;
+ if(!hit(7465,3090,7688,5896)&&!hit(-1548,5530,7688,5896)){qa34AtomStats.skip++;return false;}
+ if(W<1||H<1||W>1024||H>1024||W*H>1048576||c.globalAlpha!==1||c.globalCompositeOperation!=='source-over'||(c.filter??'none')!=='none')return fail('unsupported eligible caller paint state');
+ if(typeof scene._makeLayerCanvas!=='function'||typeof scene._releaseRasterCanvas!=='function')return fail('no scratch surface support');
+ const started=performance.now();let paintCanvas,maskCanvas;
+ try{
+  let keep=qa34AtomicPrepared.get(a);
+  if(!keep){keep=Object.values(qa34MaskPaths).map(ds=>new Path2D(ds.join(' ')));qa34AtomicPrepared.set(a,keep);}
+  paintCanvas=scene._makeLayerCanvas(W,H);maskCanvas=scene._makeLayerCanvas(W,H);
+  qa34AtomStats.allocations+=2;qa34AtomStats.peakBytes=Math.max(qa34AtomStats.peakBytes,W*H*8);
+  const paint=paintCanvas.getContext('2d'),mask=maskCanvas.getContext('2d');
+  if(!paint||!mask)return fail('missing scratch context');
+  // Original intrinsic clip and exact old vector paints, once, with raw stage grade.
+  paint.setTransform(m.a,m.b,m.c,m.d,m.e,m.f);
+  if(!G.HonroVectorArt.draw(paint,a,l))return fail('original native paint did not draw');
+  mask.setTransform(m.a,m.b,m.c,m.d,m.e,m.f);
+  mask.translate(l.x,l.y);mask.transform(...v.root.transform);
+  mask.save();try{for(let j=0;j<keep.length-1;j++)mask.clip(keep[j]);mask.fillStyle='#fff';mask.fill(keep.at(-1));}finally{mask.restore();}
+  paint.setTransform(1,0,0,1,0,0);paint.globalCompositeOperation='destination-in';paint.drawImage(maskCanvas,0,0);
+  qa34AtomStats.cutCalls++;
+  c.save();try{c.setTransform(1,0,0,1,0,0);c.drawImage(paintCanvas,0,0);}finally{c.restore();}
+  qa34AtomStats.hit++;
+  if(qa34AtomStats.tiles.length<256)qa34AtomStats.tiles.push({W,H,rs:m.a,origin:[m.e,m.f],ms:Math.max(0,performance.now()-started)});
+  return true;
+ }finally{
+  for(const scratch of [paintCanvas,maskCanvas])if(scratch){scene._releaseRasterCanvas(scratch);qa34AtomStats.releases++;}
+ }
+}
