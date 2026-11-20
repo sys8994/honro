@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';import path from 'node:path';import crypto from 'node:crypto';
+const [base,qa,out]=process.argv.slice(2),packet='web/data/chapter-30-assets.99a6cc921e7e09ae.json';
+const rows=JSON.parse(fs.readFileSync(path.join(base,packet),'utf8')),z=rows.findIndex(v=>v.id==='stage30:ferry-distant-channel');assert(z>=0);
+const old=rows[z],v=structuredClone(old);assert.deepEqual(old.collision,[]);assert.equal(v.vector.root.tag,'g');assert.equal(v.vector.root.children.length,3);assert(v.vector.root.children.every(n=>n.tag==='path'&&n.opacity===undefined));
+assert.equal(v.vector.clips,undefined);assert.equal(v.vector.root.clipPath,undefined);
+const id='qa-ferry-basin';v.vector.clips={[id]:['M6120 6005H7330V6620H6120Z']};v.vector.root.clipPath=id;
+const restored=structuredClone(v);delete restored.vector.clips;delete restored.vector.root.clipPath;assert.deepEqual(restored,old);
+const dest=path.join(qa,packet);fs.writeFileSync(dest+'.temp',JSON.stringify(rows.map((a,i)=>i===z?v:a)));fs.renameSync(dest+'.temp',dest);
+const next=JSON.parse(fs.readFileSync(dest,'utf8'));assert.equal(next.length,rows.length);for(let i=0;i<rows.length;i++)assert.deepEqual(next[i],i===z?v:rows[i]);
+fs.writeFileSync(path.join(out,'asset-contract.json'),JSON.stringify({changedPacket:packet,changedAsset:old.id,onlyAssetIndex:z,onlyChangedFields:['vector.clips','vector.root.clipPath'],worldRegion:[6120,6005,7330,6620],allPathsAndObjectRetained:true,allOtherAssetFieldsExact:true,collisionEmpty:true,assetCount:rows.length,originalAssetSha256:crypto.createHash('sha256').update(JSON.stringify(old)).digest('hex')},null,2));
