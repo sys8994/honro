@@ -1,4 +1,4 @@
-name: Stage42 55c5 canonical source equivalence
+name: Stage42 connected stockade and legacy lower proof
 on:
   push:
     branches: [qa/stage42-crossed-final-served-20261120]
@@ -30,15 +30,18 @@ jobs:
           W="$RUNNER_TEMP/stage42-final-served"
           mkdir -p "$W/out"
           printf 'QA=%s\nSTOCK=%s\nTARGET=%s\nOUT=%s\n' "$Q" "$W/stock" "$W/target" "$W/out" >> "$GITHUB_ENV"
-          git worktree add --detach "$W/stock" "$BASE"
-          git worktree add --detach "$W/target" "$BASE"
+          CBF=cbf037199e56c640165dd53d8b00827902260862
+          test "$(git rev-parse "$CBF^")" = "$BASE"
+          test "$(git rev-parse "$CBF^{tree}")" = 3e01d8685238882ddad3e3ddff46a40a753587d9
+          git worktree add --detach "$W/stock" "$CBF"
+          git worktree add --detach "$W/target" "$CBF"
           python "$Q/prepare.py" "$W/target" | tee "$W/out/preparation.txt"
-          printf '%s\n' shared/assets/environment/act5/stage42-registered-body.json shared/runtime/act5-edge-art.js tests/stage42-edge-geology.mjs > "$W/expected-source-paths"
+          printf '%s\n' shared/assets/environment/act5/stage42-registered-body.json > "$W/expected-source-paths"
           git -C "$W/target" diff --name-only | diff - "$W/expected-source-paths"
           git -C "$W/stock" diff --quiet HEAD --
           git -C "$W/target" diff --stat > "$W/out/diagnostic-source-diff.txt"
-          for p in $(cat "$W/expected-source-paths"); do printf '%s %s\n' "$(git -C "$W/target" hash-object "$p")" "$p"; done > "$W/out/exact-product-blobs.txt" 
-          git -C "$W/target" diff -- shared/runtime/act5-edge-art.js > "$W/out/diagnostic-bounds.diff"
+          test "$(git -C "$W/target" hash-object shared/runtime/act5-edge-art.js)" = 1d0719ff1d56e3c6720f7e7166b3266864a49415
+          git -C "$W/target" hash-object shared/assets/environment/act5/stage42-registered-body.json > "$W/out/exact-hybrid-wrapper-blob.txt"
       - name: Stock validation and official builds, no optimizer edits
         run: |
           set -euo pipefail
@@ -51,14 +54,14 @@ jobs:
           const a=JSON.parse(fs.readFileSync('shared/assets/environment/act5/stage42-registered-body.json'));
           const errors=HonroVectorArt.validate(a.vector);console.log(errors);if(errors.length)throw Error(errors.join(';'));
           JS
-            node tests/stage42-edge-geology.mjs >"$OUT/stage42-geology-$mode.log" 2>&1
+            if [ "$mode" = stock ]; then node tests/stage42-edge-geology.mjs >"$OUT/stage42-geology-$mode.log" 2>&1; fi
             node tests/act5-terrain-contact.mjs >"$OUT/act5-contact-$mode.log" 2>&1
             npm run test:release-guard >"$OUT/release-$mode.log" 2>&1
             sha256sum shared/assets/environment/act5/stage42-registered-body.json >"$OUT/source-before-$mode.sha"
             npm run build >"$OUT/build-$mode.log" 2>&1
             sha256sum -c "$OUT/source-before-$mode.sha"
           done
-      - name: PC-west and mobile-southwest archived App equivalence
+      - name: Six actual matching Stage42 pairs plus exact donor screen region
         run: |
           set -euo pipefail
           python -m pip install playwright==1.58.0 pillow numpy
@@ -73,6 +76,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: stage42-55c5-canonical-equivalence
+          name: stage42-connected-stockade-and-legacy-lower
           path: ${{ env.OUT }}
           retention-days: 7

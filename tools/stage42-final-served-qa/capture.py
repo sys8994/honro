@@ -8,8 +8,6 @@ from playwright.sync_api import sync_playwright
 from verify import sha,ADDR
 root=Path(__file__).resolve().parent
 views=json.loads((root/'views.json').read_text())
-ARCHIVED={'1440-west': {'stockBinding': '2123df732af9e534a8a63e3b70bb2cfdef065818df0ef5d17c012d75ee75a645', 'stockEntry': '3b3ba95261b2b7588447e1b9ee5db8fee4bdb72692e5153a356054fd26b660b0', 'priorState': '913d0b98f987bc1fb4f1a62b65a1604febbe7c6d58f9923cc89e1b7714da1174', 'htmlSHA256': 'e176541027534d964517b53b2fc36825ebfdc207146f8b1879b7b53120441f1b'}, '1440-overview': {'stockBinding': '2123df732af9e534a8a63e3b70bb2cfdef065818df0ef5d17c012d75ee75a645', 'stockEntry': '3b3ba95261b2b7588447e1b9ee5db8fee4bdb72692e5153a356054fd26b660b0', 'priorState': '913d0b98f987bc1fb4f1a62b65a1604febbe7c6d58f9923cc89e1b7714da1174', 'htmlSHA256': 'e176541027534d964517b53b2fc36825ebfdc207146f8b1879b7b53120441f1b'}, '1440-north': {'stockBinding': '2123df732af9e534a8a63e3b70bb2cfdef065818df0ef5d17c012d75ee75a645', 'stockEntry': '3b3ba95261b2b7588447e1b9ee5db8fee4bdb72692e5153a356054fd26b660b0', 'priorState': '913d0b98f987bc1fb4f1a62b65a1604febbe7c6d58f9923cc89e1b7714da1174', 'htmlSHA256': 'e176541027534d964517b53b2fc36825ebfdc207146f8b1879b7b53120441f1b'}, '1440-south': {'stockBinding': '2123df732af9e534a8a63e3b70bb2cfdef065818df0ef5d17c012d75ee75a645', 'stockEntry': '3b3ba95261b2b7588447e1b9ee5db8fee4bdb72692e5153a356054fd26b660b0', 'priorState': '913d0b98f987bc1fb4f1a62b65a1604febbe7c6d58f9923cc89e1b7714da1174', 'htmlSHA256': 'e176541027534d964517b53b2fc36825ebfdc207146f8b1879b7b53120441f1b'}, '1440-east': {'stockBinding': '2123df732af9e534a8a63e3b70bb2cfdef065818df0ef5d17c012d75ee75a645', 'stockEntry': '3b3ba95261b2b7588447e1b9ee5db8fee4bdb72692e5153a356054fd26b660b0', 'priorState': '913d0b98f987bc1fb4f1a62b65a1604febbe7c6d58f9923cc89e1b7714da1174', 'htmlSHA256': 'e176541027534d964517b53b2fc36825ebfdc207146f8b1879b7b53120441f1b'}, '1440-northwest': {'stockBinding': '2123df732af9e534a8a63e3b70bb2cfdef065818df0ef5d17c012d75ee75a645', 'stockEntry': '3b3ba95261b2b7588447e1b9ee5db8fee4bdb72692e5153a356054fd26b660b0', 'priorState': '913d0b98f987bc1fb4f1a62b65a1604febbe7c6d58f9923cc89e1b7714da1174', 'htmlSHA256': 'e176541027534d964517b53b2fc36825ebfdc207146f8b1879b7b53120441f1b'}, '1440-northeast': {'stockBinding': '2123df732af9e534a8a63e3b70bb2cfdef065818df0ef5d17c012d75ee75a645', 'stockEntry': '3b3ba95261b2b7588447e1b9ee5db8fee4bdb72692e5153a356054fd26b660b0', 'priorState': '913d0b98f987bc1fb4f1a62b65a1604febbe7c6d58f9923cc89e1b7714da1174', 'htmlSHA256': 'e176541027534d964517b53b2fc36825ebfdc207146f8b1879b7b53120441f1b'}, '390-overview': {'stockBinding': '2123df732af9e534a8a63e3b70bb2cfdef065818df0ef5d17c012d75ee75a645', 'stockEntry': '3b3ba95261b2b7588447e1b9ee5db8fee4bdb72692e5153a356054fd26b660b0', 'priorState': '913d0b98f987bc1fb4f1a62b65a1604febbe7c6d58f9923cc89e1b7714da1174', 'htmlSHA256': 'e176541027534d964517b53b2fc36825ebfdc207146f8b1879b7b53120441f1b'}, '390-north': {'stockBinding': '2123df732af9e534a8a63e3b70bb2cfdef065818df0ef5d17c012d75ee75a645', 'stockEntry': '3b3ba95261b2b7588447e1b9ee5db8fee4bdb72692e5153a356054fd26b660b0', 'priorState': '913d0b98f987bc1fb4f1a62b65a1604febbe7c6d58f9923cc89e1b7714da1174', 'htmlSHA256': 'e176541027534d964517b53b2fc36825ebfdc207146f8b1879b7b53120441f1b'}, '390-northwest': {'stockBinding': '2123df732af9e534a8a63e3b70bb2cfdef065818df0ef5d17c012d75ee75a645', 'stockEntry': '3b3ba95261b2b7588447e1b9ee5db8fee4bdb72692e5153a356054fd26b660b0', 'priorState': '913d0b98f987bc1fb4f1a62b65a1604febbe7c6d58f9923cc89e1b7714da1174', 'htmlSHA256': 'e176541027534d964517b53b2fc36825ebfdc207146f8b1879b7b53120441f1b'}, '390-northeast': {'stockBinding': '2123df732af9e534a8a63e3b70bb2cfdef065818df0ef5d17c012d75ee75a645', 'stockEntry': '3b3ba95261b2b7588447e1b9ee5db8fee4bdb72692e5153a356054fd26b660b0', 'priorState': '913d0b98f987bc1fb4f1a62b65a1604febbe7c6d58f9923cc89e1b7714da1174', 'htmlSHA256': 'e176541027534d964517b53b2fc36825ebfdc207146f8b1879b7b53120441f1b'}, '390-southwest': {'stockBinding': '2123df732af9e534a8a63e3b70bb2cfdef065818df0ef5d17c012d75ee75a645', 'stockEntry': '3b3ba95261b2b7588447e1b9ee5db8fee4bdb72692e5153a356054fd26b660b0', 'priorState': '913d0b98f987bc1fb4f1a62b65a1604febbe7c6d58f9923cc89e1b7714da1174', 'htmlSHA256': 'e176541027534d964517b53b2fc36825ebfdc207146f8b1879b7b53120441f1b'}, '390-southeast': {'stockBinding': '2123df732af9e534a8a63e3b70bb2cfdef065818df0ef5d17c012d75ee75a645', 'stockEntry': '3b3ba95261b2b7588447e1b9ee5db8fee4bdb72692e5153a356054fd26b660b0', 'priorState': '913d0b98f987bc1fb4f1a62b65a1604febbe7c6d58f9923cc89e1b7714da1174', 'htmlSHA256': 'e176541027534d964517b53b2fc36825ebfdc207146f8b1879b7b53120441f1b'}}
-CANONICAL_ARCHIVE={'1440-west': {'hashes': {'stock': {'raw': '4f35d49181d41a99ba8a0fcd72f26648e7a251abb11a017d0fd80bddd401543c', 'dom': 'bb0196d863a02d17cee2d1f20bf14c53cbb031bc8c23e3bacbb259570db74a58'}, 'target': {'raw': 'fe1bbff0a08c7eec09439780881e67424346a010ad7a685191f7b6a931ad0f78', 'dom': '19489197d793859d4a31ce3374bc8b4222c0e622d806eb83de50545fabb5b256'}}, 'stock': {'bindingSHA256': '2123df732af9e534a8a63e3b70bb2cfdef065818df0ef5d17c012d75ee75a645', 'htmlSHA256': 'e176541027534d964517b53b2fc36825ebfdc207146f8b1879b7b53120441f1b', 'propsSHA256': '51a354cafd4825d6ff8833c9dc5763af2db467f121025b0c993593a211bdf659', 'stateSHA256': '913d0b98f987bc1fb4f1a62b65a1604febbe7c6d58f9923cc89e1b7714da1174', 'surfaceSHA256': '9954556a2471220ae824768fc7ab94cf749ad2bbd88bd3f86ceed4550def5f3a', 'assets': {'web/entries/game.3b3ba95261b2b758.js': {'sha256': '3b3ba95261b2b7588447e1b9ee5db8fee4bdb72692e5153a356054fd26b660b0', 'bytes': 20483}, 'web/runtime/ordered-common-18.8542bb99f957da0d.js': {'sha256': '8542bb99f957da0dd8ceb21c2e36479cb327d5baab817d9686b67d8e76c1e58c', 'bytes': 35870}, 'web/data/chapter-42.0802015e8ba99d11.json': {'sha256': '0802015e8ba99d11a8ece1f14186b3db6a4a7d3d32076e64ca120300f50c7f50', 'bytes': 12647}, 'web/data/chapter-42-assets.0a6fbe6c647b14f4.json': {'sha256': '0a6fbe6c647b14f4647f6c142043c6ecbbff12ec47f42cc1622cb2ed6568349e', 'bytes': 1838932}}}, 'target': {'bindingSHA256': '602ca14e3b78cd1d3893d5602d30c71a221a6e0977504143554584dcddf83f58', 'htmlSHA256': '557f451f82b6e9066a1fe7b84ea586ae81ced3996dc22ba29a39eececd6bf08a', 'propsSHA256': '51a354cafd4825d6ff8833c9dc5763af2db467f121025b0c993593a211bdf659', 'stateSHA256': '913d0b98f987bc1fb4f1a62b65a1604febbe7c6d58f9923cc89e1b7714da1174', 'surfaceSHA256': '9954556a2471220ae824768fc7ab94cf749ad2bbd88bd3f86ceed4550def5f3a', 'assets': {'web/entries/game.ed60878181dcea8a.js': {'sha256': 'ed60878181dcea8ab535b105f5f465d5a7dac9819ba25190709a7779cb47de25', 'bytes': 20483}, 'web/runtime/ordered-common-18.710463ce14e666f2.js': {'sha256': '710463ce14e666f2f07d9b602e81f1cdc72e7cf896808df91e6ecd975c277a84', 'bytes': 36120}, 'web/data/chapter-42-assets.d98576ccc769cdf8.json': {'sha256': 'd98576ccc769cdf89ea21fba71cbe93fe149e1de93ee6af36df8f909e677a335', 'bytes': 1858705}, 'web/data/chapter-42.0802015e8ba99d11.json': {'sha256': '0802015e8ba99d11a8ece1f14186b3db6a4a7d3d32076e64ca120300f50c7f50', 'bytes': 12647}}}}, '390-southwest': {'hashes': {'stock': {'raw': '4d8c5ea4f2e7a31743fff63bb6f91c2785973ec89920f9ffc765f831ff96447c', 'dom': '4aa222f033acda2e07abe6a3e7ab596752451e5f53130afe19212e01f0836e0e'}, 'target': {'raw': '7a0d515a60f381cfe4a033115575ef2c1c15d19ab502cea1994af2d57063f38d', 'dom': '84d7ee34ec56ab60ba11cc385f4d7ec4fcfc292e0a4ceb426f3edac46b90e290'}}, 'stock': {'bindingSHA256': '2123df732af9e534a8a63e3b70bb2cfdef065818df0ef5d17c012d75ee75a645', 'htmlSHA256': 'e176541027534d964517b53b2fc36825ebfdc207146f8b1879b7b53120441f1b', 'propsSHA256': '51a354cafd4825d6ff8833c9dc5763af2db467f121025b0c993593a211bdf659', 'stateSHA256': '913d0b98f987bc1fb4f1a62b65a1604febbe7c6d58f9923cc89e1b7714da1174', 'surfaceSHA256': '9954556a2471220ae824768fc7ab94cf749ad2bbd88bd3f86ceed4550def5f3a', 'assets': {'web/entries/game.3b3ba95261b2b758.js': {'sha256': '3b3ba95261b2b7588447e1b9ee5db8fee4bdb72692e5153a356054fd26b660b0', 'bytes': 20483}, 'web/runtime/ordered-common-18.8542bb99f957da0d.js': {'sha256': '8542bb99f957da0dd8ceb21c2e36479cb327d5baab817d9686b67d8e76c1e58c', 'bytes': 35870}, 'web/data/chapter-42-assets.0a6fbe6c647b14f4.json': {'sha256': '0a6fbe6c647b14f4647f6c142043c6ecbbff12ec47f42cc1622cb2ed6568349e', 'bytes': 1838932}, 'web/data/chapter-42.0802015e8ba99d11.json': {'sha256': '0802015e8ba99d11a8ece1f14186b3db6a4a7d3d32076e64ca120300f50c7f50', 'bytes': 12647}}}, 'target': {'bindingSHA256': '602ca14e3b78cd1d3893d5602d30c71a221a6e0977504143554584dcddf83f58', 'htmlSHA256': '557f451f82b6e9066a1fe7b84ea586ae81ced3996dc22ba29a39eececd6bf08a', 'propsSHA256': '51a354cafd4825d6ff8833c9dc5763af2db467f121025b0c993593a211bdf659', 'stateSHA256': '913d0b98f987bc1fb4f1a62b65a1604febbe7c6d58f9923cc89e1b7714da1174', 'surfaceSHA256': '9954556a2471220ae824768fc7ab94cf749ad2bbd88bd3f86ceed4550def5f3a', 'assets': {'web/entries/game.ed60878181dcea8a.js': {'sha256': 'ed60878181dcea8ab535b105f5f465d5a7dac9819ba25190709a7779cb47de25', 'bytes': 20483}, 'web/runtime/ordered-common-18.710463ce14e666f2.js': {'sha256': '710463ce14e666f2f07d9b602e81f1cdc72e7cf896808df91e6ecd975c277a84', 'bytes': 36120}, 'web/data/chapter-42-assets.d98576ccc769cdf8.json': {'sha256': 'd98576ccc769cdf89ea21fba71cbe93fe149e1de93ee6af36df8f909e677a335', 'bytes': 1858705}, 'web/data/chapter-42.0802015e8ba99d11.json': {'sha256': '0802015e8ba99d11a8ece1f14186b3db6a4a7d3d32076e64ca120300f50c7f50', 'bytes': 12647}}}}}
 
 out=Path(os.environ["OUT"]);out.mkdir(parents=True,exist_ok=True)
 bins=[Path(os.environ[s]) for s in ("STOCK","TARGET")]
@@ -35,7 +33,7 @@ with sync_playwright() as p:
    response=page.goto(urls[i]+'/HONRO.html',wait_until='domcontentloaded',timeout=90000)
    assert response and response.ok and response.body()==(bins[i]/'HONRO.html').read_bytes(), 'actual served HTML mismatch'
    htmlSHA=sha(response.body())
-   if i==0:assert htmlSHA==ARCHIVED[q['key']]['htmlSHA256'], 'exact stock HTML pin' 
+   if i==0:assert htmlSHA==q['baseline']['htmlSHA256'], 'exact cbf release HTML pin' 
    try:
     page.wait_for_function("() => document.documentElement.dataset.honroReady==='true' && typeof window.HonroCampaignLoader?.ensureStage==='function' && typeof window.HonroTimeOfDay?.sky==='function'",timeout=90000)
    except Exception:
@@ -136,7 +134,7 @@ with sync_playwright() as p:
    source=json.loads((bins[i]/'shared/assets/environment/act5/stage42-registered-body.json').read_text())
    assert json.loads(binding)==source, 'active BODY does not match the pinned exact package'
    result['surfaceSHA256']=sha(result.pop('surface').encode());result['propsSHA256']=sha(result.pop('props').encode())
-   assert result['edgeRenderer']['domains'], 'missing actual terrain dispatcher'
+   assert result['edgeRenderer']['domains'] and result['bodyCalls']>0, 'missing actual terrain dispatcher/BODY drawing'
    # Strict across-view state: camera is verified separately, not part of signature.
    assert result['stateSHA256']==firstSignatures.setdefault(key,result['stateSHA256']), 'world state drifted across camera sequence'
    result['htmlSHA256']=htmlSHA
@@ -151,81 +149,66 @@ with sync_playwright() as p:
  for q in views:
   item={'view':q['key']}
   try:
-   aa,a=get(0,q);bb,b=get(1,q)
-   prior=ARCHIVED[q['key']];assert aa['bindingSHA256']==prior['stockBinding'];assert aa['stateSHA256']==prior['priorState'];assert next(v['sha256'] for k,v in aa['assets'].items() if '/entries/game.' in k)==prior['stockEntry'];assert bb['bindingSHA256']!=prior['stockBinding'];item['exactPriorStockEntryBindingState']=True;item.update(stock=aa,target=bb,stateCameraEqual=all(aa[k]==bb[k] for k in ('actual','css','backing','focus','viewport','stateSHA256')))
-   assert item['stateCameraEqual'], 'world/camera/actors changed'
-   assert not aa['bad'] and not bb['bad'], 'browser/asset error'
-   assert aa['bindingSHA256']!=bb['bindingSHA256'], 'candidate binding lost in build'
-   assert all(aa[k]==bb[k] for k in ('surfaceSHA256','propsSHA256')), 'SURFACE or props changed'
-   A,B=[np.array(sig_image(x['raw'])).astype(np.int16) for x in (a,b)]
-   h,w=A.shape[:2];err=np.abs(A-B).max(2);srcScale=6500/2022;sx=(np.arange(w)+.5-w/2)/aa['actual']['scale']/srcScale+aa['actual']['x']/srcScale;sy=(np.arange(h)+.5-h/2)/aa['actual']['scale']/srcScale+aa['actual']['y']/srcScale
-   top=(sy[:,None]<779)&(sx[None,:]>-24)&(sx[None,:]<2025)
-   owned=(~top)
-   core=np.unpackbits(np.frombuffer(zlib.decompress(base64.b64decode(q['nativeCore'])),dtype=np.uint8).reshape(h,(w+7)//8),axis=1)[:,:w].astype(bool)
-   assert int(core.sum())==q['nativeCoreCount']
-   def summary(mask):
-    e=err[np.broadcast_to(mask,err.shape)];return dict(changed=int((e>0).sum()),max=int(e.max(initial=0)),gt4=int((e>4).sum()),gt16=int((e>16).sum()))
-   domn=bb['edgeRenderer']['domains'][0];bbands={}
-   for axis,lo,hi,coords in [('x','left','right',sx),('y','top','bottom',sy)]:
-    for k in (lo,hi):
-     proj=abs(coords-domn['tiles'][k]/srcScale)*srcScale*bb['actual']['scale']
-     if proj.min()<2.5:bbands[k]=dict(pixel=int(proj.argmin()),within2px=summary((proj<=2)[None,:] if axis=='x' else (proj<=2)[:,None]))
-   grids={}
-   step=domn['tileWorldSize']; vp=bb['viewport']; focus=bb['focus']
-   assert domn['landmark']['x']==0 and domn['landmark']['y']==0 and abs(domn['landmark']['scale']-srcScale)<1e-12
-   bbx=domn['paint']
-   cap={'left':-3900,'right':10400,'top':85,'bottom':3820}
-   assert bbx['left']<cap['left'] and bbx['right']>cap['right'] and bbx['top']<=cap['top'] and bbx['bottom']>cap['bottom'], 'visible-only bounds fail to contain candidate'
-   assert vp['left']>cap['left'] and vp['right']<cap['right'], 'artificial lateral cap enters normal camera'
-   item['layoutCaps']={'bodyWorld':cap,'lateralCutsOutside':True,'naturalRidgeTopInView':vp['top']<=cap['top']<=vp['bottom'],'naturalShallowSaddleInView':vp['top']<=cap['bottom']<=vp['bottom'],'drawBounds':bbx}
-
-   for label,(x0,y0) in {'leftTallShoulder':(-3117,266),'westInnerShoulder':(-1580,596),'eastRidgeHead':(8175,95),'eastDarkRoot':(9203,1593)}.items():
-    item['layoutCaps'].setdefault('ridgeAnchors',{})[label]={'world':[x0,y0],'inFrame':vp['left']<=x0<=vp['right'] and vp['top']<=y0<=vp['bottom']}
-   for axis,coords,lo,hi in [('x',sx,'left','right'),('y',sy,'top','bottom')]:
-    for at in range(int(np.ceil(vp[lo]/step)),int(np.floor(vp[hi]/step))+1):
-     world=at*step
-     if world==domn['tiles'][lo] or world==domn['tiles'][hi]:continue
-     dist=abs(coords-world/srcScale)*srcScale*bb['actual']['scale']
-     grids[f'{axis}:{world}']={'pixel':int(dist.argmin()),'delta':summary((dist<=2)[None,:] if axis=='x' else (dist<=2)[:,None])}
-   item['internalTileBands']=grids
-   if 'bottom' in bbands:
-    j=bbands['bottom']['pixel']
-    if 2<=j<h-2:
-     band=np.max(abs(B[j-2:j+3][1:]-B[j-2:j+3][:-1]),axis=2)
-     item['bottomSeamCandidatePerRow']=[{'row':j-1+k,'max':int(b.max()),'gt16':int((b>16).sum())}for k,b in enumerate(band)]
-   item['regions']={'outsideProtectedOwnership':summary(top),'upperProtected':summary(top),'outsideNativeCore':summary(~core),'nativeCore':summary(core),'tileExteriorBoundaryBands':bbands}
-   # Deviations are observations, not a tolerance-based pass.
-   Image.fromarray((core*255).astype('uint8')).save(out/(q['key']+'-native-core.png'))
-   Image.fromarray((~owned*255).astype('uint8')).save(out/(q['key']+'-protected.png'))
-   assert not any(aa['repeat'].values()) and not any(bb['repeat'].values()), 'unstable repeated frame'
-   item['hashes']={mode:{kind:sha(im)for kind,im in imgs.items()}for mode,imgs in [('stock',a),('target',b)]}
-   assert item['hashes']['stock']==q['originalArchived'], 'original image did not match exact archive'
-   # Record the actual exact discrepancies, even when tiny; no threshold grants visual clearance.
-   C=zlib.decompress(base64.b64decode(q['allowedOwner']));assert sha(C)==q['allowedOwnerSHA']
-   allowed=np.unpackbits(np.frombuffer(C,dtype=np.uint8).reshape(h,(w+7)//8),axis=1)[:,:w].astype(bool)
-   assert int(allowed.sum())==q['allowedOwnerCount']
-   item['regions']['outsideOwnedAA'] = summary(~allowed)
-   holebox=(sx[None,:]>=161.63)&(sx[None,:]<=1703.24)&(sy[:,None]>=0)&(sy[:,None]<=649.79)
-   item['regions']['oldCanonicalHoleBounds']=summary(holebox)
-   Image.fromarray((~allowed*255).astype('uint8')).save(out/(q['key']+'-protected-exact-ledger.png'))
-
-   pin=CANONICAL_ARCHIVE[q['key']]
-   for name,frame in [('stock',aa),('target',bb)]:
-    for key,value in pin[name].items():
-     if key=='assets':
-      observed={n:r for n,r in frame['assets'].items() if n.startswith(('web/data/chapter-42.','web/data/chapter-42-assets.','web/entries/game.','web/runtime/ordered-common-18.'))}
-      assert observed==value, ('immutable target graph differs; stop without transferring the 18-angle evidence',q['key'],name,observed,value)
-     else:assert frame[key]==value,(q['key'],name,key,frame[key],value)
-   assert item['hashes']==pin['hashes'], ('archive proof mismatch',q['key'],item['hashes'],pin['hashes'])
-   assert all(item['regions'][k]['changed']==0 for k in ('outsideOwnedAA','oldCanonicalHoleBounds'))
-   item['exactCanonicalBodyRendererPacketAndFrames']=True
-   if q['key'].endswith('-overview-return'):
-    assert item['hashes']==next(r['hashes'] for r in roll if r['view']==q['key'].split('-return')[0]), 'overview changed after camera cycle'
-   item['changedPixels']=changed(sig_image(a['raw']),sig_image(b['raw'])).histogram()[255]
-
+   aa,a=get(0,q); bb,b=get(1,q)
+   expected=q['baseline']
+   for k in ('bindingSHA256','stateSHA256','surfaceSHA256','propsSHA256','htmlSHA256'):
+    assert aa[k]==expected[k], (q['key'],k,aa[k],expected[k])
+   filters=('web/data/chapter-42.','web/data/chapter-42-assets.','web/runtime/ordered-common-18.','web/entries/game.')
+   pruned=lambda f:{k:v for k,v in f['assets'].items()if k.startswith(filters)}
+   assert pruned(aa)==expected['assets'], 'cbf archived data/renderer modules mismatch'
+   assert len(pruned(bb))==4, 'candidate did not serve expected package graph'
+   for prefix,shouldMatch in [('web/data/chapter-42.',True),('web/data/chapter-42-assets.',False),('web/runtime/ordered-common-18.',True),('web/entries/game.',False)]:
+    sel=lambda z:[(k,v)for k,v in pruned(z).items()if k.startswith(prefix)]
+    assert bool(sel(aa)==sel(bb))==shouldMatch,(q['key'],prefix,sel(aa),sel(bb))
+   assert aa['bindingSHA256']!=bb['bindingSHA256'] and aa['htmlSHA256']!=bb['htmlSHA256']
+   assert not aa['bad'] and not bb['bad'] and not any(aa['repeat'].values()) and not any(bb['repeat'].values())
+   same=all(aa[k]==bb[k] for k in ('actual','css','backing','focus','viewport','stateSHA256','surfaceSHA256','propsSHA256'))
+   assert same, 'world, pose, physics, SURFACE, or props changed'
+   item.update(stock=aa,target=bb,preservedWorldAndProps=True)
+   imA,imB=[np.array(sig_image(s['raw']))for s in (a,b)]; H,W=imA.shape[:2]; K=6500/2022
+   sx=(np.arange(W)+.5-W/2)/aa['actual']['scale']/K+aa['actual']['x']/K; sy=(np.arange(H)+.5-H/2)/aa['actual']['scale']/K+aa['actual']['y']/K
+   error=np.abs(imA.astype(np.int16)-imB.astype(np.int16)).max(2)
+   buf=zlib.decompress(base64.b64decode(q['allowedOwner']));assert sha(buf)==q['allowedOwnerSHA'];owner=np.unpackbits(np.frombuffer(buf,dtype=np.uint8).reshape(H,(W+7)//8),axis=1)[:,:W].astype(bool)
+   def check(mask):
+    delta=error[np.broadcast_to(mask,error.shape)]
+    return dict(changed=int((delta>0).sum()),max=int(delta.max(initial=0)),gt4=int((delta>4).sum()),gt16=int((delta>16).sum()))
+   tests={'outsideSignedOwnerAA':~owner,'physicalUpper':sy[:,None]<778,'higherThanNewGeometryAA':sy[:,None]<(789-1/(K*aa['actual']['scale'])),'outerSideAA':(sx[None,:]<(-405-1/(K*aa['actual']['scale'])))|(sx[None,:]>(2360+1/(K*aa['actual']['scale']))),'canonicalHoles':(sx[None,:]>=161.63)&(sx[None,:]<=1703.24)&(sy[:,None]>=0)&(sy[:,None]<=649.79)}
+   item['regions']={k:check(v)for k,v in tests.items()}
+   item['hashes']={mode:{k:sha(v)for k,v in d.items()}for mode,d in [('stock',a),('target',b)]}
+   assert item['hashes']['stock']==expected['rawAndDom'], 'cbf raw/DOM differed from archive'
+   for k,area in tests.items():
+    if item['regions'][k]['changed']:
+     gap=(error>0)&area
+     yy,xx=np.nonzero(gap);item['regions'][k]['actualSourceExtent']=[float(sx[xx.min()]),float(sy[yy.min()]),float(sx[xx.max()]),float(sy[yy.max()])]
+     Image.fromarray((gap*255).astype('uint8')).save(out/(q['key']+'-protected-'+k+'-delta.png'))
+   if q.get('deepReference'):
+    d=q['deepReference'];good=sy>d['sourceYMin'];assert int(good.sum())==d['rows']
+    staged=sha(imB[good].tobytes())
+    item['userReferenceDeep']={**d,'observed':staged,'matches':staged==d['deepRGBASHA256']}
+   da,db=[v['edgeRenderer']['domains'][0]for v in (aa,bb)]; cap=2900*K
+   assert all(da[k]==db[k] for k in ('domain','tileWorldSize','tiles','landmark','viewport','extended')), 'terrain domain or tile extents changed'
+   assert all(da['paint'][k]==db['paint'][k] for k in ('left','right','top')) and abs(db['paint']['bottom']-cap)<1e-8,('visual culling not unioning canonical bottom',db['paint'])
+   draws=bb['edgeRenderer']['draws'];assert any(r['clip']=={'x':-1250,'y':0,'w':4510,'h':2900}for r in draws)
+   item['culling']={'stock':da['paint'],'target':db['paint'],'worldTileSize':db['tileWorldSize'],'domain':db['domain'],'lateralCapsOutside':bb['viewport']['left']>-3900 and bb['viewport']['right']<10400,'normalBottomAboveArtEnd':bb['viewport']['bottom']<cap,'dispatchedBodyDraws':len(draws),'drawCanvasShapes':[list(s)for s in sorted({tuple(r['canvas'])for r in draws})]}
+   item['boundaries']={}
+   for band in ('left','right','top','bottom'):
+    vs=sx if band in ('left','right') else sy
+    at=int(np.argmin(abs(vs*K-db['tiles'][band])*bb['actual']['scale']))
+    dd=abs(vs[at]*K-db['tiles'][band])*bb['actual']['scale']
+    if dd>2 or at<2 or at+2>=len(vs):continue
+    axes=imB[:,at-2:at+3] if band in ('left','right') else imB[at-2:at+3]
+    step=np.abs(np.diff(axes[:,:,:3].astype(np.int16),axis=(1 if band in ('left','right')else 0))).max(2)
+    delta=np.moveaxis(step,1 if band in ('left','right')else 0,0)
+    item['boundaries'][band]={'pixel':at,'residualPixels':dd,'neighborMax':[int(t.max())for t in delta],'neighborGT16':[int((t>16).sum())for t in delta]}
+   if q['key']=='390-south':
+    y=item['boundaries'].get('bottom') or {}
+    assert db['extended'] and abs(y.get('pixel',-100)-615)<=1 and len(draws)>=2, ('Missing mobile tile/direct paint witness',db,draws)
+   assert all(x['changed']==0 for x in item['regions'].values()), ('protected active/side/alpha hole pixel changed',item['regions'])
+   if item.get('userReferenceDeep'):assert item['userReferenceDeep']['matches'],('true 1db7 deep donor App pixels differ in scoped reference',item['userReferenceDeep'])
+   assert item['culling']['lateralCapsOutside'] and item['culling']['normalBottomAboveArtEnd']
   except Exception as e:
    item['error']=str(e);roll.append(item);(out/'comparison.json').write_text(json.dumps(roll,indent=2));raise
   roll.append(item);(out/'comparison.json').write_text(json.dumps(roll,indent=2))
  for ctx,*_ in sessions.values():ctx.close()
  browser.close()
- assert all('error' not in r for r in roll),roll
+ assert len(roll)==6 and all('error' not in x for x in roll)

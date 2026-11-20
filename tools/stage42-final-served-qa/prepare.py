@@ -1,20 +1,17 @@
-import json,hashlib,sys
 from pathlib import Path
-R=Path(sys.argv[1]);Q=Path(__file__).parent
-p=R/'shared/assets/environment/act5/stage42-registered-body.json'
-raw=p.read_bytes();assert hashlib.sha256(raw).hexdigest()=='cf96948e596d37d7c80cedef76c56bee868214ed2147aa18cad62deb0f5284f6'
-a=json.loads(raw);v=json.loads((Q/'template.json').read_text());assert v['root']['children'][1] is None;v['root']['children'][1]=a['vector']['root']
-assert hashlib.sha256(json.dumps(v,separators=(',',':')).encode()).hexdigest()=='55c5caca5c94d0334682c8fc31a79154b0832ddd25ae39ccfb44b383ceaa219f'
-a['vector']=v;a['bounds']={'x':-1250,'y':0,'w':4510,'h':1255};a['reference']['bounds']=a['bounds']
-p.write_text(json.dumps(a,separators=(',',':')))
-f=R/'shared/runtime/act5-edge-art.js';s=f.read_text();old="if(l.asset?.id==='act5:near:42'){const s=l.scale??1;return{left:q.left-900*s,right:q.right+900*s,top:q.top,bottom:q.bottom+468*s};}"
-new="if(l.asset?.id==='act5:near:42'){const s=l.scale??1,a=l.asset.edgeWall.bounds;return{left:Math.min(q.left-900*s,l.x+(a.x-(l.asset.edgeWall.anchor?.x||0))*s),right:Math.max(q.right+900*s,l.x+(a.x+a.w-(l.asset.edgeWall.anchor?.x||0))*s),top:Math.min(q.top,l.y+(a.y-(l.asset.edgeWall.anchor?.y||0))*s),bottom:Math.max(q.bottom+468*s,l.y+(a.y+a.h-(l.asset.edgeWall.anchor?.y||0))*s)};}"
-assert s.count(old)==1;s=s.replace(old,new);f.write_text(s)
-assert hashlib.sha256(p.read_bytes()).hexdigest()=='95ce6aee7094c1b4f9a1f62c7f90f1fe164d99b007b286a8c41ebd2b4565ace8'
-def gitblob(raw):return hashlib.sha1(('blob %d\0'%len(raw)).encode()+raw).hexdigest()
-assert gitblob(f.read_bytes())=='1d0719ff1d56e3c6720f7e7166b3266864a49415'
-t=R/'tests/stage42-edge-geology.mjs'
-assert gitblob(t.read_bytes())=='5b56eb96e086c5528f3c338701998d004f5e71a0'
-t.write_text("import assert from 'node:assert/strict';\nimport fs from 'node:fs';\nimport {createHash} from 'node:crypto';\nimport vm from 'node:vm';\nconst source=JSON.parse(fs.readFileSync('shared/assets/environment/act5/near-import.json')).find(x=>x.id===42);\nassert.equal(source.vector.root.children.length,2,'Geology and props must remain separately authored');\nconst rock=source.vector.root.children[0],props=source.vector.root.children[1];\nassert.equal(rock.children.length,16);assert.equal(props.children.length,12);\nconst calls=[],ops=[];\nclass Scene {landmark(c,l){calls.push({type:'original',asset:l.asset});} _landmarkPaintBounds(){return {left:0,right:2022,top:0,bottom:778};} _drawTerrainDomainTiles(){} terrainReadability(){} }\nconst g={HonroScene:Scene,Path2D:class{constructor(d){this.d=d;}},HonroVectorArt:{draw(c,a,p){calls.push({type:'rock',asset:a,placement:p});}},HonroVisualStyle:{context:c=>c,classify:()=> 'gameplay'}};\ng.globalThis=g;vm.runInNewContext(fs.readFileSync('shared/runtime/act5-edge-art.js','utf8'),g);\nconst ctx=Object.fromEntries(['save','restore','translate','scale','clip','beginPath','rect','transform'].map(k=>[k,(...args)=>ops.push([k,...args])]));\nconst wall=JSON.parse(fs.readFileSync('shared/assets/environment/act5/stage42-registered-body.json'));\nconst sha=value=>createHash('sha256').update(JSON.stringify(value)).digest('hex');\nconst {vector,bounds,reference:{bounds:referenceBounds,...reference},...metadata}=wall;\nassert.equal(sha({...metadata,reference}),'6111cebf1b0a2cf7905d414b7c9937f1e1fe0694e8291babe840778253ff063e','BODY wrapper metadata, sockets, collision and registration remain stock');\nassert.deepEqual(bounds,{x:-1250,y:0,w:4510,h:1255});\nassert.deepEqual(referenceBounds,bounds);\nassert.deepEqual(vector.viewBox,[bounds.x,bounds.y,bounds.w,bounds.h]);\nassert.equal(sha(vector),'e8fb6dd8e251c67703af92694408e84b74d7e4762650f4a90a4bc70e0089f38d','Reviewed BODY vector with untouched original substrate');\nassert.equal(sha(vector.root.children[1]),'1499c9babc8644ea83dd91f4566dd7af6afda304145dfda1c9e7f94e600a973f','Retained original BODY subtree');\nassert.equal(sha(vector.clips['native-source-alpha']),'84ea89f47a065c9215637f560ef1818c63760d1f02f853390da784c1ae648c5d','Original clip and holes remain exact');\nassert.equal(sha(source),'bb159e158e18aad515714eff13f1626c366f9266563de10007eebf0195925a98','Original near art and authored props remain stock');\nconst a={id:'act5:near:42',vector:source.vector,edgeWall:wall,edgeSurface:JSON.parse(fs.readFileSync('shared/assets/environment/act5/stage42-surface.json'))};const old=JSON.stringify(a);\nassert.equal(sha(a.edgeSurface),'9954556a2471220ae824768fc7ab94cf749ad2bbd88bd3f86ceed4550def5f3a','Original SURFACE remains stock');const scene=new Scene();scene.landmark(ctx,{asset:a,x:0,y:0,scale:1});\nassert.deepEqual(calls.map(x=>x.type),['original','rock','rock','rock','rock']);\nassert.equal(calls[1].asset,wall);assert.equal(calls[2].asset,a.edgeSurface);\nassert.equal(JSON.stringify(a),old,'Source artwork is never mutated');\nassert.equal(calls[0].asset,a,'Authored original remains first');\nassert.equal(ops.filter(x=>x[0]==='clip').length,3);\nassert(!ops.some(x=>x[0]==='transform'),'No mirror or shear of source paths');\nconst paint=(l)=>JSON.parse(JSON.stringify(scene._landmarkPaintBounds(l)));\nassert.deepEqual(paint({asset:a,x:0,y:0,scale:1}),{left:-1250,right:3260,top:0,bottom:1255});\nassert.deepEqual(paint({asset:a,x:100,y:300,scale:2}),{left:-2400,right:6620,top:0,bottom:2810});\nassert.deepEqual(paint({asset:a,x:100,y:300,scale:2,rotation:.2}),{left:0,right:2022,top:0,bottom:778});\nassert.deepEqual(paint({asset:{...a,id:'act4:control'},x:100,y:300,scale:2}),{left:0,right:2022,top:0,bottom:778});\nassert.equal(JSON.stringify(a),old,'Visual bounds cannot mutate the landmark or asset');\nconsole.log('PASS: stage42 registered exterior BODY candidate, no source mirroring, source unchanged, bounded coverage');\n")
-assert gitblob(t.read_bytes())=='5ce5b702548c658ed4f49c09729113a3b742f84f'
-print('QA detached target only: exact staged BODY wrapper, Stage42 visual culling, and focused test; original stock unchanged')
+import json,hashlib,sys,copy
+Q=Path(__file__).resolve().parent;root=Path(sys.argv[1]);sha=lambda b:hashlib.sha256(b).hexdigest()
+p=root/'shared/assets/environment/act5/stage42-registered-body.json'
+assert sha(p.read_bytes())=='95ce6aee7094c1b4f9a1f62c7f90f1fe164d99b007b286a8c41ebd2b4565ace8'
+obj=json.loads(p.read_bytes())
+old=copy.deepcopy(obj);v=json.loads((Q/'template.json').read_bytes())
+assert v['root']['children'][1]['children']==[None]
+v['root']['children'][1]['children'][0]=old['vector']['root']
+assert all(v['clips'][k]==ds for k,ds in old['vector']['clips'].items())
+assert sha(json.dumps(v,separators=(',',':')).encode())=='907d56f9f1ec862e49afcd8f3e0438d86027d2f581e4b19d370b1d74be02cc49'
+assert v['viewBox']==[-1250,0,4510,2900]
+obj['vector']=v;obj['bounds']={'x':-1250,'y':0,'w':4510,'h':2900};obj['reference']['bounds']=obj['bounds']
+rewind=copy.deepcopy(obj);rewind['vector']=old['vector'];rewind['bounds']=old['bounds'];rewind['reference']['bounds']=old['reference']['bounds']
+assert rewind==old
+p.write_text(json.dumps(obj,separators=(',',':')))
+print('Detached target BODY only; vector 907d… and visual height2900; stock cbf renderer remains exact; file SHA256',sha(p.read_bytes()))
