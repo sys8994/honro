@@ -1,0 +1,43 @@
+--- a/shared/runtime/renderer.js
++++ b/shared/runtime/renderer.js
+@@ -242,6 +242,27 @@
+             clip.rect(domain.left,top,domain.right-domain.left,domain.bottom-top);
+             return{...l,honroTerrainMaterialClip:clip};
+         }
++        _stage10DeepFloorTileLandmark(b,domain,l,view){
++            // Only the registered floor has solid author-native paint at this depth.
++            if(b.honroStage!==10||b.honroCustom!==false||b.width!==5000||b.height!==3900||view.top<=6840||
++                domain.left!==-6000||domain.top!==-24000||domain.right!==11000||domain.bottom!==27900)return null;
++            const a=l.asset,bb=a?.bounds,v=a?.vector?.viewBox,ids=a?.params?.bodyTerrainIds;
++            if(l.id!=='act1-stage10-traced-floor-v4'||l.kind!=='canonical-element'||l.layer!=='prop'||l.depthLayer!=='L1'||
++                l.x!==0||l.y!==0||l.scale!==1||l.rotation!==0||l.honroTerrainMaterialClip||
++                l.honroElementCollision||l.collisionIds?.length!==0||
++                a?.id!=='act1-traced:stage10-floor-v4'||a.anchor?.x!==0||a.anchor?.y!==0||
++                a.params?.semanticLayer!=='BODY'||a.params.previewOnly!==false||
++                !Array.isArray(ids)||ids.length!==1||ids[0]!=='outer-yard'||
++                a.vector?.root?.clipPath!=='canonicalSolid'||a.vector.root.children?.[0]?.clipPath!=='contactInset'||
++                a.collision?.length!==0||bb?.x!==-4000||bb.y!==1300||bb.w!==13000||bb.h!==5500||
++                v?.length!==4||v[0]!==-4000||v[1]!==1300||v[2]!==13000||v[3]!==5500)return null;
++            // Exact approved solid hull [-6000,2184,11000,27900] within the existing domain.
++            const top=2184;
++            if(view.right<=domain.left||view.left>=domain.right||view.bottom<=top||view.top>=domain.bottom)return null;
++            const clip=new Path2D();
++            clip.rect(domain.left,top,domain.right-domain.left,domain.bottom-top);
++            return{...l,honroTerrainMaterialClip:clip};
++        }
+         _drawTerrainDomainTiles(c,b,w,h){
+             // Geographically fixed tiles, never a bitmap cut at Play Bounds.
+             // Pixel-aligned clips consume each gutter sample exactly once.
+@@ -257,7 +278,11 @@
+                     const cc=cv.getContext('2d',{alpha:true}),left=x*size,top=y*size;cc.setTransform(rs,0,0,rs,gutter-left*rs,gutter-top*rs);
+                     const view={left,top,right:left+size,bottom:top+size};
+                     const material=G.HonroTerrainDomain.materialLandmarks(b);
+-                    const landmarks=b.honroStage===9&&top>6540?material.flatMap(l=>{
++                    const landmarks=b.honroStage===10&&top>6840?material.flatMap(l=>{
++                        if(this._landmarkVisible(l,view))return[l];
++                        const deep=this._stage10DeepFloorTileLandmark(b,domain,l,view);
++                        return deep?[deep]:[];
++                    }):b.honroStage===9&&top>6540?material.flatMap(l=>{
+                         if(this._landmarkVisible(l,view))return[l];
+                         const deep=this._stage9DeepFloorTileLandmark(b,domain,l,view);
+                         return deep?[deep]:[];

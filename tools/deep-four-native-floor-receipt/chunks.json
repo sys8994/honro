@@ -1,0 +1,84 @@
+{
+  "originalRun": 44756866241,
+  "builders": {
+    "shared/build.mjs": "1723baa38ab7b691f9b5a1bf9d9e42c2bba78c15d1fb6cb833ba43addda8d47b",
+    "shared/web-build.mjs": "12102eb4dd8cd2c7bded7cd6999cbd02c4c005095122c9759d414bd7e4c4e681"
+  },
+  "groupSizes": {
+    "stock": [
+      10,
+      16,
+      16
+    ],
+    "target": [
+      9,
+      15,
+      18
+    ]
+  },
+  "moves": [
+    "shared/runtime/elements.js: 15\u219216",
+    "shared/runtime/stage30-ferry-art.js: 16\u219217",
+    "shared/runtime/stage12-quarry-art.js: 16\u219217"
+  ],
+  "renderer": {
+    "path": "shared/runtime/renderer.js",
+    "stock": "bcfa2aefef4d82a6d3533cd08bf38c79db2db9ec",
+    "target": "25c34f4a8c246c543389a472eb1746e6e226da88"
+  },
+  "stock": {
+    "entry": {
+      "path": "web/entries/game.29ef323ca38e2c88.js",
+      "sha256": "29ef323ca38e2c8857d74e45f9c6f94539390ab89a706e4ea4bd0ef16ef09478",
+      "bytes": 20483
+    },
+    "htmlSHA256": "a5b1013e5e00d5999a0169bf4a667ab49f00f0259591b51cdc13a7ef6f1e8285",
+    "chunks": [
+      {
+        "path": "web/runtime/ordered-common-15.e717b65067a64d0a.js",
+        "sha256": "e717b65067a64d0aa2fb4c3a39184ebd68b06aac24b5d97fbc4f33fff66c9175",
+        "bytes": 161439
+      },
+      {
+        "path": "web/runtime/ordered-common-16.3e6503a9399b9ccf.js",
+        "sha256": "3e6503a9399b9ccf9275bb103fcba75a5091e879aa5c1dcdb76ddf0fafd480a1",
+        "bytes": 175834
+      },
+      {
+        "path": "web/runtime/ordered-common-17.99ec02ed5d83e980.js",
+        "sha256": "99ec02ed5d83e980babdddc2b0e101cb574fed86d639b90c700410a7ddc93d15",
+        "bytes": 83716
+      }
+    ]
+  },
+  "loader": {
+    "path": "web/runtime/load-data.248fb3aada6f16bb.js",
+    "sha256": "248fb3aada6f16bbe2d7df7e369db772df2d923bc91b1e517daa53858f558dcb",
+    "bytes": 15550
+  },
+  "target": {
+    "entry": {
+      "path": "web/entries/game.68c3039e2425efe9.js",
+      "sha256": "68c3039e2425efe9140f934cd47c76b2996431c010d73d059e9b7452a67dfea6",
+      "bytes": 20483
+    },
+    "htmlSHA256": "b945a930b8d8cfc29a856a9e02df1f2e06772952848bb95867a793186b223cfe",
+    "chunks": [
+      {
+        "path": "web/runtime/ordered-common-15.3dd35880565c92f2.js",
+        "sha256": "3dd35880565c92f2fc1d67342b26fc16951c2d04294cbf695df2a5cdae58075e",
+        "bytes": 160836
+      },
+      {
+        "path": "web/runtime/ordered-common-16.8c8322e8250bb868.js",
+        "sha256": "8c8322e8250bb868bfe5972fbb92e76c61aed9705884b99ec5d7dce4bbee69cc",
+        "bytes": 170334
+      },
+      {
+        "path": "web/runtime/ordered-common-17.9b8e07dd9a78ec92.js",
+        "sha256": "9b8e07dd9a78ec925564ce3ea9e9b5a41388ef76fa875f988e8098173461afb7",
+        "bytes": 96218
+      }
+    ]
+  }
+}

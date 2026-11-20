@@ -1,0 +1,138 @@
+name: Four signed Act1 deep native floor comparisons
+on:
+  push:
+    branches: [qa/act1-deep-four-native-floor-recovery-20261120]
+permissions:
+  contents: read
+jobs:
+  build-proof:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Exact Stage09 product-review parent; four sequential scratch-only renderer patches
+        run: |
+          set -euo pipefail
+          Q="$GITHUB_WORKSPACE/tools/deep-four-native-floor-receipt"
+          W="$RUNNER_TEMP/deep-four-build"
+          mkdir -p "$W/out"
+          BASE=$(python -c 'import json,sys; print(json.load(open(sys.argv[1]))["base"])' "$Q/expected.json")
+          test "$BASE" = 810009f33ca4a122c98c2f270942dc17affed8c7
+          printf 'QA=%s\nSTOCK=%s\nTARGET=%s\nOUT=%s\n' "$Q" "$W/stock" "$W/target" "$W/out" >> "$GITHUB_ENV"
+          git worktree add --detach "$W/stock" "$BASE"
+          git worktree add --detach "$W/target" "$BASE"
+          python "$Q/guard.py" source "$GITHUB_WORKSPACE" "$W/stock" "$W/target" "$W/out"
+      - name: Exact official source builds and active graph, archive legacy contract as failure
+        run: |
+          set -euo pipefail
+          export CI=true
+          for side in stock target; do
+            if [ "$side" = stock ]; then cd "$STOCK"; else cd "$TARGET"; fi
+            npm ci >"$OUT/npm-root-$side.log" 2>&1
+            npm ci --prefix game >"$OUT/npm-game-$side.log" 2>&1
+            node --test tests/stage02-deep-body-tile.mjs tests/stage08-deep-body-tile.mjs tests/stage09-deep-floor-tile.mjs >"$OUT/existing-source-tests-$side.log" 2>&1
+            npm run test:release-guard >"$OUT/release-$side.log" 2>&1
+            npm run build >"$OUT/build-$side.log" 2>&1
+            set +e
+            npm run test:production-contract >"$OUT/contract-$side.log" 2>&1
+            result=$?
+            set -e
+            python - "$OUT/contract-$side.log" "$result" "$OUT/classification-$side.txt" <<'PY'
+          from pathlib import Path
+          import re,sys
+          p,rc,o=sys.argv[1:]; lines=Path(p).read_text('utf-8').splitlines()
+          if rc=='0': classification='PASS_UNMODIFIED_PRODUCTION_CONTRACT'
+          else:
+           assert rc=='1'
+           assert lines.count('Production contract: actual Stage31 fails; fake approvals cannot pass; edits expire reviews; no source mutation.')==1
+           assert [l for l in lines if re.match(r'^[A-Za-z]*Error:',l)]==['Error: 기존 미술에서 가져온 에셋이 아니면 사용 사유를 먼저 기록하십시오.']
+           frames=[l.strip()for l in lines if re.match(r'^\s+at ',l)]
+           assert len(frames)==2 and frames[0]=='at Object.placeScenery (evalmachine.<anonymous>:85:520)'
+           assert re.fullmatch(r'at file://[^\n]+/(?:stock|target)/tests/production-contract\.mjs:77:22',frames[1])
+           assert lines[-1].startswith('Node.js v22.')
+           classification='FAIL_EXISTING_UNAPPROVED_POSITIVE_FIXTURE_77_22_DIAGNOSTIC_ONLY'
+          Path(o).write_text(classification+'\n')
+          print(classification)
+          PY
+          done
+          # A pre-existing contract failure is never reclassified as product success.
+          cmp "$OUT/classification-stock.txt" "$OUT/classification-target.txt"
+          python "$QA/guard.py" built "$STOCK" "$TARGET" "$OUT"
+      - name: Immutable complete normal serving bytes for all four isolated camera jobs
+        run: python "$QA/snapshot.py" pack "$STOCK" "$TARGET" "$OUT"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: deep-four-build-proof
+          path: ${{ env.OUT }}
+          compression-level: 0
+          retention-days: 7
+  camera:
+    needs: build-proof
+    strategy:
+      fail-fast: false
+      matrix:
+        stage: [10, 4, 6, 5]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      SHARD: ${{ matrix.stage }}
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          name: deep-four-build-proof
+          path: ${{ runner.temp }}/deep-four-build-proof
+      - name: Native normal camera shard, preserve already-collected files
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/deep-four"
+          export OUT="$root/out" STOCK="$root/stock" TARGET="$root/target"
+          Q="$GITHUB_WORKSPACE/tools/deep-four-native-floor-receipt"
+          P="$RUNNER_TEMP/deep-four-build-proof"
+          mkdir -p "$OUT"
+          python "$Q/snapshot.py" unpack "$STOCK" "$TARGET" "$P"
+          for n in stock-built-dag.json target-built-dag.json approved-dag-diff.json source-pins.json classification-stock.txt classification-target.txt serving-tree-sha.json recomposition-receipt.json; do cp "$P/$n" "$OUT/$n"; done
+          python -m pip install playwright==1.58.0 pillow
+          python -m playwright install --with-deps chromium
+          python -m http.server 18841 --bind 127.0.0.1 --directory "$STOCK" >"$OUT/http-stock.log" 2>&1 &
+          p1=$!
+          python -m http.server 18842 --bind 127.0.0.1 --directory "$TARGET" >"$OUT/http-target.log" 2>&1 &
+          p2=$!
+          trap 'kill "$p1" "$p2" 2>/dev/null || true' EXIT
+          for n in 18841 18842; do curl -fsS --retry 7 --retry-connrefused "http://127.0.0.1:$n/HONRO.html" -o /dev/null; done
+          timeout 1100s python "$Q/capture.py"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: deep-four-pictures-${{ matrix.stage }}
+          path: ${{ runner.temp }}/deep-four/out
+          retention-days: 7
+  join-proof:
+    if: always() && needs.build-proof.result == 'success'
+    needs: [build-proof, camera]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: deep-four-pictures-*
+          path: ${{ runner.temp }}/deep-four-pictures
+      - run: python tools/deep-four-native-floor-receipt/summary.py "$RUNNER_TEMP/deep-four-pictures" "$RUNNER_TEMP/deep-four-aggregate.json"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: deep-four-aggregate
+          path: ${{ runner.temp }}/deep-four-aggregate.json
+          retention-days: 7
