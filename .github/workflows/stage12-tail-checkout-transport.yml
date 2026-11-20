@@ -1,0 +1,72 @@
+name: Stage12 exact verified tree transport
+on:
+  push:
+    branches: ['audit/stage12-tail-clean-checkout-transport-20261120']
+permissions:
+  contents: read
+jobs:
+  fixed-ref:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Transport verified exact tree from standard default checkout
+        run: |
+          set -euo pipefail
+          export GIT_TERMINAL_PROMPT=0
+          B=d357ac4f2a379b28c21e1c6af78ac641802b7c43
+          Q=0de21950f282c9113018f98ec4e36e598d7dc4f5
+          T=refs/heads/work/stage12-tail-clean-20261120
+          ET=d1a3259b2deae2374aee362cce8dcdfb521f873c
+          SRC=refs/heads/audit/stage12-tail-clean-checkout-transport-20261120
+          PKG=shared/data/act2/stage12-compact-package.json
+          M=shared/data/terrain-path-optimization.json
+          GEN=tools/environment/stage12-compact-art.mjs
+          test "$GITHUB_REPOSITORY" = sys8994/honro
+          test "$GITHUB_REF" = "$SRC"
+          test "$(pwd -P)" = "$(cd "$GITHUB_WORKSPACE" && pwd -P)"
+          test "$(git config --get remote.origin.url)" = https://github.com/sys8994/honro
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test "$(git rev-parse HEAD^)" = "$B"
+          test "$(git diff --name-status "$B" HEAD | sort)" = "$(printf '%s\n' $'A\t.github/workflows/stage12-tail-checkout-transport.yml' $'A\ttools/stage12-tail-checkout-transport/patch.mjs')"
+          remote_sha(){ git ls-remote --exit-code origin "$T" | awk -v r="$T" '$2==r {print $1}'; }
+          test "$(remote_sha)" = "$B"
+          P="$RUNNER_TEMP/stage12-verified-patch.mjs"
+          cp tools/stage12-tail-checkout-transport/patch.mjs "$P"
+          printf '%s  %s\n' 0a3f89eae0fe8d51738f371147b5533675e1de40c58a982d416b19988a418863 "$P" | sha256sum -c
+          git fetch --depth=1 origin "$Q"
+          git switch --detach "$B"
+          test -z "$(git status --porcelain)"
+          test "$(git rev-parse HEAD^{tree})" = dc1fc627c6a08c54c4fe39b7e80850796896f1fb
+          test "$(pwd -P)" = "$(cd "$GITHUB_WORKSPACE" && pwd -P)"
+          test "$(git rev-parse "HEAD:shared/act4-handoff-art.mjs")" = c96da5bff3811b1cecedaa94be7e147c52651333
+          test "$(git rev-parse "HEAD:shared/terrain-path-optimization.mjs")" = 784e574d21cfa668326215fd16dcc0fb6ffcc832
+          test "$(git rev-parse "HEAD:$PKG")" = 759788e291208bdbf9a535d9960ff77f51e4160e
+          cp "$PKG" "$RUNNER_TEMP/stage12-original-package.json"
+          git show "$Q:$PKG" > "$PKG"
+          git show "$Q:$GEN" > "$GEN"
+          node "$P" "$RUNNER_TEMP/stage12-original-package.json"
+          EXPECTED="$(printf '%s\n' "$PKG" "$M" "$GEN" | sort)"
+          test "$(git diff --name-only | sort)" = "$EXPECTED"
+          git add -- "$PKG" "$M" "$GEN"
+          test "$(git diff --cached --name-only | sort)" = "$EXPECTED"
+          test "$(git write-tree)" = "$ET"
+          test "$(git hash-object "$PKG")" = 4a229931c6d70166ee9f868cdf4a7897f30b7b0c
+          test "$(git hash-object "$M")" = 07356df8bef0046da9baccb36ae3d11017e298b3
+          test "$(git hash-object "$GEN")" = 79dd060e5d23c2f5af5eabcbccb69173a21d361b
+          printf 'Reusing guarded normal-app QA run 44656095386 artifact 14594360515 SHA256 c9c159770d893ab596aac4d685ed8b603dea5d53900740fdfbbb05634aeaf484 tree %s\n' "$ET"
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Extend the original Stage12 lower material join'
+          TARGET_SHA=$(git rev-parse HEAD)
+          test "$(git rev-parse HEAD^)" = "$B"
+          test "$(git rev-parse HEAD^{tree})" = "$ET"
+          test "$(remote_sha)" = "$B"
+          git push --porcelain origin "HEAD:$T"
+          test "$(remote_sha)" = "$TARGET_SHA"
+          printf 'Clean Stage12 ref %s at %s (parent %s; exact tree %s)\n' "$T" "$TARGET_SHA" "$B" "$ET"
