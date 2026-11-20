@@ -44,9 +44,14 @@ with sync_playwright() as p:
       page=context.new_page()
       # Disable every other origin and all mutations to remote sites.
       route_hits=[]
+      unrelated_blocks=[]
+      silent_track=BASE+'assets/bgm/battle-1.mp3'
       def routed(route):
        req=route.request
        if req.method not in ('GET','HEAD') or not req.url.startswith(BASE):return route.abort()
+       if req.url==silent_track and req.resource_type=='media':
+        unrelated_blocks.append(['assets/bgm/battle-1.mp3','blocked before response in both silent arms'])
+        return route.abort('aborted')
        if ARM=='B' and req.url==BASE+OWNER and req.method=='GET':
         route_hits.append(req.url)
         # This is a single response scoped to this disposable local test browser.
@@ -55,7 +60,6 @@ with sync_playwright() as p:
       context.route('**/*',routed)
       expected=set()
       response_problems=[]
-      unrelated_blocks=[]
       def observe(request):
        response=request.response()
        path=urllib.parse.urlsplit(request.url).path.removeprefix('/honro/')

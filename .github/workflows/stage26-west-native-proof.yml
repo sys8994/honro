@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
-          fetch-depth: 2
+          fetch-depth: 3
           persist-credentials: false
       - name: Exact add-only sandbox proof and unchanged shipped bytes
         shell: bash
@@ -20,7 +20,9 @@ jobs:
           set -euo pipefail
           B=4416dfb527f810398903d15510ab8ca05a892661
           D=tools/stage26-west-native
-          test "$(git show -s --format=%P HEAD)" = "$B"
+          R=fcb88155a73b30279a422662685b5d0c4ff9c699
+          test "$(git show -s --format=%P HEAD)" = "$R"
+          test "$(git show -s --format=%P "$R")" = "$B"
           Q="$(mktemp -d "$RUNNER_TEMP/stage26-west.XXXXXX")"
           echo "STAGE26_QA=$Q" >> "$GITHUB_ENV"
           printf 'A\t%s\n' .github/workflows/stage26-west-native-proof.yml "$D/prepare.py" "$D/capture.py" "$D/compare.py" "$D/source.py" "$D/stock-reference.json" "$D/native-west.svg" | LC_ALL=C sort > "$Q/expected"
