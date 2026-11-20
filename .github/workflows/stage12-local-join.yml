@@ -1,4 +1,4 @@
-name: Stage12 isolated original-row join pair
+name: Stage12 readiness and exact control pair
 on:
   push:
     branches: ['qa/stage12-local-join-20261120']
@@ -19,7 +19,7 @@ jobs:
         run: |
           set -euo pipefail
           B=1e043b09d4ce107e1d2dcf70fe2274dff7098476
-          test "$(git rev-parse HEAD^)" = "$B"
+          test "$(git rev-parse HEAD^)" = 0e0424f135227a0a5151a0f424f1f4b73a4103b5
           P="$RUNNER_TEMP/s12"
           mkdir -p "$P/evidence/baseline" "$P/evidence/candidate"
           git diff --name-status "$B" HEAD > "$P/evidence/source-diff.txt"
@@ -42,19 +42,21 @@ jobs:
       - name: Actual paired stock captures
         run: |
           set -euo pipefail
-          python -m pip install playwright
+          python -m pip install playwright Pillow
           python -m playwright install --with-deps chromium
           for v in baseline candidate; do
             python -m http.server 8886 --bind 127.0.0.1 --directory "$QA/$v" > "$QA/evidence/$v/host.log" 2>&1 &
             p=$!
             for i in $(seq 1 20); do curl -fsSL http://127.0.0.1:8886/HONRO.html -o /dev/null && break || sleep 1; done
-            OUT="$QA/evidence/$v" PORT=8886 python "$GITHUB_WORKSPACE/tools/stage12-local-join/capture.py"
+            OUT="$QA/evidence/$v" PORT=8886 python "$GITHUB_WORKSPACE/tools/stage12-local-join/capture.py" || fail=1
             kill "$p"
             wait "$p" || true
           done
+          python "$GITHUB_WORKSPACE/tools/stage12-local-join/check.py" "$QA/evidence"
+          test "${fail:-0}" = 0
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: stage12-original-row-local-pair
+          name: stage12-ready-exact-pair
           path: ${{ env.QA }}/evidence
           retention-days: 7
