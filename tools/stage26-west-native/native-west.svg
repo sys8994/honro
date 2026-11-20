@@ -3,7 +3,7 @@
   <desc>Local diagnostic geometry only, three connected but independently terminating facets. All fills opaque and style native. Original paint fades and artwork untouched.</desc>
   <defs>
     <clipPath id="signed-solid">
-      <path clip-rule="evenodd" d="M-1500 2424.0237037037036 L-1000 2295.5496296296296 L-500 2305.3125 L0 2360 H130 V3320 H-1500 Z"/>
+      <path clip-rule="evenodd" d="M-1480 2438.8847 L-1000 2315.5496296296296 L-500 2325.3125 L0 2380 H130 V3300 H-1480 Z"/>
     </clipPath>
     <linearGradient id="buried-bedding" x1="-1330" y1="2920" x2="134" y2="2780" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#474033"/>
@@ -17,11 +17,15 @@
       <stop offset=".33" stop-color="#5b503b"/>
       <stop offset=".58" stop-color="#5a4e39"/>
       <stop offset=".82" stop-color="#574733"/>
-      <stop offset="1" stop-color="#534231"/>
+      <stop offset=".875" stop-color="#564633"/>
+      <stop offset=".915" stop-color="#554532" stop-opacity=".80"/>
+      <stop offset=".955" stop-color="#544432" stop-opacity=".10"/>
+      <stop offset=".968" stop-color="#534231" stop-opacity="0"/>
+      <stop offset="1" stop-color="#534231" stop-opacity="0"/>
     </linearGradient>
     <linearGradient id="upper-buried-plane" x1="-950" y1="2440" x2="132" y2="2490" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#6a5e46"/>
-      <stop offset=".22" stop-color="#62553e"/>
+      <stop offset=".22" stop-color="#635841"/>
       <stop offset=".41" stop-color="#544735"/>
       <stop offset=".65" stop-color="#49402f"/>
       <stop offset=".79" stop-color="#453b2c"/>
@@ -31,7 +35,7 @@
   </defs>
   <g clip-path="url(#signed-solid)">
     <path id="deep-bedding-continuation" fill="url(#buried-bedding)" d="
-      M130 2726 C87 2730 43 2746 0 2749
+      M110 2728 C87 2730 43 2746 0 2749
       L-95 2745 -182 2757 -279 2753
       C-344 2762 -404 2776 -478 2777
       L-562 2797 -641 2801 -716 2839 -804 2859
@@ -40,7 +44,7 @@
       L-1388 2981 -1322 2978 -1256 3003 -1174 3008
       L-1120 2995 -1024 3013 -949 3038 -822 3037 -695 3074
       C-591 3061 -529 3101 -469 3144
-      L-339 3156 -211 3213 -109 3225 0 3273 130 3277 Z"/>
+      L-339 3156 -211 3213 -109 3225 0 3273 110 3277 Z"/>
     <path id="warm-fault-continuation" fill="url(#fault-talus)" d="
       M130 2505 C73 2499 39 2515 0 2519
       L-127 2517 -228 2538 -338 2540 -434 2556 -513 2564

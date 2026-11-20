@@ -5,16 +5,20 @@ import xml.etree.ElementTree as ET
 p=Path(os.environ['STAGE26_QA']); t=Path(__file__).parent
 sha=lambda b:hashlib.sha256(b).hexdigest()
 a=(p/'stock-owner.js').read_bytes(); s=(t/'native-west.svg').read_bytes()
-assert sha(s)=='8a559beab5d79626e6acaffacfe44e5831063f6d71103eb2e5efc1887ed56d96'
+assert sha(s)=='c50eea7f8b32431fef8b0971628120e21f641a8f8c167d883f78529f9801fb5f'
 assert hashlib.sha1(f'blob {len(a)}\0'.encode()+a).hexdigest()=='1c9add7508d0e2dd1084346729a33b0de0a02eb2'
 assert sha(a).startswith('9b8e07dd9a78ec92')
 r=ET.fromstring(s); ns={'s':'http://www.w3.org/2000/svg'}
 clip=r.find('s:defs/s:clipPath/s:path',ns); assert clip.attrib['clip-rule']=='evenodd'
+def paint(el):
+ c=el.attrib['stop-color']; assert len(c)==7 and c[0]=='#'
+ alpha=float(el.attrib.get('stop-opacity','1')); assert 0<=alpha<=1
+ return c if alpha==1 else 'rgba(%d,%d,%d,%s)' % (*bytes.fromhex(c[1:]),alpha)
 grad={}
 for el in r.findall('s:defs/s:linearGradient',ns):
  assert el.attrib['gradientUnits']=='userSpaceOnUse'
  grad[el.attrib['id']]=[[float(el.attrib[k]) for k in ('x1','y1','x2','y2')],
-   [[float(x.attrib['offset']),x.attrib['stop-color']] for x in el.findall('s:stop',ns)]]
+   [[float(x.attrib['offset']),paint(x)] for x in el.findall('s:stop',ns)]]
 shape=[]
 for el in r.findall('s:g/s:path',ns):
  assert set(el.attrib)=={'id','d','fill'}
