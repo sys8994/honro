@@ -1,4 +1,4 @@
-import hashlib,json,os,base64,urllib.parse
+import hashlib,json,os,base64,urllib.parse,re
 from PIL import Image
 from pathlib import Path
 from playwright.sync_api import sync_playwright
@@ -45,12 +45,13 @@ with sync_playwright() as p:
       # Disable every other origin and all mutations to remote sites.
       route_hits=[]
       unrelated_blocks=[]
-      silent_track=BASE+'assets/bgm/battle-1.mp3'
+      silent_bgm=re.compile(r'assets/bgm/[a-zA-Z0-9_-]+\.mp3')
       def routed(route):
        req=route.request
        if req.method not in ('GET','HEAD') or not req.url.startswith(BASE):return route.abort()
-       if req.url==silent_track and req.resource_type=='media':
-        unrelated_blocks.append(['assets/bgm/battle-1.mp3','blocked before response in both silent arms'])
+       media_path=urllib.parse.urlsplit(req.url).path.removeprefix('/honro/')
+       if req.resource_type=='media' and req.method=='GET' and media_path not in resource and silent_bgm.fullmatch(media_path):
+        unrelated_blocks.append([media_path,'randomized music disabled in both silent arms'])
         return route.abort('aborted')
        if ARM=='B' and req.url==BASE+OWNER and req.method=='GET':
         route_hits.append(req.url)

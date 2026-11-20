@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
-          fetch-depth: 3
+          fetch-depth: 4
           persist-credentials: false
       - name: Exact add-only sandbox proof and unchanged shipped bytes
         shell: bash
@@ -21,7 +21,9 @@ jobs:
           B=4416dfb527f810398903d15510ab8ca05a892661
           D=tools/stage26-west-native
           R=fcb88155a73b30279a422662685b5d0c4ff9c699
-          test "$(git show -s --format=%P HEAD)" = "$R"
+          S=201e37678155e29cd5b421f0bee4dd6e35209d00
+          test "$(git show -s --format=%P HEAD)" = "$S"
+          test "$(git show -s --format=%P "$S")" = "$R"
           test "$(git show -s --format=%P "$R")" = "$B"
           Q="$(mktemp -d "$RUNNER_TEMP/stage26-west.XXXXXX")"
           echo "STAGE26_QA=$Q" >> "$GITHUB_ENV"
