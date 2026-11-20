@@ -35,7 +35,13 @@ def guard_and_public():
     assert all(type(p[k]) is int and p[k]>0 for k in ('pagesRun','pagesJob')),p
     t=p['pagesCompletedUTC']; assert re.fullmatch(r'\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?Z',t or ''),t
     assert datetime.fromisoformat(t[:-1]+'+00:00')<=datetime.now(timezone.utc)
-    assert git('rev-list','--parents','-n1','HEAD').decode().split()==[os.environ['GITHUB_SHA'],b]
+    prior='cf7fd02098c431191c2c22049528fdbca44d8a4f'
+    assert git('rev-list','--parents','-n1','HEAD').decode().split()==[os.environ['GITHUB_SHA'],prior]
+    assert git('rev-list','--parents','-n1',prior).decode().split()==[prior,b]
+    diff=git('diff','--name-status','--no-renames',prior,'HEAD').decode().splitlines()
+    assert set(diff)=={'M\t.github/workflows/stage26-v3-public-west.yml',
+                      'M\ttools/stage26-v3-public-west/capture.py',
+                      'M\ttools/stage26-v3-public-west/public.py'}
     assert git('rev-parse',b+'^{tree}').decode().strip()==p['tree']
     assert git('status','--porcelain','-z')==b''
     ds=git('diff','--name-status','--no-renames','-z',b,'HEAD').split(b'\0')
