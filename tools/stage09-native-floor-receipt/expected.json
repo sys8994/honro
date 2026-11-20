@@ -1,0 +1,2562 @@
+{
+  "base": "859a44062b0b0973ae7d7e84612fe8a9f37af4da",
+  "stockTree": "78d449b67c369cc05cfab3291fb3c9c6a168d456",
+  "rendererPath": "shared/runtime/renderer.js",
+  "stockBlob": "94e16e559a4af4e0e3bdb83168289b02c35b3df3",
+  "candidateBlob": "bcfa2aefef4d82a6d3533cd08bf38c79db2db9ec",
+  "patchSha256": "175bc78257e5bccd692cb635e6c43c15ff949ed468e09213c8cf0bb4a0529999",
+  "stage2TestBlob": "3cde798d9d921c3c9ba3ec212863f596ca89191e",
+  "stage8TestBlob": "19c8b4e8457dfc82d4e6af012804468496d4e4ca",
+  "stockEntry": {
+    "path": "web/entries/game.232bc980b86deda5.js",
+    "sha256": "232bc980b86deda53e539b1041780e601ed54eaa2323e34fcea54ae58bbb7c43",
+    "bytes": 20483
+  },
+  "stockHTML": "d7816b1e8c2d22915a31c7c672a77ba9925eeeebb2ea1ffae1edd6fd3e116ebe",
+  "stockGraphPathSHA256": "39ef8260ad7f7b509ade90064f658bb82e838f269ead98985f031141f9f60f06",
+  "stockGraphPaths": 597,
+  "stockCommon15": {
+    "path": "web/runtime/ordered-common-15.fe2c45b4c75dfac4.js",
+    "sha256": "fe2c45b4c75dfac4ce1512b75adaf797db61242e5067063558a731bd49860485",
+    "bytes": 159997
+  },
+  "shared": {
+    "path": "web/data/campaign.f876f67fe414184f.json",
+    "sha256": "f876f67fe414184fb03931ecf6061d02440fae687631ae54d151286565b4a6cf",
+    "bytes": 54885
+  },
+  "leaf": {
+    "2": {
+      "stages": {
+        "path": "web/data/chapter-02.5faa275befa85b0d.json",
+        "sha256": "5faa275befa85b0d49205b25a9d902c9d7ce448cf52fe25e124d4005b10f2ad2",
+        "bytes": 55013
+      },
+      "stageLibraries": {
+        "path": "web/data/chapter-02-assets.ddddf53df4d749c6.json",
+        "sha256": "ddddf53df4d749c60375cba085a79d790319b1e9c1790cb29e840529409ab434",
+        "bytes": 256633
+      }
+    },
+    "8": {
+      "stages": {
+        "path": "web/data/chapter-08.51e34346c97ec1e2.json",
+        "sha256": "51e34346c97ec1e2a234a66e5bb38fb703b54e6dbcaa55652ed45450f6692be0",
+        "bytes": 97806
+      },
+      "stageLibraries": {
+        "path": "web/data/chapter-08-assets.bee36100fbf01e9b.json",
+        "sha256": "bee36100fbf01e9b419db9855774dbf89faed13f5c89fb42ab4edcd5915c9bcd",
+        "bytes": 359098
+      }
+    },
+    "9": {
+      "stages": {
+        "path": "web/data/chapter-09.e010716de82b9716.json",
+        "sha256": "e010716de82b9716150216b358d9fe6af1854dca59d1007281d86093ebefe85e",
+        "bytes": 38152
+      },
+      "stageLibraries": {
+        "path": "web/data/chapter-09-assets.59131bd8705fe5f0.json",
+        "sha256": "59131bd8705fe5f0463517fc34e9b975f6095a6dd62f1c016e466d93d3f58473",
+        "bytes": 119878
+      }
+    },
+    "10": {
+      "stages": {
+        "path": "web/data/chapter-10.92f250b36743b898.json",
+        "sha256": "92f250b36743b8986be9300511cc55f8dba0b8875aed159c920808fa3345970d",
+        "bytes": 34364
+      },
+      "stageLibraries": {
+        "path": "web/data/chapter-10-assets.87d81ca9c87a480b.json",
+        "sha256": "87d81ca9c87a480b54fe58e4928a541e9132285140acd32fdfc7ce64a6414d9d",
+        "bytes": 459189
+      }
+    }
+  },
+  "rows": [
+    {
+      "requested": {
+        "x": 2150,
+        "y": 1000000,
+        "scale": 0.057352941176470586
+      },
+      "actual": {
+        "x": 2150,
+        "y": 3540,
+        "scale": 0.057352941176470586
+      },
+      "adjusted": {
+        "x": 2150,
+        "y": 3540,
+        "scale": 0.057352941176470586
+      },
+      "clamped": true,
+      "within": true,
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 4620,
+        "bottom": 3540
+      },
+      "viewport": {
+        "left": -1250,
+        "right": 5550,
+        "top": -2105.8253205128203,
+        "bottom": 9185.82532051282
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "actorCount": 18,
+      "projectStage": "stage-2",
+      "stage": 2,
+      "view": "south",
+      "width": 390,
+      "height": 844,
+      "name": "act1-s02-390x844-south.png",
+      "rasterSha256": "8d4b66796e5a6694a83c5fc4e94d2177c5c88e1cb8856044ebcffda12c552674",
+      "physicsSha256": "144b90353d8ea5a8a917d5328f877be9e8626597758def06c6e41e8b8b8428fc",
+      "extra": 0,
+      "signedFirstRow": null,
+      "retainedApproved": {
+        "supplements": {
+          "stage02": [
+            {
+              "id": "act1-stage02-traced-body",
+              "asset": "act1-traced:stage02-body-v2",
+              "clip": true,
+              "tile": {
+                "left": -8192,
+                "top": 8192,
+                "right": 0,
+                "bottom": 16384
+              }
+            },
+            {
+              "id": "act1-stage02-traced-body",
+              "asset": "act1-traced:stage02-body-v2",
+              "clip": true,
+              "tile": {
+                "left": 0,
+                "top": 8192,
+                "right": 8192,
+                "bottom": 16384
+              }
+            }
+          ],
+          "stage08": []
+        },
+        "initialSHA256": "144b90353d8ea5a8a917d5328f877be9e8626597758def06c6e41e8b8b8428fc",
+        "stateSHA256": "4d6d69f3b509488e9870354e737824253510ee7a1b89f778ef302960b0c25bb2",
+        "bindingSHA256": "cc279b423250477e37a9bc4599d96b3f47d958fa8c09fe384bceda14e4de0602",
+        "role": {
+          "normal": true,
+          "dimensions": [
+            4300,
+            3300
+          ],
+          "domain": {
+            "left": -6000,
+            "top": -24000,
+            "right": 10300,
+            "bottom": 27300
+          },
+          "body": {
+            "id": "act1-stage02-traced-body",
+            "kind": "canonical-element",
+            "layer": "front",
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "rotation": 0,
+            "materialClip": false,
+            "elementCollision": false,
+            "collisionIds": [],
+            "assetId": "act1-traced:stage02-body-v2",
+            "anchor": {
+              "x": 0,
+              "y": 0
+            },
+            "bounds": {
+              "x": -4000,
+              "y": 0,
+              "w": 12300,
+              "h": 4500
+            },
+            "viewBox": [
+              -4000,
+              0,
+              12300,
+              4500
+            ],
+            "params": {
+              "semanticLayer": "BODY",
+              "sourceViewBox": [
+                0,
+                0,
+                4300,
+                3300
+              ],
+              "removedReferenceImages": [],
+              "nodeCount": 19,
+              "bodyTerrainIds": [
+                "canyon-ground",
+                "left-descent-stone-high",
+                "left-descent-stone-low",
+                "left-descent-stone-mid",
+                "left-high-ground",
+                "right-cliff-ground",
+                "right-descent-stone-low",
+                "right-descent-stone-mid"
+              ],
+              "bodyBaseColor": "#263c3d",
+              "silhouetteUnderpaint": false,
+              "previewOnly": false,
+              "continuousTerrain": true
+            },
+            "collision": []
+          },
+          "rear": {
+            "id": "act1-stage02-traced-rear",
+            "kind": "canonical-element",
+            "layer": "back",
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "rotation": 0,
+            "materialClip": false,
+            "elementCollision": false,
+            "collisionIds": [],
+            "assetId": "act1-traced:stage02-rear-v2",
+            "anchor": {
+              "x": 0,
+              "y": 0
+            },
+            "bounds": {
+              "x": -4000,
+              "y": 0,
+              "w": 12300,
+              "h": 4500
+            },
+            "viewBox": [
+              -4000,
+              0,
+              12300,
+              4500
+            ],
+            "params": {
+              "semanticLayer": "REAR",
+              "sourceViewBox": [
+                -4000,
+                0,
+                12300,
+                4500
+              ],
+              "removedReferenceImages": [],
+              "nodeCount": 13,
+              "previewOnly": false
+            },
+            "collision": []
+          }
+        },
+        "rgbaSHA256": {
+          "raw": "c747e19d9c483b0815ee7d091e487241f4018749f022469012c37379175d05d0",
+          "dom": "e78e181da4ad25aa6e6a86d79f62fc29a3f7b49a1da9ce9f8254e2a4a601774c"
+        }
+      }
+    },
+    {
+      "requested": {
+        "x": -1000000,
+        "y": 1000000,
+        "scale": 0.057352941176470586
+      },
+      "actual": {
+        "x": -320,
+        "y": 3540,
+        "scale": 0.057352941176470586
+      },
+      "adjusted": {
+        "x": -320,
+        "y": 3540,
+        "scale": 0.057352941176470586
+      },
+      "clamped": true,
+      "within": true,
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 4620,
+        "bottom": 3540
+      },
+      "viewport": {
+        "left": -3720,
+        "right": 3080,
+        "top": -2105.8253205128203,
+        "bottom": 9185.82532051282
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "actorCount": 18,
+      "projectStage": "stage-2",
+      "stage": 2,
+      "view": "southwest",
+      "width": 390,
+      "height": 844,
+      "name": "act1-s02-390x844-southwest.png",
+      "rasterSha256": "76c319f22e9cfbf93381b5a77189b5301cd1fb43be20badc18ef0e10354c9843",
+      "physicsSha256": "144b90353d8ea5a8a917d5328f877be9e8626597758def06c6e41e8b8b8428fc",
+      "extra": 0,
+      "signedFirstRow": null,
+      "retainedApproved": {
+        "supplements": {
+          "stage02": [
+            {
+              "id": "act1-stage02-traced-body",
+              "asset": "act1-traced:stage02-body-v2",
+              "clip": true,
+              "tile": {
+                "left": -8192,
+                "top": 8192,
+                "right": 0,
+                "bottom": 16384
+              }
+            },
+            {
+              "id": "act1-stage02-traced-body",
+              "asset": "act1-traced:stage02-body-v2",
+              "clip": true,
+              "tile": {
+                "left": 0,
+                "top": 8192,
+                "right": 8192,
+                "bottom": 16384
+              }
+            }
+          ],
+          "stage08": []
+        },
+        "initialSHA256": "144b90353d8ea5a8a917d5328f877be9e8626597758def06c6e41e8b8b8428fc",
+        "stateSHA256": "4d6d69f3b509488e9870354e737824253510ee7a1b89f778ef302960b0c25bb2",
+        "bindingSHA256": "cc279b423250477e37a9bc4599d96b3f47d958fa8c09fe384bceda14e4de0602",
+        "role": {
+          "normal": true,
+          "dimensions": [
+            4300,
+            3300
+          ],
+          "domain": {
+            "left": -6000,
+            "top": -24000,
+            "right": 10300,
+            "bottom": 27300
+          },
+          "body": {
+            "id": "act1-stage02-traced-body",
+            "kind": "canonical-element",
+            "layer": "front",
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "rotation": 0,
+            "materialClip": false,
+            "elementCollision": false,
+            "collisionIds": [],
+            "assetId": "act1-traced:stage02-body-v2",
+            "anchor": {
+              "x": 0,
+              "y": 0
+            },
+            "bounds": {
+              "x": -4000,
+              "y": 0,
+              "w": 12300,
+              "h": 4500
+            },
+            "viewBox": [
+              -4000,
+              0,
+              12300,
+              4500
+            ],
+            "params": {
+              "semanticLayer": "BODY",
+              "sourceViewBox": [
+                0,
+                0,
+                4300,
+                3300
+              ],
+              "removedReferenceImages": [],
+              "nodeCount": 19,
+              "bodyTerrainIds": [
+                "canyon-ground",
+                "left-descent-stone-high",
+                "left-descent-stone-low",
+                "left-descent-stone-mid",
+                "left-high-ground",
+                "right-cliff-ground",
+                "right-descent-stone-low",
+                "right-descent-stone-mid"
+              ],
+              "bodyBaseColor": "#263c3d",
+              "silhouetteUnderpaint": false,
+              "previewOnly": false,
+              "continuousTerrain": true
+            },
+            "collision": []
+          },
+          "rear": {
+            "id": "act1-stage02-traced-rear",
+            "kind": "canonical-element",
+            "layer": "back",
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "rotation": 0,
+            "materialClip": false,
+            "elementCollision": false,
+            "collisionIds": [],
+            "assetId": "act1-traced:stage02-rear-v2",
+            "anchor": {
+              "x": 0,
+              "y": 0
+            },
+            "bounds": {
+              "x": -4000,
+              "y": 0,
+              "w": 12300,
+              "h": 4500
+            },
+            "viewBox": [
+              -4000,
+              0,
+              12300,
+              4500
+            ],
+            "params": {
+              "semanticLayer": "REAR",
+              "sourceViewBox": [
+                -4000,
+                0,
+                12300,
+                4500
+              ],
+              "removedReferenceImages": [],
+              "nodeCount": 13,
+              "previewOnly": false
+            },
+            "collision": []
+          }
+        },
+        "rgbaSHA256": {
+          "raw": "ad353cc9ec2eaf32a179b98d136429f171ca8fae85545e5a05e6495fe2eeef73",
+          "dom": "155f75561ab9566939cea421579bf567ee2202697bd76c2a75f11a1f6df5fd83"
+        }
+      }
+    },
+    {
+      "requested": {
+        "x": 1000000,
+        "y": 1000000,
+        "scale": 0.057352941176470586
+      },
+      "actual": {
+        "x": 4620,
+        "y": 3540,
+        "scale": 0.057352941176470586
+      },
+      "adjusted": {
+        "x": 4620,
+        "y": 3540,
+        "scale": 0.057352941176470586
+      },
+      "clamped": true,
+      "within": true,
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 4620,
+        "bottom": 3540
+      },
+      "viewport": {
+        "left": 1220,
+        "right": 8020,
+        "top": -2105.8253205128203,
+        "bottom": 9185.82532051282
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "actorCount": 18,
+      "projectStage": "stage-2",
+      "stage": 2,
+      "view": "southeast",
+      "width": 390,
+      "height": 844,
+      "name": "act1-s02-390x844-southeast.png",
+      "rasterSha256": "57fd7f2e392873e430f3fab1aee889536c8895a616f0295fc73042b6cb16b86b",
+      "physicsSha256": "144b90353d8ea5a8a917d5328f877be9e8626597758def06c6e41e8b8b8428fc",
+      "extra": 0,
+      "signedFirstRow": null,
+      "retainedApproved": {
+        "supplements": {
+          "stage02": [
+            {
+              "id": "act1-stage02-traced-body",
+              "asset": "act1-traced:stage02-body-v2",
+              "clip": true,
+              "tile": {
+                "left": 0,
+                "top": 8192,
+                "right": 8192,
+                "bottom": 16384
+              }
+            }
+          ],
+          "stage08": []
+        },
+        "initialSHA256": "144b90353d8ea5a8a917d5328f877be9e8626597758def06c6e41e8b8b8428fc",
+        "stateSHA256": "4d6d69f3b509488e9870354e737824253510ee7a1b89f778ef302960b0c25bb2",
+        "bindingSHA256": "cc279b423250477e37a9bc4599d96b3f47d958fa8c09fe384bceda14e4de0602",
+        "role": {
+          "normal": true,
+          "dimensions": [
+            4300,
+            3300
+          ],
+          "domain": {
+            "left": -6000,
+            "top": -24000,
+            "right": 10300,
+            "bottom": 27300
+          },
+          "body": {
+            "id": "act1-stage02-traced-body",
+            "kind": "canonical-element",
+            "layer": "front",
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "rotation": 0,
+            "materialClip": false,
+            "elementCollision": false,
+            "collisionIds": [],
+            "assetId": "act1-traced:stage02-body-v2",
+            "anchor": {
+              "x": 0,
+              "y": 0
+            },
+            "bounds": {
+              "x": -4000,
+              "y": 0,
+              "w": 12300,
+              "h": 4500
+            },
+            "viewBox": [
+              -4000,
+              0,
+              12300,
+              4500
+            ],
+            "params": {
+              "semanticLayer": "BODY",
+              "sourceViewBox": [
+                0,
+                0,
+                4300,
+                3300
+              ],
+              "removedReferenceImages": [],
+              "nodeCount": 19,
+              "bodyTerrainIds": [
+                "canyon-ground",
+                "left-descent-stone-high",
+                "left-descent-stone-low",
+                "left-descent-stone-mid",
+                "left-high-ground",
+                "right-cliff-ground",
+                "right-descent-stone-low",
+                "right-descent-stone-mid"
+              ],
+              "bodyBaseColor": "#263c3d",
+              "silhouetteUnderpaint": false,
+              "previewOnly": false,
+              "continuousTerrain": true
+            },
+            "collision": []
+          },
+          "rear": {
+            "id": "act1-stage02-traced-rear",
+            "kind": "canonical-element",
+            "layer": "back",
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "rotation": 0,
+            "materialClip": false,
+            "elementCollision": false,
+            "collisionIds": [],
+            "assetId": "act1-traced:stage02-rear-v2",
+            "anchor": {
+              "x": 0,
+              "y": 0
+            },
+            "bounds": {
+              "x": -4000,
+              "y": 0,
+              "w": 12300,
+              "h": 4500
+            },
+            "viewBox": [
+              -4000,
+              0,
+              12300,
+              4500
+            ],
+            "params": {
+              "semanticLayer": "REAR",
+              "sourceViewBox": [
+                -4000,
+                0,
+                12300,
+                4500
+              ],
+              "removedReferenceImages": [],
+              "nodeCount": 13,
+              "previewOnly": false
+            },
+            "collision": []
+          }
+        },
+        "rgbaSHA256": {
+          "raw": "8a565e052eabf308260172a30e348b2b3733872a049c5eb8b86bb534f8c83cf0",
+          "dom": "f3d67fe14136e9bc55037eb9d94175133f5956aef443b58859b86043025815f9"
+        }
+      }
+    },
+    {
+      "requested": {
+        "x": 4800,
+        "y": 2750,
+        "scale": 0.057352941176470586
+      },
+      "actual": {
+        "x": 4800,
+        "y": 2750,
+        "scale": 0.057352941176470586
+      },
+      "adjusted": {
+        "x": 4800,
+        "y": 2750,
+        "scale": 0.057352941176470586
+      },
+      "clamped": true,
+      "within": true,
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 9920,
+        "bottom": 5740
+      },
+      "viewport": {
+        "left": 1400,
+        "right": 8200,
+        "top": -2895.8253205128203,
+        "bottom": 8395.82532051282
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "actorCount": 42,
+      "projectStage": "stage-8",
+      "stage": 8,
+      "view": "overview",
+      "width": 390,
+      "height": 844,
+      "name": "act1-s08-390x844-overview.png",
+      "rasterSha256": "f9e9a2b7ca868f956c3a572e80b189eba62541140cd5d0f49b9f556051a6fdea",
+      "physicsSha256": "31e555f0c1325e172e4f1064e9ae52897011aeadc0fecd2cd2b6a19ec61e2790",
+      "extra": 0,
+      "signedFirstRow": null,
+      "retainedApproved": {
+        "supplements": {
+          "stage02": [],
+          "stage08": [
+            {
+              "id": "act1-stage08-traced-floor-v1",
+              "asset": "act1-traced:stage08-floor-v1",
+              "clip": true,
+              "tile": {
+                "left": 0,
+                "top": 8192,
+                "right": 8192,
+                "bottom": 16384
+              }
+            },
+            {
+              "id": "act1-stage08-traced-floor-v1",
+              "asset": "act1-traced:stage08-floor-v1",
+              "clip": true,
+              "tile": {
+                "left": 8192,
+                "top": 8192,
+                "right": 16384,
+                "bottom": 16384
+              }
+            }
+          ]
+        },
+        "initialSHA256": "31e555f0c1325e172e4f1064e9ae52897011aeadc0fecd2cd2b6a19ec61e2790",
+        "stateSHA256": "47089bf3fc8cbaed26333d6fd6728f9ac63e925a4c07da3e2707fbf86c99094a",
+        "bindingSHA256": "cc19e5f20f46d82492e9fcd8d75fa9c754e8b751ec494eb58674afc86b534493",
+        "role": {
+          "normal": true,
+          "dimensions": [
+            9600,
+            5500
+          ],
+          "domain": {
+            "left": -6000,
+            "top": -24000,
+            "right": 15600,
+            "bottom": 29500
+          },
+          "body": {
+            "id": "act1-stage08-traced-floor-v1",
+            "kind": "canonical-element",
+            "layer": "prop",
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "rotation": 0,
+            "materialClip": false,
+            "elementCollision": false,
+            "collisionIds": [],
+            "assetId": "act1-traced:stage08-floor-v1",
+            "anchor": {
+              "x": 0,
+              "y": 0
+            },
+            "bounds": {
+              "x": -4000,
+              "y": 1800,
+              "w": 17600,
+              "h": 6000
+            },
+            "viewBox": [
+              -4000,
+              1800,
+              17600,
+              6000
+            ],
+            "params": {
+              "semanticLayer": "BODY",
+              "sourceViewBox": [
+                -4000,
+                1800,
+                17600,
+                6000
+              ],
+              "removedReferenceImages": [],
+              "nodeCount": 11,
+              "bodyTerrainIds": [
+                "s8-ground"
+              ],
+              "bodyBaseColor": "#26342b",
+              "previewOnly": false,
+              "silhouetteUnderpaint": false
+            },
+            "collision": []
+          },
+          "referenceBounds": {
+            "x": -4000,
+            "y": 1800,
+            "w": 17600,
+            "h": 6000
+          },
+          "clipKeys": [
+            "canonicalSolid",
+            "contactInset"
+          ]
+        },
+        "rgbaSHA256": {
+          "raw": "bfcde17287a2c12419a3fac2b44c231a08c03015feedc74e63305316817067e9",
+          "dom": "8e06e679b61dc698b26e0797b8ae137eca1bc64039eaaeac08449d652d1c8118"
+        }
+      }
+    },
+    {
+      "requested": {
+        "x": 4800,
+        "y": 1000000,
+        "scale": 0.057352941176470586
+      },
+      "actual": {
+        "x": 4800,
+        "y": 5740,
+        "scale": 0.057352941176470586
+      },
+      "adjusted": {
+        "x": 4800,
+        "y": 5740,
+        "scale": 0.057352941176470586
+      },
+      "clamped": true,
+      "within": true,
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 9920,
+        "bottom": 5740
+      },
+      "viewport": {
+        "left": 1400,
+        "right": 8200,
+        "top": 94.17467948717967,
+        "bottom": 11385.82532051282
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "actorCount": 42,
+      "projectStage": "stage-8",
+      "stage": 8,
+      "view": "south",
+      "width": 390,
+      "height": 844,
+      "name": "act1-s08-390x844-south.png",
+      "rasterSha256": "3a2d14c97c1c5b3648fe3ec7e9ce563fe8b04cea4e36a7d5369a85f0ec37c675",
+      "physicsSha256": "31e555f0c1325e172e4f1064e9ae52897011aeadc0fecd2cd2b6a19ec61e2790",
+      "extra": 0,
+      "signedFirstRow": null,
+      "retainedApproved": {
+        "supplements": {
+          "stage02": [],
+          "stage08": [
+            {
+              "id": "act1-stage08-traced-floor-v1",
+              "asset": "act1-traced:stage08-floor-v1",
+              "clip": true,
+              "tile": {
+                "left": 0,
+                "top": 8192,
+                "right": 8192,
+                "bottom": 16384
+              }
+            },
+            {
+              "id": "act1-stage08-traced-floor-v1",
+              "asset": "act1-traced:stage08-floor-v1",
+              "clip": true,
+              "tile": {
+                "left": 8192,
+                "top": 8192,
+                "right": 16384,
+                "bottom": 16384
+              }
+            }
+          ]
+        },
+        "initialSHA256": "31e555f0c1325e172e4f1064e9ae52897011aeadc0fecd2cd2b6a19ec61e2790",
+        "stateSHA256": "47089bf3fc8cbaed26333d6fd6728f9ac63e925a4c07da3e2707fbf86c99094a",
+        "bindingSHA256": "cc19e5f20f46d82492e9fcd8d75fa9c754e8b751ec494eb58674afc86b534493",
+        "role": {
+          "normal": true,
+          "dimensions": [
+            9600,
+            5500
+          ],
+          "domain": {
+            "left": -6000,
+            "top": -24000,
+            "right": 15600,
+            "bottom": 29500
+          },
+          "body": {
+            "id": "act1-stage08-traced-floor-v1",
+            "kind": "canonical-element",
+            "layer": "prop",
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "rotation": 0,
+            "materialClip": false,
+            "elementCollision": false,
+            "collisionIds": [],
+            "assetId": "act1-traced:stage08-floor-v1",
+            "anchor": {
+              "x": 0,
+              "y": 0
+            },
+            "bounds": {
+              "x": -4000,
+              "y": 1800,
+              "w": 17600,
+              "h": 6000
+            },
+            "viewBox": [
+              -4000,
+              1800,
+              17600,
+              6000
+            ],
+            "params": {
+              "semanticLayer": "BODY",
+              "sourceViewBox": [
+                -4000,
+                1800,
+                17600,
+                6000
+              ],
+              "removedReferenceImages": [],
+              "nodeCount": 11,
+              "bodyTerrainIds": [
+                "s8-ground"
+              ],
+              "bodyBaseColor": "#26342b",
+              "previewOnly": false,
+              "silhouetteUnderpaint": false
+            },
+            "collision": []
+          },
+          "referenceBounds": {
+            "x": -4000,
+            "y": 1800,
+            "w": 17600,
+            "h": 6000
+          },
+          "clipKeys": [
+            "canonicalSolid",
+            "contactInset"
+          ]
+        },
+        "rgbaSHA256": {
+          "raw": "7943acd15174175852100d79d3c32ed406a9a34881419cc5b0edbbcb5e2768eb",
+          "dom": "64e35472ae39a029e45993e8e45b01acbf7a5bce8450925d57f5cdc44b2f15f0"
+        }
+      }
+    },
+    {
+      "requested": {
+        "x": -1000000,
+        "y": 2750,
+        "scale": 0.057352941176470586
+      },
+      "actual": {
+        "x": -320,
+        "y": 2750,
+        "scale": 0.057352941176470586
+      },
+      "adjusted": {
+        "x": -320,
+        "y": 2750,
+        "scale": 0.057352941176470586
+      },
+      "clamped": true,
+      "within": true,
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 9920,
+        "bottom": 5740
+      },
+      "viewport": {
+        "left": -3720,
+        "right": 3080,
+        "top": -2895.8253205128203,
+        "bottom": 8395.82532051282
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "actorCount": 42,
+      "projectStage": "stage-8",
+      "stage": 8,
+      "view": "west",
+      "width": 390,
+      "height": 844,
+      "name": "act1-s08-390x844-west.png",
+      "rasterSha256": "fbdd274011a2ea9a571f67cffb3d4eb406e82f97424761937bffc7dc4e6691bf",
+      "physicsSha256": "31e555f0c1325e172e4f1064e9ae52897011aeadc0fecd2cd2b6a19ec61e2790",
+      "extra": 0,
+      "signedFirstRow": null,
+      "retainedApproved": {
+        "supplements": {
+          "stage02": [],
+          "stage08": [
+            {
+              "id": "act1-stage08-traced-floor-v1",
+              "asset": "act1-traced:stage08-floor-v1",
+              "clip": true,
+              "tile": {
+                "left": -8192,
+                "top": 8192,
+                "right": 0,
+                "bottom": 16384
+              }
+            },
+            {
+              "id": "act1-stage08-traced-floor-v1",
+              "asset": "act1-traced:stage08-floor-v1",
+              "clip": true,
+              "tile": {
+                "left": 0,
+                "top": 8192,
+                "right": 8192,
+                "bottom": 16384
+              }
+            }
+          ]
+        },
+        "initialSHA256": "31e555f0c1325e172e4f1064e9ae52897011aeadc0fecd2cd2b6a19ec61e2790",
+        "stateSHA256": "47089bf3fc8cbaed26333d6fd6728f9ac63e925a4c07da3e2707fbf86c99094a",
+        "bindingSHA256": "cc19e5f20f46d82492e9fcd8d75fa9c754e8b751ec494eb58674afc86b534493",
+        "role": {
+          "normal": true,
+          "dimensions": [
+            9600,
+            5500
+          ],
+          "domain": {
+            "left": -6000,
+            "top": -24000,
+            "right": 15600,
+            "bottom": 29500
+          },
+          "body": {
+            "id": "act1-stage08-traced-floor-v1",
+            "kind": "canonical-element",
+            "layer": "prop",
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "rotation": 0,
+            "materialClip": false,
+            "elementCollision": false,
+            "collisionIds": [],
+            "assetId": "act1-traced:stage08-floor-v1",
+            "anchor": {
+              "x": 0,
+              "y": 0
+            },
+            "bounds": {
+              "x": -4000,
+              "y": 1800,
+              "w": 17600,
+              "h": 6000
+            },
+            "viewBox": [
+              -4000,
+              1800,
+              17600,
+              6000
+            ],
+            "params": {
+              "semanticLayer": "BODY",
+              "sourceViewBox": [
+                -4000,
+                1800,
+                17600,
+                6000
+              ],
+              "removedReferenceImages": [],
+              "nodeCount": 11,
+              "bodyTerrainIds": [
+                "s8-ground"
+              ],
+              "bodyBaseColor": "#26342b",
+              "previewOnly": false,
+              "silhouetteUnderpaint": false
+            },
+            "collision": []
+          },
+          "referenceBounds": {
+            "x": -4000,
+            "y": 1800,
+            "w": 17600,
+            "h": 6000
+          },
+          "clipKeys": [
+            "canonicalSolid",
+            "contactInset"
+          ]
+        },
+        "rgbaSHA256": {
+          "raw": "3f286727a144d4f692302da42afef46b43dd32b2d7c8f751cdde147c135e32aa",
+          "dom": "1c52c29c1ff4b23e5e43442d84c1aa3d570360377c1d2561b150393e8f714fe2"
+        }
+      }
+    },
+    {
+      "requested": {
+        "x": 1000000,
+        "y": 2750,
+        "scale": 0.057352941176470586
+      },
+      "actual": {
+        "x": 9920,
+        "y": 2750,
+        "scale": 0.057352941176470586
+      },
+      "adjusted": {
+        "x": 9920,
+        "y": 2750,
+        "scale": 0.057352941176470586
+      },
+      "clamped": true,
+      "within": true,
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 9920,
+        "bottom": 5740
+      },
+      "viewport": {
+        "left": 6520,
+        "right": 13320,
+        "top": -2895.8253205128203,
+        "bottom": 8395.82532051282
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "actorCount": 42,
+      "projectStage": "stage-8",
+      "stage": 8,
+      "view": "east",
+      "width": 390,
+      "height": 844,
+      "name": "act1-s08-390x844-east.png",
+      "rasterSha256": "a4293a636323a2bf006f1dab252766fc7b172f41351e8f6b282d48a2372d6404",
+      "physicsSha256": "31e555f0c1325e172e4f1064e9ae52897011aeadc0fecd2cd2b6a19ec61e2790",
+      "extra": 0,
+      "signedFirstRow": null,
+      "retainedApproved": {
+        "supplements": {
+          "stage02": [],
+          "stage08": [
+            {
+              "id": "act1-stage08-traced-floor-v1",
+              "asset": "act1-traced:stage08-floor-v1",
+              "clip": true,
+              "tile": {
+                "left": 0,
+                "top": 8192,
+                "right": 8192,
+                "bottom": 16384
+              }
+            },
+            {
+              "id": "act1-stage08-traced-floor-v1",
+              "asset": "act1-traced:stage08-floor-v1",
+              "clip": true,
+              "tile": {
+                "left": 8192,
+                "top": 8192,
+                "right": 16384,
+                "bottom": 16384
+              }
+            }
+          ]
+        },
+        "initialSHA256": "31e555f0c1325e172e4f1064e9ae52897011aeadc0fecd2cd2b6a19ec61e2790",
+        "stateSHA256": "47089bf3fc8cbaed26333d6fd6728f9ac63e925a4c07da3e2707fbf86c99094a",
+        "bindingSHA256": "cc19e5f20f46d82492e9fcd8d75fa9c754e8b751ec494eb58674afc86b534493",
+        "role": {
+          "normal": true,
+          "dimensions": [
+            9600,
+            5500
+          ],
+          "domain": {
+            "left": -6000,
+            "top": -24000,
+            "right": 15600,
+            "bottom": 29500
+          },
+          "body": {
+            "id": "act1-stage08-traced-floor-v1",
+            "kind": "canonical-element",
+            "layer": "prop",
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "rotation": 0,
+            "materialClip": false,
+            "elementCollision": false,
+            "collisionIds": [],
+            "assetId": "act1-traced:stage08-floor-v1",
+            "anchor": {
+              "x": 0,
+              "y": 0
+            },
+            "bounds": {
+              "x": -4000,
+              "y": 1800,
+              "w": 17600,
+              "h": 6000
+            },
+            "viewBox": [
+              -4000,
+              1800,
+              17600,
+              6000
+            ],
+            "params": {
+              "semanticLayer": "BODY",
+              "sourceViewBox": [
+                -4000,
+                1800,
+                17600,
+                6000
+              ],
+              "removedReferenceImages": [],
+              "nodeCount": 11,
+              "bodyTerrainIds": [
+                "s8-ground"
+              ],
+              "bodyBaseColor": "#26342b",
+              "previewOnly": false,
+              "silhouetteUnderpaint": false
+            },
+            "collision": []
+          },
+          "referenceBounds": {
+            "x": -4000,
+            "y": 1800,
+            "w": 17600,
+            "h": 6000
+          },
+          "clipKeys": [
+            "canonicalSolid",
+            "contactInset"
+          ]
+        },
+        "rgbaSHA256": {
+          "raw": "c11cf7656b1f68467a414d7e51058c2fcb6a1d5fdec507fe76b8ed0860c54b76",
+          "dom": "1a6c70eaf673644061a69e7cafe86b51b0ab990594cb4ca52f652043ba629c1b"
+        }
+      }
+    },
+    {
+      "requested": {
+        "x": -1000000,
+        "y": 1000000,
+        "scale": 0.057352941176470586
+      },
+      "actual": {
+        "x": -320,
+        "y": 5740,
+        "scale": 0.057352941176470586
+      },
+      "adjusted": {
+        "x": -320,
+        "y": 5740,
+        "scale": 0.057352941176470586
+      },
+      "clamped": true,
+      "within": true,
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 9920,
+        "bottom": 5740
+      },
+      "viewport": {
+        "left": -3720,
+        "right": 3080,
+        "top": 94.17467948717967,
+        "bottom": 11385.82532051282
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "actorCount": 42,
+      "projectStage": "stage-8",
+      "stage": 8,
+      "view": "southwest",
+      "width": 390,
+      "height": 844,
+      "name": "act1-s08-390x844-southwest.png",
+      "rasterSha256": "bf0733028bb91b73a253e8bb25a3dc96fd741311bb6870a416ba99da1f70345b",
+      "physicsSha256": "31e555f0c1325e172e4f1064e9ae52897011aeadc0fecd2cd2b6a19ec61e2790",
+      "extra": 0,
+      "signedFirstRow": null,
+      "retainedApproved": {
+        "supplements": {
+          "stage02": [],
+          "stage08": [
+            {
+              "id": "act1-stage08-traced-floor-v1",
+              "asset": "act1-traced:stage08-floor-v1",
+              "clip": true,
+              "tile": {
+                "left": -8192,
+                "top": 8192,
+                "right": 0,
+                "bottom": 16384
+              }
+            },
+            {
+              "id": "act1-stage08-traced-floor-v1",
+              "asset": "act1-traced:stage08-floor-v1",
+              "clip": true,
+              "tile": {
+                "left": 0,
+                "top": 8192,
+                "right": 8192,
+                "bottom": 16384
+              }
+            }
+          ]
+        },
+        "initialSHA256": "31e555f0c1325e172e4f1064e9ae52897011aeadc0fecd2cd2b6a19ec61e2790",
+        "stateSHA256": "47089bf3fc8cbaed26333d6fd6728f9ac63e925a4c07da3e2707fbf86c99094a",
+        "bindingSHA256": "cc19e5f20f46d82492e9fcd8d75fa9c754e8b751ec494eb58674afc86b534493",
+        "role": {
+          "normal": true,
+          "dimensions": [
+            9600,
+            5500
+          ],
+          "domain": {
+            "left": -6000,
+            "top": -24000,
+            "right": 15600,
+            "bottom": 29500
+          },
+          "body": {
+            "id": "act1-stage08-traced-floor-v1",
+            "kind": "canonical-element",
+            "layer": "prop",
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "rotation": 0,
+            "materialClip": false,
+            "elementCollision": false,
+            "collisionIds": [],
+            "assetId": "act1-traced:stage08-floor-v1",
+            "anchor": {
+              "x": 0,
+              "y": 0
+            },
+            "bounds": {
+              "x": -4000,
+              "y": 1800,
+              "w": 17600,
+              "h": 6000
+            },
+            "viewBox": [
+              -4000,
+              1800,
+              17600,
+              6000
+            ],
+            "params": {
+              "semanticLayer": "BODY",
+              "sourceViewBox": [
+                -4000,
+                1800,
+                17600,
+                6000
+              ],
+              "removedReferenceImages": [],
+              "nodeCount": 11,
+              "bodyTerrainIds": [
+                "s8-ground"
+              ],
+              "bodyBaseColor": "#26342b",
+              "previewOnly": false,
+              "silhouetteUnderpaint": false
+            },
+            "collision": []
+          },
+          "referenceBounds": {
+            "x": -4000,
+            "y": 1800,
+            "w": 17600,
+            "h": 6000
+          },
+          "clipKeys": [
+            "canonicalSolid",
+            "contactInset"
+          ]
+        },
+        "rgbaSHA256": {
+          "raw": "34baf47716b50fa764ea649a5b75416f56b8aae7e458869862c67c71dfb920a0",
+          "dom": "9a9d8411f0ebc033f34fa1fb84e491b1d0593416d25b20b151fd5fc916de1099"
+        }
+      }
+    },
+    {
+      "requested": {
+        "x": 1000000,
+        "y": 1000000,
+        "scale": 0.057352941176470586
+      },
+      "actual": {
+        "x": 9920,
+        "y": 5740,
+        "scale": 0.057352941176470586
+      },
+      "adjusted": {
+        "x": 9920,
+        "y": 5740,
+        "scale": 0.057352941176470586
+      },
+      "clamped": true,
+      "within": true,
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 9920,
+        "bottom": 5740
+      },
+      "viewport": {
+        "left": 6520,
+        "right": 13320,
+        "top": 94.17467948717967,
+        "bottom": 11385.82532051282
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "actorCount": 42,
+      "projectStage": "stage-8",
+      "stage": 8,
+      "view": "southeast",
+      "width": 390,
+      "height": 844,
+      "name": "act1-s08-390x844-southeast.png",
+      "rasterSha256": "3352292be538ebe56e9d4b0ac5f78ebfc2c76b2dea5e486cdcfdfff34e1e5ea6",
+      "physicsSha256": "31e555f0c1325e172e4f1064e9ae52897011aeadc0fecd2cd2b6a19ec61e2790",
+      "extra": 0,
+      "signedFirstRow": null,
+      "retainedApproved": {
+        "supplements": {
+          "stage02": [],
+          "stage08": [
+            {
+              "id": "act1-stage08-traced-floor-v1",
+              "asset": "act1-traced:stage08-floor-v1",
+              "clip": true,
+              "tile": {
+                "left": 0,
+                "top": 8192,
+                "right": 8192,
+                "bottom": 16384
+              }
+            },
+            {
+              "id": "act1-stage08-traced-floor-v1",
+              "asset": "act1-traced:stage08-floor-v1",
+              "clip": true,
+              "tile": {
+                "left": 8192,
+                "top": 8192,
+                "right": 16384,
+                "bottom": 16384
+              }
+            }
+          ]
+        },
+        "initialSHA256": "31e555f0c1325e172e4f1064e9ae52897011aeadc0fecd2cd2b6a19ec61e2790",
+        "stateSHA256": "47089bf3fc8cbaed26333d6fd6728f9ac63e925a4c07da3e2707fbf86c99094a",
+        "bindingSHA256": "cc19e5f20f46d82492e9fcd8d75fa9c754e8b751ec494eb58674afc86b534493",
+        "role": {
+          "normal": true,
+          "dimensions": [
+            9600,
+            5500
+          ],
+          "domain": {
+            "left": -6000,
+            "top": -24000,
+            "right": 15600,
+            "bottom": 29500
+          },
+          "body": {
+            "id": "act1-stage08-traced-floor-v1",
+            "kind": "canonical-element",
+            "layer": "prop",
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "rotation": 0,
+            "materialClip": false,
+            "elementCollision": false,
+            "collisionIds": [],
+            "assetId": "act1-traced:stage08-floor-v1",
+            "anchor": {
+              "x": 0,
+              "y": 0
+            },
+            "bounds": {
+              "x": -4000,
+              "y": 1800,
+              "w": 17600,
+              "h": 6000
+            },
+            "viewBox": [
+              -4000,
+              1800,
+              17600,
+              6000
+            ],
+            "params": {
+              "semanticLayer": "BODY",
+              "sourceViewBox": [
+                -4000,
+                1800,
+                17600,
+                6000
+              ],
+              "removedReferenceImages": [],
+              "nodeCount": 11,
+              "bodyTerrainIds": [
+                "s8-ground"
+              ],
+              "bodyBaseColor": "#26342b",
+              "previewOnly": false,
+              "silhouetteUnderpaint": false
+            },
+            "collision": []
+          },
+          "referenceBounds": {
+            "x": -4000,
+            "y": 1800,
+            "w": 17600,
+            "h": 6000
+          },
+          "clipKeys": [
+            "canonicalSolid",
+            "contactInset"
+          ]
+        },
+        "rgbaSHA256": {
+          "raw": "c74d88316e8686900867aaa2d94f3110a60984df7ad65aa8538407c9779b8834",
+          "dom": "39be91788c7ab009a54182fb129de737cf8ccd6a226ae57a5274b93caa1a1278"
+        }
+      }
+    },
+    {
+      "requested": {
+        "x": 1800,
+        "y": 1750,
+        "scale": 0.21176470588235294
+      },
+      "actual": {
+        "x": 1800,
+        "y": 1750,
+        "scale": 0.21176470588235294
+      },
+      "adjusted": {
+        "x": 1800,
+        "y": 1750,
+        "scale": 0.21176470588235294
+      },
+      "clamped": true,
+      "within": true,
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 3920,
+        "bottom": 3740
+      },
+      "viewport": {
+        "left": -1600,
+        "right": 5200,
+        "top": -66.13715277777783,
+        "bottom": 3566.137152777778
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "actorCount": 27,
+      "projectStage": "stage-9",
+      "stage": 9,
+      "view": "overview",
+      "width": 1440,
+      "height": 900,
+      "name": "act1-s09-1440x900-overview.png",
+      "rasterSha256": "1db001bb0cdbc189a871d1f298047eb6bb366309cd96a5ddb2ef261691e38333",
+      "physicsSha256": "aa227cb1e8a5a35b4932d2f45d81df120089fa5baa56bbb3865905a979228381",
+      "extra": 0,
+      "signedFirstRow": null
+    },
+    {
+      "requested": {
+        "x": 1800,
+        "y": -1000000,
+        "scale": 0.21176470588235294
+      },
+      "actual": {
+        "x": 1800,
+        "y": -1800,
+        "scale": 0.21176470588235294
+      },
+      "adjusted": {
+        "x": 1800,
+        "y": -1800,
+        "scale": 0.21176470588235294
+      },
+      "clamped": true,
+      "within": true,
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 3920,
+        "bottom": 3740
+      },
+      "viewport": {
+        "left": -1600,
+        "right": 5200,
+        "top": -3616.137152777778,
+        "bottom": 16.13715277777783
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "actorCount": 27,
+      "projectStage": "stage-9",
+      "stage": 9,
+      "view": "north",
+      "width": 1440,
+      "height": 900,
+      "name": "act1-s09-1440x900-north.png",
+      "rasterSha256": "c63e30ce81d42a451a9a84a26ff6fe3c82b5346b7697b7b2870ba07347eef381",
+      "physicsSha256": "aa227cb1e8a5a35b4932d2f45d81df120089fa5baa56bbb3865905a979228381",
+      "extra": 0,
+      "signedFirstRow": null
+    },
+    {
+      "requested": {
+        "x": 1800,
+        "y": 1000000,
+        "scale": 0.21176470588235294
+      },
+      "actual": {
+        "x": 1800,
+        "y": 3740,
+        "scale": 0.21176470588235294
+      },
+      "adjusted": {
+        "x": 1800,
+        "y": 3740,
+        "scale": 0.21176470588235294
+      },
+      "clamped": true,
+      "within": true,
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 3920,
+        "bottom": 3740
+      },
+      "viewport": {
+        "left": -1600,
+        "right": 5200,
+        "top": 1923.8628472222222,
+        "bottom": 5556.137152777777
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "actorCount": 27,
+      "projectStage": "stage-9",
+      "stage": 9,
+      "view": "south",
+      "width": 1440,
+      "height": 900,
+      "name": "act1-s09-1440x900-south.png",
+      "rasterSha256": "591ec95542931221a78ffc3ddb02e313ea41bd96a38765009453fe6357823b1c",
+      "physicsSha256": "aa227cb1e8a5a35b4932d2f45d81df120089fa5baa56bbb3865905a979228381",
+      "extra": 0,
+      "signedFirstRow": null
+    },
+    {
+      "requested": {
+        "x": -1000000,
+        "y": 1750,
+        "scale": 0.21176470588235294
+      },
+      "actual": {
+        "x": -320,
+        "y": 1750,
+        "scale": 0.21176470588235294
+      },
+      "adjusted": {
+        "x": -320,
+        "y": 1750,
+        "scale": 0.21176470588235294
+      },
+      "clamped": true,
+      "within": true,
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 3920,
+        "bottom": 3740
+      },
+      "viewport": {
+        "left": -3720,
+        "right": 3080,
+        "top": -66.13715277777783,
+        "bottom": 3566.137152777778
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "actorCount": 27,
+      "projectStage": "stage-9",
+      "stage": 9,
+      "view": "west",
+      "width": 1440,
+      "height": 900,
+      "name": "act1-s09-1440x900-west.png",
+      "rasterSha256": "377c20d18d7c984c6137add9fb544eaacf66ae3920f67c3e56cd5e59dfc7841b",
+      "physicsSha256": "aa227cb1e8a5a35b4932d2f45d81df120089fa5baa56bbb3865905a979228381",
+      "extra": 0,
+      "signedFirstRow": null
+    },
+    {
+      "requested": {
+        "x": 1000000,
+        "y": 1750,
+        "scale": 0.21176470588235294
+      },
+      "actual": {
+        "x": 3920,
+        "y": 1750,
+        "scale": 0.21176470588235294
+      },
+      "adjusted": {
+        "x": 3920,
+        "y": 1750,
+        "scale": 0.21176470588235294
+      },
+      "clamped": true,
+      "within": true,
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 3920,
+        "bottom": 3740
+      },
+      "viewport": {
+        "left": 520,
+        "right": 7320,
+        "top": -66.13715277777783,
+        "bottom": 3566.137152777778
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "actorCount": 27,
+      "projectStage": "stage-9",
+      "stage": 9,
+      "view": "east",
+      "width": 1440,
+      "height": 900,
+      "name": "act1-s09-1440x900-east.png",
+      "rasterSha256": "59951a0ddc479b0ad0583961c2c18522ba52c6064e835726544af29dd6086d58",
+      "physicsSha256": "aa227cb1e8a5a35b4932d2f45d81df120089fa5baa56bbb3865905a979228381",
+      "extra": 0,
+      "signedFirstRow": null
+    },
+    {
+      "requested": {
+        "x": -1000000,
+        "y": -1000000,
+        "scale": 0.21176470588235294
+      },
+      "actual": {
+        "x": -320,
+        "y": -1800,
+        "scale": 0.21176470588235294
+      },
+      "adjusted": {
+        "x": -320,
+        "y": -1800,
+        "scale": 0.21176470588235294
+      },
+      "clamped": true,
+      "within": true,
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 3920,
+        "bottom": 3740
+      },
+      "viewport": {
+        "left": -3720,
+        "right": 3080,
+        "top": -3616.137152777778,
+        "bottom": 16.13715277777783
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "actorCount": 27,
+      "projectStage": "stage-9",
+      "stage": 9,
+      "view": "northwest",
+      "width": 1440,
+      "height": 900,
+      "name": "act1-s09-1440x900-northwest.png",
+      "rasterSha256": "49f9fb080dfbd990ae3438a9ce2977d96c5d21938afc837d2922da4fad234bfa",
+      "physicsSha256": "aa227cb1e8a5a35b4932d2f45d81df120089fa5baa56bbb3865905a979228381",
+      "extra": 0,
+      "signedFirstRow": null
+    },
+    {
+      "requested": {
+        "x": 1000000,
+        "y": -1000000,
+        "scale": 0.21176470588235294
+      },
+      "actual": {
+        "x": 3920,
+        "y": -1800,
+        "scale": 0.21176470588235294
+      },
+      "adjusted": {
+        "x": 3920,
+        "y": -1800,
+        "scale": 0.21176470588235294
+      },
+      "clamped": true,
+      "within": true,
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 3920,
+        "bottom": 3740
+      },
+      "viewport": {
+        "left": 520,
+        "right": 7320,
+        "top": -3616.137152777778,
+        "bottom": 16.13715277777783
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "actorCount": 27,
+      "projectStage": "stage-9",
+      "stage": 9,
+      "view": "northeast",
+      "width": 1440,
+      "height": 900,
+      "name": "act1-s09-1440x900-northeast.png",
+      "rasterSha256": "cba825e653fe6c78602e203d7397724e13bfef63df22400bad71379dc22d9dbb",
+      "physicsSha256": "aa227cb1e8a5a35b4932d2f45d81df120089fa5baa56bbb3865905a979228381",
+      "extra": 0,
+      "signedFirstRow": null
+    },
+    {
+      "requested": {
+        "x": -1000000,
+        "y": 1000000,
+        "scale": 0.21176470588235294
+      },
+      "actual": {
+        "x": -320,
+        "y": 3740,
+        "scale": 0.21176470588235294
+      },
+      "adjusted": {
+        "x": -320,
+        "y": 3740,
+        "scale": 0.21176470588235294
+      },
+      "clamped": true,
+      "within": true,
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 3920,
+        "bottom": 3740
+      },
+      "viewport": {
+        "left": -3720,
+        "right": 3080,
+        "top": 1923.8628472222222,
+        "bottom": 5556.137152777777
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "actorCount": 27,
+      "projectStage": "stage-9",
+      "stage": 9,
+      "view": "southwest",
+      "width": 1440,
+      "height": 900,
+      "name": "act1-s09-1440x900-southwest.png",
+      "rasterSha256": "58224797872532b70d5b2dab1e75b6625c2fa02c31284a73efa2a485f436e51c",
+      "physicsSha256": "aa227cb1e8a5a35b4932d2f45d81df120089fa5baa56bbb3865905a979228381",
+      "extra": 0,
+      "signedFirstRow": null
+    },
+    {
+      "requested": {
+        "x": 1000000,
+        "y": 1000000,
+        "scale": 0.21176470588235294
+      },
+      "actual": {
+        "x": 3920,
+        "y": 3740,
+        "scale": 0.21176470588235294
+      },
+      "adjusted": {
+        "x": 3920,
+        "y": 3740,
+        "scale": 0.21176470588235294
+      },
+      "clamped": true,
+      "within": true,
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 3920,
+        "bottom": 3740
+      },
+      "viewport": {
+        "left": 520,
+        "right": 7320,
+        "top": 1923.8628472222222,
+        "bottom": 5556.137152777777
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "actorCount": 27,
+      "projectStage": "stage-9",
+      "stage": 9,
+      "view": "southeast",
+      "width": 1440,
+      "height": 900,
+      "name": "act1-s09-1440x900-southeast.png",
+      "rasterSha256": "86beeb64e16d33a93139b7513534d855044a35ff75e6bb63cd17c62d7f42b7f1",
+      "physicsSha256": "aa227cb1e8a5a35b4932d2f45d81df120089fa5baa56bbb3865905a979228381",
+      "extra": 0,
+      "signedFirstRow": null
+    },
+    {
+      "requested": {
+        "x": 1800,
+        "y": 1750,
+        "scale": 0.057352941176470586
+      },
+      "actual": {
+        "x": 1800,
+        "y": 1750,
+        "scale": 0.057352941176470586
+      },
+      "adjusted": {
+        "x": 1800,
+        "y": 1750,
+        "scale": 0.057352941176470586
+      },
+      "clamped": true,
+      "within": true,
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 3920,
+        "bottom": 3740
+      },
+      "viewport": {
+        "left": -1600,
+        "right": 5200,
+        "top": -3895.8253205128203,
+        "bottom": 7395.82532051282
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "actorCount": 27,
+      "projectStage": "stage-9",
+      "stage": 9,
+      "view": "overview",
+      "width": 390,
+      "height": 844,
+      "name": "act1-s09-390x844-overview.png",
+      "rasterSha256": "f106f660916d347bee7779497225afc4560914cbef4130319364e6cef90d1761",
+      "physicsSha256": "aa227cb1e8a5a35b4932d2f45d81df120089fa5baa56bbb3865905a979228381",
+      "extra": 0,
+      "signedFirstRow": null
+    },
+    {
+      "requested": {
+        "x": 1800,
+        "y": -1000000,
+        "scale": 0.057352941176470586
+      },
+      "actual": {
+        "x": 1800,
+        "y": -1800,
+        "scale": 0.057352941176470586
+      },
+      "adjusted": {
+        "x": 1800,
+        "y": -1800,
+        "scale": 0.057352941176470586
+      },
+      "clamped": true,
+      "within": true,
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 3920,
+        "bottom": 3740
+      },
+      "viewport": {
+        "left": -1600,
+        "right": 5200,
+        "top": -7445.82532051282,
+        "bottom": 3845.8253205128203
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "actorCount": 27,
+      "projectStage": "stage-9",
+      "stage": 9,
+      "view": "north",
+      "width": 390,
+      "height": 844,
+      "name": "act1-s09-390x844-north.png",
+      "rasterSha256": "4c75d67fef5891931e3850e0b3ce2279a4bf3b0d06d577edea84b3c44d2c891a",
+      "physicsSha256": "aa227cb1e8a5a35b4932d2f45d81df120089fa5baa56bbb3865905a979228381",
+      "extra": 0,
+      "signedFirstRow": null
+    },
+    {
+      "requested": {
+        "x": 1800,
+        "y": 1000000,
+        "scale": 0.057352941176470586
+      },
+      "actual": {
+        "x": 1800,
+        "y": 3740,
+        "scale": 0.057352941176470586
+      },
+      "adjusted": {
+        "x": 1800,
+        "y": 3740,
+        "scale": 0.057352941176470586
+      },
+      "clamped": true,
+      "within": true,
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 3920,
+        "bottom": 3740
+      },
+      "viewport": {
+        "left": -1600,
+        "right": 5200,
+        "top": -1905.8253205128203,
+        "bottom": 9385.82532051282
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "actorCount": 27,
+      "projectStage": "stage-9",
+      "stage": 9,
+      "view": "south",
+      "width": 390,
+      "height": 844,
+      "name": "act1-s09-390x844-south.png",
+      "rasterSha256": "4b997897a0ca40c07f86e21ed527f670061d59f931952f4693712d299716c864",
+      "physicsSha256": "aa227cb1e8a5a35b4932d2f45d81df120089fa5baa56bbb3865905a979228381",
+      "extra": 2,
+      "signedFirstRow": 579,
+      "stage09PristineArchiveRGBA": {
+        "raw": "57bba3c9dcea7b78982061d53cfd244b661c9d00b21c8ccda7c8f12968be4599",
+        "dom": "e9125724723451ff2d0732fe9f27dbddbf639a3c74dc192bd831bbab077253b9"
+      }
+    },
+    {
+      "requested": {
+        "x": -1000000,
+        "y": 1750,
+        "scale": 0.057352941176470586
+      },
+      "actual": {
+        "x": -320,
+        "y": 1750,
+        "scale": 0.057352941176470586
+      },
+      "adjusted": {
+        "x": -320,
+        "y": 1750,
+        "scale": 0.057352941176470586
+      },
+      "clamped": true,
+      "within": true,
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 3920,
+        "bottom": 3740
+      },
+      "viewport": {
+        "left": -3720,
+        "right": 3080,
+        "top": -3895.8253205128203,
+        "bottom": 7395.82532051282
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "actorCount": 27,
+      "projectStage": "stage-9",
+      "stage": 9,
+      "view": "west",
+      "width": 390,
+      "height": 844,
+      "name": "act1-s09-390x844-west.png",
+      "rasterSha256": "e6d5f6029d4366888cbb17a1213e567d8fa51d27c3ccf264029be00f13d70d9a",
+      "physicsSha256": "aa227cb1e8a5a35b4932d2f45d81df120089fa5baa56bbb3865905a979228381",
+      "extra": 0,
+      "signedFirstRow": null
+    },
+    {
+      "requested": {
+        "x": 1000000,
+        "y": 1750,
+        "scale": 0.057352941176470586
+      },
+      "actual": {
+        "x": 3920,
+        "y": 1750,
+        "scale": 0.057352941176470586
+      },
+      "adjusted": {
+        "x": 3920,
+        "y": 1750,
+        "scale": 0.057352941176470586
+      },
+      "clamped": true,
+      "within": true,
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 3920,
+        "bottom": 3740
+      },
+      "viewport": {
+        "left": 520,
+        "right": 7320,
+        "top": -3895.8253205128203,
+        "bottom": 7395.82532051282
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "actorCount": 27,
+      "projectStage": "stage-9",
+      "stage": 9,
+      "view": "east",
+      "width": 390,
+      "height": 844,
+      "name": "act1-s09-390x844-east.png",
+      "rasterSha256": "df0c69d88078de21192a17a11e5c7bfab7948381116036c63473324cf4b40999",
+      "physicsSha256": "aa227cb1e8a5a35b4932d2f45d81df120089fa5baa56bbb3865905a979228381",
+      "extra": 0,
+      "signedFirstRow": null
+    },
+    {
+      "requested": {
+        "x": -1000000,
+        "y": -1000000,
+        "scale": 0.057352941176470586
+      },
+      "actual": {
+        "x": -320,
+        "y": -1800,
+        "scale": 0.057352941176470586
+      },
+      "adjusted": {
+        "x": -320,
+        "y": -1800,
+        "scale": 0.057352941176470586
+      },
+      "clamped": true,
+      "within": true,
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 3920,
+        "bottom": 3740
+      },
+      "viewport": {
+        "left": -3720,
+        "right": 3080,
+        "top": -7445.82532051282,
+        "bottom": 3845.8253205128203
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "actorCount": 27,
+      "projectStage": "stage-9",
+      "stage": 9,
+      "view": "northwest",
+      "width": 390,
+      "height": 844,
+      "name": "act1-s09-390x844-northwest.png",
+      "rasterSha256": "c3a43a2512d35a41791da0a451e595e151a3dfb20be26e83fb8adf182dfac139",
+      "physicsSha256": "aa227cb1e8a5a35b4932d2f45d81df120089fa5baa56bbb3865905a979228381",
+      "extra": 0,
+      "signedFirstRow": null
+    },
+    {
+      "requested": {
+        "x": 1000000,
+        "y": -1000000,
+        "scale": 0.057352941176470586
+      },
+      "actual": {
+        "x": 3920,
+        "y": -1800,
+        "scale": 0.057352941176470586
+      },
+      "adjusted": {
+        "x": 3920,
+        "y": -1800,
+        "scale": 0.057352941176470586
+      },
+      "clamped": true,
+      "within": true,
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 3920,
+        "bottom": 3740
+      },
+      "viewport": {
+        "left": 520,
+        "right": 7320,
+        "top": -7445.82532051282,
+        "bottom": 3845.8253205128203
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "actorCount": 27,
+      "projectStage": "stage-9",
+      "stage": 9,
+      "view": "northeast",
+      "width": 390,
+      "height": 844,
+      "name": "act1-s09-390x844-northeast.png",
+      "rasterSha256": "dfd268aa817dcd2270cfa51d42867b71f8dbf9cd1fbce89e5d50ef2cd49100a8",
+      "physicsSha256": "aa227cb1e8a5a35b4932d2f45d81df120089fa5baa56bbb3865905a979228381",
+      "extra": 0,
+      "signedFirstRow": null
+    },
+    {
+      "requested": {
+        "x": -1000000,
+        "y": 1000000,
+        "scale": 0.057352941176470586
+      },
+      "actual": {
+        "x": -320,
+        "y": 3740,
+        "scale": 0.057352941176470586
+      },
+      "adjusted": {
+        "x": -320,
+        "y": 3740,
+        "scale": 0.057352941176470586
+      },
+      "clamped": true,
+      "within": true,
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 3920,
+        "bottom": 3740
+      },
+      "viewport": {
+        "left": -3720,
+        "right": 3080,
+        "top": -1905.8253205128203,
+        "bottom": 9385.82532051282
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "actorCount": 27,
+      "projectStage": "stage-9",
+      "stage": 9,
+      "view": "southwest",
+      "width": 390,
+      "height": 844,
+      "name": "act1-s09-390x844-southwest.png",
+      "rasterSha256": "094abc2a4ecfb5006a2ef350f1a7f06eb3b0c6aa16811399d71b661173ae481a",
+      "physicsSha256": "aa227cb1e8a5a35b4932d2f45d81df120089fa5baa56bbb3865905a979228381",
+      "extra": 2,
+      "signedFirstRow": 579,
+      "stage09PristineArchiveRGBA": {
+        "raw": "6b374470f194487527d60008c27b0b06c6835657dffdc9918572b7b5df40a7fd",
+        "dom": "600d214af93e7bb4352115626e099961e74b2a11c6c55dc40a47202dde8e31dd"
+      }
+    },
+    {
+      "requested": {
+        "x": 1000000,
+        "y": 1000000,
+        "scale": 0.057352941176470586
+      },
+      "actual": {
+        "x": 3920,
+        "y": 3740,
+        "scale": 0.057352941176470586
+      },
+      "adjusted": {
+        "x": 3920,
+        "y": 3740,
+        "scale": 0.057352941176470586
+      },
+      "clamped": true,
+      "within": true,
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 3920,
+        "bottom": 3740
+      },
+      "viewport": {
+        "left": 520,
+        "right": 7320,
+        "top": -1905.8253205128203,
+        "bottom": 9385.82532051282
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "actorCount": 27,
+      "projectStage": "stage-9",
+      "stage": 9,
+      "view": "southeast",
+      "width": 390,
+      "height": 844,
+      "name": "act1-s09-390x844-southeast.png",
+      "rasterSha256": "6c2cd71d2155a77edc76a59d8486500ae76e551394afb7bdae63f8f0de4ee98d",
+      "physicsSha256": "aa227cb1e8a5a35b4932d2f45d81df120089fa5baa56bbb3865905a979228381",
+      "extra": 1,
+      "signedFirstRow": 579,
+      "stage09PristineArchiveRGBA": {
+        "raw": "c69b9fdb5fabc2c302b5c8dbcb64bfeb00d49715eeef007bfb1459c4961b9157",
+        "dom": "5cae3c38cce67c4a84d673c36b2d03e93951a27dd441bb695615111211ad5469"
+      }
+    },
+    {
+      "requested": {
+        "x": 2500,
+        "y": 1000000,
+        "scale": 0.057352941176470586
+      },
+      "actual": {
+        "x": 2500,
+        "y": 4140,
+        "scale": 0.057352941176470586
+      },
+      "adjusted": {
+        "x": 2500,
+        "y": 4140,
+        "scale": 0.057352941176470586
+      },
+      "clamped": true,
+      "within": true,
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 5320,
+        "bottom": 4140
+      },
+      "viewport": {
+        "left": -900,
+        "right": 5900,
+        "top": -1505.8253205128203,
+        "bottom": 9785.82532051282
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "actorCount": 21,
+      "projectStage": "stage-10",
+      "stage": 10,
+      "view": "south",
+      "width": 390,
+      "height": 844,
+      "name": "act1-s10-390x844-south.png",
+      "rasterSha256": "8747d4b162841d6650faedafa5d95ac39766a54c80bbfe2c1e4f8df1adbe1b7f",
+      "physicsSha256": "7ea43198943b845f49e8fa37ae1e3f5d5efde7e932121e5a8f8b3c956a4e6c50",
+      "extra": 0,
+      "signedFirstRow": null
+    }
+  ],
+  "sources": {
+    "stockClipCamerasRun": 44643097017,
+    "retainedPreviousStage8Run": 44745551963,
+    "retainedStage2OriginalRun": 44741777005,
+    "stockClipCameraProofSHA256": "9d5d85e2e3c48578c38425f77765c52485a6dc40d80ed9111cf9236d10da2d41",
+    "previousStage8PairedProofSHA256": "af5f0d1abfad944816e4142edd4f2c42c793ac2b4d9d2b7f8b5e54e17512e4d8"
+  }
+}
