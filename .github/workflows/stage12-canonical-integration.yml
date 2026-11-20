@@ -1,0 +1,95 @@
+name: Canonical Stage12 join integration only
+on:
+  push:
+    branches: ['qa/stage12-d357-normal-integration-20261120']
+permissions:
+  contents: read
+jobs:
+  scoped:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify pin and create exact disposable baseline and candidate
+        run: |
+          set -euo pipefail
+          B=d357ac4f2a379b28c21e1c6af78ac641802b7c43
+          Q=0de21950f282c9113018f98ec4e36e598d7dc4f5
+          P="$RUNNER_TEMP/stage12-integration"
+          test "$(git rev-parse HEAD^)" = "$B"
+          test "$(git diff --name-only "$B" HEAD | wc -l)" = 4
+          mkdir -p "$P/evidence/baseline" "$P/evidence/candidate"
+          git fetch --depth=1 origin "$Q"
+          git worktree add --detach "$P/baseline" "$B"
+          git worktree add --detach "$P/candidate" "$B"
+          PKG=shared/data/act2/stage12-compact-package.json
+          GEN=tools/environment/stage12-compact-art.mjs
+          M=shared/data/terrain-path-optimization.json
+          echo "QA=$P" >> "$GITHUB_ENV"
+          test "$(git rev-parse "$B:$PKG")" = 759788e291208bdbf9a535d9960ff77f51e4160e
+          test "$(git rev-parse "$B:$GEN")" = d6caf0cf011ae950d2ecf4944917089d5b148c3f
+          test "$(git rev-parse "$B:$M")" = 70399325e30279f10a853835981913c635ba3386
+          test "$(git rev-parse "$B:tests/production-contract.mjs")" = 29210abc75f37bca44d772a78e85e334a09a0229
+          test "$(git rev-parse "$B:shared/act4-handoff-art.mjs")" = c96da5bff3811b1cecedaa94be7e147c52651333
+          test "$(git rev-parse "$B:shared/terrain-path-optimization.mjs")" = 784e574d21cfa668326215fd16dcc0fb6ffcc832
+          test "$(git rev-parse "$Q:$PKG")" = 4a229931c6d70166ee9f868cdf4a7897f30b7b0c
+          test "$(git rev-parse "$Q:$GEN")" = 79dd060e5d23c2f5af5eabcbccb69173a21d361b
+          cd "$P/candidate"
+          git show "$Q:$PKG" > "$PKG"
+          git show "$Q:$GEN" > "$GEN"
+          node "$GITHUB_WORKSPACE/tools/stage12-canonical-integration/patch.mjs" "$P/baseline/$PKG" | tee "$P/evidence/source-proof.json"
+          test "$(git hash-object "$M")" = 07356df8bef0046da9baccb36ae3d11017e298b3
+          git diff --name-status "$B" > "$P/evidence/source-diff.txt"
+          test "$(git diff --name-only "$B")" = "$(printf '%s\n' "$PKG" "$M" "$GEN" | sort)"
+      - name: Official release gate, build and production contract unmodified
+        run: |
+          set -euo pipefail
+          for v in baseline candidate; do
+            cd "$QA/$v"
+            npm ci
+            npm ci --prefix game
+            npm run test:release-guard > "$QA/evidence/$v/release.log" 2>&1
+            npm run build > "$QA/evidence/$v/build.log" 2>&1
+            npm run test:production-contract > "$QA/evidence/$v/contract.log" 2>&1
+            sha256sum HONRO.html web/runtime/manifest*.json > "$QA/evidence/$v/packed-shas.txt" 2>/dev/null || find web -type f -iname '*manifest*.json' -exec sha256sum '{}' \; >> "$QA/evidence/$v/packed-shas.txt"
+          done
+      - name: Official scratch app, clock-scoped exact raw and DOM pairs
+        run: |
+          set -euo pipefail
+          python -m pip install playwright Pillow
+          python -m playwright install --with-deps chromium
+          for v in baseline candidate; do
+            python -m http.server 8886 --bind 127.0.0.1 --directory "$QA/$v" > "$QA/evidence/$v/host.log" 2>&1 &
+            p=$!
+            for i in $(seq 1 20); do curl -fsSL http://127.0.0.1:8886/HONRO.html -o /dev/null && break || sleep 1; done
+            OUT="$QA/evidence/$v" PORT=8886 python "$GITHUB_WORKSPACE/tools/stage12-canonical-integration/capture.py" || fail=1
+            kill "$p"
+            wait "$p" || true
+          done
+          python "$GITHUB_WORKSPACE/tools/stage12-canonical-integration/check.py" "$QA/evidence"
+          test "${fail:-0}" = 0
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage12-d357-control-original
+          path: ${{ env.QA }}/evidence/baseline
+          retention-days: 7
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage12-d357-integrated-disposable
+          path: ${{ env.QA }}/evidence/candidate
+          retention-days: 7
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage12-d357-exact-comparison
+          path: |
+            ${{ env.QA }}/evidence/*.json
+            ${{ env.QA }}/evidence/source-diff.txt
+          retention-days: 7
