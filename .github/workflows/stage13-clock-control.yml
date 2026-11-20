@@ -1,0 +1,109 @@
+name: Stage13 native sky clock only on previously verified exact product trees
+on:
+  push:
+    branches: ['qa/stage13-native-clock-control-20261120']
+permissions:
+  contents: read
+jobs:
+  proof:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 36
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Pin untouched b812 and assemble exact A/B/C verified recipe
+        run: |
+          set -euo pipefail
+          BASE=b81245966bc7f68b41ecc0581c82ab8b2e7d2714
+          QA8=11e51dc0e63639f2dbf56d998d36470ace4ad0a6
+          W="$RUNNER_TEMP/stage13-clock-only"
+          mkdir -p "$W/out" "$W/setup" "$W/projection"
+          printf 'QA=%s\nOUT=%s\n' "$W" "$W/out" >> "$GITHUB_ENV"
+          git merge-base --is-ancestor "$QA8" HEAD
+          git diff --name-status "$QA8" HEAD > "$W/out/qa-only-paths.txt"
+          python - "$W/out/qa-only-paths.txt" <<'PY'
+          import pathlib,sys
+          got=set(pathlib.Path(sys.argv[1]).read_text().splitlines())
+          e={'A\t.github/workflows/stage13-clock-control.yml',*['A\ttools/stage13-18-proof/stage13-clock-control/'+x for x in ['layer-clock.js','stage13-only.py','strict-compare.py','prior-stage13-state.json']]}
+          assert got==e,(got,e)
+          PY
+          git cat-file -e "$BASE^{commit}"
+          Q="$GITHUB_WORKSPACE/tools/stage13-18-proof"
+          for mode in stock joint metadata target; do git worktree add --detach "$W/$mode" "$BASE"; done
+          echo "$BASE" > "$W/out/pinned.txt"
+          test "$(git -C "$W/stock" rev-parse HEAD:shared/data/campaign.json)" = edaf31a5fda2b7db0202bc0efb52dd83e54f6b9e
+          test "$(git -C "$W/stock" rev-parse HEAD:shared/data/act2/stage13-compact-package.json)" = 413a4615c3f323b9b8d5cd21f3d0e4c2ecc0680a
+          test "$(git -C "$W/stock" rev-parse HEAD:tools/environment/stage22-vertical-art.mjs)" = 4348002cc3e0ee17d7f2ec1cd6e481a81cfc2558
+          python "$Q/ci/verify.py" "$W/stock" "$W/joint" "$W/setup"
+          python "$Q/ci/range.py" "$W/joint/shared/data/campaign.json" "$W/setup/typed-13.json"
+          for p in shared/data/act2/stage18-compact-package.json tools/map-forge/stage18-short-quest.mjs; do cp "$W/joint/$p" "$W/metadata/$p"; done
+          python "$Q/stage21-explicit-defaults/splice-stage21.py" joint-canonical "$W/joint/shared/data/campaign.json" "$W/metadata/shared/data/campaign.json" "$W/setup/typed-21.json"
+          node "$Q/consolidated-qa/contract.mjs" metadata "$W/joint" "$W/metadata" "$W/out/exact-21.json" >"$W/metadata-contract.private" 2>&1 || { sha256sum "$W/metadata-contract.private" | cut -d' ' -f1 >"$W/out/metadata-contract-error.sha256"; exit 1; }
+          for p in shared/data/act2/stage18-compact-package.json shared/data/campaign.json tools/map-forge/stage18-short-quest.mjs; do cp "$W/metadata/$p" "$W/target/$p"; done
+          python "$Q/consolidated-qa/target.py" "$W/metadata" "$W/target" "$W/out/target-typed-sha.json"
+          node "$Q/consolidated-qa/contract.mjs" stage22 "$W/metadata" "$W/target" "$W/out/exact-22.json" >"$W/target-contract.private" 2>&1 || { sha256sum "$W/target-contract.private" | cut -d' ' -f1 >"$W/out/target-contract-error.sha256"; exit 1; }
+          for mode in stock metadata target; do
+           git -C "$W/$mode" diff --name-only > "$W/out/$mode-changes.txt"
+          done
+          test ! -s "$W/out/stock-changes.txt"
+          cmp "$W/out/metadata-changes.txt" <(printf '%s\n' shared/data/act2/stage18-compact-package.json shared/data/campaign.json tools/map-forge/stage18-short-quest.mjs)
+          cmp "$W/out/target-changes.txt" <(printf '%s\n' shared/data/act2/stage18-compact-package.json shared/data/campaign.json tools/environment/stage22-vertical-art.mjs tools/map-forge/stage18-short-quest.mjs)
+          test "$(git -C "$W/metadata" hash-object shared/data/campaign.json)" = 91a4ada62984145fdc2eda8fd612fe0bc19f0ad7
+          test "$(git -C "$W/target" hash-object shared/data/campaign.json)" = 9f760cdcc0744b2c84d8fdcb480e7ce2f5069c7b
+          J="$W/projection"; STOCK="$W/stock"
+          cp "$STOCK/web/data/chapter-21.724a765a85d437a2.json" "$J/stage21-compiled.json"
+          cp "$STOCK/web/runtime/ordered-common-2.49982d8a68cfa528.js" "$J/active-core.mjs"
+          cp "$STOCK/shared/runtime/map-engine.js" "$J/"
+          cp "$STOCK/shared/map/"{geometry,terrain-domain,environment,schema}.js "$J/"
+          python "$Q/stage21-explicit-defaults/splice-stage21.py" published-compiled-fixture "$J/stage21-compiled.json" "$J/stage21-fixture-new.json" "$W/setup/typed-21-packet.json"
+          node "$Q/stage21-explicit-defaults/runtime-projection.mjs" "$J" >"$W/out/stage21-projection.json" 2>"$W/projection.private" || { sha256sum "$W/projection.private" | cut -d' ' -f1 >"$W/out/projection-error.sha256"; exit 1; }
+      - name: Reconstitute original ephemeral normal builds and prove exact earlier tree DAG receipt
+        run: |
+          set -euo pipefail
+          for mode in stock metadata target; do
+           cd "$QA/$mode"; npm ci; npm ci --prefix game
+           npm run build >"$OUT/build-$mode.txt" 2>&1
+          done
+          P="$GITHUB_WORKSPACE/tools/stage13-18-proof/normal-product-qa"
+          python "$P/verify-build.py" "$QA/stock" "$QA/metadata" "$QA/target" "$QA/setup" >"$QA/verify.private" 2>&1 ||
+           { sha256sum "$QA/verify.private" | cut -d' ' -f1 >"$OUT/verify-error.sha256"; [ ! -f "$QA/setup/build-dag-diff.json" ] || cp "$QA/setup/build-dag-diff.json" "$OUT/"; exit 1; }
+          cp "$QA/setup/build-proof.json" "$QA/setup/build-dag-diff.json" "$OUT/"
+          cd "$OUT"
+          echo '276ce1a75e8cef4ee860b9a2bded0c1ef9816a07d09193d7ca371111add7de9f  build-proof.json' | sha256sum -c -
+          echo '90b868c7b4b94f3917f82948581d7160f158465199829a48125f3aa13aade7c7  build-dag-diff.json' | sha256sum -c -
+      - name: Stage13 only, four independent A sessions and strict B and C
+        run: |
+          set -euo pipefail
+          python -m pip install playwright pillow
+          python -m playwright install --with-deps chromium
+          P="$GITHUB_WORKSPACE/tools/stage13-18-proof/stage13-clock-control"
+          cleanup=(); runs=(); i=0
+          trap 'kill "${cleanup[@]}" 2>/dev/null || true' EXIT
+          for mode in stock metadata target; do
+           port=$((8884+i));i=$((i+1))
+           mkdir -p "$OUT/$mode"
+           python -m http.server "$port" --bind 127.0.0.1 --directory "$QA/$mode" >"$QA/http-$mode.private" 2>&1 &
+           cleanup+=("$!")
+           MODE="$mode" PORT="$port" OUT="$OUT/$mode" python "$P/stage13-only.py" >"$QA/clock-$mode.private" 2>&1 &
+           runs+=("$!")
+          done
+          fail=0
+          for p in "${runs[@]}"; do wait "$p" || fail=1; done
+          for mode in stock metadata target; do
+           sha256sum "$QA/clock-$mode.private" | cut -d' ' -f1 >"$OUT/clock-$mode.log.sha256"
+          done
+          if [ "$fail" -ne 0 ]; then
+           grep -E '^(AssertionError|playwright.*Error:)' "$QA"/clock-*.private | cut -c1-190 | tail -12 | sed "s@$QA/@@g" >"$OUT/browser-clock-failure.txt" || true
+           exit 1
+          fi
+          python "$P/strict-compare.py" "$OUT" "$P/prior-stage13-state.json"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage13-only-native-clock-proof
+          path: ${{ env.OUT }}
+          retention-days: 7
