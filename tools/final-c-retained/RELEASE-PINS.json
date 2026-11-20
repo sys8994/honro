@@ -1,0 +1,45 @@
+{
+  "sourceCandidate": "affc9a7849f25a6fd08a65b5c90228b84e029fc1",
+  "candidateTree": "36e4284bb26cb6ea8e6465727564ad2821d39d32",
+  "sourceParent": "c720732aa0f5eacaa2e5df6a9ff00d62a9b44570",
+  "sourceFiles": {
+    "shared/assets/environment/act5/stage42-registered-body.json": "f6b4a6a3d6dbbfbfd83fa367125165c2fdd2f964",
+    "shared/runtime/act5-edge-art.js": "66f656fe7beb164efcbed2729b2f6daa88781e42",
+    "tests/production-contract.mjs": "29210abc75f37bca44d772a78e85e334a09a0229",
+    "tests/stage42-edge-geology.mjs": "4b9289eb56636adb940cb6c10af60f37053e6152",
+    "shared/runtime/renderer.js": "25c34f4a8c246c543389a472eb1746e6e226da88",
+    "tests/act1-deep-four-material-tiles.mjs": "b5c37df1418ded0d1ad1654a2f31b2da0441610f",
+    "tests/stage02-deep-body-tile.mjs": "3cde798d9d921c3c9ba3ec212863f596ca89191e",
+    "tests/stage08-deep-body-tile.mjs": "19c8b4e8457dfc82d4e6af012804468496d4e4ca",
+    "tests/stage09-deep-floor-tile.mjs": "abe1e3464899f3cc04459b6e1e600d0907b30551"
+  },
+  "live": {
+    "commit": "1e043b09d4ce107e1d2dcf70fe2274dff7098476",
+    "publishedAt": "2026-11-18T13:30:58.7215011Z",
+    "run": 44314130328,
+    "job": 134835662265,
+    "manifestGitBlob": "a2c034fd8cacb264498eb3bdaacca0b368cfc378",
+    "htmlGitBlob": "53b4cf0696390b5309d93edece042f3a2b55e0e5",
+    "existingRetainerGitBlob": "8374336b53c74ac81e6d32f5aa43eee575e61daa",
+    "retentionModuleGitBlob": "16687b0fc38e432a7d66a015ddf3ebe744163a06"
+  },
+  "candidateBrowserRun": 44792780986,
+  "verifiedStage42AppRun": 44779779476,
+  "currentGameHTMLSHA256": "87b82bd0b887a02294a70a9c3768d2b61d247a8f23a30f204a878046f2209192",
+  "activeGameGraphSHA256": "90859f7a36c08051d1c8df4a1f03f19b13eef829184bc3c9f568b2dd2d53f0b2",
+  "currentGameEntry": "web/entries/game.340c32a30a66adad.js",
+  "currentCampaignEntry": "web/data/campaign.9840d8f258b12a6d.json",
+  "currentStage42Packet": "web/data/chapter-42-assets.396ec98508d5b8c8.json",
+  "cameraAuthority": {
+    "head": "18a920935c7bbcf1949c927762ab4389fb0bd044",
+    "branch": "qa/final-c-act1-camera-parallel-20261121",
+    "workflow": ".github/workflows/final-c-act1-camera.yml",
+    "workflowGitBlob": "4a92f4e30bac00a0806d369429fbc0a610328117",
+    "generatedArtifactID": 14656873336,
+    "generatedZipBytes": 207254384,
+    "generatedZipDigest": "sha256:1cb3be7de035bdce17cfedb5b47a276896dc6f2589206a5d49e2ae92f7a7eb24",
+    "generatedInnerTarSHA256": "3d61e55c87d20a9a2e4463fcc5ec0c0c65a9118c0d3dff48f8cbdcb6574bc51a",
+    "joinedArtifactName": "final-c-act1-camera-exact-84",
+    "generatedArtifactName": "final-c-generated-normal-qa-only"
+  }
+}
