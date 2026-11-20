@@ -1,0 +1,63 @@
+name: Stage22 existing protection checkpoint diagnosis
+on:
+  push:
+    branches: ['qa/stage22-existing-guard-diagnosis-20261120']
+permissions:
+  contents: read
+jobs:
+  trace:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Verify isolated path additions, detached pinned cold source and prior exact edits
+        run: |
+          set -euo pipefail
+          BASE=787206f6dce947868ad9199da45fbe393d3f3c53
+          QA=a5ec11466e9b63ea1234664cfaa9ebf954467e8b
+          D="$RUNNER_TEMP/existing-guard-diagnosis"; mkdir -p "$D/out"
+          echo "DIAG=$D" >> "$GITHUB_ENV"
+          git merge-base --is-ancestor "$QA" HEAD
+          git diff --name-status "$QA" HEAD > "$D/out/qa-only-scope.txt"
+          python - "$D/out/qa-only-scope.txt" <<'PY'
+          import pathlib,sys
+          got=set(pathlib.Path(sys.argv[1]).read_text().splitlines())
+          assert got=={'A\t.github/workflows/stage22-existing-guard-diagnosis.yml','A\ttools/stage22-existing-guard-qa/checkpoints.mjs'},got
+          PY
+          git worktree add --detach "$D/canonical" "$BASE"
+          git worktree add --detach "$D/joint" "$BASE"
+          test "$(git -C "$D/canonical" rev-parse HEAD:shared/data/act2/stage13-compact-package.json)" = 413a4615c3f323b9b8d5cd21f3d0e4c2ecc0680a
+          P="$GITHUB_WORKSPACE/tools/stage13-18-proof/ci"
+          mkdir -p "$D/setup"
+          python "$P/verify.py" "$D/canonical" "$D/joint" "$D/setup"
+          python "$P/range.py" "$D/joint/shared/data/campaign.json" "$D/setup/only-range-exact.json"
+          test "$(git -C "$D/joint" hash-object shared/data/campaign.json)" = 1d8875982b1f0d5de2796bdd7bb7c594b1b172fa
+          git -C "$D/joint" diff --name-only > "$D/out/disposable-source-scope.txt"
+          test "$(wc -l < "$D/out/disposable-source-scope.txt")" = 3
+          echo "$BASE" > "$D/out/official-pinned-commit.txt"
+      - name: Install unchanged official helper dependencies and record guard checkpoints once
+        run: |
+          set -euo pipefail
+          cd "$DIAG/joint"
+          npm ci
+          npm ci --prefix game
+          Q="$GITHUB_WORKSPACE/tools/stage22-existing-guard-qa"
+          set +e
+          node "$Q/checkpoints.mjs" "$DIAG/joint" "$DIAG/out/checkpoints.json" > "$DIAG/node.private" 2>&1
+          rc=$?
+          set -e
+          echo "$rc" > "$DIAG/out/checkpoint-observer.exit"
+          sha256sum "$DIAG/node.private" | cut -d' ' -f1 > "$DIAG/out/unexported-log.sha256"
+          test "$rc" = 0
+          test "$(git hash-object shared/data/campaign.json)" = 1d8875982b1f0d5de2796bdd7bb7c594b1b172fa
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: existing-guard-field-paths-only
+          path: ${{ env.DIAG }}/out
+          retention-days: 7
