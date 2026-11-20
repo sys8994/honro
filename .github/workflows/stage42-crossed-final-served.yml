@@ -24,6 +24,7 @@ jobs:
           test "$(git rev-parse 617674f8d52e640a7070c65cfefd0301e842eef1^)" = "$BASE"
           git merge-base --is-ancestor 617674f8d52e640a7070c65cfefd0301e842eef1 HEAD
           git diff --name-only "$BASE" HEAD | tee /tmp/qa-scope.txt
+          test "$(wc -l </tmp/qa-scope.txt)" = 6
           ! grep -vE '^(tools/stage42-final-served-qa/|.github/workflows/stage42-crossed-final-served.yml$)' /tmp/qa-scope.txt
           Q="$GITHUB_WORKSPACE/tools/stage42-final-served-qa"
           W="$RUNNER_TEMP/stage42-final-served"
@@ -51,10 +52,10 @@ jobs:
             npm run build >"$OUT/build-$mode.log" 2>&1
             sha256sum -c "$OUT/source-before-$mode.sha"
           done
-      - name: Normal App final HTTP entry and six matched pose pairs
+      - name: Normal App final HTTP entry and two matched narrow poses
         run: |
           set -euo pipefail
-          python -m pip install playwright==1.58.0 pillow
+          python -m pip install playwright==1.58.0 pillow numpy
           python -m playwright install --with-deps chromium
           python -m http.server 18841 --bind 127.0.0.1 --directory "$STOCK" >/tmp/s42-stock-http.log 2>&1 &
           p1=$!

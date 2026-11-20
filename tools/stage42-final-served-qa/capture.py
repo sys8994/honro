@@ -3,6 +3,7 @@ from collections import Counter
 from pathlib import Path
 from urllib.parse import urlparse
 from PIL import Image,ImageChops
+import numpy as np
 from playwright.sync_api import sync_playwright
 from verify import sha,ADDR
 root=Path(__file__).resolve().parent
@@ -65,6 +66,19 @@ with sync_playwright() as p:
       window.__restoreNativeQA=()=>{if(active||p.now!==originalNow||call!==restore||HonroTimeOfDay.sky!==observed)throw Error('native sky receipt inconsistent');
         HonroTimeOfDay.sky=original;return {calls:call,restores:restore};};
       window.__witness=q;
+      const origD=HonroVectorArt.draw, origT=s._drawTerrainDomainTiles;
+      const draws=[], domains=[], local=()=>HonroTerrainDomain.materialLandmarks(b).find(l=>l.asset?.id==='act5:near:42');
+      let inDomain=false;
+      HonroVectorArt.draw=function(c,asset,...rest){if(asset?.id==='act5:stage42:registered-body'&&draws.length<64){const m=c.getTransform();
+       draws.push({inDomain,transform:[m.a,m.b,m.c,m.d,m.e,m.f],canvas:[c.canvas.width,c.canvas.height],style:c.honroVisualLayer??null,clip:asset.bounds});}
+       return origD.call(this,c,asset,...rest);};
+      s._drawTerrainDomainTiles=function(c,bb,w,h){if(domains.length<3){const d=bb.honroTerrainBounds,l=local(),size=512/s._worldRasterScale(bb,w),v=HonroBounds.viewport(s,w,h);
+       if(!l)throw Error('active near42 terrain landmark missing');
+       const tiles={left:Math.floor(d.left/size)*size,top:Math.floor(d.top/size)*size,right:(Math.floor(d.right/size)+1)*size,bottom:(Math.floor(d.bottom/size)+1)*size};
+       domains.push({tileWorldSize:size,domain:d,viewport:v,tiles,landmark:{x:l.x,y:l.y,scale:l.scale},paint:s._landmarkPaintBounds(l),
+       extended:v.left<tiles.left||v.right>tiles.right||v.top<tiles.top||v.bottom>tiles.bottom});}
+       inDomain=true;try{return origT.call(this,c,bb,w,h);}finally{inDomain=false;}};
+      window.__ownerReceipt=()=>{HonroVectorArt.draw=origD;delete s._drawTerrainDomainTiles;return {draws,domains};};
       s.render(a.engine,0,'',.6,false,0);}""",q)
    page.wait_for_function("window.__qaImages.every(i=>!i.src||i.complete)",timeout=60000)
    page.evaluate("async()=>{await document.fonts.ready;const failed=window.__qaImages.filter(i=>i.src&&i.complete&&!i.naturalWidth);if(failed.length)throw Error('Registered scene image failed to decode');}")
@@ -83,7 +97,7 @@ with sync_playwright() as p:
     const pos={x:s.x,y:s.y,scale:s.scale}, r=s.canvas.getBoundingClientRect(),focus=HonroBounds.focus(b);
     if(Object.keys(pos).some(k=>Math.abs(pos[k]-q.pose.actual[k])>1e-7))throw Error('Archived pose not reached without changing the camera contract: '+JSON.stringify(pos));
     if(pos.x<focus.left-1e-7||pos.x>focus.right+1e-7||pos.y<focus.top-1e-7||pos.y>focus.bottom+1e-7)throw Error('Archived camera outside supported focus');
-    const timing=[];for(let i=0;i<12;i++){const t=performance.now();s.render(a.engine,0,'',.6,false,0);timing.push(performance.now()-t);} const near=HONRO_PROJECT.library.find(v=>v.id==='act5:near:42'); if(!near?.edgeWall)throw Error('missing actual BODY binding'); const binding=JSON.stringify(near.edgeWall);HonroVectorArt.draw=drawOriginal;return {timing,binding,bodyCalls,actual:pos,css:{w:r.width,h:r.height},backing:[s.canvas.width,s.canvas.height],focus,viewport:HonroBounds.viewport(s,r.width,r.height),tide:b.honroAct4PreviewState?.tide||null,state:before,raw:s.canvas.toDataURL('image/png').split(',')[1]};}""")
+    const timing=[];for(let i=0;i<12;i++){const t=performance.now();s.render(a.engine,0,'',.6,false,0);timing.push(performance.now()-t);} const near=HONRO_PROJECT.library.find(v=>v.id==='act5:near:42'); if(!near?.edgeWall)throw Error('missing actual BODY binding'); const binding=JSON.stringify(near.edgeWall);const surface=JSON.stringify(near.edgeSurface),props=JSON.stringify(near.vector);HonroVectorArt.draw=drawOriginal;return {timing,binding,surface,props,bodyCalls,actual:pos,css:{w:r.width,h:r.height},backing:[s.canvas.width,s.canvas.height],focus,viewport:HonroBounds.viewport(s,r.width,r.height),tide:b.honroAct4PreviewState?.tide||null,state:before,raw:s.canvas.toDataURL('image/png').split(',')[1]};}""")
    assert result['backing']==params['backing'],(q['stage'],'archive backing',result['backing'],params['backing'])
    if 'css' in params:assert result['css']==params['css'],(q['stage'],'archive CSS',result['css'],params['css'])
    if q['case']=='low-tide':assert result['tide']=={'phase':'low','surface':4095,'warningRound':2,'highRound':5,'lowRound':7},result['tide']
@@ -94,6 +108,7 @@ with sync_playwright() as p:
    repeat={k:changed(sig_image(v),sig_image(sec[k])).histogram()[255] for k,v in pixels.items()}
    for k,v in sec.items():
     if repeat[k]:(out/(prefix+'-'+k+'-repeat.png')).write_bytes(v)
+   result['edgeRenderer']=page.evaluate('()=>window.__ownerReceipt()')
    result['nativeSky']=page.evaluate("()=>window.__restoreNativeQA()")
    assert result['nativeSky']['calls']==result['nativeSky']['restores']
    response_indices={}
@@ -107,7 +122,11 @@ with sync_playwright() as p:
      if b!=expected_sha or not b.startswith(ADDR.fullmatch(path)[2]):bad.append(['HTTP-content-address',path,b,expected_sha])
      response_indices[path]={'sha256':b,'bytes':len(body)}
    assert any('/entries/game.' in path for path in response_indices),('Normal entry fetch not observed',q['stage'])
-   result['stateSHA256']=sha(result.pop('state').encode());result['bindingSHA256']=sha(result.pop('binding').encode())
+   result['stateSHA256']=sha(result.pop('state').encode()); binding=result.pop('binding'); result['bindingSHA256']=sha(binding.encode())
+   source=json.loads((bins[i]/'shared/assets/environment/act5/stage42-registered-body.json').read_text())
+   assert json.loads(binding)==source, 'active BODY does not match the pinned exact package'
+   result['surfaceSHA256']=sha(result.pop('surface').encode());result['propsSHA256']=sha(result.pop('props').encode())
+   assert result['edgeRenderer']['draws'] and result['edgeRenderer']['domains'], 'missing actual landscape paint/culling path'
    result['assets']=response_indices
    result['repeat']=repeat;result['bad']=bad
    return result,pixels
@@ -121,6 +140,24 @@ with sync_playwright() as p:
    assert item['stateCameraEqual'], 'world/camera/actors changed'
    assert not aa['bad'] and not bb['bad'], 'browser/asset error'
    assert aa['bindingSHA256']!=bb['bindingSHA256'], 'candidate binding lost in build'
+   assert all(aa[k]==bb[k] for k in ('surfaceSHA256','propsSHA256')), 'SURFACE or props changed'
+   A,B=[np.array(sig_image(x['raw'])).astype(np.int16) for x in (a,b)]
+   h,w=A.shape[:2];err=np.abs(A-B).max(2);srcScale=6500/2022;sx=(np.arange(w)+.5-w/2)/aa['actual']['scale']/srcScale+aa['actual']['x']/srcScale;sy=(np.arange(h)+.5-h/2)/aa['actual']['scale']/srcScale+aa['actual']['y']/srcScale
+   top=sy[:,None]<779
+   owned=(~top)|((sx[None,:]>=2235)&(sx[None,:]<=2325)&(sy[:,None]>=662)&(sy[:,None]<=845))
+   core=np.unpackbits(np.frombuffer(zlib.decompress(base64.b64decode(q['nativeCore'])),dtype=np.uint8).reshape(h,(w+7)//8),axis=1)[:,:w].astype(bool)
+   assert int(core.sum())==q['nativeCoreCount']
+   def summary(mask):
+    e=err[np.broadcast_to(mask,err.shape)];return dict(changed=int((e>0).sum()),max=int(e.max(initial=0)),gt4=int((e>4).sum()),gt16=int((e>16).sum()))
+   domn=bb['edgeRenderer']['domains'][0];bbands={}
+   for axis,lo,hi,coords in [('x','left','right',sx),('y','top','bottom',sy)]:
+    for k in (lo,hi):
+     proj=abs(coords-domn['tiles'][k]/srcScale)*srcScale*bb['actual']['scale']
+     if proj.min()<2.5:bbands[k]=dict(pixel=int(proj.argmin()),within2px=summary((proj<=2)[None,:] if axis=='x' else (proj<=2)[:,None]))
+   item['regions']={'outsideProtectedOwnership':summary(~owned),'upperProtected':summary(top&~owned),'outsideNativeCore':summary(~core),'nativeCore':summary(core),'tileExteriorBoundaryBands':bbands}
+   # Deviations are observations, not a tolerance-based pass.
+   Image.fromarray((core*255).astype('uint8')).save(out/(q['key']+'-native-core.png'))
+   Image.fromarray((~owned*255).astype('uint8')).save(out/(q['key']+'-protected.png'))
    assert not any(aa['repeat'].values()) and not any(bb['repeat'].values()), 'unstable repeated frame'
    item['changedPixels']=changed(sig_image(a['raw']),sig_image(b['raw'])).histogram()[255]
   except Exception as e:
