@@ -1,0 +1,71 @@
+name: Stage36 current-baseline native rock pocket
+on:
+  push:
+    branches: [qa/stage36-current-4416-native-pocket-20261121]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 3
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Exact source-only detached current pair and normal builds
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REPOSITORY" = sys8994/honro
+          test "$GITHUB_EVENT_NAME" = push
+          test "$GITHUB_REF" = refs/heads/qa/stage36-current-4416-native-pocket-20261121
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          export CI=true
+          R="$GITHUB_WORKSPACE"
+          Q="$R/tools/stage36-current-pocket"
+          W="$RUNNER_TEMP/stage36-current-pocket"
+          mkdir -p "$W/out"
+          echo "WORK=$W" >> "$GITHUB_ENV"
+          git worktree add --detach "$W/stock" 4416dfb527f810398903d15510ab8ca05a892661
+          git worktree add --detach "$W/target" 4ed239f7fb560211296fd3f9d635067af00a7bfe
+          python "$Q/guard.py" source "$R" "$W/stock" "$W/target" "$W/out"
+          for side in stock target; do
+            (
+              cd "$W/$side"
+              npm ci > "$W/out/npm-root-$side.log" 2>&1
+              npm ci --prefix game > "$W/out/npm-game-$side.log" 2>&1
+              npm run test:release-guard > "$W/out/release-guard-$side.log" 2>&1
+              npm run build > "$W/out/build-$side.log" 2>&1
+              npm run test:production-contract > "$W/out/production-contract-$side.log" 2>&1
+            )
+          done
+          python "$Q/guard.py" post "$R" "$W/stock" "$W/target" "$W/out"
+          python "$Q/guard.py" built "$W/stock" "$W/target" "$W/out"
+      - name: Eight normal Stage36 poses and eight Stage37 protected controls
+        shell: bash
+        timeout-minutes: 23
+        run: |
+          set -euo pipefail
+          Q="$GITHUB_WORKSPACE/tools/stage36-current-pocket"
+          python -m pip install playwright==1.58.0 pillow
+          python -m playwright install --with-deps chromium
+          python -m http.server 18841 --bind 127.0.0.1 --directory "$WORK/stock" > "$WORK/out/http-stock.log" 2>&1 &
+          x=$!
+          python -m http.server 18842 --bind 127.0.0.1 --directory "$WORK/target" > "$WORK/out/http-target.log" 2>&1 &
+          y=$!
+          trap 'kill "$x" "$y" 2>/dev/null || true' EXIT
+          for p in 18841 18842; do curl -fsS --retry 8 --retry-connrefused "http://127.0.0.1:$p/HONRO.html" -o /dev/null; done
+          PORT=18841 OUT="$WORK/out/stock" GRAPH="$WORK/out/stock-graph.json" python "$Q/capture.py"
+          PORT=18842 OUT="$WORK/out/target" GRAPH="$WORK/out/target-graph.json" python "$Q/capture.py"
+          python "$Q/verify.py" "$WORK/out"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: stage36-current-native-http-pocket-proof
+          path: ${{ runner.temp }}/stage36-current-pocket/out/
+          if-no-files-found: error
+          retention-days: 7
