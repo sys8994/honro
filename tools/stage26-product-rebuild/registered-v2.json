@@ -1,0 +1,466 @@
+{
+  "sourceArtifact": 14667891892,
+  "sourceZipSHA256": "1a82c13fcafe3177e6ee3653b0b006bd0c436c32ce75c5966c2c2730403aad8a",
+  "arms": {
+    "A": [
+      {
+        "requested": {
+          "x": -1000000,
+          "y": 1000000,
+          "scale": 0.21176470588235294
+        },
+        "actual": {
+          "x": -320,
+          "y": 3540,
+          "scale": 0.21176470588235294
+        },
+        "adjusted": {
+          "x": -320,
+          "y": 3540,
+          "scale": 0.21176470588235294
+        },
+        "clamped": true,
+        "within": true,
+        "focus": {
+          "left": -320,
+          "top": -1800,
+          "right": 7320,
+          "bottom": 3540
+        },
+        "viewport": {
+          "left": -3720,
+          "right": 3080,
+          "top": 1723.8628472222222,
+          "bottom": 5356.137152777777
+        },
+        "css": {
+          "w": 1440,
+          "h": 769.1875
+        },
+        "backing": [
+          1440,
+          769
+        ],
+        "actorCount": 22,
+        "projectStage": "stage-26",
+        "tide": null,
+        "rawPng": "stock-4416-s26-1440x900-southwest-raw.png",
+        "rawSha256": "022071f7de27185cda586070bf67515948c41bf5fe57661b815dd170d808cc77",
+        "stage": 26,
+        "view": "southwest",
+        "width": 1440,
+        "height": 900,
+        "name": "stock-4416-s26-1440x900-southwest.png",
+        "rasterSha256": "c1843000650723514a4ff70375c3d97b5d699da635f6645057a35741964d8d1e",
+        "physicsSha256": "7f756aa46da13a5f71aadbf5a9cbe3f325222bcec00dddf9feb4c85d5af9411c",
+        "decodedPngSize": [
+          1440,
+          770
+        ],
+        "rasterSha256RGBA": "0d8d3613514ac1bee7dfa8b6034c0258777771d66a525d97cb7aae1219ce185d",
+        "rawSha256RGBA": "6915f2d0fd0b0d5842b0ad817c9f9a93c8c15d73f73c44bc133a5acc92ddd9c3"
+      },
+      {
+        "requested": {
+          "x": 1000000,
+          "y": 1000000,
+          "scale": 0.21176470588235294
+        },
+        "actual": {
+          "x": 7320,
+          "y": 3540,
+          "scale": 0.21176470588235294
+        },
+        "adjusted": {
+          "x": 7320,
+          "y": 3540,
+          "scale": 0.21176470588235294
+        },
+        "clamped": true,
+        "within": true,
+        "focus": {
+          "left": -320,
+          "top": -1800,
+          "right": 7320,
+          "bottom": 3540
+        },
+        "viewport": {
+          "left": 3920,
+          "right": 10720,
+          "top": 1723.8628472222222,
+          "bottom": 5356.137152777777
+        },
+        "css": {
+          "w": 1440,
+          "h": 769.1875
+        },
+        "backing": [
+          1440,
+          769
+        ],
+        "actorCount": 22,
+        "projectStage": "stage-26",
+        "tide": null,
+        "rawPng": "stock-4416-s26-1440x900-southeast-raw.png",
+        "rawSha256": "72d41ae45379396543055c3d26fb568bcf997f0e0a8c9ec2f22413c4fe67c69f",
+        "stage": 26,
+        "view": "southeast",
+        "width": 1440,
+        "height": 900,
+        "name": "stock-4416-s26-1440x900-southeast.png",
+        "rasterSha256": "5ad8d84bce6177b60488ed4cb213567514293d46a1e8629e4318f8fa72d2fb1b",
+        "physicsSha256": "7f756aa46da13a5f71aadbf5a9cbe3f325222bcec00dddf9feb4c85d5af9411c",
+        "decodedPngSize": [
+          1440,
+          770
+        ],
+        "rasterSha256RGBA": "0d658d85e3a2f24e6bd58faab1a2cd954b1e796f8b2f91ff6c6d308a9e2eb44c",
+        "rawSha256RGBA": "5e01a0538884c9d4debbf9f0a07a54764408ff99e6fcda6200c7dccd4031019d"
+      },
+      {
+        "requested": {
+          "x": -1000000,
+          "y": 1000000,
+          "scale": 0.057352941176470586
+        },
+        "actual": {
+          "x": -320,
+          "y": 3540,
+          "scale": 0.057352941176470586
+        },
+        "adjusted": {
+          "x": -320,
+          "y": 3540,
+          "scale": 0.057352941176470586
+        },
+        "clamped": true,
+        "within": true,
+        "focus": {
+          "left": -320,
+          "top": -1800,
+          "right": 7320,
+          "bottom": 3540
+        },
+        "viewport": {
+          "left": -3720,
+          "right": 3080,
+          "top": -2105.8253205128203,
+          "bottom": 9185.82532051282
+        },
+        "css": {
+          "w": 390,
+          "h": 647.609375
+        },
+        "backing": [
+          390,
+          648
+        ],
+        "actorCount": 22,
+        "projectStage": "stage-26",
+        "tide": null,
+        "rawPng": "stock-4416-s26-390x844-southwest-raw.png",
+        "rawSha256": "a34316e53bcac57704b646f93d7851ec5ffaf1d0fd348b8f1a808d972ac74a06",
+        "stage": 26,
+        "view": "southwest",
+        "width": 390,
+        "height": 844,
+        "name": "stock-4416-s26-390x844-southwest.png",
+        "rasterSha256": "780a7c67719103ba9f8098156859ef3794419157bc03fe93388d9d8951009330",
+        "physicsSha256": "7f756aa46da13a5f71aadbf5a9cbe3f325222bcec00dddf9feb4c85d5af9411c",
+        "decodedPngSize": [
+          390,
+          648
+        ],
+        "rasterSha256RGBA": "df740012c0119b624413c1b5eb18df9245e2020cfa998608bf6fae35c08082b5",
+        "rawSha256RGBA": "87819d4d40f67b7702c1114b8107faee33515748a552237ad4336e76f26d282d"
+      },
+      {
+        "requested": {
+          "x": 1000000,
+          "y": 1000000,
+          "scale": 0.057352941176470586
+        },
+        "actual": {
+          "x": 7320,
+          "y": 3540,
+          "scale": 0.057352941176470586
+        },
+        "adjusted": {
+          "x": 7320,
+          "y": 3540,
+          "scale": 0.057352941176470586
+        },
+        "clamped": true,
+        "within": true,
+        "focus": {
+          "left": -320,
+          "top": -1800,
+          "right": 7320,
+          "bottom": 3540
+        },
+        "viewport": {
+          "left": 3920,
+          "right": 10720,
+          "top": -2105.8253205128203,
+          "bottom": 9185.82532051282
+        },
+        "css": {
+          "w": 390,
+          "h": 647.609375
+        },
+        "backing": [
+          390,
+          648
+        ],
+        "actorCount": 22,
+        "projectStage": "stage-26",
+        "tide": null,
+        "rawPng": "stock-4416-s26-390x844-southeast-raw.png",
+        "rawSha256": "2cf366345c6f89514d6caf00653d09ea958b3c8e37303b5f0e7d4b4f2296327d",
+        "stage": 26,
+        "view": "southeast",
+        "width": 390,
+        "height": 844,
+        "name": "stock-4416-s26-390x844-southeast.png",
+        "rasterSha256": "1250ab9b3319ad87d9c52867195032dda40a99bb43730d2aa477a8506c78a8c7",
+        "physicsSha256": "7f756aa46da13a5f71aadbf5a9cbe3f325222bcec00dddf9feb4c85d5af9411c",
+        "decodedPngSize": [
+          390,
+          648
+        ],
+        "rasterSha256RGBA": "a07d5cec9d73f03a757e3a87f918725e1efbbb1d4a66469cd3c9a4da76837ea0",
+        "rawSha256RGBA": "fd931d68af6b895e2ac6b2ecb3f5f9c0623221e5b2a43bd1be48ef434b617d1e"
+      }
+    ],
+    "B": [
+      {
+        "requested": {
+          "x": -1000000,
+          "y": 1000000,
+          "scale": 0.21176470588235294
+        },
+        "actual": {
+          "x": -320,
+          "y": 3540,
+          "scale": 0.21176470588235294
+        },
+        "adjusted": {
+          "x": -320,
+          "y": 3540,
+          "scale": 0.21176470588235294
+        },
+        "clamped": true,
+        "within": true,
+        "focus": {
+          "left": -320,
+          "top": -1800,
+          "right": 7320,
+          "bottom": 3540
+        },
+        "viewport": {
+          "left": -3720,
+          "right": 3080,
+          "top": 1723.8628472222222,
+          "bottom": 5356.137152777777
+        },
+        "css": {
+          "w": 1440,
+          "h": 769.1875
+        },
+        "backing": [
+          1440,
+          769
+        ],
+        "actorCount": 22,
+        "projectStage": "stage-26",
+        "tide": null,
+        "rawPng": "stock-4416-s26-1440x900-southwest-raw.png",
+        "rawSha256": "dc1b1e8b5d9fa7d7edb90e0388af952d6e93bfc801f129df823046e7121ddd11",
+        "stage": 26,
+        "view": "southwest",
+        "width": 1440,
+        "height": 900,
+        "name": "stock-4416-s26-1440x900-southwest.png",
+        "rasterSha256": "64264e33c0703c745d04eae642c5536f89e483281ade9b6cb47d0d52d6c75f1d",
+        "physicsSha256": "7f756aa46da13a5f71aadbf5a9cbe3f325222bcec00dddf9feb4c85d5af9411c",
+        "decodedPngSize": [
+          1440,
+          770
+        ],
+        "rasterSha256RGBA": "d0e16592879b64f2347af72c5615c316c5080bdce936e3e84c2372beecf0393b",
+        "rawSha256RGBA": "1e21266df9eaf186b890e27af57421f48767277dff95fbe93ddef4e172adfbeb"
+      },
+      {
+        "requested": {
+          "x": 1000000,
+          "y": 1000000,
+          "scale": 0.21176470588235294
+        },
+        "actual": {
+          "x": 7320,
+          "y": 3540,
+          "scale": 0.21176470588235294
+        },
+        "adjusted": {
+          "x": 7320,
+          "y": 3540,
+          "scale": 0.21176470588235294
+        },
+        "clamped": true,
+        "within": true,
+        "focus": {
+          "left": -320,
+          "top": -1800,
+          "right": 7320,
+          "bottom": 3540
+        },
+        "viewport": {
+          "left": 3920,
+          "right": 10720,
+          "top": 1723.8628472222222,
+          "bottom": 5356.137152777777
+        },
+        "css": {
+          "w": 1440,
+          "h": 769.1875
+        },
+        "backing": [
+          1440,
+          769
+        ],
+        "actorCount": 22,
+        "projectStage": "stage-26",
+        "tide": null,
+        "rawPng": "stock-4416-s26-1440x900-southeast-raw.png",
+        "rawSha256": "72d41ae45379396543055c3d26fb568bcf997f0e0a8c9ec2f22413c4fe67c69f",
+        "stage": 26,
+        "view": "southeast",
+        "width": 1440,
+        "height": 900,
+        "name": "stock-4416-s26-1440x900-southeast.png",
+        "rasterSha256": "5ad8d84bce6177b60488ed4cb213567514293d46a1e8629e4318f8fa72d2fb1b",
+        "physicsSha256": "7f756aa46da13a5f71aadbf5a9cbe3f325222bcec00dddf9feb4c85d5af9411c",
+        "decodedPngSize": [
+          1440,
+          770
+        ],
+        "rasterSha256RGBA": "0d658d85e3a2f24e6bd58faab1a2cd954b1e796f8b2f91ff6c6d308a9e2eb44c",
+        "rawSha256RGBA": "5e01a0538884c9d4debbf9f0a07a54764408ff99e6fcda6200c7dccd4031019d"
+      },
+      {
+        "requested": {
+          "x": -1000000,
+          "y": 1000000,
+          "scale": 0.057352941176470586
+        },
+        "actual": {
+          "x": -320,
+          "y": 3540,
+          "scale": 0.057352941176470586
+        },
+        "adjusted": {
+          "x": -320,
+          "y": 3540,
+          "scale": 0.057352941176470586
+        },
+        "clamped": true,
+        "within": true,
+        "focus": {
+          "left": -320,
+          "top": -1800,
+          "right": 7320,
+          "bottom": 3540
+        },
+        "viewport": {
+          "left": -3720,
+          "right": 3080,
+          "top": -2105.8253205128203,
+          "bottom": 9185.82532051282
+        },
+        "css": {
+          "w": 390,
+          "h": 647.609375
+        },
+        "backing": [
+          390,
+          648
+        ],
+        "actorCount": 22,
+        "projectStage": "stage-26",
+        "tide": null,
+        "rawPng": "stock-4416-s26-390x844-southwest-raw.png",
+        "rawSha256": "9a9d632784aed8b3824de0ad8262c187207352eca62125a932b020fc56738eef",
+        "stage": 26,
+        "view": "southwest",
+        "width": 390,
+        "height": 844,
+        "name": "stock-4416-s26-390x844-southwest.png",
+        "rasterSha256": "c420b5488bf980808fcad76dab580c3742e420993f9b8434b9087ace9b201176",
+        "physicsSha256": "7f756aa46da13a5f71aadbf5a9cbe3f325222bcec00dddf9feb4c85d5af9411c",
+        "decodedPngSize": [
+          390,
+          648
+        ],
+        "rasterSha256RGBA": "bfcd37fbbbf310ec85eefacd1593cdd8f637826656f80e89540884bb4ad80484",
+        "rawSha256RGBA": "f3ee2e78cf6e5b931d0dd75a09d8f9a0cee18771cf71a9a8d510d8f84afbfab2"
+      },
+      {
+        "requested": {
+          "x": 1000000,
+          "y": 1000000,
+          "scale": 0.057352941176470586
+        },
+        "actual": {
+          "x": 7320,
+          "y": 3540,
+          "scale": 0.057352941176470586
+        },
+        "adjusted": {
+          "x": 7320,
+          "y": 3540,
+          "scale": 0.057352941176470586
+        },
+        "clamped": true,
+        "within": true,
+        "focus": {
+          "left": -320,
+          "top": -1800,
+          "right": 7320,
+          "bottom": 3540
+        },
+        "viewport": {
+          "left": 3920,
+          "right": 10720,
+          "top": -2105.8253205128203,
+          "bottom": 9185.82532051282
+        },
+        "css": {
+          "w": 390,
+          "h": 647.609375
+        },
+        "backing": [
+          390,
+          648
+        ],
+        "actorCount": 22,
+        "projectStage": "stage-26",
+        "tide": null,
+        "rawPng": "stock-4416-s26-390x844-southeast-raw.png",
+        "rawSha256": "2cf366345c6f89514d6caf00653d09ea958b3c8e37303b5f0e7d4b4f2296327d",
+        "stage": 26,
+        "view": "southeast",
+        "width": 390,
+        "height": 844,
+        "name": "stock-4416-s26-390x844-southeast.png",
+        "rasterSha256": "1250ab9b3319ad87d9c52867195032dda40a99bb43730d2aa477a8506c78a8c7",
+        "physicsSha256": "7f756aa46da13a5f71aadbf5a9cbe3f325222bcec00dddf9feb4c85d5af9411c",
+        "decodedPngSize": [
+          390,
+          648
+        ],
+        "rasterSha256RGBA": "a07d5cec9d73f03a757e3a87f918725e1efbbb1d4a66469cd3c9a4da76837ea0",
+        "rawSha256RGBA": "fd931d68af6b895e2ac6b2ecb3f5f9c0623221e5b2a43bd1be48ef434b617d1e"
+      }
+    ]
+  }
+}
