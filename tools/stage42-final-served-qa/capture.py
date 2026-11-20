@@ -8,6 +8,7 @@ from playwright.sync_api import sync_playwright
 from verify import sha,ADDR
 root=Path(__file__).resolve().parent
 views=json.loads((root/'views.json').read_text())
+ARCHIVED={'1440-east': {'stockBinding': '2123df732af9e534a8a63e3b70bb2cfdef065818df0ef5d17c012d75ee75a645', 'stockEntry': '3b3ba95261b2b7588447e1b9ee5db8fee4bdb72692e5153a356054fd26b660b0', 'priorTargetBinding': '600eac6aea07733c651dbe94b287c8bd1290a336e5d1bdb05ab61989920ee023', 'priorState': '913d0b98f987bc1fb4f1a62b65a1604febbe7c6d58f9923cc89e1b7714da1174'}, '390-southeast': {'stockBinding': '2123df732af9e534a8a63e3b70bb2cfdef065818df0ef5d17c012d75ee75a645', 'stockEntry': '3b3ba95261b2b7588447e1b9ee5db8fee4bdb72692e5153a356054fd26b660b0', 'priorTargetBinding': '600eac6aea07733c651dbe94b287c8bd1290a336e5d1bdb05ab61989920ee023', 'priorState': '913d0b98f987bc1fb4f1a62b65a1604febbe7c6d58f9923cc89e1b7714da1174'}}
 
 out=Path(os.environ["OUT"]);out.mkdir(parents=True,exist_ok=True)
 bins=[Path(os.environ[s]) for s in ("STOCK","TARGET")]
@@ -136,7 +137,7 @@ with sync_playwright() as p:
   item={'view':q['key']}
   try:
    aa,a=get(0,q);bb,b=get(1,q)
-   item.update(stock=aa,target=bb,stateCameraEqual=all(aa[k]==bb[k] for k in ('actual','css','backing','focus','viewport','stateSHA256')))
+   prior=ARCHIVED[q['key']];assert aa['bindingSHA256']==prior['stockBinding'];assert aa['stateSHA256']==prior['priorState'];assert next(v['sha256'] for k,v in aa['assets'].items() if '/entries/game.' in k)==prior['stockEntry'];assert bb['bindingSHA256']!=prior['priorTargetBinding'];item['exactPriorStockEntryBindingState']=True;item.update(stock=aa,target=bb,stateCameraEqual=all(aa[k]==bb[k] for k in ('actual','css','backing','focus','viewport','stateSHA256')))
    assert item['stateCameraEqual'], 'world/camera/actors changed'
    assert not aa['bad'] and not bb['bad'], 'browser/asset error'
    assert aa['bindingSHA256']!=bb['bindingSHA256'], 'candidate binding lost in build'
