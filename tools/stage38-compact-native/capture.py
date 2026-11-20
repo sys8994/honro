@@ -21,7 +21,7 @@ BGM=re.compile(r'assets/bgm/(?:main|battle-[123])\.mp3')
 frames,net,errors,media,local_blobs=[],[],[],[],[]
 LOCAL_BLOB=re.compile(r'blob:https://sys8994\.github\.io/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}')
 receipt={'scope':'Stationary first-turn Stage38 transient A/B diagnostic; B holds exactly one QA owner response. No product changes, movement or combat.',
-         'arm':ARM,
+         'arm':ARM,'poseAttempts':[],
          'release':LIVE,'frames':frames,'network':net,'errors':errors,'silentMedia':media,'localBrowserBlobs':local_blobs,'complete':False,
          'reference':P['probe']['authority']}
 def persist():save('proof.json',receipt)
@@ -159,9 +159,14 @@ with sync_playwright() as p:
              const native=z=>{const w=v.headPoint(z,s.time);return {world:w,screen:w?{x:(w.x-pts.left)*s.scale,y:(w.y-pts.top)*s.scale}:null};};
              const clip=G=>G?.parts?.map(p=>({id:p.id,parent:p.parent??null,pivot:p.pivot,paths:p.paths.map(({d,fill,stroke,width,lod})=>({d,fill,stroke,width,lod}))}));
              const live=v.assets.pursuer;
+             const actor=HonroActorVisual;
              return {nativeHeads:{warden:native(r),small:native(u)},counter:globalThis.__qaStage38CompactPaint??null,livePursuerParts:clip(live),
+                dispatch:{side:r.side,actorKind:actor.kind(r),actorMonsterKind:actor.monsterKind(r),enemyRigKind:v.kind(r)},
                  nativeHeadPivot:live.parts.find(p=>p.id==='head').pivot};
             }''')
+            receipt['poseAttempts'].append({k:v for k,v in {'view':scope,'beforeCount':trace_before,**facts}.items() if k!='livePursuerParts'})
+            persist()
+            assert facts['dispatch']=={'side':1,'actorKind':None,'actorMonsterKind':None,'enemyRigKind':'pursuer'},facts['dispatch']
             oldParts=P['probe']['localApproved']['originalParts']
             for p0 in oldParts:
                 if p0.get('parent') is None:p0['parent']=None
@@ -207,6 +212,9 @@ with sync_playwright() as p:
         receipt['complete']=True
     except Exception as err:
         errors.append(['capture failure',repr(err)])
+        if ARM=='B':
+          try:receipt['lastGateTrace']=page.evaluate('()=>globalThis.__qaStage38CompactPaint??null')
+          except Exception as trace:receipt['lastGateTraceError']=repr(trace)
         raise
     finally:
         persist();ctx.close();browser.close()

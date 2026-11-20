@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
-          fetch-depth: 3
+          fetch-depth: 4
           persist-credentials: false
       - name: Pin Stage38 current source closure and validate reversible one-owner change
         shell: bash

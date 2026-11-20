@@ -18,12 +18,18 @@ def check_body(rel,b,want):
     return b
 def scope():
     prior='d20edc6cd0914dabd99994162bb3f54807167b88'
-    assert git('rev-list','--parents','-n1','HEAD').decode().split()==[os.environ['GITHUB_SHA'],prior]
+    previous='e455d3c8939114235ee73b55ead018a08b1d2459'
+    assert git('rev-list','--parents','-n1','HEAD').decode().split()==[os.environ['GITHUB_SHA'],previous]
+    assert git('rev-list','--parents','-n1',previous).decode().split()==[previous,prior]
     assert git('rev-list','--parents','-n1',prior).decode().split()==[prior,LIVE]
-    assert set(git('diff','--name-status','--no-renames',prior,'HEAD').decode().splitlines())=={
+    assert set(git('diff','--name-status','--no-renames',prior,previous).decode().splitlines())=={
        'M\t.github/workflows/stage38-compact-native.yml',
        'M\ttools/stage38-compact-native/capture.py',
        'M\ttools/stage38-compact-native/compare.py',
+       'M\ttools/stage38-compact-native/source.py'}
+    assert set(git('diff','--name-status','--no-renames',previous,'HEAD').decode().splitlines())=={
+       'M\t.github/workflows/stage38-compact-native.yml',
+       'M\ttools/stage38-compact-native/capture.py',
        'M\ttools/stage38-compact-native/source.py'}
     assert git('rev-parse',LIVE+'^{tree}').decode().strip()==P['live']['tree']
     rows=git('diff','--name-status','--no-renames','-z',LIVE,'HEAD').split(b'\0')
@@ -69,14 +75,17 @@ def aggregate(data):
 
 OWNER=P['runtime']['monsterVector']
 ORIGINAL_GIT='254a8ea0ccfe60ce49e431959b144cc6217231e0'
-PREFIX=b'S.render=function(engine,...args){this.actorEngine=engine;return render.call(this,engine,...args)};'
-SLOT=b'visual.draw(c,id,{time:this.time||0,state:actor?state(u,this.actorEngine):visual.state(u),pixels:pixels});'
+PREFIX=b'return{...current,move:false,attack:attack,special:special}}'
+SLOT=b'draw(c,id,{time:scene.time||0,state:motionState(scene,u,a),pixels:pixels});'
+ACTOR_DELEGATES=b'function monsterKind(u){if(!u||u.side!==2||u.boss||u.summoned||G.resolveRebuildCharacter?.(u))return null;'
+ENEMY_ACCEPTS=b'function kind(u){if(u.side!==1&&!u.enthrall||u.boss||u.honroFinalBoss||u.id==="boss"||u.summoned)return null;'
 def prepare(owner):
     check_body(OWNER,owner,P['needed'][OWNER])
     assert hashlib.sha1(f'blob {len(owner)}\0'.encode()+owner).hexdigest()==ORIGINAL_GIT
+    assert owner.count(ACTOR_DELEGATES)==owner.count(ENEMY_ACCEPTS)==1
     assert owner.count(PREFIX)==owner.count(SLOT)==1 and owner.count(b'__qaStage38CompactPaint')==0
     lo=owner.index(PREFIX)+len(PREFIX)
-    assert owner[lo:].startswith(b'S.unitBody=function(c,u,charge=0){')
+    assert owner[lo:].startswith(b'function drawBody(scene,c,u,id){')
     hi=owner.index(SLOT,lo)
     assert 0<hi-lo<800
     cfg=P['probe']['localApproved']
@@ -84,22 +93,36 @@ def prepare(owner):
     edit=json.dumps(cfg['paths'],separators=(',',':'),ensure_ascii=True)
     schema=json.dumps({'baseHeight':cfg['originalBaseHeight'],'parts':cfg['originalParts'],'palette':cfg['originalPalette']},separators=(',',':'),ensure_ascii=True)
     preload=('const stage38CompactPaths='+edit+',stage38StockRig='+schema+';').encode()+b"""const stage38Private=new WeakMap;
-const stage38Paper=(scene,c,u,actor,id,a,opts)=>{
- if(actor||id!=='pursuer'||u.id!=='a4-38-e-1'||u.facing!==-1)return false;
+const stage38Paper=(scene,c,u,id,a,opts)=>{
+ if(u.id!=='a4-38-e-1')return false;
  const e=scene.actorEngine,b=e?.b;
- if(!b||!b.honroCanonical||b.honroCustom!==false||b.honroStage!==38||b.phase!=='aim'||b.round!==1)return false;
+ const q=G.__qaStage38CompactPaint??=({count:0,entered:0,last:null,blocked:{},lastGuard:null});
+ q.entered++;
+ const stop=(why)=>{q.blocked[why]=(q.blocked[why]||0)+1;return false;};
+ q.lastGuard={source:'monster-vector.drawBody',rig:id,facing:u.facing,visualSide:u.side,
+   engine:!!e,stage:b?.honroStage,canonical:b?.honroCanonical,custom:b?.honroCustom,phase:b?.phase,round:b?.round,
+   visualX:u.x,visualY:u.y,visualHeight:u.h,pose:{move:opts.state.move??null,attack:opts.state.attack??null,
+    hit:opts.state.hit??null,jump:opts.state.jump??null}};
+ if(id!=='pursuer'||u.facing!==-1)return stop('rig-or-facing');
+ if(!b||!b.honroCanonical||b.honroCustom!==false||b.honroStage!==38||b.phase!=='aim'||b.round!==1)return stop('canonical-aim');
  const real=e.unit(u.id);
+ if(real)q.lastGuard.real={id:real.id,side:real.side,kind:real.honroType,dead:!!real.dead,hp:real.hp,
+   support:real.honroEncounterSupport,waterTrait:real.honroAct4WaterTrait,x:real.x,y:real.y,
+   airborne:real.airborne??null,honroFlying:real.honroFlying??null,flying:real.flying??null,
+   jumping:real.jumping??null,vx:real.vx??null,vy:real.vy??null,moving:real.moving??null,
+   captured:!!real.eaterCapturedBy,attached:!!real.honroMonsterState?.attachedTo};
  if(!real||real.dead||real.hp<=0||real.side!==1||real.honroType!=='warden'||
     real.honroEncounterSupport!=='approved38-upper'||real.honroAct4WaterTrait!=='ground'||
     real.x!==4530||Math.abs(real.y-1751.4)>1e-8||u.x!==real.x||u.y!==real.y||
     real.airborne||real.honroFlying||real.flying||real.jumping||Math.abs(real.vx||0)>1e-8||Math.abs(real.vy||0)>1e-8||
     Math.abs(real.moving||0)>1e-8||real.eaterCapturedBy||real.honroMonsterState?.attachedTo||
-    opts.state.move||opts.state.attack!==undefined||opts.state.hit!==undefined||opts.state.jump!==undefined)return false;
+    opts.state.move||opts.state.attack!==undefined||opts.state.hit!==undefined||opts.state.jump!==undefined)return stop('grounded-idle-unit');
  const hit=e.contactSurface(real.x,real.y-8,real.y+10);
- if(hit?.t?.id!=='approved38-upper'||!Number.isFinite(hit.y)||Math.abs(hit.y-real.y)>1e-8)return false;
+ q.lastGuard.engineContact={id:hit?.t?.id??null,y:Number.isFinite(hit?.y)?hit.y:null};
+ if(hit?.t?.id!=='approved38-upper'||!Number.isFinite(hit.y)||Math.abs(hit.y-real.y)>1e-8)return stop('actual-contact');
  let revised=stage38Private.get(a);
  if(!revised){
-  const req=(a,b)=>{if(!Object.is(a,b))throw Error('Stage38 compact stock rig parity');};
+  const req=(a,b)=>{if(!Object.is(a,b)){stop('stock-rig-parity');throw Error('Stage38 compact stock rig parity');}};
   req(a.baseHeight,stage38StockRig.baseHeight);
   for(const k of Object.keys(stage38StockRig.palette))req(a.palette[k],stage38StockRig.palette[k]);
   req(Object.keys(a.palette).length,Object.keys(stage38StockRig.palette).length);
@@ -123,18 +146,17 @@ const stage38Paper=(scene,c,u,actor,id,a,opts)=>{
  }
  revised.draw(c,'pursuer',opts);
  const m=c.getTransform();
- const q=G.__qaStage38CompactPaint??=( {count:0,last:null} );
  q.count++;q.last={id:real.id,x:real.x,y:real.y,support:hit.t.id,phase:b.phase,round:b.round,
    worldHeight:real.h,drawHeight:u.h,baseHeight:a.baseHeight,pixels:opts.pixels,transform:[m.a,m.b,m.c,m.d,m.e,m.f]};
  return true;
 };"""
-    replacement=b'{const options={time:this.time||0,state:actor?state(u,this.actorEngine):visual.state(u),pixels:pixels};if(!stage38Paper(this,c,u,actor,id,a,options))visual.draw(c,id,options);}'
+    replacement=b'{const options={time:scene.time||0,state:motionState(scene,u,a),pixels:pixels};if(!stage38Paper(scene,c,u,id,a,options))draw(c,id,options);}'
     assert owner.count(preload)==0 and owner.count(replacement)==0
     patched=owner[:lo]+preload+owner[lo:hi]+replacement+owner[hi+len(SLOT):]
     assert patched.count(preload)==patched.count(replacement)==1
     assert patched.replace(preload,b'',1).replace(replacement,SLOT,1)==owner
     (OUT/'stage38-candidate.js').write_bytes(patched)
     save('owner-receipt.json',{'originalGit':ORIGINAL_GIT,'original':measured(owner),'injected':measured(patched),
-      'singleOwnerBOnly':True,'inverseExact':True,'existingNativePainter':True,'sourceSlot':'actor-vector unitBody call after transform'})
+      'singleOwnerBOnly':True,'inverseExact':True,'existingNativePainter':True,'sourceSlot':'monster-vector drawBody call after transform; actor-vector only side2'})
     return patched
 if __name__=='__main__':source()
