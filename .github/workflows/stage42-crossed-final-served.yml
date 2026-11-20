@@ -52,7 +52,7 @@ jobs:
             npm run build >"$OUT/build-$mode.log" 2>&1
             sha256sum -c "$OUT/source-before-$mode.sha"
           done
-      - name: Five actual Stage42 locality faceted pairs
+      - name: Thirteen remaining exact Stage42 perimeter poses
         run: |
           set -euo pipefail
           python -m pip install playwright==1.58.0 pillow numpy
