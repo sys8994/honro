@@ -1,4 +1,4 @@
-name: Stage42 connected stockade and legacy lower proof
+name: Stage42 single-intersection actual boundary proof
 on:
   push:
     branches: [qa/stage42-crossed-final-served-20261120]
@@ -42,6 +42,7 @@ jobs:
           git -C "$W/target" diff --stat > "$W/out/diagnostic-source-diff.txt"
           test "$(git -C "$W/target" hash-object shared/runtime/act5-edge-art.js)" = 1d0719ff1d56e3c6720f7e7166b3266864a49415
           git -C "$W/target" hash-object shared/assets/environment/act5/stage42-registered-body.json > "$W/out/exact-hybrid-wrapper-blob.txt"
+          test "$(cat "$W/out/exact-hybrid-wrapper-blob.txt")" = 478c8722ba41e047949fa717bc06b760dc859c6d
       - name: Stock validation and official builds, no optimizer edits
         run: |
           set -euo pipefail
@@ -76,6 +77,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: stage42-connected-stockade-and-legacy-lower
+          name: stage42-single-intersection-actual
           path: ${{ env.OUT }}
           retention-days: 7

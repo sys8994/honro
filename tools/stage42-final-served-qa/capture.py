@@ -8,9 +8,16 @@ from playwright.sync_api import sync_playwright
 from verify import sha,ADDR
 root=Path(__file__).resolve().parent
 views=json.loads((root/'views.json').read_text())
+TEMPLATE=json.loads((root/'template.json').read_bytes())
+donor=TEMPLATE['donor']; donor_h=sha(json.dumps(donor,separators=(',',':')).encode())
+assert donor_h==TEMPLATE['donorVectorSHA256']=='b83e9dc8feaba4f980f1969f9b7aa8b134825f625053aaeacd7bf5431a914b56'
+assert TEMPLATE['donorFullOriginalSHA256']=='1db7c108f45a1ee4842893db886790658808baa7f8dce508359cdcd581eae922'
 
 out=Path(os.environ["OUT"]);out.mkdir(parents=True,exist_ok=True)
 bins=[Path(os.environ[s]) for s in ("STOCK","TARGET")]
+rel='shared/assets/environment/act5/stage42-registered-body.json'
+cbf=json.loads((bins[0]/rel).read_bytes())
+assert sha((bins[0]/rel).read_bytes())=='95ce6aee7094c1b4f9a1f62c7f90f1fe164d99b007b286a8c41ebd2b4565ace8'
 urls=["http://127.0.0.1:18841","http://127.0.0.1:18842"]
 def scan_frame(s):return str(s)[:1600]
 def sig_image(x):return Image.open(io.BytesIO(x)).convert("RGBA")
@@ -139,6 +146,45 @@ with sync_playwright() as p:
    assert result['stateSHA256']==firstSignatures.setdefault(key,result['stateSHA256']), 'world state drifted across camera sequence'
    result['htmlSHA256']=htmlSHA
    assert result['focus']==q['expectedFocus'] and result['viewport']==q['expectedViewport'], 'native camera focus/viewport changed'
+   # Separate from the opaque in-game canvas bytes. Replay the *actual*
+   # runtime draw transforms through the same Chromium Canvas/Path2D with
+   # no sky/backdrop; current tree, exact 1db7 donor and target are isolated.
+   if i==1:
+    result['transparentAlpha']=page.evaluate("""({rows,donor,stock})=>{
+     const current=HONRO_PROJECT.library.find(v=>v.id==='act5:near:42').edgeWall;
+     const legacy={...stock,vector:donor};
+     function render(asset,z){
+      const canvas=document.createElement('canvas');
+      [canvas.width,canvas.height]=z.canvas;
+      const c=canvas.getContext('2d');
+      c.setTransform(...z.transform); c.honroVisualLayer=z.style;
+      if(!HonroVectorArt.draw(c,asset,{x:0,y:0,scale:1}))throw Error('transparent canonical draw failed');
+      return c.getImageData(0,0,canvas.width,canvas.height).data;
+     }
+     const seen=new Set(), out=[];
+     for(const z of rows){
+      const key=JSON.stringify([z.canvas,z.transform,z.style]);if(seen.has(key))continue;seen.add(key);
+      const [w,h]=z.canvas,[a,b,c,d,e,f]=z.transform;
+      if(a<=0||d<=0||b||c)throw Error('diagnostic expected actual axis-aligned positive world transform');
+      const O=render(stock,z), N=render(current,z), D=render(legacy,z);
+      const m={protectedUpper:{pixels:0,changed:0,max:0},canonicalHoleBounds:{pixels:0,changed:0,max:0},side:{pixels:0,changed:0,max:0},deep:{pixels:0,changed:0,max:0,onOffChanged:0,halfContourChanged:0,opaqueChanged:0}};
+      const add=(r,diff)=>{r.pixels++;if(diff){r.changed++;r.max=Math.max(r.max,Math.abs(diff));}};
+      for(let y=0;y<h;y++)for(let x=0;x<w;x++){
+       const sx=(x+.5-e)/a,sy=(y+.5-f)/d,p=4*(y*w+x)+3, delta=N[p]-O[p];
+       if(sy<789)add(m.protectedUpper,delta);
+       if(sx>=161.63&&sx<=1703.24&&sy>=0&&sy<=649.79)add(m.canonicalHoleBounds,delta);
+       if(sx<-405-1/a||sx>2360+1/a)add(m.side,delta);
+       if(sy>1332){
+        const r=m.deep, after=N[p], before=D[p];add(r,after-before);
+        if((after>0)!=(before>0))r.onOffChanged++;
+        if((after>=128)!=(before>=128))r.halfContourChanged++;
+        if((after===255)!=(before===255))r.opaqueChanged++;
+       }
+      }
+      out.push({canvas:z.canvas,transform:z.transform,style:z.style,regions:m});
+     }
+     return out;
+    }""",{'rows':result['edgeRenderer']['draws'],'donor':donor,'stock':cbf})
    result['assets']=response_indices
    result['repeat']=repeat;result['bad']=bad
    return result,pixels
@@ -183,8 +229,13 @@ with sync_playwright() as p:
      Image.fromarray((gap*255).astype('uint8')).save(out/(q['key']+'-protected-'+k+'-delta.png'))
    if q.get('deepReference'):
     d=q['deepReference'];good=sy>d['sourceYMin'];assert int(good.sum())==d['rows']
-    staged=sha(imB[good].tobytes())
-    item['userReferenceDeep']={**d,'observed':staged,'matches':staged==d['deepRGBASHA256']}
+    staged=imB[good].tobytes()
+    deep=zlib.decompress(base64.b64decode(d['deepRGBAZ']))
+    assert sha(deep)==d['deepRGBASHA256'] and len(staged)==len(deep)
+    observed=sha(staged)
+    delta=np.abs(np.frombuffer(staged,dtype=np.uint8).reshape(-1,4).astype(np.int16)-np.frombuffer(deep,dtype=np.uint8).reshape(-1,4))
+    item['userReferenceDeep']={k:v for k,v in d.items()if k!='deepRGBAZ'}
+    item['userReferenceDeep'].update(observed=observed,exactCompositeRGBA=observed==d['deepRGBASHA256'],changedRGB=int((delta[:,:3].max(1)>0).sum()),maxRGB=int(delta[:,:3].max()),compositeAlphaChanged=int((delta[:,3]>0).sum()))
    da,db=[v['edgeRenderer']['domains'][0]for v in (aa,bb)]; cap=2900*K
    assert all(da[k]==db[k] for k in ('domain','tileWorldSize','tiles','landmark','viewport','extended')), 'terrain domain or tile extents changed'
    assert all(da['paint'][k]==db['paint'][k] for k in ('left','right','top')) and abs(db['paint']['bottom']-cap)<1e-8,('visual culling not unioning canonical bottom',db['paint'])
@@ -204,11 +255,19 @@ with sync_playwright() as p:
     y=item['boundaries'].get('bottom') or {}
     assert db['extended'] and abs(y.get('pixel',-100)-615)<=1 and len(draws)>=2, ('Missing mobile tile/direct paint witness',db,draws)
    assert all(x['changed']==0 for x in item['regions'].values()), ('protected active/side/alpha hole pixel changed',item['regions'])
-   if item.get('userReferenceDeep'):assert item['userReferenceDeep']['matches'],('true 1db7 deep donor App pixels differ in scoped reference',item['userReferenceDeep'])
+   alpha=bb['transparentAlpha']
+   assert alpha and any(r['regions']['deep']['pixels'] for r in alpha) if q.get('deepReference') else bool(alpha)
+   assert all(all(k['changed']==0 for k in d['regions'].values()) for d in alpha), ('signed transparent Chromium alpha changed',alpha)
+   item['rawGeometryStateAndOwnedPass']=True
    assert item['culling']['lateralCapsOutside'] and item['culling']['normalBottomAboveArtEnd']
   except Exception as e:
    item['error']=str(e);roll.append(item);(out/'comparison.json').write_text(json.dumps(roll,indent=2));raise
   roll.append(item);(out/'comparison.json').write_text(json.dumps(roll,indent=2))
  for ctx,*_ in sessions.values():ctx.close()
  browser.close()
- assert len(roll)==6 and all('error' not in x for x in roll)
+ assert len(roll)==6 and all('error' not in x and x['rawGeometryStateAndOwnedPass'] for x in roll)
+ refs={r['view']:r['userReferenceDeep'] for r in roll if 'userReferenceDeep'in r}
+ assert len(refs)==2
+ exact=all(r['exactCompositeRGBA']for r in refs.values())
+ (out/'FINAL-RECEIPT.json').write_text(json.dumps(dict(technicalPoseCount=len(roll),exactPhysicalAndProtected=True,transparentChromiumAlphaExact=True,transparentUserDonorSHA256=donor_h,independentArchivedDeepRGBAExact=exact,archivedDeep=refs),indent=2))
+ assert exact,('All six integrity-valid poses completed; independent archived full-composite donor RGBA gate RED',refs)
