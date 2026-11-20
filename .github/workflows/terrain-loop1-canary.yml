@@ -1,0 +1,52 @@
+name: HONRO read-only live audit canary (1, 26, 38)
+on:
+  push:
+    branches: [qa/terrain-loop1-canary-v2-2939958]
+    paths:
+      - '.github/workflows/terrain-loop1-canary.yml'
+      - 'tools/terrain-loop1-canary/**'
+permissions:
+  contents: read
+jobs:
+  canary:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/terrain-loop1-canary-v2-2939958'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 16
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        stage: [1, 26, 38]
+    env:
+      AUDIT_STAGE: ${{ matrix.stage }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Verify exact unchanged product and current public graph
+        shell: bash
+        run: |
+          set -euo pipefail
+          W="$(mktemp -d "$RUNNER_TEMP/honro-audit-canary-${AUDIT_STAGE}.XXXXXX")"
+          export AUDIT_OUT="$W/evidence"
+          echo "AUDIT_OUT=$AUDIT_OUT" >> "$GITHUB_ENV"
+          echo "AUDIT_WORK=$W" >> "$GITHUB_ENV"
+          python3 tools/terrain-loop1-canary/source.py
+      - name: Record canonical actual Pages camera evidence, no product writes
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m venv "$AUDIT_WORK/venv"
+          V="$AUDIT_WORK/venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+          "$V" tools/terrain-loop1-canary/capture.py
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always() && env.AUDIT_OUT != ''
+        with:
+          name: honro-live-2939958-canary-stage-${{ matrix.stage }}
+          path: ${{ env.AUDIT_OUT }}
+          if-no-files-found: error
+          retention-days: 7
