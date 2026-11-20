@@ -1,0 +1,126 @@
+{
+  "live": {
+    "release": "2939958cc87407ef60b58720bb6e086b8559031b",
+    "tree": "08e22a8cc0ab608e125ad73f8e8e1c288d8c4c74",
+    "retainedManifestGitBlob": "dc5abd1657aa70245e456988202e1460f211fbf2",
+    "retainedManifestSHA256": "cc22d45754173a212ab3ce05d7bc5b3faf211c13e7ad5ba08f252f8e10f56304",
+    "pagesRun": 44821694897,
+    "pagesJob": 136584564179,
+    "pagesCompletedUTC": "2026-11-20T21:37:21.9122544Z"
+  },
+  "html": {
+    "bytes": 17379,
+    "sha256": "be902800b7a24c145b09fb959909d24bfccc958c88c2d87d7c79725a16f2f708"
+  },
+  "manifest": {
+    "bytes": 6421884,
+    "sha256": "cc22d45754173a212ab3ce05d7bc5b3faf211c13e7ad5ba08f252f8e10f56304"
+  },
+  "roles": {
+    "entry": "web/entries/game.3e9d3e271f161125.js",
+    "loader": "web/runtime/campaign.748d97a778b7faa1.js",
+    "campaign": "web/data/campaign.fa9a5e8d3cb0a7e5.json",
+    "stageMap": "web/data/chapter-38.16547fb59556e92c.json",
+    "descriptor": "web/data/chapter-38-assets-parts.90cfb7883037dce5.json"
+  },
+  "runtime": {
+    "baseRenderer": "web/runtime/ordered-common-10.7f6c8574f94f35df.js",
+    "monsterVector": "web/runtime/ordered-common-15.3dd35880565c92f2.js",
+    "act4Runtime": "web/runtime/ordered-game-24.26a8010157c8fe32.js",
+    "act4Presentation": "web/runtime/ordered-game-25.12e2361380e24c93.js",
+    "monsterDataLoader": "web/runtime/shared-assets-monsters-monsters-runtime.a0cdeca2c2cf4abc.js",
+    "monsterData": "web/data/HONRO_MONSTERS.502d3ac46c4666e6.json"
+  },
+  "needed": {
+    "web/data/HONRO_MONSTERS.502d3ac46c4666e6.json": {
+      "bytes": 259498,
+      "sha256": "502d3ac46c4666e63ae35f244f33c217edbf3a6a06f7b9ccbc2742727f121282"
+    },
+    "web/data/campaign-base.0c57dcfe7c08d421.json": {
+      "bytes": 257,
+      "sha256": "0c57dcfe7c08d421901ffa8eeb437940b6b6d4779816207b51dca7be44c73e5e"
+    },
+    "web/data/campaign-shared.8f8343b5c21518d4.json": {
+      "bytes": 577195,
+      "sha256": "8f8343b5c21518d4fdaa2314e58031fd137b8622d3a6c1ca2fdabafde3bb158f"
+    },
+    "web/data/campaign.fa9a5e8d3cb0a7e5.json": {
+      "bytes": 54885,
+      "sha256": "fa9a5e8d3cb0a7e54e7dd62130f61d93735f61fd4d56c9cb3b27874619ef4f3c"
+    },
+    "web/data/chapter-38-assets-part-000.604fe8860f4e8b36.bin": {
+      "bytes": 4194304,
+      "sha256": "604fe8860f4e8b3655dd97358867fb2fd2b557014261576bdf64a43ed699224d"
+    },
+    "web/data/chapter-38-assets-part-001.685153a31f03bf82.bin": {
+      "bytes": 2681576,
+      "sha256": "685153a31f03bf824496a0cec91726bf9c14ca324693d6c6b409165eef862de4"
+    },
+    "web/data/chapter-38-assets-parts.90cfb7883037dce5.json": {
+      "bytes": 444,
+      "sha256": "90cfb7883037dce50433ba3d639f8e52b2b2c68a115c93002da8796562f6725e"
+    },
+    "web/data/chapter-38.16547fb59556e92c.json": {
+      "bytes": 33353,
+      "sha256": "16547fb59556e92cf8920578c1c90ee5b22c1a6883932aac6bfe1581e10916f2"
+    },
+    "web/entries/game.3e9d3e271f161125.js": {
+      "bytes": 20483,
+      "sha256": "3e9d3e271f16112552f0384727ff2c10e238ab5ba85025cd45222a7f8acef2ce"
+    },
+    "web/runtime/campaign.748d97a778b7faa1.js": {
+      "bytes": 527,
+      "sha256": "748d97a778b7faa16a626dbf4c3f7d53c2cb7747076f183a0302534b29a6370a"
+    },
+    "web/runtime/ordered-common-10.7f6c8574f94f35df.js": {
+      "bytes": 179413,
+      "sha256": "7f6c8574f94f35df38a797b4d439a5c096d784b954529bfa4e9fc9df58dfc9ae"
+    },
+    "web/runtime/ordered-common-15.3dd35880565c92f2.js": {
+      "bytes": 160836,
+      "sha256": "3dd35880565c92f2fc1d67342b26fc16951c2d04294cbf695df2a5cdae58075e"
+    },
+    "web/runtime/ordered-game-24.26a8010157c8fe32.js": {
+      "bytes": 173611,
+      "sha256": "26a8010157c8fe32e6aa7aa32ec55444beee808ced88e6b53a41a2e6157d29ff"
+    },
+    "web/runtime/ordered-game-25.12e2361380e24c93.js": {
+      "bytes": 25313,
+      "sha256": "12e2361380e24c93bd64b7e931f049a16648fb3f63497b14840eda3224858b32"
+    },
+    "web/runtime/shared-assets-monsters-monsters-runtime.a0cdeca2c2cf4abc.js": {
+      "bytes": 179,
+      "sha256": "a0cdeca2c2cf4abc2030e06ba0dbf2c621ce1c98fea39b607e12d430be2eec59"
+    }
+  },
+  "coverage": {
+    "stage": 38,
+    "act4OfficialReadOnly": true,
+    "support": "approved38-upper",
+    "actors": {
+      "slope-warden": {
+        "id": "a4-38-e-1",
+        "kind": "warden",
+        "sourceX": 4530,
+        "sourceY": 1751.4
+      },
+      "slope-small-control": {
+        "id": "a4-38-d-1",
+        "kind": "possessedGuard",
+        "sourceX": 4905,
+        "sourceY": 1467
+      }
+    },
+    "historicalArchive": {
+      "run": 44646731112,
+      "artifact": 14589636456,
+      "source": "1e043b09d4ce107e1d2dcf70fe2274dff7098476",
+      "officeOverviewSHA256": "83824f3ec2f64861e6c70b11f473b91a9c897b18fe7c7eda3de8e233ae8b017e",
+      "approxFootWorldXs": [
+        4393.36,
+        4454.75,
+        4667.25
+      ]
+    }
+  }
+}

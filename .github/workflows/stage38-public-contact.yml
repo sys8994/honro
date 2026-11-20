@@ -1,0 +1,38 @@
+name: Stage38 public parked contact inspection
+on:
+  push:
+    branches: [qa/stage38-public-contact-2939958-20261121]
+permissions:
+  contents: read
+jobs:
+  observe:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage38-public-contact-2939958-20261121'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Capture two read-only public parked views and actual terrain contact
+        shell: bash
+        run: |
+          set -euo pipefail
+          Q=tools/stage38-public-contact
+          W="$(mktemp -d "$RUNNER_TEMP/stage38-public-contact.XXXXXX")"
+          mkdir "$W/evidence"
+          export STAGE38_PUBLIC="$W/evidence"
+          echo "STAGE38_PUBLIC=$STAGE38_PUBLIC" >> "$GITHUB_ENV"
+          python3 "$Q/source.py"
+          python3 -m venv "$W/venv"
+          V="$W/venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+          "$V" "$Q/capture.py"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: stage38-public-contact-2939958-readonly
+          path: ${{ env.STAGE38_PUBLIC }}
+          if-no-files-found: error
+          retention-days: 7
