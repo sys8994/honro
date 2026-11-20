@@ -1,0 +1,78 @@
+name: Stage 22 exact-source two-plane A-B
+on:
+  push:
+    branches: ['qa/stage22-source-equivalence-20261120']
+permissions:
+  contents: read
+jobs:
+  visual:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 24
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Guard proof-only scope and build pinned master
+        run: |
+          set -euo pipefail
+          B=8079496a68516fcb2393f57fb9445c17dd3da37e
+          test "$(git rev-parse HEAD~4)" = "$B"
+          git diff --name-status "$B" HEAD >"$RUNNER_TEMP/qa-scope"
+          python - <<'PY'
+          import os,pathlib
+          got=set((pathlib.Path(os.environ['RUNNER_TEMP'])/'qa-scope').read_text().splitlines())
+          expected={'A\t.github/workflows/stage22-source-audit.yml',*['A\ttools/stage22-source-audit/'+x for x in ['capture.py','compare.py','contract.py']]}
+          assert got==expected,got
+          PY
+          Q="$RUNNER_TEMP/stock-ab"
+          mkdir -p "$Q/out"
+          cp "$RUNNER_TEMP/qa-scope" "$Q/out/scope.txt"
+          P=fcf9dc85ef4d29aea326a3f73991097e0a7aec63
+          git fetch origin refs/heads/candidate/stage22-buried-planes-20261120
+          test "$(git rev-parse FETCH_HEAD)" = "$P"
+          test "$(git rev-parse "$P^")" = "$B"
+          test "$(git diff --name-only "$B" "$P")" = "tools/environment/stage22-vertical-art.mjs"
+          git diff --stat "$B" "$P" > "$Q/out/product-scope.txt"
+          git worktree add --detach "$Q/before" "$B"
+          git worktree add --detach "$Q/after" "$P"
+          echo "QA=$Q" >> "$GITHUB_ENV"
+          echo "OUT=$Q/out" >> "$GITHUB_ENV"
+          for mode in before after; do
+            cd "$Q/$mode"
+            npm ci
+            npm ci --prefix game
+            npm run build 2>&1 | tee "$Q/out/build-$mode.log"
+          done
+      - name: Verify authored-source packet and all other active sources
+        run: |
+          set -euo pipefail
+          python tools/stage22-source-audit/contract.py "$QA/before" "$QA/after" "$OUT"
+      - name: Capture normal stock and candidate campaign scenes
+        run: |
+          set -euo pipefail
+          python -m pip install playwright pillow
+          python -m playwright install --with-deps chromium
+          python -m http.server 8884 --bind 127.0.0.1 --directory "$QA/before" > "$OUT/host-stock.log" 2>&1 &
+          p=$!
+          python -m http.server 8885 --bind 127.0.0.1 --directory "$QA/after" > "$OUT/host-candidate.log" 2>&1 &
+          q=$!
+          trap 'kill "$p" "$q" || true' EXIT
+          mkdir -p "$OUT/stock" "$OUT/candidate"
+          VARIANT=stock PORT=8884 OUT="$OUT/stock" python tools/stage22-source-audit/capture.py > "$OUT/stock.log" 2>&1 &
+          sp=$!
+          VARIANT=candidate PORT=8885 OUT="$OUT/candidate" python tools/stage22-source-audit/capture.py > "$OUT/candidate.log" 2>&1 &
+          cp=$!
+          status=0
+          wait "$sp" || status=1
+          wait "$cp" || status=1
+          cat "$OUT/"{stock,candidate}.log
+          if [ "$status" -eq 0 ]; then python tools/stage22-source-audit/compare.py; else exit 1; fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage22-source-equivalence-evidence
+          path: ${{ env.OUT }}
+          retention-days: 7
