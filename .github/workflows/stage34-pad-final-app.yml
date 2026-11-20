@@ -1,0 +1,78 @@
+name: Stage34 detached pad-only real App proof
+on:
+  push:
+    branches: ['qa/stage34-pad-final-app-retry-20261120']
+permissions:
+  contents: read
+jobs:
+  witness:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 33
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Require exact QA additions and upstream pin
+        run: |
+          set -euo pipefail
+          BASE=cbf037199e56c640165dd53d8b00827902260862
+          test "$(git rev-parse HEAD^)" = "$BASE"
+          git merge-base --is-ancestor 1e043b09d4ce107e1d2dcf70fe2274dff7098476 "$BASE"
+          git diff --name-status "$BASE" HEAD | sort > /tmp/s34-actual
+          printf 'A\t%s\n' .github/workflows/stage34-pad-final-app.yml tools/stage34-pad-final-app/{packet.mjs,capture.py,clips.json,independent-support-mask.json} | sort >/tmp/s34-expected
+          diff -u /tmp/s34-expected /tmp/s34-actual
+          P="$RUNNER_TEMP/honro-s34-pad"
+          mkdir -p "$P/evidence" "$P/trial"
+          git worktree add --detach "$P/stock" "$BASE"
+          printf 'QAROOT=%s\nOUT=%s/evidence\n' "$P" "$P" >> "$GITHUB_ENV"
+      - name: Unmodified stock official build and test gates
+        run: |
+          set -euo pipefail
+          cd "$QAROOT/stock"
+          npm ci >"$OUT/npm-root.log" 2>&1
+          npm ci --prefix game >"$OUT/npm-game.log" 2>&1
+          npm run test:release-guard 2>&1 | tee "$OUT/release-guard.log"
+          npm run build 2>&1 | tee "$OUT/official-build.log"
+          npm run test:production-contract 2>&1 | tee "$OUT/production-contract.log"
+          # Official build generates both HTML siblings in addition to the prior output set.
+          # Record exact emitted bytes; do not change any stock build/contract gates.
+          sha256sum -- HONRO.html HONRO_WORKSHOP.html index.html > "$OUT/generated-bootstraps.sha256"
+          git diff --name-only -- HONRO_WORKSHOP.html index.html > "$OUT/expected-generated-bootstraps.diff-paths"
+          git diff --exit-code -- . ':!web' ':!HONRO.html' ':!assets' ':!HONRO_WORKSHOP.html' ':!index.html'
+      - name: Verify only the detached emitted asset payload is changed
+        run: |
+          set -euo pipefail
+          cp -al "$QAROOT/stock/HONRO.html" "$QAROOT/stock/assets" "$QAROOT/stock/web" "$QAROOT/trial/"
+          VECTOR_LIB="$QAROOT/stock/shared/map/vector-art.js" node tools/stage34-pad-final-app/packet.mjs "$QAROOT/stock" "$QAROOT/trial" "$OUT"
+          for t in assets web; do diff -qr "$QAROOT/stock/$t" "$QAROOT/trial/$t" || test "$?" -eq 1; done > "$OUT/served-diff.txt"
+          python - <<'PY'
+          from pathlib import Path
+          import os,json
+          q=Path(os.environ['QAROOT']);o=Path(os.environ['OUT'])
+          r=json.loads((o/'asset-contract.json').read_text())
+          expected={f'Files {q}/stock/{p["path"]} and {q}/trial/{p["path"]} differ' for p in r['changes']}
+          assert set((o/'served-diff.txt').read_text().splitlines())==expected
+          assert (q/'stock/HONRO.html').read_bytes()==(q/'trial/HONRO.html').read_bytes()
+          PY
+      - name: Official App PC and mobile actual camera evidence
+        run: |
+          set -euo pipefail
+          python -m pip install playwright==1.58.0 pillow numpy
+          python -m playwright install --with-deps chromium
+          python -m http.server 8884 --bind 127.0.0.1 --directory "$QAROOT/stock" >"$OUT/host-stock.log" 2>&1 &
+          p=$!
+          python -m http.server 8885 --bind 127.0.0.1 --directory "$QAROOT/trial" >"$OUT/host-trial.log" 2>&1 &
+          q=$!
+          trap 'kill "$p" "$q" || true' EXIT
+          for port in 8884 8885; do curl -fsS --retry 10 --retry-connrefused "http://127.0.0.1:$port/HONRO.html" -o /dev/null; done
+          python tools/stage34-pad-final-app/capture.py | tee "$OUT/scene-qa.log"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage34-pad-final-app-evidence
+          path: ${{ env.OUT }}
+          retention-days: 7
