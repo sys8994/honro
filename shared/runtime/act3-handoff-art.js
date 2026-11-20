@@ -83,6 +83,21 @@ S.landmark=function(c,l){
  const raw=G.HonroVisualStyle.raw(c),rows=strips(l.asset),m=raw.getTransform();
  raw.save();
  const ps=G.HONRO_CORE.poly(floor);raw.beginPath();ps.forEach(({x,y},i)=>i?raw.lineTo(x,y):raw.moveTo(x,y));raw.closePath();raw.clip();
+ // Only this native Stage 26 foundation owns the west interior paint.
+ const west=asset.params.westBedMaterial;
+ if(west&&b.honroStage===26&&b.honroCanonical&&!b.honroCustom&&asset.id==='act3-handoff:26:kiln-foundation'&&
+    l.id===asset.id&&l.kind==='canonical-element'&&floor.id==='a3-foundation'&&l.x===0&&l.y===0&&l.scale===1){
+  raw.save();
+  try{
+   raw.clip(new Path2D(west.clipPath),west.clipRule);
+   for(const {path,gradient,stops} of west.paints){
+    const paint=raw.createLinearGradient(...gradient);
+    for(const [at,color] of stops)paint.addColorStop(at,color);
+    raw.fillStyle=paint;
+    raw.fill(new Path2D(path));
+   }
+  }finally{raw.restore();}
+ }
  const minX=-m.e/m.a,maxX=(raw.canvas.width-m.e)/m.a;
  const px=x=>(Math.round(x*m.a+m.e)-m.e)/m.a;
  for(const row of rows){
