@@ -22,9 +22,10 @@ files={'capture.py','guard.py','verify.py','views.json','lineage.json','smoke-in
 expected={f'tools/terrain-cumulative-verify/{n}' for n in files}|{'.github/workflows/terrain-cumulative-verify.yml'}
 oldqa='840fc1db0ae9d92f141ec1f88753c5bf7ed4a5a8'
 retry='0afacc948aa25ac83f68155e348e54fd630e3dee'
-assert git('rev-parse','HEAD^')==retry and git('rev-parse',retry+'^')==oldqa and git('rev-parse',oldqa+'^')==target
-assert set(git('diff','--name-status',retry,'HEAD').splitlines())=={
- 'M\t.github/workflows/terrain-cumulative-verify.yml','M\ttools/terrain-cumulative-verify/guard.py','A\ttools/terrain-cumulative-verify/smoke-init.py'}
+init='081dd4a5cad7cc7d5b28fb83199736e80deb9e10'
+assert git('rev-parse','HEAD^')==init and git('rev-parse',init+'^')==retry and git('rev-parse',retry+'^')==oldqa and git('rev-parse',oldqa+'^')==target
+assert set(git('diff','--name-status',init,'HEAD').splitlines())=={
+ 'M\t.github/workflows/terrain-cumulative-verify.yml','M\ttools/terrain-cumulative-verify/guard.py','M\ttools/terrain-cumulative-verify/capture.py'}
 assert set(git('diff','--name-only',target,'HEAD').splitlines())==expected
 assert all(x.startswith('A\t') for x in git('diff','--name-status',target,'HEAD').splitlines())
 print('Exact base and 12 source commits, latest 19 approved tracked blobs, and seven QA-only descendant files confirmed')

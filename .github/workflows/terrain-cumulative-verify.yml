@@ -1,8 +1,8 @@
-name: Two-root exact Stage 1 startup preflight
+name: Two exact cumulative terrain canaries
 on:
   push:
     branches:
-      - qa/terrain-cumulative-52119985-startup-only-20261120
+      - qa/terrain-cumulative-52119985-two-canary-20261120
 permissions:
   contents: read
 jobs:
@@ -71,8 +71,8 @@ jobs:
             fi
           done
           python "$QA/verify.py" "$STOCK" "$TARGET" "$OUT"
-      - name: One normal Stage 1 startup per root, no terrain matrix
-        timeout-minutes: 8
+      - name: Two matched normal browser views only (Stage 1 and Stage 28)
+        timeout-minutes: 10
         run: |
           set -euo pipefail
           python -m pip install playwright==1.58.0 pillow
@@ -85,34 +85,10 @@ jobs:
           for p in 18841 18842; do
             curl -fsS --retry 5 --retry-connrefused "http://127.0.0.1:$p/HONRO.html" -o /dev/null
           done
-          timeout 85s python "$QA/smoke-init.py" --mode stock --root "$STOCK" --port 18841 --out "$OUT/init-stock.json" >"$OUT/init-stock.log" 2>&1 &
-          p1=$!
-          timeout 85s python "$QA/smoke-init.py" --mode target --root "$TARGET" --port 18842 --out "$OUT/init-target.json" >"$OUT/init-target.log" 2>&1 &
-          p2=$!
-          set +e
-          wait "$p1"; r1=$?
-          wait "$p2"; r2=$?
-          set -e
-          printf 'stock=%s\ntarget=%s\n' "$r1" "$r2" >"$OUT/preflight-status.txt"
-          test "$r1" = 0 && test "$r2" = 0
-          python - "$OUT" <<'PYCODE'
-          from pathlib import Path
-          import json,sys
-          d=Path(sys.argv[1])
-          errors={}
-          for mode in ('stock','target'):
-              j=json.loads((d/f'init-{mode}.json').read_text())
-              checks={'stage1':j.get('stage1',{}).get('stage')==1,'sky':j.get('stage1',{}).get('sky')=='function',
-                      'entryBody':j.get('entryHTTP',{}).get('sha256')==j['entrySHA256'],'ready':any(x['stockPredicate'] for x in j['timeline']),
-                      'noErrors':not j['errors'] and not j.get('probeError'),'no404':all(x[1]<400 for x in j['status']),
-                      'settledAppPromise':any((x.get('promise') or {}).get('state')=='fulfilled' for x in j['timeline'])}
-              print(mode,checks)
-              if not all(checks.values()):errors[mode]=checks
-          assert not errors,errors
-          PYCODE
+          timeout 225s python "$QA/capture.py"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: terrain-exact-two-root-stage1-init-only
+          name: terrain-exact-stage1-stage28-two-canaries
           path: ${{ env.OUT }}
           retention-days: 7

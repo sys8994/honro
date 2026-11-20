@@ -6,8 +6,10 @@ from PIL import Image,ImageChops
 from playwright.sync_api import sync_playwright
 from verify import sha,ADDR
 root=Path(__file__).resolve().parent
-views=json.loads((root/'views.json').read_text())
-assert [q['stage'] for q in views]==[1,2,3,7,12,14,15,28,33,36,38,41,46]
+all_views=json.loads((root/'views.json').read_text())
+assert [q['stage'] for q in all_views]==[1,2,3,7,12,14,15,28,33,36,38,41,46]
+views=[v for v in all_views if v['stage'] in (1,28)]
+assert [(v['stage'],v['key']) for v in views]==[(1,'overview'),(28,'south')]
 def mask(q,k):
  b=zlib.decompress(base64.b64decode(q[k]));h='maskSHA256' if k=='mask' else 'requiredSHA256'
  assert sha(b)==q[h] and len(b)==((q['size'][0]+7)//8)*q['size'][1]
@@ -57,8 +59,19 @@ with sync_playwright() as p:
   page.on('response',lambda r:immutable.append(r) if ADDR.fullmatch(urlparse(r.url).path[1:]) or r.status>=400 else None)
   page.add_init_script("""window.__qaImages=[];const d=Object.getOwnPropertyDescriptor(HTMLImageElement.prototype,'src');Object.defineProperty(HTMLImageElement.prototype,'src',{...d,set(v){window.__qaImages.push(this);d.set.call(this,v)}});""")
   try:
-   page.goto(urls[i]+'/HONRO.html',wait_until='domcontentloaded',timeout=90000)
-   page.wait_for_function("document.documentElement.dataset.honroReady==='true' && window.HonroCampaignLoader && window.HonroTimeOfDay?.sky",timeout=90000)
+   response=page.goto(urls[i]+'/HONRO.html',wait_until='domcontentloaded',timeout=18000)
+   assert response and response.ok and sha(response.body())==sha((bins[i]/'HONRO.html').read_bytes()),('wrong actual HTML body',mode,q['stage'])
+   ready_state="""()=>({ready:document.documentElement.dataset.honroReady||null,loader:typeof window.HonroCampaignLoader?.ensureStage,
+    sky:typeof window.HonroTimeOfDay?.sky,app:typeof window.HonroApp,promise:typeof window.HONRO_APP_READY?.then})"""
+   try:
+    page.wait_for_function("""() => document.documentElement.dataset.honroReady==='true'
+     && typeof window.HonroCampaignLoader?.ensureStage==='function'
+     && typeof window.HonroTimeOfDay?.sky==='function'""",timeout=18000)
+   except Exception:
+    (out/(prefix+'-boot.json')).write_text(json.dumps({'readiness':page.evaluate(ready_state),'bad':bad},indent=2))
+    raise
+   boot=page.evaluate(ready_state)
+   (out/(prefix+'-boot.json')).write_text(json.dumps({'readiness':boot,'bad':bad},indent=2))
    page.evaluate("""async sid=>{const a=HonroApp;a.frame=()=>{};a.profile.settings.music=false;a.profile.settings.sound=false;
      await HonroCampaignLoader.ensureStage(sid);
      for(let n=1;n<sid;n++)a.profile.cleared[n]=true;
@@ -85,7 +98,7 @@ with sync_playwright() as p:
         if(p.now!==originalNow)throw Error('native performance clock not immediately restored');}}
       HonroTimeOfDay.sky=observed;
       window.__restoreNativeQA=()=>{if(active||p.now!==originalNow||call!==restore||HonroTimeOfDay.sky!==observed)throw Error('native sky receipt inconsistent');
-        HonroTimeOfDay.sky=original;return {calls:call,restores:restore};};
+        HonroTimeOfDay.sky=original;return {calls:call,restores:restore,fixedMillis:41000,originalRestored:HonroTimeOfDay.sky===original&&performance.now===originalNow};};
       window.__witness=q;
       s.render(a.engine,0,'',.6,false,0);}""",q)
    page.wait_for_function("window.__qaImages.every(i=>!i.src||i.complete)",timeout=60000)
@@ -117,7 +130,8 @@ with sync_playwright() as p:
    for k,v in sec.items():
     if repeat[k]:(out/(prefix+'-'+k+'-repeat.png')).write_bytes(v)
    result['nativeSky']=page.evaluate("()=>window.__restoreNativeQA()")
-   assert result['nativeSky']['calls']==result['nativeSky']['restores']
+   assert result['nativeSky']['calls']==result['nativeSky']['restores'] and result['nativeSky']['calls']>0 and result['nativeSky']['originalRestored'],result['nativeSky']
+   result['boot']=boot
    response_indices={}
    for r in immutable:
     path=urlparse(r.url).path[1:]
