@@ -1,0 +1,98 @@
+name: Stage 26 stock public native visual verification (4416dfb)
+
+on:
+  push:
+    branches: ['qa/stage26-stock-public-4416dfb']
+    paths:
+      - '.github/workflows/stage26-stock-public-4416dfb.yml'
+      - 'tools/stage26-stock-public/**'
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  stage26-public-stock:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage26-stock-public-4416dfb'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Require exact parent and five new proof-only files
+        shell: bash
+        run: |
+          set -euo pipefail
+          B=4416dfb527f810398903d15510ab8ca05a892661
+          test "$(git rev-parse HEAD^)" = "$B"
+          test "$(git rev-list --parents -n 1 HEAD | wc -w)" -eq 2
+          test -z "$(git status --porcelain)"
+          Q="$(mktemp -d "$RUNNER_TEMP/stage26-stock.XXXXXX")"
+          echo "STAGE26_QA=$Q" >> "$GITHUB_ENV"
+          git diff --no-renames --name-status "$B" HEAD > "$Q/scope.tsv"
+          export Q
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+          allowed={
+              'A\t.github/workflows/stage26-stock-public-4416dfb.yml',
+              'A\ttools/stage26-stock-public/capture.py',
+              'A\ttools/stage26-stock-public/source.py',
+              'A\ttools/stage26-stock-public/reference.py',
+              'A\ttools/stage26-stock-public/measure.py',
+          }
+          assert set((Path(os.environ['Q'])/'scope.tsv').read_text().splitlines())==allowed
+          PY
+          git show "$B:web/manifest.json" > "$Q/manifest.json"
+          test "$(git hash-object "$Q/manifest.json")" = "cf62cfd03527fd821f126d7b017f4c363ae09a7d"
+      - name: Verify exact current public source (HTTPS, read-only)
+        shell: bash
+        run: python3 tools/stage26-stock-public/source.py
+      - name: Verify prior archive metadata and digest, extract only 5 approved entries
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          P=tools/stage26-stock-public/reference.py
+          URL=https://api.github.com/repos/sys8994/honro/actions/artifacts/14590840283
+          curl --silent --show-error --fail --proto '=https' --max-time 45 \
+            -H "Authorization: Bearer $GH_TOKEN" -H 'Accept: application/vnd.github+json' \
+            -H 'X-GitHub-Api-Version: 2022-11-28' "$URL" -o "$STAGE26_QA/archive-meta.json"
+          python3 "$P" metadata
+          curl --silent --show-error --fail --proto '=https' --proto-redir '=https' --location --max-redirs 3 --max-time 120 \
+            -H "Authorization: Bearer $GH_TOKEN" -H 'Accept: application/vnd.github+json' \
+            -H 'X-GitHub-Api-Version: 2022-11-28' "$URL/zip" -o "$STAGE26_QA/archive.zip"
+          python3 "$P" extract
+      - name: Use standard bundled Playwright Chromium
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m venv "$STAGE26_QA/venv"
+          V="$STAGE26_QA/venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+      - name: Capture exact four native Stage 26 Chrome views and measure witnesses
+        shell: bash
+        run: |
+          set -euo pipefail
+          V="$STAGE26_QA/venv/bin/python"
+          "$V" tools/stage26-stock-public/capture.py
+          "$V" tools/stage26-stock-public/measure.py
+          cd "$STAGE26_QA/evidence"
+          set -- *.png
+          test "$#" -eq 8
+          test -f RELEASE_SOURCE.json -a -f WITNESSES.json -a -f proof.json
+      - name: Upload exactly stock PNGs and proof (no source packages)
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: stage26-stock-public-4416dfb
+          path: |
+            ${{ env.STAGE26_QA }}/evidence/stock-4416-s26-*.png
+            ${{ env.STAGE26_QA }}/evidence/proof.json
+            ${{ env.STAGE26_QA }}/evidence/WITNESSES.json
+            ${{ env.STAGE26_QA }}/evidence/RELEASE_SOURCE.json
+          if-no-files-found: error
+          retention-days: 7
