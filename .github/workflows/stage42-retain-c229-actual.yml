@@ -1,0 +1,88 @@
+name: Stage42 c229 retention exact App check
+on:
+  push:
+    branches: ['qa/stage42-retain-c229-actual-20261120']
+permissions:
+  contents: read
+jobs:
+  compare:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/qa/stage42-retain-c229-actual-20261120'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Verify pinned source before building and prepare detached target only
+        run: |
+          set -euo pipefail
+          BASE=098419896fca823f35843bc3633140a058b5b7c9
+          test "$(git show -s --format=%P HEAD)" = "$BASE"
+          test "$(git rev-parse "$BASE^{tree}")" = 25a95a26c82e2df7969be1939b7ef1f5cb6b500c
+          test "$(git show -s --format=%P "$BASE")" = 4f53fe32665e40ea707c049f6e1014ed52b91c61
+          D=tools/stage42-retain-c229-actual
+          printf 'A\t%s\n' .github/workflows/stage42-retain-c229-actual.yml "$D/capture.py" "$D/config.json" "$D/prepare.cjs" "$D/remove.json" | LC_ALL=C sort >/tmp/s42-expected
+          git diff --name-status --no-renames "$BASE" HEAD | LC_ALL=C sort | diff - /tmp/s42-expected
+          Q="$GITHUB_WORKSPACE/$D"
+          W="$RUNNER_TEMP/stage42-retain-c229-actual"
+          mkdir -p "$W/out"
+          printf 'QA=%s\nSTOCK=%s\nTARGET=%s\nOUT=%s\n' "$Q" "$W/stock" "$W/target" "$W/out" >>"$GITHUB_ENV"
+          git worktree add --detach "$W/stock" "$BASE"
+          git worktree add --detach "$W/target" "$BASE"
+          node "$Q/prepare.cjs" "$W/target" | tee "$W/out/preparation.txt"
+          BODY=shared/assets/environment/act5/stage42-registered-body.json
+          test "$(git -C "$W/stock" hash-object "$BODY")" = 2a61346018d57c12021ad0d820a8b3ada73d985b
+          test "$(git -C "$W/target" hash-object "$BODY")" = f6b4a6a3d6dbbfbfd83fa367125165c2fdd2f964
+          printf '%s\n' "$BODY" | diff - <(git -C "$W/target" diff --name-only HEAD)
+          git -C "$W/stock" diff --quiet HEAD --
+          git -C "$W/target" diff --stat > "$W/out/diagnostic-source-diff.txt"
+          for p in "$W/stock" "$W/target"; do
+            test "$(git -C "$p" hash-object tests/stage42-edge-geology.mjs)" = a6fc444ca87b44a66dd219787202102bebc693b5
+            test "$(git -C "$p" hash-object shared/runtime/renderer.js)" = 22cb61244270a5088fa5bd8a8228035df8820f2e
+            test "$(git -C "$p" hash-object shared/runtime/act5-edge-art.js)" = 1d0719ff1d56e3c6720f7e7166b3266864a49415
+          done
+      - name: Normal production build, stock test intact and separate target removal assertion
+        run: |
+          set -euo pipefail
+          for mode in stock target; do
+            if [ "$mode" = stock ]; then cd "$STOCK"; else cd "$TARGET"; fi
+            npm ci >"$OUT/npm-root-$mode.log" 2>&1
+            npm ci --prefix game >"$OUT/npm-game-$mode.log" 2>&1
+            node - <<'JS' >"$OUT/vector-validation-$mode.log"
+          const fs=require('fs');require('./shared/map/vector-art.js');
+          const a=JSON.parse(fs.readFileSync('shared/assets/environment/act5/stage42-registered-body.json'));
+          const errors=HonroVectorArt.validate(a.vector);console.log(errors);if(errors.length)throw Error(errors.join(';'));
+          JS
+            if [ "$mode" = stock ]; then
+              node tests/stage42-edge-geology.mjs >"$OUT/stage42-geology-stock.log" 2>&1
+              node "$QA/prepare.cjs" "$STOCK" --check-only >"$OUT/derived-source-contract-stock.log" 2>&1
+            fi
+            node tests/act5-terrain-contact.mjs >"$OUT/act5-contact-$mode.log" 2>&1
+            npm run test:release-guard >"$OUT/release-$mode.log" 2>&1
+            sha256sum shared/assets/environment/act5/stage42-registered-body.json >"$OUT/source-before-$mode.sha"
+            npm run build >"$OUT/build-$mode.log" 2>&1
+            sha256sum -c "$OUT/source-before-$mode.sha"
+          done
+      - name: Capture actual App PNGs first, then enforce whole frame and tile equality
+        timeout-minutes: 24
+        run: |
+          set -euo pipefail
+          python -m pip install playwright==1.58.0 pillow numpy
+          python -m playwright install --with-deps chromium
+          python -m http.server 18841 --bind 127.0.0.1 --directory "$STOCK" >"$OUT/stock-http.log" 2>&1 &
+          p1=$!
+          python -m http.server 18842 --bind 127.0.0.1 --directory "$TARGET" >"$OUT/target-http.log" 2>&1 &
+          p2=$!
+          trap 'kill "$p1" "$p2" 2>/dev/null || true' EXIT
+          for port in 18841 18842; do curl -fsS --retry 10 --retry-connrefused "http://127.0.0.1:$port/HONRO.html" -o /dev/null; done
+          python "$QA/capture.py"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage42-retain-c229-actual-rgba
+          path: ${{ env.OUT }}
+          retention-days: 7
