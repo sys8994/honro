@@ -1,0 +1,54 @@
+name: Verify published Act 1 and Stage 42 terrain
+on:
+  push:
+    branches: [qa/act1-stage42-public-verify-20261121]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  public-smoke:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/qa/act1-stage42-public-verify-20261121'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+          fetch-depth: 2
+      - name: Existing Pages deployment completes for this exact product
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          BASE=4416dfb527f810398903d15510ab8ca05a892661
+          test "$(git show -s --format=%P HEAD)" = "$BASE"
+          printf 'A\t%s\n' .github/workflows/act1-stage42-public-verify.yml tools/act1-stage42-public-verify/smoke.py | LC_ALL=C sort > "$RUNNER_TEMP/scope.tsv"
+          git diff --name-status --no-renames "$BASE" HEAD | LC_ALL=C sort | diff - "$RUNNER_TEMP/scope.tsv"
+          OUT="$RUNNER_TEMP/honro-public-smoke"
+          mkdir -p "$OUT"
+          echo "OUT=$OUT" >> "$GITHUB_ENV"
+          for n in {1..20}; do
+            gh api repos/sys8994/honro/actions/runs/44798663838 > "$OUT/pages-run.json"
+            jq -e --arg base "$BASE" '.id==44798663838 and .head_sha==$base and .head_branch=="master"' "$OUT/pages-run.json"
+            if jq -e '.status=="completed"' "$OUT/pages-run.json"; then
+              jq -e '.conclusion=="success"' "$OUT/pages-run.json"
+              exit 0
+            fi
+            sleep 8
+          done
+          exit 1
+      - name: Check live Pages responses and actual published game
+        shell: bash
+        timeout-minutes: 7
+        run: |
+          set -euo pipefail
+          python -m pip install playwright==1.58.0
+          python -m playwright install --with-deps chromium
+          python tools/act1-stage42-public-verify/smoke.py "$OUT"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: honro-public-act1-stage42-smoke
+          path: ${{ env.OUT }}
+          retention-days: 7
