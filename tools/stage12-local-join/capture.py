@@ -1,4 +1,4 @@
-import hashlib,json,os,re
+import hashlib,json,os,re,base64
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 
@@ -7,7 +7,7 @@ frames=[];issues=[]
 views=[('bottom-left',0,1),('bottom-right',1,1)]
 def persist():
     (OUT/'proof.json').write_text(json.dumps({
-      'scope':'Pinned source and local join candidate; normal campaign entry, seeded diagnostic, decoded images, repeated settled min-zoom geometry. No normal play or art acceptance claimed.',
+      'scope':'Official app diagnostic, original weather draws with only cloud phase/clock isolated at each sampled render; phase restored after capture. Raw canvas and DOM screenshots; not natural-time live playback.',
       'frames':frames,'problems':issues},indent=2))
 with sync_playwright() as p:
     browser=p.chromium.launch(headless=True)
@@ -59,13 +59,27 @@ with sync_playwright() as p:
         images=page.evaluate("""async sid=>{await document.fonts.ready;const imgs=[...new Set([...document.images,...window.__qaImages])].filter(i=>i.getAttribute('src'));await Promise.all(imgs.map(i=>i.decode()));const results=imgs.map(i=>({src:i.currentSrc||i.src,complete:i.complete,width:i.naturalWidth,height:i.naturalHeight}));if(results.some(x=>!x.complete||!x.width||!x.height))throw Error('Incomplete image');if(sid===12&&!results.some(x=>/honro_act2_far_data-clouded/.test(x.src)))throw Error('Stage12 far source was not tracked');return results;}""",sid)
         frame['images']=images
         def repaint():
-         check=page.evaluate("""sid=>{const a=HonroApp,s=a.scene,b=a.engine.b,st=HONRO_PROJECT.stages.find(t=>t.metadata?.stageId===sid);s.time=2;s.render(a.engine,0,'',.6,false,0);return{state:JSON.stringify({terrain:b.terrain,units:b.units,design:st.design,initialState:st.initialState,objectives:st.objectives}),camera:{x:s.x,y:s.y,scale:s.scale}};}""",sid)
+         check=page.evaluate("""async sid=>{
+           const a=HonroApp,s=a.scene,b=a.engine.b,st=HONRO_PROJECT.stages.find(t=>t.metadata?.stageId===sid);
+           const before=s._honroClouds,own=Object.hasOwn(s,'_honroClouds'),sceneTime=s.time;
+           let read=0,write=0;const receipt={x:0,v:0,get at(){read++;return Infinity},set at(value){write++}};
+           // Local fixture only: original clouds() runs (textures + compositing), but
+           // delta clamps to zero. No global time/API/asset/camera/paint override.
+           s._honroClouds=receipt;
+           try{s.time=2;s.render(a.engine,0,'',.6,false,0);}
+           finally{s.time=sceneTime;if(own)s._honroClouds=before;else delete s._honroClouds;}
+           if(read<1||write<1||receipt.x!==0||receipt.v!==0||s._honroClouds!==before)throw Error('Cloud phase was not consumed, or failed to restore');
+           const raster=s.canvas.getContext('2d').getImageData(0,0,s.canvas.width,s.canvas.height).data;
+           const digest=await crypto.subtle.digest('SHA-256',raster);
+           return{state:JSON.stringify({terrain:b.terrain,units:b.units,design:st.design,initialState:st.initialState,objectives:st.objectives}),camera:{x:s.x,y:s.y,scale:s.scale},raw:'sha256:'+Array.from(new Uint8Array(digest),v=>v.toString(16).padStart(2,'0')).join(''),png:s.canvas.toDataURL('image/png').split(',',2)[1],cloud:{x:receipt.x,v:receipt.v,read,write,restored:true}};
+         }""",sid)
          assert check['state']==frame['state'] and check['camera']==frame['actual'],check['camera']
-         return canvas.screenshot(animations='disabled')
-        file=f'act2-s{sid:02d}-{w}x{h}-{name}.png';img=repaint()
-        repeat=repaint(); (OUT/file).write_bytes(img)
-        frame['repeatSameEncoded']=repeat==img
-        if repeat!=img:(OUT/(file+'.repeat.png')).write_bytes(repeat)
+         return check,canvas.screenshot(animations='disabled')
+        file=f'act2-s{sid:02d}-{w}x{h}-{name}.png';check,img=repaint()
+        repeat,other=repaint();(OUT/file).write_bytes(img);(OUT/(file+'.repeat.png')).write_bytes(other)
+        for value,extra in [(check,''),(repeat,'.repeat')]:
+         (OUT/(file+'.raw'+extra+'.png')).write_bytes(base64.b64decode(value['png']))
+        frame.update(repeatSameEncoded=img==other,repeatRawHashSame=check['raw']==repeat['raw'],rawDigests=[check['raw'],repeat['raw']],cloudReceipts=[check['cloud'],repeat['cloud']])
         st=frame.pop('state');frame.update(stage=sid,view=name,width=w,height=h,name=file,rasterSha256=hashlib.sha256(img).hexdigest(),physicsSha256=hashlib.sha256(st.encode()).hexdigest())
         frames.append(frame)
        if errors or requests:issues.append({'stage':sid,'width':w,'scriptErrors':errors,'requestFailures':requests})
