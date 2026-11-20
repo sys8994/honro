@@ -1,0 +1,87 @@
+name: Stage15 exact deep bed native contact
+on:
+  push:
+    branches: ['qa/stage15-native-deep-bed-20261120']
+permissions:
+  contents: read
+jobs:
+  paired:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      HONRO_ACT4_RELEASE: '1'
+      HONRO_ACT5_RELEASE: '1'
+      AUDIT_STAGES: '15,16'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 20
+      - name: Exact source guard, provenance and untouched optimizer
+        run: |
+          test "$(git hash-object tests/production-contract.mjs)" = 29210abc75f37bca44d772a78e85e334a09a0229
+          git diff --name-only 1e043b09 HEAD > /tmp/changed
+          test "$(wc -l < /tmp/changed)" = 5
+          if grep -vE '^(shared/build.mjs|shared/stage15-deep-bed.mjs|tests/production-contract.mjs|tests/stage15-deep-bed-http.py|.github/workflows/stage15-deep-bed-http.yml)$' /tmp/changed; then exit 1; fi
+          test "$(git hash-object shared/data/act2/stage15-compact-package.json)" = ac4fb9854c5bf713507564755848b6c2af1f8f1b
+          node --input-type=module - <<'JS'
+          import {readFileSync as r} from 'node:fs';
+          import {execFileSync} from 'node:child_process';
+          import {strict as assert} from 'node:assert';
+          const file='shared/build.mjs', expected=execFileSync('git',['show','1e043b09:'+file],{encoding:'utf8'});
+          const actual=r(file,'utf8').replace("import {applyStage15DeepBed} from './stage15-deep-bed.mjs';\n","").replace("  if(compactAct2Packages[15])applyStage15DeepBed(compactAct2Packages[15]);\n","");
+          assert.equal(actual,expected);
+          JS
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm ci && npm ci --prefix game
+      - run: python -m pip install playwright pillow numpy && python -m playwright install chromium
+      - name: Actual baseline and candidate normal browser
+        run: |
+          mkdir -p "$RUNNER_TEMP/evidence"
+          cp shared/build.mjs /tmp/stage15-candidate-build.mjs
+          git show 1e043b09:shared/build.mjs > shared/build.mjs
+          for variant in baseline candidate; do
+            if [ "$variant" = candidate ]; then cp /tmp/stage15-candidate-build.mjs shared/build.mjs; fi
+            npm run test:release-guard
+            npm run build
+            npm run test:production-contract
+            python -m http.server 8884 --bind 127.0.0.1 > /tmp/stage15-http.log 2>&1 &
+            server=$!
+            OUT="$RUNNER_TEMP/evidence/$variant" python tests/stage15-deep-bed-http.py
+            kill $server
+            wait $server || true
+          done
+      - name: Preserve exact state, non-bed pixels and Stage16
+        run: |
+          python - <<'PY'
+          import os,json,numpy as np
+          from pathlib import Path
+          from PIL import Image
+          p=Path(os.environ['RUNNER_TEMP'])/'evidence'
+          a=json.loads((p/'baseline/proof.json').read_text());b=json.loads((p/'candidate/proof.json').read_text())
+          assert len(a['frames'])==len(b['frames'])==22
+          rows=[]
+          for aa,bb in zip(a['frames'],b['frames']):
+            for k in ('name','actual','viewport','backing','physicsSha256','actorCount','projectStage'):
+              assert aa[k]==bb[k],(k,aa['name'])
+            name=aa['name']
+            im=np.array(Image.open(p/'baseline'/name)).astype(int)
+            jm=np.array(Image.open(p/'candidate'/name)).astype(int)
+            delta=np.max(abs(im-jm),axis=2)
+            y,x=np.where(delta>1)
+            z=aa['actual']['scale'];worldy=aa['actual']['y']+(y+.5-aa['css']['h']/2)/z
+            row={'image':name,'changed':int((delta>0).sum()),'significant':len(x),'max':int(delta.max()),'outsideContactBand':int(((worldy<4560)|(worldy>6430)).sum())}
+            rows.append(row)
+            if aa['stage']==16: assert len(x)==0,row
+            else: assert row['outsideContactBand']==0,row
+            if aa['stage']==15 and aa['width']==390 and aa['view'] in ('south','southwest','southeast'):assert len(x)>0,row
+          (p/'pair.json').write_text(json.dumps(rows,indent=2))
+          PY
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage15-deep-bed-native
+          path: ${{ runner.temp }}/evidence
+          if-no-files-found: error
