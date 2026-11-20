@@ -1,0 +1,24 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {createHash} from 'node:crypto';
+const sha=s=>createHash('sha256').update(s).digest('hex');
+const files={owner:'shared/act4-handoff-art.mjs', manifest:'shared/data/terrain-path-optimization.json'};
+const before=Object.fromEntries(Object.entries(files).map(([id,f])=>[id,fs.readFileSync(f,'utf8')]));
+const a="    compatibilityAssetIds.push(element.assetId);\n    pack.assets.push(tinted);", add="    if(element.id==='approved36-near-slope-join'){\n      // Use the original rock, restoring only the enclosed east-base pocket.\n      const v=tinted.vector,key='source-alpha-silhouette';\n      if(element.x!==-260||element.y!==850||element.scale!==1||v.root.transform?.join()!=='2.2,0,0,2.2,0,0'||v.clips?.[key]?.length!==1)\n        throw Error('Stage 36 rock-pocket clip no longer matches its source');\n      v.clips[key]=[v.clips[key][0]+' M1146.977273 496.336648 L1169.515152 483.028567 L1182.393939 474.442708 L1208.580808 474.442708 L1201.712121 485.175032 L1184.540404 506.854324 L1146.977273 506.854324 Z'];\n    }\n";
+const expectations={"path": "shared/data/terrain-path-optimization.json", "asset": "approved36:near-slope-join-inland", "oldFingerprint": "09b0a304850c8426adcf504406348222f5e29cb927a34934c1d295bd2abd48dc", "newFingerprint": "15ca937d5aff348e6c173d37c3cca490aa69acd874f317b3a2ba0d4e3e3c5eaf", "baselineManifestSha256": "e7d13f4b40a41123c58c866eed47785524a03e39fa79a73d9f8cc52964658c12", "candidateManifestSha256": "904fec936ecca465a2ee92a87536a5576efc8d0c85e303d9a57eacf1d07d644b"}, oldOwnerSHA="904b7479127fa912fa1a78526aec485b34ba58f9cc06c5c1e1ede734b1e1a1b4", candidateOwnerSHA="c2aafac2d63966f8a2e8a4dbb59305a5747d46209ccedee9928297992e170463";
+
+assert.equal(sha(before.owner),oldOwnerSHA);
+assert.equal(sha(before.manifest),expectations.baselineManifestSha256);
+assert.equal(before.owner.split(a).length,2);
+assert.equal(before.manifest.split(expectations.oldFingerprint).length,2);
+const out={owner:before.owner.replace(a,add+a),manifest:before.manifest.replace(expectations.oldFingerprint,expectations.newFingerprint)};
+assert.equal(sha(out.owner),candidateOwnerSHA);
+assert.equal(sha(out.manifest),expectations.candidateManifestSha256);
+assert.equal(out.manifest.replace(expectations.newFingerprint,expectations.oldFingerprint),before.manifest);
+const old=JSON.parse(before.manifest),newer=JSON.parse(out.manifest);
+assert.equal(old.length,132);
+assert.equal(old.filter(e=>e.id===expectations.asset).length,1);
+assert.deepEqual(newer,old.map(e=>e.id===expectations.asset?{...e,original:expectations.newFingerprint}:e));
+for(const [id,f] of Object.entries(files))fs.writeFileSync(f,out[id]);
+const result={files,oldOwnerSHA,candidateOwnerSHA,...expectations,manifestOthersIdentical:131};
+console.log(JSON.stringify(result,null,2));

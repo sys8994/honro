@@ -1,0 +1,64 @@
+name: Stage 36 native pocket normal HTTP isolated A-B
+on:
+  push:
+    branches: ['audit/stage36-native-pocket-source-20261120']
+permissions:
+  contents: read
+jobs:
+  compare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Verify isolated patch and build stock and candidate
+        run: |
+          set -euo pipefail
+          B=1e043b09d4ce107e1d2dcf70fe2274dff7098476
+          test "$(git rev-parse HEAD^)" = "$B"
+          test "$(git diff --name-only "$B" HEAD | sort)" = "$(printf '%s\n' .github/workflows/stage36-native-pocket-source.yml tools/stage36-native-pocket-source/capture.py tools/stage36-native-pocket-source/patch.mjs tools/stage36-native-pocket-source/verify.py)"
+          mkdir -p "$RUNNER_TEMP/qa36/out"
+          echo "QA=$RUNNER_TEMP/qa36" >> "$GITHUB_ENV"
+          echo "OUT=$RUNNER_TEMP/qa36/out" >> "$GITHUB_ENV"
+          P="$RUNNER_TEMP/qa36"
+          cp tools/stage36-native-pocket-source/* "$P/"
+          for variant in before after; do
+            git worktree add --detach "$P/$variant" "$B"
+            (
+              cd "$P/$variant"
+              if [ "$variant" = after ]; then
+                node "$P/patch.mjs" | tee "$P/out/source-resource-proof.json"
+                test "$(git diff --name-only | sort)" = "$(printf '%s\n' shared/act4-handoff-art.mjs shared/data/terrain-path-optimization.json)"
+                git diff -- shared/act4-handoff-art.mjs > "$P/out/source.patch"
+              fi
+              npm ci
+              npm ci --prefix game
+              npm run build
+            )
+          done
+      - name: Capture and verify exact camera pairs via actual HTTP
+        run: |
+          set -euo pipefail
+          python -m pip install playwright Pillow
+          python -m playwright install --with-deps chromium
+          O="$OUT"
+          for variant in before after; do
+            python -m http.server 8884 --bind 127.0.0.1 --directory "$QA/$variant" > "$O/host-$variant.log" 2>&1 &
+            p=$!
+            trap 'kill "$p" || true' EXIT
+            for i in $(seq 1 20); do curl -fsSL http://127.0.0.1:8884/HONRO.html -o /dev/null && break || sleep 1; done
+            PORT=8884 OUT="$O/$variant" python "$QA/capture.py"
+            kill "$p"; wait "$p" || true
+            trap - EXIT
+          done
+          python "$QA/verify.py"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage36-native-pocket-http-pairs
+          path: ${{ env.OUT }}
+          retention-days: 7
