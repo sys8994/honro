@@ -1,0 +1,175 @@
+{
+  "fixtureAuthority": {
+    "run": 44814900553,
+    "job": 136560577552,
+    "artifact": 14668104732,
+    "zipSHA256": "f1436f4494ba6ca4528fabbec9d058c69562b358a38d2278528bef9fce720c11"
+  },
+  "htmlSHA256": "9816ad96165d825eef4ca8f98bd32117fd70fe8bfa793386773ddb48a3f466a7",
+  "active": {
+    "web/entries/game.640b06e8c5ff5bf5.js": {
+      "bytes": 20483,
+      "sha256": "640b06e8c5ff5bf54b2705b70ed1347e9500fd1ff43e36bfb61dabaa498a0379"
+    },
+    "web/runtime/campaign.ea673b7deb657370.js": {
+      "bytes": 527,
+      "sha256": "ea673b7deb6573701449de380a1dd185f96356edad2dec22628aa8b040e674bb"
+    },
+    "web/data/campaign.0b3c0dd4f2bb2036.json": {
+      "bytes": 54885,
+      "sha256": "0b3c0dd4f2bb2036805cdc99b911ac25e3105d309833eb5df33bac5e74138a70"
+    },
+    "web/data/campaign-base.0c57dcfe7c08d421.json": {
+      "bytes": 257,
+      "sha256": "0c57dcfe7c08d421901ffa8eeb437940b6b6d4779816207b51dca7be44c73e5e"
+    },
+    "web/data/campaign-shared.8f8343b5c21518d4.json": {
+      "bytes": 577195,
+      "sha256": "8f8343b5c21518d4fdaa2314e58031fd137b8622d3a6c1ca2fdabafde3bb158f"
+    },
+    "web/data/chapter-36.e73d0225a9535fd1.json": {
+      "bytes": 15961,
+      "sha256": "e73d0225a9535fd1e0354ce9797db4d71d783c73a9c289794ddd046d83e5bdaf"
+    },
+    "web/data/chapter-36-assets-parts.bb9d004b3bc134cb.json": {
+      "bytes": 444,
+      "sha256": "bb9d004b3bc134cbdf822531189fe53a42e9c6c56c658c94c1617fdad4f0594c"
+    },
+    "web/data/chapter-36-assets-part-000.d923ed55c4544e7d.bin": {
+      "bytes": 4194304,
+      "sha256": "d923ed55c4544e7d23dae3fc50acce4ea299f72d1052df1119323d1443aaa92b"
+    },
+    "web/data/chapter-36-assets-part-001.eb2373fca47c0356.bin": {
+      "bytes": 1304176,
+      "sha256": "eb2373fca47c03564fc736d9b896e21558f1ac22af747f17b78d1970738f8c22"
+    }
+  },
+  "retained": {
+    "web/data/chapter-36-assets-parts.6b6e478370f89b9f.json": {
+      "bytes": 444,
+      "sha256": "6b6e478370f89b9f5789caaa50da52fd1abbafb023e9028d582004ea04958448"
+    }
+  },
+  "frames": {
+    "1440": {
+      "render": {
+        "ownerSha": "8f11aa6896577b768f3845315a170d2804b3570383147b04ed3affc4e7484f83",
+        "ownerMaskSha": "322b7f65860fa731699ef930f00a74d949be75a892b20fa8e7ac3d7aa3e99d71",
+        "requested": {
+          "x": 1000000,
+          "y": 1000000,
+          "scale": 0.21176470588235294
+        },
+        "actual": {
+          "x": 3699.2000000000003,
+          "y": 2492.8,
+          "scale": 0.21176470588235294
+        },
+        "adjusted": {
+          "x": 3699.2000000000003,
+          "y": 2492.8,
+          "scale": 0.21176470588235294
+        },
+        "clamped": true,
+        "within": true,
+        "focus": {
+          "left": -320,
+          "top": -1800,
+          "right": 3699.2000000000003,
+          "bottom": 2492.8
+        },
+        "viewport": {
+          "left": 299.2000000000003,
+          "right": 7099.200000000001,
+          "top": 676.6628472222224,
+          "bottom": 4308.9371527777785
+        },
+        "css": {
+          "w": 1440,
+          "h": 769.1875
+        },
+        "backing": [
+          1440,
+          769
+        ],
+        "actorCount": 13,
+        "projectStage": "stage-36",
+        "tide": null,
+        "stage": 36,
+        "view": "southeast",
+        "width": 1440,
+        "height": 900,
+        "name": "act45-s36-1440x900-southeast.png",
+        "rasterSha256": "9e633db4eb8a0590c7f13eb776ad98c114b436aa2cbbcc44977f10797c1df85c",
+        "physicsSha256": "1de8d37f9444c119e4425e762f7eeb77124878ab749b92be42a83d3633a8f271"
+      },
+      "roi": [
+        412,
+        218,
+        449,
+        242
+      ],
+      "priorBrightBluePixels": 184
+    },
+    "390": {
+      "render": {
+        "ownerSha": "8f11aa6896577b768f3845315a170d2804b3570383147b04ed3affc4e7484f83",
+        "ownerMaskSha": "322b7f65860fa731699ef930f00a74d949be75a892b20fa8e7ac3d7aa3e99d71",
+        "requested": {
+          "x": 1000000,
+          "y": 1000000,
+          "scale": 0.057352941176470586
+        },
+        "actual": {
+          "x": 3699.2000000000003,
+          "y": 2492.8,
+          "scale": 0.057352941176470586
+        },
+        "adjusted": {
+          "x": 3699.2000000000003,
+          "y": 2492.8,
+          "scale": 0.057352941176470586
+        },
+        "clamped": true,
+        "within": true,
+        "focus": {
+          "left": -320,
+          "top": -1800,
+          "right": 3699.2000000000003,
+          "bottom": 2492.8
+        },
+        "viewport": {
+          "left": 299.2000000000003,
+          "right": 7099.200000000001,
+          "top": -3153.02532051282,
+          "bottom": 8138.6253205128205
+        },
+        "css": {
+          "w": 390,
+          "h": 647.609375
+        },
+        "backing": [
+          390,
+          648
+        ],
+        "actorCount": 13,
+        "projectStage": "stage-36",
+        "tide": null,
+        "stage": 36,
+        "view": "southeast",
+        "width": 390,
+        "height": 844,
+        "name": "act45-s36-390x844-southeast.png",
+        "rasterSha256": "4bb464b545e76ba47d46b5fd2b92413a96ee93de61a2cafb63e6bd5092f45203",
+        "physicsSha256": "1de8d37f9444c119e4425e762f7eeb77124878ab749b92be42a83d3633a8f271"
+      },
+      "roi": [
+        110,
+        277,
+        123,
+        287
+      ],
+      "priorBrightBluePixels": 6
+    }
+  }
+}

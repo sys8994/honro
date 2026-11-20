@@ -1,0 +1,44 @@
+name: Stage36 public native southeast verification
+on:
+  push:
+    branches: [qa/stage36-current-public-pocket-20261121]
+    paths:
+      - '.github/workflows/stage36-current-public-pocket.yml'
+      - 'tools/stage36-public-pocket/**'
+permissions:
+  contents: read
+jobs:
+  public-stage36:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage36-current-public-pocket-20261121'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Bind the exact release parent and check active plus retained public HTTPS bytes
+        shell: bash
+        run: |
+          set -euo pipefail
+          W="$(mktemp -d "$RUNNER_TEMP/stage36-public.XXXXXX")"
+          mkdir "$W/evidence"
+          export STAGE36_PUBLIC="$W/evidence"
+          echo "STAGE36_PUBLIC=$STAGE36_PUBLIC" >> "$GITHUB_ENV"
+          python3 tools/stage36-public-pocket/public.py
+      - name: Public Stage36 native southeast screenshots on PC and mobile
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m venv "$STAGE36_PUBLIC/../venv"
+          V="$STAGE36_PUBLIC/../venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.58.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+          "$V" tools/stage36-public-pocket/capture.py
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: stage36-public-southeast-readback
+          path: ${{ env.STAGE36_PUBLIC }}
+          if-no-files-found: warn
+          retention-days: 7
