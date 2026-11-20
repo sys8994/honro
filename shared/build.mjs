@@ -7,6 +7,7 @@ import {applyAct4SideviewArt} from './act4-sideview-art.mjs';
 import {makeAct5,far as act5Far,farStages as act5FarStages,clock as act5Clock,journey as act5Journey} from './act5-world.mjs';
 import {applyAct3HandoffArt} from './act3-handoff-art.mjs';
 import {applyNaruBodyFinish} from '../tools/map-forge/naru-body-finish.mjs';
+import {applyStage15DeepBed} from './stage15-deep-bed.mjs';
 import {terrainPathOptimization} from './terrain-path-optimization.mjs';
 import {applyReviewedAct2Art} from '../tools/act2-vector-production/apply-candidates.mjs';
 import {validateSkillIcons} from '../tools/skill-icons/manifest.mjs';
@@ -136,6 +137,7 @@ export async function runtimeEntries({vector=true,render=true,app=false,producti
   if(compactAct2Stages.some(id=>!Number.isInteger(id)||id<12||id>20))throw Error('Invalid compact Act2 preview chapters');
   if(phaseA&&process.env.HONRO_ACT2_COMPACT!=='0')for(const id of compactAct2Stages)compactAct2Packages[id]=JSON.parse(await read(`shared/data/act2/stage${id}-compact-package.json`));
   for(const pkg of Object.values(compactAct2Packages))terrainOptimization.apply(pkg.assets);
+  if(compactAct2Packages[15])applyStage15DeepBed(compactAct2Packages[15]);
   data('HONRO_ACT2_COMPACT_PACKAGES',compactAct2Packages);
   const reviewedStages=phaseA?(process.env.HONRO_ACT23_V4_PHASE_B_STAGES===undefined?(release?[12,13,14,15,16,17,18,19,20]:[]):process.env.HONRO_ACT23_V4_PHASE_B_STAGES.split(',').map(Number).filter(n=>[12,13,14,15,16,17,18,19,20].includes(n))):[];
   data('HONRO_ACT23_V4_PHASE_B_STAGES',reviewedStages);
