@@ -1,0 +1,132 @@
+name: Stage18 isolated reference-integrity proof
+on:
+  push:
+    branches: ['qa/stage18-reference-integrity-20261120']
+permissions:
+  contents: read
+jobs:
+  proof:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Independently pin baseline and exact remote QA-only scope
+        run: |
+          set -euo pipefail
+          BASE=d357ac4f2a379b28c21e1c6af78ac641802b7c43
+          Q="$RUNNER_TEMP/stage18-reference"
+          mkdir -p "$Q/out"
+          printf 'QA=%s\nOUT=%s\n' "$Q" "$Q/out" >> "$GITHUB_ENV"
+          git merge-base --is-ancestor "$BASE" HEAD
+          git diff --name-status "$BASE" HEAD > "$Q/out/branch-scope.txt"
+          python - "$Q/out/branch-scope.txt" <<'PY'
+          import sys,pathlib
+          actual=set(pathlib.Path(sys.argv[1]).read_text().splitlines())
+          expected={'A\t.github/workflows/stage18-reference-proof.yml',*['A\ttools/stage18-reference-qa/'+n for n in ['parser.py','splice.py','verify.py','packet.py','membership.mjs','live.py']]}
+          assert actual==expected,(actual,expected)
+          PY
+          git worktree add --detach "$Q/before" "$BASE"
+          git worktree add --detach "$Q/after" "$BASE"
+          echo "$BASE" > "$Q/out/pinned.txt"
+      - name: Check unchanged release guard and reproduce original Stage22 whole-project failure first
+        run: |
+          set -euo pipefail
+          cd "$QA/before"
+          npm ci
+          npm ci --prefix game
+          npm run test:release-guard > "$OUT/release-guard-before.txt" 2>&1
+          set +e
+          node tests/stage22-vertical-regeneration.mjs > "$QA/regeneration-before.private" 2>&1
+          rc=$?
+          set -e
+          echo "$rc" > "$OUT/stage22-before.exit"
+          sha256sum "$QA/regeneration-before.private" > "$OUT/stage22-before.log.sha"
+          grep -m1 '^Error:' "$QA/regeneration-before.private" | head -c 180 | tee "$OUT/stage22-before.first-error"
+          test "$rc" -ne 0
+          grep -Eq '^Error: entry-front: missing member sb-a-front$' "$QA/regeneration-before.private"
+      - name: Prepare only 3 exact local source changes and check current membership/save
+        run: |
+          set -euo pipefail
+          code="$GITHUB_WORKSPACE/tools/stage18-reference-qa"
+          python "$code/verify.py" "$QA/before" "$QA/after" "$OUT"
+          cd "$QA/after"; npm ci; npm ci --prefix game
+          for mode in before after; do
+            cd "$QA/$mode"
+            cp "$code/membership.mjs" tools/map-forge/.stage18-reference-qa.mjs
+            node tools/map-forge/.stage18-reference-qa.mjs "$mode" > "$OUT/membership-$mode.json"
+            rm tools/map-forge/.stage18-reference-qa.mjs
+            node tests/act2-compact-save.mjs 18 > "$OUT/compact-save-$mode.txt" 2>&1
+          done
+          npm run test:release-guard > "$OUT/release-guard-after.txt" 2>&1
+      - name: Unmodified Stage22 regeneration on independent corrected baseline, no Stage22 change
+        run: |
+          set -euo pipefail
+          cd "$QA/after"
+          set +e
+          node tests/stage22-vertical-regeneration.mjs > "$QA/regeneration-after.private" 2>&1
+          rc=$?
+          set -e
+          echo "$rc" > "$OUT/stage22-after.exit"
+          sha256sum "$QA/regeneration-after.private" > "$OUT/stage22-after.log.sha"
+          if [ "$rc" -eq 0 ]; then
+            cp _local/reports/vertical-stages/stage22-regeneration.json "$OUT/stage22-after.json"
+          else
+            grep -m1 -E '^(Error:|AssertionError|TypeError:|SyntaxError:)' "$QA/regeneration-after.private" | head -c 180 > "$OUT/stage22-after.first-error" || true
+            grep -m1 -E 'missing member|invalid .* contract|invalid dimensions' "$QA/regeneration-after.private" | head -c 180 > "$OUT/stage22-after.schema-error" || true
+            if [ -s "$OUT/stage22-after.schema-error" ]; then exit "$rc"; fi
+            # A non-membership Stage22-author equality issue stays an
+            # independent HOLD. Finish the Stage18 live diagnosis, not a release.
+          fi
+      - name: Run normal default builds, optimizer and exact active packet scope
+        run: |
+          set -euo pipefail
+          for mode in before after; do
+            cd "$QA/$mode"; npm run build > "$OUT/build-$mode.log" 2>&1
+          done
+          python "$GITHUB_WORKSPACE/tools/stage18-reference-qa/packet.py" "$QA/before" "$QA/after" "$OUT"
+      - name: Compare two actual normal App launches and natural bell warning
+        run: |
+          set -euo pipefail
+          python -m pip install playwright pillow
+          python -m playwright install --with-deps chromium
+          python -m http.server 8884 --bind 127.0.0.1 --directory "$QA/before" > "$OUT/http-before.txt" 2>&1 & p=$!
+          python -m http.server 8885 --bind 127.0.0.1 --directory "$QA/after" > "$OUT/http-after.txt" 2>&1 & q=$!
+          trap 'kill "$p" "$q" || true' EXIT
+          code="$GITHUB_WORKSPACE/tools/stage18-reference-qa/live.py"
+          PORT=8884 OUT="$OUT/before" python "$code" > "$OUT/live-before.log" 2>&1 & a=$!
+          PORT=8885 OUT="$OUT/after" python "$code" > "$OUT/live-after.log" 2>&1 & b=$!
+          status=0
+          wait "$a" || status=1
+          wait "$b" || status=1
+          test "$status" -eq 0
+          python - <<'PY'
+          import json,os,pathlib
+          from PIL import Image,ImageChops
+          root=pathlib.Path(os.environ['OUT'])
+          a,b=[json.loads((root/mode/'proof.json').read_text()) for mode in ('before','after')]
+          assert set(a)==set(b)=={'initial','dormant-to-bell-warning'}
+          results={}
+          for k in a:
+            x,y=a[k],b[k]
+            assert [x.pop('missing'),x.pop('empty'),y.pop('missing'),y.pop('empty')]==[45,0,0,12]
+            del x['rasterSha256'];del y['rasterSha256']
+            assert x==y,(k,[key for key in x if x[key]!=y.get(key)],[key for key,h in x['perFieldSha256'].items() if h!=y['perFieldSha256'].get(key)])
+            im=[Image.open(root/mode/(k+'.png')).convert('RGB') for mode in ('before','after')]
+            extrema=ImageChops.difference(*im).getextrema()
+            assert extrema==((0,0),(0,0),(0,0)),(k,extrema)
+            results[k]=dict(x,rgbExact=True)
+          (root/'live-ab.json').write_text(json.dumps(results,indent=2))
+          PY
+      - name: Do not mark complete if either independent required guard was not passed
+        run: test "$(cat "$OUT/stage22-after.exit")" = 0
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage18-reference-proof-only
+          path: ${{ env.OUT }}
+          retention-days: 7
