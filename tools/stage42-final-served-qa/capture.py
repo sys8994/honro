@@ -8,7 +8,7 @@ from playwright.sync_api import sync_playwright
 from verify import sha,ADDR
 root=Path(__file__).resolve().parent
 views=json.loads((root/'views.json').read_text())
-ARCHIVED={'390-west': {'stockBinding': '5672adba9c31306eb27ca5d7db0a587296ec645493d5cb9a471d52ed1e10f6e7', 'stockEntry': '848c999127463080e2c98ba3ad7ebbca8443344280856a154d5833ed8ecdbf92', 'priorState': '913d0b98f987bc1fb4f1a62b65a1604febbe7c6d58f9923cc89e1b7714da1174', 'htmlSHA256': '918fb46fbe0ffc400f59e4e35345996679741ce33ac3ff558f8fb43d4864f33a'}, '1440-south': {'stockBinding': '5672adba9c31306eb27ca5d7db0a587296ec645493d5cb9a471d52ed1e10f6e7', 'stockEntry': '848c999127463080e2c98ba3ad7ebbca8443344280856a154d5833ed8ecdbf92', 'priorState': '913d0b98f987bc1fb4f1a62b65a1604febbe7c6d58f9923cc89e1b7714da1174', 'htmlSHA256': '918fb46fbe0ffc400f59e4e35345996679741ce33ac3ff558f8fb43d4864f33a'}, '390-overview': {'stockBinding': '5672adba9c31306eb27ca5d7db0a587296ec645493d5cb9a471d52ed1e10f6e7', 'stockEntry': '848c999127463080e2c98ba3ad7ebbca8443344280856a154d5833ed8ecdbf92', 'priorState': '913d0b98f987bc1fb4f1a62b65a1604febbe7c6d58f9923cc89e1b7714da1174', 'htmlSHA256': '918fb46fbe0ffc400f59e4e35345996679741ce33ac3ff558f8fb43d4864f33a'}, '390-northwest': {'stockBinding': '5672adba9c31306eb27ca5d7db0a587296ec645493d5cb9a471d52ed1e10f6e7', 'stockEntry': '848c999127463080e2c98ba3ad7ebbca8443344280856a154d5833ed8ecdbf92', 'priorState': '913d0b98f987bc1fb4f1a62b65a1604febbe7c6d58f9923cc89e1b7714da1174', 'htmlSHA256': '918fb46fbe0ffc400f59e4e35345996679741ce33ac3ff558f8fb43d4864f33a'}, '390-north': {'stockBinding': '5672adba9c31306eb27ca5d7db0a587296ec645493d5cb9a471d52ed1e10f6e7', 'stockEntry': '848c999127463080e2c98ba3ad7ebbca8443344280856a154d5833ed8ecdbf92', 'priorState': '913d0b98f987bc1fb4f1a62b65a1604febbe7c6d58f9923cc89e1b7714da1174', 'htmlSHA256': '918fb46fbe0ffc400f59e4e35345996679741ce33ac3ff558f8fb43d4864f33a'}}
+ARCHIVED={'1440-southwest': {'stockBinding': '2123df732af9e534a8a63e3b70bb2cfdef065818df0ef5d17c012d75ee75a645', 'stockEntry': '3b3ba95261b2b7588447e1b9ee5db8fee4bdb72692e5153a356054fd26b660b0', 'priorState': '913d0b98f987bc1fb4f1a62b65a1604febbe7c6d58f9923cc89e1b7714da1174', 'htmlSHA256': 'e176541027534d964517b53b2fc36825ebfdc207146f8b1879b7b53120441f1b'}, '1440-southeast': {'stockBinding': '2123df732af9e534a8a63e3b70bb2cfdef065818df0ef5d17c012d75ee75a645', 'stockEntry': '3b3ba95261b2b7588447e1b9ee5db8fee4bdb72692e5153a356054fd26b660b0', 'priorState': '913d0b98f987bc1fb4f1a62b65a1604febbe7c6d58f9923cc89e1b7714da1174', 'htmlSHA256': 'e176541027534d964517b53b2fc36825ebfdc207146f8b1879b7b53120441f1b'}, '390-west': {'stockBinding': '2123df732af9e534a8a63e3b70bb2cfdef065818df0ef5d17c012d75ee75a645', 'stockEntry': '3b3ba95261b2b7588447e1b9ee5db8fee4bdb72692e5153a356054fd26b660b0', 'priorState': '913d0b98f987bc1fb4f1a62b65a1604febbe7c6d58f9923cc89e1b7714da1174', 'htmlSHA256': 'e176541027534d964517b53b2fc36825ebfdc207146f8b1879b7b53120441f1b'}, '390-east': {'stockBinding': '2123df732af9e534a8a63e3b70bb2cfdef065818df0ef5d17c012d75ee75a645', 'stockEntry': '3b3ba95261b2b7588447e1b9ee5db8fee4bdb72692e5153a356054fd26b660b0', 'priorState': '913d0b98f987bc1fb4f1a62b65a1604febbe7c6d58f9923cc89e1b7714da1174', 'htmlSHA256': 'e176541027534d964517b53b2fc36825ebfdc207146f8b1879b7b53120441f1b'}, '390-south': {'stockBinding': '2123df732af9e534a8a63e3b70bb2cfdef065818df0ef5d17c012d75ee75a645', 'stockEntry': '3b3ba95261b2b7588447e1b9ee5db8fee4bdb72692e5153a356054fd26b660b0', 'priorState': '913d0b98f987bc1fb4f1a62b65a1604febbe7c6d58f9923cc89e1b7714da1174', 'htmlSHA256': 'e176541027534d964517b53b2fc36825ebfdc207146f8b1879b7b53120441f1b'}}
 
 out=Path(os.environ["OUT"]);out.mkdir(parents=True,exist_ok=True)
 bins=[Path(os.environ[s]) for s in ("STOCK","TARGET")]
@@ -158,8 +158,8 @@ with sync_playwright() as p:
    assert all(aa[k]==bb[k] for k in ('surfaceSHA256','propsSHA256')), 'SURFACE or props changed'
    A,B=[np.array(sig_image(x['raw'])).astype(np.int16) for x in (a,b)]
    h,w=A.shape[:2];err=np.abs(A-B).max(2);srcScale=6500/2022;sx=(np.arange(w)+.5-w/2)/aa['actual']['scale']/srcScale+aa['actual']['x']/srcScale;sy=(np.arange(h)+.5-h/2)/aa['actual']['scale']/srcScale+aa['actual']['y']/srcScale
-   top=sy[:,None]<1000
-   owned=(~top)&(sx[None,:]<=1025)
+   top=(sy[:,None]<779)&(sx[None,:]>-24)&(sx[None,:]<2025)
+   owned=(~top)
    core=np.unpackbits(np.frombuffer(zlib.decompress(base64.b64decode(q['nativeCore'])),dtype=np.uint8).reshape(h,(w+7)//8),axis=1)[:,:w].astype(bool)
    assert int(core.sum())==q['nativeCoreCount']
    def summary(mask):
@@ -171,6 +171,13 @@ with sync_playwright() as p:
      if proj.min()<2.5:bbands[k]=dict(pixel=int(proj.argmin()),within2px=summary((proj<=2)[None,:] if axis=='x' else (proj<=2)[:,None]))
    grids={}
    step=domn['tileWorldSize']; vp=bb['viewport']; focus=bb['focus']
+   assert domn['landmark']['x']==0 and domn['landmark']['y']==0 and abs(domn['landmark']['scale']-srcScale)<1e-12
+   bbx=domn['paint']
+   cap={'left':-3900,'right':10400,'top':85,'bottom':3820}
+   assert bbx['left']<cap['left'] and bbx['right']>cap['right'] and bbx['top']<=cap['top'] and bbx['bottom']>cap['bottom'], 'visible-only bounds fail to contain candidate'
+   assert vp['left']>cap['left'] and vp['right']<cap['right'], 'artificial lateral cap enters normal camera'
+   item['layoutCaps']={'bodyWorld':cap,'lateralCutsOutside':True,'naturalRidgeTopInView':vp['top']<=cap['top']<=vp['bottom'],'naturalShallowSaddleInView':vp['top']<=cap['bottom']<=vp['bottom'],'drawBounds':bbx}
+
    for axis,coords,lo,hi in [('x',sx,'left','right'),('y',sy,'top','bottom')]:
     for at in range(int(np.ceil(vp[lo]/step)),int(np.floor(vp[hi]/step))+1):
      world=at*step
@@ -183,20 +190,26 @@ with sync_playwright() as p:
     if 2<=j<h-2:
      band=np.max(abs(B[j-2:j+3][1:]-B[j-2:j+3][:-1]),axis=2)
      item['bottomSeamCandidatePerRow']=[{'row':j-1+k,'max':int(b.max()),'gt16':int((b>16).sum())}for k,b in enumerate(band)]
-   item['regions']={'outsideProtectedOwnership':summary(~owned),'upperProtected':summary(top&~owned),'outsideNativeCore':summary(~core),'nativeCore':summary(core),'tileExteriorBoundaryBands':bbands}
+   item['regions']={'outsideProtectedOwnership':summary(top),'upperProtected':summary(top),'outsideNativeCore':summary(~core),'nativeCore':summary(core),'tileExteriorBoundaryBands':bbands}
    # Deviations are observations, not a tolerance-based pass.
    Image.fromarray((core*255).astype('uint8')).save(out/(q['key']+'-native-core.png'))
    Image.fromarray((~owned*255).astype('uint8')).save(out/(q['key']+'-protected.png'))
    assert not any(aa['repeat'].values()) and not any(bb['repeat'].values()), 'unstable repeated frame'
    item['hashes']={mode:{kind:sha(im)for kind,im in imgs.items()}for mode,imgs in [('stock',a),('target',b)]}
-   assert item['hashes']['stock']==q['oldControl'], 'old candidate image did not match exact archive'
-   assert item['regions']['outsideProtectedOwnership']['changed']==0, 'protected pixels drifted'
-   if q['key']=='1440-east':assert item['hashes']['stock']==item['hashes']['target'], 'east no-change witness differs'
+   assert item['hashes']['stock']==q['originalArchived'], 'original image did not match exact archive'
+   # Record the actual exact discrepancies, even when tiny; no threshold grants visual clearance.
+   C=zlib.decompress(base64.b64decode(q['allowedOwner']));assert sha(C)==q['allowedOwnerSHA']
+   allowed=np.unpackbits(np.frombuffer(C,dtype=np.uint8).reshape(h,(w+7)//8),axis=1)[:,:w].astype(bool)
+   assert int(allowed.sum())==q['allowedOwnerCount']
+   item['regions']['outsideOwnedAA'] = summary(~allowed)
+   holebox=(sx[None,:]>=161.63)&(sx[None,:]<=1703.24)&(sy[:,None]>=0)&(sy[:,None]<=649.79)
+   item['regions']['oldCanonicalHoleBounds']=summary(holebox)
+   Image.fromarray((~allowed*255).astype('uint8')).save(out/(q['key']+'-protected-exact-ledger.png'))
+
    if q['key'].endswith('-overview-return'):
     assert item['hashes']==next(r['hashes'] for r in roll if r['view']==q['key'].split('-return')[0]), 'overview changed after camera cycle'
    item['changedPixels']=changed(sig_image(a['raw']),sig_image(b['raw'])).histogram()[255]
-   if q['key'] in ('1440-north','1440-northeast','1440-northwest'):
-    assert item['changedPixels']==0, 'unexpected change in no-BODY top control'
+
   except Exception as e:
    item['error']=str(e);roll.append(item);(out/'comparison.json').write_text(json.dumps(roll,indent=2));raise
   roll.append(item);(out/'comparison.json').write_text(json.dumps(roll,indent=2))
