@@ -1,4 +1,4 @@
-name: Stage42 crossed native final-served diagnostic
+name: Stage42 55c5 canonical source equivalence
 on:
   push:
     branches: [qa/stage42-crossed-final-served-20261120]
@@ -33,7 +33,11 @@ jobs:
           git worktree add --detach "$W/stock" "$BASE"
           git worktree add --detach "$W/target" "$BASE"
           python "$Q/prepare.py" "$W/target" | tee "$W/out/preparation.txt"
+          printf '%s\n' shared/assets/environment/act5/stage42-registered-body.json shared/runtime/act5-edge-art.js tests/stage42-edge-geology.mjs > "$W/expected-source-paths"
+          git -C "$W/target" diff --name-only | diff - "$W/expected-source-paths"
+          git -C "$W/stock" diff --quiet HEAD --
           git -C "$W/target" diff --stat > "$W/out/diagnostic-source-diff.txt"
+          for p in $(cat "$W/expected-source-paths"); do printf '%s %s\n' "$(git -C "$W/target" hash-object "$p")" "$p"; done > "$W/out/exact-product-blobs.txt" 
           git -C "$W/target" diff -- shared/runtime/act5-edge-art.js > "$W/out/diagnostic-bounds.diff"
       - name: Stock validation and official builds, no optimizer edits
         run: |
@@ -47,12 +51,14 @@ jobs:
           const a=JSON.parse(fs.readFileSync('shared/assets/environment/act5/stage42-registered-body.json'));
           const errors=HonroVectorArt.validate(a.vector);console.log(errors);if(errors.length)throw Error(errors.join(';'));
           JS
+            node tests/stage42-edge-geology.mjs >"$OUT/stage42-geology-$mode.log" 2>&1
+            node tests/act5-terrain-contact.mjs >"$OUT/act5-contact-$mode.log" 2>&1
             npm run test:release-guard >"$OUT/release-$mode.log" 2>&1
             sha256sum shared/assets/environment/act5/stage42-registered-body.json >"$OUT/source-before-$mode.sha"
             npm run build >"$OUT/build-$mode.log" 2>&1
             sha256sum -c "$OUT/source-before-$mode.sha"
           done
-      - name: Thirteen remaining exact Stage42 perimeter poses
+      - name: PC-west and mobile-southwest archived App equivalence
         run: |
           set -euo pipefail
           python -m pip install playwright==1.58.0 pillow numpy
@@ -67,6 +73,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: stage42-final-served-diagnostic
+          name: stage42-55c5-canonical-equivalence
           path: ${{ env.OUT }}
           retention-days: 7
