@@ -1,0 +1,155 @@
+{
+  "base": "220328d6eaa3e952c6b74075a3c8570251d34f1a",
+  "baseTree": "52a3b9d8ca9d064be5c3d217274140a9bdc50aad",
+  "target": "559f3b83f1c92fa5430920e4eab17f8a8f8f0001",
+  "targetTree": "5fc64e8a44d5f6d0abed853c62f8d389882b18a7",
+  "sources": {
+    "shared/runtime/act3-handoff-art.js": [
+      "57f8bb1758f6bac112f22608775a8f0d56c7492d",
+      "c6eb8d1603954c80fafe19ec6fe8ca0c1c81f6c3"
+    ],
+    "shared/assets/environment/act3-handoff/stage26-kiln-foundation.json": [
+      "b9f5732b4a4562f59dde4afb5cc062559ea35b28",
+      "9ef0fa44bce003d7a82f0931fa4b3091a647e57e"
+    ]
+  },
+  "live": {
+    "branch": "master",
+    "run": 44817305675,
+    "job": 136569627801,
+    "publishedAt": "2026-11-20T21:08:19.0579672Z",
+    "manifestBlob": "ccec17e1f1a5ca0eeff81d86e5b2231100198cff",
+    "manifestSHA256": "868a7c8257b4b29b072889c8734bdf877bd49c97b7bd2c698e08bbcb503d1f92",
+    "htmlBlob": "bc7d2312f00065bcb32613214a0573b174f2b6ad",
+    "htmlSHA256": "9816ad96165d825eef4ca8f98bd32117fd70fe8bfa793386773ddb48a3f466a7"
+  },
+  "unchangedRetainer": {
+    "tools/release/retain-published-web.mjs": "8374336b53c74ac81e6d32f5aa43eee575e61daa",
+    "shared/web-retention.mjs": "16687b0fc38e432a7d66a015ddf3ebe744163a06"
+  },
+  "qa": {
+    "run": 44818889440,
+    "job": 136574292345,
+    "head": "c2da62aa6cf7600d7440ac2439ba4396c46666fb",
+    "branch": "qa/stage26-v3-render-bounds-native-20261121",
+    "workflow": ".github/workflows/stage26-product-rebuild.yml",
+    "sourceBlobs": {
+      ".github/workflows/stage26-product-rebuild.yml": "6c30fc363bb032d9c5c11a5f2751aea7c678bc8e",
+      "tools/stage26-product-rebuild/guard.py": "33c09064ace7a204f9458fde9715c85b26138585",
+      "tools/stage26-product-rebuild/verify.py": "ec9c57ce24b4ba448f7131c0be04c9482c70cb33",
+      "tools/stage26-product-rebuild/capture.py": "943e165ad79380c8cb62dbf65b48f8f57f0782d7",
+      "tools/stage26-product-rebuild/registered-v2.json": "1132d77b7c6be0543fd9e1afefe8d4a19de72e4d"
+    },
+    "artifactName": "stage26-v3-native-rebuild-proof",
+    "artifact": {
+      "id": 14671077485,
+      "bytes": 12742736,
+      "sha256": "b91c53205b6c61185b6db0916fad8d5fa5d43d0ead8561c68949180e25312aa1"
+    },
+    "comparisonSHA256": "38246293fa3126200d8a19b382e8b45acdede9a505c3e844cdf87cffd47ab130"
+  },
+  "graphSHA256": {
+    "A": "a58ec66abfbea88ffa3ed1bbf1cfc5d4c17d2b3938754fab853f673841abad4a",
+    "B": "787e83d0c8ddffbb143ce9c7b2491ac735d10ad7a1ea18a304020401a8b2466f"
+  },
+  "hashShells": {
+    "A": "9816ad96165d825eef4ca8f98bd32117fd70fe8bfa793386773ddb48a3f466a7",
+    "B": "be902800b7a24c145b09fb959909d24bfccc958c88c2d87d7c79725a16f2f708"
+  },
+  "roles": {
+    "A": {
+      "entry": "web/entries/game.640b06e8c5ff5bf5.js",
+      "campaign": "web/data/campaign.0b3c0dd4f2bb2036.json",
+      "loader": "web/runtime/campaign.ea673b7deb657370.js",
+      "activeRuntime": "web/runtime/ordered-common-17.9b8e07dd9a78ec92.js",
+      "stageMap": "web/data/chapter-26.cc8e0e37503433b3.json",
+      "chapterPacket": "web/data/chapter-26-assets.a45d6ce39671a754.json"
+    },
+    "B": {
+      "entry": "web/entries/game.3e9d3e271f161125.js",
+      "campaign": "web/data/campaign.fa9a5e8d3cb0a7e5.json",
+      "loader": "web/runtime/campaign.748d97a778b7faa1.js",
+      "activeRuntime": "web/runtime/ordered-common-17.2ed746adf1d3e0e3.js",
+      "stageMap": "web/data/chapter-26.cc8e0e37503433b3.json",
+      "chapterPacket": "web/data/chapter-26-assets.d511268fb4869e94.json"
+    }
+  },
+  "protected36": {
+    "web/data/chapter-36.e73d0225a9535fd1.json": {
+      "bytes": 15961,
+      "sha256": "e73d0225a9535fd1e0354ce9797db4d71d783c73a9c289794ddd046d83e5bdaf"
+    },
+    "web/data/chapter-36-assets-parts.bb9d004b3bc134cb.json": {
+      "bytes": 444,
+      "sha256": "bb9d004b3bc134cbdf822531189fe53a42e9c6c56c658c94c1617fdad4f0594c"
+    },
+    "web/data/chapter-36-assets-part-000.d923ed55c4544e7d.bin": {
+      "bytes": 4194304,
+      "sha256": "d923ed55c4544e7d23dae3fc50acce4ea299f72d1052df1119323d1443aaa92b"
+    },
+    "web/data/chapter-36-assets-part-001.eb2373fca47c0356.bin": {
+      "bytes": 1304176,
+      "sha256": "eb2373fca47c03564fc736d9b896e21558f1ac22af747f17b78d1970738f8c22"
+    }
+  },
+  "newImmutable": {
+    "web/data/campaign.fa9a5e8d3cb0a7e5.json": {
+      "bytes": 54885,
+      "sha256": "fa9a5e8d3cb0a7e54e7dd62130f61d93735f61fd4d56c9cb3b27874619ef4f3c"
+    },
+    "web/data/chapter-26-assets.d511268fb4869e94.json": {
+      "bytes": 251826,
+      "sha256": "d511268fb4869e94e624ec13b28b64eb69c7871bc1dca2155dd8b7f7b8b9b394"
+    },
+    "web/entries/game.3e9d3e271f161125.js": {
+      "bytes": 20483,
+      "sha256": "3e9d3e271f16112552f0384727ff2c10e238ab5ba85025cd45222a7f8acef2ce"
+    },
+    "web/entries/game.54bab219d450aac6.html": {
+      "bytes": 11318,
+      "sha256": "54bab219d450aac6697bf16e0007c735b8d00560a385e61b0d9b07655cde8531"
+    },
+    "web/entries/workshop.90eeee73ca2e9fc5.js": {
+      "bytes": 16706,
+      "sha256": "90eeee73ca2e9fc51b38fe7a4a9df45e9781b7009049d184c0c5e3795ffd0632"
+    },
+    "web/runtime/campaign.748d97a778b7faa1.js": {
+      "bytes": 527,
+      "sha256": "748d97a778b7faa16a626dbf4c3f7d53c2cb7747076f183a0302534b29a6370a"
+    },
+    "web/runtime/ordered-common-17.2ed746adf1d3e0e3.js": {
+      "bytes": 97032,
+      "sha256": "2ed746adf1d3e0e384db957d7392a299be80db92cba7647b721d2c84bafec4e2"
+    }
+  },
+  "oldActiveRetained": {
+    "web/data/campaign.0b3c0dd4f2bb2036.json": {
+      "bytes": 54885,
+      "sha256": "0b3c0dd4f2bb2036805cdc99b911ac25e3105d309833eb5df33bac5e74138a70"
+    },
+    "web/data/chapter-26-assets.a45d6ce39671a754.json": {
+      "bytes": 249788,
+      "sha256": "a45d6ce39671a75478df0d707daaf648f56b275399f4c51e3bc2a770dc142642"
+    },
+    "web/entries/game.640b06e8c5ff5bf5.js": {
+      "bytes": 20483,
+      "sha256": "640b06e8c5ff5bf54b2705b70ed1347e9500fd1ff43e36bfb61dabaa498a0379"
+    },
+    "web/entries/game.7a219547570dd321.html": {
+      "bytes": 11318,
+      "sha256": "7a219547570dd321f7aac1bba49b9773dc265666fdcbf019cf2206fa71202864"
+    },
+    "web/entries/workshop.8a1750c071aa8a9b.js": {
+      "bytes": 16706,
+      "sha256": "8a1750c071aa8a9b66328832142b1b9b6564b944ffa50bab507cd3c12a703fc0"
+    },
+    "web/runtime/campaign.ea673b7deb657370.js": {
+      "bytes": 527,
+      "sha256": "ea673b7deb6573701449de380a1dd185f96356edad2dec22628aa8b040e674bb"
+    },
+    "web/runtime/ordered-common-17.9b8e07dd9a78ec92.js": {
+      "bytes": 96218,
+      "sha256": "9b8e07dd9a78ec925564ce3ea9e9b5a41388ef76fa875f988e8098173461afb7"
+    }
+  }
+}

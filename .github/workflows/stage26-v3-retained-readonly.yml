@@ -1,0 +1,46 @@
+name: Stage26 v3 verified retained web delta, no deployment
+on:
+  push:
+    branches: [qa/stage26-v3-retained-readonly-20261121]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  assemble-readonly:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage26-v3-retained-readonly-20261121'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 28
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Verify exact completed normal-browser authority then prepare detached retained assembly
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          Q="$GITHUB_WORKSPACE/tools/stage26-v3-retained"
+          W="$RUNNER_TEMP/stage26-v3-retained"
+          mkdir -- "$W"
+          python "$Q/retain.py" authority "$GITHUB_WORKSPACE" "$W"
+          unset GH_TOKEN GITHUB_TOKEN
+          export CI=true
+          python "$Q/retain.py" assemble "$GITHUB_WORKSPACE" "$W"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: stage26-v3-retained-generated-delta-qa-only
+          path: |
+            ${{ runner.temp }}/stage26-v3-retained/RETAINED-DELTA-RECEIPT.json
+            ${{ runner.temp }}/stage26-v3-retained/stage26-v3-generated-delta.zip
+            ${{ runner.temp }}/stage26-v3-retained/SHA256SUMS
+            ${{ runner.temp }}/stage26-v3-retained/verified-authority.json
+            ${{ runner.temp }}/stage26-v3-retained/retainer-output.json
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 7
