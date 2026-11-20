@@ -1,0 +1,70 @@
+name: Stage3 single exterior floor taper normal HTTP
+on:
+  push:
+    branches: ['qa/stage3-native-floor-taper-20261120']
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    env:
+      HONRO_ACT4_RELEASE: '1'
+      HONRO_ACT5_RELEASE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Exact single source and verified contract gate
+        run: |
+          test "$(git hash-object tests/production-contract.mjs)" = 29210abc75f37bca44d772a78e85e334a09a0229
+          git diff --name-only 1e043b09 HEAD > /tmp/changed
+          if grep -vE '^(tools/map-forge/naru-body-finish.mjs|tests/production-contract.mjs|tests/stage3-source-http.py|.github/workflows/stage3-source-http.yml)$' /tmp/changed; then exit 1; fi
+          test "$(git hash-object tools/map-forge/naru-body-finish.mjs)" = 8d781191027ad34da6a5f86630502d6a4fa61c1e
+          git diff 1e043b09 HEAD -- tools/map-forge/naru-body-finish.mjs
+      - run: npm ci && npm ci --prefix game
+      - run: python -m pip install playwright pillow numpy && python -m playwright install chromium
+      - name: Official baseline build and normal HTTP
+        run: |
+          cp tools/map-forge/naru-body-finish.mjs /tmp/candidate3.mjs
+          git show 1e043b09:tools/map-forge/naru-body-finish.mjs > tools/map-forge/naru-body-finish.mjs
+          npm run test:release-guard
+          npm run build
+          npm run test:production-contract
+          python tests/stage3-source-http.py baseline
+      - name: Official candidate build and normal HTTP
+        run: |
+          cp /tmp/candidate3.mjs tools/map-forge/naru-body-finish.mjs
+          npm run test:release-guard
+          npm run build
+          npm run test:production-contract
+          python tests/stage3-source-http.py candidate
+      - name: Exact camera and physical controls
+        run: |
+          python - <<'PY'
+          import json,numpy as np
+          from pathlib import Path
+          from PIL import Image
+          p=Path('_local/reports/stage3-source')
+          a=json.loads((p/'baseline/report.json').read_text());b=json.loads((p/'candidate/report.json').read_text())
+          report=[]
+          for aa,bb in zip(a['rows'],b['rows']):
+            for key in ['camera','canvas','gameplaySha256','support','units']:
+              assert aa[key]==bb[key],(aa['label'],key)
+            label=aa['label'];im=np.array(Image.open(p/'baseline'/f'{label}.png')).astype(int);jm=np.array(Image.open(p/'candidate'/f'{label}.png')).astype(int)
+            delta=np.max(abs(im-jm),axis=2);ys,xs=np.where(delta>0);by,bx=np.where(delta>1)
+            report.append({'view':label,'changed':len(xs),'overOneLevel':len(bx),'bbox':[int(xs.min()),int(ys.min()),int(xs.max()),int(ys.max())] if len(xs) else None,'max':int(delta.max())})
+            if label=='west':assert len(bx)>0
+            else:assert len(bx)==0,(label,report[-1])
+          (p/'pair.json').write_text(json.dumps(report,indent=2))
+          PY
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: stage3-normal-floor-taper
+          path: _local/reports/stage3-source
+          if-no-files-found: error
