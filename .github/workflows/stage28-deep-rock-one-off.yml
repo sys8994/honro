@@ -1,7 +1,7 @@
-name: Stage28 native deep owner last-row diagnosis
+name: Stage28 native structural-back slot isolation
 on:
   push:
-    branches: ['qa/stage28-registered-deep-rock-diagnostic-20261120']
+    branches: ['qa/stage28-structural-back-slot-20261120']
 permissions:
   contents: read
 jobs:
@@ -18,11 +18,11 @@ jobs:
       - name: Pin isolated stock and candidate source roots
         run: |
           B=1e043b09d4ce107e1d2dcf70fe2274dff7098476
-          test "$(git rev-parse HEAD^)" = f36fd67b605fd38989d0286bc0e0b4f64ea9eb67
-          test "$(git rev-parse HEAD^^)" = "$B"
+          test "$(git rev-parse HEAD^)" = fdb1eaf0bbf5a0d0478a32b3fa67e8297a22d5f1
+          test "$(git rev-parse HEAD^^^)" = "$B"
           git diff --name-only HEAD^ HEAD > /tmp/stage28-new-scope
-          test "$(wc -l </tmp/stage28-new-scope)" -eq 2
-          if grep -vE '^(.github/workflows/stage28-deep-rock-one-off.yml|tools/stage28-deep-rock-one-off/capture.py)$' /tmp/stage28-new-scope; then exit 1; fi
+          test "$(wc -l </tmp/stage28-new-scope)" -eq 4
+          if grep -vE '^(.github/workflows/stage28-deep-rock-one-off.yml|tools/stage28-deep-rock-one-off/(capture.py|verify.py|apply-qa-owner.py))$' /tmp/stage28-new-scope; then exit 1; fi
           git diff --name-only "$B" HEAD > /tmp/stage28-qa-scope
           test "$(wc -l </tmp/stage28-qa-scope)" -eq 5
           if grep -vE '^(.github/workflows/stage28-deep-rock-one-off.yml|tools/stage28-deep-rock-one-off/(facets.json|capture.py|verify.py|apply-qa-owner.py))$' /tmp/stage28-qa-scope; then exit 1; fi
@@ -72,5 +72,5 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: stage28-native-deep-rock-last-row
+          name: stage28-native-structural-back-proof
           path: _local/reports/stage28-one-off

@@ -52,7 +52,7 @@ with sync_playwright() as p:
          const id='stage28:qa-only:deep-foundation';
          const owner=b.honroLandmarks?.find(l=>l.asset?.id===id), declared=st.elements?.filter(e=>e.assetId===id)||[];
          const asset=HONRO_PROJECT.library.find(v=>v.id===id), enough=owner&&asset&&asset.collision.length===0&&asset.sockets.length===0;
-         if(q.expected!==(!!enough)||declared.length!==+q.expected||q.expected&&!s._isForeground(owner))throw Error('Native owner/slot mismatch');
+         if(q.expected!==(!!enough)||declared.length!==+q.expected||q.expected&&(s._isForeground(owner)||owner.layer!=='structural-back'||declared[0].layer!=='structural-back'||asset.params.semanticLayer!=='BODY'))throw Error('Native owner/slot mismatch');
          const stageSource=JSON.stringify({...st,elements:st.elements.filter(e=>e.assetId!==id)});
          const signature=()=>JSON.stringify({terrain:b.terrain,world:b.honroWorldTerrain,rendered:HonroTerrainDomain.render(b),units:b.units,design:st.design,initialState:st.initialState,objectives:st.objectives,playBounds:b.honroPlayBounds,terrainBounds:b.honroTerrainBounds,landmarks:b.honroLandmarks?.filter(l=>l.asset?.id!==id)});
          const state=signature();s.render(a.engine,0,'',.6,false,0);s.render(a.engine,0,'',.6,false,0);
@@ -61,7 +61,7 @@ with sync_playwright() as p:
          const range=HonroBounds.viewport(s,rect.width,rect.height);
          const clamped=['x','y','scale'].every(k=>Math.abs(actual[k]-adjusted[k])<1e-6);
          const within=actual.x>=f.left-1e-6&&actual.x<=f.right+1e-6&&actual.y>=f.top-1e-6&&actual.y<=f.bottom+1e-6;
-         return{state,stageSource,owner:owner?{id:owner.id,collision:owner.asset.collision.length,sockets:owner.asset.sockets.length,mode:owner.asset.params.semanticLayer,visible:s._landmarkVisible(owner,range),foreground:s._isForeground(owner)}:null,requested,actual,adjusted,clamped,within,focus:f,viewport:range,css:{w:rect.width,h:rect.height},backing:[s.canvas.width,s.canvas.height],actorCount:b.units.length,projectStage:st.id};
+         return{state,stageSource,owner:owner?{id:owner.id,collision:owner.asset.collision.length,sockets:owner.asset.sockets.length,mode:owner.asset.params.semanticLayer,layer:owner.layer,visible:s._landmarkVisible(owner,range),foreground:s._isForeground(owner)}:null,requested,actual,adjusted,clamped,within,focus:f,viewport:range,css:{w:rect.width,h:rect.height},backing:[s.canvas.width,s.canvas.height],actorCount:b.units.length,projectStage:st.id};
         }''',{'sid':sid,'dx':dx,'dy':dy,'expected':expected and sid==28})
         if True:
          page.wait_for_function("window.__qaImages.every(i=>!i.src||i.complete)",timeout=120000)
@@ -84,13 +84,18 @@ with sync_playwright() as p:
             return {height:h,width:w,from,to,rgba:to>from?Array.from(ctx.getImageData(0,from,w,to-from).data):[]};
           };
           const v=visualViewport,asset=HONRO_PROJECT.library.find(v=>v.id==='stage28:qa-only:deep-foundation');
-          return {rawPng:c.toDataURL('image/png'),rawRows:read(c),foregroundRows:read(scene._screenForegroundCache?.canvas),
+          return {rawPng:c.toDataURL('image/png'),rawRows:read(c),worldCacheRows:read(scene._screenWorldCache?.canvas),
            ancestors,dpr:devicePixelRatio,scrollX,scrollY,innerWidth,innerHeight,visualViewport:v?{width:v.width,height:v.height,offsetLeft:v.offsetLeft,offsetTop:v.offsetTop,pageLeft:v.pageLeft,pageTop:v.pageTop,scale:v.scale}:null,
-           ownerJSON:asset?JSON.stringify(asset):null,
+           ownerJSON:asset?JSON.stringify(asset):null,ownerOldSlotJSON:asset?JSON.stringify({...asset,params:{...asset.params,semanticLayer:'FORE'}}):null,vectorJSON:asset?JSON.stringify(asset.vector):null,
            servedStageBlobs:performance.getEntriesByType('resource').map(e=>e.name).filter(n=>/chapter-28(?:-assets)?\.[a-f0-9]+\.json/.test(n))};
          }""")
          (OUT/(stem+'-backing.png')).write_bytes(base64.b64decode(diagnostic.pop('rawPng').split(',',1)[1]))
          assets=diagnostic.pop('ownerJSON')
+         old=diagnostic.pop('ownerOldSlotJSON')
+         vec=diagnostic.pop('vectorJSON')
+         diagnostic['loadedOwnerNormalizedToForeSha256']=hashlib.sha256(old.encode()).hexdigest() if old else None
+         diagnostic['loadedVectorSha256']=hashlib.sha256(vec.encode()).hexdigest() if vec else None
+         if old:assert diagnostic['loadedOwnerNormalizedToForeSha256']=='923611967851986cab7b851e60994851ae809fbc6c15107c0563c2002884d6dc'
          diagnostic['loadedOwnerSha256']=hashlib.sha256(assets.encode()).hexdigest() if assets else None
          if assets:(OUT/(stem+'-loaded-owner.json')).write_text(assets)
          page.screenshot(path=str(OUT/(stem+'-viewport.png')),animations='disabled')

@@ -14,9 +14,9 @@ patch=f'''
  // Isolated CI evidence only. Ordinary art source registry, no runtime injection.
  const qaDeepPlanes={json.dumps(f,separators=(',',':'))};
  const qaDeep=asset('stage28:qa-only:deep-foundation','QA deep foundation',qaDeepPlanes.map(q=>P(q.points,q.fill)).join(''),[],{json.dumps([x,y,r-x,t-y])},'earth');
- qaDeep.params.semanticLayer='FORE';
+ qaDeep.params.semanticLayer='BODY';
  qaDeep.params.visualRole='decoration';
  qaDeep.params.rearOnly=true;
- put(p,s,qaDeep,'s28-qa-only-deep-foundation',0,0,1,'front');
+ put(p,s,qaDeep,'s28-qa-only-deep-foundation',0,0,1,'structural-back');
 '''
 p.write_text(s.replace(key,' authorPlaceEncounters(p,s);'+patch+' return p;'))
