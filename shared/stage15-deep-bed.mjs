@@ -5,7 +5,7 @@
 const outerId='act2-compact:stage15-act2-stage15-traced-outer-v1-1';
 const sourceKey='compact15-source-world';
 const bedKey='native-deep-bed-contact';
-const highlightKey='compact15-source-world-nonbase';
+
 export function applyStage15DeepBed(pack){
  const asset=pack.assets.find(a=>a.id===outerId),v=asset?.vector;
  if(pack.stage?.metadata?.stageId!==15 || !v || asset.collision?.length || asset.params?.compactSourceAssetId!=='act2-traced:stage15-outer-v1' || v.root.children.length!==11 || v.root.clipPath || v.clips[bedKey]) throw Error('Unexpected Stage15 exterior owner');
@@ -22,15 +22,29 @@ export function applyStage15DeepBed(pack){
   if(base?.clipPath!=='contactInset'||base.children[0]?.fill!=='#283b46'||colors?.children?.length!==3||colors.children.map(g=>g.children[0]?.fill).join(',')!=='#283b46,#38505b,#4d6570')throw Error('Unexpected Stage15 traced paint hierarchy');
   return{base,colors};
  };
- const source=v.symbols[sourceKey],details=structuredClone(source),{base,colors}=check(source),h=check(details);
- h.base.children.shift();
- h.colors.children.shift();
- colors.children.splice(1);
- v.symbols[highlightKey]=details;
- // Keep all 11 original strip placements and canonical/contact clipping.
- const before=v.root.children;
- const after=before.map(g=>{if(g.children.length!==1||g.children[0].tag!=='use'||g.children[0].symbol!==sourceKey) throw Error('Unexpected Stage15 strip object'); const copy=structuredClone(g);copy.children[0].symbol=highlightKey;return copy;});
- v.clips[bedKey]=[`M-5010 -24000H10810V5080L${bed.slice().reverse().map(p=>p.join(',')).join('L')}L-5010,5123.33Z`];
- const backing={tag:'g',clipPath:bedKey,children:before};
- v.root={...v.root,children:[backing,...after]};
+ const source=v.symbols[sourceKey],{base,colors}=check(source);
+ const traced=base.children[1],tx=traced.transform;
+ if(source.transform.join(',')!=='1,0,0,1,0,0'||!Array.isArray(tx)||tx.length!==6||tx[1]||tx[2]||tx[0]<=0||tx[3]<=0)throw Error('Unexpected Stage15 source coordinate transform');
+ const shared='native-deep-bed-original-';
+ v.symbols[shared+'backing']=base.children[0];
+ for(let i=0;i<3;i++)v.symbols[shared+'traced-'+i]=colors.children[i].children[0];
+ const draw=(symbol,clipPath)=>clipPath?{tag:'use',symbol,clipPath}:{tag:'use',symbol};
+ const mask=[[-5010,-24000],[10810,-24000],[10810,5080],...bed.slice().reverse(),[-5010,5123.33]];
+ const path=points=>points.map((p,i)=>(i?'L':'M')+p.join(',')).join('')+'Z';
+ // Preserve the original strip traversal and all original intermediate
+ // transforms/clips. Each dark draw alone gets the bed in its local space.
+ for(const [i,strip]of v.root.children.entries()){
+  const originalUse=strip.children[0],m=strip.transform;
+  if(strip.children.length!==1||originalUse.tag!=='use'||originalUse.symbol!==sourceKey||!Array.isArray(m)||m.length!==6||m[1]||m[2]||m[0]<=0||m[3]<=0)throw Error('Unexpected Stage15 strip object');
+  const world=mask.map(([x,y])=>[(x-m[4])/m[0],(y-m[5])/m[3]]);
+  const raw=world.map(([x,y])=>[(x-tx[4])/tx[0],(y-tx[5])/tx[3]]);
+  const worldKey=bedKey+'-world-'+i,rawKey=bedKey+'-raw-'+i, key=sourceKey+'-native-'+i;
+  v.clips[worldKey]=[path(world)];v.clips[rawKey]=[path(raw)];
+  const s=structuredClone(source),parts=check(s);
+  parts.base.children[0]=draw(shared+'backing',worldKey);
+  parts.colors.children.forEach((g,j)=>{if(Object.keys(g).sort().join(',')!=='children,tag'||g.children.length!==1||g.children[0].tag!=='path')throw Error('Unexpected trace group');g.children[0]=draw(shared+'traced-'+j,j===0?rawKey:undefined);});
+  v.symbols[key]=s;
+  originalUse.symbol=key;
+ }
+ delete v.symbols[sourceKey];
 }
