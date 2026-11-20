@@ -1,7 +1,7 @@
 name: Official three-way Stage22 source to normal App proof
 on:
   push:
-    branches: ['qa/stage22-official-threeway-20261120']
+    branches: ['qa/stage22-literal-dag-threeway-20261120']
 permissions:
   contents: read
 jobs:
@@ -19,7 +19,7 @@ jobs:
         run: |
           set -euo pipefail
           BASE=b81245966bc7f68b41ecc0581c82ab8b2e7d2714
-          QA8=8e175312f0202f4e77a765b830bfeef5088ffc77
+          QA8=09b304f8b6ed30764718c1de50d53e762efd9124
           W="$RUNNER_TEMP/stage22-normal-app-threeway"
           mkdir -p "$W/out" "$W/setup" "$W/projection"
           printf 'QA=%s\nOUT=%s\n' "$W" "$W/out" >> "$GITHUB_ENV"
@@ -28,7 +28,7 @@ jobs:
           python - "$W/out/qa-only-paths.txt" <<'PY'
           import pathlib,sys
           got=set(pathlib.Path(sys.argv[1]).read_text().splitlines())
-          e={'A\t.github/workflows/stage22-official-threeway.yml',*['A\ttools/stage13-18-proof/normal-product-qa/'+x for x in ['capture22.py','verify-build.py','compare-live.py','prior-stage22-views.json']]}
+          e={'M\t.github/workflows/stage22-official-threeway.yml','M\ttools/stage13-18-proof/normal-product-qa/verify-build.py'}
           assert got==e,(got,e)
           PY
           git cat-file -e "$BASE^{commit}"
@@ -85,7 +85,18 @@ jobs:
         run: |
           set -euo pipefail
           P="$GITHUB_WORKSPACE/tools/stage13-18-proof/normal-product-qa"
-          python "$P/verify-build.py" "$QA/stock" "$QA/metadata" "$QA/target" "$QA/setup"
+          set +e
+          python "$P/verify-build.py" "$QA/stock" "$QA/metadata" "$QA/target" "$QA/setup" >"$QA/verify-dag.private" 2>&1
+          rc=$?
+          set -e
+          if [ -r "$QA/setup/build-dag-diff.json" ]; then cp "$QA/setup/build-dag-diff.json" "$OUT/"; fi
+          echo "$rc" > "$OUT/build-dag.exit"
+          sha256sum "$QA/verify-dag.private" | cut -d' ' -f1 > "$OUT/build-dag-private-log.sha256"
+          if [ "$rc" -ne 0 ]; then
+           # Record only assertion type and line of the observer, never its payload.
+           grep -E 'verify-build\.py", line [0-9]+|^AssertionError' "$QA/verify-dag.private" | sed -E 's/^(AssertionError):.*/\1/' | cut -c1-160 | tail -8 | sed "s@$GITHUB_WORKSPACE/@@g" >"$OUT/build-dag-observer-signature.txt" || true
+           exit "$rc"
+          fi
           cp "$QA/setup/build-proof.json" "$OUT/"
       - name: Actual normal App desktop and portrait scenes and controls
         run: |
