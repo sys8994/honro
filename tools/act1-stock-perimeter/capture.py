@@ -8,7 +8,7 @@ views=[('overview',0,0),('north',0,-1),('south',0,1),('west',-1,0),('east',1,0),
        ('northwest',-1,-1),('northeast',1,-1),('southwest',-1,1),('southeast',1,1)]
 def persist():
     (OUT/'proof.json').write_text(json.dumps({
-      'scope':'Pinned stock built master, real campaign entry and renderer on two automatic CSS viewports. Original art only. Min-zoom centre/cardinal/corner captures; actual clamp verified. No normal play or art acceptance claimed.',
+      'scope':'Pinned stock built master, real campaign entry and renderer on two automatic CSS viewports. Original art only. Min-zoom centre/cardinal/corner captures; actual clamp verified. Official first-turn banner is expired and registered first-view images decoded before re-render. No normal play or art acceptance claimed.',
       'frames':frames,'problems':issues},indent=2))
 with sync_playwright() as p:
     browser=p.chromium.launch(headless=True)
@@ -16,6 +16,7 @@ with sync_playwright() as p:
      for w,h in [(1440,900),(390,844)]:
       page=browser.new_page(viewport={'width':w,'height':h},device_scale_factor=1)
       errors=[]; requests=[]
+      page.add_init_script("window.__qaImages=[];const d=Object.getOwnPropertyDescriptor(HTMLImageElement.prototype,'src');Object.defineProperty(HTMLImageElement.prototype,'src',{...d,set(v){window.__qaImages.push(this);d.set.call(this,v)}});")
       page.on('pageerror',lambda e:errors.append(str(e)))
       page.on('requestfailed',lambda req: requests.append([req.url,req.failure]))
       try:
@@ -29,10 +30,12 @@ with sync_playwright() as p:
         a.launch(sid);if(a.engine?.b.honroStage!==sid)throw Error('Campaign launch did not reach '+sid);
         for(let n=0;n<40&&a.dialogue;n++)HonroStory.finish(a);
         if(a.dialogue)throw Error('Campaign entry dialogue still active');
-        a.turnNotice=null;a.close();HonroStory.draw(a);HonroStoryFraming.clear(a.scene);
+        a.close();HonroStoryFraming.clear(a.scene);
        }''',sid)
        canvas=page.locator('#battlecanvas')
        canvas.wait_for(state='visible')
+       page.wait_for_timeout(1500)
+       page.evaluate("()=>{const a=HonroApp;HonroStory.tick(a,performance.now());HonroStory.draw(a);if(document.getElementById('turn-banner')?.hidden===false)throw Error('First-turn banner still visible');}")
        for name,dx,dy in views:
         frame=page.evaluate('''q=>{
          const a=HonroApp,s=a.scene,b=a.engine.b;
@@ -55,8 +58,8 @@ with sync_playwright() as p:
          return{state,requested,actual,adjusted,clamped,within,focus:f,viewport:range,css:{w:rect.width,h:rect.height},backing:[s.canvas.width,s.canvas.height],actorCount:b.units.length,projectStage:st.id};
         }''',{'sid':sid,'dx':dx,'dy':dy})
         if name=='overview':
-         page.wait_for_timeout(120)
-         page.evaluate("()=>{const a=HonroApp;a.scene.render(a.engine,0,'',.6,false,0);}")
+         page.wait_for_function("window.__qaImages.every(i=>!i.src||i.complete)",timeout=120000)
+         page.evaluate("()=>{const a=HonroApp;const unknown=window.__qaImages.filter(i=>i.src&&i.complete&&!i.naturalWidth).map(i=>i.src);if(unknown.length)throw Error('Visible image not decoded: '+unknown.join(', '));a.scene.render(a.engine,0,'',.6,false,0);}")
         file=f'act1-s{sid:02d}-{w}x{h}-{name}.png';img=canvas.screenshot(path=str(OUT/file),animations='disabled')
         st=frame.pop('state');frame.update(stage=sid,view=name,width=w,height=h,name=file,rasterSha256=hashlib.sha256(img).hexdigest(),physicsSha256=hashlib.sha256(st.encode()).hexdigest())
         frames.append(frame)
