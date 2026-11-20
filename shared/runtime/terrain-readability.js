@@ -21,6 +21,9 @@ function prepare(b){const ts=G.HonroTerrainDomain?.render(b)||b.terrain||[],prio
   const edge=new Path2D(),top=new Path2D(),segments=[];let area=0;for(let i=0;i<ps.length;i++){const a=ps[i],z=ps[(i+1)%ps.length];area+=cross(a.x,a.y,z.x,z.y);}const sign=area>=0?1:-1;
   for(let i=0;i<ps.length;i++){const a=ps[i],z=ps[(i+1)%ps.length],dx=z.x-a.x,dy=z.y-a.y,len=Math.hypot(dx,dy);if(len<.01)continue;
    const nx=sign*dy/len,ny=-sign*dx/len,walkable=ny<0&&Math.abs(dy)<=Math.abs(dx)*1.35;if(t.oneWay&&!walkable)continue;if(!walkable&&omittedClosures?.has(t.id))continue;
+   // Stage7's authored root-floor extends to a simulation-only floor below
+   // its original art. Omit only that bottom ink; retain all real walk rims.
+   if(b.honroStage===7&&t.id==='root-floor'&&!walkable&&Math.abs(b.width-4532.24)<1e-6&&Math.abs(b.height-3569.18)<1e-6&&Math.abs((b.honroMap?.terrainBounds?.bottom??NaN)-5069.18)<1e-6&&Math.abs(a.y-5069.18)<1e-6&&Math.abs(z.y-5069.18)<1e-6&&Math.abs(dy)<1e-8)continue;
    // Stage41 lower-road's final vertical is compiler floor closure, buried
    // inside the continuous original+west geology, not a stair or walking rim.
    // Omit only its ink; keep polygon collision and every authored top segment.

@@ -1,0 +1,48 @@
+name: Stage7 floor closure ink QA
+on:
+  push:
+    branches: [qa/stage7-floor-closure-20261120]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci && npm ci --prefix game
+      - run: python -m pip install playwright pillow && python -m playwright install --with-deps chromium
+      - name: Scope
+        run: |
+          test "$(git rev-parse HEAD^)" = 160f41d7f287df88ecce3574eb1b4e15eb8e08b6
+          git diff --name-only HEAD^ HEAD | sort > /tmp/actual
+          printf '%s\n' .github/workflows/stage7-floor-closure.yml shared/runtime/terrain-readability.js tools/stage7-floor-closure/capture.py tools/stage7-floor-closure/compare.py | sort > /tmp/expected
+          diff /tmp/expected /tmp/actual
+      - name: Untouched staging source normal browser
+        run: |
+          cp shared/runtime/terrain-readability.js /tmp/s7-candidate.js
+          git show HEAD^:shared/runtime/terrain-readability.js > shared/runtime/terrain-readability.js
+          npm run build
+          python -m http.server 8884 --bind 127.0.0.1 >/tmp/http-stock.log 2>&1 & server=$!
+          trap 'kill $server' EXIT
+          OUT=_local/reports/stage7-closure/stock python tools/stage7-floor-closure/capture.py
+          cp /tmp/s7-candidate.js shared/runtime/terrain-readability.js
+      - name: Guards and candidate normal browser
+        run: |
+          npm run test:release-guard
+          npm run build
+          npm run test:production-contract
+          python -m http.server 8884 --bind 127.0.0.1 >/tmp/http-candidate.log 2>&1 & server=$!
+          trap 'kill $server' EXIT
+          OUT=_local/reports/stage7-closure/candidate python tools/stage7-floor-closure/capture.py
+          python tools/stage7-floor-closure/compare.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage7-floor-closure
+          path: _local/reports/stage7-closure
