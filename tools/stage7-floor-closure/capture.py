@@ -37,7 +37,7 @@ with sync_playwright() as p:
        page.evaluate("()=>{const a=HonroApp;HonroStory.tick(a,performance.now());HonroStory.draw(a);if(document.getElementById('turn-banner')?.hidden===false)throw Error('First-turn banner still visible');}")
        for name,dx,dy in views:
         frame=page.evaluate('''q=>{
-         const a=HonroApp,s=a.scene,b=a.engine.b;
+         const a=HonroApp,s=a.scene,b=a.engine.b;Object.defineProperty(performance,'now',{configurable:true,value:()=>100000});
          const st=HONRO_PROJECT.stages.find(t=>t.metadata?.stageId===q.sid);
          if(!st||b.honroStage!==q.sid)throw Error('Wrong loaded stage');
          const rect=s.canvas.getBoundingClientRect();
