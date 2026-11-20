@@ -63,7 +63,8 @@ REMAINING=['1440-south','1440-east','390-west','390-east']
 viewIndex={r['key']:r for r in views};views=[viewIndex[k]for k in REMAINING]
 PRIOR_APPROVED={'390-south': {'exactAlpha': False, 'exactComposite': False, 'hashes': {'stock': {'raw': '8954ae83eb690075be3e70756a1891a5ac14532769327a6a47d4f201b295e50d', 'dom': '7cbc5bdcf635a608f1a000f0e71a85517ad97eedc3ebe00163037bc95c5bbc9c'}, 'target': {'raw': 'd0bf9da1b0f2aeb54b771a8c5b63b169b91f9f4b34d7aa690930b46970d095a7', 'dom': 'ea144d386d942532bd8daf735f4714ec34ab575b6bd9d1a31a28ae46f8200bd2'}}, 'state': '913d0b98f987bc1fb4f1a62b65a1604febbe7c6d58f9923cc89e1b7714da1174'}, '390-southwest': {'exactAlpha': True, 'exactComposite': True, 'hashes': {'stock': {'raw': '7a0d515a60f381cfe4a033115575ef2c1c15d19ab502cea1994af2d57063f38d', 'dom': '84d7ee34ec56ab60ba11cc385f4d7ec4fcfc292e0a4ceb426f3edac46b90e290'}, 'target': {'raw': '33c15e2b3e72cb85f96ed1ab8c0c3a372c89350da56ffb8bbc11717f6aa272dd', 'dom': '5b618350959b0d2d26d9fc2d4fec458a5af551f062c168f562831febaeea429e'}}, 'state': '913d0b98f987bc1fb4f1a62b65a1604febbe7c6d58f9923cc89e1b7714da1174'}}
 PRIOR_ARTIFACT={'run':44712869412,'artifact':14617714502,'zipSHA256':'7abd966b3808158952f3c559b2e7e57190feb6a27ad24858ed4e6988b437cadf','comparisonSHA256':' 569ea091cffc9386526630963069abd1609a6ed18c3359cc405a292935628a86 '.strip()}
-CACHE_OBSERVER="() => {\n const P=HonroScene.prototype, A=HonroVectorArt, C=CanvasRenderingContext2D.prototype;\n const originals={tiles:P._drawTerrainDomainTiles,screen:P._screenRaster,draw:A.draw,img:C.drawImage,render:P.render};\n const expect=()=>HONRO_PROJECT.library.find(x=>x.id==='act5:near:42')?.edgeWall;\n if(Object.values(originals).some(x=>typeof x!=='function'))throw Error('missing pinned cache/asset observer APIs');\n const certByCanvas=new WeakMap, screenByCanvas=new WeakMap;\n let dispatch=null,screen=null,trace=null,commits=[];\n const copy=x=>JSON.parse(JSON.stringify(x));\n const cacheMeta=(scene,canvas)=>{\n  const q=scene._domainTiles;\n  if(!q?.tiles)return null;\n  for(const [id,row]of q.tiles)if(row.canvas===canvas)return {id,key:q.key,left:row.left,top:row.top,rs:q.rs};\n  return null;\n };\n A.draw=function(c,asset,...args) {\n  const r=Reflect.apply(originals.draw,this,[c,asset,...args]);\n  if(r!==false&&asset===expect()&&(dispatch||trace)&&asset?.id==='act5:stage42:registered-body'){\n   const m=c.getTransform(),z={canvas:[c.canvas.width,c.canvas.height],style:c.honroVisualLayer??null,transform:[m.a,m.b,m.c,m.d,m.e,m.f],clip:copy(asset.bounds)};\n   if(z.canvas[0]===516&&z.canvas[1]===516){const before=certByCanvas.get(c.canvas);if(before&&before.asset!==asset)throw Error('same cache canvas repainted by different BODY asset');certByCanvas.set(c.canvas,{asset,meta:z,committed:null});}\n   if(trace)trace.direct.push(z);\n   if(screen&&dispatch&&(z.canvas[0]!==516||z.canvas[1]!==516))screen.direct.push(z);\n  }\n  return r;\n };\n P._drawTerrainDomainTiles=function(c,b,w,h){\n  if(b?.honroStage!==42)return Reflect.apply(originals.tiles,this,[c,b,w,h]);\n  const prev=dispatch;dispatch={scene:this,b,w,h};\n  try{return Reflect.apply(originals.tiles,this,[c,b,w,h]);}finally{dispatch=prev;}\n };\n P._screenRaster=function(c,key,w,h,paint,slot,world){\n  if(!trace||slot!=='_screenWorldCache')return Reflect.apply(originals.screen,this,[c,key,w,h,paint,slot,world]);\n  const prev=screen, before=this[slot]?.canvas??null;screen={scene:this,key,slot,src:[],direct:[]};\n  try{\n   const value=Reflect.apply(originals.screen,this,[c,key,w,h,paint,slot,world]); const current=this[slot];\n   if(value&&current?.canvas&&current.canvas!==before){\n    const valid=screen.src.every(t=>t.asset===expect()&&t.committed);\n    screenByCanvas.set(current.canvas,{asset:valid&&(screen.src.length||screen.direct.length)?expect():null,tileSources:screen.src.slice(),directSources:screen.direct.slice(),slot,signature:current.key});\n   }\n   if(value&&current?.canvas){\n    const source=screenByCanvas.get(current.canvas);\n    if(source?.asset){\n     if(source.asset!==expect()||source.signature!==current.key)throw Error('warm screen cache changed source body/signature');\n     trace.screen.push({stage:42,signature:current.key,cacheHit:current.canvas===before,canvas:[current.canvas.width,current.canvas.height],tiles:source.tileSources.map(t=>t.committed)});\n     for(const row of source.tileSources)trace.consumed.push({...row.meta,tile:row.committed,via:'screen-cache'});\n     for(const row of source.directSources)trace.consumed.push({...row,via:'screen-cache-direct'});\n    }\n   }\n   return value;\n  }finally{screen=prev;}\n };\n C.drawImage=function(canvas,...args){\n  const out=Reflect.apply(originals.img,this,[canvas,...args]);\n  // A real successful drawImage reading a map-committed BODY-painted tile.\n  // For warm screen cache, provenance is copied from the tile(s) that built it.\n  if(dispatch&&certByCanvas.has(canvas)){\n   const cert=certByCanvas.get(canvas);\n   const tile=cacheMeta(dispatch.scene,canvas);\n   if(cert.asset!==expect()||!tile)throw Error('uncommitted/foreign BODY raster read');\n   if(!cert.committed){\n    cert.committed=tile;\n    if(commits.length<400)commits.push({...cert.meta,tile});\n   }else if(JSON.stringify(cert.committed)!==JSON.stringify(tile))throw Error('committed BODY raster identity changed');\n   const key=dispatch.scene._worldCacheKey(dispatch.b,dispatch.w);\n   if(tile.key!==key)throw Error('stale world raster cache id/key');\n   if(screen)screen.src.push(cert);\n   if(trace)trace.consumed.push({...cert.meta,tile,via:'domain-tile'});\n  }\n  return out;\n };\n P.render=function(engine,...args){\n  const b=engine?.b;\n  if(b?.honroStage!==42)return Reflect.apply(originals.render,this,[engine,...args]);\n  const prev=trace;trace={direct:[],consumed:[],screen:[]};\n  try{return Reflect.apply(originals.render,this,[engine,...args]);}\n  finally{trace.actual={x:this.x,y:this.y,scale:this.scale};trace.worldViewport=HonroBounds.viewport(this,this.canvas.getBoundingClientRect().width,this.canvas.getBoundingClientRect().height);\n    const {width:w,height:h}=this.canvas.getBoundingClientRect();\n    const rs=this._worldRasterScale(b,w),size=512/rs,d=b.honroTerrainBounds,l=HonroTerrainDomain.materialLandmarks(b).find(a=>a.asset?.id==='act5:near:42'&&a.asset.edgeWall===expect());\n    if(!l||!(rs>0)||!d)throw Error('stage 42 active domain metadata unavailable');\n    const tiles={left:Math.floor(d.left/size)*size,top:Math.floor(d.top/size)*size,right:(Math.floor(d.right/size)+1)*size,bottom:(Math.floor(d.bottom/size)+1)*size};\n    const v=trace.worldViewport;\n    trace.domain={tileWorldSize:size,domain:d,viewport:v,tiles,landmark:{x:l.x,y:l.y,scale:l.scale},paint:this._landmarkPaintBounds(l),extended:v.left<tiles.left||v.right>tiles.right||v.top<tiles.top||v.bottom>tiles.bottom};\n    trace.cacheKeys={currentWorld:this._worldCacheKey(b,w),committedDomain:this._domainTiles?.key??null,committedScreen:this._screenWorldCache?.key??null};\n    window.__stage42CacheLast=trace;trace=prev;}\n };\n window.__stage42CacheReceipt=()=>({priorCommitted:commits,last:window.__stage42CacheLast??null,boundID:expect()?.id??null});\n}\n"
+EXACT_PIN={'stock': {'html': '557f451f82b6e9066a1fe7b84ea586ae81ced3996dc22ba29a39eececd6bf08a', 'binding': '602ca14e3b78cd1d3893d5602d30c71a221a6e0977504143554584dcddf83f58', 'compiled': '9c7ea12b3190955ab4127408e683d2cbec6e8110fef28d522588b323d3e43c17', 'assets': {'web/entries/game.ed60878181dcea8a.js': {'sha256': 'ed60878181dcea8ab535b105f5f465d5a7dac9819ba25190709a7779cb47de25', 'bytes': 20483}, 'web/runtime/ordered-common-16.7b671262c91223a8.js': {'sha256': '7b671262c91223a864c050896b4d6213af2ebec2de6cc5d1bce9222984b8d088', 'bytes': 176757}, 'web/runtime/ordered-common-18.710463ce14e666f2.js': {'sha256': '710463ce14e666f2f07d9b602e81f1cdc72e7cf896808df91e6ecd975c277a84', 'bytes': 36120}, 'web/data/chapter-42-assets.d98576ccc769cdf8.json': {'sha256': 'd98576ccc769cdf89ea21fba71cbe93fe149e1de93ee6af36df8f909e677a335', 'bytes': 1858705}, 'web/data/chapter-42.0802015e8ba99d11.json': {'sha256': '0802015e8ba99d11a8ece1f14186b3db6a4a7d3d32076e64ca120300f50c7f50', 'bytes': 12647}}}, 'target': {'html': '2c43bfaca3eecf5bd58a24cda16c199b486516c2fe53e6322aa3e8a56e6a19ef', 'binding': '4bb1b356c7c1ee11b2713fd01992dcbc6d57ff7804fe91a2b3eb993dc96bcf8a', 'compiled': '39a67c28ac8bc536abc8794d001e78ad049e1fac5f6d68408da20d3e6eb2e9e7', 'assets': {'web/entries/game.c92d065adca6d90a.js': {'sha256': 'c92d065adca6d90a0514e9dd2879c15f2c724debaedceae0296d37dfefe4cca6', 'bytes': 20483}, 'web/runtime/ordered-common-16.7b671262c91223a8.js': {'sha256': '7b671262c91223a864c050896b4d6213af2ebec2de6cc5d1bce9222984b8d088', 'bytes': 176757}, 'web/runtime/ordered-common-18.710463ce14e666f2.js': {'sha256': '710463ce14e666f2f07d9b602e81f1cdc72e7cf896808df91e6ecd975c277a84', 'bytes': 36120}, 'web/data/chapter-42-assets.859ab53c0ac66175.json': {'sha256': '859ab53c0ac66175dea3d762ad94d41901325fefa5715e0c20f3d5af84967a8a', 'bytes': 1891986}, 'web/data/chapter-42.0802015e8ba99d11.json': {'sha256': '0802015e8ba99d11a8ece1f14186b3db6a4a7d3d32076e64ca120300f50c7f50', 'bytes': 12647}}}}
+INSPECT_ACTUAL="() => {\n  const s=HonroApp.scene,b=HonroApp.engine.b;\n  const owner=HONRO_PROJECT.library.find(x=>x.id==='act5:near:42');\n  const l=HonroTerrainDomain.materialLandmarks(b).find(x=>x.id==='a5-near'&&x.kind==='canonical-element'&&x.asset?.id==='act5:near:42');\n  if(!l||!owner?.edgeWall||b.honroStage!==42||!b.honroLandmarks.includes(l)||l.x!==0||l.y!==0||l.scale!==6500/2022||l.rotation!==0||!HonroTerrainDomain.active(b))throw Error('Actual compiled Stage42 placement mismatch');\n  if(JSON.stringify(l.asset)!==JSON.stringify(owner))throw Error('Actual compiled Stage42 near asset differs from active immutable package');\n  const d=b.honroTerrainBounds,{width:w,height:h}=s.canvas.getBoundingClientRect(),rs=s._worldRasterScale(b,w),size=512/rs;\n  const viewport=HonroBounds.viewport(s,w,h),paint=s._landmarkPaintBounds(l);\n  const tiles={left:Math.floor(d.left/size)*size,top:Math.floor(d.top/size)*size,right:(Math.floor(d.right/size)+1)*size,bottom:(Math.floor(d.bottom/size)+1)*size};\n  const extended=viewport.left<tiles.left||viewport.right>tiles.right||viewport.top<tiles.top||viewport.bottom>tiles.bottom;\n  const layer=HonroVisualStyle.classify(l,b,l.asset)==='gameplay'?'gameplay':HonroVisualStyle.depth(l,l.asset);\n  const body=l.asset.edgeWall.bounds;\n  const rows=[];\n  // Enumerate *replay inputs* using the unchanged renderer's exact branch formulas.\n  // These rows do not claim drawImage/cache lineage in the browser.\n  for(let y=Math.floor(Math.max(viewport.top,d.top)/size);y<=Math.floor(Math.min(viewport.bottom,d.bottom)/size);y++)\n    for(let x=Math.floor(Math.max(viewport.left,d.left)/size);x<=Math.floor(Math.min(viewport.right,d.right)/size);x++){\n      const left=x*size,top=y*size;\n      if(s._landmarkVisible(l,{left,top,right:left+size,bottom:top+size}))\n        rows.push({canvas:[516,516],style:layer,transform:[rs*l.scale,0,0,rs*l.scale,2-left*rs,2-top*rs],clip:body,kind:'independent-domain-tile-replay'});\n    }\n  if(extended){\n    const z=s.scale;\n    rows.push({canvas:[s.canvas.width,s.canvas.height],style:layer,transform:[z*l.scale,0,0,z*l.scale,w/2-s.x*z,h/2-s.y*z],clip:body,kind:'independent-exterior-replay'});\n  }\n  let cacheDiagnostics;\n  try{cacheDiagnostics={worldKey:s._worldCacheKey(b,w),domainKey:s._domainTiles?.key??null,screenKey:s._screenWorldCache?.key??null,screenBacking:s._screenWorldCache?.canvas?[s._screenWorldCache.canvas.width,s._screenWorldCache.canvas.height]:null,tileRows:[...(s._domainTiles?.tiles??[])].map(([id,t])=>({id,left:t.left,top:t.top,canvas:[t.canvas.width,t.canvas.height]})),provesDrawImageLineage:false};}\n  catch(error){cacheDiagnostics={provesDrawImageLineage:false,readError:String(error)};}\n  return {\n    domain:{tileWorldSize:size,domain:d,viewport,tiles,landmark:{x:l.x,y:l.y,scale:l.scale},paint,extended},\n    replayRows:rows,compiledNear:JSON.stringify(l.asset),compiledBody:JSON.stringify(l.asset.edgeWall),\n    clone:{near:l.asset!==owner,body:l.asset.edgeWall!==owner.edgeWall,vector:l.asset.edgeWall.vector!==owner.edgeWall.vector},\n    cacheDiagnostics\n  };\n}\n"
 out=Path(os.environ["OUT"]);out.mkdir(parents=True,exist_ok=True)
 bins=[Path(os.environ[s]) for s in ("STOCK","TARGET")]
 rel='shared/assets/environment/act5/stage42-registered-body.json'
@@ -92,7 +93,7 @@ with sync_playwright() as p:
    response=page.goto(urls[i]+'/HONRO.html',wait_until='domcontentloaded',timeout=55000)
    assert response and response.ok and response.body()==(bins[i]/'HONRO.html').read_bytes(), 'actual served HTML mismatch'
    htmlSHA=sha(response.body())
-   if i==0:assert htmlSHA==q['baseline']['htmlSHA256'], 'exact cbf release HTML pin' 
+   assert htmlSHA==EXACT_PIN[mode]['html'], 'exact paired archived HTML pin' 
    try:
     page.wait_for_function("() => document.documentElement.dataset.honroReady==='true' && typeof window.HonroCampaignLoader?.ensureStage==='function' && typeof window.HonroTimeOfDay?.sky==='function'",timeout=50000)
    except Exception:
@@ -102,7 +103,6 @@ with sync_playwright() as p:
     page.screenshot(path=str(out/(prefix+'-first-false.png')))
     raise
    (out/(prefix+'-init-ready.json')).write_text(json.dumps(page.evaluate("() => ({ready:document.documentElement.dataset.honroReady,loader:typeof window.HonroCampaignLoader?.ensureStage,sky:typeof window.HonroTimeOfDay?.sky,app:typeof window.HonroApp})")))
-   page.evaluate(CACHE_OBSERVER)
    page.evaluate("""async sid=>{const a=HonroApp;a.frame=()=>{};a.profile.settings.music=false;a.profile.settings.sound=false;
      await Promise.race([HonroCampaignLoader.ensureStage(sid),new Promise((_,r)=>setTimeout(()=>r(Error('Stage42 cache proof load timeout')),30000))]);
      for(let n=1;n<sid;n++)a.profile.cleared[n]=true;
@@ -177,18 +177,18 @@ with sync_playwright() as p:
    for k,v in sec.items():
     if repeat[k]:(out/(prefix+'-'+k+'-repeat.png')).write_bytes(v)
    result['edgeRenderer']=page.evaluate('()=>window.__ownerReceipt()')
-   receipt=page.evaluate('()=>window.__stage42CacheReceipt()')
-   assert receipt['boundID']=='act5:stage42:registered-body' and receipt['last']['actual']==params['actual'] and receipt['last']['worldViewport']==q['expectedViewport'], ('cache observation not for this archived pose',receipt)
-   assert receipt['priorCommitted'], ('no Stage42 committed cold tiles observed',receipt)
-   last=receipt['last']; entries=[*last['direct'],*last['consumed']]
-   assert entries and (last['consumed'] or any(row['canvas']!=[516,516] for row in last['direct'])), ('warm frame did not consume expected Stage42 tile/screen/direct BODY',receipt)
-   known={tuple(r['tile'][k]for k in ('key','id','left','top','rs')) for r in receipt['priorCommitted']}
-   for row in last['consumed']:
-    if row.get('tile') is not None:
-     assert tuple(row['tile'][k]for k in ('key','id','left','top','rs')) in known and row['tile']['key']==last['cacheKeys']['currentWorld']
-   result['edgeRenderer']['domains']=[last['domain']]
-   result['edgeRenderer']['draws']=entries
-   result['cacheProvenance']=receipt
+   # Native App PNGs already on disk. Never run a cache hook; read only the actual
+   # compiled Scene's asset, viewport and cache diagnostics after capture.
+   live=page.evaluate(INSPECT_ACTUAL)
+   result['compiledNearSHA256']=sha(live.pop('compiledNear').encode())
+   result['compiledBodySHA256']=sha(live.pop('compiledBody').encode())
+   assert result['compiledNearSHA256']==EXACT_PIN[mode]['compiled']
+   assert result['compiledBodySHA256']==EXACT_PIN[mode]['binding']
+   result['edgeRenderer']['domains']=[live['domain']]
+   result['independentReplayRows']=live['replayRows']
+   result['compiledCloneReferences']=live['clone']
+   result['cacheDiagnostics']=live['cacheDiagnostics']
+   assert result['independentReplayRows'], 'no registered BODY replay support at matched camera'
    result['nativeSky']=page.evaluate("()=>window.__restoreNativeQA()")
    assert result['nativeSky']['calls']==result['nativeSky']['restores']
    response_indices={}
@@ -206,7 +206,7 @@ with sync_playwright() as p:
    source=json.loads((bins[i]/'shared/assets/environment/act5/stage42-registered-body.json').read_text())
    assert json.loads(binding)==source, 'active BODY does not match the pinned exact package'
    result['surfaceSHA256']=sha(result.pop('surface').encode());result['propsSHA256']=sha(result.pop('props').encode())
-   assert result['edgeRenderer']['domains'] and result['edgeRenderer']['draws'] and result['cacheProvenance'], 'missing actual observed BODY cache/direct proof'
+   assert result['edgeRenderer']['domains'] and result['independentReplayRows'], 'missing actual domain or replay inputs'
    # Strict across-view state: camera is verified separately, not part of signature.
    assert result['stateSHA256']==firstSignatures.setdefault(key,result['stateSHA256']), 'world state drifted across camera sequence'
    result['htmlSHA256']=htmlSHA
@@ -250,7 +250,10 @@ with sync_playwright() as p:
       out.push({canvas:z.canvas,transform:z.transform,style:z.style,regions:m});
      }
      return out;
-    }""",{'rows':result['edgeRenderer']['draws'],'donor':donor,'stock':cbf})
+    }""",{'rows':result['independentReplayRows'],'donor':donor,'stock':cbf})
+   got={k:response_indices.get(k)for k in EXACT_PIN[mode]['assets']}
+   assert got==EXACT_PIN[mode]['assets'], ('archived paired exact packet/entry/renderer mismatch',mode,got)
+   assert result['bindingSHA256']==EXACT_PIN[mode]['binding'], 'archived exact library BODY mismatch'
    result['assets']=response_indices
    result['repeat']=repeat;result['bad']=bad
    return result,pixels
@@ -261,7 +264,14 @@ with sync_playwright() as p:
  for q in views:
   item={'view':q['key']}
   try:
-   aa,a=get(0,q); bb,b=get(1,q)
+   # Try both normal App sides independently; failure on one side cannot erase the other screenshot.
+   pair={}; sideErrors={}
+   for i,m in enumerate(('stock','target')):
+    try:pair[m]=get(i,q)
+    except Exception as e:sideErrors[m]=str(e)
+   if sideErrors:item['sideErrors']=sideErrors
+   assert not sideErrors, ('independent capture or integrity failure',sideErrors)
+   aa,a=pair['stock'];bb,b=pair['target']
    expected=q['baseline']
    for k in ('bindingSHA256','stateSHA256','surfaceSHA256','propsSHA256','htmlSHA256'):
     assert aa[k]==expected[k], (q['key'],k,aa[k],expected[k])
@@ -305,8 +315,8 @@ with sync_playwright() as p:
    da,db=[v['edgeRenderer']['domains'][0]for v in (aa,bb)]; cap=2900*K
    assert all(da[k]==db[k] for k in ('domain','tileWorldSize','tiles','landmark','viewport','extended')), 'terrain domain or tile extents changed'
    assert all(da['paint'][k]==db['paint'][k] for k in ('left','right','top')) and abs(db['paint']['bottom']-cap)<1e-8,('visual culling not unioning canonical bottom',db['paint'])
-   draws=bb['edgeRenderer']['draws'];assert any(r['clip']=={'x':-1250,'y':0,'w':4510,'h':2900}for r in draws)
-   item['culling']={'stock':da['paint'],'target':db['paint'],'worldTileSize':db['tileWorldSize'],'domain':db['domain'],'lateralCapsOutside':bb['viewport']['left']>-3900 and bb['viewport']['right']<10400,'normalBottomAboveArtEnd':bb['viewport']['bottom']<cap,'dispatchedBodyDraws':len(draws),'drawCanvasShapes':[list(s)for s in sorted({tuple(r['canvas'])for r in draws})]}
+   draws=bb['independentReplayRows'];assert any(r['clip']=={'x':-1250,'y':0,'w':4510,'h':2900}for r in draws)
+   item['culling']={'stock':da['paint'],'target':db['paint'],'worldTileSize':db['tileWorldSize'],'domain':db['domain'],'lateralCapsOutside':bb['viewport']['left']>-3900 and bb['viewport']['right']<10400,'normalBottomAboveArtEnd':bb['viewport']['bottom']<cap,'independentBodyReplayRows':len(draws),'replayCanvasShapes':[list(s)for s in sorted({tuple(r['canvas'])for r in draws})]}
    item['boundaries']={}
    for band in ('left','right','top','bottom'):
     vs=sx if band in ('left','right') else sy
@@ -337,6 +347,7 @@ with sync_playwright() as p:
     categorical=deep['onOffChanged']+deep['halfContourChanged']+deep['opaqueChanged']
     assert categorical==0 and deep['max']<=2 and all(r['withinOneCell'] for r in deep['coordinates']),('donor contour crossed exact curve support',q['key'],d)
    item['rawGeometryStateAndOwnedPass']=True
+   item['browserCacheLineage']='DIAGNOSTIC ONLY: no live source-to-drawImage cache hook; archived local renderer preflight separate'
    item['transparentDeepAlphaExact']=bool(exactDeep)
    assert item['culling']['lateralCapsOutside'] and item['culling']['normalBottomAboveArtEnd']
   except Exception as e:
@@ -358,7 +369,7 @@ with sync_playwright() as p:
  receipt=dict(technicalPoseCount=len(good)+len(PRIOR_APPROVED),exactPhysicalAndProtected=not missing,zeroCategoricalAlphaFlips=not missing,
      allObservedDeepAlphaChangesWithinOneExactCurveCell=not missing,transparentProtectedAlphaExact=not missing,
      transparentUserDonorSHA256=donor_h,independentArchivedDeepAlphaExact=exactAlpha,
-     independentArchivedDeepRGBAExact=exactRGBA,archivalByteExact=strict,classification='AWAIT VISUAL REVIEW' if strict else 'HOLD: archival deep equality false',
+     independentArchivedDeepRGBAExact=exactRGBA,archivalByteExact=strict,classification='INCOMPLETE: missing four-angle integrity evidence' if missing else ('AWAIT VISUAL REVIEW' if strict else 'HOLD: archival deep equality false'),
      archivedMobile=PRIOR_ARTIFACT,archivedDeep=refs,unverified=missing,perPoseExactAlpha={**{k:v['exactAlpha'] for k,v in PRIOR_APPROVED.items()},**{k:r['transparentDeepAlphaExact'] for k,r in good.items()}})
  (out/'FINAL-RECEIPT.json').write_text(json.dumps(receipt,indent=2))
  assert not missing,('Four independent pose captures attempted; some observed technical cases had no proof',receipt)

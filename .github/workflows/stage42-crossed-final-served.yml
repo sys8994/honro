@@ -1,4 +1,4 @@
-name: Stage42 remaining four cold-to-warm cache frames
+name: Stage42 remaining four source-pinned actual frames
 on:
   push:
     branches: [qa/stage42-crossed-final-served-20261120]
@@ -62,7 +62,7 @@ jobs:
             npm run build >"$OUT/build-$mode.log" 2>&1
             sha256sum -c "$OUT/source-before-$mode.sha"
           done
-      - name: Capture four outstanding actual cache-proven Stage42 pairs
+      - name: Capture four outstanding source-pinned actual Stage42 pairs
         timeout-minutes: 12
         run: |
           set -euo pipefail
@@ -78,6 +78,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: stage42-four-cache-proven-actual
+          name: stage42-four-source-pinned-actual
           path: ${{ env.OUT }}
           retention-days: 7
