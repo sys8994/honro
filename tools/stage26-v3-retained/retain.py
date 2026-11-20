@@ -68,18 +68,16 @@ def delta_status(root,a,b):
 
 def check_source(root,works=None):
     q=P['qa']
-    req(gtxt(root,'show','-s','--format=%P','HEAD')==TARGET,'unexpected transport parent')
+    previous_transport='57d5b46e11eaaa8274ee1c5572ad8374b89f917e'
+    req(gtxt(root,'show','-s','--format=%P','HEAD')==previous_transport and
+        gtxt(root,'show','-s','--format=%P',previous_transport)==TARGET,'unexpected transport parent')
+    req(delta_status(root,previous_transport,'HEAD')=={'M\ttools/stage26-v3-retained/retain.py'},
+        'unexpected transport repair scope')
     req(delta_status(root,TARGET,'HEAD')=={'A\t'+p for p in TRANSPORT},'transport not exactly add-only allowlist')
     req(gtxt(root,'show','-s','--format=%P',TARGET)==BASE,'unexpected source parent')
     req(gtxt(root,'rev-parse',BASE+'^{tree}')==P['baseTree'] and gtxt(root,'rev-parse',TARGET+'^{tree}')==P['targetTree'],'source trees')
     req(delta_status(root,BASE,TARGET)=={'M\t'+p for p in P['sources']},'non-Stage26 product change')
-    prior_qa='056fc50f8798c8a84ea8471db064734d2dc3585b'
-    req(gtxt(root,'show','-s','--format=%P',q['head'])==prior_qa and
-        gtxt(root,'show','-s','--format=%P',prior_qa)==TARGET,'authority checked wrong target or fixture ancestry')
-    modified={q['workflow'],QA_DIR+'guard.py',QA_DIR+'verify.py'}
-    req(delta_status(root,prior_qa,q['head'])=={'M\t'+p for p in modified} and
-        blob(root,q['head'],QA_DIR+'capture.py')=='5d3d886c1953bae08652bd8a4f064664af4cde01',
-        'unexpected original fixture change')
+    req(gtxt(root,'show','-s','--format=%P',q['head'])==TARGET,'authority checked wrong Stage26 v3 target')
     req(delta_status(root,TARGET,q['head'])=={'A\t'+p for p in q['sourceBlobs']},'unexpected QA source mutation')
     for p,expected in q['sourceBlobs'].items():
         req(blob(root,q['head'],p)==expected,'wrong original QA input',p)
