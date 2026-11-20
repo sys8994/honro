@@ -1,0 +1,75 @@
+name: Stage 30 scenic rear channel isolated campaign A-B
+on:
+  push:
+    branches: ['qa/stage30-disabled-channel-20261120']
+permissions:
+  contents: read
+jobs:
+  visual:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 24
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Guard proof-only scope and build pinned master
+        run: |
+          set -euo pipefail
+          B=1e043b09d4ce107e1d2dcf70fe2274dff7098476
+          test "$(git rev-parse HEAD^)" = "$B"
+          git diff --name-status "$B" HEAD >"$RUNNER_TEMP/qa-scope"
+          python - <<'PY'
+          import os,pathlib
+          got=set((pathlib.Path(os.environ['RUNNER_TEMP'])/'qa-scope').read_text().splitlines())
+          expected={'A\t.github/workflows/stage30-disabled-channel-audit.yml',*['A\ttools/stage30-disabled-channel-audit/'+x for x in ['capture.py','compare.py','generate.mjs']]}
+          assert got==expected,got
+          PY
+          Q="$RUNNER_TEMP/stock-ab"
+          mkdir -p "$Q/out" "$Q/after"
+          cp "$RUNNER_TEMP/qa-scope" "$Q/out/scope.txt"
+          git worktree add --detach "$Q/before" "$B"
+          echo "QA=$Q" >> "$GITHUB_ENV"
+          echo "OUT=$Q/out" >> "$GITHUB_ENV"
+          cd "$Q/before"
+          npm ci
+          npm ci --prefix game
+          npm run build
+      - name: Disable only scenic channel paths and verify exact packet change
+        run: |
+          set -euo pipefail
+          cp -al "$QA/before/HONRO.html" "$QA/before/assets" "$QA/before/web" "$QA/after/"
+          node tools/stage30-disabled-channel-audit/generate.mjs "$QA/before" "$QA/after" "$OUT"
+          git -C "$QA/before" diff --exit-code -- tools/environment/stage30-ferry-art.mjs
+          for d in assets web; do diff -qr "$QA/before/$d" "$QA/after/$d" || test "$?" -eq 1; done > "$OUT/served-diff.txt"
+          test "$(wc -l < "$OUT/served-diff.txt")" -eq 1
+          grep 'chapter-30-assets.99a6cc921e7e09ae.json' "$OUT/served-diff.txt"
+          sha256sum "$QA/"{before,after}/HONRO.html "$QA/"{before,after}/web/data/chapter-30.ab44ac41018a4db1.json "$QA/"{before,after}/web/data/chapter-30-assets.99a6cc921e7e09ae.json > "$OUT/served-sha256.txt"
+      - name: Capture normal stock and candidate campaign scenes
+        run: |
+          set -euo pipefail
+          python -m pip install playwright pillow
+          python -m playwright install --with-deps chromium
+          python -m http.server 8884 --bind 127.0.0.1 --directory "$QA/before" > "$OUT/host-stock.log" 2>&1 &
+          p=$!
+          python -m http.server 8885 --bind 127.0.0.1 --directory "$QA/after" > "$OUT/host-candidate.log" 2>&1 &
+          q=$!
+          trap 'kill "$p" "$q" || true' EXIT
+          mkdir -p "$OUT/stock" "$OUT/candidate"
+          VARIANT=stock PORT=8884 OUT="$OUT/stock" python tools/stage30-disabled-channel-audit/capture.py > "$OUT/stock.log" 2>&1 &
+          sp=$!
+          VARIANT=candidate PORT=8885 OUT="$OUT/candidate" python tools/stage30-disabled-channel-audit/capture.py > "$OUT/candidate.log" 2>&1 &
+          cp=$!
+          status=0
+          wait "$sp" || status=1
+          wait "$cp" || status=1
+          cat "$OUT/"{stock,candidate}.log
+          if [ "$status" -eq 0 ]; then python tools/stage30-disabled-channel-audit/compare.py; else exit 1; fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage30-disabled-channel-evidence
+          path: ${{ env.OUT }}
+          retention-days: 7
