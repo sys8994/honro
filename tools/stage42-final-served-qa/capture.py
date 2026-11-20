@@ -59,6 +59,11 @@ def exact_east_support(tile,sample):
    if closest is None or record<closest:closest=record
  d,n,t,qx,qy,cmd=closest;K=6500/2022
  return dict(device=[x,y],source=[sx,sy],world=[sx*K,sy*K],before=before,after=after,difference=after-before,nearestHost=dict(commandIndex=n,opcode=cmd,t=t,distanceDevicePx=d,source=[qx,qy],world=[qx*K,qy*K]),withinOneCell=d<1.0)
+REMAINING=['1440-south','1440-east','390-west','390-east']
+viewIndex={r['key']:r for r in views};views=[viewIndex[k]for k in REMAINING]
+PRIOR_APPROVED={'390-south': {'exactAlpha': False, 'exactComposite': False, 'hashes': {'stock': {'raw': '8954ae83eb690075be3e70756a1891a5ac14532769327a6a47d4f201b295e50d', 'dom': '7cbc5bdcf635a608f1a000f0e71a85517ad97eedc3ebe00163037bc95c5bbc9c'}, 'target': {'raw': 'd0bf9da1b0f2aeb54b771a8c5b63b169b91f9f4b34d7aa690930b46970d095a7', 'dom': 'ea144d386d942532bd8daf735f4714ec34ab575b6bd9d1a31a28ae46f8200bd2'}}, 'state': '913d0b98f987bc1fb4f1a62b65a1604febbe7c6d58f9923cc89e1b7714da1174'}, '390-southwest': {'exactAlpha': True, 'exactComposite': True, 'hashes': {'stock': {'raw': '7a0d515a60f381cfe4a033115575ef2c1c15d19ab502cea1994af2d57063f38d', 'dom': '84d7ee34ec56ab60ba11cc385f4d7ec4fcfc292e0a4ceb426f3edac46b90e290'}, 'target': {'raw': '33c15e2b3e72cb85f96ed1ab8c0c3a372c89350da56ffb8bbc11717f6aa272dd', 'dom': '5b618350959b0d2d26d9fc2d4fec458a5af551f062c168f562831febaeea429e'}}, 'state': '913d0b98f987bc1fb4f1a62b65a1604febbe7c6d58f9923cc89e1b7714da1174'}}
+PRIOR_ARTIFACT={'run':44712869412,'artifact':14617714502,'zipSHA256':'7abd966b3808158952f3c559b2e7e57190feb6a27ad24858ed4e6988b437cadf','comparisonSHA256':' 569ea091cffc9386526630963069abd1609a6ed18c3359cc405a292935628a86 '.strip()}
+CACHE_OBSERVER="() => {\n const P=HonroScene.prototype, A=HonroVectorArt, C=CanvasRenderingContext2D.prototype;\n const originals={tiles:P._drawTerrainDomainTiles,screen:P._screenRaster,draw:A.draw,img:C.drawImage,render:P.render};\n const expect=()=>HONRO_PROJECT.library.find(x=>x.id==='act5:near:42')?.edgeWall;\n if(Object.values(originals).some(x=>typeof x!=='function'))throw Error('missing pinned cache/asset observer APIs');\n const certByCanvas=new WeakMap, screenByCanvas=new WeakMap;\n let dispatch=null,screen=null,trace=null,commits=[];\n const copy=x=>JSON.parse(JSON.stringify(x));\n const cacheMeta=(scene,canvas)=>{\n  const q=scene._domainTiles;\n  if(!q?.tiles)return null;\n  for(const [id,row]of q.tiles)if(row.canvas===canvas)return {id,key:q.key,left:row.left,top:row.top,rs:q.rs};\n  return null;\n };\n A.draw=function(c,asset,...args) {\n  const r=Reflect.apply(originals.draw,this,[c,asset,...args]);\n  if(r!==false&&asset===expect()&&(dispatch||trace)&&asset?.id==='act5:stage42:registered-body'){\n   const m=c.getTransform(),z={canvas:[c.canvas.width,c.canvas.height],style:c.honroVisualLayer??null,transform:[m.a,m.b,m.c,m.d,m.e,m.f],clip:copy(asset.bounds)};\n   if(z.canvas[0]===516&&z.canvas[1]===516){const before=certByCanvas.get(c.canvas);if(before&&before.asset!==asset)throw Error('same cache canvas repainted by different BODY asset');certByCanvas.set(c.canvas,{asset,meta:z,committed:null});}\n   if(trace)trace.direct.push(z);\n   if(screen&&dispatch&&(z.canvas[0]!==516||z.canvas[1]!==516))screen.direct.push(z);\n  }\n  return r;\n };\n P._drawTerrainDomainTiles=function(c,b,w,h){\n  if(b?.honroStage!==42)return Reflect.apply(originals.tiles,this,[c,b,w,h]);\n  const prev=dispatch;dispatch={scene:this,b,w,h};\n  try{return Reflect.apply(originals.tiles,this,[c,b,w,h]);}finally{dispatch=prev;}\n };\n P._screenRaster=function(c,key,w,h,paint,slot,world){\n  if(!trace||slot!=='_screenWorldCache')return Reflect.apply(originals.screen,this,[c,key,w,h,paint,slot,world]);\n  const prev=screen, before=this[slot]?.canvas??null;screen={scene:this,key,slot,src:[],direct:[]};\n  try{\n   const value=Reflect.apply(originals.screen,this,[c,key,w,h,paint,slot,world]); const current=this[slot];\n   if(value&&current?.canvas&&current.canvas!==before){\n    const valid=screen.src.every(t=>t.asset===expect()&&t.committed);\n    screenByCanvas.set(current.canvas,{asset:valid&&(screen.src.length||screen.direct.length)?expect():null,tileSources:screen.src.slice(),directSources:screen.direct.slice(),slot,signature:current.key});\n   }\n   if(value&&current?.canvas){\n    const source=screenByCanvas.get(current.canvas);\n    if(source?.asset){\n     if(source.asset!==expect()||source.signature!==current.key)throw Error('warm screen cache changed source body/signature');\n     trace.screen.push({stage:42,signature:current.key,cacheHit:current.canvas===before,canvas:[current.canvas.width,current.canvas.height],tiles:source.tileSources.map(t=>t.committed)});\n     for(const row of source.tileSources)trace.consumed.push({...row.meta,tile:row.committed,via:'screen-cache'});\n     for(const row of source.directSources)trace.consumed.push({...row,via:'screen-cache-direct'});\n    }\n   }\n   return value;\n  }finally{screen=prev;}\n };\n C.drawImage=function(canvas,...args){\n  const out=Reflect.apply(originals.img,this,[canvas,...args]);\n  // A real successful drawImage reading a map-committed BODY-painted tile.\n  // For warm screen cache, provenance is copied from the tile(s) that built it.\n  if(dispatch&&certByCanvas.has(canvas)){\n   const cert=certByCanvas.get(canvas);\n   const tile=cacheMeta(dispatch.scene,canvas);\n   if(cert.asset!==expect()||!tile)throw Error('uncommitted/foreign BODY raster read');\n   if(!cert.committed){\n    cert.committed=tile;\n    if(commits.length<400)commits.push({...cert.meta,tile});\n   }else if(JSON.stringify(cert.committed)!==JSON.stringify(tile))throw Error('committed BODY raster identity changed');\n   const key=dispatch.scene._worldCacheKey(dispatch.b,dispatch.w);\n   if(tile.key!==key)throw Error('stale world raster cache id/key');\n   if(screen)screen.src.push(cert);\n   if(trace)trace.consumed.push({...cert.meta,tile,via:'domain-tile'});\n  }\n  return out;\n };\n P.render=function(engine,...args){\n  const b=engine?.b;\n  if(b?.honroStage!==42)return Reflect.apply(originals.render,this,[engine,...args]);\n  const prev=trace;trace={direct:[],consumed:[],screen:[]};\n  try{return Reflect.apply(originals.render,this,[engine,...args]);}\n  finally{trace.actual={x:this.x,y:this.y,scale:this.scale};trace.worldViewport=HonroBounds.viewport(this,this.canvas.getBoundingClientRect().width,this.canvas.getBoundingClientRect().height);\n    const {width:w,height:h}=this.canvas.getBoundingClientRect();\n    const rs=this._worldRasterScale(b,w),size=512/rs,d=b.honroTerrainBounds,l=HonroTerrainDomain.materialLandmarks(b).find(a=>a.asset?.id==='act5:near:42'&&a.asset.edgeWall===expect());\n    if(!l||!(rs>0)||!d)throw Error('stage 42 active domain metadata unavailable');\n    const tiles={left:Math.floor(d.left/size)*size,top:Math.floor(d.top/size)*size,right:(Math.floor(d.right/size)+1)*size,bottom:(Math.floor(d.bottom/size)+1)*size};\n    const v=trace.worldViewport;\n    trace.domain={tileWorldSize:size,domain:d,viewport:v,tiles,landmark:{x:l.x,y:l.y,scale:l.scale},paint:this._landmarkPaintBounds(l),extended:v.left<tiles.left||v.right>tiles.right||v.top<tiles.top||v.bottom>tiles.bottom};\n    trace.cacheKeys={currentWorld:this._worldCacheKey(b,w),committedDomain:this._domainTiles?.key??null,committedScreen:this._screenWorldCache?.key??null};\n    window.__stage42CacheLast=trace;trace=prev;}\n };\n window.__stage42CacheReceipt=()=>({priorCommitted:commits,last:window.__stage42CacheLast??null,boundID:expect()?.id??null});\n}\n"
 out=Path(os.environ["OUT"]);out.mkdir(parents=True,exist_ok=True)
 bins=[Path(os.environ[s]) for s in ("STOCK","TARGET")]
 rel='shared/assets/environment/act5/stage42-registered-body.json'
@@ -70,25 +75,26 @@ def sig_image(x):return Image.open(io.BytesIO(x)).convert("RGBA")
 def changed(a,b):return functools.reduce(ImageChops.lighter,ImageChops.difference(a,b).split()).point(lambda x:255 if x else 0,mode="1")
 with sync_playwright() as p:
  browser=p.chromium.launch(headless=True)
- sessions={}; firstSignatures={}
+ sessions={}; opened={}; firstSignatures={}
  def get(i,q):
   mode=['stock','target'][i]; prefix=mode+f"-s{q['stage']:02}-{q['key']}"
   params=q['pose']; expected=params['actual']; w,h=params['width'],params['height']
-  key=(i,w)
+  key=(i,w,q['key'])
   if key not in sessions:
    ctx=browser.new_context(viewport={'width':w,'height':h},device_scale_factor=1)
-   page=ctx.new_page(); bad=[]; immutable=[]; console=[]
+   opened[key]=ctx
+   page=ctx.new_page();page.set_default_timeout(25000); bad=[]; immutable=[]; console=[]
    page.on("console",lambda m:console.append([m.type,m.text]))
    page.on('pageerror',lambda e:bad.append(['page',scan_frame(e)]))
    page.on('requestfailed',lambda r: bad.append(['request',urlparse(r.url).path,r.resource_type,r.failure]) if not(r.resource_type=='media' and 'ERR_ABORTED' in (r.failure or '')) else None)
    page.on('response',lambda r:immutable.append(r) if ADDR.fullmatch(urlparse(r.url).path[1:]) or r.status>=400 else None)
    page.add_init_script("""window.__qaImages=[];const d=Object.getOwnPropertyDescriptor(HTMLImageElement.prototype,'src');Object.defineProperty(HTMLImageElement.prototype,'src',{...d,set(v){window.__qaImages.push(this);d.set.call(this,v)}});""")
-   response=page.goto(urls[i]+'/HONRO.html',wait_until='domcontentloaded',timeout=90000)
+   response=page.goto(urls[i]+'/HONRO.html',wait_until='domcontentloaded',timeout=55000)
    assert response and response.ok and response.body()==(bins[i]/'HONRO.html').read_bytes(), 'actual served HTML mismatch'
    htmlSHA=sha(response.body())
    if i==0:assert htmlSHA==q['baseline']['htmlSHA256'], 'exact cbf release HTML pin' 
    try:
-    page.wait_for_function("() => document.documentElement.dataset.honroReady==='true' && typeof window.HonroCampaignLoader?.ensureStage==='function' && typeof window.HonroTimeOfDay?.sky==='function'",timeout=90000)
+    page.wait_for_function("() => document.documentElement.dataset.honroReady==='true' && typeof window.HonroCampaignLoader?.ensureStage==='function' && typeof window.HonroTimeOfDay?.sky==='function'",timeout=50000)
    except Exception:
     snapshot=page.evaluate("""()=>({dataset:{...document.documentElement.dataset},loader:typeof window.HonroCampaignLoader,timeOfDay:typeof window.HonroTimeOfDay,sky:typeof window.HonroTimeOfDay?.sky,app:typeof window.HonroApp,ready:typeof window.HONRO_APP_READY,startup:document.querySelector('[data-startup-progress]')?.textContent,retry:!!document.querySelector('[data-startup-retry]'),body:document.body.innerText.slice(0,3000),scripts:[...document.scripts].map(s=>s.src)})""")
     snapshot.update(errors=bad,console=console,responses=[{'url':r.url,'status':r.status}for r in immutable])
@@ -96,8 +102,9 @@ with sync_playwright() as p:
     page.screenshot(path=str(out/(prefix+'-first-false.png')))
     raise
    (out/(prefix+'-init-ready.json')).write_text(json.dumps(page.evaluate("() => ({ready:document.documentElement.dataset.honroReady,loader:typeof window.HonroCampaignLoader?.ensureStage,sky:typeof window.HonroTimeOfDay?.sky,app:typeof window.HonroApp})")))
+   page.evaluate(CACHE_OBSERVER)
    page.evaluate("""async sid=>{const a=HonroApp;a.frame=()=>{};a.profile.settings.music=false;a.profile.settings.sound=false;
-     await HonroCampaignLoader.ensureStage(sid);
+     await Promise.race([HonroCampaignLoader.ensureStage(sid),new Promise((_,r)=>setTimeout(()=>r(Error('Stage42 cache proof load timeout')),30000))]);
      for(let n=1;n<sid;n++)a.profile.cleared[n]=true;
      for(const hero of Object.values(a.profile.heroes))hero.xp=HonroProgression.xpAt(HonroProgression.plan(sid).entryLevel);
      a.launch(sid);if(a.engine?.b.honroStage!==sid)throw Error('wrong launch');
@@ -170,6 +177,18 @@ with sync_playwright() as p:
    for k,v in sec.items():
     if repeat[k]:(out/(prefix+'-'+k+'-repeat.png')).write_bytes(v)
    result['edgeRenderer']=page.evaluate('()=>window.__ownerReceipt()')
+   receipt=page.evaluate('()=>window.__stage42CacheReceipt()')
+   assert receipt['boundID']=='act5:stage42:registered-body' and receipt['last']['actual']==params['actual'] and receipt['last']['worldViewport']==q['expectedViewport'], ('cache observation not for this archived pose',receipt)
+   assert receipt['priorCommitted'], ('no Stage42 committed cold tiles observed',receipt)
+   last=receipt['last']; entries=[*last['direct'],*last['consumed']]
+   assert entries and (last['consumed'] or any(row['canvas']!=[516,516] for row in last['direct'])), ('warm frame did not consume expected Stage42 tile/screen/direct BODY',receipt)
+   known={tuple(r['tile'][k]for k in ('key','id','left','top','rs')) for r in receipt['priorCommitted']}
+   for row in last['consumed']:
+    if row.get('tile') is not None:
+     assert tuple(row['tile'][k]for k in ('key','id','left','top','rs')) in known and row['tile']['key']==last['cacheKeys']['currentWorld']
+   result['edgeRenderer']['domains']=[last['domain']]
+   result['edgeRenderer']['draws']=entries
+   result['cacheProvenance']=receipt
    result['nativeSky']=page.evaluate("()=>window.__restoreNativeQA()")
    assert result['nativeSky']['calls']==result['nativeSky']['restores']
    response_indices={}
@@ -187,7 +206,7 @@ with sync_playwright() as p:
    source=json.loads((bins[i]/'shared/assets/environment/act5/stage42-registered-body.json').read_text())
    assert json.loads(binding)==source, 'active BODY does not match the pinned exact package'
    result['surfaceSHA256']=sha(result.pop('surface').encode());result['propsSHA256']=sha(result.pop('props').encode())
-   assert result['edgeRenderer']['domains'] and result['bodyCalls']>0, 'missing actual terrain dispatcher/BODY drawing'
+   assert result['edgeRenderer']['domains'] and result['edgeRenderer']['draws'] and result['cacheProvenance'], 'missing actual observed BODY cache/direct proof'
    # Strict across-view state: camera is verified separately, not part of signature.
    assert result['stateSHA256']==firstSignatures.setdefault(key,result['stateSHA256']), 'world state drifted across camera sequence'
    result['htmlSHA256']=htmlSHA
@@ -321,20 +340,26 @@ with sync_playwright() as p:
    item['transparentDeepAlphaExact']=bool(exactDeep)
    assert item['culling']['lateralCapsOutside'] and item['culling']['normalBottomAboveArtEnd']
   except Exception as e:
-   item['error']=str(e);roll.append(item);(out/'comparison.json').write_text(json.dumps(roll,indent=2));raise
+   item['error']=str(e)
+  finally:
+   # Isolated context for each pose/mode. Never reuse failed state.
+   for i in (0,1):
+    key=(i,q['pose']['width'],q['key']);ctx=opened.pop(key,None);sessions.pop(key,None)
+    if ctx:ctx.close()
   roll.append(item);(out/'comparison.json').write_text(json.dumps(roll,indent=2))
- for ctx,*_ in sessions.values():ctx.close()
  browser.close()
- assert len(roll)==6 and all('error' not in x and x['rawGeometryStateAndOwnedPass'] for x in roll)
- refs={r['view']:r['userReferenceDeep'] for r in roll if 'userReferenceDeep'in r}
- assert len(refs)==2
- exactRGBA=all(r['exactCompositeRGBA']for r in refs.values())
- exactAlpha=all(r['transparentDeepAlphaExact']for r in roll)
+ assert len(roll)==4 and set(r['view'] for r in roll)==set(REMAINING)
+ good={r['view']:r for r in roll if 'error' not in r and r.get('rawGeometryStateAndOwnedPass')}
+ missing=[r['view'] for r in roll if r['view'] not in good]
+ refs={k:r['exactComposite']for k,r in PRIOR_APPROVED.items()}
+ exactRGBA=all(refs.values())
+ exactAlpha=(not missing and all(p['exactAlpha']for p in PRIOR_APPROVED.values()) and all(r['transparentDeepAlphaExact']for r in good.values()))
  strict=exactAlpha and exactRGBA
- receipt=dict(technicalPoseCount=len(roll),exactPhysicalAndProtected=True,zeroCategoricalAlphaFlips=True,
-     allObservedDeepAlphaChangesWithinOneExactCurveCell=True,transparentProtectedAlphaExact=True,
+ receipt=dict(technicalPoseCount=len(good)+len(PRIOR_APPROVED),exactPhysicalAndProtected=not missing,zeroCategoricalAlphaFlips=not missing,
+     allObservedDeepAlphaChangesWithinOneExactCurveCell=not missing,transparentProtectedAlphaExact=not missing,
      transparentUserDonorSHA256=donor_h,independentArchivedDeepAlphaExact=exactAlpha,
      independentArchivedDeepRGBAExact=exactRGBA,archivalByteExact=strict,classification='AWAIT VISUAL REVIEW' if strict else 'HOLD: archival deep equality false',
-     archivedDeep=refs,perPoseExactAlpha={r['view']:r['transparentDeepAlphaExact'] for r in roll})
+     archivedMobile=PRIOR_ARTIFACT,archivedDeep=refs,unverified=missing,perPoseExactAlpha={**{k:v['exactAlpha'] for k,v in PRIOR_APPROVED.items()},**{k:r['transparentDeepAlphaExact'] for k,r in good.items()}})
  (out/'FINAL-RECEIPT.json').write_text(json.dumps(receipt,indent=2))
+ assert not missing,('Four independent pose captures attempted; some observed technical cases had no proof',receipt)
  assert strict,('All six integrity-valid captures preserved; strict donor Alpha/RGBA archival equality remains HOLD',receipt)
