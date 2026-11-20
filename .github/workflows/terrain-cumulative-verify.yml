@@ -1,14 +1,14 @@
-name: Two exact cumulative terrain canaries
+name: Remaining eleven exact cumulative terrain witness pairs
 on:
   push:
     branches:
-      - qa/terrain-cumulative-52119985-two-canary-20261120
+      - qa/terrain-cumulative-52119985-remaining-eleven-20261120
 permissions:
   contents: read
 jobs:
   verify:
     runs-on: ubuntu-24.04
-    timeout-minutes: 25
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
@@ -71,8 +71,8 @@ jobs:
             fi
           done
           python "$QA/verify.py" "$STOCK" "$TARGET" "$OUT"
-      - name: Two matched normal browser views only (Stage 1 and Stage 28)
-        timeout-minutes: 10
+      - name: Remaining eleven archived normal App views only (not Stage 1 or 28)
+        timeout-minutes: 22
         run: |
           set -euo pipefail
           python -m pip install playwright==1.58.0 pillow
@@ -85,10 +85,11 @@ jobs:
           for p in 18841 18842; do
             curl -fsS --retry 5 --retry-connrefused "http://127.0.0.1:$p/HONRO.html" -o /dev/null
           done
-          timeout 225s python "$QA/capture.py"
+          printf '%s\n' 'Stage 1 and Stage 28 already verified separately at official run 44688394021; artifact 14607472911 sha256 c9f025785b2b560fdda0beaa689c07e80f8b8d7bddb2c0c5ccb8431f07cf467f.' >"$OUT/prior-two-canaries.txt"
+          timeout 870s python "$QA/capture.py"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: terrain-exact-stage1-stage28-two-canaries
+          name: terrain-exact-remaining-eleven-witnesses
           path: ${{ env.OUT }}
           retention-days: 7

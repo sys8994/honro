@@ -8,8 +8,8 @@ from verify import sha,ADDR
 root=Path(__file__).resolve().parent
 all_views=json.loads((root/'views.json').read_text())
 assert [q['stage'] for q in all_views]==[1,2,3,7,12,14,15,28,33,36,38,41,46]
-views=[v for v in all_views if v['stage'] in (1,28)]
-assert [(v['stage'],v['key']) for v in views]==[(1,'overview'),(28,'south')]
+views=[v for v in all_views if v['stage'] not in (1,28)]
+assert [v['stage'] for v in views]==[2,3,7,12,14,15,33,36,38,41,46]
 def mask(q,k):
  b=zlib.decompress(base64.b64decode(q[k]));h='maskSHA256' if k=='mask' else 'requiredSHA256'
  assert sha(b)==q[h] and len(b)==((q['size'][0]+7)//8)*q['size'][1]
@@ -20,14 +20,17 @@ def sig_image(x):
  a=Image.open(io.BytesIO(x)); a.load();return a.convert('RGBA')
 def changed(a,b):
  ds=ImageChops.difference(a,b).split()
- t=functools.reduce(ImageChops.lighter,ds)
- return t.point(lambda x:255 if x else 0,mode='1')
+ return functools.reduce(ImageChops.lighter,ds).point(lambda x:255 if x else 0,mode='1')
 def pixel(a,b,q):
  m=changed(a,b)
  outside=ImageChops.logical_and(m,ImageChops.invert(mask(q,'mask')))
  missing=ImageChops.logical_and(mask(q,'required'),ImageChops.invert(m))
+ delta=functools.reduce(ImageChops.lighter,ImageChops.difference(a,b).split())
+ outside_values=ImageChops.multiply(delta,outside.convert('L'))
+ histogram=outside_values.histogram()
  return dict(changed=m.histogram()[255],outside=outside.histogram()[255],missing=missing.histogram()[255],
-  bbox=m.getbbox(),outsideBbox=outside.getbbox(),missingBbox=missing.getbbox())
+  bbox=m.getbbox(),outsideBbox=outside.getbbox(),missingBbox=missing.getbbox(),
+  outsideMaxChannel=outside_values.getextrema()[1],outsideGt1Pixels=sum(histogram[2:]))
 def dry():
  for q in views:
   a,b=(Path(p).read_bytes() for p in q['archivePaths'])
@@ -69,11 +72,11 @@ with sync_playwright() as p:
      && typeof window.HonroTimeOfDay?.sky==='function'""",timeout=18000)
    except Exception:
     (out/(prefix+'-boot.json')).write_text(json.dumps({'readiness':page.evaluate(ready_state),'bad':bad},indent=2))
-    raise
+    raise RuntimeError('Startup Boolean readiness gate failed before stage/game render')
    boot=page.evaluate(ready_state)
    (out/(prefix+'-boot.json')).write_text(json.dumps({'readiness':boot,'bad':bad},indent=2))
    page.evaluate("""async sid=>{const a=HonroApp;a.frame=()=>{};a.profile.settings.music=false;a.profile.settings.sound=false;
-     await HonroCampaignLoader.ensureStage(sid);
+     await Promise.race([HonroCampaignLoader.ensureStage(sid),new Promise((_,reject)=>setTimeout(()=>reject(Error('Official ensureStage exceeded 18s')),18000))]);
      for(let n=1;n<sid;n++)a.profile.cleared[n]=true;
      for(const hero of Object.values(a.profile.heroes))hero.xp=HonroProgression.xpAt(HonroProgression.plan(sid).entryLevel);
      a.launch(sid);if(a.engine?.b.honroStage!==sid)throw Error('wrong launch');
@@ -101,7 +104,7 @@ with sync_playwright() as p:
         HonroTimeOfDay.sky=original;return {calls:call,restores:restore,fixedMillis:41000,originalRestored:HonroTimeOfDay.sky===original&&performance.now===originalNow};};
       window.__witness=q;
       s.render(a.engine,0,'',.6,false,0);}""",q)
-   page.wait_for_function("window.__qaImages.every(i=>!i.src||i.complete)",timeout=60000)
+   page.wait_for_function("window.__qaImages.every(i=>!i.src||i.complete)",timeout=18000)
    page.evaluate("async()=>{await document.fonts.ready;const failed=window.__qaImages.filter(i=>i.src&&i.complete&&!i.naturalWidth);if(failed.length)throw Error('Registered scene image failed to decode');}")
    result=page.evaluate("""()=>{const a=HonroApp,s=a.scene,b=a.engine.b,q=window.__witness;
     const st=HONRO_PROJECT.stages.find(t=>t.metadata?.stageId===q.stage);
@@ -171,6 +174,10 @@ with sync_playwright() as p:
     diff=changed(raw_a,raw_b)
     r['rawDifferentGridDiagnostic']={'changed':diff.histogram()[255],'bbox':diff.getbbox(),'size':raw_a.size,
       'scope':'Archive DOM differs from backing by one pixel row, so DOM mask is not extrapolated to backing. Backing repeat purity still required.'}
+   if q['stage']==3 and r['raster']['dom']['outside']:
+    row=r['raster']['dom']
+    r['strictStage3Conflict']='Outside pixels break the current exact gate; archive had 486 one-channel-level outside pixels. This notice does not change the verdict.'
+    r['stage3OutsideGt1Pix']=row['outsideGt1Pixels']
    r['pass']=r['stateCameraEqual'] and not (aa['bad'] or bb['bad']) and not any([*aa['repeat'].values(),*bb['repeat'].values()]) and not any(d['outside'] or d['missing'] or (q['mode']!='control' and not d['changed']) for d in r['raster'].values())
   except Exception as e:r.update(error=scan_frame(e),**{'pass':False})
   roll.append(r);save();print(q['stage'],r['pass'],r.get('error'),flush=True)

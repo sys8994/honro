@@ -23,8 +23,9 @@ expected={f'tools/terrain-cumulative-verify/{n}' for n in files}|{'.github/workf
 oldqa='840fc1db0ae9d92f141ec1f88753c5bf7ed4a5a8'
 retry='0afacc948aa25ac83f68155e348e54fd630e3dee'
 init='081dd4a5cad7cc7d5b28fb83199736e80deb9e10'
-assert git('rev-parse','HEAD^')==init and git('rev-parse',init+'^')==retry and git('rev-parse',retry+'^')==oldqa and git('rev-parse',oldqa+'^')==target
-assert set(git('diff','--name-status',init,'HEAD').splitlines())=={
+canary='7c38e48c16d05f43be2e50d717669dc98c0e202f'
+assert git('rev-parse','HEAD^')==canary and git('rev-parse',canary+'^')==init and git('rev-parse',init+'^')==retry and git('rev-parse',retry+'^')==oldqa and git('rev-parse',oldqa+'^')==target
+assert set(git('diff','--name-status',canary,'HEAD').splitlines())=={
  'M\t.github/workflows/terrain-cumulative-verify.yml','M\ttools/terrain-cumulative-verify/guard.py','M\ttools/terrain-cumulative-verify/capture.py'}
 assert set(git('diff','--name-only',target,'HEAD').splitlines())==expected
 assert all(x.startswith('A\t') for x in git('diff','--name-status',target,'HEAD').splitlines())
