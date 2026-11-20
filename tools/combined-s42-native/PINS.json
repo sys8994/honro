@@ -1,0 +1,23 @@
+{
+  "base": "810009f33ca4a122c98c2f270942dc17affed8c7",
+  "tree": "39598b5554980e5d762851890f2ab5d3c4b14555",
+  "parent": "859a44062b0b0973ae7d7e84612fe8a9f37af4da",
+  "renderer": "bcfa2aefef4d82a6d3533cd08bf38c79db2db9ec",
+  "approved42": "2a61346018d57c12021ad0d820a8b3ada73d985b",
+  "baselineDependencies": {
+    "shared/runtime/act5-edge-art.js": "611113216e115e2b94f42a0f79012748d3c10acb",
+    "shared/assets/environment/act5/near-import.json": "938069390ced7f76242a81f008200d5f9b63a950",
+    "shared/assets/environment/act5/stage42-surface.json": "cabd9306550c0ccd742dfd3633f3c266ec9b7819",
+    "shared/data/act1/stage02-body-candidate.json": "8f7cd01f3b46caed3dd7d7222fc539a6af84e076",
+    "shared/data/act1/stage02-rear-candidate.json": "889f28c875feea7afa985dc900ea855e747a7789",
+    "tests/stage02-deep-body-tile.mjs": "3cde798d9d921c3c9ba3ec212863f596ca89191e",
+    "tests/stage08-deep-body-tile.mjs": "19c8b4e8457dfc82d4e6af012804468496d4e4ca",
+    "tests/stage09-deep-floor-tile.mjs": "abe1e3464899f3cc04459b6e1e600d0907b30551"
+  },
+  "stage42ChangedPaths": {
+    "shared/assets/environment/act5/stage42-registered-body.json": "f6b4a6a3d6dbbfbfd83fa367125165c2fdd2f964",
+    "shared/runtime/act5-edge-art.js": "66f656fe7beb164efcbed2729b2f6daa88781e42",
+    "tests/production-contract.mjs": "29210abc75f37bca44d772a78e85e334a09a0229",
+    "tests/stage42-edge-geology.mjs": "4b9289eb56636adb940cb6c10af60f37053e6152"
+  }
+}
