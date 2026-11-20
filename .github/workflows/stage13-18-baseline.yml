@@ -1,0 +1,154 @@
+name: Stage13 and Stage18 strict baseline repair only
+on:
+  push:
+    branches: ['qa/stage13-18-baseline-20261120']
+permissions:
+  contents: read
+jobs:
+  proof:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Pin exact Stage12-current branch and whitelist all QA-only files
+        run: |
+          set -euo pipefail
+          BASE=787206f6dce947868ad9199da45fbe393d3f3c53
+          git merge-base --is-ancestor "$BASE" HEAD
+          T="$RUNNER_TEMP/joint-map-scratch"
+          mkdir -p "$T/out"
+          echo "SCRATCH=$T" >> "$GITHUB_ENV"
+          git diff --name-status "$BASE" HEAD > "$T/out/qa-branch-scope.txt"
+          python - "$T/out/qa-branch-scope.txt" <<'PY'
+          import sys,pathlib
+          got=set(pathlib.Path(sys.argv[1]).read_text().splitlines())
+          expected={'A\t.github/workflows/stage13-18-baseline.yml',*['A\ttools/stage13-18-proof/'+p for p in
+            ['ci/parser.py','ci/splice.py','ci/verify.py','ci/range.py','ci/membership.mjs','ci/packet.py','ci/live.py','canonical-inventory/observe.mjs','canonical-inventory/inventory.py']]}
+          assert got==expected,(got,expected)
+          PY
+          git worktree add --detach "$T/before" "$BASE"
+          git worktree add --detach "$T/after" "$BASE"
+          echo "$BASE" > "$T/out/pinned.txt"
+          git -C "$T/before" cat-file -e edaf31a5fda2b7db0202bc0efb52dd83e54f6b9e
+          test "$(git -C "$T/before" rev-parse HEAD:shared/data/campaign.json)" = edaf31a5fda2b7db0202bc0efb52dd83e54f6b9e
+          test "$(git -C "$T/before" rev-parse HEAD:shared/data/act2/stage13-compact-package.json)" = 413a4615c3f323b9b8d5cd21f3d0e4c2ecc0680a
+          test "$(git -C "$T/before" rev-parse HEAD:shared/data/act2/stage18-compact-package.json)" = b7866726cc789fad4f596b533e998cbf0c12dcec
+          test "$(git -C "$T/before" rev-parse HEAD:tools/map-forge/stage18-short-quest.mjs)" = 3304d5d496f1e65cff3a307a920c1e57f6af9c4e
+      - name: Original clean stock dependencies, release guard and intentional preexisting errors only
+        run: |
+          set -euo pipefail
+          T="$SCRATCH"; OUT="$T/out"; Q="$GITHUB_WORKSPACE/tools/stage13-18-proof"
+          cd "$T/before"
+          npm ci; npm ci --prefix game
+          npm run test:release-guard > "$OUT/release-before.txt" 2>&1
+          set +e
+          python "$Q/canonical-inventory/inventory.py" "$T/before" "$OUT/original-errors.json" > "$T/inventory.private" 2>&1
+          rc=$?
+          set -e
+          test "$rc" = 1
+          python - "$OUT/original-errors.json" <<'PY'
+          import pathlib,sys,json
+          j=json.loads(pathlib.Path(sys.argv[1]).read_text())
+          assert j['baseline']['schema']['total']==47
+          assert j['baseline']['schema']['orderedLinesSHA256']=='047291b61fccf52515e4426655ee7ef47440fc1bf14b5b44c88b5aeeba7ae1e3'
+          assert j['knownStage18Only']['schema']['total']==2 and j['difference']['onlyExpectedStage18Removed']
+          assert j['knownStage18Only']['schema']['orderedLinesSHA256']=='7a767708dcafdfb1a882c4f0bd88ab0511a9adc74c25cf594aaa534da9ff16a9'
+          PY
+          node tests/act2-compact-save.mjs 18 > "$OUT/compact-before.txt" 2>&1
+      - name: Apply only inspected references in the disposable candidate
+        run: |
+          set -euo pipefail
+          T="$SCRATCH"; OUT="$T/out"; Q="$GITHUB_WORKSPACE/tools/stage13-18-proof/ci"
+          python "$Q/verify.py" "$T/before" "$T/after" "$OUT"
+          python "$Q/range.py" "$T/after/shared/data/campaign.json" "$OUT/asset-range.json"
+          cmp "$T/before/shared/data/act2/stage13-compact-package.json" "$T/after/shared/data/act2/stage13-compact-package.json"
+          git -C "$T/after" diff --name-only > "$OUT/scratch-candidate-files.txt"
+          test "$(wc -l < "$OUT/scratch-candidate-files.txt")" = 3
+          cd "$T/after"
+          npm ci; npm ci --prefix game
+      - name: Required untouched official schema and complete Stage22 regeneration, then compact and release
+        run: |
+          set -euo pipefail
+          OUT="$SCRATCH/out"; Q="$GITHUB_WORKSPACE/tools/stage13-18-proof/ci"
+          cd "$SCRATCH/after"
+          sha256sum tests/stage22-vertical-regeneration.mjs shared/map/schema.js shared/map/environment.js tools/environment/stage22-vertical-art.mjs > "$OUT/unmodified-validation-source.sha256"
+          set +e
+          node tests/stage22-vertical-regeneration.mjs > "$SCRATCH/strict-regeneration.private" 2>&1
+          rc=$?
+          set -e
+          echo "$rc" > "$OUT/candidate-official-regeneration.exit"
+          sha256sum "$SCRATCH/strict-regeneration.private" | cut -d' ' -f1 > "$OUT/private-regeneration.sha256"
+          if [ "$rc" -ne 0 ]; then
+            python - "$SCRATCH/strict-regeneration.private" "$OUT/strict-guard-failure.txt" <<'PY'
+          from pathlib import Path
+          import sys,re
+          raw=Path(sys.argv[1]).read_text(errors='replace')
+          m=re.search(r'(?m)^(Error|TypeError|SyntaxError|AssertionError \[ERR_ASSERTION\]):\s*([^\n]*)',raw)
+          if m and m.end()-m.start()<=240 and not re.search(r'[{}\[\]]|https?://|/home/|/workspace/|/tmp/',m.group(2)):
+           Path(sys.argv[2]).write_text(m.group(0)+'\n')
+          PY
+            exit "$rc"
+          fi
+          cp _local/reports/vertical-stages/stage22-regeneration.json "$OUT/candidate-official-regeneration.json"
+          cp "$Q/membership.mjs" tools/map-forge/.stage18-reference-qa.mjs
+          node tools/map-forge/.stage18-reference-qa.mjs after > "$OUT/approved-stage18-membership.json"
+          rm tools/map-forge/.stage18-reference-qa.mjs
+          node tests/act2-compact-save.mjs 18 > "$OUT/compact-after.txt" 2>&1
+          npm run test:release-guard > "$OUT/release-after.txt" 2>&1
+      - name: Required official normal build and active packet contracts
+        run: |
+          set -euo pipefail
+          T="$SCRATCH"; OUT="$T/out"; Q="$GITHUB_WORKSPACE/tools/stage13-18-proof/ci"
+          for mode in before after; do
+           cd "$T/$mode"; npm run build > "$OUT/build-$mode.log" 2>&1
+          done
+          python "$Q/packet.py" "$T/before" "$T/after" "$OUT"
+          cd "$T/after"; npm run test:campaign-contracts > "$OUT/production-contracts.txt" 2>&1
+      - name: Actual normal App comparisons of both chapters and initial activation refresh
+        run: |
+          set -euo pipefail
+          OUT="$SCRATCH/out"; export OUT
+          python -m pip install playwright pillow
+          python -m playwright install --with-deps chromium
+          python -m http.server 8884 --bind 127.0.0.1 --directory "$SCRATCH/before" > "$OUT/host-before.txt" 2>&1 & a=$!
+          python -m http.server 8885 --bind 127.0.0.1 --directory "$SCRATCH/after" > "$OUT/host-after.txt" 2>&1 & b=$!
+          trap 'kill "$a" "$b" || true' EXIT
+          Q="$GITHUB_WORKSPACE/tools/stage13-18-proof/ci"
+          PORT=8884 OUT="$OUT/before" python "$Q/live.py" > "$OUT/browser-before.log" 2>&1 & up=$!
+          PORT=8885 OUT="$OUT/after" python "$Q/live.py" > "$OUT/browser-after.log" 2>&1 & dn=$!
+          status=0
+          wait "$up" || status=1
+          wait "$dn" || status=1
+          test "$status" -eq 0
+          python - <<'PY'
+          import json,os,pathlib
+          from PIL import Image,ImageChops
+          root=pathlib.Path(os.environ['OUT'])
+          a,b=[json.loads((root/mode/'proof.json').read_text()) for mode in ('before','after')]
+          assert set(a)==set(b)=={'13-initial','13-mason','13-threshold','18-initial','18-refresh-initial-activation'}
+          evidence={}
+          for k in a:
+           x,y=a[k],b[k]
+           target=[x.pop('targetChange'),y.pop('targetChange')]
+           if k.startswith('13-'):
+            assert target==[{'range':[.35,4],'embeddedRanges':[[.35,4]]*2},{'range':[.22,4],'embeddedRanges':[[.22,4]]*2}],(k,target)
+           else: assert target==[{'missing':45,'empty':0},{'missing':0,'empty':12}],(k,target)
+           del x['pngSHA256'];del y['pngSHA256']
+           assert x==y,(k,[f for f in x if x[f]!=y.get(f)],[(f,h) for f,h in x['perFieldSHA256'].items() if h!=y['perFieldSHA256'].get(f)])
+           ims=[Image.open(root/mode/(k+'.png')).convert('RGB') for mode in ('before','after')]
+           pixels=ImageChops.difference(*ims).getextrema()
+           assert pixels==((0,0),(0,0),(0,0)),(k,pixels)
+           evidence[k]={**x,'targetChange':target,'pixelsExact':True}
+          (root/'browser-ab.json').write_text(json.dumps({'scope':'Normal App actual fresh entry and initial refresh; late activation and battle progression not exercised','frames':evidence},indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage13-18-baseline-scratch-proof-only
+          path: ${{ env.SCRATCH }}/out
+          retention-days: 7
