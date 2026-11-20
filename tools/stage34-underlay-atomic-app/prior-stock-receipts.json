@@ -1,0 +1,90 @@
+{
+  "PC-SE": {
+    "rasterSha": "00423b4abcbbea1d62e356db4be55728aecb87427c7680ed3f8bf382e06c89a1",
+    "css": {
+      "width": 1440,
+      "height": 769.1875
+    },
+    "backing": [
+      1440,
+      769
+    ],
+    "camera": {
+      "x": 6464,
+      "y": 4336,
+      "scale": 0.21176470588235294
+    },
+    "viewport": {
+      "left": 3064,
+      "right": 9864,
+      "top": 2519.862847222222,
+      "bottom": 6152.137152777777
+    }
+  },
+  "Mobile-SE": {
+    "rasterSha": "bd752eaca92afb1fdd94ff127bbc30a09e92b354263b3e925ef5601db6400300",
+    "css": {
+      "width": 390,
+      "height": 647.609375
+    },
+    "backing": [
+      390,
+      648
+    ],
+    "camera": {
+      "x": 6464,
+      "y": 4336,
+      "scale": 0.057352941176470586
+    },
+    "viewport": {
+      "left": 3064,
+      "right": 9864,
+      "top": -1309.8253205128203,
+      "bottom": 9981.82532051282
+    }
+  },
+  "PC-NW-control": {
+    "rasterSha": "c7f899f951f290183b49407d84cc9d874f7516e02f0112ee3c45df4c4a3c5621",
+    "css": {
+      "width": 1440,
+      "height": 769.1875
+    },
+    "backing": [
+      1440,
+      769
+    ],
+    "camera": {
+      "x": -320,
+      "y": -1800,
+      "scale": 0.21176470588235294
+    },
+    "viewport": {
+      "left": -3720,
+      "right": 3080,
+      "top": -3616.137152777778,
+      "bottom": 16.13715277777783
+    }
+  },
+  "PC-SE-phase": {
+    "rasterSha": "38bc0505398aff479544bf1a457925bc7b0a7f8517b8e3151512997778ffa11e",
+    "css": {
+      "width": 1440,
+      "height": 769.1875
+    },
+    "backing": [
+      1440,
+      769
+    ],
+    "camera": {
+      "x": 6417,
+      "y": 4305,
+      "scale": 0.21176470588235294
+    },
+    "viewport": {
+      "left": 3017,
+      "right": 9817,
+      "top": 2488.862847222222,
+      "bottom": 6121.137152777777
+    }
+  }
+}

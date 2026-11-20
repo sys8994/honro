@@ -1,0 +1,106 @@
+// QA only: replace the exact old pad contribution with the in-situ opaque
+// earlier scene B, over one normal stock draw, and nowhere outside device cells.
+const qa34Keep=new WeakMap();
+const qa34Blank=()=>({hit:0,skip:0,allocations:0,releases:0,peakBytes:0,fallbacks:0,cutCalls:0,stockCalls:0,readbackBytes:0,checkedOpacityCells:0,zeroWeightCells:0,maskClampedOutsideCells:0,tiles:[],errors:[]});
+let qa34AtomStats=qa34Blank(),qa34Armed=false;
+const qa34NativeNow=performance.now.bind(performance);
+G.HonroStage34ArmReadbackDiagnostic=()=>{qa34Armed=true;qa34AtomStats=qa34Blank();};
+const qa34MaskPaths=__SIGNED_MASK_DATA__;
+const qa34DeviceCertificate=__SUPPORT_ROWS__;
+G.HonroStage34AtomicReceipt=(reset=false)=>{const r=structuredClone(qa34AtomStats);if(reset)qa34AtomStats=qa34Blank();return r;};
+function qa34AtomicFoundation(scene,c,l,b){
+ if(!qa34Armed)return false;
+ if(b?.honroStage!==34||b.honroCustom||b.honroAct4Official!==1||l?.id!=='approved34-coastal-foundation'||l?.asset?.id!=='approved34:coastal-foundation')return false;
+ const a=l.asset,v=a.vector,W=c.canvas.width,H=c.canvas.height,m=c.getTransform();
+ const fail=why=>{qa34AtomStats.fallbacks++;qa34AtomStats.errors.push(why);throw Error('Stage34 exact disposable readback guard: '+JSON.stringify(why));};
+ if(l.layer!=='structural-back'||l.nativeArtLayer!=='structure'||l.x!==-1536||l.y!==-256||(l.opacity??1)!==1||
+  (l.scale??1)!==1||(l.rotation??0)!==0||a.anchor?.x!==0||a.anchor?.y!==0||a.bounds?.w!==9216||a.bounds?.h!==6144||
+  a.params?.sourceSha256!=='33d17ad69cfb762d95ffddb47359143373d0b8afcc86f6e1b23cf89c8fed93cf'||
+  a.params?.nonplayEnvironment!==true||a.params?.silhouetteUnderpaint!==false||
+  v.root.transform?.join(',')!=='6,0,0,6,0,0'||Object.keys(v.clips).join()!=='source-alpha-silhouette'||
+  v.root.children?.length!==1||v.root.children[0].clipPath!=='source-alpha-silhouette'||
+  v.root.children[0].children?.[0]?.children?.length!==16)return fail('source or placement contract');
+ if(m.b!==0||m.c!==0||m.a<=0||m.d<=0||![m.a,m.d,m.e,m.f,W,H].every(Number.isFinite))return fail('unsupported actual device transform');
+ if(W<1||H<1||W>1024||H>1024||W*H>1048576||c.globalAlpha!==1||c.globalCompositeOperation!=='source-over'||(c.filter??'none')!=='none')
+  return fail('unsupported eligible caller paint state');
+ if(typeof scene._makeLayerCanvas!=='function'||typeof scene._releaseRasterCanvas!=='function')return fail('scratch surface unavailable');
+ const started=qa34NativeNow(), clip=(q,t)=>Math.max(0,Math.min(t,q));
+ // Device cells whose original full cell meets one frozen independent 1x
+ // source witness, plus the already predeclared one-device-cell AA border.
+ // Authorization per cell, not via the bounding box. The source certificate
+ // is the original independent material raster diff (not fitted to this App).
+ const runs=[];
+ let left=W,top=H,right=0,bottom=0;
+ for(const [y,...xs] of qa34DeviceCertificate){
+  const t=clip(Math.floor(m.d*(6*y-256)+m.f)-1,H),z=clip(Math.ceil(m.d*(6*(y+1)-256)+m.f)+1,H);
+  if(z<=t)continue;
+  for(let i=0;i<xs.length;i+=2){
+   const u=clip(Math.floor(m.a*(6*xs[i]-1536)+m.e)-1,W),v=clip(Math.ceil(m.a*(6*xs[i+1]-1536)+m.e)+1,W);
+   if(v<=u)continue;
+   runs.push([u,t,v,z]);left=Math.min(left,u);right=Math.max(right,v);top=Math.min(top,t);bottom=Math.max(bottom,z);
+  }
+ }
+ if(!runs.length){qa34AtomStats.skip++;return false;}
+ const rw=right-left,rh=bottom-top,N=rw*rh;
+ if(!Number.isInteger(N)||N<=0||N>W*H)return fail('invalid discrete crop');
+ const support=new Uint8Array(N);
+ for(const [l0,t,r,z] of runs)for(let y=t;y<z;y++)support.fill(1,(y-top)*rw+l0-left,(y-top)*rw+r-left);
+ let patch=null;
+ try{
+  let keep=qa34Keep.get(a);
+  if(!keep){keep=Object.values(qa34MaskPaths).map(ds=>new Path2D(ds.join(' ')));qa34Keep.set(a,keep);}
+  patch=scene._makeLayerCanvas(rw,rh);
+  qa34AtomStats.allocations++;
+  const p=patch.getContext('2d',{willReadFrequently:true});
+  if(!p||patch.width!==rw||patch.height!==rh)return fail('wrong scratch context/dimensions');
+  // Rasterize same signed keep at exactly the former whole-tile device phase.
+  // Integer shift only; no resizing. The inherited caller clip remains in force.
+  p.setTransform(m.a,m.b,m.c,m.d,m.e-left,m.f-top);p.translate(l.x,l.y);p.transform(...v.root.transform);
+  p.save();try{for(let j=0;j<keep.length-1;j++)p.clip(keep[j]);p.fillStyle='#fff';p.fill(keep.at(-1));}finally{p.restore();}
+  p.setTransform(1,0,0,1,0,0);
+  let clock=qa34NativeNow();
+  const K=p.getImageData(0,0,rw,rh);
+  let readMS=qa34NativeNow()-clock;
+  const e=new Uint8Array(N);
+  let checked=0,partial=0,outside=0,zero=0;
+  for(let i=0,j=3;i<N;i++,j+=4){
+   const w=255-K.data[j];
+   if(w!==0&&support[i]){e[i]=w;checked++;if(w<255)partial++;}
+   else{zero++;if(w!==0)outside++;}
+  }
+  if(checked<1){qa34AtomStats.skip++;return false;}
+  // Capture the untouched native earlier depth. Never read the live context
+  // via getImageData, which can itself change its Canvas backend after reads.
+  p.clearRect(0,0,rw,rh);p.imageSmoothingEnabled=false;
+  p.drawImage(c.canvas,left,top,rw,rh,0,0,rw,rh);
+  clock=qa34NativeNow();
+  const B=p.getImageData(0,0,rw,rh);
+  readMS+=qa34NativeNow()-clock;
+  qa34AtomStats.readbackBytes+=N*8;
+  qa34AtomStats.peakBytes=Math.max(qa34AtomStats.peakBytes,N*14); // canvas RGBA + K/B RGBA + two u8 buffers; QA allocation estimate only
+  let minAlpha=255,deficits=0,firstDeficit=null;
+  for(let i=0,j=3;i<N;i++,j+=4){
+   if(e[i]){
+    const alpha=B.data[j];minAlpha=Math.min(minAlpha,alpha);
+    if(alpha!==255){deficits++;firstDeficit??=[left+i%rw,top+Math.floor(i/rw),alpha];}
+   }
+  }
+  if(deficits)return fail({reason:'non-opaque in-situ pre-foundation B',deficits,firstDeficit,minAlpha,
+      roi:[left,top,right,bottom],rs:m.a,origin:[m.e,m.f],readMS,readbackBytes:N*8,checked,partial,outside});
+  for(let i=0,j=3;i<N;i++,j+=4)B.data[j]=e[i];
+  p.putImageData(B,0,0);
+  // Paint stock S once in original style directly over existing scene. Then
+  // single integer source-over of original B with E, only within certificate.
+  // E=0 is fully transparent and never re-composites old uncut paint.
+  if(!G.HonroVectorArt.draw(c,a,l))return fail('the normal stock vector did not draw');
+  qa34AtomStats.stockCalls++;
+  c.save();try{c.setTransform(1,0,0,1,0,0);c.imageSmoothingEnabled=false;c.drawImage(patch,left,top);}finally{c.restore();}
+  qa34AtomStats.cutCalls++;qa34AtomStats.hit++;
+  qa34AtomStats.checkedOpacityCells+=checked;qa34AtomStats.maskClampedOutsideCells+=outside;qa34AtomStats.zeroWeightCells+=zero;
+  if(qa34AtomStats.tiles.length<256)qa34AtomStats.tiles.push({W,H,roi:[left,top,right,bottom],rs:m.a,origin:[m.e,m.f],
+    minAlpha,checked,partial,outside,zero,readMS,readbackBytes:N*8,ms:qa34NativeNow()-started});
+  return true;
+ }finally{
+  if(patch){scene._releaseRasterCanvas(patch);qa34AtomStats.releases++;}
+ }
+}

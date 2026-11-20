@@ -1,0 +1,82 @@
+name: Stage34 in-situ opaque B actual browser pilot
+on:
+  push:
+    branches: ['qa/stage34-underlay-atomic-app-20261120']
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 38
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Require exact QA additions and detached one-site painter
+        run: |
+          set -euo pipefail
+          BASE=cbf037199e56c640165dd53d8b00827902260862
+          test "$(git rev-parse HEAD^)" = "$BASE"
+          git merge-base --is-ancestor 1e043b09d4ce107e1d2dcf70fe2274dff7098476 "$BASE"
+          git diff --name-status "$BASE" HEAD | sort > /tmp/s34-atomic-diff
+          printf 'A\t%s\n' .github/workflows/stage34-underlay-atomic-app.yml tools/stage34-underlay-atomic-app/{atomic-insert.txt,capture.py,clips.json,independent-support-mask.json,old-stitch-anchors.json,prepare.py,prior-stock-receipts.json,verify-built.mjs} | sort >/tmp/s34-atomic-expected
+          diff -u /tmp/s34-atomic-expected /tmp/s34-atomic-diff
+          P="$RUNNER_TEMP/s34-atomic-app"
+          mkdir -p "$P/evidence"
+          git worktree add --detach "$P/stock" "$BASE"
+          git worktree add --detach "$P/trial" "$BASE"
+          python tools/stage34-underlay-atomic-app/prepare.py "$P/stock" "$P/trial" "$P/evidence"
+          node --check "$P/trial/shared/runtime/act4-pilot-art.js"
+          git -C "$P/trial" diff -- shared/runtime/act4-pilot-art.js > "$P/evidence/only-painter.diff"
+          printf 'QA=%s\nOUT=%s/evidence\n' "$P" "$P" >> "$GITHUB_ENV"
+      - name: Unchanged release, official build, and production-contract gates
+        run: |
+          set -euo pipefail
+          for mode in stock trial; do
+            (
+              cd "$QA/$mode"
+              npm ci > "$OUT/npm-root-$mode.log" 2>&1
+              npm ci --prefix game > "$OUT/npm-game-$mode.log" 2>&1
+              npm run test:release-guard > "$OUT/release-guard-$mode.log" 2>&1
+              npm run build > "$OUT/official-build-$mode.log" 2>&1
+              npm run test:production-contract > "$OUT/production-contract-$mode.log" 2>&1
+              sha256sum -- HONRO.html HONRO_WORKSHOP.html index.html > "$OUT/generated-bootstraps-$mode.sha256"
+              git diff --name-only -- . ':!web' ':!assets' ':!HONRO.html' ':!HONRO_WORKSHOP.html' ':!index.html' > "$OUT/non-generated-$mode.diff-paths"
+              if [ "$mode" = "stock" ]; then
+                test ! -s "$OUT/non-generated-$mode.diff-paths"
+              else
+                test "$(cat "$OUT/non-generated-$mode.diff-paths")" = 'shared/runtime/act4-pilot-art.js'
+              fi
+            )
+          done
+          python - <<'PY'
+          import os,json,hashlib
+          from pathlib import Path
+          q=Path(os.environ['QA']);o=Path(os.environ['OUT'])
+          p=json.loads((o/'patch-shas.json').read_text())
+          for mode,key in [('stock','oldSha'),('trial','newSha')]:
+            assert hashlib.sha256((q/mode/p['path']).read_bytes()).hexdigest()==p[key]
+          PY
+          node tools/stage34-underlay-atomic-app/verify-built.mjs "$QA/stock" "$QA/trial" "$OUT"
+      - name: Real App PC Mobile control and changed tile-crossing phase
+        run: |
+          set -euo pipefail
+          python -m pip install playwright==1.58.0 pillow numpy
+          python -m playwright install --with-deps chromium
+          python -m http.server 8884 --bind 127.0.0.1 --directory "$QA/stock" > "$OUT/host-stock.log" 2>&1 &
+          p=$!
+          python -m http.server 8885 --bind 127.0.0.1 --directory "$QA/trial" > "$OUT/host-trial.log" 2>&1 &
+          q=$!
+          trap 'kill "$p" "$q" || true' EXIT
+          for port in 8884 8885; do curl -fsS --retry 10 --retry-connrefused "http://127.0.0.1:$port/HONRO.html" -o /dev/null; done
+          python tools/stage34-underlay-atomic-app/capture.py | tee "$OUT/scene-qa.log"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage34-underlay-real-app-evidence
+          path: ${{ env.OUT }}
+          retention-days: 7
