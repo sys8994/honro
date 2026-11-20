@@ -1,7 +1,7 @@
-name: Stage28 one-off native deep visual owner QA
+name: Stage28 native deep owner last-row diagnosis
 on:
   push:
-    branches: ['qa/stage28-registered-deep-rock-20261120']
+    branches: ['qa/stage28-registered-deep-rock-diagnostic-20261120']
 permissions:
   contents: read
 jobs:
@@ -18,7 +18,11 @@ jobs:
       - name: Pin isolated stock and candidate source roots
         run: |
           B=1e043b09d4ce107e1d2dcf70fe2274dff7098476
-          test "$(git rev-parse HEAD^)" = "$B"
+          test "$(git rev-parse HEAD^)" = f36fd67b605fd38989d0286bc0e0b4f64ea9eb67
+          test "$(git rev-parse HEAD^^)" = "$B"
+          git diff --name-only HEAD^ HEAD > /tmp/stage28-new-scope
+          test "$(wc -l </tmp/stage28-new-scope)" -eq 2
+          if grep -vE '^(.github/workflows/stage28-deep-rock-one-off.yml|tools/stage28-deep-rock-one-off/capture.py)$' /tmp/stage28-new-scope; then exit 1; fi
           git diff --name-only "$B" HEAD > /tmp/stage28-qa-scope
           test "$(wc -l </tmp/stage28-qa-scope)" -eq 5
           if grep -vE '^(.github/workflows/stage28-deep-rock-one-off.yml|tools/stage28-deep-rock-one-off/(facets.json|capture.py|verify.py|apply-qa-owner.py))$' /tmp/stage28-qa-scope; then exit 1; fi
@@ -55,6 +59,7 @@ jobs:
           cp "$QA/stage28-only.patch" "$BASE/"
           for mode in stock candidate; do
             mkdir -p "$BASE/$mode"
+            (cd "$QA/$mode"; sha256sum HONRO.html web/data/chapter-28.*.json web/data/chapter-28-assets.*.json) > "$BASE/$mode/packed-source.sha256"
             python -m http.server 8884 --bind 127.0.0.1 --directory "$QA/$mode" >"$BASE/$mode/host.log" 2>&1 & server=$!
             trap 'kill "$server" || true' EXIT
             for i in $(seq 1 20); do curl -fsSL http://127.0.0.1:8884/HONRO.html -o /dev/null && break || sleep 1; done
@@ -67,5 +72,5 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: stage28-native-deep-rock-QA
+          name: stage28-native-deep-rock-last-row
           path: _local/reports/stage28-one-off

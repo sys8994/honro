@@ -1,4 +1,4 @@
-import hashlib,json,os,re
+import base64,hashlib,json,os,re
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 
@@ -66,7 +66,36 @@ with sync_playwright() as p:
         if True:
          page.wait_for_function("window.__qaImages.every(i=>!i.src||i.complete)",timeout=120000)
          page.evaluate("()=>{const a=HonroApp;const unknown=window.__qaImages.filter(i=>i.src&&i.complete&&!i.naturalWidth).map(i=>i.src);if(unknown.length)throw Error('Visible image not decoded: '+unknown.join(', '));a.scene.render(a.engine,0,'',.6,false,0);}")
-        file=f'act23-s{sid:02d}-{w}x{h}-{name}.png';img=canvas.screenshot(path=str(OUT/file),animations='disabled')
+        file=f'act23-s{sid:02d}-{w}x{h}-{name}.png'
+        if sid==28 and w==390:
+         stem=file.removesuffix('.png')
+         diagnostic=page.evaluate(r"""()=>{
+          const c=document.querySelector('#battlecanvas'), scene=HonroApp.scene;
+          const pick=e=>{const r=e.getBoundingClientRect(),s=getComputedStyle(e);return{
+           node:e.tagName,id:e.id,className:typeof e.className==='string'?e.className:'',
+           rect:{x:r.x,y:r.y,left:r.left,right:r.right,top:r.top,bottom:r.bottom,width:r.width,height:r.height},
+           client:{w:e.clientWidth,h:e.clientHeight,top:e.clientTop,left:e.clientLeft},
+           style:{overflow:s.overflow,overflowX:s.overflowX,overflowY:s.overflowY,position:s.position,
+                  transform:s.transform,clip:s.clip,clipPath:s.clipPath,backgroundColor:s.backgroundColor,backgroundImage:s.backgroundImage}}};
+          const ancestors=[];for(let e=c;e;e=e.parentElement)ancestors.push(pick(e));
+          const read=surface=>{
+            if(!surface)return null;
+            const ctx=surface.getContext('2d'),h=surface.height,w=surface.width,from=644,to=Math.min(648,h);
+            return {height:h,width:w,from,to,rgba:to>from?Array.from(ctx.getImageData(0,from,w,to-from).data):[]};
+          };
+          const v=visualViewport,asset=HONRO_PROJECT.library.find(v=>v.id==='stage28:qa-only:deep-foundation');
+          return {rawPng:c.toDataURL('image/png'),rawRows:read(c),foregroundRows:read(scene._screenForegroundCache?.canvas),
+           ancestors,dpr:devicePixelRatio,scrollX,scrollY,innerWidth,innerHeight,visualViewport:v?{width:v.width,height:v.height,offsetLeft:v.offsetLeft,offsetTop:v.offsetTop,pageLeft:v.pageLeft,pageTop:v.pageTop,scale:v.scale}:null,
+           ownerJSON:asset?JSON.stringify(asset):null,
+           servedStageBlobs:performance.getEntriesByType('resource').map(e=>e.name).filter(n=>/chapter-28(?:-assets)?\.[a-f0-9]+\.json/.test(n))};
+         }""")
+         (OUT/(stem+'-backing.png')).write_bytes(base64.b64decode(diagnostic.pop('rawPng').split(',',1)[1]))
+         assets=diagnostic.pop('ownerJSON')
+         diagnostic['loadedOwnerSha256']=hashlib.sha256(assets.encode()).hexdigest() if assets else None
+         if assets:(OUT/(stem+'-loaded-owner.json')).write_text(assets)
+         page.screenshot(path=str(OUT/(stem+'-viewport.png')),animations='disabled')
+         (OUT/(stem+'-raster.json')).write_text(json.dumps(diagnostic))
+        img=canvas.screenshot(path=str(OUT/file),animations='disabled')
         st=frame.pop('state');ss=frame.pop('stageSource');frame.update(stageSourceSha256=hashlib.sha256(ss.encode()).hexdigest(),stage=sid,view=name,width=w,height=h,name=file,rasterSha256=hashlib.sha256(img).hexdigest(),physicsSha256=hashlib.sha256(st.encode()).hexdigest())
         frames.append(frame)
        if errors or requests:issues.append({'stage':sid,'width':w,'scriptErrors':errors,'requestFailures':requests})
