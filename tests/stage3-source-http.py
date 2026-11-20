@@ -23,7 +23,7 @@ try:
    if actual_height!=h:
     page.set_viewport_size({'width':w,'height':h+(h-actual_height)})
     page.wait_for_timeout(100)
-   result=page.evaluate('''q=>{const a=HonroApp,s=a.scene,b=a.engine.b;HonroStoryFraming.clear(s);HonroAct4TerrainPreview.coast.tide(b);Object.assign(s,{manual:true,time:2,storyTween:null,storyFrozen:false,goalFocus:null,cinematic:null,focusUntil:0,speakerUntil:0,x:q.x,y:q.y,scale:q.z});
+   result=page.evaluate('''q=>{const a=HonroApp,s=a.scene,b=a.engine.b;HonroStoryFraming.clear(s);Object.assign(s,{manual:true,time:2,storyTween:null,storyFrozen:false,goalFocus:null,cinematic:null,focusUntil:0,speakerUntil:0,x:q.x,y:q.y,scale:q.z});
      const st=HONRO_PROJECT.stages.find(t=>t.metadata?.stageId===q.sid);const physics=JSON.stringify({terrain:b.terrain,units:b.units,design:st.design,initialState:st.initialState,objectives:st.objectives});
      s.render(a.engine,0,'',.6,false,0);s.render(a.engine,0,'',.6,false,0);
      if(JSON.stringify({terrain:b.terrain,units:b.units,design:st.design,initialState:st.initialState,objectives:st.objectives})!==physics)throw Error('Physics changed during capture');
@@ -40,7 +40,7 @@ try:
    page.locator('#battlecanvas').screenshot(path=str(out/(label+'.png')));rows.append(result);page.close()
   browser.close()
 finally:server.terminate();server.wait()
-(out/'report.json').write_text(json.dumps({'scope':'Normal HTTP HONRO.html source, stock HonroCampaignLoader.ensureStage + HonroApp.launch, no injected project/art; normal entry dialogue completion, official tide initialization, requested exact canvas size via viewport resize, fixed diagnostic camera, not full play','rows':rows,'errors':errors},indent=2))
+(out/'report.json').write_text(json.dumps({'scope':'Normal HTTP HONRO.html source, stock HonroCampaignLoader.ensureStage + HonroApp.launch, no injected project/art; normal entry dialogue completion, requested exact canvas size via viewport resize, fixed diagnostic camera, not full play','rows':rows,'errors':errors},indent=2))
 assert not errors,errors
 assert all(r['taperPresent']==(tag=='candidate') for r in rows if r['stage']==3),rows
 print(tag,'HTTP launch capture passed')
