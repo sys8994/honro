@@ -10,6 +10,32 @@ const PREFIX='act2-compact:stage12-';
 const safe=value=>String(value).replace(/[^\w-]/g,'-');
 const number=value=>Number(value.toFixed(9));
 
+// Extend only the off-map rectangular bottom of the second ground material.
+// Append after chunking: old source paths and optimizer addresses stay exact.
+export function extendStage12GroundSkirt(asset){
+ if(!/^act2-compact:stage12-act2-traced-stage12-ground-[12]$/.test(asset.id))return asset;
+ const v=asset.vector,key='compact12-ground-tail-source';
+ if(v.symbols[key])throw Error('Stage12 ground skirt already installed');
+ const original=v.symbols['compact12-original-world'];
+ if(JSON.stringify(original.transform)!==JSON.stringify([1,0,0,1,0,0]))throw Error('Unexpected Stage12 ground source placement');
+ let layer;const visit=n=>{if(n.transform?.[0]===10.866510538641686)layer=n;for(const c of n.children||[])visit(c);};visit(original);
+ if(!layer||JSON.stringify(layer.transform)!==JSON.stringify([10.866510538641686,0,0,10.869565217391305,-6000,4400]))throw Error('Stage12 lower material changed');
+ const paths=[];const flatten=n=>{if(n.tag==='path'){paths.push(clone(n));return;}if(n.tag!=='g'||Object.keys(n).some(k=>!['tag','children'].includes(k)))throw Error('Unexpected nested material transform/style');for(const c of n.children)flatten(c);};
+ for(const child of layer.children)flatten(child);
+ if(paths.length!==8)throw Error('Stage12 lower material path count changed');
+ // Full eight-path row is preserved, not approximated by a solid color.
+ v.symbols[key]={tag:'g',transform:clone(layer.transform),children:paths};
+ const sourceTop=4400+735*layer.transform[3],sourceBottom=12400,targetTop=12398,targetBottom=32000;
+ const sy=(targetBottom-targetTop)/(sourceBottom-sourceTop),strips=[...v.root.children];
+ for(const n of strips){
+  const d=v.clips[n.clipPath]?.[0],m=d?.match(/^M([-\d.]+) ([-\d.]+)H([-\d.]+)V([-\d.]+)H([-\d.]+)Z$/);
+  if(!m||Number(m[1])!==Number(m[5]))throw Error('Unexpected compact ground strip');
+  const clip=n.clipPath+'-tail';v.clips[clip]=[`M${m[1]} ${sourceTop}H${m[3]}V${sourceBottom}H${m[1]}Z`];
+  v.root.children.push({tag:'g',transform:[n.transform[0],0,0,sy,n.transform[4],targetTop+n.transform[5]-sourceTop*sy],clipPath:clip,pixelSnapClip:true,children:[{tag:'use',symbol:key}]});
+ }
+ return asset;
+}
+
 export function compactStage12Art(project,stage,{xKnots,yOffset=0}={}){
  if(stage?.metadata?.stageId!==12)throw Error('Stage12 compact art requires the original Stage12');
  if(!Array.isArray(xKnots)||xKnots.length<2||!Number.isFinite(yOffset))throw Error('Invalid compact art coordinate map');
@@ -48,7 +74,7 @@ export function compactStage12Art(project,stage,{xKnots,yOffset=0}={}){
    // Surface coverage rootPath belongs to the old tree, not this world-baked
    // wrapper. It must never cause a transformed USE to masquerade as a path.
    delete a.params.surfaceCoverage;delete a.params.surfaceJunction;
-   assets.push(a);output.push(a);
+   extendStage12GroundSkirt(a);assets.push(a);output.push(a);
   }
   details.push({source:source.id,instance:id,sourceNodes:size.nodes,sourceCompoundChars:size.chars,strips:cuts.length-1,chunks:output.length,bytes:output.reduce((n,a)=>n+JSON.stringify(a).length,0)});
   assetMap[id]=output.map(a=>a.id);return output;
