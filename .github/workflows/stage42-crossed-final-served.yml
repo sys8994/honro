@@ -1,0 +1,69 @@
+name: Stage42 crossed native final-served diagnostic
+on:
+  push:
+    branches: [qa/stage42-crossed-final-served-20261120]
+permissions:
+  contents: read
+jobs:
+  compare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Exact base and QA-only scope
+        run: |
+          set -euo pipefail
+          BASE=52119985ad21a7d3de04245ee146293045edbeba
+          test "$(git rev-parse HEAD^)" = "$BASE"
+          git diff --name-only "$BASE" HEAD | tee /tmp/qa-scope.txt
+          ! grep -vE '^(tools/stage42-final-served-qa/|.github/workflows/stage42-crossed-final-served.yml$)' /tmp/qa-scope.txt
+          Q="$GITHUB_WORKSPACE/tools/stage42-final-served-qa"
+          W="$RUNNER_TEMP/stage42-final-served"
+          mkdir -p "$W/out"
+          printf 'QA=%s\nSTOCK=%s\nTARGET=%s\nOUT=%s\n' "$Q" "$W/stock" "$W/target" "$W/out" >> "$GITHUB_ENV"
+          git worktree add --detach "$W/stock" "$BASE"
+          git worktree add --detach "$W/target" "$BASE"
+          python "$Q/prepare.py" "$W/target" | tee "$W/out/preparation.txt"
+          git -C "$W/target" diff --stat > "$W/out/diagnostic-source-diff.txt"
+          git -C "$W/target" diff -- shared/runtime/act5-edge-art.js > "$W/out/diagnostic-bounds.diff"
+      - name: Stock validation and official builds, no optimizer edits
+        run: |
+          set -euo pipefail
+          for mode in stock target; do
+            if [ "$mode" = stock ]; then cd "$STOCK"; else cd "$TARGET"; fi
+            npm ci >"$OUT/npm-root-$mode.log" 2>&1
+            npm ci --prefix game >"$OUT/npm-game-$mode.log" 2>&1
+            node - <<'JS' >"$OUT/vector-validation-$mode.log"
+          const fs=require('fs');require('./shared/map/vector-art.js');
+          const a=JSON.parse(fs.readFileSync('shared/assets/environment/act5/stage42-registered-body.json'));
+          const errors=HonroVectorArt.validate(a.vector);console.log(errors);if(errors.length)throw Error(errors.join(';'));
+          JS
+            npm run test:release-guard >"$OUT/release-$mode.log" 2>&1
+            sha256sum shared/assets/environment/act5/stage42-registered-body.json >"$OUT/source-before-$mode.sha"
+            npm run build >"$OUT/build-$mode.log" 2>&1
+            sha256sum -c "$OUT/source-before-$mode.sha"
+          done
+      - name: Normal App final HTTP entry and six matched pose pairs
+        run: |
+          set -euo pipefail
+          python -m pip install playwright==1.58.0 pillow
+          python -m playwright install --with-deps chromium
+          python -m http.server 18841 --bind 127.0.0.1 --directory "$STOCK" >/tmp/s42-stock-http.log 2>&1 &
+          p1=$!
+          python -m http.server 18842 --bind 127.0.0.1 --directory "$TARGET" >/tmp/s42-target-http.log 2>&1 &
+          p2=$!
+          trap 'kill "$p1" "$p2" 2>/dev/null || true' EXIT
+          for port in 18841 18842; do curl -fsS --retry 10 --retry-connrefused "http://127.0.0.1:$port/HONRO.html" -o /dev/null; done
+          python "$QA/capture.py"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage42-final-served-diagnostic
+          path: ${{ env.OUT }}
+          retention-days: 7
