@@ -1,4 +1,5 @@
 import {readFile} from 'node:fs/promises';
+import {addStage35SideGroves} from './act4-stage35-side-groves.mjs';
 
 // Art overlays apply after the official gameplay authors. Retired provider IDs
 // stay in each chapter's lazy asset packet for the previous battle snapshots.
@@ -113,7 +114,8 @@ export async function applyAct4HandoffArt(project,{stages:enabled=Object.keys(ad
    nativeArt.coveredTerrainIds=nativeArt.coveredTerrainIds.filter(id=>terrainIds.has(id));
   }
   if(n===35){
-   nativeArt.far='act4FarBambooHandoff';
+   nativeArt.far='act4FarBambooGrove35';
+   await addStage35SideGroves(stage,elements,pack.assets,project.library);
    pack.assets.push(stage35Bedrock(stage,project.library.find(a=>a.id==='approved35:body')));
   }
   if(n===33||n===34){
