@@ -1,0 +1,47 @@
+name: HONRO acb51 Stage33 native direction canary (QA only)
+on:
+  push:
+    branches: [qa/acb51-directional-s33]
+    paths:
+      - '.github/workflows/acb51-directional-canary.yml'
+      - 'tools/acb51-directional-canary/**'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  directional-s33:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/acb51-directional-s33'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 14
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 4
+          persist-credentials: false
+      - name: Verify same public release and immutable actual scene input
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          W="$(mktemp -d "$RUNNER_TEMP/acb51-dir.XXXXXX")"
+          mkdir "$W/out"
+          echo "WORK=$W" >> "$GITHUB_ENV"
+          python tools/acb51-directional-canary/scan.py authority "$W"
+      - name: Observe exact public PC and mobile native directional cameras
+        run: |
+          set -euo pipefail
+          test -z "${GH_TOKEN:-}${GITHUB_TOKEN:-}"
+          python -m venv "$WORK/venv"
+          V="$WORK/venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+          "$V" tools/acb51-directional-canary/scan.py app "$WORK"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always() && env.WORK != ''
+        with:
+          name: honro-acb51-s33-directional-canary-no-deploy
+          path: ${{ env.WORK }}/out
+          if-no-files-found: error
+          retention-days: 7

@@ -1,0 +1,85 @@
+{
+  "stage": 33,
+  "previousRun": 44921135513,
+  "previousHead": "fd5b9749da9b9ca829f9fbf4855be3f1d65cc845",
+  "previousArchive": {
+    "shard": "Act4",
+    "id": 14713757360,
+    "bytes": 12234861,
+    "sha256": "99851bdb4f59b7acc18b9a5235bf4fce4ea797428825511644a51c9ba698db56",
+    "job": 136897201547,
+    "name": "honro-acb51-loadability-remaining-Act4-no-deploy",
+    "receipt": {
+      "AUTHORITY.json": {
+        "bytes": 21070,
+        "sha256": "38fe294d882900173e5a822ec68a7178d1ed6c0f223a04441a0ca91724b00e13"
+      },
+      "PINNED-WIRE.json": {
+        "bytes": 130273,
+        "sha256": "d9ba997f8a52336d8e267061abf8505380ac450290805adcee3c2c740aeeae74"
+      },
+      "CHROME.json": {
+        "bytes": 48634,
+        "sha256": "35d47de41a81f91d31b953ed7fa6f2568082eecb7328cddf4318bf171e811b5e"
+      }
+    }
+  },
+  "expectedViews": {
+    "s33-1440x900": {
+      "stage": 33,
+      "device": [
+        1440,
+        900
+      ],
+      "raw": "s33-1440x900-raw.png",
+      "rawSHA256": "3f4f660f2ceae0ea141ba152b1501969ad5be27c46e7cb8f11328c68e1d0dcc9",
+      "physics": "9cd682370b682d68ae2c8dc3ec586bb911088770c581b6ecb93a510535bc9279",
+      "requiredExactHTTPCount": 9,
+      "activeProvider": {
+        "stage": "stage-33",
+        "compact": null,
+        "width": 6912,
+        "height": 4608
+      },
+      "terrainCount": 17,
+      "drawOwnerCount": 14
+    },
+    "s33-390x844": {
+      "stage": 33,
+      "device": [
+        390,
+        844
+      ],
+      "raw": "s33-390x844-raw.png",
+      "rawSHA256": "468f5e67073253be151ff49b7d6fe095be28f96b5bde5787e5406ee952deee6c",
+      "physics": "9cd682370b682d68ae2c8dc3ec586bb911088770c581b6ecb93a510535bc9279",
+      "requiredExactHTTPCount": 9,
+      "activeProvider": {
+        "stage": "stage-33",
+        "compact": null,
+        "width": 6912,
+        "height": 4608
+      },
+      "terrainCount": 17,
+      "drawOwnerCount": 14
+    }
+  },
+  "inherited": {
+    "tools/acb51-stage-load-canaries/source.py": {
+      "bytes": 13462,
+      "sha256": "aaea1b76e4ab750c4f8ea399af12e4c1afe92a420355ad611d920af1f4a91eeb"
+    },
+    "tools/acb51-stage-load-canaries/load.py": {
+      "bytes": 14827,
+      "sha256": "ed516b18edf9646e985c663e195d686e68d9b94f5aca4d79b60811762612076c"
+    },
+    "tools/acb51-stage-load-remaining/CARRYOVER.json": {
+      "bytes": 5992,
+      "sha256": "226df0d50d70f8653403db9d07c81ec6653c6e4fa8ccbde3d9f0fecfd10273ab"
+    },
+    "tools/acb51-stage-load-remaining/extend.py": {
+      "bytes": 10728,
+      "sha256": "3e30d00d8f2393681d90498d4b28ca178714c292717fef087a2a1ba9493c6f0a"
+    }
+  }
+}
