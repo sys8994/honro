@@ -1,0 +1,66 @@
+name: HONRO Stage33 immutable-clip actual cold and steady diagnostic R2
+on:
+  push:
+    branches: [qa/stage33-immutable-clip-21809dc-r2]
+    paths:
+      - '.github/workflows/stage33-immutable-chrome.yml'
+      - 'tools/stage33-immutable-chrome/**'
+permissions:
+  contents: read
+jobs:
+  actual-s33:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage33-immutable-clip-21809dc-r2'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 37
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Verify detached exact published stock and independently build authored B
+        run: |
+          set -euo pipefail
+          test -z "${GH_TOKEN:-}${GITHUB_TOKEN:-}"
+          W="$(mktemp -d "$RUNNER_TEMP/stage33-immutable-chrome.XXXXXX")"
+          T="$GITHUB_WORKSPACE/tools/stage33-immutable-chrome"
+          mkdir "$W/out"
+          echo "WORK=$W" >> "$GITHUB_ENV"
+          python "$T/guard.py" pre "$W"
+          node "$T/prepare.mjs" write "$W" > "$W/out/prepare.log" 2>&1
+          (
+            cd "$W/B"
+            npm ci > "$W/out/npm-root.log" 2>&1
+            npm ci --prefix game > "$W/out/npm-game.log" 2>&1
+            npm run build > "$W/out/build.log" 2>&1
+            npm run test:production-contract > "$W/out/production-contract.log" 2>&1
+          )
+          python "$T/guard.py" built "$W"
+      - name: Actual PC and mobile S SW SE N E, cold and steady, no scene substitution
+        timeout-minutes: 23
+        run: |
+          set -euo pipefail
+          test -z "${GH_TOKEN:-}${GITHUB_TOKEN:-}"
+          T="$GITHUB_WORKSPACE/tools/stage33-immutable-chrome"
+          python -m venv "$WORK/venv"
+          V="$WORK/venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+          python -m http.server 18961 --bind 127.0.0.1 --directory "$WORK/A" > "$WORK/out/http-A.log" 2>&1 &
+          a=$!
+          python -m http.server 18962 --bind 127.0.0.1 --directory "$WORK/B" > "$WORK/out/http-B.log" 2>&1 &
+          b=$!
+          trap 'kill "$a" "$b" 2>/dev/null || true' EXIT
+          for p in 18961 18962; do curl -fsS --retry 8 --retry-connrefused "http://127.0.0.1:$p/HONRO.html" -o /dev/null; done
+          "$V" "$T/capture.py" "$WORK"
+      - if: always() && env.WORK != ''
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage33-immutable-clip-cold-steady-r2-diagnostic-only
+          path: ${{ env.WORK }}/out
+          if-no-files-found: error
+          retention-days: 7
