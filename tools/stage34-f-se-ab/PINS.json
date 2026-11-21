@@ -1,0 +1,1501 @@
+{
+  "authority": {
+    "release": "71fb443675aed659a572b722a4337212e9d2f910",
+    "tree": "c9f11d3a7458ecfcb390e460401f4b3298395858",
+    "retainedManifestSHA256": "c77a561f82a5f0748d1d4cfd4a675d5db9118ba2c53537c778fd9c77a12400c4",
+    "pagesRun": 44865801804,
+    "pagesJob": 136729438155,
+    "pagesCompletedUTC": "2026-11-21T04:24:34.6604526Z",
+    "pagesConclusion": "success",
+    "retainedManifestGitBlob": "30671da683f66f4d959ed617d1cfd79a0a1e3dbe"
+  },
+  "carrierSource": {
+    "ref": "qa/terrain-loop1-remaining-2939958",
+    "group": "a4a",
+    "artifact": 14676744665,
+    "workflowPath": ".github/workflows/terrain-loop1-remaining.yml",
+    "sourceFileSHA256": "3807e7a6b5d69408ed483ae38f7250ac4221820381f0396418aa5ebc8a452e1e",
+    "pinsFileSHA256": "49e3c4defa9ee1987c7858a7522f9d274711e24ebca7a448df544d15e9fad22e",
+    "captureFileSHA256": "beb0934d4b30fa8860c873c21fbfae0b3f1b77d8dbc555f00a5192201a757a01",
+    "captureReceiptSHA256": "1a5dde2efef7f3ce6d7ec3ffdd5d14d941a6fc727c3803427cd1c5fa33f9c1b1",
+    "publicSourceSHA256": "76e46f5059d7f9a2cc705f78436b2ffe2591ee704371ccbb8e3721bba001b3e6"
+  },
+  "base": "https://sys8994.github.io/honro/",
+  "browser": "151.0.7922.34",
+  "mapId": "stage-34",
+  "campaign": "web/data/campaign.fa9a5e8d3cb0a7e5.json",
+  "entry": "web/entries/game.2ec041e00ee60d39.js",
+  "map": "web/data/chapter-34.cb39c6d6adc3cef6.json",
+  "packet": "web/data/chapter-34-assets.3828bd02ec5b054c.json",
+  "roi": [
+    7450,
+    4390,
+    8040,
+    4810
+  ],
+  "frames": {
+    "1440x900": {
+      "key": "s34-1440x900-southeast",
+      "png": "s34-1440x900-southeast.png",
+      "pngSHA256": "afa8da4e5fdd6cc27af3ce4714a119cc8e3339baa2ba9a0d01d3c40f3b259baf",
+      "pixels": [
+        1440,
+        770
+      ],
+      "viewportCSS": [
+        1440,
+        900
+      ],
+      "DPR": 1,
+      "view": "southeast",
+      "physicsSHA256": "6d7caa25ce4264cda7f06af01519de7408619d40d721af2c9c50a14e61e1d5f1",
+      "decodeCount": 90,
+      "phaseReceiptValidated": true,
+      "desired": {
+        "x": 1000000,
+        "y": 1000000,
+        "scale": 0.21176470588235294
+      },
+      "actual": {
+        "x": 6464,
+        "y": 4336,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": 3064,
+        "right": 9864,
+        "top": 2519.862847222222,
+        "bottom": 6152.137152777777
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6464,
+        "bottom": 4336
+      },
+      "zoomLimits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "actorCount": 37,
+      "tide": null,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "duplicateOfCameraKey": null,
+      "archiveObserved": 282,
+      "fullRGBAsha256": "117e2b4e6e2dbc74ed5f8ef42d91393b45fbd86876772a6600e8aeb1299e3d95",
+      "roiRGBAsha256": "edc19d0043060c4326051d5116a7481951cb87d7bc5d82c49f58d06e0379656f",
+      "roiPx": [
+        928,
+        396,
+        1053,
+        484
+      ]
+    },
+    "390x844": {
+      "key": "s34-390x844-southeast",
+      "png": "s34-390x844-southeast.png",
+      "pngSHA256": "1bfac1eafa913ba92113d74814ae7ed27d6a314e34d86a20b4663209f6dd40cf",
+      "pixels": [
+        390,
+        648
+      ],
+      "viewportCSS": [
+        390,
+        844
+      ],
+      "DPR": 1,
+      "view": "southeast",
+      "physicsSHA256": "6d7caa25ce4264cda7f06af01519de7408619d40d721af2c9c50a14e61e1d5f1",
+      "decodeCount": 90,
+      "phaseReceiptValidated": true,
+      "desired": {
+        "x": 1000000,
+        "y": 1000000,
+        "scale": 0.057352941176470586
+      },
+      "actual": {
+        "x": 6464,
+        "y": 4336,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": 3064,
+        "right": 9864,
+        "top": -1309.8253205128203,
+        "bottom": 9981.82532051282
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6464,
+        "bottom": 4336
+      },
+      "zoomLimits": {
+        "min": 0.057352941176470586,
+        "max": 1.65,
+        "tactical": 0.057352941176470586,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "actorCount": 37,
+      "tide": null,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "duplicateOfCameraKey": null,
+      "archiveObserved": 282,
+      "fullRGBAsha256": "71138d1ab9fef87f79c3b63c1b581cc31fe34413e1cd807b2929d95cd7f19062",
+      "roiRGBAsha256": "b33632ee270243555043b45a95da908b9f45a8154ded7a3c6930d0b00aad5bfa",
+      "roiPx": [
+        251,
+        326,
+        285,
+        350
+      ]
+    }
+  },
+  "expectedNormal": [
+    "HONRO.html",
+    "web/data/HONRO_MONSTERS.502d3ac46c4666e6.json",
+    "web/data/campaign-base.0c57dcfe7c08d421.json",
+    "web/data/campaign-shared.8f8343b5c21518d4.json",
+    "web/data/campaign.fa9a5e8d3cb0a7e5.json",
+    "web/data/chapter-34-assets.3828bd02ec5b054c.json",
+    "web/data/chapter-34.cb39c6d6adc3cef6.json",
+    "web/entries/game.2ec041e00ee60d39.js",
+    "web/runtime/HONRO_ACT1_FAR_DATA.e4d5edc5046d7e4b.js",
+    "web/runtime/HONRO_ACT23_V4_PHASE_A.76c1c817523e1124.js",
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_CH11.871bd8142d83de50.js",
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_CH21.c7b98a5982f14df8.js",
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_CH22.1a074ebebf7d8105.js",
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_CH23.56d76c19f464e8bf.js",
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_CH24.9b66c4c0717d4796.js",
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_CH25.c5136d2288a33205.js",
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_CH26.c6f47e01d5381ed8.js",
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_CH27.681e86550140ee21.js",
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_CH28.46052d93fbddab90.js",
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_CH29.d0ddaf6a439c4dc7.js",
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_CH30.7a14e97d3bd82ed2.js",
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_STAGES.236a861d9c714d37.js",
+    "web/runtime/HONRO_ACT23_V4_REVIEWED.c0ba36ff9c8dd235.js",
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_CH21.65b8483047b7b156.js",
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_CH22.8cbedf1be6d53b20.js",
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_CH23.897fa01b476153da.js",
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_CH24.e6a4429d56fb9c50.js",
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_CH25.71aa9c82189d64b5.js",
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_CH26.21398944a7db8bfb.js",
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_CH27.2364e9e435c7dcec.js",
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_CH28.b05d278718873a06.js",
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_CH29.b3296b28f0669263.js",
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_CH30.2601524ece85c248.js",
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_CHAPTERS.3dec07adf8a49588.js",
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_COMMON.0ce9a3868ac0c548.js",
+    "web/runtime/HONRO_ACT2_COMPACT_PACKAGES.ad917621a5a55dd5.js",
+    "web/runtime/HONRO_ACT2_FAR_DATA.de2a4590f9969c42.js",
+    "web/runtime/HONRO_ACT4_CONTENT.ca14aa5f882d5528.js",
+    "web/runtime/HONRO_ACT4_PILOT_COMBAT_REFERENCE.72a89112ae79534b.js",
+    "web/runtime/HONRO_ACT4_PREVIEW_SEEDS.f59700a4d63d37fc.js",
+    "web/runtime/HONRO_ACT4_RELEASE.ec334deca2d3b718.js",
+    "web/runtime/HONRO_ACT4_REVIEWED.9a6c1bef6b8776ef.js",
+    "web/runtime/HONRO_ACT5_CONTENT.38bb7a8fa71b61c0.js",
+    "web/runtime/HONRO_ACT5_RELEASE.8ce1fbd252d16338.js",
+    "web/runtime/HONRO_AUTHORED_FAR.7d9bc00aabea227c.js",
+    "web/runtime/HONRO_BALANCE.203e3431e13c5fca.js",
+    "web/runtime/HONRO_BGM_METADATA.3e30a609b581bb7a.js",
+    "web/runtime/HONRO_BGM_TRACKS.30e452c460f0bb8b.js",
+    "web/runtime/HONRO_EQUIPMENT_ICONS.62fedaa06e7fbe59.js",
+    "web/runtime/HONRO_FAREWELL_SPIRITS.f62f950b73f5b8b4.js",
+    "web/runtime/HONRO_JOURNEY_MAPS.c0766f60904faaa6.js",
+    "web/runtime/HONRO_MUKJONG_AUDIO.c2a8e1148786a21d.js",
+    "web/runtime/HONRO_NARRATIVE_V0.e25b3623bdc124a4.js",
+    "web/runtime/HONRO_OPEN_STRUCTURES.481d47ec575fa6b5.js",
+    "web/runtime/HONRO_PORTRAIT_VARIANTS.377dc8fab3a7ee5d.js",
+    "web/runtime/HONRO_REST_BACKDROPS.d0914f5572f0cc5e.js",
+    "web/runtime/HONRO_SKILL_AUDIO.0b85b9d203ebf41b.js",
+    "web/runtime/HONRO_SKILL_ICON_MANIFEST.5dfa866899b7b39e.js",
+    "web/runtime/HONRO_SPLIT_V1.c03b319b9a4988b2.js",
+    "web/runtime/HONRO_STAGE11_COMPACT_DATA.c402b23223511a23.js",
+    "web/runtime/HONRO_TIMELINE.2d35abe802c683c3.js",
+    "web/runtime/campaign.748d97a778b7faa1.js",
+    "web/runtime/game-art.a5fab3c18d72a12e.js",
+    "web/runtime/load-data.248fb3aada6f16bb.js",
+    "web/runtime/narrative-data.6277857ddbf17ddf.js",
+    "web/runtime/ordered-common-1.6e9161cc9c68342d.js",
+    "web/runtime/ordered-common-10.7f6c8574f94f35df.js",
+    "web/runtime/ordered-common-11.6adcb81897ec0663.js",
+    "web/runtime/ordered-common-12.70b9c35c854ec2af.js",
+    "web/runtime/ordered-common-13.cc87f3d58b5389b1.js",
+    "web/runtime/ordered-common-14.85d7853ba3745e09.js",
+    "web/runtime/ordered-common-15.370f1fb43d3a212f.js",
+    "web/runtime/ordered-common-16.c094392d4ee992d9.js",
+    "web/runtime/ordered-common-17.2ed746adf1d3e0e3.js",
+    "web/runtime/ordered-common-18.9dcb25cd7e4ae77b.js",
+    "web/runtime/ordered-common-19.8b183d53c733351f.js",
+    "web/runtime/ordered-common-2.49982d8a68cfa528.js",
+    "web/runtime/ordered-common-3.3def16b6135b0973.js",
+    "web/runtime/ordered-common-4.c84f463a629cb3dc.js",
+    "web/runtime/ordered-common-5.2e5a74cface951ff.js",
+    "web/runtime/ordered-common-6.857f5634e4395548.js",
+    "web/runtime/ordered-common-7.31e16134eb8ab77b.js",
+    "web/runtime/ordered-common-8.20b0aa56c33f63a5.js",
+    "web/runtime/ordered-common-9.24f4201c60fcdfce.js",
+    "web/runtime/ordered-game-20.8a028a8355ced977.js",
+    "web/runtime/ordered-game-21.8775c24e10e1a3d2.js",
+    "web/runtime/ordered-game-22.27e665c6427d9375.js",
+    "web/runtime/ordered-game-23.d839a3c2c2061368.js",
+    "web/runtime/ordered-game-24.26a8010157c8fe32.js",
+    "web/runtime/ordered-game-25.12e2361380e24c93.js",
+    "web/runtime/party-alias.3485184cbddbd273.js",
+    "web/runtime/shared-assets-actors-actors-runtime.59fd424891c899af.js",
+    "web/runtime/shared-assets-monsters-monsters-runtime.a0cdeca2c2cf4abc.js",
+    "web/runtime/shared-runtime-stage-rules.d77b19a2010f2791.js",
+    "web/runtime/shared-runtime-title-markup.e0f242270b02362a.js",
+    "web/runtime/title-scene.63b44eb84d35b848.js",
+    "web/styles/game-src-act-endings.9f0fb63251dea0e6.css",
+    "web/styles/game-src-act3-void.fff422e530bb3189.css",
+    "web/styles/game-src-clear-report.bfdce1b8a64e3c97.css",
+    "web/styles/game-src-controls.d744fc2f4f969945.css",
+    "web/styles/game-src-equipment.aa2e752ae78a9866.css",
+    "web/styles/game-src-fonts.43855b81e6a81ba4.css",
+    "web/styles/game-src-game-interface.832a9c9eb8c9517d.css",
+    "web/styles/game-src-guide.869baa784cb9ba70.css",
+    "web/styles/game-src-hud.52581f3f9b27a561.css",
+    "web/styles/game-src-journey.e6e72b21f1205f1c.css",
+    "web/styles/game-src-presentation.8d0dec87e1d85ac1.css",
+    "web/styles/game-src-skill-icons.c041660a380bc346.css",
+    "web/styles/game-src-skill-presentation.9115388e87864ef4.css",
+    "web/styles/game-src-title.6feb904b14f9e87d.css",
+    "web/styles/game-src-training.2c1e01e835c1bc35.css",
+    "web/styles/game-src-unit-info.082de9b7c479495a.css",
+    "web/styles/game-src-ux-polish.3d89764783c63e4e.css",
+    "web/styles/game-vendor-style.7793a1c24f08e38d.css",
+    "web/styles/game-vendor-ui-arcfall-layout.5dfc699852420d32.css"
+  ],
+  "media": [
+    "assets/bgm/battle-1.mp3",
+    "assets/bgm/main.mp3"
+  ],
+  "responsePins": {
+    "HONRO.html": {
+      "bytes": 17379,
+      "sha256": "56ebd2c37c63d16e2a24973f8d4971f991cd1658834b589942de1ba673ef1b84"
+    },
+    "web/data/HONRO_ACT1_FAR_DATA.a7bedbfe9c843e9f.json": {
+      "sha256": "a7bedbfe9c843e9f4739bcf1b0839be7dda97afb3defea29664b598668a0e75c",
+      "bytes": 350
+    },
+    "web/data/HONRO_ACT23_V4_PHASE_A.a17fcf0a2f50e2d4.json": {
+      "sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74",
+      "bytes": 5
+    },
+    "web/data/HONRO_ACT23_V4_PHASE_B_CH11.a17fcf0a2f50e2d4.json": {
+      "sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74",
+      "bytes": 5
+    },
+    "web/data/HONRO_ACT23_V4_PHASE_B_CH21.a17fcf0a2f50e2d4.json": {
+      "sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74",
+      "bytes": 5
+    },
+    "web/data/HONRO_ACT23_V4_PHASE_B_CH22.a17fcf0a2f50e2d4.json": {
+      "sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74",
+      "bytes": 5
+    },
+    "web/data/HONRO_ACT23_V4_PHASE_B_CH23.a17fcf0a2f50e2d4.json": {
+      "sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74",
+      "bytes": 5
+    },
+    "web/data/HONRO_ACT23_V4_PHASE_B_CH24.a17fcf0a2f50e2d4.json": {
+      "sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74",
+      "bytes": 5
+    },
+    "web/data/HONRO_ACT23_V4_PHASE_B_CH25.a17fcf0a2f50e2d4.json": {
+      "sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74",
+      "bytes": 5
+    },
+    "web/data/HONRO_ACT23_V4_PHASE_B_CH26.a17fcf0a2f50e2d4.json": {
+      "sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74",
+      "bytes": 5
+    },
+    "web/data/HONRO_ACT23_V4_PHASE_B_CH27.a17fcf0a2f50e2d4.json": {
+      "sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74",
+      "bytes": 5
+    },
+    "web/data/HONRO_ACT23_V4_PHASE_B_CH28.a17fcf0a2f50e2d4.json": {
+      "sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74",
+      "bytes": 5
+    },
+    "web/data/HONRO_ACT23_V4_PHASE_B_CH29.a17fcf0a2f50e2d4.json": {
+      "sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74",
+      "bytes": 5
+    },
+    "web/data/HONRO_ACT23_V4_PHASE_B_CH30.a17fcf0a2f50e2d4.json": {
+      "sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74",
+      "bytes": 5
+    },
+    "web/data/HONRO_ACT23_V4_PHASE_B_STAGES.14aab2db4e01b0f3.json": {
+      "sha256": "14aab2db4e01b0f3245ae967605cf032e2d27406fac4ba50ee8d3ed16335505f",
+      "bytes": 29
+    },
+    "web/data/HONRO_ACT23_V4_REVIEWED.9644c3cf232007fb.json": {
+      "sha256": "9644c3cf232007fb74fe8bf87d68ccae35f92f962cb3919089ad942322cc23ca",
+      "bytes": 6183
+    },
+    "web/data/HONRO_ACT23_V4_REVIEWED_CH21.2efc1c07e7733fba.json": {
+      "sha256": "2efc1c07e7733fba08d06626c520aae17439952519d4d2ad44e56081f18f7770",
+      "bytes": 15065
+    },
+    "web/data/HONRO_ACT23_V4_REVIEWED_CH22.7affcaf3c0d74edf.json": {
+      "sha256": "7affcaf3c0d74edfbd19f3ab6b607bbbccf99f4c7d59744c17026e9d5a9c789f",
+      "bytes": 14518
+    },
+    "web/data/HONRO_ACT23_V4_REVIEWED_CH23.9385c2f25f711a60.json": {
+      "sha256": "9385c2f25f711a603534dedc6a28d8251b54ab0a0d40eebc475ccb651944c718",
+      "bytes": 14061
+    },
+    "web/data/HONRO_ACT23_V4_REVIEWED_CH24.16f88c059655014c.json": {
+      "sha256": "16f88c059655014cfca3478336e38fc7df7b950867f832afcf99982f5a9ded8c",
+      "bytes": 17013
+    },
+    "web/data/HONRO_ACT23_V4_REVIEWED_CH25.7ae3e3c0c0a1c7d6.json": {
+      "sha256": "7ae3e3c0c0a1c7d6a4979c409c1fef0490fc4655359305b8f2c190072540acee",
+      "bytes": 13979
+    },
+    "web/data/HONRO_ACT23_V4_REVIEWED_CH26.79610da914dc3aa0.json": {
+      "sha256": "79610da914dc3aa0d6bf2765e1d1b9c3c6157deed33a45cd0a39cb7864265603",
+      "bytes": 14984
+    },
+    "web/data/HONRO_ACT23_V4_REVIEWED_CH27.258a314998130f5a.json": {
+      "sha256": "258a314998130f5aadc401da2f98cbec84a95af9aeef3775c883a623c48b8180",
+      "bytes": 22659
+    },
+    "web/data/HONRO_ACT23_V4_REVIEWED_CH28.65cfc91add5ae550.json": {
+      "sha256": "65cfc91add5ae55068ae94b3cc7afb20deed7998dc9ce21f56a889e6e0bac6d0",
+      "bytes": 20369
+    },
+    "web/data/HONRO_ACT23_V4_REVIEWED_CH29.2ddf46e69fa3d116.json": {
+      "sha256": "2ddf46e69fa3d1167428921999b95f010ace7754fda8b81f6f9d7d37a878e259",
+      "bytes": 20488
+    },
+    "web/data/HONRO_ACT23_V4_REVIEWED_CH30.ea2ac70650fa29e4.json": {
+      "sha256": "ea2ac70650fa29e48a064d23909d356fd1df6151f92587c67e591495fc4f6e4f",
+      "bytes": 33155
+    },
+    "web/data/HONRO_ACT23_V4_REVIEWED_CHAPTERS.8c944bd7ad8b7d5f.json": {
+      "sha256": "8c944bd7ad8b7d5f5e7b185928fd4156bcccce151b4d13d8a660349acb4f3613",
+      "bytes": 90408
+    },
+    "web/data/HONRO_ACT23_V4_REVIEWED_COMMON.729b6ca7da7d2d19.json": {
+      "sha256": "729b6ca7da7d2d19b081ccaaa7679f1a6c8cdabe1271147f22aafae5ef9bd388",
+      "bytes": 4509
+    },
+    "web/data/HONRO_ACT2_COMPACT_PACKAGES-part-000.b74a29173f457f34.bin": {
+      "sha256": "b74a29173f457f34e26864f87526b5d010dab2b378b04ef8a6ee3ec829a9877d",
+      "bytes": 4194304
+    },
+    "web/data/HONRO_ACT2_COMPACT_PACKAGES-part-001.b849c4559f257911.bin": {
+      "sha256": "b849c4559f2579117de7296c15c06343dc273cf9b17b682909eaa42652d1d485",
+      "bytes": 3367429
+    },
+    "web/data/HONRO_ACT2_COMPACT_PACKAGES-parts.b0ecb9743ae28018.json": {
+      "sha256": "b0ecb9743ae28018ea32e6d0c70c3f4fb305cc9878fa3d489f4ecfbc1023006e",
+      "bytes": 464
+    },
+    "web/data/HONRO_ACT2_FAR_DATA.ed9317af7cbbefdd.json": {
+      "sha256": "ed9317af7cbbefddcdb1a27e8bf676cc3bf3415892ffeac3a163d99b8508171c",
+      "bytes": 402
+    },
+    "web/data/HONRO_ACT4_CONTENT.4aebb786fde342d5.json": {
+      "sha256": "4aebb786fde342d5aa3bfaec22befb4541798d01904c697e5420f81577eb15b2",
+      "bytes": 3895
+    },
+    "web/data/HONRO_ACT4_PILOT_COMBAT_REFERENCE.299176a314692c2a.json": {
+      "sha256": "299176a314692c2a1c9761c219c161d9994a8869011511311eb5adc21b69d2b9",
+      "bytes": 3255
+    },
+    "web/data/HONRO_ACT4_PREVIEW_SEEDS.390d772e366e25d9.json": {
+      "sha256": "390d772e366e25d9cfe4d741a032c7ae963f20792baa382fcc575ab6d738d898",
+      "bytes": 12207
+    },
+    "web/data/HONRO_ACT4_RELEASE.a17fcf0a2f50e2d4.json": {
+      "sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74",
+      "bytes": 5
+    },
+    "web/data/HONRO_ACT4_REVIEWED.390d772e366e25d9.json": {
+      "sha256": "390d772e366e25d9cfe4d741a032c7ae963f20792baa382fcc575ab6d738d898",
+      "bytes": 12207
+    },
+    "web/data/HONRO_ACT5_CONTENT.fba7315ab47677f7.json": {
+      "sha256": "fba7315ab47677f70f49a0acfe18e14e7a239900c615d6d2a4e15e5379df9a4a",
+      "bytes": 9533
+    },
+    "web/data/HONRO_ACT5_RELEASE.a17fcf0a2f50e2d4.json": {
+      "sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74",
+      "bytes": 5
+    },
+    "web/data/HONRO_ACTORS.84ce1d55bc196518.json": {
+      "sha256": "84ce1d55bc196518bf8130109dce85e183917d43ecc82c2527e82ae74a2db6e1",
+      "bytes": 169079
+    },
+    "web/data/HONRO_AUTHORED_FAR.b8d3c3dfaf217cba.json": {
+      "sha256": "b8d3c3dfaf217cbaad13cbae189972cd14c7d6f5cac2c44754b1e1cf0f611286",
+      "bytes": 4883
+    },
+    "web/data/HONRO_BALANCE.cc496d3c9fde59ee.json": {
+      "sha256": "cc496d3c9fde59ee2013edd1cbafc0f6b821d857019e5f2fb9db4958e44f8f03",
+      "bytes": 7468
+    },
+    "web/data/HONRO_BGM_METADATA.8c4f7cb85a10e724.json": {
+      "sha256": "8c4f7cb85a10e724e4d1d7dfa6a78de5ee7229da0c2f37fdf406b78bcef0ea12",
+      "bytes": 455
+    },
+    "web/data/HONRO_BGM_TRACKS.c152d3b0ef2ea83b.json": {
+      "sha256": "c152d3b0ef2ea83bce77ff449c315feaa0a207f367104babb87cea135c9ae06d",
+      "bytes": 180
+    },
+    "web/data/HONRO_EQUIPMENT_ICONS.cd11e0f35e5781a3.json": {
+      "sha256": "cd11e0f35e5781a34ab7304bce3b9ce659ace88d20e6d00ee8d13b9a098acb84",
+      "bytes": 5046
+    },
+    "web/data/HONRO_FAREWELL_SPIRITS.f256b9ab54449a33.json": {
+      "sha256": "f256b9ab54449a336d11dbf02dcd80e3ed1ae1d16a51486a4a27d894c4857a15",
+      "bytes": 2144
+    },
+    "web/data/HONRO_JOURNEY_MAPS.3e576cac5c89853c.json": {
+      "sha256": "3e576cac5c89853cd995e81dc1f6b640022ad25e01b1967063fa2687d592f3db",
+      "bytes": 10357
+    },
+    "web/data/HONRO_MONSTERS.502d3ac46c4666e6.json": {
+      "sha256": "502d3ac46c4666e63ae35f244f33c217edbf3a6a06f7b9ccbc2742727f121282",
+      "bytes": 259498
+    },
+    "web/data/HONRO_MUKJONG_AUDIO.5bf63a33e5796c72.json": {
+      "sha256": "5bf63a33e5796c72192dc328e6918041da6813142ced5c805bd6fbb409c69339",
+      "bytes": 84
+    },
+    "web/data/HONRO_NARRATIVE_V0.1b1a16777125d7dc.json": {
+      "sha256": "1b1a16777125d7dc04b262967d9d5de54534e0e940575205d6998fd6da74bac5",
+      "bytes": 142604
+    },
+    "web/data/HONRO_NPC_PORTRAITS.f6fd15022216a566.json": {
+      "sha256": "f6fd15022216a566f8dc2fe49e131d7bf1a8e33c209e27668d53043790442f25",
+      "bytes": 28314
+    },
+    "web/data/HONRO_OPEN_STRUCTURES.bd10fa99a7eaab14.json": {
+      "sha256": "bd10fa99a7eaab14f6e08a5a8e25360125036b76f4f8a52437001731832ff7ae",
+      "bytes": 14618
+    },
+    "web/data/HONRO_PARTY.70d212b626594f4f.json": {
+      "sha256": "70d212b626594f4f9cfc6587245f50877382f37f6239bdbeedf5f0f68b2741c4",
+      "bytes": 177532
+    },
+    "web/data/HONRO_PARTY_ART.a3735333042e1904.json": {
+      "sha256": "a3735333042e19047a9ac9c5ce8cf2d138d8531caba09ee3beac6a89e6cbe1a4",
+      "bytes": 97
+    },
+    "web/data/HONRO_PORTRAIT_VARIANTS.fbd9966fd5d3922a.json": {
+      "sha256": "fbd9966fd5d3922ade325591928b4def46d789a380c180daf5621c3506cd7872",
+      "bytes": 3016
+    },
+    "web/data/HONRO_REST_BACKDROPS.5d529fd524509f49.json": {
+      "sha256": "5d529fd524509f492282657d571b433c7a4a3a84fe3d7258cfe7d83f356d5ee0",
+      "bytes": 1310
+    },
+    "web/data/HONRO_SKILL_AUDIO.5479453d91b88c9d.json": {
+      "sha256": "5479453d91b88c9d401ba70028973daade0484ecc5d7ef72988c111dc4b4f632",
+      "bytes": 13805
+    },
+    "web/data/HONRO_SKILL_ICON_MANIFEST.ce96d5880bfbc07c.json": {
+      "sha256": "ce96d5880bfbc07cdf3e7819eac3a1a85a9c7e613c6c121c3515b3f7042ff10e",
+      "bytes": 19045
+    },
+    "web/data/HONRO_SPLIT_V1.8a0557450bffb24e.json": {
+      "sha256": "8a0557450bffb24ebd30cad47322c95ac4b8bed3857a8a0b330f641730ebcd63",
+      "bytes": 653520
+    },
+    "web/data/HONRO_STAGE11_COMPACT_DATA.52c4d43e8bfdb531.json": {
+      "sha256": "52c4d43e8bfdb53175eb6911600d684b91100649c1e58551583d21d80e159c26",
+      "bytes": 2309930
+    },
+    "web/data/HONRO_STAGE_INTRO_ART.2fd23f2b329a0e27.json": {
+      "sha256": "2fd23f2b329a0e2779d1e9833e66b52b1589d0577106bbef0881b122c2c691cc",
+      "bytes": 653
+    },
+    "web/data/HONRO_STORY_PORTRAITS.bcace926e288900f.json": {
+      "sha256": "bcace926e288900f689ec8e21517a422879acfef337c7069dbef2fd692e36359",
+      "bytes": 30586
+    },
+    "web/data/HONRO_TIMELINE.0138982424e9ac03.json": {
+      "sha256": "0138982424e9ac03a30c5f3761457e8fbe9765d80934df3f6541f10331834397",
+      "bytes": 4337
+    },
+    "web/data/HONRO_TITLE_ART.5005ea77f273dae9.json": {
+      "sha256": "5005ea77f273dae952a3777e080de9b0be203e9f1d2f47c52265b355a2119822",
+      "bytes": 496
+    },
+    "web/data/campaign-base.0c57dcfe7c08d421.json": {
+      "sha256": "0c57dcfe7c08d421901ffa8eeb437940b6b6d4779816207b51dca7be44c73e5e",
+      "bytes": 257
+    },
+    "web/data/campaign-compat-33.a94eb973f1d85ce5.json": {
+      "sha256": "a94eb973f1d85ce54435ae2c18003c34d523f5080ddb0a030c038164654a7ee2",
+      "bytes": 2630223
+    },
+    "web/data/campaign-compat-34.d70f3bda120cceb5.json": {
+      "sha256": "d70f3bda120cceb53df0d501161f5bbbe11d5b68afb8064f168b2ca1c6dd007c",
+      "bytes": 3417284
+    },
+    "web/data/campaign-shared.8f8343b5c21518d4.json": {
+      "sha256": "8f8343b5c21518d4fdaa2314e58031fd137b8622d3a6c1ca2fdabafde3bb158f",
+      "bytes": 577195
+    },
+    "web/data/campaign.fa9a5e8d3cb0a7e5.json": {
+      "sha256": "fa9a5e8d3cb0a7e54e7dd62130f61d93735f61fd4d56c9cb3b27874619ef4f3c",
+      "bytes": 54885
+    },
+    "web/data/chapter-01-assets.088719e10e63d482.json": {
+      "sha256": "088719e10e63d4826b565b3a3a13857af068bed52ae8c8a8293d23becabeb1e3",
+      "bytes": 109473
+    },
+    "web/data/chapter-01.c3917afbdd6737bc.json": {
+      "sha256": "c3917afbdd6737bc8d5c99d4e37a0a5778698d7f95d4bc6676678d48623e8a7c",
+      "bytes": 48157
+    },
+    "web/data/chapter-02-assets.ddddf53df4d749c6.json": {
+      "sha256": "ddddf53df4d749c60375cba085a79d790319b1e9c1790cb29e840529409ab434",
+      "bytes": 256633
+    },
+    "web/data/chapter-02.5faa275befa85b0d.json": {
+      "sha256": "5faa275befa85b0d49205b25a9d902c9d7ce448cf52fe25e124d4005b10f2ad2",
+      "bytes": 55013
+    },
+    "web/data/chapter-34-assets.3828bd02ec5b054c.json": {
+      "sha256": "3828bd02ec5b054c50b6529c2bfb348dbca98400803b6126ba5be3e68a05deae",
+      "bytes": 4084146
+    },
+    "web/data/chapter-34.cb39c6d6adc3cef6.json": {
+      "sha256": "cb39c6d6adc3cef6a6ec3ea220e075f8e6476279113d7b1c05953d576deae488",
+      "bytes": 27266
+    },
+    "web/data/narrative-data.0caecc02588acd71.json": {
+      "sha256": "0caecc02588acd7179ea883a313fb288b153920b66d288eb879527aa7848db2f",
+      "bytes": 446123
+    },
+    "web/fonts/hangul-common.f5cbeca6796a2f88.woff2": {
+      "sha256": "f5cbeca6796a2f886e73f49951955619445e7554b062bd25308253d841de82c8",
+      "bytes": 549740
+    },
+    "web/fonts/kr-0000.727adcd3562716eb.woff2": {
+      "sha256": "727adcd3562716eb09bcdd09a54f4e2293ea38a5671964a0b6f11cb62431b81c",
+      "bytes": 80444
+    },
+    "web/fonts/kr-0020.1a9188e575bacb1f.woff2": {
+      "sha256": "1a9188e575bacb1fe946e71bcf3434d8baa94e4d133f10c78c96496e986db41a",
+      "bytes": 9060
+    },
+    "web/graphics/honro_act1_far_data-act3.9814017ddf006228.svg": {
+      "sha256": "9814017ddf0062287b1c0146f7978657b83b9fa3d031d4fd5852eb4b7fb45315",
+      "bytes": 3196
+    },
+    "web/graphics/honro_act1_far_data-dawn.3ca9b11c3eb47bf6.svg": {
+      "sha256": "3ca9b11c3eb47bf64c52975041a6ee8de97c945e6800156b4090ab01d69386fe",
+      "bytes": 19540
+    },
+    "web/graphics/honro_act1_far_data-gorge.38d2033f7a1bd874.svg": {
+      "sha256": "38d2033f7a1bd874eb6e9a2324fc0c66cbed5150835b974792b42a8a2a49d787",
+      "bytes": 22474
+    },
+    "web/graphics/honro_act1_far_data-mountains.785547297cc4d3c0.svg": {
+      "sha256": "785547297cc4d3c041e14151739b20c2c92f61a508015ee69d868628ad6c1308",
+      "bytes": 19263
+    },
+    "web/graphics/honro_authored_far-images-act4Estuary.1ba81aae5bebeebd.webp": {
+      "sha256": "1ba81aae5bebeebd46cc094be2519797d67ef49a887d7aade45cb61b39878fff",
+      "bytes": 130830
+    },
+    "web/graphics/portrait-damheo-base.354084a697188d56.webp": {
+      "sha256": "354084a697188d563032a15317fd124eaac52b2a1a1886599808962ffd87844b",
+      "bytes": 962954
+    },
+    "web/graphics/portrait-hwigyeom-base.90a546dd2fda53da.webp": {
+      "sha256": "90a546dd2fda53daeeccdd5fdf15594316c96b95cb13a21d130cc547467a0304",
+      "bytes": 910526
+    },
+    "web/graphics/portrait-seoro-base.5461c4d01847334a.webp": {
+      "sha256": "5461c4d01847334a76ad30c154bc5e09617db1a750a9da7e243a863007a2a288",
+      "bytes": 1050060
+    },
+    "web/graphics/portrait-sodan-base.08ae11c4ce6c63cf.webp": {
+      "sha256": "08ae11c4ce6c63cf6157b2bdddbd9a0509fa004ee77ef9403ce91859dd84fd06",
+      "bytes": 942530
+    },
+    "web/graphics/skill-icon-A01.1fa04261cfcfceb8.webp": {
+      "sha256": "1fa04261cfcfceb8492f97253a37e4c4f90b2848bc15ffc9b64d9ac037449ad0",
+      "bytes": 3936
+    },
+    "web/graphics/skill-icon-A02.a8f55e024ef3fb38.webp": {
+      "sha256": "a8f55e024ef3fb38ee862cbc924b5f661c5c5e4d002d89f9b05ce0ace43cee9e",
+      "bytes": 4456
+    },
+    "web/graphics/skill-icon-A03.82568bdbd3a1b087.webp": {
+      "sha256": "82568bdbd3a1b087ca0929b478d03ab5a36a932c8ab4324da69bf27db2cb07b1",
+      "bytes": 3934
+    },
+    "web/graphics/skill-icon-A04.347585d9aabb566f.webp": {
+      "sha256": "347585d9aabb566ffd5aec5663d657937a9ddb1a699f4079ecba7a36c12e9930",
+      "bytes": 7028
+    },
+    "web/graphics/skill-icon-A05.0bec2839bdda6e7b.webp": {
+      "sha256": "0bec2839bdda6e7b3da6f4aa32adab50fd213b422119d2b959572e1b0072921e",
+      "bytes": 6010
+    },
+    "web/graphics/skill-icon-A06.2da3b0603d6aef5c.webp": {
+      "sha256": "2da3b0603d6aef5c981dbd7c189307faca458384979666df9d29f262524680df",
+      "bytes": 5088
+    },
+    "web/graphics/skill-icon-A07.8df150ab698bea6f.webp": {
+      "sha256": "8df150ab698bea6fc0c4797704226b1e8174be026b523dfc43d171d713ff9e20",
+      "bytes": 6906
+    },
+    "web/graphics/skill-icon-A08.eb5d1df18d52552e.webp": {
+      "sha256": "eb5d1df18d52552e05260a365560987d4b8763bfbd739d565ebde46ba54ebede",
+      "bytes": 6150
+    },
+    "web/graphics/skill-icon-A09.a0c7cc6478a4d6cb.webp": {
+      "sha256": "a0c7cc6478a4d6cb2146236da8e74dcf79970001e5ac90b46b3f96e5d53fb732",
+      "bytes": 4054
+    },
+    "web/graphics/skill-icon-A10.10c4941f5876eaec.webp": {
+      "sha256": "10c4941f5876eaecfc9aec3e41790fd81f172bfd678a23a9de636fedb4feb68e",
+      "bytes": 3138
+    },
+    "web/graphics/skill-icon-A11.7720dd2557994f3e.webp": {
+      "sha256": "7720dd2557994f3ec2202a0aa3ab20faa429f98c80eb60b7b7b5b7b0d5466435",
+      "bytes": 4040
+    },
+    "web/graphics/skill-icon-A12.53e326bee86515ea.webp": {
+      "sha256": "53e326bee86515ea2f0ccea1f6ce0dcae338197baf7fdb6b3b68cbe256529766",
+      "bytes": 3654
+    },
+    "web/graphics/skill-icon-A13.effc6b23f24edbac.webp": {
+      "sha256": "effc6b23f24edbac13538bece00e7ad12d045b5be114656784045c60010326ad",
+      "bytes": 5990
+    },
+    "web/graphics/skill-icon-A14.a54160bbaadedde4.webp": {
+      "sha256": "a54160bbaadedde466ca85a472cb64fd69de19478a67d67dbec835b15c64b208",
+      "bytes": 5614
+    },
+    "web/graphics/skill-icon-A15.c0b4215cf67b8d31.webp": {
+      "sha256": "c0b4215cf67b8d319f6404269fa152c359f871f0b369ca17ad0de55c752be87f",
+      "bytes": 6272
+    },
+    "web/graphics/skill-icon-A99.fcb91f4d89edc65a.webp": {
+      "sha256": "fcb91f4d89edc65a562aa91e08127b7b42d5ea0a0dbc48d6431d78e9a2085a3d",
+      "bytes": 5004
+    },
+    "web/graphics/skill-icon-AP01.0afb39e6a85b8347.webp": {
+      "sha256": "0afb39e6a85b834793ae08fc56b49c89eea250e49c8a1450df7b34752cc2770b",
+      "bytes": 3418
+    },
+    "web/graphics/skill-icon-AP02.a4d103eb85668c33.webp": {
+      "sha256": "a4d103eb85668c33840d117c21655605985165cccd4611405f7d483da9e9024e",
+      "bytes": 5770
+    },
+    "web/graphics/skill-icon-AP03.01d187d2d44de6b6.webp": {
+      "sha256": "01d187d2d44de6b6a0330ba58b0b12346a59b6a22cb889e75c74d113d4ef018d",
+      "bytes": 4658
+    },
+    "web/graphics/skill-icon-AP04.2698d229bb2df9fa.webp": {
+      "sha256": "2698d229bb2df9fac61b59dc0900ee3b6dbe7e33161c1f611d0f671b110b4c46",
+      "bytes": 5852
+    },
+    "web/graphics/skill-icon-AP05.219425c37d635833.webp": {
+      "sha256": "219425c37d635833dfe1cf39f8126d25dd5344667d4f5c9dcce9d21ca183b1b8",
+      "bytes": 6170
+    },
+    "web/graphics/skill-icon-M01.a4a99a15222b1590.webp": {
+      "sha256": "a4a99a15222b1590556ab038d2598ef84fe5de32bfa22270f822c20f203820b4",
+      "bytes": 3172
+    },
+    "web/graphics/skill-icon-M02.da5ed8483e1ebc54.webp": {
+      "sha256": "da5ed8483e1ebc546e24159d05157809f346f2f34d7e16f167ece1e7fc20ca13",
+      "bytes": 5694
+    },
+    "web/graphics/skill-icon-M03.1dee22422e96bc02.webp": {
+      "sha256": "1dee22422e96bc0244b94b9f2ca4fd362fbf19cd3a967ce9c497fb6de525525e",
+      "bytes": 5650
+    },
+    "web/graphics/skill-icon-M04.d9460adcebc0778e.webp": {
+      "sha256": "d9460adcebc0778ea02a195c035c15bd892a2c368b4b20fc8d4db4e605ab50f9",
+      "bytes": 5468
+    },
+    "web/graphics/skill-icon-M05.5b17a55a6b0ea27b.webp": {
+      "sha256": "5b17a55a6b0ea27b37ab5e40708bc75235c102ef927d4e6af51b4a07b279b9a4",
+      "bytes": 7408
+    },
+    "web/graphics/skill-icon-M06.478944405c7e23d5.webp": {
+      "sha256": "478944405c7e23d5fc3fb6e6c111f5768c32f079cd13ac0e58f25a99b11f1d25",
+      "bytes": 6434
+    },
+    "web/graphics/skill-icon-M07.aa4a4e1605fe25b5.webp": {
+      "sha256": "aa4a4e1605fe25b53748057b838f59d9a8c506a62c50ff9a7f94cd7298075a63",
+      "bytes": 5298
+    },
+    "web/graphics/skill-icon-M08.1375c2072af2d2bd.webp": {
+      "sha256": "1375c2072af2d2bd74b38375d85003eb7ab7c61b1e677bc25f27406c885ab923",
+      "bytes": 4246
+    },
+    "web/graphics/skill-icon-M09.2fc07f5d05f6fe1a.webp": {
+      "sha256": "2fc07f5d05f6fe1aba5638fe6bf3cce4838c33f6839f546afc1f85a4d56e6125",
+      "bytes": 6484
+    },
+    "web/graphics/skill-icon-M10.bee56d5640ac012c.webp": {
+      "sha256": "bee56d5640ac012ceb4cee7f75bb878cab115c978905e0220740703a1a32d8d6",
+      "bytes": 5768
+    },
+    "web/graphics/skill-icon-M11.fc2f33992c01af4c.webp": {
+      "sha256": "fc2f33992c01af4ca21b0dc8d859473fe6bf8815f332393ebf91d3d24fb94cb9",
+      "bytes": 5402
+    },
+    "web/graphics/skill-icon-M12.dc8f84d3d6a56e05.webp": {
+      "sha256": "dc8f84d3d6a56e05f8885d663f8ff61e4c31d0176b49a9e20b1dd6df3c002529",
+      "bytes": 8084
+    },
+    "web/graphics/skill-icon-M13.4d70e2a6c995d8da.webp": {
+      "sha256": "4d70e2a6c995d8da336a28f0e246217eb4962cc6f54106267d57f57b1bd25128",
+      "bytes": 10326
+    },
+    "web/graphics/skill-icon-M14.6b96f3fc63bf12d6.webp": {
+      "sha256": "6b96f3fc63bf12d6082bd8ee39da83acc39260a9f2c3e4a792a9f77d4deeadc3",
+      "bytes": 7884
+    },
+    "web/graphics/skill-icon-M15.8b8b03bfdfbe1801.webp": {
+      "sha256": "8b8b03bfdfbe1801ae52a41e025f74412217b2a846c61236a49130d21a409f54",
+      "bytes": 9506
+    },
+    "web/graphics/skill-icon-M99.7058c504aa5d7c26.webp": {
+      "sha256": "7058c504aa5d7c268bf129e55d44af1a27522aa5ac0c287bdf95a3324a7c141f",
+      "bytes": 6272
+    },
+    "web/graphics/skill-icon-MP01.4ebcf0126d6f427e.webp": {
+      "sha256": "4ebcf0126d6f427edad837e899a17d1c7d9ffea293970666cd54db72b774d127",
+      "bytes": 6794
+    },
+    "web/graphics/skill-icon-MP02.68457e9f34ef3e0b.webp": {
+      "sha256": "68457e9f34ef3e0bf0c0f143ed54da66c7be57e39d6a8b5878e1872ef8224d22",
+      "bytes": 5254
+    },
+    "web/graphics/skill-icon-MP03.24fe5370e9ea546e.webp": {
+      "sha256": "24fe5370e9ea546ea9d1c97c8e1124b743f3dde90476a6cf28fa584c1bebff27",
+      "bytes": 6070
+    },
+    "web/graphics/skill-icon-MP04.4f312dfc1c55d061.webp": {
+      "sha256": "4f312dfc1c55d06172af5651812fad48b39d969118a7a68041c7065bb51db245",
+      "bytes": 7356
+    },
+    "web/graphics/skill-icon-MP05.e495d9e901f6c6a6.webp": {
+      "sha256": "e495d9e901f6c6a66438e9eef20380fb3322debdde968002549f58e1aed74833",
+      "bytes": 8470
+    },
+    "web/graphics/skill-icon-O01.dcde10cfd6448be0.webp": {
+      "sha256": "dcde10cfd6448be0a78d7365a73d1c5f8c2debd72fa6d5af942657d0c87dd0b9",
+      "bytes": 4250
+    },
+    "web/graphics/skill-icon-O02.44249e66901f29dc.webp": {
+      "sha256": "44249e66901f29dc44548dcb7815ef0a0015f28be20fb48d172472b18063080d",
+      "bytes": 6416
+    },
+    "web/graphics/skill-icon-O03.fead0476269e47bd.webp": {
+      "sha256": "fead0476269e47bdce1a02b44f6dd5d454f3151eddb864390f68841629030237",
+      "bytes": 9290
+    },
+    "web/graphics/skill-icon-O04.074c9256cd60d11d.webp": {
+      "sha256": "074c9256cd60d11d16e77b1104a0d45cdfa7c7766b6ec47f156a71636820ff80",
+      "bytes": 4072
+    },
+    "web/graphics/skill-icon-O05.8fcd0f8db79dd977.webp": {
+      "sha256": "8fcd0f8db79dd977c66591b3f0368d72e24566725f4d13ae67837936c4ba4ce9",
+      "bytes": 7624
+    },
+    "web/graphics/skill-icon-O06.c9c5d8aa90dbb2dc.webp": {
+      "sha256": "c9c5d8aa90dbb2dc6f20239957c98f996999a68eee26ce25dd5c2f8d1ded4c8f",
+      "bytes": 4194
+    },
+    "web/graphics/skill-icon-O07.8db521a071d77531.webp": {
+      "sha256": "8db521a071d77531863db8f04caaeaf323c4620445b9ca7ebe4a69451451ada7",
+      "bytes": 5386
+    },
+    "web/graphics/skill-icon-O08.d9f9b52d98bc2b26.webp": {
+      "sha256": "d9f9b52d98bc2b26c25f4d5a9561e9c67f5f0de52d642b9e15fb36f91e47cd0a",
+      "bytes": 9326
+    },
+    "web/graphics/skill-icon-O09.d872e1a2eb17d2f9.webp": {
+      "sha256": "d872e1a2eb17d2f974e16d66789910af79d1c9ac6a0abf48323174c522c5fb4b",
+      "bytes": 6110
+    },
+    "web/graphics/skill-icon-O10.b267e6cdfd1d2b80.webp": {
+      "sha256": "b267e6cdfd1d2b802420f95da3226475d234e0bce7a123cf9cfbf00a8578cf21",
+      "bytes": 6852
+    },
+    "web/graphics/skill-icon-O11.82e59dac493415ee.webp": {
+      "sha256": "82e59dac493415ee485a84853d6112f7511b84b4086e63540478ecfd60322046",
+      "bytes": 8118
+    },
+    "web/graphics/skill-icon-O12.8c8dad88d20d64a3.webp": {
+      "sha256": "8c8dad88d20d64a30a34b436661731027eefc5f7f1a647f618de15bf8bc32b99",
+      "bytes": 5382
+    },
+    "web/graphics/skill-icon-O13.50902b317d99e1e6.webp": {
+      "sha256": "50902b317d99e1e664250df50d219c7a8ea67a8e6c29da81d759285c8294646a",
+      "bytes": 8182
+    },
+    "web/graphics/skill-icon-O14.4aa30c83dc64b0c9.webp": {
+      "sha256": "4aa30c83dc64b0c94c6fcf2e89be3467a009f8e90f2aeae2d21206d6c2fbe9dc",
+      "bytes": 4186
+    },
+    "web/graphics/skill-icon-O15.32fcb94159a213cd.webp": {
+      "sha256": "32fcb94159a213cd8a4bc05d912a1d410dc595ace24fd0c2d844706b0b82b0f9",
+      "bytes": 10266
+    },
+    "web/graphics/skill-icon-O16.3eb2ee4db75c48cb.webp": {
+      "sha256": "3eb2ee4db75c48cb9bf5fafb15bf2f4ee1bd7e91fc321841b94a7cce400dde07",
+      "bytes": 7422
+    },
+    "web/graphics/skill-icon-OP01.7ac33357017d3c76.webp": {
+      "sha256": "7ac33357017d3c768151f0038d658c5915b7832ed52b18bb08dbd0290b22b458",
+      "bytes": 5862
+    },
+    "web/graphics/skill-icon-OP02.543dde15ed059fab.webp": {
+      "sha256": "543dde15ed059fab34de268cff625be6d4ffb5ff3aafd48786087d0e6eb48599",
+      "bytes": 5876
+    },
+    "web/graphics/skill-icon-OP03.9cdcf250737b60c1.webp": {
+      "sha256": "9cdcf250737b60c1d4f1700f3c72f737d3d9e797443419d15c77734ad7ee3142",
+      "bytes": 5640
+    },
+    "web/graphics/skill-icon-OP04.0e84e067440635e9.webp": {
+      "sha256": "0e84e067440635e99a3939e022cff4c735302ef7fead49fd154c1a210b90b978",
+      "bytes": 7232
+    },
+    "web/graphics/skill-icon-OP05.60a84b84dcbdcf71.webp": {
+      "sha256": "60a84b84dcbdcf711f00d8d2b72c09971031e64fe9fa95fae54d08b90606c81b",
+      "bytes": 7620
+    },
+    "web/graphics/skill-icon-S00.8cdaf054f26320a1.webp": {
+      "sha256": "8cdaf054f26320a17731b3934442fae8b62aafc26350d094ca0931a94539aa82",
+      "bytes": 4450
+    },
+    "web/graphics/skill-icon-S01.157a18dbbbe6fc1f.webp": {
+      "sha256": "157a18dbbbe6fc1f3a77ce9cc096d230fe23a587f3fbf84bd596d87840361cbd",
+      "bytes": 4784
+    },
+    "web/graphics/skill-icon-S02.4e3369ff53f79030.webp": {
+      "sha256": "4e3369ff53f790307cd8cfe15ea599ecadcf3d6825a5251faea02729be5cb15e",
+      "bytes": 7978
+    },
+    "web/graphics/skill-icon-S03.df23f01247f3096e.webp": {
+      "sha256": "df23f01247f3096e2f2a8eb45f2cf200dec70e4d4053611109042fe3b4f8b807",
+      "bytes": 7552
+    },
+    "web/graphics/skill-icon-S04.33cacbd4d530e499.webp": {
+      "sha256": "33cacbd4d530e49961c2c01165721c4d6bb65d6e51d5fd481e91dae0855cf520",
+      "bytes": 5462
+    },
+    "web/graphics/skill-icon-S05.c9fba3a7dbe023a3.webp": {
+      "sha256": "c9fba3a7dbe023a34c741bbe668736cf92b24bafe90a94070be4328207d018a9",
+      "bytes": 4764
+    },
+    "web/graphics/skill-icon-S06.6e5d8ac1e4ecd89b.webp": {
+      "sha256": "6e5d8ac1e4ecd89b74db9336adfb0d2a969841c29a0d3c44ba350708b7315395",
+      "bytes": 4594
+    },
+    "web/graphics/skill-icon-S07.de18f376f7180067.webp": {
+      "sha256": "de18f376f7180067f5099424c6b6ca0e5d46ae4c2b0f6816de3e3f3b9a710131",
+      "bytes": 7112
+    },
+    "web/graphics/skill-icon-S08.1f80cb4769182450.webp": {
+      "sha256": "1f80cb476918245008b8d5e8f37cc11426faa24c4c55655ea6789b887e8e1f3f",
+      "bytes": 8064
+    },
+    "web/graphics/skill-icon-S09.b6eaa844563d5219.webp": {
+      "sha256": "b6eaa844563d52190a0ee85109ab088d2a690b42be98334da754fca623c5af4f",
+      "bytes": 4932
+    },
+    "web/graphics/skill-icon-S10.e47de9bc60c4dd4d.webp": {
+      "sha256": "e47de9bc60c4dd4d6a537a05bf80193023e9478c2309b4f045e938758b16ff7f",
+      "bytes": 5982
+    },
+    "web/graphics/skill-icon-S11.52ae8b84497e3b40.webp": {
+      "sha256": "52ae8b84497e3b40513db452e27e650bce29e903130a630109ceee4106d67e23",
+      "bytes": 2486
+    },
+    "web/graphics/skill-icon-S12.13ce7c2fe92b538e.webp": {
+      "sha256": "13ce7c2fe92b538eddcb55ea76c650d54562e34d664f67f14698aed188380dce",
+      "bytes": 10002
+    },
+    "web/graphics/skill-icon-S13.47d8229ab7ee79d1.webp": {
+      "sha256": "47d8229ab7ee79d1ebc35a90353790eb1fd27dbdecfce44c3dcc7a9d32bb864c",
+      "bytes": 5270
+    },
+    "web/graphics/skill-icon-S14.8b923b775e7bed8b.webp": {
+      "sha256": "8b923b775e7bed8b03d25fcac335b6f2b679ed9066b46f78fa1440eb8a7e15fa",
+      "bytes": 2602
+    },
+    "web/graphics/skill-icon-S15.c728b336cbc73be4.webp": {
+      "sha256": "c728b336cbc73be4ab5f09a4ca664a5382b0d1f78f08e7341dd7cedf060840b2",
+      "bytes": 4096
+    },
+    "web/graphics/skill-icon-SP01.67e18258b454d9bd.webp": {
+      "sha256": "67e18258b454d9bd033279f2772a17512cccb2803be42891abcc767171df1b28",
+      "bytes": 5524
+    },
+    "web/graphics/skill-icon-SP02.5c6a0c00eb3bd216.webp": {
+      "sha256": "5c6a0c00eb3bd2169a643e5f138da44b6638be2bec6592c4f90fa881f93816a2",
+      "bytes": 6586
+    },
+    "web/graphics/skill-icon-SP03.685dcfaf8b000418.webp": {
+      "sha256": "685dcfaf8b000418f60bdacd6059283efed3894b25134e05dddf98788b0b4933",
+      "bytes": 5030
+    },
+    "web/graphics/skill-icon-SP04.72e7e34dc93fe82a.webp": {
+      "sha256": "72e7e34dc93fe82ac82c7b40375ead992e767d1a177861af33ccb494c1243272",
+      "bytes": 7776
+    },
+    "web/graphics/skill-icon-SP05.bd3a59c60a6c65b3.webp": {
+      "sha256": "bd3a59c60a6c65b3f3f87199fa8b864051aee11cd0012c700dbe9159490d3559",
+      "bytes": 6360
+    },
+    "web/graphics/title-hanja.717b4ef84f8f2d11.webp": {
+      "sha256": "717b4ef84f8f2d111a4edfe26c6486b46c46ce946448bf5f2143c7901605a7d5",
+      "bytes": 246930
+    },
+    "web/graphics/title-landscape.e7a766053bfbf276.webp": {
+      "sha256": "e7a766053bfbf2762399717c8d0f9668967b4f629c9e59901a539fbac465357a",
+      "bytes": 154366
+    },
+    "web/graphics/title-logo.120243a02a441a6c.webp": {
+      "sha256": "120243a02a441a6cafaf114e81d2ab4513032eb9e82a9be7f36ae78eafde5888",
+      "bytes": 101602
+    },
+    "web/graphics/title-portrait.f8314e8d1733e8a5.webp": {
+      "sha256": "f8314e8d1733e8a577baff632a5f39d5c47caba50d3bbde948a3f65efa96b9c6",
+      "bytes": 221562
+    },
+    "web/manifest.json": {
+      "bytes": 6265038,
+      "sha256": "c77a561f82a5f0748d1d4cfd4a675d5db9118ba2c53537c778fd9c77a12400c4"
+    },
+    "web/runtime/HONRO_ACT1_FAR_DATA.e4d5edc5046d7e4b.js": {
+      "sha256": "e4d5edc5046d7e4ba63c49b837c3a7c59f73d001ec4ef361322e79fd472ce7d0",
+      "bytes": 235
+    },
+    "web/runtime/HONRO_ACT23_V4_PHASE_A.76c1c817523e1124.js": {
+      "sha256": "76c1c817523e11246d1af6aaa6eb75f593ccc6aefd106fb5980a866d13582137",
+      "bytes": 195
+    },
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_CH11.871bd8142d83de50.js": {
+      "sha256": "871bd8142d83de50ff78f541c946d073eb8f6544ad29f03c5f3881f9c8aca093",
+      "bytes": 205
+    },
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_CH21.c7b98a5982f14df8.js": {
+      "sha256": "c7b98a5982f14df8f7980427cd70fc4607f622d015adb126fed2364dc3f40f15",
+      "bytes": 205
+    },
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_CH22.1a074ebebf7d8105.js": {
+      "sha256": "1a074ebebf7d8105175d44eac50f3ee78d7e9cf4ab847b544e31769d1f2e9773",
+      "bytes": 205
+    },
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_CH23.56d76c19f464e8bf.js": {
+      "sha256": "56d76c19f464e8bfd14ed38b6d5423e9057d875f6bf5d2a55d45a6d747ebc979",
+      "bytes": 205
+    },
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_CH24.9b66c4c0717d4796.js": {
+      "sha256": "9b66c4c0717d4796413893376e10aa61e59cb1d43ae839824f2328690ec68047",
+      "bytes": 205
+    },
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_CH25.c5136d2288a33205.js": {
+      "sha256": "c5136d2288a33205e19ab45424bb1ec03f1d5ef185ed7b80d4a48999f78a4507",
+      "bytes": 205
+    },
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_CH26.c6f47e01d5381ed8.js": {
+      "sha256": "c6f47e01d5381ed8c1be86301cc4438d3e3206725f0544717c646450c9044231",
+      "bytes": 205
+    },
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_CH27.681e86550140ee21.js": {
+      "sha256": "681e86550140ee2157fef2c7bd59fca1c8149e235b31fe3d14e6fdb22c12ca6f",
+      "bytes": 205
+    },
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_CH28.46052d93fbddab90.js": {
+      "sha256": "46052d93fbddab9020f5564e7becd7fca2973ab740082847ff09d99fb3ade8cb",
+      "bytes": 205
+    },
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_CH29.d0ddaf6a439c4dc7.js": {
+      "sha256": "d0ddaf6a439c4dc72889e867699c7c356f028555f611658498aac09338902157",
+      "bytes": 205
+    },
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_CH30.7a14e97d3bd82ed2.js": {
+      "sha256": "7a14e97d3bd82ed2b78d6531b87e7b89ddb609c1bcbc8e315c0f6a082389565d",
+      "bytes": 205
+    },
+    "web/runtime/HONRO_ACT23_V4_PHASE_B_STAGES.236a861d9c714d37.js": {
+      "sha256": "236a861d9c714d371df05975096ee95796a43ae1b130e2231fa50de157d8362f",
+      "bytes": 209
+    },
+    "web/runtime/HONRO_ACT23_V4_REVIEWED.c0ba36ff9c8dd235.js": {
+      "sha256": "c0ba36ff9c8dd23584a0cb710481c71fd6159f7f2e3bfd3d0e117223518aab53",
+      "bytes": 197
+    },
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_CH21.65b8483047b7b156.js": {
+      "sha256": "65b8483047b7b156aa79e6eef232006bd478657b4fe6222cc1b0ffe9f66747e9",
+      "bytes": 207
+    },
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_CH22.8cbedf1be6d53b20.js": {
+      "sha256": "8cbedf1be6d53b20f70d0517b5f001842ca26a797f83aba0759ec47cca408df5",
+      "bytes": 207
+    },
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_CH23.897fa01b476153da.js": {
+      "sha256": "897fa01b476153dac5c4b90bedd1afa0eb62ca4f3d7d749bdd86947454184312",
+      "bytes": 207
+    },
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_CH24.e6a4429d56fb9c50.js": {
+      "sha256": "e6a4429d56fb9c501579b7ab36fbf3ba1a1ffef796519ea36169e4008f7bcaa0",
+      "bytes": 207
+    },
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_CH25.71aa9c82189d64b5.js": {
+      "sha256": "71aa9c82189d64b59843706c3555d549d48aab997315e1f4837f98bfcd8a6a4e",
+      "bytes": 207
+    },
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_CH26.21398944a7db8bfb.js": {
+      "sha256": "21398944a7db8bfb3da16a3009e5d7ff07b8371c5e271cb062d26f4a22fc20c7",
+      "bytes": 207
+    },
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_CH27.2364e9e435c7dcec.js": {
+      "sha256": "2364e9e435c7dcecd99fb3d5fb165f7627ec34817c47afb64727aeafe400b0ff",
+      "bytes": 207
+    },
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_CH28.b05d278718873a06.js": {
+      "sha256": "b05d278718873a06127b150fae1c41972b8882c36963b6b9ef2cd01fc2b0fd5d",
+      "bytes": 207
+    },
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_CH29.b3296b28f0669263.js": {
+      "sha256": "b3296b28f06692636ab41ef8eb59123618ce0348c98ddbaf4be0a550b4109a26",
+      "bytes": 207
+    },
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_CH30.2601524ece85c248.js": {
+      "sha256": "2601524ece85c2483d95af11a5e5f363a5716d793a54c59a410fb9739908803c",
+      "bytes": 207
+    },
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_CHAPTERS.3dec07adf8a49588.js": {
+      "sha256": "3dec07adf8a4958896e0da2eca16c5e06c39131fe1e9ee194e5f4343d5cf271b",
+      "bytes": 215
+    },
+    "web/runtime/HONRO_ACT23_V4_REVIEWED_COMMON.0ce9a3868ac0c548.js": {
+      "sha256": "0ce9a3868ac0c5486fb2df5254f24e0614526eaf759a2a15b7a79803cbfbb014",
+      "bytes": 211
+    },
+    "web/runtime/HONRO_ACT2_FAR_DATA.de2a4590f9969c42.js": {
+      "sha256": "de2a4590f9969c42ebd08c2ada63c6466a410c0caa20b40c28429a9a844cb863",
+      "bytes": 256
+    },
+    "web/runtime/HONRO_ACT4_CONTENT.ca14aa5f882d5528.js": {
+      "sha256": "ca14aa5f882d5528f383c600f048da9cdba9b56485383790c680f353e2af4973",
+      "bytes": 187
+    },
+    "web/runtime/HONRO_ACT4_PILOT_COMBAT_REFERENCE.72a89112ae79534b.js": {
+      "sha256": "72a89112ae79534bcea7a255d835cb3b609a5a78a9e20db30378252ed6edc79e",
+      "bytes": 217
+    },
+    "web/runtime/HONRO_ACT4_PREVIEW_SEEDS.f59700a4d63d37fc.js": {
+      "sha256": "f59700a4d63d37fc04b0dbe2dc71b66dac43c562f0765b1692eaf8c14aa33fca",
+      "bytes": 199
+    },
+    "web/runtime/HONRO_ACT4_RELEASE.ec334deca2d3b718.js": {
+      "sha256": "ec334deca2d3b718248e9208afc85115a01790807e421bcab0c9c7da682677b1",
+      "bytes": 187
+    },
+    "web/runtime/HONRO_ACT4_REVIEWED.9a6c1bef6b8776ef.js": {
+      "sha256": "9a6c1bef6b8776ef90283c611127072901216e1de08e8ca51a47f14050a7ea80",
+      "bytes": 189
+    },
+    "web/runtime/HONRO_ACT5_CONTENT.38bb7a8fa71b61c0.js": {
+      "sha256": "38bb7a8fa71b61c0a42dd6ca567067ba527513b6df0ce7ea0729910f31e1b6cf",
+      "bytes": 187
+    },
+    "web/runtime/HONRO_ACT5_RELEASE.8ce1fbd252d16338.js": {
+      "sha256": "8ce1fbd252d16338c6a7ff5e5728967d9b7001f260daccf9df3c697499c1c5f6",
+      "bytes": 187
+    },
+    "web/runtime/HONRO_AUTHORED_FAR.7d9bc00aabea227c.js": {
+      "sha256": "7d9bc00aabea227c2c75a517f01b2b0578e63250e339e3ae72c356d8430504df",
+      "bytes": 871
+    },
+    "web/runtime/HONRO_BALANCE.203e3431e13c5fca.js": {
+      "sha256": "203e3431e13c5fca99a95f880ec4274a5e4d8c46616298b44f5bd00226a0c903",
+      "bytes": 177
+    },
+    "web/runtime/HONRO_BGM_METADATA.3e30a609b581bb7a.js": {
+      "sha256": "3e30a609b581bb7aa6915d1b7070bab245cfbb9abedc7681e0826c58b604cc97",
+      "bytes": 187
+    },
+    "web/runtime/HONRO_BGM_TRACKS.30e452c460f0bb8b.js": {
+      "sha256": "30e452c460f0bb8b0f8f14d20b500aa92431cb9c1089e1841a4864a4326123ae",
+      "bytes": 183
+    },
+    "web/runtime/HONRO_EQUIPMENT_ICONS.62fedaa06e7fbe59.js": {
+      "sha256": "62fedaa06e7fbe59a2334710f31083510a9540ab17f95fbe5ae9335cef866eda",
+      "bytes": 920
+    },
+    "web/runtime/HONRO_FAREWELL_SPIRITS.f62f950b73f5b8b4.js": {
+      "sha256": "f62f950b73f5b8b47e6830aaabf638389b191124965887bf6315fbe115716e11",
+      "bytes": 195
+    },
+    "web/runtime/HONRO_JOURNEY_MAPS.c0766f60904faaa6.js": {
+      "sha256": "c0766f60904faaa6bf31c5ca076152c2f93767d74062a6b31e3e5ab0ef9ad688",
+      "bytes": 271
+    },
+    "web/runtime/HONRO_MUKJONG_AUDIO.c2a8e1148786a21d.js": {
+      "sha256": "c2a8e1148786a21d78969c267d4575d95bac78ec2b5a5970503888d834f80a70",
+      "bytes": 196
+    },
+    "web/runtime/HONRO_NARRATIVE_V0.e25b3623bdc124a4.js": {
+      "sha256": "e25b3623bdc124a44cbb1602e7d0b02ad9ca08c39dc40d4054134c544807736c",
+      "bytes": 187
+    },
+    "web/runtime/HONRO_OPEN_STRUCTURES.481d47ec575fa6b5.js": {
+      "sha256": "481d47ec575fa6b53d177d0fe62993fd7ef49e4f7ced468ccb2cfc7c7fe67c54",
+      "bytes": 193
+    },
+    "web/runtime/HONRO_PORTRAIT_VARIANTS.377dc8fab3a7ee5d.js": {
+      "sha256": "377dc8fab3a7ee5df0c919bc8d0875a242e691666ce1bf03e8823587fb123a92",
+      "bytes": 197
+    },
+    "web/runtime/HONRO_REST_BACKDROPS.d0914f5572f0cc5e.js": {
+      "sha256": "d0914f5572f0cc5e77efe0619ff8f6f32382ada63c6d40ef7bd560ae031777f9",
+      "bytes": 513
+    },
+    "web/runtime/HONRO_SKILL_AUDIO.0b85b9d203ebf41b.js": {
+      "sha256": "0b85b9d203ebf41b52fb06a232dc49d86db570ce519a23ebc7fc062d2b27f208",
+      "bytes": 1227
+    },
+    "web/runtime/HONRO_SKILL_ICON_MANIFEST.5dfa866899b7b39e.js": {
+      "sha256": "5dfa866899b7b39e5d55b44aceb44c35042fd9a18fe98bf782c7f46dd8ef1d6c",
+      "bytes": 2068
+    },
+    "web/runtime/HONRO_SPLIT_V1.c03b319b9a4988b2.js": {
+      "sha256": "c03b319b9a4988b28e307c59adc262e89e831294d1393a25eab4cd35b547ff37",
+      "bytes": 179
+    },
+    "web/runtime/HONRO_STAGE11_COMPACT_DATA.c402b23223511a23.js": {
+      "sha256": "c402b23223511a23013876e3d5013356a64ff5c04afe198f8dc05cfab362ef3f",
+      "bytes": 203
+    },
+    "web/runtime/HONRO_TIMELINE.2d35abe802c683c3.js": {
+      "sha256": "2d35abe802c683c3f3cedb200e9d31daeee951f226dd1ff4a5a37ebd282e6955",
+      "bytes": 179
+    },
+    "web/runtime/campaign.748d97a778b7faa1.js": {
+      "sha256": "748d97a778b7faa16a626dbf4c3f7d53c2cb7747076f183a0302534b29a6370a",
+      "bytes": 527
+    },
+    "web/runtime/game-art.a5fab3c18d72a12e.js": {
+      "sha256": "a5fab3c18d72a12eeaf13020e7de3af50ce04ca80b900f8ff712eb7306eca7de",
+      "bytes": 4113
+    },
+    "web/runtime/load-data.248fb3aada6f16bb.js": {
+      "sha256": "248fb3aada6f16bbe2d7df7e369db772df2d923bc91b1e517daa53858f558dcb",
+      "bytes": 15550
+    },
+    "web/runtime/narrative-data.6277857ddbf17ddf.js": {
+      "sha256": "6277857ddbf17ddf543b5cbd2f011cde2396d9e04f13aaae77a968e76135f744",
+      "bytes": 176
+    },
+    "web/runtime/ordered-common-1.6e9161cc9c68342d.js": {
+      "sha256": "6e9161cc9c68342d110e957a5fb8463dd06a64efcff4199917d6e8b1aeac4127",
+      "bytes": 1743
+    },
+    "web/runtime/ordered-common-10.7f6c8574f94f35df.js": {
+      "sha256": "7f6c8574f94f35df38a797b4d439a5c096d784b954529bfa4e9fc9df58dfc9ae",
+      "bytes": 179413
+    },
+    "web/runtime/ordered-common-11.6adcb81897ec0663.js": {
+      "sha256": "6adcb81897ec06638dc92386b515b2f8ff10ee38a60c6fa4fb2d9040be22ea77",
+      "bytes": 177221
+    },
+    "web/runtime/ordered-common-12.70b9c35c854ec2af.js": {
+      "sha256": "70b9c35c854ec2af805d4aa3e9890a152c4ce6f5bdb69917aea6b94a876e83ca",
+      "bytes": 72081
+    },
+    "web/runtime/ordered-common-13.cc87f3d58b5389b1.js": {
+      "sha256": "cc87f3d58b5389b15cfe63e8a6548136407b8f9cd04ce27f90eaef65ed1207ea",
+      "bytes": 21211
+    },
+    "web/runtime/ordered-common-14.85d7853ba3745e09.js": {
+      "sha256": "85d7853ba3745e09b8d3d697d1abe83519a172816e4e533441a236e43e5fa8b0",
+      "bytes": 22301
+    },
+    "web/runtime/ordered-common-17.2ed746adf1d3e0e3.js": {
+      "sha256": "2ed746adf1d3e0e384db957d7392a299be80db92cba7647b721d2c84bafec4e2",
+      "bytes": 97032
+    },
+    "web/runtime/ordered-common-18.9dcb25cd7e4ae77b.js": {
+      "sha256": "9dcb25cd7e4ae77b50e3ff528a43d3a3a170c28c1995ddb9c694b66a10965bfe",
+      "bytes": 34955
+    },
+    "web/runtime/ordered-common-19.8b183d53c733351f.js": {
+      "sha256": "8b183d53c733351fa535dce06f44975a4c8c7d0b64b7cdad9904b18a4ebeb5ac",
+      "bytes": 10473
+    },
+    "web/runtime/ordered-common-2.49982d8a68cfa528.js": {
+      "sha256": "49982d8a68cfa528577da4570dbf8820b3065a25dc60b21cfcfc6ebbfd0d73ed",
+      "bytes": 927571
+    },
+    "web/runtime/ordered-common-3.3def16b6135b0973.js": {
+      "sha256": "3def16b6135b0973b8dc153464feb722b8a87cf28f83075ff0ecfb7e3f915cf0",
+      "bytes": 115050
+    },
+    "web/runtime/ordered-common-4.c84f463a629cb3dc.js": {
+      "sha256": "c84f463a629cb3dc26d1ab93d071c3499c8339888b9bc08d089f852c602b2191",
+      "bytes": 181306
+    },
+    "web/runtime/ordered-common-5.2e5a74cface951ff.js": {
+      "sha256": "2e5a74cface951ff484cf7db6ec655941624d553469f947b2864a74a1349b6c7",
+      "bytes": 173371
+    },
+    "web/runtime/ordered-common-6.857f5634e4395548.js": {
+      "sha256": "857f5634e439554828ec64b187fbe106d366c9c913f4c45a6163d084ed901318",
+      "bytes": 172085
+    },
+    "web/runtime/ordered-common-7.31e16134eb8ab77b.js": {
+      "sha256": "31e16134eb8ab77bbeba775a848f5eb83f1a648b04aac9f471b35cb0badd3a1c",
+      "bytes": 179093
+    },
+    "web/runtime/ordered-common-8.20b0aa56c33f63a5.js": {
+      "sha256": "20b0aa56c33f63a5de33c7a2e6b8f4ea63041ea53da2793162e19f42f678e7e5",
+      "bytes": 169759
+    },
+    "web/runtime/ordered-common-9.24f4201c60fcdfce.js": {
+      "sha256": "24f4201c60fcdfce15b4fd90c659ca47bf66a7dcef231ccda2d531c2687dad98",
+      "bytes": 174951
+    },
+    "web/runtime/ordered-game-20.8a028a8355ced977.js": {
+      "sha256": "8a028a8355ced9776157cd1258b7f567c7b26e1e1de51143c26a8525b1a5d7f7",
+      "bytes": 62255
+    },
+    "web/runtime/ordered-game-21.8775c24e10e1a3d2.js": {
+      "sha256": "8775c24e10e1a3d2a39abd553bdabbf39443b19c20cc374b1e67070ff8e20c07",
+      "bytes": 82527
+    },
+    "web/runtime/ordered-game-22.27e665c6427d9375.js": {
+      "sha256": "27e665c6427d93752459fc4e245eb50f89a3d8983424dc03acc046fd8a25fba1",
+      "bytes": 146814
+    },
+    "web/runtime/ordered-game-23.d839a3c2c2061368.js": {
+      "sha256": "d839a3c2c20613685a56c73218a30ea80d90df7caeb97c015250e6dacdfd79c8",
+      "bytes": 94701
+    },
+    "web/runtime/ordered-game-24.26a8010157c8fe32.js": {
+      "sha256": "26a8010157c8fe32e6aa7aa32ec55444beee808ced88e6b53a41a2e6157d29ff",
+      "bytes": 173611
+    },
+    "web/runtime/ordered-game-25.12e2361380e24c93.js": {
+      "sha256": "12e2361380e24c93bd64b7e931f049a16648fb3f63497b14840eda3224858b32",
+      "bytes": 25313
+    },
+    "web/runtime/party-alias.3485184cbddbd273.js": {
+      "sha256": "3485184cbddbd273b67d9d4115557ac20e2f485ece2380efa2886cee059383fd",
+      "bytes": 119
+    },
+    "web/runtime/shared-assets-actors-actors-runtime.59fd424891c899af.js": {
+      "sha256": "59fd424891c899afda3a5e0a7cede3f3b1e1062fed126d513341b1fae34a39fb",
+      "bytes": 175
+    },
+    "web/runtime/shared-assets-monsters-monsters-runtime.a0cdeca2c2cf4abc.js": {
+      "sha256": "a0cdeca2c2cf4abc2030e06ba0dbf2c621ce1c98fea39b607e12d430be2eec59",
+      "bytes": 179
+    },
+    "web/runtime/shared-assets-party-party-runtime.179b8da816ae78b9.js": {
+      "sha256": "179b8da816ae78b9e4e06cc2ebfbe863bb71449bae291c6707ff578cf78cab8f",
+      "bytes": 287
+    },
+    "web/runtime/shared-runtime-skill-preview.0873a72c3e01c88c.js": {
+      "bytes": 33099,
+      "sha256": "0873a72c3e01c88c898a71742d9b4b7fa850595df6983ede2752eb341fdd51de"
+    },
+    "web/runtime/shared-runtime-stage-rules.d77b19a2010f2791.js": {
+      "sha256": "d77b19a2010f2791cda5df172d9d2b2faa96e0b33e899bd04596fb21c1bd70b5",
+      "bytes": 3468
+    },
+    "web/runtime/shared-runtime-title-markup.e0f242270b02362a.js": {
+      "sha256": "e0f242270b02362a5e70cc29d22bd5e37f9973baa480b49428e7ac07fedadf23",
+      "bytes": 4490
+    },
+    "web/runtime/shared-runtime-training.84c5e6034d5b7c0b.js": {
+      "bytes": 8662,
+      "sha256": "84c5e6034d5b7c0b4b8afd0b38d8a668d6bc8ba68fc44b70c6ace682afa124dd"
+    },
+    "web/runtime/title-scene.63b44eb84d35b848.js": {
+      "sha256": "63b44eb84d35b848250cb92ce4d33cd76d03e898a823e9fc5424c21111f9b922",
+      "bytes": 240
+    },
+    "web/styles/game-src-act-endings.9f0fb63251dea0e6.css": {
+      "sha256": "9f0fb63251dea0e645ed7a9edcdf9c97938f93431b3398c279569402dc12b580",
+      "bytes": 4204
+    },
+    "web/styles/game-src-act3-void.fff422e530bb3189.css": {
+      "sha256": "fff422e530bb3189d0326057a19cda232ddf55e8de5206d9c631248bc4ec6aa5",
+      "bytes": 2425
+    },
+    "web/styles/game-src-clear-report.bfdce1b8a64e3c97.css": {
+      "sha256": "bfdce1b8a64e3c9779018ca77f0aed4c4f5efb8a74f2b388548286e0d612de10",
+      "bytes": 6801
+    },
+    "web/styles/game-src-controls.d744fc2f4f969945.css": {
+      "sha256": "d744fc2f4f969945a98a444104d14fdf40ac770809b42933584aa6ea46ca5c54",
+      "bytes": 36820
+    },
+    "web/styles/game-src-equipment.aa2e752ae78a9866.css": {
+      "sha256": "aa2e752ae78a986692804150966940fb3b713c37f0f267769746763df7fe5ef7",
+      "bytes": 16896
+    },
+    "web/styles/game-src-fonts.43855b81e6a81ba4.css": {
+      "sha256": "43855b81e6a81ba459f0455482a6e5e017202d7605d89cd94f0c22e7506b857d",
+      "bytes": 111673
+    },
+    "web/styles/game-src-game-interface.832a9c9eb8c9517d.css": {
+      "sha256": "832a9c9eb8c9517d692592a935f315f2ebc0250889a84a2af07be8067d4ca1a5",
+      "bytes": 7909
+    },
+    "web/styles/game-src-guide.869baa784cb9ba70.css": {
+      "sha256": "869baa784cb9ba70357a384dc3bffcd5618e948e3178fff5c978291e4046ada6",
+      "bytes": 3138
+    },
+    "web/styles/game-src-hud.52581f3f9b27a561.css": {
+      "sha256": "52581f3f9b27a561ddb720f154832bba60391bebcb6f298874719eab50339f19",
+      "bytes": 24199
+    },
+    "web/styles/game-src-journey.e6e72b21f1205f1c.css": {
+      "sha256": "e6e72b21f1205f1cea6a3502247327cd0f291785aa3585a7bc501620a7ac1e2e",
+      "bytes": 31404
+    },
+    "web/styles/game-src-presentation.8d0dec87e1d85ac1.css": {
+      "sha256": "8d0dec87e1d85ac16b8b70e9bbdad0f48f8f1083423b0356619a542ac046f53f",
+      "bytes": 23107
+    },
+    "web/styles/game-src-skill-icons.c041660a380bc346.css": {
+      "sha256": "c041660a380bc346388d4ad03c821bfc84cef798e06ada85fb2fe20c3767980d",
+      "bytes": 5289
+    },
+    "web/styles/game-src-skill-presentation.9115388e87864ef4.css": {
+      "sha256": "9115388e87864ef405ecd50959b9678f3f307c7668463e359ce4eb8f595518df",
+      "bytes": 18791
+    },
+    "web/styles/game-src-title.6feb904b14f9e87d.css": {
+      "sha256": "6feb904b14f9e87da63948bb7423b94328abe16e21c7e2b56fc106383a61815a",
+      "bytes": 10448
+    },
+    "web/styles/game-src-training.2c1e01e835c1bc35.css": {
+      "sha256": "2c1e01e835c1bc3567d0fcb4da5541edb35732211178f7ba1fc40ae54b663b22",
+      "bytes": 9655
+    },
+    "web/styles/game-src-unit-info.082de9b7c479495a.css": {
+      "sha256": "082de9b7c479495a5268675134329e3c01d56c4b5125fc299554556bd99522c4",
+      "bytes": 4350
+    },
+    "web/styles/game-src-ux-polish.3d89764783c63e4e.css": {
+      "sha256": "3d89764783c63e4e973a4cce41941f2107220b761e3ac55d1cb35a134c0adc35",
+      "bytes": 10117
+    },
+    "web/styles/game-vendor-style.7793a1c24f08e38d.css": {
+      "sha256": "7793a1c24f08e38db10d0bb0a5b9dd824b180bf0d555d7d1d996a994941a40bc",
+      "bytes": 46815
+    },
+    "web/styles/game-vendor-ui-arcfall-layout.5dfc699852420d32.css": {
+      "sha256": "5dfc699852420d32e6af4394337b9b929f6868cbd6fa835bae0950f93aac775b",
+      "bytes": 74325
+    },
+    "web/entries/game.2ec041e00ee60d39.js": {
+      "bytes": 20483,
+      "sha256": "2ec041e00ee60d39ad8de79fd4c024ab95b74d89b18603773abc948c7af9df4a"
+    },
+    "web/runtime/HONRO_ACT2_COMPACT_PACKAGES.ad917621a5a55dd5.js": {
+      "bytes": 211,
+      "sha256": "ad917621a5a55dd58fec3a7a90133feadf70b91b2b1f5949275a9f2e25b1542f"
+    },
+    "web/runtime/ordered-common-15.370f1fb43d3a212f.js": {
+      "bytes": 163921,
+      "sha256": "370f1fb43d3a212f035eabb93ea935aff41d6146fb8c9103c77a1f9c1f07d737"
+    },
+    "web/runtime/ordered-common-16.c094392d4ee992d9.js": {
+      "bytes": 177300,
+      "sha256": "c094392d4ee992d95fda1a5d8d50835a93ef8c9095962b1f10e4d34b3aec3b21"
+    },
+    "web/data/HONRO_ACT2_COMPACT_PACKAGES-part-000.45cc14d990012925.bin": {
+      "bytes": 4194304,
+      "sha256": "45cc14d990012925cbfbb05dc04743f54d6affe80e32763e9a77bfc93f4620a0"
+    },
+    "web/data/HONRO_ACT2_COMPACT_PACKAGES-part-001.9e74461920a17acd.bin": {
+      "bytes": 3390067,
+      "sha256": "9e74461920a17acd7c8c2d77cc4e057dcf3fb871f2273dc905f37aacda150473"
+    },
+    "web/data/HONRO_ACT2_COMPACT_PACKAGES-parts.420dfb2876af8ed7.json": {
+      "bytes": 464,
+      "sha256": "420dfb2876af8ed739351b8fcabaf6ad6d0eef30dd67d9126bee8bb5ce671a27"
+    }
+  },
+  "owners": {
+    "approved34-coastal-foundation": {
+      "asset": "approved34:coastal-foundation",
+      "layer": "structural-back",
+      "group": "F"
+    },
+    "approved34-deep-bedrock": {
+      "asset": "approved34:deep-bedrock",
+      "layer": "structural-back",
+      "group": "B"
+    },
+    "approved34-lower-natural-mask-v2": {
+      "asset": "approved34:lower-natural-mask-v2",
+      "layer": "foreground",
+      "group": "FORE"
+    },
+    "approved34-east-v6-connected": {
+      "asset": "approved34:east-v6-connected-diagnostic",
+      "layer": "foreground",
+      "group": "FORE"
+    }
+  },
+  "renderer": "web/runtime/ordered-common-15.370f1fb43d3a212f.js",
+  "compactLoader": "web/runtime/HONRO_ACT2_COMPACT_PACKAGES.ad917621a5a55dd5.js",
+  "priorAuthority": {
+    "pagesCompletedUTC": "2026-11-20T21:37:21.9122544Z",
+    "pagesJob": 136584564179,
+    "pagesRun": 44821694897,
+    "release": "2939958cc87407ef60b58720bb6e086b8559031b",
+    "retainedManifestGitBlob": "dc5abd1657aa70245e456988202e1460f211fbf2",
+    "retainedManifestSHA256": "cc22d45754173a212ab3ce05d7bc5b3faf211c13e7ad5ba08f252f8e10f56304",
+    "tree": "08e22a8cc0ab608e125ad73f8e8e1c288d8c4c74"
+  },
+  "archivedR3": {
+    "run": 44865436032,
+    "artifact": 14691179687,
+    "stockControl": "original archive PC/M actual exact"
+  }
+}

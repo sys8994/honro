@@ -1,0 +1,44 @@
+name: HONRO Stage34 one-F asset app A/B diagnostic
+on:
+  push:
+    branches: [qa/stage34-f-se-ab-71fb]
+    paths:
+      - '.github/workflows/stage34-f-se-ab.yml'
+      - 'tools/stage34-f-se-ab/**'
+permissions:
+  contents: read
+jobs:
+  observe:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage34-f-se-ab-71fb'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 14
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Prepare exact prior observation browser
+        shell: bash
+        run: |
+          set -euo pipefail
+          W="$(mktemp -d "$RUNNER_TEMP/honro-stage34-se.XXXXXX")"
+          mkdir "$W/evidence"
+          echo "STAGE34_QA_OUT=$W/evidence" >> "$GITHUB_ENV"
+          echo "STAGE34_QA_VENV=$W/venv" >> "$GITHUB_ENV"
+          python3 -m venv "$W/venv"
+          "$W/venv/bin/python" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$W/venv/bin/python" -m playwright install --with-deps chromium
+      - name: Verify signed Pages and observe Stage34, one test response only
+        shell: bash
+        run: |
+          set -euo pipefail
+          "$STAGE34_QA_VENV/bin/python" tools/stage34-f-se-ab/run.py
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always() && env.STAGE34_QA_OUT != ''
+        with:
+          name: honro-stage34-f-se-ab-71fb
+          path: ${{ env.STAGE34_QA_OUT }}
+          if-no-files-found: error
+          retention-days: 7
