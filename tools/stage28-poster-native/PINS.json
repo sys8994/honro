@@ -1,0 +1,2769 @@
+{
+  "base": "acb51f4ee1c5afa90751dc256d6ad8d900732779",
+  "tree": "5cc36cfd7ef62fc801dc967605260610596d8061",
+  "publishedRun": 44918541021,
+  "publishedJob": 136889673324,
+  "sourcePath": "shared/map/terrain-domain.js",
+  "repo": "sys8994/honro",
+  "branch": "refs/heads/qa/stage28-poster-floor-acb51",
+  "baseCompiledRuntime": "web/runtime/ordered-common-11.6adcb81897ec0663.js",
+  "manifest": {
+    "bytes": 6458505,
+    "sha256": "e274ee2d3dbfee5ce35dfccd6055bfa1a898e3804bde80b687fd49f890c4079b",
+    "git": "264dc2eaa4a48d683aff9519b3281c961071c49e"
+  },
+  "shells": {
+    "HONRO.html": {
+      "bytes": 17379,
+      "sha256": "7f0b08897737d44f4f7d9a436e703b7ec48659fcb121098ea1cffd5b1f93d46d"
+    },
+    "HONRO_WORKSHOP.html": {
+      "bytes": 4011,
+      "sha256": "d143e5de877a183302966e43aef3f684c9ca305bb09437d8de99f987c68404ad"
+    },
+    "index.html": {
+      "bytes": 17379,
+      "sha256": "7f0b08897737d44f4f7d9a436e703b7ec48659fcb121098ea1cffd5b1f93d46d"
+    }
+  },
+  "sourceA": {
+    "bytes": 25687,
+    "sha256": "50772ada658c33f0f514465b4fc161587a1a648d7c19eec0d2f2de80ddd5c3ae",
+    "git": "7713f7d4f233569a9e3c54ef19ad92ac33d17bd6"
+  },
+  "sourceB": {
+    "bytes": 26789,
+    "sha256": "b856335569d5303781f7deb48f4f030f28cce081d2ced47fc249d02245b34ed5",
+    "git": "eb468b23024e316ede42ac66bd77687e8c40240a"
+  },
+  "sourceOnly": "normal Stage 28 render view only; collision projection and active serialized source unchanged",
+  "patch": [
+    {
+      "from": "function render(b){if(!active(b))",
+      "to": "// Continue only the deep rendered body of Stage 28's unchanged canonical court.\nfunction stage28RenderedFoundation(b,world,live){\n const v=b.honroTerrainBounds,q=world.honroDomainProjection,points=world.vertices;\n if(b.honroStage!==28||b.honroCanonical!==true||b.honroCustom!==false||\n    b.honroMapOrigin!=='campaign'||b.honroAuthoredId!=='stage-28'||b.width!==7200||b.height!==3400||\n    world.id!=='a3-foundation'||world.honroCourt28!==true||world.mat!=='earth'||live.broken||\n    v.left!==-9000||v.right!==16200||v.top!==-24000||v.bottom!==27400||\n    q?.bounds?.bottom!==9000||q.start?.x!==0||q.start?.y!==2700||points.length!==16||\n    points[0].x!==-9000||points[0].y!==2700||points[13].x!==16200||points[13].y!==2590||\n    points[14].x!==16200||points[14].y!==9000||points[15].x!==-9000||points[15].y!==9000||\n    points.slice(0,14).some(p=>p.y>=8900))return world;\n const vertices=points.slice();\n vertices[14]={...points[14],y:v.bottom};vertices[15]={...points[15],y:v.bottom};\n return {...world,vertices,h:v.bottom-world.y};\n}\nfunction render(b){if(!active(b))"
+    },
+    {
+      "from": "  terrain.push({...world,...t,vertices:shape.vertices,x:shape.x,y:shape.y,w:shape.w,h:shape.h,honroDomain:true});live.delete(world.id);",
+      "to": "  if(shape===world)shape=stage28RenderedFoundation(b,world,t);\n  terrain.push({...world,...t,vertices:shape.vertices,x:shape.x,y:shape.y,w:shape.w,h:shape.h,honroDomain:true});live.delete(world.id);"
+    }
+  ],
+  "witness": {
+    "run": 44922966956,
+    "head": "65ab6389a1d1deb26006d364b919e85d7ccdf109",
+    "stage28Receipt": 14715185043,
+    "stage3Receipt": 14714262330,
+    "stage28ReceiptSHA256": "47551547c819b5a9764575b3ab86553a0c9b5be0a2dd362fbbe7b5b670092382"
+  },
+  "visits": {
+    "s28-1440x900": {
+      "stage": 28,
+      "device": [
+        1440,
+        900
+      ],
+      "provider": {
+        "stage": "stage-28",
+        "compact": null,
+        "width": 7200,
+        "height": 3400
+      },
+      "requests": {
+        "HONRO.html": {
+          "bytes": 17379,
+          "sha256": "7f0b08897737d44f4f7d9a436e703b7ec48659fcb121098ea1cffd5b1f93d46d"
+        },
+        "web/data/campaign-base.0c57dcfe7c08d421.json": {
+          "bytes": 257,
+          "sha256": "0c57dcfe7c08d421901ffa8eeb437940b6b6d4779816207b51dca7be44c73e5e"
+        },
+        "web/data/campaign-shared.8f8343b5c21518d4.json": {
+          "bytes": 577195,
+          "sha256": "8f8343b5c21518d4fdaa2314e58031fd137b8622d3a6c1ca2fdabafde3bb158f"
+        },
+        "web/data/campaign.7140da5d3649e4ab.json": {
+          "bytes": 54961,
+          "sha256": "7140da5d3649e4aba2c58e180c8ff3f6f171a70e5e6704ad05dc98d428c52822"
+        },
+        "web/data/chapter-28-assets.9b95d021f7459229.json": {
+          "bytes": 657004,
+          "sha256": "9b95d021f74592295f8c05ec2aa016933a76677374b8145eaef2b8cebf616363"
+        },
+        "web/data/chapter-28.d766fe99060834a0.json": {
+          "bytes": 30884,
+          "sha256": "d766fe99060834a05e751bf383867168d504d6d934d1260c4b32a50b1c150639"
+        },
+        "web/entries/game.b0b1e648c2c03457.js": {
+          "bytes": 20483,
+          "sha256": "b0b1e648c2c034576f5e2c701faaa06c4a8f6dca7459e3f54f07fdb94bf61dee"
+        },
+        "web/runtime/campaign.926544619e01a04a.js": {
+          "bytes": 527,
+          "sha256": "926544619e01a04af2f2cc0e2bd435265ae9efff23062e259563bded6d851307"
+        },
+        "web/runtime/load-data.248fb3aada6f16bb.js": {
+          "bytes": 15550,
+          "sha256": "248fb3aada6f16bbe2d7df7e369db772df2d923bc91b1e517daa53858f558dcb"
+        }
+      },
+      "directions": [
+        "north",
+        "east",
+        "south",
+        "west",
+        "northwest",
+        "northeast",
+        "southwest",
+        "southeast"
+      ]
+    },
+    "s28-390x844": {
+      "stage": 28,
+      "device": [
+        390,
+        844
+      ],
+      "provider": {
+        "stage": "stage-28",
+        "compact": null,
+        "width": 7200,
+        "height": 3400
+      },
+      "requests": {
+        "HONRO.html": {
+          "bytes": 17379,
+          "sha256": "7f0b08897737d44f4f7d9a436e703b7ec48659fcb121098ea1cffd5b1f93d46d"
+        },
+        "web/data/campaign-base.0c57dcfe7c08d421.json": {
+          "bytes": 257,
+          "sha256": "0c57dcfe7c08d421901ffa8eeb437940b6b6d4779816207b51dca7be44c73e5e"
+        },
+        "web/data/campaign-shared.8f8343b5c21518d4.json": {
+          "bytes": 577195,
+          "sha256": "8f8343b5c21518d4fdaa2314e58031fd137b8622d3a6c1ca2fdabafde3bb158f"
+        },
+        "web/data/campaign.7140da5d3649e4ab.json": {
+          "bytes": 54961,
+          "sha256": "7140da5d3649e4aba2c58e180c8ff3f6f171a70e5e6704ad05dc98d428c52822"
+        },
+        "web/data/chapter-28-assets.9b95d021f7459229.json": {
+          "bytes": 657004,
+          "sha256": "9b95d021f74592295f8c05ec2aa016933a76677374b8145eaef2b8cebf616363"
+        },
+        "web/data/chapter-28.d766fe99060834a0.json": {
+          "bytes": 30884,
+          "sha256": "d766fe99060834a05e751bf383867168d504d6d934d1260c4b32a50b1c150639"
+        },
+        "web/entries/game.b0b1e648c2c03457.js": {
+          "bytes": 20483,
+          "sha256": "b0b1e648c2c034576f5e2c701faaa06c4a8f6dca7459e3f54f07fdb94bf61dee"
+        },
+        "web/runtime/campaign.926544619e01a04a.js": {
+          "bytes": 527,
+          "sha256": "926544619e01a04af2f2cc0e2bd435265ae9efff23062e259563bded6d851307"
+        },
+        "web/runtime/load-data.248fb3aada6f16bb.js": {
+          "bytes": 15550,
+          "sha256": "248fb3aada6f16bbe2d7df7e369db772df2d923bc91b1e517daa53858f558dcb"
+        }
+      },
+      "directions": [
+        "north",
+        "east",
+        "south",
+        "west",
+        "northwest",
+        "northeast",
+        "southwest",
+        "southeast"
+      ]
+    },
+    "s27-1440x900": {
+      "stage": 27,
+      "device": [
+        1440,
+        900
+      ],
+      "provider": {
+        "stage": "stage-27",
+        "compact": null,
+        "width": 8200,
+        "height": 7200
+      },
+      "requests": {
+        "HONRO.html": {
+          "bytes": 17379,
+          "sha256": "7f0b08897737d44f4f7d9a436e703b7ec48659fcb121098ea1cffd5b1f93d46d"
+        },
+        "web/data/campaign-base.0c57dcfe7c08d421.json": {
+          "bytes": 257,
+          "sha256": "0c57dcfe7c08d421901ffa8eeb437940b6b6d4779816207b51dca7be44c73e5e"
+        },
+        "web/data/campaign-shared.8f8343b5c21518d4.json": {
+          "bytes": 577195,
+          "sha256": "8f8343b5c21518d4fdaa2314e58031fd137b8622d3a6c1ca2fdabafde3bb158f"
+        },
+        "web/data/campaign.7140da5d3649e4ab.json": {
+          "bytes": 54961,
+          "sha256": "7140da5d3649e4aba2c58e180c8ff3f6f171a70e5e6704ad05dc98d428c52822"
+        },
+        "web/data/chapter-27-assets.bb5c0eec3982c8c4.json": {
+          "bytes": 267199,
+          "sha256": "bb5c0eec3982c8c431c9a84850e49af8dacdc99d4aeb39f0c7cbf41fe0cb902d"
+        },
+        "web/data/chapter-27.1248a7715d885d1e.json": {
+          "bytes": 27309,
+          "sha256": "1248a7715d885d1e0b35d8a13a9a1196c5ee13362246b4d67a856a51e34cdc2a"
+        },
+        "web/entries/game.b0b1e648c2c03457.js": {
+          "bytes": 20483,
+          "sha256": "b0b1e648c2c034576f5e2c701faaa06c4a8f6dca7459e3f54f07fdb94bf61dee"
+        },
+        "web/runtime/campaign.926544619e01a04a.js": {
+          "bytes": 527,
+          "sha256": "926544619e01a04af2f2cc0e2bd435265ae9efff23062e259563bded6d851307"
+        },
+        "web/runtime/load-data.248fb3aada6f16bb.js": {
+          "bytes": 15550,
+          "sha256": "248fb3aada6f16bbe2d7df7e369db772df2d923bc91b1e517daa53858f558dcb"
+        }
+      },
+      "directions": [
+        "south"
+      ]
+    },
+    "s27-390x844": {
+      "stage": 27,
+      "device": [
+        390,
+        844
+      ],
+      "provider": {
+        "stage": "stage-27",
+        "compact": null,
+        "width": 8200,
+        "height": 7200
+      },
+      "requests": {
+        "HONRO.html": {
+          "bytes": 17379,
+          "sha256": "7f0b08897737d44f4f7d9a436e703b7ec48659fcb121098ea1cffd5b1f93d46d"
+        },
+        "web/data/campaign-base.0c57dcfe7c08d421.json": {
+          "bytes": 257,
+          "sha256": "0c57dcfe7c08d421901ffa8eeb437940b6b6d4779816207b51dca7be44c73e5e"
+        },
+        "web/data/campaign-shared.8f8343b5c21518d4.json": {
+          "bytes": 577195,
+          "sha256": "8f8343b5c21518d4fdaa2314e58031fd137b8622d3a6c1ca2fdabafde3bb158f"
+        },
+        "web/data/campaign.7140da5d3649e4ab.json": {
+          "bytes": 54961,
+          "sha256": "7140da5d3649e4aba2c58e180c8ff3f6f171a70e5e6704ad05dc98d428c52822"
+        },
+        "web/data/chapter-27-assets.bb5c0eec3982c8c4.json": {
+          "bytes": 267199,
+          "sha256": "bb5c0eec3982c8c431c9a84850e49af8dacdc99d4aeb39f0c7cbf41fe0cb902d"
+        },
+        "web/data/chapter-27.1248a7715d885d1e.json": {
+          "bytes": 27309,
+          "sha256": "1248a7715d885d1e0b35d8a13a9a1196c5ee13362246b4d67a856a51e34cdc2a"
+        },
+        "web/entries/game.b0b1e648c2c03457.js": {
+          "bytes": 20483,
+          "sha256": "b0b1e648c2c034576f5e2c701faaa06c4a8f6dca7459e3f54f07fdb94bf61dee"
+        },
+        "web/runtime/campaign.926544619e01a04a.js": {
+          "bytes": 527,
+          "sha256": "926544619e01a04af2f2cc0e2bd435265ae9efff23062e259563bded6d851307"
+        },
+        "web/runtime/load-data.248fb3aada6f16bb.js": {
+          "bytes": 15550,
+          "sha256": "248fb3aada6f16bbe2d7df7e369db772df2d923bc91b1e517daa53858f558dcb"
+        }
+      },
+      "directions": [
+        "south"
+      ]
+    },
+    "s29-1440x900": {
+      "stage": 29,
+      "device": [
+        1440,
+        900
+      ],
+      "provider": {
+        "stage": "stage-29",
+        "compact": null,
+        "width": 7200,
+        "height": 3500
+      },
+      "requests": {
+        "HONRO.html": {
+          "bytes": 17379,
+          "sha256": "7f0b08897737d44f4f7d9a436e703b7ec48659fcb121098ea1cffd5b1f93d46d"
+        },
+        "web/data/campaign-base.0c57dcfe7c08d421.json": {
+          "bytes": 257,
+          "sha256": "0c57dcfe7c08d421901ffa8eeb437940b6b6d4779816207b51dca7be44c73e5e"
+        },
+        "web/data/campaign-shared.8f8343b5c21518d4.json": {
+          "bytes": 577195,
+          "sha256": "8f8343b5c21518d4fdaa2314e58031fd137b8622d3a6c1ca2fdabafde3bb158f"
+        },
+        "web/data/campaign.7140da5d3649e4ab.json": {
+          "bytes": 54961,
+          "sha256": "7140da5d3649e4aba2c58e180c8ff3f6f171a70e5e6704ad05dc98d428c52822"
+        },
+        "web/data/chapter-29-assets.03bec5fbcabe5e35.json": {
+          "bytes": 181816,
+          "sha256": "03bec5fbcabe5e353cb2eaf8f6437c8e7bdfad224fd3e29ed076600d70207357"
+        },
+        "web/data/chapter-29.9c23e7ce4d1312d3.json": {
+          "bytes": 31855,
+          "sha256": "9c23e7ce4d1312d3121f76c74d5e6fb4fc81fd23de540fe6230117379bf57ab0"
+        },
+        "web/entries/game.b0b1e648c2c03457.js": {
+          "bytes": 20483,
+          "sha256": "b0b1e648c2c034576f5e2c701faaa06c4a8f6dca7459e3f54f07fdb94bf61dee"
+        },
+        "web/runtime/campaign.926544619e01a04a.js": {
+          "bytes": 527,
+          "sha256": "926544619e01a04af2f2cc0e2bd435265ae9efff23062e259563bded6d851307"
+        },
+        "web/runtime/load-data.248fb3aada6f16bb.js": {
+          "bytes": 15550,
+          "sha256": "248fb3aada6f16bbe2d7df7e369db772df2d923bc91b1e517daa53858f558dcb"
+        }
+      },
+      "directions": [
+        "south"
+      ]
+    },
+    "s29-390x844": {
+      "stage": 29,
+      "device": [
+        390,
+        844
+      ],
+      "provider": {
+        "stage": "stage-29",
+        "compact": null,
+        "width": 7200,
+        "height": 3500
+      },
+      "requests": {
+        "HONRO.html": {
+          "bytes": 17379,
+          "sha256": "7f0b08897737d44f4f7d9a436e703b7ec48659fcb121098ea1cffd5b1f93d46d"
+        },
+        "web/data/campaign-base.0c57dcfe7c08d421.json": {
+          "bytes": 257,
+          "sha256": "0c57dcfe7c08d421901ffa8eeb437940b6b6d4779816207b51dca7be44c73e5e"
+        },
+        "web/data/campaign-shared.8f8343b5c21518d4.json": {
+          "bytes": 577195,
+          "sha256": "8f8343b5c21518d4fdaa2314e58031fd137b8622d3a6c1ca2fdabafde3bb158f"
+        },
+        "web/data/campaign.7140da5d3649e4ab.json": {
+          "bytes": 54961,
+          "sha256": "7140da5d3649e4aba2c58e180c8ff3f6f171a70e5e6704ad05dc98d428c52822"
+        },
+        "web/data/chapter-29-assets.03bec5fbcabe5e35.json": {
+          "bytes": 181816,
+          "sha256": "03bec5fbcabe5e353cb2eaf8f6437c8e7bdfad224fd3e29ed076600d70207357"
+        },
+        "web/data/chapter-29.9c23e7ce4d1312d3.json": {
+          "bytes": 31855,
+          "sha256": "9c23e7ce4d1312d3121f76c74d5e6fb4fc81fd23de540fe6230117379bf57ab0"
+        },
+        "web/entries/game.b0b1e648c2c03457.js": {
+          "bytes": 20483,
+          "sha256": "b0b1e648c2c034576f5e2c701faaa06c4a8f6dca7459e3f54f07fdb94bf61dee"
+        },
+        "web/runtime/campaign.926544619e01a04a.js": {
+          "bytes": 527,
+          "sha256": "926544619e01a04af2f2cc0e2bd435265ae9efff23062e259563bded6d851307"
+        },
+        "web/runtime/load-data.248fb3aada6f16bb.js": {
+          "bytes": 15550,
+          "sha256": "248fb3aada6f16bbe2d7df7e369db772df2d923bc91b1e517daa53858f558dcb"
+        }
+      },
+      "directions": [
+        "south"
+      ]
+    },
+    "s03-1440x900": {
+      "stage": 3,
+      "device": [
+        1440,
+        900
+      ],
+      "provider": {
+        "stage": "stage-3",
+        "compact": null,
+        "width": 5730.02,
+        "height": 3035.01
+      },
+      "requests": {
+        "HONRO.html": {
+          "bytes": 17379,
+          "sha256": "7f0b08897737d44f4f7d9a436e703b7ec48659fcb121098ea1cffd5b1f93d46d"
+        },
+        "web/data/campaign-base.0c57dcfe7c08d421.json": {
+          "bytes": 257,
+          "sha256": "0c57dcfe7c08d421901ffa8eeb437940b6b6d4779816207b51dca7be44c73e5e"
+        },
+        "web/data/campaign-shared.8f8343b5c21518d4.json": {
+          "bytes": 577195,
+          "sha256": "8f8343b5c21518d4fdaa2314e58031fd137b8622d3a6c1ca2fdabafde3bb158f"
+        },
+        "web/data/campaign.7140da5d3649e4ab.json": {
+          "bytes": 54961,
+          "sha256": "7140da5d3649e4aba2c58e180c8ff3f6f171a70e5e6704ad05dc98d428c52822"
+        },
+        "web/data/chapter-03-assets.7d50da94d4da1893.json": {
+          "bytes": 554962,
+          "sha256": "7d50da94d4da1893009bf3718ed0f1d624d849e29ab715d21723cd2eff469148"
+        },
+        "web/data/chapter-03.631b7b001bd5cf5c.json": {
+          "bytes": 17358,
+          "sha256": "631b7b001bd5cf5c6a2b2bf2b96b5ebe82251099d9e375eb1f3bd058302590d4"
+        },
+        "web/entries/game.b0b1e648c2c03457.js": {
+          "bytes": 20483,
+          "sha256": "b0b1e648c2c034576f5e2c701faaa06c4a8f6dca7459e3f54f07fdb94bf61dee"
+        },
+        "web/runtime/campaign.926544619e01a04a.js": {
+          "bytes": 527,
+          "sha256": "926544619e01a04af2f2cc0e2bd435265ae9efff23062e259563bded6d851307"
+        },
+        "web/runtime/load-data.248fb3aada6f16bb.js": {
+          "bytes": 15550,
+          "sha256": "248fb3aada6f16bbe2d7df7e369db772df2d923bc91b1e517daa53858f558dcb"
+        }
+      },
+      "directions": [
+        "south",
+        "west"
+      ]
+    },
+    "s03-390x844": {
+      "stage": 3,
+      "device": [
+        390,
+        844
+      ],
+      "provider": {
+        "stage": "stage-3",
+        "compact": null,
+        "width": 5730.02,
+        "height": 3035.01
+      },
+      "requests": {
+        "HONRO.html": {
+          "bytes": 17379,
+          "sha256": "7f0b08897737d44f4f7d9a436e703b7ec48659fcb121098ea1cffd5b1f93d46d"
+        },
+        "web/data/campaign-base.0c57dcfe7c08d421.json": {
+          "bytes": 257,
+          "sha256": "0c57dcfe7c08d421901ffa8eeb437940b6b6d4779816207b51dca7be44c73e5e"
+        },
+        "web/data/campaign-shared.8f8343b5c21518d4.json": {
+          "bytes": 577195,
+          "sha256": "8f8343b5c21518d4fdaa2314e58031fd137b8622d3a6c1ca2fdabafde3bb158f"
+        },
+        "web/data/campaign.7140da5d3649e4ab.json": {
+          "bytes": 54961,
+          "sha256": "7140da5d3649e4aba2c58e180c8ff3f6f171a70e5e6704ad05dc98d428c52822"
+        },
+        "web/data/chapter-03-assets.7d50da94d4da1893.json": {
+          "bytes": 554962,
+          "sha256": "7d50da94d4da1893009bf3718ed0f1d624d849e29ab715d21723cd2eff469148"
+        },
+        "web/data/chapter-03.631b7b001bd5cf5c.json": {
+          "bytes": 17358,
+          "sha256": "631b7b001bd5cf5c6a2b2bf2b96b5ebe82251099d9e375eb1f3bd058302590d4"
+        },
+        "web/entries/game.b0b1e648c2c03457.js": {
+          "bytes": 20483,
+          "sha256": "b0b1e648c2c034576f5e2c701faaa06c4a8f6dca7459e3f54f07fdb94bf61dee"
+        },
+        "web/runtime/campaign.926544619e01a04a.js": {
+          "bytes": 527,
+          "sha256": "926544619e01a04af2f2cc0e2bd435265ae9efff23062e259563bded6d851307"
+        },
+        "web/runtime/load-data.248fb3aada6f16bb.js": {
+          "bytes": 15550,
+          "sha256": "248fb3aada6f16bbe2d7df7e369db772df2d923bc91b1e517daa53858f558dcb"
+        }
+      },
+      "directions": [
+        "south",
+        "west"
+      ]
+    }
+  },
+  "frames": {
+    "s28-1440x900-north": {
+      "actual": {
+        "x": 3600,
+        "y": -1800,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": 200,
+        "right": 7000,
+        "top": -3616.137152777778,
+        "bottom": 16.13715277777783
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 7520,
+        "bottom": 3640
+      },
+      "play": {
+        "left": 0,
+        "top": 0,
+        "right": 7200,
+        "bottom": 3400
+      },
+      "terrain": {
+        "left": -9000,
+        "top": -24000,
+        "right": 16200,
+        "bottom": 27400
+      },
+      "css": [
+        1440,
+        769.1875
+      ],
+      "backing": [
+        1440,
+        769
+      ],
+      "dpr": 1,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "physics": "cdecbdc69d660f4cc675c7aa79e9c11064157d1c793961bb49df993d7ce4c4d6",
+      "actualTerrainIDs": [
+        "a3-foundation",
+        "fire-door",
+        "water-gate",
+        "s28-west-veranda",
+        "s28-east-loading-veranda",
+        "s28-roof-access-west",
+        "s28-roof-access-court-lower",
+        "s28-roof-access-court-upper",
+        "s28-roof-access-annex",
+        "s28-roof-access-water",
+        "s28-west-clerks-wing-roof:collision:0",
+        "s28-raised-open-record-hall-roof:collision:0",
+        "s28-east-record-annex-roof:collision:0",
+        "s28-water-yard-shed-roof:collision:0",
+        "s28-west-service-canopy:collision:0",
+        "s28-annex-west-awning:collision:0",
+        "s28-annex-east-awning:collision:0"
+      ],
+      "actualDrawOwnerIDs": [
+        "act1-scene:rooted-pine",
+        "act3-handoff:28:office-foundation",
+        "stage28:record-court:annex-east-awning",
+        "stage28:record-court:annex-west-awning",
+        "stage28:record-court:approval-worktable",
+        "stage28:record-court:boundary-walls",
+        "stage28:record-court:charred-west-fittings",
+        "stage28:record-court:court-plinth",
+        "stage28:record-court:east-record-annex-rear",
+        "stage28:record-court:east-record-annex-roof",
+        "stage28:record-court:fire-water-basin",
+        "stage28:record-court:mound-stone-shoulders",
+        "stage28:record-court:petition-worktable",
+        "stage28:record-court:raised-open-record-hall-rear",
+        "stage28:record-court:raised-open-record-hall-roof",
+        "stage28:record-court:roof-access-support-annex",
+        "stage28:record-court:roof-access-support-court-lower",
+        "stage28:record-court:roof-access-support-court-upper",
+        "stage28:record-court:roof-access-support-water",
+        "stage28:record-court:roof-access-support-west",
+        "stage28:record-court:suppression-worktable",
+        "stage28:record-court:veranda-supports",
+        "stage28:record-court:water-yard-shed-rear",
+        "stage28:record-court:water-yard-shed-roof",
+        "stage28:record-court:west-clerks-wing-charred-frame",
+        "stage28:record-court:west-clerks-wing-rear",
+        "stage28:record-court:west-clerks-wing-roof",
+        "stage28:record-court:west-service-canopy"
+      ],
+      "unitCount": 29,
+      "referencePNG": {
+        "bytes": 364724,
+        "sha256": "bcf9931362a23b2291fe0249e81ee0bf0ed526fbc819a9c76bbb7eb0355d58ba"
+      },
+      "positive": false
+    },
+    "s28-1440x900-east": {
+      "actual": {
+        "x": 7520,
+        "y": 1700,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": 4120,
+        "right": 10920,
+        "top": -116.13715277777783,
+        "bottom": 3516.137152777778
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 7520,
+        "bottom": 3640
+      },
+      "play": {
+        "left": 0,
+        "top": 0,
+        "right": 7200,
+        "bottom": 3400
+      },
+      "terrain": {
+        "left": -9000,
+        "top": -24000,
+        "right": 16200,
+        "bottom": 27400
+      },
+      "css": [
+        1440,
+        769.1875
+      ],
+      "backing": [
+        1440,
+        769
+      ],
+      "dpr": 1,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "physics": "cdecbdc69d660f4cc675c7aa79e9c11064157d1c793961bb49df993d7ce4c4d6",
+      "actualTerrainIDs": [
+        "a3-foundation",
+        "fire-door",
+        "water-gate",
+        "s28-west-veranda",
+        "s28-east-loading-veranda",
+        "s28-roof-access-west",
+        "s28-roof-access-court-lower",
+        "s28-roof-access-court-upper",
+        "s28-roof-access-annex",
+        "s28-roof-access-water",
+        "s28-west-clerks-wing-roof:collision:0",
+        "s28-raised-open-record-hall-roof:collision:0",
+        "s28-east-record-annex-roof:collision:0",
+        "s28-water-yard-shed-roof:collision:0",
+        "s28-west-service-canopy:collision:0",
+        "s28-annex-west-awning:collision:0",
+        "s28-annex-east-awning:collision:0"
+      ],
+      "actualDrawOwnerIDs": [
+        "act1-scene:rooted-pine",
+        "act3-handoff:28:office-foundation",
+        "stage28:record-court:annex-east-awning",
+        "stage28:record-court:annex-west-awning",
+        "stage28:record-court:approval-worktable",
+        "stage28:record-court:boundary-walls",
+        "stage28:record-court:charred-west-fittings",
+        "stage28:record-court:court-plinth",
+        "stage28:record-court:east-record-annex-rear",
+        "stage28:record-court:east-record-annex-roof",
+        "stage28:record-court:fire-water-basin",
+        "stage28:record-court:mound-stone-shoulders",
+        "stage28:record-court:petition-worktable",
+        "stage28:record-court:raised-open-record-hall-rear",
+        "stage28:record-court:raised-open-record-hall-roof",
+        "stage28:record-court:roof-access-support-annex",
+        "stage28:record-court:roof-access-support-court-lower",
+        "stage28:record-court:roof-access-support-court-upper",
+        "stage28:record-court:roof-access-support-water",
+        "stage28:record-court:roof-access-support-west",
+        "stage28:record-court:suppression-worktable",
+        "stage28:record-court:veranda-supports",
+        "stage28:record-court:water-yard-shed-rear",
+        "stage28:record-court:water-yard-shed-roof",
+        "stage28:record-court:west-clerks-wing-charred-frame",
+        "stage28:record-court:west-clerks-wing-rear",
+        "stage28:record-court:west-clerks-wing-roof",
+        "stage28:record-court:west-service-canopy"
+      ],
+      "unitCount": 29,
+      "referencePNG": {
+        "bytes": 426902,
+        "sha256": "d5e0899b65dfa43620aea0c08d9da304f399c6c8eb2d0bbbf76e8dcc4b9b2b85"
+      },
+      "positive": false
+    },
+    "s28-1440x900-south": {
+      "actual": {
+        "x": 3600,
+        "y": 3640,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": 200,
+        "right": 7000,
+        "top": 1823.8628472222222,
+        "bottom": 5456.137152777777
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 7520,
+        "bottom": 3640
+      },
+      "play": {
+        "left": 0,
+        "top": 0,
+        "right": 7200,
+        "bottom": 3400
+      },
+      "terrain": {
+        "left": -9000,
+        "top": -24000,
+        "right": 16200,
+        "bottom": 27400
+      },
+      "css": [
+        1440,
+        769.1875
+      ],
+      "backing": [
+        1440,
+        769
+      ],
+      "dpr": 1,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "physics": "cdecbdc69d660f4cc675c7aa79e9c11064157d1c793961bb49df993d7ce4c4d6",
+      "actualTerrainIDs": [
+        "a3-foundation",
+        "fire-door",
+        "water-gate",
+        "s28-west-veranda",
+        "s28-east-loading-veranda",
+        "s28-roof-access-west",
+        "s28-roof-access-court-lower",
+        "s28-roof-access-court-upper",
+        "s28-roof-access-annex",
+        "s28-roof-access-water",
+        "s28-west-clerks-wing-roof:collision:0",
+        "s28-raised-open-record-hall-roof:collision:0",
+        "s28-east-record-annex-roof:collision:0",
+        "s28-water-yard-shed-roof:collision:0",
+        "s28-west-service-canopy:collision:0",
+        "s28-annex-west-awning:collision:0",
+        "s28-annex-east-awning:collision:0"
+      ],
+      "actualDrawOwnerIDs": [
+        "act1-scene:rooted-pine",
+        "act3-handoff:28:office-foundation",
+        "stage28:record-court:annex-east-awning",
+        "stage28:record-court:annex-west-awning",
+        "stage28:record-court:approval-worktable",
+        "stage28:record-court:boundary-walls",
+        "stage28:record-court:charred-west-fittings",
+        "stage28:record-court:court-plinth",
+        "stage28:record-court:east-record-annex-rear",
+        "stage28:record-court:east-record-annex-roof",
+        "stage28:record-court:fire-water-basin",
+        "stage28:record-court:mound-stone-shoulders",
+        "stage28:record-court:petition-worktable",
+        "stage28:record-court:raised-open-record-hall-rear",
+        "stage28:record-court:raised-open-record-hall-roof",
+        "stage28:record-court:roof-access-support-annex",
+        "stage28:record-court:roof-access-support-court-lower",
+        "stage28:record-court:roof-access-support-court-upper",
+        "stage28:record-court:roof-access-support-water",
+        "stage28:record-court:roof-access-support-west",
+        "stage28:record-court:suppression-worktable",
+        "stage28:record-court:veranda-supports",
+        "stage28:record-court:water-yard-shed-rear",
+        "stage28:record-court:water-yard-shed-roof",
+        "stage28:record-court:west-clerks-wing-charred-frame",
+        "stage28:record-court:west-clerks-wing-rear",
+        "stage28:record-court:west-clerks-wing-roof",
+        "stage28:record-court:west-service-canopy"
+      ],
+      "unitCount": 29,
+      "referencePNG": {
+        "bytes": 387773,
+        "sha256": "7b4e6450f0caaae6eaa19cebf9625b28178ed6b849b3284a7fd0a96d5d8444ce"
+      },
+      "positive": false
+    },
+    "s28-1440x900-west": {
+      "actual": {
+        "x": -320,
+        "y": 1700,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": -3720,
+        "right": 3080,
+        "top": -116.13715277777783,
+        "bottom": 3516.137152777778
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 7520,
+        "bottom": 3640
+      },
+      "play": {
+        "left": 0,
+        "top": 0,
+        "right": 7200,
+        "bottom": 3400
+      },
+      "terrain": {
+        "left": -9000,
+        "top": -24000,
+        "right": 16200,
+        "bottom": 27400
+      },
+      "css": [
+        1440,
+        769.1875
+      ],
+      "backing": [
+        1440,
+        769
+      ],
+      "dpr": 1,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "physics": "cdecbdc69d660f4cc675c7aa79e9c11064157d1c793961bb49df993d7ce4c4d6",
+      "actualTerrainIDs": [
+        "a3-foundation",
+        "fire-door",
+        "water-gate",
+        "s28-west-veranda",
+        "s28-east-loading-veranda",
+        "s28-roof-access-west",
+        "s28-roof-access-court-lower",
+        "s28-roof-access-court-upper",
+        "s28-roof-access-annex",
+        "s28-roof-access-water",
+        "s28-west-clerks-wing-roof:collision:0",
+        "s28-raised-open-record-hall-roof:collision:0",
+        "s28-east-record-annex-roof:collision:0",
+        "s28-water-yard-shed-roof:collision:0",
+        "s28-west-service-canopy:collision:0",
+        "s28-annex-west-awning:collision:0",
+        "s28-annex-east-awning:collision:0"
+      ],
+      "actualDrawOwnerIDs": [
+        "act1-scene:rooted-pine",
+        "act3-handoff:28:office-foundation",
+        "stage28:record-court:annex-east-awning",
+        "stage28:record-court:annex-west-awning",
+        "stage28:record-court:approval-worktable",
+        "stage28:record-court:boundary-walls",
+        "stage28:record-court:charred-west-fittings",
+        "stage28:record-court:court-plinth",
+        "stage28:record-court:east-record-annex-rear",
+        "stage28:record-court:east-record-annex-roof",
+        "stage28:record-court:fire-water-basin",
+        "stage28:record-court:mound-stone-shoulders",
+        "stage28:record-court:petition-worktable",
+        "stage28:record-court:raised-open-record-hall-rear",
+        "stage28:record-court:raised-open-record-hall-roof",
+        "stage28:record-court:roof-access-support-annex",
+        "stage28:record-court:roof-access-support-court-lower",
+        "stage28:record-court:roof-access-support-court-upper",
+        "stage28:record-court:roof-access-support-water",
+        "stage28:record-court:roof-access-support-west",
+        "stage28:record-court:suppression-worktable",
+        "stage28:record-court:veranda-supports",
+        "stage28:record-court:water-yard-shed-rear",
+        "stage28:record-court:water-yard-shed-roof",
+        "stage28:record-court:west-clerks-wing-charred-frame",
+        "stage28:record-court:west-clerks-wing-rear",
+        "stage28:record-court:west-clerks-wing-roof",
+        "stage28:record-court:west-service-canopy"
+      ],
+      "unitCount": 29,
+      "referencePNG": {
+        "bytes": 446204,
+        "sha256": "bbf41f523681a6f3e5d4541b1d27de7f9df77b17e318ffabd86305907c4f918b"
+      },
+      "positive": false
+    },
+    "s28-1440x900-northwest": {
+      "actual": {
+        "x": -320,
+        "y": -1800,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": -3720,
+        "right": 3080,
+        "top": -3616.137152777778,
+        "bottom": 16.13715277777783
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 7520,
+        "bottom": 3640
+      },
+      "play": {
+        "left": 0,
+        "top": 0,
+        "right": 7200,
+        "bottom": 3400
+      },
+      "terrain": {
+        "left": -9000,
+        "top": -24000,
+        "right": 16200,
+        "bottom": 27400
+      },
+      "css": [
+        1440,
+        769.1875
+      ],
+      "backing": [
+        1440,
+        769
+      ],
+      "dpr": 1,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "physics": "cdecbdc69d660f4cc675c7aa79e9c11064157d1c793961bb49df993d7ce4c4d6",
+      "actualTerrainIDs": [
+        "a3-foundation",
+        "fire-door",
+        "water-gate",
+        "s28-west-veranda",
+        "s28-east-loading-veranda",
+        "s28-roof-access-west",
+        "s28-roof-access-court-lower",
+        "s28-roof-access-court-upper",
+        "s28-roof-access-annex",
+        "s28-roof-access-water",
+        "s28-west-clerks-wing-roof:collision:0",
+        "s28-raised-open-record-hall-roof:collision:0",
+        "s28-east-record-annex-roof:collision:0",
+        "s28-water-yard-shed-roof:collision:0",
+        "s28-west-service-canopy:collision:0",
+        "s28-annex-west-awning:collision:0",
+        "s28-annex-east-awning:collision:0"
+      ],
+      "actualDrawOwnerIDs": [
+        "act1-scene:rooted-pine",
+        "act3-handoff:28:office-foundation",
+        "stage28:record-court:annex-east-awning",
+        "stage28:record-court:annex-west-awning",
+        "stage28:record-court:approval-worktable",
+        "stage28:record-court:boundary-walls",
+        "stage28:record-court:charred-west-fittings",
+        "stage28:record-court:court-plinth",
+        "stage28:record-court:east-record-annex-rear",
+        "stage28:record-court:east-record-annex-roof",
+        "stage28:record-court:fire-water-basin",
+        "stage28:record-court:mound-stone-shoulders",
+        "stage28:record-court:petition-worktable",
+        "stage28:record-court:raised-open-record-hall-rear",
+        "stage28:record-court:raised-open-record-hall-roof",
+        "stage28:record-court:roof-access-support-annex",
+        "stage28:record-court:roof-access-support-court-lower",
+        "stage28:record-court:roof-access-support-court-upper",
+        "stage28:record-court:roof-access-support-water",
+        "stage28:record-court:roof-access-support-west",
+        "stage28:record-court:suppression-worktable",
+        "stage28:record-court:veranda-supports",
+        "stage28:record-court:water-yard-shed-rear",
+        "stage28:record-court:water-yard-shed-roof",
+        "stage28:record-court:west-clerks-wing-charred-frame",
+        "stage28:record-court:west-clerks-wing-rear",
+        "stage28:record-court:west-clerks-wing-roof",
+        "stage28:record-court:west-service-canopy"
+      ],
+      "unitCount": 29,
+      "referencePNG": {
+        "bytes": 368262,
+        "sha256": "efb6f0d35d3060027562b85ecc65bd25244e94a5951d406ac31992548956eb8c"
+      },
+      "positive": false
+    },
+    "s28-1440x900-northeast": {
+      "actual": {
+        "x": 7520,
+        "y": -1800,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": 4120,
+        "right": 10920,
+        "top": -3616.137152777778,
+        "bottom": 16.13715277777783
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 7520,
+        "bottom": 3640
+      },
+      "play": {
+        "left": 0,
+        "top": 0,
+        "right": 7200,
+        "bottom": 3400
+      },
+      "terrain": {
+        "left": -9000,
+        "top": -24000,
+        "right": 16200,
+        "bottom": 27400
+      },
+      "css": [
+        1440,
+        769.1875
+      ],
+      "backing": [
+        1440,
+        769
+      ],
+      "dpr": 1,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "physics": "cdecbdc69d660f4cc675c7aa79e9c11064157d1c793961bb49df993d7ce4c4d6",
+      "actualTerrainIDs": [
+        "a3-foundation",
+        "fire-door",
+        "water-gate",
+        "s28-west-veranda",
+        "s28-east-loading-veranda",
+        "s28-roof-access-west",
+        "s28-roof-access-court-lower",
+        "s28-roof-access-court-upper",
+        "s28-roof-access-annex",
+        "s28-roof-access-water",
+        "s28-west-clerks-wing-roof:collision:0",
+        "s28-raised-open-record-hall-roof:collision:0",
+        "s28-east-record-annex-roof:collision:0",
+        "s28-water-yard-shed-roof:collision:0",
+        "s28-west-service-canopy:collision:0",
+        "s28-annex-west-awning:collision:0",
+        "s28-annex-east-awning:collision:0"
+      ],
+      "actualDrawOwnerIDs": [
+        "act1-scene:rooted-pine",
+        "act3-handoff:28:office-foundation",
+        "stage28:record-court:annex-east-awning",
+        "stage28:record-court:annex-west-awning",
+        "stage28:record-court:approval-worktable",
+        "stage28:record-court:boundary-walls",
+        "stage28:record-court:charred-west-fittings",
+        "stage28:record-court:court-plinth",
+        "stage28:record-court:east-record-annex-rear",
+        "stage28:record-court:east-record-annex-roof",
+        "stage28:record-court:fire-water-basin",
+        "stage28:record-court:mound-stone-shoulders",
+        "stage28:record-court:petition-worktable",
+        "stage28:record-court:raised-open-record-hall-rear",
+        "stage28:record-court:raised-open-record-hall-roof",
+        "stage28:record-court:roof-access-support-annex",
+        "stage28:record-court:roof-access-support-court-lower",
+        "stage28:record-court:roof-access-support-court-upper",
+        "stage28:record-court:roof-access-support-water",
+        "stage28:record-court:roof-access-support-west",
+        "stage28:record-court:suppression-worktable",
+        "stage28:record-court:veranda-supports",
+        "stage28:record-court:water-yard-shed-rear",
+        "stage28:record-court:water-yard-shed-roof",
+        "stage28:record-court:west-clerks-wing-charred-frame",
+        "stage28:record-court:west-clerks-wing-rear",
+        "stage28:record-court:west-clerks-wing-roof",
+        "stage28:record-court:west-service-canopy"
+      ],
+      "unitCount": 29,
+      "referencePNG": {
+        "bytes": 357096,
+        "sha256": "7b2627bb170c809faaecafd58b3f7dd675f21dde291330e2d4fe8029a6371a40"
+      },
+      "positive": false
+    },
+    "s28-1440x900-southwest": {
+      "actual": {
+        "x": -320,
+        "y": 3640,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": -3720,
+        "right": 3080,
+        "top": 1823.8628472222222,
+        "bottom": 5456.137152777777
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 7520,
+        "bottom": 3640
+      },
+      "play": {
+        "left": 0,
+        "top": 0,
+        "right": 7200,
+        "bottom": 3400
+      },
+      "terrain": {
+        "left": -9000,
+        "top": -24000,
+        "right": 16200,
+        "bottom": 27400
+      },
+      "css": [
+        1440,
+        769.1875
+      ],
+      "backing": [
+        1440,
+        769
+      ],
+      "dpr": 1,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "physics": "cdecbdc69d660f4cc675c7aa79e9c11064157d1c793961bb49df993d7ce4c4d6",
+      "actualTerrainIDs": [
+        "a3-foundation",
+        "fire-door",
+        "water-gate",
+        "s28-west-veranda",
+        "s28-east-loading-veranda",
+        "s28-roof-access-west",
+        "s28-roof-access-court-lower",
+        "s28-roof-access-court-upper",
+        "s28-roof-access-annex",
+        "s28-roof-access-water",
+        "s28-west-clerks-wing-roof:collision:0",
+        "s28-raised-open-record-hall-roof:collision:0",
+        "s28-east-record-annex-roof:collision:0",
+        "s28-water-yard-shed-roof:collision:0",
+        "s28-west-service-canopy:collision:0",
+        "s28-annex-west-awning:collision:0",
+        "s28-annex-east-awning:collision:0"
+      ],
+      "actualDrawOwnerIDs": [
+        "act1-scene:rooted-pine",
+        "act3-handoff:28:office-foundation",
+        "stage28:record-court:annex-east-awning",
+        "stage28:record-court:annex-west-awning",
+        "stage28:record-court:approval-worktable",
+        "stage28:record-court:boundary-walls",
+        "stage28:record-court:charred-west-fittings",
+        "stage28:record-court:court-plinth",
+        "stage28:record-court:east-record-annex-rear",
+        "stage28:record-court:east-record-annex-roof",
+        "stage28:record-court:fire-water-basin",
+        "stage28:record-court:mound-stone-shoulders",
+        "stage28:record-court:petition-worktable",
+        "stage28:record-court:raised-open-record-hall-rear",
+        "stage28:record-court:raised-open-record-hall-roof",
+        "stage28:record-court:roof-access-support-annex",
+        "stage28:record-court:roof-access-support-court-lower",
+        "stage28:record-court:roof-access-support-court-upper",
+        "stage28:record-court:roof-access-support-water",
+        "stage28:record-court:roof-access-support-west",
+        "stage28:record-court:suppression-worktable",
+        "stage28:record-court:veranda-supports",
+        "stage28:record-court:water-yard-shed-rear",
+        "stage28:record-court:water-yard-shed-roof",
+        "stage28:record-court:west-clerks-wing-charred-frame",
+        "stage28:record-court:west-clerks-wing-rear",
+        "stage28:record-court:west-clerks-wing-roof",
+        "stage28:record-court:west-service-canopy"
+      ],
+      "unitCount": 29,
+      "referencePNG": {
+        "bytes": 241414,
+        "sha256": "e7153662a244daa52027ac6ff89665ecb32a3499fdc0ea3e216235329ffd088b"
+      },
+      "positive": false
+    },
+    "s28-1440x900-southeast": {
+      "actual": {
+        "x": 7520,
+        "y": 3640,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": 4120,
+        "right": 10920,
+        "top": 1823.8628472222222,
+        "bottom": 5456.137152777777
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 7520,
+        "bottom": 3640
+      },
+      "play": {
+        "left": 0,
+        "top": 0,
+        "right": 7200,
+        "bottom": 3400
+      },
+      "terrain": {
+        "left": -9000,
+        "top": -24000,
+        "right": 16200,
+        "bottom": 27400
+      },
+      "css": [
+        1440,
+        769.1875
+      ],
+      "backing": [
+        1440,
+        769
+      ],
+      "dpr": 1,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "physics": "cdecbdc69d660f4cc675c7aa79e9c11064157d1c793961bb49df993d7ce4c4d6",
+      "actualTerrainIDs": [
+        "a3-foundation",
+        "fire-door",
+        "water-gate",
+        "s28-west-veranda",
+        "s28-east-loading-veranda",
+        "s28-roof-access-west",
+        "s28-roof-access-court-lower",
+        "s28-roof-access-court-upper",
+        "s28-roof-access-annex",
+        "s28-roof-access-water",
+        "s28-west-clerks-wing-roof:collision:0",
+        "s28-raised-open-record-hall-roof:collision:0",
+        "s28-east-record-annex-roof:collision:0",
+        "s28-water-yard-shed-roof:collision:0",
+        "s28-west-service-canopy:collision:0",
+        "s28-annex-west-awning:collision:0",
+        "s28-annex-east-awning:collision:0"
+      ],
+      "actualDrawOwnerIDs": [
+        "act1-scene:rooted-pine",
+        "act3-handoff:28:office-foundation",
+        "stage28:record-court:annex-east-awning",
+        "stage28:record-court:annex-west-awning",
+        "stage28:record-court:approval-worktable",
+        "stage28:record-court:boundary-walls",
+        "stage28:record-court:charred-west-fittings",
+        "stage28:record-court:court-plinth",
+        "stage28:record-court:east-record-annex-rear",
+        "stage28:record-court:east-record-annex-roof",
+        "stage28:record-court:fire-water-basin",
+        "stage28:record-court:mound-stone-shoulders",
+        "stage28:record-court:petition-worktable",
+        "stage28:record-court:raised-open-record-hall-rear",
+        "stage28:record-court:raised-open-record-hall-roof",
+        "stage28:record-court:roof-access-support-annex",
+        "stage28:record-court:roof-access-support-court-lower",
+        "stage28:record-court:roof-access-support-court-upper",
+        "stage28:record-court:roof-access-support-water",
+        "stage28:record-court:roof-access-support-west",
+        "stage28:record-court:suppression-worktable",
+        "stage28:record-court:veranda-supports",
+        "stage28:record-court:water-yard-shed-rear",
+        "stage28:record-court:water-yard-shed-roof",
+        "stage28:record-court:west-clerks-wing-charred-frame",
+        "stage28:record-court:west-clerks-wing-rear",
+        "stage28:record-court:west-clerks-wing-roof",
+        "stage28:record-court:west-service-canopy"
+      ],
+      "unitCount": 29,
+      "referencePNG": {
+        "bytes": 221967,
+        "sha256": "71195d5446e566bce8a3f81b2d1663806cc04cc39e9bd959238153b1ae2c323a"
+      },
+      "positive": false
+    },
+    "s28-390x844-north": {
+      "actual": {
+        "x": 3600,
+        "y": -1800,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": 200,
+        "right": 7000,
+        "top": -7445.82532051282,
+        "bottom": 3845.8253205128203
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 7520,
+        "bottom": 3640
+      },
+      "play": {
+        "left": 0,
+        "top": 0,
+        "right": 7200,
+        "bottom": 3400
+      },
+      "terrain": {
+        "left": -9000,
+        "top": -24000,
+        "right": 16200,
+        "bottom": 27400
+      },
+      "css": [
+        390,
+        647.609375
+      ],
+      "backing": [
+        390,
+        648
+      ],
+      "dpr": 1,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "physics": "cdecbdc69d660f4cc675c7aa79e9c11064157d1c793961bb49df993d7ce4c4d6",
+      "actualTerrainIDs": [
+        "a3-foundation",
+        "fire-door",
+        "water-gate",
+        "s28-west-veranda",
+        "s28-east-loading-veranda",
+        "s28-roof-access-west",
+        "s28-roof-access-court-lower",
+        "s28-roof-access-court-upper",
+        "s28-roof-access-annex",
+        "s28-roof-access-water",
+        "s28-west-clerks-wing-roof:collision:0",
+        "s28-raised-open-record-hall-roof:collision:0",
+        "s28-east-record-annex-roof:collision:0",
+        "s28-water-yard-shed-roof:collision:0",
+        "s28-west-service-canopy:collision:0",
+        "s28-annex-west-awning:collision:0",
+        "s28-annex-east-awning:collision:0"
+      ],
+      "actualDrawOwnerIDs": [
+        "act1-scene:rooted-pine",
+        "act3-handoff:28:office-foundation",
+        "stage28:record-court:annex-east-awning",
+        "stage28:record-court:annex-west-awning",
+        "stage28:record-court:approval-worktable",
+        "stage28:record-court:boundary-walls",
+        "stage28:record-court:charred-west-fittings",
+        "stage28:record-court:court-plinth",
+        "stage28:record-court:east-record-annex-rear",
+        "stage28:record-court:east-record-annex-roof",
+        "stage28:record-court:fire-water-basin",
+        "stage28:record-court:mound-stone-shoulders",
+        "stage28:record-court:petition-worktable",
+        "stage28:record-court:raised-open-record-hall-rear",
+        "stage28:record-court:raised-open-record-hall-roof",
+        "stage28:record-court:roof-access-support-annex",
+        "stage28:record-court:roof-access-support-court-lower",
+        "stage28:record-court:roof-access-support-court-upper",
+        "stage28:record-court:roof-access-support-water",
+        "stage28:record-court:roof-access-support-west",
+        "stage28:record-court:suppression-worktable",
+        "stage28:record-court:veranda-supports",
+        "stage28:record-court:water-yard-shed-rear",
+        "stage28:record-court:water-yard-shed-roof",
+        "stage28:record-court:west-clerks-wing-charred-frame",
+        "stage28:record-court:west-clerks-wing-rear",
+        "stage28:record-court:west-clerks-wing-roof",
+        "stage28:record-court:west-service-canopy"
+      ],
+      "unitCount": 29,
+      "referencePNG": {
+        "bytes": 148895,
+        "sha256": "341178607e56844ac7c95de31c3e897e868a173776a8c71533c1c3b89e9b7bf8"
+      },
+      "positive": false
+    },
+    "s28-390x844-east": {
+      "actual": {
+        "x": 7520,
+        "y": 1700,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": 4120,
+        "right": 10920,
+        "top": -3945.8253205128203,
+        "bottom": 7345.82532051282
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 7520,
+        "bottom": 3640
+      },
+      "play": {
+        "left": 0,
+        "top": 0,
+        "right": 7200,
+        "bottom": 3400
+      },
+      "terrain": {
+        "left": -9000,
+        "top": -24000,
+        "right": 16200,
+        "bottom": 27400
+      },
+      "css": [
+        390,
+        647.609375
+      ],
+      "backing": [
+        390,
+        648
+      ],
+      "dpr": 1,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "physics": "cdecbdc69d660f4cc675c7aa79e9c11064157d1c793961bb49df993d7ce4c4d6",
+      "actualTerrainIDs": [
+        "a3-foundation",
+        "fire-door",
+        "water-gate",
+        "s28-west-veranda",
+        "s28-east-loading-veranda",
+        "s28-roof-access-west",
+        "s28-roof-access-court-lower",
+        "s28-roof-access-court-upper",
+        "s28-roof-access-annex",
+        "s28-roof-access-water",
+        "s28-west-clerks-wing-roof:collision:0",
+        "s28-raised-open-record-hall-roof:collision:0",
+        "s28-east-record-annex-roof:collision:0",
+        "s28-water-yard-shed-roof:collision:0",
+        "s28-west-service-canopy:collision:0",
+        "s28-annex-west-awning:collision:0",
+        "s28-annex-east-awning:collision:0"
+      ],
+      "actualDrawOwnerIDs": [
+        "act1-scene:rooted-pine",
+        "act3-handoff:28:office-foundation",
+        "stage28:record-court:annex-east-awning",
+        "stage28:record-court:annex-west-awning",
+        "stage28:record-court:approval-worktable",
+        "stage28:record-court:boundary-walls",
+        "stage28:record-court:charred-west-fittings",
+        "stage28:record-court:court-plinth",
+        "stage28:record-court:east-record-annex-rear",
+        "stage28:record-court:east-record-annex-roof",
+        "stage28:record-court:fire-water-basin",
+        "stage28:record-court:mound-stone-shoulders",
+        "stage28:record-court:petition-worktable",
+        "stage28:record-court:raised-open-record-hall-rear",
+        "stage28:record-court:raised-open-record-hall-roof",
+        "stage28:record-court:roof-access-support-annex",
+        "stage28:record-court:roof-access-support-court-lower",
+        "stage28:record-court:roof-access-support-court-upper",
+        "stage28:record-court:roof-access-support-water",
+        "stage28:record-court:roof-access-support-west",
+        "stage28:record-court:suppression-worktable",
+        "stage28:record-court:veranda-supports",
+        "stage28:record-court:water-yard-shed-rear",
+        "stage28:record-court:water-yard-shed-roof",
+        "stage28:record-court:west-clerks-wing-charred-frame",
+        "stage28:record-court:west-clerks-wing-rear",
+        "stage28:record-court:west-clerks-wing-roof",
+        "stage28:record-court:west-service-canopy"
+      ],
+      "unitCount": 29,
+      "referencePNG": {
+        "bytes": 90803,
+        "sha256": "6320edd70ad9337bb804e2fdc65cecd55077dcc38fdae63651acf03974f1a51c"
+      },
+      "positive": false
+    },
+    "s28-390x844-south": {
+      "actual": {
+        "x": 3600,
+        "y": 3640,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": 200,
+        "right": 7000,
+        "top": -2005.8253205128203,
+        "bottom": 9285.82532051282
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 7520,
+        "bottom": 3640
+      },
+      "play": {
+        "left": 0,
+        "top": 0,
+        "right": 7200,
+        "bottom": 3400
+      },
+      "terrain": {
+        "left": -9000,
+        "top": -24000,
+        "right": 16200,
+        "bottom": 27400
+      },
+      "css": [
+        390,
+        647.609375
+      ],
+      "backing": [
+        390,
+        648
+      ],
+      "dpr": 1,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "physics": "cdecbdc69d660f4cc675c7aa79e9c11064157d1c793961bb49df993d7ce4c4d6",
+      "actualTerrainIDs": [
+        "a3-foundation",
+        "fire-door",
+        "water-gate",
+        "s28-west-veranda",
+        "s28-east-loading-veranda",
+        "s28-roof-access-west",
+        "s28-roof-access-court-lower",
+        "s28-roof-access-court-upper",
+        "s28-roof-access-annex",
+        "s28-roof-access-water",
+        "s28-west-clerks-wing-roof:collision:0",
+        "s28-raised-open-record-hall-roof:collision:0",
+        "s28-east-record-annex-roof:collision:0",
+        "s28-water-yard-shed-roof:collision:0",
+        "s28-west-service-canopy:collision:0",
+        "s28-annex-west-awning:collision:0",
+        "s28-annex-east-awning:collision:0"
+      ],
+      "actualDrawOwnerIDs": [
+        "act1-scene:rooted-pine",
+        "act3-handoff:28:office-foundation",
+        "stage28:record-court:annex-east-awning",
+        "stage28:record-court:annex-west-awning",
+        "stage28:record-court:approval-worktable",
+        "stage28:record-court:boundary-walls",
+        "stage28:record-court:charred-west-fittings",
+        "stage28:record-court:court-plinth",
+        "stage28:record-court:east-record-annex-rear",
+        "stage28:record-court:east-record-annex-roof",
+        "stage28:record-court:fire-water-basin",
+        "stage28:record-court:mound-stone-shoulders",
+        "stage28:record-court:petition-worktable",
+        "stage28:record-court:raised-open-record-hall-rear",
+        "stage28:record-court:raised-open-record-hall-roof",
+        "stage28:record-court:roof-access-support-annex",
+        "stage28:record-court:roof-access-support-court-lower",
+        "stage28:record-court:roof-access-support-court-upper",
+        "stage28:record-court:roof-access-support-water",
+        "stage28:record-court:roof-access-support-west",
+        "stage28:record-court:suppression-worktable",
+        "stage28:record-court:veranda-supports",
+        "stage28:record-court:water-yard-shed-rear",
+        "stage28:record-court:water-yard-shed-roof",
+        "stage28:record-court:west-clerks-wing-charred-frame",
+        "stage28:record-court:west-clerks-wing-rear",
+        "stage28:record-court:west-clerks-wing-roof",
+        "stage28:record-court:west-service-canopy"
+      ],
+      "unitCount": 29,
+      "referencePNG": {
+        "bytes": 88279,
+        "sha256": "cc9782a9c5375c94d312becd11fa236ef6fd0866471337036660e0ef3ec691cd"
+      },
+      "positive": true
+    },
+    "s28-390x844-west": {
+      "actual": {
+        "x": -320,
+        "y": 1700,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": -3720,
+        "right": 3080,
+        "top": -3945.8253205128203,
+        "bottom": 7345.82532051282
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 7520,
+        "bottom": 3640
+      },
+      "play": {
+        "left": 0,
+        "top": 0,
+        "right": 7200,
+        "bottom": 3400
+      },
+      "terrain": {
+        "left": -9000,
+        "top": -24000,
+        "right": 16200,
+        "bottom": 27400
+      },
+      "css": [
+        390,
+        647.609375
+      ],
+      "backing": [
+        390,
+        648
+      ],
+      "dpr": 1,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "physics": "cdecbdc69d660f4cc675c7aa79e9c11064157d1c793961bb49df993d7ce4c4d6",
+      "actualTerrainIDs": [
+        "a3-foundation",
+        "fire-door",
+        "water-gate",
+        "s28-west-veranda",
+        "s28-east-loading-veranda",
+        "s28-roof-access-west",
+        "s28-roof-access-court-lower",
+        "s28-roof-access-court-upper",
+        "s28-roof-access-annex",
+        "s28-roof-access-water",
+        "s28-west-clerks-wing-roof:collision:0",
+        "s28-raised-open-record-hall-roof:collision:0",
+        "s28-east-record-annex-roof:collision:0",
+        "s28-water-yard-shed-roof:collision:0",
+        "s28-west-service-canopy:collision:0",
+        "s28-annex-west-awning:collision:0",
+        "s28-annex-east-awning:collision:0"
+      ],
+      "actualDrawOwnerIDs": [
+        "act1-scene:rooted-pine",
+        "act3-handoff:28:office-foundation",
+        "stage28:record-court:annex-east-awning",
+        "stage28:record-court:annex-west-awning",
+        "stage28:record-court:approval-worktable",
+        "stage28:record-court:boundary-walls",
+        "stage28:record-court:charred-west-fittings",
+        "stage28:record-court:court-plinth",
+        "stage28:record-court:east-record-annex-rear",
+        "stage28:record-court:east-record-annex-roof",
+        "stage28:record-court:fire-water-basin",
+        "stage28:record-court:mound-stone-shoulders",
+        "stage28:record-court:petition-worktable",
+        "stage28:record-court:raised-open-record-hall-rear",
+        "stage28:record-court:raised-open-record-hall-roof",
+        "stage28:record-court:roof-access-support-annex",
+        "stage28:record-court:roof-access-support-court-lower",
+        "stage28:record-court:roof-access-support-court-upper",
+        "stage28:record-court:roof-access-support-water",
+        "stage28:record-court:roof-access-support-west",
+        "stage28:record-court:suppression-worktable",
+        "stage28:record-court:veranda-supports",
+        "stage28:record-court:water-yard-shed-rear",
+        "stage28:record-court:water-yard-shed-roof",
+        "stage28:record-court:west-clerks-wing-charred-frame",
+        "stage28:record-court:west-clerks-wing-rear",
+        "stage28:record-court:west-clerks-wing-roof",
+        "stage28:record-court:west-service-canopy"
+      ],
+      "unitCount": 29,
+      "referencePNG": {
+        "bytes": 92170,
+        "sha256": "c3b9fb3354953e480ee67919c21411865a42cc973426b9f2b527a1f28314e588"
+      },
+      "positive": false
+    },
+    "s28-390x844-northwest": {
+      "actual": {
+        "x": -320,
+        "y": -1800,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": -3720,
+        "right": 3080,
+        "top": -7445.82532051282,
+        "bottom": 3845.8253205128203
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 7520,
+        "bottom": 3640
+      },
+      "play": {
+        "left": 0,
+        "top": 0,
+        "right": 7200,
+        "bottom": 3400
+      },
+      "terrain": {
+        "left": -9000,
+        "top": -24000,
+        "right": 16200,
+        "bottom": 27400
+      },
+      "css": [
+        390,
+        647.609375
+      ],
+      "backing": [
+        390,
+        648
+      ],
+      "dpr": 1,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "physics": "cdecbdc69d660f4cc675c7aa79e9c11064157d1c793961bb49df993d7ce4c4d6",
+      "actualTerrainIDs": [
+        "a3-foundation",
+        "fire-door",
+        "water-gate",
+        "s28-west-veranda",
+        "s28-east-loading-veranda",
+        "s28-roof-access-west",
+        "s28-roof-access-court-lower",
+        "s28-roof-access-court-upper",
+        "s28-roof-access-annex",
+        "s28-roof-access-water",
+        "s28-west-clerks-wing-roof:collision:0",
+        "s28-raised-open-record-hall-roof:collision:0",
+        "s28-east-record-annex-roof:collision:0",
+        "s28-water-yard-shed-roof:collision:0",
+        "s28-west-service-canopy:collision:0",
+        "s28-annex-west-awning:collision:0",
+        "s28-annex-east-awning:collision:0"
+      ],
+      "actualDrawOwnerIDs": [
+        "act1-scene:rooted-pine",
+        "act3-handoff:28:office-foundation",
+        "stage28:record-court:annex-east-awning",
+        "stage28:record-court:annex-west-awning",
+        "stage28:record-court:approval-worktable",
+        "stage28:record-court:boundary-walls",
+        "stage28:record-court:charred-west-fittings",
+        "stage28:record-court:court-plinth",
+        "stage28:record-court:east-record-annex-rear",
+        "stage28:record-court:east-record-annex-roof",
+        "stage28:record-court:fire-water-basin",
+        "stage28:record-court:mound-stone-shoulders",
+        "stage28:record-court:petition-worktable",
+        "stage28:record-court:raised-open-record-hall-rear",
+        "stage28:record-court:raised-open-record-hall-roof",
+        "stage28:record-court:roof-access-support-annex",
+        "stage28:record-court:roof-access-support-court-lower",
+        "stage28:record-court:roof-access-support-court-upper",
+        "stage28:record-court:roof-access-support-water",
+        "stage28:record-court:roof-access-support-west",
+        "stage28:record-court:suppression-worktable",
+        "stage28:record-court:veranda-supports",
+        "stage28:record-court:water-yard-shed-rear",
+        "stage28:record-court:water-yard-shed-roof",
+        "stage28:record-court:west-clerks-wing-charred-frame",
+        "stage28:record-court:west-clerks-wing-rear",
+        "stage28:record-court:west-clerks-wing-roof",
+        "stage28:record-court:west-service-canopy"
+      ],
+      "unitCount": 29,
+      "referencePNG": {
+        "bytes": 127269,
+        "sha256": "af3c724982d86b48e92370ef9afddaa09aac3cd1a2f9063155f6c9334410c2e3"
+      },
+      "positive": false
+    },
+    "s28-390x844-northeast": {
+      "actual": {
+        "x": 7520,
+        "y": -1800,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": 4120,
+        "right": 10920,
+        "top": -7445.82532051282,
+        "bottom": 3845.8253205128203
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 7520,
+        "bottom": 3640
+      },
+      "play": {
+        "left": 0,
+        "top": 0,
+        "right": 7200,
+        "bottom": 3400
+      },
+      "terrain": {
+        "left": -9000,
+        "top": -24000,
+        "right": 16200,
+        "bottom": 27400
+      },
+      "css": [
+        390,
+        647.609375
+      ],
+      "backing": [
+        390,
+        648
+      ],
+      "dpr": 1,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "physics": "cdecbdc69d660f4cc675c7aa79e9c11064157d1c793961bb49df993d7ce4c4d6",
+      "actualTerrainIDs": [
+        "a3-foundation",
+        "fire-door",
+        "water-gate",
+        "s28-west-veranda",
+        "s28-east-loading-veranda",
+        "s28-roof-access-west",
+        "s28-roof-access-court-lower",
+        "s28-roof-access-court-upper",
+        "s28-roof-access-annex",
+        "s28-roof-access-water",
+        "s28-west-clerks-wing-roof:collision:0",
+        "s28-raised-open-record-hall-roof:collision:0",
+        "s28-east-record-annex-roof:collision:0",
+        "s28-water-yard-shed-roof:collision:0",
+        "s28-west-service-canopy:collision:0",
+        "s28-annex-west-awning:collision:0",
+        "s28-annex-east-awning:collision:0"
+      ],
+      "actualDrawOwnerIDs": [
+        "act1-scene:rooted-pine",
+        "act3-handoff:28:office-foundation",
+        "stage28:record-court:annex-east-awning",
+        "stage28:record-court:annex-west-awning",
+        "stage28:record-court:approval-worktable",
+        "stage28:record-court:boundary-walls",
+        "stage28:record-court:charred-west-fittings",
+        "stage28:record-court:court-plinth",
+        "stage28:record-court:east-record-annex-rear",
+        "stage28:record-court:east-record-annex-roof",
+        "stage28:record-court:fire-water-basin",
+        "stage28:record-court:mound-stone-shoulders",
+        "stage28:record-court:petition-worktable",
+        "stage28:record-court:raised-open-record-hall-rear",
+        "stage28:record-court:raised-open-record-hall-roof",
+        "stage28:record-court:roof-access-support-annex",
+        "stage28:record-court:roof-access-support-court-lower",
+        "stage28:record-court:roof-access-support-court-upper",
+        "stage28:record-court:roof-access-support-water",
+        "stage28:record-court:roof-access-support-west",
+        "stage28:record-court:suppression-worktable",
+        "stage28:record-court:veranda-supports",
+        "stage28:record-court:water-yard-shed-rear",
+        "stage28:record-court:water-yard-shed-roof",
+        "stage28:record-court:west-clerks-wing-charred-frame",
+        "stage28:record-court:west-clerks-wing-rear",
+        "stage28:record-court:west-clerks-wing-roof",
+        "stage28:record-court:west-service-canopy"
+      ],
+      "unitCount": 29,
+      "referencePNG": {
+        "bytes": 128050,
+        "sha256": "62611c40e2b1eb18b9122fdf50bd5a6b758f0c761c78ddb5658ae15aa3ded3b1"
+      },
+      "positive": false
+    },
+    "s28-390x844-southwest": {
+      "actual": {
+        "x": -320,
+        "y": 3640,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": -3720,
+        "right": 3080,
+        "top": -2005.8253205128203,
+        "bottom": 9285.82532051282
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 7520,
+        "bottom": 3640
+      },
+      "play": {
+        "left": 0,
+        "top": 0,
+        "right": 7200,
+        "bottom": 3400
+      },
+      "terrain": {
+        "left": -9000,
+        "top": -24000,
+        "right": 16200,
+        "bottom": 27400
+      },
+      "css": [
+        390,
+        647.609375
+      ],
+      "backing": [
+        390,
+        648
+      ],
+      "dpr": 1,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "physics": "cdecbdc69d660f4cc675c7aa79e9c11064157d1c793961bb49df993d7ce4c4d6",
+      "actualTerrainIDs": [
+        "a3-foundation",
+        "fire-door",
+        "water-gate",
+        "s28-west-veranda",
+        "s28-east-loading-veranda",
+        "s28-roof-access-west",
+        "s28-roof-access-court-lower",
+        "s28-roof-access-court-upper",
+        "s28-roof-access-annex",
+        "s28-roof-access-water",
+        "s28-west-clerks-wing-roof:collision:0",
+        "s28-raised-open-record-hall-roof:collision:0",
+        "s28-east-record-annex-roof:collision:0",
+        "s28-water-yard-shed-roof:collision:0",
+        "s28-west-service-canopy:collision:0",
+        "s28-annex-west-awning:collision:0",
+        "s28-annex-east-awning:collision:0"
+      ],
+      "actualDrawOwnerIDs": [
+        "act1-scene:rooted-pine",
+        "act3-handoff:28:office-foundation",
+        "stage28:record-court:annex-east-awning",
+        "stage28:record-court:annex-west-awning",
+        "stage28:record-court:approval-worktable",
+        "stage28:record-court:boundary-walls",
+        "stage28:record-court:charred-west-fittings",
+        "stage28:record-court:court-plinth",
+        "stage28:record-court:east-record-annex-rear",
+        "stage28:record-court:east-record-annex-roof",
+        "stage28:record-court:fire-water-basin",
+        "stage28:record-court:mound-stone-shoulders",
+        "stage28:record-court:petition-worktable",
+        "stage28:record-court:raised-open-record-hall-rear",
+        "stage28:record-court:raised-open-record-hall-roof",
+        "stage28:record-court:roof-access-support-annex",
+        "stage28:record-court:roof-access-support-court-lower",
+        "stage28:record-court:roof-access-support-court-upper",
+        "stage28:record-court:roof-access-support-water",
+        "stage28:record-court:roof-access-support-west",
+        "stage28:record-court:suppression-worktable",
+        "stage28:record-court:veranda-supports",
+        "stage28:record-court:water-yard-shed-rear",
+        "stage28:record-court:water-yard-shed-roof",
+        "stage28:record-court:west-clerks-wing-charred-frame",
+        "stage28:record-court:west-clerks-wing-rear",
+        "stage28:record-court:west-clerks-wing-roof",
+        "stage28:record-court:west-service-canopy"
+      ],
+      "unitCount": 29,
+      "referencePNG": {
+        "bytes": 70398,
+        "sha256": "05dcd2caddf20eec3f8ffd9580aa6c87c20439e60e5e57fba512cbe3f7b5d623"
+      },
+      "positive": true
+    },
+    "s28-390x844-southeast": {
+      "actual": {
+        "x": 7520,
+        "y": 3640,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": 4120,
+        "right": 10920,
+        "top": -2005.8253205128203,
+        "bottom": 9285.82532051282
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 7520,
+        "bottom": 3640
+      },
+      "play": {
+        "left": 0,
+        "top": 0,
+        "right": 7200,
+        "bottom": 3400
+      },
+      "terrain": {
+        "left": -9000,
+        "top": -24000,
+        "right": 16200,
+        "bottom": 27400
+      },
+      "css": [
+        390,
+        647.609375
+      ],
+      "backing": [
+        390,
+        648
+      ],
+      "dpr": 1,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "physics": "cdecbdc69d660f4cc675c7aa79e9c11064157d1c793961bb49df993d7ce4c4d6",
+      "actualTerrainIDs": [
+        "a3-foundation",
+        "fire-door",
+        "water-gate",
+        "s28-west-veranda",
+        "s28-east-loading-veranda",
+        "s28-roof-access-west",
+        "s28-roof-access-court-lower",
+        "s28-roof-access-court-upper",
+        "s28-roof-access-annex",
+        "s28-roof-access-water",
+        "s28-west-clerks-wing-roof:collision:0",
+        "s28-raised-open-record-hall-roof:collision:0",
+        "s28-east-record-annex-roof:collision:0",
+        "s28-water-yard-shed-roof:collision:0",
+        "s28-west-service-canopy:collision:0",
+        "s28-annex-west-awning:collision:0",
+        "s28-annex-east-awning:collision:0"
+      ],
+      "actualDrawOwnerIDs": [
+        "act1-scene:rooted-pine",
+        "act3-handoff:28:office-foundation",
+        "stage28:record-court:annex-east-awning",
+        "stage28:record-court:annex-west-awning",
+        "stage28:record-court:approval-worktable",
+        "stage28:record-court:boundary-walls",
+        "stage28:record-court:charred-west-fittings",
+        "stage28:record-court:court-plinth",
+        "stage28:record-court:east-record-annex-rear",
+        "stage28:record-court:east-record-annex-roof",
+        "stage28:record-court:fire-water-basin",
+        "stage28:record-court:mound-stone-shoulders",
+        "stage28:record-court:petition-worktable",
+        "stage28:record-court:raised-open-record-hall-rear",
+        "stage28:record-court:raised-open-record-hall-roof",
+        "stage28:record-court:roof-access-support-annex",
+        "stage28:record-court:roof-access-support-court-lower",
+        "stage28:record-court:roof-access-support-court-upper",
+        "stage28:record-court:roof-access-support-water",
+        "stage28:record-court:roof-access-support-west",
+        "stage28:record-court:suppression-worktable",
+        "stage28:record-court:veranda-supports",
+        "stage28:record-court:water-yard-shed-rear",
+        "stage28:record-court:water-yard-shed-roof",
+        "stage28:record-court:west-clerks-wing-charred-frame",
+        "stage28:record-court:west-clerks-wing-rear",
+        "stage28:record-court:west-clerks-wing-roof",
+        "stage28:record-court:west-service-canopy"
+      ],
+      "unitCount": 29,
+      "referencePNG": {
+        "bytes": 70022,
+        "sha256": "183eb845faad39150a4b7b60b0f7a0441ad40d5d998d82c6787dd9f06ac15e1f"
+      },
+      "positive": true
+    },
+    "s27-1440x900-south": {
+      "actual": {
+        "x": 4100,
+        "y": 7440,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": 700,
+        "right": 7500,
+        "top": 5623.862847222223,
+        "bottom": 9256.137152777777
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 8520,
+        "bottom": 7440
+      },
+      "play": {
+        "left": 0,
+        "top": 0,
+        "right": 8200,
+        "bottom": 7200
+      },
+      "terrain": {
+        "left": -6000,
+        "top": -24000,
+        "right": 14200,
+        "bottom": 31200
+      },
+      "css": [
+        1440,
+        769.1875
+      ],
+      "backing": [
+        1440,
+        769
+      ],
+      "dpr": 1,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "physics": "8bb4884c06fe75d7f17fd9a58272decda19e9549c87694d96b9b495d6d9c31df",
+      "actualTerrainIDs": [
+        "deep-unwalkable-basin",
+        "masonry-vault:collision:0",
+        "gallery-0:collision:0",
+        "gallery-1:collision:0",
+        "gallery-2:collision:0",
+        "gallery-3:collision:0",
+        "gallery-4:collision:0",
+        "gallery-5:collision:0",
+        "gallery-6:collision:0",
+        "gallery-7:collision:0",
+        "entry-haul-stairs:collision:0",
+        "return-inspection-stairs:collision:0",
+        "manifest-stairs:collision:0",
+        "loading-office-roof:collision:0",
+        "loading-office-east-wall:collision:0",
+        "far-passage-roof:collision:0",
+        "far-passage-wall:collision:0",
+        "far-passage-buttress:collision:0",
+        "ledger-room-roof:collision:0",
+        "ledger-room-west-wall:collision:0",
+        "broken-haul-bridge:collision:0",
+        "stage27-depot-r1:quay-face-1:collision:0",
+        "stage27-depot-r1:quay-face-3:collision:0",
+        "stage27-depot-r1:quay-face-7:collision:0",
+        "stage27-depot-r1:cargo-incline:collision:0"
+      ],
+      "actualDrawOwnerIDs": [
+        "a3-waterworks-v3:27:broken-haul-bridge",
+        "a3-waterworks-v3:27:entry-haul-stairs",
+        "a3-waterworks-v3:27:far-passage-buttress",
+        "a3-waterworks-v3:27:far-passage-wall",
+        "a3-waterworks-v3:27:gallery-lamp-0",
+        "a3-waterworks-v3:27:gallery-lamp-1",
+        "a3-waterworks-v3:27:gallery-lamp-2",
+        "a3-waterworks-v3:27:gallery-lamp-3",
+        "a3-waterworks-v3:27:gallery-lamp-4",
+        "a3-waterworks-v3:27:gallery-lamp-5",
+        "a3-waterworks-v3:27:gallery-lamp-6",
+        "a3-waterworks-v3:27:gallery-lamp-7",
+        "a3-waterworks-v3:27:haul-number-0",
+        "a3-waterworks-v3:27:haul-number-1",
+        "a3-waterworks-v3:27:haul-number-2",
+        "a3-waterworks-v3:27:haul-number-3",
+        "a3-waterworks-v3:27:haul-number-4",
+        "a3-waterworks-v3:27:haul-number-5",
+        "a3-waterworks-v3:27:haul-number-6",
+        "a3-waterworks-v3:27:haul-number-7",
+        "a3-waterworks-v3:27:household-inspection-dais",
+        "a3-waterworks-v3:27:inspection-lamp",
+        "a3-waterworks-v3:27:ledger-room-west-wall",
+        "a3-waterworks-v3:27:loading-office-east-wall",
+        "a3-waterworks-v3:27:loading-oil-lamp",
+        "a3-waterworks-v3:27:manifest-bundle",
+        "a3-waterworks-v3:27:manifest-stairs",
+        "a3-waterworks-v3:27:masonry-vault",
+        "a3-waterworks-v3:27:numbered-family-bundle",
+        "a3-waterworks-v3:27:return-inspection-stairs",
+        "a3-waterworks-v3:27:sunk-family-tools",
+        "act3-handoff:27:west-quay-masonry",
+        "stage27-depot-r1:cargo-incline",
+        "stage27-depot-r1:loading-hoist",
+        "stage27-depot-r1:quay-face-1",
+        "stage27-depot-r1:quay-face-3",
+        "stage27-depot-r1:quay-face-7",
+        "stage27-depot-r3:far-passage-roof",
+        "stage27-depot-r3:far-sealed-store",
+        "stage27-depot-r3:gallery-0",
+        "stage27-depot-r3:gallery-1",
+        "stage27-depot-r3:gallery-2",
+        "stage27-depot-r3:gallery-3",
+        "stage27-depot-r3:gallery-4",
+        "stage27-depot-r3:gallery-5",
+        "stage27-depot-r3:gallery-6",
+        "stage27-depot-r3:gallery-7",
+        "stage27-depot-r3:ledger-room-roof",
+        "stage27-depot-r3:ledger-vault",
+        "stage27-depot-r3:loading-office-roof",
+        "stage27-depot-r4:misconnected-rear"
+      ],
+      "unitCount": 17,
+      "referencePNG": {
+        "bytes": 131383,
+        "sha256": "512bf2ec889ed73ad3933d429bcb32e10ef8f78fb33ca01c25aa9486b72d6059"
+      },
+      "positive": false
+    },
+    "s27-390x844-south": {
+      "actual": {
+        "x": 4100,
+        "y": 7440,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": 700,
+        "right": 7500,
+        "top": 1794.1746794871797,
+        "bottom": 13085.82532051282
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 8520,
+        "bottom": 7440
+      },
+      "play": {
+        "left": 0,
+        "top": 0,
+        "right": 8200,
+        "bottom": 7200
+      },
+      "terrain": {
+        "left": -6000,
+        "top": -24000,
+        "right": 14200,
+        "bottom": 31200
+      },
+      "css": [
+        390,
+        647.609375
+      ],
+      "backing": [
+        390,
+        648
+      ],
+      "dpr": 1,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "physics": "8bb4884c06fe75d7f17fd9a58272decda19e9549c87694d96b9b495d6d9c31df",
+      "actualTerrainIDs": [
+        "deep-unwalkable-basin",
+        "masonry-vault:collision:0",
+        "gallery-0:collision:0",
+        "gallery-1:collision:0",
+        "gallery-2:collision:0",
+        "gallery-3:collision:0",
+        "gallery-4:collision:0",
+        "gallery-5:collision:0",
+        "gallery-6:collision:0",
+        "gallery-7:collision:0",
+        "entry-haul-stairs:collision:0",
+        "return-inspection-stairs:collision:0",
+        "manifest-stairs:collision:0",
+        "loading-office-roof:collision:0",
+        "loading-office-east-wall:collision:0",
+        "far-passage-roof:collision:0",
+        "far-passage-wall:collision:0",
+        "far-passage-buttress:collision:0",
+        "ledger-room-roof:collision:0",
+        "ledger-room-west-wall:collision:0",
+        "broken-haul-bridge:collision:0",
+        "stage27-depot-r1:quay-face-1:collision:0",
+        "stage27-depot-r1:quay-face-3:collision:0",
+        "stage27-depot-r1:quay-face-7:collision:0",
+        "stage27-depot-r1:cargo-incline:collision:0"
+      ],
+      "actualDrawOwnerIDs": [
+        "a3-waterworks-v3:27:broken-haul-bridge",
+        "a3-waterworks-v3:27:entry-haul-stairs",
+        "a3-waterworks-v3:27:far-passage-buttress",
+        "a3-waterworks-v3:27:far-passage-wall",
+        "a3-waterworks-v3:27:gallery-lamp-0",
+        "a3-waterworks-v3:27:gallery-lamp-1",
+        "a3-waterworks-v3:27:gallery-lamp-2",
+        "a3-waterworks-v3:27:gallery-lamp-3",
+        "a3-waterworks-v3:27:gallery-lamp-4",
+        "a3-waterworks-v3:27:gallery-lamp-5",
+        "a3-waterworks-v3:27:gallery-lamp-6",
+        "a3-waterworks-v3:27:gallery-lamp-7",
+        "a3-waterworks-v3:27:haul-number-0",
+        "a3-waterworks-v3:27:haul-number-1",
+        "a3-waterworks-v3:27:haul-number-2",
+        "a3-waterworks-v3:27:haul-number-3",
+        "a3-waterworks-v3:27:haul-number-4",
+        "a3-waterworks-v3:27:haul-number-5",
+        "a3-waterworks-v3:27:haul-number-6",
+        "a3-waterworks-v3:27:haul-number-7",
+        "a3-waterworks-v3:27:household-inspection-dais",
+        "a3-waterworks-v3:27:inspection-lamp",
+        "a3-waterworks-v3:27:ledger-room-west-wall",
+        "a3-waterworks-v3:27:loading-office-east-wall",
+        "a3-waterworks-v3:27:loading-oil-lamp",
+        "a3-waterworks-v3:27:manifest-bundle",
+        "a3-waterworks-v3:27:manifest-stairs",
+        "a3-waterworks-v3:27:masonry-vault",
+        "a3-waterworks-v3:27:numbered-family-bundle",
+        "a3-waterworks-v3:27:return-inspection-stairs",
+        "a3-waterworks-v3:27:sunk-family-tools",
+        "act3-handoff:27:west-quay-masonry",
+        "stage27-depot-r1:cargo-incline",
+        "stage27-depot-r1:loading-hoist",
+        "stage27-depot-r1:quay-face-1",
+        "stage27-depot-r1:quay-face-3",
+        "stage27-depot-r1:quay-face-7",
+        "stage27-depot-r3:far-passage-roof",
+        "stage27-depot-r3:far-sealed-store",
+        "stage27-depot-r3:gallery-0",
+        "stage27-depot-r3:gallery-1",
+        "stage27-depot-r3:gallery-2",
+        "stage27-depot-r3:gallery-3",
+        "stage27-depot-r3:gallery-4",
+        "stage27-depot-r3:gallery-5",
+        "stage27-depot-r3:gallery-6",
+        "stage27-depot-r3:gallery-7",
+        "stage27-depot-r3:ledger-room-roof",
+        "stage27-depot-r3:ledger-vault",
+        "stage27-depot-r3:loading-office-roof",
+        "stage27-depot-r4:misconnected-rear"
+      ],
+      "unitCount": 17,
+      "referencePNG": {
+        "bytes": 122790,
+        "sha256": "aaad5238b77390422cf25a34bdcb64a415440fd301a81eb6aa4ca902ec048867"
+      },
+      "positive": false
+    },
+    "s29-1440x900-south": {
+      "actual": {
+        "x": 3600,
+        "y": 3740,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": 200,
+        "right": 7000,
+        "top": 1923.8628472222222,
+        "bottom": 5556.137152777777
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 7520,
+        "bottom": 3740
+      },
+      "play": {
+        "left": 0,
+        "top": 0,
+        "right": 7200,
+        "bottom": 3500
+      },
+      "terrain": {
+        "left": -6000,
+        "top": -24000,
+        "right": 13200,
+        "bottom": 27500
+      },
+      "css": [
+        1440,
+        769.1875
+      ],
+      "backing": [
+        1440,
+        769
+      ],
+      "dpr": 1,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "physics": "4331563bed6cefc825ca1d72de5aaefbb3ced53b9a1b76352ec17122c6007abb",
+      "actualTerrainIDs": [
+        "a3-foundation",
+        "r29-record-vault",
+        "old-door",
+        "r29-upper-ascent",
+        "r29-high-road",
+        "r29-inspection-roof",
+        "r29-inspection-deck",
+        "r29-low-screen",
+        "stage29-fallen-door",
+        "stage29-fallen-stone"
+      ],
+      "actualDrawOwnerIDs": [
+        "act3-handoff:29:west-bank",
+        "stage29:record-actual-stone-faces",
+        "stage29:record-archive-eaves",
+        "stage29:record-far-river-bank",
+        "stage29:record-inspection-eaves",
+        "stage29:record-keeper-hut",
+        "stage29:record-letter-room",
+        "stage29:record-rear-retaining-work",
+        "stage29:record-sluice-bearing",
+        "stage29:record-upper-rear-rail"
+      ],
+      "unitCount": 36,
+      "referencePNG": {
+        "bytes": 283579,
+        "sha256": "c44b3cb64a402a644c1f7a59f28ef6f9c84bdc56d87f82ad5fbd021226c5ae6b"
+      },
+      "positive": false
+    },
+    "s29-390x844-south": {
+      "actual": {
+        "x": 3600,
+        "y": 3740,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": 200,
+        "right": 7000,
+        "top": -1905.8253205128203,
+        "bottom": 9385.82532051282
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 7520,
+        "bottom": 3740
+      },
+      "play": {
+        "left": 0,
+        "top": 0,
+        "right": 7200,
+        "bottom": 3500
+      },
+      "terrain": {
+        "left": -6000,
+        "top": -24000,
+        "right": 13200,
+        "bottom": 27500
+      },
+      "css": [
+        390,
+        647.609375
+      ],
+      "backing": [
+        390,
+        648
+      ],
+      "dpr": 1,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "physics": "4331563bed6cefc825ca1d72de5aaefbb3ced53b9a1b76352ec17122c6007abb",
+      "actualTerrainIDs": [
+        "a3-foundation",
+        "r29-record-vault",
+        "old-door",
+        "r29-upper-ascent",
+        "r29-high-road",
+        "r29-inspection-roof",
+        "r29-inspection-deck",
+        "r29-low-screen",
+        "stage29-fallen-door",
+        "stage29-fallen-stone"
+      ],
+      "actualDrawOwnerIDs": [
+        "act3-handoff:29:west-bank",
+        "stage29:record-actual-stone-faces",
+        "stage29:record-archive-eaves",
+        "stage29:record-far-river-bank",
+        "stage29:record-inspection-eaves",
+        "stage29:record-keeper-hut",
+        "stage29:record-letter-room",
+        "stage29:record-rear-retaining-work",
+        "stage29:record-sluice-bearing",
+        "stage29:record-upper-rear-rail"
+      ],
+      "unitCount": 36,
+      "referencePNG": {
+        "bytes": 80329,
+        "sha256": "27d70aa276629fb7fd9db7984f7d4d27f6729e3ae6fa43b9ee60eff82e4f0517"
+      },
+      "positive": false
+    },
+    "s03-1440x900-south": {
+      "actual": {
+        "x": 2865.01,
+        "y": 3035.01,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": -534.9899999999998,
+        "right": 6265.01,
+        "top": 1218.8728472222224,
+        "bottom": 4851.147152777778
+      },
+      "focus": {
+        "left": 0,
+        "top": 0,
+        "right": 5730.02,
+        "bottom": 3035.01
+      },
+      "play": {
+        "left": 0,
+        "top": 0,
+        "right": 5730.02,
+        "bottom": 3035.01
+      },
+      "terrain": {
+        "left": -1200,
+        "top": -900,
+        "right": 6930.02,
+        "bottom": 4535.01
+      },
+      "css": [
+        1440,
+        769.1875
+      ],
+      "backing": [
+        1440,
+        769
+      ],
+      "dpr": 1,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "physics": "d0c3fe6c5df8aeeb1c1cfa0d06b240f6cdf15abdc003a64353c4a6c763d120e7",
+      "actualTerrainIDs": [
+        "ferry-ground",
+        "naru-bank",
+        "naru-west-pier",
+        "naru-east-pier",
+        "naru-shore",
+        "naru-stone-a",
+        "naru-stone-b",
+        "naru-approach-step"
+      ],
+      "actualDrawOwnerIDs": [
+        "act1-site:3:body",
+        "act1-site:3:ferry",
+        "act1-site:3:landmarks",
+        "act1-site:3:lantern",
+        "act1-site:3:spirit-flame"
+      ],
+      "unitCount": 16,
+      "referencePNG": {
+        "bytes": 571812,
+        "sha256": "2b21cc5ab8c19e7a57fafe03390032d37b14b673a4a65fc78570bd4b6891941b"
+      },
+      "positive": false
+    },
+    "s03-1440x900-west": {
+      "actual": {
+        "x": 0,
+        "y": 1517.505,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": -3400,
+        "right": 3400,
+        "top": -298.6321527777777,
+        "bottom": 3333.642152777778
+      },
+      "focus": {
+        "left": 0,
+        "top": 0,
+        "right": 5730.02,
+        "bottom": 3035.01
+      },
+      "play": {
+        "left": 0,
+        "top": 0,
+        "right": 5730.02,
+        "bottom": 3035.01
+      },
+      "terrain": {
+        "left": -1200,
+        "top": -900,
+        "right": 6930.02,
+        "bottom": 4535.01
+      },
+      "css": [
+        1440,
+        769.1875
+      ],
+      "backing": [
+        1440,
+        769
+      ],
+      "dpr": 1,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "physics": "d0c3fe6c5df8aeeb1c1cfa0d06b240f6cdf15abdc003a64353c4a6c763d120e7",
+      "actualTerrainIDs": [
+        "ferry-ground",
+        "naru-bank",
+        "naru-west-pier",
+        "naru-east-pier",
+        "naru-shore",
+        "naru-stone-a",
+        "naru-stone-b",
+        "naru-approach-step"
+      ],
+      "actualDrawOwnerIDs": [
+        "act1-site:3:body",
+        "act1-site:3:ferry",
+        "act1-site:3:landmarks",
+        "act1-site:3:lantern",
+        "act1-site:3:spirit-flame"
+      ],
+      "unitCount": 16,
+      "referencePNG": {
+        "bytes": 1132280,
+        "sha256": "8bd5eeec095c597a4ecbe6a6be5d67ad0756eb540c503eedd61abcafa2be122b"
+      },
+      "positive": false
+    },
+    "s03-390x844-south": {
+      "actual": {
+        "x": 2865.01,
+        "y": 3035.01,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": -534.9899999999998,
+        "right": 6265.01,
+        "top": -2610.81532051282,
+        "bottom": 8680.83532051282
+      },
+      "focus": {
+        "left": 0,
+        "top": 0,
+        "right": 5730.02,
+        "bottom": 3035.01
+      },
+      "play": {
+        "left": 0,
+        "top": 0,
+        "right": 5730.02,
+        "bottom": 3035.01
+      },
+      "terrain": {
+        "left": -1200,
+        "top": -900,
+        "right": 6930.02,
+        "bottom": 4535.01
+      },
+      "css": [
+        390,
+        647.609375
+      ],
+      "backing": [
+        390,
+        648
+      ],
+      "dpr": 1,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "physics": "d0c3fe6c5df8aeeb1c1cfa0d06b240f6cdf15abdc003a64353c4a6c763d120e7",
+      "actualTerrainIDs": [
+        "ferry-ground",
+        "naru-bank",
+        "naru-west-pier",
+        "naru-east-pier",
+        "naru-shore",
+        "naru-stone-a",
+        "naru-stone-b",
+        "naru-approach-step"
+      ],
+      "actualDrawOwnerIDs": [
+        "act1-site:3:body",
+        "act1-site:3:ferry",
+        "act1-site:3:landmarks",
+        "act1-site:3:lantern",
+        "act1-site:3:spirit-flame"
+      ],
+      "unitCount": 16,
+      "referencePNG": {
+        "bytes": 173115,
+        "sha256": "5cdd1d4fccccf3f108a23b56096ea80aa43b74110cfbfb137cbce032e498b00b"
+      },
+      "positive": false
+    },
+    "s03-390x844-west": {
+      "actual": {
+        "x": 0,
+        "y": 1517.505,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": -3400,
+        "right": 3400,
+        "top": -4128.32032051282,
+        "bottom": 7163.33032051282
+      },
+      "focus": {
+        "left": 0,
+        "top": 0,
+        "right": 5730.02,
+        "bottom": 3035.01
+      },
+      "play": {
+        "left": 0,
+        "top": 0,
+        "right": 5730.02,
+        "bottom": 3035.01
+      },
+      "terrain": {
+        "left": -1200,
+        "top": -900,
+        "right": 6930.02,
+        "bottom": 4535.01
+      },
+      "css": [
+        390,
+        647.609375
+      ],
+      "backing": [
+        390,
+        648
+      ],
+      "dpr": 1,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "physics": "d0c3fe6c5df8aeeb1c1cfa0d06b240f6cdf15abdc003a64353c4a6c763d120e7",
+      "actualTerrainIDs": [
+        "ferry-ground",
+        "naru-bank",
+        "naru-west-pier",
+        "naru-east-pier",
+        "naru-shore",
+        "naru-stone-a",
+        "naru-stone-b",
+        "naru-approach-step"
+      ],
+      "actualDrawOwnerIDs": [
+        "act1-site:3:body",
+        "act1-site:3:ferry",
+        "act1-site:3:landmarks",
+        "act1-site:3:lantern",
+        "act1-site:3:spirit-flame"
+      ],
+      "unitCount": 16,
+      "referencePNG": {
+        "bytes": 217845,
+        "sha256": "0074096608971c16d7f681e28c3602c0314d44dfa819764b479eb36380144e8e"
+      },
+      "positive": false
+    }
+  }
+}

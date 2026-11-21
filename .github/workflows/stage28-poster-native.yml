@@ -1,0 +1,89 @@
+name: HONRO Stage28 unaltered play projection and deep foundation A/B
+on:
+  push:
+    branches: [qa/stage28-poster-floor-acb51]
+    paths:
+      - .github/workflows/stage28-poster-native.yml
+      - tools/stage28-poster-native/**
+permissions:
+  contents: read
+jobs:
+  compare:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage28-poster-floor-acb51'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 49
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Exact already compiled acb stock A and one-file normal B, no deploy
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -z "${GH_TOKEN:-}${GITHUB_TOKEN:-}"
+          T="$RUNNER_TEMP/stage28-poster-native"
+          mkdir "$T" "$T/out"
+          echo "WORK=$T" >> "$GITHUB_ENV"
+          Q="$GITHUB_WORKSPACE/tools/stage28-poster-native"
+          python "$Q/guard.py" pre "$T"
+          (
+            cd "$T/B"
+            npm ci > "$T/out/npm-root-B.log" 2>&1
+            npm ci --prefix game > "$T/out/npm-game-B.log" 2>&1
+            npm run test:release-guard > "$T/out/release-guard-B.log" 2>&1
+            npm run build > "$T/out/build-B.log" 2>&1
+            npm run test:production-contract > "$T/out/production-contract-B.log" 2>&1
+          )
+          python "$Q/guard.py" built "$T"
+      - name: Normal actual native Chrome two localhost servers, 24 paired poses
+        shell: bash
+        timeout-minutes: 32
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: |
+          set -euo pipefail
+          test -z "${GH_TOKEN:-}${GITHUB_TOKEN:-}"
+          Q="$GITHUB_WORKSPACE/tools/stage28-poster-native"
+          python3 -m venv "$WORK/venv"
+          V="$WORK/venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+          python -m http.server 18891 --bind 127.0.0.1 --directory "$WORK/A" > "$WORK/out/http-A.log" 2>&1 &
+          a=$!
+          python -m http.server 18892 --bind 127.0.0.1 --directory "$WORK/B" > "$WORK/out/http-B.log" 2>&1 &
+          b=$!
+          trap 'kill "$a" "$b" 2>/dev/null || true' EXIT
+          for p in 18891 18892; do curl -fsS --retry 8 --retry-connrefused "http://127.0.0.1:$p/HONRO.html" -o /dev/null; done
+          "$V" "$Q/capture.py" "$WORK"
+      - name: Seal exact source and required compiled delta after genuine visual gate only
+        run: python "$GITHUB_WORKSPACE/tools/stage28-poster-native/guard.py" archive "$WORK"
+      - if: always() && env.WORK != ''
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage28-poster-signed-normal-receipt-and-seal
+          path: |
+            ${{ runner.temp }}/stage28-poster-native/out/*.json
+            ${{ runner.temp }}/stage28-poster-native/out/*.log
+            ${{ runner.temp }}/stage28-poster-native/out/*.zip
+          retention-days: 7
+          if-no-files-found: error
+      - if: always() && env.WORK != ''
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage28-poster-signed-pc
+          path: |
+            ${{ runner.temp }}/stage28-poster-native/out/pc-target/
+            ${{ runner.temp }}/stage28-poster-native/out/pc-control/
+          retention-days: 7
+          if-no-files-found: warn
+      - if: always() && env.WORK != ''
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage28-poster-signed-mobile
+          path: ${{ runner.temp }}/stage28-poster-native/out/mobile/
+          retention-days: 7
+          if-no-files-found: warn
