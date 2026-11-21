@@ -1,0 +1,497 @@
+{
+  "enable": true,
+  "repo": "sys8994/honro",
+  "base": "b79ea7fd87fda5586d78eae0a7052996b8e71fb5",
+  "tree": "1e55d910bbabc43919c20a14d1a06002b20f4977",
+  "baseParent": "f7704f08b7462cb10587b582d8a3a4feafe643d1",
+  "baseParentTree": "b62b549c804989cc3bbf861d9e5f9a33df520717",
+  "published": {
+    "run": 44897685446,
+    "job": 136827113112,
+    "stamp": "2026-11-21T11:10:38.2358222Z",
+    "sameAppReadbackRun": 44897942776
+  },
+  "stockManifest": {
+    "bytes": 6774523,
+    "sha256": "0bf1527b6aa52fa5f4f22eb1b90102df5f1c6ea0cb791d664b1b94081c1b65cf",
+    "git": "922db7aa4ecef59cbae10975f4d2d2091faf5d8f"
+  },
+  "stockShells": {
+    "HONRO.html": {
+      "bytes": 17379,
+      "sha256": "c8d009ef643d2b24abd85400162b307a2e5a8e95100fe999b89a6afdd5faaecc"
+    },
+    "HONRO_WORKSHOP.html": {
+      "bytes": 4011,
+      "sha256": "5bd32c2880caa9a2af21aa40b88f6f99c760bfb88c8e911860fb34da51e876b1"
+    },
+    "index.html": {
+      "bytes": 17379,
+      "sha256": "c8d009ef643d2b24abd85400162b307a2e5a8e95100fe999b89a6afdd5faaecc"
+    }
+  },
+  "stockReadabilityGit": "df4437aa937dce38efac3c799e615e68cee0cf29",
+  "browser": "151.0.7922.34",
+  "branch": "refs/heads/qa/stage21-east-neutral-aa-b79",
+  "sourcePath": "shared/runtime/act3-handoff-art.js",
+  "sourceA": {
+    "bytes": 14225,
+    "sha256": "49c243232524dd79fc52c41edf663a8bfcb8f9951a83192cb55977e16b202205",
+    "git": "234cc3908cdabe4ddce36d63bc46dd49b1b3d621"
+  },
+  "sourceB": {
+    "bytes": 15663,
+    "sha256": "1037b3fd5590bfc675fa8792a778852c205d5b4464ed77d7daa26b468bfe3332",
+    "git": "3beff69e53411e9f703cb45e8cc9ef493dc47184"
+  },
+  "oldCommon17": "web/runtime/ordered-common-17.9a592f68229e4289.js",
+  "exactPatch": {
+    "from": "     G.HonroVectorArt.draw(raw,flow.owner,{x:0,y:0});",
+    "to": "     let owner=flow.owner;\n     if(b.honroStage===21&&b.honroCanonical===true&&b.honroCustom===false&&b.honroMapOrigin==='campaign'&&\n        b.honroAuthoredId==='stage-21'&&owner.id==='act3-handoff:21:bedrock'&&x0===5740&&x1===6400){\n      if(!flow.eastNeutralAA){\n       const v=owner.vector,key='s21-east-terminal-neutral-proof';\n       if(v.root?.clipPath!=='sourceAlpha'||!Array.isArray(v.clips?.sourceAlpha)||Object.hasOwn(v.clips,key))\n        throw Error('Stage21 neutral A/A root mismatch');\n       const wrap=node=>{\n        if(node.tag!=='g')throw Error('Stage21 neutral A/A expected original group');\n        if(node.children.length===1&&node.children[0].tag==='g')return{...node,children:[wrap(node.children[0])]};\n        if(node.children.length!==8||node.children.some(x=>x.tag!=='path'))throw Error('Stage21 neutral A/A expected all 8 original leaves');\n        return{...node,children:[{tag:'g',clipPath:key,children:node.children}]};\n       };\n       flow.eastNeutralAA={...owner,vector:{...v,root:wrap(v.root),clips:{...v.clips,[key]:['M-16000 -16000 H16000 V16000 H-16000Z']}}};\n      }\n      owner=flow.eastNeutralAA;\n      const q=raw.getTransform(),p=G.__honroStage21NeutralAA??={total:0,last:null};\n      p.total++;p.last={row:[x0,x1],matrix:[...matrix],outer:[m.a,m.b,m.c,m.d,m.e,m.f],\n       transform:[q.a,q.b,q.c,q.d,q.e,q.f],canvas:[raw.canvas.width,raw.canvas.height],tiled:this._staticCacheBuild===true};\n     }\n     G.HonroVectorArt.draw(raw,owner,{x:0,y:0});"
+  },
+  "activePins": {
+    "web/data/chapter-21.724a765a85d437a2.json": {
+      "bytes": 67494,
+      "sha256": "724a765a85d437a24ea9437ba300f5602282abda9ecbd190074a7d25b8b1c51b"
+    },
+    "web/data/chapter-21-assets.195e73632de8b164.json": {
+      "bytes": 688805,
+      "sha256": "195e73632de8b16431e39ac63f87eed9ad1ea538a47dcc0d980e4a0e1c624e67"
+    },
+    "web/entries/game.16fa712378260ab7.js": {
+      "bytes": 20483,
+      "sha256": "16fa712378260ab755902f838024524e733b769c5cd540f95737b3eaff58f7b1"
+    },
+    "web/data/campaign.324003dbe6483ac8.json": {
+      "bytes": 54961,
+      "sha256": "324003dbe6483ac8a778ba250d8aa8d1c63d9149f1cb5b580e6011256006f437"
+    },
+    "web/data/campaign-base.0c57dcfe7c08d421.json": {
+      "bytes": 257,
+      "sha256": "0c57dcfe7c08d421901ffa8eeb437940b6b6d4779816207b51dca7be44c73e5e"
+    },
+    "web/data/campaign-shared.8f8343b5c21518d4.json": {
+      "bytes": 577195,
+      "sha256": "8f8343b5c21518d4fdaa2314e58031fd137b8622d3a6c1ca2fdabafde3bb158f"
+    },
+    "web/runtime/load-data.248fb3aada6f16bb.js": {
+      "bytes": 15550,
+      "sha256": "248fb3aada6f16bbe2d7df7e369db772df2d923bc91b1e517daa53858f558dcb"
+    },
+    "web/runtime/ordered-common-11.6adcb81897ec0663.js": {
+      "bytes": 177221,
+      "sha256": "6adcb81897ec06638dc92386b515b2f8ff10ee38a60c6fa4fb2d9040be22ea77"
+    },
+    "web/runtime/ordered-common-15.370f1fb43d3a212f.js": {
+      "bytes": 163921,
+      "sha256": "370f1fb43d3a212f035eabb93ea935aff41d6146fb8c9103c77a1f9c1f07d737"
+    },
+    "web/runtime/ordered-common-17.9a592f68229e4289.js": {
+      "bytes": 104308,
+      "sha256": "9a592f68229e42894a87a328a71e2ac8408bb1556f441bcbc67229aa80ba718c"
+    },
+    "web/runtime/ordered-common-16.3d9993bd92d5eb93.js": {
+      "bytes": 177610,
+      "sha256": "3d9993bd92d5eb93572f4b05fe9da2f19d4202c7a3e24ba767a5274ca3364f2c"
+    },
+    "web/data/chapter-02.5faa275befa85b0d.json": {
+      "bytes": 55013,
+      "sha256": "5faa275befa85b0d49205b25a9d902c9d7ce448cf52fe25e124d4005b10f2ad2"
+    },
+    "web/data/chapter-02-assets.ddddf53df4d749c6.json": {
+      "bytes": 256633,
+      "sha256": "ddddf53df4d749c60375cba085a79d790319b1e9c1790cb29e840529409ab434"
+    }
+  },
+  "observerReceipt": {
+    "run": 44914429207,
+    "artifact": 14711430960,
+    "receiptSHA256": "f5c376286d0743fc8ae27d191a77db8e042d28719d71c9078cf209190ddf5974"
+  },
+  "frames": {
+    "s21-1440x900-east-ordinary": {
+      "desired": {
+        "x": 6500,
+        "y": 2660,
+        "scale": 0.5
+      },
+      "actual": {
+        "x": 6500,
+        "y": 2660,
+        "scale": 0.5
+      },
+      "viewport": {
+        "left": 5060,
+        "right": 7940,
+        "top": 1890.8125,
+        "bottom": 3429.1875
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6720,
+        "bottom": 3440
+      },
+      "zoomLimits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "phase": "aim",
+      "round": 1,
+      "actorCount": 35,
+      "sceneTime": 2,
+      "tide": null,
+      "physicsSHA256": "d72051916d0afb4f0cbe3cf026aaba47db8cb14a763d8b2cd1c26dbbe839ba75",
+      "stockRawRGBA": "d2f3535dc9fdfbb1bee8ae917f615cefbe486950a48f79ff925799d2c4981778",
+      "stockDomRGBA": "8cedd036bbfe2e564706116bfc8cb28d11677955b5dafd6eb384c564cd76d82b"
+    },
+    "s21-1440x900-east": {
+      "desired": {
+        "x": 1000000,
+        "y": 1600,
+        "scale": 0.21176470588235294
+      },
+      "actual": {
+        "x": 6720,
+        "y": 1600,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": 3320,
+        "right": 10120,
+        "top": -216.13715277777783,
+        "bottom": 3416.137152777778
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6720,
+        "bottom": 3440
+      },
+      "zoomLimits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "phase": "aim",
+      "round": 1,
+      "actorCount": 35,
+      "sceneTime": 2,
+      "tide": null,
+      "physicsSHA256": "d72051916d0afb4f0cbe3cf026aaba47db8cb14a763d8b2cd1c26dbbe839ba75",
+      "stockRawRGBA": "2a36597847d9bb39758324fee80c75d01b0116a17a9e4b19e412c4a0430db872",
+      "stockDomRGBA": "e24bd1defcbbfc1fbe0e3ab8727df97f18594aa9d43c7a8ff32836366d4d61e8"
+    },
+    "s21-1440x900-west-ordinary": {
+      "desired": {
+        "x": -120,
+        "y": 3000,
+        "scale": 0.5
+      },
+      "actual": {
+        "x": -120,
+        "y": 3000,
+        "scale": 0.5
+      },
+      "viewport": {
+        "left": -1560,
+        "right": 1320,
+        "top": 2230.8125,
+        "bottom": 3769.1875
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6720,
+        "bottom": 3440
+      },
+      "zoomLimits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "phase": "aim",
+      "round": 1,
+      "actorCount": 35,
+      "sceneTime": 2,
+      "tide": null,
+      "physicsSHA256": "d72051916d0afb4f0cbe3cf026aaba47db8cb14a763d8b2cd1c26dbbe839ba75",
+      "stockRawRGBA": "fc9db29c588834446e3c9198454c6ba54fff51b38623368f84c03def60bdce8b",
+      "stockDomRGBA": "6d9da8ea0ec61022bd9795a82e7646b97ae3432db8e6c7f006e37003f354f31b"
+    },
+    "s21-390x844-east-ordinary": {
+      "desired": {
+        "x": 6500,
+        "y": 2660,
+        "scale": 0.5
+      },
+      "actual": {
+        "x": 6500,
+        "y": 2660,
+        "scale": 0.5
+      },
+      "viewport": {
+        "left": 6110,
+        "right": 6890,
+        "top": 2012.390625,
+        "bottom": 3307.609375
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6720,
+        "bottom": 3440
+      },
+      "zoomLimits": {
+        "min": 0.057352941176470586,
+        "max": 1.65,
+        "tactical": 0.057352941176470586,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "phase": "aim",
+      "round": 1,
+      "actorCount": 35,
+      "sceneTime": 2,
+      "tide": null,
+      "physicsSHA256": "d72051916d0afb4f0cbe3cf026aaba47db8cb14a763d8b2cd1c26dbbe839ba75",
+      "stockRawRGBA": "3e1f91d201d33508b457ebf9f91deda6720a14afbb89011cf7799cabaf7a8e9a",
+      "stockDomRGBA": "a979d4ff56efcc983eed0391e6e4270044728c9dec9c75c55ad5efc50901a1a7"
+    },
+    "s21-390x844-east": {
+      "desired": {
+        "x": 1000000,
+        "y": 1600,
+        "scale": 0.057352941176470586
+      },
+      "actual": {
+        "x": 6720,
+        "y": 1600,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": 3320,
+        "right": 10120,
+        "top": -4045.8253205128203,
+        "bottom": 7245.82532051282
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6720,
+        "bottom": 3440
+      },
+      "zoomLimits": {
+        "min": 0.057352941176470586,
+        "max": 1.65,
+        "tactical": 0.057352941176470586,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "phase": "aim",
+      "round": 1,
+      "actorCount": 35,
+      "sceneTime": 2,
+      "tide": null,
+      "physicsSHA256": "d72051916d0afb4f0cbe3cf026aaba47db8cb14a763d8b2cd1c26dbbe839ba75",
+      "stockRawRGBA": "89536e21a8462cbe2d66a8c383f7dd64e0eb228de1af15fa1cc98d9b48bda03a",
+      "stockDomRGBA": "de62f777a6929df2f5306a9b755a32f44a04f1dfe17627bc112f6bef2d00dcd9"
+    },
+    "s21-390x844-west-ordinary": {
+      "desired": {
+        "x": -120,
+        "y": 3000,
+        "scale": 0.5
+      },
+      "actual": {
+        "x": -120,
+        "y": 3000,
+        "scale": 0.5
+      },
+      "viewport": {
+        "left": -510,
+        "right": 270,
+        "top": 2352.390625,
+        "bottom": 3647.609375
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6720,
+        "bottom": 3440
+      },
+      "zoomLimits": {
+        "min": 0.057352941176470586,
+        "max": 1.65,
+        "tactical": 0.057352941176470586,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "phase": "aim",
+      "round": 1,
+      "actorCount": 35,
+      "sceneTime": 2,
+      "tide": null,
+      "physicsSHA256": "d72051916d0afb4f0cbe3cf026aaba47db8cb14a763d8b2cd1c26dbbe839ba75",
+      "stockRawRGBA": "0fc905b71380f68e70ef3189a751eec51d779f643745db1eea1b1aa61421cf5b",
+      "stockDomRGBA": "54ec7a686aa7fba9fd58f62dcbcb5327d16aa71c2e4ab45ed2c23c30cbeaf731"
+    }
+  },
+  "paths": {
+    "map": "web/data/chapter-21.724a765a85d437a2.json",
+    "packet": "web/data/chapter-21-assets.195e73632de8b164.json",
+    "entry": "web/entries/game.16fa712378260ab7.js",
+    "campaign": "web/data/campaign.324003dbe6483ac8.json",
+    "base": "web/data/campaign-base.0c57dcfe7c08d421.json",
+    "shared": "web/data/campaign-shared.8f8343b5c21518d4.json",
+    "loader": "web/runtime/load-data.248fb3aada6f16bb.js",
+    "domain": "web/runtime/ordered-common-11.6adcb81897ec0663.js",
+    "tiles": "web/runtime/ordered-common-15.370f1fb43d3a212f.js",
+    "art": "web/runtime/ordered-common-17.9a592f68229e4289.js",
+    "readability": "web/runtime/ordered-common-16.3d9993bd92d5eb93.js"
+  },
+  "owner": {
+    "stage": 21,
+    "front": "act3-handoff:21:bedrock",
+    "back": "eup21:foundations",
+    "variant": "B",
+    "encoding": "json-pool-v1",
+    "worldPoints": [
+      [
+        -500,
+        2755.3125
+      ],
+      [
+        0,
+        2810
+      ],
+      [
+        620,
+        2810
+      ],
+      [
+        5740,
+        2220
+      ],
+      [
+        6400,
+        2220
+      ],
+      [
+        6900,
+        2288.359375
+      ],
+      [
+        7400,
+        2302.5066666666667
+      ],
+      [
+        12400,
+        1840
+      ],
+      [
+        12400,
+        27200
+      ]
+    ],
+    "playProjection": {
+      "bounds": {
+        "left": 0,
+        "top": 0,
+        "right": 6400,
+        "bottom": 3200
+      },
+      "start": {
+        "x": 0,
+        "y": 2810
+      }
+    },
+    "playBounds": {
+      "left": 0,
+      "top": 0,
+      "right": 6400,
+      "bottom": 3200
+    },
+    "worldBounds": {
+      "left": -6000,
+      "top": -24000,
+      "right": 12400,
+      "bottom": 27200
+    },
+    "vectorHashes": {
+      "eup21:foundations": "6c7abc407f1161cdc2146735ddab4088bbc668a0dbb05a9ee48b4039d2ddef0a",
+      "act3-handoff:21:bedrock": "cd892b83afea2501ce0db0425df958428da7f011b0af4dba3ca82e9f8d93fe39"
+    },
+    "stockB31": "M60 3060 Q700 2980 1150 3115 T2340 3110 L2590 3200 H0Z",
+    "foundationsPlacement": {
+      "id": "foundations",
+      "assetId": "eup21:foundations",
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "rotation": 0,
+      "snap": false,
+      "depthLayer": "L1",
+      "layer": "front"
+    }
+  },
+  "prefetch": {
+    "web/data/chapter-02.5faa275befa85b0d.json": {
+      "bytes": 55013,
+      "sha256": "5faa275befa85b0d49205b25a9d902c9d7ce448cf52fe25e124d4005b10f2ad2"
+    },
+    "web/data/chapter-02-assets.ddddf53df4d749c6.json": {
+      "bytes": 256633,
+      "sha256": "ddddf53df4d749c60375cba085a79d790319b1e9c1790cb29e840529409ab434"
+    }
+  }
+}
