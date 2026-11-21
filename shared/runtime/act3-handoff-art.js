@@ -2,6 +2,102 @@
 (function(G){'use strict';
 const S=G.HonroScene.prototype,draw=S.landmark,paths=new WeakMap();
 const D=G.HonroTerrainDomain,landmarks=D.materialLandmarks,viewCache=new WeakMap();
+// A visual setting of the canonical Stage 21 west bedrock; never serialized in a battle.
+const WEST21_MATERIAL={"version":1,"box":[-380,2813,120,3220],"atlas":[288,1056,2,2750],"branchBox":[-170,2945,6,3066],"FTransform":[2.857142857142857,0.1465437788018433,0,2.65,0,1447.9],"support":"M-321 2880 Q-283 2844 -200 2841 L-116 2828 -57 2822 0 2813 18 2820 37 2841 69 2859 83 2890 104 2911 100 2930 107 2950 116 2975 105 2991 95 3005 112 3032 105 3060 113 3081 102 3102 115 3127 96 3150 115 3173 90 3190 61 3202 0 3210 -50 3185 -116 3189 -165 3162 -244 3154 -298 3117 -338 3088 -356 3024 -377 2975 -358 2934Z","B31":{"old":"M60 3060 Q700 2980 1150 3115 T2340 3110 L2590 3200 H0Z","material":"M120.000000000000 3052.926178685207 Q721.242599173142 2986.372779751943 1150 3115 Q1600 3250 2340 3110 L2590 3200 H120 L92 3194 67 3189 45 3191 14 3180 -21 3184 -50 3173 -78 3174 -103 3161 -135 3161 -160 3149 -191 3147 -207 3132 -173 3137 -142 3117 -113 3120 -83 3095 -50 3096 -18 3073 12 3075 38 3063 70 3065 Z"},"branches":[{"id":"upper-split-return","fill":"#473b2d","d":"M4 2964 L-12 2966 -29 2973 -47 2967 -64 2968 -74 2963 -94 2962 -104 2952 -85 2951 -67 2955 -52 2954 -34 2960 -19 2959 2 2962Z"},{"id":"upper-short-rock-face","fill":"#504636","d":"M4 2975 L-12 2976 -29 2973 -46 2979 -63 2974 -55 2971 -38 2970 -27 2968 -13 2969 4 2971Z"},{"id":"lower-recess-unequal-return","fill":"#473b2d","d":"M4 2994 L-16 2993 -35 3001 -62 3004 -75 3018 -97 3024 -110 3035 -130 3042 -145 3055 -163 3057 -151 3063 -136 3059 -129 3051 -108 3050 -94 3037 -76 3034 -65 3027 -55 3029 -43 3018 -26 3023 -10 3015 4 3025Z"},{"id":"low-fracture-inner-facet","fill":"#504636","d":"M4 3000 L-18 3002 -31 3009 -47 3011 -57 3018 -74 3022 -82 3030 -97 3033 -104 3040 -90 3039 -74 3031 -60 3031 -50 3022 -41 3022 -26 3016 -12 3016 4 3013Z"},{"id":"lower-short-native-chip","fill":"#545044","d":"M-46 3011 L-33 3008 -19 3002 -8 3004 -21 3009 -32 3016 -45 3017Z"}]};
+// Join the existing B foundation and F bedrock below the canonical road.
+function prepWest21(l,floor,base,recipe){
+ if(recipe===undefined||JSON.stringify(recipe)!==JSON.stringify(WEST21_MATERIAL))return null;
+ const matches=base.filter(v=>v.asset?.id==='eup21:foundations');
+ if(matches.length!==1)return null;
+ const entry=matches[0],v=entry.asset.vector;
+ if(entry.layer!=='front'||entry.depthLayer!=='L1'||entry.x!==0||entry.y!==0||entry.scale!==1||entry.rotation!==0||
+    entry.id!=='foundations'||!entry.honroTerrainMaterialClip||v?.root?.children?.length!==34||
+    v.root.children[31]?.d!==WEST21_MATERIAL.B31.old||v.root.children[31]?.fill!=='#334e42'||
+    l.asset.id!=='act3-handoff:21:bedrock'||l.x!==0||l.y!==0||l.scale!==1||l.asset.params.blendFace||
+    l.asset.bounds.x!==0||l.asset.bounds.w!==6400||l.asset.collision.length!==0||
+    floor.id!=='a3-foundation'||floor.broken)return null;
+ const r=G.HONRO_CORE.poly(floor);
+ if(![[-500,2755.3125],[0,2810],[620,2810]].every(([x,y])=>r.some(p=>p.x===x&&p.y===y))||
+    r.some(p=>p.x>=-500&&p.x<=120&&p.y>=2755&&p.y<=3220&&
+             p.y!==2810+Math.min(p.x,0)*54.6875/500))return null;
+ const newNodes=v.root.children.slice();
+ newNodes[31]={...newNodes[31],d:recipe.B31.material};
+ const clone={...entry,asset:{...entry.asset,vector:{...v,root:{...v.root,children:newNodes}}}};
+ const layer={...l,asset:{...l.asset,bounds:{...l.asset.bounds,x:recipe.box[0],w:6400-recipe.box[0]}}};
+ const support=new Path2D(recipe.support);
+ const branches=recipe.branches.map(({fill,d})=>({fill,path:new Path2D(d)}));
+ // Fail early using the normal vector validator. No B/F partial enable on invalid config.
+ G.HonroVectorArt.prepare(clone.asset.vector);
+ G.HonroVectorArt.prepare(l.asset.vector);
+ return {layer,clone,support,branches,owner:l.asset};
+}
+function flowMaterialWest21(raw,pair){
+ const spec=WEST21_MATERIAL,[X0,Y0,X1,Y1]=spec.box,m=raw.getTransform();
+ if(![m.a,m.b,m.c,m.d,m.e,m.f].every(Number.isFinite)||m.a<=0||m.a!==m.d||m.b!==0||m.c!==0)return false;
+ if(X1 < -m.e/m.a || X0 > (raw.canvas.width-m.e)/m.a ||
+    Y1 < -m.f/m.d || Y0 > (raw.canvas.height-m.f)/m.d)return true;
+ const scratch=[];
+ const cv=(w,h)=>{const a=document.createElement('canvas');a.width=w;a.height=h;scratch.push(a);return a;};
+ // A single local material calculation in existing world tile builds, no persistent added cache.
+ // Native raster math is evaluated in global world dimensions, independent of PC/M pan/tile-local origins.
+ try{
+ const [fw,fh,gr,oy]=spec.atlas;
+ const atlas=cv(fw,fh),ac=atlas.getContext('2d',{alpha:true,willReadFrequently:true});
+ ac.setTransform(gr,0,0,gr,0,-oy*gr);ac.transform(...spec.FTransform);
+ G.HonroVectorArt.draw(ac,pair.owner,{x:0,y:0});
+ const fleaf=ac.getImageData(0,0,fw,fh).data;
+ const [l,t,r,b]=spec.branchBox;
+ const aw=(r-l)*gr,ah=(b-t)*gr,leaf=cv(aw,ah),lc=leaf.getContext('2d',{alpha:true,willReadFrequently:true});
+ lc.setTransform(gr,0,0,gr,-l*gr,-t*gr);
+ for(const n of pair.branches){lc.fillStyle=n.fill;lc.fill(n.path);}
+ const detail=lc.getImageData(0,0,aw,ah).data;
+ const density=Math.max(.05,Math.min(.75,m.a));
+ const sw=Math.ceil((X1-X0)*density),sh=Math.ceil((Y1-Y0)*density);
+ const photo=cv(sw,sh),pc=photo.getContext('2d',{alpha:true});
+ const dst=pc.createImageData(sw,sh);
+ const clamp=(v,l=0,r=1)=>Math.min(r,Math.max(l,v));
+ const smooth=(v,a,b)=>{const t=clamp((v-a)/(b-a));return t*t*(3-2*t)};
+ const RGB=(d,w,h,x,y,spill=false)=>{
+  if(spill&&(x<-.5||y<-.5||x>w-.5||y>h-.5))return [0,0,0,0];
+  x=clamp(x,0,w-1);y=clamp(y,0,h-1);
+  const u=Math.floor(x),v=Math.floor(y),i=u*4+v*w*4,j=Math.min(w-1,u+1)*4+v*w*4,k=u*4+Math.min(h-1,v+1)*w*4,o=Math.min(w-1,u+1)*4+Math.min(h-1,v+1)*w*4;
+  const a=x-u,b=y-v;
+  return [0,1,2,3].map(n=>((1-a)*d[i+n]+a*d[j+n])*(1-b)+((1-a)*d[k+n]+a*d[o+n])*b);
+ };
+ for(let iy=0;iy<sh;iy++)for(let ix=0;ix<sw;ix++){
+   const x=X0+(ix+.5)*(X1-X0)/sw,y=Y0+(iy+.5)*(Y1-Y0)/sh,i=(iy*sw+ix)*4;
+   const w=Math.max(0,1-(x+380)/480);
+   const xx=x>=100?x:100*Math.max(0,(x+380)/480)**4.8;
+   const yy=y-40*w*w*smooth(y,2850,2948)*(1-smooth(y,3030,3162));
+   const f=RGB(fleaf,fw,fh,xx*gr-.5,(yy-oy)*gr-.5);
+   const inBand=yy>=2957&&yy<=3033&&xx<=36&&x<0;
+   if(x<0&&(inBand||x>=l&&x<=r&&y>=t&&y<=b)){
+    const p=RGB(detail,aw,ah,(x-l)*gr-.5,(y-t)*gr-.5,true);
+    const k=p[3]/255, z=1-smooth(x,-16,0);
+    if(k>0||inBand)for(let n=0;n<3;n++){
+     const host=inBand?[53,50,40][n]:f[n];
+     f[n]+=((host*(1-k)+p[n]*k)-f[n])*z;
+    }
+   }
+   const terrain=smooth(x,-370,88)*(1-.16*smooth(y,3050,3150)*(1-smooth(x,-50,80)));
+   for(let n=0;n<3;n++)dst.data[i+n]=Math.round(f[n]);
+   dst.data[i+3]=Math.round(f[3]*terrain);
+ }
+ pc.putImageData(dst,0,0);
+ // Retain original F/B programs globally; inside this signed support
+ // their full material stack is re-composed from the real B clone + native F.
+ const block=cv(sw,sh), bc=block.getContext('2d',{alpha:true});
+ bc.setTransform(sw/(X1-X0),0,0,sh/(Y1-Y0),-X0*sw/(X1-X0),-Y0*sh/(Y1-Y0));
+ const Bpaint=G.HonroVisualStyle.context(bc,'L1',G.HonroEnvironment.act3Palette({honroStage:21},'earth'));
+ G.HonroVectorArt.draw(Bpaint,pair.clone.asset,{x:0,y:0});
+ bc.setTransform(1,0,0,1,0,0);
+ bc.drawImage(photo,0,0);
+ raw.drawImage(block,X0,Y0,X1-X0,Y1-Y0);
+ return true;
+ }finally{for(const a of scratch){a.width=1;a.height=1;}}
+}
+
+const flowRows=new WeakMap();
 
 function support(b,asset){
  const id=asset.params.terrainId||'a3-foundation';
@@ -28,7 +124,14 @@ D.materialLandmarks=function(b){
     floor.id==='a3-foundation'&&asset.params.westBedMaterial&&asset.bounds?.x===0&&asset.bounds.w===7000){
   placement.asset={...asset,bounds:{...asset.bounds,x:-1480,w:8480}};
  }
- const result=[...base.filter(l=>l.asset?.id!==artId),placement];
+ let nearWest=null;
+ if(b.honroStage===21&&asset.id==='act3-handoff:21:bedrock'){
+  nearWest=prepWest21(placement,floor,base,WEST21_MATERIAL);
+  // Old snapshots can carry a previous native foundation. Keep their stock visual in that case.
+  if(nearWest)flowRows.set(nearWest.layer,nearWest);
+ }
+ const result=nearWest?[...base.filter(l=>l.asset?.id!==artId),nearWest.layer]:
+   [...base.filter(l=>l.asset?.id!==artId),placement];
  viewCache.set(b,{base,artId,result});return result;
 };
 
@@ -102,6 +205,30 @@ S.landmark=function(c,l){
     raw.fill(new Path2D(path));
    }
   }finally{raw.restore();}
+ }
+ const flow=flowRows.get(l);
+ if(flow){
+  const paintStock=()=>{
+   const leftEdge=-m.e/m.a,rightEdge=(raw.canvas.width-m.e)/m.a;
+   const snap=x=>(Math.round(x*m.a+m.e)-m.e)/m.a;
+   for(const row of rows){
+    const {x0,x1,matrix}=row;
+    if(x1<leftEdge||x0>rightEdge)continue;
+    const left=snap(x0),right=snap(x1);if(right<=left)continue;
+    raw.save();try{
+     raw.beginPath();raw.rect(left,0,right-left,b.height+1600);raw.clip();raw.transform(...matrix);
+     G.HonroVectorArt.draw(raw,flow.owner,{x:0,y:0});
+    }finally{raw.restore();}
+   }
+  };
+  try{
+   paintStock();
+   raw.save();try{
+    raw.clip(flow.support);
+    flowMaterialWest21(raw,flow); // Unsupported transforms retain the stock drawing above.
+   }finally{raw.restore();}
+  }finally{raw.restore();}
+  return;
  }
  const minX=-m.e/m.a,maxX=(raw.canvas.width-m.e)/m.a;
  const px=x=>(Math.round(x*m.a+m.e)-m.e)/m.a;
