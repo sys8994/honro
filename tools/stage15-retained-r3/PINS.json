@@ -1,0 +1,134 @@
+{
+  "status": "VERIFIED_SCOPED_AUTHORITY_ONLY",
+  "base": {
+    "commit": "2939958cc87407ef60b58720bb6e086b8559031b",
+    "tree": "08e22a8cc0ab608e125ad73f8e8e1c288d8c4c74",
+    "manifest": {
+      "bytes": 6421884,
+      "sha256": "cc22d45754173a212ab3ce05d7bc5b3faf211c13e7ad5ba08f252f8e10f56304"
+    },
+    "pages": {
+      "run": 44821694897,
+      "job": 136584564179,
+      "publishedAt": "2026-11-20T21:37:21.9122544Z"
+    }
+  },
+  "sourceGitBlobs": {
+    "shared/runtime/renderer.js": [
+      "25c34f4a8c246c543389a472eb1746e6e226da88",
+      "8f0e30d5143fc64acd1850ee07e40413f1879d40"
+    ],
+    "shared/data/act2/stage15-compact-package.json": [
+      "ac4fb9854c5bf713507564755848b6c2af1f8f1b",
+      "def9ee43b1ac654bb15c0bfd61e46febc7b80d2c"
+    ],
+    "shared/data/terrain-path-optimization.json": [
+      "70399325e30279f10a853835981913c635ba3386",
+      "1baa483bec04bc905d419cd36dbe803335a7e037"
+    ]
+  },
+  "protectedCompilerGitBlobs": {
+    "shared/terrain-path-optimization.mjs": "784e574d21cfa668326215fd16dcc0fb6ffcc832",
+    "tools/release/retain-published-web.mjs": "8374336b53c74ac81e6d32f5aa43eee575e61daa",
+    "shared/web-retention.mjs": "16687b0fc38e432a7d66a015ddf3ebe744163a06"
+  },
+  "qa": {
+    "run": 44861522565,
+    "job": 136715768652,
+    "head": "0b23ee701ccf60f37515df9d87fe48b6fd034e8d",
+    "branch": "qa/stage15-formal-integrated-2939958-20261121",
+    "artifactName": "stage15-formal-combined-actual-proof",
+    "artifact": {
+      "id": 14689619126,
+      "bytes": 8438745,
+      "sha256": "f4edd689ea5d5d86dfb379145401b5dc3d9f41371f7eee999905b22e0eba7491"
+    },
+    "comparisonFileSHA256": "8200a6da54ca7bb63a1915ed2efc4fb00fb83ea74d53311d8f2a320b4b2a357e",
+    "frameContractSHA256": "06fa6bb96e1d8be6be0a924316d15f8ee131c095334dd53202e496fb97d183cb",
+    "captureBundleSHA256": "f79d8be2f4fc9f44506b9ec6945a01eb49317acb2feb262775409cdcb6a2933b",
+    "sourceProofSHA256": "e32a70cc29b753814ee13f50e3749d21791812fde5e63d9a6ca33c139cce72d3",
+    "normalManifest": {
+      "bytes": 6095799,
+      "sha256": "5ed6255b6f2e14a5a57a71762952aaf401a81f241a1b0de4eed6d382427fe7ce"
+    },
+    "normalGameHTML": {
+      "bytes": 17379,
+      "sha256": "56ebd2c37c63d16e2a24973f8d4971f991cd1658834b589942de1ba673ef1b84"
+    },
+    "priorActiveRetired": {
+      "web/data/HONRO_ACT2_COMPACT_PACKAGES-part-000.b74a29173f457f34.bin": {
+        "bytes": 4194304,
+        "sha256": "b74a29173f457f34e26864f87526b5d010dab2b378b04ef8a6ee3ec829a9877d"
+      },
+      "web/data/HONRO_ACT2_COMPACT_PACKAGES-part-001.b849c4559f257911.bin": {
+        "bytes": 3367429,
+        "sha256": "b849c4559f2579117de7296c15c06343dc273cf9b17b682909eaa42652d1d485"
+      },
+      "web/data/HONRO_ACT2_COMPACT_PACKAGES-parts.b0ecb9743ae28018.json": {
+        "bytes": 464,
+        "sha256": "b0ecb9743ae28018ea32e6d0c70c3f4fb305cc9878fa3d489f4ecfbc1023006e"
+      },
+      "web/entries/game.3e9d3e271f161125.js": {
+        "bytes": 20483,
+        "sha256": "3e9d3e271f16112552f0384727ff2c10e238ab5ba85025cd45222a7f8acef2ce"
+      },
+      "web/entries/game.54bab219d450aac6.html": {
+        "bytes": 11318,
+        "sha256": "54bab219d450aac6697bf16e0007c735b8d00560a385e61b0d9b07655cde8531"
+      },
+      "web/entries/workshop.90eeee73ca2e9fc5.js": {
+        "bytes": 16706,
+        "sha256": "90eeee73ca2e9fc51b38fe7a4a9df45e9781b7009049d184c0c5e3795ffd0632"
+      },
+      "web/runtime/HONRO_ACT2_COMPACT_PACKAGES.1e95648ad5f66d35.js": {
+        "bytes": 211,
+        "sha256": "1e95648ad5f66d35af52c308412ab42a1e2ad1a04abe0812152e139f43e27e7f"
+      },
+      "web/runtime/ordered-common-15.3dd35880565c92f2.js": {
+        "bytes": 160836,
+        "sha256": "3dd35880565c92f2fc1d67342b26fc16951c2d04294cbf695df2a5cdae58075e"
+      },
+      "web/runtime/ordered-common-16.8c8322e8250bb868.js": {
+        "bytes": 170334,
+        "sha256": "8c8322e8250bb868bfe5972fbb92e76c61aed9705884b99ec5d7dce4bbee69cc"
+      }
+    },
+    "headTree": "3e6db1bc9da5db1cca64d6d63397110564eada88",
+    "browserProofSHA256": "08ceadc8ece581e94eb982ed8fcb7e9c944b39ad6e56c3bc92b68e66a45e61ca",
+    "observedNewImmutable": {
+      "web/entries/game.2ec041e00ee60d39.js": {
+        "bytes": 20483,
+        "sha256": "2ec041e00ee60d39ad8de79fd4c024ab95b74d89b18603773abc948c7af9df4a"
+      },
+      "web/data/HONRO_ACT2_COMPACT_PACKAGES-parts.420dfb2876af8ed7.json": {
+        "bytes": 464,
+        "sha256": "420dfb2876af8ed739351b8fcabaf6ad6d0eef30dd67d9126bee8bb5ce671a27"
+      },
+      "web/runtime/HONRO_ACT2_COMPACT_PACKAGES.ad917621a5a55dd5.js": {
+        "bytes": 211,
+        "sha256": "ad917621a5a55dd58fec3a7a90133feadf70b91b2b1f5949275a9f2e25b1542f"
+      },
+      "web/data/HONRO_ACT2_COMPACT_PACKAGES-part-000.45cc14d990012925.bin": {
+        "bytes": 4194304,
+        "sha256": "45cc14d990012925cbfbb05dc04743f54d6affe80e32763e9a77bfc93f4620a0"
+      },
+      "web/data/HONRO_ACT2_COMPACT_PACKAGES-part-001.9e74461920a17acd.bin": {
+        "bytes": 3390067,
+        "sha256": "9e74461920a17acd7c8c2d77cc4e057dcf3fb871f2273dc905f37aacda150473"
+      },
+      "web/runtime/ordered-common-15.370f1fb43d3a212f.js": {
+        "bytes": 163921,
+        "sha256": "370f1fb43d3a212f035eabb93ea935aff41d6146fb8c9103c77a1f9c1f07d737"
+      },
+      "web/runtime/ordered-common-16.c094392d4ee992d9.js": {
+        "bytes": 177300,
+        "sha256": "c094392d4ee992d95fda1a5d8d50835a93ef8c9095962b1f10e4d34b3aec3b21"
+      }
+    },
+    "newUnobservedRoles": {
+      "web/entries/game.HASH.html": "web/entries/game.1a416fa243abda78.html",
+      "web/entries/workshop.HASH.js": null
+    }
+  },
+  "legacyAudit": "Full campaign terrain geometry/render/cache remains failed identically on stock and candidate; scoped Stage15 native authority only."
+}
