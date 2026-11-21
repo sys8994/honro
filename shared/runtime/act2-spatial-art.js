@@ -53,7 +53,13 @@ function prepareRockMasses(t,b,surface,material){
 }
 function prepareTerrain(t,b){const material=rockMaterial(t,b),materialKey=material?JSON.stringify(material):'';let q=terrainCache.get(t);if(q?.source===t.vertices&&q.version===b.sceneVersion&&q.materialKey===materialKey)return q;const ps=C.poly(t),shape=polygon(ps.map(p=>[p.x,p.y])),surface=surfaceEdges(t,b),rim=new Path2D(),facets=[],blocks=[],wedges=[],masonry=[],lip=[],ceiling=!!t.honroCeiling,timber=!!(t.oneWay&&(t.optional||t.honroWorkAccess)&&t.honroSurfaceRole==='shelf'&&(!t.honroRavine||t.honroRavineTree));
  const peers=G.HonroTerrainDomain.render(b).filter(s=>s.id!==t.id&&!s.broken&&!s.oneWay&&!s.honroElementCollision),buried=(x,y)=>peers.some(s=>x>s.x&&x<s.x+s.w&&y>s.y&&y<s.y+s.h&&pointIn(x,y,C.poly(s)));
- for(const [a,z]of surface){if(buried((a.x+z.x)/2,(a.y+z.y)/2+(ceiling?-3:3)))continue;rim.moveTo(a.x,a.y);rim.lineTo(z.x,z.y);if(!ceiling)lip.push(polygon([[a.x,a.y],[z.x,z.y],[z.x,z.y+18],[a.x,a.y+18]]));}
+ // Stage 14's compact physical projection closes below the refuge at y5640.
+ // This reverse edge is inside the native mass, not an exposed lip or rim.
+ const stage14ProjectedBottom=t.honroDomain===true&&t.id==='v14-refuge-ground'&&
+  b.honroCanonical===true&&b.honroCustom===false&&b.honroMapOrigin==='campaign'&&
+  b.honroStage===14&&b.honroAuthoredId==='stage-14'&&b.width===4800&&b.height===5400&&
+  t.honroDomainProjection?.bounds.bottom===5640&&t.y+t.h>5640;
+ for(const [a,z]of surface){if(stage14ProjectedBottom&&a.x===4800&&a.y===5640&&z.x===0&&z.y===5640)continue;if(buried((a.x+z.x)/2,(a.y+z.y)/2+(ceiling?-3:3)))continue;rim.moveTo(a.x,a.y);rim.lineTo(z.x,z.y);if(!ceiling)lip.push(polygon([[a.x,a.y],[z.x,z.y],[z.x,z.y+18],[a.x,a.y+18]]));}
  // Three or four unequal broad fracture planes per physical mass. These have
  // no independent silhouette: clipping always uses the canonical polygon.
  const left=t.x,right=t.x+t.w,top=t.y,bottom=t.y+t.h,w=t.w,h=t.h;
