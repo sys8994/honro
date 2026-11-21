@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
-          fetch-depth: 2
+          fetch-depth: 3
           persist-credentials: false
       - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
         with:
@@ -22,7 +22,10 @@ jobs:
         run: |
           set -euo pipefail
           BASE=2939958cc87407ef60b58720bb6e086b8559031b
-          test "$(git show -s --format=%P HEAD)" = "$BASE"
+          FIRST=4980364594787889633066798cc1d1be2c24a9c8
+          test "$(git show -s --format=%P HEAD)" = "$FIRST"
+          test "$(git show -s --format=%P "$FIRST")" = "$BASE"
+          test "$(git diff --name-status --no-renames "$FIRST" HEAD)" = $'M\t.github/workflows/stage15-formal-integrated-qa.yml' 
           test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
           test "$(git rev-parse "$BASE^{tree}")" = 08e22a8cc0ab608e125ad73f8e8e1c288d8c4c74
           Q="$GITHUB_WORKSPACE/tools/stage15-formal-integrated-qa"
@@ -58,7 +61,35 @@ jobs:
           for side in B C; do
             ( cd "$W/$side" && npm ci && npm ci --prefix game && npm run test:release-guard && npm run build && npm run test:production-contract ) > "$W/out/build-$side.log" 2>&1 || { tail -100 "$W/out/build-$side.log"; exit 1; }
           done
-          ( cd "$W/C" && npm run test:terrain-domain ) > "$W/out/terrain-domain.log" 2>&1 || { tail -100 "$W/out/terrain-domain.log"; exit 1; }
+          # The all-stage audit can fail a historical geometry requirement before
+          # it reaches Stage15. Compare actual unmodified stock with C; never
+          # change the test or waive a new error. Also run the two render/cache
+          # tests independently so the geometry precondition cannot skip them.
+          ( cd "$W/A" && npm ci --prefix game ) > "$W/out/deps-game-A.log" 2>&1
+          python3 - "$W" <<'PY'
+          import hashlib,json,re,subprocess,sys
+          from pathlib import Path
+          W=Path(sys.argv[1])
+          specs=[('geometry',['node','tests/terrain-domain.mjs']),
+                 ('render',['node','tests/terrain-domain-render.mjs']),
+                 ('cache',['node','--expose-gc','tests/static-screen-cache.mjs'])]
+          rows=[]
+          for tag,command in specs:
+            a,c=[subprocess.run(command,cwd=W/k,capture_output=True,text=True,timeout=280)for k in 'AC']
+            def norm(s,k):return re.sub(r'\x1b\[[0-9;]*m','',s).replace(str(W/k),'<worktree>')
+            for k,r in zip('AC',(a,c)):
+              (W/'out'/f'terrain-{tag}-{k}.log').write_text(r.stdout+r.stderr)
+            assert a.returncode==c.returncode,(tag,a.returncode,c.returncode)
+            if a.returncode:
+              ae,ce=norm(a.stderr,'A'),norm(c.stderr,'C')
+              assert ae==ce,(tag,ae[-2400:],ce[-2400:])
+              assert ('ERR_ASSERTION' in ae or 'AssertionError' in ae) and 'tests/' in ae,(tag,ae)
+              status='same independently reproduced stock assertion, not a passing global audit'
+            else:status='both passed'
+            rows.append({'suite':tag,'stockReturn':a.returncode,'candidateReturn':c.returncode,'status':status,
+                         'sameErrorSHA256':None if not a.returncode else hashlib.sha256(ae.encode()).hexdigest()})
+          (W/'out'/'terrain-domain-paired.json').write_text(json.dumps(rows,indent=2)+'\n')
+          PY
           for side in A B C; do
             want=''
             if [[ "$side" == B ]]; then want=$' M shared/runtime/renderer.js'; fi
