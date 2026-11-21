@@ -19,6 +19,18 @@ async ({compact,proof,frames,iterations})=>{
  assert(!app.dialogue,'unfinished entry story');
  app.close();HonroStoryFraming.clear(app.scene);
  const s=app.scene,e=app.engine,b=e.b;
+ // Wait for the actual launch layout and first-turn overlay to settle. Do
+ // not replace the app RAF, scene methods or any cache implementation.
+ const setup=frames[0];
+ assert(setup?.key?.endsWith('-ordinary'),'missing signed first pose');
+ const rect=()=>{const r=s.canvas.getBoundingClientRect();return {w:r.width,h:r.height};};
+ let ready=false;
+ for(let i=0;i<120;i++){
+  HonroStory.tick(app,performance.now());HonroStory.draw(app);
+  if(s.canvas.isConnected&&!app.dialogue&&document.getElementById('turn-banner')?.hidden!==false&&same(rect(),setup.css)){ready=true;break;}
+  await new Promise(requestAnimationFrame);
+ }
+ assert(ready,'real initial layout/turn banner not settled '+JSON.stringify({expected:setup.css,actual:rect(),dialogue:!!app.dialogue,bannerHidden:document.getElementById('turn-banner')?.hidden}));
  assert(b.honroStage===15&&b.honroCustom===false&&b.honroCanonical&&b.honroCampaignMapRevision===615&&b.width===5800&&b.height===4200,'wrong active game');
  const signature=()=>JSON.stringify({terrain:b.terrain,units:b.units,design:st.design,initialState:st.initialState,
     objectives:st.objectives,water:b.water??null,tide:b.honroAct4PreviewState?.tide??null,phase:b.phase??null,round:b.round??null});
@@ -50,7 +62,13 @@ async ({compact,proof,frames,iterations})=>{
   Object.assign(s,{manual:true,time:2,storyTween:null,storyFrozen:false,goalFocus:null,cinematic:null,focusUntil:0,speakerUntil:0,...f.actual});
   HonroBounds.constrain(s,b);
   const now=()=>({x:s.x,y:s.y,scale:s.scale});
-  assert(same(now(),f.actual)&&same(dim(),f.css)&&same([s.canvas.width,s.canvas.height],f.backing)&&devicePixelRatio===f.DPR,'camera/CSS/DPR differs '+f.key);
+  // Exactly the normal renderer's initial size pass, prior to resetting
+  // caches/counters for the cold sample. Do not draw fake frame data.
+  const beforeResize=[s.canvas.width,s.canvas.height];
+  s.size(b);
+  const got={actual:now(),css:dim(),backing:[s.canvas.width,s.canvas.height],DPR:devicePixelRatio};
+  for(const k of ['actual','css','backing','DPR'])
+   assert(same(got[k],f[k]),'camera invariant '+f.key+' '+k+' '+JSON.stringify({expected:f[k],actual:got[k],beforeResize}));
   // Force a normal cold-cache lifecycle before this pose; do not replace any app function.
   s._releaseDomainTiles();s._releaseRasterCanvas(s._screenWorldCache?.canvas);s._screenWorldCache=null;
   const before=stat();draw();const cold=snap(),coldStats=stat();

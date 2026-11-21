@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
-          fetch-depth: 6
+          fetch-depth: 7
           persist-credentials: false
       - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
         with:
@@ -24,7 +24,10 @@ jobs:
           set -euo pipefail
           BASE=2939958cc87407ef60b58720bb6e086b8559031b
           PARENT=0b23ee701ccf60f37515df9d87fe48b6fd034e8d
-          test "$(git show -s --format=%P HEAD)" = "$PARENT"
+          FIRST=f6694ffbcd2aa1da15497f0b3183ce8f8efeb4fa
+          test "$(git show -s --format=%P HEAD)" = "$FIRST"
+          test "$(git show -s --format=%P "$FIRST")" = "$PARENT"
+          diff -u <(printf 'M\t%s\n' .github/workflows/stage15-scoped-cache-r3.yml tools/stage15-scoped-cache/probe.js) <(git diff --name-status --no-renames "$FIRST" HEAD)
           test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
           test "$(git rev-parse "$PARENT^{tree}")" = 3e6db1bc9da5db1cca64d6d63397110564eada88
           test "$(git rev-parse "$BASE^{tree}")" = 08e22a8cc0ab608e125ad73f8e8e1c288d8c4c74
@@ -92,7 +95,7 @@ jobs:
               r=subprocess.run(['node','--expose-gc','tests/static-screen-cache.mjs'],cwd=path,capture_output=True,text=True,timeout=180)
               raw=r.stdout+r.stderr
               (W/'out'/f'global-cache-{arm}.log').write_text(raw)
-              digest=hashlib.sha256(re.sub(r'\x1b[[0-9;]*m','',raw).replace(str(path),'<worktree>').encode()).hexdigest()
+              digest=hashlib.sha256(re.sub(r'\x1b\[[0-9;]*m','',raw).replace(str(path),'<worktree>').encode()).hexdigest()
               out.append({'arm':arm,'exitCode':r.returncode,'normalizedLogSHA256':digest,'globalTestPassed':r.returncode==0})
           (W/'out'/'global-cache-verdict.json').write_text(json.dumps({'scope':'unmodified global test; both builds complete', 'arms':out},indent=2)+'\n')
           assert out[0]['exitCode']==out[1]['exitCode'],out
