@@ -1,0 +1,65 @@
+{
+  "actualBrowserSignedResult": "PASS",
+  "artifacts": [
+    {
+      "bytes": 13038150,
+      "id": 14723210857,
+      "name": "honro-stage14-native-A2-1440x900",
+      "sha256": "c3d4ac0da93dc6afc21db9991dd5f259cc69a66d5cfd9da8d66eaa0b619d82c4"
+    },
+    {
+      "bytes": 253956,
+      "id": 14722533286,
+      "name": "honro-stage14-exact-native-receipts",
+      "sha256": "91fec457e7e8622c8197db80eb8b8ffe55af40adf87ed02da3f315cd74d74ea8"
+    },
+    {
+      "bytes": 13022774,
+      "id": 14722393799,
+      "name": "honro-stage14-native-B-1440x900",
+      "sha256": "f08d63912c645790057db93433c7b071b49100a1990318696a85c64d727cc613"
+    },
+    {
+      "bytes": 14251991,
+      "id": 14722358992,
+      "name": "honro-stage14-native-A1-1440x900",
+      "sha256": "3e92fbe79030458a32cdd0f9eb605551e6df1e99555acf75a9138b8fb28ef279"
+    },
+    {
+      "bytes": 4929766,
+      "id": 14722344026,
+      "name": "honro-stage14-native-B-390x844",
+      "sha256": "5e4ce81240977e35418c2ee552d776a5afb535bae06aad8ec27665a8fe982fab"
+    },
+    {
+      "bytes": 5285261,
+      "id": 14722269336,
+      "name": "honro-stage14-native-A1-390x844",
+      "sha256": "39744e8393443f88afe07fb7f0e63cc0dc9cca4d978636df7f5ca2ad78d95093"
+    },
+    {
+      "bytes": 4931806,
+      "id": 14722139661,
+      "name": "honro-stage14-native-A2-390x844",
+      "sha256": "9abd3c1113a0e03eda0b304e44bef455ccca9290b72c02f861c061ec1d933e47"
+    }
+  ],
+  "base": "21809dc917101f9ee28672b34d923636ca58e7be",
+  "browserRawSha256": "ffada7d00fb38dfcdc183ab3b6e9954d0a509bf9af719ce340dd30038a673bf7",
+  "candidateSourceGit": "3409b094d17c8bb8593e19bd23805cc79432de56",
+  "conclusion": "success",
+  "expectedCaptures": 336,
+  "expectedComparisons": 28,
+  "graphCanonicalSha256": "5c6ad13087162d6582e6d94c11cbb08ae4304c04e675596e7fb7068e18f8eb32",
+  "independentlyVerifiedAuthorityReceipt": {
+    "bytes": 386,
+    "git": "52eb6455adf8874f8d9ec15444f7dedc38a3adea",
+    "sha256": "286b1c729e1b1f884b41e10670604b2435101bf2ff961e26cef5e14de3f6de71"
+  },
+  "nativeBranch": "qa/stage14-floor-closure-r3-21809dc",
+  "nativeHead": "c857683ac6cba70b0a49870d4ce0be0a88ddeabc",
+  "nativeJob": 136967981997,
+  "nativeRun": 44944262831,
+  "nativeTree": "1486bb1debbbfd4f833322eb6da9158183984740",
+  "priorPages": 44938122195
+}
