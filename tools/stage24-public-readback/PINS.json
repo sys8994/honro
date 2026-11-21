@@ -1,0 +1,932 @@
+{
+  "release": {
+    "enabled": true,
+    "commit": "acb51f4ee1c5afa90751dc256d6ad8d900732779",
+    "tree": "5cc36cfd7ef62fc801dc967605260610596d8061",
+    "pagesRun": 44918541021,
+    "pagesJob": 136889673324,
+    "publishedAt": "2026-11-21T15:20:54.6142454Z",
+    "retainedManifest": {
+      "bytes": 6458505,
+      "sha256": "e274ee2d3dbfee5ce35dfccd6055bfa1a898e3804bde80b687fd49f890c4079b",
+      "git": "264dc2eaa4a48d683aff9519b3281c961071c49e"
+    },
+    "retainedPreviousGraphSHA256": "181ce98caeb2b881d92742ee81c213da3a1c5828b820d09f46d07d136928704f"
+  },
+  "priorCommit": "b79ea7fd87fda5586d78eae0a7052996b8e71fb5",
+  "priorTree": "1e55d910bbabc43919c20a14d1a06002b20f4977",
+  "previousPages": {
+    "run": 44897685446,
+    "job": 136827113112,
+    "publishedAt": "2026-11-21T11:10:38.2358222Z",
+    "manifestSHA256": "0bf1527b6aa52fa5f4f22eb1b90102df5f1c6ea0cb791d664b1b94081c1b65cf",
+    "manifestGitBlob": "922db7aa4ecef59cbae10975f4d2d2091faf5d8f"
+  },
+  "normalAuthority": {
+    "run": 44916353122,
+    "artifact": 14711489507,
+    "head": "e4aad78d72ba927e82f8761dcfb0fef773bac947",
+    "proof": {
+      "bytes": 97258,
+      "sha256": "7a55613a5e217afa44baa587f20b328b1d777a40ab1e438520b909031af1c49f"
+    },
+    "graph": {
+      "bytes": 295463,
+      "sha256": "923554c83e7a7d525ee90ac4f6727b714b89e6cd04a6c37fbee2b5eeb6af920e"
+    },
+    "normalZIP": {
+      "bytes": 1836131,
+      "sha256": "40a83ad41afeb25fed300be442031358af9a6f6e0ba2fe1f22c40653e5ad24fd"
+    },
+    "sealSHA256": "12dda655dce181821b89bb0f48ff3c7a39298cad0a322f455a6e35a69c1040e3",
+    "outer": {
+      "bytes": 9633040,
+      "sha256": "7607585b697cd8e1f87f6e4b5e063af41ab717e34175c2d5009f7ce3d18d2f9d"
+    },
+    "stage24MapPin": "web/data/chapter-24.966a29d49ef5b519.json"
+  },
+  "sourceFiles": {
+    "shared/data/campaign.json": "a13fc5834808899bcf3b0eac1aa3ca4ada625a2b",
+    "tools/map-forge/stage24-family-compound.mjs": "9028bacf5603eb7447f97f1f0ccc65ec37912e2e"
+  },
+  "oldSourceFiles": {
+    "shared/data/campaign.json": "edaf31a5fda2b7db0202bc0efb52dd83e54f6b9e",
+    "tools/map-forge/stage24-family-compound.mjs": "514274cdcdaf2968bfe9371272a6f56e273b9c72"
+  },
+  "generated": {
+    "HONRO.html": {
+      "bytes": 17379,
+      "sha256": "7f0b08897737d44f4f7d9a436e703b7ec48659fcb121098ea1cffd5b1f93d46d"
+    },
+    "HONRO_WORKSHOP.html": {
+      "bytes": 4011,
+      "sha256": "d143e5de877a183302966e43aef3f684c9ca305bb09437d8de99f987c68404ad"
+    },
+    "index.html": {
+      "bytes": 17379,
+      "sha256": "7f0b08897737d44f4f7d9a436e703b7ec48659fcb121098ea1cffd5b1f93d46d"
+    },
+    "web/data/campaign.7140da5d3649e4ab.json": {
+      "bytes": 54961,
+      "sha256": "7140da5d3649e4aba2c58e180c8ff3f6f171a70e5e6704ad05dc98d428c52822"
+    },
+    "web/data/chapter-24-assets.636aabc0f572b723.json": {
+      "bytes": 490928,
+      "sha256": "636aabc0f572b7234b3f5b6bebfcb4b6376433a22e76d1a073c5ca28b7d1a46c"
+    },
+    "web/entries/game.1acc5c361cb2b136.html": {
+      "bytes": 11318,
+      "sha256": "1acc5c361cb2b1369b8205dc7a3ba8277775c668e0a3e393772d199a53669a80"
+    },
+    "web/entries/game.b0b1e648c2c03457.js": {
+      "bytes": 20483,
+      "sha256": "b0b1e648c2c034576f5e2c701faaa06c4a8f6dca7459e3f54f07fdb94bf61dee"
+    },
+    "web/entries/workshop.b980331722d6690d.js": {
+      "bytes": 16706,
+      "sha256": "b980331722d6690df3fd67e9c22f93f8ede135ac3758e940a0d8d8c0034a66c5"
+    },
+    "web/manifest.json": {
+      "bytes": 6260027,
+      "sha256": "7e8643180cc9b4ee84b53408d8d17e1a2706e3ce64db2a6d604960588359a9c8"
+    },
+    "web/runtime/campaign.926544619e01a04a.js": {
+      "bytes": 527,
+      "sha256": "926544619e01a04af2f2cc0e2bd435265ae9efff23062e259563bded6d851307"
+    }
+  },
+  "stableShells": {
+    "HONRO.html": {
+      "bytes": 17379,
+      "sha256": "7f0b08897737d44f4f7d9a436e703b7ec48659fcb121098ea1cffd5b1f93d46d"
+    },
+    "HONRO_WORKSHOP.html": {
+      "bytes": 4011,
+      "sha256": "d143e5de877a183302966e43aef3f684c9ca305bb09437d8de99f987c68404ad"
+    },
+    "index.html": {
+      "bytes": 17379,
+      "sha256": "7f0b08897737d44f4f7d9a436e703b7ec48659fcb121098ea1cffd5b1f93d46d"
+    }
+  },
+  "preGraph": "88573bf45eaff7f7ecd89ff326cbdd93c328c032a59ef87e2669338121c5281c",
+  "newGraph": "6413b805c8ee852ed59bb62ab6a6ca208589c848b238313478cf95f090cbce4a",
+  "priorURLUnchanged": {
+    "web/runtime/campaign.a4e4a1f2c263a866.js": {
+      "bytes": 527,
+      "sha256": "a4e4a1f2c263a8664156be6fd74a824061ffc18f8c2c2580e9b4fbd4123f6b19"
+    },
+    "web/entries/game.16fa712378260ab7.js": {
+      "bytes": 20483,
+      "sha256": "16fa712378260ab755902f838024524e733b769c5cd540f95737b3eaff58f7b1"
+    },
+    "web/entries/game.27bee1d027287972.html": {
+      "bytes": 11318,
+      "sha256": "27bee1d0272879720f4688ae605fce837b7609675202ef2c69d56fb34b554fc7"
+    },
+    "web/entries/workshop.c04fdab1de4158c5.js": {
+      "bytes": 16706,
+      "sha256": "c04fdab1de4158c57e7684d85e7a74c8a59b3a77f23ffed6d6d99fe9bd0b1d53"
+    },
+    "web/data/campaign.324003dbe6483ac8.json": {
+      "bytes": 54961,
+      "sha256": "324003dbe6483ac8a778ba250d8aa8d1c63d9149f1cb5b580e6011256006f437"
+    },
+    "web/data/chapter-24-assets.9da653528c6235b1.json": {
+      "bytes": 490200,
+      "sha256": "9da653528c6235b1bfdc6617cad6421d45da11b2aeeef7d0c3957b6fa7235116"
+    }
+  },
+  "newURLs": {
+    "web/entries/game.b0b1e648c2c03457.js": {
+      "bytes": 20483,
+      "sha256": "b0b1e648c2c034576f5e2c701faaa06c4a8f6dca7459e3f54f07fdb94bf61dee"
+    },
+    "web/runtime/campaign.926544619e01a04a.js": {
+      "bytes": 527,
+      "sha256": "926544619e01a04af2f2cc0e2bd435265ae9efff23062e259563bded6d851307"
+    },
+    "web/data/chapter-24-assets.636aabc0f572b723.json": {
+      "bytes": 490928,
+      "sha256": "636aabc0f572b7234b3f5b6bebfcb4b6376433a22e76d1a073c5ca28b7d1a46c"
+    },
+    "web/entries/workshop.b980331722d6690d.js": {
+      "bytes": 16706,
+      "sha256": "b980331722d6690df3fd67e9c22f93f8ede135ac3758e940a0d8d8c0034a66c5"
+    },
+    "web/data/campaign.7140da5d3649e4ab.json": {
+      "bytes": 54961,
+      "sha256": "7140da5d3649e4aba2c58e180c8ff3f6f171a70e5e6704ad05dc98d428c52822"
+    },
+    "web/entries/game.1acc5c361cb2b136.html": {
+      "bytes": 11318,
+      "sha256": "1acc5c361cb2b1369b8205dc7a3ba8277775c668e0a3e393772d199a53669a80"
+    }
+  },
+  "resources": {
+    "web/data/campaign-base.0c57dcfe7c08d421.json": {
+      "bytes": 257,
+      "sha256": "0c57dcfe7c08d421901ffa8eeb437940b6b6d4779816207b51dca7be44c73e5e"
+    },
+    "web/runtime/load-data.248fb3aada6f16bb.js": {
+      "bytes": 15550,
+      "sha256": "248fb3aada6f16bbe2d7df7e369db772df2d923bc91b1e517daa53858f558dcb"
+    },
+    "web/data/chapter-24.966a29d49ef5b519.json": {
+      "bytes": 35703,
+      "sha256": "966a29d49ef5b5199b0d962e64e52cd6c9cf1c462286b4b7c5d38e2e0df41fe3"
+    },
+    "web/runtime/ordered-common-17.9a592f68229e4289.js": {
+      "bytes": 104308,
+      "sha256": "9a592f68229e42894a87a328a71e2ac8408bb1556f441bcbc67229aa80ba718c"
+    },
+    "web/runtime/ordered-common-15.370f1fb43d3a212f.js": {
+      "bytes": 163921,
+      "sha256": "370f1fb43d3a212f035eabb93ea935aff41d6146fb8c9103c77a1f9c1f07d737"
+    },
+    "web/data/campaign-shared.8f8343b5c21518d4.json": {
+      "bytes": 577195,
+      "sha256": "8f8343b5c21518d4fdaa2314e58031fd137b8622d3a6c1ca2fdabafde3bb158f"
+    },
+    "web/runtime/ordered-common-11.6adcb81897ec0663.js": {
+      "bytes": 177221,
+      "sha256": "6adcb81897ec06638dc92386b515b2f8ff10ee38a60c6fa4fb2d9040be22ea77"
+    }
+  },
+  "binding": {
+    "campaign": "web/data/campaign.7140da5d3649e4ab.json",
+    "map": "web/data/chapter-24.966a29d49ef5b519.json",
+    "packet": "web/data/chapter-24-assets.636aabc0f572b723.json",
+    "base": "web/data/campaign-base.0c57dcfe7c08d421.json",
+    "shared": "web/data/campaign-shared.8f8343b5c21518d4.json",
+    "runtime": "web/runtime/campaign.926544619e01a04a.js",
+    "entry": "web/entries/game.b0b1e648c2c03457.js",
+    "workshop": "web/entries/workshop.b980331722d6690d.js",
+    "embedded": "web/entries/game.1acc5c361cb2b136.html"
+  },
+  "poses": {
+    "s24-1440x900-east-ordinary": {
+      "requiredFrame": {
+        "desired": {
+          "x": 6930,
+          "y": 2520,
+          "scale": 0.5
+        },
+        "actual": {
+          "x": 6930,
+          "y": 2520,
+          "scale": 0.5
+        },
+        "viewport": {
+          "left": 5490,
+          "right": 8370,
+          "top": 1750.8125,
+          "bottom": 3289.1875
+        },
+        "focus": {
+          "left": -320,
+          "top": -1800,
+          "right": 7320,
+          "bottom": 3540
+        },
+        "zoomLimits": {
+          "min": 0.21176470588235294,
+          "max": 1.65,
+          "tactical": 0.21176470588235294,
+          "readability": 0.056818181818181816
+        },
+        "css": {
+          "w": 1440,
+          "h": 769.1875
+        },
+        "backing": [
+          1440,
+          769
+        ],
+        "actorCount": 30,
+        "tide": null,
+        "phase": "aim",
+        "round": 1,
+        "sceneTime": 2,
+        "physicsSHA256": "4f2176310fc331d0c8d37fcbba29f9df89b3e438b26fe800ac6b19cc935b61e0"
+      },
+      "owner": {
+        "expectedSource": "front6; rear and B/F ownership retained, not live paint isolation",
+        "owners": [
+          {
+            "id": "family24:retaining-earth-faces",
+            "renderedID": "retaining-earth-faces",
+            "layer": "front",
+            "kind": "canonical-element",
+            "role": "decoration",
+            "nativeTerrainClip": true,
+            "registeredVectorSHA256": "a1c2cd901cb96494d00542fc4dca168cc80fa838c100b3d326e24a96274247b5",
+            "nativeRenderVectorSHA256": "6fd9ef04593300209147ef91937c7a20ae4ca1ff9ff4cbbbbaba56d6a948d7f8"
+          },
+          {
+            "id": "family24:deep-foundation-masonry",
+            "renderedID": "deep-foundation-masonry",
+            "layer": "back",
+            "kind": "canonical-element",
+            "role": "decoration",
+            "nativeTerrainClip": true,
+            "registeredVectorSHA256": "40b5d108e311b483a75a99a4cd034614a57cda17683f3a318e7dde34996df0f6",
+            "nativeRenderVectorSHA256": "ee99e12d2525dce3f323a04072f7ced51aa4436bdb9468febbb43d72daa957d4"
+          },
+          {
+            "id": "family24:terrain-material",
+            "renderedID": "terrain-material",
+            "layer": "front",
+            "kind": "canonical-element",
+            "role": "decoration",
+            "nativeTerrainClip": true,
+            "registeredVectorSHA256": "b905a72c2d7d124d0991707794aebf846b2f99a0cb874ae5d2b580d09ae269e8",
+            "nativeRenderVectorSHA256": "4fe2d005d632e2916c227a1fa175c3c2fa5c6d7202bc9a0618fd6515b4ef52e3"
+          },
+          {
+            "id": "act3-handoff:24:garden-foundation",
+            "renderedID": "act3-handoff:24:garden-foundation",
+            "layer": "front",
+            "kind": "canonical-element",
+            "role": "gameplay",
+            "nativeTerrainClip": false,
+            "registeredVectorSHA256": "68fe783e255f1017b335709ad1b2e23a628abe2c59b6996755f8100981d206ff",
+            "nativeRenderVectorSHA256": "68fe783e255f1017b335709ad1b2e23a628abe2c59b6996755f8100981d206ff"
+          }
+        ],
+        "front6": {
+          "id": "family24:retaining-earth-faces",
+          "d": "M6410 2452 L7000 2452 L6977 2590 L6453 2572 Z",
+          "rim": "M6410 2444 L7000 2444"
+        },
+        "worldFloor": [
+          [
+            6410,
+            2440
+          ],
+          [
+            7000,
+            2440
+          ],
+          [
+            7500,
+            2385.3125
+          ],
+          [
+            8000,
+            2375.5496296296296
+          ]
+        ],
+        "authoredPlay": {
+          "bounds": {
+            "left": 0,
+            "top": 0,
+            "right": 7000,
+            "bottom": 3300
+          },
+          "start": {
+            "x": 0,
+            "y": 2700
+          }
+        },
+        "terrainDomainActive": true,
+        "realState": {
+          "phase": "aim",
+          "round": 1,
+          "actorCount": 30,
+          "canvasDPR": 1
+        },
+        "unmodified": true
+      },
+      "raw": {
+        "size": [
+          1440,
+          769
+        ],
+        "rgba": "c9ebd611e9f4bf886159a8feb4222db88b497322688ef736dd76384b6fdf6252",
+        "pngSHA256": "cee6c62c374b9c4bf2799fb62acfed1196582af0dfa2265990877e533a3ee592"
+      },
+      "dom": {
+        "size": [
+          1440,
+          770
+        ],
+        "rgba": "5067bd15c83c491bc465ae25bf9b9209795605c0aaa8ca9275cd7c2dc6869e63",
+        "pngSHA256": "afd707eb6ddd3018a1b0580f04a30d5101533eb1655345a33af05b4ecca38262"
+      }
+    },
+    "s24-1440x900-west": {
+      "requiredFrame": {
+        "desired": {
+          "x": -1000000,
+          "y": 1650,
+          "scale": 0.21176470588235294
+        },
+        "actual": {
+          "x": -320,
+          "y": 1650,
+          "scale": 0.21176470588235294
+        },
+        "viewport": {
+          "left": -3720,
+          "right": 3080,
+          "top": -166.13715277777783,
+          "bottom": 3466.137152777778
+        },
+        "focus": {
+          "left": -320,
+          "top": -1800,
+          "right": 7320,
+          "bottom": 3540
+        },
+        "zoomLimits": {
+          "min": 0.21176470588235294,
+          "max": 1.65,
+          "tactical": 0.21176470588235294,
+          "readability": 0.056818181818181816
+        },
+        "css": {
+          "w": 1440,
+          "h": 769.1875
+        },
+        "backing": [
+          1440,
+          769
+        ],
+        "actorCount": 30,
+        "tide": null,
+        "phase": "aim",
+        "round": 1,
+        "sceneTime": 2,
+        "physicsSHA256": "4f2176310fc331d0c8d37fcbba29f9df89b3e438b26fe800ac6b19cc935b61e0"
+      },
+      "owner": {
+        "expectedSource": "front6; rear and B/F ownership retained, not live paint isolation",
+        "owners": [
+          {
+            "id": "family24:retaining-earth-faces",
+            "renderedID": "retaining-earth-faces",
+            "layer": "front",
+            "kind": "canonical-element",
+            "role": "decoration",
+            "nativeTerrainClip": true,
+            "registeredVectorSHA256": "a1c2cd901cb96494d00542fc4dca168cc80fa838c100b3d326e24a96274247b5",
+            "nativeRenderVectorSHA256": "6fd9ef04593300209147ef91937c7a20ae4ca1ff9ff4cbbbbaba56d6a948d7f8"
+          },
+          {
+            "id": "family24:deep-foundation-masonry",
+            "renderedID": "deep-foundation-masonry",
+            "layer": "back",
+            "kind": "canonical-element",
+            "role": "decoration",
+            "nativeTerrainClip": true,
+            "registeredVectorSHA256": "40b5d108e311b483a75a99a4cd034614a57cda17683f3a318e7dde34996df0f6",
+            "nativeRenderVectorSHA256": "ee99e12d2525dce3f323a04072f7ced51aa4436bdb9468febbb43d72daa957d4"
+          },
+          {
+            "id": "family24:terrain-material",
+            "renderedID": "terrain-material",
+            "layer": "front",
+            "kind": "canonical-element",
+            "role": "decoration",
+            "nativeTerrainClip": true,
+            "registeredVectorSHA256": "b905a72c2d7d124d0991707794aebf846b2f99a0cb874ae5d2b580d09ae269e8",
+            "nativeRenderVectorSHA256": "4fe2d005d632e2916c227a1fa175c3c2fa5c6d7202bc9a0618fd6515b4ef52e3"
+          },
+          {
+            "id": "act3-handoff:24:garden-foundation",
+            "renderedID": "act3-handoff:24:garden-foundation",
+            "layer": "front",
+            "kind": "canonical-element",
+            "role": "gameplay",
+            "nativeTerrainClip": false,
+            "registeredVectorSHA256": "68fe783e255f1017b335709ad1b2e23a628abe2c59b6996755f8100981d206ff",
+            "nativeRenderVectorSHA256": "68fe783e255f1017b335709ad1b2e23a628abe2c59b6996755f8100981d206ff"
+          }
+        ],
+        "front6": {
+          "id": "family24:retaining-earth-faces",
+          "d": "M6410 2452 L7000 2452 L6977 2590 L6453 2572 Z",
+          "rim": "M6410 2444 L7000 2444"
+        },
+        "worldFloor": [
+          [
+            6410,
+            2440
+          ],
+          [
+            7000,
+            2440
+          ],
+          [
+            7500,
+            2385.3125
+          ],
+          [
+            8000,
+            2375.5496296296296
+          ]
+        ],
+        "authoredPlay": {
+          "bounds": {
+            "left": 0,
+            "top": 0,
+            "right": 7000,
+            "bottom": 3300
+          },
+          "start": {
+            "x": 0,
+            "y": 2700
+          }
+        },
+        "terrainDomainActive": true,
+        "realState": {
+          "phase": "aim",
+          "round": 1,
+          "actorCount": 30,
+          "canvasDPR": 1
+        },
+        "unmodified": true
+      },
+      "raw": {
+        "size": [
+          1440,
+          769
+        ],
+        "rgba": "a6a74d626ae81bb07db7cffa72eabbf48edc9303f30c2a069f76b6e6a6a4e7a1",
+        "pngSHA256": "4ba780ef305df7cd29c2446ce9f94cc967bdab14016a6c6dcd265141bcc1b5ab"
+      },
+      "dom": {
+        "size": [
+          1440,
+          770
+        ],
+        "rgba": "6c2a4e22e2c2db24b4d9c957428ec46ec7a5665e11291dc0a51850375390808a",
+        "pngSHA256": "07b28bd36d849a49cda0905b4e8f352483016ae3329252d9a645ad183c0a9ca6"
+      }
+    },
+    "s24-390x844-east-ordinary": {
+      "requiredFrame": {
+        "desired": {
+          "x": 6930,
+          "y": 2520,
+          "scale": 0.5
+        },
+        "actual": {
+          "x": 6930,
+          "y": 2520,
+          "scale": 0.5
+        },
+        "viewport": {
+          "left": 6540,
+          "right": 7320,
+          "top": 1872.390625,
+          "bottom": 3167.609375
+        },
+        "focus": {
+          "left": -320,
+          "top": -1800,
+          "right": 7320,
+          "bottom": 3540
+        },
+        "zoomLimits": {
+          "min": 0.057352941176470586,
+          "max": 1.65,
+          "tactical": 0.057352941176470586,
+          "readability": 0.056818181818181816
+        },
+        "css": {
+          "w": 390,
+          "h": 647.609375
+        },
+        "backing": [
+          390,
+          648
+        ],
+        "actorCount": 30,
+        "tide": null,
+        "phase": "aim",
+        "round": 1,
+        "sceneTime": 2,
+        "physicsSHA256": "4f2176310fc331d0c8d37fcbba29f9df89b3e438b26fe800ac6b19cc935b61e0"
+      },
+      "owner": {
+        "expectedSource": "front6; rear and B/F ownership retained, not live paint isolation",
+        "owners": [
+          {
+            "id": "family24:retaining-earth-faces",
+            "renderedID": "retaining-earth-faces",
+            "layer": "front",
+            "kind": "canonical-element",
+            "role": "decoration",
+            "nativeTerrainClip": true,
+            "registeredVectorSHA256": "a1c2cd901cb96494d00542fc4dca168cc80fa838c100b3d326e24a96274247b5",
+            "nativeRenderVectorSHA256": "6fd9ef04593300209147ef91937c7a20ae4ca1ff9ff4cbbbbaba56d6a948d7f8"
+          },
+          {
+            "id": "family24:deep-foundation-masonry",
+            "renderedID": "deep-foundation-masonry",
+            "layer": "back",
+            "kind": "canonical-element",
+            "role": "decoration",
+            "nativeTerrainClip": true,
+            "registeredVectorSHA256": "40b5d108e311b483a75a99a4cd034614a57cda17683f3a318e7dde34996df0f6",
+            "nativeRenderVectorSHA256": "ee99e12d2525dce3f323a04072f7ced51aa4436bdb9468febbb43d72daa957d4"
+          },
+          {
+            "id": "family24:terrain-material",
+            "renderedID": "terrain-material",
+            "layer": "front",
+            "kind": "canonical-element",
+            "role": "decoration",
+            "nativeTerrainClip": true,
+            "registeredVectorSHA256": "b905a72c2d7d124d0991707794aebf846b2f99a0cb874ae5d2b580d09ae269e8",
+            "nativeRenderVectorSHA256": "4fe2d005d632e2916c227a1fa175c3c2fa5c6d7202bc9a0618fd6515b4ef52e3"
+          },
+          {
+            "id": "act3-handoff:24:garden-foundation",
+            "renderedID": "act3-handoff:24:garden-foundation",
+            "layer": "front",
+            "kind": "canonical-element",
+            "role": "gameplay",
+            "nativeTerrainClip": false,
+            "registeredVectorSHA256": "68fe783e255f1017b335709ad1b2e23a628abe2c59b6996755f8100981d206ff",
+            "nativeRenderVectorSHA256": "68fe783e255f1017b335709ad1b2e23a628abe2c59b6996755f8100981d206ff"
+          }
+        ],
+        "front6": {
+          "id": "family24:retaining-earth-faces",
+          "d": "M6410 2452 L7000 2452 L6977 2590 L6453 2572 Z",
+          "rim": "M6410 2444 L7000 2444"
+        },
+        "worldFloor": [
+          [
+            6410,
+            2440
+          ],
+          [
+            7000,
+            2440
+          ],
+          [
+            7500,
+            2385.3125
+          ],
+          [
+            8000,
+            2375.5496296296296
+          ]
+        ],
+        "authoredPlay": {
+          "bounds": {
+            "left": 0,
+            "top": 0,
+            "right": 7000,
+            "bottom": 3300
+          },
+          "start": {
+            "x": 0,
+            "y": 2700
+          }
+        },
+        "terrainDomainActive": true,
+        "realState": {
+          "phase": "aim",
+          "round": 1,
+          "actorCount": 30,
+          "canvasDPR": 1
+        },
+        "unmodified": true
+      },
+      "raw": {
+        "size": [
+          390,
+          648
+        ],
+        "rgba": "08e6dad8b0a3044d97fe0eae25541c4489fcc24f7dc89f4b86a1e9b1f4f92c93",
+        "pngSHA256": "1ce2af399aebb9216f7e563c2b4a2d41dce6397d1295e3b3a8a2a0172e4c7000"
+      },
+      "dom": {
+        "size": [
+          390,
+          648
+        ],
+        "rgba": "d292abf11692d3951d8452c1e5f2df0c711db59a575a42d6f1992671875e3e53",
+        "pngSHA256": "77ab2e799169a62a8bcd0c88e264b6b903d7dceb683a67c62c08cdd896a9cb32"
+      }
+    },
+    "s24-390x844-west": {
+      "requiredFrame": {
+        "desired": {
+          "x": -1000000,
+          "y": 1650,
+          "scale": 0.057352941176470586
+        },
+        "actual": {
+          "x": -320,
+          "y": 1650,
+          "scale": 0.057352941176470586
+        },
+        "viewport": {
+          "left": -3720,
+          "right": 3080,
+          "top": -3995.8253205128203,
+          "bottom": 7295.82532051282
+        },
+        "focus": {
+          "left": -320,
+          "top": -1800,
+          "right": 7320,
+          "bottom": 3540
+        },
+        "zoomLimits": {
+          "min": 0.057352941176470586,
+          "max": 1.65,
+          "tactical": 0.057352941176470586,
+          "readability": 0.056818181818181816
+        },
+        "css": {
+          "w": 390,
+          "h": 647.609375
+        },
+        "backing": [
+          390,
+          648
+        ],
+        "actorCount": 30,
+        "tide": null,
+        "phase": "aim",
+        "round": 1,
+        "sceneTime": 2,
+        "physicsSHA256": "4f2176310fc331d0c8d37fcbba29f9df89b3e438b26fe800ac6b19cc935b61e0"
+      },
+      "owner": {
+        "expectedSource": "front6; rear and B/F ownership retained, not live paint isolation",
+        "owners": [
+          {
+            "id": "family24:retaining-earth-faces",
+            "renderedID": "retaining-earth-faces",
+            "layer": "front",
+            "kind": "canonical-element",
+            "role": "decoration",
+            "nativeTerrainClip": true,
+            "registeredVectorSHA256": "a1c2cd901cb96494d00542fc4dca168cc80fa838c100b3d326e24a96274247b5",
+            "nativeRenderVectorSHA256": "6fd9ef04593300209147ef91937c7a20ae4ca1ff9ff4cbbbbaba56d6a948d7f8"
+          },
+          {
+            "id": "family24:deep-foundation-masonry",
+            "renderedID": "deep-foundation-masonry",
+            "layer": "back",
+            "kind": "canonical-element",
+            "role": "decoration",
+            "nativeTerrainClip": true,
+            "registeredVectorSHA256": "40b5d108e311b483a75a99a4cd034614a57cda17683f3a318e7dde34996df0f6",
+            "nativeRenderVectorSHA256": "ee99e12d2525dce3f323a04072f7ced51aa4436bdb9468febbb43d72daa957d4"
+          },
+          {
+            "id": "family24:terrain-material",
+            "renderedID": "terrain-material",
+            "layer": "front",
+            "kind": "canonical-element",
+            "role": "decoration",
+            "nativeTerrainClip": true,
+            "registeredVectorSHA256": "b905a72c2d7d124d0991707794aebf846b2f99a0cb874ae5d2b580d09ae269e8",
+            "nativeRenderVectorSHA256": "4fe2d005d632e2916c227a1fa175c3c2fa5c6d7202bc9a0618fd6515b4ef52e3"
+          },
+          {
+            "id": "act3-handoff:24:garden-foundation",
+            "renderedID": "act3-handoff:24:garden-foundation",
+            "layer": "front",
+            "kind": "canonical-element",
+            "role": "gameplay",
+            "nativeTerrainClip": false,
+            "registeredVectorSHA256": "68fe783e255f1017b335709ad1b2e23a628abe2c59b6996755f8100981d206ff",
+            "nativeRenderVectorSHA256": "68fe783e255f1017b335709ad1b2e23a628abe2c59b6996755f8100981d206ff"
+          }
+        ],
+        "front6": {
+          "id": "family24:retaining-earth-faces",
+          "d": "M6410 2452 L7000 2452 L6977 2590 L6453 2572 Z",
+          "rim": "M6410 2444 L7000 2444"
+        },
+        "worldFloor": [
+          [
+            6410,
+            2440
+          ],
+          [
+            7000,
+            2440
+          ],
+          [
+            7500,
+            2385.3125
+          ],
+          [
+            8000,
+            2375.5496296296296
+          ]
+        ],
+        "authoredPlay": {
+          "bounds": {
+            "left": 0,
+            "top": 0,
+            "right": 7000,
+            "bottom": 3300
+          },
+          "start": {
+            "x": 0,
+            "y": 2700
+          }
+        },
+        "terrainDomainActive": true,
+        "realState": {
+          "phase": "aim",
+          "round": 1,
+          "actorCount": 30,
+          "canvasDPR": 1
+        },
+        "unmodified": true
+      },
+      "raw": {
+        "size": [
+          390,
+          648
+        ],
+        "rgba": "574e1ddcd1e44121b41d73383ddc379e52cbb4ec9a021179c47bb251a8228dab",
+        "pngSHA256": "4f9d5950f8340d148942749c339e2cead6e59c341e43198b0dc5ab1180286d48"
+      },
+      "dom": {
+        "size": [
+          390,
+          648
+        ],
+        "rgba": "e10e17e7e566fc0ae8ee00df5153e9f89c4ea966d20b9a1c9e97dca9a40fd697",
+        "pngSHA256": "d1ea4799bab75c16de28dfdaead029d45360b2b7e22579ad107910bdcb169c57"
+      }
+    }
+  },
+  "mustObserve": {
+    "1440x900": [
+      "HONRO.html",
+      "web/data/campaign-base.0c57dcfe7c08d421.json",
+      "web/data/campaign-shared.8f8343b5c21518d4.json",
+      "web/data/campaign.7140da5d3649e4ab.json",
+      "web/data/chapter-24-assets.636aabc0f572b723.json",
+      "web/data/chapter-24.966a29d49ef5b519.json",
+      "web/entries/game.b0b1e648c2c03457.js",
+      "web/runtime/campaign.926544619e01a04a.js",
+      "web/runtime/load-data.248fb3aada6f16bb.js",
+      "web/runtime/ordered-common-11.6adcb81897ec0663.js",
+      "web/runtime/ordered-common-15.370f1fb43d3a212f.js",
+      "web/runtime/ordered-common-17.9a592f68229e4289.js"
+    ],
+    "390x844": [
+      "HONRO.html",
+      "web/data/campaign-base.0c57dcfe7c08d421.json",
+      "web/data/campaign-shared.8f8343b5c21518d4.json",
+      "web/data/campaign.7140da5d3649e4ab.json",
+      "web/data/chapter-24-assets.636aabc0f572b723.json",
+      "web/data/chapter-24.966a29d49ef5b519.json",
+      "web/entries/game.b0b1e648c2c03457.js",
+      "web/runtime/campaign.926544619e01a04a.js",
+      "web/runtime/load-data.248fb3aada6f16bb.js",
+      "web/runtime/ordered-common-11.6adcb81897ec0663.js",
+      "web/runtime/ordered-common-15.370f1fb43d3a212f.js",
+      "web/runtime/ordered-common-17.9a592f68229e4289.js"
+    ]
+  },
+  "law": {
+    "shape": {
+      "id": "family24:retaining-earth-faces",
+      "d": "M6410 2452 L7000 2452 L6977 2590 L6453 2572 Z",
+      "rim": "M6410 2444 L7000 2444"
+    },
+    "vectors": {
+      "family24:retaining-earth-faces": "a1c2cd901cb96494d00542fc4dca168cc80fa838c100b3d326e24a96274247b5",
+      "family24:deep-foundation-masonry": "40b5d108e311b483a75a99a4cd034614a57cda17683f3a318e7dde34996df0f6",
+      "family24:terrain-material": "b905a72c2d7d124d0991707794aebf846b2f99a0cb874ae5d2b580d09ae269e8",
+      "act3-handoff:24:garden-foundation": "68fe783e255f1017b335709ad1b2e23a628abe2c59b6996755f8100981d206ff"
+    },
+    "placements": [
+      {
+        "id": "terrain-material",
+        "assetId": "family24:terrain-material",
+        "x": 0,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0,
+        "snap": false,
+        "depthLayer": "L1",
+        "layer": "front"
+      },
+      {
+        "id": "retaining-earth-faces",
+        "assetId": "family24:retaining-earth-faces",
+        "x": 0,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0,
+        "snap": false,
+        "depthLayer": "L1",
+        "layer": "front"
+      },
+      {
+        "id": "deep-foundation-masonry",
+        "assetId": "family24:deep-foundation-masonry",
+        "x": 0,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0,
+        "snap": false,
+        "depthLayer": "L1",
+        "layer": "back"
+      }
+    ],
+    "worldFloor": [
+      [
+        6410,
+        2440
+      ],
+      [
+        7000,
+        2440
+      ],
+      [
+        7500,
+        2385.3125
+      ],
+      [
+        8000,
+        2375.5496296296296
+      ]
+    ],
+    "mapBounds": {
+      "left": -6000,
+      "top": -24000,
+      "right": 13000,
+      "bottom": 27300
+    },
+    "playBounds": {
+      "left": 0,
+      "top": 0,
+      "right": 7000,
+      "bottom": 3300
+    },
+    "encoding": "json",
+    "native": {
+      "family24:retaining-earth-faces": "6fd9ef04593300209147ef91937c7a20ae4ca1ff9ff4cbbbbaba56d6a948d7f8",
+      "family24:deep-foundation-masonry": "ee99e12d2525dce3f323a04072f7ced51aa4436bdb9468febbb43d72daa957d4",
+      "family24:terrain-material": "4fe2d005d632e2916c227a1fa175c3c2fa5c6d7202bc9a0618fd6515b4ef52e3",
+      "act3-handoff:24:garden-foundation": "68fe783e255f1017b335709ad1b2e23a628abe2c59b6996755f8100981d206ff"
+    },
+    "facet": {
+      "id": "family24-front6-east-return",
+      "d": "M6996.333333333333 2474 L7030 2471 L7030 2610 L6917 2610 L6929 2588 L6945 2570 L6952 2552 L6965 2540 L6958 2521 L6975 2506 L6976 2492 Z",
+      "stock": "#5b6756",
+      "fill": "#485b4a"
+    }
+  },
+  "browser": "151.0.7922.34",
+  "normalManifestWithoutHistory": "e4b3ad8287987721bd23a2c1ed2fc1c2b831cce5a82995100695d0a85b51042b"
+}
