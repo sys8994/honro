@@ -8,6 +8,7 @@ import {makeAct5,far as act5Far,farStages as act5FarStages,clock as act5Clock,jo
 import {applyAct3HandoffArt} from './act3-handoff-art.mjs';
 import {applyNaruBodyFinish} from '../tools/map-forge/naru-body-finish.mjs';
 import {terrainPathOptimization} from './terrain-path-optimization.mjs';
+import {applyStage35BedrockJoin} from './act4-stage35-bedrock-join.mjs';
 import {applyReviewedAct2Art} from '../tools/act2-vector-production/apply-candidates.mjs';
 import {validateSkillIcons} from '../tools/skill-icons/manifest.mjs';
 import {applyCommonCartArt} from '../tools/environment/common-cart-art.mjs';
@@ -196,7 +197,11 @@ export async function runtimeEntries({vector=true,render=true,app=false,producti
   terrainOptimization.apply(project.library);
   applyNaruBodyFinish(project);
   if(act5)project={...project,stages:[...project.stages,...act5.stages],library:[...project.library,...act5.library]};
-  if(act4Enabled)code('terrain-previous-provider-signatures','globalThis.HONRO_PREVIOUS_TERRAIN_ART='+JSON.stringify(terrainOptimization.previousAct4Signatures)+';');
+  if(act4Enabled){
+    const stage35Join=applyStage35BedrockJoin(project,terrainOptimization.previousAct4Signatures);
+    project=stage35Join.project;
+    code('terrain-previous-provider-signatures','globalThis.HONRO_PREVIOUS_TERRAIN_ART='+JSON.stringify(stage35Join.previousAct4Signatures)+';');
+  }
   parts.push({name:'campaign',project,code:'globalThis.HONRO_PROJECT='+authorProjectExpression(JSON.stringify(project))+';'});
   if(vector){
     await buildParty();
