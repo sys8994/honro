@@ -1,0 +1,99 @@
+name: Stage15 playable foreground V4 native evidence (never deploy)
+on:
+  push:
+    branches: [qa/stage15-floor-v4-ledger-2939958-20261121]
+permissions:
+  contents: read
+jobs:
+  stage15-floor-v4-native:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage15-floor-v4-ledger-2939958-20261121'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 33
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Exact disposable B and V4 source/real build, no publish
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT=$GITHUB_WORKSPACE
+          BASE=2939958cc87407ef60b58720bb6e086b8559031b
+          test "$(git show -s --format=%P HEAD)" = "$BASE"
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test "$(git rev-parse "$BASE^{tree}")" = 08e22a8cc0ab608e125ad73f8e8e1c288d8c4c74
+          test "$(git rev-parse "$BASE:shared/data/act2/stage15-compact-package.json")" = ac4fb9854c5bf713507564755848b6c2af1f8f1b
+          Q="$ROOT/tools/stage15-floor-v4-native-qa"
+          W="$(mktemp -d "$RUNNER_TEMP/stage15-native-floor-v4.XXXXXX")"
+          mkdir "$W/out"
+          echo "WORK=$W" >> "$GITHUB_ENV"
+          echo "QA=$Q" >> "$GITHUB_ENV"
+          printf 'A\t%s\n' .github/workflows/stage15-floor-v4-native-qa.yml tools/stage15-floor-v4-native-qa/{PINS.json,B-native-44844285051.json,capture.py,mask.json,method.txt,patch.py,source.py,verify.py,floor_asset.py,floor-v4-pins.json,ledger.py} | LC_ALL=C sort > "$W/files"
+          git diff --name-status --no-renames "$BASE" HEAD | LC_ALL=C sort | diff - "$W/files"
+          for side in A B V; do git worktree add --detach "$W/$side" "$BASE"; done
+          for side in B V; do
+            python "$Q/patch.py" "$W/A" "$W/$side" > "$W/out/upper-$side.json"
+            node --check "$W/$side/shared/runtime/renderer.js"
+          done
+          python "$Q/floor_asset.py" "$W/A" "$W/V" > "$W/out/floor-V.json"
+          test "$(git hash-object "$W/V/shared/data/act2/stage15-compact-package.json")" = 5d8590226d3382c2ee7ece2cb9c3ff80df6587fd
+          python "$Q/ledger.py" "$W/A" "$W/B" "$W/V" > "$W/out/ledger-V.json"
+          node - "$W/V" <<'JS'
+          const [,,root]=process.argv;
+          require(root+'/shared/map/vector-art.js');
+          const p=require(root+'/shared/data/act2/stage15-compact-package.json');
+          const v=p.assets.find(a=>a.id==='act2-compact:stage15-act2-stage15-traced-outer-v1-1').vector;
+          const issues=HonroVectorArt.validate(v);
+          if(issues.length)throw Error(issues.join(';'));
+          JS
+          (cd "$W/A" && npm ci) > "$W/out/deps-A.log" 2>&1 || { tail -100 "$W/out/deps-A.log"; exit 1; }
+          for side in B V; do
+            (
+              cd "$W/$side"
+              npm ci && npm ci --prefix game && npm run test:release-guard && npm run build && npm run test:production-contract
+            ) > "$W/out/build-$side.log" 2>&1 || { tail -100 "$W/out/build-$side.log"; exit 1; }
+          done
+          for side in A B V; do
+            want=''
+            if [[ "$side" == B ]]; then want=$' M shared/runtime/renderer.js'; fi
+            if [[ "$side" == V ]]; then want=$' M shared/data/act2/stage15-compact-package.json\n M shared/data/terrain-path-optimization.json\n M shared/runtime/renderer.js'; fi
+            test "$(git -C "$W/$side" status --porcelain=v1 -uall -- shared tools game tests package.json package-lock.json workshop/build.mjs)" = "$want"
+          done
+      - name: Normal application captures, exact scope, original renderer only
+        timeout-minutes: 23
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m venv "$WORK/venv"
+          V="$WORK/venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0 numpy
+          "$V" -m playwright install --with-deps chromium
+          python -m http.server 18842 --bind 127.0.0.1 --directory "$WORK/B" > "$WORK/out/http-B.log" 2>&1 &
+          bp=$!
+          python -m http.server 18843 --bind 127.0.0.1 --directory "$WORK/V" > "$WORK/out/http-V.log" 2>&1 &
+          fp=$!
+          trap 'kill "$bp" "$fp" 2>/dev/null || true' EXIT
+          for p in 18842 18843; do curl -fsS --retry 10 --retry-connrefused "http://127.0.0.1:$p/HONRO.html" -o /dev/null; done
+          export AUDIT_A="$WORK/A" AUDIT_B="$WORK/B" AUDIT_STAGE=15
+          for side in B V; do
+            export AUDIT_ARM="$side" AUDIT_TREE="$WORK/$side" AUDIT_OUT="$WORK/out/$side"
+            if [[ "$side" == B ]]; then export AUDIT_PORT=18842; else export AUDIT_PORT=18843; fi
+            "$V" "$QA/source.py"
+          done
+          for side in B V; do
+            export AUDIT_ARM="$side" AUDIT_TREE="$WORK/$side" AUDIT_OUT="$WORK/out/$side"
+            if [[ "$side" == B ]]; then export AUDIT_PORT=18842; else export AUDIT_PORT=18843; fi
+            "$V" "$QA/capture.py"
+          done
+          "$V" "$QA/verify.py" "$WORK/out"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: stage15-floor-v4-native-ledger
+          path: ${{ env.WORK }}/out
+          if-no-files-found: error
+          retention-days: 7
