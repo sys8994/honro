@@ -1,0 +1,48 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import crypto from 'node:crypto';
+import assert from 'node:assert/strict';
+import {applySignedStage33} from './signed-apply.mjs';
+const source='shared/data/act4/sideview-art/33-coastal-v2.json';
+const ID='act4-sideview:33:coastal-v2:lowland';
+const SHA=data=>crypto.createHash('sha256').update(data).digest('hex');
+const old='77e3058c6faead40c865a3264065b8ed81d08c79609e21419e96aea6bd395fe7';
+const next='08925f1831abc81bc315c221bef566ebc97d4498f0ce5008e66b0067a0ccba26';
+const G0='c9c204a0daefb790309b3c7d0917c3e34acf7708',G1='ac4b97dcd14aecd7c24566defe8e3e21d4191d63';
+const bfile='0746baae59d383ddfbbfc281bdefeadd4631a9b0d2e1b358fcc41e278cd0f4ac';
+const afile='4b5df185aa59eb42dbb2c46bd21b38ef2ab7134098bc31b3a0b96439dcc7ef73';
+const encode=v=>Buffer.from(JSON.stringify(v)+'\n');
+const read=p=>fs.readFileSync(p);
+const json=b=>JSON.parse(b);
+const [mode,dir,ap,bp]=process.argv.slice(2),W=fs.realpathSync(dir),T=fs.realpathSync(process.env.RUNNER_TEMP);
+assert(W.startsWith(T+path.sep));
+assert(['write','wire'].includes(mode));
+const aroot=path.join(W,'A'),broot=path.join(W,'B');
+const [a,b]=[aroot,broot].map(x=>path.join(x,source));
+const raw=read(a),{result,receipt}=applySignedStage33(raw);
+assert.equal(receipt.source.git,G0);assert.equal(receipt.target.git,G1);
+assert.equal(receipt.target.ownerHash,next);assert.equal(receipt.target.sha256,'d97c09f3cdf7bb41a5fa1a3da7e8037b5b0e9c0fb691e5fcd7aade119a7d8c12');
+assert.equal(receipt.target.bytes,1598212);assert.equal(receipt.edits.length,8);
+if(mode==='write') {
+ assert.equal(process.argv.length,4);
+ assert(read(b).equals(raw),'detached candidate baseline source differs');
+ fs.writeFileSync(b,result);
+ fs.writeFileSync(path.join(W,'out','CANDIDATE-SOURCE.json'),encode({path:source,oldGit:G0,newGit:G1,ownerA:old,ownerB:next,...receipt}),{flag:'wx'});
+} else {
+ assert.equal(ap,'web/data/chapter-33-assets.4b5df185aa59eb42.json');
+ assert.equal(bp,'web/data/chapter-33-assets.0746baae59d383dd.json');
+ assert(read(b).equals(result),'normal builder or checkout mutated signed author');
+ const compactA=read(path.join(aroot,ap)),compactB=read(path.join(broot,bp));
+ assert.equal(SHA(compactA),afile);
+ const list=json(compactA),[n]=list.flatMap((x,i)=>x.id===ID?[i]:[]);
+ assert.equal(list.filter(x=>x.id===ID).length,1);assert.equal(n,9);assert.equal(list.length,15);
+ assert(compactA.equals(encode(list)),'pinned compiler serialization mismatch');
+ const aa=json(raw).assets[4],bb=json(result).assets[4];
+ assert.equal(SHA(JSON.stringify(aa)),old);assert.equal(SHA(JSON.stringify(bb)),next);
+ assert.deepEqual(aa,list[n]); list[n]=bb;
+ const expected=encode(list);
+ const cmp={expected:{bytes:expected.length,sha256:SHA(expected)},observed:{bytes:compactB.length,sha256:SHA(compactB)},onlyOwner:ID,otherOwners:list.length-1,stageOnly:true};
+ fs.writeFileSync(path.join(W,'out','WIRE-PACKET.json'),encode(cmp),{flag:'wx'});
+ assert.equal(expected.length,2842017);assert.equal(SHA(expected),bfile);
+ assert(compactB.equals(expected),'official generated packet differs from independent exact same-owner projection');
+}
