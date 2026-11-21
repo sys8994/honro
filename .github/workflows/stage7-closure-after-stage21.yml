@@ -1,0 +1,93 @@
+name: HONRO Stage7 closure and approved Stage21 west normal rebase verification
+on:
+  push:
+    branches: [qa/stage7-closure-after-stage21-42879]
+    paths:
+      - .github/workflows/stage7-closure-after-stage21.yml
+      - tools/stage7-stage21-transplant/**
+permissions:
+  contents: read
+jobs:
+  proof:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage7-closure-after-stage21-42879'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 43
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Exact tracked A and one normal B build
+        id: build
+        shell: bash
+        run: |
+          set -euo pipefail
+          W="$RUNNER_TEMP/stage7-stage21-transplant"
+          Q="$GITHUB_WORKSPACE/tools/stage7-stage21-transplant"
+          echo "WORK=$W" >> "$GITHUB_ENV"
+          PYTHONDONTWRITEBYTECODE=1 python "$Q/carrier.py" pre "$W"
+          (
+            cd "$W/B"
+            node --version > "$W/out/actual-node-B.log"
+            npm ci > "$W/out/npm-root-B.log" 2>&1
+            npm ci --prefix game > "$W/out/npm-game-B.log" 2>&1
+            npm run test:release-guard > "$W/out/release-guard-B.log" 2>&1
+            node tests/stage7-root-floor-closure.mjs > "$W/out/focused-stage7-B.log" 2>&1
+            node tests/stage21-west-bedrock-source.mjs > "$W/out/focused-stage21-B.log" 2>&1
+            node tests/act4-provider-signature-cache.mjs > "$W/out/provider-signature-B.log" 2>&1
+            npm run build > "$W/out/normal-build-B.log" 2>&1
+            npm run test:production-contract > "$W/out/production-contract-B.log" 2>&1
+          )
+          PYTHONDONTWRITEBYTECODE=1 python "$Q/carrier.py" built "$W"
+      - name: Official isolated Chromium and both registered normal sites
+        id: setup
+        shell: bash
+        run: |
+          set -euo pipefail
+          Q="$GITHUB_WORKSPACE/tools/stage7-stage21-transplant"
+          python -m venv "$WORK/venv"
+          V="$WORK/venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+          mkdir "$WORK/r2"
+          cp "$Q/views.py" "$Q/entry.json" "$WORK/r2/"
+          cp "$WORK/out/R2-BROWSER-PINS.json" "$WORK/r2/PINS.json"
+      - name: Actual Stage7 14 A/B plus original fresh same-arm replay controls
+        id: stage7
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m http.server 18841 --bind 127.0.0.1 --directory "$WORK/A" > "$WORK/out/http-stage7-A.log" 2>&1 &
+          a=$!
+          python -m http.server 18842 --bind 127.0.0.1 --directory "$WORK/B" > "$WORK/out/http-stage7-B.log" 2>&1 &
+          b=$!
+          trap 'kill "$a" "$b" 2>/dev/null || true' EXIT
+          for p in 18841 18842; do curl -fsS --retry 8 --retry-connrefused "http://127.0.0.1:$p/HONRO.html" -o /dev/null; done
+          PYTHONDONTWRITEBYTECODE=1 "$WORK/venv/bin/python" "$WORK/r2/views.py" "$WORK"
+      - name: Keep already approved Stage21 normal west PC and mobile
+        id: stage21
+        if: "!cancelled() && steps.setup.outcome == 'success'"
+        shell: bash
+        run: |
+          set -euo pipefail
+          Q="$GITHUB_WORKSPACE/tools/stage7-stage21-transplant"
+          python -m http.server 18841 --bind 127.0.0.1 --directory "$WORK/A" > "$WORK/out/http-stage21-A.log" 2>&1 &
+          a=$!
+          python -m http.server 18842 --bind 127.0.0.1 --directory "$WORK/B" > "$WORK/out/http-stage21-B.log" 2>&1 &
+          b=$!
+          trap 'kill "$a" "$b" 2>/dev/null || true' EXIT
+          for p in 18841 18842; do curl -fsS --retry 8 --retry-connrefused "http://127.0.0.1:$p/HONRO.html" -o /dev/null; done
+          PYTHONDONTWRITEBYTECODE=1 "$WORK/venv/bin/python" "$Q/stage21-control.py" "$WORK"
+      - name: Seal the verified normal output once; not retained or published
+        if: steps.stage7.outcome == 'success' && steps.stage21.outcome == 'success'
+        run: PYTHONDONTWRITEBYTECODE=1 python tools/stage7-stage21-transplant/carrier.py seal "$WORK"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: honro-stage7-after-stage21-normal-and-eight-bytes-no-deploy
+          path: ${{ runner.temp }}/stage7-stage21-transplant/out/
+          if-no-files-found: warn
+          retention-days: 7

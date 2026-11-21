@@ -1,0 +1,51 @@
+{
+  "enabled": true,
+  "purpose": "normal-qa-no-retention",
+  "base": "42879fcbb740fb2167a21e6ec9288bd63432a2f0",
+  "baseTree": "032ad6463b99a1aa2aec93ab988c6692801dc890",
+  "source": "fe9c948e8a0a3637ba54cea53118b2a85aa8057f",
+  "sourceTree": "b827e5c83ee36908b95993f5b9528a7a45be8bf6",
+  "activeCount": 810,
+  "stockManifest": {
+    "git": "4e00b0e528b6c8afa91dcd32f90e09c9c7db4c7d",
+    "sha256": "5dc732f2c4a76a4b71757105cbf1b7475ce09cda950745cdb1f430ce8f7ea538",
+    "bytes": 6605237
+  },
+  "stockShells": {
+    "HONRO.html": {
+      "bytes": 17379,
+      "sha256": "bf351f5c4acbf3f32143c774cb0c7d6c86f06dab3165f8d2b55647b56a51945d"
+    },
+    "HONRO_WORKSHOP.html": {
+      "bytes": 4011,
+      "sha256": "6d2920c01b4ec0773dcaa6119864b4e27b917f65ef34e96cd2a1eb29f62c3b4a"
+    },
+    "index.html": {
+      "bytes": 17379,
+      "sha256": "bf351f5c4acbf3f32143c774cb0c7d6c86f06dab3165f8d2b55647b56a51945d"
+    }
+  },
+  "priorPages": {
+    "head": "42879fcbb740fb2167a21e6ec9288bd63432a2f0",
+    "run": null,
+    "deployJob": null,
+    "conclusion": null,
+    "publishedAt": null
+  },
+  "stage21": {
+    "source": "234cc3908cdabe4ddce36d63bc46dd49b1b3d621",
+    "test": "fec78045c0a71addd0425ac0454d66a823f8922e",
+    "common17": {
+      "web/runtime/ordered-common-17.9a592f68229e4289.js": {
+        "bytes": 104308,
+        "sha256": "9a592f68229e42894a87a328a71e2ac8408bb1556f441bcbc67229aa80ba718c"
+      }
+    }
+  },
+  "stage35": {
+    "far": "web/graphics/honro_authored_far-images-act4FarBambooGrove35.574a1793b7bb2416.webp",
+    "provider": "web/runtime/ordered-common-12.538fbca4939d645e.js",
+    "map": "web/data/chapter-35.f62e13d97eec5171.json",
+    "assetDescriptor": "web/data/chapter-35-assets-parts.c3f1005936b3d27e.json"
+  }
+}

@@ -1,0 +1,1026 @@
+{
+  "authority": {
+    "run": 44892847667,
+    "job": 136812188390,
+    "head": "d7aef1c3b57207ec951af5d79439579780dc8008",
+    "artifact": 14702748522,
+    "outerBytes": 22745697,
+    "outerSHA256": "f82a0fac5d1f8fd9562a841fbe18e75f64636ff75ffb4e01d768959d627b9b8e",
+    "graphSHA256": "b4c5665c930cb7b806d08ceb353048aca6c0f61071b655b7ae127ed68c4e45d2",
+    "proofSHA256": "19a16dac035394c53b6229879f5860f6c79382c97f477fdfd8d7721948718209",
+    "product": "a2fd46334146b1b0a7459c99bcbfd9fb9250ae0d"
+  },
+  "browser": "151.0.7922.34",
+  "owner": "act3-handoff:21:bedrock",
+  "baseOwner": "eup21:foundations",
+  "map": "web/data/chapter-21.724a765a85d437a2.json",
+  "packet": "web/data/chapter-21-assets.195e73632de8b164.json",
+  "mapAndPacket": {
+    "web/data/chapter-21.724a765a85d437a2.json": {
+      "bytes": 67494,
+      "sha256": "724a765a85d437a24ea9437ba300f5602282abda9ecbd190074a7d25b8b1c51b"
+    },
+    "web/data/chapter-21-assets.195e73632de8b164.json": {
+      "bytes": 688805,
+      "sha256": "195e73632de8b16431e39ac63f87eed9ad1ea538a47dcc0d980e4a0e1c624e67"
+    }
+  },
+  "ordinary": [
+    -120,
+    3000,
+    0.5
+  ],
+  "common17": {
+    "web/runtime/ordered-common-17.9a592f68229e4289.js": {
+      "bytes": 104308,
+      "sha256": "9a592f68229e42894a87a328a71e2ac8408bb1556f441bcbc67229aa80ba718c"
+    }
+  },
+  "owners": {
+    "1440": {
+      "front": {
+        "assetId": "act3-handoff:21:bedrock",
+        "id": "act3-handoff:21:bedrock",
+        "layer": "front",
+        "depthLayer": "L1",
+        "kind": "canonical-element",
+        "placement": [
+          0,
+          0,
+          1
+        ],
+        "bounds": {
+          "x": -380,
+          "y": 2220,
+          "w": 6780,
+          "h": 1080
+        },
+        "materialListIndex": 33
+      },
+      "back": {
+        "assetId": "eup21:foundations",
+        "id": "foundations",
+        "layer": "front",
+        "depthLayer": "L1",
+        "kind": "canonical-element",
+        "placement": [
+          0,
+          0,
+          1
+        ],
+        "bounds": {
+          "x": -6000,
+          "y": -24000,
+          "w": 18400,
+          "h": 51200
+        },
+        "materialListIndex": 31
+      },
+      "backAuthoredBounds": {
+        "x": 0,
+        "y": 2220,
+        "w": 6400,
+        "h": 1450
+      },
+      "contact": [
+        [
+          0,
+          514,
+          0,
+          2810
+        ],
+        [
+          217,
+          502,
+          620,
+          2810
+        ],
+        [
+          302,
+          475,
+          920,
+          2730
+        ],
+        [
+          442,
+          444,
+          1320,
+          2640
+        ],
+        [
+          647,
+          429,
+          2010,
+          2560
+        ],
+        [
+          997,
+          431,
+          2890,
+          2560
+        ],
+        [
+          1125,
+          508,
+          3180,
+          2670
+        ],
+        [
+          1280,
+          536,
+          3480,
+          2760
+        ],
+        [
+          1350,
+          551,
+          3750,
+          2760
+        ],
+        [
+          1430,
+          502,
+          4060,
+          2660
+        ],
+        [
+          1550,
+          458,
+          4520,
+          2660
+        ],
+        [
+          1640,
+          402,
+          4770,
+          2530
+        ],
+        [
+          1730,
+          380,
+          4970,
+          2530
+        ],
+        [
+          1805,
+          354,
+          5230,
+          2370
+        ],
+        [
+          1895,
+          325,
+          5500,
+          2370
+        ],
+        [
+          1960,
+          297,
+          5740,
+          2220
+        ],
+        [
+          2172,
+          296,
+          6400,
+          2220
+        ]
+      ],
+      "renderRoof": [
+        [
+          -500,
+          2755.3125
+        ],
+        [
+          0,
+          2810
+        ],
+        [
+          620,
+          2810
+        ]
+      ],
+      "floorId": "a3-foundation",
+      "authoredPLAY": {
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 6400,
+          "bottom": 3200
+        },
+        "start": {
+          "x": 0,
+          "y": 2810
+        }
+      },
+      "sourceWater": [],
+      "observationOnly": true,
+      "trace": "real registered render owners after normal screenshot; no layer toggling or game state injection"
+    },
+    "390": {
+      "front": {
+        "assetId": "act3-handoff:21:bedrock",
+        "id": "act3-handoff:21:bedrock",
+        "layer": "front",
+        "depthLayer": "L1",
+        "kind": "canonical-element",
+        "placement": [
+          0,
+          0,
+          1
+        ],
+        "bounds": {
+          "x": -380,
+          "y": 2220,
+          "w": 6780,
+          "h": 1080
+        },
+        "materialListIndex": 33
+      },
+      "back": {
+        "assetId": "eup21:foundations",
+        "id": "foundations",
+        "layer": "front",
+        "depthLayer": "L1",
+        "kind": "canonical-element",
+        "placement": [
+          0,
+          0,
+          1
+        ],
+        "bounds": {
+          "x": -6000,
+          "y": -24000,
+          "w": 18400,
+          "h": 51200
+        },
+        "materialListIndex": 31
+      },
+      "backAuthoredBounds": {
+        "x": 0,
+        "y": 2220,
+        "w": 6400,
+        "h": 1450
+      },
+      "contact": [
+        [
+          0,
+          514,
+          0,
+          2810
+        ],
+        [
+          217,
+          502,
+          620,
+          2810
+        ],
+        [
+          302,
+          475,
+          920,
+          2730
+        ],
+        [
+          442,
+          444,
+          1320,
+          2640
+        ],
+        [
+          647,
+          429,
+          2010,
+          2560
+        ],
+        [
+          997,
+          431,
+          2890,
+          2560
+        ],
+        [
+          1125,
+          508,
+          3180,
+          2670
+        ],
+        [
+          1280,
+          536,
+          3480,
+          2760
+        ],
+        [
+          1350,
+          551,
+          3750,
+          2760
+        ],
+        [
+          1430,
+          502,
+          4060,
+          2660
+        ],
+        [
+          1550,
+          458,
+          4520,
+          2660
+        ],
+        [
+          1640,
+          402,
+          4770,
+          2530
+        ],
+        [
+          1730,
+          380,
+          4970,
+          2530
+        ],
+        [
+          1805,
+          354,
+          5230,
+          2370
+        ],
+        [
+          1895,
+          325,
+          5500,
+          2370
+        ],
+        [
+          1960,
+          297,
+          5740,
+          2220
+        ],
+        [
+          2172,
+          296,
+          6400,
+          2220
+        ]
+      ],
+      "renderRoof": [
+        [
+          -500,
+          2755.3125
+        ],
+        [
+          0,
+          2810
+        ],
+        [
+          620,
+          2810
+        ]
+      ],
+      "floorId": "a3-foundation",
+      "authoredPLAY": {
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 6400,
+          "bottom": 3200
+        },
+        "start": {
+          "x": 0,
+          "y": 2810
+        }
+      },
+      "sourceWater": [],
+      "observationOnly": true,
+      "trace": "real registered render owners after normal screenshot; no layer toggling or game state injection"
+    }
+  },
+  "frames": {
+    "B-s21-1440x900-ordinary": {
+      "frame": {
+        "actual": {
+          "x": -120,
+          "y": 3000,
+          "scale": 0.5
+        },
+        "viewport": {
+          "left": -1560,
+          "right": 1320,
+          "top": 2230.8125,
+          "bottom": 3769.1875
+        },
+        "focus": {
+          "left": -320,
+          "top": -1800,
+          "right": 6720,
+          "bottom": 3440
+        },
+        "zoomLimits": {
+          "min": 0.21176470588235294,
+          "max": 1.65,
+          "tactical": 0.21176470588235294,
+          "readability": 0.056818181818181816
+        },
+        "css": {
+          "w": 1440,
+          "h": 769.1875
+        },
+        "backing": [
+          1440,
+          769
+        ],
+        "actorCount": 35,
+        "phase": "aim",
+        "round": 1,
+        "sceneTime": 2,
+        "tide": null,
+        "physicsSHA256": "d72051916d0afb4f0cbe3cf026aaba47db8cb14a763d8b2cd1c26dbbe839ba75"
+      },
+      "rgba": {
+        "raw": {
+          "rgba": "fc9db29c588834446e3c9198454c6ba54fff51b38623368f84c03def60bdce8b",
+          "size": [
+            1440,
+            769
+          ]
+        },
+        "png": {
+          "rgba": "6d9da8ea0ec61022bd9795a82e7646b97ae3432db8e6c7f006e37003f354f31b",
+          "size": [
+            1440,
+            770
+          ]
+        }
+      },
+      "native": {
+        "geometry": "a296f0ca9348c0437e1fee650700950ed900a9e3a5fc95410f550f9307c15875",
+        "strokeTrace": "b7cc7797b0155d6645473076a5234642e1bd7721e37d33876e8298c7c7041b51",
+        "worldRaster": 0.5946035575013605,
+        "explicitNativeSourceFilter": "low-linear",
+        "readbackUnchanged": true,
+        "priority": "native signed art before original rim; isolated pre→post reconstructs real cache tile exact",
+        "pose": [
+          -120,
+          3000,
+          0.5
+        ],
+        "tileReceipts": [
+          {
+            "id": "-2:2",
+            "left": -1722.1558584396075,
+            "top": 1722.1558584396075,
+            "pre": "5ab042e07e8e9a7ffbf39d0afa0f598e9b7e0637481dc7c00020b85efb41d0ec",
+            "post": "5ab042e07e8e9a7ffbf39d0afa0f598e9b7e0637481dc7c00020b85efb41d0ec",
+            "replayExact": true,
+            "originalPublishedTileExact": true
+          },
+          {
+            "id": "-1:2",
+            "left": -861.0779292198038,
+            "top": 1722.1558584396075,
+            "pre": "5ab042e07e8e9a7ffbf39d0afa0f598e9b7e0637481dc7c00020b85efb41d0ec",
+            "post": "5ab042e07e8e9a7ffbf39d0afa0f598e9b7e0637481dc7c00020b85efb41d0ec",
+            "replayExact": true,
+            "originalPublishedTileExact": true
+          },
+          {
+            "id": "0:2",
+            "left": 0,
+            "top": 1722.1558584396075,
+            "pre": "173329c554218bcbeaea503924405e0ed5536c1a5166590862f68155c8b46179",
+            "post": "cb2b3d37ea258ffc623aa75a22ec396a4f58ff6190efddc8ac47ff0ff80aff3e",
+            "replayExact": true,
+            "originalPublishedTileExact": true
+          },
+          {
+            "id": "1:2",
+            "left": 861.0779292198038,
+            "top": 1722.1558584396075,
+            "pre": "e3ec7fea63efcd8a7fc7022d8e39a93e9dfc269259bc1808c9333d3158ac3315",
+            "post": "bc1541c09ff5fe25522c65c0ccf35ad249e87c9cd265e811f9f2ce9f565879f5",
+            "replayExact": true,
+            "originalPublishedTileExact": true
+          },
+          {
+            "id": "-2:3",
+            "left": -1722.1558584396075,
+            "top": 2583.233787659411,
+            "pre": "a7b038f4d8f54e7dc2af4582b6e341945bcbc47192024f25094cffbb80ddb399",
+            "post": "3f15c1d85f7ee4056d5da35f768bb8018f4c1c08116f0ba2f59692682575c869",
+            "replayExact": true,
+            "originalPublishedTileExact": true
+          },
+          {
+            "id": "-1:3",
+            "left": -861.0779292198038,
+            "top": 2583.233787659411,
+            "pre": "8cf5ac6f5556668c74b51ec53c30048ba0e91e253a36d6734cf4ab33decea26a",
+            "post": "b1213f6361ba67249bc44f9dd9069b893e554ee1e787b1bdd0c119d4d9ae5cb9",
+            "replayExact": true,
+            "originalPublishedTileExact": true
+          },
+          {
+            "id": "0:3",
+            "left": 0,
+            "top": 2583.233787659411,
+            "pre": "bb228cb107c12fd303c0ab937ebef38cbb4552a3d447b37a6579c6fb9f133cb8",
+            "post": "1b313e53e8bf9a9a6b35f86d972eeb25dabbf2461c088b323645fe8a569bad00",
+            "replayExact": true,
+            "originalPublishedTileExact": true
+          },
+          {
+            "id": "1:3",
+            "left": 861.0779292198038,
+            "top": 2583.233787659411,
+            "pre": "6be19213aed61291de234a4d8cf159f2f5349cabacb1bc5ab3a561cb8e01d156",
+            "post": "1c6c1c681c1dbdf4a228285b4f44ced9506d530c79bacc32adea5cbec3b25299",
+            "replayExact": true,
+            "originalPublishedTileExact": true
+          },
+          {
+            "id": "-2:4",
+            "left": -1722.1558584396075,
+            "top": 3444.311716879215,
+            "pre": "b837770a9e192ce0ed7deca18a4a759ea080ab294517016d8075ffb1bd9d8f41",
+            "post": "b837770a9e192ce0ed7deca18a4a759ea080ab294517016d8075ffb1bd9d8f41",
+            "replayExact": true,
+            "originalPublishedTileExact": true
+          },
+          {
+            "id": "-1:4",
+            "left": -861.0779292198038,
+            "top": 3444.311716879215,
+            "pre": "b837770a9e192ce0ed7deca18a4a759ea080ab294517016d8075ffb1bd9d8f41",
+            "post": "b837770a9e192ce0ed7deca18a4a759ea080ab294517016d8075ffb1bd9d8f41",
+            "replayExact": true,
+            "originalPublishedTileExact": true
+          },
+          {
+            "id": "0:4",
+            "left": 0,
+            "top": 3444.311716879215,
+            "pre": "b837770a9e192ce0ed7deca18a4a759ea080ab294517016d8075ffb1bd9d8f41",
+            "post": "b837770a9e192ce0ed7deca18a4a759ea080ab294517016d8075ffb1bd9d8f41",
+            "replayExact": true,
+            "originalPublishedTileExact": true
+          },
+          {
+            "id": "1:4",
+            "left": 861.0779292198038,
+            "top": 3444.311716879215,
+            "pre": "b837770a9e192ce0ed7deca18a4a759ea080ab294517016d8075ffb1bd9d8f41",
+            "post": "b837770a9e192ce0ed7deca18a4a759ea080ab294517016d8075ffb1bd9d8f41",
+            "replayExact": true,
+            "originalPublishedTileExact": true
+          }
+        ],
+        "masks": {
+          "geometricSupport": "5b53a70dc69fbbd52ce304c3909d08e91f6c9dd354ae71d1e097eb7047abba35",
+          "nativeRim": "7a13facbb0813fa2a490e4d98aa29ec3144d935cc510dd2c3772705b614944d1",
+          "topLight": "c5be18f081871bd5960d33ab3ba98fbc1127544d0636b32fabe7716877486725"
+        }
+      }
+    },
+    "B-s21-1440x900-west": {
+      "frame": {
+        "actual": {
+          "x": -320,
+          "y": 1600,
+          "scale": 0.21176470588235294
+        },
+        "viewport": {
+          "left": -3720,
+          "right": 3080,
+          "top": -216.13715277777783,
+          "bottom": 3416.137152777778
+        },
+        "focus": {
+          "left": -320,
+          "top": -1800,
+          "right": 6720,
+          "bottom": 3440
+        },
+        "zoomLimits": {
+          "min": 0.21176470588235294,
+          "max": 1.65,
+          "tactical": 0.21176470588235294,
+          "readability": 0.056818181818181816
+        },
+        "css": {
+          "w": 1440,
+          "h": 769.1875
+        },
+        "backing": [
+          1440,
+          769
+        ],
+        "actorCount": 35,
+        "phase": "aim",
+        "round": 1,
+        "sceneTime": 2,
+        "tide": null,
+        "physicsSHA256": "d72051916d0afb4f0cbe3cf026aaba47db8cb14a763d8b2cd1c26dbbe839ba75"
+      },
+      "rgba": {
+        "raw": {
+          "rgba": "22edcd8c7c439964e4fd9001f73fba4d8f04cd0f97865af0f9665b6419f44dde",
+          "size": [
+            1440,
+            769
+          ]
+        },
+        "png": {
+          "rgba": "e224d53e6e6c585dfa7ab94d1eba4bb37e870b1e0de1b65a34e41d0fcbb50cd9",
+          "size": [
+            1440,
+            770
+          ]
+        }
+      },
+      "native": {
+        "geometry": "057d2b420c8a72df6170bc6ad92f65488a9bf3622906f6d117f0dfe871ee6b14",
+        "strokeTrace": "5cc35fc1c13cde233b37f0f2cb9ee0e6cf7b12e57325b3bec740f327608efa6c",
+        "worldRaster": 0.25,
+        "explicitNativeSourceFilter": "low-linear",
+        "readbackUnchanged": true,
+        "priority": "native signed art before original rim; isolated pre→post reconstructs real cache tile exact",
+        "pose": [
+          -320,
+          1600,
+          0.21176470588235294
+        ],
+        "tileReceipts": [
+          {
+            "id": "-2:-1",
+            "left": -4096,
+            "top": -2048,
+            "pre": "5ab042e07e8e9a7ffbf39d0afa0f598e9b7e0637481dc7c00020b85efb41d0ec",
+            "post": "5ab042e07e8e9a7ffbf39d0afa0f598e9b7e0637481dc7c00020b85efb41d0ec",
+            "replayExact": true,
+            "originalPublishedTileExact": true
+          },
+          {
+            "id": "-1:-1",
+            "left": -2048,
+            "top": -2048,
+            "pre": "5ab042e07e8e9a7ffbf39d0afa0f598e9b7e0637481dc7c00020b85efb41d0ec",
+            "post": "5ab042e07e8e9a7ffbf39d0afa0f598e9b7e0637481dc7c00020b85efb41d0ec",
+            "replayExact": true,
+            "originalPublishedTileExact": true
+          },
+          {
+            "id": "0:-1",
+            "left": 0,
+            "top": -2048,
+            "pre": "5ab042e07e8e9a7ffbf39d0afa0f598e9b7e0637481dc7c00020b85efb41d0ec",
+            "post": "5ab042e07e8e9a7ffbf39d0afa0f598e9b7e0637481dc7c00020b85efb41d0ec",
+            "replayExact": true,
+            "originalPublishedTileExact": true
+          },
+          {
+            "id": "1:-1",
+            "left": 2048,
+            "top": -2048,
+            "pre": "5ab042e07e8e9a7ffbf39d0afa0f598e9b7e0637481dc7c00020b85efb41d0ec",
+            "post": "5ab042e07e8e9a7ffbf39d0afa0f598e9b7e0637481dc7c00020b85efb41d0ec",
+            "replayExact": true,
+            "originalPublishedTileExact": true
+          },
+          {
+            "id": "-2:0",
+            "left": -4096,
+            "top": 0,
+            "pre": "5ab042e07e8e9a7ffbf39d0afa0f598e9b7e0637481dc7c00020b85efb41d0ec",
+            "post": "5ab042e07e8e9a7ffbf39d0afa0f598e9b7e0637481dc7c00020b85efb41d0ec",
+            "replayExact": true,
+            "originalPublishedTileExact": true
+          },
+          {
+            "id": "-1:0",
+            "left": -2048,
+            "top": 0,
+            "pre": "5ab042e07e8e9a7ffbf39d0afa0f598e9b7e0637481dc7c00020b85efb41d0ec",
+            "post": "5ab042e07e8e9a7ffbf39d0afa0f598e9b7e0637481dc7c00020b85efb41d0ec",
+            "replayExact": true,
+            "originalPublishedTileExact": true
+          },
+          {
+            "id": "0:0",
+            "left": 0,
+            "top": 0,
+            "pre": "d1b0446add83f6dba9782dfb2dbd73cd35a8cc48caae2c256d1ce64df9b7be81",
+            "post": "d2391e7d8f476d7712892664df4d6651a2e9d2b604a3030739aac2100152df40",
+            "replayExact": true,
+            "originalPublishedTileExact": true
+          },
+          {
+            "id": "1:0",
+            "left": 2048,
+            "top": 0,
+            "pre": "5c0f64b641ff0e0ae0281801e32c421240013fd46583136c7845c5a8a001adc4",
+            "post": "8bfc25da1d7a8707d311c32c7ab10ead7ceb956bc9528507cfbcd915ef04d42c",
+            "replayExact": true,
+            "originalPublishedTileExact": true
+          },
+          {
+            "id": "-2:1",
+            "left": -4096,
+            "top": 2048,
+            "pre": "aaee9427974d7588c3f915d2136cc35bce561925f0662ba791b2ee9618741918",
+            "post": "edffa389d8bd6284e2b3ca8facf7e8be79999d2fb1abc05df4448c480b5da5c5",
+            "replayExact": true,
+            "originalPublishedTileExact": true
+          },
+          {
+            "id": "-1:1",
+            "left": -2048,
+            "top": 2048,
+            "pre": "e6104e5f39f09ab4497e424a33afa6cd03d7f736403fa6bf5cacadd251f078b7",
+            "post": "83d7de369c2f355276645c5d598f692de495c151472c509ae94af61b56c54d18",
+            "replayExact": true,
+            "originalPublishedTileExact": true
+          },
+          {
+            "id": "0:1",
+            "left": 0,
+            "top": 2048,
+            "pre": "61d30ee42f254e7e3ce8c3b3303504e17a9a3bba96ecb84c172f0f12cf11937b",
+            "post": "e78cf9332d650afb34bb81e3f589f75a30868210a611dd217c0bc3dbf78efcea",
+            "replayExact": true,
+            "originalPublishedTileExact": true
+          },
+          {
+            "id": "1:1",
+            "left": 2048,
+            "top": 2048,
+            "pre": "80ce3405f300894b74d4505aaf41d5ebbc31b996a4e309dfa67c3c1545972de1",
+            "post": "f1cd34f2f0b546946137e3566264ee173e1ad8cce52799b2ab2928521de585ff",
+            "replayExact": true,
+            "originalPublishedTileExact": true
+          }
+        ],
+        "masks": {
+          "geometricSupport": "4e5ac33db9d62d28b14e943ed5ec8389c4f8950f4f5580e0a800713e5efa719f",
+          "nativeRim": "b48008998f1f4b1bbe87385393c453e4b73228f6cce1611b8a4ccae65abb5738",
+          "topLight": "984c662cfb091af78a18d9025c01af0d80991490ad51f7373738140ac516cf80"
+        }
+      }
+    },
+    "B-s21-390x844-ordinary": {
+      "frame": {
+        "actual": {
+          "x": -120,
+          "y": 3000,
+          "scale": 0.5
+        },
+        "viewport": {
+          "left": -510,
+          "right": 270,
+          "top": 2352.390625,
+          "bottom": 3647.609375
+        },
+        "focus": {
+          "left": -320,
+          "top": -1800,
+          "right": 6720,
+          "bottom": 3440
+        },
+        "zoomLimits": {
+          "min": 0.057352941176470586,
+          "max": 1.65,
+          "tactical": 0.057352941176470586,
+          "readability": 0.056818181818181816
+        },
+        "css": {
+          "w": 390,
+          "h": 647.609375
+        },
+        "backing": [
+          390,
+          648
+        ],
+        "actorCount": 35,
+        "phase": "aim",
+        "round": 1,
+        "sceneTime": 2,
+        "tide": null,
+        "physicsSHA256": "d72051916d0afb4f0cbe3cf026aaba47db8cb14a763d8b2cd1c26dbbe839ba75"
+      },
+      "rgba": {
+        "raw": {
+          "rgba": "0fc905b71380f68e70ef3189a751eec51d779f643745db1eea1b1aa61421cf5b",
+          "size": [
+            390,
+            648
+          ]
+        },
+        "png": {
+          "rgba": "54ec7a686aa7fba9fd58f62dcbcb5327d16aa71c2e4ab45ed2c23c30cbeaf731",
+          "size": [
+            390,
+            648
+          ]
+        }
+      },
+      "native": {
+        "geometry": "a296f0ca9348c0437e1fee650700950ed900a9e3a5fc95410f550f9307c15875",
+        "strokeTrace": "8695c036081ebb78219f170f8c36c869619b027281402aa57ab01541db7dea73",
+        "worldRaster": 0.5946035575013605,
+        "explicitNativeSourceFilter": "low-linear",
+        "readbackUnchanged": true,
+        "priority": "native signed art before original rim; isolated pre→post reconstructs real cache tile exact",
+        "pose": [
+          -120,
+          3000,
+          0.5
+        ],
+        "tileReceipts": [
+          {
+            "id": "-1:2",
+            "left": -861.0779292198038,
+            "top": 1722.1558584396075,
+            "pre": "5ab042e07e8e9a7ffbf39d0afa0f598e9b7e0637481dc7c00020b85efb41d0ec",
+            "post": "5ab042e07e8e9a7ffbf39d0afa0f598e9b7e0637481dc7c00020b85efb41d0ec",
+            "replayExact": true,
+            "originalPublishedTileExact": true
+          },
+          {
+            "id": "0:2",
+            "left": 0,
+            "top": 1722.1558584396075,
+            "pre": "173329c554218bcbeaea503924405e0ed5536c1a5166590862f68155c8b46179",
+            "post": "cb2b3d37ea258ffc623aa75a22ec396a4f58ff6190efddc8ac47ff0ff80aff3e",
+            "replayExact": true,
+            "originalPublishedTileExact": true
+          },
+          {
+            "id": "-1:3",
+            "left": -861.0779292198038,
+            "top": 2583.233787659411,
+            "pre": "8cf5ac6f5556668c74b51ec53c30048ba0e91e253a36d6734cf4ab33decea26a",
+            "post": "b1213f6361ba67249bc44f9dd9069b893e554ee1e787b1bdd0c119d4d9ae5cb9",
+            "replayExact": true,
+            "originalPublishedTileExact": true
+          },
+          {
+            "id": "0:3",
+            "left": 0,
+            "top": 2583.233787659411,
+            "pre": "bb228cb107c12fd303c0ab937ebef38cbb4552a3d447b37a6579c6fb9f133cb8",
+            "post": "1b313e53e8bf9a9a6b35f86d972eeb25dabbf2461c088b323645fe8a569bad00",
+            "replayExact": true,
+            "originalPublishedTileExact": true
+          },
+          {
+            "id": "-1:4",
+            "left": -861.0779292198038,
+            "top": 3444.311716879215,
+            "pre": "b837770a9e192ce0ed7deca18a4a759ea080ab294517016d8075ffb1bd9d8f41",
+            "post": "b837770a9e192ce0ed7deca18a4a759ea080ab294517016d8075ffb1bd9d8f41",
+            "replayExact": true,
+            "originalPublishedTileExact": true
+          },
+          {
+            "id": "0:4",
+            "left": 0,
+            "top": 3444.311716879215,
+            "pre": "b837770a9e192ce0ed7deca18a4a759ea080ab294517016d8075ffb1bd9d8f41",
+            "post": "b837770a9e192ce0ed7deca18a4a759ea080ab294517016d8075ffb1bd9d8f41",
+            "replayExact": true,
+            "originalPublishedTileExact": true
+          }
+        ],
+        "masks": {
+          "geometricSupport": "59d995ff808085b6a6229b08f60d6fff6eade322a8d929f2ec1e85d48e85b4a3",
+          "nativeRim": "cdffd0a7fe15d51b865e2345bd68ee2303a2c038a3eb24c434c95154617a8bda",
+          "topLight": "1abe820b8493e4c7de23a5e3494293c16f33094398910debcc169d4a8c6e59ee"
+        }
+      }
+    },
+    "B-s21-390x844-west": {
+      "frame": {
+        "actual": {
+          "x": -320,
+          "y": 1600,
+          "scale": 0.057352941176470586
+        },
+        "viewport": {
+          "left": -3720,
+          "right": 3080,
+          "top": -4045.8253205128203,
+          "bottom": 7245.82532051282
+        },
+        "focus": {
+          "left": -320,
+          "top": -1800,
+          "right": 6720,
+          "bottom": 3440
+        },
+        "zoomLimits": {
+          "min": 0.057352941176470586,
+          "max": 1.65,
+          "tactical": 0.057352941176470586,
+          "readability": 0.056818181818181816
+        },
+        "css": {
+          "w": 390,
+          "h": 647.609375
+        },
+        "backing": [
+          390,
+          648
+        ],
+        "actorCount": 35,
+        "phase": "aim",
+        "round": 1,
+        "sceneTime": 2,
+        "tide": null,
+        "physicsSHA256": "d72051916d0afb4f0cbe3cf026aaba47db8cb14a763d8b2cd1c26dbbe839ba75"
+      },
+      "rgba": {
+        "raw": {
+          "rgba": "9c75653d58eb1f6aab6919493d1ccc23f517dd08d41c792bb8ba0be92bb720c7",
+          "size": [
+            390,
+            648
+          ]
+        },
+        "png": {
+          "rgba": "781d0c264e2e4aa0e2ed0dfeffaec4584aba219009d4b8f588447e8104184812",
+          "size": [
+            390,
+            648
+          ]
+        }
+      },
+      "native": {
+        "geometry": "93ece6afc4db2c94c20e88f08d9d3b7904be8d68c31d326dc818fbe82b4a38d4",
+        "strokeTrace": "339fd95e9a611358de38b683b4ddc6e6336422a1f8f1c8548b77ed7257218ed2",
+        "worldRaster": 0.0625,
+        "explicitNativeSourceFilter": "low-linear",
+        "readbackUnchanged": true,
+        "priority": "native signed art before original rim; isolated pre→post reconstructs real cache tile exact",
+        "pose": [
+          -320,
+          1600,
+          0.057352941176470586
+        ],
+        "tileReceipts": [
+          {
+            "id": "-1:-1",
+            "left": -8192,
+            "top": -8192,
+            "pre": "5ab042e07e8e9a7ffbf39d0afa0f598e9b7e0637481dc7c00020b85efb41d0ec",
+            "post": "5ab042e07e8e9a7ffbf39d0afa0f598e9b7e0637481dc7c00020b85efb41d0ec",
+            "replayExact": true,
+            "originalPublishedTileExact": true
+          },
+          {
+            "id": "0:-1",
+            "left": 0,
+            "top": -8192,
+            "pre": "5ab042e07e8e9a7ffbf39d0afa0f598e9b7e0637481dc7c00020b85efb41d0ec",
+            "post": "5ab042e07e8e9a7ffbf39d0afa0f598e9b7e0637481dc7c00020b85efb41d0ec",
+            "replayExact": true,
+            "originalPublishedTileExact": true
+          },
+          {
+            "id": "-1:0",
+            "left": -8192,
+            "top": 0,
+            "pre": "6aedc89a69a8dcbf6f411535f0953902be1a97f33cefe895d166f74c6f0068da",
+            "post": "bdef92b7c763002de2c464561bbe12fa8176c5160538a4b2be98dcefb428fa14",
+            "replayExact": true,
+            "originalPublishedTileExact": true
+          },
+          {
+            "id": "0:0",
+            "left": 0,
+            "top": 0,
+            "pre": "a4217400514a5e44d8219e1300dcb7c02e1e9734c1004a547f6d91e236235ee1",
+            "post": "2f0498dd8213ee2da6eff5ed9ca247cc4589345d178e6b489ea58b6af7c5bb14",
+            "replayExact": true,
+            "originalPublishedTileExact": true
+          }
+        ],
+        "masks": {
+          "geometricSupport": "27b25a4bf3a81bc732d00fdc8d0827330472d6c2db2b6e8a71d8fbd511e2b99a",
+          "nativeRim": "331452867d48f77070bdbff5f547fecec157fe059aa7ce2d88ade236f5785f83",
+          "topLight": "6f197ea008b938ad3bee95d274c9cde1ff6c8ac4919c6d53b34f0bba2c5fa039"
+        }
+      }
+    }
+  },
+  "support": {
+    "supportPath": "M-321 2880 Q-283 2844 -200 2841 L-116 2828 -57 2822 0 2813 18 2820 37 2841 69 2859 83 2890 104 2911 100 2930 107 2950 116 2975 105 2991 95 3005 112 3032 105 3060 113 3081 102 3102 115 3127 96 3150 115 3173 90 3190 61 3202 0 3210 -50 3185 -116 3189 -165 3162 -244 3154 -298 3117 -338 3088 -356 3024 -377 2975 -358 2934Z",
+    "bounds": [
+      -380,
+      2813,
+      120,
+      3220
+    ]
+  }
+}

@@ -1,0 +1,199 @@
+{
+  "base": "9acde7427f3ebfce00f9ad3a9b943d030e2c352d",
+  "source": "61f3e01b6fc16afc46b24c4e0100157cfc47eb65",
+  "run": 44892016227,
+  "job": 136809699469,
+  "artifact": 14703085215,
+  "unchangedActiveCount": 806,
+  "activeCount": 810,
+  "baseDeclaredHistoryPathCount": 1303,
+  "sameParentExpectedFinalPathCount": 10,
+  "normalBeforeRetentionPins": {
+    "HONRO.html": {
+      "bytes": 17379,
+      "sha256": "825dad5d3773a49409c2ffdaf418f53e21f9f7f3b54a6484063b92638daa5c9f"
+    },
+    "HONRO_WORKSHOP.html": {
+      "bytes": 4011,
+      "sha256": "95d38fac4ebc1d5ec6afe943998560e06267fa7d4e4cda4352874ed5ed460e78"
+    },
+    "index.html": {
+      "bytes": 17379,
+      "sha256": "825dad5d3773a49409c2ffdaf418f53e21f9f7f3b54a6484063b92638daa5c9f"
+    },
+    "web/entries/game.2897c342087c0b98.html": {
+      "bytes": 11318,
+      "sha256": "2897c342087c0b9811c59569acaf493e9063fd7b79fd28cde2ebedf102e04f63"
+    },
+    "web/entries/game.d4cb9727383ed269.js": {
+      "bytes": 20483,
+      "sha256": "d4cb9727383ed26935dee6e1ee300afcb931409de233b1d4f2898165a5beb626"
+    },
+    "web/entries/workshop.2eadf02a1fa5ac6a.js": {
+      "bytes": 16706,
+      "sha256": "2eadf02a1fa5ac6a40f945f03157016f313bc92b484ed2f287628e42cdc3d587"
+    },
+    "web/manifest.json": {
+      "bytes": 6435758,
+      "sha256": "cdb76f000094f8d120e6a5e96533085c8037dec56c0b8b016d3398df508b5812"
+    },
+    "web/runtime/ordered-common-16.3d9993bd92d5eb93.js": {
+      "bytes": 177610,
+      "sha256": "3d9993bd92d5eb93572f4b05fe9da2f19d4202c7a3e24ba767a5274ca3364f2c"
+    }
+  },
+  "sixDerivedWitnessesExactToOfficialNormalBuild": {
+    "HONRO.html": {
+      "bytes": 17379,
+      "sha256": "825dad5d3773a49409c2ffdaf418f53e21f9f7f3b54a6484063b92638daa5c9f",
+      "git": "1960ca9bee1b57a4e8b49326b8537d22872ebc39"
+    },
+    "web/entries/game.d4cb9727383ed269.js": {
+      "bytes": 20483,
+      "sha256": "d4cb9727383ed26935dee6e1ee300afcb931409de233b1d4f2898165a5beb626",
+      "git": "802705c750d9eb18902cc98e0d2baf993e487123"
+    },
+    "web/entries/game.2897c342087c0b98.html": {
+      "bytes": 11318,
+      "sha256": "2897c342087c0b9811c59569acaf493e9063fd7b79fd28cde2ebedf102e04f63",
+      "git": "866bf9f9d24f8f22caad2f966392fa6c7a11e2af"
+    },
+    "web/entries/workshop.2eadf02a1fa5ac6a.js": {
+      "bytes": 16706,
+      "sha256": "2eadf02a1fa5ac6a40f945f03157016f313bc92b484ed2f287628e42cdc3d587",
+      "git": "999fa698c35183135d52def968b25ed2e9b9f914"
+    },
+    "index.html": {
+      "bytes": 17379,
+      "sha256": "825dad5d3773a49409c2ffdaf418f53e21f9f7f3b54a6484063b92638daa5c9f",
+      "git": "1960ca9bee1b57a4e8b49326b8537d22872ebc39"
+    },
+    "HONRO_WORKSHOP.html": {
+      "bytes": 4011,
+      "sha256": "95d38fac4ebc1d5ec6afe943998560e06267fa7d4e4cda4352874ed5ed460e78",
+      "git": "779d3795f1e0dc601a430de35508be77841c5f01"
+    }
+  },
+  "rootedInExactOfficialArchive": true,
+  "pngsChecked": 64,
+  "frames": {
+    "s07-1440x900-ordinary": {
+      "raw": null,
+      "dom": null
+    },
+    "s07-1440x900-overview": {
+      "raw": null,
+      "dom": null
+    },
+    "s07-1440x900-south": {
+      "raw": [
+        0,
+        701,
+        1440,
+        703
+      ],
+      "dom": [
+        0,
+        701,
+        1440,
+        703
+      ]
+    },
+    "s07-1440x900-west": {
+      "raw": null,
+      "dom": null
+    },
+    "s07-1440x900-southeast": {
+      "raw": [
+        0,
+        701,
+        975,
+        703
+      ],
+      "dom": [
+        0,
+        701,
+        975,
+        703
+      ]
+    },
+    "s07-390x844-ordinary": {
+      "raw": null,
+      "dom": null
+    },
+    "s07-390x844-overview": {
+      "raw": [
+        0,
+        511,
+        390,
+        514
+      ],
+      "dom": [
+        0,
+        511,
+        390,
+        514
+      ]
+    },
+    "s07-390x844-south": {
+      "raw": [
+        0,
+        409,
+        390,
+        411
+      ],
+      "dom": [
+        0,
+        409,
+        390,
+        411
+      ]
+    },
+    "s07-390x844-west": {
+      "raw": [
+        126,
+        511,
+        390,
+        514
+      ],
+      "dom": [
+        126,
+        511,
+        390,
+        514
+      ]
+    },
+    "s07-390x844-southeast": {
+      "raw": [
+        0,
+        409,
+        265,
+        411
+      ],
+      "dom": [
+        0,
+        409,
+        265,
+        411
+      ]
+    },
+    "s03-1440x900-overview": {
+      "raw": null,
+      "dom": null
+    },
+    "s03-390x844-overview": {
+      "raw": null,
+      "dom": null
+    },
+    "s06-1440x900-overview": {
+      "raw": null,
+      "dom": null
+    },
+    "s06-390x844-overview": {
+      "raw": null,
+      "dom": null
+    }
+  },
+  "normalCompilationPerformedLocally": false,
+  "published": false
+}
