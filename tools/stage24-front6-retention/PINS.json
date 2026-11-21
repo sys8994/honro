@@ -1,0 +1,192 @@
+{
+  "baseline": "b79ea7fd87fda5586d78eae0a7052996b8e71fb5",
+  "baselineTree": "1e55d910bbabc43919c20a14d1a06002b20f4977",
+  "priorPages": {
+    "run": 44897685446,
+    "job": 136827113112,
+    "publishedAt": "2026-11-21T11:10:38.2358222Z",
+    "manifestGitBlob": "922db7aa4ecef59cbae10975f4d2d2091faf5d8f",
+    "manifestSHA256": "0bf1527b6aa52fa5f4f22eb1b90102df5f1c6ea0cb791d664b1b94081c1b65cf",
+    "registryCount": 1311,
+    "oldPublishedGraphs": 39
+  },
+  "normal": {
+    "run": 44916353122,
+    "job": 136882685560,
+    "head": "e4aad78d72ba927e82f8761dcfb0fef773bac947",
+    "tree": "adcc7251a26ec617d0a87e20acf3a0e6bf89910d",
+    "branch": "qa/stage24-front6-side-face-b79-r3",
+    "workflow": ".github/workflows/stage24-front6-side-face.yml",
+    "artifact": {
+      "id": 14711489507,
+      "name": "honro-stage24-front6-authored-side-facet-r3-no-deploy",
+      "bytes": 9633040,
+      "sha256": "7607585b697cd8e1f87f6e4b5e063af41ab717e34175c2d5009f7ce3d18d2f9d"
+    },
+    "nested": {
+      "path": "B-verified-normal-delta-review-only/B-exact-normal-generated-review-only.zip",
+      "bytes": 1836131,
+      "sha256": "40a83ad41afeb25fed300be442031358af9a6f6e0ba2fe1f22c40653e5ad24fd"
+    },
+    "pins": {
+      "GATE.json": "b3a807cb52fc1b17e16f7a3b6a3851d3b47919529644157dc5493b1130b6ec3b",
+      "GRAPH.json": "923554c83e7a7d525ee90ac4f6727b714b89e6cd04a6c37fbee2b5eeb6af920e",
+      "GRAPH-OBSERVED.json": "c94585954458d57007399832871924aae8d096d4a8c28095049209efaf72476f",
+      "GRAPH-DELTA.json": "857f1c6abbbab8eab2287da480af5af52732c961996a5adc53caec879d6c938f",
+      "CANDIDATE-SOURCE.json": "a5414b4e312c9ab0a3c5e025ba34a25fd4031226b0ebdbccf8db3c92bdd83b03",
+      "PACKET-WIRE.json": "d9e1f67bf10bcf6188cf5b5dd66de63bc668fedf55c1cd2661f6f0f918db6a48",
+      "RECEIPT.json": "7a55613a5e217afa44baa587f20b328b1d777a40ab1e438520b909031af1c49f",
+      "B-verified-normal-delta-review-only/SEAL.json": "12dda655dce181821b89bb0f48ff3c7a39298cad0a322f455a6e35a69c1040e3"
+    },
+    "actualAuthorityPNGCount": 40
+  },
+  "normalQAPaths": {
+    ".github/workflows/stage24-front6-side-face.yml": {
+      "bytes": 3082,
+      "git": "635bf654153aad6b0755846f419983016d51a5d8",
+      "sha256": "eb29213c3d858e6fb124a376964868682477e483154ef9c7d031bf94c1c2e867"
+    },
+    "tools/stage24-front6-native/POSES.json": {
+      "bytes": 9354,
+      "git": "f4d8037e2f0b983a11a03068bb1bd14c395b8699",
+      "sha256": "f010b7feeb331f8ea77dfbbc525fafa4e039bd29985eefc687206354e46d3579"
+    },
+    "tools/stage24-front6-native/capture.py": {
+      "bytes": 18110,
+      "git": "48f53ac56553b929dcfa4c7ce3a85aef891b28a3",
+      "sha256": "17493912a56930a3335ebf20f4a6863d7902d986c8584be1fb98b21e8227fb2f"
+    },
+    "tools/stage24-front6-native/guard.py": {
+      "bytes": 9037,
+      "git": "cd84d61f93fbf3b7303f71d222150e4268177d71",
+      "sha256": "26c34a32fc2d401a31e679a0f878ea706d25fe028de8ceaa8bbba1ba5724fb3d"
+    },
+    "tools/stage24-front6-native/prepare.mjs": {
+      "bytes": 14437,
+      "git": "f5dbdab9b792f6dc30378761db6f88291dc3cb7c",
+      "sha256": "7153b6706d7567c8c2e54aaa889ff2cd3c16e97f7cc804fd8640195d46464966"
+    }
+  },
+  "outerEntries": [
+    "A-s24-1440x900-east-dom.png",
+    "A-s24-1440x900-east-ordinary-dom.png",
+    "A-s24-1440x900-east-ordinary-raw.png",
+    "A-s24-1440x900-east-raw.png",
+    "A-s24-1440x900-southeast-dom.png",
+    "A-s24-1440x900-southeast-raw.png",
+    "A-s24-1440x900-southwest-dom.png",
+    "A-s24-1440x900-southwest-raw.png",
+    "A-s24-1440x900-west-dom.png",
+    "A-s24-1440x900-west-raw.png",
+    "A-s24-390x844-east-dom.png",
+    "A-s24-390x844-east-ordinary-dom.png",
+    "A-s24-390x844-east-ordinary-raw.png",
+    "A-s24-390x844-east-raw.png",
+    "A-s24-390x844-southeast-dom.png",
+    "A-s24-390x844-southeast-raw.png",
+    "A-s24-390x844-southwest-dom.png",
+    "A-s24-390x844-southwest-raw.png",
+    "A-s24-390x844-west-dom.png",
+    "A-s24-390x844-west-raw.png",
+    "B-s24-1440x900-east-dom.png",
+    "B-s24-1440x900-east-ordinary-dom.png",
+    "B-s24-1440x900-east-ordinary-raw.png",
+    "B-s24-1440x900-east-raw.png",
+    "B-s24-1440x900-southeast-dom.png",
+    "B-s24-1440x900-southeast-raw.png",
+    "B-s24-1440x900-southwest-dom.png",
+    "B-s24-1440x900-southwest-raw.png",
+    "B-s24-1440x900-west-dom.png",
+    "B-s24-1440x900-west-raw.png",
+    "B-s24-390x844-east-dom.png",
+    "B-s24-390x844-east-ordinary-dom.png",
+    "B-s24-390x844-east-ordinary-raw.png",
+    "B-s24-390x844-east-raw.png",
+    "B-s24-390x844-southeast-dom.png",
+    "B-s24-390x844-southeast-raw.png",
+    "B-s24-390x844-southwest-dom.png",
+    "B-s24-390x844-southwest-raw.png",
+    "B-s24-390x844-west-dom.png",
+    "B-s24-390x844-west-raw.png",
+    "B-verified-normal-delta-review-only/B-exact-normal-generated-review-only.zip",
+    "B-verified-normal-delta-review-only/SEAL.json",
+    "CANDIDATE-SOURCE.json",
+    "GATE.json",
+    "GRAPH-DELTA.json",
+    "GRAPH-OBSERVED.json",
+    "GRAPH.json",
+    "PACKET-WIRE.json",
+    "RECEIPT.json",
+    "build.log",
+    "http-A.log",
+    "http-B.log",
+    "npm-game.log",
+    "npm-root.log",
+    "prepare.log",
+    "production-contract.log",
+    "s24-1440x900-east-ordinary-A-B-actual-1x.png",
+    "s24-390x844-east-ordinary-A-B-actual-1x.png"
+  ],
+  "aliases": {
+    "web/runtime/campaign.a4e4a1f2c263a866.js": "web/runtime/campaign.926544619e01a04a.js",
+    "web/entries/game.16fa712378260ab7.js": "web/entries/game.b0b1e648c2c03457.js",
+    "web/entries/game.27bee1d027287972.html": "web/entries/game.1acc5c361cb2b136.html",
+    "web/entries/workshop.c04fdab1de4158c5.js": "web/entries/workshop.b980331722d6690d.js",
+    "web/data/campaign.324003dbe6483ac8.json": "web/data/campaign.7140da5d3649e4ab.json",
+    "web/data/chapter-24-assets.9da653528c6235b1.json": "web/data/chapter-24-assets.636aabc0f572b723.json"
+  },
+  "normalFiles": {
+    "HONRO.html": {
+      "bytes": 17379,
+      "sha256": "7f0b08897737d44f4f7d9a436e703b7ec48659fcb121098ea1cffd5b1f93d46d"
+    },
+    "HONRO_WORKSHOP.html": {
+      "bytes": 4011,
+      "sha256": "d143e5de877a183302966e43aef3f684c9ca305bb09437d8de99f987c68404ad"
+    },
+    "index.html": {
+      "bytes": 17379,
+      "sha256": "7f0b08897737d44f4f7d9a436e703b7ec48659fcb121098ea1cffd5b1f93d46d"
+    },
+    "web/data/campaign.7140da5d3649e4ab.json": {
+      "bytes": 54961,
+      "sha256": "7140da5d3649e4aba2c58e180c8ff3f6f171a70e5e6704ad05dc98d428c52822"
+    },
+    "web/data/chapter-24-assets.636aabc0f572b723.json": {
+      "bytes": 490928,
+      "sha256": "636aabc0f572b7234b3f5b6bebfcb4b6376433a22e76d1a073c5ca28b7d1a46c"
+    },
+    "web/entries/game.1acc5c361cb2b136.html": {
+      "bytes": 11318,
+      "sha256": "1acc5c361cb2b1369b8205dc7a3ba8277775c668e0a3e393772d199a53669a80"
+    },
+    "web/entries/game.b0b1e648c2c03457.js": {
+      "bytes": 20483,
+      "sha256": "b0b1e648c2c034576f5e2c701faaa06c4a8f6dca7459e3f54f07fdb94bf61dee"
+    },
+    "web/entries/workshop.b980331722d6690d.js": {
+      "bytes": 16706,
+      "sha256": "b980331722d6690df3fd67e9c22f93f8ede135ac3758e940a0d8d8c0034a66c5"
+    },
+    "web/manifest.json": {
+      "bytes": 6260027,
+      "sha256": "7e8643180cc9b4ee84b53408d8d17e1a2706e3ce64db2a6d604960588359a9c8"
+    },
+    "web/runtime/campaign.926544619e01a04a.js": {
+      "bytes": 527,
+      "sha256": "926544619e01a04af2f2cc0e2bd435265ae9efff23062e259563bded6d851307"
+    }
+  },
+  "sourceBefore": {
+    "shared/data/campaign.json": "edaf31a5fda2b7db0202bc0efb52dd83e54f6b9e",
+    "tools/map-forge/stage24-family-compound.mjs": "514274cdcdaf2968bfe9371272a6f56e273b9c72",
+    "tools/environment/build-act2-art.mjs": "0cc5c5bb0c19fa5b1885e947f7063b7e595122c9"
+  },
+  "sourceAfter": {
+    "shared/data/campaign.json": "a13fc5834808899bcf3b0eac1aa3ca4ada625a2b",
+    "tools/map-forge/stage24-family-compound.mjs": "9028bacf5603eb7447f97f1f0ccc65ec37912e2e"
+  },
+  "physicsSHA256": "4f2176310fc331d0c8d37fcbba29f9df89b3e438b26fe800ac6b19cc935b61e0",
+  "initialAuthorOwnerSHA256": "098b7fdac911fc6aa5de83c943ee47234bddcbb28bf48ab3514ef2cbd0a39a72",
+  "candidateAuthorOwnerSHA256": "a1c2cd901cb96494d00542fc4dca168cc80fa838c100b3d326e24a96274247b5"
+}

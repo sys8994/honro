@@ -1,0 +1,47 @@
+name: HONRO Stage24 retain exact tested normal assets (no publish)
+on:
+  push:
+    branches: [qa/stage24-front6-retention-b79]
+    paths:
+      - .github/workflows/stage24-front6-retention.yml
+      - tools/stage24-front6-retention/**
+permissions:
+  contents: read
+  actions: read
+jobs:
+  seal:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage24-front6-retention-b79'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Read-only trusted actual Stage24 and Pages evidence
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          WORK="$(mktemp -d "$RUNNER_TEMP/stage24-front6-retention.XXXXXX")"
+          mkdir "$WORK/delivery"
+          echo "WORK=$WORK" >> "$GITHUB_ENV"
+          python3 tools/stage24-front6-retention/retain.py authority "$WORK"
+      - name: Tokenless exact Stage24 retained tree and local object proof
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -z "${GH_TOKEN:-}${GITHUB_TOKEN:-}"
+          python3 tools/stage24-front6-retention/retain.py seal "$WORK"
+      - if: always() && env.WORK != ''
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage24-front6-retained-source-and-generated-no-deploy
+          path: ${{ env.WORK }}/delivery/
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 7
