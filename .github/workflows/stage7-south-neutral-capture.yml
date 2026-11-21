@@ -1,0 +1,40 @@
+name: HONRO Stage7 south immutable native neutral copy QA R2 only
+on:
+  push:
+    branches: [qa/stage7-south-native-neutral-2c4-r2]
+    paths:
+      - .github/workflows/stage7-south-neutral-capture.yml
+      - tools/stage7-south-neutral-capture/**
+permissions:
+  contents: read
+jobs:
+  public:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage7-south-native-neutral-2c4-r2'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+          fetch-depth: 2
+      - name: Pinned public actual PC and mobile neutral-only native tile
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -z "${GH_TOKEN:-}${GITHUB_TOKEN:-}"
+          python3 -c 'import json; assert json.load(open("tools/stage7-south-neutral-capture/PINS.json"))["enabled"] is True, "not yet bound to exact published Pages"'
+          mkdir "$RUNNER_TEMP/stage7-south-native-neutral"
+          python3 -m venv "$RUNNER_TEMP/stage7-south-native-neutral/venv"
+          V="$RUNNER_TEMP/stage7-south-native-neutral/venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+          "$V" tools/stage7-south-neutral-capture/capture.py "$RUNNER_TEMP/stage7-south-native-neutral/out"
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage7-south-neutral-capture-r2-no-release-action
+          path: ${{ runner.temp }}/stage7-south-native-neutral/out/
+          retention-days: 7
+          if-no-files-found: error
