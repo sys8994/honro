@@ -1,0 +1,80 @@
+name: Stage15 upper contact actual rebuilt prototype (never deploy)
+on:
+  push:
+    branches: [qa/stage15-native-upper-2939958-20261121]
+permissions:
+  contents: read
+jobs:
+  stage15-upper-native:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage15-native-upper-2939958-20261121'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 44
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Exact add-only QA, two fresh detached trees, single disposable B renderer edit
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT=$GITHUB_WORKSPACE
+          BASE=2939958cc87407ef60b58720bb6e086b8559031b
+          test "$(git show -s --format=%P HEAD)" = "$BASE"
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test "$(git rev-parse "$BASE^{tree}")" = 08e22a8cc0ab608e125ad73f8e8e1c288d8c4c74
+          test "$(git rev-parse "$BASE:shared/data/act2/stage15-compact-package.json")" = ac4fb9854c5bf713507564755848b6c2af1f8f1b
+          Q="$ROOT/tools/stage15-native-upper-qa"
+          W="$(mktemp -d "$RUNNER_TEMP/stage15-native-upper.XXXXXX")"
+          mkdir "$W/out"
+          echo "WORK=$W" >> "$GITHUB_ENV"
+          echo "QA=$Q" >> "$GITHUB_ENV"
+          printf 'A\t%s\n' .github/workflows/stage15-native-upper-qa.yml tools/stage15-native-upper-qa/{PINS.json,baseline.json,capture.py,mask.json,method.txt,patch.py,source.py,verify.py} | LC_ALL=C sort > "$W/files"
+          git diff --name-status --no-renames "$BASE" HEAD | LC_ALL=C sort | diff - "$W/files"
+          for side in A B; do git worktree add --detach "$W/$side" "$BASE"; done
+          python "$Q/patch.py" "$W/A" "$W/B" > "$W/out/source-edit.json"
+          node --check "$W/B/shared/runtime/renderer.js"
+          for side in A B; do
+            (
+              cd "$W/$side"
+              npm ci && npm ci --prefix game && npm run test:release-guard && npm run build && npm run test:production-contract
+            ) > "$W/out/build-$side.log" 2>&1 || { tail -100 "$W/out/build-$side.log"; exit 1; }
+          done
+          for side in A B; do
+            want=''
+            if [[ "$side" == B ]]; then want=$' M shared/runtime/renderer.js'; fi
+            test "$(git -C "$W/$side" status --porcelain=v1 -uall -- shared tools game tests package.json package-lock.json workshop/build.mjs)" = "$want"
+          done
+      - name: Native domain tile A/B and signed exact protected comparisons
+        timeout-minutes: 26
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m venv "$WORK/venv"
+          V="$WORK/venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0 numpy
+          "$V" -m playwright install --with-deps chromium
+          python -m http.server 18841 --bind 127.0.0.1 --directory "$WORK/A" > "$WORK/out/http-A.log" 2>&1 &
+          ap=$!
+          python -m http.server 18842 --bind 127.0.0.1 --directory "$WORK/B" > "$WORK/out/http-B.log" 2>&1 &
+          bp=$!
+          trap 'kill "$ap" "$bp" 2>/dev/null || true' EXIT
+          for p in 18841 18842; do curl -fsS --retry 10 --retry-connrefused "http://127.0.0.1:$p/HONRO.html" -o /dev/null; done
+          export AUDIT_A="$WORK/A" AUDIT_STAGE=15
+          for side in A B; do
+            export AUDIT_ARM="$side" AUDIT_TREE="$WORK/$side" AUDIT_OUT="$WORK/out/$side"
+            if [[ "$side" == A ]]; then export AUDIT_PORT=18841; else export AUDIT_PORT=18842; fi
+            "$V" "$QA/source.py"
+            "$V" "$QA/capture.py"
+          done
+          "$V" "$QA/verify.py" "$WORK/out"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: stage15-north-native-upper-readonly-qa
+          path: ${{ env.WORK }}/out
+          if-no-files-found: error
+          retention-days: 7

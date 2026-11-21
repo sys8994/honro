@@ -1,0 +1,508 @@
+{
+  "release": "2939958cc87407ef60b58720bb6e086b8559031b",
+  "origin": "current public 2939958 Stage15 20 native cameras artifact14678733302",
+  "frames": [
+    {
+      "key": "s15-1440x900-ordinary",
+      "actual": {
+        "x": 224,
+        "y": 2038.4444444444443,
+        "scale": 0.5
+      },
+      "viewport": {
+        "left": -1216,
+        "right": 1664,
+        "top": 1269.2569444444443,
+        "bottom": 2807.6319444444443
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "actorCount": 26,
+      "physicsSHA256": "99969df4447f9a8c930ff3d94d5b5777ab8baee8b6fb76e2a48bfec5e971ba7a",
+      "pngSHA256": "59754d9b17b38a30a177a808e9ec7250d6b3744fc26891147b94f0c0fc82d36d",
+      "rawSHA256": "71e1fc69a368bd3254da6ba8d39a0cb1ec3989fef2761a8ae843127c8cc3c55a"
+    },
+    {
+      "key": "s15-1440x900-overview",
+      "actual": {
+        "x": 2900,
+        "y": 2100,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": -500,
+        "right": 6300,
+        "top": 283.8628472222222,
+        "bottom": 3916.137152777778
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "actorCount": 26,
+      "physicsSHA256": "99969df4447f9a8c930ff3d94d5b5777ab8baee8b6fb76e2a48bfec5e971ba7a",
+      "pngSHA256": "afa6debb05eaed3ebebcfb65f0b9b182189581d48b2406eaf40bba06e800aaa9"
+    },
+    {
+      "key": "s15-1440x900-north",
+      "actual": {
+        "x": 2900,
+        "y": -1800,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": -500,
+        "right": 6300,
+        "top": -3616.137152777778,
+        "bottom": 16.13715277777783
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "actorCount": 26,
+      "physicsSHA256": "99969df4447f9a8c930ff3d94d5b5777ab8baee8b6fb76e2a48bfec5e971ba7a",
+      "pngSHA256": "490bf2c3dd1899c7ce677a81c0384dc3c7538cab3132c957004132ce022e552c"
+    },
+    {
+      "key": "s15-1440x900-south",
+      "actual": {
+        "x": 2900,
+        "y": 4440,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": -500,
+        "right": 6300,
+        "top": 2623.862847222222,
+        "bottom": 6256.137152777777
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "actorCount": 26,
+      "physicsSHA256": "99969df4447f9a8c930ff3d94d5b5777ab8baee8b6fb76e2a48bfec5e971ba7a",
+      "pngSHA256": "7f1a6bb814d50402d52d1bf7fde81191e1f7b0f1d4747b6e8e23abb9bd7520bf"
+    },
+    {
+      "key": "s15-1440x900-west",
+      "actual": {
+        "x": -320,
+        "y": 2100,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": -3720,
+        "right": 3080,
+        "top": 283.8628472222222,
+        "bottom": 3916.137152777778
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "actorCount": 26,
+      "physicsSHA256": "99969df4447f9a8c930ff3d94d5b5777ab8baee8b6fb76e2a48bfec5e971ba7a",
+      "pngSHA256": "3226e421df7a7153a7bf1b20f286799e94b1871be1dceedbf24174e448b47df8"
+    },
+    {
+      "key": "s15-1440x900-east",
+      "actual": {
+        "x": 6120,
+        "y": 2100,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": 2720,
+        "right": 9520,
+        "top": 283.8628472222222,
+        "bottom": 3916.137152777778
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "actorCount": 26,
+      "physicsSHA256": "99969df4447f9a8c930ff3d94d5b5777ab8baee8b6fb76e2a48bfec5e971ba7a",
+      "pngSHA256": "a27868a03e1b23d17d7fe76a5b66b40bc92e9e2e131226c86b5a1362b5fc8ce9"
+    },
+    {
+      "key": "s15-1440x900-northwest",
+      "actual": {
+        "x": -320,
+        "y": -1800,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": -3720,
+        "right": 3080,
+        "top": -3616.137152777778,
+        "bottom": 16.13715277777783
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "actorCount": 26,
+      "physicsSHA256": "99969df4447f9a8c930ff3d94d5b5777ab8baee8b6fb76e2a48bfec5e971ba7a",
+      "pngSHA256": "5b068708db931039493705a0e5d87577a280bae2295aba6d765403561fa2e5e6"
+    },
+    {
+      "key": "s15-1440x900-northeast",
+      "actual": {
+        "x": 6120,
+        "y": -1800,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": 2720,
+        "right": 9520,
+        "top": -3616.137152777778,
+        "bottom": 16.13715277777783
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "actorCount": 26,
+      "physicsSHA256": "99969df4447f9a8c930ff3d94d5b5777ab8baee8b6fb76e2a48bfec5e971ba7a",
+      "pngSHA256": "9d77d4802fde1a590b3cd1037f8a9d83a046b9045567b85aed805893b0280d39"
+    },
+    {
+      "key": "s15-1440x900-southwest",
+      "actual": {
+        "x": -320,
+        "y": 4440,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": -3720,
+        "right": 3080,
+        "top": 2623.862847222222,
+        "bottom": 6256.137152777777
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "actorCount": 26,
+      "physicsSHA256": "99969df4447f9a8c930ff3d94d5b5777ab8baee8b6fb76e2a48bfec5e971ba7a",
+      "pngSHA256": "96a5c23d6169ba6980c56dc4909950f10a3e2b55a312e6435ad4f164de376703"
+    },
+    {
+      "key": "s15-1440x900-southeast",
+      "actual": {
+        "x": 6120,
+        "y": 4440,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": 2720,
+        "right": 9520,
+        "top": 2623.862847222222,
+        "bottom": 6256.137152777777
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "actorCount": 26,
+      "physicsSHA256": "99969df4447f9a8c930ff3d94d5b5777ab8baee8b6fb76e2a48bfec5e971ba7a",
+      "pngSHA256": "15b22d47827b6c78d1439d9a7de19ceb638067db6d08644e8d21aaabd5a37191"
+    },
+    {
+      "key": "s15-390x844-ordinary",
+      "actual": {
+        "x": 224,
+        "y": 2038.4444444444443,
+        "scale": 0.5
+      },
+      "viewport": {
+        "left": -166,
+        "right": 614,
+        "top": 1390.8350694444443,
+        "bottom": 2686.0538194444443
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "actorCount": 26,
+      "physicsSHA256": "99969df4447f9a8c930ff3d94d5b5777ab8baee8b6fb76e2a48bfec5e971ba7a",
+      "pngSHA256": "f26f7b44b9cdd26f99abd01207c1b093f93afd5811277952fa9439de7fb49ae7",
+      "rawSHA256": "5506af3ff4686935f05491ee5bc80eeb7b610ad0c4960f226ece5f7567d1b844"
+    },
+    {
+      "key": "s15-390x844-overview",
+      "actual": {
+        "x": 2900,
+        "y": 2100,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": -500,
+        "right": 6300,
+        "top": -3545.8253205128203,
+        "bottom": 7745.82532051282
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "actorCount": 26,
+      "physicsSHA256": "99969df4447f9a8c930ff3d94d5b5777ab8baee8b6fb76e2a48bfec5e971ba7a",
+      "pngSHA256": "6bdd7cb96dd1e220669ae26abd71c54d32d7d7568b55382bc92d44c3e082af20"
+    },
+    {
+      "key": "s15-390x844-north",
+      "actual": {
+        "x": 2900,
+        "y": -1800,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": -500,
+        "right": 6300,
+        "top": -7445.82532051282,
+        "bottom": 3845.8253205128203
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "actorCount": 26,
+      "physicsSHA256": "99969df4447f9a8c930ff3d94d5b5777ab8baee8b6fb76e2a48bfec5e971ba7a",
+      "pngSHA256": "32f59f530e02bc6fff09462db5aa5c38b1c7676be0b1ee7be06989a29be4fc23"
+    },
+    {
+      "key": "s15-390x844-south",
+      "actual": {
+        "x": 2900,
+        "y": 4440,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": -500,
+        "right": 6300,
+        "top": -1205.8253205128203,
+        "bottom": 10085.82532051282
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "actorCount": 26,
+      "physicsSHA256": "99969df4447f9a8c930ff3d94d5b5777ab8baee8b6fb76e2a48bfec5e971ba7a",
+      "pngSHA256": "00a9731e0af14d9b99e9d61cc1034c4eae40af7678764e249246ababa63302e4"
+    },
+    {
+      "key": "s15-390x844-west",
+      "actual": {
+        "x": -320,
+        "y": 2100,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": -3720,
+        "right": 3080,
+        "top": -3545.8253205128203,
+        "bottom": 7745.82532051282
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "actorCount": 26,
+      "physicsSHA256": "99969df4447f9a8c930ff3d94d5b5777ab8baee8b6fb76e2a48bfec5e971ba7a",
+      "pngSHA256": "081daa7e19db42da866e26825db0702fe9755e034f042873ae7af3956d8dcfb2"
+    },
+    {
+      "key": "s15-390x844-east",
+      "actual": {
+        "x": 6120,
+        "y": 2100,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": 2720,
+        "right": 9520,
+        "top": -3545.8253205128203,
+        "bottom": 7745.82532051282
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "actorCount": 26,
+      "physicsSHA256": "99969df4447f9a8c930ff3d94d5b5777ab8baee8b6fb76e2a48bfec5e971ba7a",
+      "pngSHA256": "42b1f27674e5f096e195bf3d1996f20da0102e719c9a7b5877e15d892aa3fb14"
+    },
+    {
+      "key": "s15-390x844-northwest",
+      "actual": {
+        "x": -320,
+        "y": -1800,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": -3720,
+        "right": 3080,
+        "top": -7445.82532051282,
+        "bottom": 3845.8253205128203
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "actorCount": 26,
+      "physicsSHA256": "99969df4447f9a8c930ff3d94d5b5777ab8baee8b6fb76e2a48bfec5e971ba7a",
+      "pngSHA256": "e715c5aac335d3d110d5e491307d1d76644fdb4de180b85c9acca6b2738fc737"
+    },
+    {
+      "key": "s15-390x844-northeast",
+      "actual": {
+        "x": 6120,
+        "y": -1800,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": 2720,
+        "right": 9520,
+        "top": -7445.82532051282,
+        "bottom": 3845.8253205128203
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "actorCount": 26,
+      "physicsSHA256": "99969df4447f9a8c930ff3d94d5b5777ab8baee8b6fb76e2a48bfec5e971ba7a",
+      "pngSHA256": "8c24949202680963487a8c027a789e0402be78fc48d886029daf6da02b11ab37"
+    },
+    {
+      "key": "s15-390x844-southwest",
+      "actual": {
+        "x": -320,
+        "y": 4440,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": -3720,
+        "right": 3080,
+        "top": -1205.8253205128203,
+        "bottom": 10085.82532051282
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "actorCount": 26,
+      "physicsSHA256": "99969df4447f9a8c930ff3d94d5b5777ab8baee8b6fb76e2a48bfec5e971ba7a",
+      "pngSHA256": "e57a5da57071b39a598d16ab9282ba3813debb42fc0c6a69cc13c8ae27e30a5e"
+    },
+    {
+      "key": "s15-390x844-southeast",
+      "actual": {
+        "x": 6120,
+        "y": 4440,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": 2720,
+        "right": 9520,
+        "top": -1205.8253205128203,
+        "bottom": 10085.82532051282
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "actorCount": 26,
+      "physicsSHA256": "99969df4447f9a8c930ff3d94d5b5777ab8baee8b6fb76e2a48bfec5e971ba7a",
+      "pngSHA256": "234839a9fda5f34af669035de599cdfd07d5fb5b80c90da08eb86f137d619be2"
+    }
+  ]
+}
