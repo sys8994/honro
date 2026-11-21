@@ -1,0 +1,112 @@
+name: HONRO Stage14 projected floor stripe exact native focus no deploy
+on:
+  push:
+    branches: [qa/stage14-floor-closure-21809dc]
+    paths:
+      - .github/workflows/stage14-floor-closure.yml
+      - tools/stage14-floor-closure/**
+permissions:
+  contents: read
+jobs:
+  native:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage14-floor-closure-21809dc'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+          fetch-depth: 3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Pristine current live A and one signed source normal compiled B
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -z "${GITHUB_TOKEN:-}${GH_TOKEN:-}"
+          W="$RUNNER_TEMP/honro-stage14"
+          mkdir "$W" "$W/out"
+          echo "WORK=$W" >> "$GITHUB_ENV"
+          Q="$GITHUB_WORKSPACE/tools/stage14-floor-closure"
+          python "$Q/guard.py" pre "$W"
+          (
+            cd "$W/B"
+            npm ci >"$W/out/npm-root.log" 2>&1
+            npm ci --prefix game >"$W/out/npm-game.log" 2>&1
+            npm run test:release-guard >"$W/out/release-guard.log" 2>&1
+            npm run build >"$W/out/build.log" 2>&1
+            npm run test:production-contract >"$W/out/production-contract.log" 2>&1
+          )
+          python "$Q/guard.py" built "$W"
+      - name: Native Chrome A A B full PC mobile and two adjacent negative chapters
+        shell: bash
+        timeout-minutes: 28
+        run: |
+          set -euo pipefail
+          test -z "${GITHUB_TOKEN:-}${GH_TOKEN:-}"
+          Q="$GITHUB_WORKSPACE/tools/stage14-floor-closure"
+          python3 -m venv "$WORK/venv"
+          V="$WORK/venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+          python -m http.server 18891 --bind 127.0.0.1 --directory "$WORK/A" >"$WORK/out/http-A.log" 2>&1 &
+          a=$!
+          python -m http.server 18892 --bind 127.0.0.1 --directory "$WORK/B" >"$WORK/out/http-B.log" 2>&1 &
+          b=$!
+          trap 'kill "$a" "$b" 2>/dev/null || true' EXIT
+          for p in 18891 18892;do curl -fsS --retry 8 --retry-connrefused "http://127.0.0.1:$p/HONRO.html" -o /dev/null;done
+          "$V" "$Q/capture.py" "$WORK"
+      - if: always() && env.WORK != ''
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage14-exact-native-receipts
+          path: |
+            ${{ env.WORK }}/out/*.json
+            ${{ env.WORK }}/out/*.log
+          if-no-files-found: error
+          retention-days: 7
+      - if: always() && env.WORK != ''
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage14-native-A1-1440x900
+          path: ${{ env.WORK }}/out/A1-*-1440x900-*.png
+          if-no-files-found: warn
+          retention-days: 7
+      - if: always() && env.WORK != ''
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage14-native-A1-390x844
+          path: ${{ env.WORK }}/out/A1-*-390x844-*.png
+          if-no-files-found: warn
+          retention-days: 7
+      - if: always() && env.WORK != ''
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage14-native-A2-1440x900
+          path: ${{ env.WORK }}/out/A2-*-1440x900-*.png
+          if-no-files-found: warn
+          retention-days: 7
+      - if: always() && env.WORK != ''
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage14-native-A2-390x844
+          path: ${{ env.WORK }}/out/A2-*-390x844-*.png
+          if-no-files-found: warn
+          retention-days: 7
+      - if: always() && env.WORK != ''
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage14-native-B-1440x900
+          path: ${{ env.WORK }}/out/B-*-1440x900-*.png
+          if-no-files-found: warn
+          retention-days: 7
+      - if: always() && env.WORK != ''
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage14-native-B-390x844
+          path: ${{ env.WORK }}/out/B-*-390x844-*.png
+          if-no-files-found: warn
+          retention-days: 7
