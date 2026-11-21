@@ -1,0 +1,93 @@
+name: Stage15 combined terrain actual renderer, no deploy
+on:
+  push:
+    branches: [qa/stage15-formal-integrated-2939958-20261121]
+permissions:
+  contents: read
+jobs:
+  stage15-formal-integrated:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage15-formal-integrated-2939958-20261121'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 43
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Exact reviewed inputs and normal compiler (isolated, no publish)
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE=2939958cc87407ef60b58720bb6e086b8559031b
+          test "$(git show -s --format=%P HEAD)" = "$BASE"
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test "$(git rev-parse "$BASE^{tree}")" = 08e22a8cc0ab608e125ad73f8e8e1c288d8c4c74
+          Q="$GITHUB_WORKSPACE/tools/stage15-formal-integrated-qa"
+          W="$(mktemp -d "$RUNNER_TEMP/stage15-formal-combined.XXXXXX")"
+          mkdir "$W/out"
+          echo "WORK=$W" >> "$GITHUB_ENV"
+          echo "QA=$Q" >> "$GITHUB_ENV"
+          printf 'A\t%s\n' .github/workflows/stage15-formal-integrated-qa.yml tools/stage15-formal-integrated-qa/{PINS.json,B-native-44844285051.json,patch.py,method.txt,mask.json,floor_asset.py,floor-v4-pins.json,ledger.py,west-vector.json,integrate.py,renderer.formal.js,formal-receipt.json,frame-contract.json,validate.py,source.py,capture.py,frozen-cameras.json} | LC_ALL=C sort > "$W/files"
+          git diff --name-status --no-renames "$BASE" HEAD | LC_ALL=C sort | diff - "$W/files"
+          for side in A B C; do git worktree add --detach "$W/$side" "$BASE"; done
+          python "$Q/patch.py" "$W/A" "$W/B" > "$W/out/signed-reference-renderer.json"
+          python "$Q/floor_asset.py" "$W/A" "$W/C" > "$W/out/floor-pre-assembly.json"
+          python "$Q/ledger.py" "$W/A" "$W/B" "$W/C" > "$W/out/ledger-V4.json"
+          python "$Q/integrate.py" "$W/A" "$W/B" "$W/C" > "$W/out/author-combined.json"
+          R=shared/runtime/renderer.js
+          test "$(git hash-object "$W/C/$R")" = 25c34f4a8c246c543389a472eb1746e6e226da88
+          test "$(git hash-object "$Q/renderer.formal.js")" = 8f0e30d5143fc64acd1850ee07e40413f1879d40
+          cp "$Q/renderer.formal.js" "$W/C/$R"
+          node --check "$W/C/$R"
+          node - "$W/C" <<'JS'
+          const [, , root]=process.argv;
+          require(root+'/shared/map/vector-art.js');
+          const p=require(root+'/shared/data/act2/stage15-compact-package.json');
+          const tail=['traced-west-flat-v2-1','traced-outer-v1-1'];
+          for(const t of tail){
+            const hits=p.assets.filter(x=>x.id.endsWith(t));
+            if(hits.length!==1)throw Error('exact author owner missing '+t);
+            const issues=HonroVectorArt.validate(hits[0].vector);
+            if(issues.length)throw Error(issues.join(';'));
+          }
+          JS
+          (cd "$W/A" && npm ci) > "$W/out/deps-A.log" 2>&1 || { tail -100 "$W/out/deps-A.log"; exit 1; }
+          for side in B C; do
+            ( cd "$W/$side" && npm ci && npm ci --prefix game && npm run test:release-guard && npm run build && npm run test:production-contract ) > "$W/out/build-$side.log" 2>&1 || { tail -100 "$W/out/build-$side.log"; exit 1; }
+          done
+          ( cd "$W/C" && npm run test:terrain-domain ) > "$W/out/terrain-domain.log" 2>&1 || { tail -100 "$W/out/terrain-domain.log"; exit 1; }
+          for side in A B C; do
+            want=''
+            if [[ "$side" == B ]]; then want=$' M shared/runtime/renderer.js'; fi
+            if [[ "$side" == C ]]; then want=$' M shared/data/act2/stage15-compact-package.json\n M shared/data/terrain-path-optimization.json\n M shared/runtime/renderer.js'; fi
+            test "$(git -C "$W/$side" status --porcelain=v1 -uall -- shared tools game tests package.json package-lock.json workshop/build.mjs)" = "$want"
+          done
+      - name: Exact emitted graph, real PC and mobile frames and independent composition witness
+        shell: bash
+        timeout-minutes: 24
+        run: |
+          set -euo pipefail
+          python3 -m venv "$WORK/venv"
+          V="$WORK/venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0 numpy
+          "$V" -m playwright install --with-deps chromium
+          port=18842
+          python -m http.server "$port" --bind 127.0.0.1 --directory "$WORK/C" > "$WORK/out/http-C.log" 2>&1 &
+          pid=$!
+          trap 'kill "$pid" 2>/dev/null || true' EXIT
+          curl -fsS --retry 10 --retry-connrefused "http://127.0.0.1:$port/HONRO.html" -o /dev/null
+          export AUDIT_A="$WORK/A" AUDIT_B="$WORK/B" AUDIT_STAGE=15 AUDIT_ARM=C AUDIT_TREE="$WORK/C" AUDIT_OUT="$WORK/out/C" AUDIT_PORT="$port"
+          export AUDIT_CAPTURE_BUNDLE="$AUDIT_OUT/capture-bundle.json"
+          "$V" "$QA/source.py"
+          "$V" "$QA/capture.py"
+          "$V" "$QA/validate.py" "$QA/frame-contract.json" 06fa6bb96e1d8be6be0a924316d15f8ee131c095334dd53202e496fb97d183cb "$AUDIT_OUT" > "$WORK/out/combined-exact-comparison.json"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always() && env.WORK != ''
+        with:
+          name: stage15-formal-combined-actual-proof
+          path: ${{ env.WORK }}/out
+          if-no-files-found: error
+          retention-days: 7

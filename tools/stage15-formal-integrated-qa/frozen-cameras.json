@@ -1,0 +1,1756 @@
+{
+  "schema": 1,
+  "stage": 15,
+  "release": "2939958cc87407ef60b58720bb6e086b8559031b",
+  "browser": "151.0.7922.34",
+  "priorReceipts": {
+    "S": {
+      "artifactID": 14688522251,
+      "zipSHA256": "3b86d8d09876597ca4b72fe4e6a4f76eb66b3522fa1e934d974abaa4f38b7841",
+      "proofSHA256": "f88c762db0841688237e0b47669bdc49ca69f78ad6f296ed7519e1dee82fe09c"
+    },
+    "H": {
+      "artifactID": 14687357049,
+      "zipSHA256": "b29a433a3524527f2636f3af30b2570778f3b02c08579b4d43b5fb6665714a0a",
+      "proofSHA256": "f86b8db602bc9c14f1eeabaa347bec44ab2df54d5b3d571c60c74a2d26e6f38b"
+    },
+    "V4": {
+      "artifactID": 14688597589,
+      "zipSHA256": "6510f89d4111d3477937577be853356f7f6711d6b17947bdc02869b6962ecbc7",
+      "proofSHA256": "7e65d6be45b145a62d12ee176dd09acfd4334cac5509639385eac0f13b04e861"
+    }
+  },
+  "poses": {
+    "s15-1440x900-ordinary": {
+      "key": "s15-1440x900-ordinary",
+      "view": "ordinary",
+      "desired": {
+        "x": 224,
+        "y": 2038.4444444444443,
+        "scale": 0.5
+      },
+      "actual": {
+        "x": 224,
+        "y": 2038.4444444444443,
+        "scale": 0.5
+      },
+      "viewport": {
+        "left": -1216,
+        "right": 1664,
+        "top": 1269.2569444444443,
+        "bottom": 2807.6319444444443
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6120,
+        "bottom": 4440
+      },
+      "zoomLimits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "pixels": [
+        1440,
+        770
+      ],
+      "viewportCSS": [
+        1440,
+        900
+      ],
+      "DPR": 1,
+      "actorCount": 26,
+      "phase": "aim",
+      "round": 1,
+      "tide": null,
+      "sceneTime": 2,
+      "physicsSHA256": "99969df4447f9a8c930ff3d94d5b5777ab8baee8b6fb76e2a48bfec5e971ba7a",
+      "pinnedActualTileKeys": [
+        "0.5946035575013605:-2:1",
+        "0.5946035575013605:-1:1",
+        "0.5946035575013605:0:1",
+        "0.5946035575013605:1:1",
+        "0.5946035575013605:-2:2",
+        "0.5946035575013605:-1:2",
+        "0.5946035575013605:0:2",
+        "0.5946035575013605:1:2",
+        "0.5946035575013605:-2:3",
+        "0.5946035575013605:-1:3",
+        "0.5946035575013605:0:3",
+        "0.5946035575013605:1:3"
+      ],
+      "priorBaselinePNG": {
+        "arm": "B",
+        "raw": "71e1fc69a368bd3254da6ba8d39a0cb1ec3989fef2761a8ae843127c8cc3c55a",
+        "DOM": "59754d9b17b38a30a177a808e9ec7250d6b3744fc26891147b94f0c0fc82d36d",
+        "scope": "historical diagnostic art, not expected to match integrated art"
+      },
+      "poseProvenance": "S"
+    },
+    "s15-1440x900-overview": {
+      "key": "s15-1440x900-overview",
+      "view": "overview",
+      "desired": {
+        "x": 2900,
+        "y": 2100,
+        "scale": 0.21176470588235294
+      },
+      "actual": {
+        "x": 2900,
+        "y": 2100,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": -500,
+        "right": 6300,
+        "top": 283.8628472222222,
+        "bottom": 3916.137152777778
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6120,
+        "bottom": 4440
+      },
+      "zoomLimits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "pixels": [
+        1440,
+        770
+      ],
+      "viewportCSS": [
+        1440,
+        900
+      ],
+      "DPR": 1,
+      "actorCount": 26,
+      "phase": "aim",
+      "round": 1,
+      "tide": null,
+      "sceneTime": 2,
+      "physicsSHA256": "99969df4447f9a8c930ff3d94d5b5777ab8baee8b6fb76e2a48bfec5e971ba7a",
+      "pinnedActualTileKeys": [
+        "0.25:-1:0",
+        "0.25:0:0",
+        "0.25:1:0",
+        "0.25:2:0",
+        "0.25:3:0",
+        "0.25:-1:1",
+        "0.25:0:1",
+        "0.25:1:1",
+        "0.25:2:1",
+        "0.25:3:1"
+      ],
+      "priorBaselinePNG": {
+        "arm": "B",
+        "raw": "a527f63daea9951d619f661f382954e8831e9ddfddd4cd0e738ff8678ed2ce50",
+        "DOM": "afa6debb05eaed3ebebcfb65f0b9b182189581d48b2406eaf40bba06e800aaa9",
+        "scope": "historical diagnostic art, not expected to match integrated art"
+      },
+      "poseProvenance": "S"
+    },
+    "s15-1440x900-north": {
+      "key": "s15-1440x900-north",
+      "view": "north",
+      "desired": {
+        "x": 2900,
+        "y": -1000000,
+        "scale": 0.21176470588235294
+      },
+      "actual": {
+        "x": 2900,
+        "y": -1800,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": -500,
+        "right": 6300,
+        "top": -3616.137152777778,
+        "bottom": 16.13715277777783
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6120,
+        "bottom": 4440
+      },
+      "zoomLimits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "pixels": [
+        1440,
+        770
+      ],
+      "viewportCSS": [
+        1440,
+        900
+      ],
+      "DPR": 1,
+      "actorCount": 26,
+      "phase": "aim",
+      "round": 1,
+      "tide": null,
+      "sceneTime": 2,
+      "physicsSHA256": "99969df4447f9a8c930ff3d94d5b5777ab8baee8b6fb76e2a48bfec5e971ba7a",
+      "pinnedActualTileKeys": [
+        "0.25:-1:-2",
+        "0.25:0:-2",
+        "0.25:1:-2",
+        "0.25:2:-2",
+        "0.25:3:-2",
+        "0.25:-1:-1",
+        "0.25:0:-1",
+        "0.25:1:-1",
+        "0.25:2:-1",
+        "0.25:3:-1",
+        "0.25:-1:0",
+        "0.25:0:0",
+        "0.25:1:0",
+        "0.25:2:0",
+        "0.25:3:0"
+      ],
+      "priorBaselinePNG": {
+        "arm": "B",
+        "raw": "85528c28512c17e6db82650cea53b2e15d28e4b0e78d92913109b5891107ec01",
+        "DOM": "b1c19c6e78a0bfff4b27918a0f8a830d73910d0db9124458e87191e61147c943",
+        "scope": "historical diagnostic art, not expected to match integrated art"
+      },
+      "poseProvenance": "S"
+    },
+    "s15-1440x900-south": {
+      "key": "s15-1440x900-south",
+      "view": "south",
+      "desired": {
+        "x": 2900,
+        "y": 1000000,
+        "scale": 0.21176470588235294
+      },
+      "actual": {
+        "x": 2900,
+        "y": 4440,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": -500,
+        "right": 6300,
+        "top": 2623.862847222222,
+        "bottom": 6256.137152777777
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6120,
+        "bottom": 4440
+      },
+      "zoomLimits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "pixels": [
+        1440,
+        770
+      ],
+      "viewportCSS": [
+        1440,
+        900
+      ],
+      "DPR": 1,
+      "actorCount": 26,
+      "phase": "aim",
+      "round": 1,
+      "tide": null,
+      "sceneTime": 2,
+      "physicsSHA256": "99969df4447f9a8c930ff3d94d5b5777ab8baee8b6fb76e2a48bfec5e971ba7a",
+      "pinnedActualTileKeys": [
+        "0.25:-1:1",
+        "0.25:0:1",
+        "0.25:1:1",
+        "0.25:2:1",
+        "0.25:3:1",
+        "0.25:-1:2",
+        "0.25:0:2",
+        "0.25:1:2",
+        "0.25:2:2",
+        "0.25:3:2",
+        "0.25:-1:3",
+        "0.25:0:3",
+        "0.25:1:3",
+        "0.25:2:3",
+        "0.25:3:3"
+      ],
+      "priorBaselinePNG": {
+        "arm": "B",
+        "raw": "f1ca70ab3fb90e5a0074be3cd3e5dd2e6ccc85def538703fadca5c0f4adc78aa",
+        "DOM": "7f1a6bb814d50402d52d1bf7fde81191e1f7b0f1d4747b6e8e23abb9bd7520bf",
+        "scope": "historical diagnostic art, not expected to match integrated art"
+      },
+      "poseProvenance": "S"
+    },
+    "s15-1440x900-west": {
+      "key": "s15-1440x900-west",
+      "view": "west",
+      "desired": {
+        "x": -1000000,
+        "y": 2100,
+        "scale": 0.21176470588235294
+      },
+      "actual": {
+        "x": -320,
+        "y": 2100,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": -3720,
+        "right": 3080,
+        "top": 283.8628472222222,
+        "bottom": 3916.137152777778
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6120,
+        "bottom": 4440
+      },
+      "zoomLimits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "pixels": [
+        1440,
+        770
+      ],
+      "viewportCSS": [
+        1440,
+        900
+      ],
+      "DPR": 1,
+      "actorCount": 26,
+      "phase": "aim",
+      "round": 1,
+      "tide": null,
+      "sceneTime": 2,
+      "physicsSHA256": "99969df4447f9a8c930ff3d94d5b5777ab8baee8b6fb76e2a48bfec5e971ba7a",
+      "pinnedActualTileKeys": [
+        "0.25:-2:0",
+        "0.25:-1:0",
+        "0.25:0:0",
+        "0.25:1:0",
+        "0.25:-2:1",
+        "0.25:-1:1",
+        "0.25:0:1",
+        "0.25:1:1"
+      ],
+      "priorBaselinePNG": {
+        "arm": "B",
+        "raw": "ce5b684633f003ba5766af380fb40bd4b04b15432ffea2e5b4c9fd4f0d2d9117",
+        "DOM": "3226e421df7a7153a7bf1b20f286799e94b1871be1dceedbf24174e448b47df8",
+        "scope": "historical diagnostic art, not expected to match integrated art"
+      },
+      "poseProvenance": "S"
+    },
+    "s15-1440x900-east": {
+      "key": "s15-1440x900-east",
+      "view": "east",
+      "desired": {
+        "x": 1000000,
+        "y": 2100,
+        "scale": 0.21176470588235294
+      },
+      "actual": {
+        "x": 6120,
+        "y": 2100,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": 2720,
+        "right": 9520,
+        "top": 283.8628472222222,
+        "bottom": 3916.137152777778
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6120,
+        "bottom": 4440
+      },
+      "zoomLimits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "pixels": [
+        1440,
+        770
+      ],
+      "viewportCSS": [
+        1440,
+        900
+      ],
+      "DPR": 1,
+      "actorCount": 26,
+      "phase": "aim",
+      "round": 1,
+      "tide": null,
+      "sceneTime": 2,
+      "physicsSHA256": "99969df4447f9a8c930ff3d94d5b5777ab8baee8b6fb76e2a48bfec5e971ba7a",
+      "pinnedActualTileKeys": [
+        "0.25:1:0",
+        "0.25:2:0",
+        "0.25:3:0",
+        "0.25:4:0",
+        "0.25:1:1",
+        "0.25:2:1",
+        "0.25:3:1",
+        "0.25:4:1"
+      ],
+      "priorBaselinePNG": {
+        "arm": "B",
+        "raw": "d5e9ff0860ce30435ad9d4c7460f651522e705806e26ca52bfed7da49d33780a",
+        "DOM": "a27868a03e1b23d17d7fe76a5b66b40bc92e9e2e131226c86b5a1362b5fc8ce9",
+        "scope": "historical diagnostic art, not expected to match integrated art"
+      },
+      "poseProvenance": "S"
+    },
+    "s15-1440x900-northwest": {
+      "key": "s15-1440x900-northwest",
+      "view": "northwest",
+      "desired": {
+        "x": -1000000,
+        "y": -1000000,
+        "scale": 0.21176470588235294
+      },
+      "actual": {
+        "x": -320,
+        "y": -1800,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": -3720,
+        "right": 3080,
+        "top": -3616.137152777778,
+        "bottom": 16.13715277777783
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6120,
+        "bottom": 4440
+      },
+      "zoomLimits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "pixels": [
+        1440,
+        770
+      ],
+      "viewportCSS": [
+        1440,
+        900
+      ],
+      "DPR": 1,
+      "actorCount": 26,
+      "phase": "aim",
+      "round": 1,
+      "tide": null,
+      "sceneTime": 2,
+      "physicsSHA256": "99969df4447f9a8c930ff3d94d5b5777ab8baee8b6fb76e2a48bfec5e971ba7a",
+      "pinnedActualTileKeys": [
+        "0.25:-2:-2",
+        "0.25:-1:-2",
+        "0.25:0:-2",
+        "0.25:1:-2",
+        "0.25:-2:-1",
+        "0.25:-1:-1",
+        "0.25:0:-1",
+        "0.25:1:-1",
+        "0.25:-2:0",
+        "0.25:-1:0",
+        "0.25:0:0",
+        "0.25:1:0"
+      ],
+      "priorBaselinePNG": {
+        "arm": "B",
+        "raw": "417e1cb9870b3e115cf25288a16286aab63746164d7df91ab2ec839b074945c0",
+        "DOM": "91dba8c930ddf875ceb2c2669cdb4a0ef984af4817aca56e84c55c1f3b0d56fd",
+        "scope": "historical diagnostic art, not expected to match integrated art"
+      },
+      "poseProvenance": "S"
+    },
+    "s15-1440x900-northeast": {
+      "key": "s15-1440x900-northeast",
+      "view": "northeast",
+      "desired": {
+        "x": 1000000,
+        "y": -1000000,
+        "scale": 0.21176470588235294
+      },
+      "actual": {
+        "x": 6120,
+        "y": -1800,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": 2720,
+        "right": 9520,
+        "top": -3616.137152777778,
+        "bottom": 16.13715277777783
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6120,
+        "bottom": 4440
+      },
+      "zoomLimits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "pixels": [
+        1440,
+        770
+      ],
+      "viewportCSS": [
+        1440,
+        900
+      ],
+      "DPR": 1,
+      "actorCount": 26,
+      "phase": "aim",
+      "round": 1,
+      "tide": null,
+      "sceneTime": 2,
+      "physicsSHA256": "99969df4447f9a8c930ff3d94d5b5777ab8baee8b6fb76e2a48bfec5e971ba7a",
+      "pinnedActualTileKeys": [
+        "0.25:1:-2",
+        "0.25:2:-2",
+        "0.25:3:-2",
+        "0.25:4:-2",
+        "0.25:1:-1",
+        "0.25:2:-1",
+        "0.25:3:-1",
+        "0.25:4:-1",
+        "0.25:1:0",
+        "0.25:2:0",
+        "0.25:3:0",
+        "0.25:4:0"
+      ],
+      "priorBaselinePNG": {
+        "arm": "B",
+        "raw": "f2ae57f4a41ccc3aeef363a4ce1aa52fdb1d8c191c46efaba4050d0f86a7de43",
+        "DOM": "017e517a1edcfe2b75a4004a2ac333239f88c29dd6a8133314c5ff5b240510b4",
+        "scope": "historical diagnostic art, not expected to match integrated art"
+      },
+      "poseProvenance": "S"
+    },
+    "s15-1440x900-southwest": {
+      "key": "s15-1440x900-southwest",
+      "view": "southwest",
+      "desired": {
+        "x": -1000000,
+        "y": 1000000,
+        "scale": 0.21176470588235294
+      },
+      "actual": {
+        "x": -320,
+        "y": 4440,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": -3720,
+        "right": 3080,
+        "top": 2623.862847222222,
+        "bottom": 6256.137152777777
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6120,
+        "bottom": 4440
+      },
+      "zoomLimits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "pixels": [
+        1440,
+        770
+      ],
+      "viewportCSS": [
+        1440,
+        900
+      ],
+      "DPR": 1,
+      "actorCount": 26,
+      "phase": "aim",
+      "round": 1,
+      "tide": null,
+      "sceneTime": 2,
+      "physicsSHA256": "99969df4447f9a8c930ff3d94d5b5777ab8baee8b6fb76e2a48bfec5e971ba7a",
+      "pinnedActualTileKeys": [
+        "0.25:-2:1",
+        "0.25:-1:1",
+        "0.25:0:1",
+        "0.25:1:1",
+        "0.25:-2:2",
+        "0.25:-1:2",
+        "0.25:0:2",
+        "0.25:1:2",
+        "0.25:-2:3",
+        "0.25:-1:3",
+        "0.25:0:3",
+        "0.25:1:3"
+      ],
+      "priorBaselinePNG": {
+        "arm": "B",
+        "raw": "dbae95cc224a0023027aeade29ca39be625e3337591c194d4471e500c07e0b58",
+        "DOM": "96a5c23d6169ba6980c56dc4909950f10a3e2b55a312e6435ad4f164de376703",
+        "scope": "historical diagnostic art, not expected to match integrated art"
+      },
+      "poseProvenance": "S"
+    },
+    "s15-1440x900-southeast": {
+      "key": "s15-1440x900-southeast",
+      "view": "southeast",
+      "desired": {
+        "x": 1000000,
+        "y": 1000000,
+        "scale": 0.21176470588235294
+      },
+      "actual": {
+        "x": 6120,
+        "y": 4440,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": 2720,
+        "right": 9520,
+        "top": 2623.862847222222,
+        "bottom": 6256.137152777777
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6120,
+        "bottom": 4440
+      },
+      "zoomLimits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "pixels": [
+        1440,
+        770
+      ],
+      "viewportCSS": [
+        1440,
+        900
+      ],
+      "DPR": 1,
+      "actorCount": 26,
+      "phase": "aim",
+      "round": 1,
+      "tide": null,
+      "sceneTime": 2,
+      "physicsSHA256": "99969df4447f9a8c930ff3d94d5b5777ab8baee8b6fb76e2a48bfec5e971ba7a",
+      "pinnedActualTileKeys": [
+        "0.25:1:1",
+        "0.25:2:1",
+        "0.25:3:1",
+        "0.25:4:1",
+        "0.25:1:2",
+        "0.25:2:2",
+        "0.25:3:2",
+        "0.25:4:2",
+        "0.25:1:3",
+        "0.25:2:3",
+        "0.25:3:3",
+        "0.25:4:3"
+      ],
+      "priorBaselinePNG": {
+        "arm": "B",
+        "raw": "bbef905751be73c499228b77241f00c8cbbd4a7b4b32f67f2e342ef4a62ff430",
+        "DOM": "15b22d47827b6c78d1439d9a7de19ceb638067db6d08644e8d21aaabd5a37191",
+        "scope": "historical diagnostic art, not expected to match integrated art"
+      },
+      "poseProvenance": "S"
+    },
+    "s15-390x844-ordinary": {
+      "key": "s15-390x844-ordinary",
+      "view": "ordinary",
+      "desired": {
+        "x": 224,
+        "y": 2038.4444444444443,
+        "scale": 0.5
+      },
+      "actual": {
+        "x": 224,
+        "y": 2038.4444444444443,
+        "scale": 0.5
+      },
+      "viewport": {
+        "left": -166,
+        "right": 614,
+        "top": 1390.8350694444443,
+        "bottom": 2686.0538194444443
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6120,
+        "bottom": 4440
+      },
+      "zoomLimits": {
+        "min": 0.057352941176470586,
+        "max": 1.65,
+        "tactical": 0.057352941176470586,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "pixels": [
+        390,
+        648
+      ],
+      "viewportCSS": [
+        390,
+        844
+      ],
+      "DPR": 1,
+      "actorCount": 26,
+      "phase": "aim",
+      "round": 1,
+      "tide": null,
+      "sceneTime": 2,
+      "physicsSHA256": "99969df4447f9a8c930ff3d94d5b5777ab8baee8b6fb76e2a48bfec5e971ba7a",
+      "pinnedActualTileKeys": [
+        "0.5946035575013605:-1:1",
+        "0.5946035575013605:0:1",
+        "0.5946035575013605:-1:2",
+        "0.5946035575013605:0:2",
+        "0.5946035575013605:-1:3",
+        "0.5946035575013605:0:3"
+      ],
+      "priorBaselinePNG": {
+        "arm": "B",
+        "raw": "5506af3ff4686935f05491ee5bc80eeb7b610ad0c4960f226ece5f7567d1b844",
+        "DOM": "f26f7b44b9cdd26f99abd01207c1b093f93afd5811277952fa9439de7fb49ae7",
+        "scope": "historical diagnostic art, not expected to match integrated art"
+      },
+      "poseProvenance": "S"
+    },
+    "s15-390x844-overview": {
+      "key": "s15-390x844-overview",
+      "view": "overview",
+      "desired": {
+        "x": 2900,
+        "y": 2100,
+        "scale": 0.057352941176470586
+      },
+      "actual": {
+        "x": 2900,
+        "y": 2100,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": -500,
+        "right": 6300,
+        "top": -3545.8253205128203,
+        "bottom": 7745.82532051282
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6120,
+        "bottom": 4440
+      },
+      "zoomLimits": {
+        "min": 0.057352941176470586,
+        "max": 1.65,
+        "tactical": 0.057352941176470586,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "pixels": [
+        390,
+        648
+      ],
+      "viewportCSS": [
+        390,
+        844
+      ],
+      "DPR": 1,
+      "actorCount": 26,
+      "phase": "aim",
+      "round": 1,
+      "tide": null,
+      "sceneTime": 2,
+      "physicsSHA256": "99969df4447f9a8c930ff3d94d5b5777ab8baee8b6fb76e2a48bfec5e971ba7a",
+      "pinnedActualTileKeys": [
+        "0.0625:-1:-1",
+        "0.0625:0:-1",
+        "0.0625:-1:0",
+        "0.0625:0:0"
+      ],
+      "priorBaselinePNG": {
+        "arm": "B",
+        "raw": "5eb334eb768dad69840204bbcd85a443b8a11bd56ee3668e96a631f019c574c2",
+        "DOM": "f881790c53d8e2244fb5afe9529ffddedd80c788764b66e300a0a4230042f4c0",
+        "scope": "historical diagnostic art, not expected to match integrated art"
+      },
+      "poseProvenance": "S"
+    },
+    "s15-390x844-north": {
+      "key": "s15-390x844-north",
+      "view": "north",
+      "desired": {
+        "x": 2900,
+        "y": -1000000,
+        "scale": 0.057352941176470586
+      },
+      "actual": {
+        "x": 2900,
+        "y": -1800,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": -500,
+        "right": 6300,
+        "top": -7445.82532051282,
+        "bottom": 3845.8253205128203
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6120,
+        "bottom": 4440
+      },
+      "zoomLimits": {
+        "min": 0.057352941176470586,
+        "max": 1.65,
+        "tactical": 0.057352941176470586,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "pixels": [
+        390,
+        648
+      ],
+      "viewportCSS": [
+        390,
+        844
+      ],
+      "DPR": 1,
+      "actorCount": 26,
+      "phase": "aim",
+      "round": 1,
+      "tide": null,
+      "sceneTime": 2,
+      "physicsSHA256": "99969df4447f9a8c930ff3d94d5b5777ab8baee8b6fb76e2a48bfec5e971ba7a",
+      "pinnedActualTileKeys": [
+        "0.0625:-1:-1",
+        "0.0625:0:-1",
+        "0.0625:-1:0",
+        "0.0625:0:0"
+      ],
+      "priorBaselinePNG": {
+        "arm": "B",
+        "raw": "14b553ee657c44193abae6e263a6b0301ba15fda30e834d2f6f087bea8a04a2a",
+        "DOM": "a1aca02f454abc3bf620d3bdc9cda2b46df3e23f9b0fb8bc19e434b5ad85c646",
+        "scope": "historical diagnostic art, not expected to match integrated art"
+      },
+      "poseProvenance": "S"
+    },
+    "s15-390x844-south": {
+      "key": "s15-390x844-south",
+      "view": "south",
+      "desired": {
+        "x": 2900,
+        "y": 1000000,
+        "scale": 0.057352941176470586
+      },
+      "actual": {
+        "x": 2900,
+        "y": 4440,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": -500,
+        "right": 6300,
+        "top": -1205.8253205128203,
+        "bottom": 10085.82532051282
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6120,
+        "bottom": 4440
+      },
+      "zoomLimits": {
+        "min": 0.057352941176470586,
+        "max": 1.65,
+        "tactical": 0.057352941176470586,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "pixels": [
+        390,
+        648
+      ],
+      "viewportCSS": [
+        390,
+        844
+      ],
+      "DPR": 1,
+      "actorCount": 26,
+      "phase": "aim",
+      "round": 1,
+      "tide": null,
+      "sceneTime": 2,
+      "physicsSHA256": "99969df4447f9a8c930ff3d94d5b5777ab8baee8b6fb76e2a48bfec5e971ba7a",
+      "pinnedActualTileKeys": [
+        "0.0625:-1:-1",
+        "0.0625:0:-1",
+        "0.0625:-1:0",
+        "0.0625:0:0",
+        "0.0625:-1:1",
+        "0.0625:0:1"
+      ],
+      "priorBaselinePNG": {
+        "arm": "B",
+        "raw": "a25ec10170c975f653d22b792761143a7cd2ea82bdc30450d7df3289b5ef967f",
+        "DOM": "11dab4f0a46bf13adc29afd17b2c3e0596d563a78c6caaf604b9c1cd6b194528",
+        "scope": "historical diagnostic art, not expected to match integrated art"
+      },
+      "poseProvenance": "S"
+    },
+    "s15-390x844-west": {
+      "key": "s15-390x844-west",
+      "view": "west",
+      "desired": {
+        "x": -1000000,
+        "y": 2100,
+        "scale": 0.057352941176470586
+      },
+      "actual": {
+        "x": -320,
+        "y": 2100,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": -3720,
+        "right": 3080,
+        "top": -3545.8253205128203,
+        "bottom": 7745.82532051282
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6120,
+        "bottom": 4440
+      },
+      "zoomLimits": {
+        "min": 0.057352941176470586,
+        "max": 1.65,
+        "tactical": 0.057352941176470586,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "pixels": [
+        390,
+        648
+      ],
+      "viewportCSS": [
+        390,
+        844
+      ],
+      "DPR": 1,
+      "actorCount": 26,
+      "phase": "aim",
+      "round": 1,
+      "tide": null,
+      "sceneTime": 2,
+      "physicsSHA256": "99969df4447f9a8c930ff3d94d5b5777ab8baee8b6fb76e2a48bfec5e971ba7a",
+      "pinnedActualTileKeys": [
+        "0.0625:-1:-1",
+        "0.0625:0:-1",
+        "0.0625:-1:0",
+        "0.0625:0:0"
+      ],
+      "priorBaselinePNG": {
+        "arm": "B",
+        "raw": "daa5dc627679b5d7c4452d2005b8b44c97a6427e54b42f9bf6a7cbbbd5c4f911",
+        "DOM": "822b48fda25e81e96c1ef7f3f40cfdff78da95e71132d315d0b6ca25e9044b1a",
+        "scope": "historical diagnostic art, not expected to match integrated art"
+      },
+      "poseProvenance": "S"
+    },
+    "s15-390x844-east": {
+      "key": "s15-390x844-east",
+      "view": "east",
+      "desired": {
+        "x": 1000000,
+        "y": 2100,
+        "scale": 0.057352941176470586
+      },
+      "actual": {
+        "x": 6120,
+        "y": 2100,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": 2720,
+        "right": 9520,
+        "top": -3545.8253205128203,
+        "bottom": 7745.82532051282
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6120,
+        "bottom": 4440
+      },
+      "zoomLimits": {
+        "min": 0.057352941176470586,
+        "max": 1.65,
+        "tactical": 0.057352941176470586,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "pixels": [
+        390,
+        648
+      ],
+      "viewportCSS": [
+        390,
+        844
+      ],
+      "DPR": 1,
+      "actorCount": 26,
+      "phase": "aim",
+      "round": 1,
+      "tide": null,
+      "sceneTime": 2,
+      "physicsSHA256": "99969df4447f9a8c930ff3d94d5b5777ab8baee8b6fb76e2a48bfec5e971ba7a",
+      "pinnedActualTileKeys": [
+        "0.0625:0:-1",
+        "0.0625:1:-1",
+        "0.0625:0:0",
+        "0.0625:1:0"
+      ],
+      "priorBaselinePNG": {
+        "arm": "B",
+        "raw": "4c5dbd834974b51aae5a20839267d590619a3655b49b3353dbf8350a180c8dff",
+        "DOM": "9341e904970111c728ab74fba666b851838076b153b04936ed662b502e18834b",
+        "scope": "historical diagnostic art, not expected to match integrated art"
+      },
+      "poseProvenance": "S"
+    },
+    "s15-390x844-northwest": {
+      "key": "s15-390x844-northwest",
+      "view": "northwest",
+      "desired": {
+        "x": -1000000,
+        "y": -1000000,
+        "scale": 0.057352941176470586
+      },
+      "actual": {
+        "x": -320,
+        "y": -1800,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": -3720,
+        "right": 3080,
+        "top": -7445.82532051282,
+        "bottom": 3845.8253205128203
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6120,
+        "bottom": 4440
+      },
+      "zoomLimits": {
+        "min": 0.057352941176470586,
+        "max": 1.65,
+        "tactical": 0.057352941176470586,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "pixels": [
+        390,
+        648
+      ],
+      "viewportCSS": [
+        390,
+        844
+      ],
+      "DPR": 1,
+      "actorCount": 26,
+      "phase": "aim",
+      "round": 1,
+      "tide": null,
+      "sceneTime": 2,
+      "physicsSHA256": "99969df4447f9a8c930ff3d94d5b5777ab8baee8b6fb76e2a48bfec5e971ba7a",
+      "pinnedActualTileKeys": [
+        "0.0625:-1:-1",
+        "0.0625:0:-1",
+        "0.0625:-1:0",
+        "0.0625:0:0"
+      ],
+      "priorBaselinePNG": {
+        "arm": "B",
+        "raw": "c341eaa226d2f3d31590b664a4b726b55fc8199696e25131d010c80bee8ec064",
+        "DOM": "89b4dc1832073feb1eea29d9070ab89ff15cd11a417f08213f4a66653b06dd7e",
+        "scope": "historical diagnostic art, not expected to match integrated art"
+      },
+      "poseProvenance": "S"
+    },
+    "s15-390x844-northeast": {
+      "key": "s15-390x844-northeast",
+      "view": "northeast",
+      "desired": {
+        "x": 1000000,
+        "y": -1000000,
+        "scale": 0.057352941176470586
+      },
+      "actual": {
+        "x": 6120,
+        "y": -1800,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": 2720,
+        "right": 9520,
+        "top": -7445.82532051282,
+        "bottom": 3845.8253205128203
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6120,
+        "bottom": 4440
+      },
+      "zoomLimits": {
+        "min": 0.057352941176470586,
+        "max": 1.65,
+        "tactical": 0.057352941176470586,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "pixels": [
+        390,
+        648
+      ],
+      "viewportCSS": [
+        390,
+        844
+      ],
+      "DPR": 1,
+      "actorCount": 26,
+      "phase": "aim",
+      "round": 1,
+      "tide": null,
+      "sceneTime": 2,
+      "physicsSHA256": "99969df4447f9a8c930ff3d94d5b5777ab8baee8b6fb76e2a48bfec5e971ba7a",
+      "pinnedActualTileKeys": [
+        "0.0625:0:-1",
+        "0.0625:1:-1",
+        "0.0625:0:0",
+        "0.0625:1:0"
+      ],
+      "priorBaselinePNG": {
+        "arm": "B",
+        "raw": "90b9d4c0b7d84aff1a867da38fceec8c146fad58b78f83b10188524abdcb9a29",
+        "DOM": "4332dc1b13db8fbe1e683bf1fc62414e2a3b9ce0b7b82c0bda92d5bfce6dc58b",
+        "scope": "historical diagnostic art, not expected to match integrated art"
+      },
+      "poseProvenance": "S"
+    },
+    "s15-390x844-southwest": {
+      "key": "s15-390x844-southwest",
+      "view": "southwest",
+      "desired": {
+        "x": -1000000,
+        "y": 1000000,
+        "scale": 0.057352941176470586
+      },
+      "actual": {
+        "x": -320,
+        "y": 4440,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": -3720,
+        "right": 3080,
+        "top": -1205.8253205128203,
+        "bottom": 10085.82532051282
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6120,
+        "bottom": 4440
+      },
+      "zoomLimits": {
+        "min": 0.057352941176470586,
+        "max": 1.65,
+        "tactical": 0.057352941176470586,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "pixels": [
+        390,
+        648
+      ],
+      "viewportCSS": [
+        390,
+        844
+      ],
+      "DPR": 1,
+      "actorCount": 26,
+      "phase": "aim",
+      "round": 1,
+      "tide": null,
+      "sceneTime": 2,
+      "physicsSHA256": "99969df4447f9a8c930ff3d94d5b5777ab8baee8b6fb76e2a48bfec5e971ba7a",
+      "pinnedActualTileKeys": [
+        "0.0625:-1:-1",
+        "0.0625:0:-1",
+        "0.0625:-1:0",
+        "0.0625:0:0",
+        "0.0625:-1:1",
+        "0.0625:0:1"
+      ],
+      "priorBaselinePNG": {
+        "arm": "B",
+        "raw": "910d0b8383eddd98af95c599af1d658d7f3e63e81d0cf85c3519e53d1d5a21f9",
+        "DOM": "3cd8b80969c1820d968d8dd3cdc765d99b51239652b8b1a435a2bdf8c2388708",
+        "scope": "historical diagnostic art, not expected to match integrated art"
+      },
+      "poseProvenance": "S"
+    },
+    "s15-390x844-southeast": {
+      "key": "s15-390x844-southeast",
+      "view": "southeast",
+      "desired": {
+        "x": 1000000,
+        "y": 1000000,
+        "scale": 0.057352941176470586
+      },
+      "actual": {
+        "x": 6120,
+        "y": 4440,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": 2720,
+        "right": 9520,
+        "top": -1205.8253205128203,
+        "bottom": 10085.82532051282
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6120,
+        "bottom": 4440
+      },
+      "zoomLimits": {
+        "min": 0.057352941176470586,
+        "max": 1.65,
+        "tactical": 0.057352941176470586,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "pixels": [
+        390,
+        648
+      ],
+      "viewportCSS": [
+        390,
+        844
+      ],
+      "DPR": 1,
+      "actorCount": 26,
+      "phase": "aim",
+      "round": 1,
+      "tide": null,
+      "sceneTime": 2,
+      "physicsSHA256": "99969df4447f9a8c930ff3d94d5b5777ab8baee8b6fb76e2a48bfec5e971ba7a",
+      "pinnedActualTileKeys": [
+        "0.0625:0:-1",
+        "0.0625:1:-1",
+        "0.0625:0:0",
+        "0.0625:1:0",
+        "0.0625:0:1",
+        "0.0625:1:1"
+      ],
+      "priorBaselinePNG": {
+        "arm": "B",
+        "raw": "772cd65f08c29a3b4be9542c04acdaf5499dd53de43a47cc8244c6c9b16ee793",
+        "DOM": "438ad6ba33b77dfb86f27ae2e9d4eadebfc46630ef1036aea12424ad24af8955",
+        "scope": "historical diagnostic art, not expected to match integrated art"
+      },
+      "poseProvenance": "S"
+    },
+    "s15-1440x900-roof-detail": {
+      "key": "s15-1440x900-roof-detail",
+      "view": "roof-detail",
+      "desired": {
+        "x": 1035,
+        "y": 1365,
+        "scale": 0.72
+      },
+      "actual": {
+        "x": 1035,
+        "y": 1365,
+        "scale": 0.72
+      },
+      "viewport": {
+        "left": 35,
+        "right": 2035,
+        "top": 830.8420138888889,
+        "bottom": 1899.157986111111
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6120,
+        "bottom": 4440
+      },
+      "zoomLimits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "pixels": [
+        1440,
+        770
+      ],
+      "viewportCSS": [
+        1440,
+        900
+      ],
+      "DPR": 1,
+      "actorCount": 26,
+      "phase": "aim",
+      "round": 1,
+      "tide": null,
+      "sceneTime": 2,
+      "physicsSHA256": "99969df4447f9a8c930ff3d94d5b5777ab8baee8b6fb76e2a48bfec5e971ba7a",
+      "pinnedActualTileKeys": [
+        "0.68:0:1",
+        "0.68:1:1",
+        "0.68:2:1",
+        "0.68:0:2",
+        "0.68:1:2",
+        "0.68:2:2"
+      ],
+      "priorBaselinePNG": {
+        "arm": "B",
+        "raw": "5c1d7e17356473e21324016284607e0409c065996ed5cdf8a6443b1960800195",
+        "DOM": "736d33c030680b2e145fdaad466438460584ecada523f6a1722ff37f15d7a114",
+        "scope": "historical diagnostic art, not expected to match integrated art"
+      },
+      "poseProvenance": "H"
+    },
+    "s15-390x844-roof-detail": {
+      "key": "s15-390x844-roof-detail",
+      "view": "roof-detail",
+      "desired": {
+        "x": 1035,
+        "y": 1365,
+        "scale": 0.6
+      },
+      "actual": {
+        "x": 1035,
+        "y": 1365,
+        "scale": 0.6
+      },
+      "viewport": {
+        "left": 710,
+        "right": 1360,
+        "top": 825.3255208333333,
+        "bottom": 1904.6744791666667
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6120,
+        "bottom": 4440
+      },
+      "zoomLimits": {
+        "min": 0.057352941176470586,
+        "max": 1.65,
+        "tactical": 0.057352941176470586,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "pixels": [
+        390,
+        648
+      ],
+      "viewportCSS": [
+        390,
+        844
+      ],
+      "DPR": 1,
+      "actorCount": 26,
+      "phase": "aim",
+      "round": 1,
+      "tide": null,
+      "sceneTime": 2,
+      "physicsSHA256": "99969df4447f9a8c930ff3d94d5b5777ab8baee8b6fb76e2a48bfec5e971ba7a",
+      "pinnedActualTileKeys": [
+        "0.68:0:1",
+        "0.68:1:1",
+        "0.68:0:2",
+        "0.68:1:2"
+      ],
+      "priorBaselinePNG": {
+        "arm": "B",
+        "raw": "244ab54228df87620953e736d2ff93566ccd5cba796b471cd5bcc645fe397426",
+        "DOM": "ec4ed6229d8462e0b1d9f5fb3447362562e4062c3fe4c5ccbae79b2006b0d35c",
+        "scope": "historical diagnostic art, not expected to match integrated art"
+      },
+      "poseProvenance": "H"
+    },
+    "s15-1440x900-ground-detail": {
+      "key": "s15-1440x900-ground-detail",
+      "view": "ground-detail",
+      "desired": {
+        "x": 265,
+        "y": 2290,
+        "scale": 0.8
+      },
+      "actual": {
+        "x": 265,
+        "y": 2290,
+        "scale": 0.8
+      },
+      "viewport": {
+        "left": -635,
+        "right": 1165,
+        "top": 1809.2578125,
+        "bottom": 2770.7421875
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6120,
+        "bottom": 4440
+      },
+      "zoomLimits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "pixels": [
+        1440,
+        770
+      ],
+      "viewportCSS": [
+        1440,
+        900
+      ],
+      "DPR": 1,
+      "actorCount": 26,
+      "phase": "aim",
+      "round": 1,
+      "tide": null,
+      "sceneTime": 2,
+      "physicsSHA256": "99969df4447f9a8c930ff3d94d5b5777ab8baee8b6fb76e2a48bfec5e971ba7a",
+      "pinnedActualTileKeys": [
+        "0.68:-1:2",
+        "0.68:0:2",
+        "0.68:1:2",
+        "0.68:-1:3",
+        "0.68:0:3",
+        "0.68:1:3"
+      ],
+      "priorBaselinePNG": {
+        "arm": "B",
+        "raw": "224bc482495eb5395e860558c89cfa73b0983c555ca8423a41be712b41d6dd82",
+        "DOM": "05664f5ce8f3e0f1ce1c93ba2c15ddc8412c17ab25f9fe49cf25ffce5859b3e2",
+        "scope": "historical diagnostic art, not expected to match integrated art"
+      },
+      "poseProvenance": "V4"
+    },
+    "s15-390x844-ground-detail": {
+      "key": "s15-390x844-ground-detail",
+      "view": "ground-detail",
+      "desired": {
+        "x": 265,
+        "y": 2290,
+        "scale": 0.6
+      },
+      "actual": {
+        "x": 265,
+        "y": 2290,
+        "scale": 0.6
+      },
+      "viewport": {
+        "left": -60,
+        "right": 590,
+        "top": 1750.3255208333333,
+        "bottom": 2829.674479166667
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6120,
+        "bottom": 4440
+      },
+      "zoomLimits": {
+        "min": 0.057352941176470586,
+        "max": 1.65,
+        "tactical": 0.057352941176470586,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "pixels": [
+        390,
+        648
+      ],
+      "viewportCSS": [
+        390,
+        844
+      ],
+      "DPR": 1,
+      "actorCount": 26,
+      "phase": "aim",
+      "round": 1,
+      "tide": null,
+      "sceneTime": 2,
+      "physicsSHA256": "99969df4447f9a8c930ff3d94d5b5777ab8baee8b6fb76e2a48bfec5e971ba7a",
+      "pinnedActualTileKeys": [
+        "0.68:-1:2",
+        "0.68:0:2",
+        "0.68:-1:3",
+        "0.68:0:3"
+      ],
+      "priorBaselinePNG": {
+        "arm": "B",
+        "raw": "c8e2b3ea786abc5740e1ec32242fed97d9c2c3006091d0f27d820f1f463eed97",
+        "DOM": "edcc438e9b617731a276f221555f0c8357f5836a6e2cef3bfa47208884f842ee",
+        "scope": "historical diagnostic art, not expected to match integrated art"
+      },
+      "poseProvenance": "V4"
+    }
+  },
+  "cachedKeySummary": {
+    "legacy": 63,
+    "detail": 10,
+    "total": 73
+  },
+  "terrainBounds": {
+    "left": -5000,
+    "right": 10800,
+    "top": -25600,
+    "bottom": 28400
+  }
+}
