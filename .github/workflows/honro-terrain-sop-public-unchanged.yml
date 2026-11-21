@@ -1,0 +1,40 @@
+name: HONRO documentation release unchanged public app
+on:
+  push:
+    branches: [qa/honro-terrain-sop-public-unchanged]
+permissions:
+  contents: read
+jobs:
+  proof:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/honro-terrain-sop-public-unchanged'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 3
+          persist-credentials: false
+      - name: Verify the docs-only predecessor and 28 canonical public content hashes
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD^)" = b79ea7fd87fda5586d78eae0a7052996b8e71fb5
+          test "$(git rev-parse HEAD^^)" = f7704f08b7462cb10587b582d8a3a4feafe643d1
+          test "$(git diff --name-only HEAD^ HEAD)" = .github/workflows/honro-terrain-sop-public-unchanged.yml
+          test "$(git diff --name-only HEAD^^ HEAD^ | grep -c '^game/docs/.*[.]md$')" -eq 6
+          test "$(git diff --name-only HEAD^^ HEAD^ | wc -l)" -eq 6
+          python3 - <<'PYTHON'
+          import hashlib, json, urllib.request
+          p={'web/manifest.json': {'bytes': 6774523, 'sha256': '0bf1527b6aa52fa5f4f22eb1b90102df5f1c6ea0cb791d664b1b94081c1b65cf'}, 'HONRO.html': {'bytes': 17379, 'sha256': 'c8d009ef643d2b24abd85400162b307a2e5a8e95100fe999b89a6afdd5faaecc'}, 'HONRO_WORKSHOP.html': {'bytes': 4011, 'sha256': '5bd32c2880caa9a2af21aa40b88f6f99c760bfb88c8e911860fb34da51e876b1'}, 'index.html': {'bytes': 17379, 'sha256': 'c8d009ef643d2b24abd85400162b307a2e5a8e95100fe999b89a6afdd5faaecc'}, 'web/data/campaign-base.0c57dcfe7c08d421.json': {'bytes': 257, 'sha256': '0c57dcfe7c08d421901ffa8eeb437940b6b6d4779816207b51dca7be44c73e5e'}, 'web/data/campaign-shared.8f8343b5c21518d4.json': {'bytes': 577195, 'sha256': '8f8343b5c21518d4fdaa2314e58031fd137b8622d3a6c1ca2fdabafde3bb158f'}, 'web/data/campaign.324003dbe6483ac8.json': {'bytes': 54961, 'sha256': '324003dbe6483ac8a778ba250d8aa8d1c63d9149f1cb5b580e6011256006f437'}, 'web/data/chapter-07-assets.7068fa05c6ce1c2e.json': {'bytes': 655969, 'sha256': '7068fa05c6ce1c2ef0c96045daa3dea192ba69a18e35bc323e6a5df9a1529db5'}, 'web/data/chapter-07.28f7bf612a598aeb.json': {'bytes': 30579, 'sha256': '28f7bf612a598aeb0eb6da0f819a0b6ddb7fd5414eab9410e434772eb04d2553'}, 'web/data/chapter-21-assets.195e73632de8b164.json': {'bytes': 688805, 'sha256': '195e73632de8b16431e39ac63f87eed9ad1ea538a47dcc0d980e4a0e1c624e67'}, 'web/data/chapter-21.724a765a85d437a2.json': {'bytes': 67494, 'sha256': '724a765a85d437a24ea9437ba300f5602282abda9ecbd190074a7d25b8b1c51b'}, 'web/data/chapter-35-assets-part-000.2f22959bfb690283.bin': {'bytes': 4194304, 'sha256': '2f22959bfb6902837283064b16fdd6b4d1da29617f95e82436d623b0399a8e8f'}, 'web/data/chapter-35-assets-part-001.cdc249b0d9ce1988.bin': {'bytes': 399036, 'sha256': 'cdc249b0d9ce1988d2af0275f1d426d097bb2c7ff1552b9ae6f7370647e3911e'}, 'web/data/chapter-35-assets-parts.c3f1005936b3d27e.json': {'bytes': 443, 'sha256': 'c3f1005936b3d27e97a0513cf0b2a9f8cdbe7224becf6a1a7ea179628f951870'}, 'web/data/chapter-35.f62e13d97eec5171.json': {'bytes': 30417, 'sha256': 'f62e13d97eec5171cd942683c1363c615a91297413d61cbd3da35d8b0ef0065d'}, 'web/entries/game.16fa712378260ab7.js': {'bytes': 20483, 'sha256': '16fa712378260ab755902f838024524e733b769c5cd540f95737b3eaff58f7b1'}, 'web/entries/game.27bee1d027287972.html': {'bytes': 11318, 'sha256': '27bee1d0272879720f4688ae605fce837b7609675202ef2c69d56fb34b554fc7'}, 'web/entries/game.5fabc36680b0de6e.html': {'bytes': 11318, 'sha256': '5fabc36680b0de6edd574b5141b7bc0076caae6597635ef5e46eff190e143a94'}, 'web/entries/game.a47fa9bb7d45a42e.js': {'bytes': 20483, 'sha256': 'a47fa9bb7d45a42e31c859942c8fa601106919e88be29039df1235b2ea1244bc'}, 'web/entries/workshop.a2eef25feaf1a9a1.js': {'bytes': 16706, 'sha256': 'a2eef25feaf1a9a18cf67a2ae1049b798f9f28afda1bebfc7ed995676e90d100'}, 'web/entries/workshop.c04fdab1de4158c5.js': {'bytes': 16706, 'sha256': 'c04fdab1de4158c57e7684d85e7a74c8a59b3a77f23ffed6d6d99fe9bd0b1d53'}, 'web/graphics/honro_authored_far-images-act1Site7.9ab1f4843007e530.webp': {'bytes': 41590, 'sha256': '9ab1f4843007e530ec48cfac52569aa3323b1ab5098b962054a63828da1c1931'}, 'web/graphics/honro_authored_far-images-act4FarBambooGrove35.574a1793b7bb2416.webp': {'bytes': 205496, 'sha256': '574a1793b7bb2416d66abd249c5c7ff851ea2072aa3204db68caa9b38d2a987b'}, 'web/runtime/ordered-common-12.538fbca4939d645e.js': {'bytes': 72225, 'sha256': '538fbca4939d645ec8be42331733cae9d01295e87c0ebcd92fb2d74d43eada65'}, 'web/runtime/ordered-common-16.3d9993bd92d5eb93.js': {'bytes': 177610, 'sha256': '3d9993bd92d5eb93572f4b05fe9da2f19d4202c7a3e24ba767a5274ca3364f2c'}, 'web/runtime/ordered-common-16.c094392d4ee992d9.js': {'bytes': 177300, 'sha256': 'c094392d4ee992d95fda1a5d8d50835a93ef8c9095962b1f10e4d34b3aec3b21'}, 'web/runtime/ordered-common-17.9a592f68229e4289.js': {'bytes': 104308, 'sha256': '9a592f68229e42894a87a328a71e2ac8408bb1556f441bcbc67229aa80ba718c'}, 'root/': {'bytes': 17379, 'sha256': 'c8d009ef643d2b24abd85400162b307a2e5a8e95100fe999b89a6afdd5faaecc'}}
+          base="https://sys8994.github.io/honro/"
+          for path,v in p.items():
+              u=base+('' if path=='root/' else path)
+              request=urllib.request.Request(u,headers={'Accept-Encoding':'identity'})
+              with urllib.request.urlopen(request,timeout=12) as r:
+                  assert r.geturl()==u and r.status==200,(path,'HTTP identity')
+                  body=r.read(v['bytes']+1)
+              actual={'bytes':len(body),'sha256':hashlib.sha256(body).hexdigest()}
+              assert actual==v,(path,'live bytes no longer match tested application',actual,v)
+              print(path,actual['bytes'],actual['sha256'])
+          print('Exact public application bytes unchanged across the docs-only release:',len(p))
+          PYTHON
