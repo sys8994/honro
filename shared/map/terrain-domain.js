@@ -46,11 +46,27 @@ function active(b){if(!b||b.honroTerrainDomainVersion!==1)return false;const pri
  const valid=!!(box(p)&&box(v)&&p.left===0&&p.top===0&&p.right===b.width&&p.bottom===b.height&&v.left<p.left&&v.right>p.right&&v.top<p.top&&v.bottom>p.bottom&&Array.isArray(ts)&&ts.length<=512&&ts.every(t=>t&&typeof t.id==='string'&&validProjection(t)&&[t.x,t.y,t.w,t.h].every(Number.isFinite)&&t.w>0&&t.h>0&&Array.isArray(t.vertices)&&t.vertices.length>=3&&t.vertices.length<=4096&&t.vertices.every(p=>p&&Number.isFinite(p.x)&&Number.isFinite(p.y)&&p.x>=v.left-EPS&&p.x<=v.right+EPS&&p.y>=v.top-EPS&&p.y<=v.bottom+EPS)));
  validBattles.set(b,{source:ts,bounds:v,play:p,version:b.sceneVersion,width:b.width,height:b.height,valid});return valid;
 }
+// Continue only the deep rendered body of Stage 28's unchanged canonical court.
+function stage28RenderedFoundation(b,world,live){
+ const v=b.honroTerrainBounds,q=world.honroDomainProjection,points=world.vertices;
+ if(b.honroStage!==28||b.honroCanonical!==true||b.honroCustom!==false||
+    b.honroMapOrigin!=='campaign'||b.honroAuthoredId!=='stage-28'||b.width!==7200||b.height!==3400||
+    world.id!=='a3-foundation'||world.honroCourt28!==true||world.mat!=='earth'||live.broken||
+    v.left!==-9000||v.right!==16200||v.top!==-24000||v.bottom!==27400||
+    q?.bounds?.bottom!==9000||q.start?.x!==0||q.start?.y!==2700||points.length!==16||
+    points[0].x!==-9000||points[0].y!==2700||points[13].x!==16200||points[13].y!==2590||
+    points[14].x!==16200||points[14].y!==9000||points[15].x!==-9000||points[15].y!==9000||
+    points.slice(0,14).some(p=>p.y>=8900))return world;
+ const vertices=points.slice();
+ vertices[14]={...points[14],y:v.bottom};vertices[15]={...points[15],y:v.bottom};
+ return {...world,vertices,h:v.bottom-world.y};
+}
 function render(b){if(!active(b))return b.terrain||[];let q=renders.get(b);if(q?.version===b.sceneVersion&&q.source===b.honroWorldTerrain&&q.count===b.terrain.length)return q.terrain;
  const live=new Map(b.terrain.map(t=>[t.id,t])),terrain=[];for(const world of b.honroWorldTerrain){const t=live.get(world.id);if(!t)continue;let shape=world;
   // Existing restoration events update the collision projection. Re-form the
   // complete mass from that changed surface, including after save/reload.
   if(world.honroDomainProjection){const base=projection({points:world.vertices,playProjection:world.honroDomainProjection}).points;if(JSON.stringify(base)!==JSON.stringify(t.vertices)){const points=extend(t.vertices,{width:b.width,height:b.height,terrainBounds:b.honroTerrainBounds,metadata:{stageId:b.honroStage}},!!t.honroCeiling);shape=G.HonroMapEngine.solid(t.id,points.map(p=>[p.x,p.y]));}}
+  if(shape===world)shape=stage28RenderedFoundation(b,world,t);
   terrain.push({...world,...t,vertices:shape.vertices,x:shape.x,y:shape.y,w:shape.w,h:shape.h,honroDomain:true});live.delete(world.id);
  }terrain.push(...live.values());q={version:b.sceneVersion,source:b.honroWorldTerrain,count:b.terrain.length,terrain};renders.set(b,q);return terrain;
 }
