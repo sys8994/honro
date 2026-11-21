@@ -69,6 +69,9 @@ def case(browser,w,out,report,v,arm,g,target):
   assert page.evaluate(OBS['LAUNCH'],{'stage':stage,'catalogID':id,'activeDeclaredDimensions':dim})==v['provider']
   page.locator('#battlecanvas').wait_for(state='visible')
   page.wait_for_function("""()=>{const a=HonroApp;HonroStory.tick(a,performance.now());HonroStory.draw(a);return Boolean(document.getElementById('turn-banner')?.hidden!==false&&!a.dialogue&&a.engine.b.phase==='aim');}""",polling=125,timeout=12000)
+  entry['stockGameplayClockAdvanced']=page.evaluate("""async()=>{const a=performance.now();__honroStage3Clock.law();await new Promise(r=>setTimeout(r,30));const b=performance.now();__honroStage3Clock.law();return b>a && HonroApp.engine.b.phase==='aim' && !Object.hasOwn(performance,'now');}""")
+  assert entry['stockGameplayClockAdvanced'] is True
+  stamp(out,report)
   def png():return base64.b64decode(page.evaluate(OBS['RAW']),validate=True)
   rawDIR=out/dev;rawDIR.mkdir(exist_ok=True)
   def take(name,label,state,ms):
@@ -168,7 +171,7 @@ def paired(out,report):
 def main(w):
  assert not(os.getenv('GITHUB_TOKEN')or os.getenv('GH_TOKEN'))
  out=w/'out';g=json.loads((out/'GRAPH.json').read_bytes())
- report={'status':'HOLD','scope':'read-only isolated new Stage3 control; historic R6 aggregate remains HOLD','noReleaseSeal':True,
+ report={'status':'HOLD','scope':'read-only isolated new Stage3 control; historic R6 aggregate remains HOLD','noReleaseSeal':True,'externalClockScope':'only synchronous native Stage 3 sky and environmentTone, native game time outside',
   'R6Actual':{'run':44931823134,'artifact':14718321360,'browserReceiptSHA256':'c1a8dfa7214abacd24406c4a4ee6d0b451e2a250bd58eecf8e581b771a33a1dd'},
   'priorArchiveAsStateOnly':PREFIX_WITNESSES[14714262330],'visits':[],'pairs':{},'errors':[]}
  try:
