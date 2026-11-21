@@ -1,0 +1,87 @@
+name: HONRO Stage3 live cloud isolated monotonic A1 A2 B control
+on:
+  push:
+    branches: [qa/stage28-stage3-clock-scope-r7]
+    paths:
+      - .github/workflows/stage28-stage3-clock-readonly.yml
+      - tools/stage28-stage3-clock/**
+permissions:
+  contents: read
+jobs:
+  unchanged-stage3:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage28-stage3-clock-scope-r7'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 46
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 8
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Exact acb published A and R6 normal B compilation
+        shell: bash
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: |
+          set -euo pipefail
+          test -z "${GH_TOKEN:-}${GITHUB_TOKEN:-}"
+          T="$RUNNER_TEMP/stage3-clock"
+          mkdir "$T" "$T/out"
+          echo "WORK=$T" >> "$GITHUB_ENV"
+          Q="$GITHUB_WORKSPACE/tools/stage28-stage3-clock"
+          python "$Q/preflight.py" pre "$T"
+          (
+            cd "$T/B"
+            npm ci > "$T/out/npm-root-B.log" 2>&1
+            npm ci --prefix game > "$T/out/npm-game-B.log" 2>&1
+            npm run test:release-guard > "$T/out/release-guard-B.log" 2>&1
+            npm run build > "$T/out/build-B.log" 2>&1
+            npm run test:production-contract > "$T/out/production-contract-B.log" 2>&1
+          )
+          python "$Q/preflight.py" built "$T"
+      - name: Twelve independent native contexts, deterministic live clouds, no candidate seal
+        shell: bash
+        timeout-minutes: 29
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: |
+          set -euo pipefail
+          test -z "${GH_TOKEN:-}${GITHUB_TOKEN:-}"
+          Q="$GITHUB_WORKSPACE/tools/stage28-stage3-clock"
+          python3 -m venv "$WORK/venv"
+          V="$WORK/venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+          python -m http.server 18891 --bind 127.0.0.1 --directory "$WORK/A" > "$WORK/out/http-A.log" 2>&1 &
+          a=$!
+          python -m http.server 18892 --bind 127.0.0.1 --directory "$WORK/B" > "$WORK/out/http-B.log" 2>&1 &
+          b=$!
+          trap 'kill "$a" "$b" 2>/dev/null || true' EXIT
+          for p in 18891 18892; do curl -fsS --retry 8 --retry-connrefused "http://127.0.0.1:$p/HONRO.html" -o /dev/null; done
+          "$V" "$Q/control.py" "$WORK"
+      - if: always() && env.WORK != ''
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage3-clock-independent-readonly
+          path: |
+            ${{ runner.temp }}/stage3-clock/out/*.json
+            ${{ runner.temp }}/stage3-clock/out/*.log
+            ${{ runner.temp }}/stage3-clock/out/*.txt
+          retention-days: 7
+          if-no-files-found: error
+      - if: always() && env.WORK != ''
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage3-clock-native-PC
+          path: ${{ runner.temp }}/stage3-clock/out/1440x900
+          retention-days: 7
+          if-no-files-found: warn
+      - if: always() && env.WORK != ''
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage3-clock-native-M
+          path: ${{ runner.temp }}/stage3-clock/out/390x844
+          retention-days: 7
+          if-no-files-found: warn
