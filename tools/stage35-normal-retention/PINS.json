@@ -1,0 +1,33 @@
+{
+  "enabled": true,
+  "baseline": "71fb443675aed659a572b722a4337212e9d2f910",
+  "baselineTree": "c9f11d3a7458ecfcb390e460401f4b3298395858",
+  "normalSource": "9bec8c7a1d22cb02f528337b3ba5e0794afc12d8",
+  "normalSourceTree": "4e8e445a12440009d0192b82d87cbf3d75ac3f89",
+  "priorPages": {
+    "run": 44865801804,
+    "job": 136729438155,
+    "publishedAt": "2026-11-21T04:24:34.6604526Z",
+    "manifestGitBlob": "30671da683f66f4d959ed617d1cfd79a0a1e3dbe",
+    "manifestSHA256": "c77a561f82a5f0748d1d4cfd4a675d5db9118ba2c53537c778fd9c77a12400c4"
+  },
+  "normal": {
+    "run": 44881944158,
+    "job": 136778930205,
+    "head": "992c5141fdee11be2506266cb9e4dc5c29163cb0",
+    "tree": "1f7b096d4497debd602746203b9c2d3ddce01c47",
+    "normalPinsGitBlob": "5a009802901c84a06d5915cb073eb42d5cda7a36",
+    "artifact": {
+      "id": 14698905595,
+      "bytes": 20900395,
+      "sha256": "0abd413d89fa5b75fcdba78d2891cb7dc5d48fc5e7a5f83dbac07ea7d3aa2a7e"
+    },
+    "receiptSHA256": {
+      "SOURCE.json": "a8abf1d0fbd412fcc8170a4a15b1746283692137a02b60a6c4b7f3afdc6f44d9",
+      "GRAPH.json": "3c2e1230d9c98fb2c6ed7bbaf2713ebcab4f1a3d9c2f11a5ea780ffc0f191a79",
+      "BROWSER.json": "47d81a866766eb6fe84f91c1199670cb335b8863fe2980cc6a14856e40d5db16",
+      "CANDIDATE-CHECK-ONLY.json": "399885c248ea5a04092c0e663ce6f231b9123a0f2afbfe750f3cfe0bb9e53589"
+    },
+    "candidateArchiveSHA256": "c80fbe578c08097eb43840b7b3d42bdbcb44af923ae2347b3544e09cfe264158"
+  }
+}
