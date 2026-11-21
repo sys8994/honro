@@ -1,0 +1,168 @@
+{
+  "browser": "151.0.7922.34",
+  "row": {
+    "stage": 12,
+    "catalogID": "stage-12",
+    "requiredExactHTTP": [
+      "web/data/HONRO_ACT23_V4_PHASE_B_STAGES.14aab2db4e01b0f3.json",
+      "web/data/HONRO_ACT2_COMPACT_PACKAGES-part-000.45cc14d990012925.bin",
+      "web/data/HONRO_ACT2_COMPACT_PACKAGES-part-001.9e74461920a17acd.bin",
+      "web/data/HONRO_ACT2_COMPACT_PACKAGES-parts.420dfb2876af8ed7.json",
+      "web/data/campaign-base.0c57dcfe7c08d421.json",
+      "web/data/campaign-shared.8f8343b5c21518d4.json",
+      "web/data/campaign.7140da5d3649e4ab.json",
+      "web/data/chapter-12-assets.afb92f0800d819a7.json",
+      "web/data/chapter-12.3fc1ce9748774263.json",
+      "web/entries/game.b0b1e648c2c03457.js",
+      "web/runtime/HONRO_ACT2_COMPACT_PACKAGES.ad917621a5a55dd5.js",
+      "web/runtime/campaign.926544619e01a04a.js",
+      "web/runtime/load-data.248fb3aada6f16bb.js"
+    ],
+    "activeDeclaredDimensions": [
+      6400,
+      5000
+    ],
+    "compactWitness": {
+      "width": 6400,
+      "height": 5000,
+      "revision": 612,
+      "status": "selected-layout",
+      "packageAssetIDs": [
+        "act2-compact:stage12-act2-traced-stage12-ground-1",
+        "act2-compact:stage12-act2-traced-stage12-ground-2",
+        "act2-compact:stage12-act2-traced-stage12-quarry-1",
+        "act2-compact:stage12-quarry-rear-west-foot-1",
+        "act2-compact:stage12-quarry-rear-north-root-1",
+        "act2-compact:stage12-quarry-rear-north-foot-1"
+      ],
+      "stageID": "stage-12",
+      "origin": "official compact bytes"
+    },
+    "boundFacts": {
+      "web/data/chapter-12.3fc1ce9748774263.json": {
+        "bytes": 90719,
+        "sha256": "3fc1ce974877426324527887c2bc905bf2545f6001f0949b91cb1ad902819a6c"
+      },
+      "web/data/chapter-12-assets.afb92f0800d819a7.json": {
+        "bytes": 1155555,
+        "sha256": "afb92f0800d819a7422ce8b38cb6edf929cb8b5773e7768311b3de4e17f229f4"
+      },
+      "web/runtime/HONRO_ACT2_COMPACT_PACKAGES.ad917621a5a55dd5.js": {
+        "bytes": 211,
+        "sha256": "ad917621a5a55dd58fec3a7a90133feadf70b91b2b1f5949275a9f2e25b1542f"
+      },
+      "web/data/HONRO_ACT2_COMPACT_PACKAGES-parts.420dfb2876af8ed7.json": {
+        "bytes": 464,
+        "sha256": "420dfb2876af8ed739351b8fcabaf6ad6d0eef30dd67d9126bee8bb5ce671a27"
+      },
+      "web/data/HONRO_ACT23_V4_PHASE_B_STAGES.14aab2db4e01b0f3.json": {
+        "bytes": 29,
+        "sha256": "14aab2db4e01b0f3245ae967605cf032e2d27406fac4ba50ee8d3ed16335505f"
+      }
+    }
+  },
+  "exactLinkedRuntime": {
+    "web/runtime/ordered-common-2.49982d8a68cfa528.js": {
+      "sha256": "49982d8a68cfa528577da4570dbf8820b3065a25dc60b21cfcfc6ebbfd0d73ed",
+      "bytes": 927571
+    },
+    "web/runtime/ordered-common-4.c84f463a629cb3dc.js": {
+      "sha256": "c84f463a629cb3dc26d1ab93d071c3499c8339888b9bc08d089f852c602b2191",
+      "bytes": 181306
+    },
+    "web/runtime/ordered-common-10.7f6c8574f94f35df.js": {
+      "sha256": "7f6c8574f94f35df38a797b4d439a5c096d784b954529bfa4e9fc9df58dfc9ae",
+      "bytes": 179413
+    },
+    "web/runtime/ordered-common-11.6adcb81897ec0663.js": {
+      "sha256": "6adcb81897ec06638dc92386b515b2f8ff10ee38a60c6fa4fb2d9040be22ea77",
+      "bytes": 177221
+    },
+    "web/runtime/ordered-common-12.538fbca4939d645e.js": {
+      "sha256": "538fbca4939d645ec8be42331733cae9d01295e87c0ebcd92fb2d74d43eada65",
+      "bytes": 72225
+    },
+    "web/runtime/ordered-common-15.370f1fb43d3a212f.js": {
+      "sha256": "370f1fb43d3a212f035eabb93ea935aff41d6146fb8c9103c77a1f9c1f07d737",
+      "bytes": 163921
+    }
+  },
+  "previousDesktop": {
+    "provider": {
+      "stage": "stage-12",
+      "compact": {
+        "revision": 612,
+        "matched": true,
+        "assetCount": 6
+      },
+      "width": 6400,
+      "height": 5000
+    },
+    "rawSHA256": "d2b0c1dd8e9de7bbe34a2649cc7edc6998e375b8b32ada183b9b8bdc93d675c4",
+    "status": "PASS_CANONICAL_WIRE_AND_APP_LOAD_ONLY",
+    "frame": {
+      "desired": {
+        "x": 3200,
+        "y": 2500,
+        "scale": 0.21176470588235294
+      },
+      "actual": {
+        "x": 3200,
+        "y": 2500,
+        "scale": 0.21176470588235294
+      },
+      "view": {
+        "left": -200,
+        "right": 6600,
+        "top": 683.8628472222222,
+        "bottom": 4316.137152777777
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6720,
+        "bottom": 5240
+      },
+      "css": [
+        1440,
+        769.1875
+      ],
+      "backing": [
+        1440,
+        769
+      ],
+      "phase": "aim",
+      "round": 1,
+      "time": 2,
+      "physics": "380a640db373cfbff9dc9ba33d5c95bc4a0b8ea0152eb7ee4046d5c166cab4c2",
+      "actualStaticAssetCount": 57,
+      "actualTerrainIDs": [
+        "sq-old-road",
+        "sq-north-quarry",
+        "sq-west-quarry",
+        "sq-west-turn-high",
+        "sq-west-turn-low",
+        "sq-lower-ground",
+        "sq-inner-joint",
+        "sq-back-road",
+        "sq-east-turn",
+        "sq-cave-buttress",
+        "sq-cave-roof",
+        "sq-turning-veil"
+      ],
+      "actualDrawOwnerIDs": [
+        "act1-scene:rooted-pine",
+        "act2-compact:stage12-act2-traced-stage12-ground-1",
+        "act2-compact:stage12-act2-traced-stage12-ground-2",
+        "act2-compact:stage12-act2-traced-stage12-quarry-1",
+        "act2:rock-bank",
+        "act2:rock-column",
+        "quest-redesign:opening",
+        "stage12:quarry-fallen-cutting-tools"
+      ],
+      "declaredMissing": [],
+      "exactStage24Owner": null
+    },
+    "archive": 14714050425
+  }
+}
