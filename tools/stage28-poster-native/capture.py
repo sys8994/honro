@@ -25,6 +25,16 @@ MEDIA={f'assets/bgm/{n}.mp3'for n in ('main','battle-1','battle-2','battle-3','b
 def rgba(raw): return Image.open(io.BytesIO(raw)).convert('RGBA')
 def document(f):return json.loads(f.read_bytes())
 def stamp(out,r):save(out/'BROWSER.json',r)
+def exact_navigation_document(page,origin,expected):
+ url=origin+'HONRO.html'
+ response=page.goto(url,wait_until='domcontentloaded',timeout=50000)
+ assert response and response.status==200 and response.url==url and not response.from_service_worker, 'wrong exact main document response'
+ request=response.request
+ assert request.url==url and request.method=='GET' and request.resource_type=='document' and request.is_navigation_request() and request.frame==page.main_frame
+ assert request.redirected_from is None and request.redirected_to is None, 'unexpected navigation redirect'
+ found=facts(response.body())
+ assert found==expected,(url,'main document body differs',found,expected)
+ return {'path':'HONRO.html','url':url,'status':response.status,'body':found,'proof':'exact-main-frame-page.goto-body'}
 def case(browser,w,out,report,v,arm,g):
  a=arm=='A';origin='http://127.0.0.1:'+('18891'if a else '18892')+'/'; blob=re.compile('blob:'+re.escape(origin)+r'[\da-f-]{36}')
  known=g['active'+arm]; alias=dict(g['aliases']); required={k if a else alias.get(k,k)for k in v['requests']}|{g['runtime'+arm]}
@@ -36,7 +46,7 @@ def case(browser,w,out,report,v,arm,g):
  try:
   assert ctx.storage_state()=={'cookies':[],'origins':[]}
   page=ctx.new_page();page.set_default_timeout(30000);page.add_init_script('('+OBS['INIT']+')()')
-  errors=[];todo=set();hits=[];checked={};seen=set();i=0
+  errors=[];todo=set();hits=[];checked={};listenerChecked=set();seen=set();i=0
   def path(url):return url[len(origin):]if url.startswith(origin) and '?' not in url and '#' not in url else None
   def request(r):
    k=path(r.url)
@@ -59,14 +69,15 @@ def case(browser,w,out,report,v,arm,g):
    while time.monotonic()<expiry:
     assert not errors,errors
     while i<len(hits)and hits[i][1].request not in todo:
-     k,r=hits[i];assert facts(r.body())==known[k],(arm,k);checked[k]=known[k];i+=1
+     k,r=hits[i];assert facts(r.body())==known[k],(arm,k);checked[k]=known[k];listenerChecked.add(k);i+=1
     before=(i,len(seen));page.wait_for_timeout(105)
-    q=q+1 if before==(len(hits),len(seen))and not todo and required<=checked.keys()else 0
+    q=q+1 if before==(len(hits),len(seen))and not todo and required<=checked.keys()and required-{'HONRO.html'}<=listenerChecked else 0
     if q==3:
      assert seen<=set(page.evaluate('()=>Array.from(__honroObserver.blobs)'));return
    raise RuntimeError(('missing normal response bodies',sorted(required-checked.keys()),errors))
-  r=page.goto(origin+'HONRO.html',wait_until='domcontentloaded',timeout=50000)
-  assert r and r.status==200 and r.url==origin+'HONRO.html'and facts(r.body())==known['HONRO.html']
+  navigation=exact_navigation_document(page,origin,known['HONRO.html'])
+  checked['HONRO.html']=navigation['body']
+  entry['navigationDocument']=navigation;stamp(out,report)
   page.wait_for_function("()=>document.documentElement.dataset.honroReady==='true'&&typeof HonroCampaignLoader?.ensureStage==='function'",timeout=90000)
   stage=v['stage']; id=v['provider']['stage'];dim=[v['provider'][k]for k in ('width','height')]
   assert page.evaluate(OBS['LAUNCH'],{'stage':stage,'catalogID':id,'activeDeclaredDimensions':dim})==v['provider']
@@ -125,7 +136,10 @@ def case(browser,w,out,report,v,arm,g):
     img.unlink();r['path']=second['path'];r['identicalDuplicateNotArchived']=True
    rec.update(path=first['path'],png=first['png'],native=first['native'])
    entry['views'].append(k);stamp(out,report)
-  drain();entry.update(state='NETWORK_AND_CAPTURE_EXACT',requiredObserved=sorted(required),observedCount=len(checked));stamp(out,report)
+  drain()
+  assert required-{'HONRO.html'}<=listenerChecked
+  entry.update(state='NETWORK_AND_CAPTURE_EXACT',requiredObserved=sorted(required),observedCount=len(checked),
+   listenerVerifiedRequired=sorted(required&listenerChecked),navigationAlsoSeenByListener='HONRO.html'in listenerChecked);stamp(out,report)
  finally:ctx.close()
 def compare(A,B,ref):
  assert A.size==B.size and list(A.size)==ref['backing']; w,h=A.size
