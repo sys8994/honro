@@ -1,0 +1,77 @@
+        _stage15NorthQaTiles(b,domain,stock,view,rs) {
+            // STAGE15_NORTH_QA_PROTOTYPE: throwaway full-build observer only.
+            if(b.honroStage!==15||b.honroCustom!==false||!b.honroCanonical||b.honroCampaignMapRevision!==615||
+                b.width!==5800||b.height!==4200||domain.left!==-5000||domain.right!==10800||
+                domain.top!==-25600||domain.bottom!==28400)return stock;
+            const mask=__SIGNED_NATIVE_MASK__;
+            const id='act2-compact-stage15-act2-stage15-traced-outer-v1-1',
+                aid='act2-compact:stage15-act2-stage15-traced-outer-v1-1',symbol='compact15-source-world';
+            // A tile is original if it cannot sample the *existing* ink and native mask.
+            // Cover the two-pixel raster gutter and snap at the unmodified strip top.
+            const g=2.5/rs,box={l:Math.max(-5000,view.left-g),r:Math.min(10800,view.right+g),
+                t:Math.max(-2102-g,view.top-g),b:Math.min(mask.bounds[3],view.bottom+g)};
+            const proof=this._stage15NorthQaProof??={stock:0,candidate:0,lowerStock:0};
+            const pass=()=>{proof.stock++;if(view.top>=0)proof.lowerStock++;return stock;};
+            if(box.l>=box.r||box.t>=box.b||view.top>=0)return pass();
+            const point=(x,y)=>x>=box.l&&x<=box.r&&y>=box.t&&y<=box.b,
+                corners=[[box.l,box.t],[box.r,box.t],[box.r,box.b],[box.l,box.b]],cross=(a,z,p)=>(z[0]-a[0])*(p[1]-a[1])-(z[1]-a[1])*(p[0]-a[0]);
+            function segment(a,z,p,q){
+                return Math.max(Math.min(a[0],z[0]),Math.min(p[0],q[0]))<=Math.min(Math.max(a[0],z[0]),Math.max(p[0],q[0]))&&
+                    Math.max(Math.min(a[1],z[1]),Math.min(p[1],q[1]))<=Math.min(Math.max(a[1],z[1]),Math.max(p[1],q[1]))&&
+                    cross(a,z,p)*cross(a,z,q)<=0&&cross(p,q,a)*cross(p,q,z)<=0;
+            }
+            const inside=(p,ring)=>ring.reduce((hit,a,i)=>{
+                const z=ring[(i+1)%ring.length];
+                return (a[1]>p[1])!==(z[1]>p[1])&&p[0]<a[0]+(z[0]-a[0])*(p[1]-a[1])/(z[1]-a[1])?!hit:hit;
+            },false);
+            const candidate=mask.polygons.some(poly=>corners.some(p=>inside(p,poly[0])&&!poly.slice(1).some(r=>inside(p,r)))||
+                poly.some(ring=>ring.some((a,i)=>point(...a)||corners.some((p,j)=>segment(a,ring[(i+1)%ring.length],p,corners[(j+1)%4])))));
+            if(!candidate)return pass();
+            const targets=stock.filter(l=>l.id===id),l=targets[0],a=l?.asset,v=a?.vector;
+            if(!targets.length)return pass(); // Keep the actual stock visibility decision.
+            const expected=G.HONRO_ACT2_COMPACT_PACKAGES?.[15]?.assets?.find(x=>x.id===aid);
+            if(targets.length!==1||l.kind!=='canonical-element'||l.layer!=='prop'||l.depthLayer!=='L1'||l.x!==0||l.y!==0||l.scale!==1||
+                (l.rotation??0)!==0||l.honroTerrainMaterialClip||l.honroElementCollision||l.collisionIds?.length||
+                a?.id!==aid||a.anchor?.x!==0||a.anchor?.y!==0||a.collision?.length!==0||
+                a.params?.compact15Revision!==1||a.params?.semanticLayer!=='BODY'||a.params?.silhouetteUnderpaint!==false||
+                !v||!expected||v.version!==1||v.root?.tag!=='g'||v.root.transform||v.root.clipPath||v.root.children?.length!==11||
+                Object.keys(v.symbols||{}).length!==1)throw Error('Stage15 QA original outer BODY is not structurally signed');
+            const cache=this._stage15NorthQaClones??=new WeakMap();
+            let changed=cache.get(a);
+            if(!changed){
+                if(JSON.stringify(v)!==JSON.stringify(expected.vector)||
+                    JSON.stringify(a.bounds)!==JSON.stringify(expected.bounds))
+                    throw Error('Stage15 QA render owner differs from exact compact source');
+                const c=structuredClone(v),sym=c.symbols[symbol],old=JSON.stringify(sym),symbols={};
+                const rect=[[-40000,-40000],[40000,-40000],[40000,40000],[-40000,40000]];
+                const inverse=(ring,t)=>'M'+ring.map(([x,y])=>((x-t[4])/t[0])+','+((y-t[5])/t[3])).join('L')+'Z';
+                for(let i=0;i<c.root.children.length;i++){
+                    const strip=c.root.children[i],s=strip.transform;
+                    if(strip.tag!=='g'||strip.clipPath!=='compact15-strip-'+i||strip.pixelSnapClip!==true||
+                        strip.children?.length!==1||strip.children[0]?.tag!=='use'||strip.children[0].symbol!==symbol||
+                        s?.length!==6||s[0]<=0||s[1]||s[2]||s[3]!==1||s[5]!==-1600)
+                        throw Error('Stage15 QA old strip transform drift');
+                    const copy=JSON.parse(old),first=copy.children?.[0]?.children?.[0];
+                    const traced=first?.children?.[1],d=traced?.transform;
+                    const flat1=first?.children?.[0],flat2=traced?.children?.[0]?.children?.[0]?.children?.[0];
+                    if(flat1?.tag!=='path'||flat1.fill!=='#283b46'||flat1.clipPath||flat1.transform||
+                       flat2?.tag!=='path'||flat2.fill!=='#283b46'||flat2.clipPath||flat2.transform||
+                       d?.length!==6||d[0]<=0||d[1]||d[2]||d[3]<=0||d[5]!==-500)
+                        throw Error('Stage15 QA two exact old flat paths not found');
+                    const total=[s[0]*d[0],0,0,s[3]*d[3],s[0]*d[4]+s[4],s[3]*d[5]+s[5]];
+                    for(const [j,flat,t]of [[0,flat1,s],[1,flat2,total]]){
+                        const name='s15-native-qa-keep-'+i+'-'+j;
+                        // Native Canvas clip uses nonzero, so union exterior rings
+                        // are opposite the outer coverage rectangle; union holes same.
+                        c.clips[name]=[inverse(rect,t)+' '+mask.polygons.flatMap(p=>p.map(r=>inverse(r,t))).join(' ')];
+                        flat.clipPath=name;
+                    }
+                    const name='s15-native-qa-strip-'+i;symbols[name]=copy;strip.children[0].symbol=name;
+                }
+                c.symbols=symbols;
+                const issues=G.HonroVectorArt.validate(c);if(issues.length)throw Error('Stage15 QA vector validation '+issues.join(';'));
+                changed={...a,vector:c};cache.set(a,changed);
+            }
+            proof.candidate++;
+            return stock.map(row=>row===l?{...row,asset:changed}:row);
+        }
