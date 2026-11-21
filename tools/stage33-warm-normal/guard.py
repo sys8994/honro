@@ -3,7 +3,9 @@ import os,re,hashlib,json,subprocess,sys,zipfile
 from pathlib import Path
 BASE='acb51f4ee1c5afa90751dc256d6ad8d900732779'
 TREE='5cc36cfd7ef62fc801dc967605260610596d8061'
-BRANCH='refs/heads/qa/stage33-warm-lowland-acb'
+R1='573c5b734b6693e10f1b86c8988866cbd3eb8a05'
+BRANCH='refs/heads/qa/stage33-warm-lowland-acb-r2'
+R2_EDITS={'.github/workflows/stage33-warm-lowland.yml','tools/stage33-warm-normal/capture.py','tools/stage33-warm-normal/guard.py'}
 D=Path(__file__).resolve().parent
 FILES={'.github/workflows/stage33-warm-lowland.yml',*(f'tools/stage33-warm-normal/{p.name}'for p in D.iterdir() if p.is_file() and p.suffix in ('.py','.mjs','.js','.json'))}
 REQ={'guard.py','POSES.json','metrics.py','capture.py','park.js','prepare.mjs','RECIPE.json','signed-apply.mjs'}
@@ -46,16 +48,19 @@ def pre(w):
  r=Path(os.environ['GITHUB_WORKSPACE']);head=os.environ['GITHUB_SHA'];scope={f.rsplit('/',1)[-1]for f in FILES if '/stage33-warm-normal/'in f}
  assert scope==REQ
  assert (os.environ['GITHUB_REF'],os.environ['GITHUB_REPOSITORY'],os.environ['GITHUB_EVENT_NAME'])==(BRANCH,'sys8994/honro','push')
- assert txt(r,'rev-list','--parents','-n1','HEAD').split()==[head,BASE]
+ assert txt(r,'rev-list','--parents','-n1','HEAD').split()==[head,R1]
+ assert txt(r,'rev-list','--parents','-n1',R1).split()==[R1,BASE]
  assert txt(r,'rev-parse',BASE+'^{tree}')==TREE and not git(r,'status','--porcelain=v1','-z')
- assert set(txt(r,'diff','--name-status','--no-renames',BASE,head).splitlines())=={'A\t'+f for f in FILES}
+ assert set(txt(r,'diff','--name-status','--no-renames',BASE,R1).splitlines())=={'A\t'+f for f in FILES}
+ assert set(txt(r,'diff','--name-status','--no-renames',R1,head).splitlines())=={'M\t'+f for f in R2_EDITS}
+ assert all(git(r,'show',R1+':'+f)==git(r,'show',head+':'+f)for f in FILES-R2_EDITS)
  assert all(txt(r,'ls-tree',head,'--',f).split()[:2]==['100644','blob']for f in FILES)
  assert facts(git(r,'show',BASE+':'+CANON))==MAN0
  for p,sha0 in ((SOURCE,OLDG),(LOADER,LOADERG)):
   assert txt(r,'ls-tree',BASE,'--',p).split()[:3]==['100644','blob',sha0]
  for k in ('A','B'):git(r,'worktree','add','--detach',str(w/k),BASE)
  arms(w)
- save(w/'out'/'GATE.json',{'parent':BASE,'tree':TREE,'testHead':head,'addOnly':sorted(FILES),'status':'SCOPED_ONLY'})
+ save(w/'out'/'GATE.json',{'parent':BASE,'tree':TREE,'testHead':head,'firstFrameFailedHead':R1,'testOnlyModified':sorted(R2_EDITS),'baseAuthorityNine':sorted(FILES),'status':'SCOPED_ONLY'})
 def inventory(z):
  d={r['path']:{k:r[k]for k in ('bytes','sha256')}for r in z['files']};assert len(d)==len(z['files'])==810
  return d

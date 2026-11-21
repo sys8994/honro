@@ -107,23 +107,23 @@ def capture(browser,variant,arm,w,h,out,proof):
     return Boolean(document.getElementById('turn-banner')?.hidden!==false&&!a.dialogue);}""",polling=125,timeout=12000)
   page.evaluate("()=>HonroApp.scene.render(HonroApp.engine,0,'',.6,false,0)")
 
-  key=f's33-{w}x{h}'
+  device_key=f's33-{w}x{h}'
   for name,(dx,dy) in VIEWS.items():
-   k=key+'-'+name;state['attempt']=k;emit()
+   k=device_key+'-'+name;state['attempt']=k;emit()
    q={'stage':33,'id':'stage-33','name':name,'dx':dx,'dy':dy,'readback':False}
    f=page.evaluate(PARK,q); decode=page.evaluate(DECODE)
    assert decode['registered']>0 and decode['font']=='loaded' and not decode['failed']
    assert page.evaluate(PARK,{**q,'readback':True})==f
    owner=page.evaluate(OBSERVE,{'asset':ID,'whole':arm['ownerSHA'],'vector':arm['vectorSHA']})
    assert owner['owners']==1 and owner['sourceSHA']==arm['ownerSHA'] and owner['vectorSHA']==arm['vectorSHA']
-   exact={x:v for x,v in P['views'][key][name].items()if x!='rawSHA256'}
+   exact={x:v for x,v in P['views'][device_key][name].items()if x!='rawSHA256'}
    assert {x:f[x]for x in exact}==exact,(variant,k,'actual pose/physics mismatched')
    assert f['phase']=='aim' and f['round']==1 and f['sceneTime']==2
    drain()
    data=base64.b64decode(page.evaluate(PNG),validate=True)
    dom=canvas.screenshot(animations='disabled',timeout=30000)
    assert base64.b64decode(page.evaluate(PNG),validate=True)==data,(variant,k,'same arm frozen frame drift')
-   row={**f,'sourceOwner':owner,'imageDecode':decode,'stockArchiveRawExact':(sha(data)==P['views'][key][name]['rawSHA256'])if variant=='A'else None}
+   row={**f,'sourceOwner':owner,'imageDecode':decode,'stockArchiveRawExact':(sha(data)==P['views'][device_key][name]['rawSHA256'])if variant=='A'else None}
    for label,x in (('raw',data),('dom',dom)):
     im=raw_png(x);assert im.width==exact['backing'][0]and im.height in (exact['backing'][1],exact['backing'][1]+1)
     filename=f'{variant}-{k}-{label}.png';(out/filename).write_bytes(x);row[label]=filename;row[label+'SHA256']=sha(x)

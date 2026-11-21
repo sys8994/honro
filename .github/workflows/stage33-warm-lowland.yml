@@ -1,7 +1,7 @@
 name: HONRO Stage33 official normal isolated lowland hull A-B (read only)
 on:
   push:
-    branches: [qa/stage33-warm-lowland-acb]
+    branches: [qa/stage33-warm-lowland-acb-r2]
     paths:
       - '.github/workflows/stage33-warm-lowland.yml'
       - 'tools/stage33-warm-normal/**'
@@ -9,7 +9,7 @@ permissions:
   contents: read
 jobs:
   actual-s33:
-    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage33-warm-lowland-acb'
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage33-warm-lowland-acb-r2'
     runs-on: ubuntu-24.04
     timeout-minutes: 36
     env:
@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
-          fetch-depth: 2
+          fetch-depth: 3
           persist-credentials: false
       - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
         with:
@@ -62,7 +62,7 @@ jobs:
       - if: always() && env.WORK != ''
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: honro-stage33-warm-lowland-normal-review-only
+          name: honro-stage33-warm-lowland-normal-r2-review-only
           path: ${{ env.WORK }}/out
           if-no-files-found: error
           retention-days: 7
