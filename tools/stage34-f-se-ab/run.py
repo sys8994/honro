@@ -51,23 +51,46 @@ def synthesize(stock):
     assert FACTS(result)==FACET['candidatePacket'] and len(result)<4194304
     return result
 
+def assert_bootstrap(manifest,local):
+    row={f['path']:{k:f[k] for k in ('bytes','sha256')} for f in manifest['files']}
+    assert len(row)==len(manifest['files'])
+    mismatches=[k for k,f in P['responsePins'].items()
+        if k not in ('HONRO.html','web/manifest.json') and row.get(k)!=f]
+    assert not mismatches,('not exact in official active manifest',mismatches)
+    boot=P['compactBootstrap']; loader=P['compactLoader']; desc=boot['descriptor']
+    names=boot['parts']; all_paths={loader,desc,*names}
+    assert all_paths<=set(P['expectedNormal'])
+    assert set(k for k in P['responsePins'] if '/HONRO_ACT2_COMPACT_PACKAGES' in k)==all_paths
+    assert list(manifest['common']).count(loader)==1 and desc.encode() in local[loader]
+    assert loader.rsplit('/',1)[-1].encode() in local[P['entry']]
+    d=json.loads(local[desc])
+    assert d=={'$honroJsonParts':1,**boot['aggregate'],
+        'parts':[{'path':k,**P['responsePins'][k]} for k in names]}
+    assert len(names)==2 and len(set(names))==2
+    assert sum(P['responsePins'][k]['bytes'] for k in names)==boot['aggregate']['bytes']
+
 def source_gate():
     global TEST_PACKET
     head=os.environ['GITHUB_SHA']
     assert os.environ['GITHUB_REF']=='refs/heads/'+BRANCH and os.environ['GITHUB_EVENT_NAME']=='push'
-    assert git('rev-list','--parents','-n1','HEAD').decode().split()==[head,LIVE]
+    R1='012feb67cf5dd1053a6d39ede1fe79718c426c7d'
+    assert git('rev-list','--parents','-n1','HEAD').decode().split()==[head,R1]
+    assert git('show','-s','--format=%P',R1).decode().strip()==LIVE
+    assert git('rev-parse',R1+'^{tree}').decode().strip()=='c9abaa6eb310fef5f783dbd5a9cac73e3168d5ed'
+    assert set(git('diff','--name-status','--no-renames',R1,head).decode().splitlines())=={
+        'M\t.github/workflows/stage34-f-se-ab.yml','M\ttools/stage34-f-se-ab/PINS.json',
+        'M\ttools/stage34-f-se-ab/run.py'}
     assert git('rev-parse',LIVE+'^{tree}').decode().strip()==P['authority']['tree']
     assert git('rev-parse',LIVE+':web/manifest.json').decode().strip()==P['authority']['retainedManifestGitBlob']
     assert git('status','--porcelain=v1','-z')==b''
     assert set(git('diff','--name-status','--no-renames',LIVE,head).decode().splitlines())=={'A\t'+f for f in FILES}
-    core=('HONRO.html','web/manifest.json',P['entry'],P['campaign'],P['map'],P['packet'],P['renderer'],P['compactLoader'])
+    core=('HONRO.html','web/manifest.json',P['entry'],P['campaign'],P['map'],P['packet'],P['renderer'],P['compactLoader'],P['compactBootstrap']['descriptor'])
     local={k:check(k,git('show',LIVE+':'+k)) for k in core}
     manifest=json.loads(local['web/manifest.json']); camp=json.loads(local[P['campaign']]); map=json.loads(local[P['map']])
-    row={f['path']:{k:f[k] for k in ('bytes','sha256')} for f in manifest['files']}
     assert manifest['gameEntry']==P['entry'] and manifest['project']==P['campaign']
     assert camp['stages'][33]==P['map'] and camp['stageLibraries'][33]==P['packet'] and camp['assetEncodings']['stageLibraries'][33]=='json'
     assert map['id']==P['mapId'] and map['metadata']['stageId']==34
-    assert all(k in ('HONRO.html','web/manifest.json') or row[k]==f for k,f in P['responsePins'].items())
+    assert_bootstrap(manifest,local)
     packet={a['id']:a for a in json.loads(local[P['packet']])}
     for eid,v in P['owners'].items():
         assert sum(e['id']==eid and e['assetId']==v['asset'] for e in map['elements'])==1 and v['asset'] in packet

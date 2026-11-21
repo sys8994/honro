@@ -175,6 +175,9 @@
   },
   "expectedNormal": [
     "HONRO.html",
+    "web/data/HONRO_ACT2_COMPACT_PACKAGES-part-000.45cc14d990012925.bin",
+    "web/data/HONRO_ACT2_COMPACT_PACKAGES-part-001.9e74461920a17acd.bin",
+    "web/data/HONRO_ACT2_COMPACT_PACKAGES-parts.420dfb2876af8ed7.json",
     "web/data/HONRO_MONSTERS.502d3ac46c4666e6.json",
     "web/data/campaign-base.0c57dcfe7c08d421.json",
     "web/data/campaign-shared.8f8343b5c21518d4.json",
@@ -406,18 +409,6 @@
     "web/data/HONRO_ACT23_V4_REVIEWED_COMMON.729b6ca7da7d2d19.json": {
       "sha256": "729b6ca7da7d2d19b081ccaaa7679f1a6c8cdabe1271147f22aafae5ef9bd388",
       "bytes": 4509
-    },
-    "web/data/HONRO_ACT2_COMPACT_PACKAGES-part-000.b74a29173f457f34.bin": {
-      "sha256": "b74a29173f457f34e26864f87526b5d010dab2b378b04ef8a6ee3ec829a9877d",
-      "bytes": 4194304
-    },
-    "web/data/HONRO_ACT2_COMPACT_PACKAGES-part-001.b849c4559f257911.bin": {
-      "sha256": "b849c4559f2579117de7296c15c06343dc273cf9b17b682909eaa42652d1d485",
-      "bytes": 3367429
-    },
-    "web/data/HONRO_ACT2_COMPACT_PACKAGES-parts.b0ecb9743ae28018.json": {
-      "sha256": "b0ecb9743ae28018ea32e6d0c70c3f4fb305cc9878fa3d489f4ecfbc1023006e",
-      "bytes": 464
     },
     "web/data/HONRO_ACT2_FAR_DATA.ed9317af7cbbefdd.json": {
       "sha256": "ed9317af7cbbefddcdb1a27e8bf676cc3bf3415892ffeac3a163d99b8508171c",
@@ -1497,5 +1488,16 @@
     "run": 44865436032,
     "artifact": 14691179687,
     "stockControl": "original archive PC/M actual exact"
+  },
+  "compactBootstrap": {
+    "descriptor": "web/data/HONRO_ACT2_COMPACT_PACKAGES-parts.420dfb2876af8ed7.json",
+    "parts": [
+      "web/data/HONRO_ACT2_COMPACT_PACKAGES-part-000.45cc14d990012925.bin",
+      "web/data/HONRO_ACT2_COMPACT_PACKAGES-part-001.9e74461920a17acd.bin"
+    ],
+    "aggregate": {
+      "bytes": 7584371,
+      "sha256": "bac32f73371958fb4bbd6d78269694b2359ad80fa558292c1df1eaad37d28cef"
+    }
   }
 }
