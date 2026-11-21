@@ -8,7 +8,8 @@ REL=P['sourcePath'];BASE=P['base'];TREE=P['tree']
 R1='dd73e9e758bf50f2fcf2345e0c3cbfbb2e150457'
 R2='efbc9a8c6e515935e302ea2e07c7b1c9244943ad'
 R3='db8ac19b641c35e03787b0b2046c318a78141d01'
-R4='refs/heads/qa/stage28-poster-floor-acb51-r4'
+R4='56c32b0aa51775df798c94f8e92547bfef7928f1'
+R5='refs/heads/qa/stage28-poster-floor-acb51-r5'
 R2_PATHS={'.github/workflows/stage28-poster-native.yml','tools/stage28-poster-native/capture.py','tools/stage28-poster-native/guard.py'}
 QA={'.github/workflows/stage28-poster-native.yml',*(f'tools/stage28-poster-native/{k}' for k in ('PINS.json','guard.py','capture.py','stock-observer.json','park.js','observe.js'))}
 def sha(b):return hashlib.sha256(b).hexdigest()
@@ -34,10 +35,11 @@ def patch(stock):
 def pre(w):
  assert not (os.getenv('GH_TOKEN')or os.getenv('GITHUB_TOKEN'))
  root=Path(os.environ['GITHUB_WORKSPACE']);head=os.environ['GITHUB_SHA']
- assert (os.environ['GITHUB_REPOSITORY'],os.environ['GITHUB_EVENT_NAME'],os.environ['GITHUB_REF'])==(P['repo'],'push',R4)
+ assert (os.environ['GITHUB_REPOSITORY'],os.environ['GITHUB_EVENT_NAME'],os.environ['GITHUB_REF'])==(P['repo'],'push',R5)
  assert P['branch']=='refs/heads/qa/stage28-poster-floor-acb51'
  assert w.resolve().is_relative_to(Path(os.environ['RUNNER_TEMP']).resolve())
- assert git(root,'rev-list','--parents','-n1','HEAD').decode().split()==[head,R3]
+ assert git(root,'rev-list','--parents','-n1','HEAD').decode().split()==[head,R4]
+ assert git(root,'rev-list','--parents','-n1',R4).decode().split()==[R4,R3]
  assert git(root,'rev-list','--parents','-n1',R3).decode().split()==[R3,R2]
  assert git(root,'rev-list','--parents','-n1',R2).decode().split()==[R2,R1]
  assert git(root,'rev-list','--parents','-n1',R1).decode().split()==[R1,BASE]
@@ -49,6 +51,8 @@ def pre(w):
  assert set(git(root,'diff','--name-status','--no-renames',R2,head).decode().splitlines())=={f'M\t{k}'for k in R2_PATHS}
  assert set(git(root,'diff','--name-status','--no-renames',R2,R3).decode().splitlines())=={f'M\t{k}'for k in R2_PATHS}
  assert set(git(root,'diff','--name-status','--no-renames',R3,head).decode().splitlines())=={f'M\t{k}'for k in R2_PATHS}
+ assert set(git(root,'diff','--name-status','--no-renames',R3,R4).decode().splitlines())=={f'M\t{k}'for k in R2_PATHS}
+ assert set(git(root,'diff','--name-status','--no-renames',R4,head).decode().splitlines())=={f'M\t{k}'for k in R2_PATHS}
  assert all(git(root,'show',R1+':'+p)==git(root,'show',head+':'+p)for p in QA-R2_PATHS)
  for k in QA:assert git(root,'ls-tree',head,'--',k).decode().split()[:2]==['100644','blob']
  assert stamp(git(root,'show',BASE+':'+MF))==P['manifest']
@@ -58,7 +62,7 @@ def pre(w):
   assert stamp(rd(t,REL))==P['sourceA']
  (w/'B'/REL).write_bytes(patch(rd(w/'A',REL)))
  assert git(w/'B','diff','--name-status').decode().splitlines()==['M\t'+REL]
- save(w/'out/SOURCE.json',{'publicBase':BASE,'tree':TREE,'qaHead':head,'originalQAHead':R1,'phasePredecessor':R3,'qaModified':sorted(R2_PATHS),'source':REL,'A':P['sourceA'],'B':P['sourceB'],'meaning':P['sourceOnly'],'publishedAuthority':[P['publishedRun'],P['publishedJob']]})
+ save(w/'out/SOURCE.json',{'publicBase':BASE,'tree':TREE,'qaHead':head,'originalQAHead':R1,'phasePredecessor':R4,'qaModified':sorted(R2_PATHS),'source':REL,'A':P['sourceA'],'B':P['sourceB'],'meaning':P['sourceOnly'],'publishedAuthority':[P['publishedRun'],P['publishedJob']]})
 def role(k):
  m=re.fullmatch(r'web/runtime/ordered-(common|game)-(\d+)\.[a-f0-9]{16}\.js',k)
  return m.groups() if m else None
@@ -131,7 +135,11 @@ def built(w):
 def archive(w):
  o=w/'out';g=json.loads(rd(o,'GRAPH.json'));x=json.loads(rd(o,'BROWSER.json'))
  assert x['status']=='PASS_ACTUAL_STAGE28_SIGNED_POSTER_ONLY' and len(x['paired'])==len(P['frames']) and all(r['pass']for r in x['paired'].values())
- assert len(x['visits'])==2*len(P['visits'])
+ expected={(s,k,target) for s in ('A','B') for k,v in P['visits'].items() for target in ([None]if v['stage']==28 else v['directions'])}
+ assert len(x['visits'])==len(expected) and {(r['arm'],f"s{r['stage']:02d}-{r['device'][0]}x{r['device'][1]}",r['target'])for r in x['visits']}==expected
+ for v in x['visits']:
+  plan=[] if v['target'] is None else ['north','east']+(['south']if v['target']=='west'else [])
+  assert [r['name']for r in v['prefix']]==plan and all(r.get('exactArchive') and r.get('exactCameraPhysics') for r in v['prefix'])
  assert all(r['state']=='NETWORK_AND_CAPTURE_EXACT' and r['navigationDocument']['proof']=='exact-main-frame-page.goto-body'
             and set(r['requiredObserved'])-{'HONRO.html'}<=set(r['listenerVerifiedRequired']) for r in x['visits'])
  assert x['phaseWitness']['A-mobile-north-cold-qualified'] and x['phaseWitness']['A-mobile-north-settled-qualified']
