@@ -65,8 +65,9 @@ export function authorFamily24(project,g){
  }
  rear('deep-foundation-masonry',masonry,[1700,2260,5300,550]);
  // Large earthen and stone faces distinguish the retaining terraces without repeated horizontal masonry bands.
- let faces='';for(const [x,y,w,h]of [[1720,2460,950,155],[4700,2260,520,210],[6410,2440,590,150]]){
- faces+=P([[x,y+12],[x+w,y+12],[x+w-23,y+h],[x+43,y+h-18]],'#5b6756')+P([[x+18,y+21],[x+w*.57,y+21],[x+w*.41,y+h-27],[x+53,y+h-23]],'#7c8069')+line([[x,y+4],[x+w,y+4]],'#afa68a',7);
+ let faces="<defs><clipPath id=\"family24-front6-east-return\"><path d=\"M6996.333333333333 2474 L7030 2471 L7030 2610 L6917 2610 L6929 2588 L6945 2570 L6952 2552 L6965 2540 L6958 2521 L6975 2506 L6976 2492 Z\" fill=\"#ffffff\"/></clipPath></defs>";for(const [x,y,w,h]of [[1720,2460,950,155],[4700,2260,520,210],[6410,2440,590,150]]){
+ const body=[[x,y+12],[x+w,y+12],[x+w-23,y+h],[x+43,y+h-18]],stock=P(body,'#5b6756');
+ faces+=(x===6410?"<g>"+stock+"<g clip-path=\"url(#family24-front6-east-return)\">"+P(body,'#485b4a')+"</g></g>":stock)+P([[x+18,y+21],[x+w*.57,y+21],[x+w*.41,y+h-27],[x+53,y+h-23]],'#7c8069')+line([[x,y+4],[x+w,y+4]],'#afa68a',7);
  }
  // These shallow material faces lie below the real collision contour. Draw them
  // over the earth fill, with no independent platform edge or collision surface.
