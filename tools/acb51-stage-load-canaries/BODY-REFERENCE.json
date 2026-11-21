@@ -1,0 +1,139 @@
+{
+  "metric": "BODY play source alpha only vs previously signed matching source endpoint membership; not stock browser pixels or performance",
+  "release": "acb51f4ee1c5afa90751dc256d6ad8d900732779",
+  "cases": [
+    {
+      "stage": 1,
+      "wire": {
+        "web/data/chapter-01.c3917afbdd6737bc.json": {
+          "bytes": 48157,
+          "sha256": "c3917afbdd6737bc8d5c99d4e37a0a5778698d7f95d4bc6676678d48623e8a7c"
+        },
+        "web/data/chapter-01-assets.088719e10e63d482.json": {
+          "bytes": 109473,
+          "sha256": "088719e10e63d4826b565b3a3a13857af068bed52ae8c8a8293d23becabeb1e3"
+        }
+      },
+      "worldROI": [
+        0,
+        0,
+        5400,
+        2200
+      ],
+      "ownerIDs": [
+        "act1-traced:stage01-body-v2"
+      ],
+      "alpha": [
+        {
+          "z": 0.21176470588235294,
+          "sha256": "e36b864e664d09d6230bcd184f92bfcaa7a23dbf3875286fd4f5d4d02eb0c835",
+          "weightedWU2": 4735702.155349795
+        },
+        {
+          "z": 0.4235294117647059,
+          "sha256": "eea6a4a06e5a09bfe811de7b1b70513d36590b877f21b2912a55d00d39774cff",
+          "weightedWU2": 4730119.155092593
+        }
+      ],
+      "eligibleEndpoints": 5263,
+      "endpointsPerM": 1111.3452297785516
+    },
+    {
+      "stage": 2,
+      "wire": {
+        "web/data/chapter-02.5faa275befa85b0d.json": {
+          "bytes": 55013,
+          "sha256": "5faa275befa85b0d49205b25a9d902c9d7ce448cf52fe25e124d4005b10f2ad2"
+        },
+        "web/data/chapter-02-assets.ddddf53df4d749c6.json": {
+          "bytes": 256633,
+          "sha256": "ddddf53df4d749c60375cba085a79d790319b1e9c1790cb29e840529409ab434"
+        }
+      },
+      "worldROI": [
+        0,
+        0,
+        4300,
+        3300
+      ],
+      "ownerIDs": [
+        "act1-traced:stage02-body-v2"
+      ],
+      "alpha": [
+        {
+          "z": 0.21176470588235294,
+          "sha256": "d7f1473f27bc7a0a86c187083f0fadfd6a77a609d4a363af8f0c83fb1d9d08ad",
+          "weightedWU2": 2242092.9218106996
+        },
+        {
+          "z": 0.4235294117647059,
+          "sha256": "393f128ecf814fad7300555783006764d2d076db607e154695dc57dcf4620760",
+          "weightedWU2": 2232966.3310185187
+        }
+      ],
+      "eligibleEndpoints": 2876,
+      "endpointsPerM": 1282.7300652987037
+    },
+    {
+      "stage": 42,
+      "wire": {
+        "web/data/chapter-42.0802015e8ba99d11.json": {
+          "bytes": 12647,
+          "sha256": "0802015e8ba99d11a8ece1f14186b3db6a4a7d3d32076e64ca120300f50c7f50"
+        },
+        "web/data/chapter-42-assets.396ec98508d5b8c8.json": {
+          "bytes": 1864856,
+          "sha256": "396ec98508d5b8c828a8d0bbf24c2f6cac1a734a55989db3f3d3fcc1d80bb1df"
+        }
+      },
+      "worldROI": [
+        0,
+        0,
+        6500,
+        2861
+      ],
+      "ownerIDs": [
+        "act5:near:42",
+        "act5:stage42:registered-body"
+      ],
+      "alpha": [
+        {
+          "z": 0.21176470588235294,
+          "sha256": "359d7f8299c04bf459b944921806b14cb1b4086e53723214d398949d2c0d92c3",
+          "weightedWU2": 7869862.906378602
+        },
+        {
+          "z": 0.4235294117647059,
+          "sha256": "3e023f9c903a94f89897cae367ab2281c25122836c65726e1045a76020259e52",
+          "weightedWU2": 7859917.928240742
+        }
+      ],
+      "eligibleEndpoints": 29153,
+      "endpointsPerM": 3704.3847328485485
+    }
+  ],
+  "partialStage46": {
+    "status": "SOURCE_ONLY_PARTIAL_WEST_OCCUPATION_NOT_WHOLE_DENSITY",
+    "wire": {
+      "web/data/chapter-46.2806e485c4c1e1b4.json": {
+        "bytes": 24682,
+        "sha256": "2806e485c4c1e1b4d94174b8324a2d534291c22c481c94960883a29643e9da02"
+      },
+      "web/data/chapter-46-assets-parts.44d5eab7aa305416.json": {
+        "bytes": 765,
+        "sha256": "44d5eab7aa305416e2d0d9ffec53ad210901e8271d216f0e9cab045cb7b04f1f"
+      }
+    },
+    "aggregateDescriptor": {
+      "bytes": 16590634,
+      "sha256": "120aa444cdf1094a9d3d081d1691d803ba0e46dd2cc1bbf989a5f1b59e930855"
+    },
+    "paintRoles": "act5:near:46 raw protect A and exterior part2 only, not all six actual runtime BODY components",
+    "notMeasured": [
+      "BODY union whole stage",
+      "render time",
+      "full collision",
+      "ROIs outside western cap"
+    ]
+  }
+}

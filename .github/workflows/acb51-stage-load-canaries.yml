@@ -1,0 +1,69 @@
+name: HONRO acb51 exact first loadability component (QA only)
+on:
+  push:
+    branches: [qa/acb51-first-loadability-canaries]
+    paths:
+      - '.github/workflows/acb51-stage-load-canaries.yml'
+      - 'tools/acb51-stage-load-canaries/**'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  canary:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/acb51-first-loadability-canaries'
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        include:
+          - {shard: all-wire, stages: all}
+          - {shard: Act1, stages: '2'}
+          - {shard: Act2, stages: '11,15'}
+          - {shard: Act3, stages: '24'}
+          - {shard: Act4, stages: '38'}
+          - {shard: Act5, stages: '46'}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 18
+    env:
+      SHARD: ${{ matrix.shard }}
+      STAGES: ${{ matrix.stages }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Exact read-only acb51 and Pages authority
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          W="$(mktemp -d "$RUNNER_TEMP/acb51-load.XXXXXX")"
+          mkdir "$W/out"
+          echo "WORK=$W" >> "$GITHUB_ENV"
+          python tools/acb51-stage-load-canaries/load.py authority "$W"
+      - name: Verify exact bytes, split parts, active provider, and asset decode
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -z "${GH_TOKEN:-}${GITHUB_TOKEN:-}"
+          python tools/acb51-stage-load-canaries/source.py --tree "$WORK/B" --stages "$STAGES" --out "$WORK/out/WIRE.json"
+      - name: Actual anonymous Chrome load of canonical scene
+        if: matrix.shard != 'all-wire'
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -z "${GH_TOKEN:-}${GITHUB_TOKEN:-}"
+          python -m venv "$WORK/venv"
+          V="$WORK/venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+          "$V" tools/acb51-stage-load-canaries/load.py app "$WORK" "$SHARD"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always() && env.WORK != ''
+        with:
+          name: honro-acb51-loadability-${{ matrix.shard }}-no-deploy
+          path: ${{ env.WORK }}/out
+          if-no-files-found: error
+          retention-days: 7
