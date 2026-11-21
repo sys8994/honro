@@ -1,0 +1,60 @@
+name: HONRO Stage28 retained exact release candidate QA no deployment
+on:
+  push:
+    branches: [qa/stage28-retention-acb51]
+    paths:
+      - .github/workflows/stage28-retention-acb51.yml
+      - tools/stage28-retention/**
+permissions:
+  actions: read
+  contents: read
+jobs:
+  retained-proof:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage28-retention-acb51'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 24
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 10
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Verify current published baseline and exact composite R6 R7 evidence
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          W="$RUNNER_TEMP/stage28-retained"
+          mkdir "$W" "$W/out"
+          echo "WORK=$W" >> "$GITHUB_ENV"
+          python "$GITHUB_WORKSPACE/tools/stage28-retention/retention.py" authority "$W"
+      - name: Rebuild exact Stage28 verified graph and seal real retained aliases
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -z "${GH_TOKEN:-}${GITHUB_TOKEN:-}"
+          T="$WORK"
+          Q="$GITHUB_WORKSPACE/tools/stage28-retention/retention.py"
+          python "$Q" pre "$T"
+          (
+            cd "$T/B"
+            npm ci > "$T/out/npm-root-B.log" 2>&1
+            npm ci --prefix game > "$T/out/npm-game-B.log" 2>&1
+            npm run test:release-guard > "$T/out/release-guard-B.log" 2>&1
+            npm run build > "$T/out/build-B.log" 2>&1
+            npm run test:production-contract > "$T/out/production-contract-B.log" 2>&1
+          )
+          python "$Q" seal "$T"
+          cp "$T/authority.json" "$T/out/AUTHORITY.json"
+      - if: always() && env.WORK != ''
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage28-retained-protected-proof-not-deployed
+          path: ${{ runner.temp }}/stage28-retained/out/
+          retention-days: 7
+          if-no-files-found: error
