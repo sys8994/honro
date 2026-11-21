@@ -404,7 +404,7 @@ def build_context():
     assert gitsha(compact)==PACK_BLOB and (B_ROOT/PACKAGE).read_bytes()==compact
     if ARM=='B':return {**b_receipt,'arm':ARM,'fExactWestOnly':False}
     candidate=make(compact)
-    assert gitsha(candidate)=='47208e34121b8a1fc729fbf47f4eb14e8d4a1362'
+    assert gitsha(candidate)=='7eb2a4dafd5fdd700f8008733e70b7c20296da58'
     assert read(PACKAGE)==candidate
 
     # Content-addressed graph edge, not a wildcard: only the compact data path

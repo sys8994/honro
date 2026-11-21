@@ -11,7 +11,7 @@ SRC='compact15-source-world'
 STUDY=json.loads((Q/'study-F-proof.json').read_bytes())
 assert STUDY['ownerParentClips']['assetId']==WEST
 assert STUDY['ownerParentClips']['rootStripIndices']==[2,3]
-assert STUDY['insetWorldFromPhysicalRoofRim']==[20.,16.]
+assert STUDY['insetWorldFromPhysicalRoofRim']==[32.,16.]
 assert STUDY['disjointNewPartitionCells'] and len(STUDY['worldFaceDomains'])==6
 def west(p):
     found=[a for a in p['assets'] if a['id']==WEST]
@@ -38,7 +38,7 @@ def generate(old):
     content=hidden['children'][0]['children']
     assert [g['children'][0]['fill'] for g in content]==['#445c64','#60747c','#88887e']
     trace=[('LongShoulder',content[1]['children'][0],'long fracture returning into the left shoulder'),
-           ('RimFlakes',content[2]['children'][0],'limestone edge flakes project into a quiet parent plane')]
+           ('RimFlakes',content[2]['children'][0],'diagonal lamination through the limestone shoulder')]
     for label,face,_ in trace:
         assert face['tag']=='path' and not any(k in face for k in ('transform','clipPath','dParts'))
         assert face['fillRule']=='nonzero' and face['stroke']=='none' and face['opacity']==1

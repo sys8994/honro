@@ -1,5 +1,5 @@
 """Strict frozen B→F compositor comparison of normal browser PNGs."""
-import hashlib,json,re,sys
+import hashlib,json,math,re,sys
 from pathlib import Path
 import numpy as np
 from PIL import Image,ImageDraw,ImageFilter
@@ -41,7 +41,14 @@ for k,old in a.items():
   assert all(sha(z)==p[h]for z,p in zip(chain,(old,new)))
   if past: assert old[h]==past[h],(k,mode,'frozen B official bytes changed')
   aa,bb=[np.asarray(Image.open(W/f/p[name]).convert('RGBA'))for f,p in zip('BF',(old,new))]
-  assert aa.shape==bb.shape and aa.shape[:2]==(old['backing'][1],old['backing'][0])
+  # Raw backing pixels are integer-rounded by canvas; an element screenshot
+  # includes the enclosing CSS bounds. They are separate physical surfaces.
+  if mode=='raw':
+   expected=tuple(old['backing'])
+  else:
+   assert old['DPR']==1 and new['DPR']==1
+   expected=(math.ceil(old['css']['w']),math.ceil(old['css']['h']))
+  assert aa.shape==bb.shape and aa.shape[:2]==expected[::-1],(k,mode,aa.shape,bb.shape,expected)
   scale=old['actual']['scale'];l,t=old['viewport']['left'],old['viewport']['top']; hh,ww=aa.shape[:2]
   X=l+(np.arange(ww)+.5)/scale;Y=t+(np.arange(hh)+.5)/scale
   shape=Image.new('L',(ww,hh));draw=ImageDraw.Draw(shape)
