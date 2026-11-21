@@ -47,7 +47,7 @@ function bodyLive(l,b){const ids=terrainIds(l);return ids.length>0&&new Set(ids)
 function covered(t,b){const q=config(b);return !!(q&&q.coveredTerrainIds.includes(t.id)&&!t.honroElementCollision&&(b.honroLandmarks||[]).some(l=>native(l,b)&&l.nativeArtLayer==='body'&&bodyLive(l,b)&&terrainIds(l).includes(t.id)&&(l.opacity??1)===1));}
 const contactUnderpaint={
  'act4-handoff:32:body-joined':{'approved32-east-face':['#626b70','#879193']},
- 'act4-handoff:35:body':{'approved35-bridge-pier':['#55594c','#797965']},
+ 'act4-handoff:35:body':{'approved35-bridge-pier':['#415567','#657f91']},
 };
 function paintContactUnderlay(c,l,b){
  const styles=contactUnderpaint[l.asset.id];if(!styles)return;
