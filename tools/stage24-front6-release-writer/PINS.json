@@ -1,0 +1,188 @@
+{
+  "enabled": true,
+  "base": "b79ea7fd87fda5586d78eae0a7052996b8e71fb5",
+  "baseTree": "1e55d910bbabc43919c20a14d1a06002b20f4977",
+  "priorPages": {
+    "run": 44897685446,
+    "job": 136827113112,
+    "publishedAt": "2026-11-21T11:10:38.2358222Z",
+    "manifestGitBlob": "922db7aa4ecef59cbae10975f4d2d2091faf5d8f",
+    "manifestSHA256": "0bf1527b6aa52fa5f4f22eb1b90102df5f1c6ea0cb791d664b1b94081c1b65cf",
+    "registryCount": 1311,
+    "oldPublishedGraphs": 39
+  },
+  "normal": {
+    "run": 44916353122,
+    "artifact": 14711489507,
+    "head": "e4aad78d72ba927e82f8761dcfb0fef773bac947",
+    "proof": {
+      "bytes": 97258,
+      "sha256": "7a55613a5e217afa44baa587f20b328b1d777a40ab1e438520b909031af1c49f"
+    },
+    "graph": {
+      "bytes": 295463,
+      "sha256": "923554c83e7a7d525ee90ac4f6727b714b89e6cd04a6c37fbee2b5eeb6af920e"
+    },
+    "normalZIP": {
+      "bytes": 1836131,
+      "sha256": "40a83ad41afeb25fed300be442031358af9a6f6e0ba2fe1f22c40653e5ad24fd"
+    },
+    "sealSHA256": "12dda655dce181821b89bb0f48ff3c7a39298cad0a322f455a6e35a69c1040e3",
+    "outer": {
+      "bytes": 9633040,
+      "sha256": "7607585b697cd8e1f87f6e4b5e063af41ab717e34175c2d5009f7ce3d18d2f9d"
+    },
+    "stage24MapPin": "web/data/chapter-24.966a29d49ef5b519.json"
+  },
+  "sourceOld": {
+    "shared/data/campaign.json": "edaf31a5fda2b7db0202bc0efb52dd83e54f6b9e",
+    "tools/map-forge/stage24-family-compound.mjs": "514274cdcdaf2968bfe9371272a6f56e273b9c72"
+  },
+  "sourceNew": {
+    "shared/data/campaign.json": "a13fc5834808899bcf3b0eac1aa3ca4ada625a2b",
+    "tools/map-forge/stage24-family-compound.mjs": "9028bacf5603eb7447f97f1f0ccc65ec37912e2e"
+  },
+  "normalFiles": {
+    "HONRO.html": {
+      "bytes": 17379,
+      "sha256": "7f0b08897737d44f4f7d9a436e703b7ec48659fcb121098ea1cffd5b1f93d46d"
+    },
+    "HONRO_WORKSHOP.html": {
+      "bytes": 4011,
+      "sha256": "d143e5de877a183302966e43aef3f684c9ca305bb09437d8de99f987c68404ad"
+    },
+    "index.html": {
+      "bytes": 17379,
+      "sha256": "7f0b08897737d44f4f7d9a436e703b7ec48659fcb121098ea1cffd5b1f93d46d"
+    },
+    "web/data/campaign.7140da5d3649e4ab.json": {
+      "bytes": 54961,
+      "sha256": "7140da5d3649e4aba2c58e180c8ff3f6f171a70e5e6704ad05dc98d428c52822"
+    },
+    "web/data/chapter-24-assets.636aabc0f572b723.json": {
+      "bytes": 490928,
+      "sha256": "636aabc0f572b7234b3f5b6bebfcb4b6376433a22e76d1a073c5ca28b7d1a46c"
+    },
+    "web/entries/game.1acc5c361cb2b136.html": {
+      "bytes": 11318,
+      "sha256": "1acc5c361cb2b1369b8205dc7a3ba8277775c668e0a3e393772d199a53669a80"
+    },
+    "web/entries/game.b0b1e648c2c03457.js": {
+      "bytes": 20483,
+      "sha256": "b0b1e648c2c034576f5e2c701faaa06c4a8f6dca7459e3f54f07fdb94bf61dee"
+    },
+    "web/entries/workshop.b980331722d6690d.js": {
+      "bytes": 16706,
+      "sha256": "b980331722d6690df3fd67e9c22f93f8ede135ac3758e940a0d8d8c0034a66c5"
+    },
+    "web/manifest.json": {
+      "bytes": 6260027,
+      "sha256": "7e8643180cc9b4ee84b53408d8d17e1a2706e3ce64db2a6d604960588359a9c8"
+    },
+    "web/runtime/campaign.926544619e01a04a.js": {
+      "bytes": 527,
+      "sha256": "926544619e01a04af2f2cc0e2bd435265ae9efff23062e259563bded6d851307"
+    }
+  },
+  "preGraph": "88573bf45eaff7f7ecd89ff326cbdd93c328c032a59ef87e2669338121c5281c",
+  "normalGraph": "6413b805c8ee852ed59bb62ab6a6ca208589c848b238313478cf95f090cbce4a",
+  "normalManifestWithoutHistory": "e4b3ad8287987721bd23a2c1ed2fc1c2b831cce5a82995100695d0a85b51042b",
+  "oldURLs": {
+    "web/runtime/campaign.a4e4a1f2c263a866.js": {
+      "bytes": 527,
+      "sha256": "a4e4a1f2c263a8664156be6fd74a824061ffc18f8c2c2580e9b4fbd4123f6b19"
+    },
+    "web/entries/game.16fa712378260ab7.js": {
+      "bytes": 20483,
+      "sha256": "16fa712378260ab755902f838024524e733b769c5cd540f95737b3eaff58f7b1"
+    },
+    "web/entries/game.27bee1d027287972.html": {
+      "bytes": 11318,
+      "sha256": "27bee1d0272879720f4688ae605fce837b7609675202ef2c69d56fb34b554fc7"
+    },
+    "web/entries/workshop.c04fdab1de4158c5.js": {
+      "bytes": 16706,
+      "sha256": "c04fdab1de4158c57e7684d85e7a74c8a59b3a77f23ffed6d6d99fe9bd0b1d53"
+    },
+    "web/data/campaign.324003dbe6483ac8.json": {
+      "bytes": 54961,
+      "sha256": "324003dbe6483ac8a778ba250d8aa8d1c63d9149f1cb5b580e6011256006f437"
+    },
+    "web/data/chapter-24-assets.9da653528c6235b1.json": {
+      "bytes": 490200,
+      "sha256": "9da653528c6235b1bfdc6617cad6421d45da11b2aeeef7d0c3957b6fa7235116"
+    }
+  },
+  "newURLs": {
+    "web/entries/game.b0b1e648c2c03457.js": {
+      "bytes": 20483,
+      "sha256": "b0b1e648c2c034576f5e2c701faaa06c4a8f6dca7459e3f54f07fdb94bf61dee"
+    },
+    "web/runtime/campaign.926544619e01a04a.js": {
+      "bytes": 527,
+      "sha256": "926544619e01a04af2f2cc0e2bd435265ae9efff23062e259563bded6d851307"
+    },
+    "web/data/chapter-24-assets.636aabc0f572b723.json": {
+      "bytes": 490928,
+      "sha256": "636aabc0f572b7234b3f5b6bebfcb4b6376433a22e76d1a073c5ca28b7d1a46c"
+    },
+    "web/entries/workshop.b980331722d6690d.js": {
+      "bytes": 16706,
+      "sha256": "b980331722d6690df3fd67e9c22f93f8ede135ac3758e940a0d8d8c0034a66c5"
+    },
+    "web/data/campaign.7140da5d3649e4ab.json": {
+      "bytes": 54961,
+      "sha256": "7140da5d3649e4aba2c58e180c8ff3f6f171a70e5e6704ad05dc98d428c52822"
+    },
+    "web/entries/game.1acc5c361cb2b136.html": {
+      "bytes": 11318,
+      "sha256": "1acc5c361cb2b1369b8205dc7a3ba8277775c668e0a3e393772d199a53669a80"
+    }
+  },
+  "aliases": {
+    "web/runtime/campaign.a4e4a1f2c263a866.js": "web/runtime/campaign.926544619e01a04a.js",
+    "web/entries/game.16fa712378260ab7.js": "web/entries/game.b0b1e648c2c03457.js",
+    "web/entries/game.27bee1d027287972.html": "web/entries/game.1acc5c361cb2b136.html",
+    "web/entries/workshop.c04fdab1de4158c5.js": "web/entries/workshop.b980331722d6690d.js",
+    "web/data/campaign.324003dbe6483ac8.json": "web/data/campaign.7140da5d3649e4ab.json",
+    "web/data/chapter-24-assets.9da653528c6235b1.json": "web/data/chapter-24-assets.636aabc0f572b723.json"
+  },
+  "canonicalBinding": {
+    "campaign": "web/data/campaign.7140da5d3649e4ab.json",
+    "map": "web/data/chapter-24.966a29d49ef5b519.json",
+    "packet": "web/data/chapter-24-assets.636aabc0f572b723.json",
+    "base": "web/data/campaign-base.0c57dcfe7c08d421.json",
+    "shared": "web/data/campaign-shared.8f8343b5c21518d4.json",
+    "runtime": "web/runtime/campaign.926544619e01a04a.js",
+    "entry": "web/entries/game.b0b1e648c2c03457.js",
+    "workshop": "web/entries/workshop.b980331722d6690d.js",
+    "embedded": "web/entries/game.1acc5c361cb2b136.html"
+  },
+  "manufacture": {
+    "run": 44917799843,
+    "job": 136887045479,
+    "head": "b27c2e5232f59fa2270c364d4feaf9010851e9e0",
+    "tree": "2702323a7988f53e7023fa511e0800137c5c2e2d",
+    "outer": {
+      "id": 14712630495,
+      "bytes": 3358222,
+      "sha256": "1f90106715507e4d57b1d19774e2acafa704456ecf8eda854a40d083efc23d39"
+    },
+    "nested": {
+      "bytes": 3324833,
+      "sha256": "b64aa437fd09c218c1d4fedd8c1cf93cc674f6c3411252179d5b47537dfcfd2c"
+    },
+    "receiptSHA256": "fce46ce3c07839af4c7eba4e2cfc12e99824dd7636ce68cdd4b44ac87ce0ee1c",
+    "verifiedAuthoritySHA256": "dece37d6a45b1811f792af1e6312fdf53adf30bd470118189d002975a12de48d",
+    "compatibilitySHA256": "f4cb3fefd5cbd03ab2dfc55a37808f795e564d76bd06db73b446b2c365d207ac"
+  },
+  "candidate": {
+    "tree": "5cc36cfd7ef62fc801dc967605260610596d8061",
+    "commit": "acb51f4ee1c5afa90751dc256d6ad8d900732779",
+    "manifest": {
+      "bytes": 6458505,
+      "sha256": "e274ee2d3dbfee5ce35dfccd6055bfa1a898e3804bde80b687fd49f890c4079b",
+      "git": "264dc2eaa4a48d683aff9519b3281c961071c49e"
+    }
+  }
+}
