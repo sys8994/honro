@@ -1,0 +1,40 @@
+name: HONRO Stage34 southwest exact A-only R2 no release
+on:
+  push:
+    branches: [qa/stage34-sw-a-only-2c4-r2]
+    paths:
+      - .github/workflows/stage34-sw-a-only.yml
+      - tools/stage34-sw-a-only/**
+permissions:
+  contents: read
+jobs:
+  actual-stock-capture:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage34-sw-a-only-2c4-r2'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+          fetch-depth: 2
+      - name: Exact A-only current stage PC and mobile, fresh near repeat and min controls
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -z "${GH_TOKEN:-}${GITHUB_TOKEN:-}"
+          Q="$RUNNER_TEMP/stage34-sw-a-only"
+          mkdir "$Q"
+          python3 -m venv "$Q/venv"
+          V="$Q/venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+          "$V" tools/stage34-sw-a-only/capture.py --capture-exact-2c4-A --out "$Q/out"
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage34-sw-current-A-only-R2-no-release
+          path: ${{ runner.temp }}/stage34-sw-a-only/out/
+          retention-days: 7
+          if-no-files-found: error
