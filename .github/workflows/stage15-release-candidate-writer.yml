@@ -1,0 +1,79 @@
+name: Stage15 isolated candidate ref transport (no deploy)
+on:
+  push:
+    branches: [qa/stage15-release-writer-2939958-20261121]
+permissions: {}
+concurrency:
+  group: stage15-release-candidate-only
+  cancel-in-progress: false
+jobs:
+  verify-manufacturing-artifact:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage15-release-writer-2939958-20261121'
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      actions: read
+    outputs:
+      bundle: ${{ steps.seal.outputs.bundle }}
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+          fetch-depth: 2
+      - name: Verify exact role and preselected writer change surface
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test "$(git show -s --format=%P HEAD)" = 2939958cc87407ef60b58720bb6e086b8559031b
+          diff -u <(printf 'A\t%s\n' .github/workflows/stage15-release-candidate-writer.yml tools/stage15-release-writer/{PINS.json,safe-push.sh,writer.py} | sort) \
+            <(git diff --no-renames --name-status HEAD^ HEAD | sort)
+          python tools/stage15-release-writer/writer.py pins
+      - name: Read and seal exact verified manufacturing artifact
+        id: seal
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          bundle="$(python tools/stage15-release-writer/writer.py verify "$RUNNER_TEMP/writer-handoff")"
+          [[ "$bundle" =~ ^[a-f0-9]{64}$ ]]
+          echo "bundle=$bundle" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: stage15-writer-sealed-exact-input
+          path: ${{ runner.temp }}/writer-handoff
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 1
+  write-only-designated-test-release-ref:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage15-release-writer-2939958-20261121'
+    runs-on: ubuntu-24.04
+    needs: verify-manufacturing-artifact
+    permissions:
+      contents: write
+    steps:
+      # Same-run immutable Actions artifact; intentionally no checkout and no
+      # repository token input to the download action.
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: stage15-writer-sealed-exact-input
+          path: ${{ runner.temp }}/writer-handoff
+      - name: Validate sealed local handoff with no git write credential
+        shell: bash
+        env:
+          SEALED_SHA: ${{ needs.verify-manufacturing-artifact.outputs.bundle }}
+        run: |
+          set -euo pipefail
+          cd "$RUNNER_TEMP/writer-handoff"
+          [[ "$SEALED_SHA" =~ ^[a-f0-9]{64}$ ]]
+          test "$(sha256sum HANDOFF.SHA256 | cut -d' ' -f1)" = "$SEALED_SHA"
+          sha256sum -c HANDOFF.SHA256
+          python writer.py pins
+      - name: Ordinary exact-predecessor push to one designated existing ref
+        shell: bash
+        env:
+          STAGE15_WRITE_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          bash "$RUNNER_TEMP/writer-handoff/safe-push.sh" "$RUNNER_TEMP/writer-handoff"

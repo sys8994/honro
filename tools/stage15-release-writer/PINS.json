@@ -1,0 +1,102 @@
+{
+  "enabled": true,
+  "repo": "sys8994/honro",
+  "base": "2939958cc87407ef60b58720bb6e086b8559031b",
+  "baseTree": "08e22a8cc0ab608e125ad73f8e8e1c288d8c4c74",
+  "baseManifestSHA": "cc22d45754173a212ab3ce05d7bc5b3faf211c13e7ad5ba08f252f8e10f56304",
+  "releaseRef": "refs/heads/release/act2-stage15-terrain-20261121",
+  "sourceGit": {
+    "shared/runtime/renderer.js": "8f0e30d5143fc64acd1850ee07e40413f1879d40",
+    "shared/data/act2/stage15-compact-package.json": "def9ee43b1ac654bb15c0bfd61e46febc7b80d2c",
+    "shared/data/terrain-path-optimization.json": "1baa483bec04bc905d419cd36dbe803335a7e037"
+  },
+  "normalManifest": {
+    "bytes": 6095799,
+    "sha256": "5ed6255b6f2e14a5a57a71762952aaf401a81f241a1b0de4eed6d382427fe7ce"
+  },
+  "manufacture": {
+    "run": 44863641151,
+    "job": 136722363789,
+    "head": "dda45b5eac70697e6b60b74b75363d06aec08002",
+    "branch": "qa/stage15-retained-r3-2939958-20261121",
+    "workflow": ".github/workflows/stage15-retained-r3.yml",
+    "artifactName": "stage15-retained-r3-source-and-generated-delta-no-deploy",
+    "outer": {
+      "id": 14690948155,
+      "bytes": 16172535,
+      "sha256": "33b55d356a7504a90f7bdd132c0985f59b27a3e90ab083b6a7294b31c6df21c5"
+    },
+    "nested": {
+      "bytes": 16151207,
+      "sha256": "31d13841f0e5f7322d6594d1b12d47ee2dadd5d5bd8b4c23dd2b8a98cfaf3929"
+    },
+    "receiptSHA256": "9cc5aee21ea10f50a22744537508cd1b04605c80e4ed4394b8c02852237dfb24"
+  },
+  "files": {
+    "HONRO.html": {
+      "bytes": 17379,
+      "sha256": "56ebd2c37c63d16e2a24973f8d4971f991cd1658834b589942de1ba673ef1b84"
+    },
+    "HONRO_WORKSHOP.html": {
+      "bytes": 4011,
+      "sha256": "953a6c7bf840398d7d91d8a83affbfb152f79ca5d03104a5c92ee591a09eeb14"
+    },
+    "index.html": {
+      "bytes": 17379,
+      "sha256": "56ebd2c37c63d16e2a24973f8d4971f991cd1658834b589942de1ba673ef1b84"
+    },
+    "shared/data/act2/stage15-compact-package.json": {
+      "bytes": 418045,
+      "sha256": "380c4f94ead7f23b96fc70db464267403585b7627f1c05f4cd6d63c85dc644f0"
+    },
+    "shared/data/terrain-path-optimization.json": {
+      "bytes": 30373167,
+      "sha256": "37bbc55b4da4da9291ab18ff5100a16bd072626a3eb69be004890414c3878787"
+    },
+    "shared/runtime/renderer.js": {
+      "bytes": 101243,
+      "sha256": "bfa01ab0d0814b0835bd77dc405792a9947b1964c691abb7baf26ee75c5ae164"
+    },
+    "web/data/HONRO_ACT2_COMPACT_PACKAGES-part-000.45cc14d990012925.bin": {
+      "bytes": 4194304,
+      "sha256": "45cc14d990012925cbfbb05dc04743f54d6affe80e32763e9a77bfc93f4620a0"
+    },
+    "web/data/HONRO_ACT2_COMPACT_PACKAGES-part-001.9e74461920a17acd.bin": {
+      "bytes": 3390067,
+      "sha256": "9e74461920a17acd7c8c2d77cc4e057dcf3fb871f2273dc905f37aacda150473"
+    },
+    "web/data/HONRO_ACT2_COMPACT_PACKAGES-parts.420dfb2876af8ed7.json": {
+      "bytes": 464,
+      "sha256": "420dfb2876af8ed739351b8fcabaf6ad6d0eef30dd67d9126bee8bb5ce671a27"
+    },
+    "web/entries/game.1a416fa243abda78.html": {
+      "bytes": 11318,
+      "sha256": "1a416fa243abda78fa34c4ad6d440f173be5c586bfabe5e463d6f530055d30b1"
+    },
+    "web/entries/game.2ec041e00ee60d39.js": {
+      "bytes": 20483,
+      "sha256": "2ec041e00ee60d39ad8de79fd4c024ab95b74d89b18603773abc948c7af9df4a"
+    },
+    "web/entries/workshop.00ee0157276a689e.js": {
+      "bytes": 16706,
+      "sha256": "00ee0157276a689e7ce7dcc0fdce955461177201d7939ce2b282791c2f9b649f"
+    },
+    "web/manifest.json": {
+      "bytes": 6265038,
+      "sha256": "c77a561f82a5f0748d1d4cfd4a675d5db9118ba2c53537c778fd9c77a12400c4"
+    },
+    "web/runtime/HONRO_ACT2_COMPACT_PACKAGES.ad917621a5a55dd5.js": {
+      "bytes": 211,
+      "sha256": "ad917621a5a55dd58fec3a7a90133feadf70b91b2b1f5949275a9f2e25b1542f"
+    },
+    "web/runtime/ordered-common-15.370f1fb43d3a212f.js": {
+      "bytes": 163921,
+      "sha256": "370f1fb43d3a212f035eabb93ea935aff41d6146fb8c9103c77a1f9c1f07d737"
+    },
+    "web/runtime/ordered-common-16.c094392d4ee992d9.js": {
+      "bytes": 177300,
+      "sha256": "c094392d4ee992d95fda1a5d8d50835a93ef8c9095962b1f10e4d34b3aec3b21"
+    }
+  },
+  "commitDate": "2026-11-21T04:00:17Z"
+}
