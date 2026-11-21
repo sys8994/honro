@@ -1,0 +1,46 @@
+name: HONRO Stage21 public east native stock at ordinary/overview zoom with West control
+on:
+  push:
+    branches: [qa/stage21-east-native-b79-observer]
+    paths:
+      - '.github/workflows/stage21-east-native-observer.yml'
+      - 'tools/stage21-east-native-observer/observe.py'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  observe:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage21-east-native-b79-observer'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 3
+          persist-credentials: false
+      - name: Exact signed public release and docs-only ancestry
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          OUT="$(mktemp -d "$RUNNER_TEMP/honro-stage21-observe.XXXXXX")"
+          echo "OUT=$OUT" >> "$GITHUB_ENV"
+          python3 tools/stage21-east-native-observer/observe.py authority "$OUT"
+      - name: Tokenless Stage21 actual native Chrome observation only
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -z "${GH_TOKEN:-}${GITHUB_TOKEN:-}"
+          V="$RUNNER_TEMP/honro-stage21-observe-venv"
+          python3 -m venv "$V"
+          "$V/bin/python" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V/bin/python" -m playwright install --with-deps chromium
+          PYTHONDONTWRITEBYTECODE=1 "$V/bin/python" tools/stage21-east-native-observer/observe.py app "$OUT"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always() && env.OUT != ''
+        with:
+          name: honro-stage21-east-native-aim1-observer
+          path: ${{ env.OUT }}
+          if-no-files-found: error
+          retention-days: 7
