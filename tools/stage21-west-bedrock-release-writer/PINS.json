@@ -1,0 +1,173 @@
+{
+  "enabled": true,
+  "repo": "sys8994/honro",
+  "base": "9acde7427f3ebfce00f9ad3a9b943d030e2c352d",
+  "baseTree": "88e7031612970afa607c8e6b72cb00b42f95364f",
+  "releaseRef": "refs/heads/release/act3-stage21-west-bedrock-20261121",
+  "priorPages": {
+    "run": 44888850180,
+    "job": 136800355127,
+    "publishedAt": "2026-11-21T09:19:03.2307428Z",
+    "manifestGitBlob": "bbd1df9330c52e06a0fc39e5cd8efc70a74f185c",
+    "manifestSHA256": "d54ac73e9084e2c8d8f437142a0109be0bbb24a180589af2225c7a4bd4f7c427"
+  },
+  "source": "a2fd46334146b1b0a7459c99bcbfd9fb9250ae0d",
+  "sourceTree": "8a18dc5e09e7f78b39cbe7ce660afe9d05a5ce4e",
+  "sourceGit": {
+    "shared/runtime/act3-handoff-art.js": "234cc3908cdabe4ddce36d63bc46dd49b1b3d621",
+    "tests/stage21-west-bedrock-source.mjs": "fec78045c0a71addd0425ac0454d66a823f8922e"
+  },
+  "normalAuthority": {
+    "run": 44892847667,
+    "job": 136812188390,
+    "head": "d7aef1c3b57207ec951af5d79439579780dc8008",
+    "tree": "da70cb350526df4da8fa91ba5179c72919968195",
+    "artifact": {
+      "id": 14702748522,
+      "bytes": 22745697,
+      "sha256": "f82a0fac5d1f8fd9562a841fbe18e75f64636ff75ffb4e01d768959d627b9b8e"
+    },
+    "nestedNormal": "39c65d0d85fb90d30d0ce205f01a6358b640d51892cc69ea7784ade906bfcd32",
+    "normalProofReceipts": {
+      "SOURCE.json": "f9351116793fb0dd7f48115d21daa77929587d88fbda4dc802127f48432dd65a",
+      "GRAPH.json": "b4c5665c930cb7b806d08ceb353048aca6c0f61071b655b7ae127ed68c4e45d2",
+      "proof.json": "19a16dac035394c53b6229879f5860f6c79382c97f477fdfd8d7721948718209"
+    },
+    "decodedApprovedPNGCount": 36,
+    "authorizedNormalGenerated": {
+      "HONRO.html": {
+        "bytes": 17379,
+        "sha256": "bf351f5c4acbf3f32143c774cb0c7d6c86f06dab3165f8d2b55647b56a51945d"
+      },
+      "HONRO_WORKSHOP.html": {
+        "bytes": 4011,
+        "sha256": "6d2920c01b4ec0773dcaa6119864b4e27b917f65ef34e96cd2a1eb29f62c3b4a"
+      },
+      "index.html": {
+        "bytes": 17379,
+        "sha256": "bf351f5c4acbf3f32143c774cb0c7d6c86f06dab3165f8d2b55647b56a51945d"
+      },
+      "web/entries/game.5fabc36680b0de6e.html": {
+        "bytes": 11318,
+        "sha256": "5fabc36680b0de6edd574b5141b7bc0076caae6597635ef5e46eff190e143a94"
+      },
+      "web/entries/game.a47fa9bb7d45a42e.js": {
+        "bytes": 20483,
+        "sha256": "a47fa9bb7d45a42e31c859942c8fa601106919e88be29039df1235b2ea1244bc"
+      },
+      "web/entries/workshop.a2eef25feaf1a9a1.js": {
+        "bytes": 16706,
+        "sha256": "a2eef25feaf1a9a18cf67a2ae1049b798f9f28afda1bebfc7ed995676e90d100"
+      },
+      "web/manifest.json": {
+        "bytes": 6435758,
+        "sha256": "1b1d09b9e864f40f90f2099a3fec9a4f972b3f3a95ce41e24933d57e367012b1"
+      },
+      "web/runtime/ordered-common-17.9a592f68229e4289.js": {
+        "bytes": 104308,
+        "sha256": "9a592f68229e42894a87a328a71e2ac8408bb1556f441bcbc67229aa80ba718c"
+      }
+    }
+  },
+  "expectedAliases": {
+    "web/entries/game.6d15aeb89fecafdb.js": "web/entries/game.a47fa9bb7d45a42e.js",
+    "web/entries/workshop.7816df2c88efd28c.js": "web/entries/workshop.a2eef25feaf1a9a1.js",
+    "web/entries/game.abedc85b183c711f.html": "web/entries/game.5fabc36680b0de6e.html",
+    "web/runtime/ordered-common-17.2ed746adf1d3e0e3.js": "web/runtime/ordered-common-17.9a592f68229e4289.js"
+  },
+  "normalBodyOnly": {
+    "wrapperIndex": 17,
+    "before": {
+      "bytes": 5084,
+      "sha256": "dc63b6c67d5d12aff6364b5611c0b7dd7fd22397c6859b49671070c477cf6a52"
+    },
+    "after": {
+      "bytes": 12360,
+      "sha256": "4f51257a3f523791299e47991cdf0ad4daba6caa3bf6dc40d11eacf3b82b231b"
+    }
+  },
+  "immutableCanonicalSource": {
+    "shared/assets/environment/act3-handoff/stage21-bedrock.json": {
+      "bytes": 189171,
+      "sha256": "a4072b1058cc4f5776d8da99fc4b2517f910f39f7e1207df39145d1a25618472",
+      "git": "41462ffd970fe3d3daf5a3058d8fe8f8a399d4b2"
+    },
+    "shared/act3-handoff-art.mjs": {
+      "bytes": 2297,
+      "sha256": "86f566899e9eeebd0cc1c4efb32402ac90874a79ad0bb6662e784437867f79c7",
+      "git": "5d1963f4cc630a8343f2c72ca486565746161710"
+    },
+    "shared/runtime/profile-store.js": {
+      "bytes": 21907,
+      "sha256": "3b270b6ca132a70559f1c7691d63d6d8a82ca4bfef5d06c69522c20fe6884f2c",
+      "git": "da6b816f36a786a8e8c4a0e7671b2b77fc9e30e9"
+    }
+  },
+  "manufacture": {
+    "run": 44894538770,
+    "job": 136817278514,
+    "head": "5a6262e0cca21eacdf326a9728db78a1a464c538",
+    "tree": "bd14ba86dd3f1a1bdf3c08df0ea62fdf3795fe4b",
+    "outer": {
+      "id": 14702868547,
+      "bytes": 1824072,
+      "sha256": "24bc0d66304fe79dac42754630d5f459e2261d69feb3f188270a5e87703f8f36"
+    },
+    "nested": {
+      "bytes": 1809924,
+      "sha256": "259e09aa791fa45c5e11d9ece87184644ff964fb121bf20b6f678bfdee383d8a"
+    },
+    "receiptSHA256": "9b7f59d6224ad826bdcb9c34d3e62c9022223802001be92829673902f6d9c88b"
+  },
+  "files": {
+    "HONRO.html": {
+      "bytes": 17379,
+      "sha256": "bf351f5c4acbf3f32143c774cb0c7d6c86f06dab3165f8d2b55647b56a51945d"
+    },
+    "HONRO_WORKSHOP.html": {
+      "bytes": 4011,
+      "sha256": "6d2920c01b4ec0773dcaa6119864b4e27b917f65ef34e96cd2a1eb29f62c3b4a"
+    },
+    "index.html": {
+      "bytes": 17379,
+      "sha256": "bf351f5c4acbf3f32143c774cb0c7d6c86f06dab3165f8d2b55647b56a51945d"
+    },
+    "shared/runtime/act3-handoff-art.js": {
+      "bytes": 14225,
+      "sha256": "49c243232524dd79fc52c41edf663a8bfcb8f9951a83192cb55977e16b202205"
+    },
+    "tests/stage21-west-bedrock-source.mjs": {
+      "bytes": 4056,
+      "sha256": "f613ef506ff863f512cce70d445d605b394e2c95c751d69a461719e795a3339a"
+    },
+    "web/entries/game.5fabc36680b0de6e.html": {
+      "bytes": 11318,
+      "sha256": "5fabc36680b0de6edd574b5141b7bc0076caae6597635ef5e46eff190e143a94"
+    },
+    "web/entries/game.a47fa9bb7d45a42e.js": {
+      "bytes": 20483,
+      "sha256": "a47fa9bb7d45a42e31c859942c8fa601106919e88be29039df1235b2ea1244bc"
+    },
+    "web/entries/workshop.a2eef25feaf1a9a1.js": {
+      "bytes": 16706,
+      "sha256": "a2eef25feaf1a9a18cf67a2ae1049b798f9f28afda1bebfc7ed995676e90d100"
+    },
+    "web/manifest.json": {
+      "bytes": 6605237,
+      "sha256": "5dc732f2c4a76a4b71757105cbf1b7475ce09cda950745cdb1f430ce8f7ea538"
+    },
+    "web/runtime/ordered-common-17.9a592f68229e4289.js": {
+      "bytes": 104308,
+      "sha256": "9a592f68229e42894a87a328a71e2ac8408bb1556f441bcbc67229aa80ba718c"
+    }
+  },
+  "retainedManifest": {
+    "bytes": 6605237,
+    "sha256": "5dc732f2c4a76a4b71757105cbf1b7475ce09cda950745cdb1f430ce8f7ea538"
+  },
+  "retention": {
+    "droppedRegistryPaths": [],
+    "droppedPublishedSources": []
+  },
+  "commitDate": "2026-11-21T10:30:00Z"
+}

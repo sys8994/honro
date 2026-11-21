@@ -1,0 +1,82 @@
+name: Stage21 west bedrock isolated candidate ref transport (no deploy)
+on:
+  push:
+    branches: [qa/stage21-west-bedrock-release-writer-9ac]
+permissions: {}
+concurrency:
+  group: stage21-west-bedrock-release-candidate-only
+  cancel-in-progress: false
+jobs:
+  verify-manufacturing-artifact:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage21-west-bedrock-release-writer-9ac'
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      actions: read
+    outputs:
+      bundle: ${{ steps.seal.outputs.bundle }}
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+          fetch-depth: 2
+      - name: Verify exact role and preselected writer change surface
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test "$(git show -s --format=%P HEAD)" = 9acde7427f3ebfce00f9ad3a9b943d030e2c352d
+          diff -u <(printf 'A\t%s\n' .github/workflows/stage21-west-bedrock-release-candidate-writer.yml tools/stage21-west-bedrock-release-writer/{PINS.json,safe-push.sh,writer.py} | sort) \
+            <(git diff --no-renames --name-status HEAD^ HEAD | sort)
+          for p in .github/workflows/stage21-west-bedrock-release-candidate-writer.yml tools/stage21-west-bedrock-release-writer/{PINS.json,safe-push.sh,writer.py}; do
+            test "$(git ls-tree HEAD "$p" | cut -d' ' -f1)" = 100644
+          done
+          python tools/stage21-west-bedrock-release-writer/writer.py pins
+      - name: Read and seal exact verified manufacturing artifact
+        id: seal
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          bundle="$(python tools/stage21-west-bedrock-release-writer/writer.py verify "$RUNNER_TEMP/writer-handoff")"
+          [[ "$bundle" =~ ^[a-f0-9]{64}$ ]]
+          echo "bundle=$bundle" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: stage21-west-bedrock-writer-sealed-exact-input
+          path: ${{ runner.temp }}/writer-handoff
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 1
+  write-only-designated-test-release-ref:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage21-west-bedrock-release-writer-9ac'
+    runs-on: ubuntu-24.04
+    needs: verify-manufacturing-artifact
+    permissions:
+      contents: write
+    steps:
+      # Same-run immutable Actions artifact; intentionally no checkout and no
+      # repository token input to the download action.
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: stage21-west-bedrock-writer-sealed-exact-input
+          path: ${{ runner.temp }}/writer-handoff
+      - name: Validate sealed local handoff with no git write credential
+        shell: bash
+        env:
+          SEALED_SHA: ${{ needs.verify-manufacturing-artifact.outputs.bundle }}
+        run: |
+          set -euo pipefail
+          cd "$RUNNER_TEMP/writer-handoff"
+          [[ "$SEALED_SHA" =~ ^[a-f0-9]{64}$ ]]
+          test "$(sha256sum HANDOFF.SHA256 | cut -d' ' -f1)" = "$SEALED_SHA"
+          sha256sum -c HANDOFF.SHA256
+          python writer.py pins
+      - name: Ordinary exact-predecessor push to one designated existing ref
+        shell: bash
+        env:
+          STAGE21_WEST_BEDROCK_WRITE_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          bash "$RUNNER_TEMP/writer-handoff/safe-push.sh" "$RUNNER_TEMP/writer-handoff"
