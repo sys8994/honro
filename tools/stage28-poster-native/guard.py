@@ -9,7 +9,9 @@ R1='dd73e9e758bf50f2fcf2345e0c3cbfbb2e150457'
 R2='efbc9a8c6e515935e302ea2e07c7b1c9244943ad'
 R3='db8ac19b641c35e03787b0b2046c318a78141d01'
 R4='56c32b0aa51775df798c94f8e92547bfef7928f1'
-R5='refs/heads/qa/stage28-poster-floor-acb51-r5'
+R5='2b43e4e85032c3f7ee4d4fe6047d968ac23377d5'
+R5_TREE='ef902b1e4263fd2275951ac7934db354a36fdaeb'
+R6='refs/heads/qa/stage28-poster-floor-acb51-r6'
 R2_PATHS={'.github/workflows/stage28-poster-native.yml','tools/stage28-poster-native/capture.py','tools/stage28-poster-native/guard.py'}
 QA={'.github/workflows/stage28-poster-native.yml',*(f'tools/stage28-poster-native/{k}' for k in ('PINS.json','guard.py','capture.py','stock-observer.json','park.js','observe.js'))}
 def sha(b):return hashlib.sha256(b).hexdigest()
@@ -35,10 +37,12 @@ def patch(stock):
 def pre(w):
  assert not (os.getenv('GH_TOKEN')or os.getenv('GITHUB_TOKEN'))
  root=Path(os.environ['GITHUB_WORKSPACE']);head=os.environ['GITHUB_SHA']
- assert (os.environ['GITHUB_REPOSITORY'],os.environ['GITHUB_EVENT_NAME'],os.environ['GITHUB_REF'])==(P['repo'],'push',R5)
+ assert (os.environ['GITHUB_REPOSITORY'],os.environ['GITHUB_EVENT_NAME'],os.environ['GITHUB_REF'])==(P['repo'],'push',R6)
  assert P['branch']=='refs/heads/qa/stage28-poster-floor-acb51'
  assert w.resolve().is_relative_to(Path(os.environ['RUNNER_TEMP']).resolve())
- assert git(root,'rev-list','--parents','-n1','HEAD').decode().split()==[head,R4]
+ assert git(root,'rev-list','--parents','-n1','HEAD').decode().split()==[head,R5]
+ assert git(root,'rev-list','--parents','-n1',R5).decode().split()==[R5,R4]
+ assert git(root,'rev-parse',R5+'^{tree}').decode().strip()==R5_TREE
  assert git(root,'rev-list','--parents','-n1',R4).decode().split()==[R4,R3]
  assert git(root,'rev-list','--parents','-n1',R3).decode().split()==[R3,R2]
  assert git(root,'rev-list','--parents','-n1',R2).decode().split()==[R2,R1]
@@ -53,6 +57,8 @@ def pre(w):
  assert set(git(root,'diff','--name-status','--no-renames',R3,head).decode().splitlines())=={f'M\t{k}'for k in R2_PATHS}
  assert set(git(root,'diff','--name-status','--no-renames',R3,R4).decode().splitlines())=={f'M\t{k}'for k in R2_PATHS}
  assert set(git(root,'diff','--name-status','--no-renames',R4,head).decode().splitlines())=={f'M\t{k}'for k in R2_PATHS}
+ assert set(git(root,'diff','--name-status','--no-renames',R4,R5).decode().splitlines())=={f'M\t{k}'for k in R2_PATHS}
+ assert set(git(root,'diff','--name-status','--no-renames',R5,head).decode().splitlines())=={f'M\t{k}'for k in R2_PATHS}
  assert all(git(root,'show',R1+':'+p)==git(root,'show',head+':'+p)for p in QA-R2_PATHS)
  for k in QA:assert git(root,'ls-tree',head,'--',k).decode().split()[:2]==['100644','blob']
  assert stamp(git(root,'show',BASE+':'+MF))==P['manifest']
@@ -62,7 +68,7 @@ def pre(w):
   assert stamp(rd(t,REL))==P['sourceA']
  (w/'B'/REL).write_bytes(patch(rd(w/'A',REL)))
  assert git(w/'B','diff','--name-status').decode().splitlines()==['M\t'+REL]
- save(w/'out/SOURCE.json',{'publicBase':BASE,'tree':TREE,'qaHead':head,'originalQAHead':R1,'phasePredecessor':R4,'qaModified':sorted(R2_PATHS),'source':REL,'A':P['sourceA'],'B':P['sourceB'],'meaning':P['sourceOnly'],'publishedAuthority':[P['publishedRun'],P['publishedJob']]})
+ save(w/'out/SOURCE.json',{'publicBase':BASE,'tree':TREE,'qaHead':head,'originalQAHead':R1,'phasePredecessor':R5,'qaModified':sorted(R2_PATHS),'source':REL,'A':P['sourceA'],'B':P['sourceB'],'meaning':P['sourceOnly'],'publishedAuthority':[P['publishedRun'],P['publishedJob']]})
 def role(k):
  m=re.fullmatch(r'web/runtime/ordered-(common|game)-(\d+)\.[a-f0-9]{16}\.js',k)
  return m.groups() if m else None
@@ -135,6 +141,7 @@ def built(w):
 def archive(w):
  o=w/'out';g=json.loads(rd(o,'GRAPH.json'));x=json.loads(rd(o,'BROWSER.json'))
  assert x['status']=='PASS_ACTUAL_STAGE28_SIGNED_POSTER_ONLY' and len(x['paired'])==len(P['frames']) and all(r['pass']for r in x['paired'].values())
+ assert x['failures']==[] and x['stage28CoreOnly']=={'pass':True,'notAggregateOrReleaseAuthority':True}
  expected={(s,k,target) for s in ('A','B') for k,v in P['visits'].items() for target in ([None]if v['stage']==28 else v['directions'])}
  assert len(x['visits'])==len(expected) and {(r['arm'],f"s{r['stage']:02d}-{r['device'][0]}x{r['device'][1]}",r['target'])for r in x['visits']}==expected
  for v in x['visits']:
@@ -143,7 +150,7 @@ def archive(w):
  assert all(r['state']=='NETWORK_AND_CAPTURE_EXACT' and r['navigationDocument']['proof']=='exact-main-frame-page.goto-body'
             and set(r['requiredObserved'])-{'HONRO.html'}<=set(r['listenerVerifiedRequired']) for r in x['visits'])
  assert x['phaseWitness']['A-mobile-north-cold-qualified'] and x['phaseWitness']['A-mobile-north-settled-qualified']
- assert len(x['frames'])==2*len(P['frames']) and all(len(f['phases']['repeats'])==2 for f in x['frames'].values())
+ assert len(x['frames'])==2*len(P['frames']) and all(f['nativeAllPhasesQualified'] and len(f['phases']['repeats'])==2 for f in x['frames'].values())
  assert all(set(z['phases'])=={'phase1','phase2'} and all(p['pass'] for p in z['phases'].values())for z in x['paired'].values())
  b=w/'B';targets=sorted({REL,MF,*SHELL,*(y for x,y in g['aliases'])})
  rows={}

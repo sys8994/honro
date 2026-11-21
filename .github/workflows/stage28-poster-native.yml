@@ -1,7 +1,7 @@
 name: HONRO Stage28 unaltered play projection and deep foundation A/B
 on:
   push:
-    branches: [qa/stage28-poster-floor-acb51-r5]
+    branches: [qa/stage28-poster-floor-acb51-r6]
     paths:
       - .github/workflows/stage28-poster-native.yml
       - tools/stage28-poster-native/**
@@ -9,13 +9,13 @@ permissions:
   contents: read
 jobs:
   compare:
-    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage28-poster-floor-acb51-r5'
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage28-poster-floor-acb51-r6'
     runs-on: ubuntu-24.04
     timeout-minutes: 49
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
-          fetch-depth: 6
+          fetch-depth: 7
           persist-credentials: false
       - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
         with:

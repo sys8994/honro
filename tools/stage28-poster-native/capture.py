@@ -37,6 +37,13 @@ def exact_navigation_document(page,origin,expected):
  found=facts(response.body())
  assert found==expected,(url,'main document body differs',found,expected)
  return {'path':'HONRO.html','url':url,'status':response.status,'body':found,'proof':'exact-main-frame-page.goto-body'}
+def record_failure(out,report,where,err):
+ row={**where,'error':repr(err)}
+ report['failures'].append(row)
+ if 'firstFailedGate' not in report:report['firstFailedGate']=row['error']
+ with (out/'BROWSER.traceback.txt').open('a') as log:
+  log.write(json.dumps(row,ensure_ascii=False)+'\n'+traceback.format_exc()+'\n')
+ stamp(out,report)
 def case(browser,w,out,report,v,arm,g,target=None):
  a=arm=='A';origin='http://127.0.0.1:'+('18891'if a else '18892')+'/'; blob=re.compile('blob:'+re.escape(origin)+r'[\da-f-]{36}')
  known=g['active'+arm]; alias=dict(g['aliases']); required={k if a else alias.get(k,k)for k in v['requests']}|{g['runtime'+arm]}
@@ -90,6 +97,8 @@ def case(browser,w,out,report,v,arm,g,target=None):
   rawDIR.mkdir(exist_ok=True)
   def request_pose(name):
    x,y=DIRECTIONS[name];return {'stage':stage,'id':id,'name':name,'dx':x,'dy':y,'readback':False}
+  context={'arm':arm,'stage':stage,'device':v['device'],'target':target}
+  prefix_ok=True
   if target is not None:
    control=CONTROL_PREFIX[f's{stage:02d}-{v["device"][0]}x{v["device"][1]}']
    names=list(DIRECTIONS)[:list(DIRECTIONS).index(target)]
@@ -108,60 +117,75 @@ def case(browser,w,out,report,v,arm,g,target=None):
     if not (claim['exactArchive'] and claim['exactCameraPhysics'] and dec0>0):
      problem=rawDIR/f'{arm}-s{stage:02d}-{v["device"][0]}x{v["device"][1]}-for-{target}-prefix-{name}-HOLD.png'
      problem.write_bytes(raw);claim['failurePNG']=str(problem.relative_to(out));claim['actualPhysics']=state;stamp(out,report)
-     raise AssertionError((arm,stage,v['device'],target,'unaltered exact historical route prefix',name))
+     prefix_ok=False
+     try:raise AssertionError((arm,stage,v['device'],target,'unaltered exact historical route prefix',name))
+     except AssertionError as e:record_failure(out,report,{**context,'check':'historical-prefix','frame':name},e)
   for name in ([target] if target is not None else v['directions']):
-   k=f's{stage:02d}-{v["device"][0]}x{v["device"][1]}-{name}'; x,y=DIRECTIONS[name];p={'stage':stage,'id':id,'name':name,'dx':x,'dy':y,'readback':False}
-   start=page.evaluate(PARK,p);dec=page.evaluate(OBS['DECODE']);assert dec>0
-   ref=P['frames'][k];sig={o:start[o]for o in ref.keys()-{'referencePNG','positive'}}
-   law={'stage':stage,'depth':9000 if a else 27400}
-   rec={'arm':arm,'physics':sig,'images':dec,'phases':{'repeats':[]}}
-   report['frames'][f'{arm}-{k}']=rec
-   def take(label):
-    camera=page.evaluate(PARK,{**p,'readback':True})
-    native=page.evaluate(VERIFY,law)
-    snap=png()
-    suffix='' if label=='phase1' else '-'+label
-    frame_path=rawDIR/f'{arm}-{k}{suffix}-raw.png'
-    frame_path.write_bytes(snap)
-    row={'path':str(frame_path.relative_to(out)),'png':facts(snap),'native':native,'sameCameraAndPhysics':camera==start}
-    if label.startswith('repeat'):rec['phases']['repeats'].append(row)
-    else:rec['phases'][label]=row
-    stamp(out,report)
-    # Gather screen-cache evidence only after saving the exact original raw.
-    row['screen']=page.evaluate(SCREEN)
-    assert list(rgba(snap).size)==ref['backing'] and row['screen']['backing']==ref['backing']
-    stamp(out,report)
-    return snap,row,frame_path
-   snap,first,_=take('phase1')
-   # Preserve the R2 exact archive guard for every accepted baseline first snapshot.
-   if a:assert first['png']==ref['referencePNG'],(arm,k,'already observed public baseline PNG SHA drift',first['png'],ref['referencePNG'])
-   assert sig=={o:ref[o]for o in sig},(arm,k,'camera/state/owner/physics differs',[(o,sig[o],ref[o])for o in sig if sig[o]!=ref[o]])
-   assert first['sameCameraAndPhysics'],(arm,k,'phase1 same readback')
-   warm,second,_=take('phase2')
-   assert second['sameCameraAndPhysics'],(arm,k,'phase2 same readback')
-   # The exact stock same-pose transition is certified independently; do not
-   # accept changes in this prior known evidence or waive phase-matching A/B.
-   if a and k=='s28-390x844-north':
-    assert first['png']==WARM_NORTH['phase1'] and second['png']==WARM_NORTH['phase2'],(arm,k,'known native north phases differ from independent actual stock')
-    assert first['screen']['structural']['screenBackgroundBytes']==WARM_NORTH['phase1BackgroundBytes']
-    assert second['screen']['structural']['screenBackgroundBytes']==WARM_NORTH['phase2BackgroundBytes']
-    assert second['screen']['caches'][1]['size']==WARM_NORTH['phase2BackgroundSize']
-    report['phaseWitness'].update({'A-mobile-north-cold-qualified':True,'A-mobile-north-settled-qualified':True});stamp(out,report)
-   assert first['native']==second['native'],(arm,k,'cache allocation/material/state drift between phases')
-   screen_semantic=lambda f:{i:x for i,x in f['screen'].items()if i!='hits'}
-   for i in (1,2):
-    restored,r,img=take(f'repeat{i}')
-    assert r['sameCameraAndPhysics'] and r['native']==second['native'],(arm,k,'settled repeat camera/physics/native bounded tile drift',i)
-    assert screen_semantic(r)==screen_semantic(second),(arm,k,'settled repeat changes native structural screen cache',i)
-    assert restored==warm,(arm,k,'settled native render does not reproduce byte for byte',i)
-    # Evidence retains both qualified images and per-repeat receipts; preserve
-    # unexpected failure raw frames above, drop only byte-identical duplicates.
-    img.unlink();r['path']=second['path'];r['identicalDuplicateNotArchived']=True
-   rec.update(path=first['path'],png=first['png'],native=first['native'])
-   entry['views'].append(k);stamp(out,report)
+   try:
+    k=f's{stage:02d}-{v["device"][0]}x{v["device"][1]}-{name}'; x,y=DIRECTIONS[name];p={'stage':stage,'id':id,'name':name,'dx':x,'dy':y,'readback':False}
+    entry.update(activeFrame=k,activePhase='pose-and-decode');stamp(out,report)
+    start=page.evaluate(PARK,p);dec=page.evaluate(OBS['DECODE']);assert dec>0
+    ref=P['frames'][k];sig={o:start[o]for o in ref.keys()-{'referencePNG','positive'}}
+    law={'stage':stage,'depth':9000 if a else 27400}
+    rec={'arm':arm,'physics':sig,'images':dec,'phases':{'repeats':[]}}
+    report['frames'][f'{arm}-{k}']=rec
+    def take(label):
+     camera=page.evaluate(PARK,{**p,'readback':True})
+     entry['activePhase']=label;stamp(out,report)
+     try:native=page.evaluate(VERIFY,law)
+     except Exception:
+      try:
+       artifact=rawDIR/f'{arm}-{k}-{label}-VERIFY-HOLD.png'
+       artifact.write_bytes(png());entry['failedVerifierPNG']=str(artifact.relative_to(out));stamp(out,report)
+      except Exception:pass
+      raise
+     snap=png()
+     suffix='' if label=='phase1' else '-'+label
+     frame_path=rawDIR/f'{arm}-{k}{suffix}-raw.png'
+     frame_path.write_bytes(snap)
+     row={'path':str(frame_path.relative_to(out)),'png':facts(snap),'native':native,'sameCameraAndPhysics':camera==start}
+     if label.startswith('repeat'):rec['phases']['repeats'].append(row)
+     else:rec['phases'][label]=row
+     stamp(out,report)
+     # Gather screen-cache evidence only after saving the exact original raw.
+     row['screen']=page.evaluate(SCREEN)
+     assert list(rgba(snap).size)==ref['backing'] and row['screen']['backing']==ref['backing']
+     stamp(out,report)
+     return snap,row,frame_path
+    snap,first,_=take('phase1')
+    warm,second,_=take('phase2')
+    repeats=[take(f'repeat{i}') for i in (1,2)]
+    # Preserve the R2 exact archive guard for every accepted baseline first snapshot.
+    if a:assert first['png']==ref['referencePNG'],(arm,k,'already observed public baseline PNG SHA drift',first['png'],ref['referencePNG'])
+    assert sig=={o:ref[o]for o in sig},(arm,k,'camera/state/owner/physics differs',[(o,sig[o],ref[o])for o in sig if sig[o]!=ref[o]])
+    assert first['sameCameraAndPhysics'],(arm,k,'phase1 same readback')
+    assert second['sameCameraAndPhysics'],(arm,k,'phase2 same readback')
+    # The exact stock same-pose transition is certified independently; do not
+    # accept changes in this prior known evidence or waive phase-matching A/B.
+    if a and k=='s28-390x844-north':
+     assert first['png']==WARM_NORTH['phase1'] and second['png']==WARM_NORTH['phase2'],(arm,k,'known native north phases differ from independent actual stock')
+     assert first['screen']['structural']['screenBackgroundBytes']==WARM_NORTH['phase1BackgroundBytes']
+     assert second['screen']['structural']['screenBackgroundBytes']==WARM_NORTH['phase2BackgroundBytes']
+     assert second['screen']['caches'][1]['size']==WARM_NORTH['phase2BackgroundSize']
+     report['phaseWitness'].update({'A-mobile-north-cold-qualified':True,'A-mobile-north-settled-qualified':True});stamp(out,report)
+    assert first['native']==second['native'],(arm,k,'cache allocation/material/state drift between phases')
+    screen_semantic=lambda f:{i:x for i,x in f['screen'].items()if i!='hits'}
+    for i,(restored,r,img) in zip((1,2),repeats):
+     assert r['sameCameraAndPhysics'] and r['native']==second['native'],(arm,k,'settled repeat camera/physics/native bounded tile drift',i)
+     assert screen_semantic(r)==screen_semantic(second),(arm,k,'settled repeat changes native structural screen cache',i)
+     assert restored==warm,(arm,k,'settled native render does not reproduce byte for byte',i)
+     # Evidence retains both qualified images and per-repeat receipts; preserve
+     # unexpected failure raw frames above, drop only byte-identical duplicates.
+     img.unlink();r['path']=second['path'];r['identicalDuplicateNotArchived']=True
+    rec.update(path=first['path'],png=first['png'],native=first['native'],nativeAllPhasesQualified=True)
+    entry['views'].append(k);stamp(out,report)
+   except Exception as e:
+    record_failure(out,report,{**context,'check':'native-frame','frame':entry.get('activeFrame'),'phase':entry.get('activePhase')},e)
+  entry['prefixQualified']=prefix_ok
+  entry['activePhase']='network-drain';stamp(out,report)
   drain()
   assert required-{'HONRO.html'}<=listenerChecked
-  entry.update(state='NETWORK_AND_CAPTURE_EXACT',requiredObserved=sorted(required),observedCount=len(checked),
+  entry.update(state='NETWORK_AND_CAPTURE_EXACT' if prefix_ok and len(entry['views'])==(1 if target else len(v['directions'])) else 'HOLD_PARTIAL_VISIT',requiredObserved=sorted(required),observedCount=len(checked),
    listenerVerifiedRequired=sorted(required&listenerChecked),navigationAlsoSeenByListener='HONRO.html'in listenerChecked);stamp(out,report)
  finally:ctx.close()
 def compare(A,B,ref):
@@ -191,29 +215,52 @@ def compare(A,B,ref):
  else:good=diff==0
  return {'pass':not(alpha or bad)and good and (diff>0 if skin else True),'signedPositive':skin,'changed':diff,'unsigned':bad,
          'alpha':alpha,'maxRGBADN':peak,'changedRows':([min(yr),max(yr)]if yr else None),'noReplacementLineInNativeMinimumCamera':diagnostics}
-def paired(out,q):
- for k,f in P['frames'].items():
-  a,b=[q['frames'][side+'-'+k]for side in ('A','B')]
-  assert a['physics']==b['physics']
-  phases={}
+def compare_phase(a,b,label,k):
+ aa=a['phases'][label];bb=b['phases'][label];n,m=aa['native'],bb['native']
+ assert aa['sameCameraAndPhysics'] and bb['sameCameraAndPhysics']
+ assert {i:x for i,x in n.items()if i!='deep'}=={i:x for i,x in m.items()if i!='deep'},(k,label,'native draw/physics/bounded tile cache changed',n,m)
+ assert bool(n['deep'])==bool(m['deep'])
+ if n['deep']:assert {**n['deep'],'renderY':27400}==m['deep']
+ assert aa['screen']==bb['screen'],(k,label,'phase-matched native screen state differs',aa['screen'],bb['screen'])
+def paired(out,q,keys):
+ for k in keys:
+  f=P['frames'][k];ar,br=[q['frames'].get(side+'-'+k)for side in ('A','B')]
+  res=q['paired'][k]={'pass':False,'phases':{},'failure':[]}
+  if not ar or not br:
+   res['failure'].append('missing native arm data');stamp(out,q);continue
+  physics=ar['physics']==br['physics'];res['sameArmsPhysics']=physics
+  frames_qualified=ar.get('nativeAllPhasesQualified',False) and br.get('nativeAllPhasesQualified',False)
+  res['nativeAllPhasesQualifiedBothArms']=frames_qualified
   for label in ('phase1','phase2'):
-   aa=a['phases'][label];bb=b['phases'][label];n,m=aa['native'],bb['native']
-   assert aa['sameCameraAndPhysics'] and bb['sameCameraAndPhysics']
-   assert {i:x for i,x in n.items()if i!='deep'}=={i:x for i,x in m.items()if i!='deep'},(k,label,'native draw/physics/bounded tile cache changed',n,m)
-   assert bool(n['deep'])==bool(m['deep'])
-   if n['deep']:assert {**n['deep'],'renderY':27400}==m['deep']
-   assert aa['screen']==bb['screen'],(k,label,'phase-matched native screen state differs',aa['screen'],bb['screen'])
-   phases[label]=compare(rgba((out/aa['path']).read_bytes()),rgba((out/bb['path']).read_bytes()),f)
-   # Preserve R2 phase1 status fields for downstream read-only retainer, while
-   # release seal now requires both exact independent same-phase comparisons.
-   q['paired'][k]={**phases['phase1'],'pass':False,'phases':phases};stamp(out,q)
-  q['paired'][k]['pass']=all(x['pass']for x in phases.values());stamp(out,q)
- assert len(q['paired'])==24 and all(r['pass']for r in q['paired'].values()),'a cache phase/camera or unsigned pixel/visual cutoff gate failed'
+   # Always try raw evidence even when a close-phase guard is separately HOLD.
+   row=res['phases'][label]={'pass':False}
+   try:
+    aa=ar['phases'][label];bb=br['phases'][label]
+    row.update(compare(rgba((out/aa['path']).read_bytes()),rgba((out/bb['path']).read_bytes()),f))
+    row['signedPixelPass']=row['pass']
+   except Exception as e:record_failure(out,q,{'check':'paired-frame','frame':k,'phase':label},e)
+   try:
+    compare_phase(ar,br,label,k)
+    row['nativePhasePass']=True
+   except Exception as e:
+    row['nativePhasePass']=False
+    record_failure(out,q,{'check':'paired-metadata','frame':k,'phase':label},e)
+   row['pass']=bool(physics and frames_qualified and row.get('signedPixelPass') and row.get('nativePhasePass'))
+   stamp(out,q)
+  res.update({n:v for n,v in res['phases']['phase1'].items() if n!='pass'})
+  res['pass']=all(x['pass'] for x in res['phases'].values())
+  stamp(out,q)
 def main(w):
  assert not(os.getenv('GH_TOKEN')or os.getenv('GITHUB_TOKEN'))
  out=w/'out';g=document(out/'GRAPH.json')
- q={'status':'HOLD','release':P['base'],'scope':'Official isolated A public compiled and B normally rebuilt; new native render observations, not playthrough or publication.',
-    'witness':P['witness'],'stockPhaseEvidence':WARM_NORTH,'prefixArchiveReceiptSHA256s':PREFIX_WITNESSES,'phaseWitness':{},'visits':[],'frames':{},'paired':{}}
+ q={'status':'HOLD','release':P['base'],'scope':'Official isolated A public compiled and B normally rebuilt; render evidence, not playthrough/publication.',
+    'witness':P['witness'],'stockPhaseEvidence':WARM_NORTH,'prefixArchiveReceiptSHA256s':PREFIX_WITNESSES,
+    'phaseWitness':{},'visits':[],'frames':{},'paired':{},'failures':[]}
+ def run_case(br,side,v,target):
+  try:case(br,w,out,q,v,side,g,target)
+  except Exception as e:record_failure(out,q,{'check':'native-visit','arm':side,'stage':v['stage'],'device':v['device'],'target':target},e)
+ targetKeys=[k for k in P['frames']if k.startswith('s28-')]
+ peerKeys=[k for k in P['frames']if not k.startswith('s28-')]
  try:
   with sync_playwright() as pw:
    br=pw.chromium.launch(headless=True);q['chrome']=br.version
@@ -221,10 +268,23 @@ def main(w):
     assert br.version=='151.0.7922.34'
     for side in ('A','B'):
      for v in P['visits'].values():
-      for target in ([None] if v['stage']==28 else v['directions']):case(br,w,out,q,v,side,g,target)
+      if v['stage']==28:run_case(br,side,v,None)
+    paired(out,q,targetKeys)
+    corevis=[v for v in q['visits'] if v['stage']==28]
+    q['stage28CoreOnly']={'pass':len(corevis)==4 and all(v['state']=='NETWORK_AND_CAPTURE_EXACT' for v in corevis)
+      and len(targetKeys)==16 and all(q['paired'][k]['pass'] for k in targetKeys),'notAggregateOrReleaseAuthority':True}
+    stamp(out,q)
+    for side in ('A','B'):
+     for v in P['visits'].values():
+      if v['stage']!=28:
+       for target in v['directions']:run_case(br,side,v,target)
+    paired(out,q,peerKeys)
    finally:br.close()
-  paired(out,q);q['status']='PASS_ACTUAL_STAGE28_SIGNED_POSTER_ONLY'
+  assert not q['failures'] and q['stage28CoreOnly']['pass'] and len(q['visits'])==20
+  assert all(v['state']=='NETWORK_AND_CAPTURE_EXACT' for v in q['visits'])
+  assert len(q['paired'])==24 and all(r['pass']for r in q['paired'].values()),'a strict camera/cache/anchor/unsigned candidate pixel control failed'
+  q['status']='PASS_ACTUAL_STAGE28_SIGNED_POSTER_ONLY'
  except Exception as e:
-  q['firstFailedGate']=repr(e);(out/'BROWSER.traceback.txt').write_text(traceback.format_exc());raise
+  record_failure(out,q,{'check':'aggregate-strict'},e);raise
  finally:stamp(out,q)
 if __name__=='__main__':main(Path(sys.argv[1]).resolve())
