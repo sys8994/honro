@@ -1,0 +1,232 @@
+{
+  "run": 44944479153,
+  "job": 136968646130,
+  "artifact": 14722789257,
+  "sourceGit": "3ab093ce8cff00efb620d2fed8eae6cc4c732892",
+  "armFrameSHA": {
+    "A": {
+      "cold_raw": "9eef5d5fcf0b212297e401e6170610d386d4cce8b7da967b981919349f6d62b7",
+      "cold_dom": "21a2c73f136c60c4b1c262acb88e01f2419aedbf51cf55d5745f978df7e8ce38",
+      "steady_raw": "d0e2a0633bdaa23f25e84934da81d568b6eec994e2c6693a94b4871dffba2985",
+      "steady_dom": "b9a955ae0f24582877e09c933ce388903781ea65dc954d6e66b29dc95300d8e2"
+    },
+    "B": {
+      "cold_raw": "b7851524a3d01c7d26fdd1d30d06663e44ac42a3dd1b612c65b0227c934ea2f4",
+      "cold_dom": "2e341d5308752efe35268649574c88d08b9c14570712529a069d52eb382faa0d",
+      "steady_raw": "e8e4430b22cd15225abb3ec9085e49a98a241a5e063bd6a3a7f004f226a8b220",
+      "steady_dom": "d8e82139a38a08d1e49bfd8b1750d071747644e4580306572644da3ab675b6e0"
+    }
+  },
+  "armedProtocol": {
+    "actual": {
+      "x": 7232,
+      "y": 4848,
+      "scale": 0.21176470588235294
+    },
+    "viewport": {
+      "left": 3832,
+      "right": 10632,
+      "top": 3031.862847222222,
+      "bottom": 6664.137152777777
+    },
+    "physics": "9cd682370b682d68ae2c8dc3ec586bb911088770c581b6ecb93a510535bc9279",
+    "phase": "aim",
+    "round": 1,
+    "sceneTime": 2,
+    "tide": null,
+    "css": [
+      1440,
+      769.1875
+    ],
+    "backing": [
+      1440,
+      769
+    ],
+    "dpr": 1
+  },
+  "tile": {
+    "k": "5:2",
+    "width": 516,
+    "height": 516,
+    "world": [
+      10240,
+      4096
+    ],
+    "rasterScale": 0.25,
+    "gutter": 2,
+    "matrix": [
+      0.25,
+      0,
+      0,
+      0.25,
+      -2558,
+      -1022
+    ]
+  },
+  "points": [
+    {
+      "role": "protected-offender",
+      "backing": [
+        1439,
+        480
+      ],
+      "worldCenter": [
+        10629.638888888889,
+        5300.890625
+      ],
+      "sourceSampleCenter": [
+        99.40972222222217,
+        303.22265625
+      ],
+      "RGBA": {
+        "A-cold": [
+          76,
+          85,
+          106,
+          255
+        ],
+        "A-steady": [
+          76,
+          85,
+          106,
+          255
+        ],
+        "B-cold": [
+          77,
+          84,
+          103,
+          255
+        ],
+        "B-steady": [
+          77,
+          84,
+          103,
+          255
+        ]
+      }
+    },
+    {
+      "role": "protected-offender",
+      "backing": [
+        1439,
+        481
+      ],
+      "worldCenter": [
+        10629.638888888889,
+        5305.612847222223
+      ],
+      "sourceSampleCenter": [
+        99.40972222222217,
+        304.40321180555566
+      ],
+      "RGBA": {
+        "A-cold": [
+          83,
+          106,
+          154,
+          255
+        ],
+        "A-steady": [
+          83,
+          106,
+          154,
+          255
+        ],
+        "B-cold": [
+          83,
+          106,
+          153,
+          255
+        ],
+        "B-steady": [
+          83,
+          106,
+          153,
+          255
+        ]
+      }
+    },
+    {
+      "role": "signed-quiet-control",
+      "backing": [
+        1437,
+        479
+      ],
+      "worldCenter": [
+        10620.194444444445,
+        5296.168402777777
+      ],
+      "sourceSampleCenter": [
+        97.04861111111131,
+        302.04210069444434
+      ],
+      "RGBA": {
+        "A-cold": [
+          58,
+          58,
+          59,
+          255
+        ],
+        "A-steady": [
+          58,
+          58,
+          59,
+          255
+        ],
+        "B-cold": [
+          58,
+          58,
+          59,
+          255
+        ],
+        "B-steady": [
+          58,
+          58,
+          59,
+          255
+        ]
+      }
+    },
+    {
+      "role": "signed-positive-control",
+      "backing": [
+        1397,
+        480
+      ],
+      "worldCenter": [
+        10431.305555555555,
+        5300.890625
+      ],
+      "sourceSampleCenter": [
+        49.82638888888869,
+        303.22265625
+      ],
+      "RGBA": {
+        "A-cold": [
+          71,
+          82,
+          113,
+          255
+        ],
+        "A-steady": [
+          71,
+          82,
+          113,
+          255
+        ],
+        "B-cold": [
+          57,
+          58,
+          59,
+          255
+        ],
+        "B-steady": [
+          57,
+          58,
+          59,
+          255
+        ]
+      }
+    }
+  ]
+}
