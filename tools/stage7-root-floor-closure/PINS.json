@@ -1,0 +1,697 @@
+{
+  "enable": true,
+  "base": "9acde7427f3ebfce00f9ad3a9b943d030e2c352d",
+  "tree": "88e7031612970afa607c8e6b72cb00b42f95364f",
+  "stockManifest": {
+    "git": "bbd1df9330c52e06a0fc39e5cd8efc70a74f185c",
+    "bytes": 6435952,
+    "sha256": "d54ac73e9084e2c8d8f437142a0109be0bbb24a180589af2225c7a4bd4f7c427"
+  },
+  "stockShells": {
+    "HONRO.html": {
+      "bytes": 17379,
+      "sha256": "a763c1871e6470646fa3dd7577a88825098598d18ee4e67d65b97f5d731aa958"
+    },
+    "HONRO_WORKSHOP.html": {
+      "bytes": 4011,
+      "sha256": "c95a0d9e969f37f19d5c8f9978af1a34f89e9711038e2a2958a41606417afc4c"
+    },
+    "index.html": {
+      "bytes": 17379,
+      "sha256": "a763c1871e6470646fa3dd7577a88825098598d18ee4e67d65b97f5d731aa958"
+    }
+  },
+  "productGit": {
+    "shared/runtime/terrain-readability.js": "df4437aa937dce38efac3c799e615e68cee0cf29",
+    "tests/stage7-root-floor-closure.mjs": "ff184d1f4bc17c11b57b220f634abd09ddf695cd"
+  },
+  "requiredStockReadabilityGit": "5c3b3cd4df6fcb383a77bd6a8b21cbb90dd4ca04",
+  "bakedStage7": {
+    "web/data/chapter-07.28f7bf612a598aeb.json": {
+      "bytes": 30579,
+      "sha256": "28f7bf612a598aeb0eb6da0f819a0b6ddb7fd5414eab9410e434772eb04d2553"
+    },
+    "web/data/chapter-07-assets.7068fa05c6ce1c2e.json": {
+      "bytes": 655969,
+      "sha256": "7068fa05c6ce1c2ef0c96045daa3dea192ba69a18e35bc323e6a5df9a1529db5"
+    },
+    "web/graphics/honro_authored_far-images-act1Site7.9ab1f4843007e530.webp": {
+      "bytes": 41590,
+      "sha256": "9ab1f4843007e530ec48cfac52569aa3323b1ab5098b962054a63828da1c1931"
+    }
+  },
+  "oldCommon16": "web/runtime/ordered-common-16.c094392d4ee992d9.js",
+  "frames": [
+    {
+      "key": "s07-1440x900-ordinary",
+      "actual": {
+        "x": 81.38,
+        "y": 2862.15,
+        "scale": 0.5
+      },
+      "viewport": {
+        "left": -1358.62,
+        "right": 1521.38,
+        "top": 2092.9625,
+        "bottom": 3631.3375
+      },
+      "focus": {
+        "left": 0,
+        "top": 0,
+        "right": 4532.24,
+        "bottom": 3569.18
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "view": "ordinary",
+      "viewportCSS": [
+        1440,
+        900
+      ],
+      "pngSHA256": "9cfee65e743f501290c6c76311703edd14449cc52b676e1b458198cf086b04a7",
+      "physicsSHA256": "6b4c47b95e0bfd4f40c047a44ea9118d585f46e6f8f19d0906412bb99f570a22",
+      "sceneTime": 2,
+      "phase": "aim",
+      "round": 1,
+      "actorCount": 26,
+      "tide": null,
+      "id": 7,
+      "ordinary": [
+        81.38,
+        2862.15,
+        0.5
+      ]
+    },
+    {
+      "key": "s07-1440x900-overview",
+      "actual": {
+        "x": 2266.12,
+        "y": 1784.59,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": -1133.88,
+        "right": 5666.12,
+        "top": -31.54715277777791,
+        "bottom": 3600.7271527777775
+      },
+      "focus": {
+        "left": 0,
+        "top": 0,
+        "right": 4532.24,
+        "bottom": 3569.18
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "view": "overview",
+      "viewportCSS": [
+        1440,
+        900
+      ],
+      "pngSHA256": "c81a1bc595e4310eda25352a29997f3310247522d3ef70579c35f48c12c64533",
+      "physicsSHA256": "6b4c47b95e0bfd4f40c047a44ea9118d585f46e6f8f19d0906412bb99f570a22",
+      "sceneTime": 2,
+      "phase": "aim",
+      "round": 1,
+      "actorCount": 26,
+      "tide": null,
+      "id": 7,
+      "ordinary": [
+        81.38,
+        2862.15,
+        0.5
+      ]
+    },
+    {
+      "key": "s07-1440x900-south",
+      "actual": {
+        "x": 2266.12,
+        "y": 3569.18,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": -1133.88,
+        "right": 5666.12,
+        "top": 1753.042847222222,
+        "bottom": 5385.317152777778
+      },
+      "focus": {
+        "left": 0,
+        "top": 0,
+        "right": 4532.24,
+        "bottom": 3569.18
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "view": "south",
+      "viewportCSS": [
+        1440,
+        900
+      ],
+      "pngSHA256": "8a9c17b0df1f3fb28aefef8a3d7122de8b690ebd56087a51fda92183dbaae8d4",
+      "physicsSHA256": "6b4c47b95e0bfd4f40c047a44ea9118d585f46e6f8f19d0906412bb99f570a22",
+      "sceneTime": 2,
+      "phase": "aim",
+      "round": 1,
+      "actorCount": 26,
+      "tide": null,
+      "id": 7,
+      "ordinary": [
+        81.38,
+        2862.15,
+        0.5
+      ]
+    },
+    {
+      "key": "s07-1440x900-west",
+      "actual": {
+        "x": 0,
+        "y": 1784.59,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": -3400,
+        "right": 3400,
+        "top": -31.54715277777791,
+        "bottom": 3600.7271527777775
+      },
+      "focus": {
+        "left": 0,
+        "top": 0,
+        "right": 4532.24,
+        "bottom": 3569.18
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "view": "west",
+      "viewportCSS": [
+        1440,
+        900
+      ],
+      "pngSHA256": "33403e53ce1cd4f9a77b2b95a965db8e11a775f854bdb2bef1c5eca7e5cb587a",
+      "physicsSHA256": "6b4c47b95e0bfd4f40c047a44ea9118d585f46e6f8f19d0906412bb99f570a22",
+      "sceneTime": 2,
+      "phase": "aim",
+      "round": 1,
+      "actorCount": 26,
+      "tide": null,
+      "id": 7,
+      "ordinary": [
+        81.38,
+        2862.15,
+        0.5
+      ]
+    },
+    {
+      "key": "s07-1440x900-southeast",
+      "actual": {
+        "x": 4532.24,
+        "y": 3569.18,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": 1132.2399999999998,
+        "right": 7932.24,
+        "top": 1753.042847222222,
+        "bottom": 5385.317152777778
+      },
+      "focus": {
+        "left": 0,
+        "top": 0,
+        "right": 4532.24,
+        "bottom": 3569.18
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "view": "southeast",
+      "viewportCSS": [
+        1440,
+        900
+      ],
+      "pngSHA256": "0512604101dc5212d00265cf8a1bdab37d887373286b50222b66521bdd6ffa98",
+      "physicsSHA256": "6b4c47b95e0bfd4f40c047a44ea9118d585f46e6f8f19d0906412bb99f570a22",
+      "sceneTime": 2,
+      "phase": "aim",
+      "round": 1,
+      "actorCount": 26,
+      "tide": null,
+      "id": 7,
+      "ordinary": [
+        81.38,
+        2862.15,
+        0.5
+      ]
+    },
+    {
+      "key": "s07-390x844-ordinary",
+      "actual": {
+        "x": 81.38,
+        "y": 2862.15,
+        "scale": 0.5
+      },
+      "viewport": {
+        "left": -308.62,
+        "right": 471.38,
+        "top": 2214.540625,
+        "bottom": 3509.759375
+      },
+      "focus": {
+        "left": 0,
+        "top": 0,
+        "right": 4532.24,
+        "bottom": 3569.18
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "view": "ordinary",
+      "viewportCSS": [
+        390,
+        844
+      ],
+      "pngSHA256": "356d712273d6934966608c0948160a073fc58fa0825e1b3269e744e742e4c5c2",
+      "physicsSHA256": "6b4c47b95e0bfd4f40c047a44ea9118d585f46e6f8f19d0906412bb99f570a22",
+      "sceneTime": 2,
+      "phase": "aim",
+      "round": 1,
+      "actorCount": 26,
+      "tide": null,
+      "id": 7,
+      "ordinary": [
+        81.38,
+        2862.15,
+        0.5
+      ]
+    },
+    {
+      "key": "s07-390x844-overview",
+      "actual": {
+        "x": 2266.12,
+        "y": 1784.59,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": -1133.88,
+        "right": 5666.12,
+        "top": -3861.23532051282,
+        "bottom": 7430.4153205128205
+      },
+      "focus": {
+        "left": 0,
+        "top": 0,
+        "right": 4532.24,
+        "bottom": 3569.18
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "view": "overview",
+      "viewportCSS": [
+        390,
+        844
+      ],
+      "pngSHA256": "64373d32768f4e71740e28102c3c9974f464b692fdf9aceeff156709c5b56ce3",
+      "physicsSHA256": "6b4c47b95e0bfd4f40c047a44ea9118d585f46e6f8f19d0906412bb99f570a22",
+      "sceneTime": 2,
+      "phase": "aim",
+      "round": 1,
+      "actorCount": 26,
+      "tide": null,
+      "id": 7,
+      "ordinary": [
+        81.38,
+        2862.15,
+        0.5
+      ]
+    },
+    {
+      "key": "s07-390x844-south",
+      "actual": {
+        "x": 2266.12,
+        "y": 3569.18,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": -1133.88,
+        "right": 5666.12,
+        "top": -2076.6453205128205,
+        "bottom": 9215.00532051282
+      },
+      "focus": {
+        "left": 0,
+        "top": 0,
+        "right": 4532.24,
+        "bottom": 3569.18
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "view": "south",
+      "viewportCSS": [
+        390,
+        844
+      ],
+      "pngSHA256": "ba9857df382036d643a4f4a3631d870969efd790e9b85b29442c2097caf62c96",
+      "physicsSHA256": "6b4c47b95e0bfd4f40c047a44ea9118d585f46e6f8f19d0906412bb99f570a22",
+      "sceneTime": 2,
+      "phase": "aim",
+      "round": 1,
+      "actorCount": 26,
+      "tide": null,
+      "id": 7,
+      "ordinary": [
+        81.38,
+        2862.15,
+        0.5
+      ]
+    },
+    {
+      "key": "s07-390x844-west",
+      "actual": {
+        "x": 0,
+        "y": 1784.59,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": -3400,
+        "right": 3400,
+        "top": -3861.23532051282,
+        "bottom": 7430.4153205128205
+      },
+      "focus": {
+        "left": 0,
+        "top": 0,
+        "right": 4532.24,
+        "bottom": 3569.18
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "view": "west",
+      "viewportCSS": [
+        390,
+        844
+      ],
+      "pngSHA256": "e3bf0aa8aa258703b72ea920cd15bb56a6dd8a8b66f1ea1cd46efb1f4cd1956d",
+      "physicsSHA256": "6b4c47b95e0bfd4f40c047a44ea9118d585f46e6f8f19d0906412bb99f570a22",
+      "sceneTime": 2,
+      "phase": "aim",
+      "round": 1,
+      "actorCount": 26,
+      "tide": null,
+      "id": 7,
+      "ordinary": [
+        81.38,
+        2862.15,
+        0.5
+      ]
+    },
+    {
+      "key": "s07-390x844-southeast",
+      "actual": {
+        "x": 4532.24,
+        "y": 3569.18,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": 1132.2399999999998,
+        "right": 7932.24,
+        "top": -2076.6453205128205,
+        "bottom": 9215.00532051282
+      },
+      "focus": {
+        "left": 0,
+        "top": 0,
+        "right": 4532.24,
+        "bottom": 3569.18
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "view": "southeast",
+      "viewportCSS": [
+        390,
+        844
+      ],
+      "pngSHA256": "ff38e29a5d3435bca5f67912c34477a5c591d70f84bd2cf65676896df9f5f4e7",
+      "physicsSHA256": "6b4c47b95e0bfd4f40c047a44ea9118d585f46e6f8f19d0906412bb99f570a22",
+      "sceneTime": 2,
+      "phase": "aim",
+      "round": 1,
+      "actorCount": 26,
+      "tide": null,
+      "id": 7,
+      "ordinary": [
+        81.38,
+        2862.15,
+        0.5
+      ]
+    },
+    {
+      "key": "s03-1440x900-overview",
+      "actual": {
+        "x": 2865.01,
+        "y": 1517.505,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": -534.9899999999998,
+        "right": 6265.01,
+        "top": -298.6321527777777,
+        "bottom": 3333.642152777778
+      },
+      "focus": {
+        "left": 0,
+        "top": 0,
+        "right": 5730.02,
+        "bottom": 3035.01
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "view": "overview",
+      "viewportCSS": [
+        1440,
+        900
+      ],
+      "pngSHA256": "dcba6587303c8d3089a134fb545877cbf852eb555a194e7f0e5fd360637cb6c7",
+      "physicsSHA256": "d0c3fe6c5df8aeeb1c1cfa0d06b240f6cdf15abdc003a64353c4a6c763d120e7",
+      "sceneTime": 2,
+      "phase": "aim",
+      "round": 1,
+      "actorCount": 16,
+      "tide": null,
+      "id": 3,
+      "ordinary": [
+        410,
+        1650,
+        0.5
+      ]
+    },
+    {
+      "key": "s03-390x844-overview",
+      "actual": {
+        "x": 2865.01,
+        "y": 1517.505,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": -534.9899999999998,
+        "right": 6265.01,
+        "top": -4128.32032051282,
+        "bottom": 7163.33032051282
+      },
+      "focus": {
+        "left": 0,
+        "top": 0,
+        "right": 5730.02,
+        "bottom": 3035.01
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "view": "overview",
+      "viewportCSS": [
+        390,
+        844
+      ],
+      "pngSHA256": "f4f91cc7909e5e7bdba947af5e56d21578413602647cb420d7f3297c3fbd44f1",
+      "physicsSHA256": "d0c3fe6c5df8aeeb1c1cfa0d06b240f6cdf15abdc003a64353c4a6c763d120e7",
+      "sceneTime": 2,
+      "phase": "aim",
+      "round": 1,
+      "actorCount": 16,
+      "tide": null,
+      "id": 3,
+      "ordinary": [
+        410,
+        1650,
+        0.5
+      ]
+    },
+    {
+      "key": "s06-1440x900-overview",
+      "actual": {
+        "x": 3300,
+        "y": 1900,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": -100,
+        "right": 6700,
+        "top": 83.86284722222217,
+        "bottom": 3716.137152777778
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6920,
+        "bottom": 4040
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "view": "overview",
+      "viewportCSS": [
+        1440,
+        900
+      ],
+      "pngSHA256": "6783abe42f8d2bed66578fcee57e2655e3328db78169e3e86d804fc41678f100",
+      "physicsSHA256": "fa4d7b87dc271ddd9647de08153f0113a3525cf91fcf63804a3ed97376022fda",
+      "sceneTime": 2,
+      "phase": "aim",
+      "round": 1,
+      "actorCount": 26,
+      "tide": null,
+      "id": 6,
+      "ordinary": [
+        530,
+        1830,
+        0.5
+      ]
+    },
+    {
+      "key": "s06-390x844-overview",
+      "actual": {
+        "x": 3300,
+        "y": 1900,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": -100,
+        "right": 6700,
+        "top": -3745.8253205128203,
+        "bottom": 7545.82532051282
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6920,
+        "bottom": 4040
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "view": "overview",
+      "viewportCSS": [
+        390,
+        844
+      ],
+      "pngSHA256": "1c52dfa93132d4e4a275ccb46b121d72d6552a45a19a051ecacc527c57bb18bd",
+      "physicsSHA256": "fa4d7b87dc271ddd9647de08153f0113a3525cf91fcf63804a3ed97376022fda",
+      "sceneTime": 2,
+      "phase": "aim",
+      "round": 1,
+      "actorCount": 26,
+      "tide": null,
+      "id": 6,
+      "ordinary": [
+        530,
+        1830,
+        0.5
+      ]
+    }
+  ],
+  "media": [
+    "assets/bgm/battle-1.mp3",
+    "assets/bgm/main.mp3"
+  ],
+  "oldBrowser": "151.0.7922.34",
+  "sourceCommit": "61f3e01b6fc16afc46b24c4e0100157cfc47eb65",
+  "sourceTree": "11f7713d2560bfb68b2c8ef0e59d57476f512458"
+}
