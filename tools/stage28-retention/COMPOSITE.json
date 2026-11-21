@@ -1,0 +1,75 @@
+{
+  "status": "EXACT_R6_TARGETS_AND_R7_INDEPENDENT_CONTROL",
+  "sourceB": {
+    "bytes": 26789,
+    "sha256": "b856335569d5303781f7deb48f4f030f28cce081d2ced47fc249d02245b34ed5",
+    "git": "eb468b23024e316ede42ac66bd77687e8c40240a"
+  },
+  "canonicalGraphSHA256": "3c197b0251f30df3fbb4ef5c8b797dc2ff130298bd00acaeccb600b1851d94aa",
+  "R6": {
+    "run": 44931823134,
+    "job": 136929892732,
+    "head": "47d9fe32f4210e8d09e74eb97a534cfcae6f3ffd",
+    "aggregate": "HOLD",
+    "acceptedScope": "Stage28 actual target 16 and Stage27/29 4 exact controls in both native phases, original Stage3 failure separate",
+    "coreMatchedPairs": 16,
+    "unchangedPeerMatchedPairs": 4,
+    "independentRawCorePeerPhaseFrames": 80,
+    "independentSHA256": "0de350f88e48714df2fb5a586a32647af3bb68dd2417f85b4bd740a5f1ea7421",
+    "srcReceiptSHA256": "d7176c228077464459a4b3dfaa5e2cb974a3b4f837b77f69d891450671bcebc8",
+    "browserReceiptSHA256": "c1a8dfa7214abacd24406c4a4ee6d0b451e2a250bd58eecf8e581b771a33a1dd",
+    "artifacts": [
+      {
+        "id": 14718281496,
+        "name": "honro-stage28-poster-signed-pc",
+        "bytes": 31592726,
+        "sha256": "d32926293a42982dbaacb4a67ee0ecd77728d58e9d28612c88212682b09ecfc7"
+      },
+      {
+        "id": 14718321360,
+        "name": "honro-stage28-poster-signed-normal-receipt-and-seal",
+        "bytes": 158016,
+        "sha256": "73546c95be07d93c0829e6725829b5b344f926350429210a9d3b4369c9320fc0"
+      },
+      {
+        "id": 14718535604,
+        "name": "honro-stage28-poster-signed-mobile",
+        "bytes": 9306520,
+        "sha256": "e7b3ef70bd30a90993d733639e9aa07ad4ce0262a0f79f8768a28879ac4a56b0"
+      }
+    ]
+  },
+  "R7": {
+    "run": 44935745420,
+    "job": 136941853197,
+    "head": "3cf20dce849a4d42635536560f5fe860af21bbff",
+    "independentVisits": 12,
+    "rawPngs": 80,
+    "actualCloudPositivePixelDelta": [
+      8113,
+      2545
+    ],
+    "independentSHA256": "2be48e0ddee7ae133b374686e60b254692d9bbcccb0546f621bd67cf3c741808",
+    "browserReceiptSHA256": "3114f822beed0a03974b4b3e0f9cce75b02661ca61b8c7e0f6b20c41dc78674f",
+    "artifacts": [
+      {
+        "id": 14719368997,
+        "name": "honro-stage3-clock-native-PC",
+        "bytes": 36948487,
+        "sha256": "b20987019a636362340a472eedc847c46259b09c1779895f1793a145a750aaa7"
+      },
+      {
+        "id": 14719668038,
+        "name": "honro-stage3-clock-native-M",
+        "bytes": 8142074,
+        "sha256": "50fe0fd5d88332cb0ac90ea334c24b59c5c8428317232699f9d3072beadf8233"
+      },
+      {
+        "id": 14719827396,
+        "name": "honro-stage3-clock-independent-readonly",
+        "bytes": 137534,
+        "sha256": "98cf61febdd6fbf8b52785091917b78ad45f1e607d6f73e31f823b4c6616a79f"
+      }
+    ]
+  }
+}
