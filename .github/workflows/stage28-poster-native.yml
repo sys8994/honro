@@ -1,7 +1,7 @@
 name: HONRO Stage28 unaltered play projection and deep foundation A/B
 on:
   push:
-    branches: [qa/stage28-poster-floor-acb51-r2]
+    branches: [qa/stage28-poster-floor-acb51-r3]
     paths:
       - .github/workflows/stage28-poster-native.yml
       - tools/stage28-poster-native/**
@@ -9,13 +9,13 @@ permissions:
   contents: read
 jobs:
   compare:
-    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage28-poster-floor-acb51-r2'
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage28-poster-floor-acb51-r3'
     runs-on: ubuntu-24.04
     timeout-minutes: 49
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
-          fetch-depth: 3
+          fetch-depth: 4
           persist-credentials: false
       - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
         with:
@@ -39,7 +39,7 @@ jobs:
             npm run test:production-contract > "$T/out/production-contract-B.log" 2>&1
           )
           python "$Q/guard.py" built "$T"
-      - name: Normal actual native Chrome two localhost servers, 24 paired poses
+      - name: Normal actual native Chrome two localhost servers, 24 paired poses in both native cache phases
         shell: bash
         timeout-minutes: 32
         env:
@@ -64,17 +64,18 @@ jobs:
       - if: always() && env.WORK != ''
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: honro-stage28-poster-r2-signed-normal-receipt-and-seal
+          name: honro-stage28-poster-signed-normal-receipt-and-seal
           path: |
             ${{ runner.temp }}/stage28-poster-native/out/*.json
             ${{ runner.temp }}/stage28-poster-native/out/*.log
+            ${{ runner.temp }}/stage28-poster-native/out/*.traceback.txt
             ${{ runner.temp }}/stage28-poster-native/out/*.zip
           retention-days: 7
           if-no-files-found: error
       - if: always() && env.WORK != ''
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: honro-stage28-poster-r2-signed-pc
+          name: honro-stage28-poster-signed-pc
           path: |
             ${{ runner.temp }}/stage28-poster-native/out/pc-target/
             ${{ runner.temp }}/stage28-poster-native/out/pc-control/
@@ -83,7 +84,7 @@ jobs:
       - if: always() && env.WORK != ''
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: honro-stage28-poster-r2-signed-mobile
+          name: honro-stage28-poster-signed-mobile
           path: ${{ runner.temp }}/stage28-poster-native/out/mobile/
           retention-days: 7
           if-no-files-found: warn
