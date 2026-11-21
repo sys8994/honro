@@ -1,0 +1,53 @@
+name: Stage46 western paint source-only receipt
+on:
+  push:
+    branches: [qa/stage46-west-source-receipt]
+permissions:
+  contents: read
+jobs:
+  pinned-source:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage46-west-source-receipt'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+          lfs: false
+          submodules: false
+      - name: Verify immutable ancestor, narrow additions and extraction tool
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE=2939958cc87407ef60b58720bb6e086b8559031b
+          test "$(git rev-list -n1 --parents HEAD)" = "$GITHUB_SHA $BASE"
+          test "$(git rev-parse "$BASE^{tree}")" = '08e22a8cc0ab608e125ad73f8e8e1c288d8c4c74'
+          test -z "$(git status --porcelain --untracked-files=all)"
+          diff -u <(printf 'A\t%s\n' .github/workflows/stage46-west-source-receipt.yml tools/stage46-west-source-receipt/recover.py) <(git diff --name-status --no-renames "$BASE" HEAD)
+          sha256sum -c <<'SUMS'
+          d52d43ba1ed178d0b23724b6bb1cfcfc58a9da34d2b427e47aff88725978c8bc  tools/stage46-west-source-receipt/recover.py
+          SUMS
+      - name: Extract only Stage46 western source and prove active packaged ownership
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/stage46-west-source-receipt/recover.py --repo "$GITHUB_WORKSPACE" --output "$RUNNER_TEMP/stage46-west-receipt"
+          cd "$RUNNER_TEMP/stage46-west-receipt"
+          sha256sum -c SHA256SUMS
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: stage46-west-source-receipt
+          path: |
+            ${{ runner.temp }}/stage46-west-receipt/author-stage46-near-import-member.raw.json
+            ${{ runner.temp }}/stage46-west-receipt/author-stage46-exterior-part-2.raw.json
+            ${{ runner.temp }}/stage46-west-receipt/active-stage46-descriptor.raw.json
+            ${{ runner.temp }}/stage46-west-receipt/active-stage46-protected-a-b.raw.json
+            ${{ runner.temp }}/stage46-west-receipt/active-stage46-west-owners.decoded.json
+            ${{ runner.temp }}/stage46-west-receipt/active-stage46-exterior-part-2.decoded.json
+            ${{ runner.temp }}/stage46-west-receipt/source-receipt.json
+            ${{ runner.temp }}/stage46-west-receipt/SHA256SUMS
+            ${{ runner.temp }}/stage46-west-receipt/failure.json
+          if-no-files-found: warn
+          retention-days: 7
