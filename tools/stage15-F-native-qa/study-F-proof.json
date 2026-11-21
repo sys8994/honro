@@ -1,0 +1,202 @@
+{
+  "scope": "Native source offline study, not official actual PNG or released artwork",
+  "baselineSourcePakSHA": "95670e362e5ff59f375cea933eb1f8bf70a7e4c1442239a98e21854d2e5a6799",
+  "changedOwner": "formal RGB study clipped to exact solid domain of exposed west-flat L1 rim; no native input path overwrite",
+  "ownerParentClips": {
+    "assetId": "act2-compact:stage15-act2-stage15-traced-west-flat-v2-1",
+    "rootStripIndices": [
+      2,
+      3
+    ],
+    "parentFills": [
+      "#60747c",
+      "#88887e"
+    ],
+    "unchanged": [
+      "canonicalSolid",
+      "contactInset",
+      "cave-roof outline"
+    ]
+  },
+  "exactRoofClipUnchanged": true,
+  "physicalMapSourceReadOnly": true,
+  "worldFaceDomains": [
+    {
+      "owner": "long fracture returning into the left shoulder",
+      "fill": "#445c64",
+      "area": 2569.432841561662,
+      "d": "M768.512727076,1336.16270143 L775.489877584,1337.80438391 L798.671695765,1343.25892936 L839.973517923,1352.97700516 L854,1334 L879,1326 L871,1310 L878,1297 L853,1297 L834,1320 L807,1330 L786.176470588,1324.05042017Z"
+    },
+    {
+      "owner": "long fracture returning into the left shoulder",
+      "fill": "#4d6570",
+      "area": 2357.124835819174,
+      "d": "M939.155127803,1377.41089887 L960.100174258,1383.29021016 L990,1364 L1020,1347 L1022,1345 L1008,1340 L983,1329 L964,1346 L943,1348 L935,1370 L927.0013665,1373.99931675Z"
+    },
+    {
+      "owner": "long fracture returning into the left shoulder",
+      "fill": "#536a74",
+      "area": 14132.943971370827,
+      "d": "M1047,1332 L1016,1315 L966,1294 L955,1266 L926,1258 L932,1232 L887,1248 L864,1282 L839,1289 L818,1312 L795,1318 L786.176470588,1324.05042017 L807,1330 L834,1320 L853,1297 L878,1297 L871,1310 L879,1326 L854,1334 L839.973517923,1352.97700516 L798.671695765,1343.25892936 L845.035332129,1354.16802027 L891.398968493,1365.07711118 L914.580786675,1370.53165663 L915.405127803,1370.7442322 L927.0013665,1373.99931675 L935,1370 L943,1348 L964,1346 L983,1329 L1008,1340 L1022,1345 L1020,1347Z"
+    },
+    {
+      "owner": "limestone edge flakes project into a quiet parent plane",
+      "fill": "#75877e",
+      "area": 367.70676035838443,
+      "d": "M1097.17594964,1407.38976468 L1141.91777545,1411.15749738 L1140,1409 L1151,1398 L1133,1397 L1119,1406 L1105,1402 L1096.39912973,1407.32434826Z"
+    },
+    {
+      "owner": "limestone edge flakes project into a quiet parent plane",
+      "fill": "#6d7c7f",
+      "area": 423.6170533411007,
+      "d": "M1255.50928297,1420.72309801 L1259.89919722,1421.092775 L1259,1413 L1272,1400 L1250,1404 L1235,1415 L1221,1416 L1219.71816797,1417.70910938Z"
+    },
+    {
+      "owner": "limestone edge flakes project into a quiet parent plane",
+      "fill": "#7c8a8c",
+      "area": 7830.404757766204,
+      "d": "M1276,1379 L1295,1366 L1304,1348 L1284,1362 L1264,1359 L1244,1372 L1223,1375 L1216,1365 L1187,1369 L1195,1355 L1178,1370 L1161,1371 L1142,1385 L1120,1383 L1103,1389 L1086,1404 L1076.98808533,1405.689734 L1097.17594964,1407.38976468 L1176.34261631,1414.05643135 L1255.50928297,1420.72309801 L1308.78534641,1425.20950335 L1307,1402 L1273,1395Z M1096.39912973,1407.32434826 L1105,1402 L1119,1406 L1133,1397 L1151,1398 L1140,1409 L1141.91777545,1411.15749738 L1097.17594964,1407.38976468Z M1219.71816797,1417.70910938 L1221,1416 L1235,1415 L1250,1404 L1272,1400 L1259,1413 L1259.89919722,1421.092775 L1255.50928297,1420.72309801Z"
+    }
+  ],
+  "disjointNewPartitionCells": true,
+  "insetWorldFromPhysicalRoofRim": [
+    20.0,
+    16.0
+  ],
+  "views": {
+    "1440x900-ordinary": {
+      "diffPixels": 5985,
+      "outsideScope": 0,
+      "alphaChanged": 0,
+      "changedPixelAlpha0Baseline": 0,
+      "changedCSSLTRB": [
+        1002,
+        0,
+        1263,
+        78
+      ],
+      "actualAnchor": {
+        "x": 224,
+        "y": 2038.4444444444443,
+        "scale": 0.5
+      },
+      "worldViewport": {
+        "left": -1216,
+        "right": 1664,
+        "top": 1269.2569444444443,
+        "bottom": 2807.6319444444443
+      },
+      "actualRawSHA": "71e1fc69a368bd3254da6ba8d39a0cb1ec3989fef2761a8ae843127c8cc3c55a"
+    },
+    "1440x900-overview": {
+      "diffPixels": 1181,
+      "outsideScope": 0,
+      "alphaChanged": 0,
+      "changedPixelAlpha0Baseline": 0,
+      "changedCSSLTRB": [
+        272,
+        203,
+        383,
+        242
+      ],
+      "actualAnchor": {
+        "x": 2900,
+        "y": 2100,
+        "scale": 0.21176470588235294
+      },
+      "worldViewport": {
+        "left": -500,
+        "right": 6300,
+        "top": 283.8628472222222,
+        "bottom": 3916.137152777778
+      },
+      "actualRawSHA": "a527f63daea9951d619f661f382954e8831e9ddfddd4cd0e738ff8678ed2ce50"
+    },
+    "390x844-overview": {
+      "diffPixels": 116,
+      "outsideScope": 0,
+      "alphaChanged": 0,
+      "changedPixelAlpha0Baseline": 0,
+      "changedCSSLTRB": [
+        74,
+        274,
+        104,
+        286
+      ],
+      "actualAnchor": {
+        "x": 2900,
+        "y": 2100,
+        "scale": 0.057352941176470586
+      },
+      "worldViewport": {
+        "left": -500,
+        "right": 6300,
+        "top": -3545.8253205128203,
+        "bottom": 7745.82532051282
+      },
+      "actualRawSHA": "5eb334eb768dad69840204bbcd85a443b8a11bd56ee3668e96a631f019c574c2"
+    },
+    "390x844-ordinary": {
+      "diffPixels": 0,
+      "outsideScope": 0,
+      "alphaChanged": 0,
+      "changedPixelAlpha0Baseline": 0,
+      "changedCSSLTRB": null,
+      "actualAnchor": {
+        "x": 224,
+        "y": 2038.4444444444443,
+        "scale": 0.5
+      },
+      "worldViewport": {
+        "left": -166,
+        "right": 614,
+        "top": 1390.8350694444443,
+        "bottom": 2686.0538194444443
+      },
+      "actualRawSHA": "5506af3ff4686935f05491ee5bc80eeb7b610ad0c4960f226ece5f7567d1b844"
+    },
+    "1440x900-north": {
+      "diffPixels": 0,
+      "outsideScope": 0,
+      "alphaChanged": 0,
+      "changedPixelAlpha0Baseline": 0,
+      "changedCSSLTRB": null,
+      "actualAnchor": {
+        "x": 2900,
+        "y": -1800,
+        "scale": 0.21176470588235294
+      },
+      "worldViewport": {
+        "left": -500,
+        "right": 6300,
+        "top": -3616.137152777778,
+        "bottom": 16.13715277777783
+      },
+      "actualRawSHA": "85528c28512c17e6db82650cea53b2e15d28e4b0e78d92913109b5891107ec01"
+    },
+    "390x844-north": {
+      "diffPixels": 114,
+      "outsideScope": 0,
+      "alphaChanged": 0,
+      "changedPixelAlpha0Baseline": 0,
+      "changedCSSLTRB": [
+        74,
+        498,
+        104,
+        509
+      ],
+      "actualAnchor": {
+        "x": 2900,
+        "y": -1800,
+        "scale": 0.057352941176470586
+      },
+      "worldViewport": {
+        "left": -500,
+        "right": 6300,
+        "top": -7445.82532051282,
+        "bottom": 3845.8253205128203
+      },
+      "actualRawSHA": "14b553ee657c44193abae6e263a6b0301ba15fda30e834d2f6f087bea8a04a2a"
+    }
+  }
+}
