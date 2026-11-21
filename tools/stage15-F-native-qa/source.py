@@ -17,7 +17,7 @@ ROOT=Path(os.environ['AUDIT_TREE']).resolve()
 ARM=os.environ['AUDIT_ARM'];assert ARM in 'BF' and len(ARM)==1
 VIEWS = [('ordinary', 0, 0), ('overview', 0, 0), ('north', 0, -1), ('south', 0, 1),
          ('west', -1, 0), ('east', 1, 0), ('northwest', -1, -1),
-         ('northeast', 1, -1), ('southwest', -1, 1), ('southeast', 1, 1)]
+         ('northeast', 1, -1), ('southwest', -1, 1), ('southeast', 1, 1), ('roof-detail', 0, 0)]
 VIEWPORTS = [(1440, 900), (390, 844)]
 OPTIONAL_MODULES = {
     'skill-preview': {'file':'web/runtime/shared-runtime-skill-preview.0873a72c3e01c88c.js','global':'HonroSkillPreview'},
