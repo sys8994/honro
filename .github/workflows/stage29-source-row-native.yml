@@ -1,7 +1,7 @@
 name: HONRO Stage29 detached source-row native A B proof only
 on:
   push:
-    branches: [qa/stage29-source-row-detached-native-acb]
+    branches: [qa/stage29-source-row-detached-native-acb-r2]
     paths:
       - .github/workflows/stage29-source-row-native.yml
       - tools/stage29-source-row-native/**
@@ -9,7 +9,7 @@ permissions:
   contents: read
 jobs:
   positive-and-controls:
-    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage29-source-row-detached-native-acb'
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage29-source-row-detached-native-acb-r2'
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     env:
@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
-          fetch-depth: 9
+          fetch-depth: 10
           persist-credentials: false
       - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
         with:

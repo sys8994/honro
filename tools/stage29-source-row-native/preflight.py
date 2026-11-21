@@ -1,11 +1,12 @@
-"""Read-only real Stage29 source candidate A/B: untouched official toolchain, no release assets."""
+"""Read-only historical acb Stage29 A/B QA, never a comparison with present live master."""
 import hashlib,json,os,re,shutil,subprocess,sys
 from pathlib import Path
 D=Path(__file__).resolve().parent
 sys.path.insert(0,str(D.parent/'stage28-poster-native'))
 import guard as g
 BASE=g.P['base'];TREE=g.P['tree'];R1='4f649f82de09935b9b839ec2f4dd416c3678664b'
-REF='refs/heads/qa/stage29-source-row-detached-native-acb'
+R1_TEST='8ed3d35a614006b30b8ab790d3b07bc7a69c30ee'
+REF='refs/heads/qa/stage29-source-row-detached-native-acb-r2'
 QA={'.github/workflows/stage29-source-row-native.yml',*(f'tools/stage29-source-row-native/{f}'for f in ('prepare.cjs','planes.json','preflight.py','capture.py','watch.js','owner.js'))}
 A='shared/assets/environment/act3-handoff/stage29-west-bank.json'; O='shared/data/terrain-path-optimization.json'
 PACK='web/data/chapter-29-assets.03bec5fbcabe5e35.json'; MAP='web/data/chapter-29.9c23e7ce4d1312d3.json'
@@ -20,10 +21,14 @@ def pre(w):
  assert not(os.getenv('GH_TOKEN')or os.getenv('GITHUB_TOKEN'))
  assert (os.environ['GITHUB_REPOSITORY'],os.environ['GITHUB_EVENT_NAME'],os.environ['GITHUB_REF'])==('sys8994/honro','push',REF)
  assert w.is_relative_to(Path(os.environ['RUNNER_TEMP']).resolve())
- assert g.git(rt,'rev-list','--parents','-n1','HEAD').decode().split()==[head,R1]
+ assert g.git(rt,'rev-list','--parents','-n1','HEAD').decode().split()==[head,R1_TEST]
+ assert g.git(rt,'rev-list','--parents','-n1',R1_TEST).decode().split()==[R1_TEST,R1]
  assert g.git(rt,'rev-parse',BASE+'^{tree}').decode().strip()==TREE
  assert not g.git(rt,'status','--porcelain=v1','-z')
- assert set(g.git(rt,'diff','--name-status','--no-renames',R1,head).decode().splitlines())=={'A\t'+p for p in QA}
+ r2={'.github/workflows/stage29-source-row-native.yml','tools/stage29-source-row-native/preflight.py'}
+ assert set(g.git(rt,'diff','--name-status','--no-renames',R1,R1_TEST).decode().splitlines())=={'A\t'+p for p in QA}
+ assert set(g.git(rt,'diff','--name-status','--no-renames',R1_TEST,head).decode().splitlines())=={'M\t'+p for p in r2}
+ assert all(g.git(rt,'show',R1_TEST+':'+p)==g.git(rt,'show',head+':'+p)for p in QA-r2)
  for p in QA:assert g.git(rt,'ls-tree',head,'--',p).decode().split()[:2]==['100644','blob']
  for arm in ('A','B'):
   t=w/arm;g.git(rt,'worktree','add','--detach',str(t),BASE)
@@ -43,6 +48,12 @@ def register(paths):
   [k]=[k for k,q in ROLE.items()if re.fullmatch(q,f)]
   assert k not in p;p[k]=f
  return p
+def verify_only_campaign_common_slot(a,b,old,new):
+ assert old=='web/runtime/campaign.926544619e01a04a.js' and new!=old
+ assert len(a['common'])==len(b['common'])==76 and a['common'][56]==old and a['common'].count(old)==1
+ assert not new in a['common']
+ strict=a['common'].copy();strict[56]=new
+ assert b['common']==strict and b['gameOnly']==a['gameOnly'], 'unexpected executable alias or order outside one exact campaign binding'
 def built(w):
  a,b=w/'A',w/'B';o=w/'out'
  src=json.loads(g.rd(o,'SOURCE-RECEIPT.json'))
@@ -62,7 +73,9 @@ def built(w):
  assert ar.keys()==br.keys()==ROLE.keys() and ar['packet']==PACK and br['packet']==CANDIDATE_PACK and bi[CANDIDATE_PACK]==CANDIDATE_HASH
  pairs=[(ar[k],br[k])for k in ROLE]
  for arm in (a,b):assert g.facts(g.rd(arm,MAP))==ai[MAP]
- assert ax['common']==bx['common'] and ax['gameOnly']==bx['gameOnly']
+ g.save(o/'GRAPH-OBSERVED.json',{'status':'post inventory/pre strict normalization only','aliases':pairs,'commonA':ax['common'],'commonB':bx['common'],
+  'gameOnlyA':ax['gameOnly'],'gameOnlyB':bx['gameOnly'],'oldHistoricalRun':44937500491,'oldHistoricalJob':136947240127,'oldHistoricalHOLD':True})
+ verify_only_campaign_common_slot(ax,bx,ar['runtime-campaign'],br['runtime-campaign'])
  for k in ('runtime-campaign','game-js','game-html','workshop-js'):assert g.rd(a,ar[k])==g.normalize(g.rd(b,br[k]),pairs)
  for p in g.SHELL:assert g.rd(a,p)==g.normalize(g.rd(b,p),pairs)
  for k in ('project','playtest','gameEntry','workshopEntry','common','gameOnly','optionalModules','styles'):
@@ -80,5 +93,5 @@ def built(w):
  assert aF['vector']['root']['children'][0]['children'][0]['children']==bF['vector']['root']['children'][0]['children'][0]['children'][:-1]
  inflate=lambda r,v:{**v,**{k:g.facts(g.rd(r,k))for k in g.SHELL|{g.MF}}}
  g.save(o/'GRAPH.json',{'base':BASE,'tree':TREE,'activeA':inflate(a,ai),'activeB':inflate(b,bi),'aliases':pairs,'verifiedMap':MAP,'mapScopes':50,
-  'assetPacketsUnaffected':49,'sourceChangesOnly':[A,O],'noRelease':True})
+  'assetPacketsUnaffected':49,'sourceChangesOnly':[A,O],'historicalAcbComparatorOnly':True,'liveMasterNotAsserted':True,'noRelease':True})
 if __name__=='__main__':{'pre':pre,'built':built}[sys.argv[1]](Path(sys.argv[2]).resolve())
