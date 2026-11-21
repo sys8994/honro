@@ -1,0 +1,74 @@
+name: HONRO acb51 directional camera coverage (QA only)
+on:
+  push:
+    branches: [qa/acb51-directional-full]
+    paths:
+      - '.github/workflows/acb51-directional-full.yml'
+      - 'tools/acb51-directional-full/**'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  remaining-directions:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/acb51-directional-full'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 23
+    strategy:
+      max-parallel: 4
+      fail-fast: false
+      matrix:
+        shard: [A1a, A1b, A2a, A2b, A3a, A3b, A4a, A4b, A5a, A5b]
+    env:
+      SHARD: ${{ matrix.shard }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 5
+          persist-credentials: false
+      - name: Root release graph and sealed stage-start archive
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          W="$(mktemp -d "$RUNNER_TEMP/acb51-dirs.XXXXXX")"
+          mkdir "$W/out"
+          echo "WORK=$W" >> "$GITHUB_ENV"
+          python tools/acb51-directional-full/full.py authority "$W" "$SHARD"
+      - name: Actual anonymous Chrome native-clamped directions
+        run: |
+          set -euo pipefail
+          test -z "${GH_TOKEN:-}${GITHUB_TOKEN:-}"
+          python -m venv "$WORK/venv"
+          V="$WORK/venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+          "$V" tools/acb51-directional-full/full.py app "$WORK" "$SHARD"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always() && env.WORK != ''
+        with:
+          name: honro-acb51-directions-${{ matrix.shard }}-receipt
+          path: ${{ env.WORK }}/out/*.json
+          if-no-files-found: error
+          retention-days: 7
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always() && env.WORK != ''
+        with:
+          name: honro-acb51-directions-${{ matrix.shard }}-pc-1
+          path: ${{ env.WORK }}/out/pc-1/*.png
+          if-no-files-found: ignore
+          retention-days: 7
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always() && env.WORK != ''
+        with:
+          name: honro-acb51-directions-${{ matrix.shard }}-pc-2
+          path: ${{ env.WORK }}/out/pc-2/*.png
+          if-no-files-found: ignore
+          retention-days: 7
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always() && env.WORK != ''
+        with:
+          name: honro-acb51-directions-${{ matrix.shard }}-mobile
+          path: ${{ env.WORK }}/out/mobile/*.png
+          if-no-files-found: ignore
+          retention-days: 7

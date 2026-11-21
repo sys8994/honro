@@ -1,0 +1,339 @@
+{
+  "ready": true,
+  "sources": {
+    "canary": {
+      "run": 44920547861,
+      "head": "7ef7ceff7c0810f125ff4c55afa196526df53344",
+      "branch": "qa/acb51-first-loadability-canaries"
+    },
+    "remaining": {
+      "run": 44921135513,
+      "head": "fd5b9749da9b9ca829f9fbf4855be3f1d65cc845",
+      "branch": "qa/acb51-loadability-remaining"
+    },
+    "directional": {
+      "run": 44922179585,
+      "head": "3784feb83aa188e043aed3e32d11179a51c4ddcf",
+      "branch": "qa/acb51-directional-s33"
+    }
+  },
+  "actualSlots": {
+    "Act1": {
+      "canary": {
+        "id": 14713193025,
+        "name": "honro-acb51-loadability-Act1-no-deploy",
+        "bytes": 953456,
+        "sha256": "9bff6e3af887b67e0635173c00fa94a29e144f71ee16182ef134e395cc377419",
+        "job": 136895411619,
+        "receipts": {
+          "AUTHORITY.json": {
+            "bytes": 364,
+            "sha256": "5130be3662a4164dfd87bb4cb71f6814ba82715db0eaa920b27dd0af673a545a"
+          },
+          "CHROME.json": {
+            "bytes": 4319,
+            "sha256": "00d15a772b93ef034fe8c059c3ac06395da019e1bbdd3360fa22ac650a1292d1"
+          },
+          "WIRE.json": {
+            "bytes": 8868,
+            "sha256": "dc869148c861bc69a95886cc33c73fa171032b29684c5482e69d1490a27816f7"
+          }
+        }
+      },
+      "remaining": {
+        "shard": "Act1",
+        "id": 14713557815,
+        "bytes": 8434289,
+        "sha256": "6e48850be154f6f6691f4d93ba05aea7a3d40a38aba3426924bffee50c2c4225",
+        "job": 136897201506,
+        "name": "honro-acb51-loadability-remaining-Act1-no-deploy",
+        "receipts": {
+          "AUTHORITY.json": {
+            "bytes": 19197,
+            "sha256": "f4b4877667e032d3b8e161ff405f6bbb970d7dbb110e9f6ddc8a828791743d88"
+          },
+          "CHROME.json": {
+            "bytes": 40088,
+            "sha256": "bb734f40908bf27d84e6e931d4a004c9c51f51c8d1f3126cf6f76b93e28c854d"
+          },
+          "PINNED-WIRE.json": {
+            "bytes": 130273,
+            "sha256": "d9ba997f8a52336d8e267061abf8505380ac450290805adcee3c2c740aeeae74"
+          }
+        }
+      }
+    },
+    "Act2": {
+      "canary": {
+        "id": 14713374032,
+        "name": "honro-acb51-loadability-Act2-no-deploy",
+        "bytes": 1560538,
+        "sha256": "2ec3701c5f48507e58fec6b9aa5a3ee0f2972b901791e4ca2c4463e74605cfc2",
+        "job": 136895411632,
+        "receipts": {
+          "AUTHORITY.json": {
+            "bytes": 364,
+            "sha256": "5130be3662a4164dfd87bb4cb71f6814ba82715db0eaa920b27dd0af673a545a"
+          },
+          "CHROME.json": {
+            "bytes": 9856,
+            "sha256": "015ba8bec903ef6087cd4069e081eca88ddfede0bf28d24088dfe1c287d6af6c"
+          },
+          "WIRE.json": {
+            "bytes": 14082,
+            "sha256": "1a1803361abc8016a367cb6b39c259270acbbdace7dee007a6a37e1cc3fdff15"
+          }
+        }
+      },
+      "remaining": {
+        "shard": "Act2",
+        "id": 14714050425,
+        "bytes": 4527745,
+        "sha256": "69833cb401a5da8e99e8c645144f2e048593c853e5363975cf1e4d803a4da992",
+        "job": 136897201510,
+        "name": "honro-acb51-loadability-remaining-Act2-no-deploy",
+        "receipts": {
+          "AUTHORITY.json": {
+            "bytes": 34440,
+            "sha256": "de8560566dd7a7a9c0b7e13e7f4dd6ec03b7e6bcd2547f5a32860f9b4133b13a"
+          },
+          "CHROME.json": {
+            "bytes": 49271,
+            "sha256": "1a9aebdf65f9288dd6c165a8785eafa2df362e3f97f8f8f82ae839e60b8e2c20"
+          },
+          "PINNED-WIRE.json": {
+            "bytes": 130273,
+            "sha256": "d9ba997f8a52336d8e267061abf8505380ac450290805adcee3c2c740aeeae74"
+          }
+        }
+      }
+    },
+    "Act3": {
+      "canary": {
+        "id": 14713453798,
+        "name": "honro-acb51-loadability-Act3-no-deploy",
+        "bytes": 520062,
+        "sha256": "3f110a8b92a256c3c60aa5ced123cb167ed40ba9ae8473392faeb657097e55be",
+        "job": 136895411483,
+        "receipts": {
+          "AUTHORITY.json": {
+            "bytes": 364,
+            "sha256": "5130be3662a4164dfd87bb4cb71f6814ba82715db0eaa920b27dd0af673a545a"
+          },
+          "CHROME.json": {
+            "bytes": 10258,
+            "sha256": "0b72fece0d4a8e15b703546a2b6604f70c9c745bdcf3c7ea8dc48a4016f712fc"
+          },
+          "WIRE.json": {
+            "bytes": 8855,
+            "sha256": "58af174df1a1e60df9b1170c7e2bf9280483dd13e288c21c79ad104f073f3ec3"
+          }
+        }
+      },
+      "remaining": {
+        "shard": "Act3",
+        "id": 14714031048,
+        "bytes": 6515726,
+        "sha256": "c069284b2efe27fbb0b49839863b6c6900baba5590f89c9ff0039f187ffa2a2e",
+        "job": 136897201326,
+        "name": "honro-acb51-loadability-remaining-Act3-no-deploy",
+        "receipts": {
+          "AUTHORITY.json": {
+            "bytes": 19648,
+            "sha256": "8c37a87188d8b39790e426eb2f4470fff00fc5acfda55dc797caa74cfcc21ed7"
+          },
+          "CHROME.json": {
+            "bytes": 61076,
+            "sha256": "2f3cb963bd103d3c8847f59470cc8876b617f36bdd3ebb2c65bf761c40a21b51"
+          },
+          "PINNED-WIRE.json": {
+            "bytes": 130273,
+            "sha256": "d9ba997f8a52336d8e267061abf8505380ac450290805adcee3c2c740aeeae74"
+          }
+        }
+      }
+    },
+    "Act4": {
+      "canary": {
+        "id": 14712464755,
+        "name": "honro-acb51-loadability-Act4-no-deploy",
+        "bytes": 1201717,
+        "sha256": "e866ab049f58f9a90b44acf7639c81a3bae520bb12d95af6e14a4143c9e30449",
+        "job": 136895411599,
+        "receipts": {
+          "AUTHORITY.json": {
+            "bytes": 364,
+            "sha256": "5130be3662a4164dfd87bb4cb71f6814ba82715db0eaa920b27dd0af673a545a"
+          },
+          "CHROME.json": {
+            "bytes": 4864,
+            "sha256": "207ac2029216f960c4d32a2fecdaa0e1d4f0f782d2f036946760e5a9a98d0271"
+          },
+          "WIRE.json": {
+            "bytes": 9285,
+            "sha256": "e07a891017181d280f9990ed226b0632bef48eaf6359dc295997961df4357323"
+          }
+        }
+      },
+      "remaining": {
+        "shard": "Act4",
+        "id": 14713757360,
+        "bytes": 12234861,
+        "sha256": "99851bdb4f59b7acc18b9a5235bf4fce4ea797428825511644a51c9ba698db56",
+        "job": 136897201547,
+        "name": "honro-acb51-loadability-remaining-Act4-no-deploy",
+        "receipts": {
+          "AUTHORITY.json": {
+            "bytes": 21070,
+            "sha256": "38fe294d882900173e5a822ec68a7178d1ed6c0f223a04441a0ca91724b00e13"
+          },
+          "CHROME.json": {
+            "bytes": 48634,
+            "sha256": "35d47de41a81f91d31b953ed7fa6f2568082eecb7328cddf4318bf171e811b5e"
+          },
+          "PINNED-WIRE.json": {
+            "bytes": 130273,
+            "sha256": "d9ba997f8a52336d8e267061abf8505380ac450290805adcee3c2c740aeeae74"
+          }
+        }
+      }
+    },
+    "Act5": {
+      "canary": {
+        "id": 14713691943,
+        "name": "honro-acb51-loadability-Act5-no-deploy",
+        "bytes": 1449284,
+        "sha256": "462b7f078cc6e8bc5599650185e746e328cd1089a6306ecbe0d4513f328cb87f",
+        "job": 136895411601,
+        "receipts": {
+          "AUTHORITY.json": {
+            "bytes": 364,
+            "sha256": "5130be3662a4164dfd87bb4cb71f6814ba82715db0eaa920b27dd0af673a545a"
+          },
+          "CHROME.json": {
+            "bytes": 9851,
+            "sha256": "3d53acd24ccfdd1d96a695776ca8e8836c2869b25faa371aece1b218a79645dc"
+          },
+          "WIRE.json": {
+            "bytes": 9556,
+            "sha256": "f8bc1011bac1ae573ce624cac9db52c619dd5e97fde3421301e96671e18fa210"
+          }
+        }
+      },
+      "remaining": {
+        "shard": "Act5",
+        "id": 14713584602,
+        "bytes": 9359193,
+        "sha256": "0c73efe18d9e53a1f697b6a44718d11cdf85b10f72414b02c781fbc9df6828c7",
+        "job": 136897201605,
+        "name": "honro-acb51-loadability-remaining-Act5-no-deploy",
+        "receipts": {
+          "AUTHORITY.json": {
+            "bytes": 20005,
+            "sha256": "8a1e0dae0ea961f11b645aa6c2da5ecd27da33e2b31bd7e4dabec7fb75f52216"
+          },
+          "CHROME.json": {
+            "bytes": 35131,
+            "sha256": "1897bd6d72f63123a35842760f3e5c57a06169089fc1026fb2f474f1b3add887"
+          },
+          "PINNED-WIRE.json": {
+            "bytes": 130273,
+            "sha256": "d9ba997f8a52336d8e267061abf8505380ac450290805adcee3c2c740aeeae74"
+          }
+        }
+      }
+    }
+  },
+  "directional": {
+    "id": 14713978166,
+    "job": 136900409374,
+    "name": "honro-acb51-s33-directional-canary-no-deploy",
+    "bytes": 12267899,
+    "sha256": "dc6f67315c068cbdbd64edee6b5f0642f274f460f98cc38dd290ef3d15ced4d0",
+    "receipts": {
+      "AUTHORITY.json": {
+        "bytes": 2361,
+        "sha256": "58648f341904368afba5493c0ccb990e154031ac955ba5f752e5924acf1470c8"
+      },
+      "DIRECTIONAL.json": {
+        "bytes": 66902,
+        "sha256": "1d4166415ad630488b00b04d273ce6eeb53005ada564b9d2a4ec0c511d67b711"
+      }
+    }
+  },
+  "referenceMatrix": {
+    "bytes": 9068,
+    "sha256": "9bebd5446b63328b65a64e7def5d49c7cbb4e1523fab24177e4f6da0a8bc3519"
+  },
+  "nominal": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50
+  ],
+  "directionalStageCarry": 33,
+  "inherited": {
+    "tools/acb51-directional-canary/park.js": {
+      "bytes": 3635,
+      "sha256": "a0b865f06fb9a31560129c6aa085f2aacf34e99ddbac4e8bbd8039946bf8c9ef"
+    },
+    "tools/acb51-directional-canary/scan.py": {
+      "bytes": 12572,
+      "sha256": "5e6a3403286ba939a798c6270132bf891ae7b4dcfcf3adaac95b43d8c16b5db7"
+    },
+    "tools/acb51-directional-canary/PINS.json": {
+      "bytes": 2595,
+      "sha256": "76922b3001a57d28244af880c815356a596e48753d7f96f436dd72ea1e301d2b"
+    },
+    ".github/workflows/acb51-directional-canary.yml": {
+      "bytes": 1799,
+      "sha256": "3c29aee9e1b2ebe5324126786ca2ffa8ccbc0a5d8493170adb39e9a0b3b2dcb6"
+    }
+  }
+}
