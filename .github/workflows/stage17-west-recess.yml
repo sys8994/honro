@@ -1,0 +1,71 @@
+name: HONRO Stage17 west mouth native A/B no deploy
+on:
+  push:
+    branches: [qa/stage17-west-recess-2c4]
+    paths:
+      - .github/workflows/stage17-west-recess.yml
+      - tools/stage17-west-recess/**
+permissions:
+  contents: read
+jobs:
+  native:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage17-west-recess-2c4'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+          fetch-depth: 3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Exact stock A and one Stage17 authored rear source official normal build B
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -z "${GITHUB_TOKEN:-}${GH_TOKEN:-}"
+          W="$RUNNER_TEMP/honro-stage17"
+          mkdir "$W" "$W/out"
+          echo "WORK=$W" >> "$GITHUB_ENV"
+          Q="$GITHUB_WORKSPACE/tools/stage17-west-recess"
+          python "$Q/guard.py" pre "$W"
+          (
+            cd "$W/B"
+            npm ci >"$W/out/npm-root.log" 2>&1
+            npm ci --prefix game >"$W/out/npm-game.log" 2>&1
+            npm run test:release-guard >"$W/out/release-guard.log" 2>&1
+            npm run build >"$W/out/build.log" 2>&1
+            npm run test:production-contract >"$W/out/production-contract.log" 2>&1
+          )
+          python "$Q/guard.py" built "$W"
+      - name: Native Chromium A1 A2 B PC or mobile seam camera and unchanged East control
+        shell: bash
+        timeout-minutes: 28
+        run: |
+          set -euo pipefail
+          test -z "${GITHUB_TOKEN:-}${GH_TOKEN:-}"
+          Q="$GITHUB_WORKSPACE/tools/stage17-west-recess"
+          python3 -m venv "$WORK/venv"
+          V="$WORK/venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0 numpy==2.4.2
+          "$V" -m playwright install --with-deps chromium
+          python -m http.server 18911 --bind 127.0.0.1 --directory "$WORK/A" >"$WORK/out/http-A.log" 2>&1 &
+          a=$!
+          python -m http.server 18912 --bind 127.0.0.1 --directory "$WORK/B" >"$WORK/out/http-B.log" 2>&1 &
+          b=$!
+          trap 'kill "$a" "$b" 2>/dev/null || true' EXIT
+          for p in 18911 18912;do curl -fsS --retry 8 --retry-connrefused "http://127.0.0.1:$p/HONRO.html" -o /dev/null;done
+          "$V" "$Q/native.py" "$WORK"
+      - if: always() && env.WORK != ''
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage17-west-recess-native
+          path: |
+            ${{ env.WORK }}/out/*.json
+            ${{ env.WORK }}/out/*.log
+            ${{ env.WORK }}/out/*.png
+          if-no-files-found: error
+          retention-days: 7

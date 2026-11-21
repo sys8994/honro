@@ -1,0 +1,166 @@
+{
+  "state": "SCRATCH_SOURCE_ONLY_UNVALIDATED",
+  "old": {
+    "bytes": 1853489,
+    "sha": "89964d78fb3719f9aedc3d24d236a661c295c7eb8b377192d9ce833a3c137bdf"
+  },
+  "new": {
+    "bytes": 1855019,
+    "sha": "7c98405b0523a13029fb46394f5b83203f78876c740c2f195fe8a651b38bb0da"
+  },
+  "immutableOtherBytes": true,
+  "sourceAsset": {
+    "id": "act2-compact:stage17-west-mouth-recess-continuation",
+    "name": "Stage 17 west recess shadow at original opening",
+    "category": "terrain",
+    "environmentRole": "mountain",
+    "visual": [],
+    "vector": {
+      "version": 1,
+      "viewBox": [
+        -480,
+        850,
+        480,
+        1460
+      ],
+      "clips": {
+        "only-west-recess": [
+          "M-480 850H0V2310H-480Z"
+        ]
+      },
+      "gradients": {
+        "existing-recess-shadow": {
+          "type": "linear",
+          "x1": -480,
+          "y1": 0,
+          "x2": 0,
+          "y2": 0,
+          "stops": [
+            {
+              "offset": 0,
+              "color": "#172b36",
+              "opacity": 0
+            },
+            {
+              "offset": 0.26,
+              "color": "#172b36",
+              "opacity": 0.09
+            },
+            {
+              "offset": 0.57,
+              "color": "#172b36",
+              "opacity": 0.51
+            },
+            {
+              "offset": 0.84,
+              "color": "#172b36",
+              "opacity": 0.94
+            },
+            {
+              "offset": 1,
+              "color": "#172b36",
+              "opacity": 1
+            }
+          ]
+        }
+      },
+      "root": {
+        "tag": "g",
+        "clipPath": "only-west-recess",
+        "pixelSnapClip": true,
+        "children": [
+          {
+            "tag": "path",
+            "fill": "url(#existing-recess-shadow)",
+            "d": "M-480 891.745925L-416.666667 901.773438L0 1059L0 2291L-416.666667 2133.773438L-480 2123.745925Z"
+          }
+        ]
+      }
+    },
+    "collision": [],
+    "anchor": {
+      "x": 0,
+      "y": 0
+    },
+    "sockets": [],
+    "tags": [
+      "terrain-art",
+      "structural-scenery",
+      "stage17-west-recess"
+    ],
+    "params": {
+      "semanticLayer": "REAR",
+      "compact17Revision": 1,
+      "collisionSource": "none",
+      "sourceOwner": "act2-compact:stage17-s17-art-rear-cavern-1"
+    },
+    "bounds": {
+      "x": -480,
+      "y": 850,
+      "w": 480,
+      "h": 1460
+    },
+    "reference": {
+      "heightM": 24.333333333333332,
+      "bounds": {
+        "x": -480,
+        "y": 850,
+        "w": 480,
+        "h": 1460
+      },
+      "foot": {
+        "x": 0,
+        "y": 0
+      },
+      "scaleRange": [
+        1,
+        1
+      ],
+      "backgroundRange": [
+        1,
+        1
+      ]
+    }
+  },
+  "addedPlacement": {
+    "id": "act2-compact-stage17-west-mouth-recess-continuation",
+    "assetId": "act2-compact:stage17-west-mouth-recess-continuation",
+    "x": 0,
+    "y": 0,
+    "scale": 1,
+    "rotation": 0,
+    "snap": false,
+    "depthLayer": "L1",
+    "layer": "back",
+    "opacity": 1
+  },
+  "sourceKnots": [
+    [
+      -480,
+      882.7459253703704,
+      2132.7459253703705
+    ],
+    [
+      -416.66666666666697,
+      892.7734375,
+      2142.7734375
+    ],
+    [
+      0,
+      1050,
+      2300
+    ]
+  ],
+  "changedOnly": [
+    {
+      "bytes": 218,
+      "offset": 221754
+    },
+    {
+      "bytes": 1312,
+      "offset": 412861
+    }
+  ],
+  "oldRearSHA": "df8324ea15e8505c917ce90cb84f1741df93d4e783f526c91b34cf748c3a1673",
+  "sameMapRevision": 617
+}

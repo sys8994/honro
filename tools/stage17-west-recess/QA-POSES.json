@@ -1,0 +1,674 @@
+{
+  "1440x900-east": {
+    "group": "A2b",
+    "stage": 17,
+    "device": "1440x900",
+    "direction": "east",
+    "name": "east",
+    "desired": {
+      "x": 1000000,
+      "y": 2300,
+      "scale": 0.21176470588235294
+    },
+    "actual": {
+      "x": 6520,
+      "y": 2300,
+      "scale": 0.21176470588235294
+    },
+    "viewport": {
+      "left": 3120,
+      "right": 9920,
+      "top": 483.8628472222222,
+      "bottom": 4116.137152777777
+    },
+    "play": {
+      "left": 0,
+      "top": 0,
+      "right": 6200,
+      "bottom": 4600
+    },
+    "terrain": {
+      "left": -5000,
+      "top": -26000,
+      "right": 11200,
+      "bottom": 30200
+    },
+    "focus": {
+      "left": -320,
+      "top": -1800,
+      "right": 6520,
+      "bottom": 4840
+    },
+    "visual": {
+      "left": -3960,
+      "right": 10160,
+      "top": -3856.137152777778,
+      "bottom": 6896.137152777777
+    },
+    "zoom": {
+      "min": 0.21176470588235294,
+      "max": 1.65,
+      "tactical": 0.21176470588235294,
+      "readability": 0.056818181818181816
+    },
+    "limits": {
+      "west": -320,
+      "east": 6520,
+      "north": -1800,
+      "south": 4840
+    },
+    "centered": {
+      "x": 3100,
+      "y": 2300,
+      "scale": 0.21176470588235294
+    },
+    "containment": null,
+    "css": [
+      1440,
+      769.1875
+    ],
+    "backing": [
+      1440,
+      769
+    ],
+    "dpr": 1,
+    "phase": "aim",
+    "round": 1,
+    "sceneTime": 2,
+    "tide": null,
+    "physics": "a3f046671da9ddc1bd4f8ba8d9566c736c5f59d792c73155bc3f28e2d4521100",
+    "actualTerrainIDs": [
+      "act2-floor",
+      "cave-roof",
+      "ws-west-work-buttress",
+      "ws-west-machine-plinth",
+      "ws-hoist-west-lip",
+      "ws-hoist-service-bridge",
+      "ws-shaft-top-rest",
+      "ws-shaft-rest-2",
+      "ws-shaft-middle-rest",
+      "ws-shaft-rest-4",
+      "ws-shaft-lower-rest",
+      "ws-shaft-rest-6",
+      "ws-east-hoist-buttress",
+      "ws-west-step-1",
+      "ws-west-lower-steps",
+      "ws-west-step-3",
+      "ws-west-switchback",
+      "ws-west-short-rise",
+      "ws-west-upper-rock",
+      "ws-west-hoist-deck",
+      "ws-east-hoist-deck",
+      "ws-east-upper-rock",
+      "ws-east-upper-step-1",
+      "ws-east-high-step",
+      "ws-east-upper-step-3",
+      "ws-east-crossing",
+      "ws-axle-footing",
+      "ws-service-east-1",
+      "ws-service-east-low",
+      "ws-service-east-3",
+      "ws-service-east-mid",
+      "ws-service-east-5",
+      "ws-service-east-high",
+      "ws-service-east-7",
+      "ws-east-fire-access",
+      "ws-east-fire-deck",
+      "ws-service-vault-tooth",
+      "ws-service-reflection-pier",
+      "ws-service-tool-ledge",
+      "ws-notes-work-deck",
+      "gate-repair"
+    ],
+    "actualDrawOwnerIDs": [
+      "act2-compact:stage17-act2-stage17-traced-east-v2-1",
+      "act2-compact:stage17-act2-stage17-traced-outer-v1-1",
+      "act2-compact:stage17-act2-stage17-traced-outer-v1-2",
+      "act2-compact:stage17-act2-stage17-traced-west-v2-1",
+      "act2-compact:stage17-s17-art-control-drive-link-1",
+      "act2-compact:stage17-s17-art-east-gallery-1",
+      "act2-compact:stage17-s17-art-east-gallery-frame-1",
+      "act2-compact:stage17-s17-art-low-vault-shoring-1",
+      "act2-compact:stage17-s17-art-lower-service-remains-1",
+      "act2-compact:stage17-s17-art-main-hoist-1",
+      "act2-compact:stage17-s17-art-main-hoist-2",
+      "act2-compact:stage17-s17-art-rear-cavern-1",
+      "act2-compact:stage17-s17-art-shaft-service-frame-1",
+      "act2-compact:stage17-s17-art-trestle-ws-east-fire-access-1",
+      "act2-compact:stage17-s17-art-trestle-ws-east-fire-deck-1",
+      "act2-compact:stage17-s17-art-trestle-ws-notes-work-deck-1",
+      "act2-compact:stage17-s17-art-trestle-ws-service-tool-ledge-1",
+      "act2-compact:stage17-s17-art-west-gallery-1",
+      "act2-compact:stage17-s17-art-west-switchback-frame-1",
+      "act2-compact:stage17-s17-art-west-work-remains-1",
+      "stage17:worksite-axle-tool-bench",
+      "stage17:worksite-oil-lamp",
+      "stage17:worksite-timber-store",
+      "stage17:worksite-tool-bench"
+    ],
+    "unitCount": 32,
+    "declaredMissing": [],
+    "raw": "s17-1440x900-east-raw.png",
+    "rawSHA256": "f19045b9a4fa6de6a7e58da7721dd3dcca6551c6da1f84d0dedfb0c64b9c3475",
+    "pngBytes": 438674,
+    "pack": "pc-1",
+    "decodeCount": 45,
+    "nativeSignedTerrainIntersection": [
+      3120,
+      483.8628472222222,
+      9920,
+      4116.137152777777
+    ],
+    "playIntersection": [
+      3120,
+      483.8628472222222,
+      6200,
+      4116.137152777777
+    ],
+    "duplicateOfNativeCamera": null
+  },
+  "1440x900-west": {
+    "group": "A2b",
+    "stage": 17,
+    "device": "1440x900",
+    "direction": "west",
+    "name": "west",
+    "desired": {
+      "x": -1000000,
+      "y": 2300,
+      "scale": 0.21176470588235294
+    },
+    "actual": {
+      "x": -320,
+      "y": 2300,
+      "scale": 0.21176470588235294
+    },
+    "viewport": {
+      "left": -3720,
+      "right": 3080,
+      "top": 483.8628472222222,
+      "bottom": 4116.137152777777
+    },
+    "play": {
+      "left": 0,
+      "top": 0,
+      "right": 6200,
+      "bottom": 4600
+    },
+    "terrain": {
+      "left": -5000,
+      "top": -26000,
+      "right": 11200,
+      "bottom": 30200
+    },
+    "focus": {
+      "left": -320,
+      "top": -1800,
+      "right": 6520,
+      "bottom": 4840
+    },
+    "visual": {
+      "left": -3960,
+      "right": 10160,
+      "top": -3856.137152777778,
+      "bottom": 6896.137152777777
+    },
+    "zoom": {
+      "min": 0.21176470588235294,
+      "max": 1.65,
+      "tactical": 0.21176470588235294,
+      "readability": 0.056818181818181816
+    },
+    "limits": {
+      "west": -320,
+      "east": 6520,
+      "north": -1800,
+      "south": 4840
+    },
+    "centered": {
+      "x": 3100,
+      "y": 2300,
+      "scale": 0.21176470588235294
+    },
+    "containment": null,
+    "css": [
+      1440,
+      769.1875
+    ],
+    "backing": [
+      1440,
+      769
+    ],
+    "dpr": 1,
+    "phase": "aim",
+    "round": 1,
+    "sceneTime": 2,
+    "tide": null,
+    "physics": "a3f046671da9ddc1bd4f8ba8d9566c736c5f59d792c73155bc3f28e2d4521100",
+    "actualTerrainIDs": [
+      "act2-floor",
+      "cave-roof",
+      "ws-west-work-buttress",
+      "ws-west-machine-plinth",
+      "ws-hoist-west-lip",
+      "ws-hoist-service-bridge",
+      "ws-shaft-top-rest",
+      "ws-shaft-rest-2",
+      "ws-shaft-middle-rest",
+      "ws-shaft-rest-4",
+      "ws-shaft-lower-rest",
+      "ws-shaft-rest-6",
+      "ws-east-hoist-buttress",
+      "ws-west-step-1",
+      "ws-west-lower-steps",
+      "ws-west-step-3",
+      "ws-west-switchback",
+      "ws-west-short-rise",
+      "ws-west-upper-rock",
+      "ws-west-hoist-deck",
+      "ws-east-hoist-deck",
+      "ws-east-upper-rock",
+      "ws-east-upper-step-1",
+      "ws-east-high-step",
+      "ws-east-upper-step-3",
+      "ws-east-crossing",
+      "ws-axle-footing",
+      "ws-service-east-1",
+      "ws-service-east-low",
+      "ws-service-east-3",
+      "ws-service-east-mid",
+      "ws-service-east-5",
+      "ws-service-east-high",
+      "ws-service-east-7",
+      "ws-east-fire-access",
+      "ws-east-fire-deck",
+      "ws-service-vault-tooth",
+      "ws-service-reflection-pier",
+      "ws-service-tool-ledge",
+      "ws-notes-work-deck",
+      "gate-repair"
+    ],
+    "actualDrawOwnerIDs": [
+      "act2-compact:stage17-act2-stage17-traced-east-v2-1",
+      "act2-compact:stage17-act2-stage17-traced-outer-v1-1",
+      "act2-compact:stage17-act2-stage17-traced-outer-v1-2",
+      "act2-compact:stage17-act2-stage17-traced-west-v2-1",
+      "act2-compact:stage17-s17-art-control-drive-link-1",
+      "act2-compact:stage17-s17-art-east-gallery-1",
+      "act2-compact:stage17-s17-art-east-gallery-frame-1",
+      "act2-compact:stage17-s17-art-low-vault-shoring-1",
+      "act2-compact:stage17-s17-art-lower-service-remains-1",
+      "act2-compact:stage17-s17-art-main-hoist-1",
+      "act2-compact:stage17-s17-art-main-hoist-2",
+      "act2-compact:stage17-s17-art-rear-cavern-1",
+      "act2-compact:stage17-s17-art-shaft-service-frame-1",
+      "act2-compact:stage17-s17-art-trestle-ws-east-fire-access-1",
+      "act2-compact:stage17-s17-art-trestle-ws-east-fire-deck-1",
+      "act2-compact:stage17-s17-art-trestle-ws-notes-work-deck-1",
+      "act2-compact:stage17-s17-art-trestle-ws-service-tool-ledge-1",
+      "act2-compact:stage17-s17-art-west-gallery-1",
+      "act2-compact:stage17-s17-art-west-switchback-frame-1",
+      "act2-compact:stage17-s17-art-west-work-remains-1",
+      "stage17:worksite-axle-tool-bench",
+      "stage17:worksite-oil-lamp",
+      "stage17:worksite-timber-store",
+      "stage17:worksite-tool-bench"
+    ],
+    "unitCount": 32,
+    "declaredMissing": [],
+    "raw": "s17-1440x900-west-raw.png",
+    "rawSHA256": "a0dae5915f67cd30ff1e95d643fb4f4e57ff1dac6030e84366b9864257894fba",
+    "pngBytes": 439282,
+    "pack": "pc-1",
+    "decodeCount": 74,
+    "nativeSignedTerrainIntersection": [
+      -3720,
+      483.8628472222222,
+      3080,
+      4116.137152777777
+    ],
+    "playIntersection": [
+      0,
+      483.8628472222222,
+      3080,
+      4116.137152777777
+    ],
+    "duplicateOfNativeCamera": null
+  },
+  "390x844-east": {
+    "group": "A2b",
+    "stage": 17,
+    "device": "390x844",
+    "direction": "east",
+    "name": "east",
+    "desired": {
+      "x": 1000000,
+      "y": 2300,
+      "scale": 0.057352941176470586
+    },
+    "actual": {
+      "x": 6520,
+      "y": 2300,
+      "scale": 0.057352941176470586
+    },
+    "viewport": {
+      "left": 3120,
+      "right": 9920,
+      "top": -3345.8253205128203,
+      "bottom": 7945.82532051282
+    },
+    "play": {
+      "left": 0,
+      "top": 0,
+      "right": 6200,
+      "bottom": 4600
+    },
+    "terrain": {
+      "left": -5000,
+      "top": -26000,
+      "right": 11200,
+      "bottom": 30200
+    },
+    "focus": {
+      "left": -320,
+      "top": -1800,
+      "right": 6520,
+      "bottom": 4840
+    },
+    "visual": {
+      "left": -3960,
+      "right": 10160,
+      "top": -7685.82532051282,
+      "bottom": 10725.82532051282
+    },
+    "zoom": {
+      "min": 0.057352941176470586,
+      "max": 1.65,
+      "tactical": 0.057352941176470586,
+      "readability": 0.056818181818181816
+    },
+    "limits": {
+      "west": -320,
+      "east": 6520,
+      "north": -1800,
+      "south": 4840
+    },
+    "centered": {
+      "x": 3100,
+      "y": 2300,
+      "scale": 0.057352941176470586
+    },
+    "containment": null,
+    "css": [
+      390,
+      647.609375
+    ],
+    "backing": [
+      390,
+      648
+    ],
+    "dpr": 1,
+    "phase": "aim",
+    "round": 1,
+    "sceneTime": 2,
+    "tide": null,
+    "physics": "a3f046671da9ddc1bd4f8ba8d9566c736c5f59d792c73155bc3f28e2d4521100",
+    "actualTerrainIDs": [
+      "act2-floor",
+      "cave-roof",
+      "ws-west-work-buttress",
+      "ws-west-machine-plinth",
+      "ws-hoist-west-lip",
+      "ws-hoist-service-bridge",
+      "ws-shaft-top-rest",
+      "ws-shaft-rest-2",
+      "ws-shaft-middle-rest",
+      "ws-shaft-rest-4",
+      "ws-shaft-lower-rest",
+      "ws-shaft-rest-6",
+      "ws-east-hoist-buttress",
+      "ws-west-step-1",
+      "ws-west-lower-steps",
+      "ws-west-step-3",
+      "ws-west-switchback",
+      "ws-west-short-rise",
+      "ws-west-upper-rock",
+      "ws-west-hoist-deck",
+      "ws-east-hoist-deck",
+      "ws-east-upper-rock",
+      "ws-east-upper-step-1",
+      "ws-east-high-step",
+      "ws-east-upper-step-3",
+      "ws-east-crossing",
+      "ws-axle-footing",
+      "ws-service-east-1",
+      "ws-service-east-low",
+      "ws-service-east-3",
+      "ws-service-east-mid",
+      "ws-service-east-5",
+      "ws-service-east-high",
+      "ws-service-east-7",
+      "ws-east-fire-access",
+      "ws-east-fire-deck",
+      "ws-service-vault-tooth",
+      "ws-service-reflection-pier",
+      "ws-service-tool-ledge",
+      "ws-notes-work-deck",
+      "gate-repair"
+    ],
+    "actualDrawOwnerIDs": [
+      "act2-compact:stage17-act2-stage17-traced-east-v2-1",
+      "act2-compact:stage17-act2-stage17-traced-outer-v1-1",
+      "act2-compact:stage17-act2-stage17-traced-outer-v1-2",
+      "act2-compact:stage17-act2-stage17-traced-west-v2-1",
+      "act2-compact:stage17-s17-art-control-drive-link-1",
+      "act2-compact:stage17-s17-art-east-gallery-1",
+      "act2-compact:stage17-s17-art-east-gallery-frame-1",
+      "act2-compact:stage17-s17-art-low-vault-shoring-1",
+      "act2-compact:stage17-s17-art-lower-service-remains-1",
+      "act2-compact:stage17-s17-art-main-hoist-1",
+      "act2-compact:stage17-s17-art-main-hoist-2",
+      "act2-compact:stage17-s17-art-rear-cavern-1",
+      "act2-compact:stage17-s17-art-shaft-service-frame-1",
+      "act2-compact:stage17-s17-art-trestle-ws-east-fire-access-1",
+      "act2-compact:stage17-s17-art-trestle-ws-east-fire-deck-1",
+      "act2-compact:stage17-s17-art-trestle-ws-notes-work-deck-1",
+      "act2-compact:stage17-s17-art-trestle-ws-service-tool-ledge-1",
+      "act2-compact:stage17-s17-art-west-gallery-1",
+      "act2-compact:stage17-s17-art-west-switchback-frame-1",
+      "act2-compact:stage17-s17-art-west-work-remains-1",
+      "stage17:worksite-axle-tool-bench",
+      "stage17:worksite-oil-lamp",
+      "stage17:worksite-timber-store",
+      "stage17:worksite-tool-bench"
+    ],
+    "unitCount": 32,
+    "declaredMissing": [],
+    "raw": "s17-390x844-east-raw.png",
+    "rawSHA256": "64dd101bf489a5083f4623f6cb77affec5c578a4cc6ad8c2b2c4712d61cb1ed7",
+    "pngBytes": 142834,
+    "pack": "mobile",
+    "decodeCount": 19,
+    "nativeSignedTerrainIntersection": [
+      3120,
+      -3345.8253205128203,
+      9920,
+      7945.82532051282
+    ],
+    "playIntersection": [
+      3120,
+      0,
+      6200,
+      4600
+    ],
+    "duplicateOfNativeCamera": null
+  },
+  "390x844-northwest": {
+    "group": "A2b",
+    "stage": 17,
+    "device": "390x844",
+    "direction": "northwest",
+    "name": "northwest",
+    "desired": {
+      "x": -1000000,
+      "y": -1000000,
+      "scale": 0.057352941176470586
+    },
+    "actual": {
+      "x": -320,
+      "y": -1800,
+      "scale": 0.057352941176470586
+    },
+    "viewport": {
+      "left": -3720,
+      "right": 3080,
+      "top": -7445.82532051282,
+      "bottom": 3845.8253205128203
+    },
+    "play": {
+      "left": 0,
+      "top": 0,
+      "right": 6200,
+      "bottom": 4600
+    },
+    "terrain": {
+      "left": -5000,
+      "top": -26000,
+      "right": 11200,
+      "bottom": 30200
+    },
+    "focus": {
+      "left": -320,
+      "top": -1800,
+      "right": 6520,
+      "bottom": 4840
+    },
+    "visual": {
+      "left": -3960,
+      "right": 10160,
+      "top": -7685.82532051282,
+      "bottom": 10725.82532051282
+    },
+    "zoom": {
+      "min": 0.057352941176470586,
+      "max": 1.65,
+      "tactical": 0.057352941176470586,
+      "readability": 0.056818181818181816
+    },
+    "limits": {
+      "west": -320,
+      "east": 6520,
+      "north": -1800,
+      "south": 4840
+    },
+    "centered": {
+      "x": 3100,
+      "y": 2300,
+      "scale": 0.057352941176470586
+    },
+    "containment": null,
+    "css": [
+      390,
+      647.609375
+    ],
+    "backing": [
+      390,
+      648
+    ],
+    "dpr": 1,
+    "phase": "aim",
+    "round": 1,
+    "sceneTime": 2,
+    "tide": null,
+    "physics": "a3f046671da9ddc1bd4f8ba8d9566c736c5f59d792c73155bc3f28e2d4521100",
+    "actualTerrainIDs": [
+      "act2-floor",
+      "cave-roof",
+      "ws-west-work-buttress",
+      "ws-west-machine-plinth",
+      "ws-hoist-west-lip",
+      "ws-hoist-service-bridge",
+      "ws-shaft-top-rest",
+      "ws-shaft-rest-2",
+      "ws-shaft-middle-rest",
+      "ws-shaft-rest-4",
+      "ws-shaft-lower-rest",
+      "ws-shaft-rest-6",
+      "ws-east-hoist-buttress",
+      "ws-west-step-1",
+      "ws-west-lower-steps",
+      "ws-west-step-3",
+      "ws-west-switchback",
+      "ws-west-short-rise",
+      "ws-west-upper-rock",
+      "ws-west-hoist-deck",
+      "ws-east-hoist-deck",
+      "ws-east-upper-rock",
+      "ws-east-upper-step-1",
+      "ws-east-high-step",
+      "ws-east-upper-step-3",
+      "ws-east-crossing",
+      "ws-axle-footing",
+      "ws-service-east-1",
+      "ws-service-east-low",
+      "ws-service-east-3",
+      "ws-service-east-mid",
+      "ws-service-east-5",
+      "ws-service-east-high",
+      "ws-service-east-7",
+      "ws-east-fire-access",
+      "ws-east-fire-deck",
+      "ws-service-vault-tooth",
+      "ws-service-reflection-pier",
+      "ws-service-tool-ledge",
+      "ws-notes-work-deck",
+      "gate-repair"
+    ],
+    "actualDrawOwnerIDs": [
+      "act2-compact:stage17-act2-stage17-traced-east-v2-1",
+      "act2-compact:stage17-act2-stage17-traced-outer-v1-1",
+      "act2-compact:stage17-act2-stage17-traced-outer-v1-2",
+      "act2-compact:stage17-act2-stage17-traced-west-v2-1",
+      "act2-compact:stage17-s17-art-control-drive-link-1",
+      "act2-compact:stage17-s17-art-east-gallery-1",
+      "act2-compact:stage17-s17-art-east-gallery-frame-1",
+      "act2-compact:stage17-s17-art-low-vault-shoring-1",
+      "act2-compact:stage17-s17-art-lower-service-remains-1",
+      "act2-compact:stage17-s17-art-main-hoist-1",
+      "act2-compact:stage17-s17-art-main-hoist-2",
+      "act2-compact:stage17-s17-art-rear-cavern-1",
+      "act2-compact:stage17-s17-art-shaft-service-frame-1",
+      "act2-compact:stage17-s17-art-trestle-ws-east-fire-access-1",
+      "act2-compact:stage17-s17-art-trestle-ws-east-fire-deck-1",
+      "act2-compact:stage17-s17-art-trestle-ws-notes-work-deck-1",
+      "act2-compact:stage17-s17-art-trestle-ws-service-tool-ledge-1",
+      "act2-compact:stage17-s17-art-west-gallery-1",
+      "act2-compact:stage17-s17-art-west-switchback-frame-1",
+      "act2-compact:stage17-s17-art-west-work-remains-1",
+      "stage17:worksite-axle-tool-bench",
+      "stage17:worksite-oil-lamp",
+      "stage17:worksite-timber-store",
+      "stage17:worksite-tool-bench"
+    ],
+    "unitCount": 32,
+    "declaredMissing": [],
+    "raw": "s17-390x844-northwest-raw.png",
+    "rawSHA256": "dc002c246ec4d089379adf8ccaad0fdd18c5d9f50860a6debe1cb7f4b2f5f014",
+    "pngBytes": 133579,
+    "pack": "mobile",
+    "decodeCount": 51,
+    "nativeSignedTerrainIntersection": [
+      -3720,
+      -7445.82532051282,
+      3080,
+      3845.8253205128203
+    ],
+    "playIntersection": [
+      0,
+      0,
+      3080,
+      3845.8253205128203
+    ],
+    "duplicateOfNativeCamera": null
+  }
+}
