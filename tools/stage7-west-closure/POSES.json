@@ -1,0 +1,1690 @@
+{
+  "s07-1440x900": {
+    "device": [
+      1440,
+      900
+    ],
+    "stage": 7,
+    "provider": {
+      "stage": "stage-7",
+      "compact": null,
+      "width": 4532.24,
+      "height": 3569.18
+    },
+    "requests": {
+      "HONRO.html": {
+        "bytes": 17379,
+        "sha256": "970fac6baf1d504bbdbcdbf75f273fe33a8a8b6bc90f31157e3132116e14ecde"
+      },
+      "web/data/campaign-base.0c57dcfe7c08d421.json": {
+        "bytes": 257,
+        "sha256": "0c57dcfe7c08d421901ffa8eeb437940b6b6d4779816207b51dca7be44c73e5e"
+      },
+      "web/data/campaign-shared.8f8343b5c21518d4.json": {
+        "bytes": 577195,
+        "sha256": "8f8343b5c21518d4fdaa2314e58031fd137b8622d3a6c1ca2fdabafde3bb158f"
+      },
+      "web/data/campaign.7140da5d3649e4ab.json": {
+        "bytes": 54961,
+        "sha256": "7140da5d3649e4aba2c58e180c8ff3f6f171a70e5e6704ad05dc98d428c52822"
+      },
+      "web/data/chapter-07-assets.7068fa05c6ce1c2e.json": {
+        "bytes": 655969,
+        "sha256": "7068fa05c6ce1c2ef0c96045daa3dea192ba69a18e35bc323e6a5df9a1529db5"
+      },
+      "web/data/chapter-07.28f7bf612a598aeb.json": {
+        "bytes": 30579,
+        "sha256": "28f7bf612a598aeb0eb6da0f819a0b6ddb7fd5414eab9410e434772eb04d2553"
+      },
+      "web/runtime/campaign.926544619e01a04a.js": {
+        "bytes": 527,
+        "sha256": "926544619e01a04af2f2cc0e2bd435265ae9efff23062e259563bded6d851307"
+      },
+      "web/runtime/load-data.248fb3aada6f16bb.js": {
+        "bytes": 15550,
+        "sha256": "248fb3aada6f16bbe2d7df7e369db772df2d923bc91b1e517daa53858f558dcb"
+      },
+      "web/entries/game.756ef43eebb6f5c4.js": {
+        "bytes": 20483,
+        "sha256": "756ef43eebb6f5c4a664b04c43521bd0ba179c2ce4f00abbcded03ba0a21e266"
+      },
+      "web/runtime/ordered-common-11.030f50386d1a72ad.js": {
+        "bytes": 178192,
+        "sha256": "030f50386d1a72ad13304b8e0b25d12b0473342a83dcdddf71ac033a3140384a"
+      },
+      "web/runtime/ordered-common-16.3d9993bd92d5eb93.js": {
+        "bytes": 177610,
+        "sha256": "3d9993bd92d5eb93572f4b05fe9da2f19d4202c7a3e24ba767a5274ca3364f2c"
+      }
+    },
+    "views": {
+      "north": {
+        "actual": {
+          "x": 2266.12,
+          "y": 0,
+          "scale": 0.21176470588235294
+        },
+        "viewport": {
+          "left": -1133.88,
+          "right": 5666.12,
+          "top": -1816.1371527777778,
+          "bottom": 1816.1371527777778
+        },
+        "focus": {
+          "left": 0,
+          "top": 0,
+          "right": 4532.24,
+          "bottom": 3569.18
+        },
+        "terrain": {
+          "left": -1200,
+          "top": -900,
+          "right": 5732.24,
+          "bottom": 5069.18
+        },
+        "play": {
+          "left": 0,
+          "top": 0,
+          "right": 4532.24,
+          "bottom": 3569.18
+        },
+        "css": [
+          1440,
+          769.1875
+        ],
+        "backing": [
+          1440,
+          769
+        ],
+        "dpr": 1,
+        "phase": "aim",
+        "round": 1,
+        "sceneTime": 2,
+        "tide": null,
+        "physics": "6b4c47b95e0bfd4f40c047a44ea9118d585f46e6f8f19d0906412bb99f570a22",
+        "actualTerrainIDs": [
+          "root-floor",
+          "lower-yard",
+          "village-arch",
+          "east-yard",
+          "west-landing",
+          "upper-yard",
+          "right-ridge",
+          "west-caps-0",
+          "west-caps-1",
+          "west-caps-2",
+          "west-caps-3",
+          "west-caps-4",
+          "west-caps-5",
+          "west-caps-6",
+          "west-caps-7",
+          "east-caps-0",
+          "east-caps-1",
+          "east-caps-2",
+          "east-caps-3",
+          "east-caps-4",
+          "fall-caps-0",
+          "fall-caps-1",
+          "fall-caps-2",
+          "fall-caps-3",
+          "doldang-cap-0",
+          "doldang-cap-1",
+          "doldang-cap-2",
+          "doldang-cap-3",
+          "doldang-cap-4",
+          "doldang-cap-5",
+          "doldang-cap-6",
+          "doldang-cap-7",
+          "doldang-cap-8",
+          "doldang-cap-9",
+          "doldang-cap-10",
+          "doldang-cap-11",
+          "doldang-cap-12"
+        ],
+        "actualDrawOwnerIDs": [
+          "act1-site:7:body",
+          "act1-site:7:landmarks"
+        ],
+        "unitCount": 26
+      },
+      "east": {
+        "actual": {
+          "x": 4532.24,
+          "y": 1784.59,
+          "scale": 0.21176470588235294
+        },
+        "viewport": {
+          "left": 1132.2399999999998,
+          "right": 7932.24,
+          "top": -31.54715277777791,
+          "bottom": 3600.7271527777775
+        },
+        "focus": {
+          "left": 0,
+          "top": 0,
+          "right": 4532.24,
+          "bottom": 3569.18
+        },
+        "terrain": {
+          "left": -1200,
+          "top": -900,
+          "right": 5732.24,
+          "bottom": 5069.18
+        },
+        "play": {
+          "left": 0,
+          "top": 0,
+          "right": 4532.24,
+          "bottom": 3569.18
+        },
+        "css": [
+          1440,
+          769.1875
+        ],
+        "backing": [
+          1440,
+          769
+        ],
+        "dpr": 1,
+        "phase": "aim",
+        "round": 1,
+        "sceneTime": 2,
+        "tide": null,
+        "physics": "6b4c47b95e0bfd4f40c047a44ea9118d585f46e6f8f19d0906412bb99f570a22",
+        "actualTerrainIDs": [
+          "root-floor",
+          "lower-yard",
+          "village-arch",
+          "east-yard",
+          "west-landing",
+          "upper-yard",
+          "right-ridge",
+          "west-caps-0",
+          "west-caps-1",
+          "west-caps-2",
+          "west-caps-3",
+          "west-caps-4",
+          "west-caps-5",
+          "west-caps-6",
+          "west-caps-7",
+          "east-caps-0",
+          "east-caps-1",
+          "east-caps-2",
+          "east-caps-3",
+          "east-caps-4",
+          "fall-caps-0",
+          "fall-caps-1",
+          "fall-caps-2",
+          "fall-caps-3",
+          "doldang-cap-0",
+          "doldang-cap-1",
+          "doldang-cap-2",
+          "doldang-cap-3",
+          "doldang-cap-4",
+          "doldang-cap-5",
+          "doldang-cap-6",
+          "doldang-cap-7",
+          "doldang-cap-8",
+          "doldang-cap-9",
+          "doldang-cap-10",
+          "doldang-cap-11",
+          "doldang-cap-12"
+        ],
+        "actualDrawOwnerIDs": [
+          "act1-site:7:body",
+          "act1-site:7:landmarks"
+        ],
+        "unitCount": 26
+      },
+      "south": {
+        "actual": {
+          "x": 2266.12,
+          "y": 3569.18,
+          "scale": 0.21176470588235294
+        },
+        "viewport": {
+          "left": -1133.88,
+          "right": 5666.12,
+          "top": 1753.042847222222,
+          "bottom": 5385.317152777778
+        },
+        "focus": {
+          "left": 0,
+          "top": 0,
+          "right": 4532.24,
+          "bottom": 3569.18
+        },
+        "terrain": {
+          "left": -1200,
+          "top": -900,
+          "right": 5732.24,
+          "bottom": 5069.18
+        },
+        "play": {
+          "left": 0,
+          "top": 0,
+          "right": 4532.24,
+          "bottom": 3569.18
+        },
+        "css": [
+          1440,
+          769.1875
+        ],
+        "backing": [
+          1440,
+          769
+        ],
+        "dpr": 1,
+        "phase": "aim",
+        "round": 1,
+        "sceneTime": 2,
+        "tide": null,
+        "physics": "6b4c47b95e0bfd4f40c047a44ea9118d585f46e6f8f19d0906412bb99f570a22",
+        "actualTerrainIDs": [
+          "root-floor",
+          "lower-yard",
+          "village-arch",
+          "east-yard",
+          "west-landing",
+          "upper-yard",
+          "right-ridge",
+          "west-caps-0",
+          "west-caps-1",
+          "west-caps-2",
+          "west-caps-3",
+          "west-caps-4",
+          "west-caps-5",
+          "west-caps-6",
+          "west-caps-7",
+          "east-caps-0",
+          "east-caps-1",
+          "east-caps-2",
+          "east-caps-3",
+          "east-caps-4",
+          "fall-caps-0",
+          "fall-caps-1",
+          "fall-caps-2",
+          "fall-caps-3",
+          "doldang-cap-0",
+          "doldang-cap-1",
+          "doldang-cap-2",
+          "doldang-cap-3",
+          "doldang-cap-4",
+          "doldang-cap-5",
+          "doldang-cap-6",
+          "doldang-cap-7",
+          "doldang-cap-8",
+          "doldang-cap-9",
+          "doldang-cap-10",
+          "doldang-cap-11",
+          "doldang-cap-12"
+        ],
+        "actualDrawOwnerIDs": [
+          "act1-site:7:body",
+          "act1-site:7:landmarks"
+        ],
+        "unitCount": 26
+      },
+      "west": {
+        "actual": {
+          "x": 0,
+          "y": 1784.59,
+          "scale": 0.21176470588235294
+        },
+        "viewport": {
+          "left": -3400,
+          "right": 3400,
+          "top": -31.54715277777791,
+          "bottom": 3600.7271527777775
+        },
+        "focus": {
+          "left": 0,
+          "top": 0,
+          "right": 4532.24,
+          "bottom": 3569.18
+        },
+        "terrain": {
+          "left": -1200,
+          "top": -900,
+          "right": 5732.24,
+          "bottom": 5069.18
+        },
+        "play": {
+          "left": 0,
+          "top": 0,
+          "right": 4532.24,
+          "bottom": 3569.18
+        },
+        "css": [
+          1440,
+          769.1875
+        ],
+        "backing": [
+          1440,
+          769
+        ],
+        "dpr": 1,
+        "phase": "aim",
+        "round": 1,
+        "sceneTime": 2,
+        "tide": null,
+        "physics": "6b4c47b95e0bfd4f40c047a44ea9118d585f46e6f8f19d0906412bb99f570a22",
+        "actualTerrainIDs": [
+          "root-floor",
+          "lower-yard",
+          "village-arch",
+          "east-yard",
+          "west-landing",
+          "upper-yard",
+          "right-ridge",
+          "west-caps-0",
+          "west-caps-1",
+          "west-caps-2",
+          "west-caps-3",
+          "west-caps-4",
+          "west-caps-5",
+          "west-caps-6",
+          "west-caps-7",
+          "east-caps-0",
+          "east-caps-1",
+          "east-caps-2",
+          "east-caps-3",
+          "east-caps-4",
+          "fall-caps-0",
+          "fall-caps-1",
+          "fall-caps-2",
+          "fall-caps-3",
+          "doldang-cap-0",
+          "doldang-cap-1",
+          "doldang-cap-2",
+          "doldang-cap-3",
+          "doldang-cap-4",
+          "doldang-cap-5",
+          "doldang-cap-6",
+          "doldang-cap-7",
+          "doldang-cap-8",
+          "doldang-cap-9",
+          "doldang-cap-10",
+          "doldang-cap-11",
+          "doldang-cap-12"
+        ],
+        "actualDrawOwnerIDs": [
+          "act1-site:7:body",
+          "act1-site:7:landmarks"
+        ],
+        "unitCount": 26
+      },
+      "northwest": {
+        "actual": {
+          "x": 0,
+          "y": 0,
+          "scale": 0.21176470588235294
+        },
+        "viewport": {
+          "left": -3400,
+          "right": 3400,
+          "top": -1816.1371527777778,
+          "bottom": 1816.1371527777778
+        },
+        "focus": {
+          "left": 0,
+          "top": 0,
+          "right": 4532.24,
+          "bottom": 3569.18
+        },
+        "terrain": {
+          "left": -1200,
+          "top": -900,
+          "right": 5732.24,
+          "bottom": 5069.18
+        },
+        "play": {
+          "left": 0,
+          "top": 0,
+          "right": 4532.24,
+          "bottom": 3569.18
+        },
+        "css": [
+          1440,
+          769.1875
+        ],
+        "backing": [
+          1440,
+          769
+        ],
+        "dpr": 1,
+        "phase": "aim",
+        "round": 1,
+        "sceneTime": 2,
+        "tide": null,
+        "physics": "6b4c47b95e0bfd4f40c047a44ea9118d585f46e6f8f19d0906412bb99f570a22",
+        "actualTerrainIDs": [
+          "root-floor",
+          "lower-yard",
+          "village-arch",
+          "east-yard",
+          "west-landing",
+          "upper-yard",
+          "right-ridge",
+          "west-caps-0",
+          "west-caps-1",
+          "west-caps-2",
+          "west-caps-3",
+          "west-caps-4",
+          "west-caps-5",
+          "west-caps-6",
+          "west-caps-7",
+          "east-caps-0",
+          "east-caps-1",
+          "east-caps-2",
+          "east-caps-3",
+          "east-caps-4",
+          "fall-caps-0",
+          "fall-caps-1",
+          "fall-caps-2",
+          "fall-caps-3",
+          "doldang-cap-0",
+          "doldang-cap-1",
+          "doldang-cap-2",
+          "doldang-cap-3",
+          "doldang-cap-4",
+          "doldang-cap-5",
+          "doldang-cap-6",
+          "doldang-cap-7",
+          "doldang-cap-8",
+          "doldang-cap-9",
+          "doldang-cap-10",
+          "doldang-cap-11",
+          "doldang-cap-12"
+        ],
+        "actualDrawOwnerIDs": [
+          "act1-site:7:body",
+          "act1-site:7:landmarks"
+        ],
+        "unitCount": 26
+      },
+      "northeast": {
+        "actual": {
+          "x": 4532.24,
+          "y": 0,
+          "scale": 0.21176470588235294
+        },
+        "viewport": {
+          "left": 1132.2399999999998,
+          "right": 7932.24,
+          "top": -1816.1371527777778,
+          "bottom": 1816.1371527777778
+        },
+        "focus": {
+          "left": 0,
+          "top": 0,
+          "right": 4532.24,
+          "bottom": 3569.18
+        },
+        "terrain": {
+          "left": -1200,
+          "top": -900,
+          "right": 5732.24,
+          "bottom": 5069.18
+        },
+        "play": {
+          "left": 0,
+          "top": 0,
+          "right": 4532.24,
+          "bottom": 3569.18
+        },
+        "css": [
+          1440,
+          769.1875
+        ],
+        "backing": [
+          1440,
+          769
+        ],
+        "dpr": 1,
+        "phase": "aim",
+        "round": 1,
+        "sceneTime": 2,
+        "tide": null,
+        "physics": "6b4c47b95e0bfd4f40c047a44ea9118d585f46e6f8f19d0906412bb99f570a22",
+        "actualTerrainIDs": [
+          "root-floor",
+          "lower-yard",
+          "village-arch",
+          "east-yard",
+          "west-landing",
+          "upper-yard",
+          "right-ridge",
+          "west-caps-0",
+          "west-caps-1",
+          "west-caps-2",
+          "west-caps-3",
+          "west-caps-4",
+          "west-caps-5",
+          "west-caps-6",
+          "west-caps-7",
+          "east-caps-0",
+          "east-caps-1",
+          "east-caps-2",
+          "east-caps-3",
+          "east-caps-4",
+          "fall-caps-0",
+          "fall-caps-1",
+          "fall-caps-2",
+          "fall-caps-3",
+          "doldang-cap-0",
+          "doldang-cap-1",
+          "doldang-cap-2",
+          "doldang-cap-3",
+          "doldang-cap-4",
+          "doldang-cap-5",
+          "doldang-cap-6",
+          "doldang-cap-7",
+          "doldang-cap-8",
+          "doldang-cap-9",
+          "doldang-cap-10",
+          "doldang-cap-11",
+          "doldang-cap-12"
+        ],
+        "actualDrawOwnerIDs": [
+          "act1-site:7:body",
+          "act1-site:7:landmarks"
+        ],
+        "unitCount": 26
+      },
+      "southwest": {
+        "actual": {
+          "x": 0,
+          "y": 3569.18,
+          "scale": 0.21176470588235294
+        },
+        "viewport": {
+          "left": -3400,
+          "right": 3400,
+          "top": 1753.042847222222,
+          "bottom": 5385.317152777778
+        },
+        "focus": {
+          "left": 0,
+          "top": 0,
+          "right": 4532.24,
+          "bottom": 3569.18
+        },
+        "terrain": {
+          "left": -1200,
+          "top": -900,
+          "right": 5732.24,
+          "bottom": 5069.18
+        },
+        "play": {
+          "left": 0,
+          "top": 0,
+          "right": 4532.24,
+          "bottom": 3569.18
+        },
+        "css": [
+          1440,
+          769.1875
+        ],
+        "backing": [
+          1440,
+          769
+        ],
+        "dpr": 1,
+        "phase": "aim",
+        "round": 1,
+        "sceneTime": 2,
+        "tide": null,
+        "physics": "6b4c47b95e0bfd4f40c047a44ea9118d585f46e6f8f19d0906412bb99f570a22",
+        "actualTerrainIDs": [
+          "root-floor",
+          "lower-yard",
+          "village-arch",
+          "east-yard",
+          "west-landing",
+          "upper-yard",
+          "right-ridge",
+          "west-caps-0",
+          "west-caps-1",
+          "west-caps-2",
+          "west-caps-3",
+          "west-caps-4",
+          "west-caps-5",
+          "west-caps-6",
+          "west-caps-7",
+          "east-caps-0",
+          "east-caps-1",
+          "east-caps-2",
+          "east-caps-3",
+          "east-caps-4",
+          "fall-caps-0",
+          "fall-caps-1",
+          "fall-caps-2",
+          "fall-caps-3",
+          "doldang-cap-0",
+          "doldang-cap-1",
+          "doldang-cap-2",
+          "doldang-cap-3",
+          "doldang-cap-4",
+          "doldang-cap-5",
+          "doldang-cap-6",
+          "doldang-cap-7",
+          "doldang-cap-8",
+          "doldang-cap-9",
+          "doldang-cap-10",
+          "doldang-cap-11",
+          "doldang-cap-12"
+        ],
+        "actualDrawOwnerIDs": [
+          "act1-site:7:body",
+          "act1-site:7:landmarks"
+        ],
+        "unitCount": 26
+      },
+      "southeast": {
+        "actual": {
+          "x": 4532.24,
+          "y": 3569.18,
+          "scale": 0.21176470588235294
+        },
+        "viewport": {
+          "left": 1132.2399999999998,
+          "right": 7932.24,
+          "top": 1753.042847222222,
+          "bottom": 5385.317152777778
+        },
+        "focus": {
+          "left": 0,
+          "top": 0,
+          "right": 4532.24,
+          "bottom": 3569.18
+        },
+        "terrain": {
+          "left": -1200,
+          "top": -900,
+          "right": 5732.24,
+          "bottom": 5069.18
+        },
+        "play": {
+          "left": 0,
+          "top": 0,
+          "right": 4532.24,
+          "bottom": 3569.18
+        },
+        "css": [
+          1440,
+          769.1875
+        ],
+        "backing": [
+          1440,
+          769
+        ],
+        "dpr": 1,
+        "phase": "aim",
+        "round": 1,
+        "sceneTime": 2,
+        "tide": null,
+        "physics": "6b4c47b95e0bfd4f40c047a44ea9118d585f46e6f8f19d0906412bb99f570a22",
+        "actualTerrainIDs": [
+          "root-floor",
+          "lower-yard",
+          "village-arch",
+          "east-yard",
+          "west-landing",
+          "upper-yard",
+          "right-ridge",
+          "west-caps-0",
+          "west-caps-1",
+          "west-caps-2",
+          "west-caps-3",
+          "west-caps-4",
+          "west-caps-5",
+          "west-caps-6",
+          "west-caps-7",
+          "east-caps-0",
+          "east-caps-1",
+          "east-caps-2",
+          "east-caps-3",
+          "east-caps-4",
+          "fall-caps-0",
+          "fall-caps-1",
+          "fall-caps-2",
+          "fall-caps-3",
+          "doldang-cap-0",
+          "doldang-cap-1",
+          "doldang-cap-2",
+          "doldang-cap-3",
+          "doldang-cap-4",
+          "doldang-cap-5",
+          "doldang-cap-6",
+          "doldang-cap-7",
+          "doldang-cap-8",
+          "doldang-cap-9",
+          "doldang-cap-10",
+          "doldang-cap-11",
+          "doldang-cap-12"
+        ],
+        "actualDrawOwnerIDs": [
+          "act1-site:7:body",
+          "act1-site:7:landmarks"
+        ],
+        "unitCount": 26
+      }
+    },
+    "signed": {
+      "west": {
+        "box": [
+          463,
+          661,
+          468,
+          769
+        ],
+        "sourceWorldX": -1200,
+        "lineYPixel": [
+          663.5386911764706,
+          1080.1539852941178
+        ],
+        "projectedX": 465.88235294117646
+      },
+      "southwest": {
+        "box": [
+          463,
+          283,
+          468,
+          705
+        ],
+        "sourceWorldX": -1200,
+        "lineYPixel": [
+          285.6255147058824,
+          702.2408088235295
+        ],
+        "projectedX": 465.88235294117646
+      }
+    },
+    "archivedWitness": {
+      "north": {
+        "sha256": "9e0fe372b3c7c47630025e40b5570138ca295191463072af41124b43bfaf51e5",
+        "origin": "44922966956 actual; geometry/visual reference only"
+      },
+      "east": {
+        "sha256": "2eb294f8c2d746387b7e6694994b8009d0a750f8e59309c3824f4d1ae77b0f1b",
+        "origin": "44922966956 actual; geometry/visual reference only"
+      },
+      "south": {
+        "sha256": "197f37e2c28807e4ccd0f07ce42af90bf88e5c60f33623a4e1d5fa2b44ab5e87",
+        "origin": "44922966956 actual; geometry/visual reference only"
+      },
+      "west": {
+        "sha256": "e50d09f42bac16a9bf9019937d0ad7d59f782b4df1d61be71e828e40cb620215",
+        "origin": "44922966956 actual; geometry/visual reference only"
+      },
+      "northwest": {
+        "sha256": "23e36e01b9e5bb92147961bd3399c25a409ca29879fb3b58b4e48dceec60f2cf",
+        "origin": "44922966956 actual; geometry/visual reference only"
+      },
+      "northeast": {
+        "sha256": "4b0296c25b62f82a43e24353871dbd99b99d2b8c6946ebcfc08ae584dba5d3ce",
+        "origin": "44922966956 actual; geometry/visual reference only"
+      },
+      "southwest": {
+        "sha256": "4919f6ba6f9284ef5808b9465134892d35a87557ee2f798ffa39cf73cbf1b106",
+        "origin": "44922966956 actual; geometry/visual reference only"
+      },
+      "southeast": {
+        "sha256": "2fe7af56b93a4ebbb5a9b5ba12cafff6254dbe98add0e67c84eda8aac201ae54",
+        "origin": "44922966956 actual; geometry/visual reference only"
+      }
+    }
+  },
+  "s07-390x844": {
+    "device": [
+      390,
+      844
+    ],
+    "stage": 7,
+    "provider": {
+      "stage": "stage-7",
+      "compact": null,
+      "width": 4532.24,
+      "height": 3569.18
+    },
+    "requests": {
+      "HONRO.html": {
+        "bytes": 17379,
+        "sha256": "970fac6baf1d504bbdbcdbf75f273fe33a8a8b6bc90f31157e3132116e14ecde"
+      },
+      "web/data/campaign-base.0c57dcfe7c08d421.json": {
+        "bytes": 257,
+        "sha256": "0c57dcfe7c08d421901ffa8eeb437940b6b6d4779816207b51dca7be44c73e5e"
+      },
+      "web/data/campaign-shared.8f8343b5c21518d4.json": {
+        "bytes": 577195,
+        "sha256": "8f8343b5c21518d4fdaa2314e58031fd137b8622d3a6c1ca2fdabafde3bb158f"
+      },
+      "web/data/campaign.7140da5d3649e4ab.json": {
+        "bytes": 54961,
+        "sha256": "7140da5d3649e4aba2c58e180c8ff3f6f171a70e5e6704ad05dc98d428c52822"
+      },
+      "web/data/chapter-07-assets.7068fa05c6ce1c2e.json": {
+        "bytes": 655969,
+        "sha256": "7068fa05c6ce1c2ef0c96045daa3dea192ba69a18e35bc323e6a5df9a1529db5"
+      },
+      "web/data/chapter-07.28f7bf612a598aeb.json": {
+        "bytes": 30579,
+        "sha256": "28f7bf612a598aeb0eb6da0f819a0b6ddb7fd5414eab9410e434772eb04d2553"
+      },
+      "web/runtime/campaign.926544619e01a04a.js": {
+        "bytes": 527,
+        "sha256": "926544619e01a04af2f2cc0e2bd435265ae9efff23062e259563bded6d851307"
+      },
+      "web/runtime/load-data.248fb3aada6f16bb.js": {
+        "bytes": 15550,
+        "sha256": "248fb3aada6f16bbe2d7df7e369db772df2d923bc91b1e517daa53858f558dcb"
+      },
+      "web/entries/game.756ef43eebb6f5c4.js": {
+        "bytes": 20483,
+        "sha256": "756ef43eebb6f5c4a664b04c43521bd0ba179c2ce4f00abbcded03ba0a21e266"
+      },
+      "web/runtime/ordered-common-11.030f50386d1a72ad.js": {
+        "bytes": 178192,
+        "sha256": "030f50386d1a72ad13304b8e0b25d12b0473342a83dcdddf71ac033a3140384a"
+      },
+      "web/runtime/ordered-common-16.3d9993bd92d5eb93.js": {
+        "bytes": 177610,
+        "sha256": "3d9993bd92d5eb93572f4b05fe9da2f19d4202c7a3e24ba767a5274ca3364f2c"
+      }
+    },
+    "views": {
+      "north": {
+        "actual": {
+          "x": 2266.12,
+          "y": 0,
+          "scale": 0.057352941176470586
+        },
+        "viewport": {
+          "left": -1133.88,
+          "right": 5666.12,
+          "top": -5645.82532051282,
+          "bottom": 5645.82532051282
+        },
+        "focus": {
+          "left": 0,
+          "top": 0,
+          "right": 4532.24,
+          "bottom": 3569.18
+        },
+        "terrain": {
+          "left": -1200,
+          "top": -900,
+          "right": 5732.24,
+          "bottom": 5069.18
+        },
+        "play": {
+          "left": 0,
+          "top": 0,
+          "right": 4532.24,
+          "bottom": 3569.18
+        },
+        "css": [
+          390,
+          647.609375
+        ],
+        "backing": [
+          390,
+          648
+        ],
+        "dpr": 1,
+        "phase": "aim",
+        "round": 1,
+        "sceneTime": 2,
+        "tide": null,
+        "physics": "6b4c47b95e0bfd4f40c047a44ea9118d585f46e6f8f19d0906412bb99f570a22",
+        "actualTerrainIDs": [
+          "root-floor",
+          "lower-yard",
+          "village-arch",
+          "east-yard",
+          "west-landing",
+          "upper-yard",
+          "right-ridge",
+          "west-caps-0",
+          "west-caps-1",
+          "west-caps-2",
+          "west-caps-3",
+          "west-caps-4",
+          "west-caps-5",
+          "west-caps-6",
+          "west-caps-7",
+          "east-caps-0",
+          "east-caps-1",
+          "east-caps-2",
+          "east-caps-3",
+          "east-caps-4",
+          "fall-caps-0",
+          "fall-caps-1",
+          "fall-caps-2",
+          "fall-caps-3",
+          "doldang-cap-0",
+          "doldang-cap-1",
+          "doldang-cap-2",
+          "doldang-cap-3",
+          "doldang-cap-4",
+          "doldang-cap-5",
+          "doldang-cap-6",
+          "doldang-cap-7",
+          "doldang-cap-8",
+          "doldang-cap-9",
+          "doldang-cap-10",
+          "doldang-cap-11",
+          "doldang-cap-12"
+        ],
+        "actualDrawOwnerIDs": [
+          "act1-site:7:body",
+          "act1-site:7:landmarks"
+        ],
+        "unitCount": 26
+      },
+      "east": {
+        "actual": {
+          "x": 4532.24,
+          "y": 1784.59,
+          "scale": 0.057352941176470586
+        },
+        "viewport": {
+          "left": 1132.2399999999998,
+          "right": 7932.24,
+          "top": -3861.23532051282,
+          "bottom": 7430.4153205128205
+        },
+        "focus": {
+          "left": 0,
+          "top": 0,
+          "right": 4532.24,
+          "bottom": 3569.18
+        },
+        "terrain": {
+          "left": -1200,
+          "top": -900,
+          "right": 5732.24,
+          "bottom": 5069.18
+        },
+        "play": {
+          "left": 0,
+          "top": 0,
+          "right": 4532.24,
+          "bottom": 3569.18
+        },
+        "css": [
+          390,
+          647.609375
+        ],
+        "backing": [
+          390,
+          648
+        ],
+        "dpr": 1,
+        "phase": "aim",
+        "round": 1,
+        "sceneTime": 2,
+        "tide": null,
+        "physics": "6b4c47b95e0bfd4f40c047a44ea9118d585f46e6f8f19d0906412bb99f570a22",
+        "actualTerrainIDs": [
+          "root-floor",
+          "lower-yard",
+          "village-arch",
+          "east-yard",
+          "west-landing",
+          "upper-yard",
+          "right-ridge",
+          "west-caps-0",
+          "west-caps-1",
+          "west-caps-2",
+          "west-caps-3",
+          "west-caps-4",
+          "west-caps-5",
+          "west-caps-6",
+          "west-caps-7",
+          "east-caps-0",
+          "east-caps-1",
+          "east-caps-2",
+          "east-caps-3",
+          "east-caps-4",
+          "fall-caps-0",
+          "fall-caps-1",
+          "fall-caps-2",
+          "fall-caps-3",
+          "doldang-cap-0",
+          "doldang-cap-1",
+          "doldang-cap-2",
+          "doldang-cap-3",
+          "doldang-cap-4",
+          "doldang-cap-5",
+          "doldang-cap-6",
+          "doldang-cap-7",
+          "doldang-cap-8",
+          "doldang-cap-9",
+          "doldang-cap-10",
+          "doldang-cap-11",
+          "doldang-cap-12"
+        ],
+        "actualDrawOwnerIDs": [
+          "act1-site:7:body",
+          "act1-site:7:landmarks"
+        ],
+        "unitCount": 26
+      },
+      "south": {
+        "actual": {
+          "x": 2266.12,
+          "y": 3569.18,
+          "scale": 0.057352941176470586
+        },
+        "viewport": {
+          "left": -1133.88,
+          "right": 5666.12,
+          "top": -2076.6453205128205,
+          "bottom": 9215.00532051282
+        },
+        "focus": {
+          "left": 0,
+          "top": 0,
+          "right": 4532.24,
+          "bottom": 3569.18
+        },
+        "terrain": {
+          "left": -1200,
+          "top": -900,
+          "right": 5732.24,
+          "bottom": 5069.18
+        },
+        "play": {
+          "left": 0,
+          "top": 0,
+          "right": 4532.24,
+          "bottom": 3569.18
+        },
+        "css": [
+          390,
+          647.609375
+        ],
+        "backing": [
+          390,
+          648
+        ],
+        "dpr": 1,
+        "phase": "aim",
+        "round": 1,
+        "sceneTime": 2,
+        "tide": null,
+        "physics": "6b4c47b95e0bfd4f40c047a44ea9118d585f46e6f8f19d0906412bb99f570a22",
+        "actualTerrainIDs": [
+          "root-floor",
+          "lower-yard",
+          "village-arch",
+          "east-yard",
+          "west-landing",
+          "upper-yard",
+          "right-ridge",
+          "west-caps-0",
+          "west-caps-1",
+          "west-caps-2",
+          "west-caps-3",
+          "west-caps-4",
+          "west-caps-5",
+          "west-caps-6",
+          "west-caps-7",
+          "east-caps-0",
+          "east-caps-1",
+          "east-caps-2",
+          "east-caps-3",
+          "east-caps-4",
+          "fall-caps-0",
+          "fall-caps-1",
+          "fall-caps-2",
+          "fall-caps-3",
+          "doldang-cap-0",
+          "doldang-cap-1",
+          "doldang-cap-2",
+          "doldang-cap-3",
+          "doldang-cap-4",
+          "doldang-cap-5",
+          "doldang-cap-6",
+          "doldang-cap-7",
+          "doldang-cap-8",
+          "doldang-cap-9",
+          "doldang-cap-10",
+          "doldang-cap-11",
+          "doldang-cap-12"
+        ],
+        "actualDrawOwnerIDs": [
+          "act1-site:7:body",
+          "act1-site:7:landmarks"
+        ],
+        "unitCount": 26
+      },
+      "west": {
+        "actual": {
+          "x": 0,
+          "y": 1784.59,
+          "scale": 0.057352941176470586
+        },
+        "viewport": {
+          "left": -3400,
+          "right": 3400,
+          "top": -3861.23532051282,
+          "bottom": 7430.4153205128205
+        },
+        "focus": {
+          "left": 0,
+          "top": 0,
+          "right": 4532.24,
+          "bottom": 3569.18
+        },
+        "terrain": {
+          "left": -1200,
+          "top": -900,
+          "right": 5732.24,
+          "bottom": 5069.18
+        },
+        "play": {
+          "left": 0,
+          "top": 0,
+          "right": 4532.24,
+          "bottom": 3569.18
+        },
+        "css": [
+          390,
+          647.609375
+        ],
+        "backing": [
+          390,
+          648
+        ],
+        "dpr": 1,
+        "phase": "aim",
+        "round": 1,
+        "sceneTime": 2,
+        "tide": null,
+        "physics": "6b4c47b95e0bfd4f40c047a44ea9118d585f46e6f8f19d0906412bb99f570a22",
+        "actualTerrainIDs": [
+          "root-floor",
+          "lower-yard",
+          "village-arch",
+          "east-yard",
+          "west-landing",
+          "upper-yard",
+          "right-ridge",
+          "west-caps-0",
+          "west-caps-1",
+          "west-caps-2",
+          "west-caps-3",
+          "west-caps-4",
+          "west-caps-5",
+          "west-caps-6",
+          "west-caps-7",
+          "east-caps-0",
+          "east-caps-1",
+          "east-caps-2",
+          "east-caps-3",
+          "east-caps-4",
+          "fall-caps-0",
+          "fall-caps-1",
+          "fall-caps-2",
+          "fall-caps-3",
+          "doldang-cap-0",
+          "doldang-cap-1",
+          "doldang-cap-2",
+          "doldang-cap-3",
+          "doldang-cap-4",
+          "doldang-cap-5",
+          "doldang-cap-6",
+          "doldang-cap-7",
+          "doldang-cap-8",
+          "doldang-cap-9",
+          "doldang-cap-10",
+          "doldang-cap-11",
+          "doldang-cap-12"
+        ],
+        "actualDrawOwnerIDs": [
+          "act1-site:7:body",
+          "act1-site:7:landmarks"
+        ],
+        "unitCount": 26
+      },
+      "northwest": {
+        "actual": {
+          "x": 0,
+          "y": 0,
+          "scale": 0.057352941176470586
+        },
+        "viewport": {
+          "left": -3400,
+          "right": 3400,
+          "top": -5645.82532051282,
+          "bottom": 5645.82532051282
+        },
+        "focus": {
+          "left": 0,
+          "top": 0,
+          "right": 4532.24,
+          "bottom": 3569.18
+        },
+        "terrain": {
+          "left": -1200,
+          "top": -900,
+          "right": 5732.24,
+          "bottom": 5069.18
+        },
+        "play": {
+          "left": 0,
+          "top": 0,
+          "right": 4532.24,
+          "bottom": 3569.18
+        },
+        "css": [
+          390,
+          647.609375
+        ],
+        "backing": [
+          390,
+          648
+        ],
+        "dpr": 1,
+        "phase": "aim",
+        "round": 1,
+        "sceneTime": 2,
+        "tide": null,
+        "physics": "6b4c47b95e0bfd4f40c047a44ea9118d585f46e6f8f19d0906412bb99f570a22",
+        "actualTerrainIDs": [
+          "root-floor",
+          "lower-yard",
+          "village-arch",
+          "east-yard",
+          "west-landing",
+          "upper-yard",
+          "right-ridge",
+          "west-caps-0",
+          "west-caps-1",
+          "west-caps-2",
+          "west-caps-3",
+          "west-caps-4",
+          "west-caps-5",
+          "west-caps-6",
+          "west-caps-7",
+          "east-caps-0",
+          "east-caps-1",
+          "east-caps-2",
+          "east-caps-3",
+          "east-caps-4",
+          "fall-caps-0",
+          "fall-caps-1",
+          "fall-caps-2",
+          "fall-caps-3",
+          "doldang-cap-0",
+          "doldang-cap-1",
+          "doldang-cap-2",
+          "doldang-cap-3",
+          "doldang-cap-4",
+          "doldang-cap-5",
+          "doldang-cap-6",
+          "doldang-cap-7",
+          "doldang-cap-8",
+          "doldang-cap-9",
+          "doldang-cap-10",
+          "doldang-cap-11",
+          "doldang-cap-12"
+        ],
+        "actualDrawOwnerIDs": [
+          "act1-site:7:body",
+          "act1-site:7:landmarks"
+        ],
+        "unitCount": 26
+      },
+      "northeast": {
+        "actual": {
+          "x": 4532.24,
+          "y": 0,
+          "scale": 0.057352941176470586
+        },
+        "viewport": {
+          "left": 1132.2399999999998,
+          "right": 7932.24,
+          "top": -5645.82532051282,
+          "bottom": 5645.82532051282
+        },
+        "focus": {
+          "left": 0,
+          "top": 0,
+          "right": 4532.24,
+          "bottom": 3569.18
+        },
+        "terrain": {
+          "left": -1200,
+          "top": -900,
+          "right": 5732.24,
+          "bottom": 5069.18
+        },
+        "play": {
+          "left": 0,
+          "top": 0,
+          "right": 4532.24,
+          "bottom": 3569.18
+        },
+        "css": [
+          390,
+          647.609375
+        ],
+        "backing": [
+          390,
+          648
+        ],
+        "dpr": 1,
+        "phase": "aim",
+        "round": 1,
+        "sceneTime": 2,
+        "tide": null,
+        "physics": "6b4c47b95e0bfd4f40c047a44ea9118d585f46e6f8f19d0906412bb99f570a22",
+        "actualTerrainIDs": [
+          "root-floor",
+          "lower-yard",
+          "village-arch",
+          "east-yard",
+          "west-landing",
+          "upper-yard",
+          "right-ridge",
+          "west-caps-0",
+          "west-caps-1",
+          "west-caps-2",
+          "west-caps-3",
+          "west-caps-4",
+          "west-caps-5",
+          "west-caps-6",
+          "west-caps-7",
+          "east-caps-0",
+          "east-caps-1",
+          "east-caps-2",
+          "east-caps-3",
+          "east-caps-4",
+          "fall-caps-0",
+          "fall-caps-1",
+          "fall-caps-2",
+          "fall-caps-3",
+          "doldang-cap-0",
+          "doldang-cap-1",
+          "doldang-cap-2",
+          "doldang-cap-3",
+          "doldang-cap-4",
+          "doldang-cap-5",
+          "doldang-cap-6",
+          "doldang-cap-7",
+          "doldang-cap-8",
+          "doldang-cap-9",
+          "doldang-cap-10",
+          "doldang-cap-11",
+          "doldang-cap-12"
+        ],
+        "actualDrawOwnerIDs": [
+          "act1-site:7:body",
+          "act1-site:7:landmarks"
+        ],
+        "unitCount": 26
+      },
+      "southwest": {
+        "actual": {
+          "x": 0,
+          "y": 3569.18,
+          "scale": 0.057352941176470586
+        },
+        "viewport": {
+          "left": -3400,
+          "right": 3400,
+          "top": -2076.6453205128205,
+          "bottom": 9215.00532051282
+        },
+        "focus": {
+          "left": 0,
+          "top": 0,
+          "right": 4532.24,
+          "bottom": 3569.18
+        },
+        "terrain": {
+          "left": -1200,
+          "top": -900,
+          "right": 5732.24,
+          "bottom": 5069.18
+        },
+        "play": {
+          "left": 0,
+          "top": 0,
+          "right": 4532.24,
+          "bottom": 3569.18
+        },
+        "css": [
+          390,
+          647.609375
+        ],
+        "backing": [
+          390,
+          648
+        ],
+        "dpr": 1,
+        "phase": "aim",
+        "round": 1,
+        "sceneTime": 2,
+        "tide": null,
+        "physics": "6b4c47b95e0bfd4f40c047a44ea9118d585f46e6f8f19d0906412bb99f570a22",
+        "actualTerrainIDs": [
+          "root-floor",
+          "lower-yard",
+          "village-arch",
+          "east-yard",
+          "west-landing",
+          "upper-yard",
+          "right-ridge",
+          "west-caps-0",
+          "west-caps-1",
+          "west-caps-2",
+          "west-caps-3",
+          "west-caps-4",
+          "west-caps-5",
+          "west-caps-6",
+          "west-caps-7",
+          "east-caps-0",
+          "east-caps-1",
+          "east-caps-2",
+          "east-caps-3",
+          "east-caps-4",
+          "fall-caps-0",
+          "fall-caps-1",
+          "fall-caps-2",
+          "fall-caps-3",
+          "doldang-cap-0",
+          "doldang-cap-1",
+          "doldang-cap-2",
+          "doldang-cap-3",
+          "doldang-cap-4",
+          "doldang-cap-5",
+          "doldang-cap-6",
+          "doldang-cap-7",
+          "doldang-cap-8",
+          "doldang-cap-9",
+          "doldang-cap-10",
+          "doldang-cap-11",
+          "doldang-cap-12"
+        ],
+        "actualDrawOwnerIDs": [
+          "act1-site:7:body",
+          "act1-site:7:landmarks"
+        ],
+        "unitCount": 26
+      },
+      "southeast": {
+        "actual": {
+          "x": 4532.24,
+          "y": 3569.18,
+          "scale": 0.057352941176470586
+        },
+        "viewport": {
+          "left": 1132.2399999999998,
+          "right": 7932.24,
+          "top": -2076.6453205128205,
+          "bottom": 9215.00532051282
+        },
+        "focus": {
+          "left": 0,
+          "top": 0,
+          "right": 4532.24,
+          "bottom": 3569.18
+        },
+        "terrain": {
+          "left": -1200,
+          "top": -900,
+          "right": 5732.24,
+          "bottom": 5069.18
+        },
+        "play": {
+          "left": 0,
+          "top": 0,
+          "right": 4532.24,
+          "bottom": 3569.18
+        },
+        "css": [
+          390,
+          647.609375
+        ],
+        "backing": [
+          390,
+          648
+        ],
+        "dpr": 1,
+        "phase": "aim",
+        "round": 1,
+        "sceneTime": 2,
+        "tide": null,
+        "physics": "6b4c47b95e0bfd4f40c047a44ea9118d585f46e6f8f19d0906412bb99f570a22",
+        "actualTerrainIDs": [
+          "root-floor",
+          "lower-yard",
+          "village-arch",
+          "east-yard",
+          "west-landing",
+          "upper-yard",
+          "right-ridge",
+          "west-caps-0",
+          "west-caps-1",
+          "west-caps-2",
+          "west-caps-3",
+          "west-caps-4",
+          "west-caps-5",
+          "west-caps-6",
+          "west-caps-7",
+          "east-caps-0",
+          "east-caps-1",
+          "east-caps-2",
+          "east-caps-3",
+          "east-caps-4",
+          "fall-caps-0",
+          "fall-caps-1",
+          "fall-caps-2",
+          "fall-caps-3",
+          "doldang-cap-0",
+          "doldang-cap-1",
+          "doldang-cap-2",
+          "doldang-cap-3",
+          "doldang-cap-4",
+          "doldang-cap-5",
+          "doldang-cap-6",
+          "doldang-cap-7",
+          "doldang-cap-8",
+          "doldang-cap-9",
+          "doldang-cap-10",
+          "doldang-cap-11",
+          "doldang-cap-12"
+        ],
+        "actualDrawOwnerIDs": [
+          "act1-site:7:body",
+          "act1-site:7:landmarks"
+        ],
+        "unitCount": 26
+      }
+    },
+    "signed": {
+      "west": {
+        "box": [
+          124,
+          397,
+          129,
+          515
+        ],
+        "sourceWorldX": -1200,
+        "lineYPixel": [
+          399.3522757352941,
+          512.1855845588235
+        ],
+        "projectedX": 126.17647058823529
+      },
+      "northwest": {
+        "box": [
+          124,
+          499,
+          129,
+          617
+        ],
+        "sourceWorldX": -1200,
+        "lineYPixel": [
+          501.70376102941174,
+          614.5370698529412
+        ],
+        "projectedX": 126.17647058823529
+      },
+      "southwest": {
+        "box": [
+          124,
+          295,
+          129,
+          412
+        ],
+        "sourceWorldX": -1200,
+        "lineYPixel": [
+          297.00079044117643,
+          409.83409926470586
+        ],
+        "projectedX": 126.17647058823529
+      }
+    },
+    "archivedWitness": {
+      "north": {
+        "sha256": "047f26cc612b499ff79af130676f13b01e3b6f0e075e9504290d1cfbee2275ff",
+        "origin": "44922966956 actual; geometry/visual reference only"
+      },
+      "east": {
+        "sha256": "9e342e2224c9acb10f76e8c1ff755eca53e49e13f273ca63b70a107eea330cda",
+        "origin": "44922966956 actual; geometry/visual reference only"
+      },
+      "south": {
+        "sha256": "5be9d8bc348840ea523cb1f9e7dc5522222f491e08b2472fe621b6f99ad7921d",
+        "origin": "44922966956 actual; geometry/visual reference only"
+      },
+      "west": {
+        "sha256": "fe62096e81533b42590e29d5be087f923feffeb83b93be27018b6ac2d8cb5894",
+        "origin": "44922966956 actual; geometry/visual reference only"
+      },
+      "northwest": {
+        "sha256": "9e6d63d0bacd6e9311388f326ba600c2db675fb10ead58aa363c316c482b9e0b",
+        "origin": "44922966956 actual; geometry/visual reference only"
+      },
+      "northeast": {
+        "sha256": "3797b1474bb79898baa4ba0b9f5cc9214aa62f637dba473bd8196956712e710f",
+        "origin": "44922966956 actual; geometry/visual reference only"
+      },
+      "southwest": {
+        "sha256": "6e66417728df7ec495a40cfc314446cda1c5feb2611a01205a688fd97ac0c4e8",
+        "origin": "44922966956 actual; geometry/visual reference only"
+      },
+      "southeast": {
+        "sha256": "59e511ab76e93ab9b8654bb4dbfc75325921587803d846271dd68eff9ee15408",
+        "origin": "44922966956 actual; geometry/visual reference only"
+      }
+    }
+  }
+}
