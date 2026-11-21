@@ -1,0 +1,46 @@
+name: HONRO Stage28 south deep foundation exact anonymous public readback (no deploy)
+on:
+  push:
+    branches: [qa/stage28-public-readback]
+    paths:
+      - .github/workflows/stage28-public-readback.yml
+      - tools/stage28-public-readback/**
+permissions:
+  contents: read
+  actions: read
+jobs:
+  observe:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage28-public-readback'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 4
+          persist-credentials: false
+      - name: Require exact successful Pages authority before anonymous browser
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          O="$(mktemp -d "$RUNNER_TEMP/honro-stage28-live.XXXXXX")"
+          echo "OUT=$O" >> "$GITHUB_ENV"
+          python3 tools/stage28-public-readback/proof.py authority "$O"
+      - name: Public old/new alias bytes and 16 exact Stage28 Chrome views
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -z "${GH_TOKEN:-}${GITHUB_TOKEN:-}"
+          V="$RUNNER_TEMP/honro-stage28-readback-venv"
+          python3 -m venv "$V"
+          "$V/bin/python" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V/bin/python" -m playwright install --with-deps chromium
+          PYTHONDONTWRITEBYTECODE=1 "$V/bin/python" tools/stage28-public-readback/proof.py app "$OUT"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always() && env.OUT != ''
+        with:
+          name: honro-stage28-anonymous-pages-exact-readback
+          path: ${{ env.OUT }}
+          if-no-files-found: error
+          retention-days: 7
