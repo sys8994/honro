@@ -17,21 +17,21 @@ jobs:
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
-          fetch-depth: 3
+          fetch-depth: 4
           persist-credentials: false
           lfs: false
-      - name: Verify exact 2c4 baseline and R1 successor QA-only ancestry
+      - name: Verify exact 2c4 baseline and R2 successor QA-only ancestry
         shell: bash
         run: |
           set -euo pipefail
           sha256sum -c <<'SUMS'
           fcffb42af2f93761381f7329b69305571dc10f68ba8767dd9d66bb5440c1685d  tools/stage42-native-observer-pilot/PINS.json
           e80cf7a83065fef0fba5df2e548c29effb3706d3d8da1d723092c5b3c3d5c2b5  tools/stage42-native-observer-pilot/native.js
-          7f2484181ccac9d0162847b0879fb22a8c08a694b7e6d73a0be420389b687fd2  tools/stage42-native-observer-pilot/pilot.py
+          8c369c647700ce6c606e46b8aa462f447bc59b277dc9a1574710a3a5816916b2  tools/stage42-native-observer-pilot/pilot.py
           db4207aa70d2aceef7e6ff8da5d93f10b8267aaf0f3aa61c844a5e14db89a6f6  tools/stage42-native-observer-pilot/scene.js
           SUMS
           python3 tools/stage42-native-observer-pilot/pilot.py --repo "$GITHUB_WORKSPACE" --out "$RUNNER_TEMP/stage42-a-pilot" --official --preflight
-      - name: Capture normal A1/A2 first, then native-only A over checked loopback HTTP
+      - name: Capture normal A1/A2 first, then native-only A with exact response and viewport telemetry
         shell: bash
         run: |
           set -euo pipefail

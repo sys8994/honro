@@ -5,13 +5,14 @@ from urllib.parse import urlsplit
 from http.server import BaseHTTPRequestHandler,ThreadingHTTPServer
 from threading import Thread,Lock
 from collections import Counter
-import contextlib
+import contextlib,struct
 H=Path(__file__).resolve().parent
 PIN=json.loads((H/'PINS.json').read_bytes())
 NATIVE=(H/'native.js').read_text()
 SCENE=(H/'scene.js').read_text()
 BASE=PIN['base']
 R1='c02cee384bbb42eafc543cfb6426d135c3aee62c'
+R2='96339114b168e9551ebf81c3765ca6d97537a7a6'
 SHELL='HONRO.html'; MAN='web/manifest.json'
 MEDIA=re.compile(r'assets/bgm/(?:main|battle-[1-4])\.mp3')
 PATH=re.compile(r'[a-zA-Z0-9_.-]+(?:/[a-zA-Z0-9_.-]+)*')
@@ -46,10 +47,12 @@ def secure(repo,official):
   head=os.environ['GITHUB_SHA'];here='tools/stage42-native-observer-pilot/'
   assert (os.environ['GITHUB_REPOSITORY'],os.environ['GITHUB_EVENT_NAME'],os.environ['GITHUB_REF'])==('sys8994/honro','push',PIN['ref'])
   assert not(os.getenv('GH_TOKEN')or os.getenv('GITHUB_TOKEN'))
-  assert head==g('rev-parse','HEAD') and g('rev-list','--parents','-n1',head).split()==[head,R1]
+  assert head==g('rev-parse','HEAD') and g('rev-list','--parents','-n1',head).split()==[head,R2]
+  assert g('rev-list','--parents','-n1',R2).split()==[R2,R1]
   assert g('rev-list','--parents','-n1',R1).split()==[R1,BASE]
-  assert set(g('diff','--no-renames','--name-status',R1,head).splitlines())=={
-     'M\t.github/workflows/stage42-stock-native-observer-pilot.yml','M\t'+here+'pilot.py'}
+  transition={'M\t.github/workflows/stage42-stock-native-observer-pilot.yml','M\t'+here+'pilot.py'}
+  for a,b in ((R1,R2),(R2,head)):
+   assert set(g('diff','--no-renames','--name-status',a,b).splitlines())==transition
   files={'A\t'+here+n for n in ('PINS.json','native.js','pilot.py','scene.js')}
   files.add('A\t.github/workflows/stage42-stock-native-observer-pilot.yml')
   assert set(g('diff','--no-renames','--name-status',BASE,head).splitlines())==files
@@ -96,6 +99,63 @@ DECODE=r"""async()=>{
  finally{clearTimeout(timer);}
  return {number:xs.length,font:document.fonts.status,bad:xs.filter(i=>!i.complete||!i.naturalWidth).map(i=>i.currentSrc||i.src)};
 }"""
+MAX_MATRIX=r"""(q)=>{
+ 'use strict';
+ const K='__s42MaxMatrixTap',G=globalThis,s=G.HonroApp?.scene,b=G.HonroApp?.engine?.b;
+ const arr=m=>[m.a,m.b,m.c,m.d,m.e,m.f];
+ const eq=(a,b)=>Array.isArray(a)&&Array.isArray(b)&&a.length===b.length&&a.every((x,i)=>x===b[i]);
+ if(b?.honroStage!==42||b.honroCanonical!==true||b.honroMapOrigin!=='campaign'||devicePixelRatio!==1)
+  throw Error('unbound maximum matrix probe');
+ if(q.op==='calibrate'){
+  const [x,y,z]=q.center,[w,h]=q.css;
+  const exact=[z,0,0,z,w/2-x*z,h/2-y*z];
+  if(!eq(exact,q.pin))throw Error('camera math differs from sealed maximum basis');
+  // Exact renderer.js render(world CTM) followed by _screenRaster(cache CTM),
+  // using two blank detached 1x1 HTMLCanvases, not actual scene/composite pixels.
+  function replay(){
+   const context=()=>{
+    const v=document.createElement('canvas');v.width=1;v.height=1;
+    if(v.isConnected||v===s.canvas)throw Error('matrix calibration is not detached');
+    return v.getContext('2d');
+   };
+   const a=context(),c=context();a.setTransform(1,0,0,1,0,0);
+   a.translate(w/2,h/2);a.scale(z,z);a.translate(-x,-y);
+   const visiblePath=arr(a.getTransform());c.setTransform(...visiblePath);
+   return {visiblePath,cachePath:arr(c.getTransform())};
+  }
+  const expected=exact.map(Math.fround),a=replay(),second=replay();
+  return {exact,expected,a,b:second,sourceBound:q.rendererGit,
+   exactFloat32: [a.visiblePath,a.cachePath,second.visiblePath,second.cachePath].every(v=>eq(v,expected))};
+ }
+ const p=G[K];
+ if(q.op==='phase'){if(!p)throw Error('matrix tap absent');p.phase=q.phase;return true;}
+ if(q.op==='finish'){
+  if(!p)throw Error('matrix tap absent');
+  try{
+   const native=s._screenWorldCache?.canvas;
+   const rows=p.rows.map(({canvas,...row})=>({...row,committedIdentity:canvas===native}));
+   return {rows,errors:p.errors};
+  }finally{p.undo();delete G[K];}
+ }
+ if(q.op!=='install'||p)throw Error('bad max matrix tap');
+ const d=Object.getOwnPropertyDescriptor(s,'landmark'),orig=s.landmark;
+ const store={phase:null,rows:[],errors:[],undo:()=>d?Object.defineProperty(s,'landmark',d):delete s.landmark};
+ Object.defineProperty(s,'landmark',{value:function(ctx,l,...a){
+  // Tap is installed *outside* native.js, so matched authored owner viewport
+  // matrices are observed as metadata before the native readback filters run.
+  if(store.phase&&l?.id==='a5-near'&&l?.asset?.id==='act5:near:42'){
+   try{
+    if(store.rows.length>=6)throw Error('unexpected extra max viewport draw');
+    const raw=G.HonroVisualStyle?.raw(ctx)??ctx,cv=raw.canvas;
+    store.rows.push({canvas:cv,phase:store.phase,center:[s.x,s.y,s.scale],
+      matrix:arr(raw.getTransform()),main:cv===s.canvas,detached:!cv.isConnected,size:[cv.width,cv.height]});
+   }catch(e){store.errors.push(String(e));}
+  }
+  return Reflect.apply(orig,this,[ctx,l,...a]);
+ },writable:true,enumerable:d?.enumerable??false,configurable:true});
+ Object.defineProperty(G,K,{value:store,configurable:true});return true;
+}"""
+
 RAW="()=>HonroApp.scene.canvas.toDataURL('image/png').split(',')[1]"
 def ranged(b,range_header):
  if range_header is None:return 200,None,b
@@ -169,20 +229,21 @@ class Ledger:
  def __init__(self,known,origin,file,snapshot,errors):
   self.entries={};self.known=known;self.origin=origin;self.file=file;self.snapshot=snapshot;self.errors=errors
   self.blob_rx=re.compile(r'blob:'+re.escape(origin)+r'[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}')
-  self.blobs=set();self.verified=[]
+  self.blobs=set();self.verified=[];self.terminalPhase='frame-run'
  def key(self,req):return parts(req.url,self.origin)
  def record(self,req):
   k=self.key(req)
   if k in self.known or k in MEDIA_PINS:
    return self.entries.setdefault(req,{'path':k,'method':req.method,'resource':req.resource_type,
-    'range':req.headers.get('range'),'start':False,'finished':False,'failure':None,'response':None,'state':'PENDING'})
+    'range':req.headers.get('range'),'start':False,'finished':False,'failure':None,'response':None,'state':'PENDING','sampling':{'attempts':0}})
   return None
  def request(self,req):
   rr=self.record(req)
   if rr is not None:
    rr['start']=True;ifbad=req.method!='GET' or (rr['path'] in MEDIA_PINS and req.resource_type!='media')
    if ifbad:self.errors.append(['unexpected method or purpose',req.method,req.resource_type,req.url])
-  elif not(req.url.startswith('data:') or self.blob_rx.fullmatch(req.url)):self.errors.append(['unexpected request',req.method,req.url])
+  elif not(req.url.startswith('data:') or self.blob_rx.fullmatch(req.url) or (self.terminalPhase=='post-frame-teardown' and req.url=='about:blank' and req.method=='GET' and req.resource_type=='document')):
+   self.errors.append(['unexpected request',req.method,req.url])
  def response(self,r):
   q=r.request;rr=self.record(q)
   if rr is None:
@@ -194,50 +255,77 @@ class Ledger:
    self.errors.append(['noncanonical response',r.status,r.url])
  def finished(self,req):
   rr=self.record(req)
-  if rr is not None:rr['finished']=True
+  if rr is not None:rr['finished']=True;rr['terminalPhase']=self.terminalPhase
  def failed(self,req):
   rr=self.record(req)
-  if rr is not None:rr['failure']=req.failure
+  if rr is not None:rr['failure']=req.failure;rr['terminalPhase']=self.terminalPhase
   if not(rr and rr['path'] in MEDIA_PINS and req.resource_type=='media' and req.failure=='net::ERR_ABORTED'):
    self.errors.append(['unexpected request failure',req.url,req.failure])
  def harvest(self):
-  server,violations=self.snapshot()
   for rr in list(self.entries.values()):
    if rr['state']!='PENDING':continue
-   k=rr['path']; r=rr['response']; canceled=rr['failure']=='net::ERR_ABORTED' and k in MEDIA_PINS
-   if not(rr['finished'] or canceled):continue
+   k=rr['path'];r=rr['response'];canceled=rr['failure']=='net::ERR_ABORTED' and k in MEDIA_PINS
+   trace=rr['sampling']
+   # Read response metadata before taking an up-to-date locked server snapshot
+   # for this Request. Reading previous bodies may have pumped newer events.
+   if r is not None:
+    h=r.headers
+    trace['headers']={'wireID':h.get('x-honro-qa-receipt'),'status':r.status,
+      'contentRange':h.get('content-range'),'contentLength':h.get('content-length'),
+      'type':h.get('content-type'),'cacheControl':h.get('cache-control'),'url':r.url}
+   if not(rr['finished'] or canceled):
+    trace['stage']='browser terminal not observed';continue
+   trace['attempts']+=1
+   if trace['attempts']>1:trace['retried']=True
+   stage='derive expected pinned bytes'
    try:
-    # Exact per-response metadata, with a unique loopback issuance ID.
     code,cr,body=ranged(self.file(k),rr['range'])
+    stage='fresh locked wire receipt after observed response headers'
+    server,_=self.snapshot()
+    trace['serverHighWater']=len(server)
     if r is not None:
-     rid=r.headers.get('x-honro-qa-receipt');assert rid in server
+     rid=trace['headers']['wireID']
+     if not isinstance(rid,str) or rid not in server:
+      trace['stage']='no matching wire id in fresh snapshot';continue
     elif canceled:
-     # Cancellation may precede response header capture; a unique pinned served
-     # media range is still required and stays explicitly unverified/canceled.
      candidates=[i for i,w in server.items() if w['path']==k and w['range']==rr['range']]
-     if not candidates:continue
-     assert len(candidates)==1
+     if not candidates:
+      trace['stage']='canceled before unique pinned wire issuance visible';continue
+     assert len(candidates)==1,('ambiguous canceled wire issuance',candidates)
      rid=candidates[0]
-    else:continue
+    else:
+     trace['stage']='terminal event observed but response headers not yet captured';continue
     entry=server[rid]
-    if entry['socket']=='WRITING':continue
+    trace['candidateWireID']=rid;trace['candidateSocket']=entry['socket']
+    stage='matching wire written/canceled'
+    if entry['socket']=='WRITING':
+     trace['stage']='wire body write not terminal';continue
+    stage='same started GET'
     assert rr['start'] and rr['method']=='GET'
-    assert (entry['path'],entry['status'],entry['range'],entry['contentRange'],entry['body'])==(k,code,rr['range'],cr,fact(body))
+    stage='exact pinned wire metadata and hash'
+    want=(k,code,rr['range'],cr,fact(body))
+    have=(entry['path'],entry['status'],entry['range'],entry['contentRange'],entry['body'])
+    assert have==want,(have,want)
+    stage='exact browser response URL, status, range, length'
     if r is not None:
-     assert (r.status,r.headers.get('content-range'),r.headers.get('content-length'))==(code,cr,str(len(body)))
+     h=trace['headers']
+     assert h['url']==self.origin+k and (h['status'],h['contentRange'],h['contentLength'])==(code,cr,str(len(body))),(h,code,cr,len(body))
     rr['wireID']=rid;rr['served']=entry
     if canceled:
-     assert entry['socket'] in ('WRITTEN','PEER_CLOSED')
-     rr['state']='CANCELED_PERMITTED_UNREAD_BODY'
+     stage='observed known media cancellation'
+     assert entry['socket'] in ('WRITTEN','PEER_CLOSED') and rr.get('terminalPhase') in ('frame-run','post-frame-teardown')
+     rr['state']='CANCELED_PERMITTED_UNREAD_BODY';trace['stage']=stage
     else:
+     stage='browser GET body byte comparison'
      assert r is not None and not rr['failure'] and entry['socket']=='WRITTEN'
      got=r.body()
-     assert got==body,(k,'actual browser decoded body differs from pinned response')
-     rr['state']='BODY_EXACT';rr['actualBody']=fact(got)
+     assert got==body,(k,'actual browser decoded body differs from pinned response',fact(got),fact(body))
+     rr['state']='BODY_EXACT';rr['actualBody']=fact(got);trace['stage']='browser body exact'
      self.verified.append([k,code,fact(got)])
    except Exception as e:
-    rr['state']='ERROR';rr['error']=repr(e);self.errors.append(['response verification',k,repr(e)])
-  return server,violations
+    rr['state']='ERROR';rr['error']=repr(e);trace['stage']=stage
+    self.errors.append(['response verification',k,stage,repr(e)])
+  return self.snapshot()
  def receipt(self):
   server,violations=self.harvest()
   data=[{k:v for k,v in rr.items()if k!='response'} for rr in self.entries.values()]
@@ -248,7 +336,7 @@ class Ledger:
   media=[w for w in q if w['path'] in MEDIA_PINS]
   n=sorted((k,c,h['bytes'],h['sha256'])for k,c,h in self.verified if k not in MEDIA_PINS)
   a=[w for w in active if w['state']=='BODY_EXACT']
-  pending=[(w['path'],w['state'],w.get('status'),w['failure'])for w in q if w['state'] not in ('BODY_EXACT','CANCELED_PERMITTED_UNREAD_BODY')]
+  pending=[(w['path'],w['state'],w.get('status'),w['failure'],w['sampling'].get('stage'))for w in q if w['state'] not in ('BODY_EXACT','CANCELED_PERMITTED_UNREAD_BODY')]
   wire_ids=[w['wireID']for w in q if 'wireID' in w]
   stageAsset=[w for w in a if w['path']==PIN['stageAssetFile']]
   nonmedia=(len(n),sha(canon(n)))
@@ -286,12 +374,39 @@ def visit(browser,known,origin,read,snapshot,pose,arm,out,row,flush):
    try:one()
    except Exception as e:errors.append(['nonblocking network receipt',repr(e)])
    return
-  end=time.monotonic()+20
+  # Snapshot the proof before navigating away; that page no longer has
+  # the blob registry. This test occurs only after all original frames are saved.
+  end=time.monotonic()+8
   while True:
    q=one()
-   if (not q['pending'] and not q['missingRequired'] and q['matchedAllWireIDs']) or time.monotonic()>=end:break
+   if not q['pending'] or time.monotonic()>=end:break
    page.wait_for_timeout(100)
-  assert events.blobs<=set(page.evaluate('()=>Array.from(__s42PilotImages.blobs)'))
+  if not events.blobs<=set(page.evaluate('()=>Array.from(__s42PilotImages.blobs)')):
+   errors.append(['visible frame object URL provenance missing'])
+  pending_audio=[x for x in q['pending'] if x[0] in MEDIA_PINS]
+  nonmedia_pending=[x for x in q['pending'] if x[0] not in MEDIA_PINS]
+  if pending_audio and not errors and not nonmedia_pending and not q['missingRequired'] and q['expectedR1Same']:
+   assert tuple(row['frames'])==PHASES, 'teardown before all original frames'
+   existing=row['frames']
+   for phase in PHASES:
+    for m in ('raw','dom'):
+     f=existing[phase]['images'][m]
+     assert fact((out/f['path']).read_bytes())=={'bytes':f['bytes'],'sha256':f['sha256']}
+   events.terminalPhase='post-frame-teardown'
+   row['postFrameTeardown']={'started':True,'pendingBefore':pending_audio,
+     'frameHashes':{x:{k:v['sha256']for k,v in existing[x]['images'].items()}for x in PHASES}}
+   flush()
+   try:
+    nav=page.goto('about:blank',wait_until='load',timeout=6000)
+    assert nav is None and page.url=='about:blank','not exact terminal teardown'
+    row['postFrameTeardown']['isolatedAboutBlank']=True
+   except Exception as e:row['postFrameTeardown']['error']=repr(e);errors.append(['post-frame teardown',repr(e)])
+   end=time.monotonic()+5
+   while True:
+    q=one()
+    if not q['pending'] or time.monotonic()>=end:break
+    page.wait_for_timeout(100)
+   row['postFrameTeardown']['pendingAfter']=q['pending']
   assert not errors and not row['network']['serverViolations'],('network errors',errors,row['network']['serverViolations'])
   assert not q['pending'] and not q['missingRequired'] and q['matchedAllWireIDs'] and q['exactStageAssetGETCount']==1 and q['exactMediaRequestSet'] and q['expectedR1Same'],('strict final network HOLD',q)
  def grab(phase):
@@ -308,7 +423,18 @@ def visit(browser,known,origin,read,snapshot,pose,arm,out,row,flush):
   archive('dom',canvas.screenshot(animations='disabled',timeout=30000))
   assert base64.b64decode(page.evaluate(RAW),validate=True)==raw,'frozen frame during DOM capture'
   return rec
- native_installed=False
+ native_installed=False;max_tap=False
+ def close_probe():
+  nonlocal native_installed,max_tap
+  if max_tap:
+   try:row['maxActualMatrix']=page.evaluate(MAX_MATRIX,{'op':'finish'})
+   except Exception as e:row.setdefault('observerErrors',[]).append(['max finish',repr(e)])
+   finally:max_tap=False
+  if native_installed:
+   try:row['observer']=page.evaluate(NATIVE,{'op':'finish'});save(out/f'{arm}-{pose["name"]}-native-events.json',row['observer'])
+   except Exception as e:row.setdefault('observerErrors',[]).append(['finish',repr(e)])
+   finally:native_installed=False
+  flush()
  try:
   n=page.goto(origin+SHELL,wait_until='domcontentloaded',timeout=50000)
   assert n and n.url==origin+SHELL and n.status==200 and not n.from_service_worker and n.body()==read(SHELL)
@@ -332,9 +458,22 @@ def visit(browser,known,origin,read,snapshot,pose,arm,out,row,flush):
   q=camera(pose);row['camera']=q;assert q['backing']==PIN['backing'];flush()
   snapshot_net()
   if arm=='N':
-   try:native_installed=page.evaluate(NATIVE,{'op':'install','pose':pose,'backing':q['backing'],'center':q['center']})
+   instrumentPose=pose
+   if pose['viewKind']=='viewport':
+    try:
+     proof=page.evaluate(MAX_MATRIX,{'op':'calibrate','pin':pose['matrix'],'center':q['center'],'css':q['css'],'rendererGit':PIN['rendererGit']})
+     row['maxMatrixPreproof']=proof
+     if proof['exactFloat32'] is True:instrumentPose={**pose,'matrix':proof['expected']}
+    except Exception as e:row.setdefault('observerErrors',[]).append(['max calibration',repr(e)])
+   try:native_installed=page.evaluate(NATIVE,{'op':'install','pose':instrumentPose,'backing':q['backing'],'center':q['center']})
    except Exception as e:row.setdefault('observerErrors',[]).append(['install',repr(e)])
+   if pose['viewKind']=='viewport':
+    try:max_tap=page.evaluate(MAX_MATRIX,{'op':'install'})
+    except Exception as e:row.setdefault('observerErrors',[]).append(['max init',repr(e)])
   for phase in PHASES:
+   if max_tap:
+    try:page.evaluate(MAX_MATRIX,{'op':'phase','phase':phase})
+    except Exception as e:row.setdefault('observerErrors',[]).append(['max phase',phase,repr(e)])
    if native_installed:
     try:page.evaluate(NATIVE,{'op':'phase','phase':phase})
     except Exception as e:row.setdefault('observerErrors',[]).append(['phase',phase,repr(e)])
@@ -344,26 +483,46 @@ def visit(browser,known,origin,read,snapshot,pose,arm,out,row,flush):
    if native_installed:
     try:row['frames'][phase]['observer']=page.evaluate(NATIVE,{'op':'commit'})
     except Exception as e:row.setdefault('observerErrors',[]).append(['commit',phase,repr(e)])
-  snapshot_net(final=True);row['status']='CAPTURED'
+  close_probe();snapshot_net(final=True);row['status']='CAPTURED'
  except Exception as e:row['status']='HOLD';row['error']=[repr(e),traceback.format_exc()]
  finally:
-  if native_installed:
-   try:row['observer']=page.evaluate(NATIVE,{'op':'finish'});save(out/f'{arm}-{pose["name"]}-native-events.json',row['observer'])
-   except Exception as e:row.setdefault('observerErrors',[]).append(['finish',repr(e)])
+  close_probe()
   try:ctx.close()
   finally:flush()
 def net_signature(row):
  f=row['networkGuard']
  return (f['nonMediaCount'],f['nonMediaSignature'],f['exactStageAssetGETCount'],tuple(map(tuple,f['media'])))
 def matrix_exact(a,b):return len(a)==len(b)==6 and all(abs(x-y)<1e-7 for x,y in zip(a,b))
+def f32(x):return struct.unpack('!f',struct.pack('!f',x))[0]
+def max_proof(p,r):
+ proof=r.get('maxMatrixPreproof') or {}
+ matrix=[f32(x) for x in p['matrix']]
+ if proof.get('exactFloat32') is not True or proof.get('sourceBound')!=PIN['rendererGit'] or proof.get('exact')!=p['matrix'] or proof.get('expected')!=matrix:
+  return False,matrix,'source-derived matrix preproof not exact'
+ if any((proof.get(k) or {}).get(j)!=matrix for k in ('a','b')for j in ('visiblePath','cachePath')):
+  return False,matrix,'blank-browser matrix replay does not equal pinned float32 basis'
+ tap=r.get('maxActualMatrix') or {}
+ rows=tap.get('rows',[])
+ hits=[v for v in rows if v.get('phase')=='allocate' and not v.get('main')]
+ if tap.get('errors') or len(hits)!=1:
+  return False,matrix,'single actual detached viewport draw not observed'
+ seen=hits[0]
+ if seen!={'phase':'allocate','center':p['expectedCenter'],'matrix':matrix,'size':PIN['backing'],
+           'main':False,'detached':True,'committedIdentity':True}:
+  return False,matrix,'actual detached committed matrix differs from exact float32 basis'
+ return True,matrix,None
 def assess(report):
  issues=[];variants=report['visits']
  for p in PIN['poses']:
   n=p['name'];rows=[variants.get(f'{v}/{n}',{})for v in ('A1','A2','N')]
-  if any(r.get('status')!='CAPTURED' or tuple(r.get('frames',{}))!=PHASES for r in rows):
-   issues.append([n,'incomplete normal or diagnostic visit']);continue
-  if any(r['provider']!=rows[0]['provider'] or r['camera']!=rows[0]['camera'] or r['navigation']!=rows[0]['navigation'] or net_signature(r)!=net_signature(rows[0])for r in rows[1:]):
-   issues.append([n,'not same provider/camera/request bytes']);continue
+  if any(r.get('status')!='CAPTURED' or not r.get('networkGuard')for r in rows):
+   issues.append([n,'strict network or visit state HOLD; see separate receipts'])
+  elif any(net_signature(r)!=net_signature(rows[0])for r in rows[1:]):
+   issues.append([n,'not same authenticated request set'])
+  if any(tuple(r.get('frames',{}))!=PHASES for r in rows):
+   issues.append([n,'incomplete frame evidence']);continue
+  if any(r['provider']!=rows[0]['provider'] or r['camera']!=rows[0]['camera'] or r['navigation']!=rows[0]['navigation']for r in rows[1:]):
+   issues.append([n,'not same provider/camera/navigation'])
   for phase in PHASES:
    for mode in ('raw','dom'):
     f=[{k:v for k,v in r['frames'][phase]['images'][mode].items()if k!='path'}for r in rows]
@@ -372,7 +531,6 @@ def assess(report):
    if any(r['frames'][phase]['render']!=rows[0]['frames'][phase]['render']for r in rows[1:]):
     issues.append([n,phase,'cache/state count drift'])
   first,allocate,hit=(rows[2]['frames'][k]['render']for k in PHASES)
-  target=first if p['targetPhase']=='first' else allocate
   if p['viewKind']=='tile':
    try:
     x,y=map(int,p['target'].split(':'));rs=p['rs'];tile=first['after']['tile']
@@ -380,12 +538,16 @@ def assess(report):
     assert tile['size']==[516,516] and abs(tile['left']-x*512/rs)<1e-7 and abs(tile['top']-y*512/rs)<1e-7
     assert hit['after']['tileBuilds']==first['after']['tileBuilds']
    except (AssertionError,TypeError):issues.append([n,'actual cold tile / warm cache not witnessed'])
+   good=lambda evt:matrix_exact(evt.get('basis',[]),p['matrix'])
   else:
    if first['after']['viewport'] is not None or allocate['before']['viewport'] is not None or allocate['after']['viewport']!={'main':False,'size':PIN['backing'],'detached':True,'nativeZoom':True} or allocate['after']['screenBuilds']<=allocate['before']['screenBuilds'] or hit['after']['screenBuilds']!=allocate['after']['screenBuilds']:
     issues.append([n,'actual settled native viewport allocation missing'])
+   ok,m,why=max_proof(p,rows[2])
+   if not ok:issues.append([n,why])
+   good=lambda evt:evt.get('basis')==m
   if hit['after']['screenHits']<=hit['before']['screenHits']:issues.append([n,'steady screen raster hit missing'])
   ob=rows[2].get('observer',{})
-  if rows[2].get('observerErrors') or not ob.get('bound') or ob.get('errors') or ob.get('untouchedMain') is not True or [ev['tag']for ev in ob.get('events',[])]!=TAGS or any(ev['phase']!=p['targetPhase']or not matrix_exact(ev.get('basis',[]),p['matrix']) for ev in ob.get('events',[])):
+  if rows[2].get('observerErrors') or not ob.get('bound') or ob.get('errors') or ob.get('untouchedMain') is not True or [ev['tag']for ev in ob.get('events',[])]!=TAGS or any(ev['phase']!=p['targetPhase']or not good(ev) for ev in ob.get('events',[])):
    issues.append([n,'native owner readback incomplete or unbound'])
  return issues
 def main():
