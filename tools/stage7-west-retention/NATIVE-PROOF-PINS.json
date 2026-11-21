@@ -1,0 +1,89 @@
+{
+  "actualBrowserSignedResult": "success",
+  "artifacts": [
+    {
+      "bytes": 5357318,
+      "id": 14724355108,
+      "name": "honro-stage7-after-stage14-native-A2-390x844",
+      "sha256": "650b01091a04442b6a0860e86aaeff57697dd3aa9ec7af7dbc66379ff71a9504"
+    },
+    {
+      "bytes": 20821900,
+      "id": 14724276168,
+      "name": "honro-stage7-after-stage14-native-B-1440x900",
+      "sha256": "06285e71b0bb3b8deda9f5847657d596f6cbc52c0db72c490e1f673f2d55687c"
+    },
+    {
+      "bytes": 5355802,
+      "id": 14724246392,
+      "name": "honro-stage7-after-stage14-native-B-390x844",
+      "sha256": "014ae14bfbfe0549d828fda901af53176dc53b85783431bf5fd8ca008a908502"
+    },
+    {
+      "bytes": 5357318,
+      "id": 14723937278,
+      "name": "honro-stage7-after-stage14-native-A1-390x844",
+      "sha256": "bd57cd027ce7249119ac2e288e3829c343617245446c8cdadc5818549b292358"
+    },
+    {
+      "bytes": 20824664,
+      "id": 14723932275,
+      "name": "honro-stage7-after-stage14-native-A1-1440x900",
+      "sha256": "0a03ce4715a78eeada66350f2082362261fe1b1889b054eff263f558fa265572"
+    },
+    {
+      "bytes": 20824664,
+      "id": 14723658116,
+      "name": "honro-stage7-after-stage14-native-A2-1440x900",
+      "sha256": "0c0c3ea8090839675c2aadbe6c8270f4f0098e85a632482b73c1f89fb9d93d46"
+    },
+    {
+      "bytes": 719614,
+      "id": 14723648018,
+      "name": "honro-stage7-after-stage14-exact-native-receipts",
+      "sha256": "775dd8864c4ccc2dc532c5afb23b9c8734d97579d5e20469ef00589bd5e1c3ad"
+    }
+  ],
+  "base": "cd8f69d5be1243f6647379ce4a8f6bad1a50234c",
+  "browserRawSha256": "1b8f4b493ccbef84db4ebf5f59316458cbb68ebfc433df5e1396d7a886bd30b4",
+  "candidateSourceGit": "aa4ccbcaa8a2ae6160330c1134f1596c9f4be6f8",
+  "conclusion": "success",
+  "enabled": true,
+  "expectedCaptures": 384,
+  "expectedCombinedCommon16": {
+    "bytes": 178050,
+    "git": "22eef5af70416281d4fc44b0a37d4cdf187ad269",
+    "path": "web/runtime/ordered-common-16.96dfbead6fb4ad2e.js",
+    "sha256": "96dfbead6fb4ad2e16426bfbe0cdcd8993b600bdc8fa0073d4630b6920fa0b06"
+  },
+  "expectedComparisons": 32,
+  "graphCanonicalSha256": "ef2ec436d849161ce104c749969c980d1c8ebd97678bb7d278f6f8e6317efa5e",
+  "independentEvidence": {
+    "independentJSONSHA256": "c4c210c637e1a841af22c4018d3f26566ee4e793b8d9b307344e03d252fb5282",
+    "observedPhases": 384,
+    "stage14WholePriorPhaseExact": 16,
+    "storedPNGs": 192
+  },
+  "independentlyVerifiedAuthorityReceipt": {
+    "bytes": 644,
+    "git": "9461f45948ef006bc23a30ce343e9a40c4c83142",
+    "sha256": "85636101e291e9b79b2dbeb3a79f6ca08dff31e696c20085fedec9c450beecdc"
+  },
+  "nativeBranch": "qa/stage7-west-closure-after-stage14",
+  "nativeHead": "166e3eda1de77600604c83f246f07759fe684b57",
+  "nativeJob": 136973446445,
+  "nativeRun": 44946041088,
+  "nativeTree": "091a9274f4d114edca9afc80d121737aad42c42b",
+  "priorPages": 44945703929,
+  "stage14Scope": {
+    "normalWrapper": {
+      "bytes": 29184,
+      "sha256": "ea7251cfcd1b3c502fc14b787512285358a4f09a32b9620d742079ecd7c7e62e"
+    },
+    "source": {
+      "bytes": 32166,
+      "git": "3409b094d17c8bb8593e19bd23805cc79432de56",
+      "sha256": "e091187a602892686af915d5666083d369254b580fa1d59689016bc7b4638099"
+    }
+  }
+}
