@@ -1,0 +1,240 @@
+{
+  "enable": true,
+  "repo": "sys8994/honro",
+  "base": "b79ea7fd87fda5586d78eae0a7052996b8e71fb5",
+  "tree": "1e55d910bbabc43919c20a14d1a06002b20f4977",
+  "baseParent": "f7704f08b7462cb10587b582d8a3a4feafe643d1",
+  "baseParentTree": "b62b549c804989cc3bbf861d9e5f9a33df520717",
+  "branch": "refs/heads/qa/stage44-root-floor-a0-r4-b79",
+  "published": {
+    "run": 44897685446,
+    "job": 136827113112,
+    "stamp": "2026-11-21T11:10:38.2358222Z",
+    "sameAppReadbackRun": 44897942776
+  },
+  "stockManifest": {
+    "bytes": 6774523,
+    "sha256": "0bf1527b6aa52fa5f4f22eb1b90102df5f1c6ea0cb791d664b1b94081c1b65cf",
+    "git": "922db7aa4ecef59cbae10975f4d2d2091faf5d8f"
+  },
+  "stockShells": {
+    "HONRO.html": {
+      "bytes": 17379,
+      "sha256": "c8d009ef643d2b24abd85400162b307a2e5a8e95100fe999b89a6afdd5faaecc"
+    },
+    "HONRO_WORKSHOP.html": {
+      "bytes": 4011,
+      "sha256": "5bd32c2880caa9a2af21aa40b88f6f99c760bfb88c8e911860fb34da51e876b1"
+    },
+    "index.html": {
+      "bytes": 17379,
+      "sha256": "c8d009ef643d2b24abd85400162b307a2e5a8e95100fe999b89a6afdd5faaecc"
+    }
+  },
+  "oldCommon18": "web/runtime/ordered-common-18.9dcb25cd7e4ae77b.js",
+  "stockReadabilityGit": "df4437aa937dce38efac3c799e615e68cee0cf29",
+  "sourcePath": "shared/runtime/act5-edge-art.js",
+  "sourceA": {
+    "bytes": 28249,
+    "sha256": "01e9ff9bb6287ca1b6a7ff722e4053ccc207474f808dd24ae9deaa521b029511",
+    "git": "66f656fe7beb164efcbed2729b2f6daa88781e42"
+  },
+  "sourceB": {
+    "bytes": 29005,
+    "sha256": "26994a03b135b84ec7212c03801453781c7ea218af036ac4b17dccffbd8329be",
+    "git": "d2bcfff5ebe067dbc53fbc50fbaed2bf02bdb682"
+  },
+  "terrain": "a5-root-floor",
+  "worldLine": [
+    [
+      6700.39,
+      1733.2
+    ],
+    [
+      6700.39,
+      2269
+    ]
+  ],
+  "activePins": {
+    "web/data/chapter-44-assets.ddddc05a5f764d6e.json": {
+      "bytes": 3323328,
+      "sha256": "ddddc05a5f764d6eee5e48602718f31a89008cc377ff188d6c3aa4b3a4cf1cdb"
+    },
+    "web/data/chapter-44.48354b7c0547c1a7.json": {
+      "bytes": 14376,
+      "sha256": "48354b7c0547c1a743531f79b0128e4fc56cb3d5973d7f8a17d40e5c232e2e68"
+    },
+    "web/runtime/ordered-common-15.370f1fb43d3a212f.js": {
+      "bytes": 163921,
+      "sha256": "370f1fb43d3a212f035eabb93ea935aff41d6146fb8c9103c77a1f9c1f07d737"
+    },
+    "web/runtime/ordered-common-16.3d9993bd92d5eb93.js": {
+      "sha256": "3d9993bd92d5eb93572f4b05fe9da2f19d4202c7a3e24ba767a5274ca3364f2c",
+      "bytes": 177610
+    },
+    "web/runtime/ordered-common-18.9dcb25cd7e4ae77b.js": {
+      "sha256": "9dcb25cd7e4ae77b50e3ff528a43d3a3a170c28c1995ddb9c694b66a10965bfe",
+      "bytes": 34955
+    },
+    "web/runtime/ordered-common-17.9a592f68229e4289.js": {
+      "sha256": "9a592f68229e42894a87a328a71e2ac8408bb1556f441bcbc67229aa80ba718c",
+      "bytes": 104308
+    },
+    "web/runtime/HONRO_TIMELINE.2d35abe802c683c3.js": {
+      "sha256": "2d35abe802c683c3f3cedb200e9d31daeee951f226dd1ff4a5a37ebd282e6955",
+      "bytes": 179
+    }
+  },
+  "browser": "151.0.7922.34",
+  "archive": 14678150256,
+  "frames": [
+    {
+      "key": "s44-1440x900-southeast",
+      "view": "southeast",
+      "viewportCSS": [
+        1440,
+        900
+      ],
+      "actual": {
+        "x": 7120,
+        "y": 2867,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": 3720,
+        "right": 10520,
+        "top": 1050.8628472222222,
+        "bottom": 4683.137152777777
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 7120,
+        "bottom": 2867
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "sceneTime": 2,
+      "phase": "aim",
+      "round": 1,
+      "tide": null,
+      "actorCount": 35,
+      "physicsSHA256": "b7c0d64490dfaae60ad5c6bc394d000d5c256ba56f9a7149abbbf3301f4d6546",
+      "pngSHA256": "b801a3ee0f0a569faa4677ff87dbf43de3895efabb903247514df6fce629197d",
+      "id": 44,
+      "expectInk": true,
+      "ordinary": [
+        3400.0,
+        1313.5,
+        0.5
+      ]
+    }
+  ],
+  "media": [
+    "assets/bgm/main.mp3",
+    "assets/bgm/battle-1.mp3",
+    "assets/bgm/battle-2.mp3",
+    "assets/bgm/battle-3.mp3"
+  ],
+  "readabilityPath": "shared/runtime/terrain-readability.js",
+  "readabilityB": {
+    "bytes": 8796,
+    "sha256": "b526f719f2537c5e878f9d8f9af1c09b7ce4c772d4f4ec54963dadfbb1d037fb",
+    "git": "2f9845b2a09abc9fab973ae183c463fb88f5bba3"
+  },
+  "readabilityA": {
+    "bytes": 5510,
+    "git": "df4437aa937dce38efac3c799e615e68cee0cf29",
+    "sha256": "7103f9186ec81f3ecc7ab6687491ff34d421e7365e0edc25a5c3e855bc07dbe3"
+  },
+  "oldCommon16": "web/runtime/ordered-common-16.3d9993bd92d5eb93.js",
+  "allowedRepack": [
+    "web/runtime/ordered-common-16.3d9993bd92d5eb93.js",
+    "web/runtime/ordered-common-17.9a592f68229e4289.js",
+    "web/runtime/ordered-common-18.9dcb25cd7e4ae77b.js"
+  ],
+  "timelineBarrier": "web/runtime/HONRO_TIMELINE.2d35abe802c683c3.js",
+  "bridgePath": "shared/runtime/stage2-layered-road-art.js",
+  "bridgeA": {
+    "bytes": 3113,
+    "sha256": "63ee662a18c3bca74a142bd029aef940830ed5e804bcab8a452d39c6365decee",
+    "git": "e762860bbd51c641ec59a3f3d4f2fa48f3681310"
+  },
+  "bridgeA0": {
+    "bytes": 3146,
+    "sha256": "c41bbc1af8fa6e9487496924f1d0b35d00ccf8e9078ea36028a4342c04e6fe9f",
+    "git": "baaa964c4fddd97eaa6bb5b1a9f73dea15b8abdc"
+  },
+  "bridgeCompiledA": {
+    "bytes": 2681,
+    "sha256": "7d4959a5d423c83ea6a3f715210f3e3741ec4e3b65bba0f4b37b3ae611cf0209"
+  },
+  "stage2Archive": {
+    "key": "s02-1440x900-ordinary",
+    "png": "s02-1440x900-ordinary.png",
+    "pngSHA256": "5ceca1c677cf83f7f659d06d54a8526d1ec83997b9f23a249a208fee6ea02dc2",
+    "pixels": [
+      1440,
+      770
+    ],
+    "viewportCSS": [
+      1440,
+      900
+    ],
+    "DPR": 1,
+    "view": "ordinary",
+    "physicsSHA256": "d8ee51c184d36a66b54673d54d63ed6f9d76422c045df9721a6a7d38bde39fd3",
+    "decodeCount": 89,
+    "phaseReceiptValidated": true,
+    "desired": {
+      "x": 470,
+      "y": 650,
+      "scale": 0.5
+    },
+    "actual": {
+      "x": 470,
+      "y": 650,
+      "scale": 0.5
+    },
+    "viewport": {
+      "left": -970,
+      "right": 1910,
+      "top": -119.1875,
+      "bottom": 1419.1875
+    },
+    "focus": {
+      "left": -320,
+      "top": -1800,
+      "right": 4620,
+      "bottom": 3540
+    },
+    "zoomLimits": {
+      "min": 0.21176470588235294,
+      "max": 1.65,
+      "tactical": 0.21176470588235294,
+      "readability": 0.056818181818181816
+    },
+    "css": {
+      "w": 1440,
+      "h": 769.1875
+    },
+    "backing": [
+      1440,
+      769
+    ],
+    "actorCount": 18,
+    "tide": null,
+    "phase": "aim",
+    "round": 1,
+    "sceneTime": 2,
+    "raw": "s02-1440x900-ordinary-raw.png",
+    "rawSHA256": "688e39f211635b666c9bc36d84b11960bed396a31d684a5f6d1fb3e0a9a39cc1",
+    "duplicateOfCameraKey": null
+  }
+}
