@@ -1,0 +1,75 @@
+name: HONRO Stage35 exact normal A-B build and browser (QA only)
+on:
+  push:
+    branches: [qa/stage35-opaque-union-normal-71fb]
+    paths:
+      - .github/workflows/stage35-product-build.yml
+      - tools/stage35-product-build/**
+permissions:
+  contents: read
+jobs:
+  verify:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage35-opaque-union-normal-71fb'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 39
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 3
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Verify exact parent and produce two normal compiled outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          T="$RUNNER_TEMP/stage35-normal-build"
+          mkdir "$T" "$T/out"
+          echo "WORK=$T" >> "$GITHUB_ENV"
+          Q="$GITHUB_WORKSPACE/tools/stage35-product-build"
+          python "$Q/guard.py" pre "$T"
+          for arm in A B; do
+            (
+              cd "$T/$arm"
+              npm ci > "$T/out/npm-root-$arm.log" 2>&1
+              npm ci --prefix game > "$T/out/npm-game-$arm.log" 2>&1
+              npm run test:release-guard > "$T/out/release-guard-$arm.log" 2>&1
+              npm run build > "$T/out/build-$arm.log" 2>&1
+              npm run test:production-contract > "$T/out/production-contract-$arm.log" 2>&1
+              if [ "$arm" = B ]; then
+                node tests/act4-stage35-bedrock-join.mjs > "$T/out/official-stage35-source-and-resume.log" 2>&1
+                node tests/act4-provider-signature-cache.mjs > "$T/out/act4-provider-signature-cache.log" 2>&1
+              fi
+            )
+          done
+          python "$Q/guard.py" built "$T"
+      - name: Actual normal compiled Chrome gameplay renders, no payload substitution
+        shell: bash
+        timeout-minutes: 18
+        run: |
+          set -euo pipefail
+          Q="$GITHUB_WORKSPACE/tools/stage35-product-build"
+          python3 -m venv "$WORK/venv"
+          V="$WORK/venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+          python -m http.server 18841 --bind 127.0.0.1 --directory "$WORK/A" > "$WORK/out/http-A.log" 2>&1 &
+          a=$!
+          python -m http.server 18842 --bind 127.0.0.1 --directory "$WORK/B" > "$WORK/out/http-B.log" 2>&1 &
+          b=$!
+          trap 'kill "$a" "$b" 2>/dev/null || true' EXIT
+          for p in 18841 18842; do curl -fsS --retry 8 --retry-connrefused "http://127.0.0.1:$p/HONRO.html" -o /dev/null; done
+          PYTHONDONTWRITEBYTECODE=1 "$V" "$Q/views.py" "$WORK"
+      - name: Seal verified normal output as a separate check-only archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          python "$GITHUB_WORKSPACE/tools/stage35-product-build/guard.py" archive "$WORK"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: honro-stage35-normal-build-and-play-qa-only
+          path: ${{ runner.temp }}/stage35-normal-build/out/
+          if-no-files-found: error
+          retention-days: 7
