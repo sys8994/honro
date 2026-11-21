@@ -12,7 +12,7 @@ STUDY=json.loads((Q/'study-F-proof.json').read_bytes())
 assert STUDY['ownerParentClips']['assetId']==WEST
 assert STUDY['ownerParentClips']['rootStripIndices']==[2,3]
 assert STUDY['insetWorldFromPhysicalRoofRim']==[32.,16.]
-assert STUDY['disjointNewPartitionCells'] and len(STUDY['worldFaceDomains'])==6
+assert STUDY['disjointNewPartitionCells'] and len(STUDY['worldFaceDomains'])==7
 def west(p):
     found=[a for a in p['assets'] if a['id']==WEST]
     assert len(found)==1
@@ -38,7 +38,7 @@ def generate(old):
     content=hidden['children'][0]['children']
     assert [g['children'][0]['fill'] for g in content]==['#445c64','#60747c','#88887e']
     trace=[('LongShoulder',content[1]['children'][0],'long fracture returning into the left shoulder'),
-           ('RimFlakes',content[2]['children'][0],'diagonal lamination through the limestone shoulder')]
+           ('RimFlakes',content[2]['children'][0],'diagonal limestone fracture branching near the rim')]
     for label,face,_ in trace:
         assert face['tag']=='path' and not any(k in face for k in ('transform','clipPath','dParts'))
         assert face['fillRule']=='nonzero' and face['stroke']=='none' and face['opacity']==1
@@ -58,7 +58,7 @@ def generate(old):
         inv=[1/sx,0,0,1/sy,-dx/sx,-dy/sy]
         for label,_,owner in trace:
             rows=[r for r in STUDY['worldFaceDomains'] if r['owner']==owner]
-            assert len(rows)==3
+            assert len(rows)==(3 if label=='LongShoulder' else 4)
             paths=[{'tag':'path','fill':r['fill'],'d':r['d'],'fillRule':'evenodd'} for r in rows]
             assert all(re.fullmatch(r'[#][0-9a-f]{6}',n['fill']) and re.fullmatch(r'[0-9MLZ.,\- ]+',n['d']) for n in paths)
             inner.append({'tag':'g','clipPath':'stage15-f-'+label,

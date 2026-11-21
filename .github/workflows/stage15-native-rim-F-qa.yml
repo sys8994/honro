@@ -1,4 +1,4 @@
-name: Stage15 G cave-facing rim native evidence (never deploy)
+name: Stage15 H cave-facing rim native evidence (never deploy)
 on:
   push:
     branches: [qa/stage15-native-rim-f-2939958-20261121]
@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
-          fetch-depth: 5
+          fetch-depth: 6
           persist-credentials: false
       - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
         with:
@@ -26,11 +26,13 @@ jobs:
           R1=50c30591fea555ee50e13264e301544d24ed1059
           R2=b0aea1b6e2976ca7bbbcf0b794a5922087afb800
           R3=7c766a0166b44b0f8cbf11c6943ec62e1f66b551
-          test "$(git show -s --format=%P HEAD)" = "$R3"
+          R4=6ef700a544228f6d1d3e97d73cf91b54cf696bd1
+          test "$(git show -s --format=%P HEAD)" = "$R4"
+          test "$(git show -s --format=%P "$R4")" = "$R3"
           test "$(git show -s --format=%P "$R3")" = "$R2"
           test "$(git show -s --format=%P "$R2")" = "$R1"
           test "$(git show -s --format=%P "$R1")" = "$BASE"
-          diff -u <(printf 'M\t%s\n' .github/workflows/stage15-native-rim-F-qa.yml tools/stage15-F-native-qa/{f_asset.py,source.py,study-F-proof.json,verify.py}) <(git diff --name-status --no-renames "$R3" HEAD)
+          diff -u <(printf 'M\t%s\n' .github/workflows/stage15-native-rim-F-qa.yml tools/stage15-F-native-qa/{f_asset.py,source.py,study-F-proof.json}) <(git diff --name-status --no-renames "$R4" HEAD)
           test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
           test "$(git rev-parse "$BASE^{tree}")" = 08e22a8cc0ab608e125ad73f8e8e1c288d8c4c74
           test "$(git rev-parse "$BASE:shared/data/act2/stage15-compact-package.json")" = ac4fb9854c5bf713507564755848b6c2af1f8f1b
@@ -47,7 +49,7 @@ jobs:
             node --check "$W/$side/shared/runtime/renderer.js"
           done
           python "$Q/f_asset.py" "$W/A" "$W/F" > "$W/out/rim-F.json"
-          test "$(git hash-object "$W/F/shared/data/act2/stage15-compact-package.json")" = 7eb2a4dafd5fdd700f8008733e70b7c20296da58
+          test "$(git hash-object "$W/F/shared/data/act2/stage15-compact-package.json")" = 7a406b33edc5dac942245fc018cf827c2b66ad3c
           node - "$W/F" <<'JS'
           const [,,root]=process.argv;
           require(root+'/shared/map/vector-art.js');
@@ -99,7 +101,7 @@ jobs:
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
-          name: stage15-rim-G-native-b-vs-g
+          name: stage15-rim-H-native-b-vs-h
           path: ${{ env.WORK }}/out
           if-no-files-found: error
           retention-days: 7
