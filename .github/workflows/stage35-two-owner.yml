@@ -1,0 +1,33 @@
+name: HONRO Stage35 two-owner offline extraction
+on:
+  push:
+    branches: [qa/stage35-two-owner-71fb]
+    paths:
+      - .github/workflows/stage35-two-owner.yml
+      - tools/stage35-two-owner/extract.py
+permissions:
+  contents: read
+jobs:
+  extract:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage35-two-owner-71fb'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Verify exact tree and extract two Stage35 assets only
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -z "$(git config --local --get http.https://github.com/.extraheader || true)"
+          O="$(mktemp -d "$RUNNER_TEMP/honro-stage35-two-owner.XXXXXX")"
+          echo "STAGE35_OWNER_OUT=$O" >> "$GITHUB_ENV"
+          python3 tools/stage35-two-owner/extract.py "$O"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage35-exact-two-owners-71fb
+          path: ${{ env.STAGE35_OWNER_OUT }}
+          if-no-files-found: error
+          retention-days: 7
