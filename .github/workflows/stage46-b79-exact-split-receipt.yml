@@ -1,0 +1,126 @@
+name: Stage46 exact active split evidence
+on:
+  push:
+    branches: [qa/stage46-b79-exact-split-receipt]
+permissions:
+  contents: read
+jobs:
+  immutable-stage46:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage46-b79-exact-split-receipt'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 3
+          persist-credentials: false
+          lfs: false
+          submodules: false
+      - name: Recover exactly six verified Stage46 blobs from pinned Git
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib, json, os, pathlib, subprocess
+
+          BASE = 'b79ea7fd87fda5586d78eae0a7052996b8e71fb5'
+          TREE = '1e55d910bbabc43919c20a14d1a06002b20f4977'
+          LIVE_PARENT = 'f7704f08b7462cb10587b582d8a3a4feafe643d1'
+          LIVE_TREE = 'b62b549c804989cc3bbf861d9e5f9a33df520717'
+          WORKFLOW = '.github/workflows/stage46-b79-exact-split-receipt.yml'
+          REF = 'refs/heads/qa/stage46-b79-exact-split-receipt'
+          MAP = 'web/data/chapter-46.2806e485c4c1e1b4.json'
+          DESC = 'web/data/chapter-46-assets-parts.44d5eab7aa305416.json'
+          CAMPAIGN = 'web/data/campaign.324003dbe6483ac8.json'
+          MANIFEST = 'web/manifest.json'
+          PACK_BYTES = 16590634
+          PACK_SHA = '120aa444cdf1094a9d3d081d1691d803ba0e46dd2cc1bbf989a5f1b59e930855'
+          FILES = {
+              MAP: ('81c9f1d0538b795ce0ff76f80d90899b60481742', 24682, '2806e485c4c1e1b4d94174b8324a2d534291c22c481c94960883a29643e9da02'),
+              DESC: ('4e477a37960585d9dc0babb85347b5350ccf1219', 765, '44d5eab7aa305416e2d0d9ffec53ad210901e8271d216f0e9cab045cb7b04f1f'),
+              'web/data/chapter-46-assets-part-000.aa1ac6564d0c2d99.bin': ('80cce5cb2a6e504214b7c28fbc788d236d920d30', 4194304, 'aa1ac6564d0c2d99eaa561ff53b1712c5493bf11950a487526971bf1e2ff49bb'),
+              'web/data/chapter-46-assets-part-001.78b6b5493616db85.bin': ('76217098cf2cf334fbea3a84a80ebb4365213e42', 4194304, '78b6b5493616db8581849645b13cff819928ac8eb2c1ee25e0f90cb41d2224c5'),
+              'web/data/chapter-46-assets-part-002.8ec3bcfd1e3724d1.bin': ('971b890c26fd12f76fd1beac87fb63d3242a9d13', 4194304, '8ec3bcfd1e3724d10de3867c33c05a705fb7ccdc87bcbfde8228fc57caf9d8de'),
+              'web/data/chapter-46-assets-part-003.e0accdc32bf303c0.bin': ('c9a593151c401fb8cdae9350b0d22b98ae5acaf3', 4007722, 'e0accdc32bf303c08ea94737f9d8d662e568dd7e0b9b80c05374098d02b815fc'),
+          }
+          POINTERS = {
+              MANIFEST: ('922db7aa4ecef59cbae10975f4d2d2091faf5d8f', 6774523, '0bf1527b6aa52fa5f4f22eb1b90102df5f1c6ea0cb791d664b1b94081c1b65cf'),
+              CAMPAIGN: ('b5374085b951dc45d56cc78377c56f7011ac57ee', 54961, '324003dbe6483ac8a778ba250d8aa8d1c63d9149f1cb5b580e6011256006f437'),
+          }
+
+          def need(ok, message):
+              if not ok:
+                  raise RuntimeError(message)
+
+          def git(*args):
+              return subprocess.check_output(['git', *args])
+
+          def line(*args):
+              return git(*args).decode('ascii').strip()
+
+          def sha(raw):
+              return hashlib.sha256(raw).hexdigest()
+
+          head = os.environ['GITHUB_SHA']
+          need(os.environ['GITHUB_REPOSITORY'] == 'sys8994/honro' and os.environ['GITHUB_EVENT_NAME'] == 'push'
+               and os.environ['GITHUB_REF'] == REF, 'Unexpected repo, event, or branch')
+          need(line('rev-parse', 'HEAD') == head, 'Wrong checkout')
+          need(line('rev-list', '--parents', '-n1', head) == f'{head} {BASE}', 'QA head must have the exact only parent')
+          need(line('rev-list', '--parents', '-n1', BASE) == f'{BASE} {LIVE_PARENT}', 'Wrong SOP base ancestry')
+          need(line('rev-parse', f'{BASE}^{{tree}}') == TREE and line('rev-parse', f'{LIVE_PARENT}^{{tree}}') == LIVE_TREE, 'Wrong base trees')
+          need(not git('status', '--porcelain', '--untracked-files=all'), 'Checkout is not clean')
+          need(git('diff', '--name-status', '-z', '--no-renames', BASE, head) == b'A\0' + WORKFLOW.encode() + b'\0', 'Only the one workflow can be added')
+          own_mode = git('ls-tree', head, '--', WORKFLOW).decode().split()
+          need(len(own_mode) == 4 and own_mode[:2] == ['100644', 'blob'] and own_mode[-1] == WORKFLOW, 'Unexpected workflow mode')
+
+          def read_exact(path, row):
+              oid, size, digest = row
+              rec = f'100644 blob {oid}\t{path}\0'.encode('ascii')
+              for rev in (LIVE_PARENT, BASE, head):
+                  need(git('ls-tree', '-z', rev, '--', path) == rec, f'Unexpected mode or Git blob for {path} at {rev}')
+              raw = git('cat-file', 'blob', oid)
+              need(len(raw) == size and sha(raw) == digest, f'Byte seal mismatch: {path}')
+              return raw
+
+          manifest, campaign = (json.loads(read_exact(path, row)) for path, row in POINTERS.items())
+          registry = {row['path']: row for row in manifest['files']}
+          need(len(registry) == len(manifest['files']) and manifest['project'] == CAMPAIGN, 'Wrong active manifest')
+          for path, (_, size, digest) in {CAMPAIGN: POINTERS[CAMPAIGN], **FILES}.items():
+              need(path in registry and registry[path]['bytes'] == size and registry[path]['sha256'] == digest, f'Member not active: {path}')
+          need([idx for idx, row in enumerate(campaign['catalog']) if row['metadata']['stageId'] == 46] == [45]
+               and campaign['stages'][45] == MAP and campaign['stageLibraries'][45] == DESC
+               and campaign['stageLibraries'].count(DESC) == 1 and campaign['assetPaths']['stageLibraries'][45] == []
+               and campaign['assetEncodings']['stageLibraries'][45] == 'json-pool-v1', 'Stage46 compiled ownership differs')
+
+          raw = {path: read_exact(path, row) for path, row in FILES.items()}
+          need(json.loads(raw[MAP])['metadata'] == {'stageId':46, 'act':5, 'actStage':6, 'campaign':True}, 'Wrong Stage46 map')
+          parts = [p for p in FILES if p.endswith('.bin')]
+          need(json.loads(raw[DESC]) == {'$honroJsonParts':1, 'bytes':PACK_BYTES, 'sha256':PACK_SHA, 'parts':[
+              {'path':p,'bytes':FILES[p][1],'sha256':FILES[p][2]} for p in parts]}, 'Descriptor order/fields differ')
+          aggregate = b''.join(raw[path] for path in parts)
+          need(len(aggregate) == PACK_BYTES and sha(aggregate) == PACK_SHA, 'Combined split mismatch')
+
+          out = pathlib.Path(os.environ['RUNNER_TEMP']) / 'stage46-b79-exact-split'
+          out.mkdir()
+          for path, data in raw.items():
+              (out / pathlib.PurePosixPath(path).name).write_bytes(data)
+          receipt = {
+              'status':'PASS_EXACT_STAGE46_SPLIT_EVIDENCE_ONLY', 'stage':46, 'qaHead':head,
+              'base':BASE, 'baseTree':TREE, 'publishedPayloadAncestor':LIVE_PARENT, 'publishedPayloadTree':LIVE_TREE,
+              'manifest':MANIFEST, 'campaign':CAMPAIGN, 'encoding':'json-pool-v1',
+              'map':MAP, 'descriptor':DESC, 'partOrder':parts, 'combinedBytes':PACK_BYTES, 'combinedSHA256':PACK_SHA,
+              'files':[{'artifactName':pathlib.PurePosixPath(p).name,'gitPath':p,'gitBlob':oid,'gitMode':'100644','bytes':size,'sha256':digest}
+                       for p,(oid,size,digest) in FILES.items()],
+              'scope':'Read exact tracked production evidence only. No source edit, build, optimization, or deployment.',
+          }
+          (out / 'STAGE46-EXACT-SPLIT-RECEIPT.json').write_text(json.dumps(receipt, indent=2)+'\n', encoding='utf-8')
+          names = {row['artifactName'] for row in receipt['files']}
+          need(len(names) == 6 and {p.name for p in out.iterdir()} == names | {'STAGE46-EXACT-SPLIT-RECEIPT.json'}, 'Output must contain exactly seven named files')
+          print(receipt['status'], receipt['combinedBytes'], receipt['combinedSHA256'])
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: stage46-b79-exact-split-evidence
+          path: ${{ runner.temp }}/stage46-b79-exact-split/
+          if-no-files-found: error
+          retention-days: 7
