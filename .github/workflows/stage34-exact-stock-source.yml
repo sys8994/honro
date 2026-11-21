@@ -1,0 +1,114 @@
+name: HONRO Stage34 exact 2c4 stock source read only
+on:
+  push:
+    branches: [qa/stage34-exact-stock-source-2c4]
+    paths:
+      - .github/workflows/stage34-exact-stock-source.yml
+      - tools/stage34-exact-stock-source/**
+permissions:
+  contents: read
+jobs:
+  exact-stock-source:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage34-exact-stock-source-2c4'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    env:
+      GIT_OPTIONAL_LOCKS: '0'
+    steps:
+      - name: QA verifier checkout
+        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+          fetch-depth: 2
+          ref: ${{ github.sha }}
+          path: qa
+      - name: Pinned unmodified 2c4 stock checkout
+        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+          ref: 2c4e90ff24d1f5aa5d04f01317caa02f89b8194c
+          path: stock
+      - name: Verify canonical stock source and published product in place
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -z "${GH_TOKEN:-}${GITHUB_TOKEN:-}"
+          A="$GITHUB_WORKSPACE/qa"
+          B="$GITHUB_WORKSPACE/stock"
+          Q="$RUNNER_TEMP/stage34-exact-stock-source"
+          mkdir "$Q"
+          phase=qa-ancestry
+          trap 'rc=$?; if (( rc )); then printf "{\n  \"status\": \"HOLD_NOT_VERIFIED\",\n  \"failurePhase\": \"%s\",\n  \"exitCode\": %d\n}\n" "$phase" "$rc" > "$Q/RECEIPT.json"; fi' EXIT
+          BASE=2c4e90ff24d1f5aa5d04f01317caa02f89b8194c
+          TREE=8d90f1fc6737adb025a5bb092b03462e283297ce
+          test "$(git -C "$A" rev-parse HEAD)" = "$GITHUB_SHA"
+          test "$(git -C "$A" show -s --format=%P "$GITHUB_SHA")" = "$BASE"
+          test "$(git -C "$A" rev-parse "$BASE^{tree}")" = "$TREE"
+          test "$(git -C "$B" rev-parse HEAD)" = "$BASE"
+          test "$(git -C "$B" rev-parse 'HEAD^{tree}')" = "$TREE"
+          p0=.github/workflows/stage34-exact-stock-source.yml
+          p1=tools/stage34-exact-stock-source/RAW-PATH-RECEIPTS.json
+          p2=tools/stage34-exact-stock-source/SOURCE-PROOF.json
+          p3=tools/stage34-exact-stock-source/verify.mjs
+          changes="$(git -C "$A" diff-tree --no-renames --no-commit-id --name-status -r "$BASE" "$GITHUB_SHA")"
+          test "$changes" = "$(printf 'A\t%s\n' "$p0" "$p1" "$p2" "$p3")"
+          for p in "$p0" "$p1" "$p2" "$p3"; do
+            test "$(git -C "$A" ls-tree "$GITHUB_SHA" -- "$p" | cut -d' ' -f1-2)" = '100644 blob'
+            test -f "$A/$p" && test ! -L "$A/$p"
+            actual="$(git hash-object --no-filters "$A/$p")"
+            test "$actual" = "$(git -C "$A" rev-parse "$GITHUB_SHA:$p")"
+          done
+          (
+            cd "$A"
+            printf '%s  %s\n' \
+              0b896f68d8ee2d81cfa41c8ff43903e624e17327993ab59319627694fec23d67 "$p1" \
+              04a7b33b6b7f2a193e96b86ad8c579a43410357d40fd57607923162ff0b664fe "$p2" \
+              a895a316f4e935991db95ddb93041ebda9b4944c1f735e9c99b5e6bd41cf2836 "$p3" | sha256sum -c -
+          )
+          phase=preinstalled-node
+          NODE="$(command -v node)"
+          NODE="$(realpath "$NODE")"
+          test -x "$NODE"
+          case "$NODE" in "$GITHUB_WORKSPACE/"*|"$RUNNER_TEMP/"*) exit 2;; esac
+          clean_node() { env -u NODE_OPTIONS -u NODE_PATH "$NODE" "$@"; }
+          node_version="$(clean_node --version)"
+          [[ "$node_version" =~ ^v(22|24)\.[0-9]+\.[0-9]+$ ]]
+          clean_node --input-type=module -e 'import fs from "node:fs/promises";import crypto from "node:crypto";if(typeof fs.readFile!=="function"||typeof structuredClone!=="function"||typeof TextDecoder!=="function"||typeof crypto.createHash!=="function")process.exit(2)'
+          clean_node --check "$A/$p3"
+          phase=canonical-reader
+          test ! -e "$B/shared/data/act4/world.json"
+          test -z "$(git -C "$B" status --porcelain=v1 --untracked-files=all --ignored=matching)"
+          if ! clean_node "$A/$p3" --stock "$B" > "$Q/STOCK-DIGESTS.json" 2> "$Q/verifier-error.private.log"; then
+            # Original diagnostic remains job-local; the uploaded receipt contains no payload or untrusted text.
+            exit 2
+          fi
+          phase=unchanged-stock
+          test ! -e "$B/shared/data/act4/world.json"
+          test -z "$(git -C "$B" status --porcelain=v1 --untracked-files=all --ignored=matching)"
+          test "$(git -C "$B" rev-parse HEAD)" = "$BASE"
+          phase=metadata-receipt
+          clean_node --input-type=module - "$Q" "$BASE" "$TREE" "$GITHUB_SHA" "$node_version" <<'JS'
+          import assert from 'node:assert/strict';
+          import {readFile, writeFile} from 'node:fs/promises';
+          import {createHash} from 'node:crypto';
+          import path from 'node:path';
+          const [dir,base,tree,qaHead,node]=process.argv.slice(2);
+          const bytes=await readFile(path.join(dir,'STOCK-DIGESTS.json'));
+          assert(bytes.length>256 && bytes.length<65536,'unexpected verifier result size');
+          const digest=createHash('sha256').update(bytes).digest('hex'), r=JSON.parse(bytes);
+          assert.equal(r.status,'PASS_EXACT_CHECKOUT_STOCK_SOURCE_AND_CURRENT_PUBLISHED_PACKET_NOT_NORMAL_REBUILD');
+          assert.equal(r.canonicalReader.parts,30);assert.equal(r.canonicalReader.matchedSourceAssets,6);
+          assert.deepEqual(Object.values(r.sourceVsPackaged).map(x=>x.changedPathValues.length),[16,0,0,1,0,3]);
+          assert.match(r.exactOptimizerLedgerApplication,/^NOT_RUN/);
+          const report={status:'PASS_READ_ONLY_2C4_SOURCE_AND_PINNED_PREBUILT_PACKET_ONLY',authority:{base,tree,qaHead,node},stockCheckoutUnchanged:true,
+            verifierResultJSONSHA256:digest,verifier:r,scope:'Digest metadata only. No A0, normal rebuild, network fetch by verifier, source serialization, browser, or deployment.'};
+          await writeFile(path.join(dir,'RECEIPT.json'),JSON.stringify(report,null,2)+'\n',{flag:'wx'});
+          JS
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage34-exact-2c4-stock-source-receipt
+          path: ${{ runner.temp }}/stage34-exact-stock-source/RECEIPT.json
+          retention-days: 7
+          if-no-files-found: error
