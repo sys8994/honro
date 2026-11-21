@@ -1,0 +1,68 @@
+name: HONRO Stage41 east shoulder source-only normal A/B
+on:
+  push:
+    branches: [qa/stage41-east-shoulder-normal-b79]
+    paths:
+      - '.github/workflows/stage41-east-paint-normal.yml'
+      - 'tools/stage41-east-paint-normal/**'
+permissions:
+  contents: read
+jobs:
+  observe:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage41-east-shoulder-normal-b79'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 34
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 3
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Exact b79 A and normal build B from sole author replacement
+        shell: bash
+        run: |
+          set -euo pipefail
+          W="$(mktemp -d "$RUNNER_TEMP/stage41-east-paint.XXXXXX")"
+          echo "WORK=$W" >> "$GITHUB_ENV"
+          RUNNER="$GITHUB_WORKSPACE/tools/stage41-east-paint-normal/observe.py"
+          python3 "$RUNNER" pre "$W"
+          (
+            cd "$W/B"
+            node --version > "$W/out/node-version.txt"
+            npm ci > "$W/out/npm-root.txt" 2>&1
+            npm ci --prefix game > "$W/out/npm-game.txt" 2>&1
+            npm run test:release-guard > "$W/out/release-guard.txt" 2>&1
+            npm run build > "$W/out/build.txt" 2>&1
+            npm run test:production-contract > "$W/out/production-contract.txt" 2>&1
+          )
+          python3 "$RUNNER" graph "$W"
+      - name: Canonical paired PC and mobile readback; no response replacement
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -z "${GH_TOKEN:-}${GITHUB_TOKEN:-}"
+          V="$RUNNER_TEMP/stage41-east-paint-venv"
+          python3 -m venv "$V"
+          "$V/bin/python" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V/bin/python" -m playwright install --with-deps chromium
+          python3 -m http.server 18841 --bind 127.0.0.1 --directory "$WORK/A" > "$WORK/out/server-A.txt" 2>&1 &
+          a=$!
+          python3 -m http.server 18842 --bind 127.0.0.1 --directory "$WORK/B" > "$WORK/out/server-B.txt" 2>&1 &
+          b=$!
+          trap 'kill "$a" "$b" 2>/dev/null || true' EXIT
+          for port in 18841 18842; do curl -fsS --retry 8 --retry-connrefused "http://127.0.0.1:$port/HONRO.html" -o /dev/null; done
+          "$V/bin/python" tools/stage41-east-paint-normal/observe.py app "$WORK"
+      - name: Seal only verified normal B addresses for later review, no publish
+        shell: bash
+        run: python3 tools/stage41-east-paint-normal/observe.py seal "$WORK"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always() && env.WORK != ''
+        with:
+          name: honro-stage41-east-paint-normal-not-deployed
+          path: ${{env.WORK}}/out
+          if-no-files-found: error
+          retention-days: 7
