@@ -1,0 +1,128 @@
+name: Stage15 structural cache A-C (normal builds, no deploy)
+on:
+  push:
+    branches: [qa/stage15-scoped-cache-r3-2939958-20261121]
+permissions:
+  contents: read
+jobs:
+  native-stage15-cache:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage15-scoped-cache-r3-2939958-20261121'
+    timeout-minutes: 36
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 6
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22.23.5'
+      - name: Authenticate parent and run identical complete builds A and C
+        shell: bash
+        timeout-minutes: 18
+        run: |
+          set -euo pipefail
+          BASE=2939958cc87407ef60b58720bb6e086b8559031b
+          PARENT=0b23ee701ccf60f37515df9d87fe48b6fd034e8d
+          test "$(git show -s --format=%P HEAD)" = "$PARENT"
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test "$(git rev-parse "$PARENT^{tree}")" = 3e6db1bc9da5db1cca64d6d63397110564eada88
+          test "$(git rev-parse "$BASE^{tree}")" = 08e22a8cc0ab608e125ad73f8e8e1c288d8c4c74
+          test -z "$(git status --porcelain)"
+          W="$(mktemp -d "$RUNNER_TEMP/stage15-scoped-cache.XXXXXX")"
+          mkdir "$W/out"
+          echo "WORK=$W" >> "$GITHUB_ENV"
+          Q="$GITHUB_WORKSPACE/tools/stage15-formal-integrated-qa"
+          T="$GITHUB_WORKSPACE/tools/stage15-scoped-cache"
+          printf 'A\t%s\n' .github/workflows/stage15-scoped-cache-r3.yml tools/stage15-scoped-cache/{probe.py,probe.js,reference.json} | LC_ALL=C sort > "$W/files"
+          git diff --name-status --no-renames "$PARENT" HEAD | LC_ALL=C sort | diff - "$W/files"
+          for side in A B C; do git worktree add --detach "$W/$side" "$BASE"; done
+          # B is an unbuilt temporary author-integrator input, not a measured App.
+          # Use R3's exact untouched recipe code; no old QA renderer is served.
+          python "$Q/patch.py" "$W/A" "$W/B" > "$W/out/signed-reference-renderer.json"
+          python "$Q/floor_asset.py" "$W/A" "$W/C" > "$W/out/floor-pre-assembly.json"
+          python "$Q/ledger.py" "$W/A" "$W/B" "$W/C" > "$W/out/ledger-V4.json"
+          python "$Q/integrate.py" "$W/A" "$W/B" "$W/C" > "$W/out/author-combined.json"
+          R=shared/runtime/renderer.js
+          test "$(git hash-object "$W/C/$R")" = 25c34f4a8c246c543389a472eb1746e6e226da88
+          test "$(git hash-object "$Q/renderer.formal.js")" = 8f0e30d5143fc64acd1850ee07e40413f1879d40
+          cp "$Q/renderer.formal.js" "$W/C/$R"
+          test "$(git hash-object "$W/C/shared/data/act2/stage15-compact-package.json")" = def9ee43b1ac654bb15c0bfd61e46febc7b80d2c
+          test "$(git hash-object "$W/C/shared/data/terrain-path-optimization.json")" = 1baa483bec04bc905d419cd36dbe803335a7e037
+          for side in A C; do
+            (cd "$W/$side" && npm ci && npm ci --prefix game &&
+             node -e 'if(JSON.parse(require("fs").readFileSync("node_modules/terser/package.json","utf8")).version!=="5.51.2") process.exit(1)' &&
+             npm run test:release-guard && npm run build && npm run test:production-contract)               > "$W/out/build-$side.log" 2>&1 || { tail -100 "$W/out/build-$side.log"; exit 1; }
+            want=''
+            if [[ "$side" == C ]]; then want=$' M shared/data/act2/stage15-compact-package.json\n M shared/data/terrain-path-optimization.json\n M shared/runtime/renderer.js'; fi
+            test "$(git -C "$W/$side" status --porcelain=v1 -uall -- shared tools game tests package.json package-lock.json workshop/build.mjs)" = "$want"
+          done
+          python - "$W" <<'PY'
+          import hashlib,json,subprocess,sys
+          from pathlib import Path
+          W=Path(sys.argv[1])
+          sha=lambda b:hashlib.sha256(b).hexdigest()
+          def verify(arm,rel,expect):
+              b=(W/arm/rel).read_bytes();assert sha(b)==expect,(arm,rel,sha(b),expect);return b
+          A='be902800b7a24c145b09fb959909d24bfccc958c88c2d87d7c79725a16f2f708'
+          C='56ebd2c37c63d16e2a24973f8d4971f991cd1658834b589942de1ba673ef1b84'
+          verify('A','HONRO.html',A);verify('C','HONRO.html',C)
+          verify('C','web/manifest.json','5ed6255b6f2e14a5a57a71762952aaf401a81f241a1b0de4eed6d382427fe7ce')
+          old=subprocess.check_output(['git','-C',str(W/'A'),'show','HEAD:web/manifest.json'])
+          assert sha(old)=='cc22d45754173a212ab3ce05d7bc5b3faf211c13e7ad5ba08f252f8e10f56304'
+          anew=(W/'A'/'web/manifest.json').read_bytes()
+          keep={'publishedRetention','publishedGenerations','previousFiles','previousGenerations'}
+          assert {k:v for k,v in json.loads(old).items() if k not in keep}=={k:v for k,v in json.loads(anew).items()if k not in keep}
+          active={s:{'manifestSHA256':sha((W/s/'web/manifest.json').read_bytes()),
+                     'titleSHA256':sha((W/s/'HONRO.html').read_bytes())}for s in 'AC'}
+          (W/'out'/'matched-normal-builds.json').write_text(json.dumps(active,indent=2)+'\n')
+          PY
+      - name: Source-identical global cache test (report legacy precheck separately; never count it as a pass)
+        shell: bash
+        timeout-minutes: 8
+        run: |
+          set -euo pipefail
+          python - "$WORK" <<'PY'
+          import hashlib,json,re,subprocess,sys
+          from pathlib import Path
+          W=Path(sys.argv[1]);known='553874a1ea4721febdf57f0d5ed973f829e2dbc387823ee3044f03355fb182f4'
+          out=[]
+          for arm in 'AC':
+              path=W/arm
+              r=subprocess.run(['node','--expose-gc','tests/static-screen-cache.mjs'],cwd=path,capture_output=True,text=True,timeout=180)
+              raw=r.stdout+r.stderr
+              (W/'out'/f'global-cache-{arm}.log').write_text(raw)
+              digest=hashlib.sha256(re.sub(r'\x1b[[0-9;]*m','',raw).replace(str(path),'<worktree>').encode()).hexdigest()
+              out.append({'arm':arm,'exitCode':r.returncode,'normalizedLogSHA256':digest,'globalTestPassed':r.returncode==0})
+          (W/'out'/'global-cache-verdict.json').write_text(json.dumps({'scope':'unmodified global test; both builds complete', 'arms':out},indent=2)+'\n')
+          assert out[0]['exitCode']==out[1]['exitCode'],out
+          if out[0]['exitCode']:
+              assert all(x['normalizedLogSHA256']==known for x in out),out
+              print('Both builds: same known historical manifest precheck failure; GLOBAL CACHE TEST DID NOT PASS.')
+          PY
+      - name: Actual normal Stage15 cache construction and warm identity
+        shell: bash
+        timeout-minutes: 12
+        run: |
+          set -euo pipefail
+          python3 -m venv "$WORK/venv"
+          V="$WORK/venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0
+          "$V" -m playwright install --with-deps chromium
+          python -m http.server 18841 --bind 127.0.0.1 --directory "$WORK/A" > "$WORK/out/http-A.log" 2>&1 &
+          a=$!
+          python -m http.server 18842 --bind 127.0.0.1 --directory "$WORK/C" > "$WORK/out/http-C.log" 2>&1 &
+          c=$!
+          trap 'kill "$a" "$c" 2>/dev/null || true' EXIT
+          for port in 18841 18842; do
+            curl -fsS --retry 6 --retry-connrefused "http://127.0.0.1:$port/HONRO.html" -o /dev/null
+          done
+          T="$GITHUB_WORKSPACE/tools/stage15-scoped-cache"
+          "$V" "$T/probe.py" --a-root "$WORK/A" --a-url http://127.0.0.1:18841             --c-root "$WORK/C" --c-url http://127.0.0.1:18842             --reference "$T/reference.json" --out "$WORK/out/paired-stage15-cache.json"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always() && env.WORK != ''
+        with:
+          name: stage15-structural-cache-paired-no-timing
+          path: ${{ env.WORK }}/out
+          if-no-files-found: error
+          retention-days: 7
