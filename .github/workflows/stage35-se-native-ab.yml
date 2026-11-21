@@ -1,0 +1,42 @@
+name: HONRO Stage35 opaque union browser A-B (QA only)
+on:
+  push:
+    branches: [qa/stage35-se-native-ab-71fb]
+    paths:
+      - .github/workflows/stage35-se-native-ab.yml
+      - tools/stage35-se-native-ab/**
+permissions:
+  contents: read
+jobs:
+  observe:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage35-se-native-ab-71fb'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Prepare normal Chrome observer
+        shell: bash
+        run: |
+          set -euo pipefail
+          R="$(mktemp -d "$RUNNER_TEMP/honro-st35-ab.XXXXXX")"
+          mkdir "$R/evidence"
+          echo "REPORT_DIR=$R/evidence" >> "$GITHUB_ENV"
+          echo "VENV=$R/venv" >> "$GITHUB_ENV"
+          python3 -m venv "$R/venv"
+          "$R/venv/bin/python" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$R/venv/bin/python" -m playwright install --with-deps chromium
+      - name: Verify product source and capture isolated normal browser A-B
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONDONTWRITEBYTECODE=1 "$VENV/bin/python" tools/stage35-se-native-ab/run.py
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always() && env.REPORT_DIR != ''
+        with:
+          name: honro-stage35-se-opaque-union-native-ab
+          path: ${{ env.REPORT_DIR }}
+          if-no-files-found: error
+          retention-days: 7
