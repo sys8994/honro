@@ -37,9 +37,11 @@ def source_gate():
     head=os.environ['GITHUB_SHA']
     assert os.environ['GITHUB_REF']=='refs/heads/'+BRANCH and os.environ['GITHUB_EVENT_NAME']=='push'
     FIRST='175d9558b57047e03e9887a3a965b1d809c7b4d4'
-    assert git('rev-list','--parents','-n1','HEAD').decode().split()==[head,FIRST]
+    SECOND='c36305b1952b93d11818bd01a2873d7e5c18df0f'
+    assert git('rev-list','--parents','-n1','HEAD').decode().split()==[head,SECOND]
+    assert git('show','-s','--format=%P',SECOND).decode().strip()==FIRST
     assert git('show','-s','--format=%P',FIRST).decode().strip()==LIVE
-    assert set(git('diff','--name-status','--no-renames',FIRST,head).decode().splitlines())=={
+    assert set(git('diff','--name-status','--no-renames',SECOND,head).decode().splitlines())=={
         'M\t.github/workflows/stage34-se-owner.yml','M\ttools/stage34-se-owner/run.py'}
     assert git('rev-parse',LIVE+'^{tree}').decode().strip()==P['authority']['tree']
     assert git('rev-parse',LIVE+':web/manifest.json').decode().strip()==P['authority']['retainedManifestGitBlob']
@@ -123,8 +125,8 @@ def capture(browser,tag,shot,mode):
         else:errors.append(['request failed',r.url,r.failure])
     # HTTP activity pending tracks even a signed response whose body has not arrived.
     p.on('request',lambda req:pending.add(req) if path_of(req.url) in P['responsePins'] else None)
-    p.on('requestfinished',pending.discard)
-    p.on('requestfailed',pending.discard)
+    p.on('requestfinished',lambda req:pending.discard(req))
+    p.on('requestfailed',lambda req:pending.discard(req))
     p.on('response',response);p.on('requestfailed',abort);p.on('pageerror',lambda e:errors.append(['pageerror',str(e)]))
     p.add_init_script('('+ENTRY['INIT']+')()')
     try:
