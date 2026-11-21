@@ -292,6 +292,72 @@ def verify_repack(live, change):
             'fullSiblingSHA256':facts(b16)['sha256'],'lockedCompilerReplay':reproduced,
             'sourceSiblingModulesExact':True}
 
+def check_active_manifest(before,after,transport):
+    # A semantic dependency rewrite must never rewrite archived immutable rows.
+    retained={'previousFiles','previousGenerations','publishedRetention','publishedGenerations'}
+    assert before.keys()==after.keys() and retained<=before.keys()
+    def norm(x):
+        if type(x)==str:return transport(x.encode()).decode()
+        if type(x)==list:return [norm(v)for v in x]
+        if type(x)==dict:return {k:norm(v)for k,v in x.items()}
+        return x
+    subset=lambda m:{k:v for k,v in m.items()if k not in retained|{'files'}}
+    a,b=norm(subset(before)),subset(after)
+    assert a==b,('active manifest dependency mismatch',[k for k in a if a[k]!=b[k]])
+    for key in ('publishedRetention','publishedGenerations'):
+        assert before[key]==after[key],('published history or policy changed',key)
+
+def verify_retention(live,broot,froot):
+    from patch import gitsha
+    check('unaltered public worktree manifest',(live/'web/manifest.json').read_bytes(),
+          {'bytes':6421884,'sha256':'cc22d45754173a212ab3ce05d7bc5b3faf211c13e7ad5ba08f252f8e10f56304'})
+    helper='shared/web-retention.mjs'
+    content=(live/helper).read_bytes()
+    assert gitsha(content)=='16687b0fc38e432a7d66a015ddf3ebe744163a06'
+    assert all((root/helper).read_bytes()==content for root in (broot,froot))
+    # Independent replay of signed compiler retention at a single clock. Any
+    # expiry between builds and this check must fail closed instead of waiving it.
+    js=r"""
+      import {readFileSync} from 'node:fs';
+      import {createHash} from 'node:crypto';
+      import {pathToFileURL} from 'node:url';
+      import path from 'node:path';
+      import assert from 'node:assert/strict';
+      const roots=process.argv.slice(1);
+      assert.equal(roots.length,3);
+      const [stock,b,f]=roots;
+      const read=(root,rel)=>readFileSync(path.join(root,rel));
+      const manifest=root=>JSON.parse(read(root,'web/manifest.json'));
+      const previous=manifest(stock);
+      const {planWebAssetRetention,selectPublishedGenerations,publishedRetention,validateAsset}=
+        await import(pathToFileURL(path.join(stock,'shared/web-retention.mjs')).href);
+      const now=Date.now(), witness=[];
+      const published=selectPublishedGenerations(previous.publishedGenerations,{now});
+      for(const root of [b,f]){
+        const actual=manifest(root);
+        const replay=planWebAssetRetention(previous,actual.files,{now});
+        assert.deepEqual(actual.publishedRetention,publishedRetention);
+        assert.deepEqual(actual.publishedGenerations,published);
+        assert.deepEqual(actual.previousFiles,replay.previousFiles);
+        assert.deepEqual(actual.previousGenerations,replay.previousGenerations);
+        const ret=new Map();
+        for(const entry of [...replay.previousFiles,...published.flatMap(g=>g.files)]){
+          validateAsset(entry);
+          if(ret.has(entry.path)){assert.deepEqual(ret.get(entry.path),entry);continue;}
+          const bytes=read(root,entry.path);
+          assert.equal(bytes.length,entry.bytes,entry.path);
+          assert.equal(createHash('sha256').update(bytes).digest('hex'),entry.sha256,entry.path);
+          ret.set(entry.path,entry);
+        }
+        witness.push({retainedBytes:[...ret.values()].reduce((a,r)=>a+r.bytes,0),
+            retainedFiles:ret.size,previousFiles:replay.previousFiles.length,
+            previousGenerations:replay.previousGenerations.length});
+      }
+      process.stdout.write(JSON.stringify({now:new Date(now).toISOString(),bothExact:witness,
+        publishedGenerations:published.length}));
+    """
+    return json.loads(subprocess.check_output(['node','--input-type=module','-e',js,str(live),str(broot),str(froot)]))
+
 def build_context():
     from patch import OLD,SOURCE,TAG,gitsha,patch
     live=Path(os.environ['AUDIT_A']).resolve()
@@ -390,13 +456,8 @@ def build_context():
             assert transport(b(p))==h(q),(p,q,'non pointer loader/entry change')
     assert transport((B_ROOT/'HONRO.html').read_bytes())==read('HONRO.html')
     m,g=json.loads(current),json.loads(actual)
-    def norm(x):
-        if type(x)==str:
-            return transport(x.encode()).decode()
-        if type(x)==list:return [norm(v)for v in x]
-        if type(x)==dict:return {k:norm(v)for k,v in x.items()}
-        return x
-    assert norm({k:v for k,v in m.items()if k!='files'})=={k:v for k,v in g.items()if k!='files'}
+    check_active_manifest(m,g,transport)
+    retention=verify_retention(live,B_ROOT,ROOT)
     assert P['entry'] in r
     P['entry']=r[P['entry']];P['modules']=[r.get(x,x)for x in P['modules']]
     for outp,inp in r.items():
@@ -408,7 +469,7 @@ def build_context():
     n['act2Aggregate']={k:newd[k]for k in ('bytes','sha256')}
     P['manifest']=facts(actual)
     return {**b_receipt,'arm':ARM,'fExactWestOnly':True,'replacedPaths':r,
-            'compiledSiblingCompactPackagesExact':True,'fManifest':P['manifest'],**c}
+            'compiledSiblingCompactPackagesExact':True,'fManifest':P['manifest'],'retentionReplay':retention,**c}
 
 BUILD=build_context()
 

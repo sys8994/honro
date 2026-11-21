@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
-          fetch-depth: 3
+          fetch-depth: 4
           persist-credentials: false
       - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
         with:
@@ -24,9 +24,11 @@ jobs:
           ROOT=$GITHUB_WORKSPACE
           BASE=2939958cc87407ef60b58720bb6e086b8559031b
           R1=50c30591fea555ee50e13264e301544d24ed1059
-          test "$(git show -s --format=%P HEAD)" = "$R1"
+          R2=b0aea1b6e2976ca7bbbcf0b794a5922087afb800
+          test "$(git show -s --format=%P HEAD)" = "$R2"
+          test "$(git show -s --format=%P "$R2")" = "$R1"
           test "$(git show -s --format=%P "$R1")" = "$BASE"
-          diff -u <(printf 'M\t%s\n' .github/workflows/stage15-native-rim-F-qa.yml tools/stage15-F-native-qa/source.py) <(git diff --name-status --no-renames "$R1" HEAD)
+          diff -u <(printf 'M\t%s\n' .github/workflows/stage15-native-rim-F-qa.yml tools/stage15-F-native-qa/source.py) <(git diff --name-status --no-renames "$R2" HEAD)
           test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
           test "$(git rev-parse "$BASE^{tree}")" = 08e22a8cc0ab608e125ad73f8e8e1c288d8c4c74
           test "$(git rev-parse "$BASE:shared/data/act2/stage15-compact-package.json")" = ac4fb9854c5bf713507564755848b6c2af1f8f1b
