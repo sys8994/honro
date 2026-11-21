@@ -1,0 +1,40 @@
+name: Stage21 narrow real Chrome diagnostic A B
+on:
+  push:
+    branches: [qa/stage21-short-fractures-71fb443]
+permissions:
+  contents: read
+jobs:
+  stage21:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage21-short-fractures-71fb443'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 22
+    env:
+      AUDIT_STAGE: '21'
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Pin exact public release and run Stage21 four PC and mobile cameras both sides
+        shell: bash
+        run: |
+          set -euo pipefail
+          T=tools/stage21-short-fractures
+          O="$(mktemp -d "$RUNNER_TEMP/stage21-short-fractures.XXXXXX")"
+          export AUDIT_OUT="$O/evidence"
+          echo "AUDIT_OUT=$AUDIT_OUT" >> "$GITHUB_ENV"
+          python3 "$T/source.py"
+          python3 -m venv "$O/venv"
+          V="$O/venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+          "$V" "$T/capture.py"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always() && env.AUDIT_OUT != ''
+        with:
+          name: honro-71fb443-stage21-short-fractures-readonly
+          path: ${{ env.AUDIT_OUT }}
+          if-no-files-found: error
+          retention-days: 7
