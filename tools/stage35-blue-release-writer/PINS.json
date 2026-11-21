@@ -1,0 +1,275 @@
+{
+  "enabled": true,
+  "repo": "sys8994/honro",
+  "base": "71fb443675aed659a572b722a4337212e9d2f910",
+  "baseTree": "c9f11d3a7458ecfcb390e460401f4b3298395858",
+  "releaseRef": "refs/heads/release/act4-stage35-blue-20261121",
+  "priorPages": {
+    "run": 44865801804,
+    "job": 136729438155,
+    "publishedAt": "2026-11-21T04:24:34.6604526Z",
+    "manifestGitBlob": "30671da683f66f4d959ed617d1cfd79a0a1e3dbe",
+    "manifestSHA256": "c77a561f82a5f0748d1d4cfd4a675d5db9118ba2c53537c778fd9c77a12400c4"
+  },
+  "source": "b4ac1069f81c6265afaf98116c00f01461b00ace",
+  "sourceTree": "1806602398bf21939793d288c2bb45d86bc1fb7a",
+  "sourceGit": {
+    "shared/act4-handoff-art.mjs": "a727bd85a1b8faa1cfaf8a2b98cf3b3e0de5e7e1",
+    "shared/act4-stage35-bedrock-join.mjs": "830077dadd0af2a770df148cc43cf8fea3993074",
+    "shared/act4-stage35-rock-material.mjs": "2bedb633cc299ef1be41d2920d704e2e3a341889",
+    "shared/act4-stage35-side-groves.mjs": "16c0b82e59448ea82ab88b1d7af4e4abac354660",
+    "shared/assets/environment/campaign-far/act4-stage35-bamboo-grove.webp": "71dd4478b8f1afb5403ddaeae4b5becf7a82898d",
+    "shared/assets/environment/campaign-far/manifest.json": "383fb06383c9039d2ab17611d7235476d599f9ee",
+    "shared/build.mjs": "24f491b8253abf2e86dbabd5bc7111b701058c0a",
+    "shared/data/act4/handoff-art/stage35-forest-east.json": "87d8c04f6de61e7003dd448e05e4b2cd404463c8",
+    "shared/data/act4/handoff-art/stage35-forest-west.json": "2dc8cd7d952436f964c959a0d574ce39da13f1f4",
+    "shared/runtime/act4-pilot-art.js": "330fc448562e5c3e36a98a99bad158176c1e9043",
+    "tests/act4-stage35-bamboo-far.mjs": "d5730b54f045f34168e3253691f6ddc012708c88",
+    "tests/act4-stage35-bedrock-join.mjs": "904c3d98909b1bef43abcc011835c2db7f155f85",
+    "tests/act4-stage35-rock-material.mjs": "21addb37204599d08eaed67b2fa4151c3ec0c935"
+  },
+  "normalAuthority": {
+    "run": 44887003005,
+    "job": 136794336261,
+    "head": "c58034e8ec035e2bbcd3d323b9268526a174d0c0",
+    "tree": "1ae0d52122b9e295631d545138bf1c0a44b9d4cd",
+    "artifact": {
+      "id": 14700701081,
+      "bytes": 72099138,
+      "sha256": "5f83486cd930d177ef4838f9cff6eb755dd086d5d652febeb1fd755351c11fd9"
+    },
+    "nestedNormal": "a438c6e33b550e3491f6aba5d4ad1ead7e0a74bcef0d47d09737f2821164d8f1",
+    "normalProofReceipts": {
+      "SOURCE.json": "b6b6d9a1973717df9d89cf76a93f4c8f3786238cd1a35fb02e4defb856828132",
+      "GRAPH.json": "0d7ddb933c5d870cbfb6bec8f69e705aaa1d9b39aba8b8ba59f51ae9531de518",
+      "BROWSER.json": "1a0e10e0dfdcd1bec904ac80d4c939f724fb8fdea4ebef1aaeceb7ae210a9eca",
+      "CANDIDATE-CHECK-ONLY.json": "38c0f3e1ba94225a6997c336e33a39ffee5c83743888746a30e4a1ca7e6670f5"
+    },
+    "authorizedNormalGenerated": {
+      "HONRO.html": {
+        "bytes": 17379,
+        "sha256": "a763c1871e6470646fa3dd7577a88825098598d18ee4e67d65b97f5d731aa958"
+      },
+      "HONRO_WORKSHOP.html": {
+        "bytes": 4011,
+        "sha256": "c95a0d9e969f37f19d5c8f9978af1a34f89e9711038e2a2958a41606417afc4c"
+      },
+      "index.html": {
+        "bytes": 17379,
+        "sha256": "a763c1871e6470646fa3dd7577a88825098598d18ee4e67d65b97f5d731aa958"
+      },
+      "web/data/HONRO_AUTHORED_FAR.b014b75b5dd7973d.json": {
+        "bytes": 5006,
+        "sha256": "b014b75b5dd7973d864f372fa0c2b024aec302a175f5f1f99c0fc9dc839dbc82"
+      },
+      "web/data/campaign.324003dbe6483ac8.json": {
+        "bytes": 54961,
+        "sha256": "324003dbe6483ac8a778ba250d8aa8d1c63d9149f1cb5b580e6011256006f437"
+      },
+      "web/data/chapter-35-assets-part-000.2f22959bfb690283.bin": {
+        "bytes": 4194304,
+        "sha256": "2f22959bfb6902837283064b16fdd6b4d1da29617f95e82436d623b0399a8e8f"
+      },
+      "web/data/chapter-35-assets-part-001.cdc249b0d9ce1988.bin": {
+        "bytes": 399036,
+        "sha256": "cdc249b0d9ce1988d2af0275f1d426d097bb2c7ff1552b9ae6f7370647e3911e"
+      },
+      "web/data/chapter-35-assets-parts.c3f1005936b3d27e.json": {
+        "bytes": 443,
+        "sha256": "c3f1005936b3d27e97a0513cf0b2a9f8cdbe7224becf6a1a7ea179628f951870"
+      },
+      "web/data/chapter-35.f62e13d97eec5171.json": {
+        "bytes": 30417,
+        "sha256": "f62e13d97eec5171cd942683c1363c615a91297413d61cbd3da35d8b0ef0065d"
+      },
+      "web/entries/game.6d15aeb89fecafdb.js": {
+        "bytes": 20483,
+        "sha256": "6d15aeb89fecafdbe5ed12ed8b10fb1c69baa060baf34591fbeef5f9eb0d0f0a"
+      },
+      "web/entries/game.abedc85b183c711f.html": {
+        "bytes": 11318,
+        "sha256": "abedc85b183c711fdf5e09c6f3e035747ea466a21a0d879efc305749d3a85330"
+      },
+      "web/entries/workshop.7816df2c88efd28c.js": {
+        "bytes": 16706,
+        "sha256": "7816df2c88efd28c1c150eae14f1d49937ad8dcb3aa002dc65f2b4031013604d"
+      },
+      "web/graphics/honro_authored_far-images-act4FarBambooGrove35.574a1793b7bb2416.webp": {
+        "bytes": 205496,
+        "sha256": "574a1793b7bb2416d66abd249c5c7ff851ea2072aa3204db68caa9b38d2a987b"
+      },
+      "web/manifest.json": {
+        "bytes": 6266713,
+        "sha256": "fa436a9e5f4b5b04155426d0fbb81248f5b0e3614367779de8e348f9aa9913e6"
+      },
+      "web/runtime/HONRO_AUTHORED_FAR.4cfa3ca0b38a2f24.js": {
+        "bytes": 905,
+        "sha256": "4cfa3ca0b38a2f24a10017fb6d61454760dae24279b6bae34b2d6be10e932a1f"
+      },
+      "web/runtime/campaign.a4e4a1f2c263a866.js": {
+        "bytes": 527,
+        "sha256": "a4e4a1f2c263a8664156be6fd74a824061ffc18f8c2c2580e9b4fbd4123f6b19"
+      },
+      "web/runtime/ordered-common-12.538fbca4939d645e.js": {
+        "bytes": 72225,
+        "sha256": "538fbca4939d645ec8be42331733cae9d01295e87c0ebcd92fb2d74d43eada65"
+      },
+      "web/runtime/ordered-game-25.baee52cf4acaf033.js": {
+        "bytes": 25313,
+        "sha256": "baee52cf4acaf03390a9cdb9f7aeeec02ac824d03ea1101336c7c78095513207"
+      }
+    },
+    "decodedApprovedPNGCount": 88
+  },
+  "manufacture": {
+    "run": 44887915877,
+    "job": 136797151021,
+    "head": "138eed8c0ff578420cfd20dc5ab8151c9ae3ab22",
+    "tree": "3cf66ff0d2ede98a46ff545adcddc862f093e1eb",
+    "outer": {
+      "id": 14701260717,
+      "bytes": 4187051,
+      "sha256": "81660ef610a7c0ff1e142c44dacf4c12c4259dcca36e84774e5aa19732c06917"
+    },
+    "nested": {
+      "bytes": 4164818,
+      "sha256": "157161509d9f5ad0b64b1db9c26c92acc8321fe2974e3fb5d00eb79af1d3a334"
+    },
+    "receiptSHA256": "6ae93c254826145f178a8fabc5948385bb6bcc90d8de5d551e9836df7bc5698a"
+  },
+  "retention": {
+    "droppedRegistryPaths": [],
+    "droppedPublishedSources": []
+  },
+  "retainedManifest": {
+    "bytes": 6435952,
+    "sha256": "d54ac73e9084e2c8d8f437142a0109be0bbb24a180589af2225c7a4bd4f7c427"
+  },
+  "commitDate": "2026-11-21T09:07:00Z",
+  "files": {
+    "HONRO.html": {
+      "bytes": 17379,
+      "sha256": "a763c1871e6470646fa3dd7577a88825098598d18ee4e67d65b97f5d731aa958"
+    },
+    "HONRO_WORKSHOP.html": {
+      "bytes": 4011,
+      "sha256": "c95a0d9e969f37f19d5c8f9978af1a34f89e9711038e2a2958a41606417afc4c"
+    },
+    "index.html": {
+      "bytes": 17379,
+      "sha256": "a763c1871e6470646fa3dd7577a88825098598d18ee4e67d65b97f5d731aa958"
+    },
+    "shared/act4-handoff-art.mjs": {
+      "bytes": 8339,
+      "sha256": "150c8f772682c3da277fae35a4757501401ee43dad14b5d96d5885aeffc25c43"
+    },
+    "shared/act4-stage35-bedrock-join.mjs": {
+      "bytes": 5959,
+      "sha256": "24802f3a3cfeb40a1c9ff45f5ee3344ec21ceed6361da46440b32bc1e3854bc6"
+    },
+    "shared/act4-stage35-rock-material.mjs": {
+      "bytes": 5617,
+      "sha256": "d42386e2c81a514b3fba2c73ba207f83d395f60c242f7bf20f03fb0461a45fbe"
+    },
+    "shared/act4-stage35-side-groves.mjs": {
+      "bytes": 3400,
+      "sha256": "440c418f5b6aca9dd50f10f027f8b00098de2e4eb2a2462c46dc27c898e45536"
+    },
+    "shared/assets/environment/campaign-far/act4-stage35-bamboo-grove.webp": {
+      "bytes": 205496,
+      "sha256": "574a1793b7bb2416d66abd249c5c7ff851ea2072aa3204db68caa9b38d2a987b"
+    },
+    "shared/assets/environment/campaign-far/manifest.json": {
+      "bytes": 3505,
+      "sha256": "a7a76499a430a20c08b43d8686a5bbdcf1712b731fc8fe8627a6cf788a615b74"
+    },
+    "shared/build.mjs": {
+      "bytes": 25141,
+      "sha256": "0a862a41bbd36985a6c201be67df4398aa4ddb5a5ee949dfaad83571edfe0ae5"
+    },
+    "shared/data/act4/handoff-art/stage35-forest-east.json": {
+      "bytes": 211462,
+      "sha256": "54add3484dc26599963e1ed17ef76cfcd3546a78ae9243d4aa5df8fce8ae1c2b"
+    },
+    "shared/data/act4/handoff-art/stage35-forest-west.json": {
+      "bytes": 196392,
+      "sha256": "fa2b5f01fe559f742367b9683b7577048d78ca6395a165b0248639610c15e982"
+    },
+    "shared/runtime/act4-pilot-art.js": {
+      "bytes": 15557,
+      "sha256": "19c1272e115d016c450eb4d3b596b48b31edabe810b674e4dd55ac00b546660b"
+    },
+    "tests/act4-stage35-bamboo-far.mjs": {
+      "bytes": 6962,
+      "sha256": "6a7e30c67ee853d92c8e2b7ed99e8b5e0cfb7988e461e77301993049cd01ea7d"
+    },
+    "tests/act4-stage35-bedrock-join.mjs": {
+      "bytes": 6865,
+      "sha256": "d439dcf89eb1aeb1ff562d94d4e3cb77800a969157dd2be982f97182acfd9058"
+    },
+    "tests/act4-stage35-rock-material.mjs": {
+      "bytes": 6883,
+      "sha256": "5eff3fb03aeab99c272b52d960091e87792d0dc845ab1e31ab03c05a8eb5473e"
+    },
+    "web/data/HONRO_AUTHORED_FAR.b014b75b5dd7973d.json": {
+      "bytes": 5006,
+      "sha256": "b014b75b5dd7973d864f372fa0c2b024aec302a175f5f1f99c0fc9dc839dbc82"
+    },
+    "web/data/campaign.324003dbe6483ac8.json": {
+      "bytes": 54961,
+      "sha256": "324003dbe6483ac8a778ba250d8aa8d1c63d9149f1cb5b580e6011256006f437"
+    },
+    "web/data/chapter-35-assets-part-000.2f22959bfb690283.bin": {
+      "bytes": 4194304,
+      "sha256": "2f22959bfb6902837283064b16fdd6b4d1da29617f95e82436d623b0399a8e8f"
+    },
+    "web/data/chapter-35-assets-part-001.cdc249b0d9ce1988.bin": {
+      "bytes": 399036,
+      "sha256": "cdc249b0d9ce1988d2af0275f1d426d097bb2c7ff1552b9ae6f7370647e3911e"
+    },
+    "web/data/chapter-35-assets-parts.c3f1005936b3d27e.json": {
+      "bytes": 443,
+      "sha256": "c3f1005936b3d27e97a0513cf0b2a9f8cdbe7224becf6a1a7ea179628f951870"
+    },
+    "web/data/chapter-35.f62e13d97eec5171.json": {
+      "bytes": 30417,
+      "sha256": "f62e13d97eec5171cd942683c1363c615a91297413d61cbd3da35d8b0ef0065d"
+    },
+    "web/entries/game.6d15aeb89fecafdb.js": {
+      "bytes": 20483,
+      "sha256": "6d15aeb89fecafdbe5ed12ed8b10fb1c69baa060baf34591fbeef5f9eb0d0f0a"
+    },
+    "web/entries/game.abedc85b183c711f.html": {
+      "bytes": 11318,
+      "sha256": "abedc85b183c711fdf5e09c6f3e035747ea466a21a0d879efc305749d3a85330"
+    },
+    "web/entries/workshop.7816df2c88efd28c.js": {
+      "bytes": 16706,
+      "sha256": "7816df2c88efd28c1c150eae14f1d49937ad8dcb3aa002dc65f2b4031013604d"
+    },
+    "web/graphics/honro_authored_far-images-act4FarBambooGrove35.574a1793b7bb2416.webp": {
+      "bytes": 205496,
+      "sha256": "574a1793b7bb2416d66abd249c5c7ff851ea2072aa3204db68caa9b38d2a987b"
+    },
+    "web/manifest.json": {
+      "bytes": 6435952,
+      "sha256": "d54ac73e9084e2c8d8f437142a0109be0bbb24a180589af2225c7a4bd4f7c427"
+    },
+    "web/runtime/HONRO_AUTHORED_FAR.4cfa3ca0b38a2f24.js": {
+      "bytes": 905,
+      "sha256": "4cfa3ca0b38a2f24a10017fb6d61454760dae24279b6bae34b2d6be10e932a1f"
+    },
+    "web/runtime/campaign.a4e4a1f2c263a866.js": {
+      "bytes": 527,
+      "sha256": "a4e4a1f2c263a8664156be6fd74a824061ffc18f8c2c2580e9b4fbd4123f6b19"
+    },
+    "web/runtime/ordered-common-12.538fbca4939d645e.js": {
+      "bytes": 72225,
+      "sha256": "538fbca4939d645ec8be42331733cae9d01295e87c0ebcd92fb2d74d43eada65"
+    },
+    "web/runtime/ordered-game-25.baee52cf4acaf033.js": {
+      "bytes": 25313,
+      "sha256": "baee52cf4acaf03390a9cdb9f7aeeec02ac824d03ea1101336c7c78095513207"
+    }
+  }
+}
