@@ -1,0 +1,50 @@
+{
+  "enabled": true,
+  "baseline": "9acde7427f3ebfce00f9ad3a9b943d030e2c352d",
+  "baselineTree": "88e7031612970afa607c8e6b72cb00b42f95364f",
+  "normalSource": "a2fd46334146b1b0a7459c99bcbfd9fb9250ae0d",
+  "normalSourceTree": "8a18dc5e09e7f78b39cbe7ce660afe9d05a5ce4e",
+  "sourceFiles": {
+    "shared/runtime/act3-handoff-art.js": "234cc3908cdabe4ddce36d63bc46dd49b1b3d621",
+    "tests/stage21-west-bedrock-source.mjs": "fec78045c0a71addd0425ac0454d66a823f8922e"
+  },
+  "sourceModified": [
+    "shared/runtime/act3-handoff-art.js"
+  ],
+  "priorPages": {
+    "run": 44888850180,
+    "job": 136800355127,
+    "publishedAt": "2026-11-21T09:19:03.2307428Z",
+    "manifestGitBlob": "bbd1df9330c52e06a0fc39e5cd8efc70a74f185c",
+    "manifestSHA256": "d54ac73e9084e2c8d8f437142a0109be0bbb24a180589af2225c7a4bd4f7c427"
+  },
+  "normal": {
+    "run": 44892847667,
+    "job": 136812188390,
+    "head": "d7aef1c3b57207ec951af5d79439579780dc8008",
+    "tree": "da70cb350526df4da8fa91ba5179c72919968195",
+    "normalPinsGitBlob": "1bb2e652ee1706cb4af78500b4234f23eb12c463",
+    "artifact": {
+      "id": 14702748522,
+      "bytes": 22745697,
+      "sha256": "f82a0fac5d1f8fd9562a841fbe18e75f64636ff75ffb4e01d768959d627b9b8e"
+    },
+    "receiptSHA256": {
+      "GRAPH.json": "b4c5665c930cb7b806d08ceb353048aca6c0f61071b655b7ae127ed68c4e45d2",
+      "SOURCE.json": "f9351116793fb0dd7f48115d21daa77929587d88fbda4dc802127f48432dd65a",
+      "proof.json": "19a16dac035394c53b6229879f5860f6c79382c97f477fdfd8d7721948718209"
+    },
+    "candidateArchiveSHA256": "39c65d0d85fb90d30d0ce205f01a6358b640d51892cc69ea7784ade906bfcd32",
+    "resumeFrameSHA256": "b3e9388fc9c22e8c563b3b177a275a2a6ea675db9056d78261ea716fdb7ce79c",
+    "aliases": {
+      "web/entries/game.6d15aeb89fecafdb.js": "web/entries/game.a47fa9bb7d45a42e.js",
+      "web/entries/workshop.7816df2c88efd28c.js": "web/entries/workshop.a2eef25feaf1a9a1.js",
+      "web/entries/game.abedc85b183c711f.html": "web/entries/game.5fabc36680b0de6e.html",
+      "web/runtime/ordered-common-17.2ed746adf1d3e0e3.js": "web/runtime/ordered-common-17.9a592f68229e4289.js"
+    },
+    "stage26Control": {
+      "map": "web/data/chapter-26.cc8e0e37503433b3.json",
+      "asset": "web/data/chapter-26-assets.d511268fb4869e94.json"
+    }
+  }
+}
