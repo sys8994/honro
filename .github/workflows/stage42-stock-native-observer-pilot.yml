@@ -1,0 +1,49 @@
+name: HONRO Stage42 stock A-only native observer pilot (no release)
+on:
+  push:
+    branches: [qa/stage42-stock-native-observer-pilot]
+    paths:
+      - .github/workflows/stage42-stock-native-observer-pilot.yml
+      - tools/stage42-native-observer-pilot/**
+permissions:
+  contents: read
+jobs:
+  read-only-pilot:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage42-stock-native-observer-pilot'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+          lfs: false
+      - name: Verify exact current baseline and additive QA-only ancestry
+        shell: bash
+        run: |
+          set -euo pipefail
+          sha256sum -c <<'SUMS'
+          fcffb42af2f93761381f7329b69305571dc10f68ba8767dd9d66bb5440c1685d  tools/stage42-native-observer-pilot/PINS.json
+          e80cf7a83065fef0fba5df2e548c29effb3706d3d8da1d723092c5b3c3d5c2b5  tools/stage42-native-observer-pilot/native.js
+          6151dee1f2e3ec19b2120b12cd197129d9d5f18cc5cfec80a552b0015f796d43  tools/stage42-native-observer-pilot/pilot.py
+          db4207aa70d2aceef7e6ff8da5d93f10b8267aaf0f3aa61c844a5e14db89a6f6  tools/stage42-native-observer-pilot/scene.js
+          SUMS
+          python3 tools/stage42-native-observer-pilot/pilot.py --repo "$GITHUB_WORKSPACE" --out "$RUNNER_TEMP/stage42-a-pilot" --official --preflight
+      - name: Capture normal A1/A2 first, then native-only A in fresh isolated Chrome
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m venv "$RUNNER_TEMP/stage42-a-pilot-venv"
+          V="$RUNNER_TEMP/stage42-a-pilot-venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+          "$V" tools/stage42-native-observer-pilot/pilot.py --repo "$GITHUB_WORKSPACE" --out "$RUNNER_TEMP/stage42-a-pilot" --official
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: honro-stage42-stock-native-observer-pilot-no-deploy
+          path: ${{ runner.temp }}/stage42-a-pilot/
+          if-no-files-found: error
+          retention-days: 7

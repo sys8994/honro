@@ -1,0 +1,211 @@
+{
+  "status": "DISABLED_NOT_RELEASE",
+  "ref": "refs/heads/qa/stage42-stock-native-observer-pilot",
+  "base": "2c4e90ff24d1f5aa5d04f01317caa02f89b8194c",
+  "tree": "8d90f1fc6737adb025a5bb092b03462e283297ce",
+  "rendererGit": "8f0e30d5143fc64acd1850ee07e40413f1879d40",
+  "edgeGit": "66f656fe7beb164efcbed2729b2f6daa88781e42",
+  "stageAssetFile": "web/data/chapter-42-assets.396ec98508d5b8c8.json",
+  "campaignFile": "web/data/campaign.7140da5d3649e4ab.json",
+  "stageMap": "web/data/chapter-42.0802015e8ba99d11.json",
+  "activeSignature": "9d6409f2aa1fbab1bf0d6dff7649381bc33a9f54c41cedff65bd5203d36683bc",
+  "file": {
+    "web/entries/game.df8a4c7f1873e38c.js": {
+      "bytes": 20483,
+      "sha256": "df8a4c7f1873e38c16c8cc6eaefe6ba727595e7a3cebe50529e3ff6d02fb3bf4"
+    },
+    "web/data/campaign.7140da5d3649e4ab.json": {
+      "bytes": 54961,
+      "sha256": "7140da5d3649e4aba2c58e180c8ff3f6f171a70e5e6704ad05dc98d428c52822"
+    },
+    "web/runtime/ordered-common-18.9dcb25cd7e4ae77b.js": {
+      "bytes": 34955,
+      "sha256": "9dcb25cd7e4ae77b50e3ff528a43d3a3a170c28c1995ddb9c694b66a10965bfe"
+    },
+    "web/runtime/load-data.248fb3aada6f16bb.js": {
+      "bytes": 15550,
+      "sha256": "248fb3aada6f16bbe2d7df7e369db772df2d923bc91b1e517daa53858f558dcb"
+    },
+    "web/data/chapter-42-assets.396ec98508d5b8c8.json": {
+      "bytes": 1864856,
+      "sha256": "396ec98508d5b8c828a8d0bbf24c2f6cac1a734a55989db3f3d3fcc1d80bb1df"
+    },
+    "web/data/chapter-42.0802015e8ba99d11.json": {
+      "bytes": 12647,
+      "sha256": "0802015e8ba99d11a8ece1f14186b3db6a4a7d3d32076e64ca120300f50c7f50"
+    },
+    "HONRO.html": {
+      "bytes": 17379,
+      "sha256": "b5696990619f139e6bb239646a8af4a8db0fd8e4e7b0c0d0dc97081588e6219c"
+    },
+    "web/manifest.json": {
+      "bytes": 6966363,
+      "sha256": "12b99fa8b1b35c4ed94962c370ff38c6a06597473dc4417b2861ad46d04e0dbc"
+    },
+    "web/data/campaign-base.0c57dcfe7c08d421.json": {
+      "bytes": 257,
+      "sha256": "0c57dcfe7c08d421901ffa8eeb437940b6b6d4779816207b51dca7be44c73e5e"
+    },
+    "web/data/campaign-shared.8f8343b5c21518d4.json": {
+      "bytes": 577195,
+      "sha256": "8f8343b5c21518d4fdaa2314e58031fd137b8622d3a6c1ca2fdabafde3bb158f"
+    },
+    "web/data/chapter-01-assets.088719e10e63d482.json": {
+      "bytes": 109473,
+      "sha256": "088719e10e63d4826b565b3a3a13857af068bed52ae8c8a8293d23becabeb1e3"
+    },
+    "web/data/chapter-01.c3917afbdd6737bc.json": {
+      "bytes": 48157,
+      "sha256": "c3917afbdd6737bc8d5c99d4e37a0a5778698d7f95d4bc6676678d48623e8a7c"
+    }
+  },
+  "required": [
+    "HONRO.html",
+    "web/data/campaign-base.0c57dcfe7c08d421.json",
+    "web/data/campaign-shared.8f8343b5c21518d4.json",
+    "web/data/campaign.7140da5d3649e4ab.json",
+    "web/data/chapter-01-assets.088719e10e63d482.json",
+    "web/data/chapter-01.c3917afbdd6737bc.json",
+    "web/data/chapter-42-assets.396ec98508d5b8c8.json",
+    "web/data/chapter-42.0802015e8ba99d11.json",
+    "web/entries/game.df8a4c7f1873e38c.js",
+    "web/runtime/load-data.248fb3aada6f16bb.js",
+    "web/runtime/ordered-common-18.9dcb25cd7e4ae77b.js"
+  ],
+  "ownerValueSHA256": "af756c81803a6d5ecbc79e91502d015cbd111c3b0309dfcf360ceae9fd2ca579",
+  "ownerOriginalVectorSHA256": "51a354cafd4825d6ff8833c9dc5763af2db467f121025b0c993593a211bdf659",
+  "ownerWallValueSHA256": "6d901c2622da777ab47ffcffb226d3f09f41508205b418c9ce1d1ee93ba193bb",
+  "ownerSurfaceValueSHA256": "9954556a2471220ae824768fc7ab94cf749ad2bbd88bd3f86ceed4550def5f3a",
+  "viewport": [
+    1440,
+    900
+  ],
+  "css": [
+    1440,
+    769.1875
+  ],
+  "backing": [
+    1440,
+    769
+  ],
+  "browser": "151.0.7922.34",
+  "poses": [
+    {
+      "name": "min-east",
+      "requested": [
+        1000000,
+        1430.5,
+        "min"
+      ],
+      "expectedCenter": [
+        6820,
+        1430.5,
+        0.21176470588235294
+      ],
+      "matrix": [
+        0.25,
+        0,
+        0,
+        0.25,
+        -1022,
+        2
+      ],
+      "rs": 0.25,
+      "target": "2:0",
+      "viewKind": "tile",
+      "targetPhase": "first",
+      "points": [
+        [
+          5632.5,
+          1323.5
+        ],
+        [
+          5640.5,
+          1323.5
+        ],
+        [
+          5644.5,
+          1323.5
+        ]
+      ]
+    },
+    {
+      "name": "z094-east",
+      "requested": [
+        5650,
+        1321,
+        0.94
+      ],
+      "expectedCenter": [
+        5650,
+        1321,
+        0.94
+      ],
+      "matrix": [
+        0.68,
+        0,
+        0,
+        0.68,
+        -3582,
+        -510
+      ],
+      "rs": 0.68,
+      "target": "7:1",
+      "viewKind": "tile",
+      "targetPhase": "first",
+      "points": [
+        [
+          5632.5,
+          1323.5
+        ],
+        [
+          5640.5,
+          1323.5
+        ],
+        [
+          5644.5,
+          1323.5
+        ]
+      ]
+    },
+    {
+      "name": "max-east",
+      "requested": [
+        5650,
+        1321,
+        "max"
+      ],
+      "expectedCenter": [
+        5650,
+        1321,
+        1.65
+      ],
+      "matrix": [
+        1.65,
+        0,
+        0,
+        1.65,
+        -8602.5,
+        -1795.05625
+      ],
+      "rs": null,
+      "target": "viewport",
+      "viewKind": "viewport",
+      "targetPhase": "allocate",
+      "points": [
+        [
+          5632.5,
+          1323.5
+        ],
+        [
+          5640.5,
+          1323.5
+        ],
+        [
+          5644.5,
+          1323.5
+        ]
+      ]
+    }
+  ]
+}
