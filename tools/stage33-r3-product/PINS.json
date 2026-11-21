@@ -1,0 +1,97 @@
+{
+  "base": "2c4e90ff24d1f5aa5d04f01317caa02f89b8194c",
+  "tree": "8d90f1fc6737adb025a5bb092b03462e283297ce",
+  "manifest": {
+    "bytes": 6966363,
+    "sha256": "12b99fa8b1b35c4ed94962c370ff38c6a06597473dc4417b2861ad46d04e0dbc"
+  },
+  "sourceGit": "c9c204a0daefb790309b3c7d0917c3e34acf7708",
+  "loaderGit": "44ffc2a09b5fa6f777498c80072571835dbff66b",
+  "oldMap": {
+    "sha256": "a7ce91b7d78fb5f8b0b27a4ea42ce6cf4f54d98556c43176beb87a0789573a5a",
+    "bytes": 34011
+  },
+  "oldPack": {
+    "sha256": "4b5df185aa59eb42dbb2c46bd21b38ef2ab7134098bc31b3a0b96439dcc7ef73",
+    "bytes": 2836956
+  },
+  "newMap": {
+    "sha256": "80ca32475be181c7774c305b442c8081b6341836fb8d08771e033b7fb79e1464",
+    "bytes": 34235
+  },
+  "newPack": {
+    "bytes": 2858185,
+    "sha256": "07b129345eb9585651bb4d8a74411c8ec30ac3d5b3736ca7849e39abfa7ffe00"
+  },
+  "oldLowVec": "1c376a45daee569c54213d81e44aa24d4044d7476db7373de603240c32007354",
+  "proof": {
+    "stockSHA": "1a1ffa644586c30e7a8c186f526c710d5945aac0a2fc22476197176ee15b86b4",
+    "stockGit": "c9c204a0daefb790309b3c7d0917c3e34acf7708",
+    "studySHA": "a58c28ae9e51c851314caec08b0375244626c64c2ac92a1c43790a5a21d73f37",
+    "targetSHA": "4585577066f5db159605e405d6565795e3e1382df4f30e944ec84ee4c2c6c91a",
+    "targetGit": "3ab093ce8cff00efb620d2fed8eae6cc4c732892",
+    "targetBytes": 1629325,
+    "oldLowSHA": "77e3058c6faead40c865a3264065b8ed81d08c79609e21419e96aea6bd395fe7",
+    "lowSHA": "a0fe36e942ae20ee820a2ee09ebaa9a20ccb5bc5af95f1fa667653e62e6b3799",
+    "lowVectorSHA": "ce3a94aae260d59b60faa51c6f9ea243ce2f2b74defb745176c9ab8a935e21b8",
+    "clipSHA": "4a96ab6cc0822d62129764db4325108427fbc039829a15eab57cc3a67b6dbe52",
+    "deepSHA": "59b873bd84a89feee52c2e62824e9ad27062a85b73c465a861066416704f0864",
+    "deepVectorSHA": "281430b8d60fbd7ff934bd0307921f5a1696ec07537738f62b71d76c7b67abe3",
+    "pathsEdited": 12,
+    "retainedNestedFacets": 14,
+    "scope": {
+      "x0": -3240,
+      "x1": 10630,
+      "y0": 4800,
+      "y1": 5950
+    }
+  },
+  "oldCampaign": "web/data/campaign.7140da5d3649e4ab.json",
+  "currentInputs": {
+    "web/data/campaign.7140da5d3649e4ab.json": {
+      "bytes": 54961,
+      "sha256": "7140da5d3649e4aba2c58e180c8ff3f6f171a70e5e6704ad05dc98d428c52822"
+    },
+    "web/entries/game.df8a4c7f1873e38c.js": {
+      "bytes": 20483,
+      "sha256": "df8a4c7f1873e38c16c8cc6eaefe6ba727595e7a3cebe50529e3ff6d02fb3bf4"
+    },
+    "web/entries/workshop.72bdac6f91ac45dd.js": {
+      "bytes": 16706,
+      "sha256": "72bdac6f91ac45ddd36df91ebf9cf635dbdbd60a2f276a76132667e4a5c3d1a9"
+    },
+    "web/entries/game.aa9f55275c71f3f4.html": {
+      "bytes": 11318,
+      "sha256": "aa9f55275c71f3f4a6d92c5287af849ce18f60a3528b9164c3a244771fdebcfa"
+    },
+    "web/data/campaign-base.0c57dcfe7c08d421.json": {
+      "bytes": 257,
+      "sha256": "0c57dcfe7c08d421901ffa8eeb437940b6b6d4779816207b51dca7be44c73e5e"
+    },
+    "web/data/campaign-shared.8f8343b5c21518d4.json": {
+      "bytes": 577195,
+      "sha256": "8f8343b5c21518d4fdaa2314e58031fd137b8622d3a6c1ca2fdabafde3bb158f"
+    },
+    "web/data/chapter-33-assets.4b5df185aa59eb42.json": {
+      "bytes": 2836956,
+      "sha256": "4b5df185aa59eb42dbb2c46bd21b38ef2ab7134098bc31b3a0b96439dcc7ef73"
+    },
+    "web/data/chapter-33.a7ce91b7d78fb5f8.json": {
+      "bytes": 34011,
+      "sha256": "a7ce91b7d78fb5f8b0b27a4ea42ce6cf4f54d98556c43176beb87a0789573a5a"
+    },
+    "web/runtime/campaign.926544619e01a04a.js": {
+      "bytes": 527,
+      "sha256": "926544619e01a04af2f2cc0e2bd435265ae9efff23062e259563bded6d851307"
+    },
+    "web/runtime/load-data.248fb3aada6f16bb.js": {
+      "bytes": 15550,
+      "sha256": "248fb3aada6f16bbe2d7df7e369db772df2d923bc91b1e517daa53858f558dcb"
+    }
+  },
+  "officialStage33Authority": {
+    "oldR3": 44944479153,
+    "nativeObservationArtifact": 14724125549,
+    "realOrdinaryStockArtifact": 14676744665
+  }
+}
