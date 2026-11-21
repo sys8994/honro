@@ -1,0 +1,668 @@
+{
+  "base": "b79ea7fd87fda5586d78eae0a7052996b8e71fb5",
+  "baseTree": "1e55d910bbabc43919c20a14d1a06002b20f4977",
+  "ref": "qa/stage41-east-shoulder-normal-b79-r3",
+  "sourcePath": "shared/assets/environment/act5/camp-east-geology.json",
+  "sourceA": {
+    "bytes": 307785,
+    "sha256": "723457af56728de456e35653927ac0aaa347b2ce0f9689de7db7df54775462de",
+    "git": "3163542163a5b12c4e5cf3894df4751d884f2a34"
+  },
+  "sourceB": {
+    "bytes": 308043,
+    "sha256": "b5ccb5c8925b7a1d188be4eefa391d4359deee9c9c384a56beed52b6b582224e",
+    "git": "db5ae65abe0cb578f0a7270500b7a842dbc71dc4"
+  },
+  "eastJSONSHA": {
+    "A": "0906fdee8552f09aec1f9c6ee0478c6df93a265aa88e88ad6ebc4db06264d65c",
+    "B": "3cd8cfc6f96235bf9d41b9c8cc40a44c6c1c0ee56d96c301af2419d90889fecf"
+  },
+  "logical": {
+    "packet": "web/data/chapter-41-assets.138e4fcb5537cad7.json",
+    "campaign": "web/data/campaign.324003dbe6483ac8.json",
+    "wrapper": "web/runtime/campaign.a4e4a1f2c263a866.js",
+    "entry": "web/entries/game.16fa712378260ab7.js",
+    "embedded": "web/entries/game.27bee1d027287972.html",
+    "workshop": "web/entries/workshop.c04fdab1de4158c5.js",
+    "gameShell": "HONRO.html",
+    "indexShell": "index.html",
+    "workshopShell": "HONRO_WORKSHOP.html",
+    "map": "web/data/chapter-41.deb88737d28c9104.json",
+    "controlMap": "web/data/chapter-42.0802015e8ba99d11.json",
+    "controlPacket": "web/data/chapter-42-assets.396ec98508d5b8c8.json",
+    "base": "web/data/campaign-base.0c57dcfe7c08d421.json",
+    "shared": "web/data/campaign-shared.8f8343b5c21518d4.json",
+    "loader": "web/runtime/load-data.248fb3aada6f16bb.js",
+    "domain": "web/runtime/ordered-common-11.6adcb81897ec0663.js",
+    "tiles": "web/runtime/ordered-common-15.370f1fb43d3a212f.js",
+    "art": "web/runtime/ordered-common-18.9dcb25cd7e4ae77b.js",
+    "preMap": "web/data/chapter-02.5faa275befa85b0d.json",
+    "preAsset": "web/data/chapter-02-assets.ddddf53df4d749c6.json"
+  },
+  "oldPins": {
+    "web/data/chapter-41-assets.138e4fcb5537cad7.json": {
+      "bytes": 1438739,
+      "sha256": "138e4fcb5537cad721ab5b968f087fcf61852e42c35499cf9050cb8ce422cc55"
+    },
+    "web/manifest.json": {
+      "bytes": 6774523,
+      "sha256": "0bf1527b6aa52fa5f4f22eb1b90102df5f1c6ea0cb791d664b1b94081c1b65cf"
+    },
+    "web/data/campaign.324003dbe6483ac8.json": {
+      "bytes": 54961,
+      "sha256": "324003dbe6483ac8a778ba250d8aa8d1c63d9149f1cb5b580e6011256006f437"
+    },
+    "web/runtime/campaign.a4e4a1f2c263a866.js": {
+      "bytes": 527,
+      "sha256": "a4e4a1f2c263a8664156be6fd74a824061ffc18f8c2c2580e9b4fbd4123f6b19"
+    },
+    "web/entries/game.16fa712378260ab7.js": {
+      "bytes": 20483,
+      "sha256": "16fa712378260ab755902f838024524e733b769c5cd540f95737b3eaff58f7b1"
+    },
+    "web/entries/game.27bee1d027287972.html": {
+      "bytes": 11318,
+      "sha256": "27bee1d0272879720f4688ae605fce837b7609675202ef2c69d56fb34b554fc7"
+    },
+    "web/entries/workshop.c04fdab1de4158c5.js": {
+      "bytes": 16706,
+      "sha256": "c04fdab1de4158c57e7684d85e7a74c8a59b3a77f23ffed6d6d99fe9bd0b1d53"
+    },
+    "HONRO.html": {
+      "bytes": 17379,
+      "sha256": "c8d009ef643d2b24abd85400162b307a2e5a8e95100fe999b89a6afdd5faaecc"
+    },
+    "index.html": {
+      "bytes": 17379,
+      "sha256": "c8d009ef643d2b24abd85400162b307a2e5a8e95100fe999b89a6afdd5faaecc"
+    },
+    "HONRO_WORKSHOP.html": {
+      "bytes": 4011,
+      "sha256": "5bd32c2880caa9a2af21aa40b88f6f99c760bfb88c8e911860fb34da51e876b1"
+    },
+    "web/data/chapter-41.deb88737d28c9104.json": {
+      "bytes": 12197,
+      "sha256": "deb88737d28c910422b5d56d86476087d6b1e474ed44bf183e83cb97a436b8a2"
+    },
+    "web/data/chapter-42.0802015e8ba99d11.json": {
+      "bytes": 12647,
+      "sha256": "0802015e8ba99d11a8ece1f14186b3db6a4a7d3d32076e64ca120300f50c7f50"
+    },
+    "web/data/chapter-42-assets.396ec98508d5b8c8.json": {
+      "bytes": 1864856,
+      "sha256": "396ec98508d5b8c828a8d0bbf24c2f6cac1a734a55989db3f3d3fcc1d80bb1df"
+    },
+    "web/data/campaign-base.0c57dcfe7c08d421.json": {
+      "bytes": 257,
+      "sha256": "0c57dcfe7c08d421901ffa8eeb437940b6b6d4779816207b51dca7be44c73e5e"
+    },
+    "web/data/campaign-shared.8f8343b5c21518d4.json": {
+      "bytes": 577195,
+      "sha256": "8f8343b5c21518d4fdaa2314e58031fd137b8622d3a6c1ca2fdabafde3bb158f"
+    },
+    "web/runtime/load-data.248fb3aada6f16bb.js": {
+      "bytes": 15550,
+      "sha256": "248fb3aada6f16bbe2d7df7e369db772df2d923bc91b1e517daa53858f558dcb"
+    },
+    "web/runtime/ordered-common-11.6adcb81897ec0663.js": {
+      "bytes": 177221,
+      "sha256": "6adcb81897ec06638dc92386b515b2f8ff10ee38a60c6fa4fb2d9040be22ea77"
+    },
+    "web/runtime/ordered-common-15.370f1fb43d3a212f.js": {
+      "bytes": 163921,
+      "sha256": "370f1fb43d3a212f035eabb93ea935aff41d6146fb8c9103c77a1f9c1f07d737"
+    },
+    "web/runtime/ordered-common-18.9dcb25cd7e4ae77b.js": {
+      "bytes": 34955,
+      "sha256": "9dcb25cd7e4ae77b50e3ff528a43d3a3a170c28c1995ddb9c694b66a10965bfe"
+    },
+    "web/data/chapter-02.5faa275befa85b0d.json": {
+      "bytes": 55013,
+      "sha256": "5faa275befa85b0d49205b25a9d902c9d7ce448cf52fe25e124d4005b10f2ad2"
+    },
+    "web/data/chapter-02-assets.ddddf53df4d749c6.json": {
+      "bytes": 256633,
+      "sha256": "ddddf53df4d749c60375cba085a79d790319b1e9c1790cb29e840529409ab434"
+    }
+  },
+  "newPins": {
+    "web/data/chapter-41-assets.88b7f8b7e6b8f24a.json": {
+      "bytes": 1438997,
+      "sha256": "88b7f8b7e6b8f24a84f3f58c7df43247c193e78e95f0fc88351a5c73897bfb18"
+    },
+    "web/data/campaign.8d37e81c3f5a84ec.json": {
+      "bytes": 54961,
+      "sha256": "8d37e81c3f5a84ecc0c8b659498e196417e8e8e2b103cea77f39a7944755c7f7"
+    },
+    "web/runtime/campaign.b21f6c7f65caff3b.js": {
+      "bytes": 527,
+      "sha256": "b21f6c7f65caff3bcb63aed144d7d2ec85305624106fab05538503c3c5c79ebc"
+    },
+    "web/entries/game.c2bb8cdedaaba209.js": {
+      "bytes": 20483,
+      "sha256": "c2bb8cdedaaba2095bce213d71a3d533482cfdf9ecc3bb2d45958fb445156dc2"
+    },
+    "web/entries/game.d0f7199aff428f3c.html": {
+      "bytes": 11318,
+      "sha256": "d0f7199aff428f3c2ca5a88e55279658a550515d1efac51f359b3cb1a69125c8"
+    },
+    "web/entries/workshop.a4fdf3db1902cb20.js": {
+      "bytes": 16706,
+      "sha256": "a4fdf3db1902cb20335af7681e8b8d6bc836615e44024f2a16c4024681ca1cb4"
+    },
+    "HONRO.html": {
+      "bytes": 17379,
+      "sha256": "0701fc702052ba7f4739266504ee2c917694ad563f59bea17350cd80d983ee8e"
+    },
+    "index.html": {
+      "bytes": 17379,
+      "sha256": "0701fc702052ba7f4739266504ee2c917694ad563f59bea17350cd80d983ee8e"
+    },
+    "HONRO_WORKSHOP.html": {
+      "bytes": 4011,
+      "sha256": "9de685173dfea124e15705023f451c11c01035d7ead6a277f5c3440cea626e89"
+    }
+  },
+  "swaps": {
+    "web/data/chapter-41-assets.138e4fcb5537cad7.json": "web/data/chapter-41-assets.88b7f8b7e6b8f24a.json",
+    "web/data/campaign.324003dbe6483ac8.json": "web/data/campaign.8d37e81c3f5a84ec.json",
+    "web/runtime/campaign.a4e4a1f2c263a866.js": "web/runtime/campaign.b21f6c7f65caff3b.js",
+    "web/entries/game.16fa712378260ab7.js": "web/entries/game.c2bb8cdedaaba209.js",
+    "web/entries/game.27bee1d027287972.html": "web/entries/game.d0f7199aff428f3c.html",
+    "web/entries/workshop.c04fdab1de4158c5.js": "web/entries/workshop.a4fdf3db1902cb20.js",
+    "HONRO.html": "HONRO.html",
+    "index.html": "index.html",
+    "HONRO_WORKSHOP.html": "HONRO_WORKSHOP.html"
+  },
+  "frames": [
+    {
+      "id": 41,
+      "key": "s41-1440x900-ordinary",
+      "viewportCSS": [
+        1440,
+        900
+      ],
+      "view": "ordinary",
+      "actual": {
+        "x": 3200,
+        "y": 1571.5,
+        "scale": 0.5
+      },
+      "viewport": {
+        "left": 1760,
+        "right": 4640,
+        "top": 802.3125,
+        "bottom": 2340.6875
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6720,
+        "bottom": 3383
+      },
+      "zoomLimits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "actorCount": 34,
+      "tide": null,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "physicsSHA256": "d53af44e03158083d1e87486659bec2d8f86d2f2f6b130949d592a87ec3b88d9",
+      "pngSHA256": "ef7c57cf4645b83914dcdab65b1c670868e342f6b1cd8728aba957171c96e54f"
+    },
+    {
+      "id": 41,
+      "key": "s41-1440x900-west",
+      "viewportCSS": [
+        1440,
+        900
+      ],
+      "view": "west",
+      "actual": {
+        "x": -320,
+        "y": 1571.5,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": -3720,
+        "right": 3080,
+        "top": -244.63715277777783,
+        "bottom": 3387.637152777778
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6720,
+        "bottom": 3383
+      },
+      "zoomLimits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "actorCount": 34,
+      "tide": null,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "physicsSHA256": "d53af44e03158083d1e87486659bec2d8f86d2f2f6b130949d592a87ec3b88d9",
+      "pngSHA256": "a9d3baebb80ad210fe0d26c416ecb4f385e8a11accf0ec02d39cd1064749b635"
+    },
+    {
+      "id": 41,
+      "key": "s41-1440x900-east",
+      "viewportCSS": [
+        1440,
+        900
+      ],
+      "view": "east",
+      "actual": {
+        "x": 6720,
+        "y": 1571.5,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": 3320,
+        "right": 10120,
+        "top": -244.63715277777783,
+        "bottom": 3387.637152777778
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6720,
+        "bottom": 3383
+      },
+      "zoomLimits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "actorCount": 34,
+      "tide": null,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "physicsSHA256": "d53af44e03158083d1e87486659bec2d8f86d2f2f6b130949d592a87ec3b88d9",
+      "pngSHA256": "5df4b9bc8b18beb8fac90aa3071865e6a1785f93c7f58613b7132fd3334817c5"
+    },
+    {
+      "id": 41,
+      "key": "s41-1440x900-northeast",
+      "viewportCSS": [
+        1440,
+        900
+      ],
+      "view": "northeast",
+      "actual": {
+        "x": 6720,
+        "y": -1800,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": 3320,
+        "right": 10120,
+        "top": -3616.137152777778,
+        "bottom": 16.13715277777783
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6720,
+        "bottom": 3383
+      },
+      "zoomLimits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "actorCount": 34,
+      "tide": null,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "physicsSHA256": "d53af44e03158083d1e87486659bec2d8f86d2f2f6b130949d592a87ec3b88d9",
+      "pngSHA256": "66639e19741b48af0bb1edb764cb4930fe18ef3cf71d70fc8ff247592b6cb06e"
+    },
+    {
+      "id": 41,
+      "key": "s41-390x844-ordinary",
+      "viewportCSS": [
+        390,
+        844
+      ],
+      "view": "ordinary",
+      "actual": {
+        "x": 3200,
+        "y": 1571.5,
+        "scale": 0.5
+      },
+      "viewport": {
+        "left": 2810,
+        "right": 3590,
+        "top": 923.890625,
+        "bottom": 2219.109375
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6720,
+        "bottom": 3383
+      },
+      "zoomLimits": {
+        "min": 0.057352941176470586,
+        "max": 1.65,
+        "tactical": 0.057352941176470586,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "actorCount": 34,
+      "tide": null,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "physicsSHA256": "d53af44e03158083d1e87486659bec2d8f86d2f2f6b130949d592a87ec3b88d9",
+      "pngSHA256": "0e850b6e8e907564cbc8be210e169bf0e05ab891ab3bcd95f75964f6ea37b4d8"
+    },
+    {
+      "id": 41,
+      "key": "s41-390x844-west",
+      "viewportCSS": [
+        390,
+        844
+      ],
+      "view": "west",
+      "actual": {
+        "x": -320,
+        "y": 1571.5,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": -3720,
+        "right": 3080,
+        "top": -4074.3253205128203,
+        "bottom": 7217.32532051282
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6720,
+        "bottom": 3383
+      },
+      "zoomLimits": {
+        "min": 0.057352941176470586,
+        "max": 1.65,
+        "tactical": 0.057352941176470586,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "actorCount": 34,
+      "tide": null,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "physicsSHA256": "d53af44e03158083d1e87486659bec2d8f86d2f2f6b130949d592a87ec3b88d9",
+      "pngSHA256": "2436e9ccc20a5f5c149da07a5ceb02e47436acf44c5e4d9729d7cc083a9764d8"
+    },
+    {
+      "id": 41,
+      "key": "s41-390x844-east",
+      "viewportCSS": [
+        390,
+        844
+      ],
+      "view": "east",
+      "actual": {
+        "x": 6720,
+        "y": 1571.5,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": 3320,
+        "right": 10120,
+        "top": -4074.3253205128203,
+        "bottom": 7217.32532051282
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6720,
+        "bottom": 3383
+      },
+      "zoomLimits": {
+        "min": 0.057352941176470586,
+        "max": 1.65,
+        "tactical": 0.057352941176470586,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "actorCount": 34,
+      "tide": null,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "physicsSHA256": "d53af44e03158083d1e87486659bec2d8f86d2f2f6b130949d592a87ec3b88d9",
+      "pngSHA256": "f9451ef800baf947bd1bbff1f492e5fbe5a063e501d6e97c9f77d3a42b2a3dd3"
+    },
+    {
+      "id": 41,
+      "key": "s41-390x844-northeast",
+      "viewportCSS": [
+        390,
+        844
+      ],
+      "view": "northeast",
+      "actual": {
+        "x": 6720,
+        "y": -1800,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": 3320,
+        "right": 10120,
+        "top": -7445.82532051282,
+        "bottom": 3845.8253205128203
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6720,
+        "bottom": 3383
+      },
+      "zoomLimits": {
+        "min": 0.057352941176470586,
+        "max": 1.65,
+        "tactical": 0.057352941176470586,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "actorCount": 34,
+      "tide": null,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "physicsSHA256": "d53af44e03158083d1e87486659bec2d8f86d2f2f6b130949d592a87ec3b88d9",
+      "pngSHA256": "fb52107afa233c78384dd8ff3cc8224a45f4bc1a033c0698c31ab691c0d3ad1c"
+    },
+    {
+      "id": 42,
+      "key": "s42-1440x900-east",
+      "viewportCSS": [
+        1440,
+        900
+      ],
+      "view": "east",
+      "actual": {
+        "x": 6820,
+        "y": 1430.5,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": 3420,
+        "right": 10220,
+        "top": -385.6371527777778,
+        "bottom": 3246.637152777778
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6820,
+        "bottom": 3101
+      },
+      "zoomLimits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "actorCount": 34,
+      "tide": null,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "physicsSHA256": "8b414b90e43c7f7e1ea685a254b4fa4cd6d5db525ce96083c39059ff5433ba0f",
+      "pngSHA256": "a38f4e03835d6b7db7815116d955b8bf33eaf168549b92be0efd5c65bbe4aa29"
+    },
+    {
+      "id": 42,
+      "key": "s42-390x844-east",
+      "viewportCSS": [
+        390,
+        844
+      ],
+      "view": "east",
+      "actual": {
+        "x": 6820,
+        "y": 1430.5,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": 3420,
+        "right": 10220,
+        "top": -4215.32532051282,
+        "bottom": 7076.32532051282
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6820,
+        "bottom": 3101
+      },
+      "zoomLimits": {
+        "min": 0.057352941176470586,
+        "max": 1.65,
+        "tactical": 0.057352941176470586,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "actorCount": 34,
+      "tide": null,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "physicsSHA256": "8b414b90e43c7f7e1ea685a254b4fa4cd6d5db525ce96083c39059ff5433ba0f",
+      "pngSHA256": "6f92c9b4060c8eecd26a4b38984c677f230f6964c77415acb5b252265d28f420"
+    }
+  ],
+  "browser": "151.0.7922.34",
+  "nativeDisc": [
+    107.3,
+    169.3,
+    34
+  ],
+  "worldDisc": [
+    6586.8180862250265,
+    1283.0956887486855,
+    274.57413249211356
+  ],
+  "ordinary": [
+    3200,
+    1571.5,
+    0.5
+  ],
+  "gradientKey": "east-shoulder-unified-paint",
+  "sourceFill": "#83766d",
+  "shoulderFill": "#81715e"
+}
