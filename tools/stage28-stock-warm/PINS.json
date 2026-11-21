@@ -1,0 +1,205 @@
+{
+  "base": "acb51f4ee1c5afa90751dc256d6ad8d900732779",
+  "tree": "5cc36cfd7ef62fc801dc967605260610596d8061",
+  "publishedRun": 44918541021,
+  "publishedJob": 136889673324,
+  "repo": "sys8994/honro",
+  "baseCompiledRuntime": "web/runtime/ordered-common-11.6adcb81897ec0663.js",
+  "manifest": {
+    "bytes": 6458505,
+    "sha256": "e274ee2d3dbfee5ce35dfccd6055bfa1a898e3804bde80b687fd49f890c4079b",
+    "git": "264dc2eaa4a48d683aff9519b3281c961071c49e"
+  },
+  "witness": {
+    "run": 44922966956,
+    "head": "65ab6389a1d1deb26006d364b919e85d7ccdf109",
+    "stage28Receipt": 14715185043,
+    "stage3Receipt": 14714262330,
+    "stage28ReceiptSHA256": "47551547c819b5a9764575b3ab86553a0c9b5be0a2dd362fbbe7b5b670092382"
+  },
+  "sourcePath": "shared/map/terrain-domain.js",
+  "sourceA": {
+    "bytes": 25687,
+    "sha256": "50772ada658c33f0f514465b4fc161587a1a648d7c19eec0d2f2de80ddd5c3ae",
+    "git": "7713f7d4f233569a9e3c54ef19ad92ac33d17bd6"
+  },
+  "branch": "refs/heads/qa/stage28-stock-warm-causality-acb51",
+  "browserVersion": "151.0.7922.34",
+  "r2Run": 44926667023,
+  "reference": {
+    "stage": 28,
+    "device": [
+      390,
+      844
+    ],
+    "provider": {
+      "stage": "stage-28",
+      "compact": null,
+      "width": 7200,
+      "height": 3400
+    },
+    "requests": {
+      "HONRO.html": {
+        "bytes": 17379,
+        "sha256": "7f0b08897737d44f4f7d9a436e703b7ec48659fcb121098ea1cffd5b1f93d46d"
+      },
+      "web/data/campaign-base.0c57dcfe7c08d421.json": {
+        "bytes": 257,
+        "sha256": "0c57dcfe7c08d421901ffa8eeb437940b6b6d4779816207b51dca7be44c73e5e"
+      },
+      "web/data/campaign-shared.8f8343b5c21518d4.json": {
+        "bytes": 577195,
+        "sha256": "8f8343b5c21518d4fdaa2314e58031fd137b8622d3a6c1ca2fdabafde3bb158f"
+      },
+      "web/data/campaign.7140da5d3649e4ab.json": {
+        "bytes": 54961,
+        "sha256": "7140da5d3649e4aba2c58e180c8ff3f6f171a70e5e6704ad05dc98d428c52822"
+      },
+      "web/data/chapter-28-assets.9b95d021f7459229.json": {
+        "bytes": 657004,
+        "sha256": "9b95d021f74592295f8c05ec2aa016933a76677374b8145eaef2b8cebf616363"
+      },
+      "web/data/chapter-28.d766fe99060834a0.json": {
+        "bytes": 30884,
+        "sha256": "d766fe99060834a05e751bf383867168d504d6d934d1260c4b32a50b1c150639"
+      },
+      "web/entries/game.b0b1e648c2c03457.js": {
+        "bytes": 20483,
+        "sha256": "b0b1e648c2c034576f5e2c701faaa06c4a8f6dca7459e3f54f07fdb94bf61dee"
+      },
+      "web/runtime/campaign.926544619e01a04a.js": {
+        "bytes": 527,
+        "sha256": "926544619e01a04af2f2cc0e2bd435265ae9efff23062e259563bded6d851307"
+      },
+      "web/runtime/load-data.248fb3aada6f16bb.js": {
+        "bytes": 15550,
+        "sha256": "248fb3aada6f16bbe2d7df7e369db772df2d923bc91b1e517daa53858f558dcb"
+      }
+    },
+    "directions": [
+      "north"
+    ]
+  },
+  "frame": {
+    "actual": {
+      "x": 3600,
+      "y": -1800,
+      "scale": 0.057352941176470586
+    },
+    "viewport": {
+      "left": 200,
+      "right": 7000,
+      "top": -7445.82532051282,
+      "bottom": 3845.8253205128203
+    },
+    "focus": {
+      "left": -320,
+      "top": -1800,
+      "right": 7520,
+      "bottom": 3640
+    },
+    "play": {
+      "left": 0,
+      "top": 0,
+      "right": 7200,
+      "bottom": 3400
+    },
+    "terrain": {
+      "left": -9000,
+      "top": -24000,
+      "right": 16200,
+      "bottom": 27400
+    },
+    "css": [
+      390,
+      647.609375
+    ],
+    "backing": [
+      390,
+      648
+    ],
+    "dpr": 1,
+    "phase": "aim",
+    "round": 1,
+    "sceneTime": 2,
+    "physics": "cdecbdc69d660f4cc675c7aa79e9c11064157d1c793961bb49df993d7ce4c4d6",
+    "actualTerrainIDs": [
+      "a3-foundation",
+      "fire-door",
+      "water-gate",
+      "s28-west-veranda",
+      "s28-east-loading-veranda",
+      "s28-roof-access-west",
+      "s28-roof-access-court-lower",
+      "s28-roof-access-court-upper",
+      "s28-roof-access-annex",
+      "s28-roof-access-water",
+      "s28-west-clerks-wing-roof:collision:0",
+      "s28-raised-open-record-hall-roof:collision:0",
+      "s28-east-record-annex-roof:collision:0",
+      "s28-water-yard-shed-roof:collision:0",
+      "s28-west-service-canopy:collision:0",
+      "s28-annex-west-awning:collision:0",
+      "s28-annex-east-awning:collision:0"
+    ],
+    "actualDrawOwnerIDs": [
+      "act1-scene:rooted-pine",
+      "act3-handoff:28:office-foundation",
+      "stage28:record-court:annex-east-awning",
+      "stage28:record-court:annex-west-awning",
+      "stage28:record-court:approval-worktable",
+      "stage28:record-court:boundary-walls",
+      "stage28:record-court:charred-west-fittings",
+      "stage28:record-court:court-plinth",
+      "stage28:record-court:east-record-annex-rear",
+      "stage28:record-court:east-record-annex-roof",
+      "stage28:record-court:fire-water-basin",
+      "stage28:record-court:mound-stone-shoulders",
+      "stage28:record-court:petition-worktable",
+      "stage28:record-court:raised-open-record-hall-rear",
+      "stage28:record-court:raised-open-record-hall-roof",
+      "stage28:record-court:roof-access-support-annex",
+      "stage28:record-court:roof-access-support-court-lower",
+      "stage28:record-court:roof-access-support-court-upper",
+      "stage28:record-court:roof-access-support-water",
+      "stage28:record-court:roof-access-support-west",
+      "stage28:record-court:suppression-worktable",
+      "stage28:record-court:veranda-supports",
+      "stage28:record-court:water-yard-shed-rear",
+      "stage28:record-court:water-yard-shed-roof",
+      "stage28:record-court:west-clerks-wing-charred-frame",
+      "stage28:record-court:west-clerks-wing-rear",
+      "stage28:record-court:west-clerks-wing-roof",
+      "stage28:record-court:west-service-canopy"
+    ],
+    "unitCount": 29,
+    "referencePNG": {
+      "bytes": 148895,
+      "sha256": "341178607e56844ac7c95de31c3e897e868a173776a8c71533c1c3b89e9b7bf8"
+    },
+    "positive": false
+  },
+  "nativeRuntime": {
+    "bytes": 177221,
+    "sha256": "6adcb81897ec06638dc92386b515b2f8ff10ee38a60c6fa4fb2d9040be22ea77"
+  },
+  "originalObserver": {
+    "park.js": "a0b865f06fb9a31560129c6aa085f2aacf34e99ddbac4e8bbd8039946bf8c9ef",
+    "observe.js": "95aaf325d6addb67bbb8fced022cbd13e684adf9f27b4ef788bd54a21d3c7cff",
+    "stock-observer.json": "5e51ec3f6a3a1aa31126fc149b10279996c503ae639bf078d6bc91aa598bfb22"
+  },
+  "shells": {
+    "HONRO.html": {
+      "bytes": 17379,
+      "sha256": "7f0b08897737d44f4f7d9a436e703b7ec48659fcb121098ea1cffd5b1f93d46d"
+    },
+    "HONRO_WORKSHOP.html": {
+      "bytes": 4011,
+      "sha256": "d143e5de877a183302966e43aef3f684c9ca305bb09437d8de99f987c68404ad"
+    },
+    "index.html": {
+      "bytes": 17379,
+      "sha256": "7f0b08897737d44f4f7d9a436e703b7ec48659fcb121098ea1cffd5b1f93d46d"
+    }
+  }
+}

@@ -1,0 +1,55 @@
+name: HONRO Stage28 published stock warm causal diagnostic only
+on:
+  push:
+    branches: [qa/stage28-stock-warm-causality-acb51]
+    paths:
+      - .github/workflows/stage28-stock-warm.yml
+      - tools/stage28-stock-warm/**
+permissions:
+  contents: read
+jobs:
+  stock:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage28-stock-warm-causality-acb51'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 17
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Exact immutable stock A and add-only scope
+        shell: bash
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: |
+          set -euo pipefail
+          test -z "${GH_TOKEN:-}${GITHUB_TOKEN:-}"
+          T="$RUNNER_TEMP/stage28-stock-warm"
+          mkdir "$T" "$T/out"
+          echo "WORK=$T" >> "$GITHUB_ENV"
+          python "$GITHUB_WORKSPACE/tools/stage28-stock-warm/guard.py" "$T"
+      - name: Two clean normal mobile north stock contexts; no candidate, no app redirects
+        shell: bash
+        timeout-minutes: 12
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: |
+          set -euo pipefail
+          test -z "${GH_TOKEN:-}${GITHUB_TOKEN:-}"
+          Q="$GITHUB_WORKSPACE/tools/stage28-stock-warm"
+          python3 -m venv "$WORK/venv"
+          V="$WORK/venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+          python -m http.server 18891 --bind 127.0.0.1 --directory "$WORK/A" > "$WORK/out/http-A.log" 2>&1 &
+          a=$!
+          trap 'kill "$a" 2>/dev/null || true' EXIT
+          curl -fsS --retry 8 --retry-connrefused 'http://127.0.0.1:18891/HONRO.html' -o /dev/null
+          "$V" "$Q/capture.py" "$WORK"
+      - if: always() && env.WORK != ''
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage28-stock-warm-causality-only
+          path: ${{ runner.temp }}/stage28-stock-warm/out/
+          retention-days: 7
+          if-no-files-found: error
