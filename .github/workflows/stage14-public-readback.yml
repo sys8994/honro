@@ -1,0 +1,39 @@
+name: HONRO Stage14 anonymous published readback only
+on:
+  push:
+    branches: [qa/stage14-public-readback]
+    paths:
+      - .github/workflows/stage14-public-readback.yml
+      - tools/stage14-public-readback/**
+permissions:
+  contents: read
+jobs:
+  public:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage14-public-readback'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+          fetch-depth: 2
+      - name: Anonymous Pages bytes and actual 16 native PC mobile views
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -z "${GH_TOKEN:-}${GITHUB_TOKEN:-}"
+          mkdir "$RUNNER_TEMP/stage14-public"
+          python3 -m venv "$RUNNER_TEMP/stage14-public/venv"
+          V="$RUNNER_TEMP/stage14-public/venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+          "$V" tools/stage14-public-readback/capture.py "$RUNNER_TEMP/stage14-public/out"
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage14-public-readback-no-release-action
+          path: ${{ runner.temp }}/stage14-public/out/
+          retention-days: 7
+          if-no-files-found: error
