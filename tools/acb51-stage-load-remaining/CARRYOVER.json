@@ -1,0 +1,185 @@
+{
+  "ready": true,
+  "wire": {
+    "job": 136895411615,
+    "artifact": {
+      "id": 14713034941,
+      "name": "honro-acb51-loadability-all-wire-no-deploy",
+      "bytes": 14238,
+      "sha256": "39b4e2b2d102911318f8df24981c9308046adcc9466fb84263591d8e1df1e03a"
+    },
+    "receipt": {
+      "bytes": 130273,
+      "sha256": "d9ba997f8a52336d8e267061abf8505380ac450290805adcee3c2c740aeeae74"
+    }
+  },
+  "inherited": {
+    ".github/workflows/acb51-stage-load-canaries.yml": {
+      "bytes": 2605,
+      "sha256": "1e2840046af77b6d893d90dd52e7e8ffb34ecff441116fbc70d76992843cb593"
+    },
+    "tools/acb51-stage-load-canaries/BODY-REFERENCE.json": {
+      "bytes": 4239,
+      "sha256": "19a4fcaa13004cbefc8a822a234b5db3fe79f0f1c08747e863f4b35a0ddfdd23"
+    },
+    "tools/acb51-stage-load-canaries/load.py": {
+      "bytes": 14827,
+      "sha256": "ed516b18edf9646e985c663e195d686e68d9b94f5aca4d79b60811762612076c"
+    },
+    "tools/acb51-stage-load-canaries/source.py": {
+      "bytes": 13462,
+      "sha256": "aaea1b76e4ab750c4f8ea399af12e4c1afe92a420355ad611d920af1f4a91eeb"
+    }
+  },
+  "canaries": {
+    "Act5": {
+      "job": 136895411601,
+      "artifact": {
+        "id": 14713691943,
+        "name": "honro-acb51-loadability-Act5-no-deploy",
+        "bytes": 1449284,
+        "sha256": "462b7f078cc6e8bc5599650185e746e328cd1089a6306ecbe0d4513f328cb87f"
+      },
+      "chrome": {
+        "bytes": 9851,
+        "sha256": "3d53acd24ccfdd1d96a695776ca8e8836c2869b25faa371aece1b218a79645dc"
+      },
+      "visits": {
+        "s46-1440x900": {
+          "raw": "s46-1440x900-raw.png",
+          "physics": "cb6512695ecc16c3b1c7c10046aaa23b4c7b46014b0aed16cf888a6cc35ab1ed"
+        },
+        "s46-390x844": {
+          "raw": "s46-390x844-raw.png",
+          "physics": "cb6512695ecc16c3b1c7c10046aaa23b4c7b46014b0aed16cf888a6cc35ab1ed"
+        }
+      },
+      "pngs": {
+        "s46-1440x900-raw.png": {
+          "bytes": 1055732,
+          "sha256": "44d14ec53baf3624335d965fc4c114e32b30800742b07e1fcf447cdde22dc5f6"
+        },
+        "s46-390x844-raw.png": {
+          "bytes": 387653,
+          "sha256": "145c3671d4fb9f526a9c36db90c840ee65c1c958c296c5b2a90498b6a45b3e7e"
+        }
+      }
+    },
+    "Act3": {
+      "job": 136895411483,
+      "artifact": {
+        "id": 14713453798,
+        "name": "honro-acb51-loadability-Act3-no-deploy",
+        "bytes": 520062,
+        "sha256": "3f110a8b92a256c3c60aa5ced123cb167ed40ba9ae8473392faeb657097e55be"
+      },
+      "chrome": {
+        "bytes": 10258,
+        "sha256": "0b72fece0d4a8e15b703546a2b6604f70c9c745bdcf3c7ea8dc48a4016f712fc"
+      },
+      "visits": {
+        "s24-1440x900": {
+          "raw": "s24-1440x900-raw.png",
+          "physics": "4f2176310fc331d0c8d37fcbba29f9df89b3e438b26fe800ac6b19cc935b61e0"
+        },
+        "s24-390x844": {
+          "raw": "s24-390x844-raw.png",
+          "physics": "4f2176310fc331d0c8d37fcbba29f9df89b3e438b26fe800ac6b19cc935b61e0"
+        }
+      },
+      "pngs": {
+        "s24-1440x900-raw.png": {
+          "bytes": 420466,
+          "sha256": "cee6c62c374b9c4bf2799fb62acfed1196582af0dfa2265990877e533a3ee592"
+        },
+        "s24-390x844-raw.png": {
+          "bytes": 131040,
+          "sha256": "1ce2af399aebb9216f7e563c2b4a2d41dce6397d1295e3b3a8a2a0172e4c7000"
+        }
+      }
+    },
+    "Act2": {
+      "job": 136895411632,
+      "artifact": {
+        "id": 14713374032,
+        "name": "honro-acb51-loadability-Act2-no-deploy",
+        "bytes": 1560538,
+        "sha256": "2ec3701c5f48507e58fec6b9aa5a3ee0f2972b901791e4ca2c4463e74605cfc2"
+      },
+      "chrome": {
+        "bytes": 9856,
+        "sha256": "015ba8bec903ef6087cd4069e081eca88ddfede0bf28d24088dfe1c287d6af6c"
+      },
+      "visits": {
+        "s11-1440x900": {
+          "raw": "s11-1440x900-raw.png",
+          "physics": "92da1b6d5e855d33335574dc58288b8c796c478850a39080f767f9d0126335d4"
+        },
+        "s15-1440x900": {
+          "raw": "s15-1440x900-raw.png",
+          "physics": "99969df4447f9a8c930ff3d94d5b5777ab8baee8b6fb76e2a48bfec5e971ba7a"
+        }
+      },
+      "pngs": {
+        "s11-1440x900-raw.png": {
+          "bytes": 1105646,
+          "sha256": "e12d8fafd44ed34597502d7816614c3ef7d8a96d1aa339baa369655c2f49ab9b"
+        },
+        "s15-1440x900-raw.png": {
+          "bytes": 455540,
+          "sha256": "def739f2fa5a91585f3b5d912907226f6f5914f002898c7748634922484a763d"
+        }
+      }
+    },
+    "Act1": {
+      "job": 136895411619,
+      "artifact": {
+        "id": 14713193025,
+        "name": "honro-acb51-loadability-Act1-no-deploy",
+        "bytes": 953456,
+        "sha256": "9bff6e3af887b67e0635173c00fa94a29e144f71ee16182ef134e395cc377419"
+      },
+      "chrome": {
+        "bytes": 4319,
+        "sha256": "00d15a772b93ef034fe8c059c3ac06395da019e1bbdd3360fa22ac650a1292d1"
+      },
+      "visits": {
+        "s02-1440x900": {
+          "raw": "s02-1440x900-raw.png",
+          "physics": "d8ee51c184d36a66b54673d54d63ed6f9d76422c045df9721a6a7d38bde39fd3"
+        }
+      },
+      "pngs": {
+        "s02-1440x900-raw.png": {
+          "bytes": 949437,
+          "sha256": "a858864978b8c680fc056296f92cf63c2092b4ba7a4809042cfc87fbed5ee99a"
+        }
+      }
+    },
+    "Act4": {
+      "job": 136895411599,
+      "artifact": {
+        "id": 14712464755,
+        "name": "honro-acb51-loadability-Act4-no-deploy",
+        "bytes": 1201717,
+        "sha256": "e866ab049f58f9a90b44acf7639c81a3bae520bb12d95af6e14a4143c9e30449"
+      },
+      "chrome": {
+        "bytes": 4864,
+        "sha256": "207ac2029216f960c4d32a2fecdaa0e1d4f0f782d2f036946760e5a9a98d0271"
+      },
+      "visits": {
+        "s38-1440x900": {
+          "raw": "s38-1440x900-raw.png",
+          "physics": "a69422fbb74cf815f8edb6c135e12c0875b30ecec799f3b5e9fd4f826ebb2d3b"
+        }
+      },
+      "pngs": {
+        "s38-1440x900-raw.png": {
+          "bytes": 1195906,
+          "sha256": "93205ba46eea1f88fe2d5b31f44ba4fe61ca668b45174e4faac6661def434df2"
+        }
+      }
+    }
+  }
+}

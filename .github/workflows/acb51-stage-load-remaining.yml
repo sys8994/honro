@@ -1,0 +1,55 @@
+name: HONRO acb51 remaining exact scene-load component (QA only)
+on:
+  push:
+    branches: [qa/acb51-loadability-remaining]
+    paths:
+      - '.github/workflows/acb51-stage-load-remaining.yml'
+      - 'tools/acb51-stage-load-remaining/**'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  scene-load:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/acb51-loadability-remaining'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    strategy:
+      max-parallel: 4
+      fail-fast: false
+      matrix:
+        shard: [Act1, Act2, Act3, Act4, Act5]
+    env:
+      SHARD: ${{ matrix.shard }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 3
+          persist-credentials: false
+      - name: Read-only same release and proven prior artifact scope
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          W="$(mktemp -d "$RUNNER_TEMP/acb51-load-extension.XXXXXX")"
+          mkdir "$W/out"
+          echo "WORK=$W" >> "$GITHUB_ENV"
+          python tools/acb51-stage-load-remaining/extend.py authority "$W" "$SHARD"
+      - name: Exact anonymous Chrome only for uncaptured current stages
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -z "${GH_TOKEN:-}${GITHUB_TOKEN:-}"
+          python -m venv "$WORK/venv"
+          V="$WORK/venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+          "$V" tools/acb51-stage-load-remaining/extend.py app "$WORK" "$SHARD"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always() && env.WORK != ''
+        with:
+          name: honro-acb51-loadability-remaining-${{ matrix.shard }}-no-deploy
+          path: ${{ env.WORK }}/out
+          if-no-files-found: error
+          retention-days: 7
