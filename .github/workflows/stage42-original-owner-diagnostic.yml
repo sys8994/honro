@@ -1,0 +1,49 @@
+name: HONRO Stage42 A P and previously rejected H (read-only native diagnostic)
+on:
+  push:
+    branches: [qa/stage42-original-owner-diagnostic]
+    paths:
+      - .github/workflows/stage42-original-owner-diagnostic.yml
+      - tools/stage42-original-owner-diagnostic/**
+permissions:
+  contents: read
+jobs:
+  owner-stage42:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage42-original-owner-diagnostic'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 5
+          persist-credentials: false
+          lfs: false
+      - name: Check exact QA ancestry and reversible historic payload recipes
+        shell: bash
+        run: |
+          set -euo pipefail
+          sha256sum -c <<'SUMS'
+          93749cf01a31443ac307b832980af5de2e83a653d04880682d362368a0a29e7c  tools/stage42-original-owner-diagnostic/AUTH.json
+          77a0b830051e1cc25c9d8f6679eb426767a99fc2ffc6a07176588ed9323dc7b4  tools/stage42-original-owner-diagnostic/RECIPE.json
+          6be7df17959e7192dc68271f1cd2c6801a9ad3eb559ced7b14af89972a9842e4  tools/stage42-original-owner-diagnostic/carrier.py
+          9aed8a955c24ba13afae99cb996c9f8d1efe5afdcaa8ba79e94d0962058d1a9a  tools/stage42-original-owner-diagnostic/recipes.py
+          SUMS
+          python3 tools/stage42-original-owner-diagnostic/carrier.py --repo "$GITHUB_WORKSPACE" --out "$RUNNER_TEMP/stage42-owner-diagnostic" --preflight
+      - name: Normal RAW and DOM first, then native tile owner observation
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m venv "$RUNNER_TEMP/stage42-owner-venv"
+          V="$RUNNER_TEMP/stage42-owner-venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+          "$V" tools/stage42-original-owner-diagnostic/carrier.py --repo "$GITHUB_WORKSPACE" --out "$RUNNER_TEMP/stage42-owner-diagnostic"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: honro-stage42-old-owner-two-native-tiles-forensic-no-deploy
+          path: ${{ runner.temp }}/stage42-owner-diagnostic/
+          if-no-files-found: error
+          retention-days: 7
