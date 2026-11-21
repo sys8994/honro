@@ -1,0 +1,43 @@
+name: HONRO Stage7 root line retained normal-output assembly (QA only)
+on:
+  push:
+    branches: [qa/stage7-root-line-retention-42879]
+    paths:
+      - .github/workflows/stage7-stage21-retention.yml
+      - tools/stage7-stage21-retention/**
+permissions:
+  contents: read
+  actions: read
+jobs:
+  seal:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage7-root-line-retention-42879'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Verify completed exact normal-build and browser artifact
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          WORK="$RUNNER_TEMP/stage7-stage21-retention"
+          mkdir "$WORK" "$WORK/delivery"
+          echo "WORK=$WORK" >> "$GITHUB_ENV"
+          python tools/stage7-stage21-retention/retain.py authority "$WORK"
+      - name: Assemble and verify exact retained web delta only
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -z "${GH_TOKEN:-}${GITHUB_TOKEN:-}"
+          python tools/stage7-stage21-retention/retain.py seal "$WORK"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage7-root-line-retained-source-and-generated-no-deploy
+          path: ${{ runner.temp }}/stage7-stage21-retention/delivery/
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 7
