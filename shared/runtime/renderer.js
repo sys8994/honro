@@ -31,6 +31,58 @@
             L(c, xx, -h * .62, xx + 3, -h * .48, '#93695677', 1);
         }
     } c.restore(); }
+ const stage15TerrainRelief={"ids":["act2-compact:stage15-act2-stage15-traced-outer-v1-1","act2-compact:stage15-act2-stage15-traced-west-flat-v2-1"],"symbol":"compact15-source-world","domain":[-5000,-25600,10800,28400],"terrainIds":["cave-roof","act2-floor"],"northOwners":["v15-finish-cave-roof-face-2-1","v15-finish-cave-roof-face-2-2","v15-finish-cave-roof-face-2-3","v15-finish-cave-roof-face-2-4","v15-finish-cave-roof-face-2-5","v15-finish-cave-roof-face-2-6","v15-finish-cave-roof-face-2-7","v15-finish-cave-roof-face-2-8","v15-finish-cave-roof-face-2-9","v15-finish-cave-roof-face-2-10","v15-finish-cave-roof-deep-return-1","v15-finish-cave-roof-deep-return-2","v15-finish-cave-roof-deep-return-3","v15-finish-cave-roof-deep-return-4","v15-finish-cave-roof-deep-return-5","v15-finish-cave-roof-deep-return-6","v15-finish-cave-roof-deep-return-7","v15-finish-cave-roof-deep-return-8","v15-finish-cave-roof-deep-return-9","v15-finish-cave-roof-deep-return-10"],"southOwners":["v15-finish-act2-floor-face-3-1","v15-finish-act2-floor-face-3-2","v15-finish-act2-floor-face-3-3","v15-finish-act2-floor-face-3-4","v15-finish-act2-floor-face-3-5","v15-finish-act2-floor-face-3-6","v15-finish-act2-floor-face-3-7","v15-finish-act2-floor-face-3-8","v15-finish-act2-floor-face-3-9","v15-finish-act2-floor-face-3-10","v15-finish-act2-floor-face-3-11","v15-finish-act2-floor-face-3-12"],"north":{"min":-2102,"max":-83.05999999999995,"polygons":[[[[-5000,-2611.18],[-5000,-611.18],[-3583.333333333333,-456.06999999999994],[-2250,-701.63],[-1041.6666666666665,-83.05999999999995],[0,-637.970071942446],[98,-700.12],[700,-170.32525252525238],[739,-90.24000000000001],[814,-132.58999999999992],[856,-382.71000000000004],[946,-329.8900000000001],[1000,-357.93399999999997],[1070,-368.8399999999999],[1630,-314.96307692307687],[1885.4054054054054,-281.28999999999996],[1900,-318.97077922077915],[2500,-1732],[2940,-1644.2984042553192],[3227.766990291262,-1582.11],[3404.8543689320386,-1591.44],[3500.776699029126,-1788.4],[3700,-1584.8363636363636],[3760,-1539.6],[3990,-1530.13],[4670,-810.4325242718445],[4928.333333333333,-440],[5600,-854.53],[5800,-696.7310714285713],[6366.666666666667,-452.8599999999999],[7550,-719.89],[8966.666666666666,-551.0999999999999],[10800,-1196],[10800,-3296],[10800,-25600],[8800,-25600],[6850,-25600],[5800,-25600],[5600,-25600],[5385.952380952381,-25600],[4670,-25600],[3850,-25600],[3700,-25600],[2940,-25600],[2428,-25600],[1900,-25600],[1630,-25600],[1000,-25600],[961,-25600],[700,-25600],[0,-25600],[-1625,-25600],[-3250,-25600],[-5000,-25600]]]]},"south":{"min":4588.44,"max":6402,"polygons":[[[[-4920,5093.1244470588235],[-4904,5615.73],[-4916,6328.4991],[-4912,7159.929335384615],[-3916.666666666667,7573.889999999999],[-2500,7132.26],[-1125,8281.34],[0,7625.013548387098],[140,7527.780000000001],[700,7805.220000000001],[955,8100],[1000,8070.649090909092],[1630,7947.375272727273],[1900,7874.976363636364],[2300,7777.139999999999],[2940,8372.664848484848],[3567.1844660194174,9005.41],[3700,8907.160705882354],[4670,8377.706176470589],[5075.952380952381,8077.5],[5600,8063.835542857143],[5800,8055.367428571428],[6300,8043.82],[7675,7497.299999999999],[8883.333333333334,8040.92],[9966.666666666668,7243.280000000001],[10800,7380],[10800,5080],[9716.666666666666,4936.91],[8300,5592.46],[6883.333333333333,5032.18],[5800,5626.983529411765],[5618.181818181818,5810],[5600,5815.88962962963],[4670,6001.412962962962],[4350,6048.53],[3700,6159.309746835443],[3013.78640776699,6317.81],[2940,6256.0233333333335],[1900,5452.796666666667],[1717.5675675675675,5298.33],[1630,5314.151818181818],[1000,5397.216363636364],[730,5515.88],[700,5480.8966666666665],[0,5131.0633333333335],[-333.33333333333303,4991.13],[-1916.6666666666665,5615.73],[-3583.333333333333,4588.44],[-4920,5093.1244470588235]]]]},"pin":[102354,1579359843,1203750087]};
+ const stage15TerrainReliefOwnerIds=new Set([...stage15TerrainRelief.northOwners,...stage15TerrainRelief.southOwners]);
+ function stage15TerrainReliefSource(pack){
+  const p=stage15TerrainRelief,t=pack?.stage;
+  if(pack?.revision!==1||pack.mapRevision!==615||t?.metadata?.stageId!==15||
+   t.width!==5800||t.height!==4200||!Array.isArray(pack.assets)||
+   !Array.isArray(t.elements)||!Array.isArray(t.terrains)||!Array.isArray(t.design?.space?.terrainPlanes))return null;
+  const assets=p.ids.map(id=>pack.assets.filter(a=>a?.id===id));
+  if(assets.some(a=>a.length!==1))return null;
+  const [outer,west]=assets.map(a=>a[0]);
+  const local=t.elements.filter(r=>p.ids.includes(r?.assetId)),
+   physical=t.terrains.filter(r=>p.terrainIds.includes(r?.id)),
+   planes=t.design.space.terrainPlanes.filter(r=>stage15TerrainReliefOwnerIds.has(r?.id));
+  if(local.length!==2||physical.length!==2||planes.length!==stage15TerrainReliefOwnerIds.size)return null;
+  const text=JSON.stringify([pack.revision,pack.mapRevision,t.terrainBounds,local,physical,planes,
+   [outer,west].map(a=>[a.id,a.bounds,a.vector])]);
+  if(text.length!==p.pin[0])return null;
+  let lo=0x811c9dc5,hi=0x9e3779b9;
+  for(let i=0;i<text.length;i++){
+   const n=text.charCodeAt(i);lo=Math.imul(lo^n,0x01000193);hi=Math.imul(hi^n,0x85ebca6b);
+  }
+  return (lo>>>0)===p.pin[1]&&(hi>>>0)===p.pin[2]?outer:null;
+ }
+ function stage15TerrainReliefAsset(a,mask){
+  const p=stage15TerrainRelief,v=a.vector;
+  if(!v||v.version!==1||v.root?.tag!=='g'||v.root.transform||v.root.clipPath||
+   v.root.children?.length!==11||Object.keys(v.symbols||{}).length!==1||!Object.hasOwn(v.symbols,p.symbol))return null;
+  const c=structuredClone(v),old=JSON.stringify(c.symbols[p.symbol]),symbols={};
+  const rect=[[-40000,-40000],[40000,-40000],[40000,40000],[-40000,40000]];
+  const inverse=(ring,t)=>'M'+ring.map(([x,y])=>((x-t[4])/t[0])+','+((y-t[5])/t[3])).join('L')+'Z';
+  for(let i=0;i<c.root.children.length;i++){
+   const strip=c.root.children[i],s=strip.transform;
+   if(strip.tag!=='g'||strip.clipPath!=='compact15-strip-'+i||strip.pixelSnapClip!==true||
+    strip.children?.length!==1||strip.children[0]?.tag!=='use'||strip.children[0].symbol!==p.symbol||
+    s?.length!==6||s[0]<=0||s[1]||s[2]||s[3]!==1||s[5]!==-1600)return null;
+   const copy=JSON.parse(old),first=copy.children?.[0]?.children?.[0],traced=first?.children?.[1],d=traced?.transform;
+   const flat1=first?.children?.[0],flat2=traced?.children?.[0]?.children?.[0]?.children?.[0];
+   if(flat1?.tag!=='path'||flat1.fill!=='#283b46'||flat1.clipPath||flat1.transform||
+    flat2?.tag!=='path'||flat2.fill!=='#283b46'||flat2.clipPath||flat2.transform||
+    d?.length!==6||d[0]<=0||d[1]||d[2]||d[3]<=0||d[5]!==-500)return null;
+   const total=[s[0]*d[0],0,0,s[3]*d[3],s[0]*d[4]+s[4],s[3]*d[5]+s[5]];
+   for(const [j,flat,t]of [[0,flat1,s],[1,flat2,total]]){
+    const name='stage15-relief-keep-'+i+'-'+j;
+    c.clips[name]=[inverse(rect,t)+' '+mask.polygons.flatMap(poly=>poly.map(ring=>inverse(ring,t))).join(' ')];
+    flat.clipPath=name;
+   }
+   const name='stage15-relief-strip-'+i;symbols[name]=copy;strip.children[0].symbol=name;
+  }
+  c.symbols=symbols;
+  const issues=G.HonroVectorArt?.validate(c);if(!Array.isArray(issues)||issues.length)return null;
+  return {...a,vector:c};
+ }
     class Scene {
         constructor(canvas) { this.canvas = canvas; this.ctx = canvas.getContext('2d'); this.x = 800; this.y = 850; this.scale = .7; this.manual = false; this.time = 0; this.effects = []; this.theme = 'forest'; this._staticWorldCache=null; this._backgroundCache=null; this._cacheStats={worldBuilds:0,worldBuildMs:0,bgBuilds:0,bgBuildMs:0,worldHits:0,bgHits:0}; this.focusId=null;this.focusUntil=0;this.speakerId=null;this.speakerUntil=0;this.storyTween=null;this.archerVisual = G.HonroArcherVisual ? new G.HonroArcherVisual(G.HONRO_ARCHER,G.HonroVectorRig) : null; this.arcFx = G.HONRO_CORE.Renderer ? new G.HONRO_CORE.Renderer(canvas) : null; }
         finaleRitual(c,b){
@@ -329,6 +381,59 @@
             clip.rect(domain.left,domain.top,domain.right-domain.left,domain.bottom-domain.top);
             return{...l,honroTerrainMaterialClip:clip};
         }
+  _stage15TerrainReliefLandmarks(b,domain,stock,view,rs) {
+   const p=stage15TerrainRelief,[left,top,right,bottom]=p.domain;
+   if(b.honroStage!==15||b.honroCustom!==false||!b.honroCanonical||b.honroCampaignMapRevision!==615||
+    b.width!==5800||b.height!==4200||domain?.left!==left||domain.right!==right||
+    domain.top!==top||domain.bottom!==bottom||!(Number.isFinite(rs)&&rs>0))return stock;
+   const south=view.top>=0,side=south?'south':'north',mask=p[side],g=2.5/rs;
+   const box={l:Math.max(left,view.left-g),r:Math.min(right,view.right+g),
+    t:Math.max(south?mask.min:mask.min-g,view.top-g),b:Math.min(mask.max,view.bottom+g)};
+   if(box.l>=box.r||box.t>=box.b)return stock;
+   const point=(x,y)=>x>=box.l&&x<=box.r&&y>=box.t&&y<=box.b,
+    corners=[[box.l,box.t],[box.r,box.t],[box.r,box.b],[box.l,box.b]],
+    cross=(a,z,p)=>(z[0]-a[0])*(p[1]-a[1])-(z[1]-a[1])*(p[0]-a[0]);
+   function segment(a,z,p,q){
+    return Math.max(Math.min(a[0],z[0]),Math.min(p[0],q[0]))<=Math.min(Math.max(a[0],z[0]),Math.max(p[0],q[0]))&&
+     Math.max(Math.min(a[1],z[1]),Math.min(p[1],q[1]))<=Math.min(Math.max(a[1],z[1]),Math.max(p[1],q[1]))&&
+     cross(a,z,p)*cross(a,z,q)<=0&&cross(p,q,a)*cross(p,q,z)<=0;
+   }
+   const inside=(p,ring)=>ring.reduce((hit,a,i)=>{
+    const z=ring[(i+1)%ring.length];
+    return (a[1]>p[1])!==(z[1]>p[1])&&p[0]<a[0]+(z[0]-a[0])*(p[1]-a[1])/(z[1]-a[1])?!hit:hit;
+   },false);
+   const candidate=mask.polygons.some(poly=>corners.some(p=>inside(p,poly[0])&&!poly.slice(1).some(r=>inside(p,r)))||
+    poly.some(ring=>ring.some((a,i)=>point(...a)||corners.some((p,j)=>segment(a,ring[(i+1)%ring.length],p,corners[(j+1)%4])))));
+   if(!candidate)return stock;
+   const aid=p.ids[0],id=aid.replace(':','-'),targets=stock.filter(l=>l.id===id),l=targets[0],a=l?.asset;
+   if(targets.length!==1||l.kind!=='canonical-element'||l.layer!=='prop'||l.depthLayer!=='L1'||l.x!==0||l.y!==0||
+    l.scale!==1||(l.rotation??0)!==0||l.honroTerrainMaterialClip||l.honroElementCollision||l.collisionIds?.length||
+    a?.id!==aid||a.anchor?.x!==0||a.anchor?.y!==0||a.collision?.length!==0||
+    a.params?.compact15Revision!==1||a.params?.semanticLayer!=='BODY'||a.params?.silhouetteUnderpaint!==false)return stock;
+   const pack=G.HONRO_ACT2_COMPACT_PACKAGES?.[15],t=pack?.stage,assets=pack?.assets;
+   if(!Array.isArray(assets))return stock;
+   const [o,w]=p.ids.map(k=>assets.find(x=>x?.id===k));
+   const signed=[pack,t,assets,t?.terrainBounds,t?.elements,t?.terrains,t?.design?.space?.terrainPlanes,
+    o,o?.vector,o?.bounds,w,w?.vector,w?.bounds,a.vector,a.bounds];
+   const cache=this._stage15TerrainReliefAssets??=new WeakMap();
+   let entry=cache.get(a);
+   if(!entry||signed.some((ref,i)=>entry.signed[i]!==ref)){
+    let ready=false;
+    try{
+     const expected=stage15TerrainReliefSource(pack);
+     ready=!!expected&&JSON.stringify(a.vector)===JSON.stringify(expected.vector)&&
+      JSON.stringify(a.bounds)===JSON.stringify(expected.bounds);
+    }catch{ /* Content drift retains stock rendering. */ }
+    entry={signed,ready};cache.set(a,entry);
+   }
+   if(!entry.ready)return stock;
+   if(!Object.hasOwn(entry,side)){
+    try{entry[side]=stage15TerrainReliefAsset(a,mask);}
+    catch{entry[side]=null;}
+   }
+   if(!entry[side])return stock;
+   return stock.map(row=>row===l?{...row,asset:entry[side]}:row);
+  }
         _drawTerrainDomainTiles(c,b,w,h){
             // Geographically fixed tiles, never a bitmap cut at Play Bounds.
             // Pixel-aligned clips consume each gutter sample exactly once.
@@ -344,7 +449,7 @@
                     const cc=cv.getContext('2d',{alpha:true}),left=x*size,top=y*size;cc.setTransform(rs,0,0,rs,gutter-left*rs,gutter-top*rs);
                     const view={left,top,right:left+size,bottom:top+size};
                     const material=G.HonroTerrainDomain.materialLandmarks(b);
-                    const landmarks=b.honroStage===5&&top>=8192?material.flatMap(l=>{
+                    let landmarks=b.honroStage===5&&top>=8192?material.flatMap(l=>{
                         if(this._landmarkVisible(l,view))return[l];
                         const deep=this._stage5DeepBankTileLandmark(b,domain,l,view);
                         return deep?[deep]:[];
@@ -373,6 +478,7 @@
                         const deep=this._stage2DeepBodyTileLandmark(b,domain,l,view);
                         return deep?[deep]:[];
                     });
+                    if(b.honroStage===15)landmarks=this._stage15TerrainReliefLandmarks(b,domain,landmarks,view,rs);
                     this._landmarkLayer(cc,landmarks,'back');this._landmarkLayer(cc,landmarks,'structural-back');
                     for(const t of terrain){const r=this._terrainPaintBounds(t);if(!t.broken&&r.right>=left&&r.left<=left+size&&r.bottom>=top&&r.top<=top+size)this.terrain(cc,t);}
                     this.surfaceZones?.(cc,b);for(const layer of ['mid','prop','front'])this._landmarkLayer(cc,landmarks,layer);
