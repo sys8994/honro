@@ -1,5 +1,5 @@
 """Strict node-free Stage34 SE observational carrier. Never modifies Pages or repository."""
-import base64, hashlib, io, json, os, subprocess, sys
+import base64, hashlib, io, json, os, subprocess, sys, time
 from pathlib import Path
 from urllib.parse import urlsplit
 from urllib.request import build_opener, Request, HTTPRedirectHandler
@@ -36,7 +36,11 @@ def live_read(k):
 def source_gate():
     head=os.environ['GITHUB_SHA']
     assert os.environ['GITHUB_REF']=='refs/heads/'+BRANCH and os.environ['GITHUB_EVENT_NAME']=='push'
-    assert git('rev-list','--parents','-n1','HEAD').decode().split()==[head,LIVE]
+    FIRST='175d9558b57047e03e9887a3a965b1d809c7b4d4'
+    assert git('rev-list','--parents','-n1','HEAD').decode().split()==[head,FIRST]
+    assert git('show','-s','--format=%P',FIRST).decode().strip()==LIVE
+    assert set(git('diff','--name-status','--no-renames',FIRST,head).decode().splitlines())=={
+        'M\t.github/workflows/stage34-se-owner.yml','M\ttools/stage34-se-owner/run.py'}
     assert git('rev-parse',LIVE+'^{tree}').decode().strip()==P['authority']['tree']
     assert git('rev-parse',LIVE+':web/manifest.json').decode().strip()==P['authority']['retainedManifestGitBlob']
     assert git('status','--porcelain=v1','-z')==b''
@@ -67,11 +71,36 @@ def path_of(url):
     p=urlsplit(url)
     if not url.startswith(BASE) or p.query or p.fragment:return None
     return url[len(BASE):]
+def drain_signed_http(page,hits,errors,blobs,pending,seconds=6.0):
+    """Finish ordinary request bursts and verify every event, including duplicates."""
+    deadline=time.monotonic()+seconds
+    i=0; quiet=0; seen={}
+    while time.monotonic()<deadline:
+        assert not errors,errors
+        while i<len(hits):
+            assert time.monotonic()<deadline,('signed HTTP drain deadline',i,len(hits))
+            rel,response=hits[i]
+            if response.request in pending:break
+            i+=1
+            seen[rel]=FACTS(check(rel,response.body()))
+        before=(i,len(blobs))
+        generated=set(page.evaluate("()=>[...window.__honroObserver.blobs]"))
+        page.wait_for_timeout(100)
+        assert not errors,errors
+        idle=(before==(len(hits),len(blobs)) and not pending and set(blobs)<=generated)
+        quiet=(quiet+1) if idle else 0
+        if quiet==3:
+            missing=set(P['expectedNormal'])-set(seen)
+            assert not missing,('missing required actual responses',sorted(missing))
+            return seen,{'verifiedEvents':i,'uniquePaths':len(seen),'quietMilliseconds':300,'pending':0}
+    raise AssertionError(('signed HTTP drain deadline',i,len(hits),len(pending),
+                          sorted(set(P['expectedNormal'])-set(seen)),errors))
+
 def capture(browser,tag,shot,mode):
     vw,vh=shot['viewportCSS']
     ctx=browser.new_context(viewport={'width':vw,'height':vh},device_scale_factor=1,service_workers='block')
     assert ctx.storage_state()=={'cookies':[],'origins':[]}
-    p=ctx.new_page();p.set_default_timeout(25000);errors=[];hits=[];blobs=[];audio=[]
+    p=ctx.new_page();p.set_default_timeout(25000);errors=[];hits=[];blobs=[];audio=[];pending=set()
     def route(r):
         q=r.request; rel=path_of(q.url)
         if (q.method=='GET' and (rel in P['responsePins'] or (rel in P['media'] and q.resource_type=='media'))) or q.url.startswith(('blob:https://sys8994.github.io/','data:')):
@@ -92,6 +121,10 @@ def capture(browser,tag,shot,mode):
         if rel in P['media'] and r.resource_type=='media' and r.failure=='net::ERR_ABORTED':
             audio.append([rel,'aborted'])
         else:errors.append(['request failed',r.url,r.failure])
+    # HTTP activity pending tracks even a signed response whose body has not arrived.
+    p.on('request',lambda req:pending.add(req) if path_of(req.url) in P['responsePins'] else None)
+    p.on('requestfinished',pending.discard)
+    p.on('requestfailed',pending.discard)
     p.on('response',response);p.on('requestfailed',abort);p.on('pageerror',lambda e:errors.append(['pageerror',str(e)]))
     p.add_init_script('('+ENTRY['INIT']+')()')
     try:
@@ -119,15 +152,10 @@ def capture(browser,tag,shot,mode):
                     o[step]={'name':n,'rgbaSHA256':sha(blob)}
                 watch.setdefault('raw',[]).append(o)
         png_bytes=canvas.screenshot(animations='disabled'); img,receipts=snapshot(png_bytes,shot)
-        assert not errors,errors
-        current=list(hits); seen={}
-        for rel,r in current:
-            if rel not in seen:seen[rel]=FACTS(check(rel,r.body()))
-        assert len(hits)==len(current) and set(P['expectedNormal'])<=set(seen), ('late or missing required responses',set(P['expectedNormal'])-set(seen),errors)
-        assert set(blobs)<=set(p.evaluate("()=>[...window.__honroObserver.blobs]")) and not errors,errors
+        seen,transport=drain_signed_http(p,hits,errors,blobs,pending)
         # Reuse the first actual captured PNG bytes rather than re-rendering or resaving.
         return img,{**receipts,'camera':{k:f[k] for k in ('actual','viewport','phase','round','sceneTime')},
-                    'stateSHA256':shot['physicsSHA256'],'watched':watch,'http':seen,'audio':audio,'registeredDecode':dd['registered']},png_bytes
+                    'stateSHA256':shot['physicsSHA256'],'watched':watch,'http':seen,'httpDrain':transport,'audio':audio,'registeredDecode':dd['registered']},png_bytes
     finally:ctx.close()
 
 def summary(a,b,rect):
