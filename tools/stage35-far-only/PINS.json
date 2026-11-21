@@ -1,0 +1,501 @@
+{
+  "authority": {
+    "commit": "71fb443675aed659a572b722a4337212e9d2f910",
+    "tree": "c9f11d3a7458ecfcb390e460401f4b3298395858",
+    "manifestGit": "30671da683f66f4d959ed617d1cfd79a0a1e3dbe",
+    "manifest": {
+      "bytes": 6265038,
+      "sha256": "c77a561f82a5f0748d1d4cfd4a675d5db9118ba2c53537c778fd9c77a12400c4"
+    },
+    "html": {
+      "bytes": 17379,
+      "sha256": "56ebd2c37c63d16e2a24973f8d4971f991cd1658834b589942de1ba673ef1b84"
+    }
+  },
+  "far": "web/graphics/honro_authored_far-images-act4FarBambooHandoff.d24a7a029b12efba.webp",
+  "expectedActive809": 809,
+  "mustObserve": [
+    "HONRO.html",
+    "web/entries/game.2ec041e00ee60d39.js",
+    "web/data/campaign.fa9a5e8d3cb0a7e5.json",
+    "web/graphics/honro_authored_far-images-act4FarBambooHandoff.d24a7a029b12efba.webp",
+    "web/data/chapter-35.95e0587691447674.json",
+    "web/data/chapter-35-assets-parts.1e61927ac9e7ecf9.json",
+    "web/data/chapter-35-assets-part-000.8baa2514a9adcafc.bin",
+    "web/data/chapter-35-assets-part-001.c9110d2e37b09922.bin",
+    "web/runtime/load-data.248fb3aada6f16bb.js",
+    "web/runtime/ordered-common-15.370f1fb43d3a212f.js",
+    "web/runtime/ordered-common-16.c094392d4ee992d9.js"
+  ],
+  "oldSize": [
+    1536,
+    1024
+  ],
+  "newSize": [
+    1672,
+    941
+  ],
+  "candidate": {
+    "bytes": 205496,
+    "sha256": "574a1793b7bb2416d66abd249c5c7ff851ea2072aa3204db68caa9b38d2a987b"
+  },
+  "browser": "151.0.7922.34",
+  "media": [
+    "assets/bgm/battle-1.mp3",
+    "assets/bgm/main.mp3"
+  ],
+  "shots": {
+    "s35-1440x900-ordinary": {
+      "key": "s35-1440x900-ordinary",
+      "png": "s35-1440x900-ordinary.png",
+      "pngSHA256": "df5e3894266fc65bbce21cb51477e09af7d36ed175d275b1706b86935c332f5a",
+      "pixels": [
+        1440,
+        770
+      ],
+      "viewportCSS": [
+        1440,
+        900
+      ],
+      "DPR": 1,
+      "view": "ordinary",
+      "physicsSHA256": "5f5f6f23eca88be478e276bf902de6923f0b649cb51d3c0af7bf2be0be38a218",
+      "decodeCount": 90,
+      "phaseReceiptValidated": true,
+      "desired": {
+        "x": 2304,
+        "y": 1536,
+        "scale": 0.5
+      },
+      "actual": {
+        "x": 2304,
+        "y": 1536,
+        "scale": 0.5
+      },
+      "viewport": {
+        "left": 864,
+        "right": 3744,
+        "top": 766.8125,
+        "bottom": 2305.1875
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 4928,
+        "bottom": 3312
+      },
+      "zoomLimits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "actorCount": 34,
+      "tide": null,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "raw": "s35-1440x900-ordinary-raw.png",
+      "rawSHA256": "e84a7c1288b4dcbd0bfb518b6a5fe3538f18c35ea62492b541d2fb34e47d85d4",
+      "duplicateOfCameraKey": null,
+      "stockDOMdecodedSHA256": "b9e29e2f3e1d3c3bff44e43b8c3b78514cb2b0c3ee9933ec63a581fe70991162",
+      "stockNativeRawDecodedSHA256": "ec448134d6fe7608d2c8fe9d4082925e828aaf1ca8ef12742114cb6cdc882c53",
+      "ordinaryAnchor": [
+        2304,
+        1536,
+        0.5
+      ]
+    },
+    "s35-1440x900-overview": {
+      "key": "s35-1440x900-overview",
+      "png": "s35-1440x900-overview.png",
+      "pngSHA256": "1904c1ca1419a77e6998b125cfb2800108fbf18d0517c4618a453a731a3d4868",
+      "pixels": [
+        1440,
+        770
+      ],
+      "viewportCSS": [
+        1440,
+        900
+      ],
+      "DPR": 1,
+      "view": "overview",
+      "physicsSHA256": "5f5f6f23eca88be478e276bf902de6923f0b649cb51d3c0af7bf2be0be38a218",
+      "decodeCount": 90,
+      "phaseReceiptValidated": true,
+      "desired": {
+        "x": 2304,
+        "y": 1536,
+        "scale": 0.21176470588235294
+      },
+      "actual": {
+        "x": 2304,
+        "y": 1536,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": -1096,
+        "right": 5704,
+        "top": -280.1371527777778,
+        "bottom": 3352.137152777778
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 4928,
+        "bottom": 3312
+      },
+      "zoomLimits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "actorCount": 34,
+      "tide": null,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "duplicateOfCameraKey": null,
+      "stockDOMdecodedSHA256": "7b90c4d584a1a4737fb6b4f720ae8b3eab40840d252993bfe973e966029efe1d",
+      "ordinaryAnchor": []
+    },
+    "s35-1440x900-north": {
+      "key": "s35-1440x900-north",
+      "png": "s35-1440x900-north.png",
+      "pngSHA256": "12510eda02c875ade8cd11720ce683fadbc3080524322aa6a9c678d73a9e37aa",
+      "pixels": [
+        1440,
+        770
+      ],
+      "viewportCSS": [
+        1440,
+        900
+      ],
+      "DPR": 1,
+      "view": "north",
+      "physicsSHA256": "5f5f6f23eca88be478e276bf902de6923f0b649cb51d3c0af7bf2be0be38a218",
+      "decodeCount": 90,
+      "phaseReceiptValidated": true,
+      "desired": {
+        "x": 2304,
+        "y": -1000000,
+        "scale": 0.21176470588235294
+      },
+      "actual": {
+        "x": 2304,
+        "y": -1800,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": -1096,
+        "right": 5704,
+        "top": -3616.137152777778,
+        "bottom": 16.13715277777783
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 4928,
+        "bottom": 3312
+      },
+      "zoomLimits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "actorCount": 34,
+      "tide": null,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "duplicateOfCameraKey": null,
+      "stockDOMdecodedSHA256": "a4b63c39e6d550de4aeec39418c640df89d8987061bb93163839c5a1cfe0c418",
+      "stockNativeRawDecodedSHA256": "7f3185dd77874e270ceef9b709967743654d712d4d0b9a9c8f6faffe5a483365",
+      "ordinaryAnchor": []
+    },
+    "s35-1440x900-west": {
+      "key": "s35-1440x900-west",
+      "png": "s35-1440x900-west.png",
+      "pngSHA256": "4800522a153d82558261907c98e5dae8b66549a2259cbb65c0d320a44f9e8ed4",
+      "pixels": [
+        1440,
+        770
+      ],
+      "viewportCSS": [
+        1440,
+        900
+      ],
+      "DPR": 1,
+      "view": "west",
+      "physicsSHA256": "5f5f6f23eca88be478e276bf902de6923f0b649cb51d3c0af7bf2be0be38a218",
+      "decodeCount": 90,
+      "phaseReceiptValidated": true,
+      "desired": {
+        "x": -1000000,
+        "y": 1536,
+        "scale": 0.21176470588235294
+      },
+      "actual": {
+        "x": -320,
+        "y": 1536,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": -3720,
+        "right": 3080,
+        "top": -280.1371527777778,
+        "bottom": 3352.137152777778
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 4928,
+        "bottom": 3312
+      },
+      "zoomLimits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "actorCount": 34,
+      "tide": null,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "duplicateOfCameraKey": null,
+      "stockDOMdecodedSHA256": "ab8bc11827eccadae2f107a7714cbca265335caca74a84cb2a8d4966a354da3e",
+      "ordinaryAnchor": []
+    },
+    "s35-1440x900-east": {
+      "key": "s35-1440x900-east",
+      "png": "s35-1440x900-east.png",
+      "pngSHA256": "6c7fbd8fe164f01631fc6376a6f1c8e48bc1253fb485caa90efaa1441af7d479",
+      "pixels": [
+        1440,
+        770
+      ],
+      "viewportCSS": [
+        1440,
+        900
+      ],
+      "DPR": 1,
+      "view": "east",
+      "physicsSHA256": "5f5f6f23eca88be478e276bf902de6923f0b649cb51d3c0af7bf2be0be38a218",
+      "decodeCount": 90,
+      "phaseReceiptValidated": true,
+      "desired": {
+        "x": 1000000,
+        "y": 1536,
+        "scale": 0.21176470588235294
+      },
+      "actual": {
+        "x": 4928,
+        "y": 1536,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": 1528,
+        "right": 8328,
+        "top": -280.1371527777778,
+        "bottom": 3352.137152777778
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 4928,
+        "bottom": 3312
+      },
+      "zoomLimits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "actorCount": 34,
+      "tide": null,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "duplicateOfCameraKey": null,
+      "stockDOMdecodedSHA256": "2a772daf4fa16719e6e805a599f85a6e983b921fecc96a07fa0f33f3df5b7676",
+      "ordinaryAnchor": []
+    },
+    "s35-390x844-overview": {
+      "key": "s35-390x844-overview",
+      "png": "s35-390x844-overview.png",
+      "pngSHA256": "48eba02cfd666caf916c9e3e4ea3cb81177c4776723a7ecfbfd7218eeb22ad19",
+      "pixels": [
+        390,
+        648
+      ],
+      "viewportCSS": [
+        390,
+        844
+      ],
+      "DPR": 1,
+      "view": "overview",
+      "physicsSHA256": "5f5f6f23eca88be478e276bf902de6923f0b649cb51d3c0af7bf2be0be38a218",
+      "decodeCount": 90,
+      "phaseReceiptValidated": true,
+      "desired": {
+        "x": 2304,
+        "y": 1536,
+        "scale": 0.057352941176470586
+      },
+      "actual": {
+        "x": 2304,
+        "y": 1536,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": -1096,
+        "right": 5704,
+        "top": -4109.82532051282,
+        "bottom": 7181.82532051282
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 4928,
+        "bottom": 3312
+      },
+      "zoomLimits": {
+        "min": 0.057352941176470586,
+        "max": 1.65,
+        "tactical": 0.057352941176470586,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "actorCount": 34,
+      "tide": null,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "duplicateOfCameraKey": null,
+      "stockDOMdecodedSHA256": "c3fc44ed5fc704f2a2e87acce0eec0bdbdb1c1794f1a35479bca14ecb79e188c",
+      "stockNativeRawDecodedSHA256": "49cc2408a00fd50d4cdbde89c8c74597f0974d29637e1a9d5fefb9830949f7b7",
+      "ordinaryAnchor": []
+    },
+    "s35-390x844-north": {
+      "key": "s35-390x844-north",
+      "png": "s35-390x844-north.png",
+      "pngSHA256": "5470119ddb2e86c691d6866de0bbc0ab9f486aa6e6c2b12e38ac27de53023c96",
+      "pixels": [
+        390,
+        648
+      ],
+      "viewportCSS": [
+        390,
+        844
+      ],
+      "DPR": 1,
+      "view": "north",
+      "physicsSHA256": "5f5f6f23eca88be478e276bf902de6923f0b649cb51d3c0af7bf2be0be38a218",
+      "decodeCount": 90,
+      "phaseReceiptValidated": true,
+      "desired": {
+        "x": 2304,
+        "y": -1000000,
+        "scale": 0.057352941176470586
+      },
+      "actual": {
+        "x": 2304,
+        "y": -1800,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": -1096,
+        "right": 5704,
+        "top": -7445.82532051282,
+        "bottom": 3845.8253205128203
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 4928,
+        "bottom": 3312
+      },
+      "zoomLimits": {
+        "min": 0.057352941176470586,
+        "max": 1.65,
+        "tactical": 0.057352941176470586,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "actorCount": 34,
+      "tide": null,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "duplicateOfCameraKey": null,
+      "stockDOMdecodedSHA256": "b8242fd24bad5a1f801a58843cac9dcdf2aee16858a32bb12992df3f6156259a",
+      "stockNativeRawDecodedSHA256": "020d2f61a1f7e460f6497df1f152597ee5c6645d5759ca9c5175ff2d12e5d851",
+      "ordinaryAnchor": []
+    }
+  },
+  "signedOwnerIds": [
+    "approved35-body",
+    "approved35-forest-foundation",
+    "approved35-near-geology",
+    "act4-handoff:35:bedrock",
+    "act4-handoff:35:bamboo",
+    "act4-handoff:35:walls"
+  ]
+}

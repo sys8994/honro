@@ -1,0 +1,37 @@
+name: Stage35 dense bamboo far image one-response A-B visual QA only
+on:
+  push:
+    branches: [qa/stage35-far-only-71fb]
+    paths:
+      - .github/workflows/stage35-far-only.yml
+      - tools/stage35-far-only/**
+permissions:
+  contents: read
+jobs:
+  observe:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage35-far-only-71fb'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Compare exact current normal canvas with one alternative far raster
+        shell: bash
+        run: |
+          set -euo pipefail
+          O="$(mktemp -d "$RUNNER_TEMP/honro-st35-far-only.XXXXXX")"
+          V="$RUNNER_TEMP/honro-st35-far-venv"
+          echo "OUT=$O" >> "$GITHUB_ENV"
+          python3 -m venv "$V"
+          "$V/bin/python" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V/bin/python" -m playwright install --with-deps chromium
+          PYTHONDONTWRITEBYTECODE=1 "$V/bin/python" tools/stage35-far-only/run.py "$O"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always() && env.OUT != ''
+        with:
+          name: honro-stage35-bamboo-far-only-actual-qa
+          path: ${{ env.OUT }}
+          if-no-files-found: error
+          retention-days: 7
