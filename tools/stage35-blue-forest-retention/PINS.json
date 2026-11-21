@@ -1,0 +1,114 @@
+{
+  "enabled": true,
+  "baseline": "71fb443675aed659a572b722a4337212e9d2f910",
+  "baselineTree": "c9f11d3a7458ecfcb390e460401f4b3298395858",
+  "normalSource": "b4ac1069f81c6265afaf98116c00f01461b00ace",
+  "normalSourceTree": "1806602398bf21939793d288c2bb45d86bc1fb7a",
+  "priorPages": {
+    "run": 44865801804,
+    "job": 136729438155,
+    "publishedAt": "2026-11-21T04:24:34.6604526Z",
+    "manifestGitBlob": "30671da683f66f4d959ed617d1cfd79a0a1e3dbe",
+    "manifestSHA256": "c77a561f82a5f0748d1d4cfd4a675d5db9118ba2c53537c778fd9c77a12400c4"
+  },
+  "normal": {
+    "run": 44887003005,
+    "job": 136794336261,
+    "head": "c58034e8ec035e2bbcd3d323b9268526a174d0c0",
+    "tree": "1ae0d52122b9e295631d545138bf1c0a44b9d4cd",
+    "normalPinsGitBlob": "3c6a0c81cf788866765c950e2f98d96ef29aee33",
+    "artifact": {
+      "id": 14700701081,
+      "bytes": 72099138,
+      "sha256": "5f83486cd930d177ef4838f9cff6eb755dd086d5d652febeb1fd755351c11fd9"
+    },
+    "receiptSHA256": {
+      "SOURCE.json": "b6b6d9a1973717df9d89cf76a93f4c8f3786238cd1a35fb02e4defb856828132",
+      "GRAPH.json": "0d7ddb933c5d870cbfb6bec8f69e705aaa1d9b39aba8b8ba59f51ae9531de518",
+      "BROWSER.json": "1a0e10e0dfdcd1bec904ac80d4c939f724fb8fdea4ebef1aaeceb7ae210a9eca",
+      "CANDIDATE-CHECK-ONLY.json": "38c0f3e1ba94225a6997c336e33a39ffee5c83743888746a30e4a1ca7e6670f5"
+    },
+    "candidateArchiveSHA256": "a438c6e33b550e3491f6aba5d4ad1ead7e0a74bcef0d47d09737f2821164d8f1",
+    "expectedRenames": [
+      [
+        "web/data/campaign.fa9a5e8d3cb0a7e5.json",
+        "web/data/campaign.324003dbe6483ac8.json"
+      ],
+      [
+        "web/runtime/campaign.748d97a778b7faa1.js",
+        "web/runtime/campaign.a4e4a1f2c263a866.js"
+      ],
+      [
+        "web/data/chapter-35-assets-parts.1e61927ac9e7ecf9.json",
+        "web/data/chapter-35-assets-parts.c3f1005936b3d27e.json"
+      ],
+      [
+        "web/data/HONRO_AUTHORED_FAR.b8d3c3dfaf217cba.json",
+        "web/data/HONRO_AUTHORED_FAR.b014b75b5dd7973d.json"
+      ],
+      [
+        "web/runtime/HONRO_AUTHORED_FAR.7d9bc00aabea227c.js",
+        "web/runtime/HONRO_AUTHORED_FAR.4cfa3ca0b38a2f24.js"
+      ],
+      [
+        "web/entries/game.1a416fa243abda78.html",
+        "web/entries/game.abedc85b183c711f.html"
+      ],
+      [
+        "web/entries/game.2ec041e00ee60d39.js",
+        "web/entries/game.6d15aeb89fecafdb.js"
+      ],
+      [
+        "web/data/chapter-35.95e0587691447674.json",
+        "web/data/chapter-35.f62e13d97eec5171.json"
+      ],
+      [
+        "web/data/chapter-35-assets-part-000.8baa2514a9adcafc.bin",
+        "web/data/chapter-35-assets-part-000.2f22959bfb690283.bin"
+      ],
+      [
+        "web/data/chapter-35-assets-part-001.c9110d2e37b09922.bin",
+        "web/data/chapter-35-assets-part-001.cdc249b0d9ce1988.bin"
+      ],
+      [
+        "web/runtime/ordered-game-25.12e2361380e24c93.js",
+        "web/runtime/ordered-game-25.baee52cf4acaf033.js"
+      ],
+      [
+        "web/runtime/ordered-common-12.70b9c35c854ec2af.js",
+        "web/runtime/ordered-common-12.538fbca4939d645e.js"
+      ],
+      [
+        "web/entries/workshop.00ee0157276a689e.js",
+        "web/entries/workshop.7816df2c88efd28c.js"
+      ]
+    ],
+    "newFarPath": "web/graphics/honro_authored_far-images-act4FarBambooGrove35.574a1793b7bb2416.webp",
+    "oldFar": {
+      "path": "web/graphics/honro_authored_far-images-act4FarBambooHandoff.d24a7a029b12efba.webp",
+      "bytes": 110228,
+      "sha256": "d24a7a029b12efba733374e0e2161c66b63f6ac1e94a96c1a725c039f6651f1e"
+    }
+  },
+  "sourceFiles": {
+    "shared/act4-handoff-art.mjs": "a727bd85a1b8faa1cfaf8a2b98cf3b3e0de5e7e1",
+    "shared/act4-stage35-bedrock-join.mjs": "830077dadd0af2a770df148cc43cf8fea3993074",
+    "shared/act4-stage35-rock-material.mjs": "2bedb633cc299ef1be41d2920d704e2e3a341889",
+    "shared/act4-stage35-side-groves.mjs": "16c0b82e59448ea82ab88b1d7af4e4abac354660",
+    "shared/assets/environment/campaign-far/act4-stage35-bamboo-grove.webp": "71dd4478b8f1afb5403ddaeae4b5becf7a82898d",
+    "shared/assets/environment/campaign-far/manifest.json": "383fb06383c9039d2ab17611d7235476d599f9ee",
+    "shared/build.mjs": "24f491b8253abf2e86dbabd5bc7111b701058c0a",
+    "shared/data/act4/handoff-art/stage35-forest-east.json": "87d8c04f6de61e7003dd448e05e4b2cd404463c8",
+    "shared/data/act4/handoff-art/stage35-forest-west.json": "2dc8cd7d952436f964c959a0d574ce39da13f1f4",
+    "shared/runtime/act4-pilot-art.js": "330fc448562e5c3e36a98a99bad158176c1e9043",
+    "tests/act4-stage35-bamboo-far.mjs": "d5730b54f045f34168e3253691f6ddc012708c88",
+    "tests/act4-stage35-bedrock-join.mjs": "904c3d98909b1bef43abcc011835c2db7f155f85",
+    "tests/act4-stage35-rock-material.mjs": "21addb37204599d08eaed67b2fa4151c3ec0c935"
+  },
+  "sourceModified": [
+    "shared/build.mjs",
+    "shared/act4-handoff-art.mjs",
+    "shared/assets/environment/campaign-far/manifest.json",
+    "shared/runtime/act4-pilot-art.js"
+  ]
+}
