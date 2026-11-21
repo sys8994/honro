@@ -1,7 +1,7 @@
 name: HONRO Stage7 isolated canonical far-floor stroke verification
 on:
   push:
-    branches: [qa/stage7-root-floor-closure-9ac]
+    branches: [qa/stage7-root-floor-closure-9ac-r2]
     paths:
       - .github/workflows/stage7-root-floor-closure.yml
       - tools/stage7-root-floor-closure/**
@@ -9,13 +9,13 @@ permissions:
   contents: read
 jobs:
   verify:
-    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage7-root-floor-closure-9ac'
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage7-root-floor-closure-9ac-r2'
     runs-on: ubuntu-24.04
     timeout-minutes: 39
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
-          fetch-depth: 3
+          fetch-depth: 4
           persist-credentials: false
       - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
         with:
@@ -41,7 +41,7 @@ jobs:
           python "$Q/guard.py" built "$T"
       - name: Actual normal compiled Chrome A/B (no response injection)
         shell: bash
-        timeout-minutes: 21
+        timeout-minutes: 25
         run: |
           set -euo pipefail
           Q="$GITHUB_WORKSPACE/tools/stage7-root-floor-closure"
@@ -59,7 +59,7 @@ jobs:
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
-          name: honro-stage7-root-floor-line-normal-qa-only
+          name: honro-stage7-root-floor-line-controlled-normal-r2-qa-only
           path: ${{ runner.temp }}/stage7-root-floor-closure/out/
           if-no-files-found: warn
           retention-days: 7

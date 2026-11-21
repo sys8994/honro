@@ -6,7 +6,10 @@ W=Path(sys.argv[2]);OUT=W/'out'
 MF='web/manifest.json'; SHELL={'HONRO.html','HONRO_WORKSHOP.html','index.html'}
 BASE=P['base']; TREE=P['tree']; CAND=P['sourceCommit']; CTREE=P['sourceTree']
 QA={'.github/workflows/stage7-root-floor-closure.yml',*(f'tools/stage7-root-floor-closure/{k}'for k in ('PINS.json','entry.json','guard.py','views.py'))}
-PROD=P['productGit']; BR='refs/heads/qa/stage7-root-floor-closure-9ac'
+PROD=P['productGit']; BR='refs/heads/qa/stage7-root-floor-closure-9ac-r2'
+R1='b86d5c9bd0f5bb4933337162fd94d4e711571f50'
+R2_SCOPE={'.github/workflows/stage7-root-floor-closure.yml','tools/stage7-root-floor-closure/guard.py','tools/stage7-root-floor-closure/views.py'}
+UNCHANGED={'tools/stage7-root-floor-closure/PINS.json':'2dd660ab1e035b2d3dc81917590057e91e53e127','tools/stage7-root-floor-closure/entry.json':'777162fb3fa8d0501d166c6a6cb4ea9e5a204a4f'}
 def sha(s):return hashlib.sha256(s).hexdigest()
 def blob(s):return hashlib.sha1(f'blob {len(s)}\0'.encode()+s).hexdigest()
 def facts(s):return {'bytes':len(s),'sha256':sha(s)}
@@ -23,14 +26,17 @@ def pre():
  assert P['enable'] is True,'Disabled until exact isolated validation approval'
  root=Path(os.environ['GITHUB_WORKSPACE']);head=os.environ['GITHUB_SHA']
  assert (os.environ['GITHUB_REPOSITORY'],os.environ['GITHUB_EVENT_NAME'],os.environ['GITHUB_REF'])==('sys8994/honro','push',BR)
- assert git(root,'rev-list','--parents','-n1','HEAD').decode().split()==[head,CAND]
+ assert git(root,'rev-list','--parents','-n1','HEAD').decode().split()==[head,R1]
+ assert git(root,'rev-list','--parents','-n1',R1).decode().split()==[R1,CAND]
  assert git(root,'rev-list','--parents','-n1',CAND).decode().split()==[CAND,BASE]
  assert git(root,'rev-parse',CAND+'^{tree}').decode().strip()==CTREE
  assert git(root,'rev-parse',BASE+'^{tree}').decode().strip()==TREE
  assert not git(root,'status','--porcelain=v1','-z')
  assert set(git(root,'diff','--name-status','--no-renames',BASE,CAND).decode().splitlines())=={
     'M\tshared/runtime/terrain-readability.js','A\ttests/stage7-root-floor-closure.mjs'}
- assert set(git(root,'diff','--name-status','--no-renames',CAND,head).decode().splitlines())=={f'A\t{k}'for k in QA}
+ assert set(git(root,'diff','--name-status','--no-renames',CAND,R1).decode().splitlines())=={f'A\t{k}'for k in QA}
+ assert set(git(root,'diff','--name-status','--no-renames',R1,head).decode().splitlines())=={f'M\t{k}'for k in R2_SCOPE}
+ assert all(blob(read(root,k))==blob(git(root,'show',R1+':'+k))==v for k,v in UNCHANGED.items())
  assert all(blob(read(root,k))==blob(git(root,'show',CAND+':'+k))==v for k,v in PROD.items())
  stock=git(root,'show',BASE+':'+MF); pin=P['stockManifest']
  assert facts(stock)=={k:pin[k]for k in ('bytes','sha256')} and blob(stock)==pin['git']
@@ -38,7 +44,7 @@ def pre():
  for name,h in [('A',BASE),('B',CAND)]:
   target=W/name;git(root,'worktree','add','--detach',str(target),h)
   assert git(target,'rev-parse','HEAD').decode().strip()==h and not git(target,'status','--porcelain=v1','-z')
- emit('SOURCE.json',{'stock':BASE,'stockTree':TREE,'qaHead':head,'candidate':CAND,'candidateTree':CTREE,'productOnly':PROD,'A':'exact checked-in static, no rebuild','B':'isolated normal compilation only'})
+ emit('SOURCE.json',{'stock':BASE,'stockTree':TREE,'qaHead':head,'r1QAHead':R1,'candidate':CAND,'candidateTree':CTREE,'productOnly':PROD,'A':'exact checked-in static, no rebuild','B':'isolated normal compilation only'})
 def normalize(b,pairs):
  for x,y in sorted(set(pairs),key=lambda v:-len(v[1])):
   b=b.replace(y.encode(),x.encode())
