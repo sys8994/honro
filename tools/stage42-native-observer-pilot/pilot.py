@@ -2,16 +2,24 @@
 import argparse,base64,hashlib,io,json,mimetypes,os,re,subprocess,time,traceback
 from pathlib import Path
 from urllib.parse import urlsplit
+from http.server import BaseHTTPRequestHandler,ThreadingHTTPServer
+from threading import Thread,Lock
+from collections import Counter
+import contextlib
 H=Path(__file__).resolve().parent
 PIN=json.loads((H/'PINS.json').read_bytes())
 NATIVE=(H/'native.js').read_text()
 SCENE=(H/'scene.js').read_text()
 BASE=PIN['base']
-ORIGIN='http://127.0.0.1:49242/'
+R1='c02cee384bbb42eafc543cfb6426d135c3aee62c'
 SHELL='HONRO.html'; MAN='web/manifest.json'
 MEDIA=re.compile(r'assets/bgm/(?:main|battle-[1-4])\.mp3')
 PATH=re.compile(r'[a-zA-Z0-9_.-]+(?:/[a-zA-Z0-9_.-]+)*')
-BLOB=re.compile(r'blob:'+re.escape(ORIGIN)+r'[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}')
+MEDIA_PINS={
+ 'assets/bgm/main.mp3':{'bytes':4741261,'sha256':'a2ffcceb9b0045f72e6baeab7292fd503fd92c4969d727009c057a60cbaca5fd'},
+ 'assets/bgm/battle-1.mp3':{'bytes':4416906,'sha256':'3671f34895c9f80d5d04466a440c19420e3d0ea42acc4461a6dcb7ffb974b614'},
+}
+R1_NONMEDIA=(282,'d41464df35af553a7bfecb489038c98430766bf656609f84661418ed26976943')
 PHASES=('first','allocate','hit')
 TAGS=['landmark:before','original-root:after','body:after','surface:after','props:after','props:after','landmark:after']
 if not __debug__:raise RuntimeError('strict pilot requires assertions')
@@ -20,11 +28,13 @@ def fact(b):return {'bytes':len(b),'sha256':sha(b)}
 def canon(x):return json.dumps(x,ensure_ascii=True,sort_keys=True,separators=(',',':')).encode()
 def save(p,x):
  t=p.with_name(p.name+'.tmp');t.write_text(json.dumps(x,ensure_ascii=False,indent=2)+'\n');t.replace(p)
-def parts(r):
- u=urlsplit(r.url)
- if (u.scheme,u.netloc,u.query,u.fragment)!=('http','127.0.0.1:49242','',''):return None
- p=u.path[1:]
- return p if PATH.fullmatch(p) and not {'.','..'}.intersection(p.split('/')) else None
+def pathpart(path):
+ p=path[1:]
+ return p if path.startswith('/') and PATH.fullmatch(p) and not {'.','..'}.intersection(p.split('/')) else None
+def parts(url,origin):
+ u=urlsplit(url)
+ if (u.scheme,u.netloc,u.query,u.fragment)!=('http',urlsplit(origin).netloc,'',''):return None
+ return pathpart(u.path)
 def git(repo,*a):return subprocess.check_output(['git','--no-replace-objects','-C',str(repo),*a])
 def secure(repo,official):
  g=lambda *a:git(repo,*a).decode().strip()
@@ -36,7 +46,10 @@ def secure(repo,official):
   head=os.environ['GITHUB_SHA'];here='tools/stage42-native-observer-pilot/'
   assert (os.environ['GITHUB_REPOSITORY'],os.environ['GITHUB_EVENT_NAME'],os.environ['GITHUB_REF'])==('sys8994/honro','push',PIN['ref'])
   assert not(os.getenv('GH_TOKEN')or os.getenv('GITHUB_TOKEN'))
-  assert head==g('rev-parse','HEAD') and g('rev-list','--parents','-n1',head).split()==[head,BASE]
+  assert head==g('rev-parse','HEAD') and g('rev-list','--parents','-n1',head).split()==[head,R1]
+  assert g('rev-list','--parents','-n1',R1).split()==[R1,BASE]
+  assert set(g('diff','--no-renames','--name-status',R1,head).splitlines())=={
+     'M\t.github/workflows/stage42-stock-native-observer-pilot.yml','M\t'+here+'pilot.py'}
   files={'A\t'+here+n for n in ('PINS.json','native.js','pilot.py','scene.js')}
   files.add('A\t.github/workflows/stage42-stock-native-observer-pilot.yml')
   assert set(g('diff','--no-renames','--name-status',BASE,head).splitlines())==files
@@ -84,99 +97,224 @@ DECODE=r"""async()=>{
  return {number:xs.length,font:document.fonts.status,bad:xs.filter(i=>!i.complete||!i.naturalWidth).map(i=>i.currentSrc||i.src)};
 }"""
 RAW="()=>HonroApp.scene.canvas.toDataURL('image/png').split(',')[1]"
+def ranged(b,range_header):
+ if range_header is None:return 200,None,b
+ m=re.fullmatch(r'bytes=(\d+)-(\d*)',range_header)
+ assert m,range_header
+ start=int(m[1]);end=min(int(m[2]),len(b)-1) if m[2] else len(b)-1
+ assert 0<=start<=end<len(b),range_header
+ return 206,f'bytes {start}-{end}/{len(b)}',b[start:end+1]
+
+@contextlib.contextmanager
+def wire(get,known):
+ """One ephemeral real TCP host per context; only checked git-backed bytes."""
+ records={};violations=[];bodies={};lock=Lock()
+ def file(p):
+  with lock:
+   if p not in bodies:
+    b=get(p);assert fact(b)==(known[p] if p in known else MEDIA_PINS[p]),p
+    bodies[p]=b
+   return bodies[p]
+ def snapshot():
+  with lock:return ({i:dict(x) for i,x in records.items()},list(violations))
+ class Server(ThreadingHTTPServer):
+  daemon_threads=True
+ class Handler(BaseHTTPRequestHandler):
+  protocol_version='HTTP/1.1'
+  def log_message(self,*a):pass
+  def rejected(self,reason,code):
+   with lock:violations.append([self.command,self.path,reason])
+   self.close_connection=True
+   try:self.send_error(code)
+   except OSError:pass
+  def do_GET(self):
+   p=pathpart(self.path)
+   try:
+    assert p in known or p in MEDIA_PINS,('unlisted path',p)
+    assert self.headers.get('Host')==f'127.0.0.1:{self.server.server_port}'
+    if p in MEDIA_PINS:assert self.headers.get('Sec-Fetch-Dest')=='audio','not an audio request'
+    b=file(p);r=self.headers.get('Range')
+    assert r is None or p in MEDIA_PINS,'unapproved range'
+    code,range_out,out=ranged(b,r)
+    mime='text/javascript' if p.endswith('.js') else mimetypes.guess_type(p)[0];assert mime,p
+   except Exception as e:return self.rejected(repr(e),403)
+   with lock:
+    req_id=str(len(records)+1)
+    entry={'path':p,'status':code,'range':r,'contentRange':range_out,'body':fact(out),'trackedBody':fact(b),'socket':'WRITING'}
+    records[req_id]=entry
+   try:
+    self.send_response(code);self.send_header('Content-Type',mime);self.send_header('Content-Length',str(len(out)))
+    self.send_header('Cache-Control','no-store');self.send_header('Connection','close')
+    self.send_header('X-Honro-QA-Receipt',req_id)
+    if range_out:self.send_header('Content-Range',range_out);self.send_header('Accept-Ranges','bytes')
+    self.end_headers();self.wfile.write(out);self.wfile.flush()
+   except (BrokenPipeError,ConnectionResetError):
+    flag='PEER_CLOSED'
+   except OSError as e:
+    flag='SOCKET_ERROR'
+    with lock:violations.append([self.command,self.path,repr(e)])
+   else:flag='WRITTEN'
+   finally:
+    with lock:entry['socket']=flag
+    self.close_connection=True
+  def do_HEAD(self):return self.rejected('strict GET only',405)
+  def do_POST(self):return self.rejected('strict GET only',405)
+ http=Server(('127.0.0.1',0),Handler)
+ thread=Thread(target=http.serve_forever,kwargs={'poll_interval':.05},daemon=True);thread.start()
+ try:yield f'http://127.0.0.1:{http.server_port}/',file,snapshot
+ finally:http.shutdown();http.server_close();thread.join(timeout=1)
+
+class Ledger:
+ """Per actual Request record. A hanging request cannot block later body checks."""
+ def __init__(self,known,origin,file,snapshot,errors):
+  self.entries={};self.known=known;self.origin=origin;self.file=file;self.snapshot=snapshot;self.errors=errors
+  self.blob_rx=re.compile(r'blob:'+re.escape(origin)+r'[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}')
+  self.blobs=set();self.verified=[]
+ def key(self,req):return parts(req.url,self.origin)
+ def record(self,req):
+  k=self.key(req)
+  if k in self.known or k in MEDIA_PINS:
+   return self.entries.setdefault(req,{'path':k,'method':req.method,'resource':req.resource_type,
+    'range':req.headers.get('range'),'start':False,'finished':False,'failure':None,'response':None,'state':'PENDING'})
+  return None
+ def request(self,req):
+  rr=self.record(req)
+  if rr is not None:
+   rr['start']=True;ifbad=req.method!='GET' or (rr['path'] in MEDIA_PINS and req.resource_type!='media')
+   if ifbad:self.errors.append(['unexpected method or purpose',req.method,req.resource_type,req.url])
+  elif not(req.url.startswith('data:') or self.blob_rx.fullmatch(req.url)):self.errors.append(['unexpected request',req.method,req.url])
+ def response(self,r):
+  q=r.request;rr=self.record(q)
+  if rr is None:
+   if self.blob_rx.fullmatch(r.url) and r.status==200:self.blobs.add(r.url)
+   elif not r.url.startswith('data:'):self.errors.append(['unexpected response',r.status,r.url])
+   return
+  rr['response']=r; rr['status']=r.status
+  if q.redirected_from or q.redirected_to or r.from_service_worker or r.status not in ((200,206) if rr['path'] in MEDIA_PINS else (200,)):
+   self.errors.append(['noncanonical response',r.status,r.url])
+ def finished(self,req):
+  rr=self.record(req)
+  if rr is not None:rr['finished']=True
+ def failed(self,req):
+  rr=self.record(req)
+  if rr is not None:rr['failure']=req.failure
+  if not(rr and rr['path'] in MEDIA_PINS and req.resource_type=='media' and req.failure=='net::ERR_ABORTED'):
+   self.errors.append(['unexpected request failure',req.url,req.failure])
+ def harvest(self):
+  server,violations=self.snapshot()
+  for rr in list(self.entries.values()):
+   if rr['state']!='PENDING':continue
+   k=rr['path']; r=rr['response']; canceled=rr['failure']=='net::ERR_ABORTED' and k in MEDIA_PINS
+   if not(rr['finished'] or canceled):continue
+   try:
+    # Exact per-response metadata, with a unique loopback issuance ID.
+    code,cr,body=ranged(self.file(k),rr['range'])
+    if r is not None:
+     rid=r.headers.get('x-honro-qa-receipt');assert rid in server
+    elif canceled:
+     # Cancellation may precede response header capture; a unique pinned served
+     # media range is still required and stays explicitly unverified/canceled.
+     candidates=[i for i,w in server.items() if w['path']==k and w['range']==rr['range']]
+     if not candidates:continue
+     assert len(candidates)==1
+     rid=candidates[0]
+    else:continue
+    entry=server[rid]
+    if entry['socket']=='WRITING':continue
+    assert rr['start'] and rr['method']=='GET'
+    assert (entry['path'],entry['status'],entry['range'],entry['contentRange'],entry['body'])==(k,code,rr['range'],cr,fact(body))
+    if r is not None:
+     assert (r.status,r.headers.get('content-range'),r.headers.get('content-length'))==(code,cr,str(len(body)))
+    rr['wireID']=rid;rr['served']=entry
+    if canceled:
+     assert entry['socket'] in ('WRITTEN','PEER_CLOSED')
+     rr['state']='CANCELED_PERMITTED_UNREAD_BODY'
+    else:
+     assert r is not None and not rr['failure'] and entry['socket']=='WRITTEN'
+     got=r.body()
+     assert got==body,(k,'actual browser decoded body differs from pinned response')
+     rr['state']='BODY_EXACT';rr['actualBody']=fact(got)
+     self.verified.append([k,code,fact(got)])
+   except Exception as e:
+    rr['state']='ERROR';rr['error']=repr(e);self.errors.append(['response verification',k,repr(e)])
+  return server,violations
+ def receipt(self):
+  server,violations=self.harvest()
+  data=[{k:v for k,v in rr.items()if k!='response'} for rr in self.entries.values()]
+  return {'errors':self.errors,'requests':data,'verified':self.verified,'served':server,'serverViolations':violations}
+ def metrics(self):
+  r=self.receipt();q=r['requests']
+  active=[w for w in q if w['path'] not in MEDIA_PINS]
+  media=[w for w in q if w['path'] in MEDIA_PINS]
+  n=sorted((k,c,h['bytes'],h['sha256'])for k,c,h in self.verified if k not in MEDIA_PINS)
+  a=[w for w in active if w['state']=='BODY_EXACT']
+  pending=[(w['path'],w['state'],w.get('status'),w['failure'])for w in q if w['state'] not in ('BODY_EXACT','CANCELED_PERMITTED_UNREAD_BODY')]
+  wire_ids=[w['wireID']for w in q if 'wireID' in w]
+  stageAsset=[w for w in a if w['path']==PIN['stageAssetFile']]
+  nonmedia=(len(n),sha(canon(n)))
+  sound=Counter(w['path'] for w in media)
+  return r,{'nonMediaCount':nonmedia[0],'nonMediaSignature':nonmedia[1],'expectedR1Same':nonmedia==R1_NONMEDIA,
+    'pending':pending,'missingRequired':sorted(set(PIN['required'])-{w['path']for w in a}),
+    'exactStageAssetGETCount':len(stageAsset),'matchedAllWireIDs':len(set(wire_ids))==len(wire_ids) and set(wire_ids)==set(r['served']),
+    'exactMediaRequestSet':sound==Counter(MEDIA_PINS.keys()),
+    'media':sorted((w['path'],w['range'] or '',w['state'],w['served']['status'] if 'served'in w else 0) for w in media)}
+
 def pilot(browser,get,known,pose,arm,out,row,flush):
+ with wire(get,known) as (origin,read,snapshot):
+  return visit(browser,known,origin,read,snapshot,pose,arm,out,row,flush)
+
+def visit(browser,known,origin,read,snapshot,pose,arm,out,row,flush):
  from PIL import Image
  size=PIN['viewport']
  ctx=browser.new_context(viewport={'width':size[0],'height':size[1]},device_scale_factor=1,service_workers='block',reduced_motion='reduce')
  assert ctx.storage_state()=={'cookies':[],'origins':[]}
  page=ctx.new_page();page.set_default_timeout(30000);page.add_init_script(INIT)
- errors=[];hits=[];waiting=set();blobs=set();scheduled=[];verified=[];media={};cursor=0;lookup={}
- row.update(status='INIT',network={'errors':errors,'requested':scheduled,'verified':verified},frames={})
- def body(path):
-  if path not in lookup:
-   v=get(path)
-   if path in known:assert fact(v)==known[path],path
-   else:assert MEDIA.fullmatch(path);media[path]=fact(v)
-   lookup[path]=v
-  return lookup[path]
- def reply(route):
-  r=route.request;k=parts(r)
-  try:
-   if r.url.startswith('data:')or BLOB.fullmatch(r.url):
-    assert r.method=='GET';route.continue_();return
-   assert k and r.method=='GET' and (k in known or (MEDIA.fullmatch(k)and r.resource_type=='media')),(r.method,r.url,r.resource_type)
-   v=body(k);mime='text/javascript' if k.endswith('.js') else mimetypes.guess_type(k)[0]
-   assert mime,k
-   headers={'Content-Type':mime,'Cache-Control':'no-store'}
-   code=200
-   if 'range' in r.headers:
-    assert MEDIA.fullmatch(k) and r.resource_type=='media'
-    m=re.fullmatch(r'bytes=(\d+)-(\d*)',r.headers['range']);assert m
-    start=int(m[1]);end=min(int(m[2]),len(v)-1) if m[2] else len(v)-1;assert 0<=start<=end<len(v)
-    headers.update({'Content-Range':f'bytes {start}-{end}/{len(v)}','Accept-Ranges':'bytes'})
-    code=206;v=v[start:end+1]
-   headers['Content-Length']=str(len(v));scheduled.append([k,code,fact(v)])
-   route.fulfill(status=code,headers=headers,body=v)
-  except Exception as e:errors.append(['fixture denied',r.method,r.url,repr(e)]);route.abort()
- ctx.route('**/*',reply)
- def request(r):
-  k=parts(r)
-  if k in known or k and MEDIA.fullmatch(k):waiting.add(r)
-  elif r.url.startswith('data:')or BLOB.fullmatch(r.url):pass
-  else:errors.append(['unexpected request',r.method,r.url])
- def fail(r):
-  waiting.discard(r);k=parts(r)
-  if not(k and MEDIA.fullmatch(k) and r.resource_type=='media' and r.failure=='net::ERR_ABORTED'):errors.append(['request failed',r.url,r.failure])
- def response(r):
-  k=parts(r);req=r.request
-  if k in known and r.status==200 and req.method=='GET' and not r.from_service_worker and not req.redirected_from and not req.redirected_to:hits.append((k,r))
-  elif k and MEDIA.fullmatch(k)and r.status in (200,206) and req.method=='GET' and not r.from_service_worker:hits.append((k,r))
-  elif BLOB.fullmatch(r.url)and r.status==200:blobs.add(r.url)
-  elif not r.url.startswith('data:'):errors.append(['unexpected response',r.status,r.url])
- for ev,fn in [('request',request),('requestfinished',lambda r:waiting.discard(r)),('requestfailed',fail),('response',response),
-                ('pageerror',lambda x:errors.append(['page error',str(x)]))]:page.on(ev,fn)
- def drain():
-  nonlocal cursor
-  for _ in range(100):
-   assert not errors,errors
-   while cursor<len(hits) and hits[cursor][1].request not in waiting:
-    k,r=hits[cursor];v=body(k)
-    if r.status==206:
-     m=re.fullmatch(r'bytes (\d+)-(\d+)/(\d+)',r.headers.get('content-range',''));assert m and int(m[3])==len(v)
-     v=v[int(m[1]):int(m[2])+1]
-    try:got=r.body()
-    except Exception:
-     if MEDIA.fullmatch(k) and r.request.failure=='net::ERR_ABORTED':
-      row['network'].setdefault('canceledMedia',[]).append(k);cursor+=1;continue
-     raise
-    assert got==v,(k,'browser received body mismatch')
-    verified.append([k,r.status,fact(got)]);cursor+=1
-   old=len(hits),len(blobs)
-   page.wait_for_timeout(110)
-   keys={k for k,_,_ in verified}
-   if len(hits)==cursor and not waiting and old==(len(hits),len(blobs)) and set(PIN['required'])<=keys:
-    assert blobs<=set(page.evaluate('()=>Array.from(__s42PilotImages.blobs)'))
-    assert sum(k==PIN['stageAssetFile']for k,_,_ in scheduled)==1
-    row['network']['pinnedMedia']=media;return
-  raise RuntimeError(('request closure unsettled or required body missing',sorted(set(PIN['required'])-{k for k,_,_ in verified}),len(waiting)))
+ errors=[];events=Ledger(known,origin,read,snapshot,errors)
+ row.update(status='INIT',frames={},originKind='real_ephemeral_loopback_http1_get',network=events.receipt())
+ # Nothing on the loopback is fulfilled or modified by Playwright. Abort all
+ # non-local HTTP(S) before it can leave the isolated context; blob/data are local.
+ ctx.route(re.compile(r'^https?://(?!'+re.escape(urlsplit(origin).netloc+'/')+r')'),lambda route:route.abort())
+ for ev,fn in [('request',events.request),('response',events.response),('requestfinished',events.finished),
+               ('requestfailed',events.failed),('pageerror',lambda e:errors.append(['page error',str(e)]))]:page.on(ev,fn)
+ def snapshot_net(final=False):
+  def one():
+   row['network'],row['networkGuard']=events.metrics()
+   return row['networkGuard']
+  if not final:
+   # Keep an early/partial receipt and free finished browser buffers, but never
+   # suppress genuine otherwise valid RAW/DOM on a later request verdict.
+   try:one()
+   except Exception as e:errors.append(['nonblocking network receipt',repr(e)])
+   return
+  end=time.monotonic()+20
+  while True:
+   q=one()
+   if (not q['pending'] and not q['missingRequired'] and q['matchedAllWireIDs']) or time.monotonic()>=end:break
+   page.wait_for_timeout(100)
+  assert events.blobs<=set(page.evaluate('()=>Array.from(__s42PilotImages.blobs)'))
+  assert not errors and not row['network']['serverViolations'],('network errors',errors,row['network']['serverViolations'])
+  assert not q['pending'] and not q['missingRequired'] and q['matchedAllWireIDs'] and q['exactStageAssetGETCount']==1 and q['exactMediaRequestSet'] and q['expectedR1Same'],('strict final network HOLD',q)
  def grab(phase):
   canvas=page.locator('#battlecanvas');rec={}
-  raw=base64.b64decode(page.evaluate(RAW),validate=True);dom=canvas.screenshot(animations='disabled',timeout=30000)
-  for mode,v in [('raw',raw),('dom',dom)]:
+  raw=base64.b64decode(page.evaluate(RAW),validate=True)
+  def archive(mode,v):
    file=f'{arm}-{pose["name"]}-{phase}-{mode}.png';(out/file).write_bytes(v)
    with Image.open(io.BytesIO(v))as im:
     im.load();wh=im.size
     assert wh==tuple(PIN['backing']) if mode=='raw' else wh[0]==PIN['backing'][0] and wh[1] in (PIN['backing'][1],PIN['backing'][1]+1)
     rec[mode]={**fact(v),'path':file,'size':wh,'rgba':sha(im.convert('RGBA').tobytes())}
+  archive('raw',raw)
+  row.setdefault('partialRaw',{})[phase]=rec['raw'];flush()
+  archive('dom',canvas.screenshot(animations='disabled',timeout=30000))
   assert base64.b64decode(page.evaluate(RAW),validate=True)==raw,'frozen frame during DOM capture'
   return rec
  native_installed=False
  try:
-  n=page.goto(ORIGIN+SHELL,wait_until='domcontentloaded',timeout=50000)
-  assert n and n.url==ORIGIN+SHELL and n.status==200 and not n.from_service_worker and n.body()==body(SHELL)
+  n=page.goto(origin+SHELL,wait_until='domcontentloaded',timeout=50000)
+  assert n and n.url==origin+SHELL and n.status==200 and not n.from_service_worker and n.body()==read(SHELL)
   req=n.request
   assert req.frame==page.main_frame and req.is_navigation_request() and req.method=='GET' and not req.redirected_from and not req.redirected_to
-  row['navigation']=fact(n.body());flush()
+  row['navigation']=fact(n.body());assert row['navigation']==known[SHELL];snapshot_net();flush()
   try:page.wait_for_function(READY,timeout=45000)
   except Exception:
    row['readiness']=page.evaluate("()=>({href:location.href,ready:document.documentElement.dataset.honroReady,loader:typeof HonroCampaignLoader?.ensureStage,app:typeof HonroApp?.launch,sky:typeof HonroTimeOfDay?.sky,body:document.body?.innerText.slice(0,700)})");raise
@@ -192,7 +330,7 @@ def pilot(browser,get,known,pose,arm,out,row,flush):
   p=draw(prime,camera(prime));row['prime']=p
   row['decode']=page.evaluate(DECODE);assert row['decode']['number']>0 and row['decode']['font']=='loaded' and not row['decode']['bad']
   q=camera(pose);row['camera']=q;assert q['backing']==PIN['backing'];flush()
-  drain()
+  snapshot_net()
   if arm=='N':
    try:native_installed=page.evaluate(NATIVE,{'op':'install','pose':pose,'backing':q['backing'],'center':q['center']})
    except Exception as e:row.setdefault('observerErrors',[]).append(['install',repr(e)])
@@ -201,11 +339,12 @@ def pilot(browser,get,known,pose,arm,out,row,flush):
     try:page.evaluate(NATIVE,{'op':'phase','phase':phase})
     except Exception as e:row.setdefault('observerErrors',[]).append(['phase',phase,repr(e)])
    render=draw(pose,q)
-   images=grab(phase);row['frames'][phase]={'images':images,'render':render};flush()
+   images=grab(phase);row['frames'][phase]={'images':images,'render':render};del row['partialRaw'][phase];flush()
+   snapshot_net()
    if native_installed:
     try:row['frames'][phase]['observer']=page.evaluate(NATIVE,{'op':'commit'})
     except Exception as e:row.setdefault('observerErrors',[]).append(['commit',phase,repr(e)])
-  row['status']='CAPTURED';drain()
+  snapshot_net(final=True);row['status']='CAPTURED'
  except Exception as e:row['status']='HOLD';row['error']=[repr(e),traceback.format_exc()]
  finally:
   if native_installed:
@@ -214,10 +353,8 @@ def pilot(browser,get,known,pose,arm,out,row,flush):
   try:ctx.close()
   finally:flush()
 def net_signature(row):
- # Request timing, especially harmless authenticated media 206/canceled ordering,
- # is kept separately; every non-media HTTP path, count and byte receipt must match.
- pairs=[(k,c,h['bytes'],h['sha256'])for k,c,h in row['network']['verified']if not MEDIA.fullmatch(k)]
- return sorted(pairs)
+ f=row['networkGuard']
+ return (f['nonMediaCount'],f['nonMediaSignature'],f['exactStageAssetGETCount'],tuple(map(tuple,f['media'])))
 def matrix_exact(a,b):return len(a)==len(b)==6 and all(abs(x-y)<1e-7 for x,y in zip(a,b))
 def assess(report):
  issues=[];variants=report['visits']
@@ -265,7 +402,7 @@ def main():
   assert ns.official,'no local browser launch in this disabled carrier'
   from playwright.sync_api import sync_playwright
   with sync_playwright()as pw:
-   b=pw.chromium.launch(headless=True,args=['--host-resolver-rules=MAP * ~NOTFOUND','--disable-background-networking'])
+   b=pw.chromium.launch(headless=True,args=['--host-resolver-rules=MAP * ~NOTFOUND, EXCLUDE 127.0.0.1','--no-proxy-server','--disable-background-networking'])
    try:
     report['browser']=b.version;assert b.version==PIN['browser']
     # All six normal visits are attempted and archived before any observer visit/verdict.
