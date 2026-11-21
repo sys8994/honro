@@ -39,7 +39,7 @@ def case(browser,w,out,report,v,arm,g):
    elif blob.fullmatch(r.url)and r.status==200:seen.add(r.url)
    elif k in MEDIA and r.request.resource_type=='media' and r.status in (200,206):return
    elif not r.url.startswith('data:'):errors.append(('unknown response',r.url,r.status))
-  for k,f in [('request',request),('requestfinished',todo.discard),('requestfailed',failed),('response',response),('pageerror',lambda e:errors.append(('page error',str(e))))]:page.on(k,f)
+  for k,f in [('request',request),('requestfinished',lambda r:todo.discard(r)),('requestfailed',failed),('response',response),('pageerror',lambda e:errors.append(('page error',str(e))))]:page.on(k,f)
   def drain():
    nonlocal i
    q=0;expiry=time.monotonic()+20
@@ -77,8 +77,8 @@ def case(browser,w,out,report,v,arm,g):
    assert {x:y for x,y in warm.items()if x!='cache'}=={x:y for x,y in actual.items()if x!='cache'}
    assert warm['cache']==actual['cache'],(arm,k,'warm cache churn')
    assert list(rgba(snap).size)==ref['backing']
-   path=rawDIR/f'{arm}-{k}-raw.png';path.write_bytes(snap)
-   data={'arm':arm,'path':str(path.relative_to(out)),'png':facts(snap),'physics':sig,'native':actual,'images':dec}
+   frame_path=rawDIR/f'{arm}-{k}-raw.png';frame_path.write_bytes(snap)
+   data={'arm':arm,'path':str(frame_path.relative_to(out)),'png':facts(snap),'physics':sig,'native':actual,'images':dec}
    report['frames'][f'{arm}-{k}']=data;entry['views'].append(k);stamp(out,report)
   drain();entry.update(state='NETWORK_AND_CAPTURE_EXACT',requiredObserved=sorted(required),observedCount=len(checked));stamp(out,report)
  finally:ctx.close()
