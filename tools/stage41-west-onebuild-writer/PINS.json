@@ -1,0 +1,143 @@
+{
+  "enabled": true,
+  "repo": "sys8994/honro",
+  "qaRef": "refs/heads/qa/stage41-west-onebuild-writer-c7b7bde",
+  "releaseRef": "refs/heads/release/act5-stage41-west-closure-20261122",
+  "scopeApproval": "Stage41 West exact nonwalk decorative closure only, normal B PC and mobile identical to visually reviewed actual diagnostic B; unchanged walk, collision and campaign assets. Release ref only, no deploy.",
+  "base": {
+    "head": "c7b7bdef88b2b7d04af7f69dce58c948c4d185ea",
+    "tree": "5f468832f4c4170a61304263965bc1215917839d",
+    "manifest": {
+      "bytes": 7145164,
+      "sha256": "d65a06231081d32652683380024b926570f8bdc1c66c681f4eed1e3d51f54460",
+      "git": "8320c101d87ed632e700bc81a3651837e76dc6ac"
+    },
+    "pagesRun": 44992025157,
+    "pagesJob": 137115264140,
+    "publishedAt": "2026-11-22T06:05:25Z",
+    "active": 810,
+    "registry": 1357,
+    "retainerGit": "8374336b53c74ac81e6d32f5aa43eee575e61daa",
+    "policyGit": "16687b0fc38e432a7d66a015ddf3ebe744163a06"
+  },
+  "qa": {
+    "run": 44999071672,
+    "job": 137136367615,
+    "head": "3888a17a1c79932c60d351a8eda2647531133ff2",
+    "tree": "124cae354bc2ce76ea5e103f416dbca851bb3d63",
+    "branch": "qa/stage41-west-normal-onebuild-r2-c7b7bde",
+    "artifact": 14744593593,
+    "name": "honro-stage41-normal-onebuild-pc-mobile-no-deploy",
+    "outer": {
+      "bytes": 3052147,
+      "sha256": "b635758155349e737a62ac8063e83035ba52c4158501346963ddc8f789de09bc"
+    }
+  },
+  "outerMembers": [
+    "B-generated-for-held-release/B-EXACT-NORMAL-GENERATED-NO-DEPLOY.zip",
+    "B-generated-for-held-release/SEAL.json",
+    "BROWSER.json",
+    "GRAPH.json",
+    "SOURCE.json",
+    "M-normal-B-West-raw.png",
+    "PC-normal-B-West-raw.png",
+    "build.log",
+    "http.log",
+    "npm-game.log",
+    "npm.log",
+    "production-contract.log"
+  ],
+  "receipts": {
+    "BROWSER.json": {
+      "bytes": 11708,
+      "sha256": "4cccad1699ffe848e23b0cd050d3dbc6b1394bd222d3225fddc4e80010f9e09f"
+    },
+    "SOURCE.json": {
+      "bytes": 749,
+      "sha256": "7ca969c88b1a8c2bedf681fd12e3ca8ea41c979ebfa05ed5ced97ae97b4650e8"
+    },
+    "GRAPH.json": {
+      "bytes": 142306,
+      "sha256": "8e4b4170c300e81b068cd3a7cfb0743ca53bab1fb36b6c125c549e6e1493fddb"
+    },
+    "B-generated-for-held-release/SEAL.json": {
+      "bytes": 2455,
+      "sha256": "9add38a8387af6d587a3c256af3e70180886ada3189a41ef3e3df3a6bc524158"
+    }
+  },
+  "innerPath": "B-generated-for-held-release/B-EXACT-NORMAL-GENERATED-NO-DEPLOY.zip",
+  "sealPath": "B-generated-for-held-release/SEAL.json",
+  "generated": {
+    "HONRO.html": {
+      "bytes": 17379,
+      "sha256": "7b0df2dbd51cf3dacfcaa2086369e5f09f4e7efd21730245b709203e874ac9ba",
+      "git": "802de2f9059d79beb915ecdd603523c24d090de0"
+    },
+    "HONRO_WORKSHOP.html": {
+      "bytes": 4011,
+      "sha256": "e5e13ef740e9968ea53fe0a08273c7aac4d5045f6a0166e10aad011448a1f174",
+      "git": "3d3ef2594e8662f997cffb8b187a59e5f66c529e"
+    },
+    "index.html": {
+      "bytes": 17379,
+      "sha256": "7b0df2dbd51cf3dacfcaa2086369e5f09f4e7efd21730245b709203e874ac9ba",
+      "git": "802de2f9059d79beb915ecdd603523c24d090de0"
+    },
+    "web/entries/game.42b44751cde87da8.js": {
+      "bytes": 20483,
+      "sha256": "42b44751cde87da83931ca22d59df74679347464fad7fcfcd3fac181ccb72bf9",
+      "git": "d3db9315a20c282dd9ec9a45fef05ab5aa94e2b0"
+    },
+    "web/entries/game.e8f0b8f58492a5a9.html": {
+      "bytes": 11318,
+      "sha256": "e8f0b8f58492a5a9cf1112d43bdf262b1e58eac295fa6bc20d135e6b551bdf44",
+      "git": "92ae084e267a7f13348120a6165f58cfd8083c66"
+    },
+    "web/entries/workshop.943fb7ede817b1a2.js": {
+      "bytes": 16706,
+      "sha256": "943fb7ede817b1a2aab46e3b82dfe7fdc3d12536d242f0196e2cd266f72731a2",
+      "git": "213908dfa9d26150cd15b8abc4de736ea1e04233"
+    },
+    "web/manifest.json": {
+      "bytes": 6928657,
+      "sha256": "e8142a0e79f16ab1b182605ada036b33d316cf9a98f32f97618636c5c6cfb141",
+      "git": "542855510522ad1dc489de3c0b315281f324841c"
+    },
+    "web/runtime/ordered-common-18.36769610bbdbcea8.js": {
+      "bytes": 35562,
+      "sha256": "36769610bbdbcea833508a886dfb284b5f6dd349aa6f82947eb51b03f214bdad",
+      "git": "f68c2a09e71e5d8ecce0bed97faba68c77e7c840"
+    }
+  },
+  "nested": {
+    "bytes": 1861436,
+    "sha256": "c71c55fe8eaa58d508585390b8cff46d5b11dce3e7b66d6c8cb832ebae0ae499"
+  },
+  "source": {
+    "path": "shared/runtime/act5-edge-art.js",
+    "old": "b79dde7e841356d25e425d8dc0bcf3ca58729c5c",
+    "new": "461571b0d86e63ad1fee411d8c2cb34382d150a7",
+    "sha256": "cb0b819fa32b861bf09d2152e8e7206e0fe6003e7ab11e8cff9471dae1facc28"
+  },
+  "diagnostic": {
+    "run": 44996541548,
+    "job": 137128670908,
+    "artifact": 14744480610,
+    "receiptSHA256": "17ebe274afc66326af580603e47ddd3e6cc3c711e42620406e1e5c4cd1a40831"
+  },
+  "approvedFrames": {
+    "PC": {
+      "bytes": 931139,
+      "sha256": "779e44226a73aa36ac15ec79bb894728b14c626bfcf20f09eb3ac24c4607fb58"
+    },
+    "M": {
+      "bytes": 215228,
+      "sha256": "c9fd7cab0973fb442461af0b5cdb1a1537266f49405d19adadb255877b7ec2de"
+    }
+  },
+  "expectedCommon": {
+    "old": "web/runtime/ordered-common-18.5bef8d649618eec7.js",
+    "new": "web/runtime/ordered-common-18.36769610bbdbcea8.js",
+    "bsha": "36769610bbdbcea833508a886dfb284b5f6dd349aa6f82947eb51b03f214bdad"
+  }
+}
