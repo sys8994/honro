@@ -99,6 +99,92 @@ function flowMaterialWest21(raw,pair){
 
 const flowRows=new WeakMap();
 
+// One authored rock section; the existing ground and its registered front face
+// paint disjoint halves, on the same integer handoff as the old front strip.
+const WEST23_SECTION={"box":[-1000,4380,1240,1080],"paints":[["M-990 4404H229V5450H-990Z",{"line":[-820,4720,195,4830],"stops":[[0,"#584d3b"],[0.37,"#4d4538"],[0.67,"#3c3831"],[1,"#343330"]]}],["M-792 4670 -651 4588 -531 4580 -430 4535 -314 4530 -236 4497 -149 4487 -24 4394 53 4392 124 4408 229 4403 229 4497 166 4507 89 4499 17 4528 -81 4547 -148 4580 -245 4573 -311 4610 -432 4625 -561 4674 -674 4690 -792 4720Z","#4d463a"],["M-961 4767 -808 4719 -684 4733 -553 4668 -449 4660 -284 4600 -192 4597 -124 4608 -56 4612 8 4612 92 4612 180 4611 229 4610 229 4624 154 4624 89 4626 6 4634 -61 4646 -164 4664 -244 4661 -326 4693 -497 4717 -576 4766 -669 4782 -729 4821 -840 4850 -961 4875Z",{"line":[-850,4710,190,4680],"stops":[[0,"#675a46"],[0.48,"#594b3a"],[1,"#4c423a"]]}],["m-640 4724 96-54 113-10 106-44 79-16 57-1 31 7-71 11-68 29-84 8-79 28-60 12-46 29-74 15Z","#60523e"],["M-810 4928 -697 4873 -599 4851 -526 4796 -451 4783 -392 4755 -329 4751 -383 4787 -425 4798 -482 4845 -487 4880 -540 4913 -623 4919 -699 4959 -781 4970Z","#51473a"],["M-973 5276 -804 5251 -685 5194 -600 5206 -517 5166 -409 5144 -310 5155 -234 5123 -180 5078 -120 5069 -68 5037 -3 5010 69 5008 136 5000 229 5005 229 5141 157 5131 103 5137 26 5139 -52 5146 -137 5171 -180 5206 -268 5216 -339 5261 -461 5283 -541 5270 -611 5313 -755 5327 -864 5359 -973 5357Z",{"line":[-820,5250,211,4960],"stops":[[0,"#544837"],[0.52,"#514437"],[1,"#4c423a"]]}],["M-839 5311 -711 5271 -620 5289 -553 5254 -469 5256 -414 5231 -362 5237 -403 5265 -478 5284 -538 5270 -611 5313 -717 5319 -763 5340 -839 5345Z","#493f33"],["M-380 5160 -302 5152 -231 5123 -181 5078 -113 5065 -57 5035 12 5011 107 5005 42 5032 0 5065 -60 5070 -105 5102 -154 5106 -191 5142 -246 5157 -282 5180 -354 5184Z","#594b3f"],["m-169 4942 48-18 36-29 56-6 33 7-42 9-30 24-25 2-49 22Zm-284-84 37-18 45-3-29 11-27 4-33 17Zm-245 177 57-26 27 0-19 11-36 8-18 15Z","#565044"],["m-649 5345 121-29 109 21 72-23 56 13 72-19-44 33-62 3-66 28-75-5-53-22-85 21Z","#4c4336"]],"seat":[{"line":[-990,0,229,0],"stops":[[0,"#ffffff00"],[0.08,"#ffffff24"],[0.28,"#ffffffa3"],[0.49,"#fffffffc"],[0.78,"#ffffffff"],[0.88,"#ffffffcc"],[0.953,"#ffffff75"],[1,"#ffffff00"]]},{"line":[0,4404,0,5450],"stops":[[0,"#ffffff00"],[0.04,"#ffffff26"],[0.154,"#ffffffff"],[0.83,"#ffffffff"],[0.932,"#ffffff5e"],[1,"#ffffff00"]]}]};
+const west23Vectors=new WeakMap();
+let west23Raster=null;
+function eligibleWest23(b,floor,asset){
+ if(b?.honroStage!==23||!b.honroCanonical||b.honroCustom||b.honroMapOrigin!=='campaign'||b.honroAuthoredId!=='stage-23'||
+    b.honroEscortYardRevision!==1||floor?.id!=='sy-ground'||floor.broken||!G.HonroStage23EscortArt?.active(b)||
+    asset?.id!=='act3-handoff:23:quay-west'||asset.collision?.length!==0||
+    asset.bounds?.x!==0||asset.bounds.y!==4250||asset.bounds.w!==5050||asset.bounds.h!==5037||
+    asset.params?.terrainId!==floor.id||asset.params.blendFace!==true||asset.params.verticalScale!==4.2||
+    asset.params.edgeFade?.[0]?.[0]!==0||asset.params.edgeFade?.[0]?.[1]!==170)return false;
+ const v=asset.vector;
+ if(!v||typeof v!=='object')return false;
+ if(!west23Vectors.has(v)){
+  const s=JSON.stringify(v);let a=2166136261,z=2654435769;
+  for(let i=0;i<s.length;i++){const n=s.charCodeAt(i);a=Math.imul(a^n,16777619);z=Math.imul(z^n,2246822507);}
+  west23Vectors.set(v,s.length===112793&&(a>>>0)===761114639&&(z>>>0)===2098273003);
+ }
+ if(!west23Vectors.get(v))return false;
+ const sig=JSON.stringify(asset.params.contactMapping);
+ if(sig!=='[[0,704,0,4250],[170,704,1050,4250],[223,755,1600,4530],[285,798,1940,4700],[412,807,2600,4700],[502,821,3400,5100],[586,820,3980,5100],[661,801,4360,4940],[782,795,5050,4480]]')return false;
+ const points=G.HONRO_CORE.poly(floor);
+ return [[-1000,4332.506666666666],[-500,4318.359375],[0,4250],[1050,4250]]
+  .every(([x,y])=>points.some(p=>p.x===x&&p.y===y))&&
+  !points.some(p=>p.x>-1000&&p.x<240&&p.y>4333&&p.y<5460);
+}
+function west23SectionRaster(density){
+ if(west23Raster?.density===density)return west23Raster.canvas;
+ const {box:[x,y,w,h],paints,seat}=WEST23_SECTION;
+ let cv,c,matte;
+ try{
+  cv=document.createElement('canvas');cv.width=Math.ceil(w*density);cv.height=Math.ceil(h*density);
+  c=cv.getContext('2d');if(!c)return null;
+  c.setTransform(cv.width/w,0,0,cv.height/h,-x*cv.width/w,-y*cv.height/h);
+  const gradient=(ctx,{line,stops})=>{
+   const g=ctx.createLinearGradient(...line);
+   for(const [at,value] of stops)g.addColorStop(at,value);
+   return g;
+  };
+  for(const [d,ink] of paints){c.fillStyle=typeof ink==='string'?ink:gradient(c,ink);c.fill(new Path2D(d));}
+  // Alpha the authored falloff only once, at cache creation, without layer/readback passes during frames.
+  matte=document.createElement('canvas');matte.width=cv.width;matte.height=cv.height;
+  const mc=matte.getContext('2d');if(!mc)return null;
+  const sx=cv.width/w,sy=cv.height/h;
+  c.setTransform(1,0,0,1,0,0);c.globalCompositeOperation='destination-in';
+  for(const mask of seat){
+   mc.clearRect(0,0,matte.width,matte.height);
+   const [u,v,U,V]=mask.line;
+   mc.fillStyle=gradient(mc,{line:[(u-x)*sx,(v-y)*sy,(U-x)*sx,(V-y)*sy],stops:mask.stops});
+   mc.fillRect(0,0,matte.width,matte.height);c.drawImage(matte,0,0);
+  }
+ }catch{return null;}finally{if(matte)matte.width=1;}
+ if(west23Raster)west23Raster.canvas.width=1;
+ west23Raster={density,canvas:cv};
+ return cv;
+}
+function paintWest23(c,front){
+ const raw=G.HonroVisualStyle.raw(c),m=raw.getTransform(),[x,y,w,h]=WEST23_SECTION.box;
+ if(![m.a,m.d,m.e,m.f].every(Number.isFinite)||m.a!==m.d||m.b||m.c||m.a<=0)return;
+ const cut=Math.round(m.e);
+ const l=Math.max(0,Math.floor(x*m.a+m.e)),r=Math.min(raw.canvas.width,Math.ceil((x+w)*m.a+m.e));
+ const t=Math.max(0,Math.floor(y*m.d+m.f)),b=Math.min(raw.canvas.height,Math.ceil((y+h)*m.d+m.f));
+ const pl=front?Math.max(l,cut):l,pr=front?r:Math.min(r,cut);
+ if(pr<=pl||b<=t)return;
+ const cv=west23SectionRaster(m.a>.62?.65:.35);
+ if(!cv)return;
+ raw.save();try{
+  // Integer, non-overlapping device support; use the same source crop on both passes.
+  raw.setTransform(1,0,0,1,0,0);raw.clip(new Path2D('M'+pl+' '+t+'H'+pr+'V'+b+'H'+pl+'Z'));
+  raw.setTransform(m.a,m.b,m.c,m.d,m.e,m.f);raw.drawImage(cv,x,y,w,h);
+ }finally{raw.restore();}
+}
+const west23Ground=S.terrain;
+S.terrain=function(c,t){
+ const out=west23Ground.call(this,c,t),b=this.battle;
+ if(b?.honroStage===23&&t?.id==='sy-ground'&&!t.broken&&!b.honroCustom&&b.honroCanonical){
+  const p=G.HONRO_PROJECT,stage=p?.stages?.find(s=>s.metadata?.stageId===23);
+  if(stage?.id==='stage-23'&&stage.design?.act3HandoffArt==='act3-handoff:23:quay-west'){
+   const a=p.library.find(v=>v.id===stage.design.act3HandoffArt);
+   if(eligibleWest23(b,t,a))paintWest23(c,false);
+  }
+ }
+ return out;
+};
+
 function support(b,asset){
  const id=asset.params.terrainId||'a3-foundation';
  return D.render(b).find(t=>t.id===id&&!t.broken)||b.terrain.find(t=>t.id===id&&!t.broken);
@@ -244,6 +330,10 @@ S.landmark=function(c,l){
   }
   raw.save();raw.beginPath();raw.rect(left,0,right-left,b.height+1600);raw.clip();raw.transform(...matrix);
   G.HonroVectorArt.draw(raw,l.asset,{x:0,y:0});raw.restore();
+ }
+ if(b.honroStage===23&&l.id===asset.id&&l.kind==='canonical-element'&&l.layer==='front'&&
+    l.depthLayer==='L1'&&l.x===0&&l.y===0&&l.scale===1&&eligibleWest23(b,floor,asset)){
+  paintWest23(raw,true);
  }
  raw.restore();
 };
