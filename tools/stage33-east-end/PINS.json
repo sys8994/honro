@@ -1,0 +1,133 @@
+{
+  "enabled": true,
+  "qaRef": "refs/heads/qa/stage33-east-end-onebuild-c60fca57",
+  "release": {
+    "head": "c60fca57d223ecb3e62afc86c4755774c2b68263",
+    "tree": "d83d9f61343380d7e82147cba56dc90bd9ff260d",
+    "manifest": {
+      "bytes": 7655771,
+      "sha256": "f5ecfb20f1b1d140cc04579068302c5a6183ecd6b071585483c6a7670b79de04"
+    },
+    "manifestGit": "495358ec04f4032becc6bdf87db9d88ec3986d4e",
+    "pages": {
+      "branch": "master",
+      "head": "c60fca57d223ecb3e62afc86c4755774c2b68263",
+      "conclusion": "success",
+      "job": 137189067010,
+      "run": 45016105690,
+      "publishedAt": "2026-11-22T11:13:53Z"
+    }
+  },
+  "source": "shared/data/act4/sideview-art/33-coastal-v2.json",
+  "stock": {
+    "bytes": 1629325,
+    "sha256": "4585577066f5db159605e405d6565795e3e1382df4f30e944ec84ee4c2c6c91a",
+    "git": "3ab093ce8cff00efb620d2fed8eae6cc4c732892"
+  },
+  "candidate": {
+    "bytes": 1633024,
+    "sha256": "b7d56740d92261752abe84e729f85d34192814e009539512c48b766d98a7914c",
+    "git": "84bdfc2cf7a808b2e3e2df5ebfc4d1f2947fda63"
+  },
+  "recipe": {
+    "bytes": 26510,
+    "sha256": "81f0ed781201e5e96cb3c8d6bddb91bd3ecdd945c6f5a5224b78c423e8d3d7b8",
+    "git": "a8e3f7763a7eba7dbb18cd89dea73f847ad7c507"
+  },
+  "map": "web/data/chapter-33.80ca32475be181c7.json",
+  "packetA": "web/data/chapter-33-assets.07b129345eb95856.json",
+  "farRaster": "web/graphics/honro_authored_far-images-act4Estuary.1ba81aae5bebeebd.webp",
+  "view": [
+    10000,
+    485,
+    10670,
+    3425
+  ],
+  "protectedLower": 4800,
+  "devs": [
+    {
+      "key": "PC",
+      "dims": [
+        1440,
+        900
+      ],
+      "actual": {
+        "x": 7232,
+        "y": 2304,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": 3832,
+        "right": 10632,
+        "top": 487.8628472222222,
+        "bottom": 4120.137152777777
+      },
+      "backing": [
+        1440,
+        769
+      ]
+    },
+    {
+      "key": "M",
+      "dims": [
+        390,
+        844
+      ],
+      "actual": {
+        "x": 7232,
+        "y": 2304,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": 3832,
+        "right": 10632,
+        "top": -3341.8253205128203,
+        "bottom": 7949.82532051282
+      },
+      "backing": [
+        390,
+        648
+      ]
+    }
+  ],
+  "drawOwners": [
+    [
+      "act4-sideview:33:coastal-v2:west-continuous-geology",
+      0,
+      0,
+      1,
+      0,
+      "mid"
+    ],
+    [
+      "act4-sideview:33:coastal-v2:lowland-deep-strata",
+      0,
+      0,
+      1,
+      0,
+      "mid"
+    ],
+    [
+      "act4-sideview:33:coastal-v2:lowland",
+      0,
+      0,
+      1,
+      0,
+      "mid"
+    ]
+  ],
+  "walkOwnerIDs": [
+    "approved33-upper",
+    "approved33-left-middle",
+    "approved33-left-bank",
+    "approved33-low",
+    "approved33-right-stair",
+    "approved33-lower-east-link",
+    "approved33-right-middle",
+    "approved33-west-link",
+    "approved33-east-link",
+    "approved33-low-ground",
+    "approved33-east-dry-bank",
+    "approved33-east-upper-stair"
+  ]
+}
