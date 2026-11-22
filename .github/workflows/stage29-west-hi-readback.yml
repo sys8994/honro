@@ -1,0 +1,45 @@
+name: HONRO Stage29 west high raster one PC exact readback
+on:
+  push:
+    branches: [qa/stage29-west-hi-readback-31537b-r3]
+    paths: [.github/workflows/stage29-west-hi-readback.yml, tools/stage29-high-raster/**]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  compare:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage29-west-hi-readback-31537b-r3'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 16
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+          fetch-depth: 2
+      - name: Verify original QA success and retrieve one exact sealed archive read-only
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 tools/stage29-high-raster/acquire.py "$RUNNER_TEMP/stage29-original.zip"
+      - name: Exact immutable static parent and sealed B overlay, no build; one actual PC pair
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -z "${GH_TOKEN:-}${GITHUB_TOKEN:-}"
+          D="$RUNNER_TEMP/stage29-hi"; mkdir "$D"
+          git worktree add --detach "$D/A" 31537bcd1b070077a3287113e2085de40d3dcf2c
+          T="$GITHUB_WORKSPACE/tools/stage29-high-raster"
+          args=(--authority "$T/AUTHORITY.qa-only.json" --base "$D/A" --zip "$RUNNER_TEMP/stage29-original.zip" --work "$D/capture")
+          python3 "$T/run.py" "${args[@]}" --preflight-only
+          python3 -m venv "$D/venv"; V="$D/venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+          "$V" "$T/run.py" "${args[@]}"
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage29-hi-pc-exact-ab-no-build
+          path: ${{ runner.temp }}/stage29-hi/capture/out/
+          if-no-files-found: warn
+          retention-days: 7
