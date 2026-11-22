@@ -1,0 +1,160 @@
+{
+  "enabled": true,
+  "qaRef": "refs/heads/qa/stage40-clip-native-diag-e702",
+  "repo": "sys8994/honro",
+  "publicRoot": "https://sys8994.github.io/honro/",
+  "release": {
+    "head": "e70279eb6e00061825eaa6c0de793bb8c0821a99",
+    "tree": "f0e7310c20b0255b46e8e1afa3e4a0e4b40dce9e",
+    "manifest": {
+      "bytes": 8692467,
+      "sha256": "4f33214ea6d5503e42b3a9eb6ef4ed8451cb1d08793dbda80d24451aceac9e6e",
+      "git": "b54806cc62e03a1e4b1d1bfd9eb533e5655d773f"
+    },
+    "pages": 45037241837,
+    "job": 137254083655
+  },
+  "exactPagesLogUTC": "2026-11-22T15:16:56.9158404Z",
+  "alreadyPublic": {
+    "run": 45038806421,
+    "job": 137258422325,
+    "head": "2d3d30b26e4d6ca59b06360beaf36b33604e5426"
+  },
+  "stableShell": {
+    "bytes": 17379,
+    "sha256": "19a9ab647ec3e57f7acfe5c511c6eaeb6fc4b280193d380f875227bf98ca92bb"
+  },
+  "currentRoutes": {
+    "web/data/campaign.dce6b5b5facbbd91.json": {
+      "bytes": 55151,
+      "sha256": "dce6b5b5facbbd91e9d734f17030667aa2644af8782fef1fff3a6a22b639e380"
+    },
+    "web/data/chapter-40-assets-part-000.cd3e15a78b719c49.bin": {
+      "bytes": 4194304,
+      "sha256": "cd3e15a78b719c49cc3651a2e38cfb21c1f0a5176947f23550fd7ab058b0264e"
+    },
+    "web/data/chapter-40-assets-part-001.6dbca9ee910a8ff7.bin": {
+      "bytes": 4194304,
+      "sha256": "6dbca9ee910a8ff7be24e4f08354cd8f076f54b9eb72d5cca63a3fff971e32be"
+    },
+    "web/data/chapter-40-assets-part-002.6f227d452d7a288d.bin": {
+      "bytes": 1749013,
+      "sha256": "6f227d452d7a288d34bce7981b2ace8179d4b786e1a3b772f5b1d62d43f3144a"
+    },
+    "web/data/chapter-40-assets-parts.e102ede6b6f1921d.json": {
+      "bytes": 605,
+      "sha256": "e102ede6b6f1921d46efaf44318550c800c271ab2507f114d59b2b69698be6fe"
+    },
+    "web/data/chapter-40.5f4b6c4c311adc05.json": {
+      "bytes": 48881,
+      "sha256": "5f4b6c4c311adc0508920712018dadd7262c69c17b8d1b955628bdd8ce7d98e0"
+    },
+    "web/entries/game.3716bcb3caa78a7a.js": {
+      "bytes": 20483,
+      "sha256": "3716bcb3caa78a7a9b664378267214aafc47ad8ba985f12b6a020bd889c94b9a"
+    },
+    "web/runtime/campaign.0b680e073a963004.js": {
+      "bytes": 527,
+      "sha256": "0b680e073a9630043e6b1bd0d18e22398b2c839ab1f4c43310d7530f4058c137"
+    },
+    "web/runtime/ordered-common-11.6b1c56faa0f72077.js": {
+      "bytes": 166538,
+      "sha256": "6b1c56faa0f720779355027f23a6afaa7bee08944c7421b429d73009a3f81676"
+    },
+    "web/runtime/ordered-common-12.4bcd22a3c1af1306.js": {
+      "bytes": 87071,
+      "sha256": "4bcd22a3c1af1306a9cf4c7e7e80ac3974cf63e36892f7e8866f0a193fe58011"
+    }
+  },
+  "peer46ManifestOnly": {
+    "web/data/chapter-46-assets-part-000.f7ebee97d8110e68.bin": {
+      "bytes": 4194304,
+      "sha256": "f7ebee97d8110e6805bf6fb6a58303332d3fd118a8e477f3b5de6c7e002064a2"
+    },
+    "web/data/chapter-46-assets-part-001.5213b80662dfa32e.bin": {
+      "bytes": 4194304,
+      "sha256": "5213b80662dfa32ee85b3d01d07dd0d2fb4fe33fa1ed3647ca94a85abce27ac6"
+    },
+    "web/data/chapter-46-assets-part-002.8be859e980ee1d29.bin": {
+      "bytes": 4194304,
+      "sha256": "8be859e980ee1d292718c73bd51206ea8fa0a887baa59fc67c5ec6b2c4cd0738"
+    },
+    "web/data/chapter-46-assets-part-003.ee5f50c994047cde.bin": {
+      "bytes": 2667958,
+      "sha256": "ee5f50c994047cde9851a35f503ddc56b395904698ecbef174d832a4eaa148a8"
+    },
+    "web/data/chapter-46-assets-parts.a3595c48161a8bc1.json": {
+      "bytes": 765,
+      "sha256": "a3595c48161a8bc14dec5b1dea23dea0fda99fa39153a359d9ee83c5359516ea"
+    },
+    "web/data/chapter-46.2806e485c4c1e1b4.json": {
+      "bytes": 24682,
+      "sha256": "2806e485c4c1e1b4d94174b8324a2d534291c22c481c94960883a29643e9da02"
+    }
+  },
+  "project": "web/data/campaign.dce6b5b5facbbd91.json",
+  "gameEntry": "web/entries/game.3716bcb3caa78a7a.js",
+  "campaignBindings": {
+    "40": [
+      "web/data/chapter-40.5f4b6c4c311adc05.json",
+      "web/data/chapter-40-assets-parts.e102ede6b6f1921d.json"
+    ],
+    "46": [
+      "web/data/chapter-46.2806e485c4c1e1b4.json",
+      "web/data/chapter-46-assets-parts.a3595c48161a8bc1.json"
+    ]
+  },
+  "owners": {
+    "approved40:body": "ab304dd1d75f294c837d1d65cf002dc344415602f4de4c433217e8a6429cae06",
+    "approved40:coastal-foundation": "ac990c59c0c4c98d55d42a7531523b3aa072106b5c9da6a431fc23d75ccbd638",
+    "approved40:terrain-left-join": "b5a9e3c7330cd9960d09f522c7743ff5b4f27dd4a842192b779958fa60a0e1ab",
+    "approved40:terrain-right-join": "54e9228a930af94a8d9f4249cca7812e924bdf1cbc70282e9ef24bcd129dec36"
+  },
+  "pose": [
+    2850,
+    2850,
+    0.3
+  ],
+  "physics": {
+    "1440": {
+      "hash": "be1d91eee559e3e01a1f04e9a0412c94cd448365af5555ee39e2d0fc02311688",
+      "backing": [
+        1440,
+        769
+      ],
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      }
+    },
+    "390": {
+      "hash": "be1d91eee559e3e01a1f04e9a0412c94cd448365af5555ee39e2d0fc02311688",
+      "backing": [
+        390,
+        648
+      ],
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      }
+    }
+  },
+  "firstTurn": {
+    "round": 1,
+    "phase": "aim",
+    "actors": 50,
+    "terrain": 15,
+    "water": 3762.5
+  },
+  "estimateWorldCrop": [
+    2450,
+    2590,
+    3320,
+    3090
+  ],
+  "localCodeSeal": {
+    "install-signed-observer.js": "76636aae8522e8699d02ce8ef99eca5a5c7fb176522918783e1bfe11773cad95",
+    "pinned-runtime-authority.txt": "0b79f9dc0c1896e27014561c755d743ef58dacbad5b8c1de89018794bf6ae8ba",
+    "SIGNED-CLIPS.json": "befb50bc5719c7a7f79f4260cfb8f55e21c8469f46b42ce8055bae5a30d8de73"
+  }
+}
