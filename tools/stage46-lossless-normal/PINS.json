@@ -1,0 +1,75 @@
+{
+  "enabled": true,
+  "qaRef": "refs/heads/qa/stage46-lossless-normal-1ee86f",
+  "parent": "1ee86f0409b2cdcf457bbbd45c2353aa51991217",
+  "tree": "37210a417f8e117bca52c09d5ac2062a0078ee78",
+  "runtimePath": "shared/runtime/act5-edge-art.js",
+  "runtimeGit": "461571b0d86e63ad1fee411d8c2cb34382d150a7",
+  "manifest": {
+    "bytes": 7825398,
+    "sha256": "b236988ee37f2fc59ab37f14e01d8cef2c042ab6de2253f68468e79e280ce4bf"
+  },
+  "A": {
+    "active": 810,
+    "bytes": 16590634,
+    "sha256": "120aa444cdf1094a9d3d081d1691d803ba0e46dd2cc1bbf989a5f1b59e930855"
+  },
+  "B": {
+    "active": 810,
+    "bytes": 15250870,
+    "sha256": "744e462e37916ce64513ef0a0fad39d90f45c6c4aa1be408973a2c475c1ada7f"
+  },
+  "authored": {
+    "stage46-exterior-body.json": {
+      "beforeGit": "07982cb9b418ec349e8fc24d17c3d8cc40f4a18f",
+      "afterSHA256": "1df8658b5cc3b2cd5ad8897e4f27f15455a1883e5879124631cacd24c25f43c4",
+      "endpoints": 99930,
+      "beforeBytes": 3077079,
+      "afterBytes": 2729477
+    },
+    "stage46-exterior-part-1.json": {
+      "beforeGit": "21412f1293aa059d3b4185fb650a343c289d696c",
+      "afterSHA256": "8ead0de2cd7cee88366c53137bd7aca870e62f537b6db4c1024bda033e7abaf7",
+      "endpoints": 101807,
+      "beforeBytes": 2972423,
+      "afterBytes": 2620478
+    },
+    "stage46-exterior-part-2.json": {
+      "beforeGit": "d148eee3e06e6d97ef150fc932284c1278b5a5ec",
+      "afterSHA256": "4cb2b35b27eac60b8e14264f02ed27498e5e440b579cceedf0caa80af166c77c",
+      "endpoints": 96611,
+      "beforeBytes": 2659727,
+      "afterBytes": 2464204
+    },
+    "stage46-exterior-part-3.json": {
+      "beforeGit": "931ab8300de52ca95f9facb65dd16509917a1734",
+      "afterSHA256": "c91a0b505f7a757f4d4865d9bb9d17004d19e7883113e9de6c7cfc62483787fa",
+      "endpoints": 86276,
+      "beforeBytes": 2516559,
+      "afterBytes": 2343784
+    },
+    "stage46-exterior-part-4.json": {
+      "beforeGit": "bea0f8416b2635bf0cd6172d85778a77221db144",
+      "afterSHA256": "2d0d3d5da8bc7253fd3ae2c4c740156c4c4c01188d2b7576f8f92f7283d5fd7e",
+      "endpoints": 88447,
+      "beforeBytes": 2644480,
+      "afterBytes": 2467363
+    },
+    "stage46-exterior-part-5.json": {
+      "beforeGit": "f99c7b3bb755d26ceb244ba1f6be9eab2b81ac77",
+      "afterSHA256": "8833797686af91b04d4c4b364146548fb24cb76ef97f7aa12c175150e7295443",
+      "endpoints": 91159,
+      "beforeBytes": 2751043,
+      "afterBytes": 2566066
+    }
+  },
+  "bootMap": "web/data/chapter-46.2806e485c4c1e1b4.json",
+  "localEvidence": "Stage46 structural continuity incl y1490 intentionally unresolved separately; no new shape/alpha and no node decrease",
+  "pages": {
+    "run": 45021842986,
+    "job": 137206738846,
+    "conclusion": "success",
+    "reportTimeUTCApprox": "2026-11-22T12:23:27Z"
+  },
+  "nonTargetStage33Packet": "web/data/chapter-33-assets.920ccd84eb69a553.json"
+}
