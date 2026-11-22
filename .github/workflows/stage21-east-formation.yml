@@ -1,0 +1,49 @@
+name: HONRO Stage21 east foundation one-build sight check
+on:
+  push:
+    branches: [qa/stage21-east-r2-verified-base]
+    paths: [".github/workflows/stage21-east-formation.yml", "tools/stage21-east-formation/**"]
+permissions:
+  contents: read
+jobs:
+  one-build:
+    if: github.repository == 'sys8994/honro' && github.ref == 'refs/heads/qa/stage21-east-r2-verified-base'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 27
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Exact east formation source and one normal candidate build
+        run: |
+          set -euo pipefail
+          W="$RUNNER_TEMP/stage21-east-proof"; mkdir "$W" "$W/out"; echo "W=$W" >> "$GITHUB_ENV"
+          T="$GITHUB_WORKSPACE/tools/stage21-east-formation"
+          python "$T/guard.py" pre "$W"
+          (cd "$W/B"; npm ci >"$W/out/npm.log" 2>&1; npm ci --prefix game >"$W/out/npm-game.log" 2>&1; npm run build >"$W/out/build.log" 2>&1; npm run test:production-contract >"$W/out/production-contract.log" 2>&1)
+          python "$T/guard.py" observe "$W"
+      - name: Actual current public A and normal B in signed paired East and negative controller views
+        run: |
+          set -euo pipefail
+          T="$GITHUB_WORKSPACE/tools/stage21-east-formation"
+          python -m venv "$W/v"; V="$W/v/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+          python -m http.server 18842 --bind 127.0.0.1 --directory "$W/B" >"$W/out/http.log" 2>&1 &
+          x=$!; trap 'kill "$x" 2>/dev/null || true' EXIT
+          curl -fsS --retry 8 --retry-connrefused 'http://127.0.0.1:18842/HONRO.html' -o /dev/null
+          "$V" "$T/capture.py" "$W"
+          python "$T/guard.py" seal "$W"
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage21-east-formation-r2-no-deploy
+          path: ${{ runner.temp }}/stage21-east-proof/out/
+          if-no-files-found: warn
+          retention-days: 7
