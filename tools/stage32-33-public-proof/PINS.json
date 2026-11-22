@@ -1,0 +1,674 @@
+{
+  "enabled": true,
+  "repo": "sys8994/honro",
+  "origin": "https://sys8994.github.io/honro/",
+  "chromium": "151.0.7922.34",
+  "parent": "e70279eb6e00061825eaa6c0de793bb8c0821a99",
+  "active": 811,
+  "registry": 1521,
+  "nativeToolSHA": {
+    "stage32-batch/resume.py": "365485b5b0965367768ce3ba52f430d051efe6c5dbecb6f72a75d971be6cb1d8",
+    "stage32-batch/capture.py": "6492aad9a40354308f965d3d62a598f5e6f7625b37d505ea18aa9e3bea97ac4d",
+    "stage32-batch/guard.py": "5533a28473986c68dd26a946045a0adcb49a773b616f0cceffc12feae13b2b6e",
+    "stage32-batch/PINS.json": "94d8bb5f7ab8d885e9339f288d37b7ba383cb8fe5b61ad39ea05765792e6359d",
+    "stage32-batch/observer.json": "7c64522c0c84866e0d2516ca18ed81e12a9f7b348a26fa49fb40f9516a29a24a",
+    "stage32-33-batch/AUTHORITY.json": "141f57d7ddfc5f203b3a0d268cd1350f7d2078afb1dacb4b3311108104759008",
+    "stage33-batch/capture.py": "c69ff4c60e9896bd1a0c3c545ed0ae1f6b3756806e37c039797848e3e1b3753c",
+    "stage33-batch/guard.py": "cf7a6f96b2505a32466398cb96e521a7ee443e1688a3f920327d4d1d3133ec16",
+    "stage33-batch/PINS.json": "7d310202aab1bd0abb7e49343e40823a2f5cc1cb9d3cde513b9026d83c49dd54",
+    "stage33-batch/observer.json": "37d2bb99aa3bf1a32da34d6aa92410d5f9b698a19baedb7933823d0c79da371f",
+    "stage33-batch/old-2c4-HONRO.html": "b5696990619f139e6bb239646a8af4a8db0fd8e4e7b0c0d0dc97081588e6219c",
+    "stage33-batch/old-0b9-HONRO.html": "4f05204ef37edd55dfd7c55b461ad2c1a7f47a2d40587c7395cf370b068a3bdb"
+  },
+  "certifiedOutput": {
+    "head": "eaf774b42ec8211739d2594c729e0c91e1d55188",
+    "tree": "95a2afad79513f1d14fbde8be7cd8e84e76943f0",
+    "manifest": {
+      "bytes": 8863067,
+      "sha256": "099b62e020b1b2370d30e2e00be10c5c716f095d1e0b0c045af7b69ce619409b",
+      "git": "d0eeb2aa6964f2a1af8216cc70e4d230c106a539"
+    },
+    "pagesRun": 45043111432,
+    "pagesJob": 137272222712,
+    "publishedAt": "2026-11-22T16:20:49.0073331Z",
+    "assembly": {
+      "status": "EXACT_DERIVED_LOCAL_TREE_NO_PUSH_NO_DEPLOY",
+      "candidateTree": "95a2afad79513f1d14fbde8be7cd8e84e76943f0",
+      "parent": "e70279eb6e00061825eaa6c0de793bb8c0821a99",
+      "manifest": {
+        "bytes": 8863067,
+        "sha256": "099b62e020b1b2370d30e2e00be10c5c716f095d1e0b0c045af7b69ce619409b",
+        "git": "d0eeb2aa6964f2a1af8216cc70e4d230c106a539"
+      },
+      "add": [
+        "shared/author-stage32-south.mjs",
+        "web/data/campaign.87da363001067c02.json",
+        "web/data/chapter-32-assets-part-000.f3ca0763c7f49788.bin",
+        "web/data/chapter-32-assets-part-001.b3a3736114f08698.bin",
+        "web/data/chapter-32-assets-parts.22636e5ccf129f55.json",
+        "web/entries/game.4917eb9b73cf92bc.html",
+        "web/entries/game.969dbb92d5cffa9f.js",
+        "web/entries/workshop.df845cc539c98ddd.js",
+        "web/runtime/campaign.718c7f3ee1db9da7.js",
+        "web/runtime/ordered-common-12.8591029132793253.js",
+        "web/runtime/ordered-common-4.a28c36d3a91a6a10.js"
+      ],
+      "modify": [
+        "HONRO.html",
+        "HONRO_WORKSHOP.html",
+        "index.html",
+        "shared/build.mjs",
+        "shared/runtime/profile-store.js",
+        "web/manifest.json"
+      ],
+      "oldUrls": 1511,
+      "preservedUrls": 1521,
+      "publishedGenerations": 51,
+      "expiredMetadata": [],
+      "candidateRawManifest": {
+        "bytes": 8644476,
+        "sha256": "3c27884099efcc63ee6d309642acf5a7ffab1a38aac18e9478593fdba985aac8",
+        "git": "bef31da896f6491aeb943319bdfe7ceabefe7432"
+      },
+      "files": {
+        "HONRO.html": {
+          "bytes": 17379,
+          "sha256": "6b9748946f99ce9213205c8ccdd7484f77d154a752de01a88062cc19eab56f7c",
+          "git": "3b0c4a870d394b54b1c9c871783ef8c9cdfcd2f4"
+        },
+        "HONRO_WORKSHOP.html": {
+          "bytes": 4011,
+          "sha256": "284c780223af452042089d2507c26333629d089a5842d0f6706b063a016250e1",
+          "git": "fcd034c19f54bfcad27ee97cefa4696ce2911c61"
+        },
+        "index.html": {
+          "bytes": 17379,
+          "sha256": "6b9748946f99ce9213205c8ccdd7484f77d154a752de01a88062cc19eab56f7c",
+          "git": "3b0c4a870d394b54b1c9c871783ef8c9cdfcd2f4"
+        },
+        "shared/author-stage32-south.mjs": {
+          "bytes": 15834,
+          "sha256": "87efe86b733e70109dd6fec426404112874e2621dbd5323031c272628bf0bba6",
+          "git": "d747b1d296b7941a4bfcacea8e7e247afb0c7c71"
+        },
+        "shared/build.mjs": {
+          "bytes": 29896,
+          "sha256": "ffe225243b7fa9295ce22735a35218b7b7ee33bf01b467aa4f5a991a9e3bbbf6",
+          "git": "244903755e47fc7a519696a157802034d4064cd6"
+        },
+        "shared/runtime/profile-store.js": {
+          "bytes": 26074,
+          "sha256": "e102f4f1ed58887c143f4d8645d644df7a7eb6172bba05a57470240f0b770251",
+          "git": "c993e119fa10470fa99c6db9551e2fbef51c9819"
+        },
+        "web/data/campaign.87da363001067c02.json": {
+          "bytes": 55151,
+          "sha256": "87da363001067c02b5986f1fb3fab035c9017b874482ce44547f852b13f6a8c6",
+          "git": "6dd07f95940cc4a4db06fccefb0cdec87281f5c8"
+        },
+        "web/data/chapter-32-assets-part-000.f3ca0763c7f49788.bin": {
+          "bytes": 4194304,
+          "sha256": "f3ca0763c7f49788fc70b004f686aa1e97aab5ccc631af52122f788b32780369",
+          "git": "0df8e6ffa37d2d34dec279f24dd095df5224240a"
+        },
+        "web/data/chapter-32-assets-part-001.b3a3736114f08698.bin": {
+          "bytes": 594057,
+          "sha256": "b3a3736114f0869832c54e273a94e685cd063b73e2ae8e47edc8a2c2cb531655",
+          "git": "c313c8c756ee33fbfbf6b5bdd6a322769ac7cd73"
+        },
+        "web/data/chapter-32-assets-parts.22636e5ccf129f55.json": {
+          "bytes": 443,
+          "sha256": "22636e5ccf129f558d4c1a684d5ccd94b72c79f125eb7670760e2091dd45b7a9",
+          "git": "c64fbf3eeb90159aa3ef285c89f151e091ee5fc9"
+        },
+        "web/entries/game.4917eb9b73cf92bc.html": {
+          "bytes": 11318,
+          "sha256": "4917eb9b73cf92bcc0b1409735d49d47bdba4ff589aeea7e6592e21283254f11",
+          "git": "4e988f1e298a6cced10a4b5c31b0991911d0ea41"
+        },
+        "web/entries/game.969dbb92d5cffa9f.js": {
+          "bytes": 20483,
+          "sha256": "969dbb92d5cffa9f9a8c7bc547b396f48935cf319c5e87855edc76a669d8035c",
+          "git": "5a94c18cbb42f339619adc0356a9ee09b1676944"
+        },
+        "web/entries/workshop.df845cc539c98ddd.js": {
+          "bytes": 16706,
+          "sha256": "df845cc539c98ddde122584f347e7c99253d58668d312ff2ec9c587ed63d6854",
+          "git": "75107e887d2aa7ef079135d8abc39263bb4cfc98"
+        },
+        "web/manifest.json": {
+          "bytes": 8863067,
+          "sha256": "099b62e020b1b2370d30e2e00be10c5c716f095d1e0b0c045af7b69ce619409b",
+          "git": "d0eeb2aa6964f2a1af8216cc70e4d230c106a539"
+        },
+        "web/runtime/campaign.718c7f3ee1db9da7.js": {
+          "bytes": 527,
+          "sha256": "718c7f3ee1db9da757cd2c94caa1c97958128687acefcf594bc4cab281f0a64b",
+          "git": "88f0608f6ed98b44365e32b7d91dc7e9c8184272"
+        },
+        "web/runtime/ordered-common-12.8591029132793253.js": {
+          "bytes": 90165,
+          "sha256": "8591029132793253314644ab271ebd2e6dea5dfac532f623d3a5eaf73f868a28",
+          "git": "4b1c9f84cb4b74da4e26a9d09444d1e6c153eb61"
+        },
+        "web/runtime/ordered-common-4.a28c36d3a91a6a10.js": {
+          "bytes": 184915,
+          "sha256": "a28c36d3a91a6a100ad2e94bc3a137bfe89a04efb39cbf81f636f86c21bdf32e",
+          "git": "5192e8633bfee4c1b4a88ff9c56cd845c7a35dc8"
+        }
+      },
+      "reviewedRun": 45041041832
+    },
+    "newAliases": {
+      "web/data/campaign.87da363001067c02.json": {
+        "bytes": 55151,
+        "sha256": "87da363001067c02b5986f1fb3fab035c9017b874482ce44547f852b13f6a8c6"
+      },
+      "web/data/chapter-32-assets-part-000.f3ca0763c7f49788.bin": {
+        "bytes": 4194304,
+        "sha256": "f3ca0763c7f49788fc70b004f686aa1e97aab5ccc631af52122f788b32780369"
+      },
+      "web/data/chapter-32-assets-part-001.b3a3736114f08698.bin": {
+        "bytes": 594057,
+        "sha256": "b3a3736114f0869832c54e273a94e685cd063b73e2ae8e47edc8a2c2cb531655"
+      },
+      "web/data/chapter-32-assets-parts.22636e5ccf129f55.json": {
+        "bytes": 443,
+        "sha256": "22636e5ccf129f558d4c1a684d5ccd94b72c79f125eb7670760e2091dd45b7a9"
+      },
+      "web/entries/game.4917eb9b73cf92bc.html": {
+        "bytes": 11318,
+        "sha256": "4917eb9b73cf92bcc0b1409735d49d47bdba4ff589aeea7e6592e21283254f11"
+      },
+      "web/entries/game.969dbb92d5cffa9f.js": {
+        "bytes": 20483,
+        "sha256": "969dbb92d5cffa9f9a8c7bc547b396f48935cf319c5e87855edc76a669d8035c"
+      },
+      "web/entries/workshop.df845cc539c98ddd.js": {
+        "bytes": 16706,
+        "sha256": "df845cc539c98ddde122584f347e7c99253d58668d312ff2ec9c587ed63d6854"
+      },
+      "web/runtime/campaign.718c7f3ee1db9da7.js": {
+        "bytes": 527,
+        "sha256": "718c7f3ee1db9da757cd2c94caa1c97958128687acefcf594bc4cab281f0a64b"
+      },
+      "web/runtime/ordered-common-12.8591029132793253.js": {
+        "bytes": 90165,
+        "sha256": "8591029132793253314644ab271ebd2e6dea5dfac532f623d3a5eaf73f868a28"
+      },
+      "web/runtime/ordered-common-4.a28c36d3a91a6a10.js": {
+        "bytes": 184915,
+        "sha256": "a28c36d3a91a6a100ad2e94bc3a137bfe89a04efb39cbf81f636f86c21bdf32e"
+      }
+    },
+    "oldAliases": {
+      "web/data/campaign.dce6b5b5facbbd91.json": {
+        "bytes": 55151,
+        "sha256": "dce6b5b5facbbd91e9d734f17030667aa2644af8782fef1fff3a6a22b639e380"
+      },
+      "web/data/chapter-32-assets-part-000.58eb984bf3338390.bin": {
+        "bytes": 4194304,
+        "sha256": "58eb984bf3338390c4284dd587c6511b0f0cdc30f34e13d44f34292bd32e89a7"
+      },
+      "web/data/chapter-32-assets-part-001.c4c37c74a940a763.bin": {
+        "bytes": 585651,
+        "sha256": "c4c37c74a940a76354d51b15d1c4061811f28ac5d3c8449c8f4c85fbf8facc47"
+      },
+      "web/data/chapter-32-assets-parts.427bcb8462093709.json": {
+        "bytes": 443,
+        "sha256": "427bcb8462093709dd9680066672b86b093d858fd679a6ecd88f461874cfd781"
+      },
+      "web/entries/game.3716bcb3caa78a7a.js": {
+        "bytes": 20483,
+        "sha256": "3716bcb3caa78a7a9b664378267214aafc47ad8ba985f12b6a020bd889c94b9a"
+      },
+      "web/entries/game.c318bfb7587c950f.html": {
+        "bytes": 11318,
+        "sha256": "c318bfb7587c950f305dd1e72d7f80a6a6c0888b15fb738264f3e2a2c62dfdc1"
+      },
+      "web/entries/workshop.d9750b408abb8793.js": {
+        "bytes": 16706,
+        "sha256": "d9750b408abb879329852da1ee24f10a2111e27065f796fe86c56b036d53ee1e"
+      },
+      "web/runtime/campaign.0b680e073a963004.js": {
+        "bytes": 527,
+        "sha256": "0b680e073a9630043e6b1bd0d18e22398b2c839ab1f4c43310d7530f4058c137"
+      },
+      "web/runtime/ordered-common-12.4bcd22a3c1af1306.js": {
+        "bytes": 87071,
+        "sha256": "4bcd22a3c1af1306a9cf4c7e7e80ac3974cf63e36892f7e8866f0a193fe58011"
+      },
+      "web/runtime/ordered-common-4.67de8f1c97c5fb48.js": {
+        "bytes": 184807,
+        "sha256": "67de8f1c97c5fb4825954f779cbf06ab7e6a41d73e9ff5e77465bbe190634814"
+      }
+    },
+    "shells": {
+      "HONRO.html": {
+        "bytes": 17379,
+        "sha256": "6b9748946f99ce9213205c8ccdd7484f77d154a752de01a88062cc19eab56f7c"
+      },
+      "HONRO_WORKSHOP.html": {
+        "bytes": 4011,
+        "sha256": "284c780223af452042089d2507c26333629d089a5842d0f6706b063a016250e1"
+      },
+      "index.html": {
+        "bytes": 17379,
+        "sha256": "6b9748946f99ce9213205c8ccdd7484f77d154a752de01a88062cc19eab56f7c"
+      }
+    },
+    "r5Archive": {
+      "bytes": 33001182,
+      "sha256": "dfb11660b0ae5a70cd752131716656694888bc2ae7f5dda3d0caa5a250fc1b26"
+    }
+  },
+  "native": {
+    "stage32Public": {
+      "shell": {
+        "bytes": 17379,
+        "sha256": "6b9748946f99ce9213205c8ccdd7484f77d154a752de01a88062cc19eab56f7c"
+      },
+      "routes": {
+        "web/data/campaign.87da363001067c02.json": {
+          "bytes": 55151,
+          "sha256": "87da363001067c02b5986f1fb3fab035c9017b874482ce44547f852b13f6a8c6"
+        },
+        "web/data/chapter-32-assets-part-000.f3ca0763c7f49788.bin": {
+          "bytes": 4194304,
+          "sha256": "f3ca0763c7f49788fc70b004f686aa1e97aab5ccc631af52122f788b32780369"
+        },
+        "web/data/chapter-32-assets-part-001.b3a3736114f08698.bin": {
+          "bytes": 594057,
+          "sha256": "b3a3736114f0869832c54e273a94e685cd063b73e2ae8e47edc8a2c2cb531655"
+        },
+        "web/data/chapter-32-assets-parts.22636e5ccf129f55.json": {
+          "bytes": 443,
+          "sha256": "22636e5ccf129f558d4c1a684d5ccd94b72c79f125eb7670760e2091dd45b7a9"
+        },
+        "web/data/chapter-32.f242630da616ee32.json": {
+          "bytes": 21111,
+          "sha256": "f242630da616ee32bbeaa0f13d64e7c800976e6928d25b5c588a2286e913968a"
+        },
+        "web/entries/game.969dbb92d5cffa9f.js": {
+          "bytes": 20483,
+          "sha256": "969dbb92d5cffa9f9a8c7bc547b396f48935cf319c5e87855edc76a669d8035c"
+        },
+        "web/runtime/campaign.718c7f3ee1db9da7.js": {
+          "bytes": 527,
+          "sha256": "718c7f3ee1db9da757cd2c94caa1c97958128687acefcf594bc4cab281f0a64b"
+        },
+        "web/runtime/ordered-common-12.8591029132793253.js": {
+          "bytes": 90165,
+          "sha256": "8591029132793253314644ab271ebd2e6dea5dfac532f623d3a5eaf73f868a28"
+        },
+        "web/runtime/ordered-common-4.a28c36d3a91a6a10.js": {
+          "bytes": 184915,
+          "sha256": "a28c36d3a91a6a100ad2e94bc3a137bfe89a04efb39cbf81f636f86c21bdf32e"
+        }
+      }
+    },
+    "stage32South": {
+      "PC": {
+        "raw": {
+          "bytes": 790424,
+          "sha256": "2c9672d20b4f530aa775fc25e287193c670d47556fd33fd34583a90459623a45"
+        },
+        "pose": {
+          "actual": {
+            "x": 1689.6,
+            "y": 2492.8,
+            "scale": 0.21176470588235294
+          },
+          "viewport": {
+            "left": -1710.4,
+            "right": 5089.6,
+            "top": 676.6628472222224,
+            "bottom": 4308.9371527777785
+          },
+          "backing": [
+            1440,
+            769
+          ]
+        }
+      },
+      "Mobile": {
+        "raw": {
+          "bytes": 232232,
+          "sha256": "a2064cc362641a1422f596bf7b2357f822bdc0fcdaf25735ac38aac652cf0eb1"
+        },
+        "pose": {
+          "actual": {
+            "x": 1689.6,
+            "y": 2492.8,
+            "scale": 0.057352941176470586
+          },
+          "viewport": {
+            "left": -1710.4,
+            "right": 5089.6,
+            "top": -3153.02532051282,
+            "bottom": 8138.6253205128205
+          },
+          "backing": [
+            390,
+            648
+          ]
+        }
+      }
+    },
+    "stage32HistoricalS": {
+      "shell": {
+        "bytes": 17379,
+        "sha256": "587f1a94a0a744ba6d1d3c75dac34763380d6b09e68b61c997c80ada95632bfc"
+      },
+      "routes": {
+        "web/data/campaign.1be5cca224fe45de.json": {
+          "bytes": 55011,
+          "sha256": "1be5cca224fe45de7bbeb78b795abd450b4d3002c99c60d21ca3e0c783bedda7"
+        },
+        "web/data/chapter-32-assets-part-000.9ee023cdeb2b8afc.bin": {
+          "bytes": 4194304,
+          "sha256": "9ee023cdeb2b8afc6528695ce8cb993758ccce8636edadd4dfc77adece2a90a1"
+        },
+        "web/data/chapter-32-assets-part-001.04b03685e0328118.bin": {
+          "bytes": 3805125,
+          "sha256": "04b03685e03281184b2f61ed8087bcd749860b656051ef616ffbbfa42ccf4cbf"
+        },
+        "web/data/chapter-32-assets-parts.11bb98c0e02b14b3.json": {
+          "bytes": 444,
+          "sha256": "11bb98c0e02b14b3c98d4296f2469a843df73148361120e6b0973d572ca46789"
+        },
+        "web/data/chapter-32.f242630da616ee32.json": {
+          "bytes": 21111,
+          "sha256": "f242630da616ee32bbeaa0f13d64e7c800976e6928d25b5c588a2286e913968a"
+        },
+        "web/entries/game.72899ce8347a2d57.js": {
+          "bytes": 20483,
+          "sha256": "72899ce8347a2d5714c953d295c878b093de3373d09ebcddc2cbfb3fe42f0c1c"
+        },
+        "web/runtime/campaign.57b41cd798a104b5.js": {
+          "bytes": 527,
+          "sha256": "57b41cd798a104b50fbcc498133b543e041d5f5298ebf6e79bc87d3308b9d00f"
+        },
+        "web/runtime/ordered-common-12.be328ccb963ceef8.js": {
+          "bytes": 72701,
+          "sha256": "be328ccb963ceef85597dd67cd5ca8cfaf6950c6d93ddb9615b584055da66640"
+        },
+        "web/runtime/ordered-common-4.aec03203b3d81bdf.js": {
+          "bytes": 182110,
+          "sha256": "aec03203b3d81bdfbe255a98d6a9612ca128d403a791578225bc327d2212ea54"
+        }
+      }
+    },
+    "stage33Public": {
+      "shell": {
+        "bytes": 17379,
+        "sha256": "6b9748946f99ce9213205c8ccdd7484f77d154a752de01a88062cc19eab56f7c"
+      },
+      "routes": {
+        "web/data/chapter-33.80ca32475be181c7.json": {
+          "bytes": 34235,
+          "sha256": "80ca32475be181c7774c305b442c8081b6341836fb8d08771e033b7fb79e1464"
+        },
+        "web/data/chapter-33-assets.920ccd84eb69a553.json": {
+          "bytes": 2861056,
+          "sha256": "920ccd84eb69a5534b16e76ac27bb6df1d1c04fba0b2c5fff409057d6119d55b"
+        },
+        "web/runtime/ordered-common-4.a28c36d3a91a6a10.js": {
+          "bytes": 184915,
+          "sha256": "a28c36d3a91a6a100ad2e94bc3a137bfe89a04efb39cbf81f636f86c21bdf32e"
+        },
+        "web/runtime/ordered-common-12.8591029132793253.js": {
+          "bytes": 90165,
+          "sha256": "8591029132793253314644ab271ebd2e6dea5dfac532f623d3a5eaf73f868a28"
+        }
+      }
+    },
+    "stage33Raw": {
+      "PC": {
+        "raw": {
+          "bytes": 952116,
+          "sha256": "3fd520b70b3478edbdff52eca76ee888a8b0b7c4f6853aae4fe4907b4e33c5dd"
+        },
+        "pose": {
+          "actual": {
+            "x": 7232,
+            "y": 2304,
+            "scale": 0.21176470588235294
+          },
+          "viewport": {
+            "left": 3832,
+            "right": 10632,
+            "top": 487.8628472222222,
+            "bottom": 4120.137152777777
+          },
+          "backing": [
+            1440,
+            769
+          ]
+        }
+      },
+      "M": {
+        "raw": {
+          "bytes": 346854,
+          "sha256": "bf8564bba8bb61ecab1b5ac5a39fe321c462962c4aab8ee208af59f4fac6cd01"
+        },
+        "pose": {
+          "actual": {
+            "x": 7232,
+            "y": 2304,
+            "scale": 0.057352941176470586
+          },
+          "viewport": {
+            "left": 3832,
+            "right": 10632,
+            "top": -3341.8253205128203,
+            "bottom": 7949.82532051282
+          },
+          "backing": [
+            390,
+            648
+          ]
+        }
+      }
+    },
+    "stage33Historical2c4": {
+      "shell": {
+        "bytes": 17379,
+        "sha256": "b5696990619f139e6bb239646a8af4a8db0fd8e4e7b0c0d0dc97081588e6219c"
+      },
+      "routes": {
+        "web/entries/game.df8a4c7f1873e38c.js": {
+          "bytes": 20483,
+          "sha256": "df8a4c7f1873e38c16c8cc6eaefe6ba727595e7a3cebe50529e3ff6d02fb3bf4"
+        },
+        "web/runtime/campaign.926544619e01a04a.js": {
+          "bytes": 527,
+          "sha256": "926544619e01a04af2f2cc0e2bd435265ae9efff23062e259563bded6d851307"
+        },
+        "web/data/campaign.7140da5d3649e4ab.json": {
+          "bytes": 54961,
+          "sha256": "7140da5d3649e4aba2c58e180c8ff3f6f171a70e5e6704ad05dc98d428c52822"
+        },
+        "web/data/chapter-33.a7ce91b7d78fb5f8.json": {
+          "bytes": 34011,
+          "sha256": "a7ce91b7d78fb5f8b0b27a4ea42ce6cf4f54d98556c43176beb87a0789573a5a"
+        },
+        "web/data/chapter-33-assets.4b5df185aa59eb42.json": {
+          "bytes": 2836956,
+          "sha256": "4b5df185aa59eb42dbb2c46bd21b38ef2ab7134098bc31b3a0b96439dcc7ef73"
+        }
+      }
+    },
+    "stage7Public": {
+      "shell": {
+        "bytes": 17379,
+        "sha256": "6b9748946f99ce9213205c8ccdd7484f77d154a752de01a88062cc19eab56f7c"
+      },
+      "routes": {
+        "web/entries/game.969dbb92d5cffa9f.js": {
+          "bytes": 20483,
+          "sha256": "969dbb92d5cffa9f9a8c7bc547b396f48935cf319c5e87855edc76a669d8035c"
+        },
+        "web/data/campaign.87da363001067c02.json": {
+          "bytes": 55151,
+          "sha256": "87da363001067c02b5986f1fb3fab035c9017b874482ce44547f852b13f6a8c6"
+        },
+        "web/data/chapter-07.177911aaf007ef0b.json": {
+          "bytes": 30621,
+          "sha256": "177911aaf007ef0beb6a0cb94379b3513d42a9f653b53aaba9fb3948761a99ee"
+        },
+        "web/data/chapter-07-assets.4f5a7691dac04f9d.json": {
+          "bytes": 769327,
+          "sha256": "4f5a7691dac04f9dfcb361fa4258479080c349ae5bd0cd50b42b4b16156b3928"
+        },
+        "web/runtime/ordered-common-11.6b1c56faa0f72077.js": {
+          "bytes": 166538,
+          "sha256": "6b1c56faa0f720779355027f23a6afaa7bee08944c7421b429d73009a3f81676"
+        },
+        "web/runtime/ordered-common-12.8591029132793253.js": {
+          "bytes": 90165,
+          "sha256": "8591029132793253314644ab271ebd2e6dea5dfac532f623d3a5eaf73f868a28"
+        }
+      }
+    },
+    "workshop": {
+      "shell": {
+        "bytes": 4011,
+        "sha256": "284c780223af452042089d2507c26333629d089a5842d0f6706b063a016250e1"
+      },
+      "archive": "web/data/campaign-compat-32.ee7846c92c4edcac.json",
+      "routes": {
+        "web/entries/workshop.df845cc539c98ddd.js": {
+          "bytes": 16706,
+          "sha256": "df845cc539c98ddde122584f347e7c99253d58668d312ff2ec9c587ed63d6854"
+        },
+        "web/data/campaign.87da363001067c02.json": {
+          "bytes": 55151,
+          "sha256": "87da363001067c02b5986f1fb3fab035c9017b874482ce44547f852b13f6a8c6"
+        },
+        "web/data/campaign-compat-32.ee7846c92c4edcac.json": {
+          "bytes": 3219476,
+          "sha256": "ee7846c92c4edcac5f88771849e89c896a5c6906b0b8c10fb90cdca1d5b1061d"
+        },
+        "web/data/chapter-32-assets-parts.22636e5ccf129f55.json": {
+          "bytes": 443,
+          "sha256": "22636e5ccf129f558d4c1a684d5ccd94b72c79f125eb7670760e2091dd45b7a9"
+        },
+        "web/data/chapter-32-assets-part-000.f3ca0763c7f49788.bin": {
+          "bytes": 4194304,
+          "sha256": "f3ca0763c7f49788fc70b004f686aa1e97aab5ccc631af52122f788b32780369"
+        },
+        "web/data/chapter-32-assets-part-001.b3a3736114f08698.bin": {
+          "bytes": 594057,
+          "sha256": "b3a3736114f0869832c54e273a94e685cd063b73e2ae8e47edc8a2c2cb531655"
+        },
+        "web/data/chapter-32.f242630da616ee32.json": {
+          "bytes": 21111,
+          "sha256": "f242630da616ee32bbeaa0f13d64e7c800976e6928d25b5c588a2286e913968a"
+        },
+        "web/data/chapter-07.177911aaf007ef0b.json": {
+          "bytes": 30621,
+          "sha256": "177911aaf007ef0beb6a0cb94379b3513d42a9f653b53aaba9fb3948761a99ee"
+        },
+        "web/data/chapter-07-assets.4f5a7691dac04f9d.json": {
+          "bytes": 769327,
+          "sha256": "4f5a7691dac04f9dfcb361fa4258479080c349ae5bd0cd50b42b4b16156b3928"
+        }
+      },
+      "entry": "web/entries/workshop.df845cc539c98ddd.js"
+    },
+    "stage32HistoricalE702": {
+      "shell": {
+        "bytes": 17379,
+        "sha256": "19a9ab647ec3e57f7acfe5c511c6eaeb6fc4b280193d380f875227bf98ca92bb"
+      },
+      "routes": {
+        "web/data/campaign.dce6b5b5facbbd91.json": {
+          "bytes": 55151,
+          "sha256": "dce6b5b5facbbd91e9d734f17030667aa2644af8782fef1fff3a6a22b639e380"
+        },
+        "web/data/chapter-32-assets-part-000.58eb984bf3338390.bin": {
+          "bytes": 4194304,
+          "sha256": "58eb984bf3338390c4284dd587c6511b0f0cdc30f34e13d44f34292bd32e89a7"
+        },
+        "web/data/chapter-32-assets-part-001.c4c37c74a940a763.bin": {
+          "bytes": 585651,
+          "sha256": "c4c37c74a940a76354d51b15d1c4061811f28ac5d3c8449c8f4c85fbf8facc47"
+        },
+        "web/data/chapter-32-assets-parts.427bcb8462093709.json": {
+          "bytes": 443,
+          "sha256": "427bcb8462093709dd9680066672b86b093d858fd679a6ecd88f461874cfd781"
+        },
+        "web/data/chapter-32.f242630da616ee32.json": {
+          "bytes": 21111,
+          "sha256": "f242630da616ee32bbeaa0f13d64e7c800976e6928d25b5c588a2286e913968a"
+        },
+        "web/entries/game.3716bcb3caa78a7a.js": {
+          "bytes": 20483,
+          "sha256": "3716bcb3caa78a7a9b664378267214aafc47ad8ba985f12b6a020bd889c94b9a"
+        },
+        "web/runtime/campaign.0b680e073a963004.js": {
+          "bytes": 527,
+          "sha256": "0b680e073a9630043e6b1bd0d18e22398b2c839ab1f4c43310d7530f4058c137"
+        },
+        "web/runtime/ordered-common-12.4bcd22a3c1af1306.js": {
+          "bytes": 87071,
+          "sha256": "4bcd22a3c1af1306a9cf4c7e7e80ac3974cf63e36892f7e8866f0a193fe58011"
+        },
+        "web/runtime/ordered-common-4.67de8f1c97c5fb48.js": {
+          "bytes": 184807,
+          "sha256": "67de8f1c97c5fb4825954f779cbf06ab7e6a41d73e9ff5e77465bbe190634814"
+        }
+      }
+    },
+    "stage32PriorSouth": {
+      "PC": {
+        "raw": {
+          "bytes": 790424,
+          "sha256": "2c9672d20b4f530aa775fc25e287193c670d47556fd33fd34583a90459623a45"
+        },
+        "pose": {
+          "actual": {
+            "x": 1689.6,
+            "y": 2492.8,
+            "scale": 0.21176470588235294
+          },
+          "viewport": {
+            "left": -1710.4,
+            "right": 5089.6,
+            "top": 676.6628472222224,
+            "bottom": 4308.9371527777785
+          },
+          "backing": [
+            1440,
+            769
+          ]
+        }
+      },
+      "Mobile": {
+        "raw": {
+          "bytes": 232232,
+          "sha256": "a2064cc362641a1422f596bf7b2357f822bdc0fcdaf25735ac38aac652cf0eb1"
+        },
+        "pose": {
+          "actual": {
+            "x": 1689.6,
+            "y": 2492.8,
+            "scale": 0.057352941176470586
+          },
+          "viewport": {
+            "left": -1710.4,
+            "right": 5089.6,
+            "top": -3153.02532051282,
+            "bottom": 8138.6253205128205
+          },
+          "backing": [
+            390,
+            648
+          ]
+        }
+      }
+    }
+  },
+  "qaRef": "refs/heads/qa/stage32-33-exact-public-eaf774"
+}

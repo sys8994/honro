@@ -1,0 +1,39 @@
+name: HONRO exact public Stage32 and Stage33 native readback (read only)
+on:
+  push:
+    branches: [qa/stage32-33-exact-public-eaf774]
+    paths: [".github/workflows/stage32-33-exact-public.yml", "tools/stage32-33-public-proof/**"]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  public-native-readback:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage32-33-exact-public-eaf774'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 23
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Install exact proven browser fixture
+        run: |
+          python3 -m venv "$RUNNER_TEMP/public-proof-env"
+          "$RUNNER_TEMP/public-proof-env/bin/python" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$RUNNER_TEMP/public-proof-env/bin/python" -m playwright install --with-deps chromium
+      - name: Anonymous exact HTTPS play and restore signed PC and mobile saves
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: PYTHON="$RUNNER_TEMP/public-proof-env/bin/python" bash tools/stage32-33-public-proof/run-read-only.sh "$GITHUB_WORKSPACE" "$RUNNER_TEMP"
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage32-33-exact-public-native
+          path: |
+            ${{ runner.temp }}/s3233-public-proof/
+            ${{ runner.temp }}/s3233-old2c4-http.log
+            ${{ runner.temp }}/s3233-72dd-http.log
+          if-no-files-found: warn
+          retention-days: 7
