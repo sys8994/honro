@@ -1,0 +1,281 @@
+{
+  "enabled": true,
+  "qaRef": "refs/heads/qa/stage42-grain-save-compatible-342-onebuild",
+  "stock": {
+    "head": "342a7aa03f7244db9663315ceac596f307dac06e",
+    "tree": "2e2ca3058bb2b4b4528b5e46394fcf30d55c8f32",
+    "entry": "web/entries/game.2662b5c41e95ed19.js",
+    "loader": "web/runtime/campaign.4375d13445105188.js",
+    "campaign": "web/data/campaign.0386fa9451fe2427.json",
+    "map": {
+      "21": "web/data/chapter-21.724a765a85d437a2.json",
+      "33": "web/data/chapter-33.80ca32475be181c7.json",
+      "42": "web/data/chapter-42.0802015e8ba99d11.json"
+    },
+    "packet": {
+      "21": "web/data/chapter-21-assets.195e73632de8b164.json",
+      "33": "web/data/chapter-33-assets.920ccd84eb69a553.json",
+      "42": "web/data/chapter-42-assets.396ec98508d5b8c8.json"
+    },
+    "source": [
+      {
+        "file": "shared/assets/environment/act5/near-import.json",
+        "git": "938069390ced7f76242a81f008200d5f9b63a950",
+        "bytes": 5732126
+      },
+      {
+        "file": "shared/assets/environment/act5/stage42-registered-body.json",
+        "git": "f6b4a6a3d6dbbfbfd83fa367125165c2fdd2f964",
+        "bytes": 708171
+      },
+      {
+        "file": "shared/assets/environment/act5/stage42-surface.json",
+        "git": "cabd9306550c0ccd742dfd3633f3c266ec9b7819",
+        "bytes": 646900
+      }
+    ],
+    "manifest": {
+      "git": "a6b659e6dba284a924deb2cdbac2681685418421",
+      "bytes": 8163953
+    },
+    "pages": {
+      "id": 45027512069,
+      "job": 137224104334,
+      "head": "342a7aa03f7244db9663315ceac596f307dac06e",
+      "conclusion": "success",
+      "publishedAt": "2026-11-22T13:28:57Z"
+    }
+  },
+  "asset": "act5:near:42",
+  "packetA": {
+    "bytes": 1864856,
+    "sha256": "396ec98508d5b8c828a8d0bbf24c2f6cac1a734a55989db3f3d3fcc1d80bb1df"
+  },
+  "packetB": {
+    "bytes": 1858863,
+    "sha256": "abdbc9d7a8ce717eb7c8a6c04aa7400cec13b5ced947713aa862ab70ef5f2e46"
+  },
+  "recipeSHA256": "135caf819d12652ac6265303acf56194ead5c3cc55fe45e011cb630e339f4d30",
+  "nearScale": 3.2146389713155292,
+  "allowedLocal": [
+    85,
+    465,
+    1690,
+    864
+  ],
+  "views": [
+    {
+      "key": "PC",
+      "dims": [
+        1440,
+        900
+      ],
+      "views": [
+        {
+          "name": "south",
+          "actual": {
+            "x": 3250,
+            "y": 3101,
+            "scale": 0.21176470588235294
+          },
+          "backing": [
+            1440,
+            769
+          ],
+          "viewport": {
+            "left": -150,
+            "right": 6650,
+            "top": 1284.8628472222222,
+            "bottom": 4917.137152777777
+          },
+          "direction": [
+            0,
+            1
+          ]
+        },
+        {
+          "name": "west",
+          "actual": {
+            "x": -320,
+            "y": 1430.5,
+            "scale": 0.21176470588235294
+          },
+          "backing": [
+            1440,
+            769
+          ],
+          "viewport": {
+            "left": -3720,
+            "right": 3080,
+            "top": -385.6371527777778,
+            "bottom": 3246.637152777778
+          },
+          "direction": [
+            -1,
+            0
+          ]
+        },
+        {
+          "name": "east",
+          "actual": {
+            "x": 6820,
+            "y": 1430.5,
+            "scale": 0.21176470588235294
+          },
+          "backing": [
+            1440,
+            769
+          ],
+          "viewport": {
+            "left": 3420,
+            "right": 10220,
+            "top": -385.6371527777778,
+            "bottom": 3246.637152777778
+          },
+          "direction": [
+            1,
+            0
+          ]
+        },
+        {
+          "name": "close",
+          "pos": [
+            3200,
+            2215,
+            0.94
+          ]
+        }
+      ]
+    },
+    {
+      "key": "M",
+      "dims": [
+        390,
+        844
+      ],
+      "views": [
+        {
+          "name": "south",
+          "actual": {
+            "x": 3250,
+            "y": 3101,
+            "scale": 0.057352941176470586
+          },
+          "backing": [
+            390,
+            648
+          ],
+          "viewport": {
+            "left": -150,
+            "right": 6650,
+            "top": -2544.8253205128203,
+            "bottom": 8746.82532051282
+          },
+          "direction": [
+            0,
+            1
+          ]
+        },
+        {
+          "name": "west",
+          "actual": {
+            "x": -320,
+            "y": 1430.5,
+            "scale": 0.057352941176470586
+          },
+          "backing": [
+            390,
+            648
+          ],
+          "viewport": {
+            "left": -3720,
+            "right": 3080,
+            "top": -4215.32532051282,
+            "bottom": 7076.32532051282
+          },
+          "direction": [
+            -1,
+            0
+          ]
+        },
+        {
+          "name": "east",
+          "actual": {
+            "x": 6820,
+            "y": 1430.5,
+            "scale": 0.057352941176470586
+          },
+          "backing": [
+            390,
+            648
+          ],
+          "viewport": {
+            "left": 3420,
+            "right": 10220,
+            "top": -4215.32532051282,
+            "bottom": 7076.32532051282
+          },
+          "direction": [
+            1,
+            0
+          ]
+        },
+        {
+          "name": "close",
+          "pos": [
+            3200,
+            2215,
+            0.5
+          ]
+        }
+      ]
+    }
+  ],
+  "expectedActive": 810,
+  "compilerStageIndex": 41,
+  "historical": {
+    "head": "733d5d212d5ab235c2b492e1f065306bdfaae317",
+    "tree": "276e54e1ca08d32d3b290097c9a05e91e9ab0ecd",
+    "manifest": {
+      "git": "10d3c091c96dccbc2a92bbe4434a00f128abb56e",
+      "bytes": 7994676
+    },
+    "pages": {
+      "id": 137212114253,
+      "status": "completed",
+      "conclusion": "success",
+      "sha": "733d5d212d5ab235c2b492e1f065306bdfaae317",
+      "head": "733d5d212d5ab235c2b492e1f065306bdfaae317",
+      "at": "2026-11-22T12:43:41Z"
+    },
+    "entry": "web/entries/game.562d9dddf1932b73.js",
+    "loader": "web/runtime/campaign.4375d13445105188.js",
+    "campaign": "web/data/campaign.0386fa9451fe2427.json",
+    "map": {
+      "21": "web/data/chapter-21.724a765a85d437a2.json",
+      "33": "web/data/chapter-33.80ca32475be181c7.json",
+      "42": "web/data/chapter-42.0802015e8ba99d11.json"
+    },
+    "packet": {
+      "21": "web/data/chapter-21-assets.195e73632de8b164.json",
+      "33": "web/data/chapter-33-assets.920ccd84eb69a553.json",
+      "42": "web/data/chapter-42-assets.396ec98508d5b8c8.json"
+    }
+  },
+  "profile": {
+    "path": "shared/runtime/profile-store.js",
+    "stockGit": "da6b816f36a786a8e8c4a0e7671b2b77fc9e30e9",
+    "candidateGit": "5cd8233719776e1e56c91c89046dee586b874753",
+    "candidateSHA256": "100f52642560b4836b19a71d62157a36873e4c1c83b6c7a4cf4be8045940158f",
+    "current": "1858841:5ce4a412",
+    "previous": "1864834:f80cec75",
+    "expectedOldChunk": "web/runtime/ordered-common-4.c84f463a629cb3dc.js",
+    "oldGroupUnpackedBytes": 192376,
+    "groupUnpackedLimit": 196608,
+    "nextModuleBytes": 10833
+  },
+  "sourceCandidate": {
+    "git": "cecd552543b9be5ca904d0346e114e4ced814712",
+    "bytes": 5726133
+  }
+}
