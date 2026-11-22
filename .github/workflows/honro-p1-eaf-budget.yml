@@ -1,0 +1,36 @@
+name: HONRO eaf ordinary cold Chrome baseline (QA only)
+on:
+  push:
+    branches: [qa/p1-eaf-chrome-budget]
+    paths: [".github/workflows/honro-p1-eaf-budget.yml", "tools/honro-p1-budget/**"]
+permissions:
+  contents: read
+jobs:
+  native-cold-budget:
+    if: github.repository == 'sys8994/honro' && github.ref == 'refs/heads/qa/p1-eaf-chrome-budget' && github.event_name == 'push'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Assert enabled and exact add-only signed eaf child
+        run: python3 tools/honro-p1-budget/measure.py --verify-binding
+      - name: Install exact proven Chrome capture dependencies
+        run: |
+          python3 -m venv "$RUNNER_TEMP/honro-p1-budget"
+          "$RUNNER_TEMP/honro-p1-budget/bin/python" -m pip --disable-pip-version-check install playwright==1.62.0
+          "$RUNNER_TEMP/honro-p1-budget/bin/python" -m playwright install --with-deps chromium
+      - name: Serial rotation on one runner across six stages and two viewports
+        timeout-minutes: 43
+        run: '"$RUNNER_TEMP/honro-p1-budget/bin/python" tools/honro-p1-budget/measure.py "$RUNNER_TEMP/honro-p1-budget-evidence"'
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-eaf-ordinary-chrome-budget
+          path: ${{ runner.temp }}/honro-p1-budget-evidence/
+          if-no-files-found: warn
+          retention-days: 7

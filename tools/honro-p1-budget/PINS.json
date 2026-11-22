@@ -1,0 +1,240 @@
+{
+  "enabled": true,
+  "repo": "sys8994/honro",
+  "qaRef": "refs/heads/qa/p1-eaf-chrome-budget",
+  "publicRoot": "https://sys8994.github.io/honro/",
+  "head": "eaf774b42ec8211739d2594c729e0c91e1d55188",
+  "tree": "95a2afad79513f1d14fbde8be7cd8e84e76943f0",
+  "manifest": {
+    "bytes": 8863067,
+    "sha256": "099b62e020b1b2370d30e2e00be10c5c716f095d1e0b0c045af7b69ce619409b",
+    "git": "d0eeb2aa6964f2a1af8216cc70e4d230c106a539"
+  },
+  "pages": {
+    "run": 45043111432,
+    "job": 137272222712,
+    "date": "2026-11-22T16:20:49.0073331Z"
+  },
+  "chromium": "151.0.7922.34",
+  "repeats": 3,
+  "nativeShell": {
+    "bytes": 17379,
+    "sha256": "6b9748946f99ce9213205c8ccdd7484f77d154a752de01a88062cc19eab56f7c",
+    "git": "3b0c4a870d394b54b1c9c871783ef8c9cdfcd2f4"
+  },
+  "core": {
+    "web/entries/game.969dbb92d5cffa9f.js": {
+      "bytes": 20483,
+      "sha256": "969dbb92d5cffa9f9a8c7bc547b396f48935cf319c5e87855edc76a669d8035c"
+    },
+    "web/data/campaign.87da363001067c02.json": {
+      "bytes": 55151,
+      "sha256": "87da363001067c02b5986f1fb3fab035c9017b874482ce44547f852b13f6a8c6"
+    },
+    "web/data/campaign-base.0c57dcfe7c08d421.json": {
+      "bytes": 257,
+      "sha256": "0c57dcfe7c08d421901ffa8eeb437940b6b6d4779816207b51dca7be44c73e5e"
+    },
+    "web/data/campaign-shared.8f8343b5c21518d4.json": {
+      "bytes": 577195,
+      "sha256": "8f8343b5c21518d4fdaa2314e58031fd137b8622d3a6c1ca2fdabafde3bb158f"
+    },
+    "web/runtime/load-data.36ebfa6c4287ef7a.js": {
+      "bytes": 16749,
+      "sha256": "36ebfa6c4287ef7a54392c1bcb46a78977473e0e10aad3ede3dfe341f6e71f96"
+    },
+    "web/runtime/campaign.718c7f3ee1db9da7.js": {
+      "bytes": 527,
+      "sha256": "718c7f3ee1db9da757cd2c94caa1c97958128687acefcf594bc4cab281f0a64b"
+    },
+    "web/runtime/ordered-game-20.70aa4d25d5613f6e.js": {
+      "bytes": 62255,
+      "sha256": "70aa4d25d5613f6e424ad9aa313c3963dbda31190c9d72e6c542d83c3f459636"
+    },
+    "web/runtime/ordered-game-23.9ebc66541a8184b6.js": {
+      "bytes": 94701,
+      "sha256": "9ebc66541a8184b6ec954023694bc4d55b36a5f1bdb25d7127f7a5b3e1a5d210"
+    },
+    "web/runtime/ordered-common-17.027dfd7d7784222d.js": {
+      "bytes": 133947,
+      "sha256": "027dfd7d7784222d5fa9b70a1203c056f6a9cea3742d8e56aa2138ca4c6655e0"
+    },
+    "web/runtime/ordered-common-18.4831815091012b42.js": {
+      "bytes": 35562,
+      "sha256": "4831815091012b426ed3973ce2de1f4c896414383be3b5a4c782bcde29f05ffa"
+    }
+  },
+  "stages": {
+    "1": {
+      "id": "stage-1",
+      "name": "연목 고갯길",
+      "map": "web/data/chapter-01.c3917afbdd6737bc.json",
+      "descriptorOrPacket": "web/data/chapter-01-assets.088719e10e63d482.json",
+      "parts": [],
+      "encoding": "json",
+      "files": {
+        "web/data/chapter-01.c3917afbdd6737bc.json": {
+          "bytes": 48157,
+          "sha256": "c3917afbdd6737bc8d5c99d4e37a0a5778698d7f95d4bc6676678d48623e8a7c"
+        },
+        "web/data/chapter-01-assets.088719e10e63d482.json": {
+          "bytes": 109473,
+          "sha256": "088719e10e63d4826b565b3a3a13857af068bed52ae8c8a8293d23becabeb1e3"
+        }
+      }
+    },
+    "2": {
+      "id": "stage-2",
+      "name": "상여 위의 높은 길",
+      "map": "web/data/chapter-02.5faa275befa85b0d.json",
+      "descriptorOrPacket": "web/data/chapter-02-assets.ddddf53df4d749c6.json",
+      "parts": [],
+      "encoding": "json-pool-v1",
+      "files": {
+        "web/data/chapter-02.5faa275befa85b0d.json": {
+          "bytes": 55013,
+          "sha256": "5faa275befa85b0d49205b25a9d902c9d7ce448cf52fe25e124d4005b10f2ad2"
+        },
+        "web/data/chapter-02-assets.ddddf53df4d749c6.json": {
+          "bytes": 256633,
+          "sha256": "ddddf53df4d749c60375cba085a79d790319b1e9c1790cb29e840529409ab434"
+        }
+      }
+    },
+    "11": {
+      "id": "stage-11",
+      "name": "매듭을 거둔 아침",
+      "map": "web/data/chapter-11.4f36fd2ea4a1cafd.json",
+      "descriptorOrPacket": "web/data/chapter-11-assets.cad9e03dd8bf52a5.json",
+      "parts": [],
+      "encoding": "json-pool-v1",
+      "files": {
+        "web/data/chapter-11.4f36fd2ea4a1cafd.json": {
+          "bytes": 209933,
+          "sha256": "4f36fd2ea4a1cafd3e261f9b1eb222fde4e9ab4fda3799f6852a68db87cd5105"
+        },
+        "web/data/chapter-11-assets.cad9e03dd8bf52a5.json": {
+          "bytes": 740283,
+          "sha256": "cad9e03dd8bf52a5be4cd61fd22cc4430f7e66edb8c9a547377bd54219931916"
+        }
+      }
+    },
+    "40": {
+      "id": "stage-40",
+      "name": "40 · 돌아가는 배",
+      "map": "web/data/chapter-40.5f4b6c4c311adc05.json",
+      "descriptorOrPacket": "web/data/chapter-40-assets-parts.e102ede6b6f1921d.json",
+      "parts": [
+        "web/data/chapter-40-assets-part-000.cd3e15a78b719c49.bin",
+        "web/data/chapter-40-assets-part-001.6dbca9ee910a8ff7.bin",
+        "web/data/chapter-40-assets-part-002.6f227d452d7a288d.bin"
+      ],
+      "encoding": "json-pool-v1",
+      "files": {
+        "web/data/chapter-40.5f4b6c4c311adc05.json": {
+          "bytes": 48881,
+          "sha256": "5f4b6c4c311adc0508920712018dadd7262c69c17b8d1b955628bdd8ce7d98e0"
+        },
+        "web/data/chapter-40-assets-parts.e102ede6b6f1921d.json": {
+          "bytes": 605,
+          "sha256": "e102ede6b6f1921d46efaf44318550c800c271ab2507f114d59b2b69698be6fe"
+        },
+        "web/data/chapter-40-assets-part-000.cd3e15a78b719c49.bin": {
+          "bytes": 4194304,
+          "sha256": "cd3e15a78b719c49cc3651a2e38cfb21c1f0a5176947f23550fd7ab058b0264e"
+        },
+        "web/data/chapter-40-assets-part-001.6dbca9ee910a8ff7.bin": {
+          "bytes": 4194304,
+          "sha256": "6dbca9ee910a8ff7be24e4f08354cd8f076f54b9eb72d5cca63a3fff971e32be"
+        },
+        "web/data/chapter-40-assets-part-002.6f227d452d7a288d.bin": {
+          "bytes": 1749013,
+          "sha256": "6f227d452d7a288d34bce7981b2ace8179d4b786e1a3b772f5b1d62d43f3144a"
+        }
+      }
+    },
+    "42": {
+      "id": "stage-42",
+      "name": "등불이 꺼진 성책",
+      "map": "web/data/chapter-42.0802015e8ba99d11.json",
+      "descriptorOrPacket": "web/data/chapter-42-assets.abdbc9d7a8ce717e.json",
+      "parts": [],
+      "encoding": "json",
+      "files": {
+        "web/data/chapter-42.0802015e8ba99d11.json": {
+          "bytes": 12647,
+          "sha256": "0802015e8ba99d11a8ece1f14186b3db6a4a7d3d32076e64ca120300f50c7f50"
+        },
+        "web/data/chapter-42-assets.abdbc9d7a8ce717e.json": {
+          "bytes": 1858863,
+          "sha256": "abdbc9d7a8ce717eb7c8a6c04aa7400cec13b5ced947713aa862ab70ef5f2e46"
+        }
+      }
+    },
+    "46": {
+      "id": "stage-46",
+      "name": "하늘우물의 가장자리",
+      "map": "web/data/chapter-46.2806e485c4c1e1b4.json",
+      "descriptorOrPacket": "web/data/chapter-46-assets-parts.a3595c48161a8bc1.json",
+      "parts": [
+        "web/data/chapter-46-assets-part-000.f7ebee97d8110e68.bin",
+        "web/data/chapter-46-assets-part-001.5213b80662dfa32e.bin",
+        "web/data/chapter-46-assets-part-002.8be859e980ee1d29.bin",
+        "web/data/chapter-46-assets-part-003.ee5f50c994047cde.bin"
+      ],
+      "encoding": "json-pool-v1",
+      "files": {
+        "web/data/chapter-46.2806e485c4c1e1b4.json": {
+          "bytes": 24682,
+          "sha256": "2806e485c4c1e1b4d94174b8324a2d534291c22c481c94960883a29643e9da02"
+        },
+        "web/data/chapter-46-assets-parts.a3595c48161a8bc1.json": {
+          "bytes": 765,
+          "sha256": "a3595c48161a8bc14dec5b1dea23dea0fda99fa39153a359d9ee83c5359516ea"
+        },
+        "web/data/chapter-46-assets-part-000.f7ebee97d8110e68.bin": {
+          "bytes": 4194304,
+          "sha256": "f7ebee97d8110e6805bf6fb6a58303332d3fd118a8e477f3b5de6c7e002064a2"
+        },
+        "web/data/chapter-46-assets-part-001.5213b80662dfa32e.bin": {
+          "bytes": 4194304,
+          "sha256": "5213b80662dfa32ee85b3d01d07dd0d2fb4fe33fa1ed3647ca94a85abce27ac6"
+        },
+        "web/data/chapter-46-assets-part-002.8be859e980ee1d29.bin": {
+          "bytes": 4194304,
+          "sha256": "8be859e980ee1d292718c73bd51206ea8fa0a887baa59fc67c5ec6b2c4cd0738"
+        },
+        "web/data/chapter-46-assets-part-003.ee5f50c994047cde.bin": {
+          "bytes": 2667958,
+          "sha256": "ee5f50c994047cde9851a35f503ddc56b395904698ecbef174d832a4eaa148a8"
+        }
+      }
+    }
+  },
+  "rotate": [
+    1,
+    40,
+    2,
+    42,
+    11,
+    46
+  ],
+  "devices": {
+    "PC": {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "device_scale_factor": 1
+    },
+    "Mobile": {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "device_scale_factor": 1,
+      "is_mobile": true,
+      "has_touch": true
+    }
+  }
+}
