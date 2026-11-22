@@ -1,0 +1,64 @@
+{
+  "enabled": true,
+  "remote": false,
+  "qaOnly": true,
+  "base": "342a7aa03f7244db9663315ceac596f307dac06e",
+  "tree": "2e2ca3058bb2b4b4528b5e46394fcf30d55c8f32",
+  "productTrackedScratchOnly": "shared/map/terrain-domain.js",
+  "stage07Stock": {
+    "map": "28f7bf612a598aeb0eb6da0f819a0b6ddb7fd5414eab9410e434772eb04d2553",
+    "packet": "7068fa05c6ce1c2ef0c96045daa3dea192ba69a18e35bc323e6a5df9a1529db5",
+    "bodySource": "acbffaafb8a346e3c28d039a17f8d1dd1f2f525b1563860727e45d3bf4651193",
+    "shellEntry": "web/entries/game.2662b5c41e95ed19.js",
+    "campaignWrapper": "web/runtime/campaign.4375d13445105188.js",
+    "campaignDescriptor": "web/data/campaign.0386fa9451fe2427.json"
+  },
+  "fileA": {
+    "bytes": 26789,
+    "git": "eb468b23024e316ede42ac66bd77687e8c40240a",
+    "sha256": "b856335569d5303781f7deb48f4f030f28cce081d2ced47fc249d02245b34ed5"
+  },
+  "fileB": {
+    "bytes": 106176,
+    "git": "90653b0258288c6544aee6c5aac73d83c7c338a4",
+    "sha256": "a30b536bfa8475d6e604bcb4258987f7c4263cffc6e0db01433a63451ec1c7a1"
+  },
+  "art": {
+    "sha256": "b564c44e0c4804b6ce4fff0e5063484e1670856716d60b24af770abc3440d5d5",
+    "bytes": 77141
+  },
+  "unresolved": [
+    "Official Pages deploy success and local baseline data read required before arming",
+    "Official actual six pairs and actual stock resume required",
+    "No native performance/resume/Stage7 artwork verdict yet"
+  ],
+  "saveCoverage": "actual A autosave bytes held only in memory, B normal title Continue plus exact provider/geometry receipt; no user save input/export",
+  "r2RequiresCurrentBaseRebind": false,
+  "release": {
+    "manifest": {
+      "bytes": 8163953,
+      "git": "a6b659e6dba284a924deb2cdbac2681685418421",
+      "sha256": "9a948a748ba3f8ce95a25489729cefb3cefb94d26a999e76db5debc4ae8558b2"
+    },
+    "common12": {
+      "path": "web/runtime/ordered-common-12.8f69d8c7c4cc0d42.js",
+      "bytes": 72445,
+      "git": "4a62520a42e58ef0314c0ecd5eed85ef5d7d8802",
+      "sha256": "8f69d8c7c4cc0d422c021a5864a4fb12fb2652bfb5aced7f0463fd91bf78c64f"
+    },
+    "profile": {
+      "path": "shared/runtime/profile-store.js",
+      "git": "da6b816f36a786a8e8c4a0e7671b2b77fc9e30e9",
+      "bytes": 21907
+    },
+    "pages": {
+      "head": "342a7aa03f7244db9663315ceac596f307dac06e",
+      "conclusion": "success",
+      "branch": "master",
+      "run": 45027512069,
+      "job": 137224104334,
+      "publishedAt": "2026-11-22T13:28:57Z",
+      "requiredLiveBytePrecheck": true
+    }
+  }
+}
