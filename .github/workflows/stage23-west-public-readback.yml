@@ -1,0 +1,40 @@
+name: HONRO Stage23 anonymous published west readback
+on:
+  push:
+    branches: [qa/stage23-west-public-readback]
+    paths:
+      - .github/workflows/stage23-west-public-readback.yml
+      - tools/stage23-west-public/**
+permissions:
+  contents: read
+jobs:
+  public:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage23-west-public-readback'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+          fetch-depth: 2
+      - name: Stage23 exact anonymous live west, one native view per device
+        run: |
+          set -euo pipefail
+          test -z "${GH_TOKEN:-}${GITHUB_TOKEN:-}"
+          W="$RUNNER_TEMP/stage23-public"
+          T="$GITHUB_WORKSPACE/tools/stage23-west-public/capture.py"
+          python3 "$T" --verify-binding
+          mkdir "$W"
+          python3 -m venv "$W/venv"; V="$W/venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+          "$V" "$T" "$W/out"
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage23-west-public-pc-mobile-readback
+          path: ${{ runner.temp }}/stage23-public/out/
+          retention-days: 7
+          if-no-files-found: warn

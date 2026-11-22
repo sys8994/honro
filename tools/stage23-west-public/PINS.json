@@ -1,0 +1,411 @@
+{
+  "enabled": true,
+  "origin": "https://sys8994.github.io/honro/",
+  "qaRef": "refs/heads/qa/stage23-west-public-readback",
+  "release": {
+    "head": "31537bcd1b070077a3287113e2085de40d3dcf2c",
+    "tree": "82c0652cf461c49cf757e08954545c27077ec697",
+    "manifest": {
+      "bytes": 7310425,
+      "sha256": "86381ada9943a26afad930ea140c9d2ba22bbfb77ec68781240975af1432daab"
+    },
+    "pages": {
+      "head": "31537bcd1b070077a3287113e2085de40d3dcf2c",
+      "branch": "master",
+      "conclusion": "success",
+      "run": 44978896796,
+      "job": 137075376025,
+      "publishedAt": "2026-11-22T03:06:46Z"
+    }
+  },
+  "previousRelease": "d3d92dbbaf7e3482964a6f02b89552ab08d91f52",
+  "qa": {
+    "run": 44977267432,
+    "job": 137069846624,
+    "head": "654ee42d99b8a7e83d8cacd5451b786374b278f7",
+    "tree": "a5d6cc6adbcc7c2ef3b5c432c328314988aea13d",
+    "branch": "qa/stage23-west-normal-small-d3d92d",
+    "artifact": 14735444348,
+    "name": "honro-stage23-west-normal-ab-no-deploy",
+    "outer": {
+      "bytes": 4139355,
+      "sha256": "3f7bceb68fdc5f567495b9223916bc88d6789aee58bf14e406f4ac81a5997a1d"
+    }
+  },
+  "receipts": {
+    "BROWSER.json": {
+      "bytes": 325267,
+      "sha256": "47e1bf35a3e5431d3a9121d160c74b61e94c0250cb86d2f8d516e1c987339d8a"
+    },
+    "GRAPH.json": {
+      "bytes": 283988,
+      "sha256": "902c93ffffd2cc663868e3c0340a225a805926c338726c46d33654bed47f2bd7"
+    },
+    "SOURCE.json": {
+      "bytes": 705,
+      "sha256": "745f4bcb77e64163078e636aa19ddf749f2dca05323f54515e154742eec9c63e"
+    }
+  },
+  "posesAuthority": {
+    "bytes": 8110,
+    "sha256": "298795fd9f437b04e646b0b610138dc99279d7e7831adf3caade53b88f6e4cb1",
+    "sourceRun": 44922966956,
+    "receiptSHA256": "d2d5c272f846d889ea650dec72c4fe4a30839cc4860a94cc3d5448fecf0a06ea"
+  },
+  "approvedSource": {
+    "path": "shared/runtime/act3-handoff-art.js",
+    "old": "234cc3908cdabe4ddce36d63bc46dd49b1b3d621",
+    "new": "511447643bdaae42bb17f92976c7d1b5808ce93e",
+    "sha256": "ad7f1e23f93af55203d0177b4fbd7edf3a1ae471e3743746eb4b8de04d6d7ffe"
+  },
+  "verifiedRoute": {
+    "HONRO.html": {
+      "bytes": 17379,
+      "sha256": "e0d3da428ad575944ebc2b7fb182cdcc3d9f83583dd344d32a853b352de242dd"
+    },
+    "web/data/campaign.ce72ffa30709411b.json": {
+      "bytes": 55011,
+      "sha256": "ce72ffa30709411b93c2c92f9b732fa40b8d22d468ce8ebc6a6016c114ca5420"
+    },
+    "web/data/chapter-23-assets.ce93149a24fce0d9.json": {
+      "bytes": 296261,
+      "sha256": "ce93149a24fce0d9e8248b8713d000d9678205ff59dc8724d699051519c751f4"
+    },
+    "web/data/chapter-23.5bf8a1a8779eb0fd.json": {
+      "bytes": 97570,
+      "sha256": "5bf8a1a8779eb0fd7d7555c7f1ec6fe8f352dd06c7f2672a2743aac38461c9ec"
+    },
+    "web/entries/game.60299947c5f1a28f.js": {
+      "bytes": 20483,
+      "sha256": "60299947c5f1a28f195ccdd43d348c226c1c67b2ca4a45648b7e21899bd52ec0"
+    },
+    "web/runtime/campaign.d42da1857a0e4db9.js": {
+      "bytes": 527,
+      "sha256": "d42da1857a0e4db923103745de0a43c475ed98c204a87cc350e462abe07df726"
+    },
+    "web/runtime/ordered-common-17.08ee20a4002559b5.js": {
+      "bytes": 110795,
+      "sha256": "08ee20a4002559b5e59adb7558c30f565e3cff0327b0daa8b889cd89df4a7cd1"
+    }
+  },
+  "references": {
+    "1440x900": {
+      "pose": {
+        "name": "west",
+        "desired": {
+          "x": -1000000,
+          "y": 3100,
+          "scale": 0.21176470588235294
+        },
+        "actual": {
+          "x": -320,
+          "y": 3100,
+          "scale": 0.21176470588235294
+        },
+        "viewport": {
+          "left": -3720,
+          "right": 3080,
+          "top": 1283.8628472222222,
+          "bottom": 4916.137152777777
+        },
+        "play": {
+          "left": 0,
+          "top": 0,
+          "right": 9800,
+          "bottom": 6200
+        },
+        "terrain": {
+          "left": -6000,
+          "top": -24000,
+          "right": 15800,
+          "bottom": 30200
+        },
+        "focus": {
+          "left": -320,
+          "top": -1800,
+          "right": 10120,
+          "bottom": 6440
+        },
+        "visual": {
+          "left": -3960,
+          "right": 13760,
+          "top": -3856.137152777778,
+          "bottom": 8496.137152777777
+        },
+        "zoom": {
+          "min": 0.21176470588235294,
+          "max": 1.65,
+          "tactical": 0.21176470588235294,
+          "readability": 0.056818181818181816
+        },
+        "limits": {
+          "west": -320,
+          "east": 10120,
+          "north": -1800,
+          "south": 6440
+        },
+        "centered": {
+          "x": 4900,
+          "y": 3100,
+          "scale": 0.21176470588235294
+        },
+        "containment": null,
+        "css": [
+          1440,
+          769.1875
+        ],
+        "backing": [
+          1440,
+          769
+        ],
+        "dpr": 1,
+        "phase": "aim",
+        "round": 1,
+        "sceneTime": 2,
+        "tide": null,
+        "physics": "0a390cef88869b9cb0756942196b0f933d06fe43742db807ce94ae23f6a43a0e",
+        "actualTerrainIDs": [
+          "sy-ground",
+          "sy-stone-bridge",
+          "sy-bridge-west-pier",
+          "sy-bridge-east-pier",
+          "sy-west-upper",
+          "sy-central-flank",
+          "sy-east-upper",
+          "sy-stone-corner",
+          "sy-cargo-stored",
+          "sy-cargo-settled",
+          "sy-roof-granary",
+          "sy-roof-west-wing",
+          "sy-roof-east-wing",
+          "sy-roof-upper-store",
+          "sy-roof-sorting-west",
+          "sy-roof-sorting-east",
+          "sy-roof-west-gate",
+          "sy-roof-east-gate",
+          "sy-roof-west-gate-stair",
+          "sy-roof-east-wing-stair",
+          "sy-roof-upper-store-stair",
+          "sy-roof-sorting-step-1",
+          "sy-roof-sorting-step-2",
+          "sy-roof-sorting-step-3",
+          "sy-roof-sorting-link",
+          "sy-roof-east-gate-stair",
+          "v4.23.wagon-cover"
+        ],
+        "actualDrawOwnerIDs": [
+          "act3-handoff:23:quay-west",
+          "stage23:yard-distant-canal",
+          "stage23:yard-gates-record-life",
+          "stage23:yard-granary-halls",
+          "stage23:yard-grounded-rear-plinths",
+          "stage23:yard-life-goods-cargo",
+          "stage23:yard-stone-bridge-reflector",
+          "stage23:yard-terrace-faces-chute"
+        ],
+        "unitCount": 45,
+        "declaredMissing": []
+      },
+      "owner": {
+        "owner": "act3-handoff:23:quay-west",
+        "nativeVector": [
+          112793,
+          761114639,
+          2098273003
+        ],
+        "revision": 1,
+        "assetPlacement": [
+          0,
+          0,
+          1,
+          "front",
+          "L1"
+        ],
+        "samePlay": true
+      },
+      "raw": {
+        "path": "B-s23-1440x900-west-raw.png",
+        "fact": {
+          "bytes": 379322,
+          "sha256": "f20faa96fccd5c5b09088b967d50a1112bb7bd5ce73594485324767406d7936d"
+        },
+        "rgba": "e3f28174aa1583e889ca139009194d28089457453dd09f31b8aa3a32ce65183f",
+        "size": [
+          1440,
+          769
+        ]
+      },
+      "dom": {
+        "path": "B-s23-1440x900-west-dom.png",
+        "fact": {
+          "bytes": 211518,
+          "sha256": "e77d83bf6b68c65d3147d6abe20167ddf4ec3d3bd2f20c791ae67d0d182f7644"
+        },
+        "rgba": "f29d66c0e06314afdc4d3187d9eb3435f77c90eba0122446959216fb4b323267",
+        "size": [
+          1440,
+          770
+        ]
+      }
+    },
+    "390x844": {
+      "pose": {
+        "name": "west",
+        "desired": {
+          "x": -1000000,
+          "y": 3100,
+          "scale": 0.057352941176470586
+        },
+        "actual": {
+          "x": -320,
+          "y": 3100,
+          "scale": 0.057352941176470586
+        },
+        "viewport": {
+          "left": -3720,
+          "right": 3080,
+          "top": -2545.8253205128203,
+          "bottom": 8745.82532051282
+        },
+        "play": {
+          "left": 0,
+          "top": 0,
+          "right": 9800,
+          "bottom": 6200
+        },
+        "terrain": {
+          "left": -6000,
+          "top": -24000,
+          "right": 15800,
+          "bottom": 30200
+        },
+        "focus": {
+          "left": -320,
+          "top": -1800,
+          "right": 10120,
+          "bottom": 6440
+        },
+        "visual": {
+          "left": -3960,
+          "right": 13760,
+          "top": -7685.82532051282,
+          "bottom": 12325.82532051282
+        },
+        "zoom": {
+          "min": 0.057352941176470586,
+          "max": 1.65,
+          "tactical": 0.057352941176470586,
+          "readability": 0.056818181818181816
+        },
+        "limits": {
+          "west": -320,
+          "east": 10120,
+          "north": -1800,
+          "south": 6440
+        },
+        "centered": {
+          "x": 4900,
+          "y": 3100,
+          "scale": 0.057352941176470586
+        },
+        "containment": null,
+        "css": [
+          390,
+          647.609375
+        ],
+        "backing": [
+          390,
+          648
+        ],
+        "dpr": 1,
+        "phase": "aim",
+        "round": 1,
+        "sceneTime": 2,
+        "tide": null,
+        "physics": "0a390cef88869b9cb0756942196b0f933d06fe43742db807ce94ae23f6a43a0e",
+        "actualTerrainIDs": [
+          "sy-ground",
+          "sy-stone-bridge",
+          "sy-bridge-west-pier",
+          "sy-bridge-east-pier",
+          "sy-west-upper",
+          "sy-central-flank",
+          "sy-east-upper",
+          "sy-stone-corner",
+          "sy-cargo-stored",
+          "sy-cargo-settled",
+          "sy-roof-granary",
+          "sy-roof-west-wing",
+          "sy-roof-east-wing",
+          "sy-roof-upper-store",
+          "sy-roof-sorting-west",
+          "sy-roof-sorting-east",
+          "sy-roof-west-gate",
+          "sy-roof-east-gate",
+          "sy-roof-west-gate-stair",
+          "sy-roof-east-wing-stair",
+          "sy-roof-upper-store-stair",
+          "sy-roof-sorting-step-1",
+          "sy-roof-sorting-step-2",
+          "sy-roof-sorting-step-3",
+          "sy-roof-sorting-link",
+          "sy-roof-east-gate-stair",
+          "v4.23.wagon-cover"
+        ],
+        "actualDrawOwnerIDs": [
+          "act3-handoff:23:quay-west",
+          "stage23:yard-distant-canal",
+          "stage23:yard-gates-record-life",
+          "stage23:yard-granary-halls",
+          "stage23:yard-grounded-rear-plinths",
+          "stage23:yard-life-goods-cargo",
+          "stage23:yard-stone-bridge-reflector",
+          "stage23:yard-terrace-faces-chute"
+        ],
+        "unitCount": 45,
+        "declaredMissing": []
+      },
+      "owner": {
+        "owner": "act3-handoff:23:quay-west",
+        "nativeVector": [
+          112793,
+          761114639,
+          2098273003
+        ],
+        "revision": 1,
+        "assetPlacement": [
+          0,
+          0,
+          1,
+          "front",
+          "L1"
+        ],
+        "samePlay": true
+      },
+      "raw": {
+        "path": "B-s23-390x844-west-raw.png",
+        "fact": {
+          "bytes": 97306,
+          "sha256": "8523666159cba90a4e927cfd812d12bb1ce741ee999ceb5a68af95162031e5a3"
+        },
+        "rgba": "ea7b385695ab8930fbf415d14a5042d2686313d4334a3f873a2700a3748c1eaa",
+        "size": [
+          390,
+          648
+        ]
+      },
+      "dom": {
+        "path": "B-s23-390x844-west-dom.png",
+        "fact": {
+          "bytes": 65008,
+          "sha256": "209d0c22c13c2e20659c255fffeefe9e2531a7f0d0df4522dd3458b393e938e5"
+        },
+        "rgba": "deab1bedb389af9fcad423a259910a40191764a9ed31f5155d00415f1d182966",
+        "size": [
+          390,
+          648
+        ]
+      }
+    }
+  }
+}
