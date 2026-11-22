@@ -1,0 +1,170 @@
+{
+  "enabled": true,
+  "qaRef": "refs/heads/qa/stage46-lossless-normal-1ee86f-r2",
+  "parent": "1ee86f0409b2cdcf457bbbd45c2353aa51991217",
+  "tree": "37210a417f8e117bca52c09d5ac2062a0078ee78",
+  "runtimePath": "shared/runtime/act5-edge-art.js",
+  "runtimeGit": "461571b0d86e63ad1fee411d8c2cb34382d150a7",
+  "manifest": {
+    "bytes": 7825398,
+    "sha256": "b236988ee37f2fc59ab37f14e01d8cef2c042ab6de2253f68468e79e280ce4bf"
+  },
+  "A": {
+    "active": 810,
+    "bytes": 16590634,
+    "sha256": "120aa444cdf1094a9d3d081d1691d803ba0e46dd2cc1bbf989a5f1b59e930855"
+  },
+  "B": {
+    "active": 810,
+    "bytes": 15250870,
+    "sha256": "744e462e37916ce64513ef0a0fad39d90f45c6c4aa1be408973a2c475c1ada7f"
+  },
+  "authored": {
+    "stage46-exterior-body.json": {
+      "beforeGit": "07982cb9b418ec349e8fc24d17c3d8cc40f4a18f",
+      "afterSHA256": "1df8658b5cc3b2cd5ad8897e4f27f15455a1883e5879124631cacd24c25f43c4",
+      "endpoints": 99930,
+      "beforeBytes": 3077079,
+      "afterBytes": 2729477
+    },
+    "stage46-exterior-part-1.json": {
+      "beforeGit": "21412f1293aa059d3b4185fb650a343c289d696c",
+      "afterSHA256": "8ead0de2cd7cee88366c53137bd7aca870e62f537b6db4c1024bda033e7abaf7",
+      "endpoints": 101807,
+      "beforeBytes": 2972423,
+      "afterBytes": 2620478
+    },
+    "stage46-exterior-part-2.json": {
+      "beforeGit": "d148eee3e06e6d97ef150fc932284c1278b5a5ec",
+      "afterSHA256": "4cb2b35b27eac60b8e14264f02ed27498e5e440b579cceedf0caa80af166c77c",
+      "endpoints": 96611,
+      "beforeBytes": 2659727,
+      "afterBytes": 2464204
+    },
+    "stage46-exterior-part-3.json": {
+      "beforeGit": "931ab8300de52ca95f9facb65dd16509917a1734",
+      "afterSHA256": "c91a0b505f7a757f4d4865d9bb9d17004d19e7883113e9de6c7cfc62483787fa",
+      "endpoints": 86276,
+      "beforeBytes": 2516559,
+      "afterBytes": 2343784
+    },
+    "stage46-exterior-part-4.json": {
+      "beforeGit": "bea0f8416b2635bf0cd6172d85778a77221db144",
+      "afterSHA256": "2d0d3d5da8bc7253fd3ae2c4c740156c4c4c01188d2b7576f8f92f7283d5fd7e",
+      "endpoints": 88447,
+      "beforeBytes": 2644480,
+      "afterBytes": 2467363
+    },
+    "stage46-exterior-part-5.json": {
+      "beforeGit": "f99c7b3bb755d26ceb244ba1f6be9eab2b81ac77",
+      "afterSHA256": "8833797686af91b04d4c4b364146548fb24cb76ef97f7aa12c175150e7295443",
+      "endpoints": 91159,
+      "beforeBytes": 2751043,
+      "afterBytes": 2566066
+    }
+  },
+  "bootMap": "web/data/chapter-46.2806e485c4c1e1b4.json",
+  "localEvidence": "Stage46 structural continuity incl y1490 intentionally unresolved separately; no new shape/alpha and no node decrease",
+  "pages": {
+    "run": 45021842986,
+    "job": 137206738846,
+    "conclusion": "success",
+    "reportTimeUTCApprox": "2026-11-22T12:23:27Z"
+  },
+  "nonTargetStage33Packet": "web/data/chapter-33-assets.920ccd84eb69a553.json",
+  "exactProjection": {
+    "A": {
+      "descriptor": "web/data/chapter-46-assets-parts.44d5eab7aa305416.json",
+      "project": "web/data/campaign.0386fa9451fe2427.json",
+      "adapter": "web/runtime/campaign.4375d13445105188.js",
+      "files": {
+        "web/data/chapter-46-assets-part-000.aa1ac6564d0c2d99.bin": {
+          "bytes": 4194304,
+          "sha256": "aa1ac6564d0c2d99eaa561ff53b1712c5493bf11950a487526971bf1e2ff49bb"
+        },
+        "web/data/chapter-46-assets-part-001.78b6b5493616db85.bin": {
+          "bytes": 4194304,
+          "sha256": "78b6b5493616db8581849645b13cff819928ac8eb2c1ee25e0f90cb41d2224c5"
+        },
+        "web/data/chapter-46-assets-part-002.8ec3bcfd1e3724d1.bin": {
+          "bytes": 4194304,
+          "sha256": "8ec3bcfd1e3724d10de3867c33c05a705fb7ccdc87bcbfde8228fc57caf9d8de"
+        },
+        "web/data/chapter-46-assets-part-003.e0accdc32bf303c0.bin": {
+          "bytes": 4007722,
+          "sha256": "e0accdc32bf303c08ea94737f9d8d662e568dd7e0b9b80c05374098d02b815fc"
+        },
+        "web/data/chapter-46-assets-parts.44d5eab7aa305416.json": {
+          "bytes": 765,
+          "sha256": "44d5eab7aa305416e2d0d9ffec53ad210901e8271d216f0e9cab045cb7b04f1f"
+        },
+        "web/data/campaign.0386fa9451fe2427.json": {
+          "bytes": 55011,
+          "sha256": "0386fa9451fe2427918ea68e927ccb0cb7a1cffc547ab0a63a164c74d785e57e"
+        },
+        "web/runtime/campaign.4375d13445105188.js": {
+          "bytes": 527,
+          "sha256": "4375d1344510518805bf77c0783efb6d8b5dad67b60e3a4e64d62d6d03f71b91"
+        }
+      },
+      "owners": [
+        "71460b9958dd84c50a6dcd7aececb1f6b031a2e2a9b26d726b4351976caac789",
+        "38ffe33661dac23a5bcc62908f177482d741c621366f13e8c069e730ee22d05f",
+        "ed8cbcaff446c38685e0683ef2b92a92f58c42511864da5ca2b558733fe95f90",
+        "7e1da4489ebfbc10164dc025a1f5915ddf5658d25485bffd1947c20f8332157e",
+        "bb91cb2689c3376ff5cdab2e93518a66330b997fc3d5e5b80d4a13ff0c669e8d"
+      ],
+      "baseOwner": "5b37606970e8e20b3f7d638b79f02425a5425ced5b3fcdc49b561e6a0d48ab2f"
+    },
+    "B": {
+      "descriptor": "web/data/chapter-46-assets-parts.a3595c48161a8bc1.json",
+      "project": "web/data/campaign.9c9ad3743695650f.json",
+      "adapter": "web/runtime/campaign.b66ba87731649f41.js",
+      "files": {
+        "web/data/chapter-46-assets-part-000.f7ebee97d8110e68.bin": {
+          "bytes": 4194304,
+          "sha256": "f7ebee97d8110e6805bf6fb6a58303332d3fd118a8e477f3b5de6c7e002064a2"
+        },
+        "web/data/chapter-46-assets-part-001.5213b80662dfa32e.bin": {
+          "bytes": 4194304,
+          "sha256": "5213b80662dfa32ee85b3d01d07dd0d2fb4fe33fa1ed3647ca94a85abce27ac6"
+        },
+        "web/data/chapter-46-assets-part-002.8be859e980ee1d29.bin": {
+          "bytes": 4194304,
+          "sha256": "8be859e980ee1d292718c73bd51206ea8fa0a887baa59fc67c5ec6b2c4cd0738"
+        },
+        "web/data/chapter-46-assets-part-003.ee5f50c994047cde.bin": {
+          "bytes": 2667958,
+          "sha256": "ee5f50c994047cde9851a35f503ddc56b395904698ecbef174d832a4eaa148a8"
+        },
+        "web/data/chapter-46-assets-parts.a3595c48161a8bc1.json": {
+          "bytes": 765,
+          "sha256": "a3595c48161a8bc14dec5b1dea23dea0fda99fa39153a359d9ee83c5359516ea"
+        },
+        "web/data/campaign.9c9ad3743695650f.json": {
+          "bytes": 55011,
+          "sha256": "9c9ad3743695650f22839536de8f964f9303a810721f62834bc44472da0233f0"
+        },
+        "web/runtime/campaign.b66ba87731649f41.js": {
+          "bytes": 527,
+          "sha256": "b66ba87731649f41a19ff39222757d13727d343ded2a1281b4a6f8d63d260f94"
+        }
+      },
+      "owners": [
+        "b589a4a15c8146223d8949b550f961293c0857d4e668c48f43c1960af0a4e843",
+        "5c11c6f447c0637f75e9671a02ee4667e1b730a89c69ef8354abfa668d455281",
+        "6c9b5426c25337ea76edb756ec108179fd9b350bf0af13be5d97239ef895d266",
+        "906b40a7c20f035804cf0fd7c4af76615c6cc0cf3ab26e4f4b8f8c5a79efb30e",
+        "6a9325b956db20f77ca71b07b4b9d0664c9a584e3cf5ba4128a24744c5475ce5"
+      ],
+      "baseOwner": "71b0bb4e2375ba8a3a64e38be8232ec0b2dba1f6045988003c26f612a27eb59a"
+    }
+  },
+  "adapterCommonIndex": 56,
+  "priorHOLD": {
+    "run": 45022435631,
+    "job": 137208095954,
+    "artifact": 14753569387,
+    "sha256": "2132ab7b04f1ada977c19eacaba9aa060deb90ace149b15f30e813a312f314f2"
+  }
+}
