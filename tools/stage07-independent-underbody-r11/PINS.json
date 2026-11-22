@@ -1,0 +1,37 @@
+{
+  "enabled": true,
+  "remote": false,
+  "qaOnly": true,
+  "base": "733d5d212d5ab235c2b492e1f065306bdfaae317",
+  "tree": "276e54e1ca08d32d3b290097c9a05e91e9ab0ecd",
+  "productTrackedScratchOnly": "shared/map/terrain-domain.js",
+  "stage07Stock": {
+    "map": "28f7bf612a598aeb0eb6da0f819a0b6ddb7fd5414eab9410e434772eb04d2553",
+    "packet": "7068fa05c6ce1c2ef0c96045daa3dea192ba69a18e35bc323e6a5df9a1529db5",
+    "bodySource": "acbffaafb8a346e3c28d039a17f8d1dd1f2f525b1563860727e45d3bf4651193",
+    "shellEntry": "web/entries/game.562d9dddf1932b73.js",
+    "campaignWrapper": "web/runtime/campaign.4375d13445105188.js",
+    "campaignDescriptor": "web/data/campaign.0386fa9451fe2427.json"
+  },
+  "fileA": {
+    "bytes": 26789,
+    "git": "eb468b23024e316ede42ac66bd77687e8c40240a",
+    "sha256": "b856335569d5303781f7deb48f4f030f28cce081d2ced47fc249d02245b34ed5"
+  },
+  "fileB": {
+    "bytes": 106176,
+    "git": "90653b0258288c6544aee6c5aac73d83c7c338a4",
+    "sha256": "a30b536bfa8475d6e604bcb4258987f7c4263cffc6e0db01433a63451ec1c7a1"
+  },
+  "art": {
+    "sha256": "b564c44e0c4804b6ce4fff0e5063484e1670856716d60b24af770abc3440d5d5",
+    "bytes": 77141
+  },
+  "unresolved": [
+    "Current normal host lacks assembled artifact; get current exact Pages manifest if using anonymous A; or use committed static A verified from 733 Git tree",
+    "Official candidate build graph receipts and actual six pairs required; no capture run here",
+    "Legacy save resume, optional DPR>1 or actual deep if actual screenshot exposes new outside source behavior",
+    "Canonical visual relative y bound is not yet SDK verified"
+  ],
+  "saveCoverage": "actual A autosave bytes held only in memory, B normal title Continue plus exact provider/geometry receipt; no user save input/export"
+}
