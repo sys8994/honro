@@ -1,0 +1,61 @@
+name: HONRO Stage44 West stock layer observation R2, no deploy
+on:
+  push:
+    branches: [qa/stage44-west-stock-layer-split-f6e-r2]
+    paths: [".github/workflows/stage44-west-stock-split.yml", "tools/stage44-west-split/**"]
+permissions:
+  contents: read
+jobs:
+  split-stock:
+    if: ${{ true && github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage44-west-stock-layer-split-f6e-r2' }}
+    runs-on: ubuntu-22.04
+    timeout-minutes: 18
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+          fetch-depth: 2
+          path: qa
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+          ref: f6eaaa606914cd8f431ae0e52dd1e4b474b485c8
+          path: stock
+      - name: Verify add-only observer and exact pristine stock bytes
+        run: |
+          set -euo pipefail
+          cd "$GITHUB_WORKSPACE/qa"
+          python - <<'PY'
+          import json,subprocess as s,os
+          from pathlib import Path
+          p=json.loads(Path('tools/stage44-west-split/PINS.json').read_text());r=p['release']
+          assert p['enabled'] is True and p['qaRef']==os.environ['GITHUB_REF'] and p['repo']==os.environ['GITHUB_REPOSITORY']
+          def git(*args):return s.check_output(['git',*args],text=True,timeout=60).strip()
+          assert git('rev-parse','HEAD')==os.environ['GITHUB_SHA'] and git('show','-s','--format=%P','HEAD')==r['head']
+          assert git('rev-parse',r['head']+'^{tree}')==r['tree']
+          want={'.github/workflows/stage44-west-stock-split.yml',*(f'tools/stage44-west-split/{x}' for x in ('PINS.json','observer.json','observe.js','capture.py'))}
+          assert set(git('diff','--name-status','--no-renames',r['head'],'HEAD').splitlines())=={'A\t'+x for x in want}
+          assert not git('status','--porcelain','--untracked-files=all')
+          PY
+          PY=$(find "${RUNNER_TOOL_CACHE}/Python" -maxdepth 4 -type f -path '*/3.12.*/x64/bin/python3.12' | sort -V | tail -1)
+          test -n "$PY"
+          echo "STOCKPY=$PY" >> "$GITHUB_ENV"
+          "$PY" tools/stage44-west-split/capture.py --stock "$GITHUB_WORKSPACE/stock" --preflight-only
+      - name: Native sandboxed Chromium stock layer observation
+        run: |
+          set -euo pipefail
+          test -z "${GITHUB_TOKEN:-}${GH_TOKEN:-}"
+          "$STOCKPY" -m venv "$RUNNER_TEMP/honro-s44-split-venv"
+          V="$RUNNER_TEMP/honro-s44-split-venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+          "$V" "$GITHUB_WORKSPACE/qa/tools/stage44-west-split/capture.py" --stock "$GITHUB_WORKSPACE/stock" --out "$RUNNER_TEMP/honro-s44-split"
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage44-west-stock-layers-r2-no-deploy
+          path: ${{ runner.temp }}/honro-s44-split/
+          retention-days: 7
+          if-no-files-found: warn
