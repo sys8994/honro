@@ -1,0 +1,112 @@
+{
+  "enabled": true,
+  "release": {
+    "head": "3dfe75f0162ff023189ea5bf60be2874d223fd45",
+    "tree": "b61c2b2d185645dfb33bc8298baf29a4809663c8",
+    "manifest": {
+      "bytes": 7486493,
+      "sha256": "3e3eacc61c750d393d0b1351cff4cb59f2692a808e71b872ca89281077ca00ac"
+    },
+    "pages": {
+      "head": "3dfe75f0162ff023189ea5bf60be2874d223fd45",
+      "branch": "master",
+      "conclusion": "success",
+      "run": 45010621200,
+      "job": 137172356080,
+      "publishedAt": "2026-11-22T10:06:40Z"
+    }
+  },
+  "qaRef": "refs/heads/qa/stage26-east-stump-public-readback",
+  "normal": {
+    "run": 45009985182,
+    "job": 137169962539,
+    "head": "7395497bc42ab6d16feb214cd531d4a646ce07ef",
+    "tree": "06452eaa300a2b9793119aeeebbc206c60344f6b",
+    "artifact": 14749109604
+  },
+  "route": {
+    "HONRO.html": {
+      "bytes": 17379,
+      "sha256": "496df8a11a70d161ba4323f9e0e3f1f200c2b553afa13066fd16abcb5e9df7c9"
+    },
+    "web/data/campaign.36b3008756d1c3a5.json": {
+      "bytes": 55011,
+      "sha256": "36b3008756d1c3a51985e2b3ab34d2edd0643eea97fb49a5dc7475907455e3e1"
+    },
+    "web/data/chapter-26-assets.1b91c416ece87eee.json": {
+      "bytes": 250037,
+      "sha256": "1b91c416ece87eee4cee8fca8176379e36c47433ed39f2eba9e9e8c98486681c"
+    },
+    "web/data/chapter-26.cc8e0e37503433b3.json": {
+      "bytes": 25148,
+      "sha256": "cc8e0e37503433b3d091272c8900b7163a8a7f3187286f2e6391885ae6f87cf6"
+    },
+    "web/entries/game.97e09465edafba28.js": {
+      "bytes": 20483,
+      "sha256": "97e09465edafba2832ef947026b1f027d2a7a605d0ac7888ec354d1f107161f9"
+    },
+    "web/runtime/campaign.add23c14682508f8.js": {
+      "bytes": 527,
+      "sha256": "add23c14682508f80102ebc5df411499dccc5533a561a1c3654567236b2a861c"
+    }
+  },
+  "cameras": [
+    {
+      "key": "PC",
+      "dims": [
+        1440,
+        900
+      ],
+      "actual": {
+        "x": 7000,
+        "y": 2600,
+        "scale": 0.5
+      },
+      "viewport": {
+        "left": 5560,
+        "right": 8440,
+        "top": 1830.8125,
+        "bottom": 3369.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "expectedBPNG": {
+        "bytes": 723117,
+        "sha256": "4b06f52e64f070a1cde9f35b23cdf3df6539d08bf9f7c7793b0e187f9d18ce6a"
+      }
+    },
+    {
+      "key": "M",
+      "dims": [
+        390,
+        844
+      ],
+      "actual": {
+        "x": 6550,
+        "y": 2600,
+        "scale": 0.5
+      },
+      "viewport": {
+        "left": 6160,
+        "right": 6940,
+        "top": 1952.390625,
+        "bottom": 3247.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "expectedBPNG": {
+        "bytes": 138522,
+        "sha256": "01a2b35fbb61d8a6023a7202f6c92b0b9f107c8708dbd0b93a399656a2cd1694"
+      }
+    }
+  ],
+  "reviewedRuntime": "web/runtime/campaign.add23c14682508f8.js",
+  "gameEntry": "web/entries/game.97e09465edafba28.js",
+  "campaign": "web/data/campaign.36b3008756d1c3a5.json",
+  "map": "web/data/chapter-26.cc8e0e37503433b3.json",
+  "packet": "web/data/chapter-26-assets.1b91c416ece87eee.json"
+}
