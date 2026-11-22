@@ -1,0 +1,89 @@
+{
+  "enabled": true,
+  "qaRef": "refs/heads/qa/stage7-east-normal-onebuild-2e7c848",
+  "release": {
+    "head": "2e7c848b717769f11e89d45e5697b977f660a15c",
+    "tree": "9fc4979a88295b6cc7d1dc462c5cce9cf284bee2",
+    "manifest": {
+      "bytes": 7147403,
+      "sha256": "0de55477b0578c57cd5425a844b011a7fe383097cacb92e45d6c59aad173611e"
+    },
+    "pages": {
+      "head": "2e7c848b717769f11e89d45e5697b977f660a15c",
+      "branch": "master",
+      "conclusion": "success",
+      "run": 45000493339,
+      "job": 137141080362,
+      "publishedAt": "2026-11-22T07:58:41Z"
+    }
+  },
+  "oldManifestGit": "860763443224ec239e59f45a54e04ae3070626f5",
+  "stock": {
+    "bytes": 5572,
+    "sha256": "3ceca0d9455255251ab5d72a554bbc7a725bb6bb29bc7d4ac11c47c9a6c54b07",
+    "git": "aa4ccbcaa8a2ae6160330c1134f1596c9f4be6f8"
+  },
+  "candidate": {
+    "bytes": 6079,
+    "sha256": "5f03d0d822bc1516493a4d344383455e77621b27d0ee5060d164f451547255d5",
+    "git": "077492754cba250877d8954768b89f6f901e6b83"
+  },
+  "scope": "root-floor single East nonwalk edge; preserve painted wing by stopping original stroke only at y3330",
+  "source": "shared/runtime/terrain-readability.js",
+  "oldRuntime": "web/runtime/ordered-common-16.96dfbead6fb4ad2e.js",
+  "oldRuntimeGit": "22eef5af70416281d4fc44b0a37d4cdf187ad269",
+  "map": "web/data/chapter-07.28f7bf612a598aeb.json",
+  "packet": "web/data/chapter-07-assets.7068fa05c6ce1c2e.json",
+  "views": [
+    {
+      "key": "PC",
+      "dims": [
+        1440,
+        900
+      ],
+      "actual": {
+        "scale": 0.21176470588235294,
+        "x": 4532.24,
+        "y": 3569.18
+      },
+      "viewport": {
+        "bottom": 5385.317152777778,
+        "left": 1132.2399999999998,
+        "right": 7932.24,
+        "top": 1753.042847222222
+      },
+      "backing": [
+        1440,
+        769
+      ]
+    },
+    {
+      "key": "M",
+      "dims": [
+        390,
+        844
+      ],
+      "actual": {
+        "scale": 0.057352941176470586,
+        "x": 4532.24,
+        "y": 3569.18
+      },
+      "viewport": {
+        "bottom": 9215.00532051282,
+        "left": 1132.2399999999998,
+        "right": 7932.24,
+        "top": -2076.6453205128205
+      },
+      "backing": [
+        390,
+        648
+      ]
+    }
+  ],
+  "stroke": {
+    "x": 5732.24,
+    "from": 2766.92,
+    "cut": 3330,
+    "end": 5069.18
+  }
+}
