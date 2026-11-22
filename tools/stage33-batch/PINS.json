@@ -1,0 +1,1154 @@
+{
+  "old": "c60fca57d223ecb3e62afc86c4755774c2b68263",
+  "oldShell": {
+    "bytes": 17379,
+    "sha256": "03ebb2c1bfaefa36f5f54f1f9946455d323ec2bd79c6b267613acf77bdf8fec3",
+    "git": "6627b75ed1afb82345a0c031cb601555cea00f64"
+  },
+  "sourceBefore": {
+    "bytes": 26381,
+    "sha256": "af7127bf65e1e9e7a21ffe52c90a45328eaf2851708a2ba61d8aac31fa8793cd",
+    "git": "a5ac12ef4de8b2370fcbca1457b86a0c6e2d758c"
+  },
+  "observer": {
+    "bytes": 7006,
+    "sha256": "37d2bb99aa3bf1a32da34d6aa92410d5f9b698a19baedb7933823d0c79da371f",
+    "git": "ac3b4bb5a448d9d4c83d32f2d71b587dcb581940"
+  },
+  "oldTable": "web/runtime/ordered-common-12.a3e256d8f7a5fb68.js",
+  "oldTableGit": "0d1d2acd3c694ef923b88bdc5313bbbc28e375e1",
+  "map": "web/data/chapter-33.80ca32475be181c7.json",
+  "oldPacket": "web/data/chapter-33-assets.07b129345eb95856.json",
+  "newPacket": "web/data/chapter-33-assets.920ccd84eb69a553.json",
+  "previousPeer0": "web/runtime/ordered-common-17.93673f3a14672979.js",
+  "oldEntry": "web/entries/game.b1321855b16bc549.js",
+  "oldCampaign": "web/data/campaign.36b3008756d1c3a5.json",
+  "oldWrapper": "web/runtime/campaign.add23c14682508f8.js",
+  "currentClinicalMap": {
+    "bytes": 34235,
+    "sha256": "80ca32475be181c7774c305b442c8081b6341836fb8d08771e033b7fb79e1464"
+  },
+  "rows": {
+    "act4-sideview:33:coastal-v2:west-continuous-geology": {
+      "stage": 33,
+      "previous": "862760:4666d3c8",
+      "current": "864135:d1152e99"
+    },
+    "act4-sideview:33:coastal-v2:lowland": {
+      "stage": 33,
+      "previous": "743870:a3735931",
+      "current": "745366:5d4bce0d"
+    }
+  },
+  "pose": {
+    "actual": {
+      "x": 7232,
+      "y": 2304,
+      "scale": 0.21176470588235294
+    },
+    "viewport": {
+      "left": 3832,
+      "right": 10632,
+      "top": 487.8628472222222,
+      "bottom": 4120.137152777777
+    },
+    "backing": [
+      1440,
+      769
+    ]
+  },
+  "old2c4": {
+    "head": "2c4e90ff24d1f5aa5d04f01317caa02f89b8194c",
+    "shell": {
+      "bytes": 17379,
+      "sha256": "b5696990619f139e6bb239646a8af4a8db0fd8e4e7b0c0d0dc97081588e6219c",
+      "git": "f1ddd3dec3eebb333563dad9a2fd81f1f0d68cd1"
+    },
+    "pages": 44947732170,
+    "route": [
+      "web/entries/game.df8a4c7f1873e38c.js",
+      "web/runtime/campaign.926544619e01a04a.js",
+      "web/data/campaign.7140da5d3649e4ab.json",
+      "web/data/chapter-33.a7ce91b7d78fb5f8.json",
+      "web/data/chapter-33-assets.4b5df185aa59eb42.json"
+    ]
+  },
+  "knownCurrentPC": {
+    "bytes": 952116,
+    "sha256": "3fd520b70b3478edbdff52eca76ee888a8b0b7c4f6853aae4fe4907b4e33c5dd"
+  },
+  "oldTableIdentity": {
+    "git": "0d1d2acd3c694ef923b88bdc5313bbbc28e375e1",
+    "bytes": 72701,
+    "sha256": "a3e256d8f7a5fb68afb0268aea3292c050633cf8e118a62c899bea1d0c93f1cc"
+  },
+  "baseRelease": {
+    "registry": 1502,
+    "active": 811,
+    "profileSource": {
+      "git": "b11ad06d788fd21c47d89caa415477b85397b9f4",
+      "bytes": 25962,
+      "sha256": "48e6dcd406a503e3acf2c7cd8af7fec01bf44d924075c2c48a2063f900a03724"
+    },
+    "profileModule": "web/runtime/ordered-common-4.67de8f1c97c5fb48.js",
+    "profileCompiled": {
+      "git": "ce4b7c488750faf6330e7066008434f99ba4083c",
+      "bytes": 184807,
+      "sha256": "67de8f1c97c5fb4825954f779cbf06ab7e6a41d73e9ff5e77465bbe190634814"
+    },
+    "pagesRun": 45033441002,
+    "pagesJob": 137242393705,
+    "pagesDeployCompletedUTC": "2026-11-22T14:35:42Z"
+  },
+  "exactPeers": {
+    "21": {
+      "web/data/chapter-21.724a765a85d437a2.json": {
+        "bytes": 67494,
+        "sha256": "724a765a85d437a24ea9437ba300f5602282abda9ecbd190074a7d25b8b1c51b"
+      },
+      "web/data/chapter-21-assets.195e73632de8b164.json": {
+        "bytes": 688805,
+        "sha256": "195e73632de8b16431e39ac63f87eed9ad1ea538a47dcc0d980e4a0e1c624e67"
+      }
+    },
+    "32": {
+      "web/data/chapter-32.f242630da616ee32.json": {
+        "bytes": 21111,
+        "sha256": "f242630da616ee32bbeaa0f13d64e7c800976e6928d25b5c588a2286e913968a"
+      },
+      "web/data/chapter-32-assets-parts.427bcb8462093709.json": {
+        "bytes": 443,
+        "sha256": "427bcb8462093709dd9680066672b86b093d858fd679a6ecd88f461874cfd781"
+      },
+      "web/data/chapter-32-assets-part-000.58eb984bf3338390.bin": {
+        "bytes": 4194304,
+        "sha256": "58eb984bf3338390c4284dd587c6511b0f0cdc30f34e13d44f34292bd32e89a7"
+      },
+      "web/data/chapter-32-assets-part-001.c4c37c74a940a763.bin": {
+        "bytes": 585651,
+        "sha256": "c4c37c74a940a76354d51b15d1c4061811f28ac5d3c8449c8f4c85fbf8facc47"
+      }
+    },
+    "33": {
+      "web/data/chapter-33.80ca32475be181c7.json": {
+        "bytes": 34235,
+        "sha256": "80ca32475be181c7774c305b442c8081b6341836fb8d08771e033b7fb79e1464"
+      },
+      "web/data/chapter-33-assets.920ccd84eb69a553.json": {
+        "bytes": 2861056,
+        "sha256": "920ccd84eb69a5534b16e76ac27bb6df1d1c04fba0b2c5fff409057d6119d55b"
+      }
+    },
+    "40": {
+      "web/data/chapter-40.5f4b6c4c311adc05.json": {
+        "bytes": 48881,
+        "sha256": "5f4b6c4c311adc0508920712018dadd7262c69c17b8d1b955628bdd8ce7d98e0"
+      },
+      "web/data/chapter-40-assets-parts.e102ede6b6f1921d.json": {
+        "bytes": 605,
+        "sha256": "e102ede6b6f1921d46efaf44318550c800c271ab2507f114d59b2b69698be6fe"
+      },
+      "web/data/chapter-40-assets-part-000.cd3e15a78b719c49.bin": {
+        "bytes": 4194304,
+        "sha256": "cd3e15a78b719c49cc3651a2e38cfb21c1f0a5176947f23550fd7ab058b0264e"
+      },
+      "web/data/chapter-40-assets-part-001.6dbca9ee910a8ff7.bin": {
+        "bytes": 4194304,
+        "sha256": "6dbca9ee910a8ff7be24e4f08354cd8f076f54b9eb72d5cca63a3fff971e32be"
+      },
+      "web/data/chapter-40-assets-part-002.6f227d452d7a288d.bin": {
+        "bytes": 1749013,
+        "sha256": "6f227d452d7a288d34bce7981b2ace8179d4b786e1a3b772f5b1d62d43f3144a"
+      }
+    },
+    "42": {
+      "web/data/chapter-42.0802015e8ba99d11.json": {
+        "bytes": 12647,
+        "sha256": "0802015e8ba99d11a8ece1f14186b3db6a4a7d3d32076e64ca120300f50c7f50"
+      },
+      "web/data/chapter-42-assets.abdbc9d7a8ce717e.json": {
+        "bytes": 1858863,
+        "sha256": "abdbc9d7a8ce717eb7c8a6c04aa7400cec13b5ced947713aa862ab70ef5f2e46"
+      }
+    },
+    "46": {
+      "web/data/chapter-46.2806e485c4c1e1b4.json": {
+        "bytes": 24682,
+        "sha256": "2806e485c4c1e1b4d94174b8324a2d534291c22c481c94960883a29643e9da02"
+      },
+      "web/data/chapter-46-assets-parts.a3595c48161a8bc1.json": {
+        "bytes": 765,
+        "sha256": "a3595c48161a8bc14dec5b1dea23dea0fda99fa39153a359d9ee83c5359516ea"
+      },
+      "web/data/chapter-46-assets-part-000.f7ebee97d8110e68.bin": {
+        "bytes": 4194304,
+        "sha256": "f7ebee97d8110e6805bf6fb6a58303332d3fd118a8e477f3b5de6c7e002064a2"
+      },
+      "web/data/chapter-46-assets-part-001.5213b80662dfa32e.bin": {
+        "bytes": 4194304,
+        "sha256": "5213b80662dfa32ee85b3d01d07dd0d2fb4fe33fa1ed3647ca94a85abce27ac6"
+      },
+      "web/data/chapter-46-assets-part-002.8be859e980ee1d29.bin": {
+        "bytes": 4194304,
+        "sha256": "8be859e980ee1d292718c73bd51206ea8fa0a887baa59fc67c5ec6b2c4cd0738"
+      },
+      "web/data/chapter-46-assets-part-003.ee5f50c994047cde.bin": {
+        "bytes": 2667958,
+        "sha256": "ee5f50c994047cde9851a35f503ddc56b395904698ecbef174d832a4eaa148a8"
+      }
+    }
+  },
+  "stage40OldRoutes": {
+    "web/data/chapter-40-assets-part-000.3b82e978dff8f8e6.bin": {
+      "bytes": 4194304,
+      "sha256": "3b82e978dff8f8e645808bb8eaaf3315c418e65fe178d0ff9823716529f0a172"
+    },
+    "web/data/chapter-40-assets-part-001.50a919950e2df457.bin": {
+      "bytes": 4194304,
+      "sha256": "50a919950e2df457fbc2632fe4316b1ef7e07f74408322a01c098b735aa9e54f"
+    },
+    "web/data/chapter-40-assets-part-002.b6a1709435a1910a.bin": {
+      "bytes": 2231305,
+      "sha256": "b6a1709435a1910a366c0108184bc6eeedf1286f7a5e67426f1570917a202bf5"
+    },
+    "web/data/chapter-40-assets-parts.578f8624b0ac77bc.json": {
+      "bytes": 605,
+      "sha256": "578f8624b0ac77bc2c7322644b2844c5b09110efc32dfb83aa9f57e0463547b0"
+    },
+    "web/data/chapter-40.5f4b6c4c311adc05.json": {
+      "bytes": 48881,
+      "sha256": "5f4b6c4c311adc0508920712018dadd7262c69c17b8d1b955628bdd8ce7d98e0"
+    }
+  },
+  "stage40RowsLexical": {
+    "approved40:terrain-left-join": "{stage:40,previous:\"1761406:9835d7\",current:\"1694987:a515b4e3\",previousOptimized:\"1757601:e9667f0a\"}",
+    "approved40:terrain-right-join": "{stage:40,previous:\"1656846:fba43601\",current:\"1597731:b4de61d5\",previousOptimized:\"1653652:f5a9b376\"}",
+    "approved40:arrival-stair": "{stage:40,previous:\"686777:111fe27\",current:\"674488:5ba1c886\"}",
+    "approved40:body": "{stage:40,previous:\"4724416:12a0c1d5\",current:\"4471109:d3f5a835\"}",
+    "approved40:coastal-foundation": "{stage:40,previous:\"1408143:e55964aa\",current:\"1297690:b446a076\"}"
+  },
+  "compatWitness": {
+    "40": {
+      "historicalTokens": {
+        "approved40:coastal-foundation": "1408143:e55964aa",
+        "approved40:body": "4724416:12a0c1d5",
+        "approved40:terrain-left-join": "1757601:e9667f0a",
+        "approved40:terrain-right-join": "1653652:f5a9b376"
+      },
+      "currentTokens": {
+        "approved40:coastal-foundation": "1297690:b446a076",
+        "approved40:body": "4471109:d3f5a835",
+        "approved40:terrain-left-join": "1694987:a515b4e3",
+        "approved40:terrain-right-join": "1597731:b4de61d5"
+      },
+      "terrainSha": "154ce99f4b1f92d58d05fc19cfb383aaa802435ffc702991b46b80bfe5ab6b66",
+      "unitsSha": "9623838855cc8709dc20dc20ccfa7f9cb82325d0ae0d4db7a8be9ca8f14c6884"
+    },
+    "46": {
+      "historicalTokens": {
+        "act5:near:46": "17756761:bc1a6549"
+      },
+      "currentTokens": {
+        "act5:near:46": "16328502:43d17801"
+      },
+      "terrainSha": "f9410912cc8e8e7465c5bd2b584f1a4138d5edaf95d873ce2c1bd777dab7aa05",
+      "unitsSha": "099cdfb6fda658767513a209281d20b0707b3207247d7eab2f3914d9f97c6f7d"
+    }
+  },
+  "jointSource": {
+    "shared/assets/environment/act5/near-import.json": {
+      "git": "cecd552543b9be5ca904d0346e114e4ced814712",
+      "bytes": 5726133,
+      "sha256": "34c1a2889b2aa634239ca87a00ae6829e3e1fbf80738b2c98e1e63471cf628ea"
+    },
+    "shared/runtime/profile-store.js": {
+      "git": "b11ad06d788fd21c47d89caa415477b85397b9f4",
+      "bytes": 25962,
+      "sha256": "48e6dcd406a503e3acf2c7cd8af7fec01bf44d924075c2c48a2063f900a03724"
+    },
+    "shared/web-build.mjs": {
+      "git": "9d03355a55767c8bd107d793f09e101a96c000a4",
+      "bytes": 30207,
+      "sha256": "7c9a089afffb5bef9fdec0c6c5fcc97d6636b8af14b58f44ac1a5a7ddd3efd28"
+    },
+    "shared/web-loader.js": {
+      "git": "d75e233307be276e4eed6d537c28bf2c9b7dda3f",
+      "bytes": 17810,
+      "sha256": "715c77deca10f9794e3e3f6b0f3905a4b5811b535ee88673e26acac889a88bd8"
+    }
+  },
+  "qualifiedJoint": {
+    "normalCandidateParent": "72dd73e03f7d07c1b87d3e1e71a62d187a371e6a",
+    "qaHead": "06dd073887b48095abd633ab9403ea49765d2359",
+    "artifact": 14757773079,
+    "normalCustody": {
+      "bytes": 9258142,
+      "sha256": "426b91f3ea4287b6acb42066982aaff59467449f4785c32a16747bd710b08a4a"
+    },
+    "normalManifest": {
+      "git": "45e948112f4f4c5e029a08dad8047ba055519bb4",
+      "bytes": 8303889,
+      "sha256": "87ce9c92cef804e5f5b2e1a8a835b690ab8cf2bd33b1f3c050b15de71cd0feec"
+    },
+    "lastActiveCount": 811,
+    "sourcePathCount": 4,
+    "legacyStage32Archive": "web/data/campaign-compat-32.ee7846c92c4edcac.json",
+    "project": "web/data/campaign.0e33b6e4f334c28d.json",
+    "profileModule": "web/runtime/ordered-common-4.67de8f1c97c5fb48.js",
+    "loader": "web/runtime/load-data.36ebfa6c4287ef7a.js",
+    "protectedActive": {
+      "web/runtime/ordered-common-4.67de8f1c97c5fb48.js": {
+        "bytes": 184807,
+        "sha256": "67de8f1c97c5fb4825954f779cbf06ab7e6a41d73e9ff5e77465bbe190634814"
+      },
+      "web/runtime/load-data.36ebfa6c4287ef7a.js": {
+        "bytes": 16749,
+        "sha256": "36ebfa6c4287ef7a54392c1bcb46a78977473e0e10aad3ede3dfe341f6e71f96"
+      },
+      "web/data/campaign.0e33b6e4f334c28d.json": {
+        "bytes": 55127,
+        "sha256": "0e33b6e4f334c28d670fdaa49dc982c794ad62955e5a141bb572d390fbe9afb9"
+      },
+      "web/data/campaign-compat-32.ee7846c92c4edcac.json": {
+        "bytes": 3219476,
+        "sha256": "ee7846c92c4edcac5f88771849e89c896a5c6906b0b8c10fb90cdca1d5b1061d"
+      },
+      "web/data/chapter-21.724a765a85d437a2.json": {
+        "bytes": 67494,
+        "sha256": "724a765a85d437a24ea9437ba300f5602282abda9ecbd190074a7d25b8b1c51b"
+      },
+      "web/data/chapter-21-assets.195e73632de8b164.json": {
+        "bytes": 688805,
+        "sha256": "195e73632de8b16431e39ac63f87eed9ad1ea538a47dcc0d980e4a0e1c624e67"
+      },
+      "web/data/chapter-32.f242630da616ee32.json": {
+        "bytes": 21111,
+        "sha256": "f242630da616ee32bbeaa0f13d64e7c800976e6928d25b5c588a2286e913968a"
+      },
+      "web/data/chapter-32-assets-parts.427bcb8462093709.json": {
+        "bytes": 443,
+        "sha256": "427bcb8462093709dd9680066672b86b093d858fd679a6ecd88f461874cfd781"
+      },
+      "web/data/chapter-32-assets-part-000.58eb984bf3338390.bin": {
+        "bytes": 4194304,
+        "sha256": "58eb984bf3338390c4284dd587c6511b0f0cdc30f34e13d44f34292bd32e89a7"
+      },
+      "web/data/chapter-32-assets-part-001.c4c37c74a940a763.bin": {
+        "bytes": 585651,
+        "sha256": "c4c37c74a940a76354d51b15d1c4061811f28ac5d3c8449c8f4c85fbf8facc47"
+      },
+      "web/data/chapter-33.80ca32475be181c7.json": {
+        "bytes": 34235,
+        "sha256": "80ca32475be181c7774c305b442c8081b6341836fb8d08771e033b7fb79e1464"
+      },
+      "web/data/chapter-33-assets.920ccd84eb69a553.json": {
+        "bytes": 2861056,
+        "sha256": "920ccd84eb69a5534b16e76ac27bb6df1d1c04fba0b2c5fff409057d6119d55b"
+      },
+      "web/data/chapter-40.5f4b6c4c311adc05.json": {
+        "bytes": 48881,
+        "sha256": "5f4b6c4c311adc0508920712018dadd7262c69c17b8d1b955628bdd8ce7d98e0"
+      },
+      "web/data/chapter-40-assets-parts.e102ede6b6f1921d.json": {
+        "bytes": 605,
+        "sha256": "e102ede6b6f1921d46efaf44318550c800c271ab2507f114d59b2b69698be6fe"
+      },
+      "web/data/chapter-40-assets-part-000.cd3e15a78b719c49.bin": {
+        "bytes": 4194304,
+        "sha256": "cd3e15a78b719c49cc3651a2e38cfb21c1f0a5176947f23550fd7ab058b0264e"
+      },
+      "web/data/chapter-40-assets-part-001.6dbca9ee910a8ff7.bin": {
+        "bytes": 4194304,
+        "sha256": "6dbca9ee910a8ff7be24e4f08354cd8f076f54b9eb72d5cca63a3fff971e32be"
+      },
+      "web/data/chapter-40-assets-part-002.6f227d452d7a288d.bin": {
+        "bytes": 1749013,
+        "sha256": "6f227d452d7a288d34bce7981b2ace8179d4b786e1a3b772f5b1d62d43f3144a"
+      },
+      "web/data/chapter-42.0802015e8ba99d11.json": {
+        "bytes": 12647,
+        "sha256": "0802015e8ba99d11a8ece1f14186b3db6a4a7d3d32076e64ca120300f50c7f50"
+      },
+      "web/data/chapter-42-assets.abdbc9d7a8ce717e.json": {
+        "bytes": 1858863,
+        "sha256": "abdbc9d7a8ce717eb7c8a6c04aa7400cec13b5ced947713aa862ab70ef5f2e46"
+      },
+      "web/data/chapter-46.2806e485c4c1e1b4.json": {
+        "bytes": 24682,
+        "sha256": "2806e485c4c1e1b4d94174b8324a2d534291c22c481c94960883a29643e9da02"
+      },
+      "web/data/chapter-46-assets-parts.a3595c48161a8bc1.json": {
+        "bytes": 765,
+        "sha256": "a3595c48161a8bc14dec5b1dea23dea0fda99fa39153a359d9ee83c5359516ea"
+      },
+      "web/data/chapter-46-assets-part-000.f7ebee97d8110e68.bin": {
+        "bytes": 4194304,
+        "sha256": "f7ebee97d8110e6805bf6fb6a58303332d3fd118a8e477f3b5de6c7e002064a2"
+      },
+      "web/data/chapter-46-assets-part-001.5213b80662dfa32e.bin": {
+        "bytes": 4194304,
+        "sha256": "5213b80662dfa32ee85b3d01d07dd0d2fb4fe33fa1ed3647ca94a85abce27ac6"
+      },
+      "web/data/chapter-46-assets-part-002.8be859e980ee1d29.bin": {
+        "bytes": 4194304,
+        "sha256": "8be859e980ee1d292718c73bd51206ea8fa0a887baa59fc67c5ec6b2c4cd0738"
+      },
+      "web/data/chapter-46-assets-part-003.ee5f50c994047cde.bin": {
+        "bytes": 2667958,
+        "sha256": "ee5f50c994047cde9851a35f503ddc56b395904698ecbef174d832a4eaa148a8"
+      }
+    },
+    "oldNativeProofs": {
+      "out/BROWSER.json": {
+        "bytes": 20541,
+        "sha256": "9c0856e5993994dc2ed8f4c9a291c3a3013bf2d8be0a7e9637d65cf4d994e3eb"
+      },
+      "out/WORKSHOP.json": {
+        "bytes": 103562,
+        "sha256": "9781f4ba3f86253f2e5324c0753c87422e04b050f91764ea146e8d5a8e7df525"
+      },
+      "out/RESUME-40-46.json": {
+        "bytes": 60980,
+        "sha256": "bda2d77766b7309232f8b25dc39d42f523b369d0c7585412edd1aecf15fb2534"
+      },
+      "stage42/out/BROWSER.json": {
+        "bytes": 19630,
+        "sha256": "704c4521f359a7e51aebb961f7acac3aaa4fd5c4bca9f4613333855029c8dcfa"
+      },
+      "stage42/out/RESUME.json": {
+        "bytes": 18015,
+        "sha256": "1cd3b9e6df5f18d908171a5f7aaafe95c396dfd9b3ece46d46711738f65e4f91"
+      }
+    },
+    "actualStage33R4PC": {
+      "run": 45031804419,
+      "artifact": 14758576114,
+      "sha256": "918fd79ac89f932bd349f7170969e253cc7baf9ed997fd375954e18159f42cc7"
+    }
+  },
+  "rawMobile33": {
+    "bytes": 346854,
+    "sha256": "bf8564bba8bb61ecab1b5ac5a39fe321c462962c4aab8ee208af59f4fac6cd01"
+  },
+  "poseMobile33": {
+    "actual": {
+      "x": 7232,
+      "y": 2304,
+      "scale": 0.057352941176470586
+    },
+    "viewport": {
+      "left": 3832,
+      "right": 10632,
+      "top": -3341.8253205128203,
+      "bottom": 7949.82532051282
+    },
+    "backing": [
+      390,
+      648
+    ]
+  },
+  "jointWorkshop": {
+    "priorActualReceiptSHA256": "9781f4ba3f86253f2e5324c0753c87422e04b050f91764ea146e8d5a8e7df525",
+    "originalProviderSignatures": {
+      "approved32:body": "1952606:e60eb3e5",
+      "approved32:wood-door-extract": "423282:b2c53b27",
+      "act4-handoff:32:body": "843583:aede1464"
+    },
+    "libraryIdsSHA256": "b532579ba26f5daf4893577ee0639fd6ec35005ad672369826a972c9cd7e11e8",
+    "mapIdsSHA256": "7f091fba47d5df1c071eaccca1cec57ae4a42125496f991f7d7673ca470d6464",
+    "libraryLength": 1194,
+    "mapLength": 50,
+    "archiveGETs": 1,
+    "soleNewId": "act1-site:7:r7-facies"
+  },
+  "legacy2c4Refs": {
+    "act4-sideview:33:coastal-v2:west-continuous-geology": "862760:4666d3c8",
+    "act4-sideview:33:coastal-v2:lowland": "728197:c76800ec"
+  },
+  "profileGroup": {
+    "before": {
+      "bytes": 25962,
+      "sha256": "48e6dcd406a503e3acf2c7cd8af7fec01bf44d924075c2c48a2063f900a03724",
+      "git": "b11ad06d788fd21c47d89caa415477b85397b9f4"
+    },
+    "candidate": {
+      "bytes": 26074,
+      "sha256": "e102f4f1ed58887c143f4d8645d644df7a7eb6172bba05a57470240f0b770251",
+      "git": "c993e119fa10470fa99c6db9551e2fbef51c9819"
+    },
+    "byteDelta": 112,
+    "rawGroupBefore": 196431,
+    "rawGroupProjected": 196543,
+    "remaining": 65
+  },
+  "group12Projection": {
+    "before": 75673,
+    "after": 78722
+  },
+  "sourceUnion": {
+    "shared/build.mjs": {
+      "bytes": 29896,
+      "sha256": "ffe225243b7fa9295ce22735a35218b7b7ee33bf01b467aa4f5a991a9e3bbbf6",
+      "git": "244903755e47fc7a519696a157802034d4064cd6"
+    },
+    "shared/runtime/profile-store.js": {
+      "bytes": 26074,
+      "sha256": "e102f4f1ed58887c143f4d8645d644df7a7eb6172bba05a57470240f0b770251",
+      "git": "c993e119fa10470fa99c6db9551e2fbef51c9819"
+    },
+    "shared/author-stage32-south.mjs": {
+      "bytes": 15834,
+      "sha256": "87efe86b733e70109dd6fec426404112874e2621dbd5323031c272628bf0bba6",
+      "git": "d747b1d296b7941a4bfcacea8e7e247afb0c7c71"
+    }
+  },
+  "stage32RegistryChanges": {
+    "act4-handoff:32:body-joined": {
+      "stage": 32,
+      "previous": "843877:74fe14ea",
+      "current": "689233:56f4e60f",
+      "previousOptimized": "685031:cfa8f837"
+    },
+    "approved32:coastal-foundation": {
+      "stage": 32,
+      "previous": "586162:b287d499",
+      "current": "590366:f90415d3"
+    }
+  },
+  "expectedRegistryAfter": {
+    "approved31:body": {
+      "stage": 31,
+      "previous": "2943423:c79fb05e",
+      "current": "2908081:52fb776f",
+      "previousOptimized": "2931235:f91b6ac1"
+    },
+    "act4-handoff:31:estuary-earth": {
+      "stage": 31,
+      "previous": "223473:1c0c7be1",
+      "current": "216471:bd680f89"
+    },
+    "approved33:near-west": {
+      "stage": 33,
+      "previous": "643787:deb96d5b",
+      "current": "335822:4e1edc67"
+    },
+    "approved34:body": {
+      "stage": 34,
+      "previous": "3564693:f445e750",
+      "current": "2791611:16323ca5"
+    },
+    "approved34:lower-continuation-v2": {
+      "stage": 34,
+      "previous": "113113:cbe9d6d3",
+      "current": "103823:8821ce12"
+    },
+    "approved34:east-v6-connected-diagnostic": {
+      "stage": 34,
+      "previous": "187710:4b5936d2",
+      "current": "186771:870862b8"
+    },
+    "approved35:near-geology": {
+      "stage": 35,
+      "previous": "359227:635a5188",
+      "current": "298307:bb88bf69",
+      "previousOptimized": "295465:df15d6ec"
+    },
+    "act4-handoff:35:body": {
+      "stage": 35,
+      "previous": "1632032:a8ce2166",
+      "current": "966640:27a5509d",
+      "previousOptimized": "966640:fa95a84f"
+    },
+    "act4-handoff:36:body": {
+      "stage": 36,
+      "previous": "1252490:98c8d6f8",
+      "current": "845802:b81080d6"
+    },
+    "approved36:near-slope-join-inland": {
+      "stage": 36,
+      "previous": "527586:a44972b9",
+      "current": "351285:f08e5b50"
+    },
+    "approved37:near-foundation": {
+      "stage": 37,
+      "previous": "374623:8254f36b",
+      "current": "299280:315281cf"
+    },
+    "approved37:left-coast": {
+      "stage": 37,
+      "previous": "428284:a3a5dee5",
+      "current": "359283:d428b98e"
+    },
+    "approved37:right-coast": {
+      "stage": 37,
+      "previous": "328037:3c9a1d8c",
+      "current": "273348:31392414"
+    },
+    "approved38:roof-alpha-overlap": {
+      "stage": 38,
+      "previous": "331015:35c219ef",
+      "current": "324676:63ef35dd"
+    },
+    "approved38:left-geology-overlap": {
+      "stage": 38,
+      "previous": "1047710:db6062a8",
+      "current": "1046432:8887a4c9"
+    },
+    "approved38:right-geology-join": {
+      "stage": 38,
+      "previous": "766146:7fec48e6",
+      "current": "667722:470930d5"
+    },
+    "approved38:body-timber-smooth-v1": {
+      "stage": 38,
+      "previous": "2999803:aa6f98e4",
+      "current": "2997759:ebea6fa"
+    },
+    "approved39:shore-foundation": {
+      "stage": 39,
+      "previous": "642860:ca5389c",
+      "current": "429986:e56a185b"
+    },
+    "approved40:terrain-left-join": {
+      "stage": 40,
+      "previous": "1761406:9835d7",
+      "current": "1694987:a515b4e3",
+      "previousOptimized": "1757601:e9667f0a"
+    },
+    "approved40:terrain-right-join": {
+      "stage": 40,
+      "previous": "1656846:fba43601",
+      "current": "1597731:b4de61d5",
+      "previousOptimized": "1653652:f5a9b376"
+    },
+    "approved31:harbor-piling": {
+      "stage": 31,
+      "previous": "76271:62ebf9cd",
+      "current": "64361:22fd1646"
+    },
+    "approved31:harbor-stair": {
+      "stage": 31,
+      "previous": "129368:b5ffc346",
+      "current": "118176:2401b7ad"
+    },
+    "approved32:pier-bearing": {
+      "stage": 32,
+      "previous": "175015:5e3ea510",
+      "current": "172664:76aabb5c"
+    },
+    "act4-handoff:32:body-joined": {
+      "stage": 32,
+      "previous": "843877:74fe14ea",
+      "current": "689233:56f4e60f",
+      "previousOptimized": "685031:cfa8f837"
+    },
+    "act4-handoff:32:west-house": {
+      "stage": 32,
+      "previous": "1649217:c0751dec",
+      "current": "1198522:cce42b8c"
+    },
+    "act4-handoff:32:workshop": {
+      "stage": 32,
+      "previous": "1213379:b4f8645e",
+      "current": "672000:cfc6f0da"
+    },
+    "act4-handoff:32:shelter": {
+      "stage": 32,
+      "previous": "1724269:62f136a",
+      "current": "803311:fda227bf"
+    },
+    "act4-handoff:32:door": {
+      "stage": 32,
+      "previous": "1378946:a79f6fcd",
+      "current": "662252:20183663"
+    },
+    "approved33:deep-west": {
+      "stage": 33,
+      "previous": "442357:cbf2de5c",
+      "current": "440499:ac0b897c"
+    },
+    "approved33:body": {
+      "stage": 33,
+      "previous": "2202366:9be7fa89",
+      "current": "2201098:2ab54f94"
+    },
+    "approved33:west-stair": {
+      "stage": 33,
+      "previous": "130708:2e180d38",
+      "current": "121576:997507ad"
+    },
+    "approved33:east-stair": {
+      "stage": 33,
+      "previous": "218031:ff13daec",
+      "current": "197868:bcccaf50"
+    },
+    "approved33:lower-east-stair": {
+      "stage": 33,
+      "previous": "218040:ec48110e",
+      "current": "197877:2460a46a"
+    },
+    "approved33:near-west-join": {
+      "stage": 33,
+      "previous": "252281:825f1b5",
+      "current": "241590:3a29af5d"
+    },
+    "act4-handoff:35:bedrock": {
+      "stage": 35,
+      "previous": "522832:2374b2d",
+      "current": "449277:f0524602",
+      "previousOptimized": "449277:7ffe61b2"
+    },
+    "act4-handoff:35:bamboo": {
+      "stage": 35,
+      "previous": "999706:59ead307",
+      "current": "803751:2f17028e"
+    },
+    "act4-handoff:35:walls": {
+      "stage": 35,
+      "previous": "172309:211be1d1",
+      "current": "158123:7711ce42",
+      "previousOptimized": "158123:5541b75d"
+    },
+    "act4-handoff:36:village": {
+      "stage": 36,
+      "previous": "1094885:2c1be814",
+      "current": "984264:6a3d44de"
+    },
+    "approved37:body": {
+      "stage": 37,
+      "previous": "2197800:a4053715",
+      "current": "2193621:98823219"
+    },
+    "approved39:body": {
+      "stage": 39,
+      "previous": "2487773:af81cd83",
+      "current": "2486872:ae155280"
+    },
+    "approved40:arrival-stair": {
+      "stage": 40,
+      "previous": "686777:111fe27",
+      "current": "674488:5ba1c886"
+    },
+    "approved40:body": {
+      "stage": 40,
+      "previous": "4724416:12a0c1d5",
+      "current": "4471109:d3f5a835"
+    },
+    "approved40:coastal-foundation": {
+      "stage": 40,
+      "previous": "1408143:e55964aa",
+      "current": "1297690:b446a076"
+    },
+    "act4-sideview:33:coastal-v2:west-continuous-geology": {
+      "stage": 33,
+      "previous": "862760:4666d3c8",
+      "current": "864135:d1152e99"
+    },
+    "act4-sideview:33:coastal-v2:lowland": {
+      "stage": 33,
+      "previous": "743870:a3735931",
+      "current": "745366:5d4bce0d"
+    },
+    "approved32:coastal-foundation": {
+      "stage": 32,
+      "previous": "586162:b287d499",
+      "current": "590366:f90415d3"
+    }
+  },
+  "expectedRegistryBefore": {
+    "approved31:body": {
+      "stage": 31,
+      "previous": "2943423:c79fb05e",
+      "current": "2908081:52fb776f",
+      "previousOptimized": "2931235:f91b6ac1"
+    },
+    "act4-handoff:31:estuary-earth": {
+      "stage": 31,
+      "previous": "223473:1c0c7be1",
+      "current": "216471:bd680f89"
+    },
+    "approved33:near-west": {
+      "stage": 33,
+      "previous": "643787:deb96d5b",
+      "current": "335822:4e1edc67"
+    },
+    "approved34:body": {
+      "stage": 34,
+      "previous": "3564693:f445e750",
+      "current": "2791611:16323ca5"
+    },
+    "approved34:lower-continuation-v2": {
+      "stage": 34,
+      "previous": "113113:cbe9d6d3",
+      "current": "103823:8821ce12"
+    },
+    "approved34:east-v6-connected-diagnostic": {
+      "stage": 34,
+      "previous": "187710:4b5936d2",
+      "current": "186771:870862b8"
+    },
+    "approved35:near-geology": {
+      "stage": 35,
+      "previous": "359227:635a5188",
+      "current": "298307:bb88bf69",
+      "previousOptimized": "295465:df15d6ec"
+    },
+    "act4-handoff:35:body": {
+      "stage": 35,
+      "previous": "1632032:a8ce2166",
+      "current": "966640:27a5509d",
+      "previousOptimized": "966640:fa95a84f"
+    },
+    "act4-handoff:36:body": {
+      "stage": 36,
+      "previous": "1252490:98c8d6f8",
+      "current": "845802:b81080d6"
+    },
+    "approved36:near-slope-join-inland": {
+      "stage": 36,
+      "previous": "527586:a44972b9",
+      "current": "351285:f08e5b50"
+    },
+    "approved37:near-foundation": {
+      "stage": 37,
+      "previous": "374623:8254f36b",
+      "current": "299280:315281cf"
+    },
+    "approved37:left-coast": {
+      "stage": 37,
+      "previous": "428284:a3a5dee5",
+      "current": "359283:d428b98e"
+    },
+    "approved37:right-coast": {
+      "stage": 37,
+      "previous": "328037:3c9a1d8c",
+      "current": "273348:31392414"
+    },
+    "approved38:roof-alpha-overlap": {
+      "stage": 38,
+      "previous": "331015:35c219ef",
+      "current": "324676:63ef35dd"
+    },
+    "approved38:left-geology-overlap": {
+      "stage": 38,
+      "previous": "1047710:db6062a8",
+      "current": "1046432:8887a4c9"
+    },
+    "approved38:right-geology-join": {
+      "stage": 38,
+      "previous": "766146:7fec48e6",
+      "current": "667722:470930d5"
+    },
+    "approved38:body-timber-smooth-v1": {
+      "stage": 38,
+      "previous": "2999803:aa6f98e4",
+      "current": "2997759:ebea6fa"
+    },
+    "approved39:shore-foundation": {
+      "stage": 39,
+      "previous": "642860:ca5389c",
+      "current": "429986:e56a185b"
+    },
+    "approved40:terrain-left-join": {
+      "stage": 40,
+      "previous": "1761406:9835d7",
+      "current": "1694987:a515b4e3",
+      "previousOptimized": "1757601:e9667f0a"
+    },
+    "approved40:terrain-right-join": {
+      "stage": 40,
+      "previous": "1656846:fba43601",
+      "current": "1597731:b4de61d5",
+      "previousOptimized": "1653652:f5a9b376"
+    },
+    "approved31:harbor-piling": {
+      "stage": 31,
+      "previous": "76271:62ebf9cd",
+      "current": "64361:22fd1646"
+    },
+    "approved31:harbor-stair": {
+      "stage": 31,
+      "previous": "129368:b5ffc346",
+      "current": "118176:2401b7ad"
+    },
+    "approved32:pier-bearing": {
+      "stage": 32,
+      "previous": "175015:5e3ea510",
+      "current": "172664:76aabb5c"
+    },
+    "act4-handoff:32:body-joined": {
+      "stage": 32,
+      "previous": "843877:74fe14ea",
+      "current": "685031:cfa8f837"
+    },
+    "act4-handoff:32:west-house": {
+      "stage": 32,
+      "previous": "1649217:c0751dec",
+      "current": "1198522:cce42b8c"
+    },
+    "act4-handoff:32:workshop": {
+      "stage": 32,
+      "previous": "1213379:b4f8645e",
+      "current": "672000:cfc6f0da"
+    },
+    "act4-handoff:32:shelter": {
+      "stage": 32,
+      "previous": "1724269:62f136a",
+      "current": "803311:fda227bf"
+    },
+    "act4-handoff:32:door": {
+      "stage": 32,
+      "previous": "1378946:a79f6fcd",
+      "current": "662252:20183663"
+    },
+    "approved33:deep-west": {
+      "stage": 33,
+      "previous": "442357:cbf2de5c",
+      "current": "440499:ac0b897c"
+    },
+    "approved33:body": {
+      "stage": 33,
+      "previous": "2202366:9be7fa89",
+      "current": "2201098:2ab54f94"
+    },
+    "approved33:west-stair": {
+      "stage": 33,
+      "previous": "130708:2e180d38",
+      "current": "121576:997507ad"
+    },
+    "approved33:east-stair": {
+      "stage": 33,
+      "previous": "218031:ff13daec",
+      "current": "197868:bcccaf50"
+    },
+    "approved33:lower-east-stair": {
+      "stage": 33,
+      "previous": "218040:ec48110e",
+      "current": "197877:2460a46a"
+    },
+    "approved33:near-west-join": {
+      "stage": 33,
+      "previous": "252281:825f1b5",
+      "current": "241590:3a29af5d"
+    },
+    "act4-handoff:35:bedrock": {
+      "stage": 35,
+      "previous": "522832:2374b2d",
+      "current": "449277:f0524602",
+      "previousOptimized": "449277:7ffe61b2"
+    },
+    "act4-handoff:35:bamboo": {
+      "stage": 35,
+      "previous": "999706:59ead307",
+      "current": "803751:2f17028e"
+    },
+    "act4-handoff:35:walls": {
+      "stage": 35,
+      "previous": "172309:211be1d1",
+      "current": "158123:7711ce42",
+      "previousOptimized": "158123:5541b75d"
+    },
+    "act4-handoff:36:village": {
+      "stage": 36,
+      "previous": "1094885:2c1be814",
+      "current": "984264:6a3d44de"
+    },
+    "approved37:body": {
+      "stage": 37,
+      "previous": "2197800:a4053715",
+      "current": "2193621:98823219"
+    },
+    "approved39:body": {
+      "stage": 39,
+      "previous": "2487773:af81cd83",
+      "current": "2486872:ae155280"
+    },
+    "approved40:arrival-stair": {
+      "stage": 40,
+      "previous": "686777:111fe27",
+      "current": "674488:5ba1c886"
+    },
+    "approved40:body": {
+      "stage": 40,
+      "previous": "4724416:12a0c1d5",
+      "current": "4471109:d3f5a835"
+    },
+    "approved40:coastal-foundation": {
+      "stage": 40,
+      "previous": "1408143:e55964aa",
+      "current": "1297690:b446a076"
+    },
+    "act4-sideview:33:coastal-v2:west-continuous-geology": {
+      "stage": 33,
+      "previous": "862760:4666d3c8",
+      "current": "864135:d1152e99"
+    },
+    "act4-sideview:33:coastal-v2:lowland": {
+      "stage": 33,
+      "previous": "743870:a3735931",
+      "current": "745366:5d4bce0d"
+    }
+  },
+  "stage7": {
+    "previousHead": "0b9c7f0746da289dc92474a76173232a3fb91ea8",
+    "authorSources": {
+      "tools/map-forge/act1-naru-doldang.mjs": {
+        "bytes": 15402,
+        "sha256": "dbca4133830f474366045cb2b1904f8aa956e5300b0e52d13d28859786b3d0cc",
+        "git": "4911e7a9f5a34e4071417c8fae8fb9af8d56a2fd"
+      },
+      "shared/map/terrain-domain.js": {
+        "bytes": 29712,
+        "sha256": "e5a909a45b295e55a697807e68ef50356b59849e591a67da978d187812f23427",
+        "git": "2c71093c6ffd93dd5d5293f21dffd50fcb019b45"
+      },
+      "shared/assets/environment/act1-sites/stage07-underbody-r7.json": {
+        "bytes": 112840,
+        "sha256": "651dc180ac7023a36a1b5949edd289ba741965cab0079a23303a0545e254b2dc",
+        "git": "6fb2fe589a5ac18c45adf1271306912b2735cc6a"
+      }
+    },
+    "oldShell": {
+      "bytes": 17379,
+      "sha256": "4f05204ef37edd55dfd7c55b461ad2c1a7f47a2d40587c7395cf370b068a3bdb",
+      "git": "9b5aa8da59f45fc2c3ba5febe2a5a1499217797d"
+    },
+    "oldRoutes": {
+      "web/entries/game.19217698b427e80f.js": {
+        "bytes": 20483,
+        "sha256": "19217698b427e80f26203a6600db3bf03962be322e2a61a5c25e5b0178d20333"
+      },
+      "web/data/campaign.0e33b6e4f334c28d.json": {
+        "bytes": 55127,
+        "sha256": "0e33b6e4f334c28d670fdaa49dc982c794ad62955e5a141bb572d390fbe9afb9"
+      },
+      "web/data/chapter-07.28f7bf612a598aeb.json": {
+        "bytes": 30579,
+        "sha256": "28f7bf612a598aeb0eb6da0f819a0b6ddb7fd5414eab9410e434772eb04d2553"
+      },
+      "web/data/chapter-07-assets.7068fa05c6ce1c2e.json": {
+        "bytes": 655969,
+        "sha256": "7068fa05c6ce1c2ef0c96045daa3dea192ba69a18e35bc323e6a5df9a1529db5"
+      },
+      "web/runtime/ordered-common-11.94f589182e7712da.js": {
+        "bytes": 178192,
+        "sha256": "94f589182e7712dadb6b80e62ff93e720c54f7cbbbb7f4a07de819a80c72a79e"
+      },
+      "web/runtime/campaign.13c139b8021b0ce4.js": {
+        "bytes": 527,
+        "sha256": "13c139b8021b0ce4ebf479b9309329c393c2894fedfc0229f5efcb55a8eb6ba8"
+      },
+      "web/runtime/ordered-common-12.a3e256d8f7a5fb68.js": {
+        "bytes": 72701,
+        "sha256": "a3e256d8f7a5fb68afb0268aea3292c050633cf8e118a62c899bea1d0c93f1cc"
+      }
+    },
+    "currentAsset": "web/data/chapter-07-assets.4f5a7691dac04f9d.json",
+    "currentMap": "web/data/chapter-07.177911aaf007ef0b.json",
+    "currentRoutes": {
+      "web/entries/game.3716bcb3caa78a7a.js": {
+        "bytes": 20483,
+        "sha256": "3716bcb3caa78a7a9b664378267214aafc47ad8ba985f12b6a020bd889c94b9a"
+      },
+      "web/data/campaign.dce6b5b5facbbd91.json": {
+        "bytes": 55151,
+        "sha256": "dce6b5b5facbbd91e9d734f17030667aa2644af8782fef1fff3a6a22b639e380"
+      },
+      "web/data/chapter-07.177911aaf007ef0b.json": {
+        "bytes": 30621,
+        "sha256": "177911aaf007ef0beb6a0cb94379b3513d42a9f653b53aaba9fb3948761a99ee"
+      },
+      "web/data/chapter-07-assets.4f5a7691dac04f9d.json": {
+        "bytes": 769327,
+        "sha256": "4f5a7691dac04f9dfcb361fa4258479080c349ae5bd0cd50b42b4b16156b3928"
+      },
+      "web/runtime/ordered-common-11.6b1c56faa0f72077.js": {
+        "bytes": 166538,
+        "sha256": "6b1c56faa0f720779355027f23a6afaa7bee08944c7421b429d73009a3f81676"
+      },
+      "web/runtime/campaign.0b680e073a963004.js": {
+        "bytes": 527,
+        "sha256": "0b680e073a9630043e6b1bd0d18e22398b2c839ab1f4c43310d7530f4058c137"
+      },
+      "web/runtime/ordered-common-12.4bcd22a3c1af1306.js": {
+        "bytes": 87071,
+        "sha256": "4bcd22a3c1af1306a9cf4c7e7e80ac3974cf63e36892f7e8866f0a193fe58011"
+      }
+    },
+    "currentRenderRoles": [
+      "web/runtime/ordered-common-11.6b1c56faa0f72077.js",
+      "web/runtime/ordered-common-12.4bcd22a3c1af1306.js"
+    ],
+    "model": {
+      "provider": {
+        "bytes": 242099,
+        "sha256": "992c5b15cee33be83196b78ab08e14306777b883626ff20080c3a109f38f6ec2"
+      },
+      "physicalUnregistered": {
+        "bytes": 14521,
+        "sha256": "11b747b0c337f64ad3f2f9792bcb84a9b42469dbe8deb36d1ba3b3e447e20a31"
+      }
+    },
+    "proofSHA256": {
+      "bytes": 114604,
+      "sha256": "19127b162d0b4e3a6990c3f988fb5815dd053c0107a57d1d804819fc9af5a6cc"
+    },
+    "knownAsset": "act1-site:7:r7-facies",
+    "rootAsset": "act1-site:7:body"
+  },
+  "expectedPostStage7": {
+    "head": "e70279eb6e00061825eaa6c0de793bb8c0821a99",
+    "tree": "f0e7310c20b0255b46e8e1afa3e4a0e4b40dce9e",
+    "registry": 1511,
+    "manifest": {
+      "bytes": 8692467,
+      "git": "b54806cc62e03a1e4b1d1bfd9eb533e5655d773f",
+      "sha256": "4f33214ea6d5503e42b3a9eb6ef4ed8451cb1d08793dbda80d24451aceac9e6e"
+    },
+    "authority": "expected new master only; Pages approval owned by parent"
+  },
+  "oldRoutes": {
+    "web/entries/game.b1321855b16bc549.js": {
+      "bytes": 20483,
+      "sha256": "b1321855b16bc54988ea55800f2699c8bd345a713b588f474c63c1ca28f9df3b"
+    },
+    "web/runtime/campaign.add23c14682508f8.js": {
+      "bytes": 527,
+      "sha256": "add23c14682508f80102ebc5df411499dccc5533a561a1c3654567236b2a861c"
+    },
+    "web/data/campaign.36b3008756d1c3a5.json": {
+      "bytes": 55011,
+      "sha256": "36b3008756d1c3a51985e2b3ab34d2edd0643eea97fb49a5dc7475907455e3e1"
+    },
+    "web/data/chapter-33-assets.07b129345eb95856.json": {
+      "bytes": 2858185,
+      "sha256": "07b129345eb9585651bb4d8a74411c8ec30ac3d5b3736ca7849e39abfa7ffe00"
+    },
+    "web/data/chapter-33.80ca32475be181c7.json": {
+      "bytes": 34235,
+      "sha256": "80ca32475be181c7774c305b442c8081b6341836fb8d08771e033b7fb79e1464"
+    }
+  },
+  "old2c4Routes": {
+    "web/entries/game.df8a4c7f1873e38c.js": {
+      "bytes": 20483,
+      "sha256": "df8a4c7f1873e38c16c8cc6eaefe6ba727595e7a3cebe50529e3ff6d02fb3bf4"
+    },
+    "web/runtime/campaign.926544619e01a04a.js": {
+      "bytes": 527,
+      "sha256": "926544619e01a04af2f2cc0e2bd435265ae9efff23062e259563bded6d851307"
+    },
+    "web/data/campaign.7140da5d3649e4ab.json": {
+      "bytes": 54961,
+      "sha256": "7140da5d3649e4aba2c58e180c8ff3f6f171a70e5e6704ad05dc98d428c52822"
+    },
+    "web/data/chapter-33.a7ce91b7d78fb5f8.json": {
+      "bytes": 34011,
+      "sha256": "a7ce91b7d78fb5f8b0b27a4ea42ce6cf4f54d98556c43176beb87a0789573a5a"
+    },
+    "web/data/chapter-33-assets.4b5df185aa59eb42.json": {
+      "bytes": 2836956,
+      "sha256": "4b5df185aa59eb42dbb2c46bd21b38ef2ab7134098bc31b3a0b96439dcc7ef73"
+    }
+  }
+}
