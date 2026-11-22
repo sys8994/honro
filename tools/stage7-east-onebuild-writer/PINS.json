@@ -1,0 +1,207 @@
+{
+  "enabled": true,
+  "repo": "sys8994/honro",
+  "qaRef": "refs/heads/qa/stage7-east-onebuild-writer-2e7c848",
+  "releaseRef": "refs/heads/release/act1-stage7-east-ink-20261122",
+  "scopeApproval": "Stage7 southeastern errant lower stroke only: actual public A and normally built B manually reviewed on PC and mobile. Existing painted rim and terrain/collision unchanged. West/south excluded. Release ref only, no deploy.",
+  "base": {
+    "head": "2e7c848b717769f11e89d45e5697b977f660a15c",
+    "tree": "9fc4979a88295b6cc7d1dc462c5cce9cf284bee2",
+    "manifest": {
+      "bytes": 7147403,
+      "sha256": "0de55477b0578c57cd5425a844b011a7fe383097cacb92e45d6c59aad173611e",
+      "git": "860763443224ec239e59f45a54e04ae3070626f5"
+    },
+    "pagesRun": 45000493339,
+    "pagesJob": 137141080362,
+    "publishedAt": "2026-11-22T07:58:41Z",
+    "active": 810,
+    "registry": 1361,
+    "retainerGit": "8374336b53c74ac81e6d32f5aa43eee575e61daa",
+    "policyGit": "16687b0fc38e432a7d66a015ddf3ebe744163a06"
+  },
+  "qa": {
+    "run": 45007482709,
+    "job": 137162180727,
+    "head": "7e68e61624d3435c1436fdad5b1ef98e84880adb",
+    "tree": "73cc79f95c7aee0ba6eb64952b7cb3b182ca24f2",
+    "branch": "qa/stage7-east-normal-onebuild-r2-2e7c848",
+    "artifact": 14748452175,
+    "name": "honro-stage7-east-onebuild-r2-pc-mobile-no-deploy",
+    "outer": {
+      "bytes": 4598487,
+      "sha256": "c6e98d2083281add38fcfa9c5aaf085378c3847bdf7e18f13cdc7f86b0a46238"
+    }
+  },
+  "outerMembers": [
+    "B-generated-pending-art/SEAL.json",
+    "B-generated-pending-art/B-EXACT-NORMAL-GENERATED-NO-DEPLOY.zip",
+    "BROWSER.json",
+    "GRAPH.json",
+    "SOURCE.json",
+    "PC-A-actual-SE-raw.png",
+    "PC-B-actual-SE-raw.png",
+    "M-A-actual-SE-raw.png",
+    "M-B-actual-SE-raw.png",
+    "build.log",
+    "http.log",
+    "npm-game.log",
+    "npm.log",
+    "production-contract.log",
+    "NATIVE-ROUTES.json"
+  ],
+  "receipts": {
+    "BROWSER.json": {
+      "bytes": 8869,
+      "sha256": "e6debe9772085eede76cf97bd2c7716ac2d27821b77dc1c75684d47a2a3cba9b"
+    },
+    "SOURCE.json": {
+      "bytes": 564,
+      "sha256": "5090118951b345bfa25513b34c0bfe0ba40a0d54f06e1574e7e892ac070b3613"
+    },
+    "GRAPH.json": {
+      "bytes": 144719,
+      "sha256": "80c3e5e126ed3013efc5fe67680ac78d2f5d3c29d312d42ac0f9efc965828c6b"
+    },
+    "B-generated-pending-art/SEAL.json": {
+      "bytes": 2690,
+      "sha256": "178115e51df3060503cdeae04784ccb4a5689bf8f5cb999fb796245c6b93b51e"
+    }
+  },
+  "innerPath": "B-generated-pending-art/B-EXACT-NORMAL-GENERATED-NO-DEPLOY.zip",
+  "sealPath": "B-generated-pending-art/SEAL.json",
+  "generated": {
+    "HONRO.html": {
+      "bytes": 17379,
+      "sha256": "d5b0fcc4ad15cfb34b981c14df9dcffc71fc752904bf1b39460a51d21a11bbf5",
+      "git": "7b24f6fc9c533220b979c2d84ef70896f85033c0"
+    },
+    "HONRO_WORKSHOP.html": {
+      "bytes": 4011,
+      "sha256": "3e0fbbf9ee1c4e60e2db4312b5a1641744df7ad7f9cc3e08dcd582f95f297370",
+      "git": "3f3777f119e9a0c7dbb893f214f64f461e4c8b06"
+    },
+    "index.html": {
+      "bytes": 17379,
+      "sha256": "d5b0fcc4ad15cfb34b981c14df9dcffc71fc752904bf1b39460a51d21a11bbf5",
+      "git": "7b24f6fc9c533220b979c2d84ef70896f85033c0"
+    },
+    "web/entries/game.e3199f1cc13708bd.js": {
+      "bytes": 20483,
+      "sha256": "e3199f1cc13708bd42dfda271ca4dd77686d5d506da69494b550c1e8617551d4",
+      "git": "dbbd75418f8eafbd408f38f146b45f8e9812bd94"
+    },
+    "web/entries/game.e6ccb4be5284e5eb.html": {
+      "bytes": 11318,
+      "sha256": "e6ccb4be5284e5eb8563a55d733c41f9ca51031363221bf8db947eb188fe24e6",
+      "git": "761a766f4dbcd67e8e0500f2b901ca7ee14cff0f"
+    },
+    "web/entries/workshop.e8d2be62114a1195.js": {
+      "bytes": 16706,
+      "sha256": "e8d2be62114a1195825038505e4e03007c73c8baa92019f237e4a42bae51449f",
+      "git": "dda036cce430914647d305ba2e4bf76d870fbefb"
+    },
+    "web/manifest.json": {
+      "bytes": 7097926,
+      "sha256": "29d77aa39b75becc87711a02cf6541bb5e7a7b42b30ed0d527d532ed9088b288",
+      "git": "c9581783087cb266fac20550495b18b56add27fd"
+    },
+    "web/runtime/ordered-common-16.e580c1df7bf9ed7b.js": {
+      "bytes": 168180,
+      "sha256": "e580c1df7bf9ed7b7eae5f5fc6eaed0ae3daf8e4d4ff7b00f8979afca7dadce7",
+      "git": "00a4eefa5b2ec699bee9cf35acd0258982a5b05c"
+    },
+    "web/runtime/ordered-common-17.e51e13806e820ee8.js": {
+      "bytes": 121016,
+      "sha256": "e51e13806e820ee8668da9130e97cfb5801fc35d490d0f805ede476d5bc5321e",
+      "git": "61d8482d2c8d5fe342464012fbbf3245305322d2"
+    }
+  },
+  "nested": {
+    "bytes": 1992024,
+    "sha256": "6327de48b277c747cc2f826f52a666c458f83c50f1eb1355800625cf4dbd9814"
+  },
+  "source": {
+    "path": "shared/runtime/terrain-readability.js",
+    "old": "aa4ccbcaa8a2ae6160330c1134f1596c9f4be6f8",
+    "new": "077492754cba250877d8954768b89f6f901e6b83",
+    "sha256": "5f03d0d822bc1516493a4d344383455e77621b27d0ee5060d164f451547255d5"
+  },
+  "approvedFrames": {
+    "PC": {
+      "A": {
+        "bytes": 1020525,
+        "sha256": "547f469f2ad9090ea2bd28e34087aa8f6be910da04e597a74216cd81536c6ad2"
+      },
+      "B": {
+        "bytes": 1018803,
+        "sha256": "202311367f281d9f9a10e802320134909432c334692bae3ea67e896a3864fc73"
+      }
+    },
+    "M": {
+      "A": {
+        "bytes": 259737,
+        "sha256": "77cfc9902212bfbe7dd3c6f6e999bcab7dffeef255b0c4903443fccafca061ae"
+      },
+      "B": {
+        "bytes": 259176,
+        "sha256": "0efdd0ef6f49880f2e462a8ccd636525c0d63b4dfdbbf018319ca57fd868fc3b"
+      }
+    }
+  },
+  "expectedCommon": {
+    "old": "web/runtime/ordered-common-16.96dfbead6fb4ad2e.js",
+    "new": "web/runtime/ordered-common-16.e580c1df7bf9ed7b.js",
+    "bsha": "e580c1df7bf9ed7b7eae5f5fc6eaed0ae3daf8e4d4ff7b00f8979afca7dadce7"
+  },
+  "publicStockManifest": {
+    "bytes": 7147403,
+    "sha256": "0de55477b0578c57cd5425a844b011a7fe383097cacb92e45d6c59aad173611e"
+  },
+  "viewPoses": {
+    "PC": {
+      "actual": {
+        "scale": 0.21176470588235294,
+        "x": 4532.24,
+        "y": 3569.18
+      },
+      "viewport": {
+        "bottom": 5385.317152777778,
+        "left": 1132.2399999999998,
+        "right": 7932.24,
+        "top": 1753.042847222222
+      },
+      "backing": [
+        1440,
+        769
+      ]
+    },
+    "M": {
+      "actual": {
+        "scale": 0.057352941176470586,
+        "x": 4532.24,
+        "y": 3569.18
+      },
+      "viewport": {
+        "bottom": 9215.00532051282,
+        "left": 1132.2399999999998,
+        "right": 7932.24,
+        "top": -2076.6453205128205
+      },
+      "backing": [
+        390,
+        648
+      ]
+    }
+  },
+  "expectedCommonPairs": [
+    [
+      "web/runtime/ordered-common-16.96dfbead6fb4ad2e.js",
+      "web/runtime/ordered-common-16.e580c1df7bf9ed7b.js"
+    ],
+    [
+      "web/runtime/ordered-common-17.08ee20a4002559b5.js",
+      "web/runtime/ordered-common-17.e51e13806e820ee8.js"
+    ]
+  ]
+}
