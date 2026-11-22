@@ -1,0 +1,46 @@
+name: HONRO Stage33 scoped anonymous public readback
+on:
+  push:
+    branches: [qa/stage33-r3-2c4-public]
+    paths:
+      - '.github/workflows/stage33-r3-2c4-public.yml'
+      - 'tools/stage33-r3-2c4-public/**'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  stage33-anonymous:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage33-r3-2c4-public'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 16
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 3
+          persist-credentials: false
+      - name: Verify exact successful Pages authority before anonymous app
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          O="$(mktemp -d "$RUNNER_TEMP/stage33-public.XXXXXX")"
+          echo "OUT=$O" >> "$GITHUB_ENV"
+          python tools/stage33-r3-2c4-public/proof.py authority "$O"
+      - name: Anonymous first-party HTTP and six actual Stage33 PC/M poses
+        run: |
+          set -euo pipefail
+          test -z "${GH_TOKEN:-}${GITHUB_TOKEN:-}"
+          python -m venv "$RUNNER_TEMP/stage33-venv"
+          V="$RUNNER_TEMP/stage33-venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+          "$V" tools/stage33-r3-2c4-public/proof.py app "$OUT"
+      - if: always() && env.OUT != ''
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage33-scoped-anonymous-public-proof-only
+          path: ${{ env.OUT }}
+          if-no-files-found: error
+          retention-days: 7

@@ -1,0 +1,1071 @@
+{
+  "base": "2c4e90ff24d1f5aa5d04f01317caa02f89b8194c",
+  "baseTree": "8d90f1fc6737adb025a5bb092b03462e283297ce",
+  "normalHead": "b5a6b7b60bc769ef304396dcbb945c0ead74a78d",
+  "normalRun": 44965208780,
+  "normalJob": 137032559280,
+  "source": {
+    "path": "shared/data/act4/sideview-art/33-coastal-v2.json",
+    "old": "c9c204a0daefb790309b3c7d0917c3e34acf7708",
+    "new": "3ab093ce8cff00efb620d2fed8eae6cc4c732892",
+    "bytes": 1629325,
+    "sha256": "4585577066f5db159605e405d6565795e3e1382df4f30e944ec84ee4c2c6c91a"
+  },
+  "aliases": {
+    "web/data/chapter-33.a7ce91b7d78fb5f8.json": "web/data/chapter-33.80ca32475be181c7.json",
+    "web/data/chapter-33-assets.4b5df185aa59eb42.json": "web/data/chapter-33-assets.07b129345eb95856.json",
+    "web/data/campaign.7140da5d3649e4ab.json": "web/data/campaign.d38268efbbeea7a8.json",
+    "web/runtime/campaign.926544619e01a04a.js": "web/runtime/campaign.2145747382e11bb7.js",
+    "web/entries/game.df8a4c7f1873e38c.js": "web/entries/game.836da0e8342e0031.js",
+    "web/entries/game.aa9f55275c71f3f4.html": "web/entries/game.444c9f8ffd2e0c47.html",
+    "web/entries/workshop.72bdac6f91ac45dd.js": "web/entries/workshop.0a270a5d0d89b6cc.js"
+  },
+  "aliasFacts": {
+    "web/data/chapter-33.80ca32475be181c7.json": {
+      "bytes": 34235,
+      "sha256": "80ca32475be181c7774c305b442c8081b6341836fb8d08771e033b7fb79e1464"
+    },
+    "web/data/chapter-33-assets.07b129345eb95856.json": {
+      "bytes": 2858185,
+      "sha256": "07b129345eb9585651bb4d8a74411c8ec30ac3d5b3736ca7849e39abfa7ffe00"
+    },
+    "web/data/campaign.d38268efbbeea7a8.json": {
+      "bytes": 55011,
+      "sha256": "d38268efbbeea7a80be44da99cd8db99bd13832ca5bfa021cad35647c7a7be3a"
+    },
+    "web/runtime/campaign.2145747382e11bb7.js": {
+      "bytes": 527,
+      "sha256": "2145747382e11bb76f7eeee3120b4bd45266678f2d1a286a84c9b950e65165a3"
+    },
+    "web/entries/game.836da0e8342e0031.js": {
+      "bytes": 20483,
+      "sha256": "836da0e8342e0031dd8d442b7f2cbc803755a9f7e95a89c2526579f69420d395"
+    },
+    "web/entries/game.444c9f8ffd2e0c47.html": {
+      "bytes": 11318,
+      "sha256": "444c9f8ffd2e0c4799f0d41087d2005b2e92593a69bffa21ec7fb930cb1c8dae"
+    },
+    "web/entries/workshop.0a270a5d0d89b6cc.js": {
+      "bytes": 16706,
+      "sha256": "0a270a5d0d89b6ccf9e83afe0b4de867155fc80cf211907f5abb9eb8c71e731b"
+    }
+  },
+  "wire": {
+    "maps": [
+      {
+        "bytes": 34011,
+        "sha256": "a7ce91b7d78fb5f8b0b27a4ea42ce6cf4f54d98556c43176beb87a0789573a5a"
+      },
+      {
+        "bytes": 34235,
+        "sha256": "80ca32475be181c7774c305b442c8081b6341836fb8d08771e033b7fb79e1464"
+      }
+    ],
+    "packets": [
+      {
+        "bytes": 2836956,
+        "sha256": "4b5df185aa59eb42dbb2c46bd21b38ef2ab7134098bc31b3a0b96439dcc7ef73"
+      },
+      {
+        "bytes": 2858185,
+        "sha256": "07b129345eb9585651bb4d8a74411c8ec30ac3d5b3736ca7849e39abfa7ffe00"
+      }
+    ],
+    "ownerCounts": [
+      15,
+      16
+    ],
+    "onlyExtraMapElement": {
+      "id": "act4-sideview:33:coastal-v2:lowland-deep-strata",
+      "assetId": "act4-sideview:33:coastal-v2:lowland-deep-strata",
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "rotation": 0,
+      "snap": false,
+      "depthLayer": "L1",
+      "nativeArtLayer": "surface",
+      "layer": "mid"
+    },
+    "otherPhysicsAndDataExact": true
+  },
+  "normalShellB": {
+    "bytes": 17379,
+    "sha256": "7077f09f78aed8beab506111cb5583c074b84fa0400cf4b06ea11639e100757d"
+  },
+  "normalManifestA": {
+    "bytes": 6966363,
+    "sha256": "12b99fa8b1b35c4ed94962c370ff38c6a06597473dc4417b2861ad46d04e0dbc"
+  },
+  "originalActiveCommonFactsDigest": "c293937544e34276cc456754acb186ee2184cd401e693393d8bd3f17c2f91d53",
+  "pages": {
+    "run": 44947732170,
+    "job": 136978995350,
+    "at": "2026-11-21T20:44:40Z"
+  },
+  "enabled": true,
+  "repo": "sys8994/honro",
+  "branch": "qa/stage33-r3-2c4-public",
+  "origin": "https://sys8994.github.io/honro/",
+  "normalArtifact": {
+    "id": 14731427842,
+    "name": "honro-stage33-2c4-r3-retained-r2-evidence-only",
+    "bytes": 96356089,
+    "sha256": "8cef6b0e5b6cfd44dc13c1b29bb1eaf617c2ab8ea2968398eca04ca41e412f44"
+  },
+  "release": {
+    "commit": "4fdb1b182b308f4b0ed4a5dbad0591e28aac207d",
+    "tree": "7a358923f82235759229bc2622783755c1d483f6",
+    "pagesRun": 44967387048,
+    "pagesJob": 137039749470,
+    "publishedAt": "2026-11-22T00:37:35Z",
+    "manifest": {
+      "bytes": 7136167,
+      "sha256": "f3d8ec0e05b0d49303ddc4d505908e81db27ce60d03eebed8bfec0aa25eb8d7c",
+      "git": "aab380833b6e47caf443a91f7f9d4c6fe8a7ac31",
+      "change": "M",
+      "mode": "100644"
+    },
+    "producerRun": 44966342948,
+    "producerJob": 137036118521,
+    "producerArtifact": {
+      "id": 14731921649,
+      "bytes": 3768797,
+      "sha256": "29931acb296b0b78b7864762286ff97969cc1c5252480321d895e52edab73dae"
+    },
+    "producerHead": "c3d68a2e56142a9507d3927155db67776f217616",
+    "producerReceiptSHA256": "0571bbdc9a40d4d6a282f731161d7495fba4f570e4a684277b2ea495119b1351"
+  },
+  "neededHTTP": [
+    "web/data/chapter-33.80ca32475be181c7.json",
+    "web/data/campaign-base.0c57dcfe7c08d421.json",
+    "web/data/campaign-shared.8f8343b5c21518d4.json",
+    "web/runtime/load-data.248fb3aada6f16bb.js",
+    "web/data/campaign.d38268efbbeea7a8.json",
+    "web/data/chapter-33-assets.07b129345eb95856.json",
+    "web/runtime/campaign.2145747382e11bb7.js",
+    "web/entries/game.836da0e8342e0031.js"
+  ],
+  "ownerB": {
+    "ownerSHA": "a0fe36e942ae20ee820a2ee09ebaa9a20ccb5bc5af95f1fa667653e62e6b3799",
+    "vectorSHA": "ce3a94aae260d59b60faa51c6f9ea243ce2f2b74defb745176c9ab8a935e21b8",
+    "deepSHA": "59b873bd84a89feee52c2e62824e9ad27062a85b73c465a861066416704f0864",
+    "deepVectorSHA": "281430b8d60fbd7ff934bd0307921f5a1696ec07537738f62b71d76c7b67abe3"
+  },
+  "oldGETs": {
+    "web/data/chapter-33.a7ce91b7d78fb5f8.json": {
+      "bytes": 34011,
+      "sha256": "a7ce91b7d78fb5f8b0b27a4ea42ce6cf4f54d98556c43176beb87a0789573a5a"
+    },
+    "web/data/chapter-33-assets.4b5df185aa59eb42.json": {
+      "bytes": 2836956,
+      "sha256": "4b5df185aa59eb42dbb2c46bd21b38ef2ab7134098bc31b3a0b96439dcc7ef73"
+    }
+  },
+  "protectedPeerHTTP": {
+    "web/data/chapter-07-assets.7068fa05c6ce1c2e.json": {
+      "bytes": 655969,
+      "sha256": "7068fa05c6ce1c2ef0c96045daa3dea192ba69a18e35bc323e6a5df9a1529db5"
+    },
+    "web/data/chapter-07.28f7bf612a598aeb.json": {
+      "bytes": 30579,
+      "sha256": "28f7bf612a598aeb0eb6da0f819a0b6ddb7fd5414eab9410e434772eb04d2553"
+    }
+  },
+  "poseAuthority": {
+    "s33-1440x900-ordinary": {
+      "frame": {
+        "name": "ordinary",
+        "desired": {
+          "x": 3456,
+          "y": 2304,
+          "scale": 0.5
+        },
+        "actual": {
+          "x": 3456,
+          "y": 2304,
+          "scale": 0.5
+        },
+        "viewport": {
+          "left": 2016,
+          "right": 4896,
+          "top": 1534.8125,
+          "bottom": 3073.1875
+        },
+        "play": {
+          "left": 0,
+          "top": 0,
+          "right": 6912,
+          "bottom": 4608
+        },
+        "terrain": {
+          "left": -6000,
+          "top": -24000,
+          "right": 12900,
+          "bottom": 29200
+        },
+        "focus": {
+          "left": -320,
+          "top": -1800,
+          "right": 7232,
+          "bottom": 4848
+        },
+        "visual": {
+          "left": -3960,
+          "right": 10872,
+          "top": -3856.137152777778,
+          "bottom": 6904.137152777777
+        },
+        "zoom": {
+          "min": 0.21176470588235294,
+          "max": 1.65,
+          "tactical": 0.21176470588235294,
+          "readability": 0.056818181818181816
+        },
+        "limits": {
+          "west": -320,
+          "east": 7232,
+          "north": -1800,
+          "south": 4848
+        },
+        "centered": {
+          "x": 3456,
+          "y": 2304,
+          "scale": 0.21176470588235294
+        },
+        "containment": null,
+        "css": [
+          1440,
+          769.1875
+        ],
+        "backing": [
+          1440,
+          769
+        ],
+        "dpr": 1,
+        "phase": "aim",
+        "round": 1,
+        "sceneTime": 2,
+        "tide": null,
+        "physics": "9cd682370b682d68ae2c8dc3ec586bb911088770c581b6ecb93a510535bc9279",
+        "actualTerrainIDs": [
+          "approved33-upper",
+          "approved33-left-middle",
+          "approved33-left-bank",
+          "approved33-low",
+          "approved33-right-stair",
+          "approved33-lower-east-link",
+          "approved33-right-middle",
+          "approved33-west-link",
+          "approved33-east-link",
+          "approved33-low-ground",
+          "approved33-west-bank-solid",
+          "approved33-west-cliff",
+          "approved33-arch-west",
+          "approved33-arch-center",
+          "approved33-arch-east",
+          "approved33-east-dry-bank",
+          "approved33-east-upper-stair"
+        ],
+        "actualDrawOwnerIDs": [
+          "act4-sideview:33:coastal-v2:exact-arch",
+          "act4-sideview:33:coastal-v2:exact-stair-sidewall",
+          "act4-sideview:33:coastal-v2:lowland",
+          "act4-sideview:33:coastal-v2:lowland-deep-strata",
+          "act4-sideview:33:coastal-v2:rear-support-stone",
+          "act4-sideview:33:coastal-v2:retained-act4-sideview:33:front",
+          "act4-sideview:33:coastal-v2:retained-approved33-body",
+          "act4-sideview:33:coastal-v2:retained-approved33-coastal-foundation",
+          "act4-sideview:33:coastal-v2:retained-approved33-deep-west",
+          "act4-sideview:33:coastal-v2:retained-approved33-east-stair",
+          "act4-sideview:33:coastal-v2:retained-approved33-lower-east-stair",
+          "act4-sideview:33:coastal-v2:retained-approved33-near-west",
+          "act4-sideview:33:coastal-v2:retained-approved33-near-west-join",
+          "act4-sideview:33:coastal-v2:retained-approved33-west-stair",
+          "act4-sideview:33:coastal-v2:west-continuous-geology"
+        ],
+        "unitCount": 34,
+        "declaredMissing": []
+      },
+      "priorPNG": {
+        "cold_raw": {
+          "size": [
+            1440,
+            769
+          ],
+          "rgbaSHA256": "a0bcb9da21a32f5a5673e97745b48b9792697ba5064b8156e8098ade432b75b9",
+          "pngSHA256": "1ed662846db826cc9cc8e46e707ed18b7ba96dc5743834ce8e5996549a2c6953"
+        },
+        "steady_raw": {
+          "size": [
+            1440,
+            769
+          ],
+          "rgbaSHA256": "a0bcb9da21a32f5a5673e97745b48b9792697ba5064b8156e8098ade432b75b9",
+          "pngSHA256": "1ed662846db826cc9cc8e46e707ed18b7ba96dc5743834ce8e5996549a2c6953"
+        },
+        "cold_dom": {
+          "size": [
+            1440,
+            770
+          ],
+          "rgbaSHA256": "3af826a7030e0e7e77a791dc93db0c803ba6eb37b4a450670dcba189a55deea4",
+          "pngSHA256": "2aed0f43337b22977abb62a7d52baf076bfbea4c7fc2d3f6e931dc9282afedeb"
+        },
+        "steady_dom": {
+          "size": [
+            1440,
+            770
+          ],
+          "rgbaSHA256": "3af826a7030e0e7e77a791dc93db0c803ba6eb37b4a450670dcba189a55deea4",
+          "pngSHA256": "2aed0f43337b22977abb62a7d52baf076bfbea4c7fc2d3f6e931dc9282afedeb"
+        }
+      }
+    },
+    "s33-1440x900-southeast": {
+      "frame": {
+        "name": "southeast",
+        "desired": {
+          "x": 1000000,
+          "y": 1000000,
+          "scale": 0.21176470588235294
+        },
+        "actual": {
+          "x": 7232,
+          "y": 4848,
+          "scale": 0.21176470588235294
+        },
+        "viewport": {
+          "left": 3832,
+          "right": 10632,
+          "top": 3031.862847222222,
+          "bottom": 6664.137152777777
+        },
+        "play": {
+          "left": 0,
+          "top": 0,
+          "right": 6912,
+          "bottom": 4608
+        },
+        "terrain": {
+          "left": -6000,
+          "top": -24000,
+          "right": 12900,
+          "bottom": 29200
+        },
+        "focus": {
+          "left": -320,
+          "top": -1800,
+          "right": 7232,
+          "bottom": 4848
+        },
+        "visual": {
+          "left": -3960,
+          "right": 10872,
+          "top": -3856.137152777778,
+          "bottom": 6904.137152777777
+        },
+        "zoom": {
+          "min": 0.21176470588235294,
+          "max": 1.65,
+          "tactical": 0.21176470588235294,
+          "readability": 0.056818181818181816
+        },
+        "limits": {
+          "west": -320,
+          "east": 7232,
+          "north": -1800,
+          "south": 4848
+        },
+        "centered": {
+          "x": 3456,
+          "y": 2304,
+          "scale": 0.21176470588235294
+        },
+        "containment": null,
+        "css": [
+          1440,
+          769.1875
+        ],
+        "backing": [
+          1440,
+          769
+        ],
+        "dpr": 1,
+        "phase": "aim",
+        "round": 1,
+        "sceneTime": 2,
+        "tide": null,
+        "physics": "9cd682370b682d68ae2c8dc3ec586bb911088770c581b6ecb93a510535bc9279",
+        "actualTerrainIDs": [
+          "approved33-upper",
+          "approved33-left-middle",
+          "approved33-left-bank",
+          "approved33-low",
+          "approved33-right-stair",
+          "approved33-lower-east-link",
+          "approved33-right-middle",
+          "approved33-west-link",
+          "approved33-east-link",
+          "approved33-low-ground",
+          "approved33-west-bank-solid",
+          "approved33-west-cliff",
+          "approved33-arch-west",
+          "approved33-arch-center",
+          "approved33-arch-east",
+          "approved33-east-dry-bank",
+          "approved33-east-upper-stair"
+        ],
+        "actualDrawOwnerIDs": [
+          "act4-sideview:33:coastal-v2:exact-arch",
+          "act4-sideview:33:coastal-v2:exact-stair-sidewall",
+          "act4-sideview:33:coastal-v2:lowland",
+          "act4-sideview:33:coastal-v2:lowland-deep-strata",
+          "act4-sideview:33:coastal-v2:rear-support-stone",
+          "act4-sideview:33:coastal-v2:retained-act4-sideview:33:front",
+          "act4-sideview:33:coastal-v2:retained-approved33-body",
+          "act4-sideview:33:coastal-v2:retained-approved33-coastal-foundation",
+          "act4-sideview:33:coastal-v2:retained-approved33-deep-west",
+          "act4-sideview:33:coastal-v2:retained-approved33-east-stair",
+          "act4-sideview:33:coastal-v2:retained-approved33-lower-east-stair",
+          "act4-sideview:33:coastal-v2:retained-approved33-near-west",
+          "act4-sideview:33:coastal-v2:retained-approved33-near-west-join",
+          "act4-sideview:33:coastal-v2:retained-approved33-west-stair",
+          "act4-sideview:33:coastal-v2:west-continuous-geology"
+        ],
+        "unitCount": 34,
+        "declaredMissing": []
+      },
+      "priorPNG": {
+        "cold_raw": {
+          "size": [
+            1440,
+            769
+          ],
+          "rgbaSHA256": "9f0423d076be4288e458ccdc9a012c22297c1aae77e4fd158feafdd900dec1f1",
+          "pngSHA256": "b7851524a3d01c7d26fdd1d30d06663e44ac42a3dd1b612c65b0227c934ea2f4"
+        },
+        "steady_raw": {
+          "size": [
+            1440,
+            769
+          ],
+          "rgbaSHA256": "1abd0123c04d302536688e95c4f69e705963efe3031324c0ae96b04284712b00",
+          "pngSHA256": "e8e4430b22cd15225abb3ec9085e49a98a241a5e063bd6a3a7f004f226a8b220"
+        },
+        "cold_dom": {
+          "size": [
+            1440,
+            770
+          ],
+          "rgbaSHA256": "1831b0558bde414f9449db35506345814c73fb689c8d61cc5c4e979829511934",
+          "pngSHA256": "2e341d5308752efe35268649574c88d08b9c14570712529a069d52eb382faa0d"
+        },
+        "steady_dom": {
+          "size": [
+            1440,
+            770
+          ],
+          "rgbaSHA256": "87c1b17288ba38e3c3dcece537a211474b41e119bd42d6cd4b4c22d75203175e",
+          "pngSHA256": "d8e82139a38a08d1e49bfd8b1750d071747644e4580306572644da3ab675b6e0"
+        }
+      }
+    },
+    "s33-1440x900-lower": {
+      "frame": {
+        "name": "lower",
+        "desired": {
+          "x": 6300,
+          "y": 5200,
+          "scale": 0.5
+        },
+        "actual": {
+          "x": 6300,
+          "y": 4848,
+          "scale": 0.5
+        },
+        "viewport": {
+          "left": 4860,
+          "right": 7740,
+          "top": 4078.8125,
+          "bottom": 5617.1875
+        },
+        "play": {
+          "left": 0,
+          "top": 0,
+          "right": 6912,
+          "bottom": 4608
+        },
+        "terrain": {
+          "left": -6000,
+          "top": -24000,
+          "right": 12900,
+          "bottom": 29200
+        },
+        "focus": {
+          "left": -320,
+          "top": -1800,
+          "right": 7232,
+          "bottom": 4848
+        },
+        "visual": {
+          "left": -3960,
+          "right": 10872,
+          "top": -3856.137152777778,
+          "bottom": 6904.137152777777
+        },
+        "zoom": {
+          "min": 0.21176470588235294,
+          "max": 1.65,
+          "tactical": 0.21176470588235294,
+          "readability": 0.056818181818181816
+        },
+        "limits": {
+          "west": -320,
+          "east": 7232,
+          "north": -1800,
+          "south": 4848
+        },
+        "centered": {
+          "x": 3456,
+          "y": 2304,
+          "scale": 0.21176470588235294
+        },
+        "containment": null,
+        "css": [
+          1440,
+          769.1875
+        ],
+        "backing": [
+          1440,
+          769
+        ],
+        "dpr": 1,
+        "phase": "aim",
+        "round": 1,
+        "sceneTime": 2,
+        "tide": null,
+        "physics": "9cd682370b682d68ae2c8dc3ec586bb911088770c581b6ecb93a510535bc9279",
+        "actualTerrainIDs": [
+          "approved33-upper",
+          "approved33-left-middle",
+          "approved33-left-bank",
+          "approved33-low",
+          "approved33-right-stair",
+          "approved33-lower-east-link",
+          "approved33-right-middle",
+          "approved33-west-link",
+          "approved33-east-link",
+          "approved33-low-ground",
+          "approved33-west-bank-solid",
+          "approved33-west-cliff",
+          "approved33-arch-west",
+          "approved33-arch-center",
+          "approved33-arch-east",
+          "approved33-east-dry-bank",
+          "approved33-east-upper-stair"
+        ],
+        "actualDrawOwnerIDs": [
+          "act4-sideview:33:coastal-v2:exact-arch",
+          "act4-sideview:33:coastal-v2:exact-stair-sidewall",
+          "act4-sideview:33:coastal-v2:lowland",
+          "act4-sideview:33:coastal-v2:lowland-deep-strata",
+          "act4-sideview:33:coastal-v2:rear-support-stone",
+          "act4-sideview:33:coastal-v2:retained-act4-sideview:33:front",
+          "act4-sideview:33:coastal-v2:retained-approved33-body",
+          "act4-sideview:33:coastal-v2:retained-approved33-coastal-foundation",
+          "act4-sideview:33:coastal-v2:retained-approved33-deep-west",
+          "act4-sideview:33:coastal-v2:retained-approved33-east-stair",
+          "act4-sideview:33:coastal-v2:retained-approved33-lower-east-stair",
+          "act4-sideview:33:coastal-v2:retained-approved33-near-west",
+          "act4-sideview:33:coastal-v2:retained-approved33-near-west-join",
+          "act4-sideview:33:coastal-v2:retained-approved33-west-stair",
+          "act4-sideview:33:coastal-v2:west-continuous-geology"
+        ],
+        "unitCount": 34,
+        "declaredMissing": []
+      },
+      "priorPNG": {
+        "cold_raw": {
+          "size": [
+            1440,
+            769
+          ],
+          "rgbaSHA256": "18d6d4e161216839342266c5670222165bb2737c7628a1b06cbb25bf8f175616",
+          "pngSHA256": "9f24d09c471bca50726e27da447c5bab381b1fb243330c46023a7f28307a0da4"
+        },
+        "steady_raw": {
+          "size": [
+            1440,
+            769
+          ],
+          "rgbaSHA256": "18d6d4e161216839342266c5670222165bb2737c7628a1b06cbb25bf8f175616",
+          "pngSHA256": "9f24d09c471bca50726e27da447c5bab381b1fb243330c46023a7f28307a0da4"
+        },
+        "cold_dom": {
+          "size": [
+            1440,
+            770
+          ],
+          "rgbaSHA256": "7ff90ff4d24811cffa267087ad94f30ed7d4acdcec2cab2c244a7e2665f482b4",
+          "pngSHA256": "f36e4b8e8311c484b911d66595b44a684cc91cfe6f8966e682d8bbc2e827d5f1"
+        },
+        "steady_dom": {
+          "size": [
+            1440,
+            770
+          ],
+          "rgbaSHA256": "7ff90ff4d24811cffa267087ad94f30ed7d4acdcec2cab2c244a7e2665f482b4",
+          "pngSHA256": "f36e4b8e8311c484b911d66595b44a684cc91cfe6f8966e682d8bbc2e827d5f1"
+        }
+      }
+    },
+    "s33-390x844-ordinary": {
+      "frame": {
+        "name": "ordinary",
+        "desired": {
+          "x": 3456,
+          "y": 2304,
+          "scale": 0.5
+        },
+        "actual": {
+          "x": 3456,
+          "y": 2304,
+          "scale": 0.5
+        },
+        "viewport": {
+          "left": 3066,
+          "right": 3846,
+          "top": 1656.390625,
+          "bottom": 2951.609375
+        },
+        "play": {
+          "left": 0,
+          "top": 0,
+          "right": 6912,
+          "bottom": 4608
+        },
+        "terrain": {
+          "left": -6000,
+          "top": -24000,
+          "right": 12900,
+          "bottom": 29200
+        },
+        "focus": {
+          "left": -320,
+          "top": -1800,
+          "right": 7232,
+          "bottom": 4848
+        },
+        "visual": {
+          "left": -3960,
+          "right": 10872,
+          "top": -7685.82532051282,
+          "bottom": 10733.82532051282
+        },
+        "zoom": {
+          "min": 0.057352941176470586,
+          "max": 1.65,
+          "tactical": 0.057352941176470586,
+          "readability": 0.056818181818181816
+        },
+        "limits": {
+          "west": -320,
+          "east": 7232,
+          "north": -1800,
+          "south": 4848
+        },
+        "centered": {
+          "x": 3456,
+          "y": 2304,
+          "scale": 0.057352941176470586
+        },
+        "containment": null,
+        "css": [
+          390,
+          647.609375
+        ],
+        "backing": [
+          390,
+          648
+        ],
+        "dpr": 1,
+        "phase": "aim",
+        "round": 1,
+        "sceneTime": 2,
+        "tide": null,
+        "physics": "9cd682370b682d68ae2c8dc3ec586bb911088770c581b6ecb93a510535bc9279",
+        "actualTerrainIDs": [
+          "approved33-upper",
+          "approved33-left-middle",
+          "approved33-left-bank",
+          "approved33-low",
+          "approved33-right-stair",
+          "approved33-lower-east-link",
+          "approved33-right-middle",
+          "approved33-west-link",
+          "approved33-east-link",
+          "approved33-low-ground",
+          "approved33-west-bank-solid",
+          "approved33-west-cliff",
+          "approved33-arch-west",
+          "approved33-arch-center",
+          "approved33-arch-east",
+          "approved33-east-dry-bank",
+          "approved33-east-upper-stair"
+        ],
+        "actualDrawOwnerIDs": [
+          "act4-sideview:33:coastal-v2:exact-arch",
+          "act4-sideview:33:coastal-v2:exact-stair-sidewall",
+          "act4-sideview:33:coastal-v2:lowland",
+          "act4-sideview:33:coastal-v2:lowland-deep-strata",
+          "act4-sideview:33:coastal-v2:rear-support-stone",
+          "act4-sideview:33:coastal-v2:retained-act4-sideview:33:front",
+          "act4-sideview:33:coastal-v2:retained-approved33-body",
+          "act4-sideview:33:coastal-v2:retained-approved33-coastal-foundation",
+          "act4-sideview:33:coastal-v2:retained-approved33-deep-west",
+          "act4-sideview:33:coastal-v2:retained-approved33-east-stair",
+          "act4-sideview:33:coastal-v2:retained-approved33-lower-east-stair",
+          "act4-sideview:33:coastal-v2:retained-approved33-near-west",
+          "act4-sideview:33:coastal-v2:retained-approved33-near-west-join",
+          "act4-sideview:33:coastal-v2:retained-approved33-west-stair",
+          "act4-sideview:33:coastal-v2:west-continuous-geology"
+        ],
+        "unitCount": 34,
+        "declaredMissing": []
+      },
+      "priorPNG": {
+        "cold_raw": {
+          "size": [
+            390,
+            648
+          ],
+          "rgbaSHA256": "04ffbc003dd961c4711ae9b353b144ad93f648c9d027c43749dcef9ae6c20069",
+          "pngSHA256": "a3da9d9fd59ce2988ca716edc2163ea5315b057a89d5bc3bc851473b65bd00e5"
+        },
+        "steady_raw": {
+          "size": [
+            390,
+            648
+          ],
+          "rgbaSHA256": "04ffbc003dd961c4711ae9b353b144ad93f648c9d027c43749dcef9ae6c20069",
+          "pngSHA256": "a3da9d9fd59ce2988ca716edc2163ea5315b057a89d5bc3bc851473b65bd00e5"
+        },
+        "cold_dom": {
+          "size": [
+            390,
+            648
+          ],
+          "rgbaSHA256": "85356245bb0b9760fdc175cd9571ce6b0698968d874a81321549d27767f614f9",
+          "pngSHA256": "d3fa323ba8f8a1fb3f595aec6550f99f9c4a0c8cdd1b3cf2b18d7f7ebbfa552a"
+        },
+        "steady_dom": {
+          "size": [
+            390,
+            648
+          ],
+          "rgbaSHA256": "85356245bb0b9760fdc175cd9571ce6b0698968d874a81321549d27767f614f9",
+          "pngSHA256": "d3fa323ba8f8a1fb3f595aec6550f99f9c4a0c8cdd1b3cf2b18d7f7ebbfa552a"
+        }
+      }
+    },
+    "s33-390x844-southeast": {
+      "frame": {
+        "name": "southeast",
+        "desired": {
+          "x": 1000000,
+          "y": 1000000,
+          "scale": 0.057352941176470586
+        },
+        "actual": {
+          "x": 7232,
+          "y": 4848,
+          "scale": 0.057352941176470586
+        },
+        "viewport": {
+          "left": 3832,
+          "right": 10632,
+          "top": -797.8253205128203,
+          "bottom": 10493.82532051282
+        },
+        "play": {
+          "left": 0,
+          "top": 0,
+          "right": 6912,
+          "bottom": 4608
+        },
+        "terrain": {
+          "left": -6000,
+          "top": -24000,
+          "right": 12900,
+          "bottom": 29200
+        },
+        "focus": {
+          "left": -320,
+          "top": -1800,
+          "right": 7232,
+          "bottom": 4848
+        },
+        "visual": {
+          "left": -3960,
+          "right": 10872,
+          "top": -7685.82532051282,
+          "bottom": 10733.82532051282
+        },
+        "zoom": {
+          "min": 0.057352941176470586,
+          "max": 1.65,
+          "tactical": 0.057352941176470586,
+          "readability": 0.056818181818181816
+        },
+        "limits": {
+          "west": -320,
+          "east": 7232,
+          "north": -1800,
+          "south": 4848
+        },
+        "centered": {
+          "x": 3456,
+          "y": 2304,
+          "scale": 0.057352941176470586
+        },
+        "containment": null,
+        "css": [
+          390,
+          647.609375
+        ],
+        "backing": [
+          390,
+          648
+        ],
+        "dpr": 1,
+        "phase": "aim",
+        "round": 1,
+        "sceneTime": 2,
+        "tide": null,
+        "physics": "9cd682370b682d68ae2c8dc3ec586bb911088770c581b6ecb93a510535bc9279",
+        "actualTerrainIDs": [
+          "approved33-upper",
+          "approved33-left-middle",
+          "approved33-left-bank",
+          "approved33-low",
+          "approved33-right-stair",
+          "approved33-lower-east-link",
+          "approved33-right-middle",
+          "approved33-west-link",
+          "approved33-east-link",
+          "approved33-low-ground",
+          "approved33-west-bank-solid",
+          "approved33-west-cliff",
+          "approved33-arch-west",
+          "approved33-arch-center",
+          "approved33-arch-east",
+          "approved33-east-dry-bank",
+          "approved33-east-upper-stair"
+        ],
+        "actualDrawOwnerIDs": [
+          "act4-sideview:33:coastal-v2:exact-arch",
+          "act4-sideview:33:coastal-v2:exact-stair-sidewall",
+          "act4-sideview:33:coastal-v2:lowland",
+          "act4-sideview:33:coastal-v2:lowland-deep-strata",
+          "act4-sideview:33:coastal-v2:rear-support-stone",
+          "act4-sideview:33:coastal-v2:retained-act4-sideview:33:front",
+          "act4-sideview:33:coastal-v2:retained-approved33-body",
+          "act4-sideview:33:coastal-v2:retained-approved33-coastal-foundation",
+          "act4-sideview:33:coastal-v2:retained-approved33-deep-west",
+          "act4-sideview:33:coastal-v2:retained-approved33-east-stair",
+          "act4-sideview:33:coastal-v2:retained-approved33-lower-east-stair",
+          "act4-sideview:33:coastal-v2:retained-approved33-near-west",
+          "act4-sideview:33:coastal-v2:retained-approved33-near-west-join",
+          "act4-sideview:33:coastal-v2:retained-approved33-west-stair",
+          "act4-sideview:33:coastal-v2:west-continuous-geology"
+        ],
+        "unitCount": 34,
+        "declaredMissing": []
+      },
+      "priorPNG": {
+        "cold_raw": {
+          "size": [
+            390,
+            648
+          ],
+          "rgbaSHA256": "7ad9d42be2b9aea53c76db511b3fdfd8ce049a736252cc7398d5829fa051ab11",
+          "pngSHA256": "6e5a47188642df4ab69ba08bf26b91783d9f246b16a71c4f802391e5a4f1871c"
+        },
+        "steady_raw": {
+          "size": [
+            390,
+            648
+          ],
+          "rgbaSHA256": "74c2d5967a7eb4613a08b1c5b6afaf573b1f94e7d6ce60e8e1d3234f1af49cfb",
+          "pngSHA256": "bfbff3ea3b1616a67a2060768a5b03fe2b924f0c27b7f5f7344aa5dbe444cbbe"
+        },
+        "cold_dom": {
+          "size": [
+            390,
+            648
+          ],
+          "rgbaSHA256": "f485a634151c0a4e7dae500dc71e9051e55592a5162ebedfc3f4417836382f01",
+          "pngSHA256": "408b700373706524cd4b3e35cb9d47d242e0e691b5d4df8ede460858d1309bc8"
+        },
+        "steady_dom": {
+          "size": [
+            390,
+            648
+          ],
+          "rgbaSHA256": "ee66f33310f2f192cc6f9e5561bd73409b90713a2a85676dafd2f2c3a34ebda4",
+          "pngSHA256": "95dd59f0c925c024011425975fc1733f979e3d135716f45255ce8b21aebd922b"
+        }
+      }
+    },
+    "s33-390x844-lower": {
+      "frame": {
+        "name": "lower",
+        "desired": {
+          "x": 6300,
+          "y": 5200,
+          "scale": 0.5
+        },
+        "actual": {
+          "x": 6300,
+          "y": 4848,
+          "scale": 0.5
+        },
+        "viewport": {
+          "left": 5910,
+          "right": 6690,
+          "top": 4200.390625,
+          "bottom": 5495.609375
+        },
+        "play": {
+          "left": 0,
+          "top": 0,
+          "right": 6912,
+          "bottom": 4608
+        },
+        "terrain": {
+          "left": -6000,
+          "top": -24000,
+          "right": 12900,
+          "bottom": 29200
+        },
+        "focus": {
+          "left": -320,
+          "top": -1800,
+          "right": 7232,
+          "bottom": 4848
+        },
+        "visual": {
+          "left": -3960,
+          "right": 10872,
+          "top": -7685.82532051282,
+          "bottom": 10733.82532051282
+        },
+        "zoom": {
+          "min": 0.057352941176470586,
+          "max": 1.65,
+          "tactical": 0.057352941176470586,
+          "readability": 0.056818181818181816
+        },
+        "limits": {
+          "west": -320,
+          "east": 7232,
+          "north": -1800,
+          "south": 4848
+        },
+        "centered": {
+          "x": 3456,
+          "y": 2304,
+          "scale": 0.057352941176470586
+        },
+        "containment": null,
+        "css": [
+          390,
+          647.609375
+        ],
+        "backing": [
+          390,
+          648
+        ],
+        "dpr": 1,
+        "phase": "aim",
+        "round": 1,
+        "sceneTime": 2,
+        "tide": null,
+        "physics": "9cd682370b682d68ae2c8dc3ec586bb911088770c581b6ecb93a510535bc9279",
+        "actualTerrainIDs": [
+          "approved33-upper",
+          "approved33-left-middle",
+          "approved33-left-bank",
+          "approved33-low",
+          "approved33-right-stair",
+          "approved33-lower-east-link",
+          "approved33-right-middle",
+          "approved33-west-link",
+          "approved33-east-link",
+          "approved33-low-ground",
+          "approved33-west-bank-solid",
+          "approved33-west-cliff",
+          "approved33-arch-west",
+          "approved33-arch-center",
+          "approved33-arch-east",
+          "approved33-east-dry-bank",
+          "approved33-east-upper-stair"
+        ],
+        "actualDrawOwnerIDs": [
+          "act4-sideview:33:coastal-v2:exact-arch",
+          "act4-sideview:33:coastal-v2:exact-stair-sidewall",
+          "act4-sideview:33:coastal-v2:lowland",
+          "act4-sideview:33:coastal-v2:lowland-deep-strata",
+          "act4-sideview:33:coastal-v2:rear-support-stone",
+          "act4-sideview:33:coastal-v2:retained-act4-sideview:33:front",
+          "act4-sideview:33:coastal-v2:retained-approved33-body",
+          "act4-sideview:33:coastal-v2:retained-approved33-coastal-foundation",
+          "act4-sideview:33:coastal-v2:retained-approved33-deep-west",
+          "act4-sideview:33:coastal-v2:retained-approved33-east-stair",
+          "act4-sideview:33:coastal-v2:retained-approved33-lower-east-stair",
+          "act4-sideview:33:coastal-v2:retained-approved33-near-west",
+          "act4-sideview:33:coastal-v2:retained-approved33-near-west-join",
+          "act4-sideview:33:coastal-v2:retained-approved33-west-stair",
+          "act4-sideview:33:coastal-v2:west-continuous-geology"
+        ],
+        "unitCount": 34,
+        "declaredMissing": []
+      },
+      "priorPNG": {
+        "cold_raw": {
+          "size": [
+            390,
+            648
+          ],
+          "rgbaSHA256": "9f7585f2349fd1418848c01be757ebccc3d31f4ccb2e17d615038a6aa533efce",
+          "pngSHA256": "00445140a68e1be9f85a274b843c06e9a46daf5dd962c08661e2d1f00eccd1d2"
+        },
+        "steady_raw": {
+          "size": [
+            390,
+            648
+          ],
+          "rgbaSHA256": "9f7585f2349fd1418848c01be757ebccc3d31f4ccb2e17d615038a6aa533efce",
+          "pngSHA256": "00445140a68e1be9f85a274b843c06e9a46daf5dd962c08661e2d1f00eccd1d2"
+        },
+        "cold_dom": {
+          "size": [
+            390,
+            648
+          ],
+          "rgbaSHA256": "5d67c1fe8ea0456307a069ca994ac614c981dfb0358375409162f0ba58b42799",
+          "pngSHA256": "8895dc781a66dbec8e48e5be35b869ac82a654978751ad6ef1d08e03a46f484e"
+        },
+        "steady_dom": {
+          "size": [
+            390,
+            648
+          ],
+          "rgbaSHA256": "5d67c1fe8ea0456307a069ca994ac614c981dfb0358375409162f0ba58b42799",
+          "pngSHA256": "8895dc781a66dbec8e48e5be35b869ac82a654978751ad6ef1d08e03a46f484e"
+        }
+      }
+    }
+  }
+}
