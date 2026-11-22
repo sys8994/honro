@@ -1,0 +1,61 @@
+{
+  "repo": "sys8994/honro",
+  "ref": "refs/heads/qa/stage40-private-path-f6-no-deploy",
+  "workflow": ".github/workflows/stage40-private-path-f6.yml",
+  "buildInputs": {
+    "package.json": "fa8938adcb256516be808fdcc79222965e4babb6",
+    "package-lock.json": "72e3c06bd5dac30504cd44a4e1faf32a3f32b1bb",
+    "game/package.json": "d19db6863c74ecdf46e193a97ce37386f858f9d9",
+    "game/package-lock.json": "88ced17114e5a3d34c0402a71a3997f44694fd6d"
+  },
+  "tools": {
+    "PINS.json": {
+      "bytes": 3039,
+      "sha256": "f538b0086787e4d412a33f00a09f6304864516deead25c5d78b4ef8ab3948e92"
+    },
+    "capture.py": {
+      "bytes": 13552,
+      "sha256": "ee89798795084de6df7b285d3de5d93907560dc4246c42956ac0601f4bde41e2"
+    },
+    "ci-pre.py": {
+      "bytes": 4868,
+      "sha256": "e49d5f3f51e685677fdf73095dd70492af8c054f9ed5bb52ee285c9b650375b3"
+    },
+    "graph.mjs": {
+      "bytes": 6547,
+      "sha256": "e0449cdca15f476081fd95fa3be73ffed0df2e38f53f6fd81068b7a696ebd29b"
+    },
+    "local.py": {
+      "bytes": 4382,
+      "sha256": "4fce6bbd59c0cc181ee82c7e8f7bfe4aabf810ab66c949b25f04be30aa9196b3"
+    },
+    "observe.js": {
+      "bytes": 6836,
+      "sha256": "e9611c97790c873fac24458432d63838f7746a06cdafd07f377fdce5d685af78"
+    },
+    "observer.json": {
+      "bytes": 5555,
+      "sha256": "7c64522c0c84866e0d2516ca18ed81e12a9f7b348a26fa49fb40f9516a29a24a"
+    },
+    "public-api.js": {
+      "bytes": 880,
+      "sha256": "d481a4ed8848738887e9bb40eec14502e7bb6c667fb8fb996492758350dc73e4"
+    },
+    "requirements.txt": {
+      "bytes": 89,
+      "sha256": "edbaaf9b94fcc418dd2f661c02d31c89ad6cd622aee15f7d1d062aba8a16e91a"
+    },
+    "signed/act4-pilot-art.js": {
+      "bytes": 17098,
+      "sha256": "e63242159dedda6cb6d84bc1bebd419f6f876d32505b9b1e6ad9656888dc1713"
+    },
+    "signed/vector-art.js": {
+      "bytes": 17645,
+      "sha256": "b5e2c265fd8aea1afc997f3129cf6c7b82b06852c357c7bebf96559ecb0f7a6b"
+    },
+    "telemetry.js": {
+      "bytes": 3969,
+      "sha256": "07091f6ea72e47e6181a41287c5e9fbfe9ad88649cb9c24c7df2709628e4f7ec"
+    }
+  }
+}
