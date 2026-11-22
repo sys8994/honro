@@ -1,0 +1,51 @@
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+import {execFileSync} from 'node:child_process';
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import {pathToFileURL} from 'node:url';
+const [mode,root]=process.argv.slice(2), arm=path.join(root,'B');
+const P=JSON.parse(await fs.readFile(new URL('./PINS.json',import.meta.url)));
+const H=b=>createHash('sha256').update(b).digest('hex'),s=o=>JSON.stringify(o);
+function next(a){
+ assert.equal(a.id,P.id);assert.equal(H(s(a)),P.oldOwner);assert.equal(a.collision.length,0);
+ const b=structuredClone(a), v=b.vector, n=v.root.children[0].children[2];
+ assert.equal(n.fill,'#4c77ad');assert.equal(n.stroke,'#4c77ad');
+ assert.equal(H(n.d??n.dParts.join(' ')),P.oldLeafGeometry);
+ assert(!v.gradients || !Object.hasOwn(v.gradients,'sw-r141-shaded-facet'));
+ v.gradients??={};
+ v.gradients['sw-r141-shaded-facet']=P.gradient;
+ n.fill='url(#sw-r141-shaded-facet)';
+ assert.equal(H(s(b)),P.newOwner);
+ return b;
+}
+if(mode==='source'){
+ const tool=path.join(arm,'tools/act4-source/world-source.mjs');
+ assert.equal(execFileSync('git',['hash-object',tool],{cwd:arm,encoding:'utf8'}).trim(),P.worldReaderGit);
+ const {readWorldSource,packWorld}=await import(pathToFileURL(tool));
+ const directory=path.join(arm,'shared/data/act4'),{bytes}=await readWorldSource(directory);
+ assert.deepEqual([H(bytes),bytes.length],P.worldSource);
+ const raw=JSON.parse(bytes), assets=raw.library.filter(a=>a.id===P.id);
+ assert.equal(assets.length,1);
+ const a=assets[0], b=next(a), occurs=raw.stages.flatMap(st=>st.elements.filter(e=>e.assetId===P.id).map(e=>[st,e]));
+ assert.equal(occurs.length,1);
+ const [[stage,e]]=occurs;
+ assert(stage.id==='stage-34'&&e.id==='approved34-lower-natural-mask-v2'&&e.x===-1536&&e.y===3072&&e.layer==='front'&&e.nativeArtLayer==='front');
+ const ledger=JSON.parse(await fs.readFile(path.join(arm,'shared/data/terrain-path-optimization.json')));
+ assert(!ledger.some(x=>x.id===P.id),'this owner must not replace optimizer-reviewed path data');
+ const n=Buffer.from(s(a)), m=Buffer.from(s(b)), i=bytes.indexOf(n);assert(i>=0);assert.equal(bytes.indexOf(n,i+1),-1);
+ const result=Buffer.concat([bytes.subarray(0,i),m,bytes.subarray(i+n.length)]);
+ const after=JSON.parse(result);after.library[raw.library.indexOf(a)]=a;
+ assert.deepEqual(after,raw);
+ await fs.writeFile(path.join(directory,'world.json'),result);
+ const pack=await packWorld({directory});
+ const reread=await readWorldSource(directory);
+ assert(reread.bytes.equals(result));
+ await fs.writeFile(path.join(root,'out','AUTHOR.json'),s({asset:P.id,old:P.oldOwner,new:P.newOwner,changedSourceWorld:pack.sha256,bytes:pack.bytes,sourceOffset:i,otherBytesExact:true})+'\n');
+}else if(mode==='wire'){
+ const [a,b]=await Promise.all(process.argv.slice(4).map(p=>fs.readFile(p,'utf8')));const A=JSON.parse(a),B=JSON.parse(b);
+ const i=A.findIndex(x=>x.id===P.id);assert(i>=0);assert.equal(A.length,B.length);const stock=A[i],x=next(stock);
+ assert.deepEqual([...A.slice(0,i),x,...A.slice(i+1)],B);
+ assert.equal(B[i].collision.length,0);
+ console.log(JSON.stringify({ownerA:P.oldOwner,ownerB:P.newOwner,vectorA:H(s(stock.vector)),vectorB:H(s(x.vector)),packagedA:H(a),packagedB:H(b)}));
+}else throw Error('bad isolated QA mode');
