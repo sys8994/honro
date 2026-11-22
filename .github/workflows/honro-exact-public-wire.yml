@@ -1,0 +1,24 @@
+name: HONRO exact public Stage40 and Stage46 wire telemetry
+on:
+  push:
+    branches: [qa/measure-40-46-public-wire-72dd]
+    paths: [".github/workflows/honro-exact-public-wire.yml", "tools/honro-exact-public-wire/**"]
+permissions:
+  contents: read
+jobs:
+  observe:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/measure-40-46-public-wire-72dd'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+      - name: Read exact published immutable transport without a sign-in
+        run: python3 -B tools/honro-exact-public-wire/probe.py
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: exact-anonymous-stage40-46-public-network
+          path: out/PUBLIC-WIRE.json
+          retention-days: 2
+          if-no-files-found: error

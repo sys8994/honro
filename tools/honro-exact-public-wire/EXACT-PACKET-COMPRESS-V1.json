@@ -1,0 +1,79 @@
+{
+  "scope": "Locally measured exact 72dd build asset payload, against uncompressed origin byte counts. Not actual Pages transport or device performance. No product change.",
+  "facts": {
+    "40": {
+      "joinedBytes": 10137621,
+      "joinedSHA": "458581a814995e74b6bf35efb817fb5c766703fd261f945045eadb97f83a02ae",
+      "independentPartGzip9": 3912714,
+      "wholeGzip9": 3910123,
+      "wholeBrotli8": 2227661,
+      "checks": [
+        {
+          "path": "web/data/chapter-40-assets-part-000.cd3e15a78b719c49.bin",
+          "size": 4194304,
+          "sha": "cd3e15a78b719c49cc3651a2e38cfb21c1f0a5176947f23550fd7ab058b0264e",
+          "gzip9": 1653473,
+          "nodeColdMs": 88.86692999999997,
+          "corruptTrailerRejected": true
+        },
+        {
+          "path": "web/data/chapter-40-assets-part-001.6dbca9ee910a8ff7.bin",
+          "size": 4194304,
+          "sha": "6dbca9ee910a8ff7be24e4f08354cd8f076f54b9eb72d5cca63a3fff971e32be",
+          "gzip9": 1583085,
+          "nodeColdMs": 57.549155999999925,
+          "corruptTrailerRejected": true
+        },
+        {
+          "path": "web/data/chapter-40-assets-part-002.6f227d452d7a288d.bin",
+          "size": 1749013,
+          "sha": "6f227d452d7a288d34bce7981b2ace8179d4b786e1a3b772f5b1d62d43f3144a",
+          "gzip9": 676156,
+          "nodeColdMs": 19.291045999999938,
+          "corruptTrailerRejected": true
+        }
+      ]
+    },
+    "46": {
+      "joinedBytes": 15250870,
+      "joinedSHA": "744e462e37916ce64513ef0a0fad39d90f45c6c4aa1be408973a2c475c1ada7f",
+      "independentPartGzip9": 5924969,
+      "wholeGzip9": 5923441,
+      "wholeBrotli8": 5301017,
+      "checks": [
+        {
+          "path": "web/data/chapter-46-assets-part-000.f7ebee97d8110e68.bin",
+          "size": 4194304,
+          "sha": "f7ebee97d8110e6805bf6fb6a58303332d3fd118a8e477f3b5de6c7e002064a2",
+          "gzip9": 1689099,
+          "nodeColdMs": 31.384655000000294,
+          "corruptTrailerRejected": true
+        },
+        {
+          "path": "web/data/chapter-46-assets-part-001.5213b80662dfa32e.bin",
+          "size": 4194304,
+          "sha": "5213b80662dfa32ee85b3d01d07dd0d2fb4fe33fa1ed3647ca94a85abce27ac6",
+          "gzip9": 1680478,
+          "nodeColdMs": 38.13021600000002,
+          "corruptTrailerRejected": true
+        },
+        {
+          "path": "web/data/chapter-46-assets-part-002.8be859e980ee1d29.bin",
+          "size": 4194304,
+          "sha": "8be859e980ee1d292718c73bd51206ea8fa0a887baa59fc67c5ec6b2c4cd0738",
+          "gzip9": 1633170,
+          "nodeColdMs": 28.552216999999928,
+          "corruptTrailerRejected": true
+        },
+        {
+          "path": "web/data/chapter-46-assets-part-003.ee5f50c994047cde.bin",
+          "size": 2667958,
+          "sha": "ee5f50c994047cde9851a35f503ddc56b395904698ecbef174d832a4eaa148a8",
+          "gzip9": 922222,
+          "nodeColdMs": 21.83583899999985,
+          "corruptTrailerRejected": true
+        }
+      ]
+    }
+  }
+}
