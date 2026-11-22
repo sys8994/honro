@@ -1,0 +1,59 @@
+name: HONRO Stage32 and Stage33 joint one-build post-stage7 native QA, no deploy
+on:
+  push:
+    branches: [qa/stage32-33-post07-native-no-deploy]
+    paths: [".github/workflows/stage32-33-post07-native.yml", "tools/stage32-33-batch/**", "tools/stage32-batch/**", "tools/stage33-batch/**"]
+permissions:
+  contents: read
+jobs:
+  native-integration:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage32-33-post07-native-no-deploy'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 37
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Verify exact Stage7 published stock and build one normal B
+        run: |
+          set -euo pipefail
+          W="$RUNNER_TEMP/stage32-33-post07"; mkdir -p "$W/OUT/stage32"; echo "W=$W" >> "$GITHUB_ENV"
+          T="$GITHUB_WORKSPACE/tools"
+          python "$T/stage32-33-batch/batch.py" pre "$W"
+          python "$T/stage32-batch/guard.py" pre "$W"
+          (cd "$W/B"; npm ci >"$W/OUT/npm.log" 2>&1; npm ci --prefix game >"$W/OUT/npm-game.log" 2>&1; npm run build >"$W/OUT/build.log" 2>&1; npm run test:production-contract >"$W/OUT/production-contract.log" 2>&1)
+          python "$T/stage32-33-batch/batch.py" graph "$W"
+          python "$T/stage32-batch/guard.py" observe "$W"
+      - name: Native PC and mobile, complete both proof lanes from the same exact B
+        run: |
+          set -euo pipefail
+          T="$GITHUB_WORKSPACE/tools"; python -m venv "$W/v"; V="$W/v/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+          pids=()
+          trap 'if (("${#pids[@]}")); then kill "${pids[@]}" 2>/dev/null || true; fi' EXIT
+          for pair in 18881:A 18882:B 18883:H 18884:S; do
+            port="${pair%:*}"; arm="${pair#*:}"
+            python -m http.server "$port" --bind 127.0.0.1 --directory "$W/$arm" >"$W/OUT/http-$arm.log" 2>&1 &
+            pids+=("$!")
+          done
+          for port in 18881 18882 18883 18884; do curl -fsS --retry 8 --retry-connrefused "http://127.0.0.1:$port/HONRO.html" -o /dev/null; done
+          had_failure=0
+          "$V" "$T/stage32-batch/capture.py" "$W" || had_failure=1
+          "$V" "$T/stage32-batch/resume.py" "$W" || had_failure=1
+          "$V" "$T/stage33-batch/run.py" "$W" "$W/OUT/STAGE33-AUTHORITY.json" || had_failure=1
+          test "$had_failure" = 0
+          python "$T/stage32-33-batch/batch.py" seal "$W"
+      - if: always() && env.W != ''
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage32-33-native-post07-no-deploy
+          path: ${{ env.W }}/OUT/
+          retention-days: 7
+          if-no-files-found: warn
