@@ -1,0 +1,162 @@
+{
+  "release": {
+    "head": "0b9c7f0746da289dc92474a76173232a3fb91ea8",
+    "tree": "b0967ba00ae01d9ae5d872f5d45ead05c5bf0ccb",
+    "pages": 45033441002,
+    "job": 137242393705,
+    "manifest": {
+      "bytes": 8522079,
+      "sha256": "c32600ab10687b5d4f8b797fa9c4b8ada4e7dd5cb7a81312368500dec2b856f1"
+    },
+    "pagesCompletedUTC": "2026-11-22T14:35:44Z"
+  },
+  "releaseManifestGit": "7978f15ca4a6c09143172e6dc89b750a160b005c",
+  "stableShell": {
+    "bytes": 17379,
+    "sha256": "4f05204ef37edd55dfd7c55b461ad2c1a7f47a2d40587c7395cf370b068a3bdb"
+  },
+  "normalActiveGraphSHA256": "a1784d95458674fcb3bd36e1395c6e6095e2cfc9a3c70d80eb6e09d4e0daef32",
+  "legacy": {
+    "path": "web/data/campaign-compat-32.ee7846c92c4edcac.json",
+    "fact": {
+      "bytes": 3219476,
+      "sha256": "ee7846c92c4edcac5f88771849e89c896a5c6906b0b8c10fb90cdca1d5b1061d"
+    }
+  },
+  "publicRoot": "https://sys8994.github.io/honro/",
+  "s42": {
+    "required": {
+      "web/entries/game.19217698b427e80f.js": {
+        "bytes": 20483,
+        "sha256": "19217698b427e80f26203a6600db3bf03962be322e2a61a5c25e5b0178d20333"
+      },
+      "web/runtime/campaign.13c139b8021b0ce4.js": {
+        "bytes": 527,
+        "sha256": "13c139b8021b0ce4ebf479b9309329c393c2894fedfc0229f5efcb55a8eb6ba8"
+      },
+      "web/data/campaign.0e33b6e4f334c28d.json": {
+        "bytes": 55127,
+        "sha256": "0e33b6e4f334c28d670fdaa49dc982c794ad62955e5a141bb572d390fbe9afb9"
+      },
+      "web/data/chapter-42.0802015e8ba99d11.json": {
+        "bytes": 12647,
+        "sha256": "0802015e8ba99d11a8ece1f14186b3db6a4a7d3d32076e64ca120300f50c7f50"
+      },
+      "web/data/chapter-42-assets.abdbc9d7a8ce717e.json": {
+        "bytes": 1858863,
+        "sha256": "abdbc9d7a8ce717eb7c8a6c04aa7400cec13b5ced947713aa862ab70ef5f2e46"
+      },
+      "web/runtime/ordered-common-4.67de8f1c97c5fb48.js": {
+        "bytes": 184807,
+        "sha256": "67de8f1c97c5fb4825954f779cbf06ab7e6a41d73e9ff5e77465bbe190634814"
+      }
+    },
+    "frames": {
+      "PC": {
+        "width": 1440,
+        "height": 900,
+        "pose": {
+          "actual": {
+            "x": 3250,
+            "y": 3101,
+            "scale": 0.21176470588235294
+          },
+          "viewport": {
+            "left": -150,
+            "right": 6650,
+            "top": 1284.8628472222222,
+            "bottom": 4917.137152777777
+          },
+          "backing": [
+            1440,
+            769
+          ],
+          "physics": "8b414b90e43c7f7e1ea685a254b4fa4cd6d5db525ce96083c39059ff5433ba0f"
+        },
+        "raw": {
+          "size": [
+            1440,
+            769
+          ],
+          "rgba": "a354e1157fc998763cef3d469dcbe69a4f07c70ff872cdd48db3508e7b193cfc"
+        }
+      },
+      "M": {
+        "width": 390,
+        "height": 844,
+        "pose": {
+          "actual": {
+            "x": 3250,
+            "y": 3101,
+            "scale": 0.057352941176470586
+          },
+          "viewport": {
+            "left": -150,
+            "right": 6650,
+            "top": -2544.8253205128203,
+            "bottom": 8746.82532051282
+          },
+          "backing": [
+            390,
+            648
+          ],
+          "physics": "8b414b90e43c7f7e1ea685a254b4fa4cd6d5db525ce96083c39059ff5433ba0f"
+        },
+        "raw": {
+          "size": [
+            390,
+            648
+          ],
+          "rgba": "ef059d90dab03d4d438ad020a9161474d5a9e315dc60db19b2ff2394e772cae7"
+        }
+      }
+    }
+  },
+  "enabled": true,
+  "qaRef": "refs/heads/qa/stage42-facies-pc-upper-east-0b9",
+  "exactPagesLogUTC": "2026-11-22T14:35:42.0478097Z",
+  "alreadyPublic": {
+    "run": 45033765808,
+    "job": 137242846501,
+    "head": "3769d5da9e47635dad170e26b6d4cc56a2929242"
+  },
+  "views": {
+    "PC-upper-east": {
+      "requested": [
+        5070,
+        1760,
+        0.5
+      ],
+      "mode": "normal actual camera clamped by stock",
+      "predictedWorldViewport": [
+        3630,
+        990.953125,
+        6510,
+        2529.046875
+      ]
+    }
+  },
+  "device": {
+    "PC": {
+      "viewport": [
+        1440,
+        900
+      ],
+      "backingEvidence": [
+        1440,
+        769
+      ]
+    },
+    "M": {
+      "viewport": [
+        390,
+        844
+      ],
+      "backingEvidence": [
+        390,
+        648
+      ]
+    }
+  },
+  "artControlScope": "official prior same exact Stage42 full south and archive east, no new non-near visits"
+}
