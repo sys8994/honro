@@ -1,0 +1,37 @@
+name: HONRO Stage44 Root-Floor exact previously-built writer
+on:
+  push:
+    branches: [qa/stage44-root-floor-onebuild-writer-31537b]
+    paths: [.github/workflows/stage44-root-floor-onebuild.yml, tools/stage44-root-floor-onebuild/**]
+permissions:
+  contents: write
+  actions: read
+jobs:
+  fixed-release-branch:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage44-root-floor-onebuild-writer-31537b'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: true
+          fetch-depth: 0
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Authenticate sealed B and prior Pages without rebuilding
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 -B tools/stage44-root-floor-onebuild/writer.py acquire "$RUNNER_TEMP/stage44-root-floor-release"
+      - name: Assemble and ordinary-forward only the signed candidate release ref
+        run: bash tools/stage44-root-floor-onebuild/safe-push.sh "$RUNNER_TEMP/stage44-root-floor-release"
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage44-root-floor-onebuild-assembly-receipt
+          path: |
+            ${{ runner.temp }}/stage44-root-floor-release/ASSEMBLY.json
+            ${{ runner.temp }}/stage44-root-floor-release/candidate.sha
+            ${{ runner.temp }}/stage44-root-floor-release/hook
+          if-no-files-found: warn
+          retention-days: 7

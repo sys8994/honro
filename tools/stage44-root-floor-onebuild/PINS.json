@@ -1,0 +1,203 @@
+{
+  "repo": "sys8994/honro",
+  "qaRef": "refs/heads/qa/stage44-root-floor-onebuild-writer-31537b",
+  "releaseRef": "refs/heads/release/act5-stage44-root-floor-20261122",
+  "scopeApproval": "Specific Stage44 campaign nonwalk root-floor line omission visually approved after 44989704759; precisely four predeclared 1DN companion spots, archived strict verdict remains HOLD. No general tolerance, no master or Pages from this writer.",
+  "base": {
+    "head": "31537bcd1b070077a3287113e2085de40d3dcf2c",
+    "tree": "82c0652cf461c49cf757e08954545c27077ec697",
+    "manifest": {
+      "git": "4228685f4de4494d2546682a147553c01e0c5bf5",
+      "bytes": 7310425,
+      "sha256": "86381ada9943a26afad930ea140c9d2ba22bbfb77ec68781240975af1432daab"
+    },
+    "pagesRun": 44978896796,
+    "pagesJob": 137075376025,
+    "publishedAt": "2026-11-22T03:06:46Z",
+    "active": 810,
+    "registry": 1353,
+    "retainerGit": "8374336b53c74ac81e6d32f5aa43eee575e61daa",
+    "policyGit": "16687b0fc38e432a7d66a015ddf3ebe744163a06"
+  },
+  "qa": {
+    "run": 44989704759,
+    "job": 137107868555,
+    "head": "dd9697bdd26abec8db578165bf171a4756a9705c",
+    "tree": "b8b0e7274fa3f219c224a19ef514e3e35dbb04b8",
+    "branch": "qa/stage44-root-floor-normal-small-31537b",
+    "artifact": 14741655891,
+    "name": "honro-stage44-right-floor-normal-small-current-no-deploy",
+    "outer": {
+      "bytes": 9087863,
+      "sha256": "964071f8ea3a99ea8330267a70fe218b166460455d5bbc0bc68a79fa12601e3a"
+    }
+  },
+  "outerMembers": [
+    "B-generated-pending-re-review/B-EXACT-NORMAL-GENERATED-NO-DEPLOY.zip",
+    "B-generated-pending-re-review/SEAL.json",
+    "BROWSER.json",
+    "GRAPH.json",
+    "SOURCE.json",
+    "build-B.log",
+    "focused-B.log",
+    "http-A.log",
+    "http-B.log",
+    "npm-game-B.log",
+    "npm-root-B.log",
+    "production-contract-B.log",
+    "s44-1440x900-south-A-dom.png",
+    "s44-1440x900-south-A-geometry.json",
+    "s44-1440x900-south-A-raw.png",
+    "s44-1440x900-south-B-dom.png",
+    "s44-1440x900-south-B-geometry.json",
+    "s44-1440x900-south-B-raw.png",
+    "s44-1440x900-southwest-A-dom.png",
+    "s44-1440x900-southwest-A-geometry.json",
+    "s44-1440x900-southwest-A-raw.png",
+    "s44-1440x900-southwest-B-dom.png",
+    "s44-1440x900-southwest-B-geometry.json",
+    "s44-1440x900-southwest-B-raw.png",
+    "s44-390x844-southeast-A-dom.png",
+    "s44-390x844-southeast-A-geometry.json",
+    "s44-390x844-southeast-A-raw.png",
+    "s44-390x844-southeast-B-dom.png",
+    "s44-390x844-southeast-B-geometry.json",
+    "s44-390x844-southeast-B-raw.png"
+  ],
+  "receipts": {
+    "SOURCE.json": {
+      "bytes": 777,
+      "sha256": "626b8421d509a7f3cb1dc9d6430cb6608d06f57b65e233f5411cbe8d5318583c"
+    },
+    "GRAPH.json": {
+      "bytes": 284091,
+      "sha256": "1f125e494c0b6eb8d94f0d8bcbde65d922129eecf85f00ddd5379e0cab0b67cd"
+    },
+    "BROWSER.json": {
+      "bytes": 236733,
+      "sha256": "8747741d56588b6aff84eef7754db2f06a52783f5281b213d03a5241c30d6d46"
+    },
+    "B-generated-pending-re-review/SEAL.json": {
+      "bytes": 2518,
+      "sha256": "1ffabb77dad069f7a212762639c946d103fcf27d5d00908c7b663e5dd837f2c5"
+    }
+  },
+  "innerPath": "B-generated-pending-re-review/B-EXACT-NORMAL-GENERATED-NO-DEPLOY.zip",
+  "sealPath": "B-generated-pending-re-review/SEAL.json",
+  "generated": {
+    "HONRO.html": {
+      "bytes": 17379,
+      "sha256": "fa1e2895e3efcce03ca333fef4c19a1be7949c6a8904a9167ff525dc603b886c",
+      "git": "e8d929c907738966290b0fee58c3c9afbf8634fb"
+    },
+    "HONRO_WORKSHOP.html": {
+      "bytes": 4011,
+      "sha256": "2667879d74a3c902d8e3e8f89596c4b785317311a5283b2b71cf7fa8cd5614fc",
+      "git": "7c1595d956ac944d17a4a68da19c39ee79131863"
+    },
+    "index.html": {
+      "bytes": 17379,
+      "sha256": "fa1e2895e3efcce03ca333fef4c19a1be7949c6a8904a9167ff525dc603b886c",
+      "git": "e8d929c907738966290b0fee58c3c9afbf8634fb"
+    },
+    "web/entries/game.3661d7d3453d309b.html": {
+      "bytes": 11318,
+      "sha256": "3661d7d3453d309b7ffd7cc31fa678756ae48e4a832c118b642703e54adf4e0e",
+      "git": "765b2411e6f6fec0492583c32a6b847dfca82349"
+    },
+    "web/entries/game.669f98c9f33fc38d.js": {
+      "bytes": 20483,
+      "sha256": "669f98c9f33fc38dfc84bae1d1c5ccf6ee4e95c51770af3aad7351c4ea3396a0",
+      "git": "914820c6a131fc0c2b67c6138926b1d9a4029c73"
+    },
+    "web/entries/workshop.5cdd23c79f6a715e.js": {
+      "bytes": 16706,
+      "sha256": "5cdd23c79f6a715ea0376631d5a412aee0b2b3956b0f5d25bbfc1f46a24afd6c",
+      "git": "6204c36bb988b5c64cbdbdecec6d675fb32517cf"
+    },
+    "web/manifest.json": {
+      "bytes": 6928696,
+      "sha256": "41bedbfc59f20aa5140f8fc4107341cbe13bb3c9071974d7d70fbfccfcf45126",
+      "git": "2e1bb98e562d5b5009628bcad9acfa5484db9d1a"
+    },
+    "web/runtime/ordered-common-18.5bef8d649618eec7.js": {
+      "bytes": 35262,
+      "sha256": "5bef8d649618eec708148cbc4a6594edbf15b0f45c59d64849336f2a5ea14ff9",
+      "git": "e5494532991283fb5ebd2cd63251b4cd56bddb3a"
+    }
+  },
+  "nested": {
+    "bytes": 1861501,
+    "sha256": "5239ad154d019b5d22d7236c223f02ad6d8d147efa37eb98b4f5d753c1391e3a"
+  },
+  "source": {
+    "path": "shared/runtime/act5-edge-art.js",
+    "old": "66f656fe7beb164efcbed2729b2f6daa88781e42",
+    "new": "b79dde7e841356d25e425d8dc0bcf3ca58729c5c",
+    "sha256": "a0c77ed89a6df785636ac2e43ca0cc97ed12fb8b63b76927d9f1f3142a32455e"
+  },
+  "fixedViews": {
+    "s44-1440x900-south": {
+      "outside": [
+        [
+          [
+            1402,
+            145
+          ],
+          [
+            -1,
+            0,
+            0,
+            0
+          ]
+        ],
+        [
+          [
+            1403,
+            145
+          ],
+          [
+            -1,
+            -1,
+            -1,
+            0
+          ]
+        ]
+      ],
+      "changed": 232
+    },
+    "s44-1440x900-southwest": {
+      "outside": [],
+      "changed": 0
+    },
+    "s44-390x844-southeast": {
+      "outside": [
+        [
+          [
+            160,
+            258
+          ],
+          [
+            -1,
+            -1,
+            -1,
+            0
+          ]
+        ],
+        [
+          [
+            160,
+            259
+          ],
+          [
+            -1,
+            0,
+            0,
+            0
+          ]
+        ]
+      ],
+      "changed": 96
+    }
+  }
+}
