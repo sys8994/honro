@@ -1,0 +1,145 @@
+{
+  "base": "2c4e90ff24d1f5aa5d04f01317caa02f89b8194c",
+  "baseTree": "8d90f1fc6737adb025a5bb092b03462e283297ce",
+  "visualParent": "336501839c7c51388dfe68e251eb98c251f384ea",
+  "visualParentTree": "1f727bee4e5aa79875ca9acacb41fc460004fd09",
+  "normalHead": "b5a6b7b60bc769ef304396dcbb945c0ead74a78d",
+  "normalTree": "e73bf992747007c0e82580d14534ffefa8579191",
+  "normalRun": 44965208780,
+  "normalJob": 137032559280,
+  "normalBranch": "qa/stage33-r3-2c4-retained-r2",
+  "normalWorkflow": ".github/workflows/stage33-r3-2c4-retained-r2.yml",
+  "artifact": {
+    "id": 14731427842,
+    "name": "honro-stage33-2c4-r3-retained-r2-evidence-only",
+    "bytes": 96356089,
+    "sha256": "8cef6b0e5b6cfd44dc13c1b29bb1eaf617c2ab8ea2968398eca04ca41e412f44"
+  },
+  "archiveFacts": {
+    "GRAPH.json": "4a082ba669a13b30163ef30fe2385caf421e77305de28916df65a0b01814635f",
+    "GRAPH-DELTA.json": "1dc9893dcc3a4de87d8f53d00936f48cc3931958b622b8b2e1157e88f2eb5124",
+    "QA-OLD-URLS.json": "800532a5f84e999daa69010c61148e13a9f4fbeff5a304edeae8df66d8367106",
+    "RECEIPT.json": "4b01f1818fd701b39ece452468ae84110d3deae960c85c37f8c0b1d4b3907e23",
+    "WIRE-RECEIPT.json": "59065c7eae69cc4075faf5b0d22effc98a30c5a2f41c09ba4ff29928d00cb0f5",
+    "live-input/LIVE-INPUT-SUMMARY.json": "a1049855e23066b500e0a4c7e426913711eb0a6a5d02158a6b4c678a7dc791aa"
+  },
+  "pages": {
+    "run": 44947732170,
+    "job": 136978995350,
+    "at": "2026-11-21T20:44:40Z"
+  },
+  "source": {
+    "path": "shared/data/act4/sideview-art/33-coastal-v2.json",
+    "old": "c9c204a0daefb790309b3c7d0917c3e34acf7708",
+    "new": "3ab093ce8cff00efb620d2fed8eae6cc4c732892",
+    "bytes": 1629325,
+    "sha256": "4585577066f5db159605e405d6565795e3e1382df4f30e944ec84ee4c2c6c91a"
+  },
+  "aliases": {
+    "web/data/chapter-33.a7ce91b7d78fb5f8.json": "web/data/chapter-33.80ca32475be181c7.json",
+    "web/data/chapter-33-assets.4b5df185aa59eb42.json": "web/data/chapter-33-assets.07b129345eb95856.json",
+    "web/data/campaign.7140da5d3649e4ab.json": "web/data/campaign.d38268efbbeea7a8.json",
+    "web/runtime/campaign.926544619e01a04a.js": "web/runtime/campaign.2145747382e11bb7.js",
+    "web/entries/game.df8a4c7f1873e38c.js": "web/entries/game.836da0e8342e0031.js",
+    "web/entries/game.aa9f55275c71f3f4.html": "web/entries/game.444c9f8ffd2e0c47.html",
+    "web/entries/workshop.72bdac6f91ac45dd.js": "web/entries/workshop.0a270a5d0d89b6cc.js"
+  },
+  "wire": {
+    "maps": [
+      {
+        "bytes": 34011,
+        "sha256": "a7ce91b7d78fb5f8b0b27a4ea42ce6cf4f54d98556c43176beb87a0789573a5a"
+      },
+      {
+        "bytes": 34235,
+        "sha256": "80ca32475be181c7774c305b442c8081b6341836fb8d08771e033b7fb79e1464"
+      }
+    ],
+    "packets": [
+      {
+        "bytes": 2836956,
+        "sha256": "4b5df185aa59eb42dbb2c46bd21b38ef2ab7134098bc31b3a0b96439dcc7ef73"
+      },
+      {
+        "bytes": 2858185,
+        "sha256": "07b129345eb9585651bb4d8a74411c8ec30ac3d5b3736ca7849e39abfa7ffe00"
+      }
+    ],
+    "ownerCounts": [
+      15,
+      16
+    ],
+    "onlyExtraMapElement": {
+      "id": "act4-sideview:33:coastal-v2:lowland-deep-strata",
+      "assetId": "act4-sideview:33:coastal-v2:lowland-deep-strata",
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "rotation": 0,
+      "snap": false,
+      "depthLayer": "L1",
+      "nativeArtLayer": "surface",
+      "layer": "mid"
+    },
+    "otherPhysicsAndDataExact": true
+  },
+  "normalShellA": {
+    "bytes": 17379,
+    "sha256": "b5696990619f139e6bb239646a8af4a8db0fd8e4e7b0c0d0dc97081588e6219c"
+  },
+  "normalShellB": {
+    "bytes": 17379,
+    "sha256": "7077f09f78aed8beab506111cb5583c074b84fa0400cf4b06ea11639e100757d"
+  },
+  "normalManifestA": {
+    "bytes": 6966363,
+    "sha256": "12b99fa8b1b35c4ed94962c370ff38c6a06597473dc4417b2861ad46d04e0dbc"
+  },
+  "normalManifestB": {
+    "bytes": 6937697,
+    "sha256": "1ac8044948d9d271fdf716e35c623879a53f0a149729df54f4b8f63486b3eb5c"
+  },
+  "aliasFacts": {
+    "web/data/chapter-33.80ca32475be181c7.json": {
+      "bytes": 34235,
+      "sha256": "80ca32475be181c7774c305b442c8081b6341836fb8d08771e033b7fb79e1464"
+    },
+    "web/data/chapter-33-assets.07b129345eb95856.json": {
+      "bytes": 2858185,
+      "sha256": "07b129345eb9585651bb4d8a74411c8ec30ac3d5b3736ca7849e39abfa7ffe00"
+    },
+    "web/data/campaign.d38268efbbeea7a8.json": {
+      "bytes": 55011,
+      "sha256": "d38268efbbeea7a80be44da99cd8db99bd13832ca5bfa021cad35647c7a7be3a"
+    },
+    "web/runtime/campaign.2145747382e11bb7.js": {
+      "bytes": 527,
+      "sha256": "2145747382e11bb76f7eeee3120b4bd45266678f2d1a286a84c9b950e65165a3"
+    },
+    "web/entries/game.836da0e8342e0031.js": {
+      "bytes": 20483,
+      "sha256": "836da0e8342e0031dd8d442b7f2cbc803755a9f7e95a89c2526579f69420d395"
+    },
+    "web/entries/game.444c9f8ffd2e0c47.html": {
+      "bytes": 11318,
+      "sha256": "444c9f8ffd2e0c4799f0d41087d2005b2e92593a69bffa21ec7fb930cb1c8dae"
+    },
+    "web/entries/workshop.0a270a5d0d89b6cc.js": {
+      "bytes": 16706,
+      "sha256": "0a270a5d0d89b6ccf9e83afe0b4de867155fc80cf211907f5abb9eb8c71e731b"
+    }
+  },
+  "originalActiveCommonFactsDigest": "c293937544e34276cc456754acb186ee2184cd401e693393d8bd3f17c2f91d53",
+  "retainer": {
+    "tools/release/retain-published-web.mjs": "8374336b53c74ac81e6d32f5aa43eee575e61daa",
+    "shared/web-retention.mjs": "16687b0fc38e432a7d66a015ddf3ebe744163a06"
+  },
+  "knownVisual": {
+    "nExactPaired": 20,
+    "png": 160,
+    "signedLegacyResult": false,
+    "productionVisualReviewedByRoot": true,
+    "liveInput": true,
+    "noAutomaticRelease": true
+  }
+}

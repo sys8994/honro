@@ -1,0 +1,56 @@
+name: HONRO Stage33 R3 exact retained payload, read only
+on:
+  push:
+    branches: [qa/stage33-r3-2c4-release-payload]
+    paths:
+      - '.github/workflows/stage33-r3-2c4-release-payload.yml'
+      - 'tools/stage33-r3-release-payload/**'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  read-only-producer:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage33-r3-2c4-release-payload'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 22
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Bind exact successful visual, real input and prior Pages evidence
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          W="$(mktemp -d "$RUNNER_TEMP/stage33-r3-payload.XXXXXX")"
+          mkdir "$W/out"
+          echo "WORK=$W" >> "$GITHUB_ENV"
+          python tools/stage33-r3-release-payload/produce.py authority "$W"
+      - name: Reproduce exactly recorded normal files, preserve old addresses and seal bounded payload
+        timeout-minutes: 16
+        run: |
+          set -euo pipefail
+          test -z "${GH_TOKEN:-}${GITHUB_TOKEN:-}"
+          python tools/stage33-r3-release-payload/produce.py pre "$WORK"
+          node tools/stage33-r3-product/prepare.mjs write "$WORK" > "$WORK/out/prepare.log" 2>&1
+          (
+            cd "$WORK/B"
+            npm ci > "$WORK/out/npm-root.log" 2>&1
+            npm ci --prefix game > "$WORK/out/npm-game.log" 2>&1
+            npm run build > "$WORK/out/build-B.log" 2>&1
+            npm run test:production-contract > "$WORK/out/production-contract.log" 2>&1
+          )
+          python tools/stage33-r3-release-payload/produce.py seal "$WORK"
+      - if: always() && env.WORK != ''
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage33-r3-exact-retained-payload-review-only
+          path: ${{ env.WORK }}/out
+          if-no-files-found: error
+          retention-days: 7
