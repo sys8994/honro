@@ -507,5 +507,57 @@ function recordOutcome(app,won){
  if(!won||!active(b)||b.honroJourneyReplay)return;
  for(const flag of chapterFlags[b.honroStage-41])app.profile.honroFlags['act5.'+flag]=true;
 }
-G.HonroAct5={active,recordOutcome,state,failure,entry,tick,current,eligibility,use,attach,prepare,damageFloor,wakeEligible,fallReturn,escortThreats};
+function stage46JsonStringSnapshot(input){
+ const owners=new WeakMap();let first=true, replacements=null;
+ const text=JSON.stringify(input,function(key,value){
+  const path=first?null:{parent:owners.get(this),key};
+  first=false;
+  if(value!==null&&typeof value==='object')owners.set(value,path);
+  if(typeof value==='string'&&value.length>=4096){
+   replacements={path,value,next:replacements};return '';
+  }
+  return value;
+ });
+ const result=JSON.parse(text);
+ if(replacements===null)return result;
+ const resolved=new WeakMap();
+ function ownerAt(path){
+  let cursor=path,tail=null;
+  while(cursor!==null&&!resolved.has(cursor)){tail={path:cursor,next:tail};cursor=cursor.parent;}
+  let value=cursor===null?result:resolved.get(cursor);
+  for(let node=tail;node;node=node.next){
+   value=Object.getOwnPropertyDescriptor(value,node.path.key).value;
+   resolved.set(node.path,value);
+  }
+  return value;
+ }
+ for(let n=replacements;n;n=n.next){
+  if(n.path===null)return n.value;
+  const owner=ownerAt(n.path.parent),key=n.path.key;
+  const old=Object.getOwnPropertyDescriptor(owner,key);
+  if(!old||old.value!=='')throw Error('Stage46 snapshot string owner correspondence failure');
+  Object.defineProperty(owner,key,{value:n.value});
+ }
+ return result;
+}
+const stage46FreshOpeningAssets=new WeakSet();
+function stage46SnapshotEligible(b){
+ if(!(b?.mode==='campaign'&&b.honroStage===46&&b.stage===46&&b.honroAct5===1&&b.honroMapOrigin==='campaign'&&b.honroCanonical===true&&b.honroCustom===false&&b.honroAuthoredId==='stage-46'&&b.honroTerrainDomainVersion===1&&b.width===4096&&b.height===6504))return false;
+ for(const slots of [b.honroElements,b.honroLandmarks]){
+  if(!Array.isArray(slots))return false;
+  const owned=slots.filter(x=>x?.id==='a5-near');
+  if(owned.length!==1)return false;
+  const x=owned[0],a=x.asset;
+  if(!(x.kind==='canonical-element'&&x.assetId==='act5:near:46'&&x.x===0&&x.y===0&&x.scale===4&&x.rotation===0&&Array.isArray(x.collisionIds)&&x.collisionIds.length===0&&a?.id===x.assetId&&a?.shaftExterior&&a.shaftExteriorParts?.length===5))return false;
+ }
+ return true;
+}
+function snapshot46Launch(b){
+ if(!stage46SnapshotEligible(b))return;
+ const snap=stage46JsonStringSnapshot(b);
+ stage46FreshOpeningAssets.add(b);return snap;
+}
+function take46OpeningSnapshot(b){return b!=null&&stage46FreshOpeningAssets.delete(b);}
+function snapshot46Opening(b){if(stage46SnapshotEligible(b))return stage46JsonStringSnapshot(b);}
+G.HonroAct5={snapshot46Launch,take46OpeningSnapshot,snapshot46Opening,active,recordOutcome,state,failure,entry,tick,current,eligibility,use,attach,prepare,damageFloor,wakeEligible,fallReturn,escortThreats};
 })(globalThis);

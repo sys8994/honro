@@ -379,7 +379,10 @@
             if(!training&&battle.honroSplit?.mode==='replay')this.notify('분할 재플레이 · 지난 분기 기록 없이 현재 성장과 입장 준비값으로 시작합니다.');
             if (!training) {
                 this.profile.lastStage = st.id;
-                this.profile.honroBattle = clone(this.engine.b);
+                const entryBattle=this.engine.b;
+                if(st.id!==40||!G.HonroAct4Campaign?.ownsFreshHarborSnapshot?.(this,entryBattle)){
+                  this.profile.honroBattle=(st.id===46&&!this.debugMode&&!this.customMap&&!G.HONRO_EMBEDDED?G.HonroAct5?.snapshot46Launch?.(entryBattle):undefined)??clone(entryBattle);
+                }
                 this.persist();
     if(!G.HonroAct23V4?.active(battle)){
     const text = st.story.map(x => x.slice(0,2).join(' · ')).join('\n');
