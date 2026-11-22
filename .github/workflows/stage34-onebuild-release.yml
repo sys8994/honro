@@ -1,0 +1,33 @@
+name: HONRO Stage34 scoped existing build release branch only
+on:
+  push:
+    branches: [qa/stage34-onebuild-writer]
+    paths: [.github/workflows/stage34-onebuild-release.yml, tools/stage34-onebuild-release/**]
+permissions:
+  contents: write
+  actions: read
+jobs:
+  fixed-release-branch:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage34-onebuild-writer'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: true
+          fetch-depth: 0
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Authenticate both original artifacts and exact writer authority
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          D="$RUNNER_TEMP/stage34-release"
+          mkdir "$D"
+          python -B tools/stage34-onebuild-release/transfer.py "$D"
+      - name: Assemble exact tested asset and preserve all URLs then forward release branch only
+        run: |
+          set -euo pipefail
+          bash tools/stage34-onebuild-release/safe-push.sh "$RUNNER_TEMP/stage34-release"

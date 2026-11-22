@@ -1,0 +1,74 @@
+{
+  "enabled": true,
+  "scopeDecision": "SEPARATE_SCOPED_VISUAL_ACCEPTANCE_KEEP_STRICT_FAIL",
+  "official": {
+    "run": 44972710351,
+    "job": 137055755344,
+    "head": "f48ce874f69f1168d52459dc041e67a7f155bb9e",
+    "tree": "bc119e14889077c86160a8a4063ecce441ed6055",
+    "artifact": 14734377805,
+    "strictRun": "FAIL; pre-browser source/graph passed and complete 16 PNG actual capture, signed off-target gate not exact",
+    "graphStep": "success",
+    "exactPixelStep": "failure",
+    "outer": {
+      "bytes": 10897672,
+      "sha256": "27b717926b65e59b6acb0ec433a6294371ee719a7a386aebf78c49a3567120d3"
+    }
+  },
+  "inner": {
+    "name": "B-compiled-qa-only.zip",
+    "bytes": 3483313,
+    "sha256": "ef3c4976b550582b318a35f12a5382504dbce1d674ba31f349b917b9a6d34fcc"
+  },
+  "receipts": {
+    "AUTHORITY.json": "7fa478c7f67df4ea77b967cc3908e07810a3208f3994b6c03872e6cba3707622",
+    "AUTHOR.json": "c82360a23e1d6d913a000b7d5da76f139d05fa96b30aba54f8dbf73fc1d69611",
+    "GRAPH.json": "f68a4188aba3d56911c29700c1413aa6890dbc5a13a80fa0e24f8d0d75555578",
+    "BROWSER.json": "dd7f6b4943b899555d01e6ba79de736d715c6870174220fae95a9f10e46f8a5d",
+    "RETENTION.json": "67098240b6eb45f438594e0f67e3e4c94b84fd852a66399cd29b4847eba212b3"
+  },
+  "previousPublic": {
+    "authoritySHA256": "e6f9b0240325920a13a529dd3a6c5b8fff41fbc9c61f487dc728ef568b210e00",
+    "httpSHA256": "6619cefab240868ea0b6a77965cea532457f84edc702a14c1842eea67e8382fe",
+    "browserSHA256": "da1e2024bee70e310c13f33281c2fcda21ae47fcf9eb16f4a6a157ae15cd9d25",
+    "release": {
+      "head": "bed947dc0a56be8ac0215cb5a2dde75f0408df04",
+      "tree": "406bb0e70a369b73e4323ab081ffa5d499a2b21a",
+      "pagesRun": 44972552774,
+      "pagesJob": 137055667060,
+      "publishedAt": "2026-11-22T01:42:39Z",
+      "manifest": {
+        "bytes": 7138789,
+        "sha256": "119867dc4208d98efd39e35c4f8c4040b915d2626967b91699d2a801fef1c664",
+        "git": "80f86e879c1f6c7fc74b3735b459b9a1517d7815"
+      }
+    },
+    "expectedNextMetadataExpiryUTC": "2026-11-22T02:36:50Z"
+  },
+  "exactQAAuthorGit": "cb257e0bdd84b0f540659def239c6f26d0793fdc",
+  "expectedScopeReviewIfLaterAuthorized": "SEPARATE_SCOPED_VISUAL_ACCEPTANCE_KEEP_STRICT_FAIL",
+  "expectedRawOutside": {
+    "1440x900-southwest-near": 324,
+    "390x844-southwest-near": 791,
+    "1440x900-east": 237,
+    "390x844-east": 476
+  },
+  "expectedDOMOutside": {
+    "1440x900-southwest-near": 277,
+    "390x844-southwest-near": 791,
+    "1440x900-east": 237,
+    "390x844-east": 476
+  },
+  "maxOutsideRGBDN": 2,
+  "priorURLBytes": 1343,
+  "nextURLBytes": 1349,
+  "rootScopeSHA256": "4b1188e0db691887c76135d9e43d013e7b01bdf58126e491812f86a28f6cf482",
+  "publicArtifact": {
+    "id": 14734266952,
+    "bytes": 332768,
+    "sha256": "4ba97b70bedb36ba2c4193a8447892e9e7357a03212841c8219ba2d094a9f244",
+    "run": 44972836308,
+    "head": "1f8fbe5de5002f5533be5762273501d01da377d5",
+    "name": "honro-stage17-public-anonymous-pc-mobile-proof"
+  }
+}

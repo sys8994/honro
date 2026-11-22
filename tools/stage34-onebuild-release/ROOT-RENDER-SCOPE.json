@@ -1,0 +1,88 @@
+{
+  "exactGate": "FAIL_EXISTING",
+  "sourceGraphSHA256": "f68a4188aba3d56911c29700c1413aa6890dbc5a13a80fa0e24f8d0d75555578",
+  "anchor": "bed947dc0a56be8ac0215cb5a2dde75f0408df04",
+  "browserSHA256": "dd7f6b4943b899555d01e6ba79de736d715c6870174220fae95a9f10e46f8a5d",
+  "scope": {
+    "1440x900-southwest-near-raw": {
+      "RGBMaxDifferenceOutside": 2,
+      "outsideNonZero": 324,
+      "outsideDn1": 323,
+      "outsideDn2": 1,
+      "outsideShareOfWholeFrame": 0.0002926,
+      "insideRGBDifferenceAbove2": 14763,
+      "insideMax": 33,
+      "alphaChanges": 0
+    },
+    "1440x900-southwest-near-dom": {
+      "RGBMaxDifferenceOutside": 1,
+      "outsideNonZero": 277,
+      "outsideDn1": 277,
+      "outsideDn2": 0,
+      "outsideShareOfWholeFrame": 0.0002498,
+      "insideRGBDifferenceAbove2": 14763,
+      "insideMax": 33,
+      "alphaChanges": 0
+    },
+    "1440x900-east-raw": {
+      "RGBMaxDifferenceOutside": 2,
+      "outsideNonZero": 237,
+      "outsideDn1": 234,
+      "outsideDn2": 3,
+      "outsideShareOfWholeFrame": 0.000214,
+      "insideRGBDifferenceAbove2": 0,
+      "insideMax": 0,
+      "alphaChanges": 0
+    },
+    "1440x900-east-dom": {
+      "RGBMaxDifferenceOutside": 2,
+      "outsideNonZero": 237,
+      "outsideDn1": 234,
+      "outsideDn2": 3,
+      "outsideShareOfWholeFrame": 0.0002137,
+      "insideRGBDifferenceAbove2": 0,
+      "insideMax": 0,
+      "alphaChanges": 0
+    },
+    "390x844-southwest-near-raw": {
+      "RGBMaxDifferenceOutside": 2,
+      "outsideNonZero": 791,
+      "outsideDn1": 787,
+      "outsideDn2": 4,
+      "outsideShareOfWholeFrame": 0.0031299,
+      "insideRGBDifferenceAbove2": 1128,
+      "insideMax": 33,
+      "alphaChanges": 0
+    },
+    "390x844-southwest-near-dom": {
+      "RGBMaxDifferenceOutside": 2,
+      "outsideNonZero": 791,
+      "outsideDn1": 787,
+      "outsideDn2": 4,
+      "outsideShareOfWholeFrame": 0.0031299,
+      "insideRGBDifferenceAbove2": 1128,
+      "insideMax": 33,
+      "alphaChanges": 0
+    },
+    "390x844-east-raw": {
+      "RGBMaxDifferenceOutside": 2,
+      "outsideNonZero": 476,
+      "outsideDn1": 471,
+      "outsideDn2": 5,
+      "outsideShareOfWholeFrame": 0.0018835,
+      "insideRGBDifferenceAbove2": 0,
+      "insideMax": 0,
+      "alphaChanges": 0
+    },
+    "390x844-east-dom": {
+      "RGBMaxDifferenceOutside": 2,
+      "outsideNonZero": 476,
+      "outsideDn1": 471,
+      "outsideDn2": 5,
+      "outsideShareOfWholeFrame": 0.0018835,
+      "insideRGBDifferenceAbove2": 0,
+      "insideMax": 0,
+      "alphaChanges": 0
+    }
+  }
+}
