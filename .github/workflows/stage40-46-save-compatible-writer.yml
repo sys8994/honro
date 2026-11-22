@@ -1,0 +1,38 @@
+name: HONRO Stage40 and Stage46 save-compatible sealed normal artifact local assembly
+on:
+  push:
+    branches: [qa/stage40-46-save-writer-342]
+    paths: [".github/workflows/stage40-46-save-compatible-writer.yml", "tools/stage40-46-save-compatible-writer/**"]
+permissions:
+  contents: write
+  actions: read
+jobs:
+  fixed-stage40-46-release-checkpoint:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage40-46-save-writer-342'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: true
+          fetch-depth: 0
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Authenticate exact scoped normal archives and baseline Pages
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 -B tools/stage40-46-save-compatible-writer/assemble.py acquire "$RUNNER_TEMP/stage40-46-save-release-checkpoint"
+      - name: Assemble then fast-forward the one isolated candidate ref only
+        run: bash tools/stage40-46-save-compatible-writer/safe-push.sh "$RUNNER_TEMP/stage40-46-save-release-checkpoint"
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage40-46-save-compatible-342-branch-receipt-no-deploy
+          path: |
+            ${{ runner.temp }}/stage40-46-save-release-checkpoint/ASSEMBLY.json
+            ${{ runner.temp }}/stage40-46-save-release-checkpoint/candidate.sha
+            ${{ runner.temp }}/stage40-46-save-release-checkpoint/candidate.tree
+            ${{ runner.temp }}/stage40-46-save-release-checkpoint/hook
+          if-no-files-found: warn
+          retention-days: 7
