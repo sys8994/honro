@@ -1,0 +1,49 @@
+name: HONRO Stage44 R9 sparse west art QA only
+on:
+  push:
+    branches: [qa/stage44-west-depth-save-safe-342a]
+    paths: [".github/workflows/stage44-west-depth-r9.yml", "tools/stage44-west-depth/**"]
+permissions:
+  contents: read
+jobs:
+  normal-ab:
+    if: github.repository == 'sys8994/honro' && github.ref == 'refs/heads/qa/stage44-west-depth-save-safe-342a'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 28
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Pin exact stock A and normal source build B
+        run: |
+          set -euo pipefail
+          W="$RUNNER_TEMP/stage44-west-depth-r9"; mkdir "$W" "$W/out"; echo "W=$W" >> "$GITHUB_ENV"
+          T="$GITHUB_WORKSPACE/tools/stage44-west-depth"
+          python "$T/guard.py" pre "$W"
+          (cd "$W/B"; npm ci >"$W/out/npm.log" 2>&1; npm ci --prefix game >"$W/out/npm-game.log" 2>&1; date +%s%3N >"$W/out/BUILD-BEGIN.txt"; npm run build >"$W/out/build.log" 2>&1; date +%s%3N >"$W/out/BUILD-END.txt"; npm run test:production-contract >"$W/out/production-contract.log" 2>&1)
+          python "$T/guard.py" build "$W"
+      - name: Known normal Chrome screens, genuine provider and resident-canvas evidence
+        run: |
+          set -euo pipefail
+          T="$GITHUB_WORKSPACE/tools/stage44-west-depth"
+          python -m venv "$W/v"; V="$W/v/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+          python -m http.server 18764 --bind 127.0.0.1 --directory "$W/A" >"$W/out/http-A.log" 2>&1 & a=$!
+          python -m http.server 18765 --bind 127.0.0.1 --directory "$W/B" >"$W/out/http-B.log" 2>&1 & b=$!
+          trap 'kill "$a" "$b" 2>/dev/null || true' EXIT
+          for port in 18764 18765; do curl -fsS --retry 8 --retry-connrefused "http://127.0.0.1:$port/HONRO.html" -o /dev/null; done
+          "$V" "$T/capture.py" "$W"
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage44-west-depth-342a-exact-save-safe-no-deploy
+          path: ${{ runner.temp }}/stage44-west-depth-r9/out/
+          if-no-files-found: warn
+          retention-days: 7
