@@ -1,0 +1,53 @@
+name: HONRO Stage32 R10 art and genuine archived/current save compatibility no-deploy
+on:
+  push:
+    branches: [qa/stage32-r10-save-remediation-no-deploy-r2]
+    paths: [".github/workflows/stage32-r10-save-remediation.yml", "tools/stage32-r10-save/**"]
+permissions:
+  contents: read
+jobs:
+  one-build:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage32-r10-save-remediation-no-deploy-r2'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 31
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: One real normal B and exact R10 art, historic files and registry fences
+        run: |
+          set -euo pipefail
+          W="$RUNNER_TEMP/stage32-r10-save"; mkdir "$W" "$W/out"; echo "W=$W" >> "$GITHUB_ENV"
+          T="$GITHUB_WORKSPACE/tools/stage32-r10-save"
+          python "$T/guard.py" pre "$W"
+          (cd "$W/B"; npm ci >"$W/out/npm.log" 2>&1; npm ci --prefix game >"$W/out/npm-game.log" 2>&1; npm run build >"$W/out/build.log" 2>&1; npm run test:production-contract >"$W/out/production-contract.log" 2>&1)
+          python "$T/guard.py" observe "$W"
+      - name: Real normal authored A/B, then actual saves and cold checkpoints PC and mobile
+        run: |
+          set -euo pipefail
+          T="$GITHUB_WORKSPACE/tools/stage32-r10-save"
+          python -m venv "$W/v"; V="$W/v/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+          python -m http.server 18843 --bind 127.0.0.1 --directory "$W/B" >"$W/out/http-B.log" 2>&1 & b=$!
+          python -m http.server 18844 --bind 127.0.0.1 --directory "$W/H" >"$W/out/http-H.log" 2>&1 & h=$!
+          python -m http.server 18845 --bind 127.0.0.1 --directory "$W/A" >"$W/out/http-A-archive.log" 2>&1 & a=$!
+          trap 'kill "$a" "$b" "$h" 2>/dev/null || true' EXIT
+          for port in 18843 18844 18845; do curl -fsS --retry 8 --retry-connrefused "http://127.0.0.1:$port/HONRO.html" -o /dev/null; done
+          had_failure=0
+          "$V" "$T/resume.py" "$W" || had_failure=1
+          "$V" "$T/capture.py" "$W" || had_failure=1
+          test "$had_failure" = 0
+      - if: always() && env.W != ''
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage32-r10-save-remediation-no-deploy-r2
+          path: ${{ env.W }}/out/
+          retention-days: 7
+          if-no-files-found: warn
