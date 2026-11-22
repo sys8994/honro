@@ -1,0 +1,39 @@
+name: HONRO Stage33 public old and current resume readback
+on:
+  push:
+    branches: [qa/stage33-provider-public-readback-20261122]
+    paths: [".github/workflows/stage33-saved-provider-public.yml", "tools/stage33-saved-provider-public/**"]
+permissions:
+  contents: read
+jobs:
+  read-public:
+    if: github.repository == 'sys8994/honro' && github.ref == 'refs/heads/qa/stage33-provider-public-readback-20261122'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 14
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Exact public consumer evidence only, no build or profile of real user
+        run: |
+          set -euo pipefail
+          W="$RUNNER_TEMP/stage33-saved-provider-public"; mkdir "$W" "$W/out"; echo "W=$W" >> "$GITHUB_ENV"
+          T="$GITHUB_WORKSPACE/tools/stage33-saved-provider-public"
+          python "$T/guard.py" "$W"
+          python -m venv "$W/v"; V="$W/v/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0
+          "$V" -m playwright install --with-deps chromium
+          python -m http.server 18844 --bind 127.0.0.1 --directory "$W/A" >"$W/out/http-historic.log" 2>&1 &
+          a=$!; trap 'kill "$a" 2>/dev/null || true' EXIT
+          curl -fsS --retry 8 --retry-connrefused 'http://127.0.0.1:18844/HONRO.html' -o /dev/null
+          "$V" "$T/capture.py" "$W"
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage33-save-hotfix-public-exact-resume-evidence
+          path: ${{ runner.temp }}/stage33-saved-provider-public/out/
+          if-no-files-found: warn
+          retention-days: 7

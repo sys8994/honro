@@ -1,0 +1,246 @@
+{
+  "enabled": true,
+  "qaRef": "refs/heads/qa/stage33-provider-public-readback-20261122",
+  "head": "733d5d212d5ab235c2b492e1f065306bdfaae317",
+  "tree": "276e54e1ca08d32d3b290097c9a05e91e9ab0ecd",
+  "manifest": {
+    "bytes": 7994676,
+    "sha256": "8d6f1debdb956b1f2c92c8a6808707aab7e1db98ddbfbc9ce2ffbffaed9322d1",
+    "git": "10d3c091c96dccbc2a92bbe4434a00f128abb56e"
+  },
+  "old": "c60fca57d223ecb3e62afc86c4755774c2b68263",
+  "oldShell": {
+    "bytes": 17379,
+    "sha256": "03ebb2c1bfaefa36f5f54f1f9946455d323ec2bd79c6b267613acf77bdf8fec3",
+    "git": "6627b75ed1afb82345a0c031cb601555cea00f64"
+  },
+  "sourceBefore": {
+    "bytes": 25141,
+    "sha256": "0a862a41bbd36985a6c201be67df4398aa4ddb5a5ee949dfaad83571edfe0ae5",
+    "git": "24f491b8253abf2e86dbabd5bc7111b701058c0a"
+  },
+  "sourceCandidate": {
+    "bytes": 26381,
+    "sha256": "af7127bf65e1e9e7a21ffe52c90a45328eaf2851708a2ba61d8aac31fa8793cd",
+    "git": "a5ac12ef4de8b2370fcbca1457b86a0c6e2d758c"
+  },
+  "observer": {
+    "bytes": 5555,
+    "sha256": "7c64522c0c84866e0d2516ca18ed81e12a9f7b348a26fa49fb40f9516a29a24a",
+    "git": "9a006159a486663144950cf69fae3f4fd9c41ff3"
+  },
+  "oldTable": "web/runtime/ordered-common-12.538fbca4939d645e.js",
+  "oldTableGit": "45ec91b92b1809730bff530b253703d1197dc7eb",
+  "map": "web/data/chapter-33.80ca32475be181c7.json",
+  "oldPacket": "web/data/chapter-33-assets.07b129345eb95856.json",
+  "newPacket": "web/data/chapter-33-assets.920ccd84eb69a553.json",
+  "previousPeer0": "web/runtime/ordered-common-17.93673f3a14672979.js",
+  "oldEntry": "web/entries/game.b1321855b16bc549.js",
+  "oldCampaign": "web/data/campaign.36b3008756d1c3a5.json",
+  "oldWrapper": "web/runtime/campaign.add23c14682508f8.js",
+  "currentClinicalMap": {
+    "bytes": 34235,
+    "sha256": "80ca32475be181c7774c305b442c8081b6341836fb8d08771e033b7fb79e1464"
+  },
+  "rows": {
+    "act4-sideview:33:coastal-v2:west-continuous-geology": {
+      "stage": 33,
+      "previous": "862760:4666d3c8",
+      "current": "864135:d1152e99"
+    },
+    "act4-sideview:33:coastal-v2:lowland": {
+      "stage": 33,
+      "previous": "743870:a3735931",
+      "current": "745366:5d4bce0d"
+    }
+  },
+  "pose": {
+    "actual": {
+      "x": 7232,
+      "y": 2304,
+      "scale": 0.21176470588235294
+    },
+    "viewport": {
+      "left": 3832,
+      "right": 10632,
+      "top": 487.8628472222222,
+      "bottom": 4120.137152777777
+    },
+    "backing": [
+      1440,
+      769
+    ]
+  },
+  "release": {
+    "head": "342a7aa03f7244db9663315ceac596f307dac06e",
+    "tree": "2e2ca3058bb2b4b4528b5e46394fcf30d55c8f32",
+    "manifest": {
+      "bytes": 8163953,
+      "sha256": "9a948a748ba3f8ce95a25489729cefb3cefb94d26a999e76db5debc4ae8558b2",
+      "git": "a6b659e6dba284a924deb2cdbac2681685418421"
+    },
+    "pagesRun": 45027512069,
+    "pagesJob": 137224104334,
+    "pagesUTC": "2026-11-22T13:28:57Z"
+  },
+  "normal": {
+    "run": 45026778432,
+    "job": 137221425617,
+    "artifact": 14756481271,
+    "head": "4bf2f9457c0de91805131c83336cae3dd711bd71",
+    "sha256": "3fe809b92f81b0b51f5e54eac568797371879b0db1c27f693f0079569153b81b"
+  },
+  "graph": {
+    "add": [
+      "web/entries/game.2662b5c41e95ed19.js",
+      "web/entries/game.fd32258991427fc1.html",
+      "web/entries/workshop.51b020dbf759e7f3.js",
+      "web/runtime/ordered-common-12.8f69d8c7c4cc0d42.js"
+    ],
+    "removed": [
+      "web/entries/game.562d9dddf1932b73.js",
+      "web/entries/game.5966481088b9f377.html",
+      "web/entries/workshop.3531b6c39295c4f3.js",
+      "web/runtime/ordered-common-12.538fbca4939d645e.js"
+    ],
+    "peers": {
+      "21": {
+        "web/data/chapter-21.724a765a85d437a2.json": {
+          "bytes": 67494,
+          "sha256": "724a765a85d437a24ea9437ba300f5602282abda9ecbd190074a7d25b8b1c51b"
+        },
+        "web/data/chapter-21-assets.195e73632de8b164.json": {
+          "bytes": 688805,
+          "sha256": "195e73632de8b16431e39ac63f87eed9ad1ea538a47dcc0d980e4a0e1c624e67"
+        }
+      },
+      "32": {
+        "web/data/chapter-32.f242630da616ee32.json": {
+          "bytes": 21111,
+          "sha256": "f242630da616ee32bbeaa0f13d64e7c800976e6928d25b5c588a2286e913968a"
+        },
+        "web/data/chapter-32-assets-parts.11bb98c0e02b14b3.json": {
+          "bytes": 444,
+          "sha256": "11bb98c0e02b14b3c98d4296f2469a843df73148361120e6b0973d572ca46789"
+        },
+        "web/data/chapter-32-assets-part-000.9ee023cdeb2b8afc.bin": {
+          "bytes": 4194304,
+          "sha256": "9ee023cdeb2b8afc6528695ce8cb993758ccce8636edadd4dfc77adece2a90a1"
+        },
+        "web/data/chapter-32-assets-part-001.04b03685e0328118.bin": {
+          "bytes": 3805125,
+          "sha256": "04b03685e03281184b2f61ed8087bcd749860b656051ef616ffbbfa42ccf4cbf"
+        }
+      },
+      "33": {
+        "web/data/chapter-33.80ca32475be181c7.json": {
+          "bytes": 34235,
+          "sha256": "80ca32475be181c7774c305b442c8081b6341836fb8d08771e033b7fb79e1464"
+        },
+        "web/data/chapter-33-assets.920ccd84eb69a553.json": {
+          "bytes": 2861056,
+          "sha256": "920ccd84eb69a5534b16e76ac27bb6df1d1c04fba0b2c5fff409057d6119d55b"
+        }
+      },
+      "42": {
+        "web/data/chapter-42.0802015e8ba99d11.json": {
+          "bytes": 12647,
+          "sha256": "0802015e8ba99d11a8ece1f14186b3db6a4a7d3d32076e64ca120300f50c7f50"
+        },
+        "web/data/chapter-42-assets.396ec98508d5b8c8.json": {
+          "bytes": 1864856,
+          "sha256": "396ec98508d5b8c828a8d0bbf24c2f6cac1a734a55989db3f3d3fcc1d80bb1df"
+        }
+      }
+    },
+    "oldCommon": "web/runtime/ordered-common-12.538fbca4939d645e.js",
+    "newCommon": "web/runtime/ordered-common-12.8f69d8c7c4cc0d42.js",
+    "currentEntry": "web/entries/game.2662b5c41e95ed19.js",
+    "currentProject": "web/data/campaign.0386fa9451fe2427.json",
+    "unchangedOutsideRegistry": true,
+    "sha": {
+      "bytes": 72445,
+      "sha256": "8f69d8c7c4cc0d422c021a5864a4fb12fb2652bfb5aced7f0463fd91bf78c64f"
+    },
+    "base": "733d5d212d5ab235c2b492e1f065306bdfaae317"
+  },
+  "oldRoutes": {
+    "web/entries/game.b1321855b16bc549.js": {
+      "bytes": 20483,
+      "sha256": "b1321855b16bc54988ea55800f2699c8bd345a713b588f474c63c1ca28f9df3b"
+    },
+    "web/runtime/campaign.add23c14682508f8.js": {
+      "bytes": 527,
+      "sha256": "add23c14682508f80102ebc5df411499dccc5533a561a1c3654567236b2a861c"
+    },
+    "web/data/campaign.36b3008756d1c3a5.json": {
+      "bytes": 55011,
+      "sha256": "36b3008756d1c3a51985e2b3ab34d2edd0643eea97fb49a5dc7475907455e3e1"
+    },
+    "web/data/chapter-33-assets.07b129345eb95856.json": {
+      "bytes": 2858185,
+      "sha256": "07b129345eb9585651bb4d8a74411c8ec30ac3d5b3736ca7849e39abfa7ffe00"
+    },
+    "web/data/chapter-33.80ca32475be181c7.json": {
+      "bytes": 34235,
+      "sha256": "80ca32475be181c7774c305b442c8081b6341836fb8d08771e033b7fb79e1464"
+    }
+  },
+  "normalReference": {
+    "rawPC": {
+      "bytes": 952116,
+      "sha256": "3fd520b70b3478edbdff52eca76ee888a8b0b7c4f6853aae4fe4907b4e33c5dd"
+    },
+    "rawM": {
+      "bytes": 346854,
+      "sha256": "bf8564bba8bb61ecab1b5ac5a39fe321c462962c4aab8ee208af59f4fac6cd01"
+    },
+    "oldRefs": {
+      "act4-sideview:33:coastal-v2:west-continuous-geology": "862760:4666d3c8",
+      "act4-sideview:33:coastal-v2:lowland": "743870:a3735931"
+    },
+    "currentRefs": {
+      "act4-sideview:33:coastal-v2:west-continuous-geology": "864135:d1152e99",
+      "act4-sideview:33:coastal-v2:lowland": "745366:5d4bce0d"
+    },
+    "revision": 5,
+    "terrain": "24775a2c24d1330310b3955270df7aee15289a131bc0c54fced3ec38f0996277",
+    "units": "891012edd6b89a25316564e56b17abcf85b96a21f3dbf31eb3bf956106662975",
+    "posePC": {
+      "actual": {
+        "x": 7232,
+        "y": 2304,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": 3832,
+        "right": 10632,
+        "top": 487.8628472222222,
+        "bottom": 4120.137152777777
+      },
+      "backing": [
+        1440,
+        769
+      ]
+    },
+    "poseM": {
+      "actual": {
+        "x": 7232,
+        "y": 2304,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": 3832,
+        "right": 10632,
+        "top": -3341.8253205128203,
+        "bottom": 7949.82532051282
+      },
+      "backing": [
+        390,
+        648
+      ]
+    }
+  },
+  "requiredRows": 810,
+  "retainedURLs": 1390
+}
