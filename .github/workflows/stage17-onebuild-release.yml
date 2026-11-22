@@ -1,0 +1,35 @@
+name: HONRO Stage17 verified build to fixed release branch
+on:
+  push:
+    branches: [qa/stage17-onebuild-writer-r3]
+    paths:
+      - '.github/workflows/stage17-onebuild-release.yml'
+      - 'tools/stage17-onebuild-release/**'
+permissions:
+  actions: read
+  contents: write
+jobs:
+  fixed-release-branch:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage17-onebuild-writer-r3'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Authenticate normal QA and download exact previously built payload
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          D="$RUNNER_TEMP/stage17-release"
+          mkdir "$D"
+          python -B tools/stage17-onebuild-release/reuse.py download "$D"
+      - name: Preserve prior public URLs and forward only the fixed release branch
+        run: |
+          set -euo pipefail
+          bash tools/stage17-onebuild-release/safe-push.sh "$RUNNER_TEMP/stage17-release"
