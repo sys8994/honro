@@ -1,0 +1,136 @@
+{
+  "repo": "sys8994/honro",
+  "qaRef": "refs/heads/qa/stage23-west-onebuild-writer-d3d92d",
+  "releaseRef": "refs/heads/release/act3-stage23-west-20261122",
+  "scopeApproval": "Root reviewed exact official Stage23 west only and approved this art scope; no master or Pages from this writer; protected upper transition remains",
+  "base": {
+    "head": "d3d92dbbaf7e3482964a6f02b89552ab08d91f52",
+    "tree": "f5a2f36c09524d2d755a30309293726c8886690a",
+    "manifest": {
+      "git": "9078ed83bad071d5d98bd6fdeaa4b23f97016af1",
+      "bytes": 7308416,
+      "sha256": "034d365bd05976bdea313fee3cb806bdcb7e7d3ff5cb72d70d30371fdc7ee5b6"
+    },
+    "pagesRun": 44973786185,
+    "pagesJob": 137059396875,
+    "publishedAt": "2026-11-22T01:58:52Z",
+    "active": 810,
+    "registry": 1349,
+    "retainerGit": "8374336b53c74ac81e6d32f5aa43eee575e61daa",
+    "policyGit": "16687b0fc38e432a7d66a015ddf3ebe744163a06"
+  },
+  "qa": {
+    "run": 44977267432,
+    "job": 137069846624,
+    "head": "654ee42d99b8a7e83d8cacd5451b786374b278f7",
+    "tree": "a5d6cc6adbcc7c2ef3b5c432c328314988aea13d",
+    "branch": "qa/stage23-west-normal-small-d3d92d",
+    "artifact": 14735444348,
+    "name": "honro-stage23-west-normal-ab-no-deploy",
+    "outer": {
+      "bytes": 4139355,
+      "sha256": "3f7bceb68fdc5f567495b9223916bc88d6789aee58bf14e406f4ac81a5997a1d"
+    }
+  },
+  "outerMembers": [
+    "A-s23-1440x900-southwest-dom.png",
+    "A-s23-1440x900-southwest-raw.png",
+    "A-s23-1440x900-west-dom.png",
+    "A-s23-1440x900-west-raw.png",
+    "A-s23-390x844-southwest-dom.png",
+    "A-s23-390x844-southwest-raw.png",
+    "A-s23-390x844-west-dom.png",
+    "A-s23-390x844-west-raw.png",
+    "B-generated-pass-pending-art/B-PASS-PENDING-ART-EXACT-NORMAL-GENERATED-NO-DEPLOY.zip",
+    "B-generated-pass-pending-art/SEAL.json",
+    "B-s23-1440x900-southwest-dom.png",
+    "B-s23-1440x900-southwest-raw.png",
+    "B-s23-1440x900-west-dom.png",
+    "B-s23-1440x900-west-raw.png",
+    "B-s23-390x844-southwest-dom.png",
+    "B-s23-390x844-southwest-raw.png",
+    "B-s23-390x844-west-dom.png",
+    "B-s23-390x844-west-raw.png",
+    "BROWSER.json",
+    "GRAPH.json",
+    "SOURCE.json",
+    "build.log",
+    "http-A.log",
+    "http-B.log",
+    "npm-game.log",
+    "npm-root.log",
+    "production-contract.log"
+  ],
+  "receipts": {
+    "BROWSER.json": {
+      "bytes": 325267,
+      "sha256": "47e1bf35a3e5431d3a9121d160c74b61e94c0250cb86d2f8d516e1c987339d8a"
+    },
+    "GRAPH.json": {
+      "bytes": 283988,
+      "sha256": "902c93ffffd2cc663868e3c0340a225a805926c338726c46d33654bed47f2bd7"
+    },
+    "SOURCE.json": {
+      "bytes": 705,
+      "sha256": "745f4bcb77e64163078e636aa19ddf749f2dca05323f54515e154742eec9c63e"
+    },
+    "B-generated-pass-pending-art/SEAL.json": {
+      "bytes": 2407,
+      "sha256": "54dc14e12052fb1e112ccdb3da70967f8780988905bc73d4d8bb1d632c0cdeb9"
+    }
+  },
+  "innerPath": "B-generated-pass-pending-art/B-PASS-PENDING-ART-EXACT-NORMAL-GENERATED-NO-DEPLOY.zip",
+  "sealPath": "B-generated-pass-pending-art/SEAL.json",
+  "generated": {
+    "HONRO.html": {
+      "bytes": 17379,
+      "sha256": "e0d3da428ad575944ebc2b7fb182cdcc3d9f83583dd344d32a853b352de242dd",
+      "git": "b8fb8dbba81459c7817f1fab013a7dece4acfa88"
+    },
+    "HONRO_WORKSHOP.html": {
+      "bytes": 4011,
+      "sha256": "ba759399915bf56c68c9c6e80ee6521f850a204c20c10133ed3efd9015304aa9",
+      "git": "6d2d088857e0a625e7d5600cfe56495a93c9b7f3"
+    },
+    "index.html": {
+      "bytes": 17379,
+      "sha256": "e0d3da428ad575944ebc2b7fb182cdcc3d9f83583dd344d32a853b352de242dd",
+      "git": "b8fb8dbba81459c7817f1fab013a7dece4acfa88"
+    },
+    "web/entries/game.60299947c5f1a28f.js": {
+      "bytes": 20483,
+      "sha256": "60299947c5f1a28f195ccdd43d348c226c1c67b2ca4a45648b7e21899bd52ec0",
+      "git": "110229bc9eb0d0191ab786289f444a748fd669f8"
+    },
+    "web/entries/game.c5adb21d9fbb722a.html": {
+      "bytes": 11318,
+      "sha256": "c5adb21d9fbb722a6429cf111613369944e03aec424170a7888f7e199817516f",
+      "git": "c9bfa28845ad28c15a030965ff23d8d69430bda6"
+    },
+    "web/entries/workshop.8fd13933470c4bd1.js": {
+      "bytes": 16706,
+      "sha256": "8fd13933470c4bd142226633e89cfe3715ad38fd8680132ac3887e0ce1044636",
+      "git": "0390f2f7dc9bbc3789081a5235baa09da31a433f"
+    },
+    "web/manifest.json": {
+      "bytes": 7107369,
+      "sha256": "7e1a5c8e857a1e0fba556bcfa7cb8dd1dc89e9527f32b925fcef2328ddc1de33",
+      "git": "5da2f4a90127b33f8f39e80385e3762bd1779a77"
+    },
+    "web/runtime/ordered-common-17.08ee20a4002559b5.js": {
+      "bytes": 110795,
+      "sha256": "08ee20a4002559b5e59adb7558c30f565e3cff0327b0daa8b889cd89df4a7cd1",
+      "git": "90ad6b36e9de125a2cef2d1fb3fdf2b71e457756"
+    }
+  },
+  "nested": {
+    "bytes": 1935082,
+    "sha256": "1c7d7bf9853d59cd1cfefb4fa91c48988959120bdfb94c4ad7217106e64b36c3"
+  },
+  "source": {
+    "path": "shared/runtime/act3-handoff-art.js",
+    "old": "234cc3908cdabe4ddce36d63bc46dd49b1b3d621",
+    "new": "511447643bdaae42bb17f92976c7d1b5808ce93e",
+    "sha256": "ad7f1e23f93af55203d0177b4fbd7edf3a1ae471e3743746eb4b8de04d6d7ffe"
+  }
+}

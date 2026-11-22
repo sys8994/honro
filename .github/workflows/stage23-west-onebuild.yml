@@ -1,0 +1,37 @@
+name: HONRO Stage23 West exact previously-built writer
+on:
+  push:
+    branches: [qa/stage23-west-onebuild-writer-d3d92d]
+    paths: [.github/workflows/stage23-west-onebuild.yml, tools/stage23-west-onebuild/**]
+permissions:
+  contents: write
+  actions: read
+jobs:
+  fixed-release-branch:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage23-west-onebuild-writer-d3d92d'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: true
+          fetch-depth: 0
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Authenticate sealed B and prior Pages without rebuilding
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 -B tools/stage23-west-onebuild/writer.py acquire "$RUNNER_TEMP/stage23-release"
+      - name: Assemble and ordinary-forward only the signed candidate release ref
+        run: bash tools/stage23-west-onebuild/safe-push.sh "$RUNNER_TEMP/stage23-release"
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage23-west-onebuild-assembly-receipt
+          path: |
+            ${{ runner.temp }}/stage23-release/ASSEMBLY.json
+            ${{ runner.temp }}/stage23-release/candidate.sha
+            ${{ runner.temp }}/stage23-release/hook
+          if-no-files-found: warn
+          retention-days: 7
