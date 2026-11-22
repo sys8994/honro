@@ -1,0 +1,45 @@
+name: Stage46 exact sample Chromium raster attribution no deploy
+on:
+  push:
+    branches: [qa/stage46-browser-raster-f6-r4]
+    paths: [".github/workflows/stage46-browser-raster.yml", "tools/stage46-browser-raster/**"]
+permissions:
+  contents: read
+jobs:
+  native-isolate:
+    if: ${{ true && github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage46-browser-raster-f6-r4' }}
+    runs-on: ubuntu-22.04
+    timeout-minutes: 17
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+          fetch-depth: 2
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Verify exact f6 parent and scoped A E B source custody
+        run: |
+          set -euo pipefail
+          W=$(mktemp -d "$RUNNER_TEMP/stage46-browser-raster.XXXXXX")
+          mkdir "$W/out"; echo "W=$W" >> "$GITHUB_ENV"
+          node tools/stage46-browser-raster/prepare.mjs "$GITHUB_WORKSPACE" "$W"
+      - name: Offline signed-coordinate native Chromium Canvas
+        run: |
+          set -euo pipefail
+          PY=$(find "${RUNNER_TOOL_CACHE}/Python" -maxdepth 4 -type f -path '*/3.12.*/x64/bin/python3.12' | sort -V | tail -1)
+          test -n "$PY"
+          "$PY" -m venv "$W/venv"
+          V="$W/venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0 numpy==2.2.6
+          "$V" -m playwright install --with-deps chromium
+          "$V" tools/stage46-browser-raster/capture.py "$GITHUB_WORKSPACE" "$W"
+      - if: always() && env.W != ''
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: stage46-browser-raster-attribution-no-deploy
+          path: ${{ env.W }}/out/
+          retention-days: 7
+          if-no-files-found: warn
