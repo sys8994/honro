@@ -1,0 +1,627 @@
+{
+  "enabled": true,
+  "repo": "sys8994/honro",
+  "qaRef": "refs/heads/qa/stage33-save-hotfix-writer-733",
+  "releaseRef": "refs/heads/release/act4-stage33-preserve-saves-20261122",
+  "scopeApproval": "Validated actual 733 and c60-origin legitimate Stage33 saved continuation, protected current stage data and rejected wrong stage/signatures. Exact registry-only emergency repair.",
+  "base": {
+    "head": "733d5d212d5ab235c2b492e1f065306bdfaae317",
+    "tree": "276e54e1ca08d32d3b290097c9a05e91e9ab0ecd",
+    "manifest": {
+      "bytes": 7994676,
+      "sha256": "8d6f1debdb956b1f2c92c8a6808707aab7e1db98ddbfbc9ce2ffbffaed9322d1",
+      "git": "10d3c091c96dccbc2a92bbe4434a00f128abb56e"
+    },
+    "pagesRun": 45023608854,
+    "pagesJob": 137212114253,
+    "publishedAt": "2026-11-22T12:43:41Z",
+    "active": 810,
+    "registry": 1386,
+    "retainerGit": "8374336b53c74ac81e6d32f5aa43eee575e61daa",
+    "policyGit": "16687b0fc38e432a7d66a015ddf3ebe744163a06"
+  },
+  "qa": {
+    "run": 45026778432,
+    "job": 137221425617,
+    "head": "4bf2f9457c0de91805131c83336cae3dd711bd71",
+    "tree": "4086b654ec26a4bf5c97e5f306e0206fec6c710c",
+    "branch": "qa/stage33-provider-hotfix-733d5d2",
+    "artifact": 14756481271,
+    "outer": {
+      "bytes": 5965434,
+      "sha256": "3fe809b92f81b0b51f5e54eac568797371879b0db1c27f693f0079569153b81b"
+    },
+    "name": "honro-stage33-provider-saved-resume-normal-evidence",
+    "jobName": "one-build"
+  },
+  "source": {
+    "path": "shared/build.mjs",
+    "old": "24f491b8253abf2e86dbabd5bc7111b701058c0a",
+    "new": "a5ac12ef4de8b2370fcbca1457b86a0c6e2d758c",
+    "sha256": "af7127bf65e1e9e7a21ffe52c90a45328eaf2851708a2ba61d8aac31fa8793cd",
+    "identity": {
+      "bytes": 26381,
+      "sha256": "af7127bf65e1e9e7a21ffe52c90a45328eaf2851708a2ba61d8aac31fa8793cd",
+      "git": "a5ac12ef4de8b2370fcbca1457b86a0c6e2d758c"
+    }
+  },
+  "generated": {
+    "HONRO.html": {
+      "bytes": 17379,
+      "sha256": "f4134a5d5cb7dbe6c157688f1f0f0dc878cc4cb2cf9403f2b4980e00793e22da",
+      "git": "ca8ce533c3a6214c53d954c5cb2ebd55a2da53d3"
+    },
+    "HONRO_WORKSHOP.html": {
+      "bytes": 4011,
+      "sha256": "e17d39c2c0daa0cd5170d67abfc9ee9e2e009dce035475fcaa28318ec9ed8ff8",
+      "git": "68db7596136b89bcaa5e92914095ab21d6158449"
+    },
+    "index.html": {
+      "bytes": 17379,
+      "sha256": "f4134a5d5cb7dbe6c157688f1f0f0dc878cc4cb2cf9403f2b4980e00793e22da",
+      "git": "ca8ce533c3a6214c53d954c5cb2ebd55a2da53d3"
+    },
+    "web/entries/game.2662b5c41e95ed19.js": {
+      "bytes": 20483,
+      "sha256": "2662b5c41e95ed196fed1372dce47717a5534a3181d38d78ab5f7c504d6ac759",
+      "git": "823c84e9726bad7cefd995d1388494057c9e1c14"
+    },
+    "web/entries/game.fd32258991427fc1.html": {
+      "bytes": 11318,
+      "sha256": "fd32258991427fc140d5c528b02dee3e29531a5cd47714ba9be4251131f189d2",
+      "git": "0918334fd404fc37c7b3ee09c5ce60da781fdf59"
+    },
+    "web/entries/workshop.51b020dbf759e7f3.js": {
+      "bytes": 16706,
+      "sha256": "51b020dbf759e7f3074e94e656dd8203a1f1a7c4c91cb4af0a83b6c7f2711682",
+      "git": "840fd9f81139ffdca2d4b4c8d1ca3bccec2c39aa"
+    },
+    "web/manifest.json": {
+      "bytes": 7945012,
+      "sha256": "f5d651427b9dd7d60836466be4fa6e3aff3ff513f5c8e83c29b11cef6f34c420",
+      "git": "0d5bd52914016ffbd82a47462510deff3f5667ba"
+    },
+    "web/runtime/ordered-common-12.8f69d8c7c4cc0d42.js": {
+      "bytes": 72445,
+      "sha256": "8f69d8c7c4cc0d422c021a5864a4fb12fb2652bfb5aced7f0463fd91bf78c64f",
+      "git": "4a62520a42e58ef0314c0ecd5eed85ef5d7d8802"
+    }
+  },
+  "receipts": {
+    "BROWSER.json": {
+      "bytes": 12065,
+      "sha256": "c4f1625e83f97870f3071a9e39d5594080072bd3688cb6ca5539251007e80db4"
+    },
+    "GRAPH.json": {
+      "bytes": 2761,
+      "sha256": "10452640a52b6b08ffce6caf10b5b81008993ade03b9022a941f133c59ac7183"
+    },
+    "SOURCE.json": {
+      "bytes": 1566,
+      "sha256": "624a0830018dcf99eeeae4cfe76d1742f56b6eb1f8dfddfb783effd4af2426ce"
+    },
+    "SEAL.json": {
+      "bytes": 2519,
+      "sha256": "fcbc40a03cf39bc919547039b6822c98ee27ea8196e8ade8fb040159fb1645af"
+    }
+  },
+  "nested": {
+    "bytes": 2149782,
+    "sha256": "dc4695fa1c7f2b242429ce2e2b5657013be3c0241d1a05b81ae6923bb89cc0df"
+  },
+  "added": [
+    "web/entries/game.2662b5c41e95ed19.js",
+    "web/entries/game.fd32258991427fc1.html",
+    "web/entries/workshop.51b020dbf759e7f3.js",
+    "web/runtime/ordered-common-12.8f69d8c7c4cc0d42.js"
+  ],
+  "displaced": [
+    "web/entries/game.562d9dddf1932b73.js",
+    "web/entries/game.5966481088b9f377.html",
+    "web/entries/workshop.3531b6c39295c4f3.js",
+    "web/runtime/ordered-common-12.538fbca4939d645e.js"
+  ],
+  "activeBuilt": 810,
+  "outerMembers": [
+    "B-STAGE33-SAVE-HOTFIX-NO-DEPLOY.zip",
+    "BROWSER.json",
+    "GRAPH.json",
+    "SEAL.json",
+    "SOURCE.json",
+    "build.log",
+    "candidate-fresh33-raw.png",
+    "candidateFresh-raw.png",
+    "candidateOld-raw.png",
+    "http-A.log",
+    "http-B.log",
+    "npm-game.log",
+    "npm.log",
+    "old-c60-generated-save-raw.png",
+    "production-contract.log"
+  ],
+  "innerPath": "B-STAGE33-SAVE-HOTFIX-NO-DEPLOY.zip",
+  "sealPath": "SEAL.json",
+  "protectedStages": {
+    "21": {
+      "map": "web/data/chapter-21.724a765a85d437a2.json",
+      "packet": "web/data/chapter-21-assets.195e73632de8b164.json",
+      "packetSHA256": "195e73632de8b16431e39ac63f87eed9ad1ea538a47dcc0d980e4a0e1c624e67"
+    },
+    "32": {
+      "map": "web/data/chapter-32.f242630da616ee32.json",
+      "packet": "web/data/chapter-32-assets-parts.11bb98c0e02b14b3.json",
+      "packetSHA256": "11bb98c0e02b14b3c98d4296f2469a843df73148361120e6b0973d572ca46789"
+    },
+    "33": {
+      "map": "web/data/chapter-33.80ca32475be181c7.json",
+      "packet": "web/data/chapter-33-assets.920ccd84eb69a553.json",
+      "packetSHA256": "920ccd84eb69a5534b16e76ac27bb6df1d1c04fba0b2c5fff409057d6119d55b"
+    },
+    "42": {
+      "map": "web/data/chapter-42.0802015e8ba99d11.json",
+      "packet": "web/data/chapter-42-assets.396ec98508d5b8c8.json",
+      "packetSHA256": "396ec98508d5b8c828a8d0bbf24c2f6cac1a734a55989db3f3d3fcc1d80bb1df"
+    }
+  },
+  "approvedSeal": {
+    "status": "PASS_ACTUAL_STAGE33_OLD_NEW_NORMAL_RESUME",
+    "base": "733d5d212d5ab235c2b492e1f065306bdfaae317",
+    "files": {
+      "HONRO.html": {
+        "bytes": 17379,
+        "sha256": "f4134a5d5cb7dbe6c157688f1f0f0dc878cc4cb2cf9403f2b4980e00793e22da",
+        "git": "ca8ce533c3a6214c53d954c5cb2ebd55a2da53d3"
+      },
+      "HONRO_WORKSHOP.html": {
+        "bytes": 4011,
+        "sha256": "e17d39c2c0daa0cd5170d67abfc9ee9e2e009dce035475fcaa28318ec9ed8ff8",
+        "git": "68db7596136b89bcaa5e92914095ab21d6158449"
+      },
+      "index.html": {
+        "bytes": 17379,
+        "sha256": "f4134a5d5cb7dbe6c157688f1f0f0dc878cc4cb2cf9403f2b4980e00793e22da",
+        "git": "ca8ce533c3a6214c53d954c5cb2ebd55a2da53d3"
+      },
+      "shared/build.mjs": {
+        "bytes": 26381,
+        "sha256": "af7127bf65e1e9e7a21ffe52c90a45328eaf2851708a2ba61d8aac31fa8793cd",
+        "git": "a5ac12ef4de8b2370fcbca1457b86a0c6e2d758c"
+      },
+      "web/entries/game.2662b5c41e95ed19.js": {
+        "bytes": 20483,
+        "sha256": "2662b5c41e95ed196fed1372dce47717a5534a3181d38d78ab5f7c504d6ac759",
+        "git": "823c84e9726bad7cefd995d1388494057c9e1c14"
+      },
+      "web/entries/game.fd32258991427fc1.html": {
+        "bytes": 11318,
+        "sha256": "fd32258991427fc140d5c528b02dee3e29531a5cd47714ba9be4251131f189d2",
+        "git": "0918334fd404fc37c7b3ee09c5ce60da781fdf59"
+      },
+      "web/entries/workshop.51b020dbf759e7f3.js": {
+        "bytes": 16706,
+        "sha256": "51b020dbf759e7f3074e94e656dd8203a1f1a7c4c91cb4af0a83b6c7f2711682",
+        "git": "840fd9f81139ffdca2d4b4c8d1ca3bccec2c39aa"
+      },
+      "web/manifest.json": {
+        "bytes": 7945012,
+        "sha256": "f5d651427b9dd7d60836466be4fa6e3aff3ff513f5c8e83c29b11cef6f34c420",
+        "git": "0d5bd52914016ffbd82a47462510deff3f5667ba"
+      },
+      "web/runtime/ordered-common-12.8f69d8c7c4cc0d42.js": {
+        "bytes": 72445,
+        "sha256": "8f69d8c7c4cc0d422c021a5864a4fb12fb2652bfb5aced7f0463fd91bf78c64f",
+        "git": "4a62520a42e58ef0314c0ecd5eed85ef5d7d8802"
+      }
+    },
+    "zip": {
+      "bytes": 2149782,
+      "sha256": "dc4695fa1c7f2b242429ce2e2b5657013be3c0241d1a05b81ae6923bb89cc0df",
+      "git": "ab2d4d1e9fd765ea11a44760c1ed65c869cd550f"
+    },
+    "proof": {
+      "bytes": 12065,
+      "sha256": "c4f1625e83f97870f3071a9e39d5594080072bd3688cb6ca5539251007e80db4",
+      "git": "b1deb63b6947ad0181012c1c43aba47109fa799d"
+    },
+    "graph": {
+      "bytes": 2761,
+      "sha256": "10452640a52b6b08ffce6caf10b5b81008993ade03b9022a941f133c59ac7183",
+      "git": "412309079eed828c9166bb216c5a2e321eecbcc6"
+    },
+    "noDeploy": true
+  },
+  "browserApproval": {
+    "status": "root_exact_pass",
+    "exactParsedReceipt": {
+      "status": "PASS_ACTUAL_STAGE33_OLD_NEW_NORMAL_RESUME",
+      "old": {
+        "save": {
+          "bytes": 111127,
+          "sha256": "2b49108b4a4dc9ffdfa86de493f4b4e8468d4bcdf656e5fa327db385b07a8cd5"
+        },
+        "refs": {
+          "act4-sideview:33:coastal-v2:west-continuous-geology": "862760:4666d3c8",
+          "act4-sideview:33:coastal-v2:lowland": "743870:a3735931"
+        },
+        "revision": 5,
+        "terrainSha": "24775a2c24d1330310b3955270df7aee15289a131bc0c54fced3ec38f0996277",
+        "unitsSha": "891012edd6b89a25316564e56b17abcf85b96a21f3dbf31eb3bf956106662975",
+        "routes": {
+          "web/entries/game.b1321855b16bc549.js": {
+            "bytes": 20483,
+            "sha256": "b1321855b16bc54988ea55800f2699c8bd345a713b588f474c63c1ca28f9df3b"
+          },
+          "web/runtime/campaign.add23c14682508f8.js": {
+            "bytes": 527,
+            "sha256": "add23c14682508f80102ebc5df411499dccc5533a561a1c3654567236b2a861c"
+          },
+          "web/data/campaign.36b3008756d1c3a5.json": {
+            "bytes": 55011,
+            "sha256": "36b3008756d1c3a51985e2b3ab34d2edd0643eea97fb49a5dc7475907455e3e1"
+          },
+          "web/data/chapter-33-assets.07b129345eb95856.json": {
+            "bytes": 2858185,
+            "sha256": "07b129345eb9585651bb4d8a74411c8ec30ac3d5b3736ca7849e39abfa7ffe00"
+          },
+          "web/data/chapter-33.80ca32475be181c7.json": {
+            "bytes": 34235,
+            "sha256": "80ca32475be181c7774c305b442c8081b6341836fb8d08771e033b7fb79e1464"
+          }
+        },
+        "shell": {
+          "bytes": 17379,
+          "sha256": "03ebb2c1bfaefa36f5f54f1f9946455d323ec2bd79c6b267613acf77bdf8fec3"
+        },
+        "errors": [],
+        "capture": {
+          "raw": {
+            "bytes": 943923,
+            "sha256": "912da2f91595bf22e5e6f105a31e539b33845f51e1f3801a40d414177bc0ea44"
+          },
+          "png": "old-c60-generated-save-raw.png",
+          "pose": {
+            "actual": {
+              "x": 7232,
+              "y": 2304,
+              "scale": 0.21176470588235294
+            },
+            "viewport": {
+              "left": 3832,
+              "right": 10632,
+              "top": 487.8628472222222,
+              "bottom": 4120.137152777777
+            },
+            "backing": [
+              1440,
+              769
+            ]
+          }
+        }
+      },
+      "runs": {
+        "candidateOld": {
+          "status": "PASS",
+          "battle": {
+            "stage": 33,
+            "mapId": "stage-33",
+            "revision": 5,
+            "expectedRevision": 5,
+            "phase": "aim",
+            "round": 1,
+            "official": 1,
+            "refs": {
+              "act4-sideview:33:coastal-v2:west-continuous-geology": {
+                "current": "864135:d1152e99",
+                "runtime": [
+                  "864135:d1152e99",
+                  "864135:d1152e99"
+                ]
+              },
+              "act4-sideview:33:coastal-v2:lowland": {
+                "current": "745366:5d4bce0d",
+                "runtime": [
+                  "745366:5d4bce0d",
+                  "745366:5d4bce0d"
+                ]
+              }
+            },
+            "locked": false,
+            "rows": {
+              "act4-sideview:33:coastal-v2:west-continuous-geology": {
+                "stage": 33,
+                "previous": "862760:4666d3c8",
+                "current": "864135:d1152e99"
+              },
+              "act4-sideview:33:coastal-v2:lowland": {
+                "stage": 33,
+                "previous": "743870:a3735931",
+                "current": "745366:5d4bce0d"
+              }
+            },
+            "terrainSha": "24775a2c24d1330310b3955270df7aee15289a131bc0c54fced3ec38f0996277",
+            "unitsSha": "891012edd6b89a25316564e56b17abcf85b96a21f3dbf31eb3bf956106662975"
+          },
+          "errors": [],
+          "capture": {
+            "raw": {
+              "bytes": 952116,
+              "sha256": "3fd520b70b3478edbdff52eca76ee888a8b0b7c4f6853aae4fe4907b4e33c5dd"
+            },
+            "png": "candidateOld-raw.png",
+            "pose": {
+              "actual": {
+                "x": 7232,
+                "y": 2304,
+                "scale": 0.21176470588235294
+              },
+              "viewport": {
+                "left": 3832,
+                "right": 10632,
+                "top": 487.8628472222222,
+                "bottom": 4120.137152777777
+              },
+              "backing": [
+                1440,
+                769
+              ]
+            }
+          },
+          "routes": {
+            "web/data/chapter-33.80ca32475be181c7.json": {
+              "bytes": 34235,
+              "sha256": "80ca32475be181c7774c305b442c8081b6341836fb8d08771e033b7fb79e1464"
+            },
+            "web/data/chapter-33-assets.920ccd84eb69a553.json": {
+              "bytes": 2861056,
+              "sha256": "920ccd84eb69a5534b16e76ac27bb6df1d1c04fba0b2c5fff409057d6119d55b"
+            },
+            "web/runtime/ordered-common-12.8f69d8c7c4cc0d42.js": {
+              "bytes": 72445,
+              "sha256": "8f69d8c7c4cc0d422c021a5864a4fb12fb2652bfb5aced7f0463fd91bf78c64f"
+            }
+          }
+        },
+        "candidateFresh": {
+          "status": "PASS",
+          "battle": {
+            "stage": 33,
+            "mapId": "stage-33",
+            "revision": 5,
+            "expectedRevision": 5,
+            "phase": "aim",
+            "round": 1,
+            "official": 1,
+            "refs": {
+              "act4-sideview:33:coastal-v2:west-continuous-geology": {
+                "current": "864135:d1152e99",
+                "runtime": [
+                  "864135:d1152e99",
+                  "864135:d1152e99"
+                ]
+              },
+              "act4-sideview:33:coastal-v2:lowland": {
+                "current": "745366:5d4bce0d",
+                "runtime": [
+                  "745366:5d4bce0d",
+                  "745366:5d4bce0d"
+                ]
+              }
+            },
+            "locked": false,
+            "rows": {
+              "act4-sideview:33:coastal-v2:west-continuous-geology": {
+                "stage": 33,
+                "previous": "862760:4666d3c8",
+                "current": "864135:d1152e99"
+              },
+              "act4-sideview:33:coastal-v2:lowland": {
+                "stage": 33,
+                "previous": "743870:a3735931",
+                "current": "745366:5d4bce0d"
+              }
+            },
+            "terrainSha": "24775a2c24d1330310b3955270df7aee15289a131bc0c54fced3ec38f0996277",
+            "unitsSha": "891012edd6b89a25316564e56b17abcf85b96a21f3dbf31eb3bf956106662975"
+          },
+          "errors": [],
+          "capture": {
+            "raw": {
+              "bytes": 952116,
+              "sha256": "3fd520b70b3478edbdff52eca76ee888a8b0b7c4f6853aae4fe4907b4e33c5dd"
+            },
+            "png": "candidateFresh-raw.png",
+            "pose": {
+              "actual": {
+                "x": 7232,
+                "y": 2304,
+                "scale": 0.21176470588235294
+              },
+              "viewport": {
+                "left": 3832,
+                "right": 10632,
+                "top": 487.8628472222222,
+                "bottom": 4120.137152777777
+              },
+              "backing": [
+                1440,
+                769
+              ]
+            }
+          },
+          "routes": {
+            "web/data/chapter-33.80ca32475be181c7.json": {
+              "bytes": 34235,
+              "sha256": "80ca32475be181c7774c305b442c8081b6341836fb8d08771e033b7fb79e1464"
+            },
+            "web/data/chapter-33-assets.920ccd84eb69a553.json": {
+              "bytes": 2861056,
+              "sha256": "920ccd84eb69a5534b16e76ac27bb6df1d1c04fba0b2c5fff409057d6119d55b"
+            },
+            "web/runtime/ordered-common-12.8f69d8c7c4cc0d42.js": {
+              "bytes": 72445,
+              "sha256": "8f69d8c7c4cc0d422c021a5864a4fb12fb2652bfb5aced7f0463fd91bf78c64f"
+            }
+          }
+        }
+      },
+      "peerHTTP": {
+        "21": {
+          "web/data/chapter-21.724a765a85d437a2.json": {
+            "current": {
+              "bytes": 67494,
+              "sha256": "724a765a85d437a24ea9437ba300f5602282abda9ecbd190074a7d25b8b1c51b"
+            },
+            "candidate": {
+              "bytes": 67494,
+              "sha256": "724a765a85d437a24ea9437ba300f5602282abda9ecbd190074a7d25b8b1c51b"
+            }
+          },
+          "web/data/chapter-21-assets.195e73632de8b164.json": {
+            "current": {
+              "bytes": 688805,
+              "sha256": "195e73632de8b16431e39ac63f87eed9ad1ea538a47dcc0d980e4a0e1c624e67"
+            },
+            "candidate": {
+              "bytes": 688805,
+              "sha256": "195e73632de8b16431e39ac63f87eed9ad1ea538a47dcc0d980e4a0e1c624e67"
+            }
+          }
+        },
+        "32": {
+          "web/data/chapter-32.f242630da616ee32.json": {
+            "current": {
+              "bytes": 21111,
+              "sha256": "f242630da616ee32bbeaa0f13d64e7c800976e6928d25b5c588a2286e913968a"
+            },
+            "candidate": {
+              "bytes": 21111,
+              "sha256": "f242630da616ee32bbeaa0f13d64e7c800976e6928d25b5c588a2286e913968a"
+            }
+          },
+          "web/data/chapter-32-assets-parts.11bb98c0e02b14b3.json": {
+            "current": {
+              "bytes": 444,
+              "sha256": "11bb98c0e02b14b3c98d4296f2469a843df73148361120e6b0973d572ca46789"
+            },
+            "candidate": {
+              "bytes": 444,
+              "sha256": "11bb98c0e02b14b3c98d4296f2469a843df73148361120e6b0973d572ca46789"
+            }
+          },
+          "web/data/chapter-32-assets-part-000.9ee023cdeb2b8afc.bin": {
+            "current": {
+              "bytes": 4194304,
+              "sha256": "9ee023cdeb2b8afc6528695ce8cb993758ccce8636edadd4dfc77adece2a90a1"
+            },
+            "candidate": {
+              "bytes": 4194304,
+              "sha256": "9ee023cdeb2b8afc6528695ce8cb993758ccce8636edadd4dfc77adece2a90a1"
+            }
+          },
+          "web/data/chapter-32-assets-part-001.04b03685e0328118.bin": {
+            "current": {
+              "bytes": 3805125,
+              "sha256": "04b03685e03281184b2f61ed8087bcd749860b656051ef616ffbbfa42ccf4cbf"
+            },
+            "candidate": {
+              "bytes": 3805125,
+              "sha256": "04b03685e03281184b2f61ed8087bcd749860b656051ef616ffbbfa42ccf4cbf"
+            }
+          }
+        },
+        "33": {
+          "web/data/chapter-33.80ca32475be181c7.json": {
+            "current": {
+              "bytes": 34235,
+              "sha256": "80ca32475be181c7774c305b442c8081b6341836fb8d08771e033b7fb79e1464"
+            },
+            "candidate": {
+              "bytes": 34235,
+              "sha256": "80ca32475be181c7774c305b442c8081b6341836fb8d08771e033b7fb79e1464"
+            }
+          },
+          "web/data/chapter-33-assets.920ccd84eb69a553.json": {
+            "current": {
+              "bytes": 2861056,
+              "sha256": "920ccd84eb69a5534b16e76ac27bb6df1d1c04fba0b2c5fff409057d6119d55b"
+            },
+            "candidate": {
+              "bytes": 2861056,
+              "sha256": "920ccd84eb69a5534b16e76ac27bb6df1d1c04fba0b2c5fff409057d6119d55b"
+            }
+          }
+        },
+        "42": {
+          "web/data/chapter-42.0802015e8ba99d11.json": {
+            "current": {
+              "bytes": 12647,
+              "sha256": "0802015e8ba99d11a8ece1f14186b3db6a4a7d3d32076e64ca120300f50c7f50"
+            },
+            "candidate": {
+              "bytes": 12647,
+              "sha256": "0802015e8ba99d11a8ece1f14186b3db6a4a7d3d32076e64ca120300f50c7f50"
+            }
+          },
+          "web/data/chapter-42-assets.396ec98508d5b8c8.json": {
+            "current": {
+              "bytes": 1864856,
+              "sha256": "396ec98508d5b8c828a8d0bbf24c2f6cac1a734a55989db3f3d3fcc1d80bb1df"
+            },
+            "candidate": {
+              "bytes": 1864856,
+              "sha256": "396ec98508d5b8c828a8d0bbf24c2f6cac1a734a55989db3f3d3fcc1d80bb1df"
+            }
+          }
+        }
+      },
+      "exactPublic733": {
+        "bytes": 7994676,
+        "sha256": "8d6f1debdb956b1f2c92c8a6808707aab7e1db98ddbfbc9ce2ffbffaed9322d1"
+      },
+      "browser": "151.0.7922.34",
+      "fresh": {
+        "save": {
+          "bytes": 111127,
+          "sha256": "0c71ad0bd8e67730590041cf6c57f04ef7d2bb13f927b70de2a16953d818fb4d"
+        },
+        "refs": {
+          "act4-sideview:33:coastal-v2:west-continuous-geology": "864135:d1152e99",
+          "act4-sideview:33:coastal-v2:lowland": "745366:5d4bce0d"
+        },
+        "revision": 5,
+        "capture": {
+          "raw": {
+            "bytes": 952116,
+            "sha256": "3fd520b70b3478edbdff52eca76ee888a8b0b7c4f6853aae4fe4907b4e33c5dd"
+          },
+          "png": "candidate-fresh33-raw.png",
+          "pose": {
+            "actual": {
+              "x": 7232,
+              "y": 2304,
+              "scale": 0.21176470588235294
+            },
+            "viewport": {
+              "left": 3832,
+              "right": 10632,
+              "top": 487.8628472222222,
+              "bottom": 4120.137152777777
+            },
+            "backing": [
+              1440,
+              769
+            ]
+          }
+        },
+        "errors": []
+      },
+      "negativeControls": {
+        "wrongStage": true,
+        "wrongPrevious": true,
+        "custom": true,
+        "workshop": true,
+        "unofficial": true
+      }
+    }
+  }
+}
