@@ -1,0 +1,146 @@
+{
+  "id": "approved34:lower-natural-mask-v2",
+  "region": [
+    -1264,
+    4762,
+    236
+  ],
+  "exact37Physics": "6d7caa25ce4264cda7f06af01519de7408619d40d721af2c9c50a14e61e1d5f1",
+  "references": {
+    "1-1440x900-southwest-near": {
+      "actual": {
+        "x": -320,
+        "y": 4336,
+        "scale": 0.55
+      },
+      "css": [
+        1440,
+        769.1875
+      ],
+      "backing": [
+        1440,
+        769
+      ]
+    },
+    "1-390x844-southwest-near": {
+      "actual": {
+        "x": -320,
+        "y": 4336,
+        "scale": 0.15
+      },
+      "css": [
+        390,
+        647.609375
+      ],
+      "backing": [
+        390,
+        648
+      ]
+    }
+  },
+  "enabled": true,
+  "release": {
+    "head": "d3d92dbbaf7e3482964a6f02b89552ab08d91f52",
+    "tree": "f5a2f36c09524d2d755a30309293726c8886690a",
+    "manifest": {
+      "bytes": 7308416,
+      "sha256": "034d365bd05976bdea313fee3cb806bdcb7e7d3ff5cb72d70d30371fdc7ee5b6"
+    },
+    "pages": {
+      "head": "d3d92dbbaf7e3482964a6f02b89552ab08d91f52",
+      "branch": "master",
+      "conclusion": "success",
+      "run": 44973786185,
+      "job": 137059396875,
+      "publishedAt": "2026-11-22T01:58:52Z"
+    }
+  },
+  "previousRelease": "bed947dc0a56be8ac0215cb5a2dde75f0408df04",
+  "qaRef": "refs/heads/qa/stage34-sw-tone-public-readback",
+  "normalBuildWire": {
+    "ownerA": "6462b02746cae05fefa0ff8e104c082916f52e7c59238d398aa83bda0f0be0ec",
+    "ownerB": "a9572adc56e66db2724f71409c4adee5005da0e3aaad7a4e2d5b9dc8a9b64e46",
+    "vectorA": "a699a37a68f5a7e008c2302cd8c530f74d145da79f16ea5d20d6d5c0c251a234",
+    "vectorB": "97a19cba7050b50dfbc68352704e5eb3a222497de9cc27d15cda687dd11d9e8f",
+    "packagedA": "3828bd02ec5b054c50b6529c2bfb348dbca98400803b6126ba5be3e68a05deae",
+    "packagedB": "7ecb1182c8dcf88c458e79cb5a15a156a479745deefea96fdfab1047e49d777f"
+  },
+  "newRoute": {
+    "web/data/campaign.ce72ffa30709411b.json": {
+      "bytes": 55011,
+      "sha256": "ce72ffa30709411b93c2c92f9b732fa40b8d22d468ce8ebc6a6016c114ca5420"
+    },
+    "web/data/chapter-34-assets.7ecb1182c8dcf88c.json": {
+      "bytes": 4084492,
+      "sha256": "7ecb1182c8dcf88c458e79cb5a15a156a479745deefea96fdfab1047e49d777f"
+    },
+    "web/entries/game.56742e563fbcc5e3.html": {
+      "bytes": 11318,
+      "sha256": "56742e563fbcc5e3e88de84b12c1538ca6f6d3bd8c26c8cef09bbfbc025fdee2"
+    },
+    "web/entries/game.d30582d39c4cb47b.js": {
+      "bytes": 20483,
+      "sha256": "d30582d39c4cb47ba65e07aa26daa18c30c76d9259afae4c5708ddfaf4dc65fc"
+    },
+    "web/entries/workshop.0ceaed713d1f97fc.js": {
+      "bytes": 16706,
+      "sha256": "0ceaed713d1f97fcc1a65159a01ebe8de869b991a202c2d45a09dbca3789b78f"
+    },
+    "web/runtime/campaign.d42da1857a0e4db9.js": {
+      "bytes": 527,
+      "sha256": "d42da1857a0e4db923103745de0a43c475ed98c204a87cc350e462abe07df726"
+    },
+    "HONRO.html": {
+      "bytes": 17379,
+      "sha256": "82c18166dc1d7c5ad375308fcc1c5cc27faeffd109be053b9941ae8b6fd43a30"
+    },
+    "HONRO_WORKSHOP.html": {
+      "bytes": 4011,
+      "sha256": "9d0b58606603a767ffdfcc6c31ff96a9bf1804a31a2e169dc897b51887016505"
+    },
+    "index.html": {
+      "bytes": 17379,
+      "sha256": "82c18166dc1d7c5ad375308fcc1c5cc27faeffd109be053b9941ae8b6fd43a30"
+    },
+    "web/data/chapter-34.cb39c6d6adc3cef6.json": {
+      "bytes": 27266,
+      "sha256": "cb39c6d6adc3cef6a6ec3ea220e075f8e6476279113d7b1c05953d576deae488"
+    }
+  },
+  "oldRoute": {
+    "web/data/campaign.d38268efbbeea7a8.json": {
+      "bytes": 55011,
+      "sha256": "d38268efbbeea7a80be44da99cd8db99bd13832ca5bfa021cad35647c7a7be3a"
+    },
+    "web/data/chapter-34-assets.3828bd02ec5b054c.json": {
+      "bytes": 4084146,
+      "sha256": "3828bd02ec5b054c50b6529c2bfb348dbca98400803b6126ba5be3e68a05deae"
+    },
+    "web/entries/game.1e54eb473f8afbd9.js": {
+      "bytes": 20483,
+      "sha256": "1e54eb473f8afbd9d6c0bdb7966600210b68d8a6ae24d75a5ce58d5d8db80486"
+    },
+    "web/runtime/campaign.2145747382e11bb7.js": {
+      "bytes": 527,
+      "sha256": "2145747382e11bb76f7eeee3120b4bd45266678f2d1a286a84c9b950e65165a3"
+    },
+    "web/entries/game.a955ebac2dc1deab.html": {
+      "bytes": 11318,
+      "sha256": "a955ebac2dc1deabd1d914f2057704aa404687ca5c2a1402231fb77ce963999f"
+    },
+    "web/entries/workshop.86805d2a3f4be553.js": {
+      "bytes": 16706,
+      "sha256": "86805d2a3f4be55348bd90e3a8ce53094bbfbecfb761eb70f8dce5e24b6e7a96"
+    }
+  },
+  "browserNeeds": [
+    "web/data/campaign.ce72ffa30709411b.json",
+    "web/data/chapter-34-assets.7ecb1182c8dcf88c.json",
+    "web/data/chapter-34.cb39c6d6adc3cef6.json",
+    "web/entries/game.d30582d39c4cb47b.js",
+    "web/runtime/campaign.d42da1857a0e4db9.js"
+  ],
+  "activeCount": 810,
+  "preservedImmutableCount": 1349,
+  "r2StrictGate": "FAIL"
+}
