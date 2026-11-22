@@ -1,0 +1,229 @@
+{
+  "base": "2c4e90ff24d1f5aa5d04f01317caa02f89b8194c",
+  "baseTree": "8d90f1fc6737adb025a5bb092b03462e283297ce",
+  "normalHead": "b5a6b7b60bc769ef304396dcbb945c0ead74a78d",
+  "normalTree": "e73bf992747007c0e82580d14534ffefa8579191",
+  "normalRun": 44965208780,
+  "normalJob": 137032559280,
+  "normalBranch": "qa/stage33-r3-2c4-retained-r2",
+  "normalWorkflow": ".github/workflows/stage33-r3-2c4-retained-r2.yml",
+  "artifact": {
+    "id": 14731427842,
+    "name": "honro-stage33-2c4-r3-retained-r2-evidence-only",
+    "bytes": 96356089,
+    "sha256": "8cef6b0e5b6cfd44dc13c1b29bb1eaf617c2ab8ea2968398eca04ca41e412f44"
+  },
+  "source": {
+    "path": "shared/data/act4/sideview-art/33-coastal-v2.json",
+    "old": "c9c204a0daefb790309b3c7d0917c3e34acf7708",
+    "new": "3ab093ce8cff00efb620d2fed8eae6cc4c732892",
+    "bytes": 1629325,
+    "sha256": "4585577066f5db159605e405d6565795e3e1382df4f30e944ec84ee4c2c6c91a"
+  },
+  "aliases": {
+    "web/data/chapter-33.a7ce91b7d78fb5f8.json": "web/data/chapter-33.80ca32475be181c7.json",
+    "web/data/chapter-33-assets.4b5df185aa59eb42.json": "web/data/chapter-33-assets.07b129345eb95856.json",
+    "web/data/campaign.7140da5d3649e4ab.json": "web/data/campaign.d38268efbbeea7a8.json",
+    "web/runtime/campaign.926544619e01a04a.js": "web/runtime/campaign.2145747382e11bb7.js",
+    "web/entries/game.df8a4c7f1873e38c.js": "web/entries/game.836da0e8342e0031.js",
+    "web/entries/game.aa9f55275c71f3f4.html": "web/entries/game.444c9f8ffd2e0c47.html",
+    "web/entries/workshop.72bdac6f91ac45dd.js": "web/entries/workshop.0a270a5d0d89b6cc.js"
+  },
+  "aliasFacts": {
+    "web/data/chapter-33.80ca32475be181c7.json": {
+      "bytes": 34235,
+      "sha256": "80ca32475be181c7774c305b442c8081b6341836fb8d08771e033b7fb79e1464"
+    },
+    "web/data/chapter-33-assets.07b129345eb95856.json": {
+      "bytes": 2858185,
+      "sha256": "07b129345eb9585651bb4d8a74411c8ec30ac3d5b3736ca7849e39abfa7ffe00"
+    },
+    "web/data/campaign.d38268efbbeea7a8.json": {
+      "bytes": 55011,
+      "sha256": "d38268efbbeea7a80be44da99cd8db99bd13832ca5bfa021cad35647c7a7be3a"
+    },
+    "web/runtime/campaign.2145747382e11bb7.js": {
+      "bytes": 527,
+      "sha256": "2145747382e11bb76f7eeee3120b4bd45266678f2d1a286a84c9b950e65165a3"
+    },
+    "web/entries/game.836da0e8342e0031.js": {
+      "bytes": 20483,
+      "sha256": "836da0e8342e0031dd8d442b7f2cbc803755a9f7e95a89c2526579f69420d395"
+    },
+    "web/entries/game.444c9f8ffd2e0c47.html": {
+      "bytes": 11318,
+      "sha256": "444c9f8ffd2e0c4799f0d41087d2005b2e92593a69bffa21ec7fb930cb1c8dae"
+    },
+    "web/entries/workshop.0a270a5d0d89b6cc.js": {
+      "bytes": 16706,
+      "sha256": "0a270a5d0d89b6ccf9e83afe0b4de867155fc80cf211907f5abb9eb8c71e731b"
+    }
+  },
+  "wire": {
+    "maps": [
+      {
+        "bytes": 34011,
+        "sha256": "a7ce91b7d78fb5f8b0b27a4ea42ce6cf4f54d98556c43176beb87a0789573a5a"
+      },
+      {
+        "bytes": 34235,
+        "sha256": "80ca32475be181c7774c305b442c8081b6341836fb8d08771e033b7fb79e1464"
+      }
+    ],
+    "packets": [
+      {
+        "bytes": 2836956,
+        "sha256": "4b5df185aa59eb42dbb2c46bd21b38ef2ab7134098bc31b3a0b96439dcc7ef73"
+      },
+      {
+        "bytes": 2858185,
+        "sha256": "07b129345eb9585651bb4d8a74411c8ec30ac3d5b3736ca7849e39abfa7ffe00"
+      }
+    ],
+    "ownerCounts": [
+      15,
+      16
+    ],
+    "onlyExtraMapElement": {
+      "id": "act4-sideview:33:coastal-v2:lowland-deep-strata",
+      "assetId": "act4-sideview:33:coastal-v2:lowland-deep-strata",
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "rotation": 0,
+      "snap": false,
+      "depthLayer": "L1",
+      "nativeArtLayer": "surface",
+      "layer": "mid"
+    },
+    "otherPhysicsAndDataExact": true
+  },
+  "normalShellA": {
+    "bytes": 17379,
+    "sha256": "b5696990619f139e6bb239646a8af4a8db0fd8e4e7b0c0d0dc97081588e6219c"
+  },
+  "normalShellB": {
+    "bytes": 17379,
+    "sha256": "7077f09f78aed8beab506111cb5583c074b84fa0400cf4b06ea11639e100757d"
+  },
+  "normalManifestA": {
+    "bytes": 6966363,
+    "sha256": "12b99fa8b1b35c4ed94962c370ff38c6a06597473dc4417b2861ad46d04e0dbc"
+  },
+  "originalActiveCommonFactsDigest": "c293937544e34276cc456754acb186ee2184cd401e693393d8bd3f17c2f91d53",
+  "pages": {
+    "run": 44947732170,
+    "job": 136978995350,
+    "at": "2026-11-21T20:44:40Z"
+  },
+  "enabled": true,
+  "repo": "sys8994/honro",
+  "branch": "qa/stage33-r3-2c4-release-writer-r2",
+  "target": "refs/heads/release/act4-stage33-coastal-end-20261122",
+  "producer": {
+    "branch": "qa/stage33-r3-2c4-release-payload",
+    "workflow": ".github/workflows/stage33-r3-2c4-release-payload.yml",
+    "jobName": "read-only-producer",
+    "artifactName": "honro-stage33-r3-exact-retained-payload-review-only",
+    "run": 44966342948,
+    "job": 137036118521,
+    "head": "c3d68a2e56142a9507d3927155db67776f217616",
+    "tree": "805c7a9c1d703289c229b9426e7119f4074a7bb0",
+    "outerId": 14731921649,
+    "outerBytes": 3768797,
+    "outerHash": "29931acb296b0b78b7864762286ff97969cc1c5252480321d895e52edab73dae",
+    "nestedBytes": 3767335,
+    "nestedHash": "d0423ba493561bd26064c75a0b3b3e485ed4d2385053c4cd9f16ce13a9ce7ea4",
+    "receiptSHA256": "0571bbdc9a40d4d6a282f731161d7495fba4f570e4a684277b2ea495119b1351",
+    "productTree": "7a358923f82235759229bc2622783755c1d483f6"
+  },
+  "files": {
+    "HONRO.html": {
+      "bytes": 17379,
+      "sha256": "7077f09f78aed8beab506111cb5583c074b84fa0400cf4b06ea11639e100757d",
+      "git": "50c7550d69b4e5e197e614ec2a1b88f6662608c8",
+      "change": "M",
+      "mode": "100644"
+    },
+    "HONRO_WORKSHOP.html": {
+      "bytes": 4011,
+      "sha256": "95fee7ad638804eb08c5396db0985768b8a309e8c2a74622e0ea5092a4d2d5ac",
+      "git": "dcab86a6afb1a0cecc3a768146e46cf888a61caf",
+      "change": "M",
+      "mode": "100644"
+    },
+    "index.html": {
+      "bytes": 17379,
+      "sha256": "7077f09f78aed8beab506111cb5583c074b84fa0400cf4b06ea11639e100757d",
+      "git": "50c7550d69b4e5e197e614ec2a1b88f6662608c8",
+      "change": "M",
+      "mode": "100644"
+    },
+    "shared/data/act4/sideview-art/33-coastal-v2.json": {
+      "bytes": 1629325,
+      "sha256": "4585577066f5db159605e405d6565795e3e1382df4f30e944ec84ee4c2c6c91a",
+      "git": "3ab093ce8cff00efb620d2fed8eae6cc4c732892",
+      "change": "M",
+      "mode": "100644"
+    },
+    "web/data/campaign.d38268efbbeea7a8.json": {
+      "bytes": 55011,
+      "sha256": "d38268efbbeea7a80be44da99cd8db99bd13832ca5bfa021cad35647c7a7be3a",
+      "git": "e108dcf043ff7b5ec6b8dc050f95327547d67d53",
+      "change": "A",
+      "mode": "100644"
+    },
+    "web/data/chapter-33-assets.07b129345eb95856.json": {
+      "bytes": 2858185,
+      "sha256": "07b129345eb9585651bb4d8a74411c8ec30ac3d5b3736ca7849e39abfa7ffe00",
+      "git": "427140fce2c4ca104e65dc06f8b1f99a80bd93f1",
+      "change": "A",
+      "mode": "100644"
+    },
+    "web/data/chapter-33.80ca32475be181c7.json": {
+      "bytes": 34235,
+      "sha256": "80ca32475be181c7774c305b442c8081b6341836fb8d08771e033b7fb79e1464",
+      "git": "d160a900c5f3adc357bfa18bc8ae0873e862b1e1",
+      "change": "A",
+      "mode": "100644"
+    },
+    "web/entries/game.444c9f8ffd2e0c47.html": {
+      "bytes": 11318,
+      "sha256": "444c9f8ffd2e0c4799f0d41087d2005b2e92593a69bffa21ec7fb930cb1c8dae",
+      "git": "80a3e17d7020b771da8978d4b4ba7b4b29903be6",
+      "change": "A",
+      "mode": "100644"
+    },
+    "web/entries/game.836da0e8342e0031.js": {
+      "bytes": 20483,
+      "sha256": "836da0e8342e0031dd8d442b7f2cbc803755a9f7e95a89c2526579f69420d395",
+      "git": "2929a70c416818695680262a4c55f94793aea1ff",
+      "change": "A",
+      "mode": "100644"
+    },
+    "web/entries/workshop.0a270a5d0d89b6cc.js": {
+      "bytes": 16706,
+      "sha256": "0a270a5d0d89b6ccf9e83afe0b4de867155fc80cf211907f5abb9eb8c71e731b",
+      "git": "84561d28f7aebdd50f0713e274116e0a037cbd62",
+      "change": "A",
+      "mode": "100644"
+    },
+    "web/manifest.json": {
+      "bytes": 7136167,
+      "sha256": "f3d8ec0e05b0d49303ddc4d505908e81db27ce60d03eebed8bfec0aa25eb8d7c",
+      "git": "aab380833b6e47caf443a91f7f9d4c6fe8a7ac31",
+      "change": "M",
+      "mode": "100644"
+    },
+    "web/runtime/campaign.2145747382e11bb7.js": {
+      "bytes": 527,
+      "sha256": "2145747382e11bb76f7eeee3120b4bd45266678f2d1a286a84c9b950e65165a3",
+      "git": "6a2c2b8c105cb5e85a031e431114e0eba5d7c559",
+      "change": "A",
+      "mode": "100644"
+    }
+  },
+  "commitDate": "2026-11-22T00:29:00Z",
+  "priorPhysical": 1329,
+  "retainedPhysical": 1336
+}

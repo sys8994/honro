@@ -1,0 +1,32 @@
+name: HONRO Stage33 one fixed release branch writer
+on:
+  push:
+    branches: [qa/stage33-r3-2c4-release-writer-r2]
+    paths:
+      - '.github/workflows/stage33-r3-2c4-release-writer.yml'
+      - 'tools/stage33-r3-release-writer/**'
+permissions:
+  contents: write
+  actions: read
+jobs:
+  fixed-release-branch:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage33-r3-2c4-release-writer-r2'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 13
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 4
+          persist-credentials: true
+      - name: Download and verify exactly bound producer payload and source
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python tools/stage33-r3-release-writer/writer.py handoff "$RUNNER_TEMP/stage33-writer-handoff"
+      - name: One fixed release branch forward update only
+        run: |
+          set -euo pipefail
+          bash tools/stage33-r3-release-writer/safe-push.sh "$RUNNER_TEMP/stage33-writer-handoff"
