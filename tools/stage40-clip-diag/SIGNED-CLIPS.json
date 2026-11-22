@@ -1,0 +1,78 @@
+{
+  "experimentalOnly": true,
+  "enabled": false,
+  "asset": "approved40:body",
+  "hash": "ab304dd1d75f294c837d1d65cf002dc344415602f4de4c433217e8a6429cae06",
+  "candidates": {
+    "sourceAlpha": {
+      "nativeSourceAABB": [
+        0,
+        2.77,
+        1536.0199999999986,
+        841.8400000000001
+      ],
+      "clipSourceSHA": "87f73b7d6df8f33bfb2c002caee8804b08418ff4c42698f24c7db7b15c729039",
+      "closedContourCount": 39
+    },
+    "new-source-alpha-silhouette": {
+      "nativeSourceAABB": [
+        0,
+        2,
+        1536,
+        1024
+      ],
+      "clipSourceSHA": "3c636e29c5c45958e43da480996fe48ce48e0ff1b9d8a92dd30aecb22750d479",
+      "closedContourCount": 29
+    },
+    "nonplay-lower-continuation": {
+      "nativeSourceAABB": [
+        0,
+        635,
+        1536,
+        1024
+      ],
+      "clipSourceSHA": "a1a245420e95bd2ab8333681c6926dfb7296c1faf1730952cfd802e41185daea",
+      "closedContourCount": 1
+    },
+    "protected-semantic": {
+      "nativeSourceAABB": [
+        832.94522,
+        682.6539500000001,
+        1534.1535000000006,
+        775.8727899999999
+      ],
+      "clipSourceSHA": "bca3a28ba3586f90f4b033d0f605bdb4133c114f928816364a82201c2d89e542",
+      "closedContourCount": 8
+    },
+    "approved40-departure-pile-alpha": {
+      "nativeSourceAABB": [
+        12.620000000000001,
+        124.28,
+        1530.0999999999995,
+        933.87
+      ],
+      "clipSourceSHA": "084f9820216c02cc827bcfd260c000e8d59cbae9869d5b8841c5b0b44e04af18",
+      "closedContourCount": 47
+    },
+    "approved40-departure-pile-region": {
+      "nativeSourceAABB": [
+        1423,
+        441,
+        1448,
+        604
+      ],
+      "clipSourceSHA": "6d54bfd782d6bdf14caf22095f55ed233c79cd7b087a5cbc26d5c7ed194d7dd9",
+      "closedContourCount": 1
+    },
+    "static-boat-removal-source-alpha-silhouette": {
+      "nativeSourceAABB": [
+        0.5,
+        100.48999999999995,
+        386.22,
+        373
+      ],
+      "clipSourceSHA": "c939ca1d230fc44f5994a501197cc4585e5b69d44b8dafe16fc0fded9b345395",
+      "closedContourCount": 2
+    }
+  }
+}
