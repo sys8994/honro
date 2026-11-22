@@ -1,0 +1,1151 @@
+{
+  "enabled": true,
+  "qaRef": "refs/heads/qa/stage40-46-save-compatible-342",
+  "parent": "342a7aa03f7244db9663315ceac596f307dac06e",
+  "tree": "2e2ca3058bb2b4b4528b5e46394fcf30d55c8f32",
+  "manifest": {
+    "bytes": 8163953,
+    "sha256": "9a948a748ba3f8ce95a25489729cefb3cefb94d26a999e76db5debc4ae8558b2",
+    "git": "a6b659e6dba284a924deb2cdbac2681685418421"
+  },
+  "stages": {
+    "40": {
+      "A": {
+        "active": 810,
+        "bytes": 10619913,
+        "sha256": "54ca4477cd7cb1c4d8762b9293e7429f12aef593b3d9d42d5fe84eaa306203f4"
+      },
+      "B": {
+        "active": 810,
+        "bytes": 10137621,
+        "sha256": "458581a814995e74b6bf35efb817fb5c766703fd261f945045eadb97f83a02ae"
+      },
+      "bootMap": "web/data/chapter-40.5f4b6c4c311adc05.json",
+      "exactProjection": {
+        "A": {
+          "descriptor": "web/data/chapter-40-assets-parts.578f8624b0ac77bc.json",
+          "project": "web/data/campaign.0386fa9451fe2427.json",
+          "adapter": "web/runtime/campaign.4375d13445105188.js",
+          "files": {
+            "web/data/chapter-40-assets-part-000.3b82e978dff8f8e6.bin": {
+              "bytes": 4194304,
+              "sha256": "3b82e978dff8f8e645808bb8eaaf3315c418e65fe178d0ff9823716529f0a172"
+            },
+            "web/data/chapter-40-assets-part-001.50a919950e2df457.bin": {
+              "bytes": 4194304,
+              "sha256": "50a919950e2df457fbc2632fe4316b1ef7e07f74408322a01c098b735aa9e54f"
+            },
+            "web/data/chapter-40-assets-part-002.b6a1709435a1910a.bin": {
+              "bytes": 2231305,
+              "sha256": "b6a1709435a1910a366c0108184bc6eeedf1286f7a5e67426f1570917a202bf5"
+            },
+            "web/data/chapter-40-assets-parts.578f8624b0ac77bc.json": {
+              "bytes": 605,
+              "sha256": "578f8624b0ac77bc2c7322644b2844c5b09110efc32dfb83aa9f57e0463547b0"
+            },
+            "web/data/campaign.0386fa9451fe2427.json": {
+              "bytes": 55011,
+              "sha256": "0386fa9451fe2427918ea68e927ccb0cb7a1cffc547ab0a63a164c74d785e57e"
+            },
+            "web/runtime/campaign.4375d13445105188.js": {
+              "bytes": 527,
+              "sha256": "4375d1344510518805bf77c0783efb6d8b5dad67b60e3a4e64d62d6d03f71b91"
+            }
+          },
+          "packet": {
+            "bytes": 10619913,
+            "sha256": "54ca4477cd7cb1c4d8762b9293e7429f12aef593b3d9d42d5fe84eaa306203f4"
+          }
+        },
+        "B": {
+          "descriptor": "web/data/chapter-40-assets-parts.e102ede6b6f1921d.json",
+          "project": "web/data/campaign.1f3d8372f73a676d.json",
+          "adapter": "web/runtime/campaign.3c07bfacd51c1979.js",
+          "files": {
+            "web/data/chapter-40-assets-part-000.cd3e15a78b719c49.bin": {
+              "bytes": 4194304,
+              "sha256": "cd3e15a78b719c49cc3651a2e38cfb21c1f0a5176947f23550fd7ab058b0264e"
+            },
+            "web/data/chapter-40-assets-part-001.6dbca9ee910a8ff7.bin": {
+              "bytes": 4194304,
+              "sha256": "6dbca9ee910a8ff7be24e4f08354cd8f076f54b9eb72d5cca63a3fff971e32be"
+            },
+            "web/data/chapter-40-assets-part-002.6f227d452d7a288d.bin": {
+              "bytes": 1749013,
+              "sha256": "6f227d452d7a288d34bce7981b2ace8179d4b786e1a3b772f5b1d62d43f3144a"
+            },
+            "web/data/chapter-40-assets-parts.e102ede6b6f1921d.json": {
+              "bytes": 605,
+              "sha256": "e102ede6b6f1921d46efaf44318550c800c271ab2507f114d59b2b69698be6fe"
+            },
+            "web/data/campaign.1f3d8372f73a676d.json": {
+              "bytes": 55011,
+              "sha256": "1f3d8372f73a676d29c1be1af4848c26bafab2295fc60b44658252d048ead232"
+            },
+            "web/runtime/campaign.3c07bfacd51c1979.js": {
+              "bytes": 527,
+              "sha256": "3c07bfacd51c197963900b95d74975256aae0469f6bdda2279b763d489b5554b"
+            }
+          },
+          "packet": {
+            "bytes": 10137621,
+            "sha256": "458581a814995e74b6bf35efb817fb5c766703fd261f945045eadb97f83a02ae"
+          }
+        }
+      },
+      "sourceGit": {
+        "shared/build.mjs": "a5ac12ef4de8b2370fcbca1457b86a0c6e2d758c",
+        "shared/web-build.mjs": "761f6c6a757b3cdb16616ad17195e9d614cc11c3",
+        "tools/act4-source/world-source.mjs": "dfa7967e6c0380dba45e9cb8b2c94dddbfc3f491",
+        "shared/data/act4/world.parts/manifest.json": "59563f8367a4980d8d5b17b8ce0909429ad3d0da",
+        "shared/data/terrain-path-optimization.json": "ffe145a571fb275768208abdd4860aaf330827e9",
+        "shared/terrain-path-optimization.mjs": "784e574d21cfa668326215fd16dcc0fb6ffcc832",
+        "shared/act4-finale-revision.mjs": "38e223631c3aaad11bb4c6c27844f6c1576c5416",
+        "shared/act4-handoff-art.mjs": "a727bd85a1b8faa1cfaf8a2b98cf3b3e0de5e7e1",
+        "shared/act4-sideview-art.mjs": "2b37aac03c1f039e13b5651b734a8e5cc11e8712",
+        "shared/act4-stage33-coastal-art.mjs": "44ffc2a09b5fa6f777498c80072571835dbff66b",
+        "shared/data/act4/handoff-art/40.json": "daea47c1fcfbe769abe594f3143371eaaf8dce9e",
+        "shared/data/act4/sideview-art/40.json": "3a0ce5a314bc28b6abde89f8c3510b20026f989d",
+        "shared/runtime/act4-pilot-art.js": "330fc448562e5c3e36a98a99bad158176c1e9043",
+        "shared/json-pool.mjs": "5d1bbdea0d4568ff4b0f18da3ada786268bd3162",
+        "web/manifest.json": "a6b659e6dba284a924deb2cdbac2681685418421",
+        "web/data/chapter-40.5f4b6c4c311adc05.json": "330db75394a472c92cc474d153e2fdcff974cb7e",
+        "web/data/chapter-40-assets-parts.578f8624b0ac77bc.json": "a11a4aabfe8961e26c2f4795562592191db20ca7"
+      }
+    },
+    "46": {
+      "A": {
+        "active": 810,
+        "bytes": 16590634,
+        "sha256": "120aa444cdf1094a9d3d081d1691d803ba0e46dd2cc1bbf989a5f1b59e930855"
+      },
+      "B": {
+        "active": 810,
+        "bytes": 15250870,
+        "sha256": "744e462e37916ce64513ef0a0fad39d90f45c6c4aa1be408973a2c475c1ada7f"
+      },
+      "bootMap": "web/data/chapter-46.2806e485c4c1e1b4.json",
+      "exactProjection": {
+        "A": {
+          "descriptor": "web/data/chapter-46-assets-parts.44d5eab7aa305416.json",
+          "project": "web/data/campaign.0386fa9451fe2427.json",
+          "adapter": "web/runtime/campaign.4375d13445105188.js",
+          "files": {
+            "web/data/chapter-46-assets-part-000.aa1ac6564d0c2d99.bin": {
+              "bytes": 4194304,
+              "sha256": "aa1ac6564d0c2d99eaa561ff53b1712c5493bf11950a487526971bf1e2ff49bb"
+            },
+            "web/data/chapter-46-assets-part-001.78b6b5493616db85.bin": {
+              "bytes": 4194304,
+              "sha256": "78b6b5493616db8581849645b13cff819928ac8eb2c1ee25e0f90cb41d2224c5"
+            },
+            "web/data/chapter-46-assets-part-002.8ec3bcfd1e3724d1.bin": {
+              "bytes": 4194304,
+              "sha256": "8ec3bcfd1e3724d10de3867c33c05a705fb7ccdc87bcbfde8228fc57caf9d8de"
+            },
+            "web/data/chapter-46-assets-part-003.e0accdc32bf303c0.bin": {
+              "bytes": 4007722,
+              "sha256": "e0accdc32bf303c08ea94737f9d8d662e568dd7e0b9b80c05374098d02b815fc"
+            },
+            "web/data/chapter-46-assets-parts.44d5eab7aa305416.json": {
+              "bytes": 765,
+              "sha256": "44d5eab7aa305416e2d0d9ffec53ad210901e8271d216f0e9cab045cb7b04f1f"
+            },
+            "web/data/campaign.0386fa9451fe2427.json": {
+              "bytes": 55011,
+              "sha256": "0386fa9451fe2427918ea68e927ccb0cb7a1cffc547ab0a63a164c74d785e57e"
+            },
+            "web/runtime/campaign.4375d13445105188.js": {
+              "bytes": 527,
+              "sha256": "4375d1344510518805bf77c0783efb6d8b5dad67b60e3a4e64d62d6d03f71b91"
+            }
+          },
+          "owners": [
+            "71460b9958dd84c50a6dcd7aececb1f6b031a2e2a9b26d726b4351976caac789",
+            "38ffe33661dac23a5bcc62908f177482d741c621366f13e8c069e730ee22d05f",
+            "ed8cbcaff446c38685e0683ef2b92a92f58c42511864da5ca2b558733fe95f90",
+            "7e1da4489ebfbc10164dc025a1f5915ddf5658d25485bffd1947c20f8332157e",
+            "bb91cb2689c3376ff5cdab2e93518a66330b997fc3d5e5b80d4a13ff0c669e8d"
+          ],
+          "baseOwner": "5b37606970e8e20b3f7d638b79f02425a5425ced5b3fcdc49b561e6a0d48ab2f"
+        },
+        "B": {
+          "descriptor": "web/data/chapter-46-assets-parts.a3595c48161a8bc1.json",
+          "project": "web/data/campaign.9c9ad3743695650f.json",
+          "adapter": "web/runtime/campaign.b66ba87731649f41.js",
+          "files": {
+            "web/data/chapter-46-assets-part-000.f7ebee97d8110e68.bin": {
+              "bytes": 4194304,
+              "sha256": "f7ebee97d8110e6805bf6fb6a58303332d3fd118a8e477f3b5de6c7e002064a2"
+            },
+            "web/data/chapter-46-assets-part-001.5213b80662dfa32e.bin": {
+              "bytes": 4194304,
+              "sha256": "5213b80662dfa32ee85b3d01d07dd0d2fb4fe33fa1ed3647ca94a85abce27ac6"
+            },
+            "web/data/chapter-46-assets-part-002.8be859e980ee1d29.bin": {
+              "bytes": 4194304,
+              "sha256": "8be859e980ee1d292718c73bd51206ea8fa0a887baa59fc67c5ec6b2c4cd0738"
+            },
+            "web/data/chapter-46-assets-part-003.ee5f50c994047cde.bin": {
+              "bytes": 2667958,
+              "sha256": "ee5f50c994047cde9851a35f503ddc56b395904698ecbef174d832a4eaa148a8"
+            },
+            "web/data/chapter-46-assets-parts.a3595c48161a8bc1.json": {
+              "bytes": 765,
+              "sha256": "a3595c48161a8bc14dec5b1dea23dea0fda99fa39153a359d9ee83c5359516ea"
+            },
+            "web/data/campaign.9c9ad3743695650f.json": {
+              "bytes": 55011,
+              "sha256": "9c9ad3743695650f22839536de8f964f9303a810721f62834bc44472da0233f0"
+            },
+            "web/runtime/campaign.b66ba87731649f41.js": {
+              "bytes": 527,
+              "sha256": "b66ba87731649f41a19ff39222757d13727d343ded2a1281b4a6f8d63d260f94"
+            }
+          },
+          "owners": [
+            "b589a4a15c8146223d8949b550f961293c0857d4e668c48f43c1960af0a4e843",
+            "5c11c6f447c0637f75e9671a02ee4667e1b730a89c69ef8354abfa668d455281",
+            "6c9b5426c25337ea76edb756ec108179fd9b350bf0af13be5d97239ef895d266",
+            "906b40a7c20f035804cf0fd7c4af76615c6cc0cf3ab26e4f4b8f8c5a79efb30e",
+            "6a9325b956db20f77ca71b07b4b9d0664c9a584e3cf5ba4128a24744c5475ce5"
+          ],
+          "baseOwner": "71b0bb4e2375ba8a3a64e38be8232ec0b2dba1f6045988003c26f612a27eb59a"
+        }
+      },
+      "authored": {
+        "stage46-exterior-body.json": {
+          "beforeGit": "07982cb9b418ec349e8fc24d17c3d8cc40f4a18f",
+          "afterSHA256": "1df8658b5cc3b2cd5ad8897e4f27f15455a1883e5879124631cacd24c25f43c4",
+          "endpoints": 99930,
+          "beforeBytes": 3077079,
+          "afterBytes": 2729477
+        },
+        "stage46-exterior-part-1.json": {
+          "beforeGit": "21412f1293aa059d3b4185fb650a343c289d696c",
+          "afterSHA256": "8ead0de2cd7cee88366c53137bd7aca870e62f537b6db4c1024bda033e7abaf7",
+          "endpoints": 101807,
+          "beforeBytes": 2972423,
+          "afterBytes": 2620478
+        },
+        "stage46-exterior-part-2.json": {
+          "beforeGit": "d148eee3e06e6d97ef150fc932284c1278b5a5ec",
+          "afterSHA256": "4cb2b35b27eac60b8e14264f02ed27498e5e440b579cceedf0caa80af166c77c",
+          "endpoints": 96611,
+          "beforeBytes": 2659727,
+          "afterBytes": 2464204
+        },
+        "stage46-exterior-part-3.json": {
+          "beforeGit": "931ab8300de52ca95f9facb65dd16509917a1734",
+          "afterSHA256": "c91a0b505f7a757f4d4865d9bb9d17004d19e7883113e9de6c7cfc62483787fa",
+          "endpoints": 86276,
+          "beforeBytes": 2516559,
+          "afterBytes": 2343784
+        },
+        "stage46-exterior-part-4.json": {
+          "beforeGit": "bea0f8416b2635bf0cd6172d85778a77221db144",
+          "afterSHA256": "2d0d3d5da8bc7253fd3ae2c4c740156c4c4c01188d2b7576f8f92f7283d5fd7e",
+          "endpoints": 88447,
+          "beforeBytes": 2644480,
+          "afterBytes": 2467363
+        },
+        "stage46-exterior-part-5.json": {
+          "beforeGit": "f99c7b3bb755d26ceb244ba1f6be9eab2b81ac77",
+          "afterSHA256": "8833797686af91b04d4c4b364146548fb24cb76ef97f7aa12c175150e7295443",
+          "endpoints": 91159,
+          "beforeBytes": 2751043,
+          "afterBytes": 2566066
+        }
+      },
+      "runtimePath": "shared/runtime/act5-edge-art.js",
+      "runtimeGit": "461571b0d86e63ad1fee411d8c2cb34382d150a7"
+    }
+  },
+  "authority": {
+    "40": {
+      "run": 45023993806,
+      "job": 137212874368,
+      "artifact": 14755027517,
+      "archiveSHA256": "c7149a99841ddd4ef5e9b228689806a287dc523ca9951c1103956afe42c6b6ee"
+    },
+    "46": {
+      "run": 45023129485,
+      "job": 137210194869,
+      "artifact": 14754925534,
+      "archiveSHA256": "c8ca43c4b99f6a024c095e3cd57f249c16a97a28150b90533423e1a08fc51307"
+    },
+    "pages": {
+      "run": 45023608854,
+      "job": 137212114253,
+      "publishedUTCSecond": "2026-11-22T12:43:41Z"
+    }
+  },
+  "expectedCombined": {
+    "status": "EXACT_OFFLINE_PREDICTION_NOT_BUILD_OR_RELEASE",
+    "base": {
+      "campaignSHA": "0386fa9451fe2427918ea68e927ccb0cb7a1cffc547ab0a63a164c74d785e57e",
+      "adapterSHA": "4375d1344510518805bf77c0783efb6d8b5dad67b60e3a4e64d62d6d03f71b91",
+      "master": "733d5d212d5ab235c2b492e1f065306bdfaae317",
+      "tree": "276e54e1ca08d32d3b290097c9a05e91e9ab0ecd"
+    },
+    "changedSlots": [
+      {
+        "stage": 40,
+        "old": "web/data/chapter-40-assets-parts.578f8624b0ac77bc.json",
+        "new": "web/data/chapter-40-assets-parts.e102ede6b6f1921d.json",
+        "facts": {
+          "web/data/chapter-40-assets-part-000.cd3e15a78b719c49.bin": {
+            "bytes": 4194304,
+            "sha256": "cd3e15a78b719c49cc3651a2e38cfb21c1f0a5176947f23550fd7ab058b0264e"
+          },
+          "web/data/chapter-40-assets-part-001.6dbca9ee910a8ff7.bin": {
+            "bytes": 4194304,
+            "sha256": "6dbca9ee910a8ff7be24e4f08354cd8f076f54b9eb72d5cca63a3fff971e32be"
+          },
+          "web/data/chapter-40-assets-part-002.6f227d452d7a288d.bin": {
+            "bytes": 1749013,
+            "sha256": "6f227d452d7a288d34bce7981b2ace8179d4b786e1a3b772f5b1d62d43f3144a"
+          },
+          "web/data/chapter-40-assets-parts.e102ede6b6f1921d.json": {
+            "bytes": 605,
+            "sha256": "e102ede6b6f1921d46efaf44318550c800c271ab2507f114d59b2b69698be6fe"
+          }
+        },
+        "normalQAPass": {
+          "run": 45023993806,
+          "artifact": 14755027517,
+          "sha256": "c7149a99841ddd4ef5e9b228689806a287dc523ca9951c1103956afe42c6b6ee"
+        }
+      },
+      {
+        "stage": 46,
+        "old": "web/data/chapter-46-assets-parts.44d5eab7aa305416.json",
+        "new": "web/data/chapter-46-assets-parts.a3595c48161a8bc1.json",
+        "facts": {
+          "web/data/chapter-46-assets-part-000.f7ebee97d8110e68.bin": {
+            "bytes": 4194304,
+            "sha256": "f7ebee97d8110e6805bf6fb6a58303332d3fd118a8e477f3b5de6c7e002064a2"
+          },
+          "web/data/chapter-46-assets-part-001.5213b80662dfa32e.bin": {
+            "bytes": 4194304,
+            "sha256": "5213b80662dfa32ee85b3d01d07dd0d2fb4fe33fa1ed3647ca94a85abce27ac6"
+          },
+          "web/data/chapter-46-assets-part-002.8be859e980ee1d29.bin": {
+            "bytes": 4194304,
+            "sha256": "8be859e980ee1d292718c73bd51206ea8fa0a887baa59fc67c5ec6b2c4cd0738"
+          },
+          "web/data/chapter-46-assets-part-003.ee5f50c994047cde.bin": {
+            "bytes": 2667958,
+            "sha256": "ee5f50c994047cde9851a35f503ddc56b395904698ecbef174d832a4eaa148a8"
+          },
+          "web/data/chapter-46-assets-parts.a3595c48161a8bc1.json": {
+            "bytes": 765,
+            "sha256": "a3595c48161a8bc14dec5b1dea23dea0fda99fa39153a359d9ee83c5359516ea"
+          }
+        },
+        "normalQAPass": {
+          "run": 45023129485,
+          "artifact": 14754925534,
+          "sha256": "c8ca43c4b99f6a024c095e3cd57f249c16a97a28150b90533423e1a08fc51307"
+        }
+      }
+    ],
+    "campaign": {
+      "old": "web/data/campaign.0386fa9451fe2427.json",
+      "new": "web/data/campaign.1be5cca224fe45de.json",
+      "bytes": 55011,
+      "sha256": "1be5cca224fe45de7bbeb78b795abd450b4d3002c99c60d21ca3e0c783bedda7"
+    },
+    "adapter": {
+      "old": "web/runtime/campaign.4375d13445105188.js",
+      "new": "web/runtime/campaign.57b41cd798a104b5.js",
+      "commonPosition": 56,
+      "bytes": 527,
+      "sha256": "57b41cd798a104b50fbcc498133b543e041d5f5298ebf6e79bc87d3308b9d00f"
+    }
+  },
+  "expectedStage40Source": {
+    "file": "shared/data/terrain-path-optimization.json",
+    "worldSourceSHA256": "55d22b333065275b4de00acbae7543b8ccb64adb53a248e20a400fd054b92275",
+    "oldManifestSHA256": "8d626af8c866f240f0b8294b390760be164b04ddc8ad6cdb69822c103e49d213",
+    "newManifestSHA256": "be58d67f789a61747530f01ed5c8bcc2f5aefc4808f68821ef2ea8d9e5ab2fba",
+    "expectedCompiledSHA256": "458581a814995e74b6bf35efb817fb5c766703fd261f945045eadb97f83a02ae",
+    "expectedCompiledBytes": 10137621
+  },
+  "protectedAliases": [
+    "web/runtime/ordered-common-17.93673f3a14672979.js",
+    "web/data/chapter-33-assets.920ccd84eb69a553.json"
+  ],
+  "normalScopes": {
+    "40": {
+      "A-1440x900": {
+        "southwest": {
+          "rawRGBA": "8683ab1afa1866e6201d7d6a05c182a2fbf5213e0ea1b7285a62456e2e0ed400",
+          "domRGBA": "bc96795af86488dd69223c6938cb6eb8920ddf1f46423f2bd137d0a9169d0b97",
+          "meta": {
+            "desired": {
+              "x": -1000000,
+              "y": 1000000,
+              "scale": 0.21176470588235294
+            },
+            "actual": {
+              "x": -320,
+              "y": 4336,
+              "scale": 0.21176470588235294
+            },
+            "viewport": {
+              "left": -3720,
+              "right": 3080,
+              "top": 2519.862847222222,
+              "bottom": 6152.137152777777
+            },
+            "focus": {
+              "left": -320,
+              "top": -1800,
+              "right": 6976,
+              "bottom": 4336
+            },
+            "zoomLimits": {
+              "min": 0.21176470588235294,
+              "max": 1.65,
+              "tactical": 0.21176470588235294,
+              "readability": 0.056818181818181816
+            },
+            "css": {
+              "w": 1440,
+              "h": 769.1875
+            },
+            "backing": [
+              1440,
+              769
+            ],
+            "actorCount": 50,
+            "tide": null,
+            "phase": "aim",
+            "round": 1,
+            "sceneTime": 2,
+            "physics": "be1d91eee559e3e01a1f04e9a0412c94cd448365af5555ee39e2d0fc02311688"
+          },
+          "timingPhase": 2000,
+          "cssBox": {
+            "x": 0,
+            "y": 0,
+            "width": 1440,
+            "height": 769.1875
+          }
+        },
+        "upper": {
+          "rawRGBA": "4d245b8579df7be7e36eadb5f29a24d1e92027484de1fca107daa9858386b83e",
+          "domRGBA": "e7524d7355564dac471a8e1f16cbdf97504e1f89366b4adb289725f2173f5c89",
+          "meta": {
+            "desired": {
+              "x": 1510,
+              "y": 2120,
+              "scale": 0.55
+            },
+            "actual": {
+              "x": 1510,
+              "y": 2120,
+              "scale": 0.55
+            },
+            "viewport": {
+              "left": 200.909090909091,
+              "right": 2819.090909090909,
+              "top": 1420.7386363636365,
+              "bottom": 2819.2613636363635
+            },
+            "focus": {
+              "left": -320,
+              "top": -1800,
+              "right": 6976,
+              "bottom": 4336
+            },
+            "zoomLimits": {
+              "min": 0.21176470588235294,
+              "max": 1.65,
+              "tactical": 0.21176470588235294,
+              "readability": 0.056818181818181816
+            },
+            "css": {
+              "w": 1440,
+              "h": 769.1875
+            },
+            "backing": [
+              1440,
+              769
+            ],
+            "actorCount": 50,
+            "tide": null,
+            "phase": "aim",
+            "round": 1,
+            "sceneTime": 2,
+            "physics": "be1d91eee559e3e01a1f04e9a0412c94cd448365af5555ee39e2d0fc02311688"
+          },
+          "timingPhase": 2000,
+          "cssBox": {
+            "x": 0,
+            "y": 0,
+            "width": 1440,
+            "height": 769.1875
+          }
+        },
+        "immersed": {
+          "rawRGBA": "2a02445a4343ab2314eaf6b2cdee57a63226fd957da0760fbedbe263b666c8be",
+          "domRGBA": "a7c189e43999f9af5f0d95c9bf9c3a45dc15736d743433344ece6d77dec5f08e",
+          "meta": {
+            "desired": {
+              "x": 2610,
+              "y": 4090,
+              "scale": 0.5
+            },
+            "actual": {
+              "x": 2610,
+              "y": 4090,
+              "scale": 0.5
+            },
+            "viewport": {
+              "left": 1170,
+              "right": 4050,
+              "top": 3320.8125,
+              "bottom": 4859.1875
+            },
+            "focus": {
+              "left": -320,
+              "top": -1800,
+              "right": 6976,
+              "bottom": 4336
+            },
+            "zoomLimits": {
+              "min": 0.21176470588235294,
+              "max": 1.65,
+              "tactical": 0.21176470588235294,
+              "readability": 0.056818181818181816
+            },
+            "css": {
+              "w": 1440,
+              "h": 769.1875
+            },
+            "backing": [
+              1440,
+              769
+            ],
+            "actorCount": 50,
+            "tide": null,
+            "phase": "aim",
+            "round": 1,
+            "sceneTime": 2,
+            "physics": "be1d91eee559e3e01a1f04e9a0412c94cd448365af5555ee39e2d0fc02311688"
+          },
+          "timingPhase": 2000,
+          "cssBox": {
+            "x": 0,
+            "y": 0,
+            "width": 1440,
+            "height": 769.1875
+          }
+        }
+      },
+      "A-390x844": {
+        "southwest": {
+          "rawRGBA": "1742ac7efa82e8d4916453027c2745a4a3aa3e03d820a5fbef32075ed1b6ee87",
+          "domRGBA": "817bc31be0eba1e67b24274c0c74e562986ddb9dc81f989bf56a3d9d02309657",
+          "meta": {
+            "desired": {
+              "x": -1000000,
+              "y": 1000000,
+              "scale": 0.057352941176470586
+            },
+            "actual": {
+              "x": -320,
+              "y": 4336,
+              "scale": 0.057352941176470586
+            },
+            "viewport": {
+              "left": -3720,
+              "right": 3080,
+              "top": -1309.8253205128203,
+              "bottom": 9981.82532051282
+            },
+            "focus": {
+              "left": -320,
+              "top": -1800,
+              "right": 6976,
+              "bottom": 4336
+            },
+            "zoomLimits": {
+              "min": 0.057352941176470586,
+              "max": 1.65,
+              "tactical": 0.057352941176470586,
+              "readability": 0.056818181818181816
+            },
+            "css": {
+              "w": 390,
+              "h": 647.609375
+            },
+            "backing": [
+              390,
+              648
+            ],
+            "actorCount": 50,
+            "tide": null,
+            "phase": "aim",
+            "round": 1,
+            "sceneTime": 2,
+            "physics": "be1d91eee559e3e01a1f04e9a0412c94cd448365af5555ee39e2d0fc02311688"
+          },
+          "timingPhase": 2000,
+          "cssBox": {
+            "x": 0,
+            "y": 0,
+            "width": 390,
+            "height": 647.609375
+          }
+        },
+        "upper": {
+          "rawRGBA": "55eba7e189fd3482eebc8a6d583565cb4f8676611b251a7f83c346d4c55e4242",
+          "domRGBA": "11ea8f11b17eef24193ecdc305669365bb4200c2f44a482ba5d4657c240bae22",
+          "meta": {
+            "desired": {
+              "x": 1510,
+              "y": 2120,
+              "scale": 0.46
+            },
+            "actual": {
+              "x": 1510,
+              "y": 2120,
+              "scale": 0.46
+            },
+            "viewport": {
+              "left": 1086.086956521739,
+              "right": 1933.913043478261,
+              "top": 1416.076766304348,
+              "bottom": 2823.923233695652
+            },
+            "focus": {
+              "left": -320,
+              "top": -1800,
+              "right": 6976,
+              "bottom": 4336
+            },
+            "zoomLimits": {
+              "min": 0.057352941176470586,
+              "max": 1.65,
+              "tactical": 0.057352941176470586,
+              "readability": 0.056818181818181816
+            },
+            "css": {
+              "w": 390,
+              "h": 647.609375
+            },
+            "backing": [
+              390,
+              648
+            ],
+            "actorCount": 50,
+            "tide": null,
+            "phase": "aim",
+            "round": 1,
+            "sceneTime": 2,
+            "physics": "be1d91eee559e3e01a1f04e9a0412c94cd448365af5555ee39e2d0fc02311688"
+          },
+          "timingPhase": 2000,
+          "cssBox": {
+            "x": 0,
+            "y": 0,
+            "width": 390,
+            "height": 647.609375
+          }
+        },
+        "immersed": {
+          "rawRGBA": "b8b018f7e433673585cb8fe8751bf768847aa9216a300296e4861cb9afd08553",
+          "domRGBA": "747a04c90ab8326a8dfc5b99506d8d6fd1bd26bae58789e4e6705a18a3b9469b",
+          "meta": {
+            "desired": {
+              "x": 2610,
+              "y": 4090,
+              "scale": 0.42
+            },
+            "actual": {
+              "x": 2610,
+              "y": 4090,
+              "scale": 0.42
+            },
+            "viewport": {
+              "left": 2145.714285714286,
+              "right": 3074.285714285714,
+              "top": 3319.036458333333,
+              "bottom": 4860.963541666667
+            },
+            "focus": {
+              "left": -320,
+              "top": -1800,
+              "right": 6976,
+              "bottom": 4336
+            },
+            "zoomLimits": {
+              "min": 0.057352941176470586,
+              "max": 1.65,
+              "tactical": 0.057352941176470586,
+              "readability": 0.056818181818181816
+            },
+            "css": {
+              "w": 390,
+              "h": 647.609375
+            },
+            "backing": [
+              390,
+              648
+            ],
+            "actorCount": 50,
+            "tide": null,
+            "phase": "aim",
+            "round": 1,
+            "sceneTime": 2,
+            "physics": "be1d91eee559e3e01a1f04e9a0412c94cd448365af5555ee39e2d0fc02311688"
+          },
+          "timingPhase": 2000,
+          "cssBox": {
+            "x": 0,
+            "y": 0,
+            "width": 390,
+            "height": 647.609375
+          }
+        }
+      }
+    },
+    "46": {
+      "A-1440x900": {
+        "south": {
+          "rawRGBA": "1b1dc3e4ef1230a1cf1a4b5017f1dec50a4d2d225b2f98a89a82c0634877caec",
+          "domRGBA": "f35226e20698926155ae11b6e1e18dffbbf39f5bba87b87707df8ccf0de3a292",
+          "meta": {
+            "desired": {
+              "x": 2048,
+              "y": 1000000,
+              "scale": 0.21176470588235294
+            },
+            "actual": {
+              "x": 2048,
+              "y": 6744,
+              "scale": 0.21176470588235294
+            },
+            "viewport": {
+              "left": -1352,
+              "right": 5448,
+              "top": 4927.862847222223,
+              "bottom": 8560.137152777777
+            },
+            "focus": {
+              "left": -320,
+              "top": -1800,
+              "right": 4416,
+              "bottom": 6744
+            },
+            "zoomLimits": {
+              "min": 0.21176470588235294,
+              "max": 1.65,
+              "tactical": 0.21176470588235294,
+              "readability": 0.056818181818181816
+            },
+            "css": {
+              "w": 1440,
+              "h": 769.1875
+            },
+            "backing": [
+              1440,
+              769
+            ],
+            "actorCount": 27,
+            "tide": null,
+            "phase": "aim",
+            "round": 1,
+            "sceneTime": 2,
+            "physics": "cb6512695ecc16c3b1c7c10046aaa23b4c7b46014b0aed16cf888a6cc35ab1ed"
+          },
+          "timingPhase": 2000,
+          "cssBox": {
+            "x": 0,
+            "y": 0,
+            "width": 1440,
+            "height": 769.1875
+          }
+        },
+        "west": {
+          "rawRGBA": "e9843d31abd85d81c48f4ff7dde3b443017a5c4271bfdd8e60ce73f1cebce1a6",
+          "domRGBA": "3f8fd65d0e942609e3e054ca49cd8bb03e411879082d31e10bdc0e54f93a736f",
+          "meta": {
+            "desired": {
+              "x": -1000000,
+              "y": 3252,
+              "scale": 0.21176470588235294
+            },
+            "actual": {
+              "x": -320,
+              "y": 3252,
+              "scale": 0.21176470588235294
+            },
+            "viewport": {
+              "left": -3720,
+              "right": 3080,
+              "top": 1435.8628472222222,
+              "bottom": 5068.137152777777
+            },
+            "focus": {
+              "left": -320,
+              "top": -1800,
+              "right": 4416,
+              "bottom": 6744
+            },
+            "zoomLimits": {
+              "min": 0.21176470588235294,
+              "max": 1.65,
+              "tactical": 0.21176470588235294,
+              "readability": 0.056818181818181816
+            },
+            "css": {
+              "w": 1440,
+              "h": 769.1875
+            },
+            "backing": [
+              1440,
+              769
+            ],
+            "actorCount": 27,
+            "tide": null,
+            "phase": "aim",
+            "round": 1,
+            "sceneTime": 2,
+            "physics": "cb6512695ecc16c3b1c7c10046aaa23b4c7b46014b0aed16cf888a6cc35ab1ed"
+          },
+          "timingPhase": 2000,
+          "cssBox": {
+            "x": 0,
+            "y": 0,
+            "width": 1440,
+            "height": 769.1875
+          }
+        },
+        "near": {
+          "rawRGBA": "773895701cd181b89cdea629384e463d9099bfd94b19806d63808123319eaaf9",
+          "domRGBA": "edaaaaa96aba9d59dbf498be60ba98cbef33cd4e48e64aa6387a50b1415bc778",
+          "meta": {
+            "desired": {
+              "x": 1850,
+              "y": 2550,
+              "scale": 0.55
+            },
+            "actual": {
+              "x": 1850,
+              "y": 2550,
+              "scale": 0.55
+            },
+            "viewport": {
+              "left": 540.909090909091,
+              "right": 3159.090909090909,
+              "top": 1850.7386363636365,
+              "bottom": 3249.2613636363635
+            },
+            "focus": {
+              "left": -320,
+              "top": -1800,
+              "right": 4416,
+              "bottom": 6744
+            },
+            "zoomLimits": {
+              "min": 0.21176470588235294,
+              "max": 1.65,
+              "tactical": 0.21176470588235294,
+              "readability": 0.056818181818181816
+            },
+            "css": {
+              "w": 1440,
+              "h": 769.1875
+            },
+            "backing": [
+              1440,
+              769
+            ],
+            "actorCount": 27,
+            "tide": null,
+            "phase": "aim",
+            "round": 1,
+            "sceneTime": 2,
+            "physics": "cb6512695ecc16c3b1c7c10046aaa23b4c7b46014b0aed16cf888a6cc35ab1ed"
+          },
+          "timingPhase": 2000,
+          "cssBox": {
+            "x": 0,
+            "y": 0,
+            "width": 1440,
+            "height": 769.1875
+          }
+        }
+      },
+      "A-390x844": {
+        "south": {
+          "rawRGBA": "6330b3580050c36ffb89172053a23d5e230fdcfe823012abba8cf51e9b66cef2",
+          "domRGBA": "9fda55b746f6841d11f569cc0535d76efe3aace10762568a0f1f507f5455a2a2",
+          "meta": {
+            "desired": {
+              "x": 2048,
+              "y": 1000000,
+              "scale": 0.057352941176470586
+            },
+            "actual": {
+              "x": 2048,
+              "y": 6744,
+              "scale": 0.057352941176470586
+            },
+            "viewport": {
+              "left": -1352,
+              "right": 5448,
+              "top": 1098.1746794871797,
+              "bottom": 12389.82532051282
+            },
+            "focus": {
+              "left": -320,
+              "top": -1800,
+              "right": 4416,
+              "bottom": 6744
+            },
+            "zoomLimits": {
+              "min": 0.057352941176470586,
+              "max": 1.65,
+              "tactical": 0.057352941176470586,
+              "readability": 0.056818181818181816
+            },
+            "css": {
+              "w": 390,
+              "h": 647.609375
+            },
+            "backing": [
+              390,
+              648
+            ],
+            "actorCount": 27,
+            "tide": null,
+            "phase": "aim",
+            "round": 1,
+            "sceneTime": 2,
+            "physics": "cb6512695ecc16c3b1c7c10046aaa23b4c7b46014b0aed16cf888a6cc35ab1ed"
+          },
+          "timingPhase": 2000,
+          "cssBox": {
+            "x": 0,
+            "y": 0,
+            "width": 390,
+            "height": 647.609375
+          }
+        },
+        "west": {
+          "rawRGBA": "719946c317d9f1e3bc3f71d67d9e9a53e061ebafb302111fc96ac831011bd9e1",
+          "domRGBA": "7435d4811d40ca5d32616861d5fbbbcbed4fce5dee4b32e6ddd120fd08305d9a",
+          "meta": {
+            "desired": {
+              "x": -1000000,
+              "y": 3252,
+              "scale": 0.057352941176470586
+            },
+            "actual": {
+              "x": -320,
+              "y": 3252,
+              "scale": 0.057352941176470586
+            },
+            "viewport": {
+              "left": -3720,
+              "right": 3080,
+              "top": -2393.8253205128203,
+              "bottom": 8897.82532051282
+            },
+            "focus": {
+              "left": -320,
+              "top": -1800,
+              "right": 4416,
+              "bottom": 6744
+            },
+            "zoomLimits": {
+              "min": 0.057352941176470586,
+              "max": 1.65,
+              "tactical": 0.057352941176470586,
+              "readability": 0.056818181818181816
+            },
+            "css": {
+              "w": 390,
+              "h": 647.609375
+            },
+            "backing": [
+              390,
+              648
+            ],
+            "actorCount": 27,
+            "tide": null,
+            "phase": "aim",
+            "round": 1,
+            "sceneTime": 2,
+            "physics": "cb6512695ecc16c3b1c7c10046aaa23b4c7b46014b0aed16cf888a6cc35ab1ed"
+          },
+          "timingPhase": 2000,
+          "cssBox": {
+            "x": 0,
+            "y": 0,
+            "width": 390,
+            "height": 647.609375
+          }
+        },
+        "near": {
+          "rawRGBA": "d25f09da32531b6b9dd41d100f43a708122f39226524f31253cdb6f5c068cc8a",
+          "domRGBA": "2de1025958fd2a37ae12b31847713b1d59df988b8ff23021589b539a61c79917",
+          "meta": {
+            "desired": {
+              "x": 1850,
+              "y": 2550,
+              "scale": 0.42
+            },
+            "actual": {
+              "x": 1850,
+              "y": 2550,
+              "scale": 0.42
+            },
+            "viewport": {
+              "left": 1385.7142857142858,
+              "right": 2314.285714285714,
+              "top": 1779.0364583333333,
+              "bottom": 3320.963541666667
+            },
+            "focus": {
+              "left": -320,
+              "top": -1800,
+              "right": 4416,
+              "bottom": 6744
+            },
+            "zoomLimits": {
+              "min": 0.057352941176470586,
+              "max": 1.65,
+              "tactical": 0.057352941176470586,
+              "readability": 0.056818181818181816
+            },
+            "css": {
+              "w": 390,
+              "h": 647.609375
+            },
+            "backing": [
+              390,
+              648
+            ],
+            "actorCount": 27,
+            "tide": null,
+            "phase": "aim",
+            "round": 1,
+            "sceneTime": 2,
+            "physics": "cb6512695ecc16c3b1c7c10046aaa23b4c7b46014b0aed16cf888a6cc35ab1ed"
+          },
+          "timingPhase": 2000,
+          "cssBox": {
+            "x": 0,
+            "y": 0,
+            "width": 390,
+            "height": 647.609375
+          }
+        }
+      }
+    }
+  },
+  "previousAuthority": {
+    "head": "733d5d212d5ab235c2b492e1f065306bdfaae317",
+    "tree": "276e54e1ca08d32d3b290097c9a05e91e9ab0ecd",
+    "manifest": {
+      "bytes": 7994676,
+      "sha256": "8d6f1debdb956b1f2c92c8a6808707aab7e1db98ddbfbc9ce2ffbffaed9322d1"
+    }
+  },
+  "actualCurrentPublicPages": {
+    "head": "342a7aa03f7244db9663315ceac596f307dac06e",
+    "run": 45027512069,
+    "job": 137224104334,
+    "conclusion": "success",
+    "publishedAt": "2026-11-22T13:28:57.6472296Z",
+    "actualAnonymousReadbackRun": 45027766739
+  },
+  "publishNever": true,
+  "profileBefore": {
+    "bytes": 21907,
+    "sha256": "3b270b6ca132a70559f1c7691d63d6d8a82ca4bfef5d06c69522c20fe6884f2c",
+    "git": "da6b816f36a786a8e8c4a0e7671b2b77fc9e30e9"
+  },
+  "profileAfter": {
+    "bytes": 22989,
+    "sha256": "18cdf08ee7a007a772b454c3f36515db9d9bfa92465c0569b145daa224b2a4ae",
+    "git": "400eca67810f433bfe4a8952f76d366d8948ac11"
+  },
+  "stockBuiltCommon": [
+    "web/runtime/ordered-common-4.c84f463a629cb3dc.js",
+    "web/runtime/ordered-common-12.8f69d8c7c4cc0d42.js"
+  ],
+  "saveRows40": {
+    "approved40:body": {
+      "before": null,
+      "act4": {
+        "stage": 40,
+        "previous": "4724416:12a0c1d5",
+        "current": "4471109:d3f5a835"
+      }
+    },
+    "approved40:coastal-foundation": {
+      "before": null,
+      "act4": {
+        "stage": 40,
+        "previous": "1408143:e55964aa",
+        "current": "1297690:b446a076"
+      }
+    },
+    "approved40:terrain-left-join": {
+      "before": {
+        "stage": 40,
+        "previous": "1761406:9835d7",
+        "current": "1757601:e9667f0a"
+      },
+      "act4": {
+        "stage": 40,
+        "previous": "1761406:9835d7",
+        "current": "1694987:a515b4e3",
+        "previousOptimized": "1757601:e9667f0a"
+      }
+    },
+    "approved40:terrain-right-join": {
+      "before": {
+        "stage": 40,
+        "previous": "1656846:fba43601",
+        "current": "1653652:f5a9b376"
+      },
+      "act4": {
+        "stage": 40,
+        "previous": "1656846:fba43601",
+        "current": "1597731:b4de61d5",
+        "previousOptimized": "1653652:f5a9b376"
+      }
+    }
+  },
+  "saveRows46": {
+    "id": "act5:near:46",
+    "old": "17756761:bc1a6549",
+    "current": "16328502:43d17801",
+    "oldRegistered": null,
+    "oldAgainstUnpatchedB": {
+      "ok": false,
+      "atomicFailure": true
+    }
+  },
+  "saveRows33": {
+    "act4-sideview:33:coastal-v2:west-continuous-geology": {
+      "stage": 33,
+      "previous": "862760:4666d3c8",
+      "current": "864135:d1152e99"
+    },
+    "act4-sideview:33:coastal-v2:lowland": {
+      "stage": 33,
+      "previous": "743870:a3735931",
+      "current": "745366:5d4bce0d"
+    }
+  },
+  "optimizerAfterAliasSHA256": "2333ca8916161ab7b90503a50035e9f7cc629910fbcbc2b6aa7542697f731359"
+}
