@@ -1,0 +1,279 @@
+{
+  "enabled": true,
+  "qaRef": "refs/heads/qa/stage33-provider-2c4-r4-72dd",
+  "head": "72dd73e03f7d07c1b87d3e1e71a62d187a371e6a",
+  "tree": "3c416cb19b10c6af4c2c19c19233413a280f26d8",
+  "manifest": {
+    "bytes": 8335506,
+    "sha256": "6b2160affabe1f8474948d5556e052c3a68d8f7f460aed894600dc347821cc4c",
+    "git": "37fafcbea864d3ea24a399e5eace28c1ea117bf7"
+  },
+  "old": "c60fca57d223ecb3e62afc86c4755774c2b68263",
+  "oldShell": {
+    "bytes": 17379,
+    "sha256": "03ebb2c1bfaefa36f5f54f1f9946455d323ec2bd79c6b267613acf77bdf8fec3",
+    "git": "6627b75ed1afb82345a0c031cb601555cea00f64"
+  },
+  "sourceBefore": {
+    "bytes": 26381,
+    "sha256": "af7127bf65e1e9e7a21ffe52c90a45328eaf2851708a2ba61d8aac31fa8793cd",
+    "git": "a5ac12ef4de8b2370fcbca1457b86a0c6e2d758c"
+  },
+  "sourceCandidate": {
+    "bytes": 26493,
+    "sha256": "4766904f9253b034cd25ebbf8698b88ad82de1c9b480df3ce9ddf83739d04b5f",
+    "git": "4d3ec54313bee45f390369c2978da0a7ed2c210d"
+  },
+  "observer": {
+    "bytes": 5555,
+    "sha256": "7c64522c0c84866e0d2516ca18ed81e12a9f7b348a26fa49fb40f9516a29a24a",
+    "git": "9a006159a486663144950cf69fae3f4fd9c41ff3"
+  },
+  "oldTable": "web/runtime/ordered-common-12.be328ccb963ceef8.js",
+  "oldTableGit": "ff717579a676c03e1c88fb355080418fa6b380d3",
+  "map": "web/data/chapter-33.80ca32475be181c7.json",
+  "oldPacket": "web/data/chapter-33-assets.07b129345eb95856.json",
+  "newPacket": "web/data/chapter-33-assets.920ccd84eb69a553.json",
+  "previousPeer0": "web/runtime/ordered-common-17.93673f3a14672979.js",
+  "oldEntry": "web/entries/game.b1321855b16bc549.js",
+  "oldCampaign": "web/data/campaign.36b3008756d1c3a5.json",
+  "oldWrapper": "web/runtime/campaign.add23c14682508f8.js",
+  "currentClinicalMap": {
+    "bytes": 34235,
+    "sha256": "80ca32475be181c7774c305b442c8081b6341836fb8d08771e033b7fb79e1464"
+  },
+  "rows": {
+    "act4-sideview:33:coastal-v2:west-continuous-geology": {
+      "stage": 33,
+      "previous": "862760:4666d3c8",
+      "current": "864135:d1152e99"
+    },
+    "act4-sideview:33:coastal-v2:lowland": {
+      "stage": 33,
+      "previous": "743870:a3735931",
+      "current": "745366:5d4bce0d",
+      "previousOptimized": "728197:c76800ec"
+    }
+  },
+  "pose": {
+    "actual": {
+      "x": 7232,
+      "y": 2304,
+      "scale": 0.21176470588235294
+    },
+    "viewport": {
+      "left": 3832,
+      "right": 10632,
+      "top": 487.8628472222222,
+      "bottom": 4120.137152777777
+    },
+    "backing": [
+      1440,
+      769
+    ]
+  },
+  "old2c4": {
+    "head": "2c4e90ff24d1f5aa5d04f01317caa02f89b8194c",
+    "shell": {
+      "bytes": 17379,
+      "sha256": "b5696990619f139e6bb239646a8af4a8db0fd8e4e7b0c0d0dc97081588e6219c",
+      "git": "f1ddd3dec3eebb333563dad9a2fd81f1f0d68cd1"
+    },
+    "pages": 44947732170,
+    "route": [
+      "web/entries/game.df8a4c7f1873e38c.js",
+      "web/runtime/campaign.926544619e01a04a.js",
+      "web/data/campaign.7140da5d3649e4ab.json",
+      "web/data/chapter-33.a7ce91b7d78fb5f8.json",
+      "web/data/chapter-33-assets.4b5df185aa59eb42.json"
+    ]
+  },
+  "knownCurrentPC": {
+    "bytes": 952116,
+    "sha256": "3fd520b70b3478edbdff52eca76ee888a8b0b7c4f6853aae4fe4907b4e33c5dd"
+  },
+  "oldTableIdentity": {
+    "bytes": 72701,
+    "sha256": "be328ccb963ceef85597dd67cd5ca8cfaf6950c6d93ddb9615b584055da66640",
+    "git": "ff717579a676c03e1c88fb355080418fa6b380d3"
+  },
+  "newCommonPrediction": {
+    "bytes": 72737,
+    "sha256": "0702266845a71d312e63a5d0d5427bb15ed60dfbee3f90642e8645a5fd297664",
+    "git": "4042516a9391ee0ff6594f6ee1e722fe654631fc"
+  },
+  "baseRelease": {
+    "registry": 1406,
+    "active": 810,
+    "sourceUnchangedAfter342": true,
+    "profileSource": {
+      "bytes": 22989,
+      "sha256": "18cdf08ee7a007a772b454c3f36515db9d9bfa92465c0569b145daa224b2a4ae",
+      "git": "400eca67810f433bfe4a8952f76d366d8948ac11"
+    },
+    "profileModule": "web/runtime/ordered-common-4.aec03203b3d81bdf.js",
+    "profileCompiled": {
+      "bytes": 182110,
+      "sha256": "aec03203b3d81bdfbe255a98d6a9612ca128d403a791578225bc327d2212ea54",
+      "git": "1cae0d386e1e51ecf1edfaab765299b8b8debd15"
+    },
+    "pagesRun": 45030777214,
+    "pagesJob": 137234132631,
+    "pagesDeployCompletedUTC": "2026-11-22T14:05:59Z"
+  },
+  "exactPeers": {
+    "21": {
+      "web/data/chapter-21.724a765a85d437a2.json": {
+        "bytes": 67494,
+        "sha256": "724a765a85d437a24ea9437ba300f5602282abda9ecbd190074a7d25b8b1c51b"
+      },
+      "web/data/chapter-21-assets.195e73632de8b164.json": {
+        "bytes": 688805,
+        "sha256": "195e73632de8b16431e39ac63f87eed9ad1ea538a47dcc0d980e4a0e1c624e67"
+      }
+    },
+    "32": {
+      "web/data/chapter-32.f242630da616ee32.json": {
+        "bytes": 21111,
+        "sha256": "f242630da616ee32bbeaa0f13d64e7c800976e6928d25b5c588a2286e913968a"
+      },
+      "web/data/chapter-32-assets-parts.11bb98c0e02b14b3.json": {
+        "bytes": 444,
+        "sha256": "11bb98c0e02b14b3c98d4296f2469a843df73148361120e6b0973d572ca46789"
+      },
+      "web/data/chapter-32-assets-part-000.9ee023cdeb2b8afc.bin": {
+        "bytes": 4194304,
+        "sha256": "9ee023cdeb2b8afc6528695ce8cb993758ccce8636edadd4dfc77adece2a90a1"
+      },
+      "web/data/chapter-32-assets-part-001.04b03685e0328118.bin": {
+        "bytes": 3805125,
+        "sha256": "04b03685e03281184b2f61ed8087bcd749860b656051ef616ffbbfa42ccf4cbf"
+      }
+    },
+    "33": {
+      "web/data/chapter-33.80ca32475be181c7.json": {
+        "bytes": 34235,
+        "sha256": "80ca32475be181c7774c305b442c8081b6341836fb8d08771e033b7fb79e1464"
+      },
+      "web/data/chapter-33-assets.920ccd84eb69a553.json": {
+        "bytes": 2861056,
+        "sha256": "920ccd84eb69a5534b16e76ac27bb6df1d1c04fba0b2c5fff409057d6119d55b"
+      }
+    },
+    "40": {
+      "web/data/chapter-40.5f4b6c4c311adc05.json": {
+        "bytes": 48881,
+        "sha256": "5f4b6c4c311adc0508920712018dadd7262c69c17b8d1b955628bdd8ce7d98e0"
+      },
+      "web/data/chapter-40-assets-parts.e102ede6b6f1921d.json": {
+        "bytes": 605,
+        "sha256": "e102ede6b6f1921d46efaf44318550c800c271ab2507f114d59b2b69698be6fe"
+      },
+      "web/data/chapter-40-assets-part-000.cd3e15a78b719c49.bin": {
+        "bytes": 4194304,
+        "sha256": "cd3e15a78b719c49cc3651a2e38cfb21c1f0a5176947f23550fd7ab058b0264e"
+      },
+      "web/data/chapter-40-assets-part-001.6dbca9ee910a8ff7.bin": {
+        "bytes": 4194304,
+        "sha256": "6dbca9ee910a8ff7be24e4f08354cd8f076f54b9eb72d5cca63a3fff971e32be"
+      },
+      "web/data/chapter-40-assets-part-002.6f227d452d7a288d.bin": {
+        "bytes": 1749013,
+        "sha256": "6f227d452d7a288d34bce7981b2ace8179d4b786e1a3b772f5b1d62d43f3144a"
+      }
+    },
+    "42": {
+      "web/data/chapter-42.0802015e8ba99d11.json": {
+        "bytes": 12647,
+        "sha256": "0802015e8ba99d11a8ece1f14186b3db6a4a7d3d32076e64ca120300f50c7f50"
+      },
+      "web/data/chapter-42-assets.396ec98508d5b8c8.json": {
+        "bytes": 1864856,
+        "sha256": "396ec98508d5b8c828a8d0bbf24c2f6cac1a734a55989db3f3d3fcc1d80bb1df"
+      }
+    },
+    "46": {
+      "web/data/chapter-46.2806e485c4c1e1b4.json": {
+        "bytes": 24682,
+        "sha256": "2806e485c4c1e1b4d94174b8324a2d534291c22c481c94960883a29643e9da02"
+      },
+      "web/data/chapter-46-assets-parts.a3595c48161a8bc1.json": {
+        "bytes": 765,
+        "sha256": "a3595c48161a8bc14dec5b1dea23dea0fda99fa39153a359d9ee83c5359516ea"
+      },
+      "web/data/chapter-46-assets-part-000.f7ebee97d8110e68.bin": {
+        "bytes": 4194304,
+        "sha256": "f7ebee97d8110e6805bf6fb6a58303332d3fd118a8e477f3b5de6c7e002064a2"
+      },
+      "web/data/chapter-46-assets-part-001.5213b80662dfa32e.bin": {
+        "bytes": 4194304,
+        "sha256": "5213b80662dfa32ee85b3d01d07dd0d2fb4fe33fa1ed3647ca94a85abce27ac6"
+      },
+      "web/data/chapter-46-assets-part-002.8be859e980ee1d29.bin": {
+        "bytes": 4194304,
+        "sha256": "8be859e980ee1d292718c73bd51206ea8fa0a887baa59fc67c5ec6b2c4cd0738"
+      },
+      "web/data/chapter-46-assets-part-003.ee5f50c994047cde.bin": {
+        "bytes": 2667958,
+        "sha256": "ee5f50c994047cde9851a35f503ddc56b395904698ecbef174d832a4eaa148a8"
+      }
+    }
+  },
+  "stage40OldRoutes": {
+    "web/data/chapter-40-assets-part-000.3b82e978dff8f8e6.bin": {
+      "bytes": 4194304,
+      "sha256": "3b82e978dff8f8e645808bb8eaaf3315c418e65fe178d0ff9823716529f0a172"
+    },
+    "web/data/chapter-40-assets-part-001.50a919950e2df457.bin": {
+      "bytes": 4194304,
+      "sha256": "50a919950e2df457fbc2632fe4316b1ef7e07f74408322a01c098b735aa9e54f"
+    },
+    "web/data/chapter-40-assets-part-002.b6a1709435a1910a.bin": {
+      "bytes": 2231305,
+      "sha256": "b6a1709435a1910a366c0108184bc6eeedf1286f7a5e67426f1570917a202bf5"
+    },
+    "web/data/chapter-40-assets-parts.578f8624b0ac77bc.json": {
+      "bytes": 605,
+      "sha256": "578f8624b0ac77bc2c7322644b2844c5b09110efc32dfb83aa9f57e0463547b0"
+    },
+    "web/data/chapter-40.5f4b6c4c311adc05.json": {
+      "bytes": 48881,
+      "sha256": "5f4b6c4c311adc0508920712018dadd7262c69c17b8d1b955628bdd8ce7d98e0"
+    }
+  },
+  "stage40RowsLexical": {
+    "approved40:terrain-left-join": "{stage:40,previous:\"1761406:9835d7\",current:\"1694987:a515b4e3\",previousOptimized:\"1757601:e9667f0a\"}",
+    "approved40:terrain-right-join": "{stage:40,previous:\"1656846:fba43601\",current:\"1597731:b4de61d5\",previousOptimized:\"1653652:f5a9b376\"}",
+    "approved40:arrival-stair": "{stage:40,previous:\"686777:111fe27\",current:\"674488:5ba1c886\"}",
+    "approved40:body": "{stage:40,previous:\"4724416:12a0c1d5\",current:\"4471109:d3f5a835\"}",
+    "approved40:coastal-foundation": "{stage:40,previous:\"1408143:e55964aa\",current:\"1297690:b446a076\"}"
+  },
+  "compatWitness": {
+    "40": {
+      "historicalTokens": {
+        "approved40:coastal-foundation": "1408143:e55964aa",
+        "approved40:body": "4724416:12a0c1d5",
+        "approved40:terrain-left-join": "1757601:e9667f0a",
+        "approved40:terrain-right-join": "1653652:f5a9b376"
+      },
+      "currentTokens": {
+        "approved40:coastal-foundation": "1297690:b446a076",
+        "approved40:body": "4471109:d3f5a835",
+        "approved40:terrain-left-join": "1694987:a515b4e3",
+        "approved40:terrain-right-join": "1597731:b4de61d5"
+      },
+      "terrainSha": "154ce99f4b1f92d58d05fc19cfb383aaa802435ffc702991b46b80bfe5ab6b66",
+      "unitsSha": "9623838855cc8709dc20dc20ccfa7f9cb82325d0ae0d4db7a8be9ca8f14c6884"
+    },
+    "46": {
+      "historicalTokens": {
+        "act5:near:46": "17756761:bc1a6549"
+      },
+      "currentTokens": {
+        "act5:near:46": "16328502:43d17801"
+      },
+      "terrainSha": "f9410912cc8e8e7465c5bd2b584f1a4138d5edaf95d873ce2c1bd777dab7aa05",
+      "unitsSha": "099cdfb6fda658767513a209281d20b0707b3207247d7eab2f3914d9f97c6f7d"
+    }
+  }
+}
