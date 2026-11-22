@@ -1,0 +1,232 @@
+{
+  "enabled": true,
+  "qaRef": "refs/heads/qa/stage32-south-r10-733d5d2",
+  "head": "733d5d212d5ab235c2b492e1f065306bdfaae317",
+  "tree": "276e54e1ca08d32d3b290097c9a05e91e9ab0ecd",
+  "pages": {
+    "run": 45023608854,
+    "deployJob": 137212114253,
+    "utc": "2026-11-22T12:43:41Z"
+  },
+  "manifest": {
+    "bytes": 7994676,
+    "sha256": "8d6f1debdb956b1f2c92c8a6808707aab7e1db98ddbfbc9ce2ffbffaed9322d1",
+    "git": "10d3c091c96dccbc2a92bbe4434a00f128abb56e"
+  },
+  "source": "shared/act4-handoff-art.mjs",
+  "sourceStock": {
+    "bytes": 8339,
+    "sha256": "150c8f772682c3da277fae35a4757501401ee43dad14b5d96d5885aeffc25c43",
+    "git": "a727bd85a1b8faa1cfaf8a2b98cf3b3e0de5e7e1"
+  },
+  "sourceB": {
+    "bytes": 9894,
+    "sha256": "55926d7a654fe8583e3a94cfb36b8de4f37f631f639d2147b2d4a241ab921f81",
+    "git": "5029c6d904e1903715eba935eb3949ec99bb5a73"
+  },
+  "paintPath": "shared/data/act4/handoff-art/stage32-south-r10.json",
+  "paint": {
+    "bytes": 10438,
+    "sha256": "246cbd7a88f761fc3bccfe5f7a1bff265f2f85647b8d8db0b87cfc181e4702dc",
+    "git": "1f5c2b5a1e1b4ac95c301a3cf56645dc9293a33e"
+  },
+  "observer": {
+    "bytes": 5555,
+    "sha256": "7c64522c0c84866e0d2516ca18ed81e12a9f7b348a26fa49fb40f9516a29a24a",
+    "git": "9a006159a486663144950cf69fae3f4fd9c41ff3"
+  },
+  "authoredBodyStockGit": "f97c5161ed8e8e0825085264ff6010f52429f2b7",
+  "map": "web/data/chapter-32.f242630da616ee32.json",
+  "mapPin": {
+    "bytes": 21111,
+    "sha256": "f242630da616ee32bbeaa0f13d64e7c800976e6928d25b5c588a2286e913968a",
+    "git": "98722d5d4e4fee6eb0348c8fbd7075b29bf8a76b"
+  },
+  "oldIdx": "web/data/chapter-32-assets-parts.11bb98c0e02b14b3.json",
+  "oldPin": {
+    "bytes": 444,
+    "sha256": "11bb98c0e02b14b3c98d4296f2469a843df73148361120e6b0973d572ca46789",
+    "git": "43a3b71445e6e1f2b227512f48f4acb695bbfc1a"
+  },
+  "active": 810,
+  "scope": [
+    245,
+    1790,
+    3166,
+    2470
+  ],
+  "assets": {
+    "F": "act4-handoff:32:body-joined",
+    "B": "approved32:coastal-foundation"
+  },
+  "devs": [
+    {
+      "key": "PC-south",
+      "device": "PC",
+      "name": "south",
+      "dims": [
+        1440,
+        900
+      ],
+      "dx": 0,
+      "dy": 1,
+      "actual": {
+        "x": 1689.6,
+        "y": 2492.8,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": -1710.4,
+        "right": 5089.6,
+        "top": 676.6628472222224,
+        "bottom": 4308.9371527777785
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "rawSHA256": "9c6255fa57a87c159c16cd7379ab0ec0a986d6cec6a73aa7bd2acb6724844390",
+      "physics": "b4ab0de6e02c3c70496ae111ad17b25d68a0fa4a054731b04df18e425abde515"
+    },
+    {
+      "key": "PC-west",
+      "device": "PC",
+      "name": "west",
+      "dims": [
+        1440,
+        900
+      ],
+      "dx": -1,
+      "dy": 0,
+      "actual": {
+        "x": -320,
+        "y": 1126.4,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": -3720,
+        "right": 3080,
+        "top": -689.7371527777777,
+        "bottom": 2942.537152777778
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "rawSHA256": "fa8b52e6279e2b308a940f0236126102028c5347edacc9bf1898d0c090e4ea4e",
+      "physics": "b4ab0de6e02c3c70496ae111ad17b25d68a0fa4a054731b04df18e425abde515"
+    },
+    {
+      "key": "PC-east",
+      "device": "PC",
+      "name": "east",
+      "dims": [
+        1440,
+        900
+      ],
+      "dx": 1,
+      "dy": 0,
+      "actual": {
+        "x": 3699.2,
+        "y": 1126.4,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": 299.1999999999998,
+        "right": 7099.2,
+        "top": -689.7371527777777,
+        "bottom": 2942.537152777778
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "rawSHA256": "7a5c5c982f79b8bcbfe918e4fb7f12af7bc06404b23e521ec3839e000b3dc109",
+      "physics": "b4ab0de6e02c3c70496ae111ad17b25d68a0fa4a054731b04df18e425abde515"
+    },
+    {
+      "key": "Mobile-south",
+      "device": "Mobile",
+      "name": "south",
+      "dims": [
+        390,
+        844
+      ],
+      "dx": 0,
+      "dy": 1,
+      "actual": {
+        "x": 1689.6,
+        "y": 2492.8,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": -1710.4,
+        "right": 5089.6,
+        "top": -3153.02532051282,
+        "bottom": 8138.6253205128205
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "rawSHA256": "f62e502d75896cdff48d18d772a600f84030aca5a830a18e7d5e731a500e6083",
+      "physics": "b4ab0de6e02c3c70496ae111ad17b25d68a0fa4a054731b04df18e425abde515"
+    },
+    {
+      "key": "Mobile-west",
+      "device": "Mobile",
+      "name": "west",
+      "dims": [
+        390,
+        844
+      ],
+      "dx": -1,
+      "dy": 0,
+      "actual": {
+        "x": -320,
+        "y": 1126.4,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": -3720,
+        "right": 3080,
+        "top": -4519.425320512821,
+        "bottom": 6772.22532051282
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "rawSHA256": "01995be0d49c38bcd5c2bc5d8d2d11ad963c24fd0f90c04fb179bfb453b8ceb5",
+      "physics": "b4ab0de6e02c3c70496ae111ad17b25d68a0fa4a054731b04df18e425abde515"
+    },
+    {
+      "key": "Mobile-east",
+      "device": "Mobile",
+      "name": "east",
+      "dims": [
+        390,
+        844
+      ],
+      "dx": 1,
+      "dy": 0,
+      "actual": {
+        "x": 3699.2,
+        "y": 1126.4,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": 299.1999999999998,
+        "right": 7099.2,
+        "top": -4519.425320512821,
+        "bottom": 6772.22532051282
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "rawSHA256": "8edbeffbc9dec76fdca8c524c70b935bb171705ccf6172cf6a5828fbea90a76e",
+      "physics": "b4ab0de6e02c3c70496ae111ad17b25d68a0fa4a054731b04df18e425abde515"
+    }
+  ]
+}
