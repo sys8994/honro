@@ -1,0 +1,173 @@
+{
+  "enabled": true,
+  "scopeApproval": "Root explicitly authorized exact joint-only 32/42 verified 72dd candidate to the fixed scoped release branch, ordinary fast-forward, no master or Pages. Stage33 older 2c4, Stage7, and R10 excluded.",
+  "repo": "sys8994/honro",
+  "qaRef": "refs/heads/qa/stage32-42-exact-retained-writer-72dd-r1",
+  "releaseRef": "refs/heads/release/stage32-42-qualified-20261122",
+  "destinationMustBeAtBase": true,
+  "base": {
+    "head": "72dd73e03f7d07c1b87d3e1e71a62d187a371e6a",
+    "tree": "3c416cb19b10c6af4c2c19c19233413a280f26d8",
+    "manifest": {
+      "git": "37fafcbea864d3ea24a399e5eace28c1ea117bf7",
+      "bytes": 8335506,
+      "sha256": "6b2160affabe1f8474948d5556e052c3a68d8f7f460aed894600dc347821cc4c"
+    },
+    "registry": 1406,
+    "publishedGenerations": 48,
+    "pages": 45030777214,
+    "job": 137234132631,
+    "publishedAt": "2026-11-22T14:05:59.6022513Z",
+    "retainerGit": "8374336b53c74ac81e6d32f5aa43eee575e61daa",
+    "policyGit": "16687b0fc38e432a7d66a015ddf3ebe744163a06",
+    "sources": {
+      "shared/web-build.mjs": "761f6c6a757b3cdb16616ad17195e9d614cc11c3",
+      "shared/web-loader.js": "87a9c964211acf9f3f92c69dc31d8c2234d26c72",
+      "shared/runtime/profile-store.js": "400eca67810f433bfe4a8952f76d366d8948ac11",
+      "shared/assets/environment/act5/near-import.json": "938069390ced7f76242a81f008200d5f9b63a950"
+    }
+  },
+  "normalQA": {
+    "run": 45032084644,
+    "job": 137237675423,
+    "head": "06dd073887b48095abd633ab9403ea49765d2359",
+    "tree": "b603f1b72f235812a69542ae7d8ae9bedfa88545",
+    "branch": "qa/stage32-42-joint-normal-72dd73e-r2",
+    "artifact": 14757773079,
+    "artifactName": "honro-stage32-42-joint-current-no-deploy",
+    "fact": {
+      "bytes": 28187681,
+      "sha256": "6e145a6c9af90c1f4f2a3c4d4b0ddfe5e55587bd22f7286feb22b9056eadc7d4"
+    },
+    "members": [
+      "out/ACTIVE-DELTA.json",
+      "out/B-REVIEW-ONLY.zip",
+      "out/BROWSER.json",
+      "out/BUILT-SCOPE.json",
+      "out/COMPILED-SLOTS.json",
+      "out/GRAPH.json",
+      "out/OUTPUT-CUSTODY.json",
+      "out/PROFILE-COMPILATION.json",
+      "out/RESUME-40-46.json",
+      "out/RESUME-ROUTES.json",
+      "out/SOURCE-JOINT.json",
+      "out/SOURCE-SCOPE.json",
+      "out/STAGE33-HISTORIC.json",
+      "out/WORKSHOP.json",
+      "out/build.log",
+      "out/contract.log",
+      "out/http-733.log",
+      "out/http-A.log",
+      "out/http-B.log",
+      "out/http-c60.log",
+      "out/normal-1440x900-A-dom.png",
+      "out/normal-1440x900-A-raw.png",
+      "out/normal-1440x900-B-dom.png",
+      "out/normal-1440x900-B-raw.png",
+      "out/normal-390x844-A-dom.png",
+      "out/normal-390x844-A-raw.png",
+      "out/normal-390x844-B-dom.png",
+      "out/normal-390x844-B-raw.png",
+      "out/npm-game.log",
+      "out/npm-root.log",
+      "out/resume-M-40-candidateFresh.png",
+      "out/resume-M-40-historical733.png",
+      "out/resume-M-46-candidateFresh.png",
+      "out/resume-M-46-historical733.png",
+      "out/resume-PC-40-candidateFresh.png",
+      "out/resume-PC-40-historical733.png",
+      "out/resume-PC-46-candidateFresh.png",
+      "out/resume-PC-46-historical733.png",
+      "stage42/out/BROWSER.json",
+      "stage42/out/GRAPH.json",
+      "stage42/out/M-A-close-raw.png",
+      "stage42/out/M-A-east-raw.png",
+      "stage42/out/M-A-south-raw.png",
+      "stage42/out/M-A-west-raw.png",
+      "stage42/out/M-B-close-raw.png",
+      "stage42/out/M-B-east-raw.png",
+      "stage42/out/M-B-south-raw.png",
+      "stage42/out/M-B-west-raw.png",
+      "stage42/out/M-candidate-current-continued-east.png",
+      "stage42/out/M-candidate-old-continued-east.png",
+      "stage42/out/M-stock-old-control-continued-east.png",
+      "stage42/out/PC-A-close-raw.png",
+      "stage42/out/PC-A-east-raw.png",
+      "stage42/out/PC-A-south-raw.png",
+      "stage42/out/PC-A-west-raw.png",
+      "stage42/out/PC-B-close-raw.png",
+      "stage42/out/PC-B-east-raw.png",
+      "stage42/out/PC-B-south-raw.png",
+      "stage42/out/PC-B-west-raw.png",
+      "stage42/out/PC-candidate-current-continued-east.png",
+      "stage42/out/PC-candidate-old-continued-east.png",
+      "stage42/out/PC-stock-old-control-continued-east.png",
+      "stage42/out/RESUME.json",
+      "stage42/out/SOURCE.json"
+    ],
+    "receipts": {
+      "out/OUTPUT-CUSTODY.json": {
+        "bytes": 25027,
+        "sha256": "eec1344c1a4ae1ec900a74073a44786f58b8bd63e929214a80f758f7eafacd34"
+      },
+      "out/GRAPH.json": {
+        "bytes": 387876,
+        "sha256": "25e379d702f68594f809de573b108d66404d49ae4ee43a9fab4f072c835e3a70"
+      },
+      "out/BROWSER.json": {
+        "bytes": 20541,
+        "sha256": "9c0856e5993994dc2ed8f4c9a291c3a3013bf2d8be0a7e9637d65cf4d994e3eb"
+      },
+      "out/BUILT-SCOPE.json": {
+        "bytes": 496,
+        "sha256": "4fc2b69d2196ddc9d1f412e016ca31567c3fc167825665e1cb6abd32ae283b94"
+      },
+      "out/SOURCE-JOINT.json": {
+        "bytes": 799,
+        "sha256": "82d5607f5cdd0305de7217fc421b912c5a442f39f01f4c73615f9c33aa32b8a7"
+      },
+      "out/ACTIVE-DELTA.json": {
+        "bytes": 11676,
+        "sha256": "4b316fb6dacd8ce22edc267dae2fc6bc1e5fa90cee6898b1f0b7f07d2b385025"
+      },
+      "out/COMPILED-SLOTS.json": {
+        "bytes": 42542,
+        "sha256": "dc6de60d341eb61eb5d309788bf675de955660e0557387cb2099465bd7b4f30f"
+      },
+      "out/PROFILE-COMPILATION.json": {
+        "bytes": 785,
+        "sha256": "a2b2c6f3a8f38364ef5aa7e154b8b71328c94e9eb27a0e3826475d2f912aa11f"
+      },
+      "out/WORKSHOP.json": {
+        "bytes": 103562,
+        "sha256": "9781f4ba3f86253f2e5324c0753c87422e04b050f91764ea146e8d5a8e7df525"
+      },
+      "out/RESUME-40-46.json": {
+        "bytes": 60980,
+        "sha256": "bda2d77766b7309232f8b25dc39d42f523b369d0c7585412edd1aecf15fb2534"
+      },
+      "stage42/out/BROWSER.json": {
+        "bytes": 19630,
+        "sha256": "704c4521f359a7e51aebb961f7acac3aaa4fd5c4bca9f4613333855029c8dcfa"
+      },
+      "stage42/out/RESUME.json": {
+        "bytes": 18015,
+        "sha256": "1cd3b9e6df5f18d908171a5f7aaafe95c396dfd9b3ece46d46711738f65e4f91"
+      },
+      "stage42/out/SOURCE.json": {
+        "bytes": 661,
+        "sha256": "2b3001d6541e0b7596ed6836f06862c35fb982594dca042433a1869ba3f49637"
+      }
+    },
+    "candidateManifest": {
+      "git": "45e948112f4f4c5e029a08dad8047ba055519bb4",
+      "bytes": 8303889,
+      "sha256": "87ce9c92cef804e5f5b2e1a8a835b690ab8cf2bd33b1f3c050b15de71cd0feec"
+    },
+    "innerFact": {
+      "bytes": 9258142,
+      "sha256": "426b91f3ea4287b6acb42066982aaff59467449f4785c32a16747bd710b08a4a"
+    },
+    "innerMembers": 104
+  }
+}
