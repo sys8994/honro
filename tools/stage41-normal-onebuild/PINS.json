@@ -1,0 +1,496 @@
+{
+  "enabled": true,
+  "release": {
+    "head": "c7b7bdef88b2b7d04af7f69dce58c948c4d185ea",
+    "tree": "5f468832f4c4170a61304263965bc1215917839d",
+    "manifest": {
+      "bytes": 7145164,
+      "sha256": "d65a06231081d32652683380024b926570f8bdc1c66c681f4eed1e3d51f54460"
+    },
+    "pages": {
+      "head": "c7b7bdef88b2b7d04af7f69dce58c948c4d185ea",
+      "branch": "master",
+      "conclusion": "success",
+      "run": 44992025157,
+      "job": 137115264140,
+      "publishedAt": "2026-11-22T06:05:25Z"
+    },
+    "shellAndEntry": {
+      "shell": {
+        "bytes": 17379,
+        "sha256": "fa1e2895e3efcce03ca333fef4c19a1be7949c6a8904a9167ff525dc603b886c"
+      },
+      "entryPath": "web/entries/game.669f98c9f33fc38d.js",
+      "entry": {
+        "bytes": 20483,
+        "sha256": "669f98c9f33fc38dfc84bae1d1c5ccf6ee4e95c51770af3aad7351c4ea3396a0"
+      }
+    }
+  },
+  "qaRef": "refs/heads/qa/stage41-west-normal-onebuild-r2-c7b7bde",
+  "route": {
+    "web/data/campaign.ce72ffa30709411b.json": {
+      "bytes": 55011,
+      "sha256": "ce72ffa30709411b93c2c92f9b732fa40b8d22d468ce8ebc6a6016c114ca5420"
+    },
+    "web/runtime/campaign.d42da1857a0e4db9.js": {
+      "bytes": 527,
+      "sha256": "d42da1857a0e4db923103745de0a43c475ed98c204a87cc350e462abe07df726"
+    },
+    "web/runtime/ordered-common-18.5bef8d649618eec7.js": {
+      "bytes": 35262,
+      "sha256": "5bef8d649618eec708148cbc4a6594edbf15b0f45c59d64849336f2a5ea14ff9"
+    },
+    "web/data/chapter-41.deb88737d28c9104.json": {
+      "bytes": 12197,
+      "sha256": "deb88737d28c910422b5d56d86476087d6b1e474ed44bf183e83cb97a436b8a2"
+    },
+    "web/data/chapter-41-assets.138e4fcb5537cad7.json": {
+      "bytes": 1438739,
+      "sha256": "138e4fcb5537cad721ab5b968f087fcf61852e42c35499cf9050cb8ce422cc55"
+    }
+  },
+  "stockSourceGit": "b79dde7e841356d25e425d8dc0bcf3ca58729c5c",
+  "sourceCandidateGit": "461571b0d86e63ad1fee411d8c2cb34382d150a7",
+  "runtime": "web/runtime/ordered-common-18.5bef8d649618eec7.js",
+  "compiledCandidate": {
+    "bytes": 35562,
+    "sha256": "36769610bbdbcea833508a886dfb284b5f6dd349aa6f82947eb51b03f214bdad"
+  },
+  "imageViews": [
+    {
+      "key": "PC",
+      "dims": [
+        1440,
+        900
+      ],
+      "actual": {
+        "x": -320,
+        "y": 1571.5,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": -3720,
+        "right": 3080,
+        "top": -244.63715277777783,
+        "bottom": 3387.637152777778
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "actorCount": 34,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "expectedBPNG": {
+        "bytes": 931139,
+        "sha256": "779e44226a73aa36ac15ec79bb894728b14c626bfcf20f09eb3ac24c4607fb58"
+      },
+      "samePhysical": "d53af44e03158083d1e87486659bec2d8f86d2f2f6b130949d592a87ec3b88d9",
+      "native": {
+        "sourceClosure": 1,
+        "omitted": 1,
+        "otherOmissions": [
+          {
+            "id": "a5-lower-road",
+            "a": {
+              "x": 6400,
+              "y": 1743.75
+            },
+            "z": {
+              "x": 6400,
+              "y": 2785
+            },
+            "walkable": false
+          },
+          {
+            "id": "a5-lower-road",
+            "a": {
+              "x": 6400,
+              "y": 2785
+            },
+            "z": {
+              "x": 250,
+              "y": 2785
+            },
+            "walkable": false
+          }
+        ],
+        "walks": [
+          {
+            "a": {
+              "x": 250,
+              "y": 2343.75
+            },
+            "z": {
+              "x": 618.75,
+              "y": 2293.75
+            },
+            "walkable": true
+          },
+          {
+            "a": {
+              "x": 618.75,
+              "y": 2293.75
+            },
+            "z": {
+              "x": 950,
+              "y": 2243.75
+            },
+            "walkable": true
+          },
+          {
+            "a": {
+              "x": 950,
+              "y": 2243.75
+            },
+            "z": {
+              "x": 1743.75,
+              "y": 2243.75
+            },
+            "walkable": true
+          },
+          {
+            "a": {
+              "x": 1818.75,
+              "y": 2362.5
+            },
+            "z": {
+              "x": 4343.75,
+              "y": 2362.5
+            },
+            "walkable": true
+          },
+          {
+            "a": {
+              "x": 4343.75,
+              "y": 2362.5
+            },
+            "z": {
+              "x": 4718.75,
+              "y": 2043.75
+            },
+            "walkable": true
+          },
+          {
+            "a": {
+              "x": 4718.75,
+              "y": 2043.75
+            },
+            "z": {
+              "x": 4993.75,
+              "y": 2043.75
+            },
+            "walkable": true
+          },
+          {
+            "a": {
+              "x": 4993.75,
+              "y": 2043.75
+            },
+            "z": {
+              "x": 5356.25,
+              "y": 1743.75
+            },
+            "walkable": true
+          },
+          {
+            "a": {
+              "x": 5356.25,
+              "y": 1743.75
+            },
+            "z": {
+              "x": 6400,
+              "y": 1743.75
+            },
+            "walkable": true
+          }
+        ],
+        "kept": 17,
+        "physics": [
+          {
+            "x": 250,
+            "y": 2343.75
+          },
+          {
+            "x": 618.75,
+            "y": 2293.75
+          },
+          {
+            "x": 950,
+            "y": 2243.75
+          },
+          {
+            "x": 1743.75,
+            "y": 2243.75
+          },
+          {
+            "x": 1818.75,
+            "y": 2362.5
+          },
+          {
+            "x": 4343.75,
+            "y": 2362.5
+          },
+          {
+            "x": 4718.75,
+            "y": 2043.75
+          },
+          {
+            "x": 4993.75,
+            "y": 2043.75
+          },
+          {
+            "x": 5356.25,
+            "y": 1743.75
+          },
+          {
+            "x": 6400,
+            "y": 1743.75
+          },
+          {
+            "x": 6400,
+            "y": 2785
+          },
+          {
+            "x": 250,
+            "y": 2785
+          }
+        ],
+        "walkableRemoved": 0,
+        "oneWay": false
+      }
+    },
+    {
+      "key": "M",
+      "dims": [
+        390,
+        844
+      ],
+      "actual": {
+        "x": -320,
+        "y": 1571.5,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": -3720,
+        "right": 3080,
+        "top": -4074.3253205128203,
+        "bottom": 7217.32532051282
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "actorCount": 34,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "expectedBPNG": {
+        "bytes": 215228,
+        "sha256": "c9fd7cab0973fb442461af0b5cdb1a1537266f49405d19adadb255877b7ec2de"
+      },
+      "samePhysical": "d53af44e03158083d1e87486659bec2d8f86d2f2f6b130949d592a87ec3b88d9",
+      "native": {
+        "sourceClosure": 1,
+        "omitted": 1,
+        "otherOmissions": [
+          {
+            "id": "a5-lower-road",
+            "a": {
+              "x": 6400,
+              "y": 1743.75
+            },
+            "z": {
+              "x": 6400,
+              "y": 2785
+            },
+            "walkable": false
+          },
+          {
+            "id": "a5-lower-road",
+            "a": {
+              "x": 6400,
+              "y": 2785
+            },
+            "z": {
+              "x": 250,
+              "y": 2785
+            },
+            "walkable": false
+          }
+        ],
+        "walks": [
+          {
+            "a": {
+              "x": 250,
+              "y": 2343.75
+            },
+            "z": {
+              "x": 618.75,
+              "y": 2293.75
+            },
+            "walkable": true
+          },
+          {
+            "a": {
+              "x": 618.75,
+              "y": 2293.75
+            },
+            "z": {
+              "x": 950,
+              "y": 2243.75
+            },
+            "walkable": true
+          },
+          {
+            "a": {
+              "x": 950,
+              "y": 2243.75
+            },
+            "z": {
+              "x": 1743.75,
+              "y": 2243.75
+            },
+            "walkable": true
+          },
+          {
+            "a": {
+              "x": 1818.75,
+              "y": 2362.5
+            },
+            "z": {
+              "x": 4343.75,
+              "y": 2362.5
+            },
+            "walkable": true
+          },
+          {
+            "a": {
+              "x": 4343.75,
+              "y": 2362.5
+            },
+            "z": {
+              "x": 4718.75,
+              "y": 2043.75
+            },
+            "walkable": true
+          },
+          {
+            "a": {
+              "x": 4718.75,
+              "y": 2043.75
+            },
+            "z": {
+              "x": 4993.75,
+              "y": 2043.75
+            },
+            "walkable": true
+          },
+          {
+            "a": {
+              "x": 4993.75,
+              "y": 2043.75
+            },
+            "z": {
+              "x": 5356.25,
+              "y": 1743.75
+            },
+            "walkable": true
+          },
+          {
+            "a": {
+              "x": 5356.25,
+              "y": 1743.75
+            },
+            "z": {
+              "x": 6400,
+              "y": 1743.75
+            },
+            "walkable": true
+          }
+        ],
+        "kept": 17,
+        "physics": [
+          {
+            "x": 250,
+            "y": 2343.75
+          },
+          {
+            "x": 618.75,
+            "y": 2293.75
+          },
+          {
+            "x": 950,
+            "y": 2243.75
+          },
+          {
+            "x": 1743.75,
+            "y": 2243.75
+          },
+          {
+            "x": 1818.75,
+            "y": 2362.5
+          },
+          {
+            "x": 4343.75,
+            "y": 2362.5
+          },
+          {
+            "x": 4718.75,
+            "y": 2043.75
+          },
+          {
+            "x": 4993.75,
+            "y": 2043.75
+          },
+          {
+            "x": 5356.25,
+            "y": 1743.75
+          },
+          {
+            "x": 6400,
+            "y": 1743.75
+          },
+          {
+            "x": 6400,
+            "y": 2785
+          },
+          {
+            "x": 250,
+            "y": 2785
+          }
+        ],
+        "walkableRemoved": 0,
+        "oneWay": false
+      }
+    }
+  ],
+  "stockSource": {
+    "bytes": 28558,
+    "sha256": "a0c77ed89a6df785636ac2e43ca0cc97ed12fb8b63b76927d9f1f3142a32455e",
+    "git": "b79dde7e841356d25e425d8dc0bcf3ca58729c5c"
+  },
+  "candidateSource": {
+    "bytes": 28860,
+    "sha256": "cb0b819fa32b861bf09d2152e8e7206e0fe6003e7ab11e8cff9471dae1facc28",
+    "git": "461571b0d86e63ad1fee411d8c2cb34382d150a7"
+  },
+  "parentManifestGit": "8320c101d87ed632e700bc81a3651837e76dc6ac",
+  "diagnostic": {
+    "run": 44996541548,
+    "job": 137128670908,
+    "artifact": 14744480610,
+    "receiptSHA256": "17ebe274afc66326af580603e47ddd3e6cc3c711e42620406e1e5c4cd1a40831"
+  },
+  "candidateRuntime": "web/runtime/ordered-common-18.36769610bbdbcea8.js"
+}
