@@ -3,6 +3,7 @@ import {applyStage6ArtPreview} from '../tools/stage6-prototype/art-preview.mjs';
 import {applyStage6IntegratedPreview} from '../tools/stage6-prototype/integrated-preview.mjs';
 import {applyAct4FinaleRevision} from './act4-finale-revision.mjs';
 import {applyAct4HandoffArt} from './act4-handoff-art.mjs';
+import {applyStage32SouthBedrock,stage32SouthProviderSignatures} from './author-stage32-south.mjs';
 import {applyAct4SideviewArt} from './act4-sideview-art.mjs';
 import {makeAct5,far as act5Far,farStages as act5FarStages,clock as act5Clock,journey as act5Journey} from './act5-world.mjs';
 import {applyAct3HandoffArt} from './act3-handoff-art.mjs';
@@ -196,6 +197,7 @@ export async function runtimeEntries({vector=true,render=true,app=false,producti
   project=applyStage6ReviewedPursuit(applyStage6IntegratedPreview(applyStage6ArtPreview(project)));
   project=await applyAct1Sites(project);
   terrainOptimization.apply(project.library);
+  if(act4Enabled)project=applyStage32SouthBedrock(project);
   applyNaruBodyFinish(project);
   if(act5)project={...project,stages:[...project.stages,...act5.stages],library:[...project.library,...act5.library]};
   if(act4Enabled){
@@ -221,7 +223,44 @@ export async function runtimeEntries({vector=true,render=true,app=false,producti
       if(text.length+':'+(h>>>0).toString(16)!==current)throw Error('Stage33 exact current provider changed: '+id);
       previousTerrainArt[id]={stage:33,previous,current};
     }
-    code('terrain-previous-provider-signatures','globalThis.HONRO_PREVIOUS_TERRAIN_ART='+JSON.stringify(previousTerrainArt)+';');
+// Existing Stage33 2c4 snapshot predates one decorative canonical element.
+// A single-use plan resolves only those two exact static-ref occurrences and
+// inserts the already shipped paint after all ordinary restore checks pass.
+function stage33CoastRestore(b,library){
+ if(b?.honroStage!==33)return;
+ const prefix='act4-sideview:33:coastal-v2:',low=prefix+'lowland',deep=low+'-deep-strata',west=prefix+'west-continuous-geology';
+ const old='728197:c76800ec',newLow='745366:5d4bce0d',newDeep='5555:6b3d7631';
+ const lists=[b.honroElements,b.honroLandmarks,b.honroEnvironment?.placements],oldRef=item=>item?.asset?.id===low&&item.asset.signature===old;
+ if(!lists.some(list=>Array.isArray(list)&&list.some(oldRef)))return;
+ if(b.mode!=='campaign'||b.honroMapOrigin!=='campaign'||b.honroCanonical!==true||b.honroCustom!==false||b.honroAct4Official!==1||
+    b.stage!==33||b.honroAuthoredId!=='stage-33'||b.honroRevision!==20||b.honroMapRevision!==20||b.honroCampaignMapRevision!==5||
+    b.width!==6912||b.height!==4608||b.honroTerrainDomainVersion!==1)return false;
+ const [elements,landmarks,environment]=lists;
+ if(!Array.isArray(elements)||!Array.isArray(landmarks)||elements===landmarks||!Array.isArray(environment)||environment.some(oldRef))return false;
+ const hasID=(item,id)=>item?.id===id||item?.assetId===id||item?.asset?.id===id;
+ if(lists.some(l=>l.some(e=>hasID(e,deep))))return false;
+ const position=(x,id)=>x?.id===id&&x.assetId===id&&x.x===0&&x.y===0&&x.scale===1&&x.rotation===0&&x.snap===false&&x.depthLayer==='L1'&&x.nativeArtLayer==='surface'&&x.layer==='mid';
+ const shape=(x,id)=>position(x,id)&&x.kind==='canonical-element'&&Array.isArray(x.collisionIds)&&x.collisionIds.length===0;
+ const token=(e,id,sig)=>shape(e,id)&&e.asset?.honroStaticAssetRef===1&&e.asset.id===id&&e.asset.signature===sig&&Object.keys(e.asset).length===3;
+ const st=globalThis.HONRO_PROJECT?.stages?.find(s=>s.id==='stage-33');
+ const authored=st?.elements?.[8];
+ if(st?.metadata?.stageId!==33||st.metadata.campaign!==true||st.width!==6912||st.height!==4608||st.terrainDomainVersion!==1||
+    !position(authored,deep)||!position(st.elements[9],low)||Object.keys(authored).length!==10)return false;
+ const sig=a=>{const s=JSON.stringify(a);let h=2166136261;for(let i=0;i<s.length;i++)h=Math.imul(h^s.charCodeAt(i),16777619);return s.length+':'+(h>>>0).toString(16);};
+ const visual=a=>a?.vector?.version===1&&Array.isArray(a.collision)&&a.collision.length===0&&!a.interactionType;
+ const src=library.get(deep),to=library.get(low);
+ if(!visual(src)||src.renderer==='landmark'||!Array.isArray(src.sockets)||src.sockets.length||sig(src)!==newDeep||
+    !visual(to)||sig(to)!==newLow)return false;
+ const refs=new Set(),puts=[];
+ for(const list of [elements,landmarks]){
+  const es=list.filter(e=>hasID(e,low)),ws=list.filter(e=>hasID(e,west));
+  if(es.length!==1||ws.length!==1||!token(es[0],low,old)||!token(ws[0],west,'862760:4666d3c8'))return false;
+  refs.add(es[0]);puts.push([list,list.indexOf(es[0]),{...authored,kind:'canonical-element',asset:structuredClone(src),collisionIds:[]}]);
+ }
+ if(refs.size!==2||environment.some(e=>hasID(e,low)||hasID(e,west)))return false;
+ return {refs,apply(){for(const [l,i,item]of puts)l.splice(i,0,item);}};
+}
+    code('terrain-previous-provider-signatures','globalThis.HONRO_PREVIOUS_TERRAIN_ART='+JSON.stringify(stage32SouthProviderSignatures(project,previousTerrainArt))+';globalThis.HonroStage33Restore=('+stage33CoastRestore.toString()+');');
   }
   parts.push({name:'campaign',project,code:'globalThis.HONRO_PROJECT='+authorProjectExpression(JSON.stringify(project))+';'});
   if(vector){

@@ -215,6 +215,7 @@ function mayRestoreStage42CompactedArt(b,item,ref,current){
  function restoreBattleArt(b){
  const local=resolveLocalArt(b);if(!local)return false;
  const library=new Map((G.HONRO_PROJECT?.library||[]).map(a=>[a.id,a])),signatures=new Map(),replacements=[...local.replacements];
+ const s33=G.HonroStage33Restore?.(b,library);if(s33===false)return false;
  for(const items of [b?.honroLandmarks,b?.honroElements,b?.honroEnvironment?.placements])for(const item of items||[]){
   const ref=item.asset;if(!ref||ref.honroStaticAssetRef===undefined)continue;
   if(ref.honroStaticAssetRef!==1||typeof ref.id!=='string'||typeof ref.signature!=='string')return false;
@@ -230,12 +231,13 @@ function mayRestoreStage42CompactedArt(b,item,ref,current){
    const sameTerrain=b?.mode==='campaign'&&!b.honroCustom&&b.honroMapOrigin!=='workshop'&&b.honroAct4Official===1&&
     optimized?.stage===b.honroStage&&knownSignature&&optimized.current===signatures.get(ref.id);
    if(legacy)source=legacy.asset;
-    else if(!sameTerrain&&!stage46LosslessRef(b,item,ref,source,signatures.get(ref.id))&&!mayRestoreStage42CompactedArt(b,item,ref,signatures.get(ref.id)))return false;
+    else if(!sameTerrain&&!s33?.refs.has(item)&&!stage46LosslessRef(b,item,ref,source,signatures.get(ref.id))&&!mayRestoreStage42CompactedArt(b,item,ref,signatures.get(ref.id)))return false;
   }
   replacements.push([item,source]);
  }
  // Resolve only after campaign lazy loading and revision checks, atomically.
  for(const[item,source]of replacements)item.asset=structuredClone(source);
+ s33?.apply();
  if(local.table)delete b.honroLocalArtTable;
  return true;
 }
