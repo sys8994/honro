@@ -1,0 +1,38 @@
+name: HONRO Stage33 east cliff exact previously-built writer
+on:
+  push:
+    branches: [qa/stage33-east-end-writer-c60fca57]
+    paths: [.github/workflows/stage33-east-end-writer.yml, tools/stage33-east-end-writer/**]
+permissions:
+  contents: write
+  actions: read
+jobs:
+  fixed-release-branch:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage33-east-end-writer-c60fca57'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: true
+          fetch-depth: 0
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Authenticate sealed B and prior Pages, no compilation
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 -B tools/stage33-east-end-writer/writer.py acquire "$RUNNER_TEMP/stage33-east-release"
+      - name: Assemble and ordinary-forward only the signed candidate release ref
+        run: bash tools/stage33-east-end-writer/safe-push.sh "$RUNNER_TEMP/stage33-east-release"
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage33-east-end-writer-assembly-receipt
+          path: |
+            ${{ runner.temp }}/stage33-east-release/ASSEMBLY.json
+            ${{ runner.temp }}/stage33-east-release/candidate.sha
+            ${{ runner.temp }}/stage33-east-release/candidate.tree
+            ${{ runner.temp }}/stage33-east-release/hook
+          if-no-files-found: warn
+          retention-days: 7

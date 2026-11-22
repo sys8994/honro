@@ -1,0 +1,257 @@
+{
+  "enabled": true,
+  "repo": "sys8994/honro",
+  "qaRef": "refs/heads/qa/stage33-east-end-writer-c60fca57",
+  "releaseRef": "refs/heads/release/act4-stage33-east-headland-20261122",
+  "scopeApproval": "Only the isolated Stage33 east headland release-candidate ref from exact c60fca. Use the PC/mobile actual normal B reviewed against official run 45019308862/artifact 14753147614; preserve south, all gameplay/maps, other stages and immutable historical URLs. No master, no Pages.",
+  "base": {
+    "head": "c60fca57d223ecb3e62afc86c4755774c2b68263",
+    "tree": "d83d9f61343380d7e82147cba56dc90bd9ff260d",
+    "manifest": {
+      "bytes": 7655771,
+      "sha256": "f5ecfb20f1b1d140cc04579068302c5a6183ecd6b071585483c6a7670b79de04",
+      "git": "495358ec04f4032becc6bdf87db9d88ec3986d4e"
+    },
+    "pagesRun": 45016105690,
+    "pagesJob": 137189067010,
+    "publishedAt": "2026-11-22T11:13:53Z",
+    "active": 810,
+    "registry": null,
+    "retainerGit": "8374336b53c74ac81e6d32f5aa43eee575e61daa",
+    "policyGit": "16687b0fc38e432a7d66a015ddf3ebe744163a06"
+  },
+  "qa": {
+    "run": 45019308862,
+    "job": 137198447516,
+    "head": "0b08c75ae666822b9f63bb471e78d096d36fb60e",
+    "tree": "61524da5b495bc1a95f46b88eafd692e76a490c9",
+    "branch": "qa/stage33-east-end-onebuild-c60fca57",
+    "artifact": 14753147614,
+    "name": "honro-stage33-east-end-actual-normal-pc-mobile-evidence",
+    "outer": {
+      "bytes": 8024407,
+      "sha256": "fcf69a861d4c09062b5958eb32cb2e81fcb557c3492a8cfb27d6fd88835fb383"
+    }
+  },
+  "outerMembers": [
+    "B-generated-pending-art/B-EXACT-NORMAL-GENERATED-NO-DEPLOY.zip",
+    "B-generated-pending-art/SEAL.json",
+    "BROWSER.json",
+    "M-A-actual-east-dom.png",
+    "M-A-actual-east-raw.png",
+    "M-B-actual-east-dom.png",
+    "M-B-actual-east-raw.png",
+    "NATIVE-ROUTES.json",
+    "PC-A-actual-east-dom.png",
+    "PC-A-actual-east-raw.png",
+    "PC-B-actual-east-dom.png",
+    "PC-B-actual-east-raw.png",
+    "SOURCE.json",
+    "build.log",
+    "http.log",
+    "npm-game.log",
+    "npm.log",
+    "production-contract.log"
+  ],
+  "receipts": {
+    "B-generated-pending-art/SEAL.json": {
+      "bytes": 3452,
+      "sha256": "6f3d18a79b9174b63e691b352b5bf7174ec5d40c43247561a76601d8e2db2541"
+    },
+    "BROWSER.json": {
+      "bytes": 13254,
+      "sha256": "87ba3761429d85c9baa2abc22b08e34e451dd6480f6685c32ee00112362788e3"
+    },
+    "SOURCE.json": {
+      "bytes": 1065,
+      "sha256": "5214ba3ee835de811462b67370751464dbb1e1a7fed618679b746a414d0abead"
+    },
+    "NATIVE-ROUTES.json": {
+      "bytes": 2595,
+      "sha256": "adebe54d05707501a7afc3fb487e2c271439f706201f6cb0c9ff6914b29bd7aa"
+    }
+  },
+  "innerPath": "B-generated-pending-art/B-EXACT-NORMAL-GENERATED-NO-DEPLOY.zip",
+  "sealPath": "B-generated-pending-art/SEAL.json",
+  "generated": {
+    "web/data/campaign.0386fa9451fe2427.json": {
+      "bytes": 55011,
+      "sha256": "0386fa9451fe2427918ea68e927ccb0cb7a1cffc547ab0a63a164c74d785e57e",
+      "git": "8de0d66433a786f670bb0328913f2d8221273482"
+    },
+    "web/data/chapter-33-assets.920ccd84eb69a553.json": {
+      "bytes": 2861056,
+      "sha256": "920ccd84eb69a5534b16e76ac27bb6df1d1c04fba0b2c5fff409057d6119d55b",
+      "git": "ab4fbbb4881deaa4c6933b8dffd443b093a1eebf"
+    },
+    "web/entries/game.293019de679977f0.js": {
+      "bytes": 20483,
+      "sha256": "293019de679977f0a6c374a5400f43caaff11bcc759bae9bdf710f8071815d72",
+      "git": "59798eb0c228acdac0cf4c3e337fc525def740e7"
+    },
+    "web/entries/game.93fedb26bed3e825.html": {
+      "bytes": 11318,
+      "sha256": "93fedb26bed3e82543c800343891c6d38880222e447cc78ce425ce2bbf5fadb3",
+      "git": "eef876d560db79069c62238ffa80931f5881e864"
+    },
+    "web/entries/workshop.cc97a94f9718a7d3.js": {
+      "bytes": 16706,
+      "sha256": "cc97a94f9718a7d38c2b7028f135fff8a6c105e9eff4dab5793ab917f94afdc5",
+      "git": "b2c345fd943029f5e521a127ba1ff3073e1017f1"
+    },
+    "web/runtime/campaign.4375d13445105188.js": {
+      "bytes": 527,
+      "sha256": "4375d1344510518805bf77c0783efb6d8b5dad67b60e3a4e64d62d6d03f71b91",
+      "git": "87640a323b94eaf647c513d4496a6a49af8c06d3"
+    },
+    "HONRO.html": {
+      "bytes": 17379,
+      "sha256": "e7a7bed18da796ad44d7a02abaa9b1201ee59c0a56cda50d2f36d819a5c3e0d9",
+      "git": "a7cd7281d92961e8306d825851c06e21f45d35ba"
+    },
+    "HONRO_WORKSHOP.html": {
+      "bytes": 4011,
+      "sha256": "61769c6014c23442db94cf0a96c8cc5f098e8d791301946a3aeadb99fe771120",
+      "git": "5a34dc68ec71dbd5c262f7af0087741c73e9fcdd"
+    },
+    "index.html": {
+      "bytes": 17379,
+      "sha256": "e7a7bed18da796ad44d7a02abaa9b1201ee59c0a56cda50d2f36d819a5c3e0d9",
+      "git": "a7cd7281d92961e8306d825851c06e21f45d35ba"
+    },
+    "shared/data/act4/sideview-art/33-coastal-v2.json": {
+      "bytes": 1633024,
+      "sha256": "b7d56740d92261752abe84e729f85d34192814e009539512c48b766d98a7914c",
+      "git": "84bdfc2cf7a808b2e3e2df5ebfc4d1f2947fda63"
+    },
+    "web/manifest.json": {
+      "bytes": 7606457,
+      "sha256": "a6feeff920c0545e01da6e74168b0bc35195c4cc2a512ff0e99363a22c135ef1",
+      "git": "55f2c7f43f209fcc20193b73d7a18ea9e044575e"
+    }
+  },
+  "nested": {
+    "bytes": 3885131,
+    "sha256": "e6806b6fb3b86ca6f3ff73b3b348af9c1f0b98f81a701d2197476e6f7e89e146"
+  },
+  "source": {
+    "path": "shared/data/act4/sideview-art/33-coastal-v2.json",
+    "before": {
+      "bytes": 1629325,
+      "sha256": "4585577066f5db159605e405d6565795e3e1382df4f30e944ec84ee4c2c6c91a",
+      "git": "3ab093ce8cff00efb620d2fed8eae6cc4c732892"
+    },
+    "after": {
+      "bytes": 1633024,
+      "sha256": "b7d56740d92261752abe84e729f85d34192814e009539512c48b766d98a7914c",
+      "git": "84bdfc2cf7a808b2e3e2df5ebfc4d1f2947fda63"
+    }
+  },
+  "approvedFrames": {
+    "PC": {
+      "A": {
+        "PNG": {
+          "bytes": 943923,
+          "sha256": "912da2f91595bf22e5e6f105a31e539b33845f51e1f3801a40d414177bc0ea44"
+        },
+        "DOM": {
+          "bytes": 562136,
+          "sha256": "90f46c89ac06b3452e0dae973a3339bdcda3a46e91291b88290a9832134bd51b"
+        }
+      },
+      "B": {
+        "PNG": {
+          "bytes": 952116,
+          "sha256": "3fd520b70b3478edbdff52eca76ee888a8b0b7c4f6853aae4fe4907b4e33c5dd"
+        },
+        "DOM": {
+          "bytes": 568623,
+          "sha256": "533d695f3bd3517ed83841f9ce29b6093abcc8f8a82f46cbb017fd31bc588177"
+        }
+      }
+    },
+    "M": {
+      "A": {
+        "PNG": {
+          "bytes": 346191,
+          "sha256": "cf3cf10c8262ab3949fc8cea120bb3fb505a643d396051c8afad3255ded14e94"
+        },
+        "DOM": {
+          "bytes": 204225,
+          "sha256": "df8d0b4025398aafa7010bbc2392c9bf6ffa690d90b5d73e97f1eeba550f0f13"
+        }
+      },
+      "B": {
+        "PNG": {
+          "bytes": 346854,
+          "sha256": "bf8564bba8bb61ecab1b5ac5a39fe321c462962c4aab8ee208af59f4fac6cd01"
+        },
+        "DOM": {
+          "bytes": 204954,
+          "sha256": "ee8b1d3c5d5cc0c0c2ed24ac3a71f47ab321d7434d236d099bac3cab5b461c8e"
+        }
+      }
+    }
+  },
+  "publicStockManifest": {
+    "bytes": 7655771,
+    "sha256": "f5ecfb20f1b1d140cc04579068302c5a6183ecd6b071585483c6a7670b79de04"
+  },
+  "viewPoses": {
+    "PC": {
+      "actual": {
+        "x": 7232,
+        "y": 2304,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": 3832,
+        "right": 10632,
+        "top": 487.8628472222222,
+        "bottom": 4120.137152777777
+      },
+      "backing": [
+        1440,
+        769
+      ]
+    },
+    "M": {
+      "actual": {
+        "x": 7232,
+        "y": 2304,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": 3832,
+        "right": 10632,
+        "top": -3341.8253205128203,
+        "bottom": 7949.82532051282
+      },
+      "backing": [
+        390,
+        648
+      ]
+    }
+  },
+  "knownMap": "web/data/chapter-33.80ca32475be181c7.json",
+  "knownPacketA": "web/data/chapter-33-assets.07b129345eb95856.json",
+  "closure": {
+    "add": [
+      "web/data/campaign.0386fa9451fe2427.json",
+      "web/data/chapter-33-assets.920ccd84eb69a553.json",
+      "web/entries/game.293019de679977f0.js",
+      "web/entries/game.93fedb26bed3e825.html",
+      "web/entries/workshop.cc97a94f9718a7d3.js",
+      "web/runtime/campaign.4375d13445105188.js"
+    ],
+    "displaced": [
+      "web/data/campaign.36b3008756d1c3a5.json",
+      "web/data/chapter-33-assets.07b129345eb95856.json",
+      "web/entries/game.b1321855b16bc549.js",
+      "web/entries/game.c3daefcd245631a8.html",
+      "web/entries/workshop.31002b54d4159b71.js",
+      "web/runtime/campaign.add23c14682508f8.js"
+    ]
+  },
+  "far": "web/graphics/honro_authored_far-images-act4Estuary.1ba81aae5bebeebd.webp"
+}
