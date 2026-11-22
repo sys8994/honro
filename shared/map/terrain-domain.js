@@ -161,7 +161,48 @@ function stage5FoundationMaterial(l,b,terrain){
  asset.bounds={x:mass.x,y:mass.y,w:mass.w,h:mass.h};vector.viewBox=[mass.x,mass.y,mass.w,mass.h];
  return{...l,asset,honroTerrainMaterialClip:new Path2D(pathString(mass.vertices))};
 }
+// Stage7 nonplayable underbody. Provider data intentionally remains canonical for old saves.
+const stage7UnderbodyCache=new WeakMap();
+const stage7FaciesId='act1-site:7:r7-facies',stage7FaciesAuthority='651dc180ac7023a36a1b5949edd289ba741965cab0079a23303a0545e254b2dc',stage7FaciesChecked=new WeakMap();
+const stage7SortVisual=x=>Array.isArray(x)?x.map(stage7SortVisual):x&&typeof x==='object'?Object.fromEntries(Object.keys(x).sort().map(k=>[k,stage7SortVisual(x[k])])):x;
+function stage7UnderbodyMaterial(b){
+ const source=b.honroLandmarks||[],library=G.HONRO_PROJECT?.library,saved=stage7UnderbodyCache.get(b);
+ if(saved?.source===source&&saved.library===library&&saved.version===b.sceneVersion)return saved.landmarks;
+ const original=source.find(l=>l.asset?.id==='act1-site:7:body'&&l.id==='site-body-7');
+ let landmarks=source;
+ if(original&&!original.x&&!original.y&&(original.scale??1)===3.13&&!original.rotation){
+  const asset=original.asset,vector=asset?.vector,ch=vector?.root?.children;
+  const donor=library?.find(a=>a?.id===stage7FaciesId),dv=donor?.vector;
+  let valid=donor&&stage7FaciesChecked.get(donor);
+  if(donor&&valid===undefined){
+   valid=false;
+   if(donor.params?.sourceSha256===stage7FaciesAuthority&&donor.collision?.length===0&&
+      donor.anchor?.x===0&&donor.anchor?.y===0&&dv?.version===1&&JSON.stringify(dv.viewBox)==='[-390,0,2238,1570]'&&
+      dv.root?.tag==='g'&&dv.root.children?.length===1&&dv.root.children[0]?.clipPath==='stage7R7Facies'&&
+      dv.clips?.stage7R7Facies?.length===1){
+    const p=JSON.stringify(stage7SortVisual(dv));let h=2166136261;
+    for(let i=0;i<p.length;i++)h=Math.imul(h^p.charCodeAt(i),16777619);
+    valid=p.length===112840&&(h>>>0)===0x88c096e5;
+   }
+   stage7FaciesChecked.set(donor,valid);
+  }
+  if(valid&&asset.params?.sourceSha256==='acbffaafb8a346e3c28d039a17f8d1dd1f2f525b1563860727e45d3bf4651193'&&asset.collision?.length===0&&
+   JSON.stringify(vector?.viewBox)==='[-390,0,2238,1466]'&&ch?.length===17&&ch[0]?.symbol==='source'&&ch[16]?.clipPath==='site-edge-2'&&
+   JSON.stringify(ch[16]?.transform)==='[1,0,0,20,0,-19912]'&&JSON.stringify(vector.clips?.['site-edge-2'])==='["M16 1049H1418V1068H16Z"]'){
+   const s=JSON.stringify(stage7SortVisual(vector));let f=2166136261;for(let i=0;i<s.length;i++){f^=s.charCodeAt(i);f=Math.imul(f,16777619);}
+   if(s.length===241594&&(f>>>0)===0xaa395367){
+    const clips={...vector.clips,stage7R7Facies:dv.clips.stage7R7Facies};
+    const root={...vector.root,children:[ch[0],dv.root.children[0],...ch.slice(1,16)]};
+    const paint={...asset,bounds:{...asset.bounds,h:1570},vector:{...vector,viewBox:[-390,0,2238,1570],root,clips}};
+    landmarks=source.map(l=>l===original?{...original,asset:paint}:l);
+   }
+  }
+ }
+ stage7UnderbodyCache.set(b,{source,library,version:b.sceneVersion,landmarks});
+ return landmarks;
+}
 function materialLandmarks(b){
+ if(b?.honroStage===7&&!b.honroCustom&&active(b))return stage7UnderbodyMaterial(b);
  const stage5=b?.honroStage===5&&b.honroStage5FoundationRevision===1;
  if(!active(b)||b.honroCustom||!stage5&&(b.honroStage<21||b.honroStage>30))return b.honroLandmarks||[];
  const source=b.honroLandmarks||[],terrain=render(b),old=materialViews.get(b);

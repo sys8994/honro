@@ -215,12 +215,23 @@ function authorStage(project,s,data){
  return s;
 }
 
+// Compile one unplaced render-only owner into chapter 7's existing dependency closure.
+const stage7FaciesId='act1-site:7:r7-facies';
+function appendStage7Facies(project,stage,vector){
+ if(stage.metadata?.stageId!==7||!stage.design?.act1Site||stage.meta?.r7FaciesAssetId!==undefined||project.library.some(z=>z.id===stage7FaciesId))throw Error('Invalid stage 7 facies ownership');
+ if(JSON.stringify(vector?.viewBox)!=='[-390,0,2238,1570]'||vector?.root?.children?.length!==1||
+    vector.root.children[0]?.clipPath!=='stage7R7Facies'||vector.clips?.stage7R7Facies?.length!==1)throw Error('Invalid stage 7 facies vector');
+ artAsset(project,stage7FaciesId,'돌당골 하부 암층',vector,'651dc180ac7023a36a1b5949edd289ba741965cab0079a23303a0545e254b2dc');
+ stage.meta={...stage.meta,r7FaciesAssetId:stage7FaciesId};
+}
+
 export async function applyAct1Sites(project){
  for(const id of [3,7]){
   const s=project.stages.find(x=>x.metadata?.stageId===id);
   if(!s)throw Error('Missing Act 1 site chapter '+id);
   const source=JSON.parse(await readFile(new URL('stage0'+id+'.json',artPath),'utf8'));
   authorStage(project,s,source);
+  if(id===7)appendStage7Facies(project,s,JSON.parse(await readFile(new URL('stage07-underbody-r7.json',artPath),'utf8')));
  }
  return project;
 }
