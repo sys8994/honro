@@ -1,0 +1,36 @@
+name: HONRO Stage46 one native seam phase read
+on:
+  push:
+    branches: [qa/stage46-west-phase-read]
+    paths: [".github/workflows/stage46-west-phase-read.yml", "tools/stage46-west-phase-read/**"]
+permissions:
+  contents: read
+jobs:
+  one-pc-native-strip:
+    if: github.repository == 'sys8994/honro' && github.ref == 'refs/heads/qa/stage46-west-phase-read'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 13
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+          fetch-depth: 2
+      - name: Observe existing PC West seam phases
+        run: |
+          set -euo pipefail
+          T="$GITHUB_WORKSPACE/tools/stage46-west-phase-read/capture.py"
+          python "$T" --verify-binding
+          W="$RUNNER_TEMP/stage46-west-phase"
+          python -m venv "$W"
+          "$W/bin/python" -m pip --disable-pip-version-check install playwright==1.62.0
+          "$W/bin/python" -m playwright install --with-deps chromium
+          "$W/bin/python" "$T" "$W/out"
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage46-west-native-phases-json
+          path: ${{ runner.temp }}/stage46-west-phase/out/PHASE.json
+          retention-days: 7
+          if-no-files-found: warn

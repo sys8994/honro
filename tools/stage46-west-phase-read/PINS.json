@@ -1,0 +1,108 @@
+{
+  "enabled": true,
+  "release": {
+    "head": "2e7c848b717769f11e89d45e5697b977f660a15c",
+    "tree": "9fc4979a88295b6cc7d1dc462c5cce9cf284bee2",
+    "manifest": {
+      "bytes": 7147403,
+      "sha256": "0de55477b0578c57cd5425a844b011a7fe383097cacb92e45d6c59aad173611e"
+    },
+    "pages": {
+      "head": "2e7c848b717769f11e89d45e5697b977f660a15c",
+      "branch": "master",
+      "conclusion": "success",
+      "run": 45000493339,
+      "job": 137141080362,
+      "publishedAt": "2026-11-22T07:58:41Z"
+    },
+    "shellAndEntry": {
+      "shell": {
+        "bytes": 17379,
+        "sha256": "7b0df2dbd51cf3dacfcaa2086369e5f09f4e7efd21730245b709203e874ac9ba"
+      },
+      "entryPath": "web/entries/game.42b44751cde87da8.js",
+      "entry": {
+        "bytes": 20483,
+        "sha256": "42b44751cde87da83931ca22d59df74679347464fad7fcfcd3fac181ccb72bf9"
+      }
+    }
+  },
+  "qaRef": "refs/heads/qa/stage46-west-phase-read",
+  "activeSourceGit": "461571b0d86e63ad1fee411d8c2cb34382d150a7",
+  "runtime": "web/runtime/ordered-common-18.36769610bbdbcea8.js",
+  "phaseRuntimeFact": {
+    "bytes": 36904,
+    "sha256": "b273230e4fb6e0d834f7748f74512da735c658cd560c095494ebce70daaec5ad"
+  },
+  "route": {
+    "web/data/chapter-46.2806e485c4c1e1b4.json": {
+      "bytes": 24682,
+      "sha256": "2806e485c4c1e1b4d94174b8324a2d534291c22c481c94960883a29643e9da02"
+    },
+    "web/data/chapter-46-assets-parts.44d5eab7aa305416.json": {
+      "bytes": 765,
+      "sha256": "44d5eab7aa305416e2d0d9ffec53ad210901e8271d216f0e9cab045cb7b04f1f"
+    },
+    "web/data/chapter-46-assets-part-000.aa1ac6564d0c2d99.bin": {
+      "bytes": 4194304,
+      "sha256": "aa1ac6564d0c2d99eaa561ff53b1712c5493bf11950a487526971bf1e2ff49bb"
+    },
+    "web/data/chapter-46-assets-part-001.78b6b5493616db85.bin": {
+      "bytes": 4194304,
+      "sha256": "78b6b5493616db8581849645b13cff819928ac8eb2c1ee25e0f90cb41d2224c5"
+    },
+    "web/data/chapter-46-assets-part-002.8ec3bcfd1e3724d1.bin": {
+      "bytes": 4194304,
+      "sha256": "8ec3bcfd1e3724d10de3867c33c05a705fb7ccdc87bcbfde8228fc57caf9d8de"
+    },
+    "web/data/chapter-46-assets-part-003.e0accdc32bf303c0.bin": {
+      "bytes": 4007722,
+      "sha256": "e0accdc32bf303c08ea94737f9d8d662e568dd7e0b9b80c05374098d02b815fc"
+    },
+    "web/runtime/ordered-common-18.36769610bbdbcea8.js": {
+      "bytes": 35562,
+      "sha256": "36769610bbdbcea833508a886dfb284b5f6dd349aa6f82947eb51b03f214bdad"
+    },
+    "web/data/campaign.ce72ffa30709411b.json": {
+      "bytes": 55011,
+      "sha256": "ce72ffa30709411b93c2c92f9b732fa40b8d22d468ce8ebc6a6016c114ca5420"
+    },
+    "web/runtime/campaign.d42da1857a0e4db9.js": {
+      "bytes": 527,
+      "sha256": "d42da1857a0e4db923103745de0a43c475ed98c204a87cc350e462abe07df726"
+    }
+  },
+  "pose": {
+    "actual": {
+      "x": -320,
+      "y": 3252,
+      "scale": 0.21176470588235294
+    },
+    "viewport": {
+      "left": -3720,
+      "right": 3080,
+      "top": 1435.8628472222222,
+      "bottom": 5068.137152777777
+    },
+    "backing": [
+      1440,
+      769
+    ],
+    "phase": "aim",
+    "round": 1,
+    "sceneTime": 2,
+    "actorCount": 27,
+    "archivedPhysics": "cb6512695ecc16c3b1c7c10046aaa23b4c7b46014b0aed16cf888a6cc35ab1ed",
+    "archivedRaw": "e4bd9db23dfb312f1ccafaa488e1146e2d5bfdee8e7636e881a6ad52013717a1",
+    "archivedRun": 44922966956,
+    "archivedArtifact": 14714229721,
+    "strip": [
+      275,
+      352,
+      8,
+      32
+    ],
+    "referenceRGBA": "KCAu/ykhL/8pIS//MCY1/ykhL/8oIS7/KSEv/ykhL/8pIC7/KSEv/ykhL/8wJjb/KSEv/yggLv8pIS//KSEv/ykgLv8pIS//KSEv/zAmNv8pIS//KCAu/yggLv8pIS//KSEu/ykhL/8pIS//MCc2/ykhL/8pIS//KCAu/yggLv8oIC7/KSEv/ykhL/8wJjX/KSEv/ykhL/8pIS//KSEv/yggLv8pIS//KSEv/zAmNv8pIS//KSEv/ykhL/8pIS//KCAu/ykhL/8pIS//MCY2/ykhL/8pIS//KSEv/ykhL/8pIC7/KSEv/ykhL/8wJjX/KSEv/ykhL/8qITD/LCIy/ykgLv8pIS//KSEv/zAnNv8pIS//LCMy/zIpN/8yKTf/KSEv/ykhL/8pIC7/Mig4/y4lM/8xKDb/Mik3/zIpN/8pIS//KSEv/zAmNf85LT7/Mik3/zIoN/8xKDb/Mik3/yohMP8wJzb/Mik3/zktPv8yKTf/Mik3/zEoNv8yKDf/MCc2/zEoNv8zKTf/Oi4//zIpN/8yKTf/MSg3/zIpN/8wJzb/Mys3/zQsOP8+MkL/NCw4/zIpN/8yKDf/Mik3/zMrN/80LDj/NCw4/zwwQf80LDj/Mys3/zIoN/8yKTf/NCw4/zQsOP80LDj/PjJC/zQsOP80LDj/MSg2/zIpN/80LDj/NCw4/zQsOP8+MkL/NCw4/zQsOP8xKDb/Mik3/zQsOP80LDj/NCw4/z0xQv80LDj/NCw4/zIpN/8yKTf/NCw4/zQsOP80LDj/PjJC/zQsOP80LDj/Mys3/zEoNv80LDj/NCw4/zQsOP89MUL/NCw4/zQsOP8zKzf/Mik3/zQsOP80LDj/NCw4/z0xQf80LDj/NCw4/zMrN/8xKDf/NCw4/zQsOP80LDj/PjJC/zQsOP80LDj/NCw4/zIoN/80LDj/NCw4/zQsOP8+MkL/NCw4/zQsOP80LDj/Mig3/zQsOP80LDj/NCw4/z0xQv80LDj/NCw4/zQsOP8xKDb/NCw4/zQsOP80LDj/PTFB/zQsOP80LDj/NCw4/zEoNv80LDj/NCw4/zQsOP8+MUH/NCw4/zQsOP80LDj/Mig2/zQsOP80LDj/NCw4/z4yQv80LDj/NCw4/zQsOP8yKTb/NCw4/zQsOP80LDj/PTFB/zQsOP80LDj/NCw4/zMpN/80LDj/NCw4/zQsOP89MUL/NCw4/zQsOP80LDj/Myk3/zQsOP80LDj/NCw4/z0xQv80LDj/NCw4/zQsOP8zKjj/NCw4/zQsOP80LDj/PTFB/zQsOP80LDj/NCw4/zMqN/80LDj/NCw4/zQsOP88MEH/NCw4/zQsOP80LDj/Mys3/w==",
+    "stripSHA": "c0a6d842776071cb163d30bf4c56664acc7c43c3671e66482ebffd8f6aa6951f"
+  }
+}
