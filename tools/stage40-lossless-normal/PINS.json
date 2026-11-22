@@ -1,0 +1,120 @@
+{
+  "enabled": true,
+  "qaRef": "refs/heads/qa/stage40-lossless-normal-733-r2",
+  "parent": "733d5d212d5ab235c2b492e1f065306bdfaae317",
+  "tree": "276e54e1ca08d32d3b290097c9a05e91e9ab0ecd",
+  "bootMap": "web/data/chapter-40.5f4b6c4c311adc05.json",
+  "authorManifest": "shared/data/terrain-path-optimization.json",
+  "sourceGit": {
+    "shared/build.mjs": "24f491b8253abf2e86dbabd5bc7111b701058c0a",
+    "shared/web-build.mjs": "761f6c6a757b3cdb16616ad17195e9d614cc11c3",
+    "tools/act4-source/world-source.mjs": "dfa7967e6c0380dba45e9cb8b2c94dddbfc3f491",
+    "shared/data/act4/world.parts/manifest.json": "59563f8367a4980d8d5b17b8ce0909429ad3d0da",
+    "shared/data/terrain-path-optimization.json": "ffe145a571fb275768208abdd4860aaf330827e9",
+    "shared/terrain-path-optimization.mjs": "784e574d21cfa668326215fd16dcc0fb6ffcc832",
+    "shared/act4-finale-revision.mjs": "38e223631c3aaad11bb4c6c27844f6c1576c5416",
+    "shared/act4-handoff-art.mjs": "a727bd85a1b8faa1cfaf8a2b98cf3b3e0de5e7e1",
+    "shared/act4-sideview-art.mjs": "2b37aac03c1f039e13b5651b734a8e5cc11e8712",
+    "shared/act4-stage33-coastal-art.mjs": "44ffc2a09b5fa6f777498c80072571835dbff66b",
+    "shared/data/act4/handoff-art/40.json": "daea47c1fcfbe769abe594f3143371eaaf8dce9e",
+    "shared/data/act4/sideview-art/40.json": "3a0ce5a314bc28b6abde89f8c3510b20026f989d",
+    "shared/runtime/act4-pilot-art.js": "330fc448562e5c3e36a98a99bad158176c1e9043",
+    "shared/json-pool.mjs": "5d1bbdea0d4568ff4b0f18da3ada786268bd3162",
+    "web/manifest.json": "10d3c091c96dccbc2a92bbe4434a00f128abb56e",
+    "web/data/chapter-40.5f4b6c4c311adc05.json": "330db75394a472c92cc474d153e2fdcff974cb7e",
+    "web/data/chapter-40-assets-parts.578f8624b0ac77bc.json": "a11a4aabfe8961e26c2f4795562592191db20ca7"
+  },
+  "A": {
+    "active": 810,
+    "bytes": 10619913,
+    "sha256": "54ca4477cd7cb1c4d8762b9293e7429f12aef593b3d9d42d5fe84eaa306203f4"
+  },
+  "B": {
+    "active": 810,
+    "bytes": 10137621,
+    "sha256": "458581a814995e74b6bf35efb817fb5c766703fd261f945045eadb97f83a02ae"
+  },
+  "adapterCommonIndex": 56,
+  "exactProjection": {
+    "A": {
+      "descriptor": "web/data/chapter-40-assets-parts.578f8624b0ac77bc.json",
+      "project": "web/data/campaign.0386fa9451fe2427.json",
+      "adapter": "web/runtime/campaign.4375d13445105188.js",
+      "files": {
+        "web/data/chapter-40-assets-part-000.3b82e978dff8f8e6.bin": {
+          "bytes": 4194304,
+          "sha256": "3b82e978dff8f8e645808bb8eaaf3315c418e65fe178d0ff9823716529f0a172"
+        },
+        "web/data/chapter-40-assets-part-001.50a919950e2df457.bin": {
+          "bytes": 4194304,
+          "sha256": "50a919950e2df457fbc2632fe4316b1ef7e07f74408322a01c098b735aa9e54f"
+        },
+        "web/data/chapter-40-assets-part-002.b6a1709435a1910a.bin": {
+          "bytes": 2231305,
+          "sha256": "b6a1709435a1910a366c0108184bc6eeedf1286f7a5e67426f1570917a202bf5"
+        },
+        "web/data/chapter-40-assets-parts.578f8624b0ac77bc.json": {
+          "bytes": 605,
+          "sha256": "578f8624b0ac77bc2c7322644b2844c5b09110efc32dfb83aa9f57e0463547b0"
+        },
+        "web/data/campaign.0386fa9451fe2427.json": {
+          "bytes": 55011,
+          "sha256": "0386fa9451fe2427918ea68e927ccb0cb7a1cffc547ab0a63a164c74d785e57e"
+        },
+        "web/runtime/campaign.4375d13445105188.js": {
+          "bytes": 527,
+          "sha256": "4375d1344510518805bf77c0783efb6d8b5dad67b60e3a4e64d62d6d03f71b91"
+        }
+      },
+      "packet": {
+        "bytes": 10619913,
+        "sha256": "54ca4477cd7cb1c4d8762b9293e7429f12aef593b3d9d42d5fe84eaa306203f4"
+      }
+    },
+    "B": {
+      "descriptor": "web/data/chapter-40-assets-parts.e102ede6b6f1921d.json",
+      "project": "web/data/campaign.1f3d8372f73a676d.json",
+      "adapter": "web/runtime/campaign.3c07bfacd51c1979.js",
+      "files": {
+        "web/data/chapter-40-assets-part-000.cd3e15a78b719c49.bin": {
+          "bytes": 4194304,
+          "sha256": "cd3e15a78b719c49cc3651a2e38cfb21c1f0a5176947f23550fd7ab058b0264e"
+        },
+        "web/data/chapter-40-assets-part-001.6dbca9ee910a8ff7.bin": {
+          "bytes": 4194304,
+          "sha256": "6dbca9ee910a8ff7be24e4f08354cd8f076f54b9eb72d5cca63a3fff971e32be"
+        },
+        "web/data/chapter-40-assets-part-002.6f227d452d7a288d.bin": {
+          "bytes": 1749013,
+          "sha256": "6f227d452d7a288d34bce7981b2ace8179d4b786e1a3b772f5b1d62d43f3144a"
+        },
+        "web/data/chapter-40-assets-parts.e102ede6b6f1921d.json": {
+          "bytes": 605,
+          "sha256": "e102ede6b6f1921d46efaf44318550c800c271ab2507f114d59b2b69698be6fe"
+        },
+        "web/data/campaign.1f3d8372f73a676d.json": {
+          "bytes": 55011,
+          "sha256": "1f3d8372f73a676d29c1be1af4848c26bafab2295fc60b44658252d048ead232"
+        },
+        "web/runtime/campaign.3c07bfacd51c1979.js": {
+          "bytes": 527,
+          "sha256": "3c07bfacd51c197963900b95d74975256aae0469f6bdda2279b763d489b5554b"
+        }
+      },
+      "packet": {
+        "bytes": 10137621,
+        "sha256": "458581a814995e74b6bf35efb817fb5c766703fd261f945045eadb97f83a02ae"
+      }
+    }
+  },
+  "priorHOLD": {
+    "run": 45023155093,
+    "job": 137210271053,
+    "artifact": 14753904313,
+    "sha256": "0af972da1227f494fdfcdf461d748bdb533e835cf2f5849911c081774d270b69"
+  },
+  "publicationAuthority": {
+    "expectedPagesRun": 45023608854,
+    "expectedDeployJob": 137212114253
+  }
+}
