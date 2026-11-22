@@ -1,0 +1,68 @@
+name: HONRO Stage32 lazy and Stage42 interior grain official combined QA only
+on:
+  push:
+    branches: [qa/stage32-42-joint-normal-72dd73e]
+    paths: [".github/workflows/stage32-stage42-combined-qualified.yml", "tools/stage32-joint/**", "tools/stage42-joint/**"]
+permissions:
+  contents: read
+jobs:
+  combined-qualified-normal:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage32-42-joint-normal-72dd73e'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+          fetch-depth: 4
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Verify exact published A and four qualified author changes in one normal B
+        run: |
+          set -euo pipefail
+          test -z "${GITHUB_TOKEN:-}${GH_TOKEN:-}"
+          W=$(mktemp -d "$RUNNER_TEMP/stage32-42-normal.XXXXXX"); echo "W=$W" >> "$GITHUB_ENV"
+          T="$GITHUB_WORKSPACE/tools/stage32-joint"
+          mkdir "$W/out"
+          python "$T/guard.py" pre "$W"
+          cd "$W/B"
+          npm ci > "$W/out/npm-root.log" 2>&1
+          npm ci --prefix game > "$W/out/npm-game.log" 2>&1
+          npm run build > "$W/out/build.log" 2>&1
+          npm run test:production-contract > "$W/out/contract.log" 2>&1
+          python "$T/guard.py" built "$W"
+      - name: Actual Chromium Stage32 and Stage42 plus inherited historical saves and native Workshop
+        run: |
+          set -euo pipefail
+          T="$GITHUB_WORKSPACE/tools/stage32-joint"; S="$GITHUB_WORKSPACE/tools/stage42-joint"
+          python -m venv "$W/venv"; V="$W/venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+          python -m http.server 18981 --bind 127.0.0.1 --directory "$W/A" > "$W/out/http-A.log" 2>&1 & a=$!
+          python -m http.server 18982 --bind 127.0.0.1 --directory "$W/B" > "$W/out/http-B.log" 2>&1 & b=$!
+          python -m http.server 18983 --bind 127.0.0.1 --directory "$W/C60" > "$W/out/http-c60.log" 2>&1 & c=$!
+          python -m http.server 18844 --bind 127.0.0.1 --directory "$W/H733" > "$W/out/http-733.log" 2>&1 & d=$!
+          trap 'kill "$a" "$b" "$c" "$d" 2>/dev/null || true' EXIT
+          for port in 18981 18982 18983 18844; do curl -fsS --retry 8 --retry-connrefused "http://127.0.0.1:$port/HONRO.html" -o /dev/null; done
+          rc=0
+          "$V" "$T/browser.py" "$W" || rc=1
+          "$V" "$S/capture.py" "$W/stage42" || rc=1
+          "$V" "$S/resume.py" "$W/stage42" || rc=1
+          "$V" "$T/resume4046.py" "$W" || rc=1
+          "$V" "$T/workshop.py" "$W" || rc=1
+          test "$rc" = 0
+      - name: Preserve exact small reviewed candidate bytes and receipts without writes to repository
+        if: success()
+        run: python "$GITHUB_WORKSPACE/tools/stage32-joint/guard.py" custody "$W"
+      - if: always() && env.W != ''
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage32-42-joint-current-no-deploy
+          path: |
+            ${{ env.W }}/out/
+            ${{ env.W }}/stage42/out/
+          retention-days: 7
+          if-no-files-found: error
