@@ -1,0 +1,170 @@
+{
+  "enabled": true,
+  "qaRef": "refs/heads/qa/stage32-42-joint-normal-72dd73e-r2",
+  "parent": "72dd73e03f7d07c1b87d3e1e71a62d187a371e6a",
+  "tree": "3c416cb19b10c6af4c2c19c19233413a280f26d8",
+  "manifestGit": "37fafcbea864d3ea24a399e5eace28c1ea117bf7",
+  "stage33HotfixSourceGit": "a5ac12ef4de8b2370fcbca1457b86a0c6e2d758c",
+  "map": "web/data/chapter-32.f242630da616ee32.json",
+  "stock": {
+    "bytes": 7999429,
+    "sha256": "2284a6f93dd40057de7fba48828c579676976f831074190462b9a5035ef0568f"
+  },
+  "active": {
+    "bytes": 4779955,
+    "sha256": "58cf26e9d2659cfb3ce0aff4d87c9c3085da6aea650bf0e84a31375eed67b0aa"
+  },
+  "archive": {
+    "bytes": 3219476,
+    "sha256": "ee7846c92c4edcac5f88771849e89c896a5c6906b0b8c10fb90cdca1d5b1061d"
+  },
+  "testedLosslessRefs": {
+    "approved32:body": "1952606:e60eb3e5",
+    "approved32:wood-door-extract": "423282:b2c53b27",
+    "act4-handoff:32:body": "843583:aede1464"
+  },
+  "notR10": true,
+  "publicationAuthority": {
+    "id": 45030777214,
+    "job": 137234132631,
+    "head": "72dd73e03f7d07c1b87d3e1e71a62d187a371e6a",
+    "conclusion": "success",
+    "publishedAt": "2026-11-22T14:06:00Z"
+  },
+  "stage33Peer": {
+    "old": "c60fca57d223ecb3e62afc86c4755774c2b68263",
+    "oldShell": {
+      "bytes": 17379,
+      "sha256": "03ebb2c1bfaefa36f5f54f1f9946455d323ec2bd79c6b267613acf77bdf8fec3",
+      "git": "6627b75ed1afb82345a0c031cb601555cea00f64"
+    },
+    "map": "web/data/chapter-33.80ca32475be181c7.json",
+    "oldPacket": "web/data/chapter-33-assets.07b129345eb95856.json",
+    "newPacket": "web/data/chapter-33-assets.920ccd84eb69a553.json",
+    "oldEntry": "web/entries/game.b1321855b16bc549.js",
+    "oldCampaign": "web/data/campaign.36b3008756d1c3a5.json",
+    "oldWrapper": "web/runtime/campaign.add23c14682508f8.js",
+    "rows": {
+      "act4-sideview:33:coastal-v2:west-continuous-geology": {
+        "stage": 33,
+        "previous": "862760:4666d3c8",
+        "current": "864135:d1152e99"
+      },
+      "act4-sideview:33:coastal-v2:lowland": {
+        "stage": 33,
+        "previous": "743870:a3735931",
+        "current": "745366:5d4bce0d"
+      }
+    }
+  },
+  "stage32PublishedCommon4": "web/runtime/ordered-common-4.aec03203b3d81bdf.js",
+  "partyPublished": [
+    "web/runtime/shared-assets-party-party-runtime.179b8da816ae78b9.js",
+    "web/runtime/party-alias.3485184cbddbd273.js"
+  ],
+  "manifestFact": {
+    "bytes": 8335506,
+    "sha256": "6b2160affabe1f8474948d5556e052c3a68d8f7f460aed894600dc347821cc4c"
+  },
+  "rawGroupSizes": [
+    193458,
+    196431
+  ],
+  "publishNever": true,
+  "stage42": {
+    "map": "web/data/chapter-42.0802015e8ba99d11.json",
+    "stockPath": "web/data/chapter-42-assets.396ec98508d5b8c8.json",
+    "activePath": "web/data/chapter-42-assets.abdbc9d7a8ce717e.json",
+    "stock": {
+      "bytes": 1864856,
+      "sha256": "396ec98508d5b8c828a8d0bbf24c2f6cac1a734a55989db3f3d3fcc1d80bb1df"
+    },
+    "active": {
+      "bytes": 1858863,
+      "sha256": "abdbc9d7a8ce717eb7c8a6c04aa7400cec13b5ced947713aa862ab70ef5f2e46"
+    },
+    "source": "shared/assets/environment/act5/near-import.json"
+  },
+  "saveRows33": {
+    "act4-sideview:33:coastal-v2:west-continuous-geology": {
+      "stage": 33,
+      "previous": "862760:4666d3c8",
+      "current": "864135:d1152e99"
+    },
+    "act4-sideview:33:coastal-v2:lowland": {
+      "stage": 33,
+      "previous": "743870:a3735931",
+      "current": "745366:5d4bce0d"
+    }
+  },
+  "saveRows40": {
+    "approved40:body": {
+      "before": null,
+      "act4": {
+        "stage": 40,
+        "previous": "4724416:12a0c1d5",
+        "current": "4471109:d3f5a835"
+      }
+    },
+    "approved40:coastal-foundation": {
+      "before": null,
+      "act4": {
+        "stage": 40,
+        "previous": "1408143:e55964aa",
+        "current": "1297690:b446a076"
+      }
+    },
+    "approved40:terrain-left-join": {
+      "before": {
+        "stage": 40,
+        "previous": "1761406:9835d7",
+        "current": "1757601:e9667f0a"
+      },
+      "act4": {
+        "stage": 40,
+        "previous": "1761406:9835d7",
+        "current": "1694987:a515b4e3",
+        "previousOptimized": "1757601:e9667f0a"
+      }
+    },
+    "approved40:terrain-right-join": {
+      "before": {
+        "stage": 40,
+        "previous": "1656846:fba43601",
+        "current": "1653652:f5a9b376"
+      },
+      "act4": {
+        "stage": 40,
+        "previous": "1656846:fba43601",
+        "current": "1597731:b4de61d5",
+        "previousOptimized": "1653652:f5a9b376"
+      }
+    }
+  },
+  "saveRows46": {
+    "id": "act5:near:46",
+    "old": "17756761:bc1a6549",
+    "current": "16328502:43d17801",
+    "oldRegistered": null,
+    "oldAgainstUnpatchedB": {
+      "ok": false,
+      "atomicFailure": true
+    }
+  },
+  "previousAuthority": {
+    "head": "733d5d212d5ab235c2b492e1f065306bdfaae317",
+    "tree": "276e54e1ca08d32d3b290097c9a05e91e9ab0ecd",
+    "manifest": {
+      "bytes": 7994676,
+      "sha256": "8d6f1debdb956b1f2c92c8a6808707aab7e1db98ddbfbc9ce2ffbffaed9322d1"
+    }
+  },
+  "verifiedPagesJob": {
+    "id": 45030777214,
+    "job": 137234132631,
+    "head": "72dd73e03f7d07c1b87d3e1e71a62d187a371e6a",
+    "conclusion": "success",
+    "publishedAt": "2026-11-22T14:06:00Z"
+  },
+  "activationNote": "Both PINS intentionally disabled. Set main.enabled and Stage42.enabled, and set publicationAuthority to exact verified Pages job after independent current public readback and root approval. Includes no activation in this working copy."
+}
