@@ -1,0 +1,37 @@
+{
+  "enabled": true,
+  "qaRef": "refs/heads/qa/stage40-lossless-normal-1ee86f",
+  "parent": "1ee86f0409b2cdcf457bbbd45c2353aa51991217",
+  "tree": "37210a417f8e117bca52c09d5ac2062a0078ee78",
+  "bootMap": "web/data/chapter-40.5f4b6c4c311adc05.json",
+  "authorManifest": "shared/data/terrain-path-optimization.json",
+  "sourceGit": {
+    "shared/build.mjs": "24f491b8253abf2e86dbabd5bc7111b701058c0a",
+    "shared/web-build.mjs": "761f6c6a757b3cdb16616ad17195e9d614cc11c3",
+    "tools/act4-source/world-source.mjs": "dfa7967e6c0380dba45e9cb8b2c94dddbfc3f491",
+    "shared/data/act4/world.parts/manifest.json": "59563f8367a4980d8d5b17b8ce0909429ad3d0da",
+    "shared/data/terrain-path-optimization.json": "ffe145a571fb275768208abdd4860aaf330827e9",
+    "shared/terrain-path-optimization.mjs": "784e574d21cfa668326215fd16dcc0fb6ffcc832",
+    "shared/act4-finale-revision.mjs": "38e223631c3aaad11bb4c6c27844f6c1576c5416",
+    "shared/act4-handoff-art.mjs": "a727bd85a1b8faa1cfaf8a2b98cf3b3e0de5e7e1",
+    "shared/act4-sideview-art.mjs": "2b37aac03c1f039e13b5651b734a8e5cc11e8712",
+    "shared/act4-stage33-coastal-art.mjs": "44ffc2a09b5fa6f777498c80072571835dbff66b",
+    "shared/data/act4/handoff-art/40.json": "daea47c1fcfbe769abe594f3143371eaaf8dce9e",
+    "shared/data/act4/sideview-art/40.json": "3a0ce5a314bc28b6abde89f8c3510b20026f989d",
+    "shared/runtime/act4-pilot-art.js": "330fc448562e5c3e36a98a99bad158176c1e9043",
+    "shared/json-pool.mjs": "5d1bbdea0d4568ff4b0f18da3ada786268bd3162",
+    "web/manifest.json": "9ad7998221efb4d13f676b472b468d2c3879f6d6",
+    "web/data/chapter-40.5f4b6c4c311adc05.json": "330db75394a472c92cc474d153e2fdcff974cb7e",
+    "web/data/chapter-40-assets-parts.578f8624b0ac77bc.json": "a11a4aabfe8961e26c2f4795562592191db20ca7"
+  },
+  "A": {
+    "active": 810,
+    "bytes": 10619913,
+    "sha256": "54ca4477cd7cb1c4d8762b9293e7429f12aef593b3d9d42d5fe84eaa306203f4"
+  },
+  "B": {
+    "active": 810,
+    "bytes": 10137621,
+    "sha256": "458581a814995e74b6bf35efb817fb5c766703fd261f945045eadb97f83a02ae"
+  }
+}
