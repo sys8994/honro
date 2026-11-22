@@ -1,0 +1,76 @@
+{
+  "enabled": true,
+  "head": "f6eaaa606914cd8f431ae0e52dd1e4b474b485c8",
+  "tree": "ddbd4d3f90a9c3a6b7e9f37ecbd42e28ad72ebb8",
+  "historicalPages": {
+    "pagesRun": 45053825574,
+    "pagesJob": 137305039471,
+    "pagesUTC": "2026-11-22T18:15:30.6084492Z"
+  },
+  "adds": [
+    ".github/workflows/stage46-browser-raster.yml",
+    "tools/stage46-browser-raster/PINS.json",
+    "tools/stage46-browser-raster/RECIPE.json",
+    "tools/stage46-browser-raster/prepare.mjs",
+    "tools/stage46-browser-raster/painter.js",
+    "tools/stage46-browser-raster/capture.py"
+  ],
+  "stock": {
+    "HONRO.html": {
+      "bytes": 17379,
+      "sha256": "6b9748946f99ce9213205c8ccdd7484f77d154a752de01a88062cc19eab56f7c",
+      "git": "3b0c4a870d394b54b1c9c871783ef8c9cdfcd2f4"
+    },
+    "web/manifest.json": {
+      "bytes": 8866088,
+      "sha256": "f4fb50930e9ab8c070875412bd07d1363c52c42f90530194f8f7a8c3c6ba6917",
+      "git": "405d172cc65f8168754a1ea78576b1242c0e2b0b"
+    },
+    "web/data/chapter-46.2806e485c4c1e1b4.json": {
+      "sha256": "2806e485c4c1e1b4d94174b8324a2d534291c22c481c94960883a29643e9da02"
+    },
+    "web/data/chapter-46-assets-parts.a3595c48161a8bc1.json": {
+      "bytes": 765,
+      "sha256": "a3595c48161a8bc14dec5b1dea23dea0fda99fa39153a359d9ee83c5359516ea"
+    },
+    "shared/runtime/act5-edge-art.js": {
+      "git": "461571b0d86e63ad1fee411d8c2cb34382d150a7"
+    },
+    "shared/runtime/visual-style.js": {
+      "sha256": "a11578232411122ec3cf824587d0737937586eacd8339547633a855b3b138b04"
+    },
+    "shared/runtime/vector-art.js": {
+      "sha256": "0b79f9dc0c1896e27014561c755d743ef58dacbad5b8c1de89018794bf6ae8ba"
+    },
+    "shared/json-pool.mjs": {
+      "sha256": "b10bb32e2a35381bbaa9c9e0d55dc85daa79313000d034306e47a7da01ae1c18"
+    }
+  },
+  "descriptor": "web/data/chapter-46-assets-parts.a3595c48161a8bc1.json",
+  "parts": [
+    {
+      "path": "web/data/chapter-46-assets-part-000.f7ebee97d8110e68.bin",
+      "bytes": 4194304,
+      "sha256": "f7ebee97d8110e6805bf6fb6a58303332d3fd118a8e477f3b5de6c7e002064a2"
+    },
+    {
+      "path": "web/data/chapter-46-assets-part-001.5213b80662dfa32e.bin",
+      "bytes": 4194304,
+      "sha256": "5213b80662dfa32ee85b3d01d07dd0d2fb4fe33fa1ed3647ca94a85abce27ac6"
+    },
+    {
+      "path": "web/data/chapter-46-assets-part-002.8be859e980ee1d29.bin",
+      "bytes": 4194304,
+      "sha256": "8be859e980ee1d292718c73bd51206ea8fa0a887baa59fc67c5ec6b2c4cd0738"
+    },
+    {
+      "path": "web/data/chapter-46-assets-part-003.ee5f50c994047cde.bin",
+      "bytes": 2667958,
+      "sha256": "ee5f50c994047cde9851a35f503ddc56b395904698ecbef174d832a4eaa148a8"
+    }
+  ],
+  "packetSHA256": "744e462e37916ce64513ef0a0fad39d90f45c6c4aa1be408973a2c475c1ada7f",
+  "recipeSHA256": "0a7748096a2894e715fd3d191d846e69c4ab4ffaa2557a61a1624ee19b785f6c",
+  "painterFunctionSHA256": "0f40836321ec8d4074c6312fa83e2821243a28dc4e57f9041540b0e8e11c1420",
+  "landmarkBranchSHA256": "2ad256553d8a172e3e2738dfe6b9040c8954733765676c6bd190a2cad7d42648"
+}
