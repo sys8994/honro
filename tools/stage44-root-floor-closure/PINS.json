@@ -1,0 +1,281 @@
+{
+  "enable": true,
+  "repo": "sys8994/honro",
+  "base": "31537bcd1b070077a3287113e2085de40d3dcf2c",
+  "tree": "82c0652cf461c49cf757e08954545c27077ec697",
+  "branch": "refs/heads/qa/stage44-root-floor-normal-small-31537b",
+  "published": {
+    "run": 44978896796,
+    "job": 137075376025,
+    "stamp": "2026-11-22T03:06:46Z"
+  },
+  "stockManifest": {
+    "bytes": 7310425,
+    "sha256": "86381ada9943a26afad930ea140c9d2ba22bbfb77ec68781240975af1432daab",
+    "git": "4228685f4de4494d2546682a147553c01e0c5bf5"
+  },
+  "stockShells": {
+    "HONRO.html": {
+      "bytes": 17379,
+      "sha256": "e0d3da428ad575944ebc2b7fb182cdcc3d9f83583dd344d32a853b352de242dd"
+    }
+  },
+  "oldCommon18": "web/runtime/ordered-common-18.9dcb25cd7e4ae77b.js",
+  "stockReadabilityGit": "aa4ccbcaa8a2ae6160330c1134f1596c9f4be6f8",
+  "sourcePath": "shared/runtime/act5-edge-art.js",
+  "sourceA": {
+    "bytes": 28249,
+    "sha256": "01e9ff9bb6287ca1b6a7ff722e4053ccc207474f808dd24ae9deaa521b029511",
+    "git": "66f656fe7beb164efcbed2729b2f6daa88781e42"
+  },
+  "sourceB": {
+    "bytes": 28558,
+    "sha256": "a0c77ed89a6df785636ac2e43ca0cc97ed12fb8b63b76927d9f1f3142a32455e",
+    "git": "b79dde7e841356d25e425d8dc0bcf3ca58729c5c"
+  },
+  "exactPatch": {
+    "from": "((b.honroStage===46",
+    "to": "((b.honroStage===44&&b.honroCanonical===true&&b.honroCustom===false&&b.honroMapOrigin==='campaign'&&b.honroAuthoredId==='stage-44'&&group.id==='a5-root-floor'&&p.x===6700.39&&z.x===6700.39&&p.y===1733.2&&z.y===2269&&b.terrain?.some(t=>t.id===group.id&&!t.broken&&t.oneWay===false&&t.honroAct5Painted===true))||(b.honroStage===46"
+  },
+  "terrain": "a5-root-floor",
+  "worldLine": [
+    [
+      6700.39,
+      1733.2
+    ],
+    [
+      6700.39,
+      2269
+    ]
+  ],
+  "activePins": {
+    "web/data/chapter-44-assets.ddddc05a5f764d6e.json": {
+      "bytes": 3323328,
+      "sha256": "ddddc05a5f764d6eee5e48602718f31a89008cc377ff188d6c3aa4b3a4cf1cdb"
+    },
+    "web/data/chapter-44.48354b7c0547c1a7.json": {
+      "bytes": 14376,
+      "sha256": "48354b7c0547c1a743531f79b0128e4fc56cb3d5973d7f8a17d40e5c232e2e68"
+    },
+    "web/runtime/ordered-common-18.9dcb25cd7e4ae77b.js": {
+      "bytes": 34955,
+      "sha256": "9dcb25cd7e4ae77b50e3ff528a43d3a3a170c28c1995ddb9c694b66a10965bfe"
+    },
+    "web/runtime/ordered-common-17.08ee20a4002559b5.js": {
+      "bytes": 110795,
+      "sha256": "08ee20a4002559b5e59adb7558c30f565e3cff0327b0daa8b889cd89df4a7cd1"
+    }
+  },
+  "browser": "151.0.7922.34",
+  "archive": 14678150256,
+  "frames": [
+    {
+      "key": "s44-1440x900-south",
+      "view": "south",
+      "viewportCSS": [
+        1440,
+        900
+      ],
+      "actual": {
+        "x": 3400,
+        "y": 2867,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": 0,
+        "right": 6800,
+        "top": 1050.8628472222222,
+        "bottom": 4683.137152777777
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 7120,
+        "bottom": 2867
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "sceneTime": 2,
+      "phase": "aim",
+      "round": 1,
+      "tide": null,
+      "actorCount": 35,
+      "physicsSHA256": "b7c0d64490dfaae60ad5c6bc394d000d5c256ba56f9a7149abbbf3301f4d6546",
+      "pngSHA256": "c68de12cb98e59b6a19a57abd5e8e32e0c636fd379c03500023f292c25aad614",
+      "id": 44,
+      "expectInk": true,
+      "ordinary": [
+        3400.0,
+        1313.5,
+        0.5
+      ],
+      "knownOutsideOld": [
+        [
+          1402,
+          145,
+          [
+            -1,
+            0,
+            0,
+            0
+          ]
+        ],
+        [
+          1403,
+          145,
+          [
+            -1,
+            -1,
+            -1,
+            0
+          ]
+        ]
+      ],
+      "oldFixedPhysicsHash": "66e24cd932c510e113187dd2713f1050926f9209571f4ad90f31aaeae72142c5",
+      "oldRaster": 0.25
+    },
+    {
+      "key": "s44-1440x900-southwest",
+      "view": "southwest",
+      "viewportCSS": [
+        1440,
+        900
+      ],
+      "actual": {
+        "x": -320,
+        "y": 2867,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": -3720,
+        "right": 3080,
+        "top": 1050.8628472222222,
+        "bottom": 4683.137152777777
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 7120,
+        "bottom": 2867
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "sceneTime": 2,
+      "phase": "aim",
+      "round": 1,
+      "tide": null,
+      "actorCount": 35,
+      "physicsSHA256": "b7c0d64490dfaae60ad5c6bc394d000d5c256ba56f9a7149abbbf3301f4d6546",
+      "pngSHA256": "ceba0d9396d1143fed97a0cc07afce50f17d706ddb05b6d3112cd12b7314da75",
+      "id": 44,
+      "expectInk": false,
+      "ordinary": [
+        3400.0,
+        1313.5,
+        0.5
+      ],
+      "knownOutsideOld": [],
+      "oldFixedPhysicsHash": "66e24cd932c510e113187dd2713f1050926f9209571f4ad90f31aaeae72142c5",
+      "oldRaster": 0.25
+    },
+    {
+      "key": "s44-390x844-southeast",
+      "view": "southeast",
+      "viewportCSS": [
+        390,
+        844
+      ],
+      "actual": {
+        "x": 7120,
+        "y": 2867,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": 3720,
+        "right": 10520,
+        "top": -2778.8253205128203,
+        "bottom": 8512.82532051282
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 7120,
+        "bottom": 2867
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "sceneTime": 2,
+      "phase": "aim",
+      "round": 1,
+      "tide": null,
+      "actorCount": 35,
+      "physicsSHA256": "b7c0d64490dfaae60ad5c6bc394d000d5c256ba56f9a7149abbbf3301f4d6546",
+      "pngSHA256": "9e10ee931cc9d9a70141e4ddb90a298901f78880ba5a695440611e41e776fb87",
+      "id": 44,
+      "expectInk": true,
+      "ordinary": [
+        3400.0,
+        1313.5,
+        0.5
+      ],
+      "knownOutsideOld": [
+        [
+          160,
+          258,
+          [
+            -1,
+            -1,
+            -1,
+            0
+          ]
+        ],
+        [
+          160,
+          259,
+          [
+            -1,
+            0,
+            0,
+            0
+          ]
+        ]
+      ],
+      "oldFixedPhysicsHash": "66e24cd932c510e113187dd2713f1050926f9209571f4ad90f31aaeae72142c5",
+      "oldRaster": 0.0625
+    }
+  ],
+  "media": [
+    "assets/bgm/main.mp3",
+    "assets/bgm/battle-1.mp3",
+    "assets/bgm/battle-2.mp3",
+    "assets/bgm/battle-3.mp3"
+  ],
+  "oldStage23Runtime": "web/runtime/ordered-common-17.08ee20a4002559b5.js",
+  "oldActiveProject": "web/data/campaign.ce72ffa30709411b.json",
+  "candidateCommon18": "web/runtime/ordered-common-18.5bef8d649618eec7.js",
+  "candidateModuleSHA": "e3aa61872c2d640f96f3a2a4e242fe645f84d6519cbb07986d537b6638db7d4c",
+  "priorActual": {
+    "artifact": 14708301259,
+    "zipSHA256": "39e54b8ec2ab300b361378f079db43919938626ddfc3633b0a54a5b6614b8d54",
+    "browserSHA256": "11258688f24de9f7a99721d356ed10d346957f3e9144a38ff725e57962b8caf0",
+    "strictResult": "HOLD fixed masks unchanged; coordinates below are audited old one-DN companions, not part of strict mask"
+  }
+}
