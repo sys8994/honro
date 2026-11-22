@@ -1,0 +1,220 @@
+{
+  "enabled": true,
+  "repo": "sys8994/honro",
+  "qaRef": "refs/heads/qa/stage7-west-dummy-onebuild-writer-3dfe75f",
+  "releaseRef": "refs/heads/release/act1-stage7-west-dummy-guide-20261122",
+  "scopeApproval": "Actual same-view PC and mobile show only the falsely drawn guide line within the nonplay west dummy removed. Painted cap, playable ground, existing east fix, and whole physical signature unchanged. Scoped release assembly only.",
+  "base": {
+    "head": "3dfe75f0162ff023189ea5bf60be2874d223fd45",
+    "tree": "b61c2b2d185645dfb33bc8298baf29a4809663c8",
+    "manifest": {
+      "bytes": 7486493,
+      "sha256": "3e3eacc61c750d393d0b1351cff4cb59f2692a808e71b872ca89281077ca00ac",
+      "git": "401616347d82d81fb16e13f5dae9d213ddf223c8"
+    },
+    "pagesRun": 45010621200,
+    "pagesJob": 137172356080,
+    "publishedAt": "2026-11-22T10:06:40Z",
+    "active": 810,
+    "registry": 1372,
+    "retainerGit": "8374336b53c74ac81e6d32f5aa43eee575e61daa",
+    "policyGit": "16687b0fc38e432a7d66a015ddf3ebe744163a06"
+  },
+  "qa": {
+    "run": 45015349642,
+    "job": 137186362320,
+    "head": "05e11344895f87dda7802921beb3cec8edce5c04",
+    "tree": "32193bea4eabb24736d6cfb906cd6de8d736cbe7",
+    "branch": "qa/stage7-west-dummy-normal-onebuild-3dfe75f",
+    "artifact": 14751851362,
+    "name": "honro-stage7-west-dummy-onebuild-pc-mobile-no-deploy",
+    "outer": {
+      "bytes": 5217868,
+      "sha256": "fc36c01b1ed1f1a1c4f7d583432cdfdffc17db5809697a52969936f49701a109"
+    }
+  },
+  "outerMembers": [
+    "B-generated-pending-art/SEAL.json",
+    "B-generated-pending-art/B-EXACT-NORMAL-GENERATED-NO-DEPLOY.zip",
+    "BROWSER.json",
+    "GRAPH.json",
+    "SOURCE.json",
+    "PC-A-actual-West-raw.png",
+    "PC-B-actual-West-raw.png",
+    "M-A-actual-West-raw.png",
+    "M-B-actual-West-raw.png",
+    "build.log",
+    "http.log",
+    "npm-game.log",
+    "npm.log",
+    "production-contract.log",
+    "NATIVE-ROUTES.json"
+  ],
+  "receipts": {
+    "SOURCE.json": {
+      "bytes": 564,
+      "sha256": "1103ec738b99c5cbb72d15beb6cfbfb676341bc6af30b3cac069bec01d9c0788"
+    },
+    "BROWSER.json": {
+      "bytes": 8663,
+      "sha256": "d9912d5d91873b8f2fdffee3e6b565039062343370b18c023847f1a14809f4dd"
+    },
+    "GRAPH.json": {
+      "bytes": 144459,
+      "sha256": "d9a5eda03aeac7322b226e7606726f2946384de202ff993ab39b982436aef77b"
+    },
+    "NATIVE-ROUTES.json": {
+      "bytes": 12341,
+      "sha256": "9d4b99e8aa81bd0ca9db43c38471dba32bb3147809372293353cfeebc3c5ae88"
+    },
+    "B-generated-pending-art/SEAL.json": {
+      "bytes": 2469,
+      "sha256": "6b567e6ca70cde59eca7d6b59958edc32470fbe5ffe880863ddc2bb78b47bf3d"
+    }
+  },
+  "innerPath": "B-generated-pending-art/B-EXACT-NORMAL-GENERATED-NO-DEPLOY.zip",
+  "sealPath": "B-generated-pending-art/SEAL.json",
+  "generated": {
+    "HONRO.html": {
+      "bytes": 17379,
+      "sha256": "03ebb2c1bfaefa36f5f54f1f9946455d323ec2bd79c6b267613acf77bdf8fec3",
+      "git": "6627b75ed1afb82345a0c031cb601555cea00f64"
+    },
+    "HONRO_WORKSHOP.html": {
+      "bytes": 4011,
+      "sha256": "4f55cd469d61009f20d34ee72684dd9c8591311fb9e36c9c5d002fd19e5cc903",
+      "git": "cd7bb81e09f2596f9b6c40094e4e52c7d22ca16d"
+    },
+    "index.html": {
+      "bytes": 17379,
+      "sha256": "03ebb2c1bfaefa36f5f54f1f9946455d323ec2bd79c6b267613acf77bdf8fec3",
+      "git": "6627b75ed1afb82345a0c031cb601555cea00f64"
+    },
+    "web/entries/game.b1321855b16bc549.js": {
+      "bytes": 20483,
+      "sha256": "b1321855b16bc54988ea55800f2699c8bd345a713b588f474c63c1ca28f9df3b",
+      "git": "0f4d67aedab32f8a57a914dd586dbec2dfd0c6ef"
+    },
+    "web/entries/game.c3daefcd245631a8.html": {
+      "bytes": 11318,
+      "sha256": "c3daefcd245631a8c6266d1e6e7a514fc292b853ced78734ea16d61fdc1708f9",
+      "git": "d7a827aa7ae03c00edc695f59f9cec723f2661a5"
+    },
+    "web/entries/workshop.31002b54d4159b71.js": {
+      "bytes": 16706,
+      "sha256": "31002b54d4159b716db82223e3683fcf3125ea5b2b6b357eb34e7d48d8a34a8c",
+      "git": "ae12880e3084c4bfef338a1af632fd3925051ed5"
+    },
+    "web/manifest.json": {
+      "bytes": 7436830,
+      "sha256": "67d14bfda3333ec31c12d8a3ff6870f0d3ad24d33185b9c2a32645567ad407cd",
+      "git": "64fb60515e606a76b6e418d237969454599ea5d3"
+    },
+    "web/runtime/ordered-common-16.0d79b8860bf45189.js": {
+      "bytes": 168585,
+      "sha256": "0d79b8860bf45189907388648bbd72badcc2b19fff55a5d8925f0587083f5391",
+      "git": "8234d68a25083e9b0fe11d134edf291ecc31af4f"
+    }
+  },
+  "nested": {
+    "bytes": 2041086,
+    "sha256": "4c242525be5c2fa80a49c0419df403afd9d5c5c802fb0a65dd73741a1c8be8e4"
+  },
+  "source": {
+    "path": "shared/runtime/terrain-readability.js",
+    "old": "077492754cba250877d8954768b89f6f901e6b83",
+    "new": "0af116067b50aafb0d6c21739efda0a0ac03bf2d",
+    "sha256": "d684084edc87fde4e79d2f1582c7af9cea34a2bbdb39b77001146a5e15caddb3"
+  },
+  "approvedFrames": {
+    "PC": {
+      "A": {
+        "bytes": 1291844,
+        "sha256": "67e2fc7211c69923d8baae446760022657135e9fcc622148c7203b9985254145"
+      },
+      "B": {
+        "bytes": 1291801,
+        "sha256": "638adc1afaf2f2c876388a062465e2277d4ff38c67f1dfb78e1dba399607cd2f"
+      }
+    },
+    "M": {
+      "A": {
+        "bytes": 272171,
+        "sha256": "294dcef1df2c38a08562ea122db314ebb48d956f6f8e13e54f094349bba3a4d6"
+      },
+      "B": {
+        "bytes": 272047,
+        "sha256": "cfe35fd3c7c4c18acd1394320c4e3eab0520470ae11bf74c0e92d8e55f5bbb98"
+      }
+    }
+  },
+  "expectedCommon": {
+    "old": "web/runtime/ordered-common-16.e580c1df7bf9ed7b.js",
+    "new": "web/runtime/ordered-common-16.0d79b8860bf45189.js",
+    "bsha": "0d79b8860bf45189907388648bbd72badcc2b19fff55a5d8925f0587083f5391"
+  },
+  "publicStockManifest": {
+    "bytes": 7486493,
+    "sha256": "3e3eacc61c750d393d0b1351cff4cb59f2692a808e71b872ca89281077ca00ac"
+  },
+  "viewPoses": {
+    "PC": {
+      "actual": {
+        "scale": 0.21176470588235294,
+        "x": 0,
+        "y": 1784.59
+      },
+      "viewport": {
+        "bottom": 3600.7271527777775,
+        "left": -3400,
+        "right": 3400,
+        "top": -31.54715277777791
+      },
+      "backing": [
+        1440,
+        769
+      ]
+    },
+    "M": {
+      "actual": {
+        "scale": 0.057352941176470586,
+        "x": 0,
+        "y": 1784.59
+      },
+      "viewport": {
+        "bottom": 7430.4153205128205,
+        "left": -3400,
+        "right": 3400,
+        "top": -3861.23532051282
+      },
+      "backing": [
+        390,
+        648
+      ]
+    }
+  },
+  "expectedCommonPairs": [
+    [
+      "web/runtime/ordered-common-16.e580c1df7bf9ed7b.js",
+      "web/runtime/ordered-common-16.0d79b8860bf45189.js"
+    ]
+  ],
+  "allRenamedPaths": [
+    [
+      "web/runtime/ordered-common-16.e580c1df7bf9ed7b.js",
+      "web/runtime/ordered-common-16.0d79b8860bf45189.js"
+    ],
+    [
+      "web/entries/game.97e09465edafba28.js",
+      "web/entries/game.b1321855b16bc549.js"
+    ],
+    [
+      "web/entries/workshop.91ca884cce7d2934.js",
+      "web/entries/workshop.31002b54d4159b71.js"
+    ],
+    [
+      "web/entries/game.8b32fc748b85c42f.html",
+      "web/entries/game.c3daefcd245631a8.html"
+    ]
+  ]
+}
