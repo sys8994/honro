@@ -176,27 +176,49 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
     if(entry.project){
       const {library,stages,...base}=entry.project;
       const externalLibrary=await externalize(library,'library');
+      // Split only the 3 known Stage 32 historical providers; none may serve any active consumer.
+      const stage32=stages.find(s=>s.metadata?.stageId===32),legacy32Ids=["approved32:body","approved32:wood-door-extract","act4-handoff:32:body"];
+      const declared32=stage32?.design?.nativeArt?.compatibilityAssetIds;
+      const hasStage32Handoff=stage32?.elements?.some(x=>x.assetId==='act4-handoff:32:body-joined');
+      if(hasStage32Handoff)assert.deepEqual(declared32,legacy32Ids,'Stage 32 legacy list changed');
+      const compat32=hasStage32Handoff?externalLibrary.filter(a=>legacy32Ids.includes(a.id)):[];
+      if(hasStage32Handoff){
+        assert.equal(compat32.length,3,'Stage 32 exact legacy archive size changed');
+        assert.equal(hash(Buffer.from(JSON.stringify(compat32)+'\n')),'ee7846c92c4edcac5f88771849e89c896a5c6906b0b8c10fb90cdca1d5b1061d','Stage 32 legacy provider bytes changed');
+      }
+      const ids32=new Set(compat32.map(a=>a.id));
       // Dependency closure includes placements and asset references nested inside assets.
       // Shared assets are one bounded bundle; each chapter owns its remaining closure.
       const byId=new Map(externalLibrary.map(asset=>[asset.id,asset]));
       function dependencies(value,found=new Set()){
         if(typeof value==='string'&&byId.has(value)&&!found.has(value)){
-          found.add(value);for(const [key,child]of Object.entries(byId.get(value)))if(key!=='id')dependencies(child,found);
+          found.add(value);for(const [key,child]of Object.entries(byId.get(value)))if(key!=='id'&&!(ids32.size&&value==='act4-handoff:32:body-joined'&&key==='name'&&child==='act4-handoff:32:body'))dependencies(child,found);
         }else if(value&&typeof value==='object')for(const child of Object.values(value))dependencies(child,found);
         return found;
       }
-      const needed=stages.map(stage=>dependencies(stage)),shared=new Set(externalLibrary.filter(asset=>needed.filter(ids=>ids.has(asset.id)).length>=2).map(asset=>asset.id));
+      const needed=stages.map(stage=>{
+        if(stage!==stage32||!ids32.size)return dependencies(stage);
+        // Ignore only the exact declared metadata pointer, never a real art dependency.
+        const dependencyView={...stage,design:{...stage.design,nativeArt:{...stage.design.nativeArt,compatibilityAssetIds:[]}}};
+        return dependencies(dependencyView);
+      });
+      assert(needed.every(set=>[...ids32].every(id=>!set.has(id))),'Archived Stage 32 asset has an active chapter consumer');
+      const shared=new Set(externalLibrary.filter(asset=>needed.filter(ids=>ids.has(asset.id)).length>=2).map(asset=>asset.id));
       const sharedAssets=externalLibrary.filter(asset=>shared.has(asset.id));
       const used=new Set(needed.flatMap(ids=>[...ids])),compat33=externalLibrary.filter(asset=>asset.id.startsWith('act4compat33:v1:')),compat34=externalLibrary.filter(asset=>asset.id.startsWith('act4compat34:v1:'));
       assert(compat33.length===0||compat33.length===2,'Stage 33 compatibility bundle must contain both pinned assets');
       assert(compat33.every(asset=>!used.has(asset.id)),'Compatibility art must not be a normal stage dependency');
       assert(compat34.length===0||compat34.length===1,'Stage 34 compatibility bundle must contain the pinned asset');
       assert(compat34.every(asset=>!used.has(asset.id)),'Compatibility art must not be a normal stage dependency');
-      const compatIds=new Set([...compat33,...compat34].map(asset=>asset.id)),editorExtras=externalLibrary.filter(asset=>!used.has(asset.id)&&!compatIds.has(asset.id));
+      const compatIds=new Set([...compat32,...compat33,...compat34].map(asset=>asset.id)),editorExtras=externalLibrary.filter(asset=>!used.has(asset.id)&&!compatIds.has(asset.id));
       const sharedPacket=assetPacket(sharedAssets),extrasPacket=assetPacket(editorExtras);
       // Full Workshop reuses the exact chapter bundles instead of shipping a
       // second complete library. Keep unused editor assets and canonical order.
       const manifest={base:await json('campaign-base',base),libraryOrder:externalLibrary.map(asset=>asset.id),editorExtras:await json('campaign-editor-extras',extrasPacket.value),stages:[],unitTemplates:stages.flatMap(stage=>stage.units.filter(unit=>unit.kind?.startsWith('boss:'))).filter((unit,index,all)=>all.findIndex(other=>other.kind===unit.kind)===index),catalog:stages.map(stage=>({id:stage.id,name:stage.name,width:stage.width,height:stage.height,backdrop:stage.backdrop,metadata:stage.metadata,playerRoster:stage.units.filter(u=>u.team==='player').map(u=>u.kind),pending:true})),shared:await json('campaign-shared',sharedPacket.value),stageLibraries:[],assetEncodings:{shared:sharedPacket.encoding,stageLibraries:[],editorExtras:extrasPacket.encoding},assetPaths:{base:assetPaths(base),stages:[],shared:assetPaths(sharedAssets),stageLibraries:[],editorExtras:assetPaths(editorExtras)}};
+      if(compat32.length){
+        manifest.compatibility32=await json('campaign-compat-32',compat32);
+        manifest.assetPaths.compatibility32=assetPaths(compat32);manifest.assetEncodings.compatibility32='json';
+      }
       if(compat33.length){const packet=assetPacket(compat33);manifest.compatibility33=await json('campaign-compat-33',packet.value);manifest.assetPaths.compatibility33=assetPaths(compat33);manifest.assetEncodings.compatibility33=packet.encoding;}
       if(compat34.length){const packet=assetPacket(compat34);manifest.compatibility34=await json('campaign-compat-34',packet.value);manifest.assetPaths.compatibility34=assetPaths(compat34);manifest.assetEncodings.compatibility34=packet.encoding;}
       assert.equal(new Set(manifest.libraryOrder).size,externalLibrary.length,'Campaign asset IDs must be unique');

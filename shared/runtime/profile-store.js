@@ -45,6 +45,28 @@ function rememberProviderSignature(key,text,signature){
  }
  providerHashCache.set(key,{text,signature,size});providerHashChars+=size;
 }
+// Stage 32 only. Neither unidentified old art nor workshop art can use this archive route.
+const ACT4_32_LEGACY=Object.freeze({"approved32:body":"1952606:e60eb3e5","approved32:wood-door-extract":"423282:b2c53b27","act4-handoff:32:body":"843583:aede1464"});
+const legacy32Scope=b=>!!b&&b.mode==='campaign'&&b.honroStage===32&&b.honroAct4Official===1&&b.honroMapOrigin==='campaign'&&!b.honroCustom;
+function legacy32Art(b,id,signature,library){
+ if(!legacy32Scope(b)||!Object.hasOwn(ACT4_32_LEGACY,id)||signature!==ACT4_32_LEGACY[id])return null;
+ const archived=library.get('act4compat32:v1:'+id);if(!archived?.vector||archived.collision?.length||archived.interactionType)return null;
+ const asset={...archived,id},text=JSON.stringify(asset);if(assetSignature(text)!==signature)return null;return{asset,text,signature};
+}
+function needsLegacy32Art(b){
+ if(!legacy32Scope(b))return false;
+ for(const items of [b.honroLandmarks,b.honroElements,b.honroEnvironment?.placements])if(Array.isArray(items))for(const item of items){
+  const a=item?.asset;if(a?.honroStaticAssetRef===1&&Object.hasOwn(ACT4_32_LEGACY,a.id)&&a.signature===ACT4_32_LEGACY[a.id])return true;
+ }
+ return false;
+}
+function verifyLegacy32Assets(items){
+ if(!Array.isArray(items)||items.length!==3)return false;
+ const library=new Map(items.map(a=>[a?.id,a]));
+ return library.size===3&&Object.entries(ACT4_32_LEGACY).every(([id,signature])=>{
+  const a=library.get(id);return !!a?.vector&&!a.collision?.length&&!a.interactionType&&assetSignature(JSON.stringify(a))===signature;
+ });
+}
 // Exact archived 33 QA art; never apply to custom or arbitrary signatures.
 const ACT4_33_LEGACY=Object.freeze({'approved33:near-west':'446435:980e0bba','approved33:body':'2183752:7b7b6e'});
 function legacy33Art(b,id,signature,library){
@@ -152,7 +174,9 @@ function compactBattleArt(b){
  if(!act4&&!act5)return b;
  const library=new Map((G.HONRO_PROJECT?.library||[]).map(a=>[a.id,a])),texts=new Map();let changed=false;const out={...b};
  const compactItems=items=>items.map(item=>{
-  const asset=item.asset,source=asset?.vector&&library.get(asset.id);if(!source)return item;
+  const asset=item.asset,source=asset?.vector&&library.get(asset.id);
+   if(!source){const old=asset?.vector&&legacy32Art(b,asset.id,ACT4_32_LEGACY[asset.id],library);if(!old||JSON.stringify(asset)!==old.text)return item;
+    changed=true;return{...item,asset:{honroStaticAssetRef:1,id:asset.id,signature:old.signature}};}
   const key=asset.id;let row=texts.get(key);if(!row){const text=JSON.stringify(source);row={text,signature:providerSignature(key,text)};texts.set(asset.id,row);}
   const assetText=JSON.stringify(asset);if(assetText!==row.text){const legacy=legacy33Art(b,asset.id,ACT4_33_LEGACY[asset.id],library)||legacy34Art(b,asset.id,ACT4_34_LEGACY[asset.id],library);if(!legacy||assetText!==legacy.text)return item;row=legacy;}else rememberProviderSignature(key,row.text,row.signature);
   changed=true;return{...item,asset:{honroStaticAssetRef:1,id:asset.id,signature:row.signature}};
@@ -175,13 +199,27 @@ function compactBattleArt(b){
    Array.isArray(item.collisionIds)&&item.collisionIds.length===0&&
    source.id===rule.id&&!!source.vector&&Array.isArray(source.collision)&&source.collision.length===0;
  }
+// Exactly one byte-attested visual-only Act 5 Stage 2 provider transition.
+// Do not reuse the Act 4 registry for Act 5 or accept other placements/signatures.
+function mayRestoreStage42CompactedArt(b,item,ref,current){
+ return b?.mode==='campaign'&&b.honroMapOrigin==='campaign'&&b.honroAct5===1&&
+  b.honroCanonical===true&&b.honroCustom===false&&b.stage===42&&b.honroStage===42&&
+  b.honroAuthoredId==='stage-42'&&b.honroRevision===20&&b.honroMapRevision===20&&b.honroCampaignMapRevision===1&&b.width===6500&&b.height===2861&&b.honroTerrainDomainVersion===1&&
+  item.kind==='canonical-element'&&item.id==='a5-near'&&item.assetId==='act5:near:42'&&
+  item.layer==='structural-back'&&item.depthLayer==='L1'&&item.visualRole==='scenery'&&
+  item.x===0&&item.y===0&&item.scale===6500/2022&&item.rotation===0&&
+  Array.isArray(item.collisionIds)&&item.collisionIds.length===0&&
+  Object.keys(ref).length===3&&ref.id==='act5:near:42'&&ref.signature==='1864834:f80cec75'&&
+  current==='1858841:5ce4a412';
+}
  function restoreBattleArt(b){
  const local=resolveLocalArt(b);if(!local)return false;
  const library=new Map((G.HONRO_PROJECT?.library||[]).map(a=>[a.id,a])),signatures=new Map(),replacements=[...local.replacements];
  for(const items of [b?.honroLandmarks,b?.honroElements,b?.honroEnvironment?.placements])for(const item of items||[]){
   const ref=item.asset;if(!ref||ref.honroStaticAssetRef===undefined)continue;
   if(ref.honroStaticAssetRef!==1||typeof ref.id!=='string'||typeof ref.signature!=='string')return false;
-  let source=library.get(ref.id);if(!source)return false;
+  let source=library.get(ref.id);
+  if(!source){const old=legacy32Art(b,ref.id,ref.signature,library);if(!old)return false;source=old.asset;}
   if(!signatures.has(ref.id))signatures.set(ref.id,assetSignature(JSON.stringify(source)));
   if(signatures.get(ref.id)!==ref.signature){
    const legacy=legacy33Art(b,ref.id,ref.signature,library)||legacy34Art(b,ref.id,ref.signature,library);
@@ -192,7 +230,7 @@ function compactBattleArt(b){
    const sameTerrain=b?.mode==='campaign'&&!b.honroCustom&&b.honroMapOrigin!=='workshop'&&b.honroAct4Official===1&&
     optimized?.stage===b.honroStage&&knownSignature&&optimized.current===signatures.get(ref.id);
    if(legacy)source=legacy.asset;
-    else if(!sameTerrain&&!stage46LosslessRef(b,item,ref,source,signatures.get(ref.id)))return false;
+    else if(!sameTerrain&&!stage46LosslessRef(b,item,ref,source,signatures.get(ref.id))&&!mayRestoreStage42CompactedArt(b,item,ref,signatures.get(ref.id)))return false;
   }
   replacements.push([item,source]);
  }
@@ -284,5 +322,5 @@ function create(){
   cancelRetry(){retryCandidate=null;}
  };
 }
-G.HonroProfileStore={create,fresh,migrate,compactBattleArt,restoreBattleArt,needsLegacy33Art,verifyLegacy33Assets,needsLegacy34Art,verifyLegacy34Assets};
+G.HonroProfileStore={create,fresh,migrate,compactBattleArt,restoreBattleArt,needsLegacy32Art,verifyLegacy32Assets,needsLegacy33Art,verifyLegacy33Assets,needsLegacy34Art,verifyLegacy34Assets};
 })(globalThis);
