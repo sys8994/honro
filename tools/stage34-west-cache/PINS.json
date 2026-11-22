@@ -1,0 +1,67 @@
+{
+  "enabled": true,
+  "base": "c60fca57d223ecb3e62afc86c4755774c2b68263",
+  "tree": "d83d9f61343380d7e82147cba56dc90bd9ff260d",
+  "ref": "refs/heads/qa/stage34-west-cache-normal-c60fca",
+  "manifestGit": "495358ec04f4032becc6bdf87db9d88ec3986d4e",
+  "shellGit": "6627b75ed1afb82345a0c031cb601555cea00f64",
+  "src": "shared/runtime/act4-pilot-art.js",
+  "sourceA": "330fc448562e5c3e36a98a99bad158176c1e9043",
+  "sourceB": "0eff0c4dd8947d2c9f5c716e0d0b465687aaaad9",
+  "sourceBSHA": "f57d0c8e9dd100e27d553d434384fea72512c090b05fe3625d01fceb74c38362",
+  "project": "web/data/campaign.36b3008756d1c3a5.json",
+  "map": "web/data/chapter-34.cb39c6d6adc3cef6.json",
+  "packet": "web/data/chapter-34-assets.7ecb1182c8dcf88c.json",
+  "oldSlot": "web/runtime/ordered-game-25.baee52cf4acaf033.js",
+  "foreOwner": "a9572adc56e66db2724f71409c4adee5005da0e3aaad7a4e2d5b9dc8a9b64e46",
+  "physics": "6d7caa25ce4264cda7f06af01519de7408619d40d721af2c9c50a14e61e1d5f1",
+  "poses": {
+    "1440x900": {
+      "actual": {
+        "x": -320,
+        "y": 4336,
+        "scale": 0.55
+      },
+      "viewport": {
+        "left": -1629.090909090909,
+        "right": 989.090909090909,
+        "top": 3636.7386363636365,
+        "bottom": 5035.261363636364
+      },
+      "css": [
+        1440,
+        769.1875
+      ],
+      "backing": [
+        1440,
+        769
+      ]
+    },
+    "390x844": {
+      "actual": {
+        "x": -320,
+        "y": 4336,
+        "scale": 0.15
+      },
+      "viewport": {
+        "left": -1620,
+        "right": 980,
+        "top": 2177.302083333333,
+        "bottom": 6494.697916666667
+      },
+      "css": [
+        390,
+        647.609375
+      ],
+      "backing": [
+        390,
+        648
+      ]
+    }
+  },
+  "timing": {
+    "maxObservedColdStripMs": 8,
+    "maxObservedColdRenderExtraMs": 25,
+    "maxObservedColdRenderRelativeExtra": 0.25
+  }
+}
