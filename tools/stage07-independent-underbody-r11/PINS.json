@@ -1,0 +1,235 @@
+{
+  "enabled": true,
+  "remote": false,
+  "qaOnly": true,
+  "base": "342a7aa03f7244db9663315ceac596f307dac06e",
+  "tree": "2e2ca3058bb2b4b4528b5e46394fcf30d55c8f32",
+  "productTrackedScratchOnly": "shared/map/terrain-domain.js",
+  "stage07Stock": {
+    "map": "28f7bf612a598aeb0eb6da0f819a0b6ddb7fd5414eab9410e434772eb04d2553",
+    "packet": "7068fa05c6ce1c2ef0c96045daa3dea192ba69a18e35bc323e6a5df9a1529db5",
+    "bodySource": "acbffaafb8a346e3c28d039a17f8d1dd1f2f525b1563860727e45d3bf4651193",
+    "shellEntry": "web/entries/game.2662b5c41e95ed19.js",
+    "campaignWrapper": "web/runtime/campaign.4375d13445105188.js",
+    "campaignDescriptor": "web/data/campaign.0386fa9451fe2427.json"
+  },
+  "fileA": {
+    "bytes": 26789,
+    "git": "eb468b23024e316ede42ac66bd77687e8c40240a",
+    "sha256": "b856335569d5303781f7deb48f4f030f28cce081d2ced47fc249d02245b34ed5"
+  },
+  "fileB": {
+    "bytes": 106176,
+    "git": "90653b0258288c6544aee6c5aac73d83c7c338a4",
+    "sha256": "a30b536bfa8475d6e604bcb4258987f7c4263cffc6e0db01433a63451ec1c7a1"
+  },
+  "art": {
+    "sha256": "b564c44e0c4804b6ce4fff0e5063484e1670856716d60b24af770abc3440d5d5",
+    "bytes": 77141
+  },
+  "unresolved": [
+    "Actual Stage7 raster six A/B plus bona fide stock Stage7 save resume",
+    "Actual historical c60 Stage33 old snapshot resolves to unchanged 342 compatibility provider and same real actual authored result",
+    "No deploy authorized"
+  ],
+  "saveCoverage": "actual A autosave bytes held only in memory, B normal title Continue plus exact provider/geometry receipt; no user save input/export",
+  "r2RequiresCurrentBaseRebind": false,
+  "release": {
+    "manifest": {
+      "bytes": 8163953,
+      "git": "a6b659e6dba284a924deb2cdbac2681685418421",
+      "sha256": "9a948a748ba3f8ce95a25489729cefb3cefb94d26a999e76db5debc4ae8558b2"
+    },
+    "common12": {
+      "path": "web/runtime/ordered-common-12.8f69d8c7c4cc0d42.js",
+      "bytes": 72445,
+      "git": "4a62520a42e58ef0314c0ecd5eed85ef5d7d8802",
+      "sha256": "8f69d8c7c4cc0d422c021a5864a4fb12fb2652bfb5aced7f0463fd91bf78c64f"
+    },
+    "profile": {
+      "path": "shared/runtime/profile-store.js",
+      "git": "da6b816f36a786a8e8c4a0e7671b2b77fc9e30e9",
+      "bytes": 21907
+    },
+    "pages": {
+      "head": "342a7aa03f7244db9663315ceac596f307dac06e",
+      "conclusion": "success",
+      "branch": "master",
+      "run": 45027512069,
+      "job": 137224104334,
+      "publishedAt": "2026-11-22T13:28:57Z",
+      "requiredLiveBytePrecheck": true
+    }
+  },
+  "legacy33": {
+    "old": "c60fca57d223ecb3e62afc86c4755774c2b68263",
+    "oldShell": {
+      "bytes": 17379,
+      "sha256": "03ebb2c1bfaefa36f5f54f1f9946455d323ec2bd79c6b267613acf77bdf8fec3",
+      "git": "6627b75ed1afb82345a0c031cb601555cea00f64"
+    },
+    "map": "web/data/chapter-33.80ca32475be181c7.json",
+    "oldPacket": "web/data/chapter-33-assets.07b129345eb95856.json",
+    "newPacket": "web/data/chapter-33-assets.920ccd84eb69a553.json",
+    "rows": {
+      "act4-sideview:33:coastal-v2:west-continuous-geology": {
+        "stage": 33,
+        "previous": "862760:4666d3c8",
+        "current": "864135:d1152e99"
+      },
+      "act4-sideview:33:coastal-v2:lowland": {
+        "stage": 33,
+        "previous": "743870:a3735931",
+        "current": "745366:5d4bce0d"
+      }
+    },
+    "oldRoutes": {
+      "web/entries/game.b1321855b16bc549.js": {
+        "bytes": 20483,
+        "sha256": "b1321855b16bc54988ea55800f2699c8bd345a713b588f474c63c1ca28f9df3b"
+      },
+      "web/runtime/campaign.add23c14682508f8.js": {
+        "bytes": 527,
+        "sha256": "add23c14682508f80102ebc5df411499dccc5533a561a1c3654567236b2a861c"
+      },
+      "web/data/campaign.36b3008756d1c3a5.json": {
+        "bytes": 55011,
+        "sha256": "36b3008756d1c3a51985e2b3ab34d2edd0643eea97fb49a5dc7475907455e3e1"
+      },
+      "web/data/chapter-33-assets.07b129345eb95856.json": {
+        "bytes": 2858185,
+        "sha256": "07b129345eb9585651bb4d8a74411c8ec30ac3d5b3736ca7849e39abfa7ffe00"
+      },
+      "web/data/chapter-33.80ca32475be181c7.json": {
+        "bytes": 34235,
+        "sha256": "80ca32475be181c7774c305b442c8081b6341836fb8d08771e033b7fb79e1464"
+      }
+    },
+    "normalReference": {
+      "rawPC": {
+        "bytes": 952116,
+        "sha256": "3fd520b70b3478edbdff52eca76ee888a8b0b7c4f6853aae4fe4907b4e33c5dd"
+      },
+      "rawM": {
+        "bytes": 346854,
+        "sha256": "bf8564bba8bb61ecab1b5ac5a39fe321c462962c4aab8ee208af59f4fac6cd01"
+      },
+      "oldRefs": {
+        "act4-sideview:33:coastal-v2:west-continuous-geology": "862760:4666d3c8",
+        "act4-sideview:33:coastal-v2:lowland": "743870:a3735931"
+      },
+      "currentRefs": {
+        "act4-sideview:33:coastal-v2:west-continuous-geology": "864135:d1152e99",
+        "act4-sideview:33:coastal-v2:lowland": "745366:5d4bce0d"
+      },
+      "revision": 5,
+      "terrain": "24775a2c24d1330310b3955270df7aee15289a131bc0c54fced3ec38f0996277",
+      "units": "891012edd6b89a25316564e56b17abcf85b96a21f3dbf31eb3bf956106662975",
+      "posePC": {
+        "actual": {
+          "x": 7232,
+          "y": 2304,
+          "scale": 0.21176470588235294
+        },
+        "viewport": {
+          "left": 3832,
+          "right": 10632,
+          "top": 487.8628472222222,
+          "bottom": 4120.137152777777
+        },
+        "backing": [
+          1440,
+          769
+        ]
+      },
+      "poseM": {
+        "actual": {
+          "x": 7232,
+          "y": 2304,
+          "scale": 0.057352941176470586
+        },
+        "viewport": {
+          "left": 3832,
+          "right": 10632,
+          "top": -3341.8253205128203,
+          "bottom": 7949.82532051282
+        },
+        "backing": [
+          390,
+          648
+        ]
+      }
+    },
+    "publicProofRun": 45027766739,
+    "publicProofArt": 14756900330,
+    "publicCurrent": {
+      "raw": {
+        "bytes": 952116,
+        "sha256": "3fd520b70b3478edbdff52eca76ee888a8b0b7c4f6853aae4fe4907b4e33c5dd"
+      },
+      "png": "PC-candidateOld-raw.png",
+      "pose": {
+        "actual": {
+          "x": 7232,
+          "y": 2304,
+          "scale": 0.21176470588235294
+        },
+        "viewport": {
+          "left": 3832,
+          "right": 10632,
+          "top": 487.8628472222222,
+          "bottom": 4120.137152777777
+        },
+        "backing": [
+          1440,
+          769
+        ]
+      }
+    },
+    "publicGenuineSave": {
+      "bytes": 111127,
+      "sha256": "2b49108b4a4dc9ffdfa86de493f4b4e8468d4bcdf656e5fa327db385b07a8cd5"
+    },
+    "currentMapFacts": {
+      "web/data/chapter-33.80ca32475be181c7.json": {
+        "bytes": 34235,
+        "sha256": "80ca32475be181c7774c305b442c8081b6341836fb8d08771e033b7fb79e1464"
+      },
+      "web/data/chapter-33-assets.920ccd84eb69a553.json": {
+        "bytes": 2861056,
+        "sha256": "920ccd84eb69a5534b16e76ac27bb6df1d1c04fba0b2c5fff409057d6119d55b"
+      }
+    }
+  },
+  "r2ExactBeforeGuard": {
+    "manifestShip": 342,
+    "fullATrackListSHA": "b1377ac0de00b5ff244cf7e2d37f8251cec287b4fd1d4eb8b05372e3f6157bf8",
+    "fullBTrackListSHA": "f0bf086e5b63ac4be28d463e44d50be1517c122b1c2f0f15af5bfccf41c9ea9c",
+    "run": 45027956306,
+    "job": 137224997994,
+    "artifact": 14756846713,
+    "artifactSHA": "b6482b73e288e37fa40d330e463887169d3972cca5a8db56025c4adaf0693c95",
+    "AIndex": 55,
+    "BIndex": 56,
+    "B": {
+      "path": "web/runtime/ordered-common-13.40e811833b5300fc.js",
+      "bytes": 24118,
+      "sha256": "40e811833b5300fcc973b12d6cd77f4093e5b7338f9afc92ef3502ba289d2118"
+    },
+    "legacyBoundary": {
+      "old": [
+        68213,
+        72444
+      ],
+      "new": [
+        19886,
+        24117
+      ],
+      "bytes": 4231,
+      "sha256": "f5620aa98d5b7c4fb4afb66017c3e7e5125c26a4ee540d5b5f19faabf68a485b",
+      "fnv": "8684bab1",
+      "buildPrefixBytes": 59,
+      "oldCompatibleTailStart": 48386
+    }
+  }
+}
