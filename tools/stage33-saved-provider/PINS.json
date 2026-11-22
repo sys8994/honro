@@ -1,0 +1,74 @@
+{
+  "enabled": true,
+  "qaRef": "refs/heads/qa/stage33-provider-hotfix-733d5d2",
+  "head": "733d5d212d5ab235c2b492e1f065306bdfaae317",
+  "tree": "276e54e1ca08d32d3b290097c9a05e91e9ab0ecd",
+  "manifest": {
+    "bytes": 7994676,
+    "sha256": "8d6f1debdb956b1f2c92c8a6808707aab7e1db98ddbfbc9ce2ffbffaed9322d1",
+    "git": "10d3c091c96dccbc2a92bbe4434a00f128abb56e"
+  },
+  "old": "c60fca57d223ecb3e62afc86c4755774c2b68263",
+  "oldShell": {
+    "bytes": 17379,
+    "sha256": "03ebb2c1bfaefa36f5f54f1f9946455d323ec2bd79c6b267613acf77bdf8fec3",
+    "git": "6627b75ed1afb82345a0c031cb601555cea00f64"
+  },
+  "sourceBefore": {
+    "bytes": 25141,
+    "sha256": "0a862a41bbd36985a6c201be67df4398aa4ddb5a5ee949dfaad83571edfe0ae5",
+    "git": "24f491b8253abf2e86dbabd5bc7111b701058c0a"
+  },
+  "sourceCandidate": {
+    "bytes": 26381,
+    "sha256": "af7127bf65e1e9e7a21ffe52c90a45328eaf2851708a2ba61d8aac31fa8793cd",
+    "git": "a5ac12ef4de8b2370fcbca1457b86a0c6e2d758c"
+  },
+  "observer": {
+    "bytes": 5555,
+    "sha256": "7c64522c0c84866e0d2516ca18ed81e12a9f7b348a26fa49fb40f9516a29a24a",
+    "git": "9a006159a486663144950cf69fae3f4fd9c41ff3"
+  },
+  "oldTable": "web/runtime/ordered-common-12.538fbca4939d645e.js",
+  "oldTableGit": "45ec91b92b1809730bff530b253703d1197dc7eb",
+  "map": "web/data/chapter-33.80ca32475be181c7.json",
+  "oldPacket": "web/data/chapter-33-assets.07b129345eb95856.json",
+  "newPacket": "web/data/chapter-33-assets.920ccd84eb69a553.json",
+  "previousPeer0": "web/runtime/ordered-common-17.93673f3a14672979.js",
+  "oldEntry": "web/entries/game.b1321855b16bc549.js",
+  "oldCampaign": "web/data/campaign.36b3008756d1c3a5.json",
+  "oldWrapper": "web/runtime/campaign.add23c14682508f8.js",
+  "currentClinicalMap": {
+    "bytes": 34235,
+    "sha256": "80ca32475be181c7774c305b442c8081b6341836fb8d08771e033b7fb79e1464"
+  },
+  "rows": {
+    "act4-sideview:33:coastal-v2:west-continuous-geology": {
+      "stage": 33,
+      "previous": "862760:4666d3c8",
+      "current": "864135:d1152e99"
+    },
+    "act4-sideview:33:coastal-v2:lowland": {
+      "stage": 33,
+      "previous": "743870:a3735931",
+      "current": "745366:5d4bce0d"
+    }
+  },
+  "pose": {
+    "actual": {
+      "x": 7232,
+      "y": 2304,
+      "scale": 0.21176470588235294
+    },
+    "viewport": {
+      "left": 3832,
+      "right": 10632,
+      "top": 487.8628472222222,
+      "bottom": 4120.137152777777
+    },
+    "backing": [
+      1440,
+      769
+    ]
+  }
+}

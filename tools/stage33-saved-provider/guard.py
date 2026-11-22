@@ -1,0 +1,60 @@
+"""No release. Exactly one compiler change, prior immutable old save generator and detached B."""
+import hashlib,json,os,re,subprocess,sys,zipfile
+from pathlib import Path
+D=Path(__file__).resolve().parent;P=json.loads((D/'PINS.json').read_text());S='shared/build.mjs';M='web/manifest.json'
+def sha(b):return hashlib.sha256(b).hexdigest()
+def fact(b):return dict(bytes=len(b),sha256=sha(b))
+def pin(b):return {**fact(b),'git':hashlib.sha1(f'blob {len(b)}\0'.encode()+b).hexdigest()}
+def need(x,msg):
+ if not x:raise RuntimeError(msg)
+def rd(r,k):return (r/k).read_bytes()
+def sv(w,n,x):(w/'out'/n).write_text(json.dumps(x,indent=2)+'\n')
+def git(r,*args):return subprocess.check_output(['git','-C',str(r),*args],timeout=120,text=True).strip()
+def pre(w):
+ a=Path(os.environ['GITHUB_WORKSPACE']);h=os.environ['GITHUB_SHA'];b=w/'B'
+ need(P['enabled'] is True and not (os.getenv('GH_TOKEN')or os.getenv('GITHUB_TOKEN')),'disabled or has write credentials')
+ need((os.environ['GITHUB_REPOSITORY'],os.environ['GITHUB_EVENT_NAME'],os.environ['GITHUB_REF'])==('sys8994/honro','push',P['qaRef']),'wrong QA trigger')
+ paths={'.github/workflows/stage33-saved-provider.yml',*(str(D.relative_to(a)/k)for k in ('PINS.json','build-hotfix.mjs','old-c60-HONRO.html','observer.json','guard.py','capture.py'))}
+ need(git(a,'show','-s','--format=%P',h)==P['head'] and git(a,'rev-parse',P['head']+'^{tree}')==P['tree'] and set(git(a,'diff','--name-status','--no-renames',P['head'],h).splitlines())=={'A\t'+k for k in paths} and not git(a,'status','--porcelain=v1'),'unexpected QA delta')
+ need(pin(rd(a,M))==P['manifest'] and pin(rd(a,S))==P['sourceBefore'] and pin(rd(D,'build-hotfix.mjs'))==P['sourceCandidate'] and pin(rd(D,'old-c60-HONRO.html'))==P['oldShell'] and pin(rd(D,'observer.json'))==P['observer'],'initial pin error')
+ ma=json.loads(rd(a,M));c=[x for x in ma['publishedGenerations']if x['sourceSha']==P['old']]
+ need(len(c)==1,'exact historic retained c60 graph not found')
+ reg={r['path']:{k:r[k]for k in ('bytes','sha256')}for r in c[0]['files']}
+ old={k:fact(rd(a,k))for k in [P['oldEntry'],P['oldWrapper'],P['oldCampaign'],P['oldPacket'],P['map']]}
+ need(all(reg[k]==v for k,v in old.items()),'old canonical source not exact immutable c60 route')
+ otc=w/'A';otc.mkdir();(otc/'HONRO.html').write_bytes(rd(D,'old-c60-HONRO.html'));(otc/'web').symlink_to(a/'web',target_is_directory=True)
+ git(a,'worktree','add','--detach',str(b),P['head']);(b/S).write_bytes(rd(D,'build-hotfix.mjs'))
+ need(git(b,'diff','--name-status')=='M\t'+S,'not scoped one source')
+ sv(w,'SOURCE.json',{'head':h,'base':P['head'],'before':P['sourceBefore'],'candidate':P['sourceCandidate'],'oldStock':P['old'],'oldShell':P['oldShell'],'oldRoutes':old,'source':S})
+def observe(w):
+ a=Path(os.environ['GITHUB_WORKSPACE']); b=w/'B'; x,y=[json.loads(rd(r,M))for r in (a,b)]
+ ia,ib=({q['path']:{k:q[k]for k in ('bytes','sha256')}for q in d['files']}for d in (x,y))
+ add=sorted(ib.keys()-ia.keys());drop=sorted(ia.keys()-ib.keys());pat=r'web/(runtime/ordered-common-12\.[a-f0-9]{16}\.js|entries/(game\.[a-f0-9]{16}\.(js|html)|workshop\.[a-f0-9]{16}\.js))'
+ need(len(ia)==len(ib)==810 and len(add)==len(drop)==4 and all(ia[k]==ib[k]for k in ia.keys()&ib.keys()) and all(re.fullmatch(pat,k)for k in add+drop),'only registry common12 + 3 entries may change')
+ need(x['project']==y['project'] and rd(a,x['project'])==rd(b,x['project']),'project assets/map modified')
+ old=P['oldTable'];new=next(k for k in add if 'ordered-common-12.'in k)
+ oa,nb=rd(a,old),rd(b,new)
+ need(pin(oa)['git']==P['oldTableGit'],'old registry body not exact')
+ def split(z):
+  prefix,sep,tail=z.partition(b'globalThis.HONRO_PREVIOUS_TERRAIN_ART=');need(sep!=b'','missing registry assignment')
+  val,sp,post=tail.partition(b'})();await yieldIfNeeded();');need(sp!=b'','wrong native registry module end');return prefix,val,post
+ p,u,j=split(oa);q,v,k=split(nb);need(p==q and j==k,'compiled non-registry code drifted')
+ fields=''.join(',"'+key+'":{stage:33,previous:"'+val['previous']+'",current:"'+val['current']+'"}'for key,val in P['rows'].items()).encode()
+ need(u.endswith(b'}') and v==u[:-1]+fields+b'}','registry exact two pairs changed unexpectedly')
+ c=json.loads(rd(a,x['project']));peers={}
+ for id in (21,32,33,42):
+  d=id-1;mp=c['stages'][d];pack=c['stageLibraries'][d]
+  rr=json.loads(rd(a,pack));parts=[j['path']for j in rr.get('parts',[])]if isinstance(rr,dict)else []
+  paths=[mp,pack,*parts];peers[str(id)]={k:fact(rd(a,k))for k in paths}
+  need(all(fact(rd(b,k))==v for k,v in peers[str(id)].items()),'peer art or map changed')
+ need(c['stages'][32]==P['map'] and c['stageLibraries'][32]==P['newPacket'],'stage33 active paths do not match current')
+ sv(w,'GRAPH.json',dict(add=add,removed=drop,peers=peers,oldCommon=old,newCommon=new,currentEntry=y['gameEntry'].split('?')[0],currentProject=y['project'],unchangedOutsideRegistry=True,sha=fact(nb),base=P['head']))
+def seal(w):
+ b=w/'B';o=w/'out';c=json.loads(rd(o,'BROWSER.json'));g=json.loads(rd(o,'GRAPH.json'))
+ need(c['status']=='PASS_ACTUAL_STAGE33_OLD_NEW_NORMAL_RESUME','browser diagnosis must pass')
+ files={}
+ with zipfile.ZipFile(o/'B-STAGE33-SAVE-HOTFIX-NO-DEPLOY.zip','x',compression=zipfile.ZIP_DEFLATED) as z:
+  for k in sorted({*g['add'],S,M,'HONRO.html','HONRO_WORKSHOP.html','index.html'}):
+   raw=rd(b,k);files[k]=pin(raw);z.writestr(k,raw)
+ sv(w,'SEAL.json',dict(status=c['status'],base=P['head'],files=files,zip=pin(rd(o,'B-STAGE33-SAVE-HOTFIX-NO-DEPLOY.zip')),proof=pin(rd(o,'BROWSER.json')),graph=pin(rd(o,'GRAPH.json')),noDeploy=True))
+if __name__=='__main__':{'pre':pre,'observe':observe,'seal':seal}[sys.argv[1]](Path(sys.argv[2]))
