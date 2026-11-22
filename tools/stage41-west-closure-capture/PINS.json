@@ -1,0 +1,86 @@
+{
+  "enabled": true,
+  "release": {
+    "head": "c7b7bdef88b2b7d04af7f69dce58c948c4d185ea",
+    "tree": "5f468832f4c4170a61304263965bc1215917839d",
+    "manifest": {
+      "bytes": 7145164,
+      "sha256": "d65a06231081d32652683380024b926570f8bdc1c66c681f4eed1e3d51f54460"
+    },
+    "pages": {
+      "head": "c7b7bdef88b2b7d04af7f69dce58c948c4d185ea",
+      "branch": "master",
+      "conclusion": "success",
+      "run": 44992025157,
+      "job": 137115264140,
+      "publishedAt": "2026-11-22T06:05:25Z"
+    },
+    "shellAndEntry": {
+      "shell": {
+        "bytes": 17379,
+        "sha256": "fa1e2895e3efcce03ca333fef4c19a1be7949c6a8904a9167ff525dc603b886c"
+      },
+      "entryPath": "web/entries/game.669f98c9f33fc38d.js",
+      "entry": {
+        "bytes": 20483,
+        "sha256": "669f98c9f33fc38dfc84bae1d1c5ccf6ee4e95c51770af3aad7351c4ea3396a0"
+      }
+    }
+  },
+  "qaRef": "refs/heads/qa/stage41-west-closure-capture-c7b7bde",
+  "route": {
+    "web/data/campaign.ce72ffa30709411b.json": {
+      "bytes": 55011,
+      "sha256": "ce72ffa30709411b93c2c92f9b732fa40b8d22d468ce8ebc6a6016c114ca5420"
+    },
+    "web/runtime/campaign.d42da1857a0e4db9.js": {
+      "bytes": 527,
+      "sha256": "d42da1857a0e4db923103745de0a43c475ed98c204a87cc350e462abe07df726"
+    },
+    "web/runtime/ordered-common-18.5bef8d649618eec7.js": {
+      "bytes": 35262,
+      "sha256": "5bef8d649618eec708148cbc4a6594edbf15b0f45c59d64849336f2a5ea14ff9"
+    },
+    "web/data/chapter-41.deb88737d28c9104.json": {
+      "bytes": 12197,
+      "sha256": "deb88737d28c910422b5d56d86476087d6b1e474ed44bf183e83cb97a436b8a2"
+    },
+    "web/data/chapter-41-assets.138e4fcb5537cad7.json": {
+      "bytes": 1438739,
+      "sha256": "138e4fcb5537cad721ab5b968f087fcf61852e42c35499cf9050cb8ce422cc55"
+    }
+  },
+  "stockSourceGit": "b79dde7e841356d25e425d8dc0bcf3ca58729c5c",
+  "sourceCandidateGit": "461571b0d86e63ad1fee411d8c2cb34382d150a7",
+  "runtime": "web/runtime/ordered-common-18.5bef8d649618eec7.js",
+  "compiledCandidate": {
+    "bytes": 35562,
+    "sha256": "36769610bbdbcea833508a886dfb284b5f6dd349aa6f82947eb51b03f214bdad"
+  },
+  "imageViews": [
+    {
+      "key": "PC",
+      "dims": [
+        1440,
+        900
+      ],
+      "actual": {
+        "x": -320,
+        "y": 1571.5,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "key": "M",
+      "dims": [
+        390,
+        844
+      ],
+      "actual": {
+        "x": -320,
+        "y": 1571.5,
+        "scale": 0.057352941176470586
+      }
+    }
+  ]
+}

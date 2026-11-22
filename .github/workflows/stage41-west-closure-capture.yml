@@ -1,0 +1,36 @@
+name: HONRO Stage41 West single-response anonymous diagnostic
+on:
+  push:
+    branches: [qa/stage41-west-closure-capture-c7b7bde]
+    paths: [".github/workflows/stage41-west-closure-capture.yml", "tools/stage41-west-closure-capture/**"]
+permissions:
+  contents: read
+jobs:
+  actual-west-pair:
+    if: github.repository == 'sys8994/honro' && github.ref == 'refs/heads/qa/stage41-west-closure-capture-c7b7bde'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 13
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+          fetch-depth: 2
+      - name: Capture actual Stage41 West A and B on PC and mobile
+        run: |
+          set -euo pipefail
+          T="$GITHUB_WORKSPACE/tools/stage41-west-closure-capture/capture.py"
+          python "$T" --verify-binding
+          W="$RUNNER_TEMP/stage41-west-capture"
+          python -m venv "$W"
+          "$W/bin/python" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$W/bin/python" -m playwright install --with-deps chromium
+          "$W/bin/python" "$T" "$W/out"
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage41-west-two-device-actual-diagnostic
+          path: ${{ runner.temp }}/stage41-west-capture/out/
+          retention-days: 7
+          if-no-files-found: warn
