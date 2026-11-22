@@ -1,0 +1,51 @@
+name: HONRO 1-7 chapter-scoped R7 actual two-device no deploy
+on:
+  push:
+    branches: [qa/stage07-facies-contained-0b9-r2]
+    paths: [".github/workflows/stage07-independent-underbody-r11.yml","tools/stage07-independent-underbody-r11/**"]
+permissions:
+  contents: read
+jobs:
+  visual:
+    if: github.repository == 'sys8994/honro' && github.ref == 'refs/heads/qa/stage07-facies-contained-0b9-r2'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 26
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Pinned readonly current stock and one ordinary candidate build
+        run: |
+          set -euo pipefail
+          W="$RUNNER_TEMP/stage07-r11-proof"; mkdir -p "$W/out"
+          echo "W=$W" >> "$GITHUB_ENV"
+          T="$GITHUB_WORKSPACE/tools/stage07-independent-underbody-r11"
+          python "$T/guard.py" pre "$W"
+          (cd "$W/B"; npm ci >"$W/out/npm.log" 2>&1; npm ci --prefix game >"$W/out/npm-game.log" 2>&1; npm run build >"$W/out/build.log" 2>&1; npm run test:production-contract >"$W/out/contract.log" 2>&1)
+          python "$T/guard.py" closure "$W"
+      - name: Full actual South, Southwest, East and ordinary on both viewport types
+        run: |
+          set -euo pipefail
+          T="$GITHUB_WORKSPACE/tools/stage07-independent-underbody-r11"
+          python -m venv "$W/venv"; V="$W/venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+          python -m http.server 18841 --bind 127.0.0.1 --directory "$W/A" >"$W/out/http-A.log" 2>&1 &
+          a=$!
+          python -m http.server 18842 --bind 127.0.0.1 --directory "$W/B" >"$W/out/http-B.log" 2>&1 &
+          b=$!; trap 'kill "$a" "$b" 2>/dev/null || true' EXIT
+          python -m http.server 18844 --bind 127.0.0.1 --directory "$W/H" >"$W/out/http-c60-history.log" 2>&1 &
+          h=$!; trap 'kill "$a" "$b" "$h" 2>/dev/null || true' EXIT
+          for port in 18841 18842 18844; do curl -fsS --retry 4 --retry-connrefused "http://127.0.0.1:$port/HONRO.html" -o /dev/null; done
+          "$V" "$T/capture.py" "$W"
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: stage07-r7-chapter-contained-r2-no-deploy
+          path: ${{ runner.temp }}/stage07-r11-proof/out/
+          if-no-files-found: warn
+          retention-days: 7

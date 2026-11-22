@@ -1,0 +1,309 @@
+(function(G){'use strict';
+// Canonical world polygons are the only geographical source. Battle collision
+// is a bounded projection, never the source of an independently painted skirt.
+const clone=x=>JSON.parse(JSON.stringify(x)),EPS=1e-7;
+function dedupe(ps){return ps.filter((p,i)=>{const a=ps[(i+ps.length-1)%ps.length];return Math.hypot(p.x-a.x,p.y-a.y)>EPS;});}
+function clip(points,b){let ps=points.map(p=>({...p}));for(const [axis,n,less]of [['x',b.left,false],['x',b.right,true],['y',b.top,false],['y',b.bottom,true]]){const next=[],inside=p=>less?p[axis]<=n+EPS:p[axis]>=n-EPS;for(let i=0;i<ps.length;i++){const a=ps[i],z=ps[(i+1)%ps.length],ai=inside(a),zi=inside(z);if(ai)next.push(a);if(ai!==zi){const f=(n-a[axis])/(z[axis]-a[axis]);next.push({x:a.x+(z.x-a.x)*f,y:a.y+(z.y-a.y)*f,[axis]:n});}}ps=next;}return dedupe(ps);}
+function projection(t){const q=t.playProjection;if(!q)return t;let points=clip(t.points,q.bounds),start=points.findIndex(p=>Math.abs(p.x-q.start.x)<EPS&&Math.abs(p.y-q.start.y)<EPS);if(start>0)points=[...points.slice(start),...points.slice(0,start)];return{...t,points};}
+function worldBounds(st){return st.terrainBounds||{left:0,top:0,right:st.width,bottom:st.height};}
+function extend(points,st,ceiling=false){
+ const box=worldBounds(st),ys=points.map(p=>p.y),base=ceiling?Math.min(...ys):Math.max(...ys),closes=ceiling?base<=EPS:base>=st.height-EPS;
+ const partialRoof=ceiling&&!(points.some(p=>Math.abs(p.x)<EPS)&&points.some(p=>Math.abs(p.x-st.width)<EPS)),onBase=p=>closes&&Math.abs(p.y-base)<EPS,side=p=>Math.abs(p.x)<EPS?-1:Math.abs(p.x-st.width)<EPS?1:0;
+ const outer=p=>({x:side(p)?side(p)<0?box.left:box.right:p.x,y:onBase(p)?ceiling?(partialRoof?(side(p)?-1800:0):box.top):box.bottom:p.y});
+ // Broad authored shoulders, not periodic noise. Roof/floor share the profile
+ // so the exterior tunnel stays open. Chapters 18/19 occupy the same vault.
+ const profiles=[[0,-130,-360,-220,-510],[0,180,-70,-460,-260],[0,-80,240,40,-320],[0,-230,-90,-410,-620],[0,100,-260,-80,-380]],profile=s=>profiles[(((st.metadata?.stageId===19?18:st.metadata?.stageId)||1)+(s<0?1:3))%profiles.length];
+ const land=(d,s)=>{const stops=[0,800,2300,4100,6000],ys=profile(s);let i=0;while(i<stops.length-2&&d>stops[i+1])i++;const u=Math.max(0,Math.min(1,(d-stops[i])/(stops[i+1]-stops[i]))),f=u*u*(3-2*u);return ys[i]+(ys[i+1]-ys[i])*f;};
+ const run=(p,neighbor,s)=>{const edge=s<0?0:st.width,end=s<0?box.left:box.right,extent=Math.abs(end-edge),dx=Math.abs(p.x-neighbor.x),slope=dx>EPS?Math.max(-.45,Math.min(.45,(p.y-neighbor.y)/dx)):0,out=[];for(let d=0;d<extent;d+=500)out.push({x:edge+s*d,y:p.y+slope*300*(1-Math.exp(-d/300))+land(d,s)});out.push({x:end,y:p.y+slope*300*(1-Math.exp(-extent/300))+land(extent,s)});return out;};
+ const out=[];for(let i=0;i<points.length;i++){const a=points[i],z=points[(i+1)%points.length],s=side(a);
+  if(s&&s===side(z)&&Math.abs(a.x-z.x)<EPS){const prev=points[(i+points.length-1)%points.length],next=points[(i+2)%points.length],ar=onBase(a)?[outer(a)]:run(a,prev,s),zr=onBase(z)?[outer(z)]:run(z,next,s).reverse();out.push(...ar,...zr);}
+  else if(partialRoof&&onBase(a)&&onBase(z)){const mouth=side(a)?z:a,far=side(a)?outer(a):outer(z),ridge=[[0,0],[.10,-280],[.23,-950],[.41,-1900],[.70,-1700],[1,-1800]].map(([u,y])=>({x:mouth.x+(far.x-mouth.x)*u,y}));out.push(...(side(a)?ridge.reverse():ridge));}
+  else{out.push(onBase(a)?outer(a):{...a});if(onBase(a)&&!onBase(z))out.push({...a});if(!onBase(a)&&onBase(z))out.push({...z});}
+ }
+ const result=dedupe(out),start=result.findIndex(p=>Math.abs(p.x-points[0].x)<EPS&&Math.abs(p.y-points[0].y)<EPS);return start>0?[...result.slice(start),...result.slice(0,start)]:result;
+}
+function author(project){const p=clone(project);p.version=6;for(const st of p.stages){if(st.terrainBounds)continue;
+ st.playBounds={left:0,top:0,right:st.width,bottom:st.height};st.terrainBounds={left:-6000,top:-24000,right:st.width+6000,bottom:st.height+24000};st.terrainDomainVersion=1;
+ const simulationBottom=Math.max(st.height,...st.terrains.map(t=>{const q=G.HonroGeometry.terrain(t,st.height);return q.y+q.h;}));
+ for(let i=0;i<st.terrains.length;i++){const t=st.terrains[i],raw=G.HonroGeometry.terrain(t,st.height);if(raw.oneWay||t.breakable||raw.honroElementCollision)continue;if(!(raw.x<=EPS||raw.x+raw.w>=st.width-EPS||raw.honroCeiling&&raw.y<=EPS||raw.y+raw.h>=st.height-EPS))continue;
+  const points=extend(raw.vertices,st,!!raw.honroCeiling);if(JSON.stringify(points)===JSON.stringify(raw.vertices))continue;
+  const q={...t,type:'solid',points,playProjection:{bounds:{left:0,top:0,right:st.width,bottom:simulationBottom},start:{...raw.vertices[0]}}};delete q.control;delete q.floor;delete q.thickness;st.terrains[i]=q;
+ }
+}return p;}
+function validate(st){const out=[],fail=text=>out.push({level:'err',text:st.id+': '+text}),box=v=>v&&typeof v==='object'&&!Array.isArray(v)&&['left','top','right','bottom'].every(k=>Number.isFinite(v[k])&&Math.abs(v[k])<=100000)&&v.right>v.left&&v.bottom>v.top;
+ if(!st.terrainBounds){if(st.playBounds||st.terrainDomainVersion||(st.terrains||[]).some(t=>t.playProjection))fail('incomplete terrain domain');return out;}
+ const v=st.terrainBounds,p=st.playBounds;if(st.terrainDomainVersion!==1)fail('unsupported terrain domain');if(!box(p)||!box(v)||p.left!==0||p.top!==0||p.right!==st.width||p.bottom!==st.height||v.left>=p.left||v.top>=p.top||v.right<=p.right||v.bottom<=p.bottom){fail('terrainBounds must strictly contain the stable playBounds');return out;}
+ for(const t of st.terrains||[]){const q=t.playProjection;
+  if(!Object.prototype.hasOwnProperty.call(t,'playProjection')){const ps=t.points||t.control;if(!G.HonroGeometry.oneWay(t)&&Array.isArray(ps)&&ps.some(a=>a&&(a.x<p.left||a.x>p.right||a.y<p.top||a.y>p.bottom+512)))fail(t.id+' extended solid requires playProjection');continue;}
+  const points=t.points,validPoints=Array.isArray(points)&&points.length>=3&&points.length<=4096&&points.every(p=>p&&Number.isFinite(p.x)&&Number.isFinite(p.y)&&p.x>=v.left-EPS&&p.x<=v.right+EPS&&p.y>=v.top-EPS&&p.y<=v.bottom+EPS);
+  if(t.type!=='solid'||!validPoints||!q||typeof q!=='object'||!box(q.bounds)||!q.start||!Number.isFinite(q.start.x)||!Number.isFinite(q.start.y)||q.bounds.left!==p.left||q.bounds.right!==p.right||q.bounds.top!==p.top||q.bounds.bottom<p.bottom||q.bounds.bottom>v.bottom)fail(t.id+' invalid play projection');else if(clip(points,q.bounds).length<3)fail(t.id+' empty play projection');
+ }return out;
+}
+const renders=new WeakMap(),validBattles=new WeakMap();
+function active(b){if(!b||b.honroTerrainDomainVersion!==1)return false;const prior=validBattles.get(b);if(prior?.source===b.honroWorldTerrain&&prior.bounds===b.honroTerrainBounds&&prior.play===b.honroPlayBounds&&prior.version===b.sceneVersion&&prior.width===b.width&&prior.height===b.height)return prior.valid;
+ const box=v=>v&&['left','top','right','bottom'].every(k=>Number.isFinite(v[k])&&Math.abs(v[k])<=100000)&&v.right>v.left&&v.bottom>v.top,p=b.honroPlayBounds,v=b.honroTerrainBounds,ts=b.honroWorldTerrain;
+ const validProjection=t=>{if(!Object.prototype.hasOwnProperty.call(t,'honroDomainProjection'))return true;const q=t.honroDomainProjection;return !!(q&&typeof q==='object'&&!Array.isArray(q)&&box(q.bounds)&&q.bounds.left===p.left&&q.bounds.right===p.right&&q.bounds.top===p.top&&q.bounds.bottom>=p.bottom&&q.bounds.bottom<=v.bottom&&q.start&&Number.isFinite(q.start.x)&&Number.isFinite(q.start.y));};
+ const valid=!!(box(p)&&box(v)&&p.left===0&&p.top===0&&p.right===b.width&&p.bottom===b.height&&v.left<p.left&&v.right>p.right&&v.top<p.top&&v.bottom>p.bottom&&Array.isArray(ts)&&ts.length<=512&&ts.every(t=>t&&typeof t.id==='string'&&validProjection(t)&&[t.x,t.y,t.w,t.h].every(Number.isFinite)&&t.w>0&&t.h>0&&Array.isArray(t.vertices)&&t.vertices.length>=3&&t.vertices.length<=4096&&t.vertices.every(p=>p&&Number.isFinite(p.x)&&Number.isFinite(p.y)&&p.x>=v.left-EPS&&p.x<=v.right+EPS&&p.y>=v.top-EPS&&p.y<=v.bottom+EPS)));
+ validBattles.set(b,{source:ts,bounds:v,play:p,version:b.sceneVersion,width:b.width,height:b.height,valid});return valid;
+}
+// Continue only the deep rendered body of Stage 28's unchanged canonical court.
+function stage28RenderedFoundation(b,world,live){
+ const v=b.honroTerrainBounds,q=world.honroDomainProjection,points=world.vertices;
+ if(b.honroStage!==28||b.honroCanonical!==true||b.honroCustom!==false||
+    b.honroMapOrigin!=='campaign'||b.honroAuthoredId!=='stage-28'||b.width!==7200||b.height!==3400||
+    world.id!=='a3-foundation'||world.honroCourt28!==true||world.mat!=='earth'||live.broken||
+    v.left!==-9000||v.right!==16200||v.top!==-24000||v.bottom!==27400||
+    q?.bounds?.bottom!==9000||q.start?.x!==0||q.start?.y!==2700||points.length!==16||
+    points[0].x!==-9000||points[0].y!==2700||points[13].x!==16200||points[13].y!==2590||
+    points[14].x!==16200||points[14].y!==9000||points[15].x!==-9000||points[15].y!==9000||
+    points.slice(0,14).some(p=>p.y>=8900))return world;
+ const vertices=points.slice();
+ vertices[14]={...points[14],y:v.bottom};vertices[15]={...points[15],y:v.bottom};
+ return {...world,vertices,h:v.bottom-world.y};
+}
+function render(b){if(!active(b))return b.terrain||[];let q=renders.get(b);if(q?.version===b.sceneVersion&&q.source===b.honroWorldTerrain&&q.count===b.terrain.length)return q.terrain;
+ const live=new Map(b.terrain.map(t=>[t.id,t])),terrain=[];for(const world of b.honroWorldTerrain){const t=live.get(world.id);if(!t)continue;let shape=world;
+  // Existing restoration events update the collision projection. Re-form the
+  // complete mass from that changed surface, including after save/reload.
+  if(world.honroDomainProjection){const base=projection({points:world.vertices,playProjection:world.honroDomainProjection}).points;if(JSON.stringify(base)!==JSON.stringify(t.vertices)){const points=extend(t.vertices,{width:b.width,height:b.height,terrainBounds:b.honroTerrainBounds,metadata:{stageId:b.honroStage}},!!t.honroCeiling);shape=G.HonroMapEngine.solid(t.id,points.map(p=>[p.x,p.y]));}}
+  if(shape===world)shape=stage28RenderedFoundation(b,world,t);
+  terrain.push({...world,...t,vertices:shape.vertices,x:shape.x,y:shape.y,w:shape.w,h:shape.h,honroDomain:true});live.delete(world.id);
+ }terrain.push(...live.values());q={version:b.sceneVersion,source:b.honroWorldTerrain,count:b.terrain.length,terrain};renders.set(b,q);return terrain;
+}
+// Material artwork is a view of the canonical mass, just as collision is a
+// projection of it. Keep the authored local detail; replace only the old solid
+// underpaint and continue large strata in world coordinates. Never write these
+// derived vectors into battle/save state or invent a second terrain silhouette.
+const materialViews=new WeakMap();
+const materialSpecs={
+ 'eup21:foundations':{terrain:'a3-foundation',deep:3650},
+ 'family24:terrain-material':{terrain:'a3-foundation',deep:3300},
+ 'family24:deep-foundation-masonry':{terrain:'a3-foundation',detail:true},
+ 'family24:retaining-earth-faces':{terrain:'a3-foundation',detail:true},
+ 'stage26-witness:earth-and-footing-planes':{terrain:'a3-foundation',deep:3100},
+ 'stage29:record-actual-stone-faces':{terrain:'a3-foundation',deep:7000},
+ 'stage29:record-far-river-bank':{panorama:true},
+ 'a3-waterworks-v3:25:masonry-vault':{vault:true},
+ 'a3-waterworks-v3:27:masonry-vault':{vault:true},
+ 'a3-maintenance25:dark-shell':{rear:true},
+ 'stage27-depot-r4:misconnected-rear':{rear:true}
+};
+const pathString=ps=>'M'+ps.map(p=>p.x+' '+p.y).join('L')+'Z';
+// All extended polygon nodes were authored with absolute M/L commands. Curved
+// architectural paths remain byte-for-byte unchanged.
+function paintPolygon(d){if(!d||/[^MLZ0-9.eE+\-,\s]/.test(d))return null;const ns=d.match(/[-+]?(?:\d*\.)?\d+(?:e[-+]?\d+)?/gi)?.map(Number);return ns&&ns.length>=6&&ns.length%2===0?Array.from({length:ns.length/2},(_,i)=>({x:ns[i*2],y:ns[i*2+1]})):null;}
+function buriedVault(l,b){
+ const asset=clone(l.asset),vector=asset.vector,original=paintPolygon(vector.root.children[0]?.d);
+ if(!original||original.length!==7)return l;
+ const {left,right,top}=b.honroTerrainBounds,w=b.width;
+ // Keep every underside vertex, including the two end vertices, unchanged.
+ // Only the formerly exposed top/side faces merge into the surrounding rock.
+ const lower=[{x:right,y:1470},{x:w+3800,y:1640},{x:w+1800,y:1430},{x:w+600,y:1690},...original.slice(2),{x:-500,y:1830},{x:-1900,y:1490},{x:-3500,y:1680},{x:left,y:1550}];
+ const full=[{x:left,y:top},{x:right,y:top},...lower];
+ const node=(points,fill)=>({tag:'path',d:pathString(points),fill});
+ vector.gradients={
+  'buried-vault-rock':{type:'linear',x1:0,y1:-3800,x2:0,y2:1900,stops:[{offset:0,color:'#081b23',opacity:1},{offset:.64,color:'#12292f',opacity:1},{offset:1,color:'#263c3d',opacity:1}]},
+  'buried-vault-west':{type:'linear',x1:0,y1:-2100,x2:0,y2:1800,stops:[{offset:0,color:'#0b2027',opacity:1},{offset:1,color:'#304740',opacity:1}]}
+ };
+ vector.root.children=[node(full,'url(#buried-vault-rock)'),
+  node([{x:left,y:-3100},{x:w*.12,y:-2400},{x:w*.39,y:280},{x:w*.17,y:1740},...lower.slice(lower.findIndex(p=>p.x===0))],'url(#buried-vault-west)'),
+  node([{x:w*.46,y:-2500},{x:right,y:-3800},...lower.slice(0,lower.findIndex(p=>p.x===w*.45)+1),{x:w*.61,y:410}],'#142b30'),
+  node([{x:left,y:1150},{x:-3000,y:800},{x:-1200,y:1080},{x:0,y:1320},{x:w*.17,y:1400},{x:w*.45,y:1260},{x:w*.78,y:1390},{x:w,y:1280},{x:w+600,y:1480},{x:w+1800,y:1100},{x:right,y:1200},...lower],'#2d4443')];
+ asset.bounds={x:left,y:top,w:right-left,h:1900-top};vector.viewBox=[left,top,right-left,1900-top];
+ return{...l,asset,honroTerrainMaterialClip:new Path2D(pathString(full))};
+}
+function stage5PineMaterial(l,terrain){
+ if(l.asset?.id!=='stage5-dynamic:old-pine'||!l.asset.vector)return l;
+ const timber=terrain.find(t=>t.id==='stage5-timber-low'&&!t.broken);
+ const body=l.asset.vector.root.children?.[0],deck=body?.children?.find(n=>n.tag==='g'&&n.children?.[0]?.d?.startsWith('M2170,880L2450,874'));
+ if(!timber||!deck)return l;
+ const dx=timber.x-2170;
+ if(!dx)return l;
+ const asset=clone(l.asset),children=asset.vector.root.children[0].children;
+ const low=children[body.children.indexOf(deck)];
+ low.transform=[1,0,0,1,dx,0];
+ low.children[0].d=pathString(timber.vertices.map(p=>({x:p.x-dx,y:p.y-1000})));
+ // Both ends of the braces follow the deck. Their shared foot and the
+ // branch's inner end remain attached to the original pine trunk.
+ const ribbon=(points,width,fill)=>({tag:'path',fill,d:points.slice(1).map((z,i)=>{
+  const a=points[i],length=Math.hypot(z.x-a.x,z.y-a.y),nx=(a.y-z.y)*width/2/length,ny=(z.x-a.x)*width/2/length;
+  return pathString([{x:a.x+nx,y:a.y+ny},{x:a.x-nx,y:a.y-ny},{x:z.x-nx,y:z.y-ny},{x:z.x+nx,y:z.y+ny}]);
+ }).join(' ')});
+ low.children[7]=ribbon([{x:2192,y:908},{x:2550-dx,y:1010},{x:2430,y:905}],13,'#6a654a');
+ children[2]=ribbon([{x:2560,y:800},{x:2380+dx*.5,y:830},{x:2210+dx,y:890}],38,'#5a5746');
+ children[18].transform=[1,0,0,1,dx,0];
+ children[19].d=`M${2150+dx},790 L${2390+dx*.5},760 L2580,620 L2780,630`;
+ const bounds=asset.bounds||asset.reference.bounds,left=Math.min(bounds.x,timber.x-26);
+ asset.bounds={...bounds,x:left,w:bounds.x+bounds.w-left};
+ return {...l,asset};
+}
+function stage5FoundationMaterial(l,b,terrain){
+ if(l.asset?.id==='stage5-dynamic:old-pine')return stage5PineMaterial(l,terrain);
+ if(l.x||l.y||(l.scale??1)!==1||l.rotation)return l;
+ const bank=l.asset?.id==='stage5-dynamic:lower-bank',cliff=l.asset?.id==='stage5-dynamic:east-cliff';if(!bank&&!cliff)return l;
+ const mass=terrain.find(t=>t.id===(bank?'valley-floor':'waterfall-cliff')&&!t.broken);if(!mass)return l;
+ const asset=clone(l.asset),vector=asset.vector,body=vector.root.children[0],local=mass.vertices.map(p=>({x:p.x,y:p.y-1000}));
+ // The same complete canonical polygon supplies contact, underpaint and clip.
+ // Keep the pine/cave detail and deepen only the buried bank's broad stratum.
+ body.children[0].d=pathString(local);vector.clips[bank?'lower-bank-clip':'east-cliff-clip']=[pathString(local)];
+ if(cliff){for(const node of body.children[1].children){const ps=paintPolygon(node.d);if(ps)node.d=pathString(extend(ps,{width:6400,height:3300,terrainBounds:{...b.honroTerrainBounds,top:b.honroTerrainBounds.top-1000,bottom:b.honroTerrainBounds.bottom-1000},metadata:{stageId:5}}));}}
+ else{
+ const deep=body.children[1].children.at(-1),ps=paintPolygon(deep.d),bounds=b.honroTerrainBounds;
+ deep.d=pathString(extend(ps,{width:6000,height:2700,terrainBounds:{...bounds,top:bounds.top-1000,bottom:bounds.bottom-1000},metadata:{stageId:5}}));
+ for(const [id,node,end]of [['bank-depth',body.children[0],'#122930'],['bank-stratum',deep,'#10252b']]){vector.gradients[id]={type:'linear',x1:0,y1:2700,x2:0,y2:11000,stops:[{offset:0,color:node.fill,opacity:1},{offset:1,color:end,opacity:1}]};node.fill='url(#'+id+')';}
+ const planes=[
+  [[-6000,2300],[-1800,2100],[900,2500],[2100,3400],[1750,5200],[-700,7100],[-6000,7800]],
+  [[600,2400],[2800,2550],[4350,4000],[3850,6600],[1800,8400],[300,10400],[-2500,11600]],
+  [[4700,2300],[7800,2500],[12400,2100],[12400,7400],[9900,8200],[7100,5200],[5900,3900]]
+ ];
+ for(const [i,ps]of planes.entries()){const key='bank-plane-'+i;vector.gradients[key]={type:'linear',x1:0,y1:2300,x2:0,y2:11000,stops:[{offset:0,color:['#30474e','#263e47','#2b434a'][i],opacity:1},{offset:1,color:'#11272e',opacity:1}]};body.children[1].children.push({tag:'path',d:pathString(ps.map(([x,y])=>({x,y}))),fill:'url(#'+key+')'});}
+ }
+ asset.bounds={x:mass.x,y:mass.y,w:mass.w,h:mass.h};vector.viewBox=[mass.x,mass.y,mass.w,mass.h];
+ return{...l,asset,honroTerrainMaterialClip:new Path2D(pathString(mass.vertices))};
+}
+// Stage7 nonplayable underbody. Provider data intentionally remains canonical for old saves.
+const stage7UnderbodyCache=new WeakMap();
+const stage7FaciesId='act1-site:7:r7-facies',stage7FaciesAuthority='651dc180ac7023a36a1b5949edd289ba741965cab0079a23303a0545e254b2dc',stage7FaciesChecked=new WeakMap();
+const stage7SortVisual=x=>Array.isArray(x)?x.map(stage7SortVisual):x&&typeof x==='object'?Object.fromEntries(Object.keys(x).sort().map(k=>[k,stage7SortVisual(x[k])])):x;
+function stage7UnderbodyMaterial(b){
+ const source=b.honroLandmarks||[],library=G.HONRO_PROJECT?.library,saved=stage7UnderbodyCache.get(b);
+ if(saved?.source===source&&saved.library===library&&saved.version===b.sceneVersion)return saved.landmarks;
+ const original=source.find(l=>l.asset?.id==='act1-site:7:body'&&l.id==='site-body-7');
+ let landmarks=source;
+ if(original&&!original.x&&!original.y&&(original.scale??1)===3.13&&!original.rotation){
+  const asset=original.asset,vector=asset?.vector,ch=vector?.root?.children;
+  const donor=library?.find(a=>a?.id===stage7FaciesId),dv=donor?.vector;
+  let valid=donor&&stage7FaciesChecked.get(donor);
+  if(donor&&valid===undefined){
+   valid=false;
+   if(donor.params?.sourceSha256===stage7FaciesAuthority&&donor.collision?.length===0&&
+      donor.anchor?.x===0&&donor.anchor?.y===0&&dv?.version===1&&JSON.stringify(dv.viewBox)==='[-390,0,2238,1570]'&&
+      dv.root?.tag==='g'&&dv.root.children?.length===1&&dv.root.children[0]?.clipPath==='stage7R7Facies'&&
+      dv.clips?.stage7R7Facies?.length===1){
+    const p=JSON.stringify(stage7SortVisual(dv));let h=2166136261;
+    for(let i=0;i<p.length;i++)h=Math.imul(h^p.charCodeAt(i),16777619);
+    valid=p.length===112840&&(h>>>0)===0x88c096e5;
+   }
+   stage7FaciesChecked.set(donor,valid);
+  }
+  if(valid&&asset.params?.sourceSha256==='acbffaafb8a346e3c28d039a17f8d1dd1f2f525b1563860727e45d3bf4651193'&&asset.collision?.length===0&&
+   JSON.stringify(vector?.viewBox)==='[-390,0,2238,1466]'&&ch?.length===17&&ch[0]?.symbol==='source'&&ch[16]?.clipPath==='site-edge-2'&&
+   JSON.stringify(ch[16]?.transform)==='[1,0,0,20,0,-19912]'&&JSON.stringify(vector.clips?.['site-edge-2'])==='["M16 1049H1418V1068H16Z"]'){
+   const s=JSON.stringify(stage7SortVisual(vector));let f=2166136261;for(let i=0;i<s.length;i++){f^=s.charCodeAt(i);f=Math.imul(f,16777619);}
+   if(s.length===241594&&(f>>>0)===0xaa395367){
+    const clips={...vector.clips,stage7R7Facies:dv.clips.stage7R7Facies};
+    const root={...vector.root,children:[ch[0],dv.root.children[0],...ch.slice(1,16)]};
+    const paint={...asset,bounds:{...asset.bounds,h:1570},vector:{...vector,viewBox:[-390,0,2238,1570],root,clips}};
+    landmarks=source.map(l=>l===original?{...original,asset:paint}:l);
+   }
+  }
+ }
+ stage7UnderbodyCache.set(b,{source,library,version:b.sceneVersion,landmarks});
+ return landmarks;
+}
+function materialLandmarks(b){
+ if(b?.honroStage===7&&!b.honroCustom&&active(b))return stage7UnderbodyMaterial(b);
+ const stage5=b?.honroStage===5&&b.honroStage5FoundationRevision===1;
+ if(!active(b)||b.honroCustom||!stage5&&(b.honroStage<21||b.honroStage>30))return b.honroLandmarks||[];
+ const source=b.honroLandmarks||[],terrain=render(b),old=materialViews.get(b);
+ if(old?.source===source&&old.terrain===terrain&&old.version===b.sceneVersion)return old.landmarks;
+ const bounds=b.honroTerrainBounds,landmarks=source.map(l=>{
+  if(stage5)return stage5FoundationMaterial(l,b,terrain);
+  const spec=materialSpecs[l.asset?.id];if(!spec||!l.asset.vector||l.x||l.y||(l.scale??1)!==1||l.rotation)return l;
+  if(spec.vault)return buriedVault(l,b);
+  const mass=terrain.find(t=>t.id===spec.terrain&&!t.broken);if(!spec.rear&&!spec.panorama&&!mass)return l;
+  const asset=clone(l.asset),vector=asset.vector,children=vector.root.children;
+  if(spec.panorama){
+   const sides=[[[2430,3200],[2110,3200]],[[2540,3040],[2320,3040]],[[2670,3070],[2590,3070]]];
+   for(let i=0;i<3;i++)for(const [j,edge]of [-1800,9000].entries()){const [top,bottom]=sides[i][j],outer=j?bounds.right:bounds.left,dy=j?-100:140;children[i].d+=' '+pathString([{x:edge,y:top},{x:outer,y:top+dy},{x:outer,y:bottom},{x:edge,y:bottom}]);}
+   asset.bounds={x:bounds.left,y:1660,w:bounds.right-bounds.left,h:1540};vector.viewBox=[asset.bounds.x,1660,asset.bounds.w,1540];return{...l,asset};
+  }
+  const full=spec.rear?[{x:bounds.left,y:bounds.top},{x:bounds.right,y:bounds.top},{x:bounds.right,y:bounds.bottom},{x:bounds.left,y:bounds.bottom}]:mass.vertices;
+  const clipPath=new Path2D(pathString(full));
+  // The record-court artwork also dresses its actual upper stone roads.
+  if(b.honroStage===29)for(const t of terrain)if(t!==mass&&!t.broken&&t.mat!=='wood')clipPath.addPath(new Path2D(pathString(t.vertices)));
+  if(!spec.detail)children[0]={...children[0],d:pathString(full)};
+  if(spec.deep===7000){const key='domain-deep-base';vector.gradients[key]={type:'linear',x1:0,y1:7000,x2:0,y2:13200,stops:[{offset:0,color:children[0].fill,opacity:1},{offset:1,color:'#14272b',opacity:1}]};children[0].fill='url(#'+key+')';}
+  for(let i=spec.detail?0:1;i<children.length;i++){
+   const node=children[i],ps=paintPolygon(node.d);if(!ps){
+    // One broad curved soil bed reaches Stage21's eastern contour. Continue
+    // its terminal face without flattening or stretching its approved curve.
+    if(b.honroStage===21&&node.fill==='#314d41'){
+     const edge=b.width,strip=[{x:edge-1,y:2860},{x:edge,y:2860},{x:edge,y:3200},{x:edge-1,y:3200}],continued=extend(strip,{width:b.width,height:3650,terrainBounds:bounds,metadata:{stageId:21}});
+     node.d+=' '+pathString(continued);
+    }
+    continue;
+   }
+   if(spec.rear){
+    // The shaft's broad rear rock wash continues out of the authored building
+    // footprint. Its inner throat, arch voids, posts and waterline stay local.
+    if((b.honroStage===25&&[1,2,6].includes(i))||(b.honroStage===27&&i===1)){
+     const xs=ps.map(p=>p.x),ys=ps.map(p=>p.y),left=Math.min(...xs),right=Math.max(...xs),bottom=Math.max(...ys);
+     for(const p of ps){if(p.x===left&&left===-300)p.x=bounds.left;if(p.x===right&&right>5000)p.x=bounds.right;if(p.y===bottom)p.y=bounds.bottom;}
+     node.d=pathString(ps);
+    }
+    continue;
+   }
+   // Extend only strata which actually cross a material/domain edge. Local
+   // outcrops, masonry blocks and all architectural openings stay authored.
+   if(spec.deep===7000){for(const p of ps)if(p.y>=7000-EPS)p.y=bounds.bottom;}
+   const field=spec.deep===7000&&i>=2&&i<=4,origin=field?-2000:0,width=field&&i<4?11200:b.width-origin;
+   const shifted=ps.map(p=>({x:p.x-origin,y:p.y})),next=extend(shifted,{width,height:spec.deep||b.height,terrainBounds:{...bounds,left:bounds.left-origin,right:bounds.right-origin},metadata:{stageId:b.honroStage}}).map(p=>({x:p.x+origin,y:p.y}));
+   if(JSON.stringify(next)!==JSON.stringify(ps)||spec.deep===7000)node.d=pathString(next);
+   if(spec.deep===7000&&i<=3&&/^#[0-9a-f]{6}$/i.test(node.fill)){
+    const key='domain-deep-'+i;vector.gradients[key]={type:'linear',x1:0,y1:7000,x2:0,y2:13200,stops:[{offset:0,color:node.fill,opacity:1},{offset:1,color:'#14272b',opacity:1}]};node.fill='url(#'+key+')';
+   }
+  }
+  // Preserve every old gradient sample, then gently bury the same material
+  // into deeper shadow. The field never restarts at a polygon or play edge.
+  for(const [name,gradient] of Object.entries(vector.gradients||{}))if(!name.startsWith('domain-deep-')&&!spec.rear&&gradient.type==='linear'&&gradient.x1===gradient.x2&&gradient.y2>gradient.y1){
+   const start=gradient.y1,end=gradient.y2,deep=end+5200;
+   gradient.stops=gradient.stops.map(s=>({...s,offset:s.offset*(end-start)/(deep-start)}));
+   gradient.stops.push({offset:1,color:b.honroStage===21?'#192f2b':'#14272b',opacity:1});gradient.y2=deep;
+  }
+  asset.bounds={x:bounds.left,y:bounds.top,w:bounds.right-bounds.left,h:bounds.bottom-bounds.top};vector.viewBox=[asset.bounds.x,asset.bounds.y,asset.bounds.w,asset.bounds.h];
+  return{...l,asset,honroTerrainMaterialClip:clipPath};
+ });
+ materialViews.set(b,{source,terrain,version:b.sceneVersion,landmarks});return landmarks;
+}
+// Visual water coverage is independent of the conductive/contact polygon.
+// The same pool surface continues outside the stable simulation rectangle;
+// its old bottom is a color/depth sample, never a visible rectangular edge.
+const waterViews=new WeakMap();
+function materialWaterZone(b,z){
+ // Opt-in inland shoreline paint only: keep the existing bottom grounded and
+ // lower the upper painted edge into it. Never extend water onto dry ground.
+ const taper=b.honroMap?.vectorWaterInsetTaper;
+ if(active(b)&&taper?.version===1&&taper.side==='left'&&taper.zoneId===z.id&&z.kind==='water-pool'&&z.surface?.length&&z.bottom?.length&&Number.isFinite(taper.width)&&taper.width>0){
+  let views=waterViews.get(b);if(!views){views=new WeakMap();waterViews.set(b,views);}const prior=views.get(z);
+  if(prior?.taper===taper&&prior.width===taper.width&&prior.version===b.sceneVersion)return prior.zone;
+  const left=z.surface[0][0],right=z.surface.at(-1)[0],top=z.surface[0][1],width=Math.min(taper.width,(right-left)/4),bottom=z.bottom;
+  if(!(right>left)||bottom[0][0]!==left||!(bottom[0][1]>top))return z;
+  const shore=Math.max(top,bottom[0][1]-2),zone={...z,points:[[left,shore],[left+width,top],[right,top],...bottom.slice().reverse().map(p=>p.slice())]};
+  // Surface/gradient datum and bottom are unchanged; only the visible clip
+  // slopes inward. Simulation/contact/ripples still receive the original z.
+  views.set(z,{taper,width:taper.width,version:b.sceneVersion,zone});return zone;
+ }
+ const continuation=b.honroMap?.vectorWaterContinuation;
+ if(active(b)&&continuation?.version===1&&continuation.side==='right'&&continuation.zoneId===z.id&&z.kind==='water-pool'&&z.surface?.length&&z.bottom?.length){
+  let views=waterViews.get(b);if(!views){views=new WeakMap();waterViews.set(b,views);}const prior=views.get(z);
+  if(prior?.bounds===b.honroTerrainBounds&&prior.continuation===continuation&&prior.source===b.honroWorldTerrain&&prior.version===b.sceneVersion)return prior.zone;
+  const source=(b.honroWorldTerrain||[]).find(t=>t.id===z.support),ps=source&&G.HONRO_CORE?.poly(source);
+  if(!ps?.length)return z;
+  const top=z.surface[0][1],left=z.surface[0][0],right=z.surface.at(-1)[0],bottom=z.bottom.map(p=>p.slice()),extra=[];
+  for(let i=0;i<ps.length;i++){const a=ps[i],v=ps[(i+1)%ps.length];if(v.x>a.x&&v.x>right)extra.push([v.x,Math.max(top,v.y)]);}
+  extra.sort((a,b)=>a[0]-b[0]);if(!extra.length)return z;
+  for(const v of extra)if(v[0]>bottom.at(-1)[0])bottom.push(v);
+  const end=bottom.at(-1)[0],zone={...z,points:[[left,top],[end,top],...bottom.slice().reverse()],surface:[[left,top],[end,top]],bottom,honroWaterPaintBottom:Math.max(...z.bottom.map(p=>p[1])),honroWaterPaintLeft:left,honroWaterPaintRight:right,honroCarvedBasin:true};
+  // Display-only continuation follows the existing world terrain. Conductive
+  // water, recovery zones and all original material records remain untouched.
+  views.set(z,{bounds:b.honroTerrainBounds,continuation,source:b.honroWorldTerrain,version:b.sceneVersion,zone});return zone;
+ }
+ if(!active(b)||b.honroCustom||![25,27].includes(b.honroStage)||z.id!=='deep-basin-water')return z;
+ let views=waterViews.get(b);if(!views){views=new WeakMap();waterViews.set(b,views);}let prior=views.get(z);if(prior?.bounds===b.honroTerrainBounds&&!prior.continuation)return prior.zone;
+ const bounds=b.honroTerrainBounds,top=z.surface[0][1],bottom=Math.max(...z.points.map(p=>p[1]));
+ const zone={...z,points:[[bounds.left,top],[bounds.right,top],[bounds.right,bounds.bottom],[bounds.left,bounds.bottom]],surface:[[bounds.left,top],[bounds.right,top]],bottom:[[bounds.left,bounds.bottom],[bounds.right,bounds.bottom]],honroWaterPaintBottom:bottom,honroWaterPaintLeft:Math.min(...z.points.map(p=>p[0])),honroWaterPaintRight:Math.max(...z.points.map(p=>p[0])),honroCarvedBasin:true};
+ views.set(z,{bounds,zone});return zone;
+}
+G.HonroTerrainDomain={VERSION:1,render,active,author,projection,clip,extend,worldBounds,validate,materialLandmarks,materialWaterZone};
+})(globalThis);
