@@ -1,0 +1,38 @@
+{
+  "enabled": true,
+  "visualApproved": true,
+  "base": "31537bcd1b070077a3287113e2085de40d3dcf2c",
+  "official": {
+    "branch": "qa/stage29-west-normal-small-31537b",
+    "head": "ac15f659a7618bbefcf66a5b3436da43fb4e66b1",
+    "tree": "8c5d20c15235ae40a20285bfe295a7b1d457bfe3",
+    "conclusion": "success",
+    "run": 44981083473,
+    "job": 137081498196,
+    "artifact": 14737603993,
+    "artifactOuter": {
+      "bytes": 4094907,
+      "sha256": "3075841ea14c4e8c5fd12561597845a1e1f064f0fa04fe31d9d9886ce99c2c39"
+    },
+    "name": "honro-stage29-west-normal-ab-no-deploy"
+  },
+  "receipts": {
+    "SOURCE.json": {
+      "bytes": 752,
+      "sha256": "5d18fb4fcbe270f17e1f7e8dee68c0d7aae9fdea63803f8913d23b97224c3683"
+    },
+    "BROWSER.json": {
+      "bytes": 71526,
+      "sha256": "acbae2a1217f0e9ae7ec631fd011259b61ff9e7005409d64d0f031e840056a40"
+    },
+    "GRAPH.json": {
+      "bytes": 284126,
+      "sha256": "9005e5a12b953c51736a2edae134fc4b6778cab2b0291a01fea2bd23fcd9348e"
+    },
+    "B-generated-pass-pending-art/SEAL.json": {
+      "bytes": 2406,
+      "sha256": "c9f3951ffc208b9fd7d9b4646866340350ace3292002675d32ea36bd6f663fa6"
+    }
+  },
+  "approvalScope": "Root reviewed official W-near PC/M and approved an exact QA-only .94 branch witness, not release"
+}
