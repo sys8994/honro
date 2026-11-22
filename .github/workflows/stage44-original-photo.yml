@@ -1,0 +1,73 @@
+name: HONRO Stage44 exact original design PNG only, no deploy
+on:
+  push:
+    branches: [qa/stage44-original-photo-eaf]
+    paths: [".github/workflows/stage44-original-photo.yml","tools/stage44-original-photo/PINS.json"]
+permissions:
+  contents: read
+jobs:
+  exact-source:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage44-original-photo-eaf'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+          fetch-depth: 2
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /art/stage44-edge/extended-root-concept.png
+            /art/stage44-edge/registration.json
+            /tools/stage44-original-photo/PINS.json
+      - name: Export only the byte-pinned original PNG and its receipt
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib, json, os, struct, subprocess as s
+          from pathlib import Path
+          def run(*args):
+              return s.check_output(args, timeout=60)
+          def text(*args):
+              return run(*args).decode().strip()
+          out=Path(os.environ["RUNNER_TEMP"])/"stage44-original-png"
+          pins=Path("tools/stage44-original-photo/PINS.json")
+          p=json.loads(pins.read_bytes())
+          assert p["enabled"] is True and os.environ["GITHUB_REF"]==p["qaRef"]
+          assert os.environ["GITHUB_REPOSITORY"]==p["repo"] and os.environ["GITHUB_EVENT_NAME"]=="push"
+          assert text("git","show","-s","--format=%P","HEAD")==p["parent"]
+          assert text("git","rev-parse",p["parent"]+"^{tree}")==p["parentTree"]
+          assert "eaf774b42ec8211739d2594c729e0c91e1d55188"==p["parent"]
+          now=json.loads(run("gh","api","repos/"+p["repo"]+"/branches/master"))
+          assert now["commit"]["sha"]==p["parent"] and now["commit"]["commit"]["tree"]["sha"]==p["parentTree"]
+          exact={".github/workflows/stage44-original-photo.yml",str(pins)}
+          changed=run("git","diff","--name-status","--no-renames","-z",p["parent"],"HEAD").split(b"\0")
+          assert changed.pop()==b"" and len(changed)==2*len(exact)
+          assert set(zip(changed[::2],changed[1::2]))=={(b"A",v.encode()) for v in exact}
+          def pin(e):
+              assert text("git","rev-parse",p["parent"]+":"+e["path"])==e["git"]
+              assert text("git","rev-parse","HEAD:"+e["path"])==e["git"]
+              body=run("git","cat-file","blob",e["git"])
+              assert len(body)==e["bytes"] and body==Path(e["path"]).read_bytes()
+              assert hashlib.sha1(f"blob {len(body)}\0".encode()+body).hexdigest()==e["git"]
+              return body
+          png=pin(p["source"])
+          assert png[:8]==b"\x89PNG\r\n\x1a\n" and png[8:16]==b"\0\0\0\rIHDR"
+          w,h=struct.unpack("!II",png[16:24]); assert 0<w<=8192 and 0<h<=8192
+          r=json.loads(pin(p["registration"]))
+          assert [v[0] for v in r]==["west","center","east"] and all(len(v)==5 for v in r)
+          assert all(abs(v-q)<1e-9 for v,q in zip(r[2][2:],[.75,260.50,2.0]))
+          receipt={"status":"EXACT_ORIGINAL_SOURCE_PNG_ONLY","release":p["parent"],"tree":p["parentTree"],"qaHead":os.environ["GITHUB_SHA"],"photo":{**p["source"],"sha256":hashlib.sha256(png).hexdigest(),"dimensions":[w,h]},"registration":{**p["registration"],"east":{"scale":r[2][2],"x":r[2][3],"y":r[2][4]}}}
+          out.mkdir(parents=True,exist_ok=False)
+          (out/"extended-root-concept.png").write_bytes(png)
+          (out/"RECEIPT.json").write_text(json.dumps(receipt,indent=2)+"\n")
+          assert {q.name for q in out.iterdir()}=={"extended-root-concept.png","RECEIPT.json"}
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: stage44-eaf-original-design-png
+          path: ${{ runner.temp }}/stage44-original-png/
+          if-no-files-found: error
+          retention-days: 7
