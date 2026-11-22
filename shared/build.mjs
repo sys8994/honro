@@ -202,7 +202,26 @@ export async function runtimeEntries({vector=true,render=true,app=false,producti
     const stage35Join=applyStage35BedrockJoin(project,terrainOptimization.previousAct4Signatures);
     const stage35Rock=applyStage35RockMaterial(stage35Join.project,stage35Join.previousAct4Signatures);
     project=stage35Rock.project;
-    code('terrain-previous-provider-signatures','globalThis.HONRO_PREVIOUS_TERRAIN_ART='+JSON.stringify(stage35Rock.previousAct4Signatures)+';');
+    // Already published coastal v2 prefix: exact historical c60 save tokens
+    // may resolve only to these exact current providers, by the existing
+    // campaign/stage/current-signature checks in profile-store.
+    const previousTerrainArt={...stage35Rock.previousAct4Signatures};
+    const coast33=project.stages.find(s=>s.metadata?.stageId===33);
+    const coast33Rows=[
+      ['act4-sideview:33:coastal-v2:west-continuous-geology','862760:4666d3c8','864135:d1152e99'],
+      ['act4-sideview:33:coastal-v2:lowland','743870:a3735931','745366:5d4bce0d'],
+    ];
+    for(const [id,previous,current] of coast33Rows){
+      if(!coast33?.elements.some(e=>e.assetId===id))continue;
+      const assets=project.library.filter(a=>a.id===id);
+      if(assets.length!==1||!assets[0].vector||assets[0].collision?.length||Object.hasOwn(previousTerrainArt,id))
+        throw Error('Stage33 exact previous-provider registration changed: '+id);
+      const text=JSON.stringify(assets[0]);let h=2166136261;
+      for(let i=0;i<text.length;i++)h=Math.imul(h^text.charCodeAt(i),16777619);
+      if(text.length+':'+(h>>>0).toString(16)!==current)throw Error('Stage33 exact current provider changed: '+id);
+      previousTerrainArt[id]={stage:33,previous,current};
+    }
+    code('terrain-previous-provider-signatures','globalThis.HONRO_PREVIOUS_TERRAIN_ART='+JSON.stringify(previousTerrainArt)+';');
   }
   parts.push({name:'campaign',project,code:'globalThis.HONRO_PROJECT='+authorProjectExpression(JSON.stringify(project))+';'});
   if(vector){
