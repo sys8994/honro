@@ -161,7 +161,21 @@ function compactBattleArt(b){
  if(Array.isArray(b.honroEnvironment?.placements))out.honroEnvironment={...b.honroEnvironment,placements:compactItems(b.honroEnvironment.placements)};
  return changed?out:b;
 }
-function restoreBattleArt(b){
+ // Stage46 token-only lexical re-encoding, same compiled Path2D geometry.
+ // Only the last released official visual provider may migrate to this exact
+ // candidate. Inlined art, invalid providers and placement/flag changes fail closed.
+ const STAGE46_LOSSLESS_REF=Object.freeze({id:'act5:near:46',stage:46,previous:'17756761:bc1a6549',current:'16328502:43d17801'});
+ function stage46LosslessRef(b,item,ref,source,current){
+  const rule=STAGE46_LOSSLESS_REF;
+  return b?.mode==='campaign'&&b.honroCustom===false&&b.honroCanonical===true&&
+   b.honroAct5===1&&b.honroMapOrigin==='campaign'&&b.honroStage===rule.stage&&
+   ref.id===rule.id&&ref.signature===rule.previous&&current===rule.current&&
+   item?.id==='a5-near'&&item.assetId===rule.id&&item.kind==='canonical-element'&&
+   item.x===0&&item.y===0&&item.scale===4&&item.rotation===0&&
+   Array.isArray(item.collisionIds)&&item.collisionIds.length===0&&
+   source.id===rule.id&&!!source.vector&&Array.isArray(source.collision)&&source.collision.length===0;
+ }
+ function restoreBattleArt(b){
  const local=resolveLocalArt(b);if(!local)return false;
  const library=new Map((G.HONRO_PROJECT?.library||[]).map(a=>[a.id,a])),signatures=new Map(),replacements=[...local.replacements];
  for(const items of [b?.honroLandmarks,b?.honroElements,b?.honroEnvironment?.placements])for(const item of items||[]){
@@ -178,7 +192,7 @@ function restoreBattleArt(b){
    const sameTerrain=b?.mode==='campaign'&&!b.honroCustom&&b.honroMapOrigin!=='workshop'&&b.honroAct4Official===1&&
     optimized?.stage===b.honroStage&&knownSignature&&optimized.current===signatures.get(ref.id);
    if(legacy)source=legacy.asset;
-   else if(!sameTerrain)return false;
+    else if(!sameTerrain&&!stage46LosslessRef(b,item,ref,source,signatures.get(ref.id)))return false;
   }
   replacements.push([item,source]);
  }
