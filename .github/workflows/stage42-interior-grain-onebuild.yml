@@ -1,0 +1,47 @@
+name: HONRO Stage42 protected interior grain normal proof
+on:
+  push:
+    branches: [qa/stage42-interior-grain-733-onebuild]
+    paths: [".github/workflows/stage42-interior-grain-onebuild.yml", "tools/stage42-interior-grain/**"]
+permissions:
+  contents: read
+jobs:
+  one-build:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage42-interior-grain-733-onebuild'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+          fetch-depth: 2
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: "22"
+      - name: One official normal B with exact source and map/peer protections
+        run: |
+          set -euo pipefail
+          W="$RUNNER_TEMP/stage42-interior"; mkdir "$W" "$W/out"; echo "W=$W" >> "$GITHUB_ENV"
+          T="$GITHUB_WORKSPACE/tools/stage42-interior-grain"
+          python "$T/guard.py" pre "$W"
+          (cd "$W/B"; npm ci >"$W/out/npm.log" 2>&1; npm ci --prefix game >"$W/out/npm-game.log" 2>&1; npm run build >"$W/out/build.log" 2>&1; npm run test:production-contract >"$W/out/production-contract.log" 2>&1)
+          python "$T/guard.py" observe "$W"
+      - name: Actual normal PC/M A/B, protected and high zoom
+        run: |
+          set -euo pipefail
+          python -m venv "$W/py"
+          "$W/py/bin/python" -m pip --disable-pip-version-check install playwright==1.62.0 pillow==11.3.0
+          "$W/py/bin/python" -m playwright install --with-deps chromium
+          python -m http.server 18843 --bind 127.0.0.1 --directory "$W/B" >"$W/out/http.log" 2>&1 &
+          PID=$!; trap 'kill "$PID" || true' EXIT
+          curl --retry 7 --retry-connrefused --fail --silent http://127.0.0.1:18843/HONRO.html -o /dev/null
+          "$W/py/bin/python" "$GITHUB_WORKSPACE/tools/stage42-interior-grain/capture.py" "$W"
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage42-733-interior-grain-official-proof
+          path: ${{ runner.temp }}/stage42-interior/out/
+          if-no-files-found: warn
+          retention-days: 7
