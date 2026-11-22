@@ -1,0 +1,41 @@
+{
+  "base": "733d5d212d5ab235c2b492e1f065306bdfaae317",
+  "branch": "qa/stage44-west-depth-r9-733d-r3",
+  "scope": "add-only isolated one normal B source build, no Pages",
+  "stock": {
+    "manifestGit": "10d3c091c96dccbc2a92bbe4434a00f128abb56e",
+    "shellGit": "2538b35bb5740ebc334145770aebd754114d85ca",
+    "authorGit": "0e2870752f8f553ae6333061e3b80f851a9179ae",
+    "edgeGit": "461571b0d86e63ad1fee411d8c2cb34382d150a7",
+    "mapGit": "c60a466ccb0fefacdb1dd19694b0e0b5c58f3fa9",
+    "packetGit": "c4d2748a6857a95bcfff0b589963ca66bb675f73",
+    "retentionGit": "16687b0fc38e432a7d66a015ddf3ebe744163a06",
+    "encoding": "json",
+    "campaign": "web/data/campaign.0386fa9451fe2427.json",
+    "act5Common": "web/runtime/ordered-common-18.36769610bbdbcea8.js",
+    "s44Map": "web/data/chapter-44.48354b7c0547c1a7.json",
+    "s44Packet": "web/data/chapter-44-assets.ddddc05a5f764d6e.json",
+    "s42Map": "web/data/chapter-42.0802015e8ba99d11.json",
+    "s42Packet": "web/data/chapter-42-assets.396ec98508d5b8c8.json",
+    "baseTree": "276e54e1ca08d32d3b290097c9a05e91e9ab0ecd"
+  },
+  "new": {
+    "sourceAssetSHA256": "b363259b1ea51bf2333506d6b29d24ec0afcbf9e8693ea35a1095241a94ba1f2",
+    "helperSHA256": "49f46d6b4b51b919fd507d9c6383d2f61249565a4be9dc59c73bef830cafff52",
+    "sourceGit": {
+      "shared/act5-world.mjs": "114bdf0e75d3f0f43af06c3167f21d133222d27d",
+      "shared/runtime/act5-edge-art.js": "a1e00a8ad95a075e325edd41f193fdf682e49152",
+      "shared/assets/environment/act5/stage44-west-depth-r9.json": "3a7b2978036354daa20d08448d329c9ff4db0932"
+    }
+  },
+  "carrierPaths": [
+    ".github/workflows/stage44-west-depth-r9.yml",
+    "tools/stage44-west-depth/PINS.json",
+    "tools/stage44-west-depth/adapter.js",
+    "tools/stage44-west-depth/asset.json",
+    "tools/stage44-west-depth/author.mjs",
+    "tools/stage44-west-depth/capture.py",
+    "tools/stage44-west-depth/guard.py",
+    "tools/stage44-west-depth/observer.json"
+  ]
+}
