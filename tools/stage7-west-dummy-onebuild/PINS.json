@@ -1,0 +1,88 @@
+{
+  "enabled": true,
+  "qaRef": "refs/heads/qa/stage7-west-dummy-normal-onebuild-3dfe75f",
+  "release": {
+    "head": "3dfe75f0162ff023189ea5bf60be2874d223fd45",
+    "tree": "b61c2b2d185645dfb33bc8298baf29a4809663c8",
+    "manifest": {
+      "bytes": 7486493,
+      "sha256": "3e3eacc61c750d393d0b1351cff4cb59f2692a808e71b872ca89281077ca00ac"
+    },
+    "pages": {
+      "head": "3dfe75f0162ff023189ea5bf60be2874d223fd45",
+      "branch": "master",
+      "conclusion": "success",
+      "run": 45010621200,
+      "job": 137172356080,
+      "publishedAt": "2026-11-22T10:06:40Z"
+    }
+  },
+  "oldManifestGit": "401616347d82d81fb16e13f5dae9d213ddf223c8",
+  "stock": {
+    "bytes": 6079,
+    "sha256": "5f03d0d822bc1516493a4d344383455e77621b27d0ee5060d164f451547255d5",
+    "git": "077492754cba250877d8954768b89f6f901e6b83"
+  },
+  "candidate": {
+    "bytes": 6592,
+    "sha256": "d684084edc87fde4e79d2f1582c7af9cea34a2bbdb39b77001146a5e15caddb3",
+    "git": "0af116067b50aafb0d6c21739efda0a0ac03bf2d"
+  },
+  "scope": "remove only root-floor no-play west guide ink under the real dummy wing rim; map and prior East ink unchanged",
+  "source": "shared/runtime/terrain-readability.js",
+  "oldRuntime": "web/runtime/ordered-common-16.e580c1df7bf9ed7b.js",
+  "oldRuntimeGit": "00a4eefa5b2ec699bee9cf35acd0258982a5b05c",
+  "map": "web/data/chapter-07.28f7bf612a598aeb.json",
+  "packet": "web/data/chapter-07-assets.7068fa05c6ce1c2e.json",
+  "views": [
+    {
+      "key": "PC",
+      "dims": [
+        1440,
+        900
+      ],
+      "actual": {
+        "scale": 0.21176470588235294,
+        "x": 0,
+        "y": 1784.59
+      },
+      "viewport": {
+        "bottom": 3600.7271527777775,
+        "left": -3400,
+        "right": 3400,
+        "top": -31.54715277777791
+      },
+      "backing": [
+        1440,
+        769
+      ]
+    },
+    {
+      "key": "M",
+      "dims": [
+        390,
+        844
+      ],
+      "actual": {
+        "scale": 0.057352941176470586,
+        "x": 0,
+        "y": 1784.59
+      },
+      "viewport": {
+        "bottom": 7430.4153205128205,
+        "left": -3400,
+        "right": 3400,
+        "top": -3861.23532051282
+      },
+      "backing": [
+        390,
+        648
+      ]
+    }
+  ],
+  "stroke": {
+    "left": -1200,
+    "right": 0,
+    "y": 3101.83
+  }
+}
