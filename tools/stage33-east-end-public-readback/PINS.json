@@ -1,0 +1,135 @@
+{
+  "enabled": true,
+  "release": {
+    "head": "1ee86f0409b2cdcf457bbbd45c2353aa51991217",
+    "tree": "37210a417f8e117bca52c09d5ac2062a0078ee78",
+    "manifest": {
+      "bytes": 7825398,
+      "sha256": "b236988ee37f2fc59ab37f14e01d8cef2c042ab6de2253f68468e79e280ce4bf"
+    },
+    "pages": {
+      "branch": "master",
+      "head": "1ee86f0409b2cdcf457bbbd45c2353aa51991217",
+      "run": 45021842986,
+      "job": 137206738846,
+      "conclusion": "success",
+      "publishedAt": "2026-11-22T12:23:27Z"
+    }
+  },
+  "qaRef": "refs/heads/qa/stage33-east-end-public-readback",
+  "normal": {
+    "run": 45019308862,
+    "job": 137198447516,
+    "head": "0b08c75ae666822b9f63bb471e78d096d36fb60e",
+    "tree": "61524da5b495bc1a95f46b88eafd692e76a490c9",
+    "artifact": 14753147614
+  },
+  "route": {
+    "HONRO.html": {
+      "bytes": 17379,
+      "sha256": "e7a7bed18da796ad44d7a02abaa9b1201ee59c0a56cda50d2f36d819a5c3e0d9"
+    },
+    "web/data/campaign.0386fa9451fe2427.json": {
+      "bytes": 55011,
+      "sha256": "0386fa9451fe2427918ea68e927ccb0cb7a1cffc547ab0a63a164c74d785e57e"
+    },
+    "web/data/chapter-33-assets.920ccd84eb69a553.json": {
+      "bytes": 2861056,
+      "sha256": "920ccd84eb69a5534b16e76ac27bb6df1d1c04fba0b2c5fff409057d6119d55b"
+    },
+    "web/data/chapter-33.80ca32475be181c7.json": {
+      "bytes": 34235,
+      "sha256": "80ca32475be181c7774c305b442c8081b6341836fb8d08771e033b7fb79e1464"
+    },
+    "web/entries/game.293019de679977f0.js": {
+      "bytes": 20483,
+      "sha256": "293019de679977f0a6c374a5400f43caaff11bcc759bae9bdf710f8071815d72"
+    },
+    "web/graphics/honro_authored_far-images-act4Estuary.1ba81aae5bebeebd.webp": {
+      "bytes": 130830,
+      "sha256": "1ba81aae5bebeebd46cc094be2519797d67ef49a887d7aade45cb61b39878fff"
+    },
+    "web/runtime/campaign.4375d13445105188.js": {
+      "bytes": 527,
+      "sha256": "4375d1344510518805bf77c0783efb6d8b5dad67b60e3a4e64d62d6d03f71b91"
+    }
+  },
+  "cameras": [
+    {
+      "key": "PC",
+      "dims": [
+        1440,
+        900
+      ],
+      "actual": {
+        "x": 7232,
+        "y": 2304,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": 3832,
+        "right": 10632,
+        "top": 487.8628472222222,
+        "bottom": 4120.137152777777
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "expectedBPNG": {
+        "bytes": 952116,
+        "sha256": "3fd520b70b3478edbdff52eca76ee888a8b0b7c4f6853aae4fe4907b4e33c5dd"
+      },
+      "expectedBDOM": {
+        "bytes": 568623,
+        "sha256": "533d695f3bd3517ed83841f9ce29b6093abcc8f8a82f46cbb017fd31bc588177"
+      }
+    },
+    {
+      "key": "M",
+      "dims": [
+        390,
+        844
+      ],
+      "actual": {
+        "x": 7232,
+        "y": 2304,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": 3832,
+        "right": 10632,
+        "top": -3341.8253205128203,
+        "bottom": 7949.82532051282
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "expectedBPNG": {
+        "bytes": 346854,
+        "sha256": "bf8564bba8bb61ecab1b5ac5a39fe321c462962c4aab8ee208af59f4fac6cd01"
+      },
+      "expectedBDOM": {
+        "bytes": 204954,
+        "sha256": "ee8b1d3c5d5cc0c0c2ed24ac3a71f47ab321d7434d236d099bac3cab5b461c8e"
+      }
+    }
+  ],
+  "reviewedRuntime": "web/runtime/campaign.4375d13445105188.js",
+  "gameEntry": "web/entries/game.293019de679977f0.js",
+  "campaign": "web/data/campaign.0386fa9451fe2427.json",
+  "map": "web/data/chapter-33.80ca32475be181c7.json",
+  "packet": "web/data/chapter-33-assets.920ccd84eb69a553.json",
+  "far": "web/graphics/honro_authored_far-images-act4Estuary.1ba81aae5bebeebd.webp",
+  "retained": {
+    "web/data/chapter-33-assets.07b129345eb95856.json": {
+      "bytes": 2858185,
+      "sha256": "07b129345eb9585651bb4d8a74411c8ec30ac3d5b3736ca7849e39abfa7ffe00"
+    },
+    "web/entries/game.b1321855b16bc549.js": {
+      "bytes": 20483,
+      "sha256": "b1321855b16bc54988ea55800f2699c8bd345a713b588f474c63c1ca28f9df3b"
+    }
+  }
+}

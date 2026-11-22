@@ -1,0 +1,36 @@
+name: HONRO Stage33 anonymous east readback
+on:
+  push:
+    branches: [qa/stage33-east-end-public-readback]
+    paths: [".github/workflows/stage33-east-end-public-readback.yml", "tools/stage33-east-end-public-readback/**"]
+permissions:
+  contents: read
+jobs:
+  public:
+    if: github.repository == 'sys8994/honro' && github.ref == 'refs/heads/qa/stage33-east-end-public-readback'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Two exact normal B PC mobile snapshots on deployed Pages
+        run: |
+          set -euo pipefail
+          W="$RUNNER_TEMP/stage33-public"
+          T="$GITHUB_WORKSPACE/tools/stage33-east-end-public-readback/readback.py"
+          python "$T" --verify-binding
+          python -m venv "$W"
+          "$W/bin/python" -m pip --disable-pip-version-check install playwright==1.62.0
+          "$W/bin/python" -m playwright install --with-deps chromium
+          "$W/bin/python" "$T" "$W/out"
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage33-public-east-pc-mobile-readback
+          path: ${{ runner.temp }}/stage33-public/out/
+          if-no-files-found: warn
+          retention-days: 7
