@@ -1,0 +1,183 @@
+{
+  "enabled": true,
+  "head": "e70279eb6e00061825eaa6c0de793bb8c0821a99",
+  "tree": "f0e7310c20b0255b46e8e1afa3e4a0e4b40dce9e",
+  "manifest": {
+    "bytes": 8692467,
+    "sha256": "4f33214ea6d5503e42b3a9eb6ef4ed8451cb1d08793dbda80d24451aceac9e6e",
+    "git": "b54806cc62e03a1e4b1d1bfd9eb533e5655d773f"
+  },
+  "pages": {
+    "run": 45037241837,
+    "job": 137254083655,
+    "head": "e70279eb6e00061825eaa6c0de793bb8c0821a99",
+    "utc": "2026-11-22T15:16:56.9158404Z",
+    "conclusion": "success"
+  },
+  "active": 811,
+  "immutable": 1511,
+  "qaRef": "refs/heads/qa/stage32-33-post07-native-no-deploy-r4",
+  "expectedRegistryA": "web/runtime/ordered-common-12.4bcd22a3c1af1306.js",
+  "sourceB": {
+    "bytes": 29896,
+    "sha256": "ffe225243b7fa9295ce22735a35218b7b7ee33bf01b467aa4f5a991a9e3bbbf6",
+    "git": "244903755e47fc7a519696a157802034d4064cd6"
+  },
+  "lazyBinding": {
+    "publicRoute": "web/data/campaign.dce6b5b5facbbd91.json",
+    "registryBeforeRawGit": "124c53aa711a8b68976b880639ee7012c77e4e3b"
+  },
+  "sources": {
+    "shared/build.mjs": {
+      "old": "a5ac12ef4de8b2370fcbca1457b86a0c6e2d758c",
+      "new": "244903755e47fc7a519696a157802034d4064cd6",
+      "transport": "tools/stage32-33-batch/product-build.mjs"
+    },
+    "shared/runtime/profile-store.js": {
+      "old": "b11ad06d788fd21c47d89caa415477b85397b9f4",
+      "new": "c993e119fa10470fa99c6db9551e2fbef51c9819",
+      "transport": "tools/stage32-33-batch/product-profile.js"
+    },
+    "shared/author-stage32-south.mjs": {
+      "old": null,
+      "new": "d747b1d296b7941a4bfcacea8e7e247afb0c7c71",
+      "transport": "tools/stage32-batch/author-stage32-south.mjs"
+    }
+  },
+  "stage07": {
+    "web/data/chapter-07.177911aaf007ef0b.json": {
+      "bytes": 30621,
+      "sha256": "177911aaf007ef0beb6a0cb94379b3513d42a9f653b53aaba9fb3948761a99ee"
+    },
+    "web/data/chapter-07-assets.4f5a7691dac04f9d.json": {
+      "bytes": 769327,
+      "sha256": "4f5a7691dac04f9dfcb361fa4258479080c349ae5bd0cd50b42b4b16156b3928"
+    }
+  },
+  "stage32New": "web/data/chapter-32-assets-parts.22636e5ccf129f55.json",
+  "stage42": "web/data/chapter-42-assets.abdbc9d7a8ce717e.json",
+  "compat": [
+    "web/data/campaign-compat-32.ee7846c92c4edcac.json",
+    "web/data/campaign-compat-33.a94eb973f1d85ce5.json",
+    "web/data/campaign-compat-34.d70f3bda120cceb5.json"
+  ],
+  "approvedR6ProfileBytes": {
+    "bytes": 184915,
+    "sha256": "a28c36d3a91a6a100ad2e94bc3a137bfe89a04efb39cbf81f636f86c21bdf32e"
+  },
+  "expectedRoles": [
+    "web/data/campaign.json",
+    "web/data/chapter-32-assets-part-000.bin",
+    "web/data/chapter-32-assets-part-001.bin",
+    "web/data/chapter-32-assets-parts.json",
+    "web/entries/game.html",
+    "web/entries/game.js",
+    "web/entries/workshop.js",
+    "web/runtime/campaign.js",
+    "web/runtime/ordered-common-12.js",
+    "web/runtime/ordered-common-4.js"
+  ],
+  "unchangedManifestFields": [
+    "game",
+    "gameOnly",
+    "optionalModules",
+    "styles",
+    "workshop",
+    "workshopStyle",
+    "publishedRetention"
+  ],
+  "stage33Receipt": {
+    "file": "stage33/BROWSER.json",
+    "status": "PASS_BATCH_STAGE33_2C4_PC_M_RESAVE_PLUS_STAGE7_AND_WORKSHOP"
+  },
+  "transport exact Git": {
+    ".github/workflows/stage32-33-post07-native.yml": "3710ffc8381cd84013bc103d420ee1eca10b593f",
+    "tools/stage32-33-batch/AUTHORITY.json": "SELF",
+    "tools/stage32-33-batch/batch.py": "ef5e52fdef3c59a4186f25aa69c022e99828d300",
+    "tools/stage32-33-batch/product-build.mjs": "244903755e47fc7a519696a157802034d4064cd6",
+    "tools/stage32-33-batch/product-profile.js": "c993e119fa10470fa99c6db9551e2fbef51c9819",
+    "tools/stage32-batch/PINS.json": "7d0b16dc89bbcabd7a119dd34c4e8a245509566c",
+    "tools/stage32-batch/author-stage32-south.mjs": "d747b1d296b7941a4bfcacea8e7e247afb0c7c71",
+    "tools/stage32-batch/capture.py": "84ed77195d5e9210748beaa29feeb42535e40c7b",
+    "tools/stage32-batch/guard.py": "3df5859f05f90d988fd561274f7999cb1172e56e",
+    "tools/stage32-batch/observer.json": "9a006159a486663144950cf69fae3f4fd9c41ff3",
+    "tools/stage32-batch/resume.py": "8f5a555f1c7c04fe8e7914f3213c3fc8300dd1dd",
+    "tools/stage33-batch/PINS.json": "2a0afa8a3eac9257dc31cfa9765590df609c2307",
+    "tools/stage33-batch/capture.py": "45b9559bd9c3e5643a2a1960190d9887dc7c6cc5",
+    "tools/stage33-batch/compiled.mjs": "d21c73797912c2cc08355df1241cc81f9302cfb8",
+    "tools/stage33-batch/guard.py": "d7d66f146fccd64cdd45647f33fd98ff6185103b",
+    "tools/stage33-batch/observer.json": "ac3b4bb5a448d9d4c83d32f2d71b587dcb581940",
+    "tools/stage33-batch/old-0b9-HONRO.html": "9b5aa8da59f45fc2c3ba5febe2a5a1499217797d",
+    "tools/stage33-batch/old-2c4-HONRO.html": "f1ddd3dec3eebb333563dad9a2fd81f1f0d68cd1",
+    "tools/stage33-batch/old-c60-HONRO.html": "6627b75ed1afb82345a0c031cb601555cea00f64",
+    "tools/stage33-batch/run.py": "039bc1f8a9a8ae62edfdfca1a5d0c571b2f0662e"
+  },
+  "r2Active": {
+    "priorRun": 45038078577,
+    "artifact": 14761185014,
+    "previewSHA256": "b95c072c952f3c3eaa2f7074e36fe41f813595f71098f52b2c5bfcb0056f6d34",
+    "added": [
+      "web/data/campaign.87da363001067c02.json",
+      "web/data/chapter-32-assets-part-000.f3ca0763c7f49788.bin",
+      "web/data/chapter-32-assets-part-001.b3a3736114f08698.bin",
+      "web/data/chapter-32-assets-parts.22636e5ccf129f55.json",
+      "web/entries/game.4917eb9b73cf92bc.html",
+      "web/entries/game.969dbb92d5cffa9f.js",
+      "web/entries/workshop.df845cc539c98ddd.js",
+      "web/runtime/campaign.718c7f3ee1db9da7.js",
+      "web/runtime/ordered-common-12.8591029132793253.js",
+      "web/runtime/ordered-common-4.a28c36d3a91a6a10.js"
+    ],
+    "displaced": [
+      "web/data/campaign.dce6b5b5facbbd91.json",
+      "web/data/chapter-32-assets-part-000.58eb984bf3338390.bin",
+      "web/data/chapter-32-assets-part-001.c4c37c74a940a763.bin",
+      "web/data/chapter-32-assets-parts.427bcb8462093709.json",
+      "web/entries/game.3716bcb3caa78a7a.js",
+      "web/entries/game.c318bfb7587c950f.html",
+      "web/entries/workshop.d9750b408abb8793.js",
+      "web/runtime/campaign.0b680e073a963004.js",
+      "web/runtime/ordered-common-12.4bcd22a3c1af1306.js",
+      "web/runtime/ordered-common-4.67de8f1c97c5fb48.js"
+    ]
+  },
+  "retentionSource": {
+    "shared/web-retention.mjs": "16687b0fc38e432a7d66a015ddf3ebe744163a06",
+    "shared/web-build.mjs": "9d03355a55767c8bd107d793f09e101a96c000a4",
+    "shared/web-json-parts.mjs": "078cfabe769530bcc0a84c2d209cffddd4354f7d"
+  },
+  "expectedCleanup": {
+    "count": 270,
+    "bytes": 137061982,
+    "sha256": "59e23c6ae54a0dfd24e985edd0a1613b1fed91146b30d06b104aea1da7606bf4",
+    "expiredMetadata": []
+  },
+  "commonPinned": {
+    "count": 76,
+    "changes": [
+      [
+        48,
+        "web/runtime/ordered-common-4.67de8f1c97c5fb48.js",
+        "web/runtime/ordered-common-4.a28c36d3a91a6a10.js"
+      ],
+      [
+        56,
+        "web/runtime/ordered-common-12.4bcd22a3c1af1306.js",
+        "web/runtime/ordered-common-12.8591029132793253.js"
+      ],
+      [
+        57,
+        "web/runtime/campaign.0b680e073a963004.js",
+        "web/runtime/campaign.718c7f3ee1db9da7.js"
+      ]
+    ],
+    "wrapperA": {
+      "bytes": 527,
+      "sha256": "0b680e073a9630043e6b1bd0d18e22398b2c839ab1f4c43310d7530f4058c137"
+    },
+    "wrapperB": {
+      "bytes": 527,
+      "sha256": "718c7f3ee1db9da757cd2c94caa1c97958128687acefcf594bc4cab281f0a64b"
+    }
+  }
+}
