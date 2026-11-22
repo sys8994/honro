@@ -1,0 +1,126 @@
+{
+  "scope": "six matched actual diagonal/ordinary frame pairs, not user photos/resizing;",
+  "views": [
+    {
+      "key": "PC",
+      "dims": [
+        1440,
+        900
+      ],
+      "name": "south",
+      "dx": 0,
+      "dy": 1,
+      "ordinary": null
+    },
+    {
+      "key": "PC",
+      "dims": [
+        1440,
+        900
+      ],
+      "name": "southwest",
+      "dx": -1,
+      "dy": 1,
+      "ordinary": null
+    },
+    {
+      "key": "M",
+      "dims": [
+        390,
+        844
+      ],
+      "name": "south",
+      "dx": 0,
+      "dy": 1,
+      "ordinary": null
+    },
+    {
+      "key": "M",
+      "dims": [
+        390,
+        844
+      ],
+      "name": "southwest",
+      "dx": -1,
+      "dy": 1,
+      "ordinary": null
+    },
+    {
+      "key": "PC",
+      "dims": [
+        1440,
+        900
+      ],
+      "name": "ordinary",
+      "dx": 0,
+      "dy": 0,
+      "ordinary": {
+        "x": 1550,
+        "y": 3420,
+        "scale": 0.5
+      }
+    },
+    {
+      "key": "M",
+      "dims": [
+        390,
+        844
+      ],
+      "name": "ordinary",
+      "dx": 0,
+      "dy": 0,
+      "ordinary": {
+        "x": 720,
+        "y": 3420,
+        "scale": 0.5
+      }
+    },
+    {
+      "key": "PC",
+      "dims": [
+        1440,
+        900
+      ],
+      "name": "east",
+      "dx": 1,
+      "dy": 0,
+      "ordinary": null
+    },
+    {
+      "key": "M",
+      "dims": [
+        390,
+        844
+      ],
+      "name": "east",
+      "dx": 1,
+      "dy": 0,
+      "ordinary": null
+    }
+  ],
+  "controls": "west wing/physical signature strict and separate within whole all pairs; explicit archive of actual E where requested",
+  "sameAandB": [
+    "pose",
+    "stage",
+    "terrain",
+    "authored body provider asset/source/compiled packet",
+    "scene state",
+    "HUD masks",
+    "raw alpha",
+    "outside art exactly if attach can be resolved"
+  ],
+  "signedWindowWorld": [
+    -650,
+    3235,
+    4440,
+    5410
+  ],
+  "maxPCSWNewForestPixels": 73305,
+  "oldFooterWorld": [
+    50.08,
+    3342.84,
+    4438.34,
+    4532.24
+  ],
+  "sourceNativeRightMax": 4412
+}
