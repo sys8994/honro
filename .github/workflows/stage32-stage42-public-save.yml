@@ -1,0 +1,46 @@
+name: HONRO exact public 32/42 real old/current save and re-save (read only)
+on:
+  push:
+    branches: [qa/stage32-42-public-cold-save-exact-0b9c7f0]
+    paths: [".github/workflows/stage32-stage42-public-save.yml","tools/stage32-42-public-save/**"]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  public-native-cold-save:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage32-42-public-cold-save-exact-0b9c7f0'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 17
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+          fetch-depth: 5
+      - name: Actual Pages authority plus two exact historic loopback fixtures
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          W="$RUNNER_TEMP/stage32-42-public-save"; mkdir "$W"; echo "W=$W" >> "$GITHUB_ENV"
+          python tools/stage32-42-public-save/preflight.py "$W"
+      - name: Live anonymous public native Cold Continue and return-title re-save
+        run: |
+          set -euo pipefail
+          test -z "${GITHUB_TOKEN:-}${GH_TOKEN:-}"
+          python -m venv "$W/venv"; V="$W/venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+          python -m http.server 18887 --bind 127.0.0.1 --directory "$W/H32" > "$W/H32-http.log" 2>&1 & a=$!
+          python -m http.server 18888 --bind 127.0.0.1 --directory "$W/H42" > "$W/H42-http.log" 2>&1 & b=$!
+          trap 'kill "$a" "$b" 2>/dev/null || true' EXIT
+          for port in 18887 18888; do curl -fsS --retry 8 --retry-connrefused "http://127.0.0.1:$port/HONRO.html" -o /dev/null; done
+          "$V" tools/stage32-42-public-save/probe.py "$W"
+      - if: always() && env.W != ''
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage32-42-actual-public-real-native-save
+          path: ${{ env.W }}/out/
+          retention-days: 7
+          if-no-files-found: warn

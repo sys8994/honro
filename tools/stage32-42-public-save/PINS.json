@@ -1,0 +1,192 @@
+{
+  "enabled": true,
+  "qaRef": "refs/heads/qa/stage32-42-public-cold-save-exact-0b9c7f0",
+  "release": {
+    "head": "0b9c7f0746da289dc92474a76173232a3fb91ea8",
+    "tree": "b0967ba00ae01d9ae5d872f5d45ead05c5bf0ccb",
+    "pages": 45033441002,
+    "job": 137242393705,
+    "manifest": {
+      "bytes": 8522079,
+      "sha256": "c32600ab10687b5d4f8b797fa9c4b8ada4e7dd5cb7a81312368500dec2b856f1"
+    },
+    "pagesCompletedUTC": "2026-11-22T14:35:44Z"
+  },
+  "releasePagesCompleted": "2026-11-22T14:35:44Z",
+  "manifestGit": "7978f15ca4a6c09143172e6dc89b750a160b005c",
+  "legacy": {
+    "path": "web/data/campaign-compat-32.ee7846c92c4edcac.json",
+    "fact": {
+      "bytes": 3219476,
+      "sha256": "ee7846c92c4edcac5f88771849e89c896a5c6906b0b8c10fb90cdca1d5b1061d"
+    }
+  },
+  "publicAuthorityAlreadyVerified": {
+    "run": 45033765808,
+    "job": 137242846501,
+    "artifact": 14758970849
+  },
+  "history": {
+    "32": {
+      "port": 18887,
+      "head": "72dd73e03f7d07c1b87d3e1e71a62d187a371e6a",
+      "tree": "3c416cb19b10c6af4c2c19c19233413a280f26d8",
+      "manifest": {
+        "bytes": 8335506,
+        "sha256": "6b2160affabe1f8474948d5556e052c3a68d8f7f460aed894600dc347821cc4c"
+      },
+      "shell": {
+        "bytes": 17379,
+        "sha256": "587f1a94a0a744ba6d1d3c75dac34763380d6b09e68b61c997c80ada95632bfc"
+      },
+      "routes": {
+        "web/data/campaign.1be5cca224fe45de.json": {
+          "bytes": 55011,
+          "sha256": "1be5cca224fe45de7bbeb78b795abd450b4d3002c99c60d21ca3e0c783bedda7"
+        },
+        "web/entries/game.72899ce8347a2d57.js": {
+          "bytes": 20483,
+          "sha256": "72899ce8347a2d5714c953d295c878b093de3373d09ebcddc2cbfb3fe42f0c1c"
+        },
+        "web/data/chapter-32.f242630da616ee32.json": {
+          "bytes": 21111,
+          "sha256": "f242630da616ee32bbeaa0f13d64e7c800976e6928d25b5c588a2286e913968a"
+        },
+        "web/data/chapter-32-assets-parts.11bb98c0e02b14b3.json": {
+          "bytes": 444,
+          "sha256": "11bb98c0e02b14b3c98d4296f2469a843df73148361120e6b0973d572ca46789"
+        },
+        "web/data/chapter-32-assets-part-000.9ee023cdeb2b8afc.bin": {
+          "bytes": 4194304,
+          "sha256": "9ee023cdeb2b8afc6528695ce8cb993758ccce8636edadd4dfc77adece2a90a1"
+        },
+        "web/data/chapter-32-assets-part-001.04b03685e0328118.bin": {
+          "bytes": 3805125,
+          "sha256": "04b03685e03281184b2f61ed8087bcd749860b656051ef616ffbbfa42ccf4cbf"
+        }
+      }
+    },
+    "42": {
+      "port": 18888,
+      "head": "733d5d212d5ab235c2b492e1f065306bdfaae317",
+      "tree": "276e54e1ca08d32d3b290097c9a05e91e9ab0ecd",
+      "manifest": {
+        "bytes": 7994676,
+        "sha256": "8d6f1debdb956b1f2c92c8a6808707aab7e1db98ddbfbc9ce2ffbffaed9322d1"
+      },
+      "shell": {
+        "bytes": 17379,
+        "sha256": "25d0b3c1f374f73844f11471012cd5db0e9daf7642bf9b0b30fb11cbb29f6d0f"
+      },
+      "routes": {
+        "web/entries/game.562d9dddf1932b73.js": {
+          "bytes": 20483,
+          "sha256": "562d9dddf1932b73f674146e1d3002f6ace3c72786872a675394ca2a528b5487"
+        },
+        "web/runtime/campaign.4375d13445105188.js": {
+          "bytes": 527,
+          "sha256": "4375d1344510518805bf77c0783efb6d8b5dad67b60e3a4e64d62d6d03f71b91"
+        },
+        "web/data/campaign.0386fa9451fe2427.json": {
+          "bytes": 55011,
+          "sha256": "0386fa9451fe2427918ea68e927ccb0cb7a1cffc547ab0a63a164c74d785e57e"
+        },
+        "web/data/chapter-42.0802015e8ba99d11.json": {
+          "bytes": 12647,
+          "sha256": "0802015e8ba99d11a8ece1f14186b3db6a4a7d3d32076e64ca120300f50c7f50"
+        },
+        "web/data/chapter-42-assets.396ec98508d5b8c8.json": {
+          "bytes": 1864856,
+          "sha256": "396ec98508d5b8c828a8d0bbf24c2f6cac1a734a55989db3f3d3fcc1d80bb1df"
+        },
+        "web/runtime/ordered-common-4.c84f463a629cb3dc.js": {
+          "bytes": 181306,
+          "sha256": "c84f463a629cb3dc26d1ab93d071c3499c8339888b9bc08d089f852c602b2191"
+        }
+      }
+    }
+  },
+  "public": {
+    "root": "https://sys8994.github.io/honro/",
+    "shell": {
+      "bytes": 17379,
+      "sha256": "4f05204ef37edd55dfd7c55b461ad2c1a7f47a2d40587c7395cf370b068a3bdb"
+    },
+    "routes": {
+      "32": {
+        "web/data/campaign.0e33b6e4f334c28d.json": {
+          "bytes": 55127,
+          "sha256": "0e33b6e4f334c28d670fdaa49dc982c794ad62955e5a141bb572d390fbe9afb9"
+        },
+        "web/entries/game.19217698b427e80f.js": {
+          "bytes": 20483,
+          "sha256": "19217698b427e80f26203a6600db3bf03962be322e2a61a5c25e5b0178d20333"
+        },
+        "web/data/chapter-32.f242630da616ee32.json": {
+          "bytes": 21111,
+          "sha256": "f242630da616ee32bbeaa0f13d64e7c800976e6928d25b5c588a2286e913968a"
+        },
+        "web/data/chapter-32-assets-parts.427bcb8462093709.json": {
+          "bytes": 443,
+          "sha256": "427bcb8462093709dd9680066672b86b093d858fd679a6ecd88f461874cfd781"
+        },
+        "web/data/chapter-32-assets-part-000.58eb984bf3338390.bin": {
+          "bytes": 4194304,
+          "sha256": "58eb984bf3338390c4284dd587c6511b0f0cdc30f34e13d44f34292bd32e89a7"
+        },
+        "web/data/chapter-32-assets-part-001.c4c37c74a940a763.bin": {
+          "bytes": 585651,
+          "sha256": "c4c37c74a940a76354d51b15d1c4061811f28ac5d3c8449c8f4c85fbf8facc47"
+        }
+      },
+      "42": {
+        "web/entries/game.19217698b427e80f.js": {
+          "bytes": 20483,
+          "sha256": "19217698b427e80f26203a6600db3bf03962be322e2a61a5c25e5b0178d20333"
+        },
+        "web/runtime/campaign.13c139b8021b0ce4.js": {
+          "bytes": 527,
+          "sha256": "13c139b8021b0ce4ebf479b9309329c393c2894fedfc0229f5efcb55a8eb6ba8"
+        },
+        "web/data/campaign.0e33b6e4f334c28d.json": {
+          "bytes": 55127,
+          "sha256": "0e33b6e4f334c28d670fdaa49dc982c794ad62955e5a141bb572d390fbe9afb9"
+        },
+        "web/data/chapter-42.0802015e8ba99d11.json": {
+          "bytes": 12647,
+          "sha256": "0802015e8ba99d11a8ece1f14186b3db6a4a7d3d32076e64ca120300f50c7f50"
+        },
+        "web/data/chapter-42-assets.abdbc9d7a8ce717e.json": {
+          "bytes": 1858863,
+          "sha256": "abdbc9d7a8ce717eb7c8a6c04aa7400cec13b5ced947713aa862ab70ef5f2e46"
+        },
+        "web/runtime/ordered-common-4.67de8f1c97c5fb48.js": {
+          "bytes": 184807,
+          "sha256": "67de8f1c97c5fb4825954f779cbf06ab7e6a41d73e9ff5e77465bbe190634814"
+        }
+      }
+    },
+    "blockedOffscope": true
+  },
+  "stages": {
+    "32": {
+      "specialHistoricalFixtureIDs": {
+        "approved32:body": "1952606:e60eb3e5",
+        "approved32:wood-door-extract": "423282:b2c53b27",
+        "act4-handoff:32:body": "843583:aede1464"
+      },
+      "activeRef": {
+        "act4-handoff:32:body-joined": "685031:cfa8f837",
+        "approved32:coastal-foundation": "586162:b287d499"
+      }
+    },
+    "42": {
+      "previousRef": {
+        "act5:near:42": "1864834:f80cec75"
+      },
+      "activeRef": {
+        "act5:near:42": "1858841:5ce4a412"
+      }
+    }
+  }
+}
