@@ -1,0 +1,32 @@
+name: Stage7 exact anonymous live readback, old native save
+on:
+  push:
+    branches: [qa/stage07-chapter-public-readback]
+    paths: [".github/workflows/stage07-chapter-public.yml","tools/stage07-chapter-public/**"]
+permissions:
+  contents: read
+jobs:
+  actual:
+    if: github.repository == 'sys8994/honro' && github.ref == 'refs/heads/qa/stage07-chapter-public-readback'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Read only real live PC mobile and historic Stage7 resume
+        run: |
+          set -euo pipefail
+          W="$RUNNER_TEMP/stage07-chapter-public"; mkdir -p "$W/out"
+          python -m venv "$W/venv"
+          "$W/venv/bin/python" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$W/venv/bin/python" -m playwright install --with-deps chromium
+          "$W/venv/bin/python" tools/stage07-chapter-public/readback.py "$W"
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: stage07-chapter-actual-public-old-save-no-rebuild
+          path: ${{ runner.temp }}/stage07-chapter-public/out/
+          if-no-files-found: warn
+          retention-days: 7

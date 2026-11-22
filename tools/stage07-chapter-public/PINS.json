@@ -1,0 +1,173 @@
+{
+  "enabled": true,
+  "repo": "sys8994/honro",
+  "qaRef": "refs/heads/qa/stage07-chapter-public-readback",
+  "origin": "https://sys8994.github.io/honro/",
+  "release": {
+    "head": "e70279eb6e00061825eaa6c0de793bb8c0821a99",
+    "tree": "f0e7310c20b0255b46e8e1afa3e4a0e4b40dce9e",
+    "manifest": {
+      "bytes": 8692467,
+      "sha256": "4f33214ea6d5503e42b3a9eb6ef4ed8451cb1d08793dbda80d24451aceac9e6e",
+      "git": "b54806cc62e03a1e4b1d1bfd9eb533e5655d773f"
+    },
+    "pages": 45037241837,
+    "job": 137254083655
+  },
+  "old": {
+    "head": "0b9c7f0746da289dc92474a76173232a3fb91ea8",
+    "tree": "b0967ba00ae01d9ae5d872f5d45ead05c5bf0ccb",
+    "routes": {
+      "HONRO.html": {
+        "bytes": 17379,
+        "sha256": "4f05204ef37edd55dfd7c55b461ad2c1a7f47a2d40587c7395cf370b068a3bdb"
+      },
+      "web/entries/game.19217698b427e80f.js": {
+        "bytes": 20483,
+        "sha256": "19217698b427e80f26203a6600db3bf03962be322e2a61a5c25e5b0178d20333"
+      },
+      "web/data/campaign.0e33b6e4f334c28d.json": {
+        "bytes": 55127,
+        "sha256": "0e33b6e4f334c28d670fdaa49dc982c794ad62955e5a141bb572d390fbe9afb9"
+      },
+      "web/data/chapter-07.28f7bf612a598aeb.json": {
+        "bytes": 30579,
+        "sha256": "28f7bf612a598aeb0eb6da0f819a0b6ddb7fd5414eab9410e434772eb04d2553"
+      },
+      "web/data/chapter-07-assets.7068fa05c6ce1c2e.json": {
+        "bytes": 655969,
+        "sha256": "7068fa05c6ce1c2ef0c96045daa3dea192ba69a18e35bc323e6a5df9a1529db5"
+      },
+      "web/runtime/ordered-common-11.94f589182e7712da.js": {
+        "bytes": 178192,
+        "sha256": "94f589182e7712dadb6b80e62ff93e720c54f7cbbbb7f4a07de819a80c72a79e"
+      },
+      "web/runtime/campaign.13c139b8021b0ce4.js": {
+        "bytes": 527,
+        "sha256": "13c139b8021b0ce4ebf479b9309329c393c2894fedfc0229f5efcb55a8eb6ba8"
+      },
+      "web/runtime/ordered-common-12.a3e256d8f7a5fb68.js": {
+        "bytes": 72701,
+        "sha256": "a3e256d8f7a5fb68afb0268aea3292c050633cf8e118a62c899bea1d0c93f1cc"
+      }
+    },
+    "oldSave": {
+      "bytes": 1401908,
+      "sha256": "55e484044a19d4b6063a3233a9bd408a066ec3f5fcffa02d840a3dddfe387024"
+    }
+  },
+  "approved": {
+    "run": 45035277373,
+    "job": 137247530285,
+    "artifact": 14759931416,
+    "sha256": "c5e088dc192801ea405e31b592ba9bdb702b49c1ee62f5a115b685515482013e"
+  },
+  "liveRoutes": {
+    "HONRO.html": {
+      "bytes": 17379,
+      "sha256": "19a9ab647ec3e57f7acfe5c511c6eaeb6fc4b280193d380f875227bf98ca92bb"
+    },
+    "web/entries/game.3716bcb3caa78a7a.js": {
+      "bytes": 20483,
+      "sha256": "3716bcb3caa78a7a9b664378267214aafc47ad8ba985f12b6a020bd889c94b9a"
+    },
+    "web/data/campaign.dce6b5b5facbbd91.json": {
+      "bytes": 55151,
+      "sha256": "dce6b5b5facbbd91e9d734f17030667aa2644af8782fef1fff3a6a22b639e380"
+    },
+    "web/data/chapter-07.177911aaf007ef0b.json": {
+      "bytes": 30621,
+      "sha256": "177911aaf007ef0beb6a0cb94379b3513d42a9f653b53aaba9fb3948761a99ee"
+    },
+    "web/data/chapter-07-assets.4f5a7691dac04f9d.json": {
+      "bytes": 769327,
+      "sha256": "4f5a7691dac04f9dfcb361fa4258479080c349ae5bd0cd50b42b4b16156b3928"
+    },
+    "web/runtime/ordered-common-11.6b1c56faa0f72077.js": {
+      "bytes": 166538,
+      "sha256": "6b1c56faa0f720779355027f23a6afaa7bee08944c7421b429d73009a3f81676"
+    },
+    "web/runtime/campaign.0b680e073a963004.js": {
+      "bytes": 527,
+      "sha256": "0b680e073a9630043e6b1bd0d18e22398b2c839ab1f4c43310d7530f4058c137"
+    },
+    "web/runtime/ordered-common-12.4bcd22a3c1af1306.js": {
+      "bytes": 87071,
+      "sha256": "4bcd22a3c1af1306a9cf4c7e7e80ac3974cf63e36892f7e8866f0a193fe58011"
+    }
+  },
+  "chapterB": [
+    "web/data/chapter-07.177911aaf007ef0b.json",
+    "web/data/chapter-07-assets.4f5a7691dac04f9d.json"
+  ],
+  "scopePose": {
+    "PC": {
+      "actual": {
+        "x": 2266.12,
+        "y": 3569.18,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": -1133.88,
+        "right": 5666.12,
+        "top": 1753.042847222222,
+        "bottom": 5385.317152777778
+      },
+      "backing": [
+        1440,
+        769
+      ]
+    },
+    "M": {
+      "actual": {
+        "x": 2266.12,
+        "y": 3569.18,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": -1133.88,
+        "right": 5666.12,
+        "top": -2076.6453205128205,
+        "bottom": 9215.00532051282
+      },
+      "backing": [
+        390,
+        648
+      ]
+    }
+  },
+  "approvedRaw": {
+    "PC": {
+      "bytes": 1096490,
+      "sha256": "eb18bd4b15b68f662994552cc71daf130a50e07cde64b9c4db9415ff287b8cd9"
+    },
+    "M": {
+      "bytes": 286497,
+      "sha256": "adb631c8e4941911dffbbefe26606a75cea4bc120ba6c72cae1dd087f1174d80"
+    }
+  },
+  "provider": {
+    "provider": {
+      "bytes": 242099,
+      "sha256": "992c5b15cee33be83196b78ab08e14306777b883626ff20080c3a109f38f6ec2"
+    },
+    "physicalUnregistered": {
+      "bytes": 14521,
+      "sha256": "11b747b0c337f64ad3f2f9792bcb84a9b42469dbe8deb36d1ba3b3e447e20a31"
+    }
+  },
+  "proofResave": {
+    "bytes": 1402313,
+    "sha256": "854ced1a7a5c6b0241f0ae7a9e725905c63f85e4b4d0cd6cfa20c32230544fcb"
+  },
+  "officialAuthoritativePublication": {
+    "readbackExpectedSHA": "4f33214ea6d5503e42b3a9eb6ef4ed8451cb1d08793dbda80d24451aceac9e6e",
+    "pagesHeadExact": true,
+    "jobHasFinalDeploySuccess": true
+  },
+  "historicalSaveCamera": [
+    1550,
+    3420,
+    0.5
+  ]
+}
