@@ -1,0 +1,50 @@
+name: HONRO Stage40+46 exact Workshop-only continuation no rebuild
+on:
+  push:
+    branches: [qa/stage40-46-union-workshop-continuation-eaf-r3]
+    paths: [".github/workflows/stage40-46-workshop-continuation.yml", "tools/stage40-46-workshop-continuation/**"]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  workshop-only:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage40-46-union-workshop-continuation-eaf-r3'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Match the original exact failed official R1 and its retained bytes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 -B tools/stage40-46-workshop-continuation/guard.py "$RUNNER_TEMP/stage40-46-workshop-continuation"
+      - name: Verify prior 28 real timings, A/B images and saves; reconstruct only existing bytes
+        run: |
+          set -euo pipefail
+          W="$RUNNER_TEMP/stage40-46-workshop-continuation"
+          T="$GITHUB_WORKSPACE/tools/stage40-46-workshop-continuation"
+          python3 -m venv "$W/venv"
+          V="$W/venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -B "$T/verify.py" "$W" "$GITHUB_WORKSPACE"
+      - name: Observe genuine Workshop and embedded native app only
+        run: |
+          set -euo pipefail
+          W="$RUNNER_TEMP/stage40-46-workshop-continuation"
+          T="$GITHUB_WORKSPACE/tools/stage40-46-workshop-continuation"
+          V="$W/venv/bin/python"
+          "$V" -m playwright install --with-deps chromium
+          python3 -m http.server 18961 --bind 127.0.0.1 --directory "$W/A" >"$W/out/http-A.log" 2>&1 & a=$!
+          python3 -m http.server 18962 --bind 127.0.0.1 --directory "$W/B" >"$W/out/http-B.log" 2>&1 & b=$!
+          trap 'kill "$a" "$b" 2>/dev/null || true' EXIT
+          for p in 18961 18962; do curl -fsS --retry 8 --retry-connrefused "http://127.0.0.1:$p/HONRO_WORKSHOP.html" -o /dev/null; done
+          "$V" -B "$T/workshop.py" "$W"
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-exact-no-rebuild-workshop-continuation
+          path: ${{ runner.temp }}/stage40-46-workshop-continuation/out/
+          if-no-files-found: warn
+          retention-days: 7
