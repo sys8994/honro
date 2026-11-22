@@ -1,0 +1,218 @@
+{
+  "enabled": true,
+  "qaRef": "refs/heads/qa/stage21-east-after-stage33",
+  "release": {
+    "head": "1ee86f0409b2cdcf457bbbd45c2353aa51991217",
+    "tree": "37210a417f8e117bca52c09d5ac2062a0078ee78",
+    "manifest": {
+      "bytes": 7825398,
+      "sha256": "b236988ee37f2fc59ab37f14e01d8cef2c042ab6de2253f68468e79e280ce4bf",
+      "git": "9ad7998221efb4d13f676b472b468d2c3879f6d6"
+    },
+    "pages": {
+      "run": 45021842986,
+      "job": 137206738846,
+      "publishedAt": "2026-11-22T12:23:27Z",
+      "conclusion": "success"
+    }
+  },
+  "source": "shared/runtime/act3-handoff-art.js",
+  "stock": {
+    "bytes": 21321,
+    "sha256": "ad7f1e23f93af55203d0177b4fbd7edf3a1ae471e3743746eb4b8de04d6d7ffe",
+    "git": "511447643bdaae42bb17f92976c7d1b5808ce93e"
+  },
+  "candidate": {
+    "bytes": 34634,
+    "sha256": "995e0246f7f6c7a39bb6b63d239708a0f5821c6c8bb7e1d4bd7d62903a838224",
+    "git": "7ca4d771ffea620cb5031ffeded05d8981fbd65d"
+  },
+  "stage21Map": "web/data/chapter-21.724a765a85d437a2.json",
+  "stage21Packet": "web/data/chapter-21-assets.195e73632de8b164.json",
+  "worldWindow": [
+    6200,
+    2214,
+    7425,
+    3234
+  ],
+  "views": [
+    {
+      "key": "PC-east",
+      "id": 21,
+      "dims": [
+        1440,
+        900
+      ],
+      "name": "ordinary",
+      "ordinary": [
+        6500,
+        2660,
+        0.5
+      ],
+      "dx": 0,
+      "expected": {
+        "actual": {
+          "x": 6500,
+          "y": 2660,
+          "scale": 0.5
+        },
+        "viewport": {
+          "left": 5060,
+          "right": 7940,
+          "top": 1890.8125,
+          "bottom": 3429.1875
+        },
+        "backing": [
+          1440,
+          769
+        ]
+      }
+    },
+    {
+      "key": "M-east",
+      "id": 21,
+      "dims": [
+        390,
+        844
+      ],
+      "name": "ordinary",
+      "ordinary": [
+        6500,
+        2660,
+        0.5
+      ],
+      "dx": 0,
+      "expected": {
+        "actual": {
+          "x": 6500,
+          "y": 2660,
+          "scale": 0.5
+        },
+        "viewport": {
+          "left": 6110,
+          "right": 6890,
+          "top": 2012.390625,
+          "bottom": 3307.609375
+        },
+        "backing": [
+          390,
+          648
+        ]
+      }
+    },
+    {
+      "key": "M-min-east",
+      "id": 21,
+      "dims": [
+        390,
+        844
+      ],
+      "name": "east",
+      "ordinary": null,
+      "dx": 1,
+      "expected": {
+        "actual": {
+          "x": 6720,
+          "y": 1600,
+          "scale": 0.057352941176470586
+        },
+        "viewport": {
+          "left": 3320,
+          "right": 10120,
+          "top": -4045.8253205128203,
+          "bottom": 7245.82532051282
+        },
+        "backing": [
+          390,
+          648
+        ]
+      }
+    },
+    {
+      "key": "PC-west",
+      "id": 21,
+      "dims": [
+        1440,
+        900
+      ],
+      "name": "ordinary",
+      "ordinary": [
+        -120,
+        3000,
+        0.5
+      ],
+      "dx": 0,
+      "expected": {
+        "actual": {
+          "x": -120,
+          "y": 3000,
+          "scale": 0.5
+        },
+        "viewport": {
+          "left": -1560,
+          "right": 1320,
+          "top": 2230.8125,
+          "bottom": 3769.1875
+        },
+        "backing": [
+          1440,
+          769
+        ]
+      }
+    },
+    {
+      "key": "PC-neighbor-24",
+      "id": 24,
+      "dims": [
+        1440,
+        900
+      ],
+      "name": "ordinary",
+      "ordinary": [
+        6930,
+        2520,
+        0.5
+      ],
+      "dx": 0,
+      "expected": null
+    },
+    {
+      "key": "PC-neighbor-33",
+      "id": 33,
+      "dims": [
+        1440,
+        900
+      ],
+      "name": "ordinary",
+      "ordinary": [
+        7232,
+        2304,
+        0.21176470588235294
+      ],
+      "dx": 0,
+      "expected": null
+    },
+    {
+      "key": "M-neighbor-33",
+      "id": 33,
+      "dims": [
+        390,
+        844
+      ],
+      "name": "ordinary",
+      "ordinary": [
+        7232,
+        2304,
+        0.057352941176470586
+      ],
+      "dx": 0,
+      "expected": null
+    }
+  ],
+  "activeA": 810,
+  "priorStage33": {
+    "stageMap": "web/data/chapter-33.80ca32475be181c7.json",
+    "stagePacket": "web/data/chapter-33-assets.920ccd84eb69a553.json",
+    "packetSHA256": "920ccd84eb69a5534b16e76ac27bb6df1d1c04fba0b2c5fff409057d6119d55b"
+  }
+}
