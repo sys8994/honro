@@ -1,0 +1,440 @@
+{
+  "enabled": true,
+  "repo": "sys8994/honro",
+  "qaRef": "refs/heads/qa/stage21-east-after-s33-writer",
+  "releaseRef": "refs/heads/release/act3-stage21-east-after-s33-20261122",
+  "scopeApproval": "Reviewed both actual PC and mobile scoped east relief on Stage21, preserving Stage33 released terrain and both physical negative controls.",
+  "base": {
+    "head": "1ee86f0409b2cdcf457bbbd45c2353aa51991217",
+    "tree": "37210a417f8e117bca52c09d5ac2062a0078ee78",
+    "manifest": {
+      "bytes": 7825398,
+      "sha256": "b236988ee37f2fc59ab37f14e01d8cef2c042ab6de2253f68468e79e280ce4bf",
+      "git": "9ad7998221efb4d13f676b472b468d2c3879f6d6"
+    },
+    "pagesRun": 45021842986,
+    "pagesJob": 137206738846,
+    "publishedAt": "2026-11-22T12:23:27Z",
+    "active": 810,
+    "registry": 1382,
+    "retainerGit": "8374336b53c74ac81e6d32f5aa43eee575e61daa",
+    "policyGit": "16687b0fc38e432a7d66a015ddf3ebe744163a06"
+  },
+  "qa": {
+    "run": 45022585347,
+    "job": 137208552594,
+    "head": "366e07ae971bc0eef791b8af8aa870c82311ed07",
+    "tree": "229221eb2fca5673bd0e4856557263a2433a073c",
+    "branch": "qa/stage21-east-after-stage33-r2",
+    "artifact": 14754089565,
+    "name": "honro-stage21-east-rebased-s33-r2-no-deploy",
+    "outer": {
+      "bytes": 10900846,
+      "sha256": "ef8678239629c33fdccb8751fc8ad845d617c5f152ddaa0864c16a6f06866a8f"
+    }
+  },
+  "source": {
+    "path": "shared/runtime/act3-handoff-art.js",
+    "old": "511447643bdaae42bb17f92976c7d1b5808ce93e",
+    "new": "7ca4d771ffea620cb5031ffeded05d8981fbd65d",
+    "sha256": "995e0246f7f6c7a39bb6b63d239708a0f5821c6c8bb7e1d4bd7d62903a838224"
+  },
+  "generated": {
+    "HONRO.html": {
+      "bytes": 17379,
+      "sha256": "25d0b3c1f374f73844f11471012cd5db0e9daf7642bf9b0b30fb11cbb29f6d0f",
+      "git": "2538b35bb5740ebc334145770aebd754114d85ca"
+    },
+    "HONRO_WORKSHOP.html": {
+      "bytes": 4011,
+      "sha256": "08aa6835fae0851a9f021b2930ab16f2cd7dd22a943a12e9a01f32ec782e902c",
+      "git": "3f3008447ddf23b7f74376dea5f3fd9cf9b33092"
+    },
+    "index.html": {
+      "bytes": 17379,
+      "sha256": "25d0b3c1f374f73844f11471012cd5db0e9daf7642bf9b0b30fb11cbb29f6d0f",
+      "git": "2538b35bb5740ebc334145770aebd754114d85ca"
+    },
+    "web/entries/game.562d9dddf1932b73.js": {
+      "bytes": 20483,
+      "sha256": "562d9dddf1932b73f674146e1d3002f6ace3c72786872a675394ca2a528b5487",
+      "git": "a75eb11e8abeb2c3cce92fd9bd916b377b34a455"
+    },
+    "web/entries/game.5966481088b9f377.html": {
+      "bytes": 11318,
+      "sha256": "5966481088b9f37742aac74d0970164955adec083c57ae4f95e786ab563f5382",
+      "git": "75aed75ea97ab5b61037f24de9e58aa175912ea6"
+    },
+    "web/entries/workshop.3531b6c39295c4f3.js": {
+      "bytes": 16706,
+      "sha256": "3531b6c39295c4f37d81a7fe5cd6e76b1affe59d16086d7881c7602563cf41e3",
+      "git": "d9aa66bbb21ad2313e4f6c125ac11ad2facda600"
+    },
+    "web/manifest.json": {
+      "bytes": 7775735,
+      "sha256": "b604326356c0a92b2488fb72b10f42e98045f6341dfe63172377cbe09eb0bb56",
+      "git": "dbf254f402733e207062fb7f774b34e684754321"
+    },
+    "web/runtime/ordered-common-17.93673f3a14672979.js": {
+      "bytes": 133947,
+      "sha256": "93673f3a14672979e0eba1263860c3e7ee0fc61cd88022d8d5d4a77994bdbfe0",
+      "git": "dc54b4ee30a71e7920e76c2379d80186d85bdb8d"
+    }
+  },
+  "receipts": {
+    "BROWSER.json": {
+      "bytes": 36816,
+      "sha256": "027675532ba0596b17ea3d65e269fa1b5a536a5bfc7d6d6fcf200dc98bbc423b"
+    },
+    "NATIVE-ROUTES.json": {
+      "bytes": 8104,
+      "sha256": "b1e5c90cf871190196738be493a09e1e57e70230502677be1370a4f86e8a44f9"
+    },
+    "SOURCE.json": {
+      "bytes": 760,
+      "sha256": "3b4aa609a9a82a5ab2c283dbef481fd3043895c6dffa69ced611199fc69556ac"
+    },
+    "SEAL.json": {
+      "bytes": 2481,
+      "sha256": "d4895b587c05c713e8a1bfbb9c2a94507b643d7e9e339d7e8d97b6d431bc58ab"
+    }
+  },
+  "nested": {
+    "bytes": 2130752,
+    "sha256": "a0944ae9f21917f2b88cd50d5329d6d18d52ea1337d55f21cae63910557ab6ae"
+  },
+  "added": [
+    "web/entries/game.562d9dddf1932b73.js",
+    "web/entries/game.5966481088b9f377.html",
+    "web/entries/workshop.3531b6c39295c4f3.js",
+    "web/runtime/ordered-common-17.93673f3a14672979.js"
+  ],
+  "displaced": [
+    "web/entries/game.293019de679977f0.js",
+    "web/entries/game.93fedb26bed3e825.html",
+    "web/entries/workshop.cc97a94f9718a7d3.js",
+    "web/runtime/ordered-common-17.e51e13806e820ee8.js"
+  ],
+  "activeBuilt": 810,
+  "approvedFrames": {
+    "PC-east": {
+      "A": {
+        "PNG": {
+          "bytes": 420226,
+          "sha256": "191d07b57cc9b3b50bf95cf81628676a4a7bd0e9239ecf05a3cc0293d05fe7bd"
+        },
+        "DOM": {
+          "bytes": 240507,
+          "sha256": "c2d6436c445b5e8f2d0bd36deaa713be08c160a33f0fc5aaea870372d34a2c21"
+        }
+      },
+      "B": {
+        "PNG": {
+          "bytes": 447783,
+          "sha256": "2d7edd852514a08fba9fadae6c64d461aa6fd825bd406cc3204d1eb3582f72be"
+        },
+        "DOM": {
+          "bytes": 258901,
+          "sha256": "5185ab04a3d2fdac515f7bd2c6237f0ee69dc78a26a27296fef13253611ee7eb"
+        }
+      }
+    },
+    "M-east": {
+      "A": {
+        "PNG": {
+          "bytes": 83463,
+          "sha256": "d3e837b3cc8354bbaf498dc0d850af4023f62593d9fe1397b2d5d96ef553daef"
+        },
+        "DOM": {
+          "bytes": 50948,
+          "sha256": "92983ffb5733397d7936557608ac57567b4a8430c96c60f29ea46779b3828e34"
+        }
+      },
+      "B": {
+        "PNG": {
+          "bytes": 102204,
+          "sha256": "418398a09768bf1baa47c43697be287021ebbb40479fcdca613303da063115d9"
+        },
+        "DOM": {
+          "bytes": 62621,
+          "sha256": "d1f06cfefa279eb9ac70b464ce5411735c18f2ec74f58240a14db173991cc745"
+        }
+      }
+    },
+    "M-min-east": {
+      "A": {
+        "PNG": {
+          "bytes": 153277,
+          "sha256": "9f3f39a39447d42a28efb475d89ba7b541d7894b2efe54d391baaccbe8c66c65"
+        },
+        "DOM": {
+          "bytes": 91181,
+          "sha256": "aa38ed05c30520fbc6e7f3f69e4434540e4dd24ca1cea7bc345ba97fe4d0423e"
+        }
+      },
+      "B": {
+        "PNG": {
+          "bytes": 156477,
+          "sha256": "1ce7eee84841e0f9e3835cf9e258d42acdba7558e10201474fbf5dfcd0c6ca6a"
+        },
+        "DOM": {
+          "bytes": 92730,
+          "sha256": "e681a20e8ff8b97bfbc683af45d0270673d7646c317a829c8f1bef05c7b28107"
+        }
+      }
+    },
+    "PC-west": {
+      "A": {
+        "PNG": {
+          "bytes": 468039,
+          "sha256": "ab0a3a728c71d1e48458b39ff5ea34fd67d27213c0d1f267133529f1b1865843"
+        },
+        "DOM": {
+          "bytes": 226873,
+          "sha256": "adc6e05b196f45e59bfa971d05bd7357a8a33aa46ccd3c7de68eb65309f00bc2"
+        }
+      },
+      "B": {
+        "PNG": {
+          "bytes": 468039,
+          "sha256": "ab0a3a728c71d1e48458b39ff5ea34fd67d27213c0d1f267133529f1b1865843"
+        },
+        "DOM": {
+          "bytes": 226873,
+          "sha256": "adc6e05b196f45e59bfa971d05bd7357a8a33aa46ccd3c7de68eb65309f00bc2"
+        }
+      }
+    },
+    "PC-neighbor-24": {
+      "A": {
+        "PNG": {
+          "bytes": 420466,
+          "sha256": "cee6c62c374b9c4bf2799fb62acfed1196582af0dfa2265990877e533a3ee592"
+        },
+        "DOM": {
+          "bytes": 240483,
+          "sha256": "afd707eb6ddd3018a1b0580f04a30d5101533eb1655345a33af05b4ecca38262"
+        }
+      },
+      "B": {
+        "PNG": {
+          "bytes": 420466,
+          "sha256": "cee6c62c374b9c4bf2799fb62acfed1196582af0dfa2265990877e533a3ee592"
+        },
+        "DOM": {
+          "bytes": 240483,
+          "sha256": "afd707eb6ddd3018a1b0580f04a30d5101533eb1655345a33af05b4ecca38262"
+        }
+      }
+    },
+    "PC-neighbor-33": {
+      "A": {
+        "PNG": {
+          "bytes": 952116,
+          "sha256": "3fd520b70b3478edbdff52eca76ee888a8b0b7c4f6853aae4fe4907b4e33c5dd"
+        },
+        "DOM": {
+          "bytes": 568623,
+          "sha256": "533d695f3bd3517ed83841f9ce29b6093abcc8f8a82f46cbb017fd31bc588177"
+        }
+      },
+      "B": {
+        "PNG": {
+          "bytes": 952116,
+          "sha256": "3fd520b70b3478edbdff52eca76ee888a8b0b7c4f6853aae4fe4907b4e33c5dd"
+        },
+        "DOM": {
+          "bytes": 568623,
+          "sha256": "533d695f3bd3517ed83841f9ce29b6093abcc8f8a82f46cbb017fd31bc588177"
+        }
+      }
+    },
+    "M-neighbor-33": {
+      "A": {
+        "PNG": {
+          "bytes": 346854,
+          "sha256": "bf8564bba8bb61ecab1b5ac5a39fe321c462962c4aab8ee208af59f4fac6cd01"
+        },
+        "DOM": {
+          "bytes": 204954,
+          "sha256": "ee8b1d3c5d5cc0c0c2ed24ac3a71f47ab321d7434d236d099bac3cab5b461c8e"
+        }
+      },
+      "B": {
+        "PNG": {
+          "bytes": 346854,
+          "sha256": "bf8564bba8bb61ecab1b5ac5a39fe321c462962c4aab8ee208af59f4fac6cd01"
+        },
+        "DOM": {
+          "bytes": 204954,
+          "sha256": "ee8b1d3c5d5cc0c0c2ed24ac3a71f47ab321d7434d236d099bac3cab5b461c8e"
+        }
+      }
+    }
+  },
+  "publicStockManifest": {
+    "bytes": 7825398,
+    "sha256": "b236988ee37f2fc59ab37f14e01d8cef2c042ab6de2253f68468e79e280ce4bf"
+  },
+  "outerMembers": [
+    "B-EXACT-NORMAL-GENERATED-NO-DEPLOY.zip",
+    "BROWSER.json",
+    "M-east-A-actual-east-dom.png",
+    "M-east-A-actual-east-raw.png",
+    "M-east-B-actual-east-dom.png",
+    "M-east-B-actual-east-raw.png",
+    "M-min-east-A-actual-east-dom.png",
+    "M-min-east-A-actual-east-raw.png",
+    "M-min-east-B-actual-east-dom.png",
+    "M-min-east-B-actual-east-raw.png",
+    "NATIVE-ROUTES.json",
+    "PC-east-A-actual-east-dom.png",
+    "PC-east-A-actual-east-raw.png",
+    "PC-east-B-actual-east-dom.png",
+    "PC-east-B-actual-east-raw.png",
+    "PC-neighbor-24-A-actual-east-dom.png",
+    "PC-neighbor-24-A-actual-east-raw.png",
+    "PC-neighbor-24-B-actual-east-dom.png",
+    "PC-neighbor-24-B-actual-east-raw.png",
+    "PC-west-A-actual-east-dom.png",
+    "PC-west-A-actual-east-raw.png",
+    "PC-west-B-actual-east-dom.png",
+    "PC-west-B-actual-east-raw.png",
+    "SEAL.json",
+    "SOURCE.json",
+    "build.log",
+    "http.log",
+    "npm-game.log",
+    "npm.log",
+    "production-contract.log",
+    "PC-neighbor-33-A-actual-east-dom.png",
+    "PC-neighbor-33-A-actual-east-raw.png",
+    "PC-neighbor-33-B-actual-east-dom.png",
+    "PC-neighbor-33-B-actual-east-raw.png",
+    "M-neighbor-33-A-actual-east-dom.png",
+    "M-neighbor-33-A-actual-east-raw.png",
+    "M-neighbor-33-B-actual-east-dom.png",
+    "M-neighbor-33-B-actual-east-raw.png"
+  ],
+  "innerPath": "B-EXACT-NORMAL-GENERATED-NO-DEPLOY.zip",
+  "sealPath": "SEAL.json",
+  "viewStages": {
+    "PC-east": 21,
+    "M-east": 21,
+    "M-min-east": 21,
+    "PC-west": 21,
+    "PC-neighbor-24": 24,
+    "PC-neighbor-33": 33,
+    "M-neighbor-33": 33
+  },
+  "viewPoses": {
+    "PC-east": {
+      "actual": {
+        "x": 6500,
+        "y": 2660,
+        "scale": 0.5
+      },
+      "viewport": {
+        "left": 5060,
+        "right": 7940,
+        "top": 1890.8125,
+        "bottom": 3429.1875
+      },
+      "backing": [
+        1440,
+        769
+      ]
+    },
+    "M-east": {
+      "actual": {
+        "x": 6500,
+        "y": 2660,
+        "scale": 0.5
+      },
+      "viewport": {
+        "left": 6110,
+        "right": 6890,
+        "top": 2012.390625,
+        "bottom": 3307.609375
+      },
+      "backing": [
+        390,
+        648
+      ]
+    },
+    "M-min-east": {
+      "actual": {
+        "x": 6720,
+        "y": 1600,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": 3320,
+        "right": 10120,
+        "top": -4045.8253205128203,
+        "bottom": 7245.82532051282
+      },
+      "backing": [
+        390,
+        648
+      ]
+    },
+    "PC-west": {
+      "actual": {
+        "x": -120,
+        "y": 3000,
+        "scale": 0.5
+      },
+      "viewport": {
+        "left": -1560,
+        "right": 1320,
+        "top": 2230.8125,
+        "bottom": 3769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ]
+    },
+    "PC-neighbor-24": null,
+    "PC-neighbor-33": {
+      "actual": {
+        "x": 7232,
+        "y": 2304,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": 3832,
+        "right": 10632,
+        "top": 487.8628472222222,
+        "bottom": 4120.137152777777
+      },
+      "backing": [
+        1440,
+        769
+      ]
+    },
+    "M-neighbor-33": {
+      "actual": {
+        "x": 7232,
+        "y": 2304,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": 3832,
+        "right": 10632,
+        "top": -3341.8253205128203,
+        "bottom": 7949.82532051282
+      },
+      "backing": [
+        390,
+        648
+      ]
+    }
+  },
+  "priorStage33": {
+    "stageMap": "web/data/chapter-33.80ca32475be181c7.json",
+    "stagePacket": "web/data/chapter-33-assets.920ccd84eb69a553.json",
+    "packetSHA256": "920ccd84eb69a5534b16e76ac27bb6df1d1c04fba0b2c5fff409057d6119d55b"
+  }
+}
