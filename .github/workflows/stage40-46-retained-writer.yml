@@ -1,0 +1,36 @@
+name: HONRO exact Stage40 and Stage46 retained writer (isolated)
+on:
+  push:
+    branches: [qa/stage40-46-retained-writer-eaf]
+    paths: [".github/workflows/stage40-46-retained-writer.yml", "tools/stage40-46-retained-writer/**"]
+permissions:
+  contents: write
+  actions: read
+jobs:
+  exact-retained-release-ref-only:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage40-46-retained-writer-eaf'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: true
+          fetch-depth: 0
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Verify approved exact union and move only authorized isolated release ref
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash tools/stage40-46-retained-writer/safe-push.sh
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage40-46-retained-release-receipt-no-deploy
+          path: |
+            ${{ runner.temp }}/honro-stage40-46-assembly/ASSEMBLY.json
+            ${{ runner.temp }}/honro-stage40-46-assembly/candidate.sha
+            ${{ runner.temp }}/honro-stage40-46-assembly/candidate.tree
+            ${{ runner.temp }}/honro-stage40-46-assembly/hook
+          if-no-files-found: warn
+          retention-days: 7

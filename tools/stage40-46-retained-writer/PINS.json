@@ -1,0 +1,342 @@
+{
+  "enabled": true,
+  "scopeApproval": true,
+  "destinationMustBeAtBase": true,
+  "repo": "sys8994/honro",
+  "qaRef": "refs/heads/qa/stage40-46-retained-writer-eaf",
+  "releaseRef": "refs/heads/release/stage40-46-native-snapshot-20261122",
+  "base": {
+    "head": "eaf774b42ec8211739d2594c729e0c91e1d55188",
+    "tree": "95a2afad79513f1d14fbde8be7cd8e84e76943f0",
+    "manifest": {
+      "bytes": 8863067,
+      "sha256": "099b62e020b1b2370d30e2e00be10c5c716f095d1e0b0c045af7b69ce619409b",
+      "git": "d0eeb2aa6964f2a1af8216cc70e4d230c106a539"
+    },
+    "pages": 45043111432,
+    "job": 137272222712,
+    "publishedAt": "2026-11-22T16:20:49.0073331Z",
+    "registry": 1521,
+    "active": 811,
+    "publishedGenerations": 51,
+    "retainerGit": "8374336b53c74ac81e6d32f5aa43eee575e61daa",
+    "policyGit": "16687b0fc38e432a7d66a015ddf3ebe744163a06"
+  },
+  "normalQA": {
+    "run": 45050925789,
+    "job": 137295638095,
+    "head": "1cf28f9afafa3eea5d4f730cc5f57c05eafef30b",
+    "tree": "3f53f985b4b24f19896477532d4a0cd7ba3cac7e",
+    "branch": "qa/stage40-46-snapshot-native-ab-eaf",
+    "artifact": 14765880974,
+    "artifactName": "honro-stage40-46-snapshot-native-exact-no-deploy",
+    "fact": {
+      "bytes": 17894133,
+      "sha256": "dfdc9e80c21ea5b3f38e933b7babeb86d612cf610ca439f7ce4a2e8be1cf5223"
+    },
+    "innerFact": {
+      "bytes": 2527956,
+      "sha256": "b9b47e01f38e8a88fe12aed1dcf415a6600d1eaea9c3145d27a884b1a4bd4815"
+    },
+    "members": [
+      "ACCEPTANCE.json",
+      "B-NATIVE-CLOSURE.json",
+      "B-NATIVE-CLOSURE.zip",
+      "BASE-AND-SOURCE.json",
+      "GRAPH-PRE.json",
+      "GRAPH.json",
+      "Mobile-11-A-RAW.png",
+      "Mobile-11-B-RAW.png",
+      "Mobile-40-A-RAW.png",
+      "Mobile-40-B-RAW.png",
+      "Mobile-46-A-RAW.png",
+      "Mobile-46-B-RAW.png",
+      "ORDERED.json",
+      "PC-11-A-RAW.png",
+      "PC-11-B-RAW.png",
+      "PC-40-A-RAW.png",
+      "PC-40-B-RAW.png",
+      "PC-46-A-RAW.png",
+      "PC-46-B-RAW.png",
+      "build.log",
+      "contract.log",
+      "http-B.log",
+      "http-A.log",
+      "npm-game.log",
+      "npm-root.log"
+    ],
+    "receipts": {
+      "BASE-AND-SOURCE.json": {
+        "bytes": 1232,
+        "sha256": "a67b5fbfcf9fc8fde182c16116bee6f262e8dbd42199a8170c0fc7c5cb24091e"
+      },
+      "ACCEPTANCE.json": {
+        "bytes": 101532,
+        "sha256": "bf60c5c4515ed14cc03bbe3bf9eb605a63aaa7ee949b63f8fa6c67bc981e2066"
+      },
+      "GRAPH.json": {
+        "bytes": 19498943,
+        "sha256": "eaee9c937751349c2da03ef598cf47c708e51b50021a441e6e14ce58a1da1d9e"
+      },
+      "ORDERED.json": {
+        "bytes": 1906,
+        "sha256": "c205868ab5aa0208df81fcf3ca4c5af73276d632aed0c325aecd3b5fcd904c75"
+      },
+      "B-NATIVE-CLOSURE.json": {
+        "bytes": 3803,
+        "sha256": "d02e9256f49b8fbf9543d3525f6544d0b316efd7ee6205b20bd7fe6fde5d5a0d"
+      }
+    },
+    "closedFiles": {
+      "HONRO.html": {
+        "bytes": 17379,
+        "sha256": "7316f28f1348dc3debb460e5ac9d07318268f80283e792c0f3e97c211ad3c48b",
+        "git": "b1dbe3dab4a5d8dccf19294f66e108bb56072573"
+      },
+      "HONRO_WORKSHOP.html": {
+        "bytes": 4011,
+        "sha256": "23c74fb0d6a23597624a855403007a6640dd6039e60d4cf23844140c8aad375c",
+        "git": "08a9b64b91022ad046037f14ff4f9f24ebd889b1"
+      },
+      "index.html": {
+        "bytes": 17379,
+        "sha256": "7316f28f1348dc3debb460e5ac9d07318268f80283e792c0f3e97c211ad3c48b",
+        "git": "b1dbe3dab4a5d8dccf19294f66e108bb56072573"
+      },
+      "shared/runtime/act4-campaign.js": {
+        "bytes": 11993,
+        "sha256": "0872a28ccc9cefa2dcd38231c643b4b2d7348e66877ae42deefa2efc255bf678",
+        "git": "fd42f23b3df045e857594df65945dd1ebf1fe9fe"
+      },
+      "shared/runtime/act5.js": {
+        "bytes": 29462,
+        "sha256": "5f8f334bc53b2c43918fa94aff6ee466783688874ef3bad72fe12aca80e9423b",
+        "git": "9ae8b29468f4485162686a87c9a353e3e1b6abae"
+      },
+      "shared/runtime/main.js": {
+        "bytes": 120557,
+        "sha256": "e81a9710a7772ad1cc02bd88dfe7a284c7e357bbaf832e929caa3507d2c62b84",
+        "git": "52512485e14c8b74b818e19de0ea9d65e4921db1"
+      },
+      "shared/runtime/story.js": {
+        "bytes": 24163,
+        "sha256": "2b8908a895a41f59b0ad224932fc5b5534689b404e394ac3739afd82145b0087",
+        "git": "ecb7cf1458667e07f76ae7978bc43e1daff376bb"
+      },
+      "web/entries/game.6c6702dd57c82b91.js": {
+        "bytes": 20483,
+        "sha256": "6c6702dd57c82b910e841be2e96290be508b43fad5da79f86f8a15fdaf910051",
+        "git": "bb2f41cd2d5cb33ef6788ea6f436ab41f2121f09"
+      },
+      "web/entries/game.a12f2a4b3d7cb7b3.html": {
+        "bytes": 11318,
+        "sha256": "a12f2a4b3d7cb7b33151b3a060c9ddf71f08a305f7df7b136227a6f57db742dc",
+        "git": "7e832e401ded8f23752dbbd6566d6699cac10a81"
+      },
+      "web/entries/workshop.43d5d7a4436e3f9f.js": {
+        "bytes": 16706,
+        "sha256": "43d5d7a4436e3f9fb45d79ba044dea9919acf2db7d548547ed7d33cecf8992f3",
+        "git": "2de66b1bc4f2a3f413f5c6e20b371f3d51b75fdf"
+      },
+      "web/manifest.json": {
+        "bytes": 8644945,
+        "sha256": "c7a4acba5f46b8aac948152bb78989c26f4c0f3c9c3b30f4430b3c1bf3ec30c9",
+        "git": "d7c35c93abb643f9fc8c03f7bee648a2a413d66a"
+      },
+      "web/runtime/ordered-common-11.9db56d8492f6eacd.js": {
+        "bytes": 168968,
+        "sha256": "9db56d8492f6eacd1693ecedb4fd4e5158c39ff2b421f76ce8de987ba1add7c6",
+        "git": "fea8371b4acc80294033c09601442acd1df82a9f"
+      },
+      "web/runtime/ordered-game-21.b4d5e3d58081b17b.js": {
+        "bytes": 83032,
+        "sha256": "b4d5e3d58081b17b0a31e915898ae5b05c9ab47de54f6f00a7fc4e916bd9baaa",
+        "git": "f6813b4e0419914a7999551e24670c1eb88997ba"
+      },
+      "web/runtime/ordered-game-23.3c2f2814ac8e909f.js": {
+        "bytes": 94935,
+        "sha256": "3c2f2814ac8e909fb223a215750b633b5b37528c70eab56c93d1a2ddcae8d2f4",
+        "git": "fe786e631aff8e014891bf4047bb78601710c79f"
+      },
+      "web/runtime/ordered-game-24.9c27c3490848f04f.js": {
+        "bytes": 174052,
+        "sha256": "9c27c3490848f04fe86a121a87347ae0a54f29b75e371e5ce74501e95b1c2407",
+        "git": "3a4403e94e4bdec58b1b826141a9d9f450976ee6"
+      }
+    },
+    "onlyError": "Error('Response.body: Protocol error (Network.getResponseBody): Request content was evicted from inspector cache\\nResponse body is not available for a response that was navigated away from. Read response.body() before triggering any navigation.')",
+    "workflow": ".github/workflows/stage40-46-snapshot-ab.yml",
+    "jobName": "paired-native"
+  },
+  "sources": {
+    "shared/runtime/main.js": {
+      "old": "c20dd602cd2c63e381080eab5738b0406d213f0a",
+      "new": "52512485e14c8b74b818e19de0ea9d65e4921db1",
+      "bytes": 120557,
+      "sha256": "e81a9710a7772ad1cc02bd88dfe7a284c7e357bbaf832e929caa3507d2c62b84"
+    },
+    "shared/runtime/act4-campaign.js": {
+      "old": "da571f577efa197eb2428de7788b949e9eff3cd8",
+      "new": "fd42f23b3df045e857594df65945dd1ebf1fe9fe",
+      "bytes": 11993,
+      "sha256": "0872a28ccc9cefa2dcd38231c643b4b2d7348e66877ae42deefa2efc255bf678"
+    },
+    "shared/runtime/act5.js": {
+      "old": "17ee9da9cd8b0e7288b58f722f66b82bbe1908d1",
+      "new": "9ae8b29468f4485162686a87c9a353e3e1b6abae",
+      "bytes": 29462,
+      "sha256": "5f8f334bc53b2c43918fa94aff6ee466783688874ef3bad72fe12aca80e9423b"
+    },
+    "shared/runtime/story.js": {
+      "old": "531ee576a56734f2ce5f247ffd92f7cd767fd7f1",
+      "new": "ecb7cf1458667e07f76ae7978bc43e1daff376bb",
+      "bytes": 24163,
+      "sha256": "2b8908a895a41f59b0ad224932fc5b5534689b404e394ac3739afd82145b0087"
+    }
+  },
+  "profileStoreExactGit": "c993e119fa10470fa99c6db9551e2fbef51c9819",
+  "closureContract": {
+    "stockActiveAliases": [
+      "web/entries/game.4917eb9b73cf92bc.html",
+      "web/entries/game.969dbb92d5cffa9f.js",
+      "web/entries/workshop.df845cc539c98ddd.js",
+      "web/runtime/ordered-common-11.6b1c56faa0f72077.js",
+      "web/runtime/ordered-game-21.0630b6fe5e221b9b.js",
+      "web/runtime/ordered-game-23.9ebc66541a8184b6.js",
+      "web/runtime/ordered-game-24.090164c3614e15db.js"
+    ],
+    "runtimeReplacementByStock": {
+      "web/runtime/ordered-game-23.9ebc66541a8184b6.js": null,
+      "web/runtime/ordered-game-24.090164c3614e15db.js": "web/runtime/ordered-game-24.9c27c3490848f04f.js",
+      "web/runtime/ordered-common-11.6b1c56faa0f72077.js": "web/runtime/ordered-common-11.9db56d8492f6eacd.js",
+      "web/runtime/ordered-game-21.0630b6fe5e221b9b.js": "web/runtime/ordered-game-21.b4d5e3d58081b17b.js"
+    },
+    "changedStableShells": [
+      "HONRO.html",
+      "HONRO_WORKSHOP.html",
+      "index.html"
+    ],
+    "outputCount": 15
+  },
+  "requiresIndependent": {
+    "40": {
+      "run": 45049667543,
+      "job": 137291786631,
+      "head": "501bb25b1df35a49dd4d9fd7c7d2c3d07b465b58",
+      "artifact": 14764563740,
+      "sha256": "54b5cf56c14652aaf00be7c4865d8d57daa3dc9c2a9bbb5d1aaa495a0d08a905",
+      "bytes": 13310291
+    },
+    "46": {
+      "run": 45049909436,
+      "job": 137292510956,
+      "head": "cfcf5b8eb969f1c57a39bfaa8781a637936a21fd",
+      "artifact": 14765252473,
+      "sha256": "457e617c2f5ca6193a010fdcbb54ead63f11e584fd1da83082062f64be054edc",
+      "bytes": 12362565
+    }
+  },
+  "expectedNormalManifest": {
+    "bytes": 8644945,
+    "sha256": "c7a4acba5f46b8aac948152bb78989c26f4c0f3c9c3b30f4430b3c1bf3ec30c9",
+    "git": "d7c35c93abb643f9fc8c03f7bee648a2a413d66a"
+  },
+  "expectedAliasPairs": {
+    "web/runtime/ordered-common-11.6b1c56faa0f72077.js": "web/runtime/ordered-common-11.9db56d8492f6eacd.js",
+    "web/runtime/ordered-game-21.0630b6fe5e221b9b.js": "web/runtime/ordered-game-21.b4d5e3d58081b17b.js",
+    "web/runtime/ordered-game-23.9ebc66541a8184b6.js": "web/runtime/ordered-game-23.3c2f2814ac8e909f.js",
+    "web/runtime/ordered-game-24.090164c3614e15db.js": "web/runtime/ordered-game-24.9c27c3490848f04f.js",
+    "web/entries/game.969dbb92d5cffa9f.js": "web/entries/game.6c6702dd57c82b91.js",
+    "web/entries/workshop.df845cc539c98ddd.js": "web/entries/workshop.43d5d7a4436e3f9f.js",
+    "web/entries/game.4917eb9b73cf92bc.html": "web/entries/game.a12f2a4b3d7cb7b3.html"
+  },
+  "reviewedFrames": {
+    "PC-40-B-RAW.png": {
+      "bytes": 1180846,
+      "sha256": "d1d694f1bd05aa9ddf37a02958227153fc2e88db518873b06d0d4de7c9968144"
+    },
+    "Mobile-40-B-RAW.png": {
+      "bytes": 303090,
+      "sha256": "fec45706b1759a6e1111d971577823fc7faaa8498cad582a8808e118732d34bd"
+    },
+    "PC-46-B-RAW.png": {
+      "bytes": 759294,
+      "sha256": "6272deb559ad79d1dfa2eddce8e9ff9b0413c8b09c8f05320a938e9abb1ae4dd"
+    },
+    "Mobile-46-B-RAW.png": {
+      "bytes": 249655,
+      "sha256": "aa680e4c5467f4342ebcb62269c75023022487fdedff7e5024c1f51fa227fd9d"
+    }
+  },
+  "expectedExpiry": [
+    "4b4e771e85e67a6b9aabd25b6f73e511946bc0f0"
+  ],
+  "expectedFinalGenerations": 51,
+  "expectedFinalRegistry": 1528,
+  "workshopQA": {
+    "run": 45052812967,
+    "job": 137301459993,
+    "head": "3abc90144e6d2e90c1fd38c9ee98d9c81b1d0907",
+    "tree": "614fbe66d62ff4caa78c75d0e3d9e000dd7b4e6d",
+    "branch": "qa/stage40-46-union-workshop-continuation-eaf-r3",
+    "artifact": 14765354570,
+    "artifactName": "honro-exact-no-rebuild-workshop-continuation",
+    "fact": {
+      "bytes": 7025486,
+      "sha256": "3213e86ec436ce527204f6302f4f4468be50a74bc059ff797df5b04825d83f9d"
+    },
+    "members": [
+      "ACCEPTANCE.json",
+      "B-NATIVE-CLOSURE.json",
+      "B-NATIVE-CLOSURE.zip",
+      "BASE-AND-SOURCE.json",
+      "CONTINUATION.json",
+      "GRAPH.json",
+      "PRIOR-R1-AUTHORITY.json",
+      "R1-RECOMPUTED.json",
+      "WORKSHOP-OBSERVED.json",
+      "http-A.log",
+      "http-B.log"
+    ],
+    "receipts": {
+      "ACCEPTANCE.json": {
+        "bytes": 105772,
+        "sha256": "5eccf7bc7109e97e1e3beee84237673689e16ae205f7a838af9b7b924ffcca6d"
+      },
+      "B-NATIVE-CLOSURE.json": {
+        "bytes": 3803,
+        "sha256": "d02e9256f49b8fbf9543d3525f6544d0b316efd7ee6205b20bd7fe6fde5d5a0d"
+      },
+      "B-NATIVE-CLOSURE.zip": {
+        "bytes": 2527956,
+        "sha256": "b9b47e01f38e8a88fe12aed1dcf415a6600d1eaea9c3145d27a884b1a4bd4815"
+      },
+      "BASE-AND-SOURCE.json": {
+        "bytes": 1232,
+        "sha256": "a67b5fbfcf9fc8fde182c16116bee6f262e8dbd42199a8170c0fc7c5cb24091e"
+      },
+      "CONTINUATION.json": {
+        "bytes": 3037,
+        "sha256": "2045500695527ce331c1a125cbaa77b629316327eff060e9555bf5755ac91a65"
+      },
+      "GRAPH.json": {
+        "bytes": 19498943,
+        "sha256": "eaee9c937751349c2da03ef598cf47c708e51b50021a441e6e14ce58a1da1d9e"
+      },
+      "PRIOR-R1-AUTHORITY.json": {
+        "bytes": 554,
+        "sha256": "23c68c02c34ecd3f49d132512a561871d416d917d7a61188cb7c39eee9bc4f83"
+      },
+      "R1-RECOMPUTED.json": {
+        "bytes": 4069,
+        "sha256": "bd96b99f7059bc15d8002cfa96719ceccce35b44f855fadaf726cdba8f53224f"
+      },
+      "WORKSHOP-OBSERVED.json": {
+        "bytes": 1955,
+        "sha256": "a8d6007a967867ba788061027d6652678a0cdba29dcd2f4177e1674691a8a529"
+      }
+    },
+    "workflow": ".github/workflows/stage40-46-workshop-continuation.yml",
+    "jobName": "workshop-only"
+  }
+}
