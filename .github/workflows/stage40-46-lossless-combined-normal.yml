@@ -1,0 +1,76 @@
+name: HONRO Stage40 and Stage46 combined lossless normal QA only
+on:
+  push:
+    branches: [qa/stage40-46-lossless-combined-normal-733]
+    paths: [".github/workflows/stage40-46-lossless-combined-normal.yml", "tools/stage40-46-combined-normal/**"]
+permissions:
+  contents: read
+jobs:
+  combined-normal:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage40-46-lossless-combined-normal-733'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 32
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+          fetch-depth: 2
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Pristine A and one seven-source normal B build
+        run: |
+          set -euo pipefail
+          W=$(mktemp -d "$RUNNER_TEMP/stage40-46-combined.XXXXXX"); echo "W=$W" >> "$GITHUB_ENV"
+          T="$GITHUB_WORKSPACE/tools/stage40-46-combined-normal"; mkdir "$W/out"
+          python "$T/guard.py" pre "$W"
+          cd "$W/B"
+          npm ci > "$W/out/npm-root.log" 2>&1
+          npm ci --prefix game > "$W/out/npm-game.log" 2>&1
+          npm run build > "$W/out/build.log" 2>&1
+          npm run test:production-contract > "$W/out/contract.log" 2>&1
+          python "$T/guard.py" built "$W"
+      - name: Actual independent PC and mobile Stage40 and Stage46 frozen RAW and DOM
+        run: |
+          set -euo pipefail
+          T="$GITHUB_WORKSPACE/tools/stage40-46-combined-normal"
+          python -m venv "$W/venv"; V="$W/venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+          python -m http.server 18961 --bind 127.0.0.1 --directory "$W/A" > "$W/out/http-A.log" 2>&1 & a=$!
+          python -m http.server 18962 --bind 127.0.0.1 --directory "$W/B" > "$W/out/http-B.log" 2>&1 & b=$!
+          trap 'kill "$a" "$b" 2>/dev/null || true' EXIT
+          for p in 18961 18962; do curl -fsS --retry 8 --retry-connrefused "http://127.0.0.1:$p/HONRO.html" -o /dev/null; done
+          rc=0
+          "$V" "$T/capture40.py" "$W" || rc=1
+          "$V" "$T/capture46.py" "$W" || rc=1
+          test "$rc" = 0
+      - name: Stage40 and Stage46 archived frame guards and candidate custody
+        if: success()
+        run: python3 "$GITHUB_WORKSPACE/tools/stage40-46-combined-normal/guard.py" seal "$W"
+      - if: always() && env.W != ''
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-combined-733-stage40-normal-native
+          path: ${{ env.W }}/out/stage40/
+          retention-days: 7
+          if-no-files-found: warn
+      - if: always() && env.W != ''
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-combined-733-stage46-normal-native
+          path: ${{ env.W }}/out/stage46/
+          retention-days: 7
+          if-no-files-found: warn
+      - if: always() && env.W != ''
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-combined-733-source-and-compiled-custody-no-deploy
+          path: |
+            ${{ env.W }}/out/*.json
+            ${{ env.W }}/out/*.zip
+            ${{ env.W }}/out/*.log
+          retention-days: 7
+          if-no-files-found: warn
