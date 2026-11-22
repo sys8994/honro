@@ -1,0 +1,96 @@
+{
+  "enabled": true,
+  "qaRef": "refs/heads/qa/stage26-east-stump-onebuild-e45d6f2-r2",
+  "release": {
+    "head": "e45d6f2a47e5e37c2ed67edc5e22cd816d030b93",
+    "tree": "ace31afaebe7f4750990037f3bb0e795a829e8fd",
+    "manifest": {
+      "bytes": 7316867,
+      "sha256": "5fc911459a28f04908ff987be070231d12692b2ad3599f14066d075cb89364cb"
+    },
+    "manifestGit": "a7136299117789999679983d063171e34d91e47e",
+    "pages": {
+      "branch": "master",
+      "head": "e45d6f2a47e5e37c2ed67edc5e22cd816d030b93",
+      "conclusion": "success",
+      "job": 137164811320,
+      "run": 45008207735,
+      "publishedAt": "2026-11-22T09:36:32Z"
+    }
+  },
+  "source": "shared/assets/environment/act3-handoff/stage26-kiln-foundation.json",
+  "stock": {
+    "bytes": 411939,
+    "sha256": "7c3eeeafee0ad6d0ca208ee175879a73e510b8f29d5a9f7c8d226518c07b90f1",
+    "git": "9ef0fa44bce003d7a82f0931fa4b3091a647e57e"
+  },
+  "candidate": {
+    "bytes": 410150,
+    "sha256": "cbf42da60cb9de423aa37f5847fb935e83cfd6ad2605fe3f92c9e8a591b99294",
+    "git": "e476eb62be1a9bf7314d984bbc6b9607f6f09752"
+  },
+  "optimizer": "shared/data/terrain-path-optimization.json",
+  "optimizerGitA": "1baa483bec04bc905d419cd36dbe803335a7e037",
+  "vectorA": "ec3d87c66c9699df238862eb08900cc0055a373dd7000a76725a81c02cbd485d",
+  "vectorB": "9c978dd458517748e67b60eca1f36efd19d89ada98951c5f6ded2b49aa096c0f",
+  "assetID": "act3-handoff:26:kiln-foundation",
+  "clipOffset": [
+    11667,
+    13469
+  ],
+  "map": "web/data/chapter-26.cc8e0e37503433b3.json",
+  "packetA": "web/data/chapter-26-assets.d511268fb4869e94.json",
+  "views": [
+    {
+      "key": "PC",
+      "dims": [
+        1440,
+        900
+      ],
+      "actual": {
+        "x": 7000,
+        "y": 2600,
+        "scale": 0.5
+      },
+      "viewport": {
+        "left": 5560,
+        "right": 8440,
+        "top": 1830.8125,
+        "bottom": 3369.1875
+      },
+      "backing": [
+        1440,
+        769
+      ]
+    },
+    {
+      "key": "M",
+      "dims": [
+        390,
+        844
+      ],
+      "actual": {
+        "x": 6550,
+        "y": 2600,
+        "scale": 0.5
+      },
+      "viewport": {
+        "left": 6160,
+        "right": 6940,
+        "top": 1952.390625,
+        "bottom": 3247.609375
+      },
+      "backing": [
+        390,
+        648
+      ]
+    }
+  ],
+  "worldWindow": [
+    6620,
+    2240,
+    6747,
+    2319
+  ],
+  "walkRimY": 2250
+}
