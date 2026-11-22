@@ -1,0 +1,55 @@
+{
+  "base": "342a7aa03f7244db9663315ceac596f307dac06e",
+  "branch": "qa/stage44-west-depth-save-safe-342a-r2",
+  "scope": "add-only isolated one normal B source build, no Pages",
+  "stock": {
+    "manifestGit": "a6b659e6dba284a924deb2cdbac2681685418421",
+    "shellGit": "ca8ce533c3a6214c53d954c5cb2ebd55a2da53d3",
+    "authorGit": "0e2870752f8f553ae6333061e3b80f851a9179ae",
+    "edgeGit": "461571b0d86e63ad1fee411d8c2cb34382d150a7",
+    "mapGit": "c60a466ccb0fefacdb1dd19694b0e0b5c58f3fa9",
+    "packetGit": "c4d2748a6857a95bcfff0b589963ca66bb675f73",
+    "retentionGit": "16687b0fc38e432a7d66a015ddf3ebe744163a06",
+    "encoding": "json",
+    "campaign": "web/data/campaign.0386fa9451fe2427.json",
+    "act5Common": "web/runtime/ordered-common-18.36769610bbdbcea8.js",
+    "s44Map": "web/data/chapter-44.48354b7c0547c1a7.json",
+    "s44Packet": "web/data/chapter-44-assets.ddddc05a5f764d6e.json",
+    "s42Map": "web/data/chapter-42.0802015e8ba99d11.json",
+    "s42Packet": "web/data/chapter-42-assets.396ec98508d5b8c8.json",
+    "baseTree": "2e2ca3058bb2b4b4528b5e46394fcf30d55c8f32",
+    "buildGit": "a5ac12ef4de8b2370fcbca1457b86a0c6e2d758c",
+    "profileGit": "da6b816f36a786a8e8c4a0e7671b2b77fc9e30e9",
+    "sharedRegistry": "web/runtime/ordered-common-12.8f69d8c7c4cc0d42.js",
+    "sharedRegistryGit": "4a62520a42e58ef0314c0ecd5eed85ef5d7d8802",
+    "packetSha": "ddddc05a5f764d6eee5e48602718f31a89008cc377ff188d6c3aa4b3a4cf1cdb",
+    "rootSignature": "3323278:8ab035ae"
+  },
+  "new": {
+    "sourceAssetSHA256": "b02351a31bd52d1900a68fbbf03b2b829aeacd5ac0bae1b4b198fc18e4cbf035",
+    "helperSHA256": "900da1067cede5815707fe10dabf4e518e258574b8adaeabac16abfd4e054462",
+    "sourceGit": {
+      "shared/assets/environment/act5/stage44-west-depth-r9.json": "6251ec3e9140633608ed7af21426cab4620374eb",
+      "shared/build.mjs": "5977831faadb036c2b29772381a5f41eb9b042a1",
+      "shared/runtime/act5-edge-art.js": "41b5948595537ef5477a545340e90dd934491a6c"
+    }
+  },
+  "carrierPaths": [
+    ".github/workflows/stage44-west-depth-r9.yml",
+    "tools/stage44-west-depth/PINS.json",
+    "tools/stage44-west-depth/adapter.js",
+    "tools/stage44-west-depth/asset.json",
+    "tools/stage44-west-depth/author.mjs",
+    "tools/stage44-west-depth/capture.py",
+    "tools/stage44-west-depth/guard.py",
+    "tools/stage44-west-depth/observer.json",
+    "tools/stage44-west-depth/save_fixture.py"
+  ],
+  "publicStock": {
+    "exactExpectedHead": "342a7aa03f7244db9663315ceac596f307dac06e",
+    "pagesRun": 45027512069,
+    "deployJob": 137224104334,
+    "deployTimeUTC": "2026-11-22T13:28:57Z",
+    "independentActualReadbackRequiredBeforeRemote": true
+  }
+}
