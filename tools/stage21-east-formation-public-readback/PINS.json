@@ -1,0 +1,117 @@
+{
+  "enabled": true,
+  "release": {
+    "head": "733d5d212d5ab235c2b492e1f065306bdfaae317",
+    "tree": "276e54e1ca08d32d3b290097c9a05e91e9ab0ecd",
+    "manifest": {
+      "bytes": 7994676,
+      "sha256": "8d6f1debdb956b1f2c92c8a6808707aab7e1db98ddbfbc9ce2ffbffaed9322d1"
+    },
+    "pages": {
+      "head": "733d5d212d5ab235c2b492e1f065306bdfaae317",
+      "branch": "master",
+      "conclusion": "success",
+      "run": 45023608854,
+      "job": 137212114253,
+      "publishedAt": "2026-11-22T12:43:41Z"
+    }
+  },
+  "qaRef": "refs/heads/qa/stage21-east-formation-public-readback",
+  "normal": {
+    "run": 45022585347,
+    "job": 137208552594,
+    "head": "366e07ae971bc0eef791b8af8aa870c82311ed07",
+    "tree": "229221eb2fca5673bd0e4856557263a2433a073c",
+    "artifact": 14754089565
+  },
+  "route": {
+    "HONRO.html": {
+      "bytes": 17379,
+      "sha256": "25d0b3c1f374f73844f11471012cd5db0e9daf7642bf9b0b30fb11cbb29f6d0f"
+    },
+    "web/data/campaign.0386fa9451fe2427.json": {
+      "bytes": 55011,
+      "sha256": "0386fa9451fe2427918ea68e927ccb0cb7a1cffc547ab0a63a164c74d785e57e"
+    },
+    "web/data/chapter-21-assets.195e73632de8b164.json": {
+      "bytes": 688805,
+      "sha256": "195e73632de8b16431e39ac63f87eed9ad1ea538a47dcc0d980e4a0e1c624e67"
+    },
+    "web/data/chapter-21.724a765a85d437a2.json": {
+      "bytes": 67494,
+      "sha256": "724a765a85d437a24ea9437ba300f5602282abda9ecbd190074a7d25b8b1c51b"
+    },
+    "web/entries/game.562d9dddf1932b73.js": {
+      "bytes": 20483,
+      "sha256": "562d9dddf1932b73f674146e1d3002f6ace3c72786872a675394ca2a528b5487"
+    },
+    "web/runtime/campaign.4375d13445105188.js": {
+      "bytes": 527,
+      "sha256": "4375d1344510518805bf77c0783efb6d8b5dad67b60e3a4e64d62d6d03f71b91"
+    },
+    "web/runtime/ordered-common-17.93673f3a14672979.js": {
+      "bytes": 133947,
+      "sha256": "93673f3a14672979e0eba1263860c3e7ee0fc61cd88022d8d5d4a77994bdbfe0"
+    }
+  },
+  "cameras": [
+    {
+      "key": "PC-east",
+      "dims": [
+        1440,
+        900
+      ],
+      "actual": {
+        "x": 6500,
+        "y": 2660,
+        "scale": 0.5
+      },
+      "viewport": {
+        "left": 5060,
+        "right": 7940,
+        "top": 1890.8125,
+        "bottom": 3429.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "expectedBPNG": {
+        "bytes": 447783,
+        "sha256": "2d7edd852514a08fba9fadae6c64d461aa6fd825bd406cc3204d1eb3582f72be"
+      }
+    },
+    {
+      "key": "M-east",
+      "dims": [
+        390,
+        844
+      ],
+      "actual": {
+        "x": 6500,
+        "y": 2660,
+        "scale": 0.5
+      },
+      "viewport": {
+        "left": 6110,
+        "right": 6890,
+        "top": 2012.390625,
+        "bottom": 3307.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "expectedBPNG": {
+        "bytes": 102204,
+        "sha256": "418398a09768bf1baa47c43697be287021ebbb40479fcdca613303da063115d9"
+      }
+    }
+  ],
+  "reviewedRuntime": "web/runtime/ordered-common-17.93673f3a14672979.js",
+  "gameEntry": "web/entries/game.562d9dddf1932b73.js",
+  "wrapper": "web/runtime/campaign.4375d13445105188.js",
+  "campaign": "web/data/campaign.0386fa9451fe2427.json",
+  "map": "web/data/chapter-21.724a765a85d437a2.json",
+  "packet": "web/data/chapter-21-assets.195e73632de8b164.json"
+}
