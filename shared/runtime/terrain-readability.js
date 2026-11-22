@@ -26,10 +26,15 @@ function prepare(b){const ts=G.HonroTerrainDomain?.render(b)||b.terrain||[],prio
       b.honroMapOrigin==='campaign'&&b.honroAuthoredId==='stage-7'&&
       t.id==='root-floor'&&t.honroAct1SitePainted===true&&t.route===true&&
       ((ny>0&&a.y===5069.18&&z.y===5069.18&&Math.min(a.x,z.x)===-1200&&Math.max(a.x,z.x)===5732.24)||(a.x===-1200&&z.x===-1200&&a.y===5069.18&&z.y===3101.83)))continue;
+   // Stage 7 east: preserve the real side rim through the authored mirrored wing (1063*3.13), not its hanging collision closure.
+   const east7Ink=!walkable&&b.honroStage===7&&b.honroCanonical===true&&b.honroCustom===false&&
+      b.honroMapOrigin==='campaign'&&b.honroAuthoredId==='stage-7'&&t.id==='root-floor'&&
+      t.honroAct1SitePainted===true&&t.route===true&&t.oneWay===false&&
+      a.x===5732.24&&z.x===5732.24&&a.y===2766.92&&z.y===5069.18;
    const left=Math.min(a.x,z.x),right=Math.max(a.x,z.x),low=Math.min(a.y,z.y),high=Math.max(a.y,z.y),peers=solids.filter(o=>o.t!==t&&!o.t.oneWay&&o.t.x<=right+1&&o.t.x+o.t.w>=left-1&&o.t.y<=high+1&&o.t.y+o.t.h>=low-1),cuts=[0,1];
    for(const o of peers)for(let j=0;j<o.ps.length;j++)cutAt(a,z,o.ps[j],o.ps[(j+1)%o.ps.length],cuts);cuts.sort((a,z)=>a-z);
    for(let k=1;k<cuts.length;k++){const start=cuts[k-1],end=cuts[k];if((end-start)*len<.05)continue;const mid=(start+end)/2;if(peers.some(o=>inside(a.x+dx*mid+nx*.6,a.y+dy*mid+ny*.6,o.ps)))continue;
-    const p={x:a.x+dx*start,y:a.y+dy*start},q={x:a.x+dx*end,y:a.y+dy*end};edge.moveTo(p.x,p.y);edge.lineTo(q.x,q.y);const walkRim=walkable&&(G.HonroStage11LandscapeArt?.walkRim?.(t,b,p,q)??true);if(walkRim){top.moveTo(p.x,p.y);top.lineTo(q.x,q.y);}segments.push({a:p,z:q,walkable});
+    const p={x:a.x+dx*start,y:a.y+dy*start},q={x:a.x+dx*end,y:a.y+dy*end};if(!east7Ink||p.y<3330){edge.moveTo(p.x,p.y);edge.lineTo(q.x,east7Ink?Math.min(q.y,3330):q.y);}const walkRim=walkable&&(G.HonroStage11LandscapeArt?.walkRim?.(t,b,p,q)??true);if(walkRim){top.moveTo(p.x,p.y);top.lineTo(q.x,q.y);}segments.push({a:p,z:q,walkable});
    }
   }
   if(segments.length)groups.push({id:t.id,wood:t.mat==='wood',edge,top,segments,bounds:{left:t.x,top:t.y,right:t.x+t.w,bottom:t.y+t.h}});
