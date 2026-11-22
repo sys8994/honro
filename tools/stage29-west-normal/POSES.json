@@ -1,0 +1,418 @@
+{
+  "archive": 44938313099,
+  "receiptSHA256": "39bb18396174a956c2f2b1a81181a63d6a6e0a270c3f93393c20d1cca0045a8a",
+  "poses": {
+    "1440x900": {
+      "west": {
+        "name": "west",
+        "desired": {
+          "x": -1000000,
+          "y": 1750,
+          "scale": 0.21176470588235294
+        },
+        "actual": {
+          "x": -320,
+          "y": 1750,
+          "scale": 0.21176470588235294
+        },
+        "viewport": {
+          "left": -3720,
+          "right": 3080,
+          "top": -66.13715277777783,
+          "bottom": 3566.137152777778
+        },
+        "play": {
+          "left": 0,
+          "top": 0,
+          "right": 7200,
+          "bottom": 3500
+        },
+        "terrain": {
+          "left": -6000,
+          "top": -24000,
+          "right": 13200,
+          "bottom": 27500
+        },
+        "focus": {
+          "left": -320,
+          "top": -1800,
+          "right": 7520,
+          "bottom": 3740
+        },
+        "visual": {
+          "left": -3960,
+          "right": 11160,
+          "top": -3856.137152777778,
+          "bottom": 5796.137152777777
+        },
+        "zoom": {
+          "min": 0.21176470588235294,
+          "max": 1.65,
+          "tactical": 0.21176470588235294,
+          "readability": 0.056818181818181816
+        },
+        "limits": {
+          "west": -320,
+          "east": 7520,
+          "north": -1800,
+          "south": 3740
+        },
+        "centered": {
+          "x": 3600,
+          "y": 1750,
+          "scale": 0.21176470588235294
+        },
+        "containment": null,
+        "css": [
+          1440,
+          769.1875
+        ],
+        "backing": [
+          1440,
+          769
+        ],
+        "dpr": 1,
+        "phase": "aim",
+        "round": 1,
+        "sceneTime": 2,
+        "tide": null,
+        "physics": "4331563bed6cefc825ca1d72de5aaefbb3ced53b9a1b76352ec17122c6007abb",
+        "actualTerrainIDs": [
+          "a3-foundation",
+          "r29-record-vault",
+          "old-door",
+          "r29-upper-ascent",
+          "r29-high-road",
+          "r29-inspection-roof",
+          "r29-inspection-deck",
+          "r29-low-screen",
+          "stage29-fallen-door",
+          "stage29-fallen-stone"
+        ],
+        "actualDrawOwnerIDs": [
+          "act3-handoff:29:west-bank",
+          "stage29:record-actual-stone-faces",
+          "stage29:record-archive-eaves",
+          "stage29:record-far-river-bank",
+          "stage29:record-inspection-eaves",
+          "stage29:record-keeper-hut",
+          "stage29:record-letter-room",
+          "stage29:record-rear-retaining-work",
+          "stage29:record-sluice-bearing",
+          "stage29:record-upper-rear-rail"
+        ],
+        "unitCount": 36,
+        "declaredMissing": [],
+        "rawSHA256": "eeb6a72a01edfb22d376499843a12a66891341e332dd914f9193dc4636c06c69"
+      },
+      "west-near": {
+        "name": "west-near",
+        "desired": {
+          "x": -120,
+          "y": 2960,
+          "scale": 0.5
+        },
+        "actual": {
+          "x": -120,
+          "y": 2960,
+          "scale": 0.5
+        },
+        "viewport": {
+          "left": -1560,
+          "right": 1320,
+          "top": 2190.8125,
+          "bottom": 3729.1875
+        },
+        "play": {
+          "left": 0,
+          "top": 0,
+          "right": 7200,
+          "bottom": 3500
+        },
+        "terrain": {
+          "left": -6000,
+          "top": -24000,
+          "right": 13200,
+          "bottom": 27500
+        },
+        "focus": {
+          "left": -320,
+          "top": -1800,
+          "right": 7520,
+          "bottom": 3740
+        },
+        "visual": {
+          "left": -3960,
+          "right": 11160,
+          "top": -3856.137152777778,
+          "bottom": 5796.137152777777
+        },
+        "zoom": {
+          "min": 0.21176470588235294,
+          "max": 1.65,
+          "tactical": 0.21176470588235294,
+          "readability": 0.056818181818181816
+        },
+        "limits": {
+          "west": -320,
+          "east": 7520,
+          "north": -1800,
+          "south": 3740
+        },
+        "centered": {
+          "x": 3600,
+          "y": 1750,
+          "scale": 0.21176470588235294
+        },
+        "containment": null,
+        "css": [
+          1440,
+          769.1875
+        ],
+        "backing": [
+          1440,
+          769
+        ],
+        "dpr": 1,
+        "phase": "aim",
+        "round": 1,
+        "sceneTime": 2,
+        "tide": null,
+        "physics": "4331563bed6cefc825ca1d72de5aaefbb3ced53b9a1b76352ec17122c6007abb",
+        "actualTerrainIDs": [
+          "a3-foundation",
+          "r29-record-vault",
+          "old-door",
+          "r29-upper-ascent",
+          "r29-high-road",
+          "r29-inspection-roof",
+          "r29-inspection-deck",
+          "r29-low-screen",
+          "stage29-fallen-door",
+          "stage29-fallen-stone"
+        ],
+        "actualDrawOwnerIDs": [
+          "act3-handoff:29:west-bank",
+          "stage29:record-actual-stone-faces",
+          "stage29:record-archive-eaves",
+          "stage29:record-far-river-bank",
+          "stage29:record-inspection-eaves",
+          "stage29:record-keeper-hut",
+          "stage29:record-letter-room",
+          "stage29:record-rear-retaining-work",
+          "stage29:record-sluice-bearing",
+          "stage29:record-upper-rear-rail"
+        ],
+        "unitCount": 36,
+        "declaredMissing": [],
+        "rawSHA256": "644e5b60cbcc3a35f0fc026e41d2986201083f7311534348333e3acfa63a8ea5"
+      }
+    },
+    "390x844": {
+      "west": {
+        "name": "west",
+        "desired": {
+          "x": -1000000,
+          "y": 1750,
+          "scale": 0.057352941176470586
+        },
+        "actual": {
+          "x": -320,
+          "y": 1750,
+          "scale": 0.057352941176470586
+        },
+        "viewport": {
+          "left": -3720,
+          "right": 3080,
+          "top": -3895.8253205128203,
+          "bottom": 7395.82532051282
+        },
+        "play": {
+          "left": 0,
+          "top": 0,
+          "right": 7200,
+          "bottom": 3500
+        },
+        "terrain": {
+          "left": -6000,
+          "top": -24000,
+          "right": 13200,
+          "bottom": 27500
+        },
+        "focus": {
+          "left": -320,
+          "top": -1800,
+          "right": 7520,
+          "bottom": 3740
+        },
+        "visual": {
+          "left": -3960,
+          "right": 11160,
+          "top": -7685.82532051282,
+          "bottom": 9625.82532051282
+        },
+        "zoom": {
+          "min": 0.057352941176470586,
+          "max": 1.65,
+          "tactical": 0.057352941176470586,
+          "readability": 0.056818181818181816
+        },
+        "limits": {
+          "west": -320,
+          "east": 7520,
+          "north": -1800,
+          "south": 3740
+        },
+        "centered": {
+          "x": 3600,
+          "y": 1750,
+          "scale": 0.057352941176470586
+        },
+        "containment": null,
+        "css": [
+          390,
+          647.609375
+        ],
+        "backing": [
+          390,
+          648
+        ],
+        "dpr": 1,
+        "phase": "aim",
+        "round": 1,
+        "sceneTime": 2,
+        "tide": null,
+        "physics": "4331563bed6cefc825ca1d72de5aaefbb3ced53b9a1b76352ec17122c6007abb",
+        "actualTerrainIDs": [
+          "a3-foundation",
+          "r29-record-vault",
+          "old-door",
+          "r29-upper-ascent",
+          "r29-high-road",
+          "r29-inspection-roof",
+          "r29-inspection-deck",
+          "r29-low-screen",
+          "stage29-fallen-door",
+          "stage29-fallen-stone"
+        ],
+        "actualDrawOwnerIDs": [
+          "act3-handoff:29:west-bank",
+          "stage29:record-actual-stone-faces",
+          "stage29:record-archive-eaves",
+          "stage29:record-far-river-bank",
+          "stage29:record-inspection-eaves",
+          "stage29:record-keeper-hut",
+          "stage29:record-letter-room",
+          "stage29:record-rear-retaining-work",
+          "stage29:record-sluice-bearing",
+          "stage29:record-upper-rear-rail"
+        ],
+        "unitCount": 36,
+        "declaredMissing": [],
+        "rawSHA256": "f68a271ef0e9c6ffe510fe93b3bc87e92fa59d99de1ecfd2116a1dec3fa3189d"
+      },
+      "west-near": {
+        "name": "west-near",
+        "desired": {
+          "x": -120,
+          "y": 2960,
+          "scale": 0.5
+        },
+        "actual": {
+          "x": -120,
+          "y": 2960,
+          "scale": 0.5
+        },
+        "viewport": {
+          "left": -510,
+          "right": 270,
+          "top": 2312.390625,
+          "bottom": 3607.609375
+        },
+        "play": {
+          "left": 0,
+          "top": 0,
+          "right": 7200,
+          "bottom": 3500
+        },
+        "terrain": {
+          "left": -6000,
+          "top": -24000,
+          "right": 13200,
+          "bottom": 27500
+        },
+        "focus": {
+          "left": -320,
+          "top": -1800,
+          "right": 7520,
+          "bottom": 3740
+        },
+        "visual": {
+          "left": -3960,
+          "right": 11160,
+          "top": -7685.82532051282,
+          "bottom": 9625.82532051282
+        },
+        "zoom": {
+          "min": 0.057352941176470586,
+          "max": 1.65,
+          "tactical": 0.057352941176470586,
+          "readability": 0.056818181818181816
+        },
+        "limits": {
+          "west": -320,
+          "east": 7520,
+          "north": -1800,
+          "south": 3740
+        },
+        "centered": {
+          "x": 3600,
+          "y": 1750,
+          "scale": 0.057352941176470586
+        },
+        "containment": null,
+        "css": [
+          390,
+          647.609375
+        ],
+        "backing": [
+          390,
+          648
+        ],
+        "dpr": 1,
+        "phase": "aim",
+        "round": 1,
+        "sceneTime": 2,
+        "tide": null,
+        "physics": "4331563bed6cefc825ca1d72de5aaefbb3ced53b9a1b76352ec17122c6007abb",
+        "actualTerrainIDs": [
+          "a3-foundation",
+          "r29-record-vault",
+          "old-door",
+          "r29-upper-ascent",
+          "r29-high-road",
+          "r29-inspection-roof",
+          "r29-inspection-deck",
+          "r29-low-screen",
+          "stage29-fallen-door",
+          "stage29-fallen-stone"
+        ],
+        "actualDrawOwnerIDs": [
+          "act3-handoff:29:west-bank",
+          "stage29:record-actual-stone-faces",
+          "stage29:record-archive-eaves",
+          "stage29:record-far-river-bank",
+          "stage29:record-inspection-eaves",
+          "stage29:record-keeper-hut",
+          "stage29:record-letter-room",
+          "stage29:record-rear-retaining-work",
+          "stage29:record-sluice-bearing",
+          "stage29:record-upper-rear-rail"
+        ],
+        "unitCount": 36,
+        "declaredMissing": [],
+        "rawSHA256": "4a5edc21054a1c79676bf1ea8e61ed1d34bd8d8f9c8ecb9c9d331333bc896fa2"
+      }
+    }
+  }
+}
