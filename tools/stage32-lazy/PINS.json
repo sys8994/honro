@@ -1,0 +1,15 @@
+{
+  "enabled": true,
+  "qaRef": "refs/heads/qa/stage32-exact-legacy-lazy-342a7aa",
+  "parent": "342a7aa03f7244db9663315ceac596f307dac06e",
+  "tree": "2e2ca3058bb2b4b4528b5e46394fcf30d55c8f32",
+  "manifestGit": "a6b659e6dba284a924deb2cdbac2681685418421",
+  "stage33HotfixSourceGit": "a5ac12ef4de8b2370fcbca1457b86a0c6e2d758c",
+  "map": "web/data/chapter-32.f242630da616ee32.json",
+  "stock": {"bytes":7999429,"sha256":"2284a6f93dd40057de7fba48828c579676976f831074190462b9a5035ef0568f"},
+  "active": {"bytes":4779955,"sha256":"58cf26e9d2659cfb3ce0aff4d87c9c3085da6aea650bf0e84a31375eed67b0aa"},
+  "archive": {"bytes":3219476,"sha256":"ee7846c92c4edcac5f88771849e89c896a5c6906b0b8c10fb90cdca1d5b1061d"},
+  "testedLosslessRefs": {"approved32:body":"1952606:e60eb3e5","approved32:wood-door-extract":"423282:b2c53b27","act4-handoff:32:body":"843583:aede1464"},
+  "notR10": true,
+  "publicationAuthority": {"pagesRun":45027512069,"publicReadbackRun":45027766739,"source":"342a7aa03f7244db9663315ceac596f307dac06e"}
+}
