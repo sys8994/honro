@@ -1,0 +1,485 @@
+{
+  "enabled": true,
+  "release": {
+    "head": "bed947dc0a56be8ac0215cb5a2dde75f0408df04",
+    "tree": "406bb0e70a369b73e4323ab081ffa5d499a2b21a",
+    "pagesRun": 44972552774,
+    "pagesJob": 137055667060,
+    "publishedAt": "2026-11-22T01:42:39Z",
+    "manifest": {
+      "bytes": 7138789,
+      "sha256": "119867dc4208d98efd39e35c4f8c4040b915d2626967b91699d2a801fef1c664",
+      "git": "80f86e879c1f6c7fc74b3735b459b9a1517d7815"
+    }
+  },
+  "priorRelease": "4fdb1b182b308f4b0ed4a5dbad0591e28aac207d",
+  "priorTree": "7a358923f82235759229bc2622783755c1d483f6",
+  "qa": {
+    "run": 44971467491,
+    "job": 137051975341,
+    "branch": "qa/stage17-rebind-stage33",
+    "head": "dab296a1b5339edd66573e1fc759d16a4f3b668f",
+    "normalPayloadArtifact": 14733429381,
+    "normalArchiveSHA256": "127df2fde9a06b5004034f914bbfcd63b2519d1608527ba069c7aa87c9c76806",
+    "nativeArtifact": 14733529127,
+    "nativeArchiveSHA256": "1450446087cb50ccb7bc621fab8e60239ec9a167f7fb63899928f2859b801f25",
+    "nativeReceiptSHA256": "cd4a76f35af6fa6fb1bbf270774875ba6efde6f7a6e524e61e8c824fc3698f48",
+    "normalReceiptSHA256": "bca5a7ca42731e452695beeaa1715621389c21914dc8fadc0683c8e36d370fb4",
+    "normalGraph": "a5120b3d56783733821ff986eda7e83183a9a1e5c9a786abb54af5a70d4286e6"
+  },
+  "authorSource": {
+    "path": "shared/data/act2/stage17-compact-package.json",
+    "bytes": 1855019,
+    "sha256": "7c98405b0523a13029fb46394f5b83203f78876c740c2f195fe8a651b38bb0da",
+    "git": "82b0ea3083bdbd1d23e5dc8127392c225c961a3e"
+  },
+  "stage33Source": {
+    "path": "shared/data/act4/sideview-art/33-coastal-v2.json",
+    "bytes": 1629325,
+    "sha256": "4585577066f5db159605e405d6565795e3e1382df4f30e944ec84ee4c2c6c91a",
+    "git": "3ab093ce8cff00efb620d2fed8eae6cc4c732892",
+    "change": "M",
+    "mode": "100644"
+  },
+  "entry": "web/entries/game.1e54eb473f8afbd9.js",
+  "campaign": "web/data/campaign.d38268efbbeea7a8.json",
+  "map": "web/data/chapter-17.eabad82009495a1a.json",
+  "library": "web/data/chapter-17-assets.8bba7223e8e4b46b.json",
+  "requiredBrowser": [
+    "HONRO.html",
+    "web/entries/game.1e54eb473f8afbd9.js",
+    "web/data/campaign.d38268efbbeea7a8.json",
+    "web/data/chapter-17.eabad82009495a1a.json",
+    "web/data/chapter-17-assets.8bba7223e8e4b46b.json",
+    "web/data/HONRO_ACT2_COMPACT_PACKAGES-part-000.094826dd9d0ff0e0.bin",
+    "web/data/HONRO_ACT2_COMPACT_PACKAGES-part-001.5235e65894b7a5e0.bin",
+    "web/data/HONRO_ACT2_COMPACT_PACKAGES-parts.01b3f737aa0d4f34.json",
+    "web/runtime/HONRO_ACT2_COMPACT_PACKAGES.4e33da59982c2820.js"
+  ],
+  "html": {
+    "bytes": 17379,
+    "sha256": "9521d9b91adf52045b0d0c58cf034a9752550c0ce4dac01821691f3d6e18da5a"
+  },
+  "activeStatic": {
+    "web/data/HONRO_ACT2_COMPACT_PACKAGES-parts.01b3f737aa0d4f34.json": {
+      "sha256": "01b3f737aa0d4f3431b04732ae84c068a124545dad16b07eca68e0ec55269956",
+      "bytes": 464
+    },
+    "web/data/chapter-17.eabad82009495a1a.json": {
+      "sha256": "eabad82009495a1a3ef6122384a4b1f993aad8483459fa76bb015b708f7448c3",
+      "bytes": 187107
+    },
+    "web/runtime/campaign.2145747382e11bb7.js": {
+      "sha256": "2145747382e11bb76f7eeee3120b4bd45266678f2d1a286a84c9b950e65165a3",
+      "bytes": 527
+    },
+    "web/data/chapter-33-assets.07b129345eb95856.json": {
+      "sha256": "07b129345eb9585651bb4d8a74411c8ec30ac3d5b3736ca7849e39abfa7ffe00",
+      "bytes": 2858185
+    },
+    "web/data/chapter-33.80ca32475be181c7.json": {
+      "sha256": "80ca32475be181c7774c305b442c8081b6341836fb8d08771e033b7fb79e1464",
+      "bytes": 34235
+    },
+    "web/data/HONRO_ACT2_COMPACT_PACKAGES-part-001.5235e65894b7a5e0.bin": {
+      "sha256": "5235e65894b7a5e0f362e79d81fad54476f55505c2969ae24edacbd28501957d",
+      "bytes": 3391597
+    },
+    "web/data/HONRO_ACT2_COMPACT_PACKAGES-part-000.094826dd9d0ff0e0.bin": {
+      "sha256": "094826dd9d0ff0e0da531e2cccc904cbaafb8e4fe8591f148d849f67c32c6f8e",
+      "bytes": 4194304
+    },
+    "web/data/chapter-17-assets.8bba7223e8e4b46b.json": {
+      "sha256": "8bba7223e8e4b46b1e81cfa7cd6ba68c786a81256eff0e979c2bd192d916f405",
+      "bytes": 1228684
+    },
+    "web/data/campaign.d38268efbbeea7a8.json": {
+      "sha256": "d38268efbbeea7a80be44da99cd8db99bd13832ca5bfa021cad35647c7a7be3a",
+      "bytes": 55011
+    },
+    "web/runtime/HONRO_ACT2_COMPACT_PACKAGES.4e33da59982c2820.js": {
+      "sha256": "4e33da59982c28206ec7d617979067290e818e1abc0494b861e2cc7d1782694b",
+      "bytes": 211
+    },
+    "web/entries/game.1e54eb473f8afbd9.js": {
+      "sha256": "1e54eb473f8afbd9d6c0bdb7966600210b68d8a6ae24d75a5ce58d5d8db80486",
+      "bytes": 20483
+    }
+  },
+  "oldImmutable": {
+    "web/data/HONRO_ACT2_COMPACT_PACKAGES-part-000.45cc14d990012925.bin": {
+      "sha256": "45cc14d990012925cbfbb05dc04743f54d6affe80e32763e9a77bfc93f4620a0",
+      "bytes": 4194304
+    },
+    "web/data/HONRO_ACT2_COMPACT_PACKAGES-part-001.9e74461920a17acd.bin": {
+      "sha256": "9e74461920a17acd7c8c2d77cc4e057dcf3fb871f2273dc905f37aacda150473",
+      "bytes": 3390067
+    },
+    "web/data/HONRO_ACT2_COMPACT_PACKAGES-parts.420dfb2876af8ed7.json": {
+      "sha256": "420dfb2876af8ed739351b8fcabaf6ad6d0eef30dd67d9126bee8bb5ce671a27",
+      "bytes": 464
+    },
+    "web/runtime/HONRO_ACT2_COMPACT_PACKAGES.ad917621a5a55dd5.js": {
+      "sha256": "ad917621a5a55dd58fec3a7a90133feadf70b91b2b1f5949275a9f2e25b1542f",
+      "bytes": 211
+    },
+    "web/entries/game.836da0e8342e0031.js": {
+      "sha256": "836da0e8342e0031dd8d442b7f2cbc803755a9f7e95a89c2526579f69420d395",
+      "bytes": 20483
+    },
+    "web/entries/workshop.0a270a5d0d89b6cc.js": {
+      "sha256": "0a270a5d0d89b6ccf9e83afe0b4de867155fc80cf211907f5abb9eb8c71e731b",
+      "bytes": 16706
+    },
+    "web/entries/game.444c9f8ffd2e0c47.html": {
+      "sha256": "444c9f8ffd2e0c4799f0d41087d2005b2e92593a69bffa21ec7fb930cb1c8dae",
+      "bytes": 11318
+    },
+    "web/data/chapter-33.a7ce91b7d78fb5f8.json": {
+      "bytes": 34011,
+      "sha256": "a7ce91b7d78fb5f8b0b27a4ea42ce6cf4f54d98556c43176beb87a0789573a5a"
+    },
+    "web/data/chapter-33-assets.4b5df185aa59eb42.json": {
+      "bytes": 2836956,
+      "sha256": "4b5df185aa59eb42dbb2c46bd21b38ef2ab7134098bc31b3a0b96439dcc7ef73"
+    }
+  },
+  "compact": {
+    "revision": 617,
+    "width": 6200,
+    "height": 4600,
+    "status": "selected-layout",
+    "packageAssetIDs": [
+      "act2-compact:stage17-west-mouth-recess-continuation",
+      "act2-compact:stage17-s17-art-rear-cavern-1",
+      "act2-compact:stage17-s17-art-low-vault-shoring-1",
+      "act2-compact:stage17-s17-art-west-gallery-1",
+      "act2-compact:stage17-s17-art-east-gallery-1",
+      "act2-compact:stage17-s17-art-west-switchback-frame-1",
+      "act2-compact:stage17-s17-art-shaft-service-frame-1",
+      "act2-compact:stage17-s17-art-east-gallery-frame-1",
+      "act2-compact:stage17-s17-art-trestle-ws-east-fire-access-1",
+      "act2-compact:stage17-s17-art-trestle-ws-east-fire-deck-1",
+      "act2-compact:stage17-s17-art-trestle-ws-service-tool-ledge-1",
+      "act2-compact:stage17-s17-art-trestle-ws-notes-work-deck-1",
+      "act2-compact:stage17-s17-art-main-hoist-1",
+      "act2-compact:stage17-s17-art-main-hoist-2",
+      "act2-compact:stage17-s17-art-control-drive-link-1",
+      "act2-compact:stage17-s17-art-west-work-remains-1",
+      "act2-compact:stage17-s17-art-lower-service-remains-1",
+      "act2-compact:stage17-act2-stage17-traced-outer-v1-1",
+      "act2-compact:stage17-act2-stage17-traced-outer-v1-2",
+      "act2-compact:stage17-act2-stage17-traced-west-v2-1",
+      "act2-compact:stage17-act2-stage17-traced-east-v2-1"
+    ]
+  },
+  "owner": "act2-compact:stage17-west-mouth-recess-continuation",
+  "poses": {
+    "1440x900-west-near": {
+      "frame": {
+        "name": "west-near",
+        "desired": {
+          "x": 80,
+          "y": 1650,
+          "scale": 0.5
+        },
+        "actual": {
+          "x": 80,
+          "y": 1650,
+          "scale": 0.5
+        },
+        "viewport": {
+          "left": -1360,
+          "right": 1520,
+          "top": 880.8125,
+          "bottom": 2419.1875
+        },
+        "play": {
+          "left": 0,
+          "top": 0,
+          "right": 6200,
+          "bottom": 4600
+        },
+        "terrain": {
+          "left": -5000,
+          "top": -26000,
+          "right": 11200,
+          "bottom": 30200
+        },
+        "focus": {
+          "left": -320,
+          "top": -1800,
+          "right": 6520,
+          "bottom": 4840
+        },
+        "visual": {
+          "left": -3960,
+          "right": 10160,
+          "top": -3856.137152777778,
+          "bottom": 6896.137152777777
+        },
+        "zoom": {
+          "min": 0.21176470588235294,
+          "max": 1.65,
+          "tactical": 0.21176470588235294,
+          "readability": 0.056818181818181816
+        },
+        "limits": {
+          "west": -320,
+          "east": 6520,
+          "north": -1800,
+          "south": 4840
+        },
+        "centered": {
+          "x": 3100,
+          "y": 2300,
+          "scale": 0.21176470588235294
+        },
+        "containment": null,
+        "css": [
+          1440,
+          769.1875
+        ],
+        "backing": [
+          1440,
+          769
+        ],
+        "dpr": 1,
+        "phase": "aim",
+        "round": 1,
+        "sceneTime": 2,
+        "tide": null,
+        "physics": "a3f046671da9ddc1bd4f8ba8d9566c736c5f59d792c73155bc3f28e2d4521100",
+        "actualTerrainIDs": [
+          "act2-floor",
+          "cave-roof",
+          "ws-west-work-buttress",
+          "ws-west-machine-plinth",
+          "ws-hoist-west-lip",
+          "ws-hoist-service-bridge",
+          "ws-shaft-top-rest",
+          "ws-shaft-rest-2",
+          "ws-shaft-middle-rest",
+          "ws-shaft-rest-4",
+          "ws-shaft-lower-rest",
+          "ws-shaft-rest-6",
+          "ws-east-hoist-buttress",
+          "ws-west-step-1",
+          "ws-west-lower-steps",
+          "ws-west-step-3",
+          "ws-west-switchback",
+          "ws-west-short-rise",
+          "ws-west-upper-rock",
+          "ws-west-hoist-deck",
+          "ws-east-hoist-deck",
+          "ws-east-upper-rock",
+          "ws-east-upper-step-1",
+          "ws-east-high-step",
+          "ws-east-upper-step-3",
+          "ws-east-crossing",
+          "ws-axle-footing",
+          "ws-service-east-1",
+          "ws-service-east-low",
+          "ws-service-east-3",
+          "ws-service-east-mid",
+          "ws-service-east-5",
+          "ws-service-east-high",
+          "ws-service-east-7",
+          "ws-east-fire-access",
+          "ws-east-fire-deck",
+          "ws-service-vault-tooth",
+          "ws-service-reflection-pier",
+          "ws-service-tool-ledge",
+          "ws-notes-work-deck",
+          "gate-repair"
+        ],
+        "actualDrawOwnerIDs": [
+          "act2-compact:stage17-act2-stage17-traced-east-v2-1",
+          "act2-compact:stage17-act2-stage17-traced-outer-v1-1",
+          "act2-compact:stage17-act2-stage17-traced-outer-v1-2",
+          "act2-compact:stage17-act2-stage17-traced-west-v2-1",
+          "act2-compact:stage17-s17-art-control-drive-link-1",
+          "act2-compact:stage17-s17-art-east-gallery-1",
+          "act2-compact:stage17-s17-art-east-gallery-frame-1",
+          "act2-compact:stage17-s17-art-low-vault-shoring-1",
+          "act2-compact:stage17-s17-art-lower-service-remains-1",
+          "act2-compact:stage17-s17-art-main-hoist-1",
+          "act2-compact:stage17-s17-art-main-hoist-2",
+          "act2-compact:stage17-s17-art-rear-cavern-1",
+          "act2-compact:stage17-s17-art-shaft-service-frame-1",
+          "act2-compact:stage17-s17-art-trestle-ws-east-fire-access-1",
+          "act2-compact:stage17-s17-art-trestle-ws-east-fire-deck-1",
+          "act2-compact:stage17-s17-art-trestle-ws-notes-work-deck-1",
+          "act2-compact:stage17-s17-art-trestle-ws-service-tool-ledge-1",
+          "act2-compact:stage17-s17-art-west-gallery-1",
+          "act2-compact:stage17-s17-art-west-switchback-frame-1",
+          "act2-compact:stage17-s17-art-west-work-remains-1",
+          "act2-compact:stage17-west-mouth-recess-continuation",
+          "stage17:worksite-axle-tool-bench",
+          "stage17:worksite-oil-lamp",
+          "stage17:worksite-timber-store",
+          "stage17:worksite-tool-bench"
+        ],
+        "unitCount": 32,
+        "declaredMissing": []
+      },
+      "photoQASHA256": {
+        "RAW": "662049b0fd10a54f82bb2ca104281c0a8ca3a1ff28b37c20fe2e39b9474dab9a",
+        "DOM": "69a13c64a8a27cd32886efe3957bb9e59daecfeed7c7823ef6b2d5ad48d48820"
+      }
+    },
+    "390x844-northwest": {
+      "frame": {
+        "name": "northwest",
+        "desired": {
+          "x": -1000000,
+          "y": -1000000,
+          "scale": 0.057352941176470586
+        },
+        "actual": {
+          "x": -320,
+          "y": -1800,
+          "scale": 0.057352941176470586
+        },
+        "viewport": {
+          "left": -3720,
+          "right": 3080,
+          "top": -7445.82532051282,
+          "bottom": 3845.8253205128203
+        },
+        "play": {
+          "left": 0,
+          "top": 0,
+          "right": 6200,
+          "bottom": 4600
+        },
+        "terrain": {
+          "left": -5000,
+          "top": -26000,
+          "right": 11200,
+          "bottom": 30200
+        },
+        "focus": {
+          "left": -320,
+          "top": -1800,
+          "right": 6520,
+          "bottom": 4840
+        },
+        "visual": {
+          "left": -3960,
+          "right": 10160,
+          "top": -7685.82532051282,
+          "bottom": 10725.82532051282
+        },
+        "zoom": {
+          "min": 0.057352941176470586,
+          "max": 1.65,
+          "tactical": 0.057352941176470586,
+          "readability": 0.056818181818181816
+        },
+        "limits": {
+          "west": -320,
+          "east": 6520,
+          "north": -1800,
+          "south": 4840
+        },
+        "centered": {
+          "x": 3100,
+          "y": 2300,
+          "scale": 0.057352941176470586
+        },
+        "containment": null,
+        "css": [
+          390,
+          647.609375
+        ],
+        "backing": [
+          390,
+          648
+        ],
+        "dpr": 1,
+        "phase": "aim",
+        "round": 1,
+        "sceneTime": 2,
+        "tide": null,
+        "physics": "a3f046671da9ddc1bd4f8ba8d9566c736c5f59d792c73155bc3f28e2d4521100",
+        "actualTerrainIDs": [
+          "act2-floor",
+          "cave-roof",
+          "ws-west-work-buttress",
+          "ws-west-machine-plinth",
+          "ws-hoist-west-lip",
+          "ws-hoist-service-bridge",
+          "ws-shaft-top-rest",
+          "ws-shaft-rest-2",
+          "ws-shaft-middle-rest",
+          "ws-shaft-rest-4",
+          "ws-shaft-lower-rest",
+          "ws-shaft-rest-6",
+          "ws-east-hoist-buttress",
+          "ws-west-step-1",
+          "ws-west-lower-steps",
+          "ws-west-step-3",
+          "ws-west-switchback",
+          "ws-west-short-rise",
+          "ws-west-upper-rock",
+          "ws-west-hoist-deck",
+          "ws-east-hoist-deck",
+          "ws-east-upper-rock",
+          "ws-east-upper-step-1",
+          "ws-east-high-step",
+          "ws-east-upper-step-3",
+          "ws-east-crossing",
+          "ws-axle-footing",
+          "ws-service-east-1",
+          "ws-service-east-low",
+          "ws-service-east-3",
+          "ws-service-east-mid",
+          "ws-service-east-5",
+          "ws-service-east-high",
+          "ws-service-east-7",
+          "ws-east-fire-access",
+          "ws-east-fire-deck",
+          "ws-service-vault-tooth",
+          "ws-service-reflection-pier",
+          "ws-service-tool-ledge",
+          "ws-notes-work-deck",
+          "gate-repair"
+        ],
+        "actualDrawOwnerIDs": [
+          "act2-compact:stage17-act2-stage17-traced-east-v2-1",
+          "act2-compact:stage17-act2-stage17-traced-outer-v1-1",
+          "act2-compact:stage17-act2-stage17-traced-outer-v1-2",
+          "act2-compact:stage17-act2-stage17-traced-west-v2-1",
+          "act2-compact:stage17-s17-art-control-drive-link-1",
+          "act2-compact:stage17-s17-art-east-gallery-1",
+          "act2-compact:stage17-s17-art-east-gallery-frame-1",
+          "act2-compact:stage17-s17-art-low-vault-shoring-1",
+          "act2-compact:stage17-s17-art-lower-service-remains-1",
+          "act2-compact:stage17-s17-art-main-hoist-1",
+          "act2-compact:stage17-s17-art-main-hoist-2",
+          "act2-compact:stage17-s17-art-rear-cavern-1",
+          "act2-compact:stage17-s17-art-shaft-service-frame-1",
+          "act2-compact:stage17-s17-art-trestle-ws-east-fire-access-1",
+          "act2-compact:stage17-s17-art-trestle-ws-east-fire-deck-1",
+          "act2-compact:stage17-s17-art-trestle-ws-notes-work-deck-1",
+          "act2-compact:stage17-s17-art-trestle-ws-service-tool-ledge-1",
+          "act2-compact:stage17-s17-art-west-gallery-1",
+          "act2-compact:stage17-s17-art-west-switchback-frame-1",
+          "act2-compact:stage17-s17-art-west-work-remains-1",
+          "act2-compact:stage17-west-mouth-recess-continuation",
+          "stage17:worksite-axle-tool-bench",
+          "stage17:worksite-oil-lamp",
+          "stage17:worksite-timber-store",
+          "stage17:worksite-tool-bench"
+        ],
+        "unitCount": 32,
+        "declaredMissing": []
+      },
+      "photoQASHA256": {
+        "RAW": "338875a189ba05d05a4910ef7c74f9402cff408731e6ed329b579c9f29e7feec",
+        "DOM": "2896a1f6a25d09356c8be1d56fb8e8c8dd0347deb10729b90afdc0d90b511683"
+      }
+    }
+  }
+}

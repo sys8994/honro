@@ -1,0 +1,47 @@
+name: HONRO Stage17 anonymous public PC and mobile proof only
+on:
+  push:
+    branches: [qa/stage17-public-smoke]
+    paths: [.github/workflows/stage17-public-smoke.yml, tools/stage17-public/**]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  stage17-anonymous:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage17-public-smoke'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+          fetch-depth: 4
+      - name: Authenticate exact master Pages deployment and prior Stage17 tested bytes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          O="$RUNNER_TEMP/stage17-public"
+          mkdir "$O"
+          echo "OUT=$O" >> "$GITHUB_ENV"
+          python "$GITHUB_WORKSPACE/tools/stage17-public/smoke.py" authority "$O"
+      - name: Anonymous official Pages bytes and two actual Stage17 PC and mobile DOM frames
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -z "${GH_TOKEN:-}${GITHUB_TOKEN:-}"
+          python3 -m venv "$RUNNER_TEMP/stage17-public-venv"
+          V="$RUNNER_TEMP/stage17-public-venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0
+          "$V" -m playwright install --with-deps chromium
+          "$V" "$GITHUB_WORKSPACE/tools/stage17-public/smoke.py" public "$OUT"
+      - if: always() && env.OUT != ''
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage17-public-anonymous-pc-mobile-proof
+          path: ${{ env.OUT }}/
+          if-no-files-found: warn
+          retention-days: 7
