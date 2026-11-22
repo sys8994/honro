@@ -1,0 +1,48 @@
+name: HONRO Stage40 and Stage46 anonymous published battle-save readback
+on:
+  push:
+    branches: [qa/stage40-46-save-public-72dd]
+    paths: [".github/workflows/stage40-46-save-public.yml", "tools/stage40-46-save-public/**"]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  read-public:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage40-46-save-public-72dd'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Bind exact release and genuine historical native receipt
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 -B tools/stage40-46-save-public/guard.py acquire "$RUNNER_TEMP/stage40-46-native-public"
+      - name: Validate immutable paths and use genuine anonymous app with two archived hosts
+        shell: bash
+        run: |
+          set -euo pipefail
+          W="$RUNNER_TEMP/stage40-46-native-public"
+          T="$GITHUB_WORKSPACE/tools/stage40-46-save-public"
+          python3 -B "$T/guard.py" prepare "$W"
+          python3 -m venv "$W/playwright"
+          V="$W/playwright/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+          python3 -m http.server 18963 --bind 127.0.0.1 --directory "$W/H" >"$W/http-H.log" 2>&1 & H=$!
+          python3 -m http.server 18961 --bind 127.0.0.1 --directory "$W/J" >"$W/http-J.log" 2>&1 & J=$!
+          trap 'kill "$H" "$J" 2>/dev/null || true' EXIT
+          for p in 18963 18961; do
+            for n in $(seq 1 15); do curl -fsS "http://127.0.0.1:$p/HONRO.html" -o /dev/null && break || sleep 1; done
+            curl -fsS "http://127.0.0.1:$p/HONRO.html" -o /dev/null
+          done
+          "$V" -B "$T/capture.py" "$W"
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage40-46-anonymous-readback-72dd
+          path: ${{ runner.temp }}/stage40-46-native-public/out/
+          if-no-files-found: warn
+          retention-days: 7
