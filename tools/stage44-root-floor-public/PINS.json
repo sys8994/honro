@@ -1,0 +1,323 @@
+{
+  "enabled": true,
+  "origin": "https://sys8994.github.io/honro/",
+  "qaRef": "refs/heads/qa/stage44-root-floor-public-readback",
+  "release": {
+    "head": "c7b7bdef88b2b7d04af7f69dce58c948c4d185ea",
+    "tree": "5f468832f4c4170a61304263965bc1215917839d",
+    "manifest": {
+      "bytes": 7145164,
+      "sha256": "d65a06231081d32652683380024b926570f8bdc1c66c681f4eed1e3d51f54460"
+    },
+    "pages": {
+      "head": "c7b7bdef88b2b7d04af7f69dce58c948c4d185ea",
+      "branch": "master",
+      "conclusion": "success",
+      "run": 44992025157,
+      "job": 137115264140,
+      "publishedAt": "2026-11-22T06:05:25Z"
+    },
+    "shellAndEntry": {
+      "shell": {
+        "bytes": 17379,
+        "sha256": "fa1e2895e3efcce03ca333fef4c19a1be7949c6a8904a9167ff525dc603b886c"
+      },
+      "entryPath": "web/entries/game.669f98c9f33fc38d.js",
+      "entry": {
+        "bytes": 20483,
+        "sha256": "669f98c9f33fc38dfc84bae1d1c5ccf6ee4e95c51770af3aad7351c4ea3396a0"
+      }
+    }
+  },
+  "approvedSource": {
+    "path": "shared/runtime/act5-edge-art.js",
+    "new": "b79dde7e841356d25e425d8dc0bcf3ca58729c5c",
+    "sha256": "a0c77ed89a6df785636ac2e43ca0cc97ed12fb8b63b76927d9f1f3142a32455e",
+    "bytes": 28558
+  },
+  "qa": {
+    "run": 44989704759,
+    "job": 137107868555,
+    "artifact": 14741655891,
+    "head": "dd9697bdd26abec8db578165bf171a4756a9705c",
+    "tree": "b8b0e7274fa3f219c224a19ef514e3e35dbb04b8",
+    "zip": {
+      "bytes": 9087863,
+      "sha256": "964071f8ea3a99ea8330267a70fe218b166460455d5bbc0bc68a79fa12601e3a"
+    },
+    "receipts": {
+      "SOURCE.json": {
+        "bytes": 777,
+        "sha256": "626b8421d509a7f3cb1dc9d6430cb6608d06f57b65e233f5411cbe8d5318583c"
+      },
+      "GRAPH.json": {
+        "bytes": 284091,
+        "sha256": "1f125e494c0b6eb8d94f0d8bcbde65d922129eecf85f00ddd5379e0cab0b67cd"
+      },
+      "BROWSER.json": {
+        "bytes": 236733,
+        "sha256": "8747741d56588b6aff84eef7754db2f06a52783f5281b213d03a5241c30d6d46"
+      },
+      "B-generated-pending-re-review/SEAL.json": {
+        "bytes": 2518,
+        "sha256": "1ffabb77dad069f7a212762639c946d103fcf27d5d00908c7b663e5dd837f2c5"
+      }
+    },
+    "oldStrictQA": "KNOWN_PREVIOUS_1DN_ONLY_PENDING_ART_STRICT_HOLD"
+  },
+  "normalBReferenceShellAndEntry": {
+    "shell": {
+      "bytes": 17379,
+      "sha256": "fa1e2895e3efcce03ca333fef4c19a1be7949c6a8904a9167ff525dc603b886c"
+    },
+    "entryPath": "web/entries/game.669f98c9f33fc38d.js",
+    "entry": {
+      "bytes": 20483,
+      "sha256": "669f98c9f33fc38dfc84bae1d1c5ccf6ee4e95c51770af3aad7351c4ea3396a0"
+    }
+  },
+  "verifiedRoute": {
+    "web/data/campaign.ce72ffa30709411b.json": {
+      "bytes": 55011,
+      "sha256": "ce72ffa30709411b93c2c92f9b732fa40b8d22d468ce8ebc6a6016c114ca5420"
+    },
+    "web/data/chapter-44-assets.ddddc05a5f764d6e.json": {
+      "bytes": 3323328,
+      "sha256": "ddddc05a5f764d6eee5e48602718f31a89008cc377ff188d6c3aa4b3a4cf1cdb"
+    },
+    "web/data/chapter-44.48354b7c0547c1a7.json": {
+      "bytes": 14376,
+      "sha256": "48354b7c0547c1a743531f79b0128e4fc56cb3d5973d7f8a17d40e5c232e2e68"
+    },
+    "web/runtime/campaign.d42da1857a0e4db9.js": {
+      "bytes": 527,
+      "sha256": "d42da1857a0e4db923103745de0a43c475ed98c204a87cc350e462abe07df726"
+    },
+    "web/runtime/ordered-common-18.5bef8d649618eec7.js": {
+      "bytes": 35262,
+      "sha256": "5bef8d649618eec708148cbc4a6594edbf15b0f45c59d64849336f2a5ea14ff9"
+    }
+  },
+  "references": {
+    "s44-1440x900-south": {
+      "key": "s44-1440x900-south",
+      "actual": {
+        "x": 3400,
+        "y": 2867,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": 0,
+        "right": 6800,
+        "top": 1050.8628472222222,
+        "bottom": 4683.137152777777
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 7120,
+        "bottom": 2867
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "sceneTime": 2,
+      "phase": "aim",
+      "round": 1,
+      "tide": null,
+      "actorCount": 35,
+      "ordinary": [
+        3400.0,
+        1313.5,
+        0.5
+      ],
+      "view": "south",
+      "viewportCSS": [
+        1440,
+        900
+      ],
+      "browserProof": {
+        "domainSHA256": "6c5c2e93ae2901e470ed2ff0189dc4856d0ac325ed29fbdca495ab7c6bfa9b3e",
+        "observedClosure": 1,
+        "keptWalk": 23,
+        "fixedGrade": {
+          "key": "44:honro-map-stage-44-1794931200000",
+          "value": 1180,
+          "at": 2000
+        },
+        "physicsSHA256": "66e24cd932c510e113187dd2713f1050926f9209571f4ad90f31aaeae72142c5",
+        "mapSHA256": "087676b3131a7fbecfcd68d81f9dcf5da4dbd5e89a2e5d8fdcc3b304033f0121",
+        "allOtherOmitted": [
+          {
+            "id": "a5-root-floor",
+            "a": {
+              "x": 6700.39,
+              "y": 2269
+            },
+            "z": {
+              "x": 0,
+              "y": 2269
+            },
+            "walkable": false
+          },
+          {
+            "id": "a5-root-floor",
+            "a": {
+              "x": 0,
+              "y": 2269
+            },
+            "z": {
+              "x": 0,
+              "y": 1998.83
+            },
+            "walkable": false
+          }
+        ],
+        "raster": 0.25,
+        "registeredArtSHA256": "581d3a3a572422aa2a71b47f417a126a4760ca93c1e47e1371d7926d7e9f15df",
+        "rootSHA256": "232b14b3f046703be311ff01cc739a5b8032bd6afc3bc5d0f0968a57619a83a6",
+        "physicalClosureCount": 1,
+        "rootWalk": 8,
+        "fixedCloud": null
+      },
+      "images": {
+        "raw": {
+          "bytes": 990547,
+          "sha256": "03d196ce322215d15dbdfcd9260896f768b1dee1e8fa6c5170d08f62abfffda1",
+          "rgba": "6d90c9c6ba68aa37b4f58276bee89b17d0cfc7e3b70f1101be190a6423ec933e",
+          "size": [
+            1440,
+            769
+          ]
+        },
+        "dom": {
+          "bytes": 624682,
+          "sha256": "f35195d3a3b3c14b149f4966754659517e8774e3303a00a515193b2ae68de872",
+          "rgba": "c2297e52241134e013e83fc4a1f7a800848153b09969d9492543baf85973dd7d",
+          "size": [
+            1440,
+            770
+          ]
+        }
+      }
+    },
+    "s44-390x844-southeast": {
+      "key": "s44-390x844-southeast",
+      "actual": {
+        "x": 7120,
+        "y": 2867,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": 3720,
+        "right": 10520,
+        "top": -2778.8253205128203,
+        "bottom": 8512.82532051282
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 7120,
+        "bottom": 2867
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "sceneTime": 2,
+      "phase": "aim",
+      "round": 1,
+      "tide": null,
+      "actorCount": 35,
+      "ordinary": [
+        3400.0,
+        1313.5,
+        0.5
+      ],
+      "view": "southeast",
+      "viewportCSS": [
+        390,
+        844
+      ],
+      "browserProof": {
+        "domainSHA256": "6c5c2e93ae2901e470ed2ff0189dc4856d0ac325ed29fbdca495ab7c6bfa9b3e",
+        "observedClosure": 1,
+        "keptWalk": 23,
+        "fixedGrade": {
+          "key": "44:honro-map-stage-44-1794931200000",
+          "value": 1180,
+          "at": 2000
+        },
+        "physicsSHA256": "66e24cd932c510e113187dd2713f1050926f9209571f4ad90f31aaeae72142c5",
+        "mapSHA256": "087676b3131a7fbecfcd68d81f9dcf5da4dbd5e89a2e5d8fdcc3b304033f0121",
+        "allOtherOmitted": [
+          {
+            "id": "a5-root-floor",
+            "a": {
+              "x": 6700.39,
+              "y": 2269
+            },
+            "z": {
+              "x": 0,
+              "y": 2269
+            },
+            "walkable": false
+          },
+          {
+            "id": "a5-root-floor",
+            "a": {
+              "x": 0,
+              "y": 2269
+            },
+            "z": {
+              "x": 0,
+              "y": 1998.83
+            },
+            "walkable": false
+          }
+        ],
+        "raster": 0.0625,
+        "registeredArtSHA256": "581d3a3a572422aa2a71b47f417a126a4760ca93c1e47e1371d7926d7e9f15df",
+        "rootSHA256": "232b14b3f046703be311ff01cc739a5b8032bd6afc3bc5d0f0968a57619a83a6",
+        "physicalClosureCount": 1,
+        "rootWalk": 8,
+        "fixedCloud": null
+      },
+      "images": {
+        "raw": {
+          "bytes": 253068,
+          "sha256": "97d984bf7fea7362c86d37e6c1bad3403c696c0bf02315e4484ee35ef0e905be",
+          "rgba": "8e83d1de1919a07ede5f122026e8c12ae7975b248769f825266a3a03767e378c",
+          "size": [
+            390,
+            648
+          ]
+        },
+        "dom": {
+          "bytes": 165718,
+          "sha256": "5fb88d4d5729cb96a0e2b3e553d0eff15e19d4b17bd4c994fe40253e4f4aa2c8",
+          "rgba": "9caa4c6669d49f1e30c61f4ab6e17eda866f9f905ca09a14d7dd968d4c06b929",
+          "size": [
+            390,
+            648
+          ]
+        }
+      }
+    }
+  },
+  "media": [
+    "assets/bgm/main.mp3",
+    "assets/bgm/battle-1.mp3",
+    "assets/bgm/battle-2.mp3",
+    "assets/bgm/battle-3.mp3"
+  ]
+}
