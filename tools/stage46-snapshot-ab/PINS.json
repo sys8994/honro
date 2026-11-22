@@ -1,0 +1,186 @@
+{
+  "enabled": true,
+  "repo": "sys8994/honro",
+  "qaRef": "refs/heads/qa/stage46-snapshot-native-ab-eaf",
+  "publicRoot": "https://sys8994.github.io/honro/",
+  "head": "eaf774b42ec8211739d2594c729e0c91e1d55188",
+  "tree": "95a2afad79513f1d14fbde8be7cd8e84e76943f0",
+  "manifest": {
+    "bytes": 8863067,
+    "sha256": "099b62e020b1b2370d30e2e00be10c5c716f095d1e0b0c045af7b69ce619409b",
+    "git": "d0eeb2aa6964f2a1af8216cc70e4d230c106a539"
+  },
+  "pages": {
+    "run": 45043111432,
+    "job": 137272222712,
+    "date": "2026-11-22T16:20:49.0073331Z"
+  },
+  "chromium": "151.0.7922.34",
+  "repeats": 3,
+  "nativeShell": {
+    "bytes": 17379,
+    "sha256": "6b9748946f99ce9213205c8ccdd7484f77d154a752de01a88062cc19eab56f7c",
+    "git": "3b0c4a870d394b54b1c9c871783ef8c9cdfcd2f4"
+  },
+  "core": {
+    "web/entries/game.969dbb92d5cffa9f.js": {
+      "bytes": 20483,
+      "sha256": "969dbb92d5cffa9f9a8c7bc547b396f48935cf319c5e87855edc76a669d8035c"
+    },
+    "web/data/campaign.87da363001067c02.json": {
+      "bytes": 55151,
+      "sha256": "87da363001067c02b5986f1fb3fab035c9017b874482ce44547f852b13f6a8c6"
+    },
+    "web/data/campaign-base.0c57dcfe7c08d421.json": {
+      "bytes": 257,
+      "sha256": "0c57dcfe7c08d421901ffa8eeb437940b6b6d4779816207b51dca7be44c73e5e"
+    },
+    "web/data/campaign-shared.8f8343b5c21518d4.json": {
+      "bytes": 577195,
+      "sha256": "8f8343b5c21518d4fdaa2314e58031fd137b8622d3a6c1ca2fdabafde3bb158f"
+    },
+    "web/runtime/load-data.36ebfa6c4287ef7a.js": {
+      "bytes": 16749,
+      "sha256": "36ebfa6c4287ef7a54392c1bcb46a78977473e0e10aad3ede3dfe341f6e71f96"
+    },
+    "web/runtime/campaign.718c7f3ee1db9da7.js": {
+      "bytes": 527,
+      "sha256": "718c7f3ee1db9da757cd2c94caa1c97958128687acefcf594bc4cab281f0a64b"
+    },
+    "web/runtime/ordered-game-20.70aa4d25d5613f6e.js": {
+      "bytes": 62255,
+      "sha256": "70aa4d25d5613f6e424ad9aa313c3963dbda31190c9d72e6c542d83c3f459636"
+    },
+    "web/runtime/ordered-game-23.9ebc66541a8184b6.js": {
+      "bytes": 94701,
+      "sha256": "9ebc66541a8184b6ec954023694bc4d55b36a5f1bdb25d7127f7a5b3e1a5d210"
+    },
+    "web/runtime/ordered-common-17.027dfd7d7784222d.js": {
+      "bytes": 133947,
+      "sha256": "027dfd7d7784222d5fa9b70a1203c056f6a9cea3742d8e56aa2138ca4c6655e0"
+    },
+    "web/runtime/ordered-common-18.4831815091012b42.js": {
+      "bytes": 35562,
+      "sha256": "4831815091012b426ed3973ce2de1f4c896414383be3b5a4c782bcde29f05ffa"
+    }
+  },
+  "stages": {
+    "11": {
+      "id": "stage-11",
+      "name": "\ub9e4\ub4ed\uc744 \uac70\ub454 \uc544\uce68",
+      "map": "web/data/chapter-11.4f36fd2ea4a1cafd.json",
+      "descriptorOrPacket": "web/data/chapter-11-assets.cad9e03dd8bf52a5.json",
+      "parts": [],
+      "encoding": "json-pool-v1",
+      "files": {
+        "web/data/chapter-11.4f36fd2ea4a1cafd.json": {
+          "bytes": 209933,
+          "sha256": "4f36fd2ea4a1cafd3e261f9b1eb222fde4e9ab4fda3799f6852a68db87cd5105"
+        },
+        "web/data/chapter-11-assets.cad9e03dd8bf52a5.json": {
+          "bytes": 740283,
+          "sha256": "cad9e03dd8bf52a5be4cd61fd22cc4430f7e66edb8c9a547377bd54219931916"
+        }
+      }
+    },
+    "46": {
+      "id": "stage-46",
+      "name": "\ud558\ub298\uc6b0\ubb3c\uc758 \uac00\uc7a5\uc790\ub9ac",
+      "map": "web/data/chapter-46.2806e485c4c1e1b4.json",
+      "descriptorOrPacket": "web/data/chapter-46-assets-parts.a3595c48161a8bc1.json",
+      "parts": [
+        "web/data/chapter-46-assets-part-000.f7ebee97d8110e68.bin",
+        "web/data/chapter-46-assets-part-001.5213b80662dfa32e.bin",
+        "web/data/chapter-46-assets-part-002.8be859e980ee1d29.bin",
+        "web/data/chapter-46-assets-part-003.ee5f50c994047cde.bin"
+      ],
+      "encoding": "json-pool-v1",
+      "files": {
+        "web/data/chapter-46.2806e485c4c1e1b4.json": {
+          "bytes": 24682,
+          "sha256": "2806e485c4c1e1b4d94174b8324a2d534291c22c481c94960883a29643e9da02"
+        },
+        "web/data/chapter-46-assets-parts.a3595c48161a8bc1.json": {
+          "bytes": 765,
+          "sha256": "a3595c48161a8bc14dec5b1dea23dea0fda99fa39153a359d9ee83c5359516ea"
+        },
+        "web/data/chapter-46-assets-part-000.f7ebee97d8110e68.bin": {
+          "bytes": 4194304,
+          "sha256": "f7ebee97d8110e6805bf6fb6a58303332d3fd118a8e477f3b5de6c7e002064a2"
+        },
+        "web/data/chapter-46-assets-part-001.5213b80662dfa32e.bin": {
+          "bytes": 4194304,
+          "sha256": "5213b80662dfa32ee85b3d01d07dd0d2fb4fe33fa1ed3647ca94a85abce27ac6"
+        },
+        "web/data/chapter-46-assets-part-002.8be859e980ee1d29.bin": {
+          "bytes": 4194304,
+          "sha256": "8be859e980ee1d292718c73bd51206ea8fa0a887baa59fc67c5ec6b2c4cd0738"
+        },
+        "web/data/chapter-46-assets-part-003.ee5f50c994047cde.bin": {
+          "bytes": 2667958,
+          "sha256": "ee5f50c994047cde9851a35f503ddc56b395904698ecbef174d832a4eaa148a8"
+        }
+      }
+    }
+  },
+  "devices": {
+    "PC": {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "device_scale_factor": 1
+    },
+    "Mobile": {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "device_scale_factor": 1,
+      "is_mobile": true,
+      "has_touch": true
+    }
+  },
+  "source": {
+    "main.js": {
+      "stock": "c20dd602cd2c63e381080eab5738b0406d213f0a",
+      "candidate": "2434d12fe66be92cbf9bc5a1c49087a0f3495cb6",
+      "sha256": "d8e8545729fe0dfbfcaf611902e4e5ac9ed97b3de57dfd8f73a977dfd6229d43",
+      "bytes": 120438
+    },
+    "story.js": {
+      "stock": "531ee576a56734f2ce5f247ffd92f7cd767fd7f1",
+      "candidate": "ecb7cf1458667e07f76ae7978bc43e1daff376bb",
+      "sha256": "2b8908a895a41f59b0ad224932fc5b5534689b404e394ac3739afd82145b0087",
+      "bytes": 24163
+    },
+    "act5.js": {
+      "stock": "17ee9da9cd8b0e7288b58f722f66b82bbe1908d1",
+      "candidate": "9ae8b29468f4485162686a87c9a353e3e1b6abae",
+      "sha256": "5f8f334bc53b2c43918fa94aff6ee466783688874ef3bad72fe12aca80e9423b",
+      "bytes": 29462
+    }
+  },
+  "unchangedProfileStore": "c993e119fa10470fa99c6db9551e2fbef51c9819",
+  "extraUnchanged": {
+    "act4-events.js": "2260e49f2b9e2321fc5934f8daae3ec9f6a0f4e5",
+    "act4-campaign.js": "da571f577efa197eb2428de7788b949e9eff3cd8"
+  },
+  "stage46Provider": {
+    "id": "act5:near:46",
+    "current": "16328502:43d17801",
+    "historicalAlreadyValidatedOn72dd": "17756761:bc1a6549"
+  },
+  "exactOrdinaryTargets": {
+    "PC": [
+      1850,
+      2550,
+      0.55
+    ],
+    "Mobile": [
+      1850,
+      2550,
+      0.42
+    ]
+  }
+}
