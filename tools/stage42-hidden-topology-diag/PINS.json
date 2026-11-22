@@ -1,0 +1,133 @@
+{
+  "enabled": true,
+  "qaRef": "refs/heads/qa/stage42-hidden-topology-diag-e702",
+  "publicRoot": "https://sys8994.github.io/honro/",
+  "release": {
+    "head": "e70279eb6e00061825eaa6c0de793bb8c0821a99",
+    "tree": "f0e7310c20b0255b46e8e1afa3e4a0e4b40dce9e",
+    "pages": 45037241837,
+    "deployJob": 137254083655,
+    "deployStepCompletedUTC": "2026-11-22T15:16:56Z"
+  },
+  "authority": {
+    "HONRO.html": {
+      "git": "abb35d042758f772f96615936b0c56b5a02fd891",
+      "bytes": 17379
+    },
+    "web/manifest.json": {
+      "git": "b54806cc62e03a1e4b1d1bfd9eb533e5655d773f",
+      "bytes": 8692467
+    },
+    "web/runtime/campaign.0b680e073a963004.js": {
+      "git": "3392afd516582b4a66677e4dfd156e6f5ff7fb04",
+      "bytes": 527
+    },
+    "web/data/campaign.dce6b5b5facbbd91.json": {
+      "git": "74a76185a88a7c19480d469d3d7ad965a6c8dbf0",
+      "bytes": 55151
+    },
+    "web/entries/game.3716bcb3caa78a7a.js": {
+      "git": "d61e948b3f6751f37eb41a6ee204061cc7b790a0",
+      "bytes": 20483
+    },
+    "web/runtime/ordered-common-11.6b1c56faa0f72077.js": {
+      "git": "f17b5120691f621bb0e2bfab15a95d5eaafb2b6f",
+      "bytes": 166538
+    },
+    "web/runtime/ordered-common-12.4bcd22a3c1af1306.js": {
+      "git": "124c53aa711a8b68976b880639ee7012c77e4e3b",
+      "bytes": 87071
+    }
+  },
+  "s42ImmutableRoutes": {
+    "web/data/chapter-42.0802015e8ba99d11.json": {
+      "bytes": 12647,
+      "sha256": "0802015e8ba99d11a8ece1f14186b3db6a4a7d3d32076e64ca120300f50c7f50"
+    },
+    "web/data/chapter-42-assets.abdbc9d7a8ce717e.json": {
+      "bytes": 1858863,
+      "sha256": "abdbc9d7a8ce717eb7c8a6c04aa7400cec13b5ced947713aa862ab70ef5f2e46"
+    },
+    "web/runtime/ordered-common-4.67de8f1c97c5fb48.js": {
+      "bytes": 184807,
+      "sha256": "67de8f1c97c5fb4825954f779cbf06ab7e6a41d73e9ff5e77465bbe190634814"
+    }
+  },
+  "packetPath": "web/data/chapter-42-assets.abdbc9d7a8ce717e.json",
+  "exactUnchangedProfileStoreGit": "b11ad06d788fd21c47d89caa415477b85397b9f4",
+  "mapGit": "c1e11d13dfab436cce9a7a43c50c79e8ffa0a7ad",
+  "packetGit": "fbab4697a70b964349544307563fc3db214220c5",
+  "legacyPath": "web/data/campaign-compat-32.ee7846c92c4edcac.json",
+  "recipeSHA256": "286331a7ceea3b40723ea8039c25cad5b14ae5fcf6a0fa1bd924d171e2ebfb1f",
+  "physics": "8b414b90e43c7f7e1ea685a254b4fa4cd6d5db525ce96083c39059ff5433ba0f",
+  "ownerByArm": {
+    "A1": "1858841:5ce4a412",
+    "A2": "1858841:5ce4a412",
+    "B": "1838011:758c7aae"
+  },
+  "chrome": "151.0.7922.34",
+  "devices": {
+    "PC": {
+      "size": [
+        1440,
+        900
+      ],
+      "backing": [
+        1440,
+        769
+      ],
+      "views": {
+        "upper-east": [
+          "ordinary",
+          [
+            5070,
+            1760,
+            0.5
+          ]
+        ],
+        "low-east": [
+          "ordinary",
+          [
+            4215,
+            2390,
+            0.88
+          ]
+        ],
+        "skyway-se": [
+          "minimum",
+          [
+            1,
+            1
+          ]
+        ]
+      }
+    },
+    "M": {
+      "size": [
+        390,
+        844
+      ],
+      "backing": [
+        390,
+        648
+      ],
+      "views": {
+        "low-east": [
+          "ordinary",
+          [
+            4205,
+            2385,
+            0.5
+          ]
+        ],
+        "skyway-se": [
+          "minimum",
+          [
+            1,
+            1
+          ]
+        ]
+      }
+    }
+  }
+}

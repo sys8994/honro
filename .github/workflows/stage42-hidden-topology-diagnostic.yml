@@ -1,0 +1,59 @@
+name: HONRO Stage42 native topology, exact public Chromium diagnostic
+on:
+  push:
+    branches: [qa/stage42-hidden-topology-diag-e702]
+    paths: [".github/workflows/stage42-hidden-topology-diagnostic.yml","tools/stage42-hidden-topology-diag/**"]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  public-readback:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage42-hidden-topology-diag-e702'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+          fetch-depth: 2
+      - name: Exact release sole parent and successful declared Pages deploy
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json,subprocess as s,os
+          from pathlib import Path
+          P=json.loads(Path('tools/stage42-hidden-topology-diag/PINS.json').read_text())
+          r=P['release'];assert P['enabled'] and r and r['pages'] and r['deployJob']
+          assert P['qaRef']==os.environ['GITHUB_REF'] and os.environ['GITHUB_EVENT_NAME']=='push'
+          def git(*args):return s.check_output(['git',*args],text=True,timeout=60).strip()
+          assert git('show','-s','--format=%P','HEAD')==r['head'] and git('rev-parse',r['head']+'^{tree}')==r['tree']
+          want={'.github/workflows/stage42-hidden-topology-diagnostic.yml',*(f'tools/stage42-hidden-topology-diag/{x}'for x in ('PINS.json','RECIPE.json','observer.json','derive.py','capture.py'))}
+          assert set(git('diff','--name-status','--no-renames',r['head'],'HEAD').splitlines())=={'A\t'+x for x in want}
+          def gh(url):return json.loads(s.check_output(['gh','api','repos/sys8994/honro/'+url],timeout=60))
+          run,job,current=gh('actions/runs/'+str(r['pages'])),gh('actions/jobs/'+str(r['deployJob'])),gh('branches/master')
+          assert run['head_sha']==job['head_sha']==current['commit']['sha']==r['head'] and run['head_branch']=='master' and run['conclusion']==job['conclusion']=='success' and job['run_id']==r['pages'] and any(t['name']=='Deploy to GitHub Pages' and t['conclusion']=='success'for t in job['steps'])
+          assert any(t['name']=='Deploy to GitHub Pages' and t['conclusion']=='success' and t['completed_at']==r['deployStepCompletedUTC'] for t in job['steps'])
+          exact={k:v['git'] for k,v in P['authority'].items()}
+          exact.update({'shared/runtime/profile-store.js':P['exactUnchangedProfileStoreGit'],P['packetPath']:P['packetGit'],'web/data/chapter-42.0802015e8ba99d11.json':P['mapGit']})
+          for k,v in exact.items():assert git('rev-parse','HEAD:'+k)==git('rev-parse',r['head']+':'+k)==v,k
+          PY
+      - name: Actual anonymous Chromium with all three fresh contexts per device, no build or deploy
+        run: |
+          set -euo pipefail
+          test -z "${GITHUB_TOKEN:-}${GH_TOKEN:-}"
+          python -m venv "$RUNNER_TEMP/honro-stage42-facies-venv"
+          V="$RUNNER_TEMP/honro-stage42-facies-venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+          "$V" tools/stage42-hidden-topology-diag/capture.py "$RUNNER_TEMP/stage42-hidden-topology-diagnostic"
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage42-hidden-topology-diag-e702
+          path: ${{ runner.temp }}/stage42-hidden-topology-diagnostic/
+          retention-days: 7
+          if-no-files-found: warn
