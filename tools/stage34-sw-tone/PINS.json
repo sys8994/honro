@@ -1,0 +1,125 @@
+{
+  "base": "4fdb1b182b308f4b0ed4a5dbad0591e28aac207d",
+  "tree": "7a358923f82235759229bc2622783755c1d483f6",
+  "manifest": {
+    "bytes": 7136167,
+    "sha256": "f3d8ec0e05b0d49303ddc4d505908e81db27ce60d03eebed8bfec0aa25eb8d7c"
+  },
+  "shell": {
+    "bytes": 17379,
+    "sha256": "7077f09f78aed8beab506111cb5583c074b84fa0400cf4b06ea11639e100757d"
+  },
+  "campaign": "web/data/campaign.d38268efbbeea7a8.json",
+  "map": {
+    "path": "web/data/chapter-34.cb39c6d6adc3cef6.json",
+    "sha256": "cb39c6d6adc3cef6a6ec3ea220e075f8e6476279113d7b1c05953d576deae488",
+    "bytes": 27266
+  },
+  "packet": {
+    "path": "web/data/chapter-34-assets.3828bd02ec5b054c.json",
+    "sha256": "3828bd02ec5b054c50b6529c2bfb348dbca98400803b6126ba5be3e68a05deae",
+    "bytes": 4084146
+  },
+  "id": "approved34:lower-natural-mask-v2",
+  "oldOwner": "6462b02746cae05fefa0ff8e104c082916f52e7c59238d398aa83bda0f0be0ec",
+  "newOwner": "a9572adc56e66db2724f71409c4adee5005da0e3aaad7a4e2d5b9dc8a9b64e46",
+  "oldLeafGeometry": "3c56324c6cb85b614bfd8b2f5b529766d103e42b06ec4134e9eeb0e7ebfe0c74",
+  "gradient": {
+    "type": "radial",
+    "cx": 64.10416666666667,
+    "cy": 398.29427083333337,
+    "fx": 64.10416666666667,
+    "fy": 398.29427083333337,
+    "r": 55.61979166666667,
+    "stops": [
+      {
+        "offset": 0,
+        "color": "#405f8c",
+        "opacity": 1
+      },
+      {
+        "offset": 0.9872881355932204,
+        "color": "#405f8c",
+        "opacity": 1
+      },
+      {
+        "offset": 1,
+        "color": "#4c77ad",
+        "opacity": 1
+      }
+    ]
+  },
+  "exact37Physics": "6d7caa25ce4264cda7f06af01519de7408619d40d721af2c9c50a14e61e1d5f1",
+  "worldSource": [
+    "8d2af83fbbe91ce1025bb6555647430dad110678596c9622670f99f2bb759b4b",
+    61499742
+  ],
+  "worldReaderGit": "dfa7967e6c0380dba45e9cb8b2c94dddbfc3f491",
+  "references": {
+    "1-1440x900-southwest-near": {
+      "actual": {
+        "x": -320,
+        "y": 4336,
+        "scale": 0.55
+      },
+      "css": [
+        1440,
+        769.1875
+      ],
+      "backing": [
+        1440,
+        769
+      ]
+    },
+    "1-1440x900-east": {
+      "actual": {
+        "x": 6464,
+        "y": 2048,
+        "scale": 0.21176470588235294
+      },
+      "css": [
+        1440,
+        769.1875
+      ],
+      "backing": [
+        1440,
+        769
+      ]
+    },
+    "1-390x844-southwest-near": {
+      "actual": {
+        "x": -320,
+        "y": 4336,
+        "scale": 0.15
+      },
+      "css": [
+        390,
+        647.609375
+      ],
+      "backing": [
+        390,
+        648
+      ]
+    },
+    "1-390x844-east": {
+      "actual": {
+        "x": 6464,
+        "y": 2048,
+        "scale": 0.057352941176470586
+      },
+      "css": [
+        390,
+        647.609375
+      ],
+      "backing": [
+        390,
+        648
+      ]
+    }
+  },
+  "region": [
+    -1264,
+    4762,
+    236
+  ]
+}
