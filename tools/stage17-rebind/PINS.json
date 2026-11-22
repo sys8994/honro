@@ -1,0 +1,113 @@
+{
+  "enabled": true,
+  "expectedBase": "4fdb1b182b308f4b0ed4a5dbad0591e28aac207d",
+  "expectedBaseTree": "7a358923f82235759229bc2622783755c1d483f6",
+  "stage33ExpectedProductState": "SEALED_REVIEW_ONLY_UNTIL_LIVE_AUTHORITY",
+  "expectedBaseManifest": {
+    "bytes": 7136167,
+    "sha256": "f3d8ec0e05b0d49303ddc4d505908e81db27ce60d03eebed8bfec0aa25eb8d7c",
+    "git": "aab380833b6e47caf443a91f7f9d4c6fe8a7ac31",
+    "change": "M",
+    "mode": "100644"
+  },
+  "expectedPriorImmutableCount": 1336,
+  "stage33Protected": {
+    "shared/data/act4/sideview-art/33-coastal-v2.json": {
+      "bytes": 1629325,
+      "sha256": "4585577066f5db159605e405d6565795e3e1382df4f30e944ec84ee4c2c6c91a",
+      "git": "3ab093ce8cff00efb620d2fed8eae6cc4c732892",
+      "change": "M",
+      "mode": "100644"
+    },
+    "web/data/campaign.d38268efbbeea7a8.json": {
+      "bytes": 55011,
+      "sha256": "d38268efbbeea7a80be44da99cd8db99bd13832ca5bfa021cad35647c7a7be3a",
+      "git": "e108dcf043ff7b5ec6b8dc050f95327547d67d53",
+      "change": "A",
+      "mode": "100644"
+    },
+    "web/data/chapter-33-assets.07b129345eb95856.json": {
+      "bytes": 2858185,
+      "sha256": "07b129345eb9585651bb4d8a74411c8ec30ac3d5b3736ca7849e39abfa7ffe00",
+      "git": "427140fce2c4ca104e65dc06f8b1f99a80bd93f1",
+      "change": "A",
+      "mode": "100644"
+    },
+    "web/data/chapter-33.80ca32475be181c7.json": {
+      "bytes": 34235,
+      "sha256": "80ca32475be181c7774c305b442c8081b6341836fb8d08771e033b7fb79e1464",
+      "git": "d160a900c5f3adc357bfa18bc8ae0873e862b1e1",
+      "change": "A",
+      "mode": "100644"
+    },
+    "web/runtime/campaign.2145747382e11bb7.js": {
+      "bytes": 527,
+      "sha256": "2145747382e11bb76f7eeee3120b4bd45266678f2d1a286a84c9b950e65165a3",
+      "git": "6a2c2b8c105cb5e85a031e431114e0eba5d7c559",
+      "change": "A",
+      "mode": "100644"
+    }
+  },
+  "immutableStage17OldCompactChunks": {
+    "web/data/HONRO_ACT2_COMPACT_PACKAGES-part-000.45cc14d990012925.bin": {
+      "sha256": "45cc14d990012925cbfbb05dc04743f54d6affe80e32763e9a77bfc93f4620a0",
+      "bytes": 4194304
+    },
+    "web/data/HONRO_ACT2_COMPACT_PACKAGES-part-001.9e74461920a17acd.bin": {
+      "sha256": "9e74461920a17acd7c8c2d77cc4e057dcf3fb871f2273dc905f37aacda150473",
+      "bytes": 3390067
+    },
+    "web/data/HONRO_ACT2_COMPACT_PACKAGES-parts.420dfb2876af8ed7.json": {
+      "sha256": "420dfb2876af8ed739351b8fcabaf6ad6d0eef30dd67d9126bee8bb5ce671a27",
+      "bytes": 464
+    },
+    "web/runtime/HONRO_ACT2_COMPACT_PACKAGES.ad917621a5a55dd5.js": {
+      "sha256": "ad917621a5a55dd58fec3a7a90133feadf70b91b2b1f5949275a9f2e25b1542f",
+      "bytes": 211
+    }
+  },
+  "verifiedStage17CandidateCompactChunks": {
+    "web/data/HONRO_ACT2_COMPACT_PACKAGES-part-000.094826dd9d0ff0e0.bin": {
+      "sha256": "094826dd9d0ff0e0da531e2cccc904cbaafb8e4fe8591f148d849f67c32c6f8e",
+      "bytes": 4194304
+    },
+    "web/data/HONRO_ACT2_COMPACT_PACKAGES-part-001.5235e65894b7a5e0.bin": {
+      "sha256": "5235e65894b7a5e0f362e79d81fad54476f55505c2969ae24edacbd28501957d",
+      "bytes": 3391597
+    },
+    "web/data/HONRO_ACT2_COMPACT_PACKAGES-parts.01b3f737aa0d4f34.json": {
+      "sha256": "01b3f737aa0d4f3431b04732ae84c068a124545dad16b07eca68e0ec55269956",
+      "bytes": 464
+    },
+    "web/runtime/HONRO_ACT2_COMPACT_PACKAGES.4e33da59982c2820.js": {
+      "sha256": "4e33da59982c28206ec7d617979067290e818e1abc0494b861e2cc7d1782694b",
+      "bytes": 211
+    }
+  },
+  "r2OfficialStatus": "failure",
+  "targetedOfficialStatus": "failure",
+  "independentFootprintDOMReceiptSHA256": "28daa5a00fedae323a57fef13e8ae96f7c05289356ea12873485b8fc01b186c9",
+  "expectedBaseEntryOldRole": {
+    "gameEntry": "web/entries/game.836da0e8342e0031.js",
+    "workshopEntry": "web/entries/workshop.0a270a5d0d89b6cc.js",
+    "playtest": "web/entries/game.444c9f8ffd2e0c47.html?embedded=1"
+  },
+  "publicPagesProof": {
+    "run": 44967387048,
+    "job": 137039749470,
+    "publishedAt": "2026-11-22T00:37:35Z",
+    "head": "4fdb1b182b308f4b0ed4a5dbad0591e28aac207d",
+    "tree": "7a358923f82235759229bc2622783755c1d483f6",
+    "manifestSHA256": "f3d8ec0e05b0d49303ddc4d505908e81db27ce60d03eebed8bfec0aa25eb8d7c",
+    "publicSmokeRun": 44968789214,
+    "publicSmokeJob": 137043752677,
+    "publicSmokeArtifact": 14733190364,
+    "publicSmokeReceiptSHA256": "ebb1e179e10403be22f4d55e9614b538cd2aae8381c302a7724e9760ff97f536"
+  },
+  "independentRootApproval": {
+    "decision": "ALLOW_CURRENT_STAGE17_NORMAL_REBIND_QA_ONLY",
+    "base": "4fdb1b182b308f4b0ed4a5dbad0591e28aac207d",
+    "pages": 44967387048,
+    "independentPriorEvidenceSHA256": "28daa5a00fedae323a57fef13e8ae96f7c05289356ea12873485b8fc01b186c9"
+  }
+}
