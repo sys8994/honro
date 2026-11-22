@@ -1,0 +1,326 @@
+{
+  "enabled": true,
+  "qaRef": "refs/heads/qa/stage44-west-stock-layer-split-f6e-r4",
+  "repo": "sys8994/honro",
+  "release": {
+    "head": "f6eaaa606914cd8f431ae0e52dd1e4b474b485c8",
+    "tree": "ddbd4d3f90a9c3a6b7e9f37ecbd42e28ad72ebb8",
+    "pages": 45053825574,
+    "job": 137305039471,
+    "publishedAt": "2026-11-22T18:15:30.6084492Z",
+    "manifest": {
+      "bytes": 8866088,
+      "sha256": "f4fb50930e9ab8c070875412bd07d1363c52c42f90530194f8f7a8c3c6ba6917",
+      "git": "405d172cc65f8168754a1ea78576b1242c0e2b0b"
+    }
+  },
+  "shell": {
+    "bytes": 17379,
+    "sha256": "7316f28f1348dc3debb460e5ac9d07318268f80283e792c0f3e97c211ad3c48b"
+  },
+  "qualifiedRoutes": {
+    "web/data/chapter-44-assets.ddddc05a5f764d6e.json": {
+      "bytes": 3323328,
+      "sha256": "ddddc05a5f764d6eee5e48602718f31a89008cc377ff188d6c3aa4b3a4cf1cdb"
+    },
+    "web/data/chapter-44.48354b7c0547c1a7.json": {
+      "bytes": 14376,
+      "sha256": "48354b7c0547c1a743531f79b0128e4fc56cb3d5973d7f8a17d40e5c232e2e68"
+    },
+    "web/graphics/honro_authored_far-images-root-interior.7b6377c64ea476da.webp": {
+      "bytes": 90092,
+      "sha256": "7b6377c64ea476da11bbcbaee6fc8c98e67692723bf8ee7f18ab60c22709def7"
+    },
+    "web/runtime/HONRO_AUTHORED_FAR.cf4cf9c2e0932235.js": {
+      "bytes": 905,
+      "sha256": "cf4cf9c2e09322356f9d2f0e874d700718783c6eafc332049663fdda54250f69"
+    },
+    "web/runtime/ordered-common-18.4831815091012b42.js": {
+      "bytes": 35562,
+      "sha256": "4831815091012b426ed3973ce2de1f4c896414383be3b5a4c782bcde29f05ffa"
+    },
+    "web/data/campaign.87da363001067c02.json": {
+      "bytes": 55151,
+      "sha256": "87da363001067c02b5986f1fb3fab035c9017b874482ce44547f852b13f6a8c6"
+    },
+    "web/entries/game.6c6702dd57c82b91.js": {
+      "bytes": 20483,
+      "sha256": "6c6702dd57c82b910e841be2e96290be508b43fad5da79f86f8a15fdaf910051"
+    },
+    "web/runtime/campaign.718c7f3ee1db9da7.js": {
+      "bytes": 527,
+      "sha256": "718c7f3ee1db9da757cd2c94caa1c97958128687acefcf594bc4cab281f0a64b"
+    },
+    "web/runtime/ordered-common-15.23e61c9f6bb8a95b.js": {
+      "bytes": 163921,
+      "sha256": "23e61c9f6bb8a95b55d7e87dff8f02b2c25e5f23abc66ec8df7b59c067894fe0"
+    }
+  },
+  "stageMapAndPacket": [
+    "web/data/chapter-44-assets.ddddc05a5f764d6e.json",
+    "web/data/chapter-44.48354b7c0547c1a7.json"
+  ],
+  "physics": "b7c0d64490dfaae60ad5c6bc394d000d5c256ba56f9a7149abbbf3301f4d6546",
+  "nearAsset": {
+    "id": "act5:near:44",
+    "instance": "a5-near",
+    "scale": 3.130755064456722
+  },
+  "poses": {
+    "PC": {
+      "west-close": [
+        -320,
+        2200,
+        0.5
+      ]
+    },
+    "M": {
+      "west-min": [
+        -320,
+        1313.5,
+        0.057352941176470586
+      ]
+    }
+  },
+  "witnessWU": {
+    "westRootStart": [
+      -740,
+      1920,
+      370,
+      2600
+    ],
+    "lowContacts": [
+      -665,
+      2240,
+      -555,
+      2365
+    ]
+  },
+  "parentTransport": {
+    "run": 45054267538,
+    "artifact": 14766429690,
+    "pinsSha256": "b5b88c1649af1053763f9577e950c36723bcccdad0a28139866890a3524026eb",
+    "observerSha256": "537cb36e8ad5e6017326ae944b6bdfd25459672e57de613030a7552cd3ee0468"
+  },
+  "stockOriginSuffix": "/honro/",
+  "raw": {
+    "PC": {
+      "bytes": 824497,
+      "sha256": "b108aa720cb8c58a82d12a4cc0e61ea23b3092f0496ec2a6cae2ca575647e38d",
+      "rgba": "9fc678b7457483fbc3241aaac4d791b0339f5d908d8633f24ae2484b1194057c"
+    },
+    "M": {
+      "bytes": 255380,
+      "sha256": "a3645d52b9f130b1bed783d990fe65342567f34a777b174480ea5e0a7a7b9c4d",
+      "rgba": "eca5ba090bb87324d3fd060b0a814624872b9135637be17bdd700fdb7cf47abe"
+    }
+  },
+  "historyComparison": {
+    "policy": "historical PC/M read-only goal label only, each device documented guard; no contemporaneous exception",
+    "pcOldCarrier": {
+      "captureRun": 45054267538,
+      "artifact": 14766429690
+    },
+    "pcR1Observed": {
+      "captureRun": 45073715370,
+      "job": 137366180305,
+      "artifact": 14774097029,
+      "raw": {
+        "bytes": 824509,
+        "sha256": "b023c8648ff7f81fd0fe0d7f881e0b150c6497c777b161f8872b897e779a6ea9"
+      },
+      "rgba": "6725a36f0d3722f9ecde121729a9596fa70ae1f8eb09b2e21425719f01ecc5f4",
+      "changed": 48,
+      "maxRGB": 117
+    },
+    "PC": {
+      "size": [
+        1440,
+        769
+      ],
+      "rectangleExclusive": [
+        1304,
+        77,
+        1356,
+        97
+      ],
+      "region": "Korean goal-label text pixels, no claim of source spelling change",
+      "archivedOutsideZeroROI_SHA256": "ac6696b4d8c7a4c2813b96cd2df357ef56ca4b90d178d8a7e23b4b1e1afc103b",
+      "archivedROIRGBA_base64": "Gx8f/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCn/ESQp/xIlKv8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKP8RJCj/ESQo/xEkKP8RJCn/ESQp/xEkKf8SJSn/EyUq/xMlKv8TJSr/FCYq/xsfH/8RJCj/ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQo/xEkKf8RJCn/ESQq/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8SJCn/EiQp/xIlKf8SJSr/EiUq/xMlKv8TJSr/EyUq/xQmKv8bHx//ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCn/EiQp/xEkKf8RJCn/ESQp/xEkKv8RJCr/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xMlKv8SJSr/EiUq/xIlKv8SJSr/EiUq/xIlKv8TJSr/EyUq/xMmKv8UJir/Gx8f/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQp/xIkKf8SJSn/EiUq/xEkKf8RJCr/ESQq/xEkKv8RJCr/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/EyUq/xIlKv8SJSr/EiUq/xIlKv8TJSr/EyUq/xMlKv8TJir/FCYq/xsfH/8RJCj/ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQo/xEkKP8kMjH/S1JF/1BVR/9ASkD/ESQo/xEkKP8RJCn/EiQp/xIlKv8SJSr/gX5i/4eCZf+HgmX/h4Jl/4eCZf+HgmX/h4Jk/4F9Yv8RJCn/ESQp/xEkKf9HT0T/u6x//7usf/+7rH//ppt0/6abdP+7rH//u6x//7ysf/9dYU//EiUq/xIlKv8SJSr/EyUq/xMlKv8TJSr/EyYq/xQmKv8bHx//ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQo/0ZOQ/+pnXX/qZ11/42HZ/+OiGj/wLCB/9XBjf89Rj7/EiUq/xIlKv8SJSr/ESQp/4F9Yv+HgmX/h4Jl/4eCZf+HgmX/h4Jk/4eCZP/VwIz/ESQp/xEkKf8RJCn/ESQp/xEkKf+4qn3/cXFa/xEkKf8RJCn/dnVc/6qedv8SJSr/EiUq/xIlKv8SJSr/EyUq/xMlKv8TJSr/EyUq/xMmKv8UJir/Gx8f/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQo/xEkKP/AsIH/SVFE/xEkKP8RJCj/ESQp/xIkKf9MU0b/x7WF/xIlKv8RJCn/ESQp/xEkKf+BfWL/h4Jl/4eCZf+HgmX/h4Jl/4eCZP+HgmT/1cCM/xEkKf8RJCn/ESQp/xEkKf+BfWL/saN6/8W0hP9ETEL/OUQ9/72tf/+onHX/ZWZU/xIlKv8SJSr/EiUq/xMlKv8TJSr/EyUq/xMlKv8TJir/FCYq/xsfH/8RJCj/ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCj/zrqI/xEkKP8RJCj/ESQp/xIlKf8SJSr/EiUq/866iP8RJCn/ESQp/xEkKf8RJCn/0LyK/1BVSP9QVUn/UFVJ/1BVSf9QVUj/UFVI/0xTRv8RJCn/ESQp/xEkKf+FgWP/saN6/xssLv83Qjv/u6x//8WzhP8qNzX/Gysu/66heP+FgWP/EiUq/xIlKv8TJSr/EyUq/xMlKv8TJSr/EyYq/xQmKv8bHx//ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQo/5mQbv+FgGL/PUc//xIlKf8SJSr/Lzw4/5SNbP9+fGD/ESQp/xEkKf8RJCn/ESQp/9vFj/+7rH//u6x//7usf/+7rH//u6x//7usf/+ypHr/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/4N/Yv94dlz/ESQp/xMlKv8SJSn/KDc1/xIlKf8SJSr/EyUq/xMlKv88Rj//4MmR/4WBZP8UJiv/Gx8f/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCj/gX1i/7aoff+8rH//vKx//7Olev9QVUj/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/JzY0/7usf/+7rH//u6x//7usf//Pu4n/0LyK/7usf/+8rH//vKx//7ysf/8lMzP/EyUq/xMlKv8TJSr/Pkc//+zTmP+Khmb/FCYr/xsfH/8RJCj/ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQp/xIkKf8SJSr/X2JR/19jUf8RJCn/ESQp/xEkKf8RJCn/ESQp/yc2NP+7rH//u6x//7usf/+7rH//u6x//7usf/+7rH//u6x//7usf/+7rH//JDIy/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/EiUq/xIlKv8SJSn/EiUq/xMlKv8TJSr/EyUq/xMlKv8TJSr/EyYq/xQmK/8bHx//ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQp/xIkKf8SJSr/EiUq/3d1Xf9zclr/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/6WadP8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/Gysu/7usf/+7rH//u6x//7usf/+7rH//u6x//7ysf/+ypHv/EiUq/xIlKv8TJSr/EyUq/xMlKv8TJSr/EyYq/xQmKv8UJiv/Gx8f/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCj/GSor/1BVSP9QVkj/UVZJ/1BWSf+Vjmz/k4xq/1BVSP9QVUj/UFVI/1BVSP8YKSz/ESQp/xEkKf/KuIf/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8SJSr/yriH/xIlKv8TJSr/EyUq/xMlKv8TJSr/EyUq/xMmKv8UJir/FCYr/xsfH/8RJCj/ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQo/x8vMP+Ig2T/iINl/4iDZf+HgmT/h4Jk/4eCZP+HgmT/h4Jk/4eCZP+HgmT/Hi4v/xEkKf8RJCn/0LyK/1BVSP9QVUj/UFVI/1BVSP9QVUj/UFVI/1BVSP8eLi//ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8SJSr/EiUq/8q4h/8SJSr/EyUq/xMlKv8TJSr/EyUq/xMlKv8TJSr/EyYq/xQmK/8bHx//ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQo/xEkKf8SJCn/EiUq/xMlKv8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/4F9Yv+HgmT/h4Jk/4eCZP+HgmT/h4Jk/4eCZP+HgmT/Kjc1/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/EyYq/xIlKv+hl3L/EiUq/xMlKv8TJSr/EyUq/xMlKv8TJSr/EyUq/xMmKv8UJir/Gx8f/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCn/EiUq/xIlKv8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xIlKv8SJSr/EiUq/xMlKv8TJSr/EyUq/xMlKv8TJSr/EyUq/xMlKv8TJir/EyYq/xsfH/8RJCj/ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCn/EiUp/xIlKv8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8SJSr/EiUq/xIlKv8TJSr/EyUq/xMlKv8TJSr/EyUq/xMlKv8TJSr/EyUq/xMlKv8bHx//ESQo/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQp/xIlKv8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCr/ESQq/xEkKf8SJSr/EiUq/xIlKv8TJSr/EyUq/xMlKv8TJSr/EyUq/xMlKv8TJSr/EyUq/xMlKv8TJSr/Gx8f/xEkKP8RJCj/ESQo/xEkKP8RJCj/ESQp/xIlKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQq/xEkKv8RJCr/EiUp/xIlKv8SJSr/EyUq/xMlKv8TJSr/EyUq/xMlKv8TJSr/EyUq/xMlKv8TJSr/EyUq/xsfH/8RJCj/ESQo/xEkKP8RJCj/ESQo/xIkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/EiUq/xIlKv8SJSr/EiUq/xMlKv8TJSr/EyUq/xMlKv8TJSr/EyUq/xMlKv8TJSr/EyUq/xMlKv8=",
+      "archivedROIRGBA_SHA256": "05ab0dc0699f03536ac35242b5d9afecd8a0987e4e9a29c32b01ced0edd7246b"
+    },
+    "M": {
+      "size": [
+        390,
+        648
+      ],
+      "rectangleExclusive": [
+        254,
+        274,
+        306,
+        295
+      ],
+      "region": "Korean goal-label text pixels, no claim of source spelling change",
+      "archivedOutsideZeroROI_SHA256": "4aef4401dfbaf2b2bfb0dd6a429fe7418e517d82d2dc7f9a128d2417d5ae21a3",
+      "archivedROIRGBA_base64": "JzIv/x0sLP8dLCz/HSws/x0sLP8dLCz/HSws/xsqKv8YJCb/Gycp/xwrK/8dLCz/HSws/x0sLP8dLCz/HSws/x0sLP8dLCz/HSws/x0sLP8cKir/HCor/x0sLP8dLCz/HSws/xwrK/8bJyj/GSMm/xYhI/8UHyL/FiEj/x8pKv8bJyr/Gycr/xsnK/8bJyv/GiYq/xomKv8aJir/GiYq/xomKv8aJir/GiYr/xsnK/8aJiv/GiYq/xomKv8aJir/GiYq/xomKf8bJin/GiYq/yQxLv8SJSr/EiUq/xIlKv8SJSr/EiUq/xIlKv8RJSn/ECMo/xAjKP8QIyj/ECQo/xAkKP8QJCj/ESQp/xElKf8SJSr/EiUq/xIlKv8SJSr/ESQp/xAjKP8QJCj/ESQp/xIlKv8SJSr/EiUq/xEkKf8RJCn/ESQp/xEkKf8RJCn/EiQp/xIlKv8TJir/EiUq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8kMS7/EiUq/xIlKv8SJSr/EiUq/xIlKv8SJSr/EiUq/xEkKf8QIyj/ECMo/xAjKP8QIyj/ECMo/xAjKP8QIyj/ESUp/xIlKv8SJSr/EiUq/xIlKv8RJCn/ECMo/xAjKP8QIyj/ECMo/xAjKP8QIyj/ECMo/xAkKP8RJCn/ESQp/xEkKf8RJCj/ECMo/xAjKP8QIyj/ECMo/xEkKf8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJSr/ESUq/xEkKv8RJCr/ESQq/xEkKv8RJSr/JDEu/xIlKv8RJSr/ESUp/xElKv8SJSr/EiUq/xIlKv8SJSr/ESQp/xAjKP8QIyj/ECMo/xAjKP8QIyj/ECMo/xAjKP8QIyj/ECQo/xEkKf8RJCn/ESUq/xEkKf8QIyj/ECMo/xAjKP8QIyj/ECMo/xAjKP8QIyj/ECMo/xAjKP8QIyj/ECMo/xAjKP8QIyj/ECMo/xAjKP8QIyj/ESQp/xElKv8RJCr/ESQq/xEkKv8RJSr/ESUq/xElKv8RJCr/ESQq/xEkKv8RJCr/ESUq/yArKf8RJCn/ECMo/xAjKP8QIyj/ECMo/xAjKP8QIyj/ECMo/xAjKP8QIyj/ECMo/xAjKP8QIyj/ECMo/xAjKP8QIyj/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ESQq/xAaG/8QIyj/ESQp/xEkKf8RJCn/ECMo/xIlKf8RJCn/ESQq/xkqLf9QVUn/UFVJ/1BVSf9QVUn/lY5s/5OMa/9QVUn/UFVJ/1BVSf9QVUn/GCkt/xEkKv8RJCr/yriH/xEkKv8RJCr/ESQq/xEkKv8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKv8RJCr/ESQq/8q4h/8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8QGRr/ECQo/xEkKf8RJCr/ESQq/xEkKv8RJCn/ESQq/xEkKv8fLzH/h4Jl/4eCZf+HgmX/h4Jl/4eCZf+HgmX/h4Jl/4eCZf+HgmX/h4Jl/x4uMP8RJCr/ESQq/9C8iv9QVUn/UFVJ/1BVSf9QVUn/UFVJ/1BVSf9QVUn/Hi4w/xEkKv8RJCr/ESQq/xEkKv8RJCn/ESQp/xEkKf8RJCn/ESQq/xEkKv/KuIf/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/FR4f/xEkKf8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv+BfWL/h4Jl/4eCZf+HgmX/h4Jl/4eCZf+HgmX/h4Jl/yo3Nv8RJCr/ESQq/xEkKv8RJCr/ESQp/xEkKf8RJCn/ESQp/xEkKf8RJCr/oJdy/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/x4lJ/8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKf8RJCn/ESQp/xEkKf8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKf8RJCn/ESQp/xEkKf8RJCn/ESQp/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8eJir/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCn/ESQp/xEkKf8RJCn/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKf8RJCn/ESQp/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/HiYq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQp/xEkKf8RJCn/ESQp/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/x4mKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8RJCr/ESQq/xEkKv8iJyr/HSYp/x0mKf8dJin/HSYp/x0mKf8dJin/HSYp/x0mKf8dJin/HiYp/x4mKv8dJin/HSYp/x0mKf8dJin/HSYp/x0mKf8dJin/HSYp/x0mKf8dJin/HSYp/x0mKf8dJin/HSYp/x0mKf8dJin/HSYp/x0mKf8dJin/HSYp/x0mKf8dJin/HSYp/x0mKf8dJin/HSYp/x0mKf8dJin/HSYp/x0mKf8dJin/HSYp/x0mKf8eJin/HiYp/x0mKf8dJin/HSYp/x0mKf8dJin/",
+      "archivedROIRGBA_SHA256": "e89349617e151896cd89220c7149843b37557328f8f76d8c2192637318871855"
+    },
+    "mobileR2Observed": {
+      "captureRun": 45074403801,
+      "job": 137368291127,
+      "artifact": 14775056437,
+      "zipSHA256": "b2569cbea105190e065e41dad405f4868640084cec1ebee3a01e805c10f4fcf0",
+      "raw": {
+        "bytes": 255392,
+        "sha256": "7278d8c26d594a59fd521a6926b1c286299d7bc034f703cf7d02251290f990bf"
+      },
+      "rgba": "35739ed7fe9a5d8e0e6bb5a74b57699d3d0fce19fbc109f175f41813c1dbf1d8",
+      "changed": 50,
+      "maxRGB": 118,
+      "alphaChanged": 0
+    }
+  },
+  "R4Mobile": {
+    "R3artifact": 14774708590,
+    "R3zipSHA256": "2eb5d1fdc6028329364583a79fc849782ce05b26b0721a3c7afb81537cd1a4ac",
+    "meta": {
+      "desired": {
+        "x": -1000000,
+        "y": 1313.5,
+        "scale": 0.057352941176470586
+      },
+      "actual": {
+        "x": -320,
+        "y": 1313.5,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": -3720,
+        "right": 3080,
+        "top": -4332.32532051282,
+        "bottom": 6959.32532051282
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 7120,
+        "bottom": 2867
+      },
+      "zoomLimits": {
+        "min": 0.057352941176470586,
+        "max": 1.65,
+        "tactical": 0.057352941176470586,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "actorCount": 35,
+      "tide": null,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "tileRasterScale": 0.0625
+    },
+    "final": {
+      "bytes": 255392,
+      "sha256": "7278d8c26d594a59fd521a6926b1c286299d7bc034f703cf7d02251290f990bf",
+      "rgba": "35739ed7fe9a5d8e0e6bb5a74b57699d3d0fce19fbc109f175f41813c1dbf1d8"
+    },
+    "omitted": {
+      "bytes": 241550,
+      "sha256": "b375e35f7189fc751ab1c4eecda3a7669ec892d62d91e51949465620182ab09e",
+      "rgba": "ff620dea0d8c5ac0174b4b58eedf19c0d561839a0aa3bda92bd6b3018b60e73a"
+    },
+    "coverage": {
+      "draws": 4,
+      "crown": 4,
+      "ctm": [
+        {
+          "matrix": [
+            0.1956721842288971,
+            0,
+            0,
+            0.1956721842288971,
+            514,
+            514
+          ],
+          "size": [
+            516,
+            516
+          ],
+          "main": false
+        },
+        {
+          "matrix": [
+            0.1956721842288971,
+            0,
+            0,
+            0.1956721842288971,
+            2,
+            514
+          ],
+          "size": [
+            516,
+            516
+          ],
+          "main": false
+        },
+        {
+          "matrix": [
+            0.1956721842288971,
+            0,
+            0,
+            0.1956721842288971,
+            514,
+            2
+          ],
+          "size": [
+            516,
+            516
+          ],
+          "main": false
+        },
+        {
+          "matrix": [
+            0.1956721842288971,
+            0,
+            0,
+            0.1956721842288971,
+            2,
+            2
+          ],
+          "size": [
+            516,
+            516
+          ],
+          "main": false
+        }
+      ]
+    },
+    "exactNestedMask": {
+      "encoding": "row-major one byte 0/1 per ordinary backing pixel; derived once from R3 stock-vs-omitted decoded RGBA",
+      "sha256": "c36c1f10abae9a83392d01f216e377a8f6fdcd25fa7f8a154388d94b84b956e7",
+      "pixels": 10629,
+      "bboxInclusive": [
+        152,
+        351,
+        389,
+        421
+      ],
+      "alphaChanged": 0
+    },
+    "retainedPC": {
+      "PC-BACKDROP-PASSTHROUGH-FINAL.png": "b023c8648ff7f81fd0fe0d7f881e0b150c6497c777b161f8872b897e779a6ea9",
+      "PC-BACKDROP-PRE-WORLD.png": "31a00040ae8442b9420dc179889ebabe85b525476cd561fd7b46a3178fadd03c",
+      "PC-ROOT-OMITTED-FINAL.png": "badbe8d2a8fb51b631286890dc792a6c92a6ec50f8811a223ee3002c957424f8",
+      "PC-STOCK-FINAL.png": "b023c8648ff7f81fd0fe0d7f881e0b150c6497c777b161f8872b897e779a6ea9",
+      "PC-STOCK-RESTORED.png": "b023c8648ff7f81fd0fe0d7f881e0b150c6497c777b161f8872b897e779a6ea9"
+    }
+  }
+}
