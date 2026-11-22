@@ -1,0 +1,61 @@
+(function install(G){'use strict';
+if(!G.HonroAct4Content?.enabled)return;
+if(!G.HonroApp){G.HONRO_APP_READY.then(()=>install(G));return;}
+const P=G.HonroAct4TerrainPreview,C=G.HONRO_CORE,copy=v=>JSON.parse(JSON.stringify(v)),proto=Object.getPrototypeOf(G.HonroApp),active=G.HonroAct4Content.active,memory=P.previewMemory;
+const shelterIds=Array.from({length:7},(_,i)=>'shelter-person-'+i),rescueIds=Array.from({length:4},(_,i)=>'a4-rescue-'+i),same=(a,b)=>Array.isArray(a)&&a.length===b.length&&new Set(a).size===a.length&&b.every(id=>a.includes(id));
+function bind(app){P.campaignProof=G.HonroAct4Content.state(app.profile);return P.campaignProof;}
+function proofValid(b){const p=P.campaignProof,a=p.safeSeven,r=p.rescued,entry=b.honroAct4EntryProof;return !!(p.runId===b.honroAct4ReviewRunId&&a?.success&&r?.success&&a.stage===32&&r.stage===39&&a.campaignRunId===p.runId&&r.campaignRunId===p.runId&&same(a.ids,shelterIds)&&same(r.ids,rescueIds)&&Array.isArray(a.reportIds)&&new Set(a.reportIds).size===a.reportIds.length&&(a.reportSkipped===true||a.reportIds.includes('A4.S32.MISSING.01'))&&a.reportIds.every(id=>['A4.S32.MISSING.01','A4.S32.MISSING.02','A4.S32.MISSING.03','A4.S32.MISSING.04'].includes(id))&&a.reunionObserved?.npc==='a4-shelter-speaker'&&a.reunionObserved?.hero==='archer'&&a.reunionObserved.sourceRun===a.sourceRun&&p.completed[32]?.sourceRun===a.sourceRun&&p.completed[39]?.sourceRun===r.sourceRun&&entry?.fromStage===39&&entry.targetStage===40&&entry.sourceRun===r.sourceRun&&entry.runId===p.runId&&same(b.honroAct4EntryResidents?.map(u=>u.id),rescueIds)&&b.honroAct4EntryResidents.every(u=>!u.dead&&u.hp>0));}
+P.proofValid=proofValid;
+P.save=function(app=G.HonroApp){const b=app.engine?.b;if(!active(b)||app.training||app.customMap)return false;bind(app);G.HonroProgression.syncRoster(app.profile,b);app.profile.honroBattle=P.snapshot(app);G.HonroEquipment.capture(app);G.HonroEquipment.observe(app);bind(app);return app.persist();};
+const persist=proto.persist;const persistWithAct4Snapshot=function(...args){if(active(this.engine?.b)&&!this.done)this.profile.honroBattle=P.snapshot(this,{compactArt:args[0]?.compactAct4Autosave===true});return persist.apply(this,args);};proto.persist=persistWithAct4Snapshot;
+// Stage 40's initial guide can use idle slices to prepare only its own
+// battle landmarks. Any user input or lifecycle change cancels the work.
+// Avoid serializing unusually large or nonstandard edited vectors as one
+// optional idle task. Ordinary rendering remains responsible for them.
+function guideVectorBounded(v){
+ if(!v||v.source!==undefined||(v.symbols!==undefined&&(!v.symbols||typeof v.symbols!=='object'||Array.isArray(v.symbols)||Object.keys(v.symbols).length>512)))return false;
+ const stack=[v.root,...Object.values(v.symbols||{})],clips=Object.values(v.clips||{});let nodes=0,chars=0;
+ for(const paths of clips){if(!Array.isArray(paths)||paths.length>32)return false;let size=0;for(const p of paths){if(typeof p!=='string')return false;size+=p.length;}if(size>100000)return false;chars+=size;}
+ while(stack.length){const node=stack.pop();if(!node||typeof node!=='object'||++nodes>512)return false;if(typeof node.d==='string')chars+=node.d.length;if(node.dParts!==undefined){if(!Array.isArray(node.dParts)||node.dParts.length>32)return false;let size=0;for(const p of node.dParts){if(typeof p!=='string')return false;size+=p.length;}if(size>100000)return false;chars+=size;}if(chars>2000000)return false;if(node.children!==undefined){if(!Array.isArray(node.children)||node.children.length>512)return false;stack.push(...node.children);}}
+ return chars<=2000000;
+}
+function prepareGuide(app,b){
+ if(b.honroStage!==40||b.honroCustom||!G.requestIdleCallback||!G.HonroVectorArt?.prepareIncremental)return;
+ const controller=new AbortController(),signal=controller.signal,start=performance.now();let raf;
+ const cancel=()=>controller.abort(),cleanup=()=>{cancelAnimationFrame(raf);for(const name of ['keydown','pointerdown','wheel','visibilitychange','pagehide'])G.removeEventListener(name,cancel,true);};
+ for(const name of ['keydown','pointerdown','wheel','visibilitychange','pagehide'])G.addEventListener(name,cancel,{capture:true,once:true});signal.addEventListener('abort',cleanup,{once:true});
+ const live=()=>!signal.aborted&&!G.document.hidden&&app.engine?.b===b&&app.screen==='battle'&&!app.done&&!app.modal.classList.contains('open');
+ const run=async()=>{try{const scene=app.scene,{w,h}=scene.size(),camera={x:scene.x,y:scene.y,scale:scene.scale,w,h},sameView=()=>{const r=scene.canvas.getBoundingClientRect();return app.scene===scene&&scene.x===camera.x&&scene.y===camera.y&&scene.scale===camera.scale&&r.width===camera.w&&r.height===camera.h;},view=G.HonroBounds.viewport(scene,w,h),padX=(view.right-view.left)*2,padY=(view.bottom-view.top)*2,near={left:view.left-padX,right:view.right+padX,top:view.top-padY,bottom:view.bottom+padY},seen=new Set();
+  for(const l of b.honroLandmarks||[]){const v=l.asset?.vector;if(!live()||!app.dialogue||!sameView())break;if(!v||seen.has(v)||!l.nativeArtLayer||!scene._landmarkVisible(l,near)||!guideVectorBounded(v))continue;seen.add(v);await G.HonroVectorArt.prepareIncremental(v,{signal,eligible:()=>live()&&!!app.dialogue&&sameView()&&l.asset?.vector===v&&!!l.nativeArtLayer&&(b.honroLandmarks||[]).includes(l)});}
+  }catch{/* Optional preparation never blocks the regular renderer. */}finally{cleanup();}
+ };
+ let previous=null,stable=0;const wait=()=>{if(!live()||performance.now()-start>10000){cleanup();return;}const scene=app.scene,r=scene?.canvas?.getBoundingClientRect(),view=scene&&r?[scene.x,scene.y,scene.scale,r.width,r.height]:null;if(app.dialogue&&view&&previous&&view.every((value,i)=>value===previous[i])&&!scene.storyTween)stable++;else stable=0;previous=view;if(stable>=3){void run();return;}raf=requestAnimationFrame(wait);};raf=requestAnimationFrame(wait);
+}
+const mount=proto.mount;proto.mount=function(b,options={}){const out=mount.call(this,b,options);if(!active(b))return out;bind(this);const fresh=options.freshReport===true||!b.honroAct4PreviewState;G.HonroAct4Content.prepare(b,this.profile);if(b.honroAct4Design.palette)G.HonroAct4ReviewArt.palettes[b.honroStage]=copy(b.honroAct4Design.palette);P.attachEvents(this,{fresh});P.attachCoast(this);if(fresh)P.startCamera(this);const reader=memory(b).reader;if(reader){const seed=G.HONRO_ACT4_REVIEWED.scenes.find(s=>s.stage===b.honroStage&&s.event===reader.key),lines=reader.ids?seed.lines.filter(l=>reader.ids.includes(l[0])):seed.lines,cursor=reader.cursorId?Math.max(0,lines.findIndex(l=>l[0]===reader.cursorId)):(reader.cursor??0);G.HonroStory.start(this,lines.map(([id,who,text])=>[who,text,{kind:'character',act4PreviewRow:id}]),{id:'act4-preview-'+b.honroStage+'-'+reader.key,title:this.stage.name,index:cursor});}this.dirty=true;if(fresh)prepareGuide(this,b);return out;};
+const check=proto.checkMission;proto.checkMission=function(e){const b=e.b;if(!active(b))return check.call(this,e);const q=memory(b);if(q.complete){b.phase='won';return true;}if(q.failure||!b.units.some(u=>u.side===0&&!u.summoned&&!u.enthrall&&!u.dead&&u.hp>0)){b.phase='lost';b.winnerReason=q.failure==='party-defeated'?'동행이 모두 쓰러졌다.':'지켜야 할 이를 잃었다.';return true;}return false;};
+const outcome=proto.outcome;proto.outcome=function(...args){const b=this.engine?.b;if(active(b)&&!this.done&&b.phase==='won'){const q=memory(b);if(!q.complete||P.narrativePending(b))return false;const p=bind(this),row={stage:b.honroStage,sourceRun:b.session,campaignRunId:p.runId,success:true,residents:b.units.filter(u=>u.honroAct4Resident).map(u=>({id:u.id,hp:u.hp,dead:u.dead})),rows:copy(q.receipts)};p.completed[b.honroStage]=row;if(q.safeSeven)p.safeSeven={...copy(q.safeSeven),...row};if(b.honroStage===39&&q.rescued)p.rescued={...copy(q.rescued),...row};}return outcome.apply(this,args);};
+// Keep receipt observation alive during a reader, while normal modal/hidden
+// pauses stop scene time. Engine remains the only physics/action loop.
+const frame=proto.frame;proto.frame=function(now){const b=this.engine?.b,show=active(b)&&this.screen==='battle'&&!this.done&&!G.document.hidden&&!this.modal.classList.contains('open');if(show){bind(this);const dt=Math.min(.06,Math.max(0,(now-(this.act4ObservedAt??now))/1000));this.act4ObservedAt=now;const escortBefore=b.honroStage===40?memory(b).returnEscort?.clock:undefined;P.observe(this,dt);const escortAfter=b.honroStage===40?memory(b).returnEscort?.clock:undefined;if(Number.isFinite(escortAfter)&&escortAfter!==escortBefore)this.dirty=true;}else{this.act4ObservedAt=now;const bark=G.document.getElementById('act4-banter');if(bark)bark.hidden=true;}return frame.call(this,now);};
+const interact=P.interact;P.interact=function(app=G.HonroApp,probe=false){const b=app.engine?.b;if(!active(b))return interact(app,probe);const u=app.engine.active;if(b.side!==0||b.phase!=='aim'||!u||u.side!==0||u.dead||u.acted||!app.canInput()||!app.engine.grounded(u))return false;if(!probe)bind(app);const ok=interact(app,probe);if(ok&&!probe){if(memory(b).complete){b.phase='won';if(b.honroStage===31)P.coast.fact(b,'eq_se_t3b',{boarded:true,party:b.units.filter(u=>u.side===0&&!u.dead).map(u=>u.id)});}app.dirty=true;P.save(app);}return ok;};
+const objectiveHelp=G.HonroObjectives.help;G.HonroObjectives.help=function(app){const b=app.engine?.b;if(!active(b)||!b.honroAct4Design)return objectiveHelp(app);return{summary:P.questGuidance(app).text};};
+const refresh=G.HonroInteractions.refresh;G.HonroInteractions.refresh=function(app){const b=app.engine?.b;if(!active(b)||!b.honroAct4Design)return refresh(app);const host=G.document.getElementById('context-interact');if(!host)return;
+ const action=P.interact(app,'label'),guide=P.questGuidance(app),goal=G.document.getElementById('objective-text');
+ if(goal&&goal.textContent!==guide.text){goal.textContent=guide.text;goal.setAttribute('aria-label',guide.text+' · 눌러서 목표·조작 안내');}
+ if(app.scene)app.scene.missionTargets=guide.targets;
+ host.hidden=!action;if(action&&host.dataset.sig!=='act4:'+action){host.dataset.sig='act4:'+action;const button=G.document.createElement('button'),span=G.document.createElement('span'),label=G.document.createElement('strong');span.textContent='상호작용';label.textContent=action;button.dataset.act4Interact='1';button.append(span,label);host.replaceChildren(button);}
+};
+const key=G.HonroInteractions.key;G.HonroInteractions.key=function(app,ev){if(active(app.engine?.b)&&ev.code==='KeyE'&&!ev.repeat&&P.interact(app)){ev.preventDefault();return true;}return key(app,ev);};
+G.document.addEventListener('click',ev=>{if(ev.target.closest?.('[data-act4-interact]'))P.interact(G.HonroApp);});
+// Jumping/falling recovery can spend the selected actor's action; native hero
+// selection must still let a companion clear an occupied return bank.
+const select=proto.selectHero;proto.selectHero=function(id){const e=this.engine,b=e?.b,u=e?.unit(id);if(active(b)&&e.active?.honroAct4Recovering&&b.side===0&&b.phase==='aim'&&!this.dialogue&&!this.modal.classList.contains('open')&&!this.done&&u?.side===0&&!u.dead&&!u.acted&&e.select(id)){this.cancelInput();this.selected=u.loadout.find(id=>!C.SKILLS[id].passive);this.selectedByUnit[id]=this.selected;this.power=u.lastPower||.58;G.HonroAttackCamera?.resume(this.scene);this.updateHUD(true);return true;}return select.call(this,id);};
+// A fresh normal harbor launch is immediately followed by this exact writer.
+// Skip only the discarded eager copy, never the snapshot or the original writer.
+function ownsFreshHarborSnapshot(app,b){
+ return b?.honroStage===40&&b.stage===40&&b.mode==='campaign'&&b.honroCanonical===true&&
+  b.honroCustom===false&&b.honroAuthoredId==='stage-40'&&b.honroMapOrigin==='campaign'&&
+  active(b)&&app.engine?.b===b&&!app.done&&!app.training&&!app.customMap&&!app.debugMode&&app.persist===persistWithAct4Snapshot;
+}
+G.HonroAct4Campaign={active,bind,proofValid,ownsFreshHarborSnapshot};
+})(globalThis);
