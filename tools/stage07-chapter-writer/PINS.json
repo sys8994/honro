@@ -1,0 +1,191 @@
+{
+  "enabled": true,
+  "scopeApproval": true,
+  "destinationMustBeAtBase": true,
+  "repo": "sys8994/honro",
+  "qaRef": "refs/heads/qa/stage07-chapter-retained-writer-0b9",
+  "releaseRef": "refs/heads/release/stage07-chapter-facies-20261122",
+  "base": {
+    "head": "0b9c7f0746da289dc92474a76173232a3fb91ea8",
+    "tree": "b0967ba00ae01d9ae5d872f5d45ead05c5bf0ccb",
+    "manifest": {
+      "bytes": 8522079,
+      "git": "7978f15ca4a6c09143172e6dc89b750a160b005c",
+      "sha256": "c32600ab10687b5d4f8b797fa9c4b8ada4e7dd5cb7a81312368500dec2b856f1"
+    },
+    "pages": 45033441002,
+    "job": 137242393705,
+    "publishedAt": "2026-11-22T14:35:42.0478097Z",
+    "registry": 1502,
+    "publishedGenerations": 49,
+    "retainerGit": "8374336b53c74ac81e6d32f5aa43eee575e61daa",
+    "policyGit": "16687b0fc38e432a7d66a015ddf3ebe744163a06"
+  },
+  "normalQA": {
+    "run": 45036351732,
+    "job": 137250850882,
+    "head": "dc1157acecc4276480b06eb4a065bbc32a24d9a8",
+    "tree": "1d999e7fccc65eb878467805f2a54cb9feb01703",
+    "artifact": 14759474485,
+    "artifactName": "stage07-chapter-sealed-producer-no-deploy",
+    "fact": {
+      "bytes": 2720901,
+      "sha256": "7825d8dd476e61497126121c3494a30c1c548cbac6b2ddea8a5c3dc9b817aa10"
+    },
+    "innerFact": {
+      "bytes": 2708128,
+      "sha256": "f7352bc7e7f7e6d7ff66fab1b65fbd44d7110600cfa3c8c6095a969d10d39293",
+      "git": "4b679deaa70fafe50c8543bbfd26a354f1afc226"
+    },
+    "members": [
+      "GRAPH.json",
+      "ORDERED-ROUTES-UNADJUDICATED.json",
+      "CUSTODY.json",
+      "SOURCE.json",
+      "STAGE07-REVIEWED-NORMAL.zip",
+      "build.log",
+      "contract.log",
+      "npm-game.log",
+      "npm.log"
+    ],
+    "receipts": {
+      "CUSTODY.json": {
+        "bytes": 5385,
+        "sha256": "1fac80f805126209b220ffe2ac069cbe8d8c154d3c0189eb1dcfe45e94d6c5a2"
+      },
+      "GRAPH.json": {
+        "bytes": 11798,
+        "sha256": "e3d83324ed2414d85dd59c3bd08264cec055bf424dca29559c11c418b3f68926"
+      },
+      "SOURCE.json": {
+        "bytes": 887,
+        "sha256": "6c548a69968b18a5708eb09cd851b710127ed7107fc309f5fc35124e1b46b850"
+      },
+      "ORDERED-ROUTES-UNADJUDICATED.json": {
+        "bytes": 80613,
+        "sha256": "f8f3003da697685c85193b3eda5f34b04a7543838a5ce7827add8103b08c452f"
+      }
+    },
+    "branch": "qa/stage07-chapter-sealed-producer-0b9"
+  },
+  "reviewedR2": {
+    "run": 45035277373,
+    "head": "5b7889d214a0f4ef911cbfab7513c626b3db68d6",
+    "artifact": 14759931416,
+    "sha": "c5e088dc192801ea405e31b592ba9bdb702b49c1ee62f5a115b685515482013e"
+  },
+  "expectedNormalManifest": {
+    "bytes": 8474072,
+    "sha256": "7ebabf5a84d9d1542ad0c89e07e0ab274019f9d2744344c24991b357d01e8a07",
+    "git": "26426a97e774289da0e29d994569595453540259"
+  },
+  "expectedActive": {
+    "web/runtime/ordered-common-11.6b1c56faa0f72077.js": {
+      "bytes": 166538,
+      "sha256": "6b1c56faa0f720779355027f23a6afaa7bee08944c7421b429d73009a3f81676"
+    },
+    "web/runtime/ordered-common-12.4bcd22a3c1af1306.js": {
+      "bytes": 87071,
+      "sha256": "4bcd22a3c1af1306a9cf4c7e7e80ac3974cf63e36892f7e8866f0a193fe58011"
+    },
+    "web/runtime/campaign.0b680e073a963004.js": {
+      "bytes": 527,
+      "sha256": "0b680e073a9630043e6b1bd0d18e22398b2c839ab1f4c43310d7530f4058c137"
+    },
+    "web/data/chapter-07.177911aaf007ef0b.json": {
+      "bytes": 30621,
+      "sha256": "177911aaf007ef0beb6a0cb94379b3513d42a9f653b53aaba9fb3948761a99ee"
+    },
+    "web/data/chapter-07-assets.4f5a7691dac04f9d.json": {
+      "bytes": 769327,
+      "sha256": "4f5a7691dac04f9dfcb361fa4258479080c349ae5bd0cd50b42b4b16156b3928"
+    },
+    "web/data/campaign.dce6b5b5facbbd91.json": {
+      "bytes": 55151,
+      "sha256": "dce6b5b5facbbd91e9d734f17030667aa2644af8782fef1fff3a6a22b639e380"
+    },
+    "web/entries/game.3716bcb3caa78a7a.js": {
+      "bytes": 20483,
+      "sha256": "3716bcb3caa78a7a9b664378267214aafc47ad8ba985f12b6a020bd889c94b9a"
+    },
+    "web/entries/workshop.d9750b408abb8793.js": {
+      "bytes": 16706,
+      "sha256": "d9750b408abb879329852da1ee24f10a2111e27065f796fe86c56b036d53ee1e"
+    },
+    "web/entries/game.c318bfb7587c950f.html": {
+      "bytes": 11318,
+      "sha256": "c318bfb7587c950f305dd1e72d7f80a6a6c0888b15fb738264f3e2a2c62dfdc1"
+    }
+  },
+  "sources": {
+    "tools/map-forge/act1-naru-doldang.mjs": {
+      "local": "candidate-author.mjs",
+      "old": {
+        "bytes": 14459,
+        "sha256": "427811cc0aa82e548ec9a9fc4c025d2b5f2d06786972c27be6b9bc4ee18eb0d9",
+        "git": "821449837e6c30a664f2a62e67fe5b02f91bd912"
+      },
+      "new": {
+        "bytes": 15402,
+        "sha256": "dbca4133830f474366045cb2b1904f8aa956e5300b0e52d13d28859786b3d0cc",
+        "git": "4911e7a9f5a34e4071417c8fae8fb9af8d56a2fd"
+      }
+    },
+    "shared/map/terrain-domain.js": {
+      "local": "candidate-terrain-domain.js",
+      "old": {
+        "bytes": 26789,
+        "sha256": "b856335569d5303781f7deb48f4f030f28cce081d2ced47fc249d02245b34ed5",
+        "git": "eb468b23024e316ede42ac66bd77687e8c40240a"
+      },
+      "new": {
+        "bytes": 29712,
+        "sha256": "e5a909a45b295e55a697807e68ef50356b59849e591a67da978d187812f23427",
+        "git": "2c71093c6ffd93dd5d5293f21dffd50fcb019b45"
+      }
+    },
+    "shared/assets/environment/act1-sites/stage07-underbody-r7.json": {
+      "local": "art-payload.json",
+      "old": null,
+      "new": {
+        "bytes": 112840,
+        "sha256": "651dc180ac7023a36a1b5949edd289ba741965cab0079a23303a0545e254b2dc",
+        "git": "6fb2fe589a5ac18c45adf1271306912b2735cc6a"
+      }
+    }
+  },
+  "chapter": {
+    "scope": "Exact checked source schema and packet algorithm on known compiled source fixture; predicted closed bytes, not observed official build",
+    "oldMap": {
+      "bytes": 30579,
+      "gzip": 5715,
+      "sha256": "28f7bf612a598aeb0eb6da0f819a0b6ddb7fd5414eab9410e434772eb04d2553",
+      "url": "web/data/chapter-07.28f7bf612a598aeb.json"
+    },
+    "newMap": {
+      "bytes": 30621,
+      "gzip": 5734,
+      "sha256": "177911aaf007ef0beb6a0cb94379b3513d42a9f653b53aaba9fb3948761a99ee",
+      "url": "web/data/chapter-07.177911aaf007ef0b.json"
+    },
+    "oldPacket": {
+      "bytes": 655969,
+      "gzip": 227166,
+      "sha256": "7068fa05c6ce1c2ef0c96045daa3dea192ba69a18e35bc323e6a5df9a1529db5",
+      "url": "web/data/chapter-07-assets.7068fa05c6ce1c2e.json"
+    },
+    "newPacket": {
+      "bytes": 769327,
+      "gzip": 279453,
+      "sha256": "4f5a7691dac04f9dfcb361fa4258479080c349ae5bd0cd50b42b4b16156b3928",
+      "url": "web/data/chapter-07-assets.4f5a7691dac04f9d.json"
+    },
+    "encoding": {
+      "old": "json",
+      "new": "json"
+    },
+    "metaIsAuthorOnly": true,
+    "normalizedOldAssetsAndTheirExactOrder": true,
+    "normalizedOldDesignAndPhysicalMetadataEqual": true
+  }
+}

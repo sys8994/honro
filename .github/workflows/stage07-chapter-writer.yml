@@ -1,0 +1,38 @@
+name: HONRO Stage7 exact chapter retained candidate assembly
+on:
+  push:
+    branches: [qa/stage07-chapter-retained-writer-0b9]
+    paths: [".github/workflows/stage07-chapter-writer.yml", "tools/stage07-chapter-writer/**"]
+permissions:
+  contents: write
+  actions: read
+jobs:
+  fixed-stage07-release-checkpoint:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage07-chapter-retained-writer-0b9'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: true
+          fetch-depth: 0
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Authenticate exact scoped normal archives and baseline Pages
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 -B tools/stage07-chapter-writer/assemble.py acquire "$RUNNER_TEMP/stage07-chapter-checkpoint"
+      - name: Assemble then fast-forward the one isolated candidate ref only
+        run: bash tools/stage07-chapter-writer/safe-push.sh "$RUNNER_TEMP/stage07-chapter-checkpoint"
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage07-chapter-retained-release-receipt-no-deploy
+          path: |
+            ${{ runner.temp }}/stage07-chapter-checkpoint/ASSEMBLY.json
+            ${{ runner.temp }}/stage07-chapter-checkpoint/candidate.sha
+            ${{ runner.temp }}/stage07-chapter-checkpoint/candidate.tree
+            ${{ runner.temp }}/stage07-chapter-checkpoint/hook
+          if-no-files-found: warn
+          retention-days: 7
