@@ -1,0 +1,91 @@
+name: HONRO Stage33 exact 2c4 R3 retained R2 visual and real input
+on:
+  push:
+    branches: [qa/stage33-r3-2c4-retained-r2]
+    paths:
+      - '.github/workflows/stage33-r3-2c4-retained-r2.yml'
+      - 'tools/stage33-r3-product/live_input.py'
+      - 'tools/stage33-r3-product/r2_preflight.py'
+      - 'tools/stage33-r3-product/restore-old-urls.mjs'
+permissions:
+  contents: read
+jobs:
+  stage33-action:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage33-r3-2c4-retained-r2'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 49
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 3
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Build exact native R3 on detached product parent and verify graph
+        id: graph
+        timeout-minutes: 16
+        run: |
+          set -euo pipefail
+          test -z "${GH_TOKEN:-}${GITHUB_TOKEN:-}"
+          W="$(mktemp -d "$RUNNER_TEMP/stage33-r3-live.XXXXXX")"
+          T="$GITHUB_WORKSPACE/tools/stage33-r3-product"
+          mkdir "$W/out"
+          echo "WORK=$W" >> "$GITHUB_ENV"
+          python "$T/r2_preflight.py" "$W"
+          node "$T/prepare.mjs" write "$W" > "$W/out/prepare.log" 2>&1
+          (
+            cd "$W/B"
+            npm ci > "$W/out/npm-root-B.log" 2>&1
+            npm ci --prefix game > "$W/out/npm-game-B.log" 2>&1
+            date +%s%3N > "$W/out/build-begin-ms.txt"
+            npm run build > "$W/out/build-B.log" 2>&1
+            date +%s%3N > "$W/out/build-end-ms.txt"
+            npm run test:production-contract > "$W/out/core-contract-B.log" 2>&1
+          )
+          node "$T/restore-old-urls.mjs" "$W" "$(cat "$W/out/build-begin-ms.txt")" "$(cat "$W/out/build-end-ms.txt")"
+          python "$T/guard.py" "$W"
+      - name: Install the single pinned browser environment
+        id: browser
+        timeout-minutes: 7
+        run: |
+          set -euo pipefail
+          python -m venv "$WORK/venv"
+          V="$WORK/venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+      - name: Official normal visual A/B, all scoped camera cases
+        id: visual
+        timeout-minutes: 17
+        run: |
+          set -euo pipefail
+          T="$GITHUB_WORKSPACE/tools/stage33-r3-product"
+          python -m http.server 18961 --bind 127.0.0.1 --directory "$WORK/A" > "$WORK/out/http-A-visual.log" 2>&1 &
+          a=$!
+          python -m http.server 18962 --bind 127.0.0.1 --directory "$WORK/B" > "$WORK/out/http-B-visual.log" 2>&1 &
+          b=$!
+          trap 'kill "$a" "$b" 2>/dev/null || true' EXIT
+          for p in 18961 18962; do curl -fsS --retry 8 --retry-connrefused "http://127.0.0.1:$p/HONRO.html" -o /dev/null; done
+          "$WORK/venv/bin/python" "$T/capture.py" "$WORK"
+      - name: Independent natural UI input and first rising tide, no camera freeze
+        if: ${{ !cancelled() && steps.graph.outcome == 'success' && steps.browser.outcome == 'success' }}
+        timeout-minutes: 12
+        run: |
+          set -euo pipefail
+          T="$GITHUB_WORKSPACE/tools/stage33-r3-product"
+          python -m http.server 18961 --bind 127.0.0.1 --directory "$WORK/A" > "$WORK/out/http-A-input.log" 2>&1 &
+          a=$!
+          python -m http.server 18962 --bind 127.0.0.1 --directory "$WORK/B" > "$WORK/out/http-B-input.log" 2>&1 &
+          b=$!
+          trap 'kill "$a" "$b" 2>/dev/null || true' EXIT
+          for p in 18961 18962; do curl -fsS --retry 8 --retry-connrefused "http://127.0.0.1:$p/HONRO.html" -o /dev/null; done
+          "$WORK/venv/bin/python" "$T/live_input.py" "$WORK"
+      - if: always() && env.WORK != ''
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage33-2c4-r3-retained-r2-evidence-only
+          path: ${{ env.WORK }}/out
+          if-no-files-found: error
+          retention-days: 7
