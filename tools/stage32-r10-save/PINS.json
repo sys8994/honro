@@ -1,0 +1,353 @@
+{
+  "enabled": true,
+  "qaRef": "refs/heads/qa/stage32-r10-save-lazy-0b9-no-deploy",
+  "head": "0b9c7f0746da289dc92474a76173232a3fb91ea8",
+  "tree": "b0967ba00ae01d9ae5d872f5d45ead05c5bf0ccb",
+  "pages": {
+    "run": 45033441002,
+    "job": 137242393705,
+    "utc": "2026-11-22T14:35:44Z",
+    "head": "0b9c7f0746da289dc92474a76173232a3fb91ea8",
+    "conclusion": "success"
+  },
+  "manifest": {
+    "bytes": 8522079,
+    "sha256": "c32600ab10687b5d4f8b797fa9c4b8ada4e7dd5cb7a81312368500dec2b856f1",
+    "git": "7978f15ca4a6c09143172e6dc89b750a160b005c"
+  },
+  "source": "shared/build.mjs",
+  "sourceStock": {
+    "bytes": 26381,
+    "sha256": "af7127bf65e1e9e7a21ffe52c90a45328eaf2851708a2ba61d8aac31fa8793cd",
+    "git": "a5ac12ef4de8b2370fcbca1457b86a0c6e2d758c"
+  },
+  "sourceB": {
+    "bytes": 26581,
+    "sha256": "fbd08d3312c3f624b0f356c7d17a890389dfc5dc85d6642f633d7300eafa37a8",
+    "git": "c6a7ec31f60934af8dc44c0fe21a90de3a1e32a6"
+  },
+  "paintPath": "shared/author-stage32-south.mjs",
+  "paint": {
+    "bytes": 15834,
+    "sha256": "87efe86b733e70109dd6fec426404112874e2621dbd5323031c272628bf0bba6",
+    "git": "d747b1d296b7941a4bfcacea8e7e247afb0c7c71"
+  },
+  "observer": {
+    "bytes": 5555,
+    "sha256": "7c64522c0c84866e0d2516ca18ed81e12a9f7b348a26fa49fb40f9516a29a24a",
+    "git": "9a006159a486663144950cf69fae3f4fd9c41ff3"
+  },
+  "authoredBodyStockGit": "f97c5161ed8e8e0825085264ff6010f52429f2b7",
+  "map": "web/data/chapter-32.f242630da616ee32.json",
+  "mapPin": {
+    "bytes": 21111,
+    "sha256": "f242630da616ee32bbeaa0f13d64e7c800976e6928d25b5c588a2286e913968a",
+    "git": "98722d5d4e4fee6eb0348c8fbd7075b29bf8a76b"
+  },
+  "oldIdx": "web/data/chapter-32-assets-parts.427bcb8462093709.json",
+  "oldPin": {
+    "bytes": 443,
+    "sha256": "427bcb8462093709dd9680066672b86b093d858fd679a6ecd88f461874cfd781",
+    "git": "c8e872b988a6eafef46f02b0857fc4ac0bd9ba24"
+  },
+  "active": 811,
+  "scope": [
+    245,
+    1790,
+    3166,
+    2470
+  ],
+  "assets": {
+    "F": "act4-handoff:32:body-joined",
+    "B": "approved32:coastal-foundation"
+  },
+  "devs": [
+    {
+      "key": "PC-south",
+      "device": "PC",
+      "name": "south",
+      "dims": [
+        1440,
+        900
+      ],
+      "dx": 0,
+      "dy": 1,
+      "actual": {
+        "x": 1689.6,
+        "y": 2492.8,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": -1710.4,
+        "right": 5089.6,
+        "top": 676.6628472222224,
+        "bottom": 4308.9371527777785
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "rawSHA256": "9c6255fa57a87c159c16cd7379ab0ec0a986d6cec6a73aa7bd2acb6724844390",
+      "physics": "b4ab0de6e02c3c70496ae111ad17b25d68a0fa4a054731b04df18e425abde515",
+      "archivedA": "9c6255fa57a87c159c16cd7379ab0ec0a986d6cec6a73aa7bd2acb6724844390",
+      "archivedB": "2c9672d20b4f530aa775fc25e287193c670d47556fd33fd34583a90459623a45"
+    },
+    {
+      "key": "PC-west",
+      "device": "PC",
+      "name": "west",
+      "dims": [
+        1440,
+        900
+      ],
+      "dx": -1,
+      "dy": 0,
+      "actual": {
+        "x": -320,
+        "y": 1126.4,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": -3720,
+        "right": 3080,
+        "top": -689.7371527777777,
+        "bottom": 2942.537152777778
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "rawSHA256": "fa8b52e6279e2b308a940f0236126102028c5347edacc9bf1898d0c090e4ea4e",
+      "physics": "b4ab0de6e02c3c70496ae111ad17b25d68a0fa4a054731b04df18e425abde515",
+      "archivedA": "fa8b52e6279e2b308a940f0236126102028c5347edacc9bf1898d0c090e4ea4e",
+      "archivedB": "bf9f28a6543c8ae45b6dba694a4995cd4314a31bcd8796605cc80a20dfa27ec5"
+    },
+    {
+      "key": "PC-east",
+      "device": "PC",
+      "name": "east",
+      "dims": [
+        1440,
+        900
+      ],
+      "dx": 1,
+      "dy": 0,
+      "actual": {
+        "x": 3699.2,
+        "y": 1126.4,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "left": 299.1999999999998,
+        "right": 7099.2,
+        "top": -689.7371527777777,
+        "bottom": 2942.537152777778
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "rawSHA256": "7a5c5c982f79b8bcbfe918e4fb7f12af7bc06404b23e521ec3839e000b3dc109",
+      "physics": "b4ab0de6e02c3c70496ae111ad17b25d68a0fa4a054731b04df18e425abde515",
+      "archivedA": "7a5c5c982f79b8bcbfe918e4fb7f12af7bc06404b23e521ec3839e000b3dc109",
+      "archivedB": "4010669464221c25dde1eb6ffe4f938bdf9c75715a248b9a9a51c0250986da84"
+    },
+    {
+      "key": "Mobile-south",
+      "device": "Mobile",
+      "name": "south",
+      "dims": [
+        390,
+        844
+      ],
+      "dx": 0,
+      "dy": 1,
+      "actual": {
+        "x": 1689.6,
+        "y": 2492.8,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": -1710.4,
+        "right": 5089.6,
+        "top": -3153.02532051282,
+        "bottom": 8138.6253205128205
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "rawSHA256": "f62e502d75896cdff48d18d772a600f84030aca5a830a18e7d5e731a500e6083",
+      "physics": "b4ab0de6e02c3c70496ae111ad17b25d68a0fa4a054731b04df18e425abde515",
+      "archivedA": "f62e502d75896cdff48d18d772a600f84030aca5a830a18e7d5e731a500e6083",
+      "archivedB": "a2064cc362641a1422f596bf7b2357f822bdc0fcdaf25735ac38aac652cf0eb1"
+    },
+    {
+      "key": "Mobile-west",
+      "device": "Mobile",
+      "name": "west",
+      "dims": [
+        390,
+        844
+      ],
+      "dx": -1,
+      "dy": 0,
+      "actual": {
+        "x": -320,
+        "y": 1126.4,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": -3720,
+        "right": 3080,
+        "top": -4519.425320512821,
+        "bottom": 6772.22532051282
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "rawSHA256": "01995be0d49c38bcd5c2bc5d8d2d11ad963c24fd0f90c04fb179bfb453b8ceb5",
+      "physics": "b4ab0de6e02c3c70496ae111ad17b25d68a0fa4a054731b04df18e425abde515",
+      "archivedA": "01995be0d49c38bcd5c2bc5d8d2d11ad963c24fd0f90c04fb179bfb453b8ceb5",
+      "archivedB": "e0967c911378bfc55cbf4e26721e9e202182a66d38213de18d32ae96ec87e1c0"
+    },
+    {
+      "key": "Mobile-east",
+      "device": "Mobile",
+      "name": "east",
+      "dims": [
+        390,
+        844
+      ],
+      "dx": 1,
+      "dy": 0,
+      "actual": {
+        "x": 3699.2,
+        "y": 1126.4,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": 299.1999999999998,
+        "right": 7099.2,
+        "top": -4519.425320512821,
+        "bottom": 6772.22532051282
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "rawSHA256": "8edbeffbc9dec76fdca8c524c70b935bb171705ccf6172cf6a5828fbea90a76e",
+      "physics": "b4ab0de6e02c3c70496ae111ad17b25d68a0fa4a054731b04df18e425abde515",
+      "archivedA": "8edbeffbc9dec76fdca8c524c70b935bb171705ccf6172cf6a5828fbea90a76e",
+      "archivedB": "e5a69fbf00ce277b04083d005b393be779a89acab99186c5ca69f2c57ee7fcd4"
+    }
+  ],
+  "unchangedOptimizer": {
+    "shared/terrain-path-optimization.mjs": "784e574d21cfa668326215fd16dcc0fb6ffcc832",
+    "shared/data/terrain-path-optimization.json": "bd7889802aca4c9984bb9c32d04a6a7d965aaae7",
+    "shared/act4-handoff-art.mjs": "a727bd85a1b8faa1cfaf8a2b98cf3b3e0de5e7e1",
+    "shared/runtime/profile-store.js": "b11ad06d788fd21c47d89caa415477b85397b9f4",
+    "shared/web-build.mjs": "9d03355a55767c8bd107d793f09e101a96c000a4",
+    "shared/web-loader.js": "d75e233307be276e4eed6d537c28bf2c9b7dda3f"
+  },
+  "archivedBuildBase": {
+    "head": "72dd73e03f7d07c1b87d3e1e71a62d187a371e6a",
+    "sourceGit": "a5ac12ef4de8b2370fcbca1457b86a0c6e2d758c"
+  },
+  "realHistorical": {
+    "head": "25094081ae0e2dd539c41966653f9af82007e00c",
+    "tree": "9408a1a045aeeec8724ac19143e9e8d7583150ec",
+    "run": 43675892424,
+    "job": 132696166206,
+    "deployedAt": "2026-11-15T04:16:19Z",
+    "manifestGit": "8460d87e2b7b7aaa89d84cd8ecfb34c0f8048c8c",
+    "manifestBytes": 8675007,
+    "entry": "web/entries/game.5de4c1df2f929ef8.js",
+    "loader": "web/runtime/campaign.0ef292cd10daab61.js",
+    "project": "web/data/campaign.f1d4d2367125b638.json",
+    "profile": "web/runtime/ordered-common-4.aa58fd723a68594b.js",
+    "descriptor": "web/data/chapter-32-assets-parts.7e515eaf70fc7201.json",
+    "descriptorGit": "c3956628e87f6a70628b08d84592289ae1b190ae",
+    "packetBytes": 9919697,
+    "packetSHA": "9b8fdc71615567d1bdf0b3da6dea65c3b011d8233a6a17c61fcd4c5c4829d599"
+  },
+  "oldCandidateArtifact": {
+    "run": 45025033199,
+    "job": 137216114591,
+    "artifact": 14755019526,
+    "zipSHA": "4e4d6352ef29dce0ffe61ed5a06f715e8b260ddf0ad501c7a3ed3f7795fc5436",
+    "packetSHA": "96d0c85195827bc035568195e2f2c27f4e4685ad5bc8627d66ac80c079742f2a",
+    "packetBytes": 8007835
+  },
+  "expectedRegistryA": "web/runtime/ordered-common-12.a3e256d8f7a5fb68.js",
+  "rows": {
+    "act4-handoff:32:body-joined": {
+      "stage": 32,
+      "previous": "843877:74fe14ea",
+      "previousOptimized": "685031:cfa8f837",
+      "current": "689233:56f4e60f"
+    },
+    "approved32:coastal-foundation": {
+      "stage": 32,
+      "previous": "586162:b287d499",
+      "current": "590366:f90415d3"
+    }
+  },
+  "registryRows33": {
+    "act4-sideview:33:coastal-v2:west-continuous-geology": {
+      "stage": 33,
+      "previous": "862760:4666d3c8",
+      "current": "864135:d1152e99"
+    },
+    "act4-sideview:33:coastal-v2:lowland": {
+      "stage": 33,
+      "previous": "743870:a3735931",
+      "current": "745366:5d4bce0d"
+    }
+  },
+  "stockBeforeR10PacketSHA": "2284a6f93dd40057de7fba48828c579676976f831074190462b9a5035ef0568f",
+  "lazy": {
+    "directPath": "web/data/campaign-compat-32.ee7846c92c4edcac.json",
+    "expectedProfileChunk": "web/runtime/ordered-common-4.67de8f1c97c5fb48.js",
+    "compat33": "web/data/campaign-compat-33.a94eb973f1d85ce5.json",
+    "stage42": "web/data/chapter-42-assets.abdbc9d7a8ce717e.json",
+    "publicRoute": "web/data/campaign.0e33b6e4f334c28d.json",
+    "registryBeforeRawGit": "0d1d2acd3c694ef923b88bdc5313bbbc28e375e1",
+    "scope": "exact 0b9 active and lazy legacy bytes from verified official joint build; candidate according to published canonical array and proven R10 two-owners source; no combined normal build yet",
+    "activeOld": {
+      "bytes": 4779955,
+      "sha256": "58cf26e9d2659cfb3ce0aff4d87c9c3085da6aea650bf0e84a31375eed67b0aa"
+    },
+    "activeR10Predicted": {
+      "bytes": 4788361,
+      "sha256": "c18c5c864c4fafec6a73644434efd394c8dc10aa4d3dd4d6f064c9b6d2236b14"
+    },
+    "legacyDirectRetained": {
+      "bytes": 3219476,
+      "sha256": "ee7846c92c4edcac5f88771849e89c896a5c6906b0b8c10fb90cdca1d5b1061d"
+    },
+    "legacyIds": [
+      "approved32:body",
+      "approved32:wood-door-extract",
+      "act4-handoff:32:body"
+    ],
+    "expectedSplit": {
+      "descriptor": "web/data/chapter-32-assets-parts.22636e5ccf129f55.json",
+      "bytes": 443,
+      "sha256": "22636e5ccf129f558d4c1a684d5ccd94b72c79f125eb7670760e2091dd45b7a9",
+      "parts": [
+        {
+          "path": "web/data/chapter-32-assets-part-000.f3ca0763c7f49788.bin",
+          "bytes": 4194304,
+          "sha256": "f3ca0763c7f49788fc70b004f686aa1e97aab5ccc631af52122f788b32780369"
+        },
+        {
+          "path": "web/data/chapter-32-assets-part-001.b3a3736114f08698.bin",
+          "bytes": 594057,
+          "sha256": "b3a3736114f0869832c54e273a94e685cd063b73e2ae8e47edc8a2c2cb531655"
+        }
+      ]
+    }
+  }
+}
