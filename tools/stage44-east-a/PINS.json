@@ -1,0 +1,91 @@
+{
+  "enabled": true,
+  "origin": "https://sys8994.github.io/honro/",
+  "qaRef": "refs/heads/qa/stage44-east-root-a-eaf",
+  "repo": "sys8994/honro",
+  "release": {
+    "head": "eaf774b42ec8211739d2594c729e0c91e1d55188",
+    "tree": "95a2afad79513f1d14fbde8be7cd8e84e76943f0",
+    "pages": 45043111432,
+    "job": 137272222712,
+    "manifest": {
+      "bytes": 8863067,
+      "sha256": "099b62e020b1b2370d30e2e00be10c5c716f095d1e0b0c045af7b69ce619409b",
+      "git": "d0eeb2aa6964f2a1af8216cc70e4d230c106a539"
+    }
+  },
+  "shell": {
+    "bytes": 17379,
+    "sha256": "6b9748946f99ce9213205c8ccdd7484f77d154a752de01a88062cc19eab56f7c"
+  },
+  "qualifiedRoutes": {
+    "web/data/chapter-44-assets.ddddc05a5f764d6e.json": {
+      "bytes": 3323328,
+      "sha256": "ddddc05a5f764d6eee5e48602718f31a89008cc377ff188d6c3aa4b3a4cf1cdb"
+    },
+    "web/data/chapter-44.48354b7c0547c1a7.json": {
+      "bytes": 14376,
+      "sha256": "48354b7c0547c1a743531f79b0128e4fc56cb3d5973d7f8a17d40e5c232e2e68"
+    },
+    "web/graphics/honro_authored_far-images-root-interior.7b6377c64ea476da.webp": {
+      "bytes": 90092,
+      "sha256": "7b6377c64ea476da11bbcbaee6fc8c98e67692723bf8ee7f18ab60c22709def7"
+    },
+    "web/runtime/HONRO_AUTHORED_FAR.cf4cf9c2e0932235.js": {
+      "bytes": 905,
+      "sha256": "cf4cf9c2e09322356f9d2f0e874d700718783c6eafc332049663fdda54250f69"
+    },
+    "web/runtime/ordered-common-18.4831815091012b42.js": {
+      "bytes": 35562,
+      "sha256": "4831815091012b426ed3973ce2de1f4c896414383be3b5a4c782bcde29f05ffa"
+    },
+    "web/data/campaign.87da363001067c02.json": {
+      "bytes": 55151,
+      "sha256": "87da363001067c02b5986f1fb3fab035c9017b874482ce44547f852b13f6a8c6"
+    },
+    "web/entries/game.969dbb92d5cffa9f.js": {
+      "bytes": 20483,
+      "sha256": "969dbb92d5cffa9f9a8c7bc547b396f48935cf319c5e87855edc76a669d8035c"
+    },
+    "web/runtime/campaign.718c7f3ee1db9da7.js": {
+      "bytes": 527,
+      "sha256": "718c7f3ee1db9da757cd2c94caa1c97958128687acefcf594bc4cab281f0a64b"
+    }
+  },
+  "stageMapAndPacket": [
+    "web/data/chapter-44-assets.ddddc05a5f764d6e.json",
+    "web/data/chapter-44.48354b7c0547c1a7.json"
+  ],
+  "physics": "b7c0d64490dfaae60ad5c6bc394d000d5c256ba56f9a7149abbbf3301f4d6546",
+  "nearAsset": {
+    "id": "act5:near:44",
+    "instance": "a5-near",
+    "scale": 3.130755064456722
+  },
+  "poses": {
+    "PC": {
+      "east-min": [
+        7120,
+        1313.5,
+        0.21176470588235294
+      ],
+      "east-close": [
+        7120,
+        1650,
+        0.5
+      ]
+    },
+    "M": {
+      "east-min": [
+        7120,
+        1313.5,
+        0.057352941176470586
+      ],
+      "east-close": [
+        7120,
+        1650,
+        0.18
+      ]
+    }
+  }
+}
