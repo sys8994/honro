@@ -1,0 +1,155 @@
+{
+  "enabled": true,
+  "repo": "sys8994/honro",
+  "qaRef": "refs/heads/qa/stage40-snapshot-native-ab-eaf-r2",
+  "publicRoot": "https://sys8994.github.io/honro/",
+  "head": "eaf774b42ec8211739d2594c729e0c91e1d55188",
+  "tree": "95a2afad79513f1d14fbde8be7cd8e84e76943f0",
+  "manifest": {
+    "bytes": 8863067,
+    "sha256": "099b62e020b1b2370d30e2e00be10c5c716f095d1e0b0c045af7b69ce619409b",
+    "git": "d0eeb2aa6964f2a1af8216cc70e4d230c106a539"
+  },
+  "pages": {
+    "run": 45043111432,
+    "job": 137272222712,
+    "date": "2026-11-22T16:20:49.0073331Z"
+  },
+  "chromium": "151.0.7922.34",
+  "repeats": 3,
+  "nativeShell": {
+    "bytes": 17379,
+    "sha256": "6b9748946f99ce9213205c8ccdd7484f77d154a752de01a88062cc19eab56f7c",
+    "git": "3b0c4a870d394b54b1c9c871783ef8c9cdfcd2f4"
+  },
+  "core": {
+    "web/entries/game.969dbb92d5cffa9f.js": {
+      "bytes": 20483,
+      "sha256": "969dbb92d5cffa9f9a8c7bc547b396f48935cf319c5e87855edc76a669d8035c"
+    },
+    "web/data/campaign.87da363001067c02.json": {
+      "bytes": 55151,
+      "sha256": "87da363001067c02b5986f1fb3fab035c9017b874482ce44547f852b13f6a8c6"
+    },
+    "web/data/campaign-base.0c57dcfe7c08d421.json": {
+      "bytes": 257,
+      "sha256": "0c57dcfe7c08d421901ffa8eeb437940b6b6d4779816207b51dca7be44c73e5e"
+    },
+    "web/data/campaign-shared.8f8343b5c21518d4.json": {
+      "bytes": 577195,
+      "sha256": "8f8343b5c21518d4fdaa2314e58031fd137b8622d3a6c1ca2fdabafde3bb158f"
+    },
+    "web/runtime/load-data.36ebfa6c4287ef7a.js": {
+      "bytes": 16749,
+      "sha256": "36ebfa6c4287ef7a54392c1bcb46a78977473e0e10aad3ede3dfe341f6e71f96"
+    },
+    "web/runtime/campaign.718c7f3ee1db9da7.js": {
+      "bytes": 527,
+      "sha256": "718c7f3ee1db9da757cd2c94caa1c97958128687acefcf594bc4cab281f0a64b"
+    },
+    "web/runtime/ordered-game-20.70aa4d25d5613f6e.js": {
+      "bytes": 62255,
+      "sha256": "70aa4d25d5613f6e424ad9aa313c3963dbda31190c9d72e6c542d83c3f459636"
+    },
+    "web/runtime/ordered-game-23.9ebc66541a8184b6.js": {
+      "bytes": 94701,
+      "sha256": "9ebc66541a8184b6ec954023694bc4d55b36a5f1bdb25d7127f7a5b3e1a5d210"
+    },
+    "web/runtime/ordered-common-17.027dfd7d7784222d.js": {
+      "bytes": 133947,
+      "sha256": "027dfd7d7784222d5fa9b70a1203c056f6a9cea3742d8e56aa2138ca4c6655e0"
+    },
+    "web/runtime/ordered-common-18.4831815091012b42.js": {
+      "bytes": 35562,
+      "sha256": "4831815091012b426ed3973ce2de1f4c896414383be3b5a4c782bcde29f05ffa"
+    }
+  },
+  "stages": {
+    "11": {
+      "id": "stage-11",
+      "name": "\ub9e4\ub4ed\uc744 \uac70\ub454 \uc544\uce68",
+      "map": "web/data/chapter-11.4f36fd2ea4a1cafd.json",
+      "descriptorOrPacket": "web/data/chapter-11-assets.cad9e03dd8bf52a5.json",
+      "parts": [],
+      "encoding": "json-pool-v1",
+      "files": {
+        "web/data/chapter-11.4f36fd2ea4a1cafd.json": {
+          "bytes": 209933,
+          "sha256": "4f36fd2ea4a1cafd3e261f9b1eb222fde4e9ab4fda3799f6852a68db87cd5105"
+        },
+        "web/data/chapter-11-assets.cad9e03dd8bf52a5.json": {
+          "bytes": 740283,
+          "sha256": "cad9e03dd8bf52a5be4cd61fd22cc4430f7e66edb8c9a547377bd54219931916"
+        }
+      }
+    },
+    "40": {
+      "id": "stage-40",
+      "name": "40 \u00b7 \ub3cc\uc544\uac00\ub294 \ubc30",
+      "map": "web/data/chapter-40.5f4b6c4c311adc05.json",
+      "descriptorOrPacket": "web/data/chapter-40-assets-parts.e102ede6b6f1921d.json",
+      "parts": [
+        "web/data/chapter-40-assets-part-000.cd3e15a78b719c49.bin",
+        "web/data/chapter-40-assets-part-001.6dbca9ee910a8ff7.bin",
+        "web/data/chapter-40-assets-part-002.6f227d452d7a288d.bin"
+      ],
+      "encoding": "json-pool-v1",
+      "files": {
+        "web/data/chapter-40.5f4b6c4c311adc05.json": {
+          "bytes": 48881,
+          "sha256": "5f4b6c4c311adc0508920712018dadd7262c69c17b8d1b955628bdd8ce7d98e0"
+        },
+        "web/data/chapter-40-assets-parts.e102ede6b6f1921d.json": {
+          "bytes": 605,
+          "sha256": "e102ede6b6f1921d46efaf44318550c800c271ab2507f114d59b2b69698be6fe"
+        },
+        "web/data/chapter-40-assets-part-000.cd3e15a78b719c49.bin": {
+          "bytes": 4194304,
+          "sha256": "cd3e15a78b719c49cc3651a2e38cfb21c1f0a5176947f23550fd7ab058b0264e"
+        },
+        "web/data/chapter-40-assets-part-001.6dbca9ee910a8ff7.bin": {
+          "bytes": 4194304,
+          "sha256": "6dbca9ee910a8ff7be24e4f08354cd8f076f54b9eb72d5cca63a3fff971e32be"
+        },
+        "web/data/chapter-40-assets-part-002.6f227d452d7a288d.bin": {
+          "bytes": 1749013,
+          "sha256": "6f227d452d7a288d34bce7981b2ace8179d4b786e1a3b772f5b1d62d43f3144a"
+        }
+      }
+    }
+  },
+  "devices": {
+    "PC": {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "device_scale_factor": 1
+    },
+    "Mobile": {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "device_scale_factor": 1,
+      "is_mobile": true,
+      "has_touch": true
+    }
+  },
+  "source": {
+    "act4-campaign.js": {
+      "stock": "da571f577efa197eb2428de7788b949e9eff3cd8",
+      "candidate": "fd42f23b3df045e857594df65945dd1ebf1fe9fe",
+      "sha256": "0872a28ccc9cefa2dcd38231c643b4b2d7348e66877ae42deefa2efc255bf678"
+    },
+    "main.js": {
+      "stock": "c20dd602cd2c63e381080eab5738b0406d213f0a",
+      "candidate": "54127dad424a3fb783d1f861879d627120e9e1c8",
+      "sha256": "8cb838ff03879c3c9f720d8e68c5a6666d79ddf6976bdffa13e9f4474e18d322"
+    }
+  },
+  "unchangedProfileStore": "c993e119fa10470fa99c6db9551e2fbef51c9819",
+  "extraUnchanged": {
+    "act4-events.js": "2260e49f2b9e2321fc5934f8daae3ec9f6a0f4e5"
+  }
+}
