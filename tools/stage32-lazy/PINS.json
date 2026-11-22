@@ -1,0 +1,63 @@
+{
+  "enabled": true,
+  "qaRef": "refs/heads/qa/stage32-exact-legacy-lazy-342a7aa-r2",
+  "parent": "342a7aa03f7244db9663315ceac596f307dac06e",
+  "tree": "2e2ca3058bb2b4b4528b5e46394fcf30d55c8f32",
+  "manifestGit": "a6b659e6dba284a924deb2cdbac2681685418421",
+  "stage33HotfixSourceGit": "a5ac12ef4de8b2370fcbca1457b86a0c6e2d758c",
+  "map": "web/data/chapter-32.f242630da616ee32.json",
+  "stock": {
+    "bytes": 7999429,
+    "sha256": "2284a6f93dd40057de7fba48828c579676976f831074190462b9a5035ef0568f"
+  },
+  "active": {
+    "bytes": 4779955,
+    "sha256": "58cf26e9d2659cfb3ce0aff4d87c9c3085da6aea650bf0e84a31375eed67b0aa"
+  },
+  "archive": {
+    "bytes": 3219476,
+    "sha256": "ee7846c92c4edcac5f88771849e89c896a5c6906b0b8c10fb90cdca1d5b1061d"
+  },
+  "testedLosslessRefs": {
+    "approved32:body": "1952606:e60eb3e5",
+    "approved32:wood-door-extract": "423282:b2c53b27",
+    "act4-handoff:32:body": "843583:aede1464"
+  },
+  "notR10": true,
+  "publicationAuthority": {
+    "pagesRun": 45027512069,
+    "publicReadbackRun": 45027766739,
+    "source": "342a7aa03f7244db9663315ceac596f307dac06e"
+  },
+  "stage33Peer": {
+    "old": "c60fca57d223ecb3e62afc86c4755774c2b68263",
+    "oldShell": {
+      "bytes": 17379,
+      "sha256": "03ebb2c1bfaefa36f5f54f1f9946455d323ec2bd79c6b267613acf77bdf8fec3",
+      "git": "6627b75ed1afb82345a0c031cb601555cea00f64"
+    },
+    "map": "web/data/chapter-33.80ca32475be181c7.json",
+    "oldPacket": "web/data/chapter-33-assets.07b129345eb95856.json",
+    "newPacket": "web/data/chapter-33-assets.920ccd84eb69a553.json",
+    "oldEntry": "web/entries/game.b1321855b16bc549.js",
+    "oldCampaign": "web/data/campaign.36b3008756d1c3a5.json",
+    "oldWrapper": "web/runtime/campaign.add23c14682508f8.js",
+    "rows": {
+      "act4-sideview:33:coastal-v2:west-continuous-geology": {
+        "stage": 33,
+        "previous": "862760:4666d3c8",
+        "current": "864135:d1152e99"
+      },
+      "act4-sideview:33:coastal-v2:lowland": {
+        "stage": 33,
+        "previous": "743870:a3735931",
+        "current": "745366:5d4bce0d"
+      }
+    }
+  },
+  "stage32PublishedCommon4": "web/runtime/ordered-common-4.c84f463a629cb3dc.js",
+  "partyPublished": [
+    "web/runtime/shared-assets-party-party-runtime.179b8da816ae78b9.js",
+    "web/runtime/party-alias.3485184cbddbd273.js"
+  ]
+}
