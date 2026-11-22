@@ -1,0 +1,654 @@
+{
+  "enabled": true,
+  "scopeApproval": "Root approved only one exact ordinary fast-forward of the reserved Stage40 plus Stage46 release candidate, never master or Pages",
+  "repo": "sys8994/honro",
+  "qaRef": "refs/heads/qa/stage40-46-save-writer-342-r2",
+  "base": {
+    "head": "342a7aa03f7244db9663315ceac596f307dac06e",
+    "tree": "2e2ca3058bb2b4b4528b5e46394fcf30d55c8f32",
+    "active": 810,
+    "registry": 1390,
+    "previousGraphs": 47,
+    "manifest": {
+      "bytes": 8163953,
+      "sha256": "9a948a748ba3f8ce95a25489729cefb3cefb94d26a999e76db5debc4ae8558b2",
+      "git": "a6b659e6dba284a924deb2cdbac2681685418421"
+    },
+    "pagesRun": 45027512069,
+    "pagesJob": 137224104334,
+    "publishedAt": "2026-11-22T13:28:57.6472296Z",
+    "retainerGit": "8374336b53c74ac81e6d32f5aa43eee575e61daa",
+    "policyGit": "16687b0fc38e432a7d66a015ddf3ebe744163a06",
+    "actualReadback": {
+      "run": 45027766739,
+      "job": 137224447393,
+      "head": "f50dfaa67d288fb0d8e6524ba08fd8d50f6ea718"
+    }
+  },
+  "qa": {
+    "run": 45028240786,
+    "job": 137225873752,
+    "head": "804430e8d33c5835ec9fc7c7380eef5e042f86da",
+    "tree": "355fe615ebfd9992a1ffe575cebbdf6ea2704c50",
+    "branch": "qa/stage40-46-save-compatible-342",
+    "archives": {
+      "compiled": {
+        "id": 14757021646,
+        "name": "honro-combined-342-compiled-custody-no-deploy",
+        "fact": {
+          "bytes": 12149518,
+          "sha256": "599974d35d807ee3d23cded795290af3fcba6830bef544297f541c1a00db3a95"
+        },
+        "members": [
+          "B-COMBINED-COMPILED-NORMAL-NO-DEPLOY.zip"
+        ],
+        "receipts": {}
+      },
+      "author": {
+        "id": 14756733170,
+        "name": "honro-combined-342-author-custody-no-deploy",
+        "fact": {
+          "bytes": 20762822,
+          "sha256": "0f248b385686550f1ed778b40bbe216ac09a823b44b072cefb524557d4c91dfc"
+        },
+        "members": [
+          "B-COMBINED-AUTHOR-SOURCES-NO-DEPLOY.zip"
+        ],
+        "receipts": {}
+      },
+      "40": {
+        "id": 14756718239,
+        "name": "honro-combined-342-save-stage40-normal-native",
+        "fact": {
+          "bytes": 9905417,
+          "sha256": "5f3bef833c1b5981b4db831be755731b3e8f72dc41bb6a514838b6faf4b8f24b"
+        },
+        "members": [
+          "A-1440x900-immersed-dom.png",
+          "A-1440x900-immersed-raw.png",
+          "A-1440x900-southwest-dom.png",
+          "A-1440x900-southwest-raw.png",
+          "A-1440x900-upper-dom.png",
+          "A-1440x900-upper-raw.png",
+          "A-390x844-immersed-dom.png",
+          "A-390x844-immersed-raw.png",
+          "A-390x844-southwest-dom.png",
+          "A-390x844-southwest-raw.png",
+          "A-390x844-upper-dom.png",
+          "A-390x844-upper-raw.png",
+          "B-1440x900-immersed-dom.png",
+          "B-1440x900-immersed-raw.png",
+          "B-1440x900-southwest-dom.png",
+          "B-1440x900-southwest-raw.png",
+          "B-1440x900-upper-dom.png",
+          "B-1440x900-upper-raw.png",
+          "B-390x844-immersed-dom.png",
+          "B-390x844-immersed-raw.png",
+          "B-390x844-southwest-dom.png",
+          "B-390x844-southwest-raw.png",
+          "B-390x844-upper-dom.png",
+          "B-390x844-upper-raw.png",
+          "BROWSER.json",
+          "GRAPH.json",
+          "SOURCE-PROOF.json"
+        ],
+        "receipts": {
+          "BROWSER.json": {
+            "bytes": 252948,
+            "sha256": "d4c6f1a7e7b2dab3c51b049646c530523c9e4a7fd18d4793a6b26073684d3500"
+          },
+          "GRAPH.json": {
+            "bytes": 296673,
+            "sha256": "be6abfbe39b011fb8fd54b515d483cc43d8ad6c769a7f84b55ff343a7a7b6505"
+          },
+          "SOURCE-PROOF.json": {
+            "bytes": 35322,
+            "sha256": "8c70ad5e9d2a99901677af2e18d1f4f353a8e7b8704d2c4726fe00f198d24128"
+          }
+        }
+      },
+      "save": {
+        "id": 14756648649,
+        "name": "honro-combined-342-save-source-and-compiled-custody-no-deploy",
+        "fact": {
+          "bytes": 4030843,
+          "sha256": "ae3bf0cc537905d699d2977144b6b3bab65f6a96f0f869e91fb909f8e4277077"
+        },
+        "members": [
+          "B-COMBINED-AUTHOR-SOURCES-NO-DEPLOY.zip.json",
+          "B-COMBINED-COMPILED-NORMAL-NO-DEPLOY.zip.json",
+          "COMBINED-GRAPH.json",
+          "COMPAT-MODULES.json",
+          "RESUME-ROUTES.json",
+          "RESUME.json",
+          "SOURCE-UNION.json",
+          "SYSTEM-VERDICT.json",
+          "build.log",
+          "contract.log",
+          "http-A.log",
+          "http-B.log",
+          "http-H.log",
+          "npm-game.log",
+          "npm-root.log",
+          "resume-M-40-candidateFresh.png",
+          "resume-M-40-historical733.png",
+          "resume-M-46-candidateFresh.png",
+          "resume-M-46-historical733.png",
+          "resume-PC-40-candidateFresh.png",
+          "resume-PC-40-historical733.png",
+          "resume-PC-46-candidateFresh.png",
+          "resume-PC-46-historical733.png"
+        ],
+        "receipts": {
+          "B-COMBINED-COMPILED-NORMAL-NO-DEPLOY.zip.json": {
+            "bytes": 3461,
+            "sha256": "6c60a8099266e8f2120c2cd99d0c41833c6d76a4d637d24735b9386d768fbc55"
+          },
+          "B-COMBINED-AUTHOR-SOURCES-NO-DEPLOY.zip.json": {
+            "bytes": 1581,
+            "sha256": "c09b0a8bd2691a0185d59b1f3050675614bc8127d174bc192696199d9f71b4a0"
+          },
+          "COMPAT-MODULES.json": {
+            "bytes": 845,
+            "sha256": "519c6744530910e1a0de52ed28dfa8682f7d45ce3f07fcdb0ab05e79fc6edba5"
+          },
+          "COMBINED-GRAPH.json": {
+            "bytes": 4383,
+            "sha256": "0935e051af77f27f08f8e20e655d585f824413a6e2ca856601c26115bd4d0604"
+          },
+          "RESUME-ROUTES.json": {
+            "bytes": 18600,
+            "sha256": "b4900f8c8ecadccd74757f718e1789ad4a6bee940ded5130c3b160ee4d0025e3"
+          },
+          "RESUME.json": {
+            "bytes": 70908,
+            "sha256": "8e6e6a6250a443ca503fc9d2f325339ca37a23e1e32ca7d8236b1c523f82cf25"
+          },
+          "SOURCE-UNION.json": {
+            "bytes": 3288,
+            "sha256": "3d4fab5ce28440667b6724ccbf469258c10a25f26a5f9555498a1c11fe725dce"
+          },
+          "SYSTEM-VERDICT.json": {
+            "bytes": 637,
+            "sha256": "15c8d7112d9400488e2ae1a2de3791bd1a016b15ee9698dbcec8ed3242e4e46c"
+          }
+        }
+      },
+      "46": {
+        "id": 14756194993,
+        "name": "honro-combined-342-save-stage46-normal-native",
+        "fact": {
+          "bytes": 14239497,
+          "sha256": "2d4e0936e136fd23f3628fbc30bacf68ed9c053fc09496df147ced324f6dfd6e"
+        },
+        "members": [
+          "A-1440x900-near-dom.png",
+          "A-1440x900-near-raw.png",
+          "A-1440x900-south-dom.png",
+          "A-1440x900-south-raw.png",
+          "A-1440x900-west-dom.png",
+          "A-1440x900-west-raw.png",
+          "A-390x844-near-dom.png",
+          "A-390x844-near-raw.png",
+          "A-390x844-south-dom.png",
+          "A-390x844-south-raw.png",
+          "A-390x844-west-dom.png",
+          "A-390x844-west-raw.png",
+          "B-1440x900-near-dom.png",
+          "B-1440x900-near-raw.png",
+          "B-1440x900-south-dom.png",
+          "B-1440x900-south-raw.png",
+          "B-1440x900-west-dom.png",
+          "B-1440x900-west-raw.png",
+          "B-390x844-near-dom.png",
+          "B-390x844-near-raw.png",
+          "B-390x844-south-dom.png",
+          "B-390x844-south-raw.png",
+          "B-390x844-west-dom.png",
+          "B-390x844-west-raw.png",
+          "BROWSER.json",
+          "GRAPH.json",
+          "TRANSFORM.json"
+        ],
+        "receipts": {
+          "BROWSER.json": {
+            "bytes": 246621,
+            "sha256": "b64a8b8ca984a7533dd05771d2c30ac87ad9181c5184907e096f6afa46c3a5cc"
+          },
+          "GRAPH.json": {
+            "bytes": 296937,
+            "sha256": "a3c399c41386c2938dd9d860f595c4eddea022433b61b627ab42734eba879abb"
+          },
+          "TRANSFORM.json": {
+            "bytes": 2570,
+            "sha256": "40938d41f2a119a8717e126acdcdd880d8ea47d95598931cb0e1c8da82010c35"
+          }
+        }
+      }
+    },
+    "jobName": "combined-normal"
+  },
+  "inner": {
+    "author": {
+      "filename": "B-COMBINED-AUTHOR-SOURCES-NO-DEPLOY.zip",
+      "archive": {
+        "bytes": 20766656,
+        "sha256": "650847bbfa07591d4a173d39257b6f1b0c80ca9ca7f148d7eb8a9b9f1e331bf3"
+      },
+      "files": {
+        "shared/assets/environment/act5/stage46-exterior-body.json": {
+          "bytes": 2729477,
+          "sha256": "1df8658b5cc3b2cd5ad8897e4f27f15455a1883e5879124631cacd24c25f43c4",
+          "git": "ee8b5bfdb63cf5f72824fa04fff9cea6edac7abe"
+        },
+        "shared/assets/environment/act5/stage46-exterior-part-1.json": {
+          "bytes": 2620478,
+          "sha256": "8ead0de2cd7cee88366c53137bd7aca870e62f537b6db4c1024bda033e7abaf7",
+          "git": "429918163f5d0bc865733a9b5c1683518dbdd6b2"
+        },
+        "shared/assets/environment/act5/stage46-exterior-part-2.json": {
+          "bytes": 2464204,
+          "sha256": "4cb2b35b27eac60b8e14264f02ed27498e5e440b579cceedf0caa80af166c77c",
+          "git": "636dc44cea69505d03dcb7ef1c02b0cd031bffa8"
+        },
+        "shared/assets/environment/act5/stage46-exterior-part-3.json": {
+          "bytes": 2343784,
+          "sha256": "c91a0b505f7a757f4d4865d9bb9d17004d19e7883113e9de6c7cfc62483787fa",
+          "git": "fe02a145ec324283c2be265da40f740f51c20d5a"
+        },
+        "shared/assets/environment/act5/stage46-exterior-part-4.json": {
+          "bytes": 2467363,
+          "sha256": "2d0d3d5da8bc7253fd3ae2c4c740156c4c4c01188d2b7576f8f92f7283d5fd7e",
+          "git": "2e44587a5e947b71ab65ad13e7fb46515f18f8a9"
+        },
+        "shared/assets/environment/act5/stage46-exterior-part-5.json": {
+          "bytes": 2566066,
+          "sha256": "8833797686af91b04d4c4b364146548fb24cb76ef97f7aa12c175150e7295443",
+          "git": "7e159a26101e9fa70c634f0677eedde094a5cda4"
+        },
+        "shared/data/terrain-path-optimization.json": {
+          "bytes": 37320523,
+          "sha256": "2333ca8916161ab7b90503a50035e9f7cc629910fbcbc2b6aa7542697f731359",
+          "git": "bd7889802aca4c9984bb9c32d04a6a7d965aaae7"
+        },
+        "shared/runtime/profile-store.js": {
+          "bytes": 22989,
+          "sha256": "18cdf08ee7a007a772b454c3f36515db9d9bfa92465c0569b145daa224b2a4ae",
+          "git": "400eca67810f433bfe4a8952f76d366d8948ac11"
+        }
+      }
+    },
+    "compiled": {
+      "filename": "B-COMBINED-COMPILED-NORMAL-NO-DEPLOY.zip",
+      "archive": {
+        "bytes": 12153596,
+        "sha256": "37e4a503538629aa6d906a9f0d69237db2c31c56c0c1fa57acafdec716ff01ff"
+      },
+      "files": {
+        "HONRO.html": {
+          "bytes": 17379,
+          "sha256": "587f1a94a0a744ba6d1d3c75dac34763380d6b09e68b61c997c80ada95632bfc",
+          "git": "80a9ce02122a356fea12022ef919f2a940562029"
+        },
+        "HONRO_WORKSHOP.html": {
+          "bytes": 4011,
+          "sha256": "d281cba4c1bc80814af2f105f04cd449c5380b93d049376bde746e1d12f9ee64",
+          "git": "0a008bd3fd3bba8a7c1348c7d19ae559183f7681"
+        },
+        "index.html": {
+          "bytes": 17379,
+          "sha256": "587f1a94a0a744ba6d1d3c75dac34763380d6b09e68b61c997c80ada95632bfc",
+          "git": "80a9ce02122a356fea12022ef919f2a940562029"
+        },
+        "web/data/campaign.1be5cca224fe45de.json": {
+          "bytes": 55011,
+          "sha256": "1be5cca224fe45de7bbeb78b795abd450b4d3002c99c60d21ca3e0c783bedda7",
+          "git": "6fb2fdad343aa109f5d16d1cc29a49661cfee649"
+        },
+        "web/data/chapter-40-assets-part-000.cd3e15a78b719c49.bin": {
+          "bytes": 4194304,
+          "sha256": "cd3e15a78b719c49cc3651a2e38cfb21c1f0a5176947f23550fd7ab058b0264e",
+          "git": "fc573e7fa35bd66d03ce573c2a050573df1d78de"
+        },
+        "web/data/chapter-40-assets-part-001.6dbca9ee910a8ff7.bin": {
+          "bytes": 4194304,
+          "sha256": "6dbca9ee910a8ff7be24e4f08354cd8f076f54b9eb72d5cca63a3fff971e32be",
+          "git": "066abcf6cadd8e3560d34e1c6d4405a8e4f43562"
+        },
+        "web/data/chapter-40-assets-part-002.6f227d452d7a288d.bin": {
+          "bytes": 1749013,
+          "sha256": "6f227d452d7a288d34bce7981b2ace8179d4b786e1a3b772f5b1d62d43f3144a",
+          "git": "c324f3df373b5b81a97d6058cb49f36e18a83ed5"
+        },
+        "web/data/chapter-40-assets-parts.e102ede6b6f1921d.json": {
+          "bytes": 605,
+          "sha256": "e102ede6b6f1921d46efaf44318550c800c271ab2507f114d59b2b69698be6fe",
+          "git": "84a73e88b7c52884cc6fa0c479405c3e74c2abec"
+        },
+        "web/data/chapter-46-assets-part-000.f7ebee97d8110e68.bin": {
+          "bytes": 4194304,
+          "sha256": "f7ebee97d8110e6805bf6fb6a58303332d3fd118a8e477f3b5de6c7e002064a2",
+          "git": "028a6da5f32ed03e4c70afc26132e09b7580a98e"
+        },
+        "web/data/chapter-46-assets-part-001.5213b80662dfa32e.bin": {
+          "bytes": 4194304,
+          "sha256": "5213b80662dfa32ee85b3d01d07dd0d2fb4fe33fa1ed3647ca94a85abce27ac6",
+          "git": "8416a2ffe3b59e405b85e5c3cf3834c01260b0db"
+        },
+        "web/data/chapter-46-assets-part-002.8be859e980ee1d29.bin": {
+          "bytes": 4194304,
+          "sha256": "8be859e980ee1d292718c73bd51206ea8fa0a887baa59fc67c5ec6b2c4cd0738",
+          "git": "52a4c60b57634f07d83746d2f69609bf827b5554"
+        },
+        "web/data/chapter-46-assets-part-003.ee5f50c994047cde.bin": {
+          "bytes": 2667958,
+          "sha256": "ee5f50c994047cde9851a35f503ddc56b395904698ecbef174d832a4eaa148a8",
+          "git": "e5f5dcccf47a86cb6665cc99cd1355296dd45312"
+        },
+        "web/data/chapter-46-assets-parts.a3595c48161a8bc1.json": {
+          "bytes": 765,
+          "sha256": "a3595c48161a8bc14dec5b1dea23dea0fda99fa39153a359d9ee83c5359516ea",
+          "git": "2f1b229bc9c7f07feec9a86cc8472f3628474477"
+        },
+        "web/entries/game.72899ce8347a2d57.js": {
+          "bytes": 20483,
+          "sha256": "72899ce8347a2d5714c953d295c878b093de3373d09ebcddc2cbfb3fe42f0c1c",
+          "git": "f3cfb5d7b81af9d1d4281e93b2b869ef9666cf0d"
+        },
+        "web/entries/game.c89a4b622b8b01ca.html": {
+          "bytes": 11318,
+          "sha256": "c89a4b622b8b01cab8eb75ad0289ad889307c0baf931ac0535586725a2ef2504",
+          "git": "8ba504329b489ed6df8c51c5857308f439974b0c"
+        },
+        "web/entries/workshop.65885fe7c3a494cc.js": {
+          "bytes": 16706,
+          "sha256": "65885fe7c3a494cca48ea8fbadf8d1e90393086725d6d91316a90b2625ef58d3",
+          "git": "9eb53f7b824d40b0b1cedd0ae200815313bb77d3"
+        },
+        "web/manifest.json": {
+          "bytes": 8116752,
+          "sha256": "eccb6923048e7ac5b8573710d9fe8824d1eaa4c81af453294bf93d992c321408",
+          "git": "916a990516355000a51a0640edeedc4081a3e15c"
+        },
+        "web/runtime/campaign.57b41cd798a104b5.js": {
+          "bytes": 527,
+          "sha256": "57b41cd798a104b50fbcc498133b543e041d5f5298ebf6e79bc87d3308b9d00f",
+          "git": "c2774424e7d27369ef65e4bdd41b915c929e3fc6"
+        },
+        "web/runtime/ordered-common-12.be328ccb963ceef8.js": {
+          "bytes": 72701,
+          "sha256": "be328ccb963ceef85597dd67cd5ca8cfaf6950c6d93ddb9615b584055da66640",
+          "git": "ff717579a676c03e1c88fb355080418fa6b380d3"
+        },
+        "web/runtime/ordered-common-4.aec03203b3d81bdf.js": {
+          "bytes": 182110,
+          "sha256": "aec03203b3d81bdfbe255a98d6a9612ca128d403a791578225bc327d2212ea54",
+          "git": "1cae0d386e1e51ecf1edfaab765299b8b8debd15"
+        }
+      }
+    }
+  },
+  "candidateGraph": {
+    "status": "EXACT_COMBINED_40_46_ONLY_NO_DEPLOY",
+    "active": 810,
+    "unchanged": 794,
+    "verifiedStructuralAdaptersOnly": {
+      "old": "web/runtime/campaign.4375d13445105188.js",
+      "new": "web/runtime/campaign.57b41cd798a104b5.js",
+      "commonPosition": 56,
+      "bytes": 527,
+      "sha256": "57b41cd798a104b50fbcc498133b543e041d5f5298ebf6e79bc87d3308b9d00f"
+    },
+    "sourceMapFilesExact": 50,
+    "nativeCompatibility": {
+      "status": "EXACT_COMPILED_PROFILE_AND_FOUR_ACT4_LINEAGES_ONLY",
+      "oldModules": [
+        "web/runtime/ordered-common-4.c84f463a629cb3dc.js",
+        "web/runtime/ordered-common-12.8f69d8c7c4cc0d42.js"
+      ],
+      "newModules": [
+        "web/runtime/ordered-common-4.aec03203b3d81bdf.js",
+        "web/runtime/ordered-common-12.be328ccb963ceef8.js"
+      ],
+      "oldProfile": "e31a288efabcc62729ebb0d4a44472db2e60ce2ac1a517f0e0ce41b0c19ebb92",
+      "newProfile": "99552e14483c986c1d8fb6eb903bef2f734fe0b27d30a1d63667ed86134f4384",
+      "verifiedUnchangedStage33": {
+        "act4-sideview:33:coastal-v2:west-continuous-geology": {
+          "stage": 33,
+          "previous": "862760:4666d3c8",
+          "current": "864135:d1152e99"
+        },
+        "act4-sideview:33:coastal-v2:lowland": {
+          "stage": 33,
+          "previous": "743870:a3735931",
+          "current": "745366:5d4bce0d"
+        }
+      }
+    },
+    "oldAliases": [
+      "web/data/campaign.0386fa9451fe2427.json",
+      "web/data/chapter-40-assets-part-000.3b82e978dff8f8e6.bin",
+      "web/data/chapter-40-assets-part-001.50a919950e2df457.bin",
+      "web/data/chapter-40-assets-part-002.b6a1709435a1910a.bin",
+      "web/data/chapter-40-assets-parts.578f8624b0ac77bc.json",
+      "web/data/chapter-46-assets-part-000.aa1ac6564d0c2d99.bin",
+      "web/data/chapter-46-assets-part-001.78b6b5493616db85.bin",
+      "web/data/chapter-46-assets-part-002.8ec3bcfd1e3724d1.bin",
+      "web/data/chapter-46-assets-part-003.e0accdc32bf303c0.bin",
+      "web/data/chapter-46-assets-parts.44d5eab7aa305416.json",
+      "web/entries/game.2662b5c41e95ed19.js",
+      "web/entries/game.fd32258991427fc1.html",
+      "web/entries/workshop.51b020dbf759e7f3.js",
+      "web/runtime/campaign.4375d13445105188.js",
+      "web/runtime/ordered-common-12.8f69d8c7c4cc0d42.js",
+      "web/runtime/ordered-common-4.c84f463a629cb3dc.js"
+    ],
+    "newAliases": [
+      "web/data/campaign.1be5cca224fe45de.json",
+      "web/data/chapter-40-assets-part-000.cd3e15a78b719c49.bin",
+      "web/data/chapter-40-assets-part-001.6dbca9ee910a8ff7.bin",
+      "web/data/chapter-40-assets-part-002.6f227d452d7a288d.bin",
+      "web/data/chapter-40-assets-parts.e102ede6b6f1921d.json",
+      "web/data/chapter-46-assets-part-000.f7ebee97d8110e68.bin",
+      "web/data/chapter-46-assets-part-001.5213b80662dfa32e.bin",
+      "web/data/chapter-46-assets-part-002.8be859e980ee1d29.bin",
+      "web/data/chapter-46-assets-part-003.ee5f50c994047cde.bin",
+      "web/data/chapter-46-assets-parts.a3595c48161a8bc1.json",
+      "web/entries/game.72899ce8347a2d57.js",
+      "web/entries/game.c89a4b622b8b01ca.html",
+      "web/entries/workshop.65885fe7c3a494cc.js",
+      "web/runtime/campaign.57b41cd798a104b5.js",
+      "web/runtime/ordered-common-12.be328ccb963ceef8.js",
+      "web/runtime/ordered-common-4.aec03203b3d81bdf.js"
+    ],
+    "retainedStage21Stage33": [
+      "web/runtime/ordered-common-17.93673f3a14672979.js",
+      "web/data/chapter-33-assets.920ccd84eb69a553.json"
+    ],
+    "publishableCandidates": [
+      "HONRO.html",
+      "HONRO_WORKSHOP.html",
+      "index.html",
+      "web/data/campaign.1be5cca224fe45de.json",
+      "web/data/chapter-40-assets-part-000.cd3e15a78b719c49.bin",
+      "web/data/chapter-40-assets-part-001.6dbca9ee910a8ff7.bin",
+      "web/data/chapter-40-assets-part-002.6f227d452d7a288d.bin",
+      "web/data/chapter-40-assets-parts.e102ede6b6f1921d.json",
+      "web/data/chapter-46-assets-part-000.f7ebee97d8110e68.bin",
+      "web/data/chapter-46-assets-part-001.5213b80662dfa32e.bin",
+      "web/data/chapter-46-assets-part-002.8be859e980ee1d29.bin",
+      "web/data/chapter-46-assets-part-003.ee5f50c994047cde.bin",
+      "web/data/chapter-46-assets-parts.a3595c48161a8bc1.json",
+      "web/entries/game.72899ce8347a2d57.js",
+      "web/entries/game.c89a4b622b8b01ca.html",
+      "web/entries/workshop.65885fe7c3a494cc.js",
+      "web/manifest.json",
+      "web/runtime/campaign.57b41cd798a104b5.js",
+      "web/runtime/ordered-common-12.be328ccb963ceef8.js",
+      "web/runtime/ordered-common-4.aec03203b3d81bdf.js"
+    ]
+  },
+  "exactSourceUnion": {
+    "shared/assets/environment/act5/stage46-exterior-body.json": {
+      "A": {
+        "bytes": 3077079,
+        "sha256": "f58e9066c3f8a2b39246edd2b0443b728a149209a0255bdc9e7c6e29d6355014"
+      },
+      "B": {
+        "bytes": 2729477,
+        "sha256": "1df8658b5cc3b2cd5ad8897e4f27f15455a1883e5879124631cacd24c25f43c4"
+      }
+    },
+    "shared/assets/environment/act5/stage46-exterior-part-1.json": {
+      "A": {
+        "bytes": 2972423,
+        "sha256": "f518146e33e1246c388a80779a7cf1f66625ac3e2ec248fca45c7d9306491221"
+      },
+      "B": {
+        "bytes": 2620478,
+        "sha256": "8ead0de2cd7cee88366c53137bd7aca870e62f537b6db4c1024bda033e7abaf7"
+      }
+    },
+    "shared/assets/environment/act5/stage46-exterior-part-2.json": {
+      "A": {
+        "bytes": 2659727,
+        "sha256": "1beec361e93e702a25c48e1bd590bceb77b0ccf8a9c404394cb4fa67f39c56cd"
+      },
+      "B": {
+        "bytes": 2464204,
+        "sha256": "4cb2b35b27eac60b8e14264f02ed27498e5e440b579cceedf0caa80af166c77c"
+      }
+    },
+    "shared/assets/environment/act5/stage46-exterior-part-3.json": {
+      "A": {
+        "bytes": 2516559,
+        "sha256": "2b11e5340b4e94b737cef71a8a66a56df91187e1c39b35c287bd10330382c064"
+      },
+      "B": {
+        "bytes": 2343784,
+        "sha256": "c91a0b505f7a757f4d4865d9bb9d17004d19e7883113e9de6c7cfc62483787fa"
+      }
+    },
+    "shared/assets/environment/act5/stage46-exterior-part-4.json": {
+      "A": {
+        "bytes": 2644480,
+        "sha256": "e5b686ca369c82a92466e2dc674c87fc4c39976f3202cf2e96909ef03ecd4f64"
+      },
+      "B": {
+        "bytes": 2467363,
+        "sha256": "2d0d3d5da8bc7253fd3ae2c4c740156c4c4c01188d2b7576f8f92f7283d5fd7e"
+      }
+    },
+    "shared/assets/environment/act5/stage46-exterior-part-5.json": {
+      "A": {
+        "bytes": 2751043,
+        "sha256": "fcc8f4ef74e79451946caf3473226adbe349837fc8a81f69534eb1d7c98ce8e5"
+      },
+      "B": {
+        "bytes": 2566066,
+        "sha256": "8833797686af91b04d4c4b364146548fb24cb76ef97f7aa12c175150e7295443"
+      }
+    },
+    "shared/data/terrain-path-optimization.json": {
+      "A": {
+        "bytes": 30373167,
+        "sha256": "8d626af8c866f240f0b8294b390760be164b04ddc8ad6cdb69822c103e49d213"
+      },
+      "B": {
+        "bytes": 37320523,
+        "sha256": "2333ca8916161ab7b90503a50035e9f7cc629910fbcbc2b6aa7542697f731359"
+      }
+    },
+    "shared/runtime/profile-store.js": {
+      "A": {
+        "bytes": 21907,
+        "sha256": "3b270b6ca132a70559f1c7691d63d6d8a82ca4bfef5d06c69522c20fe6884f2c"
+      },
+      "B": {
+        "bytes": 22989,
+        "sha256": "18cdf08ee7a007a772b454c3f36515db9d9bfa92465c0569b145daa224b2a4ae"
+      }
+    }
+  },
+  "releaseGate": {
+    "allowedToAssemble": true,
+    "state": "VERIFIED_ACTUAL_FORWARD_RESUME",
+    "requiresSeparateRootApproval": true
+  },
+  "resume": {
+    "40-PC": {
+      "old": {
+        "approved40:coastal-foundation": "1408143:e55964aa",
+        "approved40:body": "4724416:12a0c1d5",
+        "approved40:terrain-left-join": "1757601:e9667f0a",
+        "approved40:terrain-right-join": "1653652:f5a9b376"
+      },
+      "new": {
+        "approved40:coastal-foundation": "1297690:b446a076",
+        "approved40:body": "4471109:d3f5a835",
+        "approved40:terrain-left-join": "1694987:a515b4e3",
+        "approved40:terrain-right-join": "1597731:b4de61d5"
+      },
+      "positive": 3,
+      "negative": 8,
+      "stateShas": {
+        "terrain": "154ce99f4b1f92d58d05fc19cfb383aaa802435ffc702991b46b80bfe5ab6b66",
+        "units": "9623838855cc8709dc20dc20ccfa7f9cb82325d0ae0d4db7a8be9ca8f14c6884",
+        "objective": "a075dae9dcbe83ed99cbb3d1fce6003987ff0fad7257dc34150da69685eb9f27"
+      }
+    },
+    "40-M": {
+      "old": {
+        "approved40:coastal-foundation": "1408143:e55964aa",
+        "approved40:body": "4724416:12a0c1d5",
+        "approved40:terrain-left-join": "1757601:e9667f0a",
+        "approved40:terrain-right-join": "1653652:f5a9b376"
+      },
+      "new": {
+        "approved40:coastal-foundation": "1297690:b446a076",
+        "approved40:body": "4471109:d3f5a835",
+        "approved40:terrain-left-join": "1694987:a515b4e3",
+        "approved40:terrain-right-join": "1597731:b4de61d5"
+      },
+      "positive": 3,
+      "negative": 8,
+      "stateShas": {
+        "terrain": "154ce99f4b1f92d58d05fc19cfb383aaa802435ffc702991b46b80bfe5ab6b66",
+        "units": "9623838855cc8709dc20dc20ccfa7f9cb82325d0ae0d4db7a8be9ca8f14c6884",
+        "objective": "a075dae9dcbe83ed99cbb3d1fce6003987ff0fad7257dc34150da69685eb9f27"
+      }
+    },
+    "46-PC": {
+      "old": {
+        "act5:near:46": "17756761:bc1a6549"
+      },
+      "new": {
+        "act5:near:46": "16328502:43d17801"
+      },
+      "positive": 3,
+      "negative": 10,
+      "stateShas": {
+        "terrain": "f9410912cc8e8e7465c5bd2b584f1a4138d5edaf95d873ce2c1bd777dab7aa05",
+        "units": "099cdfb6fda658767513a209281d20b0707b3207247d7eab2f3914d9f97c6f7d",
+        "objective": "a075dae9dcbe83ed99cbb3d1fce6003987ff0fad7257dc34150da69685eb9f27"
+      }
+    },
+    "46-M": {
+      "old": {
+        "act5:near:46": "17756761:bc1a6549"
+      },
+      "new": {
+        "act5:near:46": "16328502:43d17801"
+      },
+      "positive": 3,
+      "negative": 10,
+      "stateShas": {
+        "terrain": "f9410912cc8e8e7465c5bd2b584f1a4138d5edaf95d873ce2c1bd777dab7aa05",
+        "units": "099cdfb6fda658767513a209281d20b0707b3207247d7eab2f3914d9f97c6f7d",
+        "objective": "a075dae9dcbe83ed99cbb3d1fce6003987ff0fad7257dc34150da69685eb9f27"
+      }
+    }
+  },
+  "status": "EXACT_ISOLATED_WRITER_NO_MASTER_NO_PAGES",
+  "releaseRef": "refs/heads/release/act4-40-act5-46-lossless-save-compatible-20261122"
+}
