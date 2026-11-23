@@ -146,6 +146,12 @@ function eastVisible(raw){
 // One authored rock section; the existing ground and its registered front face
 // paint disjoint halves, on the same integer handoff as the old front strip.
 const WEST23_SECTION={"box":[-1000,4380,1240,1080],"paints":[["M-990 4404H229V5450H-990Z",{"line":[-820,4720,195,4830],"stops":[[0,"#584d3b"],[0.37,"#4d4538"],[0.67,"#3c3831"],[1,"#343330"]]}],["M-792 4670 -651 4588 -531 4580 -430 4535 -314 4530 -236 4497 -149 4487 -24 4394 53 4392 124 4408 229 4403 229 4497 166 4507 89 4499 17 4528 -81 4547 -148 4580 -245 4573 -311 4610 -432 4625 -561 4674 -674 4690 -792 4720Z","#4d463a"],["M-961 4767 -808 4719 -684 4733 -553 4668 -449 4660 -284 4600 -192 4597 -124 4608 -56 4612 8 4612 92 4612 180 4611 229 4610 229 4624 154 4624 89 4626 6 4634 -61 4646 -164 4664 -244 4661 -326 4693 -497 4717 -576 4766 -669 4782 -729 4821 -840 4850 -961 4875Z",{"line":[-850,4710,190,4680],"stops":[[0,"#675a46"],[0.48,"#594b3a"],[1,"#4c423a"]]}],["m-640 4724 96-54 113-10 106-44 79-16 57-1 31 7-71 11-68 29-84 8-79 28-60 12-46 29-74 15Z","#60523e"],["M-810 4928 -697 4873 -599 4851 -526 4796 -451 4783 -392 4755 -329 4751 -383 4787 -425 4798 -482 4845 -487 4880 -540 4913 -623 4919 -699 4959 -781 4970Z","#51473a"],["M-973 5276 -804 5251 -685 5194 -600 5206 -517 5166 -409 5144 -310 5155 -234 5123 -180 5078 -120 5069 -68 5037 -3 5010 69 5008 136 5000 229 5005 229 5141 157 5131 103 5137 26 5139 -52 5146 -137 5171 -180 5206 -268 5216 -339 5261 -461 5283 -541 5270 -611 5313 -755 5327 -864 5359 -973 5357Z",{"line":[-820,5250,211,4960],"stops":[[0,"#544837"],[0.52,"#514437"],[1,"#4c423a"]]}],["M-839 5311 -711 5271 -620 5289 -553 5254 -469 5256 -414 5231 -362 5237 -403 5265 -478 5284 -538 5270 -611 5313 -717 5319 -763 5340 -839 5345Z","#493f33"],["M-380 5160 -302 5152 -231 5123 -181 5078 -113 5065 -57 5035 12 5011 107 5005 42 5032 0 5065 -60 5070 -105 5102 -154 5106 -191 5142 -246 5157 -282 5180 -354 5184Z","#594b3f"],["m-169 4942 48-18 36-29 56-6 33 7-42 9-30 24-25 2-49 22Zm-284-84 37-18 45-3-29 11-27 4-33 17Zm-245 177 57-26 27 0-19 11-36 8-18 15Z","#565044"],["m-649 5345 121-29 109 21 72-23 56 13 72-19-44 33-62 3-66 28-75-5-53-22-85 21Z","#4c4336"]],"seat":[{"line":[-990,0,229,0],"stops":[[0,"#ffffff00"],[0.08,"#ffffff24"],[0.28,"#ffffffa3"],[0.49,"#fffffffc"],[0.78,"#ffffffff"],[0.88,"#ffffffcc"],[0.953,"#ffffff75"],[1,"#ffffff00"]]},{"line":[0,4404,0,5450],"stops":[[0,"#ffffff00"],[0.04,"#ffffff26"],[0.154,"#ffffffff"],[0.83,"#ffffffff"],[0.932,"#ffffff5e"],[1,"#ffffff00"]]}]};
+// Bank top line here is y=4250-0.13672x (x<=0); every band stays on or below it.
+const WEST23_LIP=[
+ ['#7a6d4e','M1 4250C-60 4258-130 4268-176 4274C-140 4296-110 4330-70 4352C-44 4361-20 4362 1 4362Z'],
+ ['#8c7d5b','M1 4250C-50 4257-100 4264-134 4268.4C-110 4276-80 4292-50 4294.6C-30 4295.2-10 4295 1 4295Z'],
+ ['#958563','M1 4250C-36 4255-70 4259.6-92 4262.6C-60 4264-30 4264.5 1 4264.5Z']
+];
 const west23Vectors=new WeakMap();
 let west23Raster=null;
 function eligibleWest23(b,floor,asset){
@@ -205,7 +211,7 @@ function paintWest23(c,front){
  if(![m.a,m.d,m.e,m.f].every(Number.isFinite)||m.a!==m.d||m.b||m.c||m.a<=0)return;
  const cut=Math.round(m.e);
  const l=Math.max(0,Math.floor(x*m.a+m.e)),r=Math.min(raw.canvas.width,Math.ceil((x+w)*m.a+m.e));
- const t=Math.max(0,Math.floor(y*m.d+m.f)),b=Math.min(raw.canvas.height,Math.ceil((y+h)*m.d+m.f));
+ const t=Math.max(0,Math.floor((front?y:4248)*m.d+m.f)),b=Math.min(raw.canvas.height,Math.ceil((y+h)*m.d+m.f));
  const pl=front?Math.max(l,cut):l,pr=front?r:Math.min(r,cut);
  if(pr<=pl||b<=t)return;
  const cv=west23SectionRaster(m.a>.62?.65:.35);
@@ -214,6 +220,9 @@ function paintWest23(c,front){
   // Integer, non-overlapping device support; use the same source crop on both passes.
   raw.setTransform(1,0,0,1,0,0);raw.clip(new Path2D('M'+pl+' '+t+'H'+pr+'V'+b+'H'+pl+'Z'));
   raw.setTransform(m.a,m.b,m.c,m.d,m.e,m.f);raw.drawImage(cv,x,y,w,h);
+  // Ground pass: the quay face's lit lip and two upper bands (x>=0) taper into the bank
+  // along its own top line instead of stopping at the x=0 handoff column.
+  if(!front)for(const [ink,d] of WEST23_LIP){raw.fillStyle=ink;raw.fill(new Path2D(d));}
  }finally{raw.restore();}
 }
 const west23Ground=S.terrain;
