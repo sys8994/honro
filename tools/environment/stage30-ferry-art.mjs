@@ -56,22 +56,35 @@ export function createStage30BargeAsset(st,t){const edges=stage30SurfaceEdges(st
  for(const[u,len]of[[.16,58],[.79,70]]){const[x,y]=sample(u,-24);b+=path(`M${x-len} ${y+3}Q${x-20} ${y-10} ${x+len} ${y-4}L${x+len-9} ${y+11}Q${x} ${y+20} ${x-len+6} ${y+12}Z`,'#435341','#a0936b',3);b+=path(`M${x-len+14} ${y+3}Q${x} ${y-3} ${x+len-18} ${y+1}M${x-len+19} ${y+8}Q${x} ${y+2} ${x+len-21} ${y+5}`,'none','#b3a079',3);}
  const left=sample(.025),right=sample(.975);for(const[p,hand]of[[left,-1],[right,1]]){const[x,y]=p;b+=path(`M${x-19} ${y+13}L${x-18+hand*13} ${y-31}L${x+17+hand*13} ${y-28}L${x+20} ${y+16}Z`,'#5e5c40','#263a33',4);b+=line([[x-12+hand*13,y-23],[x+11+hand*13,y-22]],'#b5a377',5);}
  const from=st.initialState?.honroFerrySpec?.artFrom||{x:80,y:-145,rotation:.008},pivot=top.at(-1),cs=Math.cos(from.rotation),sn=Math.sin(from.rotation),corners=[[q.x-25,q.y-52],[q.x+q.w+25,q.y-52],[q.x+q.w+25,q.y+q.h+28],[q.x-25,q.y+q.h+28]],all=[...corners,...corners.map(([x,y])=>[pivot[0]+from.x+(x-pivot[0])*cs-(y-pivot[1])*sn,pivot[1]+from.y+(x-pivot[0])*sn+(y-pivot[1])*cs])],xs=all.map(p=>p[0]),ys=all.map(p=>p[1]),bounds=[Math.min(...xs)-3,Math.min(...ys)-3,Math.max(...xs)-Math.min(...xs)+6,Math.max(...ys)-Math.min(...ys)+6];return asset('settled-barge','계류선에 붙잡혀 멎은 넓고 낮은 짐배 한 척',b,bounds,{extra:{terrainId:t.id,terrainPoints:structuredClone(t.points),topPoints:top,view:'broad-low-cargo-barge',singleHull:true}});}
+// Long straight edges of the recessed support planes read as cut boards. Break only
+// L segments longer than 180 with two small perpendicular kinks; endpoints (shore feet) stay exact.
+function roughRear(d){const t=d.match(/[MLQZ]|-?\d+(?:\.\d+)?/g)||[];let out='',cmd='',i=0,cx=0,cy=0,sx=0,sy=0,k=0;const r=v=>Math.round(v*10)/10;
+ while(i<t.length){const v=t[i];if(/[MLQZ]/.test(v)){cmd=v;i++;if(v==='Z'){out+='Z';cx=sx;cy=sy;}continue;}
+  if(cmd==='M'){cx=+t[i];cy=+t[i+1];sx=cx;sy=cy;out+=`M${cx} ${cy}`;i+=2;cmd='L';continue;}
+  if(cmd==='Q'){out+=`Q${t[i]} ${t[i+1]} ${t[i+2]} ${t[i+3]}`;cx=+t[i+2];cy=+t[i+3];i+=4;continue;}
+  const x=+t[i],y=+t[i+1];i+=2;const dx=x-cx,dy=y-cy,len=Math.hypot(dx,dy);
+  if(len>180){const nx=-dy/len,ny=dx/len,a=len*.035*(k++%2?1:-1);out+=`L${r(cx+dx/3+nx*a)} ${r(cy+dy/3+ny*a)}L${r(cx+dx*2/3-nx*a*.7)} ${r(cy+dy*2/3-ny*a*.7)}`;}
+  out+=`L${x} ${y}`;cx=x;cy=y;}
+ return out;}
 function groundedRearSupports(st){let b='',feet=[];const get=id=>st.terrains.find(t=>t.id===id),foot=(id,x,sourceTerrainId,kind)=>{const y=stage30SurfaceAt(st,get(id),x);if(y===null)throw Error('Rear bank misses '+id+'/'+x);const f={terrainId:id,x:n(x),y:n(y),sourceTerrainId,kind,rearOnly:true};feet.push(f);return f;};
  // Broad recessed riverbank masses continue to measured shore contacts.
  // No rim/outline: these are the back of the gorge, not new collision walls.
  const cl=foot('sf-west-ford',2670,'sf-granite-cape','recessed-bank'),cr=foot('sf-west-ford',5720,'sf-granite-cape','recessed-bank');
- b+=path(`M3035 4800Q3530 4630 4130 4730L5425 4925Q5460 5370 5560 5730L${cr.x} ${cr.y+8}L4650 6240L3500 6270L${cl.x} ${cl.y+8}Q2880 5840 2950 5410Z`,'#30474d','',1,'cape-rooted-bank');
- b+=path(`M3100 4900L3750 4870L4050 5220Q3700 5450 3370 5590L3090 5930L${cl.x} ${cl.y+8}Q2940 5580 3100 4900Z`,'#405457');
- b+=path('M4070 5190Q4640 5090 5110 4980L5425 4925L5390 5580 5530 6040 4900 6220 4340 6220Q4380 5770 4070 5190Z','#263f46');
- b+=path('M3360 5600Q3780 5380 4140 5470L4610 5700Q4890 5910 5220 6000L5550 6150 4620 6220 3430 6230 3000 6240Z','#344b50');
+ b+=path(roughRear(`M3035 4800Q3530 4630 4130 4730L5425 4925Q5460 5370 5560 5730L${cr.x} ${cr.y+8}L4650 6240L3500 6270L${cl.x} ${cl.y+8}Q2880 5840 2950 5410Z`),'#30474d','',1,'cape-rooted-bank');
+ b+=path(roughRear(`M3100 4900L3750 4870L4050 5220Q3700 5450 3370 5590L3090 5930L${cl.x} ${cl.y+8}Q2940 5580 3100 4900Z`),'#405457');
+ b+=path(roughRear('M4070 5190Q4640 5090 5110 4980L5425 4925L5390 5580 5530 6040 4900 6220 4340 6220Q4380 5770 4070 5190Z'),'#263f46');
+ b+=path(roughRear('M3360 5600Q3780 5380 4140 5470L4610 5700Q4890 5910 5220 6000L5550 6150 4620 6220 3430 6230 3000 6240Z'),'#344b50');
+ // Broad facets inside the recessed cape bank so it reads as weathered rock, not one flat board.
+ for(const [d,f] of [['M3150 5050L3600 4930L3980 5010L3760 5240L3420 5380L3180 5330Z','#3a5153'],['M4300 5300L4700 5180L5100 5150L5300 5400L5000 5620L4600 5640L4380 5500Z','#2a4148'],['M3300 5750L3700 5650L4050 5720L3880 5900L3500 5960Z','#3d5356'],['M4650 5760L5050 5700L5350 5820L5200 6000L4800 6040Z','#2c434a']])b+=path(roughRear(d),f);
  const ql=foot('sf-west-ford',4780,'sf-ferry-court','recessed-natural-quay-foot'),qr=foot('sf-west-ford',6150,'sf-ferry-court','recessed-natural-quay-foot');
- b+=path(`M4848 5660L6259 5630Q6300 5960 6260 6130L${qr.x} ${qr.y+8}L5720 6180L5360 6230L${ql.x} ${ql.y+8}Q4950 6020 4848 5660Z`,'#3b5154','',1,'quay-rooted-bedrock');
- b+=path(`M4850 5660L5360 5720L5620 5940L5490 6210L${ql.x} ${ql.y+8}Q4950 5920 4850 5660Z`,'#49605e');
- b+=path(`M5820 5700L6259 5630Q6300 5960 6260 6130L${qr.x} ${qr.y+8}L5760 6160L5910 5890Z`,'#293f47');
+ b+=path(roughRear(`M4848 5660L6259 5630Q6300 5960 6260 6130L${qr.x} ${qr.y+8}L5720 6180L5360 6230L${ql.x} ${ql.y+8}Q4950 6020 4848 5660Z`),'#3b5154','',1,'quay-rooted-bedrock');
+ b+=path(roughRear(`M4850 5660L5360 5720L5620 5940L5490 6210L${ql.x} ${ql.y+8}Q4950 5920 4850 5660Z`),'#49605e');
+ b+=path(roughRear(`M5820 5700L6259 5630Q6300 5960 6260 6130L${qr.x} ${qr.y+8}L5760 6160L5910 5890Z`),'#293f47');
  const el=foot('sf-east-recovery-shore',7330,'sf-bank-inner','recessed-east-bank'),em=foot('sf-east-recovery-shore',7910,'sf-bank-inner','recessed-east-bank'),er=foot('sf-east-recovery-shore',8430,'sf-bank-inner','recessed-east-bank');
- b+=path(`M6105 4960Q6530 4790 7040 4960L7730 4850L8447 4880L${er.x} ${er.y+8}L${em.x} ${em.y+8}L${el.x} ${el.y+8}Q7040 6190 7000 5810Q6830 5420 6420 5300L6105 5160Z`,'#2e464e','',1,'east-rooted-bank');
- b+=path(`M6900 5180Q7350 5140 7770 4920L8280 4920L${em.x} ${em.y+8}L${el.x} ${el.y+8}Q7180 5860 6900 5180Z`,'#3b5358');
- b+=path(`M7980 4930L8447 4880L${er.x} ${er.y+8}L${em.x} ${em.y+8}L7690 6100Q7920 5620 7980 4930Z`,'#243e48');
+ b+=path(roughRear(`M6105 4960Q6530 4790 7040 4960L7730 4850L8447 4880L${er.x} ${er.y+8}L${em.x} ${em.y+8}L${el.x} ${el.y+8}Q7040 6190 7000 5810Q6830 5420 6420 5300L6105 5160Z`),'#2e464e','',1,'east-rooted-bank');
+ b+=path(roughRear(`M6900 5180Q7350 5140 7770 4920L8280 4920L${em.x} ${em.y+8}L${el.x} ${el.y+8}Q7180 5860 6900 5180Z`),'#3b5358');
+ b+=path(roughRear(`M7980 4930L8447 4880L${er.x} ${er.y+8}L${em.x} ${em.y+8}L7690 6100Q7920 5620 7980 4930Z`),'#243e48');
+ for(const [d,f] of [['M6300 5250L6650 5180L6900 5300L6750 5480L6400 5450Z','#38504f'],['M7500 5150L7900 5080L8250 5120L8100 5380L7750 5560L7550 5400Z','#273f47'],['M7000 5700L7350 5620L7600 5760L7400 5950L7100 5900Z','#3a5157']])b+=path(roughRear(d),f);
  return{asset:asset('recessed-grounded-supports','실제 여울·강둑에 이어지는 후퇴한 선창 암반',b,[2400,4250,6500,2350],{category:'terrain',role:'rock',extra:{rearOnly:true,collisionSource:'none',supports:feet,noWalkRim:true,depthRelationship:'recessed-behind-all-authored-L1-solids'}}),feet};}
 
 function riverDepth(st){const water=st.materials.find(z=>z.id==='sf-main-river'||z.kind==='water-pool');if(!water?.surface?.length)return null;const xs=water.surface.map(p=>p[0]),top=Math.min(...water.surface.map(p=>p[1])),bottom=Math.max(...(water.bottom||water.points).map(p=>p[1])),left=Math.min(...xs)-1200,right=Math.max(...xs)+1200,end=st.terrainBounds?.bottom||st.height+6000;let b=`<defs><linearGradient id="ink-river-depth" x1="0" y1="${top}" x2="0" y2="${bottom}" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#2f4c5a"/><stop offset="0.24" stop-color="#142f40"/><stop offset="1" stop-color="#1b303c"/></linearGradient></defs>`;b+=poly([[left,top],[right,top],[right,end],[left,end]],'url(#ink-river-depth)');return asset('deep-river-underlay','실제 강수면 아래로 이어지는 먹빛 깊이',b,[left,top,right-left,end-top],{category:'terrain',role:'water',extra:{rearOnly:true,collisionSource:'none',surfaceY:top,sourceWaterId:water.id,depthOnly:true,noExtraWaterMotion:true}});}

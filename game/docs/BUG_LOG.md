@@ -1,3 +1,23 @@
+## 3막 10장(30장) 직사각형 지형 전면 수정 (충돌 포함) — 2026-11-23
+
+- 사용자 지시: 플레이에 영향을 주더라도 직사각형으로 읽히는 30장 지형을 전면 수정.
+- 원칙: 걷는 윗면(walk edge 0..n)은 그대로 둔다. 스크립트가 윗면 꼭짓점 불변을 단언한다. 옆면·밑면·수로 벽만 자연 암벽 윤곽으로 바꿨다.
+- 충돌 변경(`shared/data/campaign.json` 30장 terrains):
+  - 옛길 암주 `sf-old-road-gather`: 동쪽 면이 들쭉날쭉하게 넓어지며 물에 닿는다. 틈 양쪽 면도 들쭉날쭉하게 바꿨다(`sf-east-outer-grade` 포함).
+  - `sf-cape-west-buttress`·`sf-cape-west-access`·`sf-bank-inner`: 밑면이 불규칙해졌다.
+  - `sf-outbank-screen`: 기울어진 판에서 깨진 바위 이빨 모양이 됐다(무너짐 연출은 같은 한 덩어리).
+  - `sf-return-tooth-1..3`·`sf-east-quay-entry`: 바위 밑면.
+  - `sf-west-ford` 서쪽 폐합 사선과 영역 바닥 사선을 들쭉날쭉하게 바꿨다.
+  - 강 수로 양 벽(수면 6580 아래, 나룻배 길 밖)도 들쭉날쭉하게 바꿨다.
+- 물 그리기: `sf-main-river.points/bottom`을 벽을 따라 좁아지는 수체로 바꿨다(수면 선 불변).
+- 그림: `tools/environment/stage30-ferry-art.mjs`로 재생성했다. 뒤 강둑 지지면의 긴 직선 변을 꺾고 넓은 면 7개를 더했다. 런타임 깊은 물·해저 사면은 새 암주 발치(10560~10660)에 맞췄다.
+- 저장: `campaign-map-revision.js`에서 30장 지도 revision에 +1000(430→1430). 진행 중인 30장 전투만 새 지형으로 다시 시작하고, 성장·클리어 기록은 보존한다. 구 빌드 30장 저장의 이어하기는 rev 1430의 새 전투로 열렸다.
+- 기록: `tools/map-forge/stage30-natural-faces.mjs`, `-2.mjs`.
+- 확인:
+  - `stage30-ferry-traversal`(이동·경로) 통과. production-contract·terrain-readability 통과.
+  - `stage30-ferry-contracts/tactics/history/history-audit`는 변경 전과 같은 단언에서 실패한다(기존). terrain-domain도 기존 `playProjection` 실패다.
+  - 나루 무너짐 연출의 실제 재생은 확인하지 못했다.
+
 ## 5막 4장(44장) 동쪽 오르막 보행 가이드가 뿌리 그림 위에 떠 있음 — 2026-11-23 (P2)
 
 - 원인: `a5-root-floor`의 오르막 (5358.98,2012.11)→(5744.14,1819.53)→(6109.38,1812.89)→(6700.39,1733.2)이 뿌리 덩어리를 가로지른다. 그런데 근경(`act5:near:44`)에는 그 자리에 길 면이 없어 보행 가이드만 허공에 그어진 것처럼 보였다(인계 판정 '실제 보행 가이드, 미술 지지 HOLD').

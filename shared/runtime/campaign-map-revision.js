@@ -5,7 +5,11 @@ const clone=x=>structuredClone(x),REVISIONS=Object.freeze({1:7,2:8,3:5,4:4,5:6,6
 // Map geometry/encounters evolve independently of the story/equipment proof revision.
 const ACT4_MAP_REVISION=5;
 const ACT4_ENCOUNTER_REVISIONS=Object.freeze({40:6});
-const current=id=>id>=41&&id<=50&&G.HONRO_ACT5_RELEASE===true?1:id>=31&&id<=40&&G.HonroAct4Content?.enabled?(ACT4_ENCOUNTER_REVISIONS[id]??ACT4_MAP_REVISION):G.HonroAct23V4?.mapRevision(id)??REVISIONS[id]??0;
+// Stage30 geometry rework (2026-11-23): natural rock faces replace the rectangular masses,
+// so in-progress Stage30 battles restart on the new terrain (growth/clears are kept).
+const GEOMETRY_REWORK=Object.freeze({30:1000});
+const current=id=>(GEOMETRY_REWORK[id]||0)+baseRevision(id);
+const baseRevision=id=>id>=41&&id<=50&&G.HONRO_ACT5_RELEASE===true?1:id>=31&&id<=40&&G.HonroAct4Content?.enabled?(ACT4_ENCOUNTER_REVISIONS[id]??ACT4_MAP_REVISION):G.HonroAct23V4?.mapRevision(id)??REVISIONS[id]??0;
 const campaign=b=>!!b&&!b.honroCustom&&b.honroMapOrigin!=='workshop'&&b.mode==='campaign';
 function stamp(b){if(campaign(b))b.honroCampaignMapRevision=current(b.honroStage);}
 function preserveAct1SiteBattle(b){
