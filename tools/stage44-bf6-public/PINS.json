@@ -1,0 +1,298 @@
+{
+  "chromium": "151.0.7922.34",
+  "poses": {
+    "PC": [
+      -320,
+      2200,
+      0.5
+    ],
+    "M": [
+      -320,
+      1313.5,
+      0.057352941176470586
+    ]
+  },
+  "closeWestPC": [
+    -120,
+    2000,
+    1.65
+  ],
+  "physics": "b7c0d64490dfaae60ad5c6bc394d000d5c256ba56f9a7149abbbf3301f4d6546",
+  "arms": {
+    "C": {
+      "head": "3c55cf8313f1cd7355f486272f220beb38bcac7f",
+      "tree": "b67ae4d9cb1ed3241c32c025201cf5778c00cb8a",
+      "map": "web/data/chapter-44.53b2bdf2fded9347.json",
+      "campaign": "web/data/campaign.4c48015c8663d89f.json",
+      "provider": "web/data/chapter-44-assets-parts.78cf9cac37e639be.json",
+      "files": {
+        "web/data/chapter-44.53b2bdf2fded9347.json": "53b2bdf2fded934726ba64e70549f7ed29e3fc5194f76f31989ac63b50ef81eb",
+        "web/data/chapter-44-assets-parts.78cf9cac37e639be.json": "78cf9cac37e639be93a7ca0f355211e2bdd7052c6be883045b06fce897518e44",
+        "web/data/chapter-44-assets-part-000.ac5c9ed02d770b03.bin": "ac5c9ed02d770b03465dab45186b5855520037f1c9a4e4a04e5161b4c1c4e1ef",
+        "web/data/chapter-44-assets-part-001.19e3a4fce68e20d3.bin": "19e3a4fce68e20d3ee0981c031a518f7b683187ecb891bb0f4e292cbde951248",
+        "web/graphics/honro_authored_far-images-root-interior.7b6377c64ea476da.webp": "7b6377c64ea476da11bbcbaee6fc8c98e67692723bf8ee7f18ab60c22709def7",
+        "web/runtime/HONRO_AUTHORED_FAR.cf4cf9c2e0932235.js": "cf4cf9c2e09322356f9d2f0e874d700718783c6eafc332049663fdda54250f69",
+        "web/runtime/ordered-common-18.326be34080f88678.js": "326be34080f88678701ead4cfa54a7c327027fa8ab1d690d8993ba414a93b62f",
+        "web/runtime/ordered-common-15.23e61c9f6bb8a95b.js": "23e61c9f6bb8a95b55d7e87dff8f02b2c25e5f23abc66ec8df7b59c067894fe0",
+        "web/data/campaign.4c48015c8663d89f.json": "4c48015c8663d89f16ea762cf23f488463a2e819a7330b3286f437927bb33504",
+        "web/runtime/campaign.38d1394abfe86699.js": "38d1394abfe86699a1db087bb6970d17baabb0ead53077d403759e04788a9a12",
+        "web/entries/game.547b23467b5bf6c7.js": "547b23467b5bf6c78463dae7d5e4d8b793dee1fc758b0998f0c557df640b3bea",
+        "HONRO.html": "b7ca017690f428a932c1c443507ece96e00d0968673641bf1e519efd9edc8b08",
+        "web/manifest.json": "9ceb552b1332139211ec397816536eb578d13bf36ec7f62b52484a69604e97ef",
+        "web/entries/game.b433e4fc393b568b.html": "b433e4fc393b568b69bcd35c455a421e380b3598d0b4b1d9876dc279b103385c",
+        "web/entries/workshop.ba859e0a5db97979.js": "ba859e0a5db9797982dc68806a8bef12343f08a872fe5670ed1e678422097313"
+      }
+    }
+  },
+  "observerSHA256": "537cb36e8ad5e6017326ae944b6bdfd25459672e57de613030a7552cd3ee0468",
+  "enabled": true,
+  "head": "bf6df569650b656c33c647755d59c02fb1570cc4",
+  "tree": "66a7159f5135230e1aed69b105499bb076870730",
+  "branch": "qa/stage44-bf6-public-native-readback",
+  "pages": {
+    "run": 45115643827,
+    "job": 137498209963,
+    "publishedAt": "2026-11-23T05:07:37Z"
+  },
+  "expected": {
+    "status": "PASS_EXACT_NO_DEPLOY_STAGE44_RELEASE_OVERLAY",
+    "base": "3c55cf8313f1cd7355f486272f220beb38bcac7f",
+    "baseTree": "b67ae4d9cb1ed3241c32c025201cf5778c00cb8a",
+    "candidate": "59525f15cf5a93af3a3a7b752a2aa2a6c0128ca1",
+    "candidateTree": "5b50fb01f6baa80a001027dc148a268cd850940c",
+    "assembledReleaseTree": "66a7159f5135230e1aed69b105499bb076870730",
+    "reviewedNative": {
+      "run": 45112051187,
+      "artifact": 14789658230,
+      "zipSHA256": "b3e50355cd807066952791573d6c71060500fe4f7b56665a6dd7ef4096c355ec"
+    },
+    "basePages": {
+      "run": 45108891636,
+      "job": 137476961484,
+      "publishedAt": "2026-11-23T03:58:53Z",
+      "artifact": 14789190134,
+      "artifactSHA256": "fb5462307d0a633c89393ef358773fe1ee6fb35c37a4ebcf1b703cf9633a1342"
+    },
+    "qaHead": "96582da36f13a29af8a7242ab14b66ec4621e269",
+    "activeCount": 811,
+    "registryBefore": 1271,
+    "registryAfter": 1275,
+    "publishedGenerationsBefore": 52,
+    "publishedGenerationsAfter": 53,
+    "expiredMetadataOnly": [],
+    "approvedAliasPairs": {
+      "web/runtime/ordered-common-18.4831815091012b42.js": "web/runtime/ordered-common-18.326be34080f88678.js",
+      "web/entries/game.d1e70066b5e4f461.js": "web/entries/game.547b23467b5bf6c7.js",
+      "web/entries/workshop.bfa695faa4088b81.js": "web/entries/workshop.ba859e0a5db97979.js",
+      "web/entries/game.d33d78b046b05167.html": "web/entries/game.b433e4fc393b568b.html"
+    },
+    "rawNormalManifest": {
+      "bytes": 8989032,
+      "sha256": "5425ffc7fc2a840ae4a234208c6cb8c4ce476df2209c0363a1914ad4d7a4aede",
+      "git": "c9e212977f200487aea9059e3f61bdacee662b95"
+    },
+    "retainedManifest": {
+      "bytes": 9158708,
+      "sha256": "9ceb552b1332139211ec397816536eb578d13bf36ec7f62b52484a69604e97ef",
+      "git": "4562c5b8b943d3c2d20ddc98a1e68e60bea982a6"
+    },
+    "overlay": {
+      "bytes": 2447677,
+      "sha256": "197da7b28dcac8219e166d0cbe0b93fcf918514b1ac80a92456c89dfb810a6b7",
+      "git": "5aaf37412b63eb41809e7d282fafdfa5a482568a"
+    },
+    "files": {
+      "HONRO.html": {
+        "bytes": 17379,
+        "sha256": "b7ca017690f428a932c1c443507ece96e00d0968673641bf1e519efd9edc8b08",
+        "git": "c4bf39a2a812c88cc5d6cad30a3541a780a6f64d"
+      },
+      "HONRO_WORKSHOP.html": {
+        "bytes": 4011,
+        "sha256": "2bfbc5ad53cd1ff426340a94d6342edcb183d842b3b9eb49f5a50821f37eee73",
+        "git": "3cf01a50c6230bb233014d855206ea3c9fc1c2ec"
+      },
+      "index.html": {
+        "bytes": 17379,
+        "sha256": "b7ca017690f428a932c1c443507ece96e00d0968673641bf1e519efd9edc8b08",
+        "git": "c4bf39a2a812c88cc5d6cad30a3541a780a6f64d"
+      },
+      "web/entries/game.547b23467b5bf6c7.js": {
+        "bytes": 20483,
+        "sha256": "547b23467b5bf6c78463dae7d5e4d8b793dee1fc758b0998f0c557df640b3bea",
+        "git": "c5c9127f6ffa486d8d6aa8617922831e196dcc29"
+      },
+      "web/entries/game.b433e4fc393b568b.html": {
+        "bytes": 11318,
+        "sha256": "b433e4fc393b568b69bcd35c455a421e380b3598d0b4b1d9876dc279b103385c",
+        "git": "a2a48f9ba7855d630428ff541c75e7a29ec1f12f"
+      },
+      "web/entries/workshop.ba859e0a5db97979.js": {
+        "bytes": 16706,
+        "sha256": "ba859e0a5db9797982dc68806a8bef12343f08a872fe5670ed1e678422097313",
+        "git": "79db66a1daf03c4689bfb8dd2a28d2b436e48dcb"
+      },
+      "web/manifest.json": {
+        "bytes": 9158708,
+        "sha256": "9ceb552b1332139211ec397816536eb578d13bf36ec7f62b52484a69604e97ef",
+        "git": "4562c5b8b943d3c2d20ddc98a1e68e60bea982a6"
+      },
+      "web/runtime/ordered-common-18.326be34080f88678.js": {
+        "bytes": 35854,
+        "sha256": "326be34080f88678701ead4cfa54a7c327027fa8ab1d690d8993ba414a93b62f",
+        "git": "667505cf190eee8b8519a24f108a340d4bf6720e"
+      }
+    },
+    "exactReleaseDiff": [
+      "A\ttests/stage44-under-visual-recovery.mjs",
+      "A\tweb/entries/game.547b23467b5bf6c7.js",
+      "A\tweb/entries/game.b433e4fc393b568b.html",
+      "A\tweb/entries/workshop.ba859e0a5db97979.js",
+      "A\tweb/runtime/ordered-common-18.326be34080f88678.js",
+      "M\tHONRO.html",
+      "M\tHONRO_WORKSHOP.html",
+      "M\tindex.html",
+      "M\tshared/runtime/act5-edge-art.js",
+      "M\tweb/manifest.json"
+    ],
+    "protectedSource": {
+      "shared/runtime/profile-store.js": "88c3ccf0896a2f3d7a9a55f03ee1d246012fe345",
+      "shared/runtime/act4-campaign.js": "8219cf07e0b18b81c744035cc1db62aa4030458d"
+    },
+    "noDeploy": true
+  },
+  "frames": {
+    "PC": {
+      "rgbaSHA256": "6725a36f0d3722f9ecde121729a9596fa70ae1f8eb09b2e21425719f01ecc5f4",
+      "pngSHA256": "b023c8648ff7f81fd0fe0d7f881e0b150c6497c777b161f8872b897e779a6ea9",
+      "objectiveFont": {
+        "font": "600 12px sans-serif",
+        "text": "오른쪽 · 위 뿌리 능선",
+        "width": 112.669921875,
+        "fingerprints": [
+          {
+            "ch": "오",
+            "ink": 72,
+            "hash": 2105137990
+          },
+          {
+            "ch": "른",
+            "ink": 100,
+            "hash": 1455026651
+          },
+          {
+            "ch": "쪽",
+            "ink": 99,
+            "hash": 3132984412
+          }
+        ],
+        "targets": [
+          [
+            "a5-reach-upper",
+            "route",
+            2755.86,
+            1480.86,
+            "위 뿌리 능선"
+          ],
+          [
+            "a5-reach-lower",
+            "route",
+            2755.86,
+            2016.69,
+            "아래 골"
+          ]
+        ],
+        "authorFaceFamilies": [],
+        "status": "loaded"
+      }
+    },
+    "M": {
+      "rgbaSHA256": "35739ed7fe9a5d8e0e6bb5a74b57699d3d0fce19fbc109f175f41813c1dbf1d8",
+      "pngSHA256": "7278d8c26d594a59fd521a6926b1c286299d7bc034f703cf7d02251290f990bf",
+      "objectiveFont": {
+        "font": "600 12px sans-serif",
+        "text": "오른쪽 · 위 뿌리 능선",
+        "width": 112.669921875,
+        "fingerprints": [
+          {
+            "ch": "오",
+            "ink": 72,
+            "hash": 2105137990
+          },
+          {
+            "ch": "른",
+            "ink": 100,
+            "hash": 1455026651
+          },
+          {
+            "ch": "쪽",
+            "ink": 99,
+            "hash": 3132984412
+          }
+        ],
+        "targets": [
+          [
+            "a5-reach-upper",
+            "route",
+            2755.86,
+            1480.86,
+            "위 뿌리 능선"
+          ],
+          [
+            "a5-reach-lower",
+            "route",
+            2755.86,
+            2016.69,
+            "아래 골"
+          ]
+        ],
+        "authorFaceFamilies": [],
+        "status": "loaded"
+      }
+    },
+    "PC-CLOSE": {
+      "rgbaSHA256": "fe2ebe8895f35111ceb5535c2e6275a62298046a6abafeca8c1af74e329d5c85",
+      "pngSHA256": "262f97e3c74f61de71cbdf692d9bd1218678d9afa26e0a98385a3604444a2373",
+      "objectiveFont": {
+        "font": "600 12px sans-serif",
+        "text": "오른쪽 · 위 뿌리 능선",
+        "width": 112.669921875,
+        "fingerprints": [
+          {
+            "ch": "오",
+            "ink": 72,
+            "hash": 2105137990
+          },
+          {
+            "ch": "른",
+            "ink": 100,
+            "hash": 1455026651
+          },
+          {
+            "ch": "쪽",
+            "ink": 99,
+            "hash": 3132984412
+          }
+        ],
+        "targets": [
+          [
+            "a5-reach-upper",
+            "route",
+            2755.86,
+            1480.86,
+            "위 뿌리 능선"
+          ],
+          [
+            "a5-reach-lower",
+            "route",
+            2755.86,
+            2016.69,
+            "아래 골"
+          ]
+        ],
+        "authorFaceFamilies": [],
+        "status": "loaded"
+      }
+    }
+  }
+}

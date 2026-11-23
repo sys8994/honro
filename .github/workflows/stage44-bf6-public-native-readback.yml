@@ -1,0 +1,71 @@
+name: HONRO exact Stage44 public recovery readback (no deploy)
+on:
+  push:
+    branches: [qa/stage44-bf6-public-native-readback]
+    paths: [".github/workflows/stage44-bf6-public-native-readback.yml", "tools/stage44-bf6-public/**"]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  native-public:
+    if: ${{ true && github.repository == 'sys8994/honro' && github.ref == 'refs/heads/qa/stage44-bf6-public-native-readback' }}
+    runs-on: ubuntu-22.04
+    timeout-minutes: 14
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+          fetch-depth: 2
+      - name: Authenticate same-commit official Pages and exact add-only QA
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          W=$(mktemp -d "$RUNNER_TEMP/s44-public.XXXXXXXX"); echo "W=$W" >> "$GITHUB_ENV"
+          need=bf6df569650b656c33c647755d59c02fb1570cc4
+          test "$(git show -s --format=%P HEAD)" = "$need"
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test "$(git ls-remote --exit-code origin refs/heads/master)" = "$(printf '%s\trefs/heads/master' "$need")"
+          python3 - "$W/PAGES.json" <<'PY'
+          from pathlib import Path
+          import json,os,sys,subprocess
+          p=json.loads(Path('tools/stage44-bf6-public/PINS.json').read_bytes())
+          assert p['enabled'] is True and os.environ['GITHUB_REF']=='refs/heads/'+p['branch']
+          files={'.github/workflows/stage44-bf6-public-native-readback.yml',*('tools/stage44-bf6-public/'+s for s in ('PINS.json','public.py','observer.json'))}
+          assert set(subprocess.check_output(['git','diff','--name-status','--no-renames',p['head'],'HEAD'],text=True).splitlines())=={'A\t'+k for k in files}
+          assert subprocess.check_output(['git','rev-parse',p['head']+'^{tree}'],text=True).strip()==p['tree']
+          q=p['pages'];assert type(q['run']) is int and type(q['job']) is int and isinstance(q['publishedAt'],str)
+          def api(name):return json.loads(subprocess.check_output(['gh','api','repos/sys8994/honro/actions/'+name],timeout=60))
+          r,j=api(f"runs/{q['run']}"),api(f"jobs/{q['job']}")
+          assert (r['head_sha'],r['head_branch'],r['name'],r['conclusion'])==(p['head'],'master','pages build and deployment','success')
+          assert (j['run_id'],j['head_sha'],j['name'],j['conclusion'])==(q['run'],p['head'],'deploy','success')
+          assert any(s['name']=='Deploy to GitHub Pages' and s['conclusion']=='success' for s in j['steps'])
+          Path(sys.argv[1]).write_text(json.dumps({'status':'PASS_OFFICIAL_EXACT_PAGES','head':p['head'],**q},indent=2)+'\n')
+          PY
+      - name: Anonymous public exact Stage44 shell and native PC, mobile and close west
+        run: |
+          set -euo pipefail
+          test -z "${GITHUB_TOKEN:-}${GH_TOKEN:-}"
+          PY=$(find "${RUNNER_TOOL_CACHE}/Python" -maxdepth 4 -type f -path '*/3.12.*/x64/bin/python3.12' | sort -V | tail -1)
+          test -n "$PY" && test -x "$PY"
+          "$PY" -m venv "$W/venv"; V="$W/venv/bin/python"
+          "$V" -m pip --isolated --disable-pip-version-check install --index-url https://pypi.org/simple/ --no-deps --only-binary=:all: --no-cache-dir playwright==1.62.0 Pillow==13.0.0 pyee==13.0.1 greenlet==3.5.5 typing-extensions==4.16.0
+          "$V" -m pip check
+          unset PLAYWRIGHT_NODEJS_PATH PLAYWRIGHT_DOWNLOAD_HOST CHROMIUM_DOWNLOAD_HOST
+          export PLAYWRIGHT_BROWSERS_PATH="$W/browsers"
+          "$V" -m playwright install --with-deps chromium > "$W/chromium-install.log" 2>&1
+          fc-match -s :lang=ko > "$W/native-ko-font-stack.log"
+          "$V" tools/stage44-bf6-public/public.py "$W"
+      - if: ${{ always() && env.W != '' }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: stage44-bf6-public-recovery-readback
+          path: |
+            ${{ env.W }}/PUBLIC.json
+            ${{ env.W }}/PAGES.json
+            ${{ env.W }}/*-PUBLIC.png
+            ${{ env.W }}/*.log
+          retention-days: 7
+          if-no-files-found: warn
