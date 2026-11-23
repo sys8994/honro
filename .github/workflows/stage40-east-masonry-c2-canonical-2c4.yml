@@ -1,0 +1,65 @@
+name: HONRO Stage40 C2 normal build and real old/current saves (no deploy)
+on:
+  push:
+    branches: [qa/stage40-east-masonry-c2-canonical-2c4]
+    paths: [".github/workflows/stage40-east-masonry-c2-canonical-2c4.yml", "tools/stage40-east-masonry-normal/**", "shared/build.mjs", "shared/act4-stage40-east-masonry.mjs"]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  canonical:
+    if: ${{ github.repository == 'sys8994/honro' && github.ref == 'refs/heads/qa/stage40-east-masonry-c2-canonical-2c4' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 23
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Verify exact historic Pages and prepare three scratch arms
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          W=$(mktemp -d "$RUNNER_TEMP/s40canon.XXXXXXXX"); echo "W=$W" >> "$GITHUB_ENV"
+          mkdir "$W/out"
+          python3 -B tools/stage40-east-masonry-normal/guard.py pre "$W"
+      - name: One ordinary canonical build and chapter custody
+        run: |
+          set -euo pipefail
+          test -z "${GITHUB_TOKEN:-}${GH_TOKEN:-}"
+          T="$GITHUB_WORKSPACE/tools/stage40-east-masonry-normal"
+          export npm_config_userconfig="$(mktemp "$W/npm-user.XXXXXXXX")"
+          export npm_config_globalconfig="$(mktemp "$W/npm-global.XXXXXXXX")"
+          export npm_config_registry=https://registry.npmjs.org/ npm_config_cache="$W/npm-cache"
+          export npm_config_audit=false npm_config_fund=false npm_config_update_notifier=false
+          cd "$W/C"
+          npm ci --ignore-scripts --no-audit --no-fund >"$W/out/npm.log" 2>&1
+          npm ci --prefix game --ignore-scripts --no-audit --no-fund >"$W/out/npm-game.log" 2>&1
+          npm --offline run test:production-contract >"$W/out/production-contract.log" 2>&1
+          npm --offline run build >"$W/out/build.log" 2>&1
+          python3 -B "$T/guard.py" graph "$W"
+      - name: Normal Chrome east PC/M and genuine native saved title Continue
+        run: |
+          set -euo pipefail
+          test -z "${GITHUB_TOKEN:-}${GH_TOKEN:-}"
+          python3 -m venv "$W/venv"
+          V="$W/venv/bin/python"
+          "$V" -m pip --isolated --disable-pip-version-check install --index-url https://pypi.org/simple/ --no-deps --only-binary=:all: --no-cache-dir playwright==1.62.0 Pillow==13.0.0 pyee==13.0.1 greenlet==3.5.5 typing-extensions==4.16.0
+          "$V" -m pip check
+          export PLAYWRIGHT_BROWSERS_PATH="$W/browsers"
+          unset PLAYWRIGHT_NODEJS_PATH PLAYWRIGHT_DOWNLOAD_HOST CHROMIUM_DOWNLOAD_HOST
+          "$V" -m playwright install --with-deps chromium >"$W/out/chromium.log" 2>&1
+          "$V" -B tools/stage40-east-masonry-normal/native.py "$W"
+      - if: ${{ always() && env.W != '' }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: stage40-east-masonry-c2-canonical-2c4-no-deploy
+          path: ${{ env.W }}/out/
+          if-no-files-found: warn
+          retention-days: 7
