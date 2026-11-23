@@ -1,0 +1,135 @@
+{
+  "status": "ACCEPTED_RUNTIME_AND_RAW; DOM_CAPTURE_ONLY_2DN_TINY_BOUNDED",
+  "officialWorkflowWasNotGreen": true,
+  "nativeColdAccepted": 10,
+  "ordinaryTitleResavesAccepted": 4,
+  "sha256": "04be5a92a59698512464e8e2bd63383d406c90b77aaa48842055db04650c2215",
+  "files": {
+    "PC-forward-to-fallback": {
+      "raw": {
+        "differentPixels": 0,
+        "maxDN": 0,
+        "counts": {},
+        "drawPixels": 1107360,
+        "bbox": null
+      },
+      "dom": {
+        "differentPixels": 0,
+        "maxDN": 0,
+        "counts": {},
+        "drawPixels": 1108800,
+        "bbox": null
+      }
+    },
+    "PC-fallback-to-forward": {
+      "raw": {
+        "differentPixels": 0,
+        "maxDN": 0,
+        "counts": {},
+        "drawPixels": 1107360,
+        "bbox": null
+      },
+      "dom": {
+        "differentPixels": 2,
+        "maxDN": 1,
+        "counts": {
+          "1": 2
+        },
+        "drawPixels": 1108800,
+        "bbox": [
+          1427,
+          192,
+          1427,
+          193
+        ]
+      }
+    },
+    "PC-forward-resave-cold": {
+      "raw": {
+        "differentPixels": 0,
+        "maxDN": 0,
+        "counts": {},
+        "drawPixels": 1107360,
+        "bbox": null
+      },
+      "dom": {
+        "differentPixels": 2,
+        "maxDN": 1,
+        "counts": {
+          "1": 2
+        },
+        "drawPixels": 1108800,
+        "bbox": [
+          1427,
+          192,
+          1427,
+          193
+        ]
+      }
+    },
+    "M-forward-to-fallback": {
+      "raw": {
+        "differentPixels": 0,
+        "maxDN": 0,
+        "counts": {},
+        "drawPixels": 252720,
+        "bbox": null
+      },
+      "dom": {
+        "differentPixels": 0,
+        "maxDN": 0,
+        "counts": {},
+        "drawPixels": 252720,
+        "bbox": null
+      }
+    },
+    "M-fallback-to-forward": {
+      "raw": {
+        "differentPixels": 0,
+        "maxDN": 0,
+        "counts": {},
+        "drawPixels": 252720,
+        "bbox": null
+      },
+      "dom": {
+        "differentPixels": 69,
+        "maxDN": 2,
+        "counts": {
+          "1": 61,
+          "2": 8
+        },
+        "drawPixels": 252720,
+        "bbox": [
+          266,
+          34,
+          276,
+          49
+        ]
+      }
+    },
+    "M-forward-resave-cold": {
+      "raw": {
+        "differentPixels": 0,
+        "maxDN": 0,
+        "counts": {},
+        "drawPixels": 252720,
+        "bbox": null
+      },
+      "dom": {
+        "differentPixels": 65,
+        "maxDN": 1,
+        "counts": {
+          "1": 65
+        },
+        "drawPixels": 252720,
+        "bbox": [
+          266,
+          34,
+          276,
+          49
+        ]
+      }
+    }
+  },
+  "scope": "Independent byte-checked supplement to native official captured artifacts. No product write, no waived RAW/state/provider/HTTP/original-art comparison."
+}

@@ -1,0 +1,83 @@
+{
+  "enabled": true,
+  "scopeApproval": true,
+  "refWriteEnabled": false,
+  "qaRef": "refs/heads/qa/stage42-2c4-release-writer",
+  "releaseRef": "refs/heads/release/act5-stage42-full-20261123",
+  "base": {
+    "head": "2c4ba6cda11ad00c7edc565ef42bc41568f066a1",
+    "tree": "7f7395fe024388688e07f42e07c30d30d3ff3c81",
+    "manifestGit": "42a4c459df7a7d2e5456dfb1670a0b02f7f85494",
+    "stageMap": "web/data/chapter-42.0802015e8ba99d11.json",
+    "stageProvider": "web/data/chapter-42-assets.5c0087eadb28e00c.json"
+  },
+  "producer": {
+    "run": 45133073788,
+    "job": 137552821769,
+    "branch": "qa/stage42-full-restore-normal-2c4-r2",
+    "head": "3d835cefa3ab9372681af99517a92fb171ad947e",
+    "tree": "1ed38496a8894f8eb40fb91af4cad6e1c7703efe",
+    "artifact": 14798828031,
+    "outer": {
+      "bytes": 11385421,
+      "sha256": "91a87134e095c88a23dc549473e458ed04dfe014f4708cbf903c4caf17eb5a21"
+    },
+    "inner": {
+      "bytes": 3617815,
+      "sha256": "bc66c2203abb09e800268662561324bdbaafa51b3b62ce53293b4672c1080ec7",
+      "git": "8e1e61ec5bcd86036393afb9cbf8122fde973678"
+    },
+    "sealSHA256": "2e4009285d697fad84d1e89cb1416df7a239eedc24811a82245d94cb1bea8f94",
+    "graphSHA256": "7a6093d0f4e5ff3eef11bf7114f26ce485f8f57434b6a1a938f4670e665605f1",
+    "readbackSHA256": "cba0590f0577067d8b3779708d2b9570c882ef16eb24fab3d0581a240413a2d6",
+    "name": "stage42-full-normal-2c4-r2-continue-no-deploy"
+  },
+  "fallback": {
+    "run": 45132307551,
+    "job": 137550365581,
+    "head": "0772887677f4301df9941468f5f3ebb0b34f4276",
+    "artifact": 14799150503,
+    "name": "stage42-normal-fallback-2c4-no-deploy",
+    "outer": {
+      "bytes": 5282642,
+      "sha256": "04be5a92a59698512464e8e2bd63383d406c90b77aaa48842055db04650c2215"
+    },
+    "reviewSHA256": "f0978cbaeae91a23da30410f23097267de580cb9cfb81853b0e369dcf991eb2c"
+  },
+  "expectedAliases": {
+    "web/data/campaign.4c0d0092bc3153e2.json": "web/data/campaign.19f1604a71ae2df5.json",
+    "web/runtime/campaign.12c7a3c08c76fe9e.js": "web/runtime/campaign.1522ee29b2e7fca8.js",
+    "web/entries/game.7cd8803e41bf231d.js": "web/entries/game.978c9015f73cf270.js",
+    "web/entries/game.0419e172465e89ff.html": "web/entries/game.cb7f434fd7016eac.html",
+    "web/entries/workshop.d33f973436355dd2.js": "web/entries/workshop.8fc841549e7238f6.js",
+    "web/runtime/ordered-common-5.33fb43a3885f44c2.js": "web/runtime/ordered-common-5.48e7e130f804907d.js",
+    "web/data/chapter-42-assets.5c0087eadb28e00c.json": "web/data/chapter-42-assets.43d364e09f6f65ff.json"
+  },
+  "sources": {
+    "shared/assets/environment/act5/stage42-near-simplified.json": {
+      "oldGit": "744f8cac718a72ad989fa6a893a3966f5336b7bd",
+      "after": {
+        "bytes": 495040,
+        "sha256": "d4bb22c9e694120c6ac3d3a024d303b8d10f494a8d29c41eabbdcee47bb6b0bf",
+        "git": "05b7109ceba9d2de84865ae937b9ca71d9f3241b"
+      }
+    },
+    "shared/assets/environment/act5/stage42-surface.json": {
+      "oldGit": "52116caa204c3db7ff7505978c37f1dca5cc809b",
+      "after": {
+        "bytes": 646900,
+        "sha256": "9f3199ad2dceb6d407b05c8d643730685b2534d5d08a045544c0a0485e8a37ba",
+        "git": "cabd9306550c0ccd742dfd3633f3c266ec9b7819"
+      }
+    },
+    "shared/runtime/profile-store.js": {
+      "oldGit": "2c0f74f23cbba16d908de3dc1b6e80291b9eea08",
+      "after": {
+        "bytes": 27102,
+        "git": "4a1742aa5a048e6833c95efaf7ac6bcf153b7eb1",
+        "sha256": "f6ed4ce00ef4ae97bfdde53a1785a903f5f85184915e6dddccf0a9dbbee91d4b"
+      }
+    }
+  },
+  "expectedTree": null
+}
