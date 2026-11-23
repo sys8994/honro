@@ -1,0 +1,132 @@
+name: Stage40 exact df621 C2 seal - dedicated branch only, no deploy
+on:
+  push:
+    branches: [qa/stage40-c2-release-writer-df621-r2]
+    paths: [".github/workflows/stage40-df621-c2-release-seal-r2.yml", "tools/stage40-release-writer/**"]
+permissions: {}
+jobs:
+  seal:
+    permissions:
+      contents: read
+      actions: read
+    if: ${{ true && github.repository == 'sys8994/honro' && github.event_name == 'push' && github.event.created && github.run_attempt == 1 && github.ref == 'refs/heads/qa/stage40-c2-release-writer-df621-r2' }}
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Independently verify exact immutable df621 and exact added QA paths
+        run: |
+          set -euo pipefail
+          test -z "${GH_TOKEN:-}${GITHUB_TOKEN:-}${RELEASE_TOKEN:-}"
+          python3 - <<'PY'
+          import hashlib,json,os,re,subprocess as s
+          from pathlib import Path
+          d=Path('tools/stage40-release-writer'); p=json.loads((d/'PINS.json').read_bytes()); b={'head':p['base'],'tree':p['baseTree']}
+          want={'.github/workflows/stage40-df621-c2-release-seal-r2.yml',*(str(d/x) for x in ('PINS.json','plan.py','seal.py','safe-push.sh'))}
+          git=lambda *a:s.check_output(['git',*a],text=True,timeout=120).strip()
+          assert p['enabled'] is p['scopeApproval'] is p['refWriteEnabled'] is True and re.fullmatch('[a-f0-9]{40}',p['expectedTree'] or '')
+          event=json.loads(Path(os.environ['GITHUB_EVENT_PATH']).read_bytes())
+          assert event['before']=='0'*40 and event['after']==os.environ['GITHUB_SHA'] and event['created'] is True and event['forced'] is False and event['deleted'] is False
+          assert p['qaRef']==os.environ['GITHUB_REF'] and os.environ['GITHUB_REPOSITORY']=='sys8994/honro'
+          assert b['head']=='df62145bea2d4ebdd642f5e39f1eda7b19eb7ae2' and b['tree']=='2d6d17c547b67a8d52f1f4cc92e0444475e99210'
+          assert git('rev-parse','HEAD')==os.environ['GITHUB_SHA'] and git('show','-s','--format=%P','HEAD')==b['head'] and git('rev-parse',b['head']+'^{tree}')==b['tree']
+          assert set(git('diff','--name-status','--no-renames',b['head'],'HEAD').splitlines())=={'A\t'+x for x in want}
+          assert not git('status','--porcelain','--untracked-files=all')
+          assert all(git('ls-tree','HEAD','--',x).startswith('100644 ') for x in want)
+          PY
+      - name: Read only exact three producer artifacts and official metadata
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set +x
+          set -euo pipefail
+          umask 077
+          V="$RUNNER_TEMP/stage40-writer-input"; mkdir "$V"
+          python3 - "$V" <<'PY'
+          import json,subprocess,sys
+          from pathlib import Path
+          d=Path(sys.argv[1]); p=json.loads(Path('tools/stage40-release-writer/PINS.json').read_bytes())
+          assert set(p['producers'])=={'canonical','plan','fallback'}
+          for role,a in p['producers'].items():
+            out=d/role;out.mkdir()
+            for name,route in [('run.json',f"actions/runs/{a['run']}"),('job.json',f"actions/jobs/{a['job']}"),('art.json',f"actions/artifacts/{a['artifact']}"),('commit.json',f"git/commits/{a['head']}"),('archive.zip',f"actions/artifacts/{a['artifact']}/zip")]:
+              with (out/name).open('xb') as f:
+                subprocess.run(['gh','api',*(['--allow-escape-sequences'] if name=='archive.zip' else []),'repos/sys8994/honro/'+route],stdout=f,check=True,timeout=120)
+          PY
+      - name: Reproduce independent exact tree and pack only candidate Git objects
+        run: |
+          set -euo pipefail
+          test -z "${GH_TOKEN:-}${GITHUB_TOKEN:-}${RELEASE_TOKEN:-}"
+          V="$RUNNER_TEMP/stage40-writer-input"; O="$RUNNER_TEMP/stage40-release-seal"
+          c=501c103457d1f51c5e979b3555d28c301a5a0505
+          git -c credential.helper= -c http.extraHeader= fetch --no-tags --depth=1 https://github.com/sys8994/honro.git "$c"
+          test "$(git rev-parse FETCH_HEAD)" = "$c"
+          src="$V/reviewed-source"; mkdir -p "$src/shared"
+          git show "$c:shared/build.mjs" > "$src/shared/build.mjs"
+          git show "$c:shared/act4-stage40-east-masonry.mjs" > "$src/shared/act4-stage40-east-masonry.mjs"
+          python3 -B tools/stage40-release-writer/seal.py "$GITHUB_WORKSPACE" "$V" "$src" "$O"
+          H="$RUNNER_TEMP/stage40-sealed-handover"; mkdir "$H"
+          cp "$O/ASSEMBLY.json" tools/stage40-release-writer/{PINS.json,safe-push.sh} "$H/"
+          new="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["candidateCommit"])' "$H/ASSEMBLY.json")"
+          [[ "$new" =~ ^[a-f0-9]{40}$ ]]
+          printf '%s\n^%s\n' "$new" 'df62145bea2d4ebdd642f5e39f1eda7b19eb7ae2' | git pack-objects --revs --stdout > "$H/CANDIDATE.pack"
+          test "$(stat -c %s "$H/CANDIDATE.pack")" -lt 12000000
+          (cd "$H"; sha256sum ASSEMBLY.json PINS.json safe-push.sh CANDIDATE.pack > SHA256SUMS)
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: stage40-sealed-git-objects-r2-same-run
+          path: ${{ runner.temp }}/stage40-sealed-handover
+          compression-level: 0
+          if-no-files-found: error
+          retention-days: 1
+  push-release-only:
+    needs: seal
+    if: ${{ true && github.repository == 'sys8994/honro' && github.event_name == 'push' && github.event.created && github.run_attempt == 1 && github.ref == 'refs/heads/qa/stage40-c2-release-writer-df621-r2' }}
+    permissions:
+      contents: write
+      actions: none
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: stage40-sealed-git-objects-r2-same-run
+          path: ${{ runner.temp }}/stage40-sealed-handover
+      - name: Verify sealed commit from exact public base without credentials
+        run: |
+          set -euo pipefail
+          test -z "${GH_TOKEN:-}${GITHUB_TOKEN:-}${RELEASE_TOKEN:-}${GIT_CONFIG_COUNT:-}"
+          h="$RUNNER_TEMP/stage40-sealed-handover"; cd "$h"
+          sha256sum --check --strict SHA256SUMS
+          test "$(stat -c %s CANDIDATE.pack)" -lt 12000000
+          b=df62145bea2d4ebdd642f5e39f1eda7b19eb7ae2; r="$RUNNER_TEMP/stage40-release-git"
+          git init -q "$r"; git -C "$r" remote add origin https://github.com/sys8994/honro
+          want="$(printf '%s\trefs/heads/master' "$b")"
+          test "$(git -C "$r" ls-remote --exit-code origin refs/heads/master)" = "$want"
+          GIT_TERMINAL_PROMPT=0 git -C "$r" fetch -q --depth=1 --no-tags origin refs/heads/master
+          test "$(git -C "$r" rev-parse FETCH_HEAD)" = "$b"
+          test "$(git -C "$r" rev-parse "$b^{tree}")" = 2d6d17c547b67a8d52f1f4cc92e0444475e99210
+          git -C "$r" index-pack --strict --stdin < "$h/CANDIDATE.pack"
+          python3 - "$h" "$r" <<'PY2'
+          import json,re,subprocess as s,sys
+          from pathlib import Path
+          d,r=map(Path,sys.argv[1:]); p,a=[json.loads((d/x).read_bytes()) for x in ('PINS.json','ASSEMBLY.json')]
+          b='df62145bea2d4ebdd642f5e39f1eda7b19eb7ae2'; n=a['candidateCommit']; t=a['tree']
+          assert a['status']=='EXACT_STAGE40_C2_RELEASE_TREE_NO_PUSH' and a['base']==b==p['base'] and t==p['expectedTree']
+          assert p['enabled'] is p['scopeApproval'] is p['refWriteEnabled'] is True
+          assert all(re.fullmatch('[a-f0-9]{40}',x) for x in (n,t))
+          git=lambda *args:s.check_output(['git','-C',str(r),*args],text=True).rstrip('\n')
+          assert git('show','-s','--format=%P %T',n)==b+' '+t
+          expect={'A\t'+x for x in p['aliases'].values()}|{('A' if not v['before'] else 'M')+'\t'+k for k,v in p['source'].items()}|{'M\t'+x for x in ('HONRO.html','HONRO_WORKSHOP.html','index.html','web/manifest.json')}
+          assert len(expect)==len(a['exactReleaseDiff'])==13
+          assert set(git('diff','--name-status','--no-renames',b,n).splitlines())==set(a['exactReleaseDiff'])==expect
+          PY2
+      - name: Ordinary fast-forward to the dedicated precreated release branch only
+        env:
+          RELEASE_TOKEN: ${{ github.token }}
+        run: bash "$RUNNER_TEMP/stage40-sealed-handover/safe-push.sh" "$RUNNER_TEMP/stage40-release-git" "$RUNNER_TEMP/stage40-sealed-handover/ASSEMBLY.json"
