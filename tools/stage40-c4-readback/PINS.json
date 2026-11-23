@@ -1,0 +1,411 @@
+{
+  "enabled": true,
+  "repo": "sys8994/honro",
+  "branch": "qa/stage40-c4-external-readback",
+  "public": "https://sys8994.github.io/honro/",
+  "map": "web/data/chapter-40.5f4b6c4c311adc05.json",
+  "refs": {
+    "A": {
+      "head": "bf6df569650b656c33c647755d59c02fb1570cc4",
+      "tree": "66a7159f5135230e1aed69b105499bb076870730",
+      "run": 45115643827,
+      "job": 137498209963,
+      "manifestGit": "4562c5b8b943d3c2d20ddc98a1e68e60bea982a6",
+      "manifestBytes": 9158708,
+      "entry": "547b23467b5bf6c7",
+      "owner": "19ec333843d7cbc2",
+      "common5": "5cc8b281d7d4235d",
+      "common12": "a8ad2a219fa321c5",
+      "campaignOwner": "38d1394abfe86699",
+      "campaign": "4c48015c8663d89f",
+      "packet": "web/data/chapter-40-assets-parts.e102ede6b6f1921d.json",
+      "joinedBytes": 10137621,
+      "joinedSha": "458581a814995e74b6bf35efb817fb5c766703fd261f945045eadb97f83a02ae"
+    },
+    "B": {
+      "head": "c4d08dd2f8905f18cbf2aa44388e82215c826217",
+      "tree": "3f0eb968e266b09e9427bb70123172970e63a4ce",
+      "run": 45120048608,
+      "job": 137512086503,
+      "manifestGit": "f663f50d4b6b282ebcfa28b69ee03b860c2639c0",
+      "manifestBytes": 9328910,
+      "entry": "4175b7dc17cfd99b",
+      "owner": "19ec333843d7cbc2",
+      "common5": "d67d406bbf8af98e",
+      "common12": "0956bc2d5dc85348",
+      "campaignOwner": "ce3bef8ceec00e98",
+      "campaign": "465ed087f1b9bebf",
+      "packet": "web/data/chapter-40-assets.6052a7e4526580b8.json",
+      "joinedBytes": 3807005,
+      "packetGit": "2e1d7de24a59c92d144a9d2b809dd896ef2938f9"
+    }
+  },
+  "sameOldBuild": "3c55cf8313f1cd7355f486272f220beb38bcac7f",
+  "registry": {
+    "approved40:terrain-left-join": [
+      "1757601:e9667f0a",
+      "1694987:a515b4e3",
+      "505822:f026cae5"
+    ],
+    "approved40:terrain-right-join": [
+      "1653652:f5a9b376",
+      "1597731:b4de61d5",
+      "498438:82997529"
+    ],
+    "approved40:arrival-stair": [
+      "686777:111fe27",
+      "674488:5ba1c886",
+      "87167:dceca472"
+    ],
+    "approved40:body": [
+      "4724416:12a0c1d5",
+      "4471109:d3f5a835",
+      "1644042:df21ebc3"
+    ],
+    "approved40:coastal-foundation": [
+      "1408143:e55964aa",
+      "1297690:b446a076",
+      "266179:28c960ab"
+    ],
+    "approved40:departure-stair": [
+      "720799:84a75c96",
+      "720799:84a75c96",
+      "107086:5c181f00"
+    ],
+    "approved40:arrival-timber": [
+      "720847:3794b9f1",
+      "720847:3794b9f1",
+      "47013:1b5aa6fe"
+    ],
+    "approved40:departure-pile": [
+      "646350:ece0bddf",
+      "646350:ece0bddf",
+      "12909:71fceba6"
+    ],
+    "approved40:arrival-pile": [
+      "646320:e4e04739",
+      "646320:e4e04739",
+      "13201:f7f8bee4"
+    ],
+    "approved40:departure-ramp": [
+      "539883:aff2fc21",
+      "539883:aff2fc21",
+      "13124:1604ef09"
+    ],
+    "approved40:arrival-ramp": [
+      "539941:a4326f93",
+      "539941:a4326f93",
+      "13167:ee286295"
+    ],
+    "approved40:departure-middle-pile": [
+      "646340:2c2244ef",
+      "646340:2c2244ef",
+      "14349:12491707"
+    ],
+    "approved40:arrival-middle-pile": [
+      "646347:11343829",
+      "646347:11343829",
+      "12743:2ca46bf4"
+    ]
+  },
+  "poses": {
+    "PC": {
+      "southwest": {
+        "meta": {
+          "desired": {
+            "x": -1000000,
+            "y": 1000000,
+            "scale": 0.21176470588235294
+          },
+          "actual": {
+            "x": -320,
+            "y": 4336,
+            "scale": 0.21176470588235294
+          },
+          "viewport": {
+            "left": -3720,
+            "right": 3080,
+            "top": 2519.862847222222,
+            "bottom": 6152.137152777777
+          },
+          "focus": {
+            "left": -320,
+            "top": -1800,
+            "right": 6976,
+            "bottom": 4336
+          },
+          "zoomLimits": {
+            "min": 0.21176470588235294,
+            "max": 1.65,
+            "tactical": 0.21176470588235294,
+            "readability": 0.056818181818181816
+          },
+          "css": {
+            "w": 1440,
+            "h": 769.1875
+          },
+          "backing": [
+            1440,
+            769
+          ],
+          "actorCount": 50,
+          "tide": null,
+          "phase": "aim",
+          "round": 1,
+          "sceneTime": 2,
+          "physics": "be1d91eee559e3e01a1f04e9a0412c94cd448365af5555ee39e2d0fc02311688"
+        },
+        "raw": "e25c4a6044b1b95d343a07ff0ce216be40931f2ba289169a892d3be2c907b28a",
+        "rawRGBA": "8683ab1afa1866e6201d7d6a05c182a2fbf5213e0ea1b7285a62456e2e0ed400",
+        "dom": "5de76f6d47f9e49d2bb2f7e367e3058fc7d2fee278a29b5160328356ce880037"
+      },
+      "upper": {
+        "meta": {
+          "desired": {
+            "x": 1510,
+            "y": 2120,
+            "scale": 0.55
+          },
+          "actual": {
+            "x": 1510,
+            "y": 2120,
+            "scale": 0.55
+          },
+          "viewport": {
+            "left": 200.909090909091,
+            "right": 2819.090909090909,
+            "top": 1420.7386363636365,
+            "bottom": 2819.2613636363635
+          },
+          "focus": {
+            "left": -320,
+            "top": -1800,
+            "right": 6976,
+            "bottom": 4336
+          },
+          "zoomLimits": {
+            "min": 0.21176470588235294,
+            "max": 1.65,
+            "tactical": 0.21176470588235294,
+            "readability": 0.056818181818181816
+          },
+          "css": {
+            "w": 1440,
+            "h": 769.1875
+          },
+          "backing": [
+            1440,
+            769
+          ],
+          "actorCount": 50,
+          "tide": null,
+          "phase": "aim",
+          "round": 1,
+          "sceneTime": 2,
+          "physics": "be1d91eee559e3e01a1f04e9a0412c94cd448365af5555ee39e2d0fc02311688"
+        },
+        "raw": "052e9f4459a9b67b078a876dd7150822d958fcd46b93e7d61f9ad5a219ec73db",
+        "rawRGBA": "4d245b8579df7be7e36eadb5f29a24d1e92027484de1fca107daa9858386b83e",
+        "dom": "c122714e0e0825091a54cceb51f8af385387f4fc64590b19bf5ee12090159f2d"
+      },
+      "immersed": {
+        "meta": {
+          "desired": {
+            "x": 2610,
+            "y": 4090,
+            "scale": 0.5
+          },
+          "actual": {
+            "x": 2610,
+            "y": 4090,
+            "scale": 0.5
+          },
+          "viewport": {
+            "left": 1170,
+            "right": 4050,
+            "top": 3320.8125,
+            "bottom": 4859.1875
+          },
+          "focus": {
+            "left": -320,
+            "top": -1800,
+            "right": 6976,
+            "bottom": 4336
+          },
+          "zoomLimits": {
+            "min": 0.21176470588235294,
+            "max": 1.65,
+            "tactical": 0.21176470588235294,
+            "readability": 0.056818181818181816
+          },
+          "css": {
+            "w": 1440,
+            "h": 769.1875
+          },
+          "backing": [
+            1440,
+            769
+          ],
+          "actorCount": 50,
+          "tide": null,
+          "phase": "aim",
+          "round": 1,
+          "sceneTime": 2,
+          "physics": "be1d91eee559e3e01a1f04e9a0412c94cd448365af5555ee39e2d0fc02311688"
+        },
+        "raw": "a31d70695e381d66190e8b6079d1d528f53cf5cf14fde12687fc85bee0432993",
+        "rawRGBA": "2a02445a4343ab2314eaf6b2cdee57a63226fd957da0760fbedbe263b666c8be",
+        "dom": "d64219056c8e63f44a589946c582a97b53b3b08dbe3d3f6a4edfbc727ab1d29a"
+      }
+    },
+    "M": {
+      "southwest": {
+        "meta": {
+          "desired": {
+            "x": -1000000,
+            "y": 1000000,
+            "scale": 0.057352941176470586
+          },
+          "actual": {
+            "x": -320,
+            "y": 4336,
+            "scale": 0.057352941176470586
+          },
+          "viewport": {
+            "left": -3720,
+            "right": 3080,
+            "top": -1309.8253205128203,
+            "bottom": 9981.82532051282
+          },
+          "focus": {
+            "left": -320,
+            "top": -1800,
+            "right": 6976,
+            "bottom": 4336
+          },
+          "zoomLimits": {
+            "min": 0.057352941176470586,
+            "max": 1.65,
+            "tactical": 0.057352941176470586,
+            "readability": 0.056818181818181816
+          },
+          "css": {
+            "w": 390,
+            "h": 647.609375
+          },
+          "backing": [
+            390,
+            648
+          ],
+          "actorCount": 50,
+          "tide": null,
+          "phase": "aim",
+          "round": 1,
+          "sceneTime": 2,
+          "physics": "be1d91eee559e3e01a1f04e9a0412c94cd448365af5555ee39e2d0fc02311688"
+        },
+        "raw": "5964cfca99e7bfa6a09c73ac572569eb769c67870a033c84894c7af4b8dd95d2",
+        "rawRGBA": "1742ac7efa82e8d4916453027c2745a4a3aa3e03d820a5fbef32075ed1b6ee87",
+        "dom": "b334e614e8adaadbfd7829ec8ae9cc488a3194605d691f1f9c25b41c3f348a5a"
+      },
+      "upper": {
+        "meta": {
+          "desired": {
+            "x": 1510,
+            "y": 2120,
+            "scale": 0.46
+          },
+          "actual": {
+            "x": 1510,
+            "y": 2120,
+            "scale": 0.46
+          },
+          "viewport": {
+            "left": 1086.086956521739,
+            "right": 1933.913043478261,
+            "top": 1416.076766304348,
+            "bottom": 2823.923233695652
+          },
+          "focus": {
+            "left": -320,
+            "top": -1800,
+            "right": 6976,
+            "bottom": 4336
+          },
+          "zoomLimits": {
+            "min": 0.057352941176470586,
+            "max": 1.65,
+            "tactical": 0.057352941176470586,
+            "readability": 0.056818181818181816
+          },
+          "css": {
+            "w": 390,
+            "h": 647.609375
+          },
+          "backing": [
+            390,
+            648
+          ],
+          "actorCount": 50,
+          "tide": null,
+          "phase": "aim",
+          "round": 1,
+          "sceneTime": 2,
+          "physics": "be1d91eee559e3e01a1f04e9a0412c94cd448365af5555ee39e2d0fc02311688"
+        },
+        "raw": "e7484745a09ed3ef4233b2220e9d53894950c16534b6f32740ef9d0ed6595b5b",
+        "rawRGBA": "55eba7e189fd3482eebc8a6d583565cb4f8676611b251a7f83c346d4c55e4242",
+        "dom": "0adfc48c6a3eaf9c7fa56ecbbd41d32c75d1cdc7e789687d99720cd056b44537"
+      },
+      "immersed": {
+        "meta": {
+          "desired": {
+            "x": 2610,
+            "y": 4090,
+            "scale": 0.42
+          },
+          "actual": {
+            "x": 2610,
+            "y": 4090,
+            "scale": 0.42
+          },
+          "viewport": {
+            "left": 2145.714285714286,
+            "right": 3074.285714285714,
+            "top": 3319.036458333333,
+            "bottom": 4860.963541666667
+          },
+          "focus": {
+            "left": -320,
+            "top": -1800,
+            "right": 6976,
+            "bottom": 4336
+          },
+          "zoomLimits": {
+            "min": 0.057352941176470586,
+            "max": 1.65,
+            "tactical": 0.057352941176470586,
+            "readability": 0.056818181818181816
+          },
+          "css": {
+            "w": 390,
+            "h": 647.609375
+          },
+          "backing": [
+            390,
+            648
+          ],
+          "actorCount": 50,
+          "tide": null,
+          "phase": "aim",
+          "round": 1,
+          "sceneTime": 2,
+          "physics": "be1d91eee559e3e01a1f04e9a0412c94cd448365af5555ee39e2d0fc02311688"
+        },
+        "raw": "d0e6328c9f89a9df0bd246a434a9fcb396c69629ceb9a6986c1b8c676a585ac5",
+        "rawRGBA": "b8b018f7e433673585cb8fe8751bf768847aa9216a300296e4861cb9afd08553",
+        "dom": "878ad71c5d68c672df85d0f1266b1eb5b57bf617493262fb05b2376040cecc39"
+      }
+    }
+  }
+}
