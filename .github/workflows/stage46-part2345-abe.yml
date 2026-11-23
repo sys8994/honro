@@ -1,0 +1,52 @@
+name: Stage46 exact A/B/E Part2–5 loader-bound R2 diagnostic native QA, no deployment
+on:
+  push:
+    branches: [qa/stage46-part2345-abe-r2-3c55]
+    paths: [".github/workflows/stage46-part2345-abe.yml", "tools/stage46-part2345-abe/**"]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  browser-only:
+    if: github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage46-part2345-abe-r2-3c55'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 23
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Locate exact previous published A and published 3c55 B
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 -B tools/stage46-part2345-abe/guard.py authority "$RUNNER_TEMP/stage46-part2345-abe"
+      - name: Rebuild exact pinned derived E without writing products or routes
+        run: |
+          set -euo pipefail
+          W="$RUNNER_TEMP/stage46-part2345-abe"
+          T="$GITHUB_WORKSPACE/tools/stage46-part2345-abe"
+          python3 -B "$T/guard.py" assemble "$W"
+          python3 -B "$T/guard.py" prepare "$W"
+      - name: Observe three exact matched native triplets (new profiles)
+        run: |
+          set -euo pipefail
+          W="$RUNNER_TEMP/stage46-part2345-abe"
+          T="$GITHUB_WORKSPACE/tools/stage46-part2345-abe"
+          python3 -m venv "$W/v"; V="$W/v/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+          pids=(); port=18961
+          for arm in A B E; do
+            python3 -m http.server "$port" --bind 127.0.0.1 --directory "$W/$arm" >"$W/out/http-$arm.log" 2>&1 &
+            pids+=("$!"); port=$((port+1))
+          done
+          trap 'kill "${pids[@]}" 2>/dev/null || true' EXIT
+          for p in 18961 18962 18963; do curl -fsS --retry 8 --retry-connrefused "http://127.0.0.1:$p/HONRO.html" -o /dev/null; done
+          "$V" -B "$T/capture.py" "$W"
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage46-native-exact-part2345-ABE-R2-qa-only
+          path: ${{ runner.temp }}/stage46-part2345-abe/out/
+          if-no-files-found: warn
+          retention-days: 7
