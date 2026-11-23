@@ -1,0 +1,80 @@
+name: Stage40 exact canonical C2 release tree plan (read only)
+on:
+  push:
+    branches: [qa/stage40-c2-df621-release-plan]
+    paths: [".github/workflows/stage40-df621-release-plan.yml", "tools/stage40-release-plan/**"]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  plan:
+    if: ${{ github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage40-c2-df621-release-plan' }}
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Verify exact first parent and three added QA-only files
+        run: |
+          set -euo pipefail
+          test -z "${GH_TOKEN:-}${GITHUB_TOKEN:-}${RELEASE_TOKEN:-}"
+          python3 - <<'PY'
+          import json,os,subprocess as sp
+          from pathlib import Path
+          P=json.loads(Path('tools/stage40-release-plan/PINS.json').read_bytes())
+          b=P['base']; assert b=='df62145bea2d4ebdd642f5e39f1eda7b19eb7ae2' and P['enabled']
+          g=lambda *s:sp.check_output(['git',*s],text=True,timeout=100).strip()
+          assert g('rev-parse','HEAD')==os.environ['GITHUB_SHA'] and g('show','-s','--format=%P','HEAD')==b and g('rev-parse',b+'^{tree}')==P['baseTree']
+          wanted={'.github/workflows/stage40-df621-release-plan.yml','tools/stage40-release-plan/PINS.json','tools/stage40-release-plan/plan.py'}
+          assert set(g('diff','--name-status','--no-renames',b,'HEAD').splitlines())=={'A\t'+k for k in wanted}
+          assert not g('status','--porcelain','--untracked-files=all')
+          PY
+      - name: Retrieve only the officially qualified exact Stage40 QA artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set +x
+          set -euo pipefail
+          umask 077
+          d="$RUNNER_TEMP/s40-exact-input"; mkdir "$d"
+          u=repos/sys8994/honro
+          gh api "$u/actions/runs/45137579385" > "$d/run.json"
+          gh api "$u/actions/jobs/137567438246" > "$d/job.json"
+          gh api "$u/actions/artifacts/14800748092" > "$d/art.json"
+          gh api "$u/git/commits/501c103457d1f51c5e979b3555d28c301a5a0505" > "$d/source.json"
+          gh api --allow-escape-sequences "$u/actions/artifacts/14800748092/zip" > "$d/qualified.zip"
+      - name: Assemble the thirteen-file tree only, no commit or push
+        run: |
+          set -euo pipefail
+          test -z "${GH_TOKEN:-}${GITHUB_TOKEN:-}${RELEASE_TOKEN:-}"
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib,json,os
+          d=Path(os.environ['RUNNER_TEMP'])/'s40-exact-input'
+          p=json.load(open('tools/stage40-release-plan/PINS.json'));b=p['base']
+          load=lambda k:json.load(open(d/k))
+          r,j,a,c=map(load,['run.json','job.json','art.json','source.json'])
+          h='501c103457d1f51c5e979b3555d28c301a5a0505'
+          assert (r['id'],r['head_sha'],r['head_branch'],r['status'],r['conclusion'])==(45137579385,h,'qa/stage40-east-masonry-c2-canonical-df621-r2','completed','success')
+          assert (j['id'],j['run_id'],j['head_sha'],j['status'],j['conclusion'])==(137567438246,r['id'],h,'completed','success')
+          assert (a['id'],a['workflow_run']['id'],a['workflow_run']['head_sha'],a['expired'],a['digest'],a['size_in_bytes'])==(14800748092,r['id'],h,False,'sha256:'+p['outer']['sha256'],p['outer']['bytes'])
+          assert (c['sha'],[v['sha']for v in c['parents']],c['tree']['sha'])==(h,[b],'15e1f93419d905e4073887a38abfeebd9dd6080b')
+          assert hashlib.sha256((d/'qualified.zip').read_bytes()).hexdigest()==p['outer']['sha256']
+          PY
+          d="$RUNNER_TEMP/s40-exact-input"; c=501c103457d1f51c5e979b3555d28c301a5a0505
+          git -c credential.helper= -c http.extraHeader= fetch --no-tags --depth=1 https://github.com/sys8994/honro.git "$c"
+          test "$(git rev-parse FETCH_HEAD)" = "$c"
+          src="$d/reviewed-source"; mkdir -p "$src/shared"
+          git show "$c:shared/build.mjs" > "$src/shared/build.mjs"
+          git show "$c:shared/act4-stage40-east-masonry.mjs" > "$src/shared/act4-stage40-east-masonry.mjs"
+          python3 -B tools/stage40-release-plan/plan.py "$GITHUB_WORKSPACE" "$d/qualified.zip" "$src" "$RUNNER_TEMP/s40-release-plan"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: stage40-c2-verified-release-tree-df621-no-push
+          path: ${{ runner.temp }}/s40-release-plan/ASSEMBLY.json
+          retention-days: 7
+          if-no-files-found: error

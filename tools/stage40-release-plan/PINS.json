@@ -1,0 +1,38 @@
+{
+  "enabled": true,
+  "base": "df62145bea2d4ebdd642f5e39f1eda7b19eb7ae2",
+  "baseTree": "2d6d17c547b67a8d52f1f4cc92e0444475e99210",
+  "baseManifest": {
+    "bytes": 9669643,
+    "sha256": "efc2ed7c1ea530515b9f870d9db76a4fe604375446a75476af7494f979550265"
+  },
+  "aliases": {
+    "web/data/chapter-40-assets.6052a7e4526580b8.json": "web/data/chapter-40-assets.14562456a1b5be24.json",
+    "web/data/campaign.19f1604a71ae2df5.json": "web/data/campaign.5adbdb5ab990b9f9.json",
+    "web/runtime/campaign.1522ee29b2e7fca8.js": "web/runtime/campaign.b5219aa92a639e8a.js",
+    "web/runtime/ordered-common-12.8aea44e8258f406c.js": "web/runtime/ordered-common-12.45eb876809b74ef2.js",
+    "web/entries/game.978c9015f73cf270.js": "web/entries/game.2e187ce151a1bf85.js",
+    "web/entries/workshop.8fc841549e7238f6.js": "web/entries/workshop.11b8ca09c8ea62c3.js",
+    "web/entries/game.cb7f434fd7016eac.html": "web/entries/game.62368918e7f08bcb.html"
+  },
+  "source": {
+    "shared/build.mjs": {
+      "before": "244903755e47fc7a519696a157802034d4064cd6",
+      "after": "fa19f01617867785e340b772c907356402732cc3"
+    },
+    "shared/act4-stage40-east-masonry.mjs": {
+      "before": null,
+      "after": "daba7c2ec61d9c90f5e74be7f0aa38998674d82d"
+    }
+  },
+  "proofs": {
+    "NORMAL-GRAPH.json": "195082d5b565a66f6d06f74f248127b32c19d3102f5b5feb69352dafdda0db9a",
+    "NATIVE-ACCEPTANCE.json": "9f5ece3d532ba7b29f92726ca3a1ba88bd512cfb3eeb246157d181668023a16d",
+    "SOURCE.json": "095a4dc7a408089200ba98415dfa2083bb05b61fe16bb7930e45d27fdac20546",
+    "C2-COMPILED-QA-ONLY.zip": "4f8e1f05d93d55fad6bd3cb88c55e7334f16e8db8f9904733a409a1ffc730c0c"
+  },
+  "outer": {
+    "bytes": 8834017,
+    "sha256": "e75574ee96c71d3ac40f43ec37250c3e231ae5c4888e2a3702c958584762c1e0"
+  }
+}
