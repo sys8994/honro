@@ -21,9 +21,18 @@ export async function terrainPathOptimization() {
         const vector = structuredClone(asset.vector);
         for (const [path, key, value] of entry.paths) {
           const node = path.reduce((value, part) => value?.[part], vector);
-          if (node?.tag !== 'path' || !['d','dParts'].includes(key) || !Object.hasOwn(node,key))
+          // A long re-traced leaf may move from one 'd' string to chunked 'dParts'.
+          const promote = key === 'dParts' && Object.hasOwn(node,'d') && !Object.hasOwn(node,'dParts');
+          if (node?.tag !== 'path' || !['d','dParts'].includes(key) || !(Object.hasOwn(node,key) || promote))
             throw Error('Invalid terrain optimization path: '+asset.id);
+          if (promote) delete node.d;
           node[key] = value;
+        }
+        // Clip silhouettes may be replaced by versions cropped to the window they actually show.
+        for (const [name, value] of Object.entries(entry.clips || {})) {
+          if (!Array.isArray(vector.clips?.[name]) || !Array.isArray(value) || !value.every(d => typeof d === 'string' && d.length && d.length <= 60000))
+            throw Error('Invalid terrain optimization clip: '+asset.id+' '+name);
+          vector.clips[name] = value;
         }
         if (Buffer.byteLength(JSON.stringify(vector)) >= Buffer.byteLength(raw))
           throw Error('Optimized terrain did not get smaller: '+asset.id);

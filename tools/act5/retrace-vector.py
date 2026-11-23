@@ -90,6 +90,38 @@ def trace(mask, k, vx, vy, tol, corner, min_contour_px, smooth):
         out.append(text); n += len(curves) + 1
     return ''.join(out), n
 
+def retrace_group(png, fills, ox, oy, k, o):
+    """Group mode: PNG of one leaf group in its local coords -> {fill: d}."""
+    order = list(fills); pal = np.array([hex2rgb(f) for f in order])
+    img = cv2.imread(png, cv2.IMREAD_UNCHANGED)
+    rgb = img[:, :, 2::-1].astype(np.float32); alpha = img[:, :, 3]; opaque = alpha >= o.alpha_min
+    best = np.full(alpha.shape, np.inf, np.float32); lab = np.zeros(alpha.shape, np.int32)
+    for i, c in enumerate(pal.astype(np.float32)):
+        dist = ((rgb - c) ** 2).sum(-1); m = dist < best; lab[m] = i; best[m] = dist[m]
+    del rgb, best; lab[~opaque] = -1
+    merged = {}
+    if o.merge_dist > 0:
+        counts = np.bincount(lab[lab >= 0].ravel(), minlength=len(order)); target = list(range(len(order)))
+        for i in np.argsort(counts):
+            near = [j for j in range(len(order)) if j != i and counts[j] > counts[i] and np.linalg.norm(pal[i] - pal[j]) <= o.merge_dist]
+            if near: target[i] = min(near, key=lambda j: np.linalg.norm(pal[i] - pal[j]))
+        for _ in range(len(order)): target = [target[t] for t in target]
+        lab = np.array(target + [-1], np.int32)[lab]; merged = {order[i]: order[t] for i, t in enumerate(target) if t != i}
+    lab = majority(lab, len(order), o.radius, opaque)
+    lum = pal @ np.array([.299, .587, .114]); bright = set(np.argsort(-lum)[:o.bright_count]) if o.bright_count else set()
+    per = [o.bright_min_px if i in bright else o.min_px for i in range(len(order))]
+    lab = merge_small(lab, len(order), o.min_px, opaque, per)
+    kern = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2 * o.overlap + 1, 2 * o.overlap + 1))
+    op_d = cv2.dilate(opaque.astype(np.uint8), kern).astype(bool) if o.overlap else opaque
+    out = {}; total = 0
+    for i, fill in enumerate(order):
+        m = (lab == i)
+        if not m.any(): continue
+        if o.overlap: m = cv2.dilate(m.astype(np.uint8), kern).astype(bool) & op_d
+        dstr, n = trace(m, k, ox, oy, o.tol, o.corner, 4, o.smooth)
+        if dstr: out[fill] = dstr; total += n
+    return out, total, merged
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('asset'); ap.add_argument('png'); ap.add_argument('out')
@@ -99,9 +131,14 @@ def main():
     ap.add_argument('--smooth', type=int, default=3); ap.add_argument('--chunk', type=int, default=60000)
     ap.add_argument('--root', default='vector.root')
     ap.add_argument('--merge-dist', type=float, default=0)
+    ap.add_argument('--alpha-min', type=int, default=128)
     ap.add_argument('--bright-count', type=int, default=0, help='lightest N colours (highlight rims) use --bright-min-px')
     ap.add_argument('--bright-min-px', type=int, default=0)
+    ap.add_argument('--group', default=None, help='group mode: JSON {fills, ox, oy} for the PNG; asset arg is ignored')
     o = ap.parse_args()
+    if o.group:
+        g = json.load(open(o.group)); res, total, merged = retrace_group(o.png, g['fills'], g['ox'], g['oy'], o.k, o)
+        json.dump({'d': res, 'endpoints': total, 'merged': merged}, open(o.out, 'w')); print(json.dumps({'group': o.group.split('/')[-1], 'after': total})); return
     a = json.load(open(o.asset))
     vec = a
     for key in o.root.split('.')[:-1]: vec = vec[key]

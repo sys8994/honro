@@ -231,7 +231,7 @@ function mayRestoreStage42CompactedArt(b,item,ref,current){
    const optimized=G.HONRO_PREVIOUS_TERRAIN_ART?.[ref.id];
    // Exact signatures for the original art and its prior optimized release
    // can resolve to the verified current provider for that same chapter.
-   const knownSignature=optimized?.previous===ref.signature||optimized?.previousOptimized===ref.signature;
+   const knownSignature=optimized?.previous===ref.signature||[].concat(optimized?.previousOptimized??[]).includes(ref.signature);
    const sameTerrain=b?.mode==='campaign'&&!b.honroCustom&&b.honroMapOrigin!=='workshop'&&b.honroAct4Official===1&&
     optimized?.stage===b.honroStage&&knownSignature&&optimized.current===signatures.get(ref.id);
    if(legacy)source=legacy.asset;
