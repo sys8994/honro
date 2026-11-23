@@ -218,9 +218,9 @@ function mayRestoreStage42CompactedArt(b,item,ref,current){
   item.layer==='structural-back'&&item.depthLayer==='L1'&&item.visualRole==='scenery'&&
   item.x===0&&item.y===0&&item.scale===6500/2022&&item.rotation===0&&
   Array.isArray(item.collisionIds)&&item.collisionIds.length===0&&
-  Object.keys(ref).length===3&&ref.id==='act5:near:42'&&['1864834:f80cec75','1858841:5ce4a412'].includes(ref.signature)&&
+  Object.keys(ref).length===3&&ref.id==='act5:near:42'&&['1864834:f80cec75','1858841:5ce4a412','1382117:dec691ec'].includes(ref.signature)&&
   // 2026-11-23 node simplification (tools/act5/simplify-vector.py) is the current provider.
-  current==='1382117:dec691ec';
+  current==='1583179:6d65aa38';
 }
  function restoreBattleArt(b){
  const local=resolveLocalArt(b);if(!local)return false;
