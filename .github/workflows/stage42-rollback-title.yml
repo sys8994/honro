@@ -1,0 +1,67 @@
+name: Stage42 selected to fallback and back, title continuation (no deploy)
+on:
+  push:
+    branches: [qa/stage42-rollback-title-bf6]
+    paths: [".github/workflows/stage42-rollback-title.yml", "tools/stage42-rollback-title/**"]
+permissions:
+  contents: read
+jobs:
+  rollback-title:
+    if: ${{ github.repository == 'sys8994/honro' && github.ref == 'refs/heads/qa/stage42-rollback-title-bf6' }}
+    runs-on: ubuntu-22.04
+    timeout-minutes: 18
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Pin exact immutable bf6/a6 and five isolated QA additions
+        run: |
+          set -euo pipefail
+          test -z "${GITHUB_TOKEN:-}${GH_TOKEN:-}"
+          for A in "qa:$GITHUB_SHA:2" "past:a6b2c0db97c9ae6efe4d5372f2208bfdf695f4f4:1"; do
+            IFS=: read -r lane sha depth <<< "$A"
+            git init -q "$GITHUB_WORKSPACE/$lane"
+            GIT_TERMINAL_PROMPT=0 git -C "$GITHUB_WORKSPACE/$lane" -c credential.helper= -c http.extraHeader= fetch -q --depth="$depth" https://github.com/sys8994/honro.git "$sha"
+            git -C "$GITHUB_WORKSPACE/$lane" checkout -q --detach FETCH_HEAD
+          done
+          cd "$GITHUB_WORKSPACE/qa"
+          python3 - <<'PY'
+          import json,subprocess as s,os
+          from pathlib import Path
+          p=json.loads(Path('tools/stage42-rollback-title/PINS.json').read_text()); b=p['arms']['B'];a=p['arms']['A']
+          assert p['enabled'] is True and os.environ['GITHUB_REF']==p['qaRef']
+          git=lambda *a:s.check_output(['git',*a],text=True,timeout=60).strip()
+          assert git('rev-parse','HEAD')==os.environ['GITHUB_SHA'] and git('show','-s','--format=%P','HEAD')==b['head'] and git('rev-parse',b['head']+'^{tree}')==b['tree']
+          assert git('-C',os.environ['GITHUB_WORKSPACE']+'/past','rev-parse','HEAD')==a['head'] and git('-C',os.environ['GITHUB_WORKSPACE']+'/past','rev-parse','HEAD^{tree}')==a['tree']
+          want={'.github/workflows/stage42-rollback-title.yml',*(f'tools/stage42-rollback-title/{n}' for n in ('PINS.json','observer.json','readback.py','derive.mjs'))}
+          assert set(git('diff','--name-status','--no-renames',b['head'],'HEAD').splitlines())=={'A\t'+x for x in want}
+          assert not git('status','--porcelain','--untracked-files=all')
+          PY
+          git worktree add --detach "$GITHUB_WORKSPACE/bf6" "$(git rev-parse HEAD^)"
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: "22"
+      - name: Reproduce exact selected art; no dependency build, writes only into runner temp
+        run: |
+          set -euo pipefail
+          W="$RUNNER_TEMP/stage42-rollback-out"; T="$GITHUB_WORKSPACE/qa/tools/stage42-rollback-title"
+          mkdir "$W"
+          node "$T/derive.mjs" "$GITHUB_WORKSPACE/past" "$GITHUB_WORKSPACE/bf6" "$RUNNER_TEMP/stage42-rollback-derived" >"$W/derive.log" 2>&1
+          cp "$RUNNER_TEMP/stage42-rollback-derived/DERIVATION.json" "$W/"
+      - name: Actual sandbox native title Continue, fallback re-save and selected Continue (two devices)
+        run: |
+          set -euo pipefail
+          test -z "${GITHUB_TOKEN:-}${GH_TOKEN:-}"
+          PY=$(find "${RUNNER_TOOL_CACHE}/Python" -maxdepth 4 -type f -path '*/3.12.*/x64/bin/python3.12' | sort -V | tail -1)
+          test -n "$PY"
+          "$PY" -m venv "$RUNNER_TEMP/honro-stage42-rollback"
+          V="$RUNNER_TEMP/honro-stage42-rollback/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+          "$V" "$GITHUB_WORKSPACE/qa/tools/stage42-rollback-title/readback.py" "$GITHUB_WORKSPACE/bf6" "$RUNNER_TEMP/stage42-rollback-derived" "$RUNNER_TEMP/stage42-rollback-out"
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: stage42-bf6-rollback-title-no-deploy
+          path: ${{ runner.temp }}/stage42-rollback-out/
+          retention-days: 7
+          if-no-files-found: warn
