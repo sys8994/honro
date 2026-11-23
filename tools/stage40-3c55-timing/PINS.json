@@ -1,0 +1,49 @@
+{
+  "enabled": true,
+  "branch": "qa/stage40-3c55-cold-timing-r2",
+  "repo": "sys8994/honro",
+  "public": "https://sys8994.github.io/honro/",
+  "stageMap": "web/data/chapter-40.5f4b6c4c311adc05.json",
+  "refs": {
+    "A": {
+      "head": "a6b2c0db97c9ae6efe4d5372f2208bfdf695f4f4",
+      "tree": "4fa185a738677fc252c8af4340a90ce18ab7895e",
+      "run": 45098872485,
+      "job": 137445355086,
+      "manifest": {
+        "git": "c435b559f94728212ff26eba4d5d4af2d43ee43d",
+        "bytes": 8816541
+      },
+      "entry": "web/entries/game.8ef0693f661485c8.js",
+      "campaignRuntime": "web/runtime/campaign.bd5c5513dcae5285.js",
+      "nativeRuntime": "web/runtime/ordered-game-24.9c27c3490848f04f.js",
+      "campaign": "web/data/campaign.b7ae34f5b0515023.json",
+      "descriptor": "web/data/chapter-40-assets-parts.e102ede6b6f1921d.json"
+    },
+    "B": {
+      "head": "3c55cf8313f1cd7355f486272f220beb38bcac7f",
+      "tree": "b67ae4d9cb1ed3241c32c025201cf5778c00cb8a",
+      "run": 45108891636,
+      "job": 137476961484,
+      "manifest": {
+        "git": "bd56525d7784f33e6e9cc2a5e360bea41cc1e24f",
+        "bytes": 8989227
+      },
+      "entry": "web/entries/game.d1e70066b5e4f461.js",
+      "campaignRuntime": "web/runtime/campaign.38d1394abfe86699.js",
+      "nativeRuntime": "web/runtime/ordered-game-24.19ec333843d7cbc2.js",
+      "campaign": "web/data/campaign.4c48015c8663d89f.json",
+      "descriptor": "web/data/chapter-40-assets-parts.e102ede6b6f1921d.json"
+    }
+  },
+  "sealedPublicReadback": {
+    "run": 45112828437,
+    "job": 137488819899,
+    "expectedConclusion": "failure",
+    "artifact": 14790014934,
+    "sha256": "e75ec5f93148e6cd767ab1d3a55526f035d157cde1736f19b50cb5d90e3b36bd",
+    "head": "4341d5932e9cfd2d4441838b85ff1d256698f671",
+    "publicVerdict": "PASS_REAL_PUBLIC_733_AND_CURRENT_COLD_AND_NATIVE_TITLE_RESAVE_PC_M",
+    "reason": "This exact run passed public correctness; failed the original total-saves timing assertion. Neither outcome is changed by R2."
+  }
+}

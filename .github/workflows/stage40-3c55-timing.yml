@@ -1,0 +1,39 @@
+name: HONRO Stage40 paired cold timings with save phases (no deploy)
+on:
+  push:
+    branches: [qa/stage40-3c55-cold-timing-r2]
+    paths: [".github/workflows/stage40-3c55-timing.yml", "tools/stage40-3c55-timing/**"]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  native:
+    if: github.repository == 'sys8994/honro' && github.ref == 'refs/heads/qa/stage40-3c55-cold-timing-r2'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Exact deployment authority and detached browser inputs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 -B tools/stage40-3c55-timing/guard.py "$RUNNER_TEMP/stage40-3c55-timing"
+      - name: Paired cold timing in exact detached releases
+        shell: bash
+        run: |
+          set -euo pipefail
+          W="$RUNNER_TEMP/stage40-3c55-timing"
+          python3 -m venv "$W/venv"
+          V="$W/venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0
+          "$V" -m playwright install --with-deps chromium
+          "$V" -B tools/stage40-3c55-timing/capture.py "$W"
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage40-3c55-save-phase-cold-r2-no-deploy
+          path: ${{ runner.temp }}/stage40-3c55-timing/out/
+          if-no-files-found: warn
+          retention-days: 7
