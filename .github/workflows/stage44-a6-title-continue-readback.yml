@@ -1,0 +1,56 @@
+name: HONRO Stage44 official f6→a6 and a6→a6 title Continue (no deploy)
+on:
+  push:
+    branches: [qa/stage44-a6-title-continue-readback-r2]
+    paths: [".github/workflows/stage44-a6-title-continue-readback.yml", "tools/stage44-a6-title-continue-readback/**"]
+permissions:
+  contents: read
+jobs:
+  native-readback:
+    if: ${{ true && github.repository == 'sys8994/honro' && github.ref == 'refs/heads/qa/stage44-a6-title-continue-readback-r2' }}
+    runs-on: ubuntu-22.04
+    timeout-minutes: 22
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Anonymous read-only fetch of exact existing trees and verify add-only QA
+        run: |
+          set -euo pipefail
+          test -z "${GITHUB_TOKEN:-}${GH_TOKEN:-}"
+          for A in "qa:$GITHUB_SHA:2" "old:f6eaaa606914cd8f431ae0e52dd1e4b474b485c8:1" "new:a6b2c0db97c9ae6efe4d5372f2208bfdf695f4f4:1"; do
+            IFS=: read -r lane sha depth <<< "$A"
+            git init -q "$GITHUB_WORKSPACE/$lane"
+            GIT_TERMINAL_PROMPT=0 git -C "$GITHUB_WORKSPACE/$lane" -c credential.helper= -c http.extraHeader= fetch -q --depth="$depth" https://github.com/sys8994/honro.git "$sha"
+            git -C "$GITHUB_WORKSPACE/$lane" checkout -q --detach FETCH_HEAD
+          done
+          cd "$GITHUB_WORKSPACE/qa"
+          python3 - <<'PY'
+          import json,subprocess as s,os
+          from pathlib import Path
+          p=json.loads(Path('tools/stage44-a6-title-continue-readback/PINS.json').read_text()); b=p['arms']['B']
+          assert p['enabled'] is True and os.environ['GITHUB_REF']==p['qaRef']
+          git=lambda *a:s.check_output(['git',*a],text=True,timeout=60).strip()
+          assert git('rev-parse','HEAD')==os.environ['GITHUB_SHA'] and git('show','-s','--format=%P','HEAD')==b['head']
+          assert git('rev-parse',b['head']+'^{tree}')==b['tree']
+          want={'.github/workflows/stage44-a6-title-continue-readback.yml',*(f'tools/stage44-a6-title-continue-readback/{n}' for n in ('PINS.json','observer.json','continue_probe.py','readback.py'))}
+          assert set(git('diff','--name-status','--no-renames',b['head'],'HEAD').splitlines())=={'A\t'+x for x in want}
+          assert not git('status','--porcelain','--untracked-files=all')
+          PY
+      - name: Three normal Stage44 Continue lanes with genuine sandboxed Chromium
+        run: |
+          set -euo pipefail
+          test -z "${GITHUB_TOKEN:-}${GH_TOKEN:-}"
+          PY=$(find "${RUNNER_TOOL_CACHE}/Python" -maxdepth 4 -type f -path '*/3.12.*/x64/bin/python3.12' | sort -V | tail -1)
+          test -n "$PY"
+          "$PY" -m venv "$RUNNER_TEMP/honro-s44-a6"
+          V="$RUNNER_TEMP/honro-s44-a6/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+          "$V" "$GITHUB_WORKSPACE/qa/tools/stage44-a6-title-continue-readback/readback.py" --old "$GITHUB_WORKSPACE/old" --new "$GITHUB_WORKSPACE/new" --out "$RUNNER_TEMP/a6-title-continue"
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: stage44-a6-title-continue-r2-no-deploy
+          path: ${{ runner.temp }}/a6-title-continue/
+          retention-days: 7
+          if-no-files-found: warn
