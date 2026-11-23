@@ -1,0 +1,79 @@
+{
+  "enabled": true,
+  "scopeApproval": true,
+  "qaRef": "refs/heads/qa/stage44-render-recovery-release-writer-3c",
+  "approvedTree": "66a7159f5135230e1aed69b105499bb076870730",
+  "receiptSHA256": "e12e80c0add5a94c94ccbea3a267d34403f0e6ca39423c9e7270617928e2e168",
+  "base": {
+    "head": "3c55cf8313f1cd7355f486272f220beb38bcac7f",
+    "tree": "b67ae4d9cb1ed3241c32c025201cf5778c00cb8a",
+    "map": "web/data/chapter-44.53b2bdf2fded9347.json",
+    "campaign": "web/data/campaign.4c48015c8663d89f.json",
+    "provider": "web/data/chapter-44-assets-parts.78cf9cac37e639be.json",
+    "files": {
+      "web/data/chapter-44.53b2bdf2fded9347.json": "53b2bdf2fded934726ba64e70549f7ed29e3fc5194f76f31989ac63b50ef81eb",
+      "web/data/chapter-44-assets-parts.78cf9cac37e639be.json": "78cf9cac37e639be93a7ca0f355211e2bdd7052c6be883045b06fce897518e44",
+      "web/data/chapter-44-assets-part-000.ac5c9ed02d770b03.bin": "ac5c9ed02d770b03465dab45186b5855520037f1c9a4e4a04e5161b4c1c4e1ef",
+      "web/data/chapter-44-assets-part-001.19e3a4fce68e20d3.bin": "19e3a4fce68e20d3ee0981c031a518f7b683187ecb891bb0f4e292cbde951248",
+      "web/graphics/honro_authored_far-images-root-interior.7b6377c64ea476da.webp": "7b6377c64ea476da11bbcbaee6fc8c98e67692723bf8ee7f18ab60c22709def7",
+      "web/runtime/HONRO_AUTHORED_FAR.cf4cf9c2e0932235.js": "cf4cf9c2e09322356f9d2f0e874d700718783c6eafc332049663fdda54250f69",
+      "web/runtime/ordered-common-18.4831815091012b42.js": "4831815091012b426ed3973ce2de1f4c896414383be3b5a4c782bcde29f05ffa",
+      "web/runtime/ordered-common-15.23e61c9f6bb8a95b.js": "23e61c9f6bb8a95b55d7e87dff8f02b2c25e5f23abc66ec8df7b59c067894fe0",
+      "web/data/campaign.4c48015c8663d89f.json": "4c48015c8663d89f16ea762cf23f488463a2e819a7330b3286f437927bb33504",
+      "web/runtime/campaign.38d1394abfe86699.js": "38d1394abfe86699a1db087bb6970d17baabb0ead53077d403759e04788a9a12",
+      "web/entries/game.d1e70066b5e4f461.js": "d1e70066b5e4f461a8ec84ba6163dae983f3a221bb0e7ee752c89040d5d97469",
+      "HONRO.html": "03a8fccbf4b0695e35434b4431bb0252eb163d3eb72fb452cecd73fdc033482d",
+      "web/manifest.json": "c1947fb7fcd6c805cbe265e9765758f22b0d179908c1d16ec5207396976727d5"
+    }
+  },
+  "target": {
+    "head": "59525f15cf5a93af3a3a7b752a2aa2a6c0128ca1",
+    "tree": "5b50fb01f6baa80a001027dc148a268cd850940c",
+    "source": {
+      "act5-edge-art.js": {
+        "path": "shared/runtime/act5-edge-art.js",
+        "stock": "461571b0d86e63ad1fee411d8c2cb34382d150a7",
+        "candidate": "46bfbacb32c798464d05a57a560e9faad86f561d"
+      }
+    },
+    "test": {
+      "path": "tests/stage44-under-visual-recovery.mjs",
+      "git": "d8675bd4660e4c06cbe4a8817c7b594cb1ad45b6"
+    }
+  },
+  "basePages": {
+    "run": 45108891636,
+    "job": 137476961484,
+    "publishedAt": "2026-11-23T03:58:53Z",
+    "artifact": 14789190134,
+    "artifactSHA256": "fb5462307d0a633c89393ef358773fe1ee6fb35c37a4ebcf1b703cf9633a1342"
+  },
+  "native": {
+    "run": 45112051187,
+    "artifact": 14789658230,
+    "zipSHA256": "b3e50355cd807066952791573d6c71060500fe4f7b56665a6dd7ef4096c355ec"
+  },
+  "aliases": {
+    "web/runtime/ordered-common-18.4831815091012b42.js": "web/runtime/ordered-common-18.326be34080f88678.js",
+    "web/entries/game.d1e70066b5e4f461.js": "web/entries/game.547b23467b5bf6c7.js",
+    "web/entries/workshop.bfa695faa4088b81.js": "web/entries/workshop.ba859e0a5db97979.js",
+    "web/entries/game.d33d78b046b05167.html": "web/entries/game.b433e4fc393b568b.html"
+  },
+  "source": {
+    "shared/runtime/profile-store.js": "88c3ccf0896a2f3d7a9a55f03ee1d246012fe345",
+    "shared/runtime/act4-campaign.js": "8219cf07e0b18b81c744035cc1db62aa4030458d"
+  },
+  "producer": {
+    "run": 45114932959,
+    "job": 137495500750,
+    "head": "96582da36f13a29af8a7242ab14b66ec4621e269",
+    "tree": "df44d007058300a2062108d4d4519da050a455fd",
+    "artifact": 14791077097,
+    "outer": {
+      "bytes": 2445709,
+      "sha256": "84c4e256b3086a6574a27a111c5c31717897ac6a0b71e78ab0e784126031c210"
+    },
+    "name": "stage44-exact-release-overlay-no-deploy",
+    "branch": "qa/stage44-render-recovery-release-bytes-3c"
+  }
+}

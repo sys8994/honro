@@ -1,0 +1,36 @@
+name: HONRO Stage44 exact compiled candidate writer (no deploy)
+on:
+  push:
+    branches: [qa/stage44-render-recovery-release-writer-3c]
+    paths: [".github/workflows/stage44-render-recovery-release-writer.yml", "tools/stage44-release-writer/**"]
+permissions:
+  contents: write
+  actions: read
+jobs:
+  exact-release-candidate:
+    if: ${{ true && github.repository == 'sys8994/honro' && github.ref == 'refs/heads/qa/stage44-render-recovery-release-writer-3c' }}
+    runs-on: ubuntu-22.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Independently authenticate overlay and assemble the exact reviewed tree
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 -B tools/stage44-release-writer/writer.py "$RUNNER_TEMP/honro-stage44-release"
+      - name: Push only the ordinary release ref at its original known base
+        env:
+          RELEASE_TOKEN: ${{ github.token }}
+        run: bash tools/stage44-release-writer/safe-push.sh "$RUNNER_TEMP/honro-stage44-release"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: stage44-exact-release-writer-receipt
+          path: |
+            ${{ runner.temp }}/honro-stage44-release/ASSEMBLY.json
+            ${{ runner.temp }}/honro-stage44-release/candidate.sha
+            ${{ runner.temp }}/honro-stage44-release/candidate.tree
+            ${{ runner.temp }}/honro-stage44-release/hook
+          if-no-files-found: error
+          retention-days: 7
