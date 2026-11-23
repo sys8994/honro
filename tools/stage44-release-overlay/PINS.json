@@ -1,0 +1,113 @@
+{
+  "candidate": {
+    "head": "59525f15cf5a93af3a3a7b752a2aa2a6c0128ca1",
+    "tree": "5b50fb01f6baa80a001027dc148a268cd850940c",
+    "source": {
+      "act5-edge-art.js": {
+        "path": "shared/runtime/act5-edge-art.js",
+        "stock": "461571b0d86e63ad1fee411d8c2cb34382d150a7",
+        "candidate": "46bfbacb32c798464d05a57a560e9faad86f561d"
+      }
+    },
+    "test": {
+      "path": "tests/stage44-under-visual-recovery.mjs",
+      "git": "d8675bd4660e4c06cbe4a8817c7b594cb1ad45b6"
+    }
+  },
+  "preserveCurrent": {
+    "activeBytes": 8989227,
+    "manifestGit": "bd56525d7784f33e6e9cc2a5e360bea41cc1e24f",
+    "activeFiles": 811,
+    "source": {
+      "shared/runtime/profile-store.js": "88c3ccf0896a2f3d7a9a55f03ee1d246012fe345",
+      "shared/runtime/act4-campaign.js": "8219cf07e0b18b81c744035cc1db62aa4030458d"
+    },
+    "campaignProviders": {
+      "42": "web/data/chapter-42-assets.5c0087eadb28e00c.json",
+      "44": "web/data/chapter-44-assets-parts.78cf9cac37e639be.json",
+      "46": "web/data/chapter-46-assets-parts.044965c2886edcba.json"
+    }
+  },
+  "arms": {
+    "D": {
+      "head": "3c55cf8313f1cd7355f486272f220beb38bcac7f",
+      "tree": "b67ae4d9cb1ed3241c32c025201cf5778c00cb8a",
+      "map": "web/data/chapter-44.53b2bdf2fded9347.json",
+      "campaign": "web/data/campaign.4c48015c8663d89f.json",
+      "provider": "web/data/chapter-44-assets-parts.78cf9cac37e639be.json",
+      "files": {
+        "web/data/chapter-44.53b2bdf2fded9347.json": "53b2bdf2fded934726ba64e70549f7ed29e3fc5194f76f31989ac63b50ef81eb",
+        "web/data/chapter-44-assets-parts.78cf9cac37e639be.json": "78cf9cac37e639be93a7ca0f355211e2bdd7052c6be883045b06fce897518e44",
+        "web/data/chapter-44-assets-part-000.ac5c9ed02d770b03.bin": "ac5c9ed02d770b03465dab45186b5855520037f1c9a4e4a04e5161b4c1c4e1ef",
+        "web/data/chapter-44-assets-part-001.19e3a4fce68e20d3.bin": "19e3a4fce68e20d3ee0981c031a518f7b683187ecb891bb0f4e292cbde951248",
+        "web/graphics/honro_authored_far-images-root-interior.7b6377c64ea476da.webp": "7b6377c64ea476da11bbcbaee6fc8c98e67692723bf8ee7f18ab60c22709def7",
+        "web/runtime/HONRO_AUTHORED_FAR.cf4cf9c2e0932235.js": "cf4cf9c2e09322356f9d2f0e874d700718783c6eafc332049663fdda54250f69",
+        "web/runtime/ordered-common-18.4831815091012b42.js": "4831815091012b426ed3973ce2de1f4c896414383be3b5a4c782bcde29f05ffa",
+        "web/runtime/ordered-common-15.23e61c9f6bb8a95b.js": "23e61c9f6bb8a95b55d7e87dff8f02b2c25e5f23abc66ec8df7b59c067894fe0",
+        "web/data/campaign.4c48015c8663d89f.json": "4c48015c8663d89f16ea762cf23f488463a2e819a7330b3286f437927bb33504",
+        "web/runtime/campaign.38d1394abfe86699.js": "38d1394abfe86699a1db087bb6970d17baabb0ead53077d403759e04788a9a12",
+        "web/entries/game.d1e70066b5e4f461.js": "d1e70066b5e4f461a8ec84ba6163dae983f3a221bb0e7ee752c89040d5d97469",
+        "HONRO.html": "03a8fccbf4b0695e35434b4431bb0252eb163d3eb72fb452cecd73fdc033482d",
+        "web/manifest.json": "c1947fb7fcd6c805cbe265e9765758f22b0d179908c1d16ec5207396976727d5"
+      }
+    }
+  },
+  "enabled": true,
+  "qaRef": "refs/heads/qa/stage44-render-recovery-release-bytes-3c",
+  "passedOrdered": {
+    "status": "PASS_ONLY_EXACT_RENDERER_SOURCE_AND_POINTERS",
+    "ops": [
+      {
+        "file": "act5-edge-art.js",
+        "orderedFamily": "common",
+        "oldBytes": 25336,
+        "newBytes": 25628
+      }
+    ],
+    "addressPairs": {
+      "web/runtime/ordered-common-18.4831815091012b42.js": "web/runtime/ordered-common-18.326be34080f88678.js",
+      "web/entries/game.d1e70066b5e4f461.js": "web/entries/game.547b23467b5bf6c7.js",
+      "web/entries/workshop.bfa695faa4088b81.js": "web/entries/workshop.ba859e0a5db97979.js",
+      "web/entries/game.d33d78b046b05167.html": "web/entries/game.b433e4fc393b568b.html"
+    },
+    "workshopShell": {
+      "a": {
+        "bytes": 4011,
+        "sha256": "2c479417f0e462ed6f44f0d11b14cda7259c2df9a5000cf541176a041a78a0c0"
+      },
+      "b": {
+        "bytes": 4011,
+        "sha256": "2bfbc5ad53cd1ff426340a94d6342edcb183d842b3b9eb49f5a50821f37eee73"
+      }
+    },
+    "workshopPlaytest": {
+      "oldUrl": "web/entries/game.d33d78b046b05167.html?embedded=1",
+      "newUrl": "web/entries/game.b433e4fc393b568b.html?embedded=1",
+      "oldDocument": "web/entries/game.d33d78b046b05167.html",
+      "newDocument": "web/entries/game.b433e4fc393b568b.html"
+    },
+    "retainedFilesScope": "not asked to write/publish in disposable B"
+  },
+  "passedHTTP": {
+    "web/entries/game.547b23467b5bf6c7.js": "547b23467b5bf6c78463dae7d5e4d8b793dee1fc758b0998f0c557df640b3bea",
+    "web/runtime/ordered-common-18.326be34080f88678.js": "326be34080f88678701ead4cfa54a7c327027fa8ab1d690d8993ba414a93b62f"
+  },
+  "native": {
+    "run": 45112051187,
+    "artifact": 14789658230,
+    "zipSHA256": "b3e50355cd807066952791573d6c71060500fe4f7b56665a6dd7ef4096c355ec"
+  },
+  "basePages": {
+    "run": 45108891636,
+    "job": 137476961484,
+    "publishedAt": "2026-11-23T03:58:53Z",
+    "artifact": 14789190134,
+    "artifactSHA256": "fb5462307d0a633c89393ef358773fe1ee6fb35c37a4ebcf1b703cf9633a1342"
+  },
+  "retainer": {
+    "tools/release/retain-published-web.mjs": "8374336b53c74ac81e6d32f5aa43eee575e61daa",
+    "shared/web-retention.mjs": "16687b0fc38e432a7d66a015ddf3ebe744163a06"
+  },
+  "oldRegistry": 1271,
+  "oldGenerations": 52
+}

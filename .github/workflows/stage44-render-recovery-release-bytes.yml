@@ -1,0 +1,64 @@
+name: HONRO Stage44 proved renderer release overlay (no deploy)
+on:
+  push:
+    branches: [qa/stage44-render-recovery-release-bytes-3c]
+    paths: [".github/workflows/stage44-render-recovery-release-bytes.yml", "tools/stage44-release-overlay/**"]
+permissions:
+  contents: read
+jobs:
+  exact-overlay:
+    if: ${{ true && github.repository == 'sys8994/honro' && github.ref == 'refs/heads/qa/stage44-render-recovery-release-bytes-3c' }}
+    runs-on: ubuntu-22.04
+    timeout-minutes: 16
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+          path: qa
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Verify isolated checkout and pinned Stage44 change
+        run: |
+          set -euo pipefail
+          test -z "${GITHUB_TOKEN:-}${GH_TOKEN:-}"
+          Q="$GITHUB_WORKSPACE/qa"; T="$Q/tools/stage44-release-overlay"
+          W=$(mktemp -d "$RUNNER_TEMP/s44-overlay.XXXXXXXX"); mkdir "$W/out"
+          for n in Q T W; do printf '%s=%s\n' "$n" "${!n}" >> "$GITHUB_ENV"; done
+          A=3c55cf8313f1cd7355f486272f220beb38bcac7f
+          C=59525f15cf5a93af3a3a7b752a2aa2a6c0128ca1
+          test "$(git -C "$Q" rev-parse origin/master)" = "$A"
+          GIT_TERMINAL_PROMPT=0 git -C "$Q" -c credential.helper= -c http.extraHeader= fetch -q --no-tags https://github.com/sys8994/honro.git "$C"
+          test "$(git -C "$Q" rev-parse FETCH_HEAD)" = "$C"
+          git -C "$Q" -c core.hooksPath=/dev/null worktree add --detach "$W/C" "$C"
+          git -C "$Q" -c core.hooksPath=/dev/null worktree add --detach "$W/D" "$A"
+          python3 "$T/overlay.py" pre "$W" "$Q"
+      - name: One standard build and seal the approved exact aliases
+        run: |
+          set -euo pipefail
+          test -z "${GITHUB_TOKEN:-}${GH_TOKEN:-}"
+          export npm_config_userconfig="$(mktemp "$W/npm-user.XXXXXXXX")"
+          export npm_config_globalconfig="$(mktemp "$W/npm-global.XXXXXXXX")"
+          export npm_config_registry=https://registry.npmjs.org/ npm_config_cache="$W/npm-cache"
+          export npm_config_audit=false npm_config_fund=false npm_config_update_notifier=false
+          cd "$W/C"
+          npm ci --ignore-scripts --no-audit --no-fund > "$W/out/npm-root.log" 2>&1
+          npm ci --prefix game --ignore-scripts --no-audit --no-fund > "$W/out/npm-game.log" 2>&1
+          node tests/stage44-under-visual-recovery.mjs > "$W/out/renderer-unit.log" 2>&1
+          npm --offline run build > "$W/out/build.log" 2>&1
+          python3 "$T/overlay.py" graph "$W"
+          node "$T/graph.mjs" "$W"
+          python3 "$T/overlay.py" package "$W"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: stage44-exact-release-overlay-no-deploy
+          path: |
+            ${{ env.W }}/out/STAGE44-GENERATED-OVERLAY.zip
+            ${{ env.W }}/out/RELEASE-OVERLAY.json
+            ${{ env.W }}/out/ORDERED.json
+            ${{ env.W }}/out/*.log
+          if-no-files-found: error
+          retention-days: 7
