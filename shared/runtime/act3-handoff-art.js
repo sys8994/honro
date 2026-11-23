@@ -152,6 +152,9 @@ const WEST23_LIP=[
  ['#8c7d5b','M1 4250C-50 4257-100 4264-134 4268.4C-110 4276-80 4292-50 4294.6C-30 4295.2-10 4295 1 4295Z'],
  ['#958563','M1 4250C-36 4255-70 4259.6-92 4262.6C-60 4264-30 4264.5 1 4264.5Z']
 ];
+// Stage29 west slope top: y=2700+0.178x near x=0 (x<=0). Shapes extend slightly above it; the terrain clip trims them.
+const WEST29_BAND='M2 2736C-30 2722-70 2690-110 2676L-430 2625C-380 2645-300 2676-200 2716C-120 2752-50 2826 2 2842Z';
+const WEST29_BODY='M2 2842C-50 2826-120 2752-200 2716C-300 2676-380 2645-430 2625L-540 2630C-510 2670-480 2700-440 2770C-400 2820-340 2850-300 2930C-260 3000-220 3030-180 3110C-140 3180-100 3220-60 3290C-40 3330-20 3350 2 3356Z';
 const west23Vectors=new WeakMap();
 let west23Raster=null;
 function eligibleWest23(b,floor,asset){
@@ -349,6 +352,19 @@ S.landmark=function(c,l){
     raw.fillStyle=paint;
     raw.fill(new Path2D(path));
    }
+  }finally{raw.restore();}
+ }
+ // Stage29: the bank face (x>=0) carries a backfill band and a dark body that used to stop
+ // at x=0. Taper both into the west slope (inside the same terrain clip, x<0 only).
+ if(b.honroStage===29&&b.honroCanonical&&!b.honroCustom&&b.honroMapOrigin==='campaign'&&asset.id==='act3-handoff:29:west-bank'&&
+    l.id===asset.id&&l.kind==='canonical-element'&&floor.id==='a3-foundation'&&l.x===0&&l.y===0&&l.scale===1&&
+    asset.bounds?.x===0&&asset.params.edgeFade?.[0]===null&&asset.params.contactMapping?.[0]?.join()==='0,687,0,2700'){
+  raw.save();
+  try{
+   raw.beginPath();raw.rect(-900,2400,900,1100);raw.clip();
+   const fade=raw.createLinearGradient(0,3245,0,3355);fade.addColorStop(0,'#353631');fade.addColorStop(1,'#35363100');
+   raw.fillStyle=fade;raw.fill(new Path2D(WEST29_BODY));
+   raw.fillStyle='#4d453c';raw.fill(new Path2D(WEST29_BAND));
   }finally{raw.restore();}
  }
  const flow=flowRows.get(l),east=east21F.get(l);
