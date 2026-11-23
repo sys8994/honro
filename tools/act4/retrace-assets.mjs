@@ -87,9 +87,11 @@ for(const id of ids){
   const pxw=Math.min(+(arg('px-max')??2),Math.max(+(arg('px-min')??0.5),Math.sqrt(+(arg('px-budget')??16e6)/areaW))),k=pxw*s,pad=4,area=areaW;
   const W=Math.ceil(w*k)+2*pad,H=Math.ceil(h*k)+2*pad,cv=createCanvas(W,H),c=cv.getContext('2d');
   const ox=b.x0-pad/k,oy=b.y0-pad/k;c.setTransform(k,0,0,k,-ox*k,-oy*k);
-  for(const l of g.leaves){const d=leafD(l.node);if(!d||!l.node.fill||l.node.fill==='none')continue;c.globalAlpha=l.node.opacity??1;c.fillStyle=l.node.fill;c.fill(new Path2D(d),l.node.fillRule==='evenodd'?'evenodd':'nonzero');}
+  const flat=f=>/^#[0-9a-f]{6}$/i.test(f||'');
+  if(!g.leaves.some(l=>flat(l.node.fill)))continue; // pattern/gradient-only groups stay as authored
+  for(const l of g.leaves){const d=leafD(l.node);if(!d||!flat(l.node.fill))continue;c.globalAlpha=l.node.opacity??1;c.fillStyle=l.node.fill;c.fill(new Path2D(d),l.node.fillRule==='evenodd'?'evenodd':'nonzero');}
   const base=path.join(work,`${id.replace(/[^\w-]/g,'_')}-${gi}`);fs.writeFileSync(base+'.png',cv.toBuffer('image/png'));
-  const fills=[...new Set(g.leaves.map(l=>l.node.fill).filter(f=>f&&f!=='none'))];
+  const fills=[...new Set(g.leaves.map(l=>l.node.fill).filter(flat))];
   fs.writeFileSync(base+'.group.json',JSON.stringify({fills,ox,oy}));
   const P={minWorld:+(arg('min-world')??14000),brightWorld:+(arg('bright-world')??1200),tolWorld:+(arg('tol-world')??12),merge:arg('merge')??'22',pxMax:+(arg('px-max')??2),pxMin:+(arg('px-min')??0.5)};
   const minWorld=Math.min(P.minWorld,0.01*area),brightWorld=Math.min(P.brightWorld,0.001*area),tolWorld=Math.min(P.tolWorld,0.01*Math.sqrt(area));
@@ -99,10 +101,13 @@ for(const id of ids){
     '--min-px',String(Math.max(4,Math.round(minWorld*pxw*pxw))),'--bright-count','2','--bright-min-px',String(Math.max(2,Math.round(brightWorld*pxw*pxw))),
     '--tol',String(tol),'--smooth',String(arg('smooth')??6),'--merge-dist',String(P.merge),'--alpha-min',String(arg('alpha-min')??128),'--overlap',String(arg('overlap')??1)],{stdio:['ignore','ignore','inherit']});
    res=JSON.parse(fs.readFileSync(base+'.out.json','utf8'));
-   break;
+   // Renderer compound limits per leaf: 240000 chars, 120000 number tokens.
+   const over=Object.values(res.d).some(d=>d.length>230000||(d.match(NUM)||[]).length>115000);
+   if(!over)break;tol*=1.5;
   }
   const used=new Set();
   for(const l of g.leaves){
+   if(!flat(l.node.fill))continue; // non-flat paint (url(#...)) keeps its authored geometry
    before+=(leafD(l.node).match(/[MLCSQTAHV]/gi)||[]).length;
    let d=used.has(l.node.fill)?'':(res.d[l.node.fill]||'');used.add(l.node.fill);
    if(!d)d='M0 0Z';
@@ -118,7 +123,7 @@ for(const id of ids){
   const sc=Math.sqrt(Math.abs(wins.length?1:1));const mg=12;
   const ws=wins.map(w=>[w.x0-mg,w.y0-mg,w.x1+mg,w.y1+mg]);const base=path.join(work,`${id.replace(/[^\w-]/g,'_')}-clip-${name.replace(/[^\w-]/g,'_')}`);
   fs.writeFileSync(base+'.in.json',JSON.stringify({clip:d,windows:ws,step:0.5,tol:0.25}));
-  execFileSync('python3',[path.join(root,'tools/act4/crop-clip.py'),base+'.in.json',base+'.out.json'],{stdio:['ignore','ignore','inherit']});
+  try{execFileSync('python3',[path.join(root,'tools/act4/crop-clip.py'),base+'.in.json',base+'.out.json'],{stdio:['ignore','ignore','ignore']});}catch{continue;} // e.g. arcs: keep the original clip
   const r=JSON.parse(fs.readFileSync(base+'.out.json','utf8'));const beforeEp=d.reduce((a,x)=>a+(x.match(/[MLCSQTAHVZ]/gi)||[]).length,0);
   if(r.endpoints<beforeEp*0.8)clipOut[name]=r.clip;}
  const old=byId.get(id),pub=published[id];if(!pub)throw Error('no published signature for '+id);
