@@ -1,0 +1,103 @@
+name: HONRO Stage40 private desktop draw experiment (no deploy)
+on:
+  push:
+    branches: [qa/stage40-private-path-f6-no-deploy-r5]
+    paths: [".github/workflows/stage40-private-path-f6.yml", "tools/stage40-private-path-check/**"]
+permissions:
+  contents: read
+jobs:
+  stage40-private-path:
+    if: ${{ true && github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage40-private-path-f6-no-deploy-r5' }}
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+          fetch-depth: 2
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Exact f6 parent, add-only carrier and installed runtime prerequisites
+        run: |
+          set -euo pipefail
+          test -z "${GITHUB_TOKEN:-}${GH_TOKEN:-}"
+          T="$GITHUB_WORKSPACE/tools/stage40-private-path-check"
+          echo '4e17d58e94ab75df8001fc44fa0601864a00454f06dfa83687d249326f317c28  '"$T/CARRIER.json" | sha256sum -c -
+          PY=$(find "${RUNNER_TOOL_CACHE}/Python" -maxdepth 4 -type f -path '*/3.12.*/x64/bin/python3.12' | sort -V | tail -1)
+          test -n "$PY" && test -x "$PY"
+          W=$(mktemp -d /tmp/honro-s40-private.XXXXXXXX)
+          rmdir "$W"
+          AUTH="$RUNNER_TEMP/honro-s40-private-authority.json"
+          "$PY" "$T/ci-pre.py" pre "$AUTH"
+          echo "W=$W" >> "$GITHUB_ENV"
+          "$PY" "$T/local.py" setup "$W" "$AUTH" "$GITHUB_WORKSPACE"
+          echo "T=$T" >> "$GITHUB_ENV"
+          echo "AUTH=$AUTH" >> "$GITHUB_ENV"
+          echo "STOCKPY=$PY" >> "$GITHUB_ENV"
+      - name: Locked dependencies and single normal B compiler; A provenance unchanged
+        run: |
+          set -euo pipefail
+          test -z "${GITHUB_TOKEN:-}${GH_TOKEN:-}"
+          NODE_VERSION=$(node --version); export NODE_VERSION
+          "$STOCKPY" "$T/ci-pre.py" writes-pre "$W"
+          "$STOCKPY" "$T/ci-pre.py" locks "$W"
+          export npm_config_userconfig="$(mktemp "$W/npm-user.XXXXXXXX")"
+          export npm_config_globalconfig="$(mktemp "$W/npm-global.XXXXXXXX")"
+          test -f "$npm_config_userconfig" && test -f "$npm_config_globalconfig"
+          test ! -L "$npm_config_userconfig" && test ! -L "$npm_config_globalconfig"
+          test ! "$npm_config_userconfig" -ef "$npm_config_globalconfig"
+          export npm_config_registry=https://registry.npmjs.org/ npm_config_cache="$W/npm-cache"
+          export npm_config_audit=false npm_config_fund=false npm_config_update_notifier=false
+          cd "$W/B"
+          {
+            npm --version
+            npm config get userconfig globalconfig registry audit fund
+            test "$(npm config get userconfig)" = "$npm_config_userconfig"
+            test "$(npm config get globalconfig)" = "$npm_config_globalconfig"
+            test "$(npm config get registry)" = "$npm_config_registry"
+          } > "$W/out/npm-config-preflight.log" 2>&1
+          npm ci --ignore-scripts --no-audit --no-fund > "$W/out/npm-root.log" 2>&1
+          npm ci --prefix game --ignore-scripts --no-audit --no-fund > "$W/out/npm-game.log" 2>&1
+          node -e 'require("sharp");require("@napi-rs/canvas");require("terser");require("./game/node_modules/typescript")' > "$W/out/npm-native-deps.log" 2>&1
+          GD=$("$STOCKPY" "$T/local.py" git-dir "$W" "$AUTH")
+          if GIT_DIR="$GD" GIT_WORK_TREE="$W/B" GIT_TERMINAL_PROMPT=0 GIT_NO_LAZY_FETCH=1 GIT_OPTIONAL_LOCKS=0 \
+              npm --offline run build > "$W/out/build.log" 2>&1; then
+            "$STOCKPY" "$T/ci-pre.py" writes "$W"
+          else
+            code=$?
+            "$STOCKPY" "$T/ci-pre.py" writes "$W" || true
+            exit "$code"
+          fi
+          "$STOCKPY" "$T/ci-pre.py" locks "$W"
+          "$STOCKPY" "$T/local.py" closure "$W" "$AUTH"
+          node "$T/graph.mjs" "$W" "$AUTH" "$W/B"
+      - name: Fresh sandbox Chromium, normal loopback app only, PC and M with Workshop
+        run: |
+          set -euo pipefail
+          test -z "${GITHUB_TOKEN:-}${GH_TOKEN:-}"
+          unset PLAYWRIGHT_NODEJS_PATH PLAYWRIGHT_DOWNLOAD_HOST CHROMIUM_DOWNLOAD_HOST
+          "$STOCKPY" -m venv "$W/venv"; V="$W/venv/bin/python"
+          "$V" -m pip --isolated --disable-pip-version-check install --index-url https://pypi.org/simple/ --no-deps --only-binary=:all: --no-cache-dir -r "$T/requirements.txt"
+          "$V" -m pip check
+          export PLAYWRIGHT_BROWSERS_PATH="$W/browsers"
+          "$V" -m playwright install chromium > "$W/out/chromium-install.log" 2>&1
+          "$V" "$T/capture.py" "$W" "$AUTH"
+          test -z "$(git -C "$GITHUB_WORKSPACE" status --porcelain --untracked-files=all)"
+      - if: ${{ always() && env.W != '' }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage40-private-path-f6-no-deploy-r5
+          path: |
+            ${{ env.W }}/out/SOURCE.json
+            ${{ env.W }}/out/CI-LOCKS.json
+            ${{ env.W }}/out/WORKTREE.json
+            ${{ env.W }}/out/SOURCE-WRITES.json
+            ${{ env.W }}/out/ORDERED.json
+            ${{ env.W }}/out/NATIVE.json
+            ${{ env.W }}/out/*-RAW.png
+            ${{ env.W }}/out/*.log
+          retention-days: 7
+          if-no-files-found: warn

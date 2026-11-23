@@ -1,0 +1,99 @@
+{
+  "enabled": false,
+  "scope": "local-loopback-only",
+  "base": {
+    "head": "f6eaaa606914cd8f431ae0e52dd1e4b474b485c8",
+    "tree": "ddbd4d3f90a9c3a6b7e9f37ecbd42e28ad72ebb8",
+    "manifest": {
+      "bytes": 8866088,
+      "sha256": "f4fb50930e9ab8c070875412bd07d1363c52c42f90530194f8f7a8c3c6ba6917",
+      "git": "405d172cc65f8168754a1ea78576b1242c0e2b0b"
+    },
+    "pagesRun": 45053825574,
+    "pagesJob": 137305039471,
+    "pagesUTC": "2026-11-22T18:15:30.6084492Z"
+  },
+  "chromium": "151.0.7922.34",
+  "devices": {
+    "PC": {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "device_scale_factor": 1
+    },
+    "Mobile": {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "device_scale_factor": 1,
+      "is_mobile": true,
+      "has_touch": true
+    }
+  },
+  "stage40": {
+    "id": "stage-40",
+    "name": "40 · 돌아가는 배",
+    "map": "web/data/chapter-40.5f4b6c4c311adc05.json",
+    "descriptorOrPacket": "web/data/chapter-40-assets-parts.e102ede6b6f1921d.json",
+    "parts": [
+      "web/data/chapter-40-assets-part-000.cd3e15a78b719c49.bin",
+      "web/data/chapter-40-assets-part-001.6dbca9ee910a8ff7.bin",
+      "web/data/chapter-40-assets-part-002.6f227d452d7a288d.bin"
+    ],
+    "encoding": "json-pool-v1",
+    "files": {
+      "web/data/chapter-40.5f4b6c4c311adc05.json": {
+        "bytes": 48881,
+        "sha256": "5f4b6c4c311adc0508920712018dadd7262c69c17b8d1b955628bdd8ce7d98e0"
+      },
+      "web/data/chapter-40-assets-parts.e102ede6b6f1921d.json": {
+        "bytes": 605,
+        "sha256": "e102ede6b6f1921d46efaf44318550c800c271ab2507f114d59b2b69698be6fe"
+      },
+      "web/data/chapter-40-assets-part-000.cd3e15a78b719c49.bin": {
+        "bytes": 4194304,
+        "sha256": "cd3e15a78b719c49cc3651a2e38cfb21c1f0a5176947f23550fd7ab058b0264e"
+      },
+      "web/data/chapter-40-assets-part-001.6dbca9ee910a8ff7.bin": {
+        "bytes": 4194304,
+        "sha256": "6dbca9ee910a8ff7be24e4f08354cd8f076f54b9eb72d5cca63a3fff971e32be"
+      },
+      "web/data/chapter-40-assets-part-002.6f227d452d7a288d.bin": {
+        "bytes": 1749013,
+        "sha256": "6f227d452d7a288d34bce7981b2ace8179d4b786e1a3b772f5b1d62d43f3144a"
+      }
+    }
+  },
+  "ordinary": {
+    "PC": [
+      2850,
+      2850,
+      0.3
+    ],
+    "Mobile": [
+      2850,
+      2850,
+      0.3
+    ]
+  },
+  "source": {
+    "vector-art.js": {
+      "path": "shared/map/vector-art.js",
+      "stock": "6bce33f337c80db7be7f807fe8645561195115ec",
+      "candidate": "5593c8e2392b94006273bf1400cac09babb02b96",
+      "sha256": "b5e2c265fd8aea1afc997f3129cf6c7b82b06852c357c7bebf96559ecb0f7a6b",
+      "bytes": 17645
+    },
+    "act4-pilot-art.js": {
+      "path": "shared/runtime/act4-pilot-art.js",
+      "stock": "330fc448562e5c3e36a98a99bad158176c1e9043",
+      "candidate": "b19b393bf64b0daab4e329cbfa0efff4c4627247",
+      "sha256": "e63242159dedda6cb6d84bc1bebd419f6f876d32505b9b1e6ad9656888dc1713",
+      "bytes": 17098
+    }
+  },
+  "repeats": 3,
+  "guideWindowMs": 9500
+}
