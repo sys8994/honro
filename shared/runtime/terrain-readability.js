@@ -26,6 +26,9 @@ function prepare(b){const ts=G.HonroTerrainDomain?.render(b)||b.terrain||[],prio
       b.honroMapOrigin==='campaign'&&b.honroAuthoredId==='stage-7'&&
       t.id==='root-floor'&&t.honroAct1SitePainted===true&&t.route===true&&
       ((ny>0&&a.y===5069.18&&z.y===5069.18&&Math.min(a.x,z.x)===-1200&&Math.max(a.x,z.x)===5732.24)||(a.x===-1200&&z.x===-1200&&a.y===5069.18&&z.y===3101.83)))continue;
+   // Stage 12 east: the play bound is not a cliff; the dummy terrain art continues past x=6400, so its collision closures get no ink.
+   if(!walkable&&b.honroStage===12&&b.honroCanonical===true&&b.honroCustom===false&&b.honroMapOrigin==='campaign'&&b.honroAuthoredId==='stage-12'&&
+      b.width===6400&&a.x===6400&&z.x===6400&&['sq-old-road','sq-lower-ground','sq-cave-roof'].includes(t.id)&&t.oneWay===false)continue;
    // Stage 7 east: preserve the real side rim through the authored mirrored wing (1063*3.13), not its hanging collision closure.
    const east7Ink=!walkable&&b.honroStage===7&&b.honroCanonical===true&&b.honroCustom===false&&
       b.honroMapOrigin==='campaign'&&b.honroAuthoredId==='stage-7'&&t.id==='root-floor'&&
