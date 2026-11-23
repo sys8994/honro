@@ -1,0 +1,91 @@
+name: Preserve verified public assets for campaign terrain contact
+run-name: Terrain contact source-attested compatibility retention
+on:
+  push:
+    branches: ['qa/contact-art-collision-20261123-retain']
+permissions:
+  contents: write
+concurrency:
+  group: terrain-contact-20261123-retention
+  cancel-in-progress: false
+jobs:
+  retain:
+    if: github.repository == 'sys8994/honro' && github.ref == 'refs/heads/qa/contact-art-collision-20261123-retain'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    env:
+      SOURCE: b7a3ecd3f33309c6f11c0106a9bf228d76487937
+      GENERATED_SHA: a996507d5d21a0b21f84badd91e2d66f8f7e2049
+      GENERATED_TREE: 09c3663fd8e2bffb5a9c0b9471c010ee7a8dbe1c
+      RETAINED_TREE: 18281c9033d8011eb2fb67493a903554435b19a9
+      PUBLISHED_SHA: 0bbb8aadd3e7416edc5a20fbf8969f300904047e
+      PUBLISHED_AT: '2026-11-23T14:27:43.659Z'
+      PUBLISHED_EVIDENCE: 'https://github.com/sys8994/honro/actions/runs/45194036902'
+      OUT_REF: refs/heads/repair/contact-art-collision-20261123-retained
+      OUT: _local/reports/contact-retention
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          ref: ${{ env.GENERATED_SHA }}
+          fetch-depth: 2
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Register verified Pages publication without rebuilding game
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GENERATED_SHA"
+          test "$(git rev-parse HEAD^)" = "$SOURCE"
+          test "$(git rev-parse HEAD^{tree})" = "$GENERATED_TREE"
+          test ! -e .github/workflows/terrain-contact-20261123-build.yml
+          test ! -e .github/workflows/terrain-contact-20261123-retain.yml
+          mkdir -p "$OUT"
+          sha256sum HONRO.html HONRO_WORKSHOP.html index.html > "$OUT/html-before.sha256"
+          cp web/manifest.json "$OUT/before.json"
+          node --input-type=module > "$OUT/refs.txt" <<'JS'
+          import fs from 'node:fs';
+          import {selectPublishedGenerations} from './shared/web-retention.mjs';
+          const m=JSON.parse(fs.readFileSync('web/manifest.json','utf8'));
+          for(const {sourceSha} of selectPublishedGenerations(m.publishedGenerations,{now:Date.now()})){
+            if(!/^[a-f0-9]{40}$/.test(sourceSha))throw Error('Unexpected source reference');
+            console.log(sourceSha);
+          }
+          JS
+          mapfile -t refs < "$OUT/refs.txt"
+          git fetch --no-tags --filter=blob:none --depth=1 origin "$PUBLISHED_SHA" "${refs[@]}"
+          node tools/release/retain-published-web.mjs "$PUBLISHED_SHA" --published-at "$PUBLISHED_AT" --evidence "$PUBLISHED_EVIDENCE" > "$OUT/registered.json"
+          sha256sum -c "$OUT/html-before.sha256"
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import fs from 'node:fs';
+          import {createHash} from 'node:crypto';
+          const {OUT,PUBLISHED_SHA}=process.env, before=JSON.parse(fs.readFileSync(OUT+'/before.json','utf8')),after=JSON.parse(fs.readFileSync('web/manifest.json','utf8')),report=JSON.parse(fs.readFileSync(OUT+'/registered.json','utf8'));
+          const permitted=new Set(['previousFiles','previousGenerations','publishedGenerations','publishedRetention']);
+          for(const k of new Set([...Object.keys(before),...Object.keys(after)]))if(!permitted.has(k))assert.deepEqual(after[k],before[k],k);
+          assert.equal(after.publishedGenerations[0].sourceSha,PUBLISHED_SHA);
+          assert.deepEqual([...report.restored].sort(),['web/entries/game.11877a017a26f9a5.html','web/entries/game.ef9a245a9d5fd385.js','web/entries/workshop.d53112bfb1eaaf94.js','web/runtime/ordered-common-17.5af4bb10fee6c15f.js'].sort());
+          const active=new Map(after.files.map(f=>[f.path,f]));
+          for(const generation of after.publishedGenerations.slice(0,1))for(const f of generation.files)active.set(f.path,f);
+          for(const f of active.values()){const b=fs.readFileSync(f.path);assert.equal(b.length,f.bytes,f.path);assert.equal(createHash('sha256').update(b).digest('hex'),f.sha256,f.path);}
+          fs.writeFileSync(OUT+'/bounds.json',JSON.stringify({active:after.files.length,public:after.publishedGenerations[0].files.length,exactRuntime:true,restored:report.restored},null,2));
+          JS
+          rm "$OUT/before.json"
+          git add -A -- web
+          git diff --cached --check
+          git diff --cached --name-status | tee "$OUT/paths.txt"
+          test "$(git write-tree)" = "$RETAINED_TREE"
+          sha256sum web/manifest.json > "$OUT/manifest.sha256"
+      - name: Preserve exact metadata child on one scoped repair ref only
+        run: |
+          set -euo pipefail
+          test -z "$(git ls-remote origin "$OUT_REF")"
+          commit=$(git -c user.name='honro release automation' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit-tree "$RETAINED_TREE" -p "$GENERATED_SHA" -m 'Retain currently published client assets before terrain contact release')
+          git push origin "$commit:$OUT_REF"
+          printf '%s\n' "$commit" | tee "$OUT/retained-commit.txt"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: terrain-contact-attested-retention
+          path: _local/reports/contact-retention/
+          retention-days: 7
