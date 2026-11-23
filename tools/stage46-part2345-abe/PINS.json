@@ -1,0 +1,588 @@
+{
+  "repo": "sys8994/honro",
+  "publicRoot": "https://sys8994.github.io/honro/",
+  "devices": {
+    "PC": {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "device_scale_factor": 1
+    },
+    "Mobile": {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "device_scale_factor": 1,
+      "is_mobile": true,
+      "has_touch": true
+    }
+  },
+  "chromium": "151.0.7922.34",
+  "enabled": true,
+  "qaRef": "refs/heads/qa/stage46-part2345-abe-3c55",
+  "head": "3c55cf8313f1cd7355f486272f220beb38bcac7f",
+  "tree": "b67ae4d9cb1ed3241c32c025201cf5778c00cb8a",
+  "previous": "a6b2c0db97c9ae6efe4d5372f2208bfdf695f4f4",
+  "previousTree": "4fa185a738677fc252c8af4340a90ce18ab7895e",
+  "pages": {
+    "run": 45108891636,
+    "job": 137476961484
+  },
+  "map": "web/data/chapter-46.2806e485c4c1e1b4.json",
+  "oldSig": "16328502:43d17801",
+  "newSig": "4204233:7f4d5ae9",
+  "packs": {
+    "A": {
+      "campaign": "web/data/campaign.b7ae34f5b0515023.json",
+      "entry": "web/entries/game.8ef0693f661485c8.js",
+      "descriptor": "web/data/chapter-46-assets-parts.a3595c48161a8bc1.json",
+      "splitBytes": 15250870
+    },
+    "B": {
+      "campaign": "web/data/campaign.4c48015c8663d89f.json",
+      "entry": "web/entries/game.d1e70066b5e4f461.js",
+      "descriptor": "web/data/chapter-46-assets-parts.044965c2886edcba.json",
+      "splitBytes": 4204399
+    },
+    "E": {
+      "campaign": "web/data/campaign.d5311de3e3f8313c.json",
+      "entry": "web/entries/game.8a33d6ff12770aba.js",
+      "descriptor": "web/data/chapter-46-assets-parts.2553841ea84ccff0.json",
+      "splitBytes": 11358702
+    }
+  },
+  "pose": {
+    "PC": {
+      "deep": [
+        2048,
+        5500,
+        0.35
+      ],
+      "west": [
+        0,
+        5500,
+        0.35
+      ]
+    },
+    "Mobile": {}
+  },
+  "maskGuardBackingPixels": 8,
+  "fixture": {
+    "ship": false,
+    "sources": {
+      "shared/assets/environment/act5/stage46-exterior-part-2.json": {
+        "index": 2,
+        "A": {
+          "bytes": 2464204,
+          "sha256": "4cb2b35b27eac60b8e14264f02ed27498e5e440b579cceedf0caa80af166c77c",
+          "git": "636dc44cea69505d03dcb7ef1c02b0cd031bffa8"
+        },
+        "B": {
+          "bytes": 434272,
+          "sha256": "27110c02663ad407b8d0a371ba9462da347336097f636ccc4ff1bf8fde0dd003",
+          "git": "04c9ba3f33e966d8fa96a0de040292d5cef7a142"
+        },
+        "Avalue": {
+          "bytes": 2464203,
+          "sha256": "5c11c6f447c0637f75e9671a02ee4667e1b730a89c69ef8354abfa668d455281",
+          "git": "1b6a0c39bac29ac2077c6a710110082c6bcdb918"
+        },
+        "Bvalue": {
+          "bytes": 434266,
+          "sha256": "027c2b67afd8d585c89ceb4ba5f3604b23d6597f9b66d4a352a36e98a864b948",
+          "git": "780a85489103728db2b5edb223f3c0b47a859e10"
+        }
+      },
+      "shared/assets/environment/act5/stage46-exterior-part-3.json": {
+        "index": 3,
+        "A": {
+          "bytes": 2343784,
+          "sha256": "c91a0b505f7a757f4d4865d9bb9d17004d19e7883113e9de6c7cfc62483787fa",
+          "git": "fe02a145ec324283c2be265da40f740f51c20d5a"
+        },
+        "B": {
+          "bytes": 475985,
+          "sha256": "0159160a85b2f5b391b713de347d97443db2136d43b3eb092ce58bbdafa35255",
+          "git": "3fcab290b91e96a050f84c05c39e843b2750bed2"
+        },
+        "Avalue": {
+          "bytes": 2343783,
+          "sha256": "6c9b5426c25337ea76edb756ec108179fd9b350bf0af13be5d97239ef895d266",
+          "git": "7512f6bb7350379482edc2c4880cd20703de58a0"
+        },
+        "Bvalue": {
+          "bytes": 475979,
+          "sha256": "0205d5c65413b8c1e337a44adaf40206759bb14028504afc81b480c7518b2b5f",
+          "git": "860dd0e299d8f53495444c3ac3185b5c76b6c1a0"
+        }
+      },
+      "shared/assets/environment/act5/stage46-exterior-part-4.json": {
+        "index": 4,
+        "A": {
+          "bytes": 2467363,
+          "sha256": "2d0d3d5da8bc7253fd3ae2c4c740156c4c4c01188d2b7576f8f92f7283d5fd7e",
+          "git": "2e44587a5e947b71ab65ad13e7fb46515f18f8a9"
+        },
+        "B": {
+          "bytes": 522915,
+          "sha256": "7de691320340357cc1e80dde2f97c2735dc242cb01303fe4a617529bc6bf8d28",
+          "git": "1ab3afa1160407a1fa25abfc2cf094e773e507f8"
+        },
+        "Avalue": {
+          "bytes": 2467362,
+          "sha256": "906b40a7c20f035804cf0fd7c4af76615c6cc0cf3ab26e4f4b8f8c5a79efb30e",
+          "git": "ba27d95cad34d256a6849af890adcacf79b1a27c"
+        },
+        "Bvalue": {
+          "bytes": 522909,
+          "sha256": "253115f62b52bdc2479476a821457e9f30a34557b6a3bb695b78196d0103fdc4",
+          "git": "5d07529c0cfe05e723be737e8b677cfecf2b31a9"
+        }
+      },
+      "shared/assets/environment/act5/stage46-exterior-part-5.json": {
+        "index": 5,
+        "A": {
+          "bytes": 2566066,
+          "sha256": "8833797686af91b04d4c4b364146548fb24cb76ef97f7aa12c175150e7295443",
+          "git": "7e159a26101e9fa70c634f0677eedde094a5cda4"
+        },
+        "B": {
+          "bytes": 536039,
+          "sha256": "ffc3e46c30d84f0aa503c0397eee843979a2be3622cedaf7288a951ae6de706d",
+          "git": "5c8b3bafd44d14189a9280042c64703914ba5ce8"
+        },
+        "Avalue": {
+          "bytes": 2566065,
+          "sha256": "6a9325b956db20f77ca71b07b4b9d0664c9a584e3cf5ba4128a24744c5475ce5",
+          "git": "3d06f4f8d4a4a55e9724faf473f00bc7fc56a58a"
+        },
+        "Bvalue": {
+          "bytes": 536033,
+          "sha256": "29ff1406759bacfe7d125788333c23ae13e4586fe1132d57cc38473b021730b3",
+          "git": "5a4d7ce1bcdc8f48072ea30f6722b7c7386eb940"
+        }
+      }
+    },
+    "decodedOld": {
+      "bytes": 15250870,
+      "sha256": "744e462e37916ce64513ef0a0fad39d90f45c6c4aa1be408973a2c475c1ada7f",
+      "git": "cff90a5f33119578056fcf6151cd39d160dc3366"
+    },
+    "published3cPacket": {
+      "bytes": 4204399,
+      "sha256": "ad767bfeea8bd61b3eb906f1bcc31a64378fe3b8f905682eb737c2c5544fb2bf"
+    },
+    "exactECompiled": {
+      "bytes": 11358702,
+      "sha256": "ff4dca682ed9889fa9a52327f540d9621da7e2d7e17946342438eca82f4579ff",
+      "git": "78b2469746d56f155d3a339501de0472b84550f9"
+    },
+    "encoding": {
+      "winner": "json-pool-v1",
+      "NodeZlibVersion": "1.3.2.1-motley-285e94b",
+      "plain": {
+        "rawNoLF": {
+          "bytes": 12076624,
+          "sha256": "abf23d73608615c3b7266270023e7f6e7baf4fdfd73457878de27d82e757fe86",
+          "git": "63a131e4afd6d7a04b37a37afb55e6b015cd33a9"
+        },
+        "gzip": {
+          "bytes": 4625538,
+          "sha256": "ba27fb2f30d6022e7712aac15a09457dd2699b772b0f84e99c78f25922fb7fc6",
+          "git": "7a4e4b1b1c5f61f50bb908d4be971744d7dbf5ba"
+        }
+      },
+      "pool": {
+        "rawNoLF": {
+          "bytes": 11358701,
+          "sha256": "c60e1d1ca8e9f5ac61fa494c96082ce3617e4affd739f9dfe3c72aaf7a1ae7b3",
+          "git": "b53fe9c02b13486e79e732006a35f59426af696d"
+        },
+        "gzip": {
+          "bytes": 4334583,
+          "sha256": "d7e89fdb006aa8c7e61c38bd5876854a5522c1f04192e3863255dad31b2cbbfb",
+          "git": "3d4a91d1ee2901c6d28abd6c133aab72318a942a"
+        }
+      }
+    },
+    "candidateDescriptor": {
+      "path": "web/data/chapter-46-assets-parts.2553841ea84ccff0.json",
+      "bytes": 605,
+      "sha256": "2553841ea84ccff083e204614aebd21f0f0ba8100cc57cf7cd9e6a32a93e81ba",
+      "git": "8e354e1f42f4e9c91c0b6ba692f4cfb4833f826d"
+    },
+    "parts": [
+      {
+        "path": "web/data/chapter-46-assets-part-000.4cea44a59002b279.bin",
+        "bytes": 4194304,
+        "sha256": "4cea44a59002b27932fa269283a785bdcc0c739dfa4f8ef0281f4ee1099bce67"
+      },
+      {
+        "path": "web/data/chapter-46-assets-part-001.3abf0e6ca56b0562.bin",
+        "bytes": 4194304,
+        "sha256": "3abf0e6ca56b056283c1dd8d6b1a778dfb12a71404ac851442cb873f121200dc"
+      },
+      {
+        "path": "web/data/chapter-46-assets-part-002.19800ca07bbc9efb.bin",
+        "bytes": 2970094,
+        "sha256": "19800ca07bbc9efb22240622fc5c6376876950c2391eed0589c90fcea00e1a25"
+      }
+    ]
+  },
+  "overlay": {
+    "ship": false,
+    "input": {
+      "campaign.js": [
+        "web/runtime/campaign.38d1394abfe86699.js",
+        "9384ca8de64c93b72d454049fdea1c1bbdf71e41"
+      ],
+      "entry.js": [
+        "web/entries/game.d1e70066b5e4f461.js",
+        "16e129d9065ea7fd32dccbc900a144ecc0514c90"
+      ],
+      "campaign.json": [
+        "web/data/campaign.4c48015c8663d89f.json",
+        "8b4d52fe3ee067a0842ad71a8e6855d68333bff4"
+      ],
+      "HONRO.html": [
+        "HONRO.html",
+        "742c0b8abf48d08822a1d4a822214ecadb01a000"
+      ],
+      "common5.js": [
+        "web/runtime/ordered-common-5.5cc8b281d7d4235d.js",
+        "6def2bf8c0c621ca92401158ddcdda6c11ac37fc"
+      ]
+    },
+    "files": {
+      "web/data/chapter-46-assets-parts.2553841ea84ccff0.json": {
+        "bytes": 605,
+        "sha256": "2553841ea84ccff083e204614aebd21f0f0ba8100cc57cf7cd9e6a32a93e81ba",
+        "git": "8e354e1f42f4e9c91c0b6ba692f4cfb4833f826d"
+      },
+      "web/data/chapter-46-assets-part-000.4cea44a59002b279.bin": {
+        "bytes": 4194304,
+        "sha256": "4cea44a59002b27932fa269283a785bdcc0c739dfa4f8ef0281f4ee1099bce67",
+        "git": "441e1eb6be773d03729ce3ef4102564e1db20673"
+      },
+      "web/data/chapter-46-assets-part-001.3abf0e6ca56b0562.bin": {
+        "bytes": 4194304,
+        "sha256": "3abf0e6ca56b056283c1dd8d6b1a778dfb12a71404ac851442cb873f121200dc",
+        "git": "9d9e3cc169f4b1ba7b957c46b3537c385640050a"
+      },
+      "web/data/chapter-46-assets-part-002.19800ca07bbc9efb.bin": {
+        "bytes": 2970094,
+        "sha256": "19800ca07bbc9efb22240622fc5c6376876950c2391eed0589c90fcea00e1a25",
+        "git": "0d1a166d03e3314063c789e04f429a54d272b155"
+      },
+      "web/data/campaign.d5311de3e3f8313c.json": {
+        "bytes": 55165,
+        "sha256": "d5311de3e3f8313c0ea892efefd8af48282717da9ab73c024db4d8ffb822e425",
+        "git": "8e020aa99de91a0c29f119ea934dd5cded334265"
+      },
+      "web/runtime/campaign.634098020acdb865.js": {
+        "bytes": 527,
+        "sha256": "634098020acdb8656ae77889c0be55ae28e318a7a2fac38edf5d3d8a6053a41e",
+        "git": "f71fcd66bee8a116cde7c6350c14c7ed62825c1f"
+      },
+      "web/entries/game.8a33d6ff12770aba.js": {
+        "bytes": 20483,
+        "sha256": "8a33d6ff12770aba1b143ba7495b6cd292706e0d8d5ffa12d3db3773b05a756b",
+        "git": "a86eabfd00241874353e2f3b0f9a548aff7dc5de"
+      },
+      "HONRO.html": {
+        "bytes": 17379,
+        "sha256": "91882bde3cb8e95e3595a614e8cbfd69c3b07dce91823b9c1618f3a37848fd06",
+        "git": "f7d95bfaf248f1428100169211b157989c907be4"
+      }
+    },
+    "wrapper": "web/runtime/campaign.634098020acdb865.js",
+    "localCanonicalManifest": {
+      "bytes": 8989423,
+      "sha256": "daff52589d9c32b475ec676b53524f1276f8c0fd69775a077b00af288c6a43d0",
+      "git": "d92959fd56bb66b0d0a5148009ce0a4b42e6ee96"
+    }
+  },
+  "scopeWorldX": [
+    -65,
+    9606
+  ],
+  "expectedActiveAB": {
+    "A": {
+      "files": {
+        "web/manifest.json": {
+          "bytes": 8816541,
+          "sha256": "60b939e2a2e58dcb9a1216b22c5208c88771fe217c49209c6644bb825678fb54"
+        },
+        "HONRO.html": {
+          "bytes": 17379,
+          "sha256": "5587d656ee5af0379d43537ecd9a6e7f0c9264d785997dd8a2800fc8fe5dc6da"
+        },
+        "web/entries/game.8ef0693f661485c8.js": {
+          "bytes": 20483,
+          "sha256": "8ef0693f661485c8f3deb505033ccbbc2906fb148813cfd63047a5eb3271cdab"
+        },
+        "web/data/campaign.b7ae34f5b0515023.json": {
+          "bytes": 55173,
+          "sha256": "b7ae34f5b05150239390d79241231e101f66d136f9ec4195d338919522b06e7a"
+        },
+        "web/data/chapter-46.2806e485c4c1e1b4.json": {
+          "bytes": 24682,
+          "sha256": "2806e485c4c1e1b4d94174b8324a2d534291c22c481c94960883a29643e9da02"
+        },
+        "web/data/chapter-46-assets-parts.a3595c48161a8bc1.json": {
+          "bytes": 765,
+          "sha256": "a3595c48161a8bc14dec5b1dea23dea0fda99fa39153a359d9ee83c5359516ea"
+        },
+        "web/data/chapter-46-assets-part-000.f7ebee97d8110e68.bin": {
+          "bytes": 4194304,
+          "sha256": "f7ebee97d8110e6805bf6fb6a58303332d3fd118a8e477f3b5de6c7e002064a2"
+        },
+        "web/data/chapter-46-assets-part-001.5213b80662dfa32e.bin": {
+          "bytes": 4194304,
+          "sha256": "5213b80662dfa32ee85b3d01d07dd0d2fb4fe33fa1ed3647ca94a85abce27ac6"
+        },
+        "web/data/chapter-46-assets-part-002.8be859e980ee1d29.bin": {
+          "bytes": 4194304,
+          "sha256": "8be859e980ee1d292718c73bd51206ea8fa0a887baa59fc67c5ec6b2c4cd0738"
+        },
+        "web/data/chapter-46-assets-part-003.ee5f50c994047cde.bin": {
+          "bytes": 2667958,
+          "sha256": "ee5f50c994047cde9851a35f503ddc56b395904698ecbef174d832a4eaa148a8"
+        }
+      },
+      "aggregate": {
+        "bytes": 15250870,
+        "sha256": "744e462e37916ce64513ef0a0fad39d90f45c6c4aa1be408973a2c475c1ada7f"
+      },
+      "parts": [
+        "web/data/chapter-46-assets-part-000.f7ebee97d8110e68.bin",
+        "web/data/chapter-46-assets-part-001.5213b80662dfa32e.bin",
+        "web/data/chapter-46-assets-part-002.8be859e980ee1d29.bin",
+        "web/data/chapter-46-assets-part-003.ee5f50c994047cde.bin"
+      ]
+    },
+    "B": {
+      "files": {
+        "web/manifest.json": {
+          "bytes": 8989227,
+          "sha256": "c1947fb7fcd6c805cbe265e9765758f22b0d179908c1d16ec5207396976727d5"
+        },
+        "HONRO.html": {
+          "bytes": 17379,
+          "sha256": "03a8fccbf4b0695e35434b4431bb0252eb163d3eb72fb452cecd73fdc033482d"
+        },
+        "web/entries/game.d1e70066b5e4f461.js": {
+          "bytes": 20483,
+          "sha256": "d1e70066b5e4f461a8ec84ba6163dae983f3a221bb0e7ee752c89040d5d97469"
+        },
+        "web/data/campaign.4c48015c8663d89f.json": {
+          "bytes": 55165,
+          "sha256": "4c48015c8663d89f16ea762cf23f488463a2e819a7330b3286f437927bb33504"
+        },
+        "web/data/chapter-46.2806e485c4c1e1b4.json": {
+          "bytes": 24682,
+          "sha256": "2806e485c4c1e1b4d94174b8324a2d534291c22c481c94960883a29643e9da02"
+        },
+        "web/data/chapter-46-assets-parts.044965c2886edcba.json": {
+          "bytes": 442,
+          "sha256": "044965c2886edcba81882f81542e627f0cf09cb139bc3968c906b5a105a91898"
+        },
+        "web/data/chapter-46-assets-part-000.3231a1522f2ebd22.bin": {
+          "bytes": 4194304,
+          "sha256": "3231a1522f2ebd22ce4c054179db2c3259328e325e5c0fbc6e1ac47986472005"
+        },
+        "web/data/chapter-46-assets-part-001.e0e4d62a5dd62e77.bin": {
+          "bytes": 10095,
+          "sha256": "e0e4d62a5dd62e77762966974e43f303dd50a2401730b40d2a6862f2d2c87f21"
+        }
+      },
+      "aggregate": {
+        "bytes": 4204399,
+        "sha256": "ad767bfeea8bd61b3eb906f1bcc31a64378fe3b8f905682eb737c2c5544fb2bf"
+      },
+      "parts": [
+        "web/data/chapter-46-assets-part-000.3231a1522f2ebd22.bin",
+        "web/data/chapter-46-assets-part-001.e0e4d62a5dd62e77.bin"
+      ]
+    }
+  },
+  "Esignature": "12076459:49cd404a",
+  "measureWorldX": {
+    "PC-deep": 2394,
+    "PC-west": 0,
+    "Mobile-SE": 4800
+  },
+  "extraMeasureWorldX": {
+    "Mobile-SE": [
+      7200
+    ]
+  },
+  "priorMatchedPose": {
+    "PC-deep": {
+      "desired": {
+        "x": 2048,
+        "y": 5500,
+        "scale": 0.35
+      },
+      "actual": {
+        "x": 2048,
+        "y": 5500,
+        "scale": 0.35
+      },
+      "viewport": {
+        "left": -9.142857142857338,
+        "right": 4105.142857142857,
+        "top": 4401.160714285714,
+        "bottom": 6598.839285714286
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 4416,
+        "bottom": 6744
+      },
+      "zoomLimits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "actorCount": 27,
+      "tide": null,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "physics": "cb6512695ecc16c3b1c7c10046aaa23b4c7b46014b0aed16cf888a6cc35ab1ed"
+    },
+    "Mobile-SE": {
+      "desired": {
+        "x": 1000000,
+        "y": 1000000,
+        "scale": 0.057352941176470586
+      },
+      "actual": {
+        "x": 4416,
+        "y": 6744,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": 1016,
+        "right": 7816,
+        "top": 1098.1746794871797,
+        "bottom": 12389.82532051282
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 4416,
+        "bottom": 6744
+      },
+      "zoomLimits": {
+        "min": 0.057352941176470586,
+        "max": 1.65,
+        "tactical": 0.057352941176470586,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "actorCount": 27,
+      "tide": null,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "physics": "cb6512695ecc16c3b1c7c10046aaa23b4c7b46014b0aed16cf888a6cc35ab1ed"
+    },
+    "PC-west": {
+      "desired": {
+        "x": 0,
+        "y": 5500,
+        "scale": 0.35
+      },
+      "actual": {
+        "x": 0,
+        "y": 5500,
+        "scale": 0.35
+      },
+      "viewport": {
+        "left": -2057.1428571428573,
+        "right": 2057.1428571428573,
+        "top": 4401.160714285714,
+        "bottom": 6598.839285714286
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 4416,
+        "bottom": 6744
+      },
+      "zoomLimits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "actorCount": 27,
+      "tide": null,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "physics": "cb6512695ecc16c3b1c7c10046aaa23b4c7b46014b0aed16cf888a6cc35ab1ed"
+    }
+  },
+  "priorMatchedRaw": {
+    "PC-deep": {
+      "A": {
+        "bytes": 707310,
+        "sha256": "f33980c4617d6af5b56fdfcd628721f39e840a6f6eea034497df4605b3c04477"
+      },
+      "B": {
+        "bytes": 512895,
+        "sha256": "f19874e5df911907865d2933136a728858a718c695f1934dbdeeef4b2040e56b"
+      }
+    },
+    "Mobile-SE": {
+      "A": {
+        "bytes": 463550,
+        "sha256": "87918d661e929f2d113a319a4eaa0e603965dd51db68d6570ebd7f41ecb4a44d"
+      },
+      "B": {
+        "bytes": 385136,
+        "sha256": "359ebbb1d7b935609405e9b414c16c1ccde4a4680e70a5dcad933da6180fd347"
+      }
+    },
+    "PC-west": {
+      "A": {
+        "bytes": 827914,
+        "sha256": "b8b3fa5164ca3602212ad17b8e4cc730395f79267402115b8a255fc8c9355ebd"
+      },
+      "B": {
+        "bytes": 528553,
+        "sha256": "8ee6489435d1dcf503478d76341902922c99bd090536b2baa992f217f7a26774"
+      }
+    }
+  }
+}
