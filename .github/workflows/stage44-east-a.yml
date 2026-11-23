@@ -1,0 +1,66 @@
+name: HONRO Stage44 east rocky shelf PC/M, exact public A-only capture
+on:
+  push:
+    branches: [qa/stage44-east-b59-live]
+    paths: [".github/workflows/stage44-east-a.yml","tools/stage44-east-a/**"]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  public-readback:
+    if: ${{ github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage44-east-b59-live' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+          fetch-depth: 2
+      - name: Exact release sole parent and successful declared Pages deploy
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json,subprocess as s,os
+          from pathlib import Path
+          P=json.loads(Path('tools/stage44-east-a/PINS.json').read_text())
+          r=P['release'];assert P['enabled'] and r and r['pages'] and r['job']
+          assert P['qaRef']==os.environ['GITHUB_REF'] and os.environ['GITHUB_EVENT_NAME']=='push'
+          def git(*args):return s.check_output(['git',*args],text=True,timeout=60).strip()
+          assert git('show','-s','--format=%P','HEAD')==r['head'] and git('rev-parse',r['head']+'^{tree}')==r['tree']
+          want={'.github/workflows/stage44-east-a.yml',*(f'tools/stage44-east-a/{x}'for x in ('PINS.json','observer.json','capture.py'))}
+          assert set(git('diff','--name-status','--no-renames',r['head'],'HEAD').splitlines())=={'A\t'+x for x in want}
+          def gh(url):return json.loads(s.check_output(['gh','api','repos/sys8994/honro/'+url],timeout=60))
+          run,job=gh('actions/runs/'+str(r['pages'])),gh('actions/jobs/'+str(r['job']))
+          assert run['head_sha']==job['head_sha']==r['head'] and run['head_branch']=='master' and run['conclusion']==job['conclusion']=='success' and job['run_id']==r['pages'] and any(t['name']=='Deploy to GitHub Pages' and t['conclusion']=='success'for t in job['steps'])
+          # Master may advance before Pages (or after the readback starts). It is observational only.
+          try: observed=gh('branches/master')['commit']['sha']
+          except (ValueError,KeyError,s.SubprocessError): observed=None
+          authority={'publishedHead':r['head'],'pages':r['pages'],'job':r['job'],'observedMaster':observed,
+                     'publishedEqualsMasterAtObservation':None if observed is None else observed==r['head']}
+          out=Path(os.environ['RUNNER_TEMP'])/'stage44-east';out.mkdir(exist_ok=True)
+          (out/'RUN-AUTHORITY.json').write_text(json.dumps(authority,indent=2)+'\n')
+          print(json.dumps(authority))
+          PY
+      - name: Actual anonymous PC/M east rocky shelf only, no candidate
+        run: |
+          set -euo pipefail
+          test -z "${GITHUB_TOKEN:-}${GH_TOKEN:-}"
+          python -m venv "$RUNNER_TEMP/honro-stage44-east-2c4ba6-venv"
+          V="$RUNNER_TEMP/honro-stage44-east-2c4ba6-venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          timeout 150s "$V" -m playwright install chromium
+          if ! timeout 15s "$V" -c 'from playwright.sync_api import sync_playwright; p=sync_playwright().start(); b=p.chromium.launch(headless=True); assert b.version=="151.0.7922.34"; b.close(); p.stop()'; then
+            timeout --kill-after=15s 150s "$V" -m playwright install-deps chromium
+          fi
+          "$V" tools/stage44-east-a/capture.py "$RUNNER_TEMP/stage44-east"
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage44-east-b59-live
+          path: ${{ runner.temp }}/stage44-east/
+          retention-days: 7
+          if-no-files-found: warn

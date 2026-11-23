@@ -1,0 +1,84 @@
+{
+  "enabled": true,
+  "origin": "https://sys8994.github.io/honro/",
+  "qaRef": "refs/heads/qa/stage44-east-b59-live",
+  "repo": "sys8994/honro",
+  "release": {
+    "head": "b59a47fbffc101c44f66225abb2980bbb756622c",
+    "tree": "1a2e208adf54f90f5ae30d78443aaa33debb9c77",
+    "pages": 45169477382,
+    "job": 137675827133,
+    "manifest": {
+      "git": "8a73532fcf12d288f60431cc1c815f9981b6439a"
+    }
+  },
+  "qualifiedRoutes": {
+    "web/data/chapter-44.53b2bdf2fded9347.json": {
+      "sha256": "53b2bdf2fded934726ba64e70549f7ed29e3fc5194f76f31989ac63b50ef81eb",
+      "bytes": 14528
+    },
+    "web/graphics/honro_authored_far-images-root-interior.7b6377c64ea476da.webp": {
+      "bytes": 90092,
+      "sha256": "7b6377c64ea476da11bbcbaee6fc8c98e67692723bf8ee7f18ab60c22709def7"
+    },
+    "web/runtime/HONRO_AUTHORED_FAR.cf4cf9c2e0932235.js": {
+      "bytes": 905,
+      "sha256": "cf4cf9c2e09322356f9d2f0e874d700718783c6eafc332049663fdda54250f69"
+    }
+  },
+  "stageMapAndPacket": [
+    "web/data/chapter-44.53b2bdf2fded9347.json",
+    "web/data/chapter-44-assets.670fbfb9d474d666.json"
+  ],
+  "physics": "b7c0d64490dfaae60ad5c6bc394d000d5c256ba56f9a7149abbbf3301f4d6546",
+  "nearAsset": {
+    "id": "act5:near:44",
+    "instance": "a5-near",
+    "scale": 3.130755064456722
+  },
+  "poses": {
+    "PC": {
+      "east-min": [
+        7120,
+        1313.5,
+        0.21176470588235294
+      ],
+      "east-close": [
+        7120,
+        1650,
+        0.5
+      ]
+    },
+    "M": {
+      "east-min": [
+        7120,
+        1313.5,
+        0.057352941176470586
+      ],
+      "east-close": [
+        7120,
+        1650,
+        0.18
+      ]
+    }
+  },
+  "routeProbe": {
+    "id": "a5-root-floor",
+    "controlTail": [
+      [
+        5744.14,
+        1819.53
+      ],
+      [
+        6109.38,
+        1812.89
+      ],
+      [
+        6700.39,
+        1733.2
+      ]
+    ],
+    "purpose": "Read-only route contact framing; no aesthetic proof imposed."
+  },
+  "shellGit": "d10d427a68f2b03aabd2f53a2a129a5253336518"
+}
