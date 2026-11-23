@@ -1,0 +1,71 @@
+name: Stage42 isolated surface+props review, no deploy
+on:
+  push:
+    branches: [qa/stage42-surface-restore-bf6-visual]
+    paths: [".github/workflows/stage42-surface-restore-review.yml", "tools/stage42-surface-restore-review/**"]
+permissions:
+  contents: read
+jobs:
+  review:
+    if: ${{ github.repository == 'sys8994/honro' && github.ref == 'refs/heads/qa/stage42-surface-restore-bf6-visual' }}
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        art: [small, full]
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      ART: ${{ matrix.art }}
+    steps:
+      - name: Pin exact bf6 release parent, side-by-side a6 author inputs and five new QA files
+        run: |
+          set -euo pipefail
+          test -z "${GITHUB_TOKEN:-}${GH_TOKEN:-}"
+          for A in "qa:$GITHUB_SHA:2" "old:a6b2c0db97c9ae6efe4d5372f2208bfdf695f4f4:1"; do
+            IFS=: read -r lane sha depth <<< "$A"
+            git init -q "$GITHUB_WORKSPACE/$lane"
+            GIT_TERMINAL_PROMPT=0 git -C "$GITHUB_WORKSPACE/$lane" -c credential.helper= -c http.extraHeader= fetch -q --depth="$depth" https://github.com/sys8994/honro.git "$sha"
+            git -C "$GITHUB_WORKSPACE/$lane" checkout -q --detach FETCH_HEAD
+          done
+          cd "$GITHUB_WORKSPACE/qa"
+          python3 - <<'PY'
+          import json,subprocess as s,os
+          from pathlib import Path
+          p=json.loads(Path('tools/stage42-surface-restore-review/PINS.json').read_text()); b=p['arms']['B']
+          assert p['enabled'] is True and os.environ['GITHUB_REF']==p['qaRef'] and os.environ['ART'] in p['variants']
+          git=lambda *a:s.check_output(['git',*a],text=True,timeout=60).strip()
+          assert git('rev-parse','HEAD')==os.environ['GITHUB_SHA'] and git('show','-s','--format=%P','HEAD')==b['head'] and git('rev-parse',b['head']+'^{tree}')==b['tree']
+          want={'.github/workflows/stage42-surface-restore-review.yml',*(f'tools/stage42-surface-restore-review/{n}' for n in ('PINS.json','observer.json','readback.py','derive.mjs'))}
+          assert set(git('diff','--name-status','--no-renames',b['head'],'HEAD').splitlines())=={'A\t'+x for x in want}
+          assert not git('status','--porcelain','--untracked-files=all')
+          assert git('rev-parse',b['head']+':shared/runtime/profile-store.js')=='88c3ccf0896a2f3d7a9a55f03ee1d246012fe345'
+          PY
+          git worktree add --detach "$GITHUB_WORKSPACE/new" "$(git rev-parse HEAD^)"
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: "22"
+      - name: Derive only the scoped two-source art and visual diagnostic packet
+        run: |
+          set -euo pipefail
+          mkdir "$RUNNER_TEMP/stage42-restore-out"
+          node "$GITHUB_WORKSPACE/qa/tools/stage42-surface-restore-review/derive.mjs" "$GITHUB_WORKSPACE/old" "$GITHUB_WORKSPACE/new" "$RUNNER_TEMP/stage42-restore-derive"
+          cp "$RUNNER_TEMP/stage42-restore-derive/DERIVATION.json" "$RUNNER_TEMP/stage42-restore-out/"
+      - name: PC/M true bf6 application baseline and separate Stage42-only route fixture
+        run: |
+          set -euo pipefail
+          test -z "${GITHUB_TOKEN:-}${GH_TOKEN:-}"
+          PY=$(find "${RUNNER_TOOL_CACHE}/Python" -maxdepth 4 -type f -path '*/3.12.*/x64/bin/python3.12' | sort -V | tail -1)
+          test -n "$PY"
+          "$PY" -m venv "$RUNNER_TEMP/honro-stage42-restore"
+          V="$RUNNER_TEMP/honro-stage42-restore/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+          "$V" "$GITHUB_WORKSPACE/qa/tools/stage42-surface-restore-review/readback.py" "$GITHUB_WORKSPACE/old" "$GITHUB_WORKSPACE/new" "$RUNNER_TEMP/stage42-restore-derive" "$RUNNER_TEMP/stage42-restore-out" "$ART"
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: stage42-restore-review-${{ matrix.art }}-no-deploy
+          path: ${{ runner.temp }}/stage42-restore-out/
+          retention-days: 7
+          if-no-files-found: warn
