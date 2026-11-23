@@ -1,0 +1,47 @@
+name: HONRO historical Stage40 east masonry R1 Chrome evidence (no deploy)
+on:
+  push:
+    branches: [qa/stage40-east-native-masonry-r1-3032-r2]
+    paths: [".github/workflows/stage40-east-native-masonry-r1-3032.yml", "tools/stage40-east-masonry-r1-readback/**"]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  native:
+    if: ${{ github.repository == 'sys8994/honro' && github.ref == 'refs/heads/qa/stage40-east-native-masonry-r1-3032-r2' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 19
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Verify official historical deploy and exact 3032 input
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          W=$(mktemp -d "$RUNNER_TEMP/s40east.XXXXXXXX"); echo "W=$W" >> "$GITHUB_ENV"
+          mkdir "$W/out"
+          python3 -B tools/stage40-east-masonry-r1-readback/probe.py pre "$W"
+      - name: Native Chromium same-camera eastArrival read-only R1 test
+        run: |
+          set -euo pipefail
+          test -z "${GITHUB_TOKEN:-}${GH_TOKEN:-}"
+          python3 -m venv "$W/venv"
+          V="$W/venv/bin/python"
+          "$V" -m pip --isolated --disable-pip-version-check install --index-url https://pypi.org/simple/ --no-deps --only-binary=:all: playwright==1.62.0 Pillow==13.0.0 pyee==13.0.1 greenlet==3.5.5 typing-extensions==4.16.0
+          "$V" -m pip check
+          export PLAYWRIGHT_BROWSERS_PATH="$W/browsers"
+          unset PLAYWRIGHT_NODEJS_PATH PLAYWRIGHT_DOWNLOAD_HOST CHROMIUM_DOWNLOAD_HOST
+          "$V" -m playwright install --with-deps chromium >"$W/out/chromium.log" 2>&1
+          "$V" -B tools/stage40-east-masonry-r1-readback/probe.py native "$W"
+      - if: ${{ always() && env.W != '' }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: stage40-3032-east-masonry-r1-native-no-deploy
+          path: ${{ env.W }}/out/
+          if-no-files-found: warn
+          retention-days: 7
