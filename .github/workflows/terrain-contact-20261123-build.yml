@@ -1,0 +1,88 @@
+name: Verify campaign terrain contact before publication
+run-name: Terrain contact verification · b7a3ecd3
+on:
+  push:
+    branches: ['qa/contact-art-collision-20261123-build']
+permissions:
+  contents: write
+concurrency:
+  group: terrain-contact-20261123
+  cancel-in-progress: false
+jobs:
+  verify:
+    if: github.repository == 'sys8994/honro' && github.ref == 'refs/heads/qa/contact-art-collision-20261123-build'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 17
+    env:
+      SOURCE_SHA: b7a3ecd3f33309c6f11c0106a9bf228d76487937
+      SOURCE_TREE: 41350b5546c8261c41b8c9689ce9ba4ea15b9438
+      GENERATED_TREE: 09c3663fd8e2bffb5a9c0b9471c010ee7a8dbe1c
+      GENERATED_REF: refs/heads/repair/contact-art-collision-20261123-generated
+      OUT: _local/reports/contact-art-collision-20261123
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          ref: ${{ env.SOURCE_SHA }}
+          fetch-depth: 1
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Verify exact source and focused contact contracts
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$SOURCE_SHA"
+          test "$(git rev-parse HEAD^{tree})" = "$SOURCE_TREE"
+          test ! -e .github/workflows/terrain-contact-20261123-build.yml
+          mkdir -p "$OUT"
+          { git rev-parse HEAD HEAD^{tree}; node --version; python --version; } > "$OUT/source.txt"
+          sha256sum package-lock.json game/package-lock.json >> "$OUT/source.txt"
+          npm ci
+          npm ci --prefix game
+          {
+            node game/tests/terrain-contact-ink.mjs
+            node tests/act5-terrain-contact.mjs
+            node tests/terrain-readability.mjs
+            node tests/one-way-platform-physics.mjs
+            python -X utf8 tests/release-guard.py
+          } 2>&1 | tee "$OUT/contracts.log"
+      - name: Build official graph and bind exact generated tree
+        run: |
+          set -euo pipefail
+          npm run build | tee "$OUT/build.log"
+          sha256sum HONRO.html HONRO_WORKSHOP.html index.html web/manifest.json > "$OUT/build.sha256"
+          git add -A -- web HONRO.html HONRO_WORKSHOP.html index.html
+          git diff --cached --check
+          git diff --cached --name-status > "$OUT/generated-paths.txt"
+          actual=$(git write-tree)
+          printf 'expected %s\nactual   %s\n' "$GENERATED_TREE" "$actual" | tee "$OUT/tree.txt"
+          test "$actual" = "$GENERATED_TREE"
+      - name: Chromium route recovery on the same generated build
+        run: |
+          set -euo pipefail
+          python -m pip install 'playwright==1.58.0'
+          python -m playwright install --with-deps chromium
+          python -X utf8 tests/act5-route-recovery-browser.py --skip-save | tee "$OUT/browser.log"
+          HONRO_ACT5_CHECK=42,43,44,46,47,50 python -X utf8 tests/act5-encounter-browser.py | tee "$OUT/browser-objectives.log"
+          sha256sum -c "$OUT/build.sha256"
+          test "$(git write-tree)" = "$GENERATED_TREE"
+      - name: Preserve the approved generated child on one new repair verification ref
+        run: |
+          set -euo pipefail
+          test -z "$(git ls-remote origin "$GENERATED_REF")"
+          commit=$(git -c user.name='honro release automation' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit-tree "$GENERATED_TREE" -p "$SOURCE_SHA" -m "Build verified campaign terrain contact candidate")
+          test "$(git rev-parse "$commit^")" = "$SOURCE_SHA"
+          git push origin "$commit:$GENERATED_REF"
+          printf '%s\n' "$commit" | tee "$OUT/generated-commit.txt"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: terrain-contact-b7a3ecd3-proof
+          path: |
+            _local/reports/contact-art-collision-20261123/
+            _local/reports/act5/recovery/local.json
+            _local/reports/act5/combat-checkpoints.json
+          retention-days: 7
