@@ -1,0 +1,90 @@
+name: HONRO Stage44 render-only recovery validation (no deploy)
+on:
+  push:
+    branches: [qa/stage44-a6-render-suppression-predeploy-r2]
+    paths: [".github/workflows/stage44-a6-render-suppression.yml", "tools/stage44-a6-render-suppression/**"]
+permissions:
+  contents: read
+jobs:
+  native-stage44:
+    if: ${{ true && github.repository == 'sys8994/honro' && github.ref == 'refs/heads/qa/stage44-a6-render-suppression-predeploy-r2' }}
+    runs-on: ubuntu-22.04
+    timeout-minutes: 17
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+          fetch-depth: 2
+          path: qa
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Pull exact anonymous stock and candidate QA inputs
+        run: |
+          set -euo pipefail
+          test -z "${GITHUB_TOKEN:-}${GH_TOKEN:-}"
+          Q="$GITHUB_WORKSPACE/qa"; T="$Q/tools/stage44-a6-render-suppression"
+          W=$(mktemp -d "$RUNNER_TEMP/s44-render.XXXXXXXX"); mkdir "$W/out"
+          PY=$(find "${RUNNER_TOOL_CACHE}/Python" -maxdepth 4 -type f -path '*/3.12.*/x64/bin/python3.12' | sort -V | tail -1)
+          test -n "$PY" && test -x "$PY"
+          "$PY" - "$T/PINS.json" <<'PY'
+          import json,os,sys
+          p=json.load(open(sys.argv[1]))
+          assert p['enabled'] is True and os.environ['GITHUB_REF']==p['qaRef']
+          PY
+          echo "Q=$Q" >> "$GITHUB_ENV"
+          echo "T=$T" >> "$GITHUB_ENV"
+          echo "W=$W" >> "$GITHUB_ENV"
+          echo "STOCKPY=$PY" >> "$GITHUB_ENV"
+          for item in "A:f6eaaa606914cd8f431ae0e52dd1e4b474b485c8:1" "B:a6b2c0db97c9ae6efe4d5372f2208bfdf695f4f4:1" "C:f53d866d290c3723cceed0201fbf8ceb3098d6b9:2"; do
+            IFS=: read -r lane rev depth <<< "$item"
+            git init -q "$W/$lane"
+            GIT_TERMINAL_PROMPT=0 git -C "$W/$lane" -c credential.helper= -c http.extraHeader= fetch -q --depth="$depth" https://github.com/sys8994/honro.git "$rev"
+            git -C "$W/$lane" -c core.hooksPath=/dev/null checkout -q --detach FETCH_HEAD
+          done
+          "$PY" -m venv "$W/venv"; V="$W/venv/bin/python"
+          "$V" -m pip --isolated --disable-pip-version-check install --index-url https://pypi.org/simple/ --no-deps --only-binary=:all: --no-cache-dir playwright==1.62.0 Pillow==13.0.0 pyee==13.0.1 greenlet==3.5.5 typing-extensions==4.16.0
+          "$V" -m pip check
+          "$V" "$T/candidate.py" pre "$W" "$Q"
+      - name: One normal candidate compile and exact renderer-only manifest closure
+        run: |
+          set -euo pipefail
+          test -z "${GITHUB_TOKEN:-}${GH_TOKEN:-}"
+          V="$W/venv/bin/python"
+          export npm_config_userconfig="$(mktemp "$W/npm-user.XXXXXXXX")"
+          export npm_config_globalconfig="$(mktemp "$W/npm-global.XXXXXXXX")"
+          test -f "$npm_config_userconfig" && test -f "$npm_config_globalconfig" && test ! "$npm_config_userconfig" -ef "$npm_config_globalconfig"
+          export npm_config_registry=https://registry.npmjs.org/ npm_config_cache="$W/npm-cache"
+          export npm_config_audit=false npm_config_fund=false npm_config_update_notifier=false
+          cd "$W/C"
+          npm ci --ignore-scripts --no-audit --no-fund > "$W/out/npm-root.log" 2>&1
+          npm ci --prefix game --ignore-scripts --no-audit --no-fund > "$W/out/npm-game.log" 2>&1
+          node tests/stage44-under-visual-recovery.mjs > "$W/out/renderer-unit.log" 2>&1
+          npm --offline run build > "$W/out/build.log" 2>&1
+          "$V" "$T/candidate.py" graph "$W"
+          node "$T/graph.mjs" "$W"
+      - name: Native exact PC/M fresh and f6/a6 title Continue into candidate
+        run: |
+          set -euo pipefail
+          test -z "${GITHUB_TOKEN:-}${GH_TOKEN:-}"
+          unset PLAYWRIGHT_NODEJS_PATH PLAYWRIGHT_DOWNLOAD_HOST CHROMIUM_DOWNLOAD_HOST
+          export PLAYWRIGHT_BROWSERS_PATH="$W/browsers"
+          V="$W/venv/bin/python"
+          "$V" -m playwright install --with-deps chromium > "$W/out/chromium-install.log" 2>&1
+          fc-match -s :lang=ko > "$W/out/native-ko-font-stack.log"
+          "$V" "$T/candidate.py" native "$W"
+      - if: ${{ always() && env.W != '' }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: stage44-a6-render-suppression-predeploy-r2-no-deploy
+          path: |
+            ${{ env.W }}/out/*.log
+            ${{ env.W }}/out/SOURCE.json
+            ${{ env.W }}/out/ORDERED.json
+            ${{ env.W }}/out/PREDEPLOY-NATIVE.json
+            ${{ env.W }}/out/CONTINUE-READBACK.json
+            ${{ env.W }}/out/*.png
+          retention-days: 7
+          if-no-files-found: warn

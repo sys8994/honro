@@ -1,0 +1,96 @@
+{
+  "enabled": true,
+  "qaRef": "refs/heads/qa/stage44-a6-render-suppression-predeploy-r2",
+  "origin": "https://sys8994.github.io/honro/",
+  "run": 45098872485,
+  "job": 137445355086,
+  "pagesArtifact": 14784383258,
+  "chromium": "151.0.7922.34",
+  "physics": "b7c0d64490dfaae60ad5c6bc394d000d5c256ba56f9a7149abbbf3301f4d6546",
+  "poses": {
+    "PC": [
+      -320,
+      2200,
+      0.5
+    ],
+    "M": [
+      -320,
+      1313.5,
+      0.057352941176470586
+    ]
+  },
+  "Araw": {
+    "PC": "6725a36f0d3722f9ecde121729a9596fa70ae1f8eb09b2e21425719f01ecc5f4",
+    "M": "35739ed7fe9a5d8e0e6bb5a74b57699d3d0fce19fbc109f175f41813c1dbf1d8"
+  },
+  "observerSHA256": "537cb36e8ad5e6017326ae944b6bdfd25459672e57de613030a7552cd3ee0468",
+  "arms": {
+    "A": {
+      "head": "f6eaaa606914cd8f431ae0e52dd1e4b474b485c8",
+      "tree": "ddbd4d3f90a9c3a6b7e9f37ecbd42e28ad72ebb8",
+      "map": "web/data/chapter-44.48354b7c0547c1a7.json",
+      "campaign": "web/data/campaign.87da363001067c02.json",
+      "provider": "web/data/chapter-44-assets.ddddc05a5f764d6e.json",
+      "files": {
+        "HONRO.html": "7316f28f1348dc3debb460e5ac9d07318268f80283e792c0f3e97c211ad3c48b",
+        "web/data/chapter-44.48354b7c0547c1a7.json": "48354b7c0547c1a743531f79b0128e4fc56cb3d5973d7f8a17d40e5c232e2e68",
+        "web/data/chapter-44-assets.ddddc05a5f764d6e.json": "ddddc05a5f764d6eee5e48602718f31a89008cc377ff188d6c3aa4b3a4cf1cdb",
+        "web/graphics/honro_authored_far-images-root-interior.7b6377c64ea476da.webp": "7b6377c64ea476da11bbcbaee6fc8c98e67692723bf8ee7f18ab60c22709def7",
+        "web/manifest.json": "f4fb50930e9ab8c070875412bd07d1363c52c42f90530194f8f7a8c3c6ba6917",
+        "web/runtime/HONRO_AUTHORED_FAR.cf4cf9c2e0932235.js": "cf4cf9c2e09322356f9d2f0e874d700718783c6eafc332049663fdda54250f69",
+        "web/runtime/ordered-common-18.4831815091012b42.js": "4831815091012b426ed3973ce2de1f4c896414383be3b5a4c782bcde29f05ffa",
+        "web/data/campaign.87da363001067c02.json": "87da363001067c02b5986f1fb3fab035c9017b874482ce44547f852b13f6a8c6",
+        "web/entries/game.6c6702dd57c82b91.js": "6c6702dd57c82b910e841be2e96290be508b43fad5da79f86f8a15fdaf910051",
+        "web/runtime/campaign.718c7f3ee1db9da7.js": "718c7f3ee1db9da757cd2c94caa1c97958128687acefcf594bc4cab281f0a64b",
+        "web/runtime/ordered-common-15.23e61c9f6bb8a95b.js": "23e61c9f6bb8a95b55d7e87dff8f02b2c25e5f23abc66ec8df7b59c067894fe0"
+      }
+    },
+    "B": {
+      "head": "a6b2c0db97c9ae6efe4d5372f2208bfdf695f4f4",
+      "tree": "4fa185a738677fc252c8af4340a90ce18ab7895e",
+      "map": "web/data/chapter-44.53b2bdf2fded9347.json",
+      "campaign": "web/data/campaign.b7ae34f5b0515023.json",
+      "provider": "web/data/chapter-44-assets-parts.78cf9cac37e639be.json",
+      "files": {
+        "HONRO.html": "5587d656ee5af0379d43537ecd9a6e7f0c9264d785997dd8a2800fc8fe5dc6da",
+        "web/data/chapter-44.53b2bdf2fded9347.json": "53b2bdf2fded934726ba64e70549f7ed29e3fc5194f76f31989ac63b50ef81eb",
+        "web/data/chapter-44-assets-parts.78cf9cac37e639be.json": "78cf9cac37e639be93a7ca0f355211e2bdd7052c6be883045b06fce897518e44",
+        "web/data/chapter-44-assets-part-000.ac5c9ed02d770b03.bin": "ac5c9ed02d770b03465dab45186b5855520037f1c9a4e4a04e5161b4c1c4e1ef",
+        "web/data/chapter-44-assets-part-001.19e3a4fce68e20d3.bin": "19e3a4fce68e20d3ee0981c031a518f7b683187ecb891bb0f4e292cbde951248",
+        "web/graphics/honro_authored_far-images-root-interior.7b6377c64ea476da.webp": "7b6377c64ea476da11bbcbaee6fc8c98e67692723bf8ee7f18ab60c22709def7",
+        "web/manifest.json": "60b939e2a2e58dcb9a1216b22c5208c88771fe217c49209c6644bb825678fb54",
+        "web/runtime/HONRO_AUTHORED_FAR.cf4cf9c2e0932235.js": "cf4cf9c2e09322356f9d2f0e874d700718783c6eafc332049663fdda54250f69",
+        "web/runtime/ordered-common-18.4831815091012b42.js": "4831815091012b426ed3973ce2de1f4c896414383be3b5a4c782bcde29f05ffa",
+        "web/runtime/ordered-common-15.23e61c9f6bb8a95b.js": "23e61c9f6bb8a95b55d7e87dff8f02b2c25e5f23abc66ec8df7b59c067894fe0",
+        "web/data/campaign.b7ae34f5b0515023.json": "b7ae34f5b05150239390d79241231e101f66d136f9ec4195d338919522b06e7a",
+        "web/runtime/campaign.bd5c5513dcae5285.js": "bd5c5513dcae52854933fd652f484441984debf8ba4675286656582bf93d895e",
+        "web/entries/game.8ef0693f661485c8.js": "8ef0693f661485c8f3deb505033ccbbc2906fb148813cfd63047a5eb3271cdab"
+      }
+    }
+  },
+  "freshReview": {
+    "officialRun": 45101163983,
+    "mobileA": "35739ed7fe9a5d8e0e6bb5a74b57699d3d0fce19fbc109f175f41813c1dbf1d8",
+    "mobileB": "1f49c8945575b896d2c7a5aae2b8609da2054325176a6e0137613b30ea104a90"
+  },
+  "candidate": {
+    "head": "f53d866d290c3723cceed0201fbf8ceb3098d6b9",
+    "tree": "c30b739d5a789c5e4705d3da6c3c868e0e31e80b",
+    "source": {
+      "act5-edge-art.js": {
+        "path": "shared/runtime/act5-edge-art.js",
+        "stock": "461571b0d86e63ad1fee411d8c2cb34382d150a7",
+        "candidate": "46bfbacb32c798464d05a57a560e9faad86f561d"
+      }
+    },
+    "test": {
+      "path": "tests/stage44-under-visual-recovery.mjs",
+      "git": "d8675bd4660e4c06cbe4a8817c7b594cb1ad45b6"
+    }
+  },
+  "closeWestPC": [
+    -120,
+    2000,
+    1.65
+  ]
+}
