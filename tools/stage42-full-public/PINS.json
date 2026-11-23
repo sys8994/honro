@@ -1,0 +1,205 @@
+{
+  "chrome": "151.0.7922.34",
+  "observerSHA256": "7c64522c0c84866e0d2516ca18ed81e12a9f7b348a26fa49fb40f9516a29a24a",
+  "cameraModes": {
+    "west": {
+      "mode": "west",
+      "dx": -1,
+      "dy": 0
+    },
+    "south": {
+      "mode": "south",
+      "dx": 0,
+      "dy": 1
+    },
+    "low-east": {
+      "mode": "ordinary",
+      "dx": 0,
+      "dy": 0
+    },
+    "skyway-se": {
+      "mode": "skyway-se",
+      "dx": 1,
+      "dy": 1
+    }
+  },
+  "devices": {
+    "PC": {
+      "size": [
+        1440,
+        900
+      ],
+      "backing": [
+        1440,
+        769
+      ],
+      "views": {
+        "west": [
+          -320,
+          1430.5,
+          0.21176470588235294
+        ],
+        "south": [
+          3250,
+          3101,
+          0.21176470588235294
+        ],
+        "low-east": [
+          4215,
+          2390,
+          0.88
+        ],
+        "skyway-se": [
+          6820,
+          3101,
+          0.21176470588235294
+        ]
+      }
+    },
+    "M": {
+      "size": [
+        390,
+        844
+      ],
+      "backing": [
+        390,
+        648
+      ],
+      "views": {
+        "west": [
+          -320,
+          1430.5,
+          0.057352941176470586
+        ],
+        "south": [
+          3250,
+          3101,
+          0.057352941176470586
+        ],
+        "low-east": [
+          4205,
+          2385,
+          0.5
+        ],
+        "skyway-se": [
+          6820,
+          3101,
+          0.057352941176470586
+        ]
+      }
+    }
+  },
+  "physics": "8b414b90e43c7f7e1ea685a254b4fa4cd6d5db525ce96083c39059ff5433ba0f",
+  "stageFar": {
+    "key": "valleyFar",
+    "config": "web/data/HONRO_AUTHORED_FAR.b014b75b5dd7973d.json",
+    "configGit": "bd63d829d22cbf8084e8d7f550dccd68ecd6a9e4",
+    "path": "web/graphics/honro_authored_far-images-valleyFar.4fd65fd6a65b0dd4.webp"
+  },
+  "beforeCommon5": {
+    "path": "web/runtime/ordered-common-5.33fb43a3885f44c2.js",
+    "git": "d3ec6608dcb40b8a1ca9fcd1ea9daf3d4bbbbe5f"
+  },
+  "enabled": true,
+  "qaRef": "refs/heads/qa/stage42-2c4-full-public-readback-r5",
+  "publicRoot": "https://sys8994.github.io/honro/",
+  "release": {
+    "head": "df62145bea2d4ebdd642f5e39f1eda7b19eb7ae2",
+    "tree": "2d6d17c547b67a8d52f1f4cc92e0444475e99210",
+    "pages": 45136805274,
+    "job": 137565600594,
+    "completedUTC": "2026-11-23T08:14:52.1722717Z",
+    "manifest": {
+      "bytes": 9669643,
+      "sha256": "efc2ed7c1ea530515b9f870d9db76a4fe604375446a75476af7494f979550265"
+    }
+  },
+  "nativeOracle": {
+    "run": 45133073788,
+    "artifact": 14798828031,
+    "readbackSHA256": "cba0590f0577067d8b3779708d2b9570c882ef16eb24fab3d0581a240413a2d6",
+    "pairs": {
+      "PC": {
+        "west": {
+          "raw": "a77b170b7f804e8dfa51c2a18910913f1621ee733caf0b9ab5b2a51f329c1101",
+          "dom": "cd4ac793011b10688c09886cee2a65073221e497c179c41b7de424443aa57bd5"
+        },
+        "south": {
+          "raw": "78595416ccb1697e64370243c382670720772acdfa19f60bed48dc7e65baced4",
+          "dom": "c3db1f6c69e71f4a4986cd2883782a36865de21d8a697e6474aa7b1729f3740d"
+        },
+        "low-east": {
+          "raw": "9dd315d8b853a4cb15dd6e68f562ba81854ba9757d9b85431f90d72c1ef6507f",
+          "dom": "ff5b8795b13ad8b6c8191ae83b952bd9339dd8fe985021e7733b66df3f4319a3"
+        },
+        "skyway-se": {
+          "raw": "c285bd786128d5df3592c91cd6bc091e8b61b3161bb35e5fd1580f78d1e23c7c",
+          "dom": "76875cd9a9fd0375fbf716aee90ce7333339815c98b92030ce252d8ec8bd4f85"
+        }
+      },
+      "M": {
+        "west": {
+          "raw": "5d1165998dca245c3cc6816180c1cf0fd2af9d5f327f9ca5d74c6e4df95a65fe",
+          "dom": "f6802431c9c6aff24065a3c3611c505123894a21f61e70adabf9edf19b688769"
+        },
+        "south": {
+          "raw": "fef7d026b9d7fc6f5ad82f3fec65c9ce5430b67d76d328f705d39bbc81d0f7b3",
+          "dom": "6eea52f6376a6e821c3f035ba19d693c214849baad86be35ad0c1906229373fd"
+        },
+        "low-east": {
+          "raw": "7b950b1e7dd54da8f0b58ca52dbb114aacdc1384108b52a8cd32bfcd62a8ee47",
+          "dom": "1c4dcfd69150fbf02f2d4ac53dc85a324b0a3ba3b72cb94f0356544149d298fa"
+        },
+        "skyway-se": {
+          "raw": "5bfbcadcd78ee1dd7d907e5d45054f486c8a75984af512901b447075620855d2",
+          "dom": "f619b57bdd5b6328476ac6db27a7dd76ee709cc54244421bf2edc54fb82bd78e"
+        }
+      }
+    }
+  },
+  "stock": {
+    "tree": "7f7395fe024388688e07f42e07c30d30d3ff3c81",
+    "head": "2c4ba6cda11ad00c7edc565ef42bc41568f066a1",
+    "campaign": "web/data/campaign.4c0d0092bc3153e2.json",
+    "files": {
+      "web/runtime/HONRO_AUTHORED_FAR.cf4cf9c2e0932235.js": "cf4cf9c2e09322356f9d2f0e874d700718783c6eafc332049663fdda54250f69",
+      "web/runtime/ordered-common-15.23e61c9f6bb8a95b.js": "23e61c9f6bb8a95b55d7e87dff8f02b2c25e5f23abc66ec8df7b59c067894fe0",
+      "web/data/chapter-42.0802015e8ba99d11.json": "0802015e8ba99d11a8ece1f14186b3db6a4a7d3d32076e64ca120300f50c7f50",
+      "web/data/chapter-42-assets.5c0087eadb28e00c.json": "5c0087eadb28e00c40163efded83831aab5b4d826ded45bc1efb97c0b7718bf7",
+      "web/data/HONRO_AUTHORED_FAR.b014b75b5dd7973d.json": "b014b75b5dd7973d864f372fa0c2b024aec302a175f5f1f99c0fc9dc839dbc82",
+      "web/graphics/honro_authored_far-images-valleyFar.4fd65fd6a65b0dd4.webp": "4fd65fd6a65b0dd405f7557bd939d60d1738c713e385f2245685b5719687604f",
+      "web/runtime/ordered-common-18.326be34080f88678.js": "326be34080f88678701ead4cfa54a7c327027fa8ab1d690d8993ba414a93b62f",
+      "web/data/campaign.4c0d0092bc3153e2.json": "4c0d0092bc3153e23c93039264979b0c33476f9db45e41ac178c4d55e7f18e04",
+      "HONRO.html": "036f2052d126fb703fbd9cc153620d93868e8aa2246fcd1774b9821a269ad181",
+      "web/runtime/campaign.12c7a3c08c76fe9e.js": "12c7a3c08c76fe9eec2432d12c646219e9c53cc53d5ab469625c812b11496bf3",
+      "web/entries/game.7cd8803e41bf231d.js": "7cd8803e41bf231de9f243a953135fb72dd5b8746cc37b3406e15451766dba7d"
+    },
+    "map": "web/data/chapter-42.0802015e8ba99d11.json",
+    "provider": "web/data/chapter-42-assets.5c0087eadb28e00c.json",
+    "owner": "1382117:dec691ec",
+    "manifestGit": "42a4c459df7a7d2e5456dfb1670a0b02f7f85494"
+  },
+  "fullSignature": "1583179:6d65aa38",
+  "publicMap": "web/data/chapter-42.0802015e8ba99d11.json",
+  "publicProvider": "web/data/chapter-42-assets.43d364e09f6f65ff.json",
+  "publicCampaign": "web/data/campaign.19f1604a71ae2df5.json",
+  "publicBuild": {
+    "HONRO.html": "d93a12a2ab72b1afe2cee3dd35fb7a9c016161670b2b2ed0cb09d31243ba31ad",
+    "web/entries/game.978c9015f73cf270.js": "978c9015f73cf270ee7da5e0e74990f494237d7cd8f68dc94a98ae4cb2b57ea5",
+    "web/data/campaign.19f1604a71ae2df5.json": "19f1604a71ae2df582bdc8a5d2d96d309587aa07438294ae19beb2e640be0231",
+    "web/data/chapter-42-assets.43d364e09f6f65ff.json": "43d364e09f6f65ff0ca299b3e23834decc00060dfea9c6271e3ce53dce577fc3",
+    "web/data/chapter-42.0802015e8ba99d11.json": "0802015e8ba99d11a8ece1f14186b3db6a4a7d3d32076e64ca120300f50c7f50",
+    "web/graphics/honro_authored_far-images-valleyFar.4fd65fd6a65b0dd4.webp": "4fd65fd6a65b0dd405f7557bd939d60d1738c713e385f2245685b5719687604f",
+    "web/data/HONRO_AUTHORED_FAR.b014b75b5dd7973d.json": "b014b75b5dd7973d864f372fa0c2b024aec302a175f5f1f99c0fc9dc839dbc82",
+    "web/runtime/campaign.1522ee29b2e7fca8.js": "1522ee29b2e7fca839b490635bef0df52f336e98f8c9b7d8c1eda9d584cba3c7",
+    "HONRO_WORKSHOP.html": "7f44e83e2b5d2c6e427ebd20d7f64acf62e53ec3ebe48bd85c081dc11c727599",
+    "index.html": "d93a12a2ab72b1afe2cee3dd35fb7a9c016161670b2b2ed0cb09d31243ba31ad",
+    "web/entries/game.cb7f434fd7016eac.html": "cb7f434fd7016eac0bef6a7dd6dabf178ecd3a7ac0acf1e99eb537087a3ae481",
+    "web/runtime/ordered-common-5.48e7e130f804907d.js": "48e7e130f804907d17530287b2749fa0b9f5088efa84925e85a0e23c2702aa06"
+  },
+  "protectedPeerSHA256": {
+    "web/data/chapter-40-assets.6052a7e4526580b8.json": "6052a7e4526580b8a12b616bac4863d454f7e1aaa179770176118cedbb2d877b",
+    "web/data/chapter-40.5f4b6c4c311adc05.json": "5f4b6c4c311adc0508920712018dadd7262c69c17b8d1b955628bdd8ce7d98e0",
+    "web/runtime/ordered-common-12.8aea44e8258f406c.js": "8aea44e8258f406c40b596d2496d98b78cc0d98298263ddd947bd3a5490d652e"
+  }
+}
