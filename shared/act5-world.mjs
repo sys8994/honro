@@ -113,6 +113,8 @@ export async function makeAct5(){
  const stage48Body=JSON.parse(await readFile(new URL('./assets/environment/act5/stage48-continuous-v11-bleed.json',import.meta.url),'utf8'));
  const stage45Body=JSON.parse(await readFile(new URL('./assets/environment/act5/stage45-root-body.json',import.meta.url),'utf8'));
  const stage44Roots=JSON.parse(await readFile(new URL('./assets/environment/act5/stage44-root-exterior.json',import.meta.url),'utf8'));
+ // Stage44 underside: the approved Gwirim root body recoloured to the Stage44 plate (tools/act5/build-stage44-underside.py).
+ const stage44Under=JSON.parse(await readFile(new URL('./assets/environment/act5/stage44-underside.json',import.meta.url),'utf8'));
  const library=[],stages=[],content=[];
  for(const [i,chapter] of chapters.entries()){
   const id=41+i,source=imports[i],g=terrain[i];
@@ -129,6 +131,7 @@ export async function makeAct5(){
   const artworkScale=g.width/view[2],enclosed=chapter.theme==='cave',backdrop=enclosed?'temple':chapter.theme;
   library.push({id:assetId,name:chapter.name+' · 근경',category:'rock',visual:[],collision:[],sockets:[],tags:['terrain','act5'],anchor:{x:0,y:0},params:{sourceSha256:sha256},
    ...(id===46?{shaftExterior:stage46Exterior,shaftProtected:stage46Protected,shaftExteriorParts:stage46ExteriorParts,shaftTree:stage46Tree}:{}),...(id===43?{nativeContinuity:stage43Continuity}:{}),...(id===50?{shaftExterior:stage50Exterior,sourcePreserved:stage50Protection.sourcePreserved}:{}),...(id===49?{shaftExterior:stage49Exterior,sourcePreserved:stage49Protection.sourcePreserved}:{}),...(id===47?{shaftExterior:stage47Exterior}:{}),...(id===48?{continuousBody:stage48Body,compositionMasks:stage48Composition,jointBody:stage48Joint,jointRegion:stage48JointRegion.clip,sourceSeam:stage48Seam.clip,sourceNativeClips:stage48Seam.sourceNativeClips,supportClip:stage48Support.clip}:{}),...(id===45?{continuousBody:stage45Body,depthClips:stage45DepthClips,preservedClips:stage45Clips}:{}),...(id===44?{rootExterior:stage44Roots,rootUpperClip:stage44CanopyBase,upperCanopy:stage44Canopy}:{}),...(id===41?{campExterior,campSourceCoverage}:{}),...(id===42?{edgeWall:stage42Wall,edgeSurface:stage42Surface}:{}),bounds,reference:{heightM:view[3]*artworkScale/60,bounds,foot:{x:0,y:view[3]},scaleRange:[1,8],backgroundRange:[1,8]},vector:{...vector,root:vectorPaths(vector.root),...(Object.keys(vector.symbols).length?{symbols:Object.fromEntries(Object.entries(vector.symbols).map(([key,node])=>[key,vectorPaths(node)]))}:{})}});
+  if(id===44)library.push({...stage44Under,tags:['terrain','act5'],category:'rock',visual:[],collision:[],sockets:[]});
   const path=(points)=>points.map(toWorld);
   const surfaces=g.lines.map(([key,points])=>({
    id:'a5-'+key,name:key,type:groundIds.has(key)?'ground':'platform',oneWay:!groundIds.has(key),
@@ -220,7 +223,7 @@ export async function makeAct5(){
    metadata:{stageId:id,act:5,actStage:i+1,campaign:true},layers:layerIds.map(id=>({id,name:id,visible:true,locked:false})),
    terrainDomainVersion:1,playBounds:{left:0,top:0,right:g.width,bottom:height},
    terrainBounds:{left:-1800,top:-2400,right:g.width+1800,bottom:height+2200},
-   terrains:surfaces,materials:[],elements:[{id:'a5-near',assetId,x:0,y:0,scale:artworkScale,rotation:0,layer:'structural-back',depthLayer:'L1',visualRole:'scenery'}],
+   terrains:surfaces,materials:[],elements:[...(id===44?[{id:'a5-under',assetId:stage44Under.id,x:160,y:586,scale:3.2,rotation:0,layer:'structural-back',depthLayer:'L1',visualRole:'scenery'}]:[]),{id:'a5-near',assetId,x:0,y:0,scale:artworkScale,rotation:0,layer:'structural-back',depthLayer:'L1',visualRole:'scenery'}],
    units,events:[],encounters:[],objectives,markers:marks,anchors:{spawn:start,exit},
    environment:{version:4,preset:enclosed?'enclosed':'forest',atmosphere:{preset:enclosed?'enclosed':chapter.theme==='gate'?'burned':'forest'},groups:[],surfaces:[],zones:[{id:'a5-depth',from:0,to:height,blend:300}],placements:[],skyVisible:clock[id].sky},
    meta:{notes:name,seed:5100+i},design:{act5:{encounterVersion:spec.encounterVersion??4,sites,links,groups,required,waves,
