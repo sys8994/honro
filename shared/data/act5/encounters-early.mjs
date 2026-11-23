@@ -116,7 +116,7 @@ export const earlyEncounters = {
       pack('wallLine',188,[['human',150],['crow',195,-2,undefined,undefined,undefined,42],['human',223,-26]],{
         wake:{distance:195,height:98},
       }),
-      pack('gateGuard',218,[['human',359],['mourner',407],['shade',434],['human',450],['human',498]]),
+      pack('gateGuard',218,[['human',359],['mourner',407],['shade',434],['ghost',450,0,undefined,'돌계단의 파수혼'],['human',498]]),
       pack('archFoot',311,[['shade',566,-9],['mourner',638,-9]],{
         wake:{distance:152,height:47,after:'gateGuard'},
       }),
@@ -126,19 +126,21 @@ export const earlyEncounters = {
         ['warden',625,0,'elite','군패 수문귀','device'], ['human',694], ['shade',669], ['hound',722],
         ['crow',752,-28,undefined,undefined,undefined,42],
       ]),
-      pack('courtFlank',218,[['human',801],['mourner',839]],{wake:{distance:178,height:36,after:'banner'}}),
+      pack('courtFlank',218,[['hound',801,0,undefined,'지휘소 아래 들린 산개'],['mourner',839]],{wake:{distance:178,height:36,after:'banner'}}),
       pack('court',169,[['human',804],['lantern',832,0,undefined,undefined,undefined,46],['human',983]]),
       pack('commanderApproach',169,[['shade',838]],{
         wake:{distance:157,height:42,after:'banner'},
       }),
       pack('commander',169,[['human',873,0,'commander','장무율','marksman']]),
+      // The same four marked suits enter across the high court and lower stair road.
+      // Put the fallback on the existing upper landing so its shared offset keeps both tiers.
       pack('armorWave',169,[
-        ['mourner',922,0,undefined,'군령 갑주'],
-        ['human',948,0,undefined,'갑주 사수'],
-        ['mourner',967,0,undefined,'군령 갑주'],
-        ['human',997,0,undefined,'갑주 사수'],
+        ['mourner',922,49,undefined,'아래 회랑의 군령 갑주'],
+        ['human',948,0,undefined,'지휘소 갑주 사수'],
+        ['shade',967,49,undefined,'아래 회랑의 결박 갑주'],
+        ['ghost',997,0,undefined,'성벽 끝 빈 갑주의 혼'],
       ],{
-        wave:cue('commander','commander','깨진 군패가 떨립니다. 지휘소 동쪽에서 빈 갑주가 움직입니다.',[948,169],[758,208]),
+        wave:cue('commander','commander','깨진 군패가 떨립니다. 위 지휘소와 아래 회랑에서 빈 갑주가 움직입니다.',[948,169],[790,169]),
       }),
     ],
   },

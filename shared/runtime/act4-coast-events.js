@@ -1,7 +1,7 @@
 (function(G){'use strict';
 // Per-stage event coordinates; authored stages may relocate them (design.act4.coords). Defaults = original layout.
 const K=(b,k,d)=>{const v=b?.honroAct4Design?.coords?.[k];return Number.isFinite(v)?v:d;};
-const P=G.HonroAct4TerrainPreview,A=P.eventAPI,{alive,party,memory,seed,event,inView,play}=A,C=G.HONRO_CORE;
+const P=G.HonroAct4TerrainPreview,A=P.eventAPI,{alive,party,memory,seed,event,inView,play,stable,objectiveReady,objectiveBox,localThreats,objectiveArea,localReady,dockScouted}=A,C=G.HONRO_CORE;
 if(P.attachCoast)return;
 const airborne=u=>u.side===1&&u.fixed&&['airborne','spirit'].includes(u.honroAct4WaterTrait);
 const active=b=>(b?.honroCustom||b?.honroAct4Official===1)&&b.honroAct4Preview>=31&&b.honroAct4Preview<=40,copy=x=>JSON.parse(JSON.stringify(x));
@@ -17,12 +17,11 @@ function geometry38(b){const v=b.honroAct4Design.geometry38;if(v===undefined)ret
  if(!v||!['vistaTriggerBounds','pursuitVisibilityBounds','pursuitRowBounds'].every(k=>box(v[k]))||!['rescueVoicePoint','probeEntryPoint','probeWrongPoint'].every(k=>point(v[k]))||![v.vistaFoeBeforeX,v.rescueVoicePartyBeforeX].every(Number.isFinite)||!Array.isArray(v.vistaShots)||v.vistaShots.length!==3||!v.vistaShots.every((p,i)=>point(p)&&p.key===legacy38.vistaShots[i].key)||!Array.isArray(v.pursuerDestinations)||!v.pursuerDestinations.length||v.pursuerDestinations.length>32||!v.pursuerDestinations.every(Number.isFinite))throw Error('Invalid Act4 geometry38');return v;
 }
 const foes=b=>b.units.filter(u=>u.side===1&&alive(u));
-// damageSequence is the persistent damage RNG cursor, not a pending impact.
-// The engine returns to aim only after resolving its action and volley.
-const stable=b=>!b.projectiles.length&&!b.volley&&b.phase==='aim';
-const quiet=b=>!foes(b).length&&stable(b)&&P.quietReady(b);
+// Optional unrestricted travel and withdrawing old combat residue still
+// require an empty battlefield. Narrative progress never depends on this.
+const quietTravel=b=>!foes(b).length&&objectiveReady(b)&&quietReady(b);
 const villageRegroup=b=>b.honroStage===32||b.honroStage===36&&b.honroAct4Design?.quietVillageTravel===true;
-const shelterTravel=b=>villageRegroup(b)&&b.honroAct4Official===1&&!b.honroCustom&&b.mode==='campaign'&&b.side===0&&quiet(b);
+const shelterTravel=b=>villageRegroup(b)&&b.honroAct4Official===1&&!b.honroCustom&&b.mode==='campaign'&&quietTravel(b);
 const seen=(q,k)=>q.observed?.[k]!==undefined;
 const closed=(q,k)=>!!q.events[k]?.terminal;
 const atThreshold=(b,npc)=>npc.x<=K(b,'doorX',4780)||!!b.honroAct4PreviewState?.thresholdHeld;
@@ -35,7 +34,7 @@ function goal(app,id){const text=G.HONRO_ACT4_PREVIEW_SEEDS.ui.find(v=>v[0]===id
 function hasFact(b,id){return b.honroAct4FactEvents?.some(v=>v.eventId===id)||P.campaignProof?.runId===b.honroAct4ReviewRunId&&!!P.campaignProof.factEvents?.[id];}
 function fact(b,id,proof){if(hasFact(b,id))return;const row={eventId:id,stage:b.honroAct4Preview,sourceRun:b.session,campaignRunId:b.honroAct4ReviewRunId,officialAct4:b.honroAct4Official===1,proof:copy(proof)};(b.honroAct4FactEvents??=[]).push(row);if(P.campaignProof?.runId===b.honroAct4ReviewRunId)(P.campaignProof.factEvents??={})[id]=copy(row);}
 const companion=u=>!!u&&['archer','mage','knight','occultist'].includes(u.id)&&u.id===u.cls&&C.equipmentActor(u);
-function flaskPair(e){const b=e.b,mage=party(b).find(u=>u.cls==='mage'&&companion(u));if(!alive(mage)||mage.x<K(b,'flaskX1',6100)||mage.x>K(b,'flaskX2',6620)||mage.y>K(b,'flaskYMax',1e9)||!e.grounded(mage)||!quiet(b)||hasFact(b,'eq_da_t3b'))return null;const giver=party(b).find(u=>u!==mage&&companion(u)&&e.grounded(u)&&near(u,mage,150));return giver?{mage,giver}:null;}
+function flaskPair(e){const b=e.b,mage=party(b).find(u=>u.cls==='mage'&&companion(u));if(!alive(mage)||mage.x<K(b,'flaskX1',6100)||mage.x>K(b,'flaskX2',6620)||mage.y>K(b,'flaskYMax',1e9)||!e.grounded(mage)||!localReady(b,'flask')||hasFact(b,'eq_da_t3b'))return null;const giver=party(b).find(u=>u!==mage&&companion(u)&&e.grounded(u)&&near(u,mage,150));return giver?{mage,giver}:null;}
 function complete(app,proof){const b=app.engine.b,q=memory(b);if(q.complete||q.failure)return;q.complete=true;q.completionProof=copy(proof);b.phase='won';if(b.honroAct4Preview===40)fact(b,'eq_so_t3b',proof);P.save?.();}
 function fail(b,reason){const q=memory(b);if(q.complete||q.failure)return;q.failure=reason;b.phase='lost';}
 function space(b,u,p,range=220,accept=null,step=32){return G.HonroTerrain.place(b,u,{x:p.x,y:p.y,maxDistance:range,clearance:15,accept,step});}
@@ -53,9 +52,11 @@ function moveNpc(e,u,dx,dt,budget,requireSupport=!u.jumping){if(!alive(u))return
 function tide(b){const q=memory(b),cfg=b.honroAct4Design.tide;if(!cfg)return;const t=q.tide??={phase:'low',surface:cfg.low,warningRound:cfg.warningRound,highRound:cfg.highRound,lowRound:cfg.lowRound};
  if(b.honroAct4Preview===40&&b.honroFinalDefenseRevision===2&&cfg.finale){
   const boss=b.units.find(u=>u.honroAct4FinaleBoss),policy=b.honroAct4Design.waterPolicies.find(z=>z.id==='40-return-inlet');
-  if(!foes(b).length){Object.assign(t,{phase:'low',surface:cfg.low,finished:true});if(policy)policy.surface=cfg.low;const hud=G.document.getElementById('act4-water-hud');if(hud)hud.textContent='≈ ↓';syncWater(b);return;}
+   // The tide keeper or the end of the tide cycle, not unrelated survivors,
+   // governs the lower inlet. Do not start a fresh cycle after escort release.
+   if(!alive(boss)||t.finished){Object.assign(t,{phase:'low',surface:cfg.low,finished:true});if(policy)policy.surface=cfg.low;const hud=G.document.getElementById('act4-water-hud');if(hud)hud.textContent='≈ ↓';syncWater(b);return;}
   if(policy)policy.surface=cfg.high; // Only banks above high water are safe recovery anchors.
-  if(!t.started&&alive(boss)&&party(b).some(u=>u.y>=3000&&Math.hypot(u.x-boss.x,u.y-boss.y)<650)){t.started=true;t.warningRound=cfg.warningRound=b.round;}
+  if(!t.started&&!q.returnEscort&&alive(boss)&&party(b).some(u=>u.y>=3000&&Math.hypot(u.x-boss.x,u.y-boss.y)<650)){t.started=true;t.warningRound=cfg.warningRound=b.round;}
  }
 
  if(b.round>=cfg.warningRound&&!t.warned&&b.side===0&&b.phase==='aim'){t.phase='rising';t.surface=cfg.low-18;t.warned=true;t.warningAtRound=b.round;t.highRound=b.round+(party(b).some(u=>u.acted)?4:3);t.lowRound=t.highRound+2;t.opportunities={};}
@@ -99,6 +100,14 @@ function followReturnRoute(e,u,route,state,dt){if(!alive(u)||state.done)return !
  }
  return false;
 }
+function returnThreats(b,q){
+ // Check actual occupied passenger positions, not every point of a long
+ // future itinerary. A screen can warn about the current blocking group;
+ // distant living opponents and their state are retained.
+ if(q.returnEscort?.phase==='safe')return [];
+ return localThreats(b,...residents(b).filter(alive).map(u=>objectiveBox(u.x-235,u.x+235,u.y-175,u.y+125)));
+}
+const returnTideReady=(b,q)=>b.honroFinalDefenseRevision!==2||!q.tide?.started||q.tide.finished||!!q.returnEscort;
 function authoredReturn(app,q,dt,geo){const e=app.engine,b=e.b,cfg=b.honroAct4Design.escort,np=residents(b);if(np.length!==4)throw Error('Authored return requires four residents');
  if(!q.returnEscort&&party(b).some(u=>insideEventBounds(u,geo.boardingTriggerBounds)||b.honroFinalDefenseRevision===2&&geo.lowerBoardingTriggerBounds&&insideEventBounds(u,geo.lowerBoardingTriggerBounds))&&seen(q,'return-boat')&&seen(q,'return-high')){q.returnEscort={phase:'boarding',clock:0,boatX:cfg.boat.x,routes:{}};play(app,'boarding');}
  const r=q.returnEscort;if(!r)return;const deck=b.terrain.find(t=>t.id==='a4-return-deck');deck.x=r.boatX-geo.deck.w/2;if(!closed(q,'boarding'))return;r.clock+=dt;r.routes??={};
@@ -208,7 +217,7 @@ function escort(e,q,dt){const b=e.b,cfg=b.honroAct4Design.rescue;if(!cfg||!q.exi
 }
 const routeCache=new WeakMap();function routeClear(b){const signature=JSON.stringify([b.sceneVersion,b.units.map(u=>[u.id,u.dead,u.hp>0,u.x,u.y,u.h,u.r,!!u.jumping,!!u.airborne,u.vy])]),old=routeCache.get(b);if(old?.signature===signature)return old.clear;const clear=probeRoute(b);routeCache.set(b,{signature,clear});return clear;}
 const residueKeys=['fields','zones','delays','occultTraps','stakes','delayedAttacks','shoves','blades'];
-P.quietReady=b=>![32,36,40].includes(b.honroAct4Preview)||(memory(b).quietAt!==undefined&&memory(b).clock-memory(b).quietAt>=2);
+const quietReady=b=>![32,36,40].includes(b.honroAct4Preview)||(memory(b).quietAt!==undefined&&memory(b).clock-memory(b).quietAt>=2);
 function settleQuietScene(b){if(![32,36,40].includes(b.honroAct4Preview)||foes(b).length||!stable(b))return;const q=memory(b),temporary=b.units.filter(u=>u.summoned||u.enthrall),dirty=residueKeys.some(k=>Array.isArray(b[k])&&b[k].length)||temporary.length;if(q.quietAt===undefined||dirty){q.quietAt=q.clock;q.quietCleanup??={actors:[],sources:[]};for(const k of residueKeys)if(Array.isArray(b[k])){if(b[k].length)q.quietCleanup.sources.push({kind:k,count:b[k].length});b[k]=[];}if(temporary.length){q.quietCleanup.actors.push(...temporary.map(u=>({id:u.id,kind:u.summoned?'summon':'enthralled',withdrawn:true})));b.units=b.units.filter(u=>!temporary.includes(u));}b.sceneVersion++;}}
 function rescueVista(app,q,dt){const b=app.engine.b,geo=geometry38(b);if(!q.vista&&!q.vistaDone&&party(b).some(u=>insideEventBounds(u,geo.vistaTriggerBounds))&&!foes(b).some(u=>u.x<geo.vistaFoeBeforeX))q.vista={active:true,index:0,elapsed:0};const v=q.vista;if(!v?.active)return false;const shots=geo.vistaShots,shot=shots[v.index];if(!shot){v.active=false;q.vistaDone=true;Object.assign(app.scene,{manual:false,x:app.engine.active.x,y:app.engine.active.y-90,scale:G.innerWidth<600?.62:.86});return false;}Object.assign(app.scene,{manual:true,x:shot.x,y:shot.y,scale:G.innerWidth<600?.55:.65,storyTween:null,cinematic:null,storyFrame:null,goalFocus:null});const observed=shot.key==='rescue-voices'?seen(q,'rescue-voices'):shot.key==='pursuit'?(q.pursuitSeen||!foes(b).some(u=>u.honroAct4Pursuer)):true;if(observed){v.elapsed+=dt;if(v.elapsed>1.1){v.index++;v.elapsed=0;}}return true;}
 P.coastObserve=function(app,dt){const b=app.engine.b,n=b.honroAct4Preview;if(!active(b))return;const q=memory(b),e=app.engine,cfg=b.honroAct4Design;
@@ -231,7 +240,7 @@ P.coastObserve=function(app,dt){const b=app.engine.b,n=b.honroAct4Preview;if(!ac
   for(const u of party(b)){u.acted=false;u.moveLeft=u.maxMove;}
   app.dirty=true;
  }
- if(n===32){if(!quiet(b))return;
+ if(n===32){if(!localReady(b,'shelter'))return;
   if(npc.honroAct4Sheltered&&party(b).some(u=>Math.abs(u.x-K(b,'shelterX',4890))<650)){q.shelterDoor??={phase:'opening',time:0};goal(app,'A4.S32.REUNION_OBJECTIVE');}
   if(q.shelterDoor?.phase==='opening'){q.shelterDoor.time=Math.min(1,q.shelterDoor.time+dt);if(q.shelterDoor.time===1&&seen(q,'door-open')){q.shelterDoor.phase='open';npc.honroAct4Sheltered=false;npc.fixed=false;}}
   // A companion standing in the doorway kept the witness from ever reaching
@@ -249,7 +258,7 @@ P.coastObserve=function(app,dt){const b=app.engine.b,n=b.honroAct4Preview;if(!ac
    if(t.phase==='emerged'&&seen(q,'wrong-exit')){u.fixed=t.originalFixed;t.phase='complete';play(app,'wrong_exit');}
   }
  }
- if(n===35){const d=q.flaskDelivery;if(d&&d.phase!=='complete'){const mage=e.unit(d.receiver),giver=e.unit(d.giver);if(!working(e,mage,giver,150)||!alive(giver)||!e.grounded(giver)||!quiet(b)){delete mage?.honroScenePose;delete giver?.honroScenePose;q.flaskDelivery=null;}else{mage.facing=giver.x>mage.x?1:-1;giver.facing=-mage.facing;mage.honroScenePose=giver.honroScenePose={kind:'point',time:1};d.elapsed+=dt;if(d.elapsed>=1.4&&d.received){d.phase='complete';fact(b,'eq_da_t3b',{itemId:'itm_da_06',giver:giver.id,receiver:mage.id,receivedAt:d.received.at,positions:d.received.positions,kind:'companion-handoff'});delete mage.honroScenePose;delete giver.honroScenePose;P.save?.();}}}
+ if(n===35){const d=q.flaskDelivery;if(d&&d.phase!=='complete'){const mage=e.unit(d.receiver),giver=e.unit(d.giver);if(!working(e,mage,giver,150)||!alive(giver)||!e.grounded(giver)||!localReady(b,'flask')){delete mage?.honroScenePose;delete giver?.honroScenePose;q.flaskDelivery=null;}else{mage.facing=giver.x>mage.x?1:-1;giver.facing=-mage.facing;mage.honroScenePose=giver.honroScenePose={kind:'point',time:1};d.elapsed+=dt;if(d.elapsed>=1.4&&d.received){d.phase='complete';fact(b,'eq_da_t3b',{itemId:'itm_da_06',giver:giver.id,receiver:mage.id,receivedAt:d.received.at,positions:d.received.positions,kind:'companion-handoff'});delete mage.honroScenePose;delete giver.honroScenePose;P.save?.();}}}
   if(party(b).some(u=>u.x>K(b,'clearingX1',5520)&&u.x<K(b,'clearingX2',5720)&&u.y<K(b,'clearingYMax',1e9)&&e.grounded(u))&&!foes(b).some(u=>u.x>K(b,'clearingFoeX',5000)&&u.y<K(b,'clearingFoeYMax',1e9)))fact(b,'eq_co_t3_choice',{tag:'rooted-third-clearing',reached:true});}
  if(n===37){if(seen(q,'signal')&&seen(q,'gesture'))play(app,'signal');}
  if(n===38){const geo=geometry38(b),c=cfg.connection,pursuers=foes(b).filter(u=>u.honroAct4Pursuer),tour=rescueVista(app,q,dt);
@@ -268,7 +277,7 @@ P.coastObserve=function(app,dt){const b=app.engine.b,n=b.honroAct4Preview;if(!ac
   if(q.exitStable&&q.netOpen&&dosik.x>K(b,'handX1',6570)&&dosik.x<K(b,'handX2',6740)&&near(seolo,{x:dosik.x+70,y:dosik.y},160)){q.hand??={at:q.clock,actor:seolo.id};seolo.honroScenePose={kind:'point',time:1};if(seen(q,'hand')&&play(app,'hand',true))q.hand.completed=true;}
   if(r.ids.every(id=>q.escort?.[id]?.safe&&rescueSafe(e,e.unit(id)))){q.rescued={ids:copy(r.ids),sourceRun:b.session,campaignRunId:b.honroAct4ReviewRunId};goal(app,'A4.S39.ESCAPE_OBJECTIVE');}
  }
- if(n===40){const cfg=b.honroAct4Design.escort;if(!quiet(b))return;const geo=geometry40(b);if(geo){authoredReturn(app,q,dt,geo);return;}
+ if(n===40){const cfg=b.honroAct4Design.escort;if(!objectiveReady(b)||!returnTideReady(b,q)||returnThreats(b,q).length)return;const geo=geometry40(b);if(geo){authoredReturn(app,q,dt,geo);return;}
   if(!q.returnEscort&&party(b).some(u=>u.x>2600)&&seen(q,'return-boat')&&seen(q,'return-high')){q.returnEscort={phase:'boarding',clock:0,boatX:cfg.boat.x};play(app,'boarding');}
   const r=q.returnEscort;if(r){const deck=b.terrain.find(t=>t.id==='a4-return-deck');if(deck)deck.x=r.boatX-180;}if(r&&closed(q,'boarding')){r.clock+=dt;const np=residents(b);if(r.phase==='boarding'){for(const [i,u]of np.slice(0,2).entries()){moveNpc(e,u,3030+i*110,dt,220);}for(const u of np.slice(2)){if(u.x>2710&&u.x<2810&&e.grounded(u)&&!u.jumping){u.moveLeft=600;e.jump(u);}moveNpc(e,u,3100,dt,220);}if(np.slice(0,2).every((u,i)=>u.x>3010+i*110&&Math.abs(u.y-1950)<5)){r.passengers={};for(const u of np.slice(0,2)){u.honroAct4OnBoat=true;r.passengers[u.id]=u.x-r.boatX;}r.phase='sailing';}}
    if(r.phase==='sailing'){r.boatX=Math.min(cfg.boat.destination,r.boatX+dt*180);for(const [i,u]of np.slice(0,2).entries()){u.x=r.boatX+r.passengers[u.id];u.y=1950;u.fixed=true;}for(const u of np.slice(2))moveNpc(e,u,5500,dt,240);if(r.boatX===cfg.boat.destination){r.phase='landed';for(const u of np.slice(0,2)){u.honroAct4OnBoat=false;u.fixed=false;}if(!b.terrain.some(t=>t.id==='a4-return-gangway')){b.terrain.push(G.HonroGeometry.terrain({id:'a4-return-gangway',type:'platform',baseMaterial:'wood',oneWay:true,breakable:false,control:[{x:4820,y:1950},{x:4980,y:1916}],thickness:18,detail:{interpolation:'linear',roughness:0,spacing:30,optimizeEpsilon:0}},b.height));b.sceneVersion++;}}}
@@ -292,14 +301,15 @@ P.questGuidance=function(app){
  const hint=(text,point,label=text,kind='move')=>({text,targets:Number.isFinite(point?.x)&&Number.isFinite(point?.y)?[{id:'act4-current-goal',x:point.x,y:point.y,label,kind}]:[]});
  const gather=(point,label,at)=>hint(`${label} · 동행 ${heroes.filter(at).length}/${heroes.length}명 도착`,point,label,'exit');
  if(!q)return hint(app.stage.goal);
- const enemies=foes(b),count=enemies.length,exit=cfg.exit,combat=(text,units=enemies)=>G.HonroObjectiveGuide.hostileHint(b,units,text);
+ const exit=cfg.exit,combat=(text,units)=>G.HonroObjectiveGuide.hostileHint(b,units,text),threats=name=>localThreats(b,objectiveArea(b,name));
  if(n===31){
-  if(count)return combat('나루의 적 제압');
-  const p=cfg.boarding,deck=p&&{x:(p.boardX1+p.boardX2)/2,y:p.deckY};
+  const p=cfg.boarding,deck=p&&{x:(p.boardX1+p.boardX2)/2,y:p.deckY},dock=threats('dock');
+  if(q.boat.phase==='waiting'&&!dockScouted(b,e))return hint('동쪽 나루까지 가서 나룻배를 부르기',deck,'동쪽 나루');
+  if(dock.length)return combat('나루의 탑승로를 비우기',dock);
   return q.boat.phase==='docked'&&p?gather(deck,'배의 갑판으로 이동',u=>u.x>p.boardX1&&u.x<p.boardX2&&Math.abs(u.y-p.deckY)<5&&e.grounded(u)):hint('나룻배가 접안할 때까지 나루에서 기다리기',deck,'나루');
  }
  if(n===32){
-  if(count)return combat('포구의 적 제압');
+  const local=threats('shelter');if(local.length&&heroes.some(u=>u.x>K(b,'shelterX',4890)-650))return combat('피신처 문 앞의 위협을 떼어 놓기',local);
   const npc=e.unit('a4-shelter-speaker'),point={x:K(b,'shelterX',4890),y:K(b,'speakerY',2010)};
   if(!closed(q,'reunion'))return hint('포구 오른쪽 피신처의 문으로 이동해 주민과 재회',point,'피신처 문');
   if(!q.safeSeven)return hint('재회한 주민과 문턱을 화면에 담아 일행의 행방 확인',npc,'재회한 주민');
@@ -317,7 +327,8 @@ P.questGuidance=function(app){
   return gather(exit,'출구 표식에 모여 떠나기',u=>u.x>exit.x-300&&Math.abs(u.y-exit.y)<=240&&e.grounded(u));
  }
  if(n===35||n===36){
-  if(count)return combat(n===35?'대숲의 적 제압':'폐촌의 적 제압');
+  if(n===35){const local=threats('bambooExit');if(local.length&&heroes.some(u=>u.x>K(b,'completeX',6500)-480))return combat('대숲 출구의 길을 비우기',local);}
+  if(n===36){const name=q.door.phase!=='fallen'||!closed(q,'door_falls')||!q.events.door_falls?.skipped&&!['A4.S36.DOOR.01','A4.S36.DOOR.02'].every(id=>q.receipts.includes(id))?'door':'villageExit',local=threats(name);if(local.length)return combat(name==='door'?'휘겸이 문을 밀 수 있게 문 앞의 길을 비우기':'폐촌 출구의 길을 비우기',local);}
   const door={x:K(b,'doorPushX',2370),y:K(b,'doorPushY',2010)};
   if(n===36&&q.door.phase!=='fallen')return hint(q.door.phase==='standing'?'휘겸을 나무문 앞으로 보내 문 밀기':'문이 넘어질 때까지 기다리기',door,'폐촌의 문');
   if(n===36&&!closed(q,'door_falls'))return hint('넘어진 문을 화면에 담아 확인',door,'넘어진 문');
@@ -326,7 +337,7 @@ P.questGuidance=function(app){
   const edge=n===36?K(b,'leaveX',x):x;
   const level=y===1e9?e.active?.y:y;
   const point=exit||{x:edge,y:e.contactSurface(edge,level-500,level+250)?.y??level};
-  return gather(point,'오른쪽 출구에 모여 떠나기',u=>u.x>x&&u.y<y);
+  return gather(point,'오른쪽 출구에 모여 떠나기',u=>u.x>x&&u.y<y&&(n!==35||e.grounded(u)));
  }
  if(n===39){
   const r=cfg.rescue;
@@ -337,8 +348,9 @@ P.questGuidance=function(app){
   return gather(exit,'주민과 합류해 출구로 떠나기',u=>u.x>r.exit-260&&e.grounded(u));
  }
  if(n===40){
-  if(count)return combat('귀환로의 적 제압');
   const geo=cfg.geometry40,escort=q.returnEscort;
+  if(!returnTideReady(b,q))return hint('물이 빠질 때까지 마른 둑에서 주민 엄호',geo?.marks.boat,'마른 둑');
+  const local=returnThreats(b,q);if(local.length)return combat('주민 가까이의 위협을 떼어 놓아 호송로 열기',local);
   if(!escort)return hint('나룻배와 위쪽 귀환로가 보이는 곳으로 이동',geo?.marks.boat,'귀환 나룻배');
   if(escort.phase!=='safe')return hint('주민들이 배와 위쪽 길로 이동 중 · 귀환로를 비우고 안전한 쪽으로 이동',geo?.marks.safe,'동쪽 안전 지대');
   if(!closed(q,'next'))return hint('동쪽 안전 지대에서 재회와 인원 확인',geo?.marks.safe,'동쪽 안전 지대');
@@ -348,7 +360,7 @@ P.questGuidance=function(app){
 };
 const interact=P.interact;P.interact=function(app=G.HonroApp,probe=false){const previous=interact(app,probe);if(previous)return previous;const e=app.engine,b=e?.b;if(!active(b)||app.dialogue||b.phase!=='aim')return false;const q=memory(b),n=b.honroAct4Preview,u=e.active,cfg=b.honroAct4Design;if(!alive(u)||!e.grounded(u))return false;
  const speaker=n===32?e.unit('a4-shelter-speaker'):null;
- if(n===32&&alive(speaker)&&quiet(b)&&closed(q,'missing_four')&&!q.safeSeven&&!q.reader&&!q.bark&&near(u,{x:speaker.x,y:K(b,'speakerY',2010)},340)){if(probe)return probe==='label'?'주민에게 나머지 일행의 행방 묻기':true;const report=event(q,'missing_four');report.started=false;report.terminal=false;return play(app,'missing_four');}
+ if(n===32&&alive(speaker)&&localReady(b,'shelter')&&closed(q,'missing_four')&&!q.safeSeven&&!q.reader&&!q.bark&&near(u,{x:speaker.x,y:K(b,'speakerY',2010)},340)){if(probe)return probe==='label'?'주민에게 나머지 일행의 행방 묻기':true;const report=event(q,'missing_four');report.started=false;report.terminal=false;return play(app,'missing_four');}
  if(n===35&&!q.flaskDelivery){const pair=flaskPair(e);if(pair&&u===pair.mage){if(probe)return probe==='label'?'담허에게 약병 건네기':true;q.flaskDelivery={phase:'passing',giver:pair.giver.id,receiver:pair.mage.id,elapsed:0};return true;}}
  if(n===38&&near(u,cfg.connection.entry,250)){
   if(!q.connectionProbe){if(probe)return probe==='label'?'굴 입구 탐침':true;q.connectionProbe={phase:'entry',at:q.clock};return true;}
@@ -358,7 +370,7 @@ const interact=P.interact;P.interact=function(app=G.HonroApp,probe=false){const 
  if(n===39){if(near(u,cfg.rescue.anchor,u.cls==='mage'?360:180)&&!q.exitStable&&!q.stabilizing){if(probe)return probe==='label'?'출구 닻 고정':true;q.stabilizing={actor:u.id,elapsed:0};return true;}if(near(u,cfg.rescue.net,u.cls==='occultist'?340:180)&&!q.netOpen&&!q.releasing){if(probe)return probe==='label'?'그물 풀기':true;q.releasing={actor:u.id,elapsed:0};return true;}
   if(q.exitStable&&q.rescued?.ids.length===4&&cfg.rescue.ids.every(id=>rescueSafe(e,e.unit(id)))&&party(b).every(v=>v.x>cfg.rescue.exit-260&&e.grounded(v))&&!P.narrativePending(b)){if(probe)return probe==='label'?'주민과 함께 물길을 떠나기':true;complete(app,{exitStable:q.exitStable,rescued:q.rescued,bossAlive:alive(e.unit('a4-wreck'))});return true;}
  }
- if(n===32&&quiet(b)&&closed(q,'missing_four')&&q.safeSeven&&party(b).every(v=>v.x>cfg.exit.x-300)){if(probe)return probe==='label'?'주민 일곱 명과 포구 떠나기':true;complete(app,{safeSeven:q.safeSeven});return true;}
+ if(n===32&&!q.failure&&localReady(b,'shelter')&&closed(q,'missing_four')&&q.safeSeven&&party(b).every(v=>v.x>cfg.exit.x-300)){if(probe)return probe==='label'?'주민 일곱 명과 포구 떠나기':true;complete(app,{safeSeven:q.safeSeven});return true;}
  if([33,34,37,38].includes(n)&&party(b).every(v=>v.x>cfg.exit.x-300&&Math.abs(v.y-cfg.exit.y)<=240&&e.grounded(v))&&(![37].includes(n)||closed(q,'signal'))&&!exitWatchCount(b)){if(probe)return probe==='label'?'출구에서 출발':true;complete(app,{exit:cfg.exit,connection:q.connected||{physicalRoute:true},signal:q.events.signal?.presented,exitContributionVersion:1});return true;}
  if(n===40&&q.returnEscort?.phase==='safe'&&closed(q,'next')&&party(b).every(v=>geometry40(b)?insideEventBounds(v,geometry40(b).finishBounds)&&e.grounded(v):v.x>5300)){if(probe)return probe==='label'?'귀환 마무리':true;complete(app,{roster:q.roster,rescued:q.rescued});return true;}
  return false;};

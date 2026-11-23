@@ -4,14 +4,17 @@ export function authorAct4Finale(stage,point){
  if(stage.metadata?.stageId!==40||stage.initialState?.honroFinalDefenseRevision===2)return stage;
  const s={...stage,units:stage.units.filter(u=>u.team!=='enemy'),encounters:[],initialState:structuredClone(stage.initialState)};
  // Role clusters follow the supported retreat, dock and departure approach.
- // Slots are explicitly authored; no equal-spacing/random-density generator.
+ // Keep the eastern landing and safe route clear. On the west, leave a break
+ // between covered dock watches, stagger the stair interception above the dock,
+ // and leave the descent turn open before the lower boss approach.
+ // Slot order owns actor IDs; retain order, supports and boss positions.
  const groups=[
- ['west-front','coast-west','추격 전위와 경사 후방 사수',[['hound',1660],['hound',1760],['possessedGuard',1880],['possessedArcher',2040],['possessedGuard',2125],['possessedArcher',2240]]],
- ['west-anchor','coast-west','결박을 피해 선착장으로 내려가는 진입전',[['possessedGuard',2355],['shade',2440,'bind'],['hound',2550],['possessedArcher',2670],['possessedGuard',2790],['possessedArcher',2960],['hound',3120]]],
- ['dock-left','dock','하역장 측면 사수와 엄폐 전위',[['possessedArcher',1290],['possessedArcher',930],['possessedGuard',560],['hound',700],['possessedGuard',840],['hound',1020],['possessedArcher',1190]]],
- ['dock-right','dock','곡사 봉쇄와 노출 창을 이용하는 선착장 교전',[['possessedGuard',1490],['hound',1580],['warden',1660,'arc'],['possessedArcher',1740],['hound',1870],['possessedGuard',1990],['possessedArcher',2150]]],
- ['dock-stair','dock-stair','상층에서 내려오는 병력과 아래쪽 방어선의 교차 사선',[['possessedGuard',1940],['possessedArcher',2030],['hound',2120],['possessedGuard',2210],['possessedArcher',2310],['hound',2400],['possessedArcher',2485]]],
- ['departure-upper','departure-stair','보스 접근 경사의 호위와 높은 사격점',[['possessedArcher',1620],['possessedGuard',1695],['hound',1775],['possessedArcher',1850],['possessedGuard',1930]]],
+ ['west-front','coast-west','추격 전위와 경사 후방 사수',[['hound',1648],['hound',1812],['possessedGuard',1902],['possessedArcher',2040],['possessedGuard',2150],['possessedArcher',2250]]],
+ ['west-anchor','coast-west','결박을 피해 선착장으로 내려가는 진입전',[['possessedGuard',2365],['shade',2440,'bind'],['hound',2590],['possessedArcher',2705],['possessedGuard',2820],['possessedArcher',3035],['hound',3120]]],
+ ['dock-left','dock','하역장 측면 사수와 엄폐 전위',[['possessedArcher',1310],['possessedArcher',965],['possessedGuard',315],['hound',420],['possessedGuard',530],['hound',875],['possessedArcher',1180]]],
+ ['dock-right','dock','곡사 봉쇄와 노출 창을 이용하는 선착장 교전',[['possessedGuard',1450],['hound',1580],['warden',1660,'arc'],['possessedArcher',1775],['hound',1950],['possessedGuard',2085],['possessedArcher',2210]]],
+ ['dock-stair','dock-stair','상층에서 내려오는 병력과 아래쪽 방어선의 교차 사선',[['possessedGuard',1905],['possessedArcher',2030],['hound',2110],['possessedGuard',2320],['possessedArcher',2415],['hound',2530],['possessedArcher',2610]]],
+ ['departure-upper','departure-stair','보스 접근 경사의 호위와 높은 사격점',[['possessedArcher',1550],['possessedGuard',1635],['hound',1760],['possessedArcher',1850],['possessedGuard',1930]]],
  ['departure-low','departure-ramp','간조 때 접근 가능한 승선턱 전위',[['hound',2090],['hound',2180]]],
  ['tide-keeper','departure-stair','조수 변화로 접근 경로가 달라지는 마지막 수문장',[['warden',2050,'boss']]]
  ];

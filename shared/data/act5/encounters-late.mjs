@@ -72,21 +72,21 @@ export const lateEncounters = {
     ],
     packs:[
       pack('entry',['stakeOne'],154,145,[
-        foe('shade',178,721,{label:'들린 제기'}), flyer('lantern',212,721,52), foe('ghost',229,721),
+        foe('hound',188,721), flyer('lantern',212,721,52), foe('ghost',230,721),
       ]),
       pack('westGuard',['stakeOne','stakeTwo'],146,119,[
         foe('mourner',258,721,{label:'서쪽 진목 주박귀'}), foe('shade',302,721,{label:'들린 제기'}),
         flyer('bat',335,721,85),
       ]),
       pack('bridgeGuard',['stakeTwo','center'],160,169,[
-        foe('ghost',389,721), flyer('lantern',428,721,75), flyer('bat',444,940,111),
+        foe('hound',405,721), flyer('lantern',428,721,75), flyer('bat',444,940,111),
         foe('shade',472,721,{label:'제의터 잔혼'}),
       ]),
       pack('eastGuard',['stakeTwo','center'],156,143,[
-        flyer('lantern',512,721,53), foe('ghost',548,721), foe('mourner',601,721,{label:'동쪽 진목 주박귀'}),
+        foe('hound',524,721), foe('ghost',551,721), foe('mourner',612,715,{label:'동쪽 진목 주박귀'}),
       ]),
       pack('rampWatch',['center','reverseGuard'],156,160,[
-        foe('shade',650,677,{label:'계단 길목 제기귀'}), flyer('lantern',696,636,46),
+        foe('mourner',645,709,{label:'계단 길목의 상두꾼'}), flyer('lantern',696,636,46),
       ]),
       pack('exitGuard',['reverseGuard','exitGuard'],130,105,[
         foe('ghost',881,403,{label:'상층 비상로 수비혼'}), flyer('lantern',910,392,49),
@@ -94,9 +94,9 @@ export const lateEncounters = {
       ]),
       pack('reverseGuard',['reverseGuard'],170,165,[
         foe('mourner',712,621,{label:'역류로 밀려온 주박귀'}), flyer('lantern',746,589,55),
-      ],wave('center','reverse','동쪽 굽이에서 역류가 올라옵니다. 제기귀가 계단으로 들어옵니다.',[729,605],[751,584])),
+      ],wave('center','reverse','동쪽 굽이에서 역류가 올라옵니다. 주박귀가 계단을 타고 내려오고, 등불이 뒤를 따릅니다.',[729,605],[751,584])),
       pack('reverseGuard',['reverseGuard','exitGuard'],153,133,[
-        foe('shade',828,585,{label:'역류한 제기귀'}), foe('ghost',858,585), flyer('lantern',865,585,69),
+        foe('mourner',828,585,{label:'역류에 떠밀린 상두꾼'}), foe('ghost',858,585), flyer('lantern',865,585,69),
       ],wave('center','reverse','계단 안쪽 바위턱에서도 혼불이 올라옵니다.',[844,585],[817,585])),
     ],
   },
@@ -120,25 +120,26 @@ export const lateEncounters = {
         flyer('lantern',177,310,40), foe('shade',200,319,{label:'낙하로 제기귀'}), foe('ghost',232,347),
       ]),
       pack('leftLanding',['stakeOne'],116,118,[
-        flyer('lantern',257,362,75), foe('mourner',276,403,{label:'하강로 주박귀'}),
-        flyer('bat',306,409,58),
+        flyer('lantern',244,356,94), foe('mourner',276,403,{label:'하강로 주박귀'}),
+        foe('warden',318,410,{label:'여울 입구의 들린 장승'}),
       ]),
       pack('westGuard',['stakeOne','eastGuard'],169,137,[
-        foe('shade',345,411,{label:'서쪽 진목 제기귀'}), flyer('lantern',369,411,53),
-        foe('ghost',402,413),
+        foe('shade',345,411,{label:'서쪽 진목 제기귀'}), flyer('lantern',371,411,70),
+        foe('shade',418,414,{label:'여울 건너편의 수의귀'}),
       ]),
       pack('eastGuard',['eastGuard','stakeTwo','center'],178,166,[
-        flyer('lantern',476,415,78), foe('mourner',505,413,{label:'동쪽 진목 주박귀'}),
+        flyer('lantern',484,415,97), foe('mourner',505,413,{label:'동쪽 진목 주박귀'}),
         foe('ghost',565,408,{label:'진목 수비혼'}), foe('shade',584,395,{label:'갈라진 석단 제기귀'}),
       ],undefined,'stakeOne'),
       pack('recoveryAscent',['stakeTwo','reflection','tools'],155,155,[
-        flyer('lantern',598,382,39), foe('ghost',630,356), foe('shade',716,318,{label:'회수로 제기귀'}),
+        flyer('crow',600,380,59), foe('ghost',630,356), foe('shade',716,318,{label:'회수로 제기귀'}),
       ],undefined,'stakeTwo'),
       pack('upper',['reflection','tools'],181,135,[
         flyer('lantern',845,232,43), foe('ghost',856,274), foe('shade',931,182,{label:'상층 석물귀'}),
       ]),
       pack('reflection',['reflection'],178,138,[
-        boss(778,312,'수면흉','resonance'), flyer('lantern',811,310,45), foe('ghost',827,301),
+        boss(778,312,'수면흉','resonance'), flyer('lantern',811,310,45),
+        foe('shade',827,301,{label:'수면흉 곁의 수의귀'}),
       ],wave('center','stable','오른쪽 석단 끝 물그림자에서 수면흉이 올라옵니다.',[800,311],[834,294])),
       pack('reflection',['reflection','tools'],154,135,[
         flyer('lantern',849,279,85), foe('shade',873,259,{label:'반사에 붙은 제기귀'}),
@@ -165,22 +166,24 @@ export const lateEncounters = {
         foe('stag',230,1390,{label:'들린 돌사슴'}), flyer('lantern',287,1390,93),
         foe('shade',309,1390,{label:'저류에 붙은 돌짐승'}),
       ]),
-      pack('lowerGuard',['lowerGuard'],168,137,[
+      // The crossing has a low chase lane; the middle stair keeps its aimed threat.
+      pack('lowerGuard',['lowerGuard'],168,98,[
         foe('human',373,1366,{label:'징검길 사수'}), foe('shade',427,1324,{label:'징검길 돌짐승'}),
         flyer('lantern',455,1304,57), foe('ghost',515,1304),
-        foe('human',613,1304,{label:'맞은편 물길 사수'}),
+        foe('hound',613,1304,{label:'맞은편 물길의 들린 산개'}),
       ]),
-      pack('waterCrossfire',['lowerGuard','up'],160,196,[
+      // The shelves answer the eastward crossing, not the first descent.
+      pack('waterCrossfire',['lowerGuard','up'],160,174,[
         flyer('lantern',530,1066,48), foe('human',591,1066,{label:'중층 서단 곡사수'}),
         flyer('bat',664,1066,93),
-      ]),
-      pack('lowerGuard',['lowerGuard','up','midGuard'],169,146,[
+      ],undefined,'down'),
+      pack('lowerGuard',['lowerGuard','up','midGuard'],169,105,[
         foe('ghost',674,1304), foe('shade',752,1249,{label:'역류 둔덕 돌짐승'}),
         flyer('lantern',819,1220,67), foe('human',871,1220,{label:'하층 끝 아래 사수'}),
       ]),
-      pack('midGuard',['up','midGuard','high'],156,155,[
+      pack('midGuard',['up','midGuard','high'],156,110,[
         foe('human',747,1056,{label:'중층 서쪽 사수'}), flyer('lantern',845,1026,53),
-        foe('shade',871,1010,{label:'돌계단 수호혼'}), foe('human',986,960,{label:'중층 높은 턱 사수'}),
+        foe('shade',871,1010,{label:'돌계단 수호혼'}), foe('mourner',986,960,{label:'중층 높은 턱의 창보초'}),
         foe('ghost',950,960),
       ],undefined,'up'),
       pack('high',['midGuard','high'],179,179,[

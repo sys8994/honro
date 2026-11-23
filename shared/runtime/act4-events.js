@@ -54,7 +54,23 @@ function resumeHand(app){const b=app.engine.b,q=memory(b);if(!missingHand(b))ret
  // save already reached won. Existing pending readers/barks remain intact.
  if(play(app,'hand',true))q.hand.completed=true;
 }
-function quiet(b){return !b.units.some(u=>u.side===1&&alive(u))&&!b.projectiles.length&&!b.volley&&b.phase==='aim'&&(!P.quietReady||P.quietReady(b));}
+// Objective progress is a resolved player action and a safe *local* scene.
+const stable=b=>!b.projectiles.length&&!b.volley&&b.phase==='aim';
+const objectiveReady=b=>b.side===0&&stable(b);
+const objectiveBox=(x1,x2,y1,y2)=>({x1,x2,y1,y2});
+function localThreats(b,...zones){return b.units.filter(u=>u.side===1&&alive(u)&&zones.some(z=>u.x+(u.r||0)>z.x1&&u.x-(u.r||0)<z.x2&&u.y>z.y1&&u.y-(u.h||0)<z.y2));}
+function objectiveArea(b,name){
+ const center=(x,y,dx,dy)=>objectiveBox(x-dx,x+dx,y-dy,y+dy),exit=b.honroAct4Design?.exit;
+ if(name==='dock'){const p=boarding(b);return objectiveBox(p.boardX1-350,p.boardX2+200,p.deckY-440,p.deckY+95);}
+ if(name==='shelter'){const x=K(b,'shelterX',4890),y=K(b,'speakerY',2010);return objectiveBox(x-420,Math.max(x+240,(exit?.x??x)+120),y-175,y+125);}
+ if(name==='flask')return objectiveBox(K(b,'flaskX1',6100)-160,K(b,'flaskX2',6620)+160,K(b,'flaskYMax',1e9)===1e9?-Infinity:K(b,'flaskYMax',1e9)-360,K(b,'flaskYMax',1e9));
+ if(name==='door')return center(K(b,'doorPushX',2370),K(b,'doorPushY',K(b,'arrivalViewY',2040)),300,180);
+ const x=K(b,'completeX',6500),limit=K(b,'completeYMax',1e9);
+ if(name==='bambooExit')return objectiveBox(x-210,(exit?.x??x)+240,(exit?.y??limit)-200,limit);
+ const leave=Math.min(x,K(b,'leaveX',x));return objectiveBox(leave-210,x+260,limit===1e9?-Infinity:limit-410,limit);
+}
+const localReady=(b,name)=>objectiveReady(b)&&!localThreats(b,objectiveArea(b,name)).length;
+const dockScouted=(b,e)=>party(b).some(u=>u.x>=boarding(b).approachX-170&&e.grounded(u));
 const tourViews=[{key:'boat',x:550,y:1770,scale:.64,point:{x:500,y:1735}},{key:'dock',x:6150,y:1790,scale:.56,point:{x:6150,y:1890}},{key:'threat',x:1510,y:1780,scale:.55,point:{x:1390,y:1864}}];
 function arrivalTour(app,q,dt){const t=q.arrivalTour;if(!t?.active)return false;if(app.modal.classList.contains('open')||G.document.hidden)return true;const v=(app.engine.b.honroAct4Design?.boarding?.tourViews||tourViews)[t.index];if(!v){t.active=false;if(!P.startCamera?.(app))Object.assign(app.scene,{manual:false,x:boarding(app.engine.b).startX??450,y:boarding(app.engine.b).startY??1840,scale:G.innerWidth<600?.62:.94});play(app,'arrival');return false;}Object.assign(app.scene,{manual:true,x:v.x,y:v.y,scale:v.scale,storyTween:null,cinematic:null,goalFocus:null,storyFrame:null});if(t.seen?.[v.key]!==undefined){t.elapsed=(t.elapsed||0)+dt;if(t.elapsed>.8){t.index++;t.elapsed=0;}}return true;}
 function observe(app,dt){const b=app.engine?.b,node=G.document.getElementById('act4-banter');if(!(b?.honroCustom||b?.honroAct4Official===1)||!b.honroAct4Preview||G.document.hidden||app.modal?.classList.contains('open')){if(node)node.hidden=true;return;}const q=memory(b),n=b.honroAct4Preview;q.clock+=dt;
@@ -76,7 +92,7 @@ function observe(app,dt){const b=app.engine?.b,node=G.document.getElementById('a
   if(arrivalTour(app,q,dt))return;
   if(['docked','boarded'].includes(q.boat.phase)){const text=G.HONRO_ACT4_PREVIEW_SEEDS.ui.find(v=>v[0]==='A4.S31.BOARD_OBJECTIVE')[1],goal=G.document.getElementById('objective-text');app.stage.goal=text;if(goal&&goal.textContent!==text)goal.textContent=text;}
   if(!q.events.arrival?.started&&party(b).some(u=>app.engine.grounded(u))&&inView(app,{x:500,y:cfg.approachY})&&inView(app,{x:6150,y:cfg.deckY+30}))play(app,'arrival');
-  if(quiet(b)&&q.boat.phase==='waiting'&&!app.dialogue&&!q.reader&&(offered(b,'boat_approach')||play(app,'boat_approach')))q.boat.phase='approach';
+  if(localReady(b,'dock')&&dockScouted(b,app.engine)&&q.boat.phase==='waiting'&&!app.dialogue&&!q.reader&&(offered(b,'boat_approach')||play(app,'boat_approach')))q.boat.phase='approach';
   // Old saves may have moved despite a rejected BOAT offer. Keep their current
   // boat position until that missing reader can actually be accepted.
   if(['approach','docked'].includes(q.boat.phase)&&!offered(b,'boat_approach')){if(!play(app,'boat_approach'))return;}
@@ -95,23 +111,23 @@ function observe(app,dt){const b=app.engine?.b,node=G.document.getElementById('a
   if(party(b).some(u=>u.x>6500)&&inView(app,{x:6980,y:1800}))play(app,'edge');
  }
  if(n===36){
-  if(quiet(b)&&party(b).some(u=>u.cls==='knight'&&u.x>K(b,'arrivalX',1800))&&inView(app,{x:K(b,'arrivalViewX',3000),y:K(b,'arrivalViewY',2040)}))play(app,'arrival');
+  if(localReady(b,'door')&&party(b).some(u=>u.cls==='knight'&&u.x>K(b,'arrivalX',1800))&&inView(app,{x:K(b,'arrivalViewX',3000),y:K(b,'arrivalViewY',2040)}))play(app,'arrival');
   if(q.door.phase==='falling'&&!app.dialogue){q.door.time=Math.min(1,q.door.time+dt);if(q.door.time===1){q.door.phase='fallen';app.audio?.play('break');q.door.soundAt=q.clock;}}
-  if(q.door.renderedAt!==undefined&&q.door.soundAt!==undefined&&q.clock-Math.max(q.door.renderedAt,q.door.soundAt)>2&&quiet(b))play(app,'door_falls');
+  if(q.door.renderedAt!==undefined&&q.door.soundAt!==undefined&&q.clock-Math.max(q.door.renderedAt,q.door.soundAt)>2&&localReady(b,'door'))play(app,'door_falls');
   const door=event(q,'door_falls'),all=seed(36,'door_falls').lines.map(l=>l[0]);
-  if(door.terminal&&(door.skipped||all.every(id=>door.presented.includes(id)))&&q.clock-(q.door.renderedAt??q.clock)>5&&party(b).some(u=>u.x>K(b,'leaveX',6100))&&quiet(b))play(app,'leave');
+  if(door.terminal&&(door.skipped||all.every(id=>door.presented.includes(id)))&&q.clock-(q.door.renderedAt??q.clock)>5&&party(b).some(u=>u.x>K(b,'leaveX',6100))&&localReady(b,'villageExit'))play(app,'leave');
  }
 }
 function interact(app=G.HonroApp,probe=false){const b=app.engine?.b;if(!(b?.honroCustom||b?.honroAct4Official===1)||!b.honroAct4Preview||app.dialogue)return false;const q=memory(b),n=b.honroAct4Preview,u=app.engine.active;if(b.side!==0||b.phase!=='aim'||u?.side!==0||u.acted||!alive(u)||!app.engine.grounded(u))return false;
- if(n===31&&q.boat.phase==='docked'&&!narrativePending(b)&&offered(b,'boat_approach')&&offered(b,'board_ready')&&quiet(b)&&party(b).every(u=>u.x>boarding(b).boardX1&&u.x<boarding(b).boardX2&&Math.abs(u.y-boarding(b).deckY)<5&&app.engine.grounded(u))){if(probe)return probe==='label'?'갑판에서 출항':true;q.boat.phase='boarded';q.complete=true;return true;}
- if(n===36&&u.cls==='knight'&&quiet(b)&&atDoor(b,u)&&q.door.phase==='standing'){if(probe)return probe==='label'?'휘겸으로 문 밀기':true;q.door.phase='falling';q.door.time=0;return true;}
- if(n===35&&quiet(b)&&party(b).every(u=>u.x>K(b,'completeX',6500)&&u.y<K(b,'completeYMax',1e9))){if(probe)return probe==='label'?'대숲을 떠나기':true;q.complete=true;return true;}
+ if(n===31&&q.boat.phase==='docked'&&!narrativePending(b)&&offered(b,'boat_approach')&&offered(b,'board_ready')&&localReady(b,'dock')&&party(b).every(u=>u.x>boarding(b).boardX1&&u.x<boarding(b).boardX2&&Math.abs(u.y-boarding(b).deckY)<5&&app.engine.grounded(u))){if(probe)return probe==='label'?'갑판에서 출항':true;q.boat.phase='boarded';q.complete=true;return true;}
+ if(n===36&&u.cls==='knight'&&localReady(b,'door')&&atDoor(b,u)&&q.door.phase==='standing'){if(probe)return probe==='label'?'휘겸으로 문 밀기':true;q.door.phase='falling';q.door.time=0;return true;}
+ if(n===35&&!q.failure&&localReady(b,'bambooExit')&&party(b).every(u=>u.x>K(b,'completeX',6500)&&u.y<K(b,'completeYMax',1e9)&&app.engine.grounded(u))){if(probe)return probe==='label'?'대숲을 떠나기':true;q.complete=true;return true;}
  // The compact court leaves only 88 world units beyond completeX. Use the
  // already-authored leave approach for the living party's final assembly;
- // the fallen door, observed dialogue and quiet-state gates still apply.
+ // the fallen door, observed dialogue and local exit safety still apply.
  const doorRead=n===36&&(q.events.door_falls?.skipped||['A4.S36.DOOR.01','A4.S36.DOOR.02'].every(id=>q.receipts.includes(id)));
- if(n===36&&quiet(b)&&q.door.phase==='fallen'&&q.events.leave?.terminal&&doorRead&&party(b).every(u=>u.x>Math.min(K(b,'completeX',6500),K(b,'leaveX',K(b,'completeX',6500)))&&u.y<K(b,'completeYMax',1e9))){if(probe)return probe==='label'?'폐촌을 떠나기':true;q.complete=true;return true;}
- if(n===36&&u.cls==='knight'&&quiet(b)&&atDoor(b,u)&&q.door.phase==='fallen'&&q.events.door_falls?.terminal&&!doorRead&&!q.reader&&!q.bark){if(probe)return probe==='label'?'무너진 문 조사':true;const d=event(q,'door_falls');d.started=d.terminal=false;return play(app,'door_falls');}
+ if(n===36&&!q.failure&&localReady(b,'villageExit')&&q.door.phase==='fallen'&&q.events.leave?.terminal&&doorRead&&party(b).every(u=>u.x>Math.min(K(b,'completeX',6500),K(b,'leaveX',K(b,'completeX',6500)))&&u.y<K(b,'completeYMax',1e9))){if(probe)return probe==='label'?'폐촌을 떠나기':true;q.complete=true;return true;}
+ if(n===36&&u.cls==='knight'&&localReady(b,'door')&&atDoor(b,u)&&q.door.phase==='fallen'&&q.events.door_falls?.terminal&&!doorRead&&!q.reader&&!q.bark){if(probe)return probe==='label'?'무너진 문 조사':true;const d=event(q,'door_falls');d.started=d.terminal=false;return play(app,'door_falls');}
  return false;
 }
 const draw=G.HonroScene.prototype.landmark;
@@ -144,7 +160,7 @@ b.honroAct4PreviewDynamic??=b.honroLandmarks.filter(l=>['a4:boat','a4:door','a4:
 const launch=P.launch;P.launch=function(n){const r=launch(n);P.attachEvents(G.HonroApp,{fresh:true});return r;};
 function snapshot(app=G.HonroApp,{compactArt=false}={}){const b=app.engine?.b;if(!(b?.honroCustom||b?.honroAct4Official===1)||!b.honroAct4Preview)throw Error('No Act4 preview');const source=compactArt?G.HonroProfileStore.compactBattleArt(b):b;const result=JSON.parse(JSON.stringify(source));if(result.honroAct4PreviewState?.reader){const reader=result.honroAct4PreviewState.reader;if(!app.dialogue){closeReader(result);return result;}reader.cursor=app.dialogue?.index??0;reader.cursorId=app.dialogue?.lines[reader.cursor]?.[2]?.act4PreviewRow;reader.ids=app.dialogue?.lines.map(l=>l[2]?.act4PreviewRow).filter(Boolean)||reader.ids;}return result;}
 function restore(saved){if(!saved?.honroCustom||!(saved.honroAct4Preview>=31&&saved.honroAct4Preview<=40)||saved.honroAct4PreviewState?.version!==1)throw Error('Invalid preview snapshot');const r=P.launch(saved.honroAct4Preview),app=G.HonroApp;Object.assign(r.b,JSON.parse(JSON.stringify(saved)));r.b.sceneVersion++;const reader=memory(r.b).reader;if(reader){const s=seed(r.b.honroAct4Preview,reader.key),lines=reader.ids?s.lines.filter(l=>reader.ids.includes(l[0])):s.lines,cursor=reader.cursorId?Math.max(0,lines.findIndex(l=>l[0]===reader.cursorId)):(reader.cursor??0);G.HonroStory.start(app,lines.map(([id,who,text])=>[who,text,{kind:'character',act4PreviewRow:id}]),{id:'act4-preview-'+r.b.honroAct4Preview+'-'+reader.key,title:app.stage.name,index:cursor});}return r;}
-Object.assign(P,{interact,observe,previewMemory:memory,snapshot,restore,narrativePending,finishReader,eventAPI:{alive,party,memory,seed,event,inView,play,quiet}});
+Object.assign(P,{interact,observe,previewMemory:memory,snapshot,restore,narrativePending,finishReader,eventAPI:{alive,party,memory,seed,event,inView,play,stable,objectiveReady,objectiveBox,localThreats,objectiveArea,localReady,dockScouted}});
 function attachApp(){const appPrototype=Object.getPrototypeOf(G.HonroApp),canInput=appPrototype.canInput;appPrototype.canInput=function(...args){if((this.engine?.b?.honroCustom||this.engine?.b?.honroAct4Official===1)&&this.engine.b.honroAct4Preview===31&&memory(this.engine.b).arrivalTour?.active)return false;return canInput.apply(this,args);};}
 if(G.HonroApp)attachApp();else G.HONRO_APP_READY.then(attachApp);
 G.document.addEventListener('keydown',ev=>{const app=G.HonroApp,b=app?.engine?.b;if(ev.code!=='Escape'||!(b?.honroCustom||b?.honroAct4Official===1)||b.honroAct4Preview!==31)return;const q=memory(b);if(!q.arrivalTour?.active)return;q.arrivalTour.active=false;const e=event(q,'arrival');e.started=e.terminal=true;e.retired=seed(31,'arrival').lines.map(l=>l[0]);if(!P.startCamera?.(app))Object.assign(app.scene,{manual:false,x:boarding(app.engine.b).startX??450,y:boarding(app.engine.b).startY??1840,scale:G.innerWidth<600?.62:.94});});
