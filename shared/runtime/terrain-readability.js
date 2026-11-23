@@ -9,6 +9,38 @@ function cutAt(a,z,p,q,cuts){const dx=z.x-a.x,dy=z.y-a.y,ex=q.x-p.x,ey=q.y-p.y,d
  if(Math.abs(den)>1e-8){const t=cross(p.x-a.x,p.y-a.y,ex,ey)/den,u=cross(p.x-a.x,p.y-a.y,dx,dy)/den;if(t>0&&t<1&&u>=0&&u<=1)cuts.push(t);}
  else if(Math.abs(cross(p.x-a.x,p.y-a.y,dx,dy))<1e-6)for(const v of [p,q]){const t=((v.x-a.x)*dx+(v.y-a.y)*dy)/len2;if(t>0&&t<1)cuts.push(t);}
 }
+// Campaign-only boundaries that follow physical collision rather than the
+// visible art. Clip ordinary ink locally; keep the diagnostic segments and
+// their render-domain geometry for terrain debug and path inspection.
+const hiddenCampaignInk={
+ 42:{'a5-palisade':[[975,1568,1520,2055]],'a5-palisade-ramp':[[1350,2540,1410,2040]]},
+ 43:{'a5-left-wall':[[530,2425,600,1495]],'a5-gate-road':[[5410,6660,1830,2230]]},
+ 44:{'a5-root-floor':[[5743,6702,1550,2030]]},
+ 46:{'a5-right-cliff':[[3860,4100,1180,1540]]},
+ 47:{'a5-eastern-stairs':[[2418,3002,2280,2940]],'a5-lower-arch':[[470,2450,3490,4180]]},
+ 50:{'a5-saddle':[[2423,2581,2370,2570]]},
+};
+function inkPieces(p,q,windows){
+ let pieces=[[0,1]];
+ for(const [left,right,top,bottom] of windows){
+  let start=0,end=1;
+  for(const [a,z,min,max] of [[p.x,q.x,left,right],[p.y,q.y,top,bottom]]){
+   const d=z-a;
+   if(!d){if(a<min||a>max){start=1;end=0;break;}continue;}
+   const lo=(min-a)/d,hi=(max-a)/d;
+   start=Math.max(start,Math.min(lo,hi));end=Math.min(end,Math.max(lo,hi));
+  }
+  if(start<end)pieces=pieces.flatMap(([a,z])=>z<=start||a>=end?[[a,z]]:[
+   ...(a<start?[[a,start]]:[]),...(z>end?[[end,z]]:[]),
+  ]);
+ }
+ return pieces.map(([a,z])=>[a===0?p:{x:p.x+(q.x-p.x)*a,y:p.y+(q.y-p.y)*a},z===1?q:{x:p.x+(q.x-p.x)*z,y:p.y+(q.y-p.y)*z}]);
+}
+function paintPieces(b,id,p,q){
+ const windows=b.honroCanonical===true&&b.honroCustom===false&&b.honroMapOrigin==='campaign'&&
+  b.honroAuthoredId==='stage-'+b.honroStage?hiddenCampaignInk[b.honroStage]?.[id]:null;
+ return windows?inkPieces(p,q,windows):[[p,q]];
+}
 function prepare(b){const ts=G.HonroTerrainDomain?.render(b)||b.terrain||[],prior=cache.get(b);if(prior?.source===ts&&prior.version===b.sceneVersion)return prior;
  // The waterfall is rendered by its flowing sheet, not a rock-edge outline.
  const omittedClosures=b.honroStage===3?new Set((b.honroLandmarks||[]).flatMap(l=>l.asset?.params?.omitTerrainClosureIds||[])):null;
@@ -43,7 +75,16 @@ function prepare(b){const ts=G.HonroTerrainDomain?.render(b)||b.terrain||[],prio
    for(const o of peers)for(let j=0;j<o.ps.length;j++)cutAt(a,z,o.ps[j],o.ps[(j+1)%o.ps.length],cuts);cuts.sort((a,z)=>a-z);
    for(let k=1;k<cuts.length;k++){const start=cuts[k-1],end=cuts[k];if((end-start)*len<.05)continue;const mid=(start+end)/2;if(peers.some(o=>inside(a.x+dx*mid+nx*.6,a.y+dy*mid+ny*.6,o.ps)))continue;
     const p={x:a.x+dx*start,y:a.y+dy*start},q={x:a.x+dx*end,y:a.y+dy*end};const inkX=west7DummyInk?Math.max(0,p.x):p.x, visibleInk=!west7DummyInk||q.x>0;
-    if(visibleInk&&(!east7Ink||p.y<3330)){edge.moveTo(inkX,p.y);edge.lineTo(q.x,east7Ink?Math.min(q.y,3330):q.y);}const walkRim=walkable&&(G.HonroStage11LandscapeArt?.walkRim?.(t,b,p,q)??true);if(walkRim&&visibleInk){top.moveTo(inkX,p.y);top.lineTo(q.x,q.y);}segments.push({a:p,z:q,walkable});
+    const walkRim=walkable&&(G.HonroStage11LandscapeArt?.walkRim?.(t,b,p,q)??true);
+    if(visibleInk){
+     const pieces=paintPieces(b,t.id,p,q);
+     for(const [a,z] of pieces){
+      const x=west7DummyInk?inkX:a.x;
+      if(!east7Ink||a.y<3330){edge.moveTo(x,a.y);edge.lineTo(z.x,east7Ink?Math.min(z.y,3330):z.y);}
+      if(walkRim){top.moveTo(x,a.y);top.lineTo(z.x,z.y);}
+     }
+    }
+    segments.push({a:p,z:q,walkable});
    }
   }
   if(segments.length)groups.push({id:t.id,wood:t.mat==='wood',edge,top,segments,bounds:{left:t.x,top:t.y,right:t.x+t.w,bottom:t.y+t.h}});
@@ -57,5 +98,5 @@ S.terrainReadability=function(c,b,view){const q=prepare(b),raster=this._staticCa
   c.strokeStyle=group.wood?STYLE.woodLight:STYLE.topLight;c.lineWidth=STYLE.topLightPixels*unit;c.stroke(group.top);
  }c.restore();this.terrainReadabilityStats={builds:q.builds,groups:q.groups.length};
 };
-G.HonroTerrainReadability={STYLE,prepare};
+G.HonroTerrainReadability={STYLE,prepare,paintPieces};
 })(globalThis);

@@ -84,6 +84,26 @@ const S=G.HonroScene?.prototype;
 if(S){
  const terrain=S.terrain;S.terrain=function(c,t,...args){if(covered(t,this.battle)||movingDeckCovered(t,this.battle))return;return terrain.call(this,c,t,...args);};
  const foreground=S._isForeground;S._isForeground=function(l){return native(l,this.battle)?l.nativeArtLayer==='front':foreground.call(this,l);};
+// Hide the four guide quads only at this exact native campaign landmark.
+ // The provider asset remains byte-identical for compact Continue saves.
+ const caveGuide38="M970.000,420.000 L995.000,399.000 L995.000,403.000 L970.000,424.000 Z M995.000,399.000 L1020.000,378.000 L1020.000,382.000 L995.000,403.000 Z M1020.000,378.000 L1045.000,357.000 L1045.000,361.000 L1020.000,382.000 Z M1045.000,357.000 L1070.000,338.000 L1070.000,342.000 L1045.000,361.000 Z ",caveGuidePaintCache=new WeakMap();
+ function nativePaintAsset(l,b){
+  const asset=l.asset,id='act4-handoff:38:cave-contact';
+  if(b.honroStage!==38||b.honroCanonical!==true||b.honroCustom!==false||
+     b.honroMapOrigin!=='campaign'||b.honroAuthoredId!=='stage-38'||
+     l.id!==id||asset?.id!==id||l.layer!=='mid'||l.nativeArtLayer!=='surface'||
+     l.x!==0||l.y!==0||l.scale!==1||(l.rotation??0)!==0)return asset;
+  if(caveGuidePaintCache.has(asset))return caveGuidePaintCache.get(asset);
+  const v=asset.vector,g=v?.root,a=g?.children?.[0],c=a?.children?.[0],e=c?.children?.[0],p=e?.children?.[0];
+  let derived=asset;
+  if(p?.tag==='path'&&p.fill?.toLowerCase()==='#a3aa95'&&p.d?.split(caveGuide38).length===2&&
+     g.transform?.join(',')==='4.5,0,0,4.5,0,0'){
+   const first=(node,child)=>({...node,children:[child,...node.children.slice(1)]});
+   const root=first(g,first(a,first(c,first(e,{...p,d:p.d.replace(caveGuide38,'')}))));
+   derived={...asset,vector:{...v,root}};
+  }
+  caveGuidePaintCache.set(asset,derived);return derived;
+ }
  const landmark=S.landmark;S.landmark=function(c,l,...args){
   const b=this.battle;
   if(config(b)&&this._nativeArtBackground&&l.id==='a4-31-boat-10'&&l.asset?.id==='a4:boat'){this._nativeArtDeferredBoat={...l};return;}
@@ -91,7 +111,7 @@ if(S){
    if(l.nativeArtLayer==='body'&&!bodyLive(l,b))return;
    const raw=G.HonroVisualStyle?.raw(c)||c;
    if(l.nativeArtLayer==='body')paintContactUnderlay(raw,l,b);
-   if(G.HonroVectorArt?.draw(raw,l.asset,l))return;
+   if(G.HonroVectorArt?.draw(raw,nativePaintAsset(l,b),l))return;
   }
   // Paint the existing event-controlled boat pose exactly once, without making
   // a second static boat or changing its identity/collision/event lifecycle.
