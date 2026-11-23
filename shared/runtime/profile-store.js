@@ -196,6 +196,7 @@ function compactBattleArt(b){
  // these chapters resolve to the current provider of the same placement.
  const ACT5_DENSITY_REFS=Object.freeze({
   43:Object.freeze({id:'act5:near:43',stage:43,previous:Object.freeze(['2588136:21983dfc']),current:'2302716:85bc9092'}),
+  44:Object.freeze({id:'act5:near:44',stage:44,previous:Object.freeze(['3323278:8ab035ae']),current:'1395161:280b8c2e'}),
   50:Object.freeze({id:'act5:near:50',stage:50,previous:Object.freeze(['1704267:dfc88629']),current:'1421755:db246daa'}),
  });
  function stage46LosslessRef(b,item,ref,source,current){

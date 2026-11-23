@@ -90,7 +90,7 @@ export async function makeAct5(){
  // Stage42: bounded node simplification of its near source (tools/act5/simplify-vector.py).
  // near-import.json itself stays byte-identical (other stages' proofs hash it).
  // Same bounded simplification for Stage43/50 near sources (2026-11-23 density pass).
- const simplifiedNear=Object.fromEntries(await Promise.all([42,43,50].map(async id=>[id,JSON.parse(await readFile(new URL('./assets/environment/act5/stage'+id+'-near-simplified.json',import.meta.url),'utf8'))])));
+ const simplifiedNear=Object.fromEntries(await Promise.all([42,43,44,50].map(async id=>[id,JSON.parse(await readFile(new URL('./assets/environment/act5/stage'+id+'-near-simplified.json',import.meta.url),'utf8'))])));
  for(const [id,near] of Object.entries(simplifiedNear)){const src=imports[id-41];if(+src?.id!==+id||near.sha256!==src.sha256)throw Error('Simplified near source does not match near-import for stage '+id);}
  const campSourceCoverage=JSON.parse(await readFile(new URL('../art/stage41-join/source-coverage.json',import.meta.url),'utf8'));
  const campExterior=Object.fromEntries(await Promise.all([['west','camp-west-geology'],['east','camp-east-geology'],['deep','camp-deep-geology']].map(async([key,file])=>[key,JSON.parse(await readFile(new URL('./assets/environment/act5/'+file+'.json',import.meta.url),'utf8'))])));
