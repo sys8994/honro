@@ -11,6 +11,7 @@ import {applyNaruBodyFinish} from '../tools/map-forge/naru-body-finish.mjs';
 import {terrainPathOptimization} from './terrain-path-optimization.mjs';
 import {applyStage35BedrockJoin} from './act4-stage35-bedrock-join.mjs';
 import {applyStage35RockMaterial} from './act4-stage35-rock-material.mjs';
+import {applyStage40EastMasonry} from './act4-stage40-east-masonry.mjs';
 import {applyReviewedAct2Art} from '../tools/act2-vector-production/apply-candidates.mjs';
 import {validateSkillIcons} from '../tools/skill-icons/manifest.mjs';
 import {applyCommonCartArt} from '../tools/environment/common-cart-art.mjs';
@@ -203,11 +204,12 @@ export async function runtimeEntries({vector=true,render=true,app=false,producti
   if(act4Enabled){
     const stage35Join=applyStage35BedrockJoin(project,terrainOptimization.previousAct4Signatures);
     const stage35Rock=applyStage35RockMaterial(stage35Join.project,stage35Join.previousAct4Signatures);
-    project=stage35Rock.project;
+    const stage40Masonry=applyStage40EastMasonry(stage35Rock.project,stage35Rock.previousAct4Signatures);
+    project=stage40Masonry.project;
     // Already published coastal v2 prefix: exact historical c60 save tokens
     // may resolve only to these exact current providers, by the existing
     // campaign/stage/current-signature checks in profile-store.
-    const previousTerrainArt={...stage35Rock.previousAct4Signatures};
+    const previousTerrainArt={...stage40Masonry.previousAct4Signatures};
     const coast33=project.stages.find(s=>s.metadata?.stageId===33);
     const coast33Rows=[
       ['act4-sideview:33:coastal-v2:west-continuous-geology','862760:4666d3c8','864135:d1152e99'],
