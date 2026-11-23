@@ -192,13 +192,19 @@ function compactBattleArt(b){
  // (tools/act5/retrace-vector.py); silhouette clips, placement and collision unchanged.
  // Both earlier released providers resolve to this current provider.
  const STAGE46_LOSSLESS_REF=Object.freeze({id:'act5:near:46',stage:46,previous:Object.freeze(['17756761:bc1a6549','16328502:43d17801']),current:'4204233:7f4d5ae9'});
+// 2026-11-23 Act 5 node-density pass: earlier released near-art providers of
+ // these chapters resolve to the current provider of the same placement.
+ const ACT5_DENSITY_REFS=Object.freeze({
+  43:Object.freeze({id:'act5:near:43',stage:43,previous:Object.freeze(['2588136:21983dfc']),current:'2302716:85bc9092'}),
+  50:Object.freeze({id:'act5:near:50',stage:50,previous:Object.freeze(['1704267:dfc88629']),current:'1421755:db246daa'}),
+ });
  function stage46LosslessRef(b,item,ref,source,current){
-  const rule=STAGE46_LOSSLESS_REF;
+  const rule=b?.honroStage===46?STAGE46_LOSSLESS_REF:ACT5_DENSITY_REFS[b?.honroStage];if(!rule)return false;
   return b?.mode==='campaign'&&b.honroCustom===false&&b.honroCanonical===true&&
    b.honroAct5===1&&b.honroMapOrigin==='campaign'&&b.honroStage===rule.stage&&
    ref.id===rule.id&&rule.previous.includes(ref.signature)&&current===rule.current&&
    item?.id==='a5-near'&&item.assetId===rule.id&&item.kind==='canonical-element'&&
-   item.x===0&&item.y===0&&item.scale===4&&item.rotation===0&&
+   item.x===0&&item.y===0&&(rule.stage===46?item.scale===4:Number.isFinite(item.scale)&&item.scale>0)&&item.rotation===0&&
    Array.isArray(item.collisionIds)&&item.collisionIds.length===0&&
    source.id===rule.id&&!!source.vector&&Array.isArray(source.collision)&&source.collision.length===0;
  }

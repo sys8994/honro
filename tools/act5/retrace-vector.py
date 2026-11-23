@@ -71,6 +71,10 @@ def smooth_ring(P, w):
     xs = np.convolve(ext[:, 0], k, 'same')[w:-w]; ys = np.convolve(ext[:, 1], k, 'same')[w:-w]
     return np.column_stack([xs, ys])
 
+INV = None  # affine inverse of the leaf parent's accumulated transform (asset mode)
+def to_local(x, y):
+    if INV is None: return x, y
+    a, b, c, d, e, f = INV; return a * x + c * y + e, b * x + d * y + f
 def trace(mask, k, vx, vy, tol, corner, min_contour_px, smooth):
     cs, hier = cv2.findContours(mask.astype(np.uint8), cv2.RETR_CCOMP, cv2.CHAIN_APPROX_NONE)
     out = []; n = 0
@@ -82,11 +86,11 @@ def trace(mask, k, vx, vy, tol, corner, min_contour_px, smooth):
         sub = {'start': tuple(P[0]), 'segs': [('L', tuple(P[i - 1]), tuple(P[i])) for i in range(1, len(P))] + [('L', tuple(P[-1]), tuple(P[0]))], 'closed': True, 'arc': False}
         curves = sv.simplify_sub(sub, tol, 1.0, corner)
         if not curves: continue
-        curves = [np.array([[x / k + vx, y / k + vy] for x, y in cv]) for cv in curves]
+        curves = [np.array([to_local(x / k + vx, y / k + vy) for x, y in cv]) for cv in curves]
         text = sv.emit_curves(curves); t2 = tol
         while len(text) > PART_CHARS:
             t2 *= 1.5; curves = sv.simplify_sub(sub, t2, 1.0, corner)
-            curves = [np.array([[x / k + vx, y / k + vy] for x, y in cv]) for cv in curves]; text = sv.emit_curves(curves)
+            curves = [np.array([to_local(x / k + vx, y / k + vy) for x, y in cv]) for cv in curves]; text = sv.emit_curves(curves)
         out.append(text); n += len(curves) + 1
     return ''.join(out), n
 
@@ -145,6 +149,20 @@ def main():
     root = vec[o.root.split('.')[-1]]
     vx, vy = vec['viewBox'][0], vec['viewBox'][1]
     leaves = leaves_of(root, [])
+    # accumulated transform root -> leaf parent (render applies it; traced points must undo it)
+    global INV
+    target = leaf_parent(root); M = [1, 0, 0, 1, 0, 0]
+    def find(n, m):
+        if not isinstance(n, dict): return None
+        t = n.get('transform')
+        if t: m = [m[0]*t[0]+m[2]*t[1], m[1]*t[0]+m[3]*t[1], m[0]*t[2]+m[2]*t[3], m[1]*t[2]+m[3]*t[3], m[0]*t[4]+m[2]*t[5]+m[4], m[1]*t[4]+m[3]*t[5]+m[5]]
+        if n is target: return m
+        for ch in n.get('children') or []:
+            r = find(ch, m)
+            if r: return r
+    M = find(root, M) or M
+    det = M[0]*M[3]-M[1]*M[2]; ia, ib, ic, idd = M[3]/det, -M[1]/det, -M[2]/det, M[0]/det
+    INV = None if M == [1, 0, 0, 1, 0, 0] else [ia, ib, ic, idd, -(ia*M[4]+ic*M[5]), -(ib*M[4]+idd*M[5])]
     before = 0
     for l in leaves: before += sum(sv.endpoints(s) for s in sv.parse(l.get('d') or l.get('sourcePath') or ''.join(l.get('dParts') or [])))
     order = []
