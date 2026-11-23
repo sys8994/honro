@@ -4,11 +4,10 @@
 const placements = {
  31: [
   // Dike low fork: a covering bow stands further round the bend with a guard
-  // closer to the bind point. The upper guard watches the bridge entrance.
+  // closer to the bind point. The upper bridge guard stays put.
   ['pilot31-west-crossfire-2', 'approved31-low-flank', 2227.5, 2340],
   ['pilot31-west-crossfire-7', 'approved31-low-flank', 2452.5, 2530],
   ['pilot31-west-crossfire-5', 'approved31-low-flank', 2677.5, 2820],
-  ['pilot31-west-crossfire-8', 'approved31-upper-west', 2542.5, 2238],
   ['pilot31-lookout-return-2', 'approved31-low-flank', 4635, 4710],
   ['pilot31-lookout-return-5', 'approved31-low-flank', 4837.5, 4900],
  ],
@@ -45,7 +44,7 @@ const placements = {
   ['a4-37-b-5', 'approved37-lower-road', 1344, 880],
   // Curves of the middle switchback now carry two different contacts rather
   // than six evenly spaced silhouettes; the vanguard's ID/anchor stays put.
-  ['a4-37-c-1', 'approved37-middle-road', 1520, 1645],
+  ['a4-37-c-1', 'approved37-middle-road', 1520, 1700],
   // Preserve the stock engine's actual grounded post-separation vanguard
   // anchor. Its former middle-road author seed required fallback there.
   ['a4-37-c-3', 'approved37-middle-road', 1296, 1072, 'approved37-lower-road'],
@@ -56,7 +55,7 @@ const placements = {
   ['a4-37-e-1', 'approved37-upper-road', 1120, 1095],
   ['a4-37-e-2', 'approved37-upper-road', 1136, 963],
   ['a4-37-h-1', 'approved37-upper-road', 1530, 1180, 'approved37-entry'],
-  ['a4-37-h-2', 'approved37-upper-road', 1728, 1438],
+  ['a4-37-h-2', 'approved37-upper-road', 1728, 1492],
   ['a4-37-h-3', 'approved37-upper-road', 1856, 1825],
   ['a4-37-h-5', 'approved37-upper-road', 2144, 2090],
   ['a4-37-h-6', 'approved37-upper-road', 2272, 2178],

@@ -183,7 +183,7 @@ export const lateEncounters = {
       ]),
       pack('midGuard',['up','midGuard','high'],156,110,[
         foe('human',747,1056,{label:'중층 서쪽 사수'}), flyer('lantern',845,1026,53),
-        foe('shade',871,1010,{label:'돌계단 수호혼'}), foe('mourner',986,960,{label:'중층 높은 턱의 창보초'}),
+        foe('shade',871,1010,{label:'돌계단 수호혼'}), foe('hound',986,960,{label:'중층 높은 턱의 들린 산개'}),
         foe('ghost',950,960),
       ],undefined,'up'),
       pack('high',['midGuard','high'],179,179,[
