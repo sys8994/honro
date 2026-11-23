@@ -1,0 +1,65 @@
+name: Stage42 exact public PC M and native old-save Continue (read only)
+on:
+  push:
+    branches: [qa/stage42-2c4-full-public-readback-r4]
+    paths: [".github/workflows/stage42-2c4-full-public.yml","tools/stage42-full-public/**"]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  public-readback:
+    if: ${{ github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage42-2c4-full-public-readback-r4' }}
+    runs-on: ubuntu-22.04
+    timeout-minutes: 18
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+          fetch-depth: 3
+      - name: Authenticate exact recent master and successful existing Pages deployment (read only)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import datetime,hashlib,json,os,re,subprocess as s
+          from pathlib import Path
+          d=Path('tools/stage42-full-public'); p=json.loads((d/'PINS.json').read_text()); r=p['release']; b=p['stock']
+          assert p['enabled'] is True and all(r.values()) and p['qaRef']==os.environ['GITHUB_REF']
+          git=lambda *args:s.check_output(['git',*args],text=True,timeout=60).strip()
+          assert git('show','-s','--format=%P','HEAD')==r['head'] and git('rev-parse','HEAD')==os.environ['GITHUB_SHA']
+          assert git('show','-s','--format=%P',r['head'])==b['head'] and git('rev-parse',r['head']+'^{tree}')==r['tree'] and git('rev-parse',b['head']+'^{tree}')==b['tree']
+          paths={'.github/workflows/stage42-2c4-full-public.yml',*(str(d/x) for x in ('PINS.json','observer.json','readback.py'))}
+          assert set(git('diff','--name-status','--no-renames',r['head'],'HEAD').splitlines())=={'A\t'+x for x in paths}
+          assert all(git('ls-tree','HEAD','--',x).startswith('100644 ') for x in paths)
+          manifest=s.check_output(['git','show',r['head']+':web/manifest.json'],timeout=60)
+          assert r['manifest']=={'bytes':len(manifest),'sha256':hashlib.sha256(manifest).hexdigest()}
+          gh=lambda url:json.loads(s.check_output(['gh','api','repos/sys8994/honro/'+url],timeout=60))
+          run,job,current=gh('actions/runs/'+str(r['pages'])),gh('actions/jobs/'+str(r['job'])),gh('branches/master')
+          assert run["head_sha"]==job["head_sha"]==r["head"] and run['head_branch']=='master'
+          assert run['status']==job['status']=='completed' and run['conclusion']==job['conclusion']=='success' and job['run_id']==r['pages']
+          deploy=[t for t in job['steps'] if t['name']=='Deploy to GitHub Pages' and t['conclusion']=='success']
+          iso=lambda x:datetime.datetime.fromisoformat(re.sub(r'(\.\d{6})\d+(?=Z|[+-])',r'\1',x).replace('Z','+00:00'))
+          assert len(deploy)==1 and iso(deploy[0]['started_at'])<=iso(r['completedUTC'])<=iso(job['completed_at'])
+          out=Path(os.environ['RUNNER_TEMP'])/'stage42-public-pages';out.mkdir()
+          (out/'OFFICIAL-PAGES.json').write_text(json.dumps({'head':r['head'],'tree':r['tree'],'run':run['id'],'job':job['id'],'deployStep':deploy[0],'jobEnd':job['completed_at'],'verifiedPublishedUTC':r['completedUTC'],'masterObserved':current['commit']['sha'],'masterMatchedObserved':current['commit']['sha']==r['head']},indent=2)+'\n')
+          PY
+      - name: Replay exact prior native 2c4 source then anonymous actual public PC and mobile
+        run: |
+          set -euo pipefail
+          test -z "${GH_TOKEN:-}${GITHUB_TOKEN:-}${RELEASE_TOKEN:-}"
+          git worktree add --detach "$RUNNER_TEMP/stage42-public-stock" 2c4ba6cda11ad00c7edc565ef42bc41568f066a1
+          python3 -m venv "$RUNNER_TEMP/stage42-public-venv"
+          V="$RUNNER_TEMP/stage42-public-venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+          "$V" -B tools/stage42-full-public/readback.py "$RUNNER_TEMP/stage42-public-stock" "$RUNNER_TEMP/stage42-public-pages/actual"
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage42-exact-public-pc-mobile-true-2c4-continue
+          path: ${{ runner.temp }}/stage42-public-pages/
+          retention-days: 7
+          if-no-files-found: warn
