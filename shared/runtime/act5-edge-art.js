@@ -210,6 +210,13 @@ function prepare(scene,l){
  return scene._act5Edge={asset:a,canvas:cv,pad:pad/r,w:cv.width/r,h:cv.height/r};
 }
 S.landmark=function(c,l){
+ // Keep the withdrawn Stage44 underside in the active registry and in saves.
+ // Only its original canonical scenery placement is invisible, including after Continue.
+ if(l.id==='a5-under'&&l.asset?.id==='act5:under:44'&&l.x===160&&l.y===586&&l.scale===3.2&&(l.rotation??0)===0){
+  const b=this.battle;
+  if(b?.mode==='campaign'&&b.honroStage===44&&b.honroCanonical===true&&b.honroCustom===false&&
+     b.honroMapOrigin==='campaign'&&b.honroAuthoredId==='stage-44')return;
+ }
  if(l.asset?.id==='act5:near:48'&&l.asset.continuousBody&&!l.rotation){
  const a=l.asset,z=l.scale??1,V=G.HonroVisualStyle,cc=V?V.context(c,V.classify(l,this.battle,a)==='gameplay'?'gameplay':V.depth(l,a)):c;
  let parts=stage48Parts.get(a);if(!parts){
