@@ -1,0 +1,83 @@
+name: Stage42 exact normal forward fallback roundtrip (no deploy)
+on:
+  push:
+    branches: [qa/stage42-normal-fallback-3032]
+    paths: [".github/workflows/stage42-normal-fallback.yml", "tools/stage42-full-normal/**"]
+permissions:
+  contents: read
+jobs:
+  no-deploy:
+    if: ${{ github.repository == 'sys8994/honro' && github.ref == 'refs/heads/qa/stage42-normal-fallback-3032' }}
+    runs-on: ubuntu-22.04
+    timeout-minutes: 35
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Bind immutable 3032/a6 plus eight add-only QA paths
+        run: |
+          set -euo pipefail
+          test -z "${GITHUB_TOKEN:-}${GH_TOKEN:-}"
+          for A in "qa:$GITHUB_SHA:2" "a6:a6b2c0db97c9ae6efe4d5372f2208bfdf695f4f4:1"; do
+            IFS=: read -r lane sha depth <<< "$A"
+            git init -q "$GITHUB_WORKSPACE/$lane"
+            GIT_TERMINAL_PROMPT=0 git -C "$GITHUB_WORKSPACE/$lane" -c credential.helper= -c http.extraHeader= fetch -q --depth="$depth" https://github.com/sys8994/honro.git "$sha"
+            git -C "$GITHUB_WORKSPACE/$lane" checkout -q --detach FETCH_HEAD
+          done
+          cd "$GITHUB_WORKSPACE/qa"
+          python3 - <<'PY'
+          import json,subprocess as s,os
+          from pathlib import Path
+          p=json.loads(Path('tools/stage42-full-normal/PINS.json').read_text()); b=p['arms']['B'];a=p['arms']['A']
+          assert p['enabled'] is True and os.environ['GITHUB_REF']==p['qaRef']
+          git=lambda *a:s.check_output(['git',*a],text=True,timeout=60).strip()
+          assert b['head']=='3032ff1e3a3eace4d28b92e151f616c3ede1a826' and b['tree']=='345d213136779a6cb5a90fd3a9b6d19dc884e6fc'
+          assert git('rev-parse','HEAD')==os.environ['GITHUB_SHA'] and git('show','-s','--format=%P','HEAD')==b['head'] and git('rev-parse',b['head']+'^{tree}')==b['tree']
+          past=os.environ['GITHUB_WORKSPACE']+'/a6'
+          assert git('-C',past,'rev-parse','HEAD')==a['head'] and git('-C',past,'rev-parse','HEAD^{tree}')==a['tree']
+          want={'.github/workflows/stage42-normal-fallback.yml',*(f'tools/stage42-full-normal/{n}' for n in ('PINS.json','observer.json','normal.py','readback.py','derive.mjs','fallback.py','roundtrip.py'))}
+          assert set(git('diff','--name-status','--no-renames',b['head'],'HEAD').splitlines())=={'A\t'+x for x in want}
+          assert not git('status','--porcelain','--untracked-files=all')
+          PY
+          for d in 3032 normal fallback; do git worktree add --detach "$GITHUB_WORKSPACE/$d" "$(git rev-parse HEAD^)"; done
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: "22"
+      - name: Ordinary forward plus independent one-source fallback build
+        run: |
+          set -euo pipefail
+          test -z "${GITHUB_TOKEN:-}${GH_TOKEN:-}"
+          W="$RUNNER_TEMP/stage42-fallback-out"; T="$GITHUB_WORKSPACE/qa/tools/stage42-full-normal"
+          mkdir -p "$W/fallback"
+          node "$T/derive.mjs" "$GITHUB_WORKSPACE/a6" "$GITHUB_WORKSPACE/3032" "$RUNNER_TEMP/stage42-fallback-derived" >"$W/derive.log" 2>&1
+          cp "$RUNNER_TEMP/stage42-fallback-derived/DERIVATION.json" "$W/"
+          python3 "$T/normal.py" apply "$GITHUB_WORKSPACE/normal" "$RUNNER_TEMP/stage42-fallback-derived" "$W"
+          python3 "$T/fallback.py" apply "$GITHUB_WORKSPACE/fallback" "$W"
+          for d in normal fallback; do
+            cd "$GITHUB_WORKSPACE/$d"
+            npm ci >"$W/$d-npm.log" 2>&1
+            npm ci --prefix game >"$W/$d-npm-game.log" 2>&1
+            npm run build >"$W/$d-build.log" 2>&1
+            npm run test:production-contract >"$W/$d-contract.log" 2>&1
+          done
+          python3 "$T/normal.py" routes "$GITHUB_WORKSPACE/3032" "$GITHUB_WORKSPACE/normal" "$W"
+          python3 "$T/normal.py" graph "$GITHUB_WORKSPACE/3032" "$GITHUB_WORKSPACE/normal" "$W"
+          python3 "$T/fallback.py" graph "$GITHUB_WORKSPACE/3032" "$GITHUB_WORKSPACE/fallback" "$W/fallback"
+          cp "$W/fallback/FALLBACK-GRAPH.json" "$W/"
+      - name: No-motion stock controls and actual title forward to fallback to forward
+        run: |
+          set -euo pipefail
+          test -z "${GITHUB_TOKEN:-}${GH_TOKEN:-}"
+          PY=$(find "${RUNNER_TOOL_CACHE}/Python" -maxdepth 4 -type f -path '*/3.12.*/x64/bin/python3.12' | sort -V | tail -1)
+          test -n "$PY"
+          "$PY" -m venv "$RUNNER_TEMP/honro-stage42-fallback"
+          V="$RUNNER_TEMP/honro-stage42-fallback/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+          "$V" "$GITHUB_WORKSPACE/qa/tools/stage42-full-normal/roundtrip.py" "$GITHUB_WORKSPACE/3032" "$GITHUB_WORKSPACE/normal" "$GITHUB_WORKSPACE/fallback" "$RUNNER_TEMP/stage42-fallback-out"
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: stage42-normal-fallback-3032-no-deploy
+          path: ${{ runner.temp }}/stage42-fallback-out/
+          retention-days: 7
+          if-no-files-found: warn
