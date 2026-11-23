@@ -1,0 +1,125 @@
+name: Stage42 exact 2c4 seal - dedicated branch only, no deploy
+on:
+  push:
+    branches: [qa/stage42-2c4-release-writer-seal]
+    paths: [".github/workflows/stage42-2c4-release-seal.yml", "tools/stage42-release-writer/**"]
+permissions: {}
+jobs:
+  seal:
+    permissions:
+      contents: read
+      actions: read
+    if: ${{ github.repository == 'sys8994/honro' && github.event_name == 'push' && github.event.created && github.run_attempt == 1 && github.ref == 'refs/heads/qa/stage42-2c4-release-writer-seal' }}
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Independently verify exact immutable 2c4 and exact added QA paths
+        run: |
+          set -euo pipefail
+          test -z "${GH_TOKEN:-}${GITHUB_TOKEN:-}${RELEASE_TOKEN:-}"
+          python3 - <<'PY'
+          import hashlib,json,os,re,subprocess as s
+          from pathlib import Path
+          d=Path('tools/stage42-release-writer'); p=json.loads((d/'PINS.json').read_bytes()); b=p['base']
+          want={'.github/workflows/stage42-2c4-release-seal.yml',*(str(d/x) for x in ('PINS.json','writer.py','fallback-reviewed-receipt.json','safe-push.sh'))}
+          git=lambda *a:s.check_output(['git',*a],text=True,timeout=120).strip()
+          assert p['enabled'] is p['scopeApproval'] is p['refWriteEnabled'] is True and re.fullmatch('[a-f0-9]{40}',p['expectedTree'] or '')
+          event=json.loads(Path(os.environ['GITHUB_EVENT_PATH']).read_bytes())
+          assert event['before']=='0'*40 and event['after']==os.environ['GITHUB_SHA'] and event['created'] is True and event['forced'] is False and event['deleted'] is False
+          assert p['qaRef']==os.environ['GITHUB_REF'] and os.environ['GITHUB_REPOSITORY']=='sys8994/honro'
+          assert b['head']=='2c4ba6cda11ad00c7edc565ef42bc41568f066a1' and b['tree']=='7f7395fe024388688e07f42e07c30d30d3ff3c81'
+          assert git('rev-parse','HEAD')==os.environ['GITHUB_SHA'] and git('show','-s','--format=%P','HEAD')==b['head'] and git('rev-parse',b['head']+'^{tree}')==b['tree']
+          assert set(git('diff','--name-status','--no-renames',b['head'],'HEAD').splitlines())=={'A\t'+x for x in want}
+          assert not git('status','--porcelain','--untracked-files=all')
+          assert all(git('ls-tree','HEAD','--',x).startswith('100644 ') for x in want)
+          assert hashlib.sha256((d/'fallback-reviewed-receipt.json').read_bytes()).hexdigest()==p['fallback']['reviewSHA256']
+          PY
+      - name: Read exact hosted producer and fallback artifacts and official metadata
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set +x
+          set -euo pipefail
+          umask 077
+          V="$RUNNER_TEMP/stage42-writer-input"; mkdir "$V"
+          base=repos/sys8994/honro
+          gh api "$base/actions/runs/45133073788" > "$V/forward-run.json"
+          gh api "$base/actions/jobs/137552821769" > "$V/forward-job.json"
+          gh api "$base/git/commits/3d835cefa3ab9372681af99517a92fb171ad947e" > "$V/forward-parent-tree.json"
+          gh api "$base/actions/artifacts/14798828031" > "$V/forward-artifact.json"
+          gh api --allow-escape-sequences "$base/actions/artifacts/14798828031/zip" > "$V/forward-official.zip"
+          gh api "$base/actions/artifacts/14799150503" > "$V/fallback-artifact.json"
+          gh api --allow-escape-sequences "$base/actions/artifacts/14799150503/zip" > "$V/fallback-official.zip"
+          cp tools/stage42-release-writer/fallback-reviewed-receipt.json "$V/fallback-reviewed-receipt.json"
+      - name: Seal independently approved tree and pack only candidate Git objects
+        run: |
+          set -euo pipefail
+          test -z "${GH_TOKEN:-}${GITHUB_TOKEN:-}${RELEASE_TOKEN:-}"
+          O="$RUNNER_TEMP/stage42-release-seal"; V="$RUNNER_TEMP/stage42-writer-input"
+          python3 -B tools/stage42-release-writer/writer.py seal "$GITHUB_WORKSPACE" "$V" "$O"
+          H="$RUNNER_TEMP/stage42-sealed-handover"; mkdir "$H"
+          cp "$O/ASSEMBLY.json" tools/stage42-release-writer/{PINS.json,safe-push.sh} "$H/"
+          new="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["candidateCommit"])' "$H/ASSEMBLY.json")"
+          [[ "$new" =~ ^[a-f0-9]{40}$ ]]
+          printf '%s\n^%s\n' "$new" '2c4ba6cda11ad00c7edc565ef42bc41568f066a1' | git pack-objects --revs --stdout > "$H/CANDIDATE.pack"
+          test "$(stat -c %s "$H/CANDIDATE.pack")" -lt 12000000
+          (cd "$H"; sha256sum ASSEMBLY.json PINS.json safe-push.sh CANDIDATE.pack > SHA256SUMS)
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: stage42-sealed-git-objects-same-run
+          path: ${{ runner.temp }}/stage42-sealed-handover
+          compression-level: 0
+          if-no-files-found: error
+          retention-days: 1
+  push-release-only:
+    needs: seal
+    if: ${{ github.repository == 'sys8994/honro' && github.event_name == 'push' && github.event.created && github.run_attempt == 1 && github.ref == 'refs/heads/qa/stage42-2c4-release-writer-seal' }}
+    permissions:
+      contents: write
+      actions: none
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: stage42-sealed-git-objects-same-run
+          path: ${{ runner.temp }}/stage42-sealed-handover
+      - name: Verify sealed commit from exact public base without credentials
+        run: |
+          set -euo pipefail
+          test -z "${GH_TOKEN:-}${GITHUB_TOKEN:-}${RELEASE_TOKEN:-}${GIT_CONFIG_COUNT:-}"
+          h="$RUNNER_TEMP/stage42-sealed-handover"; cd "$h"
+          sha256sum --check --strict SHA256SUMS
+          test "$(stat -c %s CANDIDATE.pack)" -lt 12000000
+          b=2c4ba6cda11ad00c7edc565ef42bc41568f066a1; r="$RUNNER_TEMP/stage42-release-git"
+          git init -q "$r"; git -C "$r" remote add origin https://github.com/sys8994/honro
+          want="$(printf '%s\trefs/heads/master' "$b")"
+          test "$(git -C "$r" ls-remote --exit-code origin refs/heads/master)" = "$want"
+          GIT_TERMINAL_PROMPT=0 git -C "$r" fetch -q --depth=1 --no-tags origin refs/heads/master
+          test "$(git -C "$r" rev-parse FETCH_HEAD)" = "$b"
+          test "$(git -C "$r" rev-parse "$b^{tree}")" = 7f7395fe024388688e07f42e07c30d30d3ff3c81
+          git -C "$r" index-pack --strict --stdin < "$h/CANDIDATE.pack"
+          python3 - "$h" "$r" <<'PY2'
+          import json,re,subprocess as s,sys
+          from pathlib import Path
+          d,r=map(Path,sys.argv[1:]); p,a=[json.loads((d/x).read_bytes()) for x in ('PINS.json','ASSEMBLY.json')]
+          b='2c4ba6cda11ad00c7edc565ef42bc41568f066a1'; n=a['candidateCommit']; t=a['tree']
+          assert a['status']=='EXACT_STAGE42_RELEASE_TREE_NO_PUSH' and a['base']==b==p['base']['head'] and t==p['expectedTree']
+          assert p['enabled'] is p['scopeApproval'] is p['refWriteEnabled'] is True
+          assert all(re.fullmatch('[a-f0-9]{40}',x) for x in (n,t))
+          git=lambda *args:s.check_output(['git','-C',str(r),*args],text=True).rstrip('\n')
+          assert git('show','-s','--format=%P %T',n)==b+' '+t
+          expect={'A\t'+x for x in p['expectedAliases'].values()}|{'M\t'+x for x in set(p['sources'])|{'HONRO.html','HONRO_WORKSHOP.html','index.html','web/manifest.json'}}
+          assert len(expect)==len(a['exactReleaseDiff'])==14
+          assert set(git('diff','--name-status','--no-renames',b,n).splitlines())==set(a['exactReleaseDiff'])==expect
+          PY2
+      - name: Ordinary fast-forward to the dedicated precreated release branch only
+        env:
+          RELEASE_TOKEN: ${{ github.token }}
+        run: bash "$RUNNER_TEMP/stage42-sealed-handover/safe-push.sh" "$RUNNER_TEMP/stage42-release-git" "$RUNNER_TEMP/stage42-sealed-handover/ASSEMBLY.json"
