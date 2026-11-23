@@ -87,6 +87,10 @@ const layerIds=['far','mid','back','structural-back','terrain','interactive','pr
 export async function makeAct5(){
  const imports=JSON.parse(await readFile(new URL('./assets/environment/act5/near-import.json',import.meta.url),'utf8'));
  if(imports.length!==chapters.length)throw Error('Act 5 terrain count does not match the chapter list');
+ // Stage42: bounded node simplification of its near source (tools/act5/simplify-vector.py).
+ // near-import.json itself stays byte-identical (other stages' proofs hash it).
+ const stage42Near=JSON.parse(await readFile(new URL('./assets/environment/act5/stage42-near-simplified.json',import.meta.url),'utf8'));
+ if(imports[1]?.id!==42&&imports[1]?.id!=='42'||stage42Near.sha256!==imports[1].sha256)throw Error('Stage42 simplified near source does not match near-import[1]');
  const campSourceCoverage=JSON.parse(await readFile(new URL('../art/stage41-join/source-coverage.json',import.meta.url),'utf8'));
  const campExterior=Object.fromEntries(await Promise.all([['west','camp-west-geology'],['east','camp-east-geology'],['deep','camp-deep-geology']].map(async([key,file])=>[key,JSON.parse(await readFile(new URL('./assets/environment/act5/'+file+'.json',import.meta.url),'utf8'))])));
  const stage43Continuity=Object.fromEntries(await Promise.all(['deep','west','contact'].map(async key=>[key,JSON.parse(await readFile(new URL('./assets/environment/act5/stage43-continuity-'+key+'.json',import.meta.url),'utf8'))])));
@@ -117,7 +121,7 @@ export async function makeAct5(){
  const stage44Under=JSON.parse(await readFile(new URL('./assets/environment/act5/stage44-underside.json',import.meta.url),'utf8'));
  const library=[],stages=[],content=[];
  for(const [i,chapter] of chapters.entries()){
-  const id=41+i,source=imports[i],g=terrain[i];
+  const id=41+i,source=id===42?{...imports[i],vector:stage42Near.vector}:imports[i],g=terrain[i];
   if(source.id!==id||!(/^[0-9a-f]{64}$/).test(source.sha256))throw Error('Invalid Act 5 terrain provenance '+id);
   const {vector,sha256}=source,scale=g.width/1024,height=Math.ceil(vector.viewBox[3]*g.width/vector.viewBox[2])+360;
   const toWorld=([x,y])=>({x:Math.round(x*scale*100)/100,y:Math.round(y*scale*100)/100});

@@ -188,12 +188,15 @@ function compactBattleArt(b){
  // Stage46 token-only lexical re-encoding, same compiled Path2D geometry.
  // Only the last released official visual provider may migrate to this exact
  // candidate. Inlined art, invalid providers and placement/flag changes fail closed.
- const STAGE46_LOSSLESS_REF=Object.freeze({id:'act5:near:46',stage:46,previous:'17756761:bc1a6549',current:'16328502:43d17801'});
+ // 2026-11-23: region re-trace of the six exterior BODY parts to Act 5 node density
+ // (tools/act5/retrace-vector.py); silhouette clips, placement and collision unchanged.
+ // Both earlier released providers resolve to this current provider.
+ const STAGE46_LOSSLESS_REF=Object.freeze({id:'act5:near:46',stage:46,previous:Object.freeze(['17756761:bc1a6549','16328502:43d17801']),current:'4204233:7f4d5ae9'});
  function stage46LosslessRef(b,item,ref,source,current){
   const rule=STAGE46_LOSSLESS_REF;
   return b?.mode==='campaign'&&b.honroCustom===false&&b.honroCanonical===true&&
    b.honroAct5===1&&b.honroMapOrigin==='campaign'&&b.honroStage===rule.stage&&
-   ref.id===rule.id&&ref.signature===rule.previous&&current===rule.current&&
+   ref.id===rule.id&&rule.previous.includes(ref.signature)&&current===rule.current&&
    item?.id==='a5-near'&&item.assetId===rule.id&&item.kind==='canonical-element'&&
    item.x===0&&item.y===0&&item.scale===4&&item.rotation===0&&
    Array.isArray(item.collisionIds)&&item.collisionIds.length===0&&
@@ -209,8 +212,9 @@ function mayRestoreStage42CompactedArt(b,item,ref,current){
   item.layer==='structural-back'&&item.depthLayer==='L1'&&item.visualRole==='scenery'&&
   item.x===0&&item.y===0&&item.scale===6500/2022&&item.rotation===0&&
   Array.isArray(item.collisionIds)&&item.collisionIds.length===0&&
-  Object.keys(ref).length===3&&ref.id==='act5:near:42'&&ref.signature==='1864834:f80cec75'&&
-  current==='1858841:5ce4a412';
+  Object.keys(ref).length===3&&ref.id==='act5:near:42'&&['1864834:f80cec75','1858841:5ce4a412'].includes(ref.signature)&&
+  // 2026-11-23 node simplification (tools/act5/simplify-vector.py) is the current provider.
+  current==='1382117:dec691ec';
 }
  function restoreBattleArt(b){
  const local=resolveLocalArt(b);if(!local)return false;
