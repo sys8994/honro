@@ -1,0 +1,354 @@
+{
+  "repo": "sys8994/honro",
+  "publicRoot": "https://sys8994.github.io/honro/",
+  "devices": {
+    "PC": {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "device_scale_factor": 1
+    },
+    "Mobile": {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "device_scale_factor": 1,
+      "is_mobile": true,
+      "has_touch": true
+    }
+  },
+  "chromium": "151.0.7922.34",
+  "enabled": true,
+  "qaRef": "refs/heads/qa/stage46-part3-abc-3c55",
+  "head": "3c55cf8313f1cd7355f486272f220beb38bcac7f",
+  "tree": "b67ae4d9cb1ed3241c32c025201cf5778c00cb8a",
+  "previous": "a6b2c0db97c9ae6efe4d5372f2208bfdf695f4f4",
+  "previousTree": "4fa185a738677fc252c8af4340a90ce18ab7895e",
+  "pages": {
+    "run": 45108891636,
+    "job": 137476961484
+  },
+  "map": "web/data/chapter-46.2806e485c4c1e1b4.json",
+  "oldSig": "16328502:43d17801",
+  "newSig": "4204233:7f4d5ae9",
+  "packs": {
+    "A": {
+      "campaign": "web/data/campaign.b7ae34f5b0515023.json",
+      "entry": "web/entries/game.8ef0693f661485c8.js",
+      "descriptor": "web/data/chapter-46-assets-parts.a3595c48161a8bc1.json",
+      "splitBytes": 15250870
+    },
+    "B": {
+      "campaign": "web/data/campaign.4c48015c8663d89f.json",
+      "entry": "web/entries/game.d1e70066b5e4f461.js",
+      "descriptor": "web/data/chapter-46-assets-parts.044965c2886edcba.json",
+      "splitBytes": 4204399
+    },
+    "C": {
+      "campaign": "web/data/campaign.cd3bfcb88c7264f7.json",
+      "entry": "web/entries/game.212931915d143c3d.js",
+      "descriptor": "web/data/chapter-46-assets-parts.2571351f61fc30f3.json",
+      "splitBytes": 6072203
+    }
+  },
+  "pose": {
+    "PC": {
+      "near": [
+        1850,
+        2550,
+        0.55
+      ],
+      "deep": [
+        2048,
+        5500,
+        0.35
+      ]
+    },
+    "Mobile": {
+      "near": [
+        1850,
+        2550,
+        0.42
+      ],
+      "deep": [
+        2048,
+        5500,
+        0.35
+      ]
+    }
+  },
+  "maskGuardBackingPixels": 8,
+  "fixture": {
+    "enabled": false,
+    "ship": false,
+    "base": "3c55cf8313f1cd7355f486272f220beb38bcac7f",
+    "predecessor": "a6b2c0db97c9ae6efe4d5372f2208bfdf695f4f4",
+    "sources": {
+      "shared/assets/environment/act5/stage46-exterior-part-3.json": {
+        "A": {
+          "bytes": 475985,
+          "sha256": "0159160a85b2f5b391b713de347d97443db2136d43b3eb092ce58bbdafa35255",
+          "git": "3fcab290b91e96a050f84c05c39e843b2750bed2"
+        },
+        "C": {
+          "bytes": 2343784,
+          "sha256": "c91a0b505f7a757f4d4865d9bb9d17004d19e7883113e9de6c7cfc62483787fa",
+          "git": "fe02a145ec324283c2be265da40f740f51c20d5a"
+        }
+      },
+      "shared/runtime/profile-store.js": {
+        "A": {
+          "bytes": 26484,
+          "sha256": "cd1fb98f6b4ab63644dc56a3f219e68b824b712bed534cd24f65dcfd500e5e05",
+          "git": "88c3ccf0896a2f3d7a9a55f03ee1d246012fe345"
+        },
+        "C": {
+          "bytes": 26503,
+          "sha256": "3dd45eb0b930d2d4d9d6a1cdef65f3800acfce88080cc337f8c7e994ee4dccf1",
+          "git": "a0166e0d21605db1e1c7a929d79a3523cca04f9c"
+        }
+      }
+    },
+    "decodedOld": {
+      "bytes": 15250870,
+      "sha256": "744e462e37916ce64513ef0a0fad39d90f45c6c4aa1be408973a2c475c1ada7f",
+      "git": "cff90a5f33119578056fcf6151cd39d160dc3366"
+    },
+    "published3cPacket": {
+      "bytes": 4204399,
+      "sha256": "ad767bfeea8bd61b3eb906f1bcc31a64378fe3b8f905682eb737c2c5544fb2bf"
+    },
+    "exactCCompiled": {
+      "bytes": 6072203,
+      "sha256": "08b1a947946b053aa667a7bbea66155e3bc6be3dd0ca6593ac3a898a1ce13ca3",
+      "git": "efdfd0f840a47f65dc85c73dd51aed52c1918bf3"
+    },
+    "candidateDescriptor": {
+      "path": "web/data/chapter-46-assets-parts.2571351f61fc30f3.json",
+      "bytes": 444,
+      "sha256": "2571351f61fc30f34944d80cc7027033ca8722d580cdbe3e0fb273382c29679d",
+      "git": "d7746706ec4892e6a2413bc97df91051454a7f0b"
+    },
+    "parts": [
+      {
+        "path": "web/data/chapter-46-assets-part-000.ab1be7262c8c58cb.bin",
+        "bytes": 4194304,
+        "sha256": "ab1be7262c8c58cb5fecebb7e924ba13eb06f6e8ffad89919bb05d031f842bf6"
+      },
+      {
+        "path": "web/data/chapter-46-assets-part-001.605415ff5987d41b.bin",
+        "bytes": 1877899,
+        "sha256": "605415ff5987d41bb208089e39b5398c68c4b17aeebaff66d39caeaa20f57324"
+      }
+    ],
+    "provider": {
+      "pristine": "6072037:d62bee98",
+      "acceptedBefore": [
+        "17756761:bc1a6549",
+        "16328502:43d17801",
+        "4204233:7f4d5ae9"
+      ]
+    },
+    "proof": [
+      {
+        "i": 0,
+        "sameCompiledObject": true,
+        "artBefore": {
+          "bytes": 573614,
+          "sha256": "12a8dc9c4d970bbe6a4b42b51d553951cebe570847cf8d83f7ec8dfefe3feb82",
+          "git": "7bac617ee33d7d1f10ba3776de69b2febe70fc4d"
+        },
+        "artAfter": {
+          "bytes": 573614,
+          "sha256": "12a8dc9c4d970bbe6a4b42b51d553951cebe570847cf8d83f7ec8dfefe3feb82",
+          "git": "7bac617ee33d7d1f10ba3776de69b2febe70fc4d"
+        },
+        "clip": {
+          "bytes": 27679,
+          "sha256": "ecf510cd3d2f48ff8da8b31881c761a82877b754ae5e4b3d4de2a230c774f33c",
+          "git": "9119b339d21936a4bac22d30cd374947162b76bd"
+        }
+      },
+      {
+        "i": 1,
+        "sameCompiledObject": true,
+        "artBefore": {
+          "bytes": 524296,
+          "sha256": "0a3412d620802c666cd09e8cabb7a69bf88354c8caff53f5474f28ab463b2e73",
+          "git": "1c68b23cbc27e5467856a416467dfe281a71100a"
+        },
+        "artAfter": {
+          "bytes": 524296,
+          "sha256": "0a3412d620802c666cd09e8cabb7a69bf88354c8caff53f5474f28ab463b2e73",
+          "git": "1c68b23cbc27e5467856a416467dfe281a71100a"
+        },
+        "clip": {
+          "bytes": 27679,
+          "sha256": "ecf510cd3d2f48ff8da8b31881c761a82877b754ae5e4b3d4de2a230c774f33c",
+          "git": "9119b339d21936a4bac22d30cd374947162b76bd"
+        }
+      },
+      {
+        "i": 2,
+        "sameCompiledObject": true,
+        "artBefore": {
+          "bytes": 434266,
+          "sha256": "027c2b67afd8d585c89ceb4ba5f3604b23d6597f9b66d4a352a36e98a864b948",
+          "git": "780a85489103728db2b5edb223f3c0b47a859e10"
+        },
+        "artAfter": {
+          "bytes": 434266,
+          "sha256": "027c2b67afd8d585c89ceb4ba5f3604b23d6597f9b66d4a352a36e98a864b948",
+          "git": "780a85489103728db2b5edb223f3c0b47a859e10"
+        },
+        "clip": {
+          "bytes": 27679,
+          "sha256": "ecf510cd3d2f48ff8da8b31881c761a82877b754ae5e4b3d4de2a230c774f33c",
+          "git": "9119b339d21936a4bac22d30cd374947162b76bd"
+        }
+      },
+      {
+        "i": 3,
+        "sameCompiledObject": false,
+        "artBefore": {
+          "bytes": 475979,
+          "sha256": "0205d5c65413b8c1e337a44adaf40206759bb14028504afc81b480c7518b2b5f",
+          "git": "860dd0e299d8f53495444c3ac3185b5c76b6c1a0"
+        },
+        "artAfter": {
+          "bytes": 2343783,
+          "sha256": "6c9b5426c25337ea76edb756ec108179fd9b350bf0af13be5d97239ef895d266",
+          "git": "7512f6bb7350379482edc2c4880cd20703de58a0"
+        },
+        "clip": {
+          "bytes": 27679,
+          "sha256": "ecf510cd3d2f48ff8da8b31881c761a82877b754ae5e4b3d4de2a230c774f33c",
+          "git": "9119b339d21936a4bac22d30cd374947162b76bd"
+        }
+      },
+      {
+        "i": 4,
+        "sameCompiledObject": true,
+        "artBefore": {
+          "bytes": 522909,
+          "sha256": "253115f62b52bdc2479476a821457e9f30a34557b6a3bb695b78196d0103fdc4",
+          "git": "5d07529c0cfe05e723be737e8b677cfecf2b31a9"
+        },
+        "artAfter": {
+          "bytes": 522909,
+          "sha256": "253115f62b52bdc2479476a821457e9f30a34557b6a3bb695b78196d0103fdc4",
+          "git": "5d07529c0cfe05e723be737e8b677cfecf2b31a9"
+        },
+        "clip": {
+          "bytes": 27679,
+          "sha256": "ecf510cd3d2f48ff8da8b31881c761a82877b754ae5e4b3d4de2a230c774f33c",
+          "git": "9119b339d21936a4bac22d30cd374947162b76bd"
+        }
+      },
+      {
+        "i": 5,
+        "sameCompiledObject": true,
+        "artBefore": {
+          "bytes": 536033,
+          "sha256": "29ff1406759bacfe7d125788333c23ae13e4586fe1132d57cc38473b021730b3",
+          "git": "5a4d7ce1bcdc8f48072ea30f6722b7c7386eb940"
+        },
+        "artAfter": {
+          "bytes": 536033,
+          "sha256": "29ff1406759bacfe7d125788333c23ae13e4586fe1132d57cc38473b021730b3",
+          "git": "5a4d7ce1bcdc8f48072ea30f6722b7c7386eb940"
+        },
+        "clip": {
+          "bytes": 27679,
+          "sha256": "ecf510cd3d2f48ff8da8b31881c761a82877b754ae5e4b3d4de2a230c774f33c",
+          "git": "9119b339d21936a4bac22d30cd374947162b76bd"
+        }
+      }
+    ]
+  },
+  "overlay": {
+    "enabled": false,
+    "ship": false,
+    "input": {
+      "common5.js": [
+        "web/runtime/ordered-common-5.5cc8b281d7d4235d.js",
+        "6def2bf8c0c621ca92401158ddcdda6c11ac37fc"
+      ],
+      "campaign.js": [
+        "web/runtime/campaign.38d1394abfe86699.js",
+        "9384ca8de64c93b72d454049fdea1c1bbdf71e41"
+      ],
+      "entry.js": [
+        "web/entries/game.d1e70066b5e4f461.js",
+        "16e129d9065ea7fd32dccbc900a144ecc0514c90"
+      ],
+      "campaign.json": [
+        "web/data/campaign.4c48015c8663d89f.json",
+        "8b4d52fe3ee067a0842ad71a8e6855d68333bff4"
+      ],
+      "HONRO.html": [
+        "HONRO.html",
+        "742c0b8abf48d08822a1d4a822214ecadb01a000"
+      ]
+    },
+    "files": {
+      "web/runtime/ordered-common-5.08a126e8f5f1898e.js": {
+        "bytes": 178545,
+        "sha256": "08a126e8f5f1898e90e476279b2ef69b100bfee4faf12877c0f3ae28fa5e6600",
+        "git": "582d4eb69678607479d17ab0f362aff1659672d3"
+      },
+      "web/data/campaign.cd3bfcb88c7264f7.json": {
+        "bytes": 55165,
+        "sha256": "cd3bfcb88c7264f752abaea8d45acd251503bd155ed73ed58a0a1c177e5a7f65",
+        "git": "cab72b9cd0b10ad5e53f2e10aec374163f24f245"
+      },
+      "web/runtime/campaign.006bd6fdb6da03a2.js": {
+        "bytes": 527,
+        "sha256": "006bd6fdb6da03a2111eda8e2a380b7bc16f73760e896477fb7e1451a01c989f",
+        "git": "2f9c78b301dc786caf18149bc4546adeb90b8778"
+      },
+      "web/entries/game.212931915d143c3d.js": {
+        "bytes": 20483,
+        "sha256": "212931915d143c3da1a95ab29b11ed75d443de04146ee2d1c91dc9eb27e351b8",
+        "git": "5737897725dc7fc3ed54fe2e26b7e6facafbd3c3"
+      },
+      "HONRO.html": {
+        "bytes": 17379,
+        "sha256": "b0981b3e54aad80025faf4f10e9a1c82bd8b5e6cbf7bd8770bd76a96f41d263a",
+        "git": "0a68c4d9926c33b543c034510d1b55f3a98c7123"
+      },
+      "web/data/chapter-46-assets-parts.2571351f61fc30f3.json": {
+        "bytes": 444,
+        "sha256": "2571351f61fc30f34944d80cc7027033ca8722d580cdbe3e0fb273382c29679d",
+        "git": "d7746706ec4892e6a2413bc97df91051454a7f0b"
+      },
+      "web/data/chapter-46-assets-part-000.ab1be7262c8c58cb.bin": {
+        "bytes": 4194304,
+        "sha256": "ab1be7262c8c58cb5fecebb7e924ba13eb06f6e8ffad89919bb05d031f842bf6",
+        "git": "21649f230eef288cca14ed4c692d4dd2162b80b7"
+      },
+      "web/data/chapter-46-assets-part-001.605415ff5987d41b.bin": {
+        "bytes": 1877899,
+        "sha256": "605415ff5987d41bb208089e39b5398c68c4b17aeebaff66d39caeaa20f57324",
+        "git": "076f4c2a026da8cc45532d849f04b38996589413"
+      }
+    },
+    "rewrites": {
+      "web/runtime/ordered-common-5.5cc8b281d7d4235d.js": "web/runtime/ordered-common-5.08a126e8f5f1898e.js",
+      "web/data/campaign.4c48015c8663d89f.json": "web/data/campaign.cd3bfcb88c7264f7.json",
+      "web/runtime/campaign.38d1394abfe86699.js": "web/runtime/campaign.006bd6fdb6da03a2.js",
+      "web/entries/game.d1e70066b5e4f461.js": "web/entries/game.212931915d143c3d.js",
+      "HONRO.html": "HONRO.html"
+    },
+    "gameEntry": "web/entries/game.212931915d143c3d.js",
+    "manifestStageFileUnchanged": "web/data/chapter-46.2806e485c4c1e1b4.json",
+    "scope": "QA local normal game shell and exact native Stage46 fixture; no production manifest or workshop output"
+  },
+  "Csignature": "6072037:d62bee98",
+  "scopeWorldX": [
+    2390,
+    4806
+  ]
+}
