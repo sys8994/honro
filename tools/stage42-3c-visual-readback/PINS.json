@@ -1,0 +1,125 @@
+{
+  "enabled": true,
+  "qaRef": "refs/heads/qa/stage42-3c-visual-readback",
+  "publicRoot": "https://sys8994.github.io/honro/",
+  "authorityPages": {
+    "run": 45108891636,
+    "deployJob": 137476961484,
+    "artifact": 14789190134,
+    "bytes": 213739319,
+    "sha256": "fb5462307d0a633c89393ef358773fe1ee6fb35c37a4ebcf1b703cf9633a1342"
+  },
+  "chrome": "151.0.7922.34",
+  "physics": "8b414b90e43c7f7e1ea685a254b4fa4cd6d5db525ce96083c39059ff5433ba0f",
+  "arms": {
+    "A": {
+      "tree": "4fa185a738677fc252c8af4340a90ce18ab7895e",
+      "head": "a6b2c0db97c9ae6efe4d5372f2208bfdf695f4f4",
+      "campaign": "web/data/campaign.b7ae34f5b0515023.json",
+      "files": {
+        "HONRO.html": "5587d656ee5af0379d43537ecd9a6e7f0c9264d785997dd8a2800fc8fe5dc6da",
+        "web/graphics/honro_authored_far-images-root-interior.7b6377c64ea476da.webp": "7b6377c64ea476da11bbcbaee6fc8c98e67692723bf8ee7f18ab60c22709def7",
+        "web/manifest.json": "60b939e2a2e58dcb9a1216b22c5208c88771fe217c49209c6644bb825678fb54",
+        "web/runtime/HONRO_AUTHORED_FAR.cf4cf9c2e0932235.js": "cf4cf9c2e09322356f9d2f0e874d700718783c6eafc332049663fdda54250f69",
+        "web/runtime/ordered-common-18.4831815091012b42.js": "4831815091012b426ed3973ce2de1f4c896414383be3b5a4c782bcde29f05ffa",
+        "web/runtime/ordered-common-15.23e61c9f6bb8a95b.js": "23e61c9f6bb8a95b55d7e87dff8f02b2c25e5f23abc66ec8df7b59c067894fe0",
+        "web/data/campaign.b7ae34f5b0515023.json": "b7ae34f5b05150239390d79241231e101f66d136f9ec4195d338919522b06e7a",
+        "web/runtime/campaign.bd5c5513dcae5285.js": "bd5c5513dcae52854933fd652f484441984debf8ba4675286656582bf93d895e",
+        "web/entries/game.8ef0693f661485c8.js": "8ef0693f661485c8f3deb505033ccbbc2906fb148813cfd63047a5eb3271cdab",
+        "web/data/chapter-42.0802015e8ba99d11.json": "0802015e8ba99d11a8ece1f14186b3db6a4a7d3d32076e64ca120300f50c7f50",
+        "web/data/chapter-42-assets.abdbc9d7a8ce717e.json": "abdbc9d7a8ce717eb7c8a6c04aa7400cec13b5ced947713aa862ab70ef5f2e46"
+      },
+      "map": "web/data/chapter-42.0802015e8ba99d11.json",
+      "provider": "web/data/chapter-42-assets.abdbc9d7a8ce717e.json",
+      "owner": "1858841:5ce4a412"
+    },
+    "B": {
+      "tree": "b67ae4d9cb1ed3241c32c025201cf5778c00cb8a",
+      "head": "3c55cf8313f1cd7355f486272f220beb38bcac7f",
+      "campaign": "web/data/campaign.4c48015c8663d89f.json",
+      "files": {
+        "web/graphics/honro_authored_far-images-root-interior.7b6377c64ea476da.webp": "7b6377c64ea476da11bbcbaee6fc8c98e67692723bf8ee7f18ab60c22709def7",
+        "web/runtime/HONRO_AUTHORED_FAR.cf4cf9c2e0932235.js": "cf4cf9c2e09322356f9d2f0e874d700718783c6eafc332049663fdda54250f69",
+        "web/runtime/ordered-common-18.4831815091012b42.js": "4831815091012b426ed3973ce2de1f4c896414383be3b5a4c782bcde29f05ffa",
+        "web/runtime/ordered-common-15.23e61c9f6bb8a95b.js": "23e61c9f6bb8a95b55d7e87dff8f02b2c25e5f23abc66ec8df7b59c067894fe0",
+        "web/data/campaign.4c48015c8663d89f.json": "4c48015c8663d89f16ea762cf23f488463a2e819a7330b3286f437927bb33504",
+        "web/runtime/campaign.38d1394abfe86699.js": "38d1394abfe86699a1db087bb6970d17baabb0ead53077d403759e04788a9a12",
+        "web/entries/game.d1e70066b5e4f461.js": "d1e70066b5e4f461a8ec84ba6163dae983f3a221bb0e7ee752c89040d5d97469",
+        "HONRO.html": "03a8fccbf4b0695e35434b4431bb0252eb163d3eb72fb452cecd73fdc033482d",
+        "web/manifest.json": "c1947fb7fcd6c805cbe265e9765758f22b0d179908c1d16ec5207396976727d5",
+        "web/data/chapter-42.0802015e8ba99d11.json": "0802015e8ba99d11a8ece1f14186b3db6a4a7d3d32076e64ca120300f50c7f50",
+        "web/data/chapter-42-assets.5c0087eadb28e00c.json": "5c0087eadb28e00c40163efded83831aab5b4d826ded45bc1efb97c0b7718bf7"
+      },
+      "map": "web/data/chapter-42.0802015e8ba99d11.json",
+      "provider": "web/data/chapter-42-assets.5c0087eadb28e00c.json",
+      "owner": "1382117:dec691ec"
+    }
+  },
+  "devices": {
+    "PC": {
+      "size": [
+        1440,
+        900
+      ],
+      "backing": [
+        1440,
+        769
+      ],
+      "views": {
+        "west": [
+          -320,
+          1430.5,
+          0.21176470588235294
+        ],
+        "south": [
+          3250,
+          3101,
+          0.21176470588235294
+        ],
+        "low-east": [
+          4215,
+          2390,
+          0.88
+        ],
+        "skyway-se": [
+          6820,
+          3101,
+          0.21176470588235294
+        ]
+      }
+    },
+    "M": {
+      "size": [
+        390,
+        844
+      ],
+      "backing": [
+        390,
+        648
+      ],
+      "views": {
+        "west": [
+          -320,
+          1430.5,
+          0.057352941176470586
+        ],
+        "south": [
+          3250,
+          3101,
+          0.057352941176470586
+        ],
+        "low-east": [
+          4205,
+          2385,
+          0.5
+        ],
+        "skyway-se": [
+          6820,
+          3101,
+          0.057352941176470586
+        ]
+      }
+    }
+  },
+  "observerSHA256": "7c64522c0c84866e0d2516ca18ed81e12a9f7b348a26fa49fb40f9516a29a24a"
+}
