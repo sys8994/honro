@@ -1,0 +1,311 @@
+{
+  "enabled": true,
+  "qaRef": "refs/heads/qa/stage46-close-copy-e59",
+  "publicRoot": "https://sys8994.github.io/honro/",
+  "pages": {
+    "run": 45144253489,
+    "job": 137590226227,
+    "completed": "2026-11-23T09:09:37Z"
+  },
+  "module": "web/runtime/ordered-game-21.b4d5e3d58081b17b.js",
+  "overlay": {
+    "bytes": 83412,
+    "sha256": "58b23f783e049ad262a374b400bdc324bb3e2d5c2f85ede9522364b8684a175c"
+  },
+  "current": {
+    "head": "e59d11d6eb3b3fc88ca28b6a1c19760d76d9641f",
+    "tree": "9e1eb5456c6e8b0c07a59697b320999f12ab2c09",
+    "campaign": "web/data/campaign.5adbdb5ab990b9f9.json",
+    "entry": "web/entries/game.2e187ce151a1bf85.js",
+    "stages": {
+      "11": {
+        "map": "web/data/chapter-11.4f36fd2ea4a1cafd.json",
+        "packet": "web/data/chapter-11-assets.cad9e03dd8bf52a5.json",
+        "parts": []
+      },
+      "46": {
+        "map": "web/data/chapter-46.2806e485c4c1e1b4.json",
+        "packet": "web/data/chapter-46-assets-parts.044965c2886edcba.json",
+        "parts": [
+          "web/data/chapter-46-assets-part-000.3231a1522f2ebd22.bin",
+          "web/data/chapter-46-assets-part-001.e0e4d62a5dd62e77.bin"
+        ]
+      }
+    },
+    "activeRoutes": [
+      "web/data/campaign-base.0c57dcfe7c08d421.json",
+      "web/data/campaign-shared.8f8343b5c21518d4.json",
+      "web/data/campaign.5adbdb5ab990b9f9.json",
+      "web/data/chapter-11-assets.cad9e03dd8bf52a5.json",
+      "web/data/chapter-11.4f36fd2ea4a1cafd.json",
+      "web/data/chapter-46-assets-part-000.3231a1522f2ebd22.bin",
+      "web/data/chapter-46-assets-part-001.e0e4d62a5dd62e77.bin",
+      "web/data/chapter-46-assets-parts.044965c2886edcba.json",
+      "web/data/chapter-46.2806e485c4c1e1b4.json",
+      "web/entries/game.2e187ce151a1bf85.js",
+      "web/runtime/ordered-game-21.b4d5e3d58081b17b.js",
+      "web/runtime/ordered-game-23.3c2f2814ac8e909f.js"
+    ],
+    "files": {
+      "web/manifest.json": {
+        "bytes": 9670886,
+        "sha256": "02df42084f27104aef43ec62d8633d6fd8dd5ada19f7a121de5b8f3a7bcdc5d0"
+      },
+      "HONRO.html": {
+        "bytes": 17379,
+        "sha256": "1d82411044de333723dcd07054cc589ae8f795dd12c348bd3260ae8ebd08097a"
+      },
+      "web/data/campaign-base.0c57dcfe7c08d421.json": {
+        "bytes": 257,
+        "sha256": "0c57dcfe7c08d421901ffa8eeb437940b6b6d4779816207b51dca7be44c73e5e"
+      },
+      "web/data/campaign-shared.8f8343b5c21518d4.json": {
+        "bytes": 577195,
+        "sha256": "8f8343b5c21518d4fdaa2314e58031fd137b8622d3a6c1ca2fdabafde3bb158f"
+      },
+      "web/data/campaign.5adbdb5ab990b9f9.json": {
+        "bytes": 55151,
+        "sha256": "5adbdb5ab990b9f9321779474a8977e064db4beff67e41f50c84db54d3ba15aa"
+      },
+      "web/data/chapter-11-assets.cad9e03dd8bf52a5.json": {
+        "bytes": 740283,
+        "sha256": "cad9e03dd8bf52a5be4cd61fd22cc4430f7e66edb8c9a547377bd54219931916"
+      },
+      "web/data/chapter-11.4f36fd2ea4a1cafd.json": {
+        "bytes": 209933,
+        "sha256": "4f36fd2ea4a1cafd3e261f9b1eb222fde4e9ab4fda3799f6852a68db87cd5105"
+      },
+      "web/data/chapter-46-assets-part-000.3231a1522f2ebd22.bin": {
+        "bytes": 4194304,
+        "sha256": "3231a1522f2ebd22ce4c054179db2c3259328e325e5c0fbc6e1ac47986472005"
+      },
+      "web/data/chapter-46-assets-part-001.e0e4d62a5dd62e77.bin": {
+        "bytes": 10095,
+        "sha256": "e0e4d62a5dd62e77762966974e43f303dd50a2401730b40d2a6862f2d2c87f21"
+      },
+      "web/data/chapter-46-assets-parts.044965c2886edcba.json": {
+        "bytes": 442,
+        "sha256": "044965c2886edcba81882f81542e627f0cf09cb139bc3968c906b5a105a91898"
+      },
+      "web/data/chapter-46.2806e485c4c1e1b4.json": {
+        "bytes": 24682,
+        "sha256": "2806e485c4c1e1b4d94174b8324a2d534291c22c481c94960883a29643e9da02"
+      },
+      "web/entries/game.2e187ce151a1bf85.js": {
+        "bytes": 20483,
+        "sha256": "2e187ce151a1bf85eb63e346d426810f4f94d8b44eb5ec77669683259493781b"
+      },
+      "web/runtime/ordered-game-21.b4d5e3d58081b17b.js": {
+        "bytes": 83032,
+        "sha256": "b4d5e3d58081b17b0a31e915898ae5b05c9ab47de54f6f00a7fc4e916bd9baaa"
+      },
+      "web/runtime/ordered-game-23.3c2f2814ac8e909f.js": {
+        "bytes": 94935,
+        "sha256": "3c2f2814ac8e909fb223a215750b633b5b37528c70eab56c93d1a2ddcae8d2f4"
+      }
+    },
+    "sources": {
+      "shared/runtime/story.js": "ecb7cf1458667e07f76ae7978bc43e1daff376bb",
+      "shared/runtime/act5.js": "9ae8b29468f4485162686a87c9a353e3e1b6abae",
+      "shared/runtime/main.js": "52512485e14c8b74b818e19de0ea9d65e4921db1",
+      "shared/runtime/profile-store.js": "4a1742aa5a048e6833c95efaf7ac6bcf153b7eb1"
+    },
+    "provider": "4204233:7f4d5ae9"
+  },
+  "historical": {
+    "head": "eaf774b42ec8211739d2594c729e0c91e1d55188",
+    "tree": "95a2afad79513f1d14fbde8be7cd8e84e76943f0",
+    "campaign": "web/data/campaign.87da363001067c02.json",
+    "entry": "web/entries/game.969dbb92d5cffa9f.js",
+    "stages": {
+      "46": {
+        "map": "web/data/chapter-46.2806e485c4c1e1b4.json",
+        "parts": [
+          "web/data/chapter-46-assets-part-000.f7ebee97d8110e68.bin",
+          "web/data/chapter-46-assets-part-001.5213b80662dfa32e.bin",
+          "web/data/chapter-46-assets-part-002.8be859e980ee1d29.bin",
+          "web/data/chapter-46-assets-part-003.ee5f50c994047cde.bin"
+        ],
+        "packet": "web/data/chapter-46-assets-parts.a3595c48161a8bc1.json"
+      }
+    },
+    "activeRoutes": [
+      "web/data/campaign.87da363001067c02.json",
+      "web/data/chapter-46-assets-part-000.f7ebee97d8110e68.bin",
+      "web/data/chapter-46-assets-part-001.5213b80662dfa32e.bin",
+      "web/data/chapter-46-assets-part-002.8be859e980ee1d29.bin",
+      "web/data/chapter-46-assets-part-003.ee5f50c994047cde.bin",
+      "web/data/chapter-46-assets-parts.a3595c48161a8bc1.json",
+      "web/data/chapter-46.2806e485c4c1e1b4.json",
+      "web/entries/game.969dbb92d5cffa9f.js"
+    ],
+    "files": {
+      "web/manifest.json": {
+        "bytes": 8863067,
+        "sha256": "099b62e020b1b2370d30e2e00be10c5c716f095d1e0b0c045af7b69ce619409b"
+      },
+      "HONRO.html": {
+        "bytes": 17379,
+        "sha256": "6b9748946f99ce9213205c8ccdd7484f77d154a752de01a88062cc19eab56f7c"
+      },
+      "web/data/chapter-46.2806e485c4c1e1b4.json": {
+        "bytes": 24682,
+        "sha256": "2806e485c4c1e1b4d94174b8324a2d534291c22c481c94960883a29643e9da02"
+      },
+      "web/data/chapter-46-assets-parts.a3595c48161a8bc1.json": {
+        "bytes": 765,
+        "sha256": "a3595c48161a8bc14dec5b1dea23dea0fda99fa39153a359d9ee83c5359516ea"
+      },
+      "web/data/chapter-46-assets-part-000.f7ebee97d8110e68.bin": {
+        "bytes": 4194304,
+        "sha256": "f7ebee97d8110e6805bf6fb6a58303332d3fd118a8e477f3b5de6c7e002064a2"
+      },
+      "web/data/chapter-46-assets-part-001.5213b80662dfa32e.bin": {
+        "bytes": 4194304,
+        "sha256": "5213b80662dfa32ee85b3d01d07dd0d2fb4fe33fa1ed3647ca94a85abce27ac6"
+      },
+      "web/data/chapter-46-assets-part-002.8be859e980ee1d29.bin": {
+        "bytes": 4194304,
+        "sha256": "8be859e980ee1d292718c73bd51206ea8fa0a887baa59fc67c5ec6b2c4cd0738"
+      },
+      "web/data/chapter-46-assets-part-003.ee5f50c994047cde.bin": {
+        "bytes": 2667958,
+        "sha256": "ee5f50c994047cde9851a35f503ddc56b395904698ecbef174d832a4eaa148a8"
+      },
+      "web/entries/game.969dbb92d5cffa9f.js": {
+        "sha256": "969dbb92d5cffa9f9a8c7bc547b396f48935cf319c5e87855edc76a669d8035c",
+        "bytes": 20483
+      },
+      "web/data/campaign.87da363001067c02.json": {
+        "sha256": "87da363001067c02b5986f1fb3fab035c9017b874482ce44547f852b13f6a8c6",
+        "bytes": 55151
+      }
+    },
+    "provider": "16328502:43d17801"
+  },
+  "devices": {
+    "PC": {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "device_scale_factor": 1
+    },
+    "Mobile": {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "device_scale_factor": 1,
+      "is_mobile": true,
+      "has_touch": true
+    }
+  },
+  "chromium": "151.0.7922.34",
+  "previousPhaseDescriptor": {
+    "bytes": 442,
+    "sha256": "044965c2886edcba81882f81542e627f0cf09cb139bc3968c906b5a105a91898"
+  },
+  "camera": {
+    "PC": {
+      "desired": {
+        "x": 2048,
+        "y": 5500,
+        "scale": 0.35
+      },
+      "actual": {
+        "x": 2048,
+        "y": 5500,
+        "scale": 0.35
+      },
+      "viewport": {
+        "left": -9.142857142857338,
+        "right": 4105.142857142857,
+        "top": 4401.160714285714,
+        "bottom": 6598.839285714286
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 4416,
+        "bottom": 6744
+      },
+      "zoomLimits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "actorCount": 27,
+      "tide": null,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "physics": "cb6512695ecc16c3b1c7c10046aaa23b4c7b46014b0aed16cf888a6cc35ab1ed"
+    },
+    "Mobile": {
+      "desired": {
+        "x": 1000000,
+        "y": 1000000,
+        "scale": 0.057352941176470586
+      },
+      "actual": {
+        "x": 4416,
+        "y": 6744,
+        "scale": 0.057352941176470586
+      },
+      "viewport": {
+        "left": 1016,
+        "right": 7816,
+        "top": 1098.1746794871797,
+        "bottom": 12389.82532051282
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 4416,
+        "bottom": 6744
+      },
+      "zoomLimits": {
+        "min": 0.057352941176470586,
+        "max": 1.65,
+        "tactical": 0.057352941176470586,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "actorCount": 27,
+      "tide": null,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "physics": "cb6512695ecc16c3b1c7c10046aaa23b4c7b46014b0aed16cf888a6cc35ab1ed"
+    }
+  },
+  "ordinary": {
+    "PC": [
+      1850,
+      2550,
+      0.55
+    ],
+    "Mobile": [
+      1850,
+      2550,
+      0.42
+    ]
+  }
+}

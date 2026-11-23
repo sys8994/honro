@@ -1,0 +1,81 @@
+name: Stage46 first entry close browser attribution (no deploy)
+on:
+  push:
+    branches: [qa/stage46-close-copy-e59]
+    paths: [".github/workflows/stage46-close-copy-diagnostic.yml", "tools/stage46-close-copy/**"]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  close-only:
+    if: true && github.repository == 'sys8994/honro' && github.event_name == 'push' && github.ref == 'refs/heads/qa/stage46-close-copy-e59'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+          fetch-depth: 2
+          path: qa
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+          ref: eaf774b42ec8211739d2594c729e0c91e1d55188
+          path: historical
+      - name: Verify sole isolated QA parent and exact published authority
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          cd "$GITHUB_WORKSPACE/qa"
+          python - <<'PY'
+          import hashlib,json,subprocess as s,urllib.request
+          from pathlib import Path
+          x=json.loads(Path('tools/stage46-close-copy/PINS.json').read_bytes());assert x['enabled'] is True
+          get=lambda p:json.loads(s.check_output(['gh','api','repos/sys8994/honro/'+p],timeout=35))
+          head=x['current']['head'];m=get('branches/master');r=get('actions/runs/'+str(x['pages']['run']));j=get('actions/jobs/'+str(x['pages']['job']))
+          assert m['commit']['sha']==r['head_sha']==j['head_sha']==head and r['head_branch']=='master' and j['run_id']==r['id']
+          assert r['conclusion']==j['conclusion']=='success' and r['status']==j['status']=='completed'
+          assert [(a['conclusion'],a['completed_at']) for a in j['steps'] if a['name']=='Deploy to GitHub Pages']==[('success',x['pages']['completed'])]
+          cmd=lambda *a:s.check_output(['git',*a],text=True).strip()
+          assert cmd('show','-s','--format=%P','HEAD')==head and cmd('rev-parse',head+'^{tree}')==x['current']['tree']
+          expected={'.github/workflows/stage46-close-copy-diagnostic.yml',*[f'tools/stage46-close-copy/{n}' for n in ('PINS.json','capture.py','observer.json','prepare.py')]}
+          assert {tuple(a.split('\t')) for a in cmd('diff-tree','--no-commit-id','--name-status','-r',head,'HEAD').splitlines()}=={('A',p) for p in expected}
+          for k in ('web/manifest.json','HONRO.html'):
+           url=x['publicRoot']+k;want=x['current']['files'][k]
+           with urllib.request.urlopen(urllib.request.Request(url,headers={'Cache-Control':'no-cache','User-Agent':'HONRO-readonly-QA'}),timeout=35) as response:
+            assert response.status==200 and response.geturl()==url
+            b=response.read(want['bytes']+1)
+           assert {'bytes':len(b),'sha256':hashlib.sha256(b).hexdigest()}==want
+          PY
+      - name: Prepare pinned detached stock and one scratch-overlay response
+        run: |
+          set -euo pipefail
+          cd "$GITHUB_WORKSPACE/qa"
+          W=$(mktemp -d "$RUNNER_TEMP/stage46-close.XXXXXX")
+          echo "W=$W" >> "$GITHUB_ENV"
+          mkdir "$W/out"
+          git worktree add --detach "$W/current" "$(git rev-parse HEAD^)"
+          python tools/stage46-close-copy/prepare.py "$W/current" "$GITHUB_WORKSPACE/historical" "$W/out"
+      - name: Actual native PC/M close timing, exact writes, visual, negative and Continue
+        run: |
+          set -euo pipefail
+          python -m venv "$W/venv"
+          V="$W/venv/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+          python -m http.server 18961 --bind 127.0.0.1 --directory "$GITHUB_WORKSPACE/historical" > "$W/out/http-historical.log" 2>&1 & a=$!
+          python -m http.server 18962 --bind 127.0.0.1 --directory "$W/current" > "$W/out/http-current.log" 2>&1 & b=$!
+          trap 'kill "$a" "$b" 2>/dev/null || true' EXIT
+          for p in 18961 18962; do curl -fsS --retry 8 --retry-connrefused "http://127.0.0.1:$p/HONRO.html" -o /dev/null; done
+          "$V" "$GITHUB_WORKSPACE/qa/tools/stage46-close-copy/capture.py" "$W"
+      - if: always() && env.W != ''
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: honro-stage46-close-copy-e59-native-readonly-no-deploy
+          path: ${{ env.W }}/out/
+          retention-days: 7
+          if-no-files-found: warn
