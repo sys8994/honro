@@ -1,0 +1,204 @@
+{
+  "enabled": true,
+  "branch": "qa/stage40-east-native-masonry-r1-3032",
+  "base": {
+    "head": "3032ff1e3a3eace4d28b92e151f616c3ede1a826",
+    "tree": "345d213136779a6cb5a90fd3a9b6d19dc884e6fc",
+    "run": 45122320155,
+    "job": 137519293967,
+    "manifestGit": "2204135021d54e6cb51c815053319a01847c5f84",
+    "manifestBytes": 9498469,
+    "entry": "fef0edfe0142b973",
+    "owner": "19ec333843d7cbc2",
+    "common5": "33fb43a3885f44c2",
+    "common12": "0956bc2d5dc85348",
+    "campaignOwner": "053c858c8428c726",
+    "campaign": "f96de12224a3c784",
+    "packet": "web/data/chapter-40-assets.6052a7e4526580b8.json",
+    "encoding": "json"
+  },
+  "proof": {
+    "shell": {
+      "bytes": 17379,
+      "sha256": "da625fb8568b63ab88ebc4fb695b0249d94959edab495f6cf4c8fc1730315d3c"
+    },
+    "manifest": {
+      "bytes": 9498469,
+      "sha256": "908eb11dab89fb3a26268eb7bcb39befe8fee35472572d8145d80759d4991210"
+    },
+    "files": {
+      "web/entries/game.fef0edfe0142b973.js": {
+        "bytes": 20483,
+        "sha256": "fef0edfe0142b97385a1ac02c0147d602e0973504f9cf8a2d0ff6138d8115924"
+      },
+      "web/data/campaign.f96de12224a3c784.json": {
+        "bytes": 55151,
+        "sha256": "f96de12224a3c784dc327eb36fde186e82f4542c5efa4d4237649bacb463f7de"
+      },
+      "web/runtime/ordered-game-24.19ec333843d7cbc2.js": {
+        "bytes": 174021,
+        "sha256": "19ec333843d7cbc2d0792d8f6bedf85849a8e592886a0581f905a64e86a26c25"
+      },
+      "web/runtime/ordered-common-5.33fb43a3885f44c2.js": {
+        "bytes": 178962,
+        "sha256": "33fb43a3885f44c21cf2355d49b9852d8f0f80faf94df62e0289d0fd09af6f65"
+      },
+      "web/runtime/ordered-common-12.0956bc2d5dc85348.js": {
+        "bytes": 100983,
+        "sha256": "0956bc2d5dc853487d264c9ec4e49815be1a78c526096f22948a51846168fddc"
+      },
+      "web/runtime/campaign.053c858c8428c726.js": {
+        "bytes": 527,
+        "sha256": "053c858c8428c7265e68c021cd9e3dd391001ffa5ed1b0e5d1e7dc8dc28c4154"
+      },
+      "web/data/chapter-40.5f4b6c4c311adc05.json": {
+        "bytes": 48881,
+        "sha256": "5f4b6c4c311adc0508920712018dadd7262c69c17b8d1b955628bdd8ce7d98e0"
+      },
+      "web/data/chapter-40-assets.6052a7e4526580b8.json": {
+        "bytes": 3807005,
+        "sha256": "6052a7e4526580b8a12b616bac4863d454f7e1aaa179770176118cedbb2d877b"
+      }
+    },
+    "payload": {
+      "bytes": 3807005,
+      "sha256": "6052a7e4526580b8a12b616bac4863d454f7e1aaa179770176118cedbb2d877b"
+    },
+    "deployedAt": "2026-11-23T06:12:28Z",
+    "sameStage40AsB": [
+      "web/data/chapter-40.5f4b6c4c311adc05.json",
+      "web/data/chapter-40-assets.6052a7e4526580b8.json",
+      "web/runtime/ordered-game-24.19ec333843d7cbc2.js",
+      "web/runtime/ordered-common-12.0956bc2d5dc85348.js"
+    ],
+    "sameRestoreBodySHA": "cb8130e67a534bc3af575407bcbbe8b26389a4b60e7e7143faab000d608b6d7b"
+  },
+  "patchSHA256": "feb55250b2c8c4e3429337db14a9c57df4e3a060e9a1b8d32b48787a36d79c4f",
+  "observerSHA256": "7c64522c0c84866e0d2516ca18ed81e12a9f7b348a26fa49fb40f9516a29a24a",
+  "registry": {
+    "approved40:terrain-left-join": "505822:f026cae5",
+    "approved40:terrain-right-join": "498438:82997529",
+    "approved40:arrival-stair": "87167:dceca472",
+    "approved40:body": "1644042:df21ebc3",
+    "approved40:coastal-foundation": "266179:28c960ab",
+    "approved40:departure-stair": "107086:5c181f00",
+    "approved40:arrival-timber": "47013:1b5aa6fe",
+    "approved40:departure-pile": "12909:71fceba6",
+    "approved40:arrival-pile": "13201:f7f8bee4",
+    "approved40:departure-ramp": "13124:1604ef09",
+    "approved40:arrival-ramp": "13167:ee286295",
+    "approved40:departure-middle-pile": "14349:12491707",
+    "approved40:arrival-middle-pile": "12743:2ca46bf4"
+  },
+  "poses": {
+    "PC": {
+      "desired": {
+        "x": 4500,
+        "y": 2200,
+        "scale": 0.35
+      },
+      "actual": {
+        "x": 4500,
+        "y": 2200,
+        "scale": 0.35
+      },
+      "viewport": {
+        "left": 2442.8571428571427,
+        "right": 6557.142857142857,
+        "top": 1101.1607142857142,
+        "bottom": 3298.839285714286
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6976,
+        "bottom": 4336
+      },
+      "zoomLimits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 1440,
+        "h": 769.1875
+      },
+      "backing": [
+        1440,
+        769
+      ],
+      "actorCount": 50,
+      "tide": null,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "physics": "be1d91eee559e3e01a1f04e9a0412c94cd448365af5555ee39e2d0fc02311688"
+    },
+    "M": {
+      "desired": {
+        "x": 4500,
+        "y": 2200,
+        "scale": 0.35
+      },
+      "actual": {
+        "x": 4500,
+        "y": 2200,
+        "scale": 0.35
+      },
+      "viewport": {
+        "left": 3942.8571428571427,
+        "right": 5057.142857142857,
+        "top": 1274.84375,
+        "bottom": 3125.15625
+      },
+      "focus": {
+        "left": -320,
+        "top": -1800,
+        "right": 6976,
+        "bottom": 4336
+      },
+      "zoomLimits": {
+        "min": 0.057352941176470586,
+        "max": 1.65,
+        "tactical": 0.057352941176470586,
+        "readability": 0.056818181818181816
+      },
+      "css": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "backing": [
+        390,
+        648
+      ],
+      "actorCount": 50,
+      "tide": null,
+      "phase": "aim",
+      "round": 1,
+      "sceneTime": 2,
+      "physics": "be1d91eee559e3e01a1f04e9a0412c94cd448365af5555ee39e2d0fc02311688"
+    }
+  },
+  "historicalC4Pixels": {
+    "PC": {
+      "bytes": 903417,
+      "sha256": "573fc30d36fa10b9465176f6c45b8d487082a5d8e7222be4081d808713a25094"
+    },
+    "M": {
+      "bytes": 192565,
+      "sha256": "e3463de4d7b5bfa37c6fd0b00ed24d267fbf21169a9a946cbec3dc22b4892a78"
+    }
+  },
+  "candidate": {
+    "bytes": 3811232,
+    "sha256": "5f5bfb5ae19779e6783917c88ec85f9c16dd99b71443c3cc46af69d823207381"
+  },
+  "signedMobile": [
+    118,
+    242,
+    224,
+    297
+  ],
+  "chromium": "151.0.7922.34"
+}
