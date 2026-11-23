@@ -155,6 +155,15 @@ const WEST23_LIP=[
 // Stage29 west slope top: y=2700+0.178x near x=0 (x<=0). Shapes extend slightly above it; the terrain clip trims them.
 const WEST29_BAND='M2 2736C-30 2722-70 2690-110 2676L-430 2625C-380 2645-300 2676-200 2716C-120 2752-50 2826 2 2842Z';
 const WEST29_BODY='M2 2842C-50 2826-120 2752-200 2716C-300 2676-380 2645-430 2625L-540 2630C-510 2670-480 2700-440 2770C-400 2820-340 2850-300 2930C-260 3000-220 3030-180 3110C-140 3180-100 3220-60 3290C-40 3330-20 3350 2 3356Z';
+// Stage28 west walk line is flat at y=2700 (x<=0). Courses taper to points; body ends in a raking edge.
+const WEST28_COURSES=[
+ ['fade','M140 2835L140 3232C40 3200-60 3150-150 3080C-250 3010-330 2960-420 2900C-470 2870-520 2850-580 2840Z'],
+ ['#38332d','M140 2768L140 2836-580 2840C-500 2818-420 2804-340 2796C-200 2785-60 2774 140 2768Z'],
+ ['#3e3831','M140 2766C-20 2770-160 2778-300 2788C-380 2794-440 2800-470 2797C-480 2790-450 2782-400 2774C-300 2760-160 2750 140 2744Z'],
+ ['#6d5a45','M140 2721L140 2746C40 2747-60 2752-160 2760C-220 2765-270 2768-300 2764C-315 2758-290 2748-240 2740C-150 2728-40 2721 140 2721Z'],
+ ['#94816b','M140 2700L140 2722C60 2722-10 2724-70 2728C-110 2731-135 2729-140 2722C-140 2712-120 2704-100 2700Z'],
+ ['#a99b88','M140 2700L140 2711C80 2711 20 2710-30 2708C-55 2707-62 2703-60 2700Z']
+];
 const west23Vectors=new WeakMap();
 let west23Raster=null;
 function eligibleWest23(b,floor,asset){
@@ -365,6 +374,21 @@ S.landmark=function(c,l){
    const fade=raw.createLinearGradient(0,3245,0,3355);fade.addColorStop(0,'#353631');fade.addColorStop(1,'#35363100');
    raw.fillStyle=fade;raw.fill(new Path2D(WEST29_BODY));
    raw.fillStyle='#4d453c';raw.fill(new Path2D(WEST29_BAND));
+  }finally{raw.restore();}
+ }
+ // Stage28: the office foundation fades out over x0..130 into an unbanded earth slab.
+ // Carry its courses west under the flat walk line, thinning out, beneath the fade.
+ if(b.honroStage===28&&b.honroCanonical&&!b.honroCustom&&b.honroMapOrigin==='campaign'&&asset.id==='act3-handoff:28:office-foundation'&&
+    l.id===asset.id&&l.kind==='canonical-element'&&floor.id==='a3-foundation'&&l.x===0&&l.y===0&&l.scale===1&&
+    asset.bounds?.x===0&&asset.params.edgeFade?.[0]?.join()==='0,130'&&asset.params.contactMapping?.[0]?.join()==='0,713,0,2700'){
+  raw.save();
+  try{
+   raw.beginPath();raw.rect(-1200,2690,1340,600);raw.clip();
+   for(const [ink,d] of WEST28_COURSES){
+    if(ink==='fade'){const g=raw.createLinearGradient(0,3110,0,3230);g.addColorStop(0,'#3b3731');g.addColorStop(1,'#3b373100');raw.fillStyle=g;}
+    else raw.fillStyle=ink;
+    raw.fill(new Path2D(d));
+   }
   }finally{raw.restore();}
  }
  const flow=flowRows.get(l),east=east21F.get(l);
