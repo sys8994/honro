@@ -37,6 +37,7 @@ import {authorAct23QuestRedesign} from '../tools/map-forge/act23-quest-redesign.
 import {applyOpenStructures} from '../tools/map-forge/open-structure-policy.mjs';
 import {applyCavernTransitionLayers} from '../tools/map-forge/cavern-transition-layers.mjs';
 import {readFile,readdir} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import path from 'node:path';
 import {buildCore} from '../game/engine/build.mjs';
@@ -208,6 +209,25 @@ export async function runtimeEntries({vector=true,render=true,app=false,producti
     // may resolve only to these exact current providers, by the existing
     // campaign/stage/current-signature checks in profile-store.
     const previousTerrainArt={...stage35Rock.previousAct4Signatures};
+    // Forward recovery from the one exact Stage40 C2 paint revision.
+    // The normal optimized pre-C2 provider remains the active art.
+    const bodyID='approved40:body';
+    const body40=project.library.filter(x=>x.id===bodyID);
+    const stage40=project.stages.filter(x=>x.id==='stage-40'||x.metadata?.stageId===40);
+    const placed40=project.stages.flatMap(x=>(x.elements??[]).filter(e=>e.id==='approved40-body'||e.assetId===bodyID).map(e=>[x,e]));
+    const [bodyStage,bodyPlacement]=placed40[0]??[];
+    const prior40=previousTerrainArt[bodyID];
+    if(body40.length!==1||stage40.length!==1||placed40.length!==1||bodyStage!==stage40[0]||
+       bodyStage.id!=='stage-40'||bodyStage.metadata?.stageId!==40||bodyStage.metadata?.act4Stage!==40||
+       bodyStage.metadata?.campaign!==true||bodyStage.width!==6656||bodyStage.height!==4096||
+       bodyPlacement.id!=='approved40-body'||bodyPlacement.assetId!==bodyID||bodyPlacement.x!==0||
+       bodyPlacement.y!==0||bodyPlacement.scale!==1||bodyPlacement.rotation!==0||bodyPlacement.snap!==false||
+       bodyPlacement.layer!=='mid'||bodyPlacement.depthLayer!=='L1'||bodyPlacement.nativeArtLayer!=='body'||
+       !Array.isArray(body40[0].collision)||body40[0].collision.length||body40[0].interactionType||
+       createHash('sha256').update(JSON.stringify(body40[0])).digest('hex')!=='a0664a8e0cd99928a1eb83a34829dd2a8ff041a2acd8ff2978b2289fece0705e'||
+       JSON.stringify(prior40)!==JSON.stringify({stage:40,previous:'4724416:12a0c1d5',previousOptimized:['4471109:d3f5a835'],current:'1644042:df21ebc3'}))
+      throw Error('Stage40 recovery: unexpected canonical body, placement or prior provider row');
+    previousTerrainArt[bodyID]={...prior40,previousOptimized:[...prior40.previousOptimized,'1647277:af3b90a3']};
     const coast33=project.stages.find(s=>s.metadata?.stageId===33);
     const coast33Rows=[
       ['act4-sideview:33:coastal-v2:west-continuous-geology','862760:4666d3c8','864135:d1152e99'],
