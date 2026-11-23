@@ -41,9 +41,19 @@ export function finishNaruBody(core,{palette=true,exterior=true}={}){
  const seamBase=p('#142c2f','M-1 885H1775V889H-1Z M-1 723H2V887H-1Z M1772 708H1776V887H1772Z M1772 495H1776V631H1772Z M1772 647H1776V668H1772Z');
  const join={tag:'g',children:[seamBase,rightRim,rightGrass]};
  const rockJoin=p('url(#naruJoinRock)','M1740 668H1777V716H1740Z');
+ // West: the walked floor (x<0 at y684) keeps the source's grass rim and
+ // its dark under-rim instead of ending them at the source's x=0 cut. The
+ // ribbons fade into the source over x0..30 and thin out before the floor end.
+ result.gradients.naruWestGrass={type:'linear',x1:0,y1:0,x2:30,y2:0,stops:[{offset:0,color:'#738653',opacity:1},{offset:1,color:'#738653',opacity:0}]};
+ result.gradients.naruWestRim={type:'linear',x1:0,y1:0,x2:30,y2:0,stops:[{offset:0,color:'#454e3d',opacity:1},{offset:1,color:'#454e3d',opacity:0}]};
+ const westGrass=p('url(#naruWestGrass)',`M30 684H${L+14}C${L+8} 684 ${L+7} 687 ${L+16} 687.5L-300 688.5-250 691-190 689.5-130 692-70 690.5-20 692 0 691.8 30 692Z`);
+ const westRim=p('url(#naruWestRim)',`M30 691.5L0 691.3-20 691.5-70 690-130 691.5-190 689-250 690.5-300 688${L+16} 687.5C${L+22} 689 ${L+30} 691-300 691.5L-250 694-190 692.5-130 695-70 693.5-20 694.8 0 694.5 30 694.5Z`);
+ const westBand=p('#253c3e','M1 713.5L-30 714.2-80 714.6-24 717.2 1 721Z');
+ // Cap the source's x=0 antialiased closure inside its own solid under-rim band.
+ const westSeam=p('#253c3e','M-1.5 694.6H5V720.5H-1.5Z');
  const original=result.root.children.find(n=>n.tag==='use'&&n.symbol==='source');
  if(!original)throw Error('Expected untouched source use');
- result.root={tag:'g',children:[base,left,right,...strata,original,join,rockJoin,woodGrain]};
+ result.root={tag:'g',children:[base,left,westBand,right,...strata,original,join,rockJoin,westSeam,westRim,westGrass,woodGrain]};
  for(const key of Object.keys(result.clips))if(key.startsWith('site-edge-'))delete result.clips[key];
  result.viewBox=[-1200,0,4174,4887];
  return result;
