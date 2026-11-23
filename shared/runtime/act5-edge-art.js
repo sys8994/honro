@@ -316,5 +316,30 @@ S.terrainReadability=function(c,b,view){
  for(const group of q.groups){const edge=new Path2D();saved.push([group,group.edge]);for(const v of group.segments){const p=v.a,z=v.z,close=!v.walkable&&((b.honroStage===44&&b.honroCanonical===true&&b.honroCustom===false&&b.honroMapOrigin==='campaign'&&b.honroAuthoredId==='stage-44'&&group.id==='a5-root-floor'&&p.x===6700.39&&z.x===6700.39&&p.y===1733.2&&z.y===2269&&b.terrain?.some(t=>t.id===group.id&&!t.broken&&t.oneWay===false&&t.honroAct5Painted===true))||(b.honroStage===41&&b.honroCanonical===true&&b.honroCustom===false&&b.honroMapOrigin==='campaign'&&b.honroAuthoredId==='stage-41'&&group.id==='a5-lower-road'&&p.x===250&&z.x===250&&p.y===2785&&z.y===2343.75&&b.terrain?.some(t=>t.id===group.id&&!t.broken&&t.oneWay===false&&t.honroAct5Painted===true))||(b.honroStage===46&&['a5-left-cliff','a5-right-cliff'].includes(group.id))||(Math.abs(p.x-z.x)<.01&&(Math.abs(p.x)<.01||Math.abs(p.x-b.width)<.01))||(Math.abs(p.y-z.y)<.01&&p.y>=b.height-360));if(close)removed.push({id:group.id,...v});if(v.walkable)keptWalkable.push(v);if(!close){edge.moveTo(p.x,p.y);edge.lineTo(z.x,z.y);}}group.edge=edge;}
  G.HonroEdgeClosureQA={removed,keptWalkableCount:keptWalkable.length,walkableRemoved:removed.filter(v=>v.walkable).length};try{return readability.call(this,c,b,view);}finally{for(const [g,e]of saved)g.edge=e;}
 };
+// Stage44 east ramp: a5-root-floor climbs (5358.98,2012.11)->(5744.14,1819.53)->(6109.38,1812.89)->(6700.39,1733.2)
+// across the root mass, but the near art has no path face there, so the walk guide floated.
+// Lay the lower floor's own top face (highlight, body, shadow lip) under that guide only.
+// Closed outlines (world units) drawn as smooth curves through edge midpoints.
+const s44Smooth=ps=>{const p=new Path2D(),n=ps.length,mid=(a,z)=>[(a[0]+z[0])/2,(a[1]+z[1])/2];p.moveTo(...mid(ps[n-1],ps[0]));for(let i=0;i<n;i++){const a=ps[i],z=ps[(i+1)%n];p.quadraticCurveTo(a[0],a[1],...mid(a,z));}p.closePath();return p;};
+// Top runs 4-6 under the guide; the strand thickens over the climb, thins on the flat, and ends round.
+const S44_OUTLINES=[
+ ['#47392f',[[5290,2030],[5359,2020],[5560,1922],[5744,1826],[6109,1819],[6420,1782],[6700,1740],[6752,1748],[6766,1778],[6720,1806],[6560,1826],[6380,1852],[6180,1880],[6000,1896],[5840,1910],[5720,1952],[5600,2010],[5470,2072],[5360,2092],[5290,2078]]],
+ ['#674f3d',[[5296,2024],[5359,2017],[5560,1918],[5744,1824],[6109,1817],[6420,1779],[6700,1738],[6744,1744],[6752,1766],[6716,1786],[6560,1806],[6380,1830],[6180,1856],[6000,1872],[5840,1884],[5730,1922],[5610,1982],[5480,2044],[5370,2066],[5306,2056]]],
+ ['#8b6a4f',[[5310,2020],[5359,2016],[5560,1917],[5744,1823],[6109,1816],[6420,1778],[6700,1737],[6732,1742],[6720,1758],[6560,1778],[6380,1800],[6180,1828],[6000,1842],[5850,1850],[5740,1876],[5620,1938],[5490,2002],[5380,2038],[5320,2034]]],
+ ['#b59770',[[5340,2017],[5400,1996],[5560,1917],[5744,1823],[5900,1820],[6109,1816],[6300,1794],[6200,1806],[6040,1828],[5900,1832],[5760,1840],[5640,1890],[5500,1962],[5380,2014]]],
+ ['#938e5d',[[5600,1898],[5700,1846],[5744,1823],[5860,1821],[5960,1820],[5900,1830],[5780,1834],[5690,1862],[5620,1900]]],
+ ['#938e5d',[[6300,1793],[6420,1778],[6560,1758],[6620,1752],[6520,1768],[6400,1786],[6320,1798]]]
+];
+let s44Face=null;
+const s44Paths=()=>s44Face||(s44Face=S44_OUTLINES.map(([ink,ps])=>[ink,s44Smooth(ps)]));
+const s44Ramp=(b,l)=>b?.mode==='campaign'&&b.honroStage===44&&b.honroCanonical===true&&b.honroCustom===false&&b.honroMapOrigin==='campaign'&&
+ b.honroAuthoredId==='stage-44'&&b.width===6800&&l.id==='a5-near'&&l.asset?.id==='act5:near:44'&&!l.rotation&&l.x===0&&l.y===0&&
+ (G.HonroTerrainDomain?.render(b)||b.terrain||[]).some(t=>t.id==='a5-root-floor'&&!t.broken&&G.HONRO_CORE.poly(t).some(p=>p.x===5744.14&&p.y===1819.53)&&G.HONRO_CORE.poly(t).some(p=>p.x===6700.39&&p.y===1733.2));
+const s44Landmark=S.landmark;S.landmark=function(c,l){
+ const out=s44Landmark.call(this,c,l),b=this.battle;
+ if(s44Ramp(b,l)){const V=G.HonroVisualStyle,a=l.asset,cc=V?V.context(c,V.classify(l,b,a)==='gameplay'?'gameplay':V.depth(l,a)):c;
+  cc.save();try{for(const [ink,p] of s44Paths()){cc.fillStyle=ink;cc.fill(p);}}finally{cc.restore();}}
+ return out;
+};
 G.HonroAct5EdgeArt={version:3};
 })(globalThis);
