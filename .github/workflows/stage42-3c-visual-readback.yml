@@ -1,0 +1,57 @@
+name: Stage42 a6 vs 3c55 public native readback (review only)
+on:
+  push:
+    branches: [qa/stage42-3c-visual-readback-r3]
+    paths: [".github/workflows/stage42-3c-visual-readback.yml", "tools/stage42-3c-visual-readback/**"]
+permissions:
+  contents: read
+jobs:
+  readback:
+    if: ${{ true && github.repository == 'sys8994/honro' && github.ref == 'refs/heads/qa/stage42-3c-visual-readback-r3' }}
+    runs-on: ubuntu-22.04
+    timeout-minutes: 19
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Verify exact isolated add-only carrier and predecessor checkout
+        run: |
+          set -euo pipefail
+          test -z "${GITHUB_TOKEN:-}${GH_TOKEN:-}"
+          for A in "qa:$GITHUB_SHA:2" "old:a6b2c0db97c9ae6efe4d5372f2208bfdf695f4f4:1"; do
+            IFS=: read -r lane sha depth <<< "$A"
+            git init -q "$GITHUB_WORKSPACE/$lane"
+            GIT_TERMINAL_PROMPT=0 git -C "$GITHUB_WORKSPACE/$lane" -c credential.helper= -c http.extraHeader= fetch -q --depth="$depth" https://github.com/sys8994/honro.git "$sha"
+            git -C "$GITHUB_WORKSPACE/$lane" checkout -q --detach FETCH_HEAD
+          done
+          cd "$GITHUB_WORKSPACE/qa"
+          python3 - <<'PY'
+          import json,subprocess as s,os
+          from pathlib import Path
+          p=json.loads(Path('tools/stage42-3c-visual-readback/PINS.json').read_text()); b=p['arms']['B']
+          assert p['enabled'] is True and os.environ['GITHUB_REF']==p['qaRef']
+          git=lambda *a:s.check_output(['git',*a],text=True,timeout=60).strip()
+          assert git('rev-parse','HEAD')==os.environ['GITHUB_SHA'] and git('show','-s','--format=%P','HEAD')==b['head']
+          assert git('rev-parse',b['head']+'^{tree}')==b['tree']
+          want={'.github/workflows/stage42-3c-visual-readback.yml',*(f'tools/stage42-3c-visual-readback/{n}' for n in ('PINS.json','observer.json','readback.py'))}
+          assert set(git('diff','--name-status','--no-renames',b['head'],'HEAD').splitlines())=={'A\t'+x for x in want}
+          assert not git('status','--porcelain','--untracked-files=all')
+          PY
+          git worktree add --detach "$GITHUB_WORKSPACE/new" "$(git rev-parse HEAD^)"
+      - name: Actual Chrome Stage42 PC and mobile on both previously verified exact public trees
+        run: |
+          set -euo pipefail
+          test -z "${GITHUB_TOKEN:-}${GH_TOKEN:-}"
+          PY=$(find "${RUNNER_TOOL_CACHE}/Python" -maxdepth 4 -type f -path '*/3.12.*/x64/bin/python3.12' | sort -V | tail -1)
+          test -n "$PY"
+          "$PY" -m venv "$RUNNER_TEMP/honro-stage42-3c"
+          V="$RUNNER_TEMP/honro-stage42-3c/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+          "$V" "$GITHUB_WORKSPACE/qa/tools/stage42-3c-visual-readback/readback.py" "$GITHUB_WORKSPACE/old" "$GITHUB_WORKSPACE/new" "$RUNNER_TEMP/stage42-3c"
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: stage42-3c-visual-readback-r3-no-deploy
+          path: ${{ runner.temp }}/stage42-3c/
+          retention-days: 7
+          if-no-files-found: warn
