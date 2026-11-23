@@ -1,0 +1,382 @@
+{
+  "chrome": "151.0.7922.34",
+  "physics": "8b414b90e43c7f7e1ea685a254b4fa4cd6d5db525ce96083c39059ff5433ba0f",
+  "devices": {
+    "PC": {
+      "size": [
+        1440,
+        900
+      ],
+      "backing": [
+        1440,
+        769
+      ],
+      "views": {
+        "west": [
+          -320,
+          1430.5,
+          0.21176470588235294
+        ],
+        "south": [
+          3250,
+          3101,
+          0.21176470588235294
+        ],
+        "low-east": [
+          4215,
+          2390,
+          0.88
+        ],
+        "skyway-se": [
+          6820,
+          3101,
+          0.21176470588235294
+        ]
+      }
+    },
+    "M": {
+      "size": [
+        390,
+        844
+      ],
+      "backing": [
+        390,
+        648
+      ],
+      "views": {
+        "west": [
+          -320,
+          1430.5,
+          0.057352941176470586
+        ],
+        "south": [
+          3250,
+          3101,
+          0.057352941176470586
+        ],
+        "low-east": [
+          4205,
+          2385,
+          0.5
+        ],
+        "skyway-se": [
+          6820,
+          3101,
+          0.057352941176470586
+        ]
+      }
+    }
+  },
+  "cameraModes": {
+    "west": {
+      "mode": "west",
+      "dx": -1,
+      "dy": 0
+    },
+    "south": {
+      "mode": "south",
+      "dx": 0,
+      "dy": 1
+    },
+    "low-east": {
+      "mode": "ordinary",
+      "dx": 0,
+      "dy": 0
+    },
+    "skyway-se": {
+      "mode": "skyway-se",
+      "dx": 1,
+      "dy": 1
+    }
+  },
+  "observerSHA256": "7c64522c0c84866e0d2516ca18ed81e12a9f7b348a26fa49fb40f9516a29a24a",
+  "stageFar": {
+    "key": "valleyFar",
+    "config": "web/data/HONRO_AUTHORED_FAR.b014b75b5dd7973d.json",
+    "configGit": "bd63d829d22cbf8084e8d7f550dccd68ecd6a9e4",
+    "path": "web/graphics/honro_authored_far-images-valleyFar.4fd65fd6a65b0dd4.webp"
+  },
+  "enabled": true,
+  "qaRef": "refs/heads/qa/stage42-full-restore-normal-3032-r4",
+  "arms": {
+    "A": {
+      "tree": "4fa185a738677fc252c8af4340a90ce18ab7895e",
+      "head": "a6b2c0db97c9ae6efe4d5372f2208bfdf695f4f4",
+      "campaign": "web/data/campaign.b7ae34f5b0515023.json",
+      "files": {
+        "HONRO.html": "5587d656ee5af0379d43537ecd9a6e7f0c9264d785997dd8a2800fc8fe5dc6da",
+        "web/manifest.json": "60b939e2a2e58dcb9a1216b22c5208c88771fe217c49209c6644bb825678fb54",
+        "web/runtime/HONRO_AUTHORED_FAR.cf4cf9c2e0932235.js": "cf4cf9c2e09322356f9d2f0e874d700718783c6eafc332049663fdda54250f69",
+        "web/runtime/ordered-common-18.4831815091012b42.js": "4831815091012b426ed3973ce2de1f4c896414383be3b5a4c782bcde29f05ffa",
+        "web/runtime/ordered-common-15.23e61c9f6bb8a95b.js": "23e61c9f6bb8a95b55d7e87dff8f02b2c25e5f23abc66ec8df7b59c067894fe0",
+        "web/data/campaign.b7ae34f5b0515023.json": "b7ae34f5b05150239390d79241231e101f66d136f9ec4195d338919522b06e7a",
+        "web/runtime/campaign.bd5c5513dcae5285.js": "bd5c5513dcae52854933fd652f484441984debf8ba4675286656582bf93d895e",
+        "web/entries/game.8ef0693f661485c8.js": "8ef0693f661485c8f3deb505033ccbbc2906fb148813cfd63047a5eb3271cdab",
+        "web/data/chapter-42.0802015e8ba99d11.json": "0802015e8ba99d11a8ece1f14186b3db6a4a7d3d32076e64ca120300f50c7f50",
+        "web/data/chapter-42-assets.abdbc9d7a8ce717e.json": "abdbc9d7a8ce717eb7c8a6c04aa7400cec13b5ced947713aa862ab70ef5f2e46",
+        "web/data/HONRO_AUTHORED_FAR.b014b75b5dd7973d.json": "b014b75b5dd7973d864f372fa0c2b024aec302a175f5f1f99c0fc9dc839dbc82",
+        "web/graphics/honro_authored_far-images-valleyFar.4fd65fd6a65b0dd4.webp": "4fd65fd6a65b0dd405f7557bd939d60d1738c713e385f2245685b5719687604f"
+      },
+      "map": "web/data/chapter-42.0802015e8ba99d11.json",
+      "provider": "web/data/chapter-42-assets.abdbc9d7a8ce717e.json",
+      "owner": "1858841:5ce4a412"
+    },
+    "B": {
+      "tree": "345d213136779a6cb5a90fd3a9b6d19dc884e6fc",
+      "head": "3032ff1e3a3eace4d28b92e151f616c3ede1a826",
+      "campaign": "web/data/campaign.f96de12224a3c784.json",
+      "files": {
+        "HONRO.html": "da625fb8568b63ab88ebc4fb695b0249d94959edab495f6cf4c8fc1730315d3c",
+        "web/runtime/HONRO_AUTHORED_FAR.cf4cf9c2e0932235.js": "cf4cf9c2e09322356f9d2f0e874d700718783c6eafc332049663fdda54250f69",
+        "web/runtime/ordered-common-15.23e61c9f6bb8a95b.js": "23e61c9f6bb8a95b55d7e87dff8f02b2c25e5f23abc66ec8df7b59c067894fe0",
+        "web/data/chapter-42.0802015e8ba99d11.json": "0802015e8ba99d11a8ece1f14186b3db6a4a7d3d32076e64ca120300f50c7f50",
+        "web/data/chapter-42-assets.5c0087eadb28e00c.json": "5c0087eadb28e00c40163efded83831aab5b4d826ded45bc1efb97c0b7718bf7",
+        "web/data/HONRO_AUTHORED_FAR.b014b75b5dd7973d.json": "b014b75b5dd7973d864f372fa0c2b024aec302a175f5f1f99c0fc9dc839dbc82",
+        "web/graphics/honro_authored_far-images-valleyFar.4fd65fd6a65b0dd4.webp": "4fd65fd6a65b0dd405f7557bd939d60d1738c713e385f2245685b5719687604f",
+        "web/runtime/ordered-common-18.326be34080f88678.js": "326be34080f88678701ead4cfa54a7c327027fa8ab1d690d8993ba414a93b62f",
+        "web/data/campaign.f96de12224a3c784.json": "f96de12224a3c784dc327eb36fde186e82f4542c5efa4d4237649bacb463f7de",
+        "web/runtime/campaign.053c858c8428c726.js": "053c858c8428c7265e68c021cd9e3dd391001ffa5ed1b0e5d1e7dc8dc28c4154",
+        "web/entries/game.fef0edfe0142b973.js": "fef0edfe0142b97385a1ac02c0147d602e0973504f9cf8a2d0ff6138d8115924"
+      },
+      "map": "web/data/chapter-42.0802015e8ba99d11.json",
+      "provider": "web/data/chapter-42-assets.5c0087eadb28e00c.json",
+      "owner": "1382117:dec691ec",
+      "manifestGit": "2204135021d54e6cb51c815053319a01847c5f84"
+    },
+    "BF6": {
+      "tree": "66a7159f5135230e1aed69b105499bb076870730",
+      "head": "bf6df569650b656c33c647755d59c02fb1570cc4",
+      "campaign": "web/data/campaign.4c48015c8663d89f.json",
+      "files": {
+        "web/runtime/HONRO_AUTHORED_FAR.cf4cf9c2e0932235.js": "cf4cf9c2e09322356f9d2f0e874d700718783c6eafc332049663fdda54250f69",
+        "web/runtime/ordered-common-15.23e61c9f6bb8a95b.js": "23e61c9f6bb8a95b55d7e87dff8f02b2c25e5f23abc66ec8df7b59c067894fe0",
+        "web/data/campaign.4c48015c8663d89f.json": "4c48015c8663d89f16ea762cf23f488463a2e819a7330b3286f437927bb33504",
+        "web/runtime/campaign.38d1394abfe86699.js": "38d1394abfe86699a1db087bb6970d17baabb0ead53077d403759e04788a9a12",
+        "HONRO.html": "b7ca017690f428a932c1c443507ece96e00d0968673641bf1e519efd9edc8b08",
+        "web/manifest.json": "9ceb552b1332139211ec397816536eb578d13bf36ec7f62b52484a69604e97ef",
+        "web/data/chapter-42.0802015e8ba99d11.json": "0802015e8ba99d11a8ece1f14186b3db6a4a7d3d32076e64ca120300f50c7f50",
+        "web/data/chapter-42-assets.5c0087eadb28e00c.json": "5c0087eadb28e00c40163efded83831aab5b4d826ded45bc1efb97c0b7718bf7",
+        "web/data/HONRO_AUTHORED_FAR.b014b75b5dd7973d.json": "b014b75b5dd7973d864f372fa0c2b024aec302a175f5f1f99c0fc9dc839dbc82",
+        "web/graphics/honro_authored_far-images-valleyFar.4fd65fd6a65b0dd4.webp": "4fd65fd6a65b0dd405f7557bd939d60d1738c713e385f2245685b5719687604f",
+        "web/runtime/ordered-common-18.326be34080f88678.js": "326be34080f88678701ead4cfa54a7c327027fa8ab1d690d8993ba414a93b62f",
+        "web/entries/game.547b23467b5bf6c7.js": "547b23467b5bf6c78463dae7d5e4d8b793dee1fc758b0998f0c557df640b3bea"
+      },
+      "map": "web/data/chapter-42.0802015e8ba99d11.json",
+      "provider": "web/data/chapter-42-assets.5c0087eadb28e00c.json",
+      "owner": "1382117:dec691ec"
+    }
+  },
+  "pages": {
+    "status": "PASS_OFFICIAL_EXACT_PAGES",
+    "head": "3032ff1e3a3eace4d28b92e151f616c3ede1a826",
+    "run": 45122320155,
+    "job": 137519293967,
+    "publishedAt": "2026-11-23T06:12:26.0694693Z"
+  },
+  "previousR3": {
+    "evidenceZipSHA256": "130098e71439e8fb2d67ada6e3799912d4e6a101ba11eb8d3e6185a1134148e0",
+    "receiptSHA256": "abb807277f40d25b97ec5b335211e0af480fb50356dfa1d38cb39ca497c00880",
+    "scope": "historical actual a6 vs 3c all 8 matched views (not reused as current bf6 visual), 32 RAW+DOM"
+  },
+  "history342": {
+    "head": "342a7aa03f7244db9663315ceac596f307dac06e",
+    "tree": "2e2ca3058bb2b4b4528b5e46394fcf30d55c8f32",
+    "campaign": "web/data/campaign.0386fa9451fe2427.json",
+    "packet": "web/data/chapter-42-assets.396ec98508d5b8c8.json",
+    "signature": "1864834:f80cec75",
+    "packetSHA": "396ec98508d5b8c828a8d0bbf24c2f6cac1a734a55989db3f3d3fcc1d80bb1df",
+    "map": "web/data/chapter-42.0802015e8ba99d11.json",
+    "mapSHA": "0802015e8ba99d11a8ece1f14186b3db6a4a7d3d32076e64ca120300f50c7f50",
+    "shellSHA": "f4134a5d5cb7dbe6c157688f1f0f0dc878cc4cb2cf9403f2b4980e00793e22da",
+    "campaignSHA": "0386fa9451fe2427918ea68e927ccb0cb7a1cffc547ab0a63a164c74d785e57e"
+  },
+  "full": {
+    "signature": "1583179:6d65aa38",
+    "files": {
+      "shared/assets/environment/act5/stage42-near-simplified.json": {
+        "bytes": 495040,
+        "sha256": "d4bb22c9e694120c6ac3d3a024d303b8d10f494a8d29c41eabbdcee47bb6b0bf",
+        "git": "05b7109ceba9d2de84865ae937b9ca71d9f3241b"
+      },
+      "shared/assets/environment/act5/stage42-surface.json": {
+        "bytes": 646900,
+        "sha256": "9f3199ad2dceb6d407b05c8d643730685b2534d5d08a045544c0a0485e8a37ba",
+        "git": "cabd9306550c0ccd742dfd3633f3c266ec9b7819"
+      },
+      "packet.qa.json": {
+        "bytes": 1583201,
+        "sha256": "43d364e09f6f65ff0ca299b3e23834decc00060dfea9c6271e3ce53dce577fc3",
+        "git": "a49fa9a313c3ddeb9b0698dcaf9754795e78ca29"
+      }
+    }
+  },
+  "profilePatch": {
+    "beforeGit": "2c0f74f23cbba16d908de3dc1b6e80291b9eea08",
+    "beforeSHA256": "1999f7e2e60cee4820135340dcd1723b346bc635fd1923d018c9a158d8e3d2bf",
+    "afterGit": "4a1742aa5a048e6833c95efaf7ac6bcf153b7eb1",
+    "afterSHA256": "f6ed4ce00ef4ae97bfdde53a1785a903f5f85184915e6dddccf0a9dbbee91d4b"
+  },
+  "visualFixture": {
+    "receiptSHA256": "82e37d14a40af555f39b7e39ef0c2dabc2df4635f9f84284f03b1883742647f3",
+    "pairs": {
+      "PC": {
+        "west": {
+          "raw": {
+            "rgba": "a77b170b7f804e8dfa51c2a18910913f1621ee733caf0b9ab5b2a51f329c1101",
+            "fileSHA": "7b9c7c91f2991862f018305881e5e76152289f8c97d8838deb3a63eb55ad72d1"
+          },
+          "dom": {
+            "rgba": "cd4ac793011b10688c09886cee2a65073221e497c179c41b7de424443aa57bd5",
+            "fileSHA": "5770209e6484fd7b995f499adced1d12fce786ed7d047d3dc8630899a8c74f78"
+          }
+        },
+        "south": {
+          "raw": {
+            "rgba": "78595416ccb1697e64370243c382670720772acdfa19f60bed48dc7e65baced4",
+            "fileSHA": "6911efbbd91f9a2b2da4a6d8668129edd89bd86d2d87cc806a358323aca6bea1"
+          },
+          "dom": {
+            "rgba": "c3db1f6c69e71f4a4986cd2883782a36865de21d8a697e6474aa7b1729f3740d",
+            "fileSHA": "b49802d544df7284dfd247006ba31caf4dee89466e023e2a692fbd1d11d2f758"
+          }
+        },
+        "low-east": {
+          "raw": {
+            "rgba": "9dd315d8b853a4cb15dd6e68f562ba81854ba9757d9b85431f90d72c1ef6507f",
+            "fileSHA": "1462bd62509742d0486bf13a14995572ce08fd770bacbf0f4c045e41b2ba0cfb"
+          },
+          "dom": {
+            "rgba": "ff5b8795b13ad8b6c8191ae83b952bd9339dd8fe985021e7733b66df3f4319a3",
+            "fileSHA": "cf1d5ffa3f705a3e658b6cd15e8c698e27dc129c8521fdd9ee0247feb4e05bfb"
+          }
+        },
+        "skyway-se": {
+          "raw": {
+            "rgba": "c285bd786128d5df3592c91cd6bc091e8b61b3161bb35e5fd1580f78d1e23c7c",
+            "fileSHA": "ad087a77dc02177e41e73b3f8d810ca5b06fe74619ecbd303ff1fc15d9341c84"
+          },
+          "dom": {
+            "rgba": "76875cd9a9fd0375fbf716aee90ce7333339815c98b92030ce252d8ec8bd4f85",
+            "fileSHA": "1e664abfc9490e85547a7e3fc99bff46d79f628eba7830a1828264ee2a5312b8"
+          }
+        }
+      },
+      "M": {
+        "west": {
+          "raw": {
+            "rgba": "5d1165998dca245c3cc6816180c1cf0fd2af9d5f327f9ca5d74c6e4df95a65fe",
+            "fileSHA": "2b5d502b22620fd53182e5d506ff35294793f8264005ab1016315f05eeaadbfa"
+          },
+          "dom": {
+            "rgba": "f6802431c9c6aff24065a3c3611c505123894a21f61e70adabf9edf19b688769",
+            "fileSHA": "f78e8d07c58a5f5640b74be0feca74e2e0663dfd03946cfc09536181ebee9288"
+          }
+        },
+        "south": {
+          "raw": {
+            "rgba": "fef7d026b9d7fc6f5ad82f3fec65c9ce5430b67d76d328f705d39bbc81d0f7b3",
+            "fileSHA": "7bf05d9f32e9bed71b016c2cb34d4b4e2cd70ce1bac38b991c1bd5d07445a111"
+          },
+          "dom": {
+            "rgba": "6eea52f6376a6e821c3f035ba19d693c214849baad86be35ad0c1906229373fd",
+            "fileSHA": "df3d670591789233c28ff0e1da476e06228b21b3f62aa5e8b77e4e2dc41b9810"
+          }
+        },
+        "low-east": {
+          "raw": {
+            "rgba": "7b950b1e7dd54da8f0b58ca52dbb114aacdc1384108b52a8cd32bfcd62a8ee47",
+            "fileSHA": "c456da2c288d5dc6cf902ba0c2941d4704e5de167cee84b01dc352087edbd94b"
+          },
+          "dom": {
+            "rgba": "1c4dcfd69150fbf02f2d4ac53dc85a324b0a3ba3b72cb94f0356544149d298fa",
+            "fileSHA": "444ce91b94b4e4c69c77ea7e265f660a5c7a38997786144ec708b7863489e55a"
+          }
+        },
+        "skyway-se": {
+          "raw": {
+            "rgba": "5bfbcadcd78ee1dd7d907e5d45054f486c8a75984af512901b447075620855d2",
+            "fileSHA": "97a3daa95d381f57a31fd128dfb8dd8cb92534f7d6ec3ab58b63541f758c92b9"
+          },
+          "dom": {
+            "rgba": "f619b57bdd5b6328476ac6db27a7dd76ee709cc54244421bf2edc54fb82bd78e",
+            "fileSHA": "fb8b0c0cbd87205b5bcc23d598ad60815f41138c94dcddbeec32e1fc505a806e"
+          }
+        }
+      }
+    }
+  },
+  "beforeCommon5": {
+    "path": "web/runtime/ordered-common-5.33fb43a3885f44c2.js",
+    "git": "d3ec6608dcb40b8a1ca9fcd1ea9daf3d4bbbbe5f"
+  },
+  "stage40": {
+    "packet": "web/data/chapter-40-assets.6052a7e4526580b8.json",
+    "packetGit": "2e1d7de24a59c92d144a9d2b809dd896ef2938f9",
+    "map": "web/data/chapter-40.5f4b6c4c311adc05.json",
+    "mapGit": "330db75394a472c92cc474d153e2fdcff974cb7e",
+    "common12": "web/runtime/ordered-common-12.0956bc2d5dc85348.js",
+    "common12Git": "b39bd557265cc70878b3a45d6975066b6aa9d3e6",
+    "ids": [
+      "approved40:body",
+      "approved40:coastal-foundation",
+      "approved40:terrain-left-join",
+      "approved40:terrain-right-join"
+    ],
+    "registry": {
+      "approved40:body": {
+        "stage": 40,
+        "previous": "4724416:12a0c1d5",
+        "previousOptimized": [
+          "4471109:d3f5a835"
+        ],
+        "current": "1644042:df21ebc3"
+      },
+      "approved40:coastal-foundation": {
+        "stage": 40,
+        "previous": "1408143:e55964aa",
+        "previousOptimized": [
+          "1297690:b446a076"
+        ],
+        "current": "266179:28c960ab"
+      },
+      "approved40:terrain-left-join": {
+        "stage": 40,
+        "previous": "1761406:9835d7",
+        "previousOptimized": [
+          "1757601:e9667f0a",
+          "1694987:a515b4e3"
+        ],
+        "current": "505822:f026cae5"
+      },
+      "approved40:terrain-right-join": {
+        "stage": 40,
+        "previous": "1656846:fba43601",
+        "previousOptimized": [
+          "1653652:f5a9b376",
+          "1597731:b4de61d5"
+        ],
+        "current": "498438:82997529"
+      }
+    }
+  },
+  "compiledForward": {
+    "bytes": 178981,
+    "sha256": "48e7e130f804907d17530287b2749fa0b9f5088efa84925e85a0e23c2702aa06",
+    "git": "50756beb7b31ba414d575678abafb018b9f4591e"
+  },
+  "latestAct5Peers": {
+    "43": {
+      "map": "web/data/chapter-43.96ac7f694158cd4b.json",
+      "mapGit": "d69eeda449b250ba05513a804e1f5a69dac26b42",
+      "packet": "web/data/chapter-43-assets.b76ba475646013f6.json",
+      "packetGit": "5b96d0cc3b182caa9307159ed8ae790dea619646"
+    },
+    "50": {
+      "map": "web/data/chapter-50.1542cc11536b78de.json",
+      "mapGit": "07edfc5f98eb573d1c2617c62a431d7bd0acd2c1",
+      "packet": "web/data/chapter-50-assets.7278453f7dfbce9d.json",
+      "packetGit": "2d31b12847cf293fb34132229380ca8e801e287c"
+    }
+  },
+  "buildAuthorityGit": "9d03355a55767c8bd107d793f09e101a96c000a4"
+}
