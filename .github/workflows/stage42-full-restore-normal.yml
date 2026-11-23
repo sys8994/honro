@@ -1,0 +1,89 @@
+name: Stage42 full surface normal build and cold Continue, no deploy
+on:
+  push:
+    branches: [qa/stage42-full-restore-normal-2c4-r1]
+    paths: [".github/workflows/stage42-full-restore-normal.yml", "tools/stage42-full-normal/**"]
+permissions:
+  contents: read
+jobs:
+  normal:
+    if: ${{ github.repository == 'sys8994/honro' && github.ref == 'refs/heads/qa/stage42-full-restore-normal-2c4-r1' }}
+    runs-on: ubuntu-22.04
+    timeout-minutes: 28
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Verify exact 2c4 parent, six added QA files, old/a6 authority
+        run: |
+          set -euo pipefail
+          test -z "${GITHUB_TOKEN:-}${GH_TOKEN:-}"
+          for A in "qa:$GITHUB_SHA:2" "a6:a6b2c0db97c9ae6efe4d5372f2208bfdf695f4f4:1" "pre:342a7aa03f7244db9663315ceac596f307dac06e:1" "bf6:bf6df569650b656c33c647755d59c02fb1570cc4:1"; do
+            IFS=: read -r lane sha depth <<< "$A"
+            git init -q "$GITHUB_WORKSPACE/$lane"
+            GIT_TERMINAL_PROMPT=0 git -C "$GITHUB_WORKSPACE/$lane" -c credential.helper= -c http.extraHeader= fetch -q --depth="$depth" https://github.com/sys8994/honro.git "$sha"
+            git -C "$GITHUB_WORKSPACE/$lane" checkout -q --detach FETCH_HEAD
+          done
+          cd "$GITHUB_WORKSPACE/qa"
+          python3 - <<'PY'
+          import json,subprocess as s,os
+          from pathlib import Path
+          p=json.loads(Path('tools/stage42-full-normal/PINS.json').read_text()); b=p['arms']['B']
+          assert p['enabled'] is True and os.environ['GITHUB_REF']==p['qaRef']
+          git=lambda *a:s.check_output(['git',*a],text=True,timeout=60).strip()
+          assert git('rev-parse','HEAD')==os.environ['GITHUB_SHA'] and git('show','-s','--format=%P','HEAD')==b['head'] and git('rev-parse',b['head']+'^{tree}')==b['tree']
+          want={'.github/workflows/stage42-full-restore-normal.yml',*(f'tools/stage42-full-normal/{n}' for n in ('PINS.json','observer.json','readback.py','derive.mjs','normal.py'))}
+          assert set(git('diff','--name-status','--no-renames',b['head'],'HEAD').splitlines())=={'A\t'+x for x in want}
+          assert not git('status','--porcelain','--untracked-files=all')
+          PY
+          git worktree add --detach "$GITHUB_WORKSPACE/stock" "$(git rev-parse HEAD^)"
+          git worktree add --detach "$GITHUB_WORKSPACE/normal" "$(git rev-parse HEAD^)"
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: "22"
+      - name: Ordinary canonical FULL build, production contract and exact browser routes
+        id: build
+        run: |
+          set -euo pipefail
+          W="$RUNNER_TEMP/stage42-normal-out"; T="$GITHUB_WORKSPACE/qa/tools/stage42-full-normal"
+          mkdir "$W"
+          node "$T/derive.mjs" "$GITHUB_WORKSPACE/a6" "$GITHUB_WORKSPACE/stock" "$RUNNER_TEMP/stage42-derived" >"$W/derive.log" 2>&1
+          cp "$RUNNER_TEMP/stage42-derived/DERIVATION.json" "$W/"
+          python3 "$T/normal.py" apply "$GITHUB_WORKSPACE/normal" "$RUNNER_TEMP/stage42-derived" "$W"
+          cd "$GITHUB_WORKSPACE/normal"
+          npm ci >"$W/npm.log" 2>&1
+          npm ci --prefix game >"$W/npm-game.log" 2>&1
+          npm run build >"$W/build.log" 2>&1
+          npm run test:production-contract >"$W/production-contract.log" 2>&1
+          python3 "$T/normal.py" routes "$GITHUB_WORKSPACE/stock" "$GITHUB_WORKSPACE/normal" "$W"
+      - name: Live save integrity and independent fresh render authority, plus Stage40 carry
+        id: browser
+        if: ${{ always() && steps.build.outcome == 'success' }}
+        run: |
+          set -euo pipefail
+          test -z "${GITHUB_TOKEN:-}${GH_TOKEN:-}"
+          PY=$(find "${RUNNER_TOOL_CACHE}/Python" -maxdepth 4 -type f -path '*/3.12.*/x64/bin/python3.12' | sort -V | tail -1)
+          test -n "$PY"
+          "$PY" -m venv "$RUNNER_TEMP/honro-stage42-normal"
+          V="$RUNNER_TEMP/honro-stage42-normal/bin/python"
+          "$V" -m pip --disable-pip-version-check install playwright==1.62.0 Pillow==13.0.0
+          "$V" -m playwright install --with-deps chromium
+          "$V" "$GITHUB_WORKSPACE/qa/tools/stage42-full-normal/readback.py" "$GITHUB_WORKSPACE/pre" "$GITHUB_WORKSPACE/a6" "$GITHUB_WORKSPACE/bf6" "$GITHUB_WORKSPACE/stock" "$GITHUB_WORKSPACE/normal" "$RUNNER_TEMP/stage42-normal-out"
+      - name: Strict full release graph, including Workshop embedded-document binding
+        id: graph
+        if: ${{ always() && steps.build.outcome == 'success' }}
+        run: |
+          set -euo pipefail
+          python3 "$GITHUB_WORKSPACE/qa/tools/stage42-full-normal/normal.py" graph "$GITHUB_WORKSPACE/stock" "$GITHUB_WORKSPACE/normal" "$RUNNER_TEMP/stage42-normal-out"
+      - name: Seal exact no-deploy overlay only after graph, real Stage42 and Stage40 proof
+        if: ${{ success() && steps.graph.outcome == 'success' && steps.browser.outcome == 'success' }}
+        run: |
+          set -euo pipefail
+          test -z "${GITHUB_TOKEN:-}${GH_TOKEN:-}"
+          python3 "$GITHUB_WORKSPACE/qa/tools/stage42-full-normal/normal.py" seal "$GITHUB_WORKSPACE/stock" "$GITHUB_WORKSPACE/normal" "$RUNNER_TEMP/stage42-normal-out"
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: stage42-full-normal-2c4-r1-continue-no-deploy
+          path: ${{ runner.temp }}/stage42-normal-out/
+          retention-days: 7
+          if-no-files-found: warn
