@@ -1,0 +1,116 @@
+{
+  "enabled": true,
+  "origin": "https://sys8994.github.io/honro/",
+  "qaRef": "refs/heads/qa/stage44-east-root-a-2c4ba6",
+  "repo": "sys8994/honro",
+  "release": {
+    "head": "2c4ba6cda11ad00c7edc565ef42bc41568f066a1",
+    "tree": "7f7395fe024388688e07f42e07c30d30d3ff3c81",
+    "pages": 45129714712,
+    "job": 137542930896,
+    "publishedAt": "2026-11-23T07:17:33.7182605Z",
+    "manifest": {
+      "git": "42a4c459df7a7d2e5456dfb1670a0b02f7f85494"
+    }
+  },
+  "shell": {
+    "bytes": 17379,
+    "sha256": "036f2052d126fb703fbd9cc153620d93868e8aa2246fcd1774b9821a269ad181"
+  },
+  "qualifiedRoutes": {
+    "web/runtime/ordered-common-18.326be34080f88678.js": {
+      "sha256": "326be34080f88678701ead4cfa54a7c327027fa8ab1d690d8993ba414a93b62f",
+      "bytes": 35854
+    },
+    "web/data/chapter-44.53b2bdf2fded9347.json": {
+      "sha256": "53b2bdf2fded934726ba64e70549f7ed29e3fc5194f76f31989ac63b50ef81eb",
+      "bytes": 14528
+    },
+    "web/data/chapter-44-assets-parts.78cf9cac37e639be.json": {
+      "sha256": "78cf9cac37e639be93a7ca0f355211e2bdd7052c6be883045b06fce897518e44",
+      "bytes": 442
+    },
+    "web/data/chapter-44-assets-part-001.19e3a4fce68e20d3.bin": {
+      "sha256": "19e3a4fce68e20d3ee0981c031a518f7b683187ecb891bb0f4e292cbde951248",
+      "bytes": 87170
+    },
+    "web/data/chapter-44-assets-part-000.ac5c9ed02d770b03.bin": {
+      "sha256": "ac5c9ed02d770b03465dab45186b5855520037f1c9a4e4a04e5161b4c1c4e1ef",
+      "bytes": 4194304
+    },
+    "web/graphics/honro_authored_far-images-root-interior.7b6377c64ea476da.webp": {
+      "bytes": 90092,
+      "sha256": "7b6377c64ea476da11bbcbaee6fc8c98e67692723bf8ee7f18ab60c22709def7"
+    },
+    "web/runtime/HONRO_AUTHORED_FAR.cf4cf9c2e0932235.js": {
+      "bytes": 905,
+      "sha256": "cf4cf9c2e09322356f9d2f0e874d700718783c6eafc332049663fdda54250f69"
+    },
+    "web/data/campaign.4c0d0092bc3153e2.json": {
+      "bytes": 55151,
+      "sha256": "4c0d0092bc3153e23c93039264979b0c33476f9db45e41ac178c4d55e7f18e04"
+    },
+    "web/runtime/campaign.12c7a3c08c76fe9e.js": {
+      "bytes": 527,
+      "sha256": "12c7a3c08c76fe9eec2432d12c646219e9c53cc53d5ab469625c812b11496bf3"
+    },
+    "web/entries/game.7cd8803e41bf231d.js": {
+      "bytes": 20483,
+      "sha256": "7cd8803e41bf231de9f243a953135fb72dd5b8746cc37b3406e15451766dba7d"
+    }
+  },
+  "stageMapAndPacket": [
+    "web/data/chapter-44.53b2bdf2fded9347.json",
+    "web/data/chapter-44-assets-parts.78cf9cac37e639be.json"
+  ],
+  "physics": "b7c0d64490dfaae60ad5c6bc394d000d5c256ba56f9a7149abbbf3301f4d6546",
+  "nearAsset": {
+    "id": "act5:near:44",
+    "instance": "a5-near",
+    "scale": 3.130755064456722
+  },
+  "poses": {
+    "PC": {
+      "east-min": [
+        7120,
+        1313.5,
+        0.21176470588235294
+      ],
+      "east-close": [
+        7120,
+        1650,
+        0.5
+      ]
+    },
+    "M": {
+      "east-min": [
+        7120,
+        1313.5,
+        0.057352941176470586
+      ],
+      "east-close": [
+        7120,
+        1650,
+        0.18
+      ]
+    }
+  },
+  "routeProbe": {
+    "id": "a5-root-floor",
+    "controlTail": [
+      [
+        5744.14,
+        1819.53
+      ],
+      [
+        6109.38,
+        1812.89
+      ],
+      [
+        6700.39,
+        1733.2
+      ]
+    ],
+    "purpose": "Read-only route contact framing; no aesthetic proof imposed."
+  }
+}
