@@ -7,7 +7,10 @@ function bind(app){P.campaignProof=G.HonroAct4Content.state(app.profile);return 
 function proofValid(b){const p=P.campaignProof,a=p.safeSeven,r=p.rescued,entry=b.honroAct4EntryProof;return !!(p.runId===b.honroAct4ReviewRunId&&a?.success&&r?.success&&a.stage===32&&r.stage===39&&a.campaignRunId===p.runId&&r.campaignRunId===p.runId&&same(a.ids,shelterIds)&&same(r.ids,rescueIds)&&Array.isArray(a.reportIds)&&new Set(a.reportIds).size===a.reportIds.length&&(a.reportSkipped===true||a.reportIds.includes('A4.S32.MISSING.01'))&&a.reportIds.every(id=>['A4.S32.MISSING.01','A4.S32.MISSING.02','A4.S32.MISSING.03','A4.S32.MISSING.04'].includes(id))&&a.reunionObserved?.npc==='a4-shelter-speaker'&&a.reunionObserved?.hero==='archer'&&a.reunionObserved.sourceRun===a.sourceRun&&p.completed[32]?.sourceRun===a.sourceRun&&p.completed[39]?.sourceRun===r.sourceRun&&entry?.fromStage===39&&entry.targetStage===40&&entry.sourceRun===r.sourceRun&&entry.runId===p.runId&&same(b.honroAct4EntryResidents?.map(u=>u.id),rescueIds)&&b.honroAct4EntryResidents.every(u=>!u.dead&&u.hp>0));}
 P.proofValid=proofValid;
 P.save=function(app=G.HonroApp){const b=app.engine?.b;if(!active(b)||app.training||app.customMap)return false;bind(app);G.HonroProgression.syncRoster(app.profile,b);app.profile.honroBattle=P.snapshot(app);G.HonroEquipment.capture(app);G.HonroEquipment.observe(app);bind(app);return app.persist();};
-const persist=proto.persist;const persistWithAct4Snapshot=function(...args){if(active(this.engine?.b)&&!this.done)this.profile.honroBattle=P.snapshot(this,{compactArt:args[0]?.compactAct4Autosave===true});return persist.apply(this,args);};proto.persist=persistWithAct4Snapshot;
+// Every Act 4 battle save stores the compacted art form (static-asset refs, as
+// autosaves and Continue already do). Copying the full art first only for the
+// store to compact it again cost ~240ms per launch save on Stage 40.
+const persist=proto.persist;const persistWithAct4Snapshot=function(...args){if(active(this.engine?.b)&&!this.done)this.profile.honroBattle=P.snapshot(this,{compactArt:true});return persist.apply(this,args);};proto.persist=persistWithAct4Snapshot;
 // Stage 40's initial guide can use idle slices to prepare only its own
 // battle landmarks. Any user input or lifecycle change cancels the work.
 // Avoid serializing unusually large or nonstandard edited vectors as one
