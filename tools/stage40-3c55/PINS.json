@@ -1,0 +1,81 @@
+{
+  "enabled": true,
+  "branch": "qa/stage40-3c55-public-save-perf",
+  "repo": "sys8994/honro",
+  "public": "https://sys8994.github.io/honro/",
+  "stageMap": "web/data/chapter-40.5f4b6c4c311adc05.json",
+  "refs": {
+    "A": {
+      "head": "a6b2c0db97c9ae6efe4d5372f2208bfdf695f4f4",
+      "tree": "4fa185a738677fc252c8af4340a90ce18ab7895e",
+      "run": 45098872485,
+      "job": 137445355086,
+      "manifest": {
+        "git": "c435b559f94728212ff26eba4d5d4af2d43ee43d",
+        "bytes": 8816541
+      },
+      "entry": "web/entries/game.8ef0693f661485c8.js",
+      "campaignRuntime": "web/runtime/campaign.bd5c5513dcae5285.js",
+      "nativeRuntime": "web/runtime/ordered-game-24.9c27c3490848f04f.js",
+      "campaign": "web/data/campaign.b7ae34f5b0515023.json",
+      "descriptor": "web/data/chapter-40-assets-parts.e102ede6b6f1921d.json"
+    },
+    "B": {
+      "head": "3c55cf8313f1cd7355f486272f220beb38bcac7f",
+      "tree": "b67ae4d9cb1ed3241c32c025201cf5778c00cb8a",
+      "run": 45108891636,
+      "job": 137476961484,
+      "manifest": {
+        "git": "bd56525d7784f33e6e9cc2a5e360bea41cc1e24f",
+        "bytes": 8989227
+      },
+      "entry": "web/entries/game.d1e70066b5e4f461.js",
+      "campaignRuntime": "web/runtime/campaign.38d1394abfe86699.js",
+      "nativeRuntime": "web/runtime/ordered-game-24.19ec333843d7cbc2.js",
+      "campaign": "web/data/campaign.4c48015c8663d89f.json",
+      "descriptor": "web/data/chapter-40-assets-parts.e102ede6b6f1921d.json"
+    },
+    "H": {
+      "head": "733d5d212d5ab235c2b492e1f065306bdfaae317",
+      "tree": "276e54e1ca08d32d3b290097c9a05e91e9ab0ecd",
+      "run": 45023608854,
+      "job": 137212114253,
+      "manifest": {
+        "git": "10d3c091c96dccbc2a92bbe4434a00f128abb56e",
+        "bytes": 7994676
+      },
+      "entry": "web/entries/game.562d9dddf1932b73.js",
+      "campaignRuntime": "web/runtime/campaign.4375d13445105188.js",
+      "nativeRuntime": "web/runtime/ordered-game-24.26a8010157c8fe32.js",
+      "campaign": "web/data/campaign.0386fa9451fe2427.json",
+      "descriptor": "web/data/chapter-40-assets-parts.578f8624b0ac77bc.json"
+    }
+  },
+  "olderNativeReceipt": {
+    "run": 45031856249,
+    "job": 137236963286,
+    "artifact": 14757727838,
+    "sha256": "9834c524c24804b7ec02315eff72db1577a7d39d710163fa5c194bcc10b9fe8e"
+  },
+  "savePins": {
+    "old": {
+      "approved40:coastal-foundation": "1408143:e55964aa",
+      "approved40:body": "4724416:12a0c1d5",
+      "approved40:terrain-left-join": "1757601:e9667f0a",
+      "approved40:terrain-right-join": "1653652:f5a9b376"
+    },
+    "new": {
+      "approved40:coastal-foundation": "1297690:b446a076",
+      "approved40:body": "4471109:d3f5a835",
+      "approved40:terrain-left-join": "1694987:a515b4e3",
+      "approved40:terrain-right-join": "1597731:b4de61d5"
+    },
+    "positive": 3,
+    "negative": 8,
+    "stateShas": {
+      "terrain": "154ce99f4b1f92d58d05fc19cfb383aaa802435ffc702991b46b80bfe5ab6b66",
+      "units": "9623838855cc8709dc20dc20ccfa7f9cb82325d0ae0d4db7a8be9ca8f14c6884",
+      "objective": "a075dae9dcbe83ed99cbb3d1fce6003987ff0fad7257dc34150da69685eb9f27"
+    }
+  }
+}
