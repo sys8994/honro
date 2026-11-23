@@ -65,5 +65,51 @@ const collapseChips=[new Path2D('M315 470L343 483 332 512 303 502Z'),new Path2D(
 const omitReadability=(group,b)=>active(b)&&group.id==='sf-outbank-screen'&&state(b).status==='settling';
 function collapsingScreen(c,b){if(!active(b)||state(b).status!=='settling')return false;const t=(G.HonroTerrainDomain?.render(b)||b.terrain).find(t=>t.id==='sf-outbank-screen'&&!t.broken);if(!t)return false;const q=prepare(t,b),u=motion(b).progress,smooth=u*u*(3-2*u);c.save();c.globalAlpha*=reducedMotion?.matches?1:1-smooth*.94;terrain(c,t,b,true);c.clip(q.shape);c.translate(t.x,t.y);c.scale(t.w/1000,t.h/1000);c.strokeStyle='#c8b991';c.lineWidth=4+u*4;c.globalAlpha*=.35+u*.5;c.stroke(collapseCrack);c.strokeStyle='#132f3e';c.lineWidth=9;c.stroke(collapseCrack);if(!reducedMotion?.matches){c.translate(0,u*32);for(const p of collapseChips){c.fillStyle='#b1b497';c.fill(p);}}c.restore();return true;}
 const water=S.liveWater;S.liveWater=function(c,b){const result=water?.call(this,c,b);movingBody(c,b);collapsingScreen(c,b);mooring(c,b);return result;};
+// Below the play floor (y>7200) the canonical masses run to the domain bottom as straight
+// mesa walls, the river channel stays an open water shaft, and the sea band stops at
+// y7100 over empty fog. Paint only beneath/outside play: deep water under the sea band,
+// a riverbed closing the channel, shore material over the bare deep east masses, broad
+// buried strata, and a seabed slope from the old-road pillar. No collision, no new surfaces.
+const DEEP={top:7090,floor:7200,bottom:31200,left:-6000,right:17200};
+const deepSea=b=>active(b)&&b.honroCanonical===true&&b.honroCustom===false&&b.honroMapOrigin==='campaign'&&b.width===11200&&b.height===7200&&
+ b.honroTerrainBounds?.bottom===DEEP.bottom&&b.honroTerrainBounds.left===DEEP.left&&b.honroTerrainBounds.right===DEEP.right;
+const DEEP_PATHS={
+ bed:new Path2D('M6440 7214C6560 7232 6680 7246 6830 7244C6980 7240 7100 7226 7230 7212L7230 31200H6440Z'),
+ seabed:new Path2D('M10150 7200C10220 7230 10300 7300 10380 7410L10520 7520C10760 7700 11020 7930 11380 8160C11800 8420 12300 8640 12900 8880C13700 9180 14700 9480 15800 9780C16300 9900 16800 10010 17200 10080V31200H10150Z'),
+ seaPlane:new Path2D('M10150 7200C10220 7230 10300 7300 10380 7410L10520 7520C10760 7700 11020 7930 11380 8160C11800 8420 12300 8640 12900 8880C13700 9180 14700 9480 15800 9780C16300 9900 16800 10010 17200 10080V10420C16200 10260 15100 10010 14000 9740C13000 9480 12200 9200 11500 8860C11000 8600 10600 8280 10380 7980C10270 7820 10200 7600 10150 7470Z'),
+ foot:new Path2D('M10150 7300C10230 7330 10290 7370 10330 7440C10290 7520 10230 7560 10150 7590Z'),
+ strataA:new Path2D('M0 7520C1400 7440 2900 7560 4300 7470C5600 7390 7000 7520 8400 7450C9100 7420 9600 7470 9900 7500C10020 7520 10080 7560 10060 7600C9800 7640 9300 7650 8200 7660C6900 7730 5500 7600 4200 7690C2800 7780 1300 7650 0 7740Z'),
+ strataB:new Path2D('M300 8160C1900 8080 3600 8230 5200 8130C6700 8040 8300 8200 9700 8140C9950 8140 10060 8200 10020 8260C9700 8330 9200 8380 8500 8460L6900 8300 5300 8410C3700 8520 2000 8370 600 8460Z'),
+ strataC:new Path2D('M900 9020C2900 8930 4900 9110 7000 9000C8200 8940 9300 9030 9800 9040C10000 9060 10060 9110 10000 9150C9700 9200 9400 9250 9100 9300L7900 9200 6800 9270C4800 9400 2800 9220 1300 9300Z')
+};
+const deepWater=c=>{const g=c.createLinearGradient(0,DEEP.top,0,9600);g.addColorStop(0,'#2b444e');g.addColorStop(.35,'#223a46');g.addColorStop(1,'#172a35');c.fillStyle=g;c.fillRect(DEEP.left,DEEP.top,DEEP.right-DEEP.left,DEEP.bottom-DEEP.top);};
+const deepShore=(c,masses)=>{
+ c.fillStyle='#2c4449';c.fill(DEEP_PATHS.bed);
+ if(masses){c.save();c.clip(masses);const g=c.createLinearGradient(0,6930,0,7260);g.addColorStop(0,'#2c444900');g.addColorStop(1,'#2c4449');c.fillStyle=g;c.fillRect(8440,6930,1740,DEEP.bottom-6930);c.restore();}
+ c.fillStyle='#344d4d';c.fill(DEEP_PATHS.strataA);c.fill(DEEP_PATHS.strataC);
+ c.fillStyle='#30484b';c.fill(DEEP_PATHS.strataB);
+ c.fillStyle='#2c4449';c.fill(DEEP_PATHS.seabed);
+ c.fillStyle='#40564f';c.fill(DEEP_PATHS.seaPlane);
+ c.fillStyle='#344d4d';c.fill(DEEP_PATHS.foot);
+};
+const deepViews=new WeakMap(),massCache=new WeakMap();
+const eastMasses=b=>{const ts=G.HonroTerrainDomain?.render(b)||b.terrain,q=massCache.get(b);if(q?.ts===ts)return q.path;
+ const path=new Path2D();for(const t of ts)if((t.id==='sf-east-outer-grade'||t.id==='sf-old-road-gather')&&!t.broken)path.addPath(P(C.poly(t)));massCache.set(b,{ts,path});return path;};
+const materialLandmarks=G.HonroTerrainDomain?.materialLandmarks;
+if(materialLandmarks)G.HonroTerrainDomain.materialLandmarks=function(b){
+ const base=materialLandmarks.call(this,b);if(!deepSea(b))return base;
+ const old=deepViews.get(b);if(old?.base===base)return old.result;
+ // Widen only tile culling so the deep paint reaches every tile; assets stay untouched.
+ const result=base.map(l=>l.id==='sf-art-distant-channel'&&l.asset?.id==='stage30:ferry-distant-channel'?{...l,asset:{...l.asset,bounds:{x:DEEP.left,y:4800,w:DEEP.right-DEEP.left,h:DEEP.bottom-4800}},stage30DeepSea:'water'}:
+  l.id==='sf-art-weathered-shore-planes'&&l.asset?.id==='stage30:ferry-weathered-shore-planes'?{...l,asset:{...l.asset,bounds:{x:DEEP.left,y:4200,w:DEEP.right-DEEP.left,h:DEEP.bottom-4200}},stage30DeepSea:'shore'}:l);
+ deepViews.set(b,{base,result});return result;
+};
+const deepLandmark=S.landmark;S.landmark=function(c,l){
+ const b=this.battle;
+ if(l?.stage30DeepSea==='water'&&deepSea(b)){c.save();try{deepWater(c);}finally{c.restore();}}
+ const out=deepLandmark.call(this,c,l);
+ if(l?.stage30DeepSea==='shore'&&deepSea(b)){c.save();try{deepShore(c,eastMasses(b));}finally{c.restore();}}
+ return out;
+};
 G.HonroStage30FerryArt={active,prepare,terrain,surfaceEdges,skyAsset,skyRaster,body,initialMotion,motion,transformPoint,drawBody,movingBody,mooring,collapsingScreen,omitReadability};
 })(globalThis);
