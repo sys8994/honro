@@ -48,6 +48,7 @@ def majority(lab, n, r, opaque):
         m = s > best; out[m] = i; best[m] = s[m]
     out[~opaque] = -1; return out
 
+ZONE = None; FAR_MIN = None  # optional: components not touching ZONE use FAR_MIN
 def merge_small(lab, n, min_px, opaque, per_label=None):
     for _ in range(3):
         small = np.zeros(lab.shape, bool)
@@ -57,6 +58,9 @@ def merge_small(lab, n, min_px, opaque, per_label=None):
             sizes = ndimage.sum(np.ones_like(cc), cc, index=np.arange(1, k + 1))
             lim = per_label[i] if per_label is not None else min_px
             tiny = np.r_[False, sizes < lim]
+            if ZONE is not None and FAR_MIN:
+                near = ndimage.maximum(ZONE.astype(np.uint8), cc, index=np.arange(1, k + 1)) > 0
+                tiny |= np.r_[False, (sizes < FAR_MIN) & ~near]
             small |= tiny[cc]
         if not small.any(): break
         valid = opaque & ~small
@@ -114,7 +118,15 @@ def retrace_group(png, fills, ox, oy, k, o):
     lab = majority(lab, len(order), o.radius, opaque)
     lum = pal @ np.array([.299, .587, .114]); bright = set(np.argsort(-lum)[:o.bright_count]) if o.bright_count else set()
     per = [o.bright_min_px if i in bright else o.min_px for i in range(len(order))]
+    global ZONE, FAR_MIN
+    if o.far_min_px:
+        import colorsys
+        hues = [colorsys.rgb_to_hsv(*(c / 255))[0] * 360 for c in pal]
+        lo, hi = [float(x) for x in o.rock_hue.split(',')]
+        prot = np.isin(lab, [i for i, h in enumerate(hues) if not (lo <= h <= hi)])
+        r = o.zone_px; ZONE = cv2.dilate(prot.astype(np.uint8), cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2 * r + 1, 2 * r + 1))).astype(bool); FAR_MIN = o.far_min_px
     lab = merge_small(lab, len(order), o.min_px, opaque, per)
+    ZONE = None
     kern = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2 * o.overlap + 1, 2 * o.overlap + 1))
     op_d = cv2.dilate(opaque.astype(np.uint8), kern).astype(bool) if o.overlap else opaque
     out = {}; total = 0
@@ -136,6 +148,9 @@ def main():
     ap.add_argument('--root', default='vector.root')
     ap.add_argument('--merge-dist', type=float, default=0)
     ap.add_argument('--alpha-min', type=int, default=128)
+    ap.add_argument('--far-min-px', type=int, default=0)
+    ap.add_argument('--zone-px', type=int, default=24)
+    ap.add_argument('--rock-hue', default='195,235')
     ap.add_argument('--bright-count', type=int, default=0, help='lightest N colours (highlight rims) use --bright-min-px')
     ap.add_argument('--bright-min-px', type=int, default=0)
     ap.add_argument('--group', default=None, help='group mode: JSON {fills, ox, oy} for the PNG; asset arg is ignored')

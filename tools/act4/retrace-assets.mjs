@@ -99,7 +99,7 @@ for(const id of ids){
   for(let attempt=0;attempt<4;attempt++){
    execFileSync('python3',[path.join(root,'tools/act5/retrace-vector.py'),'-',base+'.png',base+'.out.json','--group',base+'.group.json','--k',String(k),'--radius','1',
     '--min-px',String(Math.max(4,Math.round(minWorld*pxw*pxw))),'--bright-count','2','--bright-min-px',String(Math.max(2,Math.round(brightWorld*pxw*pxw))),
-    '--tol',String(tol),'--smooth',String(arg('smooth')??6),'--merge-dist',String(P.merge),'--alpha-min',String(arg('alpha-min')??128),'--overlap',String(arg('overlap')??1)],{stdio:['ignore','ignore','inherit']});
+    '--tol',String(tol),'--smooth',String(arg('smooth')??6),'--merge-dist',String(P.merge),'--alpha-min',String(arg('alpha-min')??128),...(arg('far-min-world')?['--far-min-px',String(Math.round(+arg('far-min-world')*pxw*pxw)),'--zone-px',String(Math.round(+(arg('zone-world')??12)*pxw))]:[]),'--overlap',String(arg('overlap')??1)],{stdio:['ignore','ignore','inherit']});
    res=JSON.parse(fs.readFileSync(base+'.out.json','utf8'));
    // Renderer compound limits per leaf: 240000 chars, 120000 number tokens.
    const over=Object.values(res.d).some(d=>d.length>230000||(d.match(NUM)||[]).length>115000);
