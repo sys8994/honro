@@ -116,7 +116,8 @@ if(mode==='base'){
  const t=caseFor(40),{b,d,q,place,local,sendAway,witness,observe,residents,engine,press,P}=t,g=d.geometry40;assert(g);
  b.honroFinalDefenseRevision=2;b.honroSurfaceZones=[];
  const boss=local(t.u0.x,t.u0.y);boss.id=t.u0.id;boss.honroAct4FinaleBoss=true;
- place(2000,3370);witness('return-boat');witness('return-high');observe();assert(q.tide.started&&q.tide.phase==='rising');assert(!q.returnEscort,'not safe to board before active tide window');
+ place(2000,3370);witness('return-boat');witness('return-high');observe();assert(q.tide.started&&q.tide.phase==='rising');assert(!q.returnEscort,'not safe to board before active tide window');assert.equal(d.waterPolicies.find(o=>o.id==='40-return-inlet').surface,d.tide.high);assert(d.geometry40.deck.y>d.tide.high+35);
+ b.round=q.tide.highRound;observe();assert.equal(q.tide.phase,'high');assert(!q.returnEscort,'open route trigger still waits on actual high tide');
  place(2250,2200); b.round=q.tide.lowRound;observe();assert(q.tide.finished);
  place(2500,2250);
  const threat=local(residents[0].x+100,residents[0].y);observe();assert(!q.returnEscort,'actual resident safety enforced');sendAway(threat);
@@ -130,8 +131,31 @@ if(mode==='base'){
  assert.equal(q2.completionProof.rescued.ids.length,4);assert(b.honroAct4FactEvents.some(o=>o.eventId==='eq_so_t3b'));assert.equal(boss.hp,100);
 }
 {
+ const t=caseFor(40),{d,q,place,witness,observe,b,P,heroes,engine}=t;
+ b.honroFinalDefenseRevision=2;b.honroSurfaceZones=[];
+ const boss=t.local(t.u0.x,t.u0.y);boss.id=t.u0.id;boss.honroAct4FinaleBoss=true;
+ const inlet=d.waterPolicies.find(z=>z.id==='40-return-inlet'),deck=d.geometry40.deck;
+ observe();assert.equal(inlet.surface,d.tide.high);assert.equal(q.tide.started,undefined);
+ place(2500,2250);witness('return-boat');witness('return-high');observe();
+ assert.equal(q.returnEscort.phase,'boarding','upper route before any tide starts');
+ assert.equal(q.tide.started,undefined);assert.equal(q.tide.finished,true);
+ assert.equal(inlet.surface,d.tide.low,'physical policy must be low in the SAME observer turn, not the rendering value only');
+ assert.equal(q.tide.surface,d.tide.low);assert(deck.y<inlet.surface);
+ t.close();
+ const h=heroes[0]; h.x=d.escort.boat.x;h.y=deck.y;const hp=h.hp;P.coast.water(engine,0.05);
+ assert.equal(h.hp,hp);assert.equal(h.honroAct4Recovering,undefined);assert.equal(h.y,deck.y);
+ assert.equal(q.water.dry[h.id].y,deck.y,'native water reader sees the deck as dry');
+ const saved=t.saveResume();assert.equal(saved.returnEscort.phase,'boarding');
+ // A legacy checkpoint with an accepted escort and never-started tide can
+ // contain stale high collision policy. Repair it at the first native tick.
+ Object.assign(saved.tide,{phase:'low',finished:false});inlet.surface=d.tide.high;
+ place(2040,3370);P.coast.tide(b);
+ assert.equal(inlet.surface,d.tide.low,'legacy no-tide escort checkpoint repairs stale high collision water');
+ assert.equal(saved.tide.started,undefined);assert.equal(boss.hp,100);
+}
+{
  const t=caseFor(40),{d,q,place,residents,witness,observe,b}=t;
  b.honroFinalDefenseRevision=2;place(2500,2250);witness('return-boat');witness('return-high');
  residents[0].hp=0;observe();assert.equal(q.failure,'rescue-casualty');assert(!q.returnEscort);assert.equal(b.phase,'lost');
 }
-console.log(JSON.stringify({mode,authority:manifest.gameEntry,scope:'Native events and official KeyE/quest/completion/save dispatch, with controlled DOM/locomotion and exact shipped stage design; not a browser playthrough',cases:records,negatives:'Local threats, pending volley, wrong/missing physical or narrative step, rescue casualty; tide expires with surviving tidekeeper and survivor.'},null,2));
+console.log(JSON.stringify({mode,authority:manifest.gameEntry,scope:'Native events and official KeyE/quest/completion/save dispatch, with controlled DOM/locomotion and exact shipped stage design; not a browser playthrough',cases:records,upperNoTide:'Same-observer physical policy low, exact deck above surface, stale-high old checkpoint repaired with boss alive',negatives:'Local threats, pending volley, wrong/missing physical or narrative step, rescue casualty; tide expires with surviving tidekeeper and survivor.'},null,2));

@@ -53,8 +53,9 @@ function tide(b){const q=memory(b),cfg=b.honroAct4Design.tide;if(!cfg)return;con
  if(b.honroAct4Preview===40&&b.honroFinalDefenseRevision===2&&cfg.finale){
   const boss=b.units.find(u=>u.honroAct4FinaleBoss),policy=b.honroAct4Design.waterPolicies.find(z=>z.id==='40-return-inlet');
    // The tide keeper or the end of the tide cycle, not unrelated survivors,
-   // governs the lower inlet. Do not start a fresh cycle after escort release.
-   if(!alive(boss)||t.finished){Object.assign(t,{phase:'low',surface:cfg.low,finished:true});if(policy)policy.surface=cfg.low;const hud=G.document.getElementById('act4-water-hud');if(hud)hud.textContent='≈ ↓';syncWater(b);return;}
+   // governs the lower inlet. An upper approach may release escort before
+   // the first tide. Keep the real collision-water policy low on that route.
+   if(!alive(boss)||t.finished||q.returnEscort&&!t.started){Object.assign(t,{phase:'low',surface:cfg.low,finished:true});if(policy)policy.surface=cfg.low;const hud=G.document.getElementById('act4-water-hud');if(hud)hud.textContent='≈ ↓';syncWater(b);return;}
   if(policy)policy.surface=cfg.high; // Only banks above high water are safe recovery anchors.
   if(!t.started&&!q.returnEscort&&alive(boss)&&party(b).some(u=>u.y>=3000&&Math.hypot(u.x-boss.x,u.y-boss.y)<650)){t.started=true;t.warningRound=cfg.warningRound=b.round;}
  }
@@ -109,7 +110,7 @@ function returnThreats(b,q){
 }
 const returnTideReady=(b,q)=>b.honroFinalDefenseRevision!==2||!q.tide?.started||q.tide.finished||!!q.returnEscort;
 function authoredReturn(app,q,dt,geo){const e=app.engine,b=e.b,cfg=b.honroAct4Design.escort,np=residents(b);if(np.length!==4)throw Error('Authored return requires four residents');
- if(!q.returnEscort&&party(b).some(u=>insideEventBounds(u,geo.boardingTriggerBounds)||b.honroFinalDefenseRevision===2&&geo.lowerBoardingTriggerBounds&&insideEventBounds(u,geo.lowerBoardingTriggerBounds))&&seen(q,'return-boat')&&seen(q,'return-high')){q.returnEscort={phase:'boarding',clock:0,boatX:cfg.boat.x,routes:{}};play(app,'boarding');}
+ if(!q.returnEscort&&party(b).some(u=>insideEventBounds(u,geo.boardingTriggerBounds)||b.honroFinalDefenseRevision===2&&geo.lowerBoardingTriggerBounds&&insideEventBounds(u,geo.lowerBoardingTriggerBounds))&&seen(q,'return-boat')&&seen(q,'return-high')){q.returnEscort={phase:'boarding',clock:0,boatX:cfg.boat.x,routes:{}};if(b.honroFinalDefenseRevision===2&&!q.tide?.started)tide(b);play(app,'boarding');}
  const r=q.returnEscort;if(!r)return;const deck=b.terrain.find(t=>t.id==='a4-return-deck');deck.x=r.boatX-geo.deck.w/2;if(!closed(q,'boarding'))return;r.clock+=dt;r.routes??={};
  // Both routes enter the safety slope from the west. Reserve its authored
  // endpoints from far to near, so an early arrival never parks across the path
