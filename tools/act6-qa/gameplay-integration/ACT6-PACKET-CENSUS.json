@@ -4,7 +4,7 @@
   "checks": {
     "geometryCompiled": 10,
     "strictWorkshopValidated": 6,
-    "loaderCompile": 9,
+    "loaderCompile": 10,
     "nativeMotionInReceipts": 8
   },
   "rows": [
@@ -32,13 +32,13 @@
     },
     {
       "chapter": 3,
-      "receipt": "vector-production/03-stock-package-r1/receipt.json",
-      "receiptSHA256": "e4df954d2beac209f6011cf3ac3f531d485f187db4e56ae9b8b27b56980cc023",
-      "evidence": "Local original sill authored compile and movement; separate CLI status",
+      "receipt": "vector-production/03-stock-package-r1/packet-receipt.json",
+      "receiptSHA256": "56a39943f5bf30e2ad29e5bc7f0b4335a139b9fd7c50d929c515b1bb1570c5d7",
+      "evidence": "Exact original sill. Detached transport sanitized one guard y450→458.9 WU; authored raw unchanged",
       "workshop": true,
-      "exactLocalScope": "compiler+native-motion",
-      "playColliderSHA256": null,
-      "worldColliderSHA256": null,
+      "exactLocalScope": "loader+compile+native-motion",
+      "playColliderSHA256": "7345f1f279e017690f6b3809c5d0b6ca3fc887f333378744c0c7c4d5ea8c8259",
+      "worldColliderSHA256": "211183da82e0a34f9d9591c924877d987a31d2edb9671db44376436500f88ac5",
       "campaignAdmitted": false
     },
     {
