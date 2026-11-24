@@ -1,5 +1,6 @@
 import hashlib
 import json
+import os
 import re
 import sys
 import threading
@@ -12,6 +13,11 @@ from playwright.sync_api import sync_playwright
 from normal52_witness import stage52
 from normal53_witness import stage53
 from normal54_witness import stage54
+from normal55_witness import stage55
+from normal56_witness import stage56
+from normal57_witness import stage57
+from normal_late_witness import stage_late, stage60
+from normal_far_witness import observe_normal_far
 
 a, b, out = [Path(x).resolve() for x in sys.argv[1:]]
 out.mkdir(parents=True, exist_ok=True)
@@ -40,6 +46,12 @@ PACKET_PINS={
     52:('3e35d12c62d32164643d48a58a772161912cb889f438049bd480d78ed4ac96e9',146799),
     53:('8f046099facbcca3e715115256795f8252434d5cf42066606fea372cbe141830',123176),
     54:('db8378878dd4cbf81e8f2463d6f466c72c7bd8420331a12486919513c9a049b4',645068),
+    55:('a512361224885cc60579d53ae09566877761f522a7c494101624883ac97dec43',36649),
+    56:('9da6dfc59e034e71f32dfbb5f040c1013941a90d169cc8535ab59cdc20951ce1',115833),
+    57:('fc0a15554d66dd9668123f74cb628830993eccfd5d55b1153eb0018f2336249d',94402),
+    58:('ad3b9e6b4bb24d1346afd7c7418a3a903023969bed0a9ac0438ff4474ef94866',107019),
+    59:('ee91acb454fea3fdcc0dfd231d70973f1e75111d859deae590e403ba18e95d8c',171607),
+    60:('483701a278a8ccc609665025b73bdbdb9487b71c3eb45db6a226d07e003b6a7e',145204),
 }
 PACKETS={i:(f'web/data/act6-qa-chapter-{i}.{h[:16]}.json',h,n) for i,(h,n) in PACKET_PINS.items()}
 path,expected,_=PACKETS[51]
@@ -54,8 +66,16 @@ for fname,digest,size in PACKETS.values():
 class Quiet(SimpleHTTPRequestHandler):
     def log_message(self,*_): pass
 
+class OnPagesShape(Quiet):
+    def translate_path(self, path):
+        parts=urlsplit(path)
+        if not parts.path.startswith('/honro/') or parts.path.startswith('/honro/shared/'):
+            return str(b/'.files-not-published-in-the-project')
+        return super().translate_path(parts.path[len('/honro'):])
+PAGES_SHAPE=os.environ.get('HONRO_ACT6_QA_PAGES_SHAPE')=='1'
+
 a_srv=ThreadingHTTPServer(('127.0.0.1',0),partial(Quiet,directory=a))
-b_srv=ThreadingHTTPServer(('127.0.0.1',18861),partial(Quiet,directory=b))
+b_srv=ThreadingHTTPServer(('127.0.0.1',18861),partial(OnPagesShape if PAGES_SHAPE else Quiet,directory=b))
 for server in [a_srv,b_srv]:
     threading.Thread(target=server.serve_forever,daemon=True).start()
 def tap(page,selector,mobile):
@@ -111,19 +131,120 @@ def snap(page,state,name):
     assert state[name]['registered']==state[name]['projectCount']==50,state[name]
     return state[name]
 
+
+def boundary_record(tab, stage, baseline):
+    key=tab.evaluate("()=> 'honro-act6-qa-boundary-v2:'+HonroApp.normalProfile.equipment.runId")
+    raw=tab.evaluate("k=>localStorage.getItem(k)",key)
+    assert raw,stage
+    stamped=json.loads(raw)['honroAct6ChapterBoundary']
+    body=stamped['body']
+    assert body['to']==stage and body['from']==stage-1 and body['generation']==stage-51,body
+    assert tab.evaluate("k=>localStorage.getItem(k)",KEY)==baseline
+    return raw,stamped
+
+def cold_browser_sibling(source, stage, state, mobile, baseline, out, case):
+    record,s=boundary_record(source,stage,baseline)
+    sealed=source.context.storage_state()
+    peer=source.context.browser.browser_type.launch(chromium_sandbox=True)
+    pcx=peer.new_context(viewport=source.viewport_size,is_mobile=mobile,has_touch=mobile,device_scale_factor=1,storage_state=sealed)
+    t=pcx.new_page()
+    errors=[]; responses=[]; requests=[]
+    t.on('request',lambda r:requests.append(r.url) if 'act6-qa-chapter-' in r.url else None)
+    t.on('pageerror',lambda err:errors.append(str(err)))
+    t.on('console',lambda m:errors.append(m.type+': '+m.text) if m.type in ('error','warning') else None)
+    t.on('response',lambda r:responses.append([r.status,r.url]) if r.status>=400 else None)
+    href=source.url
+    selector=f'[data-act6-boundary-resume="{stage}"]'
+    try:
+        t.bring_to_front()
+        t.goto(href,wait_until='domcontentloaded',timeout=45000)
+        wall(t,45000)("globalThis.HonroApp?.screen==='title'&&!!globalThis.HONRO_READY")
+        assert t.evaluate("HonroApp.launch("+str(stage)+",false,null,{})===false")
+        tap(t,START,mobile)
+        for _ in range(22):
+            if not t.evaluate("!!HonroApp.dialogue"): break
+            t.wait_for_timeout(190)
+            tap(t,'[data-action="dialogue-next"]',mobile)
+        t.locator(selector).wait_for(state='visible',timeout=20000)
+        t.locator(selector).evaluate("e=>e.click()")
+        assert t.evaluate("HonroApp.engine===null || !HonroApp.engine")  # untrusted does not mount
+        t.wait_for_function("HonroApp.screen==='rest'&&!HonroApp.dialogue",timeout=4000)
+        fresh_baseline=t.evaluate("k=>localStorage.getItem(k)",KEY)
+        orig,present=json.loads(baseline),json.loads(fresh_baseline)
+        changed=[k for k in sorted(set(orig)|set(present)) if orig.get(k)!=present.get(k)]
+        assert set(changed)<={'honroJourney'},changed
+        clickState=t.evaluate('sel=>{const z=document.querySelector(sel);return {clicked:false,disabled:z.disabled,ready:HonroApp.screen,notice:document.querySelector("#notice")?.textContent}}',selector)
+        t.locator(selector).evaluate("e=>e.addEventListener('click',r=>{globalThis.__coldLastClick=[r.isTrusted,r.currentTarget===e]})")
+        tap(t,selector,mobile)
+        clickState['last']=t.evaluate('globalThis.__coldLastClick')
+        state['coldClickState']=clickState
+        t.wait_for_function("n=>HonroApp.engine?.b?.honroStage===n&&!!HonroApp.scene",arg=stage,timeout=7000)
+        roles=t.evaluate("()=>HonroApp.engine.b.units.filter(u=>u.side===0&&!u.summoned).map(u=>({id:u.id,cls:u.cls,hp:u.hp,focus:u.focus,shield:u.shield,grounded:HonroApp.engine.grounded(u)}))")
+        assert len(roles)==4 and all(c['grounded'] for c in roles)
+        expected=s['body']['custody']['full']
+        for row in roles:
+            assert {k:v for k,v in row.items() if k!='grounded'}=={k:expected[row['cls']][k] for k in row if k!='grounded'},row
+        assert boundary_record(t,stage,fresh_baseline)[0]==record
+        assert not errors,errors
+        con={'native':roles,'coldSibling':True,'sameRecord':True,'writesDuringRestore':0,'sha':s['sha'],'ordinaryRestWrites':changed}
+        state.setdefault('actualColdBoundary',{})[stage]=con
+        t.screenshot(path=out/f'{case}-actual-cold-resume-{stage}.png')
+        t.clock.install()
+        t.clock.pause_at(t.evaluate('Date.now()+400'))
+        tape=(CASE_DIR/'INPUT-52.json').read_text()
+        script=(CASE_DIR/'browser-normal52.js').read_text()
+        t.evaluate('([q,c])=>{globalThis.__realCold52=('+script+')(q,c);}',[json.loads(tape),state['campaign51Terminal']['final']['units']])
+        row=t.evaluate('()=>__realCold52.next()')
+        objective='[data-act6-qa-lookout]'
+        while not row['done']:
+            el=t.locator(objective);before=el.text_content();e=el.is_enabled()
+            if e: tap(t,objective,mobile)
+            ack=e and (el.is_disabled() or el.text_content()!=before)
+            row=t.evaluate('ok=>__realCold52.next(ok)',ack)
+        t.evaluate('delete globalThis.__realCold52')
+        t.clock.run_for(96)
+        assert t.evaluate("HonroApp.done && HonroApp.engine.b.phase==='won'")
+        nxt='[data-act6-qa-next="53"]'
+        t.locator(nxt).wait_for(state='visible',timeout=12000)
+        tap(t,nxt,mobile)
+        t.wait_for_function("HonroApp.engine?.b?.honroStage===53 && !!HonroApp.scene",timeout=25000)
+        _,sent=boundary_record(t,53,fresh_baseline)
+        con['nextStage']={'id':53,'generation':sent['body']['generation'],'parent':sent['body']['parent'],'warmEquivalentWinner':row['value']['final']['round']==state['campaign52Terminal']['final']['round']}
+        assert con['nextStage']['parent']==s['sha'] and con['nextStage']['warmEquivalentWinner']
+        t.screenshot(path=out/f'{case}-cold-continued-to-53.png')
+    except Exception:
+        state.setdefault('scopeColdFailure',{})[stage]={'js':errors,'responses':responses,'requests':requests,'readback':t.evaluate("()=>({url:location.href,app:window.HonroApp?.screen,ready:typeof HONRO_READY,body:document.body.innerText.slice(0,440),visibility:document.visibilityState,notice:document.querySelector('#notice')?.textContent,dialogue:!!HonroApp.dialogue})")}
+        t.screenshot(path=out/f'{case}-cold-boundary-error-{stage}.png')
+        raise
+    finally:
+        pcx.close()
+        peer.close()
+        source.bring_to_front()
+
+
 def trial(browser,label,w,h,mobile,arm,kind):
     origin=f'http://127.0.0.1:{a_srv.server_port if arm=="OFF" else b_srv.server_port}'
+    prefix='/honro' if PAGES_SHAPE and arm=='ON' else ''
+    entry=prefix+'/HONRO.html'
     key=f'{label}-{arm}-{kind}'
     raw,changes=fixture(kind)
     state=evidence['trials'][key]={'fixtureSHA256':sha(raw.encode()),'synthesized':changes,'packets':[],'errors':[],'ending':[],'restDialogue':[]}
     ctx=browser.new_context(viewport={'width':w,'height':h},is_mobile=mobile,has_touch=mobile,device_scale_factor=1)
-    ctx.add_init_script('(() => { if (location.origin==='+json.dumps(origin)+' && location.pathname==="/HONRO.html" && localStorage.getItem('+json.dumps(KEY)+')===null) localStorage.setItem('+json.dumps(KEY)+','+json.dumps(raw)+'); })()')
+    ctx.add_init_script('(() => { if (location.origin==='+json.dumps(origin)+' && location.pathname===' + json.dumps(entry) + ' && localStorage.getItem('+json.dumps(KEY)+')===null) localStorage.setItem('+json.dumps(KEY)+','+json.dumps(raw)+'); })()')
     page=ctx.new_page()
     page.on('pageerror',lambda err:state['errors'].append(str(err)))
     page.on('console',lambda msg:state['errors'].append(msg.type+': '+msg.text) if msg.type=='error' and ('starter/body mismatch' in msg.text or 'QA chapter' in msg.text) else None)
-    page.on('request',lambda req:state['packets'].append(urlsplit(req.url).path) if req.url.startswith(origin+'/') and 'act6-qa-chapter-' in req.url else None)
+    def request(req):
+        if 'act6-qa-chapter-' in req.url or 'act6-ending-dawn-' in req.url or 'act6-far-' in req.url or 'act6-qa-art-59.' in req.url:
+            pathn=urlsplit(req.url).path
+            if not req.url.startswith(origin+prefix+'/web/'):
+                state['errors'].append('Unexpected published asset route: '+pathn);return
+            if 'act6-qa-chapter-' in req.url:
+                state['packets'].append(pathn[len(prefix):])
+            state.setdefault('publishedAssets',[]).append(pathn)
+    page.on('request',request)
     try:
-        page.goto(origin+'/HONRO.html',wait_until='domcontentloaded',timeout=45000)
+        page.goto(origin+entry,wait_until='domcontentloaded',timeout=45000)
         wall(page,45000)("globalThis.HonroApp?.screen==='title'&&!!globalThis.HONRO_READY")
         page.evaluate("async()=>await globalThis.HONRO_READY")
         assert snap(page,state,'title')['normal']
@@ -204,10 +325,34 @@ def trial(browser,label,w,h,mobile,arm,kind):
                 assert page.evaluate("HonroApp.launch(52,false)===false")
                 assert page.evaluate("key=>localStorage.getItem(key)",KEY)==original
                 page.screenshot(path=out/f'{key}-native-51-terminal.png')
+                if os.environ.get('HONRO_ACT6_QA_NORMAL_FAR')=='1': state.setdefault('normalFar',{})[51]=observe_normal_far(page,51,mobile,out,key)
                 stage52(page,state,mobile,original,tap,out,key,'/'+PACKETS[52][0])
+                if os.environ.get('HONRO_ACT6_QA_NORMAL_BOUNDARY')=='1':
+                    cold_browser_sibling(page,52,state,mobile,original,out,key)
+                    state['status']='PASS_COLD_CHAPTER52'
+                    return
+                if os.environ.get('HONRO_ACT6_QA_NORMAL_FAR')=='1': state.setdefault('normalFar',{})[52]=observe_normal_far(page,52,mobile,out,key)
                 stage53(page,state,mobile,original,tap,out,key,'/'+PACKETS[53][0])
+                if os.environ.get('HONRO_ACT6_QA_NORMAL_FAR')=='1': state.setdefault('normalFar',{})[53]=observe_normal_far(page,53,mobile,out,key)
                 stage54(page,state,mobile,original,tap,out,key,'/'+PACKETS[54][0])
+                if os.environ.get('HONRO_ACT6_QA_NORMAL_FAR')=='1': state.setdefault('normalFar',{})[54]=observe_normal_far(page,54,mobile,out,key)
+                stage55(page,state,mobile,original,tap,out,key,'/'+PACKETS[55][0])
+                if os.environ.get('HONRO_ACT6_QA_NORMAL_FAR')=='1': state.setdefault('normalFar',{})[55]=observe_normal_far(page,55,mobile,out,key)
+                stage56(page,state,mobile,original,tap,out,key,'/'+PACKETS[56][0],continue57=True)
+                if os.environ.get('HONRO_ACT6_QA_NORMAL_FAR')=='1': state.setdefault('normalFar',{})[56]=observe_normal_far(page,56,mobile,out,key)
+                stage57(page,state,mobile,original,tap,out,key,'/'+PACKETS[57][0])
+                if os.environ.get('HONRO_ACT6_QA_NORMAL_FAR')=='1': state.setdefault('normalFar',{})[57]=observe_normal_far(page,57,mobile,out,key)
+                stage_late(page,state,mobile,original,tap,out,key,'/'+PACKETS[58][0],58)
+                if os.environ.get('HONRO_ACT6_QA_NORMAL_BOUNDARY')=='1': cold_browser_sibling(page,58,state,mobile,original,out,key)
+                stage_late(page,state,mobile,original,tap,out,key,'/'+PACKETS[59][0],59)
+                stage60(page,state,mobile,original,tap,out,key,'/'+PACKETS[60][0])
+                if os.environ.get('HONRO_ACT6_QA_NORMAL_BOUNDARY')=='1': state['lastBoundaryBytes']=len(boundary_record(page,60,original)[0].encode())
         assert not state['errors'],state
+        if PAGES_SHAPE and arm=='ON' and kind=='fresh-pending':
+            assert sorted(map(int,state['normalFar']))==list(range(51,61))
+            assert any('/honro/web/graphics/act6-ending-dawn-'+('mobile' if mobile else 'pc')+'.' in x for x in state['publishedAssets'])
+            state['servingShape']={'entry':entry,'exampleSourceExcluded':True,'farAssets':state['normalFar'],'assetURLs':state['publishedAssets']}
+            assert ctx.request.get(origin+'/honro/shared/act6-normal-ending-qa/dawn-pc.webp').status==404
         state['status']='PASS'
     finally:
         ctx.close()
@@ -215,11 +360,33 @@ def trial(browser,label,w,h,mobile,arm,kind):
 try:
     with sync_playwright() as playwright:
         browser=playwright.chromium.launch(chromium_sandbox=True)
+        if PAGES_SHAPE:
+            ctx0=browser.new_context()
+            page0=ctx0.new_page()
+            asked=[]
+            debug={'errors':[],'responses':[],'failures':[]}
+            page0.on('request',lambda r: asked.append(r.url) if 'act6-qa-chapter-' in r.url else None)
+            page0.on('pageerror',lambda e:debug['errors'].append(str(e)))
+            page0.on('response',lambda r:debug['responses'].append([r.status,r.url,r.headers.get('content-type')]))
+            page0.on('requestfailed',lambda r:debug['failures'].append([r.url,r.failure]))
+            try:
+                page0.goto('http://127.0.0.1:18861/honro/HONRO.html',wait_until='domcontentloaded',timeout=45000)
+                page0.wait_for_function("globalThis.HonroApp?.screen==='title' && !!globalThis.HONRO_READY",timeout=45000)
+            finally:
+                debug['browser']=page0.evaluate("()=>({url:location.href,title:document.title,body:document.body.innerText.slice(0,460),boot:typeof HONRO_READY})")
+                (out/'PAGES-BOOT.json').write_text(json.dumps(debug,ensure_ascii=False,indent=2))
+            assert page0.locator('[data-act6-qa-entry]').count()==0
+            assert page0.evaluate("HonroApp.launch(51,false,null,{})===false")
+            assert not asked
+            evidence['cleanProfileRejected']={'freshTitle':True,'directLaunch':False,'chapterRequests':0}
+            ctx0.close()
         for label,w,h,mobile in [('PC',1440,900,False),('M',390,844,True)]:
             for arm,kind in [('OFF','fresh-pending'),('ON','fresh-pending'),('ON','legacy-format')]:
                 trial(browser,label,w,h,mobile,arm,kind)
         browser.close()
-    evidence['status']='PASS_50_STOCK_ENDING_REST_THEN_NATIVE_NORMAL_51_52_53_54'
+    chains=[v for k,v in evidence['trials'].items() if '-ON-fresh-pending' in k]
+    assert len(chains)==2 and all(v.get('status')=='PASS_COLD_CHAPTER52' for v in chains)
+    evidence['status']='PASS_COLD_CHAPTER52_TWO_ACTUAL_BROWSERS_SAVED_EXACT'
 finally:
     (out/'BROWSER.json').write_text(json.dumps(evidence,ensure_ascii=False,indent=2)+'\n')
     for server in [a_srv,b_srv]:
