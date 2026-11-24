@@ -1,0 +1,62 @@
+name: Compare Act 6 terrain vector art in the native game
+on:
+  push:
+    branches: ['qa/act6-terrain-art-v2-visual-sidecars-d-20261125']
+    paths: ['.github/workflows/act6-terrain-art-qa.yml']
+permissions:
+  contents: read
+jobs:
+  terrain:
+    if: github.repository == 'sys8994/honro' && github.ref == 'refs/heads/qa/act6-terrain-art-v2-visual-sidecars-d-20261125'
+    runs-on: ubuntu-22.04
+    timeout-minutes: 26
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 2
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Build exact supported source and preserve original terrain packets
+        shell: bash
+        run: |
+          set -euo pipefail
+          R26=3f0e2fb1b6c8a2ef1dfe8bcd46cdfe3433da975a
+          OFF=b607164fd31da526373efb12d06063c2b564719d
+          BASE=37f7ae70e8640b6ec436091925aa8d1508e62e90
+          test "$(git rev-parse HEAD^)" = "$R26"
+          git fetch --depth=1 origin "$OFF" "$BASE"
+          for p in shared/act6-app-qa.mjs shared/act6-boundary/browser.inc.js shared/act6-boundary/chapter-boundary.mjs; do
+            test "$(git rev-parse "$BASE:$p")" = "$(git rev-parse "$R26:$p")"
+          done
+          output="$RUNNER_TEMP/act6-terrain-result"
+          mkdir -p "$output"
+          scratch=$(realpath "$(mktemp -d /tmp/honro-act6-web-qa-XXXXXXXX)")
+          git -c core.hooksPath=/dev/null worktree add --detach "$scratch" HEAD
+          git -c core.hooksPath=/dev/null worktree add --detach "$RUNNER_TEMP/act6-stock" "$OFF"
+          echo "PILOT_ROOT=$scratch" >> "$GITHUB_ENV"
+          cd "$scratch"
+          npm ci --no-audit --no-fund > "$output/NPM.log" 2>&1
+          npm ci --prefix game --include=dev --no-audit --no-fund > "$output/NPM-GAME.log" 2>&1
+          npm run build > "$output/CLEAN-BUILD.log" 2>&1
+          python tools/act6-qa/rest-51/terrain_authority.py "$scratch" "$output" "$BASE"
+          python tools/act6-qa/rest-51/normal-late-readbacks.py shared/act6-app-qa.mjs
+          HONRO_ACT6_QA_NORMAL_LATE_WITNESS=1 HONRO_ACT6_RELEASE_HOST_TEST=1 HONRO_ACT6_QA_NORMAL_BOUNDARY=1 HONRO_ACT6_QA_QUIET_MATTE_WITNESS=1 HONRO_ACT6_QA_PAGES_SHAPE=1 HONRO_ACT6_QA_NORMAL_FAR=1 HONRO_ACT6_QA_NORMAL_LATE_FAR=1 HONRO_ACT6_QA_NORMAL_FINAL_FAR=1 HONRO_ACT6_QA_NORMAL_ENDING_STOCK=1 HONRO_ACT6_QA_WEB_ROOT="$scratch" npm run build > "$output/BUILD.log" 2>&1
+      - name: Go through all ten stages on PC and mobile; require the real vector paint path
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install 'playwright==1.58.0'
+          python -m playwright install --with-deps chromium
+          HONRO_ACT6_TERRAIN_PROOF=1 HONRO_ACT6_RELEASE_HOST_TEST=1 HONRO_ACT6_QA_NORMAL_BOUNDARY=1 HONRO_ACT6_QA_QUIET_MATTE_WITNESS=1 HONRO_ACT6_QA_PAGES_SHAPE=1 HONRO_ACT6_QA_NORMAL_FAR=1 HONRO_ACT6_QA_NORMAL_LATE_FAR=1 HONRO_ACT6_QA_NORMAL_FINAL_FAR=1 HONRO_ACT6_QA_NORMAL_ENDING_STOCK=1 python tools/act6-qa/rest-51/smoke.py "$RUNNER_TEMP/act6-stock" "$PILOT_ROOT" "$RUNNER_TEMP/act6-terrain-result" > "$RUNNER_TEMP/act6-terrain-result/PLAYWRIGHT.log" 2>&1
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: act6-terrain-art-visual-sidecars-d-audit
+          path: ${{ runner.temp }}/act6-terrain-result/
+          retention-days: 7
