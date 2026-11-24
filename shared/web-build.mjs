@@ -60,6 +60,10 @@ export function reuseBinaryEmissions(emit){
 
 // Generated files are immutable by content. Stable HTML names remain the public entrypoints.
 export async function buildWeb({vector=true,destination=path.join(root,'HONRO.html')}={}) {
+  if(process.env.HONRO_ACT6_QA_WEB_BUILD==='1'){
+    const {assertQaWebRoot}=await import('./act6-app-qa.mjs');
+    await assertQaWebRoot(root);
+  }
   await materializeWorld();
   let previous;try{previous=JSON.parse(await read('web/manifest.json'));}catch(e){if(e.code!=='ENOENT')throw e;}
   const retentionNow=Date.now(),publishedGenerations=selectPublishedGenerations(previous?.publishedGenerations,{now:retentionNow});
@@ -113,7 +117,26 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
     const file=await emit('runtime',name,'js',loaderImport+records.map(([global,file,refs])=>`globalThis.${global}=await loadData(${quote(file)},${quote(refs)},${quote({svgSources:global==='HONRO_ACT1_FAR_DATA'?'optional':false})});`).join('\n')+'\n');
     moduleData.set(file,records.map(([,file])=>file));return file;
   };
-  const entries=await runtimeEntries({vector,app:true}),common=[],gameOnly=[],optionalModules={};
+  const act6QaWeb=process.env.HONRO_ACT6_QA_WEB_BUILD==='1';
+  if(act6QaWeb&&(process.env.HONRO_ACT6_QA_WEB_ROOT!==root||path.resolve(destination)!==path.join(root,'HONRO.html')))
+    throw Error('Act6 Web QA has one standard shell in the explicit disposable checkout');
+  const entries=await runtimeEntries({vector,app:true,act6QaWeb}),common=[],gameOnly=[],optionalModules={};
+  if(act6QaWeb){
+    const idx=entries.findIndex(entry=>entry.name==='act6-app-qa');
+    assert(idx>=0&&entries.filter(entry=>entry.qaAct6).length===1,'Expected exact one Act6 QA pilot');
+    const [{qaAct6}]=entries.splice(idx,1);
+    const descriptors={origin:'http://127.0.0.1:18861',rows:{}};
+    for(const packet of qaAct6.packets){
+      const id=packet.trace.stageId,bytes=Buffer.from(JSON.stringify(packet)+'\n');
+      assert(bytes.length<webJsonPartBytes,'Act6 QA packet must remain a bounded single signed JSON');
+      const file=await emit('data','act6-qa-chapter-'+id,'json',bytes);
+      descriptors.rows[id]={path:file,bytes:bytes.length,sha256:hash(bytes),mapSHA256:packet.trace.mapSHA256,assetSHA256:packet.trace.assetSHA256};
+    }
+    const {makeQaMain}=await import('./act6-app-qa.mjs');
+    const mains=entries.filter(entry=>entry.name==='shared/runtime/main.js');
+    assert.equal(mains.length,1);
+    mains[0].code=makeQaMain(mains[0].code,qaAct6.source,descriptors);
+  }
   const appStart=entries.findIndex(e=>e.name==='game/vendor/ui/fa.js');
   assert(appStart>0,'Game application boundary required');
   let projectManifest,pending=[],pendingBytes=0,groupNumber=0;
