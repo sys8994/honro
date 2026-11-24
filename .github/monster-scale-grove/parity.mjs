@@ -1,0 +1,12 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+const [A,B]=process.argv.slice(2).map(d=>JSON.parse(fs.readFileSync(d+'/WAVE2.json')));
+assert.equal(A.status,B.status);assert.equal(B.status,'PASS');
+assert.deepEqual(A.identity.project,B.identity.project);
+const [a,b]=[A,B].map(v=>v.stages[44]);
+for(const k of ['static','physics','phaseConfigs','objective'])assert.deepEqual(b[k],a[k],k);
+assert.equal(b.tree44.h,460);assert.equal(a.tree44.h,298);
+for(const k of ['x','y','wake','phase'])assert.equal(b.tree44[k],a.tree44[k],k);
+const paths=v=>v.runs.find(x=>x.m===8.5)?.routes;
+assert.deepEqual(paths(b),paths(a),'Upper/lower authored movement or phase reached drifted at equal physical test envelope');
+console.log('PASS scoped grove placement plus identical authored and simulated objective branch checks.');
