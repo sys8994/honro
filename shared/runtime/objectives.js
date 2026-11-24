@@ -112,9 +112,18 @@ function guideFor(app){const b=app.engine?.b;if(G.HonroStage5Waterfall?.active(b
  if(b?.honroAct1SiteRevision===1&&app.stage.id===7)return '아랫골목, 중간 마당과 위쪽 당집에서 주민을 한 명씩 구조하세요. 가까운 적을 제압한 뒤 주민에게 다가가세요. 표시된 돌계단을 이용할 수 있습니다. 모두 구한 뒤 적 행동이 두 번 끝날 때까지 지키세요.';
 if(b?.honroNarrativeRevision===1&&app.stage.id===8)return '상여채를 붙든 결박을 끊고 빈 상여를 제압하세요. 주변 적은 남아도 됩니다.';if(b?.honroNarrativeRevision===1&&app.stage.id===9)return '두 받이진을 설치해 소단이 붙든 힘을 나눠 받으세요.';if(b?.honroNarrativeRevision===1&&app.stage.id===10)return '사람과 떨어진 바깥 주박을 공격하세요. 소단이 맡긴 뒤에는 양쪽 전각에서 오는 적을 막아 여섯 턴 동안 의식을 지키세요. 그 뒤 동행 셋을 동쪽 외문 너머로 이동시키세요. 소단은 스스로 따라옵니다. 네 사람이 모두 문을 통과해야 완료됩니다.';if(app.stage.id===7&&b&&!G.HonroQuestTargets.records(b).some(t=>t.id==='root-reentry'&&!t.broken))text=text.replace('바닥으로 떨어졌다면 맨 왼쪽의 낮고 넓은 뿌리로 도약해 올라간 뒤 아랫가지로 한 번 더 도약하세요. ','');return text;}
 const guideFocus=['exit','objective','interact','objective','interact','objective','interact','seal','interact','interact'];
+function entryStory(app){
+ const b=app.engine.b,rows=app.stage.story||[];
+ if(app.stage.id!==6||b.honroStage!==6||b.honroCustom||b.honroCanonical!==true||b.honroMonsterScaleRevision!==2)return rows;
+ const boss=b.units.find(u=>u.id==='midboss-stage6'&&u.side===1&&!u.dead&&u.hp>0);
+ if(boss?.honroMonsterWeakPoint?.v!==2||boss.honroMonsterWeakPoint.key!=='warden-face')return rows;
+ // Hwigyeom has already scouted below the bridge. Tell the player before the first possible shot.
+ return rows.map(r=>r[0]==='휘겸'&&r[2]?.rowId==='6.story:3a4e795093'?
+  [r[0],r[1]+' 얼굴에 금이 간 장승도 있었소. 저게 움직이면 그 금을 노리시오.',...r.slice(2)]:r);
+}
 function entry(app,options={}){if(G.HonroAct5?.active(app.engine.b))return G.HonroAct5.entry(app);G.HonroStoryFraming?.authorEntry(app.stage);const short=state(app.engine.b,app.stage).currentInstruction;
  if(app.stage.act>=2){const rows=(app.stage.act===2?G.HonroAct2:G.HonroAct3).entry(app,options),preparation=G.HonroStakeCrossing?.preparationLines(app.engine.b)||[];rows.splice(Math.max(0,rows.length-1),0,...preparation);return rows.map(row=>row[2]?.kind==='guide'?[row[0],short||row[1],row[2]]:row);}
- const n=(options.interlude===false?[]:(app.stage.narration||[])).slice(0,3).map((text,i)=>['서술',text,{kind:'narration',art:app.stage.narrationArt,paragraph:i+1,paragraphs:app.stage.narration.length}]);const all=[...n,...(app.stage.story||[]),...lines(app)],guide=['안내',short||guideFor(app),{kind:'guide',focus:guideFocus[app.stage.id-1],storyId:'guide-'+app.stage.id,storyTitle:app.stage.name+' · 길잡이'}],hs=app.engine?.b.honroState;
+ const n=(options.interlude===false?[]:(app.stage.narration||[])).slice(0,3).map((text,i)=>['서술',text,{kind:'narration',art:app.stage.narrationArt,paragraph:i+1,paragraphs:app.stage.narration.length}]);const all=[...n,...entryStory(app),...lines(app)],guide=['안내',short||guideFor(app),{kind:'guide',focus:guideFocus[app.stage.id-1],storyId:'guide-'+app.stage.id,storyTitle:app.stage.name+' · 길잡이'}],hs=app.engine?.b.honroState;
  if(hs&&!hs.entryScheduled){hs.entryScheduled=true;hs.deferredStory??=[];const beats=(app.stage.storyFollowups||[]).map(x=>x.slice());beats.forEach((lines,i)=>hs.deferredStory.push({round:2+i*2,lines:G.HonroStoryContent.scene('entry-follow-'+app.stage.id+'-'+i*5,app.stage.name+' · 길 위에서',lines)}));}
  return [...all,guide];}
 const displayGuide=text=>G.HonroActionPrompts?.text(text)??text;

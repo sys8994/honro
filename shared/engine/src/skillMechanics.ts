@@ -224,7 +224,12 @@ function emitGeometry(e:Engine,g:SkillGeometry){
  // Serialize the exact hit shape as one event; renderer does no independent geometry reconstruction.
  e.emit('fx',{name:'skillGeometry',x:g.x,y:g.y,color:'#ced4cd',text:JSON.stringify(g),size:g.radius});
 }
-function strikeGeometry(e:Engine,p:Projectile,g:SkillGeometry,directTarget?:Unit,covered=false){
+function strikeGeometry(e:Engine,p:Projectile,g:SkillGeometry,directContact?:Collision,covered=false){
+ const directTarget=directContact?.unit;
+ const b=e.b as Battle & {honroMonsterScaleRevision?:number;honroStage?:number;honroCanonical?:boolean;honroCustom?:boolean;honroMapOrigin?:string};
+ const pilotArc=p.skill==='M03'&&p.mode==='waveArc'&&b.honroMonsterScaleRevision===2&&b.mode==='campaign'&&b.honroStage===6&&b.honroCanonical&&!b.honroCustom&&b.honroMapOrigin==='campaign'&&directTarget?.id==='midboss-stage6'&&directTarget.side===1;
+ const weak=pilotArc?(directTarget as Unit & {honroMonsterWeakPoint?:{v:number;key:string}}).honroMonsterWeakPoint:undefined;
+ const weakContact=weak?.v===2&&weak.key==='warden-face'?directContact:undefined;
  emitGeometry(e,g);
  e.emit('sound',{name:'qiWave'});
  for(const u of e.b.units.filter(u=>!u.dead&&u.id!==p.owner)){if(covered&&e.projectileCollision(g.impact||g,at(u),1,p.owner,[],false))continue;const h=geometryHits(g,u);let amount=p.damage*Math.max(h.count,u.id===directTarget?.id?1:0);
@@ -233,7 +238,9 @@ function strikeGeometry(e:Engine,p:Projectile,g:SkillGeometry,directTarget?:Unit
   if(g.kind==='bagua'&&h.center)amount+=p.damage*62/34;
   if(amount){
    const hp=u.hp,shield=u.shield||0;
-   e.hurt(u,amount,p.owner,false,p,at(u));
+   // An aimed M03 can hit the face only on the unit physically struck by
+   // the cast. Collateral and previous battles still use their old arc origin.
+   e.hurt(u,amount,p.owner,false,p,u===directTarget&&weakContact?weakContact:at(u));
    // The primary body physically struck by the arc can break a preparation.
    // Keep area damage's crit/mark rules and secondary contacts unchanged.
    if(p.mode==='waveArc'&&u.id===directTarget?.id&&!p.secondary&&!p.autonomous)
@@ -307,7 +314,7 @@ export function redesignImpact(e:Engine,p:Projectile,h:Collision){
  if(p.secondary){if(h.unit){e.hurt(h.unit,p.damage,p.owner,false,p,h);if(p.mode==='frostChip'&&enemy(p,h.unit))h.unit.slowed={factor:lerpRank(.20,.35,r),expires:e.b.round+1};}e.remove(p);return true;}
  if(p.mode==='waveArc'){
   const reversed=!!h.terrain&&gearHas(p,'da_arc')&&gearBody(p),g=skillGeometry(s,r,h.x+(reversed?h.n.x*2:0),h.y+(reversed?h.n.y*2:0),Math.atan2(p.vy,p.vx)+(reversed?Math.PI:0),u.lastPower,undefined,undefined,geometryBoost(u,s,p.effectBoost));if(reversed){g.span*=1.2;g.x=g.impact!.x;g.y=g.impact!.y;}
-  strikeGeometry(e,p,g,h.unit,reversed);e.remove(p);return true;
+  strikeGeometry(e,p,g,h,reversed);e.remove(p);return true;
  }
  if(p.mode==='qiPulse'){
   e.blast(p.x,p.y,p.blast,p.damage,p.owner,false,p);e.emit('sound',{name:'qiWave'});e.remove(p);return true;
@@ -639,3 +646,4 @@ export function redesignPrediction(e:Engine,u:Unit,s:Skill,angle:number,power:nu
  const ranges=s.branch==='stake'?stakeRanges(e,{id:0,skill:s.id,owner:u.id,side:u.side,x:p.x,y:p.y,rank:r,damage:0,shot:0,effectBoost:jucheonBoost(u,s)}):undefined;
  return {x:p.x,y:p.y,unit:contact?.unit?.id,terrain:contact?.terrain?.id,terrainAtEnd,points,time,closest,contacts,apex,geometry,secondaryPoint,triggerRadius:ranges&&s.id!=='M09'?ranges.trigger:undefined,secondaryRadius:s.branch==='gourd'?(s.id==='M04'?260+10*(r-1):s.id==='M13'?240:e.effective(s,u).radius):ranges?.effect};
 }
+
