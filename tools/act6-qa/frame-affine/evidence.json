@@ -1,0 +1,103 @@
+{
+  "actual04": [
+    {
+      "rate": 120,
+      "recordedC": {
+        "x": 2880.90217,
+        "y": 709.76544
+      },
+      "transformedBeforeDrop": {
+        "x": 2336.23456,
+        "y": 2926.90217
+      },
+      "recordedL": {
+        "x": 2336.23456,
+        "y": 2930
+      },
+      "drop": 3.0978332587628756
+    },
+    {
+      "rate": 60,
+      "recordedC": {
+        "x": 2877.55217,
+        "y": 709.86624
+      },
+      "transformedBeforeDrop": {
+        "x": 2336.13376,
+        "y": 2923.55217
+      },
+      "recordedL": {
+        "x": 2336.13376,
+        "y": 2930
+      },
+      "drop": 6.447833258762785
+    }
+  ],
+  "actual06": {
+    "tested": 138,
+    "rejected": 18
+  },
+  "actual08": [
+    {
+      "rate": 120,
+      "observedCenter": {
+        "x": 5911.724762871688,
+        "y": 1930.2752371283125
+      },
+      "exitTest": {
+        "x": 5703.699241261843,
+        "y": 2019.8252371283113
+      },
+      "storedWorldVelocity": [
+        101.5489097712023,
+        0
+      ],
+      "inputVelocityDerivedFromStoredWorld": true
+    },
+    {
+      "rate": 60,
+      "observedCenter": {
+        "x": 5893.009890824936,
+        "y": 1948.9901091750644
+      },
+      "exitTest": {
+        "x": 5689.126349682731,
+        "y": 2035.1901091750647
+      },
+      "storedWorldVelocity": [
+        109.91739913358323,
+        0
+      ],
+      "inputVelocityDerivedFromStoredWorld": true
+    }
+  ],
+  "unitChecks": 64,
+  "stampCases": 8,
+  "readOnlySourcePins": [
+    [
+      "../04/playable-draft/04-won-left-far-no-reset-fixture-only.json",
+      "0d1dd35420309dc4be29aae28b0e9ddcbd9ed2ef77f69363e3e61d0b46966d86"
+    ],
+    [
+      "../04/playable-draft/far-terminal-no-reset-evidence.json",
+      "f5968bad1567e403abe63c488995f8813614bbfd9b270df7e781f55d821d9953"
+    ],
+    [
+      "../06-E-B-route-proof-r4/terrain-v6-projection-candidate.json",
+      "4f234940858640d0527324fe88fa2c433066849dbc80ce49fe0e915eb0792d94"
+    ],
+    [
+      "../06-D-local-failure-r2/evidence.json",
+      "dba6f7ea657443b6dee37517d46ef377359b930f8c33e7e31010e32017fb6f62"
+    ],
+    [
+      "../../ch08/gravity-egress-local/phase2-lock--1-120.json",
+      "bbb49028eb66e5d90e5a08d5eacf0fe3e3dbe541a9895f146f6b895c89caa7d6"
+    ],
+    [
+      "../../ch08/gravity-egress-local/phase2-lock--1-60.json",
+      "9f0601b17ecab9b04f100a67e2d1a48e0c40bd84a5b630d7276fc32258b5dbb8"
+    ]
+  ],
+  "scope": "pure chart/receipt validators only; no runtime persistence or actor transfer integration"
+}
