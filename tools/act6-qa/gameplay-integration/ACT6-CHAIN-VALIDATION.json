@@ -1,0 +1,253 @@
+{
+  "scope": "Actual detached replay + portable boundary hash verification; not consecutive normal App workflows, payout, camera, saves or deployment",
+  "formalCampaignAdmitted": 0,
+  "legacyGrowthBlocker": "06 skirmish has dormant default stage1 ledger; 09 campaign-mode QA key1 actually awards +72 old Stage1 XP per hero. Do not use resulting 09 proof as release-safe or transfer into 10 until rerun with verified isolated growth policy.",
+  "rows": [
+    [
+      1,
+      8,
+      "first 4 normal-shaped roles"
+    ],
+    [
+      2,
+      6,
+      "same exact actors, actual terminal"
+    ],
+    [
+      3,
+      2,
+      {
+        "hp": 980,
+        "maxHp": 1158,
+        "focus": 296,
+        "maxFocus": 312,
+        "shield": 0,
+        "level": 25,
+        "loadout": [
+          "M01"
+        ],
+        "tune": 0.5,
+        "dead": false
+      }
+    ],
+    [
+      4,
+      2,
+      {
+        "hp": 980,
+        "maxHp": 1158,
+        "focus": 280,
+        "maxFocus": 312,
+        "shield": 0,
+        "level": 25,
+        "loadout": [
+          "M01"
+        ],
+        "tune": 0.5,
+        "dead": false
+      }
+    ],
+    [
+      5,
+      8,
+      [
+        {
+          "id": "qa-archer",
+          "cls": "archer",
+          "h": 92,
+          "r": 22,
+          "hp": 436,
+          "maxHp": 1085,
+          "focus": 240,
+          "maxFocus": 240,
+          "shield": 0,
+          "loadout": [
+            "A01"
+          ],
+          "level": 25,
+          "tune": 0.5,
+          "dead": false
+        },
+        {
+          "id": "qa-knight",
+          "cls": "knight",
+          "h": 92,
+          "r": 22,
+          "hp": 1318,
+          "maxHp": 1762,
+          "focus": 272,
+          "maxFocus": 272,
+          "shield": 0,
+          "loadout": [
+            "S00"
+          ],
+          "level": 25,
+          "tune": 0.5,
+          "dead": false
+        },
+        {
+          "id": "qa-occultist",
+          "cls": "occultist",
+          "h": 92,
+          "r": 22,
+          "hp": 1098,
+          "maxHp": 1324,
+          "focus": 372,
+          "maxFocus": 372,
+          "shield": 0,
+          "loadout": [
+            "O01",
+            "O06"
+          ],
+          "level": 25,
+          "tune": 0.5,
+          "dead": false
+        }
+      ]
+    ],
+    [
+      6,
+      6,
+      {
+        "hp": 664,
+        "maxHp": 1158,
+        "focus": 312,
+        "maxFocus": 312,
+        "shield": 0,
+        "level": 25,
+        "loadout": [
+          "M01"
+        ],
+        "tune": 0.5,
+        "dead": false
+      }
+    ],
+    [
+      7,
+      3,
+      [
+        {
+          "id": "qa-archer",
+          "cls": "archer",
+          "hp": 436,
+          "maxHp": 1085,
+          "focus": 240,
+          "maxFocus": 240,
+          "shield": 0,
+          "level": 25,
+          "loadout": [
+            "A01"
+          ],
+          "tune": 0.5,
+          "dead": false,
+          "h": 92,
+          "r": 22
+        },
+        {
+          "id": "qa-knight",
+          "cls": "knight",
+          "hp": 1318,
+          "maxHp": 1762,
+          "focus": 272,
+          "maxFocus": 272,
+          "shield": 0,
+          "level": 25,
+          "loadout": [
+            "S00"
+          ],
+          "tune": 0.5,
+          "dead": false,
+          "h": 92,
+          "r": 22
+        },
+        {
+          "id": "qa-occultist",
+          "cls": "occultist",
+          "hp": 1098,
+          "maxHp": 1324,
+          "focus": 372,
+          "maxFocus": 372,
+          "shield": 0,
+          "level": 25,
+          "loadout": [
+            "O01",
+            "O06"
+          ],
+          "tune": 0.5,
+          "dead": false,
+          "h": 92,
+          "r": 22
+        }
+      ]
+    ],
+    [
+      8,
+      10,
+      {
+        "hp": 241,
+        "maxHp": 1158,
+        "focus": 312,
+        "maxFocus": 312,
+        "shield": 0,
+        "level": 25,
+        "loadout": [
+          "M01"
+        ],
+        "tune": 0.5,
+        "dead": false
+      }
+    ],
+    [
+      9,
+      3,
+      "won"
+    ]
+  ],
+  "output": {
+    "q13": {
+      "file": "gameplay-production/_integration/packet-sequence-01-03-local/packet03-stage50-donor/RECEIPT.json",
+      "rawSha": "b5e2fed03ea46d700f332d7db65573b522a022980893ae7da8515c87b18726da",
+      "compactSha": "eb553274c3d3cdb5c92fce3ea155a93513623d695a1d320df6e1aa9df67d1027"
+    },
+    "s3": {
+      "file": "gameplay-production/_integration/packet-sequence-01-03-local/packet03-stage50-donor/03-won-portable.json",
+      "rawSha": "52d00c49ba0bab2552c92582a3f7889ef835a83250ed58fe8bd286bafcaa4359",
+      "compactSha": "24cff107aa05cccd723dc24299f7242496214395cd573fbb5a731afaca31f470"
+    },
+    "s4": {
+      "file": "vector-production/04/playable-draft/04-won-left-far-key03-provisional-fixture-only.json",
+      "rawSha": "a9f6a607e83da1a493e072c1d0a7ae4c3831c9ae02725ad1dd02d74aef84f076",
+      "compactSha": "2879d623b1c27b58bfa3c48bb31e7e7790aaa9478c473e1ba0d95221f63b3996"
+    },
+    "s6": {
+      "file": "vector-production/chained-stock-key03-04-06-r2/06-won-native-stock-portable.json",
+      "rawSha": "5cf5092eda2ae5146a93822d84aae9029a5e05b378c0ec23401a066feb8bc0c0",
+      "compactSha": "45a9c54da850d12a2b5633887d8080dd0f57022388dde9f557515a95195fc704"
+    },
+    "s7": {
+      "file": "ch07/carry-key03-local/07-native-portable-120.json",
+      "rawSha": "4a06ddf49ad680f870349a8bc5fd6cd330e4e94984e2497740a329f24cb12011",
+      "compactSha": "a296817597c8d6a258c1cee0842342e5d9c10645b02058a107681d7dc493a384"
+    },
+    "s7full": {
+      "file": "ch07/carry-key03-local/native-07-won-120.json",
+      "rawSha": "7b4c4eae8cadad92cc5c75344833241aca85799b03cdd020bd53db616c1f4562",
+      "compactSha": "7b4c4eae8cadad92cc5c75344833241aca85799b03cdd020bd53db616c1f4562"
+    },
+    "s8": {
+      "file": "ch08/real-inherited-06-local/08-won-lower-hp241-06-07-bound-120.json",
+      "rawSha": "19ba442112cb2ae87abd646545256627662d1fafd217117303b265b5a55b6271",
+      "compactSha": "a85629fecfc19d26cb2cd74082db48738f79495babb4793a715874be41b86107"
+    },
+    "s9": {
+      "file": "vector-production/playable-09-10/strict-carry-preflight/09-signal-gated-terminal-state.json",
+      "rawSha": "ca3cdd156b6dd72ebf243b14b79c9c0f514be9f135b803e4e8fc9cbd47c1583c",
+      "compactSha": "ca3cdd156b6dd72ebf243b14b79c9c0f514be9f135b803e4e8fc9cbd47c1583c"
+    },
+    "q9": {
+      "file": "vector-production/playable-09-10/strict-carry-preflight/09-signal-gated-evidence.json",
+      "rawSha": "ad41e3c2404354d8b540290d2d99ce1c8ac3c4f4ce5e96e9601bd32304f06ecc",
+      "compactSha": "49abe158b3538b680ff67ae0410c82b3856b8b075965f0e54e2ad3fbbb3b810e"
+    }
+  }
+}
