@@ -1,0 +1,605 @@
+{
+  "oldRigPaletteUntouched": {
+    "shade": "183ebffd9fcc009520ff62df9a4d9df0791b07fc2b0ae92ae20a36b3cea396f1",
+    "warden": "1b42ec9d5c78e58a497d02e877378f2b94a049d8b71da41f358952c990b29a15"
+  },
+  "exactMaskFromNative": [
+    {
+      "side": "east",
+      "ref": "finale-edge-own-r1-knot",
+      "zoom": 0.4,
+      "phase": {
+        "kind": "shade",
+        "front": "east-fault",
+        "phase": "new-fracture-pressure",
+        "amount": 0.732,
+        "realSteps": 8,
+        "round": 1,
+        "sha": "7e4599066df58822720211e9663a80611f24f532269d8ed932cc6b3f78486f8d"
+      },
+      "tests": [
+        {
+          "alpha": "1038bae669b94841599f8bc6ca0052ba342ae6e883e1947c0d80feed6592ceea",
+          "image": "e66eafc470dffc1fa66cf99b856d132f0e7e01b80f9f83e42030fe811a122b91",
+          "bbox": [
+            68,
+            101,
+            93,
+            145
+          ],
+          "area": 759
+        },
+        {
+          "alpha": "1038bae669b94841599f8bc6ca0052ba342ae6e883e1947c0d80feed6592ceea",
+          "image": "e66eafc470dffc1fa66cf99b856d132f0e7e01b80f9f83e42030fe811a122b91",
+          "bbox": [
+            68,
+            101,
+            93,
+            145
+          ],
+          "area": 759
+        },
+        {
+          "alpha": "1038bae669b94841599f8bc6ca0052ba342ae6e883e1947c0d80feed6592ceea",
+          "image": "ccb16d9161111aebbaaae4d9177477c6742d935f94d010853c60ec4e790858ef",
+          "bbox": [
+            68,
+            101,
+            93,
+            145
+          ],
+          "area": 759
+        }
+      ]
+    },
+    {
+      "side": "east",
+      "ref": "finale-edge-own-r1-knot",
+      "zoom": 0.56,
+      "phase": {
+        "kind": "shade",
+        "front": "east-fault",
+        "phase": "new-fracture-pressure",
+        "amount": 0.732,
+        "realSteps": 8,
+        "round": 1,
+        "sha": "7e4599066df58822720211e9663a80611f24f532269d8ed932cc6b3f78486f8d"
+      },
+      "tests": [
+        {
+          "alpha": "1a86144209bba7a70259beedd23014ab7621530de939660cbaaa9ee2685f9210",
+          "image": "a54b17f844c8190a08394ef5aefcfe711a8e9cbd5966be70ac3078c3bc2a3c89",
+          "bbox": [
+            63,
+            82,
+            98,
+            144
+          ],
+          "area": 1467
+        },
+        {
+          "alpha": "1a86144209bba7a70259beedd23014ab7621530de939660cbaaa9ee2685f9210",
+          "image": "a54b17f844c8190a08394ef5aefcfe711a8e9cbd5966be70ac3078c3bc2a3c89",
+          "bbox": [
+            63,
+            82,
+            98,
+            144
+          ],
+          "area": 1467
+        },
+        {
+          "alpha": "1a86144209bba7a70259beedd23014ab7621530de939660cbaaa9ee2685f9210",
+          "image": "42445b01bca2f79098a5d0472f4264479535b969216800902fafb01aec77a66e",
+          "bbox": [
+            63,
+            82,
+            98,
+            144
+          ],
+          "area": 1467
+        }
+      ]
+    },
+    {
+      "side": "east",
+      "ref": "finale-edge-own-r1-rear",
+      "zoom": 0.4,
+      "phase": {
+        "kind": "warden",
+        "front": "east-fault",
+        "phase": "new-fracture-pressure",
+        "amount": 0.9139999999999999,
+        "realSteps": 1,
+        "round": 1,
+        "sha": "7ca37e6d32092f5395833ef385a7a5b9ce69e5f281ae1984380d0e845af74e37"
+      },
+      "tests": [
+        {
+          "alpha": "73869b041a981d691acc77899bc019d87cb1a0d6289115c2ef54637f7d08e746",
+          "image": "a68fef62229d94c5d2ca887cfd600ef73ab26b3bbb1aaedaab5f225a2a35f382",
+          "bbox": [
+            49,
+            87,
+            109,
+            149
+          ],
+          "area": 1468
+        },
+        {
+          "alpha": "73869b041a981d691acc77899bc019d87cb1a0d6289115c2ef54637f7d08e746",
+          "image": "a68fef62229d94c5d2ca887cfd600ef73ab26b3bbb1aaedaab5f225a2a35f382",
+          "bbox": [
+            49,
+            87,
+            109,
+            149
+          ],
+          "area": 1468
+        },
+        {
+          "alpha": "73869b041a981d691acc77899bc019d87cb1a0d6289115c2ef54637f7d08e746",
+          "image": "e68e7a28da3f75a161ec6bd9000b051fd2add22238fefe30b95ee44bd1d875e9",
+          "bbox": [
+            49,
+            87,
+            109,
+            149
+          ],
+          "area": 1468
+        }
+      ]
+    },
+    {
+      "side": "east",
+      "ref": "finale-edge-own-r1-rear",
+      "zoom": 0.56,
+      "phase": {
+        "kind": "warden",
+        "front": "east-fault",
+        "phase": "new-fracture-pressure",
+        "amount": 0.9139999999999999,
+        "realSteps": 1,
+        "round": 1,
+        "sha": "7ca37e6d32092f5395833ef385a7a5b9ce69e5f281ae1984380d0e845af74e37"
+      },
+      "tests": [
+        {
+          "alpha": "faec3570524289cadee363803fc6a7d067cd5af2b68bbceed4aef45c9c87df8f",
+          "image": "af896edeb9623e7aee6838d44fa644010de17f95641bd1181a21a625afa9ab3f",
+          "bbox": [
+            37,
+            62,
+            121,
+            149
+          ],
+          "area": 2875
+        },
+        {
+          "alpha": "faec3570524289cadee363803fc6a7d067cd5af2b68bbceed4aef45c9c87df8f",
+          "image": "af896edeb9623e7aee6838d44fa644010de17f95641bd1181a21a625afa9ab3f",
+          "bbox": [
+            37,
+            62,
+            121,
+            149
+          ],
+          "area": 2875
+        },
+        {
+          "alpha": "faec3570524289cadee363803fc6a7d067cd5af2b68bbceed4aef45c9c87df8f",
+          "image": "639a9283abdd218f17763bafc5c3d3543a21a3f74e04a0e8d4e89348e372f15f",
+          "bbox": [
+            37,
+            62,
+            121,
+            149
+          ],
+          "area": 2875
+        }
+      ]
+    },
+    {
+      "side": "east",
+      "ref": "qa-bell-shade",
+      "zoom": 0.4,
+      "phase": {
+        "kind": "shade",
+        "front": "east-fault",
+        "phase": "lingering-bell-soul",
+        "amount": 0.23,
+        "realSteps": null,
+        "round": 1,
+        "sha": "6b3bb24efc0b29b10d367d8221a24be56e7426f2343a74555d8a986bf1c083ac"
+      },
+      "tests": [
+        {
+          "alpha": "52336b9cb0cb8041dfb22b9b674414e50a49746827ee14f1683f3d98fe57e94d",
+          "image": "6d6055dbface4dc85c3a29cf9bfbb4dcf2e8bbf013a7ccb41df122b6937cb84e",
+          "bbox": [
+            66,
+            101,
+            91,
+            145
+          ],
+          "area": 747
+        },
+        {
+          "alpha": "52336b9cb0cb8041dfb22b9b674414e50a49746827ee14f1683f3d98fe57e94d",
+          "image": "6d6055dbface4dc85c3a29cf9bfbb4dcf2e8bbf013a7ccb41df122b6937cb84e",
+          "bbox": [
+            66,
+            101,
+            91,
+            145
+          ],
+          "area": 747
+        },
+        {
+          "alpha": "52336b9cb0cb8041dfb22b9b674414e50a49746827ee14f1683f3d98fe57e94d",
+          "image": "f8818ab52b8399b0e3451837b3499e12489527ba8bf589bdd706de317711294e",
+          "bbox": [
+            66,
+            101,
+            91,
+            145
+          ],
+          "area": 747
+        }
+      ]
+    },
+    {
+      "side": "east",
+      "ref": "qa-bell-shade",
+      "zoom": 0.56,
+      "phase": {
+        "kind": "shade",
+        "front": "east-fault",
+        "phase": "lingering-bell-soul",
+        "amount": 0.23,
+        "realSteps": null,
+        "round": 1,
+        "sha": "6b3bb24efc0b29b10d367d8221a24be56e7426f2343a74555d8a986bf1c083ac"
+      },
+      "tests": [
+        {
+          "alpha": "7f59f5eb2fe6c8925c55ea66117e093c7bbbd766f11ab0a7572a59f4519e87b4",
+          "image": "fa9f0b74ad1f095cf2342f9a0cd65854d14abf6ce6ebe1b72b28b151b9501654",
+          "bbox": [
+            60,
+            82,
+            95,
+            144
+          ],
+          "area": 1477
+        },
+        {
+          "alpha": "7f59f5eb2fe6c8925c55ea66117e093c7bbbd766f11ab0a7572a59f4519e87b4",
+          "image": "fa9f0b74ad1f095cf2342f9a0cd65854d14abf6ce6ebe1b72b28b151b9501654",
+          "bbox": [
+            60,
+            82,
+            95,
+            144
+          ],
+          "area": 1477
+        },
+        {
+          "alpha": "7f59f5eb2fe6c8925c55ea66117e093c7bbbd766f11ab0a7572a59f4519e87b4",
+          "image": "5a8fe26d53f6e38e08eae116ab9731655eff215090d939ff3b8f4c56a3752d5f",
+          "bbox": [
+            60,
+            82,
+            95,
+            144
+          ],
+          "area": 1477
+        }
+      ]
+    },
+    {
+      "side": "west",
+      "ref": "finale-edge-own-r2-lower",
+      "zoom": 0.4,
+      "phase": {
+        "kind": "shade",
+        "front": "west-return",
+        "phase": "new-fracture-pressure",
+        "amount": 0.862,
+        "realSteps": 8,
+        "round": 2,
+        "sha": "d73b52b0a5bc152bdda9cc802655533b6ce3f0b250232dd31c2a9961c6b3811a"
+      },
+      "tests": [
+        {
+          "alpha": "ac27a9a568413ce88ef1e9c3e5df0b14e75fcadff9e07c2fde721446d9b83e7b",
+          "image": "647a40425c08f0147bcffdfd3b764635c193019b815a77fde2902b9388af14bb",
+          "bbox": [
+            66,
+            101,
+            91,
+            145
+          ],
+          "area": 759
+        },
+        {
+          "alpha": "ac27a9a568413ce88ef1e9c3e5df0b14e75fcadff9e07c2fde721446d9b83e7b",
+          "image": "647a40425c08f0147bcffdfd3b764635c193019b815a77fde2902b9388af14bb",
+          "bbox": [
+            66,
+            101,
+            91,
+            145
+          ],
+          "area": 759
+        },
+        {
+          "alpha": "ac27a9a568413ce88ef1e9c3e5df0b14e75fcadff9e07c2fde721446d9b83e7b",
+          "image": "40d0c60dd243dd10477431d85ca45947d9549c0105ad7af5562811f4dcfc1d67",
+          "bbox": [
+            66,
+            101,
+            91,
+            145
+          ],
+          "area": 759
+        }
+      ]
+    },
+    {
+      "side": "west",
+      "ref": "finale-edge-own-r2-lower",
+      "zoom": 0.56,
+      "phase": {
+        "kind": "shade",
+        "front": "west-return",
+        "phase": "new-fracture-pressure",
+        "amount": 0.862,
+        "realSteps": 8,
+        "round": 2,
+        "sha": "d73b52b0a5bc152bdda9cc802655533b6ce3f0b250232dd31c2a9961c6b3811a"
+      },
+      "tests": [
+        {
+          "alpha": "ab7827c6c54f0d3d1a4e00bd14b76a2141df971fbe82608f10fbec9ff09683e2",
+          "image": "f050da6c6ef6939749d5aebea7e2beab30ebaf03996c50426cb25dadbdac2e80",
+          "bbox": [
+            61,
+            82,
+            96,
+            144
+          ],
+          "area": 1462
+        },
+        {
+          "alpha": "ab7827c6c54f0d3d1a4e00bd14b76a2141df971fbe82608f10fbec9ff09683e2",
+          "image": "f050da6c6ef6939749d5aebea7e2beab30ebaf03996c50426cb25dadbdac2e80",
+          "bbox": [
+            61,
+            82,
+            96,
+            144
+          ],
+          "area": 1462
+        },
+        {
+          "alpha": "ab7827c6c54f0d3d1a4e00bd14b76a2141df971fbe82608f10fbec9ff09683e2",
+          "image": "5506d8c194c387603abe6f6916856005513fa1032aa00d5a399cb2937db14201",
+          "bbox": [
+            61,
+            82,
+            96,
+            144
+          ],
+          "area": 1462
+        }
+      ]
+    },
+    {
+      "side": "west",
+      "ref": "finale-edge-own-r1-knot",
+      "zoom": 0.4,
+      "phase": {
+        "kind": "shade",
+        "front": "east-fault",
+        "phase": "settled-formation",
+        "amount": 0.28,
+        "realSteps": 54,
+        "round": 1,
+        "sha": "642990197023ab75d102a96348b6d593ec0fc4f330e7518b4dd3bb287924eba0"
+      },
+      "tests": [
+        {
+          "alpha": "21c11eeb5fcb16b9b37d55cd820a070f381d5f5fedae903cbad0e54de61d9494",
+          "image": "7e2770445b041aee9d5cc1fe36e52e4370ef02786dc8e6e824eaf46c63316848",
+          "bbox": [
+            68,
+            101,
+            93,
+            145
+          ],
+          "area": 747
+        },
+        {
+          "alpha": "21c11eeb5fcb16b9b37d55cd820a070f381d5f5fedae903cbad0e54de61d9494",
+          "image": "7e2770445b041aee9d5cc1fe36e52e4370ef02786dc8e6e824eaf46c63316848",
+          "bbox": [
+            68,
+            101,
+            93,
+            145
+          ],
+          "area": 747
+        },
+        {
+          "alpha": "21c11eeb5fcb16b9b37d55cd820a070f381d5f5fedae903cbad0e54de61d9494",
+          "image": "1a3b1953e0079ab6295e5be0c6189ff47ee5a78470bf02cbf7887099c32e718e",
+          "bbox": [
+            68,
+            101,
+            93,
+            145
+          ],
+          "area": 747
+        }
+      ]
+    },
+    {
+      "side": "west",
+      "ref": "finale-edge-own-r1-knot",
+      "zoom": 0.56,
+      "phase": {
+        "kind": "shade",
+        "front": "east-fault",
+        "phase": "settled-formation",
+        "amount": 0.28,
+        "realSteps": 54,
+        "round": 1,
+        "sha": "642990197023ab75d102a96348b6d593ec0fc4f330e7518b4dd3bb287924eba0"
+      },
+      "tests": [
+        {
+          "alpha": "4dfcd07ad61f0c7e2404328505be65a26f443619879ae47a77a285247ea51ea8",
+          "image": "2da780eb532b3f3be16edfe66462b6bc333a5d96895bb26d6edba7130ac3c193",
+          "bbox": [
+            64,
+            82,
+            99,
+            144
+          ],
+          "area": 1476
+        },
+        {
+          "alpha": "4dfcd07ad61f0c7e2404328505be65a26f443619879ae47a77a285247ea51ea8",
+          "image": "2da780eb532b3f3be16edfe66462b6bc333a5d96895bb26d6edba7130ac3c193",
+          "bbox": [
+            64,
+            82,
+            99,
+            144
+          ],
+          "area": 1476
+        },
+        {
+          "alpha": "4dfcd07ad61f0c7e2404328505be65a26f443619879ae47a77a285247ea51ea8",
+          "image": "0cf567584aff1e468c0ad16704f1aa0bca210421cb537a12f816db302439db7f",
+          "bbox": [
+            64,
+            82,
+            99,
+            144
+          ],
+          "area": 1476
+        }
+      ]
+    },
+    {
+      "side": "west",
+      "ref": "finale-edge-own-r1-rear",
+      "zoom": 0.4,
+      "phase": {
+        "kind": "warden",
+        "front": "east-fault",
+        "phase": "settled-formation",
+        "amount": 0.28,
+        "realSteps": 44,
+        "round": 1,
+        "sha": "bfcf52eed1db0905cdd5c7f0fcb8eff400ad4276ec30395af69f7382413633af"
+      },
+      "tests": [
+        {
+          "alpha": "07733633f5464b9834256db797685238f5a5f5eeb4d44d756de1da5ab459fd89",
+          "image": "119934e65558ea27995335bcabd173cb3810e55d34b119b170f75bd7f1e62ff4",
+          "bbox": [
+            49,
+            87,
+            109,
+            149
+          ],
+          "area": 1467
+        },
+        {
+          "alpha": "07733633f5464b9834256db797685238f5a5f5eeb4d44d756de1da5ab459fd89",
+          "image": "119934e65558ea27995335bcabd173cb3810e55d34b119b170f75bd7f1e62ff4",
+          "bbox": [
+            49,
+            87,
+            109,
+            149
+          ],
+          "area": 1467
+        },
+        {
+          "alpha": "07733633f5464b9834256db797685238f5a5f5eeb4d44d756de1da5ab459fd89",
+          "image": "e5895c45f998896b42ccacb19f5437b347fb26acba6243a72be5df066557ae20",
+          "bbox": [
+            49,
+            87,
+            109,
+            149
+          ],
+          "area": 1467
+        }
+      ]
+    },
+    {
+      "side": "west",
+      "ref": "finale-edge-own-r1-rear",
+      "zoom": 0.56,
+      "phase": {
+        "kind": "warden",
+        "front": "east-fault",
+        "phase": "settled-formation",
+        "amount": 0.28,
+        "realSteps": 44,
+        "round": 1,
+        "sha": "bfcf52eed1db0905cdd5c7f0fcb8eff400ad4276ec30395af69f7382413633af"
+      },
+      "tests": [
+        {
+          "alpha": "b8fcdf5f922c9a86cc6da02dcb97e6662ff8d36ae4b8b33c6f4c8b9c8d6233b7",
+          "image": "da248c9bf016cfdada8da4926728c3a761d68f519836141dc831a44ef8ebf35a",
+          "bbox": [
+            37,
+            62,
+            121,
+            149
+          ],
+          "area": 2878
+        },
+        {
+          "alpha": "b8fcdf5f922c9a86cc6da02dcb97e6662ff8d36ae4b8b33c6f4c8b9c8d6233b7",
+          "image": "da248c9bf016cfdada8da4926728c3a761d68f519836141dc831a44ef8ebf35a",
+          "bbox": [
+            37,
+            62,
+            121,
+            149
+          ],
+          "area": 2878
+        },
+        {
+          "alpha": "b8fcdf5f922c9a86cc6da02dcb97e6662ff8d36ae4b8b33c6f4c8b9c8d6233b7",
+          "image": "05ac5e47d0c70a20d695e127e9ebedf8d46fb2192c83b56d08d0bab02c1a15ee",
+          "bbox": [
+            37,
+            62,
+            121,
+            149
+          ],
+          "area": 2878
+        }
+      ]
+    }
+  ],
+  "negative": [
+    "wrong-stage",
+    "changed-loadout",
+    "no-wave-epoch",
+    "cloned-actor",
+    "warning",
+    "terminal"
+  ],
+  "motionAuthority": "actual stock VectorParts state and alpha; the local split proof does not validate reuse through Event/DOM app integration"
+}
