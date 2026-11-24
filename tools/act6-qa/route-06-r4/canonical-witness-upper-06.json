@@ -1,0 +1,1431 @@
+{
+  "id": "06",
+  "original": "c17aa19e1f126fc442da441d532fa559e683ca5cf8cfde99e5f26956e9638662",
+  "armedObjective": [
+    "authored reach only after first activation, narrowing and temporary passage interaction"
+  ],
+  "enabled": {
+    "route": "upper",
+    "stockObjectiveAtEnd": {
+      "complete": true,
+      "summary": "맵 탐색",
+      "targets": [],
+      "allTargets": [
+        {
+          "id": "draft-arrival-06",
+          "type": "reach",
+          "x": 6400,
+          "y": 3368,
+          "radius": 84,
+          "label": "돌길 합류점 도달",
+          "kind": "objective",
+          "done": true
+        }
+      ]
+    },
+    "enemy": true,
+    "suppliedSignal": true,
+    "recoverActors": [],
+    "milestones": {
+      "firstStake": true,
+      "secondStake": true,
+      "firstActivationComplete": true,
+      "boundaryNarrowed": true,
+      "temporaryPassageOpen": true,
+      "bellAligned": false,
+      "innerStakeSignal": false,
+      "outerAnchorBellReady": false,
+      "outerThreeAnchorsReady": false,
+      "firstGarmjinFailed": true,
+      "eastReturnObserved": true
+    },
+    "milestonesStamped": [
+      {
+        "id": "firstStake",
+        "x": 233.67,
+        "y": 142,
+        "hp": 1158,
+        "round": 1,
+        "enemies": 0,
+        "phase": "aim",
+        "ground": true,
+        "support": "A-upper-veranda"
+      },
+      {
+        "id": "secondStake",
+        "x": 449.79,
+        "y": 439.29,
+        "hp": 944,
+        "round": 2,
+        "enemies": 1,
+        "phase": "aim",
+        "ground": true,
+        "support": "B-02-center-lower-short-climb"
+      },
+      {
+        "id": "firstActivationComplete",
+        "x": 649.74,
+        "y": 506,
+        "hp": 893,
+        "round": 3,
+        "enemies": 2,
+        "phase": "aim",
+        "ground": true,
+        "support": "E-joined-ordinary-floor"
+      },
+      {
+        "id": "boundaryNarrowed",
+        "x": 649.74,
+        "y": 506,
+        "hp": 893,
+        "round": 3,
+        "enemies": 2,
+        "phase": "aim",
+        "ground": true,
+        "support": "E-joined-ordinary-floor"
+      },
+      {
+        "id": "firstGarmjinFailed",
+        "x": 649.74,
+        "y": 506,
+        "hp": 893,
+        "round": 3,
+        "enemies": 2,
+        "phase": "aim",
+        "ground": true,
+        "support": "E-joined-ordinary-floor"
+      },
+      {
+        "id": "temporaryPassageOpen",
+        "x": 397.18,
+        "y": 480,
+        "hp": 893,
+        "round": 4,
+        "enemies": 3,
+        "phase": "aim",
+        "ground": true,
+        "support": "B-central-lower-floor"
+      },
+      {
+        "id": "eastReturnObserved",
+        "x": 649.86,
+        "y": 506,
+        "hp": 842,
+        "round": 5,
+        "enemies": 4,
+        "phase": "aim",
+        "ground": true,
+        "support": "E-joined-ordinary-floor"
+      }
+    ],
+    "goalHistory": [
+      "가름진 작동",
+      "역류 속 임시 통로 확보",
+      "깊은 경계 출구"
+    ],
+    "party": [
+      "mage"
+    ],
+    "planClearTurns": [
+      20,
+      26
+    ],
+    "playerActions": 5,
+    "actionTypes": {
+      "attack": 0,
+      "wait": 5,
+      "rebind": 0,
+      "intercept": 0
+    },
+    "binding": {
+      "status": "stable",
+      "id": "outer-bell-anchor",
+      "x": 2688,
+      "radius": 360,
+      "incidentCount": 0,
+      "recovered": 0,
+      "history": []
+    },
+    "shotProof": [],
+    "finalHP": [
+      [
+        "qa-mage",
+        842,
+        false
+      ],
+      [
+        "draft-pressure-0",
+        409,
+        false
+      ],
+      [
+        "draft-pressure-1",
+        987,
+        false
+      ],
+      [
+        "draft-pressure-2",
+        409,
+        false
+      ],
+      [
+        "draft-pressure-3",
+        255,
+        false
+      ]
+    ],
+    "start": {
+      "x": 928,
+      "y": 1136
+    },
+    "end": {
+      "x": 6400,
+      "y": 3368
+    },
+    "tacticalChoices": [
+      {
+        "role": "east pressure bypass",
+        "position": {
+          "x": 649.86,
+          "y": 506,
+          "hp": 842,
+          "round": 5,
+          "enemies": 4,
+          "phase": "aim",
+          "ground": true,
+          "support": "E-joined-ordinary-floor"
+        }
+      }
+    ],
+    "cover": [
+      {
+        "atAU": 234,
+        "threat": "draft-pressure-0",
+        "rayTerrain": "B-left-broken-balcony",
+        "directLineTerrainProbe": true,
+        "liveShotSeparate": true
+      },
+      {
+        "atAU": 650,
+        "threat": "draft-pressure-2",
+        "rayTerrain": null,
+        "directLineTerrainProbe": true,
+        "liveShotSeparate": true
+      },
+      {
+        "atAU": 650,
+        "threat": "draft-pressure-2",
+        "rayTerrain": null,
+        "directLineTerrainProbe": true,
+        "liveShotSeparate": true
+      }
+    ],
+    "physicsTicks": 8028,
+    "moveAccepted": 3001,
+    "simulationSeconds": 66.9,
+    "events": [
+      {
+        "event": "arrived",
+        "x": 792.94,
+        "y": 428.06,
+        "hp": 842,
+        "round": 6,
+        "enemies": 5,
+        "phase": "aim",
+        "ground": true,
+        "support": "E-joined-ordinary-floor",
+        "opponentEnds": 5
+      },
+      {
+        "event": "draft-complete",
+        "x": 792.94,
+        "y": 428.06,
+        "hp": 842,
+        "round": 6,
+        "enemies": 5,
+        "phase": "aim",
+        "ground": true,
+        "support": "E-joined-ordinary-floor",
+        "opponentEnds": 5,
+        "hostilesRemaining": 4
+      }
+    ],
+    "checkCalls": 184,
+    "writes": 0,
+    "recoveries": 0,
+    "attacks": [
+      {
+        "fire": "HLN02",
+        "who": "draft-pressure-1"
+      },
+      {
+        "owner": "draft-pressure-1",
+        "terrain": "A-upper-veranda",
+        "x": 2890.376470707745,
+        "y": 1206
+      },
+      {
+        "fire": "HGS01",
+        "who": "draft-pressure-2"
+      },
+      {
+        "owner": "draft-pressure-2",
+        "unit": "qa-mage",
+        "x": 4721.565547499274,
+        "y": 3996.718046240064
+      },
+      {
+        "fire": "HLN01",
+        "who": "draft-pressure-1"
+      },
+      {
+        "owner": "draft-pressure-1",
+        "unit": "qa-mage",
+        "x": 4651.856615859061,
+        "y": 3990.4374465957
+      },
+      {
+        "fire": "HLN01",
+        "who": "draft-pressure-3"
+      },
+      {
+        "owner": "draft-pressure-3",
+        "unit": "qa-mage",
+        "x": 3702.671306129101,
+        "y": 4003.980068018751
+      },
+      {
+        "fire": "HGS01",
+        "who": "draft-pressure-2"
+      },
+      {
+        "owner": "draft-pressure-2",
+        "unit": "qa-mage",
+        "x": 3775.234659859033,
+        "y": 3959.2529964081727
+      },
+      {
+        "fire": "HGS01",
+        "who": "draft-pressure-2"
+      },
+      {
+        "owner": "draft-pressure-2",
+        "unit": "qa-mage",
+        "x": 4284.806076665673,
+        "y": 3976.8991905485946
+      },
+      {
+        "fire": "HGS01",
+        "who": "draft-pressure-2"
+      },
+      {
+        "owner": "draft-pressure-2",
+        "unit": "qa-mage",
+        "x": 6072.762358323335,
+        "y": 3544.660194272485
+      }
+    ],
+    "steps": [
+      {
+        "goal": 234,
+        "initial": {
+          "x": 116,
+          "y": 142,
+          "hp": 1158,
+          "round": 1,
+          "enemies": 0,
+          "phase": "aim",
+          "ground": true,
+          "support": "A-upper-veranda"
+        },
+        "after": {
+          "x": 233.67,
+          "y": 142,
+          "hp": 1158,
+          "round": 1,
+          "enemies": 0,
+          "phase": "aim",
+          "ground": true,
+          "support": "A-upper-veranda"
+        },
+        "jumped": false,
+        "ticks": 281
+      },
+      {
+        "goal": 380,
+        "initial": {
+          "x": 233.67,
+          "y": 142,
+          "hp": 1158,
+          "round": 1,
+          "enemies": 0,
+          "phase": "aim",
+          "ground": true,
+          "support": "A-upper-veranda"
+        },
+        "after": {
+          "x": 379.78,
+          "y": 142,
+          "hp": 1158,
+          "round": 2,
+          "enemies": 1,
+          "phase": "aim",
+          "ground": true,
+          "support": "A-upper-veranda"
+        },
+        "jumped": false,
+        "ticks": 348
+      },
+      {
+        "goal": 410,
+        "initial": {
+          "x": 379.78,
+          "y": 142,
+          "hp": 1158,
+          "round": 2,
+          "enemies": 1,
+          "phase": "aim",
+          "ground": true,
+          "support": "A-upper-veranda"
+        },
+        "after": {
+          "x": 409.51,
+          "y": 295.14,
+          "hp": 1058,
+          "round": 2,
+          "enemies": 1,
+          "phase": "aim",
+          "ground": true,
+          "support": "B-01-center-stone-ascent"
+        },
+        "jumped": false,
+        "ticks": 71
+      },
+      {
+        "goal": 450,
+        "initial": {
+          "x": 409.51,
+          "y": 295.14,
+          "hp": 1058,
+          "round": 2,
+          "enemies": 1,
+          "phase": "aim",
+          "ground": true,
+          "support": "B-01-center-stone-ascent"
+        },
+        "after": {
+          "x": 449.79,
+          "y": 439.29,
+          "hp": 944,
+          "round": 2,
+          "enemies": 1,
+          "phase": "aim",
+          "ground": true,
+          "support": "B-02-center-lower-short-climb"
+        },
+        "jumped": false,
+        "ticks": 110
+      },
+      {
+        "goal": 504,
+        "initial": {
+          "x": 449.79,
+          "y": 439.29,
+          "hp": 944,
+          "round": 2,
+          "enemies": 1,
+          "phase": "aim",
+          "ground": true,
+          "support": "B-02-center-lower-short-climb"
+        },
+        "after": {
+          "x": 503.79,
+          "y": 396.87,
+          "hp": 944,
+          "round": 2,
+          "enemies": 1,
+          "phase": "aim",
+          "ground": true,
+          "support": "B-02-center-lower-short-climb"
+        },
+        "jumped": false,
+        "ticks": 164
+      },
+      {
+        "goal": 522,
+        "initial": {
+          "x": 503.79,
+          "y": 396.87,
+          "hp": 944,
+          "round": 2,
+          "enemies": 1,
+          "phase": "aim",
+          "ground": true,
+          "support": "B-02-center-lower-short-climb"
+        },
+        "after": {
+          "x": 521.79,
+          "y": 506.62,
+          "hp": 893,
+          "round": 2,
+          "enemies": 1,
+          "phase": "aim",
+          "ground": true,
+          "support": "E-joined-ordinary-floor"
+        },
+        "jumped": false,
+        "ticks": 47
+      },
+      {
+        "goal": 650,
+        "initial": {
+          "x": 521.79,
+          "y": 506.62,
+          "hp": 893,
+          "round": 2,
+          "enemies": 1,
+          "phase": "aim",
+          "ground": true,
+          "support": "E-joined-ordinary-floor"
+        },
+        "after": {
+          "x": 649.74,
+          "y": 506,
+          "hp": 893,
+          "round": 3,
+          "enemies": 2,
+          "phase": "aim",
+          "ground": true,
+          "support": "E-joined-ordinary-floor"
+        },
+        "jumped": false,
+        "ticks": 305
+      },
+      {
+        "goal": 448,
+        "initial": {
+          "x": 649.74,
+          "y": 506,
+          "hp": 893,
+          "round": 3,
+          "enemies": 2,
+          "phase": "aim",
+          "ground": true,
+          "support": "E-joined-ordinary-floor"
+        },
+        "after": {
+          "x": 448.21,
+          "y": 506.97,
+          "hp": 893,
+          "round": 4,
+          "enemies": 3,
+          "phase": "aim",
+          "ground": true,
+          "support": "E-joined-ordinary-floor"
+        },
+        "jumped": false,
+        "ticks": 485
+      },
+      {
+        "goal": 408,
+        "initial": {
+          "x": 448.21,
+          "y": 506.97,
+          "hp": 893,
+          "round": 4,
+          "enemies": 3,
+          "phase": "aim",
+          "ground": true,
+          "support": "E-joined-ordinary-floor"
+        },
+        "after": {
+          "x": 408.48,
+          "y": 480,
+          "hp": 893,
+          "round": 4,
+          "enemies": 3,
+          "phase": "aim",
+          "ground": true,
+          "support": "B-central-lower-floor"
+        },
+        "jumped": false,
+        "ticks": 119
+      },
+      {
+        "goal": 397,
+        "initial": {
+          "x": 408.48,
+          "y": 480,
+          "hp": 893,
+          "round": 4,
+          "enemies": 3,
+          "phase": "aim",
+          "ground": true,
+          "support": "B-central-lower-floor"
+        },
+        "after": {
+          "x": 397.18,
+          "y": 480,
+          "hp": 893,
+          "round": 4,
+          "enemies": 3,
+          "phase": "aim",
+          "ground": true,
+          "support": "B-central-lower-floor"
+        },
+        "jumped": false,
+        "ticks": 27
+      },
+      {
+        "goal": 409,
+        "initial": {
+          "x": 397.18,
+          "y": 480,
+          "hp": 893,
+          "round": 4,
+          "enemies": 3,
+          "phase": "aim",
+          "ground": true,
+          "support": "B-central-lower-floor"
+        },
+        "after": {
+          "x": 408.9,
+          "y": 480,
+          "hp": 893,
+          "round": 4,
+          "enemies": 3,
+          "phase": "aim",
+          "ground": true,
+          "support": "B-central-lower-floor"
+        },
+        "jumped": false,
+        "ticks": 28
+      },
+      {
+        "goal": 450,
+        "initial": {
+          "x": 408.9,
+          "y": 480,
+          "hp": 893,
+          "round": 4,
+          "enemies": 3,
+          "phase": "aim",
+          "ground": true,
+          "support": "B-central-lower-floor"
+        },
+        "after": {
+          "x": 449.66,
+          "y": 439.39,
+          "hp": 893,
+          "round": 4,
+          "enemies": 3,
+          "phase": "aim",
+          "ground": true,
+          "support": "B-02-center-lower-short-climb"
+        },
+        "jumped": true,
+        "ticks": 138
+      },
+      {
+        "goal": 505,
+        "initial": {
+          "x": 449.66,
+          "y": 439.39,
+          "hp": 893,
+          "round": 4,
+          "enemies": 3,
+          "phase": "aim",
+          "ground": true,
+          "support": "B-02-center-lower-short-climb"
+        },
+        "after": {
+          "x": 504.66,
+          "y": 396.19,
+          "hp": 893,
+          "round": 4,
+          "enemies": 3,
+          "phase": "aim",
+          "ground": true,
+          "support": "B-02-center-lower-short-climb"
+        },
+        "jumped": false,
+        "ticks": 167
+      },
+      {
+        "goal": 522,
+        "initial": {
+          "x": 504.66,
+          "y": 396.19,
+          "hp": 893,
+          "round": 4,
+          "enemies": 3,
+          "phase": "aim",
+          "ground": true,
+          "support": "B-02-center-lower-short-climb"
+        },
+        "after": {
+          "x": 521.63,
+          "y": 506.62,
+          "hp": 842,
+          "round": 4,
+          "enemies": 3,
+          "phase": "aim",
+          "ground": true,
+          "support": "E-joined-ordinary-floor"
+        },
+        "jumped": false,
+        "ticks": 44
+      },
+      {
+        "goal": 650,
+        "initial": {
+          "x": 521.63,
+          "y": 506.62,
+          "hp": 842,
+          "round": 4,
+          "enemies": 3,
+          "phase": "aim",
+          "ground": true,
+          "support": "E-joined-ordinary-floor"
+        },
+        "after": {
+          "x": 649.86,
+          "y": 506,
+          "hp": 842,
+          "round": 5,
+          "enemies": 4,
+          "phase": "aim",
+          "ground": true,
+          "support": "E-joined-ordinary-floor"
+        },
+        "jumped": false,
+        "ticks": 309
+      },
+      {
+        "goal": 800,
+        "initial": {
+          "x": 649.86,
+          "y": 506,
+          "hp": 842,
+          "round": 5,
+          "enemies": 4,
+          "phase": "aim",
+          "ground": true,
+          "support": "E-joined-ordinary-floor"
+        },
+        "after": {
+          "x": 792.94,
+          "y": 428.06,
+          "hp": 842,
+          "round": 6,
+          "enemies": 5,
+          "phase": "won",
+          "ground": true,
+          "support": "E-joined-ordinary-floor"
+        },
+        "jumped": false,
+        "ticks": 388
+      }
+    ],
+    "final": {
+      "x": 792.94,
+      "y": 428.06,
+      "hp": 842,
+      "round": 6,
+      "enemies": 5,
+      "phase": "won",
+      "ground": true,
+      "support": "E-joined-ordinary-floor"
+    },
+    "endState": "won",
+    "stockEvents": [
+      "message",
+      "change",
+      "save",
+      "fx",
+      "sound"
+    ],
+    "foes": [
+      {
+        "id": "draft-pressure-0",
+        "name": "떠도는 혼",
+        "x": 2428.9998602315122,
+        "y": 3840
+      },
+      {
+        "id": "draft-pressure-1",
+        "name": "정예 혼을 삼킨 등불",
+        "x": 3641.727683343944,
+        "y": 2317.1767098860378
+      },
+      {
+        "id": "draft-pressure-2",
+        "name": "떠도는 혼",
+        "x": 5301.821236816865,
+        "y": 3994.4881091181437
+      },
+      {
+        "id": "draft-pressure-3",
+        "name": "정예 혼을 삼킨 등불",
+        "x": 3272,
+        "y": 3832
+      }
+    ]
+  },
+  "noFoes": {
+    "route": "upper",
+    "stockObjectiveAtEnd": {
+      "complete": true,
+      "summary": "맵 탐색",
+      "targets": [],
+      "allTargets": [
+        {
+          "id": "draft-arrival-06",
+          "type": "reach",
+          "x": 6400,
+          "y": 3368,
+          "radius": 84,
+          "label": "돌길 합류점 도달",
+          "kind": "objective",
+          "done": true
+        }
+      ]
+    },
+    "enemy": false,
+    "suppliedSignal": true,
+    "recoverActors": [],
+    "milestones": {
+      "firstStake": true,
+      "secondStake": true,
+      "firstActivationComplete": true,
+      "boundaryNarrowed": true,
+      "temporaryPassageOpen": true,
+      "bellAligned": false,
+      "innerStakeSignal": false,
+      "outerAnchorBellReady": false,
+      "outerThreeAnchorsReady": false,
+      "firstGarmjinFailed": true,
+      "eastReturnObserved": true
+    },
+    "milestonesStamped": [
+      {
+        "id": "firstStake",
+        "x": 233.67,
+        "y": 142,
+        "hp": 1158,
+        "round": 1,
+        "enemies": 0,
+        "phase": "aim",
+        "ground": true,
+        "support": "A-upper-veranda"
+      },
+      {
+        "id": "secondStake",
+        "x": 449.83,
+        "y": 439.26,
+        "hp": 944,
+        "round": 2,
+        "enemies": 1,
+        "phase": "aim",
+        "ground": true,
+        "support": "B-02-center-lower-short-climb"
+      },
+      {
+        "id": "firstActivationComplete",
+        "x": 649.56,
+        "y": 506,
+        "hp": 1032,
+        "round": 3,
+        "enemies": 2,
+        "phase": "aim",
+        "ground": true,
+        "support": "E-joined-ordinary-floor"
+      },
+      {
+        "id": "boundaryNarrowed",
+        "x": 649.56,
+        "y": 506,
+        "hp": 1032,
+        "round": 3,
+        "enemies": 2,
+        "phase": "aim",
+        "ground": true,
+        "support": "E-joined-ordinary-floor"
+      },
+      {
+        "id": "firstGarmjinFailed",
+        "x": 649.56,
+        "y": 506,
+        "hp": 1032,
+        "round": 3,
+        "enemies": 2,
+        "phase": "aim",
+        "ground": true,
+        "support": "E-joined-ordinary-floor"
+      },
+      {
+        "id": "temporaryPassageOpen",
+        "x": 397.12,
+        "y": 480,
+        "hp": 1158,
+        "round": 4,
+        "enemies": 3,
+        "phase": "aim",
+        "ground": true,
+        "support": "B-central-lower-floor"
+      },
+      {
+        "id": "eastReturnObserved",
+        "x": 649.69,
+        "y": 506,
+        "hp": 1158,
+        "round": 5,
+        "enemies": 4,
+        "phase": "aim",
+        "ground": true,
+        "support": "E-joined-ordinary-floor"
+      }
+    ],
+    "goalHistory": [
+      "가름진 작동",
+      "역류 속 임시 통로 확보",
+      "깊은 경계 출구"
+    ],
+    "party": [
+      "mage"
+    ],
+    "planClearTurns": [
+      20,
+      26
+    ],
+    "playerActions": 5,
+    "actionTypes": {
+      "attack": 0,
+      "wait": 5,
+      "rebind": 0,
+      "intercept": 0
+    },
+    "binding": {
+      "status": "stable",
+      "id": "outer-bell-anchor",
+      "x": 2688,
+      "radius": 360,
+      "incidentCount": 0,
+      "recovered": 0,
+      "history": []
+    },
+    "shotProof": [],
+    "finalHP": [
+      [
+        "qa-mage",
+        1158,
+        false
+      ]
+    ],
+    "start": {
+      "x": 928,
+      "y": 1136
+    },
+    "end": {
+      "x": 6400,
+      "y": 3368
+    },
+    "tacticalChoices": [
+      {
+        "role": "east pressure bypass",
+        "position": {
+          "x": 649.69,
+          "y": 506,
+          "hp": 1158,
+          "round": 5,
+          "enemies": 4,
+          "phase": "aim",
+          "ground": true,
+          "support": "E-joined-ordinary-floor"
+        }
+      }
+    ],
+    "cover": [],
+    "physicsTicks": 4800,
+    "moveAccepted": 3006,
+    "simulationSeconds": 40,
+    "events": [
+      {
+        "event": "arrived",
+        "x": 795.25,
+        "y": 425.75,
+        "hp": 1158,
+        "round": 6,
+        "enemies": 5,
+        "phase": "aim",
+        "ground": true,
+        "support": "E-joined-ordinary-floor",
+        "opponentEnds": 5
+      },
+      {
+        "event": "draft-complete",
+        "x": 795.25,
+        "y": 425.75,
+        "hp": 1158,
+        "round": 6,
+        "enemies": 5,
+        "phase": "aim",
+        "ground": true,
+        "support": "E-joined-ordinary-floor",
+        "opponentEnds": 5,
+        "hostilesRemaining": 0
+      }
+    ],
+    "checkCalls": 164,
+    "writes": 0,
+    "recoveries": 0,
+    "attacks": [],
+    "steps": [
+      {
+        "goal": 234,
+        "initial": {
+          "x": 116,
+          "y": 142,
+          "hp": 1158,
+          "round": 1,
+          "enemies": 0,
+          "phase": "aim",
+          "ground": true,
+          "support": "A-upper-veranda"
+        },
+        "after": {
+          "x": 233.67,
+          "y": 142,
+          "hp": 1158,
+          "round": 1,
+          "enemies": 0,
+          "phase": "aim",
+          "ground": true,
+          "support": "A-upper-veranda"
+        },
+        "jumped": false,
+        "ticks": 281
+      },
+      {
+        "goal": 380,
+        "initial": {
+          "x": 233.67,
+          "y": 142,
+          "hp": 1158,
+          "round": 1,
+          "enemies": 0,
+          "phase": "aim",
+          "ground": true,
+          "support": "A-upper-veranda"
+        },
+        "after": {
+          "x": 379.81,
+          "y": 142,
+          "hp": 1158,
+          "round": 2,
+          "enemies": 1,
+          "phase": "aim",
+          "ground": true,
+          "support": "A-upper-veranda"
+        },
+        "jumped": false,
+        "ticks": 349
+      },
+      {
+        "goal": 410,
+        "initial": {
+          "x": 379.81,
+          "y": 142,
+          "hp": 1158,
+          "round": 2,
+          "enemies": 1,
+          "phase": "aim",
+          "ground": true,
+          "support": "A-upper-veranda"
+        },
+        "after": {
+          "x": 409.54,
+          "y": 295.12,
+          "hp": 1058,
+          "round": 2,
+          "enemies": 1,
+          "phase": "aim",
+          "ground": true,
+          "support": "B-01-center-stone-ascent"
+        },
+        "jumped": false,
+        "ticks": 71
+      },
+      {
+        "goal": 450,
+        "initial": {
+          "x": 409.54,
+          "y": 295.12,
+          "hp": 1058,
+          "round": 2,
+          "enemies": 1,
+          "phase": "aim",
+          "ground": true,
+          "support": "B-01-center-stone-ascent"
+        },
+        "after": {
+          "x": 449.83,
+          "y": 439.26,
+          "hp": 944,
+          "round": 2,
+          "enemies": 1,
+          "phase": "aim",
+          "ground": true,
+          "support": "B-02-center-lower-short-climb"
+        },
+        "jumped": false,
+        "ticks": 110
+      },
+      {
+        "goal": 504,
+        "initial": {
+          "x": 449.83,
+          "y": 439.26,
+          "hp": 944,
+          "round": 2,
+          "enemies": 1,
+          "phase": "aim",
+          "ground": true,
+          "support": "B-02-center-lower-short-climb"
+        },
+        "after": {
+          "x": 503.5,
+          "y": 397.1,
+          "hp": 944,
+          "round": 2,
+          "enemies": 1,
+          "phase": "aim",
+          "ground": true,
+          "support": "B-02-center-lower-short-climb"
+        },
+        "jumped": false,
+        "ticks": 163
+      },
+      {
+        "goal": 522,
+        "initial": {
+          "x": 503.5,
+          "y": 397.1,
+          "hp": 944,
+          "round": 2,
+          "enemies": 1,
+          "phase": "aim",
+          "ground": true,
+          "support": "B-02-center-lower-short-climb"
+        },
+        "after": {
+          "x": 521.84,
+          "y": 506.62,
+          "hp": 893,
+          "round": 2,
+          "enemies": 1,
+          "phase": "aim",
+          "ground": true,
+          "support": "E-joined-ordinary-floor"
+        },
+        "jumped": false,
+        "ticks": 48
+      },
+      {
+        "goal": 650,
+        "initial": {
+          "x": 521.84,
+          "y": 506.62,
+          "hp": 893,
+          "round": 2,
+          "enemies": 1,
+          "phase": "aim",
+          "ground": true,
+          "support": "E-joined-ordinary-floor"
+        },
+        "after": {
+          "x": 649.56,
+          "y": 506,
+          "hp": 1032,
+          "round": 3,
+          "enemies": 2,
+          "phase": "aim",
+          "ground": true,
+          "support": "E-joined-ordinary-floor"
+        },
+        "jumped": false,
+        "ticks": 305
+      },
+      {
+        "goal": 448,
+        "initial": {
+          "x": 649.56,
+          "y": 506,
+          "hp": 1032,
+          "round": 3,
+          "enemies": 2,
+          "phase": "aim",
+          "ground": true,
+          "support": "E-joined-ordinary-floor"
+        },
+        "after": {
+          "x": 448.14,
+          "y": 506.97,
+          "hp": 1158,
+          "round": 4,
+          "enemies": 3,
+          "phase": "aim",
+          "ground": true,
+          "support": "E-joined-ordinary-floor"
+        },
+        "jumped": false,
+        "ticks": 481
+      },
+      {
+        "goal": 408,
+        "initial": {
+          "x": 448.14,
+          "y": 506.97,
+          "hp": 1158,
+          "round": 4,
+          "enemies": 3,
+          "phase": "aim",
+          "ground": true,
+          "support": "E-joined-ordinary-floor"
+        },
+        "after": {
+          "x": 408.42,
+          "y": 480,
+          "hp": 1158,
+          "round": 4,
+          "enemies": 3,
+          "phase": "aim",
+          "ground": true,
+          "support": "B-central-lower-floor"
+        },
+        "jumped": false,
+        "ticks": 119
+      },
+      {
+        "goal": 397,
+        "initial": {
+          "x": 408.42,
+          "y": 480,
+          "hp": 1158,
+          "round": 4,
+          "enemies": 3,
+          "phase": "aim",
+          "ground": true,
+          "support": "B-central-lower-floor"
+        },
+        "after": {
+          "x": 397.12,
+          "y": 480,
+          "hp": 1158,
+          "round": 4,
+          "enemies": 3,
+          "phase": "aim",
+          "ground": true,
+          "support": "B-central-lower-floor"
+        },
+        "jumped": false,
+        "ticks": 27
+      },
+      {
+        "goal": 409,
+        "initial": {
+          "x": 397.12,
+          "y": 480,
+          "hp": 1158,
+          "round": 4,
+          "enemies": 3,
+          "phase": "aim",
+          "ground": true,
+          "support": "B-central-lower-floor"
+        },
+        "after": {
+          "x": 408.84,
+          "y": 480,
+          "hp": 1158,
+          "round": 4,
+          "enemies": 3,
+          "phase": "aim",
+          "ground": true,
+          "support": "B-central-lower-floor"
+        },
+        "jumped": false,
+        "ticks": 28
+      },
+      {
+        "goal": 450,
+        "initial": {
+          "x": 408.84,
+          "y": 480,
+          "hp": 1158,
+          "round": 4,
+          "enemies": 3,
+          "phase": "aim",
+          "ground": true,
+          "support": "B-central-lower-floor"
+        },
+        "after": {
+          "x": 449.6,
+          "y": 439.44,
+          "hp": 1158,
+          "round": 4,
+          "enemies": 3,
+          "phase": "aim",
+          "ground": true,
+          "support": "B-02-center-lower-short-climb"
+        },
+        "jumped": true,
+        "ticks": 139
+      },
+      {
+        "goal": 505,
+        "initial": {
+          "x": 449.6,
+          "y": 439.44,
+          "hp": 1158,
+          "round": 4,
+          "enemies": 3,
+          "phase": "aim",
+          "ground": true,
+          "support": "B-02-center-lower-short-climb"
+        },
+        "after": {
+          "x": 504.59,
+          "y": 396.24,
+          "hp": 1158,
+          "round": 4,
+          "enemies": 3,
+          "phase": "aim",
+          "ground": true,
+          "support": "B-02-center-lower-short-climb"
+        },
+        "jumped": false,
+        "ticks": 167
+      },
+      {
+        "goal": 522,
+        "initial": {
+          "x": 504.59,
+          "y": 396.24,
+          "hp": 1158,
+          "round": 4,
+          "enemies": 3,
+          "phase": "aim",
+          "ground": true,
+          "support": "B-02-center-lower-short-climb"
+        },
+        "after": {
+          "x": 521.55,
+          "y": 506.62,
+          "hp": 1107,
+          "round": 4,
+          "enemies": 3,
+          "phase": "aim",
+          "ground": true,
+          "support": "E-joined-ordinary-floor"
+        },
+        "jumped": false,
+        "ticks": 44
+      },
+      {
+        "goal": 650,
+        "initial": {
+          "x": 521.55,
+          "y": 506.62,
+          "hp": 1107,
+          "round": 4,
+          "enemies": 3,
+          "phase": "aim",
+          "ground": true,
+          "support": "E-joined-ordinary-floor"
+        },
+        "after": {
+          "x": 649.69,
+          "y": 506,
+          "hp": 1158,
+          "round": 5,
+          "enemies": 4,
+          "phase": "aim",
+          "ground": true,
+          "support": "E-joined-ordinary-floor"
+        },
+        "jumped": false,
+        "ticks": 306
+      },
+      {
+        "goal": 800,
+        "initial": {
+          "x": 649.69,
+          "y": 506,
+          "hp": 1158,
+          "round": 5,
+          "enemies": 4,
+          "phase": "aim",
+          "ground": true,
+          "support": "E-joined-ordinary-floor"
+        },
+        "after": {
+          "x": 795.25,
+          "y": 425.75,
+          "hp": 1158,
+          "round": 6,
+          "enemies": 5,
+          "phase": "won",
+          "ground": true,
+          "support": "E-joined-ordinary-floor"
+        },
+        "jumped": false,
+        "ticks": 399
+      }
+    ],
+    "final": {
+      "x": 795.25,
+      "y": 425.75,
+      "hp": 1158,
+      "round": 6,
+      "enemies": 5,
+      "phase": "won",
+      "ground": true,
+      "support": "E-joined-ordinary-floor"
+    },
+    "endState": "won",
+    "stockEvents": [
+      "message",
+      "change",
+      "save",
+      "sound",
+      "fx"
+    ],
+    "foes": [
+      {
+        "id": "draft-pressure-0",
+        "name": "떠도는 혼",
+        "x": 1936,
+        "y": 3784.0650406504064
+      },
+      {
+        "id": "draft-pressure-1",
+        "name": "정예 혼을 삼킨 등불",
+        "x": 3456,
+        "y": 2247.2
+      },
+      {
+        "id": "draft-pressure-2",
+        "name": "떠도는 혼",
+        "x": 5872,
+        "y": 3694.8321167883214
+      },
+      {
+        "id": "draft-pressure-3",
+        "name": "정예 혼을 삼킨 등불",
+        "x": 2992,
+        "y": 3840
+      }
+    ]
+  },
+  "missingRemoteSignal": null
+}
