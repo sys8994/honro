@@ -1,0 +1,122 @@
+{
+  "campaignReady": 0,
+  "scope": "local independent authored geometry compile; never constitutive release evidence",
+  "checks": {
+    "geometryCompiled": 10,
+    "strictWorkshopValidated": 6,
+    "loaderCompile": 9,
+    "nativeMotionInReceipts": 8
+  },
+  "rows": [
+    {
+      "chapter": 1,
+      "receipt": "vector-production/01-02-r4-packet-local/01-transport-receipt.json",
+      "receiptSHA256": "51bcd8bec74676e979b3acd9cce565d003f65dd81b01c8dd1404b9ca3f2c4f6a",
+      "evidence": "Exact R4 4-hero per loader path",
+      "workshop": false,
+      "exactLocalScope": "loader+compile+native-motion",
+      "playColliderSHA256": "aa3dc0a4ae8824992916f074791e791664a71c53d110b2bef8b1a4f10511c9f2",
+      "worldColliderSHA256": "aa3dc0a4ae8824992916f074791e791664a71c53d110b2bef8b1a4f10511c9f2",
+      "campaignAdmitted": false
+    },
+    {
+      "chapter": 2,
+      "receipt": "vector-production/01-02-r4-packet-local/02-transport-receipt.json",
+      "receiptSHA256": "d1848a78e96db35f818f62d3db8641351ce16da962c85bfa6d07b3338e1a3713",
+      "evidence": "Exact R4 4-hero per loader path",
+      "workshop": false,
+      "exactLocalScope": "loader+compile+native-motion",
+      "playColliderSHA256": "a0f26cff01aa252b083adfb8ddc623941498808a65aa9797379f47201cc8b54d",
+      "worldColliderSHA256": "a0f26cff01aa252b083adfb8ddc623941498808a65aa9797379f47201cc8b54d",
+      "campaignAdmitted": false
+    },
+    {
+      "chapter": 3,
+      "receipt": "vector-production/03-stock-package-r1/receipt.json",
+      "receiptSHA256": "e4df954d2beac209f6011cf3ac3f531d485f187db4e56ae9b8b27b56980cc023",
+      "evidence": "Local original sill authored compile and movement; separate CLI status",
+      "workshop": true,
+      "exactLocalScope": "compiler+native-motion",
+      "playColliderSHA256": null,
+      "worldColliderSHA256": null,
+      "campaignAdmitted": false
+    },
+    {
+      "chapter": 4,
+      "receipt": "vector-production/04/standard-map-local/04-load-and-draw-evidence.json",
+      "receiptSHA256": "9b6056daee7f12a0770635c00b5e5790535abf08705efa29de86abac87495c03",
+      "evidence": "Local reciprocal-source authored map, UI not mounted",
+      "workshop": true,
+      "exactLocalScope": "loader+compile+native-motion",
+      "playColliderSHA256": null,
+      "worldColliderSHA256": null,
+      "campaignAdmitted": false
+    },
+    {
+      "chapter": 5,
+      "receipt": "gameplay-production/_integration/packet-compiler-local/05-RECEIPT.json",
+      "receiptSHA256": "41913fc215ac3b1b35eb58afb9f80825d0d1c5256509d4391221e9f47b411614",
+      "evidence": "Exact legacy renderer L0 owner; no fake reference or L1 relabel",
+      "workshop": false,
+      "exactLocalScope": "loader+compile+native-motion",
+      "playColliderSHA256": "3bed6724fbe77d55adef1022c937a0c6943830434217a9a087ff7eb1b7be865b",
+      "worldColliderSHA256": "3bed6724fbe77d55adef1022c937a0c6943830434217a9a087ff7eb1b7be865b",
+      "campaignAdmitted": false
+    },
+    {
+      "chapter": 6,
+      "receipt": "gameplay-production/_integration/packet-compiler-local/06-RECEIPT.json",
+      "receiptSHA256": "9a37bdfc4ff1fdee5a8d725a754c6e1d3e59290e45b65f69e73549cf68fca800",
+      "evidence": "Exact legacy renderer L0 owner; no fake reference or L1 relabel",
+      "workshop": false,
+      "exactLocalScope": "loader+compile+native-motion",
+      "playColliderSHA256": "c17aa19e1f126fc442da441d532fa559e683ca5cf8cfde99e5f26956e9638662",
+      "worldColliderSHA256": "cbdb034494d220c5bd6dc6d51388b558e461219a0e3fa96afe9fa3bee8d0b51e",
+      "campaignAdmitted": false
+    },
+    {
+      "chapter": 7,
+      "receipt": "gameplay-production/_integration/stage78-packet-local/07/CLI-RECEIPT.json",
+      "receiptSHA256": "7e34118539d784fe9647eb2289355be4944e9ac8455db655e139befb02bc70a3",
+      "evidence": "Actual original L1 owner, no mission/FAR admission",
+      "workshop": true,
+      "exactLocalScope": "loader+compile+native-motion",
+      "playColliderSHA256": "7cc7d894a8d4457db0aae331bf3eb2904d8af96c682f9a1c4393246a1bf30f72",
+      "worldColliderSHA256": "aeeeaa1f19a136072193545e5a668c97a57fea941c18ddb65968f474c6c57f99",
+      "campaignAdmitted": false
+    },
+    {
+      "chapter": 8,
+      "receipt": "gameplay-production/_integration/stage78-packet-local/08/CLI-RECEIPT.json",
+      "receiptSHA256": "d601a0deb88a473ac5829714ea4f8cca55379ee5fc190135bd4bb387ac6397e3",
+      "evidence": "Actual original L1 owner, no mission/FAR admission",
+      "workshop": true,
+      "exactLocalScope": "loader+compile+native-motion",
+      "playColliderSHA256": "901721de1ae340238e5b0a081861fb8fee3650d93e1496c519c50073439f7aec",
+      "worldColliderSHA256": "858974a56d2e448bde0149f9b3c4bad487b1fdf0ba459981144d71784f495f54",
+      "campaignAdmitted": false
+    },
+    {
+      "chapter": 9,
+      "receipt": "gameplay-production/_integration/stage59-60-packet-local/LOAD-RECEIPT.json",
+      "receiptSHA256": "f28d25968ab79f316d712d6047f901cca6a090e6959ee794ef1fac116124de02",
+      "evidence": "Existing authored offline shape; no neutral Engine battle in this loader receipt",
+      "workshop": true,
+      "exactLocalScope": "loader+compile",
+      "playColliderSHA256": "a2f2d75d9cfbd3611c22097f6b9c5ada5c2e6c2f903a844f4c0624327510d75d",
+      "worldColliderSHA256": "3d5ddd7dbe0b5d2087ca868b391bbaaf368f390e0c2cb77c5d3d015a81f112e3",
+      "campaignAdmitted": false
+    },
+    {
+      "chapter": 10,
+      "receipt": "gameplay-production/_integration/stage59-60-packet-local/LOAD-RECEIPT.json",
+      "receiptSHA256": "f28d25968ab79f316d712d6047f901cca6a090e6959ee794ef1fac116124de02",
+      "evidence": "Existing authored offline shape; no neutral Engine battle in this loader receipt",
+      "workshop": true,
+      "exactLocalScope": "loader+compile",
+      "playColliderSHA256": "2b26720eec311eaa800e92ce1c439b0721511b0aff3e27be0a69b52541d08f1e",
+      "worldColliderSHA256": "6594c55a365172c15a7a1eb5f80bfe56ab8d503c22ff50a269c09efa6e2764bf",
+      "campaignAdmitted": false
+    }
+  ]
+}
