@@ -22,6 +22,12 @@ def stage53(page,state,mobile,original,tap,out,case,packet_path):
     for field in ('id','cls','hp','maxHp','focus','maxFocus','shield','level','loadout','tune','ranks','h','r','equipmentState','equipmentIds','gearBonuses','attack','armor','maxMove','walkSpeed','regen'):
         assert own.get(field)==before['mage'].get(field),field
     assert page.evaluate("k=>localStorage.getItem(k)",STORE)==original
+    enemies=page.evaluate('''()=>{const e=HonroApp.engine;
+      return e.b.units.filter(u=>u.side===1).map(u=>({id:u.id,kind:u.honroType,loadout:u.loadout,name:u.name,x:u.x,y:u.y,grounded:e.grounded(u)}));}''')
+    assert {x['kind'] for x in enemies}=={'ghost','shade'} and len(enemies)==2,enemies
+    assert all(not {'LA01','LA02','A01'}.intersection(u['loadout']) and u['grounded'] for u in enemies),enemies
+    assert ['HSH02'] in [x['loadout'] for x in enemies],enemies
+    state['normal53AuthoredEnemies']=enemies
     action='[data-act6-qa-lookout]'
     skill='[data-action="combat-skill"][data-skill="M09"]'
     assert page.locator(skill).count()==0
@@ -57,7 +63,10 @@ def stage53(page,state,mobile,original,tap,out,case,packet_path):
     page.screenshot(path=out/f'{case}-native-53-stake.png')
     pose=page.evaluate("""()=>{const e=HonroApp.engine,b=e.b,u=e.active;let count=0;
       for(;count<350&&!['won','lost'].includes(b.phase)&&u.x<2725;count++){e.move(1,1/120);e.tick(1/120);}
-      if(b.phase!=='won'||!e.grounded(u))throw Error('Native 53 exit not completed');
+      for(let settle=0;settle<180&&b.phase!=='won'&&u.x>=2700&&e.grounded(u);settle++){
+        e.tick(1/120);e.checkEnd();
+      }
+      if(b.phase!=='won'||!e.grounded(u))throw Error('Native 53 exit not completed: '+JSON.stringify({phase:b.phase,id:u.id,active:e.active?.id,x:u.x,y:u.y,grounded:e.grounded(u),round:b.round,side:b.side,flags:b.honroState?.flags,shots:b.shot}));
       return {id:u.id,hp:u.hp,focus:u.focus,shield:u.shield,round:b.round,x:u.x,y:u.y,count,loadout:u.loadout};}""")
     page.clock.run_for(96)
     assert page.evaluate("HonroApp.done && HonroApp.engine.b.phase==='won'")
