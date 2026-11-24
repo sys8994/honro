@@ -341,5 +341,43 @@ const s44Landmark=S.landmark;S.landmark=function(c,l){
   cc.save();try{for(const [ink,p] of s44Paths()){cc.fillStyle=ink;cc.fill(p);}}finally{cc.restore();}}
  return out;
 };
+// Stage44 root plate underside (user request 2026-11-24). The plate is the crown of a root mound:
+// the Gwirim root body (act5:under:44, the same signed provider kept in saves) is drawn behind the
+// plate, clipped to a mound whose flanks spread down and out, then sinks into shadow with depth.
+// The withdrawn a5-under placement itself stays hidden; collision, saves and map revision are unchanged.
+// Top edge stays behind the plate (its bottom is y2230-3000, west end x-1000) and below the provider's own top (y2050-2210).
+// East of x7250 the plate thins into a rising root arm above that top, so the mound leaves the arm free there.
+const S44_MOUND_TOP=[[-980,2170],[-700,2150],[-300,2300],[0,2380],[500,2450],[6000,2450],[6400,2350],[6800,2240],[7000,2232],[7200,2236]];
+const S44_MOUND_EAST=[[7260,2250],[7520,2560],[7900,3060],[8380,3720],[8960,4520],[9620,5500],[10220,6600],[10660,7900],[10880,9600]];
+const S44_MOUND_WEST=[[-1020,2240],[-1300,2760],[-1720,3380],[-2240,4080],[-2780,4880],[-3240,5800],[-3620,7200],[-3900,9600]];
+const S44_MOUND_BOX={left:-3980,right:10960,top:2140,bottom:9650};
+// Rounded lumps along each flank (outward bulge), like the plate's own lower edge.
+const s44Flank=(ps,out)=>{const r=[ps[0]];for(let i=1;i<ps.length;i++){const a=ps[i-1],z=ps[i],dx=z[0]-a[0],dy=z[1]-a[1],L=Math.hypot(dx,dy),n=Math.max(1,Math.round(L/260));
+ for(let k=1;k<=n;k++){const t0=(k-1)/n,t1=k/n,tm=(t0+t1)/2,bulge=(k%2?70:42)*out;r.push([a[0]+dx*tm-dy/L*bulge,a[1]+dy*tm+dx/L*bulge,a[0]+dx*t1,a[1]+dy*t1]);}}return r;};
+let s44MoundPath=null;
+const s44Mound=()=>{if(s44MoundPath)return s44MoundPath;const p=new Path2D();p.moveTo(...S44_MOUND_TOP[0]);for(const q of S44_MOUND_TOP.slice(1))p.lineTo(...q);
+ for(const q of s44Flank(S44_MOUND_EAST,-1))q.length===4?p.quadraticCurveTo(...q):p.lineTo(...q);
+ p.lineTo(10880,9640);p.lineTo(-3900,9640);
+ for(const q of s44Flank([...S44_MOUND_WEST].reverse(),-1))q.length===4?p.quadraticCurveTo(...q):p.lineTo(...q);
+ p.closePath();return s44MoundPath=p;};
+const s44Plate=(b,l)=>b?.mode==='campaign'&&b.honroStage===44&&b.honroCanonical===true&&b.honroCustom===false&&b.honroMapOrigin==='campaign'&&
+ b.honroAuthoredId==='stage-44'&&b.width===6800&&l?.id==='a5-near'&&l.asset?.id==='act5:near:44'&&l.asset.rootExterior&&!l.rotation&&l.x===0&&l.y===0;
+const s44UnderAsset=b=>(b.honroLandmarks||[]).find(x=>x.id==='a5-under'&&x.asset?.id==='act5:under:44'&&x.asset.vector)?.asset||
+ (G.HONRO_PROJECT?.library||[]).find(a=>a.id==='act5:under:44'&&a.vector)||null;
+const s44UnderLandmark=S.landmark;S.landmark=function(c,l){
+ const b=this.battle;
+ if(c&&s44Plate(b,l)){const a=s44UnderAsset(b);if(a){const V=G.HonroVisualStyle,cc=V?V.context(c,'L2'):c,mound=s44Mound();
+  cc.save();try{cc.clip(mound);cc.save();cc.translate(160,586);cc.scale(3.2,3.2);G.HonroVectorArt.draw(cc,a,{x:0,y:0,scale:1});cc.restore();
+   const g=cc.createLinearGradient(0,2300,0,8200);g.addColorStop(0,'rgba(18,14,12,.38)');g.addColorStop(.28,'rgba(16,13,12,.62)');g.addColorStop(.6,'rgba(14,12,12,.84)');g.addColorStop(1,'rgba(12,11,12,.94)');
+   cc.fillStyle=g;cc.fill(mound);}finally{cc.restore();}}}
+ return s44UnderLandmark.call(this,c,l);
+};
+const s44UnderBounds=S._landmarkPaintBounds;S._landmarkPaintBounds=function(l){const q=s44UnderBounds.call(this,l);if(!q||!s44Plate(this.battle,l))return q;
+ return{left:Math.min(q.left,S44_MOUND_BOX.left),right:Math.max(q.right,S44_MOUND_BOX.right),top:Math.min(q.top,S44_MOUND_BOX.top),bottom:Math.max(q.bottom,S44_MOUND_BOX.bottom)};};
+// Stage44 (user request 2026-11-24): no terrain outline or walk-rim ink; the painted root plate reads on its own.
+const s44Readability=S.terrainReadability;S.terrainReadability=function(c,b,view){
+ if(b?.mode==='campaign'&&b.honroStage===44&&b.honroCanonical===true&&b.honroCustom===false&&b.honroMapOrigin==='campaign'&&b.honroAuthoredId==='stage-44'){this.terrainReadabilityStats={builds:0,groups:0,omitted:'stage44'};return;}
+ return s44Readability.call(this,c,b,view);
+};
 G.HonroAct5EdgeArt={version:3};
 })(globalThis);
