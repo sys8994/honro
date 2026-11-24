@@ -1,0 +1,398 @@
+{
+  "version": 6,
+  "id": "act6-06-scratch-v5-geometry",
+  "width": 6720,
+  "height": 5040,
+  "terrainBounds": {
+    "left": -4528,
+    "top": -1992,
+    "right": 11488,
+    "bottom": 13776
+  },
+  "playBounds": {
+    "left": 0,
+    "top": 0,
+    "right": 6720,
+    "bottom": 5040
+  },
+  "terrains": [
+    {
+      "id": "A-01-upper-entry",
+      "name": "A-01-upper-entry",
+      "type": "solid",
+      "baseMaterial": "rock",
+      "points": [
+        {
+          "x": 160,
+          "y": 1248
+        },
+        {
+          "x": 720,
+          "y": 1648
+        },
+        {
+          "x": 720,
+          "y": 1752
+        },
+        {
+          "x": 160,
+          "y": 1352
+        }
+      ]
+    },
+    {
+      "id": "C-01-west-upper-descent",
+      "name": "C-01-west-upper-descent",
+      "type": "solid",
+      "baseMaterial": "rock",
+      "points": [
+        {
+          "x": 376,
+          "y": 1776
+        },
+        {
+          "x": 688,
+          "y": 2208
+        },
+        {
+          "x": 688,
+          "y": 2312
+        },
+        {
+          "x": 376,
+          "y": 1880
+        }
+      ]
+    },
+    {
+      "id": "C-02-west-shaft-descent",
+      "name": "C-02-west-shaft-descent",
+      "type": "solid",
+      "baseMaterial": "rock",
+      "points": [
+        {
+          "x": 680,
+          "y": 2544
+        },
+        {
+          "x": 920,
+          "y": 2760
+        },
+        {
+          "x": 1000,
+          "y": 2816
+        },
+        {
+          "x": 1387.2,
+          "y": 3022.4
+        },
+        {
+          "x": 1387.2,
+          "y": 3126.4
+        },
+        {
+          "x": 1000,
+          "y": 2920
+        },
+        {
+          "x": 920,
+          "y": 2864
+        },
+        {
+          "x": 680,
+          "y": 2648
+        }
+      ]
+    },
+    {
+      "id": "C-03-west-refuge-lower",
+      "name": "C-03-west-refuge-lower",
+      "type": "solid",
+      "baseMaterial": "rock",
+      "points": [
+        {
+          "x": 1184,
+          "y": 3440
+        },
+        {
+          "x": 1558.4,
+          "y": 3785.6
+        },
+        {
+          "x": 1952,
+          "y": 3784
+        },
+        {
+          "x": 1952,
+          "y": 3824
+        },
+        {
+          "x": 1558.4,
+          "y": 3825.6
+        },
+        {
+          "x": 1558.4,
+          "y": 3889.6
+        },
+        {
+          "x": 1184,
+          "y": 3544
+        }
+      ]
+    },
+    {
+      "id": "B-01-center-stone-ascent",
+      "name": "B-01-center-stone-ascent",
+      "type": "solid",
+      "baseMaterial": "rock",
+      "points": [
+        {
+          "x": 2520,
+          "y": 2840
+        },
+        {
+          "x": 3528,
+          "y": 2201.6
+        },
+        {
+          "x": 3528,
+          "y": 2305.6
+        },
+        {
+          "x": 2520,
+          "y": 2944
+        }
+      ]
+    },
+    {
+      "id": "B-02-center-lower-short-climb",
+      "name": "B-02-center-lower-short-climb",
+      "type": "solid",
+      "baseMaterial": "rock",
+      "points": [
+        {
+          "x": 3368,
+          "y": 3696.6666666666665
+        },
+        {
+          "x": 3672,
+          "y": 3456
+        },
+        {
+          "x": 4080,
+          "y": 3136
+        },
+        {
+          "x": 4080,
+          "y": 3240
+        },
+        {
+          "x": 3672,
+          "y": 3560
+        },
+        {
+          "x": 3368,
+          "y": 3800.6666666666665
+        }
+      ]
+    },
+    {
+      "id": "A-upper-veranda",
+      "name": "A-upper-veranda",
+      "type": "solid",
+      "baseMaterial": "rock",
+      "points": [
+        {
+          "x": 800,
+          "y": 1136
+        },
+        {
+          "x": 3144,
+          "y": 1136
+        },
+        {
+          "x": 3144,
+          "y": 1200
+        },
+        {
+          "x": 800,
+          "y": 1200
+        }
+      ]
+    },
+    {
+      "id": "B-left-broken-balcony",
+      "name": "B-left-broken-balcony",
+      "type": "solid",
+      "baseMaterial": "rock",
+      "points": [
+        {
+          "x": 992,
+          "y": 2608
+        },
+        {
+          "x": 2056,
+          "y": 2608
+        },
+        {
+          "x": 2056,
+          "y": 2672
+        },
+        {
+          "x": 992,
+          "y": 2672
+        }
+      ]
+    },
+    {
+      "id": "B-central-lower-floor",
+      "name": "B-central-lower-floor",
+      "type": "solid",
+      "baseMaterial": "rock",
+      "points": [
+        {
+          "x": 2112,
+          "y": 3840
+        },
+        {
+          "x": 3288,
+          "y": 3840
+        },
+        {
+          "x": 3536,
+          "y": 4056
+        },
+        {
+          "x": 3536,
+          "y": 4120
+        },
+        {
+          "x": 3288,
+          "y": 3904
+        },
+        {
+          "x": 2112,
+          "y": 3904
+        }
+      ]
+    },
+    {
+      "id": "E-joined-ordinary-floor",
+      "name": "E-joined-ordinary-floor",
+      "type": "solid",
+      "baseMaterial": "rock",
+      "points": [
+        {
+          "x": 3536,
+          "y": 4056
+        },
+        {
+          "x": 5200,
+          "y": 4048
+        },
+        {
+          "x": 6296,
+          "y": 3472
+        },
+        {
+          "x": 6536,
+          "y": 3232
+        },
+        {
+          "x": 6536,
+          "y": 3312
+        },
+        {
+          "x": 6296,
+          "y": 3552
+        },
+        {
+          "x": 5200,
+          "y": 4128
+        },
+        {
+          "x": 3536,
+          "y": 4136
+        }
+      ]
+    },
+    {
+      "id": "west-extension-prototype",
+      "name": "west-extension-prototype",
+      "type": "solid",
+      "baseMaterial": "rock",
+      "points": [
+        {
+          "x": -4520,
+          "y": 232
+        },
+        {
+          "x": -3400,
+          "y": 416
+        },
+        {
+          "x": -1976,
+          "y": 584
+        },
+        {
+          "x": -1160,
+          "y": 1032
+        },
+        {
+          "x": -320,
+          "y": 1120
+        },
+        {
+          "x": 0,
+          "y": 1248
+        },
+        {
+          "x": 112,
+          "y": 1248
+        },
+        {
+          "x": 112,
+          "y": 1392
+        },
+        {
+          "x": 0,
+          "y": 1392
+        },
+        {
+          "x": -320,
+          "y": 1264
+        },
+        {
+          "x": -1160,
+          "y": 1176
+        },
+        {
+          "x": -1976,
+          "y": 728
+        },
+        {
+          "x": -3400,
+          "y": 560
+        },
+        {
+          "x": -4520,
+          "y": 376
+        }
+      ],
+      "playProjection": {
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 6720,
+          "bottom": 5040
+        },
+        "start": {
+          "x": 0,
+          "y": 1248
+        }
+      }
+    }
+  ],
+  "elements": [],
+  "materials": []
+}
