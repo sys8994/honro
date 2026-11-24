@@ -1,0 +1,194 @@
+{
+  "scope": "local packaged vector ownership only; no changes or registration",
+  "assetRows": 122,
+  "uniqueNames": 113,
+  "duplicateNames": 9,
+  "identicalAliases": 0,
+  "differentPayloadNames": 9,
+  "chaptersInConflict": [
+    [
+      1,
+      2
+    ],
+    [
+      7,
+      8
+    ],
+    [
+      9,
+      10
+    ]
+  ],
+  "packets": [
+    {
+      "chapter": 1,
+      "blob": "vector-production/01-02-r4-packet-local/PACKET-01/web/data/chapter-01-assets.fa322c2d551dc25b.json",
+      "sha256": "fa322c2d551dc25b27acfc1a0bf2e1338543fe4603ac2069d8a6a3e120af2aed",
+      "assets": 10
+    },
+    {
+      "chapter": 2,
+      "blob": "vector-production/01-02-r4-packet-local/PACKET-02/web/data/chapter-01-assets.0d347600c728ee1a.json",
+      "sha256": "0d347600c728ee1a4945ec55c244af9bbe609edf56a8547690e57f1a808ca1b5",
+      "assets": 16
+    },
+    {
+      "chapter": 3,
+      "blob": "vector-production/03-stock-package-r1/packet/web/data/chapter-01-assets.6fb1798c99cbb198.json",
+      "sha256": "6fb1798c99cbb198f8416777ccf5c4c12239ba825e0d6e2caa4513ba3c0a91e0",
+      "assets": 17
+    },
+    {
+      "chapter": 4,
+      "blob": "vector-production/04/packet-compiled-local/web/data/chapter-01-assets.5d2d8b4da4f8c0ca.json",
+      "sha256": "5d2d8b4da4f8c0caf1fd6dd949973b9738e6b01e92d55ad169a5648dc9d85318",
+      "assets": 18
+    },
+    {
+      "chapter": 5,
+      "blob": "gameplay-production/_integration/packet-compiler-local/05-PACKET/web/data/chapter-01-assets.b4496d3ef996b1a7.json",
+      "sha256": "b4496d3ef996b1a7ffe0323c65000c0a3b7b8a137b735fa540567cf764cbaaec",
+      "assets": 1
+    },
+    {
+      "chapter": 6,
+      "blob": "gameplay-production/_integration/stage56-r4-packet-local/PACKET/web/data/chapter-01-assets.8ff6141c13df77d7.json",
+      "sha256": "8ff6141c13df77d7f69c123c205e04fcd1991de4441b4a592ca7bf590bfe3aba",
+      "assets": 1
+    },
+    {
+      "chapter": 7,
+      "blob": "gameplay-production/_integration/stage78-packet-local/07/CLI/web/data/chapter-01-assets.842de837c7138dca.json",
+      "sha256": "842de837c7138dca540b0ee4d44d159c74d9f8dd7f3d16cac95352736772f99c",
+      "assets": 22
+    },
+    {
+      "chapter": 8,
+      "blob": "gameplay-production/_integration/stage78-packet-local/08/CLI/web/data/chapter-01-assets.1bea1ae56676b91a.json",
+      "sha256": "1bea1ae56676b91a7c2d5d7c355ac7af423959f2111805638804667c3d970131",
+      "assets": 30
+    },
+    {
+      "chapter": 9,
+      "blob": "gameplay-production/_integration/stage59-60-packet-local/PACKET-59/web/data/chapter-01-assets.24f7d6dcb1ddb2af.json",
+      "sha256": "24f7d6dcb1ddb2af0670a228ee132f773ab27804e6bd6af7aa1529aaf1ede746",
+      "assets": 4
+    },
+    {
+      "chapter": 10,
+      "blob": "gameplay-production/_integration/stage59-60-packet-local/PACKET-60/web/data/chapter-01-assets.690fa446cdd54e96.json",
+      "sha256": "690fa446cdd54e964870bee414ce1dd97f039ce0a3d47b024903c4a9c0589e16",
+      "assets": 3
+    }
+  ],
+  "conflicts": {
+    "r4-continental-continuation": [
+      {
+        "chapter": 1,
+        "assetSHA256": "6410bc58c9bacbbf1a74babbbf01d67b33471393ddcbbd7a8805f4fb2580bc62",
+        "visualSHA256": "d3f0733d4afa64aadd3ba6cedf97272e35eba430efc47d37297b615a8fc44c38"
+      },
+      {
+        "chapter": 2,
+        "assetSHA256": "1ac02c38e0e5f553210663aeab6d8890c64c21b35610be24cf253a5bf6fb4b16",
+        "visualSHA256": "d3f0733d4afa64aadd3ba6cedf97272e35eba430efc47d37297b615a8fc44c38"
+      }
+    ],
+    "r4-wrap-strata": [
+      {
+        "chapter": 1,
+        "assetSHA256": "64f97929dd4d39b4c3e9b2d204c4d8feca4f3381a210598cd16d9e9155b81201",
+        "visualSHA256": "4e62c16981f455e903a892908b193489d847c28c3810e9e8c514c9f63dd8e153"
+      },
+      {
+        "chapter": 2,
+        "assetSHA256": "917e50b8383030f50e22e2867bb83dd8b3b814833cb1bfdcfe6a4ac66dbb3017",
+        "visualSHA256": "893a56bb2da49a7598dd0ac336cef7ca06e27fc5e2f918a5237a2f2c51bcd7e6"
+      }
+    ],
+    "edge-joint-east-body": [
+      {
+        "chapter": 7,
+        "assetSHA256": "4e4efcca2b7387877df4348884561ae643dc4d1a4c68e0d1f6afedb1d6089a7f",
+        "visualSHA256": "a0e1705562a07d9fc63f77ff335e6c095d920c50bdc64d122b9edbac49bb89c1"
+      },
+      {
+        "chapter": 8,
+        "assetSHA256": "0c48be2b0093e30de32f2d64fabc2441bc3194240bcab873ba67fece35622e1d",
+        "visualSHA256": "17f7c1c24c9d7d12e41c93c258e3bd12562407289ac8ac11c6d3f7148860f767"
+      }
+    ],
+    "edge-joint-east-facets": [
+      {
+        "chapter": 7,
+        "assetSHA256": "663372564b1ae06f68d4cfaa25e64c45fe0d1162d0f6ff30855ff66d63611d29",
+        "visualSHA256": "e6b4fe1da9baa3b945a62ef24331190c0bb58b01831f96a0db08e4174e1adc35"
+      },
+      {
+        "chapter": 8,
+        "assetSHA256": "de7af20390b9d10dc9930a4fc2d468abf236f1e5509ddab28030a524ed943c1c",
+        "visualSHA256": "f1dd9cad1f514ff4bb6c10019aff2d5e94d54eb2ebddb8ccff4a5f8987402e03"
+      }
+    ],
+    "edge-joint-west-body": [
+      {
+        "chapter": 7,
+        "assetSHA256": "95ad2c327d93a445f267d30404ccdc885962e23f4bc1b80589e8cc48964a9996",
+        "visualSHA256": "312bc6c4cb4b1d74ed9446c4a8cd994b0a50a5ed9e2667ebaddad5c74bcbe7e7"
+      },
+      {
+        "chapter": 8,
+        "assetSHA256": "bd1b0809a093ef3c44ea8e24db79217e147fc8543aa76fab589f26d6c6661e7f",
+        "visualSHA256": "8b37b079c05f9e7b30880ca14704606dde12454b7b8312310b9168e68d44909e"
+      }
+    ],
+    "edge-joint-west-facets": [
+      {
+        "chapter": 7,
+        "assetSHA256": "5deddc72eb6f3803719ea8590fd7bcc09ac3da281dd0fbc3fbc6b6bd3448fc3d",
+        "visualSHA256": "a3ff6ae6e9e519d420cffa76caee0e3adba6d13ffc914799377f1e9625e490f9"
+      },
+      {
+        "chapter": 8,
+        "assetSHA256": "3a3d974d5d8758b9208e39d43c542292e67e396cafec61d4317a454300dc56fa",
+        "visualSHA256": "bfb633e89c6c89eb2b365bd84dcd5c9befa340394fbf37fb4332467883cf595e"
+      }
+    ],
+    "rear-only-nonsolid": [
+      {
+        "chapter": 9,
+        "assetSHA256": "4aab8a2ab64000cd669a6d4bc981fc41276e397bc12269e29f0aed6a257a32fa",
+        "visualSHA256": "401a8bdba49db62347586cd01edf9842b6326fd0d87789da06754fd1271c529f"
+      },
+      {
+        "chapter": 10,
+        "assetSHA256": "8f9e2ec9c4970266789afe5894fdf1a40f42af9915247b983971a8f46b900539",
+        "visualSHA256": "f2bd1fe6d2b24e72bbf2f50639524e45e7a55fb8d89e7b13c6731b6127e72290"
+      }
+    ],
+    "painted-coupled-bedrock": [
+      {
+        "chapter": 9,
+        "assetSHA256": "defb2259ed39b37ef1ee8bd05427b6c11bb230effc38de2241d70b07d4472de4",
+        "visualSHA256": "9c660fcef9ab188d0721169a6bc3826b331df3c28fc3045197b7d1c805b5e25e"
+      },
+      {
+        "chapter": 10,
+        "assetSHA256": "7a53cc0beb82d761aa653da2b67dc0ae8cb45f85f123635f5bbf57b75e1824fd",
+        "visualSHA256": "718e86fadf6e27463ff08309e8954a0cb802155d9e76b5fa79a102d6a4eb4fd1"
+      }
+    ],
+    "authored-contact-rim": [
+      {
+        "chapter": 9,
+        "assetSHA256": "fbaa24d0dcb2280c577614d77d7b440d1f5a11d7488e322199a35504836275ca",
+        "visualSHA256": "301e9945a18827abbc5cf61f6136c59c6a63f0b320137dc2a9d746c1f540553d"
+      },
+      {
+        "chapter": 10,
+        "assetSHA256": "46a6e6d2ebf889a1704a54a3d6cb6b150e077ac316888dfdbae94a020f36249d",
+        "visualSHA256": "88edcf72a4bbea526a33c1c2a7b8fc4c59f350d7643ce4f6bc433e8dae23b5fd"
+      }
+    ]
+  }
+}
