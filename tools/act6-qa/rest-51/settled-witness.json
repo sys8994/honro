@@ -1,0 +1,240 @@
+{
+  "actual": true,
+  "source": "7cc35601a74e9390221f9346ec53a4030a1455cc48a229de1daf696d5f2969ae",
+  "round": 17,
+  "cards": [
+    "산줄기는 협곡 중간에서 끊겨 있었다. 건너편 암벽에 석교와 산문이 남아 있었다.",
+    "일행 뒤로 길이 사라졌다. 돌아보면 방금 넘은 산마저 보이지 않았다.",
+    "산문에 닿자 조금 전까지 능선을 훑던 바람 소리가 뚝 끊겼다.",
+    "동이 트기 전에 일행은 암벽과 석교, 옛 종터부터 살피기로 했다.",
+    "제 6막 · 무명사<small>다음 여정 · 준비 중</small>"
+  ],
+  "persistCount": 8,
+  "rest": 1,
+  "profile": {
+    "version": 2,
+    "revision": 13,
+    "cleared": {
+      "50": {
+        "visits": 1,
+        "rounds": 17
+      }
+    },
+    "party": [
+      "archer"
+    ],
+    "loadouts": {
+      "mage": [
+        "M01",
+        "M10",
+        "M07"
+      ],
+      "archer": [
+        "A01",
+        "A14",
+        "A02",
+        "A05"
+      ],
+      "knight": [
+        "S00",
+        "S01",
+        "S03"
+      ],
+      "occultist": [
+        "O01",
+        "O04",
+        "O03",
+        "O06"
+      ]
+    },
+    "tuning": {
+      "mage": 0.5,
+      "archer": 0.5,
+      "knight": 0.5,
+      "occultist": 0.5
+    },
+    "settings": {
+      "sound": true,
+      "music": true,
+      "volume": 0.55,
+      "assist": false,
+      "shake": true,
+      "quality": "high",
+      "difficulty": "normal",
+      "speed": 1.5,
+      "playerSpeed": 1.5,
+      "orientation": "auto",
+      "musicVolume": 0.65,
+      "minimapVisible": true,
+      "debugTerrainOutline": false,
+      "haptics": true
+    },
+    "saved": null,
+    "lastStage": 1,
+    "mapNode": 1,
+    "tutorial": false,
+    "heroes": {
+      "mage": {
+        "xp": 225393,
+        "ranks": {
+          "M01": 1,
+          "M07": 4,
+          "M10": 3
+        },
+        "statTraining": 44,
+        "kills": 1,
+        "damage": 3663,
+        "skillRevision": 1,
+        "martialRevision": 1
+      },
+      "archer": {
+        "xp": 225393,
+        "ranks": {
+          "A01": 1,
+          "A14": 4,
+          "A02": 4,
+          "A05": 4
+        },
+        "statTraining": 39,
+        "kills": 10,
+        "damage": 10394,
+        "skillRevision": 1,
+        "martialRevision": 1
+      },
+      "knight": {
+        "xp": 225393,
+        "ranks": {
+          "S00": 1,
+          "S01": 4,
+          "S03": 4
+        },
+        "statTraining": 43,
+        "kills": 2,
+        "damage": 7615,
+        "skillRevision": 1,
+        "martialRevision": 1
+      },
+      "occultist": {
+        "xp": 225393,
+        "ranks": {
+          "O01": 1,
+          "O06": 5,
+          "O02": 4,
+          "O03": 3,
+          "O04": 2
+        },
+        "statTraining": 37,
+        "kills": 4,
+        "damage": 11392,
+        "skillRevision": 1,
+        "martialRevision": 1,
+        "occultRevision": 1
+      }
+    },
+    "recruited": [
+      "archer",
+      "mage",
+      "knight",
+      "occultist"
+    ],
+    "schema": 5,
+    "game": "honro",
+    "seen": {
+      "act-ending-v1:50": true
+    },
+    "record": [
+      {
+        "place": "산이 끊긴 곳",
+        "text": "설오 · 산문까지 왔습니다. 절 안에서는 더는 바람 소리도 안 들립니다.\n담허 · 날이 밝기 전에 암벽과 석교, 종터를 살피세."
+      }
+    ],
+    "honroFlags": {
+      "act5.mumyungsaSeen": true,
+      "cleared-50": true
+    },
+    "equipment": {
+      "schema": 1,
+      "definitionRevision": 1,
+      "runId": "eq-mwuu06k6-y7h4w7qc",
+      "ownedItemIds": [
+        "itm_se_01",
+        "itm_da_01",
+        "itm_hw_01",
+        "itm_so_01"
+      ],
+      "eligibleEventIds": [
+        "eq_se_start",
+        "eq_da_join",
+        "eq_hw_join",
+        "eq_so_join"
+      ],
+      "equippedByClass": {
+        "archer": {
+          "personal": null,
+          "common": null
+        },
+        "mage": {
+          "personal": null,
+          "common": null
+        },
+        "knight": {
+          "personal": null,
+          "common": null
+        },
+        "occultist": {
+          "personal": null,
+          "common": null
+        }
+      },
+      "rewardLedger": {
+        "eq_se_start": {
+          "state": "committed",
+          "choiceGroup": null,
+          "selectedItemId": "itm_se_01",
+          "notified": false
+        },
+        "eq_da_join": {
+          "state": "committed",
+          "choiceGroup": null,
+          "selectedItemId": "itm_da_01",
+          "notified": false
+        },
+        "eq_hw_join": {
+          "state": "committed",
+          "choiceGroup": null,
+          "selectedItemId": "itm_hw_01",
+          "notified": false
+        },
+        "eq_so_join": {
+          "state": "committed",
+          "choiceGroup": null,
+          "selectedItemId": "itm_so_01",
+          "notified": false
+        }
+      },
+      "initialAutoEquip": true,
+      "basicPrepared": []
+    },
+    "honroClearReports": {},
+    "honroReportNotice": {
+      "stage": 50,
+      "attempt": "honro-map-stage-50-1795533027274-1795533341356-1"
+    },
+    "honroBattle": null,
+    "honroJourney": {
+      "version": 1,
+      "talked": {},
+      "growthObserved": {
+        "session": "honro-map-stage-50-1795533027274",
+        "earned": {
+          "archer": 51,
+          "mage": 51,
+          "knight": 51,
+          "occultist": 51
+        }
+      },
+      "newGrowth": {}
+    }
+  },
+  "scope": "exact native objective, winner then frozen stock App outcome/ending with mock node and memory holder; no normal Browser/UI or actual user save"
+}

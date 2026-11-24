@@ -1,14 +1,23 @@
 import ts from 'typescript';
 import {readFile,readdir} from 'node:fs/promises';
 import path from 'node:path';
+import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 
-export async function buildCore(){
+export function scopeNormal51Engine(s){
+  const bytes=Buffer.from(s),hash=createHash('sha1').update('blob '+bytes.length+'\0').update(bytes).digest('hex');
+  if(hash!=='ecdaa9ed59f449296a3f664fbcc03a58a07b6881')throw Error('Unexpected pinned Stage51 engine '+hash);
+  const a='get stage() { return STAGES[this.b.stageId - 1]; }';
+  if(s.split(a).length!==2)throw Error('Stage51 live engine hook source drift');
+  return s.replace(a,'get stage() { return normal51Provider.content(this.b) || STAGES[this.b.stageId - 1]; }');
+}
+export async function buildCore({normal51=false}={}){
   const dir=path.join(path.dirname(fileURLToPath(import.meta.url)),'../../shared/engine/src');
   const files=(await readdir(dir)).filter(f=>f.endsWith('.ts')).sort();
   const modules=[];
   for(const f of files){
-    const code=await readFile(path.join(dir,f),'utf8');
+    let code=await readFile(path.join(dir,f),'utf8');
+    if(normal51&&f==='engine.ts')code=scopeNormal51Engine(code);
     const out=ts.transpileModule(code,{compilerOptions:{target:ts.ScriptTarget.ES2020,module:ts.ModuleKind.CommonJS,strict:true},fileName:f});
     modules.push(`${JSON.stringify(f.slice(0,-3))}: function(module,exports,require){\n${out.outputText}\n}`);
   }
