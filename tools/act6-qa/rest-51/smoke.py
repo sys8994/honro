@@ -9,6 +9,7 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlsplit
 from playwright.sync_api import sync_playwright
+from normal52_witness import stage52
 
 a, b, out = [Path(x).resolve() for x in sys.argv[1:]]
 out.mkdir(parents=True, exist_ok=True)
@@ -193,10 +194,10 @@ def trial(browser,label,w,h,mobile,arm,kind):
                 assert page.evaluate("""()=>{const e=HonroApp.engine,b=e.b,t=e.unit('crest-champion');
                     return t.dead&&t.hp<=0&&b.units.filter(u=>u.side===0&&!u.summoned&&!u.honroAlly).every(u=>u.hp>0&&e.grounded(u)&&u.x>=b.width*.9)&&b.honroGrowth.limit.total===0&&b.honroGrowth.limit.combat===0;}""")
                 state['campaign51Receipt']=q
-                assert page.locator('[data-act6-qa-next="52"]').count()==0
                 assert page.evaluate("HonroApp.launch(52,false)===false")
                 assert page.evaluate("key=>localStorage.getItem(key)",KEY)==original
                 page.screenshot(path=out/f'{key}-native-51-terminal.png')
+                stage52(page,state,mobile,original,tap,out,key,'/'+PACKETS[52][0])
         assert not state['errors'],state
         state['status']='PASS'
     finally:
@@ -209,7 +210,7 @@ try:
             for arm,kind in [('OFF','fresh-pending'),('ON','fresh-pending'),('ON','legacy-format')]:
                 trial(browser,label,w,h,mobile,arm,kind)
         browser.close()
-    evidence['status']='PASS_50_STOCK_ENDING_REST_THEN_NORMAL_51_WITH_NATIVE_ACTIONS'
+    evidence['status']='PASS_50_STOCK_ENDING_REST_THEN_NATIVE_NORMAL_51_AND_52'
 finally:
     (out/'BROWSER.json').write_text(json.dumps(evidence,ensure_ascii=False,indent=2)+'\n')
     for server in [a_srv,b_srv]:

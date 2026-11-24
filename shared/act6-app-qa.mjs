@@ -66,6 +66,8 @@ export async function createAct6WebQa(project,repoRoot,env=process.env){
             s.button.dataset.act6Normal51Receipt=JSON.stringify(witness);
           }
         }`);
+  source=replaceOne(source,'        permits.delete(app);\n        const {packet,compiled,known}=grant','        permits.delete(app);\n        if(id===52&&active.get(app)?.normal51===true)return enterNormal52(app,grant,active.get(app));\n        const {packet,compiled,known}=grant');
+  source=replaceOne(source,'terminal?.stage===51&&!s.ordinaryRest','terminal?.stage===51&&(!s.ordinaryRest||s.normal51===true)');
   first=replaceOne(first,'||b.honroGrowth||', "||b.honroGrowth&&!(source?.kind==='normal-owned-release'&&b.honroGrowth.limit.total===0&&b.honroGrowth.limit.combat===0)||");
  }
  return {source:replaceOne(replaceOne(source,'/* FIRST_OWNER */',first.replace('export function createFirstMissionOwner','function createFirstMissionOwner')),'/* FIFTY_OWNER */','const {createFiftyRestAdmission,buildPartyFromNormalRest,bindOrdinaryFiftyRestUI}=(()=>{'+rest.replaceAll('export function ','function ')+'\nreturn {createFiftyRestAdmission,buildPartyFromNormalRest,bindOrdinaryFiftyRestUI};})();'),packets};

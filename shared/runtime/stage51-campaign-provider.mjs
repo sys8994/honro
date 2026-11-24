@@ -8,8 +8,9 @@ function session(){
  };
  return Object.freeze({
   begin(st,project,profile,content,budget,run){
-   if(!st||project?.stages?.[0]!==st||project.stages.length!==1||content?.id!==51||budget?.id!==51||
-      st.id!=='stage-51'||st.metadata?.stageId!==51||st.metadata?.campaign!==true||st.metadata?.act!==6)return null;
+   const id=content?.id;
+   if(![51,52].includes(id)||!st||project?.stages?.[0]!==st||project.stages.length!==1||budget?.id!==id||
+      st.id!=='stage-'+id||st.metadata?.stageId!==id||st.metadata?.campaign!==true||st.metadata?.act!==6||st.metadata?.actStage!==id-50)return null;
    const o=Object.freeze({origin:'campaign'}),r=Object.freeze({st,project,profile,content,budget});pending.set(o,r);
    try{const b=run(o);return battles.get(b)===r?b:null;}finally{pending.delete(o);}
   },

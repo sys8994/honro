@@ -40,3 +40,55 @@
           state.button=button;ui.append(button);return true;
         }catch(error){app.stopBattle();app.showTitle();throw error;}
       }
+
+      function enterNormal52(app,grant,predecessor){
+        const previous=predecessor.terminal,e=predecessor.engine,{packet,known}=grant,m=packet.map,d=packet.mission;
+        const supported=app.profile===app.normalProfile&&active.get(app)===predecessor&&app.engine===e&&e.b===predecessor.b&&predecessor.normal51;
+        check(supported&&e.b.phase==='won'&&app.done&&e.stage.id===51&&normal51Provider.content(e.b)===e.stage&&
+          previous?.stage===51&&previous.flags?.['act6.threeSitesSighted']===true&&previous.settlement===false,'Previous live owner lost');
+        const full=e.b.units.filter(u=>u.side===0&&!u.summoned&&!u.honroAlly);
+        check(full.length===4&&previous.actors.length===4&&previous.actors.every(v=>full.some(u=>carryFields.every(k=>same(u[k],v[k]))&&u.hp>0&&!u.dead)),'Previous live roster changed');
+        const p=structuredClone(app.profile),enemyRows=packet.owner.actors.filter(u=>u.side===1);
+        const fields=['level','h','r','focus','maxFocus','loadout','ranks','armor','name','honroType','honroVariant','fixed','flying','facing','hp','maxHp','attack','combatBaseHp','combatBaseAttack','honroDifficulty','honroAirborneBalanceRevision','honroCampaignEnemyDamageRevision','honroShotTarget','honroMinion','boss','honroMidboss','maxMove','moveRange'];
+        const st={...m,id:'stage-52',metadata:{stageId:52,campaign:true,act:6,actStage:2},units:m.units.map(u=>{
+          if(u.team!=='enemy')return u;
+          const a=enemyRows.find(x=>x.id===u.id);
+          check(a&&a.cls===u.kind&&a.x===u.x&&a.y===u.y,'Signed normal 52 foe recipe mismatch');
+          return {...u,stageOverrides:Object.fromEntries(fields.filter(k=>Object.hasOwn(a,k)).map(k=>[k,structuredClone(a[k])]))};})};
+        const project={...G.HONRO_PROJECT,stages:[st],library:packet.library};
+        const content=Object.freeze({...e.stage,id:52,local:52,actStage:2,requires:[51],name:d.name,goal:d.marks[0].label,
+          w:st.width,h:st.height,victoryRule:{kind:'scripted',target:'act6-owned-52'}});
+        const previousBudget=normal51Provider.budget(e.b);
+        check(previousBudget?.id===51&&e.b.honroGrowth?.limit.total===0&&e.b.honroGrowth?.limit.combat===0,'Missing previous budget quote');
+        const budget=Object.freeze({...previousBudget,id:52});
+        const b=normal51Provider.begin(st,project,p,content,budget,o=>G.HonroMaps.createBattle(st,project,p,o));
+        check(b?.stageId===52&&b.honroStage===52&&b.mode==='campaign'&&normal51Provider.content(b)===content&&b.honroGrowth?.limit.total===0&&b.honroGrowth.limit.combat===0,'Native 52 factory refused');
+        for(const [value,expected] of [[b.terrain,d.shape.playSHA],[b.honroWorldTerrain,d.shape.worldSHA]]){
+          const key=JSON.stringify(value);check(new Map(known).get(key)===expected,'Native 52 collision content changed');fingerprints.set(key,expected);
+        }
+        const exactFields=new Set([...carryFields,'equipmentIds','gearBonuses','attack','armor','maxMove','walkSpeed','regen']);
+        b.units=b.units.map(u=>{
+          if(u.side!==0||u.summoned)return u;
+          const old=full.find(r=>r.id===u.id&&r.cls===u.cls);
+          check(old,'Native 52 identity missing');
+          const body={...u};
+          for(const k of exactFields){if(Object.hasOwn(old,k))body[k]=structuredClone(old[k]);else delete body[k];}
+          body.moveLeft=body.maxMove;
+          check(C.validTerrainContactPose(b.terrain,body),'Carried body incompatible with signed 52 arrival');
+          return body;
+        });
+        const owned={...d,runtimeReleaseEnabled:true};
+        app.stopBattle();
+        const old={profile:app.profile,stage:app.stage,stageId:app.stageId,training:app.training,selectedByUnit:app.selectedByUnit,done:app.done};
+        const state={old,b,packet:{...packet,mission:owned},previous,terminal:null,ordinaryRest:true,normal51:true};
+        active.set(app,state);manifest.rows[52]=owned;app.close();
+        Object.assign(app,{stageId:52,stage:content,training:false,selectedByUnit:{}});
+        try{
+          app.mount(b,{freshReport:true,reportScope:'custom'});
+          check(app.engine===state.engine&&app.engine.stage===content&&app.engine.b===b&&app.profile===app.normalProfile&&app.scene&&app.screen==='battle','Stock normal 52 mount refused');
+          const ui=appUI(app);check(ui,'Normal battle objective owner absent');const button=document.createElement('button');
+          button.type='button';button.dataset.act6QaLookout='';styleAction(button);button.textContent=d.marks[0].label;
+          button.addEventListener('click',event=>{if(event.isTrusted&&event.currentTarget===button)action(app,event);});
+          state.button=button;ui.append(button);return true;
+        }catch(error){app.stopBattle();app.showTitle();throw error;}
+      }
