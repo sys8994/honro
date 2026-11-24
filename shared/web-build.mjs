@@ -60,7 +60,10 @@ export function reuseBinaryEmissions(emit){
 
 // Generated files are immutable by content. Stable HTML names remain the public entrypoints.
 export async function buildWeb({vector=true,destination=path.join(root,'HONRO.html')}={}) {
-  if(process.env.HONRO_ACT6_QA_WEB_BUILD==='1'){
+  const releaseAPI=await import('./act6-release-settings.mjs'),release=await releaseAPI.readAct6Release(root);
+  if(release)assert.equal(path.resolve(destination),path.join(root,'HONRO.html'),'Act6 release applies to the normal browser build only');
+  const buildEnv=release?releaseAPI.releaseBuildFlags(root):process.env;
+  if(!release&&buildEnv.HONRO_ACT6_QA_WEB_BUILD==='1'){
     const {assertQaWebRoot}=await import('./act6-app-qa.mjs');
     await assertQaWebRoot(root);
   }
@@ -117,14 +120,14 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
     const file=await emit('runtime',name,'js',loaderImport+records.map(([global,file,refs])=>`globalThis.${global}=await loadData(${quote(file)},${quote(refs)},${quote({svgSources:global==='HONRO_ACT1_FAR_DATA'?'optional':false})});`).join('\n')+'\n');
     moduleData.set(file,records.map(([,file])=>file));return file;
   };
-  const act6QaWeb=process.env.HONRO_ACT6_QA_WEB_BUILD==='1';
-  if(act6QaWeb&&(process.env.HONRO_ACT6_QA_WEB_ROOT!==root||path.resolve(destination)!==path.join(root,'HONRO.html')))
+  const act6QaWeb=buildEnv.HONRO_ACT6_QA_WEB_BUILD==='1';
+  if(act6QaWeb&&(buildEnv.HONRO_ACT6_QA_WEB_ROOT!==root||path.resolve(destination)!==path.join(root,'HONRO.html')))
     throw Error('Act6 Web QA has one standard shell in the explicit disposable checkout');
-  const entries=await runtimeEntries({vector,app:true,act6QaWeb}),common=[],gameOnly=[],optionalModules={};
+  const entries=await runtimeEntries({vector,app:true,act6QaWeb,act6BuildEnv:buildEnv,act6Release:release}),common=[],gameOnly=[],optionalModules={};
   const stockBytes=new Map(), normalSwap=new Map();
   let normal51Module;
   if(act6QaWeb){
-    const normal51=process.env.HONRO_ACT6_QA_NORMAL51==='1';
+    const normal51=buildEnv.HONRO_ACT6_QA_NORMAL51==='1';
     if(normal51){
       const {scope51}=await import('./stage51-compiler.mjs');
       const changed=[];
@@ -139,12 +142,56 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
     const idx=entries.findIndex(entry=>entry.name==='act6-app-qa');
     assert(idx>=0&&entries.filter(entry=>entry.qaAct6).length===1,'Expected exact one Act6 QA pilot');
     const [{qaAct6}]=entries.splice(idx,1);
-    const descriptors={origin:'http://127.0.0.1:18861',rows:{}};
+    const previewBuildShape=buildEnv.HONRO_ACT6_QA_PAGES_SHAPE==='1';
+    const descriptors={origin:release?.origin??'http://127.0.0.1:18861',basePath:release?.basePath??(previewBuildShape?'/honro/':'/'),previewBuildShape,releaseEnabled:!!release,rows:{}};
+    if(previewBuildShape&&buildEnv.HONRO_ACT6_QA_NORMAL_ENDING_STOCK==='1'){
+      const endings={};
+      for(const [asset,digest] of Object.entries({
+        'dawn-pc.webp':'cb000c13e990325498c7996f423b6b459cc586d8ee4d20912b7a1db79944e25f',
+        'dawn-mobile.webp':'56e249516f335f8762883a94715a49043aee8c4598847d27c90f15289f461a61'
+      })){
+        const bytes=await readFile(path.join(root,'shared/act6-normal-ending-qa',asset));
+        assert.equal(hash(bytes),digest,'Ending production asset identity changed');
+        endings[asset]=await emit('graphics','act6-ending-'+asset.replace(/\.webp$/,''),'webp',bytes);
+      }
+      descriptors.normalEndingAssets=endings;
+    }
+    if(normal51&&buildEnv.HONRO_ACT6_QA_NORMAL_FAR==='1'){
+      const {loadNormalFar}=await import('./act6-late-qa/load-normal-far.mjs');
+      const {manifest,extras}=await loadNormalFar();
+      for(const asset of extras)assert.equal('/'+await emit('graphics',asset.stem,'webp',asset.bytes),asset.plate.path,'R12 FAR pathname drift');
+      descriptors.farEarly=manifest;
+      if(buildEnv.HONRO_ACT6_QA_NORMAL_FINAL_FAR==='1'){
+        const {loadNormalFinalFar}=await import('./act6-late-qa/load-normal-final-far.mjs');
+        const {plate,stem,bytes}=await loadNormalFinalFar();
+        assert.equal('/'+await emit('graphics',stem,'webp',bytes),plate.path,'R12 final playable FAR pathname drift');
+        descriptors.normalFinalFar=plate;
+      }
+      if(buildEnv.HONRO_ACT6_QA_NORMAL_LATE_FAR==='1'){
+        const {loadNormalLateFar}=await import('./act6-late-qa/compose-normal-late-far.mjs');
+        const late=await loadNormalLateFar();
+        for(const asset of late.extras)assert.equal('/'+await emit('graphics',asset.stem,'webp',asset.bytes),asset.plate.path,'R12 late FAR pathname drift');
+        descriptors.normalLateFar=late.manifest;
+      }
+    }
     for(const packet of qaAct6.packets){
       const id=packet.trace.stageId,bytes=Buffer.from(JSON.stringify(packet)+'\n');
       assert(bytes.length<webJsonPartBytes,'Act6 QA packet must remain a bounded single signed JSON');
       const file=await emit('data','act6-qa-chapter-'+id,'json',bytes);
       descriptors.rows[id]={path:file,bytes:bytes.length,sha256:hash(bytes),mapSHA256:packet.trace.mapSHA256,assetSHA256:packet.trace.assetSHA256};
+    }
+    if(buildEnv.HONRO_ACT6_QA_NORMAL_BOUNDARY==='1'){
+      assert(normal51&&previewBuildShape&&Object.keys(descriptors.rows).length===10);
+      const owners={52:'act6-first-missions',53:'act6-inner-missions',54:'stage54-pilot-owner',55:'stage55-pilot-owner',56:'stage56-owner',57:'stage57-owner',58:'stage58-owner',59:'stage59-owner',60:'stage60-owner'};
+      const owner={};
+      for(const [n,f]of Object.entries(owners))owner[n]=hash(await read('shared/runtime/'+f+'.mjs'));
+      const trusted=Object.fromEntries(qaAct6.packets.map(k=>[k.trace.stageId,k]));
+      const digest=o=>hash(JSON.stringify(o));
+      const layout={52:{playSHA:trusted[52].mission.shape.playSHA,worldSHA:trusted[52].mission.shape.worldSHA},
+        53:{playSHA:trusted[53].mission.playSHA,worldSHA:trusted[53].mission.worldSHA},
+        54:{playSHA:digest(trusted[54].charts.N.terrain),worldSHA:digest(trusted[54].charts.N.world)}};
+      assert(Object.values(layout).flatMap(Object.values).every(key=>/^[a-f0-9]{64}$/.test(key)));
+      descriptors.boundary={build:hash(qaAct6.source),owner,layout};
     }
     const {makeQaMain}=await import('./act6-app-qa.mjs');
     const mains=entries.filter(entry=>entry.name==='shared/runtime/main.js');
