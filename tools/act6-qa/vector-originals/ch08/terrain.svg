@@ -1,8 +1,20 @@
 <?xml version='1.0' encoding='utf-8'?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" viewBox="-120 -143 1140 737" width="1140" height="737">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" viewBox="-440 -400 1870 1340" width="1870" height="1340">
   <title>HONRO 6-08 isolated environment artwork candidate</title>
   <desc>Manually reconstructed semantic stage subsets in expanded visual domain. Separate landscape background. No raster in SVG, no collision. Play artwork reference window is 0,0 to 900,450.</desc>
   <defs>
+    <clipPath id="clip-vault-crown-extension" clipPathUnits="userSpaceOnUse">
+      <path d="M-260 -159 -240 -195 -215 -217 -156 -220 -127 -248 -60 -254 -23 -285 26 -291 58 -328 112 -349 158 -318 210 -331 251 -296 315 -311 382 -347 422 -332 464 -377 519 -394 571 -369 635 -378 704 -343 749 -317 810 -336 873 -314 912 -288 971 -300 1016 -274 1035 -245 1094 -235 1115 -210 1158 -197 1188 -156 1160 -111 1098 -63 1020 -60 938 -85 913 -127 625 -121 330 -129 160 -120 -67 -111 -186 -102 -249 -105Z" clip-rule="evenodd" fill-rule="evenodd" />
+    </clipPath>
+    <clipPath id="clip-west-face-extension" clipPathUnits="userSpaceOnUse">
+      <path d="M-166 -172 -125 -162 -101 -97 -90 72 -97 156 -88 308 -96 443 -134 514 -218 511 -263 488 -292 445 -332 435 -350 394 -403 369 -424 317 -407 275 -429 244 -413 200 -382 160 -397 118 -367 94 -347 44 -357 24 -315 -9 -300 -60 -260 -70 -232 -121Z" clip-rule="evenodd" fill-rule="evenodd" />
+    </clipPath>
+    <clipPath id="clip-east-face-extension" clipPathUnits="userSpaceOnUse">
+      <path d="M979 -151 1024 -161 1082 -141 1115 -162 1172 -132 1200 -86 1253 -73 1274 -14 1321 0 1333 53 1374 93 1363 140 1408 189 1417 235 1397 276 1413 311 1362 340 1341 379 1294 400 1278 452 1234 471 1215 535 1153 584 1099 579 1020 550 972 483 980 408 963 311 985 206 977 143 1004 81 975 -13Z" clip-rule="evenodd" fill-rule="evenodd" />
+    </clipPath>
+    <clipPath id="clip-floor-mass-extension" clipPathUnits="userSpaceOnUse">
+      <path d="M-240 482 -187 441 -131 440 0 451 212 479 450 485 669 455 923 458 1035 447 1114 498 1151 548 1165 595 1139 640 1109 655 1077 695 1029 704 995 733 938 735 898 782 856 796 813 828 762 822 720 850 674 852 643 892 605 910 550 900 498 926 451 921 399 888 358 883 327 853 270 852 216 828 173 835 127 804 93 811 61 781 11 782 -32 743 -75 730 -114 685 -156 672 -177 642 -226 617 -249 572 -276 549Z" clip-rule="evenodd" fill-rule="evenodd" />
+    </clipPath>
     <clipPath id="clip-hall" clipPathUnits="userSpaceOnUse">
       <path d="M-120 -142H1020V22L987 25 962 47 939 39 906 58 846 46 807 68 748 72 703 94 666 115 629 124 611 149 597 176 563 184 570 163 574 141 575 106 538 121 523 110 509 125 497 118 490 98 477 106 464 100 449 94 438 99 424 113 414 100 403 129 390 140 374 190 359 191 343 175 348 148 366 121 347 122 326 146 316 144 314 115 301 113 291 129 279 110 269 130 251 159 238 143 222 129 215 102 193 107 189 126 171 113 156 87 133 95 113 79 98 65 64 65 29 63 0 55 -30 69 -76 80 -120 74Z" clip-rule="evenodd" fill-rule="evenodd" />
     </clipPath>
@@ -24,7 +36,67 @@
     <clipPath id="clip-floor" clipPathUnits="userSpaceOnUse">
       <path d="M-120 422 -70 416 -42 431 1 417 26 420 46 432 69 434 84 408 108 417 128 433 149 443 183 444 219 430 255 439 293 427 335 436 366 427 401 417 430 401 461 421 496 420 520 407 549 404 575 393 600 398 622 373 657 364 673 346 694 353 713 371 744 376 763 370 786 367 812 354 830 359 850 348 877 321 894 318 911 324 931 309 962 286 1000 279 1020 273V594H-120Z" clip-rule="evenodd" fill-rule="evenodd" />
     </clipPath>
+    <clipPath id="clip-edge-joint-crown" clipPathUnits="userSpaceOnUse">
+      <path d="M-133 -156 -79 -164 -25 -155 21 -164 66 -155 104 -170 153 -164 195 -147 232 -159 281 -153 328 -166 373 -158 416 -168 459 -153 500 -159 542 -152 590 -164 645 -155 690 -165 746 -154 793 -160 845 -152 896 -164 936 -148 978 -163 1024 -155 1048 -147 1046 -131 1007 -112 969 -123 920 -114 871 -127 821 -114 779 -127 728 -117 681 -130 637 -113 581 -125 539 -118 488 -133 453 -126 399 -116 341 -128 299 -108 262 -120 221 -111 169 -129 129 -114 83 -124 28 -117 -18 -130 -71 -115 -133 -120Z" clip-rule="evenodd" fill-rule="evenodd" />
+    </clipPath>
+    <clipPath id="clip-edge-joint-floor" clipPathUnits="userSpaceOnUse">
+      <path d="M-144 579 -93 569 -47 581 -6 572 37 584 73 569 108 573 150 584 195 570 235 579 282 568 331 581 384 569 427 578 471 568 510 581 564 569 614 578 663 569 707 581 757 567 801 577 855 567 895 582 938 572 979 584 1029 566 1052 583 1039 619 987 633 949 613 903 620 850 612 807 628 764 612 717 623 669 612 631 629 584 615 539 628 488 615 447 622 403 607 367 631 329 619 284 627 242 615 196 630 150 616 111 628 67 615 23 632 -12 618 -55 628 -102 616 -140 620Z" clip-rule="evenodd" fill-rule="evenodd" />
+    </clipPath>
+    <clipPath id="clip-edge-joint-east" clipPathUnits="userSpaceOnUse">
+      <path d="M994 -116 1005 -74 997 -48 1001 12 993 42 1007 74 998 106 1005 138 991 181 1004 217 995 262 1008 306 997 344 1006 386 993 429 1008 469 993 514 1005 553 994 601 1028 607 1042 580 1034 534 1046 496 1034 446 1044 405 1036 358 1047 323 1035 280 1047 239 1036 201 1048 163 1034 120 1043 78 1037 39 1043 -4 1032 -42 1040 -79 1022 -116Z" clip-rule="evenodd" fill-rule="evenodd" />
+    </clipPath>
+    <clipPath id="clip-edge-joint-west" clipPathUnits="userSpaceOnUse">
+      <path d="M-138 -119 -152 -83 -138 -47 -150 -4 -139 28 -143 66 -153 106 -142 150 -151 195 -138 237 -153 286 -145 340 -152 390 -140 435 -142 484 -105 483 -97 451 -104 398 -93 367 -101 331 -90 288 -103 250 -93 208 -104 164 -96 122 -107 78 -98 39 -103 1 -92 -43 -106 -83 -96 -114Z" clip-rule="evenodd" fill-rule="evenodd" />
+    </clipPath>
   </defs>
+  <g inkscape:groupmode="layer" inkscape:label="vault-crown-extension-body" id="vault-crown-extension-body">
+    <path id="vault-crown-extension-body-0" fill-rule="evenodd" fill="#373b39" d="M-260 -159 -240 -195 -215 -217 -156 -220 -127 -248 -60 -254 -23 -285 26 -291 58 -328 112 -349 158 -318 210 -331 251 -296 315 -311 382 -347 422 -332 464 -377 519 -394 571 -369 635 -378 704 -343 749 -317 810 -336 873 -314 912 -288 971 -300 1016 -274 1035 -245 1094 -235 1115 -210 1158 -197 1188 -156 1160 -111 1098 -63 1020 -60 938 -85 913 -127 625 -121 330 -129 160 -120 -67 -111 -186 -102 -249 -105Z" />
+  </g>
+  <g inkscape:groupmode="layer" inkscape:label="vault-crown-extension-facets" id="vault-crown-extension-facets" clip-path="url(#clip-vault-crown-extension)">
+    <path id="vault-crown-extension-facets-0" fill-rule="evenodd" fill="#424943" d="M-224 -208 -171 -216 -125 -242 -61 -250 -28 -279 11 -281 56 -325 111 -344 158 -314 181 -319 159 -293 109 -278 90 -249 22 -225 -22 -223 -77 -201 -123 -194 -179 -178 -224 -181Z" />
+    <path id="vault-crown-extension-facets-1" fill-rule="evenodd" fill="#49514a" d="M251 -287 321 -311 363 -331 384 -345 422 -329 434 -343 470 -373 515 -391 566 -366 635 -376 676 -356 629 -349 575 -326 536 -338 506 -307 443 -302 397 -269 332 -278 276 -239 218 -243Z" />
+    <path id="vault-crown-extension-facets-2" fill-rule="evenodd" fill="#485047" d="M706 -310 750 -306 810 -333 872 -310 913 -285 970 -294 1014 -272 1031 -240 1108 -210 1079 -186 1032 -199 1004 -225 963 -224 917 -248 865 -250 836 -279 777 -265 732 -279Z" />
+    <path id="vault-crown-extension-facets-3" fill-rule="evenodd" fill="#3e4541" d="M-103 -169 -49 -204 11 -206 69 -229 113 -247 162 -282 205 -267 250 -234 288 -226 258 -207 194 -212 145 -211 103 -183 57 -181 8 -162 -58 -153Z" />
+    <path id="vault-crown-extension-facets-4" fill-rule="evenodd" fill="#4a4e45" d="M362 -190 399 -214 443 -230 501 -262 534 -269 586 -258 625 -275 681 -264 708 -232 680 -211 617 -208 588 -184 530 -187 469 -169 412 -180Z" />
+    <path id="vault-crown-extension-facets-5" fill-rule="evenodd" fill="#454945" d="M745 -179 789 -208 847 -217 896 -205 919 -175 964 -170 1006 -144 990 -115 938 -127 881 -119 844 -147 784 -150Z" />
+  </g>
+  <g inkscape:groupmode="layer" inkscape:label="west-face-extension-body" id="west-face-extension-body">
+    <path id="west-face-extension-body-0" fill-rule="evenodd" fill="#3d4140" d="M-166 -172 -125 -162 -101 -97 -90 72 -97 156 -88 308 -96 443 -134 514 -218 511 -263 488 -292 445 -332 435 -350 394 -403 369 -424 317 -407 275 -429 244 -413 200 -382 160 -397 118 -367 94 -347 44 -357 24 -315 -9 -300 -60 -260 -70 -232 -121Z" />
+  </g>
+  <g inkscape:groupmode="layer" inkscape:label="west-face-extension-facets" id="west-face-extension-facets" clip-path="url(#clip-west-face-extension)">
+    <path id="west-face-extension-facets-0" fill-rule="evenodd" fill="#4b514b" d="M-259 -66 -229 -118 -169 -169 -128 -161 -132 -113 -180 -87 -183 -54 -210 -18 -245 -3 -258 48 -296 64 -333 113 -366 120 -374 95 -350 47 -361 23 -316 -10 -302 -57Z" />
+    <path id="west-face-extension-facets-1" fill-rule="evenodd" fill="#48554d" d="M-415 201 -381 158 -395 119 -368 109 -339 93 -324 116 -286 132 -310 179 -311 219 -331 243 -376 245 -411 267 -428 244Z" />
+    <path id="west-face-extension-facets-2" fill-rule="evenodd" fill="#50564c" d="M-398 376 -423 320 -404 275 -380 261 -336 259 -299 279 -277 317 -247 332 -232 361 -264 390 -309 406 -354 390Z" />
+    <path id="west-face-extension-facets-3" fill-rule="evenodd" fill="#4c5147" d="M-320 404 -278 392 -234 365 -199 371 -181 414 -152 443 -165 486 -214 505 -262 486 -286 447 -332 434 -353 395Z" />
+    <path id="west-face-extension-facets-4" fill-rule="evenodd" fill="#444b49" d="M-246 97 -215 47 -193 30 -172 46 -139 41 -121 71 -132 119 -172 130 -194 172 -224 167 -254 137Z" />
+    <path id="west-face-extension-facets-5" fill-rule="evenodd" fill="#55584f" d="M-267 208 -236 178 -190 181 -174 209 -133 225 -120 249 -137 282 -173 278 -201 300 -245 295 -266 261 -280 234Z" />
+  </g>
+  <g inkscape:groupmode="layer" inkscape:label="east-face-extension-body" id="east-face-extension-body">
+    <path id="east-face-extension-body-0" fill-rule="evenodd" fill="#3b4745" d="M979 -151 1024 -161 1082 -141 1115 -162 1172 -132 1200 -86 1253 -73 1274 -14 1321 0 1333 53 1374 93 1363 140 1408 189 1417 235 1397 276 1413 311 1362 340 1341 379 1294 400 1278 452 1234 471 1215 535 1153 584 1099 579 1020 550 972 483 980 408 963 311 985 206 977 143 1004 81 975 -13Z" />
+  </g>
+  <g inkscape:groupmode="layer" inkscape:label="east-face-extension-facets" id="east-face-extension-facets" clip-path="url(#clip-east-face-extension)">
+    <path id="east-face-extension-facets-0" fill-rule="evenodd" fill="#495650" d="M1084 -137 1115 -161 1172 -130 1198 -87 1248 -74 1269 -19 1321 1 1330 50 1300 49 1269 28 1246 51 1212 19 1197 -23 1144 -25 1124 -69 1080 -84 1054 -114Z" />
+    <path id="east-face-extension-facets-1" fill-rule="evenodd" fill="#44514c" d="M1330 52 1371 91 1361 140 1407 189 1414 232 1371 242 1338 225 1308 255 1277 245 1261 199 1272 169 1254 129 1286 103 1287 66Z" />
+    <path id="east-face-extension-facets-2" fill-rule="evenodd" fill="#505851" d="M1351 266 1395 244 1397 275 1410 312 1365 340 1342 377 1295 400 1280 449 1232 469 1234 429 1240 388 1211 365 1239 325 1286 318 1310 281Z" />
+    <path id="east-face-extension-facets-3" fill-rule="evenodd" fill="#46524e" d="M1204 429 1230 460 1214 535 1153 580 1098 576 1050 557 1036 527 1081 512 1107 472 1145 481 1156 451Z" />
+    <path id="east-face-extension-facets-4" fill-rule="evenodd" fill="#53625a" d="M1105 83 1121 46 1158 51 1174 87 1210 108 1224 157 1203 188 1169 183 1134 146 1082 145 1059 120Z" />
+    <path id="east-face-extension-facets-5" fill-rule="evenodd" fill="#485650" d="M1086 225 1112 197 1167 215 1188 250 1222 262 1220 308 1194 331 1152 319 1119 338 1081 314 1045 267Z" />
+  </g>
+  <g inkscape:groupmode="layer" inkscape:label="floor-mass-extension-body" id="floor-mass-extension-body">
+    <path id="floor-mass-extension-body-0" fill-rule="evenodd" fill="#444a42" d="M-240 482 -187 441 -131 440 0 451 212 479 450 485 669 455 923 458 1035 447 1114 498 1151 548 1165 595 1139 640 1109 655 1077 695 1029 704 995 733 938 735 898 782 856 796 813 828 762 822 720 850 674 852 643 892 605 910 550 900 498 926 451 921 399 888 358 883 327 853 270 852 216 828 173 835 127 804 93 811 61 781 11 782 -32 743 -75 730 -114 685 -156 672 -177 642 -226 617 -249 572 -276 549Z" />
+  </g>
+  <g inkscape:groupmode="layer" inkscape:label="floor-mass-extension-facets" id="floor-mass-extension-facets" clip-path="url(#clip-floor-mass-extension)">
+    <path id="floor-mass-extension-facets-0" fill-rule="evenodd" fill="#4c5147" d="M-247 549 -221 507 -171 500 -115 531 -86 565 -91 606 -43 634 -43 669 -78 697 -116 684 -157 673 -179 639 -227 616 -248 571Z" />
+    <path id="floor-mass-extension-facets-1" fill-rule="evenodd" fill="#505851" d="M-28 649 14 611 53 607 90 637 122 634 143 667 192 690 174 727 142 740 104 761 72 764 43 735 -11 730 -44 695Z" />
+    <path id="floor-mass-extension-facets-2" fill-rule="evenodd" fill="#56584d" d="M122 767 173 740 197 714 227 719 273 695 310 717 343 716 374 765 364 798 322 817 267 834 215 813 159 830Z" />
+    <path id="floor-mass-extension-facets-3" fill-rule="evenodd" fill="#4c5550" d="M333 841 380 819 416 771 450 785 483 752 515 755 555 786 589 793 618 825 614 869 599 907 550 898 496 923 454 916 401 886 358 882Z" />
+    <path id="floor-mass-extension-facets-4" fill-rule="evenodd" fill="#49554e" d="M626 777 670 739 710 759 746 729 784 752 822 748 856 775 847 800 814 824 762 819 719 849 675 850 640 891 615 895 618 839Z" />
+    <path id="floor-mass-extension-facets-5" fill-rule="evenodd" fill="#545749" d="M841 717 866 688 924 685 947 653 994 666 1023 644 1075 658 1109 651 1075 693 1028 704 993 731 939 735 898 781 856 795 836 780Z" />
+    <path id="floor-mass-extension-facets-6" fill-rule="evenodd" fill="#4b544b" d="M992 573 1040 541 1074 559 1104 543 1148 552 1165 597 1138 638 1098 663 1075 652 1041 634 1010 638 979 619Z" />
+    <path id="floor-mass-extension-facets-7" fill-rule="evenodd" fill="#4d574c" d="M366 597 413 575 471 584 494 623 529 635 537 658 504 685 472 701 438 678 400 681 353 647Z" />
+    <path id="floor-mass-extension-facets-8" fill-rule="evenodd" fill="#505347" d="M70 582 97 554 146 548 169 570 218 587 198 626 169 650 121 637 89 639 61 610Z" />
+    <path id="floor-mass-extension-facets-9" fill-rule="evenodd" fill="#505749" d="M665 586 703 557 746 571 773 591 816 603 823 643 788 675 747 676 699 652 668 660 637 629Z" />
+  </g>
   <g inkscape:groupmode="layer" inkscape:label="hall-body" id="hall-body">
     <path id="hall-body-0" fill-rule="evenodd" fill="#373b39" d="M-120 -142H1020V22L987 25 962 47 939 39 906 58 846 46 807 68 748 72 703 94 666 115 629 124 611 149 597 176 563 184 570 163 574 141 575 106 538 121 523 110 509 125 497 118 490 98 477 106 464 100 449 94 438 99 424 113 414 100 403 129 390 140 374 190 359 191 343 175 348 148 366 121 347 122 326 146 316 144 314 115 301 113 291 129 279 110 269 130 251 159 238 143 222 129 215 102 193 107 189 126 171 113 156 87 133 95 113 79 98 65 64 65 29 63 0 55 -30 69 -76 80 -120 74Z" />
   </g>
@@ -220,5 +292,34 @@
     <path id="floor-facets-24" fill-rule="evenodd" fill="#596255" d="M367 566 393 548 422 554 458 550 478 555 511 543 530 555 551 566 545 592 362 592Z" />
     <path id="floor-facets-25" fill-rule="evenodd" fill="#505a51" d="M563 557 587 549 619 559 643 557 663 543 690 545 707 555 733 549 759 564 755 592 562 592Z" />
     <path id="floor-facets-26" fill-rule="evenodd" fill="#57574b" d="M765 553 805 547 841 541 859 546 875 538 905 551 929 540 952 552 984 541 1020 536V591H758Z" />
+  </g>
+  <g inkscape:groupmode="layer" inkscape:label="edge-joint-crown-body" id="edge-joint-crown-body">
+    <path id="edge-joint-crown-body-0" fill-rule="evenodd" fill="#373b39" d="M-133 -156 -79 -164 -25 -155 21 -164 66 -155 104 -170 153 -164 195 -147 232 -159 281 -153 328 -166 373 -158 416 -168 459 -153 500 -159 542 -152 590 -164 645 -155 690 -165 746 -154 793 -160 845 -152 896 -164 936 -148 978 -163 1024 -155 1048 -147 1046 -131 1007 -112 969 -123 920 -114 871 -127 821 -114 779 -127 728 -117 681 -130 637 -113 581 -125 539 -118 488 -133 453 -126 399 -116 341 -128 299 -108 262 -120 221 -111 169 -129 129 -114 83 -124 28 -117 -18 -130 -71 -115 -133 -120Z" />
+  </g>
+  <g inkscape:groupmode="layer" inkscape:label="edge-joint-crown-facets" id="edge-joint-crown-facets" clip-path="url(#clip-edge-joint-crown)">
+    <path id="edge-joint-crown-facets-0" fill-rule="evenodd" fill="#414743" d="M-104 -165 -50 -158 -17 -147 23 -151 49 -141 77 -120 32 -119 -22 -132 -59 -115 -105 -128Z" />
+    <path id="edge-joint-crown-facets-1" fill-rule="evenodd" fill="#414743" d="M124 -151 194 -146 232 -159 274 -154 295 -136 278 -129 252 -124 221 -112 171 -127 136 -115 104 -129Z" />
+    <path id="edge-joint-crown-facets-2" fill-rule="evenodd" fill="#49514a" d="M419 -166 460 -155 502 -157 540 -151 591 -162 632 -149 602 -135 570 -139 549 -120 511 -128 490 -138 447 -127 412 -140Z" />
+    <path id="edge-joint-crown-facets-3" fill-rule="evenodd" fill="#454945" d="M730 -153 792 -160 869 -153 897 -163 937 -148 962 -141 939 -124 900 -117 865 -131 826 -115 778 -128 737 -126 715 -144Z" />
+  </g>
+  <g inkscape:groupmode="layer" inkscape:label="edge-joint-floor-body" id="edge-joint-floor-body">
+    <path id="edge-joint-floor-body-0" fill-rule="evenodd" fill="#444a42" d="M-144 579 -93 569 -47 581 -6 572 37 584 73 569 108 573 150 584 195 570 235 579 282 568 331 581 384 569 427 578 471 568 510 581 564 569 614 578 663 569 707 581 757 567 801 577 855 567 895 582 938 572 979 584 1029 566 1052 583 1039 619 987 633 949 613 903 620 850 612 807 628 764 612 717 623 669 612 631 629 584 615 539 628 488 615 447 622 403 607 367 631 329 619 284 627 242 615 196 630 150 616 111 628 67 615 23 632 -12 618 -55 628 -102 616 -140 620Z" />
+  </g>
+  <g inkscape:groupmode="layer" inkscape:label="edge-joint-floor-facets" id="edge-joint-floor-facets" clip-path="url(#clip-edge-joint-floor)">
+    <path id="edge-joint-floor-facets-0" fill-rule="evenodd" fill="#4d574c" d="M343 598 384 571 427 578 472 570 501 586 524 605 520 620 487 613 445 621 404 610 367 629 353 614Z" />
+    <path id="edge-joint-floor-facets-1" fill-rule="evenodd" fill="#505347" d="M61 595 92 573 130 578 150 587 197 573 214 590 201 609 185 626 151 614 113 626 68 615Z" />
+    <path id="edge-joint-floor-facets-2" fill-rule="evenodd" fill="#4a5146" d="M850 581 895 583 941 571 982 585 1031 568 1052 584 1042 610 1000 624 983 629 949 614 905 620 868 610Z" />
+  </g>
+  <g inkscape:groupmode="layer" inkscape:label="edge-joint-east-body" id="edge-joint-east-body">
+    <path id="edge-joint-east-body-0" fill-rule="evenodd" fill="#3b4745" d="M994 -116 1005 -74 997 -48 1001 12 993 42 1007 74 998 106 1005 138 991 181 1004 217 995 262 1008 306 997 344 1006 386 993 429 1008 469 993 514 1005 553 994 601 1028 607 1042 580 1034 534 1046 496 1034 446 1044 405 1036 358 1047 323 1035 280 1047 239 1036 201 1048 163 1034 120 1043 78 1037 39 1043 -4 1032 -42 1040 -79 1022 -116Z" />
+  </g>
+  <g inkscape:groupmode="layer" inkscape:label="edge-joint-east-facets" id="edge-joint-east-facets" clip-path="url(#clip-edge-joint-east)">
+    <path id="edge-joint-east-facets-0" fill-rule="evenodd" fill="#46534d" d="M1003 193 1034 185 1041 200 1046 238 1035 282 1024 289 1004 271 998 255 1003 223Z" />
+  </g>
+  <g inkscape:groupmode="layer" inkscape:label="edge-joint-west-body" id="edge-joint-west-body">
+    <path id="edge-joint-west-body-0" fill-rule="evenodd" fill="#3d4140" d="M-138 -119 -152 -83 -138 -47 -150 -4 -139 28 -143 66 -153 106 -142 150 -151 195 -138 237 -153 286 -145 340 -152 390 -140 435 -142 484 -105 483 -97 451 -104 398 -93 367 -101 331 -90 288 -103 250 -93 208 -104 164 -96 122 -107 78 -98 39 -103 1 -92 -43 -106 -83 -96 -114Z" />
+  </g>
+  <g inkscape:groupmode="layer" inkscape:label="edge-joint-west-facets" id="edge-joint-west-facets" clip-path="url(#clip-edge-joint-west)">
+    <path id="edge-joint-west-facets-0" fill-rule="evenodd" fill="#484f49" d="M-146 157 -115 148 -99 172 -96 203 -106 241 -125 244 -140 226 -151 195Z" />
   </g>
 </svg>
