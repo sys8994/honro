@@ -281,8 +281,11 @@ export async function createAct6WebQa(project,repoRoot,env=process.env,release=n
     source=replaceOne(source,'if(!normalFar||id<51||id>57','if((id===58||id===59)&&scene&&s?.normal51&&s.engine===e&&s.b===b){mountNormalLateFar(app,e,s);return;}\n        if(!normalFar||id<51||id>57');
     source=replaceOne(source,'if(!s?.normalFar||!e)return;','s?.normalLateFar?.dispose();if(!s?.normalFar||!e)return;');
   }
-  source=replaceOne(source,'active.delete(app);','disposeNormalFar(app);active.delete(app);');
-  source=replaceOne(source,'active:app=>active.has(app),','active:app=>active.has(app),mountNormalFar,');
+  const artData=await readFile(new URL('./act6-terrain-art/paint-data.inc.js',import.meta.url),'utf8');
+  const artScene=await readFile(new URL('./act6-terrain-art/paint-scene.inc.js',import.meta.url),'utf8');
+  source=replaceOne(source,'      function eligible(app,id)',artData+'\n'+artScene+'\n      function eligible(app,id)');
+  source=replaceOne(source,'active.delete(app);','active.get(app)?.terrainArt?.dispose();disposeNormalFar(app);active.delete(app);');
+  source=replaceOne(source,'active:app=>active.has(app),','active:app=>active.has(app),mountNormalFar,mountAct6TerrainArt,');
  }
  if(env.HONRO_ACT6_QA_NORMAL_BOUNDARY==='1'){
   assert.equal(env.HONRO_ACT6_QA_NORMAL_ENDING_STOCK,'1','Stock factory needs the paired ending module present');
@@ -345,6 +348,6 @@ export function makeQaMain(main,source,descriptor){
  if(source.includes('function enterNormal58('))edits.push(['if (!heroes.length || objective?.dead || rescuedResidentLost || channelerLost || act2Failure)', 'if (!heroes.length || objective?.dead || rescuedResidentLost || channelerLost || act2Failure || (b.honroStage===58&&qa51.goalState(this,e)?.failed===true))']);
  if(source.includes('function mountNormalFar('))edits.push([
   "this.scene = new G.HonroScene($('battlecanvas')); const u = e.active;",
-  "this.scene = new G.HonroScene($('battlecanvas')); qa51.mountNormalFar(this,e); const u = e.active;"]);
+  "this.scene = new G.HonroScene($('battlecanvas')); qa51.mountNormalFar(this,e); qa51.mountAct6TerrainArt(this,e); const u = e.active;"]);
  return edits.reduce((code,[a,b])=>replaceOne(code,a,b),main);
 }
