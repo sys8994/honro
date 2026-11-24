@@ -26,8 +26,8 @@ const urlExpression=(from,to)=>`new URL(${quote(relative(from,to))},import.meta.
 // Plain runtime scripts communicate through explicit globals. Keep their module
 // scope isolated and their patch order exact, including the existing yields.
 // Async data modules remain separate barriers; never Promise.all their imports.
-export function orderedScriptSource(entries,loader){
-  return `import {yieldIfNeeded} from ${quote(loader)};\n`+entries.map(entry=>{
+export function orderedScriptSource(entries,loader,provider){
+  return `import {yieldIfNeeded} from ${quote(loader)};\n`+(provider&&entries.some(e=>e.code.includes("normal51Provider."))?`import {normal51Provider} from ${quote(provider)};\n`:"")+entries.map(entry=>{
     const isolated=`(()=>{\n'use strict';\n${entry.code}\n})();\n`;
     new vm.Script(isolated,{filename:entry.name}); // Reject module syntax/TLA here.
     return `// ${entry.name}\n${isolated}await yieldIfNeeded();\n`;
@@ -60,6 +60,10 @@ export function reuseBinaryEmissions(emit){
 
 // Generated files are immutable by content. Stable HTML names remain the public entrypoints.
 export async function buildWeb({vector=true,destination=path.join(root,'HONRO.html')}={}) {
+  if(process.env.HONRO_ACT6_QA_WEB_BUILD==='1'){
+    const {assertQaWebRoot}=await import('./act6-app-qa.mjs');
+    await assertQaWebRoot(root);
+  }
   await materializeWorld();
   let previous;try{previous=JSON.parse(await read('web/manifest.json'));}catch(e){if(e.code!=='ENOENT')throw e;}
   const retentionNow=Date.now(),publishedGenerations=selectPublishedGenerations(previous?.publishedGenerations,{now:retentionNow});
@@ -113,13 +117,43 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
     const file=await emit('runtime',name,'js',loaderImport+records.map(([global,file,refs])=>`globalThis.${global}=await loadData(${quote(file)},${quote(refs)},${quote({svgSources:global==='HONRO_ACT1_FAR_DATA'?'optional':false})});`).join('\n')+'\n');
     moduleData.set(file,records.map(([,file])=>file));return file;
   };
-  const entries=await runtimeEntries({vector,app:true}),common=[],gameOnly=[],optionalModules={};
+  const act6QaWeb=process.env.HONRO_ACT6_QA_WEB_BUILD==='1';
+  if(act6QaWeb&&(process.env.HONRO_ACT6_QA_WEB_ROOT!==root||path.resolve(destination)!==path.join(root,'HONRO.html')))
+    throw Error('Act6 Web QA has one standard shell in the explicit disposable checkout');
+  const entries=await runtimeEntries({vector,app:true,act6QaWeb}),common=[],gameOnly=[],optionalModules={};
+  let normal51Module;
+  if(act6QaWeb){
+    const normal51=process.env.HONRO_ACT6_QA_NORMAL51==='1';
+    if(normal51){
+      const {scope51}=await import('./stage51-compiler.mjs');
+      const changed=[];
+      for(const e of entries){if(typeof e.code!=='string')continue;const q=scope51(e.code,e.name);if(q!==e.code){changed.push(e.name);e.code=q;}}
+      assert.deepEqual(changed.slice().sort(),['shared/map/compiler.js','shared/runtime/progression.js'],'Expected two exact private normal51 source anchors');
+      const engine=entries.find(e=>e.name==='engine/core');
+      assert.equal(engine?.code.split('normal51Provider.content(this.b)').length,2,'Pinned Stage51 engine source hook missing');
+      normal51Module=await emit('runtime','stage51-campaign-provider','js',await read('shared/runtime/stage51-campaign-provider.mjs'));
+    }
+    const idx=entries.findIndex(entry=>entry.name==='act6-app-qa');
+    assert(idx>=0&&entries.filter(entry=>entry.qaAct6).length===1,'Expected exact one Act6 QA pilot');
+    const [{qaAct6}]=entries.splice(idx,1);
+    const descriptors={origin:'http://127.0.0.1:18861',rows:{}};
+    for(const packet of qaAct6.packets){
+      const id=packet.trace.stageId,bytes=Buffer.from(JSON.stringify(packet)+'\n');
+      assert(bytes.length<webJsonPartBytes,'Act6 QA packet must remain a bounded single signed JSON');
+      const file=await emit('data','act6-qa-chapter-'+id,'json',bytes);
+      descriptors.rows[id]={path:file,bytes:bytes.length,sha256:hash(bytes),mapSHA256:packet.trace.mapSHA256,assetSHA256:packet.trace.assetSHA256};
+    }
+    const {makeQaMain}=await import('./act6-app-qa.mjs');
+    const mains=entries.filter(entry=>entry.name==='shared/runtime/main.js');
+    assert.equal(mains.length,1);
+    mains[0].code=makeQaMain(mains[0].code,qaAct6.source,descriptors);
+  }
   const appStart=entries.findIndex(e=>e.name==='game/vendor/ui/fa.js');
   assert(appStart>0,'Game application boundary required');
   let projectManifest,pending=[],pendingBytes=0,groupNumber=0;
   async function flushScripts(target){
     if(!pending.length)return;
-    target.push(await emit('runtime',`ordered-${target===common?'common':'game'}-${++groupNumber}`,'js',orderedScriptSource(pending,'./'+path.posix.basename(loader))));
+    target.push(await emit('runtime',`ordered-${target===common?'common':'game'}-${++groupNumber}`,'js',orderedScriptSource(pending,'./'+path.posix.basename(loader),normal51Module&&'./'+path.posix.basename(normal51Module))));
     pending=[];pendingBytes=0;
   }
   for(let i=0;i<entries.length;i++){
