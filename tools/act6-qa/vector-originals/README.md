@@ -1,0 +1,9 @@
+# Act 6 vectors: QA-only checkpoint
+2026-11-24 19:16 KST. None of these isolated samples are registered as campaign content or a release. Do not wire them into generated HTML, a campaign manifest, or a public build from this directory. This directory preserves editable near-layer SVG files; the separate concept-derived FAR inputs are not embedded here.
+
+- Source lineage: chapters 01/02/03/05/07/09/10 use approved V2 concept sources; 04/08 use revised V3; 06 uses expanded V5 with the requested side-section repair.
+- The SVG drafts separate visible route surfaces, decorative details and open voids in varying formats. Use the canonical world terrain and a bounded play projection for actual map integration; the SVG alone is not a collider.
+- Chapter 06 side-profile comparison: isolated native-engine one-class movement test, eight stairs, both directions. Prior stepped forms 7/16 at each of two provisional scales; corrected connected profiles 16/16 at each. Separate first candidate Map-v6 local smoke found joins that still require repair; dynamic sideways gravity was not tested.
+- Early 01 local smoke confirms two legal routes and rejoin. Early 02 local smoke found and addressed a contact gap, but the top-to-lower connection and visible fine vertical seams still need work. 03 and 04 used the stock painter in isolated scenes without admitted new physics; the remaining vectors may only have offline artwork renders. Individual owners must verify exact artifact and scene identity before citing evidence.
+- Bare SVG validation, bulk-area estimates, and unchanged optimized silhouette pixels are not equivalent to a five-pass native terrain review. Weather, dynamic gravity, quest, progression, save, and public verification are outside this artifact.
+- Follow game/docs/ACT6_PRODUCTION_SOP_20261124.md. Do not compare provisional whole extended artwork vertex counts to the native Act 1 PlayBounds painter measurements as if they shared a cohort.
