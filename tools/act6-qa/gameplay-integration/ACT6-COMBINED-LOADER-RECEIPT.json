@@ -1,0 +1,1184 @@
+{
+  "status": "PASS_QA_ONLY_TEN_PACK_ALIAS_ROUNDTRIP",
+  "keys": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "sourcePins": {
+    "1": {
+      "manifest": "web/data/campaign.d663c6700572fe6e.json",
+      "map": "web/data/chapter-01.81227bbb427444d5.json",
+      "asset": "web/data/chapter-01-assets.fa322c2d551dc25b.json",
+      "assets": 10,
+      "originalWorkshop": false,
+      "sourceReceiptSHA": "51bcd8bec74676e979b3acd9cce565d003f65dd81b01c8dd1404b9ca3f2c4f6a"
+    },
+    "2": {
+      "manifest": "web/data/campaign.d58645094d56898e.json",
+      "map": "web/data/chapter-01.55e2e01359867447.json",
+      "asset": "web/data/chapter-01-assets.0d347600c728ee1a.json",
+      "assets": 16,
+      "originalWorkshop": false,
+      "sourceReceiptSHA": "d1848a78e96db35f818f62d3db8641351ce16da962c85bfa6d07b3338e1a3713"
+    },
+    "3": {
+      "manifest": "web/data/campaign.5b467a3c5cf0eb73.json",
+      "map": "web/data/chapter-01.7ea36b46cc0f48cc.json",
+      "asset": "web/data/chapter-01-assets.6fb1798c99cbb198.json",
+      "assets": 17,
+      "originalWorkshop": true,
+      "sourceReceiptSHA": "56a39943f5bf30e2ad29e5bc7f0b4335a139b9fd7c50d929c515b1bb1570c5d7"
+    },
+    "4": {
+      "manifest": "web/data/campaign.fff8a21d1ed3bd6a.json",
+      "map": "web/data/chapter-01.06cfc4052f1207d9.json",
+      "asset": "web/data/chapter-01-assets.5d2d8b4da4f8c0ca.json",
+      "assets": 18,
+      "originalWorkshop": true,
+      "sourceReceiptSHA": "998b049b48d58699be701721a6308a000fe5da71801fe674a64990e5a615641d"
+    },
+    "5": {
+      "manifest": "web/data/campaign.3befd1f61870168c.json",
+      "map": "web/data/chapter-01.377c786026b138cc.json",
+      "asset": "web/data/chapter-01-assets.b4496d3ef996b1a7.json",
+      "assets": 1,
+      "originalWorkshop": false,
+      "sourceReceiptSHA": "41913fc215ac3b1b35eb58afb9f80825d0d1c5256509d4391221e9f47b411614"
+    },
+    "6": {
+      "manifest": "web/data/campaign.930c3eb2f9d1963e.json",
+      "map": "web/data/chapter-01.905054998f876d4d.json",
+      "asset": "web/data/chapter-01-assets.8ff6141c13df77d7.json",
+      "assets": 1,
+      "originalWorkshop": false,
+      "sourceReceiptSHA": "9a37bdfc4ff1fdee5a8d725a754c6e1d3e59290e45b65f69e73549cf68fca800"
+    },
+    "7": {
+      "manifest": "web/data/campaign.dbdb2d355984b014.json",
+      "map": "web/data/chapter-01.a914154a44de28e4.json",
+      "asset": "web/data/chapter-01-assets.842de837c7138dca.json",
+      "assets": 22,
+      "originalWorkshop": true,
+      "sourceReceiptSHA": "7e34118539d784fe9647eb2289355be4944e9ac8455db655e139befb02bc70a3"
+    },
+    "8": {
+      "manifest": "web/data/campaign.d1265f572d8717e3.json",
+      "map": "web/data/chapter-01.9382ca91e6b73fab.json",
+      "asset": "web/data/chapter-01-assets.1bea1ae56676b91a.json",
+      "assets": 30,
+      "originalWorkshop": true,
+      "sourceReceiptSHA": "d601a0deb88a473ac5829714ea4f8cca55379ee5fc190135bd4bb387ac6397e3"
+    },
+    "9": {
+      "manifest": "web/data/campaign.1560482bedc38647.json",
+      "map": "web/data/chapter-01.3cfca3bb2ead6d2c.json",
+      "asset": "web/data/chapter-01-assets.24f7d6dcb1ddb2af.json",
+      "assets": 4,
+      "originalWorkshop": true,
+      "sourceReceiptSHA": "f28d25968ab79f316d712d6047f901cca6a090e6959ee794ef1fac116124de02"
+    },
+    "10": {
+      "manifest": "web/data/campaign.305526c8a09cb7ae.json",
+      "map": "web/data/chapter-01.f7c613fe210a84b5.json",
+      "asset": "web/data/chapter-01-assets.690fa446cdd54e96.json",
+      "assets": 3,
+      "originalWorkshop": true,
+      "sourceReceiptSHA": "f28d25968ab79f316d712d6047f901cca6a090e6959ee794ef1fac116124de02"
+    }
+  },
+  "sourceToolGit": {
+    "stage56-r4-packet-local/source/web-build.mjs": "9d03355a55767c8bd107d793f09e101a96c000a4",
+    "stage56-r4-packet-local/source/web-json-parts.mjs": "078cfabe769530bcc0a84c2d209cffddd4354f7d",
+    "stage56-r4-packet-local/source/json-pool.mjs": "5d1bbdea0d4568ff4b0f18da3ada786268bd3162",
+    "stage56-r4-packet-local/source/environment.js": "a833b7a43da4ab8c985ff0a610ca7013d38e1e4a",
+    "stage56-r4-packet-local/source/schema.js": "7643cdf159ece0b684457720cee0cd79dd2405b5",
+    "stage56-r4-packet-local/source/compiler.js": "8eaec6a3c9e9c415e651889f97ea81d3f2dd6f14",
+    "stage56-r4-packet-local/source/production-contract.js": "38171a42028a47d20450ce10bb35848e0f66f4e4",
+    "entry-50-51-audit/source/web-loader.js": "d75e233307be276e4eed6d537c28bf2c9b7dda3f"
+  },
+  "aliasPlanSHA256": "0b550dff09aaec8cbf8b63180c641e9ec0b5fa5f95c629439c118320374a427c",
+  "aliasEvidence": {
+    "1": {
+      "definitions": 2,
+      "placementReferences": 2,
+      "authored": "qa-act6-r4-01",
+      "oldTemplate": 1,
+      "isolatedSelector": 1,
+      "originalLibrarySha": "894860bea8f95087a1710720c937b971958101d9d930a599b1ea22f1b1400add",
+      "derivedLibrarySha": "5cc8e2f6631de4d2d5261d0f56dbb666e90adcc5038e6c092980210a4bb74f5c",
+      "actors": [
+        "p-archer",
+        "p-mage",
+        "p-knight",
+        "p-occultist",
+        "watcher",
+        "pocket",
+        "armor",
+        "crest-champion"
+      ]
+    },
+    "2": {
+      "definitions": 2,
+      "placementReferences": 2,
+      "authored": "qa-act6-r4-02",
+      "oldTemplate": 1,
+      "isolatedSelector": 2,
+      "originalLibrarySha": "f2fe84b1916cd95d2251862722b8e9d9e9fcbff0e8ac0167e5d3b763bd582910",
+      "derivedLibrarySha": "36e188757a84d52d0604d90836d800e5c9591c1a1315918c71636248ce54d510",
+      "actors": [
+        "p-archer",
+        "p-mage",
+        "p-knight",
+        "p-occultist",
+        "watch-range",
+        "bridge-keeper",
+        "return-guard",
+        "cliff-stone"
+      ]
+    },
+    "3": {
+      "definitions": 0,
+      "placementReferences": 0,
+      "authored": "contact-q-03",
+      "oldTemplate": 1,
+      "isolatedSelector": 3,
+      "originalLibrarySha": "95c9a1db86988565857a3ac21e809aad9624292abc3575ea3bc9f24ac8578810",
+      "derivedLibrarySha": "95c9a1db86988565857a3ac21e809aad9624292abc3575ea3bc9f24ac8578810",
+      "actors": [
+        "draft-damheo",
+        "draft-lower-lane-guard",
+        "draft-upper-side-guard"
+      ]
+    },
+    "4": {
+      "definitions": 0,
+      "placementReferences": 0,
+      "authored": "contact-q-04",
+      "oldTemplate": 1,
+      "isolatedSelector": 4,
+      "originalLibrarySha": "328431fbb39a8e7b931f42d66b489a7bf8949f51bb55d4b8d26a5afea3ac8b4d",
+      "derivedLibrarySha": "328431fbb39a8e7b931f42d66b489a7bf8949f51bb55d4b8d26a5afea3ac8b4d",
+      "actors": [
+        "p0"
+      ]
+    },
+    "5": {
+      "definitions": 0,
+      "placementReferences": 0,
+      "authored": "qa-act6-05",
+      "oldTemplate": 1,
+      "isolatedSelector": 5,
+      "originalLibrarySha": "cbfe8aaed81fade6c507555f3ec6ff39084d0cf367e3ecea7fb1d4cbba6a5a19",
+      "derivedLibrarySha": "cbfe8aaed81fade6c507555f3ec6ff39084d0cf367e3ecea7fb1d4cbba6a5a19",
+      "actors": [
+        "qa-knight",
+        "qa-archer",
+        "qa-occultist"
+      ]
+    },
+    "6": {
+      "definitions": 0,
+      "placementReferences": 0,
+      "authored": "qa-act6-06",
+      "oldTemplate": 1,
+      "isolatedSelector": 6,
+      "originalLibrarySha": "b621a16ef3528ff1512bcc6f25b2a3a482d7332272f9b4290753b4ff5e7c358d",
+      "derivedLibrarySha": "b621a16ef3528ff1512bcc6f25b2a3a482d7332272f9b4290753b4ff5e7c358d",
+      "actors": [
+        "qa-mage"
+      ]
+    },
+    "7": {
+      "definitions": 4,
+      "placementReferences": 4,
+      "authored": "a6-local-playable-07",
+      "oldTemplate": 1,
+      "isolatedSelector": 7,
+      "originalLibrarySha": "627ab5f79128f0ab8a0f6f1a9d5bb9ade05f197f2aa4c06a93b6c514b677b180",
+      "derivedLibrarySha": "ff8979e6dbdbe0bacf0ecb5569b10ada40b507c35cd3cab612ff576deae9e443",
+      "actors": [
+        "qa-archer"
+      ]
+    },
+    "8": {
+      "definitions": 4,
+      "placementReferences": 4,
+      "authored": "a6-local-playable-08",
+      "oldTemplate": 1,
+      "isolatedSelector": 8,
+      "originalLibrarySha": "6d5cdae165e6a5849d63065d794b219f52e0cda54d0853198f1e726dd175c9f7",
+      "derivedLibrarySha": "5846654df2e1d08f0569cb67626078cb546dffc0087621f0fa4b005ccf55de5f",
+      "actors": [
+        "qa-mage"
+      ]
+    },
+    "9": {
+      "definitions": 3,
+      "placementReferences": 3,
+      "authored": "qa-stage-59-native-asset-only",
+      "oldTemplate": 1,
+      "isolatedSelector": 9,
+      "originalLibrarySha": "1decdc5afa66eb55c16ff69ecca4e04273f2ec912767641dd69223ab5f7d3394",
+      "derivedLibrarySha": "cbb90da04b0a3321934b3183b7948804e444bfdfab1467f279c0750a168d5295",
+      "actors": []
+    },
+    "10": {
+      "definitions": 3,
+      "placementReferences": 3,
+      "authored": "qa-stage-60-native-asset-only",
+      "oldTemplate": 1,
+      "isolatedSelector": 10,
+      "originalLibrarySha": "84dbfff8fb3e93541f20033d37e9e796adf1fe3e98be11615e72c1d27498c02a",
+      "derivedLibrarySha": "cd0d563c8d4ad81790172f054055d22694f6d4947b18ee4ad4bb0e88fe3513f5",
+      "actors": []
+    }
+  },
+  "strictWorkshopPassed": [
+    3,
+    4,
+    7,
+    8,
+    9,
+    10
+  ],
+  "strictWorkshopErrors": {
+    "1": [
+      "qa-act6-r4-01: mountain-main extended solid requires playProjection",
+      "qa-act6-r4-01: missing/duplicate ID mountain-main",
+      "qa-act6-r4-01: missing/duplicate ID terrace-continuous",
+      "r4-continental-continuation: missing/invalid reference height, bounds or foot",
+      "r4-continental-continuation: invalid physical scale range",
+      "r4-continental-continuation: missing/invalid background scale range",
+      "rear-west-scar: missing/invalid reference height, bounds or foot",
+      "rear-west-scar: invalid physical scale range",
+      "rear-west-scar: missing/invalid background scale range",
+      "lower-gallery-bearings: missing/invalid reference height, bounds or foot",
+      "lower-gallery-bearings: invalid physical scale range",
+      "lower-gallery-bearings: missing/invalid background scale range",
+      "rear-east-crest: missing/invalid reference height, bounds or foot",
+      "rear-east-crest: invalid physical scale range",
+      "rear-east-crest: missing/invalid background scale range",
+      "mountain-main: missing/invalid reference height, bounds or foot",
+      "mountain-main: invalid physical scale range",
+      "mountain-main: missing/invalid background scale range",
+      "medium-facies-01: missing/invalid reference height, bounds or foot",
+      "medium-facies-01: invalid physical scale range",
+      "medium-facies-01: missing/invalid background scale range",
+      "terrace-continuous: missing/invalid reference height, bounds or foot",
+      "terrace-continuous: invalid physical scale range",
+      "terrace-continuous: missing/invalid background scale range",
+      "lower-walk-supports: missing/invalid reference height, bounds or foot",
+      "lower-walk-supports: invalid physical scale range",
+      "lower-walk-supports: missing/invalid background scale range",
+      "r4-wrap-strata: missing/invalid reference height, bounds or foot",
+      "r4-wrap-strata: invalid physical scale range",
+      "r4-wrap-strata: missing/invalid background scale range",
+      "pine-and-retaining-wall: missing/invalid reference height, bounds or foot",
+      "pine-and-retaining-wall: invalid physical scale range",
+      "pine-and-retaining-wall: missing/invalid background scale range",
+      "qa-act6-r4-01/mountain-main: battlefield element must be L1",
+      "qa-act6-r4-01/medium-facies-01: battlefield element must be L1",
+      "qa-act6-r4-01/terrace-continuous: battlefield element must be L1",
+      "qa-act6-r4-01/lower-walk-supports: battlefield element must be L1",
+      "qa-act6-r4-01/r4-wrap-strata: battlefield element must be L1",
+      "qa-act6-r4-01: duplicate/missing environment/content ID mountain-main",
+      "qa-act6-r4-01: duplicate/missing environment/content ID terrace-continuous",
+      "qa-act6-r4-01: invalid zone coverage"
+    ],
+    "2": [
+      "qa-act6-r4-02: west-watch-and-descent extended solid requires playProjection",
+      "qa-act6-r4-02: east-return-buttress extended solid requires playProjection",
+      "qa-act6-r4-02: missing/duplicate ID west-watch-and-descent",
+      "qa-act6-r4-02: missing/duplicate ID east-return-buttress",
+      "qa-act6-r4-02: missing/duplicate ID broken-arch-west",
+      "qa-act6-r4-02: missing/duplicate ID broken-arch-east",
+      "qa-act6-r4-02: missing/duplicate ID return-lower-crossing",
+      "qa-act6-r4-02: missing/duplicate ID landing-1",
+      "qa-act6-r4-02: missing/duplicate ID landing-2",
+      "qa-act6-r4-02: missing/duplicate ID landing-3",
+      "qa-act6-r4-02: missing/duplicate ID landing-4",
+      "qa-act6-r4-02: missing/duplicate ID landing-5",
+      "r4-continental-continuation: missing/invalid reference height, bounds or foot",
+      "r4-continental-continuation: invalid physical scale range",
+      "r4-continental-continuation: missing/invalid background scale range",
+      "r4-west-root: missing/invalid reference height, bounds or foot",
+      "r4-west-root: invalid physical scale range",
+      "r4-west-root: missing/invalid background scale range",
+      "r4-descent-rear-bearings: missing/invalid reference height, bounds or foot",
+      "r4-descent-rear-bearings: invalid physical scale range",
+      "r4-descent-rear-bearings: missing/invalid background scale range",
+      "r4-east-root: missing/invalid reference height, bounds or foot",
+      "r4-east-root: invalid physical scale range",
+      "r4-east-root: missing/invalid background scale range",
+      "west-watch-and-descent: missing/invalid reference height, bounds or foot",
+      "west-watch-and-descent: invalid physical scale range",
+      "west-watch-and-descent: missing/invalid background scale range",
+      "east-return-buttress: missing/invalid reference height, bounds or foot",
+      "east-return-buttress: invalid physical scale range",
+      "east-return-buttress: missing/invalid background scale range",
+      "broken-arch-west: missing/invalid reference height, bounds or foot",
+      "broken-arch-west: invalid physical scale range",
+      "broken-arch-west: missing/invalid background scale range",
+      "broken-arch-east: missing/invalid reference height, bounds or foot",
+      "broken-arch-east: invalid physical scale range",
+      "broken-arch-east: missing/invalid background scale range",
+      "return-lower-crossing: missing/invalid reference height, bounds or foot",
+      "return-lower-crossing: invalid physical scale range",
+      "return-lower-crossing: missing/invalid background scale range",
+      "r4-wrap-strata: missing/invalid reference height, bounds or foot",
+      "r4-wrap-strata: invalid physical scale range",
+      "r4-wrap-strata: missing/invalid background scale range",
+      "landing-1: missing/invalid reference height, bounds or foot",
+      "landing-1: invalid physical scale range",
+      "landing-1: missing/invalid background scale range",
+      "landing-2: missing/invalid reference height, bounds or foot",
+      "landing-2: invalid physical scale range",
+      "landing-2: missing/invalid background scale range",
+      "landing-3: missing/invalid reference height, bounds or foot",
+      "landing-3: invalid physical scale range",
+      "landing-3: missing/invalid background scale range",
+      "landing-4: missing/invalid reference height, bounds or foot",
+      "landing-4: invalid physical scale range",
+      "landing-4: missing/invalid background scale range",
+      "landing-5: missing/invalid reference height, bounds or foot",
+      "landing-5: invalid physical scale range",
+      "landing-5: missing/invalid background scale range",
+      "watch-and-pier-markers: missing/invalid reference height, bounds or foot",
+      "watch-and-pier-markers: invalid physical scale range",
+      "watch-and-pier-markers: missing/invalid background scale range",
+      "qa-act6-r4-02/west-watch-and-descent: battlefield element must be L1",
+      "qa-act6-r4-02/east-return-buttress: battlefield element must be L1",
+      "qa-act6-r4-02/broken-arch-west: battlefield element must be L1",
+      "qa-act6-r4-02/broken-arch-east: battlefield element must be L1",
+      "qa-act6-r4-02/return-lower-crossing: battlefield element must be L1",
+      "qa-act6-r4-02/r4-wrap-strata: battlefield element must be L1",
+      "qa-act6-r4-02/landing-1: battlefield element must be L1",
+      "qa-act6-r4-02/landing-2: battlefield element must be L1",
+      "qa-act6-r4-02/landing-3: battlefield element must be L1",
+      "qa-act6-r4-02/landing-4: battlefield element must be L1",
+      "qa-act6-r4-02/landing-5: battlefield element must be L1",
+      "qa-act6-r4-02: duplicate/missing environment/content ID west-watch-and-descent",
+      "qa-act6-r4-02: duplicate/missing environment/content ID east-return-buttress",
+      "qa-act6-r4-02: duplicate/missing environment/content ID broken-arch-west",
+      "qa-act6-r4-02: duplicate/missing environment/content ID broken-arch-east",
+      "qa-act6-r4-02: duplicate/missing environment/content ID return-lower-crossing",
+      "qa-act6-r4-02: duplicate/missing environment/content ID landing-1",
+      "qa-act6-r4-02: duplicate/missing environment/content ID landing-2",
+      "qa-act6-r4-02: duplicate/missing environment/content ID landing-3",
+      "qa-act6-r4-02: duplicate/missing environment/content ID landing-4",
+      "qa-act6-r4-02: duplicate/missing environment/content ID landing-5",
+      "qa-act6-r4-02: invalid zone coverage"
+    ],
+    "3": [],
+    "4": [],
+    "5": [
+      "ch05-v2-local-native-art: missing/invalid reference height, bounds or foot",
+      "ch05-v2-local-native-art: invalid physical scale range",
+      "ch05-v2-local-native-art: missing/invalid background scale range",
+      "qa-act6-05/ch05-v2-local-native-art: battlefield element must be L1"
+    ],
+    "6": [
+      "ch06-v5-local-native-art: missing/invalid reference height, bounds or foot",
+      "ch06-v5-local-native-art: invalid physical scale range",
+      "ch06-v5-local-native-art: missing/invalid background scale range",
+      "qa-act6-06/ch06-v5-local-native-art: battlefield element must be L1"
+    ],
+    "7": [],
+    "8": [],
+    "9": [],
+    "10": []
+  },
+  "strictWorkshopNotReady": [
+    1,
+    2,
+    5,
+    6
+  ],
+  "manifest": "web/data/campaign.ec6b0d2ee5ad083d.json",
+  "module": "web/runtime/campaign.4b769c5c8416cc46.js",
+  "expected": {
+    "1": {
+      "map": "web/data/chapter-01.2a0a940b599786b2.json",
+      "asset": "web/data/chapter-01-assets.9b4ec107adf57380.json",
+      "ids": [
+        "act6-01--r4-continental-continuation",
+        "rear-west-scar",
+        "lower-gallery-bearings",
+        "rear-east-crest",
+        "mountain-main",
+        "medium-facies-01",
+        "terrace-continuous",
+        "lower-walk-supports",
+        "act6-01--r4-wrap-strata",
+        "pine-and-retaining-wall"
+      ]
+    },
+    "2": {
+      "map": "web/data/chapter-02.faf2f890754e951a.json",
+      "asset": "web/data/chapter-02-assets.c72f56e7bf8ff0da.json",
+      "ids": [
+        "act6-02--r4-continental-continuation",
+        "r4-west-root",
+        "r4-descent-rear-bearings",
+        "r4-east-root",
+        "west-watch-and-descent",
+        "east-return-buttress",
+        "broken-arch-west",
+        "broken-arch-east",
+        "return-lower-crossing",
+        "act6-02--r4-wrap-strata",
+        "landing-1",
+        "landing-2",
+        "landing-3",
+        "landing-4",
+        "landing-5",
+        "watch-and-pier-markers"
+      ]
+    },
+    "3": {
+      "map": "web/data/chapter-03.d8242d526ac5fefe.json",
+      "asset": "web/data/chapter-03-assets.6fb1798c99cbb198.json",
+      "ids": [
+        "approved-upper-door-sill-extension",
+        "g00-footing-north",
+        "g00-footing-west",
+        "g00-footing-east",
+        "g00-footing-south",
+        "g10-south-strata",
+        "g11-north-strata",
+        "g12-west-strata",
+        "g13-east-strata",
+        "g14-grounding-faces",
+        "g15-quiet-mids-south",
+        "g18-foundation-tongues",
+        "g20-retained-hall-rear-noncollision",
+        "g30-linked-threshold-lower-left",
+        "g31-linked-threshold-upper-right",
+        "g40-low-contact-fascia",
+        "g41-east-contact-fascia"
+      ]
+    },
+    "4": {
+      "map": "web/data/chapter-04.b0e25be9317e1dc5.json",
+      "asset": "web/data/chapter-04-assets.5d2d8b4da4f8c0ca.json",
+      "ids": [
+        "g00-foothill",
+        "g00-east-spine",
+        "g00-mid-contact",
+        "g00-post-contact",
+        "g00-west-continuation",
+        "g10-foothill-facets",
+        "g11-east-facets",
+        "g12-mid-facets",
+        "g13-inner-facets",
+        "g16-deep-join-strata",
+        "g15-quiet-mids-foothill",
+        "g20-low-side-profile",
+        "g21-central-side-profile",
+        "g25-deep-halls-noncollision",
+        "g28-fascia-outcrop-joins",
+        "g33-pillar-underpass-rear-noncollision",
+        "g40-east-turned-contact",
+        "g42-threshold-eave-rear"
+      ]
+    },
+    "5": {
+      "map": "web/data/chapter-05.eca62839e3c18430.json",
+      "asset": "web/data/chapter-05-assets.b4496d3ef996b1a7.json",
+      "ids": [
+        "ch05-v2-local-native-art"
+      ]
+    },
+    "6": {
+      "map": "web/data/chapter-06.3c05376e2ba69bd1.json",
+      "asset": "web/data/chapter-06-assets.8ff6141c13df77d7.json",
+      "ids": [
+        "ch06-v5-local-native-art"
+      ]
+    },
+    "7": {
+      "map": "web/data/chapter-07.5d9e093dd928d88a.json",
+      "asset": "web/data/chapter-07-assets.e9d23768f1086f44.json",
+      "ids": [
+        "edge-spine-body",
+        "edge-spine-facets",
+        "edge-upper-cap-body",
+        "edge-upper-cap-facets",
+        "edge-basin-body",
+        "edge-basin-facets",
+        "west-spine-body",
+        "west-spine-facets",
+        "slanted-upper-body",
+        "slanted-upper-facets",
+        "middle-body",
+        "middle-facets",
+        "lower-body",
+        "lower-facets",
+        "edge-joint-basin-body",
+        "edge-joint-basin-facets",
+        "act6-07--edge-joint-east-body",
+        "act6-07--edge-joint-east-facets",
+        "act6-07--edge-joint-west-body",
+        "act6-07--edge-joint-west-facets",
+        "edge-joint-east-low-body",
+        "edge-joint-east-low-facets"
+      ]
+    },
+    "8": {
+      "map": "web/data/chapter-08.a2c0324724b6c178.json",
+      "asset": "web/data/chapter-08-assets.76e43dc828cf92c4.json",
+      "ids": [
+        "vault-crown-extension-body",
+        "vault-crown-extension-facets",
+        "west-face-extension-body",
+        "west-face-extension-facets",
+        "east-face-extension-body",
+        "east-face-extension-facets",
+        "floor-mass-extension-body",
+        "floor-mass-extension-facets",
+        "hall-body",
+        "hall-facets",
+        "west-body",
+        "west-facets",
+        "battery-body",
+        "battery-facets",
+        "hook-body",
+        "hook-facets",
+        "dais-body",
+        "dais-facets",
+        "east-body",
+        "east-facets",
+        "floor-body",
+        "floor-facets",
+        "edge-joint-crown-body",
+        "edge-joint-crown-facets",
+        "edge-joint-floor-body",
+        "edge-joint-floor-facets",
+        "act6-08--edge-joint-east-body",
+        "act6-08--edge-joint-east-facets",
+        "act6-08--edge-joint-west-body",
+        "act6-08--edge-joint-west-facets"
+      ]
+    },
+    "9": {
+      "map": "web/data/chapter-09.ef44abf48b2762b7.json",
+      "asset": "web/data/chapter-09-assets.b7f7fe5ca31b4930.json",
+      "ids": [
+        "act6-09--rear-only-nonsolid",
+        "act6-09--painted-coupled-bedrock",
+        "act6-09--authored-contact-rim",
+        "ornaments-nonsolid"
+      ]
+    },
+    "10": {
+      "map": "web/data/chapter-10.d6ea24ba1921ec52.json",
+      "asset": "web/data/chapter-10-assets.09944690b0bad4e7.json",
+      "ids": [
+        "act6-10--rear-only-nonsolid",
+        "act6-10--painted-coupled-bedrock",
+        "act6-10--authored-contact-rim"
+      ]
+    }
+  },
+  "sessions": [
+    {
+      "mode": "lazy",
+      "cold": 1,
+      "records": [
+        {
+          "key": 1,
+          "mode": "cold",
+          "aliases": [
+            "web/data/campaign.ec6b0d2ee5ad083d.json",
+            "web/data/campaign-base.0e31d1e8c2e6ce84.json",
+            "web/data/campaign-shared.37517e5f3dc66819.json",
+            "web/data/chapter-01-assets.9b4ec107adf57380.json",
+            "web/data/chapter-01.2a0a940b599786b2.json"
+          ]
+        },
+        {
+          "key": 2,
+          "mode": "lazy",
+          "aliases": [
+            "web/data/chapter-02-assets.c72f56e7bf8ff0da.json",
+            "web/data/chapter-02.faf2f890754e951a.json"
+          ]
+        },
+        {
+          "key": 3,
+          "mode": "lazy",
+          "aliases": [
+            "web/data/chapter-03-assets.6fb1798c99cbb198.json",
+            "web/data/chapter-03.d8242d526ac5fefe.json"
+          ]
+        },
+        {
+          "key": 4,
+          "mode": "lazy",
+          "aliases": [
+            "web/data/chapter-04-assets.5d2d8b4da4f8c0ca.json",
+            "web/data/chapter-04.b0e25be9317e1dc5.json"
+          ]
+        },
+        {
+          "key": 5,
+          "mode": "lazy",
+          "aliases": [
+            "web/data/chapter-05-assets.b4496d3ef996b1a7.json",
+            "web/data/chapter-05.eca62839e3c18430.json"
+          ]
+        },
+        {
+          "key": 6,
+          "mode": "lazy",
+          "aliases": [
+            "web/data/chapter-06-assets.8ff6141c13df77d7.json",
+            "web/data/chapter-06.3c05376e2ba69bd1.json"
+          ]
+        },
+        {
+          "key": 7,
+          "mode": "lazy",
+          "aliases": [
+            "web/data/chapter-07-assets.e9d23768f1086f44.json",
+            "web/data/chapter-07.5d9e093dd928d88a.json"
+          ]
+        },
+        {
+          "key": 8,
+          "mode": "lazy",
+          "aliases": [
+            "web/data/chapter-08-assets.76e43dc828cf92c4.json",
+            "web/data/chapter-08.a2c0324724b6c178.json"
+          ]
+        },
+        {
+          "key": 9,
+          "mode": "lazy",
+          "aliases": [
+            "web/data/chapter-09-assets.b7f7fe5ca31b4930.json",
+            "web/data/chapter-09.ef44abf48b2762b7.json"
+          ]
+        },
+        {
+          "key": 10,
+          "mode": "lazy",
+          "aliases": [
+            "web/data/chapter-10-assets.09944690b0bad4e7.json",
+            "web/data/chapter-10.d6ea24ba1921ec52.json"
+          ]
+        }
+      ],
+      "calls": [
+        "web/data/campaign.ec6b0d2ee5ad083d.json",
+        "web/data/campaign-base.0e31d1e8c2e6ce84.json",
+        "web/data/campaign-shared.37517e5f3dc66819.json",
+        "web/data/chapter-01-assets.9b4ec107adf57380.json",
+        "web/data/chapter-01.2a0a940b599786b2.json",
+        "web/data/chapter-02-assets.c72f56e7bf8ff0da.json",
+        "web/data/chapter-02.faf2f890754e951a.json",
+        "web/data/chapter-03-assets.6fb1798c99cbb198.json",
+        "web/data/chapter-03.d8242d526ac5fefe.json",
+        "web/data/chapter-04-assets.5d2d8b4da4f8c0ca.json",
+        "web/data/chapter-04.b0e25be9317e1dc5.json",
+        "web/data/chapter-05-assets.b4496d3ef996b1a7.json",
+        "web/data/chapter-05.eca62839e3c18430.json",
+        "web/data/chapter-06-assets.8ff6141c13df77d7.json",
+        "web/data/chapter-06.3c05376e2ba69bd1.json",
+        "web/data/chapter-07-assets.e9d23768f1086f44.json",
+        "web/data/chapter-07.5d9e093dd928d88a.json",
+        "web/data/chapter-08-assets.76e43dc828cf92c4.json",
+        "web/data/chapter-08.a2c0324724b6c178.json",
+        "web/data/chapter-09-assets.b7f7fe5ca31b4930.json",
+        "web/data/chapter-09.ef44abf48b2762b7.json",
+        "web/data/chapter-10-assets.09944690b0bad4e7.json",
+        "web/data/chapter-10.d6ea24ba1921ec52.json"
+      ]
+    },
+    {
+      "mode": "lazy",
+      "cold": 2,
+      "records": [
+        {
+          "key": 2,
+          "mode": "cold",
+          "aliases": [
+            "web/data/campaign.ec6b0d2ee5ad083d.json",
+            "web/data/campaign-base.0e31d1e8c2e6ce84.json",
+            "web/data/campaign-shared.37517e5f3dc66819.json",
+            "web/data/chapter-02-assets.c72f56e7bf8ff0da.json",
+            "web/data/chapter-02.faf2f890754e951a.json"
+          ]
+        }
+      ],
+      "calls": [
+        "web/data/campaign.ec6b0d2ee5ad083d.json",
+        "web/data/campaign-base.0e31d1e8c2e6ce84.json",
+        "web/data/campaign-shared.37517e5f3dc66819.json",
+        "web/data/chapter-02-assets.c72f56e7bf8ff0da.json",
+        "web/data/chapter-02.faf2f890754e951a.json"
+      ]
+    },
+    {
+      "mode": "lazy",
+      "cold": 3,
+      "records": [
+        {
+          "key": 3,
+          "mode": "cold",
+          "aliases": [
+            "web/data/campaign.ec6b0d2ee5ad083d.json",
+            "web/data/campaign-base.0e31d1e8c2e6ce84.json",
+            "web/data/campaign-shared.37517e5f3dc66819.json",
+            "web/data/chapter-03-assets.6fb1798c99cbb198.json",
+            "web/data/chapter-03.d8242d526ac5fefe.json"
+          ]
+        }
+      ],
+      "calls": [
+        "web/data/campaign.ec6b0d2ee5ad083d.json",
+        "web/data/campaign-base.0e31d1e8c2e6ce84.json",
+        "web/data/campaign-shared.37517e5f3dc66819.json",
+        "web/data/chapter-03-assets.6fb1798c99cbb198.json",
+        "web/data/chapter-03.d8242d526ac5fefe.json"
+      ]
+    },
+    {
+      "mode": "lazy",
+      "cold": 4,
+      "records": [
+        {
+          "key": 4,
+          "mode": "cold",
+          "aliases": [
+            "web/data/campaign.ec6b0d2ee5ad083d.json",
+            "web/data/campaign-base.0e31d1e8c2e6ce84.json",
+            "web/data/campaign-shared.37517e5f3dc66819.json",
+            "web/data/chapter-04-assets.5d2d8b4da4f8c0ca.json",
+            "web/data/chapter-04.b0e25be9317e1dc5.json"
+          ]
+        }
+      ],
+      "calls": [
+        "web/data/campaign.ec6b0d2ee5ad083d.json",
+        "web/data/campaign-base.0e31d1e8c2e6ce84.json",
+        "web/data/campaign-shared.37517e5f3dc66819.json",
+        "web/data/chapter-04-assets.5d2d8b4da4f8c0ca.json",
+        "web/data/chapter-04.b0e25be9317e1dc5.json"
+      ]
+    },
+    {
+      "mode": "lazy",
+      "cold": 5,
+      "records": [
+        {
+          "key": 5,
+          "mode": "cold",
+          "aliases": [
+            "web/data/campaign.ec6b0d2ee5ad083d.json",
+            "web/data/campaign-base.0e31d1e8c2e6ce84.json",
+            "web/data/campaign-shared.37517e5f3dc66819.json",
+            "web/data/chapter-05-assets.b4496d3ef996b1a7.json",
+            "web/data/chapter-05.eca62839e3c18430.json"
+          ]
+        }
+      ],
+      "calls": [
+        "web/data/campaign.ec6b0d2ee5ad083d.json",
+        "web/data/campaign-base.0e31d1e8c2e6ce84.json",
+        "web/data/campaign-shared.37517e5f3dc66819.json",
+        "web/data/chapter-05-assets.b4496d3ef996b1a7.json",
+        "web/data/chapter-05.eca62839e3c18430.json"
+      ]
+    },
+    {
+      "mode": "lazy",
+      "cold": 6,
+      "records": [
+        {
+          "key": 6,
+          "mode": "cold",
+          "aliases": [
+            "web/data/campaign.ec6b0d2ee5ad083d.json",
+            "web/data/campaign-base.0e31d1e8c2e6ce84.json",
+            "web/data/campaign-shared.37517e5f3dc66819.json",
+            "web/data/chapter-06-assets.8ff6141c13df77d7.json",
+            "web/data/chapter-06.3c05376e2ba69bd1.json"
+          ]
+        }
+      ],
+      "calls": [
+        "web/data/campaign.ec6b0d2ee5ad083d.json",
+        "web/data/campaign-base.0e31d1e8c2e6ce84.json",
+        "web/data/campaign-shared.37517e5f3dc66819.json",
+        "web/data/chapter-06-assets.8ff6141c13df77d7.json",
+        "web/data/chapter-06.3c05376e2ba69bd1.json"
+      ]
+    },
+    {
+      "mode": "lazy",
+      "cold": 7,
+      "records": [
+        {
+          "key": 7,
+          "mode": "cold",
+          "aliases": [
+            "web/data/campaign.ec6b0d2ee5ad083d.json",
+            "web/data/campaign-base.0e31d1e8c2e6ce84.json",
+            "web/data/campaign-shared.37517e5f3dc66819.json",
+            "web/data/chapter-07-assets.e9d23768f1086f44.json",
+            "web/data/chapter-07.5d9e093dd928d88a.json"
+          ]
+        }
+      ],
+      "calls": [
+        "web/data/campaign.ec6b0d2ee5ad083d.json",
+        "web/data/campaign-base.0e31d1e8c2e6ce84.json",
+        "web/data/campaign-shared.37517e5f3dc66819.json",
+        "web/data/chapter-07-assets.e9d23768f1086f44.json",
+        "web/data/chapter-07.5d9e093dd928d88a.json"
+      ]
+    },
+    {
+      "mode": "lazy",
+      "cold": 8,
+      "records": [
+        {
+          "key": 8,
+          "mode": "cold",
+          "aliases": [
+            "web/data/campaign.ec6b0d2ee5ad083d.json",
+            "web/data/campaign-base.0e31d1e8c2e6ce84.json",
+            "web/data/campaign-shared.37517e5f3dc66819.json",
+            "web/data/chapter-08-assets.76e43dc828cf92c4.json",
+            "web/data/chapter-08.a2c0324724b6c178.json"
+          ]
+        }
+      ],
+      "calls": [
+        "web/data/campaign.ec6b0d2ee5ad083d.json",
+        "web/data/campaign-base.0e31d1e8c2e6ce84.json",
+        "web/data/campaign-shared.37517e5f3dc66819.json",
+        "web/data/chapter-08-assets.76e43dc828cf92c4.json",
+        "web/data/chapter-08.a2c0324724b6c178.json"
+      ]
+    },
+    {
+      "mode": "lazy",
+      "cold": 9,
+      "records": [
+        {
+          "key": 9,
+          "mode": "cold",
+          "aliases": [
+            "web/data/campaign.ec6b0d2ee5ad083d.json",
+            "web/data/campaign-base.0e31d1e8c2e6ce84.json",
+            "web/data/campaign-shared.37517e5f3dc66819.json",
+            "web/data/chapter-09-assets.b7f7fe5ca31b4930.json",
+            "web/data/chapter-09.ef44abf48b2762b7.json"
+          ]
+        }
+      ],
+      "calls": [
+        "web/data/campaign.ec6b0d2ee5ad083d.json",
+        "web/data/campaign-base.0e31d1e8c2e6ce84.json",
+        "web/data/campaign-shared.37517e5f3dc66819.json",
+        "web/data/chapter-09-assets.b7f7fe5ca31b4930.json",
+        "web/data/chapter-09.ef44abf48b2762b7.json"
+      ]
+    },
+    {
+      "mode": "lazy",
+      "cold": 10,
+      "records": [
+        {
+          "key": 10,
+          "mode": "cold",
+          "aliases": [
+            "web/data/campaign.ec6b0d2ee5ad083d.json",
+            "web/data/campaign-base.0e31d1e8c2e6ce84.json",
+            "web/data/campaign-shared.37517e5f3dc66819.json",
+            "web/data/chapter-10-assets.09944690b0bad4e7.json",
+            "web/data/chapter-10.d6ea24ba1921ec52.json"
+          ]
+        }
+      ],
+      "calls": [
+        "web/data/campaign.ec6b0d2ee5ad083d.json",
+        "web/data/campaign-base.0e31d1e8c2e6ce84.json",
+        "web/data/campaign-shared.37517e5f3dc66819.json",
+        "web/data/chapter-10-assets.09944690b0bad4e7.json",
+        "web/data/chapter-10.d6ea24ba1921ec52.json"
+      ]
+    },
+    {
+      "mode": "full",
+      "cold": 1,
+      "records": [],
+      "calls": [
+        "web/data/campaign.ec6b0d2ee5ad083d.json",
+        "web/data/campaign-base.0e31d1e8c2e6ce84.json",
+        "web/data/campaign-shared.37517e5f3dc66819.json",
+        "web/data/chapter-01.2a0a940b599786b2.json",
+        "web/data/chapter-02.faf2f890754e951a.json",
+        "web/data/chapter-03.d8242d526ac5fefe.json",
+        "web/data/chapter-04.b0e25be9317e1dc5.json",
+        "web/data/chapter-05.eca62839e3c18430.json",
+        "web/data/chapter-06.3c05376e2ba69bd1.json",
+        "web/data/chapter-07.5d9e093dd928d88a.json",
+        "web/data/chapter-08.a2c0324724b6c178.json",
+        "web/data/chapter-09.ef44abf48b2762b7.json",
+        "web/data/chapter-10.d6ea24ba1921ec52.json",
+        "web/data/chapter-01-assets.9b4ec107adf57380.json",
+        "web/data/chapter-02-assets.c72f56e7bf8ff0da.json",
+        "web/data/chapter-03-assets.6fb1798c99cbb198.json",
+        "web/data/chapter-04-assets.5d2d8b4da4f8c0ca.json",
+        "web/data/chapter-05-assets.b4496d3ef996b1a7.json",
+        "web/data/chapter-06-assets.8ff6141c13df77d7.json",
+        "web/data/chapter-07-assets.e9d23768f1086f44.json",
+        "web/data/chapter-08-assets.76e43dc828cf92c4.json",
+        "web/data/chapter-09-assets.b7f7fe5ca31b4930.json",
+        "web/data/chapter-10-assets.09944690b0bad4e7.json",
+        "web/data/campaign-editor-extras.37517e5f3dc66819.json"
+      ]
+    }
+  ],
+  "frames": {
+    "1": {
+      "sha256": "2a51042423b02dbb7c2aa8295b570c8641b598cc6a1e27bdca806381dae644ba",
+      "nontransparent": 119791,
+      "size": [
+        960,
+        560
+      ],
+      "scope": "actual stock native element painter, not game canvas/App"
+    },
+    "2": {
+      "sha256": "2c186b20d4017e3974c160949809d6b7c306315cb707034c830f2242658c4eb0",
+      "nontransparent": 144790,
+      "size": [
+        960,
+        560
+      ],
+      "scope": "actual stock native element painter, not game canvas/App"
+    },
+    "3": {
+      "sha256": "1f3b5f4f728b3ed46c1357222398542455800d35e16759b0c8c05dbf12663cdc",
+      "nontransparent": 211995,
+      "size": [
+        960,
+        560
+      ],
+      "scope": "actual stock native element painter, not game canvas/App"
+    },
+    "4": {
+      "sha256": "ccb922682d79624c6ab78cf95ca5bac04c7c8a652dd48fe9ccb242ff1189310b",
+      "nontransparent": 183529,
+      "size": [
+        960,
+        560
+      ],
+      "scope": "actual stock native element painter, not game canvas/App"
+    },
+    "5": {
+      "sha256": "a26406c16428830049ffd12230ca93d9e99d778c36577b9bb8497523960f6a00",
+      "nontransparent": 309519,
+      "size": [
+        960,
+        560
+      ],
+      "scope": "actual stock native element painter, not game canvas/App"
+    },
+    "6": {
+      "sha256": "603e184e98b20d9cf446388991413c0891621aa59ed46e93b56b156ba4576778",
+      "nontransparent": 146134,
+      "size": [
+        960,
+        560
+      ],
+      "scope": "actual stock native element painter, not game canvas/App"
+    },
+    "7": {
+      "sha256": "1b6ab02a2e2eea1156cd683b59292f8581000700623e3be103727a4feaf95c73",
+      "nontransparent": 196041,
+      "size": [
+        960,
+        560
+      ],
+      "scope": "actual stock native element painter, not game canvas/App"
+    },
+    "8": {
+      "sha256": "3b5ef64180e2f0e7b9a927021764522939eb846541c0f5dd103ca56574510e1c",
+      "nontransparent": 276263,
+      "size": [
+        960,
+        560
+      ],
+      "scope": "actual stock native element painter, not game canvas/App"
+    },
+    "9": {
+      "sha256": "4a37c1b99cfd4bcf27ee2dadb54477e06f4dc3b84b822601d6d49664c8fe87db",
+      "nontransparent": 233310,
+      "size": [
+        960,
+        560
+      ],
+      "scope": "actual stock native element painter, not game canvas/App"
+    },
+    "10": {
+      "sha256": "ce15ae302a0c9c512ddf96f2d10aaa786afb8877e75c4df19c1d7bbce8ca8f03",
+      "nontransparent": 203574,
+      "size": [
+        960,
+        560
+      ],
+      "scope": "actual stock native element painter, not game canvas/App"
+    }
+  },
+  "stockContentCount": 50,
+  "stockContentUnchanged": true,
+  "legacyProvidersIncluded": false,
+  "actualBrowser": false,
+  "persistentWrites": 0,
+  "officialAct6Registered": false,
+  "files": [
+    {
+      "path": "web/runtime/load-data.609b23511c6c5e7f.js",
+      "bytes": 18592,
+      "sha256": "609b23511c6c5e7f79eeb08c185b446b23c5f3f2257d3e5525bc23ff2a4ad54c"
+    },
+    {
+      "path": "web/data/campaign-base.0e31d1e8c2e6ce84.json",
+      "bytes": 207,
+      "sha256": "0e31d1e8c2e6ce848b6add81d8d0d5615bc59250689033ba85d3fdb61da1abe3"
+    },
+    {
+      "path": "web/data/campaign-editor-extras.37517e5f3dc66819.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "web/data/campaign-shared.37517e5f3dc66819.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "web/data/chapter-01.2a0a940b599786b2.json",
+      "bytes": 7396,
+      "sha256": "2a0a940b599786b293d12c814e4a3e63ca28b5353ea6c3ee63db323ae41981f2"
+    },
+    {
+      "path": "web/data/chapter-01-assets.9b4ec107adf57380.json",
+      "bytes": 129166,
+      "sha256": "9b4ec107adf57380f9e7001906c71ab7a23ad7715ac4f6629bb1901c8746440e"
+    },
+    {
+      "path": "web/data/chapter-02.faf2f890754e951a.json",
+      "bytes": 10409,
+      "sha256": "faf2f890754e951a1d6c352fa22c31b0cfc39216944a9361af24e089858f194c"
+    },
+    {
+      "path": "web/data/chapter-02-assets.c72f56e7bf8ff0da.json",
+      "bytes": 126533,
+      "sha256": "c72f56e7bf8ff0dabea7440b21655e4d0ad9c064d95d9f7ee2879bd43ee38e72"
+    },
+    {
+      "path": "web/data/chapter-03.d8242d526ac5fefe.json",
+      "bytes": 10680,
+      "sha256": "d8242d526ac5fefed56f843ece65d225198b4d294baa3079af7ac89d33819fd3"
+    },
+    {
+      "path": "web/data/chapter-03-assets.6fb1798c99cbb198.json",
+      "bytes": 110997,
+      "sha256": "6fb1798c99cbb198f8416777ccf5c4c12239ba825e0d6e2caa4513ba3c0a91e0"
+    },
+    {
+      "path": "web/data/chapter-04.b0e25be9317e1dc5.json",
+      "bytes": 10664,
+      "sha256": "b0e25be9317e1dc5856f7455a6449c4b4f31b1d8fd9827b88e40d6a0a8f87533"
+    },
+    {
+      "path": "web/data/chapter-04-assets.5d2d8b4da4f8c0ca.json",
+      "bytes": 81616,
+      "sha256": "5d2d8b4da4f8c0caf1fd6dd949973b9738e6b01e92d55ad169a5648dc9d85318"
+    },
+    {
+      "path": "web/data/chapter-05.eca62839e3c18430.json",
+      "bytes": 3556,
+      "sha256": "eca62839e3c184305952a3030cc0d8649036dc3228bb474db1e1f3f08bc0e7aa"
+    },
+    {
+      "path": "web/data/chapter-05-assets.b4496d3ef996b1a7.json",
+      "bytes": 30923,
+      "sha256": "b4496d3ef996b1a7ffe0323c65000c0a3b7b8a137b735fa540567cf764cbaaec"
+    },
+    {
+      "path": "web/data/chapter-06.3c05376e2ba69bd1.json",
+      "bytes": 5461,
+      "sha256": "3c05376e2ba69bd13509d95aaaf9a1437a509e1a6f0b7d7c7be31cd9131bad98"
+    },
+    {
+      "path": "web/data/chapter-06-assets.8ff6141c13df77d7.json",
+      "bytes": 107819,
+      "sha256": "8ff6141c13df77d7f69c123c205e04fcd1991de4441b4a592ca7bf590bfe3aba"
+    },
+    {
+      "path": "web/data/chapter-07.5d9e093dd928d88a.json",
+      "bytes": 11938,
+      "sha256": "5d9e093dd928d88aea495e8701dfc4eb3240761841c3845c26444754c3a8f1d3"
+    },
+    {
+      "path": "web/data/chapter-07-assets.e9d23768f1086f44.json",
+      "bytes": 56782,
+      "sha256": "e9d23768f1086f441e08304e30bd09800d7c3bc2640eaf0374acb8b46314dd30"
+    },
+    {
+      "path": "web/data/chapter-08.a2c0324724b6c178.json",
+      "bytes": 11847,
+      "sha256": "a2c0324724b6c1782fd93bb4d7be2450deabb68e51c952cd548e6d4e93f95319"
+    },
+    {
+      "path": "web/data/chapter-08-assets.76e43dc828cf92c4.json",
+      "bytes": 92367,
+      "sha256": "76e43dc828cf92c4a87f4386cfa5118e5702f425907434e5a23be5d6ce9a37f4"
+    },
+    {
+      "path": "web/data/chapter-09.ef44abf48b2762b7.json",
+      "bytes": 7773,
+      "sha256": "ef44abf48b2762b78da676d59e71a8f30e97e06eb70aed7d48f1843aaadae79e"
+    },
+    {
+      "path": "web/data/chapter-09-assets.b7f7fe5ca31b4930.json",
+      "bytes": 162764,
+      "sha256": "b7f7fe5ca31b4930cb0f666b04477a729ea2abbe1b91423a1e666ec78faa7886"
+    },
+    {
+      "path": "web/data/chapter-10.d6ea24ba1921ec52.json",
+      "bytes": 8443,
+      "sha256": "d6ea24ba1921ec52b991711e225a0f368c0e5cdfac7ff4235994d260fe1d1930"
+    },
+    {
+      "path": "web/data/chapter-10-assets.09944690b0bad4e7.json",
+      "bytes": 135523,
+      "sha256": "09944690b0bad4e7e07e0d4ed5ebbad3349911c30c65ba4e81f58b3192d2e952"
+    },
+    {
+      "path": "web/data/campaign.ec6b0d2ee5ad083d.json",
+      "bytes": 6267,
+      "sha256": "ec6b0d2ee5ad083dc32d3f0ffaba0c349e393ac9bce80323ecb0e0723bc698ca"
+    },
+    {
+      "path": "web/runtime/campaign.4b769c5c8416cc46.js",
+      "bytes": 226,
+      "sha256": "4b769c5c8416cc4633baf4f9ec7758971ade757a46bd7b4d37e6297ad6476789"
+    }
+  ]
+}
