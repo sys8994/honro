@@ -12,6 +12,10 @@ from playwright.sync_api import sync_playwright
 from normal52_witness import stage52
 from normal53_witness import stage53
 from normal54_witness import stage54
+from normal55_witness import stage55
+from normal56_witness import stage56
+from normal57_witness import stage57
+from normal_late_witness import stage_late, stage60
 
 a, b, out = [Path(x).resolve() for x in sys.argv[1:]]
 out.mkdir(parents=True, exist_ok=True)
@@ -40,6 +44,12 @@ PACKET_PINS={
     52:('3e35d12c62d32164643d48a58a772161912cb889f438049bd480d78ed4ac96e9',146799),
     53:('8f046099facbcca3e715115256795f8252434d5cf42066606fea372cbe141830',123176),
     54:('db8378878dd4cbf81e8f2463d6f466c72c7bd8420331a12486919513c9a049b4',645068),
+    55:('a512361224885cc60579d53ae09566877761f522a7c494101624883ac97dec43',36649),
+    56:('9da6dfc59e034e71f32dfbb5f040c1013941a90d169cc8535ab59cdc20951ce1',115833),
+    57:('fc0a15554d66dd9668123f74cb628830993eccfd5d55b1153eb0018f2336249d',94402),
+    58:('ad3b9e6b4bb24d1346afd7c7418a3a903023969bed0a9ac0438ff4474ef94866',107019),
+    59:('ee91acb454fea3fdcc0dfd231d70973f1e75111d859deae590e403ba18e95d8c',171607),
+    60:('483701a278a8ccc609665025b73bdbdb9487b71c3eb45db6a226d07e003b6a7e',145204),
 }
 PACKETS={i:(f'web/data/act6-qa-chapter-{i}.{h[:16]}.json',h,n) for i,(h,n) in PACKET_PINS.items()}
 path,expected,_=PACKETS[51]
@@ -207,6 +217,12 @@ def trial(browser,label,w,h,mobile,arm,kind):
                 stage52(page,state,mobile,original,tap,out,key,'/'+PACKETS[52][0])
                 stage53(page,state,mobile,original,tap,out,key,'/'+PACKETS[53][0])
                 stage54(page,state,mobile,original,tap,out,key,'/'+PACKETS[54][0])
+                stage55(page,state,mobile,original,tap,out,key,'/'+PACKETS[55][0])
+                stage56(page,state,mobile,original,tap,out,key,'/'+PACKETS[56][0],continue57=True)
+                stage57(page,state,mobile,original,tap,out,key,'/'+PACKETS[57][0])
+                stage_late(page,state,mobile,original,tap,out,key,'/'+PACKETS[58][0],58)
+                stage_late(page,state,mobile,original,tap,out,key,'/'+PACKETS[59][0],59)
+                stage60(page,state,mobile,original,tap,out,key,'/'+PACKETS[60][0])
         assert not state['errors'],state
         state['status']='PASS'
     finally:
@@ -219,7 +235,7 @@ try:
             for arm,kind in [('OFF','fresh-pending'),('ON','fresh-pending'),('ON','legacy-format')]:
                 trial(browser,label,w,h,mobile,arm,kind)
         browser.close()
-    evidence['status']='PASS_50_STOCK_ENDING_REST_THEN_NATIVE_NORMAL_51_52_53_54'
+    evidence['status']='PASS_50_STOCK_REST_NATIVE_51_TO_60_AND_ENDING_CUE_NO_WRITES'
 finally:
     (out/'BROWSER.json').write_text(json.dumps(evidence,ensure_ascii=False,indent=2)+'\n')
     for server in [a_srv,b_srv]:
