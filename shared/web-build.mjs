@@ -197,7 +197,11 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
     const mains=entries.filter(entry=>entry.name==='shared/runtime/main.js');
     assert.equal(mains.length,1);
     if(normal51Module)stockBytes.set(mains[0],mains[0].code);
-    mains[0].code=makeQaMain(mains[0].code,qaAct6.source,descriptors);
+    const terrainArt=descriptors.boundary?[
+      await read('shared/act6-terrain-art/paint-data.inc.js'),
+      await read('shared/act6-terrain-art/paint-scene.inc.js'),
+    ].join('\n'):null;
+    mains[0].code=makeQaMain(mains[0].code,qaAct6.source,descriptors,terrainArt);
   }
   const appStart=entries.findIndex(e=>e.name==='game/vendor/ui/fa.js');
   assert(appStart>0,'Game application boundary required');
