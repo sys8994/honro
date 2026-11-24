@@ -1,0 +1,23 @@
+{
+  "schema": "honro-act6-return-guard-narrative/v1",
+  "meaning": "앞으로 나아갈 자리가 아니라, 돌아올 자리를 마지막까지 지킨 세 사람.",
+  "requires": {
+    "observedInStage": 59,
+    "exactStoryEvent": "returnGuardAftermathWitnessed",
+    "recordedInStage": 60,
+    "requiredRecorder": "knight",
+    "groundedAtRecordedGate": true,
+    "assignmentDoesNotAuthorizeCasualty": true
+  },
+  "people": [
+    {"id":"local-07-gwakjin-return-keeper","name":"곽진","duty":"귀환 매듭을 맡았다.","source":"existing-character"},
+    {"id":"local-07-return-guard-shield","name":"박문돌","duty":"석교 끝의 방패선을 맡았다.","source":"new-authoring-v1"},
+    {"id":"local-07-return-guard-relay","name":"이만복","duty":"귀환 매듭과 대피로를 맡았다.","source":"new-authoring-v1"}
+  ],
+  "queuedLines": [
+    {"stage":59,"speaker":"휘겸","when":"observedAftermath","line":"길은 남겼군."},
+    {"stage":60,"speaker":"설오","when":"namesEntered","line":"다 적으셨습니까?"},
+    {"stage":60,"speaker":"휘겸","when":"namesEntered","line":"빠뜨린 이가 없는지, 한 번만 더 보겠소."}
+  ],
+  "mustNot": ["mutate campaign on read-only replay","infer casualty from elapsed time","consume an attack turn","write a reward","recreate an old body"]
+}
