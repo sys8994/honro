@@ -1,0 +1,1 @@
+export const plate58=Object.freeze({"bytes":343208,"w":1122,"h":1402,"sha":"696fd1dfe489567e8032a3f2a2a8be45539ddae488e67baf01f37f82c382e22d","path":"/web/graphics/act6-far-58-wide.696fd1dfe489567e.webp","mime":"image/webp"});
