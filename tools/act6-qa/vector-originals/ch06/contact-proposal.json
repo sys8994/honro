@@ -1,0 +1,190 @@
+{
+  "coordinateSystem": "local art units from 840x630 source framing",
+  "collision": "not registered; stairs and QA use same explicit vertices",
+  "chains": [
+    {
+      "id": "A-01-upper-entry",
+      "geometry": "continuous solid side-profile contact with inset stone nosing",
+      "collisionRegistered": false,
+      "points": [
+        [
+          20,
+          156
+        ],
+        [
+          90,
+          206
+        ]
+      ]
+    },
+    {
+      "id": "C-01-west-upper-descent",
+      "geometry": "continuous solid side-profile contact with inset stone nosing",
+      "collisionRegistered": false,
+      "points": [
+        [
+          47,
+          222
+        ],
+        [
+          86.0,
+          276.0
+        ]
+      ]
+    },
+    {
+      "id": "C-02-west-shaft-descent",
+      "geometry": "continuous solid side-profile contact with inset stone nosing",
+      "collisionRegistered": false,
+      "points": [
+        [
+          85,
+          318
+        ],
+        [
+          173.39999999999998,
+          377.8
+        ]
+      ]
+    },
+    {
+      "id": "C-03-west-refuge-lower",
+      "geometry": "continuous solid side-profile contact with inset stone nosing",
+      "collisionRegistered": false,
+      "points": [
+        [
+          148,
+          430
+        ],
+        [
+          194.8,
+          473.2
+        ]
+      ]
+    },
+    {
+      "id": "B-01-center-stone-ascent",
+      "geometry": "continuous solid side-profile contact with inset stone nosing",
+      "collisionRegistered": false,
+      "points": [
+        [
+          315,
+          355
+        ],
+        [
+          441,
+          275.2
+        ]
+      ]
+    },
+    {
+      "id": "B-02-center-lower-short-climb",
+      "geometry": "continuous solid side-profile contact with inset stone nosing",
+      "collisionRegistered": false,
+      "points": [
+        [
+          411,
+          470
+        ],
+        [
+          459,
+          432
+        ],
+        [
+          510,
+          392
+        ]
+      ]
+    },
+    {
+      "id": "E-01-lower-east-rejoin",
+      "geometry": "continuous solid side-profile contact with inset stone nosing",
+      "collisionRegistered": false,
+      "points": [
+        [
+          650,
+          506
+        ],
+        [
+          788.0,
+          434
+        ]
+      ]
+    },
+    {
+      "id": "E-02-east-ascending-exit",
+      "geometry": "continuous solid side-profile contact with inset stone nosing",
+      "collisionRegistered": false,
+      "points": [
+        [
+          787,
+          434
+        ],
+        [
+          817,
+          404
+        ]
+      ]
+    },
+    {
+      "id": "A-upper-veranda",
+      "collisionRegistered": false,
+      "geometry": "visible existing structural floor sampling",
+      "points": [
+        [
+          100,
+          142
+        ],
+        [
+          393,
+          142
+        ]
+      ]
+    },
+    {
+      "id": "B-left-broken-balcony",
+      "collisionRegistered": false,
+      "geometry": "visible existing structural floor sampling",
+      "points": [
+        [
+          124,
+          326
+        ],
+        [
+          257,
+          326
+        ]
+      ]
+    },
+    {
+      "id": "B-central-lower-floor",
+      "collisionRegistered": false,
+      "geometry": "visible existing structural floor sampling",
+      "points": [
+        [
+          264,
+          480
+        ],
+        [
+          411,
+          480
+        ]
+      ]
+    },
+    {
+      "id": "E-lower-veranda",
+      "collisionRegistered": false,
+      "geometry": "visible existing structural floor sampling",
+      "points": [
+        [
+          442,
+          507
+        ],
+        [
+          651,
+          507
+        ]
+      ]
+    }
+  ]
+}
