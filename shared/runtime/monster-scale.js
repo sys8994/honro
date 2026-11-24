@@ -24,7 +24,7 @@ const KEEP=new Set(['stage29-hantaerok']);
 // An explicit single-actor trial. A place variant cannot bleed into other
 // chapters, difficulty profiles, Workshop maps or an existing v1 battle.
 const PLACE_VARIANTS=Object.freeze({6:Object.freeze({'midboss-stage6':Object.freeze({
- species:'warden',metres:8.5,tone:'wetTimber',reason:'무너진 교각 아래, 물을 먹은 장승의 목재가 불었다.',
+ species:'warden',metres:8.5,healthRatio:.32,tone:'wetTimber',reason:'무너진 교각 아래, 물을 먹은 장승의 목재가 불었다.',
  weak:Object.freeze({v:2,key:'warden-face',body:.20,bonus:1,top:.10,bottom:.46,halfWidth:.50})
 })})});
 const activeVersion=b=>b?.honroMonsterScaleRevision===LEGACY_REVISION||b?.honroMonsterScaleRevision===REVISION;
@@ -103,6 +103,14 @@ function apply(b,u){
    if(fits(b,u,target,radius)){
     grow(b,u,v.metres,named[1],.8,64,'named-place');
     if(u.h===target){
+     // The face is a smaller usable target despite the larger silhouette.
+     // Scale the original armoured encounter budget, preserving injury ratio
+     // and difficulty scale rather than imposing an absolute HP in every mode.
+     if(v.healthRatio&&u.maxHp>0){
+      const old=u.maxHp;u.maxHp=Math.max(1,Math.round(old*v.healthRatio));
+      u.hp=Math.max(1,Math.round(u.hp*u.maxHp/old));
+      if(Number.isFinite(u.combatBaseHp))u.combatBaseHp*=u.maxHp/old;
+     }
      u.honroMonsterScaleVariant={v:REVISION,tone:v.tone,reason:v.reason};
      u.honroMonsterWeakPoint={...v.weak};
      return;
