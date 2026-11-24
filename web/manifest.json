@@ -4,7 +4,7 @@
   "workshop": "HONRO_WORKSHOP.html",
   "playtest": "web/entries/game.058bb59c1e62316d.html?embedded=1",
   "project": "web/data/campaign.87a0aa3d3cdf5dec.json",
-  "gameEntry": "web/entries/game.4fd55ad4f6413a15.js",
+  "gameEntry": "web/entries/game-normal51.f14be0f3d15777a2.js",
   "workshopEntry": "web/entries/workshop.67e48ea99623a8ff.js",
   "common": [
     "web/runtime/ordered-common-1.157bf882c2b280e9.js",
@@ -131,6 +131,56 @@
   ],
   "workshopStyle": "web/styles/workshop.a92cfc65d977aa23.css",
   "files": [
+    {
+      "path": "web/data/act6-qa-chapter-51.c8620ccf54745095.json",
+      "bytes": 147478,
+      "sha256": "c8620ccf547450952f3cbbae6e49c2f8dbddab2af69622d3f4221ab99f7046ba"
+    },
+    {
+      "path": "web/data/act6-qa-chapter-52.3e35d12c62d32164.json",
+      "bytes": 146799,
+      "sha256": "3e35d12c62d32164643d48a58a772161912cb889f438049bd480d78ed4ac96e9"
+    },
+    {
+      "path": "web/data/act6-qa-chapter-53.8f046099facbcca3.json",
+      "bytes": 123176,
+      "sha256": "8f046099facbcca3e715115256795f8252434d5cf42066606fea372cbe141830"
+    },
+    {
+      "path": "web/data/act6-qa-chapter-54.db8378878dd4cbf8.json",
+      "bytes": 645068,
+      "sha256": "db8378878dd4cbf81e8f2463d6f466c72c7bd8420331a12486919513c9a049b4"
+    },
+    {
+      "path": "web/data/act6-qa-chapter-55.a512361224885cc6.json",
+      "bytes": 36649,
+      "sha256": "a512361224885cc60579d53ae09566877761f522a7c494101624883ac97dec43"
+    },
+    {
+      "path": "web/data/act6-qa-chapter-56.9da6dfc59e034e71.json",
+      "bytes": 115833,
+      "sha256": "9da6dfc59e034e71f32dfbb5f040c1013941a90d169cc8535ab59cdc20951ce1"
+    },
+    {
+      "path": "web/data/act6-qa-chapter-57.fc0a15554d66dd96.json",
+      "bytes": 94402,
+      "sha256": "fc0a15554d66dd9668123f74cb628830993eccfd5d55b1153eb0018f2336249d"
+    },
+    {
+      "path": "web/data/act6-qa-chapter-58.ad3b9e6b4bb24d13.json",
+      "bytes": 107019,
+      "sha256": "ad3b9e6b4bb24d1346afd7c7418a3a903023969bed0a9ac0438ff4474ef94866"
+    },
+    {
+      "path": "web/data/act6-qa-chapter-59.ee91acb454fea3fd.json",
+      "bytes": 171607,
+      "sha256": "ee91acb454fea3fdcc0dfd231d70973f1e75111d859deae590e403ba18e95d8c"
+    },
+    {
+      "path": "web/data/act6-qa-chapter-60.483701a278a8ccc6.json",
+      "bytes": 145204,
+      "sha256": "483701a278a8ccc609665025b73bdbdb9487b71c3eb45db6a226d07e003b6a7e"
+    },
     {
       "path": "web/data/campaign-base.0c57dcfe7c08d421.json",
       "bytes": 257,
@@ -1055,6 +1105,11 @@
       "path": "web/data/narrative-data.9ee2ba8fb7764fad.json",
       "bytes": 447355,
       "sha256": "9ee2ba8fb7764fadc23a331727a594bf4cdeebbd9f516c980393635d9d6e7e23"
+    },
+    {
+      "path": "web/entries/game-normal51.f14be0f3d15777a2.js",
+      "bytes": 20600,
+      "sha256": "f14be0f3d15777a29c67be06b69410a2c6b9cb60b3ef1bf8889f582064b63e1a"
     },
     {
       "path": "web/entries/game.058bb59c1e62316d.html",
@@ -2100,6 +2155,71 @@
       "path": "web/fonts/kr-02f9.31e6b5e9cc8f1963.woff2",
       "bytes": 5140,
       "sha256": "31e6b5e9cc8f1963408bcd5834d6a84af4f0e4a446d3a3e19605292524a9dbaf"
+    },
+    {
+      "path": "web/graphics/act6-ending-dawn-mobile.56e249516f335f87.webp",
+      "bytes": 284808,
+      "sha256": "56e249516f335f8762883a94715a49043aee8c4598847d27c90f15289f461a61"
+    },
+    {
+      "path": "web/graphics/act6-ending-dawn-pc.cb000c13e9903254.webp",
+      "bytes": 222180,
+      "sha256": "cb000c13e990325498c7996f423b6b459cc586d8ee4d20912b7a1db79944e25f"
+    },
+    {
+      "path": "web/graphics/act6-far-51-portrait.48d4036aca6003c5.webp",
+      "bytes": 90034,
+      "sha256": "48d4036aca6003c5d6757ff3a6119d8272a2fbddf41d53e77ed559434b763ed1"
+    },
+    {
+      "path": "web/graphics/act6-far-51-wide.7d478815691a79c9.webp",
+      "bytes": 85944,
+      "sha256": "7d478815691a79c9e0022f6e0393b58d6748eaa0729b0026ef0cd289842a63cb"
+    },
+    {
+      "path": "web/graphics/act6-far-52-wide.8897aad86e693aec.webp",
+      "bytes": 57550,
+      "sha256": "8897aad86e693aec7e6b65227561fd8cbca3c70dacef436c879c96ea30cd0ddb"
+    },
+    {
+      "path": "web/graphics/act6-far-53-wide.0d0d3394267326ed.webp",
+      "bytes": 137822,
+      "sha256": "0d0d3394267326edf7ce343513d587e34eea98a4d4af7bbad59690f8ebff9aac"
+    },
+    {
+      "path": "web/graphics/act6-far-54-wide.84a1ead89118f40e.webp",
+      "bytes": 377246,
+      "sha256": "84a1ead89118f40e6671c7a0d22be91c4f435693076949940c330c9a13826ce4"
+    },
+    {
+      "path": "web/graphics/act6-far-55-wide.de7755f7d65a8e22.webp",
+      "bytes": 41024,
+      "sha256": "de7755f7d65a8e2207d4dcce723628fb8017435838cc201fea6249b1a26953a4"
+    },
+    {
+      "path": "web/graphics/act6-far-56-wide.bf12114eae958fae.webp",
+      "bytes": 53574,
+      "sha256": "bf12114eae958faef4f3619767fd492b241433dfac5ff6c6354d6451e5238d10"
+    },
+    {
+      "path": "web/graphics/act6-far-57-wide.a4ae7057fd4a26dc.webp",
+      "bytes": 237428,
+      "sha256": "a4ae7057fd4a26dcc59d9f8c27fc42ed009dc4a3b7de248af999b2589bf0e7bb"
+    },
+    {
+      "path": "web/graphics/act6-far-58-wide.696fd1dfe489567e.webp",
+      "bytes": 343208,
+      "sha256": "696fd1dfe489567e8032a3f2a2a8be45539ddae488e67baf01f37f82c382e22d"
+    },
+    {
+      "path": "web/graphics/act6-far-60-playable.13785df44a84667e.webp",
+      "bytes": 79352,
+      "sha256": "13785df44a84667e09db1184c5c6162f20ba4fdaedeb0bad359c315700fa8b17"
+    },
+    {
+      "path": "web/graphics/act6-qa-art-59.e1b0e699a8349a0a.webp",
+      "bytes": 280846,
+      "sha256": "e1b0e699a8349a0af93f4717b06ef4a7ddffa5b4abf15261cd3881d3691383e1"
     },
     {
       "path": "web/graphics/ending-10-image.6a631739bb1b7338.webp",
@@ -3912,6 +4032,11 @@
       "sha256": "8b96c20853c74a938386d9a4a8082486d364a83524e9c101d37ff3e17aabfdaa"
     },
     {
+      "path": "web/runtime/ordered-common-12-normal51.7aacd18c7231bf9f.js",
+      "bytes": 140635,
+      "sha256": "7aacd18c7231bf9f4963acc36437f4d3eff9a091cfe11c171e3d06e493a33260"
+    },
+    {
       "path": "web/runtime/ordered-common-12.eec3d4883178e12e.js",
       "bytes": 140451,
       "sha256": "eec3d4883178e12e14290af5c57a844f55115924c2af655f3b0ea5fc7968fa7c"
@@ -3952,6 +4077,11 @@
       "sha256": "242133f96b38ed270c3193b36917d59d55e35a2acccf7d6fa46e4e427c9384b3"
     },
     {
+      "path": "web/runtime/ordered-common-2-normal51.1c58371401fc464b.js",
+      "bytes": 935492,
+      "sha256": "1c58371401fc464bbdccdd3c077812ae1a3d4ae3b836f79c1543e63a8e4a5da4"
+    },
+    {
       "path": "web/runtime/ordered-common-2.f2adf27a964c1fc5.js",
       "bytes": 935380,
       "sha256": "f2adf27a964c1fc59676b8ada273366293341922d667967d1ebad827a50032c3"
@@ -3965,6 +4095,11 @@
       "path": "web/runtime/ordered-common-3.8fa186e5585aa384.js",
       "bytes": 115050,
       "sha256": "8fa186e5585aa384b04e558eb73bd1015472b1c4e533193978f2103ef043d128"
+    },
+    {
+      "path": "web/runtime/ordered-common-4-normal51.3061146c414b721a.js",
+      "bytes": 161970,
+      "sha256": "3061146c414b721a5ba0d5c264478e6b959b2af92ee2e3eb93040dd3bbe8c8f1"
     },
     {
       "path": "web/runtime/ordered-common-4.26bb9ecb0409166d.js",
@@ -4010,6 +4145,11 @@
       "path": "web/runtime/ordered-game-23.ad788d98544b6479.js",
       "bytes": 146814,
       "sha256": "ad788d98544b6479bedb70f5897272c434c4f65e23967e205f81a678d771b931"
+    },
+    {
+      "path": "web/runtime/ordered-game-24-normal51.51fcf6f99a767ec8.js",
+      "bytes": 501571,
+      "sha256": "51fcf6f99a767ec8e5108123215f16da7a4c385b57b6895ed816310b766fc670"
     },
     {
       "path": "web/runtime/ordered-game-24.6e46adeda67fb8d7.js",
@@ -4065,6 +4205,11 @@
       "path": "web/runtime/shared-runtime-training.84c5e6034d5b7c0b.js",
       "bytes": 8662,
       "sha256": "84c5e6034d5b7c0b4b8afd0b38d8a668d6bc8ba68fc44b70c6ace682afa124dd"
+    },
+    {
+      "path": "web/runtime/stage51-campaign-provider.f9979659bb53c23a.js",
+      "bytes": 1071,
+      "sha256": "f9979659bb53c23a798a64f9884c40e3361410bd6a968abd567f5467dc503bd6"
     },
     {
       "path": "web/runtime/title-scene.63b44eb84d35b848.js",
