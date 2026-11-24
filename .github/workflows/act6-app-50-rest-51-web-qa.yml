@@ -1,21 +1,21 @@
 name: Act 6 genuine 50 ending and rest to normal 51–54 no-deploy QA
 on:
   push:
-    branches: ['qa/act6-app-50-rest-normal54-20261125-r7c']
+    branches: ['qa/act6-app-50-rest-normal60-rendered-stock-20261125-r2']
     paths:
       - '.github/workflows/act6-app-50-rest-51-web-qa.yml'
 permissions:
   contents: read
 jobs:
   normal-app:
-    if: github.repository == 'sys8994/honro' && github.ref == 'refs/heads/qa/act6-app-50-rest-normal54-20261125-r7c'
+    if: github.repository == 'sys8994/honro' && github.ref == 'refs/heads/qa/act6-app-50-rest-normal60-rendered-stock-20261125-r2'
     runs-on: ubuntu-22.04
     timeout-minutes: 25
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
           ref: ${{ github.sha }}
-          fetch-depth: 10
+          fetch-depth: 11
           persist-credentials: false
       - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
         with:
@@ -37,7 +37,10 @@ jobs:
           R6G=afb2852a844bd404445c0eff773c81e96256e40e
           R7=48d700f6e21b9b4480f83fcd996cb60cd1ecb15f
           R7B=f8b8108217bccb494a4948126e9a3f6d67d80c3c
-          test "$(git rev-list --parents -n1 HEAD)" = "$GITHUB_SHA $R7B"
+          R7C=546ef8710b11c49617368540987d5505916e9409
+          test "$(git rev-list --parents -n1 HEAD)" = "$GITHUB_SHA $R7C"
+          test "$(git rev-list --parents -n1 "$R7C")" = "$R7C $R7B"
+          test "$(git rev-parse "$R7C^{tree}")" = 5c121280c9cbaf2a571806f4db69404eb993c1b2
           test "$(git rev-list --parents -n1 "$R7B")" = "$R7B $R7"
           test "$(git rev-parse "$R7B^{tree}")" = 5e8aff6d88225291a12c46e1aa152c417d8eb826
           test "$(git rev-list --parents -n1 "$R7")" = "$R7 $R6G"
@@ -52,7 +55,8 @@ jobs:
           test "$(git rev-parse "$R4^{tree}")" = 633f9429c907f0904e2522cd945925c1dad9ab47
           test "$(git rev-list --parents -n1 "$R4")" = "$R4 $BASE"
           git rev-parse HEAD HEAD^{tree} "$R6G" "$R6G^{tree}" "$R6F" "$R6F^{tree}" "$R6D" "$R6D^{tree}" "$R6" "$R6^{tree}" "$R5" "$R5^{tree}" "$R4" "$R4^{tree}" "$BASE" "$BASE^{tree}" | tee "$RUNNER_TEMP/act6-result/SOURCE.txt"
-          diff -u <(printf '%s\n' .github/workflows/act6-app-50-rest-51-web-qa.yml tools/act6-qa/rest-51/browser-normal54.js) <(git diff --name-only "$R7B" HEAD)
+          diff -u <(printf '%s\n' .github/workflows/act6-app-50-rest-51-web-qa.yml shared/act6-app-qa.mjs shared/act6-late-qa/EARLY-FAR.json shared/act6-late-qa/early-art/act6-far-51-portrait.48d4036aca6003c5.webp shared/act6-late-qa/early-art/act6-far-51-wide.7d478815691a79c9.webp shared/act6-late-qa/early-art/act6-far-52-wide.8897aad86e693aec.webp shared/act6-late-qa/early-art/act6-far-53-wide.0d0d3394267326ed.webp shared/act6-late-qa/early-art/act6-far-54-wide.84a1ead89118f40e.webp shared/act6-late-qa/early-art/act6-far-55-wide.de7755f7d65a8e22.webp shared/act6-late-qa/early-art/act6-far-56-wide.bf12114eae958fae.webp shared/act6-late-qa/early-art/act6-far-57-wide.a4ae7057fd4a26dc.webp shared/act6-late-qa/early-far.mjs shared/act6-late-qa/load-normal-far.mjs shared/act6-late-qa/normal-far.inc.js shared/act6-normal-ending-qa/dawn-mobile.webp shared/act6-normal-ending-qa/dawn-pc.webp shared/act6-normal-ending-qa/emit.mjs shared/act6-normal-ending-qa/ending-dom.css shared/act6-normal-ending-qa/ending-dom.mjs shared/act6-normal-ending-qa/gate-masonry.mjs shared/act6-normal-ending-qa/gateway.mjs shared/act6-normal-ending-qa/host.inc.js shared/act6-normal-ending-qa/native-cuts.mjs shared/act6-normal-ending-qa/stage60-entry-stock.inc.js shared/act6-normal-ending-qa/stock-slot-60.mjs shared/act6-normal-ending-qa/write-port.mjs shared/act6-normal-ending-qa/writer-fixed.mjs shared/data/act6-qa/eighth.json shared/data/act6-qa/fifth.json shared/data/act6-qa/ninth.json shared/data/act6-qa/seventh.json shared/data/act6-qa/sixth.json shared/data/act6-qa/tenth-guard.json shared/data/act6-qa/tenth.json shared/runtime/native-bind.mjs shared/runtime/normal-scope.mjs shared/runtime/role-paint.mjs shared/runtime/stage51-campaign-provider.mjs shared/runtime/stage53-entry.inc.js shared/runtime/stage55-entry.inc.js shared/runtime/stage55-pilot-owner.mjs shared/runtime/stage56-adapter.mjs shared/runtime/stage56-entry.inc.js shared/runtime/stage56-owner.mjs shared/runtime/stage56-presentation.mjs shared/runtime/stage57-adapter.mjs shared/runtime/stage57-bridge.mjs shared/runtime/stage57-emergency.mjs shared/runtime/stage57-entry.inc.js shared/runtime/stage57-mission.mjs shared/runtime/stage57-owner.mjs shared/runtime/stage58-normal-adapter.mjs shared/runtime/stage58-normal-entry.inc.js shared/runtime/stage58-owner.mjs shared/runtime/stage59-adapter.mjs shared/runtime/stage59-normal-entry.inc.js shared/runtime/stage59-owner.mjs shared/runtime/stage60-card.mjs shared/runtime/stage60-ending.mjs shared/runtime/stage60-normal-entry.inc.js shared/runtime/stage60-owner.mjs shared/runtime/strip.mjs shared/runtime/wave.mjs shared/web-build.mjs tools/act6-qa/rest-51/INPUT-58-NORMAL.json tools/act6-qa/rest-51/INPUT-59-NORMAL.json tools/act6-qa/rest-51/INPUT-60-NORMAL.json tools/act6-qa/rest-51/browser-normal55.js tools/act6-qa/rest-51/browser-normal56.js tools/act6-qa/rest-51/browser-normal57.js tools/act6-qa/rest-51/browser-normal58.js tools/act6-qa/rest-51/browser-normal59.js tools/act6-qa/rest-51/browser-normal60.js tools/act6-qa/rest-51/normal-late-readbacks.py tools/act6-qa/rest-51/normal53_witness.py tools/act6-qa/rest-51/normal55_witness.py tools/act6-qa/rest-51/normal56_witness.py tools/act6-qa/rest-51/normal57_witness.py tools/act6-qa/rest-51/normal60_ending_stock.py tools/act6-qa/rest-51/normal_far_witness.py tools/act6-qa/rest-51/normal_late_witness.py tools/act6-qa/rest-51/smoke.py) <(git diff --name-only "$R7C" HEAD)
+          diff -u <(printf '%s\n' .github/workflows/act6-app-50-rest-51-web-qa.yml tools/act6-qa/rest-51/browser-normal54.js) <(git diff --name-only "$R7B" "$R7C")
           diff -u <(printf '%s\n' .github/workflows/act6-app-50-rest-51-web-qa.yml tools/act6-qa/rest-51/browser-normal54.js) <(git diff --name-only "$R7" "$R7B")
           diff -u <(printf '%s\n' .github/workflows/act6-app-50-rest-51-web-qa.yml shared/act6-app-qa.mjs shared/data/act6-qa/fourth.json shared/runtime/chart-packet.mjs shared/runtime/stage51-campaign-provider.mjs shared/runtime/stage54-entry.inc.js shared/runtime/stage54-pilot-owner.mjs tools/act6-qa/rest-51/INPUT-54.json tools/act6-qa/rest-51/browser-normal54.js tools/act6-qa/rest-51/normal54_witness.py tools/act6-qa/rest-51/smoke.py) <(git diff --name-only "$R6G" "$R7")
           scratch=$(realpath "$(mktemp -d /tmp/honro-act6-web-qa-XXXXXXXX)")
@@ -67,17 +71,19 @@ jobs:
           cd "$PILOT_ROOT"
           npm ci --no-audit --no-fund > "$RUNNER_TEMP/act6-result/NPM.log" 2>&1
           npm ci --prefix game --include=dev --no-audit --no-fund > "$RUNNER_TEMP/act6-result/NPM-GAME.log" 2>&1
-          HONRO_ACT6_QA_WEB_BUILD=1 HONRO_ACT6_QA_NORMAL51=1 HONRO_ACT6_QA_WEB_ROOT="$PILOT_ROOT" npm run build > "$RUNNER_TEMP/act6-result/BUILD.log" 2>&1
+          python tools/act6-qa/rest-51/normal-late-readbacks.py shared/act6-app-qa.mjs
+          sha256sum shared/act6-app-qa.mjs > "$RUNNER_TEMP/act6-result/QA-RENDERED-COMPILER.sha256"
+          HONRO_ACT6_QA_WEB_BUILD=1 HONRO_ACT6_QA_NORMAL51=1 HONRO_ACT6_QA_NORMAL_LATE_WITNESS=1 HONRO_ACT6_QA_NORMAL_FAR=1 HONRO_ACT6_QA_NORMAL_ENDING_STOCK=1 HONRO_ACT6_QA_WEB_ROOT="$PILOT_ROOT" npm run build > "$RUNNER_TEMP/act6-result/BUILD.log" 2>&1
       - name: Ordinary sandboxed Chromium PC and mobile
         shell: bash
         run: |
           set -euo pipefail
           python -m pip install 'playwright==1.58.0'
           python -m playwright install --with-deps chromium
-          python tools/act6-qa/rest-51/smoke.py "$RUNNER_TEMP/act6-stock" "$PILOT_ROOT" "$RUNNER_TEMP/act6-result" > "$RUNNER_TEMP/act6-result/PLAYWRIGHT.log" 2>&1
+          HONRO_ACT6_QA_NORMAL_FAR=1 HONRO_ACT6_QA_NORMAL_ENDING_STOCK=1 python tools/act6-qa/rest-51/smoke.py "$RUNNER_TEMP/act6-stock" "$PILOT_ROOT" "$RUNNER_TEMP/act6-result" > "$RUNNER_TEMP/act6-result/PLAYWRIGHT.log" 2>&1
       - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
         if: always()
         with:
-          name: act6-50-rest-normal54-no-deploy-r7c-${{ github.sha }}
+          name: act6-50-rest-normal60-rendered-stock-no-deploy-r2-${{ github.sha }}
           path: ${{ runner.temp }}/act6-result/
           retention-days: 7
