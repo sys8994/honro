@@ -1,4 +1,5 @@
 import test from 'node:test';
+import {createHash} from "node:crypto";
 import assert from 'node:assert/strict';
 import {admitCatalog,verifyCompiledPrefix} from './catalog-adapter.mjs';
 import {fixture,baseBytes,baseSHA256} from './fixtures/catalog-fixture.mjs';
@@ -40,4 +41,16 @@ test('actual output prefix review rejects a swapped old map/provider/library and
   const b=structuredClone(r.manifest);mutate(b);assert.throws(()=>verifyCompiledPrefix(baseBytes,baseSHA256,bytes(b)));
  }
  assert.throws(()=>verifyCompiledPrefix(baseBytes,'other',bytes(r.manifest)));
+});
+test('normal-format split provider needs signed descriptor, complete ordered parts and rejoined SHA',()=>{
+ const f=fixture(), x=f.stages[0], raw=f.read(x.assets.path), crypto=createHash('sha256').update(raw).digest('hex'), base='web/data/chapter-51-assets';
+ const parts=[f.token(base+'-part-000','bin',raw.subarray(0,23)),f.token(base+'-part-001','bin',raw.subarray(23))];
+ const desc={$honroJsonParts:1,bytes:raw.length,sha256:crypto,parts};
+ x.assets=f.token(base+'-parts','json',desc);
+ let r=admitCatalog(f); assert(r.admitted,r.reason);
+ assert(r.reads.some(e=>e[0]===parts[1].path));
+ f.files.delete(parts[1].path);r=admitCatalog(f);assert(!r.admitted&&r.manifestBytes===baseBytes);
+ f.files.set(parts[1].path,raw.subarray(23));
+ x.assets=f.token(base+'-parts','json',{...desc,parts:[...parts].reverse()});
+ assert.match(admitCatalog(f).reason,/wrong split part order/);
 });
