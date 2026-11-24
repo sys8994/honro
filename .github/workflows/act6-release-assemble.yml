@@ -28,7 +28,7 @@ jobs:
           BASE=9c837c1b9512e202f4fded1f499541fa5ff73328
           PLAN=b02a315b67c760564d9ed0274b3e74d911f619e2
           DEST=refs/heads/release/act6-reunion-ready-20261125
-          test "$(git rev-parse HEAD^)" = "$PROOF"
+          test "$(git rev-parse HEAD^^)" = "$PROOF"
           test "$(git ls-remote origin refs/heads/master | cut -f1)" = "$BASE"
           test -z "$(git ls-remote origin "$DEST")"
           git fetch --depth=1 origin "$BASE" "$PLAN"
@@ -49,7 +49,11 @@ jobs:
           CANDIDATE="$(git -C "$RELEASE" rev-parse HEAD)"
           test "$(git -C "$RELEASE" rev-parse HEAD^)" = "$BASE"
           test "$(git ls-remote origin refs/heads/master | cut -f1)" = "$BASE"
-          git -C "$RELEASE" push origin "HEAD:$DEST"
+          printf '%s\n' "$CANDIDATE" > "$RESULTS/LOCAL-CANDIDATE.txt"
+          # Push via the Actions-authenticated main checkout; the linked checkout
+          # owns the commit but is not in checkout's credential include scope.
+          git cat-file -e "$CANDIDATE^{commit}"
+          git push origin "$CANDIDATE:$DEST"
           test "$(git ls-remote origin "$DEST" | cut -f1)" = "$CANDIDATE"
           printf '%s\n' "$CANDIDATE" > "$RESULTS/CANDIDATE.txt"
       - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
