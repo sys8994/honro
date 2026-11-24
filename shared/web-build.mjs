@@ -26,8 +26,8 @@ const urlExpression=(from,to)=>`new URL(${quote(relative(from,to))},import.meta.
 // Plain runtime scripts communicate through explicit globals. Keep their module
 // scope isolated and their patch order exact, including the existing yields.
 // Async data modules remain separate barriers; never Promise.all their imports.
-export function orderedScriptSource(entries,loader){
-  return `import {yieldIfNeeded} from ${quote(loader)};\n`+entries.map(entry=>{
+export function orderedScriptSource(entries,loader,provider){
+  return `import {yieldIfNeeded} from ${quote(loader)};\n`+(provider&&entries.some(e=>e.code.includes("normal51Provider."))?`import {normal51Provider} from ${quote(provider)};\n`:"")+entries.map(entry=>{
     const isolated=`(()=>{\n'use strict';\n${entry.code}\n})();\n`;
     new vm.Script(isolated,{filename:entry.name}); // Reject module syntax/TLA here.
     return `// ${entry.name}\n${isolated}await yieldIfNeeded();\n`;
@@ -60,6 +60,10 @@ export function reuseBinaryEmissions(emit){
 
 // Generated files are immutable by content. Stable HTML names remain the public entrypoints.
 export async function buildWeb({vector=true,destination=path.join(root,'HONRO.html')}={}) {
+  if(process.env.HONRO_ACT6_QA_WEB_BUILD==='1'){
+    const {assertQaWebRoot}=await import('./act6-app-qa.mjs');
+    await assertQaWebRoot(root);
+  }
   await materializeWorld();
   let previous;try{previous=JSON.parse(await read('web/manifest.json'));}catch(e){if(e.code!=='ENOENT')throw e;}
   const retentionNow=Date.now(),publishedGenerations=selectPublishedGenerations(previous?.publishedGenerations,{now:retentionNow});
@@ -113,13 +117,53 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
     const file=await emit('runtime',name,'js',loaderImport+records.map(([global,file,refs])=>`globalThis.${global}=await loadData(${quote(file)},${quote(refs)},${quote({svgSources:global==='HONRO_ACT1_FAR_DATA'?'optional':false})});`).join('\n')+'\n');
     moduleData.set(file,records.map(([,file])=>file));return file;
   };
-  const entries=await runtimeEntries({vector,app:true}),common=[],gameOnly=[],optionalModules={};
+  const act6QaWeb=process.env.HONRO_ACT6_QA_WEB_BUILD==='1';
+  if(act6QaWeb&&(process.env.HONRO_ACT6_QA_WEB_ROOT!==root||path.resolve(destination)!==path.join(root,'HONRO.html')))
+    throw Error('Act6 Web QA has one standard shell in the explicit disposable checkout');
+  const entries=await runtimeEntries({vector,app:true,act6QaWeb}),common=[],gameOnly=[],optionalModules={};
+  const stockBytes=new Map(), normalSwap=new Map();
+  let normal51Module;
+  if(act6QaWeb){
+    const normal51=process.env.HONRO_ACT6_QA_NORMAL51==='1';
+    if(normal51){
+      const {scope51}=await import('./stage51-compiler.mjs');
+      const changed=[];
+      for(const e of entries){if(typeof e.code!=='string')continue;const q=scope51(e.code,e.name);if(q!==e.code){changed.push(e.name);stockBytes.set(e,e.code);e.code=q;}}
+      assert.deepEqual(changed.slice().sort(),['shared/map/compiler.js','shared/runtime/progression.js'],'Expected two exact private normal51 source anchors');
+      const engine=entries.find(e=>e.name==='engine/core');
+      assert.equal(engine?.code.split('normal51Provider.content(this.b)').length,2,'Pinned Stage51 engine source hook missing');
+      const {buildCore}=await import('../game/engine/build.mjs');
+      stockBytes.set(engine,await buildCore());
+      normal51Module=await emit('runtime','stage51-campaign-provider','js',await read('shared/runtime/stage51-campaign-provider.mjs'));
+    }
+    const idx=entries.findIndex(entry=>entry.name==='act6-app-qa');
+    assert(idx>=0&&entries.filter(entry=>entry.qaAct6).length===1,'Expected exact one Act6 QA pilot');
+    const [{qaAct6}]=entries.splice(idx,1);
+    const descriptors={origin:'http://127.0.0.1:18861',rows:{}};
+    for(const packet of qaAct6.packets){
+      const id=packet.trace.stageId,bytes=Buffer.from(JSON.stringify(packet)+'\n');
+      assert(bytes.length<webJsonPartBytes,'Act6 QA packet must remain a bounded single signed JSON');
+      const file=await emit('data','act6-qa-chapter-'+id,'json',bytes);
+      descriptors.rows[id]={path:file,bytes:bytes.length,sha256:hash(bytes),mapSHA256:packet.trace.mapSHA256,assetSHA256:packet.trace.assetSHA256};
+    }
+    const {makeQaMain}=await import('./act6-app-qa.mjs');
+    const mains=entries.filter(entry=>entry.name==='shared/runtime/main.js');
+    assert.equal(mains.length,1);
+    if(normal51Module)stockBytes.set(mains[0],mains[0].code);
+    mains[0].code=makeQaMain(mains[0].code,qaAct6.source,descriptors);
+  }
   const appStart=entries.findIndex(e=>e.name==='game/vendor/ui/fa.js');
   assert(appStart>0,'Game application boundary required');
   let projectManifest,pending=[],pendingBytes=0,groupNumber=0;
   async function flushScripts(target){
     if(!pending.length)return;
-    target.push(await emit('runtime',`ordered-${target===common?'common':'game'}-${++groupNumber}`,'js',orderedScriptSource(pending,'./'+path.posix.basename(loader))));
+    const name=`ordered-${target===common?'common':'game'}-${++groupNumber}`,loaderSpec='./'+path.posix.basename(loader);
+    if(normal51Module&&pending.some(e=>stockBytes.has(e))){
+      const original=pending.map(e=>stockBytes.has(e)?{...e,code:stockBytes.get(e)}:e);
+      const file=await emit('runtime',name,'js',orderedScriptSource(original,loaderSpec));
+      const variant=await emit('runtime',name+'-normal51','js',orderedScriptSource(pending,loaderSpec,'./'+path.posix.basename(normal51Module)));
+      target.push(file);normalSwap.set(file,variant);
+    }else target.push(await emit('runtime',name,'js',orderedScriptSource(pending,loaderSpec)));
     pending=[];pendingBytes=0;
   }
   for(let i=0;i<entries.length;i++){
@@ -168,7 +212,7 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
     // These two scripts also have independent title/Workshop consumers.
     const independent=entry.name==='shared/runtime/title-markup.js'||entry.name==='shared/runtime/stage-rules.js';
     if(!entry.project&&!entry.global&&!vectorGlobals.has(entry.name)&&!independent){
-      const bytes=Buffer.byteLength(entry.code);
+      const bytes=Buffer.byteLength(stockBytes.get(entry)??entry.code);
       if(pendingBytes+bytes>192*1024)await flushScripts(target);
       pending.push(entry);pendingBytes+=bytes;continue;
     }
@@ -290,13 +334,15 @@ ${game?"await globalThis.HONRO_APP_READY;globalThis.HonroStartup?.ready();\nif(l
 catch(error){if(globalThis.HonroStartup)globalThis.HonroStartup.failed(error);else{const host=document.getElementById('app');if(host)host.textContent='불러오지 못했습니다. 새로고침해 주세요.';}throw error;}})();
 `);
   }
-  const gameEntry=await bootstrap('game',[titleData,titleScene,...common,...gameOnly],{game:true});
+  const nativeModules=[titleData,titleScene,...common,...gameOnly];
+  const embeddedGameEntry=await bootstrap('game',nativeModules,{game:true});
+  const gameEntry=normal51Module?await bootstrap('game-normal51',nativeModules.map(f=>normalSwap.get(f)??f),{game:true}):embeddedGameEntry;
   const shell=await read('game/templates/body.html'),criticalStyle=await read('game/src/title.css'),startup=await read('shared/runtime/startup-shell.js');
   const titleContext=vm.createContext({});vm.runInContext(entries.find(e=>e.name==='game/vendor/ui/fa.js').code,titleContext);vm.runInContext(await read('shared/runtime/title-markup.js'),titleContext);
   const titleArt=Object.fromEntries(Object.entries(art).map(([key,value])=>[key,value.$honroAsset]));
   const initialTitle=titleContext.HonroTitleMarkup.render({scene:titleContext.HonroTitleMarkup.scene(titleArt),logo:titleArt.logo,hanja:titleArt.hanja,loading:true,settingsIcon:titleContext.HonroFA.icon('gear','',19)});
   const imagePreloads=[['landscape','(orientation: landscape)'],['portrait','(orientation: portrait)'],['logo',''],['hanja','']].map(([key,media])=>`<link rel="preload" as="image" href="${titleArt[key]}"${media?` media="${media}"`:''} fetchpriority="high">`).join('');
-  const gameHtml=(base='',embedded=false)=>`<!doctype html>\n<html lang="ko"><head><meta charset="utf-8">${base}<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="theme-color" content="#101b20"><title>혼로 · HONRO</title><script>globalThis.HONRO_EMBEDDED=new URLSearchParams(location.search).get('embedded')==='1';if(HONRO_EMBEDDED)document.documentElement.classList.add('honro-embedded');</script><style>${criticalStyle}</style>${embedded?'':imagePreloads}</head>${shell.replace('<!--HONRO_STARTUP_TITLE-->',embedded?'':initialTitle)}${embedded?'':`<script>${startup}</script>`}${scriptTag(gameEntry)}</body></html>\n`;
+  const gameHtml=(base='',embedded=false)=>`<!doctype html>\n<html lang="ko"><head><meta charset="utf-8">${base}<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="theme-color" content="#101b20"><title>혼로 · HONRO</title><script>globalThis.HONRO_EMBEDDED=new URLSearchParams(location.search).get('embedded')==='1';if(HONRO_EMBEDDED)document.documentElement.classList.add('honro-embedded');</script><style>${criticalStyle}</style>${embedded?'':imagePreloads}</head>${shell.replace('<!--HONRO_STARTUP_TITLE-->',embedded?'':initialTitle)}${embedded?'':`<script>${startup}</script>`}${scriptTag(embedded?embeddedGameEntry:gameEntry)}</body></html>\n`;
   const gameDocument=await emit('entries','game','html',gameHtml('<base href="../../">',true));
   const editorModule=await emit('runtime','workshop-app','js',await read('workshop/src/app.js'));
   // The editor compiles tagged Act 4 actors too, before it opens the game
