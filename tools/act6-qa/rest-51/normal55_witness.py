@@ -63,7 +63,9 @@ def stage55(page,state,mobile,original,tap,out,case,packet_path):
     for u in receipt['actors']:
         actor=next(a for a in live if a['id']==u['id'])
         assert all(u.get(f)==actor.get(f) for f in FIELDS),u['id']
-    assert page.locator('[data-act6-qa-next="56"]').count()==0 and page.evaluate("HonroApp.launch(56,false)===false")
+    successor=page.evaluate('''()=>{const a=HonroApp,q=a.launch(56,false,null,{});
+      const blocked=q===undefined||q===false;return {blocked,stage:a.stageId,complete:a.done,packetCount:performance.getEntriesByType('resource').filter(r=>r.name.includes('act6-qa-chapter-56')).length};}''')
+    assert successor=={'blocked':True,'stage':55,'complete':True,'packetCount':0},successor
     assert page.evaluate("k=>localStorage.getItem(k)",STORE)==original
     state['campaign55Terminal']={'initial':before,'live':prog,'receipt':receipt,'actions':actions}
     page.screenshot(path=out/f'{case}-native-55-terminal.png')
