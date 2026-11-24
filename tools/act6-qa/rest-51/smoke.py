@@ -37,11 +37,12 @@ for name in set([registry[k] for k in ['base','shared','editorExtras']]+registry
 PACKETS={
     51:('web/data/act6-qa-chapter-51.c8620ccf54745095.json','c8620ccf547450952f3cbbae6e49c2f8dbddab2af69622d3f4221ab99f7046ba',147478),
     52:('web/data/act6-qa-chapter-52.3e35d12c62d32164.json','3e35d12c62d32164643d48a58a772161912cb889f438049bd480d78ed4ac96e9',146799),
-    53:('web/data/act6-qa-chapter-53.8f046099facbcca3e.json','8f046099facbcca3e715115256795f8252434d5cf42066606fea372cbe141830',123176),
+    53:('web/data/act6-qa-chapter-53.8f046099facbcca3.json','8f046099facbcca3e715115256795f8252434d5cf42066606fea372cbe141830',123176),
 }
 path,expected,_=PACKETS[51]
 signed={x[0] for x in PACKETS.values()}
-assert {x['path'] for x in pilot['files'] if 'act6-qa-chapter-' in x['path']}==signed
+actual = [x for x in pilot['files'] if 'act6-qa-chapter-' in x['path']]
+assert {x['path'] for x in actual}==signed, {'expected':sorted(signed),'actual':actual}
 assert not {x['path'] for x in stock['files']} & signed
 for fname,digest,size in PACKETS.values():
     packet=[x for x in pilot['files'] if x['path']==fname]

@@ -1,21 +1,21 @@
 name: Act 6 genuine 50 ending and rest to normal 51–53 no-deploy QA
 on:
   push:
-    branches: ['qa/act6-app-50-rest-normal53-20261125-r6']
+    branches: ['qa/act6-app-50-rest-normal53-20261125-r6d']
     paths:
       - '.github/workflows/act6-app-50-rest-51-web-qa.yml'
 permissions:
   contents: read
 jobs:
   normal-app:
-    if: github.repository == 'sys8994/honro' && github.ref == 'refs/heads/qa/act6-app-50-rest-normal53-20261125-r6'
+    if: github.repository == 'sys8994/honro' && github.ref == 'refs/heads/qa/act6-app-50-rest-normal53-20261125-r6d'
     runs-on: ubuntu-22.04
     timeout-minutes: 25
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
           ref: ${{ github.sha }}
-          fetch-depth: 4
+          fetch-depth: 5
           persist-credentials: false
       - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
         with:
@@ -31,12 +31,15 @@ jobs:
           BASE=b607164fd31da526373efb12d06063c2b564719d
           R4=904cf0337bc5aef2ffefb739d91e6f7d46786a08
           R5=c4f534da40a3a10e60b8f797eaefdefc16c629ed
-          test "$(git rev-list --parents -n1 HEAD)" = "$GITHUB_SHA $R5"
+          R6=499665921d952a7271da18b11c84065c0ede6fde
+          test "$(git rev-list --parents -n1 HEAD)" = "$GITHUB_SHA $R6"
+          test "$(git rev-list --parents -n1 "$R6")" = "$R6 $R5"
           test "$(git rev-list --parents -n1 "$R5")" = "$R5 $R4"
           test "$(git rev-parse "$R4^{tree}")" = 633f9429c907f0904e2522cd945925c1dad9ab47
           test "$(git rev-list --parents -n1 "$R4")" = "$R4 $BASE"
-          git rev-parse HEAD HEAD^{tree} "$R5" "$R5^{tree}" "$R4" "$R4^{tree}" "$BASE" "$BASE^{tree}" | tee "$RUNNER_TEMP/act6-result/SOURCE.txt"
-          diff -u <(printf '%s\n' .github/workflows/act6-app-50-rest-51-web-qa.yml shared/act6-app-qa.mjs shared/data/act6-qa/third.json shared/runtime/act6-inner-missions.mjs shared/runtime/stage51-campaign-provider.mjs shared/runtime/stage53-actions.mjs shared/runtime/stage53-entry.inc.js tools/act6-qa/rest-51/normal53_witness.py tools/act6-qa/rest-51/smoke.py) <(git diff --name-only "$R5" HEAD)
+          git rev-parse HEAD HEAD^{tree} "$R6" "$R6^{tree}" "$R5" "$R5^{tree}" "$R4" "$R4^{tree}" "$BASE" "$BASE^{tree}" | tee "$RUNNER_TEMP/act6-result/SOURCE.txt"
+          diff -u <(printf '%s\n' .github/workflows/act6-app-50-rest-51-web-qa.yml tools/act6-qa/rest-51/smoke.py) <(git diff --name-only "$R6" HEAD)
+          diff -u <(printf '%s\n' .github/workflows/act6-app-50-rest-51-web-qa.yml shared/act6-app-qa.mjs shared/data/act6-qa/third.json shared/runtime/act6-inner-missions.mjs shared/runtime/stage51-campaign-provider.mjs shared/runtime/stage53-actions.mjs shared/runtime/stage53-entry.inc.js tools/act6-qa/rest-51/normal53_witness.py tools/act6-qa/rest-51/smoke.py) <(git diff --name-only "$R5" "$R6")
           scratch=$(realpath "$(mktemp -d /tmp/honro-act6-web-qa-XXXXXXXX)")
           git -c core.hooksPath=/dev/null worktree add --detach "$scratch" HEAD
           git -c core.hooksPath=/dev/null worktree add --detach "$RUNNER_TEMP/act6-stock" "$BASE"
@@ -50,6 +53,7 @@ jobs:
           npm ci --no-audit --no-fund > "$RUNNER_TEMP/act6-result/NPM.log" 2>&1
           npm ci --prefix game --include=dev --no-audit --no-fund > "$RUNNER_TEMP/act6-result/NPM-GAME.log" 2>&1
           HONRO_ACT6_QA_WEB_BUILD=1 HONRO_ACT6_QA_NORMAL51=1 HONRO_ACT6_QA_WEB_ROOT="$PILOT_ROOT" npm run build > "$RUNNER_TEMP/act6-result/BUILD.log" 2>&1
+          node --input-type=module -e 'import fs from "node:fs";const m=JSON.parse(fs.readFileSync("web/manifest.json"));console.log(JSON.stringify(m.files.filter(x=>x.path.includes("act6-qa-chapter-")),null,2))' > "$RUNNER_TEMP/act6-result/PACKETS.json"
       - name: Ordinary sandboxed Chromium PC and mobile
         shell: bash
         run: |
@@ -60,6 +64,6 @@ jobs:
       - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
         if: always()
         with:
-          name: act6-50-rest-normal53-no-deploy-r6-${{ github.sha }}
+          name: act6-50-rest-normal53-no-deploy-r6d-${{ github.sha }}
           path: ${{ runner.temp }}/act6-result/
           retention-days: 7
