@@ -197,7 +197,22 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
     const mains=entries.filter(entry=>entry.name==='shared/runtime/main.js');
     assert.equal(mains.length,1);
     if(normal51Module)stockBytes.set(mains[0],mains[0].code);
-    mains[0].code=makeQaMain(mains[0].code,qaAct6.source,descriptors);
+    let terrainArt=null;
+    if(descriptors.boundary){
+      const art=await read('shared/act6-terrain-art/paint-data.inc.js');
+      assert.match(art,/^const act6TerrainArtRows=.+;\n$/);
+      const artRows=JSON.parse(art.slice('const act6TerrainArtRows='.length,-2));
+      assert.deepEqual(Object.keys(artRows),Array.from({length:10},(_,i)=>String(51+i)));
+      descriptors.terrainArt={};
+      for(const [id,row] of Object.entries(artRows)){
+        const bytes=Buffer.from(row+'\n');
+        assert(bytes.length>1000&&bytes.length<50000);
+        const file=await emit('data','act6-terrain-art-'+id,'json',bytes);
+        descriptors.terrainArt[id]={path:'/'+file,bytes:bytes.length,sha:hash(bytes)};
+      }
+      terrainArt=await read('shared/act6-terrain-art/paint-scene.inc.js');
+    }
+    mains[0].code=makeQaMain(mains[0].code,qaAct6.source,descriptors,terrainArt);
   }
   const appStart=entries.findIndex(e=>e.name==='game/vendor/ui/fa.js');
   assert(appStart>0,'Game application boundary required');
