@@ -1,0 +1,18 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+const [stock,next]=process.argv.slice(2).map(x=>JSON.parse(fs.readFileSync(x,'utf8')));
+assert.equal(stock.status,'PASS');assert.equal(next.status,'PASS');
+const {h:baseH,r:baseR,...base}=stock.before;
+const {h,r,...candidate}=next.before;
+assert.deepEqual([baseH,baseR,h,r],[298,49,430,60]);
+assert.deepEqual(candidate,base);
+assert.deepEqual(stock.wrongExit,next.wrongExit);
+assert.deepEqual(stock.oldSaved,next.oldSaved);
+assert.deepEqual(stock.A01.shotArg,next.A01.shotArg);
+assert.equal(stock.A01.hpLoss,0);assert(next.A01.hpLoss>0);
+assert(!stock.A01.impacts.some(v=>v.unit==='a4-34-r-6'));
+assert(next.A01.impacts.some(v=>v.unit==='a4-34-r-6'));
+assert(next.A01.actualCount>stock.A01.actualCount);
+assert.equal(stock.HWD.launch.skill,'HWD01');assert.equal(next.HWD.launch.skill,'HWD01');
+assert.equal(next.HWD.hpLoss,stock.HWD.hpLoss);assert(next.HWD.hpLoss>0);
+console.log(JSON.stringify({status:'PASS',size:[baseH,baseR,h,r],stats:'identical',exit:'known native wrong-exit trigger and authored main exit identical',a01:[stock.A01.hpLoss,next.A01.hpLoss],hwd:[stock.HWD.hpLoss,next.HWD.hpLoss]},null,2));
