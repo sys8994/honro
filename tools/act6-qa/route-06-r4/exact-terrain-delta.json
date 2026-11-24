@@ -1,0 +1,47 @@
+{
+  "scope": "6-6 same viewBox; true alpha threshold 128; body layer subset is local diagnostic, not reference WU census",
+  "bodyLayers": [
+    "A-west-root-front",
+    "B-central-shell-front",
+    "D-east-rotated-anchored-sidehouse",
+    "E-southern-return-front",
+    "physical-contact-look-side-profile",
+    "v5-facies-shattered-fit"
+  ],
+  "before": {
+    "sha256": "b8103be70574d10c9a6d3f9081fd78e37dfd1c30861bed60f73faad4ce3328a1",
+    "bytes": 58714,
+    "whole": {
+      "alpha128AreaAU2": 1774741.0,
+      "faces": 722,
+      "endpoints": 4153,
+      "endpointsPerMillionAU2": 2340.0597608327075,
+      "polygonFacesPerMillionAU2": 406.8199247101408
+    },
+    "bodyScreen": {
+      "alpha128AreaAU2": 188123.0,
+      "faces": 227,
+      "endpoints": 1261,
+      "endpointsPerMillionAU2": 6703.0612950038,
+      "polygonFacesPerMillionAU2": 1206.6573465232852
+    }
+  },
+  "after": {
+    "sha256": "27f8cfbbcbc5689bddc14a00627c8162b804b62954192af99a196a3e5a61b59c",
+    "bytes": 58983,
+    "whole": {
+      "alpha128AreaAU2": 1774741.0,
+      "faces": 725,
+      "endpoints": 4173,
+      "endpointsPerMillionAU2": 2351.329010824678,
+      "polygonFacesPerMillionAU2": 408.5103122089364
+    },
+    "bodyScreen": {
+      "alpha128AreaAU2": 188123.0,
+      "faces": 230,
+      "endpoints": 1281,
+      "endpointsPerMillionAU2": 6809.374717604971,
+      "polygonFacesPerMillionAU2": 1222.604359913461
+    }
+  }
+}
