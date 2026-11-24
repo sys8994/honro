@@ -1,0 +1,60 @@
+name: Act 6 ordinary App 51–60 isolated no-deploy QA
+on:
+  push:
+    branches: ['qa/act6-app-51-60-20261125-r13-forepaw']
+    paths:
+      - '.github/workflows/act6-app-51-60-web-qa.yml'
+permissions:
+  contents: read
+jobs:
+  normal-app:
+    if: github.repository == 'sys8994/honro' && github.ref == 'refs/heads/qa/act6-app-51-60-20261125-r13-forepaw'
+    runs-on: ubuntu-22.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 2
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Check exact source scope; preserve detached OFF Pages bytes
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/act6-result"
+          BASE=b607164fd31da526373efb12d06063c2b564719d
+          test "$(git rev-list --parents -n1 HEAD)" = "$GITHUB_SHA $BASE"
+          git rev-parse HEAD HEAD^{tree} "$BASE" "$BASE^{tree}" | tee "$RUNNER_TEMP/act6-result/SOURCE.txt"
+          diff -u <(printf '%s\n' .github/workflows/act6-app-51-60-web-qa.yml shared/act6-app-qa.mjs shared/act6-late-qa/54-ROW.json shared/act6-late-qa/54-packet.gzip.b64 shared/act6-late-qa/55-ROW.json shared/act6-late-qa/55-packet.gzip.b64 shared/act6-late-qa/56-ROW.json shared/act6-late-qa/56-packet.gzip.b64 shared/act6-late-qa/57-ROW.json shared/act6-late-qa/57-packet.gzip.b64 shared/act6-late-qa/58-ROW.json shared/act6-late-qa/58-packet.gzip.b64 shared/act6-late-qa/59-ROW.json shared/act6-late-qa/59-packet.gzip.b64 shared/act6-late-qa/60-ROW.json shared/act6-late-qa/60-packet.gzip.b64 shared/act6-late-qa/EARLY-FAR.json shared/act6-late-qa/FAR60.json shared/act6-late-qa/adapter.mjs shared/act6-late-qa/app-ending-admission.mjs shared/act6-late-qa/boundary59.mjs shared/act6-late-qa/build54-overlay.mjs shared/act6-late-qa/chart-packet.mjs shared/act6-late-qa/dawn-mobile.webp shared/act6-late-qa/dawn-pc.webp shared/act6-late-qa/early-art/act6-far-51-portrait.48d4036aca6003c5.webp shared/act6-late-qa/early-art/act6-far-51-wide.7d478815691a79c9.webp shared/act6-late-qa/early-art/act6-far-52-wide.8897aad86e693aec.webp shared/act6-late-qa/early-art/act6-far-53-wide.0d0d3394267326ed.webp shared/act6-late-qa/early-art/act6-far-54-wide.84a1ead89118f40e.webp shared/act6-late-qa/early-art/act6-far-55-wide.de7755f7d65a8e22.webp shared/act6-late-qa/early-art/act6-far-56-wide.bf12114eae958fae.webp shared/act6-late-qa/early-art/act6-far-57-wide.a4ae7057fd4a26dc.webp shared/act6-late-qa/early-art/act6-far-58-wide.696fd1dfe489567e.webp shared/act6-late-qa/early-art/act6-far-60-playable.13785df44a84667e.webp shared/act6-late-qa/early-far.mjs shared/act6-late-qa/early-spoken-data.json shared/act6-late-qa/early-spoken.mjs shared/act6-late-qa/ending-dom.css shared/act6-late-qa/ending-dom.mjs shared/act6-late-qa/ending.mjs shared/act6-late-qa/far60.mjs shared/act6-late-qa/finale-subtitles.mjs shared/act6-late-qa/gate-masonry.mjs shared/act6-late-qa/gateway.mjs shared/act6-late-qa/giant-forepaw.mjs shared/act6-late-qa/host-54.inc.js shared/act6-late-qa/host-60-boundary.inc.js shared/act6-late-qa/host-60-ui.inc.js shared/act6-late-qa/host-early-far.inc.js shared/act6-late-qa/host-early-spoken.inc.js shared/act6-late-qa/host-far60.inc.js shared/act6-late-qa/host-quiet60.inc.js shared/act6-late-qa/human-and-seal.mjs shared/act6-late-qa/ledger.mjs shared/act6-late-qa/native-bind.mjs shared/act6-late-qa/native-cuts.mjs shared/act6-late-qa/role-paint.mjs shared/act6-late-qa/runtime.mjs shared/act6-late-qa/shape-54-source.mjs shared/act6-late-qa/stage52-57-terminal-camera.mjs shared/act6-late-qa/stage52-east-closure.mjs shared/act6-late-qa/stage53-54-rim.mjs shared/act6-late-qa/stage54-adapter.mjs shared/act6-late-qa/stage54-owner.mjs shared/act6-late-qa/stage55-adapter.mjs shared/act6-late-qa/stage55-owner.mjs shared/act6-late-qa/stage56-adapter.mjs shared/act6-late-qa/stage56-owner.mjs shared/act6-late-qa/stage56-presentation.mjs shared/act6-late-qa/stage57-adapter.mjs shared/act6-late-qa/stage57-bridge.mjs shared/act6-late-qa/stage57-emergency.mjs shared/act6-late-qa/stage57-mission.mjs shared/act6-late-qa/stage57-owner.mjs shared/act6-late-qa/stage58-adapter.mjs shared/act6-late-qa/stage58-camera.mjs shared/act6-late-qa/stage58-far-data.mjs shared/act6-late-qa/stage58-far.mjs shared/act6-late-qa/stage58-floor-facets.mjs shared/act6-late-qa/stage58-owner.mjs shared/act6-late-qa/stage58-visual.mjs shared/act6-late-qa/stage59-adapter.mjs shared/act6-late-qa/stage59-far-q94-derived.webp shared/act6-late-qa/stage59-forepaw-cue.mjs shared/act6-late-qa/stage59-matte-bound.mjs shared/act6-late-qa/stage59-owner.mjs shared/act6-late-qa/stage59-visual-owner.mjs shared/act6-late-qa/strip.mjs shared/act6-late-qa/successor-broker.mjs shared/act6-late-qa/wave.mjs shared/act6-late-qa/write-port.mjs shared/act6-late-qa/writer-fixed.mjs shared/build.mjs shared/data/act6-qa/first-two.json shared/data/act6-qa/third.json shared/runtime/act6-app-qa.js shared/runtime/act6-first-missions.mjs shared/runtime/act6-inner-missions.mjs shared/runtime/act6-stage53-actions.mjs shared/web-build.mjs tools/act6-qa/app-51/54-tape.gzip.b64 tools/act6-qa/app-51/56-tape.gzip.b64 tools/act6-qa/app-51/58-tape.gzip.b64 tools/act6-qa/app-51/59-observed-app-vitals.json tools/act6-qa/app-51/59-tape.gzip.b64 tools/act6-qa/app-51/60-input.gzip.b64 tools/act6-qa/app-51/native-replay-55.js tools/act6-qa/app-51/native-replay-57.js tools/act6-qa/app-51/native-replay-58.js tools/act6-qa/app-51/native-replay-59.js tools/act6-qa/app-51/native-replay-60.js tools/act6-qa/app-51/native-replay.js tools/act6-qa/app-51/smoke.py tools/act6-qa/app-51/trace-core.mjs) <(git diff --name-only "$BASE" HEAD)
+          scratch=$(realpath "$(mktemp -d /tmp/honro-act6-web-qa-XXXXXXXX)")
+          git -c core.hooksPath=/dev/null worktree add --detach "$scratch" HEAD
+          git -c core.hooksPath=/dev/null worktree add --detach "$RUNNER_TEMP/act6-stock" "$BASE"
+          test "$(git -C "$scratch" rev-parse HEAD)" = "$GITHUB_SHA"
+          echo "PILOT_ROOT=$scratch" >> "$GITHUB_ENV"
+      - name: Normal build, explicit private QA output only
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "$PILOT_ROOT"
+          npm ci --no-audit --no-fund > "$RUNNER_TEMP/act6-result/NPM.log" 2>&1
+          npm ci --prefix game --include=dev --no-audit --no-fund > "$RUNNER_TEMP/act6-result/NPM-GAME.log" 2>&1
+          HONRO_ACT6_QA_WEB_BUILD=1 HONRO_ACT6_QA_WEB_APPEND54=1 HONRO_ACT6_QA_WEB_ROOT="$PILOT_ROOT" npm run build > "$RUNNER_TEMP/act6-result/BUILD.log" 2>&1
+      - name: Ordinary sandboxed Chromium PC and mobile
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install 'playwright==1.58.0'
+          python -m playwright install --with-deps chromium
+          HONRO_QA_RUN_60=1 HONRO_QA_EXTERIOR_SWEEP=1 python tools/act6-qa/app-51/smoke.py "$RUNNER_TEMP/act6-stock" "$PILOT_ROOT" "$RUNNER_TEMP/act6-result" > "$RUNNER_TEMP/act6-result/PLAYWRIGHT.log" 2>&1
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: act6-app-51-60-web-no-deploy-r13-forepaw-${{ github.sha }}
+          path: ${{ runner.temp }}/act6-result/
+          retention-days: 7
