@@ -1,5 +1,5 @@
 """True 53→54 browser owner, both native controls and readback."""
-import hashlib,json
+import hashlib,json,os
 from pathlib import Path
 HERE=Path(__file__).parent
 STORE='honro-first-act-profile-1'
@@ -25,11 +25,25 @@ def stage54(page,state,mobile,original,tap,out,case,packet_path):
     skill='[data-action="combat-skill"][data-skill="M09"]'
     assert page.locator(skill).count()==0
     page.screenshot(path=out/f'{case}-native-54.png')
+    seen={}
+    def art(frame,index):
+        if not os.environ.get('HONRO_ACT6_TERRAIN_PROOF'): return
+        for _ in range(40):
+            data=page.evaluate("HonroApp.scene?.act6TerrainArtStats||null")
+            if data and data['frame']==frame and data['drawCalls']>0: break
+            page.clock.run_for(24)
+        assert data and data['frame']==frame and data['drawCalls']>0,(frame,data)
+        seen[f'{index}-{frame}']=data
+        page.screenshot(path=out/f'{case}-art-54-chart-{index}-{frame}.png')
+    art('N',0)
     row=page.evaluate("()=>__normal54.next()")
+    count=0
     while not row['done']:
         command=row['value']
         if command['kind']=='chart':
             tap(page,action,mobile)
+            count+=1
+            art(('L','C','L')[count-1],count)
         else:
             assert command['kind']=='relay' and page.locator(skill).count()==1
             for _ in range(40):
@@ -53,4 +67,5 @@ def stage54(page,state,mobile,original,tap,out,case,packet_path):
     assert receipt['mage']['loadout']==prior['mage']['loadout'] and receipt['relay']['y']==2930 and receipt['relay']['shot']>0
     assert page.evaluate("k=>localStorage.getItem(k)",STORE)==original
     state['campaign54Terminal']={'initialActor':before,'live':row['value'],'receipt':receipt,'parkedBodiesUnchanged':True}
+    state['campaign54Terminal']['artChart']=seen
     page.screenshot(path=out/f'{case}-native-54-terminal.png')

@@ -1,5 +1,7 @@
 """Optional end-to-end witness, call on stage entry before native input."""
 from time import monotonic
+import json
+import os
 DIG={
   51:('7d478815691a79c9e0022f6e0393b58d6748eaa0729b0026ef0cd289842a63cb','48d4036aca6003c5d6757ff3a6119d8272a2fbddf41d53e77ed559434b763ed1'),
   52:('8897aad86e693aec7e6b65227561fd8cbca3c70dacef436c879c96ea30cd0ddb',),
@@ -19,11 +21,14 @@ def observe_normal_far(page,stage,mobile,out,case):
     for _ in range(112):
         result=page.evaluate("""()=>{const a=HonroApp,e=a.engine,scene=a.scene;
           return {stage:e?.b.honroStage,mode:e?.b.mode,normal:a.profile===a.normalProfile,
-          far:scene?.environmentStats?.authoredFar??[],n:scene?.environmentStats?.visibleAssets};}""")
+          terrain:scene?.act6TerrainArtStats??null,far:scene?.environmentStats?.authoredFar??[],n:scene?.environmentStats?.visibleAssets};}""")
         assert result['stage']==stage and result['mode']=='campaign' and result['normal']
-        if result['far']==[expected]: break
+        if result['far']==[expected] and (not os.environ.get('HONRO_ACT6_TERRAIN_PROOF') or result['terrain']): break
         page.clock.run_for(24)
         if stage>=58: page.wait_for_timeout(12)
     assert result['far']==[expected],result
+    if os.environ.get('HONRO_ACT6_TERRAIN_PROOF'):
+        (out/f'{case}-terrain-{stage}.json').write_text(json.dumps(result,indent=2)+'\n')
+        assert result['terrain'] and result['terrain']['revision']==2 and result['terrain']['stage']==stage and result['terrain']['drawCalls']>0,result
     page.screenshot(path=out/f'{case}-native-{stage}-normal-far.png')
     return {'stage':stage,'readyWallSeconds':monotonic()-begin,'selected':expected,'frameReadback':result}
