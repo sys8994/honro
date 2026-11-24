@@ -1,0 +1,46 @@
+{
+  "id": 56,
+  "act": 6,
+  "actStage": 6,
+  "previous": 55,
+  "authoredId": "qa-act6-06",
+  "entry": [
+    "mage"
+  ],
+  "parked": [
+    "archer",
+    "knight",
+    "occultist"
+  ],
+  "exit": [
+    "mage"
+  ],
+  "parkedOnExit": [
+    "archer",
+    "knight",
+    "occultist"
+  ],
+  "requiresFlags": {
+    "act6.outerAnchorBellReady": true,
+    "act6.outerThreeAnchorsReady": true
+  },
+  "terminalFlags": {
+    "act6.firstGarmjinFailed": true,
+    "act6.temporaryPassageEscaped": true
+  },
+  "events": [
+    "interact",
+    "tick"
+  ],
+  "objective": "authored",
+  "name": "죽은 자들의 큰길",
+  "runtimeReleaseEnabled": false,
+  "sha256": "73e6de40351e90fc7014ea471cf7739b9444c3e67b5edb80d89f895dc5ae9d61",
+  "bytes": 115622,
+  "path": "/web/data/act6-qa-chapter-56.73e6de40351e90fc.json",
+  "mapSHA": "9a6a1e589bca8748e01920a05dd3a17684c0dccd1d1283fb8a7d4234589a0d84",
+  "assetSHA": "04639b2c15f58f209d001c5596c5fdbd6114d4e7e2e9d19f783add61dc39d17e",
+  "playSHA": "c17aa19e1f126fc442da441d532fa559e683ca5cf8cfde99e5f26956e9638662",
+  "worldSHA": "cbdb034494d220c5bd6dc6d51388b558e461219a0e3fa96afe9fa3bee8d0b51e",
+  "ownerSHA": "ef0206760ca2251373ad2e2ae5622a1f3be0f21befb16f01a97cb292ca387f02"
+}

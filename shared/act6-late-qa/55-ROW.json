@@ -1,0 +1,43 @@
+{
+  "playSHA": "3bed6724fbe77d55adef1022c937a0c6943830434217a9a087ff7eb1b7be865b",
+  "worldSHA": "3bed6724fbe77d55adef1022c937a0c6943830434217a9a087ff7eb1b7be865b",
+  "mapSHA": "ec09ce579b7a9af3cc90ac76cee035d2cecbe2cccf8aa1b5418f8a4e4081528d",
+  "assetSHA": "9ffe8dd7a3b89511664f2033ef414f34ab943b5b3bb3b9bf918043b5168f64a6",
+  "sha256": "3ae91543525a09093da52ee1dd2bff8ab8324a7e7858996c363afdd10e066b8f",
+  "bytes": 36440,
+  "id": 55,
+  "previous": 54,
+  "authoredId": "stage-55",
+  "ownerSHA": "cb9009674cc3848aff0e5d93877f55a2403ad60a46c6ef29c93f6eb3ccec6e62",
+  "path": "/web/data/act6-qa-chapter-55.3ae91543525a0909.json",
+  "entry": [
+    "knight",
+    "archer",
+    "occultist"
+  ],
+  "parked": [
+    "mage"
+  ],
+  "exit": [
+    "knight",
+    "archer",
+    "occultist"
+  ],
+  "parkedOnExit": [
+    "mage"
+  ],
+  "requiresFlags": {
+    "act6.invertedGalleryCrossed": true
+  },
+  "terminalFlags": {
+    "act6.outerAnchorBellReady": true,
+    "act6.outerThreeAnchorsReady": true
+  },
+  "events": [
+    "interact",
+    "nativeRelease",
+    "nativeImpact",
+    "tick"
+  ],
+  "runtimeReleaseEnabled": false
+}
