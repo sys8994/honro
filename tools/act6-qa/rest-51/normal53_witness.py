@@ -22,6 +22,12 @@ def stage53(page,state,mobile,original,tap,out,case,packet_path):
     for field in ('id','cls','hp','maxHp','focus','maxFocus','shield','level','loadout','tune','ranks','h','r','equipmentState','equipmentIds','gearBonuses','attack','armor','maxMove','walkSpeed','regen'):
         assert own.get(field)==before['mage'].get(field),field
     assert page.evaluate("k=>localStorage.getItem(k)",STORE)==original
+    enemies=page.evaluate('''()=>{const e=HonroApp.engine;
+      return e.b.units.filter(u=>u.side===1).map(u=>({id:u.id,kind:u.honroType,loadout:u.loadout,name:u.name,x:u.x,y:u.y,grounded:e.grounded(u)}));}''')
+    assert {x['kind'] for x in enemies}=={'ghost','shade'} and len(enemies)==2,enemies
+    assert all(not {'LA01','LA02','A01'}.intersection(u['loadout']) and u['grounded'] for u in enemies),enemies
+    assert ['HSH02'] in [x['loadout'] for x in enemies],enemies
+    state['normal53AuthoredEnemies']=enemies
     action='[data-act6-qa-lookout]'
     skill='[data-action="combat-skill"][data-skill="M09"]'
     assert page.locator(skill).count()==0

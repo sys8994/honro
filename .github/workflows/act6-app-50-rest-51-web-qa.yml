@@ -1,21 +1,21 @@
 name: Act 6 genuine 50 ending and rest to normal 51–53 no-deploy QA
 on:
   push:
-    branches: ['qa/act6-app-50-rest-normal53-20261125-r6g']
+    branches: ['qa/act6-app-50-rest-normal53-20261125-r6v-spirits']
     paths:
       - '.github/workflows/act6-app-50-rest-51-web-qa.yml'
 permissions:
   contents: read
 jobs:
   normal-app:
-    if: github.repository == 'sys8994/honro' && github.ref == 'refs/heads/qa/act6-app-50-rest-normal53-20261125-r6g'
+    if: github.repository == 'sys8994/honro' && github.ref == 'refs/heads/qa/act6-app-50-rest-normal53-20261125-r6v-spirits'
     runs-on: ubuntu-22.04
     timeout-minutes: 25
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
           ref: ${{ github.sha }}
-          fetch-depth: 7
+          fetch-depth: 8
           persist-credentials: false
       - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
         with:
@@ -34,7 +34,10 @@ jobs:
           R6=499665921d952a7271da18b11c84065c0ede6fde
           R6D=ce52775ff07bc75f0f9b610c8164d034084ebb20
           R6F=ad635fb308de94654873abb3635f915f7c364861
-          test "$(git rev-list --parents -n1 HEAD)" = "$GITHUB_SHA $R6F"
+          R6G=afb2852a844bd404445c0eff773c81e96256e40e
+          test "$(git rev-list --parents -n1 HEAD)" = "$GITHUB_SHA $R6G"
+          test "$(git rev-list --parents -n1 "$R6G")" = "$R6G $R6F"
+          test "$(git rev-parse "$R6G^{tree}")" = b4c88ee84ec42cb1fa92be5119a7a20e58d0f002
           test "$(git rev-list --parents -n1 "$R6F")" = "$R6F $R6D"
           test "$(git rev-parse "$R6F^{tree}")" = cdbad53e84da77c275d374e2d1a50b0474d3e4e8
           test "$(git rev-list --parents -n1 "$R6D")" = "$R6D $R6"
@@ -43,8 +46,9 @@ jobs:
           test "$(git rev-list --parents -n1 "$R5")" = "$R5 $R4"
           test "$(git rev-parse "$R4^{tree}")" = 633f9429c907f0904e2522cd945925c1dad9ab47
           test "$(git rev-list --parents -n1 "$R4")" = "$R4 $BASE"
-          git rev-parse HEAD HEAD^{tree} "$R6F" "$R6F^{tree}" "$R6D" "$R6D^{tree}" "$R6" "$R6^{tree}" "$R5" "$R5^{tree}" "$R4" "$R4^{tree}" "$BASE" "$BASE^{tree}" | tee "$RUNNER_TEMP/act6-result/SOURCE.txt"
-          diff -u <(printf '%s\n' .github/workflows/act6-app-50-rest-51-web-qa.yml tools/act6-qa/rest-51/normal53_witness.py) <(git diff --name-only "$R6F" HEAD)
+          git rev-parse HEAD HEAD^{tree} "$R6G" "$R6G^{tree}" "$R6F" "$R6F^{tree}" "$R6D" "$R6D^{tree}" "$R6" "$R6^{tree}" "$R5" "$R5^{tree}" "$R4" "$R4^{tree}" "$BASE" "$BASE^{tree}" | tee "$RUNNER_TEMP/act6-result/SOURCE.txt"
+          diff -u <(printf '%s\n' .github/workflows/act6-app-50-rest-51-web-qa.yml shared/runtime/stage53-entry.inc.js tools/act6-qa/rest-51/normal53_witness.py) <(git diff --name-only "$R6G" HEAD)
+          diff -u <(printf '%s\n' .github/workflows/act6-app-50-rest-51-web-qa.yml tools/act6-qa/rest-51/normal53_witness.py) <(git diff --name-only "$R6F" "$R6G")
           diff -u <(printf '%s\n' .github/workflows/act6-app-50-rest-51-web-qa.yml tools/act6-qa/rest-51/normal53_witness.py) <(git diff --name-only "$R6D" "$R6F")
           diff -u <(printf '%s\n' .github/workflows/act6-app-50-rest-51-web-qa.yml tools/act6-qa/rest-51/smoke.py) <(git diff --name-only "$R6" "$R6D")
           diff -u <(printf '%s\n' .github/workflows/act6-app-50-rest-51-web-qa.yml shared/act6-app-qa.mjs shared/data/act6-qa/third.json shared/runtime/act6-inner-missions.mjs shared/runtime/stage51-campaign-provider.mjs shared/runtime/stage53-actions.mjs shared/runtime/stage53-entry.inc.js tools/act6-qa/rest-51/normal53_witness.py tools/act6-qa/rest-51/smoke.py) <(git diff --name-only "$R5" "$R6")
@@ -72,6 +76,6 @@ jobs:
       - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
         if: always()
         with:
-          name: act6-50-rest-normal53-no-deploy-r6g-${{ github.sha }}
+          name: act6-50-rest-normal53-no-deploy-r6v-spirits-${{ github.sha }}
           path: ${{ runner.temp }}/act6-result/
           retention-days: 7
