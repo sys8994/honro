@@ -1,0 +1,46 @@
+{
+  "id": 54,
+  "act": 6,
+  "actStage": 4,
+  "previous": 53,
+  "authoredId": "stage-54",
+  "entry": [
+    "mage"
+  ],
+  "parked": [
+    "archer",
+    "knight",
+    "occultist"
+  ],
+  "exit": [
+    "mage"
+  ],
+  "parkedOnExit": [
+    "archer",
+    "knight",
+    "occultist"
+  ],
+  "requiresFlags": {
+    "act6.innerStakeAReady": true
+  },
+  "terminalFlags": {
+    "act6.invertedGalleryCrossed": true
+  },
+  "events": [
+    "gravityChart",
+    "contextualSkill",
+    "tick",
+    "interact"
+  ],
+  "objective": "act6-gallery-charts",
+  "name": "거꾸로 선 처마",
+  "runtimeReleaseEnabled": false,
+  "sha256": "b5922a3d8aa7bd413f52171ca945e7096585d336c28780f6ccaba3fefb54f5b8",
+  "bytes": 644858,
+  "path": "/web/data/act6-qa-chapter-54.b5922a3d8aa7bd41.json",
+  "mapSHA": "5260bb7c347d0401127b768f73bae4039b814997ab336e8c7ddfd9a5e6ead89e",
+  "assetSHA": "328431fbb39a8e7b931f42d66b489a7bf8949f51bb55d4b8d26a5afea3ac8b4d",
+  "playSHA": "3913a4853a7acca4fb18851fad6ff5f36288ff36e0d86a8f0c03267176b59f57",
+  "worldSHA": "cb812ca24f46e3b1049ffbc621985dd40846e8acab1f8fedcf09bb325039e6d3",
+  "ownerSHA": "603c83d32b92e381c34449c401da2df6b4db52a594e36083e8d2a1cdb83bd947"
+}
