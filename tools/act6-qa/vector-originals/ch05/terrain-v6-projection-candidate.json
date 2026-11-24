@@ -1,0 +1,160 @@
+{
+  "id": "act6-05-scratch-v2",
+  "version": 6,
+  "width": 6800,
+  "height": 3200,
+  "playBounds": {
+    "left": 0,
+    "top": 0,
+    "right": 6800,
+    "bottom": 3200
+  },
+  "terrainBounds": {
+    "left": -4496,
+    "top": -1992,
+    "right": 11536,
+    "bottom": 11768
+  },
+  "terrains": [
+    {
+      "id": "west-ring-descent",
+      "type": "solid",
+      "baseMaterial": "rock",
+      "points": [
+        {
+          "x": 112,
+          "y": 552
+        },
+        {
+          "x": 1344,
+          "y": 1224
+        },
+        {
+          "x": 1344,
+          "y": 1320
+        },
+        {
+          "x": 112,
+          "y": 648
+        }
+      ]
+    },
+    {
+      "id": "arrival-core-terrace",
+      "type": "solid",
+      "baseMaterial": "rock",
+      "points": [
+        {
+          "x": 1400,
+          "y": 1304
+        },
+        {
+          "x": 2856,
+          "y": 1752
+        },
+        {
+          "x": 2856,
+          "y": 1848
+        },
+        {
+          "x": 1400,
+          "y": 1400
+        }
+      ]
+    },
+    {
+      "id": "right-return-rise",
+      "type": "solid",
+      "baseMaterial": "rock",
+      "points": [
+        {
+          "x": 4168,
+          "y": 1752
+        },
+        {
+          "x": 5416,
+          "y": 1263.2
+        },
+        {
+          "x": 5416,
+          "y": 1359.2
+        },
+        {
+          "x": 4168,
+          "y": 1848
+        }
+      ]
+    },
+    {
+      "id": "east-upper-end",
+      "type": "solid",
+      "baseMaterial": "rock",
+      "points": [
+        {
+          "x": 5416,
+          "y": 1263.2
+        },
+        {
+          "x": 6456,
+          "y": 535.2
+        },
+        {
+          "x": 6456,
+          "y": 631.2
+        },
+        {
+          "x": 5416,
+          "y": 1359.2
+        }
+      ]
+    },
+    {
+      "id": "west-lower-branch",
+      "type": "solid",
+      "baseMaterial": "rock",
+      "points": [
+        {
+          "x": 712,
+          "y": 2432
+        },
+        {
+          "x": 980.8,
+          "y": 2644.8
+        },
+        {
+          "x": 980.8,
+          "y": 2740.8
+        },
+        {
+          "x": 712,
+          "y": 2528
+        }
+      ]
+    },
+    {
+      "id": "east-lower-branch",
+      "type": "solid",
+      "baseMaterial": "rock",
+      "points": [
+        {
+          "x": 5664,
+          "y": 2536
+        },
+        {
+          "x": 6304,
+          "y": 2088
+        },
+        {
+          "x": 6304,
+          "y": 2184
+        },
+        {
+          "x": 5664,
+          "y": 2632
+        }
+      ]
+    }
+  ],
+  "elements": [],
+  "materials": []
+}
