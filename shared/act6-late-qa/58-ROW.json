@@ -1,0 +1,78 @@
+{
+  "playSHA": "901721de1ae340238e5b0a081861fb8fee3650d93e1496c519c50073439f7aec",
+  "worldSHA": "858974a56d2e448bde0149f9b3c4bad487b1fdf0ba459981144d71784f495f54",
+  "mapSHA": "5f7b37407a1bdca0088baf431596a174385bec3c9d643793927621e586ac71be",
+  "assetSHA": "5846654df2e1d08f0569cb67626078cb546dffc0087621f0fa4b005ccf55de5f",
+  "sha256": "7df6e20b457fe8d34e72eae0e8a3ac6b6f2b3d853ee8424a477b1385f61e6cbd",
+  "bytes": 106810,
+  "roles": [
+    [
+      "a6-c08-boss",
+      4480,
+      3194.769230769231,
+      146,
+      35,
+      1350
+    ],
+    [
+      "a6-c08-expansion-node",
+      4896,
+      3074.909090909091,
+      110,
+      48,
+      260
+    ],
+    [
+      "a6-c08-unsettled-ledger",
+      5144,
+      2940.8,
+      105,
+      21,
+      1200
+    ],
+    [
+      "a6-c08-margin-echo",
+      5708,
+      2364,
+      105,
+      21,
+      850
+    ]
+  ],
+  "id": 58,
+  "previous": 57,
+  "authoredId": "stage-58",
+  "ownerSHA": "eba509f70ad39813b0d3057ce6e16dcb1c04b38c13e6e2d2998f34c95d7921ed",
+  "path": "/web/data/act6-qa-chapter-58.7df6e20b457fe8d3.json",
+  "entry": [
+    "mage",
+    "archer",
+    "knight",
+    "occultist"
+  ],
+  "parked": [],
+  "exit": [
+    "mage",
+    "archer",
+    "knight",
+    "occultist"
+  ],
+  "parkedOnExit": [],
+  "requiresFlags": {
+    "act6.fourCorporealJoined": true,
+    "act6.fallbackRelaySecured": true
+  },
+  "terminalFlags": {
+    "act6.daedosaStopped": true,
+    "act6.innerRevisionReady": true,
+    "act6.fourCorporealReturned": true
+  },
+  "events": [
+    "interact",
+    "tick",
+    "nativeRelease",
+    "nativeImpact",
+    "noncombatReturn"
+  ],
+  "runtimeReleaseEnabled": false
+}
