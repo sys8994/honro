@@ -1,0 +1,98 @@
+name: Verify Act 4 and 5 ending cards in Chromium
+on:
+  push:
+    branches: ['qa/act4-5-endings-20261124-*']
+permissions:
+  contents: write
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 38
+    env:
+      HONRO_ACT4_RELEASE: '1'
+      SOURCE_REF: 55c759d95fd3a3d95181e8a1b9549f6a34c2c66c
+      OUT: _local/reports/act4-5-endings
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 8
+      - name: Use reviewed source, without verification-only files
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/act4-5-endings"
+          cp .github/act4-5-endings-qa/browser-endings-expanded.mjs "$RUNNER_TEMP/act4-5-endings/"
+          git switch --detach "$SOURCE_REF"
+          test "$(git rev-parse HEAD)" = "$SOURCE_REF"
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - name: Compile production bundle
+        run: |
+          set -euo pipefail
+          mkdir -p "$OUT"
+          npm ci
+          npm ci --prefix game
+          npm --prefix game run typecheck | tee "$OUT/typecheck.log"
+          cp web/manifest.json "$RUNNER_TEMP/act4-5-endings/published-base.json"
+          node tools/release/register-current-publication.mjs --source-manifest "$RUNNER_TEMP/act4-5-endings/published-base.json" --expected-blob-sha 58c5bdb3826833ee13ed33155f6476e69a14701a --source-sha 27506a88b7e0410653ea2765d09562143f23cee7 --published-at 2026-11-24T03:24:37Z --evidence https://github.com/sys8994/honro/actions/runs/45319107498 | tee "$OUT/retention.log"
+          npm run build | tee "$OUT/build.log"
+          printf '%s\n' "$SOURCE_REF" > "$OUT/exact-source.txt"
+          sha256sum web/manifest.json HONRO.html > "$OUT/compiled-hashes.txt"
+      - name: Test continuation, stage handoff and old journal in Chromium
+        run: |
+          set -euo pipefail
+          base="$RUNNER_TEMP/act4-5-baseline"
+          git worktree add --detach "$base" 27506a88b7e0410653ea2765d09562143f23cee7
+          npm install --prefix "$RUNNER_TEMP/honro-qa-deps" --no-audit --no-fund playwright@1.62.1
+          export PLAYWRIGHT_MODULE="$RUNNER_TEMP/honro-qa-deps/node_modules/playwright"
+          if command -v google-chrome >/dev/null; then
+            export HONRO_CHROMIUM="$(command -v google-chrome)"
+          else
+            node "$PLAYWRIGHT_MODULE/cli.js" install chromium
+            export HONRO_CHROMIUM="$(node -p "require(process.env.PLAYWRIGHT_MODULE).chromium.executablePath()")"
+          fi
+          b="$(sha256sum web/manifest.json | cut -d ' ' -f1)"
+          node "$RUNNER_TEMP/act4-5-endings/browser-endings-expanded.mjs" "$base" . "$OUT/browser" 72decb738226e1a811aa78303a740e46839805ea3a4740d4914fb11656024824 "$b" 30,40,50 | tee "$OUT/browser.log"
+      - name: Create verified scoped build branch
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import subprocess
+          paths=set(subprocess.check_output(['git','diff','HEAD','--name-only','-z']).decode().split('\0'))|set(subprocess.check_output(['git','ls-files','--others','--exclude-standard','-z']).decode().split('\0'))
+          roots={'HONRO.html','HONRO_WORKSHOP.html','index.html','workshop/HONRO_MAP_WORKSHOP.html'}
+          asset='shared/assets/actors/actors.runtime.js'
+          if asset in paths:
+              import re
+              from pathlib import Path
+              old=subprocess.check_output(['git','show','HEAD:'+asset]).decode()
+              new=Path(asset).read_text()
+              match=r'"sourceSha256":"[0-9a-f]{64}"'
+              assert len(re.findall(match,old))==len(re.findall(match,new))==1
+              assert re.sub(match,'SOURCE_FINGERPRINT',old)==re.sub(match,'SOURCE_FINGERPRINT',new),'unrelated actor artwork changed'
+              roots.add(asset)
+          unexpected=sorted(p for p in paths if p and p not in roots and not p.startswith('web/'))
+          assert not unexpected, unexpected
+          PY
+          git add -- HONRO.html HONRO_WORKSHOP.html index.html workshop/HONRO_MAP_WORKSHOP.html shared/assets/actors/actors.runtime.js web
+          git diff --cached --check
+          git config user.name 'HONRO release verification'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "Build Act 4 and 5 ending cards"
+          target="repair/act4-5-endings-generated-${GITHUB_RUN_ID}"
+          git push origin "HEAD:refs/heads/$target"
+          expected="$(git rev-parse HEAD)"
+          actual="$(git ls-remote origin "refs/heads/$target" | cut -f1)"
+          test "$actual" = "$expected"
+          printf '%s\n' "$expected" > "$OUT/generated-head.txt"
+          printf '%s\n' "$target" > "$OUT/generated-branch.txt"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: act4-5-endings-${{ github.run_id }}
+          path: _local/reports/act4-5-endings/
+          retention-days: 7
