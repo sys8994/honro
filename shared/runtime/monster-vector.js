@@ -4,11 +4,20 @@ const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
 // Existing Warden fills only. Linework and other actors still take the original palette.
 const WET_TIMBER=Object.freeze({wood:'#425455',woodLight:'#768783',woodDark:'#262e34'});
 const GROVE_TIMBER=Object.freeze({wood:'#465b57',woodLight:'#7a8a77',woodDark:'#30323a'});
+const QUAY_STONE_DUST=Object.freeze({aa8357:'#78746b',bb9565:'#9b9180','65543e':'#514c47'});
+const SALT_TIMBER=Object.freeze({wood:'#43555a',woodLight:'#748989',woodDark:'#253237'});
 const FACE_LIGHT='#e2bd7e',GROVE_EYES='#b7d4b6';
 const cue=path=>path.fill==='ink'&&path.d.startsWith('M-18 -126 L-12 -128'); // existing Warden eye shapes
 function paintFor(u,id,b){
- if(id!=='warden'||u.dead||u.side!==1)return null;
+ if(u.dead||u.side!==1)return null;
  const v=u.honroMonsterScaleVariant,w=u.honroMonsterWeakPoint;
+ const canonical=b?.honroCanonical===true&&!b.honroCustom&&b.honroMonsterScaleRevision===2&&v?.v===2;
+ if(canonical&&b.honroStage===30&&u.id==='sf-dw6'&&id==='dueoksini'&&v.tone==='quayStoneDust')
+  return {tone:QUAY_STONE_DUST};
+ if(canonical&&b.honroStage===40&&u.id==='final40-tide-keeper-1'&&id==='warden'&&
+  u.honroAct4FinaleBoss===true&&u.boss===40&&v.tone==='saltTimber')
+  return {tone:SALT_TIMBER};
+ if(id!=='warden')return null;
  const grove=b?.honroStage===44&&b.honroCanonical===true&&!b.honroCustom&&
   b.honroMonsterScaleRevision===2&&u.id==='a5-foe-5'&&v?.v===2&&v.tone==='groveTimber'&&w?.discovery==='unknown';
  const tone=grove?GROVE_TIMBER:v?.v===2&&v.tone==='wetTimber'?WET_TIMBER:null;
@@ -147,5 +156,5 @@ function headPoint(u,time=0){const id=kind(u);if(!id)return null;const a=assets[
  }
  const scale=u.h/a.baseHeight;return{x:u.x+point.x*scale*(u.facing||1),y:u.y+point.y*scale};
 }
-G.HonroMonsterVisual={...api,kind,species,headPoint,handoffBody,legacyBody:previous};
+G.HonroMonsterVisual={...api,kind,species,headPoint,handoffBody,actorPaint:paintFor,legacyBody:previous};
 })(globalThis);

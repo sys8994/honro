@@ -29,6 +29,10 @@ const PLACE_VARIANTS=Object.freeze({6:Object.freeze({'midboss-stage6':Object.fre
 })}),16:Object.freeze({'tm-lower-point':Object.freeze({
  species:'eoduksini',growth:Object.freeze([1.6,3.51,8.08]),
  reason:'잠운사 침수 하층에 고인 혼기가 반응할 때만 몸을 일으킨다.'
+})}),30:Object.freeze({'sf-dw6':Object.freeze({
+ species:'dueoksini',toneOnly:'quayStoneDust',reason:'나루 서편 석단에 머문 두억시니에 젖은 석분이 묻었다.'
+})}),40:Object.freeze({'final40-tide-keeper-1':Object.freeze({
+ species:'warden',toneOnly:'saltTimber',reason:'포구를 지키는 장승의 나무가 오랜 조수에 젖어 푸르게 바랬다.'
 })}),44:Object.freeze({'a5-foe-5':Object.freeze({
  species:'warden',metres:8.5,healthRatio:.46,tone:'groveTimber',reason:'귀림 윗뿌리에 맺힌 혼기로 오래된 수목귀의 껍질과 결이 불었다.',
  weak:Object.freeze({v:2,key:'warden-face',discovery:'unknown',body:.20,bonus:1,top:.10,bottom:.46,halfWidth:.50})
@@ -96,11 +100,13 @@ function guard(b,u){
 }
 function apply(b,u){
  if(!eligible(b,u)||u.honroMonsterScale||OFF_STAGES.has(b.honroStage))return;
- const named=NAMED[u.id];
+ const named=NAMED[u.id],key=look(u),v=placeVariant(b,u);
+ // These two bodies already occupy sensitive ferry/boarding shot and foot
+ // corridors. Only the colours of stable, existing parts may differ.
+ if(v?.toneOnly&&key===v.species)u.honroMonsterScaleVariant={v:REVISION,tone:v.toneOnly,reason:v.reason};
  // A body standing at an objective (bier knots, seals) keeps its authored
  // size so the line of fire to that objective stays as the stage was tuned.
  if(!named&&covers(b,u)){u.honroMonsterScale={v:b.honroMonsterScaleRevision,why:'objective-cover',kept:true,base:{h:u.h,r:u.r},rest:u.h};return;}
- const key=look(u),v=placeVariant(b,u);
  const mid=(u.honroMidboss||u.boss)&&(ROLE_MID[key]||ROLE_MID[u.honroType]);
  // Exact authored giant only. A partially fitting giant has no matching
  // exposed hit region: keep the previous encounter instead.

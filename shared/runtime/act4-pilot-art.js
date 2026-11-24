@@ -140,7 +140,7 @@ if(S){
   if(u?.honroAct4FinaleBoss!==true||u.boss!==40)return body.call(this,c,u,...args);
   const v=G.HonroMonsterVisual,a=v?.assets?.warden;if(!a)throw Error('Missing retained warden art');
   c.save();c.translate(u.x,u.y);const scale=u.h/a.baseHeight;c.scale(scale*(u.facing||1),scale);const m=c.getTransform(),ratio=c.canvas.clientWidth?c.canvas.width/c.canvas.clientWidth:1;
-  v.draw(c,'warden',{time:this.time||0,state:v.state(u),pixels:a.baseHeight*Math.hypot(m.c,m.d)/ratio});c.restore();
+  v.draw(c,'warden',{time:this.time||0,state:v.state(u),pixels:a.baseHeight*Math.hypot(m.c,m.d)/ratio,actorPaint:v.actorPaint?.(u,'warden',this.battle||this.actorEngine?.b)});c.restore();
  };
  const actor=S.unit;S.unit=function(c,u,...args){const out=actor.call(this,c,u,...args),b=this.actorEngine?.b;
   if(!b||b.honroAct4Preview!==40||u.dead||u.hp<=0||u.eaterCapturedBy||u.side!==1||!G.HonroAct4PilotCombat?.equipped(b,u)||u.h*this.scale<36)return out;
