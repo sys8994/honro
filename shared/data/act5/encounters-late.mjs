@@ -33,8 +33,10 @@ export const lateEncounters = {
         foe('shade',169,387,{label:'제기귀'}), flyer('lantern',196,387,54),
         foe('mourner',218,387,{label:'기억진목 수비혼'}), flyer('lantern',241,387,37),
       ]),
+      // P1-1 (2026-11-23): the second lantern beside stakeOne's lantern became a hound that
+      // runs at whoever installs the first stake: a disruptor, not a repeated fire line.
       pack('rimOverlook',['memory','stakeOne'],133,146,[
-        flyer('bat',247,387,93), flyer('lantern',280,483,54),
+        flyer('bat',247,387,93), foe('hound',280,483,{label:'석단 길목 들린 산개'}),
       ]),
       pack('stakeOne',['stakeOne'],116,98,[
         foe('ghost',305,483), flyer('lantern',329,483,48),
@@ -46,8 +48,10 @@ export const lateEncounters = {
         foe('shade',581,497,{label:'부유 석단 제기귀'}), foe('ghost',632,497),
         flyer('lantern',708,497,63), foe('mourner',674,497,{label:'중앙 석단 수비혼'}),
       ],undefined,'stakeOne'),
+      // P1-1: the east-approach lantern sat right beside the stakeTwo lantern (708). It is now a
+      // ground archer at the descent lip that covers the east drop instead (different answer).
       pack('eastApproach',['eastGuard'],129,133,[
-        flyer('lantern',722,497,42), flyer('bat',817,487,97),
+        foe('human',813,487,{label:'하강로 견제 궁수'}), flyer('bat',817,487,97),
       ]),
       pack('eastGuard',['eastGuard'],155,151,[
         flyer('lantern',841,487,46), foe('shade',876,487,{label:'동쪽 제기귀'}),
