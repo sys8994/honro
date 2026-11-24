@@ -13,6 +13,10 @@ const threatened=b=>residents(b).some(id=>{const u=unit(b,id);return alive(u)&&!
 const routeBlocked=b=>City.memory(b).started&&residents(b).some(id=>!City.memory(b).actors[id]?.safe&&!!City.memory(b).actors[id]?.blocked);
 const rescued=b=>City.complete(b)&&residents(b).every(id=>grounded(b,unit(b,id))&&City.memory(b).actors[id]?.safe)&&alive(unit(b,'v4.gwakjin'));
 function author(map,p){base.author(map,p);if(!enabled())return;
+ // The gate stays a low blockade; the west market awning supports a separate shot over the ground pack.
+ const marketArcher=map.units.find(u=>u.id==='a3-21-market-pack-3'&&u.kind==='hound');
+ if(marketArcher){Object.assign(marketArcher,{kind:'possessedArcher',label:'장터 처마의 악귀 사수',x:3895,y:2510});
+  Object.assign(marketArcher.stageOverrides,{honroEncounterRole:'ranged-support',honroEncounterSupport:'eup21-market-alley-eave'});}
  const old=map.units.find(u=>u.id==='a3-21-wagon-cordon-0'),current=map.units.find(u=>u.id==='a3-21-gate-watch-1');
  // Display identities reuse two existing combatants. HP, XP, kind, position,
  // skill and action budgets are unchanged; no additional foe is introduced.

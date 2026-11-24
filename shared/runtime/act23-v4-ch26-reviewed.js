@@ -32,7 +32,10 @@ function guidance(b){
  return null;
 }
 R=F.register({stage:26,
- author(map){map.initialState.honroReviewed26Letter={id:'v4.26.ancestor-letter',x:5050,y:2150,emblem:'family-three-petals'};map.terrains.push({id:'v4.26.table',type:'solid',name:'v4.26.table',points:[{x:4550,y:2052},{x:4700,y:2052},{x:4700,y:2068},{x:4550,y:2068}],baseMaterial:'wood',oneWay:true,breakable:true,layer:'terrain',properties:{hp:700,maxHp:700,honroWalkEdges:[0]}});},
+ author(map){
+  const castingPursuer=map.units.find(u=>u.id==='a3-26-casting-yard-tools-0'&&u.kind==='picks');
+  if(castingPursuer)Object.assign(castingPursuer,{kind:'hound',label:'가마 아래의 들린 산개'});
+  map.initialState.honroReviewed26Letter={id:'v4.26.ancestor-letter',x:5050,y:2150,emblem:'family-three-petals'};map.terrains.push({id:'v4.26.table',type:'solid',name:'v4.26.table',points:[{x:4550,y:2052},{x:4700,y:2052},{x:4700,y:2068},{x:4550,y:2068}],baseMaterial:'wood',oneWay:true,breakable:true,layer:'terrain',properties:{hp:700,maxHp:700,honroWalkEdges:[0]}});},
  prepare(b){resident(b).name='주민';unit(b,b.honroV4CitySpec.spirit).name='';},
  attach(app,e){const damage=e.damageTerrain.bind(e);e.damageTerrain=function(t,amount,...args){const before=t?.hp,result=damage(t,amount,...args);if(t?.id==='artisan-refuge-house:collision:0'&&amount>0&&before!==t.hp)q(e.b).roofShake=2;return result;};},observe,
  speaker(app,r){return r.speaker==='주민'&&V.alive(resident(app.engine.b))&&near(app.engine.b,resident(app.engine.b),700);},

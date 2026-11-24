@@ -10,7 +10,10 @@ function guidance(b){
  return W.crossingGuidance(b,'waterworks-exit','상층 서쪽 출구');
 }
 R=F.register({stage:25,
- author(map){map.initialState.honroReviewed25Goods={...map.markers.find(m=>m.id==='household-tally'),tags:['household-3','household-8'],items:['bowl','door-handle','hoe']};},
+ author(map){
+  const innerGuard=map.units.find(u=>u.id==='a3-25-inner-store-0'&&u.kind==='picks');
+  if(innerGuard)Object.assign(innerGuard,{kind:'possessedGuard',label:'검문실 문간의 수비병 악귀'});
+  map.initialState.honroReviewed25Goods={...map.markers.find(m=>m.id==='household-tally'),tags:['household-3','household-8'],items:['bowl','door-handle','hoe']};},
  attach(app,e){W.attach(app,e,R);},
  observe(app){const b=app.engine.b,q=mem(b);W.observe(app,R);if(goods(b))q.proof.goods={items:b.honroReviewed25Goods.items,tags:b.honroReviewed25Goods.tags};},
  facts(app,r){const b=app.engine.b;if(r.id==='A3.S25.WINDOW.01')return b.units.some(u=>V.alive(u)&&u.side===1&&W.visible(app,u,950));if(r.id==='A3.S25.FAR_SIDE.02'||r.id==='A3.S25.DEPTH.02')return W.returnLink(app);if(r.id.startsWith('A3.S25.LINK_DANGER.'))return W.workDanger(app,R);return true;},

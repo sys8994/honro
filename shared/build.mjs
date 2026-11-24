@@ -17,6 +17,7 @@ import {validateSkillIcons} from '../tools/skill-icons/manifest.mjs';
 import {applyCommonCartArt} from '../tools/environment/common-cart-art.mjs';
 import {applyStage13VectorFinish} from '../tools/environment/stage13-vector-finish.mjs';
 import {applyGeologyArt} from '../tools/environment/build-geology-art.mjs';
+import {applyStage8WestCourtSentry} from '../tools/map-forge/stage8-bier.mjs';
 import {applyStage10Positioning} from '../tools/map-forge/stage10-positioning.mjs';
 import {applyStage7Positioning} from '../tools/map-forge/stage7-positioning.mjs';
 import {applyStage6Positioning} from '../tools/map-forge/stage6-positioning.mjs';
@@ -177,7 +178,7 @@ export async function runtimeEntries({vector=true,render=true,app=false,producti
   project=applyStage4Positioning(project);
   project=applyStage6Positioning(project);
   project=applyStage7Positioning(project);
-  project=applyStage10Positioning(project);
+  project=applyStage10Positioning(applyStage8WestCourtSentry(project));
   // Preserve the opted-in Stage13 finish after legacy transition/scenery authors.
   // Their terrain/routes remain canonical; this final pass changes art only.
   if(project.stages.some(s=>s.metadata?.stageId===13&&s.design?.stoneFinish?.revision===1))project=applyStage13VectorFinish(project);

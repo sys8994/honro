@@ -50,7 +50,10 @@ export const earlyEncounters = {
         ['warden',849,0,'elite','보초막 수문귀','marksman'],
         ['human',876], ['human',924], ['shade',960],
       ]),
-      pack('watchFlank',280,[['human',863],['lantern',907,0,undefined,undefined,undefined,49]]),
+      // The wall-top marksmen hold their post; the lower pair only contests the withdrawal.
+      pack('watchFlank',280,[
+        ['hound',863,0,undefined,'보초막 아래 퇴로의 들린 산개'], ['lantern',907,0,undefined,undefined,undefined,49],
+      ],{wake:{keys:['guide'],distance:142,height:52,after:'watch'}}),
       pack('campGuard',276,[['human',393],['mourner',431],['shade',464]],{
         wave:cue('camp','reach','천막 뒤의 둔덕에서 묻혀 있던 보초가 일어납니다.',[431,276],[600,254]),
       }),
@@ -77,7 +80,11 @@ export const earlyEncounters = {
       pack('rescueScreen',327,[['ghost',394]],{
         wake:{keys:['rescue'],distance:174,height:53,after:'approach'},
       }),
-      pack('palisadeWest',225,[['human',302,35], ['human',365], ['lantern',418,0,undefined,undefined,undefined,56]]),
+      // Keep the named marksman on the upper shelf; do not wake this flank through the floor.
+      pack('palisadeWest',225,[
+        ['human',302,35], ['human',365],
+        ['lantern',418,0,undefined,undefined,undefined,56],
+      ],{wake:{keys:['refuge'],distance:158,height:57}}),
       pack('palisade',204,[
         ['human',506,21], ['shade',581,16], ['mourner',632,6], ['crow',665,0,undefined,undefined,undefined,33],
       ],{wake:{keys:['refuge'],distance:207,height:137,after:'rescue'}}),
@@ -196,8 +203,9 @@ export const earlyEncounters = {
         ['boar',869,15,undefined,'합류턱의 멧돼지'], ['hound',908], ['stag',952,0,undefined,'고개 위 숫사슴'],
         ['crow',979,0,undefined,undefined,undefined,44],
       ],{wake:{keys:['pass','summit'],distance:164,height:55,after:'roots'}}),
-      pack('crestPursuit',164,[['hound',902],['boar',938],['shade',979]],{
-        wave:cue('summit','summit','고갯마루 쪽 돌턱에서 달려오는 산짐승 소리가 들립니다.',[936,164],[912,164]),
+      // Two rushers approach from the notch; leave breathing room before the rear caster.
+      pack('crestPursuit',164,[['hound',902],['boar',938],['shade',997]],{
+        wave:cue('summit','summit','산짐승 둘이 고갯마루 돌턱을 넘고, 뒤쪽의 혼이 길을 겨눕니다.',[936,164],[912,164]),
       }),
     ],
   },

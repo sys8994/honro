@@ -52,7 +52,11 @@ function observe(app,dt){const b=app.engine.b,m=q(b);if(actualFour(b)&&!m.proof.
 R=F.register({stage:28,
  before(app){return !F.closed(q(app.engine.b).events.packet);},
  prepare(b){unit(b,'v4.gwakjin').name='곽진';for(const id of ['v4.court-soldier-1','v4.court-soldier-2'])unit(b,id).name='수비병';for(const id of ['v4.fire-resident-1','v4.fire-resident-2'])unit(b,id).name='주민';},
- author(map){delete map.initialState.honroV4Steps.find(s=>s.id==='petition-record').requiredClass;},observe,
+ author(map){
+  delete map.initialState.honroV4Steps.find(s=>s.id==='petition-record').requiredClass;
+  const ambush=map.units.find(u=>u.id==='a3-28-decision-suppression-3'&&u.kind==='possessedArcher');
+  if(ambush){Object.assign(ambush,{x:6112,y:2420});ambush.stageOverrides.honroEncounterSupport='s28-roof-access-water';}
+ },observe,
  stepSatisfied(b,s){if(s.id==='party-reunion')return actualFour(b)||!!q(b).proof.reunion;return null;},
  failureGuide(app,r){const b=app.engine.b;return r.id==='A3.S28.GUIDE.FAIL_FIRE'&&b.phase==='lost'&&b.winnerReason==='v4.28.fire'&&!!b.honroSplit?.starts?.[28];},
  failureRows(app){return app.engine?.b?.winnerReason==='v4.28.fire'&&app.engine?.b?.honroSplit?.starts?.[28]?['A3.S28.GUIDE.FAIL_FIRE','EDGE.FAILURE_GUARD.S28']:['EDGE.FAILURE_GUARD.S28'];},
