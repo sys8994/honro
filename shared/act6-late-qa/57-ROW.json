@@ -1,0 +1,45 @@
+{
+  "id": 57,
+  "act": 6,
+  "actStage": 7,
+  "previous": 56,
+  "authoredId": "a6-local-playable-07",
+  "entry": [
+    "archer",
+    "knight",
+    "occultist"
+  ],
+  "parked": [
+    "mage"
+  ],
+  "exit": [
+    "archer",
+    "knight",
+    "mage",
+    "occultist"
+  ],
+  "parkedOnExit": [],
+  "requiresFlags": {
+    "act6.firstGarmjinFailed": true,
+    "act6.temporaryPassageEscaped": true
+  },
+  "terminalFlags": {
+    "act6.fallbackRelaySecured": true,
+    "act6.fourCorporealJoined": true
+  },
+  "events": [
+    "interact",
+    "tick"
+  ],
+  "objective": "act6-fallback-reunite",
+  "name": "무너지는 세 자리",
+  "runtimeReleaseEnabled": false,
+  "sha256": "005b77bedf9a6034cb92faa8fc816c5df06fc78b23b295379eab1a00d087dfe4",
+  "bytes": 94181,
+  "path": "/web/data/act6-qa-chapter-57.005b77bedf9a6034.json",
+  "mapSHA": "1c8ba35c6dbbdae31aceb832a6a71982a445608497dfd7fd1ad98c9fe2eb0d00",
+  "assetSHA": "627ab5f79128f0ab8a0f6f1a9d5bb9ade05f197f2aa4c06a93b6c514b677b180",
+  "playSHA": "7cc7d894a8d4457db0aae331bf3eb2904d8af96c682f9a1c4393246a1bf30f72",
+  "worldSHA": "aeeeaa1f19a136072193545e5a668c97a57fea941c18ddb65968f474c6c57f99",
+  "ownerSHA": "2c38fcf9d7b9c9d171260e5ab7d015ef48a49383e012c09b8afedd3de06c7c1b"
+}
