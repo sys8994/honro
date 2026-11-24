@@ -93,8 +93,8 @@ export class Engine {
     private weakRays=new WeakMap<Collision,{dx:number;dy:number;radius:number;projectile:Projectile}>();
     private weakImpacts=new WeakMap<Projectile,MonsterImpact>();
     private monsterWeakPoint(u:Unit):MonsterWeakPoint|undefined{
-        const b=this.b as Battle & {honroMonsterScaleRevision?:number;honroCanonical?:boolean;honroCustom?:boolean;honroMapOrigin?:string};
-        if(b.honroMonsterScaleRevision!==2||b.mode!=='campaign'||!b.honroCanonical||b.honroCustom||b.honroMapOrigin!=='campaign'||b.stageId!==6||u.id!=='midboss-stage6'||u.side!==1||u.honroObjectiveTarget)return;
+        const b=this.b as Battle & {honroMonsterScaleRevision?:number;honroStage?:number;honroCanonical?:boolean;honroCustom?:boolean;honroMapOrigin?:string};
+        if(b.honroMonsterScaleRevision!==2||b.mode!=='campaign'||!b.honroCanonical||b.honroCustom||b.honroMapOrigin!=='campaign'||b.honroStage!==6||u.id!=='midboss-stage6'||u.side!==1||u.honroObjectiveTarget)return;
         const w=(u as Unit & {honroMonsterWeakPoint?:MonsterWeakPoint}).honroMonsterWeakPoint;
         if(w?.v===2&&w.key==='warden-face'&&[w.body,w.bonus,w.top,w.bottom,w.halfWidth].every(Number.isFinite)&&w.body>0&&w.body<=1&&w.bonus>=w.body&&w.bonus<=1.5&&w.top>=0&&w.bottom>w.top&&w.bottom<=1&&w.halfWidth>0&&w.halfWidth<=1)return w;
     }
