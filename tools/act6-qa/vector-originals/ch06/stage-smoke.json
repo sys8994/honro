@@ -1,0 +1,669 @@
+{
+  "candidate": true,
+  "stockPublishedEngine": true,
+  "physicalSHA256": "0a9336bb9dbd4ee9e5cec53c7fd81b9e841e439ee755fbb5c4dc9010481d0a48",
+  "worldSHA256": "c43c2bed358002cd6c7b42a002ecf345c4120ff6d4123050b5db5e1ff8855ed9",
+  "projectedPolygons": [
+    {
+      "id": "A-01-upper-entry",
+      "x": 160,
+      "y": 1248,
+      "w": 560,
+      "h": 504,
+      "vertices": [
+        {
+          "x": 160,
+          "y": 1248
+        },
+        {
+          "x": 720,
+          "y": 1648
+        },
+        {
+          "x": 720,
+          "y": 1752
+        },
+        {
+          "x": 160,
+          "y": 1352
+        }
+      ],
+      "mat": "rock",
+      "hp": 99999,
+      "maxHp": 99999,
+      "route": true,
+      "indestructible": true,
+      "oneWay": false,
+      "surfaceKind": "rock",
+      "artSeed": 1
+    },
+    {
+      "id": "C-01-west-upper-descent",
+      "x": 376,
+      "y": 1776,
+      "w": 312,
+      "h": 536,
+      "vertices": [
+        {
+          "x": 376,
+          "y": 1776
+        },
+        {
+          "x": 688,
+          "y": 2208
+        },
+        {
+          "x": 688,
+          "y": 2312
+        },
+        {
+          "x": 376,
+          "y": 1880
+        }
+      ],
+      "mat": "rock",
+      "hp": 99999,
+      "maxHp": 99999,
+      "route": true,
+      "indestructible": true,
+      "oneWay": false,
+      "surfaceKind": "rock",
+      "artSeed": 1
+    },
+    {
+      "id": "C-02-west-shaft-descent",
+      "x": 680,
+      "y": 2544,
+      "w": 707.2,
+      "h": 582.4000000000001,
+      "vertices": [
+        {
+          "x": 680,
+          "y": 2544
+        },
+        {
+          "x": 920,
+          "y": 2760
+        },
+        {
+          "x": 1000,
+          "y": 2816
+        },
+        {
+          "x": 1387.2,
+          "y": 3022.4
+        },
+        {
+          "x": 1387.2,
+          "y": 3126.4
+        },
+        {
+          "x": 1000,
+          "y": 2920
+        },
+        {
+          "x": 920,
+          "y": 2864
+        },
+        {
+          "x": 680,
+          "y": 2648
+        }
+      ],
+      "mat": "rock",
+      "hp": 99999,
+      "maxHp": 99999,
+      "route": true,
+      "indestructible": true,
+      "oneWay": false,
+      "surfaceKind": "rock",
+      "artSeed": 1
+    },
+    {
+      "id": "C-03-west-refuge-lower",
+      "x": 1184,
+      "y": 3440,
+      "w": 374.4000000000001,
+      "h": 449.5999999999999,
+      "vertices": [
+        {
+          "x": 1184,
+          "y": 3440
+        },
+        {
+          "x": 1558.4,
+          "y": 3785.6
+        },
+        {
+          "x": 1558.4,
+          "y": 3889.6
+        },
+        {
+          "x": 1184,
+          "y": 3544
+        }
+      ],
+      "mat": "rock",
+      "hp": 99999,
+      "maxHp": 99999,
+      "route": true,
+      "indestructible": true,
+      "oneWay": false,
+      "surfaceKind": "rock",
+      "artSeed": 1
+    },
+    {
+      "id": "B-01-center-stone-ascent",
+      "x": 2520,
+      "y": 2201.6,
+      "w": 1008,
+      "h": 742.4000000000001,
+      "vertices": [
+        {
+          "x": 2520,
+          "y": 2840
+        },
+        {
+          "x": 3528,
+          "y": 2201.6
+        },
+        {
+          "x": 3528,
+          "y": 2305.6
+        },
+        {
+          "x": 2520,
+          "y": 2944
+        }
+      ],
+      "mat": "rock",
+      "hp": 99999,
+      "maxHp": 99999,
+      "route": true,
+      "indestructible": true,
+      "oneWay": false,
+      "surfaceKind": "rock",
+      "artSeed": 1
+    },
+    {
+      "id": "B-02-center-lower-short-climb",
+      "x": 3288,
+      "y": 3136,
+      "w": 792,
+      "h": 728,
+      "vertices": [
+        {
+          "x": 3288,
+          "y": 3760
+        },
+        {
+          "x": 3672,
+          "y": 3456
+        },
+        {
+          "x": 4080,
+          "y": 3136
+        },
+        {
+          "x": 4080,
+          "y": 3240
+        },
+        {
+          "x": 3672,
+          "y": 3560
+        },
+        {
+          "x": 3288,
+          "y": 3864
+        }
+      ],
+      "mat": "rock",
+      "hp": 99999,
+      "maxHp": 99999,
+      "route": true,
+      "indestructible": true,
+      "oneWay": false,
+      "surfaceKind": "rock",
+      "artSeed": 1
+    },
+    {
+      "id": "A-upper-veranda",
+      "x": 800,
+      "y": 1136,
+      "w": 2344,
+      "h": 64,
+      "vertices": [
+        {
+          "x": 800,
+          "y": 1136
+        },
+        {
+          "x": 3144,
+          "y": 1136
+        },
+        {
+          "x": 3144,
+          "y": 1200
+        },
+        {
+          "x": 800,
+          "y": 1200
+        }
+      ],
+      "mat": "rock",
+      "hp": 99999,
+      "maxHp": 99999,
+      "route": true,
+      "indestructible": true,
+      "oneWay": false,
+      "surfaceKind": "rock",
+      "artSeed": 1
+    },
+    {
+      "id": "B-left-broken-balcony",
+      "x": 992,
+      "y": 2608,
+      "w": 1064,
+      "h": 64,
+      "vertices": [
+        {
+          "x": 992,
+          "y": 2608
+        },
+        {
+          "x": 2056,
+          "y": 2608
+        },
+        {
+          "x": 2056,
+          "y": 2672
+        },
+        {
+          "x": 992,
+          "y": 2672
+        }
+      ],
+      "mat": "rock",
+      "hp": 99999,
+      "maxHp": 99999,
+      "route": true,
+      "indestructible": true,
+      "oneWay": false,
+      "surfaceKind": "rock",
+      "artSeed": 1
+    },
+    {
+      "id": "B-central-lower-floor",
+      "x": 2112,
+      "y": 3840,
+      "w": 1176,
+      "h": 64,
+      "vertices": [
+        {
+          "x": 2112,
+          "y": 3840
+        },
+        {
+          "x": 3288,
+          "y": 3840
+        },
+        {
+          "x": 3288,
+          "y": 3904
+        },
+        {
+          "x": 2112,
+          "y": 3904
+        }
+      ],
+      "mat": "rock",
+      "hp": 99999,
+      "maxHp": 99999,
+      "route": true,
+      "indestructible": true,
+      "oneWay": false,
+      "surfaceKind": "rock",
+      "artSeed": 1
+    },
+    {
+      "id": "E-joined-ordinary-floor",
+      "x": 3536,
+      "y": 3232,
+      "w": 3000,
+      "h": 904,
+      "vertices": [
+        {
+          "x": 3536,
+          "y": 4056
+        },
+        {
+          "x": 5200,
+          "y": 4048
+        },
+        {
+          "x": 6296,
+          "y": 3472
+        },
+        {
+          "x": 6536,
+          "y": 3232
+        },
+        {
+          "x": 6536,
+          "y": 3312
+        },
+        {
+          "x": 6296,
+          "y": 3552
+        },
+        {
+          "x": 5200,
+          "y": 4128
+        },
+        {
+          "x": 3536,
+          "y": 4136
+        }
+      ],
+      "mat": "rock",
+      "hp": 99999,
+      "maxHp": 99999,
+      "route": true,
+      "indestructible": true,
+      "oneWay": false,
+      "surfaceKind": "rock",
+      "artSeed": 1
+    },
+    {
+      "id": "west-extension-prototype",
+      "x": 0,
+      "y": 1248,
+      "w": 112,
+      "h": 144,
+      "vertices": [
+        {
+          "x": 0,
+          "y": 1248
+        },
+        {
+          "x": 112,
+          "y": 1248
+        },
+        {
+          "x": 112,
+          "y": 1392
+        },
+        {
+          "x": 0,
+          "y": 1392
+        }
+      ],
+      "mat": "rock",
+      "hp": 99999,
+      "maxHp": 99999,
+      "route": true,
+      "indestructible": true,
+      "oneWay": false,
+      "surfaceKind": "rock",
+      "artSeed": 1
+    }
+  ],
+  "rows": [
+    {
+      "id": "A-entry one continuous slope",
+      "start": {
+        "x": 22,
+        "y": 157.43,
+        "hp": 1085,
+        "phase": "aim",
+        "moveLeft": 1964,
+        "acted": false,
+        "canAct": true,
+        "round": 1,
+        "grounded": true,
+        "support": "A-01-upper-entry",
+        "recoveries": 0
+      },
+      "goal": 85,
+      "jump": null,
+      "ticks": 174,
+      "legalInputs": "move/jump/defend via Engine",
+      "final": {
+        "x": 84.68,
+        "y": 202.2,
+        "hp": 1085,
+        "phase": "aim",
+        "moveLeft": 1347.7500000000032,
+        "acted": false,
+        "canAct": true,
+        "round": 1,
+        "grounded": true,
+        "support": "A-01-upper-entry",
+        "recoveries": 0
+      },
+      "pass": true
+    },
+    {
+      "id": "C-west shaft branch local",
+      "start": {
+        "x": 89,
+        "y": 321.6,
+        "hp": 1085,
+        "phase": "aim",
+        "moveLeft": 1964,
+        "acted": false,
+        "canAct": true,
+        "round": 1,
+        "grounded": true,
+        "support": "C-02-west-shaft-descent",
+        "recoveries": 0
+      },
+      "goal": 168,
+      "jump": null,
+      "ticks": 216,
+      "legalInputs": "move/jump/defend via Engine",
+      "final": {
+        "x": 167.75,
+        "y": 374.79,
+        "hp": 1085,
+        "phase": "aim",
+        "moveLeft": 1199.0000000000043,
+        "acted": false,
+        "canAct": true,
+        "round": 1,
+        "grounded": true,
+        "support": "C-02-west-shaft-descent",
+        "recoveries": 0
+      },
+      "pass": true
+    },
+    {
+      "id": "B-lower to B02",
+      "start": {
+        "x": 390,
+        "y": 480,
+        "hp": 1085,
+        "phase": "aim",
+        "moveLeft": 1964,
+        "acted": false,
+        "canAct": true,
+        "round": 1,
+        "grounded": true,
+        "support": "B-central-lower-floor",
+        "recoveries": 0
+      },
+      "goal": 504,
+      "jump": true,
+      "ticks": 308,
+      "legalInputs": "move/jump/defend via Engine",
+      "final": {
+        "x": 503.62,
+        "y": 397,
+        "hp": 1085,
+        "phase": "aim",
+        "moveLeft": 822.9583333333527,
+        "acted": false,
+        "canAct": true,
+        "round": 1,
+        "grounded": true,
+        "support": "B-02-center-lower-short-climb",
+        "recoveries": 0
+      },
+      "pass": true
+    },
+    {
+      "id": "B-top bridge attempt to middle",
+      "start": {
+        "x": 247,
+        "y": 326,
+        "hp": 1085,
+        "phase": "aim",
+        "moveLeft": 1964,
+        "acted": false,
+        "canAct": true,
+        "round": 1,
+        "grounded": true,
+        "support": "B-left-broken-balcony",
+        "recoveries": 0
+      },
+      "goal": 322,
+      "jump": true,
+      "ticks": 169,
+      "legalInputs": "move/jump/defend via Engine",
+      "final": {
+        "x": 321.82,
+        "y": 350.68,
+        "hp": 1085,
+        "phase": "aim",
+        "moveLeft": 1290.4583333333544,
+        "acted": false,
+        "canAct": true,
+        "round": 1,
+        "grounded": true,
+        "support": "B-01-center-stone-ascent",
+        "recoveries": 0
+      },
+      "pass": true
+    },
+    {
+      "id": "E-under/main rejoin forward",
+      "start": {
+        "x": 456,
+        "y": 506.93,
+        "hp": 1085,
+        "phase": "aim",
+        "moveLeft": 1964,
+        "acted": false,
+        "canAct": true,
+        "round": 1,
+        "grounded": true,
+        "support": "E-joined-ordinary-floor",
+        "recoveries": 0
+      },
+      "goal": 807,
+      "jump": null,
+      "ticks": 850,
+      "legalInputs": "move/jump/defend via Engine",
+      "final": {
+        "x": 806.52,
+        "y": 414.48,
+        "hp": 1085,
+        "phase": "aim",
+        "moveLeft": 904.7811065263011,
+        "acted": false,
+        "canAct": true,
+        "round": 2,
+        "grounded": true,
+        "support": "E-joined-ordinary-floor",
+        "recoveries": 0
+      },
+      "pass": true
+    },
+    {
+      "id": "E-under/main rejoin reverse",
+      "start": {
+        "x": 802,
+        "y": 419,
+        "hp": 1085,
+        "phase": "aim",
+        "moveLeft": 1964,
+        "acted": false,
+        "canAct": true,
+        "round": 1,
+        "grounded": true,
+        "support": "E-joined-ordinary-floor",
+        "recoveries": 0
+      },
+      "goal": 446,
+      "jump": null,
+      "ticks": 858,
+      "legalInputs": "move/jump/defend via Engine",
+      "final": {
+        "x": 446.14,
+        "y": 506.98,
+        "hp": 1085,
+        "phase": "aim",
+        "moveLeft": 876.7083333333101,
+        "acted": false,
+        "canAct": true,
+        "round": 2,
+        "grounded": true,
+        "support": "E-joined-ordinary-floor",
+        "recoveries": 0
+      },
+      "pass": true
+    },
+    {
+      "id": "D fallback not existing in normal",
+      "start": {
+        "x": 805,
+        "y": 416,
+        "hp": 1085,
+        "phase": "aim",
+        "moveLeft": 1964,
+        "acted": false,
+        "canAct": true,
+        "round": 1,
+        "grounded": true,
+        "support": "E-joined-ordinary-floor",
+        "recoveries": 0
+      },
+      "goal": 831,
+      "jump": null,
+      "ticks": 69,
+      "legalInputs": "move/jump/defend via Engine",
+      "final": {
+        "x": 830.58,
+        "y": 421.19,
+        "hp": 1085,
+        "phase": "aim",
+        "moveLeft": 1719.6250000000052,
+        "acted": false,
+        "canAct": true,
+        "round": 1,
+        "grounded": false,
+        "support": null,
+        "recoveries": 0
+      },
+      "pass": false
+    }
+  ],
+  "rays": [
+    {
+      "id": "shaft-down-open",
+      "hit": null
+    },
+    {
+      "id": "east-open-channel",
+      "hit": null
+    },
+    {
+      "id": "E-true-stone",
+      "hit": {
+        "owner": "E-joined-ordinary-floor",
+        "x": 550,
+        "y": 506.23076634154774
+      }
+    }
+  ]
+}
