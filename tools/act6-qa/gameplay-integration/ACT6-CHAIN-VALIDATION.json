@@ -1,7 +1,7 @@
 {
   "scope": "Actual detached replay + portable boundary hash verification; not consecutive normal App workflows, payout, camera, saves or deployment",
   "formalCampaignAdmitted": 0,
-  "legacyGrowthBlocker": "06 skirmish has dormant default stage1 ledger; 09 campaign-mode QA key1 actually awards +72 old Stage1 XP per hero. Do not use resulting 09 proof as release-safe or transfer into 10 until rerun with verified isolated growth policy.",
+  "legacyGrowthBlocker": "06 skirmish has dormant default Stage1 ledger; 09 now re-runs in scoped scripted mode with no legacy ledger and original XP. Older 09/10 contaminated snapshots excluded.",
   "rows": [
     [
       1,
@@ -201,6 +201,65 @@
       9,
       3,
       "won"
+    ],
+    [
+      10,
+      4,
+      [
+        {
+          "id": "qa-archer",
+          "cls": "archer",
+          "hp": 391,
+          "maxHp": 1085,
+          "focus": 240,
+          "shield": 130,
+          "level": 25,
+          "loadout": [
+            "A01"
+          ],
+          "xp": 225393
+        },
+        {
+          "id": "qa-knight",
+          "cls": "knight",
+          "hp": 1282,
+          "maxHp": 1762,
+          "focus": 272,
+          "shield": 211,
+          "level": 25,
+          "loadout": [
+            "S00"
+          ],
+          "xp": 225393
+        },
+        {
+          "id": "qa-occultist",
+          "cls": "occultist",
+          "hp": 1098,
+          "maxHp": 1324,
+          "focus": 372,
+          "shield": 0,
+          "level": 25,
+          "loadout": [
+            "O01",
+            "O06"
+          ],
+          "xp": 225393
+        },
+        {
+          "id": "qa-mage",
+          "cls": "mage",
+          "hp": 241,
+          "maxHp": 1158,
+          "focus": 312,
+          "shield": 0,
+          "level": 25,
+          "loadout": [
+            "M01"
+          ],
+          "xp": 225393
+        }
+      ]
     ]
   ],
   "output": {
@@ -240,14 +299,19 @@
       "compactSha": "a85629fecfc19d26cb2cd74082db48738f79495babb4793a715874be41b86107"
     },
     "s9": {
-      "file": "vector-production/playable-09-10/strict-carry-preflight/09-signal-gated-terminal-state.json",
-      "rawSha": "ca3cdd156b6dd72ebf243b14b79c9c0f514be9f135b803e4e8fc9cbd47c1583c",
-      "compactSha": "ca3cdd156b6dd72ebf243b14b79c9c0f514be9f135b803e4e8fc9cbd47c1583c"
+      "file": "vector-production/playable-09-10/strict-carry-preflight/reward-neutral-09/09-signal-gated-terminal-state.json",
+      "rawSha": "4d3ef22cd66bf097cc899d29400d79ef29b6ded53ca5fce4892a3e9a22e5d50c",
+      "compactSha": "4d3ef22cd66bf097cc899d29400d79ef29b6ded53ca5fce4892a3e9a22e5d50c"
+    },
+    "s10": {
+      "file": "vector-production/playable-09-10/strict-carry-preflight/reward-neutral-10/gate-first-actual-carry-10-linked-receipt.json",
+      "rawSha": "b21b5e72cb351620032e8e5d0efad7dc3ed443618e7161b951ffd423770ee060",
+      "compactSha": "85536d96e3fb32ea24e2385629ef78e6d7253dff7b45b876775f691451d3c221"
     },
     "q9": {
-      "file": "vector-production/playable-09-10/strict-carry-preflight/09-signal-gated-evidence.json",
-      "rawSha": "ad41e3c2404354d8b540290d2d99ce1c8ac3c4f4ce5e96e9601bd32304f06ecc",
-      "compactSha": "49abe158b3538b680ff67ae0410c82b3856b8b075965f0e54e2ad3fbbb3b810e"
+      "file": "vector-production/playable-09-10/strict-carry-preflight/reward-neutral-09/09-signal-gated-evidence.json",
+      "rawSha": "e192aff51f4e95034a9a358925a062f3fcda2cf1c73b0af32477e826ba6ab341",
+      "compactSha": "ca29496392192c7abc5df73cb67f396e27f16488dab9fb4e5651cdfaeb4301fe"
     }
   }
 }
