@@ -33,13 +33,17 @@ def stage55(page,state,mobile,original,tap,out,case,packet_path):
         q=row['value'];assert q['kind']=='interact'
         el=page.locator(ctrl)
         assert el.is_visible() and el.is_enabled() and el.get_attribute('data-act6-mark')==q['id'],q
-        old=el.get_attribute('data-act6-binding')
+        phase_snap=lambda:(el.get_attribute('data-act6-mark'),el.get_attribute('data-act6-binding'),el.is_disabled())
+        old=phase_snap()
         el.evaluate("e=>e.click()")
-        assert el.get_attribute('data-act6-binding')==old
+        assert phase_snap()==old,'synthetic action changed the actual objective'
         tap(page,ctrl,mobile)
-        new=el.get_attribute('data-act6-binding')
-        accepted=(new!=old or el.is_disabled())
-        assert accepted,q
+        new=phase_snap()
+        expected={'reach-bell':lambda:new[0]=='align-bell' and new[1]==old[1] and not new[2],
+                  'rebind-bell':lambda:new[0]=='align-bell' and new[1]=='secured' and not new[2],
+                  'align-bell':lambda:new[0]=='' and new[1]=='secured' and new[2]}
+        accepted=expected[q['id']]()
+        assert accepted,(q,old,new)
         actions.append([q['id'],q['unit'],q['round'],old,new])
         row=page.evaluate("(ok)=>__normal55.next(ok)",accepted)
     page.evaluate("delete globalThis.__normal55")
