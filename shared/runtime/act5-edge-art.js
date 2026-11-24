@@ -5,7 +5,57 @@ const S=G.HonroScene.prototype,draw=S.landmark,bounds=S._landmarkPaintBounds,sta
 // Stage45's stacked opaque faces must meet the depth mask as one image.
 // Per-face antialiased clipping repeatedly accumulates coverage into a pale rim.
 // Temporary surfaces are capped at1024² and released, never retained per world.
+// One pair of bounded scratch surfaces serves every BODY pass of one landmark draw (a Stage46
+// tile makes four passes) and is released when that landmark finishes, success or failure.
+// Allocating and releasing a pair per pass was most of an empty Stage46 tile's 9 ms.
+function releaseScratch(scene){const q=scene._act5Scratch;if(!q)return;scene._act5Scratch=null;scene._releaseRasterCanvas(q.cv);scene._releaseRasterCanvas(q.mask);}
+function scratch(scene,w,h){
+ const q=scene._act5Scratch;if(q&&q.w===w&&q.h===h)return q;
+ if(q)releaseScratch(scene);
+ const cv=scene._makeLayerCanvas(w,h),mask=scene._makeLayerCanvas(w,h);
+ return scene._act5Scratch={w,h,cv,mask,raw:cv.getContext('2d'),mc:mask.getContext('2d'),busy:false};
+}
+// Mask bounds (absolute M/L/C/Z clip data only): a pass whose mask misses the target is skipped.
+const maskBounds=new WeakMap();
+function maskPath(strings){const d=strings.join(' '),p=new Path2D(d);
+ // Absolute commands only (relative ones other than z leave the pass unculled). Arcs add
+ // their radii around both ends, which is conservative.
+ if(!/[a-yA-Y]/.test(d.replace(/[MLCA]/g,''))){const tok=d.match(/[MLCAZz]|-?\d*\.?\d+(?:e[-+]?\d+)?/gi)||[];
+  let l=Infinity,t=Infinity,r=-Infinity,b=-Infinity,cmd='',i=0,px=0,py=0;const add=(x,y,ex=0,ey=0)=>{l=Math.min(l,x-ex);r=Math.max(r,x+ex);t=Math.min(t,y-ey);b=Math.max(b,y+ey);};
+  const num=()=>+tok[i++];
+  while(i<tok.length){if(/[MLCAZz]/.test(tok[i])){cmd=tok[i++];continue;}
+   if(cmd==='M'||cmd==='L'){px=num();py=num();add(px,py);}
+   else if(cmd==='C'){for(let k=0;k<3;k++){const x=num(),y=num();add(x,y);px=x;py=y;}}
+   else if(cmd==='A'){const rx=Math.abs(num()),ry=Math.abs(num());num();num();num();const x=num(),y=num();const e=Math.max(rx,ry);add(px,py,e,e);add(x,y,e,e);px=x;py=y;}
+   else{l=NaN;break;}}
+  if([l,t,r,b].every(Number.isFinite))maskBounds.set(p,{l,t,r,b});}
+ return p;}
+function maskMisses(c,asset,mask,w,h){const q=maskBounds.get(mask);if(!q||typeof DOMMatrix==='undefined'||G.HonroAct5EdgeArt?.noCull)return false;
+ let M=c.getTransform().translate(-(asset.anchor?.x||0),-(asset.anchor?.y||0));const rt=asset.vector?.root?.transform;if(rt)M=M.multiply(new DOMMatrix(rt));
+ const P=[[q.l,q.t],[q.r,q.t],[q.l,q.b],[q.r,q.b]].map(([x,y])=>M.transformPoint({x,y}));const pad=2;
+ return P.every(p=>p.x<-pad)||P.every(p=>p.x>w+pad)||P.every(p=>p.y<-pad)||P.every(p=>p.y>h+pad);}
 function stage45Body(scene,c,asset,mask){
+ const w=c.canvas.width,h=c.canvas.height;if(!w||!h)return;
+ if(maskMisses(c,asset,mask,w,h))return;
+ const pool=scratch(scene,Math.min(1024,w),Math.min(1024,h));if(pool.busy)return stage45BodyFresh(scene,c,asset,mask);pool.busy=true;
+ const m=c.getTransform(),cv=pool.cv,raw=pool.raw,V=G.HonroVisualStyle,paint=V?.contextLike(c,raw)||raw,maskCanvas=pool.mask,mc=pool.mc;
+ try{
+  raw.save();mc.save();try{
+  for(let y=0;y<h;y+=1024)for(let x=0;x<w;x+=1024){
+   const tw=Math.min(1024,w-x),th=Math.min(1024,h-y);
+   raw.setTransform(1,0,0,1,0,0);raw.globalAlpha=1;raw.globalCompositeOperation='source-over';raw.clearRect(0,0,cv.width,cv.height);
+   raw.setTransform(m.a,m.b,m.c,m.d,m.e-x,m.f-y);
+   for(const part of asset.paintParts||[asset])G.HonroVectorArt.draw(paint,part,{x:0,y:0,scale:1});
+   mc.setTransform(1,0,0,1,0,0);mc.clearRect(0,0,maskCanvas.width,maskCanvas.height);
+   mc.setTransform(m.a,m.b,m.c,m.d,m.e-x,m.f-y);mc.translate(-(asset.anchor?.x||0),-(asset.anchor?.y||0));
+   mc.transform(...(asset.vector.root.transform||[1,0,0,1,0,0]));mc.fillStyle='#ffffff';mc.fill(mask);
+   raw.save();raw.setTransform(1,0,0,1,0,0);raw.globalAlpha=1;raw.globalCompositeOperation='destination-in';raw.drawImage(maskCanvas,0,0);raw.restore();
+   c.save();try{c.setTransform(1,0,0,1,0,0);c.drawImage(cv,0,0,tw,th,x,y,tw,th);}finally{c.restore();}
+  }
+  }finally{raw.restore();mc.restore();}
+ }finally{pool.busy=false;}
+}
+function stage45BodyFresh(scene,c,asset,mask){
  const w=c.canvas.width,h=c.canvas.height;if(!w||!h)return;
  const m=c.getTransform(),cv=scene._makeLayerCanvas(Math.min(1024,w),Math.min(1024,h)),raw=cv.getContext('2d'),V=G.HonroVisualStyle,paint=V?.contextLike(c,raw)||raw;
  let maskCanvas;
@@ -210,6 +260,9 @@ function prepare(scene,l){
  return scene._act5Edge={asset:a,canvas:cv,pad:pad/r,w:cv.width/r,h:cv.height/r};
 }
 S.landmark=function(c,l){
+ try{return act5Landmark.call(this,c,l);}finally{releaseScratch(this);}
+};
+function act5Landmark(c,l){
  // Keep the withdrawn Stage44 underside in the active registry and in saves.
  // Only its original canonical scenery placement is invisible, including after Continue.
  if(l.id==='a5-under'&&l.asset?.id==='act5:under:44'&&l.x===160&&l.y===586&&l.scale===3.2&&(l.rotation??0)===0){
@@ -229,7 +282,7 @@ S.landmark=function(c,l){
  if(l.asset?.id==='act5:near:46'&&l.asset.shaftExterior&&!l.rotation){
   const a=l.asset,z=l.scale??1,V=G.HonroVisualStyle,cc=V?V.context(c,V.classify(l,this.battle,a)==='gameplay'?'gameplay':V.depth(l,a)):c;
   let keep=stage46Parts.get(a);if(!keep){const body=a.shaftExterior,parts=[body,...(a.shaftExteriorParts||[])].map(part=>{const root={...part.vector.root};delete root.clipPath;return{...part,vector:{...part.vector,root}};});
-   const tree=a.shaftTree,treeRoot=tree?{...tree.vector.root}:null;if(treeRoot)delete treeRoot.clipPath;keep={tree:tree?{...tree,vector:{...tree.vector,root:treeRoot}}:null,treeMask:tree?new Path2D(tree.vector.clips['native-source-alpha'].join(' ')):null,body:{...parts[0],paintParts:parts},bodyMask:new Path2D(body.vector.clips['native-source-alpha'].join(' ')),originals:['a','b'].map((key,i)=>{const root={...a.vector.root.children[i]};delete root.clipPath;return{asset:{...a,vector:{...a.vector,symbols:{},root}},mask:new Path2D(a.shaftProtected[key].join(' '))};}),interior:{...a,vector:{...a.vector,root:{tag:'g',children:a.vector.root.children.slice(2)}}}};stage46Parts.set(a,keep);}
+   const tree=a.shaftTree,treeRoot=tree?{...tree.vector.root}:null;if(treeRoot)delete treeRoot.clipPath;keep={tree:tree?{...tree,vector:{...tree.vector,root:treeRoot}}:null,treeMask:tree?maskPath(tree.vector.clips['native-source-alpha']):null,body:{...parts[0],paintParts:parts},bodyMask:maskPath(body.vector.clips['native-source-alpha']),originals:['a','b'].map((key,i)=>{const root={...a.vector.root.children[i]};delete root.clipPath;return{asset:{...a,vector:{...a.vector,symbols:{},root}},mask:maskPath(a.shaftProtected[key])};}),interior:{...a,vector:{...a.vector,root:{tag:'g',children:a.vector.root.children.slice(2)}}}};stage46Parts.set(a,keep);}
   cc.save();try{cc.translate(l.x,l.y);cc.scale(z,z);stage45Body(this,cc,keep.body,keep.bodyMask);if(keep.tree)stage45Body(this,cc,keep.tree,keep.treeMask);for(const original of keep.originals)stage45Body(this,cc,original.asset,original.mask);G.HonroVectorArt.draw(cc,keep.interior,{x:0,y:0,scale:1});}finally{cc.restore();}return;
  }
 
@@ -309,6 +362,48 @@ S._drawTerrainDomainTiles=function(c,b,w,h){
  for(const l of G.HonroTerrainDomain.materialLandmarks(b))if(l.asset?.id==='act5:near:'+b.honroStage)this.landmark(c,l);
  c.restore();
 };
+// Act 5 tile pacing (2026-11-24). Its near art costs 10-30 ms per 512 px tile (Stage46 17 ms
+// even on empty tiles), so a camera move that uncovered a row built 3-6 tiles in one frame
+// (Stage46 vertical pans: frames up to 200 ms). Build at most two tiles per frame; a missing
+// tile shows a whole-domain low-resolution copy of the same painting for those few frames.
+// Mobile keeps a few more tiles so the visible set no longer thrashes the 12-tile cache.
+const act5Paced=b=>b?.honroStage>=41&&b.honroStage<=50&&!!b.honroTerrainBounds;
+S._domainTileBudget=function(b,w){return act5Paced(b)?(w<900?1:2):Infinity;};
+S._domainTileLimit=function(b,w){return act5Paced(b)?(w<900?20:32):undefined;};
+S._domainTileFallback=function(c,b,w,left,top,size){
+ if(!act5Paced(b))return false;
+ const key=(b.session||b.honroStage)+':'+(b.sceneVersion||0)+':'+b.width+'x'+b.height;let f=this._act5TileFallback;
+ // The stand-in is painted after entry, off the first frames; until then tiles build at once.
+ if(f?.key!==key){
+  if(f?.canvas){f.canvas.width=1;f.canvas.height=1;}
+  this._act5TileFallback={key,pending:true};
+  buildFallback(this,b,key);
+  return false;
+ }
+ if(f.pending)return false;
+ if(f.canvas.width<2)return false;
+ c.save();c.beginPath();c.rect(left,top,size,size);c.clip();
+ c.drawImage(f.canvas,(left-f.d.left)*f.rs,(top-f.d.top)*f.rs,size*f.rs,size*f.rs,left,top,size,size);c.restore();
+ this._cacheStats.act5Deferred=(this._cacheStats.act5Deferred||0)+1;return true;
+};
+// Painted in horizontal bands, one per idle slice, so building it never makes one long task.
+function idle(run){if(typeof requestIdleCallback==='function')requestIdleCallback(run,{timeout:1500});else setTimeout(run,120);}
+function buildFallback(scene,b,key){
+ const d=b.honroTerrainBounds,W=d.right-d.left,H=d.bottom-d.top,rs=Math.min(.2,Math.sqrt(2400000/(W*H)));
+ const cv=scene._makeLayerCanvas(W*rs,H*rs),cc=cv.getContext('2d',{alpha:true}),bands=Math.max(1,Math.ceil(cv.height/320));let band=0;
+ const step=()=>{const f=scene._act5TileFallback;if(f?.key!==key||scene.battle!==b){cv.width=1;cv.height=1;return;}
+  const top=d.top+H*band/bands,bottom=d.top+H*(band+1)/bands;
+  cc.setTransform(rs,0,0,rs,-d.left*rs,-d.top*rs);cc.save();cc.beginPath();cc.rect(d.left,top,W,bottom-top);cc.clip();
+  const old=scene._staticCacheBuild;scene._staticCacheBuild=true;
+  try{const view={left:d.left,right:d.right,top,bottom},landmarks=G.HonroTerrainDomain.materialLandmarks(b).filter(l=>scene._landmarkVisible(l,view));
+   scene._landmarkLayer(cc,landmarks,'back');scene._landmarkLayer(cc,landmarks,'structural-back');
+   for(const t of G.HonroTerrainDomain.render(b)){const r=scene._terrainPaintBounds(t);if(!t.broken&&r.bottom>=top&&r.top<=bottom)scene.terrain(cc,t);}
+   for(const layer of ['mid','prop','front'])scene._landmarkLayer(cc,landmarks,layer);
+  }catch{scene._act5TileFallback={key,canvas:{width:1},pending:false};cv.width=1;return;}finally{scene._staticCacheBuild=old;cc.restore();}
+  if(++band<bands)return idle(step);
+  scene._act5TileFallback={key,canvas:cv,rs,d};scene._cacheStats.act5Fallbacks=(scene._cacheStats.act5Fallbacks||0)+1;};
+ idle(step);
+}
 const readability=S.terrainReadability;
 S.terrainReadability=function(c,b,view){
  if(![41,42,43,44,45,46,47,48,49,50].includes(b.honroStage))return readability.call(this,c,b,view);

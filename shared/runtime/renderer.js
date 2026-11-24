@@ -199,7 +199,7 @@
         }
         _drawStaticWorldCached(c,b,w,h){
             if(G.HonroTerrainDomain?.active(b)){
-                if(this._screenRaster(c,this._worldCacheKey(b,w),w,h,cc=>this._drawTerrainDomainTiles(cc,b,w,h),'_screenWorldCache'))return;
+                if(this._screenRaster(c,this._worldCacheKey(b,w),w,h,cc=>this._drawTerrainDomainTiles(cc,b,w,h),'_screenWorldCache')){if(this._domainTilesDeferred&&this._screenWorldCache)this._screenWorldCache.key='deferred';return;}
                 return this._drawTerrainDomainTiles(c,b,w,h);
             }
             const q=this._buildStaticWorld(b,w);c.drawImage(q.canvas,0,0,q.canvas.width,q.canvas.height,0,0,b.width,b.height);
@@ -438,14 +438,17 @@
             // Geographically fixed tiles, never a bitmap cut at Play Bounds.
             // Pixel-aligned clips consume each gutter sample exactly once.
             const rs=this._worldRasterScale(b,w),px=512,gutter=2,size=px/rs,v=G.HonroBounds.viewport(this,w,h),domain=b.honroStage===3?this._naruRasterBounds(b):b.honroTerrainBounds,
-                key=this._worldCacheKey(b,w),limit=w<900?12:24;
+                key=this._worldCacheKey(b,w),limit=this._domainTileLimit?.(b,w)??(w<900?12:24),budget=this._domainTileBudget?.(b,w)??Infinity;let built=0;this._domainTilesDeferred=false;
             let q=this._domainTiles;if(!q||q.key!==key){this._releaseDomainTiles();q=this._domainTiles={key,tiles:new Map(),rs};this._cacheStats.worldBuilds++;}
             const minX=Math.floor(Math.max(v.left,domain.left)/size),maxX=Math.floor(Math.min(v.right,domain.right)/size),
                 minY=Math.floor(Math.max(v.top,domain.top)/size),maxY=Math.floor(Math.min(v.bottom,domain.bottom)/size),terrain=G.HonroTerrainDomain.render(b);
             const old=this._staticCacheBuild;this._staticCacheBuild=true;
             for(let y=minY;y<=maxY;y++)for(let x=minX;x<=maxX;x++){
                 const id=x+':'+y;let tile=q.tiles.get(id);if(tile){q.tiles.delete(id);q.tiles.set(id,tile);this._cacheStats.worldHits++;}
-                else{const start=performance.now(),cv=this._makeLayerCanvas(px+gutter*2,px+gutter*2);this._cacheStats.domainCanvasAllocations=(this._cacheStats.domainCanvasAllocations||0)+1;
+                // Optional per-frame build budget: a missing tile beyond it shows a whole-domain
+                // low-resolution stand-in this frame and is built on a following frame.
+                else if(built>=budget&&this._domainTileFallback?.(c,b,w,x*size,y*size,size)){this._domainTilesDeferred=true;continue;}
+                else{built++;const start=performance.now(),cv=this._makeLayerCanvas(px+gutter*2,px+gutter*2);this._cacheStats.domainCanvasAllocations=(this._cacheStats.domainCanvasAllocations||0)+1;
                     const cc=cv.getContext('2d',{alpha:true}),left=x*size,top=y*size;cc.setTransform(rs,0,0,rs,gutter-left*rs,gutter-top*rs);
                     const view={left,top,right:left+size,bottom:top+size};
                     const material=G.HonroTerrainDomain.materialLandmarks(b);

@@ -193,6 +193,10 @@ function sync(b){
 // Art is the existing eoduksini3 rig for now (dedicated art: user's decision).
 const DARK_GROWTH=[10,13,16],DARK={46:{x:3160,y:5700,id:'great-darkness-46'}};
 const zone=u=>380+100*((u.honroMonsterGrowth||1)-1);
+// 2026-11-24: 18x a regular foe (was 10x) and every-turn marked blows (engine monsterPatterns).
+const DARK_HP=18;
+// It wakes for heroes it can reach: the shade, the basin around it and the low ledges above.
+const senses=(u,v)=>Math.abs(v.x-u.x)<=zone(u)+520&&v.y>u.y-900&&v.y<u.y+260;
 function inZone(u,v){return Math.abs(v.x-u.x)<=zone(u)+(v.r||0)&&v.y>u.y-u.h&&v.y<u.y+160;}
 function floorAt(b,x,y){let best=null;for(const t of b.terrain){if(t.broken)continue;for(const f of C.terrainSurfaces?.(t,x)||[])if(f.y>=y-260&&f.y<=y+400&&(best===null||Math.abs(f.y-y)<Math.abs(best-y)))best=f.y;}return best;}
 function addDarkness(b){
@@ -202,10 +206,10 @@ function addDarkness(b){
  const u=structuredClone(tpl),h=Math.round(DARK_GROWTH[0]*PX_PER_M);
  for(const k of Object.keys(u))if(/^honro(Monster|Cluster|Act5|Spawn|Contribution|Xp)/.test(k)||/^(aiMove|moveTarget|enemyEffect)/.test(k))delete u[k];
  Object.assign(u,{id:spot.id,name:'큰 어둠',x:spot.x,y,spawnX:spot.x,spawnY:y,h,r:90,facing:-1,vx:0,vy:0,fixed:false,elite:false,boss:0,
-  hp:Math.round(tpl.maxHp*10),maxHp:Math.round(tpl.maxHp*10),combatBaseHp:(tpl.combatBaseHp||tpl.maxHp)*10,armor:Math.max(tpl.armor||0,.1),
+  hp:Math.round(tpl.maxHp*DARK_HP),maxHp:Math.round(tpl.maxHp*DARK_HP),combatBaseHp:(tpl.combatBaseHp||tpl.maxHp)*DARK_HP,armor:Math.max(tpl.armor||0,.2),
   loadout:[],maxMove:0,moveLeft:0,walkSpeed:0,awake:false,aggroUntil:-1,group:-460,xpBudget:0,xpGranted:0,honroXpWeight:0,damageBy:{},
   intent:'우물 바닥에 웅크린 그림자',honroType:'shade',honroVariant:'shade',honroMonsterSpecies:'eoduksini',honroMonsterPattern:'eoduksini',honroMonsterGrowth:1,
-  honroGreatDarkness:{v:1,optional:true},honroContributionId:spot.id});
+  honroGreatDarkness:{v:2,optional:true},honroContributionId:spot.id});
  u.honroMonsterScale={v:b.honroMonsterScaleRevision,why:'great-darkness',base:{h,r:90},rest:h};
  b.units.push(u);
 }
@@ -228,7 +232,7 @@ function shade(app){
 // It wakes only for heroes in its shade (Act 5 activation range is otherwise wide).
 function hookWake(){
  const a=G.HonroAct5;if(!a?.wakeEligible||a.wakeEligible.honroDarkness)return;
- const wake=a.wakeEligible;a.wakeEligible=function(b,e,allies,range){if(e?.honroGreatDarkness)return allies.some(v=>v.side===0&&inZone(e,v));return wake.call(this,b,e,allies,range);};a.wakeEligible.honroDarkness=true;
+ const wake=a.wakeEligible;a.wakeEligible=function(b,e,allies,range){if(e?.honroGreatDarkness)return allies.some(v=>v.side===0&&senses(e,v));return wake.call(this,b,e,allies,range);};a.wakeEligible.honroDarkness=true;
 }
 // First sight of a very large body: one short camera hold on it.
 function reveal(app){

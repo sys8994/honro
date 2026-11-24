@@ -153,7 +153,9 @@ function state(b){
    targets.push(target('a5-wave-entry','route',blocked.entry,'증원 진입로'));
   }
   if(b.honroStage===46&&key==='stakeOne'&&party.some(u=>u.cls==='mage'&&u.y<d.sites.memory.y+90))
-   text+=' · 시작 절벽 끝의 하강 밧줄 사용';
+   text+=b.honroSkywellRevision===1?' · 시작 절벽 동쪽 끝에서 아래 석단으로 내려서기':' · 시작 절벽 끝의 하강 밧줄 사용';
+  if(b.honroSkywellRevision===1&&b.honroStage===46&&(key==='stakeTwo'||key==='eastGuard'))
+   text+=key==='stakeTwo'?' · 담허의 축지진목으로 중앙 석단에 길 잇기':' · 축지진목으로 동쪽 절벽에 건너거나, 우물 아래로 내려가 동쪽 턱으로 오르기';
  }
  const exits=complete?[]:targets,checklist=[...all.map((v,i)=>({id:v.id,text:v.label,done:v.done,current:i===m.step})),{id:'a5-exit',text:'출구 도달',current:!row&&!complete,done:complete}];
  return {complete,objectiveReady:complete,summary:text,currentInstruction:text,targets:exits,allTargets:[...all,...exits],checklist,visibleChecklist:checklist};
@@ -249,6 +251,21 @@ function prepare(b,stage){
  // Classify the units together after all authored bands and contact positions
  // are available, so the generic strong-effect spacing rule sees their peers.
  if(engaged(b))for(const u of placed)if(u.side===1)G.HonroMonsterRoster?.prepareSpawn(b,u);
+ skywell(b);
+}
+// Stage46 (2026-11-24): the ropes are gone; Damheo carries 축지진목 into this battle only.
+// The camp loadout is untouched (same rule as the Stage25/27 waterworks).
+function skywell(b){
+ if(b.honroStage!==46||b.honroCustom||b.honroMapOrigin!=='campaign'||b.honroSkywellRevision!==undefined)return;
+ if(!design(b)?.links||design(b).links.some(l=>l.id==='a5-cross-0'))return;
+ b.honroSkywellRevision=1;
+ const C=G.HONRO_CORE,u=b.units.find(v=>v.side===0&&v.cls==='mage'&&!v.summoned);
+ if(!u||u.loadout.includes('M09'))return;
+ const original=[...u.loadout];let slot=original.findIndex(id=>C.SKILLS[id]?.branch==='stake');
+ if(slot<0&&original.length<4)slot=original.length;
+ if(slot<0)slot=original.length-1;
+ u.loadout=[...original];u.loadout[slot]='M09';
+ b.honroSkywellLoadout={version:1,originalLoadout:original,slot,replaced:original[slot]||null};
 }
 function waitingWave(b,key){
  const guards=combatIds(b,key);

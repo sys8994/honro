@@ -213,7 +213,8 @@ function lightBattle(b){
  // 2026-11-23: region re-trace of the six exterior BODY parts to Act 5 node density
  // (tools/act5/retrace-vector.py); silhouette clips, placement and collision unchanged.
  // Both earlier released providers resolve to this current provider.
- const STAGE46_LOSSLESS_REF=Object.freeze({id:'act5:near:46',stage:46,previous:Object.freeze(['17756761:bc1a6549','16328502:43d17801']),current:'4204233:7f4d5ae9'});
+ // 2026-11-24: the near source itself simplified (stage46-near-simplified.json); the 11-23 provider joins the list.
+ const STAGE46_LOSSLESS_REF=Object.freeze({id:'act5:near:46',stage:46,previous:Object.freeze(['17756761:bc1a6549','16328502:43d17801','4204233:7f4d5ae9']),current:'4378197:67a29ab2'});
 // 2026-11-23 Act 5 node-density pass: earlier released near-art providers of
  // these chapters resolve to the current provider of the same placement.
  const ACT5_DENSITY_REFS=Object.freeze({

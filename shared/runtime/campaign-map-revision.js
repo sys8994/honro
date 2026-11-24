@@ -7,7 +7,7 @@ const ACT4_MAP_REVISION=5;
 const ACT4_ENCOUNTER_REVISIONS=Object.freeze({40:6});
 // Stage30 geometry rework (2026-11-23): natural rock faces replace the rectangular masses,
 // so in-progress Stage30 battles restart on the new terrain (growth/clears are kept).
-const GEOMETRY_REWORK=Object.freeze({30:1000});
+const GEOMETRY_REWORK=Object.freeze({30:1000,46:1000});
 const current=id=>(GEOMETRY_REWORK[id]||0)+baseRevision(id);
 const baseRevision=id=>id>=41&&id<=50&&G.HONRO_ACT5_RELEASE===true?1:id>=31&&id<=40&&G.HonroAct4Content?.enabled?(ACT4_ENCOUNTER_REVISIONS[id]??ACT4_MAP_REVISION):G.HonroAct23V4?.mapRevision(id)??REVISIONS[id]??0;
 const campaign=b=>!!b&&!b.honroCustom&&b.honroMapOrigin!=='workshop'&&b.mode==='campaign';

@@ -302,9 +302,50 @@ function variantPattern(u:Unit):MonsterPatternKind|undefined{
  if(u.honroMonsterVariant==='giant')return 'pursuer';
  if(u.honroMonsterVariant==='burning'||u.honroMonsterVariant==='cursed')return 'lantern';
 }
+// Great darkness (2026-11-24): it acts every enemy turn. Each turn it lands the blow it marked
+// last turn on every hero still inside the mark, then marks the next one at once, so the answer
+// is to move out (or break it with one heavy hit). Near the shade it slams and throws heroes
+// out; heroes shooting from ledges in reach are grabbed and dragged toward it.
+const DARK_REACH=1250,DARK_RISE=900;
+function darkTarget(e:Engine,u:Unit){
+ const origin={x:u.x,y:u.y-60};
+ return e.b.units.filter(v=>hero(v)&&v.y>u.y-DARK_RISE&&v.y<u.y+260&&distance(origin,center(v))<=DARK_REACH)
+  .sort((a,c)=>distance(origin,center(a))-distance(origin,center(c)))[0];
+}
+function prepareDarkness(e:Engine,u:Unit){
+ if(u.stunnedRound===e.b.round||(u.stun||0)>0)return false;
+ const t=darkTarget(e,u);if(!t)return false;
+ const g=u.honroMonsterGrowth||1,near=Math.abs(t.x-u.x)<=darknessZone(u)+t.r,dir=t.x>=u.x?1:-1;
+ const heroes=e.b.units.filter(hero),mean=heroes.reduce((n,v)=>n+v.maxHp,0)/Math.max(1,heroes.length);
+ const label=near?'그림자 강타':'그림자 손아귀',impact=center(t);
+ u.honroMonsterWindup={serial:e.b.nextId++,kind:'eoduksini',target:t.id,label,shape:'area',origin:{x:u.x,y:u.y-60},impact,
+  radius:near?240*(1+(g-1)*.35):165+25*(g-1),direction:dir,damage:Math.round(mean*(near?.34:.24)*(1+(g-1)*.15)),
+  offered:[],answered:[],seen:false,teamEnd:e.b.teamEnds[0]};
+ u.facing=dir;say(e,u,label+' · 예고','windup',t.id,impact);
+ e.finishAction();return true;
+}
+function resolveDarkness(e:Engine,u:Unit,w:MonsterWindup){
+ delete u.honroMonsterWindup;
+ const b=e.b;
+ if(b.teamEnds[0]<=w.teamEnd||u.stunnedRound===b.round||(u.stun||0)>0){recover(e,u,w,'정해 둔 공격을 거뒀다');e.finishAction();return true;}
+ u.anim=1;let hit=0;
+ for(const v of b.units){
+  if(!hero(v))continue;
+  const d=distance(center(v),w.impact);if(d>w.radius+v.r)continue;
+  const hp=v.hp;e.hurt(v,w.damage*(.75+.25*(1-Math.min(1,d/w.radius))),u.id,false,undefined,w.origin,'normal',undefined,{attackSide:1});
+  if(v.hp>=hp)continue;hit++;
+  if(w.label==='그림자 강타')push(e,v,Math.sign(v.x-u.x)||w.direction,95);
+  else push(e,v,Math.sign(u.x-v.x)||-w.direction,120);
+ }
+ e.fx('ring',w.impact.x,w.impact.y,'#7a62b0',w.radius);e.emit('sound',{name:'hit'});
+ say(e,u,hit?w.label:'헛친 그림자',hit?'release':'recover',w.target,w.impact);
+ if(!prepareDarkness(e,u))e.finishAction();
+ return true;
+}
 export function prepareMonsterPattern(e:Engine,u:Unit,t:Unit){
  const k=variantPattern(u);if(!fresh(e.b)||!enemy(u)||!hero(t))return false;
  if(support(e,u,t))return true;
+ if((u as any).honroGreatDarkness)return prepareDarkness(e,u);
  if(!validKind(k))return false;
  const s=state(u);
  if(s.cooldown){s.cooldown--;return false;}
@@ -346,6 +387,7 @@ export function monsterTurn(e:Engine,u?:Unit){
  if(s?.mergedInto||s?.attachedTo){e.finishAction();return true;}
  if(s?.recovery){delete s.recovery;e.finishAction();return true;}
  if(!w)return false;
+ if((u as any).honroGreatDarkness)return resolveDarkness(e,u,w);
  delete u.honroMonsterWindup;
  const b=e.b,t=e.unit(w.target),wasMerged=!!s?.merge;
  const shifted=distance(center(u),w.origin)>65;
@@ -420,7 +462,7 @@ export function monsterHit(e:Engine,u:Unit,owner:string,direct:boolean,p:Project
  if(u.dead&&u.honroMonsterState?.lifted)refund(e,u);
  if(!enemy(u)||!source||e.allegiance(source)!==0||loss<=0)return;
  const w=u.honroMonsterWindup;
- if(w&&direct&&(!u.boss||loss>=u.maxHp*.12||w.kind==='sodanOmen')){
+ if(w&&direct&&((u as any).honroGreatDarkness?loss>=u.maxHp*.06:(!u.boss||loss>=u.maxHp*.12||w.kind==='sodanOmen'))){
   delete u.honroMonsterWindup;delete state(u).guardFace;state(u).recovery=true;
   recover(e,u,w,'준비가 끊겼다');
  }

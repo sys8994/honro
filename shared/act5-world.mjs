@@ -59,6 +59,10 @@ const crossings = {
  49:[['아래쪽 징검길로 내려가기',[148,1028],[169,1240]],['협곡 진목길 올라가기',[899,1220],[924,960]],['중층 돌계단 올라가기',[947,960],[961,685]],['상층 돌계단 올라가기',[972,685],[980,380]]],
  50:[['산문 아래 돌계단 오르기',[913,304],[930,212]],['산문 앞 돌계단 오르기',[963,206],[962,144]]]
 };
+// Stage46 skywell (2026-11-24): crossing between shelves is the play itself — drop down, or
+// bridge gaps and climb with Damheo's 축지진목. Only the climb out of the well bottom stays,
+// one way up: well bottom -> east collapse ledge -> exit ledge. Kept rows keep their ids.
+const crossingKeep = {46:{4:'up',5:'up'}};
 const length = (a,b)=>Math.hypot(a[0]-b[0],a[1]-b[1]);
 function snap(lines,x,y) {
  const hits=[];
@@ -90,7 +94,7 @@ export async function makeAct5(){
  // Stage42: bounded node simplification of its near source (tools/act5/simplify-vector.py).
  // near-import.json itself stays byte-identical (other stages' proofs hash it).
  // Same bounded simplification for Stage43/50 near sources (2026-11-23 density pass).
- const simplifiedNear=Object.fromEntries(await Promise.all([42,43,44,50].map(async id=>[id,JSON.parse(await readFile(new URL('./assets/environment/act5/stage'+id+'-near-simplified.json',import.meta.url),'utf8'))])));
+ const simplifiedNear=Object.fromEntries(await Promise.all([42,43,44,46,50].map(async id=>[id,JSON.parse(await readFile(new URL('./assets/environment/act5/stage'+id+'-near-simplified.json',import.meta.url),'utf8'))])));
  for(const [id,near] of Object.entries(simplifiedNear)){const src=imports[id-41];if(+src?.id!==+id||near.sha256!==src.sha256)throw Error('Simplified near source does not match near-import for stage '+id);}
  const campSourceCoverage=JSON.parse(await readFile(new URL('../art/stage41-join/source-coverage.json',import.meta.url),'utf8'));
  const campExterior=Object.fromEntries(await Promise.all([['west','camp-west-geology'],['east','camp-east-geology'],['deep','camp-deep-geology']].map(async([key,file])=>[key,JSON.parse(await readFile(new URL('./assets/environment/act5/'+file+'.json',import.meta.url),'utf8'))])));
@@ -145,9 +149,10 @@ export async function makeAct5(){
   }));
   for(const [key,points] of solids[id]||[])surfaces.push({id:'a5-'+key,name:key,type:'solid',points:path(points),
    oneWay:false,baseMaterial:'rock',breakable:false,layer:'terrain',properties:{honroAct5Painted:true}});
-  const links=(crossings[id]||[]).flatMap(([label,from,to,back],j)=>[
+  const keep=crossingKeep[id];
+  const links=(crossings[id]||[]).flatMap(([label,from,to,back],j)=>keep&&!keep[j]?[]:[
    {id:'a5-cross-'+(2*j),label,...contact(...from),to:contact(...to)},
-   {id:'a5-cross-'+(2*j+1),label:back||'이전 발판으로 돌아가기',...contact(...to),to:contact(...from)}]);
+   ...(keep?.[j]==='up'?[]:[{id:'a5-cross-'+(2*j+1),label:back||'이전 발판으로 돌아가기',...contact(...to),to:contact(...from)}])]);
   for(const link of links)if(length([link.x,link.y],[link.to.x,link.to.y])>1560)throw Error('Act 5 crossing too long: '+id);
   const objectives=[];
   const units=cast.map((kind,j)=>({id:'p-'+kind,kind,team:'player',...contact(g.start[0]+j*11,g.start[1])}));
