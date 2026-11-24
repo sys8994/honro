@@ -18,12 +18,18 @@
         check(real.length===4&&t.actors.length===4&&t.actors.every(v=>real.some(u=>u.id===v.id&&carryFields.every(k=>same(u[k],v[k]))&&u.hp>0&&!u.dead)),'Real 52 bodies changed');
         const external=Object.fromEntries(real.filter(a=>a!==mage).map(x=>[x.cls,structuredClone(x)]));
         check(Object.keys(external).sort().join(',')==='archer,knight,occultist','External three required');
-        const donors={'draft-lower-lane-guard':'a5-foe-7','draft-upper-side-guard':'a5-foe-13'};
+        const roles={
+          'draft-lower-lane-guard':{kind:'ghost',name:'바닥을 더듬는 잔향',hp:290,walk:35,intent:'낮은 통로를 따라 울리는 제자리 혼령'},
+          'draft-upper-side-guard':{kind:'shade',name:'문지방의 매듭귀',hp:520,walk:0,intent:'진목 주변에 매듭실을 묶는 수의귀'}
+        };
         const st={...m,id:'stage-53',metadata:{stageId:53,campaign:true,act:6,actStage:3},units:m.units.map(u=>{
           if(u.team==='player'){check(u.kind==='mage','Only physical Damheo');return {...u,id:mage.id};}
-          const r=packet.foes[donors[u.id]];check(r&&u.team==='enemy','Exact authored temporary guard');
-          const native=C.makeUnit(r.cls,1,u.x,u.y,{...structuredClone(r),id:u.id,facing:u.facing});
-          return {...native,...u,cls:r.cls,runtimeTemplate:true};
+          const spec=roles[u.id],a=spec&&G.HonroWorld.archetypes[spec.kind];check(a&&u.team==='enemy','Exact two alternate authored guards only');
+          const loadout=spec.kind==='shade'?['HSH02']:a.skills.slice();
+          const native=C.makeUnit(a.cls,1,u.x,u.y,{id:u.id,facing:u.facing,role:a.role,name:spec.name,h:a.h,r:a.r,hp:spec.hp,maxHp:spec.hp,
+            attack:a.attack,walkSpeed:spec.walk,maxMove:spec.walk,moveLeft:spec.walk,intent:spec.intent,loadout,ranks:Object.fromEntries(loadout.map(k=>[k,1])),
+            honroType:spec.kind,honroVariant:a.look,...(spec.kind==='shade'?{honroMonsterEffectSkill:'HSH02'}:{})});
+          return {...native,...u,cls:a.cls,runtimeTemplate:true};
         })};
         const p=structuredClone(app.profile),project={...G.HONRO_PROJECT,stages:[st],library:packet.library};
         const content=Object.freeze({...e.stage,id:53,local:53,actStage:3,active:1,requires:[52],name:'끝없이 이어지는 법당',goal:'담허의 진목을 지정 받침에 설치하세요.',
@@ -43,6 +49,7 @@
         const entrance=st.units.find(u=>u.team==='player'),deck=b.terrain.find(t=>t.id==='south');
         check(entrance?.x===425&&deck&&Math.abs(C.topAt(deck,425)-entrance.y)<=3,'Signed 53 arrival seat is invalid');
         Object.assign(raw[0],{x:425,y:C.topAt(deck,425),spawnX:425,spawnY:C.topAt(deck,425),vx:0,vy:0,airborne:false,jumping:false});
+        b.honroMonsterEffectsRevision=1;
         b.honroGeometryReady=true;b.honroGeometryRevision=2;b.honroContactRevision=2;
         check(C.validTerrainContactPose(b.terrain,raw[0]),'Damheo body does not fit the hall');
         app.stopBattle();
