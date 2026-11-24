@@ -5,7 +5,7 @@ const S = {
     channel:'warning', speaker:'담허', text:'발을 뗐는데 자국이 남았군. 저놈은 내 발이 있던 데를 보고 있어.', predicate:e=>['locked', 'legalFooting', 'hasResponse'].every(k=>e[k] === true),
   },
   '56:reflow.warned': {
-    channel:'warning', speaker:'담허', text:'먼지가 옆으로 흐르는군. 진목 가까운 바닥은 아직 멀쩡해. 그쪽에 붙게.', predicate:e=>['activeBand', 'safeFooting', 'hasResponse'].every(k=>e[k] === true),
+    channel:'warning', speaker:'담허', text:'먼지가 옆으로 흐르는군. 진목 곁이라면 아직 발을 디딜 수 있겠어.', predicate:e=>['activeBand', 'safeFooting', 'hasResponse'].every(k=>e[k] === true),
   },
   '56:reflow.interrupted': {
     channel:'confirmation', speaker:'담허', text:'노가 틀어지니 바닥도 잠잠해졌군.', predicate:e=>['nativeContact', 'interrupted'].every(k=>e[k] === true),
