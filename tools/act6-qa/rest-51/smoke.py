@@ -11,6 +11,7 @@ from urllib.parse import urlsplit
 from playwright.sync_api import sync_playwright
 from normal52_witness import stage52
 from normal53_witness import stage53
+from normal54_witness import stage54
 
 a, b, out = [Path(x).resolve() for x in sys.argv[1:]]
 out.mkdir(parents=True, exist_ok=True)
@@ -34,15 +35,18 @@ registry=data(b,pilot['project'])
 assert [x['metadata']['stageId'] for x in registry['catalog']]==list(range(1,51))
 for name in set([registry[k] for k in ['base','shared','editorExtras']]+registry['stages']+registry['stageLibraries']):
     assert (a/name).read_bytes()==(b/name).read_bytes(),name
-PACKETS={
-    51:('web/data/act6-qa-chapter-51.c8620ccf54745095.json','c8620ccf547450952f3cbbae6e49c2f8dbddab2af69622d3f4221ab99f7046ba',147478),
-    52:('web/data/act6-qa-chapter-52.3e35d12c62d32164.json','3e35d12c62d32164643d48a58a772161912cb889f438049bd480d78ed4ac96e9',146799),
-    53:('web/data/act6-qa-chapter-53.8f046099facbcca3.json','8f046099facbcca3e715115256795f8252434d5cf42066606fea372cbe141830',123176),
+PACKET_PINS={
+    51:('c8620ccf547450952f3cbbae6e49c2f8dbddab2af69622d3f4221ab99f7046ba',147478),
+    52:('3e35d12c62d32164643d48a58a772161912cb889f438049bd480d78ed4ac96e9',146799),
+    53:('8f046099facbcca3e715115256795f8252434d5cf42066606fea372cbe141830',123176),
+    54:('db8378878dd4cbf81e8f2463d6f466c72c7bd8420331a12486919513c9a049b4',645068),
 }
+PACKETS={i:(f'web/data/act6-qa-chapter-{i}.{h[:16]}.json',h,n) for i,(h,n) in PACKET_PINS.items()}
 path,expected,_=PACKETS[51]
 signed={x[0] for x in PACKETS.values()}
-actual = [x for x in pilot['files'] if 'act6-qa-chapter-' in x['path']]
-assert {x['path'] for x in actual}==signed, {'expected':sorted(signed),'actual':actual}
+observed=[x for x in pilot['files'] if 'act6-qa-chapter-' in x['path']]
+(out/'QA-PACKET-MANIFEST.json').write_text(json.dumps({'observed':observed,'expected':PACKETS},indent=2)+'\n')
+assert {x['path'] for x in observed}==signed,(observed,PACKETS)
 assert not {x['path'] for x in stock['files']} & signed
 for fname,digest,size in PACKETS.values():
     packet=[x for x in pilot['files'] if x['path']==fname]
@@ -202,6 +206,7 @@ def trial(browser,label,w,h,mobile,arm,kind):
                 page.screenshot(path=out/f'{key}-native-51-terminal.png')
                 stage52(page,state,mobile,original,tap,out,key,'/'+PACKETS[52][0])
                 stage53(page,state,mobile,original,tap,out,key,'/'+PACKETS[53][0])
+                stage54(page,state,mobile,original,tap,out,key,'/'+PACKETS[54][0])
         assert not state['errors'],state
         state['status']='PASS'
     finally:
@@ -214,7 +219,7 @@ try:
             for arm,kind in [('OFF','fresh-pending'),('ON','fresh-pending'),('ON','legacy-format')]:
                 trial(browser,label,w,h,mobile,arm,kind)
         browser.close()
-    evidence['status']='PASS_50_STOCK_ENDING_REST_THEN_NATIVE_NORMAL_51_52_53'
+    evidence['status']='PASS_50_STOCK_ENDING_REST_THEN_NATIVE_NORMAL_51_52_53_54'
 finally:
     (out/'BROWSER.json').write_text(json.dumps(evidence,ensure_ascii=False,indent=2)+'\n')
     for server in [a_srv,b_srv]:

@@ -71,6 +71,10 @@ export async function createAct6WebQa(project,repoRoot,env=process.env){
             const witness={stage:53,flags:terminal.flags,mage:terminal.mage,external:terminal.external,stake:terminal.stake,settlement:false};
             s.button.dataset.act6Normal53Receipt=JSON.stringify(witness);
           }
+          if(s.normal51&&terminal.stage===54&&terminal.flags['act6.invertedGalleryCrossed']===true&&terminal.settlement===false&&s.button){
+            const witness={stage:54,flags:terminal.flags,mage:terminal.mage,external:terminal.external,chart:terminal.chart,relay:terminal.relay,settlement:false};
+            s.button.dataset.act6Normal54Receipt=JSON.stringify(witness);
+          }
         }`);
   first=replaceOne(first,'||b.honroGrowth||', "||b.honroGrowth&&!(source?.kind==='normal-owned-release'&&b.honroGrowth.limit.total===0&&b.honroGrowth.limit.combat===0)||");
   const thirdRaw=await readFile(new URL('./data/act6-qa/third.json',import.meta.url));
@@ -87,8 +91,17 @@ export async function createAct6WebQa(project,repoRoot,env=process.env){
     .replace('||b.honroGrowth||b.honroJourneyReplay','||(b.honroGrowth&&!d.quotedZeroPilot)||b.honroJourneyReplay')
     .replace('const g={app,b,stage:s,actor:u,d,external:','const g={app,b,stage:s,actor:u,d,quotedZeroPilot:d.quotedZeroPilot===true,external:');
   const actions53=await readFile(new URL('./runtime/stage53-actions.mjs',import.meta.url),'utf8');
+  const fourthRaw=await readFile(new URL('./data/act6-qa/fourth.json',import.meta.url));
+  assert.equal(hash(fourthRaw),'b5922a3d8aa7bd413f52171ca945e7096585d336c28780f6ccaba3fefb54f5b8');
+  const fourth=JSON.parse(fourthRaw);assert(fourth.id===54&&fourth.authoredId==='stage-54'&&fourth.runtimeReleaseEnabled===false&&fourth.map.units.length===0);
+  const mapText54=JSON.stringify(fourth.map),assets54=JSON.stringify(fourth.library);
+  packets.push({...fourth,schema:'honro-act6-normal-54-source/v1',trace:{stageId:54,authoredId:'stage-54',mapSHA256:hash(mapText54),assetSHA256:hash(assets54)}});
+  const charts54=(await readFile(new URL('./runtime/chart-packet.mjs',import.meta.url),'utf8')).split('// Author-time.')[0].replaceAll('export ','');
+  const owner54=(await readFile(new URL('./runtime/stage54-pilot-owner.mjs',import.meta.url),'utf8')).split('\n').slice(1).join('\n').replace('export async function','async function');
+  const mount54=await readFile(new URL('./runtime/stage54-entry.inc.js',import.meta.url),'utf8');
+  const code54='const createStage54ChartOwner=(()=>{'+charts54+owner54+'\nreturn createStage54ChartOwner;})();\n'+mount54;
   const bind53='const createInnerMissionOwner=(()=>{'+mission53.replace('export function','function')+'\nreturn createInnerMissionOwner;})();\n'+
-    'const createStage53PhysicalActions=(()=>{'+actions53.replace('export function','function')+'\nreturn createStage53PhysicalActions;})();\n'+b53;
+    'const createStage53PhysicalActions=(()=>{'+actions53.replace('export function','function')+'\nreturn createStage53PhysicalActions;})();\n'+b53+code54;
   source=replaceOne(source,'      function enter(app,id,ticket){',bind53+'\n      function enter(app,id,ticket){');
   source=replaceOne(source,'const stages=new Set([51,52])','const stages=new Set([51,52,53])');
   source=replaceOne(source,"        return app.screen==='battle'&&!!s&&s.b.honroStage===51", "        if(id===53)return app.screen==='battle'&&s?.normal51&&s.b.honroStage===52&&app.engine===s.engine&&s.b.phase==='won'&&app.done&&s.terminal?.stage===52&&s.terminal.flags['act6.outerSitesPrepared']===true&&s.terminal.flags['act6.darmheoInTemple']===true;\n        return app.screen==='battle'&&!!s&&s.b.honroStage===51");
@@ -99,7 +112,20 @@ export async function createAct6WebQa(project,repoRoot,env=process.env){
   source=replaceOne(source,'        const id=owner.project(app,e)?.targets?.[0]?.id;', "        if(e.b.honroStage===53){const a=actions53.usePassage(app,e);if(a.ok&&s.button)s.button.disabled=true;else if(!a.ok)app.notify(a.reason);e.checkEnd();app.updateHUD(true);return true;}\n        const id=owner.project(app,e)?.targets?.[0]?.id;");
   source=replaceOne(source,'        const terminal=owner.terminal(app,s.engine);','        const terminal=s.b.honroStage===53?indoor53.terminal(app,s.engine):owner.terminal(app,s.engine);');
   source=replaceOne(source,'        app.notify(terminal?', "        if(terminal?.stage===52&&s.normal51){const btn=document.createElement('button');btn.type='button';btn.dataset.act6QaNext='53';styleAction(btn);btn.textContent='담허가 문지방을 넘는다';appUI(app)?.append(btn);issue(app,btn,53);}\n        app.notify(terminal?");
-  source=replaceOne(source,'release,keepAction:', 'release,context53,release53,keepAction:');
+  source=replaceOne(source,'const {packet,compiled,known}=await prepareExact(id);','const {packet,compiled,known,chart}=await prepareExact(id);');
+  source=replaceOne(source,'permits.set(app,{ticket,id,packet,compiled,known,owns});','permits.set(app,{ticket,id,packet,compiled,known,chart,owns});');
+  source=replaceOne(source,'const stages=new Set([51,52,53])','const stages=new Set([51,52,53,54])');
+  source=replaceOne(source,"        if(id===53)return app.screen", "        if(id===54)return eligible54(app,s);\n        if(id===53)return app.screen");
+  source=replaceOne(source,"      if(id===53){\n        check(packet.schema", "      if(id===54){\n        check(packet.schema==='honro-act6-normal-54-source/v1'&&packet.trace.stageId===54&&packet.map.id==='stage-54'&&packet.runtimeReleaseEnabled===false&&packet.trace.mapSHA256===pin.mapSHA256&&packet.trace.assetSHA256===pin.assetSHA256,'Invalid 54 packet authority');\n        const compiled=G.HonroMaps.compile(packet.map,{library:packet.library}),known=[];\n        for(const [v,pin] of [[compiled.terrain,packet.charts.N.terrain],[compiled.worldTerrain,packet.charts.N.world]]){const src=JSON.stringify(v),hash=await sha(new TextEncoder().encode(src));check(src===JSON.stringify(pin),'Invalid 54 chart projection');known.push([src,hash]);}\n        return await prepareNormal54(packet,known);\n      }\n      if(id===53){\n        check(packet.schema");
+  source=replaceOne(source,'        if(id===53&&active.get(app)?.normal51===true)','        if(id===54&&active.get(app)?.normal51===true)return enterNormal54(app,grant,active.get(app));\n        if(id===53&&active.get(app)?.normal51===true)');
+  source=replaceOne(source,"        if(e.b.honroStage===53&&s.kind", "        if(e.b.honroStage===54&&s.owner54)return bindNormal54(app,e,s);\n        if(e.b.honroStage===53&&s.kind");
+  source=replaceOne(source,'function goalState(app,e){return e?.b?.honroStage===53?', 'function goalState(app,e){if(e?.b?.honroStage===54)return active.get(app)?.owner54?.project(app,e);return e?.b?.honroStage===53?');
+  source=replaceOne(source,'        if(e.b.honroStage===53){const a=actions53', '        if(e.b.honroStage===54){chart54Input(app,s,e);return true;}\n        if(e.b.honroStage===53){const a=actions53');
+  source=replaceOne(source,'const terminal=s.b.honroStage===53?', 'const terminal=s.b.honroStage===54?s.owner54.terminal(app,s.engine):s.b.honroStage===53?');
+  source=replaceOne(source,'        if(terminal?.stage===52&&s.normal51)', "        if(terminal?.stage===53&&s.normal51){const btn=document.createElement('button');btn.type='button';btn.dataset.act6QaNext='54';styleAction(btn);btn.textContent='거꾸로 선 처마로';appUI(app)?.append(btn);issue(app,btn,54);}\n        if(terminal?.stage===52&&s.normal51)");
+  source=replaceOne(source,"        return e?.b?.honroStage===53&&e.active===u&&actions53.aim(app,e)", "        if(e?.b?.honroStage===54)return chart54Aim(app,e,u)&&!ids.includes('M09')&&ids.length<4?[...ids,'M09']:ids;\n        return e?.b?.honroStage===53&&e.active===u&&actions53.aim(app,e)");
+  source=replaceOne(source,"        if(e?.b?.honroStage!==53||e.active!==u||app.selected!=='M09')", "        if(e?.b?.honroStage===54&&e.active===u&&app.selected==='M09'){const s=active.get(app);if(chart54Aim(app,e,u)){const q=s.owner54.relay(app,e,{angle:u.angle,power:app.power});if(!q.ok)app.notify(q.reason);app.updateHUD(true);}return true;}\n        if(e?.b?.honroStage!==53||e.active!==u||app.selected!=='M09')");
+  source=replaceOne(source,'release,keepAction:', 'release,context53,release53,tick54,keepAction:');
 
  }
  return {source:replaceOne(replaceOne(source,'/* FIRST_OWNER */',first.replace('export function createFirstMissionOwner','function createFirstMissionOwner')),'/* FIFTY_OWNER */','const {createFiftyRestAdmission,buildPartyFromNormalRest,bindOrdinaryFiftyRestUI}=(()=>{'+rest.replaceAll('export function ','function ')+'\nreturn {createFiftyRestAdmission,buildPartyFromNormalRest,bindOrdinaryFiftyRestUI};})();'),packets};
@@ -140,10 +166,11 @@ export function makeQaMain(main,source,descriptor){
  if(source.includes('function enterNormal51('))edits.push(
   ['            G.HonroObjectives.updateSettlement(b,st,state.objectiveReady);','            if(!qa51.isNormal(this))G.HonroObjectives.updateSettlement(b,st,state.objectiveReady);']);
  if(source.includes('function enterNormal53('))edits.push(
-  ['(id===51||id===52)&&!training?qa51.launch', '(id===51||id===52||id===53)&&!training?qa51.launch'],
+  ['(id===51||id===52)&&!training?qa51.launch', '(id===51||id===52||id===53||id===54)&&!training?qa51.launch'],
   ["const combatSkills=u.meleeFollow==='ready'&&!u.loadout.includes('S00')?['S00',...u.loadout]:u.loadout;", "const combatSkills=qa51.context53(this,u,u.meleeFollow==='ready'&&!u.loadout.includes('S00')?['S00',...u.loadout]:u.loadout);"],
   ['G.HonroStakeCrossing.skills(this.engine.b,active).includes(remembered)','qa51.context53(this,active,G.HonroStakeCrossing.skills(this.engine.b,active)).includes(remembered)'],
   ['G.HonroStakeCrossing.skills(b,u).includes(this.selected)','qa51.context53(this,u,G.HonroStakeCrossing.skills(b,u)).includes(this.selected)'],
   ['}else this.engine.fire(this.selected, u.angle, this.power);','}else if(!qa51.release53(this,u))this.engine.fire(this.selected, u.angle, this.power);']);
+ if(source.includes('function enterNormal54('))edits.push(['missionTick(dt){if(qa51.active(this))return;', 'missionTick(dt){if(qa51.active(this)){qa51.tick54(this);return;}']);
  return edits.reduce((code,[a,b])=>replaceOne(code,a,b),main);
 }
