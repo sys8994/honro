@@ -1,0 +1,43 @@
+{
+  "changedPixelCount": 1934,
+  "changedBboxAU": [
+    405.0,
+    446.5,
+    444.5,
+    514.5
+  ],
+  "voids": [
+    {
+      "spaceAU": [
+        200,
+        555,
+        271,
+        1722
+      ],
+      "baselineAlphaPixels": 0,
+      "proposalAlphaPixels": 0
+    },
+    {
+      "spaceAU": [
+        568,
+        318,
+        1436,
+        324
+      ],
+      "baselineAlphaPixels": 0,
+      "proposalAlphaPixels": 0
+    },
+    {
+      "spaceAU": [
+        1310,
+        320,
+        1436,
+        375
+      ],
+      "baselineAlphaPixels": 0,
+      "proposalAlphaPixels": 0
+    }
+  ],
+  "nearRampTopSamples": 61,
+  "opaque": 61
+}
