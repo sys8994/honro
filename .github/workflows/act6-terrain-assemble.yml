@@ -1,0 +1,103 @@
+name: Assemble Act 6 terrain art as a guarded candidate
+on:
+  push:
+    branches: ['qa/act6-terrain-release-assembly-20261125']
+    paths: ['.github/workflows/act6-terrain-assemble.yml']
+permissions:
+  contents: write
+jobs:
+  release-candidate:
+    if: github.repository == 'sys8994/honro' && github.ref == 'refs/heads/qa/act6-terrain-release-assembly-20261125'
+    runs-on: ubuntu-22.04
+    timeout-minutes: 24
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 2
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Rebuild exact source and stage only candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE=37f7ae70e8640b6ec436091925aa8d1508e62e90
+          PROOF=1205dd5b53b13a57a6b2009e367f88dc1bd52fcf
+          DEST=refs/heads/release/act6-terrain-art-20261125
+          git fetch --depth=1 origin "$BASE"
+          test "$(git rev-parse HEAD^)" = "$PROOF"
+          test "$(git ls-remote origin refs/heads/master | cut -f1)" = "$BASE"
+          test -z "$(git ls-remote origin "$DEST")"
+          R="$(mktemp -d "$RUNNER_TEMP/terrain-r-XXXXXXXX")"
+          RESULTS="$RUNNER_TEMP/act6-art-release-report"
+          mkdir -p "$RESULTS"
+          git -c core.hooksPath=/dev/null worktree add --detach "$R" "$BASE"
+          readarray -t FILES <<'EOF2'
+          shared/act6-app-qa.mjs
+          shared/web-build.mjs
+          shared/act6-terrain-art/author.py
+          shared/act6-terrain-art/compact.py
+          shared/act6-terrain-art/focal.py
+          shared/act6-terrain-art/offroute.py
+          shared/act6-terrain-art/paint-data.inc.js
+          shared/act6-terrain-art/paint-scene.inc.js
+          EOF2
+          PLAN=game/docs/planning/act6-finale-20261125/HONRO-ACT6-TERRAIN-ART-v2.ko.md
+          git -C "$R" checkout "$PROOF" -- "${FILES[@]}"
+          git -C "$R" checkout "$GITHUB_SHA" -- "$PLAN"
+          (
+            cd "$R"
+            node tools/release/retain-published-web.mjs "$BASE" --published-at 2026-11-24T20:55:25Z --evidence https://github.com/sys8994/honro/actions/runs/45485441596 > "$RESULTS/RETENTION.log" 2>&1
+            npm ci --no-audit --no-fund > "$RESULTS/NPM.log" 2>&1
+            npm ci --prefix game --include=dev --no-audit --no-fund > "$RESULTS/NPM-GAME.log" 2>&1
+            npm run build > "$RESULTS/BUILD.log" 2>&1
+          )
+          python tools/act6-qa/rest-51/terrain_authority.py "$R" "$RESULTS" "$BASE"
+          python - "$R" "$BASE" "$RESULTS" "$PLAN" "${FILES[@]}" <<'PY'
+          import hashlib,json,subprocess,sys,gzip
+          from pathlib import Path
+          root,base,res,plan,*sources=sys.argv[1:]
+          root,res=map(Path,(root,res))
+          def git(*cmd): return subprocess.check_output(['git','-C',str(root),*cmd]).decode().strip()
+          m=json.loads((root/'web/manifest.json').read_bytes())
+          latest=json.loads(git('show',base+':web/manifest.json'))
+          assert any(row.get('sourceSha')==base for row in m['publishedGenerations'])
+          active={r['path']:r for r in m['files']}
+          old={r['path']:r for r in latest['files']}
+          safe={'HONRO.html','index.html','web/manifest.json'}
+          for r in active.values():
+              f=(root/r['path']).read_bytes()
+              assert len(f)==r['bytes'] and hashlib.sha256(f).hexdigest()==r['sha256'],r['path']
+          for p,r in old.items():
+              f=(root/p).read_bytes()
+              assert len(f)==r['bytes'] and hashlib.sha256(f).hexdigest()==r['sha256'],p
+          for r in m['publishedGenerations']:
+              for f in r['files']:assert (root/f['path']).is_file(),f['path']
+          new=set(active)-set(old)
+          assert len(new)==12, sorted(new)
+          assert sum('act6-terrain-art-' in p for p in new)==10
+          assert sum('ordered-game-24-normal51' in p for p in new)==1
+          assert sum('entries/game-normal51.' in p for p in new)==1
+          git('add','--',*sorted(safe|new))
+          paths=git('diff','--cached','--name-only').splitlines()
+          assert set(paths)==safe|new|{plan,*sources},paths
+          assert not git('diff','--cached','--diff-filter=D','--name-only')
+          assert not git('ls-files','--deleted')
+          result={'sourceMaster':base,'paths':paths,'newActive':sorted(new),'sidecarGzip':{p:len(gzip.compress((root/p).read_bytes(),mtime=0)) for p in sorted(new) if 'act6-terrain-art-' in p}}
+          (res/'CANDIDATE-REPORT.json').write_text(json.dumps(result,indent=2)+'\n')
+          PY
+          git -C "$R" -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' -c core.hooksPath=/dev/null commit -m 'art(campaign): refine native terrain throughout Act 6'
+          CANDIDATE="$(git -C "$R" rev-parse HEAD)"
+          test "$(git -C "$R" rev-parse HEAD^)" = "$BASE"
+          test "$(git ls-remote origin refs/heads/master | cut -f1)" = "$BASE"
+          git cat-file -e "$CANDIDATE^{commit}"
+          git push origin "$CANDIDATE:$DEST"
+          test "$(git ls-remote origin "$DEST" | cut -f1)" = "$CANDIDATE"
+          printf '%s\n' "$CANDIDATE" > "$RESULTS/CANDIDATE.txt"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: act6-terrain-art-release-scoped
+          path: ${{ runner.temp }}/act6-art-release-report/
+          retention-days: 7
