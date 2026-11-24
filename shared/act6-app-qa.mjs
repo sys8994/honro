@@ -144,6 +144,13 @@ export function makeQaMain(main,source,descriptor){
   ["const combatSkills=u.meleeFollow==='ready'&&!u.loadout.includes('S00')?['S00',...u.loadout]:u.loadout;", "const combatSkills=qa51.context53(this,u,u.meleeFollow==='ready'&&!u.loadout.includes('S00')?['S00',...u.loadout]:u.loadout);"],
   ['G.HonroStakeCrossing.skills(this.engine.b,active).includes(remembered)','qa51.context53(this,active,G.HonroStakeCrossing.skills(this.engine.b,active)).includes(remembered)'],
   ['G.HonroStakeCrossing.skills(b,u).includes(this.selected)','qa51.context53(this,u,G.HonroStakeCrossing.skills(b,u)).includes(this.selected)'],
+  // Keep the ordinary App charge/HUD path, but treat a genuinely exposed
+  // story M09 as equipped at these presentation/input checks only. Engine.fire
+  // still denies a raw attempt; the mounted owner grants the exact one cast.
+  ['!this.engine.skillAllowed(sk,u) || !this.engine.canAfford(sk,u,0)', '!(this.engine.skillAllowed(sk,u)||qa51.context53(this,u,[]).includes(sk.id)) || !this.engine.canAfford(sk,u,0)'],
+  ['e.skillAllowed(s,u),!e.canAfford(s,u)', '(e.skillAllowed(s,u)||qa51.context53(this,u,[]).includes(id)),!e.canAfford(s,u)'],
+  ['selected=id===this.selected,allowed=e.skillAllowed(s,u);', 'selected=id===this.selected,allowed=e.skillAllowed(s,u)||qa51.context53(this,u,[]).includes(id);'],
+  ['!e.skillAllowed(sk,u)||!this.canInput()', '!(e.skillAllowed(sk,u)||qa51.context53(this,u,[]).includes(sk?.id))||!this.canInput()'],
   ['}else this.engine.fire(this.selected, u.angle, this.power);','}else if(!qa51.release53(this,u))this.engine.fire(this.selected, u.angle, this.power);']);
  return edits.reduce((code,[a,b])=>replaceOne(code,a,b),main);
 }
