@@ -24,20 +24,24 @@ def tap_ready(page,tap,selector,mobile):
         page.clock.run_for(25)
     assert page.evaluate("HonroApp.canInput()"),snapshot(page)
     tap(page,selector,mobile)
-def stage_late(page,state,mobile,original,tap,out,case,packet_path,stage,negative=False):
-    prev=snapshot(page)
-    assert prev['stage']==stage-1 and prev['phase']=='won' and prev['done']
-    selector=f'[data-act6-qa-next="{stage}"]'
-    assert page.locator(selector).count()==1
-    assert page.evaluate("n=>HonroApp.launch(n,false,null,{})===false",stage)
-    page.locator(selector).evaluate('el=>el.click()')
-    assert page.evaluate("HonroApp.stageId")==stage-1 and packet_path not in state['packets']
-    tap(page,selector,mobile)
-    page.wait_for_function("n=>HonroApp.engine?.b?.honroStage===n && !!HonroApp.scene",arg=stage,timeout=25000)
-    entry=snapshot(page)
-    assert (entry['mode'],entry['origin'],entry['auth'],entry['phase'],entry['zero'])==('campaign','campaign',f'stage-{stage}','aim',[0,0]),entry
-    assert state['packets'][-1]==packet_path
-    unchanged(entry['rows'],prev['rows'])
+def stage_late(page,state,mobile,original,tap,out,case,packet_path,stage,negative=False,cold=False):
+    if not cold:
+        prev=snapshot(page)
+        assert prev['stage']==stage-1 and prev['phase']=='won' and prev['done']
+        selector=f'[data-act6-qa-next="{stage}"]'
+        assert page.locator(selector).count()==1
+        assert page.evaluate("n=>HonroApp.launch(n,false,null,{})===false",stage)
+        page.locator(selector).evaluate('el=>el.click()')
+        assert page.evaluate("HonroApp.stageId")==stage-1 and packet_path not in state['packets']
+        tap(page,selector,mobile)
+        page.wait_for_function("n=>HonroApp.engine?.b?.honroStage===n && !!HonroApp.scene",arg=stage,timeout=25000)
+        entry=snapshot(page)
+        assert (entry['mode'],entry['origin'],entry['auth'],entry['phase'],entry['zero'])==('campaign','campaign',f'stage-{stage}','aim',[0,0]),entry
+        assert state['packets'][-1]==packet_path
+        unchanged(entry['rows'],prev['rows'])
+    else:
+        entry=snapshot(page)
+        assert (entry['stage'],entry['mode'],entry['auth'],entry['phase'])==(stage,'campaign',f'stage-{stage}','aim')
     assert page.evaluate("k=>localStorage.getItem(k)",STORE)==original
     if os.environ.get('HONRO_ACT6_QA_NORMAL_LATE_FAR')=='1': state.setdefault('normalFar',{})[stage]=observe_normal_far(page,stage,mobile,out,case)
     page.screenshot(path=out/f'{case}-normal-{stage}-entry.png')
