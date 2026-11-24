@@ -1,0 +1,43 @@
+{
+  "wholeNativeTopologyAndBodyChain": true,
+  "fullSameProfile": true,
+  "scope": "receipt crosscheck; not normal App, user save or release",
+  "rates": [
+    {
+      "rate": 60,
+      "hashes": {
+        "55proof": "da2b4a0fe55270d69e0a90079fe805a99fecf5a38708bacc4740db07b563b6c1",
+        "56": "d645121e7f511615b24cfb73fb39f99017c8f36dce2f5124d6abb7e6ca739160",
+        "57": "6391ae687f61f9b07e797a9efab248ec05c2e205b719f18de25813d9688d4f67",
+        "58": "3e5f9b5a0c4c433df904bddde899b44167b75f0c8ba4aef3649037c588149af9",
+        "59": "83a3d7433404005df300f7e03e91af0084925c11a5858b702d8ceaa38f32186a",
+        "60": "d82131d9f53c913c9e712584f2bb6e7f07430cb5649aebea33993caef72cab04",
+        "60StoreTest": "ae0f441a21e424c45f3600626393c2fc753f91215ee43a7daa5bcdb0f56100cd"
+      },
+      "exactCarryLinks": true,
+      "profileIdentityPreservedSafely": true,
+      "allProfileDeltaNames": [],
+      "from59to60ProfileDeltaNames": [],
+      "endingTrigger": 1,
+      "anyActualBrowserFullCampaign": false
+    },
+    {
+      "rate": 120,
+      "hashes": {
+        "55proof": "da2b4a0fe55270d69e0a90079fe805a99fecf5a38708bacc4740db07b563b6c1",
+        "56": "74e0ca8ae37e68881ca61e4d7b8f3c3877a2ae76c41f140231523bfd7fa674c8",
+        "57": "2af3eef24fac95bfd8879d17e709716814eb5aac3c0fb35391ab17b87437bdc4",
+        "58": "1b5bc3fe4e7aa61fb1eba8d9287b1b7bd2aa0485881e82b856df247090275eb8",
+        "59": "50df777a39dd85b02ca22ad84f9c0dd11b41a19f1e813354a9d516d25a8c5e83",
+        "60": "074f8b7ea14fd0ceb921a3204690fc6c0a87e6bdc5968d0f8078832b87441efd",
+        "60StoreTest": "007178ac39c06c66b19f9f6b1c8f92bc44651727ee618e97917386d53c749cc2"
+      },
+      "exactCarryLinks": true,
+      "profileIdentityPreservedSafely": true,
+      "allProfileDeltaNames": [],
+      "from59to60ProfileDeltaNames": [],
+      "endingTrigger": 1,
+      "anyActualBrowserFullCampaign": false
+    }
+  ]
+}
