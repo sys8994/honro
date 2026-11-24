@@ -4,7 +4,7 @@ STORE='honro-first-act-profile-1'
 def stage53(page,state,mobile,original,tap,out,case,packet_path):
     before=page.evaluate("""()=>{const app=HonroApp,b=app.engine.b;
       if(app.stageId!==52||b.phase!=='won'||!app.done)throw Error('52 predecessor not won');
-      return Object.fromEntries(b.units.filter(u=>u.side===0&&!u.summoned&&!u.honroAlly).map(u=>[u.cls,structuredClone(u)]));}""")
+      return JSON.parse(JSON.stringify(Object.fromEntries(b.units.filter(u=>u.side===0&&!u.summoned&&!u.honroAlly).map(u=>[u.cls,u]))));}""")
     assert set(before)=={'mage','archer','knight','occultist'}
     next53='[data-act6-qa-next="53"]'
     assert page.locator(next53).count()==1
@@ -63,7 +63,18 @@ def stage53(page,state,mobile,original,tap,out,case,packet_path):
     assert page.evaluate("HonroApp.done && HonroApp.engine.b.phase==='won'")
     receipt=json.loads(page.locator(action).get_attribute('data-act6-normal53-receipt'))
     assert receipt['stage']==53 and receipt['flags']=={'act6.innerStakeAReady':True} and receipt['settlement'] is False
-    assert receipt['external']=={k:v for k,v in before.items() if k!='mage'}
+    # Both sides use JS JSON.stringify (including the same handling of
+    # undefined properties), and now compare every serializable row field.
+    parked={k:v for k,v in before.items() if k!='mage'}
+    actual=receipt['external']
+    if actual!=parked:
+        diff={}
+        for role in sorted(actual.keys()|parked.keys()):
+            exp=parked.get(role,{})
+            got=actual.get(role,{})
+            diff[role]={'missingKeys':sorted(exp.keys()-got.keys()),'extraKeys':sorted(got.keys()-exp.keys()),
+                'values':{k:{'expected':exp[k],'actual':got[k]} for k in sorted(exp.keys()&got.keys()) if got[k]!=exp[k]}}
+        raise AssertionError('parked role drift '+json.dumps(diff,ensure_ascii=False,sort_keys=True))
     assert receipt['mage']['id']==pose['id']==before['mage']['id'] and pose['loadout']==before['mage']['loadout']
     assert page.evaluate("k=>localStorage.getItem(k)",STORE)==original
     state['campaign53Terminal']={'entry':own,'stake':stake,'pose':pose,'receipt':receipt,
