@@ -185,6 +185,28 @@ function compactBattleArt(b){
  if(Array.isArray(b.honroEnvironment?.placements))out.honroEnvironment={...b.honroEnvironment,placements:compactItems(b.honroEnvironment.placements)};
  return changed?out:b;
 }
+// Autosave fast path. compactBattleArt verifies each embedded art asset by full JSON text every save,
+// and the caller first deep-clones the whole battle including that art (Act 5: 3-9M chars). Here each
+// live asset object is verified once (same rule, via compactBattleArt on a one-item battle) and its
+// provider reference is reused while the object and the battle's sceneVersion are unchanged. The
+// result is a shallow battle whose matching art is already a reference: exactly what persist would
+// write. Anything unverifiable keeps its inline asset and takes the ordinary path.
+const lightRefs=new WeakMap();
+function lightRef(b,item){
+ const asset=item?.asset;if(!asset||typeof asset!=='object'||!asset.vector)return null;
+ const key=b.honroStage+':'+(b.sceneVersion||0)+':'+b.honroMapOrigin,hit=lightRefs.get(asset);if(hit&&hit.key===key)return hit.ref;
+ const probe=compactBattleArt({...b,honroLandmarks:[{asset}],honroElements:undefined,honroEnvironment:undefined,honroLocalArtTable:undefined});
+ const ref=probe!==undefined&&probe.honroLandmarks?.[0]?.asset?.honroStaticAssetRef===1?probe.honroLandmarks[0].asset:null;
+ lightRefs.set(asset,{key,ref});return ref;
+}
+function lightBattle(b){
+ if(!b||b.honroCustom||b.mode!=='campaign'||!(b.honroAct5===1&&b.honroMapOrigin==='campaign'&&b.honroStage>=41&&b.honroStage<=50))return null;
+ let changed=false;const out={...b};
+ const map=items=>items.map(item=>{const ref=lightRef(b,item);if(!ref)return item;changed=true;return{...item,asset:{...ref}};});
+ for(const key of ['honroLandmarks','honroElements'])if(Array.isArray(b[key]))out[key]=map(b[key]);
+ if(Array.isArray(b.honroEnvironment?.placements))out.honroEnvironment={...b.honroEnvironment,placements:map(b.honroEnvironment.placements)};
+ return changed?out:null;
+}
  // Stage46 token-only lexical re-encoding, same compiled Path2D geometry.
  // Only the last released official visual provider may migrate to this exact
  // candidate. Inlined art, invalid providers and placement/flag changes fail closed.
@@ -335,5 +357,5 @@ function create(){
   cancelRetry(){retryCandidate=null;}
  };
 }
-G.HonroProfileStore={create,fresh,migrate,compactBattleArt,restoreBattleArt,needsLegacy32Art,verifyLegacy32Assets,needsLegacy33Art,verifyLegacy33Assets,needsLegacy34Art,verifyLegacy34Assets};
+G.HonroProfileStore={create,fresh,migrate,compactBattleArt,lightBattle,restoreBattleArt,needsLegacy32Art,verifyLegacy32Assets,needsLegacy33Art,verifyLegacy33Assets,needsLegacy34Art,verifyLegacy34Assets};
 })(globalThis);

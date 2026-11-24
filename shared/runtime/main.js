@@ -124,7 +124,7 @@
             G.HonroProgression.syncRoster(this.profile,e.b);
             // The Act 4 persist wrapper immediately snapshots the live battle,
             // including its dialogue cursor. Avoid cloning the same battle twice.
-            if(!G.HonroAct4Campaign?.active(e.b))this.profile.honroBattle=clone(e.b);
+            if(!G.HonroAct4Campaign?.active(e.b))this.profile.honroBattle=clone(G.HonroProfileStore.lightBattle?.(e.b)||e.b);
             this.persist({compactAct4Autosave:true});
         }
         campaignReady(){if(!this.profileStore.locked||this.customMap||G.HONRO_EMBEDDED)return true;this.recoverProfile();return false;}
