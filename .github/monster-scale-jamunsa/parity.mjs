@@ -1,0 +1,12 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+const src=process.argv.slice(2);
+const [A,B]=src.map(d=>JSON.parse(fs.readFileSync(d+'/WAVE2.json')));
+assert(A.status==='PASS'&&B.status==='PASS');
+assert.deepEqual(A.identity.project,B.identity.project);
+const [a,b]=[A,B].map(v=>v.stages[16]);
+assert.deepEqual(b.realGrowth.map(v=>v.h),[152,280,490,490,280,152]);
+assert.deepEqual(a.realGrowth.map(v=>v.h),[152,239,291,291,239,152]);
+assert.deepEqual(b.realGrowth.map(({h,...v})=>v),a.realGrowth.map(({h,...v})=>v),'growth states except height unchanged');
+for(const k of ['static','physics','routes16','omen','neighbors','objective'])assert.deepEqual(b[k],a[k],k);
+console.log('PASS exact Stage16 growth/quiet/stock HP and same oath, omen, terrain and neighbors.');
