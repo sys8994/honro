@@ -31,6 +31,8 @@ const PLACE_VARIANTS=Object.freeze({6:Object.freeze({'midboss-stage6':Object.fre
  reason:'잠운사 침수 하층에 고인 혼기가 반응할 때만 몸을 일으킨다.'
 })}),30:Object.freeze({'sf-dw6':Object.freeze({
  species:'dueoksini',toneOnly:'quayStoneDust',reason:'나루 서편 석단에 머문 두억시니에 젖은 석분이 묻었다.'
+})}),34:Object.freeze({'a4-34-r-6':Object.freeze({
+ species:'warden',shapeOnly:Object.freeze({h:430,r:60})
 })}),40:Object.freeze({'final40-tide-keeper-1':Object.freeze({
  species:'warden',toneOnly:'saltTimber',reason:'포구를 지키는 장승의 나무가 오랜 조수에 젖어 푸르게 바랬다.'
 })}),44:Object.freeze({'a5-foe-5':Object.freeze({
@@ -130,7 +132,17 @@ function apply(b,u){
   record(b,u,{why:'named-place',result:'variant-rejected',target});
  }
  if(named){grow(b,u,named[0],named[1],.8,64,'named');return;}
- if(mid){grow(b,u,mid,1.3,.8,60,'midboss');return;}
+ if(mid){
+  grow(b,u,mid,1.3,.8,60,'midboss');
+  // Change the one authored silhouette after the existing stat rules.
+  const shape=v?.shapeOnly,sc=u.honroMonsterScale;
+  if(shape&&key===v.species&&sc&&!sc.kept&&shape.h>u.h&&!covers(b,u)&&fits(b,u,shape.h,shape.r)){
+   Object.assign(u,shape);
+   sc.rest=shape.h;sc.restR=shape.r;sc.step=1;
+   record(b,u,{why:'shape-only',result:'applied',h:shape.h,r:shape.r});
+  }
+  return;
+ }
  const row=SPECIES[key];if(!row){u.honroMonsterScale={v:b.honroMonsterScaleRevision,why:'species',kept:true};return;}
  let [m,hp,speed]=row;const giant=u.honroMonsterVariant==='giant';
  if(GROWTH[key])m=GROWTH[key][Math.max(0,Math.min(2,(u.honroMonsterGrowth||1)-1))];
