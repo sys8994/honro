@@ -100,8 +100,15 @@ export async function createAct6WebQa(project,repoRoot,env=process.env){
   const owner54=(await readFile(new URL('./runtime/stage54-pilot-owner.mjs',import.meta.url),'utf8')).split('\n').slice(1).join('\n').replace('export async function','async function');
   const mount54=await readFile(new URL('./runtime/stage54-entry.inc.js',import.meta.url),'utf8');
   const code54='const createStage54ChartOwner=(()=>{'+charts54+owner54+'\nreturn createStage54ChartOwner;})();\n'+mount54;
+  const fifthRaw=await readFile(new URL('./data/act6-qa/fifth.json',import.meta.url));
+  assert.equal(hash(fifthRaw),'3ae91543525a09093da52ee1dd2bff8ab8324a7e7858996c363afdd10e066b8f');
+  const fifth=JSON.parse(fifthRaw);assert(fifth.id===55&&fifth.authoredId==='stage-55'&&fifth.runtimeReleaseEnabled===false&&fifth.map.units.length===0);
+  packets.push({...fifth,schema:'honro-act6-normal-55-source/v1',trace:{stageId:55,authoredId:'stage-55',mapSHA256:hash(JSON.stringify(fifth.map)),assetSHA256:hash(JSON.stringify(fifth.library))}});
+  const owner55=await readFile(new URL('./runtime/stage55-pilot-owner.mjs',import.meta.url),'utf8');
+  const mount55=await readFile(new URL('./runtime/stage55-entry.inc.js',import.meta.url),'utf8');
+  const code55='const {createNormalBellOwner,D55}=(()=>{'+owner55.replaceAll('export ','')+'\nreturn {createNormalBellOwner:createStage55EmptyBell,D55:STAGE55};})();\n'+mount55;
   const bind53='const createInnerMissionOwner=(()=>{'+mission53.replace('export function','function')+'\nreturn createInnerMissionOwner;})();\n'+
-    'const createStage53PhysicalActions=(()=>{'+actions53.replace('export function','function')+'\nreturn createStage53PhysicalActions;})();\n'+b53+code54;
+    'const createStage53PhysicalActions=(()=>{'+actions53.replace('export function','function')+'\nreturn createStage53PhysicalActions;})();\n'+b53+code54+code55;
   source=replaceOne(source,'      function enter(app,id,ticket){',bind53+'\n      function enter(app,id,ticket){');
   source=replaceOne(source,'const stages=new Set([51,52])','const stages=new Set([51,52,53])');
   source=replaceOne(source,"        return app.screen==='battle'&&!!s&&s.b.honroStage===51", "        if(id===53)return app.screen==='battle'&&s?.normal51&&s.b.honroStage===52&&app.engine===s.engine&&s.b.phase==='won'&&app.done&&s.terminal?.stage===52&&s.terminal.flags['act6.outerSitesPrepared']===true&&s.terminal.flags['act6.darmheoInTemple']===true;\n        return app.screen==='battle'&&!!s&&s.b.honroStage===51");
@@ -123,10 +130,155 @@ export async function createAct6WebQa(project,repoRoot,env=process.env){
   source=replaceOne(source,'        if(e.b.honroStage===53){const a=actions53', '        if(e.b.honroStage===54){chart54Input(app,s,e);return true;}\n        if(e.b.honroStage===53){const a=actions53');
   source=replaceOne(source,'const terminal=s.b.honroStage===53?', 'const terminal=s.b.honroStage===54?s.owner54.terminal(app,s.engine):s.b.honroStage===53?');
   source=replaceOne(source,'        if(terminal?.stage===52&&s.normal51)', "        if(terminal?.stage===53&&s.normal51){const btn=document.createElement('button');btn.type='button';btn.dataset.act6QaNext='54';styleAction(btn);btn.textContent='거꾸로 선 처마로';appUI(app)?.append(btn);issue(app,btn,54);}\n        if(terminal?.stage===52&&s.normal51)");
-  source=replaceOne(source,"        return e?.b?.honroStage===53&&e.active===u&&actions53.aim(app,e)", "        if(e?.b?.honroStage===54)return chart54Aim(app,e,u)&&!ids.includes('M09')&&ids.length<4?[...ids,'M09']:ids;\n        return e?.b?.honroStage===53&&e.active===u&&actions53.aim(app,e)");
+  source=replaceOne(source,"        return e?.b?.honroStage===53&&e.active===u&&actions53.aim(app,e)", "        if(e?.b?.honroStage===54)return contextualStakeIds(app,e,ids,chart54Aim(app,e,u));\n        return e?.b?.honroStage===53&&e.active===u&&actions53.aim(app,e)");
   source=replaceOne(source,"        if(e?.b?.honroStage!==53||e.active!==u||app.selected!=='M09')", "        if(e?.b?.honroStage===54&&e.active===u&&app.selected==='M09'){const s=active.get(app);if(chart54Aim(app,e,u)){const q=s.owner54.relay(app,e,{angle:u.angle,power:app.power});if(!q.ok)app.notify(q.reason);app.updateHUD(true);}return true;}\n        if(e?.b?.honroStage!==53||e.active!==u||app.selected!=='M09')");
-  source=replaceOne(source,'release,keepAction:', 'release,context53,release53,tick54,keepAction:');
+  source=replaceOne(source,'const stages=new Set([51,52,53,54])','const stages=new Set([51,52,53,54,55])');
+  source=replaceOne(source,'        if(id===54)return eligible54(app,s);','        if(id===55)return eligible55(app,s);\n        if(id===54)return eligible54(app,s);');
+  source=replaceOne(source,'const {packet,compiled,known,chart}=await prepareExact(id);','const {packet,compiled,known,chart,bell}=await prepareExact(id);');
+  source=replaceOne(source,'permits.set(app,{ticket,id,packet,compiled,known,chart,owns});','permits.set(app,{ticket,id,packet,compiled,known,chart,bell,owns});');
+  source=replaceOne(source,"      if(id===54){\n        check(packet.schema", "      if(id===55){\n        check(packet.schema==='honro-act6-normal-55-source/v1'&&packet.trace.stageId===55&&packet.map.id==='stage-55'&&packet.runtimeReleaseEnabled===false&&packet.trace.mapSHA256===pin.mapSHA256&&packet.trace.assetSHA256===pin.assetSHA256,'Invalid 55 packet authority');\n        const compiled=G.HonroMaps.compile(packet.map,{library:packet.library}),known=[];\n        for(const [v,h] of [[compiled.terrain,D55.shape.playSHA],[compiled.worldTerrain,D55.shape.worldSHA]]){const src=JSON.stringify(v);check(await sha(new TextEncoder().encode(src))===h,'Native 55 source mismatch');known.push([src,h]);}\n        return await prepareNormal55(packet,known,compiled);\n      }\n      if(id===54){\n        check(packet.schema");
+  source=replaceOne(source,'        if(id===54&&active.get(app)?.normal51===true)','        if(id===55&&active.get(app)?.normal51===true)return enterNormal55(app,grant,active.get(app));\n        if(id===54&&active.get(app)?.normal51===true)');
+  source=replaceOne(source,'        if(e.b.honroStage===54&&s.owner54)','        if(e.b.honroStage===55&&s.owner55)return bindNormal55(app,e,s);\n        if(e.b.honroStage===54&&s.owner54)');
+  source=replaceOne(source,'function goalState(app,e){if(e?.b?.honroStage===54)','function goalState(app,e){if(e?.b?.honroStage===55)return active.get(app)?.owner55?.project(app,e);if(e?.b?.honroStage===54)');
+  source=replaceOne(source,'        if(e.b.honroStage===54){chart54Input','        if(e.b.honroStage===55){bell55UI(app,s,e);return true;}\n        if(e.b.honroStage===54){chart54Input');
+  source=replaceOne(source,'const terminal=s.b.honroStage===54?', 'const terminal=s.b.honroStage===55?s.owner55.terminal(app,s.engine):s.b.honroStage===54?');
+  source=replaceOne(source,'        if(terminal?.stage===53&&s.normal51)',"        if(terminal?.stage===54&&s.normal51){const btn=document.createElement('button');btn.type='button';btn.dataset.act6QaNext='55';styleAction(btn);btn.textContent='빈 종터로 돌아간다';appUI(app)?.append(btn);issue(app,btn,55);}\n        if(terminal?.stage===53&&s.normal51)");
+  source=replaceOne(source,'release,keepAction:', 'release,context53,release53,tick54,tick55,keepAction:');
 
+  const sixthRaw=await readFile(new URL('./data/act6-qa/sixth.json',import.meta.url));
+  assert.equal(hash(sixthRaw),'73e6de40351e90fc7014ea471cf7739b9444c3e67b5edb80d89f895dc5ae9d61');
+  const sixth=JSON.parse(sixthRaw);
+  assert(sixth.id===56&&sixth.authoredId==='qa-act6-06'&&sixth.runtimeReleaseEnabled===false&&sixth.map.units.length===0);
+  packets.push({...sixth,schema:'honro-act6-normal-56-source/v1',trace:{stageId:56,authoredId:sixth.authoredId,mapSHA256:hash(JSON.stringify(sixth.map)),assetSHA256:hash(JSON.stringify(sixth.library))}});
+  const code56=await Promise.all(['normal-scope','stage56-owner','stage56-presentation','stage56-adapter'].map(q=>readFile(new URL('./runtime/'+q+'.mjs',import.meta.url),'utf8')));
+  const mod=(src,exports)=>'(()=>{'+src.replace(/^import .*?;\n/gm,'').replace(/^export /gm,'')+'\nreturn {'+exports+'};})();\n';
+  source=replaceOne(source,'      const declared53=','      const {createNormalWarmPort,native56Handoff,inNormalStage}='+mod(code56[0],'createNormalWarmPort,native56Handoff,inNormalStage')+'const {createStage56Owner,owner56}='+mod(code56[1],'createStage56Owner,owner56')+'const {stage56Display}='+mod(code56[2],'stage56Display')+'const {stage56Adapter}='+mod(code56[3].replace('owner56 as D','owner56'),'stage56Adapter').replace('const C=G.HONRO_CORE','const D=owner56,C=G.HONRO_CORE')+(await readFile(new URL('./runtime/stage56-entry.inc.js',import.meta.url),'utf8'))+'\n      const declared53=');
+  source=replaceOne(source,'const stages=new Set([51,52,53,54,55])','const stages=new Set([51,52,53,54,55,56])');
+  source=replaceOne(source,'        if(id===55)return eligible55(app,s);','        if(id===56)return eligible56(app,s);\n        if(id===55)return eligible55(app,s);');
+  source=replaceOne(source,"      if(id===55){\n        check(packet.schema", "      if(id===56){\n        check(packet.schema==='honro-act6-normal-56-source/v1'&&packet.trace.stageId===56&&packet.map.id===owner56.authoredId&&packet.authoredId===owner56.authoredId&&packet.runtimeReleaseEnabled===false&&packet.trace.mapSHA256===pin.mapSHA256&&packet.trace.assetSHA256===pin.assetSHA256,'Invalid 56 packet authority');\n        const compiled=G.HonroMaps.compile(packet.map,{library:packet.library}),known=[];\n        for(const [v,h] of [[compiled.terrain,owner56.playSHA],[compiled.worldTerrain,owner56.worldSHA]]){const src=JSON.stringify(v);check(await sha(new TextEncoder().encode(src))===h,'Native 56 source mismatch');known.push([src,h]);}\n        signed56.set(packet,compiled);return {packet,compiled,known};\n      }\n      if(id===55){\n        check(packet.schema");
+  source=replaceOne(source,"            check(app.launch(id,false,null,ticket)===true", "            check(await app.launch(id,false,null,ticket)===true");
+  source=replaceOne(source,'        if(id===55&&active.get(app)?.normal51===true)','        if(id===56&&active.get(app)?.normal51===true)return enterNormal56(app,grant,active.get(app));\n        if(id===55&&active.get(app)?.normal51===true)');
+  source=replaceOne(source,'        if(e.b.honroStage===55&&s.owner55)','        if(e.b.honroStage===56&&s.prepared56)return bindNormal56(app,e,s);\n        if(e.b.honroStage===55&&s.owner55)');
+  source=replaceOne(source,'function goalState(app,e){if(e?.b?.honroStage===55)','function goalState(app,e){if(e?.b?.honroStage===56)return active.get(app)?.owner56?.project();if(e?.b?.honroStage===55)');
+  source=replaceOne(source,'        if(e.b.honroStage===55){bell55UI','        if(e.b.honroStage===56){stage56UI(app,s,e);return true;}\n        if(e.b.honroStage===55){bell55UI');
+  source=replaceOne(source,'const terminal=s.b.honroStage===55?', 'const terminal=s.b.honroStage===56?terminalNormal56(app,s):s.b.honroStage===55?');
+  source=replaceOne(source,'        if(terminal?.stage===53&&s.normal51)',"        if(terminal?.stage===55&&s.normal51){const btn=document.createElement('button');btn.type='button';btn.dataset.act6QaNext='56';styleAction(btn);btn.textContent='깊은 경계로 들어간다';appUI(app)?.append(btn);issue(app,btn,56); }\n        if(terminal?.stage===53&&s.normal51)");
+  source=replaceOne(source,'release,context53,release53,tick54,tick55,keepAction:', 'release,context53,release53,tick54,tick55,tick56,keepAction:');
+
+  const seventhRaw=await readFile(new URL('./data/act6-qa/seventh.json',import.meta.url));
+  assert.equal(hash(seventhRaw),'005b77bedf9a6034cb92faa8fc816c5df06fc78b23b295379eab1a00d087dfe4');
+  const seventh=JSON.parse(seventhRaw);
+  assert(seventh.id===57&&seventh.authoredId==='a6-local-playable-07'&&seventh.runtimeReleaseEnabled===false&&seventh.map.units.length===0);
+  packets.push({...seventh,schema:'honro-act6-normal-57-source/v1',trace:{stageId:57,authoredId:seventh.authoredId,mapSHA256:hash(JSON.stringify(seventh.map)),assetSHA256:hash(JSON.stringify(seventh.library))}});
+  const code57=await Promise.all(['bridge','owner','emergency','mission','adapter'].map(q=>readFile(new URL('./runtime/stage57-'+q+'.mjs',import.meta.url),'utf8')));
+  const wrap57=(name,i)=>'const {'+name+'}='+mod(code57[i],name);
+  source=replaceOne(source,'      const declared53=',
+    ['bindOwnedBridge','createStage57Owner','mountEmergency57','createStage57Mission','stage57Adapter'].map(wrap57).join('')+
+    (await readFile(new URL('./runtime/stage57-entry.inc.js',import.meta.url),'utf8'))+'\n      const declared53=');
+  source=replaceOne(source,'const stages=new Set([51,52,53,54,55,56])','const stages=new Set([51,52,53,54,55,56,57])');
+  source=replaceOne(source,'        if(id===56)return eligible56(app,s);','        if(id===57)return eligible57(app,s);\n        if(id===56)return eligible56(app,s);');
+  source=replaceOne(source,"      if(id===56){\n        check(packet.schema", "      if(id===57){\n        check(packet.schema==='honro-act6-normal-57-source/v1'&&packet.trace.stageId===57&&packet.map.id===descriptor57.authoredId&&packet.authoredId===descriptor57.authoredId&&packet.runtimeReleaseEnabled===false&&packet.trace.mapSHA256===pin.mapSHA256&&packet.trace.assetSHA256===pin.assetSHA256,'Invalid 57 packet authority');\n        const compiled=G.HonroMaps.compile(packet.map,{library:packet.library}),known=[];\n        for(const [v,h] of [[compiled.terrain,descriptor57.playSHA],[compiled.worldTerrain,descriptor57.worldSHA]]){const src=JSON.stringify(v);check(await sha(new TextEncoder().encode(src))===h,'Native 57 source mismatch');known.push([src,h]);}\n        signed57.set(packet,compiled);return {packet,compiled,known};\n      }\n      if(id===56){\n        check(packet.schema");
+  source=replaceOne(source,'        if(id===56&&active.get(app)?.normal51===true)','        if(id===57&&active.get(app)?.normal51===true)return enterNormal57(app,grant,active.get(app));\n        if(id===56&&active.get(app)?.normal51===true)');
+  source=replaceOne(source,'        if(e.b.honroStage===56&&s.prepared56)','        if(e.b.honroStage===57&&s.prepared57)return bindNormal57(app,e,s);\n        if(e.b.honroStage===56&&s.prepared56)');
+  source=replaceOne(source,'function goalState(app,e){if(e?.b?.honroStage===56)','function goalState(app,e){if(e?.b?.honroStage===57)return active.get(app)?.owner57?.project();if(e?.b?.honroStage===56)');
+  source=replaceOne(source,'        if(e.b.honroStage===56){stage56UI','        if(e.b.honroStage===57){stage57UI(app,s,e);return true;}\n        if(e.b.honroStage===56){stage56UI');
+  source=replaceOne(source,'const terminal=s.b.honroStage===56?', 'const terminal=s.b.honroStage===57?terminalNormal57(app,s):s.b.honroStage===56?');
+  source=replaceOne(source,'        if(terminal?.stage===55&&s.normal51)',"        if(terminal?.stage===56&&s.normal51){const btn=document.createElement('button');btn.type='button';btn.dataset.act6QaNext='57';styleAction(btn);btn.textContent='무너지는 세 자리로';appUI(app)?.append(btn);issue(app,btn,57); }\n        if(terminal?.stage===55&&s.normal51)");
+  source=replaceOne(source,'release,context53,release53,tick54,tick55,tick56,keepAction:', 'release,context53,release53,tick54,tick55,tick56,tick57,keepAction:');
+
+  const eighthRaw=await readFile(new URL('./data/act6-qa/eighth.json',import.meta.url));
+  assert.equal(hash(eighthRaw),'7df6e20b457fe8d34e72eae0e8a3ac6b6f2b3d853ee8424a477b1385f61e6cbd');
+  const eighth=JSON.parse(eighthRaw);
+  assert(eighth.id===58&&eighth.map.units.length===0&&eighth.roles.length===4);
+  packets.push({...eighth,schema:'honro-act6-normal-58-source/v1',trace:{stageId:58,authoredId:eighth.map.id,mapSHA256:hash(JSON.stringify(eighth.map)),assetSHA256:hash(JSON.stringify(eighth.library))}});
+  const core58=await readFile(new URL('./runtime/stage58-owner.mjs',import.meta.url),'utf8');
+  const normal58=await readFile(new URL('./runtime/stage58-normal-adapter.mjs',import.meta.url),'utf8');
+  source=replaceOne(source,'      const declared53=','const {createStage58Owner}='+mod(core58,'createStage58Owner')+'const {stage58Adapter}='+mod(normal58,'stage58Adapter')+
+    (await readFile(new URL('./runtime/stage58-normal-entry.inc.js',import.meta.url),'utf8'))+'\n      const declared53=');
+  source=replaceOne(source,'const stages=new Set([51,52,53,54,55,56,57])','const stages=new Set([51,52,53,54,55,56,57,58])');
+  source=replaceOne(source,'        if(id===57)return eligible57(app,s);','        if(id===58)return eligible58(app,s);\n        if(id===57)return eligible57(app,s);');
+  source=replaceOne(source,"      if(id===57){\n        check(packet.schema", "      if(id===58){\n        check(packet.schema==='honro-act6-normal-58-source/v1'&&packet.trace.stageId===58&&packet.map.id===packet.trace.authoredId&&packet.trace.mapSHA256===pin.mapSHA256&&packet.trace.assetSHA256===pin.assetSHA256,'Invalid 58 packet authority');\n        const compiled=G.HonroMaps.compile(packet.map,{library:packet.library}),known=[];\n        for(const [v,h] of [[compiled.terrain,descriptor58.playSHA],[compiled.worldTerrain,descriptor58.worldSHA]]){const src=JSON.stringify(v);check(await sha(new TextEncoder().encode(src))===h,'Native 58 source mismatch');known.push([src,h]);}\n        signed58.set(packet,compiled);return {packet,compiled,known};\n      }\n      if(id===57){\n        check(packet.schema");
+  source=replaceOne(source,'        if(id===57&&active.get(app)?.normal51===true)','        if(id===58&&active.get(app)?.normal51===true)return enterNormal58(app,grant,active.get(app));\n        if(id===57&&active.get(app)?.normal51===true)');
+  source=replaceOne(source,'        if(e.b.honroStage===57&&s.prepared57)','        if(e.b.honroStage===58&&s.prepared58)return bindNormal58(app,e,s);\n        if(e.b.honroStage===57&&s.prepared57)');
+  source=replaceOne(source,'function goalState(app,e){if(e?.b?.honroStage===57)','function goalState(app,e){if(e?.b?.honroStage===58)return active.get(app)?.owner58?.project();if(e?.b?.honroStage===57)');
+  source=replaceOne(source,'        if(e.b.honroStage===57){stage57UI','        if(e.b.honroStage===58){stage58UI(app,s,e);return true;}\n        if(e.b.honroStage===57){stage57UI');
+  source=replaceOne(source,'const terminal=s.b.honroStage===57?', 'const terminal=s.b.honroStage===58?terminalNormal58(app,s):s.b.honroStage===57?');
+  source=replaceOne(source,'        if(terminal?.stage===56&&s.normal51)',"        if(terminal?.stage===57&&s.normal51){const btn=document.createElement('button');btn.type='button';btn.dataset.act6QaNext='58';styleAction(btn);btn.textContent='네 사람과 마지막 문턱을 넘는다';appUI(app)?.append(btn);issue(app,btn,58); }\n        if(terminal?.stage===56&&s.normal51)");
+  source=replaceOne(source,'release,context53,release53,tick54,tick55,tick56,tick57,keepAction:', 'release,context53,release53,tick54,tick55,tick56,tick57,tick58,keepAction:');
+
+  const ninthRaw=await readFile(new URL('./data/act6-qa/ninth.json',import.meta.url));
+  assert.equal(hash(ninthRaw),'dd829cb01460592a296b5f8127825260036386a437206928e21cb928cdb8d333');
+  const ninth=JSON.parse(ninthRaw);
+  assert(ninth.id===59&&ninth.map.id==='stage-59'&&ninth.map.units.length===0);
+  packets.push({...ninth,schema:'honro-act6-normal-59-source/v1',trace:{stageId:59,authoredId:ninth.map.id,mapSHA256:hash(JSON.stringify(ninth.map)),assetSHA256:hash(JSON.stringify(ninth.library))}});
+  const code59=await Promise.all(['native-bind','strip','wave','role-paint','stage59-owner','stage59-adapter'].map(q=>readFile(new URL('./runtime/'+q+'.mjs',import.meta.url),'utf8')));
+  const gen59=(names,i)=>'const {'+names+'}='+mod(i===5?code59[i].replace(/^const crew=/m,'const D=D59;const crew='):code59[i],i===4?'createStage59Owner,D59:STAGE59':names);
+  source=replaceOne(source,'      const declared53=',
+    ['mountNativeObservation,nativeFacts','buildStrip,contacts','due,commit','createStage59RolePaint','createStage59Owner,D59','stage59Adapter'].map(gen59).join('')+
+    (await readFile(new URL('./runtime/stage59-normal-entry.inc.js',import.meta.url),'utf8'))+'\n      const declared53=');
+  source=replaceOne(source,'const stages=new Set([51,52,53,54,55,56,57,58])','const stages=new Set([51,52,53,54,55,56,57,58,59])');
+  source=replaceOne(source,'        if(id===58)return eligible58(app,s);','        if(id===59)return eligible59(app,s);\n        if(id===58)return eligible58(app,s);');
+  source=replaceOne(source,"      if(id===58){\n        check(packet.schema", "      if(id===59){\n        check(packet.schema==='honro-act6-normal-59-source/v1'&&packet.trace.stageId===59&&packet.map.id===D59.authoredId&&packet.trace.mapSHA256===pin.mapSHA256&&packet.trace.assetSHA256===pin.assetSHA256,'Invalid 59 packet authority');\n        const compiled=G.HonroMaps.compile(packet.map,{library:packet.library}),known=[];\n        for(const [v,h] of [[compiled.terrain,D59.playSHA],[compiled.worldTerrain,D59.worldSHA]]){const src=JSON.stringify(v);check(await sha(new TextEncoder().encode(src))===h,'Native 59 source mismatch');known.push([src,h]);}\n        signed59.set(packet,compiled);return {packet,compiled,known};\n      }\n      if(id===58){\n        check(packet.schema");
+  source=replaceOne(source,'        if(id===58&&active.get(app)?.normal51===true)','        if(id===59&&active.get(app)?.normal51===true)return enterNormal59(app,grant,active.get(app));\n        if(id===58&&active.get(app)?.normal51===true)');
+  source=replaceOne(source,'        if(e.b.honroStage===58&&s.prepared58)','        if(e.b.honroStage===59&&s.prepared59)return bindNormal59(app,e,s);\n        if(e.b.honroStage===58&&s.prepared58)');
+  source=replaceOne(source,'function goalState(app,e){if(e?.b?.honroStage===58)','function goalState(app,e){if(e?.b?.honroStage===59)return active.get(app)?.owner59?.project();if(e?.b?.honroStage===58)');
+  source=replaceOne(source,'        if(e.b.honroStage===58){stage58UI','        if(e.b.honroStage===59){stage59UI(app,s,e);return true;}\n        if(e.b.honroStage===58){stage58UI');
+  source=replaceOne(source,'const terminal=s.b.honroStage===58?', 'const terminal=s.b.honroStage===59?terminalNormal59(app,s):s.b.honroStage===58?');
+  source=replaceOne(source,'        if(terminal?.stage===57&&s.normal51)',"        if(terminal?.stage===58&&s.normal51){const btn=document.createElement('button');btn.type='button';btn.dataset.act6QaNext='59';styleAction(btn);btn.textContent='마지막 마당으로 돌아간다';appUI(app)?.append(btn);issue(app,btn,59); }\n        if(terminal?.stage===57&&s.normal51)");
+  source=replaceOne(source,'release,context53,release53,tick54,tick55,tick56,tick57,tick58,keepAction:', 'release,context53,release53,tick54,tick55,tick56,tick57,tick58,tick59,keepAction:');
+
+  const tenthRaw=await readFile(new URL('./data/act6-qa/tenth.json',import.meta.url));
+  assert.equal(hash(tenthRaw),'1ed264e9415a2757852c7e7274ffdf94696e5fa89ff2b258871773bf920d52e1');
+  const registry=await readFile(new URL('./data/act6-qa/tenth-guard.json',import.meta.url));
+  assert.equal(hash(registry),'b607ed8b4a7760bfcebf70100effb6d1efc36da04e99513b52e4b052abc7d989');
+  const tenth=JSON.parse(tenthRaw),guardRegistry=JSON.parse(registry).cast;
+  assert(tenth.id===60&&tenth.map.id==='a6-10-playable-draft-noncampaign'&&tenth.map.units.length===0&&Object.keys(guardRegistry).length===3);
+  packets.push({...tenth,guardRegistry,schema:'honro-act6-normal-60-source/v1',trace:{stageId:60,authoredId:tenth.map.id,mapSHA256:hash(JSON.stringify(tenth.map)),assetSHA256:hash(JSON.stringify(tenth.library))}});
+  const code60=await Promise.all(['ending','card','owner'].map(q=>readFile(new URL('./runtime/stage60-'+q+'.mjs',import.meta.url),'utf8')));
+  const prep=replaceOne(code60[0]," assert(typeof grounded==='function');"," if(typeof grounded!=='function')throw TypeError('native grounded check required');");
+  const endingStock=env.HONRO_ACT6_QA_NORMAL_ENDING_STOCK==='1';
+  const finalEndingSource=endingStock?await (await import('./act6-normal-ending-qa/emit.mjs')).normal60EndingSource():'';
+  source=replaceOne(source,'      const declared53=',
+    (endingStock?'const normal60Stock=true;\n'+finalEndingSource:'')+'const {prepareEnding}='+mod(prep,'prepareEnding')+'const {endingCardFor}='+mod(code60[1],'endingCardFor')+'const {createStage60Owner}='+mod(code60[2],'createStage60Owner')+
+    (await readFile(new URL(endingStock?'./act6-normal-ending-qa/stage60-entry-stock.inc.js':'./runtime/stage60-normal-entry.inc.js',import.meta.url),'utf8'))+'\n      const declared53=');
+  source=replaceOne(source,'const stages=new Set([51,52,53,54,55,56,57,58,59])','const stages=new Set([51,52,53,54,55,56,57,58,59,60])');
+  source=replaceOne(source,'        if(id===59)return eligible59(app,s);','        if(id===60)return eligible60(app,s);\n        if(id===59)return eligible59(app,s);');
+  source=replaceOne(source,"      if(id===59){\n        check(packet.schema", "      if(id===60){\n        check(packet.schema==='honro-act6-normal-60-source/v1'&&packet.trace.stageId===60&&packet.map.id===D60.authoredId&&packet.trace.mapSHA256===pin.mapSHA256&&packet.trace.assetSHA256===pin.assetSHA256,'Invalid 60 packet authority');\n        const compiled=G.HonroMaps.compile(packet.map,{library:packet.library}),known=[];\n        for(const [v,h] of [[compiled.terrain,D60.playSHA],[compiled.worldTerrain,D60.worldSHA]]){const src=JSON.stringify(v);check(await sha(new TextEncoder().encode(src))===h,'Native 60 source mismatch');known.push([src,h]);}\n        signed60.set(packet,compiled);return {packet,compiled,known};\n      }\n      if(id===59){\n        check(packet.schema");
+  source=replaceOne(source,'        if(id===59&&active.get(app)?.normal51===true)','        if(id===60&&active.get(app)?.normal51===true)return enterNormal60(app,grant,active.get(app));\n        if(id===59&&active.get(app)?.normal51===true)');
+  source=replaceOne(source,'        if(e.b.honroStage===59&&s.prepared59)','        if(e.b.honroStage===60&&s.quiet60)return bindNormal60(app,e,s);\n        if(e.b.honroStage===59&&s.prepared59)');
+  source=replaceOne(source,'function goalState(app,e){if(e?.b?.honroStage===59)','function goalState(app,e){if(e?.b?.honroStage===60)return goal60(app,e);if(e?.b?.honroStage===59)');
+  source=replaceOne(source,'        if(e.b.honroStage===59){stage59UI','        if(e.b.honroStage===60){stage60UI(app,s,e);return true;}\n        if(e.b.honroStage===59){stage59UI');
+  source=replaceOne(source,'const terminal=s.b.honroStage===59?', 'const terminal=s.b.honroStage===60?terminalNormal60(app,s):s.b.honroStage===59?');
+  if(endingStock){
+    const endingOutcome='        app.done=true;app.cancelInput();';
+    source=replaceOne(source,endingOutcome,endingOutcome+'\n        if(terminal?.stage===60&&s.normal51)mountEndingNormal60(app,s,terminal);');
+    const endingRelease='function release(app){const s=active.get(app);if(!s)return;';
+    source=replaceOne(source,endingRelease,endingRelease+'s.closeEnding60?.();');
+  }
+  source=replaceOne(source,'        if(terminal?.stage===58&&s.normal51)',"        if(terminal?.stage===59&&s.normal51){const btn=document.createElement('button');btn.type='button';btn.dataset.act6QaNext='60';styleAction(btn);btn.textContent='마지막 두 혼과 산문으로';appUI(app)?.append(btn);issue(app,btn,60); }\n        if(terminal?.stage===58&&s.normal51)");
+  source=replaceOne(source,'release,context53,release53,tick54,tick55,tick56,tick57,tick58,tick59,keepAction:', 'release,context53,release53,tick54,tick55,tick56,tick57,tick58,tick59,tick60,keepAction:');
+
+ }
+ if(env.HONRO_ACT6_QA_NORMAL51==='1'&&env.HONRO_ACT6_QA_NORMAL_FAR==='1'){
+  const farRaw=await readFile(new URL('./act6-late-qa/early-far.mjs',import.meta.url),'utf8');
+  let farHost=await readFile(new URL('./act6-late-qa/normal-far.inc.js',import.meta.url),'utf8');
+  if(env.HONRO_ACT6_QA_NORMAL_FINAL_FAR==='1'){
+    const far60=await readFile(new URL('./act6-late-qa/far60.mjs',import.meta.url),'utf8');
+    const host60=await readFile(new URL('./act6-late-qa/normal-final-far.inc.js',import.meta.url),'utf8');
+    farHost+='\nconst {createPlayableFar60}=(()=>{'+far60.replace('export function createPlayableFar60','function createPlayableFar60')+
+      '\nreturn {createPlayableFar60};})();\n'+host60;
+    farHost=replaceOne(farHost,'if(!normalFar||id<51||id>57','if(id===60&&scene&&s?.normal51&&s.engine===e&&s.b===b){mountNormalFinalFar(app,e,s);return;}\n        if(!normalFar||id<51||id>57');
+    farHost=replaceOne(farHost,'if(!s?.normalFar||!e)return;','s?.normalFinalFar?.dispose();if(!s?.normalFar||!e)return;');
+  }
+  const lateEnabled=env.HONRO_ACT6_QA_NORMAL_LATE_FAR==='1';
+  const lateFar=lateEnabled?await (await import('./act6-late-qa/compose-normal-late-far.mjs')).normalLateFarSource():'';
+  source=replaceOne(source,'/* SIGNED_ASSET */;', '/* SIGNED_ASSET */;\n'+farRaw.replace('export function createStageFar','function createStageFar')+'\n'+farHost+'\n'+lateFar);
+  if(lateEnabled){
+    source=replaceOne(source,'if(!normalFar||id<51||id>57','if((id===58||id===59)&&scene&&s?.normal51&&s.engine===e&&s.b===b){mountNormalLateFar(app,e,s);return;}\n        if(!normalFar||id<51||id>57');
+    source=replaceOne(source,'if(!s?.normalFar||!e)return;','s?.normalLateFar?.dispose();if(!s?.normalFar||!e)return;');
+  }
+  source=replaceOne(source,'active.delete(app);','disposeNormalFar(app);active.delete(app);');
+  source=replaceOne(source,'active:app=>active.has(app),','active:app=>active.has(app),mountNormalFar,');
  }
  return {source:replaceOne(replaceOne(source,'/* FIRST_OWNER */',first.replace('export function createFirstMissionOwner','function createFirstMissionOwner')),'/* FIFTY_OWNER */','const {createFiftyRestAdmission,buildPartyFromNormalRest,bindOrdinaryFiftyRestUI}=(()=>{'+rest.replaceAll('export function ','function ')+'\nreturn {createFiftyRestAdmission,buildPartyFromNormalRest,bindOrdinaryFiftyRestUI};})();'),packets};
 }
@@ -166,11 +318,15 @@ export function makeQaMain(main,source,descriptor){
  if(source.includes('function enterNormal51('))edits.push(
   ['            G.HonroObjectives.updateSettlement(b,st,state.objectiveReady);','            if(!qa51.isNormal(this))G.HonroObjectives.updateSettlement(b,st,state.objectiveReady);']);
  if(source.includes('function enterNormal53('))edits.push(
-  ['(id===51||id===52)&&!training?qa51.launch', '(id===51||id===52||id===53||id===54)&&!training?qa51.launch'],
+  ['(id===51||id===52)&&!training?qa51.launch', '(id===51||id===52||id===53||id===54||id===55||id===56||id===57||id===58||id===59||id===60)&&!training?qa51.launch'],
   ["const combatSkills=u.meleeFollow==='ready'&&!u.loadout.includes('S00')?['S00',...u.loadout]:u.loadout;", "const combatSkills=qa51.context53(this,u,u.meleeFollow==='ready'&&!u.loadout.includes('S00')?['S00',...u.loadout]:u.loadout);"],
   ['G.HonroStakeCrossing.skills(this.engine.b,active).includes(remembered)','qa51.context53(this,active,G.HonroStakeCrossing.skills(this.engine.b,active)).includes(remembered)'],
   ['G.HonroStakeCrossing.skills(b,u).includes(this.selected)','qa51.context53(this,u,G.HonroStakeCrossing.skills(b,u)).includes(this.selected)'],
   ['}else this.engine.fire(this.selected, u.angle, this.power);','}else if(!qa51.release53(this,u))this.engine.fire(this.selected, u.angle, this.power);']);
- if(source.includes('function enterNormal54('))edits.push(['missionTick(dt){if(qa51.active(this))return;', 'missionTick(dt){if(qa51.active(this)){qa51.tick54(this);return;}']);
+ if(source.includes('function enterNormal54('))edits.push(['missionTick(dt){if(qa51.active(this))return;', 'missionTick(dt){if(qa51.active(this)){qa51.tick54(this);qa51.tick55(this);qa51.tick56(this);qa51.tick57(this);qa51.tick58(this);qa51.tick59(this);qa51.tick60(this,dt);return;}']);
+ if(source.includes('function enterNormal58('))edits.push(['if (!heroes.length || objective?.dead || rescuedResidentLost || channelerLost || act2Failure)', 'if (!heroes.length || objective?.dead || rescuedResidentLost || channelerLost || act2Failure || (b.honroStage===58&&qa51.goalState(this,e)?.failed===true))']);
+ if(source.includes('function mountNormalFar('))edits.push([
+  "this.scene = new G.HonroScene($('battlecanvas')); const u = e.active;",
+  "this.scene = new G.HonroScene($('battlecanvas')); qa51.mountNormalFar(this,e); const u = e.active;"]);
  return edits.reduce((code,[a,b])=>replaceOne(code,a,b),main);
 }

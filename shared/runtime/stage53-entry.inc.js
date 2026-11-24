@@ -65,9 +65,32 @@
         check(trust53(app,e,s),'Native 53 scoped owner refused '+JSON.stringify([s===active.get(app),s?.normal51,s.b===e.b,s.source53===verified53.get(e),app.engine===e,app.stageId,app.profile===app.normalProfile,e.b.mode,e.b.honroAuthoredId,e.b.honroCanonical,e.b.honroCustom,normal51Provider.content(e.b)===e.stage&&app.stage?.id===53&&app.stage?.objective===e.stage.objective,e.b.honroGrowth?.limit,runtime(app)]));check(indoor53.mount(app,e,s),'Native 53 mission refused');check(actions53.mount(app,e,s),'Native 53 actions refused '+JSON.stringify([e.active?.x,e.active?.y,e.active?.airborne,e.canAct(),e.grounded(e.active),e.b.stakes?.length,e.b.phase]));
         s.engine=e;e.checkEnd=()=>app.checkMission(e);return true;
       }
+      function contextualStakeIds(app,e,ids,allowed){
+        const state=active.get(app),full=ids.slice(0,4).filter(Boolean).length===4;
+        const dedicated=!!(state&&allowed&&full&&!ids.includes('M09'));
+        if(dedicated&&!state.stakeControl){
+          const host=appUI(app);
+          if(host){
+            const button=document.createElement('button');
+            button.type='button';button.dataset.act6QaContextStake='';
+            button.dataset.action='combat-skill';button.dataset.skill='M09';
+            button.textContent='축지진목 조준';styleAction(button);host.append(button);
+            state.stakeControl=button;
+          }
+        }
+        if(state?.stakeControl){
+          state.stakeControl.hidden=!dedicated;state.stakeControl.disabled=!dedicated;
+          state.stakeControl.setAttribute('aria-pressed', String(dedicated&&app.selected==='M09'));
+        }
+        if(!allowed||ids.includes('M09'))return ids;
+        if(full)return [...ids,'M09']; // normal HUD keeps its four; the visible contextual button selects the same skill
+        const shown=ids.slice(),blank=Array.from({length:4},(_,i)=>i).find(i=>!shown[i]);
+        shown[blank]='M09';return shown;
+      }
       function context53(app,u,ids){
         const e=app.engine;
-        return e?.b?.honroStage===53&&e.active===u&&actions53.aim(app,e)&&!ids.includes('M09')&&ids.length<4?[...ids,'M09']:ids;
+        return e?.b?.honroStage===53&&e.active===u&&actions53.aim(app,e)
+          ?contextualStakeIds(app,e,ids,true):contextualStakeIds(app,e,ids,false);
       }
       function release53(app,u){
         const e=app.engine;

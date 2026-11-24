@@ -139,7 +139,38 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
     const idx=entries.findIndex(entry=>entry.name==='act6-app-qa');
     assert(idx>=0&&entries.filter(entry=>entry.qaAct6).length===1,'Expected exact one Act6 QA pilot');
     const [{qaAct6}]=entries.splice(idx,1);
-    const descriptors={origin:'http://127.0.0.1:18861',rows:{}};
+    const previewBuildShape=process.env.HONRO_ACT6_QA_PAGES_SHAPE==='1';
+    const descriptors={origin:'http://127.0.0.1:18861',basePath:previewBuildShape?'/honro/':'/',previewBuildShape,rows:{}};
+    if(previewBuildShape&&process.env.HONRO_ACT6_QA_NORMAL_ENDING_STOCK==='1'){
+      const endings={};
+      for(const [asset,digest] of Object.entries({
+        'dawn-pc.webp':'cb000c13e990325498c7996f423b6b459cc586d8ee4d20912b7a1db79944e25f',
+        'dawn-mobile.webp':'56e249516f335f8762883a94715a49043aee8c4598847d27c90f15289f461a61'
+      })){
+        const bytes=await readFile(path.join(root,'shared/act6-normal-ending-qa',asset));
+        assert.equal(hash(bytes),digest,'Ending production asset identity changed');
+        endings[asset]=await emit('graphics','act6-ending-'+asset.replace(/\.webp$/,''),'webp',bytes);
+      }
+      descriptors.normalEndingAssets=endings;
+    }
+    if(normal51&&process.env.HONRO_ACT6_QA_NORMAL_FAR==='1'){
+      const {loadNormalFar}=await import('./act6-late-qa/load-normal-far.mjs');
+      const {manifest,extras}=await loadNormalFar();
+      for(const asset of extras)assert.equal('/'+await emit('graphics',asset.stem,'webp',asset.bytes),asset.plate.path,'R12 FAR pathname drift');
+      descriptors.farEarly=manifest;
+      if(process.env.HONRO_ACT6_QA_NORMAL_FINAL_FAR==='1'){
+        const {loadNormalFinalFar}=await import('./act6-late-qa/load-normal-final-far.mjs');
+        const {plate,stem,bytes}=await loadNormalFinalFar();
+        assert.equal('/'+await emit('graphics',stem,'webp',bytes),plate.path,'R12 final playable FAR pathname drift');
+        descriptors.normalFinalFar=plate;
+      }
+      if(process.env.HONRO_ACT6_QA_NORMAL_LATE_FAR==='1'){
+        const {loadNormalLateFar}=await import('./act6-late-qa/compose-normal-late-far.mjs');
+        const late=await loadNormalLateFar();
+        for(const asset of late.extras)assert.equal('/'+await emit('graphics',asset.stem,'webp',asset.bytes),asset.plate.path,'R12 late FAR pathname drift');
+        descriptors.normalLateFar=late.manifest;
+      }
+    }
     for(const packet of qaAct6.packets){
       const id=packet.trace.stageId,bytes=Buffer.from(JSON.stringify(packet)+'\n');
       assert(bytes.length<webJsonPartBytes,'Act6 QA packet must remain a bounded single signed JSON');
