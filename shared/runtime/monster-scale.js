@@ -30,7 +30,7 @@ const PLACE_VARIANTS=Object.freeze({6:Object.freeze({'midboss-stage6':Object.fre
  species:'eoduksini',growth:Object.freeze([1.6,3.51,8.08]),
  reason:'잠운사 침수 하층에 고인 혼기가 반응할 때만 몸을 일으킨다.'
 })}),44:Object.freeze({'a5-foe-5':Object.freeze({
- species:'warden',metres:8.5,healthRatio:.64,tone:'groveTimber',reason:'귀림 윗뿌리에 맺힌 혼기로 오래된 수목귀의 껍질과 결이 불었다.',
+ species:'warden',metres:8.5,healthRatio:.46,tone:'groveTimber',reason:'귀림 윗뿌리에 맺힌 혼기로 오래된 수목귀의 껍질과 결이 불었다.',
  weak:Object.freeze({v:2,key:'warden-face',discovery:'unknown',body:.20,bonus:1,top:.10,bottom:.46,halfWidth:.50})
 })})});
 const activeVersion=b=>b?.honroMonsterScaleRevision===LEGACY_REVISION||b?.honroMonsterScaleRevision===REVISION;
