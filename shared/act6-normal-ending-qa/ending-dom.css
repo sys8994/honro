@@ -1,0 +1,19 @@
+.honro-ending-60{position:absolute;inset:0;z-index:20;background:#131b25;color:#e9e0d2;display:grid;place-items:center;font:16px/1.6 system-ui,"Noto Sans KR",sans-serif;overflow:auto}
+.honro-ending-60-panel{box-sizing:border-box;width:min(100%,1100px);height:100%;min-height:240px;display:grid;grid-template-rows:minmax(80px,1fr) auto auto auto auto;align-content:center;gap:5px;padding:clamp(8px,2vw,18px) clamp(12px,3vw,28px)}
+.honro-ending-60-title{font-size:clamp(19px,3vw,31px);font-weight:550;margin:0;text-align:center}
+.honro-ending-60-media{min-height:0;min-width:0;display:grid;place-items:center;overflow:hidden}
+.honro-ending-60-media>*{display:block;width:100%;height:100%;min-width:0;min-height:0;object-fit:contain}
+.honro-ending-60-lines,.honro-ending-60-controls,.honro-ending-60-status{text-align:center;margin:0}
+.honro-ending-60-lines p{margin:0}
+.honro-ending-60-recorded{color:#d6b786}
+.honro-ending-60-button{box-sizing:border-box;min-height:44px;max-width:100%;padding:7px 18px;border:1px solid #ab977c;border-radius:4px;background:#232b34;color:#f4ebda;font:inherit;cursor:pointer}
+.honro-ending-60-button:focus-visible{outline:2px solid #f5d6a0;outline-offset:2px}
+.honro-ending-60-status{font-size:.9em;color:#dec39c;min-height:1.35em}
+
+/* The previous objective notification must not obscure the closing line. */
+body:has(.honro-ending-60) #notice{visibility:hidden!important}
+.honro-ending-60-panel{gap:8px}
+.honro-ending-60-lines{max-width:34rem;margin-inline:auto;padding-inline:12px}
+.honro-ending-60-title{letter-spacing:.045em}
+.honro-ending-60[data-cut="later-return"] .honro-ending-60-title{letter-spacing:.075em}
+@media(max-width:560px){.honro-ending-60-panel{gap:5px;padding-bottom:max(12px,env(safe-area-inset-bottom))}.honro-ending-60-lines{font-size:.94em}}
