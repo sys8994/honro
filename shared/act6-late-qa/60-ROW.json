@@ -1,0 +1,44 @@
+{
+  "id": 60,
+  "act": 6,
+  "actStage": 10,
+  "previous": 59,
+  "authoredId": "a6-10-playable-draft-noncampaign",
+  "entry": [
+    "archer",
+    "knight",
+    "occultist",
+    "mage"
+  ],
+  "exit": [
+    "archer",
+    "knight",
+    "occultist",
+    "mage"
+  ],
+  "parked": [],
+  "parkedOnExit": [],
+  "requiresFlags": {
+    "act6.garmjinCompleted": true,
+    "act6.finalThreatResolved": true
+  },
+  "terminalFlags": {
+    "act6.lastSoulsGuided": true,
+    "act6.endingStarted": true
+  },
+  "events": [
+    "interact",
+    "tick"
+  ],
+  "objective": "act6-quiet-exit",
+  "name": "다시 흐르는 길",
+  "runtimeReleaseEnabled": false,
+  "ownerSHA": "2cacee6514282b97ef451d9c19c6d703d9e6ce10644e58021512e288e11b209b",
+  "sha256": "1ed264e9415a2757852c7e7274ffdf94696e5fa89ff2b258871773bf920d52e1",
+  "bytes": 144825,
+  "path": "/web/data/act6-qa-chapter-60.1ed264e9415a2757.json",
+  "mapSHA": "56b6e7d9816be57c9ae6340816219aee0e66c4ebdac3929ac32b85d9748dfc66",
+  "assetSHA": "84dbfff8fb3e93541f20033d37e9e796adf1fe3e98be11615e72c1d27498c02a",
+  "playSHA": "2b26720eec311eaa800e92ce1c439b0721511b0aff3e27be0a69b52541d08f1e",
+  "worldSHA": "6594c55a365172c15a7a1eb5f80bfe56ab8d503c22ff50a269c09efa6e2764bf"
+}
